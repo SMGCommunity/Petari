@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Game/System/WPad.hpp"
 #include <revolution.h>
 
+class WPad;
 
 class WPadReadDataInfo {
 public:
@@ -35,4 +35,4 @@ public:
 
 namespace MR {
     WPad* getWPad(s32 channel);
-}
+};

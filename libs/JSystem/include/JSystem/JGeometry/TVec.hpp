@@ -4,6 +4,7 @@
 #include <revolution.h>
 // #include "math_types.hpp"
 #include "JSystem/JGeometry/TUtil.hpp"
+#include "math_types.hpp"
 #include <JSystem/JMath/JMath.hpp>
 
 namespace JGeometry {
@@ -319,6 +320,21 @@ namespace JGeometry {
         // Point gravity doesn't match if we use setPS
         inline void setPS2(const TVec3<f32>& rSrc) {
             const register Vec* v_a = &rSrc;
+            register Vec* v_b = this;
+    
+            register f32 b_x;
+            register f32 a_x;
+    
+            asm {
+                psq_l a_x, 0(v_a), 0, 0
+                lfs b_x, 8(v_a)
+                psq_st a_x, 0(v_b), 0, 0
+                stfs b_x, 8(v_b)
+            };
+        }
+
+        inline void setPSZeroVec() {
+            const register Vec* v_a = &gZeroVec;
             register Vec* v_b = this;
     
             register f32 b_x;

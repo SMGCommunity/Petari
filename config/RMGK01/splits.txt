@@ -2412,14 +2412,14 @@ Game/Enemy/AnimScaleController.cpp:
 Game/Enemy/AnimStampController.cpp:
 	.text       start:0x800CC370 end:0x800CC69C
 	.ctors      start:0x8052EA28 end:0x8052EA2C
-	.data       start:0x80578C80 end:0x80578D00
+	.data       start:0x80578C80 end:0x80578CC8
 	.sbss       start:0x806B3B18 end:0x806B3B20
 	.sdata2     start:0x806B9DE8 end:0x806B9E00
 
 Game/Enemy/BallBeamer.cpp:
 	.text       start:0x800CC69C end:0x800CD00C
 	.ctors      start:0x8052EA2C end:0x8052EA30
-	.data       start:0x80578D00 end:0x80578E60
+	.data       start:0x80578CC8 end:0x80578E60
 	.sbss       start:0x806B3B20 end:0x806B3B30
 	.sdata2     start:0x806B9E00 end:0x806B9E18
 
@@ -2942,7 +2942,7 @@ Game/Enemy/Petari.cpp:
 	.ctors      start:0x8052EB28 end:0x8052EB2C
 	.rodata     start:0x80532478 end:0x80532490
 	.data       start:0x80583270 end:0x80583568
-	.sdata      start:0x806B1A48 end:0x806B1AC0
+	.sdata      start:0x806B1A48 end:0x806B1A60
 	.sbss       start:0x806B4640 end:0x806B4678
 	.sdata2     start:0x806BB2B8 end:0x806BB350
 
@@ -2973,6 +2973,7 @@ Game/Enemy/RingBeamer.cpp:
 	.text       start:0x80139B40 end:0x8013A3AC
 	.ctors      start:0x8052EB38 end:0x8052EB3C
 	.data       start:0x80583DA8 end:0x80583EC8
+	.sdata      start:0x806B1A60 end:0x806B1AC0
 	.sbss       start:0x806B4700 end:0x806B4710
 	.sdata2     start:0x806BB470 end:0x806BB498
 
@@ -6077,7 +6078,7 @@ Game/NameObj/NameObjHolder.cpp:
 
 Game/NameObj/NameObjListExecutor.cpp:
 	.text       start:0x8026C378 end:0x8026C654
-	.data       start:0x805AE778 end:0x805AE978
+	.data       start:0x805AE778 end:0x805AE798
 
 Game/NameObj/NameObjRegister.cpp:
 	.text       start:0x8026C654 end:0x8026C670
@@ -6085,8 +6086,8 @@ Game/NameObj/NameObjRegister.cpp:
 Game/NPC/Butler.cpp:
 	.text       start:0x8026C670 end:0x8026DEA8
 	.ctors      start:0x8052EF7C end:0x8052EF80
-	.rodata     start:0x80539718 end:0x80539798
-	.data       start:0x805AE978 end:0x805AEC80
+	.rodata     start:0x80539718 end:0x80539738
+	.data       start:0x805AE798 end:0x805AEC80
 	.sdata      start:0x806B20E8 end:0x806B20F0
 	.sbss       start:0x806B5C28 end:0x806B5C40
 	.sdata2     start:0x806BEA08 end:0x806BEA30

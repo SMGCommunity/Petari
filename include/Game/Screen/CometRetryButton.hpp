@@ -7,16 +7,26 @@ class PlayerMissLeft;
 
 class CometRetryButton : public LayoutActor {
 public:
-    CometRetryButton(const char *);
+    /// @brief Creates a new `CometRetryButton`.
+    /// @param pName The pointer to the null-terminated name of the object.
+    CometRetryButton(const char* pName);
 
-    virtual ~CometRetryButton();
-    virtual void init(const JMapInfoIter &);
+    /// @brief Destroys the `CometRetryButton`.
+    virtual ~CometRetryButton() {}
+
+    virtual void init(const JMapInfoIter& rIter);
     virtual void draw() const;
     virtual void appear();
     virtual void kill();
     virtual void control();
 
-    ButtonPaneController* mUpButton;        // 0x20
-    ButtonPaneController* mDownButton;      // 0x24
-    PlayerMissLeft* mPlayerMissLeft;        // 0x28
+    void exeMissLeftWait();
+    void exeWait();
+    void exeDecided();
+    void exeEnd();
+
+private:
+    /* 0x20 */ ButtonPaneController* mButtonYesPaneCtrl;
+    /* 0x24 */ ButtonPaneController* mButtonNoPaneCtrl;
+    /* 0x28 */ PlayerMissLeft* mPlayerMissLeft;
 };
