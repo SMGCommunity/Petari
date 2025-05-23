@@ -1,6 +1,5 @@
 #include "Game/Util/JMapInfo.hpp"
 #include "JSystem/JGadget/hashcode.hpp"
-#include <cstring>
 
 JMapInfo::JMapInfo() {
     mData = nullptr;
@@ -28,11 +27,11 @@ const char* JMapInfo::getName() const {
 }
 
 s32 JMapInfo::searchItemInfo(const char *key) const {
-    if (!mData) {
+    if (!dataExists()) {
         return -1;
     }
 
-    s32 nFields = mData ? mData->mNumFields : 0;
+    s32 nFields = dataExists() ? mData->mNumFields : 0;
     u32 hash = JGadget::getHashCode(key);
 
     for (int i = 0; i < nFields; ++i) {

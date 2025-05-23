@@ -1,6 +1,7 @@
 #pragma once
 
 #include <revolution.h>
+#include <cstring>
 
 #define JMAP_VALUE_TYPE_LONG 0
 #define JMAP_VALUE_TYPE_STRING 1
@@ -29,6 +30,16 @@ struct JMapData {
     const JMapItem mItems[];   // 0x10
 };
 
+template<typename T>
+inline bool compareValues(const T a, const T b) {
+    return a == b;
+}
+
+template<>
+inline bool compareValues<const char*>(const char* a, const char* b) {
+    return strcmp(a, b) == 0;
+}
+
 class JMapInfo {
 public:
     JMapInfo();
@@ -45,17 +56,9 @@ public:
     const char* getName() const;
     s32 searchItemInfo(const char *pItem) const;
     s32 getValueType(const char *) const;
-
-    template<typename T>
-    JMapInfoIter findElement(const char *, const char *, int) const;
-
-    template<typename T>
-    JMapInfoIter findElement(const char *, s32, int) const;
-
     bool getValueFast(int, int, const char **) const;
     bool getValueFast(int, int, u32 *) const;
     bool getValueFast(int, int, s32 *) const;
-
     JMapInfoIter findElementBinary(const char *, const char *) const;
 
     template<typename T>
@@ -67,7 +70,25 @@ public:
         return getValueFast(entryIndex, itemIndex, outValue);
     }
 
+    template<typename T>
+    JMapInfoIter findElement(const char *key, T searchValue, int startIndex) const NO_INLINE {
+        int entryIndex = startIndex;
+        T value;
+        while (entryIndex < (mData ? mData->mNumEntries : 0)) {
+            getValue<T>(entryIndex, key, &value);
+            if (compareValues<T>(value, searchValue)) {
+                return JMapInfoIter(this, entryIndex);
+            }
+            entryIndex++;
+        }
+        return end();
+    }
+
     JMapInfoIter end() const;
+
+    inline bool dataExists() const {
+        return !!mData;
+    }
 
     const JMapData* mData; // 0x0
     const char* mName; // 0x4
