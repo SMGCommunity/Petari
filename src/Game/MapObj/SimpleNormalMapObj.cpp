@@ -21,7 +21,7 @@ void SimpleNormalMapObj::init(const JMapInfoIter & rIter) {
     initNormalMap();
     if (MR::isExistCollisionResource(this, v6)) {
         initHitSensor(1);
-        HitSensor * sensor = MR::addBodyMessageSensorMapObj(this);
+        HitSensor* sensor = MR::addBodyMessageSensorMapObj(this);
         MR::initCollisionParts(this, v6, sensor, nullptr);
     }
     MR::setClippingTypeSphereContainsModelBoundingBox(this, 100.0f);

@@ -41,9 +41,9 @@ void NeedlePlant::init(const JMapInfoIter &rIter) {
     initEffectKeeper(1, "NeedlePlant", false);
     MR::addEffectHitNormal(this, nullptr);
     initSound(4, 0);
-    TVec3f vec2;
-    vec2.set(0.0f, 150.0f * mScale.x, 0.0f);
-    MR::initStarPointerTarget(this, 150.0f * mScale.x, vec2);
+    TVec3f vec3_2; //Second Vector3f
+    vec3_2.set(0.0f, 150.0f * mScale.x, 0.0f);
+    MR::initStarPointerTarget(this, 150.0f * mScale.x, vec3_2);
     MR::getJMapInfoArg0NoInit(rIter, &_C4);
 
     if (_C4 == -1) {
@@ -67,8 +67,9 @@ void NeedlePlant::kill() {
 
 void NeedlePlant::attackSensor(HitSensor *a1, HitSensor *a2) {
     // TODO: Possible inline. https://decomp.me/scratch/zwlUm
-    if (MR::calcDistance(a1, a2, nullptr) > 70.0f * mScale.x + a2->mRadius)
+    if (MR::calcDistance(a1, a2, nullptr) > 70.0f * mScale.x + a2->mRadius) {
         return;
+    }
     if (MR::isSensorPlayerOrRide(a2) && MR::sendMsgEnemyAttack(a2, a1)) {
         MR::emitEffectHitBetweenSensors(this, a1, a2, 0.0f, nullptr);
         setNerve(&NrvNeedlePlant::NeedlePlantNrvShake::sInstance);

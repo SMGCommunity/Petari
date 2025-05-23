@@ -8,6 +8,7 @@ class NeedlePlant : public MapObjActor {
 public:
     NeedlePlant(const char *);
     virtual ~NeedlePlant();
+
     virtual void init(const JMapInfoIter &);
     virtual void kill();
     virtual void attackSensor(HitSensor *, HitSensor *);
@@ -18,5 +19,6 @@ public:
 
     void exeShake();
     void exeWait();
+
     s32 _C4; // 0xC4
 };
