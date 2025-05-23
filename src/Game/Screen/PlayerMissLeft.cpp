@@ -6,6 +6,11 @@
 #include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 
+namespace {
+    const s32 hCountDownTime = 15;
+    const s32 hEndTime = 90;
+};
+
 namespace NrvPlayerMissLeft {
     NEW_NERVE(HostTypeNrvAppearWait, PlayerMissLeft, AppearWait);
     NEW_NERVE(HostTypeNrvAppear, PlayerMissLeft, Appear);
@@ -73,13 +78,13 @@ void PlayerMissLeft::exeAppear() {
 }
 
 void PlayerMissLeft::exeWait() {
-    if (MR::isStep(this, 15)) {
+    if (MR::isStep(this, hCountDownTime)) {
         MR::setTextBoxNumberRecursive(this, "CenterPlayerLeft", MR::getPlayerLeft());
         mPaneRumbler->start();
         MR::startSystemSE("SE_SY_PLAYER_LEFT_DEC", -1, -1);
     }
 
-    if (MR::isGreaterStep(this, 90)) {
+    if (MR::isGreaterStep(this, hEndTime)) {
         setNerve(&NrvPlayerMissLeft::HostTypeNrvEnd::sInstance);
     }
 }

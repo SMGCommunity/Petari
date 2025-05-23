@@ -9,6 +9,17 @@
 #include "Game/Util/SceneUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
 
+namespace {
+    const f32 cAppearOffsetCenterY = 30.0f;
+    const f32 cAppearOffsetRightX = 50.0f;
+    const s32 cInvalidCountUpInterval = 3;
+    const s32 cHideFrameMin = 3;
+    const s32 cDecCounterValueFast = 10;
+    const f32 cBaseOffsetEatTicoY = -120.0f;
+    const f32 cBaseOffsetTicoFatY = -94.0f;
+    const s32 cHideFrameMinTicoEat = 20;
+};
+
 namespace NrvStarPieceCounter {
     NEW_NERVE(StarPieceCounterNrvHide, StarPieceCounter, Hide);
     NEW_NERVE(StarPieceCounterNrvAppear, StarPieceCounter, Appear);
@@ -20,13 +31,15 @@ StarPieceCounter::StarPieceCounter(const char* pName) :
     LayoutActor(pName, true),
     mStarPieceNum(0),
     mStarPieceDisplayNum(0),
-    mDisplayUpdateFrame(0),
+    mInvalidCountUpFrame(0),
     mLayoutAppearer(NULL),
     mPaneRumbler(NULL),
     mFollowPos(0.0f, 0.0f),
     _3C(0),
     mMode(0)
-{}
+{
+    
+}
 
 void StarPieceCounter::init(const JMapInfoIter& rIter) {
     initLayoutManager("StarPieceCounter", 3);
@@ -56,7 +69,7 @@ void StarPieceCounter::appear() {
     mLayoutAppearer->reset();
     mPaneRumbler->reset();
 
-    mDisplayUpdateFrame = 0;
+    mInvalidCountUpFrame = 0;
     _3C = 0;
 
     MR::hideLayout(this);
@@ -96,7 +109,7 @@ bool StarPieceCounter::isWait() const {
 }
 
 void StarPieceCounter::forceSync() {
-    mDisplayUpdateFrame = 0;
+    mInvalidCountUpFrame = 0;
     mStarPieceNum = MR::getStarPieceNum();
     mStarPieceDisplayNum = mStarPieceNum;
 }
@@ -166,8 +179,8 @@ void StarPieceCounter::updateCounterValue() {
         return;
     }
 
-    if (mDisplayUpdateFrame > 0) {
-        mDisplayUpdateFrame--;
+    if (mInvalidCountUpFrame > 0) {
+        mInvalidCountUpFrame--;
     }
     else if (mStarPieceDisplayNum != mStarPieceNum) {
         if (isNerve(&NrvStarPieceCounter::StarPieceCounterNrvWait::sInstance)) {
@@ -181,7 +194,7 @@ void StarPieceCounter::updateCounterValue() {
             }
             else if (mMode == 1) {
                 if (mStarPieceDisplayNum - mStarPieceNum > 10) {
-                    mStarPieceDisplayNum -= 10;
+                    mStarPieceDisplayNum -= cDecCounterValueFast;
                 }
                 else {
                     mStarPieceDisplayNum = mStarPieceNum;
@@ -191,7 +204,7 @@ void StarPieceCounter::updateCounterValue() {
                 mStarPieceDisplayNum--;
             }
 
-            mDisplayUpdateFrame = 3;
+            mInvalidCountUpFrame = cInvalidCountUpInterval;
 
             mPaneRumbler->start();
         }
@@ -246,12 +259,14 @@ bool StarPieceCounter::tryChangeModeTicoEat(int mode) {
 
 void StarPieceCounter::exeHide() {
     if (MR::isFirstStep(this)) {
-        mDisplayUpdateFrame = 0;
+        mInvalidCountUpFrame = 0;
 
         MR::hideLayout(this);
     }
 
-    s32 step = mMode != 0 ? 20 : 3;
+    s32 step = mMode != 0
+        ? cHideFrameMinTicoEat
+        : cHideFrameMin;
 
     if (MR::isGreaterStep(this, step) && isValidAppearSituation()) {
         setNerve(&NrvStarPieceCounter::StarPieceCounterNrvAppear::sInstance);
@@ -266,7 +281,7 @@ void StarPieceCounter::exeAppear() {
         if (isDispCenter()) {
             MR::showPaneRecursive(this, "TSPieceCounter");
             MR::hidePaneRecursive(this, "StarPieceCounter");
-            mLayoutAppearer->setAppearOffset(TVec2f(0.0f, 30.0f));
+            mLayoutAppearer->setAppearOffset(TVec2f(0.0f, cAppearOffsetCenterY));
 
             if (MR::isStageAstroLocation()) {
                 MR::showPaneRecursive(this, "PicTStarPiece");
@@ -280,16 +295,16 @@ void StarPieceCounter::exeAppear() {
         else {
             MR::showPaneRecursive(this, "StarPieceCounter");
             MR::hidePaneRecursive(this, "TSPieceCounter");
-            mLayoutAppearer->setAppearOffset(TVec2f(50.0f, 0.0f));
+            mLayoutAppearer->setAppearOffset(TVec2f(cAppearOffsetRightX, 0.0f));
         }
 
         f32 y = 0.0f;
 
         if (mMode != 0) {
-            y = -94.0f;
+            y = cBaseOffsetTicoFatY;
         }
         else if (_3C == 2) {
-            y = -120.0f;
+            y = cBaseOffsetEatTicoY;
         }
 
         mLayoutAppearer->appear(TVec2f(0.0f, y));

@@ -6,6 +6,10 @@
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/SceneUtil.hpp"
 
+namespace {
+    const s32 cInvalidCountUpInterval = 3;
+};
+
 namespace NrvPurpleCoinCounter {
     NEW_NERVE(PurpleCoinCounterNrvAppear, PurpleCoinCounter, Appear);
     NEW_NERVE(PurpleCoinCounterNrvWait, PurpleCoinCounter, Wait);
@@ -15,11 +19,13 @@ PurpleCoinCounter::PurpleCoinCounter(const char* pName) :
     LayoutActor(pName, true),
     mPurpleCoinNum(0),
     mPurpleCoinDisplayNum(0),
-    mDisplayUpdateFrame(0),
+    mInvalidCountUpFrame(0),
     mLayoutAppearer(NULL),
     mPaneRumbler(NULL),
     mIsValid(false)
-{}
+{
+    
+}
 
 void PurpleCoinCounter::init(const JMapInfoIter& rIter) {
     initLayoutManager("PurpleCoinCounter", 2);
@@ -45,7 +51,7 @@ void PurpleCoinCounter::appear() {
     mLayoutAppearer->reset();
     mPaneRumbler->reset();
 
-    mDisplayUpdateFrame = 0;
+    mInvalidCountUpFrame = 0;
 
     MR::setTextBoxFormatRecursive(this, "Counter", L"%03d", mPurpleCoinDisplayNum);
     setNerve(&NrvPurpleCoinCounter::PurpleCoinCounterNrvAppear::sInstance);
@@ -68,12 +74,12 @@ void PurpleCoinCounter::control() {
 void PurpleCoinCounter::updateCounter() {
     mPurpleCoinNum = MR::getPurpleCoinNum();
 
-    if (mDisplayUpdateFrame > 0) {
-        mDisplayUpdateFrame--;
+    if (mInvalidCountUpFrame > 0) {
+        mInvalidCountUpFrame--;
     }
     else if (mPurpleCoinDisplayNum < mPurpleCoinNum) {
         if (isNerve(&NrvPurpleCoinCounter::PurpleCoinCounterNrvWait::sInstance)) {
-            mDisplayUpdateFrame = 3;
+            mInvalidCountUpFrame = cInvalidCountUpInterval;
             mPurpleCoinDisplayNum++;
 
             MR::startAnim(this, "Flash", 0);

@@ -30,7 +30,7 @@ public:
 private:
     /* 0x20 */ s32 mCoinNum;
     /* 0x24 */ s32 mCoinDisplayNum;
-    /* 0x28 */ s32 mDisplayUpdateFrame;
+    /* 0x28 */ s32 mInvalidCountUpFrame;
     /* 0x2C */ CounterLayoutAppearer* mLayoutAppearer;
     /* 0x30 */ CountUpPaneRumbler* mPaneRumbler;
     /* 0x34 */ bool mIsForceAppear;

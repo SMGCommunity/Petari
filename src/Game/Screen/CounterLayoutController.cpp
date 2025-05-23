@@ -13,6 +13,11 @@
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
 
+namespace {
+    const s32 cJudgeNotMovingFrame = 60;
+    const s32 cShowWaitFrame = 240;
+};
+
 namespace NrvCounterLayoutController {
     NEW_NERVE(CounterLayoutControllerNrvPlayerMoving, CounterLayoutController, PlayerMoving);
     NEW_NERVE(CounterLayoutControllerNrvPlayerNotMoving, CounterLayoutController, PlayerNotMoving);
@@ -85,7 +90,7 @@ bool CounterLayoutController::isInvalidSystemStateShowCounter() {
 }
 
 bool CounterLayoutController::isWaitToDisappearCounter(const LayoutActor* pActor) {
-    return MR::isGreaterStep(pActor, 240) || MR::isExistStarPointerGuidance();
+    return MR::isGreaterStep(pActor, cShowWaitFrame) || MR::isExistStarPointerGuidance();
 }
 
 void CounterLayoutController::control() {
@@ -189,7 +194,7 @@ void CounterLayoutController::exePlayerMoving() {
     else if (!isPlayerMoving()) {
         mPlayerNotMovingFrame++;
 
-        if (mPlayerNotMovingFrame > 60) {
+        if (mPlayerNotMovingFrame > cJudgeNotMovingFrame) {
             setNerve(&NrvCounterLayoutController::CounterLayoutControllerNrvPlayerNotMoving::sInstance);
         }
     }
