@@ -5476,13 +5476,13 @@ Game/MapObj/SimpleMapObj.cpp:
 
 Game/MapObj/SimpleNormalMapObj.cpp:
 	.text       start:0x80227A08 end:0x80227B6C
-	.data       start:0x8059FC10 end:0x8059FCA8
+	.data       start:0x8059FC10 end:0x8059FCA0
 	.sdata2     start:0x806BDEF8 end:0x806BDF00
 
 Game/MapObj/SimpleTimerObj.cpp:
 	.text       start:0x80227B6C end:0x80227DE8
 	.ctors      start:0x8052EE94 end:0x8052EE98
-	.data       start:0x8059FCA8 end:0x8059FD48
+	.data       start:0x8059FCA0 end:0x8059FD48
 	.sbss       start:0x806B5830 end:0x806B5838
 
 Game/MapObj/SmallStone.cpp:
