@@ -6,6 +6,10 @@
 #include "JSystem/JKernel/JKRArchive.hpp"
 #include <cstdio>
 
+JMapInfoIter JMapInfo::end() const {
+    return JMapInfoIter(this, mData ? mData->mNumEntries : 0);
+}
+
 namespace {
     static bool isPrioPlacementObjInfo(const char *pName) NO_INLINE {
         return MR::isEqualStringCase(pName, "AreaObjInfo") 

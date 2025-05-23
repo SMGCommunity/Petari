@@ -1,4 +1,5 @@
 #include "Game/Util/JMapInfo.hpp"
+#include "Game/Util/StringUtil.hpp"
 #include "JSystem/JGadget/hashcode.hpp"
 
 JMapInfo::JMapInfo() {
@@ -126,6 +127,19 @@ bool JMapInfo::getValueFast(int entryIndex, int itemIndex, s32* outValue) const 
     return true;
 FAIL:
     return false;
+}
+
+JMapInfoIter MR::findJMapInfoElementNoCase(const JMapInfo* pInfo, const char *key, const char *searchValue, int startIndex) {
+    int entryIndex = startIndex;
+    const char* value;
+    while (entryIndex < (pInfo->mData ? pInfo->mData->mNumEntries : 0)) {
+        pInfo->getValue<const char*>(entryIndex, key, &value);
+        if (MR::isEqualStringCase(value, searchValue)) {
+            return JMapInfoIter(pInfo, entryIndex);
+        }
+        entryIndex++;
+    }
+    return pInfo->end();
 }
 
 JMapInfoIter JMapInfo::findElementBinary(const char* key, const char* value) const {
