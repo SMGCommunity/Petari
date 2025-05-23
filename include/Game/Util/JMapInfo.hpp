@@ -51,6 +51,10 @@ public:
         return *this;
     }
 
+    inline bool operator==(const JMapInfo &rhs) const {
+        return mData == rhs.mData;
+    }
+
     bool attach(const void *);
     void setName(const char *pName);
     const char* getName() const;
@@ -109,6 +113,10 @@ public:
         return *this;
     }
 
+    bool operator==(const JMapInfoIter &rhs) const NO_INLINE {
+        return index == rhs.index && mInfo && rhs.mInfo && *mInfo == *rhs.mInfo;
+    }
+
     template<typename T>
     bool getValue(const char *, T *) const;
 
@@ -138,8 +146,6 @@ public:
         return valid;
     }
 
-    bool operator==(const JMapInfoIter &) const;
-
     const JMapInfo* mInfo; // 0x0
-    s32 index;
+    s32 index; // 0x4
 };
