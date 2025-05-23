@@ -55,7 +55,6 @@ void NeedlePlant::init(const JMapInfoIter &rIter) {
 void NeedlePlant::kill() {
     MR::emitEffect(this, "Break");
     MR::startSound(this, "SE_OJ_NEEDLE_PLANT_BREAK", -1, -1);
-
     if (!_C4) {
         MR::startSound(this, "SE_OJ_STAR_PIECE_BURST", -1, -1);
         MR::appearStarPiece(this, this->mPosition, 3, 10.0f, 40.0f, false);
