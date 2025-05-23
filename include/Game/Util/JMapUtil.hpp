@@ -110,7 +110,7 @@ namespace MR {
         ret = false;
         flag = false;
 
-        if (rIter.mInfo != nullptr && rIter.index >= 0) {
+        if (rIter.mInfo != nullptr && rIter.mIndex >= 0) {
             flag = true;
         }
 
@@ -123,7 +123,7 @@ namespace MR {
                 numEntries = 0;
             }
 
-            if (rIter.index < numEntries) {
+            if (rIter.mIndex < numEntries) {
                 ret = true;
             }
         }

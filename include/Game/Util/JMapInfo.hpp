@@ -40,8 +40,8 @@ inline bool compareValues<const char*>(const char* a, const char* b) {
     return strcmp(a, b) == 0;
 }
 
-inline const char* getEntryAddress(const JMapData* data, s32 dataOffset, int entryIndex) {
-    return reinterpret_cast<const char*>(data) + dataOffset + entryIndex * data->mEntrySize;
+inline const char* getEntryAddress(const JMapData* pData, s32 dataOffset, int entryIndex) {
+    return reinterpret_cast<const char*>(pData) + dataOffset + entryIndex * pData->mEntrySize;
 }
 
 class JMapInfo {
@@ -49,14 +49,26 @@ public:
     JMapInfo();
     ~JMapInfo();
 
-    inline JMapInfo& operator=(const JMapInfo &rhs) {
-        mData = rhs.mData;
-        mName = rhs.mName;
+    inline JMapInfo& operator=(const JMapInfo &rInfo) {
+        mData = rInfo.mData;
+        mName = rInfo.mName;
         return *this;
     }
 
-    inline bool operator==(const JMapInfo &rhs) const {
-        return mData == rhs.mData;
+    inline bool operator==(const JMapInfo &rInfo) const {
+        return mData == rInfo.mData;
+    }
+
+    inline bool dataExists() const {
+        return !!mData;
+    }
+
+    inline int getNumEntries() const {
+        return dataExists() ? mData->mNumEntries : 0;
+    }
+
+    inline int getNumFields() const {
+        return dataExists() ? mData->mNumFields : 0;
     }
 
     bool attach(const void*);
@@ -67,29 +79,29 @@ public:
     bool getValueFast(int, int, const char**) const;
     bool getValueFast(int, int, u32*) const;
     bool getValueFast(int, int, s32*) const;
-    bool getValueFast(int entryIndex, int itemIndex, f32* outValue) const {
-        const JMapItem* item = &mData->mItems[itemIndex];
-        const char* valuePtr = getEntryAddress(mData, mData->mDataOffset, entryIndex) + item->mOffsData;
-        *outValue = *reinterpret_cast<const f32*>(valuePtr);
+    bool getValueFast(int entryIndex, int itemIndex, f32* pValueOut) const {
+        const JMapItem* pItem = &mData->mItems[itemIndex];
+        const char* pValue = getEntryAddress(mData, mData->mDataOffset, entryIndex) + pItem->mOffsData;
+        *pValueOut = *reinterpret_cast<const f32*>(pValue);
         return true;
     }
     JMapInfoIter findElementBinary(const char*, const char*) const;
 
     template<typename T>
-    const bool getValue(int entryIndex, const char* key, T* outValue) const NO_INLINE {
-        s32 itemIndex = searchItemInfo(key);
+    const bool getValue(int entryIndex, const char* pKey, T* pValueOut) const NO_INLINE {
+        s32 itemIndex = searchItemInfo(pKey);
         if (itemIndex < 0) {
             return false;
         }
-        return getValueFast(entryIndex, itemIndex, outValue);
+        return getValueFast(entryIndex, itemIndex, pValueOut);
     }
 
     template<typename T>
-    JMapInfoIter findElement(const char* key, T searchValue, int startIndex) const NO_INLINE {
+    JMapInfoIter findElement(const char* pKey, T searchValue, int startIndex) const NO_INLINE {
         int entryIndex = startIndex;
         T value;
-        while (entryIndex < (mData ? mData->mNumEntries : 0)) {
-            getValue<T>(entryIndex, key, &value);
+        while (entryIndex < getNumEntries()) {
+            getValue<T>(entryIndex, pKey, &value);
             if (compareValues<T>(value, searchValue)) {
                 return JMapInfoIter(this, entryIndex);
             }
@@ -100,10 +112,6 @@ public:
 
     JMapInfoIter end() const;
 
-    inline bool dataExists() const {
-        return !!mData;
-    }
-
     const JMapData* mData; // 0x0
     const char* mName; // 0x4
 };
@@ -112,43 +120,43 @@ class JMapInfoIter {
 public:
     inline JMapInfoIter() { }
 
-    inline JMapInfoIter(const JMapInfo* pInfo, s32 idx) {
+    inline JMapInfoIter(const JMapInfo* pInfo, s32 index) {
         mInfo = pInfo;
-        index = idx;
+        mIndex = index;
     }
 
     inline JMapInfoIter& operator=(const JMapInfoIter &rIter) {
         mInfo = rIter.mInfo;
-        index = rIter.index;
+        mIndex = rIter.mIndex;
         return *this;
     }
 
-    bool operator==(const JMapInfoIter &rhs) const {
-        return index == rhs.index && mInfo && rhs.mInfo && *mInfo == *rhs.mInfo;
+    bool operator==(const JMapInfoIter &rIter) const {
+        return mIndex == rIter.mIndex && mInfo && rIter.mInfo && *mInfo == *rIter.mInfo;
     }
     
-    bool operator!=(const JMapInfoIter &rhs) const {
-        return !(*this == rhs);
+    bool operator!=(const JMapInfoIter &rIter) const {
+        return !(*this == rIter);
     }
 
     bool isValid() const {
-        return mInfo && index >= 0 && index < (mInfo->mData ? mInfo->mData->mNumEntries : 0);
+        return mInfo && mIndex >= 0 && mIndex < mInfo->getNumEntries();
     }
 
     template<typename T>
-    bool getValue(const char* key, T* outValue) const {
+    bool getValue(const char* pKey, T* pValueOut) const {
         const JMapInfo* info = mInfo;
-        s32 entryIndex = index;
+        s32 entryIndex = mIndex;
         
-        s32 itemIndex = info->searchItemInfo(key);
+        s32 itemIndex = info->searchItemInfo(pKey);
         if (itemIndex < 0) {
             return false;
         }
-        return info->getValueFast(entryIndex, itemIndex, outValue);
+        return info->getValueFast(entryIndex, itemIndex, pValueOut);
     }
 
     const JMapInfo* mInfo; // 0x0
-    s32 index; // 0x4
+    s32 mIndex; // 0x4
 };
 
 namespace MR {
