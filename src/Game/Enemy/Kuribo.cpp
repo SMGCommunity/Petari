@@ -11,6 +11,7 @@
 #include "Game/Util/ActorShadowUtil.hpp"
 #include "Game/Util/ActorSwitchUtil.hpp"
 #include "Game/Util/JMapUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MapUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 #include "revolution/mtx.h"
@@ -299,6 +300,158 @@ bool Kuribo::receiveMsgPush(HitSensor *a2, HitSensor *a3) {
     }
 
     return false;
+}
+
+bool Kuribo::receiveOtherMsg(u32 msg, HitSensor *a2, HitSensor *a3) {
+    if (MR::isMsgInhaleBlackHole(msg)) {
+        mItemGenerator->setTypeNone();
+        kill();
+        return true;
+    }
+    else if (MR::isMsgPlayerKick(msg) && isEnableKick()) {
+        return requestBlowDown(a2, a3);
+    }
+
+    return false;
+}
+
+// ...
+
+bool Kuribo::requestFlatDown(HitSensor *a1, HitSensor *a2) {
+    if (MR::isSensorEnemyAttack(a1)) {
+        return false;
+    }
+
+    if (!isEnableStamp()) {
+        return false;
+    }
+
+    if (!requestDead()) {
+        return false;
+    }
+
+    MR::startSoundSeVer(this, "SE_EM_STOMPED_S", -1, -1);
+    if (isUpsideDown()) {
+        MR::startAction(this, "FlatDownReverse");
+    }
+    else {
+        MR::startAction(this, "FlatDown");
+    }
+
+    setNerve(&NrvKuribo::KuriboNrvFlatDown::sInstance);
+    MR::offBind(this);
+    mItemGenerator->setTypeCoin(1);
+    return true;
+}
+
+bool Kuribo::requestHipDropDown(HitSensor *a1, HitSensor *a2) {
+    if (!requestDead()) {
+        return false;
+    }
+
+    if (MR::isSensorEnemyAttack(a2)) {
+        return false;
+    }
+
+    MR::startSoundSeVer(this, "SE_EM_STOMPED_S", -1, -1);
+    if (isUpsideDown()) {
+        MR::startAction(this, "HipDropDownReverse");
+    }
+    else {
+        MR::startAction(this, "HipDropDown");
+    }
+
+    setNerve(&NrvKuribo::KuriboNrvHipDropDown::sInstance);
+    MR::offBind(this);
+    mItemGenerator->setTypeCoin(1);
+    return true;
+}
+
+bool Kuribo::requestPressDown() {
+    if (!requestDead()) {
+        return false;
+    }
+
+    MR::startSoundSeVer(this, "SE_EM_STOMPED_S", -1, -1);
+    if (isUpsideDown()) {
+        MR::startAction(this, "HipDropDownReverse");
+    }
+    else {
+        MR::startAction(this, "HipDropDown");
+    }
+
+    setNerve(&NrvKuribo::KuriboNrvPressDown::sInstance);
+    MR::zeroVelocity(this);
+    MR::offBind(this);
+    mItemGenerator->setTypeStarPeace(3);
+    return true;
+}
+
+bool Kuribo::requestStagger(HitSensor *a1, HitSensor *a2) {
+    if (isEnablePanch()) {
+        mStateStagger->setPunchDirection(a1, a2);
+        setNerve(&NrvKuribo::KuriboNrvStagger::sInstance);
+        return true;
+    }
+
+    return false;
+}
+
+// ...
+
+bool Kuribo::requestAttackSuccess() {
+    if (isEnableAttack()) {
+        mScaleController->stopAndReset();
+        MR::deleteEffectAll(this);
+        setNerve(&NrvKuribo::KuriboNrvAttackSuccess::sInstance);
+        return true;
+    }
+    return false;
+}
+
+void Kuribo::onNoGravitySuppoert() {
+    _C4 = 1;
+    MR::offCalcGravity(this);
+}
+
+void Kuribo::setUp(const TVec3f &a1, const TQuat4f &a2, const TVec3f &a3) {
+    mPosition.set<f32>(a1);
+    mVelocity.set<f32>(a3);
+    _A8.x = a2.x;
+    _A8.y = a2.y;
+    _A8.z = a2.z;
+    _A8.w = a2.w;
+    _A8.getZDir(_B8);
+}
+
+void Kuribo::appearBlowed(const TVec3f &a1, const TQuat4f &a2, const TVec3f &a3) {
+    setUp(a1, a2, a3);
+    setNerve(&NrvKuribo::KuriboNrvBlow::sInstance);
+    MR::startAction(this, "Blow");
+    appear();
+    if (_C4) {
+        MR::calcGravityOrZero(this);
+    }
+}
+
+void Kuribo::appearHipDropped(const TVec3f &a1, const TQuat4f &a2) {
+    TVec3f vec(0.0f, 0.0f, 0.0f);
+    setUp(a1, a2, vec);
+    appear();
+    MR::startAction(this, "HipDropDown");
+    setNerve(&NrvKuribo::KuriboNrvHipDropDown::sInstance);
+    MR::offBind(this);
+    mItemGenerator->setTypeCoin(1);
+}
+
+bool Kuribo::tryNonActive() {
+    if (MR::isNearPlayerAnyTime(this, 3000.0f) || !MR::isBindedGround(this)) {
+        return false;
+    }
+
+    MR::zeroVelocity(this);
+    setNerve(&NrvKuribo::KuriboNrvNonActive::sInstance);
+    return true;
 }
 
 void Kuribo::exeOnEndBindStarPointer() {

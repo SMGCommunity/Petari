@@ -29,7 +29,7 @@ public:
     virtual bool receiveMsgPush(HitSensor *, HitSensor *);
     virtual bool receiveMsgPlayerAttack(u32, HitSensor *, HitSensor *);
     virtual bool receiveMsgEnemyAttack(u32, HitSensor *, HitSensor *);
-    virtual bool recieveMsgOtherMsg(u32, HitSensor *, HitSensor *);
+    virtual bool receiveOtherMsg(u32, HitSensor *, HitSensor *);
 
     void initState();
     void initSensor();

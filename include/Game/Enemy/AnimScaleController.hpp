@@ -36,6 +36,8 @@ public:
     void startHitReaction();
     void startDpdHitVibration();
 
+    void stopAndReset();
+
     AnimScaleParam* _8;
     TVec3f _C;
     f32 _18;
