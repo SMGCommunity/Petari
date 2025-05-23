@@ -46,10 +46,9 @@ void NeedlePlant::init(const JMapInfoIter &rIter) {
     MR::initStarPointerTarget(this, 150.0f * mScale.x, vec2);
     MR::getJMapInfoArg0NoInit(rIter, &_C4);
 
-    s32 v7 = _C4;
-    if (v7 == -1) {
+    if (_C4 == -1) {
         MR::declareCoin(this, 1);
-    } else if (! v7) {
+    } else if (!_C4) {
         MR::declareStarPiece(this, 3);
     }
 }
@@ -57,11 +56,10 @@ void NeedlePlant::kill() {
     MR::emitEffect(this, "Break");
     MR::startSound(this, "SE_OJ_NEEDLE_PLANT_BREAK", -1, -1);
 
-    s32 v1 = _C4;
-    if (v1 == 0) {
+    if (!_C4) {
         MR::startSound(this, "SE_OJ_STAR_PIECE_BURST", -1, -1);
         MR::appearStarPiece(this, this->mPosition, 3, 10.0f, 40.0f, false);
-    } else if (v1 == -1) {
+    } else if (_C4 == -1) {
         MR::appearCoinPop(this, this->mPosition, 1);
     }
 
@@ -117,7 +115,7 @@ void NeedlePlant::connectToScene(const MapObjActorInitInfo &) {
 
 inline void NeedlePlant::exeWait() {
     if (MR::isFirstStep(this)) {
-        MR::tryStartAllAnim(this, mObjectName);
+        MR::tryStartAllAnim(this, mObjectName); 
     }
 }
 void NeedlePlant::exeShake() {
