@@ -12,7 +12,7 @@ namespace {
 
 	void getJMapInfoArgPlus(const JMapInfoIter &rIter, const char *pFieldName, s32 *pDest) {
 		// Get row and column of data
-		s32 row = rIter._4;
+		s32 row = rIter.index;
 		JMapInfo* pInfo = rIter.mInfo;
 		s32 column = pInfo->searchItemInfo(pFieldName);
 

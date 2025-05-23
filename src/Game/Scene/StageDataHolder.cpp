@@ -148,7 +148,7 @@ void StageDataHolder::initPlacement() {
 JMapInfo StageDataHolder::getCommonPathPointInfo(const JMapInfo **ppOut, int idx) const {
     const JMapInfo* pInfo = findJmpInfoFromArray(&mPathObjs, "CommonPathInfo");
     JMapInfoIter pathIter = pInfo->findElement<s32>("l_id", idx, 0);
-    return getCommonPathPointInfoFromRailDataIndex(ppOut, pathIter._4);
+    return getCommonPathPointInfoFromRailDataIndex(ppOut, pathIter.index);
 }
 
 JMapInfo StageDataHolder::getCommonPathPointInfoFromRailDataIndex(const JMapInfo **ppInfo, int idx) const {
@@ -162,7 +162,7 @@ JMapInfo StageDataHolder::getCommonPathPointInfoFromRailDataIndex(const JMapInfo
 s32 StageDataHolder::getCurrentStartCameraId() const {
     JMapInfoIter marioIter = makeCurrentMarioJMapInfoIter();
     s32 cameraID;
-    bool ret = marioIter.mInfo->getValue<s32>(marioIter._4, "Camera_id", &cameraID);
+    bool ret = marioIter.mInfo->getValue<s32>(marioIter.index, "Camera_id", &cameraID);
 
     if (ret) {
         return cameraID;
@@ -176,12 +176,12 @@ void StageDataHolder::getStartCameraIdInfoFromStartDataIndex(JMapIdInfo *pInfo, 
     JMapInfoIter startIter = getStartJMapInfoIterFromStartDataIndex(startDataIdx);
     copy = startIter;
     s32 cameraID;
-    copy.mInfo->getValue<s32>(startIter._4, "Camera_id", &cameraID);
+    copy.mInfo->getValue<s32>(startIter.index, "Camera_id", &cameraID);
     pInfo->initalize(cameraID, copy);
 }
 
 const StageDataHolder* StageDataHolder::findPlacedStageDataHolder(const JMapInfoIter &rIter) const {
-    s32 data = (s32)rIter.mInfo->mData + rIter.mInfo->mData->mDataOffset + rIter.mInfo->mData->mEntrySize * rIter._4;
+    s32 data = (s32)rIter.mInfo->mData + rIter.mInfo->mData->mDataOffset + rIter.mInfo->mData->mEntrySize * rIter.index;
 
     if (_E4 <= data && data < _E8) {
         return this;
@@ -241,7 +241,7 @@ const char* StageDataHolder::getJapaneseObjectName(const char *pName) const {
     }
 
     const char* japaneseName;
-    englishName.mInfo->getValue<const char *>(englishName._4, "jp_name", &japaneseName);
+    englishName.mInfo->getValue<const char *>(englishName.index, "jp_name", &japaneseName);
     return japaneseName;
 }
 
@@ -325,7 +325,7 @@ JMapInfoIter StageDataHolder::getStartJMapInfoIterFromStartDataIndex(int idx_) c
         if (idx < curIdx) {
             JMapInfoIter iter;
             iter.mInfo = pInfo;
-            iter._4 = idx;
+            iter.index = idx;
 
             return iter;
         }
@@ -348,7 +348,7 @@ JMapInfoIter StageDataHolder::getStartJMapInfoIterFromStartDataIndex(int idx_) c
 
     JMapInfoIter iter;
     iter.mInfo = nullptr;
-    iter._4 = -1;
+    iter.index = -1;
 
     return iter;
 }

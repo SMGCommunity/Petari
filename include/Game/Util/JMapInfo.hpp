@@ -98,14 +98,14 @@ class JMapInfoIter {
 public:
     inline JMapInfoIter() { }
 
-    inline JMapInfoIter(const JMapInfo* pInfo, s32 val) {
+    inline JMapInfoIter(const JMapInfo* pInfo, s32 idx) {
         mInfo = pInfo;
-        _4 = val;
+        index = idx;
     }
 
     inline JMapInfoIter& operator=(const JMapInfoIter &rIter) {
         mInfo = rIter.mInfo;
-        _4 = rIter._4;
+        index = rIter.index;
         return *this;
     }
 
@@ -116,12 +116,12 @@ public:
         bool valid = false;
         bool v3 = false;
         const JMapInfo* info = mInfo;
-        if (info && _4 >= 0) {
+        if (info && index >= 0) {
             v3 = true;
         }
 
         if (v3) {        
-            s32 pos = _4;
+            s32 pos = index;
             s32 num;
             if (info->mData) {
                 num = info->mData->mNumEntries;
@@ -141,5 +141,5 @@ public:
     bool operator==(const JMapInfoIter &) const;
 
     const JMapInfo* mInfo; // 0x0
-    s32 _4;
+    s32 index;
 };
