@@ -34,7 +34,7 @@ public:
     FileSelectNumber(const char* pName);
 
     /// @brief Destroys the `FileSelectNumber`.
-    virtual ~FileSelectNumber();
+    virtual ~FileSelectNumber() {}
 
     virtual void init(const JMapInfoIter&);
     virtual void appear();
