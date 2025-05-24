@@ -5095,12 +5095,12 @@ Game/MapObj/NormalMapBase.cpp:
 
 Game/MapObj/NormalMapTestObj.cpp:
 	.text       start:0x80206910 end:0x80206A10
-	.data       start:0x8059A5C8 end:0x8059A6A0
+	.data       start:0x8059A5C8 end:0x8059A668
 
 Game/MapObj/Note.cpp:
 	.text       start:0x80206A10 end:0x8020710C
 	.ctors      start:0x8052EDDC end:0x8052EDE0
-	.data       start:0x8059A6A0 end:0x8059A770
+	.data       start:0x8059A668 end:0x8059A770
 	.sbss       start:0x806B54C8 end:0x806B54D8
 	.sdata2     start:0x806BD888 end:0x806BD8A8
 
