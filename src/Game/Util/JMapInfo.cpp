@@ -128,7 +128,7 @@ FAIL:
     return false;
 }
 
-JMapInfoIter MR::findJMapInfoElementNoCase(const JMapInfo* pInfo, const char *key, const char *searchValue, int startIndex) {
+JMapInfoIter MR::findJMapInfoElementNoCase(const JMapInfo* pInfo, const char* key, const char* searchValue, int startIndex) {
     int entryIndex = startIndex;
     const char* value;
     while (entryIndex < pInfo->getNumEntries()) {
