@@ -21,7 +21,7 @@ void SceneDataInitializer::startStageFileLoadAfterScenarioSelected() {
     NameObjArchiveListCollector collector;
     JMapInfoIter iter;
     iter.mInfo = nullptr;
-    iter._4 = -1;
+    iter.mIndex = -1;
 
     LuigiLetter::makeArchiveListForMenu(&collector, iter);
 

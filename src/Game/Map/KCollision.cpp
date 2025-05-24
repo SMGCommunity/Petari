@@ -163,7 +163,7 @@ JMapInfoIter KCollisionServer::getAttributes(u32 index) const {
 
     JMapInfoIter iter;
     iter.mInfo = mapInfo;
-    iter._4 = prism->mAttribute;
+    iter.mIndex = prism->mAttribute;
 
     return iter;
 }

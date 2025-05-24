@@ -41,7 +41,7 @@ void NameObj::calcViewAndEntry() {
 void NameObj::initWithoutIter() {
     JMapInfoIter iter;
     iter.mInfo = 0;
-    iter._4 = -1;
+    iter.mIndex = -1;
     init(iter);
 }
 

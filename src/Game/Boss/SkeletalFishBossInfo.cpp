@@ -32,8 +32,8 @@ void SkeletalFishBossInfo::init(const JMapInfoIter &rIter) {
         volatile JMapInfoIter level_iter;
         level_iter.mInfo = (JMapInfo*)info;
         what.mInfo = (JMapInfo*)info;
-        level_iter._4 = 0;
-        what._4 = 0;
+        level_iter.mIndex = 0;
+        what.mIndex = 0;
         loadLevelStatus(what);
     }
 }

@@ -21,7 +21,7 @@ void CubeCameraArea::init(const JMapInfoIter &rIter) {
     const char* valid;
 
     if (inf >= 0) {
-        retVal = info->getValueFast(rIter._4, inf, &valid);
+        retVal = info->getValueFast(rIter.mIndex, inf, &valid);
     }
     else {
         retVal = false;
@@ -41,7 +41,7 @@ void CubeCameraArea::init(const JMapInfoIter &rIter) {
     bool r3 = false;
 
     if (rIter.mInfo) {
-        if (rIter._4 >= 0) {
+        if (rIter.mIndex >= 0) {
             r3 = true;
         }
     }

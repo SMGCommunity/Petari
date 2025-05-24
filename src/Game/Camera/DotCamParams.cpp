@@ -9,7 +9,7 @@ DotCamReader::~DotCamReader() {
 DotCamReaderInBin::DotCamReaderInBin(const void *pData) :
     mVersion(0), _8(nullptr), mMapInfo() {
     mMapIter.mInfo = nullptr;
-    mMapIter._4 = -1;
+    mMapIter.mIndex = -1;
     init(pData);
 }
 
@@ -36,7 +36,7 @@ bool DotCamReaderInBin::hasMoreChunk() const {
 
         const JMapInfo &mapInfo = mMapInfo;
 
-        if (mMapIter._4 == iVar2 && mMapIter.mInfo != nullptr && mapInfo.mData != nullptr) {
+        if (mMapIter.mIndex == iVar2 && mMapIter.mInfo != nullptr && mapInfo.mData != nullptr) {
             if (mMapIter.mInfo->mData == mapInfo.mData) {
                 bVar1 = true;
             }
@@ -53,7 +53,7 @@ bool DotCamReaderInBin::hasMoreChunk() const {
 
 void DotCamReaderInBin::nextToChunk() {
     if (mMapIter.isValid()) {
-        mMapIter._4++;
+        mMapIter.mIndex++;
     }
 }
 
@@ -92,8 +92,8 @@ bool DotCamReaderInBin::getValueVec(const char *pName, TVec3f *pOut) {
 }
 
 bool DotCamReaderInBin::getValueString(const char *pName, const char **pOut) {
-    s32 iVar3 = mMapIter._4;
-    JMapInfo *info = mMapIter.mInfo;
+    s32 iVar3 = mMapIter.mIndex;
+    const JMapInfo *info = mMapIter.mInfo;
     s32 index = info->searchItemInfo(pName);
 
     if (index < 0) {
@@ -116,6 +116,6 @@ void DotCamReaderInBin::init(const void *pData) {
     }
 
     mMapIter.mInfo = &mMapInfo;
-    mMapIter._4 = 0;
+    mMapIter.mIndex = 0;
 }
 #endif
