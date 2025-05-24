@@ -5451,20 +5451,20 @@ Game/MapObj/SideSpikeMoveStep.cpp:
 Game/MapObj/SimpleBreakableObj.cpp:
 	.text       start:0x80225CA4 end:0x802269FC
 	.ctors      start:0x8052EE88 end:0x8052EE8C
-	.data       start:0x8059F098 end:0x8059F2F0
+	.data       start:0x8059F098 end:0x8059F2E8
 	.sbss       start:0x806B5810 end:0x806B5820
 	.sdata2     start:0x806BDEC0 end:0x806BDEE0
 
 Game/MapObj/SimpleClipPartsObj.cpp:
 	.text       start:0x802269FC end:0x80226C54
 	.ctors      start:0x8052EE8C end:0x8052EE90
-	.data       start:0x8059F2F0 end:0x8059F3B0
+	.data       start:0x8059F2E8 end:0x8059F3A8
 	.sbss       start:0x806B5820 end:0x806B5828
 
 Game/MapObj/SimpleFloaterObj.cpp:
 	.text       start:0x80226C54 end:0x80226F50
 	.ctors      start:0x8052EE90 end:0x8052EE94
-	.data       start:0x8059F3B0 end:0x8059F440
+	.data       start:0x8059F3A8 end:0x8059F438
 	.sdata      start:0x806B1F80 end:0x806B1F88
 	.sbss       start:0x806B5828 end:0x806B5830
 	.sdata2     start:0x806BDEE0 end:0x806BDEF0
@@ -5472,7 +5472,7 @@ Game/MapObj/SimpleFloaterObj.cpp:
 Game/MapObj/SimpleMapObj.cpp:
 	.text       start:0x80226F50 end:0x80227A08
 	.rodata     start:0x80533728 end:0x80533788
-	.data       start:0x8059F440 end:0x8059FC10
+	.data       start:0x8059F438 end:0x8059FC10
 	.sdata2     start:0x806BDEF0 end:0x806BDEF8
 
 Game/MapObj/SimpleNormalMapObj.cpp:
