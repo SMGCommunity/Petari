@@ -1399,7 +1399,7 @@ config.libs = [
             Object(NonMatching, "Game/MapObj/ChipBase.cpp"),
             Object(NonMatching, "Game/MapObj/ChipCounter.cpp"),
             Object(NonMatching, "Game/MapObj/ChipGroup.cpp"),
-            Object(NonMatching, "Game/MapObj/ChipHolder.cpp"),
+            Object(Matching, "Game/MapObj/ChipHolder.cpp"),
             Object(Matching, "Game/MapObj/ChooChooTrain.cpp"),
             Object(NonMatching, "Game/MapObj/CircleCoinGroup.cpp"),
             Object(NonMatching, "Game/MapObj/ClipArea.cpp"),
