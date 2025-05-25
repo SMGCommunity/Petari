@@ -17,13 +17,13 @@ void ChipHolder::registerChipGroup(ChipGroup* pChipGroup) {
     mNumChipGroups++;
 }
 
-ChipGroup* ChipHolder::findChipGroup(s32 chipType) const {
-    if (chipType < 0) {
+ChipGroup* ChipHolder::findChipGroup(s32 chipGroupType) const {
+    if (chipGroupType < 0) {
         return nullptr;
     }
 
     for (s32 i = 0; i < mNumChipGroups; i++) {
-        if (mChipGroups[i]->_4C == chipType) {
+        if (mChipGroups[i]->_4C == chipGroupType) {
             return mChipGroups[i];
         }
     }
@@ -31,15 +31,15 @@ ChipGroup* ChipHolder::findChipGroup(s32 chipType) const {
     return nullptr;
 }
 
-ChipHolder* MR::createChipHolder(s32 chipType) {
+ChipHolder* MR::createChipHolder(s32 chipHolderType) {
     ChipHolder* result;
     
-    switch (chipType) {
+    switch (chipHolderType) {
         case ChipHolder::Chip_Blue:
-            result = (ChipHolder*)createSceneObj(94);
+            result = (ChipHolder*)createSceneObj(SceneObj_BlueChipHolder);
             break;
         case ChipHolder::Chip_Yellow:
-            result = (ChipHolder*)createSceneObj(95);
+            result = (ChipHolder*)createSceneObj(SceneObj_YellowChipHolder);
             break;
     }
 
@@ -49,10 +49,10 @@ ChipHolder* MR::createChipHolder(s32 chipType) {
 ChipHolder* MR::getChipHolder(s32 chipType) {
     switch (chipType) {
         case ChipHolder::Chip_Blue:
-            return (ChipHolder*) getSceneObjHolder()->getObj(94);
+            return (ChipHolder*) getSceneObjHolder()->getObj(SceneObj_BlueChipHolder);
         
         case ChipHolder::Chip_Yellow:
-            return (ChipHolder*) getSceneObjHolder()->getObj(95);
+            return (ChipHolder*) getSceneObjHolder()->getObj(SceneObj_YellowChipHolder);
         
         default:
             return nullptr;
@@ -63,57 +63,57 @@ void MR::registerChipGroup(s32 chipType, ChipGroup* pChipGroup) {
     getChipHolder(chipType)->registerChipGroup(pChipGroup);
 }
 
-void MR::registerChip(s32 chipType, ChipBase* pChip, s32 arg_2) {
-    getChipHolder(chipType)->findChipGroup(arg_2)->registerChip(pChip);
+void MR::registerChip(s32 chipHolderType, ChipBase* pChip, s32 chipGroupType) {
+    getChipHolder(chipHolderType)->findChipGroup(chipGroupType)->registerChip(pChip);
 }
 
-void MR::noticeGetChip(s32 chipType, ChipBase* pChip, s32 arg_2) {
-    ChipHolder* holder = getChipHolder(chipType);
-    ChipGroup* group = holder->findChipGroup(arg_2);
+void MR::noticeGetChip(s32 chipHolderType, ChipBase* pChip, s32 chipGroupType) {
+    ChipHolder* holder = getChipHolder(chipHolderType);
+    ChipGroup* group = holder->findChipGroup(chipGroupType);
     group->noticeGet(pChip);
     holder->mChipCounter->setCount(group->getGotCount());
     incPlayerOxygen(8);
 }
 
-s32 MR::showChipCounter(s32 chipType, s32 arg_1) {
-    ChipHolder* holder = getChipHolder(chipType);
+s32 MR::showChipCounter(s32 chipHolderType, s32 arg_1) {
+    ChipHolder* holder = getChipHolder(chipHolderType);
     return holder->mChipCounter->requestShow(arg_1, holder->findChipGroup(arg_1)->getGotCount());
 }
 
-void MR::hideChipCounter(s32 chipType, s32 arg_1) {
-    ChipHolder* holder = getChipHolder(chipType);
+void MR::hideChipCounter(s32 chipHolderType, s32 arg_1) {
+    ChipHolder* holder = getChipHolder(chipHolderType);
     holder->mChipCounter->requestHide(arg_1);
 }
 
-void MR::requestStartChipCompleteDemo(s32 chipType, s32 arg_1) {
-    ChipHolder* holder = getChipHolder(chipType);
+void MR::requestStartChipCompleteDemo(s32 chipHolderType, s32 arg_1) {
+    ChipHolder* holder = getChipHolder(chipHolderType);
     holder->mChipCounter->requestComplete(arg_1);
 }
 
-void MR::noticeEndChipCompleteDemo(s32 chipType, s32 arg_1) {
-    getChipHolder(chipType)->findChipGroup(arg_1)->noticeEndCompleteDemo();
+void MR::noticeEndChipCompleteDemo(s32 chipHolderType, s32 chipGroupType) {
+    getChipHolder(chipHolderType)->findChipGroup(chipGroupType)->noticeEndCompleteDemo();
 }
 
-s32 MR::getGotChipCount(s32 chipType, s32 arg_1) {
-    return getChipHolder(chipType)->findChipGroup(arg_1)->getGotCount();
+s32 MR::getGotChipCount(s32 chipHolderType, s32 chipGroupType) {
+    return getChipHolder(chipHolderType)->findChipGroup(chipGroupType)->getGotCount();
 }
 
 void MR::activateChipLayout() {
-    if (isExistSceneObj(94)) {
+    if (isExistSceneObj(SceneObj_BlueChipHolder)) {
         getChipHolder(0)->mChipCounter->requestActive();
     }
 
-    if (isExistSceneObj(95)) {
+    if (isExistSceneObj(SceneObj_YellowChipHolder)) {
         getChipHolder(1)->mChipCounter->requestActive();
     }
 }
 
 void MR::deactivateChipLayout() {
-    if (isExistSceneObj(94)) {
+    if (isExistSceneObj(SceneObj_BlueChipHolder)) {
         getChipHolder(0)->mChipCounter->requestDeactive();
     }
 
-    if (isExistSceneObj(95)) {
+    if (isExistSceneObj(SceneObj_YellowChipHolder)) {
         getChipHolder(1)->mChipCounter->requestDeactive();
     }
 }
