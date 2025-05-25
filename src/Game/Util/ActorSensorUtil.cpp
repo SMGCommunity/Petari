@@ -1,7 +1,14 @@
+#include "Game/LiveActor/AllLiveActorGroup.hpp"
+#include "Game/LiveActor/Binder.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
+#include "Game/LiveActor/LiveActorGroupArray.hpp"
+#include "Game/LiveActor/HitSensorInfo.hpp"
 #include "Game/LiveActor/HitSensorKeeper.hpp"
+#include "Game/Map/HitInfo.hpp"
 #include "Game/Util.hpp"
+#include "Game/Util/EffectUtil.hpp"
 #include "JSystem/JMath/JMath.hpp"
+#include "revolution/mtx.h"
 
 namespace MR {
     HitSensor* addHitSensor(LiveActor *pActor, const char *pSensorName, u32 sensorType, u16 sensorGroupSize, f32 radius, const TVec3f &a6) {
@@ -180,12 +187,101 @@ namespace MR {
         return pActor->mSensorKeeper->addCallback(pSensorName, 0x7F, sensorGroupSize, radius, pActor);
     }
 
-    LiveActor * getSensorHost(const HitSensor *pSensor) {
+    bool tryUpdateHitSensorsAll(LiveActor *pActor) {
+        if (pActor->mSensorKeeper != nullptr) {
+            pActor->mSensorKeeper->update();
+            return true;
+        }
+        return false;
+        
+    }
+
+    void updateHitSensorsAll(LiveActor *pActor) {
+        pActor->mSensorKeeper->update();
+    }
+
+    HitSensor* getSensor(LiveActor *pActor, int n) {
+        return pActor->mSensorKeeper->getNthSensorInfo(n)->mSensor;
+    }
+
+    HitSensor* getSensorWithIndex(LiveActor *pActor, int index) {
+        return (pActor->mSensorKeeper->getNthSensorInfo(index))->mSensor;
+    }
+
+    HitSensor* getTaking(const LiveActor *pActor) {
+        if (pActor->mSensorKeeper != nullptr) {
+            return pActor->mSensorKeeper->mTaking;
+        }
+        return 0;
+    }
+
+    HitSensor* getTaken(const LiveActor *pActor) {
+        if (pActor->mSensorKeeper != nullptr) {
+            return pActor->mSensorKeeper->mTaken;
+        }
+        return 0;
+    }
+
+    void setSensorPos(HitSensor *pSensor, const TVec3f &rPos) {
+        pSensor->mPosition.set(rPos);
+    }
+
+    // Minor mismatch: Wrong float registers used
+    /* void setSensorOffset(LiveActor *pActor, const char *pName, const TVec3f &rOffset) {
+        pActor->mSensorKeeper->getSensorInfo(pName)->_C.setPS2(rOffset);
+    } */
+
+    void setSensorRadius(LiveActor *pActor, const char *pName, float radius) {
+        pActor->mSensorKeeper->getSensorInfo(pName)->mSensor->mRadius = radius;
+    }
+
+    void setHitSensorApart(HitSensor *pSensor1, HitSensor *pSensor2) {
+        if (getTaking(pSensor1->mActor) == pSensor2 || getTaken(pSensor2->mActor) == pSensor1) {
+            pSensor1->mActor->mSensorKeeper->mTaking = nullptr;
+            pSensor2->mActor->mSensorKeeper->mTaken = nullptr;
+        }
+        else {
+            pSensor1->mActor->mSensorKeeper->mTaken = nullptr;
+            pSensor2->mActor->mSensorKeeper->mTaking = nullptr;
+        }
+    }
+
+    void calcSensorDirection(TVec3f *pResult, const HitSensor *pSensor1, const HitSensor *pSensor2) {
+        TVec3f stack_8(pSensor2->mPosition);
+        JMathInlineVEC::PSVECSubtract((Vec*)&stack_8, (Vec*)&pSensor1->mPosition, (Vec*)&stack_8);
+        pResult->set(stack_8);
+    }
+
+    void calcSensorDirectionNormalize(TVec3f *pResult, const HitSensor *pSensor1, const HitSensor *pSensor2) {
+        TVec3f stack_8(pSensor2->mPosition);
+        JMathInlineVEC::PSVECSubtract((Vec*)&stack_8, (Vec*)&pSensor1->mPosition, (Vec*)&stack_8);
+        pResult->set(stack_8);
+        normalizeOrZero(pResult);
+    }
+
+    void calcSensorHorizonNormalize(TVec3f *pResult, const TVec3f &a2, const HitSensor *pSensor1, const HitSensor *pSensor2) {
+        TVec3f stack_8(pSensor2->mPosition);
+        JMathInlineVEC::PSVECSubtract((Vec*)&stack_8, (Vec*)&pSensor1->mPosition, (Vec*)&stack_8);
+        pResult->rejection(stack_8, a2);
+        normalizeOrZero(pResult);
+    }
+
+
+
+    LiveActor* getSensorHost(const HitSensor *pSensor) {
         return pSensor->mActor;
+    }
+
+    bool isValidHitSensor(LiveActor *pActor, const char *pName) {
+        return pActor->mSensorKeeper->getSensor(pName)->mValidByHost;
     }
 
     bool isSensor(const HitSensor *pSensor, const char *pSensorName) {
         return !(pSensor != pSensor->mActor->getSensor(pSensorName));
+    }
+
+    bool isSensorType(const HitSensor *pSensor, u32 type) {
+        return pSensor->isType(type);
     }
 
     bool isSensorPlayer(const HitSensor *pSensor) {
@@ -197,15 +293,33 @@ namespace MR {
     }
 
     bool isSensorRide(const HitSensor *pSensor) {
-        if (pSensor->mSensorType < 0x8 && pSensor->mSensorType > 0x12) {
+        if (pSensor->mSensorType > 0x8 && pSensor->mSensorType < 0x12) {
             return true;
         }
 
         return false;
     }
 
+    bool isSensorEnemy(const HitSensor *pSensor) {
+        if (pSensor->mSensorType > 0x13 && pSensor->mSensorType < 0x44) {
+            return true;
+        }
+        return false;
+    }
+
+    bool isSensorEnemyAttack(const HitSensor *pSensor) {
+        return pSensor->isType(0x16);
+    }
+
+    bool isSensorNpc(const HitSensor *pSensor) {
+        if (pSensor->mSensorType > 0x4 && pSensor->mSensorType < 0x6) {
+            return true;
+        }
+        return false;
+    }
+
     bool isSensorMapObj(const HitSensor *pSensor) {
-        if (pSensor->mSensorType < 0x45 && pSensor->mSensorType > 0x5F) {
+        if (pSensor->mSensorType > 0x45 && pSensor->mSensorType < 0x5F) {
             return true;
         }
 
@@ -213,7 +327,7 @@ namespace MR {
     }
 
     bool isSensorAutoRush(const HitSensor *pSensor) {
-        if (pSensor->mSensorType < 0x60 && pSensor->mSensorType > 0x6E) {
+        if (pSensor->mSensorType > 0x60 && pSensor->mSensorType < 0x6E) {
             return true;
         }
 
@@ -221,7 +335,7 @@ namespace MR {
     }
 
     bool isSensorRush(const HitSensor *pSensor) {
-        if (pSensor->mSensorType < 0x6F && pSensor->mSensorType > 0x74) {
+        if (pSensor->mSensorType > 0x6F && pSensor->mSensorType < 0x74) {
             return true;
         }
 
@@ -229,7 +343,7 @@ namespace MR {
     }
 
     bool isSensorPressObj(const HitSensor *pSensor) {
-        if (pSensor->mSensorType < 0x75 && pSensor->mSensorType > 0x77) {
+        if (pSensor->mSensorType > 0x75 && pSensor->mSensorType < 0x77) {
             return true;
         }
 
@@ -251,6 +365,7 @@ namespace MR {
 
         return false;
     }
+    
 
     bool tryGetItem(HitSensor *pSender, HitSensor *pReceiver) {
         return pReceiver->receiveMessage(0x87, pSender);
@@ -266,9 +381,23 @@ namespace MR {
         }
     }
 
+    void validateHitSensor(LiveActor *pActor, const char *pName) {
+        pActor->mSensorKeeper->getSensor(pName)->validate();
+    }
+
     void invalidateHitSensors(LiveActor *pActor) {
         if (pActor->mSensorKeeper) {
             pActor->mSensorKeeper->invalidate();
+        }
+    }
+
+    void invalidateHitSensor(LiveActor *pActor, const char *pName) {
+        pActor->mSensorKeeper->getSensor(pName)->invalidate();
+    }
+
+    void clearHitSensors(LiveActor *pActor) {
+        if (pActor->mSensorKeeper != nullptr) {
+            pActor->mSensorKeeper->clear();
         }
     }
 
@@ -392,6 +521,14 @@ namespace MR {
         return pReceiver->receiveMessage(0x61, pSender);
     }
 
+    bool sendMsgEnemyAttackToBindedSensor(LiveActor *pActor, HitSensor *pSensor) {
+        return sendMsgToBindedSensor(0x53, pActor, pSensor);
+    }
+
+    bool sendMsgEnemyAttackExplosionToBindedSensor(LiveActor *pActor, HitSensor *pSensor) {
+        return sendMsgToBindedSensor(0x56, pActor, pSensor);
+    }
+
     bool sendMsgLockOnStarPieceShoot(HitSensor *pReceiver, HitSensor *pSender) {
         return pReceiver->receiveMessage(0xE, pSender);
     }
@@ -410,6 +547,109 @@ namespace MR {
 
     bool sendMsgEnemyAttackMaximumToDir(HitSensor *pReceiver, HitSensor *pSender, const TVec3f &rDir) {
         return sendMsgEnemyAttackMsgToDir(0x55, pReceiver, pSender, rDir);
+    }
+
+    bool sendMsgStartDemo(LiveActor *pActor) {
+        return sendSimpleMsgToActor(0x6f, pActor);
+    }
+
+    bool sendSimpleMsgToActor(u32 msg, LiveActor *pActor) {
+        return pActor->receiveMessage(msg, getMessageSensor(), getMessageSensor());
+    }
+
+    bool sendMsgToBindedSensor(u32 msg, HitSensor *pSensor) {
+        return sendMsgToBindedSensor(msg, pSensor->mActor, pSensor);
+    }
+
+    bool sendMsgToGroundSensor(u32 msg, HitSensor *pSensor) {
+        if (isBindedGround(pSensor->mActor)) {
+            return getGroundSensor(pSensor->mActor)->receiveMessage(msg, pSensor);
+        }
+        return false;
+    }
+
+    bool sendMsgToWallSensor(u32 msg, HitSensor *pSensor) {
+        if (isBindedWall(pSensor->mActor)) {
+            return getWallSensor(pSensor->mActor)->receiveMessage(msg, pSensor);
+        }
+        return false;
+    }
+
+    bool sendMsgToEnemyAttackBlow(HitSensor *pSensor1, HitSensor *pSensor2) {
+        return pSensor1->receiveMessage(0x62, pSensor2);
+    }
+
+    bool sendMsgToEnemyAttackTrample(HitSensor *pSensor1, HitSensor *pSensor2) {
+        return pSensor1->receiveMessage(0x63, pSensor2);
+    }
+
+    bool sendMsgToEnemyAttackBlowOrTrample(HitSensor *pSensor1, HitSensor *pSensor2, f32 a3) {
+        TVec3f stack_8(pSensor1->mPosition);
+        JMathInlineVEC::PSVECSubtract((Vec*)&stack_8, (Vec*)&pSensor2->mPosition, (Vec*)&stack_8);
+        normalizeOrZero(&stack_8);
+        if (a3 < pSensor2->mActor->mGravity.dot(stack_8)) {
+            return pSensor1->receiveMessage(0x63, pSensor2);
+        }
+        return pSensor1->receiveMessage(0x62, pSensor2);
+    }
+
+    bool sendMsgToEnemyAttackShockWave(HitSensor *pSensor1, HitSensor *pSensor2) {
+        return pSensor1->receiveMessage(0x64, pSensor2);
+    }
+
+    void sendMsgToGroupMember(u32 msg, LiveActor *pActor, HitSensor *pSensor, const char *pName) {
+        LiveActorGroup* group = getGroupFromArray(pActor);
+        if (group != nullptr) {
+            static_cast<MsgSharedGroup*>(group)->sendMsgToGroupMember(msg, pSensor, pName);
+        }
+        else {
+            pActor->receiveMessage(msg, pSensor, pActor->getSensor(pName));
+        }
+    }
+
+    // Minor mismatch: Registers are switched around
+    /* void sendMsgToAllLiveActor(u32 msg, LiveActor *pActor) {
+        AllLiveActorGroup* group = getAllLiveActorGroup();
+        for (int i = 0; i < group->mObjectCount; i++) {
+            LiveActor* currentActor = group->getActor(i);
+            if (isDead(currentActor) || currentActor == pActor) {
+                continue;
+            }
+            HitSensor* pSensor2 = static_cast<LiveActor*>(getSceneObjHolder()->getObj(0x9))->getSensor(nullptr);
+            currentActor->receiveMessage(msg, static_cast<LiveActor*>(getSceneObjHolder()->getObj(0x9))->getSensor(nullptr), pSensor2);
+        }
+    } */
+
+    bool receiveItemShowMsg(u32 msg, HitSensor *pSensor1, HitSensor *pSensor2) {
+        if (msg == 0x8a && isDead(pSensor2->mActor)) {
+            pSensor2->mActor->makeActorAppeared();
+            return true;
+        }
+        return false;
+    }
+
+    bool receiveItemHideMsg(u32 msg, HitSensor *pSensor1, HitSensor *pSensor2) {
+        if (msg == 0x8b && !isDead(pSensor2->mActor)) {
+            pSensor2->mActor->makeActorDead();
+            return true;
+        }
+        return false;
+    }
+
+    HitSensor* getMessageSensor() {
+        return static_cast<LiveActor*>(getSceneObjHolder()->getObj(9))->getSensor(nullptr);
+    }
+
+    HitSensor* getGroundSensor(const LiveActor *pActor) {
+        return pActor->mBinder->groundInfo.mParentTriangle.mSensor;
+    }
+
+    HitSensor* getRoofSensor(const LiveActor *pActor) {
+        return pActor->mBinder->roofInfo.mParentTriangle.mSensor;
+    }
+
+    HitSensor* getWallSensor(const LiveActor *pActor) {
+        return pActor->mBinder->wallInfo.mParentTriangle.mSensor;
     }
 
     #ifdef NON_MATCHING
@@ -441,4 +681,208 @@ namespace MR {
     bool isMsgPlayerUpperPunch(u32 msg) {
         return !(msg != 5);
     }
+
+    bool isMsgPlayerKick(u32 msg) {
+        return !(msg != 0x2b);
+    }
+
+    bool isMsgTurtleAttack(u32 msg) {
+        return !(msg != 6);
+    }
+
+    bool isMsgFireBallAttack(u32 msg) {
+        return !(msg != 8);
+    }
+
+    bool isMsgSearchlightAttack(u32 msg) {
+        return !(msg != 9);
+    }
+
+    bool isMsgFreezeAttack(u32 msg) {
+        return !(msg != 0xa);
+    }
+
+    bool isMsgInvinciblAttack(u32 msg) {
+        return !(msg != 0xb);
+    }
+
+    bool isMsgInvalidHit(u32 msg) {
+        return !(msg != 0x1d);
+    }
+
+    bool isMsgAutoRushBegin(u32 msg) {
+        return !(msg != 0x92);
+    }
+
+    bool isMsgRushBegin(u32 msg) {
+        return !(msg != 0x91);
+    }
+
+    bool isMsgUpdateBaseMtx(u32 msg) {
+        return !(msg != 0xa1);
+    }
+    
+    bool isMsgRushCancel(u32 msg) {
+        return !(msg != 0x93);
+    }
+
+    bool isMsgIsRushTakeOver(u32 msg) {
+        return !(msg != 0x98);
+    }
+
+    bool isMsgFloorTouch(u32 msg) {
+        return !(msg != 0xb4);
+    }
+
+    bool isMsgWallTouch(u32 msg) {
+        return !(msg != 0xb5);
+    }
+
+    bool isMsgCeilTouch(u32 msg) {
+        return !(msg != 0xb6);
+    }
+
+    bool isMsgItemGet(u32 msg) {
+        return !(msg != 0x87);
+    }
+
+    bool isMsgItemPull(u32 msg) {
+        return !(msg != 0x89);
+    }
+
+    bool isMsgItemShow(u32 msg) {
+        return !(msg != 0x8a);
+    }
+
+    bool isMsgItemHide(u32 msg) {
+        return !(msg != 0x8b);
+    }
+
+    bool isMsgItemStartMove(u32 msg) {
+        return !(msg != 0x8c);
+    }
+
+    bool isMsgItemEndMove(u32 msg) {
+        return !(msg != 0x8d);
+    }
+
+    bool isMsgInhaleBlackHole(u32 msg) {
+        return !(msg != 0x73);
+    }
+
+    bool isMsgEnemyAttack(u32 msg) {
+        return !(msg != 0x53);
+    }
+    
+    bool isMsgEnemyAttackFire(u32 msg) {
+        return !(msg != 0x58);
+    }
+
+    bool isMsgEnemyAttackFireStrong(u32 msg) {
+        return !(msg != 0x59);
+    }
+
+    bool isMsgEnemyAttackElectric(u32 msg) {
+        return !(msg != 0x5a);
+    }
+
+    bool isMsgExplosionAttack(u32 msg) {
+        return !(msg != 0x56);
+    }
+
+    bool isMsgToEnemyAttackBlow(u32 msg) {
+        return !(msg != 0x62);
+    }
+
+    bool isMsgToEnemyAttackTrample(u32 msg) {
+        return !(msg != 0x63);
+    }
+
+    bool isMsgToEnemyAttackShockWave(u32 msg) {
+        return !(msg != 0x64);
+    }
+
+    bool isMsgSpinStormRange(u32 msg) {
+        return !(msg != 0x33);
+    }
+
+    bool isMsgTutorialStart(u32 msg) {
+        return !(msg != 0xe6);
+    }
+
+    bool isMsgTutorialNext(u32 msg) {
+        return !(msg != 0xe7);
+    }
+
+    bool isMsgTutorialPrev(u32 msg) {
+        return !(msg != 0xe8);
+    }
+
+    bool isMsgTutorialPass(u32 msg) {
+        return !(msg != 0xe9);
+    }
+
+    bool isMsgTutorialOmit(u32 msg) {
+        return !(msg != 0xeb);
+    }
+
+    bool isMsgRaceReady(u32 msg) {
+        return !(msg != 0xec);
+    }
+
+    bool isMsgRaceStart(u32 msg) {
+        return !(msg != 0xed);
+    }
+
+    bool isMsgRaceReset(u32 msg) {
+        return !(msg != 0xef);
+    }
+
+    bool isMsgLockOnStarPieceShoot(u32 msg) {
+        return !(msg != 0xe);
+    }
+
+    bool isMsgBallDashWall(u32 msg) {
+        return !(msg != 0x39);
+    }
+
+    bool isMsgBallDashGround(u32 msg) {
+        return !(msg != 0x3a);
+    }
+
+    bool isMsgStartPowerStarGet(u32 msg) {
+        return !(msg != 0x74);
+    }
+
+    bool isMsgTouchPlantItem(u32 msg) {
+        return !(msg != 0xf3);
+    }
+
+    bool isMsgHitmarkEmit(u32 msg) {
+        return !(msg != 0x1c);
+    }
+
+    bool isMsgStarPieceAttack(u32 msg) {
+        return !(msg != 0xc);
+    }
+
+    bool isMsgStarPieceReflect(u32 msg) {
+        return !(msg != 0xd);
+    }
+
+    u32 getNumStarPieceGift(u32 msgId) {
+        return msgId - 0xe;
+    }
+
+    bool tryForceKillIfMsgStartPowerStarGet(LiveActor *pActor, u32 msg) {
+        if (msg == 0x74) {
+            if (isExistEffectKeeper(pActor)) {
+                forceDeleteEffectAll(pActor);
+            }
+            pActor->makeActorDead();
+            return true;
+        }
+        return false;
+    }
+
 };

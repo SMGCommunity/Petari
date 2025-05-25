@@ -52,14 +52,36 @@ namespace MR {
     HitSensor* addHitSensorCallbackEnemyAttack(LiveActor *, const char *, u16, f32);
     HitSensor* addHitSensorCallbackEye(LiveActor *, const char *, u16, f32);
 
-    HitSensor* addBodyMessageSensorMapObj(LiveActor *);
-    void addBodyMessageSensor(LiveActor *, u32);
-    HitSensor* addBodyMessageSensorMapObjMoveCollision(LiveActor *);
     HitSensor* addBodyMessageSensorReceiver(LiveActor *);
+    HitSensor* addBodyMessageSensorMapObj(LiveActor *);
+    HitSensor* addBodyMessageSensorMapObjPress(LiveActor *);
+    HitSensor* addBodyMessageSensorMapObjMoveCollision(LiveActor *);
+
+    bool tryUpdateHitSensorsAll(LiveActor *);
+    void updateHitSensorsAll(LiveActor *);
+
+    bool isSensorType(const HitSensor *, u32);
+
+    HitSensor* getSensor(LiveActor *, int);
+    HitSensor* getSensorWithIndex(LiveActor *, int);
+    HitSensor* getTaking(const LiveActor *);
+    HitSensor* getTaken(const LiveActor *);
+
+    void setSensorPos(HitSensor *, const TVec3f &);
+    void setSensorOffset(LiveActor *, const char *, const TVec3f &);
+    void setSensorRadius(LiveActor *, const char *, float);
+    void setHitSensorApart(HitSensor *, HitSensor *);
+
+
+    
+
+    
+    
+    
 
     HitSensor* addMessageSensorMapObjMoveCollision(LiveActor *, const char *);
 
-    HitSensor* addBodyMessageSensorMapObjPress(LiveActor *);
+    
 
     LiveActor* getSensorHost(const HitSensor *);
     bool isSensor(const HitSensor *, const char *);
@@ -71,7 +93,9 @@ namespace MR {
 
     bool isSensorEnemyAttack(const HitSensor *);
 
-    bool isSensorType(const HitSensor *, u32);
+    bool isSensorNpc(const HitSensor *);
+
+    
 
     bool isMsgLockOnStarPieceShoot(u32);
 
@@ -113,7 +137,7 @@ namespace MR {
     void calcSensorDirectionNormalize(TVec3f *, const HitSensor *, const HitSensor *);
     void calcSensorHorizonNormalize(TVec3f *, const TVec3f &, const HitSensor *, const HitSensor *);
 
-    bool sendSimpleMsgToActor(u32, LiveActor *);
+    bool sendSimpleMsgToActor(u32, LiveActor *) NO_INLINE;
 
     bool sendArbitraryMsg(u32, HitSensor *, HitSensor *);
     bool sendMsgPush(HitSensor *, HitSensor *);
@@ -154,7 +178,22 @@ namespace MR {
 
     bool sendMsgEnemyAttackToBindedSensor(LiveActor *, HitSensor *);
 
+    bool sendMsgStartDemo(LiveActor *);
+
+    void sendMsgExplosionToNearActor(HitSensor *, f32);
+
     bool sendMsgToEnemyAttackBlow(HitSensor *, HitSensor *);
+    bool sendMsgToEnemyAttackTrample(HitSensor *, HitSensor *);
+    bool sendMsgToEnemyAttackBlowOrTrample(HitSensor *, HitSensor *, f32);
+    bool sendMsgToEnemyAttackShockWave(HitSensor *, HitSensor *);
+
+    void sendMsgToAllLiveActor(u32, LiveActor *);
+
+    bool sendMsgToBindedSensor(u32, LiveActor *, HitSensor *);
+    bool sendMsgToBindedSensor(u32, HitSensor *);
+
+    bool sendMsgToGroundSensor(u32, HitSensor *);
+    bool sendMsgToWallSensor(u32, HitSensor *);
 
     void sendMsgToGroupMember(u32, LiveActor *, HitSensor *, const char *);
 
@@ -188,24 +227,22 @@ namespace MR {
 
     bool isMsgUpdateBaseMtx(u32);
 
+    HitSensor* getMessageSensor();
+
     bool receiveItemShowMsg(u32, HitSensor *, HitSensor *);
     bool receiveItemHideMsg(u32, HitSensor *, HitSensor *);
 
-    void updateHitSensorsAll(LiveActor *);
-
+    
     void setHitSensorApart(HitSensor *, HitSensor *);
 
-    bool tryUpdateHitSensorsAll(LiveActor *);
+    
 
     void clearHitSensors(LiveActor *);
 
-    HitSensor* getGroundSensor(const LiveActor *);
+    HitSensor* getGroundSensor(const LiveActor *) NO_INLINE;
     HitSensor* getRoofSensor(const LiveActor *);
-    HitSensor* getWallSensor(const LiveActor *);
+    HitSensor* getWallSensor(const LiveActor *) NO_INLINE;
 
-    void setSensorRadius(LiveActor *, const char *, f32);
-
-    void setSensorOffset(LiveActor *, const char *, const TVec3f &);
 
     void validateHitSensor(LiveActor *, const char *);
     void invalidateHitSensor(LiveActor *, const char *);
@@ -213,4 +250,10 @@ namespace MR {
     bool isInSpinStormRange(u32, HitSensor *, HitSensor *, f32);
 
     u32 getNumStarPieceGift(u32);
+
+    HitSensor* addBodyMessageSensor(LiveActor *, u32);
+
+    void calcPosBetweenSensors(TVec3f *, const HitSensor *, const HitSensor *, f32);
+
+    bool tryForceKillIfMsgStartPowerStarGet(LiveActor *, u32);
 };

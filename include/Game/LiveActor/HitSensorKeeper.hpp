@@ -29,6 +29,6 @@ public:
     s32 mSensorInfosSize; // 0x0
     s32 mSensorCount; // 0x4
     HitSensorInfo** mSensorInfos; // 0x8
-    u32 _C;
-    u32 _10;
+    HitSensor* mTaking; // 0xc
+    HitSensor* mTaken; // 0x10
 };
