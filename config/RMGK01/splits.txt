@@ -4317,12 +4317,12 @@ Game/MapObj/ChipCounter.cpp:
 
 Game/MapObj/ChipGroup.cpp:
 	.text       start:0x801BF554 end:0x801BFF48
-	.data       start:0x805912F0 end:0x80591418
+	.data       start:0x805912F0 end:0x805913E8
 	.sdata2     start:0x806BCA18 end:0x806BCA28
 
 Game/MapObj/ChipHolder.cpp:
 	.text       start:0x801BFF48 end:0x801C0464
-	.data       start:0x80591418 end:0x805914A0
+	.data       start:0x805913E8 end:0x805914A0
 
 Game/MapObj/ChooChooTrain.cpp:
 	.text       start:0x801C0464 end:0x801C0C2C
