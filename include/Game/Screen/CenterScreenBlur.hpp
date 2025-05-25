@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/LiveActor/Nerve.hpp"
 #include <revolution/types.h>
 
 class CenterScreenBlur : public LiveActor {
@@ -24,10 +23,4 @@ public:
     f32 _98;
     bool _9C;
     f32 _A0;
-};
-
-namespace NrvCenterScreenBlur {
-    NEW_NERVE(CenterScreenBlurNrvFadeIn, CenterScreenBlur, FadeIn);
-    NEW_NERVE(CenterScreenBlurNrvKeep, CenterScreenBlur, Keep);
-    NEW_NERVE(CenterScreenBlurNrvFadeOut, CenterScreenBlur, FadeOut);
 };

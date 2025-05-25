@@ -1,9 +1,16 @@
 #include "Game/Screen/CenterScreenBlur.hpp"
 #include "Game/Screen/FullScreenBlur.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util/DemoUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
+
+namespace NrvCenterScreenBlur {
+    NEW_NERVE(CenterScreenBlurNrvFadeIn, CenterScreenBlur, FadeIn);
+    NEW_NERVE(CenterScreenBlurNrvKeep, CenterScreenBlur, Keep);
+    NEW_NERVE(CenterScreenBlurNrvFadeOut, CenterScreenBlur, FadeOut);
+};
 
 CenterScreenBlur::CenterScreenBlur() : LiveActor("画面中心ブラー") {
     _8C = 0;
