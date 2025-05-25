@@ -2,6 +2,7 @@
 
 #include "Game/NPC/ButlerStateStarPieceReaction.hpp"
 #include "Game/NPC/NPCActor.hpp"
+#include "Game/NPC/TalkMessageCtrl.hpp"
 #include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/NPCUtil.hpp"
 #include "revolution/types.h"
@@ -26,7 +27,7 @@ class Butler : public NPCActor {
         void startDemoStarPiece2();
         void tryStartShowGalaxyMap();
         void resetStatus();
-        u32 messageBranchFunc(u32);
+        bool messageBranchFunc(u32);
         void initTalkCtrlArray(const JMapInfoIter &);
         void initForAstroDome(const JMapInfoIter &);
         void initForAstroGalaxy(const JMapInfoIter &);
@@ -41,11 +42,11 @@ class Butler : public NPCActor {
         void exeDemoShowGalaxyMap();
         inline void exeDemoWait();
 
-        TalkMessageCtrl** _15C;
+        TalkMessageCtrl** mTalkMessage;
         bool _160;
         s32 _164;
-        u32 _168;
-        ButlerStateStarPieceReaction* _16C;
+        s32 _168;
+        ButlerStateStarPieceReaction* mButlerState;
         bool _170;
         bool _171;
 };
@@ -59,4 +60,11 @@ namespace {
         "AstroGalaxy_Butler005",
         "AstroGalaxy_Butler006"
     };    
+
+    const char* cDemoNameGreenDriver = "バトラーグリーンドライバ説明";
+    const char* cDemoNameButlerReport = "バトラー報告";
+    const char* cDemoNameDomeLecture1 = "ドームレクチャー１";
+    const char* cDemoNameDomeLecture2 = "ドームレクチャー2";
+    const char* cDemoNameStarPiece1 = "スターピース解説前半";
+    const char* cDemoNameStarPiece2 = "スターピース解説後半";
 };

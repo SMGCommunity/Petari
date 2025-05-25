@@ -138,6 +138,12 @@ public:
         _138 = "Pointing";
         _13C = "Reaction";
     }
+    
+    inline void setDefaults2() {
+        _130 = "Spin";
+        _134 = "Trampled";
+        _138 = "Pointing";
+    }    
 
     LodCtrl* mLodCtrl;                                  // 0x8C
     TalkMessageCtrl* mMsgCtrl;                          // 0x90
