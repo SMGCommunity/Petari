@@ -1,3 +1,4 @@
+#include "Game/System/GameSystemObjHolder.hpp"
 #include "Game/System/MessageHolder.hpp"
 #include "JSystem/JKernel/JKRArchive.hpp"
 
@@ -6,6 +7,10 @@
 
 namespace {
     u8* getBlock(u32, u8*);
+}
+
+MessageData* MessageSystem::getSceneMessageData() {
+    return MR::getGameSystemObjHolder()->mMsgHolder->mSceneData;
 }
 
 MessageData::MessageData(const char* pArchiveName) {
