@@ -2,6 +2,11 @@
 
 #include "Game/Util.hpp"
 
+#define INF1_MAGIC 0x494e4631
+#define DAT1_MAGIC 0x44415431
+#define FLW1_MAGIC 0x464c5731
+#define FLI1_MAGIC 0x464c4931
+
 class TalkNode;
 class TalkMessageInfo;
 
@@ -18,13 +23,13 @@ public:
     bool isValidBranchNode(u32) const;
 
     JMapInfo* mIDTable;     // 0x0
-    void* mInfoBlock;       // 0x4
-    void* mDataBlock;       // 0x8
+    u8* mInfoBlock;       // 0x4
+    u8* mDataBlock;       // 0x8
     u32 _C;
-    void* mFlowBlock;       // 0x10
-    u32 _14;
-    u32 _18;
-    void* mFLI1Block;       // 0x1C
+    u8* mFlowBlock;       // 0x10
+    u8* _14;
+    u8* _18;
+    u8* mFLI1Block;       // 0x1C
 };
 
 class MessageHolder {
