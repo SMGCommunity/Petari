@@ -282,7 +282,6 @@ void PackunPetit::kill() {
     LiveActor::kill();
 }
 
-
 void PackunPetit::calcAndSetBaseMtx() {
     TVec3f up;
     MR::calcUpVec(&up, this);
@@ -293,7 +292,6 @@ void PackunPetit::calcAndSetBaseMtx() {
     mult.multPS(mScale, mScaleController->_C);
     MR::setBaseScale(this, mult);
 }
-
 
 void PackunPetit::control() {
     mScaleController->update();
