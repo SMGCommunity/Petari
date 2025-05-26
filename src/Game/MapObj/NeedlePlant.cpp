@@ -52,6 +52,19 @@ void NeedlePlant::init(const JMapInfoIter &rIter) {
         MR::declareStarPiece(this, 3);
     }
 }
+void NeedlePlant::exeShake() {
+    if (MR::isFirstStep(this)) {
+        MR::startBck(this, "Shake", nullptr);
+        MR::startSound(this, "SE_OJ_LEAVES_SWING", -1, -1);
+    }
+    if (MR::isBckStopped(this)) {
+        setNerve(&NrvNeedlePlant::NeedlePlantNrvWait::sInstance);
+    }
+}
+
+
+
+
 void NeedlePlant::kill() {
     MR::emitEffect(this, "Break");
     MR::startSound(this, "SE_OJ_NEEDLE_PLANT_BREAK", -1, -1);
@@ -116,14 +129,5 @@ void NeedlePlant::connectToScene(const MapObjActorInitInfo &) {
 inline void NeedlePlant::exeWait() {
     if (MR::isFirstStep(this)) {
         MR::tryStartAllAnim(this, mObjectName); 
-    }
-}
-void NeedlePlant::exeShake() {
-    if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Shake", nullptr);
-        MR::startSound(this, "SE_OJ_LEAVES_SWING", -1, -1);
-    }
-    if (MR::isBckStopped(this)) {
-        setNerve(&NrvNeedlePlant::NeedlePlantNrvWait::sInstance);
     }
 }
