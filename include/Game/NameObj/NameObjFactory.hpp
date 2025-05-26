@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Game/MapObj/PalmIsland.hpp"
 #include "revolution.h"
 #include "Game/AreaObj.hpp"
 #include "Game/Boss.hpp"
@@ -274,7 +275,7 @@ namespace {
 		{ "SuperSpinDriver", MR::createSuperSpinDriverYellow, "SuperSpinDriver" },
 		{ "SuperSpinDriverGreen", MR::createSuperSpinDriverGreen, "SuperSpinDriver" },
 		{ "SuperSpinDriverPink", MR::createSuperSpinDriverPink, "SuperSpinDriver" },
-		{ "Kuribo", NULL, "Kuribo" },
+		{ "Kuribo", createNameObj<Kuribo>, "Kuribo" },
 		{ "KuriboChief", NULL, "KuriboChief" },
 		{ "KuriboMini", NULL, "KuriboMini" },
 		{ "Kabokuri", NULL, "Kabokuri" },
@@ -299,7 +300,7 @@ namespace {
 		{ "BallBeamer", NULL, "BallBeamer" },
 		{ "JumpBeamer", NULL, "JumpBeamerBody" },
 		{ "JumpGuarder", NULL, "JumpGuarder" },
-		{ "RingBeamer", NULL, "RingBeamer" },
+		{ "RingBeamer", createNameObj<RingBeamer>, "RingBeamer" },
 		{ "Pukupuku", NULL, "Pukupuku" },
 		{ "BombTeresa", NULL, "BombTeresa" },
 		{ "Teresa", NULL, "Teresa" },
@@ -576,7 +577,7 @@ namespace {
 		{ "BeeFlowerHover", createNameObj<BeeFlowerHover>, "BeeFlowerHover" },
 		{ "WaterfallCaveCover", NULL, "WaterfallCaveCover" },
 		{ "WaterfallCaveNoBreakCover", createNameObj<SimpleMapObj>, "WaterfallCaveNoBreakCover" },
-		{ "PalmIsland", NULL, "PalmIsland" },
+		{ "PalmIsland", createNameObj<PalmIsland>, "PalmIsland" },
 		{ "IceMerameraKing", NULL, "IceMerameraKing" },
 		{ "OceanPierFloaterA", NULL, "OceanPierFloaterA" },
 		{ "HeavenlyBeachTopRock", NULL, "HeavenlyBeachTopRock" },

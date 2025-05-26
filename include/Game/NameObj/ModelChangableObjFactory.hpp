@@ -3,6 +3,7 @@
 #include "Game/Boss/TripodBossRailMoveParts.hpp"
 #include "Game/Boss/TripodBossRotateParts.hpp"
 #include "Game/NameObj/NameObjFactory.hpp"
+#include "Game/MapObj/SimpleNormalMapObj.hpp"
 #include "Game/Util.hpp"
 
 namespace MR {
@@ -31,7 +32,7 @@ namespace {
         { nullptr, "TripodBossRailMoveParts", createNameObj<TripodBossRailMoveParts> },
         { nullptr, "TripodBossRotateParts", createNameObj<TripodBossRotateParts> },
         { nullptr, "TripodBossRotateParts", createNameObj<TripodBossRotateParts> },
-        { nullptr, "SimpleNormalMapObj", nullptr },
+        { nullptr, "SimpleNormalMapObj", createNameObj<SimpleNormalMapObj> },
         { nullptr, "SunshadeMapParts", nullptr },
     };
 };

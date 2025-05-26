@@ -125,4 +125,6 @@ namespace MR {
     bool sendMsgPushAndKillVelocityToTarget(LiveActor *, HitSensor *, HitSensor *);
 
     void addVelocityFromPush(LiveActor *, f32, HitSensor *, HitSensor *);
+
+    void setVelocitySeparateHV(LiveActor *, const TVec3f &, f32, f32);
 };

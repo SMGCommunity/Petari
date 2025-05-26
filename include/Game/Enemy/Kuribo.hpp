@@ -41,7 +41,7 @@ public:
     bool requestStagger(HitSensor *, HitSensor *);
     bool requestBlowDown(HitSensor *, HitSensor *);
     bool requestAttackSuccess();
-    void onNoGravitySuppoert();
+    void onNoGravitySupport();
     void setUp(const TVec3f &, const TQuat4f &, const TVec3f &);
     void appearBlowed(const TVec3f &, const TQuat4f &, const TVec3f &);
     void appearHipDropped(const TVec3f &, const TQuat4f &);
@@ -49,7 +49,7 @@ public:
     bool tryActive();
     bool tryEndBlow();
     bool tryEndBlowLand();
-    bool tryLand();
+    bool tryFind();
     bool tryPointBind();
     bool tryDead();
     void exeWander();

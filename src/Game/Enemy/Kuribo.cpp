@@ -14,6 +14,7 @@
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MapUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 #include "revolution/mtx.h"
 
 namespace {
@@ -409,7 +410,7 @@ bool Kuribo::requestAttackSuccess() {
     return false;
 }
 
-void Kuribo::onNoGravitySuppoert() {
+void Kuribo::onNoGravitySupport() {
     _C4 = 1;
     MR::offCalcGravity(this);
 }
@@ -435,8 +436,7 @@ void Kuribo::appearBlowed(const TVec3f &a1, const TQuat4f &a2, const TVec3f &a3)
 }
 
 void Kuribo::appearHipDropped(const TVec3f &a1, const TQuat4f &a2) {
-    TVec3f vec(0.0f, 0.0f, 0.0f);
-    setUp(a1, a2, vec);
+    setUp(a1, a2, TVec3f(0.0f, 0.0f, 0.0f));
     appear();
     MR::startAction(this, "HipDropDown");
     setNerve(&NrvKuribo::KuriboNrvHipDropDown::sInstance);
@@ -452,6 +452,194 @@ bool Kuribo::tryNonActive() {
     MR::zeroVelocity(this);
     setNerve(&NrvKuribo::KuriboNrvNonActive::sInstance);
     return true;
+}
+
+bool Kuribo::tryActive() {
+    if (MR::isNearPlayerAnyTime(this, 3000.0f)) {
+        setNerve(&NrvKuribo::KuriboNrvWander::sInstance);
+        return true;
+    }
+
+    return false;
+}
+
+bool Kuribo::tryEndBlow() {
+    if (MR::isBindedGround(this) && MR::isGreaterStep(this, 10)) {
+        MR::startAction(this, "Land");
+        MR::onBind(this);
+        setNerve(&NrvKuribo::KuriboNrvBlowLand::sInstance);
+        return true;
+    }
+
+    return false;
+}
+
+bool Kuribo::tryEndBlowLand() {
+    if (MR::isGreaterStep(this, 15)) {
+        setNerve(&NrvKuribo::KuriboNrvChase::sInstance);
+        return true;
+    }
+    
+    return false;
+}
+
+bool Kuribo::tryFind() {
+    if (mStateFindPlayer->isInSightPlayer()) {
+        setNerve(&NrvKuribo::KuriboNrvFindPlayer::sInstance);
+        return true;
+    }
+
+    return false;
+}
+
+bool Kuribo::tryPointBind() {
+    if (isEnablePointBind() && mBindStarPointer->tryStartPointBind()) {
+        setNerve(&NrvKuribo::KuriboNrvBindStarPointer::sInstance);
+        return true;
+    }
+
+    return false;
+}
+
+bool Kuribo::tryDead() {
+    if (isEnableDead()) {
+        if (MR::isInDeath(this, TVec3f(0.0f, 0.0f, 0.0f)) || MR::isBindedGroundDamageFire(this) || MR::isInWater(mPosition)) {
+            mItemGenerator->setTypeNone();
+            kill();
+            return true;
+        }
+
+        if (MR::isPressedRoofAndGround(this) && requestPressDown()) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+void Kuribo::exeWander() {
+    MR::updateActorState(this, mStateWander);
+    if (!tryFind()) {
+        if (tryNonActive()) {
+            return;
+        }
+    }
+}
+
+void Kuribo::exeFindPlayer() {
+    if (!MR::updateActorStateAndNextNerve(this, mStateFindPlayer, &NrvKuribo::KuriboNrvChase::sInstance)) {
+        if (mStateFindPlayer->isFindJumpBegin()) {
+            MR::startSoundSeVer(this, "SE_EM_KURIBO_FIND", -1, -1);
+        }
+    }
+}
+
+void Kuribo::exeChase() {
+    if (MR::updateActorStateAndNextNerve(this, mStateChase, &NrvKuribo::KuriboNrvWander::sInstance)) {
+        mStateWander->setWanderCenter(mPosition);
+    }
+
+    if (mStateChase->isRunning()) {
+        MR::startLevelSoundSeVer(this, "SE_EM_LV_KURIBO_DASH1", -1, -1, -1);
+    }
+}
+
+void Kuribo::exeStagger() {
+    if (!MR::updateActorStateAndNextNerve(this, mStateStagger, &NrvKuribo::KuriboNrvWander::sInstance)) {
+        if (mStateStagger->isStaggerStart()) {
+            MR::startSoundSeVer(this, "SE_EM_CRASH_S", -1, -1);
+            MR::startBlowHitSound(this);
+        }
+
+        if (mStateStagger->isSwooning(15)) {
+            MR::startLevelSoundSeVer(this, "SE_EM_LV_SWOON_S", -1, -1, -1);
+        }
+
+        if (mStateStagger->isRecoverStart()) {
+            MR::startSoundSeVer(this, "SE_EM_KURIBO_SWOON_RECOVER", -1, -1);
+        }
+    }
+}
+
+void Kuribo::exeNonActive() {
+    if (MR::isFirstStep(this)) {
+        calcAnim();
+        MR::offBind(this);
+        MR::offCalcGravity(this);
+        MR::offCalcShadow(this, nullptr);
+    }
+
+    MR::zeroVelocity(this);
+    if (tryActive()) {
+        return;
+    }
+}
+
+void Kuribo::exeAppearFromBox() {
+    if (MR::isFirstStep(this)) {
+        MR::startAction(this, "AppearFromBox");
+        TVec3f zDir;
+        _A8.getZDir(zDir);
+        MR::setVelocitySeparateHV(this, zDir, 7.0f, 30.0f);
+        MR::offBind(this);
+    }
+    exeBlow();
+}
+
+void Kuribo::exeBlow() {
+    calcPassiveMovement();
+    if (MR::isStep(this, 10)) {
+        MR::onBind(this);
+    }
+
+    if (tryEndBlow()) {
+        return;
+    }
+}
+
+void Kuribo::exeAttackSuccess() {
+    if (MR::isFirstStep(this)) {
+        MR::startAction(this, "Hit");
+    }
+
+    MR::turnDirectionToTargetUseGroundNormalDegree(this, &_B8, *MR::getPlayerPos(), 5.0f);
+    calcPassiveMovement();
+    if (MR::isGreaterStep(this, 60)) {
+        setNerve(&NrvKuribo::KuriboNrvWander::sInstance);
+    }
+}
+
+void Kuribo::exeHipDropDown() {
+    if (MR::isFirstStep(this)) {
+        MR::startSoundSeVer(this, "SE_EM_CRASH_S", -1, -1);
+        MR::zeroVelocity(this);
+    }
+
+    if (MR::isGreaterStep(this, 40)) {
+        kill();
+    }
+}
+
+void Kuribo::exeFlatDown() {
+    if (MR::isFirstStep(this)) {
+        MR::startSoundSeVer(this, "SE_EM_CRASH_S", -1, -1);
+        MR::zeroVelocity(this);
+    }
+
+    if (MR::isGreaterStep(this, 20)) {
+        kill();
+    }
+}
+
+void Kuribo::exePressDown() {
+    if (MR::isFirstStep(this)) {
+        MR::startSoundSeVer(this, "SE_EM_CRASH_S", -1, -1);
+        MR::zeroVelocity(this);
+    }
+
+    if (MR::isGreaterStep(this, 180)) {
+        kill();
+    }
 }
 
 void Kuribo::exeOnEndBindStarPointer() {

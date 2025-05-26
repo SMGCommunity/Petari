@@ -39,7 +39,7 @@ public:
     bool isEnableKick() const;
     bool isUpsideDown() const;
     bool isStaggerStart() const;
-    bool isSwooning() const;
+    bool isSwooning(s32) const;
     bool isSpinning(s32, s32) const;
     bool isRecoverStart() const;
     
