@@ -300,6 +300,7 @@ namespace MR {
 
     void hideModelAndOnCalcAnimIfShown(LiveActor*);
 
+    u32 createIndirectPlanetModel(LiveActor*, MtxPtr);
     bool tryCreateMirrorActor(LiveActor*, const char*);
 
     CollisionParts* createCollisionPartsFromLiveActor(LiveActor*, const char*, HitSensor*, CollisionScaleType);
