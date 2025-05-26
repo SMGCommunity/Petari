@@ -90,3 +90,7 @@ public:
     bool _C4;
     u8 _C5;
 };
+
+namespace MR {
+    LiveActor* createNoItemKuriboActor(const char *);
+};

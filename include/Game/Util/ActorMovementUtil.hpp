@@ -129,4 +129,6 @@ namespace MR {
     void addVelocityFromPush(LiveActor *, f32, HitSensor *, HitSensor *);
 
     void setVelocitySeparateHV(LiveActor *, const TVec3f &, f32, f32);
+
+    void setVelocityBlowAttack(LiveActor *, HitSensor *, HitSensor *, f32, f32, s32);
 };
