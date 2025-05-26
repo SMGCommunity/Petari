@@ -5128,26 +5128,26 @@ Game/MapObj/OceanSmallTurtle.cpp:
 Game/MapObj/OceanWaveFloater.cpp:
 	.text       start:0x80209AE4 end:0x8020A344
 	.rodata     start:0x80533578 end:0x805335C8
-	.data       start:0x8059AC70 end:0x8059AD88
+	.data       start:0x8059AC70 end:0x8059AD58
 	.sdata2     start:0x806BD928 end:0x806BD938
 
 Game/MapObj/PalmIsland.cpp:
 	.text       start:0x8020A344 end:0x8020A6EC
 	.ctors      start:0x8052EDEC end:0x8052EDF0
-	.data       start:0x8059AD88 end:0x8059AE30
+	.data       start:0x8059AD58 end:0x8059AE20
 	.sbss       start:0x806B5528 end:0x806B5530
 	.sdata2     start:0x806BD938 end:0x806BD958
 
 Game/MapObj/PeachCastleGardenPlanet.cpp:
 	.text       start:0x8020A6EC end:0x8020A9CC
 	.ctors      start:0x8052EDF0 end:0x8052EDF4
-	.data       start:0x8059AE30 end:0x8059AF80
+	.data       start:0x8059AE20 end:0x8059AF00
 	.sbss       start:0x806B5530 end:0x806B5538
 
 Game/MapObj/PhantomShipBoxFloater.cpp:
 	.text       start:0x8020A9CC end:0x8020B098
 	.ctors      start:0x8052EDF4 end:0x8052EDF8
-	.data       start:0x8059AF80 end:0x8059B028
+	.data       start:0x8059AF00 end:0x8059B028
 	.sbss       start:0x806B5538 end:0x806B5548
 	.sdata2     start:0x806BD958 end:0x806BD980
 
