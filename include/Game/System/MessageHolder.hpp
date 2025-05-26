@@ -12,15 +12,16 @@ class TalkMessageInfo;
 
 class MessageData {
 public:
-    MessageData(const char *);
+    MessageData(const char*);
 
     TalkNode* getNode(u32) const;
 
     TalkNode* getBranchNode(u32) const;
 
-    bool getMessage(TalkMessageInfo *, u16, u16);
+    bool getMessage(TalkMessageInfo*, u16, u16);
 
     bool isValidBranchNode(u32) const;
+    s32 findMessageIndex(const char*) const;
 
     JMapInfo* mIDTable;     // 0x0
     u8* mInfoBlock;       // 0x4
