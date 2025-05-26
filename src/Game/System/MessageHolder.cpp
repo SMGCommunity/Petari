@@ -6,7 +6,19 @@
 #define MESSAGE_ARC "/MessageData/Message.arc"
 
 namespace {
-    u8* getBlock(u32, u8*);
+    u8* getBlock(u32 magic, u8* pData) {
+        u32 numBlocks = *reinterpret_cast<u32*>(pData + 0xc);
+        pData += 0x20;
+        for (u32 i = 0; i < numBlocks; i++) {
+            u32 blockMagic = *reinterpret_cast<u32*>(pData);
+            if (blockMagic == magic) {
+                return pData;
+            }
+            u32 blockSize = *reinterpret_cast<u32*>(pData + 4);
+            pData += blockSize;
+        }
+        return nullptr;
+    }
 }
 
 MessageData* MessageSystem::getSceneMessageData() {
