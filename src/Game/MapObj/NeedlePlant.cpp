@@ -62,9 +62,6 @@ void NeedlePlant::exeShake() {
     }
 }
 
-
-
-
 void NeedlePlant::kill() {
     MR::emitEffect(this, "Break");
     MR::startSound(this, "SE_OJ_NEEDLE_PLANT_BREAK", -1, -1);
