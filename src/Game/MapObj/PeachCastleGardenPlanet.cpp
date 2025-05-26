@@ -32,22 +32,22 @@ void PeachCastleGardenPlanet::startDamage() {
     setNerve(&NrvPeachCastleGardenPlanet::PeachCastleGardenPlanetNrvDamage::sInstance);
 }
 
-void PeachCastleGardenPlanet::initCaseUseSwitchA(const MapObjActorInitInfo &Ifter) {
-    MR::listenStageSwitchOnA(this, MR::FunctorV0M<PeachCastleGardenPlanet *, void (PeachCastleGardenPlanet::*)(void)>(this, &PeachCastleGardenPlanet::startDamage));
-}
+
 
 void PeachCastleGardenPlanet::connectToScene(const MapObjActorInitInfo &) {
     MR::connectToScenePlanet(this);
 }
 
-inline void PeachCastleGardenPlanet::exeDamage() {
+void PeachCastleGardenPlanet::exeWait() {
+    if (MR::isFirstStep(this)) {
+        MR::startBrk(this, "Before");
+    }
+}
+ void PeachCastleGardenPlanet::exeDamage() {
     if (MR::isFirstStep(this)) {
         MR::startBrk(this, "After");
     }
 }
-
-inline void PeachCastleGardenPlanet::exeWait() {
-    if (MR::isFirstStep(this)) {
-        MR::startBrk(this, "Before");
-    }
+void PeachCastleGardenPlanet::initCaseUseSwitchA(const MapObjActorInitInfo &Ifter) {
+    MR::listenStageSwitchOnA(this, MR::FunctorV0M<PeachCastleGardenPlanet *, void (PeachCastleGardenPlanet::*)(void)>(this, &PeachCastleGardenPlanet::startDamage));
 }

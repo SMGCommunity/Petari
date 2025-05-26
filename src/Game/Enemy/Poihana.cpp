@@ -130,10 +130,10 @@ void Poihana::control() {
 	}
 }
 
-/*
+
 void Poihana::calcAndSetBaseMtx() {
 	TPos3f baseMtx;
-	MR::calcMtxFromGravityAndZAxis(&baseMtx, this, mGravity, mFrontVec);
+	MR::calcMtxFromGravityAndZAxis(&baseMtx, this, mGravity, mHomePos);
 
 	if (isNerveTypeWalkOrWait()) {
 		MR::blendMtx((MtxPtr)getBaseMtx(), (MtxPtr)&baseMtx, 0.3f, (MtxPtr)&baseMtx);
@@ -145,7 +145,7 @@ void Poihana::calcAndSetBaseMtx() {
 	newScale.multPS(mScale, mAnimScaleCtrl->_C);
 	MR::setBaseScale(this, newScale);
 }
-*/
+
 
 // This inline function might be used elsewhere too? It seems unusual for it to be used once
 inline void calcRepelVector(const TVec3f &agent, const TVec3f &object, TVec3f& dst) {

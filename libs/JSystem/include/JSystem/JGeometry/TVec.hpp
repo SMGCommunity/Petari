@@ -308,6 +308,11 @@ namespace JGeometry {
         }
 
         void sub(const TVec3 &, const TVec3 &);
+        
+        //Required for Snowman to match?
+        inline void multPS(TVec3<f32>&a, TVec3<f32>&b) {
+            mulInternal(&b.x, &a.x, &this->x);
+        }
 
         void setTrans(MtxPtr mtx) {
             set((*mtx)[3], (*mtx)[7], (*mtx)[11]);
@@ -333,6 +338,8 @@ namespace JGeometry {
             };
         }
 
+
+        
         inline void setPSZeroVec() {
             const register Vec* v_a = &gZeroVec;
             register Vec* v_b = this;

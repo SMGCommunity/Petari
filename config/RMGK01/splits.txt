@@ -5509,20 +5509,20 @@ Game/MapObj/SnowFloor.cpp:
 Game/MapObj/SnowFloorTile.cpp:
 	.text       start:0x8022B968 end:0x8022D3F0
 	.ctors      start:0x8052EEA0 end:0x8052EEA4
-	.data       start:0x805A0088 end:0x805A01B0
+	.data       start:0x805A0088 end:0x805A0138
 	.sdata      start:0x806B1FF0 end:0x806B2020
 	.sdata2     start:0x806BDFD8 end:0x806BE030
 
 Game/MapObj/SnowMan.cpp:
 	.text       start:0x8022D3F0 end:0x8022DCA0
 	.ctors      start:0x8052EEA4 end:0x8052EEA8
-	.data       start:0x805A01B0 end:0x805A02A0
+	.data       start:0x805A0138 end:0x805A0298
 	.sbss       start:0x806B5858 end:0x806B5878
 	.sdata2     start:0x806BE030 end:0x806BE040
 
 Game/MapObj/SnowplowSwitch.cpp:
 	.text       start:0x8022DCA0 end:0x8022DE74
-	.data       start:0x805A02A0 end:0x805A0318
+	.data       start:0x805A0298 end:0x805A0318
 	.sdata2     start:0x806BE040 end:0x806BE048
 
 Game/MapObj/SoundEmitter.cpp:
