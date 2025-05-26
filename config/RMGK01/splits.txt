@@ -5767,14 +5767,14 @@ Game/MapObj/TimerMoveWall.cpp:
 Game/MapObj/TrampleStar.cpp:
 	.text       start:0x8024A95C end:0x8024CB14
 	.ctors      start:0x8052EF08 end:0x8052EF0C
-	.data       start:0x805A4DC0 end:0x805A4EE8
+	.data       start:0x805A4DC0 end:0x805A4EE0
 	.sdata      start:0x806B2080 end:0x806B20A0
 	.sbss       start:0x806B59E8 end:0x806B59F8
 	.sdata2     start:0x806BE5E8 end:0x806BE638
 
 Game/MapObj/TransparentWall.cpp:
 	.text       start:0x8024CB14 end:0x8024CD84
-	.data       start:0x805A4EE8 end:0x805A4F60
+	.data       start:0x805A4EE0 end:0x805A4F60
 
 Game/MapObj/TreasureBoxCracked.cpp:
 	.text       start:0x8024CD84 end:0x8024E0E0
