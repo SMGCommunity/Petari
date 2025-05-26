@@ -85,17 +85,18 @@ void Tico::initBase(const JMapInfoIter &rIter, s32 color) {
         caps.mObjectName = "TicoBaby";
     }
 
-    _130 = "Spin";
-    _134 = "Trampled";
-    _138 = "Pointing";
+    setDefaults2();
     _13C = "Spin";
     _12C = 1000.0f;
-    mParam._14 = "Wait";
-    mParam._18 = "Wait";
-    mParam._1C = "Talk";
-    mParam._20 = "Talk";
-    _11C = "Fly";
-    _120 = "Fly";
+    const char *wait = "Wait";
+    const char *talk = "Talk";
+    const char *fly = "Fly";
+    mParam._14 = wait;
+    mParam._18 = wait;
+    mParam._1C = talk;
+    mParam._20 = talk;
+    _11C = fly;
+    _120 = fly;
     _10C = 8.0f;
     _110 = 0.2f;
     mParam._C = 0.5f;

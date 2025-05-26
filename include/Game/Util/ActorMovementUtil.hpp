@@ -67,8 +67,10 @@ namespace MR {
     void resetPosition(LiveActor *, const char *);
 
     void calcActorAxis(TVec3f *, TVec3f *, TVec3f *, const LiveActor *);
-
+    void calcActorAxisX(TVec3f *, const LiveActor *);
     void calcActorAxisY(TVec3f *, const LiveActor *);
+    void calcActorAxisZ(TVec3f *, const LiveActor *);
+    void faceToVector(TQuat4f *, TVec3f, f32);
 
     void addVelocitySeparateHV(LiveActor *, const TVec3f &, f32, f32);
 
