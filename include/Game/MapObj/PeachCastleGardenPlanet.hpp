@@ -8,8 +8,8 @@ public:
     virtual ~PeachCastleGardenPlanet();
 
     virtual void init(const JMapInfoIter &);
-    virtual void initCaseUseSwitchA(const MapObjActorInitInfo &);
     virtual void connectToScene(const MapObjActorInitInfo &);
+    virtual void initCaseUseSwitchA(const MapObjActorInitInfo &);
     
     void startDamage();
     void exeWait();
