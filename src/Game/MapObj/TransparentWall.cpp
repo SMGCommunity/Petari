@@ -15,7 +15,7 @@ void TransparentWall::init(const JMapInfoIter &rIfter) {
     InvisiblePolygonObj::init(rIfter);
     MR::getJMapInfoArg4WithInit(rIfter, &_BC);
     makeActorAppeared();
-    _C0 = 0;
+    _C0 = false;
     MR::invalidateCollisionParts(this);
     HitSensor* sensor = getSensor("body"); 
     sensor->setType(87);
