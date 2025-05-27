@@ -147,6 +147,7 @@ namespace MR {
     void turnVecToVecCosOnPlane(TVec3f *, const TVec3f &, const TVec3f &, f32);
 
     void turnVecToVecDegree(TVec3f *, const TVec3f &, const TVec3f &, f32, const TVec3f &);
+    void turnVecToVecRadian(TVec3f *, const TVec3f &, const TVec3f &, f32, const TVec3f &);
 
     void turnVecToPlane(TVec3f *, const TVec3f &, const TVec3f &);
 
