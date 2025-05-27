@@ -10,7 +10,7 @@ namespace NrvPeachCastleGardenPlanet {
     NEW_NERVE(PeachCastleGardenPlanetNrvDamage, PeachCastleGardenPlanet, Damage);
 }
 
-PeachCastleGardenPlanet::PeachCastleGardenPlanet(const char *pName) : MapObjActor(pName) {
+PeachCastleGardenPlanet::PeachCastleGardenPlanet(const char* pName) : MapObjActor(pName) {
     _C4 = 0;
  }
 PeachCastleGardenPlanet::~PeachCastleGardenPlanet() {}
@@ -28,7 +28,7 @@ void PeachCastleGardenPlanet::startDamage() {
     setNerve(&NrvPeachCastleGardenPlanet::PeachCastleGardenPlanetNrvDamage::sInstance);
 }
 
-void PeachCastleGardenPlanet::connectToScene(const MapObjActorInitInfo &) {
+void PeachCastleGardenPlanet::connectToScene(const MapObjActorInitInfo &Ifter) {
     MR::connectToScenePlanet(this);
 }
 
