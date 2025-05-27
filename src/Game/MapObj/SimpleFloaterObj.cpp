@@ -1,4 +1,3 @@
-
 #include "Game/MapObj/SimpleFloaterObj.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/MapObj/MapPartsFloatingForce.hpp"
@@ -24,7 +23,6 @@ SimpleFloaterObj::SimpleFloaterObj(const char *pName) : LiveActor(pName) {
  }
 SimpleFloaterObj::~SimpleFloaterObj() { }
 
-
 void SimpleFloaterObj::init(const JMapInfoIter & rIfter) {
     MR::initDefaultPos(this, rIfter);
     MR::getObjectName(&_8C, rIfter);
@@ -47,6 +45,7 @@ void SimpleFloaterObj::init(const JMapInfoIter & rIfter) {
     makeActorAppeared();    
 
 }
+
 void SimpleFloaterObj::exeWait() {
     MR::isFirstStep(this);
         if(!requiredInline() && !MR::isEffectValid(this, cEffectName)) {

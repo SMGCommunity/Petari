@@ -1,4 +1,3 @@
-
 #include "Game/MapObj/SnowMan.hpp"
 #include "Game/Enemy/AnimScaleController.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
@@ -10,7 +9,6 @@
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/ModelUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
-#include "JSystem/JMath/JMath.hpp"
 #include "revolution/types.h"
 
 namespace NrvSnowMan {
@@ -30,7 +28,6 @@ SnowMan::SnowMan(const char* pName) : LiveActor(pName) {
     mAnimScaleParam = nullptr;
  }
 SnowMan::~SnowMan() { }
-
 
 void SnowMan::init(const JMapInfoIter &rIfter) {
     MR::initDefaultPos(this,rIfter);
@@ -113,19 +110,12 @@ void SnowMan::damageBody() {
     }
 }
 
-
-
 void SnowMan::calcAndSetBaseMtx() {
     TVec3f mtx;
     LiveActor::calcAndSetBaseMtx();
     mtx.multPS(mScale, mAnimScaleCtrl->_C);
     MR::setBaseScale(this, mtx);
 }
-
-
-
-
-
 
 void SnowMan::exeWait() { }
 void SnowMan::exeWaitBody() { }

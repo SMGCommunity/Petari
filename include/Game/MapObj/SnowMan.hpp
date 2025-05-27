@@ -1,7 +1,5 @@
 #pragma  once
 
-
-
 #include "Game/Enemy/AnimScaleController.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
 class SnowMan : LiveActor {

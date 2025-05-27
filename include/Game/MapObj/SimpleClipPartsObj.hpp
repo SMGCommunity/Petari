@@ -1,6 +1,5 @@
 #pragma once
 
-
 #include "Game/MapObj/MapObjActor.hpp"
 
 class SimpleClipPartsObj : public MapObjActor {

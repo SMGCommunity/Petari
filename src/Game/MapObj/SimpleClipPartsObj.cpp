@@ -1,5 +1,3 @@
-
-
 #include "Game/MapObj/SimpleClipPartsObj.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/Nerve.hpp"
@@ -9,7 +7,6 @@
 #include "Game/Util/Functor.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
-
 
 namespace NrvSimpleClipPartsObj {
     NEW_NERVE(HostTypeWait, SimpleClipPartsObj, Wait);
@@ -48,12 +45,9 @@ void SimpleClipPartsObj::connectToScene(const MapObjActorInitInfo &Ifter) {
     }
 
 }
-void SimpleClipPartsObj::initCaseUseSwitchA(const MapObjActorInitInfo &Ifter) {
+void SimpleClipPartsObj::initCaseUseSwitchA(const MapObjActorInitInfo &Ifter) { }
+void SimpleClipPartsObj::initCaseNoUseSwitchA(const MapObjActorInitInfo &Ifter) { }
 
-}
-void SimpleClipPartsObj::initCaseNoUseSwitchA(const MapObjActorInitInfo &Ifter) {
-    
-}
 void SimpleClipPartsObj::initCaseUseSwitchB(const MapObjActorInitInfo &Ifter) {
     void (MapObjActor::*start)(void) = &MapObjActor::startMapPartsFunctions;
     void (MapObjActor::*end)(void) = &MapObjActor::endMapPartsFunctions;

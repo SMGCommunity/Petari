@@ -1,4 +1,3 @@
-
 #include "Game/MapObj/PeachCastleGardenPlanet.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/MapObjActor.hpp"
@@ -6,13 +5,10 @@
 #include "Game/Util/ObjUtil.hpp"
 #include <cstddef>
 
-
-
 namespace NrvPeachCastleGardenPlanet {
     NEW_NERVE(PeachCastleGardenPlanetNrvWait, PeachCastleGardenPlanet, Wait);
     NEW_NERVE(PeachCastleGardenPlanetNrvDamage, PeachCastleGardenPlanet, Damage);
 }
-
 
 PeachCastleGardenPlanet::PeachCastleGardenPlanet(const char *pName) : MapObjActor(pName) {
     _C4 = 0;
@@ -31,8 +27,6 @@ void PeachCastleGardenPlanet::init(const JMapInfoIter &rIter) {
 void PeachCastleGardenPlanet::startDamage() {
     setNerve(&NrvPeachCastleGardenPlanet::PeachCastleGardenPlanetNrvDamage::sInstance);
 }
-
-
 
 void PeachCastleGardenPlanet::connectToScene(const MapObjActorInitInfo &) {
     MR::connectToScenePlanet(this);
