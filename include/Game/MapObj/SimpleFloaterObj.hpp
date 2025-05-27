@@ -15,7 +15,7 @@ public:
         return PSVECMag(&_90->_50) < 0.30000001f;
     }
 
-    const char * _8C;
+    const char* _8C;
     MapPartsFloatingForce* _90;
     TVec3f _94;
 };

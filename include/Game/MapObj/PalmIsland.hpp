@@ -3,10 +3,10 @@
 #include "Game/LiveActor/LiveActor.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
 class PalmIsland : public LiveActor {
-public:
+    public:
     PalmIsland(const char *);
-    virtual ~PalmIsland();
 
+   virtual ~PalmIsland();
     virtual void init(const JMapInfoIter &);
 
     void exeFloat();

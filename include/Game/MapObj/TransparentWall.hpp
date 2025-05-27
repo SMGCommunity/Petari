@@ -2,10 +2,10 @@
 
 #include "Game/MapObj/InvisiblePolygonObj.hpp"
 class TransparentWall : public InvisiblePolygonObj {
-public:
+    public:
     TransparentWall(const char *);
-    virtual ~TransparentWall();
 
+    virtual ~TransparentWall();
     virtual void init(const JMapInfoIter &);
     virtual void control();
 

@@ -42,17 +42,15 @@ void SimpleFloaterObj::init(const JMapInfoIter & rIfter) {
     _90->setObjectName(_8C);
     _90->start();
     initNerve(&NrvSimpleFloaterObj::SimpleFloaterObjNrvWait::sInstance);
-    makeActorAppeared();    
-
+    makeActorAppeared();
 }
 
 void SimpleFloaterObj::exeWait() {
     MR::isFirstStep(this);
-        if(!requiredInline() && !MR::isEffectValid(this, cEffectName)) {
-            MR::emitEffect(this, cEffectName);
-        }    else if(requiredInline() && MR::isEffectValid(this, cEffectName)) {
-            MR::deleteEffect(this, cEffectName);            
-        }
-        
+    if(!requiredInline() && !MR::isEffectValid(this, cEffectName)) {
+        MR::emitEffect(this, cEffectName);
+    } else if(requiredInline() && MR::isEffectValid(this, cEffectName)) {
+        MR::deleteEffect(this, cEffectName);            
+    }
     _90->movement();
 }

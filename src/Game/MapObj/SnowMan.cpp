@@ -27,6 +27,7 @@ SnowMan::SnowMan(const char* pName) : LiveActor(pName) {
     mAnimScaleCtrl = nullptr;
     mAnimScaleParam = nullptr;
  }
+
 SnowMan::~SnowMan() { }
 
 void SnowMan::init(const JMapInfoIter &rIfter) {
@@ -90,7 +91,6 @@ bool SnowMan::receiveMsgPlayerAttack(u32 a1, HitSensor* a2, HitSensor* a3) {
             return true;
         }
     }
-
     return false;
 }
 

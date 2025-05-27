@@ -3,10 +3,10 @@
 #include "Game/MapObj/MapObjActor.hpp"
 
 class SimpleClipPartsObj : public MapObjActor {
-public:
+    public:
     SimpleClipPartsObj(const char *);
-    virtual ~SimpleClipPartsObj();
 
+    virtual ~SimpleClipPartsObj();
     virtual void init(const JMapInfoIter &);
     virtual void control();
     virtual void connectToScene(const MapObjActorInitInfo &);

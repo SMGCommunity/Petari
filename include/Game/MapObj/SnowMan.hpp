@@ -2,11 +2,12 @@
 
 #include "Game/Enemy/AnimScaleController.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
-class SnowMan : LiveActor {
-public:
-    SnowMan(const char *);
-    virtual ~SnowMan();
 
+class SnowMan : LiveActor {
+    public:
+    SnowMan(const char *);
+
+    virtual ~SnowMan();
     virtual void init(const JMapInfoIter &);
     virtual void kill();
     virtual void control();

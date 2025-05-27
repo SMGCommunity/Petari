@@ -23,6 +23,7 @@ PalmIsland::PalmIsland(const char *pName) : LiveActor(pName) {
     _90.z = 0.0;
     _9C = 0;
 }
+
 PalmIsland::~PalmIsland() {}
 
 void PalmIsland::init(const JMapInfoIter &rIter) {

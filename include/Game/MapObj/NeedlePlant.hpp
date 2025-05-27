@@ -5,10 +5,10 @@
 #include "Game/MapObj/MapObjActorInitInfo.hpp"
 
 class NeedlePlant : public MapObjActor {
-public:
+    public:
     NeedlePlant(const char *);
-    virtual ~NeedlePlant();
 
+    virtual ~NeedlePlant();
     virtual void init(const JMapInfoIter &);
     virtual void kill();
     virtual void attackSensor(HitSensor *, HitSensor *);

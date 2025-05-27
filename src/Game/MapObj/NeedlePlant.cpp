@@ -22,6 +22,7 @@ namespace NrvNeedlePlant {
 NeedlePlant::NeedlePlant(const char *pName) : MapObjActor(pName) {
     _C4 = -1; 
 }
+
 NeedlePlant::~NeedlePlant() {}
 
 void NeedlePlant::init(const JMapInfoIter &rIter) {
@@ -33,7 +34,7 @@ void NeedlePlant::init(const JMapInfoIter &rIter) {
     info.setupAffectedScale();
     info.setupHitSensor();
     TVec3f vec;
-    vec.set(0.0f, 150 * mScale.x, 0.0f);
+    vec.set(0.0f, 150.0f * mScale.x, 0.0f);
     info.setupHitSensorParam(4, 180.0f, vec);
     info.setupShadow(nullptr);
     info.setupNerve(&NrvNeedlePlant::NeedlePlantNrvWait::sInstance);
@@ -52,6 +53,7 @@ void NeedlePlant::init(const JMapInfoIter &rIter) {
         MR::declareStarPiece(this, 3);
     }
 }
+
 void NeedlePlant::exeShake() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "Shake", nullptr);
@@ -114,6 +116,7 @@ bool NeedlePlant::receiveMsgPlayerAttack(u32 a1, HitSensor *a2, HitSensor *a3) {
         return false;
     }
 }
+
 bool NeedlePlant::receiveMsgEnemyAttack(u32 a1, HitSensor *a2, HitSensor *a3) {
     kill();
     return true;
