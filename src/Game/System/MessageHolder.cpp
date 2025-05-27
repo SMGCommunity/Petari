@@ -1,3 +1,4 @@
+#include "Game/NPC/TalkMessageInfo.hpp"
 #include "Game/System/GameSystemObjHolder.hpp"
 #include "Game/System/MessageHolder.hpp"
 #include "JSystem/JKernel/JKRArchive.hpp"
@@ -19,6 +20,24 @@ namespace {
         }
         return nullptr;
     }
+}
+
+bool MessageData::getMessage(TalkMessageInfo* pMessageInfo, u16, u16 infoToolIndex) const {
+    u8* pInfoTool = getMessageInfoTool(infoToolIndex);
+    pMessageInfo->_0 = mDataBlock + *reinterpret_cast<u32*>(pInfoTool) + 8;
+    pMessageInfo->_4 = *reinterpret_cast<u16*>(pInfoTool + 4);
+    pMessageInfo->_6 = *(pInfoTool + 6);
+    pMessageInfo->mCameraType = *(pInfoTool + 7);
+    pMessageInfo->mTalkType = *(pInfoTool + 8);
+    pMessageInfo->_A = *(pInfoTool + 0xa);
+    pMessageInfo->_B = *(pInfoTool + 0xb);
+    pMessageInfo->mBalloonType = *(pInfoTool + 9);
+    return true;
+}
+
+u8* MessageData::getMessageInfoTool(int index) const {
+    u16 entrySize = *reinterpret_cast<u16*>(mInfoBlock + 0xa);
+    return mInfoBlock + entrySize * index + 0x10;
 }
 
 MessageData* MessageSystem::getSceneMessageData() {

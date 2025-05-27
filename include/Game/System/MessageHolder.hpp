@@ -18,9 +18,10 @@ public:
 
     TalkNode* getBranchNode(u32) const;
 
-    bool getMessage(TalkMessageInfo*, u16, u16);
+    bool getMessage(TalkMessageInfo*, u16, u16) const;
 
     bool isValidBranchNode(u32) const;
+    u8* getMessageInfoTool(int) const;
     s32 findMessageIndex(const char*) const;
 
     JMapInfo* mIDTable;     // 0x0
