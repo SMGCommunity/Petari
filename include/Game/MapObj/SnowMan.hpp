@@ -13,7 +13,6 @@ public:
     virtual void calcAndSetBaseMtx();
     virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
 
-
     void damageHead();
     void damageBody();
     void exeMeltHead();

@@ -9,7 +9,6 @@ public:
     virtual void init(const JMapInfoIter &);
     virtual void control();
 
-
     s32 _BC;
-    bool _C0; //or u8
+    bool _C0;
 };
