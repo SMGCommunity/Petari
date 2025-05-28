@@ -153,7 +153,3 @@ namespace MR {
     void moveAndTurnToPlayer(LiveActor *, f32, f32, f32, f32);
     void moveAndTurnAlongRail(LiveActor *, f32, f32, f32, f32, f32, bool *); 
 };
-
-namespace std {
-    f32 atan2(f32, f32);
-};
