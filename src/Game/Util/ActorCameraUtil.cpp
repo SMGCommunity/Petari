@@ -7,13 +7,15 @@
 #include <cstdio>
 
 namespace MR {
+
     ActorCameraInfo* createActorCameraInfo(const JMapInfoIter &rIter) {
         ActorCameraInfo* pInfo = new ActorCameraInfo(rIter);
         return pInfo;
     }
 
     bool createActorCameraInfoIfExist(const JMapInfoIter &rIter, ActorCameraInfo **pInfo) {
-        if (ActorCameraInfo(rIter).mCameraSetID == -1) {
+        ActorCameraInfo newInfo(rIter);
+        if (newInfo.mCameraSetID == -1) {
             return false;
         }
         else {
@@ -32,6 +34,22 @@ namespace MR {
         }
         return initMultiActorCameraNoInit(pActor, (*pInfo), pName);
     }
+
+    // Need newName to take up the proper amount of space on the stack
+    /* bool initMultiActorCameraNoInit(const LiveActor *pActor, ActorCameraInfo *pInfo, const char *pName) {
+        char newName;
+        if (pInfo->mCameraSetID < 0) {
+            return false;
+        }
+        if (pName != nullptr) {
+            ::createMultiActorCameraName(&newName, 0x100, pActor, pInfo, pName);
+        }
+        else {
+            ::createActorCameraName(&newName, 0x100, pActor, pInfo);
+        }
+        declareEventCamera(pInfo, &newName);
+        return true;
+    } */
 
     void initActorCameraProgrammable(const LiveActor *pActor) {
         declareEventCameraProgrammable(pActor->mName);
@@ -75,6 +93,23 @@ namespace MR {
     bool startMultiActorCameraTargetSelf(const LiveActor *pActor, const ActorCameraInfo *pInfo, const char *pName, s32 a4) {
         return startMultiActorCameraTargetOther(pActor, pInfo, pName, CameraTargetArg(pActor), a4);
     }
+
+    /* bool startMultiActorCameraTargetOther(const LiveActor *pActor, const ActorCameraInfo *pInfo, const char *pName, const CameraTargetArg &rArg, s32 a5) {
+        char newName;
+        if (pInfo->mCameraSetID < 0) {
+            return false;
+        }
+        else {
+            if (pName != nullptr) {
+            ::createMultiActorCameraName(&newName, 0x100, pActor, pInfo, pName);
+            }
+            else {
+            ::createActorCameraName(&newName, 0x100, pActor, pInfo);
+            }
+            startEventCamera(pInfo, &newName, rArg, a5);
+            return true;
+        }
+    } */
      
     void startActorCameraProgrammable(const LiveActor *pActor, s32 a2) {
         startGlobalEventCameraNoTarget(pActor->mName, a2);
@@ -108,6 +143,7 @@ namespace MR {
         setProgrammableCameraParamFovy(pActor->mName, fov);
         return;
     }
+
 };
 
 CameraTargetArg::CameraTargetArg() {
