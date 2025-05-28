@@ -5095,12 +5095,12 @@ Game/MapObj/NormalMapBase.cpp:
 
 Game/MapObj/NormalMapTestObj.cpp:
 	.text       start:0x80206910 end:0x80206A10
-	.data       start:0x8059A5C8 end:0x8059A6A0
+	.data       start:0x8059A5C8 end:0x8059A668
 
 Game/MapObj/Note.cpp:
 	.text       start:0x80206A10 end:0x8020710C
 	.ctors      start:0x8052EDDC end:0x8052EDE0
-	.data       start:0x8059A6A0 end:0x8059A770
+	.data       start:0x8059A668 end:0x8059A770
 	.sbss       start:0x806B54C8 end:0x806B54D8
 	.sdata2     start:0x806BD888 end:0x806BD8A8
 
@@ -5128,26 +5128,26 @@ Game/MapObj/OceanSmallTurtle.cpp:
 Game/MapObj/OceanWaveFloater.cpp:
 	.text       start:0x80209AE4 end:0x8020A344
 	.rodata     start:0x80533578 end:0x805335C8
-	.data       start:0x8059AC70 end:0x8059AD88
+	.data       start:0x8059AC70 end:0x8059AD58
 	.sdata2     start:0x806BD928 end:0x806BD938
 
 Game/MapObj/PalmIsland.cpp:
 	.text       start:0x8020A344 end:0x8020A6EC
 	.ctors      start:0x8052EDEC end:0x8052EDF0
-	.data       start:0x8059AD88 end:0x8059AE30
+	.data       start:0x8059AD58 end:0x8059AE20
 	.sbss       start:0x806B5528 end:0x806B5530
 	.sdata2     start:0x806BD938 end:0x806BD958
 
 Game/MapObj/PeachCastleGardenPlanet.cpp:
 	.text       start:0x8020A6EC end:0x8020A9CC
 	.ctors      start:0x8052EDF0 end:0x8052EDF4
-	.data       start:0x8059AE30 end:0x8059AF80
+	.data       start:0x8059AE20 end:0x8059AF00
 	.sbss       start:0x806B5530 end:0x806B5538
 
 Game/MapObj/PhantomShipBoxFloater.cpp:
 	.text       start:0x8020A9CC end:0x8020B098
 	.ctors      start:0x8052EDF4 end:0x8052EDF8
-	.data       start:0x8059AF80 end:0x8059B028
+	.data       start:0x8059AF00 end:0x8059B028
 	.sbss       start:0x806B5538 end:0x806B5548
 	.sdata2     start:0x806BD958 end:0x806BD980
 
@@ -5451,20 +5451,20 @@ Game/MapObj/SideSpikeMoveStep.cpp:
 Game/MapObj/SimpleBreakableObj.cpp:
 	.text       start:0x80225CA4 end:0x802269FC
 	.ctors      start:0x8052EE88 end:0x8052EE8C
-	.data       start:0x8059F098 end:0x8059F2F0
+	.data       start:0x8059F098 end:0x8059F2E8
 	.sbss       start:0x806B5810 end:0x806B5820
 	.sdata2     start:0x806BDEC0 end:0x806BDEE0
 
 Game/MapObj/SimpleClipPartsObj.cpp:
 	.text       start:0x802269FC end:0x80226C54
 	.ctors      start:0x8052EE8C end:0x8052EE90
-	.data       start:0x8059F2F0 end:0x8059F3B0
+	.data       start:0x8059F2E8 end:0x8059F3A8
 	.sbss       start:0x806B5820 end:0x806B5828
 
 Game/MapObj/SimpleFloaterObj.cpp:
 	.text       start:0x80226C54 end:0x80226F50
 	.ctors      start:0x8052EE90 end:0x8052EE94
-	.data       start:0x8059F3B0 end:0x8059F440
+	.data       start:0x8059F3A8 end:0x8059F438
 	.sdata      start:0x806B1F80 end:0x806B1F88
 	.sbss       start:0x806B5828 end:0x806B5830
 	.sdata2     start:0x806BDEE0 end:0x806BDEF0
@@ -5472,7 +5472,7 @@ Game/MapObj/SimpleFloaterObj.cpp:
 Game/MapObj/SimpleMapObj.cpp:
 	.text       start:0x80226F50 end:0x80227A08
 	.rodata     start:0x80533728 end:0x80533788
-	.data       start:0x8059F440 end:0x8059FC10
+	.data       start:0x8059F438 end:0x8059FC10
 	.sdata2     start:0x806BDEF0 end:0x806BDEF8
 
 Game/MapObj/SimpleNormalMapObj.cpp:
@@ -5509,20 +5509,20 @@ Game/MapObj/SnowFloor.cpp:
 Game/MapObj/SnowFloorTile.cpp:
 	.text       start:0x8022B968 end:0x8022D3F0
 	.ctors      start:0x8052EEA0 end:0x8052EEA4
-	.data       start:0x805A0088 end:0x805A01B0
+	.data       start:0x805A0088 end:0x805A0138
 	.sdata      start:0x806B1FF0 end:0x806B2020
 	.sdata2     start:0x806BDFD8 end:0x806BE030
 
 Game/MapObj/SnowMan.cpp:
 	.text       start:0x8022D3F0 end:0x8022DCA0
 	.ctors      start:0x8052EEA4 end:0x8052EEA8
-	.data       start:0x805A01B0 end:0x805A02A0
+	.data       start:0x805A0138 end:0x805A0298
 	.sbss       start:0x806B5858 end:0x806B5878
 	.sdata2     start:0x806BE030 end:0x806BE040
 
 Game/MapObj/SnowplowSwitch.cpp:
 	.text       start:0x8022DCA0 end:0x8022DE74
-	.data       start:0x805A02A0 end:0x805A0318
+	.data       start:0x805A0298 end:0x805A0318
 	.sdata2     start:0x806BE040 end:0x806BE048
 
 Game/MapObj/SoundEmitter.cpp:
@@ -5767,14 +5767,14 @@ Game/MapObj/TimerMoveWall.cpp:
 Game/MapObj/TrampleStar.cpp:
 	.text       start:0x8024A95C end:0x8024CB14
 	.ctors      start:0x8052EF08 end:0x8052EF0C
-	.data       start:0x805A4DC0 end:0x805A4EE8
+	.data       start:0x805A4DC0 end:0x805A4EE0
 	.sdata      start:0x806B2080 end:0x806B20A0
 	.sbss       start:0x806B59E8 end:0x806B59F8
 	.sdata2     start:0x806BE5E8 end:0x806BE638
 
 Game/MapObj/TransparentWall.cpp:
 	.text       start:0x8024CB14 end:0x8024CD84
-	.data       start:0x805A4EE8 end:0x805A4F60
+	.data       start:0x805A4EE0 end:0x805A4F60
 
 Game/MapObj/TreasureBoxCracked.cpp:
 	.text       start:0x8024CD84 end:0x8024E0E0

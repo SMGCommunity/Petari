@@ -1,4 +1,3 @@
-
 #include "Game/MapObj/PalmIsland.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
@@ -24,6 +23,7 @@ PalmIsland::PalmIsland(const char *pName) : LiveActor(pName) {
     _90.z = 0.0;
     _9C = 0;
 }
+
 PalmIsland::~PalmIsland() {}
 
 void PalmIsland::init(const JMapInfoIter &rIter) {
@@ -48,6 +48,7 @@ inline void PalmIsland::exeWait() {
         setNerve(&NrvPalmIsland::PalmIslandNrvFloat::sInstance);
     }
 }
+
 void PalmIsland::exeFloat() {
     if (MR::isFirstStep(this)) {
         _90.setPS2(mPosition);
