@@ -2,6 +2,7 @@
 
 #include "Game/LiveActor/LiveActor.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
+
 class PalmIsland : public LiveActor {
 public:
     PalmIsland(const char *);

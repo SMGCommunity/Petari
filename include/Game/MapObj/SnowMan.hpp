@@ -1,9 +1,9 @@
-#pragma  once
+#pragma once
 
 #include "Game/Enemy/AnimScaleController.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
 
-class SnowMan : LiveActor {
+class SnowMan : public LiveActor {
 public:
     SnowMan(const char *);
 

@@ -6,12 +6,12 @@
 class SimpleFloaterObj : public LiveActor {
 public:
     SimpleFloaterObj(const char *);
-    virtual ~SimpleFloaterObj();
 
+    virtual ~SimpleFloaterObj();
     virtual void init(const JMapInfoIter &);
 
     void exeWait();
-    bool isVelocityClose() {
+    inline bool isVelocityClose() {
         return PSVECMag(&_90->_50) < 0.3f;
     }
 
@@ -19,3 +19,7 @@ public:
     MapPartsFloatingForce* _90;
     TVec3f _94;
 };
+
+namespace {
+    const char* cEffectName = "Ripple";
+}

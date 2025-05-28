@@ -6,22 +6,18 @@
 #include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
-#include "revolution/types.h"
 
 namespace NrvSimpleFloaterObj {
     NEW_NERVE(SimpleFloaterObjNrvWait, SimpleFloaterObj, Wait);
-}; //Namespace NrvSimpleFloaterObj
-
-namespace {
-    const char* cEffectName = "Ripple";
-}
+}; 
 
 SimpleFloaterObj::SimpleFloaterObj(const char *pName) : LiveActor(pName) {
     _8C = 0;
     _90 = nullptr; 
     _94.set(0.0f, 0.0f, 0.0f);
- }
-SimpleFloaterObj::~SimpleFloaterObj() { }
+}
+
+SimpleFloaterObj::~SimpleFloaterObj() {}
 
 void SimpleFloaterObj::init(const JMapInfoIter & rIfter) {
     MR::initDefaultPos(this, rIfter);
@@ -30,7 +26,7 @@ void SimpleFloaterObj::init(const JMapInfoIter & rIfter) {
     MR::connectToSceneMapObj(this);
     initHitSensor(1);
     MR::addBodyMessageSensorMapObj(this);
-    HitSensor* mSensor =  getSensor(0);
+    HitSensor* mSensor =  getSensor(nullptr);
     MR::initCollisionParts(this, _8C, mSensor, nullptr);
     initEffectKeeper(0, nullptr, false);
     _94.set(mPosition);
@@ -47,9 +43,9 @@ void SimpleFloaterObj::init(const JMapInfoIter & rIfter) {
 
 void SimpleFloaterObj::exeWait() {
     MR::isFirstStep(this);
-    if(!isVelocityClose() && !MR::isEffectValid(this, cEffectName)) {
+    if (!isVelocityClose() && !MR::isEffectValid(this, cEffectName)) {
         MR::emitEffect(this, cEffectName);
-    } else if(isVelocityClose() && MR::isEffectValid(this, cEffectName)) {
+    } else if (isVelocityClose() && MR::isEffectValid(this, cEffectName)) {
         MR::deleteEffect(this, cEffectName);            
     }
     _90->movement();

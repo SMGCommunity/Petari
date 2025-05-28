@@ -40,6 +40,8 @@ namespace MR {
 
     void onCalcShadow(LiveActor *, const char *);
 
+
+    void excludeCalcShadowToActorAll(LiveActor *, const LiveActor *);
     void excludeCalcShadowToSensorAll(LiveActor *, const HitSensor *);
     void excludeCalcShadowToMyCollision(LiveActor *, const char *);
 

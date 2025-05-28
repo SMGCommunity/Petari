@@ -26,9 +26,9 @@ SnowMan::SnowMan(const char* pName) : LiveActor(pName) {
     mBodyCollisionParts = nullptr;
     mAnimScaleCtrl = nullptr;
     mAnimScaleParam = nullptr;
- }
+}
 
-SnowMan::~SnowMan() { }
+SnowMan::~SnowMan() {}
 
 void SnowMan::init(const JMapInfoIter &rIfter) {
     MR::initDefaultPos(this,rIfter);
@@ -60,6 +60,7 @@ void SnowMan::control() {
     if (mHeadCollisionParts->_CC) {
         mHeadCollisionParts->setMtx();
     } 
+    
     if (mBodyCollisionParts->_CC) {
         mBodyCollisionParts->setMtx();
     }
@@ -85,8 +86,7 @@ bool SnowMan::receiveMsgPlayerAttack(u32 a1, HitSensor* a2, HitSensor* a3) {
     else if (MR::isMsgPlayerSpinAttack(a1)) {
         if (mAnimScaleCtrl->isHitReaction(-1)) {
             return false;
-        }
-        else {
+        } else {
             mAnimScaleCtrl->startHitReaction();
             return true;
         }
@@ -117,9 +117,11 @@ void SnowMan::calcAndSetBaseMtx() {
     MR::setBaseScale(this, mtx);
 }
 
-void SnowMan::exeWait() { }
-void SnowMan::exeWaitBody() { }
-void SnowMan::exeWaitHead() { }
+void SnowMan::exeWait() {}
+
+void SnowMan::exeWaitBody() {}
+
+void SnowMan::exeWaitHead() {}
 
 void SnowMan::exeMeltHead() {
     if (MR::isFirstStep(this)) {
@@ -131,6 +133,7 @@ void SnowMan::exeMeltHead() {
             MR::onSwitchA(this);
         }
     }
+
     if (MR::isStep(this, 20)) {
         MR::hideMaterial(this, "SnowManBucketMat_v");
         setNerve(&NrvSnowMan::SnowManNrvWaitBody::sInstance);
@@ -146,10 +149,12 @@ void SnowMan::exeMeltBody() {
         if (MR::isValidSwitchA(this)) {
             MR::onSwitchA(this);
         }
+
         if (MR::isValidSwitchB(this)) {
             MR::onSwitchB(this);
         }
     }
+
     if (MR::isStep(this, 20)) {
         setNerve(&NrvSnowMan::SnowManNrvWaitHead::sInstance);
     }
@@ -163,6 +168,7 @@ void SnowMan::exeDownHead() {
         MR::startSound(this, "SE_OJ_SNOW_MAN_MELT", -1, -1);
         MR::shakeCameraWeak();
     }
+
     if (MR::isBckStopped(this)) {
         kill();
     }
@@ -179,6 +185,7 @@ void SnowMan::exeDownBody() {
             MR::onSwitchB(this);
         }
     }
+    
     if (MR::isBckStopped(this)) {
         kill();
     }

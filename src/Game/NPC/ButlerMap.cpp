@@ -122,6 +122,7 @@ void ButlerMap::control() {
         MR::startSound(this, "SE_SM_NPC_TRAMPLED", -1, -1);
         MR::startSound(this, "SE_SV_BUTLER_TRAMPLED", -1, -1);
     }
+    
     if (NPCActor::isPointingSe()) {
         MR::startDPDHitSound();
         MR::startSound(this, "SE_SV_BUTLER_POINT", -1, -1);
@@ -133,9 +134,11 @@ bool ButlerMap::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *p
     if (MR::isMsgLockOnStarPieceShoot(msg)) {
         return true;
     }
+
     if (MR::isMsgStarPieceReflect(msg)) {
         return false;
     }
+
     if (MR::isMsgStarPieceAttack(msg)) {
         if (isNerve(mWaitNerve) || isNerve(&NrvButlerMap::ButlerMapNrvStarPieceReaction::sInstance)) {
             setNerve(&NrvButlerMap::ButlerMapNrvStarPieceReaction::sInstance);
@@ -191,6 +194,7 @@ void ButlerMap::exeLectureDemoShowMapAfter() {
     if (MR::isFirstStep(this)) {
         MR::resumeTimeKeepDemo(this);
     }
+
     if (!MR::isTimeKeepDemoActive()) {
         MR::validateClipping(this);
         forceNerveToWait();

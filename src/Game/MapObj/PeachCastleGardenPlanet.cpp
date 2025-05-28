@@ -12,7 +12,8 @@ namespace NrvPeachCastleGardenPlanet {
 
 PeachCastleGardenPlanet::PeachCastleGardenPlanet(const char* pName) : MapObjActor(pName) {
     _C4 = 0;
- }
+}
+
 PeachCastleGardenPlanet::~PeachCastleGardenPlanet() {}
 
 void PeachCastleGardenPlanet::init(const JMapInfoIter &rIter) {
@@ -37,11 +38,13 @@ void PeachCastleGardenPlanet::exeWait() {
         MR::startBrk(this, "Before");
     }
 }
- void PeachCastleGardenPlanet::exeDamage() {
+
+void PeachCastleGardenPlanet::exeDamage() {
     if (MR::isFirstStep(this)) {
         MR::startBrk(this, "After");
     }
 }
+
 void PeachCastleGardenPlanet::initCaseUseSwitchA(const MapObjActorInitInfo &Ifter) {
     MR::listenStageSwitchOnA(this, MR::FunctorV0M<PeachCastleGardenPlanet *, void (PeachCastleGardenPlanet::*)(void)>(this, &PeachCastleGardenPlanet::startDamage));
 }

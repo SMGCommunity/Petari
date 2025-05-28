@@ -43,6 +43,6 @@ void ButlerExplain::startDemo() {
     setNerve(&NrvButlerExplain::ButlerExplainNrvDemo::sInstance);
 }
 
-inline void ButlerExplain::exeDemo() {
+void ButlerExplain::exeDemo() {
 
 }

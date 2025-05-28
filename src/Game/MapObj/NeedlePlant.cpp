@@ -17,7 +17,7 @@
 namespace NrvNeedlePlant {
     NEW_NERVE(NeedlePlantNrvWait, NeedlePlant, Wait);
     NEW_NERVE(NeedlePlantNrvShake, NeedlePlant, Shake);
-}; // namespace NrvNeedlePlant
+}; 
 
 NeedlePlant::NeedlePlant(const char *pName) : MapObjActor(pName) {
     _C4 = -1; 
@@ -59,6 +59,7 @@ void NeedlePlant::exeShake() {
         MR::startBck(this, "Shake", nullptr);
         MR::startSound(this, "SE_OJ_LEAVES_SWING", -1, -1);
     }
+    
     if (MR::isBckStopped(this)) {
         setNerve(&NrvNeedlePlant::NeedlePlantNrvWait::sInstance);
     }
@@ -67,13 +68,13 @@ void NeedlePlant::exeShake() {
 void NeedlePlant::kill() {
     MR::emitEffect(this, "Break");
     MR::startSound(this, "SE_OJ_NEEDLE_PLANT_BREAK", -1, -1);
+
     if (!_C4) {
         MR::startSound(this, "SE_OJ_STAR_PIECE_BURST", -1, -1);
         MR::appearStarPiece(this, this->mPosition, 3, 10.0f, 40.0f, false);
     } else if (_C4 == -1) {
         MR::appearCoinPop(this, this->mPosition, 1);
     }
-
     MapObjActor::kill();
 }
 
@@ -82,6 +83,7 @@ void NeedlePlant::attackSensor(HitSensor *a1, HitSensor *a2) {
     if (MR::calcDistance(a1, a2, nullptr) > 70.0f * mScale.x + a2->mRadius) {
         return;
     }
+
     if (MR::isSensorPlayerOrRide(a2) && MR::sendMsgEnemyAttack(a2, a1)) {
         MR::emitEffectHitBetweenSensors(this, a1, a2, 0.0f, nullptr);
         setNerve(&NrvNeedlePlant::NeedlePlantNrvShake::sInstance);
@@ -98,6 +100,7 @@ bool NeedlePlant::receiveMsgPush(HitSensor *a1, HitSensor *a2) {
     if (isNerve(&NrvNeedlePlant::NeedlePlantNrvShake::sInstance)) {
         return false;
     }
+    
     if (!MR::isSensorEnemy(a1)) {
         return false;
     }

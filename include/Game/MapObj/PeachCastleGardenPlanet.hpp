@@ -1,6 +1,7 @@
-#pragma  once
+#pragma once
 
 #include "Game/MapObj/MapObjActor.hpp"
+
 class PeachCastleGardenPlanet : public MapObjActor {
 public:
     PeachCastleGardenPlanet(const char *);
