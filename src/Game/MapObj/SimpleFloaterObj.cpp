@@ -47,9 +47,9 @@ void SimpleFloaterObj::init(const JMapInfoIter & rIfter) {
 
 void SimpleFloaterObj::exeWait() {
     MR::isFirstStep(this);
-    if(!requiredInline() && !MR::isEffectValid(this, cEffectName)) {
+    if(!isVelocityClose() && !MR::isEffectValid(this, cEffectName)) {
         MR::emitEffect(this, cEffectName);
-    } else if(requiredInline() && MR::isEffectValid(this, cEffectName)) {
+    } else if(isVelocityClose() && MR::isEffectValid(this, cEffectName)) {
         MR::deleteEffect(this, cEffectName);            
     }
     _90->movement();

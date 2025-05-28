@@ -3,9 +3,9 @@
 #include "Game/MapObj/NormalMapBase.hpp"
 
 class NormalMapTestObj : public NormalMapBase {
-    public:
-        NormalMapTestObj(const char *);
+public:
+    NormalMapTestObj(const char *);
 
-        virtual ~NormalMapTestObj();
-        virtual void init(const JMapInfoIter &);
+    virtual ~NormalMapTestObj();
+    virtual void init(const JMapInfoIter &);
 };
