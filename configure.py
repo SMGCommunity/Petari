@@ -1738,7 +1738,7 @@ config.libs = [
             Object(NonMatching, "Game/NPC/NPCParameter.cpp"),
             Object(NonMatching, "Game/NPC/NPCDirector.cpp"),
             Object(NonMatching, "Game/NPC/NPCFunction.cpp"),
-            Object(NonMatching, "Game/NPC/NPCSupportRail.cpp"),
+            Object(Matching, "Game/NPC/NPCSupportRail.cpp"),
             Object(NonMatching, "Game/NPC/StageStateKeeper.cpp"),
             Object(NonMatching, "Game/NPC/TalkBalloon.cpp"),
             Object(NonMatching, "Game/NPC/TalkDirector.cpp"),
