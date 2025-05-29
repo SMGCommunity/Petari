@@ -3,11 +3,11 @@
 #include "Game/LiveActor/ShadowSurfaceDrawer.hpp"
 #include "Game/Util.hpp"
 
-class ShadowSurfaceBox : public ShadowSurfaceDrawer {
+class ShadowSurfaceOval : public ShadowSurfaceDrawer {
 public:
-    ShadowSurfaceBox();
+    ShadowSurfaceOval();
 
-    virtual ~ShadowSurfaceBox();
+    virtual ~ShadowSurfaceOval();
 
     virtual void draw() const;
     
