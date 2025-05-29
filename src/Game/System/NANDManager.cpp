@@ -114,7 +114,7 @@ bool NANDResultCode::isUnknown() const {
 
 namespace MR {
     void addRequestToNANDManager(NANDRequestInfo *pInfo) {
-        SingletonHolder<NANDManager>::sInstance->addRequest(pInfo);
+        SingletonHolder<NANDManager>::get()->addRequest(pInfo);
     }
 };
 

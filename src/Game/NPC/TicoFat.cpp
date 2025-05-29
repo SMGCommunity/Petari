@@ -236,11 +236,11 @@ void TicoFat::init(const JMapInfoIter &rIter) {
     setDefaults();
     _12C = 1000.0f;
     const char* waitActionName = getActionName("Wait");
-    _FC = waitActionName;
-    _100 = waitActionName;
+    mParam._14 = waitActionName;
+    mParam._18 = waitActionName;
     const char* talkActionName = getActionName("Talk");
-    _104 = talkActionName;
-    _108 = talkActionName;
+    mParam._1C = talkActionName;
+    mParam._20 = talkActionName;
     
     if (!enableAppear()) {
         makeActorDead();
@@ -705,12 +705,12 @@ void TicoFat::exePrep() {
 void TicoFat::exeWait() {
     if (MR::isFirstStep(this)) {
         const char* exciteAction = getActionName("Excite");
-        _FC = getActionName("Wait");
-        _104 = exciteAction;
-        _100 = 0;
-        _108 = 0;
-        _E8 = 0;
-        _E9 = 0;
+        mParam._14 = getActionName("Wait");
+        mParam._1C = exciteAction;
+        mParam._18 = 0;
+        mParam._20 = 0;
+        mParam._0 = 0;
+        mParam._1 = 0;
         setMessage(1);
     }
 
@@ -719,7 +719,7 @@ void TicoFat::exeWait() {
             setNerve(&NrvTicoFat::TicoFatNrvPoint::sInstance);
         }
         else {
-            turnToDefault(_F0);
+            turnToDefault(mParam._8);
             MR::tryTalkNearPlayer(_16C);
             MR::tryStartTalkAction(this);
         }
@@ -737,7 +737,7 @@ void TicoFat::exePoint() {
             setNerve(&NrvTicoFat::TicoFatNrvWait::sInstance);
         }
         else {
-            turnToDefault(_F0);
+            turnToDefault(mParam._8);
             MR::tryTalkForce(_16C);
         }
     }

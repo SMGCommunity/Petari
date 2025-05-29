@@ -2,6 +2,7 @@
 #include "Game/Scene/GameSceneFunction.hpp"
 #include "Game/System/GameSystem.hpp"
 #include "Game/System/GameSystemSceneController.hpp"
+#include "Game/SingletonHolder.hpp"
 
 namespace {
     GameScene* getGameScene() NO_INLINE {

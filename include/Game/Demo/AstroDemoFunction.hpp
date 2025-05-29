@@ -1,29 +1,23 @@
 #pragma once
 
-#include "Game/LiveActor/LiveActor.hpp"
-#include <revolution.h>
+class JMapInfoIter;
+class LiveActor;
 
-namespace {
-    const char* cGrandStarReturnDemoTable[6] = {
-        "グランドスター１帰還",
-        "グランドスター２帰還",
-        "グランドスター３帰還",
-        "グランドスター４帰還",
-        "グランドスター５帰還",
-        "グランドスター６帰還"
-    };
+namespace MR {
+    class FunctorBase;
 };
 
-class AstroDemoFunction {
-public:
-    static s32 getOpenedAstroDomeNum();
-    static const char* getGrandStarReturnDemoName(int);
-    static s32 getActiveGrandStarReturnDemoIndex();
-    static bool tryRegisterDemo(LiveActor *, const char *, const JMapInfoIter &);
-
-    static bool tryRegisterSimpleCastIfAstroGalaxy(LiveActor *);
-
-    static bool tryRegisterDemoForTico(LiveActor *, const JMapInfoIter &);
-
-    static bool tryRegisterGrandStarReturnAndSimpleCast(LiveActor *, const JMapInfoIter &);
+namespace AstroDemoFunction {
+    int getOpenedAstroDomeNum();
+    const char* getGrandStarReturnDemoName(int);
+    int getActiveGrandStarReturnDemoIndex();
+    void tryRegisterDemo(LiveActor*, const char*, const JMapInfoIter&);
+    void tryRegisterAstroDemoAll(LiveActor*, const JMapInfoIter&);
+    void tryRegisterGrandStarReturn(LiveActor*, const JMapInfoIter&);
+    void tryRegisterGrandStarReturnWithFunction(LiveActor*, const JMapInfoIter&, const MR::FunctorBase&);
+    void tryRegisterGrandStarReturnAndSimpleCast(LiveActor*, const JMapInfoIter&);
+    void tryRegisterGrandStarReturnWithFunctionAndSimpleCast(LiveActor*, const JMapInfoIter&, const MR::FunctorBase&);
+    bool tryRegisterSimpleCastIfAstroGalaxy(LiveActor*);
+    void tryRegisterDemoForTico(LiveActor*, const JMapInfoIter&);
+    void tryRegisterDemoForLuigiAndKinopio(LiveActor*, const JMapInfoIter&);
 };

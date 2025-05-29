@@ -1,9 +1,13 @@
 #pragma once
 
+#include "Game/NPC/Butler.hpp"
+#include "Game/NPC/ButlerExplain.hpp"
+#include "Game/NPC/ButlerMap.hpp"
 #include "Game/NPC/Tico.hpp"
 #include "Game/NPC/TicoAstro.hpp"
 #include "Game/NPC/TicoComet.hpp"
 #include "Game/NPC/CollectTico.hpp"
+#include "Game/NPC/KoopaJr.hpp"
 #include "Game/NPC/Peach.hpp"
 #include "Game/NPC/SignBoard.hpp"
 #include "Game/NPC/TicoDomeLecture.hpp"

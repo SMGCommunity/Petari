@@ -1,6 +1,6 @@
 #pragma once
 
-/// @brief The evaluator for a trigger.
+/// @brief The evaluator for a change in Boolean value.
 class TriggerChecker {
 public:
     /// @brief Creates a new `TriggerChecker`.

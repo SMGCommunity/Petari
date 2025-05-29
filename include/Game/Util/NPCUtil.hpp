@@ -3,6 +3,7 @@
 #include <revolution.h>
 #include <JSystem/JGeometry.hpp>
 #include "Game/System/NerveExecutor.hpp"
+#include "JSystem/JGeometry/TVec.hpp"
 
 class NPCActorItem;
 class TalkMessageCtrl;
@@ -39,6 +40,7 @@ namespace MR {
     void turnPlayerToActor(const LiveActor *, f32);
 
     void setNPCActorPos(NPCActor *, const TVec3f &);
+    void setNPCActorPose(NPCActor *, const TVec3f &, const TVec3f &, const TVec3f &);
 
     void setDefaultPose(NPCActor *);
 };

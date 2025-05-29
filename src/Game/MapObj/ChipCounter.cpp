@@ -2,6 +2,10 @@
 #include "Game/NPC/TalkDirector.hpp"
 #include "Game/Util.hpp"
 
+namespace NrvChipCounter {
+    NEW_NERVE(ChipCounterNrvHide, ChipCounter, Hide);
+};
+
 namespace {
     static s32 sChipPainCount = 0x5;
 

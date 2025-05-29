@@ -2,6 +2,12 @@
 
 #include "Game/Screen/LayoutActor.hpp"
 
+namespace nw4r {
+    namespace lyt {
+        class DrawInfo;
+    };
+};
+
 class GalaxyMapCometIcon : public LayoutActor {
 public:
     GalaxyMapCometIcon(const char*, LayoutActor*, const char*);

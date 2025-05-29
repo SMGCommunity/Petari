@@ -37,7 +37,7 @@ namespace {
 
     bool tryResumeInitializeThread() {
         const char* thread = "シーン初期化";
-        if (MR::isSuspendAsyncExecuteThread(thread)) {
+        if (MR::isSuspendedAsyncExecuteThread(thread)) {
             MR::resumeAsyncExecuteThread(thread);
             return true;
         }

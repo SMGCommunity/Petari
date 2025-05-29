@@ -2,7 +2,7 @@
 
 #include "Game/Screen/LayoutActor.hpp"
 
-class GalaxyCometScreenFilter : LayoutActor {
+class GalaxyCometScreenFilter : public LayoutActor {
 public:
     /// @brief Creates a new `GalaxyCometScreenFilter`.
     GalaxyCometScreenFilter();
@@ -12,6 +12,5 @@ public:
 
     void setCometType(const char*);
 
-private:
     /* 0x20 */ bool _20;
 };

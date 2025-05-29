@@ -4,6 +4,7 @@
 #include <revolution.h>
 // #include "math_types.hpp"
 #include "JSystem/JGeometry/TUtil.hpp"
+#include "math_types.hpp"
 #include <JSystem/JMath/JMath.hpp>
 
 namespace JGeometry {
@@ -215,6 +216,13 @@ namespace JGeometry {
             return ret;
         }
 
+        // appears to be needed in RingBeam to match stack in some places
+        TVec3 scaleInline(f32 scalar) const {
+            TVec3 ret(*this);
+            ret.scale(scalar);
+            return ret;
+        }
+
         TVec3 operator-() const;
 
         bool operator==(const TVec3 &) const;
@@ -300,6 +308,11 @@ namespace JGeometry {
         }
 
         void sub(const TVec3 &, const TVec3 &);
+        
+        //Required for multiple objects to match?
+        inline void multPS(TVec3<f32>&a, TVec3<f32>&b) {
+            mulInternal(&b.x, &a.x, &this->x);
+        }
 
         void setTrans(MtxPtr mtx) {
             set((*mtx)[3], (*mtx)[7], (*mtx)[11]);
@@ -312,6 +325,21 @@ namespace JGeometry {
         // Point gravity doesn't match if we use setPS
         inline void setPS2(const TVec3<f32>& rSrc) {
             const register Vec* v_a = &rSrc;
+            register Vec* v_b = this;
+    
+            register f32 b_x;
+            register f32 a_x;
+    
+            asm {
+                psq_l a_x, 0(v_a), 0, 0
+                lfs b_x, 8(v_a)
+                psq_st a_x, 0(v_b), 0, 0
+                stfs b_x, 8(v_b)
+            };
+        }
+
+        inline void setPSZeroVec() {
+            const register Vec* v_a = &gZeroVec;
             register Vec* v_b = this;
     
             register f32 b_x;
@@ -380,7 +408,16 @@ namespace JGeometry {
             return magnitude;
         }
         
-        void setLength(f32);
+        f32 setLength(f32 newlength){
+            f32 oldlength = squareMag();
+            if(oldlength <=  0.0000038146973f){
+                return 0.0f;
+            }
+            f32 lengthinv = JGeometry::TUtil<f32>::inv_sqrt(oldlength);
+            scale(lengthinv * newlength);
+            return lengthinv * oldlength;
+        };
+
         f32 setLength(const TVec3 &, f32);
 
         f32 length() const { 

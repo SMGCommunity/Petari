@@ -114,7 +114,7 @@ void SurfingGuidance::exeLevelOffReady() {
         MR::startAnim(this, "Slope", 1);
     }
 
-    if (MR::isFirstStep(this)) {
+    if (!MR::isFirstStep(this)) {
         if (MR::getAnimFrame(this, 1) == 0.0f) {
             MR::startSystemSE("SE_SY_CTRL_GUIDE_CHANGE2", 500, -1);
         }
@@ -142,7 +142,7 @@ void SurfingGuidance::exeTurnLeftReady() {
         MR::startAnim(this, "TurnLeft", 1);
     }
 
-    if (MR::isFirstStep(this)) {
+    if (!MR::isFirstStep(this)) {
         if (MR::getAnimFrame(this, 1) == 0.0f) {
             MR::startSystemSE("SE_SY_CTRL_GUIDE_CHANGE", 500, -1);
         }
@@ -170,7 +170,7 @@ void SurfingGuidance::exeTurnRightReady() {
         MR::startAnim(this, "TurnRight", 1);
     }
 
-    if (MR::isFirstStep(this)) {
+    if (!MR::isFirstStep(this)) {
         if (MR::getAnimFrame(this, 1) == 0.0f) {
             MR::startSystemSE("SE_SY_CTRL_GUIDE_CHANGE", 500, -1);
         }

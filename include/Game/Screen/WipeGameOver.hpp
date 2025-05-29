@@ -6,7 +6,7 @@ class WipeGameOver : public WipeLayoutBase {
 public:
     WipeGameOver();
 
-    virtual ~WipeGameOver();
+    virtual ~WipeGameOver() {}
     virtual void init(const JMapInfoIter&);
     virtual void kill();
     virtual void wipe(s32);
@@ -16,7 +16,10 @@ public:
     virtual bool isClose() const;
     virtual bool isWipeIn() const;
     virtual bool isWipeOut() const;
-    virtual s32 getWipeType() const;
+
+    virtual s32 getWipeType() const {
+        return 2;
+    }
 
     void exeActive();
     void exeWait();

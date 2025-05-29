@@ -55,25 +55,26 @@ void ButlerMap::init(const JMapInfoIter &rIter) {
     caps.mUseShadow = true;
     caps._38 = false;
     NPCActor::initialize(rIter, caps);
-    _130 = "Spin";
-    _134 = "Trampled";
-    _138 = "Pointing";
-    _13C = "Spin";
-    _FC = "Wait";
-    _100 = "Wait";
-    _104 = "Talk";
-    _108 = "Talk";
+    setDefaults2();    
+    _13C = "Spin";            
+    const char *wait = "Wait";
+    const char *talk = "Talk";
+    mParam._14 = wait;
+    mParam._18 = wait;
+    mParam._1C = talk;
+    mParam._20 = talk;      
     MR::createSceneObj(119);
     MR::tryRegisterDemoCast(this, rIter);
     MR::tryRegisterDemoCast(this, "バトラー報告", rIter);
-    const char* car1 = cDemoNameMapLecture;
     TVec3f vec;
-    vec.setPS2(gZeroVec);
+    const char* demoNameMapLecture = cDemoNameMapLecture;    
+    vec.setPSZeroVec();
     TalkMessageCtrl *talkMessage = MR::createTalkCtrlDirectOnRootNodeAutomatic(this, rIter, "AstroGalaxy_ButlerMap001", vec, MR::getJointMtx(this, "Body"));
-    if (MR::tryInitDemoSheetTalkAnim(this, rIter, car1, "DemoButlerMapLecture", talkMessage)) {
-        const char* car = cDemoNameMapLecture;
-        MR::tryRegisterDemoActionFunctorDirect(this, MR::Functor(this, &ButlerMap::startLectureDemo), car1, "開始");
-        MR::tryRegisterDemoActionFunctorDirect(this, MR::Functor(this, &ButlerMap::resetStatus), car, "バトラーリセット");
+    if (MR::tryInitDemoSheetTalkAnim(this, rIter, demoNameMapLecture, "DemoButlerMapLecture", talkMessage)) {
+        const char *demoNameMapLecture = cDemoNameMapLecture;
+        const MR::FunctorBase& func = MR::Functor(this, &ButlerMap::startLectureDemo);        
+        MR::registerDemoActionFunctorDirect(this, func, demoNameMapLecture, "開始");
+        MR::registerDemoActionFunctorDirect(this, MR::Functor(this, &ButlerMap::resetStatus), demoNameMapLecture, "バトラーリセット");
     }
     AstroDemoFunction::tryRegisterGrandStarReturnAndSimpleCast(this, rIter);
     AstroDemoFunction::tryRegisterDemo(this, "バトラーグリーンドライバ説明", rIter);
@@ -121,6 +122,7 @@ void ButlerMap::control() {
         MR::startSound(this, "SE_SM_NPC_TRAMPLED", -1, -1);
         MR::startSound(this, "SE_SV_BUTLER_TRAMPLED", -1, -1);
     }
+    
     if (NPCActor::isPointingSe()) {
         MR::startDPDHitSound();
         MR::startSound(this, "SE_SV_BUTLER_POINT", -1, -1);
@@ -132,9 +134,11 @@ bool ButlerMap::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *p
     if (MR::isMsgLockOnStarPieceShoot(msg)) {
         return true;
     }
+
     if (MR::isMsgStarPieceReflect(msg)) {
         return false;
     }
+
     if (MR::isMsgStarPieceAttack(msg)) {
         if (isNerve(mWaitNerve) || isNerve(&NrvButlerMap::ButlerMapNrvStarPieceReaction::sInstance)) {
             setNerve(&NrvButlerMap::ButlerMapNrvStarPieceReaction::sInstance);
@@ -190,6 +194,7 @@ void ButlerMap::exeLectureDemoShowMapAfter() {
     if (MR::isFirstStep(this)) {
         MR::resumeTimeKeepDemo(this);
     }
+
     if (!MR::isTimeKeepDemoActive()) {
         MR::validateClipping(this);
         forceNerveToWait();

@@ -7,12 +7,14 @@
 #include "Game/System/FileLoader.hpp"
 #include "Game/System/FunctionAsyncExecutor.hpp"
 #include "Game/System/GameSystemObjHolder.hpp"
+#include "Game/System/HeapMemoryWatcher.hpp"
 #include "Game/System/Language.hpp"
 #include "Game/System/MessageHolder.hpp"
 #include "Game/System/NANDManager.hpp"
 #include "Game/System/ResourceHolderManager.hpp"
 #include "Game/System/WPadHolder.hpp"
 #include "Game/Util/RenderMode.hpp"
+#include "Game/SingletonHolder.hpp"
 #include <JSystem/JUtility/JUTVideo.hpp>
 
 GameSystemObjHolder::GameSystemObjHolder() :
@@ -115,20 +117,17 @@ void GameSystemObjHolder::initDvd() {
     JKRMemArchive archive;
 
     JKRFileLoader::initializeVolumeList();
-
-    if (!SingletonHolder<FileLoader>::exists()) {
-        SingletonHolder<FileLoader>::set(new FileLoader());
-    }
+    SingletonHolder<FileLoader>::init();
 }
 
 void GameSystemObjHolder::initNAND() {
-    if (!SingletonHolder<NANDManager>::exists()) {
-        SingletonHolder<NANDManager>::set(new NANDManager());
-    }
+    SingletonHolder<NANDManager>::init();
 }
 
 void GameSystemObjHolder::initAudio() {
-    mSysWrapper = new AudSystemWrapper(MR::getAudHeap(), MR::getStationedHeapNapa());
+    mSysWrapper = new AudSystemWrapper(
+        SingletonHolder<HeapMemoryWatcher>::get()->mAudSystemHeap,
+        MR::getStationedHeapNapa());
     mSysWrapper->requestResourceForInitialize();
 }
 
@@ -171,10 +170,7 @@ void GameSystemObjHolder::initRenderMode() {
 void GameSystemObjHolder::initNameObj() {
     mObjHolder = new NameObjHolder(256);
 
-    if (!SingletonHolder<NameObjRegister>::exists()) {
-        SingletonHolder<NameObjRegister>::set(new NameObjRegister());
-    }
-
+    SingletonHolder<NameObjRegister>::init();
     SingletonHolder<NameObjRegister>::get()->setCurrentHolder(mObjHolder);
 }
 
@@ -183,9 +179,7 @@ void GameSystemObjHolder::initFunctionAsyncExecutor() {
 }
 
 void GameSystemObjHolder::initResourceHolderManager() {
-    if (!SingletonHolder<ResourceHolderManager>::exists()) {
-        SingletonHolder<ResourceHolderManager>::set(new ResourceHolderManager());
-    }
+    SingletonHolder<ResourceHolderManager>::init();
 }
 
 void GameSystemObjHolder::initGameController() {

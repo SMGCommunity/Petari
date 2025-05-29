@@ -195,7 +195,7 @@ void BezierRail::calcCurrentRailCtrlPointIter(JMapInfoIter *pIter, f32 a2, bool 
 }
 
 void BezierRail::calcRailCtrlPointIter(JMapInfoIter *pIter, int idx) const {
-    pIter->_4 = idx;
+    pIter->mIndex = idx;
     pIter->mInfo = _18;
 }
 

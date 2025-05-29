@@ -31,6 +31,7 @@ namespace MR {
     void resetNode(TalkMessageCtrl *);
 
     bool tryTalkForce(TalkMessageCtrl *);
+    bool tryTalkForceAtEnd(TalkMessageCtrl *);
 
     void forwardNode(TalkMessageCtrl *);
 
@@ -53,8 +54,35 @@ namespace MR {
 
     bool isNearPlayer(const TalkMessageCtrl *, f32);
 
+    bool tryTalkNearPlayerAtEnd(TalkMessageCtrl *);
+    
     bool tryTalkNearPlayer(TalkMessageCtrl *);
 
     bool tryTalkForceWithoutDemo(TalkMessageCtrl *);
+
+    bool tryTalkTimeKeepDemo(TalkMessageCtrl *);
+    bool tryTalkTimeKeepDemoMarioPuppetable(TalkMessageCtrl *);
+
     bool tryTalkForceWithoutDemoAtEnd(TalkMessageCtrl *);
+
+    bool isTalkTalking(const TalkMessageCtrl *);
+
+    class ActorTalkParam {
+    public:
+        void setNoTurnAction(const char *);
+        void setSingleAction(const char *);
+
+        u8 _0;
+        u8 _1;
+        u8 _2;
+        u8 _3;
+        f32 _4;
+        f32 _8;
+        f32 _C;
+        f32 _10;
+        const char* _14;
+        const char* _18;
+        const char* _1C;
+        const char* _20;
+    };
 };

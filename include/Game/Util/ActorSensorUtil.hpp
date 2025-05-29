@@ -57,6 +57,7 @@ namespace MR {
     HitSensor* addBodyMessageSensorMapObjMoveCollision(LiveActor *);
     HitSensor* addBodyMessageSensorReceiver(LiveActor *);
 
+    HitSensor* addMessageSensorMapObj(LiveActor *, const char *);
     HitSensor* addMessageSensorMapObjMoveCollision(LiveActor *, const char *);
 
     HitSensor* addBodyMessageSensorMapObjPress(LiveActor *);
@@ -115,7 +116,7 @@ namespace MR {
     void calcSensorHorizonNormalize(TVec3f *, const TVec3f &, const HitSensor *, const HitSensor *);
 
     bool sendSimpleMsgToActor(u32, LiveActor *);
-
+    bool sendMsgToBindedSensor(u32, LiveActor *, HitSensor *);
     bool sendArbitraryMsg(u32, HitSensor *, HitSensor *);
     bool sendMsgPush(HitSensor *, HitSensor *);
     bool sendMsgPlayerTrample(HitSensor *, HitSensor *);
@@ -188,6 +189,8 @@ namespace MR {
     bool isMsgExplosionAttack(u32);
 
     bool isMsgUpdateBaseMtx(u32);
+
+    bool isMsgToEnemyAttackShockWave(u32);
 
     bool receiveItemShowMsg(u32, HitSensor *, HitSensor *);
     bool receiveItemHideMsg(u32, HitSensor *, HitSensor *);

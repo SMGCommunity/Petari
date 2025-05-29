@@ -67,8 +67,10 @@ namespace MR {
     void resetPosition(LiveActor *, const char *);
 
     void calcActorAxis(TVec3f *, TVec3f *, TVec3f *, const LiveActor *);
-
+    void calcActorAxisX(TVec3f *, const LiveActor *);
     void calcActorAxisY(TVec3f *, const LiveActor *);
+    void calcActorAxisZ(TVec3f *, const LiveActor *);
+    void faceToVector(TQuat4f *, TVec3f, f32);
 
     void addVelocitySeparateHV(LiveActor *, const TVec3f &, f32, f32);
 
@@ -111,4 +113,22 @@ namespace MR {
     void makeQuatAndFrontFromRotate(TQuat4f *, TVec3f *, const LiveActor *);
 
     void moveAndTurnToPlayer(LiveActor *, TVec3f *, f32, f32, f32, f32);
+
+    void turnDirectionDegree(const LiveActor *, TVec3f *, const TVec3f &, f32);
+
+    void addVelocityMoveToDirection(LiveActor *, const TVec3f &, f32);
+
+    void reboundVelocityFromEachCollision(LiveActor *, f32, f32, f32, f32);
+
+    void turnQuatUpToGravity(TQuat4f *, const TQuat4f &, const LiveActor *);
+
+    bool calcVelocityAreaOrRailMoveOnGround(TVec3f *, const LiveActor *);
+
+    bool sendMsgPushAndKillVelocityToTarget(LiveActor *, HitSensor *, HitSensor *);
+
+    void addVelocityFromPush(LiveActor *, f32, HitSensor *, HitSensor *);
+
+    void setVelocitySeparateHV(LiveActor *, const TVec3f &, f32, f32);
+
+    void setVelocityBlowAttack(LiveActor *, HitSensor *, HitSensor *, f32, f32, s32);
 };

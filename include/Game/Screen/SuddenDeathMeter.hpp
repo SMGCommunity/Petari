@@ -1,6 +1,5 @@
 #pragma once
 
-#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/LayoutActor.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
 
@@ -44,14 +43,3 @@ public:
     f32 _38;                                    // 0x38
     f32 _3C;                                    // 0x3C
 };
-
-namespace NrvSuddenDeathMeter {
-    NERVE_DECL_EXE(SuddenDeathMeterNrvAppear, SuddenDeathMeter, Appear);
-    NERVE_DECL_EXE(SuddenDeathMeterNrvWait, SuddenDeathMeter, Wait);
-    NERVE_DECL_EXE(SuddenDeathMeterNrvPowerUp, SuddenDeathMeter, PowerUp);
-    NERVE_DECL_EXE(SuddenDeathMeterNrvMeterMove, SuddenDeathMeter, MeterMove);
-    NERVE_DECL_EXE(SuddenDeathMeterNrvCounterMove, SuddenDeathMeter, CounterMove);
-    NERVE_DECL_EXE(SuddenDeathMeterNrvBreakMeter, SuddenDeathMeter, BreakMeter);
-    NERVE_DECL_EXE(SuddenDeathMeterNrvZeroMeter, SuddenDeathMeter, ZeroMeter);
-    NERVE_DECL_EXE(SuddenDeathMeterNrvZeroMeterBreak, SuddenDeathMeter, ZeroMeterBreak);
-}    // namespace NrvSuddenDeathMeter

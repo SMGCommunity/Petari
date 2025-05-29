@@ -80,7 +80,7 @@ namespace MR {
 #endif
 
     u32 getLanguage() {
-        return SingletonHolder<GameSystem>::sInstance->mObjHolder->mLanguage;
+        return SingletonHolder<GameSystem>::get()->mObjHolder->mLanguage;
     }
 
     u32 getLanguageFromIPL() {

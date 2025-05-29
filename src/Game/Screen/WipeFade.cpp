@@ -1,11 +1,14 @@
 #include "Game/Screen/WipeFade.hpp"
 #include "Game/Util/LayoutUtil.hpp"
+#include "Game/Util/DrawUtil.hpp"
 
-WipeFade::WipeFade(const char* pName, const Color8& rColor) : WipeLayoutBase(pName) {
-    _20 = false;
-    _24 = 30;
-    _28 = 30;
-    _2C = rColor;
+WipeFade::WipeFade(const char* pName, const Color8& rFillColor) :
+    WipeLayoutBase(pName),
+    mIsWipeIn(false),
+    mStepNum(30),
+    mStep(30)
+{
+    mFillColor = rFillColor;
 }
 
 void WipeFade::init(const JMapInfoIter& rIter) {
@@ -13,51 +16,50 @@ void WipeFade::init(const JMapInfoIter& rIter) {
 }
 
 void WipeFade::control() {
-    _28++;
+    mStep++;
 
     if (isOpen()) {
         kill();
     }
 }
 
-/*
 void WipeFade::draw() const {
-    if (!MR::isDead(this)) {
-        f32 v3 = 0.0f;
-        f32 v4 = _28 / _24;
-
-        if (v4 >= 0.0f) {
-            v3 = 1.0f;
-
-            if (v4 <= 1.0f) {
-                v3 = _28 / _24;
-            }
-        }
-
-        if (_20) {
-            v3 = (1.0f - v3);
-        }
-
-        GXSetColorUpdate(GX_TRUE);
-        GXSetBlendMode(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_NOOP);
-        GXColor color = _2C;
-        MR::fillScreen(color);
+    if (MR::isDead(this)) {
+        return;
     }
+
+    f32 f1 = 0.0f;
+    f32 stepRate = mStep / mStepNum;
+
+    if (f1 <= stepRate) {
+        f1 = stepRate;
+
+        if (stepRate > 1.0f) {
+            f1 = 1.0f;
+        }
+    }
+
+    if (mIsWipeIn) {
+        f1 = 1.0f - f1;
+    }
+
+    GXSetColorUpdate(GX_TRUE);
+    GXSetBlendMode(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_NOOP);
+    MR::fillScreen(mFillColor);
 }
-*/
 
-void WipeFade::wipe(s32 a1) {
-    _20 = !_20;
+void WipeFade::wipe(s32 step) {
+    mIsWipeIn = !mIsWipeIn;
 
-    if (a1 < 0) {
-        _24 = 30;
-    } else if (a1 == 0) {
-        _24 = 1;
+    if (step < 0) {
+        mStepNum = 30;
+    } else if (step == 0) {
+        mStepNum = 1;
     } else {
-        _24 = a1;
+        mStepNum = step;
     }
 
-    _28 = 0;
+    mStep = 0;
 
     if (MR::isDead(this)) {
         appear();
@@ -65,8 +67,8 @@ void WipeFade::wipe(s32 a1) {
 }
 
 void WipeFade::forceClose() {
-    _20 = 0;
-    _28 = _24;
+    mIsWipeIn = false;
+    mStep = mStepNum;
 
     if (MR::isDead(this)) {
         appear();
@@ -74,28 +76,24 @@ void WipeFade::forceClose() {
 }
 
 void WipeFade::forceOpen() {
-    _20 = 1;
-    _28 = _24;
+    mIsWipeIn = true;
+    mStep = mStepNum;
 
     kill();
 }
 
 bool WipeFade::isOpen() const {
-    return _20 && _28 >= _24;
+    return mIsWipeIn && mStep >= mStepNum;
 }
 
 bool WipeFade::isClose() const {
-    return !_20 && _28 >= _24;
+    return !mIsWipeIn && mStep >= mStepNum;
 }
 
 bool WipeFade::isWipeIn() const {
-    return _20 && _28 < _24;
+    return mIsWipeIn && mStep < mStepNum;
 }
 
 bool WipeFade::isWipeOut() const {
-    return !_20 && _28 < _24;
-}
-
-WipeFade::~WipeFade() {
-    
+    return !mIsWipeIn && mStep < mStepNum;
 }

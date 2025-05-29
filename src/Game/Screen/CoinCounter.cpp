@@ -1,7 +1,17 @@
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/CoinCounter.hpp"
 #include "Game/Screen/CountUpPaneRumbler.hpp"
 #include "Game/Screen/CounterLayoutAppearer.hpp"
 #include "Game/Screen/CounterLayoutController.hpp"
+#include "Game/Util/LayoutUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/SceneUtil.hpp"
+#include "Game/Util/StarPointerUtil.hpp"
+
+namespace {
+    const s32 cInvalidCountUpInterval = 3;
+    const f32 cAstroLocationOffsetY = 40.0f;
+};
 
 namespace NrvCoinCounter {
     NEW_NERVE(CoinCounterNrvHide, CoinCounter, Hide);
@@ -14,7 +24,7 @@ CoinCounter::CoinCounter(const char* pName) :
     LayoutActor(pName, true),
     mCoinNum(0),
     mCoinDisplayNum(0),
-    mDisplayUpdateFrame(0),
+    mInvalidCountUpFrame(0),
     mLayoutAppearer(NULL),
     mPaneRumbler(NULL),
     mIsForceAppear(false),
@@ -40,7 +50,7 @@ void CoinCounter::appear() {
     mLayoutAppearer->reset();
     mPaneRumbler->reset();
 
-    mDisplayUpdateFrame = 0;
+    mInvalidCountUpFrame = 0;
     mIsForceAppear = false;
 
     MR::hideLayout(this);
@@ -76,12 +86,12 @@ void CoinCounter::control() {
 void CoinCounter::updateCounter() {
     mCoinNum = MR::getCoinNum();
 
-    if (mDisplayUpdateFrame > 0) {
-        mDisplayUpdateFrame--;
+    if (mInvalidCountUpFrame > 0) {
+        mInvalidCountUpFrame--;
     }
     else if (mCoinDisplayNum < mCoinNum) {
         if (isNerve(&NrvCoinCounter::CoinCounterNrvWait::sInstance)) {
-            mDisplayUpdateFrame = 3;
+            mInvalidCountUpFrame = cInvalidCountUpInterval;
             mCoinDisplayNum++;
 
             MR::startAnim(this, "Flash", 0);
@@ -114,7 +124,7 @@ void CoinCounter::updateCounter() {
 
 void CoinCounter::exeHide() {
     if (MR::isFirstStep(this)) {
-        mDisplayUpdateFrame = 0;
+        mInvalidCountUpFrame = 0;
 
         MR::hideLayout(this);
     }
@@ -125,7 +135,7 @@ void CoinCounter::exeAppear() {
         MR::showLayout(this);
 
         if (MR::isStageAstroLocation()) {
-            mLayoutAppearer->appear(TVec2f(0.0f, 40.0f));
+            mLayoutAppearer->appear(TVec2f(0.0f, cAstroLocationOffsetY));
         }
         else {
             mLayoutAppearer->appear(TVec2f(0.0f, 0.0f));

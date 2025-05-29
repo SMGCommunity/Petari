@@ -86,7 +86,7 @@ namespace MR {
             snprintf(buf, sizeof(buf), "%s", pFile);
         }
 
-        SingletonHolder<FileLoader>::sInstance->requestLoadToMainRAM(
+        SingletonHolder<FileLoader>::get()->requestLoadToMainRAM(
             buf, 
             pData, 
             pHeap, 
@@ -110,7 +110,7 @@ namespace MR {
             snprintf(buf, sizeof(buf), "%s", pFile);
         }
 
-        SingletonHolder<FileLoader>::sInstance->requestMountArchive(buf, pHeap, false);
+        SingletonHolder<FileLoader>::get()->requestMountArchive(buf, pHeap, false);
     }
 
     void mountAsyncArchiveByObjectOrLayoutName(const char *pFile, JKRHeap *pHeap) {
@@ -157,7 +157,7 @@ namespace MR {
             snprintf(buf, sizeof(buf), "%s", pFile);
         }
 
-        return SingletonHolder<FileLoader>::sInstance->receiveFile(buf);
+        return SingletonHolder<FileLoader>::get()->receiveFile(buf);
     }
 
     void* receiveArchive(const char *pFile) {
@@ -170,15 +170,15 @@ namespace MR {
             snprintf(buf, sizeof(buf), "%s", pFile);
         }
 
-        return SingletonHolder<FileLoader>::sInstance->receiveArchive(buf);
+        return SingletonHolder<FileLoader>::get()->receiveArchive(buf);
     }
 
     void receiveAllRequestedFile() {
-        SingletonHolder<FileLoader>::sInstance->receiveAllRequestedFile();
+        SingletonHolder<FileLoader>::get()->receiveAllRequestedFile();
     }
 
     void* createAndAddArchive(void *pData, JKRHeap *pHeap, const char *pFile) {
-        return SingletonHolder<FileLoader>::sInstance->createAndAddArchive(pData, pHeap, pFile);
+        return SingletonHolder<FileLoader>::get()->createAndAddArchive(pData, pHeap, pFile);
     }
 
     void getMountedArchiveAndHeap(const char *pFile, JKRArchive **pArchive, JKRHeap **pHeap) {
@@ -191,7 +191,7 @@ namespace MR {
             snprintf(buf, sizeof(buf), "%s", pFile);
         }
 
-        SingletonHolder<FileLoader>::sInstance->getMountedArchiveAndHeap(buf, pArchive, pHeap);
+        SingletonHolder<FileLoader>::get()->getMountedArchiveAndHeap(buf, pArchive, pHeap);
     }
 
     void removeFileConsideringLanguage(const char *pFile) {
@@ -204,13 +204,13 @@ namespace MR {
             snprintf(buf, sizeof(buf), "%s", pFile);
         }
 
-        SingletonHolder<FileLoader>::sInstance->removeFile(buf);
+        SingletonHolder<FileLoader>::get()->removeFile(buf);
     }
 
     void MR::removeResourceAndFileHolderIfIsEqualHeap(JKRHeap* heap)
     {
-        SingletonHolder<ResourceHolderManager>::sInstance->removeIfIsEqualHeap(heap);
-        SingletonHolder<FileLoader>::sInstance->removeHolderIfIsEqualHeap(heap);
+        SingletonHolder<ResourceHolderManager>::get()->removeIfIsEqualHeap(heap);
+        SingletonHolder<FileLoader>::get()->removeHolderIfIsEqualHeap(heap);
     }
 
     void *MR::decompressFileFromArchive(
@@ -262,7 +262,7 @@ namespace MR {
             snprintf(buf, sizeof(buf), "%s", pFile);
         }
 
-        return SingletonHolder<FileLoader>::sInstance->isLoaded(buf);
+        return SingletonHolder<FileLoader>::get()->isLoaded(buf);
     }
 
     bool isMountedArchive(const char *pFile) {
@@ -275,7 +275,7 @@ namespace MR {
             snprintf(buf, sizeof(buf), "%s", pFile);
         }
 
-        return SingletonHolder<FileLoader>::sInstance->isMountedArchive(buf);
+        return SingletonHolder<FileLoader>::get()->isMountedArchive(buf);
     }
 
     bool isLoadedObjectOrLayoutArchive(const char *pFile) {

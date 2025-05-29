@@ -45,6 +45,7 @@ namespace MR {
     bool isPlayingStageBgm();
     bool isPlayingStageBgmID(u32);
     bool isPlayingStageBgmName(const char *);
+    bool isPreparedStageBgm();
 
     void setStageBGMState(s32, u32);
 
@@ -90,4 +91,9 @@ namespace MR {
 
     void submitLevelSE();
     void permitLevelSE();
+
+    void setSeVersion(const LiveActor *, u32);
+
+    void startSoundSeVer(const LiveActor *, const char *, s32, s32);
+    void startLevelSoundSeVer(const LiveActor *, const char *, s32, s32, s32);
 };

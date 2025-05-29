@@ -1,26 +1,29 @@
 #pragma once
 
-#include "Game/Util/JMapIdInfo.hpp"
+class JMapIdInfo;
 
 namespace MR {
-    void requestChangeStageInGameMoving(const char *, s32);
-    void requestChangeStageInGameMoving(const char *, s32, const JMapIdInfo &);
-
-    void requestStartScenarioSelect(const char *);
-    void requestGoToAstroDomeFromAstroGalaxy(s32, s32);
-    void requestStartScenarioSelect(const char *);
-
-    void requestGoToAstroGalaxy(s32);
-
-    bool isExecScenarioStarter();
-
-    void executeOnWelcomeAndRetry();
-
+    void requestChangeScene(const char*);
+    void requestChangeSceneTitle();
+    void requestChangeStageInGameAfterLoadingGameData();
     void requestChangeStageAfterStageClear();
-
-    bool hasRetryGalaxySequence();
-
     void requestChangeStageAfterMiss();
-
+    void requestChangeStageInGameMoving(const char*, s32, const JMapIdInfo&);
+    void requestChangeStageInGameMoving(const char*, s32);
     void requestChangeSceneAfterGameOver();
+    void requestChangeSceneAfterBoot();
+    void requestChangeStageGoBackAstroDome();
+    void requestStartScenarioSelect(const char*);
+    void requestStartScenarioSelectForComet(const char*, s32);
+    bool hasRetryGalaxySequence();
+    bool isExecScenarioStarter();
+    void requestPowerStarGetDemo();
+    void requestGrandStarGetDemo();
+    void requestStartGameOverDemo();
+    void requestEndGameOverDemo();
+    void requestEndMissDemo();
+    void requestShowGalaxyMap();
+    void executeOnWelcomeAndRetry();
+    void requestGoToAstroGalaxy(s32);
+    void requestGoToAstroDomeFromAstroGalaxy(s32, s32);
 };

@@ -1,13 +1,18 @@
 #pragma once
 
-#include "Game/LiveActor/Nerve.hpp"
-#include "Game/Screen/LayoutActor.hpp"
 #include "Game/System/NerveExecutor.hpp"
+
+class LayoutActor;
+class Nerve;
 
 class ButtonPaneController : public NerveExecutor {
 public:
-    ButtonPaneController(LayoutActor* pHost, const char* pPaneName, const char* pBoxButtonName, u32 u, bool b);
-    virtual ~ButtonPaneController();
+    /// @brief Creates a new `ButtonPaneController`.
+    ButtonPaneController(LayoutActor* pHost, const char* pPaneName, const char* pBoundingPaneName, u32 animIndex, bool);
+
+    /// @brief Destroys the `ButtonPaneController`.
+    virtual ~ButtonPaneController() {}
+
     void update();
     void appear();
     void disappear();
@@ -28,9 +33,9 @@ public:
     bool onPointing();
     void decide();
     bool isPointingPaneDirect() const;
-    bool startAnimAtFirstStep(const char* pStr);
-    bool startPointingAnimAtFirstStep(const char* pStr);
-    void setNerveAtAnimStopped(const Nerve* pNerve);
+    bool startAnimAtFirstStep(const char*);
+    bool startPointingAnimAtFirstStep(const char*);
+    void setNerveAtAnimStopped(const Nerve*);
     bool isPointingPane() const;
     bool tryPointing(bool);
     bool tryNotPointing(bool);
@@ -41,35 +46,25 @@ public:
     void exePointing();
     void exeNotPointing();
     void exeDecided();
+    void exeDecidedWait();
     void exeDecidedToDisappear();
+    void exeDisappear();
 
-    LayoutActor* mHost; // 8
-    const char* mPaneName; // 0xC
-    const char* mBoxButtonName; // 0x10
-    u32 _14;
-    bool _18;
-    f32 mPointingAnimStartFrame;
-    bool _20;
-    bool _21;
-    bool _22;
-    bool _23;
-    bool _24;
-    const char* mButtonAppearStr; //0x28
-    const char* mButtonWaitStr; // 0x2C
-    const char* mButtonDecideStr; // 0x30
-    const char* mButtonSelectInStr; // 0x34
-    const char* mButtonSelectOutStr; // 0x38
-    const char* mButtonEndStr; // 0x3C
-};
-
-namespace NrvButtonPaneController {
-    NERVE(ButtonPaneControllerNrvDisappear);
-    NERVE_DECL(ButtonPaneControllerNrvDecidedToDisappear, ButtonPaneController, ButtonPaneController::exeDecidedToDisappear);
-    NERVE_DECL_NULL(ButtonPaneControllerNrvDecidedWait);
-    NERVE_DECL(ButtonPaneControllerNrvDecided, ButtonPaneController, ButtonPaneController::exeDecided);
-    NERVE_DECL(ButtonPaneControllerNrvNotPointing, ButtonPaneController, ButtonPaneController::exeNotPointing);
-    NERVE_DECL(ButtonPaneControllerNrvPointing, ButtonPaneController, ButtonPaneController::exePointing);
-    NERVE_DECL(ButtonPaneControllerNrvWait, ButtonPaneController, ButtonPaneController::exeWait);
-    NERVE_DECL(ButtonPaneControllerNrvAppear, ButtonPaneController, ButtonPaneController::exeAppear);
-    NERVE_DECL(ButtonPaneControllerNrvHidden, ButtonPaneController, ButtonPaneController::exeHidden);
+    /* 0x08 */ LayoutActor* mHost;
+    /* 0x0C */ const char* mPaneName;
+    /* 0x10 */ const char* mBoundingPaneName;
+    /* 0x14 */ u32 mAnimIndex;
+    /* 0x18 */ bool _18;
+    /* 0x1C */ f32 mPointingAnimStartFrame;
+    /* 0x20 */ bool mIsSelected;
+    /* 0x21 */ bool mIsPointing;
+    /* 0x22 */ bool _22;
+    /* 0x23 */ bool _23;
+    /* 0x24 */ bool _24;
+    /* 0x28 */ const char* mAppearAnimName;
+    /* 0x2C */ const char* mWaitAnimName;
+    /* 0x30 */ const char* mDecideAnimName;
+    /* 0x34 */ const char* mPointingAnimName;
+    /* 0x38 */ const char* mNotPointingAnimName;
+    /* 0x3C */ const char* mDisappearAnimName;
 };

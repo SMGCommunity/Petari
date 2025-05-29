@@ -1,20 +1,22 @@
 #include "Game/System/GameSystemDimmingWatcher.hpp"
 #include "Game/Util/TriggerChecker.hpp"
-#include "revolution/vi.h"
+#include <revolution.h>
 
-GameSystemDimmingWatcher::GameSystemDimmingWatcher() {
-    mChecker = nullptr;
-    _4 = true;
-    _5 = false;
+GameSystemDimmingWatcher::GameSystemDimmingWatcher() :
+    mChecker(NULL),
+    _4(true),
+    _5(false)
+{
     mChecker = new TriggerChecker();
 }
 
 void GameSystemDimmingWatcher::update() {
     mChecker->update(_4 || _5);
+
     if (mChecker->getOnTrigger()) {
-        VIEnableDimming(1);
+        VIEnableDimming(true);
     }
     else if (mChecker->getOffTrigger()) {
-        VIEnableDimming(0);
+        VIEnableDimming(false);
     }
 }

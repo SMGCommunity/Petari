@@ -25,7 +25,6 @@ public:
     void exeLectureDemoShowMap();
     void exeLectureDemoShowMapAfter();
     void exeStarPieceReaction();
-    
 
     ButlerStateStarPieceReaction* _15C;
     bool _160;

@@ -26,7 +26,7 @@ public:
     void exeShipBattleEscape();
     void exeShipBattleShipDamage();
     void exeShipBattleDemoTalkStart();
-    inline void exeShipBattleDemoTalkWait();
+    void exeShipBattleDemoTalkWait();
 
     u8 _15C;
     u8 _15D;
