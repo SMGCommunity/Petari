@@ -4,6 +4,8 @@
 #include "Game/Util.hpp"
 #include <revolution.h>
 
+class CollisionParts;
+class Color8;
 class LiveActor;
 class HitSensor;
 

@@ -1,18 +1,21 @@
 #pragma once
 
-#include "Game/Util.hpp"
-#include "Game/LiveActor/LiveActor.hpp"
-#include "Game/LiveActor/ShadowController.hpp"
-#include "Game/LiveActor/ShadowSurfaceBox.hpp"
-#include "Game/LiveActor/ShadowSurfaceCircle.hpp"
-#include "Game/LiveActor/ShadowSurfaceOval.hpp"
-#include "Game/LiveActor/ShadowVolumeBox.hpp"
-#include "Game/LiveActor/ShadowVolumeCylinder.hpp"
-#include "Game/LiveActor/ShadowVolumeFlatModel.hpp"
-#include "Game/LiveActor/ShadowVolumeLine.hpp"
-#include "Game/LiveActor/ShadowVolumeOval.hpp"
-#include "Game/LiveActor/ShadowVolumeOvalPole.hpp"
-#include "Game/LiveActor/ShadowVolumeSphere.hpp"
+#include <revolution.h>
+
+class JMapInfoIter;
+class LiveActor;
+class ShadowController;
+class ShadowDrawer;
+class ShadowSurfaceBox;
+class ShadowSurfaceCircle;
+class ShadowSurfaceOval;
+class ShadowVolumeBox;
+class ShadowVolumeCylinder;
+class ShadowVolumeFlatModel;
+class ShadowVolumeLine;
+class ShadowVolumeOval;
+class ShadowVolumeOvalPole;
+class ShadowVolumeSphere;
 
 namespace ActorShadow {
     u32 getShadowControllerCount(const LiveActor *);
