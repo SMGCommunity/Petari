@@ -1,3 +1,4 @@
+#include "Game/NameObj/NameObj.hpp"
 #include "Game/SingletonHolder.hpp"
 #include "Game/System/GameSystem.hpp"
 #include "Game/System/GameSystemObjHolder.hpp"
@@ -79,7 +80,7 @@ namespace MR {
 #endif
 
     u32 getLanguage() {
-        return SingletonHolder<GameSystem>::sInstance->mObjHolder->mLanguage;
+        return SingletonHolder<GameSystem>::get()->mObjHolder->mLanguage;
     }
 
     u32 getLanguageFromIPL() {

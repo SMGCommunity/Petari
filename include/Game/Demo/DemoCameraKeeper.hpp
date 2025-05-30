@@ -1,11 +1,9 @@
 #pragma once
 
 #include <revolution.h>
-#include "Game/Util.hpp"
 
-class LiveActor;
 class ActorCameraInfo;
-class DemoExecutor;
+class LiveActor;
 
 class DemoCameraInfo {
 public:

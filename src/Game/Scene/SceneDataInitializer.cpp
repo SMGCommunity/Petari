@@ -1,3 +1,4 @@
+#include "Game/NameObj/NameObjArchiveListCollector.hpp"
 #include "Game/Scene/SceneDataInitializer.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Screen/LuigiLetter.hpp"
@@ -20,7 +21,7 @@ void SceneDataInitializer::startStageFileLoadAfterScenarioSelected() {
     NameObjArchiveListCollector collector;
     JMapInfoIter iter;
     iter.mInfo = nullptr;
-    iter._4 = -1;
+    iter.mIndex = -1;
 
     LuigiLetter::makeArchiveListForMenu(&collector, iter);
 

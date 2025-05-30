@@ -1,7 +1,10 @@
 #pragma once
 
 #include "Game/LiveActor/PartsModel.hpp"
-#include "Game/Util/JointController.hpp"
+
+template<typename T>
+class JointControlDelegator;
+class JointControllerInfo;
 
 class BossBegomanHead : public PartsModel {
 public:
@@ -11,8 +14,6 @@ public:
     virtual void init(const JMapInfoIter &);
     virtual void calcAndSetBaseMtx();
 
-    bool calcJointEdge(TPos3f *, const JointControllerInfo &);
-
     bool isSwitchOn();
     bool isEdgeOut();
     void setOpeningDemo();
@@ -20,26 +21,17 @@ public:
     void tryForceRecover();
     void tryTurn();
     void tryTurnEnd();
+    void exeDemoWait();
+    void exeOpeningDemo();
+    void exeOnWait();
     void exeOffWait();
+    void exeSwitchOn();
+    void exeSwitchOff();
     void exeTurn();
     void exeTurnEnd();
-    inline void exeSwitchOff();
-    inline void exeSwitchOn();
-    inline void exeOnWait();
-    inline void exeOpeningDemo();
-    inline void exeDemoWait();
+    bool calcJointEdge(TPos3f *, const JointControllerInfo &);
 
-    f32 _9C;
-    JointControlDelegator<BossBegomanHead>* mJointDeleg;         // 0xA0
-};
-
-namespace NrvBossBegomanHead {
-    NERVE_DECL(HostTypeNrvDemoWait, BossBegomanHead, BossBegomanHead::exeDemoWait);
-    NERVE_DECL(HostTypeNrvOpeningDemo, BossBegomanHead, BossBegomanHead::exeOpeningDemo);
-    NERVE_DECL(HostTypeNrvOnWait, BossBegomanHead, BossBegomanHead::exeOnWait);
-    NERVE_DECL(HostTypeNrvOffWait, BossBegomanHead, BossBegomanHead::exeOffWait);
-    NERVE_DECL(HostTypeNrvSwitchOn, BossBegomanHead, BossBegomanHead::exeSwitchOn);
-    NERVE_DECL(HostTypeNrvSwitchOff, BossBegomanHead, BossBegomanHead::exeSwitchOff);
-    NERVE_DECL(HostTypeNrvTurn, BossBegomanHead, BossBegomanHead::exeTurn);
-    NERVE_DECL(HostTypeNrvTurnEnd, BossBegomanHead, BossBegomanHead::exeTurnEnd);
+private:
+    /* 0x9C */ f32 _9C;
+    /* 0xA0 */ JointControlDelegator<BossBegomanHead>* mJointDelegator;
 };

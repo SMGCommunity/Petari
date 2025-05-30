@@ -67,10 +67,10 @@ void StationedArchiveLoader::createAndAddResourcesFromTable(const StationedArchi
         if (rCondition.isExecute(info)) {
             switch (info->mLoadType) {
                 case 2:
-                    SingletonHolder<ResourceHolderManager>::sInstance->createAndAddStationed(info->mArchive);
+                    SingletonHolder<ResourceHolderManager>::get()->createAndAddStationed(info->mArchive);
                     break;
                 case 5:
-                    SingletonHolder<ResourceHolderManager>::sInstance->createAndAddLayoutHolderStationed(info->mArchive);
+                    SingletonHolder<ResourceHolderManager>::get()->createAndAddLayoutHolderStationed(info->mArchive);
                     break;
             }
         }

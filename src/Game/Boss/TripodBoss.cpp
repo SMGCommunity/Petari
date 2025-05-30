@@ -28,7 +28,7 @@ namespace {
     static s32 sHeadExplodeSeTiming;
 
     static TVec3f sPowerStarOffset(0.0f, 3200.0f, 0.0f);
-    static TVec3f sAppearStarPieceOffset(0.0, 3600.0f, 0.0f);
+    static TVec3f sAppearStarPieceOffset(0.0f, 3600.0f, 0.0f);
     static TVec3f sEndMarioPosition(0.0f, 2160.0f, 1260.0f);
 };
 
@@ -164,10 +164,9 @@ void TripodBoss::initLeg(const JMapInfoIter &rIter) {
     }
 }
 
-// https://decomp.me/scratch/UDA4k
 void TripodBoss::initLegIKPlacement() {
     f32 temp618 = _618;
-    f32 v5 = MR::speedySqrtf((1.0f - (_618 * _618)));
+    f32 v5 = MR::speedySqrtf((1.0f - (temp618 * temp618)));
 
     TVec3f v29(mMovableArea->mBaseAxis);
     TVec3f v28(mMovableArea->mFront);
@@ -179,50 +178,38 @@ void TripodBoss::initLegIKPlacement() {
 
     f32 ONEPOINTFIVEPI = 2.0943952f;
     for (u32 i = 0; i < 3; i++) {
+        u32 &rI = i;
         f32 cur = -(f32)i * ONEPOINTFIVEPI;
-        f32 v8 = ((0.5f * ONEPOINTFIVEPI) + cur);
-        f32 v9 = JMath::sSinCosTable.sinLap2(v8);
+        f32 initAngle = ((0.5f * ONEPOINTFIVEPI) + cur);
+        f32 x = JMath::sSinCosTable.sinLapRad(initAngle);
+        f32 z = JMath::sSinCosTable.cosLapRad(initAngle);
+        
+        TVec3f legDirShadow;
+        legDirShadow.x = x;
+        legDirShadow.y = 0.0f;
+        legDirShadow.z = z;
 
-        if (v8 < 0.0f) {
-            v8 = -v8;
-        }
+        TVec3f j(0.0f, 1.0f, 0.0f);
+        
+        TVec3f legDir = legDirShadow.multiplyOperatorInline(_610).translate(j.multiplyOperatorInline(_614));
 
-        TVec3f v26;
-        v26.x = v9;
-        v26.y = 0.0f;
-        f32 v10 = JMath::sSinCosTable.getMult(v8);
-        f32 v11 = v10;
-        v26.z = v10;
-        TVec3f v25(0.0f, 1.0f, 0.0f);
-        f32 val = _614;
-        TVec3f v19(v25);
-        v19 *= val;
-        f32 other_val = _610;
-        TVec3f v20(v26);
-        v20 *= other_val;
-        TVec3f v24(v20);
-        v24 += v19;
-        getLeg(i)->setIKParam(_608, _60C, v24, v26, v25);
+        getLeg(rI)->setIKParam(_608, _60C, legDir, legDirShadow, j);
+        
         TVec3f* center = &mMovableArea->mCenter;
-        TVec3f v15(v28);
-        v15 *= v11;
-        TVec3f v16(v27);
-        v16 *= v9;
-        TVec3f v17(v29);
-        v17 += v16;
-        TVec3f v18(v17);
-        v18 += v15;
-        TVec3f v23(v18);
-        v23 += *center;
+
+        TVec3f v23 = v29.translate(v27.multiplyOperatorInline(x)).translate(v28.multiplyOperatorInline(z)).translate(*center);
+
         TVec3f v22;
         mMovableArea->calcLandingNormal(&v22, v23);
+        
         TVec3f v21;
         mMovableArea->calcLandingFront(&v21, v23);
-        getStepPoint(i)->setStepPosition(v23);
-        getStepPoint(i)->setStepNormal(v22);
-        getStepPoint(i)->setStepFront(v21);
-        getLeg(i)->setStepTarget(getStepPoint(i));
-        getLeg(i)->setWait();
+
+        getStepPoint(rI)->setStepPosition(v23);
+        getStepPoint(rI)->setStepNormal(v22);
+        getStepPoint(rI)->setStepFront(v21);
+        getLeg(rI)->setStepTarget(getStepPoint(rI));
+        getLeg(rI)->setWait();
     }
 }
 

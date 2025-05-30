@@ -1,10 +1,10 @@
 #pragma once
 
-#include "revolution.h"
 #include "Game/NameObj/NameObj.hpp"
 #include "Game/Util/Array.hpp"
-#include <JSystem/JGeometry/TVec.hpp>
-#include <JSystem/JGeometry/TMatrix.hpp>
+#include "JSystem/JGeometry/TMatrix.hpp"
+#include "JSystem/JGeometry/TVec.hpp"
+#include <revolution.h>
 
 class AreaForm;
 class StageSwitchCtrl;
@@ -12,6 +12,7 @@ class StageSwitchCtrl;
 class AreaObj : public NameObj {
 public:
     AreaObj(int, const char *);
+
     virtual ~AreaObj() {
 
     }
@@ -40,9 +41,9 @@ public:
 
     AreaForm* mForm;              // 0xC
     int mType;                    // 0x10
-    bool mValid;                  // 0x14
+    bool mIsValid;                // 0x14
     bool _15;
-    bool mAwake;                  // 0x16
+    bool mIsAwake;                // 0x16
     s32 mObjArg0;                 // 0x18
     s32 mObjArg1;                 // 0x1C
     s32 mObjArg2;                 // 0x20

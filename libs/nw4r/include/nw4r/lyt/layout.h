@@ -82,7 +82,16 @@ namespace nw4r {
             static T* NewObj(Param1 param1, Param2 param2);
 
             template<typename T>
+            static T* NewArray(u32 num);
+
+            template<typename T>
             static void DeleteObj(T *);
+
+            template<typename T>
+            static void DeleteArray(T objAry[], u32 num);
+
+            template<typename T>
+            static void DeletePrimArray(T objAry[]);
 
             AnimTransformList mAnimTransList;
             Pane* mpRootPane;
@@ -121,6 +130,36 @@ namespace nw4r {
                 return new (pMem) T(param1, param2);
             }
             return 0;
+        }
+
+        template<typename T>
+        T* Layout::NewArray(u32 num) {
+            void* pMem = AllocMemory(sizeof(T) * num);
+            T *const objAry = static_cast<T*>(pMem);
+
+            for (u32 i = 0; i < num; ++i) {
+                new (&objAry[i]) T();
+            }
+
+            return objAry;
+        }
+
+        template<typename T>
+        inline void Layout::DeleteArray(T objAry[], u32 num) {
+            if (objAry) {
+                for (u32 i = 0; i < num; ++i) {
+                    objAry[i].~T();
+                }
+                FreeMemory(objAry);
+            }
+        }
+
+        template<typename T>
+        inline void Layout::DeletePrimArray(T objAry[])
+        {
+            if (objAry) {
+                FreeMemory(objAry);
+            }
         }
     };
 };

@@ -11,5 +11,9 @@ public:
 
     virtual ~TicoDemoGetPower();
 
+    void startDemo();
+    inline void exeWait();
+    void exeDemo();
+
     Tico* mTico;            // 0x08
 };

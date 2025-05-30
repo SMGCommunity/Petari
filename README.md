@@ -74,7 +74,6 @@ Building
 ![](assets/dolphin-extract.png)
   - To save space, the only necessary files are the following. Any others can be deleted.
     - `sys/main.dol`
-    - `files/rels/*.rel`
 - Configure:
 
   ```sh

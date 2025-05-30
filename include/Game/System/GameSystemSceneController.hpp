@@ -1,16 +1,19 @@
 #pragma once
 
-#include "Game/Map/KCollision.hpp"
-#include "Game/NameObj/NameObjHolder.hpp"
-#include "Game/Util.hpp"
+#include <revolution.h>
 
-class NameObjListExecutor;
-class SceneObjHolder;
-class PlayTimerScene;
-class ScenarioSelectScene;
-class ScenarioDataParser;
-class Scene;
+class GameScene;
 class IntermissionScene;
+class JMapIdInfo;
+class NameObjHolder;
+class NameObjListExecutor;
+class Nerve;
+class PlayTimerScene;
+class ScenarioDataParser;
+class ScenarioSelectScene;
+class Scene;
+class SceneObjHolder;
+class Spine;
 
 class SceneControlInfo {
 public:
@@ -20,8 +23,8 @@ public:
     void setStage(const char *);
     void setStartIdInfo(const JMapIdInfo &);
 
-    char mScene[0x20];                      // 0x0
-    char mStage[0x20];                      // 0x20
+    char mScene[32];                        // 0x0
+    char mStage[32];                        // 0x20
     u32 mCurrentScenarioNo;                 // 0x40
     u32 mCurrentSelectedScenarioNo;         // 0x44
     JMapIdInfo* _48;
@@ -92,7 +95,7 @@ public:
     bool _A0;
     ScenarioDataParser* mScenarioParser;        // 0xA4
     NameObjHolder* mObjHolder;                  // 0xA8
-    Scene* _AC;
+    GameScene* mGameScene;                      // 0xAC
     SceneInitializeState mInitState;            // 0xB0
     IntermissionScene* mIntermissionScene;      // 0xB4
     PlayTimerScene* mPlayTimerScene;            // 0xB8

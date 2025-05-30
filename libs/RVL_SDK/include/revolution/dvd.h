@@ -232,6 +232,7 @@ bool DVDLowSetMaximumRotation(u32, DVDLowCallback);
 bool DVDLowGetNoDiscBufferSizes(const u32, u32 *, u32 *, DVDLowCallback);
 bool DVDLowGetNoDiscOpenPartitionParams(const u32, ESTicket *, u32 *, ESTitleMeta *, u32 *, u8 *, u32 *, u8 *, DVDLowCallback);
 
+s32 DVDReadPrio(DVDFileInfo *, void *, s32, s32, s32);
 BOOL DVDReadAsyncPrio(DVDFileInfo *, void *, s32, s32, DVDCallback, s32);
 
 /* dvdFatal */

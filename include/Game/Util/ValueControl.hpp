@@ -55,14 +55,6 @@ public:
     /// @brief Resets the current frame based on the direction of progression.
     void resetFrame();
 
-private:
-    /// @brief Determines if the given direction of progression suggests approaching `0.0`.
-    /// @param direction The sign of the direction of progression to test.
-    /// @return `true` if the direction suggests approaching `0.0`, `false` otherwise.
-    static bool isDirToZero(s32 direction) {
-        return (u32)(-direction & ~direction) >> 31 == 0;
-    }
-
     /// @brief The current frame.
     /* 0x0 */ s32 mFrame;
 
@@ -71,4 +63,12 @@ private:
 
     /// @brief The sign of the direction of progression.
     /* 0x8 */ s32 mDirection;
+
+private:
+    /// @brief Determines if the given direction of progression suggests approaching `0.0`.
+    /// @param direction The sign of the direction of progression to test.
+    /// @return `true` if the direction suggests approaching `0.0`, `false` otherwise.
+    static bool isDirToZero(s32 direction) {
+        return (u32)(-direction & ~direction) >> 31 == 0;
+    }
 };

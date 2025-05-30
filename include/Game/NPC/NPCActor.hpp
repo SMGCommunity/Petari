@@ -85,9 +85,7 @@ class NPCActor : public LiveActor {
 public:
     NPCActor(const char *);
 
-    virtual ~NPCActor() {
-
-    }
+    virtual ~NPCActor();
 
     virtual void init(const JMapInfoIter &);
     virtual void initAfterPlacement();
@@ -140,6 +138,12 @@ public:
         _138 = "Pointing";
         _13C = "Reaction";
     }
+    
+    inline void setDefaults2() {
+        _130 = "Spin";
+        _134 = "Trampled";
+        _138 = "Pointing";
+    }    
 
     LodCtrl* mLodCtrl;                                  // 0x8C
     TalkMessageCtrl* mMsgCtrl;                          // 0x90
@@ -166,16 +170,7 @@ public:
     u8 _E5;
     u8 _E6;
     u8 _E7;
-    u8 _E8;
-    u8 _E9;
-    f32 _EC;
-    f32 _F0;
-    f32 _F4;
-    f32 _F8;
-    const char* _FC;
-    const char* _100;
-    const char* _104;
-    const char* _108;
+    MR::ActorTalkParam mParam;                          // 0xE8
     f32 _10C;
     f32 _110;
     u32 _114;

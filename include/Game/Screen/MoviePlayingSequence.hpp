@@ -1,10 +1,10 @@
 #pragma once
 
 #include "Game/Screen/LayoutActor.hpp"
-#include "Game/Screen/MovieSubtitles.hpp"
 #include "Game/Util/Array.hpp"
 
 class DemoPadRumbler;
+class MovieSubtitles;
 
 struct MoviePlayingInfo {
     const char* mMovieName;             // 0x00
@@ -41,7 +41,7 @@ public:
 
     static const char* getMovieName(MovieType);
 
-    inline void exeWait();
+    void exeWait();
     void exePlayWait();
     void exePlayStart();
     void exePlay();
@@ -51,7 +51,7 @@ public:
     void exeCloseWipeOnPlaying();
     void exeEndWait();
 
-    const MoviePlayingInfo* mInfo;                                            // 0x20
+    const MoviePlayingInfo* mInfo;                                      // 0x20
     MR::Vector<MR::AssignableArray<MovieSubtitles*> > mSubtitles;       // 0x24
     DemoPadRumbler* mPadRumbler;                                        // 0x30
 };

@@ -156,6 +156,9 @@ namespace MR {
 
     bool isNoCalcAnim(const LiveActor*);
 
+    void initFur(LiveActor *);
+    void initFurPlanet(LiveActor *);
+    void initFurPlayer(LiveActor *);
     void initCollisionParts(LiveActor*, const char*, HitSensor*, MtxPtr);
 
     void initCollisionPartsAutoEqualScale(LiveActor*, const char*, HitSensor*, MtxPtr);
@@ -190,6 +193,7 @@ namespace MR {
 
     bool isBrkOneTimeAndStopped(const LiveActor*);
 
+    bool tryStartBckAndBtp(const LiveActor *, const char *, const char *);
     void setAllAnimFrame(const LiveActor*, const char*, f32);
     void setAllAnimFrameAtEnd(const LiveActor*, const char*);
 
@@ -235,6 +239,8 @@ namespace MR {
 
     bool isBckPlaying(const LiveActor*, const char*);
 
+    bool isBckLooped(const LiveActor *);
+
     bool isBckStopped(const LiveActor*);
     bool isBrkStopped(const LiveActor*);
     bool isBtkStopped(const LiveActor*);
@@ -269,6 +275,7 @@ namespace MR {
     ModelObj* createModelObjIndirectMapObj(const char*, const char*, MtxPtr);
     ModelObj* createModelObjNoSilhouettedMapObj(const char*, const char*, MtxPtr);
     ModelObj* createModelObjNpc(const char*, const char*, MtxPtr);
+    ModelObj* createModelObjEnemy(const char *, const char *, MtxPtr);
 
     ModelObj* createModelObjBloomModel(const char *, const char *, MtxPtr);
 
@@ -287,6 +294,8 @@ namespace MR {
 
     void startAction(const LiveActor*, const char*);
 
+    bool tryStartAction(const LiveActor *, const char *);
+
     LodCtrl* createLodCtrlPlanet(LiveActor*, const JMapInfoIter&, f32, s32);
     LodCtrl* createLodCtrlNPC(LiveActor*, const JMapInfoIter&);
     LodCtrl* createLodCtrlMapObj(LiveActor*, const JMapInfoIter&, f32);
@@ -295,6 +304,7 @@ namespace MR {
 
     void hideModelAndOnCalcAnimIfShown(LiveActor*);
 
+    u32 createIndirectPlanetModel(LiveActor*, MtxPtr);
     bool tryCreateMirrorActor(LiveActor*, const char*);
 
     CollisionParts* createCollisionPartsFromLiveActor(LiveActor*, const char*, HitSensor*, CollisionScaleType);
@@ -373,6 +383,8 @@ namespace MR {
     f32 getBckFrame(const LiveActor *);
 
     f32 calcNerveValue(const LiveActor *, s32, s32, f32, f32);
+
+    LiveActor* getPairedGroupMember(const LiveActor *);
 
     TVec3f* getBindedFixReactionVector(const LiveActor *);
 };  // namespace MR

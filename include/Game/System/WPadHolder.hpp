@@ -32,3 +32,7 @@ public:
     WPadReadDataInfo* mDataInfoArray;           // 0x8
     u32 mHolderMode;                            // 0xC
 };
+
+namespace MR {
+    WPad* getWPad(s32 channel);
+};

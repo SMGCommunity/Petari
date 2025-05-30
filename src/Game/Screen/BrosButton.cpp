@@ -63,7 +63,7 @@ void BrosButton::exeAppear() {
 void BrosButton::exeSelect() {
     mPaneCtrl->trySelect();
 
-    if (!mPaneCtrl->_20) {
+    if (!mPaneCtrl->mIsSelected) {
         return;
     }
 

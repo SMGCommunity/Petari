@@ -1,7 +1,5 @@
 #pragma once
 
-#include "Game/SingletonHolder.hpp"
-#include "Game/System/HeapMemoryWatcher.hpp"
 #include <revolution/mem.h>
 
 class JKRExpHeap;
@@ -76,8 +74,4 @@ namespace MR {
         static MEMAllocatorFunc sAllocatorFunc;
         static JKRHeap* sHeap;
     };
-
-    inline JKRSolidHeap* getAudHeap() {
-        return SingletonHolder<HeapMemoryWatcher>::get()->mAudSystemHeap;
-    }
 };

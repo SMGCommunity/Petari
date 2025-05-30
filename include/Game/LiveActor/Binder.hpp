@@ -25,7 +25,7 @@ public:
     void clear();
     void setTriangleFilter(TriangleFilterBase *);
     const Triangle *getPlane(int) const;
-    bool copyPlaneArrayAndSortingSensor(HitInfo**, u32);
+    u32 copyPlaneArrayAndSortingSensor(HitInfo **, u32);
 
     const TVec3f *_10;
     const TVec3f *_14;

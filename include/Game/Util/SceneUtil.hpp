@@ -61,6 +61,10 @@ namespace MR {
     bool isEqualStageName(const char *);
 
     bool isStageBeginPrologueEvent();
+    bool isStageBeginFadeWipe();
+    bool isStageBeginTitleWipe();
+    bool isStageBeginWithoutWipe();
+    bool isStageDisablePauseMenu();
 
     bool isStageKoopaVs();
     bool isStageKoopaVs3();
@@ -78,8 +82,6 @@ namespace MR {
     bool isPlacementLocalStage();
 
     bool isInitializeStateEnd();
-
-    bool isStageDisablePauseMenu();
 
     bool isStageSwimAngleLimit();
 

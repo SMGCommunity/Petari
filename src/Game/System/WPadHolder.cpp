@@ -3,12 +3,13 @@
 #include "Game/System/WPadHolder.hpp"
 #include "Game/System/WPad.hpp"
 #include "Game/System/WPadPointer.hpp"
-#include <revolution/wpad.h>
 #include "Game/Util/MemoryUtil.hpp"
+#include "Game/SingletonHolder.hpp"
+#include <revolution/wpad.h>
 
 namespace {
     WPadHolder* getWPadHolder() NO_INLINE {
-        return SingletonHolder<GameSystem>::sInstance->mObjHolder->mWPadHolder;
+        return SingletonHolder<GameSystem>::get()->mObjHolder->mWPadHolder;
     }
 };
 

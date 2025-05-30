@@ -1,7 +1,5 @@
 #pragma once
 
-#include "Game/NameObj/NameObjHolder.hpp"
-
 class NameObj;
 
 /// @brief Class that supplies a static function to find a NameObj contained in the global NameObjHolder.

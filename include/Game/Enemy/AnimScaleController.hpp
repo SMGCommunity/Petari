@@ -35,6 +35,9 @@ public:
     void setParamTight();
     void startHitReaction();
     void startDpdHitVibration();
+    bool isHitReaction(s32) const; 
+
+    void stopAndReset();
 
     AnimScaleParam* _8;
     TVec3f _C;

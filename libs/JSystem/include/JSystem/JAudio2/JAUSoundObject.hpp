@@ -1,14 +1,13 @@
 #pragma once
 
+#include "JSystem/JAudio2/JAISoundHandles.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
 #include "Game/GameAudio/AudTalkSoundData.hpp"
 
 class JAISoundHandle;
 
-class JAUSoundObject {
+class JAUSoundObject : public JAISoundHandles {
 public:
-    JAISoundHandle *mHandles;   // 0x0
-    u32 _4;
 
     JAUSoundObject();
     ~JAUSoundObject();
@@ -16,9 +15,9 @@ public:
     virtual void process();
     virtual void dispose();
     virtual void stopOK(JAISoundHandle &);
-    virtual void startSound(JAISoundID);
+    virtual JAISoundHandle *startSound(JAISoundID);
     virtual void startSoundIndex(JAISoundID, unsigned char);
-    virtual void startLevelSound(JAISoundID);
+    virtual JAISoundHandle *startLevelSound(JAISoundID);
     virtual void startLevelSoundIndex(JAISoundID, unsigned char);
 
     void stopSound(JAISoundID, unsigned long);

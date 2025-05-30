@@ -212,4 +212,49 @@
     ((((unsigned long)(ssmask)) << SU_SSMASK_SSMASK_SHIFT) | \
         (((unsigned long)(rid)) << SU_SSMASK_RID_SHIFT))
 
+#define SU_SCIS0_SY0_SIZE	11
+#define SU_SCIS0_SY0_SHIFT	0
+#define SU_SCIS0_SY0_MASK	0x000007ff
+#define SU_SCIS0_GET_SY0(su_scis0) \
+	((((unsigned long)(su_scis0)) & SU_SCIS0_SY0_MASK) >> SU_SCIS0_SY0_SHIFT)
+#define SU_SCIS0_SET_SY0(su_scis0, sy0) { \
+	su_scis0 = (((unsigned long)(su_scis0)) & ~SU_SCIS0_SY0_MASK) | (((unsigned long)(sy0)) << SU_SCIS0_SY0_SHIFT);\
+}
+
+#define SU_SCIS0_SX0_SIZE	11
+#define SU_SCIS0_SX0_SHIFT	12
+#define SU_SCIS0_SX0_MASK	0x007ff000
+#define SU_SCIS0_GET_SX0(su_scis0) \
+	((((unsigned long)(su_scis0)) & SU_SCIS0_SX0_MASK) >> SU_SCIS0_SX0_SHIFT)
+#define SU_SCIS0_SET_SX0(su_scis0, sx0) { \
+	su_scis0 = (((unsigned long)(su_scis0)) & ~SU_SCIS0_SX0_MASK) | (((unsigned long)(sx0)) << SU_SCIS0_SX0_SHIFT);\
+}
+
+#define SU_SCIS0_PAD1_SIZE	1
+#define SU_SCIS0_PAD1_SHIFT	23
+#define SU_SCIS0_PAD1_MASK	0x00800000
+#define SU_SCIS0_GET_PAD1(su_scis0) \
+	((((unsigned long)(su_scis0)) & SU_SCIS0_PAD1_MASK) >> SU_SCIS0_PAD1_SHIFT)
+#define SU_SCIS0_SET_PAD1(su_scis0, pad1) { \
+	su_scis0 = (((unsigned long)(su_scis0)) & ~SU_SCIS0_PAD1_MASK) | (((unsigned long)(pad1)) << SU_SCIS0_PAD1_SHIFT);\
+}
+
+#define SU_SCIS1_SY1_SIZE	11
+#define SU_SCIS1_SY1_SHIFT	0
+#define SU_SCIS1_SY1_MASK	0x000007ff
+#define SU_SCIS1_GET_SY1(su_scis1) \
+	((((unsigned long)(su_scis1)) & SU_SCIS1_SY1_MASK) >> SU_SCIS1_SY1_SHIFT)
+#define SU_SCIS1_SET_SY1(su_scis1, sy1) { \
+	su_scis1 = (((unsigned long)(su_scis1)) & ~SU_SCIS1_SY1_MASK) | (((unsigned long)(sy1)) << SU_SCIS1_SY1_SHIFT);\
+}
+
+#define SU_SCIS1_SX1_SIZE	11
+#define SU_SCIS1_SX1_SHIFT	12
+#define SU_SCIS1_SX1_MASK	0x007ff000
+#define SU_SCIS1_GET_SX1(su_scis1) \
+	((((unsigned long)(su_scis1)) & SU_SCIS1_SX1_MASK) >> SU_SCIS1_SX1_SHIFT)
+#define SU_SCIS1_SET_SX1(su_scis1, sx1) { \
+	su_scis1 = (((unsigned long)(su_scis1)) & ~SU_SCIS1_SX1_MASK) | (((unsigned long)(sx1)) << SU_SCIS1_SX1_SHIFT);\
+}
+
 #endif // SU_REG_H

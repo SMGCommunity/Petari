@@ -143,7 +143,7 @@ extern volatile void	*__memReg;
 
 #ifdef __MWERKS__
 #define GX_DEFINE_GX_READ_COUNTER(unit) \
-    u32 __GXRead##unit##CounterU32( u32 regAddrL, u32 regAddrH ) \
+    inline u32 __GXRead##unit##CounterU32( u32 regAddrL, u32 regAddrH ) \
     { \
         u32  ctrH0, ctrH1, ctrL; \
         ctrH0 = GX_##unit##_REG_READ_U16(regAddrH); \

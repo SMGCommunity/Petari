@@ -1,15 +1,16 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/LiveActor/FlashingCtrl.hpp"
-#include "Game/LiveActor/PartsModel.hpp"
-#include "Game/MapObj/MapPartsRailMover.hpp"
-#include "Game/NameObj/NameObjArchiveListCollector.hpp"
+
+class FlashingCtrl;
+class MapPartsRailMover;
+class NameObjArchiveListCollector;
+class PartsModel;
 
 class ChipBase : public LiveActor {
 public:
     ChipBase(const char *, s32, const char *);
-    
+
     virtual ~ChipBase() {
 
     }
@@ -35,7 +36,11 @@ public:
     bool requestHide();
     bool requestStartControl();
     bool requestEndControl();
+    void exeDeactive();
+    void exeWait();
+    void exeControled();
     void exeFlashing();
+    void exeHide();
     void exeGot();
     bool isGettable() const;
     static bool isNeedBubble(const JMapInfoIter &);
@@ -51,13 +56,4 @@ public:
     s32 mChipType;                  // 0xB0
     bool _B4;
     bool _B5;
-};
-
-namespace NrvChipBase {
-    NERVE(ChipBaseNrvDeactive);
-    NERVE(ChipBaseNrvWait);
-    NERVE(ChipBaseNrvControled);
-    NERVE(ChipBaseNrvFlashing);
-    NERVE(ChipBaseNrvHide);
-    NERVE(ChipBaseNrvGot);
 };

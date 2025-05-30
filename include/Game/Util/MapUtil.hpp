@@ -39,6 +39,8 @@ namespace MR {
     void makeQuatRotateDegree(TQuat4f *, const TVec3f &);
 
     bool isFloorPolygonCos(const TVec3f &, const TVec3f &, f32);
+
+    bool isFallNextMove(const LiveActor *, f32, f32, f32, const TriangleFilterBase *);
 };
 
 class Collision {

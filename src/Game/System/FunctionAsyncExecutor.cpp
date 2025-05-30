@@ -1,7 +1,8 @@
 #include "Game/System/FunctionAsyncExecutor.hpp"
+#include "Game/Util/MemoryUtil.hpp"
+#include "Game/Util/StringUtil.hpp"
+#include <JSystem/JKernel/JKRExpHeap.hpp>
 #include <JSystem/JKernel/JKRUnitHeap.hpp>
-#include "Game/Util.hpp"
-#include <revolution.h>
 
 FunctionAsyncExecInfo::FunctionAsyncExecInfo(MR::FunctorBase *pFuncPtr, int a2, const char *a3) {
     mFunc = pFuncPtr;
@@ -83,7 +84,9 @@ FunctionAsyncExecutor::FunctionAsyncExecutor() {
     _410 = nullptr;
     _414 = nullptr;
 
-    for (int i = 0; i < 2; i++) {
+    s32 size = sizeof(mThreads) / sizeof(*mThreads);
+
+    for (int i = 0; i < size; i++) {
         FunctionAsyncExecutorThread* thread = new FunctionAsyncExecutorThread(MR::getStationedHeapNapa());
         mThreads[i] = thread;
         OSResumeThread(thread->mThread);
@@ -124,7 +127,7 @@ void FunctionAsyncExecutor::waitForEnd(const char *pName) {
     FunctionAsyncExecInfo** cur = (FunctionAsyncExecInfo**)first();
     FunctionAsyncExecInfo* const* lst = last();
 
-    while (cur != lst && (*cur)->isSame(pName)) {
+    while (cur != lst && !(*cur)->isSame(pName)) {
         cur++;
     }
 
@@ -157,7 +160,7 @@ bool FunctionAsyncExecutor::isEnd(const char *pName) const {
     FunctionAsyncExecInfo* const* cur = first();
     FunctionAsyncExecInfo* const* lst = last();
 
-    while((cur != lst) && (*cur)->isSame(pName)) {
+    while((cur != lst) && !(*cur)->isSame(pName)) {
         cur++;
     } 
  
@@ -167,7 +170,9 @@ bool FunctionAsyncExecutor::isEnd(const char *pName) const {
 }
 
 OSThread* FunctionAsyncExecutor::getOSThread(const char *pName) {
-    for (int i = 0; i < 2; i++) {
+    s32 size = sizeof(mThreads) / sizeof(*mThreads);
+
+    for (int i = 0; i < size; i++) {
         FunctionAsyncExecutorThread* thread = mThreads[i];
 
         if (thread->mIsSuspended && MR::isEqualString(thread->_40, pName)) {
@@ -191,8 +196,10 @@ FunctionAsyncExecInfo* FunctionAsyncExecutor::createAndAddExecInfo(const MR::Fun
 }
 
 FunctionAsyncExecutorThread* FunctionAsyncExecutor::getSuspendThread() {
-    for (int i = 0; i < 2; i++) {
-        if (mThreads[i]->mIsSuspended) {
+    s32 size = sizeof(mThreads) / sizeof(*mThreads);
+
+    for (int i = 0; i < size; i++) {
+        if (!mThreads[i]->mIsSuspended) {
             return mThreads[i];
         }
     }

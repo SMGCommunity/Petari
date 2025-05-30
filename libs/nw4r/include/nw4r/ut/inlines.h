@@ -16,5 +16,10 @@ namespace nw4r {
             const T mask = static_cast<T>((1UL << len) - 1);
             return static_cast<T>((bits >> pos) & mask);
         }
+
+        template<typename T>
+        inline T Max(T a, T b) {
+            return (a < b) ? b : a;
+        }
     };
 };

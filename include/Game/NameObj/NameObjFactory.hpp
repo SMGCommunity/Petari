@@ -1,34 +1,15 @@
 #pragma once
 
-#include "Game/AreaObj/AstroChangeStageCube.hpp"
-#include "Game/AreaObj/BigBubbleCameraArea.hpp"
-#include "Game/AreaObj/BigBubbleGoalArea.hpp"
-#include "Game/Boss/BossKameck.hpp"
-#include "Game/Boss/TripodBossBaseJointPosition.hpp"
-#include "Game/Boss/TripodBossCoin.hpp"
-#include "Game/Boss/TripodBossGuardWall.hpp"
-#include "Game/Boss/TripodBossKillerGeneraterCircle.hpp"
-#include "Game/Boss/TripodBossKillerGenerator.hpp"
-#include "Game/Boss/TripodBossKinokoOneUp.hpp"
-#include "Game/Boss/TripodBossRotateParts.hpp"
-#include "Game/Boss/TripodBossShell.hpp"
-#include "Game/Boss/TripodBossStepPoint.hpp"
-#include "Game/Boss/TripodBossStepStartArea.hpp"
-#include "Game/Map/KoopaBattleMapPlate.hpp"
-#include "Game/Map/KoopaBattleMapStair.hpp"
-#include "Game/Map/LavaShellTower.hpp"
-#include "Game/MapObj/AnmModelObj.hpp"
-#include "Game/MapObj/HipDropMoveObj.hpp"
-#include "Game/NPC/TicoAstro.hpp"
+#include "Game/MapObj/PalmIsland.hpp"
 #include "revolution.h"
 #include "Game/AreaObj.hpp"
 #include "Game/Boss.hpp"
-#include "Game/Gravity/GlobalGravityObj.hpp"
 #include "Game/Enemy.hpp"
+#include "Game/Gravity.hpp"
 #include "Game/Map.hpp"
 #include "Game/MapObj.hpp"
-#include "Game/Map/PlanetMapCreator.hpp"
 #include "Game/NPC.hpp"
+#include "Game/Ride.hpp"
 
 class AreaObj;
 class NameObj;
@@ -223,7 +204,7 @@ namespace {
 		{ "KinopioAstro", NULL, "Kinopio" },
 		{ "HoneyBee", NULL, "HoneyBee" },
 		{ "HoneyQueen", NULL, "HoneyQueen" },
-		{ "Peach", NULL, "Peach" },
+		{ "Peach", createNameObj<Peach>, "Peach" },
 		{ "Penguin", NULL, "Penguin" },
 		{ "PenguinCoach", NULL, "PenguinCoach" },
 		{ "PenguinMaster", NULL, "PenguinMaster" },
@@ -231,20 +212,20 @@ namespace {
 		{ "PenguinRacerLeader", NULL, "Penguin" },
 		{ "PenguinSkater", NULL, "Penguin" },
 		{ "PenguinStudent", NULL, "Penguin" },
-		{ "SignBoard", NULL, "SignBoard" },
+		{ "SignBoard", createNameObj<SignBoard>, "SignBoard" },
 		{ "Syati", NULL, "Syati" },
 		{ "Tico", createNameObj<Tico>, 0 },
 		{ "TicoComet", createNameObj<TicoComet>, "TicoComet" },
 		{ "TicoShop", createNameObj<TicoShop>, "TicoShop" },
 		{ "TicoStarRing", createNameObj<TicoStarRing>, "Tico" },
 		{ "TicoAstro", createNameObj<TicoAstro>, 0 },
-		{ "TicoBaby", NULL, 0 },
+		{ "TicoBaby", createNameObj<Tico>, 0 },
 		{ "DemoRabbit", NULL, 0 },
 		{ "TicoFat", createNameObj<TicoFat>, "TicoFat" },
 		{ "TicoGalaxy", createNameObj<TicoGalaxy>, "TicoFat" },
-		{ "TicoRail", NULL, "Tico" },
-		{ "TicoReading", NULL, "Tico" },
-		{ "TicoDomeLecture", NULL, "Tico" },
+		{ "TicoRail", createNameObj<TicoRail>, "Tico" },
+		{ "TicoReading", createNameObj<TicoReading>, "Tico" },
+		{ "TicoDomeLecture", createNameObj<TicoDomeLecture>, "Tico" },
 		{ "Rosetta", NULL, 0 },
 		{ "RosettaReading", NULL, "RosettaReading" },
 		{ "RosettaPictureBook", NULL, "RosettaPictureBook" },
@@ -253,9 +234,9 @@ namespace {
 		{ "TeresaRacer", NULL, "TeresaRacer" },
 		{ "NPCSupportRail", NULL, 0 },
 		{ "GhostPlayer", NULL, 0 },
-		{ "Butler", NULL, "Butler" },
-		{ "ButlerMap", NULL, "Butler" },
-		{ "ButlerExplain", NULL, "Butler" },
+		{ "Butler", createNameObj<Butler>, "Butler" },
+		{ "ButlerMap", createNameObj<ButlerMap>, "Butler" },
+		{ "ButlerExplain", createNameObj<ButlerExplain>, "Butler" },
 		{ "DemoKoopaJrShip", NULL, "KoopaJrShip" },
 		{ "Creeper", NULL, "Creeper" },
 		{ "JetTurtle", NULL, "Koura" },
@@ -266,15 +247,15 @@ namespace {
 		{ "GoldenTurtle", NULL, "KouraShine" },
 		{ "JumpBranch", NULL, "JumpBranch" },
 		{ "Plant", NULL, "Plant" },
-		{ "Pole", NULL, "Pole" },
-		{ "PoleNoModel", NULL, "Pole" },
-		{ "PoleSquare", NULL, "PoleSquare" },
-		{ "PoleSquareNoModel", NULL, "PoleSquare" },
+		{ "Pole", createNameObj<Pole>, "Pole" },
+		{ "PoleNoModel", createNameObj<Pole>, "Pole" },
+		{ "PoleSquare", createNameObj<Pole>, "PoleSquare" },
+		{ "PoleSquareNoModel", createNameObj<Pole>, "PoleSquare" },
 		{ "SurfRay", NULL, "SurfRay" },
 		{ "SwingRope", NULL, "SwingRope" },
 		{ "SpaceCocoon", NULL, "SpaceCocoon" },
 		{ "Trapeze", NULL, "Trapeze" },
-		{ "TreeCube", NULL, "TreeCube" },
+		{ "TreeCube", createNameObj<Pole>, "TreeCube" },
 		{ "WaterRoad", NULL, "WaterWave" },
 		{ "WarpPod", NULL, "WarpPod" },
 		{ "CoinBox", createNameObj<CoinBox>, 0 },
@@ -294,7 +275,7 @@ namespace {
 		{ "SuperSpinDriver", MR::createSuperSpinDriverYellow, "SuperSpinDriver" },
 		{ "SuperSpinDriverGreen", MR::createSuperSpinDriverGreen, "SuperSpinDriver" },
 		{ "SuperSpinDriverPink", MR::createSuperSpinDriverPink, "SuperSpinDriver" },
-		{ "Kuribo", NULL, "Kuribo" },
+		{ "Kuribo", createNameObj<Kuribo>, "Kuribo" },
 		{ "KuriboChief", NULL, "KuriboChief" },
 		{ "KuriboMini", NULL, "KuriboMini" },
 		{ "Kabokuri", NULL, "Kabokuri" },
@@ -319,7 +300,7 @@ namespace {
 		{ "BallBeamer", NULL, "BallBeamer" },
 		{ "JumpBeamer", NULL, "JumpBeamerBody" },
 		{ "JumpGuarder", NULL, "JumpGuarder" },
-		{ "RingBeamer", NULL, "RingBeamer" },
+		{ "RingBeamer", createNameObj<RingBeamer>, "RingBeamer" },
 		{ "Pukupuku", NULL, "Pukupuku" },
 		{ "BombTeresa", NULL, "BombTeresa" },
 		{ "Teresa", NULL, "Teresa" },
@@ -596,7 +577,7 @@ namespace {
 		{ "BeeFlowerHover", createNameObj<BeeFlowerHover>, "BeeFlowerHover" },
 		{ "WaterfallCaveCover", NULL, "WaterfallCaveCover" },
 		{ "WaterfallCaveNoBreakCover", createNameObj<SimpleMapObj>, "WaterfallCaveNoBreakCover" },
-		{ "PalmIsland", NULL, "PalmIsland" },
+		{ "PalmIsland", createNameObj<PalmIsland>, "PalmIsland" },
 		{ "IceMerameraKing", NULL, "IceMerameraKing" },
 		{ "OceanPierFloaterA", NULL, "OceanPierFloaterA" },
 		{ "HeavenlyBeachTopRock", NULL, "HeavenlyBeachTopRock" },

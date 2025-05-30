@@ -5,7 +5,7 @@
 class CountUpPaneRumbler;
 class CounterLayoutAppearer;
 
-class PlayerMissLeft : LayoutActor {
+class PlayerMissLeft : public LayoutActor {
 public:
     PlayerMissLeft(const char* pName);
 

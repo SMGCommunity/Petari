@@ -1,22 +1,21 @@
 #include "Game/Effect/EffectSystemUtil.hpp"
-#include "Game/NameObj/NameObjExecuteHolder.hpp"
-#include "Game/NameObj/NameObjAdaptor.hpp"
-#include "Game/NameObj/NameObjFinder.hpp"
-#include "Game/NameObj/MovementOnOffGroupHolder.hpp"
-#include "Game/NameObj/NameObjListExecutor.hpp"
 #include "Game/Map/NamePosHolder.hpp"
+#include "Game/NameObj/MovementOnOffGroupHolder.hpp"
+#include "Game/NameObj/NameObjAdaptor.hpp"
+#include "Game/NameObj/NameObjExecuteHolder.hpp"
+#include "Game/NameObj/NameObjFinder.hpp"
+#include "Game/NameObj/NameObjListExecutor.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Screen/LayoutActor.hpp"
-#include "Game/SingletonHolder.hpp"
 #include "Game/System/GameSystem.hpp"
+#include "Game/System/GameSystemSceneController.hpp"
 #include "Game/System/ResourceHolder.hpp"
 #include "Game/System/ResourceHolderManager.hpp"
 #include "Game/Util/ObjUtil.hpp"
+#include "Game/SingletonHolder.hpp"
 #include <cstdio>
 #include <va_list.h>
 
-class LiveActor;
- 
 namespace {
     JMapInfo* tryCreateCsvParserLocal(const ResourceHolder* pHolder, const char* pArchive, va_list pFormat) NO_INLINE {
         char buf[0x100];
@@ -376,15 +375,18 @@ namespace MR {
         NameObjFunction::requestMovementOff(pObj);
     }
 
-    NameObj* joinToNameObjGroup(NameObj *pObj, const char* pGroupName) {
-        NameObjGroup* objGroup = static_cast<NameObjGroup*>(NameObjFinder::find(pGroupName));
-        objGroup->registerObj(pObj);
-        return objGroup;
+    NameObjGroup* joinToNameObjGroup(NameObj *pObj, const char* pGroupName) {
+        NameObjGroup* pObjGroup = static_cast<NameObjGroup*>(NameObjFinder::find(pGroupName));
+
+        pObjGroup->registerObj(pObj);
+
+        return pObjGroup;
     }
 
-    void joinToMovementOnOffGroup(const char *pName, NameObj *pObj, u32 a3) {
-        MovementOnOffGroupHolder* holder = MR::getSceneObj<MovementOnOffGroupHolder*>(SceneObj_MovementOnOffGroupHolder);
-        holder->joinToGroup(pName, pObj, a3);
+    NameObjGroup* joinToMovementOnOffGroup(const char *pName, NameObj *pObj, u32 a3) {
+        MovementOnOffGroupHolder* pGroupHolder = MR::getSceneObj<MovementOnOffGroupHolder*>(SceneObj_MovementOnOffGroupHolder);
+
+        return pGroupHolder->joinToGroup(pName, pObj, a3);
     }
 
     void onMovementOnOffGroup(const char *pGroupName) {
@@ -405,7 +407,7 @@ namespace MR {
     }
 
     ResourceHolder* createAndAddResourceHolder(const char* pResource) {
-        return SingletonHolder<ResourceHolderManager>::sInstance->createAndAdd(pResource, nullptr);
+        return SingletonHolder<ResourceHolderManager>::get()->createAndAdd(pResource, nullptr);
     }
 
     void* loadResourceFromArc(const char* pArchive, const char* pFile) {
@@ -437,7 +439,7 @@ namespace MR {
     }
 
     JMapInfo* createCsvParser(const char *pArchive, const char *pFormat, ...) {
-        ResourceHolder* holder = SingletonHolder<ResourceHolderManager>::sInstance->createAndAdd(pArchive, nullptr);
+        ResourceHolder* holder = SingletonHolder<ResourceHolderManager>::get()->createAndAdd(pArchive, nullptr);
         return MR::createCsvParser(holder, pFormat);   
     }
 

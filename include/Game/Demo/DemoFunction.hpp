@@ -2,6 +2,7 @@
 
 #include "Game/Util.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
+#include "Game/Util/JMapInfo.hpp"
 
 class DemoDirector;
 class DemoCastGroupHolder;
@@ -17,6 +18,10 @@ namespace DemoFunction {
     void registerDemoActionFunctorFunction(const LiveActor *, const MR::FunctorBase &, const char *);
     void registerDemoActionFunctorFunction(const LiveActor *, const MR::FunctorBase &, const char *, const char *);
     void registerDemoActionNerveFunction(const LiveActor *, const Nerve *, const char *);
+
+    bool tryCreateDemoTalkAnimCtrlForActor(LiveActor *, const char *, const char *);
+
+    bool tryCreateDemoTalkAnimCtrlForScene(LiveActor *, const JMapInfoIter &, const char *, const char *, s32, s32);
 
     bool tryStartDemoRegistered(LiveActor *, const char *);
     bool tryStartDemoRegisteredMarioPuppetable(LiveActor *, const char *);
@@ -54,6 +59,7 @@ namespace DemoFunction {
     void resumeTimeKeepDemo(const char *);
     bool isPauseTimeKeepDemo(const char *);
 
+    bool tryCreateDemoTalkAnimCtrlForSceneDirect(LiveActor *, const char *, const JMapInfoIter &, const char *, const char *, s32, s32);
     void registerDemoTalkMessageCtrl(LiveActor *, TalkMessageCtrl *);
     void registerDemoTalkMessageCtrlDirect(LiveActor *, TalkMessageCtrl *, const char *);
     void setDemoTalkMessageCtrlDirect(const LiveActor *, TalkMessageCtrl *, const char *);

@@ -1,6 +1,8 @@
+#include "Game/System/HeapMemoryWatcher.hpp"
 #include "Game/Util/MemoryUtil.hpp"
 #include "Game/Util/MutexHolder.hpp"
-#include "JSystem/JKernel/JKRHeap.hpp"
+#include "Game/SingletonHolder.hpp"
+#include <JSystem/JKernel/JKRHeap.hpp>
 #include <mem.h>
 
 namespace MR {
@@ -30,7 +32,7 @@ namespace MR {
     MEMAllocator NewDeleteAllocator::sAllocator = { &sAllocatorFunc };
 
     MEMAllocator* getHomeButtonLayoutAllocator() {
-        JKRHeapAllocator<0>::sHeap = SingletonHolder<HeapMemoryWatcher>::sInstance->mHomeButtonLayoutHeap;
+        JKRHeapAllocator<0>::sHeap = SingletonHolder<HeapMemoryWatcher>::get()->mHomeButtonLayoutHeap;
 
         return &JKRHeapAllocator<0>::sAllocator;
     }
@@ -42,27 +44,27 @@ namespace MR {
     // MR::getAproposHeapForSceneArchive
     
     JKRExpHeap* getStationedHeapNapa() {
-        return SingletonHolder<HeapMemoryWatcher>::sInstance->mStationedHeapNapa;
+        return SingletonHolder<HeapMemoryWatcher>::get()->mStationedHeapNapa;
     }
 
     JKRExpHeap* getStationedHeapGDDR3() {
-        return SingletonHolder<HeapMemoryWatcher>::sInstance->mStationedHeapGDDR;
+        return SingletonHolder<HeapMemoryWatcher>::get()->mStationedHeapGDDR;
     }
 
     JKRSolidHeap* getSceneHeapNapa() {
-        return SingletonHolder<HeapMemoryWatcher>::sInstance->mSceneHeapNapa;
+        return SingletonHolder<HeapMemoryWatcher>::get()->mSceneHeapNapa;
     }
 
     JKRSolidHeap* getSceneHeapGDDR3() {
-        return SingletonHolder<HeapMemoryWatcher>::sInstance->mSceneHeapGDDR;
+        return SingletonHolder<HeapMemoryWatcher>::get()->mSceneHeapGDDR;
     }
 
     JKRHeap* getHeapNapa(const JKRHeap* pHeap) {
-        return SingletonHolder<HeapMemoryWatcher>::sInstance->getHeapNapa(pHeap);
+        return SingletonHolder<HeapMemoryWatcher>::get()->getHeapNapa(pHeap);
     }
 
     JKRHeap* getHeapGDDR3(const JKRHeap* pHeap) {
-        return SingletonHolder<HeapMemoryWatcher>::sInstance->getHeapGDDR3(pHeap);
+        return SingletonHolder<HeapMemoryWatcher>::get()->getHeapGDDR3(pHeap);
     }
 
     void becomeCurrentHeap(JKRHeap* pHeap) {
@@ -108,11 +110,11 @@ namespace MR {
     }
 
     void* allocFromWPadHeap(u32 size) {
-        return SingletonHolder<HeapMemoryWatcher>::sInstance->mWPadHeap->alloc(size, 0);
+        return SingletonHolder<HeapMemoryWatcher>::get()->mWPadHeap->alloc(size, 0);
     }
 
     u8 freeFromWPadHeap(void* pPtr) {
-        SingletonHolder<HeapMemoryWatcher>::sInstance->mWPadHeap->free(pPtr);
+        SingletonHolder<HeapMemoryWatcher>::get()->mWPadHeap->free(pPtr);
 
         return 1;
     }

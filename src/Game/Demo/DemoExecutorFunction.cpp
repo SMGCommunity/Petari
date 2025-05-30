@@ -1,7 +1,7 @@
-#include "Game/Demo/DemoExecutorFunction.hpp"
-#include "Game/Demo/DemoTimeKeeper.hpp"
 #include "Game/Demo/DemoActionKeeper.hpp"
+#include "Game/Demo/DemoExecutorFunction.hpp"
 #include "Game/Demo/DemoTalkAnimCtrl.hpp"
+#include "Game/Demo/DemoTimeKeeper.hpp"
 
 namespace DemoExecutorFunction {
     void registerDemoActionFunction(const DemoExecutor *pExecutor, const LiveActor *pActor, const MR::FunctorBase &rFunctor, const char *a4) {
@@ -13,38 +13,50 @@ namespace DemoExecutorFunction {
     }
 
     bool isExistDemoPart(const DemoExecutor *pExecutor, const char *pPartName) {
-        if (isExistDemoPartMain(pExecutor, pPartName)) return true;
-        if (isExistDemoPartSub(pExecutor, pPartName)) return true;
+        if (isExistDemoPartMain(pExecutor, pPartName)) {
+            return true;
+        }
+
+        if (isExistDemoPartSub(pExecutor, pPartName)) {
+            return true;
+        }
+
         return false;
     }
 
     bool isExistDemoPartMain(const DemoExecutor *pExecutor, const char *pPartName) {
-        DemoTimeKeeper *timekeeper = pExecutor->mTimeKeeper;
-        for (s32 i = 0; i < timekeeper->mNumPartInfos; i++) {
-            if (MR::isEqualString(timekeeper->mMainPartInfos[i].mName, pPartName)) {
+        DemoTimeKeeper *pTimeKeeper = pExecutor->mTimeKeeper;
+
+        for (s32 i = 0; i < pTimeKeeper->mNumPartInfos; i++) {
+            if (MR::isEqualString(pTimeKeeper->mMainPartInfos[i].mName, pPartName)) {
                 return true;
             }
         }
+
         return false;
     }
 
     bool isExistDemoPartSub(const DemoExecutor *pExecutor, const char *pPartName) {
-        DemoTimeKeeper *timekeeper = pExecutor->mTimeKeeper;
-        for (s32 i = 0; i < timekeeper->mNumPartInfos; i++) {
-            if (MR::isEqualString(timekeeper->mSubPartInfos[i].mName, pPartName)) {
+        DemoSubPartKeeper *pSubPartKeeper = pExecutor->mSubPartKeeper;
+
+        for (s32 i = 0; i < pSubPartKeeper->mNumSubPartInfos; i++) {
+            if (MR::isEqualString(pSubPartKeeper->mSubPartInfos[i].mSubPartName, pPartName)) {
                 return true;
             }
         }
+
         return false;
     }
 
     bool isRegisteredDemoCast(const DemoExecutor *pExecutor, const LiveActor *pActor) {
-        LiveActorGroup *group = reinterpret_cast<LiveActorGroup *>(pExecutor->mGroup);
-        for (s32 i = 0; i < group->mObjectCount; i++) {
-            if (MR::isSame(group->getActor(i), pActor)) {
+        LiveActorGroup *pGroup = pExecutor->mGroup;
+
+        for (s32 i = 0; i < pGroup->mObjectCount; i++) {
+            if (MR::isSame(pGroup->getActor(i), pActor)) {
                 return true;
             }
         }
+
         return false;
     }
 
@@ -61,18 +73,22 @@ namespace DemoExecutorFunction {
     }
 
     bool tryCreateDemoTalkAnimCtrlForActor(DemoExecutor *pExecutor, LiveActor *pActor, const char *a3, const char *a4) {
-        DemoTalkAnimCtrl *talk = new DemoTalkAnimCtrl(pActor, pExecutor->mSheetName, a4);
-        talk->initForActor(a3);
-        pExecutor->addTalkAnimCtrl(talk);
+        DemoTalkAnimCtrl *pTalkAnimCtrl = new DemoTalkAnimCtrl(pActor, pExecutor->mName, a4);
+
+        pTalkAnimCtrl->initForActor(a3);
+        pExecutor->addTalkAnimCtrl(pTalkAnimCtrl);
+
         return true;
     }
 
     bool tryCreateDemoTalkAnimCtrlForScene(DemoExecutor *pExecutor, LiveActor *pActor, const JMapInfoIter &rIter, const char *a4, const char *a5, s32 a6, s32 a7) {
-        DemoTalkAnimCtrl *talk = new DemoTalkAnimCtrl(pActor, pExecutor->mSheetName, a5);
-        talk->initForScene(a4, a4, rIter);
-        talk->_40 = a6;
-        talk->_44 = a7;
-        pExecutor->addTalkAnimCtrl(talk);
+        DemoTalkAnimCtrl *pTalkAnimCtrl = new DemoTalkAnimCtrl(pActor, pExecutor->mName, a5);
+
+        pTalkAnimCtrl->initForScene(a4, a4, rIter);
+        pTalkAnimCtrl->_40 = a6;
+        pTalkAnimCtrl->_44 = a7;
+        pExecutor->addTalkAnimCtrl(pTalkAnimCtrl);
+
         return true;
     }
 

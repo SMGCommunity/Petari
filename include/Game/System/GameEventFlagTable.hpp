@@ -35,13 +35,13 @@ public:
     const char* getEventFlagNameSpecialPowerStar(const char *, s32);
     bool isPowerStarType(const char *, s32, const char *);
     s32 calcExclamationGalaxyNum();
-    const char* getExclamationGalaxyNameFromIndex(int);
+    static const char* getExclamationGalaxyNameFromIndex(int);
     static bool isExist(const char *);
     static int getIndex(const GameEventFlag *);
     static bool isDependedAnother(const char *, const char *);
     int getIndexFromHashCode(u16);
     s32 calcSpecialPowerStarNum(const char *);
-    u8 getStarPieceNumToOpenExclamationGalaxy(const char *);
+    static s32 getStarPieceNumToOpenExclamationGalaxy(const char *);
     s32 calcGreenStarPowerNum();
     u32 getGalaxyDependFlags(const char **, int, const char *);
     

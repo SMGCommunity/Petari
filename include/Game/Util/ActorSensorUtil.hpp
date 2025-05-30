@@ -56,29 +56,9 @@ namespace MR {
     HitSensor* addBodyMessageSensorMapObj(LiveActor *);
     HitSensor* addBodyMessageSensorMapObjPress(LiveActor *);
     HitSensor* addBodyMessageSensorMapObjMoveCollision(LiveActor *);
+    HitSensor* addBodyMessageSensorReceiver(LiveActor *);
 
-    bool tryUpdateHitSensorsAll(LiveActor *);
-    void updateHitSensorsAll(LiveActor *);
-
-    bool isSensorType(const HitSensor *, u32);
-
-    HitSensor* getSensor(LiveActor *, int);
-    HitSensor* getSensorWithIndex(LiveActor *, int);
-    HitSensor* getTaking(const LiveActor *);
-    HitSensor* getTaken(const LiveActor *);
-
-    void setSensorPos(HitSensor *, const TVec3f &);
-    void setSensorOffset(LiveActor *, const char *, const TVec3f &);
-    void setSensorRadius(LiveActor *, const char *, float);
-    void setHitSensorApart(HitSensor *, HitSensor *);
-
-
-    
-
-    
-    
-    
-
+    HitSensor* addMessageSensorMapObj(LiveActor *, const char *);
     HitSensor* addMessageSensorMapObjMoveCollision(LiveActor *, const char *);
 
     
@@ -88,6 +68,7 @@ namespace MR {
     bool isSensorPlayer(const HitSensor *);
     bool isSensorBinder(const HitSensor *);
     bool isSensorRide(const HitSensor *);
+    bool isSensorNpc(const HitSensor *);
 
     bool isSensorPlayerOrRide(const HitSensor *);
 
@@ -137,8 +118,8 @@ namespace MR {
     void calcSensorDirectionNormalize(TVec3f *, const HitSensor *, const HitSensor *);
     void calcSensorHorizonNormalize(TVec3f *, const TVec3f &, const HitSensor *, const HitSensor *);
 
-    bool sendSimpleMsgToActor(u32, LiveActor *) NO_INLINE;
-
+    bool sendSimpleMsgToActor(u32, LiveActor *);
+    bool sendMsgToBindedSensor(u32, LiveActor *, HitSensor *);
     bool sendArbitraryMsg(u32, HitSensor *, HitSensor *);
     bool sendMsgPush(HitSensor *, HitSensor *);
     bool sendMsgPlayerTrample(HitSensor *, HitSensor *);
@@ -227,7 +208,7 @@ namespace MR {
 
     bool isMsgUpdateBaseMtx(u32);
 
-    HitSensor* getMessageSensor();
+    bool isMsgToEnemyAttackShockWave(u32);
 
     bool receiveItemShowMsg(u32, HitSensor *, HitSensor *);
     bool receiveItemHideMsg(u32, HitSensor *, HitSensor *);

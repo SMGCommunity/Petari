@@ -98,4 +98,6 @@ namespace MR {
     HitSensor* getShadowProjectedSensor(const LiveActor *, const char *);
 
     f32 getShadowNearProjectionLength(const LiveActor *);
+
+    void setShadowProjection(LiveActor *, const char *, const TVec3f &, const TVec3f &, bool);
 };

@@ -81,4 +81,45 @@
         (((unsigned long)(sel0)) << TX_PERFMODE_SEL0_SHIFT) | \
         (((unsigned long)(rid)) << TX_PERFMODE_RID_SHIFT))
 
+#define TX_LOADBLOCK3_COUNT_SIZE        15
+#define TX_LOADBLOCK3_COUNT_SHIFT       0
+#define TX_LOADBLOCK3_COUNT_MASK        0x00007fff
+#define TX_LOADBLOCK3_GET_COUNT(tx_loadblock3) \
+        ((((unsigned long)(tx_loadblock3)) & TX_LOADBLOCK3_COUNT_MASK) >> TX_LOADBLOCK3_COUNT_SHIFT)
+#define TX_LOADBLOCK3_SET_COUNT(tx_loadblock3, count) { \
+        FDL_ASSERT(!((count) & ~((1 << TX_LOADBLOCK3_COUNT_SIZE)-1))); \
+        tx_loadblock3 = (((unsigned long)(tx_loadblock3)) & ~TX_LOADBLOCK3_COUNT_MASK) | (((unsigned long)(count)) << TX_LOADBLOCK3_COUNT_SHIFT);\
+}
+#define TX_LOADBLOCK3_FORMAT_SIZE       2
+#define TX_LOADBLOCK3_FORMAT_SHIFT      15
+#define TX_LOADBLOCK3_FORMAT_MASK       0x00018000
+#define TX_LOADBLOCK3_GET_FORMAT(tx_loadblock3) \
+        ((((unsigned long)(tx_loadblock3)) & TX_LOADBLOCK3_FORMAT_MASK) >> TX_LOADBLOCK3_FORMAT_SHIFT)
+#define TX_LOADBLOCK3_SET_FORMAT(tx_loadblock3, format) { \
+        FDL_ASSERT(!((format) & ~((1 << TX_LOADBLOCK3_FORMAT_SIZE)-1))); \
+        tx_loadblock3 = (((unsigned long)(tx_loadblock3)) & ~TX_LOADBLOCK3_FORMAT_MASK) | (((unsigned long)(format)) << TX_LOADBLOCK3_FORMAT_SHIFT);\
+}
+#define TX_LOADBLOCK3_PAD0_SIZE 7
+#define TX_LOADBLOCK3_PAD0_SHIFT        17
+#define TX_LOADBLOCK3_PAD0_MASK 0x00fe0000
+#define TX_LOADBLOCK3_GET_PAD0(tx_loadblock3) \
+        ((((unsigned long)(tx_loadblock3)) & TX_LOADBLOCK3_PAD0_MASK) >> TX_LOADBLOCK3_PAD0_SHIFT)
+#define TX_LOADBLOCK3_SET_PAD0(tx_loadblock3, pad0) { \
+        FDL_ASSERT(!((pad0) & ~((1 << TX_LOADBLOCK3_PAD0_SIZE)-1))); \
+        tx_loadblock3 = (((unsigned long)(tx_loadblock3)) & ~TX_LOADBLOCK3_PAD0_MASK) | (((unsigned long)(pad0)) << TX_LOADBLOCK3_PAD0_SHIFT);\
+}
+#define TX_LOADBLOCK3_RID_SIZE  8
+#define TX_LOADBLOCK3_RID_SHIFT 24
+#define TX_LOADBLOCK3_RID_MASK  0xff000000
+#define TX_LOADBLOCK3_GET_RID(tx_loadblock3) \
+        ((((unsigned long)(tx_loadblock3)) & TX_LOADBLOCK3_RID_MASK) >> TX_LOADBLOCK3_RID_SHIFT)
+#define TX_LOADBLOCK3_SET_RID(tx_loadblock3, rid) { \
+        FDL_ASSERT(!((rid) & ~((1 << TX_LOADBLOCK3_RID_SIZE)-1))); \
+        tx_loadblock3 = (((unsigned long)(tx_loadblock3)) & ~TX_LOADBLOCK3_RID_MASK) | (((unsigned long)(rid)) << TX_LOADBLOCK3_RID_SHIFT);\
+}
+#define TX_LOADBLOCK3_TOTAL_SIZE        32
+#define TX_LOADBLOCK3(count, format, rid) \
+        ((((unsigned long)(count)) << TX_LOADBLOCK3_COUNT_SHIFT) | \
+         (((unsigned long)(format)) << TX_LOADBLOCK3_FORMAT_SHIFT) | \
+         (((unsigned long)(rid)) << TX_LOADBLOCK3_RID_SHIFT))
 #endif // TX_REG_H

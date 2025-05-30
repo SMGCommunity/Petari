@@ -29,6 +29,8 @@ void GXProject(f32 x, f32 y, f32 z, const f32 mtx[3][4], const f32* pm, const f3
     *sz = zc * (vp[5] - vp[4]) * wc + vp[5];
 }
 
+#pragma optimizewithasm off
+
 inline void WriteProjPS(const register f32 proj[6], register volatile void* dest)
 {
     register f32 p01, p23, p45;
@@ -55,6 +57,8 @@ inline void Copy6Floats(register f32* dst, register const f32* src) {
         psq_st ps_2, 16(dst), 0, 0
     }
 }
+
+#pragma optimizewithasm reset
 
 void __GXSetProjection(void) {
     volatile void* wgpipe = (volatile void*)0xCC008000;
@@ -121,6 +125,27 @@ void __GXSetViewport(void) {
     GX_WRITE_XF_MEM_F32(XF_SCALEX + 5, oz);
 }
 
+#pragma optimizewithasm off
+
+static void  WriteMTXPS3x3from3x4(register void* mtx, register volatile void* dest) {
+    register f32 a00_a01, a02_a03, a10_a11;
+    register f32 a12_a13, a20_a21, a22_a23;
+    asm {
+        psq_l   a00_a01, 0(mtx), 0, 0    
+        lfs     a02_a03, 8(mtx)
+        psq_l   a10_a11, 16(mtx), 0, 0    
+        lfs     a12_a13, 24(mtx)
+        psq_l   a20_a21, 32(mtx), 0, 0    
+        lfs     a22_a23, 40(mtx)
+        psq_st  a00_a01, 0(dest), 0, 0    
+        stfs    a02_a03, 0(dest)
+        psq_st  a10_a11, 0(dest), 0, 0    
+        stfs    a12_a13, 0(dest)
+        psq_st  a20_a21, 0(dest), 0, 0    
+        stfs    a22_a23, 0(dest)
+    }
+}
+
 inline void WriteMTXPS4x3(const register f32 src[3][4], register volatile void* dst) {
     register f32 ps_0, ps_1, ps_2, ps_3, ps_4, ps_5;
 
@@ -143,6 +168,8 @@ inline void WriteMTXPS4x3(const register f32 src[3][4], register volatile void* 
     // clang-format on
 }
 
+#pragma optimizewithasm reset
+
 void GXLoadPosMtxImm(const f32 mtx[3][4], u32 id) {
     u32 reg, addr;
     volatile void* wgpipe = (volatile void*)0xCC008000;
@@ -153,22 +180,32 @@ void GXLoadPosMtxImm(const f32 mtx[3][4], u32 id) {
     WriteMTXPS4x3(mtx, wgpipe);
 }
 
-void GXSetScissor(u32 left, u32 top, u32 width, u32 height) {
-    u32 _top, _left, bottom, right;
+void GXLoadNrmMtxImm(const f32 mtx[3][4], u32 id) {
+    u32 reg, addr;
+    addr = 0x400 + (id * 3);
+    reg = CP_XF_LOADREGS(addr, 10);
 
-    _top = top + (u32)342.0f;
-    _left = left + (u32)342.0f;
-    bottom = _top + height - 1;
-    right = _left + width - 1;
+    GX_WRITE_U8(CP_OPCODE(0, CP_CMD_XF_LOADREGS));
+    GX_WRITE_U32(reg);
 
-    SET_FLAG(gx->suScis0, _top, 0, 11);
-    SET_FLAG(gx->suScis0, _left, 12, 11);
+    WriteMTXPS3x3from3x4((void*)mtx, (volatile void*)0xCC008000);
+}
 
-    SET_FLAG(gx->suScis1, bottom, 0, 11);
-    SET_FLAG(gx->suScis1, right, 12, 11);
+void GXSetScissor(u32 left, u32 top, u32 wd, u32 ht) {
+    u32 tp, lf, bm, rt;
+    tp = top + (u32)342.0f;
+    lf = left + (u32)342.0f;
+    bm = tp + ht - 1;
+    rt = lf + wd - 1;
 
-    GX_WRITE_REG(gx->suScis0);
-    GX_WRITE_REG(gx->suScis1);
+    SC_SU_SCIS0_SET_SY0(gx->suScis0, tp);
+    SC_SU_SCIS0_SET_SX0(gx->suScis0, lf);
+
+    SC_SU_SCIS1_SET_SY1(gx->suScis1, bm);
+    SC_SU_SCIS1_SET_SX1(gx->suScis1, rt);
+
+    GX_WRITE_RA_REG(gx->suScis0);
+    GX_WRITE_RA_REG(gx->suScis1);
     gx->bpSentNot = GX_FALSE;
 }
 

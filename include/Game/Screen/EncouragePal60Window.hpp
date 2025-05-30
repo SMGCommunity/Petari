@@ -5,7 +5,7 @@
 class IconAButton;
 
 /// @brief The actor for the window encouraging the player to change their TV Type from 50 Hz to 60 Hz.
-class EncouragePal60Window : LayoutActor {
+class EncouragePal60Window : public LayoutActor {
 public:
     /// @brief Creates a new `EncouragePal60Window`.
     EncouragePal60Window();

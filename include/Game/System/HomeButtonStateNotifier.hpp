@@ -1,18 +1,18 @@
 #pragma once
 
-#include <revolution.h>
-
 class MoviePlayerSimple;
 
 class HomeButtonStateNotifier {
 public:
+    /// @brief Creates a new `HomeButtonStateNotifier`.
     HomeButtonStateNotifier();
 
     void update(bool);
-    void registerMoviePlayerSimple(MoviePlayerSimple *);
-    void unregisterMoviePlayerSimple(MoviePlayerSimple *);
+    void registerMoviePlayerSimple(MoviePlayerSimple* pMoviePlayer);
+    void unregisterMoviePlayerSimple(MoviePlayerSimple* pMoviePlayer);
     void notifyHomeButtonDeactive();
 
-    u8 _0;
-    MoviePlayerSimple* mMoviePlayer;            // 0x04
+private:
+    /* 0x00 */ bool _0;
+    /* 0x04 */ MoviePlayerSimple* mMoviePlayer;
 };
