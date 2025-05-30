@@ -257,14 +257,14 @@ namespace MR {
 
     HitSensor * getTaking(const LiveActor *pActor){
         if(pActor->mSensorKeeper){
-            return pActor->mSensorKeeper->_C;
+            return pActor->mSensorKeeper->mTaking;
         }
         return 0;
     }
 
     HitSensor * getTaken(const LiveActor *pActor){
         if(pActor->mSensorKeeper){
-            return pActor->mSensorKeeper->_10;
+            return pActor->mSensorKeeper->mTaken;
         }
         return 0;
     }
@@ -283,11 +283,11 @@ namespace MR {
 
     void setHitSensorApart(HitSensor *pSensor1, HitSensor *pSensor2){
         if((getTaking(pSensor1->mActor) == pSensor2) || (getTaken(pSensor2->mActor) == pSensor1)){
-            pSensor1->mActor->mSensorKeeper->_C = nullptr;
-            pSensor2->mActor->mSensorKeeper->_10 = nullptr;
+            pSensor1->mActor->mSensorKeeper->mTaking = nullptr;
+            pSensor2->mActor->mSensorKeeper->mTaken = nullptr;
         }else{
-            pSensor1->mActor->mSensorKeeper->_10 = nullptr;
-            pSensor2->mActor->mSensorKeeper->_C = nullptr;
+            pSensor1->mActor->mSensorKeeper->mTaken = nullptr;
+            pSensor2->mActor->mSensorKeeper->mTaken = nullptr;
         }
     }
 
@@ -328,10 +328,6 @@ namespace MR {
 
     LiveActor * getSensorHost(const HitSensor *pSensor) {
         return pSensor->mActor;
-    }
-
-    bool isValidHitSensor(LiveActor *pActor, const char *pName) {
-        return pActor->mSensorKeeper->getSensor(pName)->mValidByHost;
     }
 
     bool isSensor(const HitSensor *pSensor, const char *pSensorName) {
@@ -582,14 +578,6 @@ namespace MR {
 
     bool sendMsgEnemyAttackCounterHipDrop(HitSensor *pReceiver, HitSensor *pSender) {
         return pReceiver->receiveMessage(0x61, pSender);
-    }
-
-    bool sendMsgEnemyAttackToBindedSensor(LiveActor *pActor, HitSensor *pSensor) {
-        return sendMsgToBindedSensor(0x53, pActor, pSensor);
-    }
-
-    bool sendMsgEnemyAttackExplosionToBindedSensor(LiveActor *pActor, HitSensor *pSensor) {
-        return sendMsgToBindedSensor(0x56, pActor, pSensor);
     }
 
     bool sendMsgLockOnStarPieceShoot(HitSensor *pReceiver, HitSensor *pSender) {
