@@ -735,18 +735,16 @@ namespace MR {
         return false;
     }
 
-    //These 3 functions appear to mention members of the Binder class
-    //that do not exist with how the class is mapped out currently.
     HitSensor *getGroundSensor(const LiveActor *pActor){
-        // return pActor->mBinder->_44
+        return pActor->mBinder->groundInfo.mParentTriangle.mSensor;
     }
 
     HitSensor *getRoofSensor(const LiveActor *pActor){
-        // return pActor->mBinder->_164
+        return pActor->mBinder->roofInfo.mParentTriangle.mSensor;
     }
 
     HitSensor *getWallSensor(const LiveActor *pActor){
-        // return pActor->mBinder->_d4
+        return pActor->mBinder->wallInfo.mParentTriangle.mSensor;
     }
 
     bool isMsgPlayerHitAll(u32 msg) {
