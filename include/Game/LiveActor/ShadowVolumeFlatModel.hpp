@@ -12,5 +12,5 @@ public:
     virtual void draw() const;
 
     void initModel(const char *);
-
+    void setBaseMatrixPtr(MtxPtr);
 };
