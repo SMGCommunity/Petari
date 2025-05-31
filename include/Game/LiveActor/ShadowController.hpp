@@ -105,7 +105,7 @@ public:
     const char* mName;                                  // 0x4
     const char* mGroupName;                             // 0x8
     ShadowDrawer* mDrawer;                              // 0xC
-    u32 _10;
+    HitSensor* mProjectedSensor;                        // 0x10
     CollisionPartsFilterBase* mCollisionPartsFilter;    // 0x14
     MtxPtr _18;
     MtxPtr _1C;

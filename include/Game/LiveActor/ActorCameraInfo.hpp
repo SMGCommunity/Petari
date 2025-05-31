@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Game/Util.hpp"
+#include "Game/Util/JMapInfo.hpp"
 
 class ActorCameraInfo {
 public:

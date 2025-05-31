@@ -3,6 +3,7 @@
 #include "Game/Util/ActorCameraUtil.hpp"
 #include "Game/Util/ActorMovementUtil.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/ActorShadowLocalUtil.hpp"
 #include "Game/Util/ActorShadowUtil.hpp"
 #include "Game/Util/ActorStateUtil.hpp"
 #include "Game/Util/ActorSwitchUtil.hpp"
