@@ -6,6 +6,10 @@ class GameSystemErrorWatcher : public NerveExecutor {
 public:
     GameSystemErrorWatcher();
 
+    void movement();
+    void draw() const;
+    bool isWarning() const;
+
     u32 _8;
     u32 _C;
     u32 _10;

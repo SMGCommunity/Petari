@@ -1,9 +1,11 @@
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/NameObj/NameObjRegister.hpp"
 #include "Game/Screen/HomeButtonLayout.hpp"
+#include "Game/Screen/SystemWipeHolder.hpp"
 #include "Game/System/DrawSyncManager.hpp"
 #include "Game/System/FileRipper.hpp"
 #include "Game/System/GameSequenceDirector.hpp"
+#include "Game/System/GameSequenceFunction.hpp"
 #include "Game/System/GameSystem.hpp"
 #include "Game/System/GameSystemDimmingWatcher.hpp"
 #include "Game/System/GameSystemErrorWatcher.hpp"
@@ -176,7 +178,39 @@ void GameSystem::frameLoop() {
     MainLoopFramework::get()->waitForRetrace();
 }
 
-// GameSystem::draw()
-// GameSystem::update()
+void GameSystem::draw() {
+    mSceneController->drawScene();
+    mSequenceDirector->draw();
+    mObjHolder->drawStarPointer();
+    mObjHolder->drawBeforeEndRender();
+    if (mSystemWipeHolder) {
+        mSystemWipeHolder->draw();
+    }
+    mErrorWatcher->draw();
+    mHomeButtonLayout->draw();
+    SingletonHolder<GameSystemResetAndPowerProcess>::get()->draw();
+}
+
+void GameSystem::update() {
+    SingletonHolder<GameSystemResetAndPowerProcess>::get()->movement();
+    mSceneController->checkRequestAndChangeScene();
+    mObjHolder->update();
+    mHomeButtonLayout->movement();
+    if (!mHomeButtonLayout->isActive()) {
+        mErrorWatcher->movement();
+    }
+    mDimmingWatcher->_5 = mErrorWatcher->isWarning() 
+                          || mHomeButtonLayout->isActive() 
+                          || GameSequenceFunction::isActiveSaveDataHandleSequence();
+    mDimmingWatcher->update();
+    updateNerve();
+}
+
 // GameSystem::updateSceneController()
-// GameSystem::calcAnim()
+
+void GameSystem::calcAnim() {
+    mSceneController->calcAnimScene();
+    if (mSystemWipeHolder) {
+        mSystemWipeHolder->calcAnim();
+    }
+}
