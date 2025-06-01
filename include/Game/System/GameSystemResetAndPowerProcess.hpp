@@ -7,6 +7,8 @@ public:
     GameSystemResetAndPowerProcess();
     ~GameSystemResetAndPowerProcess();
 
+    bool isActive() const;
+
     u32 _20;
     u32 _24;
     u8 _28[0x30]; // placeholder

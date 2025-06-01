@@ -12,6 +12,7 @@
 #include "Game/System/GameSystemException.hpp"
 #include "Game/System/GameSystemFontHolder.hpp"
 #include "Game/System/GameSystemFrameControl.hpp"
+#include "Game/System/GameSystemFunction.hpp"
 #include "Game/System/GameSystemObjHolder.hpp"
 #include "Game/System/GameSystemResetAndPowerProcess.hpp"
 #include "Game/System/GameSystemSceneController.hpp"
@@ -206,7 +207,39 @@ void GameSystem::update() {
     updateNerve();
 }
 
-// GameSystem::updateSceneController()
+void GameSystem::updateSceneController() {
+    bool doSceneUpdate = true;
+    bool resetProcessing = SingletonHolder<GameSystemResetAndPowerProcess>::get()->isActive();
+    
+    mObjHolder->updateAudioSystem();
+    
+    if (resetProcessing) {
+        doSceneUpdate = false;
+    }
+    if (mHomeButtonLayout->isActive()) {
+        doSceneUpdate = false;
+    }
+    if (GameSystemFunction::isOccurredSystemWarning()) {
+        doSceneUpdate = false;
+    }
+
+    mHomeButtonStateNotifier->update(mHomeButtonLayout->isActive() || GameSystemFunction::isOccurredSystemWarning());
+
+    if (doSceneUpdate || resetProcessing) {
+        mSequenceDirector->update();
+    }
+    
+    if (doSceneUpdate || mSceneController->isFirstUpdateSceneNerveNormal()) {
+        if (mSystemWipeHolder) {
+            mSystemWipeHolder->movement();
+        }
+        mSceneController->updateScene();
+    }
+    
+    if (resetProcessing) {
+        mSceneController->updateSceneDuringResetProcessing();
+    }
+}
 
 void GameSystem::calcAnim() {
     mSceneController->calcAnimScene();

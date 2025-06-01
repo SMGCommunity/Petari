@@ -4,6 +4,7 @@ class GameSequenceDirector {
 public:
     GameSequenceDirector();
 
+    void update();
     void draw() const;
 
     u32 _0;
