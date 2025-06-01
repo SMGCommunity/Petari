@@ -1,16 +1,27 @@
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/NameObj/NameObjRegister.hpp"
+#include "Game/Screen/HomeButtonLayout.hpp"
+#include "Game/System/DrawSyncManager.hpp"
 #include "Game/System/FileRipper.hpp"
+#include "Game/System/GameSequenceDirector.hpp"
 #include "Game/System/GameSystem.hpp"
+#include "Game/System/GameSystemDimmingWatcher.hpp"
+#include "Game/System/GameSystemErrorWatcher.hpp"
 #include "Game/System/GameSystemException.hpp"
+#include "Game/System/GameSystemFontHolder.hpp"
+#include "Game/System/GameSystemFrameControl.hpp"
 #include "Game/System/GameSystemObjHolder.hpp"
+#include "Game/System/GameSystemResetAndPowerProcess.hpp"
+#include "Game/System/GameSystemSceneController.hpp"
 #include "Game/System/GameSystemStationedArchiveLoader.hpp"
 #include "Game/System/HeapMemoryWatcher.hpp"
+#include "Game/System/HomeButtonStateNotifier.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/MemoryUtil.hpp"
 #include "Game/Util/MutexHolder.hpp"
 #include "Game/Util/SystemUtil.hpp"
 #include "Game/SingletonHolder.hpp"
+#include "JSystem/JKernel/JKRAram.hpp"
 #include <nw4r/lyt/init.h>
 
 void main(void) {
@@ -78,7 +89,27 @@ GameSystem::GameSystem() :
     
 }
 
-// GameSystem::init()
+void GameSystem::init() {
+    JKRAram::create(0xe00000, 0xffffffff, 8, 7, 3);
+    mObjHolder = new GameSystemObjHolder();
+    mFontHolder = new GameSystemFontHolder();
+    mFontHolder->createFontFromEmbeddedData();
+    initNerve(&NrvGameSystem::GameSystemInitializeAudio::sInstance);
+    mSequenceDirector = new GameSequenceDirector();
+    initGX();
+    DrawSyncManager::start(0x300, 0xf);
+    mSceneController = new GameSystemSceneController();
+    mObjHolder->init();
+    mErrorWatcher = new GameSystemErrorWatcher();
+    mFrameControl = new GameSystemFrameControl();
+    SingletonHolder<GameSystemResetAndPowerProcess>::init();
+    SingletonHolder<GameSystemResetAndPowerProcess>::get()->initWithoutIter();
+    mStationedArchiveLoader = new GameSystemStationedArchiveLoader();
+    mHomeButtonLayout = new HomeButtonLayout();
+    mHomeButtonStateNotifier = new HomeButtonStateNotifier();
+    mDimmingWatcher = new GameSystemDimmingWatcher();
+    setNerve(&NrvGameSystem::GameSystemInitializeAudio::sInstance);
+}
 
 bool GameSystem::isExecuteLoadSystemArchive() const {
     return mIsExecuteLoadSystemArchive;
