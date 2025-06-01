@@ -2,12 +2,17 @@
 
 #include <revolution.h>
 #include "JSystem/JGeometry.hpp"
+#include "revolution/types.h"
 
 class LiveActor;
 class ActorCameraInfo;
 class CameraTargetArg;
 class NameObj;
 class JMapInfoIter;
+
+namespace {
+    void calcNormalizedScreenPosToScreenPos(TVec3f *, const TVec3f &);
+};
 
 namespace MR {
     const TVec3f getCamPos();
@@ -20,6 +25,7 @@ namespace MR {
 
     void cleanEventCameraTarget_temporally();
 
+    const TPos3f* getCameraProjectionMtx();
     const MtxPtr getCameraViewMtx();
     const MtxPtr getMirrorCameraViewMtx();
     TPos3f *getCameraInvViewMtx();
@@ -66,8 +72,12 @@ namespace MR {
     void setProgrammableCameraParamFovy(const char *, f32);
 
     bool calcScreenPosition(TVec2f *, const TVec3f &);
-
     bool calcScreenPosition(TVec3f *, const TVec3f &);
+    bool calcNormalizedScreenPosition(TVec3f *, const TVec3f &);
+    bool calcNormalizedScreenPositionFromView(TVec3f *, const TVec3f &);
+    bool calcWorldPositionFromScreen(TVec3f *, const TVec2f &, f32);
+    bool calcWorldRayDirectionFromScreen(TVec3f *, const TVec2f &);
+
 
     void declareEventCameraAnim(const ActorCameraInfo *, const char *, void *);
 

@@ -4,8 +4,69 @@
 #include "Game/Camera/CameraDirector.hpp"
 #include "Game/Camera/CameraParamChunk.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
+#include "Game/Util/CameraUtil.hpp"
+#include "JSystem/J3DGraphBase/J3DSys.hpp"
+#include "revolution/gx/GXEnum.h"
+#include "revolution/mtx.h"
 
 namespace MR {
+    bool calcScreenPosition(TVec2f *pResult, const TVec3f &rViewMtxMult) {
+        TVec3f normalizedScreenPos;
+        TVec3f screenPos;
+        TVec3f multedViewMtx;
+        getSceneObj<CameraContext*>(SceneObj_CameraContext)->getViewMtx()->mult(rViewMtxMult, multedViewMtx);
+        bool ret = calcNormalizedScreenPositionFromView(&normalizedScreenPos, multedViewMtx);
+        ::calcNormalizedScreenPosToScreenPos(&screenPos, normalizedScreenPos);
+        pResult->x = screenPos.x;
+        pResult->y = screenPos.y;
+        return ret;
+    }
+
+    bool calcScreenPosition(TVec3f *pResult, const TVec3f &rViewMtxMult) {
+        TVec3f normalizedScreenPos;
+        TVec3f multedViewMtx;
+        getSceneObj<CameraContext*>(SceneObj_CameraContext)->getViewMtx()->mult(rViewMtxMult, multedViewMtx);
+        bool ret = calcNormalizedScreenPositionFromView(&normalizedScreenPos, multedViewMtx);
+        ::calcNormalizedScreenPosToScreenPos(pResult, normalizedScreenPos);
+        return ret;
+    }
+
+    bool calcNormalizedScreenPosition(TVec3f *pResult, const TVec3f &rViewMtxMult) {
+        TVec3f multedViewMtx;
+        getSceneObj<CameraContext*>(SceneObj_CameraContext)->getViewMtx()->mult(rViewMtxMult, multedViewMtx);
+        return calcNormalizedScreenPositionFromView(pResult, multedViewMtx);
+    }
+
+    bool calcWorldRayDirectionFromScreen(TVec3f *pResult, const TVec2f &a2) {
+        bool ret = calcWorldPositionFromScreen(pResult, a2, -1.0f);
+        pResult->sub(getCamPos());
+        return ret;
+    }
+
+    void loadProjectionMtx() {
+        GXSetProjection(getSceneObj<CameraContext*>(SceneObj_CameraContext)->mProjection, (GXProjectionType)nullptr);
+    }
+
+    void loadViewMtx() {
+        PSMTXCopy((MtxPtr)getSceneObj<CameraContext*>(SceneObj_CameraContext)->getViewMtx(), j3dSys.mViewMtx);
+    }
+
+    const MtxPtr getCameraViewMtx() {
+        return (MtxPtr)getSceneObj<CameraContext*>(SceneObj_CameraContext)->getViewMtx();
+    }
+
+    TPos3f* getCameraInvViewMtx() {
+        return const_cast<TPos3f*>(getSceneObj<CameraContext*>(SceneObj_CameraContext)->getInvViewMtx());
+    }
+
+    const TPos3f* getCameraProjectionMtx() {
+        return &getSceneObj<CameraContext*>(SceneObj_CameraContext)->mProjection;
+    }
+
+    void setCameraViewMtx(const TPos3f &a1, bool a2, bool a3, const TVec3f &a4) {
+        getSceneObj<CameraContext*>(SceneObj_CameraContext)->setViewMtx(a1, a2, a3, a4);
+    }
+
     f32 getAspect() {
         return MR::getSceneObj<CameraContext*>(SceneObj_CameraContext)->getAspect();
     }
@@ -46,7 +107,7 @@ namespace MR {
         TVec3f dir;
         viewMtx.getXDir(dir);
         MR::normalizeOrZero(&dir);
-        return -dir;
+        return dir;
     }
 
     TVec3f getCamYdir() {
@@ -54,7 +115,7 @@ namespace MR {
         TVec3f dir;
         viewMtx.getYDir(dir);
         MR::normalizeOrZero(&dir);
-        return -dir;
+        return dir;
     }
 
     TVec3f getCamZdir() {

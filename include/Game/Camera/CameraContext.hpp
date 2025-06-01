@@ -12,7 +12,7 @@ public:
     const TPos3f *getViewMtx() const;
     const TPos3f *getInvViewMtx() const;
     f32 getAspect() const;
-    //setViewMtx(const TPos3f &, bool, bool, const TVec3f &);
+    void setViewMtx(const TPos3f &, bool, bool, const TVec3f &);
     void setNearZ(f32);
     void setFovy(f32);
     void setShakeOffset(f32, f32);
