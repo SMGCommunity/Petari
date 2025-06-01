@@ -21,8 +21,9 @@
 #include "Game/Util/MutexHolder.hpp"
 #include "Game/Util/SystemUtil.hpp"
 #include "Game/SingletonHolder.hpp"
-#include "JSystem/JKernel/JKRAram.hpp"
+#include <JSystem/JKernel/JKRAram.hpp>
 #include <nw4r/lyt/init.h>
+#include <revolution.h>
 
 void main(void) {
     __asm {
@@ -148,7 +149,13 @@ void GameSystem::exeNormal() {
     mStationedArchiveLoader->update();
 }
 
-// GameSystem::initGX()
+void GameSystem::initGX() {
+    if (!mFifoBase) {
+        mFifoBase = new (0x20) u8[GX_FIFO_SIZE];
+    }
+    GXInit(mFifoBase, GX_FIFO_SIZE);
+}
+
 // GameSystem::initAfterStationedResourceLoaded()
 
 void GameSystem::prepareReset() {

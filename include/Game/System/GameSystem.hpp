@@ -14,6 +14,8 @@ class HomeButtonLayout;
 class HomeButtonStateNotifier;
 class SystemWipeHolder;
 
+#define GX_FIFO_SIZE 0x80000
+
 #ifdef __MWERKS__
 void main(void);
 #endif
