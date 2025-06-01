@@ -71,14 +71,6 @@ void main(void) {
     }
 }
 
-namespace NrvGameSystem {
-    NEW_NERVE(GameSystemInitializeAudio, GameSystem, InitializeAudio);
-    NEW_NERVE(GameSystemInitializeLogoScene, GameSystem, InitializeLogoScene);
-    NEW_NERVE(GameSystemLoadStationedArchive, GameSystem, LoadStationedArchive);
-    NEW_NERVE(GameSystemWaitForReboot, GameSystem, WaitForReboot);
-    NEW_NERVE(GameSystemNormal, GameSystem, Normal);
-};
-
 GameSystem::GameSystem() :
     NerveExecutor("GameSystem"),
     mFifoBase(NULL),
@@ -136,16 +128,13 @@ void GameSystem::startToLoadSystemArchive() {
 }
 
 void GameSystem::exeInitializeAudio() {
-    // オーディオ初期化 ("Audio Initialization") in Shift-JIS encoding
-    static char key[] = "\x83\x49\x81\x5b\x83\x66\x83\x42\x83\x49\x8f\x89\x8a\xfa\x89\xbb";
-
     if (MR::isFirstStep(this)) {
-        MR::startFunctionAsyncExecute(MR::Functor_Inline<GameSystemObjHolder>(mObjHolder, 0), 0xe, key);
+        MR::startFunctionAsyncExecute(MR::Functor_Inline<GameSystemObjHolder>(mObjHolder, &GameSystemObjHolder::createAudioSystem), 0xe, INIT_AUDIO_KEY);
     }
     updateSceneController();
-    if (MR::isEndFunctionAsyncExecute(key) 
+    if (MR::isEndFunctionAsyncExecute(INIT_AUDIO_KEY) 
         && mObjHolder->mSysWrapper->isLoadDoneWaveDataAtSystemInit()) {
-        MR::waitForEndFunctionAsyncExecute(key);
+        MR::waitForEndFunctionAsyncExecute(INIT_AUDIO_KEY);
         setNerve(&NrvGameSystem::GameSystemInitializeLogoScene::sInstance);
     }
 }
