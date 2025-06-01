@@ -32,6 +32,14 @@
 #include <nw4r/lyt/init.h>
 #include <revolution.h>
 
+namespace NrvGameSystem {
+    NEW_NERVE(GameSystemInitializeAudio, GameSystem, InitializeAudio);
+    NEW_NERVE(GameSystemInitializeLogoScene, GameSystem, InitializeLogoScene);
+    NEW_NERVE(GameSystemLoadStationedArchive, GameSystem, LoadStationedArchive);
+    NEW_NERVE(GameSystemWaitForReboot, GameSystem, WaitForReboot);
+    NEW_NERVE(GameSystemNormal, GameSystem, Normal);
+};
+
 void main(void) {
     __asm {
         li r3, 4

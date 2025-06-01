@@ -64,11 +64,3 @@ public:
     /* 0x34 */ HomeButtonStateNotifier* mHomeButtonStateNotifier;
     /* 0x38 */ bool mIsExecuteLoadSystemArchive;
 };
-
-namespace NrvGameSystem {
-    NEW_NERVE(GameSystemInitializeAudio, GameSystem, InitializeAudio);
-    NEW_NERVE(GameSystemInitializeLogoScene, GameSystem, InitializeLogoScene);
-    NEW_NERVE(GameSystemLoadStationedArchive, GameSystem, LoadStationedArchive);
-    NEW_NERVE(GameSystemWaitForReboot, GameSystem, WaitForReboot);
-    NEW_NERVE(GameSystemNormal, GameSystem, Normal);
-};
