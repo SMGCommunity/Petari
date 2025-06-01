@@ -5,6 +5,7 @@ public:
     GameSystemFontHolder();
 
     void createFontFromEmbeddedData();
+    void createFontFromFile();
 
     u32 _0;
     u32 _4;

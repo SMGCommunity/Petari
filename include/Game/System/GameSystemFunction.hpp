@@ -10,6 +10,7 @@ public:
     static void setSceneNameObjHolderToNameObjRegister();
 
     static bool isOccurredSystemWarning();
+    static bool isResetProcessing();
 
     static void resetCurrentScenarioNo();
 

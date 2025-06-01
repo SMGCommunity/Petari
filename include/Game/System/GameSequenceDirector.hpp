@@ -4,6 +4,7 @@ class GameSequenceDirector {
 public:
     GameSequenceDirector();
 
+    void initAfterResourceLoaded();
     void update();
     void draw() const;
 

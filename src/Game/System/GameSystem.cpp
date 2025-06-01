@@ -2,6 +2,7 @@
 #include "Game/NameObj/NameObjRegister.hpp"
 #include "Game/Screen/HomeButtonLayout.hpp"
 #include "Game/Screen/SystemWipeHolder.hpp"
+#include "Game/System/AudSystemWrapper.hpp"
 #include "Game/System/DrawSyncManager.hpp"
 #include "Game/System/FileRipper.hpp"
 #include "Game/System/GameSequenceDirector.hpp"
@@ -23,6 +24,8 @@
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/MemoryUtil.hpp"
 #include "Game/Util/MutexHolder.hpp"
+#include "Game/Util/NerveUtil.hpp"
+#include "Game/Util/SequenceUtil.hpp"
 #include "Game/Util/SystemUtil.hpp"
 #include "Game/SingletonHolder.hpp"
 #include <JSystem/JKernel/JKRAram.hpp>
@@ -132,8 +135,32 @@ void GameSystem::startToLoadSystemArchive() {
     setNerve(&NrvGameSystem::GameSystemLoadStationedArchive::sInstance);
 }
 
-// GameSystem::exeInitializeAudio()
-// GameSystem::exeInitializeLogoScene()
+void GameSystem::exeInitializeAudio() {
+    // オーディオ初期化 ("Audio Initialization") in Shift-JIS encoding
+    static char key[] = "\x83\x49\x81\x5b\x83\x66\x83\x42\x83\x49\x8f\x89\x8a\xfa\x89\xbb";
+
+    if (MR::isFirstStep(this)) {
+        MR::startFunctionAsyncExecute(MR::Functor_Inline<GameSystemObjHolder>(mObjHolder, 0), 0xe, key);
+    }
+    updateSceneController();
+    if (MR::isEndFunctionAsyncExecute(key) 
+        && mObjHolder->mSysWrapper->isLoadDoneWaveDataAtSystemInit()) {
+        MR::waitForEndFunctionAsyncExecute(key);
+        setNerve(&NrvGameSystem::GameSystemInitializeLogoScene::sInstance);
+    }
+}
+
+void GameSystem::exeInitializeLogoScene() {
+    if (GameSystemFunction::isResetProcessing()) {
+        setNerve(&NrvGameSystem::GameSystemWaitForReboot::sInstance);
+    }
+    else{
+        if (MR::isFirstStep(this)) {
+            MR::requestChangeScene("Logo");
+        }
+        updateSceneController();
+    }
+}
 
 void GameSystem::exeLoadStationedArchive() {
     mStationedArchiveLoader->update();
@@ -160,7 +187,15 @@ void GameSystem::initGX() {
     GXInit(mFifoBase, GX_FIFO_SIZE);
 }
 
-// GameSystem::initAfterStationedResourceLoaded()
+void GameSystem::initAfterStationedResourceLoaded() {
+    mFontHolder->createFontFromFile();
+    mObjHolder->initAfterStationedResourceLoaded();
+    mHomeButtonLayout->initWithoutIter();
+    mErrorWatcher->initAfterResourceLoaded();
+    mSystemWipeHolder = MR::createSystemWipeHolder();
+    mSceneController->initAfterStationedResourceLoaded();
+    mSequenceDirector->initAfterResourceLoaded();
+}
 
 void GameSystem::prepareReset() {
     mStationedArchiveLoader->prepareReset();

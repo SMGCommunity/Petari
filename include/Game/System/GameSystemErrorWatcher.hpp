@@ -6,6 +6,7 @@ class GameSystemErrorWatcher : public NerveExecutor {
 public:
     GameSystemErrorWatcher();
 
+    void initAfterResourceLoaded();
     void movement();
     void draw() const;
     bool isWarning() const;

@@ -9,3 +9,7 @@ public:
 
     u8 _1C;
 };
+
+namespace MR {
+    SystemWipeHolder* createSystemWipeHolder();
+};
