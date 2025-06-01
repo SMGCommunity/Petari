@@ -22,12 +22,21 @@ namespace {
     }
 }
 
+bool MessageData::getMessageDirect(TalkMessageInfo* pMessageInfo, const char* pMessage) const {
+    s32 messageIndex = findMessageIndex(pMessage);
+    if (messageIndex >= 0 && messageIndex < mInfoBlock->mItemCount) {
+        getMessage(pMessageInfo, 0, messageIndex);
+        return true;
+    }
+    return false;
+}
+
 bool MessageData::getMessage(TalkMessageInfo* pMessageInfo, u16, u16 infoToolIndex) const {
     u8* pInfoTool = getMessageInfoTool(infoToolIndex);
-    pMessageInfo->_0 = mDataBlock + *reinterpret_cast<u32*>(pInfoTool) + 8;
+    pMessageInfo->_0 = reinterpret_cast<u8*>(mDataBlock + 1) + *reinterpret_cast<u32*>(pInfoTool);
     pMessageInfo->_4 = *reinterpret_cast<u16*>(pInfoTool + 4);
     pMessageInfo->_6 = *(pInfoTool + 6);
-    pMessageInfo->mCameraType = *(pInfoTool + 7);
+    pMessageInfo->mCameraType =*(pInfoTool + 7);
     pMessageInfo->mTalkType = *(pInfoTool + 8);
     pMessageInfo->_A = *(pInfoTool + 0xa);
     pMessageInfo->_B = *(pInfoTool + 0xb);
@@ -35,9 +44,58 @@ bool MessageData::getMessage(TalkMessageInfo* pMessageInfo, u16, u16 infoToolInd
     return true;
 }
 
+TalkNode* MessageData::findNode(const char* pMessage) const {
+    s32 messageIndex = findMessageIndex(pMessage);
+    
+    for (int i = 0; i < mFlowBlock->mNodeCount; i++) {
+        TalkNode* pNode = reinterpret_cast<TalkNode*>(mFlowBlock + 1) + i;
+        if (pNode->mNodeType == 1 && pNode->mIndex == messageIndex) {
+            return pNode;
+        }
+    }
+    return nullptr;
+}
+
+TalkNode* MessageData::getNode(u32 index) const {
+    return reinterpret_cast<TalkNode*>(mFlowBlock + 1) + index;
+}
+
+TalkNode* MessageData::getBranchNode(u32 index) const {
+    return reinterpret_cast<TalkNode*>(mFlowBlock + 1) + _14[index];
+}
+
+bool MessageData::isValidBranchNode(u32 index) const {
+    return _14[index] != 0xffff;
+}
+
 u8* MessageData::getMessageInfoTool(int index) const {
-    u16 entrySize = *reinterpret_cast<u16*>(mInfoBlock + 0xa);
-    return mInfoBlock + entrySize * index + 0x10;
+    return reinterpret_cast<u8*>(mInfoBlock + 1) + mInfoBlock->mItemSize * index;
+}
+
+MessageHolder::MessageHolder() {
+    mSystemMessage = nullptr;
+    mGameMessage = nullptr;
+    mSceneData = nullptr;
+}
+
+void MessageHolder::initSceneData() {
+    mSceneData = mGameMessage;
+}
+
+void MessageHolder::destroySceneData() {
+    mSceneData = nullptr;
+}
+
+void MessageSystem::getSystemMessageDirect(TalkMessageInfo* pMessageInfo, const char* pMessage) {
+    MR::getGameSystemObjHolder()->mMsgHolder->mSystemMessage->getMessageDirect(pMessageInfo, pMessage);
+}
+
+void MessageSystem::getGameMessageDirect(TalkMessageInfo* pMessageInfo, const char* pMessage) {
+    MR::getGameSystemObjHolder()->mMsgHolder->mGameMessage->getMessageDirect(pMessageInfo, pMessage);
+}
+
+void MessageSystem::getLayoutMessageDirect(TalkMessageInfo* pMessageInfo, const char* pMessage) {
+    MR::getGameSystemObjHolder()->mMsgHolder->mGameMessage->getMessageDirect(pMessageInfo, pMessage);
 }
 
 MessageData* MessageSystem::getSceneMessageData() {
@@ -45,17 +103,17 @@ MessageData* MessageSystem::getSceneMessageData() {
 }
 
 MessageData::MessageData(const char* pArchiveName) {
-    mIDTable = 0;
-    mInfoBlock = 0;
-    mDataBlock = 0;
+    mIDTable = nullptr;
+    mInfoBlock = nullptr;
+    mDataBlock = nullptr;
     _C = 0;
-    mFlowBlock = 0;
-    _14 = 0;
-    _18 = 0;
-    mFLI1Block = 0;
+    mFlowBlock = nullptr;
+    _14 = nullptr;
+    _18 = nullptr;
+    mFLI1Block = nullptr;
 
-    JKRArchive* pArchive = 0;
-    JKRHeap* pHeap = 0;
+    JKRArchive* pArchive = nullptr;
+    JKRHeap* pHeap = nullptr;
     MR::getMountedArchiveAndHeap(pArchiveName, &pArchive, &pHeap);
 
     u8* msgData = (u8*)pArchive->getResource("Message.bmg");
@@ -64,14 +122,14 @@ MessageData::MessageData(const char* pArchiveName) {
     mIDTable = new JMapInfo();
     mIDTable->attach(mapData);
 
-    mInfoBlock = getBlock(INF1_MAGIC, msgData);
-    mDataBlock = getBlock(DAT1_MAGIC, msgData);
-    mFlowBlock = getBlock(FLW1_MAGIC, msgData);
+    mInfoBlock = (MessageInfoBlock*)getBlock(INF1_MAGIC, msgData);
+    mDataBlock = (MessageDataBlock*)getBlock(DAT1_MAGIC, msgData);
+    mFlowBlock = (MessageFlowBlock*)getBlock(FLW1_MAGIC, msgData);
     if (mFlowBlock) {
-        _14 = mFlowBlock + *(u16*)(mFlowBlock + 8) * 8 + 0x10;
-        _18 = _14 + *(u16*)(mFlowBlock + 0xa) * 2;
+        _14 = reinterpret_cast<u16*>(reinterpret_cast<TalkNode*>(mFlowBlock + 1) + mFlowBlock->mNodeCount);
+        _18 = reinterpret_cast<u8*>(_14 + mFlowBlock->_A);
     }
-    mFLI1Block = getBlock(FLI1_MAGIC, msgData);
+    mFLI1Block = (MessageFLI1Block*)getBlock(FLI1_MAGIC, msgData);
 }
 
 inline JMapInfoIter end(const JMapInfo* pInfo) {
