@@ -16,6 +16,7 @@
 #include "Game/System/GameSystemStationedArchiveLoader.hpp"
 #include "Game/System/HeapMemoryWatcher.hpp"
 #include "Game/System/HomeButtonStateNotifier.hpp"
+#include "Game/System/MainLoopFramework.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/MemoryUtil.hpp"
 #include "Game/Util/MutexHolder.hpp"
@@ -163,7 +164,18 @@ void GameSystem::prepareReset() {
 }
 
 // GameSystem::isPreparedReset() const
-// GameSystem::frameLoop()
+
+void GameSystem::frameLoop() {
+    MainLoopFramework::get()->beginRender();
+    draw();
+    MainLoopFramework::get()->endRender();
+    update();
+    calcAnim();
+    mObjHolder->captureIfAllowForScreenPreserver();
+    MainLoopFramework::get()->endFrame();
+    MainLoopFramework::get()->waitForRetrace();
+}
+
 // GameSystem::draw()
 // GameSystem::update()
 // GameSystem::updateSceneController()
