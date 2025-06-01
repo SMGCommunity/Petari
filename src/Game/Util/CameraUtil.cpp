@@ -3,6 +3,7 @@
 #include "Game/Camera/CameraContext.hpp"
 #include "Game/Camera/CameraDirector.hpp"
 #include "Game/Camera/CameraParamChunk.hpp"
+#include "Game/LiveActor/MirrorCamera.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Util/CameraUtil.hpp"
 #include "JSystem/J3DGraphBase/J3DSys.hpp"
@@ -134,8 +135,13 @@ namespace MR {
         return MR::isExistSceneObj(SceneObj_MirrorCamera);
     }
 
-    // MR::getMirrorCameraViewMtx
-    // MR::getMirrorModelTexMtx
+    const MtxPtr getMirrorCameraViewMtx() {
+        return getMirrorCamera()->mViewMtx;
+    }
+
+    const MtxPtr getMirrorModelTexMtx() {
+        return getMirrorCamera()->mModelTexMtx;
+    }
 
     void completeCameraParameters() {
         MR::getCameraDirector()->closeCreatingCameraChunk();
@@ -157,6 +163,10 @@ namespace MR {
         MR::getCameraDirector()->endEvent(pInfo->mZoneID, pEventName, a3, a4);
     }
 
+    void endEventCameraAtLanding(const ActorCameraInfo *pInfo, const char *pName, s32 a3) {
+        getCameraDirector()->endEventAtLanding(pInfo->mZoneID, pName, a3);
+    }
+
     void declareGlobalEventCameraAbyss(const char *pEventName) {
         MR::getCameraDirector()->declareEvent(0, pEventName);
         CameraParamChunkEvent* chunk = MR::getCameraDirector()->getEventParameter(0, pEventName);
@@ -166,5 +176,13 @@ namespace MR {
             chunk->mGeneralParam->mNum1 = 1;
             chunk->_64 = true;
         }
+    }
+
+    bool isEventCameraActive() {
+        return getCameraDirector()->isEventCameraActive();
+    }
+
+    bool isEventCameraActive(const ActorCameraInfo *pInfo, const char *pName) {
+        return getCameraDirector()->isEventCameraActive(pInfo->mZoneID, pName);
     }
 };

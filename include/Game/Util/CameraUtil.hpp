@@ -28,6 +28,7 @@ namespace MR {
     const TPos3f* getCameraProjectionMtx();
     const MtxPtr getCameraViewMtx();
     const MtxPtr getMirrorCameraViewMtx();
+    const MtxPtr getMirrorModelTexMtx();
     TPos3f *getCameraInvViewMtx();
 
     void loadViewMtx();
@@ -55,6 +56,7 @@ namespace MR {
     void startCameraInterpolation(u32);
     void declareEventCamera(const ActorCameraInfo *, const char *);
     void endEventCamera(const ActorCameraInfo *,const char *, bool, s32);
+    void endEventCameraAtLanding(const ActorCameraInfo *, const char *, s32);
     void declareGlobalEventCameraAbyss(const char *);
     void declareGlobalEventCameraFixedThere(const char *, bool, f32);
     void declareGlobalEventCameraDead(const char *, f32, s32, s32);
