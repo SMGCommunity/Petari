@@ -122,14 +122,14 @@ MessageData::MessageData(const char* pArchiveName) {
     mIDTable = new JMapInfo();
     mIDTable->attach(mapData);
 
-    mInfoBlock = (MessageInfoBlock*)getBlock(INF1_MAGIC, msgData);
-    mDataBlock = (MessageDataBlock*)getBlock(DAT1_MAGIC, msgData);
-    mFlowBlock = (MessageFlowBlock*)getBlock(FLW1_MAGIC, msgData);
+    mInfoBlock = (MessageInfoBlock*)getBlock('INF1', msgData);
+    mDataBlock = (MessageDataBlock*)getBlock('DAT1', msgData);
+    mFlowBlock = (MessageFlowBlock*)getBlock('FLW1', msgData);
     if (mFlowBlock) {
         _14 = reinterpret_cast<u16*>(reinterpret_cast<TalkNode*>(mFlowBlock + 1) + mFlowBlock->mNodeCount);
         _18 = reinterpret_cast<u8*>(_14 + mFlowBlock->_A);
     }
-    mFLI1Block = (MessageFLI1Block*)getBlock(FLI1_MAGIC, msgData);
+    mFLI1Block = (MessageFLI1Block*)getBlock('FLI1', msgData);
 }
 
 inline JMapInfoIter end(const JMapInfo* pInfo) {

@@ -3,11 +3,6 @@
 #include "Game/Util.hpp"
 #include "Game/NPC/TalkNodeCtrl.hpp"
 
-#define INF1_MAGIC 0x494e4631
-#define DAT1_MAGIC 0x44415431
-#define FLW1_MAGIC 0x464c5731
-#define FLI1_MAGIC 0x464c4931
-
 class TalkNode;
 class TalkMessageInfo;
 
