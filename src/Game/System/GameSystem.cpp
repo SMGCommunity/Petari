@@ -166,7 +166,17 @@ void GameSystem::prepareReset() {
     mStationedArchiveLoader->prepareReset();
 }
 
-// GameSystem::isPreparedReset() const
+inline bool isSystemWaitForReboot(const GameSystem* pGameSys) {
+    return pGameSys->isNerve(&NrvGameSystem::GameSystemWaitForReboot::sInstance);
+}
+
+inline bool isSystemNormal(const GameSystem* pGameSys) {
+    return pGameSys->isNerve(&NrvGameSystem::GameSystemNormal::sInstance);
+}
+
+bool GameSystem::isPreparedReset() const {
+    return isSystemWaitForReboot(this) || isSystemNormal(this) || mStationedArchiveLoader->isPreparedReset();
+}
 
 void GameSystem::frameLoop() {
     MainLoopFramework::get()->beginRender();
