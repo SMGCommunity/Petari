@@ -77,6 +77,7 @@ namespace MR {
 
     bool isMsgLockOnStarPieceShoot(u32);
 
+    bool isMsgStartPowerStarGet(u32);
     bool isMsgHitmarkEmit(u32);
     bool isMsgStarPieceAttack(u32);
     bool isMsgStarPieceReflect(u32);

@@ -236,7 +236,7 @@ namespace JGeometry {
             return ret;
         }
         
-        TVec3 operator-(const TVec3 &op) const NO_INLINE {
+        TVec3 operator-(const TVec3 &op) const {
             TVec3 ret(*this);
             JMathInlineVEC::PSVECSubtract(&ret, &op, &ret);
             return ret;
