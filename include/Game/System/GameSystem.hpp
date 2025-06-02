@@ -16,8 +16,7 @@ class SystemWipeHolder;
 
 #define GX_FIFO_SIZE 0x80000
 
-// オーディオ初期化 ("Audio Initialization") in Shift-JIS encoding
-#define INIT_AUDIO_KEY "\x83\x49\x81\x5b\x83\x66\x83\x42\x83\x49\x8f\x89\x8a\xfa\x89\xbb"
+#define INIT_AUDIO_KEY "オーディオ初期化" // "Audio Initialization"
 
 #ifdef __MWERKS__
 void main(void);
