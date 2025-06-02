@@ -48,10 +48,3 @@ public:
     J2DGrafBlend _B3;
     J2DGrafBlend _B6;
 };
-
-class J2DOrthoGraph : public J2DGrafContext {
-public:
-    TBox2f _BC;
-    f32 mNear;          // 0xCC
-    f32 mFar;           // 0xD0
-};

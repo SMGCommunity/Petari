@@ -16,7 +16,7 @@ void GameSystemFrameControl::setMovement60fps() {
     else {
         MainLoopFramework* pFramework = MainLoopFramework::get();
 
-        pFramework->_10 = 1;
-        pFramework->_14 = 0;
+        pFramework->mRetraceCount = 1;
+        pFramework->mTickDuration = 0;
     }
 }

@@ -11,7 +11,12 @@ public:
 
     static JUTVideo* createManager(const _GXRenderModeObj *);
 
-    _GXRenderModeObj* mRenderModeObj;   // 0x4
+    static void drawDoneStart();
+    static void dummyNoDrawWait();
+
+    void waitRetraceIfNeed();
+
+    GXRenderModeObj* mRenderModeObj;   // 0x4
     u32 _8;
     u32 mRetraceCount;                  // 0xC
     u32 _10;
@@ -30,4 +35,5 @@ public:
     OSMessageQueue mMessageQueue;       // 0x38
 
     static JUTVideo* sManager;
+    static OSTick sVideoLastTick;
 };
