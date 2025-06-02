@@ -20,6 +20,6 @@ class FireMarioBall : public LiveActor {
         HitSensor* isBindedAny() const;
         bool tryToKill();
 
-        u32 _8C; // 99% unsure
+        u32 _8C;
         u16 _90;
 };
