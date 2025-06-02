@@ -144,7 +144,7 @@ void TicoRail::exeStop() {
 
 void TicoRail::exeTalkStart() {
     TVec3f diff;
-    JMathInlineVEC::PSVECSubtract(&_98->mPosition, &mPosition, &diff);
+    JMathInlineVEC::PSVECSubtract(&mPosition, &_98->mPosition, &diff);
     MR::normalize(&diff);
 
     if (MR::isFirstStep(this)) {
