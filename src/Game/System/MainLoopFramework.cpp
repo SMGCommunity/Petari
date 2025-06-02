@@ -5,6 +5,7 @@
 #include <JSystem/J2DGraph/J2DOrthoGraph.hpp>
 #include <JSystem/JUtility/JUTAssert.hpp>
 #include <JSystem/JUtility/JUTConsole.hpp>
+#include <JSystem/JUtility/JUTDirectPrint.hpp>
 #include <JSystem/JUtility/JUTVideo.hpp>
 #include <JSystem/JUtility/JUTXfb.hpp>
 #include <runtime.h>
@@ -72,7 +73,14 @@ namespace {
     }
 }
 
-void callDirectDraw();
+void callDirectDraw() {
+    u16 efbHeight, fbWidth;
+    fbWidth = JUTVideo::sManager->mRenderModeObj->fbWidth;
+    efbHeight = JUTVideo::sManager->mRenderModeObj->efbHeight;
+    void* xfb = JUTXfb::sManager->getDrawingXfb();
+    JUTDirectPrint::sDirectPrint->changeFrameBuffer(xfb, fbWidth, efbHeight);
+    JUTAssertion::flushMessage();
+}
 
 void MainLoopFramework::prepareCopyDisp() {
     u16 fbWidth = JUTVideo::sManager->mRenderModeObj->fbWidth;
@@ -210,7 +218,7 @@ void MainLoopFramework::beginRender() {
         }
     }
 
-    if ((_34 = ++_30 > _2C)) {
+    if ((_34 = ++_30 >= _2C)) {
         _30 = 0;
     }
     if (_34) {
@@ -261,4 +269,46 @@ void MainLoopFramework::endFrame() {
         }
         VIGetRetraceCount();
     }
+}
+
+void MainLoopFramework::waitBlanking(int tickCount) {
+    while (tickCount-- > 0) {
+        waitForTick(mTickDuration, mRetraceCount);
+    }
+}
+
+void MainLoopFramework::setTickRateFromFrame(u16 frame) {
+    mTickDuration = frameToTick(frame);
+    mRetraceCount = 0;
+}
+
+void MainLoopFramework::clearEfb(GXColor color) {
+    u16 fbWidth = JUTVideo::sManager->mRenderModeObj->fbWidth;
+    u16 efbHeight = JUTVideo::sManager->mRenderModeObj->efbHeight;
+    clearEfb(0, 0, fbWidth, efbHeight, color);
+}
+
+// void MainLoopFramework::clearEfb(int, int, int, int, GXColor color) {
+// }
+
+void MainLoopFramework::calcCombinationRatio() {
+    s32 videoInterval = JUTVideo::sVideoInterval;
+    s32 var1 = videoInterval;
+    while (var1 < 2 * _24) {
+        var1 += videoInterval;
+    }
+    s32 var2 = var1 - 2 * _24 - _28;
+    if (var2 < 0) {
+        var2 += videoInterval;
+    }
+
+    mCombinationRatio = (f32)var2 / (u32)_24;
+    if (mCombinationRatio > 1f) {
+        mCombinationRatio = 1f;
+    }
+}
+
+u32 MainLoopFramework::frameToTick(f32 frame) {
+    s32 tick = (s32)((OS_BUS_CLOCK / 4) * frame / 59.94) - 100;
+    return (tick < 0) ? 0 : tick;
 }

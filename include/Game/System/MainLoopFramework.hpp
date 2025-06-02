@@ -23,11 +23,12 @@ public:
     void beginRender();
     void endRender();
     void endFrame();
-
+    void waitBlanking(int);
     void setTickRateFromFrame(u16);
     void clearEfb(GXColor);
-
+    void clearEfb(int, int, int, int, GXColor);
     void calcCombinationRatio();
+    u32 frameToTick(f32);
 
     static MainLoopFramework* get() {
         return MainLoopFramework::sManager;
@@ -44,10 +45,10 @@ public:
     u8 _19;
     u8 _1A;
     u8 _1B;
-    f32 _1C;
+    /* 0x1C */ f32 mCombinationRatio;
     /* 0x20 */ OSTick mTick;
-    u32 _24;
-    u32 _28;
+    s32 _24;
+    s32 _28;
     s32 _2C;
     s32 _30;
     u8 _34;

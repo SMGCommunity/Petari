@@ -36,4 +36,5 @@ public:
 
     static JUTVideo* sManager;
     static OSTick sVideoLastTick;
+    static s32 sVideoInterval;
 };

@@ -610,7 +610,7 @@ asm void __shr2u(void)
 	blr
 }
 
-asm void __cvt_dbl_usll(double)
+asm u64 __cvt_dbl_usll(double)
 {
 	nofralloc
 	stwu    r1,-16(r1)
