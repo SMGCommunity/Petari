@@ -86,6 +86,8 @@ namespace MR {
 
     void calcMtxFromGravityAndZAxis(TPos3f *, const LiveActor *, const TVec3f &, const TVec3f &);
 
+    void addVelocityJump(LiveActor *, f32);
+
     void setVelocityJump(LiveActor *, f32);
     void addVelocityToGravity(LiveActor *, f32);
 

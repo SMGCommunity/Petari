@@ -6174,7 +6174,7 @@ Game/NPC/LuigiNPC.cpp:
 	.ctors      start:0x8052EFA8 end:0x8052EFAC
 	.data       start:0x805B0670 end:0x805B09E0
 	.sbss       start:0x806B5D90 end:0x806B5DC0
-	.sdata2     start:0x806BEBC8 end:0x806BEC00
+	.sdata2     start:0x806BEBC8 end:0x806BEBF0
 
 Game/NPC/MiiDatabase.cpp:
 	.text       start:0x8027797C end:0x80277AA0
