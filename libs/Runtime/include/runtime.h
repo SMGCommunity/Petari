@@ -1,7 +1,5 @@
 #pragma once
 
-#include <types.h>
-
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -22,6 +20,7 @@ extern "C" {
 
 #define save_restore_reg r11
 
+typedef unsigned long long u64;
 
 asm void __div2u(void);
 asm void __div2i(void);
@@ -29,7 +28,7 @@ asm void __mod2u(void);
 asm void __mod2i(void);
 asm void __shl2i(void);
 asm void __shr2u(void);
-asm u64 __cvt_dbl_usll(double);
+u64 __cvt_dbl_usll(double);
 asm void __cvt_dbl_ull(void);
 
 void SAVE_FPR(14)(void);

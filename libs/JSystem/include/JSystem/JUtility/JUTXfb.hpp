@@ -2,11 +2,18 @@
 
 class JUTXfb {
 public:
-    void* getDrawingXfb() const;
+    void* getDrawingXfb() const {
+        if (_14 >= 0) {
+            return _0[_14];
+        }
+        return nullptr;
+    }
 
-    void* _0;
-    void* _4;
-    void* _8;
+    static JUTXfb* getManager() {
+        return sManager;
+    }
+
+    void* _0[3];
     u8 _C;
     u8 _D;
     u8 _E;
@@ -16,5 +23,7 @@ public:
     s16 _18;
     s32 _1C;
 
+
+private:
     static JUTXfb* sManager;
 };

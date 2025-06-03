@@ -77,8 +77,8 @@ void callDirectDraw() {
     u16 efbHeight, fbWidth;
     fbWidth = JUTVideo::sManager->mRenderModeObj->fbWidth;
     efbHeight = JUTVideo::sManager->mRenderModeObj->efbHeight;
-    void* xfb = JUTXfb::sManager->getDrawingXfb();
-    JUTDirectPrint::sDirectPrint->changeFrameBuffer(xfb, fbWidth, efbHeight);
+    void* pXfb = JUTXfb::getManager()->getDrawingXfb();
+    JUTDirectPrint::sDirectPrint->changeFrameBuffer(pXfb, fbWidth, efbHeight);
     JUTAssertion::flushMessage();
 }
 
@@ -108,26 +108,26 @@ void MainLoopFramework::prepareCopyDisp() {
 }
 
 void MainLoopFramework::drawendXfb_single() {
-    JUTXfb* xfb = JUTXfb::sManager;
-    if (xfb->_14 >= 0) {
+    JUTXfb* pXfbMgr = JUTXfb::getManager();
+    if (pXfbMgr->_14 >= 0) {
         prepareCopyDisp();
         waitDrawDoneAndSetAlarm();
         GXFlush();
-        xfb->_16 = xfb->_14;
+        pXfbMgr->_16 = pXfbMgr->_14;
     }
 }
 
 void MainLoopFramework::exchangeXfb_double() {
-    JUTXfb* xfb = JUTXfb::sManager;
-    if (xfb->_16 == xfb->_18) {
-        if (xfb->_14 >= 0) {
+    JUTXfb* pXfbMgr = JUTXfb::getManager();
+    if (pXfbMgr->_16 == pXfbMgr->_18) {
+        if (pXfbMgr->_14 >= 0) {
             if (_38) {
                 _38();
             }
             prepareCopyDisp();
-            GXCopyDisp(xfb->getDrawingXfb(), GX_TRUE);
+            GXCopyDisp(pXfbMgr->getDrawingXfb(), GX_TRUE);
             if (!_C) {
-                xfb->_16 = xfb->_14;
+                pXfbMgr->_16 = pXfbMgr->_14;
                 GXDrawDone();
                 JUTVideo::dummyNoDrawWait();
             }
@@ -138,14 +138,14 @@ void MainLoopFramework::exchangeXfb_double() {
                 callDirectDraw();
             }
         }
-        s16 temp = xfb->_14;
-        xfb->_16 = temp;
-        xfb->_14 = temp >= 0 ? temp ^ 1 : 0;
+        s16 temp = pXfbMgr->_14;
+        pXfbMgr->_16 = temp;
+        pXfbMgr->_14 = temp >= 0 ? temp ^ 1 : 0;
     }
     else {
         clearEfb(_0);
-        if (xfb->_14 < 0) {
-            xfb->_14 = 0;
+        if (pXfbMgr->_14 < 0) {
+            pXfbMgr->_14 = 0;
         }
     }
 }
@@ -178,7 +178,7 @@ void MainLoopFramework::endGX() {
         ortho.setPort();
         JUTConsoleManager::sManager->draw();
     }
-    if (_C || JUTXfb::sManager->_10 == 1) {
+    if (_C || JUTXfb::getManager()->_10 == 1) {
         JUTAssertion::flushMessage_dbPrint();
     }
     GXFlush();
@@ -197,7 +197,7 @@ void MainLoopFramework::beginRender() {
     _28 = currentTick - JUTVideo::sVideoLastTick;
 
     if (_34) {
-        JUTXfb* xfb = JUTXfb::sManager;
+        JUTXfb* xfb = JUTXfb::getManager();
         switch (xfb->_10) {
             case 1:
                 if (xfb->_1C != 2) {
@@ -230,7 +230,7 @@ void MainLoopFramework::beginRender() {
 void MainLoopFramework::endRender() {
     endGX();
     if (_34) {
-        JUTXfb* xfb = JUTXfb::sManager;
+        JUTXfb* xfb = JUTXfb::getManager();
         switch (xfb->_10) {
             case 1:
                 drawendXfb_single();
@@ -247,7 +247,7 @@ void MainLoopFramework::endRender() {
 
 void MainLoopFramework::endFrame() {
     if (_34) {
-        JUTXfb* xfb = JUTXfb::sManager;
+        JUTXfb* xfb = JUTXfb::getManager();
         switch (xfb->_10) {
             case 1:
                 break;
