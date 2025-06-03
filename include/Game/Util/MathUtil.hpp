@@ -87,8 +87,8 @@ namespace MR {
     u8 lerp(u8, u8, f32);
     _GXColor lerp(_GXColor, _GXColor, f32);
 
-    // MR::sortSmall(s32, f32 *, s32 *)
-    // MR::sortSmall(s32, u32 *, s32 *)
+    void sortSmall(s32, f32 *, s32 *);
+    void sortSmall(s32, u32 *, s32 *);
 
     f32 vecKillElement(const TVec3f &, const TVec3f &, TVec3f *);
     void vecScaleAdd(const TVec3f *, const TVec3f *, f32);
