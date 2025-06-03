@@ -1,4 +1,3 @@
-
 #include "Game/MapObj/PalmIsland.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
@@ -15,15 +14,16 @@
 namespace NrvPalmIsland {
     NEW_NERVE(PalmIslandNrvWait, PalmIsland, Wait);
     NEW_NERVE(PalmIslandNrvFloat, PalmIsland, Float);
-}; // namespace NrvPalmIsland
+}; 
 
 PalmIsland::PalmIsland(const char *pName) : LiveActor(pName) {
     _8C = 0;
-    _90.x = 0.0;
-    _90.y = 0.0;
-    _90.z = 0.0;
+    _90.x = 0.0f;
+    _90.y = 0.0f;
+    _90.z = 0.0f;
     _9C = 0;
 }
+
 PalmIsland::~PalmIsland() {}
 
 void PalmIsland::init(const JMapInfoIter &rIter) {
@@ -48,6 +48,7 @@ inline void PalmIsland::exeWait() {
         setNerve(&NrvPalmIsland::PalmIslandNrvFloat::sInstance);
     }
 }
+
 void PalmIsland::exeFloat() {
     if (MR::isFirstStep(this)) {
         _90.setPS2(mPosition);
@@ -56,13 +57,14 @@ void PalmIsland::exeFloat() {
     }
     f32 value = JMath::sSinCosTable.sinLapRad(90.0f + 1.44f * getNerveStep()) * 1.5f;
     bool temp = false;
-    if (value > 0) {
+
+    if (value > 0.0f) {
         temp = true;
     }
+
     if (temp != _9C) {
         MR::startSound(this, "SE_OJ_PALM_ISLAND_WAVE", -1, -1);
     }
     _9C = temp;
-
     mVelocity.scale(value, mGravity);
 }

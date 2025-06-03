@@ -236,7 +236,7 @@ namespace JGeometry {
             return ret;
         }
         
-        TVec3 operator-(const TVec3 &op) const NO_INLINE {
+        TVec3 operator-(const TVec3 &op) const {
             TVec3 ret(*this);
             JMathInlineVEC::PSVECSubtract(&ret, &op, &ret);
             return ret;
@@ -308,6 +308,11 @@ namespace JGeometry {
         }
 
         void sub(const TVec3 &, const TVec3 &);
+        
+        //Required for multiple objects to match?
+        inline void multPS(TVec3<f32>&a, TVec3<f32>&b) {
+            mulInternal(&b.x, &a.x, &this->x);
+        }
 
         void setTrans(MtxPtr mtx) {
             set((*mtx)[3], (*mtx)[7], (*mtx)[11]);

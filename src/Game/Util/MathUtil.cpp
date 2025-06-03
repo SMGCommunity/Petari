@@ -303,6 +303,56 @@ namespace MR {
     }
     #endif*/
 
+    //This function implements the selection sort sorting algorithm
+    // on an array of f32 where sortArray is the array to be sorted
+    // and indexArray holds the indices the elements had in the original array
+    void sortSmall(s32 length, f32 *sortArray, s32 *indexArray){
+        for(int i = 0; i < length; i++){
+            indexArray[i] = i;
+        }
+        for(int index = 0; index < length; index++){
+            f32 element = sortArray[index];
+            int indexOfSmallestElement = index;
+            for(int i = index+1; i < length; i++){
+                if(element > sortArray[i]){
+                    element = sortArray[i];
+                    indexOfSmallestElement = i;
+                }
+            }
+            s32 temp = indexArray[index];
+            f32 temp2 = sortArray[index];
+            indexArray[index] = indexArray[indexOfSmallestElement];
+            sortArray[index] = element;
+            indexArray[indexOfSmallestElement] = temp;
+            sortArray[indexOfSmallestElement] = temp2;
+        }
+    };
+
+    //This function implements the selection sort sorting algorithm
+    // on an array of u32 where sortArray is the array to be sorted
+    // and indexArray holds the indices the elements had in the original array
+    void sortSmall(s32 length, u32 *sortArray, s32 *indexArray){
+        for(int i = 0; i < length; i++){
+            indexArray[i] = i;
+        }
+        for(int index = 0; index < length; index++){
+            u32 element = sortArray[index];
+            int indexOfSmallestElement = index;
+            for(int i = index+1; i < length; i++){
+                if(element > sortArray[i]){
+                    element = sortArray[i];
+                    indexOfSmallestElement = i;
+                }
+            }
+            s32 temp = indexArray[index];
+            u32 temp2 = sortArray[index];
+            indexArray[index] = indexArray[indexOfSmallestElement];
+            sortArray[index] = element;
+            indexArray[indexOfSmallestElement] = temp;
+            sortArray[indexOfSmallestElement] = temp2;
+        }
+    };
+
     f32 vecKillElement(const TVec3f &a1, const TVec3f &a2, TVec3f *a3) {
         if (isNearZero(a2, 0.001f)) {
             *a3 = a1;

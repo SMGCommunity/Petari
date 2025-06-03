@@ -42,9 +42,11 @@ void ButlerStateStarPieceReaction::exeWait() {
         MR::limitedStarPieceHitSound();
         MR::startSound(mActor, "SE_SM_BUTLER_ABSORB", -1, -1);
     }
+
     if (_14) {
         MR::tryTalkForce(mTalkMessage); 
     }
+    
     if (MR::isBckStopped(mActor)) {
         kill();
     }

@@ -5,6 +5,7 @@
 extern "C" {
 #endif
 
+GXFifoObj* GXInit(void*, u32);
 void __GXInitGX(void);
 
 #ifdef __cplusplus

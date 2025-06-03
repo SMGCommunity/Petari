@@ -4,7 +4,10 @@
 
 class MainLoopFramework {
 public:
-
+    void waitForRetrace();
+    void beginRender();
+    void endRender();
+    void endFrame();
     void setTickRateFromFrame(u16);
 
     static MainLoopFramework* get() {
@@ -39,5 +42,6 @@ public:
     u16 _3C;
     u8 _3E;
 
+private:
     static MainLoopFramework* sManager;
 };

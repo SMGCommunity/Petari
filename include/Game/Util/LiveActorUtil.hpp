@@ -156,6 +156,9 @@ namespace MR {
 
     bool isNoCalcAnim(const LiveActor*);
 
+    void initFur(LiveActor *);
+    void initFurPlanet(LiveActor *);
+    void initFurPlayer(LiveActor *);
     void initCollisionParts(LiveActor*, const char*, HitSensor*, MtxPtr);
 
     void initCollisionPartsAutoEqualScale(LiveActor*, const char*, HitSensor*, MtxPtr);
@@ -301,6 +304,7 @@ namespace MR {
 
     void hideModelAndOnCalcAnimIfShown(LiveActor*);
 
+    u32 createIndirectPlanetModel(LiveActor*, MtxPtr);
     bool tryCreateMirrorActor(LiveActor*, const char*);
 
     CollisionParts* createCollisionPartsFromLiveActor(LiveActor*, const char*, HitSensor*, CollisionScaleType);
