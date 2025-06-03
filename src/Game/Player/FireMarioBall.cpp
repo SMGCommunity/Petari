@@ -29,7 +29,7 @@ namespace NrvFireMarioBall {
     NEW_NERVE(FireMarioBallNrvThrow, FireMarioBall, Throw);
 }
 
-FireMarioBall::~FireMarioBall() {};
+FireMarioBall::~FireMarioBall() {}
  
 FireMarioBall::FireMarioBall(const char* pName) : LiveActor(pName) {
     _8C = 0;
@@ -107,7 +107,8 @@ HitSensor* FireMarioBall::isBindedAny() const {
     else if (MR::isBindedRoof(this)) {
         return MR::getRoofSensor(this);
     }
-    else return nullptr;
+    else 
+        return nullptr;
 }
 
 bool FireMarioBall::tryToKill() {
