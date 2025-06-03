@@ -2809,7 +2809,7 @@ Game/Enemy/KoteBug.cpp:
 Game/Enemy/Kuribo.cpp:
 	.text       start:0x80117DA0 end:0x8011A16C
 	.ctors      start:0x8052EAEC end:0x8052EAF0
-	.data       start:0x80580AC8 end:0x80580EA8
+	.data       start:0x80580AC8 end:0x80580D30
 	.bss        start:0x8060A818 end:0x8060A898
 	.sbss       start:0x806B4360 end:0x806B4398
 	.sdata2     start:0x806BADB0 end:0x806BAE10
@@ -2817,7 +2817,7 @@ Game/Enemy/Kuribo.cpp:
 Game/Enemy/KuriboChief.cpp:
 	.text       start:0x8011A16C end:0x8011B5CC
 	.ctors      start:0x8052EAF0 end:0x8052EAF4
-	.data       start:0x80580EA8 end:0x80580FB0
+	.data       start:0x80580D30 end:0x80580FB0
 	.bss        start:0x8060A898 end:0x8060A960
 	.sbss       start:0x806B4398 end:0x806B43C0
 	.sdata2     start:0x806BAE10 end:0x806BAE88

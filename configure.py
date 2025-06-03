@@ -1394,7 +1394,7 @@ config.libs = [
             Object(NonMatching, "Game/MapObj/BrightObj.cpp"),
             Object(NonMatching, "Game/MapObj/BumpAppearPlanet.cpp"),
             Object(NonMatching, "Game/MapObj/Candlestand.cpp"),
-            Object(NonMatching, "Game/MapObj/CannonFortressBreakStep.cpp"),
+            Object(Matching, "Game/MapObj/CannonFortressBreakStep.cpp"),
             Object(Matching, "Game/MapObj/CapsuleCage.cpp"),
             Object(NonMatching, "Game/MapObj/ChipBase.cpp"),
             Object(NonMatching, "Game/MapObj/ChipCounter.cpp"),
