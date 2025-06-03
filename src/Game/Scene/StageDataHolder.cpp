@@ -7,7 +7,7 @@
 #include <cstdio>
 
 JMapInfoIter JMapInfo::end() const {
-    return JMapInfoIter(this, mData ? mData->mNumEntries : 0);
+    return JMapInfoIter(this, getNumEntries());
 }
 
 namespace {

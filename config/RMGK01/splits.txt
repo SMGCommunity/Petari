@@ -8461,18 +8461,19 @@ Game/System/LayoutHolder.cpp:
 Game/System/MainLoopFramework.cpp:
 	.text       start:0x803A0D94 end:0x803A2198
 	.ctors      start:0x8052F380 end:0x8052F384
-	.data       start:0x805DBA80 end:0x805DBBE0
+	.data       start:0x805DBA80 end:0x805DBB00
 	.bss        start:0x8060B348 end:0x8060B388
 	.sbss       start:0x806B6ED0 end:0x806B6EE0
 	.sdata2     start:0x806C1438 end:0x806C1448
 
 Game/System/MessageHolder.cpp:
 	.text       start:0x803A2198 end:0x803A27E4
+	.data       start:0x805DBB00 end:0x805DBB60
 
 Game/System/NANDErrorSequence.cpp:
 	.text       start:0x803A27E4 end:0x803A371C
 	.ctors      start:0x8052F384 end:0x8052F388
-	.data       start:0x805DBBE0 end:0x805DBCE0
+	.data       start:0x805DBB60 end:0x805DBCE0
 	.sbss       start:0x806B6EE0 end:0x806B6F28
 
 Game/System/NANDManager.cpp:
