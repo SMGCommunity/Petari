@@ -2152,7 +2152,7 @@ config.libs = [
             Object(Matching, "Game/System/FileLoaderThread.cpp"),
             Object(Matching, "Game/System/FileRipper.cpp"),
             Object(Matching, "Game/System/FunctionAsyncExecutor.cpp"),
-            Object(NonMatching, "Game/System/GameSystem.cpp"),
+            Object(Matching, "Game/System/GameSystem.cpp"),
             Object(Matching, "Game/System/GameSystemDimmingWatcher.cpp"),
             Object(NonMatching, "Game/System/GameSystemErrorWatcher.cpp"),
             Object(Matching, "Game/System/GameSystemException.cpp"),
