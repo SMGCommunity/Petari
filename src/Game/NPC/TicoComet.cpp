@@ -237,10 +237,7 @@ void TicoComet::init(const JMapInfoIter &rIter) {
     MR::startBrk(this, "Normal");
     MR::setBrkFrameAndStop(this, 0.0f);
     TicoEat::init(rIter);
-    _17C.mColor.r = 0xC8;
-    _17C.mColor.g = 0;
-    _17C.mColor.b = 0xFF;
-    _17C.mColor.a = 0xFF;
+    _17C.set(0xC8, 0, 0xFF, 0xFF);
 }
 
 bool TicoComet::branchFunc(u32 val) {

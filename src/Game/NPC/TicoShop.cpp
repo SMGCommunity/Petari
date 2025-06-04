@@ -72,10 +72,7 @@ void TicoShop::init(const JMapInfoIter &rIter) {
     MR::setBrkFrameAndStop(this, 0.0f);
     MR::setClippingFar200m(this);
     TicoEat::init(rIter);
-    _17C.mColor.r = 0;
-    _17C.mColor.g = 0xE6;
-    _17C.mColor.b = 0xFF;
-    _17C.mColor.a = 0xFF;
+    _17C.set(0, 0xE6, 0xFF, 0xFF);
 }
 
 bool TicoShop::branchFunc(u32) {

@@ -16,7 +16,7 @@ public:
 
 class MainLoopFramework {
 public:
-    MainLoopFramework(void* xfb1, void* xfb2, void* xfb3, bool useAlpha) {
+    MainLoopFramework(void* xfb1, void* xfb2, void* xfb3, bool useAlpha) : mClearColor(0xffffffff) {
         ctor_subroutine(useAlpha);
         JUTXfb::createManager(xfb1, xfb2, xfb3);
     }
