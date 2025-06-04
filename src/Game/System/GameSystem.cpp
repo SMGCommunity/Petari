@@ -211,14 +211,14 @@ bool GameSystem::isPreparedReset() const {
 }
 
 void GameSystem::frameLoop() {
-    MainLoopFramework::getManager()->beginRender();
+    MainLoopFramework::sManager->beginRender();
     draw();
-    MainLoopFramework::getManager()->endRender();
+    MainLoopFramework::sManager->endRender();
     update();
     calcAnim();
     mObjHolder->captureIfAllowForScreenPreserver();
-    MainLoopFramework::getManager()->endFrame();
-    MainLoopFramework::getManager()->waitForRetrace();
+    MainLoopFramework::sManager->endFrame();
+    MainLoopFramework::sManager->waitForRetrace();
 }
 
 void GameSystem::draw() {

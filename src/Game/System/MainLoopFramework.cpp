@@ -77,7 +77,7 @@ void MainLoopFramework::ctor_subroutine(bool param1) {
 }
 
 MainLoopFramework::~MainLoopFramework() {
-    if (JUTVideo::getManager()) {
+    if (JUTVideo::sManager) {
         waitBlanking(2);
     }
     JUTXfb::destroyManager();
@@ -87,7 +87,7 @@ MainLoopFramework* MainLoopFramework::createManager(
     const GXRenderModeObj* pRenderModeObj, void* param2, void* param3, void* param4, bool param5
 ) {
     if (pRenderModeObj) {
-        JUTVideo::getManager()->setRenderMode(pRenderModeObj);
+        JUTVideo::sManager->setRenderMode(pRenderModeObj);
     }
     if (!sManager) {
         sManager = new MainLoopFramework(param2, param3, param4, param5);
@@ -97,17 +97,17 @@ MainLoopFramework* MainLoopFramework::createManager(
 
 void callDirectDraw() {
     u16 efbHeight, fbWidth;
-    fbWidth = JUTVideo::getManager()->mRenderModeObj->fbWidth;
-    efbHeight = JUTVideo::getManager()->mRenderModeObj->efbHeight;
+    fbWidth = JUTVideo::sManager->mRenderModeObj->fbWidth;
+    efbHeight = JUTVideo::sManager->mRenderModeObj->efbHeight;
     void* pXfb = JUTXfb::sManager->getDrawingXfb();
     JUTDirectPrint::sDirectPrint->changeFrameBuffer(pXfb, fbWidth, efbHeight);
     JUTAssertion::flushMessage();
 }
 
 void MainLoopFramework::prepareCopyDisp() {
-    u16 fbWidth = JUTVideo::getManager()->mRenderModeObj->fbWidth;
-    u16 efbHeight = JUTVideo::getManager()->mRenderModeObj->efbHeight;
-    u16 xfbHeight = JUTVideo::getManager()->mRenderModeObj->xfbHeight;
+    u16 fbWidth = JUTVideo::sManager->mRenderModeObj->fbWidth;
+    u16 efbHeight = JUTVideo::sManager->mRenderModeObj->efbHeight;
+    u16 xfbHeight = JUTVideo::sManager->mRenderModeObj->xfbHeight;
     f32 yscale = GXGetYScaleFactor(efbHeight, xfbHeight);
     u16 nlines = GXGetNumXfbLines(efbHeight, yscale);
     GXSetCopyClear(_0, _4);
@@ -116,10 +116,10 @@ void MainLoopFramework::prepareCopyDisp() {
     GXSetDispCopyYScale(yscale);
     VIFlush();
     GXSetCopyFilter(
-        JUTVideo::getManager()->mRenderModeObj->aa,
-        JUTVideo::getManager()->mRenderModeObj->sample_pattern,
+        JUTVideo::sManager->mRenderModeObj->aa,
+        JUTVideo::sManager->mRenderModeObj->sample_pattern,
         _19,
-        JUTVideo::getManager()->mRenderModeObj->vfilter
+        JUTVideo::sManager->mRenderModeObj->vfilter
     );
     GXSetCopyClamp((GXFBClamp)_A);
     GXSetDispCopyGamma((GXGamma)_8);
@@ -208,7 +208,7 @@ void MainLoopFramework::copyXfb_triple() {
 void MainLoopFramework::preGX() {
     GXInvalidateTexAll();
     GXInvalidateVtxCache();
-    if (JUTVideo::getManager()->mRenderModeObj->aa) {
+    if (JUTVideo::sManager->mRenderModeObj->aa) {
         GXSetPixelFmt(GX_PF_RGB565_Z16, GX_ZC_LINEAR);
         GXSetDither(GX_TRUE);
     }
@@ -225,8 +225,8 @@ void MainLoopFramework::preGX() {
 void MainLoopFramework::endGX() {
     J2DOrthoGraph ortho(
         0f, 0f, 
-        JUTVideo::getManager()->mRenderModeObj->fbWidth, 
-        JUTVideo::getManager()->mRenderModeObj->efbHeight, 
+        JUTVideo::sManager->mRenderModeObj->fbWidth, 
+        JUTVideo::sManager->mRenderModeObj->efbHeight, 
         -1f, 1f
     );
     if (JUTConsoleManager::sManager) {
@@ -241,7 +241,7 @@ void MainLoopFramework::endGX() {
 
 void MainLoopFramework::waitForRetrace() {
     waitForTick(mTickDuration, mRetraceCount);
-    JUTVideo::getManager()->waitRetraceIfNeed();
+    JUTVideo::sManager->waitRetraceIfNeed();
 }
 
 void MainLoopFramework::beginRender() {
@@ -339,14 +339,14 @@ void MainLoopFramework::setTickRateFromFrame(u16 frame) {
 }
 
 void MainLoopFramework::clearEfb(GXColor color) {
-    u16 fbWidth = JUTVideo::getManager()->mRenderModeObj->fbWidth;
-    u16 efbHeight = JUTVideo::getManager()->mRenderModeObj->efbHeight;
+    u16 fbWidth = JUTVideo::sManager->mRenderModeObj->fbWidth;
+    u16 efbHeight = JUTVideo::sManager->mRenderModeObj->efbHeight;
     clearEfb(0, 0, fbWidth, efbHeight, color);
 }
 
 void MainLoopFramework::clearEfb(int param1, int param2, int param3, int param4, GXColor color) {
-    u16 fbWidth = JUTVideo::getManager()->mRenderModeObj->fbWidth;
-    u16 efbHeight = JUTVideo::getManager()->mRenderModeObj->efbHeight;
+    u16 fbWidth = JUTVideo::sManager->mRenderModeObj->fbWidth;
+    u16 efbHeight = JUTVideo::sManager->mRenderModeObj->efbHeight;
     Mtx44 proj;
     C_MTXOrtho(proj, 0f, efbHeight, 0f, fbWidth, 0f, 1f);
     GXSetProjection(proj, GX_ORTHOGRAPHIC);
@@ -473,7 +473,7 @@ namespace {
 
             u32 msg;
             do {
-                if (!OSReceiveMessage(&JUTVideo::getManager()->mMessageQueue, (OSMessage*)&msg, 1)) {
+                if (!OSReceiveMessage(&JUTVideo::sManager->mMessageQueue, (OSMessage*)&msg, 1)) {
                     msg = dummy;
                 }
             } while((s32)(msg - nextCount) < 0);

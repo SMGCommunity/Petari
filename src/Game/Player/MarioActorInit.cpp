@@ -16,10 +16,10 @@ void MarioActor::initMember()
     _1A8 = 0;
     _1AA = 0;
     _1AC = 10.0f;
-    _1B0.r = 0;
-    _1B0.g = 0;
-    _1B0.b = 0;
-    _1B0.a = 0;
+    _1B0.mColor.r = 0;
+    _1B0.mColor.g = 0;
+    _1B0.mColor.b = 0;
+    _1B0.mColor.a = 0;
     _1B4 = 0;
     _1B5 = 0;
     _1B8 = 0;
