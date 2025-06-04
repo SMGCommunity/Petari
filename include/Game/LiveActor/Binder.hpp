@@ -36,11 +36,11 @@ public:
     int _28;
     HitInfo *_2C;
     TVec3f _30;
-    HitInfo groundInfo;     // 0x3c
+    HitInfo mGroundInfo;     // 0x3c
     f32 _C8;
-    HitInfo wallInfo;       // 0xcc
+    HitInfo mWallInfo;       // 0xcc
     f32 _158;
-    HitInfo roofInfo;       // 0x15c
+    HitInfo mRoofInfo;       // 0x15c
     f32 _1E8;
 
     struct {

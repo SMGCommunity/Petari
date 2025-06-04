@@ -17,7 +17,6 @@ namespace {
 };
 
 namespace MR {
-
     void initAnimCamera(const LiveActor *, const ActorCameraInfo *, const char *);
 
     ActorCameraInfo* createActorCameraInfo(const JMapInfoIter &);
