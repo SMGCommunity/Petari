@@ -5,7 +5,7 @@
 #include <JSystem/JUtility/JUTXfb.hpp>
 #include <revolution.h>
 
-typedef void (*UnkCallback)();
+typedef void (*PreRenderCallback)();
 
 class MainLoopFrameworkAlarm : public OSAlarm {
 public:
@@ -52,29 +52,29 @@ public:
 
     static MainLoopFramework* createManager(const GXRenderModeObj*, void*, void*, void*, bool);
 
-    Color8 _0;
-    u32 _4;
-    u16 _8;
-    u16 _A;
-    u32 _C;
+    /* 0x0 */ Color8 mClearColor;
+    /* 0x4 */ u32 mClearZ;
+    /* 0x8 */ u16 mDispCopyGamma;
+    /* 0xA */ u16 mCopyClamp;
+    /* 0xC */ u32 mUseAsyncDrawDone;
     /* 0x10 */ u16 mRetraceCount;
     /* 0x14 */ u32 mTickDuration;
-    bool _18;
-    bool _19;
+    /* 0x18 */ bool mUseAlpha;
+    /* 0x19 */ bool mUseVFilter;
     u8 _1A;
     u8 _1B;
     /* 0x1C */ f32 mCombinationRatio;
     /* 0x20 */ OSTick mTick;
-    s32 _24;
-    s32 _28;
-    s32 _2C;
-    s32 _30;
-    u8 _34;
+    /* 0x24 */ s32 mLastFrameTime;
+    /* 0x28 */ s32 mLastVideoTickDelta;
+    /* 0x2C */ s32 mRenderInterval;
+    /* 0x30 */ s32 mRenderCounter;
+    /* 0x34 */ u8 mDoRenderFrame;
     u8 _35;
     u8 _36;
     u8 _37;
-    UnkCallback _38;
-    s16 _3C;
+    /* 0x38 */ PreRenderCallback mPreRenderCallback;
+    /* 0x3C */ s16 mSingleBufferIndex;
     u8 _3E;
 
     u32 _pad1;
