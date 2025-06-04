@@ -21,10 +21,10 @@ Mtx e_mtx = { { 1f, 0f, 0f, 0f },
               { 0f, 1f, 0f, 0f },
               { 0f, 0f, 1f, 0f } };
 
-u32 lbl_805DBAC0[] = { 0x00FF00FF, 0x00FF00FF, 0x00FF00FF, 0x00FF00FF,
-                       0x00FF00FF, 0x00FF00FF, 0x00FF00FF, 0x00FF00FF,
-                       0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF,
-                       0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF };
+u32 clearZTexData[] = { 0x00FF00FF, 0x00FF00FF, 0x00FF00FF, 0x00FF00FF,
+                        0x00FF00FF, 0x00FF00FF, 0x00FF00FF, 0x00FF00FF,
+                        0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF,
+                        0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF };
 
 namespace {
     s32 getDisplayingXfbIndex() NO_INLINE;
@@ -41,7 +41,7 @@ void MainLoopFramework::ctor_subroutine(bool useAlpha) {
     mClearZ = 0xffffff;
     mDispCopyGamma = GX_GM_1_0;
     mCopyClamp = GX_CLAMP_TOP | GX_CLAMP_BOTTOM;
-    mUseAsyncDrawDone = 1;
+    _C = 1;
     mRetraceCount = 1;
     mTickDuration = 0;
     mUseAlpha = useAlpha;
@@ -54,7 +54,7 @@ void MainLoopFramework::ctor_subroutine(bool useAlpha) {
     _3E = 0;
     GXInitTexObj(
         &clear_z_tobj,
-        lbl_805DBAC0,
+        clearZTexData,
         4, 4,
         GX_TF_Z24X8,
         GX_REPEAT,
@@ -148,7 +148,7 @@ void MainLoopFramework::exchangeXfb_double() {
             }
             prepareCopyDisp();
             GXCopyDisp(pXfbMgr->getDrawingXfb(), GX_TRUE);
-            if (!mUseAsyncDrawDone) {
+            if (!_C) {
                 pXfbMgr->mLastDrawnXfbIndex = pXfbMgr->mDrawingXfbIndex;
                 GXDrawDone();
                 JUTVideo::dummyNoDrawWait();
@@ -156,7 +156,7 @@ void MainLoopFramework::exchangeXfb_double() {
             else {
                 JUTVideo::drawDoneStart();
             }
-            if (!mUseAsyncDrawDone) {
+            if (!_C) {
                 callDirectDraw();
             }
         }
@@ -447,25 +447,25 @@ void MainLoopFramework::setForOSResetSystem() {
 namespace {
     void waitForTick(u32 tickDuration, u16 retraceCount) {
         if (tickDuration) {
-            static s64 lbl_8060B380;
+            static s64 nextTime;
             static s8 timeInitialized;
             if (!timeInitialized) {
-                lbl_8060B380 = OSGetTime();
+                nextTime = OSGetTime();
                 timeInitialized = 1;
             }
             s64 currentTime = OSGetTime();
-            while (currentTime < lbl_8060B380) {
-                OSSleepTicks(lbl_8060B380 - currentTime);
+            while (currentTime < nextTime) {
+                OSSleepTicks(nextTime - currentTime);
                 currentTime = OSGetTime();
             }
-            lbl_8060B380 = currentTime + tickDuration;
+            nextTime = currentTime + tickDuration;
         }
         else {
             static u32 nextCount;
-            static s8 lbl_806B6EDC;
-            if (!lbl_806B6EDC) {
+            static s8 countInitialized;
+            if (!countInitialized) {
                 nextCount = VIGetRetraceCount();
-                lbl_806B6EDC = 1;
+                countInitialized = 1;
             }
 
             u32 count = retraceCount ? retraceCount : 1;
