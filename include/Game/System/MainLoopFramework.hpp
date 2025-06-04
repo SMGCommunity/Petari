@@ -16,9 +16,9 @@ public:
 
 class MainLoopFramework {
 public:
-    MainLoopFramework(void* param1, void* param2, void* param3, bool param4) {
-        ctor_subroutine(param4);
-        JUTXfb::createManager(param1, param2, param3);
+    MainLoopFramework(void* xfb1, void* xfb2, void* xfb3, bool useAlpha) {
+        ctor_subroutine(useAlpha);
+        JUTXfb::createManager(xfb1, xfb2, xfb3);
     }
 
     ~MainLoopFramework();

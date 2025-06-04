@@ -84,13 +84,13 @@ MainLoopFramework::~MainLoopFramework() {
 }
 
 MainLoopFramework* MainLoopFramework::createManager(
-    const GXRenderModeObj* pRenderModeObj, void* param2, void* param3, void* param4, bool param5
+    const GXRenderModeObj* pRenderModeObj, void* xfb1, void* xfb2, void* xfb3, bool useAlpha
 ) {
     if (pRenderModeObj) {
         JUTVideo::sManager->setRenderMode(pRenderModeObj);
     }
     if (!sManager) {
-        sManager = new MainLoopFramework(param2, param3, param4, param5);
+        sManager = new MainLoopFramework(xfb1, xfb2, xfb3, useAlpha);
     }
     return sManager;
 }
