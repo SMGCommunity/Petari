@@ -9,9 +9,16 @@ public:
         return nullptr;
     }
 
-    static JUTXfb* getManager() {
+    s16 getDisplayingXfbIndex() const NO_INLINE {
+        return _18;
+    }
+
+    static JUTXfb* getManager() NO_INLINE {
         return sManager;
     }
+
+    static JUTXfb* createManager(void*, void*, void*);
+    static void destroyManager();
 
     void* _0[3];
     u8 _C;
@@ -23,7 +30,5 @@ public:
     s16 _18;
     s32 _1C;
 
-
-private:
     static JUTXfb* sManager;
 };

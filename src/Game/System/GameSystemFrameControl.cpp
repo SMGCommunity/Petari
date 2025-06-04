@@ -11,11 +11,10 @@ void GameSystemFrameControl::setMovement60fps() {
     mIs60fps = true;
 
     if (VIGetTvFormat() == VI_PAL) {
-        MainLoopFramework::get()->setTickRateFromFrame(1);
+        MainLoopFramework::getManager()->setTickRateFromFrame(1);
     }
     else {
-        MainLoopFramework* pFramework = MainLoopFramework::get();
-
+        MainLoopFramework* pFramework = MainLoopFramework::getManager();
         pFramework->mRetraceCount = 1;
         pFramework->mTickDuration = 0;
     }

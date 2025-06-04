@@ -1,17 +1,29 @@
 #pragma once
 
 #include "Game/Util/BothDirList.hpp"
+#include "Game/Util/Color.hpp"
+#include <JSystem/JUtility/JUTXfb.hpp>
 #include <revolution.h>
 
 typedef void (*UnkCallback)();
 
-class MainLoopFrameworkAlarm {
+class MainLoopFrameworkAlarm : public OSAlarm {
 public:
-    static MR::BothDirPtrList sList;
+    u32 _dummy; // helps with waitDrawDoneAndSetAlarm stack frame size
+    
+    static MR::BothDirList<MainLoopFrameworkAlarm> sList;
 };
 
 class MainLoopFramework {
 public:
+    MainLoopFramework(void* param1, void* param2, void* param3, bool param4) {
+        ctor_subroutine(param4);
+        JUTXfb::createManager(param1, param2, param3);
+    }
+
+    ~MainLoopFramework();
+
+    void ctor_subroutine(bool);
     void prepareCopyDisp();
     void drawendXfb_single();
     void exchangeXfb_double();
@@ -29,20 +41,26 @@ public:
     void clearEfb(int, int, int, int, GXColor);
     void calcCombinationRatio();
     u32 frameToTick(f32);
+    void setForOSResetSystem();
 
-    static MainLoopFramework* get() {
-        return MainLoopFramework::sManager;
+    void setCombinationRatio(f32 ratio) {
+        mCombinationRatio = ratio;
+        if (mCombinationRatio > 1f) {
+            mCombinationRatio = 1f;
+        }
     }
 
-    GXColor _0;
+    static MainLoopFramework* createManager(const GXRenderModeObj*, void*, void*, void*, bool);
+
+    Color8 _0;
     u32 _4;
     u16 _8;
     u16 _A;
     u32 _C;
     /* 0x10 */ u16 mRetraceCount;
     /* 0x14 */ u32 mTickDuration;
-    u8 _18;
-    u8 _19;
+    bool _18;
+    bool _19;
     u8 _1A;
     u8 _1B;
     /* 0x1C */ f32 mCombinationRatio;
@@ -59,6 +77,8 @@ public:
     s16 _3C;
     u8 _3E;
 
-private:
+    u32 _pad1;
+    u32 _pad2;
+
     static MainLoopFramework* sManager;
 };
