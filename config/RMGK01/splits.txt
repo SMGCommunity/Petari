@@ -8757,11 +8757,12 @@ Game/Util/ActorSensorUtil.cpp:
 
 Game/Util/ActorShadowLocalUtil.cpp:
 	.text       start:0x803C5054 end:0x803C61B8
-	.data       start:0x805E08D0 end:0x805E0C20
+	.data       start:0x805E08D0 end:0x805E0AB0
 	.sdata2     start:0x806C1568 end:0x806C1578
 
 Game/Util/ActorShadowUtil.cpp:
 	.text       start:0x803C61B8 end:0x803C7A98
+	.data       start:0x805E0AB0 end:0x805E0BC0
 	.sdata2     start:0x806C1578 end:0x806C1588
 
 Game/Util/ActorStateUtil.cpp:
@@ -8781,6 +8782,7 @@ Game/Util/CameraUtil.cpp:
 
 Game/Util/DemoUtil.cpp:
 	.text       start:0x803CA518 end:0x803CBA6C
+	.data       start:0x805E0BC0 end:0x805E0C20
 	.sdata2     start:0x806C15C0 end:0x806C15C8
 
 Game/Util/DrawUtil.cpp:
