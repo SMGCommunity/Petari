@@ -736,15 +736,15 @@ namespace MR {
     }
 
     HitSensor *getGroundSensor(const LiveActor *pActor){
-        return pActor->mBinder->groundInfo.mParentTriangle.mSensor;
+        return pActor->mBinder->mGroundInfo.mParentTriangle.mSensor;
     }
 
     HitSensor *getRoofSensor(const LiveActor *pActor){
-        return pActor->mBinder->roofInfo.mParentTriangle.mSensor;
+        return pActor->mBinder->mRoofInfo.mParentTriangle.mSensor;
     }
 
     HitSensor *getWallSensor(const LiveActor *pActor){
-        return pActor->mBinder->wallInfo.mParentTriangle.mSensor;
+        return pActor->mBinder->mWallInfo.mParentTriangle.mSensor;
     }
 
     bool isMsgPlayerHitAll(u32 msg) {
