@@ -107,7 +107,7 @@ void CameraHeightArrange::updateHeightAndOffset() {
 
     _38 += -_38 * fVar1;
     _3C += -_3C * fVar1;
-    f32 dVar4 = globalAxis.dot(_14->_C);
+    f32 dVar4 = globalAxis.dot(_14->mWatchPos);
     _30 += fVar1 * (dVar4 - _30);
     dVar4 = globalAxis.dot(_14->_24);
     _34 += fVar1 * (dVar4 - _34);
