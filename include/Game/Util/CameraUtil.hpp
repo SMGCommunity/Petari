@@ -12,6 +12,7 @@ class JMapInfoIter;
 
 namespace {
     void calcNormalizedScreenPosToScreenPos(TVec3f *, const TVec3f &);
+    char* createRegisterName(const NameObj *, u32);
 };
 
 namespace MR {
@@ -36,6 +37,7 @@ namespace MR {
 
     void startEventCamera(const ActorCameraInfo *, const char *, const CameraTargetArg &, s32);
     void startEventCameraNoTarget(const ActorCameraInfo *, const char *, s32);
+    void startEventCameraTargetPlayer(const ActorCameraInfo *, const char *, long);
 
     f32 getAspect();
     f32 getNearZ();
@@ -65,6 +67,7 @@ namespace MR {
     void declareGlobalEventCamera(const char *);
     void declareEventCameraProgrammable(const char *);
     void setGameCameraTargetToPlayer();
+    void setGameCameraTarget(const CameraTargetArg &);
 
     void startGlobalEventCamera(const char *, const CameraTargetArg &, s32);
 
@@ -86,6 +89,8 @@ namespace MR {
     void pauseOnAnimCamera(const ActorCameraInfo *, const char *);
     void pauseOffAnimCamera(const ActorCameraInfo *, const char *);
 
+    void pauseOnCameraDirector();
+    void pauseOffCameraDirector();
 
     bool endActorCamera(const LiveActor *, const ActorCameraInfo *, bool, s32);
 
@@ -97,8 +102,10 @@ namespace MR {
 
     void drawInitFor2DModel();
 
+    void declareCameraRegisterMtx(const NameObj *, u32, MtxPtr);
     void declareCameraRegisterVec(const NameObj *, u32, TVec3f *);
 
+    void startStartPosCamera(bool);
     void endStartPosCamera();
     bool isStartPosCameraEnd();
     bool hasStartAnimCamera();
@@ -123,5 +130,31 @@ namespace MR {
 
     s32 getAnimCameraFrame(const ActorCameraInfo *, const char *);
 
+    u32 getEventCameraFrames(const ActorCameraInfo *, const char *);
+
     bool isAnimCameraEnd(const ActorCameraInfo *, const char *);
+
+    void startBlackHoleCamera(const char *, const TVec3f &, const TVec3f &);
+    void startSubjectiveCamera(s32);
+    void endSubjectiveCamera(s32);
+
+    bool isSubjectiveCameraOnForObjClipping();
+
+    bool isFirstPersonCamera();
+    bool isPossibleToShiftToFirstPersonCamera();
+
+    bool isCameraPossibleToRoundLeft();
+    bool isCameraPossibleToRoundRight();
+
+    bool isCameraControlNG();
+
+    void startTalkCamera(const TVec3f &, const TVec3f &, f32, f32, s32);
+    void endTalkCamera(bool, s32);
+
+    TVec3f* getCameraWatchPos();
+
+    void zoomInTargetGameCamera();
+    void zoomOutTargetGameCamera();
+
+    void changeEventCameraTarget(const ActorCameraInfo *, const char *, const CameraTargetArg &);
 };
