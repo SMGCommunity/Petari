@@ -1312,7 +1312,7 @@ namespace MR {
         moveAndTurnToTarget(pActor, *getPlayerPos(), a2, a3, a4, a5);
     }
 
-    void moveAndTurnAlongRail(LiveActor *pActor, f32 a2, f32 a3, f32 a4, f32 a5, f32 a6, bool *a7) {
+    /* void moveAndTurnAlongRail(LiveActor *pActor, f32 a2, f32 a3, f32 a4, f32 a5, f32 a6, bool *a7) {
         TQuat4f stack_20;
         TVec3f stack_14;
         makeQuatRotateDegree(&stack_20, pActor->mRotation);
@@ -1321,5 +1321,5 @@ namespace MR {
         calcMovingDirectionAlongRailH(pActor, &stack_8, pActor->mPosition, a2, a7);
         moveAndTurnToDirection(pActor, &stack_14, stack_8, a3, a4, a5, a6);
         ::calcRotate(pActor, stack_14, a6);
-    } 
+    } */
 };
