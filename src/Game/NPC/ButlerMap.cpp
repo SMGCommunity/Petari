@@ -20,7 +20,6 @@
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/TalkUtil.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
-#include "math_types.hpp"
 #include "revolution/types.h"
 #include <cstddef>
 
@@ -76,11 +75,13 @@ void ButlerMap::init(const JMapInfoIter &rIter) {
         MR::registerDemoActionFunctorDirect(this, func, demoNameMapLecture, "開始");
         MR::registerDemoActionFunctorDirect(this, MR::Functor(this, &ButlerMap::resetStatus), demoNameMapLecture, "バトラーリセット");
     }
+
     AstroDemoFunction::tryRegisterGrandStarReturnAndSimpleCast(this, rIter);
     AstroDemoFunction::tryRegisterDemo(this, "バトラーグリーンドライバ説明", rIter);
     if (_160) {
         SphereSelectorFunction::registerTarget(this);
     }
+    
     _15C = new ButlerStateStarPieceReaction(this, rIter, "AstroGalaxy_Butler000");
     _15C->init();
     if (MR::isButlerMapAppear()) {

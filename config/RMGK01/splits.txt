@@ -6130,14 +6130,14 @@ Game/NPC/CollectTico.cpp:
 Game/NPC/DemoRabbit.cpp:
 	.text       start:0x80270B94 end:0x80271DD0
 	.ctors      start:0x8052EF94 end:0x8052EF98
-	.data       start:0x805AF6C8 end:0x805AF9B8
+	.data       start:0x805AF6C8 end:0x805AF978
 	.sbss       start:0x806B5CC0 end:0x806B5CE8
 	.sdata2     start:0x806BEA70 end:0x806BEAD8
 
 Game/NPC/HoneyBee.cpp:
 	.text       start:0x80271DD0 end:0x80272850
 	.ctors      start:0x8052EF98 end:0x8052EF9C
-	.data       start:0x805AF9B8 end:0x805AFBF0
+	.data       start:0x805AF978 end:0x805AFBF0
 	.sbss       start:0x806B5CE8 end:0x806B5D08
 	.sdata2     start:0x806BEAD8 end:0x806BEB00
 
