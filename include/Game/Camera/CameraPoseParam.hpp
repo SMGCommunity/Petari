@@ -10,7 +10,7 @@ public:
     void copyFrom(const CameraPoseParam &);
 
     TVec3f _0; 
-    TVec3f _C;
+    TVec3f mWatchPos;       // 0xC
     TVec3f _18;
     TVec3f _24;
     f32 _30; 

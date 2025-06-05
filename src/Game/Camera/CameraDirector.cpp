@@ -37,7 +37,7 @@ namespace {
 
 void CameraPoseParam::copyFrom(const CameraPoseParam &rOther) {
     _0.set<f32>(rOther._0); 
-    _C.set<f32>(rOther._C);
+    mWatchPos.set<f32>(rOther.mWatchPos);
     _18.set<f32>(rOther._18);
     _24.set<f32>(rOther._24);
     _30 = rOther._30; 
@@ -277,11 +277,11 @@ void CameraDirector::createViewMtx() {
 
     CameraPoseParam *poseParam = mPoseParam1;
     CameraTargetObj *target = _C;
-    TVec3f &vec = poseParam->_C;
+    TVec3f &rWatchPos = poseParam->mWatchPos;
 
     CameraMan *man = getCurrentCameraMan();
     f32 fovy = CameraLocalUtil::getFovy(man);
-    mViewInterpolator->updateCameraMtx(reinterpret_cast<MtxPtr>(&view), vec, target, fovy);
+    mViewInterpolator->updateCameraMtx(reinterpret_cast<MtxPtr>(&view), rWatchPos, target, fovy);
 }
 
 void CameraDirector::checkStartCondition() {
