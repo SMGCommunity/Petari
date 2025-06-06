@@ -8732,7 +8732,7 @@ Game/System/StarPieceAlmsStorage.cpp:
 Game/System/StorySequenceExecutor.cpp:
 	.text       start:0x803BB954 end:0x803BD404
 	.ctors      start:0x8052F3A0 end:0x8052F3A4
-	.rodata     start:0x8053D910 end:0x8053EB78
+	.rodata     start:0x8053D910 end:0x8053EB38
 	.data       start:0x805E00E0 end:0x805E07E8
 	.sbss       start:0x806B6FD8 end:0x806B7000
 
@@ -8788,6 +8788,7 @@ Game/Util/DemoUtil.cpp:
 Game/Util/DrawUtil.cpp:
 	.text       start:0x803CBA6C end:0x803CD0E0
 	.ctors      start:0x8052F3A8 end:0x8052F3AC
+	.rodata     start:0x8053EB38 end:0x8053EB78
 	.data       start:0x805E0C20 end:0x805E0FA8
 	.bss        start:0x8060B3C0 end:0x8060B3F0
 	.sdata      start:0x806B2610 end:0x806B2658
