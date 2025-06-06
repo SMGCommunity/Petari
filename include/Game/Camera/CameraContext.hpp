@@ -32,3 +32,7 @@ public:
     f32 mShakeOffsetX;      // 0xBC
     f32 mShakeOffsetY;      // 0xC0
 };
+
+namespace MR {
+    u16 getScreenHeight();
+};

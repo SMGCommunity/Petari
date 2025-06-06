@@ -53,4 +53,6 @@ public:
     Mtx33** mNormalMtx;             // 0x5C
     u32* mCurrentViewNo;            // 0x60
     u32 mBumpMtxOffset;             // 0x64
+
+    static u32 sOldVcdVatCmd;
 };
