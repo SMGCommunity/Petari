@@ -220,17 +220,17 @@ namespace MR {
         return pActor->mSensorKeeper->add(pSensorName,(u32)0x84,(u16)0,0.0f,pActor,zerovec);
     }
 
-    HitSensor* addBodyMessageSensorMapObj(LiveActor *pActor, const char *pSensorName){
+    HitSensor* addMessageSensorMapObj(LiveActor *pActor, const char *pSensorName){
         TVec3f zerovec = TVec3f(0.0f,0.0f,0.0f);
         return pActor->mSensorKeeper->add(pSensorName,(u32)0x46,(u16)0,0.0f,pActor,zerovec);
     }
 
-    HitSensor* addBodyMessageSensorMapObjMoveCollision(LiveActor *pActor, const char *pSensorName){
+    HitSensor* addMessageSensorMapObjMoveCollision(LiveActor *pActor, const char *pSensorName){
         TVec3f zerovec = TVec3f(0.0f,0.0f,0.0f);
         return pActor->mSensorKeeper->add(pSensorName,(u32)0x48,(u16)0,0.0f,pActor,zerovec);
     }
 
-    HitSensor* addBodyMessageSensorEnemy(LiveActor *pActor, const char *pSensorName){
+    HitSensor* addMessageSensorEnemy(LiveActor *pActor, const char *pSensorName){
         TVec3f zerovec = TVec3f(0.0f,0.0f,0.0f);
         return pActor->mSensorKeeper->add(pSensorName,(u32)0x14,(u16)0,0.0f,pActor,zerovec);
     }
@@ -303,11 +303,11 @@ namespace MR {
         }
     }
 
-    void validateHitSensors(LiveActor *pActor, const char *pSensorName) {
+    void validateHitSensor(LiveActor *pActor, const char *pSensorName) {
         pActor->mSensorKeeper->getSensor(pSensorName)->validate();
     }
 
-    void invalidateHitSensors(LiveActor *pActor, const char *pSensorName) {
+    void invalidateHitSensor(LiveActor *pActor, const char *pSensorName) {
         pActor->mSensorKeeper->getSensor(pSensorName)->invalidate();
     }
 
@@ -368,7 +368,7 @@ namespace MR {
         return pSensor->isType(0x16);
     }
 
-    bool isSensorNPC(const HitSensor *pSensor) {
+    bool isSensorNpc(const HitSensor *pSensor) {
         // this just returns pSensor->mSensorType == 0x5?
         if(0x4 < pSensor->mSensorType && pSensor->mSensorType < 0x6){
             return true;
