@@ -1,47 +1,84 @@
 #pragma once
 
+#include "Game/Util/BothDirList.hpp"
+#include "Game/Util/Color.hpp"
+#include <JSystem/JUtility/JUTXfb.hpp>
 #include <revolution.h>
+
+typedef void (*PreRenderCallback)();
+
+class MainLoopFrameworkAlarm : public OSAlarm {
+public:
+    u32 _dummy; // helps with waitDrawDoneAndSetAlarm stack frame size
+    
+    static MR::BothDirList<MainLoopFrameworkAlarm> sList;
+};
 
 class MainLoopFramework {
 public:
+    MainLoopFramework(void* xfb1, void* xfb2, void* xfb3, bool useAlpha) : mClearColor(0xffffffff) {
+        ctor_subroutine(useAlpha);
+        JUTXfb::createManager(xfb1, xfb2, xfb3);
+    }
+
+    ~MainLoopFramework();
+
+    void ctor_subroutine(bool);
+    void prepareCopyDisp();
+    void drawendXfb_single();
+    void exchangeXfb_double();
+    void exchangeXfb_triple();
+    void copyXfb_triple();
+    void preGX();
+    void endGX();
     void waitForRetrace();
     void beginRender();
     void endRender();
     void endFrame();
+    void waitBlanking(int);
     void setTickRateFromFrame(u16);
+    void clearEfb(GXColor);
+    void clearEfb(int, int, int, int, GXColor);
+    void calcCombinationRatio();
+    u32 frameToTick(f32);
+    void setForOSResetSystem();
 
-    static MainLoopFramework* get() {
-        return MainLoopFramework::sManager;
+    void setCombinationRatio(f32 ratio) {
+        mCombinationRatio = ratio;
+        if (mCombinationRatio > 1f) {
+            mCombinationRatio = 1f;
+        }
     }
 
-    u8 _0;
-    u8 _1;
-    u8 _2;
-    u8 _3;
-    u32 _4;
-    u16 _8;
-    u16 _A;
+    static MainLoopFramework* createManager(const GXRenderModeObj*, void*, void*, void*, bool);
+
+    /* 0x0 */ Color8 mClearColor;
+    /* 0x4 */ u32 mClearZ;
+    /* 0x8 */ u16 mDispCopyGamma;
+    /* 0xA */ u16 mCopyClamp;
     u32 _C;
-    u16 _10;
-    u32 _14;
-    u8 _18;
-    u8 _19;
+    /* 0x10 */ u16 mRetraceCount;
+    /* 0x14 */ u32 mTickDuration;
+    /* 0x18 */ bool mUseAlpha;
+    /* 0x19 */ bool mUseVFilter;
     u8 _1A;
     u8 _1B;
-    f32 _1C;
-    OSTick mTick;          // 0x20
-    u32 _24;
-    u32 _28;
-    u32 _2C;
-    u32 _30;
-    u8 _34;
+    /* 0x1C */ f32 mCombinationRatio;
+    /* 0x20 */ OSTick mTick;
+    /* 0x24 */ s32 mLastFrameTime;
+    /* 0x28 */ s32 mLastVideoTickDelta;
+    /* 0x2C */ s32 mRenderInterval;
+    /* 0x30 */ s32 mRenderCounter;
+    /* 0x34 */ u8 mDoRenderFrame;
     u8 _35;
     u8 _36;
     u8 _37;
-    u32 _38;
-    u16 _3C;
+    /* 0x38 */ PreRenderCallback mPreRenderCallback;
+    /* 0x3C */ s16 mSingleBufferIndex;
     u8 _3E;
 
-private:
+    u32 _pad1;
+    u32 _pad2;
+
     static MainLoopFramework* sManager;
 };

@@ -1,6 +1,6 @@
 #include "revolution/gx/GXCull.h"
 #include "revolution/gx/GXEnum.h"
-#include "revolution/gx/GXFrameBuffer.h"
+#include "revolution/gx/GXFrameBuf.h"
 #include "revolution/gx/GXGeometry.h"
 #include "revolution/gx/GXStruct.h"
 #include "revolution/gx/GXTexture.h"

@@ -3,7 +3,7 @@
 #include "revolution/gx/GXStruct.h"
 #include <revolution.h>
 #include <JSystem/JGeometry.hpp>
-#include <JSystem/J2DGraph/J2DGrafContext.hpp>
+#include <JSystem/J2DGraph/J2DOrthoGraph.hpp>
 
 class J3DModelData;
 class J3DModel;

@@ -56,6 +56,7 @@ void GXSetGPFifo(const GXFifoObj *);
 GXBool GXGetFifoWrap(const GXFifoObj* fifo);
 
 GXBreakPtCallback GXSetBreakPtCallback(GXBreakPtCallback);
+void GXGetGPStatus(GXBool*, GXBool*, GXBool*, GXBool*, GXBool*);
 
 #ifdef __cplusplus
 }

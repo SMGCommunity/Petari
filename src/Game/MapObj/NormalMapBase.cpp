@@ -235,10 +235,11 @@ void NormalMapBase::setTevForObject() const {
     GXSetIndTexCoordScale(GX_INDTEXSTAGE0, GX_ITS_1, GX_ITS_1);
     GXSetTevIndirect(GX_TEVSTAGE0, GX_INDTEXSTAGE0, GX_ITF_8, GX_ITB_STU, GX_ITM_0, GX_ITW_OFF, GX_ITW_OFF, GX_FALSE, GX_FALSE, GX_ITBA_OFF);
 
-    GXTevColorArg v3 = GX_CC_ONE;
-    GXTevColorArg v4 = GX_CC_RASC;
-    GXTevColorArg v5 = GX_CC_ONE;
-    GXTevColorArg v6 = GX_CC_RASC;
+    GXTevColorArg v3, v5, v4, v6;
+    v3 = GX_CC_ONE;
+    v4 = GX_CC_RASC;
+    v5 = GX_CC_ONE;
+    v6 = GX_CC_RASC;
 
     if ((mHardLightColorMask & 0x1) == 0) {
         v3 = GX_CC_ZERO;
@@ -284,8 +285,7 @@ void NormalMapBase::setTevForObject() const {
     GXSetTevOrder(GX_TEVSTAGE2, GX_TEXCOORD2, GX_TEXMAP2, GX_COLOR_NULL);
     GXSetTevColorIn(GX_TEVSTAGE2, GX_CC_C1, GX_CC_C2, GX_CC_TEXC, GX_CC_C0);
     GXSetTevColorOp(GX_TEVSTAGE2, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1, GX_TEVPREV);
-    Color8 color;
-    color.set(255, 255, 255, 0);
+    Color8 color(255, 255, 255, 0);
     GXSetTevKColor(GX_KCOLOR0, color);
     GXSetTevKColorSel(GX_TEVSTAGE3, GX_TEV_KCSEL_K0);
     GXSetTevOrder(GX_TEVSTAGE3, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR_NULL);

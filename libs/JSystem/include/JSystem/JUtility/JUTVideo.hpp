@@ -5,13 +5,20 @@
 
 class JUTVideo {
 public:
-    JUTVideo(const _GXRenderModeObj *);
+    JUTVideo(const GXRenderModeObj*);
 
     virtual ~JUTVideo();
 
-    static JUTVideo* createManager(const _GXRenderModeObj *);
+    static JUTVideo* createManager(const GXRenderModeObj*);
+    static void destroyManager();
 
-    _GXRenderModeObj* mRenderModeObj;   // 0x4
+    static void drawDoneStart();
+    static void dummyNoDrawWait();
+
+    void setRenderMode(const GXRenderModeObj*);
+    void waitRetraceIfNeed();
+
+    GXRenderModeObj* mRenderModeObj;   // 0x4
     u32 _8;
     u32 mRetraceCount;                  // 0xC
     u32 _10;
@@ -30,4 +37,6 @@ public:
     OSMessageQueue mMessageQueue;       // 0x38
 
     static JUTVideo* sManager;
+    static OSTick sVideoLastTick;
+    static s32 sVideoInterval;
 };

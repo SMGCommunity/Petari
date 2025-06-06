@@ -5,13 +5,13 @@
 class Color8 {
 public:
     Color8() {}
-    Color8(_GXColor);
+    
+    Color8(GXColor color) {
+        set(color);
+    }
 
-    Color8(u8 _r, u8 _g, u8 _b, u8 _a) NO_INLINE {
-        r = _r;
-        g = _g;
-        b = _b;
-        a = _a;
+    Color8(u8 r, u8 g, u8 b, u8 a) {
+        set(r, g, b, a);
     }
 
     Color8(u32 color) {
@@ -19,12 +19,12 @@ public:
     }
 
     inline operator GXColor() const {
-        GXColor color;
-        color.r = r;
-        color.g = g;
-        color.b = b;
-        color.a = a;
-        return color;
+        return mGXColor;
+    }
+
+    inline const Color8& operator=(const GXColor &other) {
+        mGXColor = other;
+        return *this;
     }
 
     inline const Color8& operator=(const Color8 &other) {
@@ -35,7 +35,19 @@ public:
         return *this;
     }
 
-    void set(u8 _r, u8 _g, u8 _b, u8 _a);
+    void set(u8 _r, u8 _g, u8 _b, u8 _a) {
+        r = _r;
+        g = _g;
+        b = _b;
+        a = _a;
+    }
+
+    void set(GXColor color) {
+        r = color.r;
+        g = color.g;
+        b = color.b;
+        a = color.a;
+    }
 
     union {
         struct {
@@ -45,6 +57,7 @@ public:
             u8 a;
         };
         u32 mColor;
+        GXColor mGXColor;
     };
 };
 

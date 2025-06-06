@@ -2,6 +2,7 @@
 #define OSTHREAD_H
 
 #include <revolution/os/OSContext.h>
+#include <revolution/os/OSTime.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -66,36 +67,28 @@ enum OS_THREAD_STATE {
     OS_THREAD_STATE_MORIBUND =  8
 };
 
+void __OSThreadInit(void);
 void OSInitThreadQueue(OSThreadQueue *);
 OSThread* OSGetCurrentThread(void);
 BOOL OSIsThreadSuspended(OSThread *);
 BOOL OSIsThreadTerminated(OSThread *);
+s32 OSDisableScheduler(void);
+s32 OSEnableScheduler(void);
 
+void OSYieldThread(void);
 BOOL OSCreateThread(OSThread *, void* (*func)(void*), void *, void *, u32, OSPriority, u16);
 void OSExitThread(void *);
 void OSCancelThread(OSThread *);
 BOOL OSJoinThread(OSThread *, void **);
 void OSDetachThread(OSThread *);
-
-void OSSleepThread(OSThreadQueue *);
-
-void OSDetatchThread(OSThread *);
 s32 OSResumeThread(OSThread *);
 s32 OSSuspendThread(OSThread *);
-
-void OSYieldThread(void);
-
+void OSSleepThread(OSThreadQueue *);
 void OSWakeupThread(OSThreadQueue *);
-
 BOOL OSSetThreadPriority(OSThread *, OSPriority);
 OSPriority OSGetThreadPriority(OSThread *);
 
-s32 OSDisableScheduler(void);
-s32 OSEnableScheduler(void);
-
-void OSClearStack(u8);
-
-void __OSThreadInit(void);
+void OSSleepTicks(OSTime);
 
 #ifdef __cplusplus
 }

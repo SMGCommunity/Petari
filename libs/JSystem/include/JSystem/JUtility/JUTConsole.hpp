@@ -68,4 +68,6 @@ public:
     ConsoleList mList;                  // 0x0
     JUTConsole* mActiveConsole;         // 0xC
     JUTConsole* mDirectConsole;         // 0x10
+
+    static JUTConsoleManager* sManager;
 };

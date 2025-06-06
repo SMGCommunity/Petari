@@ -20,7 +20,8 @@ void GXFlush(void);
 void GXPixModeSync(void);
 void GXDrawDone(void);
 void GXSetMisc(GXMiscToken, u32);
-
+void GXAbortFrame(void);
+void GXSetDrawDone(void);
 
 #ifdef __cplusplus
 }

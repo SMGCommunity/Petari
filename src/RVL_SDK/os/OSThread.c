@@ -4,6 +4,7 @@
 extern OSErrorHandler __OSErrorTable[];
 
 static void DefaultSwitchThreadCallback(OSThread *, OSThread *);
+static void OSClearStack(u8);
 
 #define OFFSET(n, a) (((u32) (n)) & ((a) - 1))
 #define TRUNC(n, a)  (((u32) (n)) & ~((a) - 1))

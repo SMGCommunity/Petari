@@ -11,7 +11,7 @@ extern "C" {
 #include "revolution/gx/GXDispList.h"
 #include "revolution/gx/GXEnum.h"
 #include "revolution/gx/GXFifo.h"
-#include "revolution/gx/GXFrameBuffer.h"
+#include "revolution/gx/GXFrameBuf.h"
 #include "revolution/gx/GXGeometry.h"
 #include "revolution/gx/GXGet.h"
 #include "revolution/gx/GXInit.h"
