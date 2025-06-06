@@ -1694,7 +1694,7 @@ config.libs = [
             Object(Matching, "Game/NPC/Peach.cpp"),
             Object(NonMatching, "Game/NPC/Penguin.cpp"),
             Object(NonMatching, "Game/NPC/PenguinCoach.cpp"),
-            Object(NonMatching, "Game/NPC/PenguinMaster.cpp"),
+            Object(Matching, "Game/NPC/PenguinMaster.cpp"),
             Object(NonMatching, "Game/NPC/PenguinRacer.cpp"),
             Object(NonMatching, "Game/NPC/PenguinRacerLeader.cpp"),
             Object(NonMatching, "Game/NPC/PenguinSkater.cpp"),
