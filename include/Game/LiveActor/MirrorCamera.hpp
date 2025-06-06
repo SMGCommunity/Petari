@@ -23,6 +23,8 @@ public:
     TVec3f _C;
     TVec3f _18;
     f32 _24;
+    TPos3f mViewMtx;        // 0x28
+    TPos3f mModelTexMtx;     // 0x58
 };
 
 namespace MR {

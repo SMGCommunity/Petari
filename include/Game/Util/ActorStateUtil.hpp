@@ -6,9 +6,13 @@
 class Nerve;
 
 namespace MR {
-    bool updateActorState(LiveActor *, ActorStateBaseInterface *);
-    bool updateActorStateAndNextNerve(LiveActor *, ActorStateBaseInterface *, const Nerve *);
+    void initActorState(NerveExecutor *, ActorStateBaseInterface *, const Nerve *, const char *);
+    void initActorStateKeeper(NerveExecutor *, s32);
 
-    bool updateActorStateAndNextNerve(NerveExecutor *, ActorStateBaseInterface *, const Nerve *);
+    bool updateActorState(LiveActor *, ActorStateBaseInterface *);
+    bool updateActorState(NerveExecutor *);
     bool updateActorState(NerveExecutor *, ActorStateBaseInterface *);
+    bool updateActorStateAndNextNerve(LiveActor *, ActorStateBaseInterface *, const Nerve *);
+    bool updateActorStateAndNextNerve(NerveExecutor *, const Nerve *);
+    bool updateActorStateAndNextNerve(NerveExecutor *, ActorStateBaseInterface *, const Nerve *);  
 };

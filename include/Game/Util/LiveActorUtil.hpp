@@ -385,4 +385,6 @@ namespace MR {
     f32 calcNerveValue(const LiveActor *, s32, s32, f32, f32);
 
     LiveActor* getPairedGroupMember(const LiveActor *);
+
+    TVec3f* getBindedFixReactionVector(const LiveActor *);
 };  // namespace MR

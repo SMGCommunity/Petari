@@ -253,7 +253,7 @@ void ShadowController::setProjectionFix(const TVec3f &a1, const TVec3f &a2, bool
     _48.set<f32>(a1);
     _54.set<f32>(a2);
     _63 = a3;
-    _10 = 0;
+    mProjectedSensor = 0;
 }
 
 void ShadowController::onCalcCollision() {

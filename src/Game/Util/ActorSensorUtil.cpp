@@ -1,11 +1,17 @@
+#include "Game/LiveActor/AllLiveActorGroup.hpp"
+#include "Game/LiveActor/Binder.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
+#include "Game/LiveActor/LiveActorGroupArray.hpp"
+#include "Game/LiveActor/HitSensorInfo.hpp"
 #include "Game/LiveActor/HitSensorKeeper.hpp"
 #include "Game/LiveActor/HitSensorInfo.hpp"
 #include "Game/LiveActor/Binder.hpp"
 #include "Game/LiveActor/AllLiveActorGroup.hpp"
 #include "Game/LiveActor/LiveActorGroupArray.hpp"
 #include "Game/Util.hpp"
+#include "Game/Util/EffectUtil.hpp"
 #include "JSystem/JMath/JMath.hpp"
+#include "revolution/mtx.h"
 
 namespace MR {
     HitSensor* addHitSensor(LiveActor *pActor, const char *pSensorName, u32 sensorType, u16 sensorGroupSize, f32 radius, const TVec3f &a6) {
@@ -251,14 +257,14 @@ namespace MR {
 
     HitSensor * getTaking(const LiveActor *pActor){
         if(pActor->mSensorKeeper){
-            return pActor->mSensorKeeper->_C;
+            return pActor->mSensorKeeper->mTaking;
         }
         return 0;
     }
 
     HitSensor * getTaken(const LiveActor *pActor){
         if(pActor->mSensorKeeper){
-            return pActor->mSensorKeeper->_10;
+            return pActor->mSensorKeeper->mTaken;
         }
         return 0;
     }
@@ -277,11 +283,11 @@ namespace MR {
 
     void setHitSensorApart(HitSensor *pSensor1, HitSensor *pSensor2){
         if((getTaking(pSensor1->mActor) == pSensor2) || (getTaken(pSensor2->mActor) == pSensor1)){
-            pSensor1->mActor->mSensorKeeper->_C = nullptr;
-            pSensor2->mActor->mSensorKeeper->_10 = nullptr;
+            pSensor1->mActor->mSensorKeeper->mTaking = nullptr;
+            pSensor2->mActor->mSensorKeeper->mTaken = nullptr;
         }else{
-            pSensor1->mActor->mSensorKeeper->_10 = nullptr;
-            pSensor2->mActor->mSensorKeeper->_C = nullptr;
+            pSensor1->mActor->mSensorKeeper->mTaken = nullptr;
+            pSensor2->mActor->mSensorKeeper->mTaken = nullptr;
         }
     }
 
@@ -420,6 +426,7 @@ namespace MR {
 
         return false;
     }
+    
 
     bool tryGetItem(HitSensor *pSender, HitSensor *pReceiver) {
         return pReceiver->receiveMessage(0x87, pSender);
@@ -728,18 +735,16 @@ namespace MR {
         return false;
     }
 
-    //These 3 functions appear to mention members of the Binder class
-    //that do not exist with how the class is mapped out currently.
     HitSensor *getGroundSensor(const LiveActor *pActor){
-        // return pActor->mBinder->_44
+        return pActor->mBinder->mGroundInfo.mParentTriangle.mSensor;
     }
 
     HitSensor *getRoofSensor(const LiveActor *pActor){
-        // return pActor->mBinder->_164
+        return pActor->mBinder->mRoofInfo.mParentTriangle.mSensor;
     }
 
     HitSensor *getWallSensor(const LiveActor *pActor){
-        // return pActor->mBinder->_d4
+        return pActor->mBinder->mWallInfo.mParentTriangle.mSensor;
     }
 
     bool isMsgPlayerHitAll(u32 msg) {

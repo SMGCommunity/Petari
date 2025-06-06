@@ -70,6 +70,7 @@ namespace MR {
     f32 calcDistanceXY(const TVec3f &, const TVec3f &);
 
     void rotateVecDegree(TVec3f *, const TVec3f &, f32);
+    void rotateVecRadian(TVec3f *, const TVec3f &, f32);
 
     bool isNearZero(f32, f32);
     bool isNearZero(const TVec3f &, f32);
@@ -121,6 +122,7 @@ namespace MR {
     void normalize(TPos3f *);
 
     f32 normalize(f32, f32, f32);
+    f32 normalizeAbs(f32, f32, f32);
 
     bool normalizeOrZero(TVec2f *);
     bool normalizeOrZero(TVec3f *);
@@ -146,6 +148,7 @@ namespace MR {
     void turnVecToVecCosOnPlane(TVec3f *, const TVec3f &, const TVec3f &, f32);
 
     void turnVecToVecDegree(TVec3f *, const TVec3f &, const TVec3f &, f32, const TVec3f &);
+    void turnVecToVecRadian(TVec3f *, const TVec3f &, const TVec3f &, f32, const TVec3f &);
 
     void turnVecToPlane(TVec3f *, const TVec3f &, const TVec3f &);
 
