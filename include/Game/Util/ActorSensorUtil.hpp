@@ -111,6 +111,7 @@ namespace MR {
     void validateHitSensors(LiveActor *);
     void invalidateHitSensors(LiveActor *);
 
+    void calcPosBetweenSensors(TVec3f *, const HitSensor *, const HitSensor *, f32);
     void calcSensorDirection(TVec3f *, const HitSensor *, const HitSensor *);
 
     void calcSensorDirectionNormalize(TVec3f *, const HitSensor *, const HitSensor *);
