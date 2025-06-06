@@ -8798,11 +8798,12 @@ Game/Util/DrawUtil.cpp:
 
 Game/Util/EffectUtil.cpp:
 	.text       start:0x803CD0E0 end:0x803CDA10
-	.data       start:0x805E0C48 end:0x805E0FA8
+	.data       start:0x805E0C48 end:0x805E0C58
 	.sdata2     start:0x806C15F8 end:0x806C1600
 
 Game/Util/EventUtil.cpp:
 	.text       start:0x803CDA10 end:0x803CF2A0
+	.data       start:0x805E0C58 end:0x805E0FA8
 
 Game/Util/FileUtil.cpp:
 	.text       start:0x803CF2A0 end:0x803CFE74
