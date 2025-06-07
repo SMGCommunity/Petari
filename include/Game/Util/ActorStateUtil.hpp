@@ -9,7 +9,6 @@ namespace MR {
     
     void initActorStateKeeper(NerveExecutor* nerveExecutor, s32 p1);
     void initActorState(NerveExecutor* nerveExecutor, ActorStateBaseInterface* actorStateBaseInterface, const Nerve* nerve, const char* a1);
-    bool updateActorState(LiveActor *, ActorStateBaseInterface *);
 
     bool updateActorStateAndNextNerve(LiveActor *, ActorStateBaseInterface *, const Nerve *);
     bool updateActorStateAndNextNerve(NerveExecutor *, ActorStateBaseInterface *, const Nerve *);
@@ -17,4 +16,5 @@ namespace MR {
 
     bool updateActorState(NerveExecutor *, ActorStateBaseInterface *);
     bool updateActorState(NerveExecutor* nerveExecutor);
+    bool updateActorState(LiveActor *, ActorStateBaseInterface *);
 };

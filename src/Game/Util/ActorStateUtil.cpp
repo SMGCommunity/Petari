@@ -83,3 +83,13 @@ bool MR::updateActorStateAndNextNerve(
     
     return false;
 }
+bool MR::updateActorStateAndNextNerve(NerveExecutor* nerveExecutor, const Nerve* nextNerve) {
+    bool stateUpdated = nerveExecutor->mSpine->mStateKeeper->updateCurrentState();
+    
+    if (stateUpdated) {
+        nerveExecutor->setNerve(nextNerve);
+        return true;
+    }
+    
+    return false;
+}
