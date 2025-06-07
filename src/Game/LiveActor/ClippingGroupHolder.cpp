@@ -73,7 +73,7 @@ void ClippingGroupHolder::movement() {
         }
         else {
             u8 var = group->_1C;
-            if (!var) {
+            if (var) {
                 group->endClippedAll();
             }
         }

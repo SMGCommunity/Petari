@@ -43,7 +43,14 @@ namespace JGeometry {
         void setRotate(const TVec3<T> &, f32);
         void rotate(TVec3f &rDest) const;
 
-        void slerp(const TQuat4<T> &, const TQuat4<T>, T);
+        void slerp(const TQuat4<T> &a1, const TQuat4<T> &a2, T a3) {
+            this->x = a1.x;
+            this->y = a1.y;
+            this->z = a1.z;
+            this->w = a1.w;
+            this->slerp(a2, a3);
+        }
+
         void slerp(const TQuat4<T> &, T);
         void transform(const TVec3<T> &, TVec3<T> &rDest);
         void transform(TVec3<T> &rDest);

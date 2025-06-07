@@ -7,6 +7,8 @@ typedef struct PTMF {
 	}	func_data;
 } PTMF;
 
+const PTMF __ptmf_null = { 0, 0, 0 };
+
 asm long __ptmf_test(register PTMF *ptmf) {
     nofralloc
     lwz		r5,PTMF.this_delta(r3)

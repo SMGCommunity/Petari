@@ -33,6 +33,8 @@ void GXInitTlutRegion(GXTlutRegion *, u32, GXTlutSize);
 GXTexRegionCallback  GXSetTexRegionCallback(GXTexRegionCallback);
 GXTlutRegionCallback GXSetTlutRegionCallback(GXTlutRegionCallback);
 
+void GXSetTexCoordScaleManually(GXTexCoordID coord, GXBool enable, u16 ss, u16 ts);
+
 #ifdef __cplusplus
 }
 #endif

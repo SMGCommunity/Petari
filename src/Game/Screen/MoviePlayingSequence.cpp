@@ -1,11 +1,20 @@
-#include "Game/Screen/MoviePlayingSequence.hpp"
 #include "Game/Demo/DemoPadRumbler.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Player/MarioAccess.hpp"
+#include "Game/Scene/SceneObjHolder.hpp"
+#include "Game/Screen/MoviePlayingSequence.hpp"
 #include "Game/Screen/MovieSubtitles.hpp"
 #include "Game/Screen/MovieSubtitlesDataTable.hpp"
-#include "Game/Player/MarioAccess.hpp"
-#include "Game/Util.hpp"
+#include "Game/Util/EventUtil.hpp"
 #include "Game/Util/GamePadUtil.hpp"
+#include "Game/Util/LayoutUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/ScreenUtil.hpp"
+#include "Game/Util/SequenceUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
+#include "Game/Util/StarPointerUtil.hpp"
+#include "Game/Util/StringUtil.hpp"
 
 namespace {
     enum WipeType {
@@ -27,7 +36,7 @@ namespace {
         { "/MovieData/EndingB.thp", nullptr, nullptr, nullptr, 0xF0, 0x3C, WipeType_OpenWipeFade, 0xB4, WipeType_ForceOpenWipeFade, -1, WipeType_OpenWipeFade, 1.0f }
     };
 
-    void openWipe(WipeType type, s32 time) NO_INLINE {
+    void openWipe(WipeType type, s32 time) {
         switch (type) {
             case WipeType_ForceOpenWipeFade:
                 MR::forceOpenWipeFade();
@@ -47,11 +56,11 @@ namespace {
         }
     }
 
-    void closeWipe(WipeType type, s32 time) NO_INLINE {
+    void closeWipe(WipeType type, s32 time) {
         switch (type) {
             case WipeType_ForceOpenWipeFade:
-            MR::forceCloseWipeFade();
-            break;
+                MR::forceCloseWipeFade();
+                break;
             case WipeType_OpenWipeFade:
                 MR::closeWipeFade(time);
                 break;
@@ -72,7 +81,7 @@ namespace {
             return pInfo->mMovieNameLuigi;
         }
         else {
-           return pInfo->mMovieName;
+            return pInfo->mMovieName;
         }
     }
 };
@@ -115,7 +124,7 @@ MoviePlayingSequence::MoviePlayingSequence(const char *pName, s32 movieType) :
     mSubtitles()
 {
     mInfo = &sInfoTable[movieType];
-    mPadRumbler = new DemoPadRumbler(MoviePlayingSequence::getMovieName((MovieType)movieType));
+    mPadRumbler = new DemoPadRumbler(getMovieName((MovieType)movieType));
     MR::createSceneObj(SceneObj_MoviePlayerSimple);
     MR::connectToSceneLayoutMovement(this);
     initNerve(&NrvMoviePlayingSequence::HostTypeWait::sInstance);
@@ -129,6 +138,7 @@ MoviePlayingSequence::MoviePlayingSequence(const char *pName, s32 movieType) :
             if (MovieSubtitlesUtil::isExistSubtitles(mInfo->mMovieName, i)) {
                 const MoviePlayingInfo* pInfo = mInfo;
                 MovieSubtitles* pSubtitles = new MovieSubtitles(MovieSubtitlesUtil::getSubtitlesMessageId(pInfo->mMovieName, i), MovieSubtitlesUtil::getSubtitlesAppearTime(pInfo->mMovieName, i));
+
                 mSubtitles.push_back(pSubtitles);
             }
         }
@@ -195,7 +205,7 @@ void MoviePlayingSequence::exePlayStart() {
 
 void MoviePlayingSequence::exePlay() {
     if (MR::isFirstStep(this)) {
-        ::openWipe((WipeType)mInfo->_18, mInfo->_1C);
+        openWipe((WipeType)mInfo->_18, mInfo->_1C);
     }
 
     if (MR::isStep(this, 3)) {
@@ -203,12 +213,14 @@ void MoviePlayingSequence::exePlay() {
     }
 
     tryStartSubtitles();
-    u32 cur = MR::getMovieCurrentFrame();
-    mPadRumbler->update(cur);
-    if (!trySkip()) {
-        if (!tryEnd()) {
-            return;
-        }
+    mPadRumbler->update(MR::getMovieCurrentFrame());
+
+    if (trySkip()) {
+        return;
+    }
+
+    if (tryEnd()) {
+        return;
     }
 }
 
@@ -230,7 +242,7 @@ bool MoviePlayingSequence::tryStartSubtitles() {
 bool MoviePlayingSequence::tryEnd() {
     if (mInfo->_24 == -1) {
         if (!MR::isActiveMoviePlayer()) {
-            ::closeWipe((WipeType)mInfo->_20, mInfo->_24);
+            closeWipe((WipeType)mInfo->_20, mInfo->_24);
             setNerve(&NrvMoviePlayingSequence::HostTypeEndWait::sInstance);
             return true;
             
@@ -278,7 +290,7 @@ bool MoviePlayingSequence::trySkip() {
 
 void MoviePlayingSequence::exeCloseWipeOnPlaying() {
     if (MR::isFirstStep(this)) {
-        ::closeWipe((WipeType)mInfo->_20, -1);
+        closeWipe((WipeType)mInfo->_20, -1);
     }
 
     if (!MR::isActiveMoviePlayer()) {
@@ -290,23 +302,22 @@ void MoviePlayingSequence::exeEndWait() {
     bool noWipe;
 
     if (MR::isStep(this, mInfo->_14)) {
-        const MoviePlayingInfo* info = mInfo;
-        if (MR::isEqualStringCase(info->mMovieName, "/MovieData/FinalBattle.thp")) {
-            MR::requestStartScenarioSelect(info->mGalaxyName);
+        const MoviePlayingInfo* pInfo = mInfo;
+
+        if (MR::isEqualStringCase(pInfo->mMovieName, "/MovieData/FinalBattle.thp")) {
+            MR::requestStartScenarioSelect(pInfo->mGalaxyName);
+            noWipe = true;
+        }
+        else if (pInfo->mGalaxyName != nullptr) {
+            MR::requestChangeStageInGameMoving(pInfo->mGalaxyName, 1);
             noWipe = true;
         }
         else {
-            if (info->mGalaxyName != nullptr) {
-                MR::requestChangeStageInGameMoving(info->mGalaxyName, 1);
-                noWipe = true;
-            }
-            else {
-                noWipe = false;
-            }
+            noWipe = false;
         }
 
         if (!noWipe) {
-            ::openWipe((WipeType)mInfo->_28, -1);
+            openWipe((WipeType)mInfo->_28, -1);
         }
 
         if (mInfo->mMusic) {
@@ -318,6 +329,7 @@ void MoviePlayingSequence::exeEndWait() {
         }
 
         MR::endStarPointerMode(this);
+
         if (MR::isEqualStringCase(mInfo->mMovieName, "/MovieData/PrologueA.thp")) {
             MarioAccess::endRemoteDemo(nullptr);
         }
@@ -331,10 +343,12 @@ void MoviePlayingSequence::exeWait() {
 }
 
 namespace {
-    MoviePlayingSequence* getMoviePlayingSequence(int idx) NO_INLINE {
-        MoviePlayingSequenceHolder* pHolder = MR::getSceneObj<MoviePlayingSequenceHolder*>(SceneObj_MoviePlayingSequenceHolder);
+    MoviePlayingSequenceHolder* getMoviePlayingSequenceHolder() {
+        return MR::getSceneObj<MoviePlayingSequenceHolder*>(SceneObj_MoviePlayingSequenceHolder);
+    }
 
-        return pHolder->mSequences[idx];
+    MoviePlayingSequence* getMoviePlayingSequence(int idx) {
+        return getMoviePlayingSequenceHolder()->mSequences[idx];
     }
 };
 
@@ -362,38 +376,35 @@ namespace MR {
     }
 
     void startMovie(int idx) {
-        return ::getMoviePlayingSequence(idx)->appear();
+        getMoviePlayingSequence(idx)->appear();
     }
 
     bool isEndMovie(int idx) {
-        return MR::isDead(::getMoviePlayingSequence(idx));
+        return MR::isDead(getMoviePlayingSequence(idx));
     }
 
     void startMovieEpilogueA() {
-        MoviePlayingSequenceHolder* pHolder = MR::getSceneObj<MoviePlayingSequenceHolder*>(SceneObj_MoviePlayingSequenceHolder);
-        pHolder->mSequences[3]->appear();
+        getMoviePlayingSequence(3)->appear();
     }
 
     void startMovieEndingA() {
-        MoviePlayingSequenceHolder* pHolder = MR::getSceneObj<MoviePlayingSequenceHolder*>(SceneObj_MoviePlayingSequenceHolder);
-        pHolder->mSequences[5]->appear();
+        getMoviePlayingSequence(5)->appear();
     }
 
     void startMovieEndingB() {
-        MoviePlayingSequenceHolder* pHolder = MR::getSceneObj<MoviePlayingSequenceHolder*>(SceneObj_MoviePlayingSequenceHolder);
-        pHolder->mSequences[6]->appear();
+        getMoviePlayingSequence(6)->appear();
     }
 
     bool isEndMovieEpilogueA() {
-        return MR::isDead(MR::getSceneObj<MoviePlayingSequenceHolder*>(SceneObj_MoviePlayingSequenceHolder)->mSequences[3]);
+        return MR::isDead(getMoviePlayingSequence(3));
     }
 
     bool isEndMovieEndingA() {
-        return MR::isDead(MR::getSceneObj<MoviePlayingSequenceHolder*>(SceneObj_MoviePlayingSequenceHolder)->mSequences[5]);
+        return MR::isDead(getMoviePlayingSequence(5));
     }
 
     bool isEndMovieEndingB() {
-        return MR::isDead(MR::getSceneObj<MoviePlayingSequenceHolder*>(SceneObj_MoviePlayingSequenceHolder)->mSequences[6]);
+        return MR::isDead(getMoviePlayingSequence(6));
     }
 
     bool isMoviePlayingOnSequence() {
@@ -401,8 +412,8 @@ namespace MR {
             return false;
         }
 
-        for (int i = 0; i < MR::getSceneObj<MoviePlayingSequenceHolder*>(SceneObj_MoviePlayingSequenceHolder)->mSequences.size(); i++) {
-            MoviePlayingSequence* pSequence = ::getMoviePlayingSequence(i);
+        for (int i = 0; i < getMoviePlayingSequenceHolder()->mSequences.size(); i++) {
+            MoviePlayingSequence* pSequence = getMoviePlayingSequence(i);
 
             if (pSequence != nullptr && !MR::isDead(pSequence)) {
                 return true;

@@ -1,5 +1,6 @@
-#include "Game/MapObj/AstroMapBoard.hpp"
 #include "Game/MapObj/AstroDemoFunction.hpp"
+#include "Game/MapObj/AstroMapBoard.hpp"
+#include "Game/Screen/GalaxyMapController.hpp"
 
 namespace {
     static const char* cDummyTexName = "MapDummy";

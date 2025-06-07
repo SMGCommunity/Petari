@@ -1,12 +1,12 @@
 #pragma once
 
-#include <revolution.h>
-
 class GameSystemFrameControl {
 public:
+    /// @brief Creates a new `GameSystemFrameControl`.
     GameSystemFrameControl();
 
     void setMovement60fps();
 
-    bool mIs60Fps;              //  0x00
+private:
+    /* 0x0 */ bool mIs60fps;
 };

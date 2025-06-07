@@ -1,45 +1,34 @@
-#include "Game/Scene/GameScene.hpp"
-#include "Game/LiveActor/AllLiveActorGroup.hpp"
 #include "Game/AudioLib/AudSceneMgr.hpp"
 #include "Game/AudioLib/AudWrap.hpp"
+#include "Game/LiveActor/AllLiveActorGroup.hpp"
 #include "Game/Map/LightFunction.hpp"
-#include "Game/MapObj/StarPieceDirector.hpp"
 #include "Game/Map/SleepControllerHolder.hpp"
-#include "Game/Screen/CometRetryButton.hpp"
-#include "Game/Scene/SceneFunction.hpp"
-#include "Game/Scene/SceneObjHolder.hpp"
-#include "Game/Scene/GameSceneFunction.hpp"
-#include "Game/Scene/GameSceneScenarioOpeningCameraState.hpp"
-#include "Game/Screen/GamePauseSequence.hpp"
-#include "Game/Screen/GameStageClearSequence.hpp"
-#include "Game/Scene/GameScenePauseControl.hpp"
-#include "Game/Scene/SceneExecutor.hpp"
-#include "Game/Scene/SceneNameObjMovementController.hpp"
-#include "Game/Screen/ScreenAlphaCapture.hpp"
-#include "Game/Screen/MoviePlayingSequence.hpp"
-#include "Game/Screen/OdhConverter.hpp"
-#include "Game/Screen/LensFlare.hpp"
-#include "Game/System/GalaxyMapController.hpp"
-#include "Game/System/GameSequenceFunction.hpp"
-#include "Game/Util.hpp"
-#include "Game/Util/Functor.hpp"
+#include "Game/MapObj/StarPieceDirector.hpp"
 #include "Game/NPC/EventDirector.hpp"
 #include "Game/NPC/NPCFunction.hpp"
 #include "Game/NPC/TalkDirector.hpp"
-#include "Game/Util/CameraUtil.hpp"
-#include "Game/Util/DrawUtil.hpp"
-#include "Game/Util/EventUtil.hpp"
-#include "Game/Util/FileUtil.hpp"
-#include "Game/Util/LightUtil.hpp"
-#include "Game/Util/PlayerUtil.hpp"
-#include "Game/Util/SceneUtil.hpp"
-#include "Game/Util/ScreenUtil.hpp"
-#include "Game/Util/SequenceUtil.hpp"
-#include "Game/Util/SoundUtil.hpp"
-#include "Game/Util/StarPointerUtil.hpp"
-#include "Game/Util/SystemUtil.hpp"
-#include "revolution/gx/GXPixel.h"
+#include "Game/Scene/GameScene.hpp"
+#include "Game/Scene/GameSceneFunction.hpp"
+#include "Game/Scene/GameScenePauseControl.hpp"
+#include "Game/Scene/GameSceneScenarioOpeningCameraState.hpp"
+#include "Game/Scene/SceneFunction.hpp"
+#include "Game/Scene/SceneNameObjMovementController.hpp"
+#include "Game/Screen/CometRetryButton.hpp"
+#include "Game/Screen/GamePauseSequence.hpp"
+#include "Game/Screen/GameStageClearSequence.hpp"
+#include "Game/Screen/LensFlare.hpp"
+#include "Game/Screen/MoviePlayingSequence.hpp"
+#include "Game/Screen/OdhConverter.hpp"
+#include "Game/Screen/ScreenAlphaCapture.hpp"
+#include "Game/System/GalaxyMapController.hpp"
+#include "Game/System/GameSequenceFunction.hpp"
 #include <JSystem/J3DGraphBase/J3DSys.hpp>
+
+namespace {
+    CometRetryButton* getCometRetryButton() {
+        return MR::getSceneObj<CometRetryButton*>(SceneObj_CometRetryButton);
+    }
+};
 
 namespace NrvGameScene {
     NEW_NERVE(GameSceneScenarioOpeningCamera, GameScene, ScenarioOpeningCamera);
@@ -57,14 +46,17 @@ namespace NrvGameScene {
     NEW_NERVE(GameSceneStaffRoll, GameScene, StaffRoll);
 };
 
-GameScene::GameScene() : Scene("GameScene") {
-    _14 = 0;
-    mScenarioCamera = nullptr;
-    mPauseCtrl = nullptr;
-    mPauseSeq = nullptr;
-    mStageClearSeq = nullptr;
-    mDraw3D = true;
-    _29 = 1;
+GameScene::GameScene() :
+    Scene("GameScene"),
+    _14(0),
+    mScenarioCamera(nullptr),
+    mPauseCtrl(nullptr),
+    mPauseSeq(nullptr),
+    mStageClearSeq(nullptr),
+    mDraw3D(true),
+    _29(1)
+{
+    
 }
 
 GameScene::~GameScene() {
@@ -170,14 +162,11 @@ void GameScene::update() {
     mPauseCtrl->updateNerve();
     updateNerve();
 
-    bool v2 = false;
-    if (MR::isGlobalTimerEnd() && !isNerve(&NrvGameScene::GameSceneTimeUp::sInstance)) {
-        if (MR::isGreaterEqualStep(this, 2)) {
-            v2 = true;
-        }
-    }
+    bool isTimeUp = MR::isGlobalTimerEnd()
+        && !isNerve(&NrvGameScene::GameSceneTimeUp::sInstance)
+        && MR::isGreaterEqualStep(this, 2);
 
-    if (v2) {
+    if (isTimeUp) {
         setNerve(&NrvGameScene::GameSceneTimeUp::sInstance);
     }
 }
@@ -257,20 +246,16 @@ bool GameScene::isExecScenarioStarter() const {
 }
 
 bool GameScene::isExecStageClearDemo() const {
-    bool ret = false;
-    if (isNerve(&NrvGameScene::GameScenePowerStarGet::sInstance) || isNerve(&NrvGameScene::GameSceneGrandStarGet::sInstance)) {
-        ret= true;
-    }
-    return ret;
+    return isNerve(&NrvGameScene::GameScenePowerStarGet::sInstance)
+        || isNerve(&NrvGameScene::GameSceneGrandStarGet::sInstance);
 }
 
 void GameScene::exeScenarioOpeningCamera() {
     mScenarioCamera->update();
     SceneFunction::movementStopSceneController();
     SceneFunction::executeMovementList();
-    
-    if (mScenarioCamera->isDone()) {
 
+    if (mScenarioCamera->isDone()) {
         if (!MR::isBeginScenarioStarter()) {
             MR::activateDefaultGameLayout();
             MR::tryFrameToScreenCinemaFrame();
@@ -286,14 +271,14 @@ void GameScene::exeScenarioOpeningCamera() {
 }
 
 void GameScene::exeCometRetryAfterMiss() {
-    CometRetryButton* retry = MR::getSceneObj<CometRetryButton*>(SceneObj_CometRetryButton);
+    CometRetryButton* pCometRetryButton = getCometRetryButton();;
 
     if (MR::isFirstStep(this)) {
-        MR::getSceneObj<CometRetryButton*>(SceneObj_CometRetryButton)->appear();
+        getCometRetryButton()->appear();
         MR::forceOpenWipeCircle();
     }
 
-    retry->movement();
+    pCometRetryButton->movement();
 }
 
 void GameScene::exeSaveAfterGameOver() {
@@ -335,17 +320,18 @@ void GameScene::exeGalaxyMap() {
 }
 
 void GameScene::initSequences() {
-    GameStageClearSequence* clearSeq = new GameStageClearSequence();
-    clearSeq->initWithoutIter();
-    mStageClearSeq = clearSeq;
+    GameStageClearSequence* pStageClearSeq = new GameStageClearSequence();
+    pStageClearSeq->initWithoutIter();
+    mStageClearSeq = pStageClearSeq;
 
-    GamePauseSequence* pauseSeq = new GamePauseSequence();
-    pauseSeq->initWithoutIter();
-    mPauseSeq = pauseSeq;
+    GamePauseSequence* pPauseSeq = new GamePauseSequence();
+    pPauseSeq->initWithoutIter();
+    mPauseSeq = pPauseSeq;
 
     mScenarioCamera = new GameSceneScenarioOpeningCameraState();
     mPauseCtrl = new GameScenePauseControl(this);
     mPauseCtrl->registerNervePauseMenu(&NrvGameScene::GameScenePauseMenu::sInstance);
+
     MR::FunctorV0M<GameScenePauseControl *, void (GameScenePauseControl::*)()> func = MR::Functor_Inline<GameScenePauseControl>(mPauseCtrl, &GameScenePauseControl::requestPauseMenuOff);
     mPauseSeq->initWindowMenu(func);
 }
@@ -383,63 +369,69 @@ void GameScene::drawMirror() const {
 
 // inline
 bool GameScene::isPlayMovie() const {
-    return MR::isActiveMoviePlayer() || MR::isMoviePlayingOnSequence() || isNerve(&NrvGameScene::GameScenePlayMovie::sInstance);
+    return MR::isActiveMoviePlayer()
+        || MR::isMoviePlayingOnSequence()
+        || isNerve(&NrvGameScene::GameScenePlayMovie::sInstance);
 }
 
 void GameScene::draw3D() const {
-    if (mDraw3D) {
-        if (!isPlayMovie()) {
-            CategoryList::execute(MR::DrawType_AstroDomeSkyClear);
-            MR::loadViewMtx();
-            MR::loadProjectionMtx();
-            MR::setDefaultViewportAndScissor();
-            GXSetColorUpdate(GX_TRUE);
-            GXSetAlphaUpdate(GX_TRUE);
-            GXSetDstAlpha(GX_TRUE, 0);
-            CategoryList::drawOpa(MR::DrawBufferType_ClippedMapParts);
-            CategoryList::execute(MR::DrawType_ClipArea);
-            CategoryList::execute(MR::DrawType_FallOutFieldDraw);
-            SceneFunction::executeDrawBufferListNormalOpaBeforeVolumeShadow();
-            GXSetAlphaUpdate(GX_TRUE);
-            CategoryList::execute(MR::DrawType_ShadowVolume);
-            GXSetColorUpdate(GX_TRUE);
-            GXSetDstAlpha(GX_TRUE, 0);
-            SceneFunction::executeDrawBufferListNormalOpaBeforeSilhouette();
-            CategoryList::execute(MR::DrawType_0x28);
-            SceneFunction::executeDrawSilhouetteAndFillShadow();
-            SceneFunction::executeDrawAlphaShadow();
-            CategoryList::execute(MR::DrawType_BrightSun);
-            MR::setLensFlareDrawSyncToken();
-            GXSetAlphaUpdate(GX_FALSE);
-            GXSetDstAlpha(GX_FALSE, 0);
-            SceneFunction::executeDrawBufferListNormalOpa();
-            SceneFunction::executeDrawListOpa();
-            CategoryList::drawOpa(MR::DrawBufferType_UNK_0x18);
-            SceneFunction::executeDrawBufferListNormalXlu();
-            SceneFunction::executeDrawListXlu();
-            CategoryList::drawXlu(MR::DrawBufferType_UNK_0x18);
-            CategoryList::execute(MR::DrawType_ShadowSurface);
-            CategoryList::execute(MR::DrawType_EffectDraw3D);
-            CategoryList::execute(MR::DrawType_EffectDrawForBloomEffect);
-            CategoryList::execute(MR::DrawType_CenterScreenBlur);
-            CategoryList::execute(MR::DrawType_CaptureScreenIndirect);
-            SceneFunction::executeDrawAfterIndirect();
-            CategoryList::execute(MR::DrawType_0x33);
-            MR::setStarPointerDrawSyncToken();
-            MR::setTalkDirectorDrawSyncToken();
-            SceneFunction::executeDrawImageEffect();
-            GXSetDither(GX_TRUE);
-            MR::loadViewMtx();
-            MR::loadProjectionMtx();
-            CategoryList::execute(MR::DrawType_EffectDrawAfterImageEffect);
-            MR::loadViewMtx();
-            MR::loadProjectionMtx();
-            MR::loadLightPlayer();
-            CategoryList::execute(MR::DrawType_0x24);
-            CategoryList::execute(MR::DrawType_0x3B);
-            MR::clearZBuffer();
-        }
+    if (!mDraw3D) {
+        return;
     }
+
+    if (isPlayMovie()) {
+        return;
+    }
+
+    CategoryList::execute(MR::DrawType_AstroDomeSkyClear);
+    MR::loadViewMtx();
+    MR::loadProjectionMtx();
+    MR::setDefaultViewportAndScissor();
+    GXSetColorUpdate(GX_TRUE);
+    GXSetAlphaUpdate(GX_TRUE);
+    GXSetDstAlpha(GX_TRUE, 0);
+    CategoryList::drawOpa(MR::DrawBufferType_ClippedMapParts);
+    CategoryList::execute(MR::DrawType_ClipArea);
+    CategoryList::execute(MR::DrawType_FallOutFieldDraw);
+    SceneFunction::executeDrawBufferListNormalOpaBeforeVolumeShadow();
+    GXSetAlphaUpdate(GX_TRUE);
+    CategoryList::execute(MR::DrawType_ShadowVolume);
+    GXSetColorUpdate(GX_TRUE);
+    GXSetDstAlpha(GX_TRUE, 0);
+    SceneFunction::executeDrawBufferListNormalOpaBeforeSilhouette();
+    CategoryList::execute(MR::DrawType_0x28);
+    SceneFunction::executeDrawSilhouetteAndFillShadow();
+    SceneFunction::executeDrawAlphaShadow();
+    CategoryList::execute(MR::DrawType_BrightSun);
+    MR::setLensFlareDrawSyncToken();
+    GXSetAlphaUpdate(GX_FALSE);
+    GXSetDstAlpha(GX_FALSE, 0);
+    SceneFunction::executeDrawBufferListNormalOpa();
+    SceneFunction::executeDrawListOpa();
+    CategoryList::drawOpa(MR::DrawBufferType_UNK_0x18);
+    SceneFunction::executeDrawBufferListNormalXlu();
+    SceneFunction::executeDrawListXlu();
+    CategoryList::drawXlu(MR::DrawBufferType_UNK_0x18);
+    CategoryList::execute(MR::DrawType_ShadowSurface);
+    CategoryList::execute(MR::DrawType_EffectDraw3D);
+    CategoryList::execute(MR::DrawType_EffectDrawForBloomEffect);
+    CategoryList::execute(MR::DrawType_CenterScreenBlur);
+    CategoryList::execute(MR::DrawType_CaptureScreenIndirect);
+    SceneFunction::executeDrawAfterIndirect();
+    CategoryList::execute(MR::DrawType_0x33);
+    MR::setStarPointerDrawSyncToken();
+    MR::setTalkDirectorDrawSyncToken();
+    SceneFunction::executeDrawImageEffect();
+    GXSetDither(GX_TRUE);
+    MR::loadViewMtx();
+    MR::loadProjectionMtx();
+    CategoryList::execute(MR::DrawType_EffectDrawAfterImageEffect);
+    MR::loadViewMtx();
+    MR::loadProjectionMtx();
+    MR::loadLightPlayer();
+    CategoryList::execute(MR::DrawType_0x24);
+    CategoryList::execute(MR::DrawType_0x3B);
+    MR::clearZBuffer();
 }
 
 void GameScene::draw2D() const {
@@ -513,13 +505,14 @@ void GameScene::startStagePlayFirst() {
 
 void GameScene::startStagePlayRetry() {
     MR::openWipeCircle(-1);
+
     if (MR::isEqualStageName("SurfingLv1Galaxy") && MR::getPlayerRestartIdInfo()->_0 == 1) {
         MR::stopSubBGM(0);
         MR::stopStageBGM(0);
     }
     else if (MR::isEqualStageName("SurfingLv2Galaxy") && MR::getPlayerRestartIdInfo()->_0 == 1) {
         MR::stopSubBGM(0);
-        MR::stopStageBGM(0);    
+        MR::stopStageBGM(0);
     }
     else {
         MR::stopSubBGM(0);
@@ -529,19 +522,16 @@ void GameScene::startStagePlayRetry() {
 
     MR::executeOnWelcomeAndRetry();
     setNerve(&NrvGameScene::GameSceneAction::sInstance);
-        
 }
 
 bool GameScene::isPermitToPauseMenu() const {
-    bool ret = false;
-
-    if (!MR::isStageDisablePauseMenu() && isNerve(&NrvGameScene::GameSceneAction::sInstance) && 
-        !MR::isDemoActive() && !MR::isWipeActive() && !MR::isWipeBlank() && 
-        !MR::isPlayerDead() && !MR::isPlayerDamaging()) {
-        ret = true;
-    }
-    
-    return ret;
+    return !MR::isStageDisablePauseMenu()
+        && isNerve(&NrvGameScene::GameSceneAction::sInstance)
+        && !MR::isDemoActive()
+        && !MR::isWipeActive()
+        && !MR::isWipeBlank()
+        && !MR::isPlayerDead()
+        && !MR::isPlayerDamaging();
 }
 
 void GameScene::requestShowGalaxyMap() {
@@ -557,12 +547,7 @@ bool GameScene::isDrawMirror() const {
         return false;
     }
 
-    bool v3 = false;
-    if (MR::isActiveMoviePlayer() || MR::isMoviePlayingOnSequence() || isNerve(&NrvGameScene::GameScenePlayMovie::sInstance)) {
-        v3 = true;
-    }
-
-    if (v3) {
+    if (isPlayMovie()) {
         return false;
     }
 

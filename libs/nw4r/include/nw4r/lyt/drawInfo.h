@@ -7,6 +7,9 @@ namespace nw4r {
     namespace lyt {
         class DrawInfo {
         public:
+            DrawInfo();
+            virtual ~DrawInfo();
+
             math::MTX34 mViewMtx;
             ut::Rect mViewRect;
             math::VEC2 mLocationAdjustScale;

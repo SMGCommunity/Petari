@@ -1,0 +1,18 @@
+#pragma once
+
+#include "Game/Screen/LayoutActor.hpp"
+
+class OneUpBoard : LayoutActor {
+public:
+    OneUpBoard();
+
+    virtual ~OneUpBoard();
+    virtual void init(const JMapInfoIter& rIter);
+    virtual void appear();
+    virtual void control();
+
+    void popup(s32 oneUpNum);
+    void calcPos();
+    void exeWait();
+    void exeAppear();
+};

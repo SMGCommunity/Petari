@@ -1,26 +1,28 @@
+#include "Game/LiveActor/ModelObj.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/PowerStar.hpp"
+#include "Game/MapObj/PowerStarAppearPoint.hpp"
 #include "Game/MapObj/PowerStarHolder.hpp"
-#include "Game/LiveActor/LiveActorGroup.hpp"
-#include "Game/Util.hpp"
-#include "JSystem/JMath.hpp"
+#include "Game/NameObj/NameObjArchiveListCollector.hpp"
 #include "math_types.hpp"
 
-const GXColor lightColor[5] = { { 0x96, 0x96, 0x32, 0 },
-                                        { 0x32, 0x32, 0x96, 0 },
-                                        { 0x32, 0x96, 0x32, 0 },
-                                        { 0x96, 0x32, 0x32, 0 },
-                                        { 0x64, 0x64, 0x64, 0}   
-                                        };
+const GXColor lightColor[5] = {
+    {0x96, 0x96, 0x32, 0 },
+    {0x32, 0x32, 0x96, 0 },
+    {0x32, 0x96, 0x32, 0 },
+    {0x96, 0x32, 0x32, 0 },
+    {0x64, 0x64, 0x64, 0 },
+};
 
 namespace {
-    void setupColor(LiveActor *pActor, bool useFrame, int frame) NO_INLINE {
+    void setupColor(LiveActor *pActor, bool useFrame, int frame) {
         MR::startBtp(pActor, "PowerStar");
         MR::setBtpFrameAndStop(pActor, useFrame ? 0.0f : frame);
         MR::startBva(pActor, "PowerStar");
         MR::setBvaFrameAndStop(pActor, useFrame ? 1.0f : 0.0f);
     }
 
-    void setupColorGrandStar(LiveActor *pActor, bool dontStartRecover) NO_INLINE {
+    void setupColorGrandStar(LiveActor *pActor, bool dontStartRecover) {
         if (dontStartRecover) {
             MR::showMaterial(pActor, "GrandStarEmpty");
             MR::hideMaterial(pActor, "FooMat");
@@ -33,34 +35,53 @@ namespace {
         }
     }
 
-    void requestPointLight(const LiveActor *pActor, int a2) NO_INLINE {
-        TVec3f joint_pos;
-        MR::copyJointPos(pActor, "PowerStar", &joint_pos);
-        MR::requestPointLight(pActor, TVec3f(joint_pos), lightColor[a2], 1.0f, -1);
+    void requestPointLight(const LiveActor *pActor, int a2) {
+        TVec3f jointPos;
+
+        MR::copyJointPos(pActor, "PowerStar", &jointPos);
+        MR::requestPointLight(pActor, TVec3f(jointPos), lightColor[a2], 1.0f, -1);
     }
 };
 
-PowerStar::PowerStar(const char *pName) : LiveActor(pName), 
-    mPowerStarId(-1), mIsInDemo(false), mAppearPosition(gZeroVec), _A0(gZeroVec), _AC(gZeroVec) {
+namespace NrvPowerStar {
+    NEW_NERVE(PowerStarNrvWaitStartAppear, PowerStar, WaitStartAppear);
+    NEW_NERVE(PowerStarNrvAppearDemoRise, PowerStar, AppearDemoRise);
+    NEW_NERVE(PowerStarNrvAppearDemoMove, PowerStar, AppearDemoMove);
+    NEW_NERVE(PowerStarNrvAppearDemoKoopa, PowerStar, AppearDemoKoopa);
+    NEW_NERVE(PowerStarNrvWait, PowerStar, Wait);
+    NEW_NERVE(PowerStarNrvWeak, PowerStar, Weak);
+    NEW_NERVE(PowerStarNrvWeakNoRotate, PowerStar, WeakNoRotate);
+    NEW_NERVE(PowerStarNrvWeakToWait, PowerStar, WeakToWait);
+    NEW_NERVE(PowerStarNrvStageClearDemo, PowerStar, StageClearDemo);
+};
 
-        mPowerStarModelObj = 0;
-        _11C = 0;
-        mColorFrame = 0;
-        mIsGrandStar = false;
-        _125 = false;
-        _126 = false;
-        _127 = false;
-        mCameraInfo = 0;
-        mCameraActor = 0;
-        mLuigiNPC = 0;
-        _164 = 0;
-        _B8.identity();
-        _E8.identity();
-        _134.identity();
+PowerStar::PowerStar(const char *pName) :
+    LiveActor(pName),
+    mPowerStarId(-1),
+    mIsInDemo(false),
+    mAppearPosition(gZeroVec),
+    _A0(gZeroVec),
+    _AC(gZeroVec),
+    mPowerStarModelObj(NULL),
+    _11C(0),
+    mColorFrame(0),
+    mIsGrandStar(false),
+    _125(false),
+    _126(false),
+    _127(false),
+    mCameraInfo(NULL),
+    mCameraActor(NULL),
+    mLuigiNPC(NULL),
+    _164(false)
+{
+    _B8.identity();
+    _E8.identity();
+    _134.identity();
 }
 
 void PowerStar::init(const JMapInfoIter &rIter) {
     mIsGrandStar = MR::isEqualObjectName(rIter, "GrandStar");
+
     initMapToolInfo(rIter);
     initModel();
 
@@ -74,7 +95,8 @@ void PowerStar::init(const JMapInfoIter &rIter) {
         MR::addHitSensor(this, "body", 0x67, 8, 75.0f, TVec3f(0.0f, 0.0f, 0.0f));
     }
 
-    initEffectKeeper(0, 0, false);
+    initEffectKeeper(0, NULL, false);
+
     if (MR::isGalaxyGhostCometAppearInCurrentStage()) {
         MR::invalidateClipping(this);
     }
@@ -100,7 +122,7 @@ void PowerStar::init(const JMapInfoIter &rIter) {
             }
         }
     }
-    
+
     if (MR::tryRegisterDemoCast(this, rIter)) {
         MR::registerDemoActionNerve(this, &NrvPowerStar::PowerStarNrvWeakNoRotate::sInstance, "ミニ太陽消失");
         MR::registerDemoActionNerve(this, &NrvPowerStar::PowerStarNrvWeakToWait::sInstance, "グランドスター復活");
@@ -121,13 +143,6 @@ void PowerStar::init(const JMapInfoIter &rIter) {
     else {
         makeActorAppeared();
     }
-    
-    /*if (mPowerStarId == -1 && mIsInDemo) {
-        makeActorDead();
-    }
-    else {
-        makeActorAppeared();
-    }*/
 }
 
 void PowerStar::initAfterPlacement() {
@@ -154,16 +169,17 @@ void PowerStar::requestAppear() {
     setNerve(&NrvPowerStar::PowerStarNrvWaitStartAppear::sInstance);
 
     if (MR::isStageKoopaVs()) {
-        MR::requestStartDemoMarioPuppetableWithoutCinmeaFrame(this, cAppearDemoName, &NrvPowerStar::PowerStarNrvAppearDemoKoopa::sInstance, 0);
+        MR::requestStartDemoMarioPuppetableWithoutCinemaFrame(this, cAppearDemoName, &NrvPowerStar::PowerStarNrvAppearDemoKoopa::sInstance, NULL);
     }
     else {
-        MR::requestStartDemoWithoutCinemaFrame(this, cAppearDemoName, &NrvPowerStar::PowerStarNrvAppearDemoRise::sInstance, 0);
+        MR::requestStartDemoWithoutCinemaFrame(this, cAppearDemoName, &NrvPowerStar::PowerStarNrvAppearDemoRise::sInstance, NULL);
     }
 }
 
 void PowerStar::setDemoAppearPos(const TVec3f &rVec) {
-    bool isinArray = MR::getGroupFromArray(this);
-    if (isinArray) {
+    bool isGroupExist = MR::getGroupFromArray(this);
+
+    if (isGroupExist) {
         mCameraActor = getNearestAppearPoint(rVec);
         mAppearPosition.set<f32>(mCameraActor->mPosition);
     }
@@ -172,13 +188,7 @@ void PowerStar::setDemoAppearPos(const TVec3f &rVec) {
 }
 
 bool PowerStar::isEndAppearDemo() const {
-    bool ret = false;
-
-    if (isNerve(&NrvPowerStar::PowerStarNrvWait::sInstance) || isNerve(&NrvPowerStar::PowerStarNrvStageClearDemo::sInstance)) {
-        ret = true;
-    }
-
-    return ret;
+    return isNerve(&NrvPowerStar::PowerStarNrvWait::sInstance) || isNerve(&NrvPowerStar::PowerStarNrvStageClearDemo::sInstance);
 }
 
 void PowerStar::offAppearDemo() {
@@ -191,7 +201,7 @@ void PowerStar::setupColor(LiveActor *pActor, const NameObj *a2, s32 a3) {
     hasPowerStar = MR::hasPowerStarInCurrentStageWithDeclarer(a2->mName, a3);
 
     if (MR::isPowerStarGreenInCurrentStageWithDeclarer(a2->mName, a3)) {
-        val = 2;   
+        val = 2;
     }
     else if (MR::isPowerStarRedInCurrentStageWithDeclarer(a2->mName, a3)) {
         val = 3;
@@ -266,7 +276,11 @@ s32 PowerStar::getBtpFrameCurrentStage(s32 a1) {
         return 2;
     }
 
-    return MR::isPowerStarRedInCurrentStage(a1) ? 3 : 0;
+    if (MR::isPowerStarRedInCurrentStage(a1)) {
+        return 3;
+    }
+
+    return 0;
 }
 
 bool PowerStar::isCurrentStageKoopaVs3() {
@@ -287,18 +301,19 @@ void PowerStar::makeArchiveList(NameObjArchiveListCollector *pCollector, const J
 
 void PowerStar::control() {
     if (!isNerve(&NrvPowerStar::PowerStarNrvWaitStartAppear::sInstance)) {
-        TVec3f joint_pos;
+        TVec3f jointPos;
 
         if (isNerve(&NrvPowerStar::PowerStarNrvStageClearDemo::sInstance)) {
-            MR::copyJointPos(mPowerStarModelObj, "PowerStar", &joint_pos);
+            MR::copyJointPos(mPowerStarModelObj, "PowerStar", &jointPos);
         }
         else {
-            MR::copyJointPos(this, "PowerStar", &joint_pos);
+            MR::copyJointPos(this, "PowerStar", &jointPos);
         }
 
         bool cond = (isNerve(&NrvPowerStar::PowerStarNrvAppearDemoKoopa::sInstance) && MR::isStageKoopaVs3()) ? true : false;
         s32 val = cond ? 0x78 : -1;
-        MR::requestPointLight(this, TVec3f(joint_pos), lightColor[mColorFrame], 1.0f, val);
+
+        MR::requestPointLight(this, TVec3f(jointPos), lightColor[mColorFrame], 1.0f, val);
     }
 }
 
@@ -332,34 +347,32 @@ void PowerStar::calcAndSetBaseMtx() {
 
 bool PowerStar::receiveMsgPlayerAttack(u32 msg,  HitSensor *a2, HitSensor *a3) {
     if (MR::isMsgStarPieceReflect(msg)) {
-        return 1;
+        return true;
     }
 
     return MR::isMsgJetTurtleAttack(msg);
 }
 
-bool PowerStar::receiveOtherMsg(u32 msg, HitSensor *a2, HitSensor *a3) {
+bool PowerStar::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     switch(msg) {
-        case 0x98:
-            return 1;
-            break;
-        case 0x92:
-            if (isNerve(&NrvPowerStar::PowerStarNrvWait::sInstance)) {
-                MR::startSystemSE("SE_SY_STAR_GET", -1, -1);
-                MR::stopSoundPlayer("SE_PV_BURN_RUN", 0);
-                MR::stopSoundPlayer("SE_PV_NEEDLE_DAMAGE_RUN", 0);
-                MR::makeMtxTR((MtxPtr)&_E8, *MR::getPlayerRotate(), *MR::getPlayerPos());
-                setNerve(&NrvPowerStar::PowerStarNrvStageClearDemo::sInstance);
-                return 1;
-            }
-            break;
-        case 0xA1:
-            MR::setPlayerBaseMtx((MtxPtr)&_E8);
-            return 1;
-            break;
+    case 0x98:
+        return true;
+    case 0x92:
+        if (isNerve(&NrvPowerStar::PowerStarNrvWait::sInstance)) {
+            MR::startSystemSE("SE_SY_STAR_GET", -1, -1);
+            MR::stopSoundPlayer("SE_PV_BURN_RUN", 0);
+            MR::stopSoundPlayer("SE_PV_NEEDLE_DAMAGE_RUN", 0);
+            MR::makeMtxTR((MtxPtr)&_E8, *MR::getPlayerPos(), *MR::getPlayerRotate());
+            setNerve(&NrvPowerStar::PowerStarNrvStageClearDemo::sInstance);
+            return true;
+        }
+        break;
+    case 0xA1:
+        MR::setPlayerBaseMtx((MtxPtr)&_E8);
+        return true;
     }
 
-    return 0;
+    return false;
 }
 
 void PowerStar::initMapToolInfo(const JMapInfoIter &rIter) {
@@ -376,6 +389,7 @@ void PowerStar::initMapToolInfo(const JMapInfoIter &rIter) {
     if (mPowerStarId > 0) {
         if (!MR::hasPowerStarInCurrentStage(mPowerStarId)) {
             u32 frame;
+
             if (mIsGrandStar) {
                 frame = 0;
             }
@@ -402,15 +416,19 @@ void PowerStar::initModel() {
     }
 
     if (mIsGrandStar) {
-        MtxPtr mtx = (MtxPtr)&_E8;
-        const char* name = "グランドスターデモモデル";
-        mPowerStarModelObj = MR::createModelObjIndirectMapObj(name, mIsGrandStar ? "GrandStar" : "PowerStar", mtx);
+        MtxPtr pMtx = (MtxPtr)&_E8;
+        const char* pName = "グランドスターデモモデル";
+
+        mPowerStarModelObj = MR::createModelObjIndirectMapObj(pName, mIsGrandStar ? "GrandStar" : "PowerStar", pMtx);
+
         ::setupColorGrandStar(mPowerStarModelObj, mColorFrame_v == 4);
     }
     else {
-        MtxPtr mtx = (MtxPtr)&_E8;
-        const char* name = "パワースターデモモデル";
-        mPowerStarModelObj = MR::createModelObjNoSilhouettedMapObj(name, mIsGrandStar ? "GrandStar" : "PowerStar", mtx);
+        MtxPtr pMtx = (MtxPtr)&_E8;
+        const char* pName = "パワースターデモモデル";
+
+        mPowerStarModelObj = MR::createModelObjNoSilhouettedMapObj(pName, mIsGrandStar ? "GrandStar" : "PowerStar", pMtx);
+
         ::setupColor(mPowerStarModelObj, mColorFrame_v == 4, mColorFrame_v);
     }
 
@@ -419,6 +437,7 @@ void PowerStar::initModel() {
 
     if (MR::isPowerStarGetDemoWithLuigiCurrentGalaxy()) {
         mLuigiNPC = MR::createModelObjNpc("ルイージデモモデル", "LuigiNPC", (MtxPtr)&_E8);
+
         MR::initLightCtrl(mLuigiNPC);
         MR::invalidateClipping(mLuigiNPC);
         mLuigiNPC->makeActorDead();
@@ -451,9 +470,9 @@ void PowerStar::initSensorGrandStar() {
 
 void PowerStar::initShadow(const JMapInfoIter &rIter) {
     if (!mIsGrandStar) {
-        bool arg_3 = false;
-        MR::getJMapInfoArg3NoInit(rIter, &arg_3);
-        bool thing = arg_3;
+        bool arg3 = false;
+        MR::getJMapInfoArg3NoInit(rIter, &arg3);
+        bool thing = arg3;
         MR::initShadowFromCSV(this, "Shadow");
         MR::invalidateShadowAll(this);
         MR::validateShadowGroup(this, thing ? "円柱" : "通常");
@@ -500,38 +519,46 @@ void PowerStar::endAppearDemo() {
         MR::endDemo(this, cAppearDemoName);
     }
 
-    MR::moveVolumeStageBGM(1.0f, 0x3C);
-    MR::moveVolumeSubBGM(1.0f, 0x3C);
+    MR::moveVolumeStageBGM(1.0f, 60);
+    MR::moveVolumeSubBGM(1.0f, 60);
     setNerve(&NrvPowerStar::PowerStarNrvWait::sInstance);
 }
 
 PowerStarAppearPoint* PowerStar::getNearestAppearPoint(const TVec3f &rPos) const {
-    LiveActorGroup* group = MR::getGroupFromArray(this);
-    f32 curDist = 3.4028235e38f;
-    PowerStarAppearPoint* curNearest = 0;
+    LiveActorGroup* pGroup = MR::getGroupFromArray(this);
+    f32 minDist = 3.4028235e38f;
+    PowerStarAppearPoint* pNearestAppearPoint = NULL;
 
-    for (int i = 0; i < group->mObjectCount; i++) {
-        PowerStarAppearPoint* actor = reinterpret_cast<PowerStarAppearPoint*>(group->getActor(i));
+    for (int i = 0; i < pGroup->mObjectCount; i++) {
+        LiveActor* pActor = pGroup->getActor(i);
 
-        if ((LiveActor*)actor != this) {
-            f32 dist = PSVECDistance(&rPos, &actor->mPosition);
+        if (pActor != this) {
+            f32 dist = PSVECDistance(&rPos, &pActor->mPosition);
 
-            if (dist < curDist) {
-                curNearest = actor;
-                curDist = dist;
+            if (dist < minDist) {
+                pNearestAppearPoint = static_cast<PowerStarAppearPoint*>(pActor);
+                minDist = dist;
             }
         }
     }
 
-    return curNearest;
+    return pNearestAppearPoint;
 }
 
-
 LiveActor* PowerStar::getAppearCameraActor() {
-    LiveActor* cam_actor = this->mCameraActor;
-    if (cam_actor) {
-        return cam_actor;
+    if (mCameraActor == NULL) {
+        return this;
     }
+
+    return mCameraActor;
+}
+
+ActorCameraInfo* PowerStar::getAppearCameraInfo() const {
+    if (mCameraActor == NULL) {
+        return mCameraInfo;
+    }
+
+    return mCameraActor->mCameraInfo;
 }
 
 void PowerStar::requestAppearOrWait() {
@@ -550,7 +577,7 @@ void PowerStar::requestAppearOrWait() {
                 setNerve(&NrvPowerStar::PowerStarNrvAppearDemoRise::sInstance);
             }
         }
-        else { 
+        else {
             requestAppear();
         }
     }
@@ -562,7 +589,7 @@ void PowerStar::requestAppearOrWait() {
 void PowerStar::calcAppearDemoRiseTrans(TVec3f *pOutTrans, f32 a2) const {
     if (_125) {
         MR::calcGravityVector(this, _AC, pOutTrans, 0, 0);
-        pOutTrans->x += -a2;
+        pOutTrans->x *= -a2;
         pOutTrans->y = (pOutTrans->y * -a2);
         pOutTrans->z = (pOutTrans->z * -a2);
     }
@@ -614,6 +641,10 @@ void PowerStar::processWait(f32 val) {
 }
 #endif
 
+void PowerStar::exeWaitStartAppear() {
+    
+}
+
 #ifdef NON_MATCHING
 void PowerStar::exeAppearDemoRise() {
     if (MR::isFirstStep(this)) {
@@ -646,6 +677,7 @@ void PowerStar::exeAppearDemoRise() {
 #endif
 
 // PowerStar::exeAppearDemoMove()
+// PowerStar::exeAppearDemoKoopa()
 
 void PowerStar::exeWait() {
     if (MR::isFirstStep(this)) {
@@ -656,9 +688,9 @@ void PowerStar::exeWait() {
         MR::validateHitSensors(this);
         MR::emitEffect(this, "Light");
     }
-    
+
     processWait(mIsGrandStar ? 2.0f : 3.0f);
-} 
+}
 
 void PowerStar::exeWeak() {
     if (MR::isFirstStep(this)) {
@@ -670,8 +702,9 @@ void PowerStar::exeWeak() {
         }
     }
 
-    _164 = 1;
-    processWait(0.30000001f);
+    _164 = true;
+
+    processWait(0.3f);
 }
 
 void PowerStar::exeWeakNoRotate() {
@@ -679,7 +712,8 @@ void PowerStar::exeWeakNoRotate() {
         mRotation.y = 45.0f;
     }
 
-    _164 = 1;
+    _164 = true;
+
     processWait(0.0f);
 }
 
@@ -690,70 +724,14 @@ void PowerStar::exeWeakToWait() {
         }
     }
 
-    _164 = 0;
-    f32 easeIn = MR::calcNerveEaseInValue(this, 0x1E, 0.30000001f, mIsGrandStar ? 2.0f : 3.0f);
-    processWait(easeIn);
-    MR::setNerveAtStep(this, &NrvPowerStar::PowerStarNrvWait::sInstance, 0x1E);
+    _164 = false;
+
+    processWait(MR::calcNerveEaseInValue(this, 30, 0.3f, mIsGrandStar ? 2.0f : 3.0f));
+    MR::setNerveAtStep(this, &NrvPowerStar::PowerStarNrvWait::sInstance, 30);
 }
 
 // PowerStar::exeStageClearDemo
 
 PowerStar::~PowerStar() {
-
+    
 }
-
-namespace NrvPowerStar {
-    INIT_NERVE(PowerStarNrvWaitStartAppear);
-    INIT_NERVE(PowerStarNrvAppearDemoRise);
-    INIT_NERVE(PowerStarNrvAppearDemoMove);
-    INIT_NERVE(PowerStarNrvAppearDemoKoopa);
-    INIT_NERVE(PowerStarNrvWait);
-    INIT_NERVE(PowerStarNrvWeak);
-    INIT_NERVE(PowerStarNrvWeakNoRotate);
-    INIT_NERVE(PowerStarNrvWeakToWait);
-    INIT_NERVE(PowerStarNrvStageClearDemo);
-
-    void PowerStarNrvStageClearDemo::execute(Spine *pSpine) const {
-        PowerStar* star = reinterpret_cast<PowerStar*>(pSpine->mExecutor);
-        star->exeStageClearDemo();
-    }
-
-    void PowerStarNrvWeakToWait::execute(Spine *pSpine) const {
-        PowerStar* star = reinterpret_cast<PowerStar*>(pSpine->mExecutor);
-        star->exeWeakToWait();
-    }
-
-    void PowerStarNrvWeakNoRotate::execute(Spine *pSpine) const {
-        PowerStar* star = reinterpret_cast<PowerStar*>(pSpine->mExecutor);
-        star->exeWeakNoRotate();
-    }
-
-    void PowerStarNrvWeak::execute(Spine *pSpine) const {
-        PowerStar* star = reinterpret_cast<PowerStar*>(pSpine->mExecutor);
-        star->exeWeak();
-    }
-
-    void PowerStarNrvWait::execute(Spine *pSpine) const {
-        PowerStar* star = reinterpret_cast<PowerStar*>(pSpine->mExecutor);
-        star->exeWait();
-    }
-
-    void PowerStarNrvAppearDemoKoopa::execute(Spine *pSpine) const {
-        PowerStar* star = reinterpret_cast<PowerStar*>(pSpine->mExecutor);
-        star->exeAppearDemoKoopa();
-    }
-
-    void PowerStarNrvAppearDemoMove::execute(Spine *pSpine) const {
-        PowerStar* star = reinterpret_cast<PowerStar*>(pSpine->mExecutor);
-        return star->exeAppearDemoMove();
-    }
-
-    void PowerStarNrvAppearDemoRise::execute(Spine *pSpine) const {
-        PowerStar* star = reinterpret_cast<PowerStar*>(pSpine->mExecutor);
-        return star->exeAppearDemoRise();
-    }
-
-    void PowerStarNrvWaitStartAppear::execute(Spine *pSpine) const {
-
-    }
-};

@@ -11,6 +11,7 @@ public:
     bool isPermitToMinusPause() const;
     bool isPermitToPause() const NO_INLINE;
 
-    s32 _0;
-    s32 _4;
+private:
+    /* 0x0 */ s32 mPlusHoldFrame;
+    /* 0x4 */ s32 mMinusHoldFrame;
 };

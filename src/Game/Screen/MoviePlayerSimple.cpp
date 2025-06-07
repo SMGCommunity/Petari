@@ -1,18 +1,18 @@
-#include "Game/Screen/MoviePlayerSimple.hpp"
 #include "Game/Player/MarioActor.hpp"
+#include "Game/Screen/MoviePlayerSimple.hpp"
 #include "Game/Screen/THPSimplePlayerWrapper.hpp"
-#include "Game/SingletonHolder.hpp"
 #include "Game/System/GameSystem.hpp"
-#include "Game/System/HomeButtonStateNotifier.hpp"
 #include "Game/System/GameSystemFunction.hpp"
+#include "Game/System/HomeButtonStateNotifier.hpp"
 #include "Game/Util/MemoryUtil.hpp"
 #include "Game/Util/ScreenUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
 #include "Game/Util/SystemUtil.hpp"
-#include "revolution/gx/GXEnum.h"
+#include "Game/SingletonHolder.hpp"
 #include <JSystem/JKernel/JKRDisposer.hpp>
 #include <JSystem/JKernel/JKRExpHeap.hpp>
 #include <JSystem/JUtility/JUTVideo.hpp>
+#include <revolution/gx/GXEnum.h>
 
 namespace {
     NEW_NERVE(MoviePlayerSimpleOff, MoviePlayerSimple, SimpleOff);
@@ -39,7 +39,7 @@ MoviePlayerSimple::MoviePlayerSimple() : LayoutActor("ムービープレイヤ�
 }
 
 MoviePlayerSimple::~MoviePlayerSimple() {
-    SingletonHolder<GameSystem>::get()->mHomeButtonStateModif->unregisterMoviePlayerSimple(this);
+    SingletonHolder<GameSystem>::get()->mHomeButtonStateNotifier->unregisterMoviePlayerSimple(this);
     mPlayerWrapper->quit();
     delete mPlayerWrapper;
     JKRHeap::destroy(mHeap);
@@ -96,7 +96,7 @@ void MoviePlayerSimple::startMovie(const char *pMovieName, bool a2) {
     play(a2);
     appear();
     MR::requestMovementOn(this);
-    SingletonHolder<GameSystem>::get()->mHomeButtonStateModif->registerMoviePlayerSimple(this);
+    SingletonHolder<GameSystem>::get()->mHomeButtonStateNotifier->registerMoviePlayerSimple(this);
 }
 
 void MoviePlayerSimple::stopMovie() {

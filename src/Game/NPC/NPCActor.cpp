@@ -1,4 +1,5 @@
 #include "Game/NPC/NPCActor.hpp"
+#include "Game/NPC/NPCActorItem.hpp"
 #include "Game/Util.hpp"
 
 NPCActorCaps::NPCActorCaps(const char *pName) {
@@ -153,12 +154,12 @@ void NPCActor::makeArchiveList(NameObjArchiveListCollector *pCollector, const JM
 }
 
 void NPCActor::addArchive(NameObjArchiveListCollector *pCollector, const NPCActorItem &rItem) {
-    if (!MR::isNullOrEmptyString(rItem.mName) && MR::isNPCItemFileExist(rItem.mName)) {
-        pCollector->addArchive(rItem.mName);
+    if (!MR::isNullOrEmptyString(rItem.mActor) && MR::isNPCItemFileExist(rItem.mActor)) {
+        pCollector->addArchive(rItem.mActor);
     }
 
-    if (!MR::isNullOrEmptyString(rItem._C) && MR::isNPCItemFileExist(rItem._C)) {
-        pCollector->addArchive(rItem._C);
+    if (!MR::isNullOrEmptyString(rItem.mArchive) && MR::isNPCItemFileExist(rItem.mArchive)) {
+        pCollector->addArchive(rItem.mArchive);
     }
 }
 
@@ -177,7 +178,7 @@ void NPCActor::setInitPose() {
     _B0.x = _A0.x;
     _B0.y = _A0.y;
     _B0.z = _A0.z;
-    _B0.h = _A0.h;
+    _B0.h = _A0.w;
     _C0.set<f32>(mPosition);
 }
 
@@ -188,11 +189,11 @@ void NPCActor::init(const JMapInfoIter &rIter) {
 void NPCActor::initAfterPlacement() {
     MR::calcGravity(this);
 
-    if (!MR::isNullOrEmptyString(_FC)) {
-        MR::startAction(this, _FC);
+    if (!MR::isNullOrEmptyString(mParam._14)) {
+        MR::startAction(this, mParam._14);
 
-        if (MR::isExistBck(this, _FC)) {
-            MR::startBckNoInterpole(this, _FC);
+        if (MR::isExistBck(this, mParam._14)) {
+            MR::startBckNoInterpole(this, mParam._14);
         }
 
         MR::setBckFrameAtRandom(this);

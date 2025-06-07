@@ -1,13 +1,21 @@
-#include "Game/NameObj/NameObjExecuteHolder.hpp"
+#include "Game/Effect/EffectSystemUtil.hpp"
+#include "Game/Map/NamePosHolder.hpp"
+#include "Game/NameObj/MovementOnOffGroupHolder.hpp"
 #include "Game/NameObj/NameObjAdaptor.hpp"
+#include "Game/NameObj/NameObjExecuteHolder.hpp"
+#include "Game/NameObj/NameObjFinder.hpp"
+#include "Game/NameObj/NameObjListExecutor.hpp"
+#include "Game/Scene/SceneObjHolder.hpp"
+#include "Game/Screen/LayoutActor.hpp"
+#include "Game/System/GameSystem.hpp"
+#include "Game/System/GameSystemSceneController.hpp"
 #include "Game/System/ResourceHolder.hpp"
 #include "Game/System/ResourceHolderManager.hpp"
 #include "Game/Util/ObjUtil.hpp"
+#include "Game/SingletonHolder.hpp"
 #include <cstdio>
 #include <va_list.h>
 
-class LiveActor;
- 
 namespace {
     JMapInfo* tryCreateCsvParserLocal(const ResourceHolder* pHolder, const char* pArchive, va_list pFormat) NO_INLINE {
         char buf[0x100];
@@ -173,7 +181,7 @@ namespace MR {
     }
 
     void connectToSceneEnemyDecorationMovementCalcAnim(NameObj *pObj) {
-        MR::registerNameObjToExecuteHolder(pObj, 0x2B, 0x11, -1, -1);
+        MR::registerNameObjToExecuteHolder(pObj, 0x2B, 0xB, -1, -1);
         MR::connectToSceneTemporarily(pObj);
         MR::connectToDrawTemporarily(pObj);
     }
@@ -214,10 +222,179 @@ namespace MR {
         MR::connectToDrawTemporarily(pObj);
     }
 
+    void connectToScene3DModelFor2D(LiveActor *pActor) {
+        MR::registerNameObjToExecuteHolder(pActor, 0xE, 0xD, 0x24, -1);
+    }
+
+    void connectToSceneLayout(NameObj *pObj) {
+        MR::registerNameObjToExecuteHolder(pObj, 0xE, 0xD, -1, 0x3C);
+        MR::connectToSceneTemporarily(pObj);
+        MR::connectToDrawTemporarily(pObj);
+    }
+
+    void connectToSceneLayoutMovementCalcAnim(NameObj *pObj) {
+        MR::registerNameObjToExecuteHolder(pObj, 0xE, 0xD, -1, -1);
+        MR::connectToSceneTemporarily(pObj);
+        MR::connectToDrawTemporarily(pObj);
+    }
+
+    void connectToSceneLayoutDecoration(NameObj *pObj) {
+        MR::registerNameObjToExecuteHolder(pObj, 0xF, 0xE, -1, 0x3D);
+        MR::connectToSceneTemporarily(pObj);
+        MR::connectToDrawTemporarily(pObj);
+    }
+
+    void connectToSceneTalkLayout(NameObj *pObj) {
+        MR::registerNameObjToExecuteHolder(pObj, 0xE, 0xD, -1, 0x43);
+        MR::connectToSceneTemporarily(pObj);
+        MR::connectToDrawTemporarily(pObj);
+    }
+
+    void connectToSceneTalkLayoutNoMovement(NameObj *pObj) {
+        MR::registerNameObjToExecuteHolder(pObj, -1, 0xD, -1, 0x43);
+        MR::connectToSceneTemporarily(pObj);
+        MR::connectToDrawTemporarily(pObj);
+    }
+
+    void connectToSceneWipeLayout(NameObj *pObj) {
+        MR::registerNameObjToExecuteHolder(pObj, 0x11, 0xD, -1, 0x42);
+        MR::connectToSceneTemporarily(pObj);
+        MR::connectToDrawTemporarily(pObj);
+    }
+
+    void connectToSceneLayoutOnPause(NameObj *pObj) {
+        MR::registerNameObjToExecuteHolder(pObj, 0x12, 0xD, -1, 0x3E);
+        MR::connectToSceneTemporarily(pObj);
+        MR::connectToDrawTemporarily(pObj);
+    }
+
+    void connectToSceneLayoutOnPauseNoMovement(NameObj *pObj) {
+        MR::registerNameObjToExecuteHolder(pObj, -1, 0xD, -1, 0x3E);
+        MR::connectToSceneTemporarily(pObj);
+        MR::connectToDrawTemporarily(pObj);
+    }
+
+    void connectToSceneLayoutOnPauseMovementCalcAnim(NameObj *pObj) {
+        MR::registerNameObjToExecuteHolder(pObj, 0x12, 0xD, -1, -1);
+        MR::connectToSceneTemporarily(pObj);
+        MR::connectToDrawTemporarily(pObj);
+    }
+
+    void connectToSceneLayoutMovement(NameObj *pObj) {
+        MR::registerNameObjToExecuteHolder(pObj, 0xE, -1, -1, -1);
+        MR::connectToSceneTemporarily(pObj);
+        MR::connectToDrawTemporarily(pObj);
+    }
+
+    void connectToSceneMovie(NameObj *pObj) {
+        MR::registerNameObjToExecuteHolder(pObj, 0x10, -1, -1, 0x3F);
+        MR::connectToSceneTemporarily(pObj);
+        MR::connectToDrawTemporarily(pObj);
+    }
+
+    void connectToSceneMirrorMapObj(LiveActor *pActor) {
+        MR::registerNameObjToExecuteHolder(pActor, 0x22, 0xC, 0x27, -1);
+    }
+
+    void connectToSceneMirrorMapObjDecoration(LiveActor *pActor) {
+        MR::registerNameObjToExecuteHolder(pActor, 0x23, 0xC, 0x27, -1);
+    }
+
+    void connectToSceneMirrorMapObjNoMovement(LiveActor *pActor) {
+        MR::registerNameObjToExecuteHolder(pActor, -1, 0xC, 0x27, -1);
+    }
+
+    void connectToSceneCamera(NameObj *pObj) {
+        MR::registerNameObjToExecuteHolder(pObj, 0x2, -1, -1, -1);
+        MR::connectToSceneTemporarily(pObj);
+        MR::connectToDrawTemporarily(pObj);
+    }
+
+    void connectToSceneNoShadowedMapObj(LiveActor *pActor) {
+        MR::registerNameObjToExecuteHolder(pActor, 0x22, 0x5, 0xB, -1);
+    }
+
+    void connectToSceneNoShadowedMapObjStrongLight(LiveActor *pActor) {
+        MR::registerNameObjToExecuteHolder(pActor, 0x22, 0x5, 0xC, -1);
+    }
+
+    void connectToSceneNoSilhouettedMapObj(LiveActor *pActor) {
+        MR::registerNameObjToExecuteHolder(pActor, 0x22, 0x5, 0xD, -1);
+    }
+
+    void connectToSceneNoSilhouettedMapObjStrongLight(LiveActor *pActor) {
+        MR::registerNameObjToExecuteHolder(pActor, 0x22, 0x5, 0xF, -1);
+    }
+
+    void connectToSceneNoSilhouettedMapObjWeakLightNoMovement(LiveActor *pActor) {
+        MR::registerNameObjToExecuteHolder(pActor, -1, 0x5, 0xE, -1);
+    }
+
+    void connectToSceneSky(LiveActor *pActor) {
+        MR::registerNameObjToExecuteHolder(pActor, 0x24, 0x5, 0x1, -1);
+    }
+
+    void connectToSceneAir(LiveActor *pActor) {
+        MR::registerNameObjToExecuteHolder(pActor, 0x24, 0x5, 0x2, -1);
+    }
+
+    void connectToSceneSun(LiveActor *pActor) {
+        MR::registerNameObjToExecuteHolder(pActor, 0x24, 0x5, 0x3, -1);
+    }
+
+    void connectToSceneCrystal(LiveActor *pActor) {
+        MR::registerNameObjToExecuteHolder(pActor, 0x22, 0x5, 0x20, -1);
+    }
+
+    void connectToSceneNormalMapObj(LiveActor *pActor) {
+        MR::registerNameObjToExecuteHolder(pActor, 0x22, 0x5, -1, 0x18);
+    }
+
     NameObjAdaptor* createDrawAdaptor(const char *pName, const MR::FunctorBase &rFunctor) {
         NameObjAdaptor* adaptor = new NameObjAdaptor(pName);
         adaptor->connectToDraw(rFunctor);
         return adaptor;
+    }
+
+    void requestMovementOn(NameObj *pObj) {
+        NameObjFunction::requestMovementOn(pObj);
+    }
+
+    void requestMovementOn(LiveActor *pActor) {
+        NameObjFunction::requestMovementOn(pActor);
+        if (MR::isExistEffectKeeper(pActor)) {
+            MR::Effect::requestMovementOn(pActor->mEffectKeeper);
+        }
+    }
+
+    void requestMovementOn(LayoutActor *pActor) {
+        NameObjFunction::requestMovementOn(pActor);
+    }
+
+    void requestMovementOff(NameObj *pObj) {
+        NameObjFunction::requestMovementOff(pObj);
+    }
+
+    NameObjGroup* joinToNameObjGroup(NameObj *pObj, const char* pGroupName) {
+        NameObjGroup* pObjGroup = static_cast<NameObjGroup*>(NameObjFinder::find(pGroupName));
+
+        pObjGroup->registerObj(pObj);
+
+        return pObjGroup;
+    }
+
+    NameObjGroup* joinToMovementOnOffGroup(const char *pName, NameObj *pObj, u32 a3) {
+        MovementOnOffGroupHolder* pGroupHolder = MR::getSceneObj<MovementOnOffGroupHolder*>(SceneObj_MovementOnOffGroupHolder);
+
+        return pGroupHolder->joinToGroup(pName, pObj, a3);
+    }
+
+    void onMovementOnOffGroup(const char *pGroupName) {
+        MR::getSceneObj<MovementOnOffGroupHolder*>(SceneObj_MovementOnOffGroupHolder)->onMovementGroup(pGroupName);
+    }
+
+    void registerPreDrawFunction(const MR::FunctorBase &rFunc, int a2) {
+        SingletonHolder<GameSystem>::get()->mSceneController->getNameObjListExecutor()->registerPreDrawFunction(rFunc, a2);
     }
 
     NameObjAdaptor* createAdaptorAndConnectToDrawBloomModel(const char *pName, const MR::FunctorBase &rFunctor) {
@@ -230,7 +407,7 @@ namespace MR {
     }
 
     ResourceHolder* createAndAddResourceHolder(const char* pResource) {
-        return SingletonHolder<ResourceHolderManager>::sInstance->createAndAdd(pResource, nullptr);
+        return SingletonHolder<ResourceHolderManager>::get()->createAndAdd(pResource, nullptr);
     }
 
     void* loadResourceFromArc(const char* pArchive, const char* pFile) {
@@ -262,7 +439,7 @@ namespace MR {
     }
 
     JMapInfo* createCsvParser(const char *pArchive, const char *pFormat, ...) {
-        ResourceHolder* holder = SingletonHolder<ResourceHolderManager>::sInstance->createAndAdd(pArchive, nullptr);
+        ResourceHolder* holder = SingletonHolder<ResourceHolderManager>::get()->createAndAdd(pArchive, nullptr);
         return MR::createCsvParser(holder, pFormat);   
     }
 
@@ -313,4 +490,26 @@ namespace MR {
     
     // MR::getCsvDataBool
 
+
+    bool isName(const NameObj *pObj, const char *pName) {
+        return strcmp(pObj->mName, pName) == 0;
+    }
+
+    bool isSame(const NameObj *a1, const NameObj *a2) {
+        return a1 == a2;
+    }
+
+    bool tryRegisterNamePosLinkObj(const NameObj *pObj, const JMapInfoIter &rIter) {
+        return MR::getNamePosHolder()->tryRegisterLinkObj(pObj, rIter);
+    }
+
+    void findNamePos(const char *pName, MtxPtr mtx) {
+        MR::tryFindLinkNamePos(nullptr, pName, mtx);
+    }
+
+    void findNamePos(const char *pName, TVec3f *a2, TVec3f *a3) {
+        MR::getNamePosHolder()->find(nullptr, pName, a2, a3);
+    }
+
+    // MR::findNamePosOnGround
 };

@@ -153,7 +153,7 @@ namespace DemoFunction {
         }
         DemoTimeKeeper* timekeeper = director->mExecutor->mTimeKeeper;
         if (timekeeper->isExistSuspendFlagCurrentPart()) {
-            return timekeeper->isExistSuspendFlagCurrentPart();
+            return timekeeper->isCurrentDemoPartLastStep();
         }
         return isDemoLastPartLastStep();
     }

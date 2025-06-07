@@ -17,7 +17,7 @@ void Spine::update() {
 }
 
 void Spine::setNerve(const Nerve *pNerve) {
-    if (mStep > 0) {
+    if (mStep >= 0) {
         mCurNerve->executeOnEnd(this);
     }
 

@@ -1,28 +1,28 @@
 #include "Game/Map/FileSelectFunc.hpp"
 #include "Game/Map/FileSelectIconID.hpp"
-#include "Game/Util.hpp"
-#include "RVLFaceLib.h"
+#include "Game/Util/MemoryUtil.hpp"
+#include "Game/Util/MessageUtil.hpp"
+#include <RVLFaceLib.h>
 
-u32 FileSelectFunc::getMiiNameBufferSize() {
-    return 0xB;
-}
-
-void FileSelectFunc::copyMiiName(u16 *pData, const FileSelectIconID &rIcon) {
-    if (rIcon.isFellow()) {
-        u32 fellowID = rIcon.getFellowID();
-        const wchar_t* msg = MR::getGameMessageDirect(sIconNameMessageID[fellowID]);
-        MR::copyMemory(pData, msg, 0x16);
+namespace FileSelectFunc {
+    u32 getMiiNameBufferSize() {
+        return RFL_NAME_LEN + 1;
     }
-    else {
-        if (rIcon.isMii()) {
-            u16 miiIdx = rIcon.getMiiIndex();
 
+    void copyMiiName(u16* pName, const FileSelectIconID& rIcon) {
+        if (rIcon.isFellow()) {
+            const char* pMessageId = sIconNameMessageID[rIcon.getFellowID()];
+            const wchar_t* pMessage = MR::getGameMessageDirect(pMessageId);
+
+            MR::copyMemory(pName, pMessage, getMiiNameBufferSize() * sizeof(wchar_t));
+        }
+        else if (rIcon.isMii()) {
             RFLAdditionalInfo info;
-            RFLErrcode ret = RFLGetAdditionalInfo(&info, RFLDataSource_Official, 0, miiIdx);
+            RFLErrcode err = RFLGetAdditionalInfo(&info, RFLDataSource_Official, NULL, rIcon.getMiiIndex());
 
-            if (ret == RFLErrcode_Success) {
-                MR::copyMemory(pData, &info, 0x16);
+            if (err == RFLErrcode_Success) {
+                MR::copyMemory(pName, info.name, getMiiNameBufferSize() * sizeof(wchar_t));
             }
         }
     }
-}
+};

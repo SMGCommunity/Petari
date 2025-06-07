@@ -20,7 +20,7 @@ public:
     bool isCameraNormal() const;
     bool isCameraEvent() const;
 
-    s32 _0;
+    u8* _0;
     u16 _4;
     s8 _6;
     u8 mCameraType;

@@ -10,7 +10,7 @@ class SensorGroup;
 class HitSensor {
 public:
     inline HitSensor() {}
-    HitSensor(u32, u32, f32, LiveActor *);
+    HitSensor(u32, u16, f32, LiveActor *);
 
     bool receiveMessage(u32, HitSensor *);
     void setType(u32);

@@ -1,9 +1,9 @@
 #include "Game/AreaObj/AreaObj.hpp"
 
 void AreaObj::awake() {
-    mAwake = true;
+    mIsAwake = true;
 }
 
 void AreaObj::sleep() {
-    mAwake = false;
+    mIsAwake = false;
 }

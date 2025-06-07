@@ -99,7 +99,7 @@ void OceanRingDrawer::draw() const {
 
 void OceanRingDrawer::drawBloom() const {
     loadMaterialBloom();
-    TVec3f zDir = MR::getCamZDir();
+    TVec3f zDir = MR::getCamZdir();
     zDir.scale(3000.0f);
     TVec3f camPos = MR::getCamPos();
     zDir.add(camPos);

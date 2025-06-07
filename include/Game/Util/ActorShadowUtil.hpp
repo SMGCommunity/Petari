@@ -40,6 +40,8 @@ namespace MR {
 
     void onCalcShadow(LiveActor *, const char *);
 
+
+    void excludeCalcShadowToActorAll(LiveActor *, const LiveActor *);
     void excludeCalcShadowToSensorAll(LiveActor *, const HitSensor *);
     void excludeCalcShadowToMyCollision(LiveActor *, const char *);
 
@@ -62,6 +64,7 @@ namespace MR {
 
     void initShadowController(LiveActor *, u32);
     void addShadowVolumeSphere(LiveActor *, const char *, f32);
+    void setShadowDropPositionAtJoint(LiveActor *, const char *, const char *, const TVec3f &);
     void setShadowDropDirectionPtr(LiveActor *, const char *, const TVec3f *);
     void addShadowVolumeLine(LiveActor *, const char *, LiveActor *, const char *, f32, LiveActor *, const char *, f32);
     bool isShadowProjected(const LiveActor *, const char *);
@@ -70,5 +73,8 @@ namespace MR {
 
     void setShadowVolumeSphereRadius(LiveActor *, const char *, f32);
 
+    f32 getShadowProjectionLength(const LiveActor *, const char *);
     f32 getShadowNearProjectionLength(const LiveActor *);
+
+    void setShadowProjection(LiveActor *, const char *, const TVec3f &, const TVec3f &, bool);
 };

@@ -1,8 +1,11 @@
 #include "Game/AreaObj/DeathArea.hpp"
-#include "Game/Util.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
 
-DeathArea::DeathArea(int a1, const char *pName) : AreaObj(a1, pName) {
-
+DeathArea::DeathArea(int type, const char *pName) :
+    AreaObj(type, pName)
+{
+    
 }
 
 void DeathArea::init(const JMapInfoIter &rIter) {
@@ -13,6 +16,7 @@ void DeathArea::init(const JMapInfoIter &rIter) {
 void DeathArea::movement() {
     if (isInVolume(*MR::getPlayerPos())) {
         bool canKill = getDeathType() == 0;
+
         if (canKill) {
             MR::forceKillPlayerByAbyss();
         }
@@ -20,16 +24,11 @@ void DeathArea::movement() {
 }
 
 bool DeathArea::isInVolume(const TVec3f &rVec) const {
-    bool ret;
-
     if (isValidSwitchA() && !isOnSwitchA()) {
-        ret = false;
-    }
-    else {
-        ret = AreaObj::isInVolume(rVec);
+        return false;
     }
 
-    return ret;
+    return AreaObj::isInVolume(rVec);
 }
 
 s32 DeathArea::getDeathType() const {

@@ -26,6 +26,7 @@ namespace MR {
 
     const char* getCurrentStageName();
 
+    s32 getPowerStarNum();
     s32 getCurrentStagePowerStarNum();
     s32 getZoneNum();
 
@@ -60,6 +61,10 @@ namespace MR {
     bool isEqualStageName(const char *);
 
     bool isStageBeginPrologueEvent();
+    bool isStageBeginFadeWipe();
+    bool isStageBeginTitleWipe();
+    bool isStageBeginWithoutWipe();
+    bool isStageDisablePauseMenu();
 
     bool isStageKoopaVs();
     bool isStageKoopaVs3();
@@ -72,12 +77,11 @@ namespace MR {
     void incPurpleCoin();
 
     s32 getCoinNum();
+    s32 getPurpleCoinNum();
 
     bool isPlacementLocalStage();
 
     bool isInitializeStateEnd();
-
-    bool isStageDisablePauseMenu();
 
     bool isStageSwimAngleLimit();
 

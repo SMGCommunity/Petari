@@ -7,6 +7,7 @@ class LiveActor;
 class ActorCameraInfo;
 class CameraTargetArg;
 class NameObj;
+class JMapInfoIter;
 
 namespace MR {
     const TVec3f getCamPos();
@@ -38,8 +39,8 @@ namespace MR {
     void setFovy(f32);
     void setShakeOffset(f32, f32);
     TVec3f getCamXDir();
-    TVec3f getCamYDir();
-    TVec3f getCamZDir();
+    TVec3f getCamYdir();
+    TVec3f getCamZdir();
     void createMirrorCamera();
     bool isExistMirrorCamera();
 
@@ -56,6 +57,8 @@ namespace MR {
     void declareGlobalEventCamera(const char *);
     void declareEventCameraProgrammable(const char *);
     void setGameCameraTargetToPlayer();
+
+    void startGlobalEventCamera(const char *, const CameraTargetArg &, s32);
 
     void setProgrammableCameraParam(const char *, const TVec3f &, const TVec3f &, const TVec3f &, bool);
 
@@ -81,6 +84,8 @@ namespace MR {
 
     void declareCameraRegisterVec(const NameObj *, u32, TVec3f *);
 
+    void endStartPosCamera();
+    bool isStartPosCameraEnd();
     bool hasStartAnimCamera();
 
     void endStartAnimCamera();

@@ -1,12 +1,12 @@
+#include "Game/Effect/EffectSystemUtil.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Scene/ScenarioSelectScene.hpp"
 #include "Game/Screen/CinemaFrame.hpp"
 #include "Game/Screen/LayoutActor.hpp"
 #include "Game/Screen/ScenarioSelectLayout.hpp"
-#include "Game/LiveActor/Nerve.hpp"
+#include "Game/System/GalaxyStatusAccessor.hpp"
 #include "Game/System/GameSequenceFunction.hpp"
 #include "Game/System/GameSystemFunction.hpp"
-#include "Game/System/GalaxyStatusAccessor.hpp"
-#include "Game/Util/EffectUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/SceneUtil.hpp"
 #include "Game/Util/ScreenUtil.hpp"
@@ -37,7 +37,7 @@ namespace {
 
     bool tryResumeInitializeThread() {
         const char* thread = "シーン初期化";
-        if (MR::isSuspendAsyncExecuteThread(thread)) {
+        if (MR::isSuspendedAsyncExecuteThread(thread)) {
             MR::resumeAsyncExecuteThread(thread);
             return true;
         }

@@ -53,6 +53,8 @@ void GXInitFifoBase(GXFifoObj *, void *, u32);
 void GXSetCPUFifo(const GXFifoObj *);
 void GXSetGPFifo(const GXFifoObj *);
 
+GXBool GXGetFifoWrap(const GXFifoObj* fifo);
+
 GXBreakPtCallback GXSetBreakPtCallback(GXBreakPtCallback);
 
 #ifdef __cplusplus

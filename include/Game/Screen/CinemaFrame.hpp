@@ -4,20 +4,25 @@
 
 class CinemaFrame : public LayoutActor {
 public:
-    CinemaFrame(bool);
+    CinemaFrame(bool param1);
 
     virtual ~CinemaFrame();
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter& rIter);
     virtual void appear();
 
-    bool tryScreenToFrame();
-    bool tryFrameToBlank();
-    bool tryBlankToFrame();
-    bool tryFrameToScreen();
+    void tryScreenToFrame();
+    void tryFrameToBlank();
+    void tryBlankToFrame();
+    void tryFrameToScreen();
     void forceToScreen();
     void forceToFrame();
     void forceToBlank();
     bool isStop() const;
-
     void exeScreen();
+    void exeFrame();
+    void exeBlank();
+    void exeScreenToFrame();
+    void exeFrameToBlank();
+    void exeBlankToFrame();
+    void exeFrameToScreen();
 };

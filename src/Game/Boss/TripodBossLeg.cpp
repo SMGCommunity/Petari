@@ -455,7 +455,7 @@ void TripodBossLeg::exeLanding() {
         }
 
         MR::emitEffect(this, "LegSmoke");
-        mForceEndPoint = v15;
+        mForceEndPoint = hitResult._0;
         _234.zero();
         if (_254) {
             setNerve(&NrvTripodBossLeg::TripodBossLegNrvDamageVibration::sInstance);
@@ -530,7 +530,7 @@ void TripodBossLeg::addToTargetPower(const TVec3f &a1, f32 a2) {
         v8 *= v6;
         TVec3f v9(v8);
         v9 *= 0.1f;
-        _234 = v9;
+        _234 -= v9;
     }
 }
 
@@ -543,12 +543,12 @@ void TripodBossLeg::addIKLimitPower() {
     MR::separateScalarAndDirection(&v8, &v12, v12);
     f32 maxDist = mJoint->getMaxLimitDistance();
     f32 minDist = mJoint->getMinLimitDistance();
-    f32 v4 = MR::normalize(v8, minDist, maxDist);
+    f32 v4 = (f32)MR::normalize(v8, minDist, maxDist);
     v8 = v4;
     f32 v5, v6;
 
-    if (v4 < 0.5f) {
-        v8 = 1.0f - v4;
+    if (v8 < 0.5f) {
+        v8 = 1.0f - v8;
         v12 = -v12;
         v5 = 0.5f;
         v6 = 0.0f;
@@ -694,8 +694,9 @@ void TripodBossLeg::updateAnkleSlerpToBasePose() {
 }
 
 void TripodBossLeg::updateAnkleLanding() {
+    TVec3f* stepPos = &_98->mStepPosition;
     TVec3f v6(mForceEndPoint);
-    v6 -= _98->mStepPosition;
+    v6 -= *stepPos;
     f32 v3 = v6.dot(_98->mStepNormal);
     f32 v4 = MR::normalize((v3 / _250), 0.15000001f, 1.0f);
     TQuat4f quat;
@@ -710,17 +711,66 @@ void TripodBossLeg::updateAnkleShadowMatrix() {
     TVec3f landingNormal;
     
     mMoveArea->calcNearLandingPosition(&landingPosition, mForceEndPoint);
-    mMoveArea->calcLandingNormal(&landingNormal, mForceEndPoint);
+    mMoveArea->calcLandingNormal(&landingNormal, landingPosition);
 
-    MR::setShadowDropDirection(this, nullptr, -landingPosition);
+    MR::setShadowDropDirection(this, nullptr, -landingNormal);
     v9.set<f32>(mEndJointMtx.get(0, 0), mEndJointMtx.get(1, 0), mEndJointMtx.get(2, 0));
     v8.set<f32>(mEndJointMtx.get(0, 1), mEndJointMtx.get(1, 1), mEndJointMtx.get(2, 1));
     v7.set<f32>(mEndJointMtx.get(0, 2), mEndJointMtx.get(1, 2), mEndJointMtx.get(2, 2));
     _1C0.setVec(-v7, -v9, v8);
 
-    TVec3f v2(landingPosition);
+    TVec3f v2(landingNormal);
     v2 *= 630.0f;
     TVec3f v3(mForceEndPoint);
     v3 -= v2;
     _1C0.setTrans(v3);
 }
+
+namespace MR {
+    void separateMatrixRotateYZX(TPos3f *a1, TPos3f *a2, const TPos3f &a3, const TPos3f &a4) {
+        TPos3f v17;
+        v17.invert(a3);
+        v17.concat(v17, a4);
+        TVec3f v16;
+        f32 z = v17.mMtx[2][0];
+        f32 y = v17.mMtx[1][0];
+        f32 x = v17.mMtx[0][0];
+        v16.set<f32>(x, y, z);
+        f32 v10 = MR::speedySqrtf((v16.x * v16.x) + (v16.z * v16.z));
+
+        if (MR::isNearZero(v10, 0.000001f)) {
+            if (v16.y >= 0.0f) {
+                a1->setXDir(0.0f, 1.0f, 0.0f);
+                a1->setYDir(-1.0f, 0.0f, 0.0f);
+                
+            }
+            else {
+                a1->setXDir(0.0f, -1.0f, 0.0f);
+                a1->setYDir(1.0f, 0.0f, 0.0f);
+            }
+
+            
+            a1->setZDir(0.0f, 0.0f, 1.0f);
+            a1->concat(a3, *a1);
+            a2->set(*a1);
+        }
+        else {
+            f32 v11 = v16.length();
+            f32 v12 = (v10 / v11);
+            f32 v14 = (v16.y / v11);
+            f32 v15 = (v16.x / v10);
+            f32 v13 = (v16.z / v10);
+        
+            a1->setXDir(v15, 0.0f, v13);
+            a1->setYDir(0.0f, 1.0f, 0.0f);
+            a1->setZDir(-v13, 0.0f, v15);
+            a1->setTrans(0.0f, 0.0f, 0.0f);
+            a2->setXDir(v12, v14, 0.0f);
+            a2->setYDir(-v14, v12, 0.0f);
+            a2->setZDir(0.0f, 0.0f, 1.0f);
+            a2->setTrans(0.0f, 0.0f, 0.0f);
+            a1->concat(a3, *a1);
+            a2->concat(*a1, *a2);
+        }
+    }
+};

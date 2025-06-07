@@ -9,7 +9,7 @@ PartsModel::PartsModel(LiveActor *pActor, const char *pName, const char *pModelN
     _99 = false;
     mIsDead = false;
 
-    if (a5 > 0) {
+    if (a5 < 0) {
         a5 = 8;
     }
 

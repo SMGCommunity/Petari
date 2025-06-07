@@ -1,36 +1,65 @@
 #pragma once
 
-#include <revolution.h>
-#include "Game/System/GameSystemSceneController.hpp"
 #include "Game/System/NerveExecutor.hpp"
 
 class GameSequenceDirector;
+class GameSystemDimmingWatcher;
+class GameSystemErrorWatcher;
+class GameSystemFontHolder;
+class GameSystemFrameControl;
 class GameSystemObjHolder;
-class NameObjListExecutor;
+class GameSystemSceneController;
+class GameSystemStationedArchiveLoader;
+class HomeButtonLayout;
 class HomeButtonStateNotifier;
+class SystemWipeHolder;
 
-class GameSystem : public NerveExecutor {
-public:
-    GameSystem();
+#define GX_FIFO_SIZE 0x80000
 
-    void init();
-    void frameLoop();
-
-    u32 _8;
-    GameSequenceDirector* mSeqDirector;  // 0xC
-    u32 _10;
-    u32 _14;
-    u32 _18;
-    u32 _1C;
-    GameSystemObjHolder* mObjHolder;                // 0x20
-    GameSystemSceneController* mSceneController;    // 0x24
-    u32 _28;
-    u32 _2C;
-    u32 _30;
-    HomeButtonStateNotifier* mHomeButtonStateModif; // 0x34
-    u32 _38;
-};
+#define INIT_AUDIO_KEY "オーディオ初期化" // "Audio Initialization"
 
 #ifdef __MWERKS__
 void main(void);
 #endif
+
+class GameSystem : public NerveExecutor {
+public:
+    /// @brief Creates a new `GameSystem`.
+    GameSystem();
+
+    /// @brief Destroys the `GameSystem`.
+    virtual ~GameSystem() {}
+
+    void init();
+    bool isExecuteLoadSystemArchive() const;
+    bool isDoneLoadSystemArchive() const;
+    void startToLoadSystemArchive();
+    void exeInitializeAudio();
+    void exeInitializeLogoScene();
+    void exeLoadStationedArchive();
+    void exeWaitForReboot();
+    void exeNormal();
+    void initGX();
+    void initAfterStationedResourceLoaded();
+    void prepareReset();
+    bool isPreparedReset() const;
+    void frameLoop();
+    void draw();
+    void update();
+    void updateSceneController();
+    void calcAnim();
+
+    /* 0x08 */ void* mFifoBase;
+    /* 0x0C */ GameSequenceDirector* mSequenceDirector;
+    /* 0x10 */ GameSystemDimmingWatcher* mDimmingWatcher;
+    /* 0x14 */ GameSystemErrorWatcher* mErrorWatcher;
+    /* 0x18 */ GameSystemFontHolder* mFontHolder;
+    /* 0x1C */ GameSystemFrameControl* mFrameControl;
+    /* 0x20 */ GameSystemObjHolder* mObjHolder;
+    /* 0x24 */ GameSystemSceneController* mSceneController;
+    /* 0x28 */ GameSystemStationedArchiveLoader* mStationedArchiveLoader;
+    /* 0x2C */ HomeButtonLayout* mHomeButtonLayout;
+    /* 0x30 */ SystemWipeHolder* mSystemWipeHolder;
+    /* 0x34 */ HomeButtonStateNotifier* mHomeButtonStateNotifier;
+    /* 0x38 */ bool mIsExecuteLoadSystemArchive;
+};

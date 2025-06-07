@@ -1,19 +1,15 @@
 #pragma once
 
-#include "Game/Util/TriggerChecker.hpp"
-#include <revolution.h>
+class TriggerChecker;
 
 class GameSystemDimmingWatcher {
 public:
+    /// @brief Creates a new `GameSystemDimmingWatcher`.
     GameSystemDimmingWatcher();
 
     void update();
 
-    TriggerChecker* getTriggerChecker() const {
-        return mChecker;
-    }
-
-    TriggerChecker* mChecker;           // 0x00
-    bool _4;
-    bool _5;
+    /* 0x0 */ TriggerChecker* mChecker;
+    /* 0x4 */ bool _4;
+    /* 0x5 */ bool _5;
 };

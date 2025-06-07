@@ -45,8 +45,18 @@ typedef struct  {
     char* name;
 } ARCDirEntry;
 
+BOOL ARCInitHandle(void *, ARCHandle *);
+BOOL ARCFastOpen(ARCHandle *, s32, ARCFileInfo *);
 s32 ARCConvertPathToEntrynum(ARCHandle *, const char *);
+void* ARCGetStartAddrInMem(ARCFileInfo *);
+u32 ARCGetLength(ARCFileInfo *);
+BOOL ARCClose(ARCFileInfo *);
+BOOL ARCChangeDir(ARCHandle *, const char *);
 BOOL ARCGetCurrentDir(ARCHandle *, char *, u32);
+
+BOOL ARCOpenDir(ARCHandle *, const char *, ARCDir *);
+BOOL ARCReadDir(ARCDir *, ARCDirEntry *);
+BOOL ARCCloseDir(ARCDir *);
 
 #ifdef __cplusplus
 }

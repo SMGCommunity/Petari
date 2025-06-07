@@ -5,7 +5,7 @@
 class BigBubble;
 
 class BigBubbleGoalArea : public AreaObj {
-    
+public:
     BigBubbleGoalArea(int, const char *);
     virtual ~BigBubbleGoalArea();
 

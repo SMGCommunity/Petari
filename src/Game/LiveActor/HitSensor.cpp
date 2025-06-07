@@ -2,9 +2,7 @@
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/SensorHitChecker.hpp"
 
-// fuck this shit, sensorGroupSize is getting turned into a u32 becuase literally nothing else will match
-// whatever
-HitSensor::HitSensor(u32 type, u32 sensorGroupSize, f32 radius, LiveActor *pActor) {
+HitSensor::HitSensor(u32 type, u16 sensorGroupSize, f32 radius, LiveActor *pActor) {
     mSensorType = type;
     mPosition.x = 0.0f;
     mPosition.y = 0.0f;
@@ -18,8 +16,8 @@ HitSensor::HitSensor(u32 type, u32 sensorGroupSize, f32 radius, LiveActor *pActo
     mValidByHost = true;
     mActor = pActor;
 
-    if (sensorGroupSize & 0xFFFF) {
-        mSensors = new HitSensor*[sensorGroupSize];
+    if (mGroupSize != 0) {
+        mSensors = new HitSensor*[mGroupSize];
 
         for (s32 i = 0; i < mGroupSize; i++) {
             mSensors[i] = nullptr;
@@ -106,7 +104,7 @@ void HitSensor::validateBySystem() {
 }
 
 void HitSensor::invalidateBySystem() {
-    if (!mValidBySystem) {
+    if (mValidBySystem) {
         if (mGroupSize) {
             if (mValidByHost) {
                 mSensorGroup->remove(this);

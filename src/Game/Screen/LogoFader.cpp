@@ -1,9 +1,17 @@
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/LogoFader.hpp"
 #include "Game/Util/DrawUtil.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 
 #define RATE_MIN 0.0f
 #define RATE_MAX 1.0f
+
+namespace {
+    NEW_NERVE(LogoFaderNrvBlank, LogoFader, Blank);
+    NEW_NERVE(LogoFaderNrvDisplay, LogoFader, Display);
+    NEW_NERVE(LogoFaderNrvFadeIn, LogoFader, FadeIn);
+    NEW_NERVE(LogoFaderNrvFadeOut, LogoFader, FadeOut);
+};
 
 LogoFader::LogoFader(const char* pName) :
     LayoutActor(pName, true),
@@ -93,10 +101,3 @@ bool LogoFader::isFadeEnd() const {
 LogoFader::~LogoFader() {
     
 }
-
-namespace {
-    INIT_NERVE(LogoFaderNrvBlank);
-    INIT_NERVE(LogoFaderNrvDisplay);
-    INIT_NERVE(LogoFaderNrvFadeIn);
-    INIT_NERVE(LogoFaderNrvFadeOut);
-};

@@ -17,16 +17,18 @@ LiveActor* LiveActorGroup::getActor(int idx) const {
 LiveActor* LiveActorGroup::getDeadActor() const {
     for (s32 i = 0; i < mObjectCount; i++) {
         LiveActor* actor = static_cast<LiveActor*>(mObjects[i]);
+
         if (MR::isDead(actor)) {
             return static_cast<LiveActor*>(mObjects[i]);
         }
     }
 
-    return 0;
+    return NULL;
 }
 
 s32 LiveActorGroup::getLivingActorNum() const {
     s32 num = 0;
+
     for (s32 i = 0; i < mObjectCount; i++) {
         LiveActor* actor = static_cast<LiveActor*>(mObjects[i]);
 
@@ -40,7 +42,7 @@ s32 LiveActorGroup::getLivingActorNum() const {
 
 void LiveActorGroup::appearAll() {
     for (s32 i = 0; i < mObjectCount; i++) {
-        if (!MR::isDead(static_cast<LiveActor*>(mObjects[i]))) {
+        if (MR::isDead(static_cast<LiveActor*>(mObjects[i]))) {
             static_cast<LiveActor*>(mObjects[i])->appear();
         }
     }
@@ -48,6 +50,6 @@ void LiveActorGroup::appearAll() {
 
 void LiveActorGroup::killAll() {
     for (s32 i = 0; i < mObjectCount; i++) {
-        static_cast<LiveActor*>(mObjects[i])->kill();
+        static_cast<LiveActor*>(mObjects[i])->makeActorDead();
     }
 }

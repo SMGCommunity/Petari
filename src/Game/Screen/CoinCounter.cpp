@@ -1,26 +1,46 @@
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/CoinCounter.hpp"
+#include "Game/Screen/CountUpPaneRumbler.hpp"
+#include "Game/Screen/CounterLayoutAppearer.hpp"
 #include "Game/Screen/CounterLayoutController.hpp"
-#include "Game/Util.hpp"
+#include "Game/Util/LayoutUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/SceneUtil.hpp"
+#include "Game/Util/StarPointerUtil.hpp"
 
-CoinCounter::CoinCounter(const char *pName) : LayoutActor(pName, true) {
-    mCoinCount = 0;
-    _24 = 0;
-    _28 = 0;
-    mLayoutAppearer = nullptr;
-    mPaneRumbler = nullptr;
-    mIsAppear = false;
-    mFollowPos.x = 0.0f;
-    mFollowPos.y = 0.0f;
-}
+namespace {
+    const s32 cInvalidCountUpInterval = 3;
+    const f32 cAstroLocationOffsetY = 40.0f;
+};
 
-void CoinCounter::init(const JMapInfoIter &rIter) {
+namespace NrvCoinCounter {
+    NEW_NERVE(CoinCounterNrvHide, CoinCounter, Hide);
+    NEW_NERVE(CoinCounterNrvAppear, CoinCounter, Appear);
+    NEW_NERVE(CoinCounterNrvWait, CoinCounter, Wait);
+    NEW_NERVE(CoinCounterNrvDisappear, CoinCounter, Disappear);
+};
+
+CoinCounter::CoinCounter(const char* pName) :
+    LayoutActor(pName, true),
+    mCoinNum(0),
+    mCoinDisplayNum(0),
+    mInvalidCountUpFrame(0),
+    mLayoutAppearer(NULL),
+    mPaneRumbler(NULL),
+    mIsForceAppear(false),
+    mFollowPos(0.0f, 0.0f)
+{}
+
+void CoinCounter::init(const JMapInfoIter& rIter) {
     initLayoutManager("CoinCounter", 2);
     MR::createAndAddPaneCtrl(this, "Counter", 1);
     MR::createAndAddPaneCtrl(this, "CoinCounter", 1);
     MR::setFollowPos(&mFollowPos, this, "CoinCounter");
-    initEffectKeeper(0, nullptr, nullptr);
+    initEffectKeeper(0, NULL, NULL);
+
     mLayoutAppearer = new CounterLayoutAppearer(this, TVec2f(50.0f, 0.0f));
     mPaneRumbler = new CountUpPaneRumbler(this, "Counter");
+
     initNerve(&NrvCoinCounter::CoinCounterNrvHide::sInstance);
     MR::connectToSceneLayout(this);
     appear();
@@ -29,8 +49,10 @@ void CoinCounter::init(const JMapInfoIter &rIter) {
 void CoinCounter::appear() {
     mLayoutAppearer->reset();
     mPaneRumbler->reset();
-    _28 = 0;
-    mIsAppear = false;
+
+    mInvalidCountUpFrame = 0;
+    mIsForceAppear = false;
+
     MR::hideLayout(this);
     setNerve(&NrvCoinCounter::CoinCounterNrvHide::sInstance);
     LayoutActor::appear();
@@ -41,12 +63,13 @@ void CoinCounter::forceAppear() {
         appear();
         setNerve(&NrvCoinCounter::CoinCounterNrvAppear::sInstance);
     }
-    
-    mIsAppear = true;
+
+    mIsForceAppear = true;
 }
 
 void CoinCounter::disappear() {
-    mIsAppear = false;
+    mIsForceAppear = false;
+
     setNerve(&NrvCoinCounter::CoinCounterNrvDisappear::sInstance);
 }
 
@@ -61,52 +84,48 @@ void CoinCounter::control() {
 }
 
 void CoinCounter::updateCounter() {
-    s32 coinNum = MR::getCoinNum();
-    s32 var = _28;
-    mCoinCount = coinNum;
+    mCoinNum = MR::getCoinNum();
 
-    if (var > 0) {
-        _28 = var - 1;
+    if (mInvalidCountUpFrame > 0) {
+        mInvalidCountUpFrame--;
     }
-    else {
-        if (_24 < coinNum) {
-            if (isNerve(&NrvCoinCounter::CoinCounterNrvWait::sInstance)) {
-                u32 v4 = _24;
-                _28 = 3;
-                _24 = v4 + 1;
-                MR::startAnim(this, "Flash", 0);
-                MR::emitEffect(this, "CoinCounterLight");
-                mPaneRumbler->start();
-            }
+    else if (mCoinDisplayNum < mCoinNum) {
+        if (isNerve(&NrvCoinCounter::CoinCounterNrvWait::sInstance)) {
+            mInvalidCountUpFrame = cInvalidCountUpInterval;
+            mCoinDisplayNum++;
 
-            if (!isNerve(&NrvCoinCounter::CoinCounterNrvAppear::sInstance)) {
-                if (!isNerve(&NrvCoinCounter::CoinCounterNrvWait::sInstance)) {
-                    setNerve(&NrvCoinCounter::CoinCounterNrvAppear::sInstance);
-                }
-                else {
-                    setNerve(&NrvCoinCounter::CoinCounterNrvWait::sInstance);
-                }
+            MR::startAnim(this, "Flash", 0);
+            MR::emitEffect(this, "CoinCounterLight");
+            mPaneRumbler->start();
+        }
+
+        if (!isNerve(&NrvCoinCounter::CoinCounterNrvAppear::sInstance)) {
+            if (!isNerve(&NrvCoinCounter::CoinCounterNrvWait::sInstance)) {
+                setNerve(&NrvCoinCounter::CoinCounterNrvAppear::sInstance);
+            }
+            else {
+                setNerve(&NrvCoinCounter::CoinCounterNrvWait::sInstance);
             }
         }
     }
 
-    char* pane = "Position001";
-    if (_24 >= 100) {
-        pane = "Position100";
+    char* pPaneName = "Position001";
+
+    if (mCoinDisplayNum >= 100) {
+        pPaneName = "Position100";
     }
-    else {
-        if (_24 >= 10) {
-            pane = "Position010";
-        }
+    else if (mCoinDisplayNum >= 10) {
+        pPaneName = "Position010";
     }
 
-    MR::copyPaneTrans(&mFollowPos, this, pane);
-    MR::setTextBoxNumberRecursive(this, "Counter", _24);
+    MR::copyPaneTrans(&mFollowPos, this, pPaneName);
+    MR::setTextBoxNumberRecursive(this, "Counter", mCoinDisplayNum);
 }
 
 void CoinCounter::exeHide() {
     if (MR::isFirstStep(this)) {
-        _28 = 0;
+        mInvalidCountUpFrame = 0;
+
         MR::hideLayout(this);
     }
 }
@@ -114,17 +133,12 @@ void CoinCounter::exeHide() {
 void CoinCounter::exeAppear() {
     if (MR::isFirstStep(this)) {
         MR::showLayout(this);
+
         if (MR::isStageAstroLocation()) {
-            TVec2f vec;
-            vec.x = 0.0f;
-            vec.y = 40.0f;
-            mLayoutAppearer->appear(vec);
+            mLayoutAppearer->appear(TVec2f(0.0f, cAstroLocationOffsetY));
         }
         else {
-            TVec2f vec;
-            vec.x = 0.0f;
-            vec.y = 0.0f;
-            mLayoutAppearer->appear(vec);
+            mLayoutAppearer->appear(TVec2f(0.0f, 0.0f));
         }
 
         MR::startAnim(this, "Wait", 1);
@@ -136,10 +150,16 @@ void CoinCounter::exeAppear() {
 }
 
 void CoinCounter::exeWait() {
-    if (!mIsAppear && _24 == mCoinCount) {
-        if (CounterLayoutController::isWaitToDisappearCounter(this)) {
-            setNerve(&NrvCoinCounter::CoinCounterNrvDisappear::sInstance);
-        }
+    if (mIsForceAppear) {
+        return;
+    }
+
+    if (mCoinDisplayNum != mCoinNum) {
+        return;
+    }
+
+    if (CounterLayoutController::isWaitToDisappearCounter(this)) {
+        setNerve(&NrvCoinCounter::CoinCounterNrvDisappear::sInstance);
     }
 }
 
@@ -154,32 +174,5 @@ void CoinCounter::exeDisappear() {
 }
 
 CoinCounter::~CoinCounter() {
-
+    
 }
-
-namespace NrvCoinCounter {
-    INIT_NERVE(CoinCounterNrvHide);
-    INIT_NERVE(CoinCounterNrvAppear);
-    INIT_NERVE(CoinCounterNrvWait);
-    INIT_NERVE(CoinCounterNrvDisappear);
-
-    void CoinCounterNrvDisappear::execute(Spine *pSpine) const {
-        CoinCounter* counter = reinterpret_cast<CoinCounter*>(pSpine->mExecutor);
-        counter->exeDisappear(); 
-    }
-
-    void CoinCounterNrvWait::execute(Spine *pSpine) const {
-        CoinCounter* counter = reinterpret_cast<CoinCounter*>(pSpine->mExecutor);
-        counter->exeWait();
-    }
-
-    void CoinCounterNrvAppear::execute(Spine *pSpine) const {
-        CoinCounter* counter = reinterpret_cast<CoinCounter*>(pSpine->mExecutor);
-        counter->exeAppear();
-    }
-
-    void CoinCounterNrvHide::execute(Spine *pSpine) const {
-        CoinCounter* counter = reinterpret_cast<CoinCounter*>(pSpine->mExecutor);
-        counter->exeHide();
-    }
-};

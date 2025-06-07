@@ -2,6 +2,8 @@
 #include <revolution/os/OSCache.h>
 #include <revolution/os.h>
 
+static char* error = ">>> L2 INVALIDATE : SHOULD NEVER HAPPEN\n";
+
 asm void DCEnable(void) {
     nofralloc
     sync
@@ -330,7 +332,7 @@ void inline L2GlobalInvalidate(void) {
     PPCMtl2cr(PPCMfl2cr() & ~0x200000);
 
     while (PPCMfl2cr() & 1) {
-        DBPrintf(">>> L2 INVALIDATE : SHOULD NEVER HAPPEN\n");
+        DBPrintf(error);
     }
 }
 

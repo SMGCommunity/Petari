@@ -30,6 +30,9 @@ namespace nw4r {
             virtual void Animate(u32, Pane *) = 0;
             virtual void Animate(u32, Material *) = 0;
 
+            u16 GetFrameSize() const;
+            bool IsLoopData() const;
+
             ut::LinkListNode mLink;
             const res::AnimationBlock* mpRes;
             f32 mFrame;

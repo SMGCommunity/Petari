@@ -338,7 +338,7 @@ void GXClearGPMetric(void) {
     GX_CP_REG_WRITE_U16(2, 4);
 }
 
-void GXReadXrRasMetric(u32 *xf_wait_in, u32* xf_wait_out, u32* ras_busy, u32* clocks) {
+void GXReadXfRasMetric(u32 *xf_wait_in, u32* xf_wait_out, u32* ras_busy, u32* clocks) {
     *ras_busy = GX_CP_COUNTER_READ_U32(CP_COUNTER0);
     *clocks = GX_CP_COUNTER_READ_U32(CP_COUNTER1);
     *xf_wait_in = GX_CP_COUNTER_READ_U32(CP_COUNTER2);

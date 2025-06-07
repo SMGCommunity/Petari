@@ -1,15 +1,20 @@
 #pragma once
 
 #include "Game/Screen/LayoutActor.hpp"
-#include "Game/Screen/CounterLayoutAppearer.hpp"
-#include "Game/Screen/CountUpPaneRumbler.hpp"
+
+class CountUpPaneRumbler;
+class CounterLayoutAppearer;
 
 class StarPieceCounter : public LayoutActor {
 public:
-    StarPieceCounter(const char *);
+    /// @brief Creates a new `StarPieceCounter`.
+    /// @param pName The pointer to the null-terminated name of the object.
+    StarPieceCounter(const char* pName);
 
+    /// @brief Destroys the `StarPieceCounter`.
     virtual ~StarPieceCounter();
-    virtual void init(const JMapInfoIter &);
+
+    virtual void init(const JMapInfoIter& rIter);
     virtual void appear();
     virtual void control();
 
@@ -24,37 +29,17 @@ public:
     bool isValidAppearSituation() const;
     bool isDispCenter() const;
     bool tryChangeModeTicoEat(int);
-
     void exeHide();
     void exeAppear();
     void exeWait();
     void exeDisappear();
 
-    s32 mStarPieceNum;                      // 0x20
-    s32 _24;
-    u32 _28;
-    CounterLayoutAppearer* mAppearer;       // 0x2C
-    CountUpPaneRumbler* mPaneRumbler;       // 0x30
-    TVec2f mFollowPos;                      // 0x34
-    s32 _3C;
-    int _40;
-};
-
-namespace NrvStarPieceCounter {
-    NERVE_DECL(StarPieceCounterNrvHide, StarPieceCounter, StarPieceCounter::exeHide);
-    NERVE_DECL(StarPieceCounterNrvAppear, StarPieceCounter, StarPieceCounter::exeAppear);
-    NERVE_DECL(StarPieceCounterNrvWait, StarPieceCounter, StarPieceCounter::exeWait);
-    NERVE_DECL(StarPieceCounterNrvDisappear, StarPieceCounter, StarPieceCounter::exeDisappear);
-};
-
-namespace StarPieceUtil {
-    inline bool isDeadOrWaiting(StarPieceCounter *pCounter) {
-        bool isDeadAndWaiting = false;
-
-        if (!MR::isDead(pCounter) && pCounter->isNerve(&NrvStarPieceCounter::StarPieceCounterNrvWait::sInstance)) {
-            isDeadAndWaiting = true;
-        }
-
-        return isDeadAndWaiting;
-    }
+    /* 0x20 */ s32 mStarPieceNum;
+    /* 0x24 */ s32 mStarPieceDisplayNum;
+    /* 0x28 */ s32 mInvalidCountUpFrame;
+    /* 0x2C */ CounterLayoutAppearer* mLayoutAppearer;
+    /* 0x30 */ CountUpPaneRumbler* mPaneRumbler;
+    /* 0x34 */ TVec2f mFollowPos;
+    /* 0x38 */ s32 _3C;
+    /* 0x3C */ int mMode;
 };

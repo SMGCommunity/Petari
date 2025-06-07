@@ -27,6 +27,8 @@ namespace MR {
     bool calcMapGroundUpper(TVec3f *, const LiveActor *);
 
     bool trySetMoveLimitCollision(LiveActor *);
+
+    bool isFallNextMove(const LiveActor *, f32, f32, f32, const TriangleFilterBase *);
 };
 
 class Collision {

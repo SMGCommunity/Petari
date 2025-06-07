@@ -1,40 +1,47 @@
 #include "Game/Boss/BossBegomanHead.hpp"
+#include "Game/Util/JointController.hpp"
 
-BossBegomanHead::BossBegomanHead(LiveActor *pParent, MtxPtr mtx) : PartsModel(pParent, "スイッチ頭", "BossBegomanHead", mtx, 0x12, false) {
-    _9C = 0.0f;
-    mJointDeleg = nullptr;
+namespace NrvBossBegomanHead {
+    NEW_NERVE(HostTypeNrvDemoWait, BossBegomanHead, DemoWait);
+    NEW_NERVE(HostTypeNrvOpeningDemo, BossBegomanHead, OpeningDemo);
+    NEW_NERVE(HostTypeNrvOnWait, BossBegomanHead, OnWait);
+    NEW_NERVE(HostTypeNrvOffWait, BossBegomanHead, OffWait);
+    NEW_NERVE(HostTypeNrvSwitchOn, BossBegomanHead, SwitchOn);
+    NEW_NERVE(HostTypeNrvSwitchOff, BossBegomanHead, SwitchOff);
+    NEW_NERVE(HostTypeNrvTurn, BossBegomanHead, Turn);
+    NEW_NERVE(HostTypeNrvTurnEnd, BossBegomanHead, TurnEnd);
+};
+
+BossBegomanHead::BossBegomanHead(LiveActor *pParent, MtxPtr pMtx) :
+    PartsModel(pParent, "スイッチ頭", "BossBegomanHead", pMtx, 0x12, false),
+    _9C(0.0f),
+    mJointDelegator(NULL)
+{
+    
 }
 
 void BossBegomanHead::init(const JMapInfoIter &rIter) {
     initNerve(&NrvBossBegomanHead::HostTypeNrvDemoWait::sInstance);
-    mJointDeleg = MR::createJointDelegatorWithNullChildFunc(this, &BossBegomanHead::calcJointEdge, "Edge");\
+
+    mJointDelegator = MR::createJointDelegatorWithNullChildFunc(this, &BossBegomanHead::calcJointEdge, "Edge");
+
     PartsModel::init(rIter);
     MR::initLightCtrl(this);
     appear();
 }
 
 bool BossBegomanHead::isSwitchOn() {
-    bool ret = false;
-    if (isNerve(&NrvBossBegomanHead::HostTypeNrvDemoWait::sInstance) 
-    || isNerve(&NrvBossBegomanHead::HostTypeNrvOpeningDemo::sInstance)
-    || isNerve(&NrvBossBegomanHead::HostTypeNrvOnWait::sInstance)
-    || isNerve(&NrvBossBegomanHead::HostTypeNrvSwitchOn::sInstance)) {
-        ret = true;
-    }
-
-    return ret;
+    return isNerve(&NrvBossBegomanHead::HostTypeNrvDemoWait::sInstance)
+        || isNerve(&NrvBossBegomanHead::HostTypeNrvOpeningDemo::sInstance)
+        || isNerve(&NrvBossBegomanHead::HostTypeNrvOnWait::sInstance)
+        || isNerve(&NrvBossBegomanHead::HostTypeNrvSwitchOn::sInstance);
 }
 
 bool BossBegomanHead::isEdgeOut() {
-    bool ret = false;
-    if (isNerve(&NrvBossBegomanHead::HostTypeNrvOffWait::sInstance) 
-    || isNerve(&NrvBossBegomanHead::HostTypeNrvSwitchOff::sInstance)
-    || isNerve(&NrvBossBegomanHead::HostTypeNrvTurn::sInstance)
-    || isNerve(&NrvBossBegomanHead::HostTypeNrvTurnEnd::sInstance)) {
-        ret = true;
-    }
-
-    return ret;
+    return isNerve(&NrvBossBegomanHead::HostTypeNrvOffWait::sInstance)
+        || isNerve(&NrvBossBegomanHead::HostTypeNrvSwitchOff::sInstance)
+        || isNerve(&NrvBossBegomanHead::HostTypeNrvTurn::sInstance)
+        || isNerve(&NrvBossBegomanHead::HostTypeNrvTurnEnd::sInstance);
 }
 
 void BossBegomanHead::setOpeningDemo() {
@@ -57,12 +64,46 @@ void BossBegomanHead::tryTurnEnd() {
     setNerve(&NrvBossBegomanHead::HostTypeNrvTurnEnd::sInstance);
 }
 
+void BossBegomanHead::exeDemoWait() {
+    if (MR::isFirstStep(this)) {
+        MR::startAction(this, "DemoWait");
+    }
+}
+
+void BossBegomanHead::exeOpeningDemo() {
+    if (MR::isFirstStep(this)) {
+        MR::startAction(this, "OpeningDemo");
+    }
+}
+
+void BossBegomanHead::exeOnWait() {
+    if (MR::isFirstStep(this)) {
+        MR::startAction(this, "OnWait");
+    }
+}
+
 void BossBegomanHead::exeOffWait() {
     if (MR::isFirstStep(this)) {
         MR::startAction(this, "OffWait");
     }
 
     _9C -= 0.23f;
+}
+
+void BossBegomanHead::exeSwitchOn() {
+    if (MR::isFirstStep(this)) {
+        MR::startAction(this, "On");
+    }
+
+    MR::setNerveAtBckStopped(this, &NrvBossBegomanHead::HostTypeNrvOnWait::sInstance);
+}
+
+void BossBegomanHead::exeSwitchOff() {
+    if (MR::isFirstStep(this)) {
+        MR::startAction(this, "Off");
+    }
+
+    MR::setNerveAtBckStopped(this, &NrvBossBegomanHead::HostTypeNrvOffWait::sInstance);
 }
 
 void BossBegomanHead::exeTurn() {
@@ -79,12 +120,13 @@ void BossBegomanHead::exeTurnEnd() {
     }
 
     _9C -= 0.23f;
+
     MR::setNerveAtBckStopped(this, &NrvBossBegomanHead::HostTypeNrvOffWait::sInstance);
 }
 
 void BossBegomanHead::calcAndSetBaseMtx() {
     PartsModel::calcAndSetBaseMtx();
-    mJointDeleg->registerCallBack();
+    mJointDelegator->registerCallBack();
 }
 
 bool BossBegomanHead::calcJointEdge(TPos3f *pMtx, const JointControllerInfo &) {
@@ -100,50 +142,10 @@ bool BossBegomanHead::calcJointEdge(TPos3f *pMtx, const JointControllerInfo &) {
     v7.z = 0.0;
     v9.makeRotateInline(v7, v3);
     pMtx->concat(*pMtx, v9);
-    return 1;
-}
 
-void BossBegomanHead::exeSwitchOff() {
-    if (MR::isFirstStep(this)) {
-        MR::startAction(this, "Off");
-    }
+    return true;
 }
-
-void BossBegomanHead::exeSwitchOn() {
-    if (MR::isFirstStep(this)) {
-        MR::startAction(this, "On");
-    }
-}
-
-void BossBegomanHead::exeOnWait() {
-    if (MR::isFirstStep(this)) {
-        MR::startAction(this, "OnWait");
-    }
-}
-
-void BossBegomanHead::exeOpeningDemo() {
-    if (MR::isFirstStep(this)) {
-        MR::startAction(this, "OpeningDemo");
-    }
-}
-
-void BossBegomanHead::exeDemoWait() {
-    if (MR::isFirstStep(this)) {
-        MR::startAction(this, "DemoWait");
-    }
-}
-
-namespace NrvBossBegomanHead {
-    INIT_NERVE(HostTypeNrvDemoWait);
-    INIT_NERVE(HostTypeNrvOpeningDemo);
-    INIT_NERVE(HostTypeNrvOnWait);
-    INIT_NERVE(HostTypeNrvOffWait);
-    INIT_NERVE(HostTypeNrvSwitchOn);
-    INIT_NERVE(HostTypeNrvSwitchOff);
-    INIT_NERVE(HostTypeNrvTurn);
-    INIT_NERVE(HostTypeNrvTurnEnd);
-};
 
 BossBegomanHead::~BossBegomanHead() {
-
+    
 }

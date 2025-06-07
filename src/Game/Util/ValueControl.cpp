@@ -1,75 +1,67 @@
 #include "Game/Util/ValueControl.hpp"
 
-ValueControl::ValueControl(int a1) {
-    mCurrentFrame = 0;
-    mMaxFrame = a1;
-    mDirection = DIRECTION_FORWARD;
-}
-
-inline s32 ValueControl::getDirection() const {
-    return mDirection;
-}
+ValueControl::ValueControl(int maxFrame) :
+    mFrame(0),
+    mMaxFrame(maxFrame),
+    mDirection(Direction_Forward)
+{}
 
 void ValueControl::setDirToOne() {
-    mDirection = DIRECTION_FORWARD;
+    mDirection = Direction_Forward;
 }
 
 void ValueControl::setDirToOneResetFrame() {
-    mDirection = DIRECTION_FORWARD;
+    setDirToOne();
     resetFrame();
 }
 
 void ValueControl::setDirToZero() {
-    mDirection = DIRECTION_BACKWARD;
+    mDirection = Direction_Backward;
 }
 
 void ValueControl::setDirToZeroResetFrame() {
-    mDirection = DIRECTION_BACKWARD;
+    setDirToZero();
     resetFrame();
 }
 
-void ValueControl::setMaxFrame(int newMaxFrame) {
-    f32 value = (f32)(mCurrentFrame) / (f32)(mMaxFrame);
+void ValueControl::setMaxFrame(int maxFrame) {
+    f32 value = getValue();
 
-    mMaxFrame = newMaxFrame;
-    mCurrentFrame = static_cast<int>(value * static_cast<f32>(newMaxFrame));
+    mMaxFrame = maxFrame;
+    mFrame = value * mMaxFrame;
 }
 
-f32 ValueControl::getValue() const {
-    return (f32)mCurrentFrame / (f32)mMaxFrame;
-}
-
-inline bool ValueControl::goingBackward(s32 currentDirection) {
-    return (u32)(-currentDirection & ~currentDirection) >> 31 == 0;
-}
-
-void ValueControl::update()
-{
-    s32 currentDirection = mDirection;
-    if ((currentDirection > 0 && mCurrentFrame != mMaxFrame) ||
-    (goingBackward(currentDirection) && mCurrentFrame))
-    {
-        mCurrentFrame += getDirection();
+void ValueControl::update() {
+    if ((mDirection > 0 && mFrame != mMaxFrame) || (isDirToZero(mDirection) && mFrame != 0)) {
+        mFrame += getDirection();
     }
 }
 
 void ValueControl::setZero() {
-    mDirection = DIRECTION_BACKWARD;
-    resetFrame();
-    mCurrentFrame = 0;
+    setDirToZeroResetFrame();
+
+    mFrame = 0;
 }
 
 void ValueControl::setOne() {
-    mDirection = DIRECTION_FORWARD;
-    resetFrame();
-    mCurrentFrame = mMaxFrame;
+    setDirToOneResetFrame();
+
+    mFrame = mMaxFrame;
+}
+
+f32 ValueControl::getValue() const {
+    return static_cast<f32>(mFrame) / mMaxFrame;
+}
+
+s32 ValueControl::getDirection() const {
+    return mDirection;
 }
 
 void ValueControl::resetFrame() {
-    if (getDirection() > 0) {
-        mCurrentFrame = 0;
+    if (mDirection > 0) {
+        mFrame = 0;
     }
     else {
-       mCurrentFrame = mMaxFrame;
+        mFrame = mMaxFrame;
     }
 }

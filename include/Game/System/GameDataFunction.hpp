@@ -4,6 +4,8 @@
 
 class GameDataFunction {
 public:
+    static bool isDataMario();
+
     static bool canOnGameEventFlag(const char *);
 
     static s32 getPowerStarNumOwned(const char *);
@@ -21,4 +23,7 @@ public:
     static s32 getLast1upStarPieceNum();
 
     static void setLast1upStarPieceNum(int);
+
+    static OSTime getSysConfigFileTimeAnnounced();
+    static void updateSysConfigFileTimeAnnounced();
 };

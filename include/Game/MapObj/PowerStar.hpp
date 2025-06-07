@@ -1,11 +1,9 @@
 #pragma once
 
-#include "Game/MapObj/PowerStarAppearPoint.hpp"
-#include "Game/NameObj/NameObjArchiveListCollector.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/LiveActor/ModelObj.hpp"
-#include "Game/Util/Color.hpp"
-#include "JSystem/JGeometry.hpp"
+
+class NameObjArchiveListCollector;
+class PowerStarAppearPoint;
 
 namespace {
     const char* cAppearDemoName = "パワースター出現";
@@ -51,6 +49,7 @@ public:
     void requestAppearOrWait();
     void calcAppearDemoRiseTrans(TVec3f *, f32) const;
     void processWait(f32);
+    void exeWaitStartAppear();
     void exeAppearDemoRise();
     void exeAppearDemoMove();
     void exeAppearDemoKoopa();
@@ -92,17 +91,5 @@ public:
     PowerStarAppearPoint* mCameraActor; // 0x12C
     ModelObj* mLuigiNPC;                // 0x130
     TMtx34f _134;
-    u8 _164;
-};
-
-namespace NrvPowerStar {
-    NERVE(PowerStarNrvWaitStartAppear);
-    NERVE(PowerStarNrvAppearDemoRise);
-    NERVE(PowerStarNrvAppearDemoMove);
-    NERVE(PowerStarNrvAppearDemoKoopa);
-    NERVE(PowerStarNrvWait);
-    NERVE(PowerStarNrvWeak);
-    NERVE(PowerStarNrvWeakNoRotate);
-    NERVE(PowerStarNrvWeakToWait);
-    NERVE(PowerStarNrvStageClearDemo);
+    bool _164;
 };

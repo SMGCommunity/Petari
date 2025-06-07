@@ -162,6 +162,18 @@ namespace nw4r {
                 u16 animContNum;
                 u32 animContOffsetsOffset;
             };
+
+            struct HermiteKey {
+                f32 frame;
+                f32 value;
+                f32 slope;
+            };
+
+            struct StepKey {
+                f32 frame;
+                u16 value;
+                u16 pad;
+            };
         };
     };
 };

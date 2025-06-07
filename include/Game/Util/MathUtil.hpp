@@ -3,13 +3,11 @@
 #include <cmath>
 #include <revolution.h>
 #include "JSystem/JGeometry.hpp"
+#include "JSystem/JGeometry/TQuat.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
 
 namespace MR {
     void initAcosTable();
-
-    template<typename T>
-    T sqrt(T val);
 
     f32 getRandom();
     f32 getRandom(f32, f32);
@@ -59,6 +57,7 @@ namespace MR {
     f32 calcPerpendicFootToLineInside(TVec3f *pOut, const TVec3f &rPoint, const TVec3f &rTip, const TVec3f &rTail);
 
     void blendQuatUpFront(TQuat4f *, const TVec3f &, const TVec3f &, f32, f32);
+    void blendQuatFrontUp(TQuat4f *, const TQuat4f &, const TVec3f &, const TVec3f &, f32, f32);
 
     void rotateQuatRollBall(TQuat4f *, const TVec3f &, const TVec3f &, f32);
 
@@ -88,8 +87,8 @@ namespace MR {
     u8 lerp(u8, u8, f32);
     _GXColor lerp(_GXColor, _GXColor, f32);
 
-    // MR::sortSmall(s32, f32 *, s32 *)
-    // MR::sortSmall(s32, u32 *, s32 *)
+    void sortSmall(s32, f32 *, s32 *);
+    void sortSmall(s32, u32 *, s32 *);
 
     f32 vecKillElement(const TVec3f &, const TVec3f &, TVec3f *);
     void vecScaleAdd(const TVec3f *, const TVec3f *, f32);
@@ -172,6 +171,40 @@ namespace MR {
     inline f32 wrapAngleTowards(f32 a, f32 b) {
         return a + (f32)fmod(360.0f + (b - a), 360.0f);
     }
+
+    #ifdef __MWERKS__
+    inline f32 frsqrte(register f32 val) {
+        register f32 recip;
+        __asm {
+                frsqrte recip, val
+            }
+        return recip * val;
+    }
+    
+    inline f32 speedySqrtf(register f32 x) {
+        register f32 recip;
+
+        if (x > 0.0f) {
+            __asm { frsqrte recip, x }
+            f32 v = recip * x;
+            recip =  -((v*recip) - 3.0f);
+            recip = (recip * v);
+            recip *= 0.5f;
+            return recip;
+        }
+        return x;
+    }
+    #else
+    f32 frsqrte(f32 val);
+    f32 speedySqrtf(f32);
+    #endif
+
+    template<typename T>
+    T sqrt(T val) {
+        return speedySqrtf(val);
+    }
+
+    bool turnQuatZDirRad(TQuat4f *, const TQuat4f &, const TVec3f &, f32);
 };
 
 f32 PSVECKillElement(const Vec *, const Vec *, const Vec *);

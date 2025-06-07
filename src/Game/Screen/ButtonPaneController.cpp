@@ -1,26 +1,41 @@
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/ButtonPaneController.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/GamePadUtil.hpp"
 #include "Game/Util/NerveUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
-ButtonPaneController::ButtonPaneController(LayoutActor* pHost, const char* pPaneName, const char* pBoxButtonName, u32 u, bool b) : NerveExecutor(pPaneName) {
-    mHost = pHost;
-    mPaneName = pPaneName;
-    mBoxButtonName = pBoxButtonName;
-    _14 = u;
-    _18 = b;
-    mPointingAnimStartFrame = 0.0f;
-    _20 = false;
-    _21 = false;
-    _22 = true;
-    _23 = false;
-    mButtonAppearStr = "ButtonAppear";
-    mButtonWaitStr = "ButtonWait";
-    mButtonDecideStr = "ButtonDecide";
-    mButtonSelectInStr = "ButtonSelectIn";
-    mButtonSelectOutStr = "ButtonSelectOut";
-    mButtonEndStr = "ButtonEnd";
 
+namespace NrvButtonPaneController {
+    NEW_NERVE(ButtonPaneControllerNrvHidden, ButtonPaneController, Hidden);
+    NEW_NERVE(ButtonPaneControllerNrvAppear, ButtonPaneController, Appear);
+    NEW_NERVE(ButtonPaneControllerNrvWait, ButtonPaneController, Wait);
+    NEW_NERVE(ButtonPaneControllerNrvPointing, ButtonPaneController, Pointing);
+    NEW_NERVE(ButtonPaneControllerNrvNotPointing, ButtonPaneController, NotPointing);
+    NEW_NERVE(ButtonPaneControllerNrvDecided, ButtonPaneController, Decided);
+    NEW_NERVE(ButtonPaneControllerNrvDecidedWait, ButtonPaneController, DecidedWait);
+    NEW_NERVE(ButtonPaneControllerNrvDecidedToDisappear, ButtonPaneController, DecidedToDisappear);
+    NEW_NERVE(ButtonPaneControllerNrvDisappear, ButtonPaneController, Disappear);
+};
+
+ButtonPaneController::ButtonPaneController(LayoutActor* pHost, const char* pPaneName, const char* pBoundingPaneName, u32 animIndex, bool param5) :
+    NerveExecutor(pPaneName),
+    mHost(pHost),
+    mPaneName(pPaneName),
+    mBoundingPaneName(pBoundingPaneName),
+    mAnimIndex(animIndex),
+    _18(param5),
+    mPointingAnimStartFrame(0.0f),
+    mIsSelected(false),
+    mIsPointing(false),
+    _22(true),
+    _23(false),
+    mAppearAnimName("ButtonAppear"),
+    mWaitAnimName("ButtonWait"),
+    mDecideAnimName("ButtonDecide"),
+    mPointingAnimName("ButtonSelectIn"),
+    mNotPointingAnimName("ButtonSelectOut"),
+    mDisappearAnimName("ButtonEnd")
+{
     if (!MR::isExistPaneCtrl(pHost, pPaneName)) {
         MR::createAndAddPaneCtrl(pHost, pPaneName, 1);
     }
@@ -30,19 +45,20 @@ ButtonPaneController::ButtonPaneController(LayoutActor* pHost, const char* pPane
 }
 
 void ButtonPaneController::update() {
-    if (_24)
+    if (_24) {
         updateNerve();
+    }
 
-    _21 = false;
+    mIsPointing = false;
 }
 
 void ButtonPaneController::appear() {
-    _20 = false;
+    mIsSelected = false;
     mPointingAnimStartFrame = 0.0f;
-    _21 = false;
+    mIsPointing = false;
     _24 = true;
 
-    if (mButtonAppearStr) {
+    if (mAppearAnimName != NULL) {
         setNerve(&NrvButtonPaneController::ButtonPaneControllerNrvAppear::sInstance);
     }
     else {
@@ -53,18 +69,22 @@ void ButtonPaneController::appear() {
 
 void ButtonPaneController::disappear() {
     _24 = true;
+
     setNerve(&NrvButtonPaneController::ButtonPaneControllerNrvDisappear::sInstance);
 }
 
 bool ButtonPaneController::trySelect() {
-    if (!_24)
+    if (!_24) {
         return false;
-    
-    _21 = true;
+    }
 
-    if (mButtonDecideStr && isNerve(&NrvButtonPaneController::ButtonPaneControllerNrvPointing::sInstance) && MR::testDPDMenuPadDecideTrigger()) {
-        _20 = true;
+    mIsPointing = true;
+
+    if (mDecideAnimName != NULL && isPointing() && MR::testDPDMenuPadDecideTrigger()) {
+        mIsSelected = true;
+
         setNerve(&NrvButtonPaneController::ButtonPaneControllerNrvDecided::sInstance);
+
         return true;
     }
 
@@ -88,12 +108,12 @@ bool ButtonPaneController::isTimingForSelectedSe() const {
 }
 
 void ButtonPaneController::invalidateDecide() {
-    mButtonDecideStr = nullptr;
+    mDecideAnimName = NULL;
 }
 
 void ButtonPaneController::invalidateAppearance() {
-    mButtonAppearStr = nullptr;
-    mButtonEndStr = nullptr;
+    mAppearAnimName = NULL;
+    mDisappearAnimName = NULL;
     _22 = false;
 }
 
@@ -106,9 +126,10 @@ bool ButtonPaneController::isDisappearing() const {
 }
 
 void ButtonPaneController::forceToWait() {
-    _20 = false;
+    mIsSelected = false;
     mPointingAnimStartFrame = 0.0f;
-    _21 = false;
+    mIsPointing = false;
+
     setNerve(&NrvButtonPaneController::ButtonPaneControllerNrvWait::sInstance);
 }
 
@@ -129,180 +150,197 @@ bool ButtonPaneController::isDecidedWait() const {
 }
 
 bool ButtonPaneController::onPointing() {
-    _21 = true;
+    mIsPointing = true;
+
     return tryPointing(true);
 }
 
 void ButtonPaneController::decide() {
-    _20 = true;
+    mIsSelected = true;
+
     setNerve(&NrvButtonPaneController::ButtonPaneControllerNrvDecided::sInstance);
 }
 
 bool ButtonPaneController::isPointingPaneDirect() const {
-    return MR::isStarPointerPointingPane(mHost, mBoxButtonName, 0, 1, "弱");
+    return MR::isStarPointerPointingPane(mHost, mBoundingPaneName, 0, true, "弱");
 }
 
-bool ButtonPaneController::startAnimAtFirstStep(const char* pStr) {
+bool ButtonPaneController::startAnimAtFirstStep(const char* pAnimName) {
     if (MR::isFirstStep(this)) {
-        MR::startPaneAnim(mHost, mPaneName, pStr, _14);
+        MR::startPaneAnim(mHost, mPaneName, pAnimName, mAnimIndex);
+
         return true;
     }
+
     return false;
 }
 
-bool ButtonPaneController::startPointingAnimAtFirstStep(const char* pStr) {
-    if (startAnimAtFirstStep(pStr)) {
-        MR::setPaneAnimFrameAndStop(mHost, mPaneName, mPointingAnimStartFrame, _14);
+bool ButtonPaneController::startPointingAnimAtFirstStep(const char* pAnimName) {
+    if (startAnimAtFirstStep(pAnimName)) {
+        MR::setPaneAnimFrame(mHost, mPaneName, mPointingAnimStartFrame, mAnimIndex);
+
         return true;
     }
+
     return false;
 }
 
 void ButtonPaneController::setNerveAtAnimStopped(const Nerve* pNerve) {
-    if (MR::isPaneAnimStopped(mHost, mPaneName, _14)) {
+    if (MR::isPaneAnimStopped(mHost, mPaneName, mAnimIndex)) {
         setNerve(pNerve);
     }
 }
 
 bool ButtonPaneController::isPointingPane() const {
-    return _21 && MR::isStarPointerPointingPane(mHost, mBoxButtonName, 0, 1, "弱");
+    return mIsPointing && MR::isStarPointerPointingPane(mHost, mBoundingPaneName, 0, true, "弱");
 }
 
-bool ButtonPaneController::tryPointing(bool b) {
-    if (!b) 
+bool ButtonPaneController::tryPointing(bool param1) {
+    if (!param1) {
         return false;
-    
-    if (isNerve(&NrvButtonPaneController::ButtonPaneControllerNrvWait::sInstance) || isNerve(&NrvButtonPaneController::ButtonPaneControllerNrvPointing::sInstance)) {
-        if (isNerve(&NrvButtonPaneController::ButtonPaneControllerNrvNotPointing::sInstance))
+    }
+
+    if (isNerve(&NrvButtonPaneController::ButtonPaneControllerNrvWait::sInstance)
+        || isNerve(&NrvButtonPaneController::ButtonPaneControllerNrvNotPointing::sInstance))
+    {
+        if (isNerve(&NrvButtonPaneController::ButtonPaneControllerNrvNotPointing::sInstance)) {
             mPointingAnimStartFrame = calcPointingAnimStartFrame();
-        else
+        }
+        else {
             mPointingAnimStartFrame = 0.0f;
+        }
 
         setNerve(&NrvButtonPaneController::ButtonPaneControllerNrvPointing::sInstance);
+
         return true;
     }
-    
+
     return false;
 }
 
-bool ButtonPaneController::tryNotPointing(bool b) {
-    if (b)
+bool ButtonPaneController::tryNotPointing(bool param1) {
+    if (param1) {
         return false;
+    }
 
     if (isNerve(&NrvButtonPaneController::ButtonPaneControllerNrvPointing::sInstance)) {
-        if (isNerve(&NrvButtonPaneController::ButtonPaneControllerNrvPointing::sInstance))
+        if (isNerve(&NrvButtonPaneController::ButtonPaneControllerNrvPointing::sInstance)) {
             mPointingAnimStartFrame = calcPointingAnimStartFrame();
-        else
+        }
+        else {
             mPointingAnimStartFrame = 0.0f;
-        
-        setNerve(&NrvButtonPaneController::ButtonPaneControllerNrvPointing::sInstance);
+        }
+
+        setNerve(&NrvButtonPaneController::ButtonPaneControllerNrvNotPointing::sInstance);
+
         return true;
     }
+
     return false;
 }
 
 f32 ButtonPaneController::calcPointingAnimStartFrame() const {
-    if (MR::isPaneAnimStopped(mHost, mPaneName, _14))
+    if (MR::isPaneAnimStopped(mHost, mPaneName, mAnimIndex)) {
         return 0.0f;
-        
-    f32 animFrame = MR::getPaneAnimFrame(mHost, mPaneName, _14);
-    f32 animFrameMax = MR::getAnimFrameMax(mHost, mButtonSelectInStr);
-    animFrame = animFrameMax-animFrame;
+    }
 
-    if (animFrame < 0.0f)
+    f32 animFrame = MR::getPaneAnimFrame(mHost, mPaneName, mAnimIndex);
+    f32 animFrameMax = MR::getAnimFrameMax(mHost, mPointingAnimName);
+
+    animFrame = animFrameMax - animFrame;
+
+    if (animFrame < 0.0f) {
         return 0.0f;
+    }
 
-    if (animFrame > animFrameMax)
+    if (animFrame > animFrameMax) {
         return animFrameMax;
-    else
-        return animFrame;
+    }
 
-    return 0.0f;
+    return animFrame;
 }
 
 void ButtonPaneController::exeHidden() {
-    if (MR::isFirstStep(this))
+    if (MR::isFirstStep(this)) {
         MR::hidePane(mHost, mPaneName);
+    }
 }
 
 void ButtonPaneController::exeAppear() {
-    if (startAnimAtFirstStep(mButtonAppearStr))
+    if (startAnimAtFirstStep(mAppearAnimName)) {
         MR::showPane(mHost, mPaneName);
+    }
 
-    setNerve(&NrvButtonPaneController::ButtonPaneControllerNrvWait::sInstance);
+    setNerveAtAnimStopped(&NrvButtonPaneController::ButtonPaneControllerNrvWait::sInstance);
 }
 
 void ButtonPaneController::exeWait() {
-    startAnimAtFirstStep(mButtonWaitStr);
+    startAnimAtFirstStep(mWaitAnimName);
 
-    if (!_23 && tryPointing(isPointingPane()))
-        return;
+    if (!_23) {
+        if (tryPointing(isPointingPane())) {
+            return;
+        }
+    }
 }
 
 void ButtonPaneController::exePointing() {
-    startPointingAnimAtFirstStep(mButtonSelectInStr);
+    startPointingAnimAtFirstStep(mPointingAnimName);
 
-    if (!_23 ) {
-        if (tryNotPointing(isPointingPane()))
+    if (!_23) {
+        if (tryNotPointing(isPointingPane())) {
             return;
+        }
     }
-    else {
-        if (tryNotPointing(_21))
-            return;
+    else if (tryNotPointing(mIsPointing)) {
+        return;
     }
 }
 
 void ButtonPaneController::exeNotPointing() {
-    startPointingAnimAtFirstStep(mButtonSelectOutStr);
+    startPointingAnimAtFirstStep(mNotPointingAnimName);
 
     if (!_23) {
-        if (tryPointing(isPointingPane()))
+        if (tryPointing(isPointingPane())) {
             return;
+        }
     }
 
     setNerveAtAnimStopped(&NrvButtonPaneController::ButtonPaneControllerNrvWait::sInstance);
 }
 
 void ButtonPaneController::exeDecided() {
-    startAnimAtFirstStep(mButtonDecideStr);
-    if (_18)
+    startAnimAtFirstStep(mDecideAnimName);
+
+    if (_18) {
         setNerveAtAnimStopped(&NrvButtonPaneController::ButtonPaneControllerNrvDecidedToDisappear::sInstance);
-    else {
-        if (_22)
-            setNerveAtAnimStopped(&NrvButtonPaneController::ButtonPaneControllerNrvDisappear::sInstance);
-        else
-            setNerveAtAnimStopped(&NrvButtonPaneController::ButtonPaneControllerNrvDecidedWait::sInstance);
     }
+    else if (_22) {
+        setNerveAtAnimStopped(&NrvButtonPaneController::ButtonPaneControllerNrvDisappear::sInstance);
+    }
+    else {
+        setNerveAtAnimStopped(&NrvButtonPaneController::ButtonPaneControllerNrvDecidedWait::sInstance);
+    }
+}
+
+void ButtonPaneController::exeDecidedWait() {
+
 }
 
 void ButtonPaneController::exeDecidedToDisappear() {
-    if (startAnimAtFirstStep(mButtonSelectOutStr))
-        MR::setPaneAnimRate(mHost, mPaneName, 1.5f, _14);
-
-    if (_22)
-        setNerveAtAnimStopped(&NrvButtonPaneController::ButtonPaneControllerNrvDisappear::sInstance);
-    else
-        setNerveAtAnimStopped(&NrvButtonPaneController::ButtonPaneControllerNrvDecidedWait::sInstance);
-}
-
-ButtonPaneController::~ButtonPaneController() {
-    
-}
-
-namespace NrvButtonPaneController {
-    void ButtonPaneControllerNrvDisappear::execute(Spine* pSpine) const {
-        ButtonPaneController* pExecutor = (ButtonPaneController*)pSpine->mExecutor;
-        pExecutor->startAnimAtFirstStep(pExecutor->mButtonEndStr);
-        pExecutor->setNerveAtAnimStopped(&NrvButtonPaneController::ButtonPaneControllerNrvHidden::sInstance);
+    if (startAnimAtFirstStep(mNotPointingAnimName)) {
+        MR::setPaneAnimRate(mHost, mPaneName, 1.5f, mAnimIndex);
     }
-    
-    INIT_NERVE(ButtonPaneControllerNrvDisappear);
-    INIT_NERVE(ButtonPaneControllerNrvDecidedToDisappear);
-    INIT_NERVE(ButtonPaneControllerNrvDecidedWait);
-    INIT_NERVE(ButtonPaneControllerNrvDecided);
-    INIT_NERVE(ButtonPaneControllerNrvNotPointing);
-    INIT_NERVE(ButtonPaneControllerNrvPointing);
-    INIT_NERVE(ButtonPaneControllerNrvWait);
-    INIT_NERVE(ButtonPaneControllerNrvAppear);
-    INIT_NERVE(ButtonPaneControllerNrvHidden);
-};
+
+    if (_22) {
+        setNerveAtAnimStopped(&NrvButtonPaneController::ButtonPaneControllerNrvDisappear::sInstance);
+    }
+    else {
+        setNerveAtAnimStopped(&NrvButtonPaneController::ButtonPaneControllerNrvDecidedWait::sInstance);
+    }
+}
+
+void ButtonPaneController::exeDisappear() {
+    startAnimAtFirstStep(mDisappearAnimName);
+    setNerveAtAnimStopped(&NrvButtonPaneController::ButtonPaneControllerNrvHidden::sInstance);
+}

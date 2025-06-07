@@ -2,6 +2,7 @@
 
 #include <revolution.h>
 #include <cstddef>
+#include <mem.h>
 #include "nw4r/ut/LinkList.h"
 
 namespace nw4r {
@@ -46,7 +47,19 @@ namespace nw4r {
 
         class AnimationLink {
         public:
-            AnimationLink();
+            AnimationLink() {
+                Reset();
+            }
+
+            void Reset() {
+                Set(nullptr, 0, false);
+            }
+
+            void Set(AnimTransform *pTrans, u16 idx, bool dis) {
+                mAnimTrans = pTrans;
+                mIdx = idx;
+                mbDisable = dis;
+            }
 
             ut::LinkListNode mLink;
             AnimTransform* mAnimTrans;
@@ -62,7 +75,8 @@ namespace nw4r {
 
         struct AnimationGroupRef {
             AnimationGroupRef() : flag(0) {
-
+                memset(name, 0, sizeof(name));
+                memset(padding, 0, sizeof(padding));
             }
 
             const char* GetName() const { 

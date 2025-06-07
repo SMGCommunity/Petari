@@ -1,6 +1,5 @@
 #pragma once
 
-#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/LayoutActor.hpp"
 
 class LogoFader : LayoutActor {
@@ -27,11 +26,4 @@ private:
     /* 0x20 */ bool _20;
     /* 0x24 */ s32 mMaxStep;
     /* 0x28 */ f32 mRate;
-};
-
-namespace {
-    NERVE_DECL(LogoFaderNrvBlank, LogoFader, LogoFader::exeBlank);
-    NERVE_DECL(LogoFaderNrvDisplay, LogoFader, LogoFader::exeDisplay);
-    NERVE_DECL(LogoFaderNrvFadeIn, LogoFader, LogoFader::exeFadeIn);
-    NERVE_DECL(LogoFaderNrvFadeOut, LogoFader, LogoFader::exeFadeOut);
 };

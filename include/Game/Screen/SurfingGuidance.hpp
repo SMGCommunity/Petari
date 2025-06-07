@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Game/Screen/LayoutActor.hpp"
-#include "Game/LiveActor/Nerve.hpp"
 
 class SurfingGuidance : public LayoutActor {
 public:
@@ -23,26 +22,19 @@ public:
     void deactivate();
     void exeFadeIn();
     void exeLevelOffReady();
+    void exeLevelOffHold();
+    void exeLevelOffSuccess();
     void exeTurnLeftReady();
+    void exeTurnLeftHold();
+    void exeTurnLeftSuccess();
     void exeTurnRightReady();
+    void exeTurnRightHold();
+    void exeTurnRightSuccess();
     void exeFadeOut();
 
-    u32 _20;
-    f32 _24;
-    u32 _28;
-    u8 _2C;
-};
-
-namespace {
-    NERVE(SurfingGuidanceFadeIn);
-    NERVE(SurfingGuidanceLevelOffReady);
-    NERVE(SurfingGuidanceLevelOffHold);
-    NERVE(SurfingGuidanceLevelOffSuccess);
-    NERVE(SurfingGuidanceTurnLeftReady);
-    NERVE(SurfingGuidanceTurnLeftHold);
-    NERVE(SurfingGuidanceTurnLeftSuccess);
-    NERVE(SurfingGuidanceTurnRightReady);
-    NERVE(SurfingGuidanceTurnRightHold);
-    NERVE(SurfingGuidanceTurnRightSuccess);
-    NERVE(SurfingGuidanceFadeOut);  
+private:
+    /* 0x20 */ u32 _20;
+    /* 0x24 */ f32 _24;
+    /* 0x28 */ u32 _28;
+    /* 0x2C */ u8 _2C;
 };

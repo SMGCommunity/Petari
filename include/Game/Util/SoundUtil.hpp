@@ -29,6 +29,7 @@ namespace MR {
     void startSound(const LiveActor *, const char *, s32, s32);
 
     void startSystemSE(const char *, s32, s32);
+    void stopSystemSE(const char *, u32);
     void startSpinHitSound(const LiveActor *);
     void startBlowHitSound(const LiveActor *);
     void startSystemME(const char *);
@@ -44,6 +45,7 @@ namespace MR {
     bool isPlayingStageBgm();
     bool isPlayingStageBgmID(u32);
     bool isPlayingStageBgmName(const char *);
+    bool isPreparedStageBgm();
 
     void setStageBGMState(s32, u32);
 
@@ -84,4 +86,14 @@ namespace MR {
 
     void stopSound(const LiveActor *, const char *, u32);
     void startSoundObjectLevel(AudSoundObject *, const char *, s32);
+
+    void limitedStarPieceHitSound();
+
+    void submitLevelSE();
+    void permitLevelSE();
+
+    void setSeVersion(const LiveActor *, u32);
+
+    void startSoundSeVer(const LiveActor *, const char *, s32, s32);
+    void startLevelSoundSeVer(const LiveActor *, const char *, s32, s32, s32);
 };

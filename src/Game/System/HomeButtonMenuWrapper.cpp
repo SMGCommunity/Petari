@@ -1,7 +1,8 @@
 #include "Game/System/HomeButtonMenuWrapper.hpp"
-#include "Game/Util.hpp"
+#include "Game/Util/FileUtil.hpp"
 #include "Game/Util/MemoryUtil.hpp"
-#include "revolution/rso.h"
+#include <JSystem/JKernel/JKRExpHeap.hpp>
+#include <revolution/rso.h>
 
 void (*HBMCreateRSO)(const HBMDataInfo *);
 void (*HBMInitRSO)(void);

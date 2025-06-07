@@ -63,18 +63,18 @@ void LodCtrl::appear() {
     mActorLightCtrl = mActor->mActorLightCtrl;
 
     if (_10) {
-        if (MR::isDead(_10)) {
-            _10->kill();
+        if (!MR::isDead(_10)) {
+            _10->makeActorDead();
         }
     }
 
     if (_14) {
-        if (MR::isDead(_14)) {
-            _14->kill();
+        if (!MR::isDead(_14)) {
+            _14->makeActorDead();
         }
     }
 
-    if (_1A) {
+    if (!_1A) {
         MR::offShadowVisibleSyncHostAll(mActor);
     }
 }
@@ -83,18 +83,18 @@ void LodCtrl::kill() {
     MR::showModel(mActor);
 
     if (_10) {
-        if (MR::isDead(_10)) {
-            _10->kill();
+        if (!MR::isDead(_10)) {
+            _10->makeActorDead();
         }
     }
 
     if (_14) {
-        if (MR::isDead(_14)) {
-            _14->kill();
+        if (!MR::isDead(_14)) {
+            _14->makeActorDead();
         }
     }
 
-    if (_1A) {
+    if (!_1A) {
         MR::onShadowVisibleSyncHostAll(mActor);
     }
 

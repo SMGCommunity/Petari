@@ -83,15 +83,13 @@ void SubMeterLayout::control() {
 
     bool flag = true;
 
-    if (!MR::isPlayerInWaterMode()) {
-        if (!MR::isOnGroundPlayer()) {
-            flag = false;
-        }
-    }
-    else {
+    if (MR::isPlayerInWaterMode()) {
         if (!MR::isPlayerOnWaterSurface()) {
             flag = false;
         }
+    }
+    else if (!MR::isOnGroundPlayer()) {
+        flag = false;
     }
 
     if (flag) {

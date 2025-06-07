@@ -1,15 +1,20 @@
 #pragma once
 
 #include "Game/Screen/LayoutActor.hpp"
-#include "Game/Screen/CountUpPaneRumbler.hpp"
-#include "Game/Screen/CounterLayoutAppearer.hpp"
+
+class CountUpPaneRumbler;
+class CounterLayoutAppearer;
 
 class CoinCounter : public LayoutActor {
 public:
-    CoinCounter(const char *);
+    /// @brief Creates a new `CoinCounter`.
+    /// @param pName The pointer to the null-terminated name of the object.
+    CoinCounter(const char* pName);
 
+    /// @brief Destroys the `CoinCounter`.
     virtual ~CoinCounter();
-    virtual void init(const JMapInfoIter &);
+
+    virtual void init(const JMapInfoIter& rIter);
     virtual void appear();
     virtual void control();
 
@@ -22,18 +27,12 @@ public:
     void exeWait();
     void exeDisappear();
 
-    s32 mCoinCount;                             // 0x20
-    s32 _24;
-    s32 _28;
-    CounterLayoutAppearer* mLayoutAppearer;     // 0x2C
-    CountUpPaneRumbler* mPaneRumbler;           // 0x30
-    bool mIsAppear;                             // 0x34
-    TVec2f mFollowPos;                          // 0x38
-};
-
-namespace NrvCoinCounter {
-    NERVE(CoinCounterNrvHide);
-    NERVE(CoinCounterNrvAppear);
-    NERVE(CoinCounterNrvWait);
-    NERVE(CoinCounterNrvDisappear);
+private:
+    /* 0x20 */ s32 mCoinNum;
+    /* 0x24 */ s32 mCoinDisplayNum;
+    /* 0x28 */ s32 mInvalidCountUpFrame;
+    /* 0x2C */ CounterLayoutAppearer* mLayoutAppearer;
+    /* 0x30 */ CountUpPaneRumbler* mPaneRumbler;
+    /* 0x34 */ bool mIsForceAppear;
+    /* 0x38 */ TVec2f mFollowPos;
 };

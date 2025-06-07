@@ -4,6 +4,12 @@
 #include "Game/NameObj/NameObjArchiveListCollector.hpp"
 #include "Game/Enemy/AnimScaleController.hpp"
 #include "Game/Util/JointController.hpp"
+#include "JSystem/JGeometry/TQuat.hpp"
+
+static const char* ReactionDefault = "Reaction";
+static const char* PointingDefault = "Pointing";
+static const char* TrampledDefault = "Trampled";
+static const char* SpinDefault = "Spin";
 
 namespace NrvNPCActor {
     NERVE(NPCActorNrvWait);
@@ -51,7 +57,7 @@ public:
     u8 _41;
     u8 _42;
     u8 _43;
-    u32 _44;
+    const char* _44;
     f32 mSensorSize;                // 0x48
     TVec3f mSensorOffset;           // 0x4C
     u32 _58;
@@ -65,23 +71,21 @@ public:
     u8 _66;
     u8 _67;
     bool mUseStarPointer;           // 0x68
-    u32 _6C;
-    u32 _70;
+    const char* _6C;
+    const char* _70;
     TVec3f mStarPointerOffs;        // 0x74
     f32 _80;
     u32 mSceneConnectionType;       // 0x84
-    NrvNPCActor::NPCActorNrvWait* mWaitNerve;           // 0x88
-    NrvNPCActor::NPCActorNrvTalk* mTalkNerve;           // 0x8C
-    NrvNPCActor::NPCActorNrvReaction* mReactionNerve;   // 0x90
+    Nerve* mWaitNerve;           // 0x88
+    Nerve* mTalkNerve;           // 0x8C
+    Nerve* mReactionNerve;   // 0x90
 };
 
 class NPCActor : public LiveActor {
 public:
     NPCActor(const char *);
 
-    virtual ~NPCActor() {
-
-    }
+    virtual ~NPCActor();
 
     virtual void init(const JMapInfoIter &);
     virtual void initAfterPlacement();
@@ -108,24 +112,56 @@ public:
     void pushNerve(const Nerve *);
     Nerve* popAndPushNerve(const Nerve *);
     Nerve* popNerve();
-    bool tryPulNullNerve();
+    bool tryPullNullNerve();
     bool isEmptyNerve() const;
     bool isScaleAnim() const;
     bool isPointingSe() const;
     void updateReaction();
     void updateScaleCtrl();
 
+    bool tryPushNullNerve();
+
     void exeWait();
     void exeTalk();
 
     void setInitPose();
+
+    void initialize(const JMapInfoIter &, const NPCActorCaps &);
+
+    void equipment(const NPCActorItem &, bool);
+
+    void setBaseMtx(MtxPtr);
+
+    inline void setDefaults() {
+        _130 = "Spin";
+        _134 = "Trampled";
+        _138 = "Pointing";
+        _13C = "Reaction";
+    }
+    
+    inline void setDefaultsParam() {
+        mParam._14 = "Wait";
+        mParam._18 = "Turn";
+        mParam._1C = "Talk";
+        mParam._20 = "TalkTurn";
+        _130 = "Spin";
+        _134 = "Trampled";
+        _138 = "Pointing";
+        _13C = "Reaction";        
+    }
+
+    inline void setDefaults2() {
+        _130 = "Spin";
+        _134 = "Trampled";
+        _138 = "Pointing";
+    }    
 
     LodCtrl* mLodCtrl;                                  // 0x8C
     TalkMessageCtrl* mMsgCtrl;                          // 0x90
     PartsModel* _94;
     PartsModel* _98;
     u32 _9C;
-    TVec4f _A0;
+    TQuat4f _A0;
     TVec4f _B0;
     TVec3f _C0;
     TVec3f _CC;
@@ -145,22 +181,13 @@ public:
     u8 _E5;
     u8 _E6;
     u8 _E7;
-    u8 _E8;
-    u8 _E9;
-    f32 _EC;
-    f32 _F0;
-    f32 _F4;
-    f32 _F8;
-    const char* _FC;
-    u32 _100;
-    u32 _104;
-    u32 _108;
-    u32 _10C;
-    u32 _110;
+    MR::ActorTalkParam mParam;                          // 0xE8
+    f32 _10C;
+    f32 _110;
     u32 _114;
     u32 _118;
-    u32 _11C;
-    u32 _120;
+    const char* _11C;
+    const char* _120;
     u8 _124;
     u8 _125;
     u8 _126;
@@ -174,19 +201,8 @@ public:
     AnimScaleController* mScaleController;              // 0x140
     u32 _144;
     Nerve* mCurNerve;                                   // 0x148
-    NrvNPCActor::NPCActorNrvWait* mWaitNerve;           // 0x14C
-    NrvNPCActor::NPCActorNrvTalk* mTalkNerve;           // 0x150
-    NrvNPCActor::NPCActorNrvReaction* mReactionNerve;   // 0x154
+    Nerve* mWaitNerve;           // 0x14C
+    Nerve* mTalkNerve;           // 0x150
+    Nerve* mReactionNerve;   // 0x154
     u32 _158;
-};
-
-class NPCActorItem {
-public:
-    NPCActorItem(const char *pName);
-
-    const char* mName;  // 0x0
-    u32* _4;
-    u32* _8;
-    const char* _C;
-    u32* _10;
 };

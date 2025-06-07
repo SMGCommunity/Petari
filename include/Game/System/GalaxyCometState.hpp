@@ -1,6 +1,5 @@
 #pragma once
 
-#include "Game/LiveActor/Nerve.hpp"
 #include "Game/System/NerveExecutor.hpp"
 
 /// @brief The state of a Prankster Comet.
@@ -39,12 +38,13 @@ public:
     /// @param pastSecond The number of "past seconds."
     void setStateAndPastSecond(int state, u16 pastSecond);
 
+    /// @brief Updates the working nerve action when the Prankster Comet is hidden.
+    void exeHide();
+
+    /// @brief Updates the working nerve action when the Prankster Comet is in orbit.
+    void exeLand();
+
 private:
     /// @brief Determines if the working nerve action should be updated.
     /* 0x08 */ bool mIsUpdateNerve;
-};
-
-namespace {
-    NERVE_DECL_NULL(GalaxyCometStateHide);
-    NERVE_DECL_NULL(GalaxyCometStateLand);
 };

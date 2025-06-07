@@ -184,7 +184,7 @@ JMapInfoIter Triangle::getAttributes() const {
     if (mIdx == 0xFFFFFFFF) {
         JMapInfoIter iter;
         iter.mInfo = nullptr;
-        iter._4 = -1;
+        iter.mIndex = -1;
 
         return iter;
     }

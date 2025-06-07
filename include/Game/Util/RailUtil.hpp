@@ -45,6 +45,8 @@ namespace MR {
     const TVec3f& getRailPos(const LiveActor *);
     const TVec3f& getRailDirection(const LiveActor *);
 
+    const TVec3f& getRailPointPosStart(const LiveActor *);
+
     void moveCoordToStartPos(LiveActor *);
 
     bool getJMapInfoRailArg0NoInit(const LiveActor *, s32 *);
@@ -57,6 +59,7 @@ namespace MR {
 
     f64 calcNearestRailCoord(const LiveActor *, const TVec3f &);
 
+    void moveCoordAndFollowTrans(LiveActor *);
     void moveCoordAndFollowTrans(LiveActor *, f32);
 
     bool isExistRail(const LiveActor *);

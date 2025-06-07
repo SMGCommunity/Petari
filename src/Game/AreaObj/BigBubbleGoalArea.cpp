@@ -39,7 +39,7 @@ void BigBubbleGoalArea::movement() {
     if (_4C >= _48) {
         _4C = _48;
         onSwitchA();
-        mValid = false;
+        mIsValid = false;
     }
     else if (_50 < _4C) {
         _4C = _50;
@@ -58,8 +58,8 @@ void BigBubbleGoalArea::draw() const {
     f32 dVar3 = _4C / _48;
     f32 dVar4 = 6.2831855f * dVar3;
 
-    TDDraw::drawFillFan(mTranslation, MR::getCamZDir(), MR::getCamYDir() * 150.0f, 0xFFFF00FF, 0.0f, dVar4, 16);
-    TDDraw::drawFillFan(mTranslation, MR::getCamZDir(), MR::getCamYDir() * 150.0f, 0x80FF, dVar4, 150.0f, 16);
+    TDDraw::drawFillFan(mTranslation, MR::getCamZdir(), MR::getCamYdir() * 150.0f, 0xFFFF00FF, 0.0f, dVar4, 16);
+    TDDraw::drawFillFan(mTranslation, MR::getCamZdir(), MR::getCamYdir() * 150.0f, 0x80FF, dVar4, 150.0f, 16);
 }
 
 const char *BigBubbleGoalArea::getManagerName() const {

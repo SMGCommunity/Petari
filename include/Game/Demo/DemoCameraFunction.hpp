@@ -1,9 +1,11 @@
 #pragma once
 
-#include "Game/Demo/DemoCameraKeeper.hpp"
+#include <revolution.h>
+
+class DemoCameraInfo;
 
 namespace DemoCameraFunction {
-    bool isCameraTargetMario(const DemoCameraInfo *);
-    bool setStringNullIfEmpty(const char **);
-    void makeAnimCameraName(char *, u32, const DemoCameraInfo *);
+    bool isCameraTargetMario(const DemoCameraInfo*);
+    bool setStringNullIfEmpty(const char**);
+    void makeAnimCameraName(char*, u32, const DemoCameraInfo*);
 };

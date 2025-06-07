@@ -42,7 +42,7 @@ void GlaringLightArea::movement() {
     if (isOnSwitchA()) {
         bool bVar1 = false;
 
-        if (mValid && _15 && mAwake) {
+        if (mIsValid && _15 && mIsAwake) {
             bVar1 = true;
         }
 
@@ -50,10 +50,10 @@ void GlaringLightArea::movement() {
             MR::startSoundObject(mSound, "SE_OJ_RAY_START");
         }
 
-        mValid = true;
+        mIsValid = true;
     }
     else {
-        mValid = false;
+        mIsValid = false;
     }
 
     mSound->process();
