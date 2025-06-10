@@ -28,4 +28,6 @@ public:
     u16 mCharColor_Cr2;
     u16 mCharColor_Cr4;
     u16 field_0x2A;
+
+    static JUTDirectPrint* sDirectPrint;
 };

@@ -41,21 +41,7 @@ namespace NrvGameSystem {
 };
 
 void main(void) {
-    __asm {
-        li r3, 4
-        oris r3, r3, 4
-        mtspr 0x392, r3
-        li r3, 5
-        oris r3, r3, 5
-        mtspr 0x393, r3
-        li r3, 6
-        oris r3, r3, 6
-        mtspr 0x394, r3
-        li r3, 7
-        oris r3, r3, 7
-        mtspr 0x395, r3
-    };
-
+    OSInitFastCast();
     DVDInit();
     VIInit();
     HeapMemoryWatcher::createRootHeap();
@@ -211,14 +197,14 @@ bool GameSystem::isPreparedReset() const {
 }
 
 void GameSystem::frameLoop() {
-    MainLoopFramework::get()->beginRender();
+    MainLoopFramework::sManager->beginRender();
     draw();
-    MainLoopFramework::get()->endRender();
+    MainLoopFramework::sManager->endRender();
     update();
     calcAnim();
     mObjHolder->captureIfAllowForScreenPreserver();
-    MainLoopFramework::get()->endFrame();
-    MainLoopFramework::get()->waitForRetrace();
+    MainLoopFramework::sManager->endFrame();
+    MainLoopFramework::sManager->waitForRetrace();
 }
 
 void GameSystem::draw() {
