@@ -264,7 +264,7 @@ void MarioActor::init2(const TVec3f &a, const TVec3f &b, s32 initialAnimation)
     mRotation.set(b);
     mScale.set(TVec3f(1.0f, 1.0f, 1.0f));
     mMario->setHeadAndFrontVecFromRotate(mRotation);
-    mMario->_290 = mMario->_310;
+    mMario->_290 = mMario->mSideVec;
     updateBaseScaleMtx();
     _A18 = mRotation;
     initDrawAndModel();
@@ -330,7 +330,7 @@ void MarioActor::init2(const TVec3f &a, const TVec3f &b, s32 initialAnimation)
     setupSensors();
     MR::getMarioHolder()->setMarioActor(this);
     _1BC = new MarioMessenger(getSensor("dummy"));
-    _300 = mMario->_1F0;
+    _300 = mMario->mHeadVec;
     _2D0 = _300;
     _330 = 0;
     _332 = 0;
@@ -393,9 +393,9 @@ void MarioActor::initAfterPlacement()
 {
     updateGravityVec(true, true);
     mMario->_1D8 = _240;
-    mMario->_1F0 = -_240;
+    mMario->mHeadVec = -_240;
     mMario->_1FC = -_240;
-    _300 = mMario->_1F0;
+    _300 = mMario->mHeadVec;
     _2D0 = _300;
     _2C4 = _240 % -70.0f;
     calcCenterPos();
@@ -1354,13 +1354,13 @@ void MarioActor::updateRealMtx()
     _4B8 = stack_44.translateOpposite(stack_38);
     _4C4 = stack_38.translateOpposite(stack_44);
     if (MR::normalizeOrZero(&_4B8)) {
-        _4B8 = mMario->_1F0;
+        _4B8 = mMario->mHeadVec;
     }
     if (MR::normalizeOrZero(&_4C4)) {
-        _4C4 = -mMario->_1F0;
+        _4C4 = -mMario->mHeadVec;
     }
     if (mMario->getMovementStates()._A && mMario->mMovementStates._1) {
-        _4C4 = -mMario->_1F0;
+        _4C4 = -mMario->mHeadVec;
     }
     _2AC = stack_44;
 }

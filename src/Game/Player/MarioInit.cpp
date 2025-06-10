@@ -51,9 +51,9 @@ void Mario::initMember()
     _718 = 0.0f;
     _71D = 0;
     _71F = 0;
-    _720 = 0;
-    _724 = 0;
-    _728 = 0;
+    _720 = nullptr;
+    _724 = nullptr;
+    _728 = nullptr;
 
     _75C.zero();
     _790.zero();
@@ -80,7 +80,7 @@ void Mario::initMember()
     _A40.zero();
     _A4C.zero();
     _A58.zero();
-    _A64 = 0f;
+    _A64 = 0.0f;
 
     for (int i = 0; i < 0x20; i++) {
         _A6C[i] = 0;
