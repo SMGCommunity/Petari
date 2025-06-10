@@ -41,6 +41,8 @@ namespace MR {
     bool isFloorPolygonCos(const TVec3f &, const TVec3f &, f32);
 
     bool isFallNextMove(const LiveActor *, f32, f32, f32, const TriangleFilterBase *);
+
+    s32 getSoundCodeIndex(const JMapInfoIter &);
 };
 
 class Collision {

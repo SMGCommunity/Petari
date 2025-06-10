@@ -98,6 +98,8 @@ namespace MR {
 
     s32 vecBlendSphere(const TVec3f &, const TVec3f &, TVec3f *, f32);
 
+    void vecRotAxis(const TVec3f &, const TVec3f &, const TVec3f &, TVec3f *, f32);
+
     void blendColor(_GXColor *, const _GXColor &, const _GXColor  &, f32);
     void blendVec(Vec *, const Vec &, const Vec &, f32);
 

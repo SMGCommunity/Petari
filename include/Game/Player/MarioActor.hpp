@@ -195,6 +195,15 @@ public:
     void setBlink(const char *);
     void resetSensorCount();
     void getStickValue(f32 *, f32 *);
+
+    void setPlayerMode(u16, bool);
+
+    bool isActionOk(const char *) const;
+
+    bool isInZeroGravitySpot() const;
+
+    void forceKill(u32);
+
     const HitSensor &getCarrySensor() const;
 
     const MarioConst &getConst() const { return *mConst; }
