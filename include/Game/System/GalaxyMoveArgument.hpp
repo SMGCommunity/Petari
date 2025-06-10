@@ -11,8 +11,8 @@ public:
     bool isEqualStageScenario(char const *, int) const;
 
     u32 _0;
-    const char* mStageName;
-    s32 mScenario;
+    /* 0x4 */ const char* mStageName;
+    /* 0x8 */ s32 mScenario;
     s32 _C;
-    JMapIdInfo mIDInfo;
+    /* 0x10 */ JMapIdInfo mIDInfo;
 };
