@@ -11,7 +11,7 @@ private:
 		const char* mName;
 	};
 public:
-    ActorStateKeeper(int);
+    ActorStateKeeper(int capacity);
 
     void addState(ActorStateBaseInterface *, const Nerve *, const char *);
     bool updateCurrentState();

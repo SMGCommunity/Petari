@@ -1,8 +1,11 @@
 #pragma once
 
+#include "Game/System/GalaxyMoveArgument.hpp"
 #include "revolution/types.h"
+
 class GameSequenceFunction {
 public:
+    static void requestGalaxyMove(const GalaxyMoveArgument &);
     static void requestCancelScenarioSelect();
 
     static bool isNeedMoviePlayerForStorySequenceEvent();

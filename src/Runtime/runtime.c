@@ -2,6 +2,8 @@
 extern "C" {
 #endif
 
+#include <runtime.h>
+
 /* macros for GPR/FPR resting and saving */
 #define SAVE_FPR(reg) _savefpr_ ## reg
 #define RESTORE_FPR(reg) _restfpr_ ## reg
@@ -17,16 +19,6 @@ extern "C" {
 #define ENTRY_RESTORE_FPR2(reg)
 
 #define save_restore_reg r11
-
-
-asm void __div2u(void);
-asm void __div2i(void);
-asm void __mod2u(void);
-asm void __mod2i(void);
-asm void __shl2i(void);
-asm void __shr2u(void);
-asm void __cvt_dbl_usll(void);
-asm void __cvt_dbl_ull(void);
 
 void SAVE_FPR(14)(void);
 void SAVE_FPR(15)(void);
@@ -743,7 +735,7 @@ asm void __shr2u(void)
 	blr
 }
 
-asm void __cvt_dbl_usll(void)
+asm u64 __cvt_dbl_usll(double)
 {
 	nofralloc
 	stwu    r1,-16(r1)
