@@ -56,6 +56,3 @@ namespace MR {
 };  // namespace MR
 
 static _GXTexCacheSize sReinitTextureCacheSize;
-
-JUTTexture* mShadowTex;
-TVec3f mShadowVec;
