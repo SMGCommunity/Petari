@@ -23,6 +23,7 @@
 #include "Game/MapObj/BlackHole.hpp"
 #include "Game/MapObj/BlueChip.hpp"
 #include "Game/MapObj/BreakableCage.hpp"
+#include "Game/MapObj/CannonFortressBreakStep.hpp"
 #include "Game/MapObj/CapsuleCage.hpp"
 #include "Game/MapObj/ChipBase.hpp"
 #include "Game/MapObj/ChipCounter.hpp"
