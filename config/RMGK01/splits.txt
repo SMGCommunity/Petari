@@ -8735,7 +8735,7 @@ Game/System/StarPieceAlmsStorage.cpp:
 Game/System/StorySequenceExecutor.cpp:
 	.text       start:0x803BB954 end:0x803BD404
 	.ctors      start:0x8052F3A0 end:0x8052F3A4
-	.rodata     start:0x8053D910 end:0x8053EB78
+	.rodata     start:0x8053D910 end:0x8053EB38
 	.data       start:0x805E00E0 end:0x805E07E8
 	.sbss       start:0x806B6FD8 end:0x806B7000
 
@@ -8760,11 +8760,12 @@ Game/Util/ActorSensorUtil.cpp:
 
 Game/Util/ActorShadowLocalUtil.cpp:
 	.text       start:0x803C5054 end:0x803C61B8
-	.data       start:0x805E08D0 end:0x805E0C20
+	.data       start:0x805E08D0 end:0x805E0AB0
 	.sdata2     start:0x806C1568 end:0x806C1578
 
 Game/Util/ActorShadowUtil.cpp:
 	.text       start:0x803C61B8 end:0x803C7A98
+	.data       start:0x805E0AB0 end:0x805E0BC0
 	.sdata2     start:0x806C1578 end:0x806C1588
 
 Game/Util/ActorStateUtil.cpp:
@@ -8784,12 +8785,14 @@ Game/Util/CameraUtil.cpp:
 
 Game/Util/DemoUtil.cpp:
 	.text       start:0x803CA518 end:0x803CBA6C
+	.data       start:0x805E0BC0 end:0x805E0C20
 	.sdata2     start:0x806C15C0 end:0x806C15C8
 
 Game/Util/DrawUtil.cpp:
 	.text       start:0x803CBA6C end:0x803CD0E0
 	.ctors      start:0x8052F3A8 end:0x8052F3AC
-	.data       start:0x805E0C20 end:0x805E0FA8
+	.rodata     start:0x8053EB38 end:0x8053EB78
+	.data       start:0x805E0C20 end:0x805E0C48
 	.bss        start:0x8060B3C0 end:0x8060B3F0
 	.sdata      start:0x806B2610 end:0x806B2658
 	.sbss       start:0x806B7000 end:0x806B7008
@@ -8797,10 +8800,12 @@ Game/Util/DrawUtil.cpp:
 
 Game/Util/EffectUtil.cpp:
 	.text       start:0x803CD0E0 end:0x803CDA10
+	.data       start:0x805E0C48 end:0x805E0C58
 	.sdata2     start:0x806C15F8 end:0x806C1600
 
 Game/Util/EventUtil.cpp:
 	.text       start:0x803CDA10 end:0x803CF2A0
+	.data       start:0x805E0C58 end:0x805E0FA8
 
 Game/Util/FileUtil.cpp:
 	.text       start:0x803CF2A0 end:0x803CFE74

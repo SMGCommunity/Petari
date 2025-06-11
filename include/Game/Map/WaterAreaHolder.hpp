@@ -7,4 +7,6 @@ public:
     static void createWaterAreaHolder();
 
     static f32 getCameraWaterDepth();
+
+    static bool isCameraInWaterForCameraUtil();
 };

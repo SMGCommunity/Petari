@@ -19,6 +19,8 @@ public:
 
     void drawInit();
     void draw() const;
+    void reinitGX();
+    void setTexCacheRegion(_GXTexCacheSize);
 
     static Mtx mCurrentMtx;
 };

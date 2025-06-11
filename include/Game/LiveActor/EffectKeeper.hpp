@@ -4,7 +4,9 @@
 #include <JSystem/JGeometry/TVec.hpp>
 
 class Binder;
+class MultiEmitter;
 class ResourceHolder;
+class Triangle;
 class LiveActor;
 
 class EffectKeeper {
@@ -20,13 +22,27 @@ public:
     void registerEffect(const char *, MtxPtr, const TVec3f *, const char *, const char *);
     void registerEffectWithoutSRT(const char *, const char *);
 
-    void forceDeleteEmitterAll();
+    void changeEffectName(const char *, const char *);
 
     void enableSort();
     void playEmitterOffClipped();
     void stopEmitterOnClipped();
 
     void clear();
+
+    MultiEmitter* getEmitter(const char *) const;
+    MultiEmitter* createEmitter(const char *);
+    void deleteEmitter(const char *);
+    void forceDeleteEmitter(const char *);
+    void deleteEmitterAll();
+    void forceDeleteEmitterAll();
+
+    bool isRegisteredEmitter(const char *) const;
+
+    void onDraw();
+    void offDraw();
+
+    void updateFloorCode(const Triangle *);
 
     const char* _0;
     ResourceHolder* mResourceHolder;    // 0x4

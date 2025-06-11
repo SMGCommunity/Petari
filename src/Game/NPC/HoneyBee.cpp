@@ -134,7 +134,7 @@ void HoneyBee::init(const JMapInfoIter &rIter) {
             vec.x = 0.0f;
             vec.y = 0.0f;
             vec.z = 0.0f;
-            MR::setShadowDropPositionAtJoint(this, nullptr, "Center", vec);
+            MR::setShadowDropPositionAtJoint(this, nullptr, "Center", &vec);
             MR::onCalcShadow(this, nullptr);
             MR::setClippingTypeSphere(this, radius, &_190);
             mLodCtrl->invalidate();
