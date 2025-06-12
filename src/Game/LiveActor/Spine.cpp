@@ -48,6 +48,6 @@ void Spine::changeNerve() {
     mNextNerve = nullptr;
 }
 
-void Spine::initStateKeeper(int a2) {
-    mStateKeeper = new ActorStateKeeper(a2);
+void Spine::initStateKeeper(int capacity) {
+    mStateKeeper = new ActorStateKeeper(capacity);
 }

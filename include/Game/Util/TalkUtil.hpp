@@ -65,6 +65,8 @@ namespace MR {
 
     bool tryTalkForceWithoutDemoAtEnd(TalkMessageCtrl *);
 
+    bool inMessageArea(const TalkMessageCtrl *);
+
     bool isTalkTalking(const TalkMessageCtrl *);
 
     class ActorTalkParam {

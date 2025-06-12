@@ -17,9 +17,17 @@ public:
     virtual ~DemoDirector();
     virtual void movement();
 
+    bool registerDemoCast (LiveActor *, const JMapInfoIter &);
+    bool registerDemoCast (LiveActor *, const char *, const JMapInfoIter &);
     void registerDemoSimpleCast(LiveActor *);
     void registerDemoSimpleCast(LayoutActor *);
     void registerDemoSimpleCast(NameObj *);
+
+    void endDemo(NameObj *, const char *, bool);
+
+    bool isExistTimeKeepDemo(const char *) const;
+
+    char* getCurrentDemoName() const;
 
     bool mIsActive;                             // 0xC
     DemoExecutor* mExecutor;                    // 0x10

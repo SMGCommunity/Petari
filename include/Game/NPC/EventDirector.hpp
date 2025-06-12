@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Game/NameObj/NameObj.hpp"
+#include <JSystem/JGeometry/TVec.hpp>
 
 class CometEventKeeper;
 class PowerStarEventKeeper;

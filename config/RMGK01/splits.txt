@@ -2809,7 +2809,7 @@ Game/Enemy/KoteBug.cpp:
 Game/Enemy/Kuribo.cpp:
 	.text       start:0x80117DA0 end:0x8011A16C
 	.ctors      start:0x8052EAEC end:0x8052EAF0
-	.data       start:0x80580AC8 end:0x80580EA8
+	.data       start:0x80580AC8 end:0x80580D30
 	.bss        start:0x8060A818 end:0x8060A898
 	.sbss       start:0x806B4360 end:0x806B4398
 	.sdata2     start:0x806BADB0 end:0x806BAE10
@@ -2817,7 +2817,7 @@ Game/Enemy/Kuribo.cpp:
 Game/Enemy/KuriboChief.cpp:
 	.text       start:0x8011A16C end:0x8011B5CC
 	.ctors      start:0x8052EAF0 end:0x8052EAF4
-	.data       start:0x80580EA8 end:0x80580FB0
+	.data       start:0x80580D30 end:0x80580FB0
 	.bss        start:0x8060A898 end:0x8060A960
 	.sbss       start:0x806B4398 end:0x806B43C0
 	.sdata2     start:0x806BAE10 end:0x806BAE88
@@ -6130,14 +6130,14 @@ Game/NPC/CollectTico.cpp:
 Game/NPC/DemoRabbit.cpp:
 	.text       start:0x80270B94 end:0x80271DD0
 	.ctors      start:0x8052EF94 end:0x8052EF98
-	.data       start:0x805AF6C8 end:0x805AF9B8
+	.data       start:0x805AF6C8 end:0x805AF978
 	.sbss       start:0x806B5CC0 end:0x806B5CE8
 	.sdata2     start:0x806BEA70 end:0x806BEAD8
 
 Game/NPC/HoneyBee.cpp:
 	.text       start:0x80271DD0 end:0x80272850
 	.ctors      start:0x8052EF98 end:0x8052EF9C
-	.data       start:0x805AF9B8 end:0x805AFBF0
+	.data       start:0x805AF978 end:0x805AFBF0
 	.sbss       start:0x806B5CE8 end:0x806B5D08
 	.sdata2     start:0x806BEAD8 end:0x806BEB00
 
@@ -6174,7 +6174,7 @@ Game/NPC/LuigiNPC.cpp:
 	.ctors      start:0x8052EFA8 end:0x8052EFAC
 	.data       start:0x805B0670 end:0x805B09E0
 	.sbss       start:0x806B5D90 end:0x806B5DC0
-	.sdata2     start:0x806BEBC8 end:0x806BEC00
+	.sdata2     start:0x806BEBC8 end:0x806BEBF0
 
 Game/NPC/MiiDatabase.cpp:
 	.text       start:0x8027797C end:0x80277AA0
@@ -8454,25 +8454,27 @@ Game/System/Language.cpp:
 
 Game/System/LayoutHolder.cpp:
 	.text       start:0x803A0698 end:0x803A0D94
-	.rodata     start:0x8053B890 end:0x8053B8D0
+	.rodata     start:0x8053B890 end:0x8053B8A0
 	.data       start:0x805DBA48 end:0x805DBA80
 	.sdata      start:0x806B2568 end:0x806B2570
 
 Game/System/MainLoopFramework.cpp:
 	.text       start:0x803A0D94 end:0x803A2198
 	.ctors      start:0x8052F380 end:0x8052F384
-	.data       start:0x805DBA80 end:0x805DBBE0
+	.rodata     start:0x8053B8A0 end:0x8053B8C0
+	.data       start:0x805DBA80 end:0x805DBB00
 	.bss        start:0x8060B348 end:0x8060B388
 	.sbss       start:0x806B6ED0 end:0x806B6EE0
 	.sdata2     start:0x806C1438 end:0x806C1448
 
 Game/System/MessageHolder.cpp:
 	.text       start:0x803A2198 end:0x803A27E4
+	.data       start:0x805DBB00 end:0x805DBB60
 
 Game/System/NANDErrorSequence.cpp:
 	.text       start:0x803A27E4 end:0x803A371C
 	.ctors      start:0x8052F384 end:0x8052F388
-	.data       start:0x805DBBE0 end:0x805DBCE0
+	.data       start:0x805DBB60 end:0x805DBCE0
 	.sbss       start:0x806B6EE0 end:0x806B6F28
 
 Game/System/NANDManager.cpp:
@@ -8494,6 +8496,7 @@ Game/System/OSThreadWrapper.cpp:
 Game/System/Overwrite.cpp:
 	.text       start:0x803A41E0 end:0x803A70BC
 	.ctors      start:0x8052F388 end:0x8052F38C
+	.rodata     start:0x8053B8C0 end:0x8053B8D0
 	.data       start:0x805DBD60 end:0x805DBEE8
 	.bss        start:0x8060B388 end:0x8060B3C0
 	.sdata      start:0x806B2578 end:0x806B2590
@@ -8732,13 +8735,13 @@ Game/System/StarPieceAlmsStorage.cpp:
 Game/System/StorySequenceExecutor.cpp:
 	.text       start:0x803BB954 end:0x803BD404
 	.ctors      start:0x8052F3A0 end:0x8052F3A4
-	.rodata     start:0x8053D910 end:0x8053EB78
+	.rodata     start:0x8053D910 end:0x8053EB38
 	.data       start:0x805E00E0 end:0x805E07E8
 	.sbss       start:0x806B6FD8 end:0x806B7000
 
 Game/System/SysConfigFile.cpp:
 	.text       start:0x803BD404 end:0x803BD7EC
-	.data       start:0x805E07E8 end:0x805E0950
+	.data       start:0x805E07E8 end:0x805E08C8
 
 Game/System/UserFile.cpp:
 	.text       start:0x803BD7EC end:0x803BDA7C
@@ -8752,15 +8755,17 @@ Game/Util/ActorMovementUtil.cpp:
 
 Game/Util/ActorSensorUtil.cpp:
 	.text       start:0x803C3144 end:0x803C5054
+	.data       start:0x805E08C8 end:0x805E08D0
 	.sdata2     start:0x806C1560 end:0x806C1568
 
 Game/Util/ActorShadowLocalUtil.cpp:
 	.text       start:0x803C5054 end:0x803C61B8
-	.data       start:0x805E0950 end:0x805E0C20
+	.data       start:0x805E08D0 end:0x805E0AB0
 	.sdata2     start:0x806C1568 end:0x806C1578
 
 Game/Util/ActorShadowUtil.cpp:
 	.text       start:0x803C61B8 end:0x803C7A98
+	.data       start:0x805E0AB0 end:0x805E0BC0
 	.sdata2     start:0x806C1578 end:0x806C1588
 
 Game/Util/ActorStateUtil.cpp:
@@ -8780,12 +8785,14 @@ Game/Util/CameraUtil.cpp:
 
 Game/Util/DemoUtil.cpp:
 	.text       start:0x803CA518 end:0x803CBA6C
+	.data       start:0x805E0BC0 end:0x805E0C20
 	.sdata2     start:0x806C15C0 end:0x806C15C8
 
 Game/Util/DrawUtil.cpp:
 	.text       start:0x803CBA6C end:0x803CD0E0
 	.ctors      start:0x8052F3A8 end:0x8052F3AC
-	.data       start:0x805E0C20 end:0x805E0FA8
+	.rodata     start:0x8053EB38 end:0x8053EB78
+	.data       start:0x805E0C20 end:0x805E0C48
 	.bss        start:0x8060B3C0 end:0x8060B3F0
 	.sdata      start:0x806B2610 end:0x806B2658
 	.sbss       start:0x806B7000 end:0x806B7008
@@ -8793,10 +8800,12 @@ Game/Util/DrawUtil.cpp:
 
 Game/Util/EffectUtil.cpp:
 	.text       start:0x803CD0E0 end:0x803CDA10
+	.data       start:0x805E0C48 end:0x805E0C58
 	.sdata2     start:0x806C15F8 end:0x806C1600
 
 Game/Util/EventUtil.cpp:
 	.text       start:0x803CDA10 end:0x803CF2A0
+	.data       start:0x805E0C58 end:0x805E0FA8
 
 Game/Util/FileUtil.cpp:
 	.text       start:0x803CF2A0 end:0x803CFE74

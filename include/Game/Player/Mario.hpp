@@ -54,6 +54,9 @@ public:
     virtual bool postureCtrl(MtxPtr);
 
     void update();
+    void updateOnSand();
+    void updateOnWater();
+    void updateOnPoison();
     void setHeadAndFrontVecFromRotate(const TVec3f &);
     void initAfterConst();
     void initMember();
@@ -63,9 +66,13 @@ public:
     void recordRelativePosition();
     u32 initSoundTable(SoundList *list, u32);
     void initTask();
+    bool isCeiling() const;
     bool isIgnoreTriangle(const Triangle *);
     bool isStatusActive(u32) const;
     bool isSwimming() const;
+    bool isInvincible() const;
+    bool isHanging() const;
+    bool isNonFixHeadVec() const;
     bool isOnimasuBinderPressSkip() const;
     void closeStatus(MarioState *);
     void stopWalk();
@@ -97,16 +104,62 @@ public:
     void tryForcePowerJump(const TVec3f &, bool);
     const TVec3f &getShadowNorm() const;
     const TVec3f &getWallNorm() const;
+    const TVec3f &getAirGravityVec() const;
+    const TVec3f &getAirFrontVec() const;
+    void fixSideVecFromFrontUp();
+    void fixFrontVecFromUpSide();
+    void fixFrontVecByGravity();
     void setSideVec(const TVec3f &);
+    void setHeadVec(const TVec3f &);
     void setFrontVecKeepSide(const TVec3f &);
     void setFrontVecKeepUp(const TVec3f &, f32);
     void setFrontVecKeepUp(const TVec3f &, u32);
     void setFrontVecKeepUp(const TVec3f &);
+    void setFrontVecKeepUpAngle(const TVec3f &, f32);
     void setFrontVec(const TVec3f &);
+    void setGravityVec(const TVec3f &);
     void forceSetHeadVecKeepSide(const TVec3f &);
     void lockGroundCheck(void *, bool);
     void checkBaseTransBall();
     void changeStatus(MarioState *);
+    bool isEnableCheckGround() NO_INLINE;
+    bool isEnableRush() const;
+    void updateMorphResetTimer();
+    void updateTimers();
+    void touchWater();
+    void setGroundNorm(const TVec3f &);
+    void slopeTiltHead(TVec3f *);
+    void checkKeyLock();
+    void addTrans(const TVec3f &, const char *);
+    void setTrans(const TVec3f &, const char *);
+    void updateAndClearStrideParameter();
+    void updateSoundCode();
+    void createDirectionMtx(MtxPtr);
+    void createMtxDir(MtxPtr, const TVec3f &, const TVec3f &, const TVec3f &);
+    void actionMain();
+    bool checkDamage();
+    void sendStateMsg(u32);
+    bool procJump(bool);
+    void checkTornado();
+    void checkHang();
+    void checkWallStick();
+    void mainMove();
+    void updateWalkSpeed();
+    void doFrontStep();
+    bool isEnableSlopeMove() const;
+    void slopeMove();
+    void callExtraTasks(u32);
+    void beeMarioOnGround();
+    void checkSpecialWaitAnimation();
+    void retainMoveDir(f32, f32, TVec3f *);
+    void doExtraServices();
+    TVec3f* getLastSafetyTrans(TVec3f *) const;
+    void draw() const;
+    void drawTask() const;
+    void checkMap();
+    void updateCameraPolygon();
+    const TVec3f* getGravityVec() const;
+
 
     struct MovementStates {
         unsigned _0 : 1;
@@ -272,11 +325,11 @@ public:
     TVec3f _1B4;
     TVec3f _1C0;
     TVec3f _1CC;
-    TVec3f _1D8;
+    TVec3f mAirGravityVec;      // 0x1D8
     TVec3f _1E4;
-    TVec3f _1F0;
+    TVec3f mHeadVec;            // 0x1F0
     TVec3f _1FC;
-    TVec3f _208;
+    TVec3f mFrontVec;           // 0x208
     TVec3f _214;
     TVec3f _220;
     TVec3f _22C;
@@ -302,12 +355,12 @@ public:
     TVec3f _2EC;
     TVec3f _2F8;
     TVec3f _304;
-    TVec3f _310;
+    TVec3f mSideVec;            // 0x310
     TVec3f _31C;
     TVec3f _328;
     TVec3f _334;
     f32 _340;
-    TVec3f _344;
+    TVec3f _344;  // left/right?
     TVec3f _350;
     TVec3f _35C;
     TVec3f _368;
@@ -319,14 +372,14 @@ public:
     TVec3f _3B0;
     u16 _3BC;
     u16 _3BE;
-    u16 _3C0;
+    u8 _3C0;
     u16 _3C2;
     u16 _3C4;
     u16 _3C6;
     u16 _3C8;
     u16 _3CA;
     u16 _3CC;
-    u16 _3CE;
+    u16 _3CE;  // a timer
     u16 _3D0;
     u16 _3D2;
     u16 _3D4;
@@ -348,8 +401,8 @@ public:
     u16 _40E;
     u16 _410;
     u16 _412;
-    u16 _414;
-    u16 _416;
+    u16 _414;  // a timer
+    u16 mMorphResetTimer;
     u16 _418;
     u16 _41A;
     u16 _41C;
@@ -362,7 +415,7 @@ public:
     u16 _42A;
     u16 _42C;
     u32 _430;
-    u16 _434;
+    u16 _434;  // a timer
     u16 _436;
     u16 _438;
     u16 _43A;
@@ -408,11 +461,11 @@ public:
     f32 _528;
     f32 _52C;
     f32 _530;
-    u16 _534;
+    u16 _534; 
     f32 _538;
     f32 _53C;
     f32 _540;
-    u16 _544;
+    u16 _544;  
     f32 _548;
     TVec3f _54C;
     u32 _558;
@@ -425,14 +478,14 @@ public:
     s32 _564;
     u32 _568;
     u32 _56C;
-    u8 _570;
+    u8 _570; 
     u32 _574;
     u32 _578;
     Triangle *_57C[0x20];
     u32 _5FC;
     TVec3f _600;
     u8 _60C;
-    u8 _60D;
+    u8 _60D;        // bool?
     u8 _60E;
     u8 _60F;
     u8 _610;
@@ -475,9 +528,9 @@ public:
     u8 _71D;
     u8 _71E;
     u8 _71F;
-    u32 _720;
-    u32 _724;
-    u32 _728;
+    const char* _720;
+    const char* _724;
+    const char* _728;
     f32 _72C;
     u32 _730;
     u8 _734;
@@ -490,9 +543,9 @@ public:
     f32 _74C;
     u32 _750;
     u32 _754;
-    MarioWall *mWall;
+    MarioWall *mWall;            // 0x758
     TVec3f _75C;
-    MarioStick *mStick;
+    MarioStick *mStick;          // 0x768
     u16 _76C;
     f32 _770;
     u16 _774;
@@ -553,8 +606,8 @@ public:
     Triangle *_8E8;
     u8 _8EC;
 
-    // FAKE
-    u32 _8F0;
+    // FAKE?
+    f32 _8F0;
     // NOT FAKE
 
     f32 _8F4;

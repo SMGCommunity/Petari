@@ -4,9 +4,9 @@ CameraPoseParam::CameraPoseParam() {
     _0.x = 0.0f;
     _0.y = 1.0f;
     _0.z = 0.0f;
-    _C.x = 0.0f;
-    _C.y = 0.0f;
-    _C.z = 1.0f;
+    mWatchPos.x = 0.0f;
+    mWatchPos.y = 0.0f;
+    mWatchPos.z = 1.0f;
     _18.x = 0.0f;
     _18.y = 1.0f;
     _18.z = 0.0f;

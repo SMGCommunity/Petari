@@ -77,6 +77,7 @@ namespace MR {
 
     bool isMsgLockOnStarPieceShoot(u32);
 
+    bool isMsgStartPowerStarGet(u32);
     bool isMsgHitmarkEmit(u32);
     bool isMsgStarPieceAttack(u32);
     bool isMsgStarPieceReflect(u32);
@@ -110,13 +111,14 @@ namespace MR {
     void validateHitSensors(LiveActor *);
     void invalidateHitSensors(LiveActor *);
 
+    void calcPosBetweenSensors(TVec3f *, const HitSensor *, const HitSensor *, f32);
     void calcSensorDirection(TVec3f *, const HitSensor *, const HitSensor *);
 
     void calcSensorDirectionNormalize(TVec3f *, const HitSensor *, const HitSensor *);
     void calcSensorHorizonNormalize(TVec3f *, const TVec3f &, const HitSensor *, const HitSensor *);
 
     bool sendSimpleMsgToActor(u32, LiveActor *);
-
+    bool sendMsgToBindedSensor(u32, LiveActor *, HitSensor *);
     bool sendArbitraryMsg(u32, HitSensor *, HitSensor *);
     bool sendMsgPush(HitSensor *, HitSensor *);
     bool sendMsgPlayerTrample(HitSensor *, HitSensor *);

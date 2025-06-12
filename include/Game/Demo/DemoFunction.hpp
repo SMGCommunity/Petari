@@ -20,6 +20,7 @@ namespace DemoFunction {
     void registerDemoActionNerveFunction(const LiveActor *, const Nerve *, const char *);
 
     bool tryCreateDemoTalkAnimCtrlForActor(LiveActor *, const char *, const char *);
+    bool tryCreateDemoTalkAnimCtrlForActorDirect(LiveActor *, const char *, const char *, const char *);
 
     bool tryCreateDemoTalkAnimCtrlForScene(LiveActor *, const JMapInfoIter &, const char *, const char *, s32, s32);
 

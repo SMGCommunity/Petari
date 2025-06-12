@@ -7,8 +7,8 @@ HitSensorKeeper::HitSensorKeeper(int sensorCount) {
     mSensorCount = sensorCount;
     mSensorInfosSize = 0;
     mSensorInfos = nullptr;
-    _C = 0;
-    _10 = 0;
+    mTaking = 0;
+    mTaken = 0;
     mSensorInfos = new HitSensorInfo*[sensorCount];
 
     for (s32 i = 0; i < mSensorCount; i++) {

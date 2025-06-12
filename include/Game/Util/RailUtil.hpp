@@ -57,6 +57,8 @@ namespace MR {
     bool getRailArg0WithInit(const LiveActor *, s32 *);
     bool getRailArg1WithInit(const RailRider *, s32 *);
 
+    bool getRailArg3NoInit(const LiveActor *, s32 *);
+
     f64 calcNearestRailCoord(const LiveActor *, const TVec3f &);
 
     void moveCoordAndFollowTrans(LiveActor *);
@@ -75,6 +77,7 @@ namespace MR {
     f32 getRailCoordSpeed(const LiveActor *);
 
     void setRailDirectionToEnd(LiveActor *);
+    void setRailDirectionCloseToNearestPos(LiveActor *, const TVec3f &);
 
     bool isLoopRail(const LiveActor *);
 
@@ -94,7 +97,11 @@ namespace MR {
 
     const TVec3f& getRailPointPosEnd(const LiveActor *);
     void calcRailEndPointPos(TVec3f *, const LiveActor *);
+    void calcNearestRailDirection(TVec3f *, const LiveActor *, const TVec3f &);
     void calcNearestRailPos(TVec3f *, const LiveActor *, const TVec3f &);
+
+    void calcMovingDirectionAlongRail(LiveActor *, TVec3f *, const TVec3f &, float, bool, bool *);
+    void calcMovingDirectionAlongRailH(LiveActor *, TVec3f *, const TVec3f &, float, bool *);
 
     void calcRailPosAndDirectionAtCoord(TVec3f *, TVec3f *, const LiveActor *, f32);
 
