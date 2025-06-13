@@ -58,6 +58,8 @@
 #include "Game/MapObj/GreenCaterpillarBig.hpp"
 #include "Game/MapObj/HatchWaterPlanet.hpp"
 #include "Game/MapObj/HipDropMoveObj.hpp"
+#include "Game/MapObj/HipDropRock.hpp"
+#include "Game/MapObj/HipDropSwitch.hpp"
 #include "Game/MapObj/ItemAppearStone.hpp"
 #include "Game/MapObj/ItemBlock.hpp"
 #include "Game/MapObj/KeySwitch.hpp"
