@@ -72,7 +72,7 @@ void LotusLeaf::exeWaitPlayerOn() {
     }
 }
 
-
+//Todo: Match. Decomp.me: https://decomp.me/scratch/zsY3a
 void LotusLeaf::exeShake() {
     if (MR::isFirstStep(this)) {
         _98 = 1.5f;
@@ -83,8 +83,11 @@ void LotusLeaf::exeShake() {
     f32 v1 = 6.2831855f / _9C;
 
     f32 value = JMath::sSinCosTable.cosLapRad( v1 * getNerveStep());
-    _98 = v1 * _98 * 0.95f + -mPosition.y;
-    if (value <= _8C.y) {
+    //* 0.95f + -mPosition.y
+    _9C = -_98 * 0.65f;
+    _98 = v1;
+    mVelocity.y = _9C - mPosition.y;
+    if (value <=  _8C.y) {
         _8C.zero();
     }
     if (isNerve(&NrvLotusLeaf::HostTypeShake::sInstance)) {
@@ -96,7 +99,7 @@ void LotusLeaf::exeShake() {
         return;
     }
     f32 f_a = value - mVelocity.y;
-    if ( MR::isNearZero(0, 0.000099999997f) && MR::isNearZero(f_a, 0.000099999997f)) {
+    if ( MR::isNearZero(f_a, 0.000099999997f) && MR::isNearZero(f_a, 0.000099999997f)) {
         mVelocity.zero();
         if (isNerve(&NrvLotusLeaf::HostTypeShakeOnPlayer::sInstance)) {
             setNerve(&NrvLotusLeaf::HostTypeWaitPlayerOn::sInstance);
@@ -106,11 +109,7 @@ void LotusLeaf::exeShake() {
     }
 }
 
+
 void LotusLeaf::convergeToInitPos() {
-    if (MR::isFirstStep(this)) {
-        MR::deleteEffect(this, "LotusLeafRipple");
-    } 
-    if (MR::isOnPlayer(this)) {
-        setNerve(&NrvLotusLeaf::HostTypeShakeOnPlayer::sInstance);
-    }
+    //Todo: Actually Match.
 }
