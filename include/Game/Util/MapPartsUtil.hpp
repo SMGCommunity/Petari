@@ -63,4 +63,8 @@ namespace MR {
     bool receiveMapPartsRotateMsg(LiveActor *, u32, MapPartsRailMover *, MapPartsRailRotator *);
 
     void initMapPartsShadow(LiveActor *, const JMapInfoIter &);
+
+    bool isMapPartsRailMovePassedEndPointRepeat(const MapPartsRailMover *);
+
+    bool isMapPartsRailMovePassedStartPointRepeat(const MapPartsRailMover *);
 };
