@@ -188,9 +188,9 @@ Mario::Mario(MarioActor *actor) : MarioModule(actor)
     _46C = new Triangle();
 
     _4C8 = new Triangle();
-    _4CC = new Triangle();
-    _4D0 = new Triangle();
-    _4D4 = new Triangle();
+    mFrontWallTriangle = new Triangle();
+    mBackWallTriangle = new Triangle();
+    mSideWallTriangle = new Triangle();
     _4D8 = new Triangle();
     _4DC = new Triangle();
 
@@ -1039,13 +1039,13 @@ void Mario::updateSoundCode() {
     }
     if (isStatusActive(1)) {
         if (mMovementStates._8) {
-            soundCode = MR::getSoundCodeIndex(_4CC->getAttributes());
+            soundCode = MR::getSoundCodeIndex(mFrontWallTriangle->getAttributes());
         }
         else if (mMovementStates._19) {
-            soundCode = MR::getSoundCodeIndex(_4D0->getAttributes());
+            soundCode = MR::getSoundCodeIndex(mBackWallTriangle->getAttributes());
         }
         else if (mMovementStates._1A) {
-            soundCode = MR::getSoundCodeIndex(_4D4->getAttributes());
+            soundCode = MR::getSoundCodeIndex(mSideWallTriangle->getAttributes());
         }
     }
     MR::setMapSondCodeGravity(mActor, soundCode);
