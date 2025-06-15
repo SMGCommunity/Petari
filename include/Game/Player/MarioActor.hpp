@@ -144,12 +144,13 @@ public:
     void resetPadSwing();
     void initActionMatrix();
 
-    TVec3f &getGravityVec();
+    TVec3f &getGravityVec() const;
     TVec3f &getGravityVector();
     void updateGravityVec(bool, bool);
     void changeTeresaAnimation(const char *, s32);
 
     void playEffect(const char *);
+    void playEffectTrans(const char *, const TVec3f &);
     void stopEffect(const char *);
 
     void updateActionTrigger();
@@ -180,6 +181,9 @@ public:
     bool selectWaterInOut(const char *) const;
     bool selectWaterInOutRush(const HitSensor *) const;
     void playEffectRT(const char *, const TVec3f &, const TVec3f &);
+    void playEffectRTZ(const char *, const TVec3f &, const TVec3f &);
+    void playEffectRTW(const char *, const TVec3f &, const TVec3f &);
+    void playEffectSRT(const char *, f32, const TVec3f &, const TVec3f &);
     void emitEffectWaterColumn(const TVec3f &, const TVec3f &);
     bool selectRecoverFlyMeter(const HitSensor *) const;
     void endRush(const RushEndInfo *);
@@ -195,6 +199,9 @@ public:
     void setBlink(const char *);
     void resetSensorCount();
     void getStickValue(f32 *, f32 *);
+    bool checkButtonType(u16, bool) const;
+    bool sendPunch(HitSensor *, bool);
+    void reactionPunch(HitSensor *);
 
     void setPlayerMode(u16, bool);
 
@@ -203,6 +210,10 @@ public:
     bool isInZeroGravitySpot() const;
 
     void forceKill(u32);
+
+    void sendMsgUpperPunch(HitSensor *);
+
+    void entryWallWalkMode(const TVec3f &, const TVec3f &);
 
     const HitSensor &getCarrySensor() const;
 
@@ -337,7 +348,7 @@ public:
     TVec3f _3C4;
     u16 _3D0;
     u16 _3D2;
-    u16 _3D4;
+    u16 mPlayerMode;          // 0x3D4
     u16 _3D6;
     u16 _3D8;
     u16 _3DA;
@@ -357,7 +368,7 @@ public:
     u32 _424;
     u32 _428[4];
     u8 _438[0x30];
-    TVec3f _468f;
+    TVec3f _468;
     u32 _474;
     f32 _478;
     u32 _47C;
@@ -514,7 +525,7 @@ public:
     u32 _B84;
     u16 _B88;
     MarioNullBck *mNullAnimation;    // 0xB8C
-    bool _B90;
+    bool _B90;  // animations
     bool _B91;
     s8 _B92;
     // padding
@@ -608,10 +619,10 @@ public:
     TVec3f _F68;
     u8 _F74;
     // padding
-    TVec3f _F78;
-    TVec3f _F84;
-    TVec3f _F90;
-    TVec3f _F9C;
+    TVec3f mCamPos;              // 0xF78
+    TVec3f mCamDirX;             // 0xF84
+    TVec3f mCamDirY;             // 0xF90
+    TVec3f mCamDirZ;             // 0xF9C
     TVec3f _FA8;
     const Nerve *_FB4;
     u16 _FB8;

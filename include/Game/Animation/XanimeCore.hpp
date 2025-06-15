@@ -50,7 +50,7 @@ public:
     f32 _58;
     f32 _5C;
     f32 _60;
-    u32 _64;
+    MtxPtr _64;
     u32 _68;
     u32 _6C;
 };
@@ -102,7 +102,7 @@ public:
     u32 mJointCount;                    // 0x8
     u16 _C;
     XjointInfo* mJointList;             // 0x10
-    XjointTransform* mTransformList;    // 0x14
+    XjointTransform* mTransformList;    // 0x14  // this is an array
     XanimeTrack* mTrackList;            // 0x18
     f32 _1C;
     f32 _20;

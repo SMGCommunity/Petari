@@ -104,6 +104,7 @@ public:
     void tryForcePowerJump(const TVec3f &, bool);
     const TVec3f &getShadowNorm() const;
     const TVec3f &getWallNorm() const;
+    const TVec3f &getSideWallNorm() const;
     const TVec3f &getAirGravityVec() const;
     const TVec3f &getAirFrontVec() const;
     void fixSideVecFromFrontUp();
@@ -159,6 +160,13 @@ public:
     void checkMap();
     void updateCameraPolygon();
     const TVec3f* getGravityVec() const;
+    void writeBackPhysicalVector();
+    f32 calcDistToCeil(bool);
+    void fixPositionInTower();
+    bool isRising() const;
+    bool playSoundJ(const char *, s32);
+    void stopSoundJ(const char *, u32);
+    void calcMoveDir(f32, f32, TVec3f *, bool);
 
 
     struct MovementStates {
@@ -311,20 +319,20 @@ public:
     f32 _124;
     f32 _128;
     u32 _12C;
-    TVec3f _130;
+    TVec3f mPosition;           // 0x130
     TVec3f _13C;
     TVec3f _148;
     TVec3f _154;
-    TVec3f _160;
+    TVec3f mVelocity;           // 0x160
     TVec3f _16C;
-    TVec3f _178;
+    TVec3f mVelocityAfter;      // 0x178
     TVec3f _184;
     TVec3f _190;
     TVec3f _19C;
     TVec3f _1A8;
     TVec3f _1B4;
-    TVec3f _1C0;
-    TVec3f _1CC;
+    TVec3f mStickPos;           // 0x1C0
+    TVec3f mWorldPadDir;        // 0x1CC
     TVec3f mAirGravityVec;      // 0x1D8
     TVec3f _1E4;
     TVec3f mHeadVec;            // 0x1F0
@@ -350,13 +358,13 @@ public:
     TVec3f _2B8;
     TVec3f _2C4;
     f32 _2D0;
-    TVec3f _2D4;
+    TVec3f mJumpVec;            // 0x2D4
     TVec3f _2E0;
     TVec3f _2EC;
     TVec3f _2F8;
     TVec3f _304;
     TVec3f mSideVec;            // 0x310
-    TVec3f _31C;
+    TVec3f mShadowPos;          // 0x31C
     TVec3f _328;
     TVec3f _334;
     f32 _340;
@@ -402,7 +410,7 @@ public:
     u16 _410;
     u16 _412;
     u16 _414;  // a timer
-    u16 mMorphResetTimer;
+    u16 mMorphResetTimer;           // 0x416
     u16 _418;
     u16 _41A;
     u16 _41C;
@@ -419,18 +427,18 @@ public:
     u16 _436;
     u16 _438;
     u16 _43A;
-    TVec3f _43C;
+    TVec3f _43C; // front?
     TVec3f _448;
     f32 _454;
     TriangleFilterDelegator<Mario> *_458;
     Triangle *_45C;
     Triangle *_460;
-    Triangle *_464;
+    Triangle *mGroundPolygon;       // 0x464
     Triangle *_468;
     Triangle *_46C;
     Triangle *_470;
     Triangle *_474;
-    Triangle *_478;
+    Triangle *mTmpPolygon;          // 0x478
     Triangle *_47C;
     Triangle *_480;
     Triangle *_484;
@@ -464,7 +472,7 @@ public:
     u16 _534; 
     f32 _538;
     f32 _53C;
-    f32 _540;
+    f32 mYAngleOffset;          // 0x540
     u16 _544;  
     f32 _548;
     TVec3f _54C;
@@ -651,6 +659,6 @@ public:
     TVec3f _A58;
     f32 _A64;
     u32 _A68;
-    u8 _A6C[0x20];
+    u8 _A6C[0x20]; // animations
     TVec3f _A8C[9];
 };

@@ -163,6 +163,8 @@ namespace MR {
     f32 cos(f32);
     f32 sin(f32);
 
+    f32 acosEx(f32);
+
     void checkHitSegmentSphere(const TVec3f &, const TVec3f &, const TVec3f &, TVec3f *);
 
     inline f32 adjustAngle(f32 angle, f32 delta, f32 offset) {
