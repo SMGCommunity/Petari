@@ -99,7 +99,7 @@ void MarioActor::initMember()
     _378 = 0;
     _37C = 0;
     mHealth = 0;
-    _384 = 0;
+    mWaterLife = 0;
     _388 = 0;
     _38C = 0;
     _390 = 0;
@@ -333,7 +333,7 @@ void MarioActor::initMember()
     PSMTXIdentity(_E0C.toMtxPtr());
     PSMTXIdentity(_E3C.toMtxPtr());
     PSMTXIdentity(_E6C.toMtxPtr());
-    _E9C = 0;
+    mBlendMtxTimer = 0;
     _EA0 = 10.0f;
     _EA4 = 0;
     _EA5 = 0;

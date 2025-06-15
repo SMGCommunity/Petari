@@ -451,7 +451,7 @@ bool MarioModule::checkSquat(bool a1) {
     if (MR::getKarikariClingNum() < 1 == false) {
         return false;
     }
-    if (*(s32*)(&mActor->_468.x)) {
+    if (mActor->_468.x) {
         return false;
     }
     if (mActor->_B94 != 0) {

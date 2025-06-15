@@ -27,7 +27,7 @@ void Mario::initMember()
     _448.zero();
 
     _454 = 0.0f;
-    _48C.zero();
+    mGroundPos.zero();
     _498.zero();
     _4BC.zero();
     _50C.zero();

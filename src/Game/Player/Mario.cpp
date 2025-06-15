@@ -377,7 +377,7 @@ void Mario::updateAndClearStrideParameter() {
 }
 
 void Mario::checkKeyLock() {
-    if (!mMovementStates._0) {
+    if (!mMovementStates.jumping) {
         mMovementStates._22 = 0;
     }
     if (mActor->_37C < 0x4b) {
@@ -974,7 +974,7 @@ bool Mario::isEnableRush() const {
     if (isStatusActive(0x19)) {
         return false;
     }
-    if (mMovementStates._B && mMovementStates._0) {
+    if (mMovementStates._B && mMovementStates.jumping) {
         return false;
     }
     return true;
@@ -1120,7 +1120,7 @@ void Mario::initAfterConst() {
     _402 = pConst->mTable[pConst->mCurrentTable]->mAirWalkTime;
     mPosition = mActor->mPosition;
     mShadowPos = mPosition;
-    _48C = mPosition;
+    mGroundPos = mPosition;
     mMove->initAfter();
     mFoo->init();
     mSwim->init();
@@ -1412,7 +1412,7 @@ const TVec3f* Mario::getGravityVec() const {
     }
     if (!isSlipFloorCode(_960) && b1 && !isPlayerModeHopper() && !isPlayerModeTeresa() && !isDamaging()
         && !isStatusActive(6) && !isStatusActive(4) && !isStatusActive(0x13) && _430 != 5 && mActor->_334 == 0
-        && mMovementStates._0 && !mMovementStates._22 && _3BC < 8) {
+        && mMovementStates.jumping && !mMovementStates._22 && _3BC < 8) {
             return &_374;
     }
     return &mAirGravityVec;
