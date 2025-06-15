@@ -171,6 +171,8 @@ public:
     void invalidateRelativePosition();
     u16 getDamageAfterTimer() const;
 
+    bool checkWaterDamage();
+
 
     struct MovementStates {
         unsigned jumping : 1;           // _0
@@ -203,7 +205,7 @@ public:
         unsigned _1B : 1;
         unsigned _1C : 1;
         unsigned _1D : 1;
-        unsigned _1E : 1;
+        unsigned digitalJump : 1;       // _1E
         unsigned _1F : 1;
         unsigned _20 : 1;
         unsigned _21 : 1;
@@ -452,9 +454,9 @@ public:
     TVec3f _4B0;
     TVec3f _4BC;
     Triangle *_4C8;
-    Triangle *_4CC;
-    Triangle *_4D0;
-    Triangle *_4D4;
+    Triangle *mFrontWallTriangle;   // 0x4CC
+    Triangle *mBackWallTriangle;    // 0x4D0
+    Triangle *mSideWallTriangle;    // 0x4D4
     Triangle *_4D8;
     Triangle *_4DC;
     f32 _4E0;
