@@ -1,4 +1,5 @@
 #include "Game/Player/Mario.hpp"
+#include "Game/LiveActor/Binder.hpp"
 #include "Game/Map/HitInfo.hpp"
 #include "Game/Player/MarioAbyssDamage.hpp"
 #include "Game/Player/MarioActor.hpp"
@@ -45,7 +46,7 @@
 Mario::Mario(MarioActor *actor) : MarioModule(actor)
 {
     initMember();
-    _160.zero();
+    mVelocity.zero();
     _13C.zero();
     _148.zero();
     _154.zero();
@@ -70,7 +71,7 @@ Mario::Mario(MarioActor *actor) : MarioModule(actor)
     _71C = 0;
     _278 = 0.0f;
     _2D0 = 0.0f;
-    _2D4.zero();
+    mJumpVec.zero();
     _2E0.zero();
     _2EC.zero();
     _42C = 0;
@@ -113,7 +114,7 @@ Mario::Mario(MarioActor *actor) : MarioModule(actor)
     _538 = 0.0f;
     _53C = 0.0f;
     _544 = 0;
-    _540 = 0.0f;
+    mYAngleOffset = 0.0f;
     _3F8 = 0;
     _3FA = 0;
     _3FC = 0;
@@ -182,7 +183,7 @@ Mario::Mario(MarioActor *actor) : MarioModule(actor)
 
     _45C = new Triangle();
     _460 = new Triangle();
-    _464 = new Triangle();
+    mGroundPolygon = new Triangle();
     _468 = new Triangle();
     _46C = new Triangle();
 
@@ -195,7 +196,7 @@ Mario::Mario(MarioActor *actor) : MarioModule(actor)
 
     _470 = new Triangle();
     _474 = new Triangle();
-    _478 = new Triangle();
+    mTmpPolygon = new Triangle();
 
     _7E0 = new Triangle();
 
@@ -264,12 +265,12 @@ Mario::Mario(MarioActor *actor) : MarioModule(actor)
 
     _5FC = 0;
 
-    _1CC.zero();
+    mWorldPadDir.zero();
 
     _38 = 0.0f;
-    _1C0.z = 0.0f;
-    _1C0.y = 0.0f;
-    _1C0.x = 0.0f;
+    mStickPos.z = 0.0f;
+    mStickPos.y = 0.0f;
+    mStickPos.x = 0.0f;
 
     _3D8.zero();
 
@@ -345,10 +346,10 @@ Mario::Mario(MarioActor *actor) : MarioModule(actor)
 
 void Mario::updateAndClearStrideParameter() {
     _43C = mFrontVec;
-    _16C = _160;
-    _130 = mActor->mPosition;
-    _178.zero();
-    _160.zero();
+    _16C = mVelocity;
+    mTrans = mActor->mPosition;
+    mVelocityAfter.zero();
+    mVelocity.zero();
     _20 = mMovementStates_LOW_WORD;
     _24 = mMovementStates_HIGH_WORD;
     _28 = _10_LOW_WORD;
@@ -639,7 +640,7 @@ void Mario::fixFrontVecByGravity() {
         TVec3f up = -mAirGravityVec;
         MR::normalize(&up);
         if (_10._13) {
-            TVec3f side(_130);
+            TVec3f side(mTrans);
             side -= _6F4;
             MR::vecKillElement(side, _700, &side);
             MR::normalizeOrZero(&side);
@@ -882,14 +883,14 @@ void Mario::draw() const {
         TDDraw::cameraInit3D();
         TDDraw::setup(0,1,0);
         TVec3f* p_2A0 = &mActor->_2A0;
-        TVec3f diff31C_2A0(_31C);
+        TVec3f diff31C_2A0(mShadowPos);
         diff31C_2A0 -= *p_2A0;
-        TDDraw::drawCylinder(_130, diff31C_2A0, 32.0f, 0xffff0010, 0xff000004, 8);
+        TDDraw::drawCylinder(mTrans, diff31C_2A0, 32.0f, 0xffff0010, 0xff000004, 8);
         TVec3f diff2A0_31C(mActor->_2A0);
-        diff2A0_31C -= _31C;
+        diff2A0_31C -= mShadowPos;
         f32 diffMag = PSVECMag(&diff2A0_31C);
         MR::normalize(&diff2A0_31C);
-        TVec3f _31CPlusStuff(_31C);
+        TVec3f _31CPlusStuff(mShadowPos);
         f32 _37CMod10 = mActor->_37C % 0xa;
         _31CPlusStuff += diff2A0_31C.scaleInline(diffMag).scaleInline(0.125f).scaleInline(_37CMod10).scaleInline(0.1f);
         f32 one_eighth = 0.125f;
@@ -920,7 +921,7 @@ void Mario::draw() const {
 */
 
 void Mario::addTrans(const TVec3f &rShift, const char *a2) {
-    _130 += rShift;
+    mTrans += rShift;
     TVec3f _148shift(_148);
     _148shift -= rShift;
     f32 _148shiftTemp = __fabsf(_148shift.x);
@@ -942,8 +943,8 @@ void Mario::addTrans(const TVec3f &rShift, const char *a2) {
 
 void Mario::setTrans(const TVec3f &rShift, const char *a2) {
     TVec3f reqShift(rShift);
-    reqShift -= _130;
-    _130 = rShift;
+    reqShift -= mTrans;
+    mTrans = rShift;
     TVec3f _148shift(_148);
     _148shift -= reqShift;
     f32 _148shiftTemp = __fabsf(_148shift.x);
@@ -1029,8 +1030,8 @@ void Mario::updateSoundCode() {
     s32 soundCode = -1;
     Mario* pPlayer = getPlayer();
     if (pPlayer->mMovementStates._1) {
-        if (_464->isValid()) {
-            soundCode = MR::getSoundCodeIndex(_464->getAttributes());
+        if (mGroundPolygon->isValid()) {
+            soundCode = MR::getSoundCodeIndex(mGroundPolygon->getAttributes());
         }
     }
     else if (_45C->isValid()) {
@@ -1117,19 +1118,161 @@ const TVec3f &Mario::getAirGravityVec() const {
 void Mario::initAfterConst() {
     MarioConst* pConst = mActor->mConst;
     _402 = pConst->mTable[pConst->mCurrentTable]->mAirWalkTime;
-    _130 = mActor->mPosition;
-    _31C = _130;
-    _48C = _130;
+    mTrans = mActor->mPosition;
+    mShadowPos = mTrans;
+    _48C = mTrans;
     mMove->initAfter();
     mFoo->init();
     mSwim->init();
-    _7D4 = _130;
-    _814 = _130;
+    _7D4 = mTrans;
+    _814 = mTrans;
     PSMTXIdentity(_7E4);
     PSMTXIdentity(_824);
     _720 = getAnimationStringPointer("ヒップドロップ開始");
     _724 = getAnimationStringPointer("ヒップドロップ");
     _728 = getAnimationStringPointer("ヒップドロップ着地");
+}
+
+/* void Mario::writeBackPhysicalVector() {
+    TVec3f stack_ec;
+    TVec3f stack_e0;
+    TVec3f stack_d4;
+    TVec3f stack_c8;
+    TVec3f stack_bc;
+    TVec3f stack_b0;
+    TVec3f stack_98;
+    TVec3f stack_8c;
+    TVec3f stack_14;
+    TVec3f stack_8;
+    if (_1C._10) {
+        TVec3f stack_104(_130);
+        addTrans(_160, nullptr);
+        if (calcDistToCeil(false) < 200.0f) {
+            _160.zero();
+            stopWalk();
+        }
+        _130 = stack_104;
+    }
+    if (mMovementStates._37 || _10._15) {
+        TVec3f stack_f8(_130);
+        stack_f8 -= _688;
+        MR::vecKillElement(stack_f8, _6A0, &stack_f8);
+        TVec3f stack_80(_688);
+        stack_80 += stack_f8;
+        _130 = stack_80;
+        MR::vecKillElement(_160, _6A0, &_160);
+        TVec3f stack_74(_694);
+        stack_74 -= _688;
+        float f29 = MR::vecKillElement(stack_74, _6A0, &stack_ec);
+        if (f29 > 1.0f) {
+            f29 = 1.0f;
+        }
+        else if (f29 < -1.0f) {
+            f29 = 1.0f;
+        }
+        stack_ec = _6A0;
+        stack_ec.setLength(f29);
+        _688 += stack_ec;
+    }
+    fixPositionInTower();
+    if (mMovementStates._0) {
+        bool rising = false;
+        if (isRising()) {
+            rising = true;
+        }
+        if (mActor->_334 != 0) {
+            _578 = 0;
+        }
+        if (!mMovementStates._22) {
+            float PI_30 = 0.10471976;
+            float zero = 0.0f;
+            float SQRT2_2 = 0.707f;
+            for (u32 i = 0; i < _578; i++) {
+                if (MR::vecKillElement(_160, *_57C[i]->getNormal(0), &stack_e0) < zero) {
+                    _160 = stack_e0;
+                    float f28 = MR::vecKillElement(_2D4, *_57C[i]->getNormal(0), &stack_d4);
+                    if (f28 <= 0.0f) {
+                        TVec3f stack_50(*_57C[i]->getNormal(0));
+                        stack_50.scale(f28);
+                        TVec3f stack_5c(stack_50);
+                        stack_5c.scale(0.5f);
+                        TVec3f stack_68(stack_d4);
+                        stack_68 += stack_5c;
+                        _2D4 = stack_68;
+                    }
+                    else if (MR::diffAngleAbs(*getGravityVec(), _2D4) < PI_30) {
+                        MR::vecKillElement(*_57C[i]->getNormal(0), *getGravityVec(), &stack_c8);
+                        float _2D4Mag = PSVECMag(&_2D4);
+                        MR::normalizeOrZero(&stack_c8);
+                        _2D4 += stack_c8;
+                        _2D4.setLength(_2D4Mag);
+                    }
+                    if (rising) {
+                        if (_57C[i]->getNormal(0)->dot(*getGravityVec()) > SQRT2_2) {
+                            mActor->sendMsgUpperPunch(_57C[i]->mSensor);
+                        }
+                    }
+                    if (isPlayerModeBee() && !mActor->mAlphaEnable && strcmp(MR::getWallCodeString(_57C[i]), "Fur")) {
+                        Triangle stack_110 = Triangle();
+                        MarioActor* pActor = mActor;
+                        TVec3f stack_38 = -(*_57C[i]->getNormal(0));
+                        TVec3f stack_44(stack_38);
+                        stack_44.scale(300.0f);
+                        if (MR::getFirstPolyOnLineToMap(&stack_bc, &stack_110, mActor->_2A0, stack_44) && strcmp(MR::getWallCodeString(_57C[i]), "Fur")) {
+                            MarioActor* pActor2 = mActor;
+                            pActor2->entryWallWalkMode(stack_bc, *stack_110.getNormal(0));
+                        }
+                    }
+                }
+            }
+        }
+    }
+    else if (isSwimming() && !mMovementStates._22) {
+        float SQRT2_2 = 0.707f;
+        for (u32 i = 0; i < _578; i++) {
+            if (MR::vecKillElement(_160, *_57C[i]->getNormal(0), &stack_b0) < 0.0f) {
+                _160 = stack_b0;
+                float f28 = MR::vecKillElement(mSwim->_A0, *_57C[i]->getNormal(0), &mSwim->_A0);
+                TVec3f stack_20(*_57C[i]->getNormal(0));
+                stack_20.scale(f28);
+                TVec3f stack_2c(stack_20);
+                stack_2c.scale(0.5f);
+                mSwim->_A0 += stack_2c;
+            }
+        }
+    }
+    else if (!_1C._B && mActor->_288.dot(_368) < 0.707f && MR::isNearZero(mActor->_288, 0.001f)) {
+        TVec3f stack_a4(mActor->_288);
+        MR::normalizeOrZero(&stack_a4);
+        float f2 = MR::vecKillElement(_160, stack_a4, &stack_98);
+        if (f2 < 0.0f) {
+            _160 = stack_98;
+            MR::normalizeOrZero(&stack_a4);
+            float f1 = 1.0f - MR::clamp((-stack_a4.dot(mFrontVec)-0.3f) * 1.4285715f, 0.0f, 1.0f);
+            if (!mMovementStates._8 && f1 < 0.1f) {
+                if (mMovementStates._1A) {
+                    TVec3f stack_14(getSideWallNorm());
+                    stack_14.scale(-f2);
+                    _160 += stack_14;
+                }
+                else {
+                    int s28 = mActor->mBinder->_28;
+                    if (s28 != 0) {
+                        float f28 = 0.0f;
+                        int index = 0;
+                        for (int i = 0; i < s28; i++) {
+                            float dot = mActor->mBinder->getPlane(i)->getNormal(0)->dot(mFrontVec);
+                            if (dot < 0.0f) {
+                                index = i;
+                                f28 = dot;
+                            }
+                        }
+
+                    }
+                }
+            }
+        }
+    }
 }
 
 void Mario::actionMain() {
@@ -1213,7 +1356,7 @@ void Mario::actionMain() {
                 && _2D4.dot(*_45C->getNormal(0)) < 0.0f && _1FC.dot(Mario::getGravityVec()) > 0.0f && _488 < 170.0f) {
                 mMovementStates._1 = 1;
                 setGroundNorm(*_45C->getNormal(0));
-                setTrans(_31C, nullptr);
+                setTrans(mShadowPos, nullptr);
             }
         }
     }

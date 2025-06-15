@@ -772,20 +772,20 @@ void MarioActor::movement()
                         }
                     }
                 }
-                if (mMario->_31C.translateOpposite(mPosition).dot(getGravityVector()) < 0.0f) {
+                if (mMario->mShadowPos.translateOpposite(mPosition).dot(getGravityVector()) < 0.0f) {
                     bool eject = true;
                     CollisionParts *parts = mMario->_45C->mParts;
                     if (parts && !mMario->_45C->mParts->_D4) {
                         TVec3f stack_C8, stack_BC, stack_B0;
-                        PSMTXMultVec(parts->mInvBaseMatrix.toMtxPtr(), mMario->_31C, stack_C8);
+                        PSMTXMultVec(parts->mInvBaseMatrix.toMtxPtr(), mMario->mShadowPos, stack_C8);
                         PSMTXMultVec(parts->mPrevBaseMatrix.toMtxPtr(), stack_C8, stack_BC);
-                        stack_B0 = mMario->_31C.translateOpposite(stack_BC);
+                        stack_B0 = mMario->mShadowPos.translateOpposite(stack_BC);
                         if (stack_B0.dot(stack_128) > 0.0f) {
                             eject = false;
                         }
                     }
                     if (eject) {
-                        mPosition = mMario->_31C;
+                        mPosition = mMario->mShadowPos;
                         mMario->_2D4.zero();
                         mMario->_148.zero();
                         if (!mMario->_5FC && (getDrawStates()._1E || getPrevDrawStates()._1E)) {

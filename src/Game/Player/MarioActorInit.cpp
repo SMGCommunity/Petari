@@ -119,7 +119,7 @@ void MarioActor::initMember()
     _3C4.zero();
     _3D0 = 0;
     _3D2 = 0;
-    _3D4 = 0;
+    mPlayerMode = 0;
     _3D6 = 0;
     _3D8 = 0;
     _3DA = 0;
@@ -139,10 +139,10 @@ void MarioActor::initMember()
         _428[i] = 0;
     }
 
-    _468f.zero();
-    _468f.x = 0;
-    _468f.y = 0;
-    _468f.z = 0;
+    _468.zero();
+    _468.x = 0;
+    _468.y = 0;
+    _468.z = 0;
     _474 = 0;
     _478 = 10.0f;
     _47C = 0;
@@ -384,10 +384,10 @@ void MarioActor::initMember()
     _F5C.zero();
     _F68.zero();
     _F74 = 0;
-    _F78.zero();
-    _F84.zero();
-    _F90.zero();
-    _F9C.zero();
+    mCamPos.zero();
+    mCamDirX.zero();
+    mCamDirY.zero();
+    mCamDirZ.zero();
     _FA8.zero();
     _FB4 = 0;
     _FB8 = 0;
