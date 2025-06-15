@@ -347,7 +347,7 @@ Mario::Mario(MarioActor *actor) : MarioModule(actor)
 void Mario::updateAndClearStrideParameter() {
     _43C = mFrontVec;
     _16C = mVelocity;
-    mTrans = mActor->mPosition;
+    mPosition = mActor->mPosition;
     mVelocityAfter.zero();
     mVelocity.zero();
     _20 = mMovementStates_LOW_WORD;
@@ -640,7 +640,7 @@ void Mario::fixFrontVecByGravity() {
         TVec3f up = -mAirGravityVec;
         MR::normalize(&up);
         if (_10._13) {
-            TVec3f side(mTrans);
+            TVec3f side(mPosition);
             side -= _6F4;
             MR::vecKillElement(side, _700, &side);
             MR::normalizeOrZero(&side);
@@ -885,7 +885,7 @@ void Mario::draw() const {
         TVec3f* p_2A0 = &mActor->_2A0;
         TVec3f diff31C_2A0(mShadowPos);
         diff31C_2A0 -= *p_2A0;
-        TDDraw::drawCylinder(mTrans, diff31C_2A0, 32.0f, 0xffff0010, 0xff000004, 8);
+        TDDraw::drawCylinder(mPosition, diff31C_2A0, 32.0f, 0xffff0010, 0xff000004, 8);
         TVec3f diff2A0_31C(mActor->_2A0);
         diff2A0_31C -= mShadowPos;
         f32 diffMag = PSVECMag(&diff2A0_31C);
@@ -921,7 +921,7 @@ void Mario::draw() const {
 */
 
 void Mario::addTrans(const TVec3f &rShift, const char *a2) {
-    mTrans += rShift;
+    mPosition += rShift;
     TVec3f _148shift(_148);
     _148shift -= rShift;
     f32 _148shiftTemp = __fabsf(_148shift.x);
@@ -943,8 +943,8 @@ void Mario::addTrans(const TVec3f &rShift, const char *a2) {
 
 void Mario::setTrans(const TVec3f &rShift, const char *a2) {
     TVec3f reqShift(rShift);
-    reqShift -= mTrans;
-    mTrans = rShift;
+    reqShift -= mPosition;
+    mPosition = rShift;
     TVec3f _148shift(_148);
     _148shift -= reqShift;
     f32 _148shiftTemp = __fabsf(_148shift.x);
@@ -1118,14 +1118,14 @@ const TVec3f &Mario::getAirGravityVec() const {
 void Mario::initAfterConst() {
     MarioConst* pConst = mActor->mConst;
     _402 = pConst->mTable[pConst->mCurrentTable]->mAirWalkTime;
-    mTrans = mActor->mPosition;
-    mShadowPos = mTrans;
-    _48C = mTrans;
+    mPosition = mActor->mPosition;
+    mShadowPos = mPosition;
+    _48C = mPosition;
     mMove->initAfter();
     mFoo->init();
     mSwim->init();
-    _7D4 = mTrans;
-    _814 = mTrans;
+    _7D4 = mPosition;
+    _814 = mPosition;
     PSMTXIdentity(_7E4);
     PSMTXIdentity(_824);
     _720 = getAnimationStringPointer("ヒップドロップ開始");

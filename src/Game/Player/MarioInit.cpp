@@ -5,7 +5,7 @@ void Mario::initMember()
     _40.zero();
     _4C.zero();
     PSMTXIdentity(_F4.toMtxPtr());
-    mTrans.zero();
+    mPosition.zero();
     _16C.zero();
     mVelocityAfter.zero();
     _1B4.zero();
