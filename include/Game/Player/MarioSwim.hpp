@@ -44,6 +44,8 @@ public:
     void setDamage(const TVec3f &, u16);
     void updateUnderwater();
     void startJet(u32);
+    void addDamage(const TVec3f &);
+    void addFaint(const TVec3f &);
 
     f32 getSurface() const;
 
