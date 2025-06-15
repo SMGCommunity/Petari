@@ -27,6 +27,7 @@ public:
     void changeUpper(const char *);
     void changeDefaultUpper(const char *);
     void stopUpper(const char *);
+    void setUpperRotateY(f32);
     void entryCallback(const char *);
     f32 getFrame() const;
 

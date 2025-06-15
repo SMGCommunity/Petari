@@ -8,7 +8,7 @@ class FootPrintInfo;
 
 class FootPrint : public NameObj {
 public:
-    FootPrint(const char *, int, int);
+    FootPrint(const char *, s32, s32);
     void setTexture(ResTIMG *);
 
     JUTTexture *_C;

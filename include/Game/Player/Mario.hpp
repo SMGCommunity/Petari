@@ -72,6 +72,7 @@ public:
     bool isSwimming() const;
     bool isInvincible() const;
     bool isHanging() const;
+    bool isWalling() const;
     bool isNonFixHeadVec() const;
     bool isOnimasuBinderPressSkip() const;
     void closeStatus(MarioState *);
@@ -167,13 +168,15 @@ public:
     bool playSoundJ(const char *, s32);
     void stopSoundJ(const char *, u32);
     void calcMoveDir(f32, f32, TVec3f *, bool);
+    void invalidateRelativePosition();
+    u16 getDamageAfterTimer() const;
 
 
     struct MovementStates {
-        unsigned _0 : 1;
+        unsigned jumping : 1;           // _0
         unsigned _1 : 1;
         unsigned _2 : 1;
-        unsigned _3 : 1;
+        unsigned turning : 1;           // _3
         unsigned _4 : 1;
         unsigned _5 : 1;
         unsigned _6 : 1;
@@ -192,7 +195,7 @@ public:
         unsigned _13 : 1;
         unsigned _14 : 1;
         unsigned _15 : 1;
-        unsigned _16 : 1;
+        unsigned debugMode : 1;         // _16
         unsigned _17 : 1;
         unsigned _18 : 1;
         unsigned _19 : 1;
@@ -443,7 +446,7 @@ public:
     Triangle *_480;
     Triangle *_484;
     f32 _488;
-    TVec3f _48C;
+    TVec3f mGroundPos;              // 0x48C
     TVec3f _498;
     TVec3f _4A4;
     TVec3f _4B0;

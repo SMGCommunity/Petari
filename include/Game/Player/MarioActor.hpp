@@ -77,15 +77,16 @@ public:
     bool doStun();
     void scaleMtx(MtxPtr);
     void updateBaseScaleMtx();
-    void getRealMtx(f32 (*)[4], const char *);
+    void getRealMtx(MtxPtr, const char *) const NO_INLINE;
+    void getRealPos(const char *, TVec3f *) const;
     void getGlobalJointMtx(const char *);
     void calcAnimInMovement();
-    void forceSetBaseMtx(f32 (*)[4]);
+    void forceSetBaseMtx(MtxPtr);
     void calcAnim();
     void calcAndSetBaseMtx();
     void setBlendMtxTimer(u16);
     void getGroundPos(TVec3f *dst) const;
-    void getShadowPos() const;
+    TVec3f* getShadowPos() const;
 
     bool isTurning() const;
     bool isJumping() const;
@@ -103,8 +104,8 @@ public:
     void jumpHop();
     void calcCenterPos();
     void calcHeadPos();
-    void setPress(u8, int);
-    void getResourceTable() const;
+    void setPress(u8, s32);
+    XanimeResourceTable* getResourceTable() const;
 
     bool isEnableMoveMario() const;
     bool isEnableNerveChange() const;
@@ -145,7 +146,7 @@ public:
     void initActionMatrix();
 
     TVec3f &getGravityVec() const;
-    TVec3f &getGravityVector();
+    TVec3f &getGravityVector() const;
     void updateGravityVec(bool, bool);
     void changeTeresaAnimation(const char *, s32);
 
@@ -202,6 +203,7 @@ public:
     bool checkButtonType(u16, bool) const;
     bool sendPunch(HitSensor *, bool);
     void reactionPunch(HitSensor *);
+    void tryCoinPullInRush();
 
     void setPlayerMode(u16, bool);
 
@@ -325,7 +327,7 @@ public:
     // padding
     u32 _37C;
     u32 mHealth;    // 0x380
-    u32 _384;
+    u32 mWaterLife; // 0x384
     u32 _388;
     u16 _38C;
     u32 _390;
@@ -558,7 +560,7 @@ public:
     TMtx34f _E0C;
     TMtx34f _E3C;
     TMtx34f _E6C;
-    u16 _E9C;
+    u16 mBlendMtxTimer;            // 0xE9C
     f32 _EA0;
     bool _EA4;
     bool _EA5;
@@ -625,7 +627,7 @@ public:
     TVec3f mCamDirZ;             // 0xF9C
     TVec3f _FA8;
     const Nerve *_FB4;
-    u16 _FB8;
+    u16 _FB8; // a timer
     u32 _FBC;
     u32 _FC0;
     u32 _FC4;

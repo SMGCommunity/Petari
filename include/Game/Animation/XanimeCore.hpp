@@ -94,7 +94,7 @@ public:
 
     void initMember(u32);
 
-    XjointTransform* getJointTransform(u32) const;
+    XjointTransform* getJointTransform(u32);
 
     u8 _4;
     u8 mTrackCount;                     // 0x5
