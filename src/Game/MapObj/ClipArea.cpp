@@ -39,14 +39,14 @@ void ClipArea::initBaseMatrix(const JMapInfoIter& rIter) {
 
 void ClipArea::draw() const {
     if (MR::isActiveClipArea()) {
-        GXSetTevColor(GXTevRegID(), sShapeColor);
-        GXSetColorUpdate(GXBool(0));
-        GXSetDstAlpha(GXBool(), 0);
-        GXSetCullMode(GXCullMode(1));
-        GXSetBlendMode(GXBlendMode(1), GXBlendFactor(1), GXBlendFactor(1), GXLogicOp(3));
+        GXSetTevColor(GX_TEVREG0, sShapeColor);
+        GXSetColorUpdate(false);
+        GXSetDstAlpha(false, 0);
+        GXSetCullMode(GX_CULL_FRONT);
+        GXSetBlendMode(GX_BM_BLEND, GX_BL_ONE, GX_BL_ONE, GX_LO_COPY);
         mShape->drawVolumeShape(mBaseMatrix, mScale);
-        GXSetCullMode(GXCullMode(2));
-        GXSetBlendMode(GXBlendMode(3), GXBlendFactor(), GXBlendFactor(), GXLogicOp(3));
+        GXSetCullMode(GX_CULL_BACK);
+        GXSetBlendMode(GX_BM_SUBTRACT, GX_BL_ZERO, GX_BL_ZERO, GX_LO_COPY);
         mShape->drawVolumeShape(mBaseMatrix, mScale);
     }
 }
