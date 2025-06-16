@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Game/MapObj/PalmIsland.hpp"
+#include "Game/MapObj/PhantomShipBridge.hpp"
 #include "revolution.h"
 #include "Game/AreaObj.hpp"
 #include "Game/Boss.hpp"
@@ -934,7 +935,7 @@ namespace {
 		{ "PhantomShipPropellerSmall", NULL, "PhantomShipPropellerSmall" },
 		{ "PhantomShipPropellerBig", NULL, "PhantomShipPropellerBig" },
 		{ "PhantomShipHandle", NULL, "PhantomShipHandle" },
-		{ "PhantomShipBridge", NULL, "PhantomShipBridge" },
+		{ "PhantomShipBridge", createNameObj<PhantomShipBridge>, "PhantomShipBridge" },
 		{ "TakoBarrelA", NULL, "TakoBarrelA" },
 		{ "TakoBarrelB", createNameObj<SimpleMapObj>, "TakoBarrelB" },
 		{ "KoopaRestarterVs3", NULL, 0 },

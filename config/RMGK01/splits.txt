@@ -5154,13 +5154,13 @@ Game/MapObj/PhantomShipBoxFloater.cpp:
 Game/MapObj/PhantomShipBridge.cpp:
 	.text       start:0x8020B098 end:0x8020B790
 	.ctors      start:0x8052EDF8 end:0x8052EDFC
-	.data       start:0x8059B028 end:0x8059B218
+	.data       start:0x8059B028 end:0x8059B1E8
 	.sbss       start:0x806B5548 end:0x806B5558
 	.sdata2     start:0x806BD980 end:0x806BD988
 
 Game/MapObj/PhantomShipHandle.cpp:
 	.text       start:0x8020B790 end:0x8020B9EC
-	.data       start:0x8059B218 end:0x8059B290
+	.data       start:0x8059B1E8 end:0x8059B290
 	.sdata2     start:0x806BD988 end:0x806BD990
 
 Game/MapObj/PhantomTorch.cpp:

@@ -87,6 +87,7 @@
 #include "Game/MapObj/MeteoContainer.hpp"
 #include "Game/MapObj/NoteFairy.hpp"
 #include "Game/MapObj/PalmIsland.hpp"
+#include "Game/MapObj/PhantomShipBridge.hpp"
 #include "Game/MapObj/PowerStar.hpp"
 #include "Game/MapObj/PowerStarAppearPoint.hpp"
 #include "Game/MapObj/PowerStarHolder.hpp"
