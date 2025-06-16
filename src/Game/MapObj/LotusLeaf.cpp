@@ -111,5 +111,16 @@ void LotusLeaf::exeShake() {
 
 
 void LotusLeaf::convergeToInitPos() {
-    //Todo: Actually Match.
+    if (mPosition.y >= _8C.y) {
+        mVelocity.y -= 0.04;
+        if (mPosition.y + mVelocity.y <= _9C) {
+            mVelocity.zero();
+        }
+    } else {
+        mVelocity.y += 0.04;
+        f32 float_1 = mPosition.y + mVelocity.y;
+        if (float_1 <= _9C) {
+            mVelocity.zero();
+        }
+    }
 }
