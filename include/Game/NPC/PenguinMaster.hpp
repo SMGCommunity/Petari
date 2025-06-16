@@ -1,3 +1,5 @@
+#pragma once
+
 #include "Game/NPC/NPCActor.hpp"
 
 class PenguinMaster : public NPCActor {

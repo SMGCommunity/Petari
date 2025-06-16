@@ -3,6 +3,7 @@
 #include <revolution.h>
 #include <JSystem/JGeometry.hpp>
 #include "Game/System/NerveExecutor.hpp"
+#include "Game/Util/JMapInfo.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
 
 class NPCActorItem;
@@ -17,6 +18,8 @@ namespace MR {
     bool isNPCItemFileExist(const char *);
 
     void startNPCTalkCamera(const TalkMessageCtrl *, MtxPtr, f32, s32);
+
+    void initDefaultPosAndQuat(NPCActor *, const JMapInfoIter &);
 
     void invalidateLodCtrl(const NPCActor *);
     void startMoveAction(NPCActor *);
@@ -36,11 +39,13 @@ namespace MR {
     void calcAndSetFloatBaseMtx(NPCActor *, f32);
 
     bool tryStartTalkAction(NPCActor *);
+    bool tryStartMoveTalkAction(NPCActor *);
 
     void turnPlayerToActor(const LiveActor *, f32);
 
     void setNPCActorPos(NPCActor *, const TVec3f &);
     void setNPCActorPose(NPCActor *, const TVec3f &, const TVec3f &, const TVec3f &);
+    void followRailPose(NPCActor *, f32, f32);
 
     void setDefaultPose(NPCActor *);
 };
