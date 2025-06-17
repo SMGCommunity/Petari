@@ -7009,13 +7009,14 @@ Game/Player/MarioSlope.cpp:
 Game/Player/MarioWalk.cpp:
 	.text       start:0x80306B68 end:0x80308E04
 	.ctors      start:0x8052F15C end:0x8052F160
-	.rodata     start:0x80539C30 end:0x80539CE8
-	.data       start:0x805CC540 end:0x805CC8E8
+	.rodata     start:0x80539C30 end:0x80539C58
+	.data       start:0x805CC540 end:0x805CC8B8
 	.sdata2     start:0x806C02F8 end:0x806C0370
 
 Game/Player/MarioNullBck.cpp:
 	.text       start:0x80308E04 end:0x803090AC
-	.data       start:0x805CC8E8 end:0x805CC960
+	.rodata     start:0x80539C58 end:0x80539CE8
+	.data       start:0x805CC8B8 end:0x805CC960
 	.sdata2     start:0x806C0370 end:0x806C0378
 
 Game/Player/MarioRecovery.cpp:
