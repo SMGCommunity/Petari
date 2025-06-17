@@ -396,7 +396,7 @@ public:
     u8 _6D0;
     f32 _6D4;
     f32 _6D8;
-    u32 _6DC[0x40];
+    HitSensor* _6DC[0x40];
     u16 _7DC;
     u16 _7DE;
     u16 _7E0;

@@ -170,7 +170,7 @@ void MarioActor::initMember()
     _6D4 = 10.0f;
     _6D8 = 10.0f;
     for (int i = 0; i < 0x40; i++) {
-        _6DC[i] = 0;
+        _6DC[i] = nullptr;
     }
     _7DC = 0;
     _7DE = 0;
