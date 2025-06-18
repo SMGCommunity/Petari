@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Game/GameAudio/AudTalkSoundData.hpp"
 #include <revolution.h>
 
 class AudSoundObject;
@@ -37,7 +38,7 @@ namespace MR {
     void startSoundObject(AudSoundObject *, const char *);
 
     void startLevelSound(const LiveActor *, const char *, s32, s32, s32);
-
+    void startLevelSound(const LiveActor *, JAISoundID, s32, s32, s32);
     void releaseSoundHandle(const LiveActor *, const char *);
 
     void setAudioEffectType(s32, s32);
