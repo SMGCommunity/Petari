@@ -215,7 +215,7 @@ namespace MR {
     }
 
     bool isAnimCameraEnd(const ActorCameraInfo *pInfo, const char *pName) {
-        getCameraDirector()->isAnimCameraEnd(pInfo->mZoneID, pName);
+        return getCameraDirector()->isAnimCameraEnd(pInfo->mZoneID, pName);
     }
 
     void pauseOnAnimCamera(const ActorCameraInfo *pInfo, const char *pName) {

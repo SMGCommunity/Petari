@@ -21,6 +21,6 @@ public:
     virtual void draw3D() const;
 
     u32 _8;
-    u32 _C;
+    u32 mStatusId;          // 0xC
     u8 _10;
 };

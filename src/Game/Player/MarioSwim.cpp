@@ -124,7 +124,7 @@ void Mario::startSwim()
             mSwim->_9D = 4;
             playSound("水落下突入", -1);
         }
-        else if (getPlayer()->getMovementStates()._0) {
+        else if (getPlayer()->getMovementStates().jumping) {
             mSwim->_9D = 1;
             playSound("水落下突入", -1);
         }

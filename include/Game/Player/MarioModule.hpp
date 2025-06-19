@@ -20,8 +20,8 @@ public:
     Mario *getPlayer() const;
     MarioAnimator *getAnimator() const;
     TVec3f &getShadowPos() const;
-    TVec3f &getGravityVec() const;
-    TVec3f &getAirGravityVec() const;
+    const TVec3f &getGravityVec() const;
+    const TVec3f &getAirGravityVec() const;
     TVec3f &getFrontVec() const;
     bool isStatusActiveID(u32) const;
     bool isStatusActiveS(MarioState *) const;
@@ -40,7 +40,7 @@ public:
     void changeAnimationInterpoleFrame(u32);
     bool isAnimationRun(const char *) const;
     bool isAnimationTerminate(const char *) const;
-    bool isAnimationTerminateUPper(const char *) const;
+    bool isAnimationTerminateUpper(const char *) const;
     const char *getAnimationStringPointer(const char *) const;
     const char *getCurrentBckName() const;
     void changeAnimationUpper(const char *, const char *);
@@ -96,7 +96,7 @@ public:
     bool isSlipFloorCode(s32) const;
     bool isSlipPolygon(const Triangle *) const;
     u32 getFloorCode() const;
-    void calcPolygonAngleD(const Triangle *) const;
+    f32 calcPolygonAngleD(const Triangle *) const;
     f32 calcAngleD(const TVec3f &) const;
     Triangle *getTmpPolygon() const;
     bool sendPunch(HitSensor *, bool);
