@@ -5154,13 +5154,13 @@ Game/MapObj/PhantomShipBoxFloater.cpp:
 Game/MapObj/PhantomShipBridge.cpp:
 	.text       start:0x8020B098 end:0x8020B790
 	.ctors      start:0x8052EDF8 end:0x8052EDFC
-	.data       start:0x8059B028 end:0x8059B218
+	.data       start:0x8059B028 end:0x8059B1E8
 	.sbss       start:0x806B5548 end:0x806B5558
 	.sdata2     start:0x806BD980 end:0x806BD988
 
 Game/MapObj/PhantomShipHandle.cpp:
 	.text       start:0x8020B790 end:0x8020B9EC
-	.data       start:0x8059B218 end:0x8059B290
+	.data       start:0x8059B1E8 end:0x8059B290
 	.sdata2     start:0x806BD988 end:0x806BD990
 
 Game/MapObj/PhantomTorch.cpp:
@@ -6131,6 +6131,7 @@ Game/NPC/DemoRabbit.cpp:
 	.text       start:0x80270B94 end:0x80271DD0
 	.ctors      start:0x8052EF94 end:0x8052EF98
 	.data       start:0x805AF6C8 end:0x805AF978
+	.sdata      start:0x806B20F8 end:0x806B2100
 	.sbss       start:0x806B5CC0 end:0x806B5CE8
 	.sdata2     start:0x806BEA70 end:0x806BEAD8
 
@@ -6145,6 +6146,7 @@ Game/NPC/HoneyQueen.cpp:
 	.text       start:0x80272850 end:0x80273494
 	.ctors      start:0x8052EF9C end:0x8052EFA0
 	.data       start:0x805AFBF0 end:0x805AFE00
+	.sdata      start:0x806B2100 end:0x806B2108
 	.sbss       start:0x806B5D08 end:0x806B5D28
 	.sdata2     start:0x806BEB00 end:0x806BEB28
 
@@ -6153,13 +6155,14 @@ Game/NPC/Kinopio.cpp:
 	.ctors      start:0x8052EFA0 end:0x8052EFA4
 	.data       start:0x805AFE00 end:0x805B02E0
 	.bss        start:0x8060ADE8 end:0x8060AE20
+	.sdata      start:0x806B2108 end:0x806B2110
 	.sbss       start:0x806B5D28 end:0x806B5D68
 	.sdata2     start:0x806BEB28 end:0x806BEB90
 
 Game/NPC/KinopioAstro.cpp:
 	.text       start:0x802751F4 end:0x80275DC0
 	.data       start:0x805B02E0 end:0x805B0460
-	.sdata      start:0x806B2110 end:0x806B2128
+	.sdata      start:0x806B2110 end:0x806B2118
 	.sdata2     start:0x806BEB90 end:0x806BEBA8
 
 Game/NPC/KoopaJr.cpp:
@@ -6208,6 +6211,7 @@ Game/NPC/Penguin.cpp:
 	.text       start:0x802793D0 end:0x8027A1C0
 	.ctors      start:0x8052EFB0 end:0x8052EFB4
 	.data       start:0x805B0C78 end:0x805B0FE0
+	.sdata      start:0x806B2118 end:0x806B2120
 	.sbss       start:0x806B5DC8 end:0x806B5DD8
 	.sdata2     start:0x806BEC00 end:0x806BEC48
 
@@ -6249,7 +6253,8 @@ Game/NPC/PenguinSkater.cpp:
 Game/NPC/PenguinStudent.cpp:
 	.text       start:0x8027E914 end:0x8027F284
 	.ctors      start:0x8052EFC8 end:0x8052EFCC
-	.data       start:0x805B1D10 end:0x805B1E50
+	.data       start:0x805B1D10 end:0x805B1E40
+	.sdata      start:0x806B2120 end:0x806B2128
 	.sbss       start:0x806B5E78 end:0x806B5E88
 	.sdata2     start:0x806BED50 end:0x806BED78
 
@@ -6259,7 +6264,7 @@ Game/NPC/PowerStarEventKeeper.cpp:
 Game/NPC/Rabbit.cpp:
 	.text       start:0x8027F8CC end:0x8028110C
 	.ctors      start:0x8052EFCC end:0x8052EFD0
-	.data       start:0x805B1E50 end:0x805B2180
+	.data       start:0x805B1E40 end:0x805B2180
 	.sdata      start:0x806B2128 end:0x806B2160
 	.sbss       start:0x806B5E88 end:0x806B5EC8
 	.sdata2     start:0x806BED78 end:0x806BEDE8

@@ -5,6 +5,7 @@
 #include "Game/Enemy/AnimScaleController.hpp"
 #include "Game/Util/JointController.hpp"
 #include "JSystem/JGeometry/TQuat.hpp"
+#include "revolution/types.h"
 
 static const char* ReactionDefault = "Reaction";
 static const char* PointingDefault = "Pointing";
@@ -184,7 +185,7 @@ public:
     MR::ActorTalkParam mParam;                          // 0xE8
     f32 _10C;
     f32 _110;
-    u32 _114;
+    f32 _114;
     u32 _118;
     const char* _11C;
     const char* _120;
