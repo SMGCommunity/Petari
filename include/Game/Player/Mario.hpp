@@ -41,10 +41,12 @@ class MarioWarp;
 class MarioTeresa;
 class MarioTalk;
 class MarioMove;
+class HitInfo;
 class Triangle;
 class FloorCode;
 struct SoundList;
 class MarioState;
+class MarioModuleTask;
 
 class Mario : public MarioModule {
 public:
@@ -53,126 +55,413 @@ public:
 
     virtual bool postureCtrl(MtxPtr);
 
-    void update();
-    void updateOnSand();
-    void updateOnWater();
-    void updateOnPoison();
-    void setHeadAndFrontVecFromRotate(const TVec3f &);
-    void initAfterConst();
     void initMember();
-    void clearSlope();
-    void clear2DStick();
-    void initSound();
-    void recordRelativePosition();
-    u32 initSoundTable(SoundList *list, u32);
-    void initTask();
-    bool isCeiling() const;
-    bool isIgnoreTriangle(const Triangle *);
-    bool isStatusActive(u32) const;
-    bool isSwimming() const;
-    bool isInvincible() const;
-    bool isHanging() const;
-    bool isWalling() const;
-    bool isNonFixHeadVec() const;
-    bool isOnimasuBinderPressSkip() const;
-    void closeStatus(MarioState *);
-    void stopWalk();
-    void push(const TVec3f &);
-    void stopJump();
+    
+    void updateAndClearStrideParameter();
+    void checkKeyLock();
+    void updateTimers();
+    void updateMorphResetTimer();
+    void doExtraServices();
+    bool isEnableCheckGround() NO_INLINE;
+    void setGroundNorm(const TVec3f &);
+    bool checkForceGrounding();
     void updateGroundInfo();
-    void checkEnforceMove();
-    bool isDamaging() const;
-    bool tryWallPunch();
-    void decDamageAfterTimer();
-    void incAirWalkTimer();
-    void updateCubeCode();
-    void startSwim();
-    bool checkStartSwim();
-    bool forceExitSwim();
-    bool forceStartSwimAndShoot(const TVec3f &);
-    bool isForceStopRush() const;
-    u32 getCurrentStatus() const;
-    bool trySpinJump(u8);
-    void startTeresaDisappear();
-    void startBas(const char *, bool, f32, f32);
-    bool checkVerticalPress(bool);
-    void powerAreaMove();
-    void powerRailMove();
-    void checkGround();
-    void updateFloorCode();
-    void inputStick();
-    void tryJump();
-    void tryForcePowerJump(const TVec3f &, bool);
-    const TVec3f &getShadowNorm() const;
-    const TVec3f &getWallNorm() const;
-    const TVec3f &getSideWallNorm() const;
-    const TVec3f &getAirGravityVec() const;
-    const TVec3f &getAirFrontVec() const;
-    void fixSideVecFromFrontUp();
-    void fixFrontVecFromUpSide();
+    void fixHeadFrontVecByGravity();
+    bool isNonFixHeadVec() const;
+    void createMtxDir(MtxPtr, const TVec3f &, const TVec3f &, const TVec3f &);
+    void createDirectionMtx(MtxPtr);
+    void createCorrectionMtx(MtxPtr, TVec3f *);
+    void createAngleMtx(MtxPtr, bool);
+    void slopeTiltHead(TVec3f *);
     void fixFrontVecByGravity();
+    void fixFrontVecFromUpSide();
+    void fixSideVecFromFrontUp();
     void setSideVec(const TVec3f &);
     void setHeadVec(const TVec3f &);
-    void setFrontVecKeepSide(const TVec3f &);
+    void setFrontVec(const TVec3f &);
     void setFrontVecKeepUp(const TVec3f &, f32);
     void setFrontVecKeepUp(const TVec3f &, u32);
     void setFrontVecKeepUp(const TVec3f &);
     void setFrontVecKeepUpAngle(const TVec3f &, f32);
-    void setFrontVec(const TVec3f &);
-    void setGravityVec(const TVec3f &);
+    void setFrontVecKeepSide(const TVec3f &);
+    void setHeadAndFrontVecFromRotate(const TVec3f &);
     void forceSetHeadVecKeepSide(const TVec3f &);
-    void lockGroundCheck(void *, bool);
-    void checkBaseTransBall();
-    void changeStatus(MarioState *);
-    bool isEnableCheckGround() NO_INLINE;
-    bool isEnableRush() const;
-    void updateMorphResetTimer();
-    void updateTimers();
-    void touchWater();
-    void setGroundNorm(const TVec3f &);
-    void slopeTiltHead(TVec3f *);
-    void checkKeyLock();
+    void setGravityVec(const TVec3f &);
+    void draw() const;
     void addTrans(const TVec3f &, const char *);
     void setTrans(const TVec3f &, const char *);
-    void updateAndClearStrideParameter();
+    bool isEnableRush() const; 
+    bool isForceStopRush() const; 
+    bool isInvincible() const;
+    bool isCeiling() const;
+    void inputStick();
     void updateSoundCode();
-    void createDirectionMtx(MtxPtr);
-    void createMtxDir(MtxPtr, const TVec3f &, const TVec3f &, const TVec3f &);
-    void actionMain();
-    bool checkDamage();
-    void sendStateMsg(u32);
-    bool procJump(bool);
-    void checkTornado();
-    void checkHang();
-    void checkWallStick();
-    void mainMove();
-    void updateWalkSpeed();
-    void doFrontStep();
-    bool isEnableSlopeMove() const;
-    void slopeMove();
-    void callExtraTasks(u32);
-    void beeMarioOnGround();
-    void checkSpecialWaitAnimation();
-    void retainMoveDir(f32, f32, TVec3f *);
-    void doExtraServices();
-    TVec3f* getLastSafetyTrans(TVec3f *) const;
-    void draw() const;
-    void drawTask() const;
-    void checkMap();
-    void updateCameraPolygon();
+    const TVec3f &getShadowNorm() const;
+    const TVec3f &getAirGravityVec() const;
+    const TVec3f &getAirFrontVec() const;
     const TVec3f* getGravityVec() const;
+    void initAfterConst();
     void writeBackPhysicalVector();
+    void update();
+    void updateLookOfs();
+    void actionMain();
+    void touchWater();
+
+    bool isBlendWaitGround() const;
+    bool checkSpecialWaitAnimation();
+    void resetSleepTimer();
+
+    void connectToClimb();
+
+    bool isIgnoreTriangle(const Triangle *);
+    void checkBaseTransBall();
+    void createAtField(bool, f32);
+    void doSwimmingHitCheck(const HitInfo *, u32);
+    void doSpinPunchAroundPolygons();
+    void checkMap();
     f32 calcDistToCeil(bool);
-    void fixPositionInTower();
+    f32 calcDistToCeilOnPress();
+    f32 calcDistToCeilHead();
+    void fixTransBetweenWall(const TVec3f &, const TVec3f &);
+    f32 calcDistWidth();
+    void updateCameraPolygon();
+    void setCameraPolygon(const Triangle *);
+    void checkAllWall(const TVec3f &, f32);
+    void calcFrontFloor();
+    const TVec3f &getWallNorm() const;
+    const TVec3f &getSideWallNorm() const;
+    const TVec3f &getFrontWallNorm() const;
+    const TVec3f &getBackWallNorm() const;
+    const TVec3f &getWallPos() const;
+    const Triangle *getWallPolygon() const;
+    const Triangle *getGroundPolygon() const;
+    void updateFloorCode();
+    void updateWallFloorCode();
+    void saveLastSafetyTrans();
+    void setNotSafetyTimer();
+    TVec3f* getLastSafetyTrans(TVec3f *) const;
+    bool checkCurrentFloorCodeSevere(u32) const;
+    bool isCurrentFloorSink() const;
+    bool isCurrentFloorSand() const;
+    bool isCurrentShadowFloorDangerAction() const;
+    bool checkBaseTransPoint();
+    bool checkHeadPoint();
+    const TVec3f *calcShadowPos();
+    void updateBinderInfo();
+    bool isThroughWall(const Triangle *) const;
+    void checkGround();
+    void getCameraCubeCode() const;
+    void updateCubeCode();
+
+    bool isDamaging() const;
+    void damageLarge(const TVec3f &);
+    void decDamageAfterTimer();
+    bool checkDamage();
+    u16 getDamageAfterTimer() const;
+    void damageFloorCheck();
+    void damageWallCheck();
+    void damagePolygonCheck(const Triangle *);
+    void flipLarge(const TVec3f &);
+    bool isEnableAddDamage() const;
+    void damage(const TVec3f &);
+    void doAbyssDamage();
+    void connectToFireRun();
+    void doFireDanceWithInitialDamage(u8);
+    void doFireObjHitWithInitialDamage();
+    void doNeedleWithInitialDamage(u8);
+    void doNeedleWithInitialDamage(const Triangle *);
+    void doNeedle(const Triangle *);
+    void doFireDance();
+    void checkKarikariDamage();
+    void doDarkDamage();
+    void doParalyze();
+    void doFreeze();
+    void requestCrush();
+    void tryCrush();
+
+    void doFlipWeak(const TVec3f &);
+    void faint(const TVec3f &);
+
+    void doFlipJump(const TVec3f &);
+    void doFlipBackRoll(const TVec3f &);
+
+    void doFrontStep();
+
+    void beeMarioOnGround();
+    void beeMarioOnAir();
+
+    void blown(const TVec3f &);
+
+    void taskOnEffectCheck(u32);
+
+    void doFlow();
+
+    void tryStartFoo();
+
     bool isRising() const;
+    bool checkWallRiseAndSlipFront();
+    bool tryJump();
+    bool tryTurnJump();
+    bool trySquatJump();
+    bool tryBackJump();
+    bool tryTornadoJump();
+    void startTornadoCentering(HitSensor *);
+    void taskOnTornadoCentering(u32);
+    bool trySpinJump(u8);
+    bool tryForceJumpDelay(const TVec3f &);
+    bool tryFreeJumpDelay(const TVec3f &);
+    bool tryForceJump(const TVec3f &, bool);
+    bool tryForceFreeJump(const TVec3f &);
+    bool tryForcePowerJump(const TVec3f &, bool);
+    bool tryFreeJump(const TVec3f &, bool);
+    bool tryWallJump(const TVec3f &, bool);
+    bool tryStickJump(const TVec3f &);
+    bool trySlipUpJump();
+    bool tryHangSlipUp();
+    bool tryDrop();
+    bool isDigitalJump() const;
+    void initActiveJumpVec();
+    void initJumpParam();
+    bool isEnableFutureJump() const;
+    bool procJump(bool);
+    void checkWallRising();
+    void checkWallJumpHit();
+    void decideSlipUp();
+    void moveWallSlide(f32);
+    void jumpToHipDrop();
+    void procHipDrop();
+    void doAirWalk();
+    void stopJump();
+    void cancelTornadoJump();
+    void setRocketBooster(const TVec3f &, f32, u16);
+    void procRocketBooster();
+    bool isSoftLandingFloor() const;
+    void checkAndTryForceJump();
+    void doLanding();
+    void startSlidingTask(u32, f32, u16);
+    void taskOnSlide(u32);
+    void taskOnWallRising(u32);
+    void incAirWalkTimer();
+
+    void mainMove();
+    bool isEnableTurn();
+    void recordTurnSlipAngle();
+    void decideInertia(f32);
+    void decideInertiaOnIce(f32);
+    void decideInertiaOnSlip(f32);
+    void calcShadowDir(const TVec3f &, TVec3f *);
+    void retainMoveDir(f32, f32, TVec3f *);
+    void calcMoveDir(f32, f32, TVec3f *, bool);
+    void checkLockOnHoming();
+    void doLockOnHoming();
+    void fixPositionInTower();
+
+    void check2DMode();
+    void calcMoveDir2D(f32, f32, TVec3f *);
+    void calcShadowDir2D(const TVec3f &, TVec3f *);
+    void stick2Dadjust(f32 &, f32 &);
+    void set2DMode(bool);
+    void beforeJumping2D();
+    void afterLanding2D();
+    void clear2DStick();
+
+    void set25DMode(const AreaObj *);
+    void update25DMode();
+    void updateAxisFromMode(u8);
+    void calcMoveDir25D(f32, f32, TVec3f *);
+
+    bool checkPressDamage();
+    bool checkVerticalPress(bool);
+    bool checkSidePressPre();
+    bool checkSidePress();
+
+    void startRabbitMode();
+    void endRabbitMode();
+
+    bool checkWallJumpCode();
+    void doSideStep();
+
+    bool isSkatableFloor() const;
+    void doSkate();
+
+    u32 initSoundTable(SoundList *list, u32);
+    void initSound();
     bool playSoundJ(const char *, s32);
     void stopSoundJ(const char *, u32);
-    void calcMoveDir(f32, f32, TVec3f *, bool);
-    void invalidateRelativePosition();
-    u16 getDamageAfterTimer() const;
+    void startBas(const char *, bool, f32, f32);
+    bool isRunningBas(const char *) const;
+    void skipBas(f32);
+    void playSoundTeresaFlying();
+    void playSoundTrampleCombo(u8);
+    void setSeVersion(u32);
+
+    bool checkOnimasu(const HitSensor *);
+    bool isDossun(const Triangle *) const;
+    bool isStageCameraRotate2D() const;
+    bool isNoWalkFallOnDossun() const;
+    bool isNotReflectGlassGround() const;
+    bool isUseAnotherMovingPolygon() const;
+    bool isUseFoolSpecialGravity(const TVec3f &, TVec3f *) const;
+    void updateOnimasu();
+    bool isHeadPushEnableArea() const;
+    bool isOnimasuBinderPressSkip() const;
+
+    void checkTornado();
+    void resetTornado();
+    void calcTornadoTilt();
+    void reflectWallOnSpinning(const TVec3f &, u16);
+    void forceStopTornado();
+    void startRotationTask(u32);
+    void doSpinWallEffect();
+    void taskOnRotation(u32);
+
+    void sendStateMsg(u32);
+    void updatePosture(MtxPtr);
+    void changeStatus(MarioState *);
+    void closeStatus(MarioState *);
+    u32 getCurrentStatus() const;
+    bool isStatusActive(u32) const;
+
+    bool checkBeeStick();
+    bool tryBeeStick(const HitSensor *);
+
+    void startTalk(const LiveActor *);
+    void endTalk();
+    void setLastNonFixMoveVec(const TVec3f &);
+
+    bool isWalling() const;
+    void checkWallStick();
+    void checkStickWallSide();
+    void checkStickFrontBack();
+    void fixWallingPosition(bool);
+    void fixWallingDir();
+    void fixWallingTop();
+    void checkWallFloorCode(u16) const;
+    void checkWallCode(const char *, bool) const;
+    void checkWallCodeNorm(u16, TVec3f *, bool) const;
+    void setWallCancel();
+    void keepDistFrontWall();
+    bool isEnableStickWall();
+    void fixWallingDist();
+    bool isInhibitWall() const;
+    bool tryWallPunch();
+
+    bool isHanging() const;
+    void fixHangDir(const TVec3f &, TVec3f *);
+    bool isEnableBackHang();
+    bool isEnableSideHang();
+    void checkHang();
+    bool isEnableHang();
+
+    bool isSwimming() const;
+    bool forceStartSwimAndShoot(const TVec3f &);
+    bool forceExitSwim();
+    bool checkStartSwim();
+    void startSwim();
 
     bool checkWaterDamage();
 
+    void clearSlope();
+    bool isEnableSlopeMove() const;
+    void moveSlopeSlide();
+    void slopeMove();
+    void taskOnSlipTurn(u32);
+
+    void lockGroundCheck(void *, bool);
+    void unlockGroundCheck(void *);
+    bool isUseSimpleGroundCheck() const;
+    bool checkGroundOnSlope();
+
+    void stopWalk();
+    void cancelSquatMode();
+    f32 getTargetWalkSpeed() const;
+    void decideSquatWalkAnimation();
+    void decideWalkSpeed();
+    void decideWalkAnimation();
+    void doBrakingAnimation();
+    bool checkWallPush();
+    void updateBrakeAnimation();
+    void updateWalkSpeed();
+    void decideOnIceAnimation();
+    void updateOnSand();
+    void updateOnPoison();
+    void updateOnWater();
+
+    void doRecovery();
+
+    bool isSliderFloor() const;
+    void checkSliderMode() const;
+    void startSlider();
+
+    void checkStep();
+    void startStep(const TVec3f &);
+
+    void checkBump();
+    void startBump(const TVec3f &);
+
+    void checkEnforceMove();
+    void checkEnforceMoveInner();
+    void recordRelativePosition();
+    void invalidateRelativePosition();
+    MtxPtr getMoveBaseMtx() const;
+    void moveRelativePosition(u32);
+    void moveRelativePositionWall();
+    void recordLastGround();
+    void getLastGroundPos(TVec3f *) const;
+    void getLastGroundEdgeNrm(u32) const;
+    void getLastGroundEdgeIndex(const TVec3f &, const TVec3f &) const;
+    void pushedByReaction();
+    void addReaction(TVec3f &);
+    bool tryPushToVelocity();
+    void push(const TVec3f &);
+    void push2(const TVec3f &);
+    void powerAreaMove();
+    void powerRailMove();
+    void recordJumpEnforceMove();
+    void doEnforceJump(f32);
+    void pushedByWind();
+
+    void delTask(MarioModuleTask *);
+    void execTask();
+    void drawTask() const;
+    void initTask();
+    bool isActiveTask(Task);
+    bool isActiveTaskID(u32);
+    void pushTask(Task, u32);
+    void popTask(Task);
+    void callExtraTasks(u32);
+    void startHandy();
+    void taskOnHipDropBlurHopper(u32);
+    void taskOnHipDropBlur(u32);
+    void taskOnHipDropSlide(u32);
+    void taskOnFreezeEnd(u32);
+    void startFreezeEnd();
+    void taskOnHandy(u32);
+    void startHipDropBlur();
+    void startHipDropSlide(const HitSensor *);
+    void startJumpDropSlide(const HitSensor *);
+
+    void startTeresaMode();
+    void getHitWallNorm(TVec3f *);
+    void resetTeresaMode();
+    void doTeresaReflection(const TVec3f &, bool);
+    void startTeresaDisappear();
+
+    void stopPunch();
+    void startMagic();
+
+    void doObjWarp(LiveActor *);
+    void doPointWarp(const TVec3f &, const TVec3f &, s32);
+    bool isVisibleRecoveryWarpBubble() const;
+    void doCubeWarp();
+    void doPointWarpRecovery(const TVec3f &, const TVec3f &);
+
+    bool isDisableStayHere() const;
+    bool isDisableFpViewMode() const;
+    void tryFpViewMode();
+
+    void stick2DadjustGround(f32 &, f32 &);
+    void calcDir2D(f32, f32, TVec3f *);
 
     struct MovementStates {
         unsigned jumping : 1;           // _0
