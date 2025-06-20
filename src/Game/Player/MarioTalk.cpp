@@ -33,22 +33,22 @@ bool MarioTalk::close() {
 // regswap
 bool MarioTalk::update() {
     if (_18) {
-        TVec3f stack_14;
-        TVec3f stack_8;
+        TVec3f horizontalToTalkActor;
+        TVec3f toTalkActor;
         TVec3f* pTrans = &getTrans();
-        stack_8.setPS2(mTalkActor->mPosition);
-        JMathInlineVEC::PSVECSubtract(&stack_8, pTrans, &stack_8);
-        MR::vecKillElement(stack_8, getAirGravityVec(), &stack_14);
-        if (!MR::normalizeOrZero(&stack_14)) {
-            getPlayer()->setFrontVecKeepUp(stack_14, (u32)0x10);
+        toTalkActor.setPS2(mTalkActor->mPosition);
+        JMathInlineVEC::PSVECSubtract(&toTalkActor, pTrans, &toTalkActor);
+        MR::vecKillElement(toTalkActor, getAirGravityVec(), &horizontalToTalkActor);
+        if (!MR::normalizeOrZero(&horizontalToTalkActor)) {
+            getPlayer()->setFrontVecKeepUp(horizontalToTalkActor, (u32)0x10);
             if (!getPlayer()->mMovementStates._37) {
-                getPlayer()->setLastNonFixMoveVec(stack_14);
+                getPlayer()->setLastNonFixMoveVec(horizontalToTalkActor);
             }
             else if (isPlayerModeTeresa()) {
                 TVec3f* pCamDirZ = &getCamDirZ();
-                MR::vecKillElement(stack_14, *pCamDirZ, pCamDirZ);
-                if (!MR::normalizeOrZero(&stack_14)) {
-                    getPlayer()->setLastNonFixMoveVec(stack_14);
+                MR::vecKillElement(horizontalToTalkActor, *pCamDirZ, pCamDirZ);
+                if (!MR::normalizeOrZero(&horizontalToTalkActor)) {
+                    getPlayer()->setLastNonFixMoveVec(horizontalToTalkActor);
                 }
             }
         }
