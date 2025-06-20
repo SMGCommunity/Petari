@@ -106,7 +106,7 @@ public:
     XanimeResourceTable* getResourceTable() const;
     bool isEnableMoveMario() const;
     bool isEnableNerveChange() const;
-    void forcceGameOver();
+    void forceGameOver();
     void forceGameOverAbyss();
     void forceGameOverBlackHole();
     void forceGameOverNonStop();
