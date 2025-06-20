@@ -660,7 +660,7 @@ public:
     TVec3f mSideVec;            // 0x310
     TVec3f mShadowPos;          // 0x31C
     TVec3f _328;
-    TVec3f _334;
+    TVec3f mLastNonFixMoveVec;  // 0x334
     f32 _340;
     TVec3f _344;  // left/right?
     TVec3f _350;
