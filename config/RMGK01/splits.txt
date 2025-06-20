@@ -6957,13 +6957,13 @@ Game/Player/MarioState.cpp:
 Game/Player/MarioStick.cpp:
 	.text       start:0x802F47B8 end:0x802F5014
 	.ctors      start:0x8052F134 end:0x8052F138
-	.data       start:0x805CB5D0 end:0x805CB790
+	.data       start:0x805CB5D0 end:0x805CB708
 	.sdata2     start:0x806C0030 end:0x806C0040
 
 Game/Player/MarioSukekiyo.cpp:
 	.text       start:0x802F5014 end:0x802F5420
 	.ctors      start:0x8052F138 end:0x8052F13C
-	.data       start:0x805CB790 end:0x805CB8C0
+	.data       start:0x805CB708 end:0x805CB8C0
 
 Game/Player/MarioTalk.cpp:
 	.text       start:0x802F5420 end:0x802F5760
