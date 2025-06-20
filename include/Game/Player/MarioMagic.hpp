@@ -8,5 +8,10 @@ class MarioMagic : public MarioState {
 public:
     MarioMagic(MarioActor *);
 
-    u8 _11[3];
+    virtual bool start();
+    virtual bool close();
+    virtual bool update();
+
+    u8 _11;
+    u16 _12;
 };
