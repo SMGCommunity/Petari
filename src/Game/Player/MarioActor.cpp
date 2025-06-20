@@ -1149,7 +1149,7 @@ bool MarioActor::doRush()
                 mMario->forceExitSwim();
             }
         }
-        else if (!selectWaterInOut(_924->mActor->mName)) {
+        else if (!selectWaterInOutEffect(_924->mActor->mName)) {
             s32 initial = mMario->mSwim->_144;
             mMario->mSwim->checkWaterCube(false);
             if ((int)mMario->mSwim->_144 != initial) {

@@ -15,9 +15,11 @@ class MarioAnimator;
 class MarioMessenger;
 class CollisionShadow;
 class DLchanger;
+class DLholder;
 class J3DModelX;
 class TornadoMario;
 class ModelHolder;
+class SPECIAL_STATUS_FOR_CAMERA;
 
 bool gIsLuigi;    // (cc68 - 10000)(r13)
 
@@ -44,7 +46,6 @@ public:
     bool isAnimationRun(const char *) const;
     void changeNullAnimation(const char *, s8);
     void clearNullAnimation(s8);
-    void changeSpecialModeAnimation(const char *);
     bool isStopNullAnimation() const;
     void changeGameOverAnimation();
     XjointTransform *getJointCtrl(const char *) const;
@@ -87,7 +88,6 @@ public:
     void setBlendMtxTimer(u16);
     void getGroundPos(TVec3f *dst) const;
     TVec3f* getShadowPos() const;
-
     bool isTurning() const;
     bool isJumping() const;
     bool isJumpRising() const;
@@ -99,125 +99,343 @@ public:
     bool isSleeping() const;
     bool isRefuseTalk() const;
     bool isDebugMode() const;
-    bool isRequestSpin() const;
-
     void jumpHop();
     void calcCenterPos();
     void calcHeadPos();
     void setPress(u8, s32);
     XanimeResourceTable* getResourceTable() const;
-
     bool isEnableMoveMario() const;
     bool isEnableNerveChange() const;
-
     void forcceGameOver();
     void forceGameOverAbyss();
     void forceGameOverBlackHole();
     void forceGameOverNonStop();
     void forceGameOverSink();
-
     void updateCameraInfo();
     bool binderFilter(const Triangle *);
-
     void setPunchHitTimer(u8);
-    void initEffect();
-    void addSoundObjHolder();
-    void initParts();
-    void initMorphStringTable();
-    void setupSensors();
-    void updateTransForCamera();
-
-    void initMember();
-
-    void init2D();
 
     void initDrawAndModel();
-    bool isAllHidden() const;
-
+    void initBeeMario();
+    void initHopperMario();
+    void initIceMario();
+    void initInvincibleMario();
+    void initTeresaMario();
+    void initTornadoMario();
+    void initBoneMario();
+    void changeDisplayMode(u8);
+    void calcViewAndEntry();
     void drawMarioModel() const;
+    bool isAllHidden() const;
+    void swapTextureInit();
+    void initFace();
+    void updateFace();
+    void initBlur();
+    void getJ3DModel() const;
+    void getModelData() const;
+    void getSimpleModel() const;
+    void calcViewMainModel();
+    void draw() const;
+    void drawIndirect();
+    void drawIndirectModel();
+    void drawReflectModel();
+    void drawModelBlur();
+    void createTextureDL(DLholder *, u16, u16);
+    void swapTexture(const char *, u8) const;
+    void copyMaterial(J3DModel *, u16, s32);
 
-    // Called by drawMarioModel
-    void drawSpinInhibit() const;
-    void drawSphereMask() const;
-    bool drawDarkMask() const;
-    void drawHand() const;
+    bool isEnableSpinPunch();
+    void reactionPunch(HitSensor *);
+    bool sendPunch(HitSensor *, bool);
+    void doFreezeAttack(HitSensor *);
+    void doFreezeAttack();
+    bool trySpinPunch();
+    void printHitMark(HitSensor *);
+    bool tryPunchAirAfter(HitSensor *);
+    void sendBodyAttack(HitSensor *);
 
-    void resetPadSwing();
-    void initActionMatrix();
+    void getMapBaseMtx() const;
+    bool isFastRise() const;
+    bool isLongDrop() const;
+    bool isFastDrop() const;
+    void getSpecialMode() const;
+    bool isCameraStateOn(SPECIAL_STATUS_FOR_CAMERA) const;
+    TVec3f& getSideVec(TVec3f *) const;
+    TVec3f& getUpVec(TVec3f *) const;
+    void getTransForCamera() const;
+    void updateTransForCamera();
+    void updateForCamera();
+    void bodyClap();
+    void forceKill(u32);
+    void exeGameOver();
+    void exeGameOverAbyss();
+    void exeGameOverFire();
+    void exeGameOverSink();
+    void exeGameOverNonStop();
+    void exeTimeWait();
 
     TVec3f &getGravityVec() const;
     TVec3f &getGravityVector() const;
+    TVec3f &getAirGravityVec() const;
+    TVec3f &getGravityVector(TVec3f *) const;
+    void getGravityRatio() const;
+    void getGravityInfo() const;
+    void getGravityLevel() const;
+    bool checkBeeWallStick(TVec3f &);
+    bool checkBeeFloorStick(TVec3f &);
+    void syncJumpBeeStickMode();
+    void updateBeeModeGravity(TVec3f &);
+    bool isInZeroGravitySpot() const;
     void updateGravityVec(bool, bool);
-    void changeTeresaAnimation(const char *, s32);
+    bool checkBeeCeilStick(TVec3f &);
+    void updateBeeModeStick(TVec3f &);
 
-    void playEffect(const char *);
-    void playEffectTrans(const char *, const TVec3f &);
-    void stopEffect(const char *);
+    void initHand();
+    void updateHand();
+    void changeHandMaterial();
+    void updateHandAtMorph();
+    void drawHand() const;
+    void drawIndirectHand() const;
 
+    void initMember();
+    
+    void resetPadSwing();
+
+    bool isRequestHipDrop() const;
+    bool isRequestRush() const;
+    bool isRequestThrow() const;
+    bool isRequestSpin() const;
+    bool isRequestSpinJump2P() const;
+    bool isRequestJump() const;
+    bool isRequestJump2P() const;
+    bool isKeepJump() const;
+    bool isKeepJump2P() const;
+    bool checkButtonType(u16, bool) const;
+    void getStickValue(f32 *, f32 *);
     void updateActionTrigger();
     void updateControllerSwing();
     void updateControllerSwingLeft();
-    void update2D();
-    void updateTakingPosition();
-    void updateSearchLight();
-    void updateThrowing();
-    void updateBeeWingAnimation();
-    void updateFairyStar();
-    void updatePlayerMode();
-    void updateEffect();
-    void updateThrowVector();
-    void updateForCamera();
-    void updateTornado();
-
-    bool tryJumpRush();
-    void initForJump();
     void lockOnDPD();
-    bool tryCoinPull();
-    bool tryThrow();
+
+    void init2D();
+    void initParts();
+    void updateBeeWingAnimation();
+    void updateTornado();
+    void updateTakingPosition();
+    const HitSensor &getCarrySensor() const;
+    void changeSpecialModeAnimation(const char *);
+    void updateSpecialModeAnimation();
+    void initFireBall();
+    void shootFireBall();
+    void showFreezeModel();
+    void hideFreezeModel();
+    void updateFairyStar();
+    void update2D();
+    void updateThrowVector();
+    void createIceFloor(const TVec3f &);
+    void createIceFloor(const TVec3f &, const TVec3f &);
+    void createIceWall(const TVec3f &, const TVec3f &);
+    void updateBaseMtxTeresa(MtxPtr);
+    void finalizeFreezeModel();
+    void offTakingFlag();
+
+    void settingRush();
+    bool isFixJumpRushSensor(const HitSensor *) const;
+    bool isLandEffectRushSensor(const HitSensor *) const;
+    void resetCondition();
+    void beginRush();
+    void endRush(const RushEndInfo *);
+    void takeSensor(HitSensor *);
+
+    void setupSensors();
+    void updateHitSensor(HitSensor *);
+    void doTrampleJump(HitSensor *);
+    void trampleJump(f32, f32);
+    void attackSensor(HitSensor *, HitSensor *);
+    void sendMsgToSensor(HitSensor *, u32);
+    void resetSensorCount();
+    void recordScoutingObject(HitSensor *);
+    void updateScouter();
+    void initScouter();
+    void initForJump();
+
+    void initShadow();
+    void calcViewReflectionModel();
+    void calcViewShadowModel();
+    void drawShadow() const;
+    void decideShadowMode();
+    void calcViewSilhouetteModel();
+    void calcCylinderToCenter(const AreaObj *, TVec3f *);
+    void calcViewBlurModel();
+    void calcViewFootPrint();
+    void drawSilhouette() const;
+
+    void initScreenBox();
+    bool isUseScreenBox() const;
+    void calcScreenBoxRange();
+    void captureScreenBox() const;
+    void writeBackScreenBox() const;
+    void calc1stPersonView();
+    void showBeeFur();
+    void hideBeeFur();
+    void calcFogLighting();
+    void resetFog();
+    void updateAlphaDL(u8);
+    void updateSimpleAlphaDL(u8);
+    void updateReflectAlphaDL(u8);
+    void updateLightDL(const Color8 &, const Color8 &, const Color8 &, f32);
+    void createRainbowDL();
+    void drawScreenBlend() const;
+    void updateRandomTexture(f32);
+    void drawWallShade(const TVec3f &, const TVec3f &, f32) const;
+    void drawSpinInhibit() const;
+    void drawColdWaterDamage() const;
+    void setRasterScroll(s32, s32, s32);
+    void drawMosaic() const;
+    void drawLifeUp() const;
+    void calcSpinEffect();
+    void drawSpinEffect() const;
+    void drawSphereMask() const;
+    void initDarkMask();
+    void updateDarkMask(u16);
+    bool drawDarkMask() const;
+    void getBlurOffset() const;
+
+    void initActionMatrix();
+    bool isActionOk(const char *) const;
+    u8 selectAction(const char *) const;
+    void selectAutoBind(const char *, u8 *) const;
+    void selectCustomEffectSpinHitSound(const char *) const;
+    void selectSpinCatchInRush(const char *) const;
+    void selectHomingInSuperHipDrop(const char *) const;
+    void selectNotHomingSensor(const char *) const;
+    void selectInvalidMovingCollision(const char *) const;
+    void selectQuickResetBeeWallGravity(const char *) const;
+    void selectJumpRushSensor(const char *) const;
+    void selectDamageFireColor(const char *) const;
+    void selectWaterInOutEffect(const char *) const;
+    void selectOnDamageRush(const char *) const;
+    void selectTiltPress(const HitSensor *) const;
+    void selectHandyRush(const HitSensor *) const;
+    bool selectRecoverFlyMeter(const HitSensor *) const;
+    void selectHideFlyMeter(const HitSensor *) const;
+    void selectTeresaThru(const HitSensor *) const;
+    void selectRebindTimer(const HitSensor *) const;
+    void selectHipDropRush(const HitSensor *) const;
+    void selectPushOff(const HitSensor *) const;
+    bool selectWaterInOutRush(const HitSensor *) const;
+    void selectLandEffect(const HitSensor *) const;
+    void selectNoShadow(const HitSensor *) const;
+    void selectDamagePop(const HitSensor *) const;
+    void selectGetFaceLookHeight(const HitSensor *) const;
+
+    void setPlayerMode(u16, bool);
+    void resetPlayerModeOnDamage();
+    void resetPlayerModeOnNoDamage();
+    void updatePlayerMode();
+    void touchSensor(HitSensor *);
+    void initMorphStringTable();
+    void changeMorphString(const char *) const;
+
+    void initBlink();
+    void setBlink(const char *);
+    void updateBlink();
+
+    void attackOrPushSensor(HitSensor *, f32);
+    void attackOrPushSensorInDamage(HitSensor *, f32);
+    void attackOrPushSensorInRush(HitSensor *, f32);
+    bool tryAddClapCoin(HitSensor *);
+    bool tryTornadoAttack(HitSensor *);
+    bool isUnderTarget(HitSensor *);
+    bool tryHipDropAttack(HitSensor *);
+    bool checkAndTryTrampleAttack(HitSensor *, f32, bool);
+    bool tryTrampleAttack(HitSensor *);
+    bool cylinderHorizontalCheck(HitSensor *);
+    bool tryJetAttack(HitSensor *);
+    bool tryCounterJetAttack(HitSensor *);
+    bool tryGetItem(HitSensor *);
+    bool cylinderPushCheck(const TVec3f &, f32, f32, f32);
+    void attackOrPushPolygons();
+    void sendWallTouch(HitSensor *, HitSensor *);
+    void sendMsgUpperPunch(HitSensor *);
+
+    bool receiveMsgEnemyAttack(u32, HitSensor *, HitSensor *);
+    bool tryAttackMsg(u32, const HitSensor *, bool *);
+    bool receiveMsgPush(HitSensor *, HitSensor *);
+    bool receiveOtherMsg(u32, HitSensor *, HitSensor *);
+    bool tryVectorAttackMsg(u32, const TVec3f &);
+    u32 receiveMsgTaken(HitSensor *, HitSensor *);
+    bool cylinderHitCheck(const HitSensor *, TVec3f *);
+    void hitWall(const TVec3f &, HitSensor *);
+    void passRing(const HitSensor *);
+
+    void addRushSensor(HitSensor *, bool);
     bool tryStandardRush();
     void checkPriorRushTarget();
-    u8 selectAction(const char *) const;
+    void getNearestRushTarget(bool) const;
+    void getNearestJumpTarget() const;
+    void getPriorityHighTarget() const;
+    void getRescueTarget() const;
+    bool tryStartRush(bool);
+    bool tryJumpRush();
     bool tryRushInRush();
-    void bodyClap();
-    bool selectWaterInOut(const char *) const;
-    bool selectWaterInOutRush(const HitSensor *) const;
+
+    void memorizeSensorThrow(HitSensor *);
+    bool tryThrow();
+    bool tryReleaseDirect(const HitSensor *);
+    void damageDropThrowMemoSensor();
+    void rushDropThrowMemoSensor();
+    bool trySetLockOnTarget(HitSensor *);
+    bool tryCoinPull();
+    void tryCoinPullInRush();
+    void flushCoinPull();
+    void tryCoinPullOne(HitSensor *);
+    void tryPullTrans(TVec3f *, const TVec3f &);
+    void releaseThrowMemoSensor();
+    bool tryReleaseWithMsg(u32);
+    bool tryTornadoPull(HitSensor *);
+    bool tryReleaseBombTeresa();
+
+    void initBlackHoleOut();
+    void exeGameOverBlackHole2();
+
+    void entryWallWalkMode(const TVec3f &, const TVec3f &);
+
+    void initMaterialEffect();
+    void getFloorMaterialIndex(u32) const;
+    void playMaterialEffect(const char *);
+    void stopMaterialEffect(const char *);
+    void initCommonEffect();
+    void playCommonEffect(const char *);
+    void initEffect();
+    void emitEffectWaterColumn(const TVec3f &, const TVec3f &);
+    bool isCommonEffect(const char *) const;
+    bool isMaterialEffect(const char *) const;
+    void playEffect(const char *);
+    void playEffectTrans(const char *, const TVec3f &);
     void playEffectRT(const char *, const TVec3f &, const TVec3f &);
     void playEffectRTZ(const char *, const TVec3f &, const TVec3f &);
     void playEffectRTW(const char *, const TVec3f &, const TVec3f &);
     void playEffectSRT(const char *, f32, const TVec3f &, const TVec3f &);
-    void emitEffectWaterColumn(const TVec3f &, const TVec3f &);
-    bool selectRecoverFlyMeter(const HitSensor *) const;
-    void endRush(const RushEndInfo *);
-    void stopSpinTicoEffect(bool);
+    void stopCommonEffect(const char *);
+    void stopEffect(const char *);
     void stopEffectForce(const char *);
-    bool isRequestRush() const;
-    bool isRequestSpinJump2P() const;
-    bool tryReleaseBombTeresa();
-    bool isEnableSpinPunch();
-    bool trySpinPunch();
-    void shootFireBall();
-    void doFreezeAttack();
-    void setBlink(const char *);
-    void resetSensorCount();
-    void getStickValue(f32 *, f32 *);
-    bool checkButtonType(u16, bool) const;
-    bool sendPunch(HitSensor *, bool);
-    void reactionPunch(HitSensor *);
-    void tryCoinPullInRush();
+    void updateEffect();
+    bool checkEffectWaterColumn();
+    void stopSpinTicoEffect(bool);
 
-    void setPlayerMode(u16, bool);
+    void initThrowing();
+    void initSearchLight();
+    void updateThrowing();
+    void updateSearchLight();
+    void calcViewSearchLight();
+    void drawSearchLight() const;
+    void getThrowVec(TVec3f *) const;
 
-    bool isActionOk(const char *) const;
-
-    bool isInZeroGravitySpot() const;
-
-    void forceKill(u32);
-
-    void sendMsgUpperPunch(HitSensor *);
-
-    void entryWallWalkMode(const TVec3f &, const TVec3f &);
-
-    const HitSensor &getCarrySensor() const;
+    void initTeresaMarioAnimation();
+    void runTeresaBaseAnimation();
+    void changeTeresaAnimation(const char *, s32);
+    void updateTeresaAnimation();
 
     const MarioConst &getConst() const { return *mConst; }
 
