@@ -77,7 +77,7 @@ Mario::Mario(MarioActor *actor) : MarioModule(actor)
     _42C = 0;
     _2F8.zero();
     _328.zero();
-    _334.zero();
+    mLastNonFixMoveVec.zero();
     _488 = 0.0f;
     _430 = 0;
     _3BC = 0;
