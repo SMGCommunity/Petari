@@ -618,7 +618,7 @@ XjointTransform *MarioActor::getJointCtrl(const char *pName) const
 
 bool MarioActor::isTurning() const
 {
-    return getMovementStates().turning;
+    return getMovementStates()._3;
 }
 
 bool MarioActor::isJumping() const {
@@ -631,7 +631,7 @@ bool MarioActor::isJumping() const {
     if (mMario->isWalling()) {
         return true;
     }
-    if (mMario->mMovementStates.jumping && !mMario->mMovementStates._1) {
+    if (mMario->mMovementStates._0 && !mMario->mMovementStates._1) {
         return true;
     }
     return false;
@@ -639,7 +639,7 @@ bool MarioActor::isJumping() const {
 
 bool MarioActor::isJumpRising() const {
     bool ret = false;
-    if (mMario->mMovementStates.jumping && mMario->isRising()) {
+    if (mMario->mMovementStates._0 && mMario->isRising()) {
         ret = true;
     }
     return ret;
@@ -688,7 +688,7 @@ bool MarioActor::isSleeping() const {
 
 bool MarioActor::isDebugMode() const
 {
-    return getMovementStates().debugMode;
+    return getMovementStates()._16;
 }
 
 void MarioActor::updateRotationInfo()
@@ -805,7 +805,7 @@ void MarioActor::movement()
                 mMario->mDrawStates._2 = true;
             }
         }
-        if (getMovementStates().jumping && !mAlphaEnable) {
+        if (getMovementStates()._0 && !mAlphaEnable) {
             if (stack_128.dot(getGravityVec()) < -40.0f) {
                 TVec3f stack_EC(mPosition - getGravityVec().scaleInline(100.0f));
                 TVec3f stack_E0;

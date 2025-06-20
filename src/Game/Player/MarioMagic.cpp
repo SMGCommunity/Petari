@@ -15,7 +15,7 @@ void Mario::stopPunch() {
 }
 
 void Mario::startMagic() {
-    if (!mMovementStates.jumping && (mActor->_468.x == 0.0f) && !mMovementStates._23 && !isStatusActive(0x7)) {
+    if (!mMovementStates._0 && (mActor->_468.x == 0.0f) && !mMovementStates._23 && !isStatusActive(0x7)) {
         if (isSkatableFloor()) {
             doSkate();
         }
@@ -65,7 +65,7 @@ bool MarioMagic::update() {
         stopEffect("スピンライト");
         playEffect("スピンライト消去");
     }
-    if (getPlayer()->mMovementStates.jumping) {
+    if (getPlayer()->mMovementStates._0) {
         getPlayer()->procJump(false);
     }
     else {
