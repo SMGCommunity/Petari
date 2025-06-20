@@ -7062,13 +7062,13 @@ Game/Player/MarioTask.cpp:
 Game/Player/MarioTeresa.cpp:
 	.text       start:0x8030DEA4 end:0x80310208
 	.ctors      start:0x8052F178 end:0x8052F17C
-	.data       start:0x805CCEC8 end:0x805CD0E8
+	.data       start:0x805CCEC8 end:0x805CD078
 	.sdata2     start:0x806C04A0 end:0x806C0528
 
 Game/Player/MarioMagic.cpp:
 	.text       start:0x80310208 end:0x803105B0
 	.ctors      start:0x8052F17C end:0x8052F180
-	.data       start:0x805CD0E8 end:0x805CD1D0
+	.data       start:0x805CD078 end:0x805CD1D0
 
 Game/Player/MarioWarp.cpp:
 	.text       start:0x803105B0 end:0x80311B40
