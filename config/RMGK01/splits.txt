@@ -6963,12 +6963,12 @@ Game/Player/MarioStick.cpp:
 Game/Player/MarioSukekiyo.cpp:
 	.text       start:0x802F5014 end:0x802F5420
 	.ctors      start:0x8052F138 end:0x8052F13C
-	.data       start:0x805CB790 end:0x805CB8C8
+	.data       start:0x805CB790 end:0x805CB8C0
 
 Game/Player/MarioTalk.cpp:
 	.text       start:0x802F5420 end:0x802F5760
 	.ctors      start:0x8052F13C end:0x8052F140
-	.data       start:0x805CB8C8 end:0x805CBA18
+	.data       start:0x805CB8C0 end:0x805CBA18
 
 Game/Player/MarioWall.cpp:
 	.text       start:0x802F5760 end:0x802F7BD0
