@@ -174,7 +174,7 @@ public:
     void doFireDance();
     void checkKarikariDamage();
     void doDarkDamage();
-    void doParalyze();
+    bool doParalyze();
     void doFreeze();
     bool requestCrush();
     bool tryCrush();

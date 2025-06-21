@@ -8,5 +8,12 @@ class MarioParalyze : public MarioState {
 public:
     MarioParalyze(MarioActor *);
 
-    u8 _11[11];
+    virtual bool start();
+    virtual bool close();
+    virtual bool update();
+
+    u16 _12;
+    u16 _14;
+    u16 _16;
+    bool _18;
 };
