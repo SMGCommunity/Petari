@@ -377,8 +377,8 @@ namespace JGeometry {
             return ret;
         }
 
-        inline void rejection(const TVec3 *rVec, const TVec3 &rNormal) {
-            JMAVECScaleAdd(&rNormal, rVec, this, -rNormal.dot(*rVec));
+        inline void rejection(const TVec3 &rVec, const TVec3 &rNormal) {
+            JMAVECScaleAdd(&rNormal, &rVec, this, -rNormal.dot(rVec));
         }
 
         inline void invert() {
@@ -427,11 +427,6 @@ namespace JGeometry {
         void cubic(const TVec3 &, const TVec3 &, const TVec3 &, const TVec3 &, f32);
 
         f32 angle(const TVec3 &) const;
-
-        static f32 dotScale(const TVec3 &lhs, TVec3 *rhs) {
-            f32 dot = lhs.dot(*rhs);
-            JMAVECScaleAdd(&lhs, rhs, rhs, -dot);
-        }
     };
 
     template <typename T>
