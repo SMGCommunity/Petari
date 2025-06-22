@@ -6624,7 +6624,7 @@ Game/Player/MarioActor.cpp:
 Game/Player/MarioActorDraw.cpp:
 	.text       start:0x802B57F0 end:0x802B7CA8
 	.ctors      start:0x8052F05C end:0x8052F060
-	.data       start:0x805B8138 end:0x805B8820
+	.data       start:0x805B8138 end:0x805B8560
 	.sdata2     start:0x806BF618 end:0x806BF638
 
 Game/Player/MarioActorPunch.cpp:
@@ -6640,6 +6640,7 @@ Game/Player/MarioActorCamera.cpp:
 Game/Player/MarioActorClap.cpp:
 	.text       start:0x802B8CCC end:0x802B8E18
 	.ctors      start:0x8052F068 end:0x8052F06C
+	.data       start:0x805B8560 end:0x805B8820
 	.sdata2     start:0x806BF680 end:0x806BF688
 
 Game/Player/MarioActorGameOver.cpp:
@@ -7013,13 +7014,14 @@ Game/Player/MarioSlope.cpp:
 Game/Player/MarioWalk.cpp:
 	.text       start:0x80306B68 end:0x80308E04
 	.ctors      start:0x8052F15C end:0x8052F160
-	.rodata     start:0x80539C30 end:0x80539CE8
-	.data       start:0x805CC540 end:0x805CC8E8
+	.rodata     start:0x80539C30 end:0x80539C58
+	.data       start:0x805CC540 end:0x805CC8B8
 	.sdata2     start:0x806C02F8 end:0x806C0370
 
 Game/Player/MarioNullBck.cpp:
 	.text       start:0x80308E04 end:0x803090AC
-	.data       start:0x805CC8E8 end:0x805CC960
+	.rodata     start:0x80539C58 end:0x80539CE8
+	.data       start:0x805CC8B8 end:0x805CC960
 	.sdata2     start:0x806C0370 end:0x806C0378
 
 Game/Player/MarioRecovery.cpp:

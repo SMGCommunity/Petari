@@ -5,9 +5,9 @@ void Mario::initMember()
     _40.zero();
     _4C.zero();
     PSMTXIdentity(_F4.toMtxPtr());
-    _130.zero();
+    mPosition.zero();
     _16C.zero();
-    _178.zero();
+    mVelocityAfter.zero();
     _1B4.zero();
     _274 = 0;
     _280 = 0.0f;
@@ -15,7 +15,7 @@ void Mario::initMember()
     _2B8.zero();
     _2C4.zero();
     _304.zero();
-    _31C.zero();
+    mShadowPos.zero();
 
     _340 = 0.0f;
     _3A4.zero();
@@ -27,7 +27,7 @@ void Mario::initMember()
     _448.zero();
 
     _454 = 0.0f;
-    _48C.zero();
+    mGroundPos.zero();
     _498.zero();
     _4BC.zero();
     _50C.zero();
