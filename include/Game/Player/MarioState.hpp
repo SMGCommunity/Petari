@@ -2,6 +2,7 @@
 
 #include "Game/Player/MarioModule.hpp"
 
+/// @brief A linked list containing the current states that Mario is in.
 class MarioState : public MarioModule {
 public:
     MarioState(MarioActor *, u32);
@@ -20,7 +21,9 @@ public:
     virtual f32 getBlurOffset() const;
     virtual void draw3D() const;
 
-    u32 _8;
+    u32 getNoticedStatus() const;
+
+    MarioState* mNextState;         // 0x8
     u32 mStatusId;          // 0xC
     u8 _10;
 };

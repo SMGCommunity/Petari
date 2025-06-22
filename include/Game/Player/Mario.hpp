@@ -316,7 +316,7 @@ public:
     void taskOnRotation(u32);
 
     void sendStateMsg(u32);
-    void updatePosture(MtxPtr);
+    bool updatePosture(MtxPtr);
     void changeStatus(MarioState *);
     void closeStatus(MarioState *);
     u32 getCurrentStatus() const;

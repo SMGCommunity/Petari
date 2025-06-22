@@ -313,7 +313,7 @@ public:
     void selectQuickResetBeeWallGravity(const char *) const;
     void selectJumpRushSensor(const char *) const;
     void selectDamageFireColor(const char *) const;
-    void selectWaterInOutEffect(const char *) const;
+    bool selectWaterInOutEffect(const char *) const;
     void selectOnDamageRush(const char *) const;
     void selectTiltPress(const HitSensor *) const;
     void selectHandyRush(const HitSensor *) const;
