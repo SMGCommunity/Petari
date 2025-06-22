@@ -452,7 +452,7 @@ namespace MR {
     void calcSensorHorizonNormalize(TVec3f *result, const TVec3f &vec,const HitSensor *pSensor1, const HitSensor *pSensor2){
         TVec3f direction = pSensor2->mPosition;
         JMathInlineVEC::PSVECSubtract(&direction,&pSensor1->mPosition,&direction);
-        result->rejection(&(direction),vec);
+        result->rejection(direction,vec);
         normalizeOrZero(result);
     }
 
