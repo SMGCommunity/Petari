@@ -48,7 +48,7 @@ public:
     void exeOnEndBindStarPointer();
     bool isFallNextMove(bool);
 
-    inline void moveAndTurn(KaronParam *pParam) {
+    inline void moveAndTurn(const KaronParam *pParam) {
         MR::moveAndTurnToPlayer(this, pParam->_0, pParam->_4, pParam->_8, pParam->_C);
     }
 

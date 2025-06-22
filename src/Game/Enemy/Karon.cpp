@@ -1,15 +1,17 @@
 #include "Game/Enemy/Karon.hpp"
 #include "Game/LiveActor/Nerve.hpp"
+#include "Game/LiveActor/Binder.hpp"
 #include "Game/Util/ActorMovementUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
 
 namespace {
-    static KaronParam hNoMoveNoTurnParam = { 0.0f, 1.2f, 0.80000001f, 0.0f };
-    static KaronParam hNoMoveNoTurnOnAirParam = { 0.0f, 2.0f, 0.94f, 0.0f };
-    static KaronParam hWalkparam = { 0.12f, 1.2f, 0.94f, 2.0f };
-    static KaronParam hSearchParam = { 0.0f, 1.2f, 0.94f, 2.0f };
-    static KaronParam hPursueParam = { 0.25f, 1.2f, 0.94f, 2.0f };
-    static KaronParam hHitReactionOnGroundParam = { 0.0f, 1.2f, 0.80f, 5.0f };
-    static KaronParam hHitReactionAirParam = { 0.0f, 2.0f, 0.94f, 5.0f };
+    static const KaronParam hNoMoveNoTurnParam = { 0.0f, 1.2f, 0.80000001f, 0.0f };
+    static const KaronParam hNoMoveNoTurnOnAirParam = { 0.0f, 2.0f, 0.94f, 0.0f };
+    static const KaronParam hWalkparam = { 0.12f, 1.2f, 0.94f, 2.0f };
+    static const KaronParam hSearchParam = { 0.0f, 1.2f, 0.94f, 2.0f };
+    static const KaronParam hPursueParam = { 0.25f, 1.2f, 0.94f, 2.0f };
+    static const KaronParam hHitReactionOnGroundParam = { 0.0f, 1.2f, 0.80f, 5.0f };
+    static const KaronParam hHitReactionAirParam = { 0.0f, 2.0f, 0.94f, 5.0f };
 };
 
 namespace NrvKaron {
@@ -30,6 +32,57 @@ namespace NrvKaron {
     NEW_NERVE(HostTypeNrvSinkDown, Karon, SinkDown);
     NEW_NERVE_ONEND(HostTypeNrvBindStarPointer, Karon, BindStarPointer, BindStarPointer);
 };
+
+void Karon::exeStepBroken() {
+    if (MR::isFirstStep(this)) {
+        MR::startAction(this, "StepBreak");
+        MR::startSound(this, "SE_EM_KARON_BROKEN", -1, -1);
+        MR::startSound(this, "SE_EV_KARON_DAMAGE", -1, -1);
+        MR::offCalcGravity(this);
+        MR::forceBindOnGround(this, 0.0f, 1.0f);
+    }
+
+    TVec3f v6(0, 0, 0);
+    if (MR::calcVelocityAreaOrRailMoveOnGround(&v6, this)) {
+        MR::addVelocityLimit(this, v6 * 1.0f);
+        MR::moveAndTurnToPlayer(this, hNoMoveNoTurnParam._0, hNoMoveNoTurnParam._4, hNoMoveNoTurnParam._8, hNoMoveNoTurnParam._C);
+        MR::calcGravity(this);
+    }
+    else if (MR::isBinded(this)) {
+        TVec3f* bindNormal = &MR::getBindedNormal(this);
+        mVelocity.scale(bindNormal->dot(mVelocity));
+    }
+    else {
+        TVec3f* g = &mGravity;
+        mVelocity.scale(g->dot(mVelocity), mGravity);
+        MR::forceBindOnGround(this, 1.0f, 0.8f);
+    }
+
+    mBinder->_1EC._5 = true;
+    if (MR::isGreaterStep(this, 300)) {
+        setNerve(&NrvKaron::HostTypeNrvRecover::sInstance);
+    }
+}
+
+void Karon::exeRecover() {
+    if (MR::isFirstStep(this)) {
+        MR::startAction(this, "Recovery");
+        MR::startSound(this, "SE_EM_KARON_RECOVER", -1, -1);
+    }
+
+    if (MR::isOnGround(this)) {
+        TVec3f* g = &mGravity;
+        mVelocity.scale(g->dot(mVelocity), *g);
+    }
+
+    MR::moveAndTurnToPlayer(this, hNoMoveNoTurnParam._0, hNoMoveNoTurnParam._4, hNoMoveNoTurnParam._8, hNoMoveNoTurnParam._C);
+    mBinder->_1EC._5 = true;
+    if (MR::isActionEnd(this)) {
+        MR::onCalcGravity(this);
+        setNerve(&NrvKaron::HostTypeNrvWait::sInstance);
+    }
+
+}
 
 void Karon::exeHitReaction() {
     if (MR::isFirstStep(this)) {
