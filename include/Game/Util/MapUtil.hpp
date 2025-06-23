@@ -43,6 +43,7 @@ namespace MR {
     bool isFallNextMove(const LiveActor *, f32, f32, f32, const TriangleFilterBase *);
 
     s32 getSoundCodeIndex(const JMapInfoIter &);
+    s32 getFloorCodeIndex(const Triangle *);
 
     char* getWallCodeString(const Triangle *);
 };
