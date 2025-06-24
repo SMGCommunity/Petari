@@ -6596,12 +6596,12 @@ Game/Player/GroupChecker.cpp:
 
 Game/Player/J3DModelX.cpp:
 	.text       start:0x802A6A70 end:0x802A876C
-	.data       start:0x805B7828 end:0x805B7858
+	.data       start:0x805B7828 end:0x805B7850
 	.sdata2     start:0x806BF408 end:0x806BF420
 
 Game/Player/JetTurtleShadow.cpp:
 	.text       start:0x802A876C end:0x802A895C
-	.data       start:0x805B7858 end:0x805B78D0
+	.data       start:0x805B7850 end:0x805B78D0
 	.sdata2     start:0x806BF420 end:0x806BF428
 
 Game/Player/MarineSnow.cpp:
