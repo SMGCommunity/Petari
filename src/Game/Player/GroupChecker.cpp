@@ -17,11 +17,15 @@ void GroupChecker::add(const NameObj *pObj)
     mHashTable->add(name, 0, true);
 }
 
-/*
+
 void GroupCheckManager::add(const NameObj *pObj, s32 idx) {
-    mShellSearchGroup[idx].add(pObj);
+    (*(&mShellSearchGroup + idx))->add(pObj);
 }
-*/
+
+bool GroupCheckManager::isExist(const NameObj *pObj, s32 idx) {
+    (*(&mShellSearchGroup + idx))->mHashTable->search(pObj->mName, nullptr);
+}
+
 
 GroupChecker::~GroupChecker() {}
 
