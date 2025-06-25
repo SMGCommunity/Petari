@@ -1,8 +1,14 @@
 #include "Game/Enemy/Karon.hpp"
+#include "Game/Enemy/TerritoryMover.hpp"
+#include "Game/Enemy/AnimScaleController.hpp"
+#include "Game/Enemy/WalkerStateBindStarPointer.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/LiveActor/Binder.hpp"
 #include "Game/Util/ActorMovementUtil.hpp"
+#include "Game/Util/ActorSwitchUtil.hpp"
+#include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MapUtil.hpp"
 
 namespace {
     static const KaronParam hNoMoveNoTurnParam = { 0.0f, 1.2f, 0.80000001f, 0.0f };
@@ -32,6 +38,108 @@ namespace NrvKaron {
     NEW_NERVE(HostTypeNrvSinkDown, Karon, SinkDown);
     NEW_NERVE_ONEND(HostTypeNrvBindStarPointer, Karon, BindStarPointer, BindStarPointer);
 };
+
+Karon::Karon(const char *pName) : LiveActor(pName) {
+    mTerritoryMover = nullptr;
+    _90 = 0;
+    _94 = 0;
+    mScaleController = nullptr;
+    mStateStarPointer = nullptr;
+}
+
+void Karon::init(const JMapInfoIter &rIter) {
+    MR::initDefaultPos(this, rIter);
+    MR::useStageSwitchWriteDead(this, rIter);
+    if (MR::useStageSwitchReadAppear(this, rIter)) {
+        MR::syncStageSwitchAppear(this);
+    }
+
+    bool needsFixWait = false;
+    if(MR::useStageSwitchReadA(this, rIter)) {
+        needsFixWait = true;
+    }
+
+    if (MR::isConnectedWithRail(rIter)) {
+        initRailRider(rIter);
+    }
+
+    s32 arg0 = -1;
+    MR::getJMapInfoArg0NoInit(rIter, &arg0);
+
+    if (arg0 == -1) {
+        _94 = 0;
+    }
+    else {
+        _94 = 1;
+    }
+
+    initModelManagerWithAnm("Karon", nullptr, false);
+    MR::connectToSceneEnemy(this);
+    initBinder(70.0f, 70.0f, 0);
+    MR::onCalcGravity(this);
+    initSound(4, false);
+    initEffectKeeper(1, nullptr, false);
+
+    if (needsFixWait) {
+        initNerve(&NrvKaron::HostTypeNrvFixWait::sInstance);
+    }
+    else {
+        initNerve(&NrvKaron::HostTypeNrvWait::sInstance);
+    }
+
+    initHitSensor(1);
+    f32 y_scale = (90.0f * mScale.y);
+    TVec3f v13;
+    v13.x = 0.0f;
+    v13.y = y_scale;
+    v13.z = 0.0f;
+    MR::addHitSensorEnemy(this, "body", 16, y_scale, v13);
+    MR::initShadowVolumeSphere(this, 60.0f);
+    MR::initLightCtrl(this);
+    MR::declareStarPiece(this, 3);
+    MR::validateClipping(this);
+    MR::setGroupClipping(this, rIter, 32);
+    mTerritoryMover = new TerritoryMover(500.0f);
+    mTerritoryMover->_4.x = mPosition.x;
+    mTerritoryMover->_4.y = mPosition.y;
+    mTerritoryMover->_4.z = mPosition.z;
+    TVec3f targetPos(0.0f, 50.0f, 0.0f);
+    MR::initStarPointerTarget(this, 100.0f, targetPos);
+    mScaleController = new AnimScaleController(0);
+    mStateStarPointer = new WalkerStateBindStarPointer(this, mScaleController);
+    makeActorAppeared();
+}
+
+void Karon::initAfterPlacement() {
+    MR::trySetMoveLimitCollision(this);
+}
+
+void Karon::kill() {
+    LiveActor::kill();
+
+    if (MR::isValidSwitchDead(this)) {
+        MR::onSwitchDead(this);
+    }
+
+    MR::emitEffect(this, "Death");
+    MR::startSoundSeVer(this, "SE_EM_EXPLODE_S", -1, -1);
+}
+
+void Karon::exeFixWait() {
+    if (MR::isFirstStep(this)) {
+        MR::startAction(this, "Wait");
+        if (!_94) {
+            MR::stopBck(this);
+        }
+    }
+
+    mBinder->_1EC._5 = true;
+    MR::moveAndTurnToPlayer(this, hNoMoveNoTurnParam._0, hNoMoveNoTurnParam._4, hNoMoveNoTurnParam._8, hNoMoveNoTurnParam._C);
+
+    if (MR::isOnSwitchA(this)) {
+        setNerve(&NrvKaron::HostTypeNrvWait::sInstance);
+    }
+}
 
 void Karon::exeStepBroken() {
     if (MR::isFirstStep(this)) {
@@ -133,4 +241,8 @@ void Karon::exeDeath() {
     if (MR::isActionEnd(this)) {
         kill();
     }
+}
+
+void Karon::exeOnEndBindStarPointer() {
+    mStateStarPointer->kill();
 }

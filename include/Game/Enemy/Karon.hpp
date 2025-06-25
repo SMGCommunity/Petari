@@ -20,7 +20,7 @@ public:
 
     virtual ~Karon();
     virtual void init(const JMapInfoIter &);
-    virtual void initAfterPlaceemnt();
+    virtual void initAfterPlacement();
     virtual void kill();
     virtual void control();
     virtual void calcAndSetBaseMtx();
