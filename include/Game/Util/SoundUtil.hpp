@@ -1,10 +1,10 @@
 #pragma once
 
-#include "Game/GameAudio/AudTalkSoundData.hpp"
 #include <revolution.h>
 
 class AudSoundObject;
 class LiveActor;
+class JAISoundID;
 
 namespace MR {
 

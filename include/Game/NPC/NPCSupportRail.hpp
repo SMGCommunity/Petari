@@ -2,7 +2,7 @@
 
 #include "Game/LiveActor/LiveActor.hpp"
 
-class NPCSupportRail : LiveActor {
+class NPCSupportRail : public LiveActor {
 public: 
     NPCSupportRail(const char *);
 

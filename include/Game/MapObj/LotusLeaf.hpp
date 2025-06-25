@@ -10,8 +10,8 @@ public:
 
     virtual ~LotusLeaf();
     virtual void init(const JMapInfoIter &);
-    void convergeToInitPos();
 
+    void convergeToInitPos();
     void exeWait();
     void exeWaitPlayerOn();
     void exeShake();
