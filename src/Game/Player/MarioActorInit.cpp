@@ -67,7 +67,7 @@ void MarioActor::initMember()
     _258.x = 10.0f;
     _258.y = 10.0f;
     _258.z = 1.74533f;
-    _264.zero();
+    mLastMove.zero();
     _270.zero();
     _27C.zero();
     _288.zero();
@@ -76,10 +76,10 @@ void MarioActor::initMember()
     _2AC.zero();
     _2B8.zero();
     _2C4.zero();
-    _2D0.zero();
+    mUpVec.zero();
     _2DC.zero();
     _2E8.zero();
-    _2F4.zero();
+    mTransForCamera.zero();
     _300.zero();
     _30C.zero();
     _318.zero();

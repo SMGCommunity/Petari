@@ -307,7 +307,7 @@ void MarioActor::init2(const TVec3f &a, const TVec3f &b, s32 initialAnimation)
     _336 = 0;
     _338 = 0;
 
-    _264.zero();
+    mLastMove.zero();
     _270 = mPosition;
     calcCenterPos();
     initSound(0x10, 0);
@@ -330,7 +330,7 @@ void MarioActor::init2(const TVec3f &a, const TVec3f &b, s32 initialAnimation)
     MR::getMarioHolder()->setMarioActor(this);
     _1BC = new MarioMessenger(getSensor("dummy"));
     _300 = mMario->mHeadVec;
-    _2D0 = _300;
+    mUpVec = _300;
     _330 = 0;
     _332 = 0;
     MR::setGameCameraTargetToPlayer();
@@ -395,7 +395,7 @@ void MarioActor::initAfterPlacement()
     mMario->mHeadVec = -_240;
     mMario->_1FC = -_240;
     _300 = mMario->mHeadVec;
-    _2D0 = _300;
+    mUpVec = _300;
     _2C4 = _240.scaleInline(-70.0f);
     calcCenterPos();
     MR::updateHitSensorsAll(this);
@@ -955,7 +955,7 @@ void MarioActor::control2()
         _7DC = 0;
         _930 = 0;
         mVelocity.zero();
-        _264.zero();
+        mLastMove.zero();
         _270 = mPosition;
         if (getMovementStates()._1 && !MR::isSameMtx(mMario->_45C->getBaseMtx()->toMtxPtr(), mMario->_45C->getPrevBaseMtx()->toMtxPtr())) {
             mMario->mPosition = mPosition;
@@ -1035,7 +1035,7 @@ void MarioActor::updateBehavior()
     if (_3AC) {
         _3AC--;
     }
-    _264 = mPosition - _270;
+    mLastMove = mPosition - _270;
     _270 = mPosition;
     updateBindRatio();
     updateEffect();
@@ -1071,10 +1071,10 @@ void MarioActor::updateBehavior()
 
 void MarioActor::updateBindRatio()
 {
-    if (!_934 && !MR::isNearZero(_978 - _264, 0.001f)) {
+    if (!_934 && !MR::isNearZero(_978 - mLastMove, 0.001f)) {
         f32 mag = PSVECMag(&_978);
         TVec3f stack_38(_978);
-        stack_38 -= _264;
+        stack_38 -= mLastMove;
         if (mag / PSVECMag(&stack_38) < 2.0f) {
             _984 += 0.1f;
         }
@@ -1697,12 +1697,12 @@ void MarioActor::forceSetBaseMtx(MtxPtr mtx) {
     _EA5 = true;
     _1C0 = true;
     PSMTXCopy(mtx, _EA8);
-    MR::extractMtxTrans(mtx, &_2F4);
+    MR::extractMtxTrans(mtx, &mTransForCamera);
     if (_482) {
         MR::extractMtxTrans(mtx, &mPosition);
     }
     ((TRot3f*)mtx)->getZDir(_2DC);
-    ((TRot3f*)mtx)->getYDir(_2D0);
+    ((TRot3f*)mtx)->getYDir(mUpVec);
     ((TRot3f*)mtx)->getXDir(_2E8);
     MR::updateHitSensorsAll(this);
     mMario->invalidateRelativePosition();
