@@ -2629,19 +2629,20 @@ Game/Enemy/IceMerameraKing.cpp:
 	.text       start:0x800F84E0 end:0x800FB370
 	.ctors      start:0x8052EA98 end:0x8052EA9C
 	.rodata     start:0x80531FE0 end:0x805320C8
-	.data       start:0x8057D290 end:0x8057D918
+	.data       start:0x8057D290 end:0x8057D818
 	.bss        start:0x8060A800 end:0x8060A818
 	.sbss       start:0x806B3FC8 end:0x806B4010
 	.sdata2     start:0x806BA6F0 end:0x806BA7A0
 
 Game/Enemy/ItemGenerator.cpp:
 	.text       start:0x800FB370 end:0x800FB4AC
+	.data       start:0x8057D818 end:0x8057D860
 	.sdata2     start:0x806BA7A0 end:0x806BA7A8
 
 Game/Enemy/Jellyfish.cpp:
 	.text       start:0x800FB4AC end:0x800FC7B0
 	.ctors      start:0x8052EA9C end:0x8052EAA0
-	.data       start:0x8057D918 end:0x8057DAE8
+	.data       start:0x8057D860 end:0x8057DAE8
 	.sbss       start:0x806B4010 end:0x806B4040
 	.sdata2     start:0x806BA7A8 end:0x806BA800
 
