@@ -154,15 +154,15 @@ public:
     bool tryPunchAirAfter(HitSensor *);
     bool sendBodyAttack(HitSensor *);
 
-    void getMapBaseMtx() const;
+    MtxPtr getMapBaseMtx() const;
     bool isFastRise() const;
     bool isLongDrop() const;
     bool isFastDrop() const;
-    void getSpecialMode() const;
+    s32 getSpecialMode() const;
     bool isCameraStateOn(SPECIAL_STATUS_FOR_CAMERA) const;
-    TVec3f& getSideVec(TVec3f *) const;
-    TVec3f& getUpVec(TVec3f *) const;
-    void getTransForCamera() const;
+    void getSideVec(TVec3f *) const;
+    void getUpVec(TVec3f *) const;
+    const TVec3f &getTransForCamera() const;
     void updateTransForCamera();
     void updateForCamera();
     void bodyClap();
@@ -510,7 +510,7 @@ public:
     TVec3f _240;
     TVec3f _24C;
     TVec3f _258;
-    TVec3f _264;
+    TVec3f mLastMove;             // 0x264
     TVec3f _270;
     TVec3f _27C;
     TVec3f _288;
@@ -519,10 +519,10 @@ public:
     TVec3f _2AC;
     TVec3f _2B8;
     TVec3f _2C4;
-    TVec3f _2D0;
+    TVec3f mUpVec;                // 0x2D0
     TVec3f _2DC;
     TVec3f _2E8;
-    TVec3f _2F4;
+    TVec3f mTransForCamera;       // 0x2F4
     TVec3f _300;
     TVec3f _30C;
     TVec3f _318;

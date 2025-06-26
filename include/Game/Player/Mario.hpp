@@ -475,7 +475,7 @@ public:
         unsigned _8 : 1;
         unsigned _9 : 1;
         unsigned _A : 1;
-        unsigned _B : 1;
+        unsigned _B : 1;                // mMovementStates: fastDrop
         unsigned _C : 1;
         unsigned _D : 1;
         unsigned _E : 1;
