@@ -179,8 +179,8 @@ public:
     bool requestCrush();
     bool tryCrush();
 
-    void doFlipWeak(const TVec3f &);
-    void faint(const TVec3f &);
+    bool doFlipWeak(const TVec3f &);
+    bool faint(const TVec3f &);
 
     void doFlipJump(const TVec3f &);
     void doFlipBackRoll(const TVec3f &);
