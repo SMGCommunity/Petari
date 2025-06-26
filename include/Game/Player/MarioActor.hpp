@@ -147,12 +147,12 @@ public:
     bool isEnableSpinPunch();
     void reactionPunch(HitSensor *);
     bool sendPunch(HitSensor *, bool);
-    void doFreezeAttack(HitSensor *);
+    bool doFreezeAttack(HitSensor *) NO_INLINE;
     void doFreezeAttack();
     bool trySpinPunch();
     void printHitMark(HitSensor *);
     bool tryPunchAirAfter(HitSensor *);
-    void sendBodyAttack(HitSensor *);
+    bool sendBodyAttack(HitSensor *);
 
     void getMapBaseMtx() const;
     bool isFastRise() const;
@@ -305,7 +305,7 @@ public:
     bool isActionOk(const char *) const;
     u8 selectAction(const char *) const;
     void selectAutoBind(const char *, u8 *) const;
-    void selectCustomEffectSpinHitSound(const char *) const;
+    bool selectCustomEffectSpinHitSound(const char *) const;
     void selectSpinCatchInRush(const char *) const;
     void selectHomingInSuperHipDrop(const char *) const;
     void selectNotHomingSensor(const char *) const;
@@ -637,7 +637,7 @@ public:
     u16 _94E;
     u8 _950;
     u8 _951;
-    u32 _954[8];
+    HitSensor* _954[8];
     u8 _974;
     TVec3f _978;
     f32 _984;

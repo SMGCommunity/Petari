@@ -411,7 +411,7 @@ public:
     void getLastGroundEdgeNrm(u32) const;
     void getLastGroundEdgeIndex(const TVec3f &, const TVec3f &) const;
     void pushedByReaction();
-    void addReaction(TVec3f &);
+    void addReaction(const TVec3f &);
     bool tryPushToVelocity();
     void push(const TVec3f &);
     void push2(const TVec3f &);
