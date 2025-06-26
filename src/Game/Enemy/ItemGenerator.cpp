@@ -24,7 +24,6 @@ void ItemGenerator::setTypeStarPeace(s32 arg0) {
     mType = TYPE_STARPIECE; 
 }
 
-//Adding the top function messes stuff up without the hack
 void ItemGenerator::generate(const LiveActor* pActor) {
     if (mNumType > 0) {
         switch (mType) {
