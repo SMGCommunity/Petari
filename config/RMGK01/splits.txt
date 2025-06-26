@@ -6624,12 +6624,13 @@ Game/Player/MarioActor.cpp:
 Game/Player/MarioActorDraw.cpp:
 	.text       start:0x802B57F0 end:0x802B7CA8
 	.ctors      start:0x8052F05C end:0x8052F060
-	.data       start:0x805B8138 end:0x805B8560
+	.data       start:0x805B8138 end:0x805B8410
 	.sdata2     start:0x806BF618 end:0x806BF638
 
 Game/Player/MarioActorPunch.cpp:
 	.text       start:0x802B7CA8 end:0x802B8708
 	.ctors      start:0x8052F060 end:0x8052F064
+	.data       start:0x805B8410 end:0x805B8560
 	.sdata2     start:0x806BF638 end:0x806BF658
 
 Game/Player/MarioActorCamera.cpp:
