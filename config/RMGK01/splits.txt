@@ -6801,13 +6801,13 @@ Game/Player/MarioDamageStun.cpp:
 Game/Player/MarioDamageCrush.cpp:
 	.text       start:0x802D93A4 end:0x802D978C
 	.ctors      start:0x8052F0D8 end:0x8052F0DC
-	.data       start:0x805C63C0 end:0x805C6520
+	.data       start:0x805C63C0 end:0x805C64D8
 	.sdata2     start:0x806BFB50 end:0x806BFB58
 
 Game/Player/MarioFaint.cpp:
 	.text       start:0x802D978C end:0x802D9E54
 	.ctors      start:0x8052F0DC end:0x8052F0E0
-	.data       start:0x805C6520 end:0x805C6640
+	.data       start:0x805C64D8 end:0x805C6640
 	.sdata2     start:0x806BFB58 end:0x806BFB60
 
 Game/Player/MarioFlip.cpp:
