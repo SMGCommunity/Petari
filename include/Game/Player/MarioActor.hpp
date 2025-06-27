@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
+#include "Game/MapObj/BlackHole.hpp"
 #include "Game/Player/Mario.hpp"
 
 class FootPrint;
@@ -593,7 +594,7 @@ public:
     bool _F44;
     // padding
     u32 _F48;
-    u32 _F4C;
+    BlackHole *_F4C;
     TVec3f _F50;
     TVec3f _F5C;
     TVec3f _F68;
