@@ -17,6 +17,15 @@ int NWC24IsMsgLibOpened(void) {
     return Opened == 1;
 }
 
+//Todo Change Second Type to Struct;
+int NWC24OpenLibInternal(int, int);
+
+int NWC24OpenLib(int arg1) {
+    if (Opened == 2) {
+        return -0x1a;
+    }
+    return NWC24OpenLibInternal(arg1, 1);
+} 
 int NWC24IsMsgLibOpenedByTool(void) {
     return Opened == 2;
 }
