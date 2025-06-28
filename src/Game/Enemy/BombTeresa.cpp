@@ -3,6 +3,7 @@
 #include "Game/Enemy/WalkerStateBindStarPointer.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/Nerve.hpp"
+#include "Game/System/NerveExecutor.hpp"
 #include "Game/Util/ActorMovementUtil.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/ActorSwitchUtil.hpp"
@@ -35,8 +36,8 @@ BombTeresa::BombTeresa(const char* pName)
     : LiveActor(pName),
       _8C(0),
       _90(0),
-      _94(nullptr),
-      _98(nullptr),
+      mScaleController(nullptr),
+      mBindStarPointer(nullptr),
       _9C(0.0f, 0.0f, 0.0f, 1.0f),
       _AC(0 ,0 ,1),
       _B8(0, 0, 0),
@@ -68,8 +69,8 @@ void BombTeresa::init(const JMapInfoIter & rIter) {
     MR::onShadowFollowHostScale(this, nullptr);
     initTongue();
     initNerve(&NrvBombTeresa::BombTeresaNrvAppear::sInstance);
-    _94 = new AnimScaleController(nullptr);
-    _98 = new WalkerStateBindStarPointer(this, _94);
+    mScaleController = new AnimScaleController(nullptr);
+    mBindStarPointer = new WalkerStateBindStarPointer(this, mScaleController);
     if (MR::isValidInfo(rIter)) {
         if (MR::useStageSwitchReadAppear(this, rIter)) {
             MR::syncStageSwitchAppear(this);
@@ -108,7 +109,7 @@ void BombTeresa::initTongue() {
 void BombTeresa::initSensor() {
     f32 mScaleXTemp = mScale.x;
     initHitSensor(2);
-    MR::addHitSensorPosEye(this, "tungue", 8, (mScaleXTemp * 20.0f), &TVec3f(0.0f,0.0f,0.0f), _C4);
+    MR::addHitSensorPosEye(this, "tungue", 8, (mScaleXTemp * 20.0f), &_C4, TVec3f(0.0f,0.0f,0.0f));
     MR::addHitSensorEnemy(this, "body", 8, (mScaleXTemp * 85.0f), TVec3f(0.0f,0.0f,0.0f));
     MR::initStarPointerTarget(this, (mScaleXTemp * 85.0f), TVec3f(0.0f,0.0f,0.0f));
 }
@@ -123,4 +124,18 @@ void BombTeresa::makeActorAppeared() {
     _C4 = mPosition;
     _DC = 0.0f;
     setNerve(&NrvBombTeresa::BombTeresaNrvAppear::sInstance);
+}
+
+void BombTeresa::control() {
+    if (isNerve(&NrvBombTeresa::BombTeresaNrvWait::sInstance)
+    || isNerve(&NrvBombTeresa::BombTeresaNrvWander::sInstance)
+    || isNerve(&NrvBombTeresa::BombTeresaNrvChase::sInstance)) {
+        MR::startLevelSound(this, "SE_EM_LV_BOMBTERE_MOVE", -1, -1, -1);
+    }
+    mScaleController->updateNerve();
+    if (isEnablePointBind()) {
+        if (mBindStarPointer->tryStartPointBind()) {
+            setNerve(&NrvBombTeresa::BombTeresaNrvBindStarPointer::sInstance);
+        }
+    }
 }

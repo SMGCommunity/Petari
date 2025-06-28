@@ -79,8 +79,8 @@ public:
 
     s32 _8C;
     s32 _90;
-    AnimScaleController* _94;
-    WalkerStateBindStarPointer* _98;
+    AnimScaleController* mScaleController;
+    WalkerStateBindStarPointer* mBindStarPointer;
     TQuat4f _9C;
     TVec3f _AC;
     TVec3f _B8;
