@@ -4,6 +4,7 @@
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util/ActorMovementUtil.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/ActorSwitchUtil.hpp"
 #include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/JMapUtil.hpp"
@@ -11,6 +12,7 @@
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MapUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/StarPointerUtil.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
 #include "revolution/types.h"
 
@@ -104,5 +106,21 @@ void BombTeresa::initTongue() {
 }
 
 void BombTeresa::initSensor() {
-    
+    f32 mScaleXTemp = mScale.x;
+    initHitSensor(2);
+    MR::addHitSensorPosEye(this, "tungue", 8, (mScaleXTemp * 20.0f), &TVec3f(0.0f,0.0f,0.0f), _C4);
+    MR::addHitSensorEnemy(this, "body", 8, (mScaleXTemp * 85.0f), TVec3f(0.0f,0.0f,0.0f));
+    MR::initStarPointerTarget(this, (mScaleXTemp * 85.0f), TVec3f(0.0f,0.0f,0.0f));
+}
+
+void BombTeresa::makeActorAppeared() {
+    MR::showModel(this);
+    LiveActor::makeActorAppeared();
+    MR::onCalcGravity(this);
+    MR::invalidateClipping(this);
+    MR::startBrk(this, "Normal");
+    mScale.set(1.0f,1.0f,1.0f);
+    _C4 = mPosition;
+    _DC = 0.0f;
+    setNerve(&NrvBombTeresa::BombTeresaNrvAppear::sInstance);
 }
