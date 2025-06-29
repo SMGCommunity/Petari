@@ -467,13 +467,14 @@ void Kuribo::appearHipDropped(const TVec3f &a1, const TQuat4f &a2) {
 }
 
 bool Kuribo::tryNonActive() {
-    if (MR::isNearPlayerAnyTime(this, 3000.0f) || !MR::isBindedGround(this)) {
-        return false;
+    bool isNotNearPlayer = !MR::isNearPlayerAnyTime(this, 3000.0f);
+    if (isNotNearPlayer && MR::isBindedGround(this)) {
+        MR::zeroVelocity(this);
+        setNerve(&NrvKuribo::KuriboNrvNonActive::sInstance);
+        return true;
     }
 
-    MR::zeroVelocity(this);
-    setNerve(&NrvKuribo::KuriboNrvNonActive::sInstance);
-    return true;
+    return false;
 }
 
 bool Kuribo::tryActive() {
