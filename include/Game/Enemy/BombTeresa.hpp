@@ -77,8 +77,8 @@ public:
         mScale.z *= scale;
     }
 
-    s32 _8C;
-    s32 _90;
+    JointControlDelegator<BombTeresa>* mJointDelegator;
+    JointControlDelegator<BombTeresa>* mJointDelegator2;
     AnimScaleController* mScaleController;
     WalkerStateBindStarPointer* mBindStarPointer;
     TQuat4f _9C;
@@ -95,5 +95,4 @@ public:
     bool  _EE;
     bool  _EF;
 
-    JointControlDelegator<BombTeresa>* mJointDelegator; //Probably wrong offset 
 };

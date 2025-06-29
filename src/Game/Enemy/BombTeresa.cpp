@@ -6,12 +6,14 @@
 #include "Game/System/NerveExecutor.hpp"
 #include "Game/Util/ActorMovementUtil.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/ActorStateUtil.hpp"
 #include "Game/Util/ActorSwitchUtil.hpp"
 #include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/JointController.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MapUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
@@ -30,12 +32,16 @@ namespace NrvBombTeresa {
     NEW_NERVE(BombTeresaNrvDrift, BombTeresa, Drift);
     NEW_NERVE(BombTeresaNrvDriftRelease, BombTeresa, DriftRelease);
     NEW_NERVE(BombTeresaNrvBindStarPointer, BombTeresa, BindStarPointer);
+    NEW_NERVE(BombTeresaNrvExplosion, BombTeresa, Explosion);
+    NEW_NERVE(BombTeresaNrvDisperse, BombTeresa, Disperse);
+    NEW_NERVE(BombTeresaNrvShock, BombTeresa, Shock);
+    NEW_NERVE(BombTeresaNrvReadyRestart, BombTeresa, ReadyRestart);
 }
 
 BombTeresa::BombTeresa(const char* pName) 
     : LiveActor(pName),
-      _8C(0),
-      _90(0),
+      mJointDelegator(nullptr),
+      mJointDelegator2(nullptr),
       mScaleController(nullptr),
       mBindStarPointer(nullptr),
       _9C(0.0f, 0.0f, 0.0f, 1.0f),
@@ -104,7 +110,11 @@ void BombTeresa::initFromJMapParam(const JMapInfoIter & rIter) {
 
 void BombTeresa::initTongue() {
     mJointDelegator = new JointControlDelegator<BombTeresa>(this, &BombTeresa::rootTongueMtxCallBack, &BombTeresa::rootTongueMtxCallBack);
+    MR::setJointControllerParam(mJointDelegator, this, "TongueOne");
+    mJointDelegator2 = new JointControlDelegator<BombTeresa>(this, &BombTeresa::endTongueMtxCallBack, &BombTeresa::rootTongueMtxCallBack);
+    MR::setJointControllerParam(mJointDelegator, this, "TongueTwo");
 }
+
 
 void BombTeresa::initSensor() {
     f32 mScaleXTemp = mScale.x;
@@ -138,4 +148,31 @@ void BombTeresa::control() {
             setNerve(&NrvBombTeresa::BombTeresaNrvBindStarPointer::sInstance);
         }
     }
+}
+
+void BombTeresa::calcAndSetBaseMtx() {
+    MR::setBaseTRMtx(this, _9C);
+    TVec3f scale;
+    //scale.x = 
+    MR::setBaseScale(this, scale);
+    mJointDelegator->registerCallBack();
+    mJointDelegator2->registerCallBack();
+}
+
+void BombTeresa::updateNormalVelocity() {
+    MR::addVelocityKeepHeightUseShadow(this, 150.0f, 0.4f, 40.0f, nullptr);
+    MR::attenuateVelocity(this, 0.9f);
+    MR::reboundVelocityFromCollision(this, 0.0f, 0.0f, 1.0f);
+    MR::blendQuatUpFront(&_9C, -mGravity, _AC, 0.1f, 0.6f);
+}
+
+void BombTeresa::updateDriftReleaseVelocity() {
+    MR::addVelocityKeepHeightUseShadow(this, 150.0f, 0.4f, 40.0f, nullptr);
+    MR::attenuateVelocity(this, 0.9f);
+    MR::reboundVelocityFromCollision(this, 0.0f, 0.0f, 1.0f);
+    MR::blendQuatUpFront(&_9C, -mGravity, _AC, 0.1f, 0.6f);
+}
+
+inline void BombTeresa::exeBindStarPointer() {
+    MR::updateActorStateAndNextNerve(this, mBindStarPointer, &NrvBombTeresa::BombTeresaNrvWait::sInstance);
 }
