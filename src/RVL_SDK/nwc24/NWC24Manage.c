@@ -26,6 +26,7 @@ int NWC24OpenLib(int arg1) {
     }
     return NWC24OpenLibInternal(arg1, 1);
 } 
+
 int NWC24IsMsgLibOpenedByTool(void) {
     return Opened == 2;
 }

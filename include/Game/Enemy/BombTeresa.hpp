@@ -52,8 +52,8 @@ public:
     void tryDriftRelease();
     void tryExplosion();
     void tryRevival();
-    void requestDrift();
-    void requestDisperse();
+    bool requestDrift();
+    bool requestDisperse();
     void appearNormal(const TVec3f &, const TVec3f &);
     void appearShadow(const TVec3f &, const TVec3f &);
     bool rootTongueMtxCallBack(TPos3f*, const JointControllerInfo&);

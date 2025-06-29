@@ -1,6 +1,7 @@
 #include "Game/Enemy/BombTeresa.hpp"
 #include "Game/Enemy/AnimScaleController.hpp"
 #include "Game/Enemy/WalkerStateBindStarPointer.hpp"
+#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/System/NerveExecutor.hpp"
@@ -110,9 +111,9 @@ void BombTeresa::initFromJMapParam(const JMapInfoIter & rIter) {
 
 void BombTeresa::initTongue() {
     mJointDelegator = new JointControlDelegator<BombTeresa>(this, &BombTeresa::rootTongueMtxCallBack, &BombTeresa::rootTongueMtxCallBack);
-    MR::setJointControllerParam(mJointDelegator, this, "TongueOne");
+    MR::setJointControllerParam(mJointDelegator, this, "Tongue1");
     mJointDelegator2 = new JointControlDelegator<BombTeresa>(this, &BombTeresa::endTongueMtxCallBack, &BombTeresa::rootTongueMtxCallBack);
-    MR::setJointControllerParam(mJointDelegator, this, "TongueTwo");
+    MR::setJointControllerParam(mJointDelegator, this, "Tongue2");
 }
 
 
@@ -171,6 +172,65 @@ void BombTeresa::updateDriftReleaseVelocity() {
     MR::attenuateVelocity(this, 0.9f);
     MR::reboundVelocityFromCollision(this, 0.0f, 0.0f, 1.0f);
     MR::blendQuatUpFront(&_9C, -mGravity, _AC, 0.1f, 0.6f);
+}
+
+void BombTeresa::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
+    if (MR::isSensorEye(pSender) && MR::isSensorPlayer(pReceiver)) {
+        if (isTouchTongue() && !MR::sendArbitraryMsg(70, pReceiver, pSender)) {
+            setNerve(&NrvBombTeresa::BombTeresaNrvAttackTongueFailed::sInstance);
+        }
+    } else if (MR::isSensorEnemy(pSender)) {
+        if (MR::isSensorPlayer(pReceiver)) {
+            if (isEnableHitExplosionToPlayer() && MR::sendMsgEnemyAttackExplosion(pReceiver, pSender)) {
+                MR::zeroVelocity(this);
+                setNerve(&NrvBombTeresa::BombTeresaNrvExplosion::sInstance);
+            }
+        } else if (isEnableHitExplosionToEnemy()) {
+            if (MR::sendMsgEnemyAttackExplosion(pReceiver, pSender)) {
+                MR::tryRumbleDefaultHit(this, 0);
+                MR::zeroVelocity(this);
+                setNerve(&NrvBombTeresa::BombTeresaNrvExplosion::sInstance);
+                return;
+            }
+            MR::sendMsgPush(pReceiver, pSender);
+        } else {
+            MR::sendMsgPush(pReceiver, pSender);
+        }
+    }
+}
+
+bool BombTeresa::receiveMsgPush(HitSensor* pSender, HitSensor* pReceiver) {
+    if (MR::isSensorEnemy(pSender)) {
+        if (MR::isSensorEnemy(pReceiver)) {
+            TVec3f* sensorPos1 = MR::getSensorPos(pReceiver);
+            TVec3f* sensorPos2 = MR::getSensorPos(pSender);
+            if (MR::normalizeOrZero(&(*sensorPos2 -= *sensorPos1))) {
+                MR::getRandomVector(sensorPos2, 1.0);
+                MR::normalizeOrZero(sensorPos2);
+            }
+
+            mVelocity += mPosition;
+        }
+    }
+}
+
+bool BombTeresa::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReciever) {
+    if (MR::isMsgStarPieceAttack(msg) && isEnableStarPieceAttack()) {
+        setNerve(&NrvBombTeresa::BombTeresaNrvDisperse::sInstance);
+        return true;
+    }
+    if (MR::isMsgPlayerSpinAttack(msg)) {
+        return requestDrift();
+    }
+    if (MR::isMsgInvincibleAttack(msg) && isEnableShockWave()) {
+        setNerve(&NrvBombTeresa::BombTeresaNrvDisperse::sInstance);
+        return true;
+    }
+    return false;
+}
+
+bool BombTeresa::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReciever) {
+    
 }
 
 inline void BombTeresa::exeBindStarPointer() {
