@@ -189,7 +189,6 @@ public:
     bool isRequestRush() const;
     bool isRequestSpinJump2P() const;
     bool tryReleaseBombTeresa();
-    void initBlackHoleOut();
     void exeGameOverBlackHole2();
     bool isEnableSpinPunch();
     bool trySpinPunch();
