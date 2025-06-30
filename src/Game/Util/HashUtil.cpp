@@ -131,6 +131,18 @@ s32 HashSortTable::search(const char *pStr, const char *a2, u32 *a3) {
     return search(hashCode, a3);
 }
 
+void HashSortTable::swap(const char *pStr1, const char *pStr2){
+    u32 hashCode = MR::getHashCode(pStr1);
+    for(int i = 0; i < mCurrentLength; i++){
+        if (mHashCodes[i] == hashCode){
+            mHashCodes[i] = MR::getHashCode(pStr2);
+            return;
+        }
+    }
+    // does not increment mCurrentLength?
+    mHashCodes[mCurrentLength] = hashCode;
+}
+
 namespace MR {
     u32 getHashCode(const char *pStr) {
         u32 val;
