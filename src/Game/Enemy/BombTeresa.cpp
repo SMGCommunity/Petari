@@ -424,6 +424,49 @@ void BombTeresa::exeBallAppear() {
     }
 }
 
+void BombTeresa::exeWait() {
+    if (MR::isFirstStep(this)) {
+        MR::validateClipping(this);
+        MR::startAction(this, "Wait");
+        MR::startBrk(this, "Normal");
+        _DC = 0.0f;
+    }
+    _C4 = mPosition;
+    updateNormalVelocity();
+    if (MR::isInDeath(this, TVec3f(0.0f, 0.0f, 0.0f))) {
+        tryRevival();
+    } else if (MR::isNearPlayerAnyTime(this, 1800.0f)) {
+        setNerve(&NrvBombTeresa::BombTeresaNrvChase::sInstance);
+    } else if (_EF) {
+        if (MR::isGreaterStep(this, 60)) {
+            setNerve(&NrvBombTeresa::BombTeresaNrvWander::sInstance);
+        }
+    }
+}
+
+void BombTeresa::exeWander() {
+    if (MR::isFirstStep(this)) {
+        MR::startAction(this, "Wait");
+        MR::startBrk(this, "Normal");
+        _DC = 0.0f;
+    }
+    _C4 = mPosition;
+    f32 v2;
+    if (getNerveStep() % 600 < 400) {
+        v2 = -0.5f;
+    } else {
+        v2 = 0.5f;
+    }
+    MR::rotateDirectionGravityDegree(this, &_AC, v2);
+    MR::addVelocityMoveToDirection(this,  _AC, 0.5f);
+    updateNormalVelocity();
+    if (MR::isInDeath(this, TVec3f(0.0f, 0.0f, 0.0f))) {
+        tryRevival();
+    } else if (MR::isNearPlayerAnyTime(this, 1800.0f)) {
+        setNerve(&NrvBombTeresa::BombTeresaNrvChase::sInstance);
+    }
+}
+
 inline void BombTeresa::exeOnEndBindStarPointer() {
     mBindStarPointer->kill();
 }
