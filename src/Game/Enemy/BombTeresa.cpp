@@ -788,6 +788,47 @@ bool BombTeresa::isEnableShockWave() const {
     return true;
 }
 
+bool BombTeresa::appearNormal(const TVec3f & arg0, const TVec3f & arg1) {
+    if (!MR::isDead(this)) {
+        return false;
+    }
+    setNerve(&NrvBombTeresa::BombTeresaNrvAppear::sInstance);
+    mPosition.set(arg0);
+    appear();
+    MR::showModel(this);
+    mVelocity.set(arg1);
+    MR::invalidateClipping(this);
+    MR::trySetMoveLimitCollision(this);
+    return true;
+}
+
+bool BombTeresa::appearShadow(const TVec3f & arg0, const TVec3f & arg1) {
+    if (!appearNormal(arg0, arg1)) {
+        return false;
+    }
+    MR::invalidateHitSensors(this);
+    MR::hideModelAndOnCalcAnim(this);
+    setNerve(&NrvBombTeresa::BombTeresaNrvShadowAppear::sInstance);
+    return true;
+}
+
+void BombTeresa::addTeresaSpinPullVelocity(f32 arg0) {
+    TVec3f PlayerCenterPos = TVec3f(*MR::getPlayerCenterPos());
+    MR::addVelocityClockwiseToTarget(this, PlayerCenterPos, _E0);
+    MR::addVelocityMoveToTarget(this, PlayerCenterPos, 0.0f, _E4, 0.0f, 150.0f);
+    MR::addVelocityKeepHeight(this, PlayerCenterPos, arg0, 3.0f, 100.0f);
+}
+
+bool BombTeresa::requestDisperse() {
+    if (isNerve(&NrvBombTeresa::BombTeresaNrvExplosion::sInstance)
+    || isNerve(&NrvBombTeresa::BombTeresaNrvShock::sInstance) 
+    || isNerve(&NrvBombTeresa::BombTeresaNrvDisperse::sInstance)) {
+        return false;
+    }
+    setNerve(&NrvBombTeresa::BombTeresaNrvDisperse::sInstance);
+    return true;
+}
+
 inline void BombTeresa::exeOnEndBindStarPointer() {
     mBindStarPointer->kill();
 }
