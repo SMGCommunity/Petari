@@ -78,7 +78,10 @@ public:
         mScale.y *= scale;
         mScale.z *= scale;
     }
-
+    
+    inline bool isOutOfRange(f32 dist) {
+        return !MR::isNearPlayer(this, dist);
+    }
     /*0x8C*/ JointControlDelegator<BombTeresa>* mJointDelegator;
     /*0x90*/ JointControlDelegator<BombTeresa>* mJointDelegator2;
     /*0x94*/ AnimScaleController* mScaleController;

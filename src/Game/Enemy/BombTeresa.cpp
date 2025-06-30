@@ -245,8 +245,11 @@ bool BombTeresa::receiveMsgPush(HitSensor* pSender, HitSensor* pReceiver) {
                 MR::getRandomVector(sensorPos2, 1.0);
                 MR::normalizeOrZero(sensorPos2);
             }
-
-            mVelocity += mPosition;
+            TVec3f v8(*sensorPos2);
+            v8.x *= 3.0f;
+            v8.y *= 3.0f;
+            v8.z *= 3.0f;
+            mVelocity += v8;
             return true;
         }
         return false;
@@ -309,7 +312,7 @@ bool BombTeresa::requestDrift() {
 }
 
 bool BombTeresa::tryCheseEnd() {
-    if (MR::isGreaterStep(this, 240) || MR::isPlayerElementModeTeresa() || MR::isNearPlayer(this, 2000.0f)) {
+    if (MR::isGreaterStep(this, 240) || MR::isPlayerElementModeTeresa() || isOutOfRange(2000.0f)) {
         setNerve(&NrvBombTeresa::BombTeresaNrvWait::sInstance);
         return true;
     }
