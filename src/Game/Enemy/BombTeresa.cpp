@@ -603,6 +603,24 @@ void BombTeresa::exeDrift() {
     }
 }
 
+void BombTeresa::exeDriftRelease() {
+    if (MR::isFirstStep(this)) {
+        MR::startAction(this, "Drift");
+        MR::tryRumblePadStrong(this, 0);
+        MR::startSound(this, "SE_EM_BOMBTERE_THROW", -1, -1);
+    }
+    _DC = MR::calcNerveEaseInOutValue(this, 12, 1.0f, 0.0f);
+    if (MR::isLessStep(this, 0)) {
+        addTeresaSpinPullVelocity(150.0f);
+        updateNormalVelocity();
+    } else {
+        updateDriftReleaseVelocity();
+    }
+    if (!tryExplosion()) {
+        if (tryDriftReleaseEnd()) return;
+    }
+}
+
 inline void BombTeresa::exeOnEndBindStarPointer() {
     mBindStarPointer->kill();
 }
