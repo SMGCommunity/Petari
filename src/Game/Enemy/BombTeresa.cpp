@@ -9,6 +9,7 @@
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/ActorStateUtil.hpp"
 #include "Game/Util/ActorSwitchUtil.hpp"
+#include "Game/Util/EffectUtil.hpp"
 #include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/JointController.hpp"
@@ -16,6 +17,7 @@
 #include "Game/Util/MapUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
 #include "revolution/types.h"
@@ -60,6 +62,8 @@ BombTeresa::BombTeresa(const char* pName)
       _EF(false)
 {
 }
+
+BombTeresa::~BombTeresa() {}
 
 void BombTeresa::init(const JMapInfoIter & rIter) {
     initFromJMapParam(rIter);
@@ -200,7 +204,7 @@ void BombTeresa::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
 }
 
 bool BombTeresa::receiveMsgPush(HitSensor* pSender, HitSensor* pReceiver) {
-    if (MR::isSensorEnemy(pSender)) {
+    if (!MR::isSensorEnemy(pSender)) return false;
         if (MR::isSensorEnemy(pReceiver)) {
             TVec3f* sensorPos1 = MR::getSensorPos(pReceiver);
             TVec3f* sensorPos2 = MR::getSensorPos(pSender);
@@ -210,8 +214,9 @@ bool BombTeresa::receiveMsgPush(HitSensor* pSender, HitSensor* pReceiver) {
             }
 
             mVelocity += mPosition;
+            return true;
         }
-    }
+        return false;
 }
 
 bool BombTeresa::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReciever) {
@@ -266,8 +271,71 @@ bool BombTeresa::requestDrift() {
         MR::invalidateClipping(this);
         setNerve(&NrvBombTeresa::BombTeresaNrvDrift::sInstance);
         return true;
+    }   
+    return false;
+}
+
+bool BombTeresa::tryCheseEnd() {
+    if (MR::isGreaterStep(this, 240) || MR::isPlayerElementModeTeresa() || MR::isNearPlayer(this, 2000.0f)) {
+        setNerve(&NrvBombTeresa::BombTeresaNrvWait::sInstance);
+        return true;
     }
-    
+    return false;
+}
+
+bool BombTeresa::tryDirectTackle() {
+    if (!MR::isPlayerDamaging() && MR::isNearPlayer(this,900.0f) && MR::isFaceToPlayerHorizontalDegree(this, _AC, 30.0f)) {
+        setNerve(&NrvBombTeresa::BombTeresaNrvDirectTackleSign::sInstance);
+        return true;
+    }
+    return false;
+}
+
+bool BombTeresa::tryAbortDrift() {
+    if (MR::isExistMapCollision(mPosition, -_C4)) {
+        setNerve(&NrvBombTeresa::BombTeresaNrvAttackTongueFailed::sInstance);
+        return true;
+    }
+    return false;
+}
+
+bool BombTeresa::tryDriftRelease() {
+    if (_EC) {
+        setNerve(&NrvBombTeresa::BombTeresaNrvDriftRelease::sInstance);
+        return true;
+    }
+    return false;
+}
+
+bool BombTeresa::tryDriftReleaseEnd() {
+    if (MR::isGreaterStep(this, 60)) {
+        MR::deleteEffect(this, "SpinBlur");
+        setNerve(&NrvBombTeresa::BombTeresaNrvWait::sInstance);
+        return true;
+    }
+    return false;
+}
+
+bool BombTeresa::tryExplosion() {
+    if (MR::isBinded(this)) {
+        if (MR::sendMsgEnemyAttackExplosionToBindedSensor(this, getSensor("body"))) {
+            MR::zeroVelocity(this);
+            setNerve(&NrvBombTeresa::BombTeresaNrvExplosion::sInstance);
+            MR::forceDeleteEffect(this, "SpinBlur");
+            return true;
+        }
+    }
+    return false;
+}
+
+bool BombTeresa::tryRevival() {
+    MR::startBrk(this, "Normal");
+    if (mDisableRespawning) {
+        MR::invalidateHitSensors(this);
+        setNerve(&NrvBombTeresa::BombTeresaNrvReadyRestart::sInstance);
+        return true;
+    }
+    kill();
     return false;
 }
 

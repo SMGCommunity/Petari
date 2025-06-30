@@ -46,12 +46,13 @@ public:
     void exeDisperse();
     void exeReadyRestart();
     void exeBindStarPointer();
-    void tryCheseEnd();
-    void tryDirectTackle();
-    void tryAbortDrift();
-    void tryDriftRelease();
-    void tryExplosion();
-    void tryRevival();
+    bool tryCheseEnd();
+    bool tryDirectTackle();
+    bool tryAbortDrift();
+    bool tryDriftRelease();
+    bool tryDriftReleaseEnd();
+    bool tryExplosion();
+    bool tryRevival();
     bool requestDrift();
     bool requestDisperse();
     void appearNormal(const TVec3f &, const TVec3f &);
@@ -77,10 +78,10 @@ public:
         mScale.z *= scale;
     }
 
-    JointControlDelegator<BombTeresa>* mJointDelegator;
-    JointControlDelegator<BombTeresa>* mJointDelegator2;
-    AnimScaleController* mScaleController;
-    WalkerStateBindStarPointer* mBindStarPointer;
+    /*0x8C*/ JointControlDelegator<BombTeresa>* mJointDelegator;
+    /*0x90*/ JointControlDelegator<BombTeresa>* mJointDelegator2;
+    /*0x94*/ AnimScaleController* mScaleController;
+    /*0x98*/ WalkerStateBindStarPointer* mBindStarPointer;
     TQuat4f _9C;
     TVec3f _AC;
     TVec3f _B8;
@@ -91,7 +92,7 @@ public:
     f32 _E4;
     s32 _E8;
     bool  _EC;
-    bool mDisableRespawning;
+    /*0xED*/ bool mDisableRespawning; 
     bool  _EE;
     bool  _EF;
 
