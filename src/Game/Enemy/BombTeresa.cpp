@@ -13,11 +13,13 @@
 #include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/JointController.hpp"
+#include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MapUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
 #include "revolution/types.h"
@@ -337,6 +339,49 @@ bool BombTeresa::tryRevival() {
     }
     kill();
     return false;
+}
+
+void BombTeresa::exeAppear() {
+    if (MR::isFirstStep(this)) {
+        MR::validateHitSensor(this, "body");
+        MR::validateHitSensor(this, "tungue");
+        MR::showModel(this);
+        MR::startAction(this, "Appear");
+        MR::emitEffect(this, "Appear");
+        MR::startSound(this, "SE_EM_BOMBTERE_APPEAR", -1, -1);
+        _DC = 0.0f;
+    }
+    _C4 = mPosition;
+    updateNormalVelocity();
+    if (MR::isActionEnd(this)) {
+        setNerve(&NrvBombTeresa::BombTeresaNrvWait::sInstance);
+    }
+}
+
+void BombTeresa::exeShadowAppear() {
+    if (MR::isFirstStep(this)) {
+        MR::emitEffect(this, "Shadow");
+        MR::hideModelAndOnCalcAnim(this);
+        MR::startAction(this, "ShadowAppear");
+    }
+    if (!MR::isBindedGround(this)) {
+        MR::addVelocityToGravity(this, 1.0f);
+    }
+    f32 v2;
+    if (MR::isLessStep(this, 130)) {
+        v2 = 0.995f;
+    } else {
+        v2 = 0.8f;
+    }
+    MR::attenuateVelocity(this, v2);
+    MR::turnDirectionToPlayerDegree(this, &_AC, 3.0f);
+    _C4 = mPosition;
+    MR::blendQuatUpFront(&_9C, -mGravity, _AC, 0.1f, 0.6f);
+    if (MR::isGreaterStep(this, 120)) {
+        MR::deleteEffect(this, "Shadow");
+        setNerve(&NrvBombTeresa::BombTeresaNrvAppear::sInstance);
+    }
+
 }
 
 inline void BombTeresa::exeBindStarPointer() {
