@@ -15,10 +15,12 @@
 #include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/JointController.hpp"
+#include "Game/Util/JointUtil.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MapUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
+#include "Game/Util/MtxUtil.hpp"
 #include "Game/Util/NerveUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
@@ -186,6 +188,29 @@ void BombTeresa::updateDriftReleaseVelocity() {
     MR::blendQuatUpFront(&_9C, -mGravity, _AC, 0.1f, 0.6f);
 }
 
+bool BombTeresa::rootTongueMtxCallBack(TPos3f* arg0, const JointControllerInfo& arg1) {
+    if (_DC == 0.0f) {
+        return false;
+    }
+    TVec3f v10;
+    TVec3f v11;
+    TVec3f v12;
+    TVec3f v13;
+    TVec3f v14;
+    arg0->getTrans(v11);
+    MR::copyJointPos(this, "Tongue2", &v12);
+    arg0->getXDir(v13);
+    if (MR::normalizeOrZero(&(v12 - v11))) {
+        v14.set(v13);
+    }
+    MR::turnMtxToXDirRate(arg0, v14, (0.5f * _DC));
+    v10.y = MR::getEaseInOutValue(
+    MR::normalize(PSVECDistance(&v11, &v12), 400.0f, 1000.0f), 1.0f, 0.5f, 1.0f);
+    v10.x = 1.0f;
+    MR::preScaleMtx(reinterpret_cast<MtxPtr>(&arg0), v10);
+}
+
+
 void BombTeresa::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isSensorEye(pSender) && MR::isSensorPlayer(pReceiver)) {
         if (isTouchTongue() && !MR::sendArbitraryMsg(70, pReceiver, pSender)) {
@@ -300,7 +325,7 @@ bool BombTeresa::tryDirectTackle() {
 }
 
 bool BombTeresa::tryAbortDrift() {
-    if (MR::isExistMapCollision(mPosition, -_C4)) {
+    if (MR::isExistMapCollision(mPosition, _C4 - mPosition)) {
         setNerve(&NrvBombTeresa::BombTeresaNrvAttackTongueFailed::sInstance);
         return true;
     }
@@ -481,9 +506,7 @@ void BombTeresa::exeChase() {
     MR::addVelocityMoveToDirection(this, _AC, (0.9f * MR::calcNerveRate(this, 60)));
     _C4 = mPosition;
     updateNormalVelocity();
-    if (!tryCheseEnd()) {
-        if (tryDirectTackle()) return; //What? Am I missing something?
-    }
+    if (!tryCheseEnd() && tryDirectTackle()) return;
 }
 
 void BombTeresa::exeAttackTongueFailed() {
@@ -532,39 +555,39 @@ void BombTeresa::exeDirectTackle() {
 
 void BombTeresa::exeDrift() {
     TVec3f v14;
+    TPos3f v16;
     TVec3f v15;
     if (MR::isFirstStep(this)) {
         MR::startAction(this, "Spin");
         MR::startBrk(this, "Normal");
         MR::emitEffect(this, "SpinBlur");
         MR::startSound(this, "SE_EM_BOMBTERE_TONGUE_CATCH", -1, -1);
-        _EE = MR::isLeftSideFromPlayer(this);
+        _EE = MR::isLeftSideFromPlayer(this) == false;
         _E8 = 40;
         _EC = false;
         _E0 = 7.0f;
         _E4 = 7.0f;
         _DC = 1.0f;
     }
-    PSVECCrossProduct(&mGravity, &_AC, &v15);
-    TVec3f temp2 =  MR::getCamPos();
-    PSVECCrossProduct(&mGravity, &(*MR::getPlayerPos() - v15), &v14);
+    PSVECCrossProduct(&mGravity, &_AC, &v14);
+    PSVECCrossProduct(&mGravity, &(*MR::getPlayerPos() - MR::getCamPos()), &v15);
+    if ( MR::isNearZero(v14, 0.001) ) {
+    MR::makeAxisVerticalZX(&v14, mGravity);
+    }
     if ( MR::isNearZero(v15, 0.001) ) {
     MR::makeAxisVerticalZX(&v15, mGravity);
     }
-    if ( MR::isNearZero(temp2, 0.001) ) {
-    MR::makeAxisVerticalZX(&v15, mGravity);
-    }
+    MR::normalize(&v14);
     MR::normalize(&v15);
-    MR::normalize(&temp2);
-    if (v14.dot(temp2) >= 0.8f) {
+    if (v14.dot(v15) >= 0.8f) {
         MR::startLevelSound(this, "SE_EM_LV_BOMBTERE_SWING", -1, -1, -1);
     }
-    TPos3f v16;
+
     MR::calcPlayerJointMtx(&v16, "HandR");
     TVec3f v13;
     v16.getTrans(v13);
     TVec3f v12;
-    v12.set<f32>(*v16[2], *v16[6], *v16[10]);
+    v12.set<f32>(*v16[1], *v16[5], *v16[9]);
     if (!MR::normalizeOrZero(&v12)) {
         JMAVECScaleAdd(&v12, &v13, &v13, 20.0f);
     }
@@ -596,12 +619,9 @@ void BombTeresa::exeDrift() {
         _E0 *= 0.992f;
     }
     _E8--;
-    if (!tryExplosion()) {
-        if (!tryDriftRelease()) {
-            if (tryAbortDrift()) return;
-        }
-    }
+    if (!tryExplosion() && !tryDriftRelease() && tryAbortDrift()) return;
 }
+
 
 void BombTeresa::exeDriftRelease() {
     if (MR::isFirstStep(this)) {
@@ -616,8 +636,39 @@ void BombTeresa::exeDriftRelease() {
     } else {
         updateDriftReleaseVelocity();
     }
-    if (!tryExplosion()) {
-        if (tryDriftReleaseEnd()) return;
+    if (!tryExplosion() && tryDriftReleaseEnd()) return;
+}
+
+void BombTeresa::exeExplosion() {
+    if (MR::isFirstStep(this)) {
+        MR::shakeCameraNormalStrong();
+        MR::tryRumblePadStrong(this, 0);
+        MR::deleteEffect(this, "SpinBlur");
+        MR::emitEffect(this, "Explosion");
+        MR::hideModel(this);
+        MR::startSound(this, "SE_EM_BOMBTERE_EXPLOSION", -1, -1);
+        _DC = 0.0f;
+        MR::zeroVelocity(this);
+    }
+    _C4 = mPosition;
+    if (MR::isGreaterStep(this, 20)) {
+        tryRevival();
+    }
+}
+
+void BombTeresa::exeShock() {
+    if (MR::isFirstStep(this)) {
+        MR::emitEffect(this, "SpinBlur");
+        _DC = 0.0f;
+    }
+    _C4 = mPosition;
+    MR::attenuateVelocity(this, 0.98f);
+    if (MR::isGreaterStep(this, 20)) {
+        MR::deleteEffect(this, "SpinBlur");
+        MR::emitEffect(this, "MisFire");
+        MR::startSound(this, "SE_EM_BOMBTERE_HIDE", -1, -1);
+        MR::hideModel(this);
+        tryRevival();
     }
 }
 
