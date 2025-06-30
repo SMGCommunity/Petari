@@ -62,15 +62,15 @@ public:
     bool endTongueMtxCallBack(TPos3f*, const JointControllerInfo&);
     void updateNormalVelocity();
     void updateDriftReleaseVelocity();
-    bool isTouchTongue() const;
-    bool isEnableDrift() const;
-    bool isEnablePointBind() const;
-    bool isEnableDisperse() const;
-    bool isEnableHitExplosionToPlayer() const;
-    bool isEnableHitExplosionToEnemy() const;
-    bool isEnableHitExplosion() const;
-    bool isEnableStarPieceAttack() const;
-    bool isEnableShockWave() const;
+    bool isTouchTongue() const NO_INLINE;
+    bool isEnableDrift() const NO_INLINE;
+    bool isEnablePointBind() const NO_INLINE;
+    bool isEnableDisperse() const NO_INLINE;
+    bool isEnableHitExplosionToPlayer() const NO_INLINE;
+    bool isEnableHitExplosionToEnemy() const NO_INLINE;
+    bool isEnableHitExplosion() const NO_INLINE;
+    bool isEnableStarPieceAttack() const NO_INLINE;
+    bool isEnableShockWave() const NO_INLINE;
     void addTeresaSpinPullVelocity(f32);
 
     inline void applyScale(f32 scale) {

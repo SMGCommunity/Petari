@@ -753,6 +753,41 @@ bool BombTeresa::isEnableHitExplosionToEnemy() const {
     return false;
 }
 
+bool BombTeresa::isEnableHitExplosion() const {
+    if (isNerve(&NrvBombTeresa::BombTeresaNrvBallAppear::sInstance)
+    || isNerve(&NrvBombTeresa::BombTeresaNrvShadowAppear::sInstance)
+    || isNerve(&NrvBombTeresa::BombTeresaNrvExplosion::sInstance)
+    || isNerve(&NrvBombTeresa::BombTeresaNrvShock::sInstance)
+    || isNerve(&NrvBombTeresa::BombTeresaNrvDisperse::sInstance)
+    || isNerve(&NrvBombTeresa::BombTeresaNrvDrift::sInstance)
+    || isNerve(&NrvBombTeresa::BombTeresaNrvReadyRestart::sInstance)) {
+        return false;
+    }
+    return true;
+}
+
+bool BombTeresa::isEnableStarPieceAttack() const {
+    if (isNerve(&NrvBombTeresa::BombTeresaNrvBallAppear::sInstance)
+    || isNerve(&NrvBombTeresa::BombTeresaNrvShadowAppear::sInstance)
+    || isNerve(&NrvBombTeresa::BombTeresaNrvExplosion::sInstance)
+    || isNerve(&NrvBombTeresa::BombTeresaNrvShock::sInstance)
+    || isNerve(&NrvBombTeresa::BombTeresaNrvDisperse::sInstance)
+    || isNerve(&NrvBombTeresa::BombTeresaNrvDrift::sInstance)
+    || isNerve(&NrvBombTeresa::BombTeresaNrvReadyRestart::sInstance)) {
+        return false;
+    }
+    return true;
+}
+
+bool BombTeresa::isEnableShockWave() const {
+    if (isNerve(&NrvBombTeresa::BombTeresaNrvExplosion::sInstance)
+    || isNerve(&NrvBombTeresa::BombTeresaNrvShock::sInstance)
+    || isNerve(&NrvBombTeresa::BombTeresaNrvDisperse::sInstance)) {
+        return false;
+    }
+    return true;
+}
+
 inline void BombTeresa::exeOnEndBindStarPointer() {
     mBindStarPointer->kill();
 }
