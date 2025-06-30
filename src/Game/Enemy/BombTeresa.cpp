@@ -9,7 +9,9 @@
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/ActorStateUtil.hpp"
 #include "Game/Util/ActorSwitchUtil.hpp"
+#include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/EffectUtil.hpp"
+#include "Game/Util/GamePadUtil.hpp"
 #include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/JointController.hpp"
@@ -22,8 +24,10 @@
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
+#include "JSystem/JGeometry/TMatrix.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
 #include "JSystem/JMath/JMath.hpp"
+#include "revolution/mtx.h"
 #include "revolution/types.h"
 
 namespace NrvBombTeresa {
@@ -212,8 +216,7 @@ bool BombTeresa::receiveMsgPush(HitSensor* pSender, HitSensor* pReceiver) {
         if (MR::isSensorEnemy(pReceiver)) {
             TVec3f* sensorPos1 = MR::getSensorPos(pReceiver);
             TVec3f* sensorPos2 = MR::getSensorPos(pSender);
-            sensorPos2->sub(*sensorPos1);
-            if (MR::normalizeOrZero(sensorPos2)) {
+            if (MR::normalizeOrZero(&(*sensorPos2 - *sensorPos1))) {
                 MR::getRandomVector(sensorPos2, 1.0);
                 MR::normalizeOrZero(sensorPos2);
             }
@@ -507,6 +510,96 @@ void BombTeresa::exeDirectTackleSign() {
     _C4 = mPosition;
     if (MR::isBckStopped(this)) {
         setNerve(&NrvBombTeresa::BombTeresaNrvDirectTackle::sInstance);
+    }
+}
+
+
+void BombTeresa::exeDirectTackle() {
+    if (MR::isFirstStep(this)) {
+        MR::startAction(this, "Tackle");
+        _DC = 0.0f;
+    }
+    MR::startLevelSound(this, "SE_EM_LV_BOMBTERE_TACKLE", -1, -1, -1);
+    MR::turnDirectionToPlayerDegree(this, &_AC, 0.8f);
+    MR::addVelocityMoveToDirection(this, _AC, (1.5f * MR::calcNerveRate(this, 50)));
+    MR::addVelocityKeepHeight(this, *MR::getPlayerCenterPos(), 100.0f, 6.0f, 100.0f);
+    updateNormalVelocity();
+    _C4 = mPosition;
+    if (MR::isGreaterStep(this, 120)) {
+        setNerve(&NrvBombTeresa::BombTeresaNrvWander::sInstance);
+    }
+}
+
+void BombTeresa::exeDrift() {
+    TVec3f v14;
+    TVec3f v15;
+    if (MR::isFirstStep(this)) {
+        MR::startAction(this, "Spin");
+        MR::startBrk(this, "Normal");
+        MR::emitEffect(this, "SpinBlur");
+        MR::startSound(this, "SE_EM_BOMBTERE_TONGUE_CATCH", -1, -1);
+        _EE = MR::isLeftSideFromPlayer(this);
+        _E8 = 40;
+        _EC = false;
+        _E0 = 7.0f;
+        _E4 = 7.0f;
+        _DC = 1.0f;
+    }
+    PSVECCrossProduct(&mGravity, &_AC, &v15);
+    TVec3f temp2 =  MR::getCamPos();
+    PSVECCrossProduct(&mGravity, &(*MR::getPlayerPos() - v15), &v14);
+    if ( MR::isNearZero(v15, 0.001) ) {
+    MR::makeAxisVerticalZX(&v15, mGravity);
+    }
+    if ( MR::isNearZero(temp2, 0.001) ) {
+    MR::makeAxisVerticalZX(&v15, mGravity);
+    }
+    MR::normalize(&v15);
+    MR::normalize(&temp2);
+    if (v14.dot(temp2) >= 0.8f) {
+        MR::startLevelSound(this, "SE_EM_LV_BOMBTERE_SWING", -1, -1, -1);
+    }
+    TPos3f v16;
+    MR::calcPlayerJointMtx(&v16, "HandR");
+    TVec3f v13;
+    v16.getTrans(v13);
+    TVec3f v12;
+    v12.set<f32>(*v16[2], *v16[6], *v16[10]);
+    if (!MR::normalizeOrZero(&v12)) {
+        JMAVECScaleAdd(&v12, &v13, &v13, 20.0f);
+    }
+    MR::vecBlend(_C4, v13, &_C4, MR::calcNerveEaseInRate(this, 15));
+    MR::turnDirectionToTarget(this, &_AC, *MR::getPlayerPos(), 0.0f);
+    if (_E8 <= 0) {
+        if (MR::isPadSwing(0)) {
+            MR::tryRumblePadMiddle(this, 0);
+            _E8 = 40;
+            _E0 += 20.0f;
+            _E4 += 20.0f;
+            if (MR::isGreaterStep(this, 190)) {
+                _EC = true;
+            }
+        }
+    }
+    addTeresaSpinPullVelocity(MR::calcNerveEaseInOutValue(this, 190, 240, 150.0f, 170.0f));
+    updateNormalVelocity();
+    if (MR::isStep(this, 190)) {
+        MR::startBrk(this, "CountDown");
+    }
+    _E4 = MR::getInterpolateValue(0.15f, _E4, 7.0f);
+    if (MR::isLessStep(this, 190)) {
+        _E0 = MR::getInterpolateValue(0.15f, _E0, 7.0f);
+    } else {
+        if (_E0 > 7.0f) {
+            _E0 = MR::getInterpolateValue(0.15f, _E0, 7.0f);
+        }
+        _E0 *= 0.992f;
+    }
+    _E8--;
+    if (!tryExplosion()) {
+        if (!tryDriftRelease()) {
+            if (tryAbortDrift()) return;
+        }
     }
 }
 
