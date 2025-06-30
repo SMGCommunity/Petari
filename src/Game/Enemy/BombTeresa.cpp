@@ -22,6 +22,7 @@
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
+#include "JSystem/JMath/JMath.hpp"
 #include "revolution/types.h"
 
 namespace NrvBombTeresa {
@@ -36,7 +37,7 @@ namespace NrvBombTeresa {
     NEW_NERVE(BombTeresaNrvDirectTackle, BombTeresa, DirectTackle);
     NEW_NERVE(BombTeresaNrvDrift, BombTeresa, Drift);
     NEW_NERVE(BombTeresaNrvDriftRelease, BombTeresa, DriftRelease);
-    NEW_NERVE(BombTeresaNrvBindStarPointer, BombTeresa, BindStarPointer);
+    NEW_NERVE_ONEND(BombTeresaNrvBindStarPointer, BombTeresa, BindStarPointer, BindStarPointer);
     NEW_NERVE(BombTeresaNrvExplosion, BombTeresa, Explosion);
     NEW_NERVE(BombTeresaNrvDisperse, BombTeresa, Disperse);
     NEW_NERVE(BombTeresaNrvShock, BombTeresa, Shock);
@@ -210,7 +211,8 @@ bool BombTeresa::receiveMsgPush(HitSensor* pSender, HitSensor* pReceiver) {
         if (MR::isSensorEnemy(pReceiver)) {
             TVec3f* sensorPos1 = MR::getSensorPos(pReceiver);
             TVec3f* sensorPos2 = MR::getSensorPos(pSender);
-            if (MR::normalizeOrZero(&(*sensorPos2 -= *sensorPos1))) {
+            sensorPos2->sub(*sensorPos1);
+            if (MR::normalizeOrZero(sensorPos2)) {
                 MR::getRandomVector(sensorPos2, 1.0);
                 MR::normalizeOrZero(sensorPos2);
             }
@@ -382,6 +384,48 @@ void BombTeresa::exeShadowAppear() {
         setNerve(&NrvBombTeresa::BombTeresaNrvAppear::sInstance);
     }
 
+}
+
+void BombTeresa::exeBallAppear() {
+    if (MR::isFirstStep(this)) {
+        MR::validateHitSensor(this, "body");
+        MR::validateHitSensor(this, "tungue");
+        MR::emitEffect(this, "Ball");
+        MR::startAction(this, "BallAppear");
+        MR::showModel(this);
+        _DC = 0.0f;
+    }
+    _C4 = mPosition;
+    MR::addVelocityToGravity(this, 1.0f);
+    bool v2 = MR::reboundVelocityFromCollision(this, 0.95f, 2.0f, 1.0f);
+    MR::attenuateVelocity(this, 0.99f);
+    if (v2) {
+        MR::startSound(this, "SE_EM_BOMBTERE_BOUND", -1, -1);
+    }
+    if (MR::isLessStep(this, 160)) {
+        MR::rotateQuatRollBall(&_9C, mVelocity, -mGravity, 70.0f);
+        _AC.set<f32>((2.0f * _9C.y * _9C.x) + (2.0f * _9C.y * _9C.z), 
+            (2.0f * _9C.z * _9C.x) - (2.0f * _9C.y * _9C.y), 
+            (1.0f - (2.0f * _9C.y * _9C.y) - (2.0f * _9C.z * _9C.z)));
+    } else {
+        f32 v3 = mGravity.dot(_AC);
+        JMAVECScaleAdd(&mGravity, &_AC, &_AC, -v3);
+        if (MR::normalizeOrZero(&_AC)) {
+            MR::makeAxisVerticalZX(&_AC, mGravity);
+        }
+        MR::blendQuatUpFront(&_9C, -mGravity, _AC, 0.1f, 0.1f);
+    }
+    if (MR::isGreaterStep(this, 70)) {
+        MR::deleteEffect(this, "Ball");
+        MR::emitEffect(this, "Appear");
+        MR::startSound(this, "SE_EM_BOMBTERE_APPEAR", -1, -1);
+        MR::showModel(this);
+        setNerve(&NrvBombTeresa::BombTeresaNrvDirectTackleSign::sInstance);
+    }
+}
+
+inline void BombTeresa::exeOnEndBindStarPointer() {
+    mBindStarPointer->kill();
 }
 
 inline void BombTeresa::exeBindStarPointer() {

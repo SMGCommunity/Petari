@@ -46,6 +46,7 @@ public:
     void exeDisperse();
     void exeReadyRestart();
     void exeBindStarPointer();
+    void exeOnEndBindStarPointer();
     bool tryCheseEnd();
     bool tryDirectTackle();
     bool tryAbortDrift();
