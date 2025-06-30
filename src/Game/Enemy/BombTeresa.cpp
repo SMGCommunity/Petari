@@ -275,7 +275,7 @@ bool BombTeresa::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* p
     } else if (MR::isMsgToEnemyAttackShockWave(msg) && isEnableShockWave()) {
         TVec3f uVar1;
         MR::calcSensorDirectionNormalize(&uVar1, pSender, pReciever);
-        TVec3f* v16(&uVar1);
+        TVec3f* v16 = &uVar1;
         v16->mult(20.0f);
         v16->set<f32>(mVelocity);
         setNerve(&NrvBombTeresa::BombTeresaNrvShock::sInstance);
@@ -670,6 +670,87 @@ void BombTeresa::exeShock() {
         MR::hideModel(this);
         tryRevival();
     }
+}
+
+void BombTeresa::exeDisperse() {
+    if (MR::isFirstStep(this)) {
+        MR::deleteEffect(this, "SpinBlur");
+        MR::emitEffect(this, "MisFire");
+        MR::startSound(this, "SE_EM_BOMBTERE_HIDE", -1, -1);
+        MR::hideModel(this);
+        _DC = 0.0f;
+        MR::zeroVelocity(this); 
+    }
+    _C4 = mPosition;
+    if (MR::isGreaterStep(this, 40)) {
+        tryRevival();
+    }
+}
+
+void BombTeresa::exeReadyRestart() {
+    if (MR::isFirstStep(this)) {
+        MR::startAction(this, "Hide");
+        MR::resetPosition(this, _D0);
+        MR::makeQuatAndFrontFromRotate(&_9C, &_AC, this);
+        MR::zeroVelocity(this);
+    }
+    _C4 = mPosition;
+    if (MR::isGreaterStep(this, 120)) {
+        setNerve(&NrvBombTeresa::BombTeresaNrvAppear::sInstance);
+    }
+}
+
+bool BombTeresa::isTouchTongue() const {
+    return isNerve(&NrvBombTeresa::BombTeresaNrvDrift::sInstance);
+}
+
+bool BombTeresa::isEnableDrift() const {
+    if (isNerve(&NrvBombTeresa::BombTeresaNrvBallAppear::sInstance)
+    || isNerve(&NrvBombTeresa::BombTeresaNrvShadowAppear::sInstance)
+    || isNerve(&NrvBombTeresa::BombTeresaNrvDrift::sInstance)
+    || isNerve(&NrvBombTeresa::BombTeresaNrvDriftRelease::sInstance)
+    || isNerve(&NrvBombTeresa::BombTeresaNrvExplosion::sInstance)
+    || isNerve(&NrvBombTeresa::BombTeresaNrvShock::sInstance)
+    || isNerve(&NrvBombTeresa::BombTeresaNrvDisperse::sInstance) 
+    || isNerve(&NrvBombTeresa::BombTeresaNrvReadyRestart::sInstance) ) {
+        return false;
+    }
+    return true;
+}
+
+bool BombTeresa::isEnablePointBind() const {
+    if (isNerve(&NrvBombTeresa::BombTeresaNrvWait::sInstance)
+    || isNerve(&NrvBombTeresa::BombTeresaNrvWander::sInstance)
+    || isNerve(&NrvBombTeresa::BombTeresaNrvChase::sInstance)
+    || isNerve(&NrvBombTeresa::BombTeresaNrvAttackTongueFailed::sInstance)
+    || isNerve(&NrvBombTeresa::BombTeresaNrvDirectTackleSign::sInstance)
+    || isNerve(&NrvBombTeresa::BombTeresaNrvDirectTackle::sInstance)
+    || isNerve(&NrvBombTeresa::BombTeresaNrvDriftRelease::sInstance)) {
+        return true;
+    }
+    return false;
+}
+
+bool BombTeresa::isEnableDisperse() const {
+    if (isNerve(&NrvBombTeresa::BombTeresaNrvDrift::sInstance)) {
+        return false;
+    }
+    isEnableDrift();
+}
+
+bool BombTeresa::isEnableHitExplosionToPlayer() const {
+    if (isNerve(&NrvBombTeresa::BombTeresaNrvDrift::sInstance)) {
+        return MR::isGreaterStep(this, 190);
+    }
+    return isEnableHitExplosion();
+}
+
+bool BombTeresa::isEnableHitExplosionToEnemy() const {
+    if (isNerve(&NrvBombTeresa::BombTeresaNrvDrift::sInstance)
+    || isNerve(&NrvBombTeresa::BombTeresaNrvDriftRelease::sInstance)) {
+        return true;
+    }
+    return false;
 }
 
 inline void BombTeresa::exeOnEndBindStarPointer() {
