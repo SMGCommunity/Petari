@@ -275,9 +275,9 @@ bool BombTeresa::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* p
     } else if (MR::isMsgToEnemyAttackShockWave(msg) && isEnableShockWave()) {
         TVec3f uVar1;
         MR::calcSensorDirectionNormalize(&uVar1, pSender, pReciever);
-        TVec3f* v16 = &uVar1;
-        v16->mult(20.0f);
-        v16->set<f32>(mVelocity);
+        TVec3f v16(uVar1);
+        v16.mult(20.0f);
+        mVelocity.set<f32>(v16);
         setNerve(&NrvBombTeresa::BombTeresaNrvShock::sInstance);
         return false;
     } else if (MR::isMsgExplosionAttack(msg) && isEnableHitExplosion()) {
@@ -587,7 +587,7 @@ void BombTeresa::exeDrift() {
     TVec3f v13;
     v16.getTrans(v13);
     TVec3f v12;
-    v12.set<f32>(*v16[1], *v16[5], *v16[9]);
+    v12.set<f32>(*v16[1], *v16[5], *v16[9]); //Wrong.
     if (!MR::normalizeOrZero(&v12)) {
         JMAVECScaleAdd(&v12, &v13, &v13, 20.0f);
     }
