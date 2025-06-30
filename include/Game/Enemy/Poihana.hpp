@@ -15,6 +15,7 @@ class Poihana : public LiveActor {
 public:
 	Poihana(const char *pName);
 
+	~Poihana();
 	virtual void init(const JMapInfoIter &rIter);
 	virtual void initAfterPlacement();
 	virtual void control();

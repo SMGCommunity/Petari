@@ -27,6 +27,7 @@ namespace MR {
 
     void setBindTriangleFilter(LiveActor *, TriangleFilterBase *);
 
+    bool isExistMapCollision(const TVec3f &, const TVec3f &);
     bool isExistMapCollisionExceptActor(const TVec3f &, const TVec3f &, const LiveActor *);
 
     bool checkStikeBallToMap(const TVec3f &, f32);

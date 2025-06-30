@@ -89,6 +89,7 @@ namespace MR {
     bool isMsgToEnemyAttackTrample(u32);
 
 	bool isMsgRushCancel(u32);
+    bool isMsgRushBegin(u32);
     bool isMsgIsRushTakeOver(u32);
     bool isMsgFloorTouch(u32);
 

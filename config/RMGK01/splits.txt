@@ -2629,19 +2629,20 @@ Game/Enemy/IceMerameraKing.cpp:
 	.text       start:0x800F84E0 end:0x800FB370
 	.ctors      start:0x8052EA98 end:0x8052EA9C
 	.rodata     start:0x80531FE0 end:0x805320C8
-	.data       start:0x8057D290 end:0x8057D918
+	.data       start:0x8057D290 end:0x8057D818
 	.bss        start:0x8060A800 end:0x8060A818
 	.sbss       start:0x806B3FC8 end:0x806B4010
 	.sdata2     start:0x806BA6F0 end:0x806BA7A0
 
 Game/Enemy/ItemGenerator.cpp:
 	.text       start:0x800FB370 end:0x800FB4AC
+	.data       start:0x8057D818 end:0x8057D860
 	.sdata2     start:0x806BA7A0 end:0x806BA7A8
 
 Game/Enemy/Jellyfish.cpp:
 	.text       start:0x800FB4AC end:0x800FC7B0
 	.ctors      start:0x8052EA9C end:0x8052EAA0
-	.data       start:0x8057D918 end:0x8057DAE8
+	.data       start:0x8057D860 end:0x8057DAE8
 	.sbss       start:0x806B4010 end:0x806B4040
 	.sdata2     start:0x806BA7A8 end:0x806BA800
 
@@ -5387,13 +5388,13 @@ Game/MapObj/SandUpDownEffectObj.cpp:
 Game/MapObj/SandUpDownTriRock.cpp:
 	.text       start:0x802219BC end:0x80221F00
 	.ctors      start:0x8052EE64 end:0x8052EE68
-	.data       start:0x8059E3D0 end:0x8059E5A8
+	.data       start:0x8059E3D0 end:0x8059E500
 	.sbss       start:0x806B5778 end:0x806B5790
 
 Game/MapObj/ScrewSwitch.cpp:
 	.text       start:0x80221F00 end:0x8022263C
 	.ctors      start:0x8052EE68 end:0x8052EE6C
-	.data       start:0x8059E5A8 end:0x8059E660
+	.data       start:0x8059E500 end:0x8059E660
 	.sbss       start:0x806B5790 end:0x806B57A0
 	.sdata2     start:0x806BDDD8 end:0x806BDDE8
 
