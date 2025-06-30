@@ -17,6 +17,7 @@
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MapUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
+#include "Game/Util/NerveUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
@@ -464,6 +465,48 @@ void BombTeresa::exeWander() {
         tryRevival();
     } else if (MR::isNearPlayerAnyTime(this, 1800.0f)) {
         setNerve(&NrvBombTeresa::BombTeresaNrvChase::sInstance);
+    }
+}
+
+void BombTeresa::exeChase() {
+    if (MR::isFirstStep(this)) {
+        MR::startAction(this, "Wait");
+        MR::startSound(this, "SE_EV_BOMBTERE_LAUGH", -1, -1);
+        _DC = 0.0f;
+    }
+    MR::turnDirectionToPlayerDegree(this, &_AC, 1.4f);
+    MR::addVelocityMoveToDirection(this, _AC, (0.9f * MR::calcNerveRate(this, 60)));
+    _C4 = mPosition;
+    updateNormalVelocity();
+    if (!tryCheseEnd()) {
+        if (tryDirectTackle()) return; //What? Am I missing something?
+    }
+}
+
+void BombTeresa::exeAttackTongueFailed() {
+    if (MR::isFirstStep(this)) {
+        MR::startAction(this, "Return");
+    }
+    MR::startLevelSound(this, "SE_EM_LV_BOMBTERE_TONGUE_BACK", -1, -1, -1);
+    _DC = MR::calcNerveEaseInOutValue(this, 0, 1.0f, 0.0f);
+    updateNormalVelocity();
+    if (MR::isGreaterStep(this, 40)) {
+        setNerve(&NrvBombTeresa::BombTeresaNrvWait::sInstance);
+    }
+}
+
+void BombTeresa::exeDirectTackleSign() {
+    if (MR::isFirstStep(this)) {
+        MR::startSound(this, "SE_EV_BOMBTERE_TACKLE", -1, -1);
+        MR::startAction(this, "TackleSign");
+        _DC = 0.0f;
+    }
+    MR::turnDirectionToPlayerDegree(this, &_AC, 10.0f);
+    MR::addVelocityKeepHeight(this, *MR::getPlayerCenterPos(), 100.0f, 6.0f, 100.0f);
+    updateNormalVelocity();
+    _C4 = mPosition;
+    if (MR::isBckStopped(this)) {
+        setNerve(&NrvBombTeresa::BombTeresaNrvDirectTackle::sInstance);
     }
 }
 
