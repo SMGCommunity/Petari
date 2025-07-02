@@ -645,7 +645,7 @@ public:
     u8 _989;
     TornadoMario *mTornadoMario;    // 0x98C
     u8 _990;
-    u32 _994;
+    LiveActor* _994;
     u32 _998;
     u32 _99C;
     u32 _9A0;
