@@ -598,14 +598,14 @@ namespace MR {
     
     void calcVelocityMoveToDirectionHorizon(TVec3f *a1, const LiveActor *pActor, const TVec3f &a3, f32 a4) {
         TVec3f* pGravity = const_cast<TVec3f*>(&pActor->mGravity);
-        a1->rejection(&a3, *pGravity);
+        a1->rejection(a3, *pGravity);
         normalizeOrZero(a1);
         a1->scale(a4);
     }
 
     void calcVelocityMoveToDirectionHorizon(TVec3f *a1, const LiveActor *pActor, const TVec3f &a3, f32 a4, f32 a5, f32 a6, f32 a7) {
         TVec3f* pGravity = const_cast<TVec3f*>(&pActor->mGravity);
-        a1->rejection(&a3, *pGravity);
+        a1->rejection(a3, *pGravity);
         float stack_8;
         separateScalarAndDirection(&stack_8, a1, *a1);
         a1->scale(getInterpolateValue(normalize(stack_8, a6, a7), a4, a5));

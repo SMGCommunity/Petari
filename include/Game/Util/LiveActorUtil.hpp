@@ -331,6 +331,8 @@ namespace MR {
 
     bool isPressedRoofAndGround(const LiveActor*);
 
+    TVec3f& getBindedNormal(const LiveActor *);
+
     TVec3f* getRoofNormal(const LiveActor*);
     TVec3f* getWallNormal(const LiveActor*);
     TVec3f* getGroundNormal(const LiveActor*);

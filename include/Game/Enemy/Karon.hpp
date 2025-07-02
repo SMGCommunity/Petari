@@ -20,7 +20,7 @@ public:
 
     virtual ~Karon();
     virtual void init(const JMapInfoIter &);
-    virtual void initAfterPlaceemnt();
+    virtual void initAfterPlacement();
     virtual void kill();
     virtual void control();
     virtual void calcAndSetBaseMtx();
@@ -48,7 +48,7 @@ public:
     void exeOnEndBindStarPointer();
     bool isFallNextMove(bool);
 
-    inline void moveAndTurn(KaronParam *pParam) {
+    inline void moveAndTurn(const KaronParam *pParam) {
         MR::moveAndTurnToPlayer(this, pParam->_0, pParam->_4, pParam->_8, pParam->_C);
     }
 
