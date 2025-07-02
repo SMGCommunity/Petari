@@ -18,6 +18,7 @@ namespace MR {
     bool isFloorPolygon(f32);
     bool isCeilingPolygon(f32);
 
+    TVec3f* getNormal(const Triangle *);
 
     bool getFirstPolyOnLineToMap(TVec3f *, Triangle *, const TVec3f &, const TVec3f &);
     bool getFirstPolyOnLineToMapExceptActor(TVec3f * , Triangle *, const TVec3f &, const TVec3f &, const LiveActor *);
@@ -27,6 +28,7 @@ namespace MR {
 
     void setBindTriangleFilter(LiveActor *, TriangleFilterBase *);
 
+    bool isExistMapCollision(const TVec3f &, const TVec3f &);
     bool isExistMapCollisionExceptActor(const TVec3f &, const TVec3f &, const LiveActor *);
 
     bool checkStikeBallToMap(const TVec3f &, f32);

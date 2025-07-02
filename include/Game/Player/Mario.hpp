@@ -185,7 +185,7 @@ public:
     void doFlipJump(const TVec3f &);
     void doFlipBackRoll(const TVec3f &);
 
-    void doFrontStep();
+    bool doFrontStep();
 
     void beeMarioOnGround();
     void beeMarioOnAir();
@@ -337,7 +337,7 @@ public:
     void fixWallingDir();
     void fixWallingTop();
     void checkWallFloorCode(u16) const;
-    void checkWallCode(const char *, bool) const;
+    bool checkWallCode(const char *, bool) const;
     void checkWallCodeNorm(u16, TVec3f *, bool) const;
     void setWallCancel();
     void keepDistFrontWall();
