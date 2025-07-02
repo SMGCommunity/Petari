@@ -46,6 +46,7 @@ public:
     void startJet(u32);
     void addDamage(const TVec3f &);
     void addFaint(const TVec3f &);
+    void hitPunch(const TVec3f &);
 
     f32 getSurface() const;
 

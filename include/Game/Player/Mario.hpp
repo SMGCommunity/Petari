@@ -174,13 +174,13 @@ public:
     void doFireDance();
     void checkKarikariDamage();
     void doDarkDamage();
-    void doParalyze();
+    bool doParalyze();
     void doFreeze();
-    void requestCrush();
-    void tryCrush();
+    bool requestCrush();
+    bool tryCrush();
 
-    void doFlipWeak(const TVec3f &);
-    void faint(const TVec3f &);
+    bool doFlipWeak(const TVec3f &);
+    bool faint(const TVec3f &);
 
     void doFlipJump(const TVec3f &);
     void doFlipBackRoll(const TVec3f &);
@@ -316,7 +316,7 @@ public:
     void taskOnRotation(u32);
 
     void sendStateMsg(u32);
-    void updatePosture(MtxPtr);
+    bool updatePosture(MtxPtr);
     void changeStatus(MarioState *);
     void closeStatus(MarioState *);
     u32 getCurrentStatus() const;
@@ -411,7 +411,7 @@ public:
     void getLastGroundEdgeNrm(u32) const;
     void getLastGroundEdgeIndex(const TVec3f &, const TVec3f &) const;
     void pushedByReaction();
-    void addReaction(TVec3f &);
+    void addReaction(const TVec3f &);
     bool tryPushToVelocity();
     void push(const TVec3f &);
     void push2(const TVec3f &);
@@ -464,10 +464,10 @@ public:
     void calcDir2D(f32, f32, TVec3f *);
 
     struct MovementStates {
-        unsigned jumping : 1;           // _0
+        unsigned _0 : 1;      
         unsigned _1 : 1;
         unsigned _2 : 1;
-        unsigned turning : 1;           // _3
+        unsigned _3 : 1;        
         unsigned _4 : 1;
         unsigned _5 : 1;
         unsigned _6 : 1;
@@ -475,7 +475,7 @@ public:
         unsigned _8 : 1;
         unsigned _9 : 1;
         unsigned _A : 1;
-        unsigned _B : 1;
+        unsigned _B : 1;                // mMovementStates: fastDrop
         unsigned _C : 1;
         unsigned _D : 1;
         unsigned _E : 1;
@@ -486,15 +486,15 @@ public:
         unsigned _13 : 1;
         unsigned _14 : 1;
         unsigned _15 : 1;
-        unsigned debugMode : 1;         // _16
+        unsigned _16 : 1;
         unsigned _17 : 1;
-        unsigned _18 : 1;
+        unsigned _18 : 1;               // _10: requestCrush
         unsigned _19 : 1;
         unsigned _1A : 1;
         unsigned _1B : 1;
         unsigned _1C : 1;
         unsigned _1D : 1;
-        unsigned digitalJump : 1;       // _1E
+        unsigned _1E : 1;
         unsigned _1F : 1;
         unsigned _20 : 1;
         unsigned _21 : 1;
@@ -660,7 +660,7 @@ public:
     TVec3f mSideVec;            // 0x310
     TVec3f mShadowPos;          // 0x31C
     TVec3f _328;
-    TVec3f _334;
+    TVec3f mLastNonFixMoveVec;  // 0x334
     f32 _340;
     TVec3f _344;  // left/right?
     TVec3f _350;

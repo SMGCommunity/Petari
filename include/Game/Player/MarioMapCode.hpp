@@ -7,7 +7,7 @@ class Triangle;
 class FloorCode {
 public:
     FloorCode();
-    u32 getCode(const Triangle *);
+    s32 getCode(const Triangle *);
 
     u32 _0;
 };

@@ -6596,12 +6596,12 @@ Game/Player/GroupChecker.cpp:
 
 Game/Player/J3DModelX.cpp:
 	.text       start:0x802A6A70 end:0x802A876C
-	.data       start:0x805B7828 end:0x805B7858
+	.data       start:0x805B7828 end:0x805B7850
 	.sdata2     start:0x806BF408 end:0x806BF420
 
 Game/Player/JetTurtleShadow.cpp:
 	.text       start:0x802A876C end:0x802A895C
-	.data       start:0x805B7858 end:0x805B78D0
+	.data       start:0x805B7850 end:0x805B78D0
 	.sdata2     start:0x806BF420 end:0x806BF428
 
 Game/Player/MarineSnow.cpp:
@@ -6624,12 +6624,13 @@ Game/Player/MarioActor.cpp:
 Game/Player/MarioActorDraw.cpp:
 	.text       start:0x802B57F0 end:0x802B7CA8
 	.ctors      start:0x8052F05C end:0x8052F060
-	.data       start:0x805B8138 end:0x805B8560
+	.data       start:0x805B8138 end:0x805B8410
 	.sdata2     start:0x806BF618 end:0x806BF638
 
 Game/Player/MarioActorPunch.cpp:
 	.text       start:0x802B7CA8 end:0x802B8708
 	.ctors      start:0x8052F060 end:0x8052F064
+	.data       start:0x805B8410 end:0x805B8560
 	.sdata2     start:0x806BF638 end:0x806BF658
 
 Game/Player/MarioActorCamera.cpp:
@@ -6800,13 +6801,13 @@ Game/Player/MarioDamageStun.cpp:
 Game/Player/MarioDamageCrush.cpp:
 	.text       start:0x802D93A4 end:0x802D978C
 	.ctors      start:0x8052F0D8 end:0x8052F0DC
-	.data       start:0x805C63C0 end:0x805C6520
+	.data       start:0x805C63C0 end:0x805C64D8
 	.sdata2     start:0x806BFB50 end:0x806BFB58
 
 Game/Player/MarioFaint.cpp:
 	.text       start:0x802D978C end:0x802D9E54
 	.ctors      start:0x8052F0DC end:0x8052F0E0
-	.data       start:0x805C6520 end:0x805C6640
+	.data       start:0x805C64D8 end:0x805C6640
 	.sdata2     start:0x806BFB58 end:0x806BFB60
 
 Game/Player/MarioFlip.cpp:
@@ -6957,18 +6958,18 @@ Game/Player/MarioState.cpp:
 Game/Player/MarioStick.cpp:
 	.text       start:0x802F47B8 end:0x802F5014
 	.ctors      start:0x8052F134 end:0x8052F138
-	.data       start:0x805CB5D0 end:0x805CB790
+	.data       start:0x805CB5D0 end:0x805CB708
 	.sdata2     start:0x806C0030 end:0x806C0040
 
 Game/Player/MarioSukekiyo.cpp:
 	.text       start:0x802F5014 end:0x802F5420
 	.ctors      start:0x8052F138 end:0x8052F13C
-	.data       start:0x805CB790 end:0x805CB8C8
+	.data       start:0x805CB708 end:0x805CB8C0
 
 Game/Player/MarioTalk.cpp:
 	.text       start:0x802F5420 end:0x802F5760
 	.ctors      start:0x8052F13C end:0x8052F140
-	.data       start:0x805CB8C8 end:0x805CBA18
+	.data       start:0x805CB8C0 end:0x805CBA18
 
 Game/Player/MarioWall.cpp:
 	.text       start:0x802F5760 end:0x802F7BD0
@@ -7062,13 +7063,13 @@ Game/Player/MarioTask.cpp:
 Game/Player/MarioTeresa.cpp:
 	.text       start:0x8030DEA4 end:0x80310208
 	.ctors      start:0x8052F178 end:0x8052F17C
-	.data       start:0x805CCEC8 end:0x805CD0E8
+	.data       start:0x805CCEC8 end:0x805CD078
 	.sdata2     start:0x806C04A0 end:0x806C0528
 
 Game/Player/MarioMagic.cpp:
 	.text       start:0x80310208 end:0x803105B0
 	.ctors      start:0x8052F17C end:0x8052F180
-	.data       start:0x805CD0E8 end:0x805CD1D0
+	.data       start:0x805CD078 end:0x805CD1D0
 
 Game/Player/MarioWarp.cpp:
 	.text       start:0x803105B0 end:0x80311B40
