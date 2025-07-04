@@ -308,7 +308,7 @@ public:
 
     void checkTornado();
     void resetTornado();
-    void calcTornadoTilt();
+    f32 getBlurOffset() const;
     void reflectWallOnSpinning(const TVec3f &, u16);
     void forceStopTornado();
     void startRotationTask(u32);
