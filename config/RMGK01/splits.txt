@@ -6990,7 +6990,7 @@ Game/Player/MarioSwim.cpp:
 	.rodata     start:0x80539C08 end:0x80539C30
 	.data       start:0x805CBC80 end:0x805CC3B0
 	.sdata      start:0x806B22D0 end:0x806B22F8
-	.sbss       start:0x806B62A0 end:0x806B62B8
+	.sbss       start:0x806B62A0 end:0x806B62B0
 	.sdata2     start:0x806C0108 end:0x806C0258
 
 Game/Player/MarioSwimDamage.cpp:
@@ -7075,13 +7075,14 @@ Game/Player/MarioMagic.cpp:
 Game/Player/MarioWarp.cpp:
 	.text       start:0x803105B0 end:0x80311B40
 	.ctors      start:0x8052F180 end:0x8052F184
-	.data       start:0x805CD1D0 end:0x805CD408
+	.data       start:0x805CD1D0 end:0x805CD3D8
 	.sdata2     start:0x806C0528 end:0x806C0560
 
 Game/Player/MarioFpView.cpp:
 	.text       start:0x80311B40 end:0x803120B0
 	.ctors      start:0x8052F184 end:0x8052F188
-	.data       start:0x805CD408 end:0x805CD450
+	.data       start:0x805CD3D8 end:0x805CD450
+	.sbss       start:0x806B62B0 end:0x806B62B8
 	.sdata2     start:0x806C0560 end:0x806C0578
 
 Game/Player/Mario2D.cpp:
