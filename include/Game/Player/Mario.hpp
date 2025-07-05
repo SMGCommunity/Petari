@@ -323,7 +323,7 @@ public:
     bool isStatusActive(u32) const;
 
     bool checkBeeStick();
-    bool tryBeeStick(const HitSensor *);
+    void tryBeeStick(const HitSensor *);
 
     void startTalk(const LiveActor *);
     void endTalk();
