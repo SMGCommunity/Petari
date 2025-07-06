@@ -150,7 +150,7 @@ public:
     void updateBinderInfo();
     bool isThroughWall(const Triangle *) const;
     void checkGround();
-    void getCameraCubeCode() const;
+    s32 getCameraCubeCode() const;
     void updateCubeCode();
 
     bool isDamaging() const;
@@ -736,7 +736,7 @@ public:
     Triangle *_47C;
     Triangle *_480;
     Triangle *_484;
-    f32 _488;
+    f32 mShadowHeight;              // 0x488
     TVec3f mGroundPos;              // 0x48C
     TVec3f _498;
     TVec3f _4A4;
@@ -893,7 +893,7 @@ public:
     MarioStep *mStep;                  // 0x88c
     MarioBump *mBump;                  // 0x890
     MarioMagic *mMagic;                // 0x894
-    u8 _898;
+    bool mFpViewChangingFailure;       // 0x898
     MarioFpView *mFpView;    // 0x89C
     MarioMove *mMove;        // 0x8A0
     TVec3f _8A4;

@@ -29,7 +29,9 @@ public:
     void stopUpper(const char *);
     void setUpperRotateY(f32);
     void entryCallback(const char *);
+    void closeCallback();
     f32 getFrame() const;
+    void updateTakingAnimation(const HitSensor *);
 
     inline void f1(const char *name)
     {

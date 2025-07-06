@@ -80,7 +80,7 @@ public:
     void updateBaseScaleMtx();
     void getRealMtx(MtxPtr, const char *) const NO_INLINE;
     void getRealPos(const char *, TVec3f *) const;
-    void getGlobalJointMtx(const char *);
+    MtxPtr getGlobalJointMtx(const char *);
     void calcAnimInMovement();
     void forceSetBaseMtx(MtxPtr);
     void calcAnim();
@@ -520,8 +520,8 @@ public:
     TVec3f _2B8;
     TVec3f _2C4;
     TVec3f mUpVec;                // 0x2D0
-    TVec3f _2DC;
-    TVec3f _2E8;
+    TVec3f mFrontVec;             // 0x2DC
+    TVec3f mSideVec;              // 0x2E8
     TVec3f mTransForCamera;       // 0x2F4
     TVec3f _300;
     TVec3f _30C;
@@ -585,8 +585,8 @@ public:
     TMtx34f _3EC;
     u32 _41C;
     u32 _420;
-    u32 _424;
-    u32 _428[4];
+    HitSensor* _424;
+    HitSensor* _428[4];
     u8 _438[0x30];
     TVec3f _468;
     u32 _474;
@@ -598,7 +598,7 @@ public:
     u8 _483;
     TVec3f _484;
     f32 _490;
-    u32 _494;
+    FixedPosition *_494;
     FixedPosition *_498;
     FixedPosition *_49C;
     u32 _4A0;
@@ -622,7 +622,7 @@ public:
     u32 _7E4[0x40];
     u8 _8E4[0x40];
     HitSensor *_924;
-    u32 _928;
+    HitSensor *_928;
     u32 _92C;
     u32 _930;
     bool _934;
@@ -785,7 +785,7 @@ public:
     bool _EA6;
     TMtx34f _EA8;
     TVec3f _ED8;
-    u32 _EE4;
+    const char* _EE4;
     bool mSuperKinokoCollected;    // 0xEE8
     bool mPowerupCollected;        // 0xEE9
     bool mTransforming;            // 0xEEA
