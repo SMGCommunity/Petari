@@ -625,7 +625,7 @@ bool MarioActor::isJumping() const {
     if (_934) {
         return _938.dot(getGravityVec()) < -10.0f;
     }
-    if (mPlayerMode == 6 && mMario->_488 < mConst->mTable[mConst->mCurrentTable]->mTeresaDropDownHeight) {
+    if (mPlayerMode == 6 && mMario->mShadowHeight < mConst->mTable[mConst->mCurrentTable]->mTeresaDropDownHeight) {
         return false;
     }
     if (mMario->isWalling()) {
@@ -1701,9 +1701,9 @@ void MarioActor::forceSetBaseMtx(MtxPtr mtx) {
     if (_482) {
         MR::extractMtxTrans(mtx, &mPosition);
     }
-    ((TRot3f*)mtx)->getZDir(_2DC);
+    ((TRot3f*)mtx)->getZDir(mFrontVec);
     ((TRot3f*)mtx)->getYDir(mUpVec);
-    ((TRot3f*)mtx)->getXDir(_2E8);
+    ((TRot3f*)mtx)->getXDir(mSideVec);
     MR::updateHitSensorsAll(this);
     mMario->invalidateRelativePosition();
     mMario->_8F8.zero();

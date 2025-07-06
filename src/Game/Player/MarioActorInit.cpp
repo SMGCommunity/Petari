@@ -77,8 +77,8 @@ void MarioActor::initMember()
     _2B8.zero();
     _2C4.zero();
     mUpVec.zero();
-    _2DC.zero();
-    _2E8.zero();
+    mFrontVec.zero();
+    mSideVec.zero();
     mTransForCamera.zero();
     _300.zero();
     _30C.zero();

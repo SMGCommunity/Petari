@@ -103,7 +103,7 @@ void MarioActor::updateForCamera() {
                 mUpVec = _300;
             }
         }
-        _2DC = mMario->mFrontVec;
-        _2E8 = mMario->mSideVec;
+        mFrontVec = mMario->mFrontVec;
+        mSideVec = mMario->mSideVec;
     }
 }

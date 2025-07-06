@@ -78,7 +78,7 @@ Mario::Mario(MarioActor *actor) : MarioModule(actor)
     _2F8.zero();
     _328.zero();
     mLastNonFixMoveVec.zero();
-    _488 = 0.0f;
+    mShadowHeight = 0.0f;
     _430 = 0;
     _3BC = 0;
     _3BE = 0;
@@ -341,7 +341,7 @@ Mario::Mario(MarioActor *actor) : MarioModule(actor)
     }
     _96A = 0;
     _574 = 0;
-    _898 = 0;
+    mFpViewChangingFailure = 0;
 }
 
 void Mario::updateAndClearStrideParameter() {
@@ -1053,7 +1053,7 @@ void Mario::updateSoundCode() {
 
 // nearly, last conditional doesn't want to cooperate
 bool Mario::isForceStopRush() const {
-    if (_488 != 0.0f) {
+    if (mShadowHeight != 0.0f) {
         goto exit_false;
     }
     u16 temp = _960;
