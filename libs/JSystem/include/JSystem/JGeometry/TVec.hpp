@@ -265,7 +265,7 @@ namespace JGeometry {
         }
 
         inline void set(f32 val) {
-            z = val;
+            x = val;
             y = val;
             z = val;
         }
@@ -387,12 +387,20 @@ namespace JGeometry {
             this->z *= -1.0f;
         }
 
-        void scale(f32);
+        void scale(f32 scale){
+            this->x *= scale;
+            this->y *= scale;
+            this->z *= scale;
+        };
         void scale(f32, const TVec3 &);
         void negate();
         f32 squared() const;
         f32 squared(const TVec3 &) const;
-        void zero();
+        void zero(){
+            z = 0.0f;
+            y = 0.0f;
+            x = 0.0f;
+        };
         
         bool isZero() const {
             return squareMag() <= 0.0000038146973f;

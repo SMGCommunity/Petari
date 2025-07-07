@@ -138,12 +138,12 @@ MarioActor::MarioActor(const char *pName) : LiveActor(pName), _1B0(0xFFFFFFFF)
     _1F0.zero();
     _1FC.zero();
 
-    _F4C = 0;
+    mBlackHole = nullptr;
     _208 = 1000.0f;
 
-    _F50.zero();
-    _F5C.zero();
-    _F68.zero();
+    mBlackHolePosition.zero();
+    mBlackHoleRotateAxis.zero();
+    mPosRelativeToBlackHole.zero();
 
     for (int i = 0; i < 6; i++) {
         mModels[i] = nullptr;

@@ -19,10 +19,10 @@ HashSortTable::HashSortTable(u32 cnt) {
     mHasBeenSorted = false;
 }
 
-bool HashSortTable::add(const char *pName, u32 a2, bool noSkip) {
+bool HashSortTable::add(const char *pName, u32 a2, bool Skip) {
     u32 hash = MR::getHashCode(pName);
 
-    if (!noSkip) {
+    if (Skip) {
         return addOrSkip(hash, a2);
     }
     else {
