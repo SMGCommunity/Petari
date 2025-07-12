@@ -1,4 +1,9 @@
 #include "Game/MapObj/LavaSteam.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "JSystem/JGeometry/TUtil.hpp"
+#include "JSystem/JMath/JMath.hpp"
+#include "revolution/mtx.h"
+#include "revolution/types.h"
 
 LavaSteam::LavaSteam(const char* pName) : LiveActor(pName) {
     _8C.x = 0.0f;
@@ -27,21 +32,18 @@ void LavaSteam::init(const JMapInfoIter& rIter) {
     
     if (MR::useStageSwitchReadA(this, rIter)) {
         setNerve(&NrvLavaSteam::HostTypeWaitForSwitchOn::sInstance);
-        MR::listenStageSwitchOnA(this, MR::Functor(this, &startSteam));
+        MR::listenStageSwitchOnA(this, MR::Functor(this, &LavaSteam::startSteam));
     }
     else if (MR::tryRegisterDemoCast(this, rIter)) {
         setNerve(&NrvLavaSteam::HostTypeWaitForSwitchOn::sInstance);
-        MR::registerDemoActionFunctor(this, MR::Functor(this, &startSteam), 0);
+        MR::registerDemoActionFunctor(this, MR::Functor(this, &LavaSteam::startSteam), 0);
     }
-
     MR::useStageSwitchSleep(this, rIter);
     initSound(4, 0);
     MR::connectToSceneNoSilhouettedMapObj(this);
     makeActorAppeared();
 }
 
-#ifdef NON_MATCHING
-// A lot is wrong here
 void LavaSteam::initAfterPlacement() {
     TMtx34f mtx;
     mtx.identity();
@@ -58,6 +60,7 @@ void LavaSteam::initAfterPlacement() {
     f32 sinx = sin(vecx);
     f32 sinx2 = sinx;
 
+
     f32 calc3 = (sinx*cosy);
     mtx.mMtx[0][0] = (cosy*cosz);
     mtx.mMtx[2][1] = (sinx*cosy);
@@ -65,21 +68,19 @@ void LavaSteam::initAfterPlacement() {
     f32 calc2 = ((cosx * cosz) + ((sinx * siny) * sinz));
     f32 calc1 = (((sinx * siny) * cosz) - (cosx * sinz));
     mtx.mMtx[1][1] = calc2;
-    mtx.mMtx[0][2] = calc1;
-    mtx.mMtx[0][3] = ((cosx * cosz) * siny) + (sinx2 * sinz);
+    mtx.mMtx[0][1] = calc1;
+    mtx.mMtx[0][2] = ((cosx * cosz) * siny) + (sinx2 * sinz);
     mtx.mMtx[2][0] = -siny;
     mtx.mMtx[2][2] = (cosx * cosy);
     mtx.mMtx[1][2] = ((cosx * sinz) * siny) - (sinx2 * cosz);
     
     _8C.set(calc1, calc2, calc3);
-    //_98.set(mtx.mMtx[0][1], mtx.mMtx[1][1], (sinz*cosy));
     MR::normalize(&_8C);
 }
-#endif
 
-#ifdef NON_MATCHING
-// Incomplete
+
 void LavaSteam::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
+    TVec3f stack_20;
 
     if (!isNerve(&NrvLavaSteam::HostTypeWait::sInstance) && !isNerve(&NrvLavaSteam::HostTypeWaitForSwitchOn::sInstance)) {
         if (MR::isSensorPlayerOrRide(pReceiver)) {
@@ -87,32 +88,64 @@ void LavaSteam::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
 
             if (isNerve(&NrvLavaSteam::HostTypeSteam::sInstance)) {
                 TVec3f stack_30 = _8C*400.0f;
-                TVec3f stack_3C = TVec3f(mPosition);
-                TVec3f stack_48; 
+                TVec3f stack_3C = mPosition;
+                JMathInlineVEC::PSVECAdd(&stack_3C, &stack_30, &stack_30);
+                register TVec3f &stack_48 = stack_3C;
+                f32 v50 = 70.0f;
+                stack_20 = TVec3f(pReceiver->mPosition);
+
+                register f32 _f3, _f2, _f1;
+                __asm {
+                   psq_l _f2, 0x30(r1), 0, 0
+                   psq_l _f1, 0x24(r1), 0, 0
+                   ps_sub _f2, _f2, _f1
+                   psq_l _f3, 0x48(r1), 0, 0
+                   psq_l _f1, 0x20(r1), 0, 0
+                };
+
+                __asm {
+                    ps_mul _f2, _f2, _f2
+                    ps_sub _f1, _f3, _f1
+                    ps_madd _f1, _f1, _f1, _f2
+                    ps_sum0 _f1, _f1, _f2, _f2
+                };
+
+                TVec3f stack_14 = _8C*330.0f;
+                TVec3f stack_58 = mPosition;
+                TVec3f stack_64 = stack_14;
+                TVec3f stack_8;
+
+                JMathInlineVEC::PSVECSubtract(&pReceiver->mPosition, &stack_58, &stack_8);
+                f32 squ1 = stack_8.squared();
+                f32 squ2 = stack_64.squared();
+                f32 _64dot8 = stack_64.dot(stack_8);
+
+                f32 ff1 = squ2*squ1;
+                f32 ff2 = _64dot8/squ2;
+                f32 squ3 = JGeometry::TUtil<f32>::sqrt((ff1-(_64dot8*_64dot8)) /squ2);
+
+                if (0.0f <= ff2 && ff2 <= 1.0 && squ3 < (10+f)) {
+                    MR::sendMsgEnemyAttackFire(pReceiver, pSender);
+                }
             }
         }
-    } // END OF FUNC
+    }
 }
-#endif
 
 void LavaSteam::startClipped() {
     LiveActor::startClipped();
     MR::deleteEffectAll(this);
 }
 
-#ifdef NON_MATCHING
-// Instruction swap
 void LavaSteam::endClipped() {
-    LiveActor::endClipped();
+    LiveActor::endClipped(),
     isNerve(&NrvLavaSteam::HostTypeWaitForSwitchOn::sInstance);
 }
 
 void LavaSteam::startSteam() {
     setNerve(&NrvLavaSteam::HostTypeSteam::sInstance);
 }
-#endif
 
-#ifdef NON_MATCHING
 void LavaSteam::exeWait() {
     if (MR::isFirstStep(this)) {
         MR::invalidateHitSensors(this);
@@ -123,16 +156,17 @@ void LavaSteam::exeWait() {
     }
 
     if (MR::isGreaterStep(this, 82)) {
-        _98.setAll(MR::getEaseInValue((90-getNerveStep())*0.125f, 0.001f, 1.0f, 1.0f));
+        int step = getNerveStep();
+        f32 f = MR::getEaseInValue((90-step)*0.125f, 0.001f, 1.0f, 1.0f);
+        _98.setAll<f32>(f);
     }
 
-    if (MR::isGreaterStep(this, 90))
+    if (MR::isStep(this, 90))
         MR::forceDeleteEffect(this, "Sign");
 
-    if (MR::isGreaterStep(this, 120))
+    if (MR::isStep(this, 120))
         setNerve(&NrvLavaSteam::HostTypeSteam::sInstance);
 }
-#endif
 
 void LavaSteam::exeSteam() {
     if (MR::isFirstStep(this)) {
