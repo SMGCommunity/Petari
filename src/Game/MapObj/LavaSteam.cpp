@@ -3,15 +3,18 @@
 #include "JSystem/JGeometry/TUtil.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
 #include "JSystem/JMath/JMath.hpp"
+#include "math_types.hpp"
 #include "revolution/types.h"
 
 LavaSteam::LavaSteam(const char* pName) : LiveActor(pName) {
-    _8C.x = 0.0f;
-    _8C.y = 1.0f;
-    _8C.z = 0.0f;
-    _98.x = 1.0f;
-    _98.y = 1.0f;
-    _98.z = 1.0f;
+    f32 f = 1.0f;
+    f32 g = 0.0f;
+    _8C.x = g;
+    _8C.y = f;
+    _8C.z = g;
+    _98.x = f;
+    _98.y = f;
+    _98.z = f;
 }
 
 void LavaSteam::init(const JMapInfoIter& rIter) {
@@ -47,34 +50,64 @@ void LavaSteam::init(const JMapInfoIter& rIter) {
 void LavaSteam::initAfterPlacement() {
     TMtx34f mtx;
     mtx.identity();
-    TVec3f vec = mRotation*0.017453292;
+    TVec3f vec = mRotation*PI_180;
 
     f32 vecz = vec.z;
     f32 vecy = vec.y;
-    //f32 vecx = vec.x;
+    f32 vecx = vec.x;
 
     f32 cosz = cos(vecz);
     f32 cosy = cos(vecy);
-    f32 cosx = cos(vec.x);
-    f32 sinz = sin(vecz);
+    f32 cosx = cos(vecx);
     f32 siny = sin(vecy);
-    f32 sinx = sin(vec.x);
+    f32 sinz = sin(vecz);
+    f32 sinx = sin(vecx); 
+
 
     mtx[0][0] = (cosy*cosz);
-    mtx[2][1] = (sinx*cosy);
+    f32 v2 = (sinx*cosy);
+    mtx[2][1] = v2;
     mtx[1][0] = (cosy*sinz);
-    mtx[1][1] = ((cosx * cosz) + ((sinx * siny) * sinz));
-    mtx[0][1] = (((sinx * siny) * cosz) - (cosx * sinz));
+    f32 v1 = ((cosx * cosz) + ((sinx * siny) * sinz));
+    mtx[1][1] = v1;
+    f32 v0 = (((sinx * siny) * cosz) - (cosx * sinz));
+    mtx[0][1] = v0;
     mtx[0][2] = ((cosx * cosz) * siny) + (sinx * sinz);
-    mtx[2][0] = -siny;
     mtx[2][2] = (cosx * cosy);
     mtx[1][2] = ((cosx * sinz) * siny) - (sinx * cosz);
-    
-    _8C.set(mtx.mMtx[0][1], mtx.mMtx[1][1], mtx.mMtx[2][1]);
+    mtx[2][0] = -siny;
+
+    _8C.set(v0, v1, v2);
     MR::normalize(&_8C);
 }
 
+/*
 
+
+vec1 is stack_48
+vec2 is stack_20
+*/
+inline void LavaSteamPSCalc1(register TVec3f& vec1, register TVec3f& vec2, register f32 f) {
+    register f32 dest = f;
+    __asm volatile {
+        psq_l f2, 0x4(vec1), 0, 0
+        psq_l dest, 0x4(vec2), 0, 0
+        ps_sub f2, f2, dest
+        psq_l f3, 0x0(vec1), 0, 0
+        psq_l dest, 0x0(vec2), 0, 0
+    };
+}
+        
+        /*
+        inline void LavaSteamPSCalc2(register f32 dest) {
+    __asm volatile {
+        ps_mul f2, f2, f2
+        ps_sub dest, f3, dest
+        ps_madd dest, dest, dest, f2
+        ps_sum0 dest, dest, f2, f2
+    };
+}
+*/
 void LavaSteam::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     
     if (!isNerve(&NrvLavaSteam::HostTypeWait::sInstance) && !isNerve(&NrvLavaSteam::HostTypeWaitForSwitchOn::sInstance)) {
@@ -85,27 +118,31 @@ void LavaSteam::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
             if (isNerve(&NrvLavaSteam::HostTypeSteam::sInstance)) {
                 TVec3f stack_30 =_8C*400.0f;
                 TVec3f stack_3C = TVec3f(mPosition);
-                
-                JMathInlineVEC::PSVECAdd(&stack_30, &stack_3C, &stack_3C);
-                
+            
+                JMathInlineVEC::PSVECAdd2(&stack_3C, &stack_30, &stack_3C);
+            
                 TVec3f stack_48;
                 stack_48.set(stack_3C);
+                f32* stack_54;
+                *stack_54 = 70.0f;
                 TVec3f stack_20;
-                f32 stack_54 = 70.0f;
                 stack_20.set(pReceiver->mPosition);
-                
+            
                 register f32 _f1;
                 // If anyone knows what these are then feel free to replace
-                __asm volatile {
-                    psq_l f2, 0x4C(r1), 0, 0
-                    psq_l _f1, 0x24(r1), 0, 0
-                    ps_sub f2, f2, _f1
-                    psq_l f3, 0x48(r1), 0, 0
-                    psq_l _f1, 0x20(r1), 0, 0
-                };
-                
-                stack_20.z = f31;
-                f32 _f0 = stack_54+f31;
+                //__asm volatile {
+                //    psq_l f2, 0x4C(r1), 0, 0
+                //    psq_l _f1, 0x24(r1), 0, 0
+                //    ps_sub f2, f2, _f1
+                //    psq_l f3, 0x48(r1), 0, 0
+                //    psq_l _f1, 0x20(r1), 0, 0
+                //};
+            
+                f32 _f0;
+                LavaSteamPSCalc1(stack_48, stack_20, _f1);
+
+                f32 s = (*stack_54+f31);
+                s*=s;
                 
                 __asm volatile {
                     ps_mul f2, f2, f2
@@ -115,10 +152,10 @@ void LavaSteam::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
                 };
                 
                 //f32 _f0 = (f31*f31);
-                
-                if ((_f1 <= _f0*_f0) & 3 && MR::sendMsgEnemyAttackFire(pReceiver, pSender))
-                return;
-        }
+            
+                if ((_f1 <= s) & 3 && MR::sendMsgEnemyAttackFire(pReceiver, pSender))
+                    return;
+            }
         
         if (isNerve(&NrvLavaSteam::HostTypeSteam::sInstance)) {
             TVec3f stack_64;
@@ -150,8 +187,10 @@ void LavaSteam::startClipped() {
 }
 
 void LavaSteam::endClipped() {
-    LiveActor::endClipped(),
-    isNerve(&NrvLavaSteam::HostTypeWaitForSwitchOn::sInstance);
+    LiveActor::endClipped();
+    
+    if (isNerve(&NrvLavaSteam::HostTypeWaitForSwitchOn::sInstance))
+        return;
 }
 
 void LavaSteam::startSteam() {
@@ -168,9 +207,8 @@ void LavaSteam::exeWait() {
     }
 
     if (MR::isGreaterStep(this, 82)) {
-        int step = getNerveStep();
-        f32 f = MR::getEaseInValue((90-step)*0.125f, 0.001f, 1.0f, 1.0f);
-        _98.setAll<f32>(f);
+        f32 c = 90-getNerveStep();
+        _98.setAll<f32>(MR::getEaseInValue(c*=0.125f, 0.001, 1.0, 1.0));
     }
 
     if (MR::isStep(this, 90))
