@@ -31,9 +31,9 @@ ScrewSwitch::ScrewSwitch(const char* pName) : LiveActor(pName) {
     mMapObjConnector = new MapObjConnector(this);
 }
 
-ScrewSwitch::~ScrewSwitch() {  }
+ScrewSwitch::~ScrewSwitch() {}
 
-void ScrewSwitch::init(const JMapInfoIter & rIter) {
+void ScrewSwitch::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     MR::needStageSwitchWriteA(this, rIter);
     MR::useStageSwitchSleep(this, rIter);

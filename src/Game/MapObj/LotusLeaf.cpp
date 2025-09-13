@@ -31,14 +31,13 @@ LotusLeaf::LotusLeaf(const char* pName) : LiveActor(pName) {
 
 LotusLeaf::~LotusLeaf() {}
 
-
 void LotusLeaf::init(const JMapInfoIter &rIter) {
     MR::initDefaultPos(this, rIter);
     _8C.set(mPosition);
     initModelManagerWithAnm("LotusLeaf", nullptr, false);
     MR::connectToSceneMapObj(this);
     initHitSensor(1);
-    HitSensor * sensor = MR::addBodyMessageSensorMapObj(this);
+    HitSensor* sensor = MR::addBodyMessageSensorMapObj(this);
     MR::initCollisionParts(this, "LotusLeaf", sensor, nullptr);
     initSound(4, false);
     initNerve(&NrvLotusLeaf::HostTypeWait::sInstance);
@@ -58,9 +57,7 @@ void LotusLeaf::exeWait() {
     if (MR::isFirstStep(this)) {
         MR::deleteEffect(this, "LotusLeafRipple");
     } 
-    if (MR::isOnPlayer(this)) {
-        setNerve(&NrvLotusLeaf::HostTypeShakeOnPlayer::sInstance);
-    }
+    if (MR::isOnPlayer(this)) setNerve(&NrvLotusLeaf::HostTypeShakeOnPlayer::sInstance);
 }
 
 void LotusLeaf::exeWaitPlayerOn() {
@@ -108,7 +105,6 @@ void LotusLeaf::exeShake() {
         }
     }
 }
-
 
 void LotusLeaf::convergeToInitPos() {
     if (mPosition.y >= _8C.y) {

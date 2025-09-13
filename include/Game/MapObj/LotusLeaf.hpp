@@ -3,8 +3,7 @@
 #include "Game/LiveActor/LiveActor.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
 
-
-class LotusLeaf : LiveActor {
+class LotusLeaf : public LiveActor {
 public:
     LotusLeaf(const char *);
 

@@ -14,10 +14,9 @@
 #include "JSystem/JGeometry/TVec.hpp"
 
 namespace {
-    const  JAISoundID sSeTable[33] = {
+    const JAISoundID sSeTable[33] = {
         JAISoundID(0x1)
     };
-    
 }
 
 namespace NrvSoundEmitter {

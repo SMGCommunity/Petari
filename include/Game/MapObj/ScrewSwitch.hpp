@@ -6,7 +6,7 @@
 #include "JSystem/JGeometry/TMatrix.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
 
-class ScrewSwitch: public LiveActor {
+class ScrewSwitch : public LiveActor {
 public:
     ScrewSwitch(const char *);
 

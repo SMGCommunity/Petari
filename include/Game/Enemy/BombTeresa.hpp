@@ -10,12 +10,11 @@
 #include "JSystem/JGeometry/TQuat.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
 
-
 class BombTeresa : public LiveActor {
 public:
     BombTeresa(const char *);
 
-    ~BombTeresa();
+    virtual ~BombTeresa();
     virtual void init(const JMapInfoIter&);
     virtual void initAfterPlacement();
     virtual void makeActorAppeared();

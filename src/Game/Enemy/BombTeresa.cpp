@@ -75,14 +75,14 @@ BombTeresa::BombTeresa(const char* pName)
 
 BombTeresa::~BombTeresa() {}
 
-void BombTeresa::init(const JMapInfoIter & rIter) {
+void BombTeresa::init(const JMapInfoIter& rIter) {
     initFromJMapParam(rIter);
     initModelManagerWithAnm("BombTeresa", 0, 0);
     MR::connectToSceneEnemy(this);
     MR::initLightCtrl(this);
     initSensor();
     f32 scale = mScale.x;
-    scale = scale *  70.0f;
+    scale = scale * 70.0f;
     initBinder(scale, 0.0f, 0);
     initEffectKeeper(1, nullptr, false);
     initSound(8, false);
@@ -122,14 +122,12 @@ void BombTeresa::initFromJMapParam(const JMapInfoIter & rIter) {
     }
 }
 
-
 void BombTeresa::initTongue() {
     mJointDelegator = new JointControlDelegator<BombTeresa>(this, &BombTeresa::rootTongueMtxCallBack, &BombTeresa::rootTongueMtxCallBack);
     MR::setJointControllerParam(mJointDelegator, this, "Tongue1");
     mJointDelegator2 = new JointControlDelegator<BombTeresa>(this, &BombTeresa::endTongueMtxCallBack, &BombTeresa::rootTongueMtxCallBack);
     MR::setJointControllerParam(mJointDelegator, this, "Tongue2");
 }
-
 
 void BombTeresa::initSensor() {
     f32 mScaleXTemp = mScale.x;
@@ -168,7 +166,7 @@ void BombTeresa::control() {
 void BombTeresa::calcAndSetBaseMtx() {
     MR::setBaseTRMtx(this, _9C);
     TVec3f scale;
-    //scale.x = 
+    scale.z *= mScale.z; 
     MR::setBaseScale(this, scale);
     mJointDelegator->registerCallBack();
     mJointDelegator2->registerCallBack();
@@ -192,7 +190,6 @@ bool BombTeresa::rootTongueMtxCallBack(TPos3f* arg0, const JointControllerInfo& 
     if (_DC == 0.0f) {
         return false;
     }
-    TVec3f v10;
     TVec3f v11;
     TVec3f v12;
     TVec3f v13;
@@ -203,13 +200,44 @@ bool BombTeresa::rootTongueMtxCallBack(TPos3f* arg0, const JointControllerInfo& 
     if (MR::normalizeOrZero(&(v12 - v11))) {
         v14.set(v13);
     }
-    MR::turnMtxToXDirRate(arg0, v14, (0.5f * _DC));
-    v10.y = MR::getEaseInOutValue(
-    MR::normalize(PSVECDistance(&v11, &v12), 400.0f, 1000.0f), 1.0f, 0.5f, 1.0f);
-    v10.x = 1.0f;
-    MR::preScaleMtx(reinterpret_cast<MtxPtr>(&arg0), v10);
+     MR::turnMtxToXDirRate(arg0, v14, (0.5f * _DC));
+    v14.x = MR::getEaseInOutValue(MR::normalize(PSVECDistance(&v11, &v12), 400.0f, 1000.0f), 1.0f, 0.5f, 1.0f);
+    v14.y = 1.0f;
+    MR::preScaleMtx(arg0->toMtxPtr(), v14);
+    return true;
 }
 
+bool BombTeresa::endTongueMtxCallBack(TPos3f* arg0, const JointControllerInfo& arg1) {
+    if (_DC == 0.0f) {
+        return false;
+    }
+    TVec3f v11;
+    TVec3f v12;
+    TVec3f v13;
+    TVec3f v14;
+    arg0->getTrans(v11);
+    MR::copyJointPos(this, "Tongue1", &v12);
+    MR::vecBlend(v12, _C4, &v12, _DC);
+    arg0->getXDir(v13);
+    if (MR::normalizeOrZero(&(v12 - v11))) {
+        v14.set(v13);
+    }
+    MR::turnMtxToXDirRate(arg0, v14, _DC);
+    arg0->getXDir(v13);
+    f32 v7 = _DC;
+    TVec3f v15(v14);
+    v15 *= 0.35f;
+    TVec3f v16(v15);
+    v16 *= v7;
+    v13 += v16;
+    arg0->mMtx[0][1] = v13.x;
+    arg0->mMtx[0][2] = v13.y;
+    arg0->mMtx[0][3] = v13.z;
+    v14.x = MR::getEaseInOutValue(MR::normalize(PSVECDistance(&v11, &v12), 400.0f, 1000.0f), 1.0f, 0.5f, 1.0f);
+    v14.y = 1.0f;
+    MR::preScaleMtx(arg0->toMtxPtr(), v14);
+    return true;
+}
 
 void BombTeresa::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isSensorEye(pSender) && MR::isSensorPlayer(pReceiver)) {
@@ -539,7 +567,6 @@ void BombTeresa::exeDirectTackleSign() {
     }
 }
 
-
 void BombTeresa::exeDirectTackle() {
     if (MR::isFirstStep(this)) {
         MR::startAction(this, "Tackle");
@@ -624,7 +651,6 @@ void BombTeresa::exeDrift() {
     _E8--;
     if (!tryExplosion() && !tryDriftRelease() && tryAbortDrift()) return;
 }
-
 
 void BombTeresa::exeDriftRelease() {
     if (MR::isFirstStep(this)) {
