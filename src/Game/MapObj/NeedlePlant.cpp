@@ -23,8 +23,6 @@ NeedlePlant::NeedlePlant(const char *pName) : MapObjActor(pName) {
     _C4 = -1; 
 }
 
-NeedlePlant::~NeedlePlant() {}
-
 void NeedlePlant::init(const JMapInfoIter &rIter) {
     MapObjActor::init(rIter);
     MapObjActorInitInfo info;
@@ -128,6 +126,8 @@ bool NeedlePlant::receiveMsgEnemyAttack(u32 a1, HitSensor *a2, HitSensor *a3) {
 void NeedlePlant::connectToScene(const MapObjActorInitInfo &) {
     MR::connectToSceneNoShadowedMapObj(this);
 }
+
+NeedlePlant::~NeedlePlant() {}
 
 inline void NeedlePlant::exeWait() {
     if (MR::isFirstStep(this)) {

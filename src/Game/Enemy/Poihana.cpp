@@ -26,6 +26,8 @@ Poihana::Poihana(const char *pName) : LiveActor(pName) {
 	_E5 = 0;
 }
 
+Poihana::~Poihana() { }
+
 /*void Poihana::init(const JMapInfoIter &rIter) {
 	MR::initDefaultPos(this, rIter);
 	MR::initActorCamera(this, rIter, &mCamInfo);
