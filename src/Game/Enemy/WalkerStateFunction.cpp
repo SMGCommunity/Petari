@@ -9,7 +9,7 @@ void unusedFunction() {
     f32 x = 0.0f;
 }
 
-void WalkerStateFunction::calcPassiveMovement(LiveActor *pActor, const WalkerStateParam *pParam) {
+void WalkerStateFunction::calcPassiveMovement(LiveActor* pActor, const WalkerStateParam* pParam) {
     MR::reboundVelocityFromEachCollision(pActor, -1.0f, -1.0f, 0.0f, 0.0f);
     if (!MR::isOnGround(pActor)) {
         MR::addVelocityToGravity(pActor, pParam->_0);
@@ -20,6 +20,6 @@ void WalkerStateFunction::calcPassiveMovement(LiveActor *pActor, const WalkerSta
     }
 }
 
-bool WalkerStateFunction::isInSightPlayer(const LiveActor *pActor, const TVec3f & pTVec3f, const WalkerStateParam *pParam) {
+bool WalkerStateFunction::isInSightPlayer(const LiveActor* pActor, const TVec3f& pTVec3f, const WalkerStateParam* pParam) {
     return MR::isInSightFanPlayer(pActor, pTVec3f, pParam->_C, pParam->_10, pParam->_14);
 }
