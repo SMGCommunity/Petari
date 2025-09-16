@@ -94,6 +94,23 @@ void LiveActor::makeActorDead() {
 }
 #endif
 
+void LiveActor::calcAnim() {
+    if (!mFlags.mIsNoCalcAnim) {
+        calcAnmMtx();
+        if (mCollisionParts) {
+            MR::setCollisionMtx(this);
+        }
+    }
+}
+
+void LiveActor::calcAnmMtx() {
+    if (mModelManager) {
+        MR::getJ3DModel(this)->setBaseScale(mScale);
+        calcAndSetBaseMtx();
+        mModelManager->calcAnim();
+    }
+}
+
 MtxPtr LiveActor::getTakingMtx() const {
     return getBaseMtx();
 }
