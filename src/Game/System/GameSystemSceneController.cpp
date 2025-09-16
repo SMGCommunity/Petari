@@ -7,6 +7,7 @@
 #include "Game/Scene/SceneFactory.hpp"
 #include "Game/Scene/SceneFunction.hpp"
 #include "Game/SingletonHolder.hpp"
+#include "Game/System/GameSystemFunction.hpp"
 #include "Game/System/HeapMemoryWatcher.hpp"
 #include "Game/System/ScenarioDataParser.hpp"
 #include "Game/System/WPadHolder.hpp"
@@ -95,4 +96,24 @@ void GameSystemSceneController::initializeScene() {
     SceneFunction::allocateDrawBufferActorList();
     MR::clearFileLoaderRequestFileInfo(_A0);
     SingletonHolder<HeapMemoryWatcher>::get()->checkRestMemory();
+}
+
+void GameSystemSceneController::destroyScene() {
+    bool stopSound = isStopSound();
+
+    GameScene* gameScene = mGameScene;
+    mGameScene = nullptr;
+    delete gameScene;
+
+    mObjHolder->clearArray();
+    if (stopSound) {
+        MR::stopAllSound(0);
+    }
+    GameSystemFunction::resetAllControllerRumble();
+    MR::removeResourceAndFileHolderIfIsEqualHeap(MR::getSceneHeapNapa());
+    if (tryDestroyFileCacheHeap(false)) {
+        SingletonHolder<HeapMemoryWatcher>::get()->destroyGameHeap();
+    } else {
+        SingletonHolder<HeapMemoryWatcher>::get()->destroySceneHeap();
+    }
 }
