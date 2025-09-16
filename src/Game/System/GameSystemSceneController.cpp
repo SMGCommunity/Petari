@@ -123,3 +123,14 @@ void GameSystemSceneController::startScene() {
     GameSystemFunction::restartControllerLeaveWatcher();
     requestChangeNerve(&NrvGameSystemSceneController::GameSystemSceneControllerNormal::sInstance);
 }
+
+void GameSystemSceneController::updateScene() {
+    if (!_A0) {
+        Scene* scene = getCurrentSceneForExecute();
+        if (scene) {
+            scene->update();
+            mPlayTimerScene->update();
+            mScenarioScene->update();
+        }
+    }
+}
