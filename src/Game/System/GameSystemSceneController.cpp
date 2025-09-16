@@ -117,3 +117,9 @@ void GameSystemSceneController::destroyScene() {
         SingletonHolder<HeapMemoryWatcher>::get()->destroySceneHeap();
     }
 }
+
+void GameSystemSceneController::startScene() {
+    mGameScene->start();
+    GameSystemFunction::restartControllerLeaveWatcher();
+    requestChangeNerve(&NrvGameSystemSceneController::GameSystemSceneControllerNormal::sInstance);
+}
