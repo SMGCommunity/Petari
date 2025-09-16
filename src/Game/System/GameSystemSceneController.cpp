@@ -60,3 +60,11 @@ void GameSystemSceneController::requestChangeScene() {
             &NrvGameSystemSceneController::GameSystemSceneControllerWaitDrawDoneScene::sInstance);
     }
 }
+
+void GameSystemSceneController::checkRequestAndChangeScene() {
+    if (_9C) {
+        _98->setNerve(_9C);
+        _9C = nullptr;
+    }
+    _98->update();
+}
