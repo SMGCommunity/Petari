@@ -32,6 +32,7 @@ public:
 };
 
 enum SceneInitializeState {
+    State_InitScene,
     State_PlacementPlayer = 2,
     State_PlacementHighPrio = 3,
     State_Placement = 4,

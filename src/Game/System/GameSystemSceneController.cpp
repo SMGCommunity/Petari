@@ -52,3 +52,11 @@ void GameSystemSceneController::initAfterStationedResourceLoaded() {
     mPlayTimerScene->init();
     mScenarioScene->init();
 }
+
+void GameSystemSceneController::requestChangeScene() {
+    if (!isExistRequest() && !_A0) {
+        mInitState = State_InitScene;
+        requestChangeNerve(
+            &NrvGameSystemSceneController::GameSystemSceneControllerWaitDrawDoneScene::sInstance);
+    }
+}
