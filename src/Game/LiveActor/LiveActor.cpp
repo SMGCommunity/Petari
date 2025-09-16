@@ -8,21 +8,30 @@
 #include "Game/NameObj/NameObjExecuteHolder.hpp"
 #include "Game/Util.hpp"
 
-LiveActor::LiveActor(const char* pName) : NameObj(pName), 
-    mPosition(0.0f), mRotation(0.0f), mScale(1.0f), mVelocity(0.0f), mGravity(0.0f, -1.0f, 0.0f),
-    mModelManager(nullptr), mAnimationKeeper(nullptr), mSpine(nullptr),
-    mSensorKeeper(nullptr), mBinder(nullptr), mRailRider(nullptr),
-    mEffectKeeper(nullptr), mSoundObject(nullptr) {
+LiveActor::LiveActor(const char* pName)
+    : NameObj(pName),
+      mPosition(0.0f, 0.0f, 0.0f),
+      mRotation(0.0f, 0.0f, 0.0f),
+      mScale(1.0f, 1.0f, 1.0f),
+      mVelocity(0.0f, 0.0f, 0.0f),
+      mGravity(0.0f, -1.0f, 0.0f),
+      mModelManager(nullptr),
+      mAnimationKeeper(nullptr),
+      mSpine(nullptr),
+      mSensorKeeper(nullptr),
+      mBinder(nullptr),
+      mRailRider(nullptr),
+      mEffectKeeper(nullptr),
+      mSoundObject(nullptr),
+      mShadowList(nullptr),
+      mCollisionParts(nullptr),
+      mStageSwitchCtrl(nullptr),
+      mStarPointerTarget(nullptr),
+      mActorLightCtrl(nullptr),
+      mCameraCtrl(nullptr) {
 
-        mShadowList = nullptr;
-        mCollisionParts = nullptr;
-        mStageSwitchCtrl = nullptr;
-        mStarPointerTarget = nullptr;
-        mActorLightCtrl = nullptr;
-        mCameraCtrl = nullptr;
-
-        MR::getAllLiveActorGroup()->registerActor(this);
-        MR::getClippingDirector()->registerActor(this);
+    MR::getAllLiveActorGroup()->registerActor(this);
+    MR::getClippingDirector()->registerActor(this);
 }
 
 void LiveActor::init(const JMapInfoIter &) {
