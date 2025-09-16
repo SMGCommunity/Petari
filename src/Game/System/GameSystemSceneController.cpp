@@ -1,4 +1,9 @@
 #include "Game/System/GameSystemSceneController.hpp"
+#include "Game/NameObj/NameObjHolder.hpp"
+#include "Game/Scene/IntermissionScene.hpp"
+#include "Game/Scene/PlayTimerScene.hpp"
+#include "Game/Scene/ScenarioSelectScene.hpp"
+#include "Game/Scene/SceneFactory.hpp"
 #include "Game/Util.hpp"
 #include <cstdio>
 
@@ -23,3 +28,18 @@ void SceneControlInfo::setStage(const char *pStageName) {
 void SceneControlInfo::setStartIdInfo(const JMapIdInfo &rInfo) {
     *_48 = rInfo;
 } 
+
+GameSystemSceneController::GameSystemSceneController()
+    : _98(nullptr), _9C(nullptr), _A0(nullptr), mScenarioParser(nullptr), mObjHolder(nullptr),
+      mGameScene(nullptr), mInitState(), mIntermissionScene(nullptr), mPlayTimerScene(nullptr),
+      mScenarioScene(nullptr) {
+    mObjHolder = new NameObjHolder(0x1300);
+    _98 = new Spine(
+        this, &NrvGameSystemSceneController::GameSystemSceneControllerNotInitialized::sInstance
+
+    );
+    extern const char lbl_805DB6E0[]; // = "Intermission";
+    mIntermissionScene = static_cast<IntermissionScene*>(MR::createScene(lbl_805DB6E0));
+    mPlayTimerScene = new PlayTimerScene();
+    mScenarioScene = new ScenarioSelectScene();
+}
