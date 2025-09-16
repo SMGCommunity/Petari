@@ -37,14 +37,21 @@ void SceneControlInfo::setStartIdInfo(const JMapIdInfo &rInfo) {
 }
 
 GameSystemSceneController::GameSystemSceneController()
-    : _98(nullptr), _9C(nullptr), _A0(false), mScenarioParser(nullptr), mObjHolder(nullptr),
-      mGameScene(nullptr), mInitState(State_NotInit), mIntermissionScene(nullptr),
-      mPlayTimerScene(nullptr), mScenarioScene(nullptr) {
+    : _98(nullptr),
+      _9C(nullptr),
+      _A0(false),
+      mScenarioParser(nullptr),
+      mObjHolder(nullptr),
+      mGameScene(nullptr),
+      mInitState(State_NotInit),
+      mIntermissionScene(nullptr),
+      mPlayTimerScene(nullptr),
+      mScenarioScene(nullptr) {
+
     mObjHolder = new NameObjHolder(0x1300);
     _98 = new Spine(
-        this, &NrvGameSystemSceneController::GameSystemSceneControllerNotInitialized::sInstance
+        this, &NrvGameSystemSceneController::GameSystemSceneControllerNotInitialized::sInstance);
 
-    );
     extern const char lbl_805DB6E0[]; // = "Intermission";
     mIntermissionScene = static_cast<IntermissionScene*>(MR::createScene(lbl_805DB6E0));
     mPlayTimerScene = new PlayTimerScene();
