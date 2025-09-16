@@ -67,7 +67,7 @@ Building
 - Clone the repository:
 
   ```sh
-  git clone https://github.com/my/repo.git
+  git clone https://github.com/SMGCommunity/Petari.git
   ```
 
 - Using [Dolphin Emulator](https://dolphin-emu.org/), extract your game to `orig/GAMEID`.
