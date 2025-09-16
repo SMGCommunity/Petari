@@ -34,12 +34,12 @@ void SceneControlInfo::setStage(const char *pStageName) {
 
 void SceneControlInfo::setStartIdInfo(const JMapIdInfo &rInfo) {
     *_48 = rInfo;
-} 
+}
 
 GameSystemSceneController::GameSystemSceneController()
-    : _98(nullptr), _9C(nullptr), _A0(nullptr), mScenarioParser(nullptr), mObjHolder(nullptr),
-      mGameScene(nullptr), mInitState(), mIntermissionScene(nullptr), mPlayTimerScene(nullptr),
-      mScenarioScene(nullptr) {
+    : _98(nullptr), _9C(nullptr), _A0(false), mScenarioParser(nullptr), mObjHolder(nullptr),
+      mGameScene(nullptr), mInitState(State_NotInit), mIntermissionScene(nullptr),
+      mPlayTimerScene(nullptr), mScenarioScene(nullptr) {
     mObjHolder = new NameObjHolder(0x1300);
     _98 = new Spine(
         this, &NrvGameSystemSceneController::GameSystemSceneControllerNotInitialized::sInstance
@@ -61,7 +61,7 @@ void GameSystemSceneController::initAfterStationedResourceLoaded() {
 
 void GameSystemSceneController::requestChangeScene() {
     if (!isExistRequest() && !_A0) {
-        mInitState = State_ChangeScene;
+        mInitState = State_NotInit;
         requestChangeNerve(
             &NrvGameSystemSceneController::GameSystemSceneControllerWaitDrawDoneScene::sInstance);
     }
@@ -76,7 +76,7 @@ void GameSystemSceneController::checkRequestAndChangeScene() {
 }
 
 void GameSystemSceneController::initializeScene() {
-    mInitState = State_InitScene;
+    mInitState = State_Init;
     if (!SingletonHolder<HeapMemoryWatcher>::get()->mFileCacheHeap ||
         !isSameAtNextSceneAndStage()) {
         SingletonHolder<HeapMemoryWatcher>::get()->createFileCacheHeapOnGameHeap(0x1040400);
