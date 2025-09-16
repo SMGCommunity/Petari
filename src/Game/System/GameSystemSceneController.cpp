@@ -140,3 +140,12 @@ void GameSystemSceneController::updateSceneDuringResetProcessing() {
         mScenarioScene->update();
     }
 }
+
+void GameSystemSceneController::calcAnimScene() {
+    Scene* scene = getCurrentSceneForExecute();
+    if (scene) {
+        scene->calcAnim();
+        mPlayTimerScene->calcAnim();
+        mScenarioScene->calcAnim();
+    }
+}
