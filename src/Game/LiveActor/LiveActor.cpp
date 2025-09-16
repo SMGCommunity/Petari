@@ -112,6 +112,12 @@ void LiveActor::calcAnmMtx() {
     }
 }
 
+void LiveActor::calcViewAndEntry() {
+    if (!mFlags.mIsNoCalcView && mModelManager && !mFlags.mIsNoCalcView) {
+        mModelManager->calcView();
+    }
+}
+
 void LiveActor::calcAndSetBaseMtx() {
     if (MR::getTaken(this)) {
         MR::setBaseTRMtx(this, MR::getTaken(this)->mActor->getTakingMtx());
