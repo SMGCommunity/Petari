@@ -1,10 +1,15 @@
 #include "Game/System/GameSystemSceneController.hpp"
 #include "Game/NameObj/NameObjHolder.hpp"
+#include "Game/Scene/GameScene.hpp"
 #include "Game/Scene/IntermissionScene.hpp"
 #include "Game/Scene/PlayTimerScene.hpp"
 #include "Game/Scene/ScenarioSelectScene.hpp"
 #include "Game/Scene/SceneFactory.hpp"
+#include "Game/Scene/SceneFunction.hpp"
+#include "Game/SingletonHolder.hpp"
+#include "Game/System/HeapMemoryWatcher.hpp"
 #include "Game/System/ScenarioDataParser.hpp"
+#include "Game/System/WPadHolder.hpp"
 #include "Game/Util.hpp"
 #include <cstdio>
 
@@ -55,7 +60,7 @@ void GameSystemSceneController::initAfterStationedResourceLoaded() {
 
 void GameSystemSceneController::requestChangeScene() {
     if (!isExistRequest() && !_A0) {
-        mInitState = State_InitScene;
+        mInitState = State_ChangeScene;
         requestChangeNerve(
             &NrvGameSystemSceneController::GameSystemSceneControllerWaitDrawDoneScene::sInstance);
     }
@@ -67,4 +72,27 @@ void GameSystemSceneController::checkRequestAndChangeScene() {
         _9C = nullptr;
     }
     _98->update();
+}
+
+void GameSystemSceneController::initializeScene() {
+    mInitState = State_InitScene;
+    if (!SingletonHolder<HeapMemoryWatcher>::get()->mFileCacheHeap ||
+        !isSameAtNextSceneAndStage()) {
+        SingletonHolder<HeapMemoryWatcher>::get()->createFileCacheHeapOnGameHeap(0x1040400);
+    }
+    SingletonHolder<HeapMemoryWatcher>::get()->createSceneHeapOnGameHeap();
+    SingletonHolder<HeapMemoryWatcher>::get()->setCurrentHeapToSceneHeap();
+    updateSceneControlInfo();
+    MR::setRandomSeedFromStageName();
+    if (mScenarioScene->isActive()) {
+        mScenarioScene->validateScenarioSelect();
+    }
+    MR::resetWPad();
+    mGameScene = static_cast<GameScene*>(MR::createScene(_0.mScene));
+    mGameScene->initNameObjListExecutor();
+    mGameScene->initSceneObjHolder();
+    mGameScene->init();
+    SceneFunction::allocateDrawBufferActorList();
+    MR::clearFileLoaderRequestFileInfo(_A0);
+    SingletonHolder<HeapMemoryWatcher>::get()->checkRestMemory();
 }
