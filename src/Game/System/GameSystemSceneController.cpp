@@ -158,3 +158,48 @@ void GameSystemSceneController::drawScene() {
         mScenarioScene->draw();
     }
 }
+
+NameObjListExecutor* GameSystemSceneController::getNameObjListExecutor() const {
+    return mGameScene->mListExecutor;
+}
+
+SceneObjHolder* GameSystemSceneController::getSceneObjHolder() const {
+    return mGameScene->mSceneObjHolder;
+}
+
+bool GameSystemSceneController::isExistSceneObjHolder() const {
+    return mGameScene && mGameScene->mSceneObjHolder;
+}
+
+s32 GameSystemSceneController::getCurrentScenarioNo() const {
+    return _0.mCurrentScenarioNo;
+}
+
+s32 GameSystemSceneController::getCurrentSelectedScenarioNo() const {
+    return _0.mCurrentSelectedScenarioNo;
+}
+
+void GameSystemSceneController::setSceneInitializeState(SceneInitializeState initState) {
+    mInitState = initState;
+}
+
+bool GameSystemSceneController::isSceneInitializeState(SceneInitializeState initState) const {
+    return mInitState == initState;
+}
+
+void GameSystemSceneController::startScenarioSelectScene() {
+    mScenarioScene->start();
+}
+
+void GameSystemSceneController::startScenarioSelectSceneBackground() {
+    mScenarioScene->startBackground();
+}
+
+void GameSystemSceneController::setCurrentScenarioNo(s32 current, s32 currentSelected) {
+    _0.mCurrentScenarioNo = current;
+    _0.mCurrentSelectedScenarioNo = currentSelected;
+}
+
+void GameSystemSceneController::resetCurrentScenarioNo() {
+    _0.mCurrentScenarioNo = -1;
+}
