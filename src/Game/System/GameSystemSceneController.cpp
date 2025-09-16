@@ -134,3 +134,9 @@ void GameSystemSceneController::updateScene() {
         }
     }
 }
+
+void GameSystemSceneController::updateSceneDuringResetProcessing() {
+    if (_A0) {
+        mScenarioScene->update();
+    }
+}
