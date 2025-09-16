@@ -95,6 +95,41 @@ void LiveActor::makeActorDead() {
 }
 #endif
 
+void LiveActor::movement() {
+    if (mModelManager && !mFlags.mIsStoppedAnim) {
+        mModelManager->update();
+        if (mAnimationKeeper) {
+            mAnimationKeeper->update();
+        }
+    }
+    if (MR::isCalcGravity(this)) {
+        MR::calcGravity(this);
+    }
+    if (mSensorKeeper) {
+        mSensorKeeper->doObjCol();
+    }
+    if (mFlags.mIsDead) return;
+    if (mSpine) {
+        mSpine->update();
+    }
+    if (mFlags.mIsDead) return;
+    control();
+    if (mFlags.mIsDead) return;
+    updateBinder();
+    if (mEffectKeeper) {
+        mEffectKeeper->update();
+    }
+    if (mCameraCtrl) {
+        mCameraCtrl->update();
+    }
+    if (mActorLightCtrl) {
+        MR::updateLightCtrl(this);
+    }
+    MR::tryUpdateHitSensorsAll(this);
+    MR::actorSoundMovement(this);
+    MR::requestCalcActorShadow(this);
+}
+
 void LiveActor::calcAnim() {
     if (!mFlags.mIsNoCalcAnim) {
         calcAnmMtx();

@@ -39,6 +39,8 @@ public:
 
     bool isRegisteredEmitter(const char *) const;
 
+    void update();
+
     void onDraw();
     void offDraw();
 
