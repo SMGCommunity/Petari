@@ -149,3 +149,12 @@ void GameSystemSceneController::calcAnimScene() {
         mScenarioScene->calcAnim();
     }
 }
+
+void GameSystemSceneController::drawScene() {
+    Scene* scene = getCurrentSceneForExecute();
+    if (scene) {
+        scene->draw();
+        mPlayTimerScene->draw();
+        mScenarioScene->draw();
+    }
+}
