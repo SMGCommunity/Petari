@@ -3,6 +3,7 @@
 #include "Game/LiveActor/Binder.hpp"
 #include "Game/LiveActor/ClippingDirector.hpp"
 #include "Game/LiveActor/ActorPadAndCameraCtrl.hpp"
+#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/RailRider.hpp"
 #include "Game/NameObj/NameObjExecuteHolder.hpp"
 #include "Game/Util.hpp"
@@ -108,6 +109,21 @@ void LiveActor::calcAnmMtx() {
         MR::getJ3DModel(this)->setBaseScale(mScale);
         calcAndSetBaseMtx();
         mModelManager->calcAnim();
+    }
+}
+
+void LiveActor::calcAndSetBaseMtx() {
+    if (MR::getTaken(this)) {
+        MR::setBaseTRMtx(this, MR::getTaken(this)->mActor->getTakingMtx());
+    } else {
+        TPos3f mtx;
+        float zero = 0.0;
+        if (zero == mRotation.x && zero == mRotation.z) {
+            MR::makeMtxTransRotateY(mtx, this);
+        } else {
+            MR::makeMtxTR(mtx, this);
+        }
+        MR::setBaseTRMtx(this, mtx);
     }
 }
 
