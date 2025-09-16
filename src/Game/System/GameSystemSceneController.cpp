@@ -4,6 +4,7 @@
 #include "Game/Scene/PlayTimerScene.hpp"
 #include "Game/Scene/ScenarioSelectScene.hpp"
 #include "Game/Scene/SceneFactory.hpp"
+#include "Game/System/ScenarioDataParser.hpp"
 #include "Game/Util.hpp"
 #include <cstdio>
 
@@ -42,4 +43,12 @@ GameSystemSceneController::GameSystemSceneController()
     mIntermissionScene = static_cast<IntermissionScene*>(MR::createScene(lbl_805DB6E0));
     mPlayTimerScene = new PlayTimerScene();
     mScenarioScene = new ScenarioSelectScene();
+}
+
+extern const char lbl_805DB6ED[];
+void GameSystemSceneController::initAfterStationedResourceLoaded() {
+    mScenarioParser = new ScenarioDataParser(lbl_805DB6ED);
+    mScenarioParser->initWithoutIter();
+    mPlayTimerScene->init();
+    mScenarioScene->init();
 }
