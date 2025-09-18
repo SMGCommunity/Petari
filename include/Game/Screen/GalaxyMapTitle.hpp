@@ -2,7 +2,7 @@
 
 #include "Game/Screen/LayoutActor.hpp"
 
-class GalaxyMapTitle : LayoutActor {
+class GalaxyMapTitle : public LayoutActor {
 public:
     /// @brief Creates a new `GalaxyMapTitle`.
     GalaxyMapTitle();

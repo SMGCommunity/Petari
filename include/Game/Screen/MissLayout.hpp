@@ -2,7 +2,7 @@
 
 #include "Game/Screen/LayoutActor.hpp"
 
-class MissLayout : LayoutActor {
+class MissLayout : public LayoutActor {
 public:
     /// @brief Creates a new `MissLayout`.
     MissLayout();

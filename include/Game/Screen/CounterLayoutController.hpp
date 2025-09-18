@@ -8,7 +8,7 @@ class PlayerLeft;
 class StarCounter;
 class StarPieceCounter;
 
-class CounterLayoutController : LayoutActor {
+class CounterLayoutController : public LayoutActor {
 public:
     /// @brief Creates a new `CounterLayoutController`.
     CounterLayoutController();

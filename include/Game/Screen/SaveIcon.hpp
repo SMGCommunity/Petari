@@ -2,7 +2,7 @@
 
 #include "Game/Screen/LayoutActor.hpp"
 
-class SaveIcon : LayoutActor {
+class SaveIcon : public LayoutActor {
 public:
     SaveIcon(const LayoutActor* pActor);
 

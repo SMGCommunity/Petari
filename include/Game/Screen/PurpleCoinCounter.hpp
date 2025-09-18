@@ -5,7 +5,7 @@
 class CountUpPaneRumbler;
 class CounterLayoutAppearer;
 
-class PurpleCoinCounter : LayoutActor {
+class PurpleCoinCounter : public LayoutActor {
 public:
     PurpleCoinCounter(const char* pName);
 

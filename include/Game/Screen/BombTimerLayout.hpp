@@ -2,7 +2,7 @@
 
 #include "Game/Screen/LayoutActor.hpp"
 
-class BombTimerLayout : LayoutActor {
+class BombTimerLayout : public LayoutActor {
 public:
     BombTimerLayout(bool param1);
 

@@ -2,7 +2,7 @@
 
 #include "Game/Screen/LayoutActor.hpp"
 
-class GalaxyMapBackground : LayoutActor {
+class GalaxyMapBackground : public LayoutActor {
 public:
     GalaxyMapBackground();
 

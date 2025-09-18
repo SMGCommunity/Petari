@@ -4,7 +4,7 @@
 
 class IconAButton;
 
-class InformationMessage : LayoutActor {
+class InformationMessage : public LayoutActor {
 public:
     InformationMessage();
 
