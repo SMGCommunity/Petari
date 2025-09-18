@@ -1163,11 +1163,11 @@ bool MarioActor::doRush()
                 }
                 if (initial == 2) {
                     mWaterLife = 8;
-                    MR::getGameSceneLayoutHolder().changeLifeMeterModeGround();
+                    MR::getGameSceneLayoutHolder()->changeLifeMeterModeGround();
                     mMario->forceExitSwim();
                 }
                 else if (initial == 0) {
-                    MR::getGameSceneLayoutHolder().changeLifeMeterModeWater();
+                    MR::getGameSceneLayoutHolder()->changeLifeMeterModeWater();
                 }
             }
         }
