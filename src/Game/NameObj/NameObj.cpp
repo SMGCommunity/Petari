@@ -1,99 +1,106 @@
 #include "Game/NameObj/NameObj.hpp"
 #include "Game/NameObj/NameObjRegister.hpp"
+#include "Game/Scene/SceneNameObjMovementController.hpp"
 #include "Game/SingletonHolder.hpp"
-#include "Game/Util.hpp"
 
-NameObj::NameObj(const char *pName) {
-    mName = pName;
-    mFlags = 0;
-    mExecutorIdx = -1;
+#define FLAG_MOVEMENT_OFF 1u
+#define FLAG_SUSPEND 2u
+#define FLAG_RESUME 4u
+
+NameObj::NameObj(const char* pName) :
+    mName(pName),
+    mFlag(0),
+    mExecutorIdx(-1)
+{
     SingletonHolder<NameObjRegister>::get()->add(this);
 }
- 
-NameObj::~NameObj() {
 
+NameObj::~NameObj() {
+    
 }
 
-void NameObj::init(const JMapInfoIter &) {
-
+void NameObj::init(const JMapInfoIter& rIter) {
+    
 }
 
 void NameObj::initAfterPlacement() {
-
-} 
+    
+}
 
 void NameObj::movement() {
-
+    
 }
 
 void NameObj::draw() const {
- 
+    
 }
 
 void NameObj::calcAnim() {
-
+    
 }
 
 void NameObj::calcViewAndEntry() {
-
+    
 }
 
 void NameObj::initWithoutIter() {
     JMapInfoIter iter;
-    iter.mInfo = 0;
+    iter.mInfo = nullptr;
     iter.mIndex = -1;
+
     init(iter);
 }
 
-void NameObj::setName(const char *pName) {
+void NameObj::setName(const char* pName) {
     mName = pName;
 }
 
 void NameObj::executeMovement() {
-    u16 flags = mFlags;
-    if (((s16)flags & 0x1) != 1) {
-        movement();
+    if ((mFlag & FLAG_MOVEMENT_OFF) == FLAG_MOVEMENT_OFF) {
+        return;
     }
-} 
- 
+
+    movement();
+}
+
 void NameObj::requestSuspend() {
-    u16 flag = (mFlags & 0x4);
-    if (flag == 0x4) {
-        mFlags &= ~0x4;
+    if ((mFlag & FLAG_RESUME) == FLAG_RESUME) {
+        mFlag &= ~FLAG_RESUME;
     }
-    mFlags |= 2; 
+
+    mFlag |= FLAG_SUSPEND;
 }
 
 void NameObj::requestResume() {
-    u16 flag = (mFlags & 0x2);
-    if (flag == 0x2) {
-        mFlags &= ~0x2;
+    if ((mFlag & FLAG_SUSPEND) == FLAG_SUSPEND) {
+        mFlag &= ~FLAG_SUSPEND;
     }
-    mFlags |= 4;
+
+    mFlag |= FLAG_RESUME;
 }
 
 void NameObj::syncWithFlags() {
-    u16 flag = (mFlags & 0x2);
-    if (flag == 0x2) {
-        flag = mFlags;
-        flag &= ~0x2;
-        flag |= 0x1;
-        mFlags = flag;
+    u16 flag;
+
+    if ((mFlag & FLAG_SUSPEND) == FLAG_SUSPEND) {
+        flag = mFlag;
+        flag &= ~FLAG_SUSPEND;
+        mFlag = flag | FLAG_MOVEMENT_OFF;
     }
 
-    flag = (mFlags & 0x4);
-    if (flag == 0x4) {
-        flag = mFlags & ~0x4;
-        mFlags = flag & ~0x1;
+    if ((mFlag & FLAG_RESUME) == FLAG_RESUME) {
+        flag = mFlag;
+        flag &= ~FLAG_RESUME;
+        mFlag = flag & ~FLAG_MOVEMENT_OFF;
     }
 }
 
-void NameObjFunction::requestMovementOn(NameObj *pObj) {
+void NameObjFunction::requestMovementOn(NameObj* pObj) {
     pObj->requestResume();
     MR::notifyRequestNameObjMovementOnOff();
 }
 
-void NameObjFunction::requestMovementOff(NameObj *pObj) {
+void NameObjFunction::requestMovementOff(NameObj* pObj) {
     pObj->requestSuspend();
     MR::notifyRequestNameObjMovementOnOff();
 }
