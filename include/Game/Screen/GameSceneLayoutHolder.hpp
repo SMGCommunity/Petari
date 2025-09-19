@@ -41,7 +41,6 @@ public:
     void deactivateDefaultGameLayout();
     void invalidateStatusLayout();
 
-private:
     /* 0x0C */ CameraInfo* mCameraInfo;
     /* 0x10 */ InformationMessage* mInformationMessage;
     /* 0x14 */ MarioMeter* mMarioMeter;

@@ -17,11 +17,13 @@ public:
 
     void declareNoteNumMaxAndMelody(LiveActor* pHost, s32 noteNum, s32 melodyNo, f32 railLength);
     void add();
+    void exeShow();
+    void exeShowWait();
     void exeShowToHide();
     void exeHideToShow();
+    void exeHide();
     void tryEndDisp();
 
-private:
     /// @brief The total number of notes in the song.
     /* 0x20 */ s32 mNoteNum;
 
