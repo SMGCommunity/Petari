@@ -1,3 +1,4 @@
+#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/MapObj/KillerGunnerSingle.hpp"
 
 KillerGunnerSingle::KillerGunnerSingle(const char *pName) : LiveActor(pName) {

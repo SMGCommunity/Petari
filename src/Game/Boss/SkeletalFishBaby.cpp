@@ -1,6 +1,7 @@
 #include "Game/Boss/SkeletalFishBaby.hpp"
 #include "Game/Boss/SkeletalFishJointCalc.hpp"
 #include "Game/Boss/SkeletalFishRailControl.hpp"
+#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/MapObj/AirBubbleHolder.hpp"
 #include <cstdio>
 

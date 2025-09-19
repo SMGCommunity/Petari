@@ -1,3 +1,4 @@
+#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/MapObj/ValveSwitch.hpp"
 
 ValveSwitch::ValveSwitch(const char *pName) : LiveActor(pName) {

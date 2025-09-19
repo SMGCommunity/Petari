@@ -1,3 +1,4 @@
+#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/MapObj/PicketSwitch.hpp"
 
 PicketSwitch::PicketSwitch(const char *pName) : LiveActor(pName) {

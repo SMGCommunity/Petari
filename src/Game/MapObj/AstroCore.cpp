@@ -1,3 +1,4 @@
+#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/MapObj/AstroCore.hpp"
 #include "Game/MapObj/AstroDemoFunction.hpp"
 #include <cstdio>

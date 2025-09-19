@@ -1,3 +1,4 @@
+#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/MapObj/SwitchBox.hpp"
 #include "Game/Util.hpp"
 #include "JSystem/JGeometry/TVec.hpp"

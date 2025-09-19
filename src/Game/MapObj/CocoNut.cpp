@@ -1,5 +1,6 @@
-#include "Game/MapObj/CocoNut.hpp"
+#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/Spine.hpp"
+#include "Game/MapObj/CocoNut.hpp"
 #include "Game/NameObj/NameObjArchiveListCollector.hpp"
 #include "Game/Util.hpp"
 #include "JSystem/JMath.hpp"

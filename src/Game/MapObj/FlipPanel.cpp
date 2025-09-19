@@ -1,8 +1,9 @@
-#include "Game/MapObj/FlipPanel.hpp"
-#include "Game/LiveActor/ModelObj.hpp"
+#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/LiveActorGroupArray.hpp"
-#include "JSystem/JMath/JMath.hpp"
+#include "Game/LiveActor/ModelObj.hpp"
+#include "Game/MapObj/FlipPanel.hpp"
 #include "Game/Util.hpp"
+#include "JSystem/JMath/JMath.hpp"
 
 FlipPanel::FlipPanel(const char *pName) : MapObjActor(pName) {
     mDelegator = 0;

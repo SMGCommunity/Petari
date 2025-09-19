@@ -1,4 +1,5 @@
 #include "Game/Enemy/Poihana.hpp"
+#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/Util.hpp"
 #include "JSystem/JMath/JMath.hpp"
 

@@ -1,3 +1,4 @@
+#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/MapObj/BreakableCage.hpp"
 #include "Game/MapObj/PowerStar.hpp"
 

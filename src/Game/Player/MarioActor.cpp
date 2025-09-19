@@ -3,6 +3,7 @@
 #include "Game/Enemy/KariKariDirector.hpp"
 #include "Game/Gravity.hpp"
 #include "Game/LiveActor/Binder.hpp"
+#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/Map/CollisionParts.hpp"
 #include "Game/Map/HitInfo.hpp"
 #include "Game/Map/WaterInfo.hpp"

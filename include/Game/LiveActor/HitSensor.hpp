@@ -1,7 +1,6 @@
 #pragma once
 
 #include "JSystem/JGeometry/TVec.hpp"
-#include "Game/LiveActor/SensorHitChecker.hpp"
 #include <revolution.h>
 
 class LiveActor;
