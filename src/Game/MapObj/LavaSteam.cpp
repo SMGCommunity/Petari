@@ -47,8 +47,9 @@ void LavaSteam::init(const JMapInfoIter& rIter) {
     makeActorAppeared();
 }
 
+#ifdef NON_MATCHING
 void LavaSteam::initAfterPlacement() {
-    TMtx34f mtx;
+    TRot3f mtx;
     mtx.identity();
     TVec3f vec = mRotation*PI_180;
 
@@ -56,33 +57,34 @@ void LavaSteam::initAfterPlacement() {
     f32 vecy = vec.y;
     f32 vecx = vec.x;
 
-    f32 cosz = cos(vecz);
-    f32 cosy = cos(vecy);
-    f32 cosx = cos(vecx);
-    f32 siny = sin(vecy);
-    f32 sinz = sin(vecz);
-    f32 sinx = sin(vecx); 
+    f32 v11 = cos(vecz); 
+    f32 v12 = cos(vecy);
+    f32 v13 = cos(vecx);
+    f32 v15 = sin(vecy);
+    f32 v14 = sin(vecz); 
+    f32 v16 = sin(vecx);
 
+    mtx.mMtx[0][0] = v12 * v11;
+    mtx.mMtx[2][1] = v16 * v12;
+    mtx.mMtx[1][0] = v12 * v14;
+    mtx.mMtx[1][1] = (v13 * v11) + (v16 * v15 * v14);
+    mtx.mMtx[0][1] = (v16 * v15 * v11) - (v13 * v14);
+    mtx.mMtx[0][2] = (v13 * v11 * v15) + (v16 * v14);
+    mtx.mMtx[2][0] = -v15;
+    mtx.mMtx[2][2] = v12 * v13;
+    mtx.mMtx[1][2] = (v13 * v14 * v15) - (v16 * v11);
 
-    mtx[0][0] = (cosy*cosz);
-    f32 v2 = (sinx*cosy);
-    mtx[2][1] = v2;
-    mtx[1][0] = (cosy*sinz);
-    f32 v1 = ((cosx * cosz) + ((sinx * siny) * sinz));
-    mtx[1][1] = v1;
-    f32 v0 = (((sinx * siny) * cosz) - (cosx * sinz));
-    mtx[0][1] = v0;
-    mtx[0][2] = ((cosx * cosz) * siny) + (sinx * sinz);
-    mtx[2][2] = (cosx * cosy);
-    mtx[1][2] = ((cosx * sinz) * siny) - (sinx * cosz);
-    mtx[2][0] = -siny;
-
-    _8C.set(v0, v1, v2);
+    _8C.set(mtx.mMtx[0][1], mtx.mMtx[1][1], mtx.mMtx[2][1]);
     MR::normalize(&_8C);
 }
+#endif
 
+#ifdef NON_MATCHING
 void LavaSteam::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
-
+    TVec3f stack_64;
+    TVec3f stack_58;
+    f32 stack_2C, stack_54;
+    
     if (!isNerve(&NrvLavaSteam::HostTypeWait::sInstance) && !isNerve(&NrvLavaSteam::HostTypeWaitForSwitchOn::sInstance)) {
         if (MR::isSensorPlayerOrRide(pReceiver)) {
             f32 rad = pReceiver->mRadius;
@@ -91,26 +93,26 @@ void LavaSteam::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
             if (isNerve(&NrvLavaSteam::HostTypeSteam::sInstance)) {
                 TVec3f stack_30 =_8C*400.0f;
                 TVec3f stack_3C = TVec3f(mPosition);
-            
+                
                 JMathInlineVEC::PSVECAdd2(&stack_3C, &stack_30, &stack_3C);
                 
                 TVec3f stack_48;
                 stack_48.set(stack_3C);
-                stack_48.z = 70.0f;
+
+                stack_54 = 70.0;
+
                 TVec3f stack_20;
                 stack_20.set(pReceiver->mPosition);
-
+                
                 f32 dist = JMathInlineVEC::PSVECSquareDistance((Vec*)&stack_48, (Vec*)&stack_20);
-                f32 s = (stack_48.z+f31);
-                stack_48.z= f31;
-
+                f32 s = (stack_54+f31);
+                stack_2C = f31;
+                
                 if ((dist <= s*s) & 3 && MR::sendMsgEnemyAttackFire(pReceiver, pSender))
                     return;
             }
         
             if (isNerve(&NrvLavaSteam::HostTypeSteam::sInstance)) {
-                TVec3f stack_64;
-                TVec3f stack_58;
                 TVec3f stack_14 = _8C*330.0f;
 
                 stack_58.set(mPosition);
@@ -131,6 +133,7 @@ void LavaSteam::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
         }
     }
 }
+#endif
 
 void LavaSteam::startClipped() {
     LiveActor::startClipped();
@@ -148,6 +151,7 @@ void LavaSteam::startSteam() {
     setNerve(&NrvLavaSteam::HostTypeSteam::sInstance);
 }
 
+#ifdef NON_MATCHING
 void LavaSteam::exeWait() {
     if (MR::isFirstStep(this)) {
         MR::invalidateHitSensors(this);
@@ -168,6 +172,7 @@ void LavaSteam::exeWait() {
     if (MR::isStep(this, 120))
         setNerve(&NrvLavaSteam::HostTypeSteam::sInstance);
 }
+#endif
 
 void LavaSteam::exeSteam() {
     if (MR::isFirstStep(this)) {
@@ -190,7 +195,7 @@ namespace NrvLavaSteam {
     void HostTypeSteamEnd::execute(Spine* pSpine) const {
         LavaSteam* pActor = (LavaSteam*)pSpine->mExecutor;
 
-        if (MR::isStep(pActor, 0x5A))
+        if (MR::isStep(pActor, 90))
             pActor->setNerve(&NrvLavaSteam::HostTypeWait::sInstance);
     }
 
