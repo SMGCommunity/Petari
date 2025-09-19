@@ -348,7 +348,7 @@ namespace MR {
     }
 
     bool isSensorRide(const HitSensor* pSensor) {
-        if (pSensor->mSensorType > 0x8 && pSensor->mSensorType < 0x12) {
+        if (pSensor->mType > 0x8 && pSensor->mType < 0x12) {
             return true;
         }
 
@@ -360,7 +360,7 @@ namespace MR {
     }
 
     bool isSensorEnemy(const HitSensor* pSensor) {
-        if (pSensor->mSensorType > 0x13 && pSensor->mSensorType < 0x44) {
+        if (pSensor->mType > 0x13 && pSensor->mType < 0x44) {
             return true;
         }
 
@@ -372,7 +372,7 @@ namespace MR {
     }
 
     bool isSensorNpc(const HitSensor* pSensor) {
-        if (pSensor->mSensorType > 0x4 && pSensor->mSensorType < 0x6) {
+        if (pSensor->mType > 0x4 && pSensor->mType < 0x6) {
             return true;
         }
 
@@ -380,7 +380,7 @@ namespace MR {
     }
 
     bool isSensorMapObj(const HitSensor* pSensor) {
-        if (pSensor->mSensorType > 0x45 && pSensor->mSensorType < 0x5F) {
+        if (pSensor->mType > 0x45 && pSensor->mType < 0x5F) {
             return true;
         }
 
@@ -388,7 +388,7 @@ namespace MR {
     }
 
     bool isSensorAutoRush(const HitSensor* pSensor) {
-        if (pSensor->mSensorType > 0x60 && pSensor->mSensorType < 0x6E) {
+        if (pSensor->mType > 0x60 && pSensor->mType < 0x6E) {
             return true;
         }
 
@@ -396,7 +396,7 @@ namespace MR {
     }
 
     bool isSensorRush(const HitSensor* pSensor) {
-        if (pSensor->mSensorType > 0x6F && pSensor->mSensorType < 0x74) {
+        if (pSensor->mType > 0x6F && pSensor->mType < 0x74) {
             return true;
         }
 
@@ -404,7 +404,7 @@ namespace MR {
     }
 
     bool isSensorPressObj(const HitSensor* pSensor) {
-        if (pSensor->mSensorType > 0x75 && pSensor->mSensorType < 0x77) {
+        if (pSensor->mType > 0x75 && pSensor->mType < 0x77) {
             return true;
         }
 

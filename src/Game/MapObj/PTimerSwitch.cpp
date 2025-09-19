@@ -80,7 +80,7 @@ bool PTimerSwitch::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor
 		return false;
 	}
 
-	if (pReceiver->mSensorType != 0x4f) {
+	if (pReceiver->mType != 0x4f) {
 		return false;
 	}
 

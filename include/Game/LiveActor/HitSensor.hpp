@@ -21,7 +21,7 @@ public:
     void invalidateBySystem();
     void addHitSensor(HitSensor *);
 
-    u32 mSensorType; // 0x0
+    u32 mType; // 0x0
     TVec3f mPosition; // 0x4
     f32 mRadius; // 0x10
     u16 mSensorCount; // 0x14
