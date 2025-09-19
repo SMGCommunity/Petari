@@ -95,9 +95,9 @@ namespace MR {
     bool isSensorItem(const HitSensor* pSensor);
     bool tryGetItem(HitSensor* pSender, HitSensor* pReceiver);
     const TVec3f& getSensorPos(const HitSensor* pSensor);
-    void calcSensorDirection(TVec3f* pDir, const HitSensor* pSender, const HitSensor* pReceiver);
-    void calcSensorDirectionNormalize(TVec3f* pDir, const HitSensor* pSender, const HitSensor* pReceiver);
-    void calcSensorHorizonNormalize(TVec3f* pHorizon, const TVec3f& rGravity, const HitSensor* pSender, const HitSensor* pReceiver);
+    void calcSensorDirection(TVec3f* pDir, const HitSensor* pSensor1, const HitSensor* pSensor2);
+    void calcSensorDirectionNormalize(TVec3f* pDir, const HitSensor* pSensor1, const HitSensor* pSensor2);
+    void calcSensorHorizonNormalize(TVec3f* pHorizon, const TVec3f& rGravity, const HitSensor* pSensor1, const HitSensor* pSensor2);
     HitSensor* getMessageSensor();
     bool sendArbitraryMsg(u32 msg, HitSensor* pReceiver, HitSensor* pSender);
     bool sendMsgPush(HitSensor* pReceiver, HitSensor* pSender);
@@ -143,7 +143,7 @@ namespace MR {
     bool sendMsgStartDemo(LiveActor* pActor);
     bool sendMsgToEnemyAttackBlow(HitSensor* pReceiver, HitSensor* pSender);
     bool sendMsgToEnemyAttackTrample(HitSensor* pReceiver, HitSensor* pSender);
-    bool sendMsgToEnemyAttackBlowOrTrample(HitSensor* pReceiver, HitSensor* pSender, f32 param3);
+    bool sendMsgToEnemyAttackBlowOrTrample(HitSensor* pReceiver, HitSensor* pSender, f32 ratio);
     bool sendMsgToEnemyAttackShockWave(HitSensor* pReceiver, HitSensor* pSender);
     void sendMsgToAllLiveActor(u32 msg, LiveActor* pActor);
     void sendMsgToGroupMember(u32 msg, LiveActor* pActor, HitSensor* pSensor, const char* pName);
@@ -209,7 +209,7 @@ namespace MR {
     bool isMsgStarPieceReflect(u32 msg);
     bool isMsgStarPieceGift(u32 msg);
     s32 getNumStarPieceGift(u32 msg);
-    void calcPosBetweenSensors(TVec3f* pPos, const HitSensor* pSensor1, const HitSensor* pSensor2, f32 param4);
+    void calcPosBetweenSensors(TVec3f* pPos, const HitSensor* pSensor1, const HitSensor* pSensor2, f32 offset);
     bool tryForceKillIfMsgStartPowerStarGet(LiveActor* pActor, u32 msg);
     HitSensor* addBodyMessageSensor(LiveActor* pActor, u32 type);
 };
