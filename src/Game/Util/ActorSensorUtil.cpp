@@ -215,7 +215,7 @@ namespace MR {
         return pActor->mSensorKeeper->add("body",(u32)0x14,(u16)0,0.0f,pActor,zerovec);
     }
 
-    HitSensor* addBodyMessageSensorReceiver(LiveActor *pActor, const char *pSensorName){
+    HitSensor* addMessageSensorReceiver(LiveActor *pActor, const char *pSensorName){
         TVec3f zerovec = TVec3f(0.0f,0.0f,0.0f);
         return pActor->mSensorKeeper->add(pSensorName,(u32)0x84,(u16)0,0.0f,pActor,zerovec);
     }
@@ -243,7 +243,7 @@ namespace MR {
         return 0;
     }
 
-    void UpdateHitSensorsAll(LiveActor *pActor){
+    void updateHitSensorsAll(LiveActor *pActor){
         pActor->mSensorKeeper->update();
     }
 
@@ -287,7 +287,7 @@ namespace MR {
             pSensor2->mActor->mSensorKeeper->mTaken = nullptr;
         }else{
             pSensor1->mActor->mSensorKeeper->mTaken = nullptr;
-            pSensor2->mActor->mSensorKeeper->mTaken = nullptr;
+            pSensor2->mActor->mSensorKeeper->mTaking = nullptr;
         }
     }
 
@@ -432,8 +432,8 @@ namespace MR {
         return pReceiver->receiveMessage(0x87, pSender);
     }
 
-    TVec3f* getSensorPos(const HitSensor *pSensor) {
-        return (TVec3f*)&pSensor->mPosition;
+    const TVec3f& getSensorPos(const HitSensor *pSensor) {
+        return pSensor->mPosition;
     }
 
    void calcSensorDirection(TVec3f *result, const HitSensor *pSensor1, const HitSensor *pSensor2){
@@ -609,7 +609,10 @@ namespace MR {
     }
 
     bool sendSimpleMsgToActor(u32 msg, LiveActor *pActor){
-        return pActor->receiveMessage(msg, getMessageSensor(), getMessageSensor());
+        HitSensor* pSensor1 = getMessageSensor();
+        HitSensor* pSensor2 = getMessageSensor();
+
+        return pActor->receiveMessage(msg, pSensor2, pSensor1);
     }
 
     bool sendMsgToBindedSensor(u32 msg, LiveActor *pActor, HitSensor *pSender){
@@ -643,6 +646,8 @@ namespace MR {
         if(!MR::isBindedGround(pSender->mActor)){
             return false;
         }
+
+        // FIXME: getGroundSensor should not be inlined.
         return MR::getGroundSensor(pSender->mActor)->receiveMessage(msg,pSender);
     }
 
@@ -650,11 +655,12 @@ namespace MR {
         if(!MR::isBindedWall(pSender->mActor)){
             return false;
         }
+
+        // FIXME: getWallSensor should not be inlined.
         return MR::getWallSensor(pSender->mActor)->receiveMessage(msg,pSender);
     }
 
     bool sendMsgStartDemo(LiveActor *pActor){
-        // this function is getting inlined here where it shouldn't be
         return sendSimpleMsgToActor(0x6f,pActor);
     }
 
@@ -686,7 +692,7 @@ namespace MR {
         for(int i = 0; i < Grp->getObjectCount(); i++){
             LiveActor* GrpActor = Grp->getActor(i);
             if(!MR::isDead(GrpActor) && GrpActor != pActor){
-                sendSimpleMsgToActor(msg,GrpActor);
+                GrpActor->receiveMessage(msg, getMessageSensor(), getMessageSensor());
             }
         }
     }
@@ -963,10 +969,10 @@ namespace MR {
         return  msg >= 0xf && msg <= 0x19;
     }
     
-    u32 getNumStarPieceGift(u32 num){
+    s32 getNumStarPieceGift(u32 num){
         return num - 14;
     }
-    // one float regswap away from matching, probably an inline of some sort
+
     void calcPosBetweenSensors(TVec3f *pVec, const HitSensor *pSensor1, const HitSensor *pSensor2, f32 flt){
         TVec3f posDifference = pSensor2->mPosition;
         JMathInlineVEC::PSVECSubtract(&posDifference,&pSensor1->mPosition,&posDifference);
@@ -974,8 +980,7 @@ namespace MR {
         f32 x = PSVECDistance(&pSensor1->mPosition,&pSensor2->mPosition);
         f32 ya = pSensor2->mRadius;
         f32 yb = pSensor1->mRadius;
-        f32 dist = yb + ya -x;
-        dist *= 0.5f;
+        f32 dist = (yb + ya - x) / 2.0f;
         pVec->set<f32>(posDifference);
         pVec->x *= dist + pSensor1->mRadius + flt;
         pVec->y *= dist + pSensor1->mRadius + flt;
@@ -994,8 +999,8 @@ namespace MR {
         return false;
     }
 
-    void addBodyMessageSensor(LiveActor *pActor, u32 sensorType){
+    HitSensor* addBodyMessageSensor(LiveActor *pActor, u32 sensorType){
         TVec3f zero = TVec3f(0.0f,0.0f,0.0f);
-        pActor->mSensorKeeper->add("body",sensorType,0,0.0f,pActor,zero);
+        return pActor->mSensorKeeper->add("body",sensorType,0,0.0f,pActor,zero);
     }
 };

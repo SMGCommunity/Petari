@@ -265,15 +265,15 @@ void BombTeresa::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
 }
 
 bool BombTeresa::receiveMsgPush(HitSensor* pSender, HitSensor* pReceiver) {
-    if (!MR::isSensorEnemy(pSender)) return false;
-        if (MR::isSensorEnemy(pReceiver)) {
-            TVec3f* sensorPos1 = MR::getSensorPos(pReceiver);
-            TVec3f* sensorPos2 = MR::getSensorPos(pSender);
-            if (MR::normalizeOrZero(&(*sensorPos2 - *sensorPos1))) {
-                MR::getRandomVector(sensorPos2, 1.0);
-                MR::normalizeOrZero(sensorPos2);
+    if (!MR::isSensorEnemy(pReceiver)) return false;
+        if (MR::isSensorEnemy(pSender)) {
+            TVec3f deltaPos = MR::getSensorPos(pReceiver) - MR::getSensorPos(pSender);
+
+            if (MR::normalizeOrZero(&deltaPos)) {
+                MR::getRandomVector(&deltaPos, 1.0);
+                MR::normalizeOrZero(&deltaPos);
             }
-            TVec3f v8(*sensorPos2);
+            TVec3f v8(deltaPos);
             v8.x *= 3.0f;
             v8.y *= 3.0f;
             v8.z *= 3.0f;
