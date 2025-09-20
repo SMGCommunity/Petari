@@ -195,6 +195,7 @@ namespace MR {
 
     bool tryStartBckAndBtp(const LiveActor *, const char *, const char *);
     void setAllAnimFrame(const LiveActor*, const char*, f32);
+    void setAllAnimFrameAndStop(const LiveActor *, const char *, f32);
     void setAllAnimFrameAtEnd(const LiveActor*, const char*);
 
     void startBck(const LiveActor*, const char*, const char*);

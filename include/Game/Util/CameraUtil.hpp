@@ -2,6 +2,7 @@
 
 #include <revolution.h>
 #include "JSystem/JGeometry.hpp"
+#include "JSystem/JGeometry/TVec.hpp"
 
 class LiveActor;
 class ActorCameraInfo;
@@ -70,6 +71,8 @@ namespace MR {
 
     void pauseOnAnimCamera(const ActorCameraInfo *, const char *);
     void pauseOffAnimCamera(const ActorCameraInfo *, const char *);
+
+    void startBlackHoleCamera(const char *, const TVec3f &, const TVec3f &);
 
     bool createActorCameraInfoIfExist(const JMapInfoIter &, ActorCameraInfo **);
     void endActorCamera(const LiveActor *, const ActorCameraInfo *, bool, s32);
