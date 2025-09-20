@@ -71,11 +71,11 @@ void CaptureScreenDirector::invalidateCaptureTiming(const char* pName) {
 }
 
 const ResTIMG* CaptureScreenDirector::getResTIMG() const {
-    return mTexture->_20;
+    return mTexture->mTIMG;
 }
 
-const ResTIMG* CaptureScreenDirector::getTexImage() const {
-    return mTexture->_24;
+const u8* CaptureScreenDirector::getTexImage() const {
+    return mTexture->mImage;
 }
 
 const TimingInfo* CaptureScreenDirector::getUsingTiming() const {
