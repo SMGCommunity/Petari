@@ -1,31 +1,31 @@
 #pragma once
 
-#include "JSystem/JGeometry/TVec.hpp"
-#include <revolution.h>
+#include <JSystem/JGeometry/TVec.hpp>
+#include <revolution/types.h>
 
 class CaptureScreenDirector;
 class PlayTimerScene;
 class StarCounter;
 class StarPieceCounter;
-class ResTIMG;
+struct ResTIMG;
 
 namespace {
-    CaptureScreenDirector* getCaptureScreenDirector();
-    PlayTimerScene* getPlayTimerScene();
+    CaptureScreenDirector* getCaptureScreenDirector() NO_INLINE;
+    PlayTimerScene* getPlayTimerScene() NO_INLINE;
     void appearInformationMessage(bool, bool);
-    StarCounter* getStarCounter();
-    StarPieceCounter* getStarPieceCounter();
+    StarCounter* getStarCounter() NO_INLINE;
+    StarPieceCounter* getStarPieceCounter() NO_INLINE;
 };
 
 namespace MR {
-    u16 getViWidth();
+    u32 getViWidth();
     f32 getSafetyVIScreenWidthRatio();
-    u16 getScreenWidth();
-    u16 getSafetyFrameWidth();
-    u16 getSafetyFrameLeft();
-    u16 getSafetyFrameRight();
-    u16 getFrameBufferWidth();
-    u16 getFrameBufferHeight();
+    s32 getScreenWidth();
+    s32 getSafetyFrameWidth();
+    s32 getSafetyFrameLeft();
+    s32 getSafetyFrameRight();
+    s32 getFrameBufferWidth();
+    s32 getFrameBufferHeight();
     void convertFrameBufferPosToScreenPos(TVec2f*, const TVec2f&);
     void convertScreenPosToFrameBufferPos(TVec2f*, const TVec2f&);
     void startToCaptureScreen(const char*);

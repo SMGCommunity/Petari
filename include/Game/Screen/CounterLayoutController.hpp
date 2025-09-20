@@ -36,7 +36,6 @@ public:
     void exePlayerMoving();
     void exePlayerNotMoving();
 
-private:
     /* 0x20 */ s32 mPlayerNotMovingFrame;
     /* 0x24 */ bool _24;
     /* 0x28 */ CoinCounter* mCoinCounter;
