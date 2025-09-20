@@ -271,7 +271,13 @@ void LiveActor::initHitSensor(int numSensors) {
     mSensorKeeper = new HitSensorKeeper(numSensors);
 }
 
-// LiveActor::initBinder
+void LiveActor::initBinder(f32 a, f32 b, u32 c) {
+    mBinder = new Binder(getBaseMtx(), &mPosition, &mGravity, a, b, c);
+    MR::onBind(this);
+    if (mEffectKeeper) {
+        mEffectKeeper->setBinder(mBinder);
+    }
+}
 
 void LiveActor::initRailRider(const JMapInfoIter &rIter) {
     mRailRider = new RailRider(rIter);

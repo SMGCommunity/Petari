@@ -15,7 +15,7 @@ public:
 
     void init(LiveActor *);
     void initAfterPlacementForAttributeEffect(MtxPtr);
-    void setBinder(Binder *);
+    void setBinder(const Binder*);
     void addEffect(const char *, LiveActor *);
     void registerEffect(const char *, const TVec3f *, const TVec3f *, const TVec3f *, const char *);
     void registerEffect(const char *, MtxPtr, const char *, const char *);
