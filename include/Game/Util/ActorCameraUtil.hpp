@@ -4,6 +4,7 @@
 #include "Game/LiveActor/ActorCameraInfo.hpp"
 #include "Game/Util/ActorSwitchUtil.hpp"
 #include "Game/Util/JMapInfo.hpp"
+#include "JSystem/JGeometry.hpp"
 
 #include <revolution.h>
 
@@ -43,6 +44,7 @@ namespace MR {
 
     void startActorCameraProgrammable(const LiveActor *, s32);
 
+    bool endActorCamera(const LiveActor *, const ActorCameraInfo *, bool, s32);
     bool endMultiActorCamera(const LiveActor *, const ActorCameraInfo *, const char *, bool, s32);
 
     bool endActorCameraAtLanding(const LiveActor *, const ActorCameraInfo *, s32);
