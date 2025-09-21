@@ -38,11 +38,11 @@ void WPadPointer::reset() {
     }
 
     _34 = 0;
-    _30 = 0.0f;
+    mDistDisplay = 0.0f;
     _38 = 0;
     mEnablePastCount = 0;
     _2C = 0;
-    _44 = 0; 
+    mIsPointInScreen = false; 
     _45 = 0;
     KPADSetPosParam(mPad->mChannel, mPosPlayRadius, mPosSensitivity);
     KPADSetHoriParam(mPad->mChannel, mHoriPlayRadius, mHoriSensitivity);
@@ -88,7 +88,7 @@ void WPadPointer::setSensorBarLevel(f32 lvl) {
 
 
 void WPadPointer::getPointingPos(TVec2f* pOut) const {
-    if (_44 != 0) {
+    if (mIsPointInScreen != 0) {
         pOut->set(mPointingPosArray[mEnablePastCount - 1]);
     }
     else {
@@ -98,7 +98,7 @@ void WPadPointer::getPointingPos(TVec2f* pOut) const {
 }
 
 void WPadPointer::getHorizonVec(TVec2f* pOut) const {
-    if (_44 != 0) {
+    if (mIsPointInScreen != 0) {
         pOut->set(mHorizonArray[mEnablePastCount - 1]);
     }
     else {

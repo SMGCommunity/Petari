@@ -24,7 +24,7 @@ void WPadInfoChecker::reset() {
 }
 
 void WPadInfoChecker::update() {
-    if (mPad->_35) {
+    if (mPad->mIsConnected) {
         if (_1C <= 0) {
             startCheck();
         }

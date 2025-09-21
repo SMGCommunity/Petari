@@ -1,4 +1,5 @@
 #include "Game/Enemy/Jiraira.hpp"
+#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/Map/CollisionParts.hpp"
 
 Jiraira::Jiraira(const char *pName) : LiveActor(pName) {

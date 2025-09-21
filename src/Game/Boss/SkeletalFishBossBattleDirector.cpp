@@ -1,5 +1,6 @@
 #include "Game/Boss/SkeletalFishBossBattleDirector.hpp"
 #include "Game/Boss/SkeletalFishBoss.hpp"
+#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/LiveActorGroup.hpp"
 #include "Game/MapObj/SubmarineVolcanoBigColumn.hpp"
 #include "Game/Map/CollisionParts.hpp"

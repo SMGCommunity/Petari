@@ -1,3 +1,4 @@
+#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/MapObj/BallRail.hpp"
 #include <JSystem/JMath/JMath.hpp>
 

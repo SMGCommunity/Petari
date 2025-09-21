@@ -10,6 +10,8 @@ public:
     void setParam(f32, f32, f32, f32, f32);
     void update();
 
+    void reset();
+
     f32 _0;
     f32 _4;
     f32 _8;

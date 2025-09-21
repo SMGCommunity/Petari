@@ -17,6 +17,7 @@ public:
 
     void setHoming();
     bool isAnimationStop() const;
+    bool isDefaultAnimationRun(const char *) const;
     void setSpeed(f32);
     void forceSetBlendWeight(const f32 *);
     void waterToGround();
@@ -25,7 +26,10 @@ public:
     void changeDefault(const char *);
     void changeUpper(const char *);
     void changeDefaultUpper(const char *);
+    void stopUpper(const char *);
+    void setUpperRotateY(f32);
     void entryCallback(const char *);
+    f32 getFrame() const;
 
     inline void f1(const char *name)
     {

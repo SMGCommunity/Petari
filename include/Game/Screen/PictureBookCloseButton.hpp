@@ -2,7 +2,7 @@
 
 #include "Game/Screen/LayoutActor.hpp"
 
-class PictureBookCloseButton : LayoutActor {
+class PictureBookCloseButton : public LayoutActor {
 public:
     /// @brief Creates a new `PictureBookCloseButton`.
     PictureBookCloseButton(bool);

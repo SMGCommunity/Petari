@@ -1,3 +1,4 @@
+#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/MapObj/MapParts.hpp"
 #include "JSystem/JMath/JMath.hpp"
 #include "math_types.hpp"

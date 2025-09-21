@@ -1,3 +1,4 @@
+#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/MapObj/BenefitItemObj.hpp"
 #include "JSystem/JGeometry/TUtil.hpp"
 

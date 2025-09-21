@@ -3,7 +3,7 @@
 #include "Game/LiveActor/SensorHitChecker.hpp"
 
 HitSensor::HitSensor(u32 type, u16 sensorGroupSize, f32 radius, LiveActor *pActor) {
-    mSensorType = type;
+    mType = type;
     mPosition.x = 0.0f;
     mPosition.y = 0.0f;
     mPosition.z = 0.0f;
@@ -34,7 +34,7 @@ bool HitSensor::receiveMessage(u32 msg, HitSensor *pReceiver) {
 void HitSensor::setType(u32 type) {
     bool wasRemoved = false;
 
-    mSensorType = type;
+    mType = type;
 
     if (mValidBySystem) {
         if (mGroupSize) {
@@ -55,9 +55,8 @@ void HitSensor::setType(u32 type) {
 }
 
 bool HitSensor::isType(u32 type) const {
-    return !(type - mSensorType);
+    return mType == type;
 }
-
 
 void HitSensor::validate() {
     if (mValidByHost) {

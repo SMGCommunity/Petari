@@ -303,7 +303,7 @@ bool CubeGravity::calcEdgeGravity(const TVec3f &rPosition, s32 area, TVec3f *pDe
 
     MR::normalizeOrZero(&edgeVector);
 
-    positionOppositeInOrthogonalPlane.rejection(edgeTranslation - rPosition, edgeVector);
+    positionOppositeInOrthogonalPlane.rejection((edgeTranslation - rPosition), edgeVector);
 
     if (positionOppositeInOrthogonalPlane.isZero()) {
         pDest->normalize(edgeTranslation - trans);
@@ -379,4 +379,3 @@ bool CubeGravity::calcCornerGravity(const TVec3f &rPosition, s32 area, TVec3f *p
 
     return true;
 }
-

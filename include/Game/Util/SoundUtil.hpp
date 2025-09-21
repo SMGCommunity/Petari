@@ -4,6 +4,7 @@
 
 class AudSoundObject;
 class LiveActor;
+class JAISoundID;
 
 namespace MR {
 
@@ -37,7 +38,7 @@ namespace MR {
     void startSoundObject(AudSoundObject *, const char *);
 
     void startLevelSound(const LiveActor *, const char *, s32, s32, s32);
-
+    void startLevelSound(const LiveActor *, JAISoundID, s32, s32, s32);
     void releaseSoundHandle(const LiveActor *, const char *);
 
     void setAudioEffectType(s32, s32);
@@ -96,4 +97,6 @@ namespace MR {
 
     void startSoundSeVer(const LiveActor *, const char *, s32, s32);
     void startLevelSoundSeVer(const LiveActor *, const char *, s32, s32, s32);
+
+    void setMapSondCodeGravity(const LiveActor *, s32);
 };

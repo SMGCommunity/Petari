@@ -15,5 +15,5 @@ public:
     inline void exeDemo();
 
     bool _D8;
-    TalkMessageCtrl *talk;
+    TalkMessageCtrl* mTalk;
 };

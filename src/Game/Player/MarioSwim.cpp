@@ -124,7 +124,7 @@ void Mario::startSwim()
             mSwim->_9D = 4;
             playSound("水落下突入", -1);
         }
-        else if (getPlayer()->getMovementStates()._0) {
+        else if (getPlayer()->getMovementStates().jumping) {
             mSwim->_9D = 1;
             playSound("水落下突入", -1);
         }
@@ -962,7 +962,7 @@ bool MarioSwim::update()
         MR::normalize(&stack_140);
         getPlayer()->setSideVec(stack_140);
         MR::rotAxisVecRad(_60, stack_140, &stack_14C, _5C);
-        TVec3f stack_134(getPlayer()->_1F0);
+        TVec3f stack_134(getPlayer()->mHeadVec);
         TVec3f stack_128(getFrontVec());
         TVec3f stack_11C;
         f32 something = 0.1f;
@@ -974,7 +974,7 @@ bool MarioSwim::update()
     }
     else {
         stack_14C = getFrontVec();
-        stack_140 = getPlayer()->_310;
+        stack_140 = getPlayer()->mSideVec;
     }
     spin();
     TVec3f stack_110 = getPlayer()->_1FC;

@@ -2,7 +2,7 @@
 
 #include "Game/Screen/LayoutActor.hpp"
 
-class LogoFader : LayoutActor {
+class LogoFader : public LayoutActor {
 public:
     /// @brief Creates a new `LogoFader`.
     /// @param pName The pointer to the null-terminated name of the object.

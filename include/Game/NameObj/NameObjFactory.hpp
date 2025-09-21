@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Game/MapObj/PalmIsland.hpp"
+#include "Game/MapObj/PhantomShipBridge.hpp"
 #include "revolution.h"
 #include "Game/AreaObj.hpp"
 #include "Game/Boss.hpp"
@@ -639,7 +640,7 @@ namespace {
 		{ "TeresaRoomDoor", NULL, "TeresaRoomDoor" },
 		{ "TrampleStar", NULL, "TrampleStar" },
 		{ "ReverseGravityTowerInside", NULL, "ReverseGravityTowerInside" },
-		{ "HipDropRock", NULL, "HipDropRock" },
+		{ "HipDropRock", createNameObj<HipDropRock>, "HipDropRock" },
 		{ "DropOfWaterCore", createNameObj<SimpleMapObj>, "DropOfWaterCore" },
 		{ "WatchTowerRotateStep", NULL, "WatchTowerRotateStep" },
 		{ "ForestAppearStepA", createNameObj<SimpleMapObj>, "ForestAppearStepA" },
@@ -849,10 +850,10 @@ namespace {
 		{ "MechaKoopaPartsRollerA", createNameObj<SimpleMapObj>, "MechaKoopaPartsRollerA" },
 		{ "MechaKoopaPartsMoveStepA", NULL, "MechaKoopaPartsMoveStepA" },
 		{ "MechaKoopaPartsWreckA", createNameObj<SimpleMapObj>, "MechaKoopaPartsWreckA" },
-		{ "CannonFortressBreakStepA", NULL, "CannonFortressBreakStepA" },
-		{ "CannonFortressRotateBreakStepA", NULL, "CannonFortressRotateBreakStepA" },
-		{ "CannonFortressRotateBreakStepB", NULL, "CannonFortressRotateBreakStepB" },
-		{ "CannonFortressRotateBreakStepC", NULL, "CannonFortressRotateBreakStepC" },
+		{ "CannonFortressBreakStepA", createNameObj<CannonFortressBreakStep>, "CannonFortressBreakStepA" },
+		{ "CannonFortressRotateBreakStepA", createNameObj<CannonFortressBreakStep>, "CannonFortressRotateBreakStepA" },
+		{ "CannonFortressRotateBreakStepB", createNameObj<CannonFortressBreakStep>, "CannonFortressRotateBreakStepB" },
+		{ "CannonFortressRotateBreakStepC", createNameObj<CannonFortressBreakStep>, "CannonFortressRotateBreakStepC" },
 		{ "CannonFortressMoveWall", NULL, "CannonFortressMoveWall" },
 		{ "SpaceShipStep", NULL, "SpaceShipStep" },
 		{ "QuarterRollGravityRoomArrow", NULL, "QuarterRollGravityRoomArrow" },
@@ -934,7 +935,7 @@ namespace {
 		{ "PhantomShipPropellerSmall", NULL, "PhantomShipPropellerSmall" },
 		{ "PhantomShipPropellerBig", NULL, "PhantomShipPropellerBig" },
 		{ "PhantomShipHandle", NULL, "PhantomShipHandle" },
-		{ "PhantomShipBridge", NULL, "PhantomShipBridge" },
+		{ "PhantomShipBridge", createNameObj<PhantomShipBridge>, "PhantomShipBridge" },
 		{ "TakoBarrelA", NULL, "TakoBarrelA" },
 		{ "TakoBarrelB", createNameObj<SimpleMapObj>, "TakoBarrelB" },
 		{ "KoopaRestarterVs3", NULL, 0 },
@@ -1132,7 +1133,7 @@ namespace {
 		{ "HitWallTimerSwitch", NULL, "HitWallTimerSwitch" },
 		{ "PTimerSwitch", NULL, "PTimerSwitch" },
 		{ "CrystalSwitch", createNameObj<CrystalSwitch>, "CrystalSwitch" },
-		{ "HipDropSwitch", NULL, "HipDropSwitch" },
+		{ "HipDropSwitch", createNameObj<HipDropSwitch>, "HipDropSwitch" },
 		{ "HipDropTimerSwitch", NULL, "HipDropTimerSwitch" },
 		{ "DesertLandUpSwitch", NULL, "DesertLandUpSwitch" },
 		{ "DesertLandDownSwitch", NULL, "DesertLandDownSwitch" },

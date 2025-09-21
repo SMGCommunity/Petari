@@ -1,5 +1,6 @@
 #pragma once
 
+#include "revolution/types.h"
 class JMapIdInfo;
 
 namespace MR {

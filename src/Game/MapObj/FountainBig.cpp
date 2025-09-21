@@ -1,3 +1,4 @@
+#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/MapObj/FountainBig.hpp"
 
 FountainBig::FountainBig(const char *pName) : LiveActor(pName) {

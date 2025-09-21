@@ -37,11 +37,20 @@ public:
 
     void changeCurrentAnimation(const XanimeGroupInfo *);
 
+    bool isRun(const char *) const;
+
+    bool isTerminate(const char *) const;
+    bool isTerminate() const;
+
+    char* getNameStringPointer(const char *) const;
+
+    bool isAnimationRunSimple() const;
+
     inline XanimeCore *getCore() { return mCore; }
 
     J3DModel *mModel;            // 0x0
     J3DModelData *mModelData;    // 0x4
-    u8 _8[0x5C - 8];
+    u8 _8[0x5C - 8]; // pointer at _20
     const XanimeGroupInfo *mDefaultAnimation;    // 0x5C
     const XanimeGroupInfo *mCurrentAnimation;    // 0x60
     const XanimeGroupInfo *mPrevAnimation;       // 0x64

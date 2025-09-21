@@ -52,7 +52,7 @@ public:
     bool isFirstUpdateSceneNerveNormal() const;
     void startScene();
     void updateScene();
-    void updateeSceneDuringResetProcessing();
+    void updateSceneDuringResetProcessing();
     void calcAnimScene();
     void drawScene();
     NameObjListExecutor* getNameObjListExecutor() const;

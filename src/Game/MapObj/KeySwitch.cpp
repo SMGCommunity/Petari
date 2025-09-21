@@ -207,7 +207,7 @@ bool KeySwitch::tryAvoid() {
         return false;
     }
 
-    if (sensor->mSensorType != 0x58) {
+    if (sensor->mType != 0x58) {
         return false;
     }
     

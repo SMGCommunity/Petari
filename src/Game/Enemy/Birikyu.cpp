@@ -1,4 +1,5 @@
 #include "Game/Enemy/Birikyu.hpp"
+#include "Game/LiveActor/HitSensor.hpp"
 #include "math_types.hpp"
 
 Birikyu::Birikyu(const char *pName) : LiveActor(pName), _8C(nullptr), _90(gZeroVec), _9C(gZeroVec) { 

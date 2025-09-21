@@ -1,3 +1,4 @@
+#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/MapObj/LavaSteam.hpp"
 
 LavaSteam::LavaSteam(const char* pName) : LiveActor(pName) {

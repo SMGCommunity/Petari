@@ -1,4 +1,5 @@
 #include "Game/Enemy/Poihana.hpp"
+#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/Util.hpp"
 #include "JSystem/JMath/JMath.hpp"
 
@@ -25,6 +26,8 @@ Poihana::Poihana(const char *pName) : LiveActor(pName) {
 	mIsActive = false;
 	_E5 = 0;
 }
+
+Poihana::~Poihana() { }
 
 /*void Poihana::init(const JMapInfoIter &rIter) {
 	MR::initDefaultPos(this, rIter);

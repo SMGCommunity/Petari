@@ -12,7 +12,7 @@ public:
     const TPos3f *getViewMtx() const;
     const TPos3f *getInvViewMtx() const;
     f32 getAspect() const;
-    //setViewMtx(const TPos3f &, bool, bool, const TVec3f &);
+    void setViewMtx(const TPos3f &, bool, bool, const TVec3f &);
     void setNearZ(f32);
     void setFovy(f32);
     void setShakeOffset(f32, f32);
@@ -31,4 +31,8 @@ public:
     f32 mFovy;              // 0xB8
     f32 mShakeOffsetX;      // 0xBC
     f32 mShakeOffsetY;      // 0xC0
+};
+
+namespace MR {
+    u16 getScreenHeight();
 };

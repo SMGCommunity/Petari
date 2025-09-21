@@ -14,6 +14,8 @@ public:
     void updateRhythm();
     void movement();
 
+    bool isLoadDoneWaveDataAtSystemInit() const;
+
     u32 _0;
     JKRHeap* _4;
     u32 _8;

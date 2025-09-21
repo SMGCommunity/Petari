@@ -21,7 +21,6 @@ public:
     void setSelectMessage(const char*, const char*);
     void exeSelecting();
 
-private:
     /* 0x20 */ YesNoController* mController;
     /* 0x24 */ bool _24;
 };

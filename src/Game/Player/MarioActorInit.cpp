@@ -16,10 +16,7 @@ void MarioActor::initMember()
     _1A8 = 0;
     _1AA = 0;
     _1AC = 10.0f;
-    _1B0.r = 0;
-    _1B0.g = 0;
-    _1B0.b = 0;
-    _1B0.a = 0;
+    _1B0.set(0, 0, 0, 0);
     _1B4 = 0;
     _1B5 = 0;
     _1B8 = 0;
@@ -102,7 +99,7 @@ void MarioActor::initMember()
     _378 = 0;
     _37C = 0;
     mHealth = 0;
-    _384 = 0;
+    mWaterLife = 0;
     _388 = 0;
     _38C = 0;
     _390 = 0;
@@ -122,7 +119,7 @@ void MarioActor::initMember()
     _3C4.zero();
     _3D0 = 0;
     _3D2 = 0;
-    _3D4 = 0;
+    mPlayerMode = 0;
     _3D6 = 0;
     _3D8 = 0;
     _3DA = 0;
@@ -142,10 +139,10 @@ void MarioActor::initMember()
         _428[i] = 0;
     }
 
-    _468f.zero();
-    _468f.x = 0;
-    _468f.y = 0;
-    _468f.z = 0;
+    _468.zero();
+    _468.x = 0;
+    _468.y = 0;
+    _468.z = 0;
     _474 = 0;
     _478 = 10.0f;
     _47C = 0;
@@ -173,7 +170,7 @@ void MarioActor::initMember()
     _6D4 = 10.0f;
     _6D8 = 10.0f;
     for (int i = 0; i < 0x40; i++) {
-        _6DC[i] = 0;
+        _6DC[i] = nullptr;
     }
     _7DC = 0;
     _7DE = 0;
@@ -336,7 +333,7 @@ void MarioActor::initMember()
     PSMTXIdentity(_E0C.toMtxPtr());
     PSMTXIdentity(_E3C.toMtxPtr());
     PSMTXIdentity(_E6C.toMtxPtr());
-    _E9C = 0;
+    mBlendMtxTimer = 0;
     _EA0 = 10.0f;
     _EA4 = 0;
     _EA5 = 0;
@@ -387,10 +384,10 @@ void MarioActor::initMember()
     _F5C.zero();
     _F68.zero();
     _F74 = 0;
-    _F78.zero();
-    _F84.zero();
-    _F90.zero();
-    _F9C.zero();
+    mCamPos.zero();
+    mCamDirX.zero();
+    mCamDirY.zero();
+    mCamDirZ.zero();
     _FA8.zero();
     _FB4 = 0;
     _FB8 = 0;

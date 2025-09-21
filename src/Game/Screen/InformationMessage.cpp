@@ -14,8 +14,8 @@ namespace NrvInformationMessage {
 
 InformationMessage::InformationMessage() :
     LayoutActor("インフォメーションメッセージ", true),
-    mAButtonIcon(NULL),
-    mIsCenterPane(false)
+    mAButtonIcon(nullptr),
+    mIsCenter(false)
 {}
 
 void InformationMessage::init(const JMapInfoIter& rIter) {
@@ -36,7 +36,7 @@ void InformationMessage::init(const JMapInfoIter& rIter) {
 }
 
 void InformationMessage::appear() {
-    if (mIsCenterPane) {
+    if (mIsCenter) {
         MR::hidePaneRecursive(this, "InfoWindowUp");
         MR::showPaneRecursive(this, "InfoWindowCenter");
     }
@@ -47,14 +47,14 @@ void InformationMessage::appear() {
 
     MR::startAnim(this, "Appear", 0);
     MR::startAnim(this, "Line", 1);
-    MR::setAnimFrameAndStopAdjustTextHeight(this, mIsCenterPane ? "InfConfirmC" : "InfConfirmU", 1);
+    MR::setAnimFrameAndStopAdjustTextHeight(this, mIsCenter ? "InfConfirmC" : "InfConfirmU", 1);
     setNerve(&NrvInformationMessage::InformationMessageNrvAppear::sInstance);
     LayoutActor::appear();
 }
 
 void InformationMessage::appearWithButtonLayout() {
     appear();
-    mAButtonIcon->setFollowActorPane(this, mIsCenterPane ? "AButtonPosC" : "AButtonPosU");
+    mAButtonIcon->setFollowActorPane(this, mIsCenter ? "AButtonPosC" : "AButtonPosU");
     mAButtonIcon->openWithoutMessage();
     MR::requestMovementOn(mAButtonIcon);
 }
@@ -63,16 +63,16 @@ void InformationMessage::disappear() {
     setNerve(&NrvInformationMessage::InformationMessageNrvDisappear::sInstance);
 }
 
-void InformationMessage::setMessage(const char* pMessage) {
-    MR::setTextBoxGameMessageRecursive(this, NULL, pMessage);
+void InformationMessage::setMessage(const char* pMessageId) {
+    MR::setTextBoxGameMessageRecursive(this, nullptr, pMessageId);
 }
 
 void InformationMessage::setMessage(const wchar_t* pMessage) {
-    MR::setTextBoxMessageRecursive(this, NULL, pMessage);
+    MR::setTextBoxMessageRecursive(this, nullptr, pMessage);
 }
 
 void InformationMessage::setReplaceString(const wchar_t* pMessage, s32 param2) {
-    MR::setTextBoxArgStringRecursive(this, NULL, pMessage, param2);
+    MR::setTextBoxArgStringRecursive(this, nullptr, pMessage, param2);
 }
 
 void InformationMessage::exeAppear() {
@@ -93,8 +93,4 @@ void InformationMessage::exeDisappear() {
     }
 
     MR::killAtAnimStopped(this, 0);
-}
-
-InformationMessage::~InformationMessage() {
-    
 }

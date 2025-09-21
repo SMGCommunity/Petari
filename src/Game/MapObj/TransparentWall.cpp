@@ -1,3 +1,4 @@
+#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/MapObj/TransparentWall.hpp"
 #include "Game/MapObj/InvisiblePolygonObj.hpp"
 #include "Game/Util/JMapInfo.hpp"

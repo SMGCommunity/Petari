@@ -1,5 +1,6 @@
-#include "Game/MapObj/MarblePlanet.hpp"
+#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
+#include "Game/MapObj/MarblePlanet.hpp"
 #include "JSystem/JMath.hpp"
 
 MarblePlanet::MarblePlanet(const char *pName) : LiveActor(pName) {

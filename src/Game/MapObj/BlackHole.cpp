@@ -1,5 +1,6 @@
-#include "Game/MapObj/BlackHole.hpp"
+#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
+#include "Game/MapObj/BlackHole.hpp"
 #include "Game/Util.hpp"
 
 // BlackHole::BlackHole

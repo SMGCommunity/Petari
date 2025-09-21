@@ -1,5 +1,6 @@
 #include "Game/Enemy/IceMerameraKing.hpp"
 #include "Game/Enemy/Meramera.hpp"
+#include "Game/LiveActor/HitSensor.hpp"
 #include <JSystem/JMath.hpp>
 #include "math_types.hpp"
 

@@ -110,6 +110,9 @@ public:
         return end();
     }
 
+    // I believe this function should be implemented within this header,
+    // but due to a circular dependency on JMapInfoIter, I have left
+    // it in StageDataHolder.cpp (its current split) for now
     JMapInfoIter end() const;
 
     const JMapData* mData; // 0x0

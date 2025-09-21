@@ -2,7 +2,7 @@
 
 #include "Game/Screen/LayoutActor.hpp"
 
-class OneUpBoard : LayoutActor {
+class OneUpBoard : public LayoutActor {
 public:
     OneUpBoard();
 

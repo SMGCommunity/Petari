@@ -1,5 +1,6 @@
-#include "Game/MapObj/PTimerSwitch.hpp"
+#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/Map/CollisionParts.hpp"
+#include "Game/MapObj/PTimerSwitch.hpp"
 
 PTimerSwitch::PTimerSwitch(const char *pName) : LiveActor(pName) {
 	mSwitchCollision = nullptr;
@@ -80,7 +81,7 @@ bool PTimerSwitch::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor
 		return false;
 	}
 
-	if (pReceiver->mSensorType != 0x4f) {
+	if (pReceiver->mType != 0x4f) {
 		return false;
 	}
 

@@ -1,4 +1,5 @@
 #include "Game/Enemy/RingBeam.hpp"
+#include "Game/LiveActor/HitSensor.hpp"
 
 //GX function that is included as a local symbol for some reason
 extern "C"{

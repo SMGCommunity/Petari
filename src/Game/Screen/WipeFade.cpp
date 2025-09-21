@@ -28,24 +28,21 @@ void WipeFade::draw() const {
         return;
     }
 
-    f32 f1 = 0.0f;
-    f32 stepRate = mStep / mStepNum;
-
-    if (f1 <= stepRate) {
-        f1 = stepRate;
-
-        if (stepRate > 1.0f) {
-            f1 = 1.0f;
-        }
-    }
-
+    f32 stepRate = (f32)mStep / mStepNum;
+    f32 progress = (stepRate < 0f) ? 0f : (stepRate > 1f) ? 1 : stepRate;
     if (mIsWipeIn) {
-        f1 = 1.0f - f1;
+        progress = 1f - progress;
     }
 
     GXSetColorUpdate(GX_TRUE);
     GXSetBlendMode(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_NOOP);
-    MR::fillScreen(mFillColor);
+
+    GXColor fillColor;
+    fillColor.r = mFillColor.r;
+    fillColor.g = mFillColor.g;
+    fillColor.b = mFillColor.b;
+    fillColor.a = 255f * progress;
+    MR::fillScreen(fillColor);
 }
 
 void WipeFade::wipe(s32 step) {

@@ -45,7 +45,6 @@ public:
     void initPointingTarget(int);
     void updateSpine();
 
-private:
     /* 0x0C */ LayoutManager* mManager;
     /* 0x10 */ Spine* mSpine;
     /* 0x14 */ PaneEffectKeeper* mPaneEffectKeeper;
