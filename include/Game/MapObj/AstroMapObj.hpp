@@ -4,6 +4,7 @@
 #include "Game/Screen/GalaxyNamePlate.hpp"
 #include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/StringUtil.hpp"
+#include "Game/MapObj/SimpleMapObj.hpp"
 #include "revolution/types.h"
 
 class AstroMapObj : public MapObjActor {
@@ -11,25 +12,34 @@ class AstroMapObj : public MapObjActor {
     public:
         AstroMapObj(const char*);
         ~AstroMapObj();
+
         virtual void init(const JMapInfoIter&);
         virtual void control();
         virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
 
         void exeOpen();
-        void exeDead();
         void exeWait();
         void exeAlive();
         void exeRevival();
 
         void setStateAlive();
         void setStateDead();
+        void selectNrvWait();
         bool isPlayMachineSE() const;
-        bool tryStartAllAnimAndEffect(const char*);
+        void tryStartAllAnimAndEffect(const char*); // Curiously the function name starts with "try" but it doesn't return a bool
         bool isEndRevival() const;
-        void setStateDoorOpenOrClose(); // unknown return
+        bool isAlreadyOpen(const char*, s32);
+        void setStateDoorOpenOrClose();
+        void startDemo();
 
         inline bool checkStrings(const char* arg1) {
             return MR::isEqualString(arg1, "AstroDomeEntrance") || MR::isEqualString(arg1, "AstroLibrary");
+        }
+        inline bool checkOtherStrings(const char* arg1) {
+            return MR::isEqualString(arg1, "AstroRotateStepA") || MR::isEqualString(arg1, "AstroRotateStepB") || MR::isEqualString(arg1, "AstroDecoratePartsA");
+        }
+        inline bool moreInlines(const char* arg1) {
+            return MR::isEqualString(arg1, "AstroDomeEntrance") || MR::isEqualString(arg1, "AstroLibrary") || MR::isEqualString(arg1, "AstroChildRoom") || MR::isEqualString(arg1, "AstroParking");
         }
 
         // Unused?
@@ -39,7 +49,7 @@ class AstroMapObj : public MapObjActor {
         virtual void initCaseUseSwitchA(const MapObjActorInitInfo&);
 
 
-        JMapInfo* _C4;
+        const JMapInfo* _C4;
         GalaxyNamePlate* _C8;
         const char* _CC; // Uhh...
         CollisionParts* _D0;
@@ -47,12 +57,15 @@ class AstroMapObj : public MapObjActor {
         s32 _D8;
 };
 
-class AstroSimpleObj : public MapObjActor {
+class AstroSimpleObj : public SimpleMapObjFarMax {
     public:
         AstroSimpleObj(const char*);
         ~AstroSimpleObj();
 
+        virtual void init(const JMapInfoIter&);
+        virtual void control();
 
-        s32 _C4;
-        s32 _C8;
+
+        const JMapInfo* _C4;
+        GalaxyNamePlate* _C8;
 };
