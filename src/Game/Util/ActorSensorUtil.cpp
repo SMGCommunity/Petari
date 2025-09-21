@@ -1,419 +1,425 @@
-#include "Game/LiveActor/LiveActor.hpp"
-#include "Game/LiveActor/HitSensorKeeper.hpp"
-#include "Game/LiveActor/HitSensorInfo.hpp"
-#include "Game/LiveActor/Binder.hpp"
 #include "Game/LiveActor/AllLiveActorGroup.hpp"
+#include "Game/LiveActor/Binder.hpp"
+#include "Game/LiveActor/HitSensor.hpp"
+#include "Game/LiveActor/HitSensorInfo.hpp"
+#include "Game/LiveActor/HitSensorKeeper.hpp"
+#include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/LiveActorGroupArray.hpp"
-#include "Game/Util.hpp"
-#include "JSystem/JMath/JMath.hpp"
+#include "Game/LiveActor/MessageSensorHolder.hpp"
+#include "Game/Map/HitInfo.hpp"
+#include "Game/Scene/SceneObjHolder.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/EffectUtil.hpp"
+#include "Game/Util/JointUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include <JSystem/JMath/JMath.hpp>
 
 namespace MR {
-    HitSensor* addHitSensor(LiveActor *pActor, const char *pSensorName, u32 sensorType, u16 sensorGroupSize, f32 radius, const TVec3f &a6) {
-        return pActor->mSensorKeeper->add(pSensorName, sensorType, sensorGroupSize, radius, pActor, a6);
+    HitSensor* addHitSensor(LiveActor* pActor, const char* pName, u32 type, u16 groupSize, f32 radius, const TVec3f& rOffset) {
+        return pActor->mSensorKeeper->add(pName, type, groupSize, radius, pActor, rOffset);
     }
 
-    HitSensor* addHitSensorBinder(LiveActor *pActor, const char *pSensorName, u16 sensorGroupSize, f32 radius, const TVec3f &a6) {
-        return pActor->mSensorKeeper->add(pSensorName, 0x61, sensorGroupSize, radius, pActor, a6);
+    HitSensor* addHitSensorBinder(LiveActor* pActor, const char* pName, u16 groupSize, f32 radius, const TVec3f& rOffset) {
+        return addHitSensor(pActor, pName, 0x61, groupSize, radius, rOffset);
     }
 
-    HitSensor* addHitSensorTransferableBinder(LiveActor *pActor, const char *pSensorName, u16 sensorGroupSize, f32 radius, const TVec3f &a6) {
-        return pActor->mSensorKeeper->add(pSensorName, 0x62, sensorGroupSize, radius, pActor, a6);
+    HitSensor* addHitSensorTransferableBinder(LiveActor* pActor, const char* pName, u16 groupSize, f32 radius, const TVec3f& rOffset) {
+        return addHitSensor(pActor, pName, 0x62, groupSize, radius, rOffset);
     }
 
-    HitSensor* addHitSensorPriorBinder(LiveActor *pActor, const char *pSensorName, u16 sensorGroupSize, f32 radius, const TVec3f &a6) {
-        return pActor->mSensorKeeper->add(pSensorName, 0x63, sensorGroupSize, radius, pActor, a6);
+    HitSensor* addHitSensorPriorBinder(LiveActor* pActor, const char* pName, u16 groupSize, f32 radius, const TVec3f& rOffset) {
+        return addHitSensor(pActor, pName, 0x63, groupSize, radius, rOffset);
     }
 
-    HitSensor* addHitSensorRide(LiveActor *pActor, const char *pSensorName, u16 sensorGroupSize, f32 radius, const TVec3f &a6) {
-        return pActor->mSensorKeeper->add(pSensorName, 0x9, sensorGroupSize, radius, pActor, a6);
+    HitSensor* addHitSensorRide(LiveActor* pActor, const char* pName, u16 groupSize, f32 radius, const TVec3f& rOffset) {
+        return addHitSensor(pActor, pName, 0x9, groupSize, radius, rOffset);
     }
 
-    HitSensor* addHitSensorMapObj(LiveActor *pActor, const char *pSensorName, u16 sensorGroupSize, f32 radius, const TVec3f &a6) {
-        return pActor->mSensorKeeper->add(pSensorName, 0x46, sensorGroupSize, radius, pActor, a6);
+    HitSensor* addHitSensorMapObj(LiveActor* pActor, const char* pName, u16 groupSize, f32 radius, const TVec3f& rOffset) {
+        return addHitSensor(pActor, pName, 0x46, groupSize, radius, rOffset);
     }
 
-    HitSensor* addHitSensorMapObjPress(LiveActor *pActor, const char *pSensorName, u16 sensorGroupSize, f32 radius, const TVec3f &a6) {
-        return pActor->mSensorKeeper->add(pSensorName, 0x76, sensorGroupSize, radius, pActor, a6);
+    HitSensor* addHitSensorMapObjPress(LiveActor* pActor, const char* pName, u16 groupSize, f32 radius, const TVec3f& rOffset) {
+        return addHitSensor(pActor, pName, 0x76, groupSize, radius, rOffset);
     }
 
-    HitSensor* addHitSensorMapObjSimple(LiveActor *pActor, const char *pSensorName, u16 sensorGroupSize, f32 radius, const TVec3f &a6) {
-        return pActor->mSensorKeeper->add(pSensorName, 0x47, sensorGroupSize, radius, pActor, a6);
+    HitSensor* addHitSensorMapObjSimple(LiveActor* pActor, const char* pName, u16 groupSize, f32 radius, const TVec3f& rOffset) {
+        return addHitSensor(pActor, pName, 0x47, groupSize, radius, rOffset);
     }
 
-    HitSensor* addHitSensorMapObjMoveCollision(LiveActor *pActor, const char *pSensorName, u16 sensorGroupSize, f32 radius, const TVec3f &a6) {
-        return pActor->mSensorKeeper->add(pSensorName, 0x48, sensorGroupSize, radius, pActor, a6);
+    HitSensor* addHitSensorMapObjMoveCollision(LiveActor* pActor, const char* pName, u16 groupSize, f32 radius, const TVec3f& rOffset) {
+        return addHitSensor(pActor, pName, 0x48, groupSize, radius, rOffset);
     }
 
-    HitSensor* addHitSensorEnemy(LiveActor *pActor, const char *pSensorName, u16 sensorGroupSize, f32 radius, const TVec3f &a6) {
-        return pActor->mSensorKeeper->add(pSensorName, 0x14, sensorGroupSize, radius, pActor, a6);
+    HitSensor* addHitSensorEnemy(LiveActor* pActor, const char* pName, u16 groupSize, f32 radius, const TVec3f& rOffset) {
+        return addHitSensor(pActor, pName, 0x14, groupSize, radius, rOffset);
     }
 
-    HitSensor* addHitSensorEnemySimple(LiveActor *pActor, const char *pSensorName, u16 sensorGroupSize, f32 radius, const TVec3f &a6) {
-        return pActor->mSensorKeeper->add(pSensorName, 0x15, sensorGroupSize, radius, pActor, a6);
+    HitSensor* addHitSensorEnemySimple(LiveActor* pActor, const char* pName, u16 groupSize, f32 radius, const TVec3f& rOffset) {
+        return addHitSensor(pActor, pName, 0x15, groupSize, radius, rOffset);
     }
 
-    HitSensor* addHitSensorEnemyAttack(LiveActor *pActor, const char *pSensorName, u16 sensorGroupSize, f32 radius, const TVec3f &a6) {
-        return pActor->mSensorKeeper->add(pSensorName, 0x16, sensorGroupSize, radius, pActor, a6);
+    HitSensor* addHitSensorEnemyAttack(LiveActor* pActor, const char* pName, u16 groupSize, f32 radius, const TVec3f& rOffset) {
+        return addHitSensor(pActor, pName, 0x16, groupSize, radius, rOffset);
     }
 
-    HitSensor* addHitSensorNpc(LiveActor *pActor, const char *pSensorName, u16 sensorGroupSize, f32 radius, const TVec3f &a6) {
-        return pActor->mSensorKeeper->add(pSensorName, 0x5, sensorGroupSize, radius, pActor, a6);
+    HitSensor* addHitSensorNpc(LiveActor* pActor, const char* pName, u16 groupSize, f32 radius, const TVec3f& rOffset) {
+        return addHitSensor(pActor, pName, 0x5, groupSize, radius, rOffset);
     }
 
-    HitSensor* addHitSensorEye(LiveActor *pActor, const char *pSensorName, u16 sensorGroupSize, f32 radius, const TVec3f &a6) {
-        return pActor->mSensorKeeper->add(pSensorName, 0x7F, sensorGroupSize, radius, pActor, a6);
+    HitSensor* addHitSensorEye(LiveActor* pActor, const char* pName, u16 groupSize, f32 radius, const TVec3f& rOffset) {
+        return addHitSensor(pActor, pName, 0x7F, groupSize, radius, rOffset);
     }
 
-    HitSensor* addHitSensorPush(LiveActor *pActor, const char *pSensorName, u16 sensorGroupSize, f32 radius, const TVec3f &a6) {
-        return pActor->mSensorKeeper->add(pSensorName, 0x80, sensorGroupSize, radius, pActor, a6);
+    HitSensor* addHitSensorPush(LiveActor* pActor, const char* pName, u16 groupSize, f32 radius, const TVec3f& rOffset) {
+        return addHitSensor(pActor, pName, 0x80, groupSize, radius, rOffset);
     }
 
-    HitSensor* addHitSensorPosBinder(LiveActor *pActor, const char *pSensorName, u16 sensorGroupSize, f32 radius, const TVec3f *pPos, const TVec3f &a6) {
-        return pActor->mSensorKeeper->addPos(pSensorName, 0x61, sensorGroupSize, radius, pActor, pPos, a6);
+    HitSensor* addHitSensorPos(LiveActor* pActor, const char* pName, u32 type, u16 groupSize, f32 radius, const TVec3f* pPos, const TVec3f& rOffset) {
+        return pActor->mSensorKeeper->addPos(pName, type, groupSize, radius, pActor, pPos, rOffset);
     }
 
-    HitSensor* addHitSensorPosRide(LiveActor *pActor, const char *pSensorName, u16 sensorGroupSize, f32 radius, const TVec3f *pPos, const TVec3f &a6) {
-        return pActor->mSensorKeeper->addPos(pSensorName, 0x9, sensorGroupSize, radius, pActor, pPos, a6);
+    HitSensor* addHitSensorPosBinder(LiveActor* pActor, const char* pName, u16 groupSize, f32 radius, const TVec3f* pPos, const TVec3f& rOffset) {
+        return addHitSensorPos(pActor, pName, 0x61, groupSize, radius, pPos, rOffset);
     }
 
-    HitSensor* addHitSensorPosMapObj(LiveActor *pActor, const char *pSensorName, u16 sensorGroupSize, f32 radius, const TVec3f *pPos, const TVec3f &a6) {
-        return pActor->mSensorKeeper->addPos(pSensorName, 0x46, sensorGroupSize, radius, pActor, pPos, a6);
+    HitSensor* addHitSensorPosRide(LiveActor* pActor, const char* pName, u16 groupSize, f32 radius, const TVec3f* pPos, const TVec3f& rOffset) {
+        return addHitSensorPos(pActor, pName, 0x9, groupSize, radius, pPos, rOffset);
     }
 
-    HitSensor* addHitSensorPosEye(LiveActor *pActor, const char *pSensorName, u16 sensorGroupSize, f32 radius, const TVec3f *pPos, const TVec3f &a6) {
-        return pActor->mSensorKeeper->addPos(pSensorName, 0x7F, sensorGroupSize, radius, pActor, pPos, a6);
+    HitSensor* addHitSensorPosMapObj(LiveActor* pActor, const char* pName, u16 groupSize, f32 radius, const TVec3f* pPos, const TVec3f& rOffset) {
+        return addHitSensorPos(pActor, pName, 0x46, groupSize, radius, pPos, rOffset);
     }
 
-    HitSensor* addHitSensorMtx(LiveActor *pActor, const char *pSensorName, u32 sensorType, u16 sensorGroupSize, f32 radius, MtxPtr mtx, const TVec3f &a6) {
-        return pActor->mSensorKeeper->addMtx(pSensorName, sensorType, sensorGroupSize, radius, pActor, mtx, a6);
+    HitSensor* addHitSensorPosEye(LiveActor* pActor, const char* pName, u16 groupSize, f32 radius, const TVec3f* pPos, const TVec3f& rOffset) {
+        return addHitSensorPos(pActor, pName, 0x7F, groupSize, radius, pPos, rOffset);
     }
 
-    HitSensor* addHitSensorMtxRide(LiveActor *pActor, const char *pSensorName, u16 sensorGroupSize, f32 radius, MtxPtr mtx, const TVec3f &a6) {
-        return pActor->mSensorKeeper->addMtx(pSensorName, 0x9, sensorGroupSize, radius, pActor, mtx, a6);
+    HitSensor* addHitSensorMtx(LiveActor* pActor, const char* pName, u32 type, u16 groupSize, f32 radius, MtxPtr pMtx, const TVec3f& rOffset) {
+        return pActor->mSensorKeeper->addMtx(pName, type, groupSize, radius, pActor, pMtx, rOffset);
     }
 
-    HitSensor* addHitSensorMtxMapObj(LiveActor *pActor, const char *pSensorName, u16 sensorGroupSize, f32 radius, MtxPtr mtx, const TVec3f &a6) {
-        return pActor->mSensorKeeper->addMtx(pSensorName, 0x46, sensorGroupSize, radius, pActor, mtx, a6);
+    HitSensor* addHitSensorMtxRide(LiveActor* pActor, const char* pName, u16 groupSize, f32 radius, MtxPtr pMtx, const TVec3f& rOffset) {
+        return addHitSensorMtx(pActor, pName, 0x9, groupSize, radius, pMtx, rOffset);
     }
 
-    HitSensor* addHitSensorMtxEnemy(LiveActor *pActor, const char *pSensorName, u16 sensorGroupSize, f32 radius, MtxPtr mtx, const TVec3f &a6) {
-        return pActor->mSensorKeeper->addMtx(pSensorName, 0x14, sensorGroupSize, radius, pActor, mtx, a6);
+    HitSensor* addHitSensorMtxMapObj(LiveActor* pActor, const char* pName, u16 groupSize, f32 radius, MtxPtr pMtx, const TVec3f& rOffset) {
+        return addHitSensorMtx(pActor, pName, 0x46, groupSize, radius, pMtx, rOffset);
     }
 
-    HitSensor* addHitSensorMtxEnemyAttack(LiveActor *pActor, const char *pSensorName, u16 sensorGroupSize, f32 radius, MtxPtr mtx, const TVec3f &a6) {
-        return pActor->mSensorKeeper->addMtx(pSensorName, 0x16, sensorGroupSize, radius, pActor, mtx, a6);
+    HitSensor* addHitSensorMtxEnemy(LiveActor* pActor, const char* pName, u16 groupSize, f32 radius, MtxPtr pMtx, const TVec3f& rOffset) {
+        return addHitSensorMtx(pActor, pName, 0x14, groupSize, radius, pMtx, rOffset);
     }
 
-    HitSensor* addHitSensorMtxNpc(LiveActor *pActor, const char *pSensorName, u16 sensorGroupSize, f32 radius, MtxPtr mtx, const TVec3f &a6) {
-        return pActor->mSensorKeeper->addMtx(pSensorName, 0x5, sensorGroupSize, radius, pActor, mtx, a6);
+    HitSensor* addHitSensorMtxEnemyAttack(LiveActor* pActor, const char* pName, u16 groupSize, f32 radius, MtxPtr pMtx, const TVec3f& rOffset) {
+        return addHitSensorMtx(pActor, pName, 0x16, groupSize, radius, pMtx, rOffset);
     }
 
-    HitSensor* addHitSensorMtxAnimal(LiveActor *pActor, const char *pSensorName, u16 sensorGroupSize, f32 radius, MtxPtr mtx, const TVec3f &a6) {
-        return pActor->mSensorKeeper->addMtx(pSensorName, 0x7, sensorGroupSize, radius, pActor, mtx, a6);
+    HitSensor* addHitSensorMtxNpc(LiveActor* pActor, const char* pName, u16 groupSize, f32 radius, MtxPtr pMtx, const TVec3f& rOffset) {
+        return addHitSensorMtx(pActor, pName, 0x5, groupSize, radius, pMtx, rOffset);
     }
 
-    HitSensor* addHitSensorAtJoint(LiveActor *pActor, const char *pSensorName, const char *pJointName, u32 sensorType, u16 sensorGroupSize, f32 radius, const TVec3f &a6) {
-        return pActor->mSensorKeeper->addMtx(pSensorName, sensorType, sensorGroupSize, radius, pActor, MR::getJointMtx(pActor, pJointName), a6);
+    HitSensor* addHitSensorMtxAnimal(LiveActor* pActor, const char* pName, u16 groupSize, f32 radius, MtxPtr pMtx, const TVec3f& rOffset) {
+        return addHitSensorMtx(pActor, pName, 0x7, groupSize, radius, pMtx, rOffset);
     }
 
-    HitSensor* addHitSensorAtJointRide(LiveActor *pActor, const char *pSensorName, const char *pJointName, u16 sensorGroupSize, f32 radius, const TVec3f &a6) {
-        return pActor->mSensorKeeper->addMtx(pSensorName, 0x9, sensorGroupSize, radius, pActor, MR::getJointMtx(pActor, pJointName), a6);
+    HitSensor* addHitSensorAtJoint(LiveActor* pActor, const char* pName, const char* pJointName, u32 type, u16 groupSize, f32 radius, const TVec3f& rOffset) {
+        return addHitSensorMtx(pActor, pName, type, groupSize, radius, getJointMtx(pActor, pJointName), rOffset);
     }
 
-    HitSensor* addHitSensorAtJointMapObj(LiveActor *pActor, const char *pSensorName, const char *pJointName, u16 sensorGroupSize, f32 radius, const TVec3f &a6) {
-        return pActor->mSensorKeeper->addMtx(pSensorName, 0x46, sensorGroupSize, radius, pActor, MR::getJointMtx(pActor, pJointName), a6);
+    HitSensor* addHitSensorAtJointRide(LiveActor* pActor, const char* pName, const char* pJointName, u16 groupSize, f32 radius, const TVec3f& rOffset) {
+        return addHitSensorAtJoint(pActor, pName, pJointName, 0x9, groupSize, radius, rOffset);
     }
 
-    HitSensor* addHitSensorAtJointMapObjSimple(LiveActor *pActor, const char *pSensorName, const char *pJointName, u16 sensorGroupSize, f32 radius, const TVec3f &a6) {
-        return pActor->mSensorKeeper->addMtx(pSensorName, 0x47, sensorGroupSize, radius, pActor, MR::getJointMtx(pActor, pJointName), a6);
+    HitSensor* addHitSensorAtJointMapObj(LiveActor* pActor, const char* pName, const char* pJointName, u16 groupSize, f32 radius, const TVec3f& rOffset) {
+        return addHitSensorAtJoint(pActor, pName, pJointName, 0x46, groupSize, radius, rOffset);
     }
 
-    HitSensor* addHitSensorAtJointEnemy(LiveActor *pActor, const char *pSensorName, const char *pJointName, u16 sensorGroupSize, f32 radius, const TVec3f &a6) {
-        return pActor->mSensorKeeper->addMtx(pSensorName, 0x14, sensorGroupSize, radius, pActor, MR::getJointMtx(pActor, pJointName), a6);
+    HitSensor* addHitSensorAtJointMapObjSimple(LiveActor* pActor, const char* pName, const char* pJointName, u16 groupSize, f32 radius, const TVec3f& rOffset) {
+        return addHitSensorAtJoint(pActor, pName, pJointName, 0x47, groupSize, radius, rOffset);
     }
 
-    HitSensor* addHitSensorAtJointEnemySimple(LiveActor *pActor, const char *pSensorName, const char *pJointName, u16 sensorGroupSize, f32 radius, const TVec3f &a6) {
-        return pActor->mSensorKeeper->addMtx(pSensorName, 0x15, sensorGroupSize, radius, pActor, MR::getJointMtx(pActor, pJointName), a6);
+    HitSensor* addHitSensorAtJointEnemy(LiveActor* pActor, const char* pName, const char* pJointName, u16 groupSize, f32 radius, const TVec3f& rOffset) {
+        return addHitSensorAtJoint(pActor, pName, pJointName, 0x14, groupSize, radius, rOffset);
     }
 
-    HitSensor* addHitSensorAtJointEnemyAttack(LiveActor *pActor, const char *pSensorName, const char *pJointName, u16 sensorGroupSize, f32 radius, const TVec3f &a6) {
-        return pActor->mSensorKeeper->addMtx(pSensorName, 0x16, sensorGroupSize, radius, pActor, MR::getJointMtx(pActor, pJointName), a6);
+    HitSensor* addHitSensorAtJointEnemySimple(LiveActor* pActor, const char* pName, const char* pJointName, u16 groupSize, f32 radius, const TVec3f& rOffset) {
+        return addHitSensorAtJoint(pActor, pName, pJointName, 0x15, groupSize, radius, rOffset);
     }
 
-    HitSensor* addHitSensorAtJointNpc(LiveActor *pActor, const char *pSensorName, const char *pJointName, u16 sensorGroupSize, f32 radius, const TVec3f &a6) {
-        return pActor->mSensorKeeper->addMtx(pSensorName, 0x5, sensorGroupSize, radius, pActor, MR::getJointMtx(pActor, pJointName), a6);
+    HitSensor* addHitSensorAtJointEnemyAttack(LiveActor* pActor, const char* pName, const char* pJointName, u16 groupSize, f32 radius, const TVec3f& rOffset) {
+        return addHitSensorAtJoint(pActor, pName, pJointName, 0x16, groupSize, radius, rOffset);
     }
 
-    HitSensor* addHitSensorAtJointEye(LiveActor *pActor, const char *pSensorName, const char *pJointName, u16 sensorGroupSize, f32 radius, const TVec3f &a6) {
-        return pActor->mSensorKeeper->addMtx(pSensorName, 0x7F, sensorGroupSize, radius, pActor, MR::getJointMtx(pActor, pJointName), a6);
+    HitSensor* addHitSensorAtJointNpc(LiveActor* pActor, const char* pName, const char* pJointName, u16 groupSize, f32 radius, const TVec3f& rOffset) {
+        return addHitSensorAtJoint(pActor, pName, pJointName, 0x5, groupSize, radius, rOffset);
     }
 
-    HitSensor* addHitSensorCallback(LiveActor *pActor, const char *pSensorName, u32 sensorType, u16 sensorGroupSize, f32 radius) {
-        return pActor->mSensorKeeper->addCallback(pSensorName, sensorType, sensorGroupSize, radius, pActor);
+    HitSensor* addHitSensorAtJointEye(LiveActor* pActor, const char* pName, const char* pJointName, u16 groupSize, f32 radius, const TVec3f& rOffset) {
+        return addHitSensorAtJoint(pActor, pName, pJointName, 0x7F, groupSize, radius, rOffset);
     }
 
-    HitSensor* addHitSensorCallbackBinder(LiveActor *pActor, const char *pSensorName, u16 sensorGroupSize, f32 radius) {
-        return pActor->mSensorKeeper->addCallback(pSensorName, 0x61, sensorGroupSize, radius, pActor);
+    HitSensor* addHitSensorCallback(LiveActor* pActor, const char* pName, u32 type, u16 groupSize, f32 radius) {
+        return pActor->mSensorKeeper->addCallback(pName, type, groupSize, radius, pActor);
     }
 
-    HitSensor* addHitSensorCallbackPriorBinder(LiveActor *pActor, const char *pSensorName, u16 sensorGroupSize, f32 radius) {
-        return pActor->mSensorKeeper->addCallback(pSensorName, 0x63, sensorGroupSize, radius, pActor);
+    HitSensor* addHitSensorCallbackBinder(LiveActor* pActor, const char* pName, u16 groupSize, f32 radius) {
+        return addHitSensorCallback(pActor, pName, 0x61, groupSize, radius);
     }
 
-    HitSensor* addHitSensorCallbackRide(LiveActor *pActor, const char *pSensorName, u16 sensorGroupSize, f32 radius) {
-        return pActor->mSensorKeeper->addCallback(pSensorName, 0x9, sensorGroupSize, radius, pActor);
+    HitSensor* addHitSensorCallbackPriorBinder(LiveActor* pActor, const char* pName, u16 groupSize, f32 radius) {
+        return addHitSensorCallback(pActor, pName, 0x63, groupSize, radius);
     }
 
-    HitSensor* addHitSensorCallbackMapObj(LiveActor *pActor, const char *pSensorName, u16 sensorGroupSize, f32 radius) {
-        return pActor->mSensorKeeper->addCallback(pSensorName, 0x46, sensorGroupSize, radius, pActor);
+    HitSensor* addHitSensorCallbackRide(LiveActor* pActor, const char* pName, u16 groupSize, f32 radius) {
+        return addHitSensorCallback(pActor, pName, 0x9, groupSize, radius);
     }
 
-    HitSensor* addHitSensorCallbackMapObjSimple(LiveActor *pActor, const char *pSensorName, u16 sensorGroupSize, f32 radius) {
-        return pActor->mSensorKeeper->addCallback(pSensorName, 0x47, sensorGroupSize, radius, pActor);
+    HitSensor* addHitSensorCallbackMapObj(LiveActor* pActor, const char* pName, u16 groupSize, f32 radius) {
+        return addHitSensorCallback(pActor, pName, 0x46, groupSize, radius);
     }
 
-    HitSensor* addHitSensorCallbackEnemy(LiveActor *pActor, const char *pSensorName, u16 sensorGroupSize, f32 radius) {
-        return pActor->mSensorKeeper->addCallback(pSensorName, 0x14, sensorGroupSize, radius, pActor);
+    HitSensor* addHitSensorCallbackMapObjSimple(LiveActor* pActor, const char* pName, u16 groupSize, f32 radius) {
+        return addHitSensorCallback(pActor, pName, 0x47, groupSize, radius);
     }
 
-    HitSensor* addHitSensorCallbackEnemyAttack(LiveActor *pActor, const char *pSensorName, u16 sensorGroupSize, f32 radius) {
-        return pActor->mSensorKeeper->addCallback(pSensorName, 0x16, sensorGroupSize, radius, pActor);
+    HitSensor* addHitSensorCallbackEnemy(LiveActor* pActor, const char* pName, u16 groupSize, f32 radius) {
+        return addHitSensorCallback(pActor, pName, 0x14, groupSize, radius);
     }
 
-    HitSensor* addHitSensorCallbackEye(LiveActor *pActor, const char *pSensorName, u16 sensorGroupSize, f32 radius) {
-        return pActor->mSensorKeeper->addCallback(pSensorName, 0x7F, sensorGroupSize, radius, pActor);
+    HitSensor* addHitSensorCallbackEnemyAttack(LiveActor* pActor, const char* pName, u16 groupSize, f32 radius) {
+        return addHitSensorCallback(pActor, pName, 0x16, groupSize, radius);
     }
 
-    HitSensor* addBodyMessageSensorReceiver(LiveActor *pActor){
-        TVec3f zerovec = TVec3f(0.0f,0.0f,0.0f);
-        return pActor->mSensorKeeper->add("body",(u32)0x84,(u16)0,0.0f,pActor,zerovec);
+    HitSensor* addHitSensorCallbackEye(LiveActor* pActor, const char* pName, u16 groupSize, f32 radius) {
+        return addHitSensorCallback(pActor, pName, 0x7F, groupSize, radius);
     }
 
-    HitSensor* addBodyMessageSensorMapObj(LiveActor *pActor){
-        TVec3f zerovec = TVec3f(0.0f,0.0f,0.0f);
-        return pActor->mSensorKeeper->add("body",(u32)0x46,(u16)0,0.0f,pActor,zerovec);
+    HitSensor* addBodyMessageSensorReceiver(LiveActor* pActor) {
+        return addBodyMessageSensor(pActor, 0x84);
     }
 
-    HitSensor* addBodyMessageSensorMapObjPress(LiveActor *pActor){
-        TVec3f zerovec = TVec3f(0.0f,0.0f,0.0f);
-        return pActor->mSensorKeeper->add("body",(u32)0x76,(u16)0,0.0f,pActor,zerovec);
+    HitSensor* addBodyMessageSensorMapObj(LiveActor* pActor) {
+        return addBodyMessageSensor(pActor, 0x46);
     }
 
-    HitSensor* addBodyMessageSensorMapObjMoveCollision(LiveActor *pActor){
-        TVec3f zerovec = TVec3f(0.0f,0.0f,0.0f);
-        return pActor->mSensorKeeper->add("body",(u32)0x48,(u16)0,0.0f,pActor,zerovec);
+    HitSensor* addBodyMessageSensorMapObjPress(LiveActor* pActor) {
+        return addBodyMessageSensor(pActor, 0x76);
     }
 
-    HitSensor* addBodyMessageSensorEnemy(LiveActor *pActor){
-        TVec3f zerovec = TVec3f(0.0f,0.0f,0.0f);
-        return pActor->mSensorKeeper->add("body",(u32)0x14,(u16)0,0.0f,pActor,zerovec);
+    HitSensor* addBodyMessageSensorMapObjMoveCollision(LiveActor* pActor) {
+        return addBodyMessageSensor(pActor, 0x48);
     }
 
-    HitSensor* addBodyMessageSensorReceiver(LiveActor *pActor, const char *pSensorName){
-        TVec3f zerovec = TVec3f(0.0f,0.0f,0.0f);
-        return pActor->mSensorKeeper->add(pSensorName,(u32)0x84,(u16)0,0.0f,pActor,zerovec);
+    HitSensor* addBodyMessageSensorEnemy(LiveActor* pActor) {
+        return addBodyMessageSensor(pActor, 0x14);
     }
 
-    HitSensor* addBodyMessageSensorMapObj(LiveActor *pActor, const char *pSensorName){
-        TVec3f zerovec = TVec3f(0.0f,0.0f,0.0f);
-        return pActor->mSensorKeeper->add(pSensorName,(u32)0x46,(u16)0,0.0f,pActor,zerovec);
+    HitSensor* addMessageSensor(LiveActor* pActor, const char* pName, u32 type) {
+        return addHitSensor(pActor, pName, type, 0, 0.0f, TVec3f(0.0f, 0.0f, 0.0f));
     }
 
-    HitSensor* addBodyMessageSensorMapObjMoveCollision(LiveActor *pActor, const char *pSensorName){
-        TVec3f zerovec = TVec3f(0.0f,0.0f,0.0f);
-        return pActor->mSensorKeeper->add(pSensorName,(u32)0x48,(u16)0,0.0f,pActor,zerovec);
+    HitSensor* addMessageSensorReceiver(LiveActor* pActor, const char* pName) {
+        return addMessageSensor(pActor, pName, 0x84);
     }
 
-    HitSensor* addBodyMessageSensorEnemy(LiveActor *pActor, const char *pSensorName){
-        TVec3f zerovec = TVec3f(0.0f,0.0f,0.0f);
-        return pActor->mSensorKeeper->add(pSensorName,(u32)0x14,(u16)0,0.0f,pActor,zerovec);
+    HitSensor* addMessageSensorMapObj(LiveActor* pActor, const char* pName) {
+        return addMessageSensor(pActor, pName, 0x46);
     }
 
-    bool tryUpdateHitSensorsAll(LiveActor *pActor){
-        if(pActor->mSensorKeeper){
+    HitSensor* addMessageSensorMapObjMoveCollision(LiveActor* pActor, const char* pName) {
+        return addMessageSensor(pActor, pName, 0x48);
+    }
+
+    HitSensor* addMessageSensorEnemy(LiveActor* pActor, const char* pName) {
+        return addMessageSensor(pActor, pName, 0x14);
+    }
+
+    bool tryUpdateHitSensorsAll(LiveActor* pActor) {
+        if (pActor->mSensorKeeper != nullptr) {
             pActor->mSensorKeeper->update();
-            return 1;
+
+            return true;
         }
-        return 0;
+
+        return false;
     }
 
-    void UpdateHitSensorsAll(LiveActor *pActor){
+    void updateHitSensorsAll(LiveActor* pActor) {
         pActor->mSensorKeeper->update();
     }
 
-    bool isSensorType(const HitSensor *pSensor, u32 sensorType){
-        return pSensor->isType(sensorType);
+    bool isSensorType(const HitSensor* pSensor, u32 type) {
+        return pSensor->isType(type);
     }
 
-    HitSensor * getSensorWithIndex(LiveActor *pActor, int index){
+    HitSensor* getSensorWithIndex(LiveActor* pActor, int index) {
         return pActor->mSensorKeeper->getNthSensorInfo(index)->mSensor;
     }
 
-    HitSensor * getTaking(const LiveActor *pActor){
-        if(pActor->mSensorKeeper){
-            return pActor->mSensorKeeper->_C;
+    HitSensor* getTaking(const LiveActor* pActor) {
+        if (pActor->mSensorKeeper != nullptr) {
+            return pActor->mSensorKeeper->mTaking;
         }
-        return 0;
+
+        return nullptr;
     }
 
-    HitSensor * getTaken(const LiveActor *pActor){
-        if(pActor->mSensorKeeper){
-            return pActor->mSensorKeeper->_10;
+    HitSensor* getTaken(const LiveActor* pActor) {
+        if (pActor->mSensorKeeper != nullptr) {
+            return pActor->mSensorKeeper->mTaken;
         }
-        return 0;
+
+        return nullptr;
     }
 
-    void setSensorPos(HitSensor *pSensor, const TVec3f &Pos){
-        pSensor->mPosition.set(Pos);
+    void setSensorPos(HitSensor* pSensor, const TVec3f& rPos) {
+        pSensor->mPosition.set(rPos);
     }
 
-    void setSensorOffset(LiveActor *pActor, const char *pSensorName, const TVec3f &offset){
-        pActor->mSensorKeeper->getSensorInfo(pSensorName)->_C.setPS(offset);
+    void setSensorOffset(LiveActor* pActor, const char* pName, const TVec3f& rOffset) {
+        pActor->mSensorKeeper->getSensorInfo(pName)->_C.setPS(rOffset);
     }
 
-    void setSensorRadius(LiveActor *pActor, const char *pSensorName, f32 radius){
-        pActor->mSensorKeeper->getSensorInfo(pSensorName)->mSensor->mRadius = radius;
+    void setSensorRadius(LiveActor* pActor, const char* pName, f32 radius) {
+        pActor->mSensorKeeper->getSensorInfo(pName)->mSensor->mRadius = radius;
     }
 
-    void setHitSensorApart(HitSensor *pSensor1, HitSensor *pSensor2){
-        if((getTaking(pSensor1->mActor) == pSensor2) || (getTaken(pSensor2->mActor) == pSensor1)){
-            pSensor1->mActor->mSensorKeeper->_C = nullptr;
-            pSensor2->mActor->mSensorKeeper->_10 = nullptr;
-        }else{
-            pSensor1->mActor->mSensorKeeper->_10 = nullptr;
-            pSensor2->mActor->mSensorKeeper->_C = nullptr;
+    void setHitSensorApart(HitSensor* pSender, HitSensor* pReceiver) {
+        if (getTaking(pSender->mActor) == pReceiver || getTaken(pReceiver->mActor) == pSender) {
+            pSender->mActor->mSensorKeeper->mTaking = nullptr;
+            pReceiver->mActor->mSensorKeeper->mTaken = nullptr;
+        }
+        else {
+            pSender->mActor->mSensorKeeper->mTaken = nullptr;
+            pReceiver->mActor->mSensorKeeper->mTaking = nullptr;
         }
     }
 
-    void validateHitSensors(LiveActor *pActor) {
-        if (pActor->mSensorKeeper) {
+    void validateHitSensors(LiveActor* pActor) {
+        if (pActor->mSensorKeeper != nullptr) {
             pActor->mSensorKeeper->validate();
         }
     }
 
-    void invalidateHitSensors(LiveActor *pActor) {
-        if (pActor->mSensorKeeper) {
+    void invalidateHitSensors(LiveActor* pActor) {
+        if (pActor->mSensorKeeper != nullptr) {
             pActor->mSensorKeeper->invalidate();
         }
     }
 
-    void validateHitSensors(LiveActor *pActor, const char *pSensorName) {
-        pActor->mSensorKeeper->getSensor(pSensorName)->validate();
+    void validateHitSensor(LiveActor* pActor, const char* pName) {
+        pActor->mSensorKeeper->getSensor(pName)->validate();
     }
 
-    void invalidateHitSensors(LiveActor *pActor, const char *pSensorName) {
-        pActor->mSensorKeeper->getSensor(pSensorName)->invalidate();
+    void invalidateHitSensor(LiveActor* pActor, const char* pName) {
+        pActor->mSensorKeeper->getSensor(pName)->invalidate();
     }
 
-    bool isValidHitSensor(LiveActor *pActor, const char *pSensorName){
-        return pActor->mSensorKeeper->getSensor(pSensorName)->mValidByHost;
+    bool isValidHitSensor(LiveActor* pActor, const char* pName) {
+        return pActor->mSensorKeeper->getSensor(pName)->mValidByHost;
     }
 
-    void clearHitSensors(LiveActor *pActor){
-        if(pActor->mSensorKeeper) {
+    void clearHitSensors(LiveActor* pActor) {
+        if (pActor->mSensorKeeper != nullptr) {
             pActor->mSensorKeeper->clear();
         }
     }
 
-    // the exact same as getSensorWithIndex
-    HitSensor * getSensor(LiveActor *pActor, int index){
+    HitSensor* getSensor(LiveActor* pActor, int index) {
         return pActor->mSensorKeeper->getNthSensorInfo(index)->mSensor;
     }
 
-    LiveActor * getSensorHost(const HitSensor *pSensor) {
+    LiveActor* getSensorHost(const HitSensor* pSensor) {
         return pSensor->mActor;
     }
 
-    bool isSensor(const HitSensor *pSensor, const char *pSensorName) {
-        return (pSensor == pSensor->mActor->getSensor(pSensorName));
+    bool isSensor(const HitSensor* pSensor, const char* pName) {
+        return pSensor == pSensor->mActor->getSensor(pName);
     }
 
-    bool isSensorPlayer(const HitSensor *pSensor) {
+    bool isSensorPlayer(const HitSensor* pSensor) {
         return pSensor->isType(0x1);
     }
 
-    bool isSensorBinder(const HitSensor *pSensor) {
+    bool isSensorBinder(const HitSensor* pSensor) {
         return pSensor->isType(0x61);
     }
 
-    bool isSensorRide(const HitSensor *pSensor) {
-        if (0x8 < pSensor->mSensorType && pSensor->mSensorType < 0x12) {
+    bool isSensorRide(const HitSensor* pSensor) {
+        if (pSensor->mType > 0x8 && pSensor->mType < 0x12) {
             return true;
         }
-        
+
         return false;
     }
 
-    bool isSensorPlayerOrRide(const HitSensor *pSensor) {
+    bool isSensorPlayerOrRide(const HitSensor* pSensor) {
         return isSensorPlayer(pSensor) || isSensorRide(pSensor);
     }
 
-    bool isSensorEnemy(const HitSensor *pSensor) {
-        if(0x13 < pSensor->mSensorType && pSensor->mSensorType < 0x44){
+    bool isSensorEnemy(const HitSensor* pSensor) {
+        if (pSensor->mType > 0x13 && pSensor->mType < 0x44) {
             return true;
         }
-        else{
-            
-            return false;
-        }
+
+        return false;
     }
 
-    bool isSensorEnemyAttack(const HitSensor *pSensor) {
+    bool isSensorEnemyAttack(const HitSensor* pSensor) {
         return pSensor->isType(0x16);
     }
 
-    bool isSensorNPC(const HitSensor *pSensor) {
-        // this just returns pSensor->mSensorType == 0x5?
-        if(0x4 < pSensor->mSensorType && pSensor->mSensorType < 0x6){
-            return true;
-        }
-        else{
-            
-            return false;
-        }
-    }
-
-    bool isSensorMapObj(const HitSensor *pSensor) {
-        if (pSensor->mSensorType > 0x45 && pSensor->mSensorType < 0x5F) {
+    bool isSensorNpc(const HitSensor* pSensor) {
+        if (pSensor->mType > 0x4 && pSensor->mType < 0x6) {
             return true;
         }
 
         return false;
     }
 
-    bool isSensorAutoRush(const HitSensor *pSensor) {
-        if (pSensor->mSensorType > 0x60 && pSensor->mSensorType < 0x6E) {
+    bool isSensorMapObj(const HitSensor* pSensor) {
+        if (pSensor->mType > 0x45 && pSensor->mType < 0x5F) {
             return true;
         }
 
         return false;
     }
 
-    bool isSensorRush(const HitSensor *pSensor) {
-        if (pSensor->mSensorType > 0x6F && pSensor->mSensorType < 0x74) {
+    bool isSensorAutoRush(const HitSensor* pSensor) {
+        if (pSensor->mType > 0x60 && pSensor->mType < 0x6E) {
             return true;
         }
 
         return false;
     }
 
-    bool isSensorPressObj(const HitSensor *pSensor) {
-        if (pSensor->mSensorType > 0x75 && pSensor->mSensorType < 0x77) {
+    bool isSensorRush(const HitSensor* pSensor) {
+        if (pSensor->mType > 0x6F && pSensor->mType < 0x74) {
             return true;
         }
 
         return false;
     }
 
-    bool isSensorEye(const HitSensor *pSensor) {
+    bool isSensorPressObj(const HitSensor* pSensor) {
+        if (pSensor->mType > 0x75 && pSensor->mType < 0x77) {
+            return true;
+        }
+
+        return false;
+    }
+
+    bool isSensorEye(const HitSensor* pSensor) {
         return pSensor->isType(0x7F);
     }
 
-    bool isSensorPush(const HitSensor *pSensor) {
+    bool isSensorPush(const HitSensor* pSensor) {
         return pSensor->isType(0x80);
     }
 
-    bool isSensorItem(const HitSensor *pSensor) {
+    bool isSensorItem(const HitSensor* pSensor) {
         if (pSensor->isType(0x4A) || pSensor->isType(0x4B) || pSensor->isType(0x4D)) {
             return true;
         }
@@ -421,329 +427,366 @@ namespace MR {
         return false;
     }
 
-    bool tryGetItem(HitSensor *pSender, HitSensor *pReceiver) {
+    bool tryGetItem(HitSensor* pSender, HitSensor* pReceiver) {
         return pReceiver->receiveMessage(0x87, pSender);
     }
 
-    TVec3f* getSensorPos(const HitSensor *pSensor) {
-        return (TVec3f*)&pSensor->mPosition;
+    const TVec3f& getSensorPos(const HitSensor* pSensor) {
+        return pSensor->mPosition;
     }
 
-   void calcSensorDirection(TVec3f *result, const HitSensor *pSensor1, const HitSensor *pSensor2){
-        TVec3f direction = pSensor2->mPosition;
-        JMathInlineVEC::PSVECSubtract(&direction,&pSensor1->mPosition,&direction);
-        result->set(direction);
+    void calcSensorDirection(TVec3f* pDir, const HitSensor* pSensor1, const HitSensor* pSensor2) {
+        TVec3f dir(pSensor2->mPosition);
+
+        JMathInlineVEC::PSVECSubtract(&dir, &pSensor1->mPosition, &dir);
+        pDir->set(dir);
     }
 
-    void calcSensorDirectionNormalize(TVec3f *result, const HitSensor *pSensor1, const HitSensor *pSensor2){
-        TVec3f direction = pSensor2->mPosition;
-        JMathInlineVEC::PSVECSubtract(&direction,&pSensor1->mPosition,&direction);
-        result->set(direction);
-        normalizeOrZero(result);
+    void calcSensorDirectionNormalize(TVec3f* pDir, const HitSensor* pSensor1, const HitSensor* pSensor2) {
+        calcSensorDirection(pDir, pSensor1, pSensor2);
+        normalizeOrZero(pDir);
     }
 
-    void calcSensorHorizonNormalize(TVec3f *result, const TVec3f &vec,const HitSensor *pSensor1, const HitSensor *pSensor2){
-        TVec3f direction = pSensor2->mPosition;
-        JMathInlineVEC::PSVECSubtract(&direction,&pSensor1->mPosition,&direction);
-        result->rejection(direction,vec);
-        normalizeOrZero(result);
+    void calcSensorHorizon(TVec3f* pHorizon, const TVec3f& rGravity, const HitSensor* pSensor1, const HitSensor* pSensor2) {
+        TVec3f horizon(pSensor2->mPosition);
+
+        JMathInlineVEC::PSVECSubtract(&horizon, &pSensor1->mPosition, &horizon);
+        pHorizon->rejection(horizon, rGravity);
     }
 
-    HitSensor* getMessageSensor(){
-        return MR::getSceneObj<LiveActor*>(0x9)->getSensor(0);
+    void calcSensorHorizonNormalize(TVec3f* pHorizon, const TVec3f& rGravity, const HitSensor* pSensor1, const HitSensor* pSensor2) {
+        calcSensorHorizon(pHorizon, rGravity, pSensor1, pSensor2);
+        normalizeOrZero(pHorizon);
     }
 
-    bool sendArbitraryMsg(u32 msg, HitSensor *pReceiver, HitSensor *pSender) {
+    HitSensor* getMessageSensor() {
+        return getSceneObj<MessageSensorHolder*>(SceneObj_MessageSensorHolder)->getSensor(nullptr);
+    }
+
+    bool sendArbitraryMsg(u32 msg, HitSensor* pReceiver, HitSensor* pSender) {
         return pReceiver->receiveMessage(msg, pSender);
     }
 
-    bool sendMsgPush(HitSensor *pReceiver, HitSensor *pSender) {
-        return pReceiver->receiveMessage(0x29, pSender);
+    bool sendMsgPush(HitSensor* pReceiver, HitSensor* pSender) {
+        return sendArbitraryMsg(0x29, pReceiver, pSender);
     }
 
-    bool sendMsgPlayerTrample(HitSensor *pReceiver, HitSensor *pSender) {
-        return pReceiver->receiveMessage(2, pSender);
+    bool sendMsgPlayerTrample(HitSensor* pReceiver, HitSensor* pSender) {
+        return sendArbitraryMsg(0x2, pReceiver, pSender);
     }
 
-    bool sendMsgPlayerPunch(HitSensor *pReceiver, HitSensor *pSender) {
-        return pReceiver->receiveMessage(1, pSender);
+    bool sendMsgPlayerPunch(HitSensor* pReceiver, HitSensor* pSender) {
+        return sendArbitraryMsg(0x1, pReceiver, pSender);
     }
 
-    bool sendMsgJump(HitSensor *pReceiver, HitSensor *pSender) {
-        return pReceiver->receiveMessage(0x2C, pSender);
+    bool sendMsgJump(HitSensor* pReceiver, HitSensor* pSender) {
+        return sendArbitraryMsg(0x2C, pReceiver, pSender);
     }
 
-    bool sendMsgTouchJump(HitSensor *pReceiver, HitSensor *pSender) {
-        return pReceiver->receiveMessage(0x2D, pSender);
+    bool sendMsgTouchJump(HitSensor* pReceiver, HitSensor* pSender) {
+        return sendArbitraryMsg(0x2D, pReceiver, pSender);
     }
 
-    bool sendMsgTaken(HitSensor *pReceiver, HitSensor *pSender) {
-        return pReceiver->receiveMessage(0x1F, pSender);
+    bool sendMsgTaken(HitSensor* pReceiver, HitSensor* pSender) {
+        return sendArbitraryMsg(0x1F, pReceiver, pSender);
     }
 
-    bool sendMsgKick(HitSensor *pReceiver, HitSensor *pSender) {
-        return pReceiver->receiveMessage(0x2B, pSender);
+    bool sendMsgKick(HitSensor* pReceiver, HitSensor* pSender) {
+        return sendArbitraryMsg(0x2B, pReceiver, pSender);
     }
 
-    bool sendMsgAwayJump(HitSensor *pReceiver, HitSensor *pSender) {
-        return pReceiver->receiveMessage(0x2F, pSender);
+    bool sendMsgAwayJump(HitSensor* pReceiver, HitSensor* pSender) {
+        return sendArbitraryMsg(0x2F, pReceiver, pSender);
     }
 
-    bool sendMsgEnemyAttackMsgToDir(u32 msg, HitSensor *pReceiver, HitSensor *pSender, const TVec3f &rDir) {
-        TVec3f curSenderPos(pSender->mPosition);
+    bool sendMsgEnemyAttackMsgToDir(u32 msg, HitSensor* pReceiver, HitSensor* pSender, const TVec3f& rDir) {
+        TVec3f senderPos(pSender->mPosition);
+
         JMathInlineVEC::PSVECSubtract(&pReceiver->mPosition, &rDir, &pSender->mPosition);
-        bool receive = pReceiver->receiveMessage(msg, pSender);
-        setSensorPos(pSender,curSenderPos);
-        return receive;
+        bool isSent = pReceiver->receiveMessage(msg, pSender);
+        setSensorPos(pSender, senderPos);
+
+        return isSent;
     }
 
-    bool sendMsgEnemyAttackFlipWeak(HitSensor *pReceiver, HitSensor *pSender) {
-        return pReceiver->receiveMessage(0x4D, pSender);
+    bool sendMsgEnemyAttackFlipWeak(HitSensor* pReceiver, HitSensor* pSender) {
+        return sendArbitraryMsg(0x4D, pReceiver, pSender);
     }
 
-    bool sendMsgEnemyAttackFlipWeakJump(HitSensor *pReceiver, HitSensor *pSender) {
-        return pReceiver->receiveMessage(0x4E, pSender);
+    bool sendMsgEnemyAttackFlipWeakJump(HitSensor* pReceiver, HitSensor* pSender) {
+        return sendArbitraryMsg(0x4E, pReceiver, pSender);
     }
 
-    bool sendMsgEnemyAttackFlip(HitSensor *pReceiver, HitSensor *pSender) {
-        return pReceiver->receiveMessage(0x50, pSender);
+    bool sendMsgEnemyAttackFlip(HitSensor* pReceiver, HitSensor* pSender) {
+        return sendArbitraryMsg(0x50, pReceiver, pSender);
     }
 
-    bool sendMsgEnemyAttackFlipToDir(HitSensor *pReceiver, HitSensor *pSender, const TVec3f &rDir) {
+    bool sendMsgEnemyAttackFlipToDir(HitSensor* pReceiver, HitSensor* pSender, const TVec3f& rDir) {
         return sendMsgEnemyAttackMsgToDir(0x50, pReceiver, pSender, rDir);
     }
 
-    bool sendMsgEnemyAttackFlipJump(HitSensor *pReceiver, HitSensor *pSender) {
-        return pReceiver->receiveMessage(0x4F, pSender);
+    bool sendMsgEnemyAttackFlipJump(HitSensor* pReceiver, HitSensor* pSender) {
+        return sendArbitraryMsg(0x4F, pReceiver, pSender);
     }
 
-    bool sendMsgEnemyAttackFlipRot(HitSensor *pReceiver, HitSensor *pSender) {
-        return pReceiver->receiveMessage(0x51, pSender);
+    bool sendMsgEnemyAttackFlipRot(HitSensor* pReceiver, HitSensor* pSender) {
+        return sendArbitraryMsg(0x51, pReceiver, pSender);
     }
 
-    bool sendMsgEnemyAttackFlipMaximum(HitSensor *pReceiver, HitSensor *pSender) {
-        return pReceiver->receiveMessage(0x52, pSender);
+    bool sendMsgEnemyAttackFlipMaximum(HitSensor* pReceiver, HitSensor* pSender) {
+        return sendArbitraryMsg(0x52, pReceiver, pSender);
     }
 
-    bool sendMsgEnemyAttackFlipMaximumToDir(HitSensor *pReceiver, HitSensor *pSender, const TVec3f &rDir) {
+    bool sendMsgEnemyAttackFlipMaximumToDir(HitSensor* pReceiver, HitSensor* pSender, const TVec3f& rDir) {
         return sendMsgEnemyAttackMsgToDir(0x52, pReceiver, pSender, rDir);
     }
 
-    bool sendMsgEnemyAttack(HitSensor *pReceiver, HitSensor *pSender) {
-        return pReceiver->receiveMessage(0x53, pSender);
+    bool sendMsgEnemyAttack(HitSensor* pReceiver, HitSensor* pSender) {
+        return sendArbitraryMsg(0x53, pReceiver, pSender);
     }
 
-    bool sendMsgEnemyAttackStrong(HitSensor *pReceiver, HitSensor *pSender) {
-        return pReceiver->receiveMessage(0x54, pSender);
+    bool sendMsgEnemyAttackStrong(HitSensor* pReceiver, HitSensor* pSender) {
+        return sendArbitraryMsg(0x54, pReceiver, pSender);
     }
 
-    bool sendMsgEnemyAttackStrongToDir(HitSensor *pReceiver, HitSensor *pSender, const TVec3f &rDir) {
+    bool sendMsgEnemyAttackStrongToDir(HitSensor* pReceiver, HitSensor* pSender, const TVec3f& rDir) {
         return sendMsgEnemyAttackMsgToDir(0x54, pReceiver, pSender, rDir);
     }
 
-    bool sendMsgEnemyAttackFire(HitSensor *pReceiver, HitSensor *pSender) {
-        return pReceiver->receiveMessage(0x58, pSender);
+    bool sendMsgEnemyAttackFire(HitSensor* pReceiver, HitSensor* pSender) {
+        return sendArbitraryMsg(0x58, pReceiver, pSender);
     }
 
-    bool sendMsgEnemyAttackFireStrong(HitSensor *pReceiver, HitSensor *pSender) {
-        return pReceiver->receiveMessage(0x59, pSender);
+    bool sendMsgEnemyAttackFireStrong(HitSensor* pReceiver, HitSensor* pSender) {
+        return sendArbitraryMsg(0x59, pReceiver, pSender);
     }
 
-    bool sendMsgEnemyAttackElectric(HitSensor *pReceiver, HitSensor *pSender) {
-        return pReceiver->receiveMessage(0x5A, pSender);
+    bool sendMsgEnemyAttackElectric(HitSensor* pReceiver, HitSensor* pSender) {
+        return sendArbitraryMsg(0x5A, pReceiver, pSender);
     }
 
-    bool sendMsgEnemyAttackFreeze(HitSensor *pReceiver, HitSensor *pSender) {
-        return pReceiver->receiveMessage(0x5D, pSender);
+    bool sendMsgEnemyAttackFreeze(HitSensor* pReceiver, HitSensor* pSender) {
+        return sendArbitraryMsg(0x5D, pReceiver, pSender);
     }
 
-    bool sendMsgEnemyAttackHeatBeam(HitSensor *pReceiver, HitSensor *pSender) {
-        return pReceiver->receiveMessage(0x5B, pSender);
+    bool sendMsgEnemyAttackHeatBeam(HitSensor* pReceiver, HitSensor* pSender) {
+        return sendArbitraryMsg(0x5B, pReceiver, pSender);
     }
 
-    bool sendMsgEnemyAttackExplosion(HitSensor *pReceiver, HitSensor *pSender) {
-        return pReceiver->receiveMessage(0x56, pSender);
+    bool sendMsgEnemyAttackExplosion(HitSensor* pReceiver, HitSensor* pSender) {
+        return sendArbitraryMsg(0x56, pReceiver, pSender);
     }
 
-    bool sendMsgEnemyAttackCounterSpin(HitSensor *pReceiver, HitSensor *pSender) {
-        return pReceiver->receiveMessage(0x60, pSender);
+    bool sendMsgEnemyAttackCounterSpin(HitSensor* pReceiver, HitSensor* pSender) {
+        return sendArbitraryMsg(0x60, pReceiver, pSender);
     }
 
-    bool sendMsgEnemyAttackCounterHipDrop(HitSensor *pReceiver, HitSensor *pSender) {
-        return pReceiver->receiveMessage(0x61, pSender);
+    bool sendMsgEnemyAttackCounterHipDrop(HitSensor* pReceiver, HitSensor* pSender) {
+        return sendArbitraryMsg(0x61, pReceiver, pSender);
     }
 
-    bool sendMsgLockOnStarPieceShoot(HitSensor *pReceiver, HitSensor *pSender) {
-        return pReceiver->receiveMessage(0xE, pSender);
+    bool sendMsgLockOnStarPieceShoot(HitSensor* pReceiver, HitSensor* pSender) {
+        return sendArbitraryMsg(0xE, pReceiver, pSender);
     }
 
-    bool sendMsgStarPieceAttack(HitSensor *pReceiver, HitSensor *pSender) {
-        return pReceiver->receiveMessage(0xC, pSender);
+    bool sendMsgStarPieceAttack(HitSensor* pReceiver, HitSensor* pSender) {
+        return sendArbitraryMsg(0xC, pReceiver, pSender);
     }
 
-    bool sendMsgStarPieceGift(HitSensor *pReceiver, HitSensor *pSender, u32 msg) {
-        return pReceiver->receiveMessage(msg + 0xE, pSender);
+    bool sendMsgStarPieceGift(HitSensor* pReceiver, HitSensor* pSender, u32 msg) {
+        return sendArbitraryMsg(msg + 0xE, pReceiver, pSender);
     }
 
-    bool sendMsgEnemyAttackMaximum(HitSensor *pReceiver, HitSensor *pSender) {
-        return pReceiver->receiveMessage(0x55, pSender);
+    bool sendMsgEnemyAttackMaximum(HitSensor* pReceiver, HitSensor* pSender) {
+        return sendArbitraryMsg(0x55, pReceiver, pSender);
     }
 
-    bool sendMsgEnemyAttackMaximumToDir(HitSensor *pReceiver, HitSensor *pSender, const TVec3f &rDir) {
+    bool sendMsgEnemyAttackMaximumToDir(HitSensor* pReceiver, HitSensor* pSender, const TVec3f& rDir) {
         return sendMsgEnemyAttackMsgToDir(0x55, pReceiver, pSender, rDir);
     }
 
-    bool sendMsgEnemyAttackToBindedSensor(LiveActor *pActor, HitSensor *pSender) {
-       return sendMsgToBindedSensor(0x53,pActor,pSender);
+    bool sendMsgEnemyAttackToBindedSensor(LiveActor* pActor, HitSensor* pSender) {
+        return sendMsgToBindedSensor(0x53, pActor, pSender);
     }
 
-    bool sendMsgEnemyAttackExplosionToBindedSensor(LiveActor *pActor, HitSensor *pSender) {
-       return sendMsgToBindedSensor(0x56,pActor,pSender);
+    bool sendMsgEnemyAttackExplosionToBindedSensor(LiveActor* pActor, HitSensor* pSender) {
+        return sendMsgToBindedSensor(0x56, pActor, pSender);
     }
 
-    bool sendSimpleMsgToActor(u32 msg, LiveActor *pActor){
-        return pActor->receiveMessage(msg, getMessageSensor(), getMessageSensor());
+    bool sendSimpleMsgToActor(u32 msg, LiveActor* pActor) {
+        HitSensor* pReceiver = getMessageSensor();
+        HitSensor* pSender = getMessageSensor();
+
+        return pActor->receiveMessage(msg, pSender, pReceiver);
     }
 
-    bool sendMsgToBindedSensor(u32 msg, LiveActor *pActor, HitSensor *pSender){
-        const u32 arraysize = 0x20;
-        HitInfo* info[arraysize];
-        bool sent;
-        HitSensor* sensor;
-        u32 length = pActor->mBinder->copyPlaneArrayAndSortingSensor(&info[0], arraysize);
-        if(length == 0){
+    bool sendMsgToBindedSensor(u32 msg, LiveActor* pActor, HitSensor* pSender) {
+        HitInfo* info[32];
+        u32 size = pActor->mBinder->copyPlaneArrayAndSortingSensor(info, sizeof(info) / sizeof(*info));
+
+        if (size == 0) {
             return false;
         }
-        sent = false;
-        sensor = info[0]->mParentTriangle.mSensor;
-        sent |= sensor->receiveMessage(msg,pSender);
-        for(int i = 1; i < length; i++){
-            if(info[i]->mParentTriangle.mSensor == sensor){
+
+        bool isSent = false;
+        HitSensor* pReceiver = info[0]->mParentTriangle.mSensor;
+        isSent |= pReceiver->receiveMessage(msg, pSender);
+
+        for (int i = 1; i < size; i++) {
+            if (info[i]->mParentTriangle.mSensor == pReceiver) {
                 continue;
             }
-            sensor = info[i]->mParentTriangle.mSensor;
-            sent |= sensor->receiveMessage(msg,pSender);
+
+            pReceiver = info[i]->mParentTriangle.mSensor;
+            isSent |= pReceiver->receiveMessage(msg, pSender);
         }
 
-        return sent;
+        return isSent;
     }
 
-    bool sendMsgToBindedSensor(u32 msg, HitSensor *pSender){
-        return sendMsgToBindedSensor(msg,pSender->mActor,pSender);
+    bool sendMsgToBindedSensor(u32 msg, HitSensor* pSender) {
+        return sendMsgToBindedSensor(msg, pSender->mActor, pSender);
     }
 
-    bool sendMsgToGroundSensor(u32 msg, HitSensor *pSender){
-        if(!MR::isBindedGround(pSender->mActor)){
+    bool sendMsgToGroundSensor(u32 msg, HitSensor* pSender) {
+        if (!isBindedGround(pSender->mActor)) {
             return false;
         }
-        return MR::getGroundSensor(pSender->mActor)->receiveMessage(msg,pSender);
+
+        // FIXME: getGroundSensor should not be inlined.
+        return getGroundSensor(pSender->mActor)->receiveMessage(msg, pSender);
     }
 
-    bool sendMsgToWallSensor(u32 msg, HitSensor *pSender){
-        if(!MR::isBindedWall(pSender->mActor)){
+    bool sendMsgToWallSensor(u32 msg, HitSensor* pSender) {
+        if (!isBindedWall(pSender->mActor)) {
             return false;
         }
-        return MR::getWallSensor(pSender->mActor)->receiveMessage(msg,pSender);
+
+        // FIXME: getWallSensor should not be inlined.
+        return getWallSensor(pSender->mActor)->receiveMessage(msg, pSender);
     }
 
-    bool sendMsgStartDemo(LiveActor *pActor){
-        // this function is getting inlined here where it shouldn't be
-        return sendSimpleMsgToActor(0x6f,pActor);
+    bool sendMsgStartDemo(LiveActor* pActor) {
+        return sendSimpleMsgToActor(0x6F, pActor);
     }
 
-    bool sendMsgToEnemyAttackBlow(HitSensor *pReceiver, HitSensor *pSender) {
-        return pReceiver->receiveMessage(0x62,pSender);
+    bool sendMsgToEnemyAttackBlow(HitSensor* pReceiver, HitSensor* pSender) {
+        return sendArbitraryMsg(0x62, pReceiver, pSender);
     }
 
-    bool sendMsgToEnemyAttackTrample(HitSensor *pReceiver, HitSensor *pSender) {
-        return pReceiver->receiveMessage(0x63,pSender);
+    bool sendMsgToEnemyAttackTrample(HitSensor* pReceiver, HitSensor* pSender) {
+        return sendArbitraryMsg(0x63, pReceiver, pSender);
     }
 
-    bool sendMsgToEnemyAttackBlowOrTrample(HitSensor *pReceiver, HitSensor *pSender, f32 flt) {
-        TVec3f posDifference = pReceiver->mPosition;
-        JMathInlineVEC::PSVECSubtract(&posDifference,&pSender->mPosition,&posDifference);
-        MR::normalizeOrZero(&posDifference);
-        if(flt < pSender->mActor->mGravity.dot(posDifference))
-            return sendMsgToEnemyAttackTrample(pReceiver,pSender);
-        else{
-            return sendMsgToEnemyAttackBlow(pReceiver,pSender);
+    bool sendMsgToEnemyAttackBlowOrTrample(HitSensor* pReceiver, HitSensor* pSender, f32 ratio) {
+        TVec3f dir(pReceiver->mPosition);
+
+        JMathInlineVEC::PSVECSubtract(&dir, &pSender->mPosition, &dir);
+        normalizeOrZero(&dir);
+
+        if (ratio < pSender->mActor->mGravity.dot(dir)) {
+            return sendMsgToEnemyAttackTrample(pReceiver, pSender);
+        }
+        else {
+            return sendMsgToEnemyAttackBlow(pReceiver, pSender);
         }
     }
 
-    bool sendMsgToEnemyAttackShockWave(HitSensor *pReceiver, HitSensor *pSender) {
-        return pReceiver->receiveMessage(0x64,pSender);
+    bool sendMsgToEnemyAttackShockWave(HitSensor* pReceiver, HitSensor* pSender) {
+        return sendArbitraryMsg(0x64, pReceiver, pSender);
     }
 
-    void sendMsgToAllLiveActor(u32 msg, LiveActor *pActor){
-        AllLiveActorGroup* Grp = getAllLiveActorGroup();
-        for(int i = 0; i < Grp->getObjectCount(); i++){
-            LiveActor* GrpActor = Grp->getActor(i);
-            if(!MR::isDead(GrpActor) && GrpActor != pActor){
-                sendSimpleMsgToActor(msg,GrpActor);
+    void sendMsgToAllLiveActor(u32 msg, LiveActor* pActor) {
+        AllLiveActorGroup* pGroup = getAllLiveActorGroup();
+
+        for (int i = 0; i < pGroup->getObjectCount(); i++) {
+            LiveActor* pGroupActor = pGroup->getActor(i);
+
+            if (isDead(pGroupActor)) {
+                continue;
+            }
+
+            if (pGroupActor == pActor) {
+                continue;
+            }
+
+            pGroupActor->receiveMessage(msg, getMessageSensor(), getMessageSensor());
+        }
+    }
+
+    void sendMsgToGroupMember(u32 msg, LiveActor* pActor, HitSensor* pSender, const char* pName) {
+        MsgSharedGroup* pGroup = static_cast<MsgSharedGroup*>(getGroupFromArray(pActor));
+
+        if (pGroup != nullptr) {
+            pGroup->sendMsgToGroupMember(msg, pSender, pName);
+        }
+        else {
+            pActor->receiveMessage(msg, pSender, pActor->getSensor(pName));
+        }
+    }
+
+    void sendMsgExplosionToNearActor(HitSensor* pSender, f32 distance) {
+        HitSensor* pReceiver;
+
+        for (u16 i = 0; i < pSender->mSensorCount; i++) {
+            pReceiver = pSender->mSensors[i];
+
+            if (distance < 0.0f || isNear(pSender, pReceiver, distance)) {
+                sendArbitraryMsg(0x56, pReceiver, pSender);
             }
         }
     }
 
-    void sendMsgToGroupMember(u32 msg, LiveActor *pActor, HitSensor *pSender, const char *pSensorName){
-        MsgSharedGroup* grp = (MsgSharedGroup*)MR::getGroupFromArray(pActor);
-        if(grp != nullptr){
-            grp->sendMsgToGroupMember(msg,pSender,pSensorName);
-        }else{
-            pActor->receiveMessage(msg,pSender,pActor->getSensor(pSensorName));
-        }
-    }
-
-    void sendMsgExplosionToNearActor(HitSensor *pSender, f32 flt){
-        HitSensor * sensor;
-        for(u16 i = 0; i < pSender->mSensorCount; i++){
-            sensor = pSender->mSensors[i];
-            if(flt < 0.0f || MR::isNear(pSender,sensor,flt)){
-                sensor->receiveMessage(0x56,pSender);
-            }
-        }
-    }
-
-    bool isInSpinStormRange(u32 msg, HitSensor *pReceiver, HitSensor *pSender, f32 flt){
-        if(msg != 0x33){
+    bool isInSpinStormRange(u32 msg, HitSensor* pSender, HitSensor* pReceiver, f32 range) {
+        if (msg != 0x33) {
             return false;
         }
-        //?? double not?
-        bool isNotNear = !MR::isNear(pReceiver, pSender, flt);
-        return !isNotNear;
+
+        // NOTE: Double negative?
+        bool isFar = !isNear(pSender, pReceiver, range);
+
+        return !isFar;
     }
 
-    bool receiveItemShowMsg(u32 msg, HitSensor *pReceiver, HitSensor *pSender){
-        if(msg == 0x8a && MR::isDead(pSender->mActor)){
-            pSender->mActor->makeActorAppeared();
+    bool receiveItemShowMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
+        if (msg == 0x8A && isDead(pReceiver->mActor)) {
+            pReceiver->mActor->makeActorAppeared();
+
             return true;
         }
+
         return false;
     }
 
-    bool receiveItemHideMsg(u32 msg, HitSensor *pReceiver, HitSensor *pSender){
-        if(msg == 0x8b && !MR::isDead(pSender->mActor)){
-            pSender->mActor->makeActorDead();
+    bool receiveItemHideMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
+        if (msg == 0x8B && !isDead(pReceiver->mActor)) {
+            pReceiver->mActor->makeActorDead();
+
             return true;
         }
+
         return false;
     }
 
-    //These 3 functions appear to mention members of the Binder class
-    //that do not exist with how the class is mapped out currently.
-    HitSensor *getGroundSensor(const LiveActor *pActor){
-        // return pActor->mBinder->_44
+    HitSensor* getGroundSensor(const LiveActor* pActor) {
+        return pActor->mBinder->mGroundInfo.mParentTriangle.mSensor;
     }
 
-    HitSensor *getRoofSensor(const LiveActor *pActor){
-        // return pActor->mBinder->_164
+    HitSensor* getRoofSensor(const LiveActor* pActor) {
+        return pActor->mBinder->mRoofInfo.mParentTriangle.mSensor;
     }
 
-    HitSensor *getWallSensor(const LiveActor *pActor){
-        // return pActor->mBinder->_d4
+    HitSensor* getWallSensor(const LiveActor* pActor) {
+        return pActor->mBinder->mWallInfo.mParentTriangle.mSensor;
     }
 
     bool isMsgPlayerHitAll(u32 msg) {
-        return msg == 0x1 || msg == 0x5 || msg == 0x6 || msg == 8 || msg == 10 || msg == 11;
+        return msg == 0x1
+            || msg == 0x5
+            || msg == 0x6
+            || msg == 0x8
+            || msg == 0xA
+            || msg == 0xB;
     }
 
     bool isMsgPlayerSpinAttack(u32 msg) {
@@ -751,246 +794,251 @@ namespace MR {
     }
 
     bool isMsgPlayerTrample(u32 msg) {
-        return  msg == 0x2;    
+        return msg == 0x2;
     }
 
     bool isMsgPlayerHipDrop(u32 msg) {
-        return  msg == 0x3;
+        return msg == 0x3;
     }
 
     bool isMsgPlayerHipDropFloor(u32 msg) {
-        return  msg == 0x4;    
+        return msg == 0x4;
     }
 
     bool isMsgPlayerUpperPunch(u32 msg) {
-        return  msg == 0x5;
+        return msg == 0x5;
     }
 
     bool isMsgPlayerKick(u32 msg) {
-        return  msg == 0x2b;
+        return msg == 0x2B;
     }
 
     bool isMsgJetTurtleAttack(u32 msg) {
-        return  msg == 0x6;
+        return msg == 0x6;
     }
 
     bool isMsgFireBallAttack(u32 msg) {
-        return  msg == 0x8;
+        return msg == 0x8;
     }
 
     bool isMsgSearchlightAttack(u32 msg) {
-        return  msg == 0x9;
+        return msg == 0x9;
     }
 
     bool isMsgFreezeAttack(u32 msg) {
-        return  msg == 0xa;
+        return msg == 0xA;
     }
 
     bool isMsgInvincibleAttack(u32 msg) {
-        return  msg == 0xb;
+        return msg == 0xB;
     }
 
     bool isMsgInvalidHit(u32 msg) {
-        return  msg == 0x1d;
+        return msg == 0x1D;
     }
 
     bool isMsgAutoRushBegin(u32 msg) {
-        return  msg == 0x92;
+        return msg == 0x92;
     }
 
     bool isMsgRushBegin(u32 msg) {
-        return  msg == 0x91;
+        return msg == 0x91;
     }
 
     bool isMsgUpdateBaseMtx(u32 msg) {
-        return  msg == 0xa1;
+        return msg == 0xA1;
     }
 
     bool isMsgRushCancel(u32 msg) {
-        return  msg == 0x93;
+        return msg == 0x93;
     }
 
     bool isMsgIsRushTakeOver(u32 msg) {
-        return  msg == 0x98;
+        return msg == 0x98;
     }
 
     bool isMsgFloorTouch(u32 msg) {
-        return  msg == 0xb4;
+        return msg == 0xB4;
     }
 
     bool isMsgWallTouch(u32 msg) {
-        return  msg == 0xb5;
+        return msg == 0xB5;
     }
 
     bool isMsgCeilTouch(u32 msg) {
-        return  msg == 0xb6;
+        return msg == 0xB6;
     }
 
     bool isMsgItemGet(u32 msg) {
-        return  msg == 0x87;
+        return msg == 0x87;
     }
 
     bool isMsgItemPull(u32 msg) {
-        return  msg == 0x89;
+        return msg == 0x89;
     }
 
     bool isMsgItemShow(u32 msg) {
-        return  msg == 0x8a;
+        return msg == 0x8A;
     }
 
     bool isMsgItemHide(u32 msg) {
-        return  msg == 0x8b;
+        return msg == 0x8B;
     }
 
     bool isMsgItemStartMove(u32 msg) {
-        return  msg == 0x8c;
+        return msg == 0x8C;
     }
 
     bool isMsgItemEndMove(u32 msg) {
-        return  msg == 0x8d;
+        return msg == 0x8D;
     }
 
     bool isMsgInhaleBlackHole(u32 msg) {
-        return  msg == 0x73;
+        return msg == 0x73;
     }
 
     bool isMsgEnemyAttack(u32 msg) {
-        return  msg == 0x53;
+        return msg == 0x53;
     }
 
     bool isMsgEnemyAttackFire(u32 msg) {
-        return  msg == 0x58;
+        return msg == 0x58;
     }
 
     bool isMsgEnemyAttackFireStrong(u32 msg) {
-        return  msg == 0x59;
+        return msg == 0x59;
     }
 
     bool isMsgEnemyAttackElectric(u32 msg) {
-        return  msg == 0x5a;
+        return msg == 0x5A;
     }
 
     bool isMsgExplosionAttack(u32 msg) {
-        return  msg == 0x56;
+        return msg == 0x56;
     }
 
     bool isMsgToEnemyAttackBlow(u32 msg) {
-        return  msg == 0x62;
+        return msg == 0x62;
     }
 
     bool isMsgToEnemyAttackTrample(u32 msg) {
-        return  msg == 0x63;
+        return msg == 0x63;
     }
 
     bool isMsgToEnemyAttackShockWave(u32 msg) {
-        return  msg == 0x64;
+        return msg == 0x64;
     }
 
     bool isMsgSpinStormRange(u32 msg) {
-        return  msg == 0x33;
+        return msg == 0x33;
     }
 
     bool isMsgTutorialStart(u32 msg) {
-        return  msg == 0xe6;
+        return msg == 0xE6;
     }
 
     bool isMsgTutorialNext(u32 msg) {
-        return  msg == 0xe7;
+        return msg == 0xE7;
     }
 
     bool isMsgTutorialPrev(u32 msg) {
-        return  msg == 0xe8;
+        return msg == 0xE8;
     }
 
     bool isMsgTutorialPass(u32 msg) {
-        return  msg == 0xe9;
+        return msg == 0xE9;
     }
 
     bool isMsgTutorialOmit(u32 msg) {
-        return  msg == 0xeb;
+        return msg == 0xEB;
     }
 
     bool isMsgRaceReady(u32 msg) {
-        return  msg == 0xec;
+        return msg == 0xEC;
     }
 
     bool isMsgRaceStart(u32 msg) {
-        return  msg == 0xed;
+        return msg == 0xED;
     }
 
     bool isMsgRaceReset(u32 msg) {
-        return  msg == 0xef;
+        return msg == 0xEF;
     }
 
     bool isMsgLockOnStarPieceShoot(u32 msg) {
-        return  msg == 0xe;
+        return msg == 0xE;
     }
 
     bool isMsgBallDashWall(u32 msg) {
-        return  msg == 0x39;
+        return msg == 0x39;
     }
 
     bool isMsgBallDashGround(u32 msg) {
-        return  msg == 0x3a;
+        return msg == 0x3A;
     }
 
     bool isMsgStartPowerStarGet(u32 msg) {
-        return  msg == 0x74;
+        return msg == 0x74;
     }
 
     bool isMsgTouchPlantItem(u32 msg) {
-        return  msg == 0xf3;
+        return msg == 0xF3;
     }
 
     bool isMsgHitmarkEmit(u32 msg) {
-        return  msg == 0x1c;
+        return msg == 0x1C;
     }
 
     bool isMsgStarPieceAttack(u32 msg) {
-        return  msg == 0xc;
+        return msg == 0xC;
     }
 
     bool isMsgStarPieceReflect(u32 msg) {
-        return  msg == 0xd;
+        return msg == 0xD;
     }
 
     bool isMsgStarPieceGift(u32 msg) {
-        return  msg >= 0xf && msg <= 0x19;
-    }
-    
-    u32 getNumStarPieceGift(u32 num){
-        return num - 14;
-    }
-    // one float regswap away from matching, probably an inline of some sort
-    void calcPosBetweenSensors(TVec3f *pVec, const HitSensor *pSensor1, const HitSensor *pSensor2, f32 flt){
-        TVec3f posDifference = pSensor2->mPosition;
-        JMathInlineVEC::PSVECSubtract(&posDifference,&pSensor1->mPosition,&posDifference);
-        MR::normalizeOrZero(&posDifference);
-        f32 x = PSVECDistance(&pSensor1->mPosition,&pSensor2->mPosition);
-        f32 ya = pSensor2->mRadius;
-        f32 yb = pSensor1->mRadius;
-        f32 dist = yb + ya -x;
-        dist *= 0.5f;
-        pVec->set<f32>(posDifference);
-        pVec->x *= dist + pSensor1->mRadius + flt;
-        pVec->y *= dist + pSensor1->mRadius + flt;
-        pVec->z *= dist + pSensor1->mRadius + flt;
-        JMathInlineVEC::PSVECAdd2(pVec,&pSensor1->mPosition,pVec);
+        return msg >= 0xF && msg <= 0x19;
     }
 
-    bool tryForceKillIfMsgStartPowerStarGet(LiveActor *pActor, u32 msg){
-        if(msg == 0x74){
-            if(isExistEffectKeeper(pActor)){
+    s32 getNumStarPieceGift(u32 msg) {
+        return msg - 14;
+    }
+
+    void calcPosBetweenSensors(TVec3f* pPos, const HitSensor* pSensor1, const HitSensor* pSensor2, f32 offset) {
+        TVec3f dir(pSensor2->mPosition);
+
+        JMathInlineVEC::PSVECSubtract(&dir, &pSensor1->mPosition, &dir);
+        normalizeOrZero(&dir);
+
+        f32 dist = PSVECDistance(&pSensor1->mPosition, &pSensor2->mPosition);
+        f32 radius2 = pSensor2->mRadius;
+        f32 radius1 = pSensor1->mRadius;
+        f32 value = (radius1 + radius2 - dist) / 2.0f;
+
+        pPos->set(dir);
+        pPos->x *= value + pSensor1->mRadius + offset;
+        pPos->y *= value + pSensor1->mRadius + offset;
+        pPos->z *= value + pSensor1->mRadius + offset;
+
+        JMathInlineVEC::PSVECAdd2(pPos, &pSensor1->mPosition, pPos);
+    }
+
+    bool tryForceKillIfMsgStartPowerStarGet(LiveActor* pActor, u32 msg) {
+        if (msg == 0x74) {
+            if (isExistEffectKeeper(pActor)) {
                 forceDeleteEffectAll(pActor);
             }
+
             pActor->makeActorDead();
+
             return true;
         }
+
         return false;
     }
 
-    void addBodyMessageSensor(LiveActor *pActor, u32 sensorType){
-        TVec3f zero = TVec3f(0.0f,0.0f,0.0f);
-        pActor->mSensorKeeper->add("body",sensorType,0,0.0f,pActor,zero);
+    HitSensor* addBodyMessageSensor(LiveActor* pActor, u32 type) {
+        return addHitSensor(pActor, "body", type, 0, 0.0f, TVec3f(0.0f, 0.0f, 0.0f));
     }
 };

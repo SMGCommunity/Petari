@@ -1,4 +1,5 @@
 #include "Game/Enemy/Dossun.hpp"
+#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/Util.hpp"
 #include "Game/Util/ActorShadowUtil.hpp"
 #include "Game/Util/EventUtil.hpp"

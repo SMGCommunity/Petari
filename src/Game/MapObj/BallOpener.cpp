@@ -1,3 +1,4 @@
+#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/MapObj/BallOpener.hpp"
 #include "Game/Util/GeometryBindUtil.hpp"
 

@@ -4,7 +4,7 @@
 
 class ButtonPaneController;
 
-class BrosButton : LayoutActor {
+class BrosButton : public LayoutActor {
 public:
     BrosButton(const char* pName);
 

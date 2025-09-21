@@ -35,7 +35,7 @@ public:
     void pauseOff();
     void balloonOff();
     bool isSystemTalking() const;
-    bool isNormalTalking();
+    bool isNormalTalking() const;
     LiveActor* getTalkingActor() const;
     void exePrep();
     void exeTalk();

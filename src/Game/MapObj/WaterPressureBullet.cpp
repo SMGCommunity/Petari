@@ -1,5 +1,6 @@
-#include "Game/MapObj/WaterPressureBullet.hpp"
 #include "Game/LiveActor/ActorCameraInfo.hpp"
+#include "Game/LiveActor/HitSensor.hpp"
+#include "Game/MapObj/WaterPressureBullet.hpp"
 #include "JSystem/JMath/JMath.hpp"
 
 WaterPressureBullet::WaterPressureBullet(const char *pName) : LiveActor(pName) {

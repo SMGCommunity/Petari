@@ -331,6 +331,8 @@ namespace MR {
 
     bool isPressedRoofAndGround(const LiveActor*);
 
+    TVec3f& getBindedNormal(const LiveActor *);
+
     TVec3f* getRoofNormal(const LiveActor*);
     TVec3f* getWallNormal(const LiveActor*);
     TVec3f* getGroundNormal(const LiveActor*);
@@ -386,4 +388,6 @@ namespace MR {
     f32 calcNerveValue(const LiveActor *, s32, s32, f32, f32);
 
     LiveActor* getPairedGroupMember(const LiveActor *);
+
+    TVec3f* getBindedFixReactionVector(const LiveActor *);
 };  // namespace MR

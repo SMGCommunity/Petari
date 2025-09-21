@@ -148,7 +148,7 @@ void NormalMapBase::standardDraw(J3DModel *pModel) const {
 static s16 width = 0x100;
 static s16 height = 0x100;
 
-void NormalMapBase::loadDiffuseGradTex(_GXTexMapID mapID) const {
+void NormalMapBase::loadDiffuseGradTex(GXTexMapID mapID) const {
     GXTexObj obj;
     GXInitTexObj(&obj, mImagePtr, width, height, GX_TF_IA8, GX_CLAMP, GX_CLAMP, GX_FALSE);
 
@@ -162,9 +162,9 @@ void NormalMapBase::loadDiffuseGradTex(_GXTexMapID mapID) const {
     GXLoadTexObj(&obj, mapID);
 }
 
-void NormalMapBase::loadNormalTex(const JUTTexture *pTex, _GXTexMapID id) const {
+void NormalMapBase::loadNormalTex(const JUTTexture *pTex, GXTexMapID id) const {
     GXTexObj obj;
-    GXInitTexObj(&obj, pTex->_24, pTex->_20->mWidth, pTex->_20->mHeight, GX_TF_RGBA8, GX_CLAMP, GX_CLAMP, GX_FALSE);
+    GXInitTexObj(&obj, pTex->mImage, pTex->mTIMG->mWidth, pTex->mTIMG->mHeight, GX_TF_RGBA8, GX_CLAMP, GX_CLAMP, GX_FALSE);
     if ((_13A & 2) != 0 && (_13A & 0x4) != 0) {
         GXInitTexObjLOD(&obj, GX_NEAR, GX_NEAR, 0.0f, 0.0f, 0.0f, GX_FALSE, GX_FALSE, GX_ANISO_1);
     }
@@ -235,10 +235,11 @@ void NormalMapBase::setTevForObject() const {
     GXSetIndTexCoordScale(GX_INDTEXSTAGE0, GX_ITS_1, GX_ITS_1);
     GXSetTevIndirect(GX_TEVSTAGE0, GX_INDTEXSTAGE0, GX_ITF_8, GX_ITB_STU, GX_ITM_0, GX_ITW_OFF, GX_ITW_OFF, GX_FALSE, GX_FALSE, GX_ITBA_OFF);
 
-    GXTevColorArg v3 = GX_CC_ONE;
-    GXTevColorArg v4 = GX_CC_RASC;
-    GXTevColorArg v5 = GX_CC_ONE;
-    GXTevColorArg v6 = GX_CC_RASC;
+    GXTevColorArg v3, v5, v4, v6;
+    v3 = GX_CC_ONE;
+    v4 = GX_CC_RASC;
+    v5 = GX_CC_ONE;
+    v6 = GX_CC_RASC;
 
     if ((mHardLightColorMask & 0x1) == 0) {
         v3 = GX_CC_ZERO;
@@ -284,8 +285,7 @@ void NormalMapBase::setTevForObject() const {
     GXSetTevOrder(GX_TEVSTAGE2, GX_TEXCOORD2, GX_TEXMAP2, GX_COLOR_NULL);
     GXSetTevColorIn(GX_TEVSTAGE2, GX_CC_C1, GX_CC_C2, GX_CC_TEXC, GX_CC_C0);
     GXSetTevColorOp(GX_TEVSTAGE2, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1, GX_TEVPREV);
-    Color8 color;
-    color.set(255, 255, 255, 0);
+    Color8 color(255, 255, 255, 0);
     GXSetTevKColor(GX_KCOLOR0, color);
     GXSetTevKColorSel(GX_TEVSTAGE3, GX_TEV_KCSEL_K0);
     GXSetTevOrder(GX_TEVSTAGE3, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR_NULL);

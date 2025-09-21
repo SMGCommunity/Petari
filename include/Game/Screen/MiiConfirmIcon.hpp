@@ -8,7 +8,7 @@ namespace nw4r {
     };
 };
 
-class MiiConfirmIcon : LayoutActor {
+class MiiConfirmIcon : public LayoutActor {
 public:
     /// @brief Creates a new `MiiConfirmIcon`.
     /// @param pName The pointer to the null-terminated name of the object.

@@ -51,4 +51,7 @@ namespace MR {
     bool isExistEffectTexMtx(LiveActor *);
 
     s16 getBckFrameMax(const LiveActor *, const char *);
+
+    void updateModelManager(LiveActor *);
+    void calcAnimModelManager(LiveActor *);
 };

@@ -24,7 +24,6 @@ namespace JGeometry {
             ps_sub z1, z2, z1
             psq_st z1, 8(dst), 1, 0
         }
-
     }
     #else
     static void subInternal(const f32 *vec1, const f32 *vec2, f32 *dst) ;
@@ -236,7 +235,7 @@ namespace JGeometry {
             return ret;
         }
         
-        TVec3 operator-(const TVec3 &op) const NO_INLINE {
+        TVec3 operator-(const TVec3 &op) const {
             TVec3 ret(*this);
             JMathInlineVEC::PSVECSubtract(&ret, &op, &ret);
             return ret;

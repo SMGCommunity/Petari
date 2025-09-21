@@ -42,11 +42,11 @@ public:
     void exeDemoShowGalaxyMap();
     inline void exeDemoWait();
 
-    TalkMessageCtrl** mTalkMessage;
+    TalkMessageCtrl** mTalkMessage; //15C
     bool _160;
     s32 _164;
     s32 _168;
-    ButlerStateStarPieceReaction* mButlerState;
+    ButlerStateStarPieceReaction* mButlerState; //16C
     bool _170;
     bool _171;
 };

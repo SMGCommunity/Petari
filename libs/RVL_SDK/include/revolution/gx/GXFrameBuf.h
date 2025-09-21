@@ -7,24 +7,20 @@ extern "C" {
 
 #include <revolution/gx.h>
 
-void GXSetTexCopySrc(u16, u16, u16, u16);
-
-void GXSetTexCopyDst(u16, u16, GXTexFmt, GXBool);
-
-void GXSetCopyFilter(GXBool, const u8[12][2], GXBool, const u8[7]);
-void GXSetDispCopyGamma(GXGamma);
-
-void GXCopyTex(void *, GXBool);
-
-void GXSetCopyClear(GXColor, u32);
-
 void GXSetDispCopySrc(u16, u16, u16, u16);
 void GXSetTexCopySrc(u16, u16, u16, u16);
 void GXSetDispCopyDst(u16, u16);
 void GXSetTexCopyDst(u16, u16, GXTexFmt, GXBool);
 void GXSetDispCopyFrame2Field(GXCopyMode);
 void GXSetCopyClamp(GXFBClamp);
+u16 GXGetNumXfbLines(u16, f32);
+f32 GXGetYScaleFactor(u16, u16);
 u32 GXSetDispCopyYScale(f32);
+void GXSetCopyClear(GXColor, u32);
+void GXSetCopyFilter(GXBool, const u8[12][2], GXBool, const u8[7]);
+void GXSetDispCopyGamma(GXGamma);
+void GXCopyDisp(void*, GXBool);
+void GXCopyTex(void*, GXBool);
 void GXClearBoundingBox(void);
 
 extern GXRenderModeObj GXNtsc240Ds;

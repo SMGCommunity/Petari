@@ -1,8 +1,11 @@
 #pragma once
 
-#include "Game/LiveActor/HitSensor.hpp"
+#include "JSystem/JGeometry/TVec.hpp"
+#include <revolution.h>
 
+class HitSensor;
 class HitSensorInfo;
+class LiveActor;
 
 class HitSensorKeeper {
 public:
@@ -29,6 +32,6 @@ public:
     s32 mSensorInfosSize; // 0x0
     s32 mSensorCount; // 0x4
     HitSensorInfo** mSensorInfos; // 0x8
-    HitSensor* _C;
-    HitSensor* _10;
+    HitSensor* mTaking; // 0xc
+    HitSensor* mTaken; // 0x10
 };

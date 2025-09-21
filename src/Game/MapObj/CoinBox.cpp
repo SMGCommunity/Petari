@@ -1,3 +1,4 @@
+#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/MapObj/CoinBox.hpp"
 
 CoinBox::CoinBox(const char *pName) : LiveActor(pName) {

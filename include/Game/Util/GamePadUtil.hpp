@@ -7,7 +7,7 @@ class WPadRumble;
 namespace MR {
     void getCorePadPointingPosBasedOnScreen(TVec2f* pPos, s32 channel);
     void getCorePadPointingPos(TVec2f* pPos, s32 channel);
-    void getCorePadPastPointingPos(TVec2f* pPos, s32 param2, s32 channel);
+    void getCorePadPastPointingPos(TVec2f* pPos, s32 idx, s32 channel);
     s32 getCorePadEnablePastCount(s32 channel);
 
     /// @brief Determines if the given Wii Remote is pointing at the screen.

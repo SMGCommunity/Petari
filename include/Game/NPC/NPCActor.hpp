@@ -5,6 +5,7 @@
 #include "Game/Enemy/AnimScaleController.hpp"
 #include "Game/Util/JointController.hpp"
 #include "JSystem/JGeometry/TQuat.hpp"
+#include "revolution/types.h"
 
 static const char* ReactionDefault = "Reaction";
 static const char* PointingDefault = "Pointing";
@@ -72,7 +73,7 @@ public:
     u8 _67;
     bool mUseStarPointer;           // 0x68
     const char* _6C;
-    u32 _70;
+    const char* _70;
     TVec3f mStarPointerOffs;        // 0x74
     f32 _80;
     u32 mSceneConnectionType;       // 0x84
@@ -139,6 +140,17 @@ public:
         _13C = "Reaction";
     }
     
+    inline void setDefaultsParam() {
+        mParam._14 = "Wait";
+        mParam._18 = "Turn";
+        mParam._1C = "Talk";
+        mParam._20 = "TalkTurn";
+        _130 = "Spin";
+        _134 = "Trampled";
+        _138 = "Pointing";
+        _13C = "Reaction";        
+    }
+
     inline void setDefaults2() {
         _130 = "Spin";
         _134 = "Trampled";
@@ -173,7 +185,7 @@ public:
     MR::ActorTalkParam mParam;                          // 0xE8
     f32 _10C;
     f32 _110;
-    u32 _114;
+    f32 _114;
     u32 _118;
     const char* _11C;
     const char* _120;

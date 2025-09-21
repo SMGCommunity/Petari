@@ -111,8 +111,6 @@ public:\
 class name : public Nerve\
 {\
 public:\
-    name() NO_INLINE {\
-    };\
     virtual void execute(Spine *pSpine) const {\
         parent_class* actor = reinterpret_cast<parent_class*>(pSpine->mExecutor);\
         actor->exe##executor_name();\

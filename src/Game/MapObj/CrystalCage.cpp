@@ -1,5 +1,6 @@
-#include "Game/MapObj/CrystalCage.hpp"
+#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
+#include "Game/MapObj/CrystalCage.hpp"
 #include "Game/Util.hpp"
 #include "JSystem/JMath.hpp"
 #include "math_types.hpp"

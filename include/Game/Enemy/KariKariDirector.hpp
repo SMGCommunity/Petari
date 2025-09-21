@@ -1,5 +1,5 @@
 #pragma once
 
 namespace MR {
-    u32 getKariKariClingNum();
+    s32 getKarikariClingNum();
 };

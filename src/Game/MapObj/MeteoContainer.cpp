@@ -1,3 +1,4 @@
+#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/MapObj/MeteoContainer.hpp"
 
 MeteoContainer::MeteoContainer(const char *pName) : LiveActor(pName) {

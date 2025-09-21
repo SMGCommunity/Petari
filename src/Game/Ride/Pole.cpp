@@ -1,3 +1,4 @@
+#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/Ride/Pole.hpp"
 #include <JSystem/JMath.hpp>
 #include <cstring>

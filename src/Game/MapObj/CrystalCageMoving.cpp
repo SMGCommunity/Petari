@@ -1,3 +1,4 @@
+#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/MapObj/CrystalCageMoving.hpp"
 #include "JSystem/JMath/JMath.hpp"
 

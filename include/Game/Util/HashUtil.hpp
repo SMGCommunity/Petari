@@ -15,13 +15,13 @@ public:
     s32 search(const char *, const char *, u32 *);
     void swap(const char *, const char *);
 
-    u8 _0;
+    bool mHasBeenSorted; // 0x0
     u32* mHashCodes;   // 0x4
     u32* _8;
-    u32* _C;
-    u32* _10;
-    u32 _14;
-    u32 _18;
+    u16* _C;
+    u16* _10;
+    u32 mCurrentLength; //0x14
+    u32 mMaxLength; //0x18
 };
 
 namespace MR {
