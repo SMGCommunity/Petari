@@ -1,7 +1,7 @@
 #pragma once
 
 #include <revolution.h>
-#include "JSystem/JGeometry.hpp"
+#include "JSystem/JGeometry/TMatrix.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
 #include "revolution/types.h"
 
@@ -93,12 +93,10 @@ namespace MR {
     void startBlackHoleCamera(const char *, const TVec3f &, const TVec3f &);
 
     bool createActorCameraInfoIfExist(const JMapInfoIter &, ActorCameraInfo **);
-    void endActorCamera(const LiveActor *, const ActorCameraInfo *, bool, s32);
+    bool endActorCamera(const LiveActor *, const ActorCameraInfo *, bool, s32);
 
     void pauseOnCameraDirector();
     void pauseOffCameraDirector();
-
-    bool endActorCamera(const LiveActor *, const ActorCameraInfo *, bool, s32);
 
     bool isStartAnimCameraEnd();
 
