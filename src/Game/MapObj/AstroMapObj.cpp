@@ -70,12 +70,12 @@ void AstroMapObj::init(const JMapInfoIter& rIter) {     // Pain
         _C4 = AstroMapObjFunction::createAstroNamePlateParser();
         _C8 = new GalaxyNamePlate(0, 1);
         _C8->initWithoutIter();
-        if (checkStrings(_CC)) {
-            _D0 = MR::createCollisionPartsFromLiveActor(this, "Close", getSensor("body"), MR::CollisionScaleType(2));
-            _D4 = MR::createCollisionPartsFromLiveActor(this, "Open", getSensor("body"), MR::CollisionScaleType(2));
-        }
-        AstroMapObjFunction::initilizePeculiar(_CC, this, rIter);
     }
+    if (checkStrings(_CC)) {
+        _D0 = MR::createCollisionPartsFromLiveActor(this, "Close", getSensor("body"), MR::CollisionScaleType(2));
+        _D4 = MR::createCollisionPartsFromLiveActor(this, "Open", getSensor("body"), MR::CollisionScaleType(2));
+    }
+    AstroMapObjFunction::initilizePeculiar(_CC, this, rIter);
 }
 
 void AstroMapObj::control() {
