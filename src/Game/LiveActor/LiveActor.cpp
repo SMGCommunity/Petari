@@ -3,25 +3,35 @@
 #include "Game/LiveActor/Binder.hpp"
 #include "Game/LiveActor/ClippingDirector.hpp"
 #include "Game/LiveActor/ActorPadAndCameraCtrl.hpp"
+#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/RailRider.hpp"
 #include "Game/NameObj/NameObjExecuteHolder.hpp"
 #include "Game/Util.hpp"
 
-LiveActor::LiveActor(const char* pName) : NameObj(pName), 
-    mPosition(0.0f), mRotation(0.0f), mScale(1.0f), mVelocity(0.0f), mGravity(0.0f, -1.0f, 0.0f),
-    mModelManager(nullptr), mAnimationKeeper(nullptr), mSpine(nullptr),
-    mSensorKeeper(nullptr), mBinder(nullptr), mRailRider(nullptr),
-    mEffectKeeper(nullptr), mSoundObject(nullptr) {
+LiveActor::LiveActor(const char* pName)
+    : NameObj(pName),
+      mPosition(0.0f, 0.0f, 0.0f),
+      mRotation(0.0f, 0.0f, 0.0f),
+      mScale(1.0f, 1.0f, 1.0f),
+      mVelocity(0.0f, 0.0f, 0.0f),
+      mGravity(0.0f, -1.0f, 0.0f),
+      mModelManager(nullptr),
+      mAnimationKeeper(nullptr),
+      mSpine(nullptr),
+      mSensorKeeper(nullptr),
+      mBinder(nullptr),
+      mRailRider(nullptr),
+      mEffectKeeper(nullptr),
+      mSoundObject(nullptr),
+      mShadowList(nullptr),
+      mCollisionParts(nullptr),
+      mStageSwitchCtrl(nullptr),
+      mStarPointerTarget(nullptr),
+      mActorLightCtrl(nullptr),
+      mCameraCtrl(nullptr) {
 
-        mShadowList = nullptr;
-        mCollisionParts = nullptr;
-        mStageSwitchCtrl = nullptr;
-        mStarPointerTarget = nullptr;
-        mActorLightCtrl = nullptr;
-        mCameraCtrl = nullptr;
-
-        MR::getAllLiveActorGroup()->registerActor(this);
-        MR::getClippingDirector()->registerActor(this);
+    MR::getAllLiveActorGroup()->registerActor(this);
+    MR::getClippingDirector()->registerActor(this);
 }
 
 void LiveActor::init(const JMapInfoIter &) {
@@ -93,6 +103,79 @@ void LiveActor::makeActorDead() {
     MR::disconnectToDrawTemporarily(this);
 }
 #endif
+
+void LiveActor::movement() {
+    if (mModelManager && !mFlags.mIsStoppedAnim) {
+        mModelManager->update();
+        if (mAnimationKeeper) {
+            mAnimationKeeper->update();
+        }
+    }
+    if (MR::isCalcGravity(this)) {
+        MR::calcGravity(this);
+    }
+    if (mSensorKeeper) {
+        mSensorKeeper->doObjCol();
+    }
+    if (mFlags.mIsDead) return;
+    if (mSpine) {
+        mSpine->update();
+    }
+    if (mFlags.mIsDead) return;
+    control();
+    if (mFlags.mIsDead) return;
+    updateBinder();
+    if (mEffectKeeper) {
+        mEffectKeeper->update();
+    }
+    if (mCameraCtrl) {
+        mCameraCtrl->update();
+    }
+    if (mActorLightCtrl) {
+        MR::updateLightCtrl(this);
+    }
+    MR::tryUpdateHitSensorsAll(this);
+    MR::actorSoundMovement(this);
+    MR::requestCalcActorShadow(this);
+}
+
+void LiveActor::calcAnim() {
+    if (!mFlags.mIsNoCalcAnim) {
+        calcAnmMtx();
+        if (mCollisionParts) {
+            MR::setCollisionMtx(this);
+        }
+    }
+}
+
+void LiveActor::calcAnmMtx() {
+    if (mModelManager) {
+        MR::getJ3DModel(this)->setBaseScale(mScale);
+        calcAndSetBaseMtx();
+        mModelManager->calcAnim();
+    }
+}
+
+void LiveActor::calcViewAndEntry() {
+    if (!mFlags.mIsNoCalcView && mModelManager && !mFlags.mIsNoCalcView) {
+        mModelManager->calcView();
+    }
+}
+
+void LiveActor::calcAndSetBaseMtx() {
+    if (MR::getTaken(this)) {
+        MR::setBaseTRMtx(this, MR::getTaken(this)->mActor->getTakingMtx());
+    } else {
+        TPos3f mtx;
+        float zero = 0.0;
+        if (zero == mRotation.x && zero == mRotation.z) {
+            MR::makeMtxTransRotateY(mtx, this);
+        } else {
+            MR::makeMtxTR(mtx, this);
+        }
+        MR::setBaseTRMtx(this, mtx);
+    }
+}
 
 MtxPtr LiveActor::getTakingMtx() const {
     return getBaseMtx();
@@ -188,7 +271,13 @@ void LiveActor::initHitSensor(int numSensors) {
     mSensorKeeper = new HitSensorKeeper(numSensors);
 }
 
-// LiveActor::initBinder
+void LiveActor::initBinder(f32 a, f32 b, u32 c) {
+    mBinder = new Binder(getBaseMtx(), &mPosition, &mGravity, a, b, c);
+    MR::onBind(this);
+    if (mEffectKeeper) {
+        mEffectKeeper->setBinder(mBinder);
+    }
+}
 
 void LiveActor::initRailRider(const JMapInfoIter &rIter) {
     mRailRider = new RailRider(rIter);
