@@ -84,7 +84,7 @@ void BallOpener::exeOpen() {
     }
 
     if (MR::isStep(this, 45)) {
-        MR::zeroVelocity(mSensor->mActor);
+        MR::zeroVelocity(mSensor->mHost);
         mSensor->receiveMessage(0xB3, getSensor("body"));
         mSensor = nullptr;
         MR::startSound(this, "SE_OJ_BALL_OPN_OPEN", -1, -1);

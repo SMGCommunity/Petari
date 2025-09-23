@@ -185,7 +185,7 @@ void Poihana::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
 				}
 			}
 
-			TVec3f pushVelocity(mPosition - pReceiver->mActor->mPosition);
+			TVec3f pushVelocity(mPosition - pReceiver->mHost->mPosition);
 			MR::normalizeOrZero(&pushVelocity);
 
 			if (mVelocity.dot(pushVelocity) < 0.0f) {
@@ -198,7 +198,7 @@ void Poihana::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
 
 bool Poihana::receiveMsgPush(HitSensor *pSender, HitSensor *pReceiver) {
 	if (MR::isSensorEnemy(pSender) || MR::isSensorMapObj(pSender)) {
-		TVec3f pushOffset(mPosition - pSender->mActor->mPosition);
+		TVec3f pushOffset(mPosition - pSender->mHost->mPosition);
 		MR::normalizeOrZero(&pushOffset);
 		JMAVECScaleAdd(&pushOffset, &mVelocity, &mVelocity, 1.5f);
 
@@ -665,13 +665,13 @@ bool Poihana::tryToStartBind(HitSensor* pSender) {
 		return false;
 	}
 
-	LiveActor *bindedActor = pSender->mActor;
+	LiveActor *bindedActor = pSender->mHost;
 	if (MR::isInWater(bindedActor, TVec3f(0.0f, 0.0f, 0.0f))) {
 		return false;
 	}
 
 	MR::tryRumblePadMiddle(this, 0);
-	mBindedActor = pSender->mActor;
+	mBindedActor = pSender->mHost;
 	MR::startBckPlayer("Rise", (const char *)nullptr);
 	MR::invalidateClipping(this);
 	return true;

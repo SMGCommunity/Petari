@@ -65,7 +65,7 @@ void SensorHitChecker::doObjColGroup(SensorGroup *pGroup1, SensorGroup *pGroup2)
             group1Sensorvalidated = true;
         }
 
-        if (group1Sensorvalidated && !MR::isClipped(curGroup1Sensor->mActor)) {
+        if (group1Sensorvalidated && !MR::isClipped(curGroup1Sensor->mHost)) {
             s32 group2SensorCount = pGroup2->mSensorCount;
             for (s32 x = 0; x < group2SensorCount; x++) {
                 HitSensor* curGroup2Sensor = pGroup2->mSensors[x];
@@ -75,7 +75,7 @@ void SensorHitChecker::doObjColGroup(SensorGroup *pGroup1, SensorGroup *pGroup2)
                     group2Validated = true;
                 }
 
-                if (group2Validated && !MR::isClipped(curGroup2Sensor->mActor)) {
+                if (group2Validated && !MR::isClipped(curGroup2Sensor->mHost)) {
                     checkAttack(curGroup1Sensor, curGroup2Sensor);
                 }
             }
@@ -95,7 +95,7 @@ void SensorHitChecker::doObjColInSameGroup(SensorGroup *pSensorGroup) const {
             isFirstSensorValid = true;
         }
 
-        if (isFirstSensorValid && !MR::isClipped(pFirstSensor->mActor)) {
+        if (isFirstSensorValid && !MR::isClipped(pFirstSensor->mHost)) {
             for (s32 x = 0; x < sensorGroupCount; x++) {
                 HitSensor* pSecondSensor = pSensorGroup->mSensors[x];
                 bool isSecondSensorValid = false;
@@ -104,7 +104,7 @@ void SensorHitChecker::doObjColInSameGroup(SensorGroup *pSensorGroup) const {
                     isSecondSensorValid = true;
                 }
 
-                if (isSecondSensorValid && !MR::isClipped(pSecondSensor->mActor)) {
+                if (isSecondSensorValid && !MR::isClipped(pSecondSensor->mHost)) {
                     checkAttack(pFirstSensor, pSecondSensor);
                 }
             }
@@ -115,7 +115,7 @@ void SensorHitChecker::doObjColInSameGroup(SensorGroup *pSensorGroup) const {
 
 #ifdef NON_MATCHING // Wrong registers
 void SensorHitChecker::checkAttack(HitSensor *pSensor1, HitSensor *pSensor2) const {
-    if (pSensor1->mActor != pSensor2->mActor) {
+    if (pSensor1->mHost != pSensor2->mHost) {
         f32 xPos = pSensor1->mPosition.x - pSensor2->mPosition.x;
         f32 yPos = pSensor1->mPosition.y - pSensor2->mPosition.y;
         f32 zPos = pSensor1->mPosition.z - pSensor2->mPosition.z;

@@ -288,13 +288,13 @@ namespace MR {
     }
 
     void setHitSensorApart(HitSensor* pSender, HitSensor* pReceiver) {
-        if (getTaking(pSender->mActor) == pReceiver || getTaken(pReceiver->mActor) == pSender) {
-            pSender->mActor->mSensorKeeper->mTaking = nullptr;
-            pReceiver->mActor->mSensorKeeper->mTaken = nullptr;
+        if (getTaking(getSensorHost(pSender)) == pReceiver || getTaken(getSensorHost(pReceiver)) == pSender) {
+            getSensorHost(pSender)->mSensorKeeper->mTaking = nullptr;
+            getSensorHost(pReceiver)->mSensorKeeper->mTaken = nullptr;
         }
         else {
-            pSender->mActor->mSensorKeeper->mTaken = nullptr;
-            pReceiver->mActor->mSensorKeeper->mTaking = nullptr;
+            getSensorHost(pSender)->mSensorKeeper->mTaken = nullptr;
+            getSensorHost(pReceiver)->mSensorKeeper->mTaking = nullptr;
         }
     }
 
@@ -333,11 +333,11 @@ namespace MR {
     }
 
     LiveActor* getSensorHost(const HitSensor* pSensor) {
-        return pSensor->mActor;
+        return pSensor->mHost;
     }
 
     bool isSensor(const HitSensor* pSensor, const char* pName) {
-        return pSensor == pSensor->mActor->getSensor(pName);
+        return pSensor == getSensorHost(pSensor)->getSensor(pName);
     }
 
     bool isSensorPlayer(const HitSensor* pSensor) {
@@ -649,25 +649,25 @@ namespace MR {
     }
 
     bool sendMsgToBindedSensor(u32 msg, HitSensor* pSender) {
-        return sendMsgToBindedSensor(msg, pSender->mActor, pSender);
+        return sendMsgToBindedSensor(msg, getSensorHost(pSender), pSender);
     }
 
     bool sendMsgToGroundSensor(u32 msg, HitSensor* pSender) {
-        if (!isBindedGround(pSender->mActor)) {
+        if (!isBindedGround(getSensorHost(pSender))) {
             return false;
         }
 
         // FIXME: getGroundSensor should not be inlined.
-        return getGroundSensor(pSender->mActor)->receiveMessage(msg, pSender);
+        return getGroundSensor(getSensorHost(pSender))->receiveMessage(msg, pSender);
     }
 
     bool sendMsgToWallSensor(u32 msg, HitSensor* pSender) {
-        if (!isBindedWall(pSender->mActor)) {
+        if (!isBindedWall(getSensorHost(pSender))) {
             return false;
         }
 
         // FIXME: getWallSensor should not be inlined.
-        return getWallSensor(pSender->mActor)->receiveMessage(msg, pSender);
+        return getWallSensor(getSensorHost(pSender))->receiveMessage(msg, pSender);
     }
 
     bool sendMsgStartDemo(LiveActor* pActor) {
@@ -688,7 +688,7 @@ namespace MR {
         JMathInlineVEC::PSVECSubtract(&dir, &pSender->mPosition, &dir);
         normalizeOrZero(&dir);
 
-        if (ratio < pSender->mActor->mGravity.dot(dir)) {
+        if (ratio < getSensorHost(pSender)->mGravity.dot(dir)) {
             return sendMsgToEnemyAttackTrample(pReceiver, pSender);
         }
         else {
@@ -753,8 +753,8 @@ namespace MR {
     }
 
     bool receiveItemShowMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-        if (msg == ACTMES_ITEM_SHOW && isDead(pReceiver->mActor)) {
-            pReceiver->mActor->makeActorAppeared();
+        if (msg == ACTMES_ITEM_SHOW && isDead(getSensorHost(pReceiver))) {
+            getSensorHost(pReceiver)->makeActorAppeared();
 
             return true;
         }
@@ -763,8 +763,8 @@ namespace MR {
     }
 
     bool receiveItemHideMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-        if (msg == ACTMES_ITEM_HIDE && !isDead(pReceiver->mActor)) {
-            pReceiver->mActor->makeActorDead();
+        if (msg == ACTMES_ITEM_HIDE && !isDead(getSensorHost(pReceiver))) {
+            getSensorHost(pReceiver)->makeActorDead();
 
             return true;
         }

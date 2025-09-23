@@ -117,7 +117,7 @@ void ScrewSwitch::control() {
 bool ScrewSwitch::receiveOtherMsg(u32 a0, HitSensor* a1 , HitSensor* a2) { 
     HitSensor* Sensor;
     if (MR::isMsgRushBegin(a0) && MR::isSensorPlayer(a1) && MR::isOnPlayer(getSensor("binder"))) {
-        _90 = a1->mActor;
+        _90 = a1->mHost;
         MR::startSound(_90, "SE_PV_TWIST_START", -1, -1);
         MR::startSound(_90, "SE_PM_SPIN_ATTACK", -1, -1);
         setNerve(&NrvScrewSwitch::ScrewSwitchNrvAdjust::sInstance);

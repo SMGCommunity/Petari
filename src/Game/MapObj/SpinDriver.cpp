@@ -522,7 +522,7 @@ bool SpinDriver::startBind(HitSensor *pSensor) {
             MR::startSystemSE("SE_SY_S_SPIN_DRV_ME_ALT", -1, -1);
         }
 
-        MR::startSound(pSensor->mActor, "SE_PM_SPIN_ATTACK", -1, -1);
+        MR::startSound(pSensor->mHost, "SE_PM_SPIN_ATTACK", -1, -1);
 
         if (MR::isInAreaObj("Water", mPosition)) {
             MR::startSound(this, "SE_PM_SPIN_DRV_IN_WATER_1", -1, -1);
@@ -539,7 +539,7 @@ bool SpinDriver::startBind(HitSensor *pSensor) {
         }
     }
 
-    _8C = pSensor->mActor;
+    _8C = pSensor->mHost;
     _B8 = mPosition;
     _C4 = *MR::getPlayerLastMove();
     f32 mag = PSVECMag(&_C4);

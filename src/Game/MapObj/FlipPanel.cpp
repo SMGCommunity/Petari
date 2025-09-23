@@ -172,7 +172,7 @@ bool FlipPanel::receiveOtherMsg(u32 msg, HitSensor *a2, HitSensor *a3) {
     }
 
     if ((msg - 0x66) <= 1) {
-        _CC = this == a2->mActor;
+        _CC = this == a2->mHost;
         return 1;
     }
     else {

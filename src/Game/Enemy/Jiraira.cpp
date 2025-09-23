@@ -135,7 +135,7 @@ void Jiraira::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
         LiveActor* sensorActor;
         TVec3f thing;
         HitSensor* sensor = 0;
-        sensorActor = sensor->mActor;
+        sensorActor = sensor->mHost;
         thing.subInline2(mPosition, sensorActor->mPosition);
         if (!MR::isExistMapCollisionExceptActor(thing, thing, this)) {
             if (MR::isSensorPlayer(pReceiver)) {

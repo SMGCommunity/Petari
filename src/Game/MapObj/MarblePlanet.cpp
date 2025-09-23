@@ -241,7 +241,7 @@ void MarblePlanetElectron::attackSensor(HitSensor *a1, HitSensor *a2) {
             kill();
         }
         else {
-            bool isNear = !MR::isNear(this, a2->mActor->mPosition, 440.0f);
+            bool isNear = !MR::isNear(this, a2->mHost->mPosition, 440.0f);
 
             if (!isNear) {
                 if (MR::sendMsgPush(a2, a1)) {
@@ -251,7 +251,7 @@ void MarblePlanetElectron::attackSensor(HitSensor *a1, HitSensor *a2) {
                         MR::emitEffectHitBetweenSensors(this, a1, a2, 0.0f, 0);
                     }
 
-                    MR::killVelocityToTarget(this, a2->mActor->mPosition);
+                    MR::killVelocityToTarget(this, a2->mHost->mPosition);
                 }
             }
         }
@@ -283,7 +283,7 @@ bool MarblePlanetElectron::receiveMsgPush(HitSensor *a1, HitSensor *a2) {
 /*
 void MarblePlanetElectron::crashElectron(HitSensor *pSensor) {
     TVec3f stack_8;
-    stack_8.sub(pSensor->mActor->mPosition, mPosition);
+    stack_8.sub(pSensor->mHost->mPosition, mPosition);
     MR::normalize(&stack_8);
     JMAVECScaleAdd(&stack_8, &mVelocity, &mVelocity, -5.0f);
     MR::normalize(mVelocity, &_94);

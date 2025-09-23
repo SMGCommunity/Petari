@@ -245,7 +245,7 @@ bool LiveActor::receiveMessage(u32 msg, HitSensor* pSender, HitSensor* pReceiver
 
 void LiveActor::calcAndSetBaseMtx() {
     if (MR::getTaken(this)) {
-        MR::setBaseTRMtx(this, MR::getTaken(this)->mActor->getTakingMtx());
+        MR::setBaseTRMtx(this, MR::getTaken(this)->mHost->getTakingMtx());
     }
     else {
         TPos3f mtx;

@@ -373,7 +373,7 @@ void CocoNut::setFrontVec(const TVec3f &a1) {
 }
 
 bool CocoNut::tryHit(HitSensor *pOtherSensor, HitSensor *pMySensor) {
-	CocoNut *nut = reinterpret_cast<CocoNut *>(pMySensor->mActor);
+	CocoNut *nut = reinterpret_cast<CocoNut *>(pMySensor->mHost);
 	if (!isNerve(&NrvCocoNut::CocoNutNrvMove::sInstance)) {
 		return false;
 	}
@@ -442,8 +442,8 @@ void CocoNut::reviseFrontVec() {
 
 	for (int i = 0; i < eye->mSensorCount; i++) {
 		sensor = eye->mSensors[i];
-		if ((sensor->isType(0x26) || sensor->isType(0x56)) && !MR::isDead(sensor->mActor)) {
-			found_actor = sensor->mActor;
+		if ((sensor->isType(0x26) || sensor->isType(0x56)) && !MR::isDead(sensor->mHost)) {
+			found_actor = sensor->mHost;
 			break;
 		}
 	}
@@ -755,7 +755,7 @@ bool CocoNut::receiveMsgPlayerAttack(u32 a1, HitSensor *pOtherSensor, HitSensor 
 	TVec3f stack_20;
 	TVec3f stack_14;
 	stack_2C.sub(pMySensor->mPosition, pOtherSensor->mPosition);
-	if (MR::isMsgStarPieceReflect(a1) && !MR::normalizeOrZero(stack_2C, &stack_20) && !MR::normalizeOrZero(pOtherSensor->mActor->mVelocity, &stack_14)) {
+	if (MR::isMsgStarPieceReflect(a1) && !MR::normalizeOrZero(stack_2C, &stack_20) && !MR::normalizeOrZero(pOtherSensor->mHost->mVelocity, &stack_14)) {
 		if (stack_20.dot(stack_14) < MR::cosDegree(60.0f)) {
 			TVec3f stack_8(stack_14);
 			stack_8.scale(65.0f);

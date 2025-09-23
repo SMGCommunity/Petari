@@ -278,7 +278,7 @@ bool WaterPressureBullet::inviteMario(HitSensor *pSensor) {
         }
     }
 
-    mHostActor = pSensor->mActor;
+    mHostActor = pSensor->mHost;
     MR::startBckWithInterpole(this, "Touch", 0);
     MR::startBckPlayer("WaterBulletStart", 2);
     startHostCamera();

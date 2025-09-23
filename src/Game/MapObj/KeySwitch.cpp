@@ -211,7 +211,7 @@ bool KeySwitch::tryAvoid() {
         return false;
     }
     
-    sensorActor = sensor->mActor;
+    sensorActor = sensor->mHost;
     TVec3f up;
     MR::calcUpVec(&up, sensorActor);
     TVec3f thing;

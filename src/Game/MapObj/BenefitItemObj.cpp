@@ -537,7 +537,7 @@ bool BenefitItemObj::receiveOtherMsg(u32 msg, HitSensor *a2, HitSensor *a3) {
             || isNerve(&NrvBenefitItemObj::HostTypeNrvShoot::sInstance) 
             || isNerve(&NrvBenefitItemObj::HostTypeNrvAppearGround::sInstance) 
             || isNerve(&NrvBenefitItemObj::HostTypeNrvEscape::sInstance)) {
-                mHitSensorActor = a2->mActor;
+                mHitSensorActor = a2->mHost;
                 setNerve(&NrvBenefitItemObj::HostTypeNrvCatch::sInstance);
                 MR::tryRumblePadWeak(this, 0);
                 return true;

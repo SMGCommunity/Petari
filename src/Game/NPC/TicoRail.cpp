@@ -251,10 +251,10 @@ void TicoRail::attackSensor(HitSensor *a2, HitSensor *a3) {
 
         if (!v6) {
             if (MR::sendArbitraryMsg(195, a3, a2)) {
-                _98 = a3->mActor;
+                _98 = a3->mHost;
                 setNerve(&NrvTicoRail::TicoRailNrvTalkStart::sInstance);
             }
-            else if (!MR::isExistRail(a3->mActor) || (MR::isRailGoingToEnd(this) != MR::isRailGoingToEnd(a3->mActor))) {
+            else if (!MR::isExistRail(a3->mHost) || (MR::isRailGoingToEnd(this) != MR::isRailGoingToEnd(a3->mHost))) {
                 setNerve(&NrvTicoRail::TicoRailNrvTalkCancel::sInstance);
             }
         }
@@ -278,7 +278,7 @@ bool TicoRail::receiveOtherMsg(u32 msg, HitSensor *a2, HitSensor *a3) {
         return false;
     }
 
-    if (!isSameRailActor(a3->mActor)) {
+    if (!isSameRailActor(a3->mHost)) {
         return false;
     }
 
@@ -286,11 +286,11 @@ bool TicoRail::receiveOtherMsg(u32 msg, HitSensor *a2, HitSensor *a3) {
         return false;
     }
 
-    if (MR::calcDistanceVertical(this, a2->mActor->mPosition) > 30.0f) {
+    if (MR::calcDistanceVertical(this, a2->mHost->mPosition) > 30.0f) {
         return false;
     }
 
-    _98 = a2->mActor;
+    _98 = a2->mHost;
     setNerve(&NrvTicoRail::TicoRailNrvTalkStart::sInstance);
     return true;
 }

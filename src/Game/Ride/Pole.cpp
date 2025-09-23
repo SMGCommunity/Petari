@@ -552,7 +552,7 @@ bool Pole::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
                     else {
                         v22.set<f32>(_E4);
                     }
-                    mActor = pSender->mActor;
+                    mActor = pSender->mHost;
                     mRotation.y = MR::calcRotateY(v22.x, v22.z);
                     if (_A9) {
                         s32 temp = (45.0f + mRotation.y) / 90.0f;

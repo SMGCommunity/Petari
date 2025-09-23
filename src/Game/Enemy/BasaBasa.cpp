@@ -564,7 +564,7 @@ void BasaBasa::attackSensor(HitSensor *a1, HitSensor *a2) {
             if (MR::isSensorEnemy(a2)) {
                 MR::sendMsgPush(a2, a1);
                 TVec3f v10;
-                v10.sub(mPosition, a2->mActor->mPosition);
+                v10.sub(mPosition, a2->mHost->mPosition);
                 MR::normalizeOrZero(&v10);
                 if (mVelocity.dot(v10) < 0.0f) {
                     TVec3f* velocityPtr = &mVelocity;
@@ -638,7 +638,7 @@ bool BasaBasa::receiveMsgPush(HitSensor *a1, HitSensor *a2) {
 
     if (MR::isSensorEnemy(a1) || MR::isSensorMapObj(a1)) {
         TVec3f v7;
-        v7.sub(mPosition, a1->mActor->mPosition);
+        v7.sub(mPosition, a1->mHost->mPosition);
         MR::normalizeOrZero(&v7);
         JMAVECScaleAdd(&v7, &mVelocity, &mVelocity, 1.5f);
         return true;
