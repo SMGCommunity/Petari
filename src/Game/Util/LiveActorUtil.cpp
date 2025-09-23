@@ -67,7 +67,7 @@ namespace MR {
     }
 
     bool isValidMovement(const LiveActor *pActor) {
-        if (pActor->mFlags.mIsDead || pActor->mFlags.mIsClipped) {
+        if (pActor->mFlag.mIsDead || pActor->mFlag.mIsClipped) {
             return false;
         }
 
@@ -75,7 +75,7 @@ namespace MR {
     }
 
     bool isValidCalcAnim(const LiveActor *pActor) {
-        if (pActor->mFlags.mIsDead || pActor->mFlags.mIsClipped || pActor->mFlags.mIsNoCalcAnim) {
+        if (pActor->mFlag.mIsDead || pActor->mFlag.mIsClipped || pActor->mFlag.mIsNoCalcAnim) {
             return false;
         }
 
@@ -83,7 +83,7 @@ namespace MR {
     }
 
     bool isValidCalcViewAndEntry(const LiveActor *pActor) {
-        if (pActor->mFlags.mIsDead || pActor->mFlags.mIsClipped) {
+        if (pActor->mFlag.mIsDead || pActor->mFlag.mIsClipped) {
             return false;
         }
 
@@ -91,7 +91,7 @@ namespace MR {
     }
 
     bool isValidDraw(const LiveActor *pActor) {
-        if (pActor->mFlags.mIsDead || pActor->mFlags.mIsClipped || pActor->mFlags.mIsHiddenModel) {
+        if (pActor->mFlag.mIsDead || pActor->mFlag.mIsClipped || pActor->mFlag.mIsHiddenModel) {
             return false;
         }
 
@@ -99,11 +99,11 @@ namespace MR {
     }
 
     void calcAnimDirect(LiveActor *pActor) {
-        bool isNoCalcAnim = pActor->mFlags.mIsNoCalcAnim;
-        pActor->mFlags.mIsNoCalcAnim = false;
+        bool isNoCalcAnim = pActor->mFlag.mIsNoCalcAnim;
+        pActor->mFlag.mIsNoCalcAnim = false;
         pActor->calcAnim();
         if (isNoCalcAnim) {
-            pActor->mFlags.mIsNoCalcAnim = true;
+            pActor->mFlag.mIsNoCalcAnim = true;
         }
     }
 
@@ -177,14 +177,14 @@ namespace MR {
     }
 
     void validateClipping(LiveActor *pActor) {
-        if (pActor->mFlags.mIsInvalidClipping) {
+        if (pActor->mFlag.mIsInvalidClipping) {
             MR::getClippingDirector()->mActorHolder->validateClipping(pActor);
         }
     }
 
     void invalidateClipping(LiveActor *pActor) {
-        if (pActor->mFlags.mIsInvalidClipping) {
-            if (pActor->mFlags.mIsClipped) {
+        if (pActor->mFlag.mIsInvalidClipping) {
+            if (pActor->mFlag.mIsClipped) {
                 pActor->endClipped();
             }
         }

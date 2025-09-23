@@ -54,7 +54,7 @@ void ClippingActorHolder::entryLodCtrl(LodCtrl *pLod, const JMapInfoIter &rIter)
 }
 
 void ClippingActorHolder::validateClipping(LiveActor *pActor) {
-    pActor->mFlags.mIsInvalidClipping = false;
+    pActor->mFlag.mIsInvalidClipping = false;
     ClippingActorInfo* inf = _14->remove(pActor);
 
     if (MR::isDead(pActor)) {
@@ -71,7 +71,7 @@ void ClippingActorHolder::validateClipping(LiveActor *pActor) {
 }
 
 void ClippingActorHolder::invalidateClipping(LiveActor *pActor) {
-    pActor->mFlags.mIsInvalidClipping = true;
+    pActor->mFlag.mIsInvalidClipping = true;
     ClippingActorInfo* inf;
 
     if (MR::isDead(pActor)) {
