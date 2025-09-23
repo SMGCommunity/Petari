@@ -18,6 +18,7 @@ namespace MR {
     bool isFloorPolygon(f32);
     bool isCeilingPolygon(f32);
 
+    TVec3f* getNormal(const Triangle *);
 
     bool getFirstPolyOnLineToMap(TVec3f *, Triangle *, const TVec3f &, const TVec3f &);
     bool getFirstPolyOnLineToMapExceptActor(TVec3f * , Triangle *, const TVec3f &, const TVec3f &, const LiveActor *);
@@ -44,6 +45,7 @@ namespace MR {
     bool isFallNextMove(const LiveActor *, f32, f32, f32, const TriangleFilterBase *);
 
     s32 getSoundCodeIndex(const JMapInfoIter &);
+    s32 getFloorCodeIndex(const Triangle *);
 
     char* getWallCodeString(const Triangle *);
 };

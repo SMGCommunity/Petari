@@ -8,5 +8,12 @@ class MarioTalk : public MarioState {
 public:
     MarioTalk(MarioActor *);
 
-    u8 _11[11];
+    virtual bool start();
+    virtual bool close();
+    virtual bool update();
+    virtual bool notice();
+
+    // padding
+    const LiveActor* mTalkActor;  // 0x14
+    bool _18;
 };

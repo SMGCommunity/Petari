@@ -466,7 +466,7 @@ bool MarioModule::checkSquat(bool a1) {
         }
         return false;
     }
-    if (!a1 && mActor->mMario->_488 > 100.0f) {
+    if (!a1 && mActor->mMario->mShadowHeight > 100.0f) {
         return false;
     }
     return mActor->checkButtonType(9, false);

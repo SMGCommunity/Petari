@@ -77,8 +77,8 @@ Mario::Mario(MarioActor *actor) : MarioModule(actor)
     _42C = 0;
     _2F8.zero();
     _328.zero();
-    _334.zero();
-    _488 = 0.0f;
+    mLastNonFixMoveVec.zero();
+    mShadowHeight = 0.0f;
     _430 = 0;
     _3BC = 0;
     _3BE = 0;
@@ -341,7 +341,7 @@ Mario::Mario(MarioActor *actor) : MarioModule(actor)
     }
     _96A = 0;
     _574 = 0;
-    _898 = 0;
+    mFpViewChangingFailure = 0;
 }
 
 void Mario::updateAndClearStrideParameter() {
@@ -377,7 +377,7 @@ void Mario::updateAndClearStrideParameter() {
 }
 
 void Mario::checkKeyLock() {
-    if (!mMovementStates.jumping) {
+    if (!mMovementStates._0) {
         mMovementStates._22 = 0;
     }
     if (mActor->_37C < 0x4b) {
@@ -974,7 +974,7 @@ bool Mario::isEnableRush() const {
     if (isStatusActive(0x19)) {
         return false;
     }
-    if (mMovementStates._B && mMovementStates.jumping) {
+    if (mMovementStates._B && mMovementStates._0) {
         return false;
     }
     return true;
@@ -1053,7 +1053,7 @@ void Mario::updateSoundCode() {
 
 // nearly, last conditional doesn't want to cooperate
 bool Mario::isForceStopRush() const {
-    if (_488 != 0.0f) {
+    if (mShadowHeight != 0.0f) {
         goto exit_false;
     }
     u16 temp = _960;
@@ -1412,7 +1412,7 @@ const TVec3f* Mario::getGravityVec() const {
     }
     if (!isSlipFloorCode(_960) && b1 && !isPlayerModeHopper() && !isPlayerModeTeresa() && !isDamaging()
         && !isStatusActive(6) && !isStatusActive(4) && !isStatusActive(0x13) && _430 != 5 && mActor->_334 == 0
-        && mMovementStates.jumping && !mMovementStates._22 && _3BC < 8) {
+        && mMovementStates._0 && !mMovementStates._22 && _3BC < 8) {
             return &_374;
     }
     return &mAirGravityVec;

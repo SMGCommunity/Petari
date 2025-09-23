@@ -1,12 +1,10 @@
 #pragma once
 
-#include "Game/Player/MarioState.hpp"
+#include "Game/Player/MarioSukekiyo.hpp"
 
 class MarioActor;
 
-class MarioBury : public MarioState {
+class MarioBury : public MarioSukekiyo {
 public:
     MarioBury(MarioActor *);
-
-    u8 _11[0x3B];
 };

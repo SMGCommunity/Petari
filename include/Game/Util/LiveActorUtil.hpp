@@ -267,6 +267,7 @@ namespace MR {
     void startBpk(const LiveActor*, const char*);
 
     ProjmapEffectMtxSetter* initDLMakerProjmapEffectMtxSetter(LiveActor*);
+    void initDLMakerFog(LiveActor *, bool);
 
     void newDifferedDLBuffer(LiveActor*);
 
