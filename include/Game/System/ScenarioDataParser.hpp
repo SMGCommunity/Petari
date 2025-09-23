@@ -43,6 +43,8 @@ public:
     GalaxyStatusAccessor makeAccessor(const char *) const;
 
     static const char* sNullStr;
+
+    char _C[0x104];
 };
 
 namespace ScenarioDataFunction {

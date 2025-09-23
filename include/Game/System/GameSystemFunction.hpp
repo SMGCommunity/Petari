@@ -14,6 +14,10 @@ public:
 
     static void resetCurrentScenarioNo();
 
+    static void restartControllerLeaveWatcher();
+
+    static void resetAllControllerRumble();
+
     static bool setPermissionToCheckWiiRemoteConnectAndScreenDimming(bool);
     static void onPauseBeginAllRumble();
     static void onPauseEndAllRumble();

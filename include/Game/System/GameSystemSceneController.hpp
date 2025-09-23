@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Game/LiveActor/Nerve.hpp"
 #include <revolution.h>
 
 class GameScene;
@@ -31,6 +32,8 @@ public:
 };
 
 enum SceneInitializeState {
+    State_NotInit = 0,
+    State_Init = 1,
     State_PlacementPlayer = 2,
     State_PlacementHighPrio = 3,
     State_Placement = 4,
@@ -101,3 +104,17 @@ public:
     PlayTimerScene* mPlayTimerScene;            // 0xB8
     ScenarioSelectScene* mScenarioScene;        // 0xBC
 };
+
+namespace NrvGameSystemSceneController {
+    NERVE(GameSystemSceneControllerNotInitialized)
+    NERVE(GameSystemSceneControllerNormal)
+    NERVE(GameSystemSceneControllerChangeWaveBank)
+    NERVE(GameSystemSceneControllerInitializeScene)
+    NERVE(GameSystemSceneControllerInvalidateSystemWipe)
+    NERVE(GameSystemSceneControllerWaitDrawDoneScene)
+    NERVE(GameSystemSceneControllerDestroyScene)
+    NERVE(GameSystemSceneControllerReadyToStartScene)
+    NERVE(GameSystemSceneControllerWaitDrawDoneSceneForDestroy)
+    NERVE(GameSystemSceneControllerDestroySceneForDestroy)
+    NERVE(GameSystemSceneControllerDestroyed)
+}
