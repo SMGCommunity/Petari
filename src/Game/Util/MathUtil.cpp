@@ -12,7 +12,7 @@ static f32 maxDegree = 360.0f;
 
 namespace MR {
     f32 getRandom(f32 min, f32 max) {
-        return (min + ((max - min) * getRandom()));
+        return min + ((max - min) * getRandom());
     }
 
     // getRandom(s32, s32)
@@ -30,7 +30,7 @@ namespace MR {
         pOut->set((a2 + (dist * v12)), v11, v10);
     }
 
-    u8 isHalfProbability() {
+    bool isHalfProbability() {
         return MR::getRandom() < 0.5f;
     }
 
@@ -38,8 +38,9 @@ namespace MR {
         if (isHalfProbability()) {
             return -1.0f;
         }
-
-        return 1.0f;
+        else {
+            return 1.0f;
+        }
     }
 
     void getRandomVector(TVec3f *pOut, f32 a2) {
@@ -93,13 +94,11 @@ namespace MR {
         return a4 + ((a5 - a4) * val);
     }
 
-    #ifdef NON_MATCHING
-    // wrong register orders
+    // FIXME: Source registers swapped in multiplication by pi.
     f32 getEaseInValue(f32 a1, f32 a2, f32 a3, f32 a4) {
-        f32 val = (1.0f - JMACosRadian((((a1 / a4) * PI) * 0.5f)));
+        f32 val = (1.0f - JMACosRadian((((a1 / a4) * PI) / 2.0f)));
         return a2 + ((a3 - a2) * val);
     }
-    #endif
 
     #ifdef NON_MATCHING
     // wrong register orders
