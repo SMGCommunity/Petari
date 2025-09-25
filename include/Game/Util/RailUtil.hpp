@@ -27,28 +27,30 @@ namespace MR {
 
     void moveCoordToNearestPos(LiveActor *, const TVec3f &);
 
+    s32 moveCoordAndCheckPassPointNo(LiveActor *, f32);
     void moveCoordAndTransToNearestRailPos(LiveActor *);
     void moveTransToCurrentRailPos(LiveActor *);
-
+    
     void reverseRailDirection(LiveActor *);
-
+    
     void setRailCoord(LiveActor *, f32);
     void setRailCoordSpeed(LiveActor *, f32);
     void accelerateRailCoordSpeed(LiveActor *, f32);
-
+    
     void calcDistanceToCurrentAndNextRailPoint(const LiveActor *, f32 *, f32 *);
-
+    
     void moveCoord(LiveActor *, f32);
     
     void moveTransToOtherActorRailPos(LiveActor *, const LiveActor *);
-
+    
     const TVec3f& getRailPos(const LiveActor *);
     const TVec3f& getRailDirection(const LiveActor *);
-
+    
     const TVec3f& getRailPointPosStart(const LiveActor *);
-
+    
     void moveCoordToStartPos(LiveActor *);
-
+    void moveCoordAndTransToRailStartPoint(LiveActor *);
+    
     bool getJMapInfoRailArg0NoInit(const LiveActor *, s32 *);
     bool getRailPointArg0NoInit(const LiveActor *, s32, f32 *);
 
