@@ -7,7 +7,7 @@
 #include "Game/Util/LiveActorUtil.hpp"
 
 QuarterRollGravityRoomArrow::QuarterRollGravityRoomArrow(const char* pName) : MapObjActor(pName) {
-
+    
 }
 
 void QuarterRollGravityRoomArrow::init(const JMapInfoIter& rIter) {
@@ -16,6 +16,13 @@ void QuarterRollGravityRoomArrow::init(const JMapInfoIter& rIter) {
     MapObjActorUtil::setupInitInfoSimpleMapObj(&info);
     info.setupNerve(&NrvQuarterRollGravityRoomArrow::QuarterRollGravityRoomArrowNrvWait::sInstance);
     initialize(rIter, info);
+}
+
+
+void QuarterRollGravityRoomArrow::exeRollOnA() {
+    if (MR::isFirstStep(this)) {
+        MR::startBck(this, "RollGravityA", 0);
+    }
 }
 
 void QuarterRollGravityRoomArrow::exeRollOffA() {
@@ -27,7 +34,28 @@ void QuarterRollGravityRoomArrow::exeRollOffA() {
     }
 }
 
+void QuarterRollGravityRoomArrow::exeRollOnB() {
+    if (MR::isFirstStep(this)) {
+        MR::startBck(this, "RollGravityB", 0);
+    }
+}
 
+void QuarterRollGravityRoomArrow::exeRollOffB() {
+    if (MR::isFirstStep(this)) 
+        MR::startBck(this, "RollGravityBReverse", 0);
+    if (MR::isBckStopped(this))
+        setNerve(&NrvQuarterRollGravityRoomArrow::QuarterRollGravityRoomArrowNrvWait::sInstance);
+}
+
+void QuarterRollGravityRoomArrow::initCaseUseSwitchA(const MapObjActorInitInfo& rInfo) {
+    MR::listenStageSwitchOnOffA(this, MR::Functor(this, &QuarterRollGravityRoomArrow::onRollA), MR::Functor(this, &QuarterRollGravityRoomArrow::offRollA));
+}
+
+void QuarterRollGravityRoomArrow::initCaseNoUseSwitchA(const MapObjActorInitInfo& rInfo) {}
+
+void QuarterRollGravityRoomArrow::initCaseUseSwitchB(const MapObjActorInitInfo& rInfo) {
+    MR::listenStageSwitchOnOffB(this, MR::Functor(this, &QuarterRollGravityRoomArrow::onRollB), MR::Functor(this, &QuarterRollGravityRoomArrow::offRollB));
+}
 void QuarterRollGravityRoomArrow::initCaseNoUseSwitchB(const MapObjActorInitInfo& rInfo) {}
 
 void QuarterRollGravityRoomArrow::onRollA() {
@@ -49,50 +77,9 @@ void QuarterRollGravityRoomArrow::offRollB() {
 QuarterRollGravityRoomArrow::~QuarterRollGravityRoomArrow() {}
 
 namespace NrvQuarterRollGravityRoomArrow {
-    void QuarterRollGravityRoomArrowNrvWait::execute(Spine* pSpine) const {
-        
-    }
-    void QuarterRollGravityRoomArrowNrvRollOffB::execute(Spine* pSpine) const {
-        QuarterRollGravityRoomArrow* pActor = ((QuarterRollGravityRoomArrow*)pSpine->mExecutor);
-        
-        if (MR::isFirstStep(pActor)) {
-            MR::startBck(pActor, "RollGravityBReverse", 0);
-        }
-    }
-    
-    void QuarterRollGravityRoomArrowNrvRollOnA::execute(Spine* pSpine) const {
-        QuarterRollGravityRoomArrow* pActor = ((QuarterRollGravityRoomArrow*)pSpine->mExecutor);
-        
-        if (MR::isFirstStep(pActor)) {
-            MR::startBck(pActor, "RollGravityA", 0);
-        }
-    }
-    
-    void QuarterRollGravityRoomArrowNrvRollOffA::execute(Spine* pSpine) const {
-        ((QuarterRollGravityRoomArrow*)pSpine->mExecutor)->exeRollOffA();
-    }
-    
-    void QuarterRollGravityRoomArrowNrvRollOnB::execute(Spine* pSpine) const {
-        QuarterRollGravityRoomArrow* pActor = ((QuarterRollGravityRoomArrow*)pSpine->mExecutor);
-        
-        if (MR::isFirstStep(pActor)) {
-            MR::startBck(pActor, "RollGravityB", 0);
-        }
-    }
-    
-    
     QuarterRollGravityRoomArrowNrvWait(QuarterRollGravityRoomArrowNrvWait::sInstance);
     QuarterRollGravityRoomArrowNrvRollOnA(QuarterRollGravityRoomArrowNrvRollOnA::sInstance);
     QuarterRollGravityRoomArrowNrvRollOffA(QuarterRollGravityRoomArrowNrvRollOffA::sInstance);
     QuarterRollGravityRoomArrowNrvRollOnB(QuarterRollGravityRoomArrowNrvRollOnB::sInstance);
     QuarterRollGravityRoomArrowNrvRollOffB(QuarterRollGravityRoomArrowNrvRollOffB::sInstance);
-}
-void QuarterRollGravityRoomArrow::initCaseUseSwitchA(const MapObjActorInitInfo& rInfo) {
-    MR::listenStageSwitchOnOffA(this, MR::Functor(this, &QuarterRollGravityRoomArrow::onRollA), MR::Functor(this, &QuarterRollGravityRoomArrow::offRollA));
-}
-
-void QuarterRollGravityRoomArrow::initCaseNoUseSwitchA(const MapObjActorInitInfo& rInfo) {}
-
-void QuarterRollGravityRoomArrow::initCaseUseSwitchB(const MapObjActorInitInfo& rInfo) {
-    MR::listenStageSwitchOnOffB(this, MR::Functor(this, &QuarterRollGravityRoomArrow::onRollB), MR::Functor(this, &QuarterRollGravityRoomArrow::offRollB));
 }
