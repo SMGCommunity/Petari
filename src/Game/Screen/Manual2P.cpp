@@ -55,6 +55,8 @@ void Manual2P::init(const JMapInfoIter& rIter) {
     initNerve(&Manual2PNrvAppear::sInstance);
     MR::connectToSceneLayout(this);
 
+    i = 0;
+
     do {
         snprintf(messageId, sizeof(messageId), "%s%03d", "2PGuidance", i + 1);
         i++;
