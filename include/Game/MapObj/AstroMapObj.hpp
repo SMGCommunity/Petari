@@ -1,3 +1,5 @@
+#pragma once
+
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/Map/CollisionParts.hpp"
 #include "Game/MapObj/MapObjActor.hpp"
@@ -8,7 +10,6 @@
 #include "revolution/types.h"
 
 class AstroMapObj : public MapObjActor {
-
     public:
         AstroMapObj(const char*);
         ~AstroMapObj();

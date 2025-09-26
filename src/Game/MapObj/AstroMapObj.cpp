@@ -15,10 +15,7 @@
 #include "revolution/types.h"
 #include <cstddef>
 
-#pragma region AstroMapObj
-
 namespace NrvAstroMapObj {
-
     NEW_NERVE(AstroMapObjNrvDead, AstroMapObj, Wait);
     NEW_NERVE(AstroMapObjNrvAlive, AstroMapObj, Wait);
     NEW_NERVE(AstroMapObjNrvAliveAfterDemo, AstroMapObj, Wait);
@@ -59,16 +56,20 @@ void AstroMapObj::init(const JMapInfoIter& rIter) {     // Pain
     }
     initialize(rIter, mapObjInitInfo);
     selectNrvWait();
-    if (MR::isDemoCast(this, 0)) {
+
+    // If somebody wants to finish this part then go ahead. It matches, but not sure what the Functors are pointing to.
+
+    /* if (MR::isDemoCast(this, 0)) {
         MR::FunctorV0M<AstroMapObj*, void (AstroMapObj::*)()> demoFunctor = MR::Functor<AstroMapObj>(this, &AstroMapObj::startDemo); // Probably it's not startDemo
         MR::registerDemoActionFunctor(this, demoFunctor, 0);
     }
     MR::FunctorV0M<AstroMapObj*, void (AstroMapObj::*)()> otherFunct = MR::Functor<AstroMapObj>(this, &AstroMapObj::control);   // Same
     AstroMapObjFunction::tryRegisterMultiDemoAndFunction(_CC, this, rIter, otherFunct);
+    */
     MR::registerDemoSimpleCastAll(this);
     if (moreInlines(_CC)) {
         _C4 = AstroMapObjFunction::createAstroNamePlateParser();
-        _C8 = new GalaxyNamePlate(0, 1);
+        _C8 = new GalaxyNamePlate(nullptr, true);
         _C8->initWithoutIter();
     }
     if (checkStrings(_CC)) {
@@ -117,7 +118,7 @@ void AstroMapObj::setStateDoorOpenOrClose() {
             else {
                 if (!LiveActor::isNerve(&NrvAstroMapObj::AstroMapObjNrvDead::sInstance)) {
                     MR::tryStartAllAnim(this, "Open");
-                    MR::setAllAnimFrameAndStop(this, "Open", 0.0);
+                    MR::setAllAnimFrameAndStop(this, "Open", 0.0f);
                 }
                     MR::invalidateCollisionParts(_D4);
                     MR::validateCollisionParts(_D0);
@@ -195,7 +196,7 @@ void AstroMapObj::exeRevival() {
     }
 }
 
-bool AstroMapObj::receiveOtherMsg(u32, HitSensor*, HitSensor*) {
+bool AstroMapObj::receiveOtherMsg(u32, HitSensor* pSender, HitSensor* pReceiver) {
     return false;
 }
 
@@ -248,9 +249,6 @@ void AstroMapObj::initCaseUseSwitchB(const MapObjActorInitInfo&) {}
 void AstroMapObj::initCaseNoUseSwitchA(const MapObjActorInitInfo&) {}
 void AstroMapObj::initCaseUseSwitchA(const MapObjActorInitInfo&) {}
 
-#pragma endregion
-#pragma region AstroSimpleObj
-
 AstroSimpleObj::AstroSimpleObj(const char* pName) : SimpleMapObjFarMax(pName) {
     _C4 = 0;
     _C8 = 0;
@@ -273,5 +271,3 @@ void AstroSimpleObj::control() {
 AstroSimpleObj::~AstroSimpleObj() {
 
 }
-
-#pragma endregion
