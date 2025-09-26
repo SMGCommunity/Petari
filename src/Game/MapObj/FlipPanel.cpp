@@ -166,23 +166,23 @@ void FlipPanel::calcAndSetBaseMtx() {
     }
 }
 
-bool FlipPanel::receiveOtherMsg(u32 msg, HitSensor *a2, HitSensor *a3) {
+bool FlipPanel::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     if (isNerve(&NrvFlipPanel::FlipPanelNrvEnd::sInstance)) {
-        return 0;
+        return false;
     }
 
     if ((msg - 0x66) <= 1) {
-        _CC = this == a2->mHost;
-        return 1;
+        _CC = this == pSender->mHost;
+        return true;
     }
     else {
         if (msg == 0x69) {
             MR::invalidateClipping(this);
             setNerve(&NrvFlipPanel::FlipPanelNrvEndPrepare::sInstance);
-            return 1;
+            return true;
         }
         else {
-            return 0;
+            return false;
         }
     }
 }
@@ -345,7 +345,7 @@ void FlipPanelObserver::initAfterPlacement() {
     }
 }
 
-bool FlipPanelObserver::receiveOtherMsg(u32 msg, HitSensor *a2, HitSensor *a3) {
+bool FlipPanelObserver::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     if (msg == 0x66) {
         if (!_90) {
             if (_9C) {
@@ -365,7 +365,7 @@ bool FlipPanelObserver::receiveOtherMsg(u32 msg, HitSensor *a2, HitSensor *a3) {
         }
 
         _90++;
-        return 1;
+        return true;
     }
     else if (msg == 0x67) {
         if (_9C) {
@@ -376,10 +376,10 @@ bool FlipPanelObserver::receiveOtherMsg(u32 msg, HitSensor *a2, HitSensor *a3) {
         }
 
         _90--;
-        return 1;
+        return true;
     }
 
-    return 0;
+    return false;
 }
 
 namespace NrvFlipPanel {

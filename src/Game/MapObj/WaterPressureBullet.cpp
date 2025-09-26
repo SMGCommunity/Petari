@@ -193,13 +193,13 @@ void WaterPressureBullet::exeSpinKill() {
     kill();
 }
 
-void WaterPressureBullet::attackSensor(HitSensor *a1, HitSensor *a2) {
-    if (MR::isSensorMapObj(a2)) {
+void WaterPressureBullet::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
+    if (MR::isSensorMapObj(pReceiver)) {
         kill();
     }
 }
 
-bool WaterPressureBullet::receiveMsgPlayerAttack(u32 msg, HitSensor *, HitSensor *) {
+bool WaterPressureBullet::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     if (MR::isMsgFireBallAttack(msg)) {
         kill();
         return true;
@@ -208,18 +208,18 @@ bool WaterPressureBullet::receiveMsgPlayerAttack(u32 msg, HitSensor *, HitSensor
     return false;
 }
 
-bool WaterPressureBullet::receiveOtherMsg(u32 msg, HitSensor *a2, HitSensor *a3) {
+bool WaterPressureBullet::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     if (MR::isDead(this)) {
         return false;
     }
 
-    if (MR::isMsgAutoRushBegin(msg) && MR::isSensorPlayer(a2) && mHostActor == nullptr) {
+    if (MR::isMsgAutoRushBegin(msg) && MR::isSensorPlayer(pSender) && mHostActor == nullptr) {
         if (MR::isDemoActive()) {
             kill();
             return false;
         }
 
-        if (!inviteMario(a2)) {
+        if (!inviteMario(pSender)) {
             return false;
         }
         else {

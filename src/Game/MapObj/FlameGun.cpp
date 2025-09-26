@@ -147,9 +147,9 @@ void FlameGun::exeRadiateOnly() {
 
 // FlameGun::updateHitSensor
 
-void FlameGun::attackSensor(HitSensor *a1, HitSensor *a2) {
-    if (!MR::sendMsgEnemyAttackFire(a2, a1)) {
-        MR::sendMsgPush(a2, a1);
+void FlameGun::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
+    if (!MR::sendMsgEnemyAttackFire(pReceiver, pSender)) {
+        MR::sendMsgPush(pReceiver, pSender);
     }
 }
 

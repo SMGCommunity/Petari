@@ -41,10 +41,10 @@ void BallRail::control() {
 
 }
 
-bool BallRail::receiveOtherMsg(u32 msg, HitSensor *a2, HitSensor *a3) {
+bool BallRail::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     if (msg == 173 && isNerve(&NrvBallRail::BallRailNrvWait::sInstance)) {
-        TVec3f v9(a2->mHost->mVelocity);
-        TVec3f v8 = a2->mPosition - a3->mPosition;
+        TVec3f v9(pSender->mHost->mVelocity);
+        TVec3f v8 = pSender->mPosition - pReceiver->mPosition;
 
         if (v8.dot(v9) > 0.0f) {
             return false;
@@ -53,11 +53,11 @@ bool BallRail::receiveOtherMsg(u32 msg, HitSensor *a2, HitSensor *a3) {
         if (mGravity.dot(v8) > 0.0f) {
             MR::normalizeOrZero(&v8);
             v8.dot(v9);
-            MR::zeroVelocity(a2->mHost);
+            MR::zeroVelocity(pSender->mHost);
             return false;
         }
         else {
-            _90 = a2;
+            _90 = pSender;
             return true;
         }
     }

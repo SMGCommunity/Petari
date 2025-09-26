@@ -1056,43 +1056,41 @@ SkeletalFishBossHead::SkeletalFishBossHead(LiveActor *pActor) : PartsModel(pActo
     createSubModel();
 }
 
-void SkeletalFishBossHead::attackSensor(HitSensor *a1, HitSensor *a2) {
-    if (MR::isSensor(a1, "body")) {
-        LiveActor* host = mHost;
-        bool curFlag = false;
+void SkeletalFishBossHead::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
+    if (!MR::isSensor(pSender, "body")) {
+        return;
+    }
 
-        if (host->isNerve(&::SkeletalFishBossNrvDeadDamage::sInstance)
-            || host->isNerve(&::SkeletalFishBossNrvDead::sInstance)) {
-                curFlag = true;
+    LiveActor* pHost = mHost;
+    bool curFlag = pHost->isNerve(&::SkeletalFishBossNrvDeadDamage::sInstance)
+        || pHost->isNerve(&::SkeletalFishBossNrvDead::sInstance);
+
+    if (curFlag) {
+        return;
+    }
+
+    if (MR::isSensorPlayer(pReceiver)) {
+        curFlag = pHost->isNerve(&::SkeletalFishBossNrvAppearDemo::sInstance)
+            || pHost->isNerve(&::SkeletalFishBossNrvPowerUpDemo::sInstance)
+            || pHost->isNerve(&::SkeletalFishBossNrvDeadDemo::sInstance);
+
+        if (curFlag) {
+            return;
         }
 
-        if (!curFlag) {
-            if (MR::isSensorPlayer(a2)) {
-                curFlag = false;
+        if (pHost->isNerve(&::SkeletalFishBossNrvDamage::sInstance)) {
+            MR::sendMsgPush(pReceiver, pSender);
+        }
+        else {
+            MR::sendMsgPush(pReceiver, pSender);
 
-                if (host->isNerve(&::SkeletalFishBossNrvAppearDemo::sInstance)
-                    || host->isNerve(&::SkeletalFishBossNrvPowerUpDemo::sInstance)
-                    || host->isNerve(&::SkeletalFishBossNrvDeadDemo::sInstance)) {
-                        curFlag = true;
-                }
-
-                if (!curFlag) {
-                    if (host->isNerve(&::SkeletalFishBossNrvDamage::sInstance)) {
-                        MR::sendMsgPush(a2, a1);
-                    }
-                    else {
-                        MR::sendMsgPush(a2, a1);
-
-                        if (host->isNerve(&::SkeletalFishBossNrvOpenWait::sInstance)) {
-                            host->setNerve(&::SkeletalFishBossNrvBite::sInstance);
-                        }
-                    }
-                }
-            }
-            else if (!MR::isSensorEnemyAttack(a1) && MR::isSensorEnemy(a2)) {
-                MR::sendMsgEnemyAttack(a2, a1);
+            if (pHost->isNerve(&::SkeletalFishBossNrvOpenWait::sInstance)) {
+                pHost->setNerve(&::SkeletalFishBossNrvBite::sInstance);
             }
         }
+    }
+    else if (!MR::isSensorEnemyAttack(pSender) && MR::isSensorEnemy(pReceiver)) {
+        MR::sendMsgEnemyAttack(pReceiver, pSender);
     }
 }
 
@@ -1134,10 +1132,10 @@ void SkeletalFishBossHead::calcAnim() {
     }
 }
 
-bool SkeletalFishBossHead::receiveMsgPlayerAttack(u32 msg, HitSensor *a2, HitSensor *a3) {
+bool SkeletalFishBossHead::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     if (MR::isMsgJetTurtleAttack(msg)) {
         SkeletalFishBoss* boss = (SkeletalFishBoss*)mHost;
-        boss->damage(a3, a2->mPosition);
+        boss->damage(pReceiver, pSender->mPosition);
         return true;
     }
 

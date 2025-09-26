@@ -34,15 +34,15 @@ void BossKameckVs2::start() {
     setNerve(&NrvBossKameckVs2::BossKameckVs2NrvOpeningDemo::sInstance);
 }
 
-void BossKameckVs2::attackSensor(HitSensor *a1, HitSensor *a2) {
+void BossKameckVs2::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
     if (isBattle()) {
-        mStateBattle->attackSensor(a1, a2);
+        mStateBattle->attackSensor(pSender, pReceiver);
     }
 }
 
-bool BossKameckVs2::receiveMsgPlayerAttack(u32 msg, HitSensor *a1, HitSensor *a2) {
+bool BossKameckVs2::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     if (isBattle()) {
-        return mStateBattle->receiveMsgPlayerAttack(msg, a1, a2);
+        return mStateBattle->receiveMsgPlayerAttack(msg, pSender, pReceiver);
     }
 
     return false;

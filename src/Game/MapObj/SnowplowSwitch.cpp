@@ -4,7 +4,7 @@ SnowplowSwitch::SnowplowSwitch(const char *pName) : LiveActor(pName) {
     _8C = 0;
 }
 
-bool SnowplowSwitch::receiveOtherMsg(u32 msg, HitSensor *, HitSensor *) {
+bool SnowplowSwitch::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     if (msg == 73) {
         return _8C == 0;
     }

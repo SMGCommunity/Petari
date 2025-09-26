@@ -23,39 +23,39 @@ void BossKameckSequencer::update() {
  * This is most likely a remenant of another class that they accidentally included (or left) here,
  * so this code is my best guess since the vtables align up. It is some sort of BossKameckAction. 
 */
-void BossKameckSequencer::attackSensor(HitSensor *a1,  HitSensor *a2) {
+void BossKameckSequencer::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
     if (_C != nullptr) {
-        _C->attackSensor(a1, a2);
+        _C->attackSensor(pSender, pReceiver);
     }
 }
 
-bool BossKameckSequencer::receiveMsgPlayerAttack(u32 msg, HitSensor *a1, HitSensor *a2) {
+bool BossKameckSequencer::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     if (_C != nullptr) {
-        return _C->receiveMsgPlayerAttack(msg, a1, a2);
-    }
-
-    return false;
-}
-
-bool BossKameckSequencer::receiveMsgEnemyAttack(u32 msg, HitSensor *a1, HitSensor *a2) {
-    if (_C != nullptr) {
-        return _C->receiveMsgEnemyAttack(msg, a1, a2);
+        return _C->receiveMsgPlayerAttack(msg, pSender, pReceiver);
     }
 
     return false;
 }
 
-bool BossKameckSequencer::receiveMsgPush(HitSensor *a1, HitSensor *a2) {
+bool BossKameckSequencer::receiveMsgEnemyAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     if (_C != nullptr) {
-        return _C->receiveMsgPush(a1, a2);
+        return _C->receiveMsgEnemyAttack(msg, pSender, pReceiver);
     }
 
     return false;
 }
 
-bool BossKameckSequencer::receiveOtherMsg(u32 msg, HitSensor *a1, HitSensor *a2) {
+bool BossKameckSequencer::receiveMsgPush(HitSensor *pSender, HitSensor *pReceiver) {
     if (_C != nullptr) {
-        return _C->receiveOtherMsg(msg, a1, a2);
+        return _C->receiveMsgPush(pSender, pReceiver);
+    }
+
+    return false;
+}
+
+bool BossKameckSequencer::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+    if (_C != nullptr) {
+        return _C->receiveOtherMsg(msg, pSender, pReceiver);
     }
 
     return false;

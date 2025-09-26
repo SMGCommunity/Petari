@@ -120,10 +120,11 @@ void HoneyQueen::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
 }
 
 bool HoneyQueen::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
-    if (!MR::isMsgPlayerSpinAttack(msg)) {
-        return NPCActor::receiveMsgPlayerAttack(msg, pSender, pReceiver);
+    if (MR::isMsgPlayerSpinAttack(msg)) {
+        return false;
     }
-    return false;
+
+    NPCActor::receiveMsgPlayerAttack(msg, pSender, pReceiver);
 }
 
 void HoneyQueen::fadeOut() {

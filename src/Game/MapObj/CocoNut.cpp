@@ -591,6 +591,7 @@ bool CocoNut::isOnGround() const {
 			return true;
 		}
 	}
+
 	return false;
 }
 
@@ -599,10 +600,12 @@ bool CocoNut::getWallNormal(TVec3f *arg0) const {
 		arg0->set<f32>(*MR::getWallNormal(this));
 		return true;
 	}
+
 	if (0.0f < _90 && (MR::isOnGround(this)) && !isOnGround()) {
 		arg0->set<f32>(*MR::getGroundNormal(this));
 		return true;
 	}
+
 	return false;
 }
 
@@ -610,28 +613,32 @@ bool CocoNut::sendMsgToBindedSensor() {
 	if (MR::isBindedGround(this)) {
 		return sendMsgEnemyAttackToBindedSensor(MR::getGroundSensor(this));
 	}
+
 	if (MR::isBindedWall(this)) {
 		return sendMsgEnemyAttackToBindedSensor(MR::getWallSensor(this));
 	}
+
 	if (MR::isBindedRoof(this)) {
 		return sendMsgEnemyAttackToBindedSensor(MR::getRoofSensor(this));
 	}
-	return 0;
-}
 
-bool CocoNut::sendMsgEnemyAttackToBindedSensor(HitSensor *arg0) {
-	if (_13C) {
-		return MR::sendMsgEnemyAttack(arg0, getSensor("body"));
-	}
 	return false;
 }
 
-bool CocoNut::isValidReceiveMsg(const HitSensor *a1) const {
+bool CocoNut::sendMsgEnemyAttackToBindedSensor(HitSensor *pSensor) {
+	if (_13C) {
+		return MR::sendMsgEnemyAttack(pSensor, getSensor("body"));
+	}
+
+	return false;
+}
+
+bool CocoNut::isValidReceiveMsg(const HitSensor *pSensor) const {
 	return (
-		isNerve(&NrvCocoNut::CocoNutNrvWait::sInstance) ||
-		isNerve(&NrvCocoNut::CocoNutNrvWaitOnBind::sInstance) ||
-		isNerve(&NrvCocoNut::CocoNutNrvMove::sInstance)
-	) && a1 == getSensor("body");
+		isNerve(&NrvCocoNut::CocoNutNrvWait::sInstance)
+		|| isNerve(&NrvCocoNut::CocoNutNrvWaitOnBind::sInstance)
+		|| isNerve(&NrvCocoNut::CocoNutNrvMove::sInstance)
+	) && pSensor == getSensor("body");
 }
 
 const char *CocoNut::getModelName() {
@@ -685,63 +692,73 @@ void CocoNut::calcAndSetBaseMtx() {
 	}
 }
 
-void CocoNut::attackSensor(HitSensor *arg0, HitSensor *arg1) {
-	if (isValidReceiveMsg(arg0)) {
-		if (MR::isSensorPlayer(arg1) && !isValidPushedFromPlayer(arg0, arg1)) {
-			if (!MR::isPlayerHipDropFalling()) {
-				MR::sendMsgPush(arg1, arg0);
-			}
-		}
-		else if (arg1->isType(0x17)) {
-			if (MR::sendMsgPush(arg1, arg0)) {
-				MR::startSound(this, "SE_OJ_COCONUT_HIT", -1, -1);
-			}
-		}
-		else {
-			if (_13C && isNerve(&NrvCocoNut::CocoNutNrvMove::sInstance) && MR::sendMsgToEnemyAttackBlow(arg1, arg0)) {
-				MR::startSound(this, "SE_OJ_COCONUT_HIT", -1, -1);
-				setNerve(&NrvCocoNut::CocoNutNrvBreak::sInstance);
-			}
-			else {
-				MR::sendMsgPush(arg1, arg0);
-			}
-		}
+void CocoNut::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
+	if (!isValidReceiveMsg(pSender)) {
+        return;
+    }
+
+    if (MR::isSensorPlayer(pReceiver) && !isValidPushedFromPlayer(pSender, pReceiver)) {
+        if (!MR::isPlayerHipDropFalling()) {
+            MR::sendMsgPush(pReceiver, pSender);
+        }
+    }
+    else if (pReceiver->isType(0x17)) {
+        if (MR::sendMsgPush(pReceiver, pSender)) {
+            MR::startSound(this, "SE_OJ_COCONUT_HIT", -1, -1);
+        }
+    }
+    else if (_13C && isNerve(&NrvCocoNut::CocoNutNrvMove::sInstance) && MR::sendMsgToEnemyAttackBlow(pReceiver, pSender)) {
+        MR::startSound(this, "SE_OJ_COCONUT_HIT", -1, -1);
+        setNerve(&NrvCocoNut::CocoNutNrvBreak::sInstance);
+    }
+    else {
+        MR::sendMsgPush(pReceiver, pSender);
 	}
 }
 
-bool CocoNut::receiveMsgPush(HitSensor *pMySensor, HitSensor *pOtherSensor) {
-	if (!isValidReceiveMsg(pOtherSensor)) {
+bool CocoNut::receiveMsgPush(HitSensor *pSender, HitSensor *pReceiver) {
+	if (!isValidReceiveMsg(pReceiver)) {
 		return false;
 	}
-	if (pMySensor->isType(0x17)) {
-		return tryHit(pOtherSensor, pMySensor);
+
+	if (pSender->isType(0x17)) {
+		return tryHit(pReceiver, pSender);
 	}
-	return tryPushedFromActor(pOtherSensor, pMySensor);
+
+	return tryPushedFromActor(pReceiver, pSender);
 }
 
-bool CocoNut::receiveMsgPlayerAttack(u32 a1, HitSensor *pOtherSensor, HitSensor *pMySensor) {
-	if (!isValidReceiveMsg(pMySensor)) {
+bool CocoNut::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+	if (!isValidReceiveMsg(pReceiver)) {
 		return false;
 	}
-	if (!MR::isMsgPlayerHitAll(a1) && !MR::isMsgPlayerTrample(a1) && !MR::isMsgPlayerHipDrop(a1) && !MR::isMsgStarPieceReflect(a1)) {
+
+	if (!MR::isMsgPlayerHitAll(msg)
+		&& !MR::isMsgPlayerTrample(msg)
+		&& !MR::isMsgPlayerHipDrop(msg)
+		&& !MR::isMsgStarPieceReflect(msg))
+	{
 		return false;
 	}
+
 	f32 var_f31;
 	f32 var_f30;
-	if (MR::isMsgPlayerSpinAttack(a1)) {
+
+	if (MR::isMsgPlayerSpinAttack(msg)) {
 		var_f31 = 35.0f;
 		var_f30 = -20.0f;
 		MR::startSound(this, "SE_PM_SPIN_HIT", -1, -1);
 		MR::startSound(this, "SE_OJ_COCONUT_LAUNCH", -1, -1);
-		emitEffectSpinHit(pOtherSensor, pMySensor);
+		emitEffectSpinHit(pSender, pReceiver);
 		_13C = true;
 	}
-	else if (MR::isMsgPlayerHipDrop(a1) || MR::isMsgInvincibleAttack(a1)) {
+	else if (MR::isMsgPlayerHipDrop(msg) || MR::isMsgInvincibleAttack(msg)) {
 		var_f31 = 25.0f;
 		var_f30 = -15.0f;
 		MR::startSound(this, "SE_OJ_COCONUT_FLIP_M", -1, -1);
-		if (MR::isMsgPlayerHipDrop(a1)) {
-			MR::sendMsgAwayJump(pOtherSensor, pMySensor);
+
+		if (MR::isMsgPlayerHipDrop(msg)) {
+			MR::sendMsgAwayJump(pSender, pReceiver);
 		}
 	}
 	else {
@@ -749,37 +766,43 @@ bool CocoNut::receiveMsgPlayerAttack(u32 a1, HitSensor *pOtherSensor, HitSensor 
 		var_f30 = -5.0f;
 		MR::startSound(this, "SE_OJ_COCONUT_FLIP_S", -1, -1);
 	}
+
 	_8C = var_f31;
 	_90 = var_f30;
 	TVec3f stack_2C;
 	TVec3f stack_20;
 	TVec3f stack_14;
-	stack_2C.sub(pMySensor->mPosition, pOtherSensor->mPosition);
-	if (MR::isMsgStarPieceReflect(a1) && !MR::normalizeOrZero(stack_2C, &stack_20) && !MR::normalizeOrZero(pOtherSensor->mHost->mVelocity, &stack_14)) {
+	stack_2C.sub(pReceiver->mPosition, pSender->mPosition);
+
+	if (MR::isMsgStarPieceReflect(msg) && !MR::normalizeOrZero(stack_2C, &stack_20) && !MR::normalizeOrZero(pSender->mHost->mVelocity, &stack_14)) {
 		if (stack_20.dot(stack_14) < MR::cosDegree(60.0f)) {
 			TVec3f stack_8(stack_14);
 			stack_8.scale(65.0f);
 			stack_2C.add(stack_8);
 		}
 	}
+
 	setFrontVec(stack_2C);
-	if (MR::isMsgPlayerSpinAttack(a1)) {
+
+	if (MR::isMsgPlayerSpinAttack(msg)) {
 		reviseFrontVec();
 	}
+
 	setNerve(&NrvCocoNut::CocoNutNrvMove::sInstance);
 	return true;
 }
 
-bool CocoNut::receiveOtherMsg(u32 arg0, HitSensor *pOtherSensor, HitSensor *pMySensor) {
+bool CocoNut::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
 	f32 temp_f0;
 	f32 temp_f1;
 	f32 var_f2;
 
-	if (!isValidReceiveMsg(pMySensor)) {
+	if (!isValidReceiveMsg(pReceiver)) {
 		return false;
 	}
-	if (MR::isMsgPlayerKick(arg0)) {
-		if (isValidPushedFromPlayer(pMySensor, pOtherSensor)) {
+
+	if (MR::isMsgPlayerKick(msg)) {
+		if (isValidPushedFromPlayer(pReceiver, pSender)) {
 			TVec3f *playerVelocity = MR::getPlayerVelocity();
 			setFrontVec(*playerVelocity);
 			temp_f1 = _94.dot(*playerVelocity);
@@ -793,11 +816,10 @@ bool CocoNut::receiveOtherMsg(u32 arg0, HitSensor *pOtherSensor, HitSensor *pMyS
 			return true;
 		}
 	}
-	else {
-		if (MR::isMsgHitmarkEmit(arg0)) {
-			return true;
-		}
+	else if (MR::isMsgHitmarkEmit(msg)) {
+		return true;
 	}
+
 	return false;
 }
 

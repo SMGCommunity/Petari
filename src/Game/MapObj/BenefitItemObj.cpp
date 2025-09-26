@@ -501,20 +501,20 @@ void BenefitItemObj::exeCatch() {
     mPosition.set<f32>(mHitSensorActor->mPosition);
 }
 
-bool BenefitItemObj::receiveMsgPlayerAttack(u32 msg, HitSensor *, HitSensor *) {
+bool BenefitItemObj::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     return MR::isMsgStarPieceReflect(msg);
 }
 
-bool BenefitItemObj::receiveOtherMsg(u32 msg, HitSensor *a2, HitSensor *a3) {
+bool BenefitItemObj::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     if (MR::isDead(this)) {
         return false;
     }
 
-    if (MR::receiveItemShowMsg(msg, a2, a3)) {
+    if (MR::receiveItemShowMsg(msg, pSender, pReceiver)) {
         return true;
     }
 
-    if (MR::receiveItemHideMsg(msg, a2, a3)) {
+    if (MR::receiveItemHideMsg(msg, pSender, pReceiver)) {
         return true;
     }
 
@@ -536,11 +536,12 @@ bool BenefitItemObj::receiveOtherMsg(u32 msg, HitSensor *a2, HitSensor *a3) {
         if (isNerve(&NrvBenefitItemObj::HostTypeNrvWait::sInstance) 
             || isNerve(&NrvBenefitItemObj::HostTypeNrvShoot::sInstance) 
             || isNerve(&NrvBenefitItemObj::HostTypeNrvAppearGround::sInstance) 
-            || isNerve(&NrvBenefitItemObj::HostTypeNrvEscape::sInstance)) {
-                mHitSensorActor = a2->mHost;
-                setNerve(&NrvBenefitItemObj::HostTypeNrvCatch::sInstance);
-                MR::tryRumblePadWeak(this, 0);
-                return true;
+            || isNerve(&NrvBenefitItemObj::HostTypeNrvEscape::sInstance))
+        {
+            mHitSensorActor = pSender->mHost;
+            setNerve(&NrvBenefitItemObj::HostTypeNrvCatch::sInstance);
+            MR::tryRumblePadWeak(this, 0);
+            return true;
         }
     }
 

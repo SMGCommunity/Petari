@@ -37,38 +37,38 @@ void BossKameckStateBattle::setBattlePattarn(BossKameckBattlePattarn *pPattarn) 
     mBattlePattarn = pPattarn;
 }
 
-void BossKameckStateBattle::attackSensor(HitSensor *a1, HitSensor *a2) {
-    if (isEnableGuard() && MR::isSensorPlayer(a2)) {
+void BossKameckStateBattle::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
+    if (isEnableGuard() && MR::isSensorPlayer(pReceiver)) {
         if (isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvGuard::sInstance)) {
-            if (MR::sendMsgEnemyAttackFlipRot(a2, a1)) {
+            if (MR::sendMsgEnemyAttackFlipRot(pReceiver, pSender)) {
                 return;
             }
         }
-        else if (MR::isSensorEnemyAttack(a1)) {
-            if (!MR::sendMsgEnemyAttack(a2, a1)) {
-                MR::sendMsgPush(a2, a1);
+        else if (MR::isSensorEnemyAttack(pSender)) {
+            if (!MR::sendMsgEnemyAttack(pReceiver, pSender)) {
+                MR::sendMsgPush(pReceiver, pSender);
             }
         }
     }
 }
 
-bool BossKameckStateBattle::receiveMsgPlayerAttack(u32 msg, HitSensor *a1, HitSensor* a2) {
+bool BossKameckStateBattle::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     if (MR::isMsgStarPieceReflect(msg)) {
         return true;
     }
 
     if (MR::isMsgJetTurtleAttack(msg)) {
-        return requestDamage(a1, a2);
+        return requestDamage(pSender, pReceiver);
     }
 
     if (MR::isMsgPlayerSpinAttack(msg)) {
-        return requestGuard(a1, a2);
+        return requestGuard(pSender, pReceiver);
     }
 
     return false;
 }
 
-bool BossKameckStateBattle::requestDamage(HitSensor *a1, HitSensor *a2) {
+bool BossKameckStateBattle::requestDamage(HitSensor *pSender, HitSensor *pReceiver) {
     if (isEnableDamage()) {
         if (mBeam != nullptr) {
             mBeam->kill();
@@ -76,7 +76,7 @@ bool BossKameckStateBattle::requestDamage(HitSensor *a1, HitSensor *a2) {
         }
 
         mBossKameck->killAllBeam();
-        MR::emitEffectHitBetweenSensors(mBossKameck, a1, a2, 0.0f, "HitMarkNormal");
+        MR::emitEffectHitBetweenSensors(mBossKameck, pSender, pReceiver, 0.0f, "HitMarkNormal");
         setNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvDamage::sInstance);
         return true;
     }
@@ -84,7 +84,7 @@ bool BossKameckStateBattle::requestDamage(HitSensor *a1, HitSensor *a2) {
     return false;
 }
 
-bool BossKameckStateBattle::requestGuard(HitSensor *a1, HitSensor *a2) {
+bool BossKameckStateBattle::requestGuard(HitSensor *pSender, HitSensor *pReceiver) {
     if (isEnableGuard()) {
         if (mBeam != nullptr) {
             mBeam->kill();

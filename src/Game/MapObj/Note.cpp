@@ -109,8 +109,8 @@ void Note::calcAndSetBaseMtx() {
 }
 */
 
-void Note::attackSensor(HitSensor *a1, HitSensor *a2) {
-    if (MR::isSensorPlayerOrRide(a2)) {
+void Note::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
+    if (MR::isSensorPlayerOrRide(pReceiver)) {
         if (!isNerve(&NrvNote::NoteNrvFlyUp::sInstance)) {
             MR::emitEffect(this, "Get");
             MR::addNoteToCounter();

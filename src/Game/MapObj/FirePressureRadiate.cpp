@@ -164,16 +164,16 @@ void FirePressureRadiate::control() {
     }
 }
 
-void FirePressureRadiate::attackSensor(HitSensor *a1, HitSensor *a2) {
-    if (MR::isSensorEnemyAttack(a1) && MR::isSensorPlayerOrRide(a2)) {
-        MR::sendMsgEnemyAttackFire(a2, a1);
+void FirePressureRadiate::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
+    if (MR::isSensorEnemyAttack(pSender) && MR::isSensorPlayerOrRide(pReceiver)) {
+        MR::sendMsgEnemyAttackFire(pReceiver, pSender);
     }
-    else if (MR::isSensorMapObj(a1) && (MR::isSensorPlayer(a2) || MR::isSensorEnemy(a2))) {
-        MR::sendMsgPush(a2, a1);
+    else if (MR::isSensorMapObj(pSender) && (MR::isSensorPlayer(pReceiver) || MR::isSensorEnemy(pReceiver))) {
+        MR::sendMsgPush(pReceiver, pSender);
     }
 }
 
-bool FirePressureRadiate::receiveOtherMsg(u32 msg, HitSensor *a1, HitSensor *) {
+bool FirePressureRadiate::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     if (msg == 105) {
         setNerve(&NrvFirePressureRadiate::FirePressureRadiateNrvSyncWait::sInstance);
         return true;

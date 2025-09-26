@@ -87,11 +87,11 @@ void FirePressureBullet::exeFly() {
     }
 }
 
-void FirePressureBullet::attackSensor(HitSensor *a1, HitSensor *a2) {
-    if (MR::isSensorEnemy(a2) || MR::isSensorMapObj(a2)) {
+void FirePressureBullet::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
+    if (MR::isSensorEnemy(pReceiver) || MR::isSensorMapObj(pReceiver)) {
         kill();
     }
-    else if (!MR::isSensorPlayer(a2) && MR::sendMsgEnemyAttackFire(a2, a1)) {
+    else if (!MR::isSensorPlayer(pReceiver) && MR::sendMsgEnemyAttackFire(pReceiver, pSender)) {
         kill();
     }
 }

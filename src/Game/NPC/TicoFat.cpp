@@ -347,7 +347,7 @@ void TicoFat::control() {
     }
 }
 
-bool TicoFat::receiveMsgPlayerAttack(u32 msg, HitSensor *a2, HitSensor *a3) {
+bool TicoFat::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     if (MR::isMsgStarPieceReflect(msg)) {
         return false;
     }
@@ -362,7 +362,7 @@ bool TicoFat::receiveMsgPlayerAttack(u32 msg, HitSensor *a2, HitSensor *a3) {
         return true;
     }
     else {
-        return NPCActor::receiveMsgPlayerAttack(msg, a2, a3);
+        return NPCActor::receiveMsgPlayerAttack(msg, pSender, pReceiver);
     }
 }
 

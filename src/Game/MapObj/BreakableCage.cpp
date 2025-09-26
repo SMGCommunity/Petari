@@ -172,7 +172,7 @@ void BreakableCage::calcAndSetBaseMtx() {
 }
 #endif
 
-bool BreakableCage::receiveMsgPlayerAttack(u32 msg, HitSensor *a2, HitSensor *a3) {
+bool BreakableCage::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     bool result;
     if (MR::isMsgJetTurtleAttack(msg)) {
         result = tryBreak();
@@ -184,7 +184,7 @@ bool BreakableCage::receiveMsgPlayerAttack(u32 msg, HitSensor *a2, HitSensor *a3
     return result;
 }
 
-bool BreakableCage::receiveMsgEnemyAttack(u32 msg, HitSensor *a2, HitSensor *a3) {
+bool BreakableCage::receiveMsgEnemyAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     bool result;
 
     if (MR::isMsgEnemyAttackFire(msg) || MR::isMsgEnemyAttackFireStrong(msg)) {

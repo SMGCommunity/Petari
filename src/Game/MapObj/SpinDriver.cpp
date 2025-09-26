@@ -187,15 +187,15 @@ void SpinDriver::calcAndSetBaseMtx() {
     MR::setBaseTRMtx(this, position);
 }
 
-bool SpinDriver::receiveOtherMsg(u32 msg, HitSensor *a2, HitSensor *a3) {
+bool SpinDriver::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     if (msg == 152) {
         _13C = 60;
-        return canBind(a2);
+        return canBind(pSender);
     }
 
     if (msg == 146) {
         _13C = 60;
-        if (startBind(a2)) {
+        if (startBind(pSender)) {
             return true;
         }
     }

@@ -114,9 +114,9 @@ void SimpleSeesawObj::control() {
     MapObjActor::control();
 }
 
-void SimpleMapObjPush::attackSensor(HitSensor *a1, HitSensor *a2) {
-    if (MR::isSensorPlayer(a2)) {
-        MR::sendMsgPush(a2, a1);
+void SimpleMapObjPush::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
+    if (MR::isSensorPlayer(pReceiver)) {
+        MR::sendMsgPush(pReceiver, pSender);
     }
 }
 

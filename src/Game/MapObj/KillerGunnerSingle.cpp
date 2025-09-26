@@ -26,11 +26,11 @@ void KillerGunnerSingle::init(const JMapInfoIter &rIter) {
     makeActorAppeared();
 }
 
-void KillerGunnerSingle::attackSensor(HitSensor *a1, HitSensor *a2) {
+void KillerGunnerSingle::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
     if (isNerve(&NrvKillerGunnerSingle::HostTypeShoot::sInstance)) {
-        if (MR::isSensorPlayer(a2)) {
-            if (MR::isNear(a1, a2, a1->mRadius)) {
-                if (MR::sendMsgEnemyAttackMaximum(a2, a1)) {
+        if (MR::isSensorPlayer(pReceiver)) {
+            if (MR::isNear(pSender, pReceiver, pSender->mRadius)) {
+                if (MR::sendMsgEnemyAttackMaximum(pReceiver, pSender)) {
                     setNerve(&NrvKillerGunnerSingle::HostTypeAttack::sInstance);
                 }
             }

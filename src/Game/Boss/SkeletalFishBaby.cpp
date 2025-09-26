@@ -118,20 +118,20 @@ void SkeletalFishBaby::calcAnim() {
     LiveActor::calcAnim();
 }
 
-void SkeletalFishBaby::attackSensor(HitSensor *a1, HitSensor *a2) {
-    if (MR::isSensorPlayerOrRide(a2)) {
-        if (isAttackable() && MR::sendMsgEnemyAttackStrong(a2, a1)) {
+void SkeletalFishBaby::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
+    if (MR::isSensorPlayerOrRide(pReceiver)) {
+        if (isAttackable() && MR::sendMsgEnemyAttackStrong(pReceiver, pSender)) {
             MR::shakeCameraStrong();
         }
         else {
-            MR::sendMsgPush(a2, a1);
+            MR::sendMsgPush(pReceiver, pSender);
         }
     }
 }
 
-bool SkeletalFishBaby::receiveMsgPlayerAttack(u32 msg, HitSensor *a2, HitSensor *a3) {
+bool SkeletalFishBaby::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     if (MR::isMsgJetTurtleAttack(msg)) {
-        return damage(a2->mPosition, true);
+        return damage(pSender->mPosition, true);
     }
 
     if (MR::isMsgStarPieceReflect(msg)) {
@@ -142,11 +142,11 @@ bool SkeletalFishBaby::receiveMsgPlayerAttack(u32 msg, HitSensor *a2, HitSensor 
     return false;   
 }
 
-bool SkeletalFishBaby::receiveMsgEnemyAttack(u32, HitSensor *, HitSensor *) {
+bool SkeletalFishBaby::receiveMsgEnemyAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     return false;
 }
 
-bool SkeletalFishBaby::receiveOtherMsg(u32 msg, HitSensor *a2, HitSensor *a3) {
+bool SkeletalFishBaby::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     switch (msg) {
         case 190:
             MR::invalidateClipping(this);

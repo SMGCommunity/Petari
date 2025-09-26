@@ -129,31 +129,31 @@ void PunchingKinoko::calcAndSetBaseMtx() {
 */
 
 /*
-void PunchingKinoko::attackSensor(HitSensor *pMySensor, HitSensor *pOtherSensor) {
+void PunchingKinoko::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
     if (!isCrushed()) {
-        if (pMySensor == getSensor("Body")) {
+        if (pSender == getSensor("Body")) {
             if (isNerve(&NrvPunchingKinoko::PunchingKinokoNrvWait::sInstance)) {
-                MR::sendMsgPush(pOtherSensor, pMySensor);
+                MR::sendMsgPush(pReceiver, pSender);
             }
         }
-        else if (!isNerve(&NrvPunchingKinoko::PunchingKinokoNrvCrushedEnd::sInstance) || !MR::isSensorPlayer(pOtherSensor) || !MR::sendMsgEnemyAttackFlipWeakJump(pOtherSensor, pMySensor)) {
+        else if (!isNerve(&NrvPunchingKinoko::PunchingKinokoNrvCrushedEnd::sInstance) || !MR::isSensorPlayer(pReceiver) || !MR::sendMsgEnemyAttackFlipWeakJump(pReceiver, pSender)) {
             TVec3f stack_3C;
             TVec3f stack_30;
             f32 stack_8;
             MR::separateScalarAndDirection(&stack_8, &stack_3C, mGroundChecker->mVelocity);
             bool hit = false;
-            if (MR::isSensorPlayer(pOtherSensor)) {
+            if (MR::isSensorPlayer(pReceiver)) {
                 if (isEnableHitPlayer()) {
                     if (stack_8 >= 30.0f) {
                         if (stack_8 >= 45.0f) {
                             TVec3f stack_24(stack_3C);
                             stack_24.scaleInline(70.0f);
-                            hit = MR::sendMsgEnemyAttackFlipMaximumToDir(pOtherSensor, pMySensor, stack_24);
+                            hit = MR::sendMsgEnemyAttackFlipMaximumToDir(pReceiver, pSender, stack_24);
                         }
                         else {
                             TVec3f stack_18(stack_3C);
                             stack_18.scale(70.0f);
-                            hit = MR::sendMsgEnemyAttackFlipToDir(pOtherSensor, pMySensor, stack_18);
+                            hit = MR::sendMsgEnemyAttackFlipToDir(pReceiver, pSender, stack_18);
                         }
                         if (hit) {
                             MR::startSoundPlayer("SE_PM_WALL_HIT_BODY", -1);
@@ -162,27 +162,27 @@ void PunchingKinoko::attackSensor(HitSensor *pMySensor, HitSensor *pOtherSensor)
                     }
                     else {
                         if (stack_8 >= 15.0f) {
-                            hit = MR::sendMsgEnemyAttackFlipWeak(pOtherSensor, pMySensor);
+                            hit = MR::sendMsgEnemyAttackFlipWeak(pReceiver, pSender);
                         } else {
-                            MR::sendMsgPush(pOtherSensor, pMySensor);
+                            MR::sendMsgPush(pReceiver, pSender);
                         }
                     }
                 }
                 else {
-                    MR::sendMsgPush(pOtherSensor, pMySensor);
+                    MR::sendMsgPush(pReceiver, pSender);
                 }
             }
             else {
                 if (isEnableEnemyAttack()) {
-                    hit = MR::sendMsgToEnemyAttackBlow(pOtherSensor, pMySensor);
+                    hit = MR::sendMsgToEnemyAttackBlow(pReceiver, pSender);
                 }
                 if (!hit) {
-                    MR::sendMsgPush(pOtherSensor, pMySensor);
+                    MR::sendMsgPush(pReceiver, pSender);
                 }
             }
             if (hit) {
-                MR::emitEffectHitBetweenSensors(this, pMySensor, pOtherSensor, 0.0f, "Hit");
-                MR::calcSensorDirectionNormalize(&stack_30, pOtherSensor, pMySensor);
+                MR::emitEffectHitBetweenSensors(this, pSender, pReceiver, 0.0f, "Hit");
+                MR::calcSensorDirectionNormalize(&stack_30, pReceiver, pSender);
                 f32 dot = mGroundChecker->mVelocity.dot(stack_30) * 1.6f;
                 TVec3f stack_C(stack_30);
                 stack_C.scale(dot);
@@ -196,86 +196,89 @@ void PunchingKinoko::attackSensor(HitSensor *pMySensor, HitSensor *pOtherSensor)
 }
 */
 
-bool PunchingKinoko::receiveMsgPlayerAttack(u32 a1, HitSensor *pOtherSensor, HitSensor *pMySensor) {
+bool PunchingKinoko::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     if (isCrushed()) {
         return false;
     }
 
-    if (pMySensor == getSensor("Body")) {
+    if (pReceiver == getSensor("Body")) {
         return false;
     }
 
-    if (MR::isMsgInvincibleAttack(a1)) {
+    if (MR::isMsgInvincibleAttack(msg)) {
         if (mInvincibleHitCoolDown < 0) {
             MR::startBlowHitSound(this);
             mInvincibleHitCoolDown = 10;
         }
-        return requestEnemyBlow(pOtherSensor, pMySensor);
+
+        return requestEnemyBlow(pSender, pReceiver);
     }
 
-    if (MR::isMsgPlayerHipDrop(a1)) {
+    if (MR::isMsgPlayerHipDrop(msg)) {
         return requestCrush();
     }
 
-    if (MR::isMsgLockOnStarPieceShoot(a1)) {
+    if (MR::isMsgLockOnStarPieceShoot(msg)) {
         return true;
     }
 
-    if (MR::isMsgStarPieceAttack(a1)) {
+    if (MR::isMsgStarPieceAttack(msg)) {
         TVec3f stack_14;
-        MR::calcSensorDirectionNormalize(&stack_14, pOtherSensor, pMySensor);
+        MR::calcSensorDirectionNormalize(&stack_14, pSender, pReceiver);
         f32 dot = mGroundChecker->mVelocity.dot(stack_14);
+
         if (dot < 15.0f) {
             TVec3f stack_8(stack_14);
             stack_8.scale(15.0f);
             mGroundChecker->mVelocity.add(stack_8);
         }
+
         MR::startSound(this, "SE_OJ_PNC_KINOKO_BOUND", -1, -1);
         return true;
     }
 
-    if (MR::isMsgPlayerSpinAttack(a1)) {
-        return requestPunch(pOtherSensor, pMySensor);
+    if (MR::isMsgPlayerSpinAttack(msg)) {
+        return requestPunch(pSender, pReceiver);
     }
 
-    if (MR::isMsgPlayerTrample(a1)) {
-        return requestTrample(pOtherSensor, pMySensor);
+    if (MR::isMsgPlayerTrample(msg)) {
+        return requestTrample(pSender, pReceiver);
     }
 
     return false;
 }
 
-bool PunchingKinoko::receiveMsgEnemyAttack(u32 a1, HitSensor *pOtherSensor, HitSensor *pMySensor) {
+bool PunchingKinoko::receiveMsgEnemyAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     if (isCrushed()) {
         return false;
     }
 
-    if (pMySensor == getSensor("Body")) {
+    if (pReceiver == getSensor("Body")) {
         return false;
     }
 
-    if (MR::isMsgToEnemyAttackTrample(a1)) {
+    if (MR::isMsgToEnemyAttackTrample(msg)) {
         return requestCrush();
     }
 
-    if (MR::isMsgToEnemyAttackBlow(a1)) {
-        return requestEnemyBlow(pOtherSensor, pMySensor);
+    if (MR::isMsgToEnemyAttackBlow(msg)) {
+        return requestEnemyBlow(pSender, pReceiver);
     }
 
     return false;
 }
 
-bool PunchingKinoko::receiveMsgPush(HitSensor *pOtherSensor, HitSensor *pMySensor) {
+bool PunchingKinoko::receiveMsgPush(HitSensor *pSender, HitSensor *pReceiver) {
     if (isCrushed()) {
         return false;
     }
 
-    if (pMySensor == getSensor("Body")) {
+    if (pReceiver == getSensor("Body")) {
         return false;
     }
 
     TVec3f stack_14;
-    MR::calcSensorHorizonNormalize(&stack_14, mGravity, pOtherSensor, pMySensor);
+    MR::calcSensorHorizonNormalize(&stack_14, mGravity, pSender, pReceiver);
     f32 fVar1 = stack_14.dot(mGroundChecker->mVelocity);
     if (fVar1 < 0.0f) {
         fVar1 = 3.0f;

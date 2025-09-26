@@ -41,7 +41,7 @@ void KoopaBattleMapPlate::init(const JMapInfoIter& rIter) {
     makeActorAppeared();
 }
 
-bool KoopaBattleMapPlate::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
+bool KoopaBattleMapPlate::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     if (msg != 0xC0) {
         return false;
     }

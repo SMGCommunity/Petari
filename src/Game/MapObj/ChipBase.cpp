@@ -204,13 +204,13 @@ void ChipBase::appearFlashing(s32 a1) {
     setNerve(&NrvChipBase::ChipBaseNrvFlashing::sInstance);
 }
 
-bool ChipBase::requestGet(HitSensor *a1, HitSensor *a2) {
+bool ChipBase::requestGet(HitSensor *pSender, HitSensor *pReceiver) {
     if (isGettable()) {
         MR::noticeGetChip(mChipType, this, mGroupID);
         setNerve(&NrvChipBase::ChipBaseNrvGot::sInstance);
 
         if (mHost != NULL) {
-            mHost->receiveMessage(0x87, a1, a2);
+            mHost->receiveMessage(0x87, pSender, pReceiver);
         }
 
         return true;

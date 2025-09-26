@@ -81,7 +81,7 @@ void LavaSteam::initAfterPlacement() {
 #endif
 
 #ifdef NON_MATCHING
-void LavaSteam::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
+void LavaSteam::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
     TVec3f stack_64;
     TVec3f stack_58;
     f32 stack_2C, stack_54;

@@ -239,7 +239,7 @@ bool BombTeresa::endTongueMtxCallBack(TPos3f* arg0, const JointControllerInfo& a
     return true;
 }
 
-void BombTeresa::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
+void BombTeresa::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
     if (MR::isSensorEye(pSender) && MR::isSensorPlayer(pReceiver)) {
         if (isTouchTongue() && !MR::sendArbitraryMsg(70, pReceiver, pSender)) {
             setNerve(&NrvBombTeresa::BombTeresaNrvAttackTongueFailed::sInstance);
@@ -255,78 +255,94 @@ void BombTeresa::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
                 MR::tryRumbleDefaultHit(this, 0);
                 MR::zeroVelocity(this);
                 setNerve(&NrvBombTeresa::BombTeresaNrvExplosion::sInstance);
-                return;
+            } else {
+                MR::sendMsgPush(pReceiver, pSender);
             }
-            MR::sendMsgPush(pReceiver, pSender);
         } else {
             MR::sendMsgPush(pReceiver, pSender);
         }
     }
 }
 
-bool BombTeresa::receiveMsgPush(HitSensor* pSender, HitSensor* pReceiver) {
-    if (!MR::isSensorEnemy(pReceiver)) return false;
-        if (MR::isSensorEnemy(pSender)) {
-            TVec3f deltaPos = MR::getSensorPos(pReceiver) - MR::getSensorPos(pSender);
-
-            if (MR::normalizeOrZero(&deltaPos)) {
-                MR::getRandomVector(&deltaPos, 1.0);
-                MR::normalizeOrZero(&deltaPos);
-            }
-            TVec3f v8(deltaPos);
-            v8.x *= 3.0f;
-            v8.y *= 3.0f;
-            v8.z *= 3.0f;
-            mVelocity += v8;
-            return true;
-        }
+bool BombTeresa::receiveMsgPush(HitSensor *pSender, HitSensor *pReceiver) {
+    if (!MR::isSensorEnemy(pReceiver)) {
         return false;
+    }
+
+    if (MR::isSensorEnemy(pSender)) {
+        TVec3f deltaPos = MR::getSensorPos(pReceiver) - MR::getSensorPos(pSender);
+    
+        if (MR::normalizeOrZero(&deltaPos)) {
+            MR::getRandomVector(&deltaPos, 1.0);
+            MR::normalizeOrZero(&deltaPos);
+        }
+
+        TVec3f v8(deltaPos);
+        v8.x *= 3.0f;
+        v8.y *= 3.0f;
+        v8.z *= 3.0f;
+        mVelocity += v8;
+        return true;
+    }
+
+    return false;
 }
 
-bool BombTeresa::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReciever) {
+bool BombTeresa::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     if (MR::isMsgStarPieceAttack(msg) && isEnableStarPieceAttack()) {
         setNerve(&NrvBombTeresa::BombTeresaNrvDisperse::sInstance);
         return true;
     }
+
     if (MR::isMsgPlayerSpinAttack(msg)) {
         return requestDrift();
     }
+
     if (MR::isMsgInvincibleAttack(msg) && isEnableShockWave()) {
         setNerve(&NrvBombTeresa::BombTeresaNrvDisperse::sInstance);
         return true;
     }
+
     return false;
 }
 
-bool BombTeresa::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReciever) {
+bool BombTeresa::receiveMsgEnemyAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     if (MR::isMsgToEnemyAttackBlow(msg) && isEnableHitExplosion()) {
         MR::zeroVelocity(this);
         setNerve(&NrvBombTeresa::BombTeresaNrvDisperse::sInstance);
         return false;
-    } else if (MR::isMsgToEnemyAttackShockWave(msg) && isEnableShockWave()) {
+    }
+
+    if (MR::isMsgToEnemyAttackShockWave(msg) && isEnableShockWave()) {
         TVec3f uVar1;
-        MR::calcSensorDirectionNormalize(&uVar1, pSender, pReciever);
+        MR::calcSensorDirectionNormalize(&uVar1, pSender, pReceiver);
         TVec3f v16(uVar1);
         v16.mult(20.0f);
         mVelocity.set<f32>(v16);
         setNerve(&NrvBombTeresa::BombTeresaNrvShock::sInstance);
         return false;
-    } else if (MR::isMsgExplosionAttack(msg) && isEnableHitExplosion()) {
+    }
+
+    if (MR::isMsgExplosionAttack(msg) && isEnableHitExplosion()) {
         MR::zeroVelocity(this);
         setNerve(&NrvBombTeresa::BombTeresaNrvExplosion::sInstance);
         return true;
     }
+
     return false;
 }
 
-bool BombTeresa::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReciever) {
+bool BombTeresa::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     if (msg == 171 && isEnableDisperse()) {
         MR::zeroVelocity(this);
         setNerve(&NrvBombTeresa::BombTeresaNrvDisperse::sInstance);
         return true;
-    } else if (MR::isMsgSpinStormRange(msg)) {
+    }
+
+    if (MR::isMsgSpinStormRange(msg)) {
         return requestDrift();
     }
+
     return false;
 }
 

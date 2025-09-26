@@ -58,8 +58,8 @@ void TripodBossGuardWallPart::calcAndSetBaseMtx() {
     MR::setBaseTRMtx(this, mtx);
 }
 
-bool TripodBossGuardWallPart::receiveMsgEnemyAttack(u32 msg, HitSensor *a2, HitSensor *a3) {
-    if (MR::isSensorType(a3, 44) && MR::isMsgExplosionAttack(msg)) {
+bool TripodBossGuardWallPart::receiveMsgEnemyAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+    if (MR::isSensorType(pReceiver, 44) && MR::isMsgExplosionAttack(msg)) {
         return requestBreak();
     }
 

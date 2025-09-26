@@ -208,17 +208,17 @@ void PressureBase::exeShot() {
     }
 }
 
-void PressureBase::attackSensor(HitSensor *a1, HitSensor *a2) {
-    if (MR::isSensorPlayer(a2) || MR::isSensorEnemy(a2)) {
-        MR::sendMsgPush(a2, a1);
+void PressureBase::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
+    if (MR::isSensorPlayer(pReceiver) || MR::isSensorEnemy(pReceiver)) {
+        MR::sendMsgPush(pReceiver, pSender);
     }
 }
 
-bool PressureBase::receiveMsgPlayerAttack(u32 msg, HitSensor *, HitSensor *) {
+bool PressureBase::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     return MR::isMsgStarPieceReflect(msg);
 }
 
-bool PressureBase::receiveOtherMsg(u32 msg, HitSensor *, HitSensor *) {
+bool PressureBase::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     if (msg == 0x68) {
         bool v5 = false;
         if (isNerve(&NrvPressureBase::PressureBaseNrvRelaxStart::sInstance) || isNerve(&NrvPressureBase::PressureBaseNrvRelax::sInstance)) {

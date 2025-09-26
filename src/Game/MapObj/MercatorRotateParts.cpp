@@ -16,7 +16,7 @@ void MercatorRotateParts::initAfterPlacement() {
     mAppearController->storeCurrentPosture();
 }
 
-bool MercatorRotateParts::receiveOtherMsg(u32 msg, HitSensor *, HitSensor *) {
+bool MercatorRotateParts::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     return mAppearController->receiveMsg(msg);
 }
 

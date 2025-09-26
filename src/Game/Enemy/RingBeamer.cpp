@@ -104,32 +104,35 @@ void RingBeamer::exeInter(){
     }
 }
 
-void RingBeamer::attackSensor(HitSensor *pSender, HitSensor *pReceiver){
-    if(MR::isSensorPlayerOrRide(pReceiver) && MR::isSensorEnemyAttack(pSender)){
+void RingBeamer::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
+    if (MR::isSensorPlayerOrRide(pReceiver) && MR::isSensorEnemyAttack(pSender)) {
         MR::sendMsgEnemyAttackStrong(pReceiver,pSender);
-    }else{
+    } else {
         MR::sendMsgPush(pReceiver,pSender);
     }
 }
 
-bool RingBeamer::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver){
-    if(msg == 106){
+bool RingBeamer::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+    if (msg == 106) {
         MR::invalidateClipping(this);
         setNerve(&NrvRingBeamer::RingBeamerNrvAttack::sInstance);   
         return true;
-    } else if(msg == 108){
+    }
+
+    if (msg == 108) {
         setNerve(&NrvRingBeamer::RingBeamerNrvInter::sInstance);
         return true;
     }
+
     return false;
 }
 
-bool RingBeamer::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver){
-    if(MR::isMsgJetTurtleAttack(msg)){
+bool RingBeamer::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+    if (MR::isMsgJetTurtleAttack(msg)) {
         return true;
-    }else{
-        MR::isMsgStarPieceReflect(msg);
     }
+
+    return MR::isMsgStarPieceReflect(msg);
 }
 
 namespace NrvRingBeamer {

@@ -57,7 +57,7 @@ void TripodBossCore::kill() {
     mBreakModel->kill();
 }
 
-bool TripodBossCore::receiveMsgEnemyAttack(u32 msg, HitSensor *a2, HitSensor *a3) {
+bool TripodBossCore::receiveMsgEnemyAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     if (!isNerve(&NrvTripodBossCore::TripodBossCoreNrvBreak::sInstance)) {
         setNerve(&NrvTripodBossCore::TripodBossCoreNrvBreak::sInstance);
         return true;

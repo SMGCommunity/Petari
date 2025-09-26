@@ -238,14 +238,14 @@ void RainCloud::control() {
     }
 }
 
-void RainCloud::attackSensor(HitSensor *a1, HitSensor *a2) {
-    if (MR::isSensorPlayer(a2)) {
+void RainCloud::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
+    if (MR::isSensorPlayer(pReceiver)) {
         if (MR::isPlayerElementModeBee()) {
             MR::curePlayerElementMode();
             MR::tryRumblePadStrong(this, 0);
         }
 
-        MR::sendArbitraryMsg(71, a2, a1);
+        MR::sendArbitraryMsg(71, pReceiver, pSender);
     }
 }
 

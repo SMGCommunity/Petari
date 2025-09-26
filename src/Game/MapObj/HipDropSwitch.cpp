@@ -75,12 +75,12 @@ void HipDropSwitch::calcAndSetBaseMtx() {
     mConnector->connect();
 }
 
-bool HipDropSwitch::receiveMsgPlayerAttack(u32 msg, HitSensor *a2, HitSensor *a3) {
+bool HipDropSwitch::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     if (MR::isMsgStarPieceAttack(msg)) {
         _CE = 1;
         return true;
     }
-    else if (MR::isMsgPlayerHipDropFloor(msg) && _98->mHitSensor == a3 && !_CC) {
+    else if (MR::isMsgPlayerHipDropFloor(msg) && _98->mHitSensor == pReceiver && !_CC) {
         _CC = 1;
         return true;
     }
@@ -88,8 +88,8 @@ bool HipDropSwitch::receiveMsgPlayerAttack(u32 msg, HitSensor *a2, HitSensor *a3
     return false;
 }
 
-bool HipDropSwitch::receiveOtherMsg(u32 msg, HitSensor *a2, HitSensor *a3) {
-    if (MR::isMsgFloorTouch(msg) && _98->mHitSensor == a3) {
+bool HipDropSwitch::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+    if (MR::isMsgFloorTouch(msg) && _98->mHitSensor == pReceiver) {
         _CE = 1;
         return _CD == 0;
     }

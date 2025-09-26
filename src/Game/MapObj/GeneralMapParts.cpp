@@ -80,7 +80,7 @@ void GeneralMapParts::appear() {
 
 // GeneralMapParts::kill
 
-bool GeneralMapParts::receiveOtherMsg(u32 msg, HitSensor *a2, HitSensor *a3) {
+bool GeneralMapParts::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     if (mAppearController->receiveMsg(msg)) {
         return true;
     }

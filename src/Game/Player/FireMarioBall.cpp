@@ -72,9 +72,9 @@ void FireMarioBall::appearAndThrow(const TVec3f& v1 , const TVec3f& v2) {
     appear();
 }
 
-void FireMarioBall::attackSensor(HitSensor* v1, HitSensor* v2) {
-    if (!MR::isSensorPlayer(v2)) {
-        attackFire(v2);
+void FireMarioBall::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
+    if (!MR::isSensorPlayer(pReceiver)) {
+        attackFire(pReceiver);
     }
 }
 

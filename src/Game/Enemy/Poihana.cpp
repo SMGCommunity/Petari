@@ -154,45 +154,45 @@ inline void calcRepelVector(const TVec3f &agent, const TVec3f &object, TVec3f& d
 }
 
 void Poihana::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
-	bool ret = false;
-
-	if (MR::isSensorPlayer(pReceiver) || MR::isSensorEnemy(pReceiver) ||
-	    MR::isSensorMapObj(pReceiver)) {
-		ret = true;
-	}
+	bool ret = MR::isSensorPlayer(pReceiver)
+		|| MR::isSensorEnemy(pReceiver)
+		|| MR::isSensorMapObj(pReceiver);
 
 	if (!ret) {
 		return;
 	}
 
-	if (MR::isSensorEnemy(pSender)) {
-		if (MR::isSensorPlayer(pReceiver)) {
-			contactMario(pSender, pReceiver);
+	if (!MR::isSensorEnemy(pSender)) {
+		return;
+	}
+
+	if (MR::isSensorPlayer(pReceiver)) {
+		contactMario(pSender, pReceiver);
+	}
+	
+	if (!MR::sendMsgPush(pReceiver, pSender)) {
+		return;
+	}
+
+	if (MR::isSensorPlayer(pReceiver)) {
+		ret = isNerve(&NrvPoihana::PoihanaNrvShock::sInstance)
+			|| isNerve(&NrvPoihana::PoihanaNrvSwoonLand::sInstance)
+			|| isNerve(&NrvPoihana::PoihanaNrvSwoon::sInstance)
+			|| isNerve(&NrvPoihana::PoihanaNrvRecover::sInstance);
+
+		if (ret) {
+			return;
 		}
+	}
 
-		if (MR::sendMsgPush(pReceiver, pSender)) {
-			if (MR::isSensorPlayer(pReceiver)) {
-				ret = false;
-				if (isNerve(&NrvPoihana::PoihanaNrvShock::sInstance) ||
-				    isNerve(&NrvPoihana::PoihanaNrvSwoonLand::sInstance) ||
-				    isNerve(&NrvPoihana::PoihanaNrvSwoon::sInstance) ||
-				    isNerve(&NrvPoihana::PoihanaNrvRecover::sInstance)) {
-					ret = true;
-				}
+	TVec3f pushVelocity;
+	pushVelocity.sub(mPosition, pReceiver->mHost->mPosition);
 
-				if (ret) {
-					return;
-				}
-			}
+	MR::normalizeOrZero(&pushVelocity);
 
-			TVec3f pushVelocity(mPosition - pReceiver->mHost->mPosition);
-			MR::normalizeOrZero(&pushVelocity);
-
-			if (mVelocity.dot(pushVelocity) < 0.0f) {
-				const TVec3f& velocity = mVelocity;
-				calcRepelVector(pushVelocity, velocity, mVelocity);
-			}
-		}
+	if (mVelocity.dot(pushVelocity) < 0.0f) {
+		const TVec3f& velocity = mVelocity;
+		calcRepelVector(pushVelocity, velocity, mVelocity);
 	}
 }
 
@@ -214,25 +214,18 @@ bool Poihana::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pRe
 	}
 
 	if (MR::isMsgPlayerTrample(msg) || MR::isMsgPlayerHipDrop(msg)) {
-		bool flag = false;
-
-		if (isNerve(&NrvPoihana::PoihanaNrvDrown::sInstance) ||
-		    isNerve(&NrvPoihana::PoihanaNrvHide::sInstance) ||
-		    isNerve(&NrvPoihana::PoihanaNrvAppear::sInstance) ||
-		    isNerve(&NrvPoihana::PoihanaNrvShock::sInstance)) {
-			flag = true;
-		}
+		bool flag = isNerve(&NrvPoihana::PoihanaNrvShock::sInstance)
+			|| isNerve(&NrvPoihana::PoihanaNrvSwoonLand::sInstance)
+			|| isNerve(&NrvPoihana::PoihanaNrvSwoon::sInstance)
+			|| isNerve(&NrvPoihana::PoihanaNrvRecover::sInstance);
 
 		if (flag) {
 			goto here;
 		}
 
-		flag = false;
-		if (isNerve(&NrvPoihana::PoihanaNrvSleepStart::sInstance) ||
-		    isNerve(&NrvPoihana::PoihanaNrvSleep::sInstance) ||
-		    isNerve(&NrvPoihana::PoihanaNrvGetUp::sInstance)) {
-			flag = true;
-		}
+		flag = isNerve(&NrvPoihana::PoihanaNrvSleepStart::sInstance)
+			|| isNerve(&NrvPoihana::PoihanaNrvSleep::sInstance)
+			|| isNerve(&NrvPoihana::PoihanaNrvGetUp::sInstance);
 
 		if (flag) {
 here:
@@ -280,8 +273,9 @@ bool Poihana::receiveMsgEnemyAttack(u32 msg, HitSensor *pSender, HitSensor *pRec
 					}
 				}
 			}
-			else if (isNerve(&NrvPoihana::PoihanaNrvShootUpCharge::sInstance) ||
-			         !MR::isNear(pSender, pReceiver, 100.0f)) {
+			else if (isNerve(&NrvPoihana::PoihanaNrvShootUpCharge::sInstance)
+				|| !MR::isNear(pSender, pReceiver, 100.0f))
+			{
 				return false;
 			}
 			else {
@@ -293,7 +287,7 @@ bool Poihana::receiveMsgEnemyAttack(u32 msg, HitSensor *pSender, HitSensor *pRec
 			return true;
 		}
 	}
-	else if (MR::isMsgUpdateBaseMtx(msg) && mBindedActor) {
+	else if (MR::isMsgUpdateBaseMtx(msg) && mBindedActor != nullptr) {
 		updateBindActorMtx();
 		return true;
 	}
@@ -370,11 +364,9 @@ void Poihana::exeWalkAround() {
 	if (isNeedForBackHome()) {
 		setNerve(&NrvPoihana::PoihanaNrvGoBack::sInstance);
 	}
-
 	else if (MR::isNearPlayer(this, 800.0f)) {
 		setNerve(&NrvPoihana::PoihanaNrvSearch::sInstance);
 	}
-
 	else if (MR::isGreaterStep(this, 120)) {
 		if (mBehavior == POIHANA_BEHAVIOR_SLEEP) {
 			setNerve(&NrvPoihana::PoihanaNrvSleepStart::sInstance);
@@ -649,7 +641,7 @@ void Poihana::exeDPDSwoon() {
 	}
 
 	MR::updateActorStateAndNextNerve(this, (ActorStateBaseInterface*)mBindStarPointer,
-	                                 &NrvPoihana::PoihanaNrvWait::sInstance);
+									 &NrvPoihana::PoihanaNrvWait::sInstance);
 }
 
 void Poihana::endDPDSwoon() {
@@ -727,11 +719,8 @@ void Poihana::contactMario(HitSensor *pSender, HitSensor *pReceiver) {
 	bool isShooting;
 
 	if (!isNerveTypeWalkOrWait()) {
-		isShooting = false;
-		if (isNerve(&NrvPoihana::PoihanaNrvShootUpCharge::sInstance) ||
-		    isNerve(&NrvPoihana::PoihanaNrvShootUp::sInstance)) {
-			isShooting = true;
-		}
+		isShooting = isNerve(&NrvPoihana::PoihanaNrvShootUpCharge::sInstance)
+			|| isNerve(&NrvPoihana::PoihanaNrvShootUp::sInstance);
 	} else {
 		goto doFlip;
 	}
@@ -864,13 +853,9 @@ bool Poihana::tryDPDSwoon() {
 }
 
 bool Poihana::tryShock() {
-	bool ret = false;
-
-	if (isNerve(&NrvPoihana::PoihanaNrvDrown::sInstance) ||
-	    isNerve(&NrvPoihana::PoihanaNrvHide::sInstance) ||
-	    isNerve(&NrvPoihana::PoihanaNrvAppear::sInstance)) {
-		ret = true;
-	}
+	bool ret = isNerve(&NrvPoihana::PoihanaNrvDrown::sInstance)
+		|| isNerve(&NrvPoihana::PoihanaNrvHide::sInstance)
+		|| isNerve(&NrvPoihana::PoihanaNrvAppear::sInstance);
 
 	if (ret) {
 		return false;
@@ -904,11 +889,11 @@ bool Poihana::tryHipDropShock() {
 }
 
 bool Poihana::isNerveTypeWalkOrWait() const {
-	return (isNerve(&NrvPoihana::PoihanaNrvWait::sInstance) ||
-	        isNerve(&NrvPoihana::PoihanaNrvSearch::sInstance) ||
-	        isNerve(&NrvPoihana::PoihanaNrvWalkAround::sInstance) ||
-	        isNerve(&NrvPoihana::PoihanaNrvChasePlayer::sInstance) ||
-	        isNerve(&NrvPoihana::PoihanaNrvGoBack::sInstance));
+	return isNerve(&NrvPoihana::PoihanaNrvWait::sInstance)
+			|| isNerve(&NrvPoihana::PoihanaNrvSearch::sInstance)
+			|| isNerve(&NrvPoihana::PoihanaNrvWalkAround::sInstance)
+			|| isNerve(&NrvPoihana::PoihanaNrvChasePlayer::sInstance)
+			|| isNerve(&NrvPoihana::PoihanaNrvGoBack::sInstance);
 }
 
 bool Poihana::isNeedForBackHome() const {
@@ -918,13 +903,12 @@ bool Poihana::isNeedForBackHome() const {
 
 	if (!isNerve(&NrvPoihana::PoihanaNrvChasePlayer::sInstance)) {
 		bool ret;
+
 		if (mBehavior == POIHANA_BEHAVIOR_NEW_HOME) {
 			ret = !MR::isNearPlayer(this, 1100.0f);
 		} else {
-			ret = false;
-			if (!MR::isNear(this, mHomePos, 2000.0f) || !MR::isNearPlayer(this, 1110.0f)) {
-				ret = true;
-			}
+			ret = !MR::isNear(this, mHomePos, 2000.0f)
+				|| !MR::isNearPlayer(this, 1110.0f);
 		}
 
 		return ret;
@@ -939,7 +923,7 @@ bool Poihana::isNeedForGetUp() const {
 	if (MR::isNearPlayer(this, 500.0f)) {
 		bool flag = true;
 
-		f32 mag = PSVECMag((Vec *)MR::getPlayerVelocity());
+		f32 mag = PSVECMag(MR::getPlayerVelocity());
 
 		if (!(mag >= 10.0f) && !MR::isPlayerSwingAction()) {
 			flag = false;

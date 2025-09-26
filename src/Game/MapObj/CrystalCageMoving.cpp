@@ -134,20 +134,20 @@ void CrystalCageMoving::control() {
     }
 }
 
-bool CrystalCageMoving::receiveOtherMsg(u32 msg, HitSensor *a2, HitSensor *a3) {
+bool CrystalCageMoving::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     if (isNerveTypeEnd()) {
         return false;
     }
 
     if (msg == 69) {
-        crashMario(a2, a3);
+        crashMario(pSender, pReceiver);
         return true;
     }
 
     return false;
 }
 
-void CrystalCageMoving::crashMario(HitSensor *a1, HitSensor *a2) {
+void CrystalCageMoving::crashMario(HitSensor *pSender, HitSensor *pReceiver) {
     MR::tryRumblePadVeryStrong(this, 0);
     MR::shakeCameraVeryStrong();
 
@@ -155,8 +155,8 @@ void CrystalCageMoving::crashMario(HitSensor *a1, HitSensor *a2) {
         setNerve(&NrvCrystalCageMoving::CrystalCageMovingNrvBreakSmall::sInstance);
     }
     else {
-        f32 sensorDist = PSVECDistance(&a2->mPosition, &a1->mPosition);
-        f32 sensorObjDist = PSVECDistance(&mPosition, &a1->mPosition);
+        f32 sensorDist = PSVECDistance(&pReceiver->mPosition, &pSender->mPosition);
+        f32 sensorObjDist = PSVECDistance(&mPosition, &pSender->mPosition);
 
         if (sensorDist < 30.0f && sensorObjDist < 450.0f) {
             setNerve(&NrvCrystalCageMoving::CrystalCageMovingNrvBreakAll::sInstance);

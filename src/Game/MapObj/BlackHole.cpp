@@ -75,16 +75,24 @@ bool BlackHole::tryStartDemoCamera() {
     return false;
 }
 
-void BlackHole::attackSensor(HitSensor *a1, HitSensor *a2) {
-    if (isNerve(&NrvBlackHole::BlackHoleNrvWait::sInstance)) {
-        if (!_A4 || isInCubeBox(a2->mPosition)) {
-            if (MR::sendArbitraryMsg(0x73, a2, a1)) {
-                if (MR::isSensorPlayer(a2)) {
-                    setNerve(&NrvBlackHole::BlackHoleNrvDemo::sInstance);
-                }
-            }
-        }
+void BlackHole::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
+    if (!isNerve(&NrvBlackHole::BlackHoleNrvWait::sInstance)) {
+        return;
     }
+
+    if (_A4 && !isInCubeBox(pReceiver->mPosition)) {
+        return;
+    }
+
+    if (!MR::sendArbitraryMsg(0x73, pReceiver, pSender)) {
+        return;
+    }
+
+    if (!MR::isSensorPlayer(pReceiver)) {
+        return;
+    }
+
+    setNerve(&NrvBlackHole::BlackHoleNrvDemo::sInstance);
 }
 
 #ifdef NON_MATCHING

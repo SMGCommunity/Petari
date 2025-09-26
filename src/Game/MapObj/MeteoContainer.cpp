@@ -49,17 +49,17 @@ void MeteoContainer::control() {
 
 }
 
-void MeteoContainer::attackSensor(HitSensor *a1, HitSensor *a2) {
-    if (MR::isSensorPlayer(a2)) {
-        a2->receiveMessage(41, a1);
+void MeteoContainer::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
+    if (MR::isSensorPlayer(pReceiver)) {
+        pReceiver->receiveMessage(41, pSender);
     }
 }
 
-bool MeteoContainer::receiveMsgPush(HitSensor *a1, HitSensor *a2) {
-    return MR::isSensorPlayer(a1);
+bool MeteoContainer::receiveMsgPush(HitSensor *pSender, HitSensor *pReceiver) {
+    return MR::isSensorPlayer(pSender);
 }
 
-bool MeteoContainer::receiveOtherMsg(u32 msg, HitSensor *, HitSensor *) {
+bool MeteoContainer::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     if (msg == 49 && isNerve(&NrvMeteoContainer::MeteoContainerNrvWait::sInstance)) {
         setNerve(&NrvMeteoContainer::MeteoContainerNrvDestroy::sInstance);
         return true;

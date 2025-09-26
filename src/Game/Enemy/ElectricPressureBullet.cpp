@@ -100,7 +100,7 @@ void ElectricPressureBullet::control() {
     }
 }
 
-void ElectricPressureBullet::attackSensor(HitSensor *pSender,HitSensor *pReceiver) {
+void ElectricPressureBullet::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
     if (MR::isSensorPlayer(pReceiver) && MR::sendMsgEnemyAttackElectric(pReceiver, pSender)) {
         kill();
     }

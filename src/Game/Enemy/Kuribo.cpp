@@ -227,51 +227,55 @@ void Kuribo::calcAndSetBaseMtx() {
     MR::setBaseScale(this, scale);
 }
 
-void Kuribo::attackSensor(HitSensor *a2, HitSensor *a3) {
-    if ((!MR::isSensorType(a2, 27) || (isEnableAttack() || !MR::isSensorPlayer(a3)) && !MR::isSensorEnemy(a3) || !isEnablePushMove() || !MR::sendMsgPushAndKillVelocityToTarget(this, a3, a2)) && isEnableAttack() && MR::isSensorPlayer(a3) && MR::isSensorEnemyAttack(a2)) {
-        if (!MR::isPlayerHipDropFalling() && MR::sendMsgEnemyAttack(a3, a2)) {
+void Kuribo::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
+    if ((!MR::isSensorType(pSender, 27) || (isEnableAttack() || !MR::isSensorPlayer(pReceiver)) && !MR::isSensorEnemy(pReceiver) || !isEnablePushMove() || !MR::sendMsgPushAndKillVelocityToTarget(this, pReceiver, pSender)) && isEnableAttack() && MR::isSensorPlayer(pReceiver) && MR::isSensorEnemyAttack(pSender)) {
+        if (!MR::isPlayerHipDropFalling() && MR::sendMsgEnemyAttack(pReceiver, pSender)) {
             requestAttackSuccess();
         }
         else {
-            MR::sendMsgPush(a3, a2);
+            MR::sendMsgPush(pReceiver, pSender);
         }
     }
 }
 
-bool Kuribo::receiveMsgPlayerAttack(u32 msg, HitSensor *a2, HitSensor *a3) {
+bool Kuribo::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     if (MR::isMsgLockOnStarPieceShoot(msg)) {
         return true;
     }
 
     if (MR::isMsgStarPieceAttack(msg)) {
-        return requestStagger(a2, a3);
+        return requestStagger(pSender, pReceiver);
     }
 
     if (MR::isMsgPlayerTrample(msg)) {
-        return requestFlatDown(a2, a3);
+        return requestFlatDown(pSender, pReceiver);
     }
 
-    if (MR::isMsgJetTurtleAttack(msg) || MR::isMsgFireBallAttack(msg) || MR::isMsgInvincibleAttack(msg)) {
-        return requestBlowDown(a2, a3);
+    if (MR::isMsgJetTurtleAttack(msg)
+        || MR::isMsgFireBallAttack(msg)
+        || MR::isMsgInvincibleAttack(msg))
+    {
+        return requestBlowDown(pSender, pReceiver);
     }
 
     if (MR::isMsgPlayerHipDrop(msg)) {
-        return requestHipDropDown(a2, a3);
+        return requestHipDropDown(pSender, pReceiver);
     }
 
     if (MR::isMsgPlayerHitAll(msg)) {
         if (!isEnableKick()) {
-            return requestStagger(a2, a3);
+            return requestStagger(pSender, pReceiver);
         }
-        return requestBlowDown(a2, a3);
+
+        return requestBlowDown(pSender, pReceiver);
     }
 
     return false;
 }
 
-bool Kuribo::receiveMsgEnemyAttack(u32 msg, HitSensor *a2, HitSensor *a3) {
+bool Kuribo::receiveMsgEnemyAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     if (MR::isMsgToEnemyAttackShockWave(msg)) {
-        return requestStagger(a2, a3);
+        return requestStagger(pSender, pReceiver);
     }
 
     if (MR::isMsgToEnemyAttackTrample(msg)) {
@@ -279,24 +283,24 @@ bool Kuribo::receiveMsgEnemyAttack(u32 msg, HitSensor *a2, HitSensor *a3) {
     }
     
     if (MR::isMsgExplosionAttack(msg)) {
-        return requestBlowDown(a2, a3);
+        return requestBlowDown(pSender, pReceiver);
     }
 
     if (MR::isMsgToEnemyAttackBlow(msg)) {
-        return requestBlowDown(a2, a3);
+        return requestBlowDown(pSender, pReceiver);
     }
 
     return false;
 }
 
-bool Kuribo::receiveMsgPush(HitSensor *a2, HitSensor *a3) {
-    if (MR::isSensorEnemyAttack(a3)) {
+bool Kuribo::receiveMsgPush(HitSensor *pSender, HitSensor *pReceiver) {
+    if (MR::isSensorEnemyAttack(pReceiver)) {
         return false;
     }
 
-    if (MR::isSensorEnemy(a2) || (MR::isSensorRide(a2) || (!isEnableAttack() && MR::isSensorPlayer(a2)))) {
+    if (MR::isSensorEnemy(pSender) || (MR::isSensorRide(pSender) || (!isEnableAttack() && MR::isSensorPlayer(pSender)))) {
         if (isEnablePushMove()) {
-            MR::addVelocityFromPush(this, 1.5f, a2, a3);
+            MR::addVelocityFromPush(this, 1.5f, pSender, pReceiver);
             return true;
         }
     }
@@ -304,23 +308,27 @@ bool Kuribo::receiveMsgPush(HitSensor *a2, HitSensor *a3) {
     return false;
 }
 
-bool Kuribo::receiveOtherMsg(u32 msg, HitSensor *a2, HitSensor *a3) {
+bool Kuribo::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     if (MR::isMsgInhaleBlackHole(msg)) {
         mItemGenerator->setTypeNone();
         kill();
         return true;
     }
-    else if (MR::isMsgPlayerKick(msg) && isEnableKick()) {
-        return requestBlowDown(a2, a3);
+
+    if (MR::isMsgPlayerKick(msg) && isEnableKick()) {
+        return requestBlowDown(pSender, pReceiver);
     }
 
     return false;
 }
 
 bool Kuribo::requestDead() {
-    if (isNerve(&NrvKuribo::KuriboNrvNonActive::sInstance) || isNerve(&NrvKuribo::KuriboNrvFlatDown::sInstance) || 
-        isNerve(&NrvKuribo::KuriboNrvHipDropDown::sInstance) || isNerve(&NrvKuribo::KuriboNrvPressDown::sInstance) || 
-        isNerve(&NrvKuribo::KuriboNrvBlowDown::sInstance)) {
+    if (isNerve(&NrvKuribo::KuriboNrvNonActive::sInstance)
+        || isNerve(&NrvKuribo::KuriboNrvFlatDown::sInstance)
+        || isNerve(&NrvKuribo::KuriboNrvHipDropDown::sInstance)
+        || isNerve(&NrvKuribo::KuriboNrvPressDown::sInstance)
+        || isNerve(&NrvKuribo::KuriboNrvBlowDown::sInstance))
+    {
         return false;
     }
 
@@ -330,8 +338,8 @@ bool Kuribo::requestDead() {
     return true;
 }
 
-bool Kuribo::requestFlatDown(HitSensor *a1, HitSensor *a2) {
-    if (MR::isSensorEnemyAttack(a1)) {
+bool Kuribo::requestFlatDown(HitSensor *pSender, HitSensor *pReceiver) {
+    if (MR::isSensorEnemyAttack(pSender)) {
         return false;
     }
 
@@ -357,12 +365,12 @@ bool Kuribo::requestFlatDown(HitSensor *a1, HitSensor *a2) {
     return true;
 }
 
-bool Kuribo::requestHipDropDown(HitSensor *a1, HitSensor *a2) {
+bool Kuribo::requestHipDropDown(HitSensor *pSender, HitSensor *pReceiver) {
     if (!requestDead()) {
         return false;
     }
 
-    if (MR::isSensorEnemyAttack(a2)) {
+    if (MR::isSensorEnemyAttack(pReceiver)) {
         return false;
     }
 
@@ -400,9 +408,9 @@ bool Kuribo::requestPressDown() {
     return true;
 }
 
-bool Kuribo::requestStagger(HitSensor *a1, HitSensor *a2) {
+bool Kuribo::requestStagger(HitSensor *pSender, HitSensor *pReceiver) {
     if (isEnablePanch()) {
-        mStateStagger->setPunchDirection(a1, a2);
+        mStateStagger->setPunchDirection(pSender, pReceiver);
         setNerve(&NrvKuribo::KuriboNrvStagger::sInstance);
         return true;
     }
@@ -410,13 +418,13 @@ bool Kuribo::requestStagger(HitSensor *a1, HitSensor *a2) {
     return false;
 }
 
-bool Kuribo::requestBlowDown(HitSensor *a1, HitSensor *a2) {
+bool Kuribo::requestBlowDown(HitSensor *pSender, HitSensor *pReceiver) {
     if (!isEnablePanch()) {
         return false;
     }
 
     MR::deleteEffectAll(this);
-    MR::setVelocityBlowAttack(this, a1, a2, 36.0f, 30.0f, 4);
+    MR::setVelocityBlowAttack(this, pSender, pReceiver, 36.0f, 30.0f, 4);
     setNerve(&NrvKuribo::KuriboNrvBlowDown::sInstance);
     mItemGenerator->setTypeStarPeace(3);
     return true;

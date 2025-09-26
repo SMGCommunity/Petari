@@ -299,24 +299,16 @@ void PackunPetit::control() {
 }
 
 /*
-void PackunPetit::attackSensor(HitSensor *a2, HitSensor *a3) {
-    if (MR::isSensorPlayer(a3)) {
-        bool isTrampleOrPunch = false;
-
-        if (isNerve(&NrvPackunPetit::PackunPetitNrvTrampleDown::sInstance) || isNerve(&NrvPackunPetit::PackunPetitNrvPunchDown::sInstance)) {
-            isTrampleOrPunch = true;
-        }
-
-        
+void PackunPetit::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
+    if (MR::isSensorPlayer(pReceiver)) {
+        bool isTrampleOrPunch = isNerve(&NrvPackunPetit::PackunPetitNrvTrampleDown::sInstance)
+            || isNerve(&NrvPackunPetit::PackunPetitNrvPunchDown::sInstance);
     }
 }*/
 
-bool PackunPetit::receiveMsgPlayerAttack(u32 msg, HitSensor *a2, HitSensor *a3) {
-    bool isTrampleOrPunch = false;
-
-    if (isNerve(&NrvPackunPetit::PackunPetitNrvTrampleDown::sInstance) || isNerve(&NrvPackunPetit::PackunPetitNrvPunchDown::sInstance)) {
-        isTrampleOrPunch = true;
-    }
+bool PackunPetit::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+    bool isTrampleOrPunch = isNerve(&NrvPackunPetit::PackunPetitNrvTrampleDown::sInstance)
+        || isNerve(&NrvPackunPetit::PackunPetitNrvPunchDown::sInstance);
 
     if (isTrampleOrPunch) {
         return false;
@@ -330,60 +322,59 @@ bool PackunPetit::receiveMsgPlayerAttack(u32 msg, HitSensor *a2, HitSensor *a3) 
         setNerve(&NrvPackunPetit::PackunPetitNrvSwoonStart::sInstance);
         return true;
     }
-    else {
-        bool isWaitOrHit = false;
 
-        if (isNerve(&NrvPackunPetit::PackunPetitNrvHitWaitForAttack::sInstance) || isNerve(&NrvPackunPetit::PackunPetitNrvHit::sInstance)) {
-            isWaitOrHit = true;
-        }
+    bool isWaitOrHit = isNerve(&NrvPackunPetit::PackunPetitNrvHitWaitForAttack::sInstance)
+        || isNerve(&NrvPackunPetit::PackunPetitNrvHit::sInstance);
 
-        if (isWaitOrHit) {
-            return false;
-        }
-        else if (MR::isMsgInvincibleAttack(msg) || MR::isMsgFireBallAttack(msg)) {
-            punchDown(a2, a3);
-            return true;
-        }
-        else if (isNerve(&NrvPackunPetit::PackunPetitNrvAttack::sInstance)) {
-            return false;
-        }
-        else if (MR::isMsgPlayerTrample(msg)) {
-            MR::tryRumbleDefaultHit(this, 0);
-            setNerve(&NrvPackunPetit::PackunPetitNrvTrampleDown::sInstance);
-            return true;
-        }
-        else if (MR::isMsgPlayerHipDrop(msg)) {
-            MR::tryRumbleDefaultHit(this, 0);
-            setNerve(&NrvPackunPetit::PackunPetitNrvTrampleDown::sInstance);
-            return true;
-        }
-        else if (MR::isMsgPlayerHitAll(msg)) {
-            MR::stopSceneForDefaultHit(5);
-            punchDown(a2, a3);
-            return true;
-        }
-
+    if (isWaitOrHit) {
         return false;
     }
+
+    if (MR::isMsgInvincibleAttack(msg) || MR::isMsgFireBallAttack(msg)) {
+        punchDown(pSender, pReceiver);
+        return true;
+    }
+
+    if (isNerve(&NrvPackunPetit::PackunPetitNrvAttack::sInstance)) {
+        return false;
+    }
+
+    if (MR::isMsgPlayerTrample(msg)) {
+        MR::tryRumbleDefaultHit(this, 0);
+        setNerve(&NrvPackunPetit::PackunPetitNrvTrampleDown::sInstance);
+        return true;
+    }
+
+    if (MR::isMsgPlayerHipDrop(msg)) {
+        MR::tryRumbleDefaultHit(this, 0);
+        setNerve(&NrvPackunPetit::PackunPetitNrvTrampleDown::sInstance);
+        return true;
+    }
+
+    if (MR::isMsgPlayerHitAll(msg)) {
+        MR::stopSceneForDefaultHit(5);
+        punchDown(pSender, pReceiver);
+        return true;
+    }
+
+    return false;
 }
 
-bool PackunPetit::receiveMsgEnemyAttack(u32 msg, HitSensor *a2, HitSensor *a3) {
-    bool isTrampleOrPunch = false;
-
-    if (isNerve(&NrvPackunPetit::PackunPetitNrvTrampleDown::sInstance) || isNerve(&NrvPackunPetit::PackunPetitNrvPunchDown::sInstance)) {
-        isTrampleOrPunch = true;
-    }
+bool PackunPetit::receiveMsgEnemyAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+    bool isTrampleOrPunch = isNerve(&NrvPackunPetit::PackunPetitNrvTrampleDown::sInstance)
+        || isNerve(&NrvPackunPetit::PackunPetitNrvPunchDown::sInstance);
 
     if (isTrampleOrPunch) {
         return false;
     }
 
     if (MR::isMsgToEnemyAttackBlow(msg)) {
-        punchDown(a2, a3);
+        punchDown(pSender, pReceiver);
         setNerve(&NrvPackunPetit::PackunPetitNrvPunchDown::sInstance);
         return true;
     }
-    else if (MR::isMsgToEnemyAttackTrample(msg)) {
+
+    if (MR::isMsgToEnemyAttackTrample(msg)) {
         setNerve(&NrvPackunPetit::PackunPetitNrvTrampleDown::sInstance);
         return true;
     }
@@ -391,24 +382,21 @@ bool PackunPetit::receiveMsgEnemyAttack(u32 msg, HitSensor *a2, HitSensor *a3) {
     return false;
 }
 
-bool PackunPetit::receiveOtherMsg(u32 msg, HitSensor *a2, HitSensor *a3) {
-    bool isSwoon = false;
-
-    if (isNerve(&NrvPackunPetit::PackunPetitNrvSwoonStart::sInstance) || isNerve(&NrvPackunPetit::PackunPetitNrvSwoonStart::sInstance)) {
-        isSwoon = true;
-    }
+bool PackunPetit::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+    bool isSwoon = isNerve(&NrvPackunPetit::PackunPetitNrvSwoonStart::sInstance)
+        || isNerve(&NrvPackunPetit::PackunPetitNrvSwoon::sInstance);
 
     if (!isSwoon) {
         return false;
     }
 
-    if (!MR::isSensorPlayer(a2)) {
+    if (!MR::isSensorPlayer(pSender)) {
         return false;
     }
 
     if (MR::isMsgPlayerKick(msg)) {
         MR::stopSceneForDefaultHit(5);
-        punchDown(a2, a3);
+        punchDown(pSender, pReceiver);
         return true;
     }
 
@@ -425,9 +413,9 @@ void PackunPetit::initBlowModel() {
 }
 
 /*
-void PackunPetit::punchDown(HitSensor *a1, HitSensor *a2) {
+void PackunPetit::punchDown(HitSensor *pSender, HitSensor *pReceiver) {
     TVec3f v6;
-    v6.subtract(a2->mPosition, a1->mPosition);
+    v6.subtract(pReceiver->mPosition, pSender->mPosition);
     TVec3f* grav = &mGravity;
     f32 dot = grav->dot(v6);
     JMAVECScaleAdd(grav, v6, v6, -dot);

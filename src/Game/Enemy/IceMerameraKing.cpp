@@ -671,8 +671,15 @@ void IceMerameraKing::exeDeathDemo() {
 }
 
 void IceMerameraKing::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
-    if (pSender == getSensor("body") && MR::isSensorPlayer(pReceiver)) {
-        if (isNerve(&NrvIceMerameraKing::HostTypeNrvDamage::sInstance)
+    if (pSender != getSensor("body")) {
+        return;
+    }
+
+    if (!MR::isSensorPlayer(pReceiver)) {
+        return;
+    }
+
+    if (isNerve(&NrvIceMerameraKing::HostTypeNrvDamage::sInstance)
         || isNerve(&NrvIceMerameraKing::HostTypeNrvExtinguish::sInstance)
         || isNerve(&NrvIceMerameraKing::HostTypeNrvEscape::sInstance)
         || isNerve(&NrvIceMerameraKing::HostTypeNrvEscapeJump::sInstance)
@@ -682,12 +689,12 @@ void IceMerameraKing::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
         || isNerve(&NrvIceMerameraKing::HostTypeNrvAngryDemo1st::sInstance)
         || isNerve(&NrvIceMerameraKing::HostTypeNrvAngryDemo2nd::sInstance)
         || isNerve(&NrvIceMerameraKing::HostTypeNrvDeathDemo::sInstance)
-        || MR::isPlayerElementModeIce()) {
-            MR::sendMsgPush(pReceiver, pSender);
-        }
-        else {
-            MR::sendMsgEnemyAttackFreeze(pReceiver, pSender);
-        }
+        || MR::isPlayerElementModeIce())
+    {
+        MR::sendMsgPush(pReceiver, pSender);
+    }
+    else {
+        MR::sendMsgEnemyAttackFreeze(pReceiver, pSender);
     }
 }
 
@@ -696,52 +703,62 @@ bool IceMerameraKing::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSen
         return true;
     }
 
-    if (!isNerve(&NrvIceMerameraKing::HostTypeNrvEscape::sInstance) && !isNerve(&NrvIceMerameraKing::HostTypeNrvEscapeJump::sInstance)) {
+    if (!isNerve(&NrvIceMerameraKing::HostTypeNrvEscape::sInstance)
+        && !isNerve(&NrvIceMerameraKing::HostTypeNrvEscapeJump::sInstance))
+    {
         return false;
     }
 
     if (MR::isMsgFreezeAttack(msg)) {
-        if (!--_EC) {
+        _EC--;
+
+        if (_EC == 0) {
             MR::stopMarioPinchBGMSoon();
             MR::requestStartTimeKeepDemo(this, "メラキンオープニング", &NrvIceMerameraKing::HostTypeNrvDeathDemo::sInstance, &NrvIceMerameraKing::HostTypeNrvDeathDemoWait::sInstance, "死亡デモ");            
         }
         else {
             setNerve(&NrvIceMerameraKing::HostTypeNrvDamage::sInstance);
         }
+
         return true;
     }
-    else if (MR::isMsgPlayerSpinAttack(msg)) {
-        if (!--_EC) {
+
+    if (MR::isMsgPlayerSpinAttack(msg)) {
+        _EC--;
+
+        if (_EC == 0) {
             MR::requestStartTimeKeepDemo(this, "メラキンオープニング", &NrvIceMerameraKing::HostTypeNrvDeathDemo::sInstance, &NrvIceMerameraKing::HostTypeNrvDeathDemoWait::sInstance, "死亡デモ");
         }
         else {
             setNerve(&NrvIceMerameraKing::HostTypeNrvDamage::sInstance);            
         }
+
         return true;
     }
-    else {
-        return false;
-    }
+
+    return false;
 }
 
 bool IceMerameraKing::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     if (MR::isInSpinStormRange(msg, pSender, pReceiver, 600.0f)) {
         if (isNerve(&NrvIceMerameraKing::HostTypeNrvDeathDemo::sInstance)
-        || isNerve(&NrvIceMerameraKing::HostTypeNrvExtinguish::sInstance)
-        || isNerve(&NrvIceMerameraKing::HostTypeNrvDamage::sInstance)
-        || isNerve(&NrvIceMerameraKing::HostTypeNrvAngryDemo1st::sInstance)
-        || isNerve(&NrvIceMerameraKing::HostTypeNrvAngryDemo2nd::sInstance)
-        || isNerve(&NrvIceMerameraKing::HostTypeNrvEscape::sInstance)
-        || isNerve(&NrvIceMerameraKing::HostTypeNrvEscapeJump::sInstance)
-        || isNerve(&NrvIceMerameraKing::HostTypeNrvPreRecover::sInstance)
-        || isNerve(&NrvIceMerameraKing::HostTypeNrvRecover::sInstance)) {
+            || isNerve(&NrvIceMerameraKing::HostTypeNrvExtinguish::sInstance)
+            || isNerve(&NrvIceMerameraKing::HostTypeNrvDamage::sInstance)
+            || isNerve(&NrvIceMerameraKing::HostTypeNrvAngryDemo1st::sInstance)
+            || isNerve(&NrvIceMerameraKing::HostTypeNrvAngryDemo2nd::sInstance)
+            || isNerve(&NrvIceMerameraKing::HostTypeNrvEscape::sInstance)
+            || isNerve(&NrvIceMerameraKing::HostTypeNrvEscapeJump::sInstance)
+            || isNerve(&NrvIceMerameraKing::HostTypeNrvPreRecover::sInstance)
+            || isNerve(&NrvIceMerameraKing::HostTypeNrvRecover::sInstance))
+        {
             return false;
         }
         else {
             TVec3f v10(*MR::getPlayerCenterPos());
             v10.sub(mPosition);
             MR::vecKillElement(v10, mGravity, &v10);
-            if (PSVECMag(&v10) > getSensor("body")->mRadius) {
+
+            if (PSVECMag(&v10) < getSensor("body")->mRadius) {
                 return false;
             }
             else {
@@ -750,9 +767,8 @@ bool IceMerameraKing::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pR
             }
         }
     }
-    else {
-        return false;
-    }
+
+    return false;
 }
 
 /*

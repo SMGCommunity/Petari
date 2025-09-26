@@ -182,7 +182,7 @@ void AnmModelBindMove::control() {
     }
 }
 
-bool AnmModelBindMove::receiveOtherMsg(u32 msg, HitSensor *, HitSensor *) {
+bool AnmModelBindMove::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     return msg == 196;
 }
 

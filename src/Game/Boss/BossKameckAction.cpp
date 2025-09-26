@@ -8,22 +8,22 @@ BossKameckAction::~BossKameckAction() {
 
 }
 
-bool BossKameckAction::receiveOtherMsg(u32 msg, HitSensor *, HitSensor *) {
+bool BossKameckAction::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     return false;
 }
 
-bool BossKameckAction::receiveMsgPush(HitSensor *, HitSensor *) {
+bool BossKameckAction::receiveMsgPush(HitSensor *pSender, HitSensor *pReceiver) {
     return false;
 }
 
-bool BossKameckAction::receiveMsgEnemyAttack(u32 msg, HitSensor *, HitSensor *) {
+bool BossKameckAction::receiveMsgEnemyAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     return false;
 }
 
-bool BossKameckAction::receiveMsgPlayerAttack(u32 msg, HitSensor *, HitSensor *) {
+bool BossKameckAction::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     return false;
 }
 
-void BossKameckAction::attackSensor(HitSensor *, HitSensor *) {
+void BossKameckAction::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
     
 }

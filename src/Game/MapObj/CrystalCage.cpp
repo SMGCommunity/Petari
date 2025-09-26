@@ -167,16 +167,15 @@ void CrystalCage::forceBreak() {
     }
 }
 
-void CrystalCage::attackSensor(HitSensor *a1, HitSensor *a2) {
+void CrystalCage::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
     if (!mCrystalCageType) {
-        MR::sendMsgPush(a2, a1);
+        MR::sendMsgPush(pReceiver, pSender);
     }
 }
 
-
-bool CrystalCage::receiveMsgPlayerAttack(u32 msg, HitSensor *a2, HitSensor *a3) {
+bool CrystalCage::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     if (!isNerve(&NrvCrystalCage::CrystalCageNrvWait::sInstance)) {
-        return 0;
+        return false;
     }
 
     if (!MR::isMsgPlayerHitAll(msg)) {
@@ -190,10 +189,10 @@ bool CrystalCage::receiveMsgPlayerAttack(u32 msg, HitSensor *a2, HitSensor *a3) 
             MR::invalidateHitSensors(this);
             setNerve(&NrvCrystalCage::CrystalCageNrvBreak::sInstance);
             MR::startCSSound("CS_SPIN_HIT", nullptr, 0);
-            return 1;
+            return true;
         }
 
-        if (MR::sendArbitraryMsg(63, a2, a3)) {
+        if (MR::sendArbitraryMsg(63, pSender, pReceiver)) {
             _C8 = 20;
             _C4 = _C4 - 1;
 
@@ -206,25 +205,25 @@ bool CrystalCage::receiveMsgPlayerAttack(u32 msg, HitSensor *a2, HitSensor *a3) 
             }
 
             mRumbleCalc->start(0);
-            _D0.sub(a2->mPosition, a3->mPosition);
+            _D0.sub(pSender->mPosition, pReceiver->mPosition);
             MR::normalize(&_D0);
-            return 1;
+            return true;
         }
     }
 
-    return 0;
+    return false;
 }
 
-bool CrystalCage::receiveMsgEnemyAttack(u32 msg, HitSensor *, HitSensor *) {
+bool CrystalCage::receiveMsgEnemyAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     if (mCrystalCageType != 2 && isNerve(&NrvCrystalCage::CrystalCageNrvWait::sInstance)) {
         MR::invalidateClipping(this);
         MR::invalidateCollisionParts(this);
         MR::invalidateHitSensors(this);
         setNerve(&NrvCrystalCage::CrystalCageNrvBreak::sInstance);
-        return 1;
+        return true;
     }
 
-    return 0;
+    return false;
 }
 
 void CrystalCage::initMapToolInfo(const JMapInfoIter &rIter) {

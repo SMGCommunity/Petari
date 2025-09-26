@@ -380,7 +380,7 @@ void EarthenPipe::control() {
     }
 }
 
-// bool EarthenPipe::receiveOtherMsg(u32 msg, HitSensor *, HitSensor *) { }
+// bool EarthenPipe::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver)
 
 void EarthenPipe::calcTrans(f32 a1) {
     mPosition.set<f32>(_98);

@@ -385,18 +385,18 @@ void SkeletalFishGuard::exeWait() {
     MR::setNerveAtStep(this, &::SkeletalFishGuardNrvAppear::sInstance, _A0);
 }
 
-void SkeletalFishGuard::attackSensor(HitSensor *a2, HitSensor *a3) {
+void SkeletalFishGuard::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
     if (!isNerve(&::SkeletalFishGuardNrvKill::sInstance) && (!isNerve(&::SkeletalFishGuardNrvNormal::sInstance) || getNerveStep() >= 2)) {
-        if (MR::isSensorPlayer(a3) && MR::sendMsgEnemyAttackStrong(a3, a2)) {
+        if (MR::isSensorPlayer(pReceiver) && MR::sendMsgEnemyAttackStrong(pReceiver, pSender)) {
             setNerve(&::SkeletalFishGuardNrvKill::sInstance);
         }
         else {
-            MR::sendMsgPush(a3, a2);
+            MR::sendMsgPush(pReceiver, pSender);
         }
     }
 }
 
-bool SkeletalFishGuard::receiveMsgPlayerAttack(u32 msg, HitSensor *a3, HitSensor *a4) {
+bool SkeletalFishGuard::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     if (isNerve(&::SkeletalFishGuardNrvKill::sInstance)) {
         return false;
     }

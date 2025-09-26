@@ -36,9 +36,9 @@ void CollisionBlocker::forceBreak() {
     kill();
 }
 
-void CollisionBlocker::attackSensor(HitSensor *a1, HitSensor *a2) {
-    if (MR::isSensorPlayer(a2)) {
-        MR::sendArbitraryMsg(42, a2, a1);
+void CollisionBlocker::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
+    if (MR::isSensorPlayer(pReceiver)) {
+        MR::sendArbitraryMsg(42, pReceiver, pSender);
     }
 }
 

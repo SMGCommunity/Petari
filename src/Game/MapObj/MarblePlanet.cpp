@@ -122,17 +122,17 @@ void MarblePlanet::kill() {
     LiveActor::kill();
 }
 
-bool MarblePlanet::receiveMsgEnemyAttack(u32 msg, HitSensor *a1, HitSensor *a2) {
+bool MarblePlanet::receiveMsgEnemyAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     if (isNerve(&NrvMarblePlanet::MarblePlanetNrvScaleUpCore::sInstance)) {
-        return 0;
+        return false;
     }
 
     if (isNerve(&NrvMarblePlanet::MarblePlanetNrvBreakCore::sInstance)) {
-        return 0;
+        return false;
     }
 
     setNerve(&NrvMarblePlanet::MarblePlanetNrvScaleUpCore::sInstance);
-    return 1;
+    return true;
 }
 
 void MarblePlanet::initCoreAndElectron() {
@@ -234,50 +234,51 @@ void MarblePlanetElectron::control() {
     }
 }
 
-void MarblePlanetElectron::attackSensor(HitSensor *a1, HitSensor *a2) {
-    if (MR::isSensorEnemy(a2)) {
-        if (MR::sendMsgEnemyAttack(a2, a1)) {
+void MarblePlanetElectron::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
+    if (MR::isSensorEnemy(pReceiver)) {
+        if (MR::sendMsgEnemyAttack(pReceiver, pSender)) {
             mElectronShadow->kill();
             kill();
         }
         else {
-            bool isNear = !MR::isNear(this, a2->mHost->mPosition, 440.0f);
+            bool isNear = !MR::isNear(this, pReceiver->mHost->mPosition, 440.0f);
 
             if (!isNear) {
-                if (MR::sendMsgPush(a2, a1)) {
+                if (MR::sendMsgPush(pReceiver, pSender)) {
                     MR::tryRumblePadVeryWeak(this, 0);
 
                     if (!MR::isEffectValid(this, "HitMarkNormal")) {
-                        MR::emitEffectHitBetweenSensors(this, a1, a2, 0.0f, 0);
+                        MR::emitEffectHitBetweenSensors(this, pSender, pReceiver, 0.0f, 0);
                     }
 
-                    MR::killVelocityToTarget(this, a2->mHost->mPosition);
+                    MR::killVelocityToTarget(this, pReceiver->mHost->mPosition);
                 }
             }
         }
     }
 }
 
-bool MarblePlanetElectron::receiveMsgPlayerAttack(u32 msg, HitSensor *a2, HitSensor *a3) {
+bool MarblePlanetElectron::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     if (isNerve(&NrvMarblePlanetElectron::MarblePlanetElectronNrvAttack::sInstance)) {
-        return 0;
+        return false;
     }
 
     if (MR::isMsgPlayerHipDrop(msg)) {
         setNerve(&NrvMarblePlanetElectron::MarblePlanetElectronNrvAttack::sInstance);
-        return 1;
+        return true;
     }
 
-    return 0;
+    return false;
 }
 
-bool MarblePlanetElectron::receiveMsgPush(HitSensor *a1, HitSensor *a2) {
-    if (!MR::isSensorEnemy(a1)) {
-        return 0;
+bool MarblePlanetElectron::receiveMsgPush(HitSensor *pSender, HitSensor *pReceiver) {
+    if (!MR::isSensorEnemy(pSender)) {
+        return false;
     }
 
-    crashElectron(a1);
-    return 1;
+    crashElectron(pSender);
+
+    return true;
 }
 
 /*

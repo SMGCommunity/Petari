@@ -125,7 +125,7 @@ bool RailMoveObj::isMoving() const {
     return MapObjActorUtil::isRailMoverWorking(this);
 }
 
-bool RailMoveObj::receiveOtherMsg(u32 msg, HitSensor *, HitSensor *) {
+bool RailMoveObj::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     if (msg == 0xCF && isNerve(&NrvRailMoveObj::HostTypeMove::sInstance)) {
         kill();
         return true;
@@ -271,7 +271,7 @@ void RailRotateMoveObj::setupInitInfo(const JMapInfoIter &rIter, MapObjActorInit
     pInfo->setupRailRotator();
 }
 
-bool RailRotateMoveObj::receiveOtherMsg(u32 msg, HitSensor *a2, HitSensor *a3) {
+bool RailRotateMoveObj::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     if (msg == 0xCB) {
         return tryStartRotateAtPoint();
     }
@@ -285,7 +285,7 @@ bool RailRotateMoveObj::receiveOtherMsg(u32 msg, HitSensor *a2, HitSensor *a3) {
         return tryStartRotateBetweenPoints();
     }
 
-    return RailMoveObj::receiveOtherMsg(msg, a2, a3);
+    return RailMoveObj::receiveOtherMsg(msg, pSender, pReceiver);
 }
 
 void RailRotateMoveObj::initCaseUseSwitchB(const MapObjActorInitInfo &rInfo) {
