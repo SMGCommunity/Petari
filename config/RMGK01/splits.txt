@@ -4926,7 +4926,7 @@ Game/MapObj/LavaJamboSunPlanet.cpp:
 Game/MapObj/LavaProminence.cpp:
 	.text       start:0x801F25E4 end:0x801F3720
 	.ctors      start:0x8052ED94 end:0x8052ED98
-	.data       start:0x80597C10 end:0x80597D08
+	.data       start:0x80597B50 end:0x80597D08
 	.sdata      start:0x806B1E98 end:0x806B1EA0
 	.sbss       start:0x806B5380 end:0x806B53A0
 	.sdata2     start:0x806BD4D0 end:0x806BD4F8
