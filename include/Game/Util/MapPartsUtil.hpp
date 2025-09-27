@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Game/LiveActor/LiveActor.hpp"
 #include "Game/Util.hpp"
 #include "JSystem/JGeometry.hpp"
 
@@ -24,6 +25,7 @@ namespace MR {
     bool getMapPartsArgRailGuideType(s32 *, const JMapInfoIter &);
     bool getMapPartsArgRailInitPosType(s32 *, const JMapInfoIter &);
     bool getMapPartsArgMoveSpeed(f32 *, const JMapInfoIter &);
+    bool getMapPartsArgMoveSpeed(f32 *, const LiveActor*);
     bool getMapPartsArgStopTime(s32 *, const JMapInfoIter &);
     bool getMapPartsArgAccelTime(s32 *, const JMapInfoIter &);
     bool getMapPartsArgSpeedCalcType(s32 *, const JMapInfoIter &);
