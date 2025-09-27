@@ -432,7 +432,7 @@ f32 NoteFairy::getNoteCoord(s32 val) {
 }
 
 bool NoteFairy::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
-    if (msg == 102) {
+    if (msg == ACTMES_SUCCESS) {
         killAllNotes();
 
         switch (mCompletionJingle) {

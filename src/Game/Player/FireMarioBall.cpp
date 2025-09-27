@@ -78,12 +78,14 @@ void FireMarioBall::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
     }
 }
 
-bool FireMarioBall::attackFire(HitSensor* v1) {
-    if (MR::sendArbitraryMsg(8, v1, getSensor("body"))) {
+bool FireMarioBall::attackFire(HitSensor* pReceiver) {
+    if (MR::sendArbitraryMsg(ACTMES_FIREBALL_ATTACK, pReceiver, getSensor("body"))) {
         MR::tryRumblePadMiddle(this, 0);
         kill();
+
         return true;
     }
+
     return false;
 }
 

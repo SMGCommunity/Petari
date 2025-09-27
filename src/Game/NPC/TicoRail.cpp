@@ -249,7 +249,7 @@ void TicoRail::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
             return;
         }
 
-        if (MR::sendArbitraryMsg(195, pReceiver, pSender)) {
+        if (MR::sendArbitraryMsg(ACTMES_TICO_RAIL_TOUCH, pReceiver, pSender)) {
             _98 = pReceiver->mHost;
             setNerve(&NrvTicoRail::TicoRailNrvTalkStart::sInstance);
         }
@@ -261,12 +261,14 @@ void TicoRail::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
 
 
 bool TicoRail::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
-    if (msg != 195) {
+    if (msg != ACTMES_TICO_RAIL_TOUCH) {
         return false;
     }
 
-    bool v8 = isNerve(&NrvTicoRail::TicoRailNrvTalkStart::sInstance) || isNerve(&NrvTicoRail::TicoRailNrvTalk::sInstance)
-        || isNerve(&NrvTicoRail::TicoRailNrvTalkCancel::sInstance) || isNerve(&NrvTicoRail::TicoRailNrvGoodBye::sInstance);
+    bool v8 = isNerve(&NrvTicoRail::TicoRailNrvTalkStart::sInstance)
+        || isNerve(&NrvTicoRail::TicoRailNrvTalk::sInstance)
+        || isNerve(&NrvTicoRail::TicoRailNrvTalkCancel::sInstance)
+        || isNerve(&NrvTicoRail::TicoRailNrvGoodBye::sInstance);
 
     if (v8) {
         return false;
@@ -286,6 +288,7 @@ bool TicoRail::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver
 
     _98 = pSender->mHost;
     setNerve(&NrvTicoRail::TicoRailNrvTalkStart::sInstance);
+
     return true;
 }
 

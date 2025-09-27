@@ -183,7 +183,7 @@ void AnmModelBindMove::control() {
 }
 
 bool AnmModelBindMove::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
-    return msg == 196;
+    return msg == ACTMES_IS_REFLECTION_G_CAPTURE;
 }
 
 bool AnmModelBindMove::isOnStartAnmTrigger() const {

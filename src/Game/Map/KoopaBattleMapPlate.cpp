@@ -42,7 +42,7 @@ void KoopaBattleMapPlate::init(const JMapInfoIter& rIter) {
 }
 
 bool KoopaBattleMapPlate::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
-    if (msg != 0xC0) {
+    if (msg != ACTMES_KOOPA_HIP_DROP_ATTACK) {
         return false;
     }
 

@@ -520,15 +520,17 @@ bool BenefitItemObj::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pRe
 
     if (MR::isMsgItemStartMove(msg)) {
         _E2 = 1;
+
         return true;
     }
 
     if (MR::isMsgItemEndMove(msg)) {
         _E2 = 0;
+
         return true;
     }
 
-    if (msg == 135) {
+    if (msg == ACTMES_ITEM_GET) {
         if (mHitSensorActor) {
             return false;
         }
@@ -541,6 +543,7 @@ bool BenefitItemObj::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pRe
             mHitSensorActor = pSender->mHost;
             setNerve(&NrvBenefitItemObj::HostTypeNrvCatch::sInstance);
             MR::tryRumblePadWeak(this, 0);
+
             return true;
         }
     }

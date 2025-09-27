@@ -126,8 +126,11 @@ bool RailMoveObj::isMoving() const {
 }
 
 bool RailMoveObj::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
-    if (msg == 0xCF && isNerve(&NrvRailMoveObj::HostTypeMove::sInstance)) {
+    if (msg == ACTMES_MAPPARTS_DISAPPEAR_WITH_BLINK
+        && isNerve(&NrvRailMoveObj::HostTypeMove::sInstance))
+    {
         kill();
+
         return true;
     }
 
@@ -272,16 +275,16 @@ void RailRotateMoveObj::setupInitInfo(const JMapInfoIter &rIter, MapObjActorInit
 }
 
 bool RailRotateMoveObj::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
-    if (msg == 0xCB) {
+    if (msg == ACTMES_MAPPARTS_START_ROTATE_AT_POINT) {
         return tryStartRotateAtPoint();
     }
 
-    if (msg == 0xCC) {
+    if (msg == ACTMES_MAPPARTS_END_ROTATE_AT_POINT) {
         mRailMover->endRotateAtPoint();
         return true;
     }
 
-    if (msg == 0xCD) {
+    if (msg == ACTMES_MAPPARTS_START_ROTATE_BETWEEN_POINTS) {
         return tryStartRotateBetweenPoints();
     }
 

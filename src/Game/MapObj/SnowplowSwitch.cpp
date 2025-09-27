@@ -5,13 +5,15 @@ SnowplowSwitch::SnowplowSwitch(const char *pName) : LiveActor(pName) {
 }
 
 bool SnowplowSwitch::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
-    if (msg == 73) {
+    if (msg == ACTMES_ASK_HIDDEN_BY_SNOW) {
         return _8C == 0;
     }
 
-    if (msg == 74 && _8C) {
+    if (msg == ACTMES_NOTIFY_DISCOVER_SNOW && _8C) {
         _8C = 1;
+
         MR::onSwitchA(this);
+
         return true;
     }
 

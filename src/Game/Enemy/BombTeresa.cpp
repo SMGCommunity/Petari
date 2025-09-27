@@ -241,12 +241,16 @@ bool BombTeresa::endTongueMtxCallBack(TPos3f* arg0, const JointControllerInfo& a
 
 void BombTeresa::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
     if (MR::isSensorEye(pSender) && MR::isSensorPlayer(pReceiver)) {
-        if (isTouchTongue() && !MR::sendArbitraryMsg(70, pReceiver, pSender)) {
+        if (isTouchTongue()
+            && !MR::sendArbitraryMsg(ACTMES_BOMB_TERESA_TONGUE_TOUCH, pReceiver, pSender))
+        {
             setNerve(&NrvBombTeresa::BombTeresaNrvAttackTongueFailed::sInstance);
         }
     } else if (MR::isSensorEnemy(pSender)) {
         if (MR::isSensorPlayer(pReceiver)) {
-            if (isEnableHitExplosionToPlayer() && MR::sendMsgEnemyAttackExplosion(pReceiver, pSender)) {
+            if (isEnableHitExplosionToPlayer()
+                && MR::sendMsgEnemyAttackExplosion(pReceiver, pSender))
+            {
                 MR::zeroVelocity(this);
                 setNerve(&NrvBombTeresa::BombTeresaNrvExplosion::sInstance);
             }
@@ -333,7 +337,7 @@ bool BombTeresa::receiveMsgEnemyAttack(u32 msg, HitSensor *pSender, HitSensor *p
 }
 
 bool BombTeresa::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
-    if (msg == 171 && isEnableDisperse()) {
+    if (msg == ACTMES_DISPERSE_BOMB_TERESA && isEnableDisperse()) {
         MR::zeroVelocity(this);
         setNerve(&NrvBombTeresa::BombTeresaNrvDisperse::sInstance);
         return true;

@@ -139,8 +139,9 @@ bool CrystalCageMoving::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *
         return false;
     }
 
-    if (msg == 69) {
+    if (msg == ACTMES_RUSH_PLAYER_TOUCH) {
         crashMario(pSender, pReceiver);
+
         return true;
     }
 

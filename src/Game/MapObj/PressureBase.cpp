@@ -16,7 +16,7 @@ void PressureMessenger::init(const JMapInfoIter &rIter) {
 
 void PressureMessenger::exeSync() {
     if (MR::isStep(this, _90)) {
-        mSharedGroup->sendMsgToGroupMember(0x68, getSensor("body"), "body");
+        mSharedGroup->sendMsgToGroupMember(ACTMES_GROUP_MOVE_START, getSensor("body"), "body");
         setNerve(&NrvPressureMessenger::PressureMessengerNrvSync::sInstance);
     }
 }
@@ -219,17 +219,16 @@ bool PressureBase::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor
 }
 
 bool PressureBase::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
-    if (msg == 0x68) {
-        bool v5 = false;
-        if (isNerve(&NrvPressureBase::PressureBaseNrvRelaxStart::sInstance) || isNerve(&NrvPressureBase::PressureBaseNrvRelax::sInstance)) {
-            v5 = true;
-        }
+    if (msg == ACTMES_GROUP_MOVE_START) {
+        bool v5 = isNerve(&NrvPressureBase::PressureBaseNrvRelaxStart::sInstance)
+            || isNerve(&NrvPressureBase::PressureBaseNrvRelax::sInstance);
 
         if (v5) {
             return false;
         }
 
         setNerve(&NrvPressureBase::PressureBaseNrvWait::sInstance);
+
         return true;
     }
 
@@ -243,13 +242,10 @@ void PressureBase::startWait() {
 }
 
 void PressureBase::startRelax() {
-    bool dontStartRelax = false;
+    bool isRelax = isNerve(&NrvPressureBase::PressureBaseNrvRelaxStart::sInstance)
+        || isNerve(&NrvPressureBase::PressureBaseNrvRelax::sInstance);
 
-    if (isNerve(&NrvPressureBase::PressureBaseNrvRelaxStart::sInstance) || isNerve(&NrvPressureBase::PressureBaseNrvRelax::sInstance)) {
-        dontStartRelax = true;
-    }
-
-    if (!dontStartRelax) {
+    if (!isRelax) {
         MR::startSound(this, "SE_OJ_W_PRESS_HEAD_OFF", -1, -1);
         setNerve(&NrvPressureBase::PressureBaseNrvRelaxStart::sInstance);
     }

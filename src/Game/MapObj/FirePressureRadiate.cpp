@@ -90,7 +90,7 @@ void FirePressureRadiate::exeRelax() {
 void FirePressureRadiate::exeSyncWait() {
     if (_DC) {
         if (MR::isStep(this, 60)) {
-            mGroup->sendMsgToGroupMember(104, getSensor("body"), "body");
+            mGroup->sendMsgToGroupMember(ACTMES_GROUP_MOVE_START, getSensor("body"), "body");
         }
     }
 }
@@ -139,7 +139,7 @@ void FirePressureRadiate::exeRadiateMargin() {
         }
 
         if (_DC) {
-            mGroup->sendMsgToGroupMember(105, getSensor("body"), "body");
+            mGroup->sendMsgToGroupMember(ACTMES_GROUP_MOVE_STOP, getSensor("body"), "body");
         }
     }
 }
@@ -174,12 +174,14 @@ void FirePressureRadiate::attackSensor(HitSensor *pSender, HitSensor *pReceiver)
 }
 
 bool FirePressureRadiate::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
-    if (msg == 105) {
+    if (msg == ACTMES_GROUP_MOVE_STOP) {
         setNerve(&NrvFirePressureRadiate::FirePressureRadiateNrvSyncWait::sInstance);
+
         return true;
     }
-    else if (msg == 104) {
+    else if (msg == ACTMES_GROUP_MOVE_START) {
         setNerve(&NrvFirePressureRadiate::FirePressureRadiateNrvWait::sInstance);
+
         return true;
     }
 

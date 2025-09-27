@@ -192,7 +192,7 @@ bool CrystalCage::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor 
             return true;
         }
 
-        if (MR::sendArbitraryMsg(63, pSender, pReceiver)) {
+        if (MR::sendArbitraryMsg(ACTMES_REFLECT, pSender, pReceiver)) {
             _C8 = 20;
             _C4 = _C4 - 1;
 
@@ -207,6 +207,7 @@ bool CrystalCage::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor 
             mRumbleCalc->start(0);
             _D0.sub(pSender->mPosition, pReceiver->mPosition);
             MR::normalize(&_D0);
+
             return true;
         }
     }

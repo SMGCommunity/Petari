@@ -5,5 +5,5 @@ InvisiblePolygonObjGCapture::InvisiblePolygonObjGCapture(const char *pName) : In
 }
 
 bool InvisiblePolygonObjGCapture::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
-    return msg == 197;
+    return msg == ACTMES_IS_NO_BREAK_G_CAPTURE;
 }

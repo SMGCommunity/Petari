@@ -181,8 +181,11 @@ void ItemBlock::kill() {
 }*/
 
 bool ItemBlock::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
-	if (MR::isMsgPlayerUpperPunch(msg) && MR::isPlayerExistDown(this, 0.0f, 0.25f) && tryStartJumpPunch()) {
-		MR::sendArbitraryMsg(64, pSender, pReceiver);
+	if (MR::isMsgPlayerUpperPunch(msg)
+		&& MR::isPlayerExistDown(this, 0.0f, 0.25f)
+		&& tryStartJumpPunch())
+	{
+		MR::sendArbitraryMsg(ACTMES_REFLECT_V, pSender, pReceiver);
 		return true;
 	}
 

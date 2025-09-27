@@ -60,13 +60,14 @@ bool LuigiNPC::branchFunc(u32 msg) {
 }
 
 bool LuigiNPC::eventFunc(u32 msg) {
-    if (!msg) {
+    if (msg == 0) {
         return mTakeOutStar->takeOut();
     }
     
     if (msg == 1) {
         MR::onGameEventFlagTalkedToLuigiAfterRescued();
     }
+
     return true;
 }
 

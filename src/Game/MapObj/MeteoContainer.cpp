@@ -60,8 +60,11 @@ bool MeteoContainer::receiveMsgPush(HitSensor *pSender, HitSensor *pReceiver) {
 }
 
 bool MeteoContainer::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
-    if (msg == 49 && isNerve(&NrvMeteoContainer::MeteoContainerNrvWait::sInstance)) {
+    if (msg == ACTMES_TORNADO_ATTACK
+        && isNerve(&NrvMeteoContainer::MeteoContainerNrvWait::sInstance))
+    {
         setNerve(&NrvMeteoContainer::MeteoContainerNrvDestroy::sInstance);
+
         return true;
     }
 

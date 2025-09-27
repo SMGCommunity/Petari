@@ -84,7 +84,7 @@ void BlackHole::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
         return;
     }
 
-    if (!MR::sendArbitraryMsg(0x73, pReceiver, pSender)) {
+    if (!MR::sendArbitraryMsg(ACTMES_INHALE_BLACK_HOLE, pReceiver, pSender)) {
         return;
     }
 

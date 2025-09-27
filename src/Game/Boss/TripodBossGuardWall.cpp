@@ -112,7 +112,7 @@ void TripodBossGuardWall::calcAndSetBaseMtx() {
 }
 
 bool TripodBossGuardWall::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
-    if (msg == 170) {
+    if (msg == ACTMES_TRIPODBOSS_STARTED) {
         for (s32 i = 0; i < 8; i++) {
             mWallParts[i].makeActorAppeared();
         }

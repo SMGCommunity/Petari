@@ -188,38 +188,45 @@ void SpinDriver::calcAndSetBaseMtx() {
 }
 
 bool SpinDriver::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
-    if (msg == 152) {
+    if (msg == ACTMES_IS_RUSH_TAKEOVER) {
         _13C = 60;
+
         return canBind(pSender);
     }
 
-    if (msg == 146) {
+    if (msg == ACTMES_AUTORUSH_BEGIN) {
         _13C = 60;
+
         if (startBind(pSender)) {
             return true;
         }
     }
 
-    if (msg == 147) {
+    if (msg == ACTMES_RUSH_CANCEL) {
         if (isNerve(&NrvSpinDriver::SpinDriverNrvShootStart::sInstance)) {
             return false;
         }
 
         if (_8C) {
             _8C = 0;
+
             cancelCamera();
+
             return true;
         }
     }
 
-    if (msg == 148 && _8C) {
+    if (msg == ACTMES_RUSH_FORCE_CANCEL && _8C) {
         _8C = 0;
+
         cancelCamera();
+
         return true;
     }
 
-    if (msg == 161 && _8C) {
+    if (msg == ACTMES_UPDATE_BASEMTX && _8C) {
         calcBindActorMatrix();
+
         return true;
     }
 
@@ -227,7 +234,8 @@ bool SpinDriver::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiv
 }
 
 bool SpinDriver::tryStartShoot() {
-    bool isSwingOrPointed = MR::isPadSwing(0) || MR::isPlayerPointedBy2POnTriggerButton();
+    bool isSwingOrPointed = MR::isPadSwing(0)
+        || MR::isPlayerPointedBy2POnTriggerButton();
 
     if (isSwingOrPointed) {
         MR::startSound(_8C, "SE_PM_SPIN_ATTACK", -1, -1);

@@ -83,7 +83,7 @@ char *Birikyu::getCenterJointName() const {
 void Birikyu::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
     if (MR::isSensorPlayerOrRide(pReceiver) || MR::isSensorEnemy(pReceiver)) {
         if (MR::sendMsgEnemyAttackElectric(pReceiver, pSender)) {
-            MR::sendMsgToGroupMember(105, this, getSensor("body"), "body");
+            MR::sendMsgToGroupMember(ACTMES_GROUP_MOVE_STOP, this, getSensor("body"), "body");
             setNerve(&NrvBirikyu::HostTypeAttack::sInstance);
         }
         else {
@@ -97,27 +97,28 @@ bool Birikyu::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pRe
 }
 
 bool Birikyu::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
-    if (msg == 105) {
-        bool bool4 = false;
-        if (isNerve(&NrvBirikyu::HostTypeMove::sInstance) || isNerve(&NrvBirikyu::HostTypeMoveCircle::sInstance)) {
-            bool4 = true;
-        }
+    if (msg == ACTMES_GROUP_MOVE_STOP) {
+        bool bool4 = isNerve(&NrvBirikyu::HostTypeMove::sInstance)
+            || isNerve(&NrvBirikyu::HostTypeMoveCircle::sInstance);
+
         if (bool4) {
             setNerve(&NrvBirikyu::HostTypeAttackWait::sInstance);
+
             return true;
         }
     }
 
-    if (msg == 104) {
-        bool bool5 = false;
-        if (isNerve(&NrvBirikyu::HostTypeMove::sInstance) || isNerve(&NrvBirikyu::HostTypeMoveCircle::sInstance)) {
-            bool5 = true;
-        }
+    if (msg == ACTMES_GROUP_MOVE_START) {
+        bool bool5 = isNerve(&NrvBirikyu::HostTypeMove::sInstance)
+            || isNerve(&NrvBirikyu::HostTypeMoveCircle::sInstance);
+
         if (!bool5) {
             goMove();
+
             return true;
         }
     }    
+
     return false;
 }
 
@@ -171,10 +172,12 @@ void Birikyu::initShadow() {
 
 bool Birikyu::tryStopPointing() {
     if (MR::isStarPointerPointing2POnPressButton(this, "Hit", true, false)) {
-        MR::sendMsgToGroupMember(105, this, getSensor("body"), "body");
+        MR::sendMsgToGroupMember(ACTMES_GROUP_MOVE_STOP, this, getSensor("body"), "body");
         setNerve(&NrvBirikyu::HostTypeStopPointing::sInstance);
+
         return true;
     }
+
     return false;
 }
 
@@ -189,11 +192,13 @@ void Birikyu::goMove() {
 
 void Birikyu::exeMove() {
     MR::startLevelSound(this, "SE_OJ_LV_BIRIKYU_MOVE", -1, -1, -1);
+
     if (!tryStopPointing()) {
         if (MR::isRailReachedGoal(this)) {
             MR::reverseRailDirection(this);
             s32 arg = 0;
             MR::getCurrentRailPointArg0NoInit(this, &arg);
+
             if (arg > 0) {
                 setNerve(&NrvBirikyu::HostTypeWaitAtEdge::sInstance);
             }
@@ -201,6 +206,7 @@ void Birikyu::exeMove() {
                 MR::emitEffect(this, "Clash");                
             }
         }
+
         MR::moveCoordAndFollowTrans(this, _C8);
     }
 }
@@ -227,6 +233,7 @@ void Birikyu::exeWaitAtEdge() {
     MR::startLevelSound(this, "SE_OJ_LV_BIRIKYU_MOVE", -1, -1, -1);
     s32 arg = 0;
     MR::getCurrentRailPointArg0NoInit(this, &arg);
+
     if (MR::isStep(this, arg)) {
         setNerve(&NrvBirikyu::HostTypeMove::sInstance);
     }
@@ -243,7 +250,7 @@ void Birikyu::exeAttack() {
     MR::startLevelSound(this, "SE_OJ_LV_BIRIKYU_MOVE", -1, -1, -1);
 
     if (MR::isStep(this, 90)) {
-        MR::sendMsgToGroupMember(104, this, getSensor("body"), "body");
+        MR::sendMsgToGroupMember(ACTMES_GROUP_MOVE_START, this, getSensor("body"), "body");
         goMove();
     }
 }
@@ -262,7 +269,8 @@ void Birikyu::exeStopPointing() {
         if (MR::isRegisteredEffect(this, "Touch")) {
             MR::deleteEffect(this, "Touch");
         }
-        MR::sendMsgToGroupMember(104, this, getSensor("body"), "body");
+
+        MR::sendMsgToGroupMember(ACTMES_GROUP_MOVE_START, this, getSensor("body"), "body");
         goMove();
     }
 }

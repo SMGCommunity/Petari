@@ -65,8 +65,9 @@ void TripodBossFixPartsBase::calcAndSetBaseMtx() {
 }
 
 bool TripodBossFixPartsBase::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
-    if (msg == 170) {
+    if (msg == ACTMES_TRIPODBOSS_STARTED) {
         activateTripodBoss();
+
         return true;
     }
 

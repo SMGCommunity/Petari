@@ -38,7 +38,7 @@ void CollisionBlocker::forceBreak() {
 
 void CollisionBlocker::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
     if (MR::isSensorPlayer(pReceiver)) {
-        MR::sendArbitraryMsg(42, pReceiver, pSender);
+        MR::sendArbitraryMsg(ACTMES_PUSH_FORCE, pReceiver, pSender);
     }
 }
 

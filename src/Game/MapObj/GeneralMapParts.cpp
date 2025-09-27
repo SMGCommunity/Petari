@@ -85,8 +85,9 @@ bool GeneralMapParts::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pR
         return true;
     }
 
-    if (msg == 207) {
-        broadcastMsgToAllFunctions(207);
+    if (msg == ACTMES_MAPPARTS_DISAPPEAR_WITH_BLINK) {
+        broadcastMsgToAllFunctions(ACTMES_MAPPARTS_DISAPPEAR_WITH_BLINK);
+
         return true;
     }
 

@@ -42,7 +42,9 @@ void BallRail::control() {
 }
 
 bool BallRail::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
-    if (msg == 173 && isNerve(&NrvBallRail::BallRailNrvWait::sInstance)) {
+    if (msg == ACTMES_SPHERE_PLAYER_BINDED
+        && isNerve(&NrvBallRail::BallRailNrvWait::sInstance))
+    {
         TVec3f v9(pSender->mHost->mVelocity);
         TVec3f v8 = pSender->mPosition - pReceiver->mPosition;
 
@@ -54,10 +56,12 @@ bool BallRail::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver
             MR::normalizeOrZero(&v8);
             v8.dot(v9);
             MR::zeroVelocity(pSender->mHost);
+
             return false;
         }
         else {
             _90 = pSender;
+
             return true;
         }
     }
