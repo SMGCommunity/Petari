@@ -189,11 +189,14 @@ bool MarioModule::isAnimationRun(const char *pAnim, u32 index) {
     if (mActor->mMario->_A6C[index] == 0) {
         return false;
     }
-    else {
-        if (!isAnimationRun(pAnim)) {
-            mActor->mMario->_A6C[index] = 0;
-        }
+
+    bool isAnimRun = isAnimationRun(pAnim);
+
+    if (!isAnimRun) {
+        mActor->mMario->_A6C[index] = 0;
     }
+
+    return isAnimRun;
 }
 
 // regwap again
@@ -503,32 +506,28 @@ bool MarioModule::isSlipFloorCode(s32 a1) const {
     return true;
 }
 
-// random extra instruction??
 bool MarioModule::isSlipPolygon(const Triangle *pTri) const {
     if (!pTri->isValid()) {
         return false;
     }
+
     u32 code = mActor->mMario->_95C->getCode(pTri);
-    if (code > 0x1e == false) {
-        switch (code) {
-            case 2:
-                return !(calcAngleD(*pTri->getNormal(0)) <= 3.0f);
-            case 3:
-            case 0xd:
-            case 0x14:
-            case 0x15:
-            case 0x16:
-            case 0x1e:
-                return false;
-            default:
-                break;
-        }
+
+    switch (code) {
+    case 2:
+        return !(calcAngleD(*pTri->getNormal(0)) <= 3.0f);
+    case 3:
+    case 0xd:
+    case 0x14:
+    case 0x15:
+    case 0x16:
+    case 0x1e:
+        return false;
     }
-    else {
-        //MarioConst* pConst = mActor->mConst;
-        float angle = calcAngleD(*pTri->getNormal(0));
-        return angle >= mActor->mConst->mTable[mActor->mConst->mCurrentTable]->mFlatAngle - 0.5f;
-    }
+
+    float angle = calcAngleD(*pTri->getNormal(0));
+
+    return angle >= mActor->mConst->getTable()->mFlatAngle - 0.5f;
 }
 
 u32 MarioModule::getFloorCode() const {

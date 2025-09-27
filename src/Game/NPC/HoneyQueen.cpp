@@ -124,7 +124,7 @@ bool HoneyQueen::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *
         return false;
     }
 
-    NPCActor::receiveMsgPlayerAttack(msg, pSender, pReceiver);
+    return NPCActor::receiveMsgPlayerAttack(msg, pSender, pReceiver);
 }
 
 void HoneyQueen::fadeOut() {
