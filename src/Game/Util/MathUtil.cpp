@@ -8,11 +8,44 @@
 #include <JSystem/JMath/JMath.hpp>
 
 namespace {
-    static f32 sMinDegree = 0.0f;
-    static f32 sMaxDegree = 360.0f;
+    static f32* gAcosTable;
+    const f32 cMinDegree = 0.0f;
+    const f32 cMaxDegree = 360.0f;
 };
 
 namespace MR {
+    void initAcosTable() {
+        gAcosTable = new f32[256];
+
+        for (u32 i = 0; i < 256; i++) {
+            // FIXME: Double-precision floating-point numbers load from incorrect offsets.
+            f64 x = (i / 255.0) * 0.02 + 0.98;
+
+            if (x > 1.0f) {
+                x = 1.0f;
+            }
+
+            gAcosTable[i] = acos(x);
+        }
+    }
+
+    f32 acosEx(f32 x) {
+        if (__fabsf(x) < 0.98f) {
+            return JMAAcosRadian(x);
+        }
+        else if (x < 0.0f) {
+            u32 index = static_cast<u32>((-x - 0.98f) * 255.0f * 50.0f);
+            f32 acos = gAcosTable[index];
+
+            return PI - acos;
+        }
+        else {
+            u32 index = static_cast<u32>((x - 0.98f) * 255.0f * 50.0f);
+
+            return gAcosTable[index];
+        }
+    }
+
     f32 getRandom() {
         u32 rand = SingletonHolder<GameSystem>::get()->mObjHolder->mRandom.rand();
         u32 value = (rand >> 9) | 0x3F800000;
@@ -25,14 +58,14 @@ namespace MR {
     }
 
     s32 getRandom(s32 min, s32 max) {
-        return static_cast<f32>(min) + (static_cast<f32>(max) - static_cast<f32>(min)) * getRandom();
+        return getRandom(static_cast<f32>(min), static_cast<f32>(max));
     }
 
     f32 getRandomDegree() {
-        return sMinDegree + sMaxDegree * getRandom();
+        return getRandom(cMinDegree, cMaxDegree);
     }
 
-    void calcRandomVec(TVec3f *pDst, f32 min, f32 max) {
+    void calcRandomVec(TVec3f* pDst, f32 min, f32 max) {
         pDst->set<f32>(getRandom(min, max), getRandom(min, max), getRandom(min, max));
     }
 
@@ -88,8 +121,8 @@ namespace MR {
         return start + (end - start) * t;
     }
 
-    f32 getLinerValue(f32 x, f32 start, f32 end, f32 w) {
-        return getInterpolateValue(x / w, start, end);
+    f32 getLinerValue(f32 x, f32 start, f32 end, f32 max) {
+        return getInterpolateValue(x / max, start, end);
     }
 
     f32 getLinerValueFromMinMax(f32 x, f32 min, f32 max, f32 start, f32 end) {
@@ -97,36 +130,98 @@ namespace MR {
     }
 
     // FIXME: Source registers swapped in multiplication by pi.
-    f32 getEaseInValue(f32 x, f32 start, f32 end, f32 w) {
-        return getInterpolateValue(1.0f - JMACosRadian(((x / w) * PI) / 2.0f), start, end);
+    f32 getEaseInValue(f32 x, f32 start, f32 end, f32 max) {
+        return getInterpolateValue(1.0f - JMACosRadian(((x / max) * PI) / 2.0f), start, end);
     }
 
     // FIXME: Source registers swapped in multiplication by pi.
-    f32 getEaseOutValue(f32 x, f32 start, f32 end, f32 w) {
-        return getInterpolateValue(JMASinRadian(((x / w) * PI) / 2.0f), start, end);
+    f32 getEaseOutValue(f32 x, f32 start, f32 end, f32 max) {
+        return getInterpolateValue(JMASinRadian(((x / max) * PI) / 2.0f), start, end);
     }
 
     // FIXME: Source registers swapped in multiplication by pi, and the instruction is swapped.
-    f32 getEaseInOutValue(f32 x, f32 start, f32 end, f32 w) {
-        return getInterpolateValue((1.0f - JMACosRadian((x / w) * PI)) / 2.0f, start, end);
+    f32 getEaseInOutValue(f32 x, f32 start, f32 end, f32 max) {
+        return getInterpolateValue((1.0f - JMACosRadian((x / max) * PI)) / 2.0f, start, end);
     }
 
     // getScaleWithReactionValueZeroToOne
     // getConvergeVibrationValue
     // getReduceVibrationValue
 
-    void makeAxisFrontUp(TVec3f *a1, TVec3f *a2, const TVec3f &a3, const TVec3f &a4) {
-        PSVECCrossProduct((Vec*)&a4, (Vec*)&a3, (Vec*)a1);
-        PSVECNormalize((Vec*)a1, (Vec*)a1);
-        PSVECCrossProduct((Vec*)&a3, (Vec*)a1, (Vec*)a2);
+    void makeAxisFrontUp(TVec3f* pParam1, TVec3f* pParam2, const TVec3f& rParam3, const TVec3f& rParam4) {
+        PSVECCrossProduct(&rParam4, &rParam3, pParam1);
+        PSVECNormalize(pParam1, pParam1);
+        PSVECCrossProduct(&rParam3, pParam1, pParam2);
     }
 
-    // makeAxisFrontSide
-    // makeAxisUpFront
-    // makeAxisUpSide
-    // makeAxisVerticalZX
-    // makeAxisCrossPlane
-    // makeAxisAndCosignVecToVec
+    void makeAxisFrontSide(TVec3f* pParam1, TVec3f* pParam2, const TVec3f& rParam3, const TVec3f& rParam4) {
+        PSVECCrossProduct(&rParam3, &rParam4, pParam1);
+        PSVECNormalize(pParam1, pParam1);
+        PSVECCrossProduct(pParam1, &rParam3, pParam2);
+    }
+
+    void makeAxisUpFront(TVec3f* pParam1, TVec3f* pParam2, const TVec3f& rParam3, const TVec3f& rParam4) {
+        PSVECCrossProduct(&rParam3, &rParam4, pParam1);
+        PSVECNormalize(pParam1, pParam1);
+        PSVECCrossProduct(pParam1, &rParam3, pParam2);
+    }
+
+    void makeAxisUpSide(TVec3f* pParam1, TVec3f* pParam2, const TVec3f& rParam3, const TVec3f& rParam4) {
+        PSVECCrossProduct(&rParam4, &rParam3, pParam1);
+        PSVECNormalize(pParam1, pParam1);
+        PSVECCrossProduct(&rParam3, pParam1, pParam2);
+    }
+
+    void makeAxisVerticalZX(TVec3f* pParam1, const TVec3f& rParam2) {
+        TVec3f z(0.0f, 0.0f, 1.0f);
+
+        pParam1->rejection(z, rParam2);
+
+        if (isNearZero(*pParam1, 0.001f)) {
+            TVec3f x(1.0f, 0.0f, 0.0f);
+
+            pParam1->rejection(x, rParam2);
+        }
+
+        normalize(pParam1);
+    }
+
+    void makeAxisCrossPlane(TVec3f* pParam1, TVec3f* pParam2, const TVec3f& rParam3) {
+        makeAxisVerticalZX(pParam1, rParam3);
+        PSVECCrossProduct(pParam1, &rParam3, pParam2);
+        normalizeOrZero(pParam2);
+    }
+
+    bool makeAxisAndCosignVecToVec(TVec3f* pParam1, f32* pParam2, const TVec3f& rParam3, const TVec3f& rParam4) {
+        TVec3f v1;
+
+        if (isOppositeDirection(rParam3, rParam4, 0.01f)) {
+            turnRandomVector(&v1, rParam3, 0.01f);
+            normalize(&v1);
+        }
+        else {
+            v1.set(rParam3);
+        }
+
+        TVec3f v2;
+
+        PSVECCrossProduct(&v1, &rParam4, &v2);
+
+        if (isNearZero(v2, 0.001f)) {
+            pParam1->zero();
+            *pParam2 = 1.0f;
+
+            return false;
+        }
+        else {
+            pParam1->set(v2);
+            normalize(pParam1);
+            *pParam2 = JGeometry::TUtil<f32>::clamp(v1.dot(rParam4), -1.0f, 1.0f);
+
+            return true;
+        }
+    }
+
     // calcPerpendicFootToLine
     // calcPerpendicFootToLineInside
     // checkHitSegmentSphere
@@ -134,12 +229,44 @@ namespace MR {
     // calcReboundVelocity
     // calcReboundVelocity
     // calcParabolicFunctionParam
-    // makeQuatRotateRadian
-    // makeQuatRotateDegree
-    // makeQuatFromVec
-    // makeQuatSideUp
-    // makeQuatUpFront
-    // makeQuatUpNoSupport
+
+    void makeQuatRotateRadian(TQuat4f* pParam1, const TVec3f& rParam2) {
+        pParam1->setEuler(rParam2.x, rParam2.y, rParam2.z);
+    }
+
+    // FIXME: Floating-point registers are allocated incorrectly.
+    void makeQuatRotateDegree(TQuat4f* pParam1, const TVec3f& rParam2) {
+        pParam1->setEuler(rParam2.x * PI_180, rParam2.y * PI_180, rParam2.z * PI_180);
+    }
+
+    void makeQuatFromVec(TQuat4f* pParam1, const TVec3f& rParam2, const TVec3f& rParam3) {
+        TPos3f pos;
+
+        makeMtxFrontUp(&pos, rParam2, rParam3);
+        pos.getQuat(*pParam1);
+    }
+
+    void makeQuatSideUp(TQuat4f* pParam1, const TVec3f& rParam2, const TVec3f& rParam3) {
+        TPos3f pos;
+
+        makeMtxSideUp(&pos, rParam2, rParam3);
+        pos.getQuat(*pParam1);
+    }
+
+    void makeQuatUpFront(TQuat4f* pParam1, const TVec3f& rParam2, const TVec3f& rParam3) {
+        TPos3f pos;
+
+        makeMtxUpFront(&pos, rParam2, rParam3);
+        pos.getQuat(*pParam1);
+    }
+
+    void makeQuatUpNoSupport(TQuat4f* pParam1, const TVec3f& rParam2) {
+        TPos3f pos;
+
+        makeMtxUpNoSupport(&pos, rParam2);
+        pos.getQuat(*pParam1);
+    }
+
     // blendQuatUpFront
     // blendQuatUpFront
     // blendQuatFrontUp
@@ -209,13 +336,13 @@ namespace MR {
     /*
     f32 calcRotateY(f32 a1, f32 a2) {
         f32 val = JMath::sAtanTable.atan2_(-a2, a1);
-        return (sMinDegree + fmod((sMaxDegree + ((90.0f + (val * 57.295776f)) - sMinDegree)), sMaxDegree));
+        return cMinDegree + mod((cMaxDegree + ((90.0f + (val * 57.295776f)) - cMinDegree)), cMaxDegree);
     }
     */
 
     // calcRotateZ
 
-    f32 calcDistanceXY(const TVec3f &rPos1, const TVec3f &rPos2) {
+    f32 calcDistanceXY(const TVec3f& rPos1, const TVec3f& rPos2) {
         f32 xDelta = rPos1.x - rPos2.x;
         f32 yDelta = rPos1.y - rPos2.y;
 
@@ -243,7 +370,6 @@ namespace MR {
         normalize(pDst);
     }
 
-    // normalize
     // normalizeOrZero
 
     bool normalizeOrZero(TVec3f* pVec) {
@@ -275,12 +401,11 @@ namespace MR {
         }
     }
 
-    // FIXME: Instruction groups from branches are ordered incorrectly.
     f32 normalize(f32 x, f32 min, f32 max) {
         f32 range = max - min;
 
-        if (!isNearZero(range, 0.001f)) {
-            return (JGeometry::TUtil<f32>::clamp(x, min, max) - min) / range;
+        if (!isNearZero(max - min, 0.001f)) {
+            
         }
         else if (x < min) {
             return 0.0f;
@@ -288,6 +413,8 @@ namespace MR {
         else {
             return 1.0f;
         }
+
+        return (JGeometry::TUtil<f32>::clamp(x, min, max) - min) / range;
     }
 
     f32 normalizeAbs(f32 x, f32 min, f32 max) {
@@ -306,14 +433,29 @@ namespace MR {
     // turnVecToVecDegree
     // calcMomentRollBall
     // calcReflectionVector
-    // isSameDirection
 
-    bool isOppositeDirection(const TVec3f& rParam1, const TVec3f& rParam2, f32 param3) {
-        if (rParam1.dot(rParam2) >= 0.0f) {
+    bool isSameDirection(const TVec3f& rVec1, const TVec3f& rVec2, f32 epsilon) {
+        if (__fabsf(rVec1.y * rVec2.z - rVec1.z * rVec2.y) > epsilon) {
             return false;
         }
 
-        return isSameDirection(rParam1, rParam2, param3);
+        if (__fabsf(rVec1.z * rVec2.x - rVec1.x * rVec2.z) > epsilon) {
+            return false;
+        }
+
+        if (__fabsf(rVec1.x * rVec2.y - rVec1.y * rVec2.x) > epsilon) {
+            return false;
+        }
+
+        return true;
+    }
+
+    bool isOppositeDirection(const TVec3f& rVec1, const TVec3f& rVec2, f32 epsilon) {
+        if (rVec1.dot(rVec2) >= 0.0f) {
+            return false;
+        }
+
+        return isSameDirection(rVec1, rVec2, epsilon);
     }
 
     bool isNearZero(f32 x, f32 epsilon) {
@@ -328,31 +470,53 @@ namespace MR {
         return false;
     }
 
-    bool isNearZero(const TVec3f &rVec, f32 epsilon) {
-        f32 v2 = rVec.x;
-        if ( v2 > epsilon )
-            return 0;
+    bool isNearZero(const TVec3f& rVec, f32 epsilon) {
+        if (rVec.x > epsilon) {
+            return false;
+        }
 
-        f32 v4 = -epsilon;
-        if ( v2 < -epsilon )
-            return 0;
+        if (rVec.x < -epsilon) {
+            return false;
+        }
 
-        f32 v5 = rVec.y;
-        if ( v5 > epsilon )
-            return 0;
+        if (rVec.y > epsilon) {
+            return false;
+        }
 
-        if ( v5 < v4 )
-            return 0;
+        if (rVec.y < -epsilon) {
+            return false;
+        }
 
-        f32 v6 = rVec.z;
+        if (rVec.z > epsilon) {
+            return false;
+        }
 
-        if ( v6 > epsilon )
-            return 0;
+        if (rVec.z < -epsilon) {
+            return false;
+        }
 
-        return !(rVec.z < -epsilon);
+        return true;
     }
 
-    // isNearZero
+    bool isNearZero(const TVec2f& rVec, f32 epsilon) {
+        if (rVec.x > epsilon) {
+            return false;
+        }
+
+        if (rVec.x < -epsilon) {
+            return false;
+        }
+
+        if (rVec.y > epsilon) {
+            return false;
+        }
+
+        if (rVec.y < -epsilon) {
+            return false;
+        }
+
+        return true;
+    }
 
     f32 diffAngleAbs(f32 a1, f32 a2) {
         f32 normalize = normalizeAngleAbs(a1 - a2);
@@ -603,16 +767,76 @@ namespace MR {
         return 2;
     }
 
-    // diffAngleAbsFast
-    // diffAngleAbs
-    // diffAngleAbs
-    // diffAngleSigned
-    // diffAngleAbsHorizontal
+    f32 diffAngleAbsFast(const TVec3f& rParam1, const TVec3f& rParam2) {
+        return JMAAcosRadian(rParam1.dot(rParam2));
+    }
+
+    f32 diffAngleAbs(const TVec3f& rParam1, const TVec3f& rParam2) {
+        f32 length1 = rParam1.length();
+        f32 length2 = rParam2.length();
+        f32 x = rParam1.dot(rParam2) / (length1 * length2);
+
+        if (x >= 1.0f) {
+            return 0.0f;
+        }
+        else if (x <= -1.0f) {
+            return PI;
+        }
+        else {
+            return acosEx(x);
+        }
+    }
+
+    f32 diffAngleAbs(const TVec2f& rParam1, const TVec2f& rParam2) {
+        f32 length1 = JGeometry::TUtil<f32>::sqrt(rParam1.dot(rParam1)); // TODO: Should probably be `TVec2f::length`
+        f32 length2 = JGeometry::TUtil<f32>::sqrt(rParam2.dot(rParam2)); // TODO: Should probably be `TVec2f::length`
+        f32 x = rParam1.dot(rParam2) / (length1 * length2);
+
+        if (x >= 1.0f) {
+            return 0.0f;
+        }
+        else if (x <= -1.0f) {
+            return PI;
+        }
+        else {
+            return acosEx(x);
+        }
+    }
+
+    f32 diffAngleSigned(const TVec3f& rParam1, const TVec3f& rParam2, const TVec3f& rParam3) {
+        f32 angleDiff = diffAngleAbs(rParam1, rParam2);
+
+        TVec3f v;
+        PSVECCrossProduct(&rParam1, &rParam3, &v);
+
+        if (v.dot(rParam2) >= 0.0f) {
+            return angleDiff;
+        }
+        else {
+            return -angleDiff;
+        }
+    }
+
+    f32 diffAngleAbsHorizontal(const TVec3f& rParam1, const TVec3f& rParam2, const TVec3f& rParam3) {
+        TVec3f v1;
+        TVec3f v2;
+
+        vecKillElement(rParam1, rParam3, &v1);
+        vecKillElement(rParam2, rParam3, &v2);
+
+        return diffAngleAbs(v1, v2);
+    }
+
     // diffAngleSignedHorizontal
     // isNearAngleRadian
     // isNearAngleDegree
     // isNearAngleRadianHV
-    // isNearAngleDegreeHV
+
+    // FIXME: Multiplication instructions are ordered incorrectly.
+    bool isNearAngleDegreeHV(const TVec3f& rParam1, const TVec3f& rParam2, const TVec3f& rParam3, f32 param4, f32 param5) {
+        return isNearAngleRadianHV(rParam1, rParam2, rParam3, param4 * PI_180, param5 * PI_180);
+    }
+
     // createBoundingBox
     // isNormalize
     // setNan
