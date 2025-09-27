@@ -1,8 +1,9 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/LiveActor/PartsModel.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
+
+class PartsModel;
 
 class LavaJamboSunPlanet : public LiveActor {
 public:

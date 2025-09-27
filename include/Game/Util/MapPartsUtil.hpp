@@ -1,6 +1,5 @@
 #pragma once
 
-#include "Game/LiveActor/LiveActor.hpp"
 #include "Game/Util.hpp"
 #include "JSystem/JGeometry.hpp"
 
@@ -8,6 +7,7 @@ class HitSensor;
 class MapPartsRailGuideDrawer;
 class MapPartsRailMover;
 class MapPartsRailRotator;
+class LiveActor;
 
 namespace MR {
     bool getMapPartsArgMoveConditionType(s32 *, const JMapInfoIter &);
