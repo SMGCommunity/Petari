@@ -21,6 +21,7 @@ public:
     virtual ~AstroDomeCameraController();
     virtual void init(const JMapInfoIter &);
     virtual void appear();
+    virtual void kill();
     virtual void control();
     virtual bool receiveOtherMsg(u32, HitSensor *, HitSensor *);
 

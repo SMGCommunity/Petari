@@ -2,6 +2,7 @@
 
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/LiveActorGroup.hpp"
+#include "revolution/types.h"
 
 class SphereSelectorHandle;
 
@@ -46,7 +47,7 @@ public:
     static s32 getSelectStartFrame();
     static s32 getConfirmStartCancelFrame();
     static void selectStart();
-    static void selectCancel();
+    static void selectCancel(bool);
     static void selectEnd();
     static void confirmStart();
     static void confirmCancel();
@@ -56,6 +57,7 @@ public:
     
     static bool isMsgSelectStart(u32);
     static bool isMsgSelectEnd(u32);
+    static bool isMsgConfirmStart(u32);
 
     static bool isMsgConfirmed(u32);
     static bool isMsgTargetSelected(u32);
