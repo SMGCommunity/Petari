@@ -14,11 +14,7 @@ void FirePressureBullet::init(const JMapInfoIter  &rIter) {
     initModelManagerWithAnm("FireBullet", nullptr, false);
     MR::connectToSceneMapObj(this);
     initHitSensor(1);
-    TVec3f offs;
-    offs.x = 0.0f;
-    offs.y = 0.0f;
-    offs.z = 0.0f;
-    MR::addHitSensorEnemyAttack(this, "body", 8, 100.0f, offs);
+    MR::addHitSensorEnemyAttack(this, "body", 8, 100.0f, TVec3f(0.0f, 0.0f, 0.0f));
     initBinder(100.0f, 0.0f, 0);
     MR::onCalcGravity(this);
     initEffectKeeper(0, nullptr, false);

@@ -39,7 +39,7 @@ Poihana::~Poihana() { }
 	// Initialize sensors
 	initHitSensor(2);
 	MR::addHitSensorPriorBinder(this, "binder", 8, 125.0f, sNormalBinderPos);
-	MR::addHitSensorAtJoint(this, "body", "Body", 30, 8, 70.0f, TVec3f(0.0f, 0.0f, 0.0f));
+	MR::addHitSensorAtJoint(this, "body", "Body", ATYPE_KILLER_TARGET_ENEMY, 8, 70.0f, TVec3f(0.0f, 0.0f, 0.0f));
 
 	// Initialize binder
 	bool useSmallBinder = false;

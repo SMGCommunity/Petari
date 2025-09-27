@@ -31,7 +31,7 @@ void TripodBossCore::init(const JMapInfoIter &rIter) {
     offs.x = 0.0f;
     offs.y = 0.0f;
     offs.z = 0.0f;
-    MR::addHitSensor(this, "body", 82, 8, 300.0f * mScale.x, offs);
+    MR::addHitSensor(this, "body", ATYPE_BREAKABLE_CAGE, 8, 300.0f * mScale.x, offs);
     MR::initCollisionParts(this, "TripodBossCore", getSensor("body"), nullptr);
     initSound(4, false);
     mBreakModel = MR::createModelObjMapObjStrongLight("壊れモデル", "TripodBossCoreBreak", getBaseMtx());

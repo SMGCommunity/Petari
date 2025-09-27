@@ -44,8 +44,8 @@ void PunchingKinoko::init(const JMapInfoIter &rIter) {
 
 void PunchingKinoko::initSensor() {
     initHitSensor(2);
-    MR::addHitSensorAtJointEnemy(this, "Head", "Ball", 0x10, 9.18355e-41f, TVec3f(0.0174533f, 0.0174533f, 0.0174533f));
-    MR::addHitSensorEnemy(this, "Body", 0x10, 9.18355e-41f, TVec3f(0.0174533f, 9.18355e-41f, 0.0174533f));
+    MR::addHitSensorAtJointEnemy(this, "Head", "Ball", 16, 70.0f, TVec3f(0.0f, 0.0f, 0.0f));
+    MR::addHitSensorEnemy(this, "Body", 16, 30.0f, TVec3f(0.0f, 30.0f, 0.0f));
 }
 
 void PunchingKinoko::initShadow() {

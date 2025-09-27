@@ -92,7 +92,7 @@ void PowerStar::init(const JMapInfoIter &rIter) {
     else {
         MR::connectToSceneNoSilhouettedMapObj(this);
         initHitSensor(1);
-        MR::addHitSensor(this, "body", 0x67, 8, 75.0f, TVec3f(0.0f, 0.0f, 0.0f));
+        MR::addHitSensor(this, "body", ATYPE_POWER_STAR_BIND, 8, 75.0f, TVec3f(0.0f, 0.0f, 0.0f));
     }
 
     initEffectKeeper(0, NULL, false);
@@ -450,22 +450,22 @@ void PowerStar::initSensorGrandStar() {
     initHitSensor(6);
     TVec3f body1Offs = TVec3f(0.0f, 100.0f, 0.0f);
     const char* body1Name = "body1";
-    MR::addHitSensorMtx(this, body1Name, 0x67, 8, 60.0f, getBaseMtx(), body1Offs);
+    MR::addHitSensorMtx(this, body1Name, ATYPE_POWER_STAR_BIND, 8, 60.0f, getBaseMtx(), body1Offs);
     TVec3f body2Offs = TVec3f(-95.0f, 35.0f, 0.0f);
     const char* body2Name = "body2";
-    MR::addHitSensorMtx(this, body2Name, 0x67, 8, 60.0f, getBaseMtx(), body2Offs);
+    MR::addHitSensorMtx(this, body2Name, ATYPE_POWER_STAR_BIND, 8, 60.0f, getBaseMtx(), body2Offs);
     TVec3f body3Offs = TVec3f(-55.0f, -75.0f, 0.0f);
     const char* body3Name = "body3";
-    MR::addHitSensorMtx(this, body3Name, 0x67, 8, 60.0f, getBaseMtx(), body3Offs);
+    MR::addHitSensorMtx(this, body3Name, ATYPE_POWER_STAR_BIND, 8, 60.0f, getBaseMtx(), body3Offs);
     TVec3f body4Offs = TVec3f(55.0f, -75.0f, 0.0f);
     const char* body4Name = "body4";
-    MR::addHitSensorMtx(this, body4Name, 0x67, 8, 60.0f, getBaseMtx(), body4Offs);
+    MR::addHitSensorMtx(this, body4Name, ATYPE_POWER_STAR_BIND, 8, 60.0f, getBaseMtx(), body4Offs);
     TVec3f body5Offs = TVec3f(95.0f, 35.0f, 0.0f);
     const char* body5Name = "body5";
-    MR::addHitSensorMtx(this, body5Name, 0x67, 8, 60.0f, getBaseMtx(), body5Offs);
+    MR::addHitSensorMtx(this, body5Name, ATYPE_POWER_STAR_BIND, 8, 60.0f, getBaseMtx(), body5Offs);
     TVec3f body6Offs = TVec3f(0.0f, 0.0f, 0.0f);
     const char* body6Name = "body6";
-    MR::addHitSensorMtx(this, body6Name, 0x67, 8, 80.0f, getBaseMtx(), body6Offs);
+    MR::addHitSensorMtx(this, body6Name, ATYPE_POWER_STAR_BIND, 8, 80.0f, getBaseMtx(), body6Offs);
 }
 
 void PowerStar::initShadow(const JMapInfoIter &rIter) {

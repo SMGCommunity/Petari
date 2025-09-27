@@ -49,11 +49,7 @@ void MercatorRotateParts::init(const JMapInfoIter &rIter) {
     initModelManagerWithAnm(objName, nullptr, false);
     MR::connectToSceneMapObj(this);
     initHitSensor(1);
-    TVec3f bodyOffs;
-    bodyOffs.x = 0.0f;
-    bodyOffs.y = 0.0f;
-    bodyOffs.z = 0.0f;
-    MR::addHitSensorMapObj(this, "body", 4, 0.0f, bodyOffs);
+    MR::addHitSensorMapObj(this, "body", 4, 0.0f, TVec3f(0.0f, 0.0f, 0.0f));
     MR::initCollisionParts(this, objName, getSensor("body"), nullptr);
     mRotator = new MapPartsRotator(this);
     mRotator->init(rIter);

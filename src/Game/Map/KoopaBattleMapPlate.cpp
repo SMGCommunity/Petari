@@ -30,7 +30,7 @@ void KoopaBattleMapPlate::init(const JMapInfoIter& rIter) {
     initModelManagerWithAnm("KoopaPlate", NULL, false);
     MR::connectToSceneMapObj(this);
     initHitSensor(1);
-    MR::addHitSensor(this, "Attack", 94, 8, 250.0f, TVec3f(0.0f, -150.0f, 0.0f));
+    MR::addHitSensor(this, "Attack", ATYPE_KOOPA_PLATE, 8, 250.0f, TVec3f(0.0f, -150.0f, 0.0f));
     MR::initCollisionParts(this, "KoopaPlate", getSensor("Attack"), _8C);
     initEffectKeeper(1, NULL, false);
     MR::addEffectHitNormal(this, "Hit");

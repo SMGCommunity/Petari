@@ -150,8 +150,8 @@ void Kuribo::initState() {
 void Kuribo::initSensor() {
     f32 y_scale = mScale.y;
     initHitSensor(2);
-    MR::addHitSensor(this, "body", 27, 8, 75.0f * y_scale, TVec3f(0.0f, 75.0f * y_scale, 0.0f));
-    MR::addHitSensor(this, "attack", 22, 8, 45.0f * y_scale, TVec3f(0.0f, 75.0f * y_scale, 0.0f));
+    MR::addHitSensor(this, "body", ATYPE_KURIBO, 8, 75.0f * y_scale, TVec3f(0.0f, 75.0f * y_scale, 0.0f));
+    MR::addHitSensor(this, "attack", ATYPE_ENEMY_ATTACK, 8, 45.0f * y_scale, TVec3f(0.0f, 75.0f * y_scale, 0.0f));
 }
 
 void Kuribo::initAppearState(const JMapInfoIter &rIter) {
@@ -228,7 +228,15 @@ void Kuribo::calcAndSetBaseMtx() {
 }
 
 void Kuribo::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
-    if ((!MR::isSensorType(pSender, 27) || (isEnableAttack() || !MR::isSensorPlayer(pReceiver)) && !MR::isSensorEnemy(pReceiver) || !isEnablePushMove() || !MR::sendMsgPushAndKillVelocityToTarget(this, pReceiver, pSender)) && isEnableAttack() && MR::isSensorPlayer(pReceiver) && MR::isSensorEnemyAttack(pSender)) {
+    if ((!MR::isSensorType(pSender, ATYPE_KURIBO)
+            || (isEnableAttack() || !MR::isSensorPlayer(pReceiver))
+            && !MR::isSensorEnemy(pReceiver)
+            || !isEnablePushMove()
+            || !MR::sendMsgPushAndKillVelocityToTarget(this, pReceiver, pSender))
+        && isEnableAttack()
+        && MR::isSensorPlayer(pReceiver)
+        && MR::isSensorEnemyAttack(pSender))
+    {
         if (!MR::isPlayerHipDropFalling() && MR::sendMsgEnemyAttack(pReceiver, pSender)) {
             requestAttackSuccess();
         }

@@ -53,7 +53,7 @@ void BreakableCage::init(const JMapInfoIter &rIter) {
     initModel(modelName, rIter);
     MR::connectToSceneMapObjStrongLight(this);
     initHitSensor(1);
-    MR::addHitSensor(this, "body", 82, 8, v9, stack_C);
+    MR::addHitSensor(this, "body", ATYPE_BREAKABLE_CAGE, 8, v9, stack_C);
     MR::initCollisionParts(this, modelName, getSensor("body"), nullptr);
 
     if (!isTypeCage()) {

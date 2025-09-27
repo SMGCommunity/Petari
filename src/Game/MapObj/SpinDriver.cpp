@@ -40,7 +40,7 @@ void SpinDriver::init(const JMapInfoIter &rIter) {
     sensorOffs.x = 0.0f;
     sensorOffs.y = 0.0f;
     sensorOffs.z = 0.0f;
-    MR::addHitSensor(this, "body", 0x64, 0x10, 300.0f, sensorOffs);
+    MR::addHitSensor(this, "body", ATYPE_SPIN_DRIVER_BIND, 16, 300.0f, sensorOffs);
     initEffectKeeper(0, nullptr, false);
     initSound(6, false);
     initEventCamera(rIter);

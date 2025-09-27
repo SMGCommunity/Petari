@@ -20,7 +20,7 @@ void MeteoContainer::init(const JMapInfoIter &rIter) {
     sensorOffs.x = 0.0f;
     sensorOffs.y = 150.0f;
     sensorOffs.z = 0.0f;
-    MR::addHitSensorMapObj(this, "body", 0x10, 150.0f, sensorOffs);
+    MR::addHitSensorMapObj(this, "body", 16, 150.0f, sensorOffs);
     initSound(4, false);
     initNerve(&NrvMeteoContainer::MeteoContainerNrvWait::sInstance);
     MR::initShadowVolumeSphere(this, 150.0f);

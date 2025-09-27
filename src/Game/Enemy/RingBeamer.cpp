@@ -15,9 +15,8 @@ void RingBeamer::init(const JMapInfoIter &rIter){
     MR::connectToSceneEnemy(this);
     MR::initLightCtrl(this);
     initHitSensor(2);
-    MR::addHitSensorPush(this, "Body", 8, 160.0f, TVec3f(0.0f,80.0f,0.0f));
-    MR::addHitSensorMtxEnemyAttack(this, "Head",8, 130.0f, MR::getJointMtx(this, "Top"),
-                                    TVec3f(0.0f,110.0f,0.0f));
+    MR::addHitSensorPush(this, "Body", 8, 160.0f, TVec3f(0.0f, 80.0f, 0.0f));
+    MR::addHitSensorMtxEnemyAttack(this, "Head", 8, 130.0f, MR::getJointMtx(this, "Top"), TVec3f(0.0f, 110.0f, 0.0f));
     MR::initShadowVolumeSphere(this, 120.0f);
     initEffectKeeper(1, nullptr, false);
     initSound(8, false);
@@ -25,7 +24,6 @@ void RingBeamer::init(const JMapInfoIter &rIter){
     makeActorAppeared();
     MR::useStageSwitchReadA(this, rIter);
     if(MR::useStageSwitchReadB(this, rIter)){
-        
         MR::listenStageSwitchOffB(this, 
             MR::FunctorV0M<RingBeamer*, void (RingBeamer::*)(void)>(this, &RingBeamer::syncSwitchOffB));
     }

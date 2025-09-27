@@ -197,11 +197,7 @@ UFOBreakable::UFOBreakable(const char *pName) : UFOBase(pName) {
 }
 
 void UFOBreakable::initSensorType() {
-    TVec3f vec;
-    vec.x = 0.0f;
-    vec.y = 0.0f;
-    vec.z = 0.0f;
-    MR::addHitSensor(this, "body", 84, 8, 100.0f, vec);
+    MR::addHitSensor(this, "body", ATYPE_KILLER_TARGET_MAPOBJ, 8, 100.0f, TVec3f(0.0f, 0.0f, 0.0f));
 }
 
 bool UFOBreakable::receiveMsgEnemyAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {

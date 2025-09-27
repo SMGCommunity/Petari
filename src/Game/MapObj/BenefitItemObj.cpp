@@ -54,7 +54,7 @@ void BenefitItemObj::initModelAndEfx() {
     initEffectKeeper(5, _120, false);
     initBinder(50.0f, 50.0f, 0);
     initHitSensor(1);
-    MR::addHitSensor(this, "body", 77, 4, 50.0f, TVec3f(0.0f, 50.0f, 0.0f));
+    MR::addHitSensor(this, "body", ATYPE_KINOKO_ONEUP, 4, 50.0f, TVec3f(0.0f, 50.0f, 0.0f));
 }
 
 void BenefitItemObj::init(const JMapInfoIter &rIter) {

@@ -25,7 +25,7 @@ void TripodBossGuardWallPart::init(const JMapInfoIter &rIter) {
     initHitSensor(2);
     TVec3f sensorOffs;
     sensorOffs.z = sensorOffs.y = sensorOffs.x = 0.0f;
-    MR::initCollisionParts(this, "TripodBossGuardWall", MR::addHitSensor(this, "collision", 44, 0, 1000.0f, sensorOffs), nullptr);
+    MR::initCollisionParts(this, "TripodBossGuardWall", MR::addHitSensor(this, "collision", ATYPE_TRIPODBOSS_GUARD_WALL, 0, 1000.0f, sensorOffs), nullptr);
     initSound(4, false);
     initEffectKeeper(0, "TripodBoss", false);
     MR::invalidateClipping(this);
@@ -59,7 +59,9 @@ void TripodBossGuardWallPart::calcAndSetBaseMtx() {
 }
 
 bool TripodBossGuardWallPart::receiveMsgEnemyAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
-    if (MR::isSensorType(pReceiver, 44) && MR::isMsgExplosionAttack(msg)) {
+    if (MR::isSensorType(pReceiver, ATYPE_TRIPODBOSS_GUARD_WALL)
+        && MR::isMsgExplosionAttack(msg))
+    {
         return requestBreak();
     }
 

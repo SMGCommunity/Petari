@@ -27,7 +27,7 @@ void Jiraira::init(const JMapInfoIter &rIter) {
     offset.x = 0.0f;
     offset.y = 30.0f;
     offset.z = 0.0f;
-    MR::addHitSensorMapObjMoveCollision(this, "body", 0x10, (100.0f * scaleY), offset);
+    MR::addHitSensorMapObjMoveCollision(this, "body", 16, (100.0f * scaleY), offset);
     TVec3f offset2;
     offset2.x = 0.0f;
     offset2.y = 30.0f * scaleY;

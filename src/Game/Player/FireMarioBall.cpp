@@ -90,13 +90,8 @@ bool FireMarioBall::attackFire(HitSensor* pReceiver) {
 }
 
 void FireMarioBall::initSensor() {
-    TVec3f v1;
-
     initHitSensor(1);
-    v1.x = 0.0f;
-    v1.y = 0.0f;
-    v1.z = 0.0f;
-    MR::addHitSensorEnemy(this, "body", 8, cSensorRadius, v1);
+    MR::addHitSensorEnemy(this, "body", 8, cSensorRadius, TVec3f(0.0f, 0.0f, 0.0f));
 }
 
 HitSensor* FireMarioBall::isBindedAny() const {

@@ -20,7 +20,7 @@ void BallOpener::init(const JMapInfoIter &rIter) {
     initModelManagerWithAnm("BallOpener", nullptr, false);
     MR::connectToSceneMapObj(this);
     initHitSensor(1);
-    MR::addHitSensor(this, "body", 121, 8, 200.0f, TVec3f(0.0f, 0.0f, 0.0f));
+    MR::addHitSensor(this, "body", ATYPE_JUMP_HOLE, 8, 200.0f, TVec3f(0.0f, 0.0f, 0.0f));
     initEffectKeeper(1, nullptr, false);
     initSound(4, false);
     MR::initCollisionParts(this, "BallOpener", getSensor(nullptr), nullptr);

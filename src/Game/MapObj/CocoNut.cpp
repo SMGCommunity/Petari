@@ -175,8 +175,8 @@ f32 CocoNut::calcMoveSpeed() const {
 
 void CocoNut::initSensor() {
 	initHitSensor(2);
-	MR::addHitSensor(this, "body", 0x17, 0x10, 65.0f * mScale.x, TVec3f(0.0f, 0.0f, 0.0f));
-	MR::addHitSensor(this, "eye", 0x7f, 0x10, 1.1f * mScale.x, TVec3f(0.0f, 0.0f, 0.0f));
+	MR::addHitSensor(this, "body", ATYPE_COCO_NUT, 16, 65.0f * mScale.x, TVec3f(0.0f, 0.0f, 0.0f));
+	MR::addHitSensor(this, "eye", ATYPE_EYE, 16, 1.1f * mScale.x, TVec3f(0.0f, 0.0f, 0.0f));
 }
 
 void CocoNut::initModel() {

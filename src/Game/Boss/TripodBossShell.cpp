@@ -28,8 +28,8 @@ void TripodBossShell::init(const JMapInfoIter &rIter) {
     initModelManagerWithAnm("TripodBossShell", nullptr, false);
     MR::connectToScene(this, 0x23, 0xB, 0x1F, -1);
     initHitSensor(2);
-    MR::addHitSensorMapObj(this, "body", 0x10, 900.0f, TVec3f(0.0f, 300.0f, 0.0f));
-    MR::addHitSensor(this, "killer_terget", 0x52, 8, 900.0f * mScale.x, TVec3f(0.0f, 0.0f, 0.0f));
+    MR::addHitSensorMapObj(this, "body", 16, 900.0f, TVec3f(0.0f, 300.0f, 0.0f));
+    MR::addHitSensor(this, "killer_terget", ATYPE_BREAKABLE_CAGE, 8, 900.0f * mScale.x, TVec3f(0.0f, 0.0f, 0.0f));
     MR::initCollisionParts(this, "TripodBossShell", getSensor("killer_terget"), nullptr);
     initSound(4, false);
     mBreakModel = MR::createModelObjMapObjStrongLight("壊れモデル", "TripodBossShellBreak", getBaseMtx());

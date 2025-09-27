@@ -14,10 +14,10 @@ void KillerGunnerSingle::init(const JMapInfoIter &rIter) {
     sensor_offs.x = 0.0f;
     sensor_offs.y = 0.0f;
     sensor_offs.z = 0.0f;
-    MR::addHitSensorMapObj(this, "body", 0x10, 0.0f, sensor_offs);
+    MR::addHitSensorMapObj(this, "body", 16, 0.0f, sensor_offs);
 
     TVec3f shell_sensor_offs(sShellPos);
-    MR::addHitSensorEnemy(this, "shell", 0x10, 250.0f, shell_sensor_offs);
+    MR::addHitSensorEnemy(this, "shell", 16, 250.0f, shell_sensor_offs);
     MR::initCollisionParts(this, "KillerGunnerSingle", getSensor("body"), nullptr);
     initEffectKeeper(0, nullptr, false);
     initSound(4, false);

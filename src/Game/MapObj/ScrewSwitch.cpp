@@ -44,7 +44,7 @@ void ScrewSwitch::init(const JMapInfoIter& rIter) {
     MR::addBodyMessageSensorMapObj(this);
     TVec3f var1;
     var1.scale(-150.0f, mGravity);
-    MR::addHitSensorAtJoint(this, "binder", "Screw", 97, 8, 150.0f, var1);
+    MR::addHitSensorAtJoint(this, "binder", "Screw", ATYPE_BINDER, 8, 150.0f, var1);
     MtxPtr jointMtx = MR::getJointMtx(this, "Screw");
     HitSensor* Sensor = getSensor("binder");
     MR::initCollisionParts(this, "ScrewCol", Sensor, jointMtx);

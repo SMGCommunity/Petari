@@ -32,7 +32,7 @@ void BallRail::init(const JMapInfoIter &rIter) {
     offs.y = _AC;
     offs.x = 0.0f;
     offs.z = 0.0f;
-    MR::addHitSensor(this, "bind", 0x7B, 8, _AC, offs);
+    MR::addHitSensor(this, "bind", ATYPE_BALL_RAIL, 8, _AC, offs);
     initNerve(&NrvBallRail::BallRailNrvWait::sInstance);
     appear();
 }

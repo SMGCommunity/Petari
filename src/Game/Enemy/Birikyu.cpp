@@ -150,13 +150,7 @@ void Birikyu::initRail(const JMapInfoIter &rIter) {
 
 void Birikyu::initCollision() {
     initHitSensor(1);
-    TVec3f vec;
-    vec.x = 0.0f;
-    vec.y = 0.0f;
-    vec.z = 0.0f;
-    f32 num = getHitRadius() * mScale.x;   
-    const char *joint = getCenterJointName();
-    MR::addHitSensorAtJointEnemy(this, "body", joint, 16, num, vec);
+    MR::addHitSensorAtJointEnemy(this, "body", getCenterJointName(), 16, getHitRadius() * mScale.x, TVec3f(0.0f, 0.0f, 0.0f));
 }
 
 void Birikyu::initShadow() {

@@ -47,7 +47,7 @@ void TripodBossKillerGenerater::init(const JMapInfoIter &rIter) {
     
     if (mHasCollision) {
         initHitSensor(1);
-        MR::addHitSensor(this, "body", 45, 0, 0.0f, TVec3f(0.0f, 0.0f, 0.0f));
+        MR::addHitSensor(this, "body", ATYPE_TRIPODBOSS_KILLER_GENERATER, 0, 0.0f, TVec3f(0.0f, 0.0f, 0.0f));
         MR::initCollisionParts(this, "TripodBossKillerCannon", getSensor("body"), nullptr);
     }
 

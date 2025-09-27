@@ -24,11 +24,7 @@ void BallBeamer::init(const JMapInfoIter &rIter) {
     MR::connectToSceneEnemy(this);
     MR::initLightCtrl(this);
     initHitSensor(1);
-    TVec3f vec;
-    vec.x = 0.0f;
-    vec.y = -20.0f;
-    vec.z = 0.0f;
-    MR::addHitSensorPush(this, "Body", 8, 120.0f, vec);
+    MR::addHitSensorPush(this, "Body", 8, 120.0f, TVec3f(0.0f, -20.0f, 0.0f));
     MR::initShadowVolumeSphere(this, 120.0f);
     initEffectKeeper(3, nullptr, nullptr);
     initSound(2, nullptr);

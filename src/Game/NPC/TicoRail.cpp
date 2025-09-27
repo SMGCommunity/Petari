@@ -33,11 +33,7 @@ void TicoRail::init(const JMapInfoIter &rIter) {
     initModelManagerWithAnm("Tico", nullptr, false);
     MR::connectToSceneNpc(this);
     initHitSensor(1);
-    TVec3f offs;
-    offs.x = 0.0f;
-    offs.y = 50.0f;
-    offs.z = 0.0f;
-    MR::addHitSensorNpc(this, "body", 8, 50.0f, offs);
+    MR::addHitSensorNpc(this, "body", 8, 50.0f, TVec3f(0.0f, 50.0f, 0.0f));
     MR::initLightCtrl(this);
     initEffectKeeper(0, nullptr, false);
     MR::initShadowFromCSV(this, "Shadow");

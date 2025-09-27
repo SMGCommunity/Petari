@@ -49,8 +49,8 @@ void FlameGun::initSensor() {
     offs.x = 0.0f;
     offs.y = 77.0f * scale;
     offs.z = 0.0f;
-    MR::addHitSensorEnemy(this, "body", 0x20, offs.y, offs);
-    MR::addHitSensorCallbackEnemy(this, "attack", 0x10, (80.0f * scale));
+    MR::addHitSensorEnemy(this, "body", 32, offs.y, offs);
+    MR::addHitSensorCallbackEnemy(this, "attack", 16, (80.0f * scale));
 }
 
 void FlameGun::initAfterPlacement() {

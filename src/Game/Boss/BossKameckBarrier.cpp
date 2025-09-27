@@ -13,7 +13,7 @@ void BossKameckBarrier::init(const JMapInfoIter &rIter) {
     offs.x = 0.0f;
     offs.y = 0.0f;
     offs.z = 0.0f;
-    MR::addHitSensor(this, "body", 0x59, 0, 0.0f, offs);
+    MR::addHitSensor(this, "body", ATYPE_KAMECK_BARRIER, 0, 0.0f, offs);
     MR::initCollisionParts(this, mBossName, getSensor("body"), nullptr);
     initNerve(&NrvBossKameckBarrier::BossKameckBarrierNrvWait::sInstance);
     MR::invalidateClipping(this);
