@@ -279,7 +279,7 @@ void MarioActor::init2(const TVec3f &a, const TVec3f &b, s32 initialAnimation)
     _214 = new CollisionShadow(100.0f, 360.0f);
     mConst = new MarioConst();
     if (gIsLuigi) {
-        mConst->mCurrentTable = 1;
+        mConst->changeTable(1);
     }
     mMario->initAfterConst();
     _36C = new GravityInfo();
@@ -626,7 +626,7 @@ bool MarioActor::isJumping() const {
     if (_934) {
         return _938.dot(getGravityVec()) < -10.0f;
     }
-    if (mPlayerMode == 6 && mMario->_488 < mConst->mTable[mConst->mCurrentTable]->mTeresaDropDownHeight) {
+    if (mPlayerMode == 6 && mMario->_488 < mConst->getTable()->mTeresaDropDownHeight) {
         return false;
     }
     if (mMario->isWalling()) {
@@ -1347,7 +1347,7 @@ void MarioActor::updateSwingAction()
             }
         }
         if (didSpinPunch) {
-            _946 = mConst->mTable[mConst->mCurrentTable]->mSpinIntervalTime + 0x22;
+            _946 = mConst->getTable()->mSpinIntervalTime + 0x22;
         }
         break;
     case 2:
@@ -1366,7 +1366,7 @@ void MarioActor::updateSwingAction()
             break;
         }
         mMario->startTeresaDisappear();
-        const MarioConstTable *pConstants = mConst->mTable[mConst->mCurrentTable];
+        const MarioConstTable *pConstants = mConst->getTable();
         _946 = pConstants->mTeresaWallThroughTime + pConstants->mSpinIntervalTime;
         break;
     case 5:
@@ -1384,7 +1384,7 @@ void MarioActor::updateSwingAction()
                 mMario->changeAnimation("ハチスピン", (const char *)nullptr);
             }
         }
-        _946 = mConst->mTable[mConst->mCurrentTable]->mSpinIntervalTime + 0x22;
+        _946 = mConst->getTable()->mSpinIntervalTime + 0x22;
         break;
     }
 }

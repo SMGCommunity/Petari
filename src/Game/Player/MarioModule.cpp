@@ -241,26 +241,26 @@ bool MarioModule::calcWorldPadDir(TVec3f *pDest, f32 a2, f32 a3, bool a4) {
         return false;
     }
     if (!mActor->mMario->_10._11) {
-        if (__fabsf(a3) > mActor->mConst->mTable[mActor->mConst->mCurrentTable]->mStickMarginYstart) {
-            if (__fabsf(a2) < mActor->mConst->mTable[mActor->mConst->mCurrentTable]->mStickMarginX) {
+        if (__fabsf(a3) > mActor->mConst->getTable()->mStickMarginYstart) {
+            if (__fabsf(a2) < mActor->mConst->getTable()->mStickMarginX) {
                 a2 = 0.0f;
             }
             else if (a2 > 0.0f) {
-                a2 = (a2 - mActor->mConst->mTable[mActor->mConst->mCurrentTable]->mStickMarginX) / (1.0f - mActor->mConst->mTable[mActor->mConst->mCurrentTable]->mStickMarginX);
+                a2 = (a2 - mActor->mConst->getTable()->mStickMarginX) / (1.0f - mActor->mConst->getTable()->mStickMarginX);
             }
             else {
-                a2 = (a2 + mActor->mConst->mTable[mActor->mConst->mCurrentTable]->mStickMarginX) / (1.0f - mActor->mConst->mTable[mActor->mConst->mCurrentTable]->mStickMarginX);
+                a2 = (a2 + mActor->mConst->getTable()->mStickMarginX) / (1.0f - mActor->mConst->getTable()->mStickMarginX);
             }
         }
-        else if (__fabsf(a2) > mActor->mConst->mTable[mActor->mConst->mCurrentTable]->mStickMarginXstart) {
-            if (__fabsf(a3) < mActor->mConst->mTable[mActor->mConst->mCurrentTable]->mStickMarginY) {
+        else if (__fabsf(a2) > mActor->mConst->getTable()->mStickMarginXstart) {
+            if (__fabsf(a3) < mActor->mConst->getTable()->mStickMarginY) {
                 a3 = 0.0f;
             }
             else if (a3 > 0.0f) {
-                a3 = (a3 - mActor->mConst->mTable[mActor->mConst->mCurrentTable]->mStickMarginY) / (1.0f - mActor->mConst->mTable[mActor->mConst->mCurrentTable]->mStickMarginY);
+                a3 = (a3 - mActor->mConst->getTable()->mStickMarginY) / (1.0f - mActor->mConst->getTable()->mStickMarginY);
             }
             else {
-                a3 = (a3 + mActor->mConst->mTable[mActor->mConst->mCurrentTable]->mStickMarginY) / (1.0f - mActor->mConst->mTable[mActor->mConst->mCurrentTable]->mStickMarginY);
+                a3 = (a3 + mActor->mConst->getTable()->mStickMarginY) / (1.0f - mActor->mConst->getTable()->mStickMarginY);
             }
         }
     }

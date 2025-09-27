@@ -404,7 +404,7 @@ namespace MR {
     f32 normalize(f32 x, f32 min, f32 max) {
         f32 range = max - min;
 
-        if (!isNearZero(max - min, 0.001f)) {
+        if (!isNearZero(range, 0.001f)) {
             
         }
         else if (x < min) {
