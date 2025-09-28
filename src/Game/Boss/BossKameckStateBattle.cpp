@@ -5,6 +5,21 @@
 #include "Game/Enemy/KameckBeam.hpp"
 #include "Game/Enemy/KameckBeamHolder.hpp"
 
+namespace NrvBossKameckStateBattle {
+    NEW_NERVE(BossKameckStateBattleNrvWait, BossKameckStateBattle, Wait);
+    NEW_NERVE(BossKameckStateBattleNrvMove, BossKameckStateBattle, Move);
+    NEW_NERVE(BossKameckStateBattleNrvHideMoveStart, BossKameckStateBattle, HideMoveStart);
+    NEW_NERVE(BossKameckStateBattleNrvHideMove, BossKameckStateBattle, HideMove);
+    NEW_NERVE(BossKameckStateBattleNrvHideMoveEnd, BossKameckStateBattle, HideMoveEnd);
+    NEW_NERVE(BossKameckStateBattleNrvSummonKameckWait, BossKameckStateBattle, SummonKameckWait);
+    NEW_NERVE(BossKameckStateBattleNrvSummonKameck, BossKameckStateBattle, SummonKameck);
+    NEW_NERVE(BossKameckStateBattleNrvAttackWait, BossKameckStateBattle, AttackWait);
+    NEW_NERVE(BossKameckStateBattleNrvAttack, BossKameckStateBattle, Attack);
+    NEW_NERVE(BossKameckStateBattleNrvDamage, BossKameckStateBattle, Damage);
+    NEW_NERVE(BossKameckStateBattleNrvRecover, BossKameckStateBattle, Recover);
+    NEW_NERVE(BossKameckStateBattleNrvGuard, BossKameckStateBattle, Guard);
+};
+
 BossKameckStateBattle::BossKameckStateBattle(BossKameck *pBoss) : mBossKameck(pBoss), ActorStateBase<BossKameck>("ボスカメック戦闘状態") {
     mMoveRail = nullptr;
     mBattlePattarn = nullptr;
@@ -458,18 +473,3 @@ bool BossKameckStateBattle::isEnableGuard() const {
 BossKameckStateBattle::~BossKameckStateBattle() {
 
 }
-
-namespace NrvBossKameckStateBattle {
-    INIT_NERVE(BossKameckStateBattleNrvWait);
-    INIT_NERVE(BossKameckStateBattleNrvMove);
-    INIT_NERVE(BossKameckStateBattleNrvHideMoveStart);
-    INIT_NERVE(BossKameckStateBattleNrvHideMove);
-    INIT_NERVE(BossKameckStateBattleNrvHideMoveEnd);
-    INIT_NERVE(BossKameckStateBattleNrvSummonKameckWait);
-    INIT_NERVE(BossKameckStateBattleNrvSummonKameck);
-    INIT_NERVE(BossKameckStateBattleNrvAttackWait);
-    INIT_NERVE(BossKameckStateBattleNrvAttack);
-    INIT_NERVE(BossKameckStateBattleNrvDamage);
-    INIT_NERVE(BossKameckStateBattleNrvRecover);
-    INIT_NERVE(BossKameckStateBattleNrvGuard);
-};

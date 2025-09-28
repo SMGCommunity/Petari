@@ -1,5 +1,6 @@
 #include "Game/Boss/SkeletalFishGuard.hpp"
 #include "Game/Boss/SkeletalFishBoss.hpp"
+#include "Game/Enemy/AnimScaleController.hpp"
 #include "Game/Map/WaterInfo.hpp"
 #include <JSystem/JMath.hpp>
 #include <JSystem/JMath/JMATrigonometric.hpp>
@@ -16,6 +17,18 @@ void TVec3f::cubic(const TVec3f &rv1, const TVec3f &rv2, const TVec3f &rv3, cons
     );
 }
 #endif
+
+namespace {
+    NEW_NERVE(SkeletalFishGuardNrvWait, SkeletalFishGuard, Wait);
+    NEW_NERVE(SkeletalFishGuardNrvAppear, SkeletalFishGuard, Appear);
+    NEW_NERVE(SkeletalFishGuardNrvNormal, SkeletalFishGuard, Normal);
+    NEW_NERVE(SkeletalFishGuardNrvApart, SkeletalFishGuard, Apart);
+    NEW_NERVE(SkeletalFishGuardNrvFollow, SkeletalFishGuard, Follow);
+    NEW_NERVE(SkeletalFishGuardNrvStraight, SkeletalFishGuard, Straight);
+    NEW_NERVE(SkeletalFishGuardNrvDefence, SkeletalFishGuard, Defence);
+    NEW_NERVE(SkeletalFishGuardNrvKill, SkeletalFishGuard, Kill);
+    NEW_NERVE_ONEND(SkeletalFishGuardNrvNumb, SkeletalFishGuard, Numb, Numb);
+};
 
 void SkeletalFishGuard::init(const JMapInfoIter &rIter) {
     initModelManagerWithAnm("SkeletalFishGuard", nullptr, false);
@@ -253,6 +266,10 @@ void SkeletalFishGuard::exeStraight() {
     }
 }
 
+void SkeletalFishGuard::exeDefence() {
+    
+}
+
 void SkeletalFishGuard::exeKill() {
     if (MR::isFirstStep(this)) {
         MR::invalidateHitSensors(this);
@@ -281,6 +298,11 @@ void SkeletalFishGuard::exeNumb() {
     if (!MR::isStarPointerPointing2POnPressButton(this, "弱", true, false)) {
         setNerve(_CC);
     }
+}
+
+void SkeletalFishGuard::exeOnEndNumb() {
+    MR::deleteEffect(this, "PointerTouchManual");
+    mScaleController->startAnim();
 }
 
 void SkeletalFishGuard::appearNaturally() {
@@ -675,15 +697,3 @@ bool SkeletalFishGuard::tryShiftNumb(const Nerve *pNerve) {
 SkeletalFishGuard::~SkeletalFishGuard() {
 
 }
-
-namespace {
-    INIT_NERVE(SkeletalFishGuardNrvWait);
-    INIT_NERVE(SkeletalFishGuardNrvAppear);
-    INIT_NERVE(SkeletalFishGuardNrvNormal);
-    INIT_NERVE(SkeletalFishGuardNrvApart);
-    INIT_NERVE(SkeletalFishGuardNrvFollow);
-    INIT_NERVE(SkeletalFishGuardNrvStraight);
-    INIT_NERVE(SkeletalFishGuardNrvDefence);
-    INIT_NERVE(SkeletalFishGuardNrvKill);
-    INIT_NERVE(SkeletalFishGuardNrvNumb);
-};

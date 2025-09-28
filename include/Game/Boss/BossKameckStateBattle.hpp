@@ -1,8 +1,6 @@
 #pragma once
 
 #include "Game/LiveActor/ActorStateBase.hpp"
-#include "Game/System/NerveExecutor.hpp"
-#include "Game/LiveActor/Nerve.hpp"
 #include <JSystem/JGeometry/TVec.hpp>
 
 class BossKameck;
@@ -60,19 +58,4 @@ public:
     s32 _38;
     u8 _3C;
     u8 _3D;
-};
-
-namespace NrvBossKameckStateBattle {
-    NERVE_DECL_EXE(BossKameckStateBattleNrvWait, BossKameckStateBattle, Wait);
-    NERVE_DECL_EXE(BossKameckStateBattleNrvMove, BossKameckStateBattle, Move);
-    NERVE_DECL_EXE(BossKameckStateBattleNrvHideMoveStart, BossKameckStateBattle, HideMoveStart);
-    NERVE_DECL_EXE(BossKameckStateBattleNrvHideMove, BossKameckStateBattle, HideMove);
-    NERVE_DECL_EXE(BossKameckStateBattleNrvHideMoveEnd, BossKameckStateBattle, HideMoveEnd);
-    NERVE_DECL_EXE(BossKameckStateBattleNrvSummonKameckWait, BossKameckStateBattle, SummonKameckWait);
-    NERVE_DECL_EXE(BossKameckStateBattleNrvSummonKameck, BossKameckStateBattle, SummonKameck);
-    NERVE_DECL_EXE(BossKameckStateBattleNrvAttackWait, BossKameckStateBattle, AttackWait);
-    NERVE_DECL_EXE(BossKameckStateBattleNrvAttack, BossKameckStateBattle, Attack);
-    NERVE_DECL_EXE(BossKameckStateBattleNrvDamage, BossKameckStateBattle, Damage);
-    NERVE_DECL_EXE(BossKameckStateBattleNrvRecover, BossKameckStateBattle, Recover);
-    NERVE_DECL_EXE(BossKameckStateBattleNrvGuard, BossKameckStateBattle, Guard);
 };

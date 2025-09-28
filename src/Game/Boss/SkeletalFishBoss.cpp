@@ -1,11 +1,11 @@
 #include "Game/Boss/SkeletalFishBoss.hpp"
-#include "Game/Boss/SkeletalFishBossInfo.hpp"
 #include "Game/Boss/SkeletalFishBossBattleDirector.hpp"
 #include "Game/Boss/SkeletalFishBossRail.hpp"
 #include "Game/Boss/SkeletalFishBossRailHolder.hpp"
 #include "Game/Boss/SkeletalFishGuardHolder.hpp"
 #include "Game/Boss/SkeletalFishJointCalc.hpp"
 #include "Game/Boss/SkeletalFishRailControl.hpp"
+#include "Game/Camera/CameraTargetArg.hpp"
 #include "Game/Camera/CameraTargetMtx.hpp"
 #include "Game/LiveActor/ActorCameraInfo.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
@@ -13,9 +13,10 @@
 #include "Game/Map/CollisionParts.hpp"
 #include "Game/NameObj/NameObjExecuteHolder.hpp"
 #include "Game/System/ResourceHolder.hpp"
-#include <cstdio>
+#include "Game/Util/JointController.hpp"
 #include <JSystem/JMath/JMath.hpp>
 #include <JSystem/JMath/JMATrigonometric.hpp>
+#include <cstdio>
 
 namespace {
     static SkeletalFishBoss::SensorToCollider sColInfo[0xE] = {
@@ -65,6 +66,24 @@ namespace {
     inline const char* getJointName(SkeletalFishBoss::JointToShadow& jointToShadow) {
         return jointToShadow.mJointName;
     }
+};
+
+namespace {
+    NEW_NERVE(SkeletalFishBossNrvSwim, SkeletalFishBoss, Swim);
+    NEW_NERVE(SkeletalFishBossNrvOpen, SkeletalFishBoss, Open);
+    NEW_NERVE(SkeletalFishBossNrvOpenWait, SkeletalFishBoss, OpenWait);
+    NEW_NERVE(SkeletalFishBossNrvClose, SkeletalFishBoss, Close);
+    NEW_NERVE(SkeletalFishBossNrvBite, SkeletalFishBoss, Bite);
+    NEW_NERVE(SkeletalFishBossNrvDamage, SkeletalFishBoss, Damage);
+    NEW_NERVE(SkeletalFishBossNrvDown, SkeletalFishBoss, Down);
+    NEW_NERVE(SkeletalFishBossNrvDeadDamage, SkeletalFishBoss, DeadDamage);
+    NEW_NERVE(SkeletalFishBossNrvDead, SkeletalFishBoss, Dead);
+    NEW_NERVE(SkeletalFishBossNrvAppearWait, SkeletalFishBoss, AppearWait);
+    NEW_NERVE(SkeletalFishBossNrvAppearDemo, SkeletalFishBoss, AppearDemo);
+    NEW_NERVE(SkeletalFishBossNrvPowerUpDemo, SkeletalFishBoss, PowerUpDemo);
+    NEW_NERVE(SkeletalFishBossNrvDeadDemo, SkeletalFishBoss, DeadDemo);
+    NEW_NERVE(SkeletalFishBossNrvBreakDemo, SkeletalFishBoss, BreakDemo);
+    NEW_NERVE(SkeletalFishBossNrvDemoWait, SkeletalFishBoss, DemoWait);
 };
 
 SkeletalFishBoss::SkeletalFishBoss(const char *pName) : LiveActor(pName) {
@@ -183,13 +202,9 @@ void SkeletalFishBoss::control() {
     }
 
     if (!isNerve(&::SkeletalFishBossNrvDead::sInstance) && !isNerve(&::SkeletalFishBossNrvAppearWait::sInstance)) {
-        bool isInDemo = false;
-
-        if (isNerve(&::SkeletalFishBossNrvAppearDemo::sInstance)
+        bool isInDemo = isNerve(&::SkeletalFishBossNrvAppearDemo::sInstance)
             || isNerve(&::SkeletalFishBossNrvPowerUpDemo::sInstance)
-            ||  isNerve(&::SkeletalFishBossNrvDeadDemo::sInstance)) {
-                isInDemo = true;
-        }
+            || isNerve(&::SkeletalFishBossNrvDeadDemo::sInstance);
 
         if (!isInDemo) {
             mRailControl->update();
@@ -325,12 +340,12 @@ void SkeletalFishBoss::exeOpenWait() {
     getMouthSensorCenterPos(mouthPos, 7800.0f);
     bool isClose = PSVECDistance(&mouthPos, MR::getPlayerPos()) < 7000.0f;
 
-    if (isClose) {
-        MR::startLevelSound(mBossHead, "SE_BM_LV_SKL_BOSS_SWIM_FAR", -1, -1, -1);
-        MR::startLevelSound(mBossHead, "SE_BM_LV_SKL_BOSS_SWIM_NEAR", -1, -1, -1);
+    if (!isClose) {
+        setNerve(&::SkeletalFishBossNrvClose::sInstance);
     }
     else {
-        setNerve(&::SkeletalFishBossNrvClose::sInstance);
+        MR::startLevelSound(mBossHead, "SE_BM_LV_SKL_BOSS_SWIM_FAR", -1, -1, -1);
+        MR::startLevelSound(mBossHead, "SE_BM_LV_SKL_BOSS_SWIM_NEAR", -1, -1, -1);
     }
 }
 
@@ -1181,24 +1196,6 @@ void SkeletalFishBossScarFlash::control() {
         kill();
     }
 }
-
-namespace {
-    INIT_NERVE(SkeletalFishBossNrvSwim);
-    INIT_NERVE(SkeletalFishBossNrvOpen);
-    INIT_NERVE(SkeletalFishBossNrvOpenWait);
-    INIT_NERVE(SkeletalFishBossNrvClose);
-    INIT_NERVE(SkeletalFishBossNrvBite);
-    INIT_NERVE(SkeletalFishBossNrvDamage);
-    INIT_NERVE(SkeletalFishBossNrvDown);
-    INIT_NERVE(SkeletalFishBossNrvDeadDamage);
-    INIT_NERVE(SkeletalFishBossNrvDead);
-    INIT_NERVE(SkeletalFishBossNrvAppearWait);
-    INIT_NERVE(SkeletalFishBossNrvAppearDemo);
-    INIT_NERVE(SkeletalFishBossNrvPowerUpDemo);
-    INIT_NERVE(SkeletalFishBossNrvDeadDemo);
-    INIT_NERVE(SkeletalFishBossNrvBreakDemo);
-    INIT_NERVE(SkeletalFishBossNrvDemoWait);
-};
 
 SkeletalFishBoss::~SkeletalFishBoss() {
 

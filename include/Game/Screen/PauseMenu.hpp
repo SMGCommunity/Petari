@@ -18,7 +18,9 @@ public:
     /// @param rIter The reference to an iterator over a `JMapInfo`.
     virtual void init(const JMapInfoIter& rIter);
 
+    /// @brief Draws the `PauseMenu` to the screen.
     virtual void draw() const;
+
     virtual void appear();
     virtual void kill();
     virtual void control();

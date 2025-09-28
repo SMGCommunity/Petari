@@ -1,9 +1,10 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/Enemy/AnimScaleController.hpp"
-#include "Game/Util/JointController.hpp"
 
+class AnimScaleController;
+class JointController;
+class JointControllerInfo;
 class SkeletalFishRailControl;
 
 class SkeletalFishBaby : public LiveActor {
@@ -25,6 +26,7 @@ public:
 
     void exeSwim();
     void exeBind();
+    void exeOnEndBind();
     void exeBreak();
     void exeDead();
     bool calcJoint(TPos3f *, const JointControllerInfo &);
@@ -35,11 +37,6 @@ public:
     bool isAttackable() const;
     bool isStarPointerPointing() const;
 
-    void exeOnEndBind() {
-        mScaleController->startAnim();
-        MR::deleteEffect(this, "StarPointerHolder");
-    }
-
     JointController* mControllers[4];               // 0x8C
     s32* mJointIndicies;                            // 0x9C
     f32 _A0;
@@ -49,11 +46,4 @@ public:
     f32 _DC;
     AnimScaleController* mScaleController;          // 0xE0 
     LiveActor* mStarPieceTargets[4];                // 0xE4
-};
-
-namespace {
-    NERVE_DECL(SkeletalFishBabyNrvSwim, SkeletalFishBaby, SkeletalFishBaby::exeSwim);
-    NERVE_DECL_ONEND(SkeletalFishBabyNrvBind, SkeletalFishBaby, SkeletalFishBaby::exeBind, SkeletalFishBaby::exeOnEndBind);
-    NERVE_DECL(SkeletalFishBabyNrvBreak, SkeletalFishBaby, SkeletalFishBaby::exeBreak);
-    NERVE_DECL(SkeletalFishBabyNrvDead, SkeletalFishBaby, SkeletalFishBaby::exeDead);
 };

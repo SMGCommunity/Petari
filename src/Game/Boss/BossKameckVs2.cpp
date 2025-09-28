@@ -3,6 +3,7 @@
 #include "Game/Boss/BossKameckBattleDemo.hpp"
 #include "Game/Boss/BossKameckStateBattle.hpp"
 #include "Game/Boss/BossKameck.hpp"
+#include "Game/Boss/BossKameckBarrier.hpp"
 
 namespace {
     s32 sBeamPatternLv1[] = { 2, 1, -1 };
@@ -12,6 +13,16 @@ namespace {
     BossKameckBattlePattarn sPatternLv1 = BossKameckBattlePattarn(sBeamPatternLv1, false);
     BossKameckBattlePattarn sPatternLv2 = BossKameckBattlePattarn(sBeamPatternLv2, false);
     BossKameckBattlePattarn sPatternLv3 = BossKameckBattlePattarn(sBeamPatternLv3, true);
+};
+
+namespace NrvBossKameckVs2 {
+    NEW_NERVE(BossKameckVs2NrvOpeningDemo, BossKameckVs2, OpeningDemo);
+    NEW_NERVE(BossKameckVs2NrvBattleLv1, BossKameckVs2, BattleLv1);
+    NEW_NERVE(BossKameckVs2NrvBattleLv2, BossKameckVs2, BattleLv2);
+    NEW_NERVE(BossKameckVs2NrvPowerUpDemo, BossKameckVs2, PowerUpDemo);
+    NEW_NERVE(BossKameckVs2NrvBattleLv3, BossKameckVs2, BattleLv3);
+    NEW_NERVE(BossKameckVs2NrvBattleLv4, BossKameckVs2, BattleLv4);
+    NEW_NERVE(BossKameckVs2NrvEndDemo, BossKameckVs2, EndDemo);
 };
 
 BossKameckVs2::BossKameckVs2() : BossKameckSequencer("ボスカメックVs2") {
@@ -137,13 +148,3 @@ bool BossKameckVs2::isBattle() const {
 BossKameckVs2::~BossKameckVs2() {
 
 }
-
-namespace NrvBossKameckVs2 {
-    INIT_NERVE(BossKameckVs2NrvOpeningDemo);
-    INIT_NERVE(BossKameckVs2NrvBattleLv1);
-    INIT_NERVE(BossKameckVs2NrvBattleLv2);
-    INIT_NERVE(BossKameckVs2NrvPowerUpDemo);
-    INIT_NERVE(BossKameckVs2NrvBattleLv3);
-    INIT_NERVE(BossKameckVs2NrvBattleLv4);
-    INIT_NERVE(BossKameckVs2NrvEndDemo);
-};
