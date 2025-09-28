@@ -1,3 +1,4 @@
+#include "Game/Camera/CameraContext.hpp"
 #include "Game/Effect/EffectSystemUtil.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Scene/ScenarioSelectScene.hpp"

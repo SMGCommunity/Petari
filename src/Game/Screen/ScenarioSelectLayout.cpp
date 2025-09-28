@@ -1,7 +1,19 @@
-#include "Game/Screen/ScenarioSelectLayout.hpp"
+#include "Game/Camera/CameraContext.hpp"
 #include "Game/Effect/MultiEmitter.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Map/ScenarioSelectStar.hpp"
+#include "Game/Screen/BackButton.hpp"
+#include "Game/Screen/ScenarioSelectLayout.hpp"
 #include "Game/System/GalaxyStatusAccessor.hpp"
-#include "Game/Util.hpp"
+#include "Game/Util/EffectUtil.hpp"
+#include "Game/Util/EventUtil.hpp"
+#include "Game/Util/GamePadUtil.hpp"
+#include "Game/Util/LayoutUtil.hpp"
+#include "Game/Util/MessageUtil.hpp"
+#include "Game/Util/SceneUtil.hpp"
+#include "Game/Util/ScreenUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
+#include "Game/Util/StarPointerUtil.hpp"
 
 namespace {
     const char* const cStarPaneName[] = {
@@ -17,26 +29,38 @@ namespace {
     const char* const cQuestionPaneName[2] = { "NewStar1", "NewStar2" };
 };
 
-ScenarioSelectLayout::ScenarioSelectLayout(EffectSystem *pSystem, const CameraContext *pContext) : LayoutActor("シナリオ選択レイアウト", true) {
-    mSelectedScenarioNo = -1;
-    _24 = 0;
-    _28 = 0;
-    mStars = nullptr;
-    mScenarioSky = nullptr;
-    mEffectSystem = pSystem;
-    mCameraContext = pContext;
-    mNewTextFollowPos.x = 0.0f;
-    mNewTextFollowPos.y = 0.0f;
-    mNewGreenTextFollowPos.x = 0.0f;
-    mNewGreenTextFollowPos.y = 0.0f;
-    mStarTopFollowPos.x = 0.0f;
-    mStarTopFollowPos.y = 0.0f;
-    mBackButton = nullptr;
-    mMarioIconFollowPos.x = 0.0f;
-    mMarioIconFollowPos.y = 0.0f;
-    _A0 = 0;
-    _A4 = 0;
-    _A8 = -1;
+namespace NrvScenarioSelectLayout {
+    NEW_NERVE(ScenarioSelectLayoutNrvAppearStar, ScenarioSelectLayout, AppearStar);
+    NEW_NERVE(ScenarioSelectLayoutNrvAppear, ScenarioSelectLayout, Appear);
+    NEW_NERVE(ScenarioSelectLayoutNrvWaitScenarioSelect, ScenarioSelectLayout, WaitScenarioSelect);
+    NEW_NERVE(ScenarioSelectLayoutNrvDecide, ScenarioSelectLayout, Decide);
+    NEW_NERVE(ScenarioSelectLayoutNrvAfterScenarioSelected, ScenarioSelectLayout, AfterScenarioSelected);
+    NEW_NERVE(ScenarioSelectLayoutNrvDisappear, ScenarioSelectLayout, Disappear);
+    NEW_NERVE(ScenarioSelectLayoutNrvCancel, ScenarioSelectLayout, Cancel);
+    NEW_NERVE(ScenarioSelectLayoutNrvCancelFadeOut, ScenarioSelectLayout, CancelFadeOut);
+    NEW_NERVE(ScenarioSelectLayoutNrvAppearCometWarning, ScenarioSelectLayout, AppearCometWarning);
+    NEW_NERVE(ScenarioSelectLayoutNrvWaitCometWarning, ScenarioSelectLayout, WaitCometWarning);
+    NEW_NERVE(ScenarioSelectLayoutNrvDisappearCometWarning, ScenarioSelectLayout, DisappearCometWarning);
+};
+
+ScenarioSelectLayout::ScenarioSelectLayout(EffectSystem *pSystem, const CameraContext *pContext) :
+    LayoutActor("シナリオ選択レイアウト", true),
+    mSelectedScenarioNo(-1),
+    _24(0),
+    _28(0),
+    mStars(nullptr),
+    mScenarioSky(nullptr),
+    mEffectSystem(pSystem),
+    mCameraContext(pContext),
+    mNewTextFollowPos(0.0f, 0.0f),
+    mNewGreenTextFollowPos(0.0f, 0.0f),
+    mStarTopFollowPos(0.0f, 0.0f),
+    mBackButton(nullptr),
+    mMarioIconFollowPos(0.0f, 0.0f),
+    _A0(0),
+    _A4(0),
+    _A8(-1)
+{
     mEffectHostMtx.identity();
 
     for (u32 i = 0; i < 2; i++) {
@@ -485,17 +509,3 @@ void ScenarioSelectLayout::exeWaitCometWarning() {
 ScenarioSelectLayout::~ScenarioSelectLayout() {
 
 }
-
-namespace NrvScenarioSelectLayout {
-    INIT_NERVE(ScenarioSelectLayoutNrvAppearStar)
-    INIT_NERVE(ScenarioSelectLayoutNrvAppear)
-    INIT_NERVE(ScenarioSelectLayoutNrvWaitScenarioSelect)
-    INIT_NERVE(ScenarioSelectLayoutNrvDecide)
-    INIT_NERVE(ScenarioSelectLayoutNrvAfterScenarioSelected)
-    INIT_NERVE(ScenarioSelectLayoutNrvDisappear)
-    INIT_NERVE(ScenarioSelectLayoutNrvCancel)
-    INIT_NERVE(ScenarioSelectLayoutNrvCancelFadeOut)
-    INIT_NERVE(ScenarioSelectLayoutNrvAppearCometWarning)
-    INIT_NERVE(ScenarioSelectLayoutNrvWaitCometWarning)
-    INIT_NERVE(ScenarioSelectLayoutNrvDisappearCometWarning)
-};

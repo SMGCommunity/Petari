@@ -1,4 +1,7 @@
 #include "Game/Screen/SysInfoWindow.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Screen/IconAButton.hpp"
+#include "Game/Screen/YesNoController.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/GamePadUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
@@ -11,24 +14,30 @@ namespace {
     };
 };
 
-SysInfoWindow::SysInfoWindow(SysInfoWindowType windowType, SysInfoExecuteType executeType) 
-    : LayoutActor("システム用インフォメーションウィンドウ", true) {
-    _20 = windowType;
-    _24 = 0;
-    _28 = 0;
-    _2C = 0;
-    _30 = nullptr;
-    _34 = nullptr;
-    _38 = (executeType - 1 == 0);
+namespace NrvSysInfoWindow {
+    NEW_NERVE(SysInfoWindowNrvAppear, SysInfoWindow, Appear);
+    NEW_NERVE(SysInfoWindowNrvWait, SysInfoWindow, Wait);
+    NEW_NERVE(SysInfoWindowNrvDisappear, SysInfoWindow, Disappear);
+};
 
+SysInfoWindow::SysInfoWindow(SysInfoWindowType windowType, SysInfoExecuteType executeType) :
+    LayoutActor("システム用インフォメーションウィンドウ", true),
+    _20(windowType),
+    _24(0),
+    _28(0),
+    _2C(0),
+    _30(nullptr),
+    _34(nullptr),
+    _38(executeType - 1 == 0)
+{
     switch (windowType) {
-        case WINDOWTYPE_0:
-            _30 = "InfoWindow";
-            _34 = "WinInfoWindow";
+    case WINDOWTYPE_0:
+        _30 = "InfoWindow";
+        _34 = "WinInfoWindow";
         break;
-        case WINDOWTYPE_1:
-            _30 = "InfoWindowM";
-            _34 = "WinInfoWindowM";
+    case WINDOWTYPE_1:
+        _30 = "InfoWindowM";
+        _34 = "WinInfoWindowM";
         break;
     }
 }
@@ -178,6 +187,10 @@ const char* SysInfoWindow::getLayoutName() const {
     return nullptr;
 }
 
+void SysInfoWindow::exeAppear() {
+    MR::setNerveAtPaneAnimStopped(this, _30, &NrvSysInfoWindow::SysInfoWindowNrvWait::sInstance, 0);
+}
+
 void SysInfoWindow::exeWait() {
     if (MR::isFirstStep(this)) {
         const char* pStr = "ButtonWait";
@@ -253,16 +266,4 @@ namespace MR {
         pWindow->initWithoutIter();
         return pWindow;
     }
-};
-
-namespace NrvSysInfoWindow {
-    void SysInfoWindowNrvAppear::execute(Spine* pSpine) const {
-        SysInfoWindow* pHost = (SysInfoWindow*)pSpine->mExecutor;
-        MR::setNerveAtPaneAnimStopped(pHost, pHost->_30, &NrvSysInfoWindow::SysInfoWindowNrvWait::sInstance, 0);
-    }
-    SysInfoWindowNrvAppear(SysInfoWindowNrvAppear::sInstance);
-    
-    INIT_NERVE(SysInfoWindowNrvWait);
-    INIT_NERVE(SysInfoWindowNrvDisappear);
-
 };
