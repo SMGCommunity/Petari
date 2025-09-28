@@ -24,6 +24,8 @@ class AstroDomeGalaxySelector : public LiveActor {
         void exeGalaxySelectStart();
         void exeGalaxyConfirmStart();
         void exeGalaxySelectCancel();
+        void exeWaitStartDemo() {}; // Yeah this is just a return I guess?
+        void exeDemoDomeLecture();
 
 
         AstroDomeCameraController* pDomeCamCtrl;    // _8C

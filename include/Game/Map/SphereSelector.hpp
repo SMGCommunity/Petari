@@ -58,6 +58,7 @@ public:
     static bool isMsgSelectStart(u32);
     static bool isMsgSelectEnd(u32);
     static bool isMsgConfirmStart(u32);
+    static bool isMsgConfirmCancel(u32);
 
     static bool isMsgConfirmed(u32);
     static bool isMsgTargetSelected(u32);
