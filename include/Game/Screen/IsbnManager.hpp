@@ -40,7 +40,7 @@ public:
     void setAdjustRate(f32, f32);
     void setNumber(const wchar_t* pIsbnNumber, const wchar_t* pRegistNumber, const wchar_t* pOtherNumber);
     void calculateView();
-    IsbnManager* create(void* pArchiveBuf, MEMAllocator* pAllocator);
+    static IsbnManager* create(void* pArchiveBuf, MEMAllocator* pAllocator);
     bool calc(bool);
     void draw();
     void reset();

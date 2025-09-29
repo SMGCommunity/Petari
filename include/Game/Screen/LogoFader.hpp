@@ -22,7 +22,6 @@ public:
     void startFadeOut();
     bool isFadeEnd() const;
 
-private:
     /* 0x20 */ bool _20;
     /* 0x24 */ s32 mMaxStep;
     /* 0x28 */ f32 mRate;
