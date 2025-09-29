@@ -36,7 +36,7 @@ namespace NrvAstroDomeGalaxySelector {
 
 namespace {
     const char* cDemoNameDomeLecture = "ドームレクチャー２";
-    const char* cDemoNameJumpOut = "マリオ飛び出し";                               // Possible naming mistake from Nintendo. The most logical name would've been cDemoNameDemoJumpOut
+    const char* cDemoNameJumpOut = "マリオ飛び出し";
 }
 
 AstroDomeGalaxySelector::AstroDomeGalaxySelector(const char* pName) : LiveActor(pName) {
