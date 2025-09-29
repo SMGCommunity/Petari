@@ -10,7 +10,7 @@ void DemoActionInfo::registerCast(LiveActor *pActor) {
 void DemoActionInfo::registerFunctor(const LiveActor *pActor, const MR::FunctorBase &rFunctor) {
     for (s32 i = 0; i < mCastCount; i++) {
         if (mCastList[i] == pActor) {
-            mFunctors[i] = rFunctor.clone(0);
+            mFunctors[i] = rFunctor.clone(nullptr);
             return;
         }
     }
