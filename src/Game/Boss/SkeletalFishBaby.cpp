@@ -201,7 +201,7 @@ void SkeletalFishBaby::exeBind() {
     }
 }
 
-void SkeletalFishBaby::exeOnEndBind() {
+void SkeletalFishBaby::endBind() {
     mScaleController->startAnim();
     MR::deleteEffect(this, "StarPointerHolder");
 }

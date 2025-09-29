@@ -2,13 +2,8 @@
 
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/ShadowVolumeDrawer.hpp"
-#include "Game/LiveActor/ModelObj.hpp"
-#include "Game/Util/LiveActorUtil.hpp"
-#include "Game/Map/HitInfo.hpp"
-#include "Game/AudioLib/AudAnmSoundObject.hpp"
 
-
-class RingBeamShadowDrawer : public ShadowVolumeDrawer{
+class RingBeamShadowDrawer : public ShadowVolumeDrawer {
 public:
 	RingBeamShadowDrawer(const LiveActor *);
 
@@ -16,6 +11,7 @@ public:
     virtual void loadModelDrawMtx() const;
 	virtual void drawShape() const;
     virtual bool isDraw() const;
+
 	const LiveActor * _1c;
 	f32 _20;
 };
@@ -38,7 +34,6 @@ public:
 	void initPos(const LiveActor * actor);
 	void startBrk(const char *);
 	void exeSpread();
-	
 
 	LiveActor* _8c;
 	ModelObj* mBloomModel;
@@ -53,7 +48,3 @@ public:
 	TVec3f _c0;
 	TVec3f _cc;
 };
-
-namespace NrvRingBeam {
-	NERVE(RingBeamNrvSpread);
-}

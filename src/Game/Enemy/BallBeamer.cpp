@@ -1,8 +1,18 @@
 #include "Game/Enemy/BallBeamer.hpp"
+#include "Game/Enemy/RingBeam.hpp"
+#include "Game/NameObj/NameObjArchiveListCollector.hpp"
 
-BallBeamer::BallBeamer(const char *pName) : LiveActor(pName) {
-    mBeams = nullptr;
-    _90 = false;
+namespace NrvBallBeamer {
+    NEW_NERVE(BallBeamerNrvWait, BallBeamer, Wait);
+    NEW_NERVE(BallBeamerNrvAttack, BallBeamer, Attack);
+    NEW_NERVE(BallBeamerNrvInter, BallBeamer, Inter);
+};
+
+BallBeamer::BallBeamer(const char *pName) :
+    LiveActor(pName),
+    mBeams(nullptr),
+    _90(false)
+{
     _98.identity();
 }
 
@@ -15,7 +25,6 @@ void BallBeamer::makeArchiveList(NameObjArchiveListCollector *pCollector, const 
         pCollector->addArchive("JumpBeamerBeamShadow");
     }
 }
-
 
 void BallBeamer::init(const JMapInfoIter &rIter) {
     initModelManagerWithAnm("BallBeamer", nullptr, nullptr);
@@ -139,7 +148,10 @@ void BallBeamer::exeAttack() {
 }
 
 void BallBeamer::exeInter() {
-    MR::isFirstStep(this);
+    if (MR::isFirstStep(this)) {
+        
+    }
+
     if (MR::isGreaterEqualStep(this, 120)) {
         if (_90) {
             setNerve(&NrvBallBeamer::BallBeamerNrvAttack::sInstance);
@@ -161,24 +173,3 @@ bool BallBeamer::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiv
 bool BallBeamer::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     return MR::isMsgStarPieceReflect(msg);
 }
-
-namespace NrvBallBeamer {
-    INIT_NERVE(BallBeamerNrvWait);
-    INIT_NERVE(BallBeamerNrvAttack);
-    INIT_NERVE(BallBeamerNrvInter)
-
-	void BallBeamerNrvWait::execute(Spine *pSpine) const {
-		BallBeamer *pActor = (BallBeamer*)pSpine->mExecutor;
-		pActor->exeWait();
-	}    
-
-	void BallBeamerNrvAttack::execute(Spine *pSpine) const {
-		BallBeamer *pActor = (BallBeamer*)pSpine->mExecutor;
-		pActor->exeAttack();
-	}    
-
-	void BallBeamerNrvInter::execute(Spine *pSpine) const {
-		BallBeamer *pActor = (BallBeamer*)pSpine->mExecutor;
-		pActor->exeInter();
-	}    
-};

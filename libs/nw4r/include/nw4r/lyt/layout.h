@@ -55,7 +55,6 @@ namespace nw4r {
             virtual void BindAnimation(AnimTransform *);
             virtual void UnbindAnimation(AnimTransform *);
             virtual void UnbindAllAnimation();
-            virtual bool BindAnimationAuto(const AnimResource &, ResourceAccessor *);
             virtual void SetAnimationEnable(AnimTransform *, bool);
             virtual void CalculateMtx(const DrawInfo &);
             virtual void Draw(const DrawInfo &);

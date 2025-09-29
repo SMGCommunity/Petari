@@ -7,9 +7,6 @@ class TripodBossGuardWallPart : public LiveActor {
 public:
     TripodBossGuardWallPart(const char *pName = "三脚ボスコア防壁部品");
 
-    virtual ~TripodBossGuardWallPart() {
-
-    }
     virtual void init(const JMapInfoIter &);
     virtual void makeActorAppeared();
     virtual void kill();

@@ -1,3 +1,5 @@
+#pragma once
+
 #include "Inline.hpp"
 #include <revolution/sc.h>
 

@@ -1,10 +1,13 @@
 #include "Game/NameObj/NameObjAdaptor.hpp"
 
-NameObjAdaptor::NameObjAdaptor(const char *pName) : NameObj(pName) {
-    mMovementFunc = 0;
-    mCalcAnimFunc = 0;
-    mCalcViewFunc = 0;
-    mDrawAnimFunc = 0;
+NameObjAdaptor::NameObjAdaptor(const char *pName) :
+    NameObj(pName),
+    mMovementFunc(nullptr),
+    mCalcAnimFunc(nullptr),
+    mCalcViewFunc(nullptr),
+    mDrawAnimFunc(nullptr)
+{
+    
 }
 
 NameObjAdaptor::~NameObjAdaptor() {
@@ -15,37 +18,37 @@ NameObjAdaptor::~NameObjAdaptor() {
 }
 
 void NameObjAdaptor::movement() {
-    if (mMovementFunc) {
+    if (mMovementFunc != nullptr) {
         (*mMovementFunc)();
     }
 }
 
 void NameObjAdaptor::calcAnim() {
-    if (mCalcAnimFunc) {
+    if (mCalcAnimFunc != nullptr) {
         (*mCalcAnimFunc)();
     }
 }
 
 void NameObjAdaptor::calcViewAndEntry() {
-    if (mCalcViewFunc) {
+    if (mCalcViewFunc != nullptr) {
         (*mCalcViewFunc)();
     }
 }
 
 void NameObjAdaptor::draw() const {
-    if (mDrawAnimFunc) {
+    if (mDrawAnimFunc != nullptr) {
         (*mDrawAnimFunc)();
     }
 }
 
 void NameObjAdaptor::connectToMovement(const MR::FunctorBase &rFunctor) {
-    mMovementFunc = rFunctor.clone(0);
+    mMovementFunc = rFunctor.clone(nullptr);
 }
 
 void NameObjAdaptor::connectToCalcAnim(const MR::FunctorBase &rFunctor) {
-    mCalcAnimFunc = rFunctor.clone(0);
+    mCalcAnimFunc = rFunctor.clone(nullptr);
 }
 
 void NameObjAdaptor::connectToDraw(const MR::FunctorBase &rFunctor) {
-    mDrawAnimFunc = rFunctor.clone(0);
+    mDrawAnimFunc = rFunctor.clone(nullptr);
 }

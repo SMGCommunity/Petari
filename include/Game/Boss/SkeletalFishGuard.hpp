@@ -27,7 +27,7 @@ public:
     void exeDefence();
     void exeKill();
     void exeNumb();
-    void exeOnEndNumb();
+    void endNumb();
 
     void appearNaturally();
     void appearForce();

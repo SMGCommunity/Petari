@@ -167,8 +167,11 @@ void TicoEat::exeEatPre() {
 }
 
 void TicoEat::exeEatNow() {
-    MR::isFirstStep(this);
-    if (_198 && MR::isIntervalStep(this, 100/ _194)) {
+    if (MR::isFirstStep(this)) {
+        
+    }
+
+    if (_198 != 0 && MR::isIntervalStep(this, 100 / _194)) {
         MR::giftStarPieceToTarget(getSensor("Mouth"), 1);
     }
 

@@ -96,7 +96,9 @@ void FullnessMeter::exeEnd() {
 }
 
 void FullnessMeter::exeWait() {
-    MR::isFirstStep(this);
+    if (MR::isFirstStep(this)) {
+        
+    }
 }
 
 FullnessMeter::~FullnessMeter() {

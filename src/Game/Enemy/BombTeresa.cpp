@@ -688,6 +688,14 @@ void BombTeresa::exeDriftRelease() {
     if (!tryExplosion() && tryDriftReleaseEnd()) return;
 }
 
+void BombTeresa::exeBindStarPointer() {
+    MR::updateActorStateAndNextNerve(this, mBindStarPointer, &NrvBombTeresa::BombTeresaNrvWait::sInstance);
+}
+
+void BombTeresa::endBindStarPointer() {
+    mBindStarPointer->kill();
+}
+
 void BombTeresa::exeExplosion() {
     if (MR::isFirstStep(this)) {
         MR::shakeCameraNormalStrong();
@@ -876,12 +884,4 @@ bool BombTeresa::requestDisperse() {
     }
     setNerve(&NrvBombTeresa::BombTeresaNrvDisperse::sInstance);
     return true;
-}
-
-inline void BombTeresa::exeOnEndBindStarPointer() {
-    mBindStarPointer->kill();
-}
-
-inline void BombTeresa::exeBindStarPointer() {
-    MR::updateActorStateAndNextNerve(this, mBindStarPointer, &NrvBombTeresa::BombTeresaNrvWait::sInstance);
 }

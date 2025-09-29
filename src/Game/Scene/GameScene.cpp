@@ -596,7 +596,10 @@ void GameScene::exePowerStarGet() {
 }
 
 void GameScene::exePauseMenu() {
-    MR::isFirstStep(this);
+    if (MR::isFirstStep(this)) {
+        
+    }
+
     mPauseSeq->movement();
     CategoryList::execute(MR::MovementType_LayoutOnPause);
 }

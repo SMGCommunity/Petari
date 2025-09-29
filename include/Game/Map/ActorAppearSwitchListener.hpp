@@ -1,11 +1,9 @@
 #pragma once
 
-#include "Game/LiveActor/LiveActor.hpp"
+class LiveActor;
 
 class SwitchEventListener {
 public:
-    inline SwitchEventListener() { }
-
     virtual void refresh(bool useOn) {
         if (useOn) {
             listenSwitchOnEvent();
@@ -14,6 +12,7 @@ public:
             listenSwitchOffEvent();
         }
     }
+
     virtual void listenSwitchOnEvent() = 0;
     virtual void listenSwitchOffEvent() = 0;
 };

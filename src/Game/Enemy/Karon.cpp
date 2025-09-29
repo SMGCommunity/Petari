@@ -243,6 +243,6 @@ void Karon::exeDeath() {
     }
 }
 
-void Karon::exeOnEndBindStarPointer() {
+void Karon::endBindStarPointer() {
     mStateStarPointer->kill();
 }

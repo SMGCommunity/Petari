@@ -46,10 +46,6 @@ TripodBossGuardWall::TripodBossGuardWall(const char *pName) : LiveActor(pName),
     mBaseMtx.identity();
 }
 
-TripodBossGuardWallPart::~TripodBossGuardWallPart() {
-    
-}
-
 void TripodBossGuardWall::makeActorAppeared() {
     LiveActor::makeActorAppeared();
 }
@@ -98,7 +94,7 @@ void TripodBossGuardWall::initParts() {
     for (s32 i = 0; i < 8; i++) {
         mWallParts[i].setHostMatrix(&mBaseMtx);
         mWallParts[i].setPlacementAngle(sWallPartPlacementAngleTable[i].angle);
-        mWallParts[i].setStartTiminig(sWallPartPlacementAngleTable[i].partNo);
+        mWallParts[i].setStartTiming(sWallPartPlacementAngleTable[i].partNo);
         mWallParts[i].initWithoutIter();
     }
 }
@@ -132,7 +128,9 @@ void TripodBossGuardWall::requestStart() {
 
 /* more small inlining issues */
 void TripodBossGuardWall::exeDemo() {
-    MR::isFirstStep(this);
+    if (MR::isFirstStep(this)) {
+        
+    }
 
     if (MR::isStep(this, 150)) {
         updateCameraTarget();

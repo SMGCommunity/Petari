@@ -67,7 +67,9 @@ void GamePauseSequence::exeActivePauseMenu() {
 }
 
 void GamePauseSequence::exeActivePowerStarList() {
-    MR::isFirstStep(this);
+    if (MR::isFirstStep(this)) {
+        
+    }
 
     if (!MR::isActiveGalaxyMapLayout()) {
         (*mWindowMenuFunc)();

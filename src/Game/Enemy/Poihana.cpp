@@ -1,11 +1,40 @@
+#include "Game/Enemy/AnimScaleController.hpp"
 #include "Game/Enemy/Poihana.hpp"
+#include "Game/Enemy/WalkerStateBindStarPointer.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
-#include "Game/Util.hpp"
-#include "JSystem/JMath/JMath.hpp"
+#include "Game/LiveActor/ModelObj.hpp"
+#include <JSystem/JMath/JMath.hpp>
+
+#define POIHANA_BEHAVIOR_NORMAL 0
+#define POIHANA_BEHAVIOR_SLEEP 1
+#define POIHANA_BEHAVIOR_NEW_HOME 2
 
 namespace {
 	const Vec sNormalBinderPos = { 0.0f, 130.0f, 120.0f };
 	const Vec sTrampleBinderPos = { 0.0f, 150.0f, 0.0f };
+};
+
+namespace NrvPoihana {
+	NEW_NERVE_ONEND(PoihanaNrvNonActive, Poihana, NonActive, NonActive);
+	NEW_NERVE(PoihanaNrvWait, Poihana, Wait);
+	NEW_NERVE(PoihanaNrvWalkAround, Poihana, WalkAround);
+	NEW_NERVE(PoihanaNrvSleepStart, Poihana, SleepStart);
+	NEW_NERVE(PoihanaNrvSleep, Poihana, Sleep);
+	NEW_NERVE(PoihanaNrvGetUp, Poihana, GetUp);
+	NEW_NERVE(PoihanaNrvSearch, Poihana, Search);
+	NEW_NERVE(PoihanaNrvChasePlayer, Poihana, ChasePlayer);
+	NEW_NERVE(PoihanaNrvShootUpCharge, Poihana, ShootUpCharge);
+	NEW_NERVE_ONEND(PoihanaNrvShootUp, Poihana, ShootUp, ShootUp);
+	NEW_NERVE(PoihanaNrvGoBack, Poihana, GoBack);
+	NEW_NERVE(PoihanaNrvShock, Poihana, Shock);
+	NEW_NERVE(PoihanaNrvSwoon, Poihana, Swoon);
+	NEW_NERVE(PoihanaNrvSwoonLand, Poihana, SwoonLand);
+	NEW_NERVE(PoihanaNrvRecover, Poihana, Recover);
+	NEW_NERVE(PoihanaNrvShake, Poihana, Shake);
+	NEW_NERVE(PoihanaNrvDrown, Poihana, Drown);
+	NEW_NERVE(PoihanaNrvHide, Poihana, Hide);
+	NEW_NERVE(PoihanaNrvAppear, Poihana, Appear);
+	NEW_NERVE_ONEND(PoihanaNrvDPDSwoon, Poihana, DPDSwoon, DPDSwoon);
 };
 
 Poihana::Poihana(const char *pName) : LiveActor(pName) {
@@ -690,7 +719,9 @@ void Poihana::endBind() {
 
 void Poihana::startBound() {
 	mBoundTimer = 0;
-	mScale.set(1.0f);
+	mScale.x = 1.0f;
+	mScale.y = 1.0f;
+	mScale.z = 1.0f;
 }
 
 /*
@@ -901,7 +932,7 @@ bool Poihana::isNeedForBackHome() const {
 		return !MR::isNear(this, mHomePos, 350.0f);
 	}
 
-	if (!isNerve(&NrvPoihana::PoihanaNrvChasePlayer::sInstance)) {
+	if (isNerve(&NrvPoihana::PoihanaNrvChasePlayer::sInstance)) {
 		bool ret;
 
 		if (mBehavior == POIHANA_BEHAVIOR_NEW_HOME) {
@@ -944,142 +975,4 @@ bool Poihana::isBackAttack(HitSensor *pMySensor) const {
 
 	TVec3f sensorRelative(pMySensor->mPosition - mPosition);
 	return sensorRelative.dot(frontVec) > 0.0f;
-}
-
-namespace NrvPoihana {
-	INIT_NERVE(PoihanaNrvNonActive);
-	INIT_NERVE(PoihanaNrvWait);
-	INIT_NERVE(PoihanaNrvWalkAround);
-	INIT_NERVE(PoihanaNrvSleepStart);
-	INIT_NERVE(PoihanaNrvSleep);
-	INIT_NERVE(PoihanaNrvGetUp);
-	INIT_NERVE(PoihanaNrvSearch);
-	INIT_NERVE(PoihanaNrvChasePlayer);
-	INIT_NERVE(PoihanaNrvShootUpCharge);
-	INIT_NERVE(PoihanaNrvShootUp);
-	INIT_NERVE(PoihanaNrvGoBack);
-	INIT_NERVE(PoihanaNrvShock);
-	INIT_NERVE(PoihanaNrvSwoon);
-	INIT_NERVE(PoihanaNrvSwoonLand);
-	INIT_NERVE(PoihanaNrvRecover);
-	INIT_NERVE(PoihanaNrvShake);
-	INIT_NERVE(PoihanaNrvDrown);
-	INIT_NERVE(PoihanaNrvHide);
-	INIT_NERVE(PoihanaNrvAppear);
-	INIT_NERVE(PoihanaNrvDPDSwoon);
-
-	void PoihanaNrvNonActive::execute(Spine *pSpine) const {
-		Poihana *pActor = (Poihana*)pSpine->mExecutor;
-		pActor->exeNonActive();
-	}
-
-	void PoihanaNrvNonActive::executeOnEnd(Spine *pSpine) const {
-		Poihana *pActor = (Poihana*)pSpine->mExecutor;
-		pActor->endNonActive();
-	}
-
-	void PoihanaNrvWait::execute(Spine *pSpine) const {
-		Poihana *pActor = (Poihana*)pSpine->mExecutor;
-		pActor->exeWait();
-	}
-
-	void PoihanaNrvWalkAround::execute(Spine *pSpine) const {
-		Poihana *pActor = (Poihana*)pSpine->mExecutor;
-		pActor->exeWalkAround();
-	}
-
-	void PoihanaNrvSleepStart::execute(Spine *pSpine) const {
-		Poihana *pActor = (Poihana*)pSpine->mExecutor;
-		pActor->exeSleepStart();
-	}
-
-	void PoihanaNrvSleep::execute(Spine *pSpine) const {
-		Poihana *pActor = (Poihana*)pSpine->mExecutor;
-		pActor->exeSleep();
-	}
-
-	void PoihanaNrvGetUp::execute(Spine *pSpine) const {
-		Poihana *pActor = (Poihana*)pSpine->mExecutor;
-		pActor->exeGetUp();
-	}
-
-	void PoihanaNrvSearch::execute(Spine *pSpine) const {
-		Poihana *pActor = (Poihana*)pSpine->mExecutor;
-		pActor->exeSearch();
-	}
-
-	void PoihanaNrvChasePlayer::execute(Spine *pSpine) const {
-		Poihana *pActor = (Poihana*)pSpine->mExecutor;
-		pActor->exeChasePlayer();
-	}
-
-	void PoihanaNrvShootUpCharge::execute(Spine *pSpine) const {
-		Poihana *pActor = (Poihana*)pSpine->mExecutor;
-		pActor->exeShootUpCharge();
-	}
-
-	void PoihanaNrvShootUp::execute(Spine *pSpine) const {
-		Poihana *pActor = (Poihana*)pSpine->mExecutor;
-		pActor->exeShootUp();
-	}
-
-	void PoihanaNrvShootUp::executeOnEnd(Spine *pSpine) const {
-		Poihana *pActor = (Poihana*)pSpine->mExecutor;
-		pActor->endShootUp();
-	}
-
-	void PoihanaNrvGoBack::execute(Spine *pSpine) const {
-		Poihana *pActor = (Poihana*)pSpine->mExecutor;
-		pActor->exeGoBack();
-	}
-
-	void PoihanaNrvShock::execute(Spine *pSpine) const {
-		Poihana *pActor = (Poihana*)pSpine->mExecutor;
-		pActor->exeShock();
-	}
-
-	void PoihanaNrvSwoon::execute(Spine *pSpine) const {
-		Poihana *pActor = (Poihana*)pSpine->mExecutor;
-		pActor->exeSwoon();
-	}
-
-	void PoihanaNrvSwoonLand::execute(Spine *pSpine) const {
-		Poihana *pActor = (Poihana*)pSpine->mExecutor;
-		pActor->exeSwoonLand();
-	}
-
-	void PoihanaNrvRecover::execute(Spine *pSpine) const {
-		Poihana *pActor = (Poihana*)pSpine->mExecutor;
-		pActor->exeRecover();
-	}
-
-	void PoihanaNrvShake::execute(Spine *pSpine) const {
-		Poihana *pActor = (Poihana*)pSpine->mExecutor;
-		pActor->exeShake();
-	}
-
-	void PoihanaNrvDrown::execute(Spine *pSpine) const {
-		Poihana *pActor = (Poihana*)pSpine->mExecutor;
-		pActor->exeDrown();
-	}
-
-	void PoihanaNrvHide::execute(Spine *pSpine) const {
-		Poihana *pActor = (Poihana*)pSpine->mExecutor;
-		pActor->exeHide();
-	}
-
-	void PoihanaNrvAppear::execute(Spine *pSpine) const {
-		Poihana *pActor = (Poihana*)pSpine->mExecutor;
-		pActor->exeAppear();
-	}
-
-	void PoihanaNrvDPDSwoon::execute(Spine *pSpine) const {
-		Poihana *pActor = (Poihana*)pSpine->mExecutor;
-		pActor->exeDPDSwoon();
-	}
-
-	void PoihanaNrvDPDSwoon::executeOnEnd(Spine *pSpine) const {
-		Poihana *pActor = (Poihana*)pSpine->mExecutor;
-		pActor->endDPDSwoon();
-	}
 }

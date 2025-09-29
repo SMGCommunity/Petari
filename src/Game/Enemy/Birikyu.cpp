@@ -1,18 +1,29 @@
 #include "Game/Enemy/Birikyu.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
-#include "math_types.hpp"
+// #include "math_types.hpp"
 
-Birikyu::Birikyu(const char *pName) : LiveActor(pName), _8C(nullptr), _90(gZeroVec), _9C(gZeroVec) { 
-        _A8 = false;
-        _A9 = false;
-        _AC.x = 0.0f;
-        _AC.y = 1.0f;
-        _AC.z = 0.0f;
-        _B8.x = 0.0f;
-        _B8.y = 0.0f;
-        _B8.z = 1.0f;
-        _C4 = 0.0f;
-        _C8 = 10.0f;
+namespace NrvBirikyu {
+    NEW_NERVE(HostTypeMove, Birikyu, Move);
+    NEW_NERVE(HostTypeMoveCircle, Birikyu, MoveCircle);
+    NEW_NERVE(HostTypeAttack, Birikyu, Attack);
+    NEW_NERVE(HostTypeAttackWait, Birikyu, AttackWait);
+    NEW_NERVE(HostTypeWaitAtEdge, Birikyu, WaitAtEdge);
+    NEW_NERVE(HostTypeStopPointing, Birikyu, StopPointing);
+};
+
+Birikyu::Birikyu(const char *pName) :
+    LiveActor(pName),
+    _8C(nullptr),
+    _90(gZeroVec),
+    _9C(gZeroVec),
+    _A8(false),
+    _A9(false),
+    _AC(0.0f, 1.0f, 0.0f),
+    _B8(0.0f, 0.0f, 1.0f),
+    _C4(0.0f),
+    _C8(10.0f)
+{
+    
 }
 
 void Birikyu::init(const JMapInfoIter &rIter) {
@@ -33,12 +44,14 @@ void Birikyu::init(const JMapInfoIter &rIter) {
     offset.y = 0.0f;
     offset.z = 0.0f;
     MR::initStarPointerTarget(this, 100.0f, offset);
+
     if (_A9) {
         initNerve(&NrvBirikyu::HostTypeMove::sInstance);
     }
     else {
         initNerve(&NrvBirikyu::HostTypeMoveCircle::sInstance);
     }
+
     appear();
 }
 
@@ -249,6 +262,10 @@ void Birikyu::exeAttack() {
     }
 }
 
+void Birikyu::exeAttackWait() {
+    
+}
+
 void Birikyu::exeStopPointing() {
     if (MR::isFirstStep(this)) {
         MR::startDPDHitSound();
@@ -315,40 +332,3 @@ f32 BirikyuWithFace::getHitRadius() const {
 char *BirikyuWithFace::getCenterJointName() const {
     return "Center";
 }
-
-namespace NrvBirikyu {
-    INIT_NERVE(HostTypeMove);
-    INIT_NERVE(HostTypeMoveCircle);
-    INIT_NERVE(HostTypeAttack);
-    INIT_NERVE(HostTypeAttackWait);
-    INIT_NERVE(HostTypeWaitAtEdge);
-    INIT_NERVE(HostTypeStopPointing);    
-
-	void HostTypeMove::execute(Spine *pSpine) const {
-		Birikyu *pActor = (Birikyu*)pSpine->mExecutor;
-		pActor->exeMove();
-	}    
-
-	void HostTypeMoveCircle::execute(Spine *pSpine) const {
-		Birikyu *pActor = (Birikyu*)pSpine->mExecutor;
-		pActor->exeMoveCircle();
-	}    
-
-	void HostTypeAttack::execute(Spine *pSpine) const {
-		Birikyu *pActor = (Birikyu*)pSpine->mExecutor;
-		pActor->exeAttack();
-	}
-
-	void HostTypeAttackWait::execute(Spine *pSpine) const {
-	}    
-
-	void HostTypeWaitAtEdge::execute(Spine *pSpine) const {
-		Birikyu *pActor = (Birikyu*)pSpine->mExecutor;
-		pActor->exeWaitAtEdge();
-	}    
-
-	void HostTypeStopPointing::execute(Spine *pSpine) const {
-		Birikyu *pActor = (Birikyu*)pSpine->mExecutor;
-		pActor->exeStopPointing();
-	}
-};

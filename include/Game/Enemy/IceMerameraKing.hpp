@@ -1,21 +1,19 @@
 #pragma once
 
-#include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
-#include "Game/Effect/SpinPullParticleCallBack.hpp"
-#include "Game/Util/JointController.hpp"
-#include "Game/Util/FixedPosition.hpp"
-#include "Game/Enemy/MoguStone.hpp"
-#include "Game/Camera/CameraTargetDemoActor.hpp"
-#include "Game/LiveActor/Binder.hpp"
+#include "Game/LiveActor/LiveActor.hpp"
 
+class CameraTargetDemoActor;
+template<typename T> class JointControlDelegator;
+class JointControllerInfo;
 class Meramera;
+class SpinPullParticleCallBack;
+class ThrowingIce;
 
 class IceMerameraKing : public LiveActor {
 public:
     IceMerameraKing(const char *);
 
-    virtual ~IceMerameraKing();
     virtual void init(const JMapInfoIter &);
     virtual void initAfterPlacement();
     virtual void kill();
@@ -27,9 +25,11 @@ public:
 
     void exeSearch();
     void exeThrow();
+    void endThrow();
     void tearDownThrow();
     void exeExtinguish();
     void exeEscape();
+    void endEscape();
     void exeEscapeJump();
     void exeDamage();
     void exePreRecover();
@@ -38,23 +38,13 @@ public:
     void exeAttack();
     void exeAttackAfter();
     void exeAngryDemo();
+    void exeDeathDemoWait();
     void exeDeathDemo();
     void addVelocityToInitPos();
     bool isDeadAllIce();
     bool isEnableThrow();
     ThrowingIce* getDeadWeaponAndAppear();
     bool calcJoint(TPos3f *, const JointControllerInfo &);
-
-    inline void exeDeleteEffect() {
-        MR::deleteEffect(this, "Rolling");
-    }
-
-    inline void exeDeathDemoWait() {
-        if (MR::isFirstStep(this)) {
-            MR::stopStageBGM(30);
-        }
-        mVelocity.zero();
-    }
 
     FixedPosition* mFixedPos; //_8C
     ThrowingIce* _90; 
@@ -88,28 +78,7 @@ class IceMerameraKingShockWave : public ModelObj {
 public:
     IceMerameraKingShockWave();
 
-    virtual ~IceMerameraKingShockWave();
     virtual void appear();
     virtual void control();
     virtual void attackSensor(HitSensor *, HitSensor *);
-};
-
-namespace NrvIceMerameraKing {
-    NERVE(HostTypeNrvSearch);
-    NERVE_EXECEND(HostTypeNrvBeginDemo);
-    NERVE_EXECEND(HostTypeNrvThrow);
-    NERVE_EXECEND(HostTypeNrvThrow2nd);
-    NERVE(HostTypeNrvExtinguish);
-    NERVE_EXECEND(HostTypeNrvEscape);        
-    NERVE(HostTypeNrvEscapeJump);
-    NERVE(HostTypeNrvDamage);
-    NERVE(HostTypeNrvPreRecover);
-    NERVE(HostTypeNrvRecover);
-    NERVE(HostTypeNrvPreAttack);
-    NERVE(HostTypeNrvAttack);
-    NERVE(HostTypeNrvAttackAfter);
-    NERVE(HostTypeNrvAngryDemo1st);
-    NERVE(HostTypeNrvAngryDemo2nd);     
-    NERVE(HostTypeNrvDeathDemoWait);          
-    NERVE(HostTypeNrvDeathDemo);                
 };

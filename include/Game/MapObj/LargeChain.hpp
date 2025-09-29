@@ -1,3 +1,5 @@
+#pragma once
+
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/MapObj/LargeChainParts.hpp"
 

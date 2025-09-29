@@ -26,7 +26,7 @@ public:
 
     void exeSwim();
     void exeBind();
-    void exeOnEndBind();
+    void endBind();
     void exeBreak();
     void exeDead();
     bool calcJoint(TPos3f *, const JointControllerInfo &);

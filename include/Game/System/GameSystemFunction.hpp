@@ -1,24 +1,49 @@
 #pragma once
 
-#include <revolution.h>
-
-class GameSystemFunction {
-public:
-    static void loadAudioStaticWaveData();
-    static bool isLoadedAudioStaticWaveData();
-    static void initAfterStationedResourceLoaded();
-    static void setSceneNameObjHolderToNameObjRegister();
-
-    static bool isOccurredSystemWarning();
-    static bool isResetProcessing();
-
-    static void resetCurrentScenarioNo();
-
-    static void restartControllerLeaveWatcher();
-
-    static void resetAllControllerRumble();
-
-    static bool setPermissionToCheckWiiRemoteConnectAndScreenDimming(bool);
-    static void onPauseBeginAllRumble();
-    static void onPauseEndAllRumble();
+namespace GameSystemFunction {
+    void loadAudioStaticWaveData();
+    bool isLoadedAudioStaticWaveData();
+    void initAfterStationedResourceLoaded();
+    void setSceneNameObjHolderToNameObjRegister();
+    bool isCreatedGameDataHolder();
+    bool isCreatedSystemWipe();
+    bool isDoneLoadSystemArchive();
+    bool tryToLoadSystemArchive();
+    void requestChangeArchivePlayer(bool);
+    bool isEndChangeArchivePlayer();
+    void activateScreenPreserver();
+    void deactivateScreenPreserver();
+    bool isOccurredSystemWarning();
+    bool isResetProcessing();
+    void setResetOperationApplicationReset();
+    void setResetOperationReturnToMenu();
+    void requestResetGameSystem(bool);
+    void requestGoWiiMenu(bool);
+    void forceToDeactivateHomeButtonLayout();
+    void resetCurrentScenarioNo();
+    bool isPermitToResetSaveDataHandleSequence();
+    void prepareResetSaveDataHandleSequence();
+    bool isPrepareResetSaveDataHandleSequence();
+    void restoreFromResetSaveDataHandleSequence();
+    bool isPermitToResetAudioSystem();
+    void prepareResetAudioSystem();
+    void requestResetAudioSystem(bool);
+    bool isDoneResetAudioSystem();
+    void resumeResetAudioSystem();
+    void stopControllerLeaveWatcher();
+    void startControllerLeaveWatcher();
+    void restartControllerLeaveWatcher();
+    void setPadConnectCallback();
+    void resetAllControllerRumble();
+    void setAutoSleepTimeWiiRemote(bool);
+    bool setPermissionToCheckWiiRemoteConnectAndScreenDimming(bool);
+    void onPauseBeginAllRumble();
+    void onPauseEndAllRumble();
+    void onHomeButtonMenuBeginAllRumble();
+    void onHomeButtonMenuCloseAllRumble();
+    void onHomeButtonMenuEndAllRumble();
+    void prepareResetSystem();
+    bool isPreparedFadeinSystem();
+    void restartSceneController();
+    bool isDisplayStrapRemineder();
 };
