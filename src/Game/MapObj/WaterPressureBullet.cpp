@@ -23,8 +23,8 @@ void WaterPressureBullet::init(const JMapInfoIter &rIter) {
     initModelManagerWithAnm("WaterBullet", nullptr, false);
     MR::connectToSceneMapObjStrongLight(this);
     initHitSensor(2);
-    MR::addHitSensor(this, "body", 24, 4, 100.0f, TVec3f(0.0f, 0.0f, 0.0f));
-    MR::addHitSensor(this, "binder", 106, 4, 100.0f, TVec3f(0.0f, 0.0f, 0.0f));
+    MR::addHitSensor(this, "body", ATYPE_WATER_PRESSURE_BULLET, 4, 100.0f, TVec3f(0.0f, 0.0f, 0.0f));
+    MR::addHitSensor(this, "binder", ATYPE_WATER_PRESSURE_BULLET_BIND, 4, 100.0f, TVec3f(0.0f, 0.0f, 0.0f));
     initBinder(100.0f, 0.0f, 0);
     initEffectKeeper(0, nullptr, false);
     initSound(6, false);
@@ -193,13 +193,13 @@ void WaterPressureBullet::exeSpinKill() {
     kill();
 }
 
-void WaterPressureBullet::attackSensor(HitSensor *a1, HitSensor *a2) {
-    if (MR::isSensorMapObj(a2)) {
+void WaterPressureBullet::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
+    if (MR::isSensorMapObj(pReceiver)) {
         kill();
     }
 }
 
-bool WaterPressureBullet::receiveMsgPlayerAttack(u32 msg, HitSensor *, HitSensor *) {
+bool WaterPressureBullet::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     if (MR::isMsgFireBallAttack(msg)) {
         kill();
         return true;
@@ -208,35 +208,42 @@ bool WaterPressureBullet::receiveMsgPlayerAttack(u32 msg, HitSensor *, HitSensor
     return false;
 }
 
-bool WaterPressureBullet::receiveOtherMsg(u32 msg, HitSensor *a2, HitSensor *a3) {
+bool WaterPressureBullet::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     if (MR::isDead(this)) {
         return false;
     }
 
-    if (MR::isMsgAutoRushBegin(msg) && MR::isSensorPlayer(a2) && mHostActor == nullptr) {
+    if (MR::isMsgAutoRushBegin(msg)
+        && MR::isSensorPlayer(pSender)
+        && mHostActor == nullptr)
+    {
         if (MR::isDemoActive()) {
             kill();
+
             return false;
         }
 
-        if (!inviteMario(a2)) {
+        if (!inviteMario(pSender)) {
             return false;
         }
         else {
             MR::startSound(this, "SE_OJ_W_PRESS_BUBBLE_IN", -1, -1);
             MR::startSound(mHostActor, "SE_PV_CATCH", -1, -1);
+
             return true;
         }
     }
-    else if (msg == 152) {
+    else if (msg == ACTMES_IS_RUSH_TAKEOVER) {
         return true;
     }
-    else if (msg == 147) {
+    else if (msg == ACTMES_RUSH_CANCEL) {
         kill();
+
         return true;
     }
-    else if (msg == 161 && mHostActor != nullptr) {
+    else if (msg == ACTMES_UPDATE_BASEMTX && mHostActor != nullptr) {
         updateSuffererMtx();
+
         return true;
     }
 
@@ -273,16 +280,18 @@ bool WaterPressureBullet::inviteMario(HitSensor *pSensor) {
         }
         else {
             kill();
-            MR::sendArbitraryMsg(76, pSensor, getSensor("body"));
+            MR::sendArbitraryMsg(ACTMES_ENEMY_ATTACK_FLIP_VERYWEAK, pSensor, getSensor("body"));
+
             return false;
         }
     }
 
-    mHostActor = pSensor->mActor;
+    mHostActor = pSensor->mHost;
     MR::startBckWithInterpole(this, "Touch", 0);
     MR::startBckPlayer("WaterBulletStart", 2);
     startHostCamera();
     MR::setShadowDropLength(this, nullptr, 2000.0f);
+
     return true;
 }
 

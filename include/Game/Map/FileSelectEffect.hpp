@@ -13,13 +13,8 @@ public:
 
     void disappear();
     void exeAppear();
+    void exeWait();
     void exeDisappear();
 
     f32 mEffectFrame;       // 0x8C
-};
-
-namespace {
-    NERVE_DECL(FileSelectEffectNrvAppear, FileSelectEffect, FileSelectEffect::exeAppear);
-    NERVE_DECL_NULL(FileSelectEffectNrvWait);
-    NERVE_DECL(FileSelectEffectNrvDisappear, FileSelectEffect, FileSelectEffect::exeDisappear);
 };

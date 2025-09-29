@@ -125,9 +125,12 @@ bool RailMoveObj::isMoving() const {
     return MapObjActorUtil::isRailMoverWorking(this);
 }
 
-bool RailMoveObj::receiveOtherMsg(u32 msg, HitSensor *, HitSensor *) {
-    if (msg == 0xCF && isNerve(&NrvRailMoveObj::HostTypeMove::sInstance)) {
+bool RailMoveObj::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+    if (msg == ACTMES_MAPPARTS_DISAPPEAR_WITH_BLINK
+        && isNerve(&NrvRailMoveObj::HostTypeMove::sInstance))
+    {
         kill();
+
         return true;
     }
 
@@ -271,21 +274,21 @@ void RailRotateMoveObj::setupInitInfo(const JMapInfoIter &rIter, MapObjActorInit
     pInfo->setupRailRotator();
 }
 
-bool RailRotateMoveObj::receiveOtherMsg(u32 msg, HitSensor *a2, HitSensor *a3) {
-    if (msg == 0xCB) {
+bool RailRotateMoveObj::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+    if (msg == ACTMES_MAPPARTS_START_ROTATE_AT_POINT) {
         return tryStartRotateAtPoint();
     }
 
-    if (msg == 0xCC) {
+    if (msg == ACTMES_MAPPARTS_END_ROTATE_AT_POINT) {
         mRailMover->endRotateAtPoint();
         return true;
     }
 
-    if (msg == 0xCD) {
+    if (msg == ACTMES_MAPPARTS_START_ROTATE_BETWEEN_POINTS) {
         return tryStartRotateBetweenPoints();
     }
 
-    return RailMoveObj::receiveOtherMsg(msg, a2, a3);
+    return RailMoveObj::receiveOtherMsg(msg, pSender, pReceiver);
 }
 
 void RailRotateMoveObj::initCaseUseSwitchB(const MapObjActorInitInfo &rInfo) {

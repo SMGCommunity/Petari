@@ -94,15 +94,15 @@ void BossKameck::calcAndSetBaseMtx() {
     mJointCtrl->setCallBackFunction();
 }
 
-void BossKameck::attackSensor(HitSensor *a1, HitSensor *a2) {
+void BossKameck::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
     if (mSequencer != nullptr) {
-        mSequencer->attackSensor(a1, a2);
+        mSequencer->attackSensor(pSender, pReceiver);
     }
 }
 
-bool BossKameck::receiveMsgPlayerAttack(u32 msg, HitSensor *a1, HitSensor *a2) {
+bool BossKameck::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     if (mSequencer != nullptr) {
-        return mSequencer->receiveMsgPlayerAttack(msg, a1, a2);
+        return mSequencer->receiveMsgPlayerAttack(msg, pSender, pReceiver);
     }
 
     return false;

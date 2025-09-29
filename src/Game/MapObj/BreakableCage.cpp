@@ -53,7 +53,7 @@ void BreakableCage::init(const JMapInfoIter &rIter) {
     initModel(modelName, rIter);
     MR::connectToSceneMapObjStrongLight(this);
     initHitSensor(1);
-    MR::addHitSensor(this, "body", 82, 8, v9, stack_C);
+    MR::addHitSensor(this, "body", ATYPE_BREAKABLE_CAGE, 8, v9, stack_C);
     MR::initCollisionParts(this, modelName, getSensor("body"), nullptr);
 
     if (!isTypeCage()) {
@@ -172,7 +172,7 @@ void BreakableCage::calcAndSetBaseMtx() {
 }
 #endif
 
-bool BreakableCage::receiveMsgPlayerAttack(u32 msg, HitSensor *a2, HitSensor *a3) {
+bool BreakableCage::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     bool result;
     if (MR::isMsgJetTurtleAttack(msg)) {
         result = tryBreak();
@@ -184,7 +184,7 @@ bool BreakableCage::receiveMsgPlayerAttack(u32 msg, HitSensor *a2, HitSensor *a3
     return result;
 }
 
-bool BreakableCage::receiveMsgEnemyAttack(u32 msg, HitSensor *a2, HitSensor *a3) {
+bool BreakableCage::receiveMsgEnemyAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     bool result;
 
     if (MR::isMsgEnemyAttackFire(msg) || MR::isMsgEnemyAttackFireStrong(msg)) {

@@ -37,7 +37,7 @@ public:
     void exeWalkOnRail();
     void exeSearch();
     void exePursue();
-    void exeOnEndPursue();
+    void endPursue();
     void exeBroken();
     void exeStepBroken();
     void exeRecover();
@@ -45,7 +45,7 @@ public:
     void exeDeath();
     void exeSinkDown();
     void exeBindStarPointer();
-    void exeOnEndBindStarPointer();
+    void endBindStarPointer();
     bool isFallNextMove(bool);
 
     inline void moveAndTurn(const KaronParam *pParam) {

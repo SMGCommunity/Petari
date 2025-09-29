@@ -1,8 +1,9 @@
 #pragma once
 
-#include "Game/Enemy/AnimScaleController.hpp"
-#include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/ActorStateBase.hpp"
+#include "Game/LiveActor/LiveActor.hpp"
+
+class AnimScaleController;
 
 class WalkerStateBindStarPointer : public ActorStateBase<LiveActor> {
 public:
@@ -19,8 +20,4 @@ public:
     /* 0x10 */  AnimScaleController* mScaleController;      ///< The controller for scaling the actor during animations.
     /* 0x14 */  s32 mUpdateCounter;                         ///< Counter that is incremented in exeBind. Once it exceeds 5, it updates the actor.
     /* 0x18 */  bool mHasEffect;                            ///< Does the host actor contain the "Touch" effect name?
-};
-
-namespace NrvWalkerStateBindStarPointer {
-    NERVE_DECL(WalkerStateBindStarPointerNrvBind, WalkerStateBindStarPointer, WalkerStateBindStarPointer::exeBind);
 };

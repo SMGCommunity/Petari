@@ -114,16 +114,16 @@ void ArrowSwitchMulti::calcAndSetBaseMtx() {
     MR::setBaseTRMtx(this, pos);
 }
 
-bool ArrowSwitchMulti::receiveMsgPlayerAttack(u32 msg, HitSensor *a2, HitSensor *a3) {
+bool ArrowSwitchMulti::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     if (MR::isMsgPlayerHitAll(msg)) {
-        return requestPunch(a2, a3);
+        return requestPunch(pSender, pReceiver);
     }   
 
     return false;
 }
 
-bool ArrowSwitchMulti::requestPunch(HitSensor *a1, HitSensor *a2) {
-    if (getSensor("body") != a2) {
+bool ArrowSwitchMulti::requestPunch(HitSensor *pSender, HitSensor *pReceiver) {
+    if (getSensor("body") != pReceiver) {
         return false;
     }
 

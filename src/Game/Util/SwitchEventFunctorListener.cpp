@@ -1,26 +1,26 @@
 #include "Game/Util/SwitchEventFunctorListener.hpp"
 
 SwitchEventFunctorListener::SwitchEventFunctorListener() {
-    mOnFunctor = 0;
-    mOffFunctor = 0;
+    mOnFunctor = nullptr;
+    mOffFunctor = nullptr;
 }
 
 void SwitchEventFunctorListener::setOnFunctor(const MR::FunctorBase &rFunctor) {
-    mOnFunctor = rFunctor.clone(0);
+    mOnFunctor = rFunctor.clone(nullptr);
 }
 
 void SwitchEventFunctorListener::setOffFunctor(const MR::FunctorBase &rFunctor) {
-    mOffFunctor = rFunctor.clone(0);
+    mOffFunctor = rFunctor.clone(nullptr);
 }
 
 void SwitchEventFunctorListener::listenSwitchOnEvent() {
-    if (mOnFunctor) {
+    if (mOnFunctor != nullptr) {
         (*mOnFunctor)();
     }
 }
 
 void SwitchEventFunctorListener::listenSwitchOffEvent() {
-    if (mOffFunctor) {
+    if (mOffFunctor != nullptr) {
         (*mOffFunctor)();
     }
 }

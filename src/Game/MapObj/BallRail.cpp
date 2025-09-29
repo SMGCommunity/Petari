@@ -32,7 +32,7 @@ void BallRail::init(const JMapInfoIter &rIter) {
     offs.y = _AC;
     offs.x = 0.0f;
     offs.z = 0.0f;
-    MR::addHitSensor(this, "bind", 0x7B, 8, _AC, offs);
+    MR::addHitSensor(this, "bind", ATYPE_BALL_RAIL, 8, _AC, offs);
     initNerve(&NrvBallRail::BallRailNrvWait::sInstance);
     appear();
 }
@@ -41,10 +41,12 @@ void BallRail::control() {
 
 }
 
-bool BallRail::receiveOtherMsg(u32 msg, HitSensor *a2, HitSensor *a3) {
-    if (msg == 173 && isNerve(&NrvBallRail::BallRailNrvWait::sInstance)) {
-        TVec3f v9(a2->mActor->mVelocity);
-        TVec3f v8 = a2->mPosition - a3->mPosition;
+bool BallRail::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+    if (msg == ACTMES_SPHERE_PLAYER_BINDED
+        && isNerve(&NrvBallRail::BallRailNrvWait::sInstance))
+    {
+        TVec3f v9(pSender->mHost->mVelocity);
+        TVec3f v8 = pSender->mPosition - pReceiver->mPosition;
 
         if (v8.dot(v9) > 0.0f) {
             return false;
@@ -53,11 +55,13 @@ bool BallRail::receiveOtherMsg(u32 msg, HitSensor *a2, HitSensor *a3) {
         if (mGravity.dot(v8) > 0.0f) {
             MR::normalizeOrZero(&v8);
             v8.dot(v9);
-            MR::zeroVelocity(a2->mActor);
+            MR::zeroVelocity(pSender->mHost);
+
             return false;
         }
         else {
-            _90 = a2;
+            _90 = pSender;
+
             return true;
         }
     }
@@ -143,7 +147,7 @@ void BallRail::exeSetUp() {
         MR::tryRumblePadStrong(this, 0);
     }
 
-    MR::subtractAndSet(_90->mActor->mVelocity, v7, &_90->mPosition);
+    MR::subtractAndSet(_90->mHost->mVelocity, v7, &_90->mPosition);
 
     if (MR::isGreaterStep(this, 45)) {
         setNerve(&NrvBallRail::BallRailNrvRun::sInstance);
@@ -174,10 +178,10 @@ void BallRail::exeRun() {
     MR::moveRailRider(this);
     MR::moveTransToCurrentRailPos(this);
     JMAVECScaleAdd(&mGravity, &mPosition, &v12, -_90->mRadius);
-    MR::subtractAndSet(_90->mActor->mVelocity, v12, &_90->mPosition);
+    MR::subtractAndSet(_90->mHost->mVelocity, v12, &_90->mPosition);
 
     if (MR::isRailReachedGoal(this)) {
-        LiveActor* actor = _90->mActor;
+        LiveActor* actor = _90->mHost;
         TVec3f* vec = &actor->mVelocity;
         MR::multAndSet(vec, MR::getRailDirection(this), MR::getRailCoordSpeed(this));
         getSensor("bind")->receiveMessage(178, _90);

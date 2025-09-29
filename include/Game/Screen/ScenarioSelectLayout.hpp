@@ -1,9 +1,12 @@
 #pragma once
 
-#include "Game/Screen/BackButton.hpp"
 #include "Game/Screen/LayoutActor.hpp"
-#include "Game/Camera/CameraContext.hpp"
-#include "Game/Map/ScenarioSelectStar.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
+
+class BackButton;
+class CameraContext;
+class MultiSceneActor;
+class ScenarioSelectStar;
 
 class ScenarioSelectLayout : public LayoutActor {
 public:
@@ -48,11 +51,10 @@ public:
     void exeAfterScenarioSelected();
     void exeDisappear();
     void exeCancel();
+    void exeCancelFadeOut();
     void exeAppearCometWarning();
     void exeWaitCometWarning();
-
     void exeDisappearCometWarning();
-    inline void exeCancelFadeOut();
 
     s32 mSelectedScenarioNo;                // 0x24
     u32 _24;
@@ -71,18 +73,4 @@ public:
     const char* _A0;
     u32 _A4;
     s32 _A8;
-};
-
-namespace NrvScenarioSelectLayout {
-    NERVE_DECL(ScenarioSelectLayoutNrvAppearStar, ScenarioSelectLayout, ScenarioSelectLayout::exeAppearStar)
-    NERVE_DECL(ScenarioSelectLayoutNrvAppear, ScenarioSelectLayout, ScenarioSelectLayout::exeAppear)
-    NERVE_DECL(ScenarioSelectLayoutNrvWaitScenarioSelect, ScenarioSelectLayout, ScenarioSelectLayout::exeWaitScenarioSelect)
-    NERVE_DECL(ScenarioSelectLayoutNrvDecide, ScenarioSelectLayout, ScenarioSelectLayout::exeDecide)
-    NERVE_DECL(ScenarioSelectLayoutNrvAfterScenarioSelected, ScenarioSelectLayout, ScenarioSelectLayout::exeAfterScenarioSelected)
-    NERVE_DECL(ScenarioSelectLayoutNrvDisappear, ScenarioSelectLayout, ScenarioSelectLayout::exeDisappear)
-    NERVE_DECL(ScenarioSelectLayoutNrvCancel, ScenarioSelectLayout, ScenarioSelectLayout::exeCancel)
-    NERVE_DECL(ScenarioSelectLayoutNrvCancelFadeOut, ScenarioSelectLayout, ScenarioSelectLayout::exeCancelFadeOut)
-    NERVE_DECL(ScenarioSelectLayoutNrvAppearCometWarning, ScenarioSelectLayout, ScenarioSelectLayout::exeAppearCometWarning)
-    NERVE_DECL(ScenarioSelectLayoutNrvWaitCometWarning, ScenarioSelectLayout, ScenarioSelectLayout::exeWaitCometWarning)
-    NERVE_DECL(ScenarioSelectLayoutNrvDisappearCometWarning, ScenarioSelectLayout, ScenarioSelectLayout::exeDisappearCometWarning)
 };

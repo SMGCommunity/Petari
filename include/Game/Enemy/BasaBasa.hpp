@@ -39,7 +39,7 @@ public:
     void exeComeHome();
     void exeAttachCelling();
     void exeDPDSwoon();
-    void exeOnEndDPDSwoon();
+    void endDPDSwoon();
     void exeStun();
     void initHangModel();
     bool tryClippingAndResetPos();

@@ -41,7 +41,7 @@ void MarioActor::drawMarioModel() const
         model->mFlags._10 = true;
     }
 
-    if (!mFlags.mIsHiddenModel) {
+    if (!mFlag.mIsHiddenModel) {
         model->mFlags._1C = false;
         if (mMario->isStatusActive(0x12)) {
 

@@ -14,7 +14,3 @@ public:
 
     const char* mBossName;          // 0x8C
 };
-
-namespace NrvBossKameckBarrier {
-    NERVE_DECL_EXE(BossKameckBarrierNrvWait, BossKameckBarrier, Wait);
-};

@@ -58,7 +58,7 @@ bool SuperSpinDriver::tryEndShoot() {
 }
 
 bool SuperSpinDriver::tryEndCoolDown() {
-    if (MR::isGreaterStep(this, 60) && _178) {
+    if (MR::isGreaterStep(this, 60) && _178 == 0) {
         setNerve(&NrvSuperSpinDriver::SuperSpinDriverNrvWait::sInstance);
         return true;
     }
@@ -373,7 +373,10 @@ bool SuperSpinDriver::isRightToUse() const {
 
 void SuperSpinDriver::exeCoolDown() {
     // BUG, is supposed to be a conditional to call tryEndCoolDown
-    MR::isFirstStep(this);
+    if (MR::isFirstStep(this)) {
+        
+    }
+
     if (!tryEndCoolDown()) {
         trySwitchOff();
     }

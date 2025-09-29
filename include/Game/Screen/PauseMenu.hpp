@@ -1,24 +1,30 @@
 #pragma once
 
 #include "Game/Screen/LayoutActor.hpp"
-#include "Game/Screen/ButtonPaneController.hpp"
-#include "Inline.hpp"
-class SysInfoWindow;
-class LuigiLetter;
 
-namespace {
-    bool isInvalidBackAstroDome() NO_INLINE;
-};
+class ButtonPaneController;
+class LuigiLetter;
+class SysInfoWindow;
 
 class PauseMenu : public LayoutActor {
 public:
+    /// @brief Creates a new `PauseMenu`.
     PauseMenu();
-    virtual ~PauseMenu();
+
+    /// @brief Destroys the `PauseMenu`.
+    virtual ~PauseMenu() {}
+
+    /// @brief Intializes the `PauseMenu` while being placed into a scene.
+    /// @param rIter The reference to an iterator over a `JMapInfo`.
     virtual void init(const JMapInfoIter& rIter);
-    virtual void appear();
+
+    /// @brief Draws the `PauseMenu` to the screen.
     virtual void draw() const;
+
+    virtual void appear();
     virtual void kill();
     virtual void control();
+
     void updateStarPane();
     void startPaneAnimWithoutButton(const char*);
     bool isPaneAnimStoppedWithoutButton() const;
@@ -30,14 +36,14 @@ public:
     void exeGameDataSave();
     void exeLuigiLetter();
 
-    ButtonPaneController* _20;
-    ButtonPaneController* _24;
-    TVec2f _28;
-    SysInfoWindow* _30;
-    LuigiLetter* _34;
-    ButtonPaneController* _38;
-    TVec2f _3C;
-    TVec2f _44;
-    TVec2f _4C;
-    bool _54;
+    /* 0x20 */ ButtonPaneController* _20;
+    /* 0x24 */ ButtonPaneController* _24;
+    /* 0x28 */ TVec2f _28;
+    /* 0x30 */ SysInfoWindow* _30;
+    /* 0x34 */ LuigiLetter* mLuigiLetter;
+    /* 0x38 */ ButtonPaneController* _38;
+    /* 0x3C */ TVec2f mStageTitleOffset;
+    /* 0x44 */ TVec2f mCoinNumPos;
+    /* 0x4C */ TVec2f mStarPieceNumPos;
+    /* 0x54 */ bool _54;
 };

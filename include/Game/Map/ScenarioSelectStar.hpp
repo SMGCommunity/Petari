@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Game/Scene/MultiSceneActor.hpp"
-#include "Game/MapObj/PowerStar.hpp"
 
 class ScenarioSelectStar : public MultiSceneActor {
 public:
@@ -32,21 +31,11 @@ public:
     int _44;
     s32 mFrame;             // 0x48
     s32 _4C;
-    u8 _50;
+    bool _50;
     f32 _54;
     s32 _58;
     TVec3f _5C;
     TVec3f _68;
     int _74;
     f32 _78;
-};
-
-namespace NrvScenarioSelectStar {
-    NERVE_DECL(ScenarioSelectStarNrvAppear, ScenarioSelectStar, ScenarioSelectStar::exeAppear);
-    NERVE_DECL(ScenarioSelectStarNrvNotPointing, ScenarioSelectStar, ScenarioSelectStar::exeNotPointing);
-    NERVE_DECL(ScenarioSelectStarNrvPointing, ScenarioSelectStar, ScenarioSelectStar::exePointing);
-    NERVE_DECL(ScenarioSelectStarNrvEndPointing, ScenarioSelectStar, ScenarioSelectStar::exeEndPointing);
-    NERVE_DECL(ScenarioSelectStarNrvSelected, ScenarioSelectStar, ScenarioSelectStar::exeSelected);
-    NERVE_DECL(ScenarioSelectStarNrvSelectedMove, ScenarioSelectStar, ScenarioSelectStar::exeSelectedMove);
-    NERVE_DECL(ScenarioSelectStarNrvNotSelected, ScenarioSelectStar, ScenarioSelectStar::exeNotSelected);
 };

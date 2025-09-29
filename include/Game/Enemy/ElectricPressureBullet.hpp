@@ -1,9 +1,9 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
-#include "JSystem/JGeometry/TMatrix.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
-#include "revolution/types.h"
+#include <JSystem/JGeometry/TMatrix.hpp>
+#include <JSystem/JGeometry/TVec.hpp>
+#include <revolution/types.h>
 
 class ElectricPressureBullet : public LiveActor {
 public:
@@ -20,8 +20,4 @@ public:
     TVec3f _8C;
     LiveActor* _98;
     f32 _9C;
-}; 
-
-namespace NrvElectricPressureBullet {
-    NERVE(ElectricPressureBulletNrvFly);   
 };

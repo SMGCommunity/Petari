@@ -4919,14 +4919,14 @@ Game/MapObj/LavaHomeVolcanoFlow.cpp:
 Game/MapObj/LavaJamboSunPlanet.cpp:
 	.text       start:0x801F2208 end:0x801F25E4
 	.ctors      start:0x8052ED90 end:0x8052ED94
-	.data       start:0x80597A78 end:0x80597C10
+	.data       start:0x80597A78 end:0x80597B50
 	.sbss       start:0x806B5370 end:0x806B5380
 	.sdata2     start:0x806BD4B8 end:0x806BD4D0
 
 Game/MapObj/LavaProminence.cpp:
 	.text       start:0x801F25E4 end:0x801F3720
 	.ctors      start:0x8052ED94 end:0x8052ED98
-	.data       start:0x80597C10 end:0x80597D08
+	.data       start:0x80597B50 end:0x80597D08
 	.sdata      start:0x806B1E98 end:0x806B1EA0
 	.sbss       start:0x806B5380 end:0x806B53A0
 	.sdata2     start:0x806BD4D0 end:0x806BD4F8
@@ -5564,13 +5564,13 @@ Game/MapObj/SpiderCoin.cpp:
 
 Game/MapObj/SpiderMapBlock.cpp:
 	.text       start:0x8022FE24 end:0x802300FC
-	.data       start:0x805A0848 end:0x805A0920
+	.data       start:0x805A0848 end:0x805A08F0
 	.sdata2     start:0x806BE0E0 end:0x806BE0E8
 
 Game/MapObj/SpiderThread.cpp:
 	.text       start:0x802300FC end:0x8023174C
 	.rodata     start:0x80533858 end:0x805338C0
-	.data       start:0x805A0920 end:0x805A09B8
+	.data       start:0x805A08F0 end:0x805A09B8
 	.sdata2     start:0x806BE0E8 end:0x806BE118
 
 Game/MapObj/SpiderThreadHangInfo.cpp:

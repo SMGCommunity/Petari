@@ -1,8 +1,12 @@
+#include "Game/Camera/CameraTargetDemoActor.hpp"
+#include "Game/Effect/SpinPullParticleCallBack.hpp"
 #include "Game/Enemy/IceMerameraKing.hpp"
 #include "Game/Enemy/Meramera.hpp"
+#include "Game/Enemy/MoguStone.hpp"
+#include "Game/LiveActor/Binder.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
-#include <JSystem/JMath.hpp>
-#include "math_types.hpp"
+#include "Game/Util/FixedPosition.hpp"
+#include "Game/Util/JointController.hpp"
 
 namespace {
     static const char* hScaleJointName[3] = {
@@ -16,42 +20,42 @@ namespace {
         3.0f,
         0.95999998f,
         0.0f
-    };          
+    };
 
     static const f32 hOnGroundParam[4] = {
         0.0f,
         1.0f,
         0.80000001f,
         0.0f
-    };    
+    };
 
     static const f32 hFlyParam[4] = {
         0.0f,
         0.5f,
         0.89999998f,
         1.0f
-    };        
+    };
 
     static const f32 hAngryDemoParam[4] = {
         0.0f,
         0.5f,
         0.89999998f,
         1.5f
-    };        
+    };
 
     static const f32 hEscapeOnGroundParam[4] = {
         -0.69999999f,
         1.0f,
         0.95999998f,
         180.0f
-    };    
+    };
 
     static const f32 hEscapeOnAirParam[4] = {
         0.0f,
         3.0f,
         0.95999998f,
         0.0f
-    };     
+    };
 
     static const f32 hPreRecoverJumpParam[4] = {
         0.0f,
@@ -65,39 +69,79 @@ namespace {
         1.9f,
         0.98000002f,
         0.0f
-    };                           
+    };
 
     static const f32 hAttackParam[4] = {
         0.0f,
         6.0f,
         0.98000002f,
         0.0f
-    };         
+    };
 
     static f32 hExtinguishOnAirParam[4] = {
         0.0f,
         0.125f,
         0.95999998f,
         0.0f
-    };        
+    };
 
     static f32 hExtinguishFallOnAirParam[4] = {
         0.0f,
         4.0f,
         0.95999998f,
         0.0f
-    };           
+    };
 };
 
-IceMerameraKing::IceMerameraKing(const char *pName) : LiveActor(pName), mFixedPos(nullptr), _90(nullptr), 
-_94(nullptr), mActor(nullptr), _A0(0), _A4(0), _A8(nullptr), _AC(nullptr), _B0(0, 0, 1), _BC(0, 1, 0), 
-_C8(0, 0, 0), _D4(0, 0, 0), _E0(0), _E4(0), _EC(3), _F0(0), mModelArray(), _100(0, 0, 0, 1) {
-    _120 = false;
-    _110.x = 0.0f;
-    _110.y = 0.0f;
-    _110.z = 0.0f; 
-    _11C = 0.0f;
-    _121 = false;
+namespace NrvIceMerameraKing {
+    NEW_NERVE(HostTypeNrvSearch, IceMerameraKing, Search);
+    NEW_NERVE_ONEND(HostTypeNrvBeginDemo, IceMerameraKing, Throw, Throw);
+    NEW_NERVE_ONEND(HostTypeNrvThrow, IceMerameraKing, Throw, Throw);
+    NEW_NERVE_ONEND(HostTypeNrvThrow2nd, IceMerameraKing, Throw, Throw);
+    NEW_NERVE(HostTypeNrvExtinguish, IceMerameraKing, Extinguish);
+    NEW_NERVE_ONEND(HostTypeNrvEscape, IceMerameraKing, Escape, Escape);
+    NEW_NERVE(HostTypeNrvEscapeJump, IceMerameraKing, EscapeJump);
+    NEW_NERVE(HostTypeNrvDamage, IceMerameraKing, Damage);
+    NEW_NERVE(HostTypeNrvPreRecover, IceMerameraKing, PreRecover);
+    NEW_NERVE(HostTypeNrvRecover, IceMerameraKing, Recover);
+    NEW_NERVE(HostTypeNrvPreAttack, IceMerameraKing, PreAttack);
+    NEW_NERVE(HostTypeNrvAttack, IceMerameraKing, Attack);
+    NEW_NERVE(HostTypeNrvAttackAfter, IceMerameraKing, AttackAfter);
+    NEW_NERVE(HostTypeNrvAngryDemo1st, IceMerameraKing, AngryDemo);
+    NEW_NERVE(HostTypeNrvAngryDemo2nd, IceMerameraKing, AngryDemo);
+    NEW_NERVE(HostTypeNrvDeathDemoWait, IceMerameraKing, DeathDemoWait);
+    NEW_NERVE(HostTypeNrvDeathDemo, IceMerameraKing, DeathDemo);
+
+    TVec3f hBinderOffset(-100.586f, 222.65601f, -91.796898f);
+    TVec3f hEscapeBinderOffset(-39.0625f, 91.796898f, -47.851601f);
+};
+
+IceMerameraKing::IceMerameraKing(const char *pName) :
+    LiveActor(pName),
+    mFixedPos(nullptr),
+    _90(nullptr),
+    _94(nullptr),
+    mActor(nullptr),
+    _A0(0),
+    _A4(0),
+    _A8(nullptr),
+    _AC(nullptr),
+    _B0(0, 0, 1),
+    _BC(0, 1, 0),
+    _C8(0, 0, 0),
+    _D4(0, 0, 0),
+    _E0(0),
+    _E4(0),
+    _EC(3),
+    _F0(0),
+    mModelArray(),
+    _100(0, 0, 0, 1),
+    _120(false),
+    _110(0.0f, 0.0f, 0.0f),
+    _11C(0.0f),
+    _121(false)
+{
+    
 }
 
 void IceMerameraKing::init(const JMapInfoIter &rIter) {
@@ -177,7 +221,7 @@ void IceMerameraKing::init(const JMapInfoIter &rIter) {
 }
 
 void IceMerameraKing::initAfterPlacement() {
-    MR::trySetMoveLimitCollision(this);  
+    MR::trySetMoveLimitCollision(this);
 
     for (int i = 0; i < _F0; i++) {
         bool cChar;
@@ -185,7 +229,7 @@ void IceMerameraKing::initAfterPlacement() {
         mModelArray.mCount = mBinder->_24;
 
         if (mBinder->_24) {
-            cChar = cc & 0xDF;            
+            cChar = cc & 0xDF;
         }
         else {
             cChar = cc | 0x20;
@@ -281,7 +325,7 @@ void IceMerameraKing::exeSearch() {
                     _E0 = 0;
                     setNerve(&NrvIceMerameraKing::HostTypeNrvThrow::sInstance);
                 }
-            }            
+            }
         }
     }
 }
@@ -296,8 +340,8 @@ void IceMerameraKing::exeThrow() {
     MR::moveAndTurnToPlayer(this, &_B0, hFlyParam[0], hFlyParam[1], hFlyParam[2], hFlyParam[3]);
     MR::addVelocityKeepHeightUseShadow(this, 400.0f, 1.5f, 300.0f, nullptr);
     addVelocityToInitPos();
-    
-    if (MR::isStep(this, 22)) {   
+
+    if (MR::isStep(this, 22)) {
         _90 = getDeadWeaponAndAppear();
         mFixedPos->_1C.getTrans(_90->mPosition);
         if (!_90) {
@@ -315,29 +359,31 @@ void IceMerameraKing::exeThrow() {
     }
 
     if (MR::isActionEnd(this)) {
-        if (MR::calcDistanceToPlayer(this) > 1000.0f) {
+        if (MR::calcDistanceToPlayer(this) < 1000.0f) {
             setNerve(&NrvIceMerameraKing::HostTypeNrvPreAttack::sInstance);
         }
         else {
-            s32 v10 = 3;
+            u32 v10 = 3;
             if (isNerve(&NrvIceMerameraKing::HostTypeNrvThrow2nd::sInstance)) {
                 v10 = 6;
-            }            
+            }
 
-            if (v10 > _E0 || isEnableThrow()) {
+            if (v10 <= _E0 || !isEnableThrow()) {
                 setNerve(&NrvIceMerameraKing::HostTypeNrvSearch::sInstance);
-            }          
+            }
+            else if (isNerve(&NrvIceMerameraKing::HostTypeNrvThrow2nd::sInstance)) {
+                setNerve(&NrvIceMerameraKing::HostTypeNrvThrow2nd::sInstance);
+            }
             else {
-                if (isNerve(&NrvIceMerameraKing::HostTypeNrvThrow2nd::sInstance)) {
-                    setNerve(&NrvIceMerameraKing::HostTypeNrvThrow2nd::sInstance);
-                }
-                else {
-                    setNerve(&NrvIceMerameraKing::HostTypeNrvThrow::sInstance);
-                }                
-            }  
+                setNerve(&NrvIceMerameraKing::HostTypeNrvThrow::sInstance);
+            }
         }
     }
     //minor
+}
+
+void IceMerameraKing::endThrow() {
+    tearDownThrow();
 }
 
 void IceMerameraKing::tearDownThrow() {
@@ -359,7 +405,7 @@ void IceMerameraKing::exeExtinguish() {
         MR::startAction(this, "GoOut");
         MR::startSound(this, "SE_BM_ICEMERAKING_BLOW", -1, -1);
         MR::startSound(this, "SE_BM_ICEMERAKING_SMOKE", -1, -1);
-        MR::deleteEffect(this, "BodyIce");        
+        MR::deleteEffect(this, "BodyIce");
         MR::emitEffectWithParticleCallBack(this, "BodyIceOff", mSpinParticle);
         TVec3f v3 = *MR::getPlayerCenterPos();
         TVec3f v4(mPosition);
@@ -371,7 +417,7 @@ void IceMerameraKing::exeExtinguish() {
     }
 
     if (MR::isLessStep(this, 40)) {
-        MR::addVelocityKeepHeightUseShadow(this, _11C, 1.3f, 700.0f, nullptr);     
+        MR::addVelocityKeepHeightUseShadow(this, _11C, 1.3f, 700.0f, nullptr);
         MR::moveAndTurnToPlayer(this, &_B0, hExtinguishOnAirParam[0], hExtinguishOnAirParam[1], hExtinguishOnAirParam[2], hExtinguishOnAirParam[3]);
     }
     else if (MR::isOnGround(this) && MR::isActionEnd(this)) {
@@ -388,11 +434,13 @@ void IceMerameraKing::exeExtinguish() {
 */
 
 void IceMerameraKing::exeEscape() {
-    MR::isFirstStep(this);
-    s32 v3 = _E8 + 1;
-    _E8 = v3;
+    if (MR::isFirstStep(this)) {
+        
+    }
 
-    if (v3 > 0x258u && MR::isOnGround(this)) {
+    _E8++;
+
+    if (_E8 > 600 && MR::isOnGround(this)) {
         _E8 = 0;
         setNerve(&NrvIceMerameraKing::HostTypeNrvPreRecover::sInstance);
     }
@@ -419,22 +467,28 @@ void IceMerameraKing::exeEscape() {
     }
 }
 
+void IceMerameraKing::endEscape() {
+    MR::deleteEffect(this, "Rolling");
+}
+
 void IceMerameraKing::exeEscapeJump() {
     if (MR::isStep(this, 20)) {
         MR::addVelocitySeparateHV(this, _B0, 20.0f, 90.0f);
         MR::startSound(this, "SE_BM_ICEMERAKING_JUMP", -1, -1);
     }
+
     _E8++;
 
     if (MR::isOnGround(this)) {
         f32 radius = getSensor("body")->mRadius;
         MR::rotateQuatRollBall(&_100, mVelocity, *MR::getGroundNormal(this), (0.5f * radius));
         MR::moveAndTurnToPlayer(this, &_B0, hEscapeOnGroundParam[0], hEscapeOnGroundParam[1], hEscapeOnGroundParam[2], hEscapeOnGroundParam[3]);
+
         if (MR::isGreaterStep(this, 20)) {
             MR::emitEffect(this, "Land");
             MR::startSound(this, "SE_BM_ICEMERAKING_LAND", -1, -1);
             setNerve(&NrvIceMerameraKing::HostTypeNrvEscape::sInstance);
-        } 
+        }
     }
     else {
         f32 radius = getSensor("body")->mRadius;
@@ -457,7 +511,7 @@ void IceMerameraKing::exeDamage() {
         MR::addVelocityKeepHeightUseShadow(this, 900.0f, 3.0f, 300.0f, nullptr);
     }
 
-    if (MR::isOnGround(this)) {         
+    if (MR::isOnGround(this)) {
         MR::moveAndTurnToPlayer(this, &_B0, hOnGroundParam[0], hOnGroundParam[1], hOnGroundParam[2], hOnGroundParam[3]);
     }
     else {
@@ -523,7 +577,10 @@ void IceMerameraKing::exeRecover() {
 }
 
 void IceMerameraKing::exePreAttack() {
-    MR::isFirstStep(this);
+    if (MR::isFirstStep(this)) {
+        
+    }
+
     if (MR::isLessStep(this, 120)) {
         MR::addVelocityKeepHeightUseShadow(this, 800.0f, 1.5f, 300.0f, nullptr);
     }
@@ -543,7 +600,7 @@ void IceMerameraKing::exeAttack() {
 
     if (!MR::isActionEnd(this)) {
         MR::addVelocityKeepHeightUseShadow(this, 800.0f, 1.5f, 300.0f, nullptr);
-        MR::moveAndTurnToPlayer(this, &_B0, hFlyParam[0], hFlyParam[1], hFlyParam[2], hFlyParam[3]);        
+        MR::moveAndTurnToPlayer(this, &_B0, hFlyParam[0], hFlyParam[1], hFlyParam[2], hFlyParam[3]);
     }
     else {
         MR::moveAndTurnToPlayer(this, &_B0, hAttackParam[0], hAttackParam[1], hAttackParam[2], hAttackParam[3]);
@@ -576,11 +633,11 @@ void IceMerameraKing::exeAngryDemo() {
         MR::emitEffect(this, "BodyIce");
         if (isNerve(&NrvIceMerameraKing::HostTypeNrvAngryDemo2nd::sInstance)) {
             MR::startAction(this, "Summon");
-            MR::startSound(this, "SE_BM_ICEMERAKING_PRE_ANGRY2", -1, -1); 
+            MR::startSound(this, "SE_BM_ICEMERAKING_PRE_ANGRY2", -1, -1);
         }
         else {
             MR::startAction(this, "Recover");
-            MR::startSound(this, "SE_BM_ICEMERAKING_PRE_ANGRY1", -1, -1);             
+            MR::startSound(this, "SE_BM_ICEMERAKING_PRE_ANGRY1", -1, -1);
         }
     }
 
@@ -610,18 +667,26 @@ void IceMerameraKing::exeAngryDemo() {
             v7.scale(200.0f);
             TVec3f v8(mPosition);
             v8.sub(v7);
-            MR::appearStarPiece(this, v8, 8, 15.0f, 70.0f, false);                  
+            MR::appearStarPiece(this, v8, 8, 15.0f, 70.0f, false);
         }
         else {
             TVec3f v5(mGravity);
             v5.scale(200.0f);
             TVec3f v6(mPosition);
             v6.sub(v5);
-            MR::appearStarPiece(this, v6, 16, 15.0f, 70.0f, false);      
+            MR::appearStarPiece(this, v6, 16, 15.0f, 70.0f, false);
         }
         MR::startSound(this, "SE_OJ_STAR_PIECE_BURST", -1, -1);
         setNerve(&NrvIceMerameraKing::HostTypeNrvSearch::sInstance);
     }
+}
+
+void IceMerameraKing::exeDeathDemoWait() {
+    if (MR::isFirstStep(this)) {
+        MR::stopStageBGM(30);
+    }
+
+    mVelocity.zero();
 }
 
 void IceMerameraKing::exeDeathDemo() {
@@ -666,13 +731,20 @@ void IceMerameraKing::exeDeathDemo() {
     if (!MR::isDemoActive()) {
         kill();
         _AC->kill();
-        MR::requestAppearPowerStar(this, mPosition);        
+        MR::requestAppearPowerStar(this, mPosition);
     }
 }
 
 void IceMerameraKing::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
-    if (pSender == getSensor("body") && MR::isSensorPlayer(pReceiver)) {
-        if (isNerve(&NrvIceMerameraKing::HostTypeNrvDamage::sInstance)
+    if (pSender != getSensor("body")) {
+        return;
+    }
+
+    if (!MR::isSensorPlayer(pReceiver)) {
+        return;
+    }
+
+    if (isNerve(&NrvIceMerameraKing::HostTypeNrvDamage::sInstance)
         || isNerve(&NrvIceMerameraKing::HostTypeNrvExtinguish::sInstance)
         || isNerve(&NrvIceMerameraKing::HostTypeNrvEscape::sInstance)
         || isNerve(&NrvIceMerameraKing::HostTypeNrvEscapeJump::sInstance)
@@ -682,12 +754,12 @@ void IceMerameraKing::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
         || isNerve(&NrvIceMerameraKing::HostTypeNrvAngryDemo1st::sInstance)
         || isNerve(&NrvIceMerameraKing::HostTypeNrvAngryDemo2nd::sInstance)
         || isNerve(&NrvIceMerameraKing::HostTypeNrvDeathDemo::sInstance)
-        || MR::isPlayerElementModeIce()) {
-            MR::sendMsgPush(pReceiver, pSender);
-        }
-        else {
-            MR::sendMsgEnemyAttackFreeze(pReceiver, pSender);
-        }
+        || MR::isPlayerElementModeIce())
+    {
+        MR::sendMsgPush(pReceiver, pSender);
+    }
+    else {
+        MR::sendMsgEnemyAttackFreeze(pReceiver, pSender);
     }
 }
 
@@ -696,52 +768,62 @@ bool IceMerameraKing::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSen
         return true;
     }
 
-    if (!isNerve(&NrvIceMerameraKing::HostTypeNrvEscape::sInstance) && !isNerve(&NrvIceMerameraKing::HostTypeNrvEscapeJump::sInstance)) {
+    if (!isNerve(&NrvIceMerameraKing::HostTypeNrvEscape::sInstance)
+        && !isNerve(&NrvIceMerameraKing::HostTypeNrvEscapeJump::sInstance))
+    {
         return false;
     }
 
     if (MR::isMsgFreezeAttack(msg)) {
-        if (!--_EC) {
+        _EC--;
+
+        if (_EC == 0) {
             MR::stopMarioPinchBGMSoon();
-            MR::requestStartTimeKeepDemo(this, "メラキンオープニング", &NrvIceMerameraKing::HostTypeNrvDeathDemo::sInstance, &NrvIceMerameraKing::HostTypeNrvDeathDemoWait::sInstance, "死亡デモ");            
+            MR::requestStartTimeKeepDemo(this, "メラキンオープニング", &NrvIceMerameraKing::HostTypeNrvDeathDemo::sInstance, &NrvIceMerameraKing::HostTypeNrvDeathDemoWait::sInstance, "死亡デモ");
         }
         else {
             setNerve(&NrvIceMerameraKing::HostTypeNrvDamage::sInstance);
         }
+
         return true;
     }
-    else if (MR::isMsgPlayerSpinAttack(msg)) {
-        if (!--_EC) {
+
+    if (MR::isMsgPlayerSpinAttack(msg)) {
+        _EC--;
+
+        if (_EC == 0) {
             MR::requestStartTimeKeepDemo(this, "メラキンオープニング", &NrvIceMerameraKing::HostTypeNrvDeathDemo::sInstance, &NrvIceMerameraKing::HostTypeNrvDeathDemoWait::sInstance, "死亡デモ");
         }
         else {
-            setNerve(&NrvIceMerameraKing::HostTypeNrvDamage::sInstance);            
+            setNerve(&NrvIceMerameraKing::HostTypeNrvDamage::sInstance);
         }
+
         return true;
     }
-    else {
-        return false;
-    }
+
+    return false;
 }
 
 bool IceMerameraKing::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     if (MR::isInSpinStormRange(msg, pSender, pReceiver, 600.0f)) {
         if (isNerve(&NrvIceMerameraKing::HostTypeNrvDeathDemo::sInstance)
-        || isNerve(&NrvIceMerameraKing::HostTypeNrvExtinguish::sInstance)
-        || isNerve(&NrvIceMerameraKing::HostTypeNrvDamage::sInstance)
-        || isNerve(&NrvIceMerameraKing::HostTypeNrvAngryDemo1st::sInstance)
-        || isNerve(&NrvIceMerameraKing::HostTypeNrvAngryDemo2nd::sInstance)
-        || isNerve(&NrvIceMerameraKing::HostTypeNrvEscape::sInstance)
-        || isNerve(&NrvIceMerameraKing::HostTypeNrvEscapeJump::sInstance)
-        || isNerve(&NrvIceMerameraKing::HostTypeNrvPreRecover::sInstance)
-        || isNerve(&NrvIceMerameraKing::HostTypeNrvRecover::sInstance)) {
+            || isNerve(&NrvIceMerameraKing::HostTypeNrvExtinguish::sInstance)
+            || isNerve(&NrvIceMerameraKing::HostTypeNrvDamage::sInstance)
+            || isNerve(&NrvIceMerameraKing::HostTypeNrvAngryDemo1st::sInstance)
+            || isNerve(&NrvIceMerameraKing::HostTypeNrvAngryDemo2nd::sInstance)
+            || isNerve(&NrvIceMerameraKing::HostTypeNrvEscape::sInstance)
+            || isNerve(&NrvIceMerameraKing::HostTypeNrvEscapeJump::sInstance)
+            || isNerve(&NrvIceMerameraKing::HostTypeNrvPreRecover::sInstance)
+            || isNerve(&NrvIceMerameraKing::HostTypeNrvRecover::sInstance))
+        {
             return false;
         }
         else {
             TVec3f v10(*MR::getPlayerCenterPos());
             v10.sub(mPosition);
             MR::vecKillElement(v10, mGravity, &v10);
-            if (PSVECMag(&v10) > getSensor("body")->mRadius) {
+
+            if (PSVECMag(&v10) < getSensor("body")->mRadius) {
                 return false;
             }
             else {
@@ -750,16 +832,15 @@ bool IceMerameraKing::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pR
             }
         }
     }
-    else {
-        return false;
-    }
+
+    return false;
 }
 
 /*
 void IceMerameraKing::addVelocityToInitPos() {
     TVec3f v12(_C8);
     v12.sub(mPosition);
-    
+
     if (0.0f < mGravity.dot(v12)) {
         MR::vecKillElement(v12, mGravity, &v12);
     }
@@ -816,7 +897,7 @@ bool IceMerameraKing::isEnableThrow() {
 
 ThrowingIce* IceMerameraKing::getDeadWeaponAndAppear() {
     ThrowingIce* v7;
-    s32 tempE4 = _E4;    
+    s32 tempE4 = _E4;
     s32 temp = _A4;
     for (s32 i = 0; i < temp; i++) {
         if (MR::isDead(mActor[tempE4])) {
@@ -842,8 +923,8 @@ bool IceMerameraKing::calcJoint(TPos3f *vec, const JointControllerInfo &info) {
     v16.mMtx[2][3] = 0.0f;
     f32 v3 = _100.y;
     f32 v4 = _100.x;
-    f32 v5 = 2.0f * _100.y;    
-    f32 v6 = _100.z;    
+    f32 v5 = 2.0f * _100.y;
+    f32 v6 = _100.z;
 
     f32 v7 = 2.0f * _100.x;
     f32 v8 = 2.0f * _100.w;
@@ -872,10 +953,6 @@ bool IceMerameraKing::calcJoint(TPos3f *vec, const JointControllerInfo &info) {
     return true;
 }
 */
-
-IceMerameraKing::~IceMerameraKing() {
-    
-}
 
 IceMerameraKingShockWave::IceMerameraKingShockWave() : ModelObj("衝撃", "IceMerameraKingShock", nullptr, -2, -2, -2, false) {
     initHitSensor(2);
@@ -910,144 +987,19 @@ void IceMerameraKingShockWave::attackSensor(HitSensor *pSender, HitSensor *pRece
         v17.sub(pSender->mPosition);
         f32 radius1 = sensor->mRadius;
         f32 radius2 = pReceiver->mRadius;
-        if (PSVECMag(&v17) > (radius2 + radius1)) {
-            TVec3f v15;
-            TVec3f v16(pSender->mPosition);
-            v16.sub(pSender->mPosition);
-            MR::calcUpVec(&v15, this);
-            if (!(__fabsf(v16.dot(v15)) < 200.0f)) {
-                MR::vecKillElement(v16, v15, &v16);
-                MR::sendMsgEnemyAttackFlipToDir(pReceiver, pSender, v16);
-            }
+
+        if (PSVECMag(&v17) < radius2 + radius1) {
+            return;
+        }
+
+        TVec3f v15;
+        TVec3f v16(pSender->mPosition);
+        v16.sub(pSender->mPosition);
+        MR::calcUpVec(&v15, this);
+
+        if (__fabsf(v16.dot(v15)) < 200.0f) {
+            MR::vecKillElement(v16, v15, &v16);
+            MR::sendMsgEnemyAttackFlipMaximumToDir(pReceiver, pSender, v16);
         }
     }
 }
-
-IceMerameraKingShockWave::~IceMerameraKingShockWave() {
-
-}
-
-namespace NrvIceMerameraKing {
-    INIT_NERVE(HostTypeNrvSearch);
-    INIT_NERVE(HostTypeNrvBeginDemo);
-    INIT_NERVE(HostTypeNrvThrow);
-    INIT_NERVE(HostTypeNrvThrow2nd);
-    INIT_NERVE(HostTypeNrvExtinguish);
-    INIT_NERVE(HostTypeNrvEscape);        
-    INIT_NERVE(HostTypeNrvEscapeJump);
-    INIT_NERVE(HostTypeNrvDamage);
-    INIT_NERVE(HostTypeNrvPreRecover);
-    INIT_NERVE(HostTypeNrvRecover);
-    INIT_NERVE(HostTypeNrvPreAttack);
-    INIT_NERVE(HostTypeNrvAttack);
-    INIT_NERVE(HostTypeNrvAttackAfter);
-    INIT_NERVE(HostTypeNrvAngryDemo1st);
-    INIT_NERVE(HostTypeNrvAngryDemo2nd);     
-    INIT_NERVE(HostTypeNrvDeathDemoWait);          
-    INIT_NERVE(HostTypeNrvDeathDemo);        
-
-	void HostTypeNrvSearch::execute(Spine *pSpine) const {
-		IceMerameraKing *pActor = (IceMerameraKing*)pSpine->mExecutor;
-		pActor->exeSearch();
-	}    
-
-	void HostTypeNrvBeginDemo::execute(Spine *pSpine) const {
-		IceMerameraKing *pActor = (IceMerameraKing*)pSpine->mExecutor;
-		pActor->exeThrow();
-	}    
-
-	void HostTypeNrvBeginDemo::executeOnEnd(Spine *pSpine) const {
-		IceMerameraKing *pActor = (IceMerameraKing*)pSpine->mExecutor;
-		pActor->tearDownThrow();
-	}        
-	void HostTypeNrvThrow::execute(Spine *pSpine) const {
-		IceMerameraKing *pActor = (IceMerameraKing*)pSpine->mExecutor;
-		pActor->exeThrow();
-	}    
-    
-	void HostTypeNrvThrow::executeOnEnd(Spine *pSpine) const {
-		IceMerameraKing *pActor = (IceMerameraKing*)pSpine->mExecutor;
-		pActor->tearDownThrow();
-	}    
-
-	void HostTypeNrvThrow2nd::execute(Spine *pSpine) const {
-		IceMerameraKing *pActor = (IceMerameraKing*)pSpine->mExecutor;
-		pActor->exeThrow();
-	}        
-
-    void HostTypeNrvThrow2nd::executeOnEnd(Spine *pSpine) const {
-		IceMerameraKing *pActor = (IceMerameraKing*)pSpine->mExecutor;
-		pActor->tearDownThrow();
-	}    
-    
-	void HostTypeNrvExtinguish::execute(Spine *pSpine) const {
-		IceMerameraKing *pActor = (IceMerameraKing*)pSpine->mExecutor;
-		pActor->exeExtinguish();
-	}    
-
-	void HostTypeNrvEscape::execute(Spine *pSpine) const {
-		IceMerameraKing *pActor = (IceMerameraKing*)pSpine->mExecutor;
-		pActor->exeEscape();
-	}        
-
-    void HostTypeNrvEscape::executeOnEnd(Spine *pSpine) const {
-		IceMerameraKing *pActor = (IceMerameraKing*)pSpine->mExecutor;
-		pActor->exeDeleteEffect();
-	}    
-    
-	void HostTypeNrvEscapeJump::execute(Spine *pSpine) const {
-		IceMerameraKing *pActor = (IceMerameraKing*)pSpine->mExecutor;
-		pActor->exeEscapeJump();
-	}    
-
-	void HostTypeNrvDamage::execute(Spine *pSpine) const {
-		IceMerameraKing *pActor = (IceMerameraKing*)pSpine->mExecutor;
-		pActor->exeDamage();
-	}        
-    	void HostTypeNrvPreRecover::execute(Spine *pSpine) const {
-		IceMerameraKing *pActor = (IceMerameraKing*)pSpine->mExecutor;
-		pActor->exePreRecover();
-	}    
-    
-	void HostTypeNrvRecover::execute(Spine *pSpine) const {
-		IceMerameraKing *pActor = (IceMerameraKing*)pSpine->mExecutor;
-		pActor->exeRecover();
-	}    
-
-	void HostTypeNrvPreAttack::execute(Spine *pSpine) const {
-		IceMerameraKing *pActor = (IceMerameraKing*)pSpine->mExecutor;
-		pActor->exePreAttack();
-	}        
-    	void HostTypeNrvAttack::execute(Spine *pSpine) const {
-		IceMerameraKing *pActor = (IceMerameraKing*)pSpine->mExecutor;
-		pActor->exeAttack();
-	}    
-    
-	void HostTypeNrvAttackAfter::execute(Spine *pSpine) const {
-		IceMerameraKing *pActor = (IceMerameraKing*)pSpine->mExecutor;
-		pActor->exeAttackAfter();
-	}    
-
-	void HostTypeNrvAngryDemo1st::execute(Spine *pSpine) const {
-		IceMerameraKing *pActor = (IceMerameraKing*)pSpine->mExecutor;
-		pActor->exeAngryDemo();
-	}      
-      
-	void HostTypeNrvAngryDemo2nd::execute(Spine *pSpine) const {
-		IceMerameraKing *pActor = (IceMerameraKing*)pSpine->mExecutor;
-		pActor->exeAngryDemo();
-	}            
-
-	void HostTypeNrvDeathDemoWait::execute(Spine *pSpine) const {
-		IceMerameraKing *pActor = (IceMerameraKing*)pSpine->mExecutor;
-		pActor->exeDeathDemoWait();
-	}    
-
-	void HostTypeNrvDeathDemo::execute(Spine *pSpine) const {
-		IceMerameraKing *pActor = (IceMerameraKing*)pSpine->mExecutor;
-		pActor->exeDeathDemo();
-	}                
-
-    TVec3f hBinderOffset(-100.586f, 222.65601f, -91.796898f);      
-    TVec3f hEscapeBinderOffset(-39.0625f, 91.796898f, -47.851601f);        
-};

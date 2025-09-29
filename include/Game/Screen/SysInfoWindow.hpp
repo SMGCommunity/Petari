@@ -1,11 +1,11 @@
 #pragma once
 
-#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/LayoutActor.hpp"
-#include "Game/Screen/YesNoController.hpp"
-#include "Game/Screen/IconAButton.hpp"
 
 typedef void (*MessageChangeFuncPtr)(LayoutActor*, const char*, const char*);
+
+class IconAButton;
+class YesNoController;
 
 struct MessageChangeFuncTable {
     MessageChangeFuncPtr mFuncPtr;
@@ -55,6 +55,7 @@ class SysInfoWindow : public LayoutActor {
     bool isDisappear() const;
     void control();
     const char* getLayoutName() const;
+    void exeAppear();
     void exeWait();
     void exeDisappear();
     void setYesNoSelectorSE(const char*,const char*,const char*);
@@ -69,12 +70,6 @@ class SysInfoWindow : public LayoutActor {
     const char* _30;
     const char* _34;
     bool _38;
-};
-
-namespace NrvSysInfoWindow {
-    NERVE(SysInfoWindowNrvAppear);
-    NERVE_DECL(SysInfoWindowNrvWait, SysInfoWindow, SysInfoWindow::exeWait);
-    NERVE_DECL(SysInfoWindowNrvDisappear, SysInfoWindow, SysInfoWindow::exeDisappear);
 };
 
 namespace MR {

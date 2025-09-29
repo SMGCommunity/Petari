@@ -12,7 +12,6 @@ public:
     void start();
     void end();
     void exeAppear();
+    void exeWait();
     void exeEnd();
-
-    inline void exeWait() {}
 };

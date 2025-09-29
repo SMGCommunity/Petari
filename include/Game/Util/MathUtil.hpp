@@ -14,7 +14,7 @@ namespace MR {
     s32 getRandom(s32, s32);
     f32 getRandomDegree();
     void calcRandomVec(TVec3f *, f32, f32);
-    u8 isHalfProbability();
+    bool isHalfProbability() NO_INLINE;
     f32 getSignHalfProbability();
     void getRandomVector(TVec3f *, f32);
     void addRandomVector(TVec3f *, const TVec3f &, f32);
@@ -60,6 +60,7 @@ namespace MR {
     void blendQuatFrontUp(TQuat4f *, const TQuat4f &, const TVec3f &, const TVec3f &, f32, f32);
 
     void rotateQuatRollBall(TQuat4f *, const TVec3f &, const TVec3f &, f32);
+    void rotateQuatMoment(TQuat4f*, const TVec3f &);
 
     void clampLength(TVec3f *, const TVec3f &, f32);
     f32 convergeRadian(f32, f32, f32);

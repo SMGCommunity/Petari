@@ -83,12 +83,12 @@ void TripodBossLeg::control() {
     _260->process();
 }
 
-void TripodBossLeg::attackSensor(HitSensor *a1, HitSensor *a2) {
-    if (a2->receiveMessage(0xA9, a1)) {
+void TripodBossLeg::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
+    if (pReceiver->receiveMessage(0xA9, pSender)) {
         _254 = 1;
     }
 
-    if (MR::isSensorPlayer(a2)) {
+    if (MR::isSensorPlayer(pReceiver)) {
         mIsPressPlayer = 1;
     }
 }

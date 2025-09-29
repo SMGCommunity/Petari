@@ -60,7 +60,7 @@ void FlipPanel::exeFrontLand() {
         MR::startSound(this, "SE_OJ_FLIP_PANEL_CHANGE", -1, -1);
 
         if (_CD) {
-            MR::sendMsgToGroupMember(0x67, this, getSensor(0), "body");
+            MR::sendMsgToGroupMember(ACTMES_FAILURE, this, getSensor(0), "body");
             _CD = 0;
         }
     }
@@ -90,7 +90,7 @@ void FlipPanel::exeBackLand() {
         MR::startSound(this, "SE_OJ_FLIP_PANEL_CHANGE", -1, -1);
 
         if (!_CD) {
-            MR::sendMsgToGroupMember(0x66, this, getSensor(0), "body");
+            MR::sendMsgToGroupMember(ACTMES_SUCCESS, this, getSensor(0), "body");
             _CD = 1;
         }
     }
@@ -166,25 +166,25 @@ void FlipPanel::calcAndSetBaseMtx() {
     }
 }
 
-bool FlipPanel::receiveOtherMsg(u32 msg, HitSensor *a2, HitSensor *a3) {
+bool FlipPanel::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     if (isNerve(&NrvFlipPanel::FlipPanelNrvEnd::sInstance)) {
-        return 0;
+        return false;
     }
 
-    if ((msg - 0x66) <= 1) {
-        _CC = this == a2->mActor;
-        return 1;
+    if (msg == ACTMES_SUCCESS || msg == ACTMES_FAILURE) {
+        _CC = this == pSender->mHost;
+
+        return true;
     }
-    else {
-        if (msg == 0x69) {
-            MR::invalidateClipping(this);
-            setNerve(&NrvFlipPanel::FlipPanelNrvEndPrepare::sInstance);
-            return 1;
-        }
-        else {
-            return 0;
-        }
+
+    if (msg == ACTMES_GROUP_MOVE_STOP) {
+        MR::invalidateClipping(this);
+        setNerve(&NrvFlipPanel::FlipPanelNrvEndPrepare::sInstance);
+
+        return true;
     }
+
+    return false;
 }
 
 bool FlipPanel::calcJointMove(TPos3f *pPos, const JointControllerInfo &rInfo) {
@@ -310,7 +310,7 @@ void FlipPanelObserver::exeComplete() {
     if (MR::isFirstStep(this)) {
         MR::callRequestMovementOnAllGroupMember(this);
         MR::requestMovementOn(_8C);
-        MR::sendMsgToGroupMember(0x69, this, getSensor(0), "body");
+        MR::sendMsgToGroupMember(ACTMES_GROUP_MOVE_STOP, this, getSensor(0), "body");
     }
 
     if (MR::isGreaterStep(this, mDemoDelay)) {
@@ -345,8 +345,8 @@ void FlipPanelObserver::initAfterPlacement() {
     }
 }
 
-bool FlipPanelObserver::receiveOtherMsg(u32 msg, HitSensor *a2, HitSensor *a3) {
-    if (msg == 0x66) {
+bool FlipPanelObserver::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+    if (msg == ACTMES_SUCCESS) {
         if (!_90) {
             if (_9C) {
                 MR::startSystemME("ME_FLIP_PANEL_INV_OFF_FIRST");
@@ -365,9 +365,10 @@ bool FlipPanelObserver::receiveOtherMsg(u32 msg, HitSensor *a2, HitSensor *a3) {
         }
 
         _90++;
-        return 1;
+
+        return true;
     }
-    else if (msg == 0x67) {
+    else if (msg == ACTMES_FAILURE) {
         if (_9C) {
             MR::startSystemME("ME_FLIP_PANEL_INV_ON");
         }
@@ -376,10 +377,11 @@ bool FlipPanelObserver::receiveOtherMsg(u32 msg, HitSensor *a2, HitSensor *a3) {
         }
 
         _90--;
-        return 1;
+
+        return true;
     }
 
-    return 0;
+    return false;
 }
 
 namespace NrvFlipPanel {

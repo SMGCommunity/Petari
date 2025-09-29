@@ -2,20 +2,18 @@
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/SensorHitChecker.hpp"
 
-HitSensor::HitSensor(u32 type, u16 sensorGroupSize, f32 radius, LiveActor *pActor) {
-    mType = type;
-    mPosition.x = 0.0f;
-    mPosition.y = 0.0f;
-    mPosition.z = 0.0f;
-    mRadius = radius;
-    mSensorCount = 0;
-    mGroupSize = sensorGroupSize;
-    mSensors = 0;
-    mSensorGroup = nullptr;
-    mValidBySystem = false;
-    mValidByHost = true;
-    mActor = pActor;
-
+HitSensor::HitSensor(u32 type, u16 groupSize, f32 radius, LiveActor* pHost) :
+    mType(type),
+    mPosition(0.0f, 0.0f, 0.0f),
+    mRadius(radius),
+    mSensorCount(0),
+    mGroupSize(groupSize),
+    mSensors(nullptr),
+    mSensorGroup(nullptr),
+    mValidBySystem(false),
+    mValidByHost(true),
+    mHost(pHost)
+{
     if (mGroupSize != 0) {
         mSensors = new HitSensor*[mGroupSize];
 
@@ -27,8 +25,8 @@ HitSensor::HitSensor(u32 type, u16 sensorGroupSize, f32 radius, LiveActor *pActo
     MR::initHitSensorGroup(this);
 }
 
-bool HitSensor::receiveMessage(u32 msg, HitSensor *pReceiver) {
-    return mActor->receiveMessage(msg, pReceiver, this);
+bool HitSensor::receiveMessage(u32 msg, HitSensor* pSender) {
+    return mHost->receiveMessage(msg, pSender, this);
 }
 
 void HitSensor::setType(u32 type) {
@@ -37,11 +35,9 @@ void HitSensor::setType(u32 type) {
     mType = type;
 
     if (mValidBySystem) {
-        if (mGroupSize) {
-            if (mValidByHost) {
-                mSensorGroup->remove(this);
-                wasRemoved = true;
-            }
+        if (mGroupSize != 0 && mValidByHost) {
+            mSensorGroup->remove(this);
+            wasRemoved = true;
         }
     }
 
@@ -59,31 +55,21 @@ bool HitSensor::isType(u32 type) const {
 }
 
 void HitSensor::validate() {
-    if (mValidByHost) {
-        return;
+    if (!mValidByHost) {
+        mValidByHost = true;
+
+        if (mGroupSize != 0 && mValidBySystem) {
+            mSensorGroup->add(this);
+        }
     }
-
-    mValidByHost = true;
-
-    if (!mGroupSize) {
-        return;
-    }
-
-    if (!mValidBySystem) {
-        return;
-    }
-
-    mSensorGroup->add(this);
 }
 
 void HitSensor::invalidate() {
     if (mValidByHost) {
         mValidByHost = false;
 
-        if (mGroupSize) {
-            if (mValidBySystem) {
-                mSensorGroup->remove(this);
-            }
+        if (mGroupSize != 0 && mValidBySystem) {
+            mSensorGroup->remove(this);
         }
     }
 
@@ -92,10 +78,8 @@ void HitSensor::invalidate() {
 
 void HitSensor::validateBySystem() {
     if (!mValidBySystem) {
-        if (mGroupSize) {
-            if (mValidByHost) {
-                mSensorGroup->add(this);
-            }
+        if (mGroupSize != 0 && mValidByHost) {
+            mSensorGroup->add(this);
         }
 
         mValidBySystem = true;
@@ -104,10 +88,8 @@ void HitSensor::validateBySystem() {
 
 void HitSensor::invalidateBySystem() {
     if (mValidBySystem) {
-        if (mGroupSize) {
-            if (mValidByHost) {
-                mSensorGroup->remove(this);
-            }
+        if (mGroupSize != 0 && mValidByHost) {
+            mSensorGroup->remove(this);
         }
 
         mValidBySystem = false;
@@ -115,7 +97,7 @@ void HitSensor::invalidateBySystem() {
     }
 }
 
-void HitSensor::addHitSensor(HitSensor *pSensor) {
+void HitSensor::addHitSensor(HitSensor* pSensor) {
     if (mSensorCount < mGroupSize) {
         mSensors[mSensorCount] = pSensor;
         mSensorCount++;

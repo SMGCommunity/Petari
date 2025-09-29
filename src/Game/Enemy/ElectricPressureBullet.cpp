@@ -1,5 +1,4 @@
 #include "Game/Enemy/ElectricPressureBullet.hpp"
-#include "Game/LiveActor/LiveActor.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/ActorShadowUtil.hpp"
 #include "Game/Util/EffectUtil.hpp"
@@ -9,29 +8,26 @@
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
-#include "JSystem/JGeometry/TMatrix.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
-#include "JSystem/JMath/JMath.hpp"
-#include "revolution/types.h"
-#include <cstddef>
+#include <JSystem/JMath/JMath.hpp>
 
-ElectricPressureBullet::ElectricPressureBullet(const char *pName) : LiveActor(pName) {
-    _8C.x = 0.0f;
-    _8C.y = 0.0f;
-    _8C.z = 0.0f;
-    _98 = nullptr;
-    _9C = 0.0f;
+namespace NrvElectricPressureBullet {
+    NEW_NERVE(ElectricPressureBulletNrvFly, ElectricPressureBullet, Fly);
+};
+
+ElectricPressureBullet::ElectricPressureBullet(const char *pName) :
+    LiveActor(pName),
+    _8C(0.0f, 0.0f, 0.0f),
+    _98(nullptr),
+    _9C(0.0f)
+{
+    
 }
 
 void ElectricPressureBullet::init(const JMapInfoIter &rIter) {
     initModelManagerWithAnm("ElectricBullet", nullptr, false);
     MR::connectToSceneEnemy(this);
     initHitSensor(1);
-    TVec3f v5;
-    v5.x = 0.0f;
-    v5.y = 0.0f;
-    v5.z = 0.0f;
-    MR::addHitSensorEnemyAttack(this, "body", 8, 100.0f, v5);
+    MR::addHitSensorEnemyAttack(this, "body", 8, 100.0f, TVec3f(0.0f, 0.0f, 0.0f));
     initBinder(100.0f, 0.0f, 0);
     initEffectKeeper(0, nullptr, false);
     initSound(1, false);
@@ -100,17 +96,8 @@ void ElectricPressureBullet::control() {
     }
 }
 
-void ElectricPressureBullet::attackSensor(HitSensor *pSender,HitSensor *pReceiver) {
+void ElectricPressureBullet::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
     if (MR::isSensorPlayer(pReceiver) && MR::sendMsgEnemyAttackElectric(pReceiver, pSender)) {
         kill();
     }
 }
-
-namespace NrvElectricPressureBullet {
-    INIT_NERVE(ElectricPressureBulletNrvFly);
-
-	void ElectricPressureBulletNrvFly::execute(Spine *pSpine) const {
-		ElectricPressureBullet *pActor = (ElectricPressureBullet*)pSpine->mExecutor;
-		pActor->exeFly();
-	}    
-};
