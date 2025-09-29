@@ -37,7 +37,9 @@ void MagicBell::init(const JMapInfoIter &rIter) {
 }
 
 void MagicBell::exeWait() {
-    MR::isFirstStep(this);
+    if (MR::isFirstStep(this)) {
+        
+    }
 
     if (!tryRing()) {
         PSMTXCopy(mBellSwinger->_60.toMtxPtr(), mSurface2Mtx);

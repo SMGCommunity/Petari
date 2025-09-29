@@ -128,7 +128,9 @@ void TripodBossGuardWall::requestStart() {
 
 /* more small inlining issues */
 void TripodBossGuardWall::exeDemo() {
-    MR::isFirstStep(this);
+    if (MR::isFirstStep(this)) {
+        
+    }
 
     if (MR::isStep(this, 150)) {
         updateCameraTarget();

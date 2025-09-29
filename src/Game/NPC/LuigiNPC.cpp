@@ -285,7 +285,10 @@ void LuigiNPC::exeReaction() {
 }
 
 void LuigiNPC::exeTakeOutStar() {
-    MR::isFirstStep(this);
+    if (MR::isFirstStep(this)) {
+        
+    }
+
     if (MR::isStep(this, 87)) {
         MR::startSound(this, "SE_SV_LUIGI_LIFT_UP", -1, -1);
     }

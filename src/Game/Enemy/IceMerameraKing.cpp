@@ -434,11 +434,13 @@ void IceMerameraKing::exeExtinguish() {
 */
 
 void IceMerameraKing::exeEscape() {
-    MR::isFirstStep(this);
-    s32 v3 = _E8 + 1;
-    _E8 = v3;
+    if (MR::isFirstStep(this)) {
+        
+    }
 
-    if (v3 > 0x258u && MR::isOnGround(this)) {
+    _E8++;
+
+    if (_E8 > 600 && MR::isOnGround(this)) {
         _E8 = 0;
         setNerve(&NrvIceMerameraKing::HostTypeNrvPreRecover::sInstance);
     }
@@ -474,12 +476,14 @@ void IceMerameraKing::exeEscapeJump() {
         MR::addVelocitySeparateHV(this, _B0, 20.0f, 90.0f);
         MR::startSound(this, "SE_BM_ICEMERAKING_JUMP", -1, -1);
     }
+
     _E8++;
 
     if (MR::isOnGround(this)) {
         f32 radius = getSensor("body")->mRadius;
         MR::rotateQuatRollBall(&_100, mVelocity, *MR::getGroundNormal(this), (0.5f * radius));
         MR::moveAndTurnToPlayer(this, &_B0, hEscapeOnGroundParam[0], hEscapeOnGroundParam[1], hEscapeOnGroundParam[2], hEscapeOnGroundParam[3]);
+
         if (MR::isGreaterStep(this, 20)) {
             MR::emitEffect(this, "Land");
             MR::startSound(this, "SE_BM_ICEMERAKING_LAND", -1, -1);
@@ -573,7 +577,10 @@ void IceMerameraKing::exeRecover() {
 }
 
 void IceMerameraKing::exePreAttack() {
-    MR::isFirstStep(this);
+    if (MR::isFirstStep(this)) {
+        
+    }
+
     if (MR::isLessStep(this, 120)) {
         MR::addVelocityKeepHeightUseShadow(this, 800.0f, 1.5f, 300.0f, nullptr);
     }

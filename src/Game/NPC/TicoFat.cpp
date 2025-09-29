@@ -975,7 +975,10 @@ void TicoFat::exeInfo() {
 }
 
 void TicoFat::exeAfter() {
-    MR::isFirstStep(this);
+    if (MR::isFirstStep(this)) {
+        
+    }
+
     if (MR::isGreaterEqualStep(this, 60)) {
         MR::endMultiActorCamera(this, mCameraInfo, "飛行", false, -1);
         MR::endDemo(this, "変身");
