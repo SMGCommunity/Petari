@@ -28,6 +28,10 @@ class AstroDomeGalaxySelector : public LiveActor {
         void exeGalaxySelectCancel();
         void exeWaitStartDemo() {}; // Yeah this is just a return I guess?
         void exeDemoDomeLecture();
+        void exeGalaxyConfirm();
+        void exeGalaxyConfirmCancel();  // Auto inlined
+        void exeGalaxyMoveLecture();
+        void exeDemoJumpOut();
 
 
         AstroDomeCameraController* pDomeCamCtrl;    // _8C

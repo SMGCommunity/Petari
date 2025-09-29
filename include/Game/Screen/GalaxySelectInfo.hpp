@@ -1,11 +1,11 @@
 #pragma once
 
-#include "Game/LiveActor/LiveActor.hpp"
 #include "Game/NameObj/NameObjArchiveListCollector.hpp"
+#include "Game/Screen/LayoutActor.hpp"
 #include "Game/Util/JMapInfo.hpp"
 #include "revolution/types.h"
 
-class GalaxySelectInfo : public LiveActor {
+class GalaxySelectInfo : public LayoutActor {
     public:
         GalaxySelectInfo(bool);
         ~GalaxySelectInfo();

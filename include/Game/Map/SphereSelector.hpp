@@ -50,7 +50,7 @@ public:
     static void selectCancel(bool);
     static void selectEnd();
     static void confirmStart();
-    static void confirmCancel();
+    static void confirmCancel(bool);
     static void confirmed();
     static bool isSelectWait();
     static bool isConfirmWait();

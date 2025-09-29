@@ -8,4 +8,5 @@ class MiniatureGalaxyFunction {
 public:
     static s32 getMiniatureGalaxyNum();
     static MiniatureGalaxy* getPointingMiniatureGalaxy();
+    static MiniatureGalaxy* getCometLandMiniatureGalaxy();
 };
