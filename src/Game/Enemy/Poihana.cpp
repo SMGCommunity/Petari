@@ -346,7 +346,7 @@ void Poihana::exeNonActive() {
 	}
 }
 
-void Poihana::exeOnEndNonActive() {
+void Poihana::endNonActive() {
 	MR::onBind(this);
 	MR::onCalcShadow(this, nullptr);
 	MR::onCalcAnim(this);
@@ -522,7 +522,7 @@ void Poihana::exeShootUpCharge() {
 	}
 }*/
 
-void Poihana::exeOnEndShootUp() {
+void Poihana::endShootUp() {
 	endBind();
 
 	MR::setSensorOffset(this, "binder", sNormalBinderPos);
@@ -673,7 +673,7 @@ void Poihana::exeDPDSwoon() {
 									 &NrvPoihana::PoihanaNrvWait::sInstance);
 }
 
-void Poihana::exeOnEndDPDSwoon() {
+void Poihana::endDPDSwoon() {
 	mBindStarPointer->kill();
 
 	MR::setSensorOffset(this, "binder", sNormalBinderPos);

@@ -81,7 +81,7 @@ void PackunPetit::exeNonActive() {
     }
 }
 
-void PackunPetit::exeOnEndNonActive() {
+void PackunPetit::endNonActive() {
     MR::validateHitSensors(this);
     MR::onCalcAnim(this);
     MR::onCalcShadow(this, "JawA");
@@ -278,7 +278,7 @@ void PackunPetit::exeDPDSwoon() {
     }
 }
 
-void PackunPetit::exeOnEndDPDSwoon() {
+void PackunPetit::endDPDSwoon() {
     mStarPointerState->kill();
 }
 

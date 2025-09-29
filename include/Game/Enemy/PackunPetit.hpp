@@ -21,7 +21,7 @@ public:
     virtual bool receiveOtherMsg(u32, HitSensor *, HitSensor *);
 
     void exeNonActive();
-    void exeOnEndNonActive();
+    void endNonActive();
     void exeWait();
     void exeFind();
     void exeThreat();
@@ -37,7 +37,7 @@ public:
     void exeSwoon();
     void exeSwoonToThreat();
     void exeDPDSwoon();
-    void exeOnEndDPDSwoon();
+    void endDPDSwoon();
 
     void initBlowModel();
     void punchDown(HitSensor *, HitSensor *);

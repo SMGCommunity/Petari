@@ -614,6 +614,12 @@ void Kuribo::exeNonActive() {
     }
 }
 
+void Kuribo::endNonActive() {
+    MR::onBind(this);
+    MR::onCalcGravity(this);
+    MR::onCalcShadow(this, nullptr);
+}
+
 void Kuribo::exeAppearFromBox() {
     if (MR::isFirstStep(this)) {
         MR::startAction(this, "AppearFromBox");
@@ -646,6 +652,14 @@ void Kuribo::exeAttackSuccess() {
     if (MR::isGreaterStep(this, 60)) {
         setNerve(&NrvKuribo::KuriboNrvWander::sInstance);
     }
+}
+
+void Kuribo::exeBindStarPointer() {
+    MR::updateActorStateAndNextNerve(this, mBindStarPointer, &NrvKuribo::KuriboNrvWander::sInstance);
+}
+
+void Kuribo::endBindStarPointer() {
+    mBindStarPointer->kill();
 }
 
 void Kuribo::exeHipDropDown() {
@@ -789,23 +803,9 @@ bool Kuribo::isEnablePushMove() const {
     return true;
 }
 
-void Kuribo::exeOnEndBindStarPointer() {
-    mBindStarPointer->kill();
-}
-
-void Kuribo::exeBindStarPointer() {
-    MR::updateActorStateAndNextNerve(this, mBindStarPointer, &NrvKuribo::KuriboNrvWander::sInstance);
-}
-
 void Kuribo::exeBlowLand() {
     calcPassiveMovement();
     tryEndBlowLand();
-}
-
-void Kuribo::exeOnEndNonActive() {
-    MR::onBind(this);
-    MR::onCalcGravity(this);
-    MR::onCalcShadow(this, nullptr);
 }
 
 namespace MR {

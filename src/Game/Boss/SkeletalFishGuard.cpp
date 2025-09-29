@@ -300,7 +300,7 @@ void SkeletalFishGuard::exeNumb() {
     }
 }
 
-void SkeletalFishGuard::exeOnEndNumb() {
+void SkeletalFishGuard::endNumb() {
     MR::deleteEffect(this, "PointerTouchManual");
     mScaleController->startAnim();
 }

@@ -24,11 +24,11 @@ public:
 
     void exeSearch();
     void exeThrow();
-    void exeOnEndThrow();
+    void endThrow();
     void tearDownThrow();
     void exeExtinguish();
     void exeEscape();
-    void exeOnEndEscape();
+    void endEscape();
     void exeEscapeJump();
     void exeDamage();
     void exePreRecover();

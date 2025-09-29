@@ -382,7 +382,7 @@ void IceMerameraKing::exeThrow() {
     //minor
 }
 
-void IceMerameraKing::exeOnEndThrow() {
+void IceMerameraKing::endThrow() {
     tearDownThrow();
 }
 
@@ -465,7 +465,7 @@ void IceMerameraKing::exeEscape() {
     }
 }
 
-void IceMerameraKing::exeOnEndEscape() {
+void IceMerameraKing::endEscape() {
     MR::deleteEffect(this, "Rolling");
 }
 

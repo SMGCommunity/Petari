@@ -36,28 +36,25 @@ namespace NrvBasaBasa {
     NEW_NERVE(BasaBasaNrvStun, BasaBasa, Stun);
 };
 
-BasaBasa::BasaBasa(const char *pName) : LiveActor(pName) {
-    mHangModel = nullptr;
-    mScaleController = nullptr;
-    mStampController = nullptr;
-    mSpinHitController = nullptr;
-    _9C.x = 0.0f;
-    _9C.y = 0.0f;
-    _9C.z = 1.0f;
-    _A8 = 2000.0f;
-    _AC = 0.0f;
-    _B4 = 0;
-    _B8 = 0.0f;
-    _BC.x = 0.0f;
-    _BC.y = 0.0f;
-    _BC.z = 0.0f;
-    mIsIceModel = false;
-    _CC.x = 0.0f;
-    _CC.y = 0.0f;
-    _CC.z = 0.0f;
-    _E4 = -1.0f;
-    _E8 = 0;
-    _EC = 0;
+BasaBasa::BasaBasa(const char *pName) :
+    LiveActor(pName),
+    mHangModel(nullptr),
+    mScaleController(nullptr),
+    mStampController(nullptr),
+    mSpinHitController(nullptr),
+    _9C(0.0f, 0.0f, 1.0f),
+    _A8(2000.0f),
+    _AC(0.0f),
+    _B4(0),
+    _B8(0.0f),
+    _BC(0.0f, 0.0f, 0.0f),
+    mIsIceModel(false),
+    _CC(0.0f, 0.0f, 0.0f),
+    _E4(-1.0f),
+    _E8(0),
+    _EC(0)
+{
+    
 }
 
 void BasaBasa::init(const JMapInfoIter &rIter) {
@@ -326,7 +323,7 @@ void BasaBasa::exeAttackEnd() {
             MR::emitEffect(this, "AttackEnd");
         }
     }
-    
+
     JMAVECScaleAdd(&_9C, &mVelocity, &mVelocity, 0.1f);
     if (MR::isStep(this, 50)) {
         setNerve(&NrvBasaBasa::BasaBasaNrvAttackEndRecover::sInstance);
@@ -352,7 +349,7 @@ void BasaBasa::exeAttackEndRecover() {
     if (MR::isBckStopped(this)) {
         setNerve(&NrvBasaBasa::BasaBasaNrvChase::sInstance);
     }
-    
+
     trySetNerveDPDSwoon();
 }
 
@@ -462,9 +459,15 @@ void BasaBasa::exeDPDSwoon() {
     }
 
     MR::startDPDFreezeLevelSound(this);
+
     if (!MR::isStarPointerPointing2POnPressButton(this, "弱", 1, 0)) {
         setNerve(&NrvBasaBasa::BasaBasaNrvAirWait::sInstance);
     }
+}
+
+void BasaBasa::endDPDSwoon() {
+    MR::deleteEffect(this, "Touch");
+    mScaleController->stopAndReset();
 }
 
 void BasaBasa::exeStun() {
@@ -737,7 +740,7 @@ bool BasaBasa::trySetNerveDPDSwoon() {
     if (!MR::isStarPointerPointing2POnPressButton(this, "弱", true, false)) {
         return false;
     }
-    
+
     setNerve(&NrvBasaBasa::BasaBasaNrvDPDSwoon::sInstance);
     return true;
 }
@@ -803,7 +806,7 @@ void BasaBasa::controlVelocity() {
             v6 = 8.0f;
         }
 
-        
+
         if (PSVECMag(&mVelocity) > v6) {
             TVec3f* velocityPtr = &mVelocity;
             f32 sqr = JMathInlineVEC::PSVECSquareMag(velocityPtr);
@@ -854,21 +857,15 @@ bool BasaBasa::isNearTarget(f32 a1) const {
 }
 
 bool BasaBasa::isNrvEnableStun() const {
-    bool v1 = false;
-    if (isNerve(&NrvBasaBasa::BasaBasaNrvTrampleDown::sInstance) || isNerve(&NrvBasaBasa::BasaBasaNrvPunchDown::sInstance)) {
-        v1 = true;
-    }
+    bool v1 = isNerve(&NrvBasaBasa::BasaBasaNrvTrampleDown::sInstance)
+        || isNerve(&NrvBasaBasa::BasaBasaNrvPunchDown::sInstance);
 
     if (v1) {
         return false;
     }
 
-    v1 = false;
-    if (!isNerve(&NrvBasaBasa::BasaBasaNrvWait::sInstance)) {
-        if (!isNerve(&NrvBasaBasa::BasaBasaNrvAttachCelling::sInstance)) {
-            v1 = true;
-        }
-    }   
+    v1 = !isNerve(&NrvBasaBasa::BasaBasaNrvWait::sInstance)
+        && !isNerve(&NrvBasaBasa::BasaBasaNrvAttachCelling::sInstance);
 
     return v1;
 }

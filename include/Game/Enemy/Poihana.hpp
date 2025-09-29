@@ -22,7 +22,7 @@ public:
 	virtual bool receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver);
 
 	void exeNonActive();
-	void exeOnEndNonActive();
+	void endNonActive();
 	void exeWait();
 	void exeWalkAround();
 	void exeSleepStart();
@@ -32,7 +32,7 @@ public:
 	void exeChasePlayer();
 	void exeShootUpCharge();
 	void exeShootUp();
-	void exeOnEndShootUp() NO_INLINE;
+	void endShootUp() NO_INLINE;
 	void exeGoBack();
 	void exeShock();
 	void exeSwoonLand();
@@ -43,7 +43,7 @@ public:
 	void exeHide();
 	void exeAppear();
 	void exeDPDSwoon();
-	void exeOnEndDPDSwoon() NO_INLINE;
+	void endDPDSwoon() NO_INLINE;
 
 	bool tryToStartBind(HitSensor *pSender);
 	void updateBindActorMtx();
