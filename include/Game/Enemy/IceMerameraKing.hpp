@@ -3,10 +3,11 @@
 #include "Game/LiveActor/ModelObj.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
 
-template<typename T>
-class JointControlDelegator;
+class CameraTargetDemoActor;
+template<typename T> class JointControlDelegator;
 class JointControllerInfo;
 class Meramera;
+class SpinPullParticleCallBack;
 class ThrowingIce;
 
 class IceMerameraKing : public LiveActor {

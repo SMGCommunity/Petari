@@ -1,22 +1,8 @@
 #pragma once
 
+#include "Game/Map/ActorAppearSwitchListener.hpp"
 #include "Game/Util/Functor.hpp"
 #include <revolution.h>
-
-class SwitchEventListener {
-public:
-    virtual void refresh(bool listenOn) {
-        if (listenOn) {
-            listenSwitchOnEvent();
-        }
-        else {
-            listenSwitchOffEvent();
-        }
-    }
-
-    virtual void listenSwitchOnEvent() = 0;
-    virtual void listenSwitchOffEvent() = 0;
-};
 
 class SwitchEventFunctorListener : public SwitchEventListener {
 public:

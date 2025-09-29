@@ -3,6 +3,8 @@
 #include "Game/Screen/LayoutActor.hpp"
 #include "Game/Screen/CustomTagProcessor.hpp"
 
+struct CustomTagArg;
+
 class TalkTextFormer {
 public:
     TalkTextFormer(LayoutActor *, const char *);

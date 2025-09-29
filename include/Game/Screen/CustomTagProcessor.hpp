@@ -17,10 +17,6 @@ namespace {
     }
 };
 
-struct CustomTagArg {
-
-};
-
 class CustomTagProcessor : public MessageTagSkipTagProcessor {
 public:
 
