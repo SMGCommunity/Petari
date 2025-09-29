@@ -9,7 +9,7 @@ public:
     RevolvingWay(const char *);
 
     virtual ~RevolvingWay();
-    virtual void init(const JMapInfoIter &rIter);
+    virtual void init(const JMapInfoIter &);
     virtual void control();
     virtual void calcAndSetBaseMtx();
 
