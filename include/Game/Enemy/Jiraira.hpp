@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/Util.hpp"
 
 class Jiraira : public LiveActor {
 public:
@@ -24,13 +23,4 @@ public:
 
     CollisionParts *_8C;
     f32 _90;
-};
-
-namespace NrvJiraira {
-    NERVE(HostTypeNrvWait);
-    NERVE(HostTypeNrvStepped);
-    NERVE(HostTypeNrvPreRecover);
-    NERVE(HostTypeNrvRecover);
-    NERVE(HostTypeNrvSteppedExplode);
-    NERVE(HostTypeNrvExplode);
 };

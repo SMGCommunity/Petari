@@ -1,16 +1,37 @@
 #include "Game/Enemy/PackunPetit.hpp"
+#include "Game/Enemy/AnimScaleController.hpp"
+#include "Game/Enemy/WalkerStateBindStarPointer.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
-#include "Game/Util/LiveActorUtil.hpp"
-#include <JSystem/JMath/JMath.hpp>
 
-PackunPetit::PackunPetit(const char *pName) : LiveActor(pName) {
-    mScaleController = nullptr;
-    mStarPointerState = nullptr;
-    _94.x = 0.0f;
-    _94.y = 0.0f;
-    _94.z = 1.0f;
-    mBlownModel = nullptr;
-    mDontTurn = false;
+namespace NrvPackunPetit {
+    NEW_NERVE_ONEND(PackunPetitNrvNonActive, PackunPetit, NonActive, NonActive);
+    NEW_NERVE(PackunPetitNrvWait, PackunPetit, Wait);
+    NEW_NERVE(PackunPetitNrvFind, PackunPetit, Find);
+    NEW_NERVE(PackunPetitNrvThreat, PackunPetit, Threat);
+    NEW_NERVE(PackunPetitNrvLeftTurn, PackunPetit, Turn);
+    NEW_NERVE(PackunPetitNrvRightTurn, PackunPetit, Turn);
+    NEW_NERVE(PackunPetitNrvAttackStart, PackunPetit, AttackStart);
+    NEW_NERVE(PackunPetitNrvAttack, PackunPetit, Attack);
+    NEW_NERVE(PackunPetitNrvAttackBack, PackunPetit, AttackBack);
+    NEW_NERVE(PackunPetitNrvHitWaitForAttack, PackunPetit, HitWaitForAttack);
+    NEW_NERVE(PackunPetitNrvHit, PackunPetit, Hit);
+    NEW_NERVE(PackunPetitNrvTrampleDown, PackunPetit, TrampleDown);
+    NEW_NERVE(PackunPetitNrvPunchDown, PackunPetit, PunchDown);
+    NEW_NERVE(PackunPetitNrvSwoonStart, PackunPetit, SwoonStart);
+    NEW_NERVE(PackunPetitNrvSwoon, PackunPetit, Swoon);
+    NEW_NERVE(PackunPetitNrvSwoonToThreat, PackunPetit, SwoonToThreat);
+    NEW_NERVE_ONEND(PackunPetitNrvDPDSwoon, PackunPetit, DPDSwoon, DPDSwoon);
+};
+
+PackunPetit::PackunPetit(const char *pName) :
+    LiveActor(pName),
+    mScaleController(nullptr),
+    mStarPointerState(nullptr),
+    _94(0.0f, 0.0f, 1.0f),
+    mBlownModel(nullptr),
+    mDontTurn(false)
+{
+    
 }
 
 void PackunPetit::init(const JMapInfoIter &rIter) {
@@ -60,6 +81,12 @@ void PackunPetit::exeNonActive() {
     }
 }
 
+void PackunPetit::exeOnEndNonActive() {
+    MR::validateHitSensors(this);
+    MR::onCalcAnim(this);
+    MR::onCalcShadow(this, "JawA");
+}
+
 void PackunPetit::exeWait() {
     if (MR::isFirstStep(this)) {
         MR::startBckWithInterpole(this, "Wait", 60);
@@ -89,6 +116,7 @@ void PackunPetit::exeThreat() {
     }
 
     MR::startLevelSound(this, "SE_EM_LV_PACKUNPETIT_THREAT", -1, -1, -1);
+
     if (!mDontTurn) {
         if (tryTurn()) {
             return;
@@ -98,7 +126,10 @@ void PackunPetit::exeThreat() {
         MR::turnDirectionToTargetUseGroundNormalDegree(this, &_94, *pos, 2.0f);
     }
 
-    if (MR::isGreaterStep(this, 50) && MR::isNearPlayer(this, 1100.0f) && (MR::isFaceToPlayerHorizontalDegree(this, _94, 10.0f) || mDontTurn)) {
+    if (MR::isGreaterStep(this, 50)
+        && MR::isNearPlayer(this, 1100.0f)
+        && (MR::isFaceToPlayerHorizontalDegree(this, _94, 10.0f) || mDontTurn))
+    {
         setNerve(&NrvPackunPetit::PackunPetitNrvAttackStart::sInstance);
     }
     else if (!MR::isNearPlayer(this, 2000.0f)) {
@@ -116,8 +147,8 @@ void PackunPetit::exeTurn() {
         }
     }
 
-    f32 step = getNerveStep();
-    step = (10.0f - step);
+    f32 step = (10.0f - getNerveStep());
+
     if (step < 2.0f) {
         step = 2.0f;
     }
@@ -135,6 +166,20 @@ void PackunPetit::exeAttackStart() {
 
     if (MR::isStep(this, 70)) {
         setNerve(&NrvPackunPetit::PackunPetitNrvAttack::sInstance);
+    }
+}
+
+void PackunPetit::exeAttack() {
+    if (MR::isStep(this, 12)) {
+        setNerve(&NrvPackunPetit::PackunPetitNrvAttackBack::sInstance);
+    }
+}
+
+void PackunPetit::exeAttackBack() {
+    if (MR::isBckStopped(this)) {
+        if (!tryTurn()) {
+            selectNrvWait();
+        }
     }
 }
 
@@ -227,34 +272,14 @@ void PackunPetit::exeSwoonToThreat() {
     }
 }
 
-void PackunPetit::exeSwoonOnEnd() {
-    mStarPointerState->kill();
-}
-
 void PackunPetit::exeDPDSwoon() {
     if (MR::updateActorState(this, mStarPointerState)) {
         selectNrvWait();
     }
 }
 
-void PackunPetit::exeAttackBack() {
-    if (MR::isBckStopped(this)) {
-        if (!tryTurn()) {
-            selectNrvWait();
-        }
-    }
-}
-
-void PackunPetit::exeAttack() {
-    if (MR::isStep(this, 0xC)) {
-        setNerve(&NrvPackunPetit::PackunPetitNrvAttackBack::sInstance);
-    }
-}
-
-void PackunPetit::exeNonActiveOnEnd() {
-    MR::validateHitSensors(this);
-    MR::onCalcAnim(this);
-    MR::onCalcShadow(this, "JawA");
+void PackunPetit::exeOnEndDPDSwoon() {
+    mStarPointerState->kill();
 }
 
 void PackunPetit::kill() {
@@ -272,7 +297,7 @@ void PackunPetit::kill() {
             MR::appearCoinPop(this, mPosition, 1);
         }
     }
-    
+
     if (MR::isValidSwitchDead(this)) {
         MR::onSwitchDead(this);
     }
@@ -433,13 +458,11 @@ void PackunPetit::selectNrvWait() {
     if (!MR::isNearPlayer(this, 1700.0f)) {
         setNerve(&NrvPackunPetit::PackunPetitNrvWait::sInstance);
     }
+    else if (isNerve(&NrvPackunPetit::PackunPetitNrvSwoon::sInstance)) {
+        setNerve(&NrvPackunPetit::PackunPetitNrvSwoonToThreat::sInstance);
+    }
     else {
-        if (isNerve(&NrvPackunPetit::PackunPetitNrvSwoon::sInstance)) {
-            setNerve(&NrvPackunPetit::PackunPetitNrvSwoonToThreat::sInstance);
-        }
-        else {
-            setNerve(&NrvPackunPetit::PackunPetitNrvThreat::sInstance);
-        }
+        setNerve(&NrvPackunPetit::PackunPetitNrvThreat::sInstance);
     }
 }
 
@@ -484,21 +507,15 @@ bool PackunPetit::tryDPDSwoon() {
         return false;
     }
 
-    bool isSwoon = false;
-
-    if (isNerve(&NrvPackunPetit::PackunPetitNrvSwoonStart::sInstance) || isNerve(&NrvPackunPetit::PackunPetitNrvSwoon::sInstance)) {
-        isSwoon = true;
-    }
+    bool isSwoon = isNerve(&NrvPackunPetit::PackunPetitNrvSwoonStart::sInstance)
+        || isNerve(&NrvPackunPetit::PackunPetitNrvSwoon::sInstance);
 
     if (isSwoon) {
         return false;
     }
 
-    bool isTrampleOrPunch = false;
-
-    if (isNerve(&NrvPackunPetit::PackunPetitNrvTrampleDown::sInstance) || isNerve(&NrvPackunPetit::PackunPetitNrvPunchDown::sInstance)) {
-        isTrampleOrPunch = true;
-    }
+    bool isTrampleOrPunch = isNerve(&NrvPackunPetit::PackunPetitNrvTrampleDown::sInstance)
+        || isNerve(&NrvPackunPetit::PackunPetitNrvPunchDown::sInstance);
 
     if (isTrampleOrPunch) {
         return false;
@@ -513,25 +530,5 @@ bool PackunPetit::tryDPDSwoon() {
 }
 
 PackunPetit::~PackunPetit() {
-
+    
 }
-
-namespace NrvPackunPetit {
-    INIT_NERVE(PackunPetitNrvNonActive);
-    INIT_NERVE(PackunPetitNrvWait);
-    INIT_NERVE(PackunPetitNrvFind);
-    INIT_NERVE(PackunPetitNrvThreat);
-    INIT_NERVE(PackunPetitNrvLeftTurn);
-    INIT_NERVE(PackunPetitNrvRightTurn);
-    INIT_NERVE(PackunPetitNrvAttackStart);
-    INIT_NERVE(PackunPetitNrvAttack);
-    INIT_NERVE(PackunPetitNrvAttackBack);
-    INIT_NERVE(PackunPetitNrvHitWaitForAttack);
-    INIT_NERVE(PackunPetitNrvHit);
-    INIT_NERVE(PackunPetitNrvTrampleDown);
-    INIT_NERVE(PackunPetitNrvPunchDown);
-    INIT_NERVE(PackunPetitNrvSwoonStart);
-    INIT_NERVE(PackunPetitNrvSwoon);
-    INIT_NERVE(PackunPetitNrvSwoonToThreat);
-    INIT_NERVE(PackunPetitNrvDPDSwoon);
-};

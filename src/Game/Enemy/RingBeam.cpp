@@ -1,11 +1,17 @@
+#include "Game/AudioLib/AudAnmSoundObject.hpp"
 #include "Game/Enemy/RingBeam.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
+#include "Game/LiveActor/ModelObj.hpp"
+#include "Game/Map/HitInfo.hpp"
 
 //GX function that is included as a local symbol for some reason
-extern "C"{
-void GXPosition3f32(f32,f32,f32);
+extern "C" {
+    void GXPosition3f32(f32,f32,f32);
 }
 
+namespace NrvRingBeam {
+	NEW_NERVE(RingBeamNrvSpread, RingBeam, Spread);
+}
 
 RingBeamShadowDrawer::RingBeamShadowDrawer(const LiveActor * unk0) : ShadowVolumeDrawer("影描画[リングビーム]"){
     _1c = unk0;
@@ -368,14 +374,10 @@ void RingBeam::exeSpread(){
      }
 }
 
-namespace NrvRingBeam {
-    INIT_NERVE(RingBeamNrvSpread);
-    void RingBeamNrvSpread::execute(Spine *pSpine) const{
-        RingBeam *pActor = (RingBeam*)pSpine->mExecutor;
-        pActor->exeSpread();
-    }
-
+RingBeam::~RingBeam() {
+    
 }
 
-RingBeam::~RingBeam(){};
-RingBeamShadowDrawer::~RingBeamShadowDrawer(){};
+RingBeamShadowDrawer::~RingBeamShadowDrawer() {
+    
+}
