@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Game/Enemy/BallBeamer.hpp"
 #include "Game/Enemy/BasaBasa.hpp"
 #include "Game/Enemy/Dossun.hpp"
 #include "Game/Enemy/Kuribo.hpp"
