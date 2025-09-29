@@ -5564,13 +5564,13 @@ Game/MapObj/SpiderCoin.cpp:
 
 Game/MapObj/SpiderMapBlock.cpp:
 	.text       start:0x8022FE24 end:0x802300FC
-	.data       start:0x805A0848 end:0x805A0920
+	.data       start:0x805A0848 end:0x805A08F0
 	.sdata2     start:0x806BE0E0 end:0x806BE0E8
 
 Game/MapObj/SpiderThread.cpp:
 	.text       start:0x802300FC end:0x8023174C
 	.rodata     start:0x80533858 end:0x805338C0
-	.data       start:0x805A0920 end:0x805A09B8
+	.data       start:0x805A08F0 end:0x805A09B8
 	.sdata2     start:0x806BE0E8 end:0x806BE118
 
 Game/MapObj/SpiderThreadHangInfo.cpp:

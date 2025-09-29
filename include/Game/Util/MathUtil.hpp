@@ -60,6 +60,7 @@ namespace MR {
     void blendQuatFrontUp(TQuat4f *, const TQuat4f &, const TVec3f &, const TVec3f &, f32, f32);
 
     void rotateQuatRollBall(TQuat4f *, const TVec3f &, const TVec3f &, f32);
+    void rotateQuatMoment(TQuat4f*, const TVec3f &);
 
     void clampLength(TVec3f *, const TVec3f &, f32);
     f32 convergeRadian(f32, f32, f32);
