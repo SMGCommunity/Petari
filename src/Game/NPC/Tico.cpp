@@ -253,7 +253,7 @@ void Tico::control() {
     }
 }
 
-bool Tico::receiveMsgPlayerAttack(u32 msg, HitSensor *a2, HitSensor *a3) {
+bool Tico::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     if (MR::isMsgStarPieceReflect(msg)) {
         return false;
     }
@@ -264,7 +264,7 @@ bool Tico::receiveMsgPlayerAttack(u32 msg, HitSensor *a2, HitSensor *a3) {
         return true;
     }
 
-    return NPCActor::receiveMsgPlayerAttack(msg, a2, a3);
+    return NPCActor::receiveMsgPlayerAttack(msg, pSender, pReceiver);
 }
 
 bool Tico::tryReaction() {

@@ -1,4 +1,5 @@
 #include "Game/MapObj/CollapsePlane.hpp"
+#include "Game/Enemy/AnimScaleController.hpp"
 
 CollapsePlane::CollapsePlane(const char *pName) : MapObjActor(pName) {
     mScaleController = nullptr;

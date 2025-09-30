@@ -238,14 +238,14 @@ void RainCloud::control() {
     }
 }
 
-void RainCloud::attackSensor(HitSensor *a1, HitSensor *a2) {
-    if (MR::isSensorPlayer(a2)) {
+void RainCloud::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
+    if (MR::isSensorPlayer(pReceiver)) {
         if (MR::isPlayerElementModeBee()) {
             MR::curePlayerElementMode();
             MR::tryRumblePadStrong(this, 0);
         }
 
-        MR::sendArbitraryMsg(71, a2, a1);
+        MR::sendArbitraryMsg(ACTMES_PUDDLE_TOUCH_GROUND, pReceiver, pSender);
     }
 }
 
@@ -279,10 +279,9 @@ void RainCloud::endClipped() {
 }
 
 void RainCloud::switchEffect() {
-    bool v2 = false;
-    if (isNerve(&NrvRainCloud::RainCloudNrvAppear::sInstance) || isNerve(&NrvRainCloud::RainCloudNrvDisappear::sInstance) || isNerve(&NrvRainCloud::RainCloudNrvEnd::sInstance)) {
-        v2 = true;
-    }
+    bool v2 = isNerve(&NrvRainCloud::RainCloudNrvAppear::sInstance)
+        || isNerve(&NrvRainCloud::RainCloudNrvDisappear::sInstance)
+        || isNerve(&NrvRainCloud::RainCloudNrvEnd::sInstance);
 
     if (v2) {
         if (MR::isEffectValid(this, "Splash")) {

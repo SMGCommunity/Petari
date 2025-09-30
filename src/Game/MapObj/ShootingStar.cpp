@@ -33,11 +33,7 @@ void ShootingStar::init(const JMapInfoIter &rIter) {
     initEffectKeeper(0, "ShootingStar", false);
     initSound(4, false);
     initHitSensor(1);
-    TVec3f offset; 
-    offset.x = 0.0f;
-    offset.y = 0.0f;
-    offset.z = 0.0f;
-    MR::addHitSensorMapObj(this, "message", 1, 0.0f, offset);
+    MR::addHitSensorMapObj(this, "message", 1, 0.0f, TVec3f(0.0f, 0.0f, 0.0f));
     MR::initShadowVolumeSphere(this, 30.0f);
 
     if (MR::useStageSwitchReadAppear(this, rIter)) {

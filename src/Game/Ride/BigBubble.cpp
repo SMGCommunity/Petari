@@ -1,25 +1,25 @@
-    #include "Game/Ride/BigBubble.hpp"
-    #include "Game/LiveActor/HitSensor.hpp"
-    #include "Game/LiveActor/LiveActor.hpp"
-    #include "Game/Util/ActorSensorUtil.hpp"
-    #include "Game/Util/EffectUtil.hpp"
-    #include "Game/Util/LiveActorUtil.hpp"
-    #include "Game/Util/PlayerUtil.hpp"
-    #include "Game/Util/SoundUtil.hpp"
-    #include "Game/Util/StarPointerUtil.hpp"
-    #include "JSystem/JGeometry/TVec.hpp"
-    #include "revolution/mtx.h"
-    #include "revolution/types.h"
+#include "Game/Ride/BigBubble.hpp"
+#include "Game/LiveActor/HitSensor.hpp"
+#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/EffectUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
+#include "Game/Util/StarPointerUtil.hpp"
+#include "JSystem/JGeometry/TVec.hpp"
+#include "revolution/mtx.h"
+#include "revolution/types.h"
 
-    namespace NrvBigBubble {
-        NEW_NERVE(BigBubbleNrvAppear, BigBubble, Appear);
-        NEW_NERVE(BigBubbleNrvWait, BigBubble, Wait);
-        NEW_NERVE_ONEND(BigBubbleNrvCapture, BigBubble, Capture, Capture);
-        NEW_NERVE(BigBubbleNrvBreak, BigBubble, Break);
-        NEW_NERVE(BigBubbleNrvEscape, BigBubble, Escape);
-        NEW_NERVE(BigBubbleNrvGoal, BigBubble, Goal);
-        NEW_NERVE(BigBubbleNrvMerged, BigBubble, Merged);
-    };
+namespace NrvBigBubble {
+    NEW_NERVE(BigBubbleNrvAppear, BigBubble, Appear);
+    NEW_NERVE(BigBubbleNrvWait, BigBubble, Wait);
+    NEW_NERVE_ONEND(BigBubbleNrvCapture, BigBubble, Capture, Capture);
+    NEW_NERVE(BigBubbleNrvBreak, BigBubble, Break);
+    NEW_NERVE(BigBubbleNrvEscape, BigBubble, Escape);
+    NEW_NERVE(BigBubbleNrvGoal, BigBubble, Goal);
+    NEW_NERVE(BigBubbleNrvMerged, BigBubble, Merged);
+};
 
 /*
 BigBubble::BigBubble(const char *pName) : LiveActor(pName), _8C(0), _90(0), _94(0), _98(0), _9C(0), _148(0, 0, 0, 1), _158(0, 0, 0, 1) {
@@ -220,6 +220,11 @@ void BigBubble::exeBreak() {
     updateNormalVelocity();
     if (tryBreakEnd())
         return;
+}
+
+void BigBubble::endCapture() {
+    MR::invalidateHitSensor(this, "ride");
+    _1FC = 0;
 }
 
 void BigBubble::exeGoal() {

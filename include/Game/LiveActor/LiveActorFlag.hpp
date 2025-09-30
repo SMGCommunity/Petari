@@ -4,10 +4,6 @@ class LiveActorFlag {
 public:
     LiveActorFlag();
 
-    void onClipped() {
-        mIsClipped = true;
-    }
-
     bool mIsDead;               // 0x0
     bool mIsStoppedAnim;        // 0x1
     bool mIsNoCalcAnim;         // 0x2

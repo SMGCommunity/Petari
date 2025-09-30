@@ -4,6 +4,7 @@
 #include "Game/LiveActor/LiveActorGroup.hpp"
 #include "revolution/types.h"
 
+class LiveActorGroup;
 class SphereSelectorHandle;
 
 enum HandlePointingPriority {
@@ -21,19 +22,20 @@ public:
     virtual void appear();
     virtual void kill();
 
-
+    void registerPointingTarget(LiveActor*, HandlePointingPriority);
     void validatePointing();
     void invalidatePointing();
     void sendMsgToAllActor(u32);
     bool isMoveClickedPos() const;
     void playSelectedME();
     void playCanceledME();
-    void exeConfirm();
-    void exeConfirmCancel();
-    void exeConfirmStart();
-    void exeSelectCancel();
-    void exeSelectWait();
     void exeSelectStart();
+    void exeSelectWait();
+    void exeSelectCancel();
+    void exeConfirmStart();
+    void exeConfirmWait();
+    void exeConfirmCancel();
+    void exeConfirm();
 
     LiveActorGroup* mSphereGroup;   // 0x8C
 

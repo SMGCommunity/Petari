@@ -1,6 +1,6 @@
-#include "Game/LiveActor/LodCtrl.hpp"
+#include "Game/LiveActor/ActorLightCtrl.hpp"
 #include "Game/LiveActor/ClippingDirector.hpp"
-
+#include "Game/LiveActor/LodCtrl.hpp"
 #include <cstdio>
 
 namespace {

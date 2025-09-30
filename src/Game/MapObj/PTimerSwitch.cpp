@@ -23,8 +23,8 @@ void PTimerSwitch::init(const JMapInfoIter& rIter) {
 	initModelManagerWithAnm("PTimerSwitch", nullptr, false);
 	MR::connectToSceneMapObj(this);
 	initHitSensor(2);
-	MR::addHitSensorMapObj(this, "body", 0x10, 0.0f, TVec3f(0.0f, 0.0f, 0.0f));
-	MR::addHitSensor(this, "hit", 0x4f, 0x10, 120.0f, TVec3f(0.0f, 50.0f, 0.0f));
+	MR::addHitSensorMapObj(this, "body", 16, 0.0f, TVec3f(0.0f, 0.0f, 0.0f));
+	MR::addHitSensor(this, "hit", ATYPE_SWITCH, 16, 120.0f, TVec3f(0.0f, 50.0f, 0.0f));
 	MR::initCollisionParts(this, "PTimerSwitch", getSensor("body"), 0);
 	mSwitchCollision = MR::createCollisionPartsFromLiveActor(this, "Move", getSensor("hit"), (MR::CollisionScaleType)2);
 	initSound(4, false);

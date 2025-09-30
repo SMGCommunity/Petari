@@ -85,8 +85,10 @@ void Banekiti::control() {
 bool Banekiti::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     if (MR::isMsgStarPieceAttack(msg)) {
         mAnimScaleCtrl->startHitReaction();
+
         return true;
     }
+
     return false;
 }
 
@@ -94,13 +96,17 @@ bool Banekiti::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver
     if (!MR::isSensorPlayer(pSender)) {
         return false;
     }
+
     if (isNerve(&NrvBanekiti::BanekitiNrvRepel::sInstance)) {
         return false;
     }
-    if (msg == 68) {
+
+    if (msg == ACTMES_TERESA_PLAYER_TOUCH) {
         setNerve(&NrvBanekiti::BanekitiNrvRepel::sInstance);
+
         return true;
     }   
+
     return false;
 }
 

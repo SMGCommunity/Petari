@@ -132,7 +132,7 @@ void FountainBig::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
         }
         else {
             MR::tryRumblePadWeak(this, 0);
-            MR::sendArbitraryMsg(67, pReceiver, pSender);
+            MR::sendArbitraryMsg(ACTMES_FOUNTAINJUMP, pReceiver, pSender);
         }
     }
 }

@@ -34,24 +34,24 @@ void HipDropMoveObj::init(const JMapInfoIter &rIter) {
     makeActorAppeared();
 }
 
-bool HipDropMoveObj::receiveMsgPlayerAttack(u32 msg, HitSensor *a2, HitSensor *a3) {
+bool HipDropMoveObj::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     if (MR::isMsgPlayerHipDropFloor(msg)) {
         if (!isNerve(&NrvHipDropMoveObj::HostTypeWait::sInstance)) {
-            return 0;
+            return false;
         }
         else {
-            f32 radius = a3->mRadius;
-            f32 dist = MR::calcDistanceToPlayer(a3->mPosition);
+            f32 radius = pReceiver->mRadius;
+            f32 dist = MR::calcDistanceToPlayer(pReceiver->mPosition);
             if (radius < dist) {
-                return 0;
+                return false;
             }
 
             setNerve(&NrvHipDropMoveObj::HostTypeMove::sInstance);
-            return 1;
+            return true;
         }
     }
 
-    return 0;
+    return false;
 }
 
 bool HipDropMoveObj::isEndMove() const {

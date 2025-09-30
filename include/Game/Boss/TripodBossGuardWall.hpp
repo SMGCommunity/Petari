@@ -1,40 +1,13 @@
 #pragma once
 
+#include "Game/Boss/TripodBossGuardWallPart.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
-#include "revolution/mtx.h"
-
-class TripodBossGuardWallPart : public LiveActor {
-public:
-    TripodBossGuardWallPart(const char *pName = "三脚ボスコア防壁部品");
-
-    virtual ~TripodBossGuardWallPart();
-    virtual void init(const JMapInfoIter &);
-    virtual void makeActorAppeared();
-    virtual void kill();
-    virtual void control();
-    virtual void calcAndSetBaseMtx();
-    virtual bool receiveMsgEnemyAttack(u32, HitSensor *, HitSensor *);
-
-    void requestStartDemo();
-    void requestBreak();
-    bool isEndDemo() const;
-    void exeBreak();
-    void exeRepair();
-    void setHostMatrix(const TPos3f *);
-    void setPlacementAngle(f32);
-    void setStartTiminig(s32);
-
-    const TPos3f* mHostMtx;         // 0x8C
-    f32 mPlacementAngle;            // 0x90
-    s32 mStartTime;                 // 0x94
-};
 
 class TripodBossGuardWall :public LiveActor {
 public:
     TripodBossGuardWall(const char *);
 
-    virtual ~TripodBossGuardWall();
     virtual void init(const JMapInfoIter &);
     virtual void makeActorAppeared();
     virtual void kill();

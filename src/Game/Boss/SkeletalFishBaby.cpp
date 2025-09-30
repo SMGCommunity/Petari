@@ -1,8 +1,10 @@
 #include "Game/Boss/SkeletalFishBaby.hpp"
 #include "Game/Boss/SkeletalFishJointCalc.hpp"
 #include "Game/Boss/SkeletalFishRailControl.hpp"
+#include "Game/Enemy/AnimScaleController.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/MapObj/AirBubbleHolder.hpp"
+#include "Game/Util/JointController.hpp"
 #include <cstdio>
 
 namespace {
@@ -21,6 +23,13 @@ namespace {
     };
 
     const char* sStarPointerTargetJoint[4] = { "Joint00", "Joint01", "Joint02", "Joint03" };
+};
+
+namespace {
+    NEW_NERVE(SkeletalFishBabyNrvSwim, SkeletalFishBaby, Swim);
+    NEW_NERVE_ONEND(SkeletalFishBabyNrvBind, SkeletalFishBaby, Bind, Bind);
+    NEW_NERVE(SkeletalFishBabyNrvBreak, SkeletalFishBaby, Break);
+    NEW_NERVE(SkeletalFishBabyNrvDead, SkeletalFishBaby, Dead);
 };
 
 SkeletalFishBaby::SkeletalFishBaby(const char *pName) : LiveActor(pName) {
@@ -74,7 +83,7 @@ void SkeletalFishBaby::init(const JMapInfoIter &rIter) {
     MR::declareStarPiece(this, 10);
     MR::onCalcGravity(this);
 
-    for (s32 i = 0; i < 4; i++) {
+    for (u32 i = 0; i < 4; i++) {
         mStarPieceTargets[i] = new LiveActor("StarPointerTargetDummy");
         mStarPieceTargets[i]->makeActorDead();
 
@@ -118,20 +127,20 @@ void SkeletalFishBaby::calcAnim() {
     LiveActor::calcAnim();
 }
 
-void SkeletalFishBaby::attackSensor(HitSensor *a1, HitSensor *a2) {
-    if (MR::isSensorPlayerOrRide(a2)) {
-        if (isAttackable() && MR::sendMsgEnemyAttackStrong(a2, a1)) {
+void SkeletalFishBaby::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
+    if (MR::isSensorPlayerOrRide(pReceiver)) {
+        if (isAttackable() && MR::sendMsgEnemyAttackStrong(pReceiver, pSender)) {
             MR::shakeCameraStrong();
         }
         else {
-            MR::sendMsgPush(a2, a1);
+            MR::sendMsgPush(pReceiver, pSender);
         }
     }
 }
 
-bool SkeletalFishBaby::receiveMsgPlayerAttack(u32 msg, HitSensor *a2, HitSensor *a3) {
+bool SkeletalFishBaby::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     if (MR::isMsgJetTurtleAttack(msg)) {
-        return damage(a2->mPosition, true);
+        return damage(pSender->mPosition, true);
     }
 
     if (MR::isMsgStarPieceReflect(msg)) {
@@ -142,11 +151,11 @@ bool SkeletalFishBaby::receiveMsgPlayerAttack(u32 msg, HitSensor *a2, HitSensor 
     return false;   
 }
 
-bool SkeletalFishBaby::receiveMsgEnemyAttack(u32, HitSensor *, HitSensor *) {
+bool SkeletalFishBaby::receiveMsgEnemyAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     return false;
 }
 
-bool SkeletalFishBaby::receiveOtherMsg(u32 msg, HitSensor *a2, HitSensor *a3) {
+bool SkeletalFishBaby::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     switch (msg) {
         case 190:
             MR::invalidateClipping(this);
@@ -166,10 +175,9 @@ void SkeletalFishBaby::exeSwim() {
         MR::startBck(this, "Swim", nullptr);
     }
 
-    f32 v3 = _A4 + 0.1f;
-    _A4 = v3;
+    _A4 += 0.1f;
 
-    if (v3 > _A0) {
+    if (_A4 > _A0) {
         _A4 = _A0;
     }
 
@@ -191,6 +199,11 @@ void SkeletalFishBaby::exeBind() {
     if (!isStarPointerPointing()) {
         setNerve(&::SkeletalFishBabyNrvSwim::sInstance);
     }
+}
+
+void SkeletalFishBaby::endBind() {
+    mScaleController->startAnim();
+    MR::deleteEffect(this, "StarPointerHolder");
 }
 
 void SkeletalFishBaby::exeBreak() {
@@ -226,11 +239,8 @@ bool SkeletalFishBaby::calcJoint(TPos3f *pJointPos, const JointControllerInfo &r
 }
 
 bool SkeletalFishBaby::damage(const TVec3f &rAirBubblePos, bool shakeCameraNormal) {
-    bool isDeadOrBroke = false;
-
-    if (isNerve(&::SkeletalFishBabyNrvDead::sInstance) || isNerve(&::SkeletalFishBabyNrvBreak::sInstance)) {
-        isDeadOrBroke = true;
-    }
+    bool isDeadOrBroke = isNerve(&::SkeletalFishBabyNrvDead::sInstance)
+        || isNerve(&::SkeletalFishBabyNrvBreak::sInstance);
 
     if (!isDeadOrBroke) {
         if (shakeCameraNormal) {
@@ -298,12 +308,9 @@ void SkeletalFishBaby::initSensor() {
 }
 
 bool SkeletalFishBaby::isAttackable() const {
-    bool isAttackable = false;
-    if (!isNerve(&::SkeletalFishBabyNrvDead::sInstance)
+    bool isAttackable = !isNerve(&::SkeletalFishBabyNrvDead::sInstance)
         && !isNerve(&::SkeletalFishBabyNrvBreak::sInstance)
-        && !isNerve(&::SkeletalFishBabyNrvBind::sInstance)) {
-            isAttackable = true;
-        }
+        && !isNerve(&::SkeletalFishBabyNrvBind::sInstance);
 
     return isAttackable;
 }
@@ -317,13 +324,6 @@ bool SkeletalFishBaby::isStarPointerPointing() const {
 
     return false;
 }
-
-namespace {
-    INIT_NERVE(SkeletalFishBabyNrvSwim);
-    INIT_NERVE(SkeletalFishBabyNrvBind);
-    INIT_NERVE(SkeletalFishBabyNrvBreak);
-    INIT_NERVE(SkeletalFishBabyNrvDead);
-};
 
 SkeletalFishBaby::~SkeletalFishBaby() {
 

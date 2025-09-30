@@ -466,7 +466,7 @@ void Mario::updateMorphResetTimer() {
     TVec3f stack_2c;
     TVec3f stack_20;
     MarioConst* pConst = mActor->mConst;
-    MarioConstTable* pTable = pConst->mTable[pConst->mCurrentTable];
+    MarioConstTable* pTable = pConst->getTable();
     if (MR::diffAngleAbs(_43C, mFrontVec) < pTable->mFrontAngleFixMargin) {
         setFrontVec(_43C);
     }
@@ -520,19 +520,19 @@ void Mario::createMtxDir(MtxPtr mtx, const TVec3f &rFront, const TVec3f &rUp, co
             f32 sideAngleDiff = MR::diffAngleAbs(side, _950);
             f32 frontAngleDiff = MR::diffAngleAbs(front, _944);
             f32 upAngleDiff = MR::diffAngleAbs(up, _938);
-            if (sideAngleDiff < mActor->mConst->mTable[mActor->mConst->mCurrentTable]->mVibrationAbsorbAngleS) {
+            if (sideAngleDiff < mActor->mConst->getTable()->mVibrationAbsorbAngleS) {
                 side = _950;
             }
             else {
                 _950 = side;
             }
-            if (frontAngleDiff < mActor->mConst->mTable[mActor->mConst->mCurrentTable]->mVibrationAbsorbAngleF) {
+            if (frontAngleDiff < mActor->mConst->getTable()->mVibrationAbsorbAngleF) {
                 front = _944;
             }
             else {
                 _944 = front;
             }
-            if (upAngleDiff < mActor->mConst->mTable[mActor->mConst->mCurrentTable]->mVibrationAbsorbAngleH) {
+            if (upAngleDiff < mActor->mConst->getTable()->mVibrationAbsorbAngleH) {
                 up = _938;
             }
             else {
@@ -1117,7 +1117,7 @@ const TVec3f &Mario::getAirGravityVec() const {
 
 void Mario::initAfterConst() {
     MarioConst* pConst = mActor->mConst;
-    _402 = pConst->mTable[pConst->mCurrentTable]->mAirWalkTime;
+    _402 = pConst->getTable()->mAirWalkTime;
     mPosition = mActor->mPosition;
     mShadowPos = mPosition;
     mGroundPos = mPosition;

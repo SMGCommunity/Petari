@@ -1,3 +1,5 @@
+#pragma once
+
 #include "JSystem/JKernel/JKRHeap.hpp"
 #include "revolution/types.h"
 

@@ -29,7 +29,7 @@ void Coin::init(const JMapInfoIter &rIter) {
     initModelManagerWithAnm(mIsPurpleCoin ? "PurpleCoin" : "Coin", nullptr, false);
     MR::connectToSceneItemStrongLight(this);
     initHitSensor(1);
-    MR::addHitSensor(this, "coin", 0x4A, 4, 55.0f, TVec3f(0.0f, 70.0f, 0.0f));
+    MR::addHitSensor(this, "coin", ATYPE_COIN, 4, 55.0f, TVec3f(0.0f, 70.0f, 0.0f));
     initBinder(55.0f, 70.0f, 0);
     MR::setBinderExceptSensorType(this, &mPosition, 10.0f);
     MR::setClippingFar100m(this);
@@ -192,7 +192,7 @@ void Coin::calcAndSetBaseMtx() {
     MR::setBaseTRMtx(this, pos);
 }
 
-bool Coin::receiveOtherMsg(u32 msg, HitSensor *, HitSensor *) {
+bool Coin::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     bool result;
     
     if (MR::isMsgItemGet(msg)) {

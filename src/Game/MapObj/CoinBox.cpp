@@ -49,13 +49,17 @@ void CoinBox::exeHit() {
     }
 }
 
-bool CoinBox::receiveOtherMsg(u32 msg, HitSensor *, HitSensor *) {
-    if (msg - 0x31 <= 2) {
+bool CoinBox::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+    if (msg == ACTMES_TORNADO_ATTACK
+        || msg == ACTMES_TORNADO_STORM_RANGE
+        || msg == ACTMES_SPIN_STORM_RANGE)
+    {
         setNerve(&NrvCoinBox::CoinBoxNrvHit::sInstance);
-        return 1;
+
+        return true;
     }
 
-    return 0;
+    return false;
 }
 
 namespace NrvCoinBox {

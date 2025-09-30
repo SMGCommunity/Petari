@@ -94,26 +94,26 @@ void ArrowSwitch::calcAndSetBaseMtx() {
     MR::setBaseTRMtx(this, pos);
 }
 
-void ArrowSwitch::attackSensor(HitSensor *a1, HitSensor *a2) {
-    if (MR::isSensorPlayer(a2)) {
-        MR::sendMsgPush(a2, a1);
+void ArrowSwitch::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
+    if (MR::isSensorPlayer(pReceiver)) {
+        MR::sendMsgPush(pReceiver, pSender);
     }
 }
 
-bool ArrowSwitch::receiveMsgPlayerAttack(u32 msg, HitSensor *a2, HitSensor *a3) {
+bool ArrowSwitch::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     if (MR::isMsgPlayerHitAll(msg)) {
-        return requestPunch(a2, a3);
+        return requestPunch(pSender, pReceiver);
     }   
 
     return false;
 }
 
-bool ArrowSwitch::receiveMsgPush(HitSensor *, HitSensor *) {
+bool ArrowSwitch::receiveMsgPush(HitSensor *pSender, HitSensor *pReceiver) {
     return false;
 }
 
-bool ArrowSwitch::requestPunch(HitSensor *a1, HitSensor *a2) {
-    if (getSensor("body") != a2) {
+bool ArrowSwitch::requestPunch(HitSensor *pSender, HitSensor *pReceiver) {
+    if (getSensor("body") != pReceiver) {
         return false;
     }
 
@@ -124,7 +124,7 @@ bool ArrowSwitch::requestPunch(HitSensor *a1, HitSensor *a2) {
     TVec3f side;
     TVec3f direction;
     MR::calcSideVec(&side, this);
-    MR::calcSensorDirection(&direction, a1, a2);
+    MR::calcSensorDirection(&direction, pSender, pReceiver);
 
     if (isPlusLimit()) {
         _9D = 0;

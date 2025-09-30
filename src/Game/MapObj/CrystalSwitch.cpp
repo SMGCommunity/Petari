@@ -35,15 +35,15 @@ void CrystalSwitch::control() {
     _98 = 0;
 }
 
-void CrystalSwitch::attackSensor(HitSensor *a1, HitSensor *a2) {
-    if (MR::isSensorPlayer(a2)) {
-        a2->receiveMessage(41, a1);
+void CrystalSwitch::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
+    if (MR::isSensorPlayer(pReceiver)) {
+        pReceiver->receiveMessage(41, pSender);
     }
 }
 
-bool CrystalSwitch::receiveMsgPlayerAttack(u32, HitSensor *, HitSensor *) {
+bool CrystalSwitch::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     _98 = 1;
-    return 1;
+    return true;
 }
 
 bool CrystalSwitch::trySwitchDown() {

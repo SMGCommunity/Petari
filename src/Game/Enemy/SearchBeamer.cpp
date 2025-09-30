@@ -19,7 +19,7 @@ namespace NrvSearchBeamer {
     NEW_NERVE_ONEND(SearchBeamerNrvDPDSwoon, SearchBeamer, DPDSwoon, DPDSwoon);
 };
 
-void SearchBeamer::exeOnEndDPDSwoon() {
+void SearchBeamer::endDPDSwoon() {
     mBindStarPointer->kill();
 }
 

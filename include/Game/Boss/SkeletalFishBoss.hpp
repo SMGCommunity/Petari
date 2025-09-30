@@ -1,11 +1,11 @@
 #pragma once
 
 #include "Game/Boss/SkeletalFishBossInfo.hpp"
-#include "Game/Camera/CameraTargetArg.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/PartsModel.hpp"
-#include "Game/Util/JointController.hpp"
 
+class JointController;
+class JointControllerInfo;
 class SkeletalFishGuard;
 class SkeletalFishGuardHolder;
 class SkeletalFishBossScarFlash;
@@ -165,22 +165,4 @@ public:
     ModelObj* mLightModels[2];              // 0x104
     ModelObj* mBloomModels[2];              // 0x10C
     u8 _114;
-};
-
-namespace {
-    NERVE_DECL(SkeletalFishBossNrvSwim, SkeletalFishBoss, SkeletalFishBoss::exeSwim);
-    NERVE_DECL(SkeletalFishBossNrvOpen, SkeletalFishBoss, SkeletalFishBoss::exeOpen);
-    NERVE_DECL(SkeletalFishBossNrvOpenWait, SkeletalFishBoss, SkeletalFishBoss::exeOpenWait);
-    NERVE_DECL(SkeletalFishBossNrvClose, SkeletalFishBoss, SkeletalFishBoss::exeClose);
-    NERVE_DECL(SkeletalFishBossNrvBite, SkeletalFishBoss, SkeletalFishBoss::exeBite);
-    NERVE_DECL(SkeletalFishBossNrvDamage, SkeletalFishBoss, SkeletalFishBoss::exeDamage);
-    NERVE_DECL(SkeletalFishBossNrvDown, SkeletalFishBoss, SkeletalFishBoss::exeDown);
-    NERVE_DECL(SkeletalFishBossNrvDeadDamage, SkeletalFishBoss, SkeletalFishBoss::exeDeadDamage);
-    NERVE_DECL(SkeletalFishBossNrvDead, SkeletalFishBoss, SkeletalFishBoss::exeDead);
-    NERVE_DECL(SkeletalFishBossNrvAppearWait, SkeletalFishBoss, SkeletalFishBoss::exeAppearWait);
-    NERVE_DECL(SkeletalFishBossNrvAppearDemo, SkeletalFishBoss, SkeletalFishBoss::exeAppearDemo);
-    NERVE_DECL(SkeletalFishBossNrvPowerUpDemo, SkeletalFishBoss, SkeletalFishBoss::exePowerUpDemo);
-    NERVE_DECL(SkeletalFishBossNrvDeadDemo, SkeletalFishBoss, SkeletalFishBoss::exeDeadDemo);
-    NERVE_DECL(SkeletalFishBossNrvBreakDemo, SkeletalFishBoss, SkeletalFishBoss::exeBreakDemo);
-    NERVE_DECL(SkeletalFishBossNrvDemoWait, SkeletalFishBoss, SkeletalFishBoss::exeDemoWait);
 };

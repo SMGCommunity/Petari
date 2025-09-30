@@ -30,14 +30,14 @@ void MapPartsAppearController::storeCurrentPosture() {
 
 void MapPartsAppearController::initSwitchMessenger(const JMapInfoIter &rIter) {
     if (MR::isExistStageSwitchAppear(rIter)) {
-            void (MapPartsAppearController::*k)(void) = &MapPartsAppearController::startKill;
-            void (MapPartsAppearController::*s)(void) = &MapPartsAppearController::startAppear;
-            MR::listenNameObjStageSwitchOnOffAppear(this, MR::createStageSwitchCtrl(this, rIter), MR::Functor(this, s), MR::Functor(this, k));
+        void (MapPartsAppearController::*k)(void) = &MapPartsAppearController::startKill;
+        void (MapPartsAppearController::*s)(void) = &MapPartsAppearController::startAppear;
+        MR::listenNameObjStageSwitchOnOffAppear(this, MR::createStageSwitchCtrl(this, rIter), MR::Functor(this, s), MR::Functor(this, k));
     }
 }
 
 bool MapPartsAppearController::receiveMsg(u32 msg) {
-    if (msg == 207) {
+    if (msg == ACTMES_MAPPARTS_DISAPPEAR_WITH_BLINK) {
         if (MR::isDead(mHost)) {
             return false;
         }
@@ -48,16 +48,16 @@ bool MapPartsAppearController::receiveMsg(u32 msg) {
 
         if (MR::hasMapPartsVanishSignMotion(mSignMotionType)) {
             setNerve(&NrvMapPartsAppearController::HostTypeDisappear::sInstance);
+
             return true;
         }
-        else {
-            killHost();
-            return true;
-        }
+
+        killHost();
+
+        return true;
     }
-    else {
-        return false;
-    }
+
+    return false;
 }
 
 void MapPartsAppearController::startAppear() {

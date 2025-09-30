@@ -56,7 +56,7 @@ void TripodBossAccesser::activeTripodBossParts() {
             mParts[i]->makeActorAppeared();
         }
 
-        MR::sendSimpleMsgToActor(0xAA, mParts[i]);
+        MR::sendSimpleMsgToActor(ACTMES_TRIPODBOSS_STARTED, mParts[i]);
     }
 }
 

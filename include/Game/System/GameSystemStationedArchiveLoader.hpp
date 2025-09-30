@@ -76,6 +76,8 @@ public:
     void exeLoadStationedArchivePlayer();
     void exeLoadStationedArchiveOthers();
     void exeInitializeGameData();
+    void exeEnd();
+    void exeSuspended();
     void exeChangeArchivePlayer();
     bool trySuspend();
     bool tryAsyncExecuteIfNotSuspend(const MR::FunctorBase &, const char *);

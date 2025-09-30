@@ -40,12 +40,12 @@ public:
     void exeDirectTackle();
     void exeDrift();
     void exeDriftRelease();
+    void exeBindStarPointer();
+    void endBindStarPointer();
     void exeExplosion();
     void exeShock();
     void exeDisperse();
     void exeReadyRestart();
-    void exeBindStarPointer();
-    void exeOnEndBindStarPointer();
     bool tryCheseEnd();
     bool tryDirectTackle();
     bool tryAbortDrift();

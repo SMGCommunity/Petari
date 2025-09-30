@@ -195,12 +195,11 @@ void Butler::startDemoStarPiece1() {
 void Butler::startDemoStarPiece2() {
     MR::setSensorRadius(this, "Body", 50.0f);
     MR::offSwitchB(this);
-    LiveActor *paired1 = MR::getPairedGroupMember(this);
-    StarPieceGroup* starPiece;
-    starPiece->forceKillStarPieceAll(false);
-    LiveActor *paired2 = MR::getPairedGroupMember(this);
-    paired2->kill();
+    static_cast<StarPieceGroup*>(MR::getPairedGroupMember(this))->forceKillStarPieceAll(false);
+    MR::getPairedGroupMember(this)->kill();
+ 
     _160 = false;
+
     MR::invalidateClipping(this);
     LiveActor::appear();
     setNerve(&NrvButler::ButlerNrvDemo::sInstance);
@@ -289,11 +288,9 @@ bool Butler::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pRec
                 }
             }
             else {
-                bool v1 = false;
-                if (isNerve(mWaitNerve) || isNerve(&NrvButler::ButlerNrvStarPieceReaction::sInstance)) {
-                    v1 = true;
-                }
-                
+                bool v1 = isNerve(mWaitNerve)
+                    || isNerve(&NrvButler::ButlerNrvStarPieceReaction::sInstance);
+
                 if (v1) {
                     setNerve(&NrvButler::ButlerNrvStarPieceReaction::sInstance);
                 }
@@ -396,38 +393,42 @@ void Butler::forceNerveToWait() {
 }
 
 void Butler::tryReplaceStarPieceIfExecLecture() {
-    StarPieceGroup* starPiece;
-    if (!MR::getStarPieceNum()) {
-        if (!MR::isDead(MR::getPairedGroupMember(this))) {
-            MR::getPairedGroupMember(this);
-            if (!starPiece->isExistAnyStarPiece()) {
-                _168 += 1;
-                if (_168 == 120) {
-                    MR::getPairedGroupMember(this);
-                    starPiece->forceReplaceStarPieceAll();
-                    MR::startSystemSE("SE_SY_LECT_STAR_PIECE_APR", -1, -1);
-                    _168 = 0;
-                }
-            }
-        }
+    if (MR::getStarPieceNum() != 0) {
+        return;
     }
+
+    if (MR::isDead(MR::getPairedGroupMember(this))) {
+        return;
+    }
+
+    if (static_cast<StarPieceGroup*>(MR::getPairedGroupMember(this))->isExistAnyStarPiece()) {
+        return;
+    }
+
+    _168++;
+
+    if (_168 != 120) {
+        return;
+    }
+
+    static_cast<StarPieceGroup*>(MR::getPairedGroupMember(this))->forceReplaceStarPieceAll();
+
+    MR::startSystemSE("SE_SY_LECT_STAR_PIECE_APR", -1, -1);
+
+    _168 = 0;
 }
 
 bool Butler::tryStartStarPieceReaction() {
-    bool isNerveOn = false;
-    if (isNerve(mWaitNerve) || isNerve(&NrvButler::ButlerNrvStarPieceReaction::sInstance)) {
-        isNerveOn = true;
-    }
+    bool isNerveOn = isNerve(mWaitNerve)
+        || isNerve(&NrvButler::ButlerNrvStarPieceReaction::sInstance);
 
     if (isNerveOn && _164 <= 5) {
         setNerve(&NrvButler::ButlerNrvStarPieceReaction::sInstance);
         return (_164 >= 5);
     }
     else {
-        isNerveOn = false;
-        if (isNerve(mWaitNerve) || isNerve(&NrvButler::ButlerNrvStarPieceReaction::sInstance)) {
-            isNerveOn = true;
-        }
+        isNerveOn = isNerve(mWaitNerve)
+            || isNerve(&NrvButler::ButlerNrvStarPieceReaction::sInstance);
 
         if (!isNerveOn && _164 == 5) {
             MR::requestStartTimeKeepDemoMarioPuppetable(this, "スターピース解説後半", nullptr, &NrvButler::ButlerNrvWaitStartDemo::sInstance, nullptr);
@@ -446,10 +447,7 @@ bool Butler::tryStartStarPieceReaction() {
 }
 
 void Butler::exeStarPieceReaction() {
-    bool reaction = false;
-    if (_160 && _164 >= 5) {
-        reaction = true;
-    }
+    bool reaction = _160 && _164 >= 5;
 
     if (MR::isFirstStep(this)) {
         mButlerState->appear();

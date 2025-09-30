@@ -1,5 +1,11 @@
 #include "Game/Map/FileSelectEffect.hpp"
 
+namespace {
+    NEW_NERVE(FileSelectEffectNrvAppear, FileSelectEffect, Appear);
+    NEW_NERVE(FileSelectEffectNrvWait, FileSelectEffect, Wait);
+    NEW_NERVE(FileSelectEffectNrvDisappear, FileSelectEffect, Disappear);
+};
+
 FileSelectEffect::FileSelectEffect(const char *pName) : LiveActor(pName) {
     mEffectFrame = 0.0f;
 }
@@ -30,6 +36,10 @@ void FileSelectEffect::exeAppear() {
     }
 }
 
+void FileSelectEffect::exeWait() {
+    
+}
+
 void FileSelectEffect::exeDisappear() {
     if (MR::isFirstStep(this)) {
         MR::startBrk(this, "Disappear");
@@ -43,12 +53,6 @@ void FileSelectEffect::exeDisappear() {
 }
 
 // FileSelectEffect::calcAndSetBaseMtx
-
-namespace {
-    INIT_NERVE(FileSelectEffectNrvAppear);
-    INIT_NERVE(FileSelectEffectNrvWait);
-    INIT_NERVE(FileSelectEffectNrvDisappear);
-};
 
 FileSelectEffect::~FileSelectEffect() {
 

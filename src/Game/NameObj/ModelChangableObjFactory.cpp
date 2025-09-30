@@ -1,48 +1,75 @@
+#include "Game/Boss/TripodBossRailMoveParts.hpp"
+#include "Game/Boss/TripodBossRotateParts.hpp"
+#include "Game/MapObj/AssemblyBlock.hpp"
+#include "Game/MapObj/SimpleNormalMapObj.hpp"
 #include "Game/NameObj/ModelChangableObjFactory.hpp"
+#include "Game/NameObj/NameObjFactory.hpp"
+#include "Game/Util/FileUtil.hpp"
+#include "Game/Util/MapPartsUtil.hpp"
 #include <cstring>
 
-namespace MR {
-    inline const Model2CreateFunc* getModelCreateFunc(const char *pName) {
-        for (u32 i = 0; i < 0xC; i++) {
-            const Model2CreateFunc* func = &cModelChangableObjCreatorTable[i];
+namespace {
+    const Model2CreateFunc cModelChangableObjCreatorTable[] = {
+        { nullptr, "AssemblyBlock", createNameObj<AssemblyBlock>, },
+        { nullptr, "ClipFieldMapParts", createNameObj<ClipFieldMapParts>, },
+        { nullptr, "FlexibleSphere", /* createNameObj<FlexibleSphere>, */ },
+        { nullptr, "MercatorFixParts", createNameObj<MercatorFixParts>, },
+        { nullptr, "MercatorRailMoveParts", createNameObj<MercatorRailMoveParts>, },
+        { nullptr, "MercatorRotateParts", createNameObj<MercatorRotateParts>, },
+        { nullptr, "TripodBossFixParts", createNameObj<TripodBossFixParts>, },
+        { nullptr, "TripodBossRailMoveParts", createNameObj<TripodBossRailMoveParts>, },
+        { nullptr, "TripodBossRotateParts", createNameObj<TripodBossRotateParts>, },
+        { nullptr, "TripodBossRotateParts", createNameObj<TripodBossRotateParts>, },
+        { nullptr, "SimpleNormalMapObj", createNameObj<SimpleNormalMapObj>, },
+        { nullptr, "SunshadeMapParts", /* MR::createSunshadeMapParts, */ },
+    };
+
+    const Model2CreateFunc* getModel2CreateFunc(const char *pName) {
+        for (s32 i = 0; i < sizeof(cModelChangableObjCreatorTable) / sizeof(*cModelChangableObjCreatorTable); i++) {
+            const Model2CreateFunc* pModel2CreateFunc = &cModelChangableObjCreatorTable[i];
             bool v7;
-            if (func->_0 != nullptr) {
-                v7 = strncmp(pName, func->_0, strlen(func->_0)) == 0;
+
+            if (pModel2CreateFunc->_0 != nullptr) {
+                v7 = strncmp(pName, pModel2CreateFunc->_0, strlen(pModel2CreateFunc->_0)) == 0;
             }
             else {
-                v7 = strcmp(pName, func->mArchiveName) == 0;
+                v7 = strcmp(pName, pModel2CreateFunc->mArchiveName) == 0;
             }
 
             if (v7) {
-                return func;
+                return pModel2CreateFunc;
             }
         }
 
         return nullptr;
     }
+};
 
-    CreationFuncPtr getModelChangableObjCreator(const char *pName) {
-        const Model2CreateFunc* func = getModelCreateFunc(pName);
+namespace MR {
+    CreatorFuncPtr getModelChangableObjCreator(const char *pName) {
+        const Model2CreateFunc* pModel2CreateFunc = getModel2CreateFunc(pName);
 
-        if (func != nullptr) {
-            return func->mCreationFunc;
+        if (pModel2CreateFunc != nullptr) {
+            return pModel2CreateFunc->mCreatorFunc;
         }
 
         return nullptr;
     }
 
     void requestMountModelChangableObjArchives(const char *pName, s32 a2) {
-        char buf[0x80];
-        MR::getMapPartsObjectName(buf, sizeof(buf), pName, a2);
-        MR::mountAsyncArchiveByObjectOrLayoutName(buf, nullptr);
+        char objectName[128];
+
+        MR::getMapPartsObjectName(objectName, sizeof(objectName), pName, a2);
+        MR::mountAsyncArchiveByObjectOrLayoutName(objectName, nullptr);
     }
 
     bool isReadResourceFromDVDAtModelChangableObj(const char *pName, s32 a2) {
-        char buf[0x80];
-        MR::getMapPartsObjectName(buf, sizeof(buf), pName, a2);
-        char archiveName[0x80];
-        MR::makeObjectArchiveFileNameFromPrefix(archiveName, sizeof(archiveName), buf, true);
+        char objectName[128];
+        char archiveName[128];
 
-        return MR::isLoadedFile(archiveName) == false;
+        MR::getMapPartsObjectName(objectName, sizeof(objectName), pName, a2);
+        MR::makeObjectArchiveFileNameFromPrefix(archiveName, sizeof(archiveName), objectName, true);
+
+        return !MR::isLoadedFile(archiveName);
     }
 };

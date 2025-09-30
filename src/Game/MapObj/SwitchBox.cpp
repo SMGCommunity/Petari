@@ -16,9 +16,7 @@ void SwitchBox::init(const JMapInfoIter &rIter) {
 	initEffectKeeper(3, nullptr, false);
 	f32 newScale = mScale.x * 90.0f;
 	initHitSensor(2);
-	TVec3f sensorOffset;
-	sensorOffset.set(0.0f, newScale, 0.0f);
-	MR::addHitSensorMapObj(this, "body", 8, newScale, sensorOffset);
+	MR::addHitSensorMapObj(this, "body", 8, newScale, TVec3f(0.0f, newScale, 0.0f));
 
 	s32 local_38 = 1;
 
@@ -162,11 +160,11 @@ bool SwitchBox::receiveMsgEnemyAttack(u32 msg, HitSensor *pSender, HitSensor *pR
 }
 
 bool SwitchBox::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
-	if (msg == 0x1b) {
+	if (msg == ACTMES_IS_PUNCH_ENABLE) {
 		return _90;
 	}
 
-	if (msg == 0x41) {
+	if (msg == ACTMES_IS_BROKEN) {
 		return !_90;
 	}
 

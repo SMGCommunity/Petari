@@ -76,41 +76,41 @@ void NeedlePlant::kill() {
     MapObjActor::kill();
 }
 
-void NeedlePlant::attackSensor(HitSensor *a1, HitSensor *a2) {
+void NeedlePlant::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
     // TODO: Possible inline. https://decomp.me/scratch/zwlUm
-    if (MR::calcDistance(a1, a2, nullptr) > 70.0f * mScale.x + a2->mRadius) {
+    if (MR::calcDistance(pSender, pReceiver, nullptr) > 70.0f * mScale.x + pReceiver->mRadius) {
         return;
     }
 
-    if (MR::isSensorPlayerOrRide(a2) && MR::sendMsgEnemyAttack(a2, a1)) {
-        MR::emitEffectHitBetweenSensors(this, a1, a2, 0.0f, nullptr);
+    if (MR::isSensorPlayerOrRide(pReceiver) && MR::sendMsgEnemyAttack(pReceiver, pSender)) {
+        MR::emitEffectHitBetweenSensors(this, pSender, pReceiver, 0.0f, nullptr);
         setNerve(&NrvNeedlePlant::NeedlePlantNrvShake::sInstance);
-    } else if (MR::isSensorPlayerOrRide(a2) || MR::isSensorEnemy(a2)) {
+    } else if (MR::isSensorPlayerOrRide(pReceiver) || MR::isSensorEnemy(pReceiver)) {
         f32 mRadius;
         mRadius = getSensor(nullptr)->mRadius;
         getSensor(nullptr)->mRadius = 70.0f * mScale.x;
-        MR::sendMsgPush(a2, a1);
+        MR::sendMsgPush(pReceiver, pSender);
         getSensor(nullptr)->mRadius = mRadius;
     }
 }
 
-bool NeedlePlant::receiveMsgPush(HitSensor *a1, HitSensor *a2) {
+bool NeedlePlant::receiveMsgPush(HitSensor *pSender, HitSensor *pReceiver) {
     if (isNerve(&NrvNeedlePlant::NeedlePlantNrvShake::sInstance)) {
         return false;
     }
     
-    if (!MR::isSensorEnemy(a1)) {
+    if (!MR::isSensorEnemy(pSender)) {
         return false;
     }
     setNerve(&NrvNeedlePlant::NeedlePlantNrvShake::sInstance);
     return true;
 }
 
-bool NeedlePlant::receiveMsgPlayerAttack(u32 a1, HitSensor *a2, HitSensor *a3) {
-    if (MR::isMsgStarPieceReflect(a1)) {
+bool NeedlePlant::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+    if (MR::isMsgStarPieceReflect(msg)) {
         setNerve(&NrvNeedlePlant::NeedlePlantNrvShake::sInstance);
         return true;
-    } else if (MR::isMsgInvincibleAttack(a1)) {
+    } else if (MR::isMsgInvincibleAttack(msg)) {
         kill();
         return true;
     } else {
@@ -118,7 +118,7 @@ bool NeedlePlant::receiveMsgPlayerAttack(u32 a1, HitSensor *a2, HitSensor *a3) {
     }
 }
 
-bool NeedlePlant::receiveMsgEnemyAttack(u32 a1, HitSensor *a2, HitSensor *a3) {
+bool NeedlePlant::receiveMsgEnemyAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     kill();
     return true;
 }

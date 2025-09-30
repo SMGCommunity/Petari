@@ -33,8 +33,8 @@ public:
     void exeStop();
     void exeRecover();
     void exeDPDSwoon();
+    void endDPDSwoon();
     void exeStopForPlayerOff();
-    inline void exeOnEndDPDSwoon();
     bool calcJointPropeller(TPos3f *, const JointControllerInfo &);
     bool calcJointBeamStart(TPos3f *, const JointControllerInfo &);
     bool calcJointBeamEnd(TPos3f *, const JointControllerInfo &);

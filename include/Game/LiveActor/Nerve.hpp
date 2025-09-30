@@ -131,7 +131,7 @@ public:\
     };\
     virtual void executeOnEnd(Spine *pSpine) const {\
         parent_class* actor = reinterpret_cast<parent_class*>(pSpine->mExecutor);\
-        actor->exeOnEnd##executorOnEnd_name();\
+        actor->end##executorOnEnd_name();\
     };\
     static name sInstance;\
 };\

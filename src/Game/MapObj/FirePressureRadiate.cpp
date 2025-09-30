@@ -90,7 +90,7 @@ void FirePressureRadiate::exeRelax() {
 void FirePressureRadiate::exeSyncWait() {
     if (_DC) {
         if (MR::isStep(this, 60)) {
-            mGroup->sendMsgToGroupMember(104, getSensor("body"), "body");
+            mGroup->sendMsgToGroupMember(ACTMES_GROUP_MOVE_START, getSensor("body"), "body");
         }
     }
 }
@@ -139,7 +139,7 @@ void FirePressureRadiate::exeRadiateMargin() {
         }
 
         if (_DC) {
-            mGroup->sendMsgToGroupMember(105, getSensor("body"), "body");
+            mGroup->sendMsgToGroupMember(ACTMES_GROUP_MOVE_STOP, getSensor("body"), "body");
         }
     }
 }
@@ -164,22 +164,24 @@ void FirePressureRadiate::control() {
     }
 }
 
-void FirePressureRadiate::attackSensor(HitSensor *a1, HitSensor *a2) {
-    if (MR::isSensorEnemyAttack(a1) && MR::isSensorPlayerOrRide(a2)) {
-        MR::sendMsgEnemyAttackFire(a2, a1);
+void FirePressureRadiate::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
+    if (MR::isSensorEnemyAttack(pSender) && MR::isSensorPlayerOrRide(pReceiver)) {
+        MR::sendMsgEnemyAttackFire(pReceiver, pSender);
     }
-    else if (MR::isSensorMapObj(a1) && (MR::isSensorPlayer(a2) || MR::isSensorEnemy(a2))) {
-        MR::sendMsgPush(a2, a1);
+    else if (MR::isSensorMapObj(pSender) && (MR::isSensorPlayer(pReceiver) || MR::isSensorEnemy(pReceiver))) {
+        MR::sendMsgPush(pReceiver, pSender);
     }
 }
 
-bool FirePressureRadiate::receiveOtherMsg(u32 msg, HitSensor *a1, HitSensor *) {
-    if (msg == 105) {
+bool FirePressureRadiate::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+    if (msg == ACTMES_GROUP_MOVE_STOP) {
         setNerve(&NrvFirePressureRadiate::FirePressureRadiateNrvSyncWait::sInstance);
+
         return true;
     }
-    else if (msg == 104) {
+    else if (msg == ACTMES_GROUP_MOVE_START) {
         setNerve(&NrvFirePressureRadiate::FirePressureRadiateNrvWait::sInstance);
+
         return true;
     }
 

@@ -7,7 +7,7 @@ MessageSensorHolder::MessageSensorHolder(const char *pName) : LiveActor(pName) {
 
 void MessageSensorHolder::init(const JMapInfoIter &rIter) {
     initHitSensor(1);
-    MR::addBodyMessageSensor(this, 0x83);
+    MR::addBodyMessageSensor(this, ATYPE_MESSAGE_SENSOR);
     MR::invalidateClipping(this);
     makeActorAppeared();
 }

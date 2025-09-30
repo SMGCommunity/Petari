@@ -63,8 +63,3 @@ public:
 namespace MR {
     bool isExistPriorDrawAir();
 };
-
-namespace NrvAir {
-    NERVE_DECL(HostTypeIn, Air, Air::exeIn);
-    NERVE_DECL(HostTypeOut, Air, Air::exeOut);
-};

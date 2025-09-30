@@ -70,8 +70,8 @@ void AirBubble::exeBreak() {
     }
 }
 
-bool AirBubble::receiveMsgPush(HitSensor *a2, HitSensor *a3) {
-    if (MR::isSensorPlayer(a2)) {
+bool AirBubble::receiveMsgPush(HitSensor *pSender, HitSensor *pReceiver) {
+    if (MR::isSensorPlayer(pReceiver)) {
         if (isNerve(&NrvAirBubble::AirBubbleNrvKillWait::sInstance)) {
             MR::incPlayerOxygen(8);
             kill();
@@ -87,15 +87,15 @@ bool AirBubble::receiveMsgPush(HitSensor *a2, HitSensor *a3) {
     return false;
 }
 
-bool AirBubble::receiveOtherMsg(u32 msg, HitSensor *a2, HitSensor *a3) {
+bool AirBubble::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     bool res;
 
     if (MR::isMsgItemShow(msg)) {
-        return MR::receiveItemShowMsg(msg, a2, a3);
+        return MR::receiveItemShowMsg(msg, pSender, pReceiver);
     }
 
     if (MR::isMsgItemHide(msg)) {
-        return MR::receiveItemHideMsg(msg, a2, a3);
+        return MR::receiveItemHideMsg(msg, pSender, pReceiver);
     }
 
     if (MR::isMsgItemStartMove(msg)) {
@@ -108,7 +108,7 @@ bool AirBubble::receiveOtherMsg(u32 msg, HitSensor *a2, HitSensor *a3) {
         return true;
     }
     else if (MR::isMsgSpinStormRange(msg) && canSpinGet()) {
-        TVec3f stack_8(a2->mPosition);
+        TVec3f stack_8(pSender->mPosition);
         stack_8 -= mPosition;
 
         if (PSVECMag(&stack_8) < 250.0f) {

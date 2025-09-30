@@ -1589,7 +1589,7 @@ config.libs = [
             Object(NonMatching, "Game/MapObj/SpaceShipStep.cpp"),
             Object(NonMatching, "Game/MapObj/SphereRailDash.cpp"),
             Object(NonMatching, "Game/MapObj/SpiderCoin.cpp"),
-            Object(NonMatching, "Game/MapObj/SpiderMapBlock.cpp"),
+            Object(Matching, "Game/MapObj/SpiderMapBlock.cpp"),
             Object(NonMatching, "Game/MapObj/SpiderThread.cpp"),
             Object(NonMatching, "Game/MapObj/SpiderThreadHangInfo.cpp"),
             Object(NonMatching, "Game/MapObj/SpiderThreadMainPoint.cpp"),

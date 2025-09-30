@@ -35,4 +35,5 @@ public:
 
 namespace MR {
     WPad* getWPad(s32 channel);
+    void resetWPad();
 };

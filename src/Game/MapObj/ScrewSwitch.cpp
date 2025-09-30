@@ -44,7 +44,7 @@ void ScrewSwitch::init(const JMapInfoIter& rIter) {
     MR::addBodyMessageSensorMapObj(this);
     TVec3f var1;
     var1.scale(-150.0f, mGravity);
-    MR::addHitSensorAtJoint(this, "binder", "Screw", 97, 8, 150.0f, var1);
+    MR::addHitSensorAtJoint(this, "binder", "Screw", ATYPE_BINDER, 8, 150.0f, var1);
     MtxPtr jointMtx = MR::getJointMtx(this, "Screw");
     HitSensor* Sensor = getSensor("binder");
     MR::initCollisionParts(this, "ScrewCol", Sensor, jointMtx);
@@ -114,18 +114,20 @@ void ScrewSwitch::control() {
     mCollisionParts->setMtx();
 }
 
-bool ScrewSwitch::receiveOtherMsg(u32 a0, HitSensor* a1 , HitSensor* a2) { 
-    HitSensor* Sensor;
-    if (MR::isMsgRushBegin(a0) && MR::isSensorPlayer(a1) && MR::isOnPlayer(getSensor("binder"))) {
-        _90 = a1->mActor;
+bool ScrewSwitch::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+    if (MR::isMsgRushBegin(msg) && MR::isSensorPlayer(pSender) && MR::isOnPlayer(getSensor("binder"))) {
+        _90 = pSender->mHost;
         MR::startSound(_90, "SE_PV_TWIST_START", -1, -1);
         MR::startSound(_90, "SE_PM_SPIN_ATTACK", -1, -1);
         setNerve(&NrvScrewSwitch::ScrewSwitchNrvAdjust::sInstance);
         return true;
-    } else if (MR::isMsgUpdateBaseMtx(a0) && _90 && isNerve(&NrvScrewSwitch::ScrewSwitchNrvScrew::sInstance)) {
+    }
+
+    if (MR::isMsgUpdateBaseMtx(msg) && _90 && isNerve(&NrvScrewSwitch::ScrewSwitchNrvScrew::sInstance)) {
         updateBindActorMtx();
         return true;
     }
+
     return false;
 }
 

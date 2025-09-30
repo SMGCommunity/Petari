@@ -50,29 +50,29 @@ void TreasureSpot::control() {
     }
 }
 
-bool TreasureSpot::receiveMsgPlayerAttack(u32 msg, HitSensor *a2, HitSensor *a3) {
+bool TreasureSpot::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     if (isNerve(&NrvTreasureSpot::TreasureSpotNrvSpout::sInstance)) {
-        return 0;
+        return false;
     }
 
     if (isNerve(&NrvTreasureSpot::TreasureSpotNrvEnd::sInstance)) {
-        return 0;
+        return false;
     }
 
     if (!MR::isNearPlayerAnyTime(this, 2000.0f)) {
-        return 0;
+        return false;
     }
 
     if (MR::isMsgLockOnStarPieceShoot(msg)) {
-        return 1;
+        return true;
     }
 
     if (MR::isMsgStarPieceAttack(msg)) {
         setNerve(&NrvTreasureSpot::TreasureSpotNrvSpout::sInstance);
-        return 1;
+        return true;
     }
 
-    return 0;
+    return false;
 }
 
 void TreasureSpot::switchEmitGlow() {
