@@ -2307,7 +2307,7 @@ Game/Demo/StarReturnDemoStarter.cpp:
 
 Game/Effect/AstroEffectObj.cpp:
 	.text       start:0x800C44B4 end:0x800C46E8
-	.data       start:0x80578200 end:0x805783D0
+	.data       start:0x80578200 end:0x80578290
 	.sdata2     start:0x806B9CE0 end:0x806B9CF0
 
 Game/Effect/AutoEffectGroup.cpp:
@@ -2323,7 +2323,7 @@ Game/Effect/AutoEffectInfo.cpp:
 
 Game/Effect/EffectObjGravityDust.cpp:
 	.text       start:0x800C5328 end:0x800C54FC
-	.data       start:0x805783D0 end:0x80578460
+	.data       start:0x80578290 end:0x80578460
 	.sdata2     start:0x806B9CF8 end:0x806B9D10
 
 Game/Effect/EffectSystem.cpp:
@@ -2375,14 +2375,14 @@ Game/Effect/ParticleResourceHolder.cpp:
 
 Game/Effect/RandomEffectObj.cpp:
 	.text       start:0x800CA934 end:0x800CAC10
-	.data       start:0x80578860 end:0x80578AE8
+	.data       start:0x80578860 end:0x805788F0
 	.sdata2     start:0x806B9D70 end:0x806B9D80
 
 Game/Effect/SimpleEffectObj.cpp:
 	.text       start:0x800CAC10 end:0x800CB2A8
 	.ctors      start:0x8052EA20 end:0x8052EA24
 	.rodata     start:0x80531AB0 end:0x80531BF0
-	.data       start:0x80578AE8 end:0x80578BE0
+	.data       start:0x805788F0 end:0x80578BE0
 	.sbss       start:0x806B3AF8 end:0x806B3B00
 
 Game/Effect/SingleEmitter.cpp:
