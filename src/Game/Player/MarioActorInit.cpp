@@ -379,10 +379,10 @@ void MarioActor::initMember()
     _F42 = 0;
     _F44 = 0;
     _F48 = 0;
-    _F4C = 0;
-    _F50.zero();
-    _F5C.zero();
-    _F68.zero();
+    mBlackHole = nullptr;
+    mBlackHolePosition.zero();
+    mBlackHoleRotateAxis.zero();
+    mPosRelativeToBlackHole.zero();
     _F74 = 0;
     mCamPos.zero();
     mCamDirX.zero();

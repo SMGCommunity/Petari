@@ -19,10 +19,10 @@ HashSortTable::HashSortTable(u32 cnt) {
     mHasBeenSorted = false;
 }
 
-bool HashSortTable::add(const char *pName, u32 a2, bool noSkip) {
+bool HashSortTable::add(const char *pName, u32 a2, bool Skip) {
     u32 hash = MR::getHashCode(pName);
 
-    if (!noSkip) {
+    if (Skip) {
         return addOrSkip(hash, a2);
     }
     else {
@@ -129,6 +129,18 @@ s32 HashSortTable::search(const char *pStr, u32 *a2) {
 s32 HashSortTable::search(const char *pStr, const char *a2, u32 *a3) {
     u32 hashCode = MR::getHashCode(pStr) + MR::getHashCode(a2);
     return search(hashCode, a3);
+}
+
+void HashSortTable::swap(const char *pStr1, const char *pStr2){
+    u32 hashCode = MR::getHashCode(pStr1);
+    for(int i = 0; i < mCurrentLength; i++){
+        if (mHashCodes[i] == hashCode){
+            mHashCodes[i] = MR::getHashCode(pStr2);
+            return;
+        }
+    }
+    // does not increment mCurrentLength?
+    mHashCodes[mCurrentLength] = hashCode;
 }
 
 namespace MR {
