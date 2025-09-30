@@ -83,13 +83,3 @@ public:
     static void calcOffsetPos(TVec3f *, const TVec3f &, const TVec3f &, const TVec3f &, const TVec3f &);
 
 };
-
-namespace NrvSphereSelector {
-    NERVE_DECL(SphereSelectorNrvConfirmed, SphereSelector, SphereSelector::exeConfirm);
-    NERVE_DECL(SphereSelectorNrvConfirmCancel, SphereSelector, SphereSelector::exeConfirmCancel);
-    NERVE_DECL_NULL(SphereSelectorNrvConfirmWait);
-    NERVE_DECL(SphereSelectorNrvConfirmStart, SphereSelector, SphereSelector::exeConfirmStart);
-    NERVE_DECL(SphereSelectorNrvSelectCancel, SphereSelector, SphereSelector::exeSelectCancel);
-    NERVE_DECL(SphereSelectorNrvSelectWait, SphereSelector, SphereSelector::exeSelectWait);
-    NERVE_DECL(SphereSelectorNrvSelectStart, SphereSelector, SphereSelector::exeSelectStart);
-};
