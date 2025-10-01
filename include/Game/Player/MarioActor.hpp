@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
+#include "Game/MapObj/BlackHole.hpp"
 #include "Game/Player/Mario.hpp"
 
 class FootPrint;
@@ -177,6 +178,7 @@ public:
     bool tryStandardRush();
     void checkPriorRushTarget();
     u8 selectAction(const char *) const;
+    void changeMorphString(const char*) const;
     bool tryRushInRush();
     void bodyClap();
     bool selectWaterInOut(const char *) const;
@@ -193,6 +195,8 @@ public:
     bool isRequestRush() const;
     bool isRequestSpinJump2P() const;
     bool tryReleaseBombTeresa();
+    void initBlackHoleOut(); // void ?
+    void exeGameOverBlackHole2();
     bool isEnableSpinPunch();
     bool trySpinPunch();
     void shootFireBall();
@@ -615,7 +619,7 @@ public:
     bool _F44;
     // padding
     u32 _F48;
-    u32 _F4C;
+    BlackHole *_F4C;
     TVec3f _F50;
     TVec3f _F5C;
     TVec3f _F68;
