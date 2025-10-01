@@ -1016,7 +1016,7 @@ config.libs = [
     GameLib(
         "Effect",
         [
-            Object(NonMatching, "Game/Effect/AstroEffectObj.cpp"),
+            Object(Matching, "Game/Effect/AstroEffectObj.cpp"),
             Object(NonMatching, "Game/Effect/AutoEffectGroup.cpp"),
             Object(NonMatching, "Game/Effect/AutoEffectGroupHolder.cpp"),
             Object(NonMatching, "Game/Effect/AutoEffectInfo.cpp"),
