@@ -328,7 +328,10 @@ bool EyeBeamer::isInBeamRange(const TVec3f& rVec) const {
     MR::calcUpVec(&stack_44, this);
     stack_44.negate();
     TVec3f stack_38;
-    stack_38.set<f32>(_9C[2][3], _9C[1][3], _9C[0][3]);
+    f32 f3 = _9C[2][3];
+    f32 f2 = _9C[1][3];
+    f32 f1 = _9C[0][3];
+    stack_38.set<f32>(f1, f2, f3);
     f32 dot = stack_44.dot(rVec-stack_38);
 
     if (dot < 0.0f || _15C < dot)
