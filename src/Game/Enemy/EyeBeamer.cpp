@@ -214,7 +214,9 @@ void EyeBeamer::calcAnim() {
     LiveActor::calcAnim();
     MtxPtr mtx = MR::getJointMtx(this, "Beam");
     _9C.setInline(mtx);
-    MR::preScaleMtx(_9C, TVec3f(1.0f, _15C/2000.0f, 1.0f));
+    f32 one = 1.0f;
+    f32 temp = _15C/2000.0f;
+    MR::preScaleMtx(_9C, TVec3f(one, temp, one));
 }
 
 void EyeBeamer::calcAndSetBaseMtx() {};
@@ -254,16 +256,16 @@ void EyeBeamer::exeDemoTurn() {
 
     f32 rate = MR::calcDemoPartStepRate("アイビーマー回転");
     f32 easeIn = MR::getEaseInOutValue(rate, 0.0f, 1.0f, 1.0f);
+    TQuat4f stack_30;
     TVec3f stack_24;
     _CC.getXDir(stack_24);
-    TQuat4f stack_30;
     stack_30.setRotate(stack_24, PI*easeIn);
     PSQUATMultiply((Quaternion*)&stack_30, (Quaternion*)&_CC, (Quaternion*)&_DC);
     
     if (MR::isDemoPartLastStep("アイビーマー回転")) {
+        TQuat4f stack_14;
         TVec3f stack_8;
         _CC.getXDir(stack_8);
-        TQuat4f stack_14;
         stack_14.setRotate(stack_8, PI);
         PSQUATMultiply((Quaternion*)&stack_14, (Quaternion*)&_CC, (Quaternion*)&_DC);
         setNerve(&NrvEyeBeamer::EyeBeamerNrvDemoWait::sInstance);
