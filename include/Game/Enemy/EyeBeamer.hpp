@@ -50,7 +50,7 @@ public:
     TVec3f _EC;
     TVec3f _F8;
     TVec3f _104;
-    TRot3f mWaterSurfaceMtx;                    // 0x110
+    TPos3f mWaterSurfaceMtx;                    // 0x110
     TVec3f _140;
     u32 _14C;
     u32 _150;
@@ -58,16 +58,16 @@ public:
     u32 _158;
     f32 _15C;
     f32 _160;
-    bool mIsInMercatorCube;         // 0x16
+    bool mIsInMercatorCube;         // 0x164
     
 };
 namespace NrvEyeBeamer {
     NERVE_DECL_NULL(EyeBeamerNrvDemoStartWait);
     NERVE(EyeBeamerNrvDemoWait);
     NERVE_DECL_EXE(EyeBeamerNrvDemoTurn, EyeBeamer, DemoTurn);
-    NERVE_DECL_EXE(EyeBeamerNrvDemoGotoPatrol, EyeBeamer, GotoPatrol);
+    NERVE_DECL_EXE(EyeBeamerNrvDemoGotoPatrol, EyeBeamer, DemoGotoPatrol);
     NERVE_DECL_NULL(EyeBeamerNrvWait);
     NERVE_DECL_EXE(EyeBeamerNrvTurn, EyeBeamer, Turn);
-    NERVE_DECL_EXE(EyeBeamerNrvGotoPatrol, EyeBeamer, DemoGotoPatrol);
+    NERVE_DECL_EXE(EyeBeamerNrvGotoPatrol, EyeBeamer, GotoPatrol);
     NERVE_DECL_EXE(EyeBeamerNrvPatrol, EyeBeamer, Patrol);
 };
