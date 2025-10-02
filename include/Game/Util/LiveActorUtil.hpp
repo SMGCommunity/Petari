@@ -85,6 +85,8 @@ namespace MR {
     void showModelIfHidden(LiveActor*);
     void hideModelIfHidden(LiveActor*);
 
+    void hideModelIfShown(LiveActor *);
+
     void hideModelAndOnCalcAnim(LiveActor*);
     void stopAnimFrame(LiveActor*);
 
