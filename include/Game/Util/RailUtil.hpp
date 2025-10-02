@@ -106,6 +106,7 @@ namespace MR {
     void calcMovingDirectionAlongRailH(LiveActor *, TVec3f *, const TVec3f &, float, bool *);
 
     void calcRailPosAndDirectionAtCoord(TVec3f *, TVec3f *, const LiveActor *, f32);
+    void calcRailStartPos(TVec3f*, const LiveActor*);
 
     void calcBoundingBox(const LiveActor *, TBox3f *, f32);
 

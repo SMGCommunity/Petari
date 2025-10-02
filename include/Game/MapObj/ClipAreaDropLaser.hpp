@@ -2,7 +2,6 @@
 
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/Nerve.hpp"
-#include "Game/NameObj/NameObj.hpp"
 #include "Game/Util/JMapInfo.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
 #include <cstddef>
@@ -18,11 +17,11 @@ public:
     void exeMove();
     void incrementDrawCount();
 
-    TVec3f _8C[0x40];
-    f32 _38C;
-    int _390;
-    int _394;
-    f32 _398;
+    TVec3f mPoints[0x40]; // 0x8C
+    f32 mNumPointsToDraw; // 0x38C
+    int mPointIndexToSkipDraw; // 0x390
+    int mDrawCount; // 0x394
+    f32 mSpeed; // 0x398
 };
 
 namespace NrvClipAreaDropLaser {

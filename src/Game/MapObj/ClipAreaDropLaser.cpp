@@ -15,13 +15,19 @@
 #include "revolution/gx/GXEnum.h"
 #include "revolution/gx/GXGeometry.h"
 #include "revolution/gx/GXPixel.h"
-#include "Game/MapObj/ClipHolder.h"
+
+void sdata2() {
+    f32 f = 1.0f;
+    f32 f2 = 0.0f;
+    f32 f3 = -1.0f;
+}
+
 
 ClipAreaDropLaser::ClipAreaDropLaser(const char* pName) : LiveActor(pName) {
-    _38C = 0.0f;
-    _390 = -1;
-    _394 = -1;
-    _398 = 20.0f;
+    mNumPointsToDraw = 0.0f;
+    mPointIndexToSkipDraw = -1;
+    mDrawCount = -1;
+    mSpeed = 20.0f;
     MR::createClipAreaDropHolder();
 }
 
@@ -30,8 +36,8 @@ void ClipAreaDropLaser::init(const JMapInfoIter& rIter) {
     MR::connectToScene(this, 0x22, -1, -1, 0x14);
     initRailRider(rIter);
     MR::moveCoordAndTransToRailStartPoint(this);
-    _398 = 20.0f;
-    MR::getJMapInfoArg0NoInit(rIter, &_398);
+    mSpeed = 20.0f;
+    MR::getJMapInfoArg0NoInit(rIter, &mSpeed);
     initEffectKeeper(0, "ClipAreaDropLaser", false);
     initSound(4, false);
     initNerve(&NrvClipAreaDropLaser::ClipAreaDropLaserNrvMove::sInstance);
@@ -51,24 +57,24 @@ void ClipAreaDropLaser::draw() const {
     GXSetLineWidth(0x14, GX_TO_ZERO);
     GXSetZMode(GX_TRUE, GX_LEQUAL, GX_FALSE);
 
-    for (int r29 = 1; r29 < _38C; r29++) {
-        int u1 = _394-(r29-1);
-        int u2 = _394-r29;
+    for (int r29 = 1; r29 < mNumPointsToDraw; r29++) {
+        int u1 = mDrawCount-(r29-1);
+        int u2 = mDrawCount-r29;
         
         if (u1 < 0)
             u1 += 0x40;
         if (u2 < 0)
             u2 += 0x40;
 
-        if (u1 != _390) {
-            TDDraw::drawLine(_8C[u1], _8C[u2], 0x40F080);
+        if (u1 != mPointIndexToSkipDraw) {
+            TDDraw::drawLine(mPoints[u1], mPoints[u2], 0x40F080);
         }
     }
 }
 
 void ClipAreaDropLaser::exeWait() {
-    if (_38C > 0.0f) {
-        _38C = _38C - 1.0f;
+    if (mNumPointsToDraw > 0.0f) {
+        mNumPointsToDraw = mNumPointsToDraw - 1.0f;
     }
 
     if (MR::isValidSwitchAppear(this) && MR::isOnSwitchAppear(this))
@@ -78,18 +84,18 @@ void ClipAreaDropLaser::exeWait() {
 void ClipAreaDropLaser::exeMove() {
     if (MR::isFirstStep(this)) {
         MR::moveCoordAndTransToRailStartPoint(this);
-        _38C = 0.0f;
+        mNumPointsToDraw = 0.0f;
     }
     s32 railPoint = 0;
-    railPoint = MR::moveCoordAndCheckPassPointNo(this, _398);
+    railPoint = MR::moveCoordAndCheckPassPointNo(this, mSpeed);
     MR::moveTransToCurrentRailPos(this);
     incrementDrawCount();
     if (MR::isRailReachedGoal(this)) {
-        _390 = _394;
+        mPointIndexToSkipDraw = mDrawCount;
         railPoint = MR::getRailPointNum(this)-1;
         MR::moveCoordAndTransToRailStartPoint(this);
     }
-    _8C[_394].set(mPosition);
+    mPoints[mDrawCount].set(mPosition);
     if (railPoint != -1) {
         TVec3f pos;
         MR::calcRailPointPos(&pos, this, railPoint);
@@ -107,14 +113,15 @@ void ClipAreaDropLaser::exeMove() {
 }
 
 void ClipAreaDropLaser::incrementDrawCount() {
-    _394 += 1;
-    if (_394 >= 0x40) {
-        _394 += -0x40;
+    mDrawCount += 1;
+    if (mDrawCount >= 0x40) {
+        mDrawCount += -0x40;
     }
-    if (_38C < 64.0f) {
-        _38C += 1.0f;
+    if (mNumPointsToDraw < 64.0f) {
+        mNumPointsToDraw += 1.0f;
     }
 }
+
 
 ClipAreaDropLaser::~ClipAreaDropLaser() {
 

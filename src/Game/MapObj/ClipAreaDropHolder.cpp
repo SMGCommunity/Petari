@@ -38,3 +38,4 @@ namespace MR {
         return true;
     }
 }
+ClipAreaDropHolder::~ClipAreaDropHolder() {}

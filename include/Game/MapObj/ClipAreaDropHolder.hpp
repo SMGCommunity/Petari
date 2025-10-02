@@ -7,6 +7,7 @@
 class ClipAreaDropHolder : public DeriveActorGroup<ClipAreaDrop> {
 public:
     ClipAreaDropHolder();
+    virtual ~ClipAreaDropHolder();
 };
 
 
