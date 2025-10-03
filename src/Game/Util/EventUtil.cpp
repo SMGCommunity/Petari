@@ -289,12 +289,10 @@ namespace MR {
             MR::getCurrentScenarioNo());
     }
 
-    /*
-    // TODO: GalaxyStatusAccessor has not yet been declared.
     bool isAlreadyVisitedStage(const char* pGalaxyName) {
         GalaxyStatusAccessor accessor = MR::makeGalaxyStatusAccessor(pGalaxyName);
 
-        for (int i = 1; i <= accessor.getScenarioNum(); i++) {
+        for (s32 i = 1; i <= accessor.getScenarioNum(); i++) {
             if (GameDataFunction::isOnGalaxyScenarioFlagAlreadyVisited(pGalaxyName, i)) {
                 return true;
             }
@@ -302,7 +300,6 @@ namespace MR {
 
         return false;
     }
-    */
 
     bool canOpenGalaxy(const char* pGalaxyName) {
         return GameDataFunction::canOnGameEventFlag(pGalaxyName);
@@ -405,12 +402,9 @@ namespace MR {
         return GameDataConst::getPowerStarNumToOpenGalaxy(pGalaxyName);
     }
 
-    /*
-    // TODO: GalaxyStatusAccessor has not yet been declared.
     s32 getPowerStarNumSucceed(const char* pGalaxyName) {
         return MR::makeGalaxyStatusAccessor(pGalaxyName).getPowerStarNumOwned();
     }
-    */
 
     bool isPowerStarGreen(const char* pGalaxyName, s32 starId) {
         return GameDataConst::isPowerStarGreen(pGalaxyName, starId);
@@ -521,8 +515,6 @@ namespace MR {
         return MR::isOnGameEventFlagGalaxyOpen("ViewNormalEnding");
     }
 
-    /*
-    // TODO: GalaxyStatusAccessor has not yet been declared.
     bool canAppearNormalComet(const char* pGalaxyName) {
         GalaxyStatusAccessor accessor = MR::makeGalaxyStatusAccessor(pGalaxyName);
         bool isOnComet = GameDataFunction::isOnGameEventFlagNormalComet(pGalaxyName);
@@ -538,7 +530,6 @@ namespace MR {
 
         return isOnComet && !hasPowerStar;
     }
-    */
 
     int getEncounterGalaxyCometNameId(const char* pGalaxyName) {
         return MR::getCometNameIdFromString(GameSequenceFunction::getEncounterGalaxyCometName(pGalaxyName));
@@ -589,8 +580,6 @@ namespace MR {
         }
     }
 
-    /*
-    // TODO: GalaxyStatusAccessor has not yet been declared.
     bool isStarComplete(const char* pGalaxyName) {
         GalaxyStatusAccessor aAccessor = MR::makeGalaxyStatusAccessor(pGalaxyName);
         GalaxyStatusAccessor bAccessor = MR::makeGalaxyStatusAccessor(pGalaxyName);
@@ -603,7 +592,7 @@ namespace MR {
     bool isStarCompleteNormalScenario(const char* pGalaxyName) {
         GalaxyStatusAccessor accessor = MR::makeGalaxyStatusAccessor(pGalaxyName);
 
-        for (int i = 1; i <= accessor.getNormalScenarioNum(); i++) {
+        for (s32 i = 1; i <= accessor.getNormalScenarioNum(); i++) {
             if (!GameDataFunction::hasPowerStar(pGalaxyName, i)) {
                 return false;
             }
@@ -611,7 +600,6 @@ namespace MR {
 
         return true;
     }
-    */
 
     /*
     // TODO: GameDataSomeScenarioAccessor has not yet been declared.
@@ -622,13 +610,11 @@ namespace MR {
     }
     */
 
-    /*
-    // TODO: GalaxyStatusAccessor has not yet been declared.
     s32 getCoinBestScore(const char* pGalaxyName) {
         GalaxyStatusAccessor accessor = MR::makeGalaxyStatusAccessor(pGalaxyName);
         s32 coinBestScore = 0;
 
-        for (int i = 1; i <= accessor.getPowerStarNum(); i++) {
+        for (s32 i = 1; i <= accessor.getPowerStarNum(); i++) {
             if (!MR::isPlacedCoin(pGalaxyName, i)) {
                 continue;
             }
@@ -647,9 +633,8 @@ namespace MR {
         GalaxyStatusAccessor accessor = MR::makeGalaxyStatusAccessor(pGalaxyName);
         const char* pCometName = accessor.getCometName(scenarioNo);
 
-        return !(pCometName != nullptr && MR::isEqualString(pCometName, "Dark"));
+        return pCometName == nullptr || !MR::isEqualString(pCometName, "Dark");
     }
-    */
 
     bool isActiveLuigiHideAndSeekEvent() {
         return GameSequenceFunction::isActiveLuigiHideAndSeekEvent();
