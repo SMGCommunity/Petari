@@ -86,6 +86,7 @@ public:
     void exeCount();
     void exeRace();
     void exeDemo();
+    void exeGoal();
     void exeRank();
     bool startWithWipe();
     bool startImmediately();

@@ -3845,7 +3845,7 @@ Game/Map/QuakeEffectGenerator.cpp:
 Game/Map/RaceManager.cpp:
 	.text       start:0x801963F8 end:0x80198634
 	.ctors      start:0x8052EBE0 end:0x8052EBE4
-	.rodata     start:0x80532E38 end:0x80532F20
+	.rodata     start:0x80532E38 end:0x80532ED0
 	.data       start:0x8058BDC0 end:0x8058C000
 	.sdata      start:0x806B1C68 end:0x806B1C88
 	.sbss       start:0x806B4BF8 end:0x806B4C38
