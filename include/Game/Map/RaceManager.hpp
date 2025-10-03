@@ -9,12 +9,6 @@ public:
 
 };
 
-class RaceManagerFunction {
-public:
-    static void startRaceImmediately();
-    static void entryRacerPlayer(PlayerRacer *);
-};
-
 class AbstractRacer {
 public:
     AbstractRacer() {
@@ -40,4 +34,23 @@ public:
     f32 _8;
     TVec3f _C;
     TVec3f _18;
+};
+
+class AbstractAudience {
+public:
+
+};
+
+namespace RaceManagerFunction {
+    void entryRacerOthers(AbstractRacer*);
+    void entryAudience(AbstractAudience*);
+    void entryRacerPlayer(PlayerRacer*);
+    void startRaceWithWipe();
+    void startRaceImmediately();
+    u32 getRaceRank();
+    u32 getRaceTime();
+    const char* getRaceName(int);
+    const char* getRaceMessageId(int);
+    s32 getRaceId(const char*, s32);
+    bool hasPowerStarRaceScenario(int);
 };
