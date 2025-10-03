@@ -67,6 +67,7 @@ namespace MR {
 
     bool isValidCollisionParts(LiveActor*);
     void setCollisionMtx(LiveActor*);
+    void setCollisionMtx(LiveActor *, CollisionParts *);
 
     void invalidateClipping(LiveActor*);
 
@@ -392,4 +393,6 @@ namespace MR {
     LiveActor* getPairedGroupMember(const LiveActor *);
 
     TVec3f* getBindedFixReactionVector(const LiveActor *);
+
+    CollisionParts* tryCreateCollisionSunshade(LiveActor *, HitSensor *);
 };  // namespace MR
