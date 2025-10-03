@@ -31,8 +31,8 @@ namespace MR {
     void startToCaptureScreen(const char*);
     void endToCaptureScreen(const char*);
     void captureScreenIfAllow(const char*);
-    const ResTIMG* getScreenResTIMG();
-    const u8* getScreenTexImage();
+    ResTIMG* getScreenResTIMG();
+    u8* getScreenTexImage();
     void closeWipeCircle(s32);
     void forceOpenWipeCircle();
     void forceCloseWipeCircle();
