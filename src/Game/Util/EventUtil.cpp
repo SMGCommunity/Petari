@@ -297,8 +297,8 @@ namespace MR {
         return GameDataFunction::isAppearGalaxy(pGalaxyName);
     }
 
-    bool isAppearGalaxyGreenDriver(const char *pGalaxyName) {
-        return GameDataFunction::isAppearGalaxyGreenDriver(pGalaxyName);
+    bool isGalaxyAppearGreenDriver(const char *pGalaxyName) {
+        return GameDataConst::isGalaxyAppearGreenDriver(pGalaxyName);
     }
 
     void onGameEventFlagGalaxyOpen(const char *pGalaxyName) {
@@ -339,15 +339,15 @@ namespace MR {
     }
 
     bool hasPowerStarAtResultSequence() {
-        return GameDataFunction::hasPowerStarYetAtResultSequence();
+        return GameSequenceFunction::hasPowerStarYetAtResultSequence();
     }
 
     bool isPowerStarGreenAtResultSequence() {
-        return GameDataFunction::isPowerStarGreenAtResultSequence();
+        return GameSequenceFunction::isPowerStarGreenAtResultSequence();
     }
 
     bool isPowerStarRedAtResultSequence() {
-        return GameDataFunction::isPowerStarRedAtResultSequence();
+        return GameSequenceFunction::isPowerStarRedAtResultSequence();
     }
 
     void sendStageResultSequenceParam(s32 a1) {
