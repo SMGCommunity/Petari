@@ -3938,11 +3938,11 @@ Game/Map/SunshadeMapParts.cpp:
 
 Game/Map/SwitchSynchronizer.cpp:
 	.text       start:0x8019F0DC end:0x8019F2A8
-	.data       start:0x8058CBC8 end:0x8058CC00
+	.data       start:0x8058CBC8 end:0x8058CBF0
 
 Game/Map/SwitchWatcher.cpp:
 	.text       start:0x8019F2A8 end:0x8019F4F4
-	.data       start:0x8058CC00 end:0x8058CC28
+	.data       start:0x8058CBF0 end:0x8058CC28
 
 Game/Map/SwitchWatcherHolder.cpp:
 	.text       start:0x8019F4F4 end:0x8019F7CC
