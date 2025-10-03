@@ -1,12 +1,11 @@
 #pragma once
 
-#include <revolution.h>
+#include <revolution/types.h>
 
 class ActorStateKeeper;
 class Nerve;
 
-class Spine
-{
+class Spine {
 public:
     Spine(void *, const Nerve *);
 
@@ -16,9 +15,9 @@ public:
     void changeNerve();
     void initStateKeeper(int);
 
-    void* mExecutor; // 0x0
-    const Nerve* mCurNerve; // 0x4
-    const Nerve* mNextNerve; // 0x8
-    s32 mStep; // 0xC
-    ActorStateKeeper* mStateKeeper; // 0x10
+    /* 0x00 */ void* mExecutor;
+    /* 0x04 */ const Nerve* mCurrNerve;
+    /* 0x08 */ const Nerve* mNextNerve;
+    /* 0x0C */ s32 mStep;
+    /* 0x10 */ ActorStateKeeper* mStateKeeper;
 };
