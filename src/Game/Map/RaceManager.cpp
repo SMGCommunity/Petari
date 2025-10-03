@@ -1,6 +1,34 @@
 #include "Game/Map/RaceManager.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 
+namespace {
+    struct RaceStructData {
+        /* 0x00 */ const char* mName;
+        /* 0x04 */ s32 mEventBgmId;
+        /* 0x08 */ s32 mMaxTime;
+        /* 0x0C */ const char* mMessageId;
+        /* 0x10 */ const char* mGalaxyName;
+        /* 0x14 */ s32 mScenarioNo;
+        /* 0x18 */ bool mIsDemoWithStarPointer;
+    };
+
+    static const RaceStructData sRaceStruct[] = {
+        {"ペンギンレース[オーシャンリング]", 2, 120, "RaceName_Penguin", "OceanRingGalaxy", 2, false},
+        {"テレサレース[ファントム]", 3, 120, "RaceName_TeresaPhantom", "PhantomGalaxy", 2, true},
+        {"テレサレース[デスプロムナード]", 3, 120, "RaceName_TeresaDeathPromenade", "TeresaMario2DGalaxy", 1, false},
+        {"サーフィン[トライアル]", 2, 0, "RaceName_SurfingTrial", "SurfingLv1Galaxy", 1, false},
+        {"サーフィン[チャレンジ]", 2, 180, "RaceName_SurfingChallenge", "SurfingLv2Galaxy", 1, false}
+    };
+
+    const RaceStructData& getRaceStruceData(s32 id) {
+        return sRaceStruct[id];
+    }
+
+    RaceManager* getRaceManager() {
+        return MR::getSceneObj<RaceManager*>(SceneObj_RaceManager);
+    }
+};
+
 RaceManagerLayout::RaceManagerLayout(const char* pName) :
     LayoutActor(pName, true)
 {
@@ -100,3 +128,68 @@ void RaceManagerLayout::setTime(u32 time) {
 void RaceManagerLayout::setBestTime(u32 bestTime) {
     MR::updateClearTimeTextBox(this, "BestTimeCounter", bestTime);
 }
+
+namespace RaceManagerFunction {
+    void entryRacerOthers(AbstractRacer* pRacer) {
+        MR::createSceneObj(SceneObj_RaceManager);
+        getRaceManager()->entry(pRacer);
+    }
+
+    void entryAudience(AbstractAudience* pAudience) {
+        MR::createSceneObj(SceneObj_RaceManager);
+        getRaceManager()->entry(pAudience);
+    }
+
+    void entryRacerPlayer(PlayerRacer* pRacer) {
+        MR::createSceneObj(SceneObj_RaceManager);
+        getRaceManager()->entry(pRacer);
+    }
+
+    void startRaceWithWipe() {
+        getRaceManager()->startWithWipe();
+    }
+
+    void startRaceImmediately() {
+        getRaceManager()->startImmediately();
+    }
+
+    u32 getRaceRank() {
+        return getRaceManager()->mRank;
+    }
+
+    u32 getRaceTime() {
+        return getRaceManager()->mTime;
+    }
+
+    const char* getRaceName(int index) {
+        return getRaceStruceData(index).mName;
+    }
+
+    const char* getRaceMessageId(int index) {
+        return getRaceStruceData(index).mMessageId;
+    }
+
+    s32 getRaceId(const char* pGalaxyName, s32 scenarioNo) {
+        for (s32 i = 0; i < sizeof(sRaceStruct) / sizeof(*sRaceStruct); i++) {
+            const RaceStructData& rRaceStructData = getRaceStruceData(i);
+
+            if (!MR::isEqualString(rRaceStructData.mGalaxyName, pGalaxyName)) {
+                continue;
+            }
+
+            if (rRaceStructData.mScenarioNo != scenarioNo) {
+                continue;
+            }
+
+            return i;
+        }
+
+        return -1;
+    }
+
+    bool hasPowerStarRaceScenario(int index) {
+        return MR::isOnGameEventFlagPowerStarSuccess(
+            getRaceStruceData(index).mGalaxyName,
+            getRaceStruceData(index).mScenarioNo);
+    }
+};
