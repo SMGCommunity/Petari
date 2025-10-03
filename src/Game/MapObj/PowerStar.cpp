@@ -1,3 +1,4 @@
+#include "Game/LiveActor/LiveActorGroup.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/PowerStar.hpp"

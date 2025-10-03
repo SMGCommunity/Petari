@@ -2,30 +2,31 @@
 
 #include <revolution.h>
 #include "Game/Animation/AnmPlayer.hpp"
-#include "Game/LiveActor/LiveActorGroup.hpp"
 #include "Game/Util/JMapInfo.hpp"
 #include "JSystem/JGeometry/TMatrix.hpp"
 #include "JSystem/JGeometry/TQuat.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
 #include "revolution/mtx.h"
 
-class CollisionParts;
-class Nerve;
-class ResourceHolder;
 class ActorLightCtrl;
-class ProjmapEffectMtxSetter;
-class ModelObj;
-class BrkCtrl;
-class PartsModel;
-class LodCtrl;
-class CollisionParts;
-class HitSensor;
-class BtkCtrl;
-class MsgSharedGroup;
-class ResTIMG;
-class LiveActor;
-class TexMtxCtrl;
 class BckCtrlData;
+class BrkCtrl;
+class BtkCtrl;
+class CollisionParts;
+class CollisionPartsFilterBase;
+class HitSensor;
+class LiveActor;
+class LiveActorGroup;
+class LodCtrl;
+class ModelObj;
+class MsgSharedGroup;
+class Nerve;
+class PartsModel;
+class ProjmapEffectMtxSetter;
+class ResTIMG;
+class ResourceHolder;
+class TexMtxCtrl;
+class TriangleFilterBase;
 
 namespace MR {
     enum CollisionScaleType { 
@@ -53,10 +54,7 @@ namespace MR {
     MsgSharedGroup* joinToGroupArray(LiveActor*, const JMapInfoIter&, const char*, s32);
     LiveActorGroup* getGroupFromArray(const LiveActor*);
 
-    inline s32 getGroupCountFromArray(const LiveActor* pActor) { return getGroupFromArray(pActor)->mObjectCount; }
-
     void copyTransRotateScale(const LiveActor*, LiveActor*);
-    bool isDead(const LiveActor*);
 
     void initDefaultPos(LiveActor*, const JMapInfoIter&);
     void initDefaultPosNoRepeat(LiveActor*, const JMapInfoIter&);
@@ -74,38 +72,39 @@ namespace MR {
     bool isClipped(const LiveActor*);
     bool isInvalidClipping(const LiveActor*);
 
-    bool isHiddenModel(const LiveActor*);
-
-    void onBind(LiveActor*);
-    void offBind(LiveActor*);
-
-    bool isCalcGravity(const LiveActor*);
-
-    void showModel(LiveActor*);
-    void hideModel(LiveActor*);
-    void showModelIfHidden(LiveActor*);
-    void hideModelIfHidden(LiveActor*);
-
-    void hideModelIfShown(LiveActor *);
-
-    void hideModelAndOnCalcAnim(LiveActor*);
-    void stopAnimFrame(LiveActor*);
-
     ResourceHolder* getResourceHolder(const LiveActor*);
     ResourceHolder* getModelResourceHolder(const LiveActor*);
 
-    bool isNoEntryDrawBuffer(const LiveActor*);
-
-    void onCalcAnim(LiveActor*);
-    void offCalcAnim(LiveActor*);
-
+    void setBinderCollisionPartsFilter(LiveActor*, CollisionPartsFilterBase*);
+    void setBinderExceptActor(LiveActor*, const LiveActor*);
+    void setBindTriangleFilter(LiveActor*, TriangleFilterBase*);
+    bool isExistBinder(const LiveActor*);
     void onEntryDrawBuffer(LiveActor*);
     void offEntryDrawBuffer(LiveActor*);
-
-    const char* getModelResName(const LiveActor*);
-
+    bool isDead(const LiveActor*);
+    bool isHiddenModel(const LiveActor*);
+    void showModel(LiveActor*);
+    void hideModel(LiveActor*);
+    void hideModelAndOnCalcAnim(LiveActor*);
+    void showModelIfHidden(LiveActor*);
+    void hideModelIfShown(LiveActor*);
+    void hideModelAndOnCalcAnimIfShown(LiveActor*);
+    void stopAnimFrame(LiveActor*);
+    void releaseAnimFrame(LiveActor*);
+    bool isNoCalcAnim(const LiveActor*);
+    void onCalcAnim(LiveActor*);
+    void offCalcAnim(LiveActor*);
+    bool isNoCalcView(const LiveActor*);
+    bool isNoEntryDrawBuffer(const LiveActor*);
+    bool isNoBind(const LiveActor*);
+    void onBind(LiveActor*);
+    void offBind(LiveActor*);
+    bool isCalcGravity(const LiveActor*);
     void onCalcGravity(LiveActor*);
     void offCalcGravity(LiveActor*);
+    void joinToGroup(LiveActor*, const char*);
+
+    const char* getModelResName(const LiveActor*);
 
     void calcGravityOrZero(LiveActor*);
 
@@ -118,8 +117,6 @@ namespace MR {
 
     void zeroVelocity(LiveActor*);
 
-    bool isNoBind(const LiveActor*);
-
     void initLightCtrl(LiveActor*);
     void initLightCtrlForPlayer(LiveActor*);
     void initLightCtrlNoDrawEnemy(LiveActor*);
@@ -131,7 +128,7 @@ namespace MR {
     void calcLightPos1(TVec3f*, const LiveActor*);
     const GXColor* getLightAmbientColor(const LiveActor*);
     ActorLightCtrl* getLightCtrl(const LiveActor*);
-    bool isStep(const LiveActor*, s32);
+    bool isStep(const LiveActor*, s32) NO_INLINE;
     bool isFirstStep(const LiveActor*);
     bool isLessStep(const LiveActor*, s32);
     bool isLessEqualStep(const LiveActor*, s32);
@@ -156,8 +153,10 @@ namespace MR {
     void setNerveAtStep(LiveActor*, const Nerve*, s32);
     void setNerveAtBckStopped(LiveActor*, const Nerve*);
     bool trySetNerve(LiveActor*, const Nerve*);
-
-    bool isNoCalcAnim(const LiveActor*);
+    const TVec3f* getGroundNormal(const LiveActor*);
+    const TVec3f* getWallNormal(const LiveActor*);
+    const TVec3f* getRoofNormal(const LiveActor*);
+    const TVec3f* getBindedNormal(const LiveActor*);
 
     void initFur(LiveActor *);
     void initFurPlanet(LiveActor *);
@@ -306,8 +305,6 @@ namespace MR {
 
     bool changeShowModelFlagSyncNearClipping(LiveActor*, f32);
 
-    void hideModelAndOnCalcAnimIfShown(LiveActor*);
-
     u32 createIndirectPlanetModel(LiveActor*, MtxPtr);
     bool tryCreateMirrorActor(LiveActor*, const char*);
 
@@ -333,12 +330,6 @@ namespace MR {
     bool isOnGround(const LiveActor*);
 
     bool isPressedRoofAndGround(const LiveActor*);
-
-    TVec3f& getBindedNormal(const LiveActor *);
-
-    TVec3f* getRoofNormal(const LiveActor*);
-    TVec3f* getWallNormal(const LiveActor*);
-    TVec3f* getGroundNormal(const LiveActor*);
 
     void setBinderExceptSensorType(LiveActor*, const TVec3f*, f32);
 
