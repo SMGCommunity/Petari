@@ -1313,7 +1313,7 @@ config.libs = [
             Object(NonMatching, "Game/Map/OceanSpherePoint.cpp"),
             Object(NonMatching, "Game/Map/PlanetMap.cpp"),
             Object(NonMatching, "Game/Map/PlanetMapCreator.cpp"),
-            Object(NonMatching, "Game/Map/PlanetMapWithoutHighModel.cpp"),
+            Object(Matching, "Game/Map/PlanetMapWithoutHighModel.cpp"),
             Object(NonMatching, "Game/Map/QuakeEffectGenerator.cpp"),
             Object(NonMatching, "Game/Map/RaceManager.cpp"),
             Object(NonMatching, "Game/Map/RaceRail.cpp"),
