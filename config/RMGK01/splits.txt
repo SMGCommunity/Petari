@@ -4270,20 +4270,20 @@ Game/MapObj/BreakableCage.cpp:
 
 Game/MapObj/BrightObj.cpp:
 	.text       start:0x801BABB8 end:0x801BC0FC
-	.data       start:0x80590910 end:0x80590B08
+	.data       start:0x80590910 end:0x80590A80
 	.sdata2     start:0x806BC968 end:0x806BC9B8
 
 Game/MapObj/BumpAppearPlanet.cpp:
 	.text       start:0x801BC0FC end:0x801BC5EC
 	.ctors      start:0x8052EC88 end:0x8052EC8C
-	.data       start:0x80590B08 end:0x80590CF8
+	.data       start:0x80590A80 end:0x80590C00
 	.sbss       start:0x806B4EF0 end:0x806B4F00
 
 Game/MapObj/Candlestand.cpp:
 	.text       start:0x801BC5EC end:0x801BD31C
 	.ctors      start:0x8052EC8C end:0x8052EC90
 	.rodata     start:0x80533088 end:0x80533118
-	.data       start:0x80590CF8 end:0x80590DE8
+	.data       start:0x80590C00 end:0x80590DE8
 	.sbss       start:0x806B4F00 end:0x806B4F18
 	.sdata2     start:0x806BC9B8 end:0x806BC9E0
 
