@@ -8528,7 +8528,7 @@ Game/System/ResourceHolder.cpp:
 
 Game/System/ResourceHolderManager.cpp:
 	.text       start:0x803A7FC4 end:0x803A8890
-	.data       start:0x805DBEE8 end:0x805DBF98
+	.data       start:0x805DBEE8 end:0x805DBF38
 
 Game/System/ResourceInfo.cpp:
 	.text       start:0x803A8890 end:0x803A8BC0
