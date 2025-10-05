@@ -9,7 +9,7 @@ namespace MR {
     /// @param imageSize The size of the embedded image, in bytes.
     /// @param param4 TODO.
     /// @return The size of the message, in bytes.
-    u32 calcWiiMailSize(const wchar_t* pTitle, const wchar_t* pBody, u32 imageSize, u32 param4);
+    u32 calcWiiMailSize(const u16* pTitle, const u16* pBody, u32 imageSize, u32 param4);
 
     /// @brief Determines if the Wii Message Board can receive more messages from this application.
     /// @param mailSize The size of the message, in bytes.

@@ -9109,6 +9109,7 @@ Game/NWC24/UTF16Util.cpp:
 
 Game/NWC24/LuigiMailDirector.cpp:
 	.text       start:0x8040A5F8 end:0x8040A9C4
+	.data       start:0x805E7188 end:0x805E71E8
 	.sdata      start:0x806B26D0 end:0x806B26D8
 
 Game/NWC24/ReceiverTagMail.cpp:
