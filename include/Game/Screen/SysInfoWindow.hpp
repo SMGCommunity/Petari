@@ -40,20 +40,22 @@ class SysInfoWindow : public LayoutActor {
     };
 
     SysInfoWindow(SysInfoWindowType, SysInfoExecuteType);
+
     virtual ~SysInfoWindow();
     virtual void init(const JMapInfoIter& rIter);
     virtual void movement();
-    virtual void calcAnim();
     virtual void draw() const;
+    virtual void calcAnim();
     virtual void appear();
-    void appear(const char*, SysInfoType, SysInfoTextPos, SysInfoMessageType);
-    virtual void disappear();
     virtual void kill();
+    virtual void control();
+
+    void appear(const char*, SysInfoType, SysInfoTextPos, SysInfoMessageType);
+    void disappear();
     void forceKill();
     bool isWait() const;
     bool isSelectedYes() const;
     bool isDisappear() const;
-    void control();
     const char* getLayoutName() const;
     void exeAppear();
     void exeWait();
