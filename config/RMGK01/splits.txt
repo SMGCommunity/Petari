@@ -8922,7 +8922,7 @@ Game/Util/NPCUtil.cpp:
 	.text       start:0x803EE208 end:0x803F03A8
 	.ctors      start:0x8052F3B0 end:0x8052F3B4
 	.data       start:0x805E1B60 end:0x805E1DD8
-	.sdata      start:0x806B2668 end:0x806B26B8
+	.sdata      start:0x806B2668 end:0x806B26B0
 	.sbss       start:0x806B7020 end:0x806B7050
 	.sdata2     start:0x806C1800 end:0x806C1840
 
@@ -8971,15 +8971,18 @@ Game/Util/ShareUtil.cpp:
 
 Game/Util/SoundUtil.cpp:
 	.text       start:0x803F9CD4 end:0x803FBA80
-	.data       start:0x805E2240 end:0x805E2408
+	.data       start:0x805E2240 end:0x805E22B8
 	.sdata2     start:0x806C18B8 end:0x806C18C0
 
 Game/Util/StarPointerUtil.cpp:
 	.text       start:0x803FBA80 end:0x803FE5E4
+	.data       start:0x805E22B8 end:0x805E2398
 	.sdata2     start:0x806C18C0 end:0x806C18F8
 
 Game/Util/StringUtil.cpp:
 	.text       start:0x803FE5E4 end:0x803FF108
+	.data       start:0x805E2398 end:0x805E2408
+	.sdata      start:0x806B26B0 end:0x806B26B8
 
 Game/Util/SwitchEventFunctorListener.cpp:
 	.text       start:0x803FF108 end:0x803FF1EC
