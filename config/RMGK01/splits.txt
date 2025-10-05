@@ -7464,11 +7464,11 @@ Game/Scene/SceneFunction.cpp:
 Game/Scene/SceneObjHolder.cpp:
 	.text       start:0x8034530C end:0x80346158
 	.ctors      start:0x8052F218 end:0x8052F21C
-	.data       start:0x805D1CF8 end:0x805D23B8
+	.data       start:0x805D1CF8 end:0x805D23A8
 
 Game/Scene/ScenePlayingResult.cpp:
 	.text       start:0x80346158 end:0x80346348
-	.data       start:0x805D23B8 end:0x805D23E0
+	.data       start:0x805D23A8 end:0x805D23E0
 
 Game/Scene/SceneNameObjListExecutor.cpp:
 	.text       start:0x80346348 end:0x8034654C
