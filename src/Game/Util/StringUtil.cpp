@@ -1,23 +1,23 @@
-// #include "Game/Screen/ReplaceTagProcessor.hpp"
+#include "Game/Screen/ReplaceTagProcessor.hpp"
 #include "Game/Util/EventUtil.hpp"
-// #include "Game/Util/MessageUtil.hpp"
+#include "Game/Util/MessageUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
 #include <cctype>
 // #include <cstdarg>
 #include <cstdio>
 
-// #define CENTISEC_PER_SEC 100
-// #define SEC_PER_MIN 60
-// #define MIN_PER_HOUR 60
-// #define FRAME_PER_SEC 60
-// #define FRAME_PER_MIN (FRAME_PER_SEC * SEC_PER_MIN)
-// #define FRAME_PER_HOUR (FRAME_PER_SEC * SEC_PER_MIN * MIN_PER_HOUR)
+#define CENTISEC_PER_SEC 100
+#define SEC_PER_MIN 60
+#define MIN_PER_HOUR 60
+#define FRAME_PER_SEC 60
+#define FRAME_PER_MIN (FRAME_PER_SEC * SEC_PER_MIN)
+#define FRAME_PER_HOUR (FRAME_PER_SEC * SEC_PER_MIN * MIN_PER_HOUR)
 
 #ifdef __cplusplus
 extern "C" {
-    extern int strcasecmp(const char*, const char*);
+    int strcasecmp(const char*, const char*);
     // extern int vswprintf(wchar_t*, size_t, const wchar_t*, va_list);
-    extern int wcsncpy(wchar_t*, const wchar_t*, size_t);
+    int wcsncpy(wchar_t*, const wchar_t*, size_t);
 };
 #endif
 
@@ -37,65 +37,58 @@ namespace MR {
         snprintf(pDst, size, "%s/%s", pParent, pChild);
     }
 
-#ifdef NON_MATCHING
-    // The ReplaceTagFunction namespace is not yet defined.
     void makeDateString(wchar_t* pDst, s32 size, s32 year, s32 month, s32 day) {
         const wchar_t* pMessage = MR::getGameMessageDirect("System_Date000");
 
         ReplaceTagFunction::ReplaceArgs(pDst, size, pMessage, year, month, day);
     }
-#endif
 
-#ifdef NON_MATCHING
-    // The ReplaceTagFunction namespace is not yet defined.
     void makeTimeString(wchar_t* pDst, s32 size, s32 hour, s32 minute) {
         const wchar_t* pMessage = MR::getGameMessageDirect("System_Time002");
 
         ReplaceTagFunction::ReplaceArgs(pDst, size, pMessage, hour, minute);
     }
-#endif
 
-#ifdef NON_MATCHING
-    // The ReplaceTagFunction namespace is not yet defined.
     void makeClearTimeString(wchar_t* pDst, u32 frame) {
         s32 minute;
         s32 second;
         s32 centisecond;
 
-        if (frame < FRAME_PER_HOUR) {
-            minute = frame / FRAME_PER_MIN;
-            second = (frame / FRAME_PER_SEC) % SEC_PER_MIN;
-            centisecond = ((frame % FRAME_PER_SEC) * CENTISEC_PER_SEC) / FRAME_PER_SEC;
-        }
-        else {
+        if (frame >= FRAME_PER_HOUR) {
             minute = 59;
             second = 59;
             centisecond = 99;
+        }
+        else {
+            s32 signedFrame = frame;
+
+            minute = signedFrame / FRAME_PER_MIN;
+            second = (signedFrame / FRAME_PER_SEC) % SEC_PER_MIN;
+            centisecond = ((signedFrame % FRAME_PER_SEC) * CENTISEC_PER_SEC) / FRAME_PER_SEC;
         }
 
         const wchar_t* pMessage = MR::getGameMessageDirect("System_Time000");
 
         ReplaceTagFunction::ReplaceArgs(pDst, 9, pMessage, 0, minute, second, centisecond);
     }
-#endif
 
-#ifdef NON_MATCHING
-    // The ReplaceTagFunction namespace is not yet defined.
     void makeMinuteAndSecondString(wchar_t* pDst, u32 frame) {
-        if (frame < FRAME_PER_HOUR) {
-            minute = frame / FRAME_PER_MIN;
-            second = (frame % FRAME_PER_MIN) / FRAME_PER_SEC;
-        }
-        else {
+        s32 minute;
+        s32 second;
+
+        if (frame >= FRAME_PER_HOUR) {
             minute = 59;
             second = 59;
         }
+        else {
+            minute = frame / FRAME_PER_MIN;
+            second = (frame % FRAME_PER_MIN) / FRAME_PER_SEC;
+        }
 
-        const wchar_t* pMessage = MR::getGameMessageDirect("System_Time000");
+        const wchar_t* pMessage = MR::getGameMessageDirect("System_Time001");
 
         ReplaceTagFunction::ReplaceArgs(pDst, 16, pMessage, 0, minute, second);
     }
-#endif
 
     wchar_t* addNumberFontTag(wchar_t* pDst, int tag) {
         return MR::addNumberFontTag(pDst, L"%d", tag);
@@ -182,8 +175,7 @@ namespace MR {
     }
 #endif
 
-#ifdef NON_MATCHING
-    // Missing stack accesses.
+    // FIXME: Missing stack accesses.
     const char* getBasename(const char* pPath) {
         const char* pBasename = strrchr(pPath, '/');
 
@@ -193,7 +185,6 @@ namespace MR {
 
         return pBasename + 1;
     }
-#endif
 
     void extractString(char* pDst, const char* pSrc, u32 num, u32) {
         strncpy(pDst, pSrc, num);
@@ -277,7 +268,28 @@ namespace MR {
         return v1 == 1 && v2 == 1;
     }
 
-    // getStringLengthWithMessageTag
+    int getStringLengthWithMessageTag(const wchar_t* pMessage) {
+        int length = 0;
+
+        while (*pMessage != '\0') {
+            if (*pMessage == 0x1A) {
+                if (isMessageEditorNextTag(pMessage)) {
+                    break;
+                }
+
+                u16 dataSize = reinterpret_cast<const Tag*>(pMessage)->mDataSize;
+
+                // FIXME: r3-r4 used instead of r30-r31, and slwi used instead of clrrwi.
+                pMessage = (pMessage + dataSize) - 1;
+                length += (dataSize / sizeof(u16)) - 1;
+            }
+
+            pMessage++;
+            length++;
+        }
+
+        return length;
+    }
 
     void scan32(const char* pSrc, const char* pSubStr, s32* pDst) {
         if (strstr(pSrc, pSubStr) == NULL) {

@@ -7464,11 +7464,11 @@ Game/Scene/SceneFunction.cpp:
 Game/Scene/SceneObjHolder.cpp:
 	.text       start:0x8034530C end:0x80346158
 	.ctors      start:0x8052F218 end:0x8052F21C
-	.data       start:0x805D1CF8 end:0x805D23B8
+	.data       start:0x805D1CF8 end:0x805D23A8
 
 Game/Scene/ScenePlayingResult.cpp:
 	.text       start:0x80346158 end:0x80346348
-	.data       start:0x805D23B8 end:0x805D23E0
+	.data       start:0x805D23A8 end:0x805D23E0
 
 Game/Scene/SceneNameObjListExecutor.cpp:
 	.text       start:0x80346348 end:0x8034654C
@@ -8922,7 +8922,7 @@ Game/Util/NPCUtil.cpp:
 	.text       start:0x803EE208 end:0x803F03A8
 	.ctors      start:0x8052F3B0 end:0x8052F3B4
 	.data       start:0x805E1B60 end:0x805E1DD8
-	.sdata      start:0x806B2668 end:0x806B26B8
+	.sdata      start:0x806B2668 end:0x806B26B0
 	.sbss       start:0x806B7020 end:0x806B7050
 	.sdata2     start:0x806C1800 end:0x806C1840
 
@@ -8971,15 +8971,18 @@ Game/Util/ShareUtil.cpp:
 
 Game/Util/SoundUtil.cpp:
 	.text       start:0x803F9CD4 end:0x803FBA80
-	.data       start:0x805E2240 end:0x805E2408
+	.data       start:0x805E2240 end:0x805E22B8
 	.sdata2     start:0x806C18B8 end:0x806C18C0
 
 Game/Util/StarPointerUtil.cpp:
 	.text       start:0x803FBA80 end:0x803FE5E4
+	.data       start:0x805E22B8 end:0x805E2398
 	.sdata2     start:0x806C18C0 end:0x806C18F8
 
 Game/Util/StringUtil.cpp:
 	.text       start:0x803FE5E4 end:0x803FF108
+	.data       start:0x805E2398 end:0x805E2408
+	.sdata      start:0x806B26B0 end:0x806B26B8
 
 Game/Util/SwitchEventFunctorListener.cpp:
 	.text       start:0x803FF108 end:0x803FF1EC
@@ -9015,7 +9018,7 @@ Game/Util/CollisionPartsFilter.cpp:
 
 Game/Util/DirectDraw.cpp:
 	.text       start:0x80401F78 end:0x804044C8
-	.bss        start:0x8060C5A0 end:0x8060CE40
+	.bss        start:0x8060C5A0 end:0x8060CE00
 	.sdata2     start:0x806C1920 end:0x806C1948
 
 Game/Util/DirectDrawUtil.cpp:
@@ -9082,12 +9085,13 @@ Game/Util/ValueControl.cpp:
 
 Game/NWC24/NWC24Function.cpp:
 	.text       start:0x80408558 end:0x804087A4
-	.sdata      start:0x806B26B8 end:0x806B26C0
+	.sdata      start:0x806B26B8 end:0x806B26BC
 
 Game/NWC24/NWC24Messenger.cpp:
 	.text       start:0x804087A4 end:0x80409F04
 	.ctors      start:0x8052F3C0 end:0x8052F3C4
-	.data       start:0x805E6F30 end:0x805E7220
+	.data       start:0x805E6F30 end:0x805E7188
+	.bss        start:0x8060CE00 end:0x8060CE40
 	.sbss       start:0x806B7060 end:0x806B70A0
 
 Game/NWC24/NWC24SendThread.cpp:
@@ -9105,6 +9109,7 @@ Game/NWC24/UTF16Util.cpp:
 
 Game/NWC24/LuigiMailDirector.cpp:
 	.text       start:0x8040A5F8 end:0x8040A9C4
+	.data       start:0x805E7188 end:0x805E71E8
 	.sdata      start:0x806B26D0 end:0x806B26D8
 
 Game/NWC24/ReceiverTagMail.cpp:

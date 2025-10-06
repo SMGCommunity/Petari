@@ -1,5 +1,7 @@
 #pragma once
 
+class NWC24Messenger;
+
 class GameSequenceDirector {
 public:
     GameSequenceDirector();
@@ -11,5 +13,5 @@ public:
     u32 _0;
     u32 _4;
     u32 _8;
-    u32 _C;
+    NWC24Messenger* mMessenger;
 };
