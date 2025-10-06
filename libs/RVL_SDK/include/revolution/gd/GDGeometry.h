@@ -3,12 +3,13 @@
 
 #include "revolution/types.h"
 #include "revolution/gx.h"
+#include "revolution/gd/GDBase.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-void GDBegin(GXPrimitive, GXVtxFmt, u16);
+static void GDBegin(GXPrimitive type, GXVtxFmt vtxfmt, u16 nverts);
 
 #ifdef __cplusplus
 }

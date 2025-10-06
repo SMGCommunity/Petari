@@ -614,7 +614,7 @@ namespace MR {
     void calcVelocityMoveToDirection(TVec3f *a1, const LiveActor *pActor, const TVec3f &a3, f32 a4) {
         calcVelocityMoveToDirectionHorizon(a1, pActor, a3, a4);
         if (isOnGround(pActor)) {
-            TVec3f* pGroundNormal = getGroundNormal(pActor);
+            const TVec3f* pGroundNormal = getGroundNormal(pActor);
             JMAVECScaleAdd((Vec*)pGroundNormal, (Vec*)a1, (Vec*)a1, -pGroundNormal->dot(*a1));
         }
     }
@@ -622,7 +622,7 @@ namespace MR {
     void calcVelocityMoveToDirection(TVec3f *a1, const LiveActor *pActor, const TVec3f &a3, f32 a4, f32 a5, f32 a6, f32 a7) {
         calcVelocityMoveToDirectionHorizon(a1, pActor, a3, a4, a5, a6, a7);
         if (isOnGround(pActor)) {
-            TVec3f* pGroundNormal = getGroundNormal(pActor);
+            const TVec3f* pGroundNormal = getGroundNormal(pActor);
             JMAVECScaleAdd((Vec*)pGroundNormal, (Vec*)a1, (Vec*)a1, -pGroundNormal->dot(*a1));
         }
     }
@@ -871,14 +871,14 @@ namespace MR {
 
     void killVelocityOnGroundH(LiveActor *pActor) {
         if (isOnGround(pActor)) {
-            TVec3f* pNormal = getGroundNormal(pActor);
+            const TVec3f* pNormal = getGroundNormal(pActor);
             pActor->mVelocity.scale(pNormal->dot(pActor->mVelocity), *pNormal);
         }
     }
 
     void killVelocityOnGroundCosH(LiveActor *pActor, f32 a2) {
         if (isOnGround(pActor) && isFloorPolygonCos(*getGroundNormal(pActor), pActor->mGravity, a2)) {
-            TVec3f* pNormal = getGroundNormal(pActor);
+            const TVec3f* pNormal = getGroundNormal(pActor);
             pActor->mVelocity.scale(pNormal->dot(pActor->mVelocity), *pNormal);
         }
     }

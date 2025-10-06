@@ -2,10 +2,6 @@
 #include "Game/MapObj/BreakableCage.hpp"
 #include "Game/MapObj/PowerStar.hpp"
 
-inline f32 normalizeAngle(f32 a1, f32 a2) {
-    return a1 + (f32)fmod(360.0f + (a2 - a1), 360.0f);
-}
-
 BreakableCage::BreakableCage(const char *pName) : LiveActor(pName) {
     mBreakModel = nullptr;
     mCageType = CAGE_INVALID;
@@ -308,13 +304,13 @@ bool BreakableCage::tryBreak() {
 
 void BreakableCage::exeWait() {
     if (mCageType == CAGE_NORMAL) {
-        mRotation.y = normalizeAngle(0.0f, mRotationSpeed + mRotation.y);
+        mRotation.y = MR::wrapAngleTowards(0.0f, mRotationSpeed + mRotation.y);
     }
 
     if (mItemModel != nullptr) {
         if (isAppearPowerStar()) {
             DummyDisplayModel* model = mItemModel;
-            mItemModel->mRotation.y = normalizeAngle(0.0f, model->mRotation.y + PowerStar::getPowerStarWaitRotateSpeed());
+            mItemModel->mRotation.y = MR::wrapAngleTowards(0.0f, model->mRotation.y + PowerStar::getPowerStarWaitRotateSpeed());
         }
     }
 }

@@ -7,6 +7,8 @@
 #include <JSystem/JMath/JMATrigonometric.hpp>
 #include <JSystem/JMath/JMath.hpp>
 
+extern "C" int __fpclassifyf(f32);
+
 namespace {
     static f32* gAcosTable;
     const f32 cMinDegree = 0.0f;
@@ -105,7 +107,7 @@ namespace MR {
     #endif
 
     void turnRandomVector(TVec3f* pDst, const TVec3f& rSrc, f32 range) {
-        f32 srcLength = PSVECMag(&rSrc);
+        f32 srcLength = rSrc.length();
 
         addRandomVector(pDst, rSrc, range);
 
@@ -214,8 +216,7 @@ namespace MR {
             return false;
         }
         else {
-            pParam1->set(v2);
-            normalize(pParam1);
+            normalize(v2, pParam1);
             *pParam2 = JGeometry::TUtil<f32>::clamp(v1.dot(rParam4), -1.0f, 1.0f);
 
             return true;
@@ -391,7 +392,7 @@ namespace MR {
     }
 
     void separateScalarAndDirection(f32* pScalar, TVec3f* pDir, const TVec3f& rVec) {
-        *pScalar = PSVECMag(&rVec);
+        *pScalar = rVec.length();
 
         if (isNearZero(rVec, 0.001f)) {
             pDir->zero();
@@ -434,84 +435,84 @@ namespace MR {
     // calcMomentRollBall
     // calcReflectionVector
 
-    bool isSameDirection(const TVec3f& rVec1, const TVec3f& rVec2, f32 epsilon) {
-        if (__fabsf(rVec1.y * rVec2.z - rVec1.z * rVec2.y) > epsilon) {
+    bool isSameDirection(const TVec3f& rVec1, const TVec3f& rVec2, f32 tolerance) {
+        if (__fabsf(rVec1.y * rVec2.z - rVec1.z * rVec2.y) > tolerance) {
             return false;
         }
 
-        if (__fabsf(rVec1.z * rVec2.x - rVec1.x * rVec2.z) > epsilon) {
+        if (__fabsf(rVec1.z * rVec2.x - rVec1.x * rVec2.z) > tolerance) {
             return false;
         }
 
-        if (__fabsf(rVec1.x * rVec2.y - rVec1.y * rVec2.x) > epsilon) {
+        if (__fabsf(rVec1.x * rVec2.y - rVec1.y * rVec2.x) > tolerance) {
             return false;
         }
 
         return true;
     }
 
-    bool isOppositeDirection(const TVec3f& rVec1, const TVec3f& rVec2, f32 epsilon) {
+    bool isOppositeDirection(const TVec3f& rVec1, const TVec3f& rVec2, f32 tolerance) {
         if (rVec1.dot(rVec2) >= 0.0f) {
             return false;
         }
 
-        return isSameDirection(rVec1, rVec2, epsilon);
+        return isSameDirection(rVec1, rVec2, tolerance);
     }
 
-    bool isNearZero(f32 x, f32 epsilon) {
+    bool isNearZero(f32 x, f32 tolerance) {
         if (x < 0.0f) {
             x = -x;
         }
 
-        if (x < epsilon) {
+        if (x < tolerance) {
             return true;
         }
 
         return false;
     }
 
-    bool isNearZero(const TVec3f& rVec, f32 epsilon) {
-        if (rVec.x > epsilon) {
+    bool isNearZero(const TVec3f& rVec, f32 tolerance) {
+        if (rVec.x > tolerance) {
             return false;
         }
 
-        if (rVec.x < -epsilon) {
+        if (rVec.x < -tolerance) {
             return false;
         }
 
-        if (rVec.y > epsilon) {
+        if (rVec.y > tolerance) {
             return false;
         }
 
-        if (rVec.y < -epsilon) {
+        if (rVec.y < -tolerance) {
             return false;
         }
 
-        if (rVec.z > epsilon) {
+        if (rVec.z > tolerance) {
             return false;
         }
 
-        if (rVec.z < -epsilon) {
+        if (rVec.z < -tolerance) {
             return false;
         }
 
         return true;
     }
 
-    bool isNearZero(const TVec2f& rVec, f32 epsilon) {
-        if (rVec.x > epsilon) {
+    bool isNearZero(const TVec2f& rVec, f32 tolerance) {
+        if (rVec.x > tolerance) {
             return false;
         }
 
-        if (rVec.x < -epsilon) {
+        if (rVec.x < -tolerance) {
             return false;
         }
 
-        if (rVec.y > epsilon) {
+        if (rVec.y > tolerance) {
             return false;
         }
 
-        if (rVec.y < -epsilon) {
+        if (rVec.y < -tolerance) {
             return false;
         }
 
@@ -529,17 +530,15 @@ namespace MR {
     }
 
     f32 normalizeAngleAbs(f32 angle) {
-        while (1) {
+        while (true) {
             if (angle < 0.0f) {
                 angle += TWO_PI;
             }
+            else if (angle > TWO_PI) {
+                angle -= TWO_PI;
+            }
             else {
-                if (!(angle > TWO_PI)) {
-                    return angle;
-                }
-                else {
-                    angle -= TWO_PI;
-                }
+                return angle;
             }
         }
     }
@@ -557,7 +556,7 @@ namespace MR {
 
         bool res = a1_n >= a3_n && a1_n <= a2_n;
 
-        if ((a2_n - a3_n) > PI) {
+        if (a2_n - a3_n > PI) {
             res = !res;
         }
 
@@ -713,7 +712,7 @@ namespace MR {
 
     // turnVecToPlane
 
-    int getMinAbsElementIndex(const TVec3f &rVec) {
+    u32 getMinAbsElementIndex(const TVec3f &rVec) {
         f64 abs_x = __fabs(rVec.x);
         f64 abs_y = __fabs(rVec.y);
         f64 abs_z = __fabs(rVec.z);
@@ -739,7 +738,7 @@ namespace MR {
         return vec_arr[getMaxAbsElementIndex(rVec)];
     }
 
-    int getMaxElementIndex(const TVec3f &rVec) {
+    u32 getMaxElementIndex(const TVec3f &rVec) {
         if (rVec.x > rVec.y && rVec.x > rVec.z) {
             return 0;
         }
@@ -751,7 +750,7 @@ namespace MR {
         return 2;
     }
 
-    int getMaxAbsElementIndex(const TVec3f &rVec) {
+    u32 getMaxAbsElementIndex(const TVec3f &rVec) {
         f64 abs_x = __fabs(rVec.x);
         f64 abs_y = __fabs(rVec.y);
         f64 abs_z = __fabs(rVec.z);
@@ -828,19 +827,94 @@ namespace MR {
     }
 
     // diffAngleSignedHorizontal
-    // isNearAngleRadian
-    // isNearAngleDegree
-    // isNearAngleRadianHV
 
-    // FIXME: Multiplication instructions are ordered incorrectly.
+    bool isNearAngleRadian(const TVec3f& rParam1, const TVec3f& rParam2, f32 param3) {
+        if (isNearZero(rParam1, 0.001f) || isNearZero(rParam2, 0.001f)) {
+            return false;
+        }
+
+        TVec3f v1;
+        normalize(rParam1, &v1);
+
+        TVec3f v2;
+        normalize(rParam2, &v2);
+
+        f32 cos = JMACosRadian(param3);
+        f32 dot = v1.dot(v2);
+
+        return dot >= cos;
+    }
+
+    bool isNearAngleDegree(const TVec3f& rParam1, const TVec3f& rParam2, f32 param3) {
+        param3 = PI_180 * param3;
+
+        return isNearAngleRadian(rParam1, rParam2, param3);
+    }
+
+    bool isNearAngleRadianHV(const TVec3f& rParam1, const TVec3f& rParam2, const TVec3f& rParam3, f32 param4, f32 param5) {
+        TVec3f v1;
+        TVec3f v2;
+        TVec3f v3;
+        TVec3f v4;
+
+        if (param5 > 1.5707964) {
+            param5 = HALF_PI;
+        }
+
+        if (normalizeOrZero(rParam1, &v1)) {
+            return false;
+        }
+
+        if (normalizeOrZero(rParam2, &v2)) {
+            return false;
+        }
+
+        if (normalizeOrZero(rParam3, &v3)) {
+            return false;
+        }
+
+        v4.rejection(rParam1, rParam3);
+        normalizeOrZero(&v4);
+
+        f32 cos = JMACosRadian(param4);
+        f32 dot1 = v4.dot(v2);
+
+        if (dot1 < cos) {
+            return false;
+        }
+
+        f32 sin = __fabsf(JMASinRadian(param5));
+        f32 dot2 = __fabsf(v1.dot(v3));
+
+        return !(dot2 > sin);
+    }
+
     bool isNearAngleDegreeHV(const TVec3f& rParam1, const TVec3f& rParam2, const TVec3f& rParam3, f32 param4, f32 param5) {
-        return isNearAngleRadianHV(rParam1, rParam2, rParam3, param4 * PI_180, param5 * PI_180);
+        param5 = PI_180 * param5;
+        param4 = PI_180 * param4;
+
+        return isNearAngleRadianHV(rParam1, rParam2, rParam3, param4, param5);
     }
 
     // createBoundingBox
-    // isNormalize
+
+    bool isNormalize(const TVec3f& rVec, f32 tolerance) {
+        return __fabsf(1.0f - rVec.length()) <= tolerance;
+    }
+
     // setNan
-    // isNan
+
+    bool isNan(const TVec3f& rVec) {
+        if (__fpclassifyf(rVec.x) == 1
+            || __fpclassifyf(rVec.y) == 1
+            || __fpclassifyf(rVec.z) == 1)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
     // getFootPoint
 
     f32 mod(f32 x, f32 y) {

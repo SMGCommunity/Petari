@@ -708,8 +708,8 @@ bool CameraManGame::tryStartPosCamera() {
     }
 
     CameraParamChunkID_Tmp chunkID = CameraParamChunkID_Tmp();
-    u16 startCameraID = static_cast<u16>(MR::getCurrentStartCameraID());
-    s32 startZoneID = MR::getCurrentStartZoneID();
+    u16 startCameraID = static_cast<u16>(MR::getCurrentStartCameraId());
+    s32 startZoneID = MR::getCurrentStartZoneId();
 
     chunkID.createStartID(startZoneID, startCameraID);
     setChunk(chunkID);

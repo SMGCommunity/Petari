@@ -142,11 +142,11 @@ namespace MR {
         getCaptureScreenDirector()->captureIfAllow(pParam1);
     }
 
-    const ResTIMG* getScreenResTIMG() {
+    ResTIMG* getScreenResTIMG() {
         return getCaptureScreenDirector()->getResTIMG();
     }
 
-    const u8* getScreenTexImage() {
+    u8* getScreenTexImage() {
         return getCaptureScreenDirector()->getTexImage();
     }
 

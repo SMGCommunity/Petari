@@ -56,6 +56,7 @@ namespace MR {
     bool isCubeBgmChangeInvalid();
     void clearBgmQueue();
 
+    void startEventBGM(s32);
     void startAfterBossBGM();
 
     void startCSSound(const char *, const char *, s32);

@@ -77,7 +77,7 @@ void Sky::control() {
         }
         else {
             if (mSpaceInner->isAppeared()) {
-                MR::hideModelIfHidden(this);
+                MR::hideModelIfShown(this);
             }
             else {
                 MR::showModelIfHidden(this);

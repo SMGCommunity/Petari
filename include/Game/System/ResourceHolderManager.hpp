@@ -1,39 +1,66 @@
 #pragma once
 
-#include <revolution.h>
-#include "Game/System/ResourceHolder.hpp"
+#include "Game/Util/Array.hpp"
+#include <revolution/types.h>
 
-class ResourceHolderManagerName2Resource {
-public:
-    ResourceHolderManagerName2Resource();
+class CreateResourceHolderArgs;
+class JKRHeap;
+class LayoutHolder;
+class ResourceHolder;
+class ResourceHolderManager;
 
-    u32 _0;
-    u32 _4;
-    u32 _8;
-    u32 _C;
-};
+typedef bool (*MakeArchiveFileNameFuncPtr)(char*, u32, const char*);
+typedef void (*FuncPtrB)(const char*, CreateResourceHolderArgs*);
+typedef void (ResourceHolderManager::*FuncPtrC)(const char*, CreateResourceHolderArgs*);
 
 class CreateResourceHolderArgs {
 public:
-    u32 _0;
-    u32 _4;
-    u32 _8;
+    /// @brief Creates a new `CreateResourceHolderArgs`.
+    CreateResourceHolderArgs();
+
+    /* 0x0 */ ResourceHolder* mResourceHolder;
+    /* 0x4 */ LayoutHolder* mLayoutHolder;
+    /* 0x8 */ JKRHeap* mHeap;
 };
 
-class ResourceHolderManager { 
+class ResourceHolderManagerName2Resource {
 public:
+    /// @brief Creates a new `ResourceHolderManagerName2Resource`.
+    ResourceHolderManagerName2Resource();
+
+    /// @brief Copies the contents from `other` to `this`.
+    /// @param other A reference to the `ResourceHolderManagerName2Resource` to copy.
+    /// @return A reference to `this`.
+    ResourceHolderManagerName2Resource& operator=(const ResourceHolderManagerName2Resource& other);
+
+    /* 0x0 */ ResourceHolder* mResourceHolder;
+    /* 0x4 */ LayoutHolder* mLayoutHolder;
+    /* 0x8 */ u32 mHash;
+    /* 0xC */ JKRHeap* mHeap;
+};
+
+class ResourceHolderManager {
+public:
+    /// @brief Creates a new `ResourceHolderManager`.
     ResourceHolderManager();
 
-    void createResourceHolder(char const *, CreateResourceHolderArgs *);
+    ResourceHolder* createAndAdd(const char*, JKRHeap*);
+    ResourceHolder* createAndAddStationed(const char*);
+    LayoutHolder* createAndAddLayoutHolder(const char*, JKRHeap*);
+    LayoutHolder* createAndAddLayoutHolderStationed(const char*);
+    LayoutHolder* createAndAddLayoutHolderRawData(const char*);
+    void removeIfIsEqualHeap(JKRHeap*);
+    static void startCreateResourceHolderOnMainThread(const char*, CreateResourceHolderArgs*);
+    static void startCreateLayoutHolderOnMainThread(const char*, CreateResourceHolderArgs*);
 
-    void createAndAddLayoutHolderStationed(const char *);
-    void removeIfIsEqualHeap(JKRHeap *);
-    void createAndAddStationed(const char *);
+private:
+    ResourceHolderManagerName2Resource* createAndAddInner(const char*, MakeArchiveFileNameFuncPtr, FuncPtrB);
+    ResourceHolderManagerName2Resource* createAndAddInnerStationed(const char*, FuncPtrC);
+    void createResourceHolder(const char*, CreateResourceHolderArgs*);
+    void createLayoutHolder(const char*, CreateResourceHolderArgs*);
+    ResourceHolderManagerName2Resource* add(const char*, const CreateResourceHolderArgs&);
+    ResourceHolderManagerName2Resource* find(const char*);
 
-    ResourceHolder* createAndAdd(const char*, JKRHeap *);
-
-    static void startCreateResourceHolderOnMainThread(const char *, CreateResourceHolderArgs *);
-
-    ResourceHolderManagerName2Resource mResources[0x200];           // 0x0
-    u32 mNumResources;                                              // 0x2000
+private:
+    /* 0x0 */ MR::Vector<MR::FixedArray<ResourceHolderManagerName2Resource, 512> > mResourceArray;
 };

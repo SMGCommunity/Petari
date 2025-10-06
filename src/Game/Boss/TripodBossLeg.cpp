@@ -736,7 +736,7 @@ namespace MR {
         f32 y = v17.mMtx[1][0];
         f32 x = v17.mMtx[0][0];
         v16.set<f32>(x, y, z);
-        f32 v10 = MR::speedySqrtf((v16.x * v16.x) + (v16.z * v16.z));
+        f32 v10 = MR::sqrt((v16.x * v16.x) + (v16.z * v16.z));
 
         if (MR::isNearZero(v10, 0.000001f)) {
             if (v16.y >= 0.0f) {

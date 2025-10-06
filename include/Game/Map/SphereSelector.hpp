@@ -1,6 +1,8 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
+#include "Game/LiveActor/LiveActorGroup.hpp"
+#include "revolution/types.h"
 
 class LiveActorGroup;
 class SphereSelectorHandle;
@@ -40,42 +42,46 @@ public:
     bool mIsPointingInvalid;        // 0xB0
 };
 
-namespace SphereSelectorFunction {
-    void registerTarget(LiveActor*);
-    bool isPadButton();
-    s32 getSelectStartFrame();
-    s32 getConfirmStartCancelFrame();
-    void selectStart();
-    void selectCancel(bool);
-    void selectEnd();
-    void confirmStart();
-    void confirmCancel(bool);
-    void confirmed();
-    bool isSelectWait();
-    bool isConfirmWait();
-    bool isMsgSelectStart(u32);
-    bool isMsgSelectEnd(u32);
-    bool isMsgConfirmStart(u32);
-    bool isMsgConfirmCancel(u32);
-    bool isMsgConfirmed(u32);
-    bool isMsgTargetSelected(u32);
-    bool trySyncAppearMsgSelectStart(LiveActor*, u32);
-    bool trySyncKillMsgSelectStart(LiveActor*, u32);
-    void validatePointing();
-    void invalidatePointing();
-    bool isValidPointing();
-    void setHandle(SphereSelectorHandle*);
-    void calcHandledTrans(const TVec3f&, TVec3f*);
-    void calcHandledRotateMtx(const TVec3f&, TPos3f*);
-    TVec3f* getHandleTrans();
-    f32 getHandleRotateSpeed();
-    bool isHandleHolding();
-    void registerPointingTarget(LiveActor*, HandlePointingPriority);
-    bool tryRegisterPointingTarget(LiveActor*, HandlePointingPriority);
-    bool isPointingTarget();
-    bool isPointingTarget(const LiveActor*);
-    LiveActor* getPointingTarget();
-    LiveActor* getSelectedTarget();
-    TVec3f* getSelectedActorTrans();
-    void calcOffsetPos(TVec3f*, const TVec3f&, const TVec3f&, const TVec3f&, const TVec3f&);
+class SphereSelectorFunction {
+public:
+    static bool registerTarget(LiveActor *);
+    static bool isPadButton();
+    static s32 getSelectStartFrame();
+    static s32 getConfirmStartCancelFrame();
+    static void selectStart();
+    static void selectCancel(bool);
+    static void selectEnd();
+    static void confirmStart();
+    static void confirmCancel(bool);
+    static void confirmed();
+    static bool isSelectWait();
+    static bool isConfirmWait();
+    
+    static bool isMsgSelectStart(u32);
+    static bool isMsgSelectEnd(u32);
+    static bool isMsgConfirmStart(u32);
+    static bool isMsgConfirmCancel(u32);
+
+    static bool isMsgConfirmed(u32);
+    static bool isMsgTargetSelected(u32);
+    static bool trySyncAppearMsgSelectStart(LiveActor *, u32);
+    static bool trySyncKillMsgSelectStart(LiveActor *, u32);
+    static void validatePointing();
+    static void invalidatePointing();
+    static bool isValidPointing();
+    static void setHandle(SphereSelectorHandle *);
+    static void calcHandledTrans(const TVec3f &, TVec3f *);
+    static void calcHandledRotateMtx(const TVec3f &, TPos3f *);
+    static TVec3f& getHandleTrans();
+    static f32 getHandleRotateSpeed();
+    static bool isHandleHolding();
+    static void registerPointingTarget(LiveActor *, HandlePointingPriority);
+    static bool tryRegisterPointingTarget(LiveActor *, HandlePointingPriority);
+    static bool isPointingTarget();
+    static bool isPointingTarget(const LiveActor *);
+    static LiveActor* getPointingTarget();
+    static LiveActor* getSelectedTarget();
+    static TVec3f& getSelectedActorTrans();
+    static void calcOffsetPos(TVec3f *, const TVec3f &, const TVec3f &, const TVec3f &, const TVec3f &);
+
 };
