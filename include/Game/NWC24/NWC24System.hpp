@@ -17,7 +17,7 @@ public:
 
 private:
     /* 0x0 */ bool _0;
-    /* 0x4 */ u8* _4;
-    /* 0x8 */ u8* _8;
+    /* 0x4 */ u8* mWorkBuffer;
+    /* 0x8 */ u8* mVFWorkBuffer;
     /* 0xC */ NWC24SendThread* mSendThread;
 };
