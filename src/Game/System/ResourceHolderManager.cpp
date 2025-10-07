@@ -37,7 +37,7 @@ ResourceHolder* ResourceHolderManager::createAndAdd(const char* pArcName, JKRHea
 }
 
 ResourceHolder* ResourceHolderManager::createAndAddStationed(const char* pParam1) {
-    return createAndAddInnerStationed(pParam1, createResourceHolder)->mResourceHolder;
+    return createAndAddInnerStationed(pParam1, &ResourceHolderManager::createResourceHolder)->mResourceHolder;
 }
 
 LayoutHolder* ResourceHolderManager::createAndAddLayoutHolder(const char* pParam1, JKRHeap*) {
@@ -45,7 +45,7 @@ LayoutHolder* ResourceHolderManager::createAndAddLayoutHolder(const char* pParam
 }
 
 LayoutHolder* ResourceHolderManager::createAndAddLayoutHolderStationed(const char* pParam1) {
-    return createAndAddInnerStationed(pParam1, createLayoutHolder)->mLayoutHolder;
+    return createAndAddInnerStationed(pParam1, &ResourceHolderManager::createLayoutHolder)->mLayoutHolder;
 }
 
 LayoutHolder* ResourceHolderManager::createAndAddLayoutHolderRawData(const char* pParam1) {
