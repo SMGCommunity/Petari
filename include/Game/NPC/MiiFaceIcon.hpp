@@ -7,8 +7,6 @@ class MiiFaceRecipe;
 
 /// @brief The resource creator for the icon of a Mii character.
 class MiiFaceIcon : public NameObj {
-    friend class MiiFaceIconHolder;
-
 public:
     /// @brief Creates a new `MiiFaceIcon`.
     /// @param width The width of the texture, in pixels.
@@ -36,7 +34,6 @@ public:
     /// @brief Initializes the texture data buffer.
     void createImageBuffer();
 
-private:
     /// @brief The position of the Mii data in the database.
     /* 0x0C */ u16 mIndex;
 
