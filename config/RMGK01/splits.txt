@@ -6193,11 +6193,11 @@ Game/NPC/MiiFaceIconHolder.cpp:
 
 Game/NPC/MiiFaceParts.cpp:
 	.text       start:0x80277FB0 end:0x802783AC
-	.data       start:0x805B0A58 end:0x805B0AE0
+	.data       start:0x805B0A58 end:0x805B0AD0
 
 Game/NPC/MiiFacePartsHolder.cpp:
 	.text       start:0x802783AC end:0x80279118
-	.data       start:0x805B0AE0 end:0x805B0BE0
+	.data       start:0x805B0AD0 end:0x805B0BE0
 
 Game/NPC/MiiFaceRecipe.cpp:
 	.text       start:0x80279118 end:0x80279260
@@ -7932,14 +7932,14 @@ Game/Screen/MiiConfirmIcon.cpp:
 Game/Screen/MiiSelect.cpp:
 	.text       start:0x8036ECE0 end:0x80370248
 	.ctors      start:0x8052F2C0 end:0x8052F2C4
-	.data       start:0x805D6FD0 end:0x805D71C0
+	.data       start:0x805D6FD0 end:0x805D7158
 	.sbss       start:0x806B69B0 end:0x806B69D0
 
 Game/Screen/MiiSelectIcon.cpp:
 	.text       start:0x80370248 end:0x80370D0C
 	.ctors      start:0x8052F2C4 end:0x8052F2C8
 	.rodata     start:0x8053A7C8 end:0x8053A7E0
-	.data       start:0x805D71C0 end:0x805D7240
+	.data       start:0x805D7158 end:0x805D7240
 	.sbss       start:0x806B69D0 end:0x806B69E8
 	.sdata2     start:0x806C1110 end:0x806C1120
 
