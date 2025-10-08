@@ -1,5 +1,8 @@
 #include "Game/Camera/CameraWaterFollow.hpp"
 #include "Game/Camera/CamTranslatorWaterFollow.hpp"
+#include "Game/Camera/CameraLocalUtil.hpp"
+#include "Game/Camera/CameraMan.hpp"
+#include "JSystem/JGeometry/TVec.hpp"
 
 CameraWaterFollow::CameraWaterFollow(const char *pName) : Camera(pName) {
     mAxisY = 300.0f;
@@ -17,10 +20,27 @@ CameraWaterFollow::CameraWaterFollow(const char *pName) : Camera(pName) {
     _7C = 0.0f;
 }
 
+void CameraWaterFollow::reset() {
+    _6C = 0;
+    _58 = mDist;
+    _5C = 0;
+    _68 = 0.0f;
+    _64 = 0.0f;
+    _60 = 0.0f;
+    CameraLocalUtil::setWatchPos(this, *CameraLocalUtil::getWatchPos(mCameraMan));    
+    CameraLocalUtil::setPos(this, *CameraLocalUtil::getPos(mCameraMan));
+    CameraLocalUtil::setUpVecAndWatchUpVec(this, *CameraLocalUtil::getUpVec(mCameraMan));
+}
+
 CameraWaterFollow::~CameraWaterFollow() {
 
 }
 
 CamTranslatorBase *CameraWaterFollow::createTranslator() {
     return new CamTranslatorWaterFollow(this);
+}
+
+
+bool CameraWaterFollow::isEnableToReset() const {
+    return true;
 }
