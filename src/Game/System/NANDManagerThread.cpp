@@ -1,11 +1,13 @@
 #include "Game/System/NANDManagerThread.hpp"
 #include "Game/System/NANDManager.hpp"
 
-NANDManagerThread::NANDManagerThread(int a1, int a2, JKRHeap *pHeap) : OSThreadWrapper(0x8000, a2, a1, pHeap) {
-
+NANDManagerThread::NANDManagerThread(int priority, int msgCount, JKRHeap *pHeap) :
+    OSThreadWrapper(0x8000, msgCount, priority, pHeap)
+{
+    
 }
 
-s32 NANDManagerThread::run() {
+void* NANDManagerThread::run() {
     // OSInitFastCast
     __asm {
         li r3, 4
@@ -118,8 +120,4 @@ void NANDManagerThread::executeReadSequence(NANDRequestInfo *pInfo) {
             pInfo->mRequestResult = NANDClose(&info);
         }
     }
-}
-
-NANDManagerThread::~NANDManagerThread() {
-
 }

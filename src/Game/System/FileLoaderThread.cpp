@@ -1,10 +1,8 @@
 #include "Game/System/FileLoaderThread.hpp"
 #include "Game/System/FileRipper.hpp"
 
-#include "Inline.hpp"
-
 namespace {
-    void* loadFileUsingRipper(RequestFileInfo *pInfo) NO_INLINE {
+    void* loadFileUsingRipper(RequestFileInfo *pInfo) {
         s32 val = 0;
 
         if (pInfo->mRequestType != 1) {
@@ -15,11 +13,13 @@ namespace {
     }
 };
 
-FileLoaderThread::FileLoaderThread(int a1, int a2, JKRHeap *pHeap) : OSThreadWrapper(0x8000, a2, a1, pHeap) {
+FileLoaderThread::FileLoaderThread(int priority, int msgCount, JKRHeap *pHeap) :
+    OSThreadWrapper(0x8000, msgCount, priority, pHeap)
+{
+    
+}
 
-} 
-
-s32 FileLoaderThread::run() {
+void* FileLoaderThread::run() {
     // OSInitFastCast
     __asm {
         li r3, 4
@@ -67,8 +67,4 @@ void FileLoaderThread::mountArchiveAndStartCreateResource(RequestFileInfo *pInfo
     MR::createAndAddArchive(data, pInfo->mFileEntry->mHeap, pInfo->mFileName);
     pInfo->mFileEntry->setContext(data, pInfo->mFileEntry->mHeap);
     pInfo->_88 = 2;
-}
-
-FileLoaderThread::~FileLoaderThread() {
-
 }

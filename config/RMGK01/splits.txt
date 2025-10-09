@@ -8499,13 +8499,13 @@ Game/System/NerveExecutor.cpp:
 
 Game/System/OSThreadWrapper.cpp:
 	.text       start:0x803A3FE0 end:0x803A41E0
-	.data       start:0x805DBD00 end:0x805DBD60
+	.data       start:0x805DBD00 end:0x805DBD10
 
 Game/System/Overwrite.cpp:
 	.text       start:0x803A41E0 end:0x803A70BC
 	.ctors      start:0x8052F388 end:0x8052F38C
 	.rodata     start:0x8053B8C0 end:0x8053B8D0
-	.data       start:0x805DBD60 end:0x805DBEE8
+	.data       start:0x805DBD20 end:0x805DBEE8
 	.bss        start:0x8060B388 end:0x8060B3C0
 	.sdata      start:0x806B2578 end:0x806B2590
 	.sdata2     start:0x806C1448 end:0x806C1478

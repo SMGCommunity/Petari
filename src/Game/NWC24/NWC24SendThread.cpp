@@ -22,7 +22,10 @@ NWC24SendThread::NWC24SendThread(s32 priority, JKRHeap* pHeap) {
         this,
         &NWC24SendThread::threadProc,
         nullptr,
-        pStackBase + STACK_SIZE, STACK_SIZE, OSPriority(priority), 1 /* OS_THREAD_ATTR_DETACH */);
+        &pStackBase[STACK_SIZE],
+        STACK_SIZE,
+        priority,
+        1 /* OS_THREAD_ATTR_DETACH */);
     OSResumeThread(this);
 }
 
