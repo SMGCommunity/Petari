@@ -3,8 +3,15 @@
 #include "Game/Animation/AnmPlayer.hpp"
 
 class BckCtrl;
+class BpkPlayer;
 class BrkCtrl;
+class BrkPlayer;
+class BtkPlayer;
+class BtpPlayer;
+class BvaPlayer;
 class DisplayListMaker;
+class J3DModel;
+class J3DModelData;
 class ResourceHolder;
 class XanimePlayer;
 class XanimeResourceTable;
