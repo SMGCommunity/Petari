@@ -9005,7 +9005,7 @@ Game/Util/BaseMatrixFollowTargetHolder.cpp:
 
 Game/Util/BezierSurface.cpp:
 	.text       start:0x80401418 end:0x80401C9C
-	.rodata     start:0x8053EC68 end:0x8055C180
+	.rodata     start:0x8053EC68 end:0x8053F5B8
 	.data       start:0x805E24B0 end:0x805E6E30
 	.sdata2     start:0x806C1918 end:0x806C1920
 
@@ -9082,6 +9082,7 @@ Game/Util/TriggerChecker.cpp:
 
 Game/Util/ValueControl.cpp:
 	.text       start:0x80408364 end:0x80408558
+	.rodata     start:0x8053F5D0 end:0x8053F5E0
 
 Game/NWC24/NWC24Function.cpp:
 	.text       start:0x80408558 end:0x804087A4
