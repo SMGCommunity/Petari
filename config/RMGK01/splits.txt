@@ -8222,8 +8222,8 @@ Game/Screen/SurfingGuidance.cpp:
 Game/Screen/SysInfoWindow.cpp:
 	.text       start:0x8038CE38 end:0x8038D7E0
 	.ctors      start:0x8052F338 end:0x8052F33C
-	.rodata     start:0x8053B6F8 end:0x8053B710
-	.data       start:0x805DA600 end:0x805DA7A0
+	.rodata     start:0x8053B6F8 end:0x8053B700
+	.data       start:0x805DA600 end:0x805DA758
 	.sbss       start:0x806B6D10 end:0x806B6D20
 
 Game/Screen/SystemWipeHolder.cpp:
