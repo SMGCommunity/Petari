@@ -26,49 +26,51 @@ void* NANDManagerThread::run() {
 
     while (true) {
         OSMessage msg;
-        OSReceiveMessage(&mQueue, &msg, 1);
-        NANDRequestInfo* info = (NANDRequestInfo*)msg;
-        info->_40 = 2;
+        OSReceiveMessage(&mQueue, &msg, OS_MESSAGE_BLOCK);
 
-        switch (info->mRequestStatus) {
+        NANDRequestInfo* pInfo = static_cast<NANDRequestInfo*>(msg);
+        pInfo->_40 = 2;
+
+        switch (pInfo->mRequestStatus) {
             case 1:
-                info->mRequestResult = NANDDelete(info->mReqStr);
+                pInfo->mRequestResult = NANDDelete(pInfo->mReqStr);
                 break;
             case 0:
-                info->mRequestResult = NANDMove(info->mReqStr, (const char*)info->_50);
+                pInfo->mRequestResult = NANDMove(pInfo->mReqStr, static_cast<const char*>(pInfo->_50));
                 break;
             case 2:
-                executeWriteSequence(info);
+                executeWriteSequence(pInfo);
                 break;
             case 3:
-                executeReadSequence(info);
+                executeReadSequence(pInfo);
                 break;
             case 4:
-                info->mRequestResult = NANDCheck(info->mFSBlock, info->mINode, (u32*)info->_50);
+                pInfo->mRequestResult = NANDCheck(pInfo->mFSBlock, pInfo->mINode, static_cast<u32*>(pInfo->_50));
                 break;
         }
 
-        info->_40 = 0;
+        pInfo->_40 = 0;
        
-        if (info->_54 != nullptr) {
-            (info->_54)(info);
+        if (pInfo->_54 != nullptr) {
+            (pInfo->_54)(pInfo);
         }
     }
 }
 
 void NANDManagerThread::executeWriteSequence(NANDRequestInfo *pInfo) {
     pInfo->mRequestResult = NANDCreate(pInfo->mReqStr, pInfo->mPermission, pInfo->mAttribute);
-    if (pInfo->mRequestResult == 0 || pInfo->mRequestResult == -6) {
-        NANDFileInfo info;
-        pInfo->mRequestResult = NANDOpen(pInfo->mReqStr, &info, 2);
 
-        if (pInfo->mRequestResult != 0) {
+    if (pInfo->mRequestResult == NAND_RESULT_OK || pInfo->mRequestResult == NAND_RESULT_EXISTS) {
+        NANDFileInfo info;
+        pInfo->mRequestResult = NANDOpen(pInfo->mReqStr, &info, NAND_ACCESS_WRITE);
+
+        if (pInfo->mRequestResult != NAND_RESULT_OK) {
             pInfo->mFSBlock = 0;
         }
         else {
             pInfo->mRequestResult = NANDWrite(&info, pInfo->_4C, pInfo->mFSBlock);
 
-            if (pInfo->mRequestResult < 0) {
+            if (pInfo->mRequestResult < NAND_RESULT_OK) {
                 NANDClose(&info);
                 pInfo->mFSBlock = 0;
             }
@@ -82,9 +84,9 @@ void NANDManagerThread::executeWriteSequence(NANDRequestInfo *pInfo) {
 
 void NANDManagerThread::executeReadSequence(NANDRequestInfo *pInfo) {
     NANDFileInfo info;
-    pInfo->mRequestResult = NANDOpen(pInfo->mReqStr, &info, 1);
+    pInfo->mRequestResult = NANDOpen(pInfo->mReqStr, &info, NAND_ACCESS_READ);
 
-    if (pInfo->mRequestResult != 0) {
+    if (pInfo->mRequestResult != NAND_RESULT_OK) {
         pInfo->mFSBlock = 0;
         return;
     }
@@ -92,28 +94,27 @@ void NANDManagerThread::executeReadSequence(NANDRequestInfo *pInfo) {
     u32 length = 0;
     pInfo->mRequestResult = NANDGetLength(&info, &length);
 
-    if (pInfo->mRequestResult != 0) {
+    if (pInfo->mRequestResult != NAND_RESULT_OK) {
         NANDClose(&info);
         pInfo->mFSBlock = 0;
         return;
     }
 
     if (pInfo->_50 != nullptr) {
-        *(u32*)(pInfo->_50) = length;
+        *static_cast<u32*>(pInfo->_50) = length;
     }
 
     if (pInfo->mFSBlock < length) {
         pInfo->mFSBlock = 0;
-        pInfo->mRequestResult = -15;
+        pInfo->mRequestResult = NAND_RESULT_AUTHENTICATION;
         NANDClose(&info);
     }
     else {
-        pInfo->mRequestResult = NANDRead(&info, (void*)pInfo->_4C, length);
+        pInfo->mRequestResult = NANDRead(&info, const_cast<void*>(pInfo->_4C), length);
 
-        if (pInfo->mRequestResult < 0) {
+        if (pInfo->mRequestResult < NAND_RESULT_OK) {
             NANDClose(&info);
             pInfo->mFSBlock = 0;
-            return;
         }
         else {
             pInfo->mFSBlock = pInfo->mRequestResult;
