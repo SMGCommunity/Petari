@@ -2172,7 +2172,7 @@ config.libs = [
             Object(Matching, "Game/System/NANDManager.cpp"),
             Object(Matching, "Game/System/NANDManagerThread.cpp"),
             Object(Matching, "Game/System/NerveExecutor.cpp"),
-            Object(NonMatching, "Game/System/OSThreadWrapper.cpp"),
+            Object(Matching, "Game/System/OSThreadWrapper.cpp"),
             Object(NonMatching, "Game/System/Overwrite.cpp"),
             Object(NonMatching, "Game/System/PauseButtonCheckerInGame.cpp"),
             Object(NonMatching, "Game/System/PlacedHiddenStarScenarioTable.cpp"),
