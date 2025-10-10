@@ -89,11 +89,11 @@ bool NWC24SendThread::isDone(NWC24Err* pErr, u32* pSize) {
 
 void* NWC24SendThread::threadProc(void*) {
     while (true) {
-        MsgSendStatus* pMessage = nullptr;
-        OSReceiveMessage(&mMessageQueue, &static_cast<OSMessage>(pMessage), OS_MESSAGE_BLOCK);
+        MsgSendStatus* pMsgSendStatus = nullptr;
+        OSReceiveMessage(&mMessageQueue, reinterpret_cast<void**>(&pMsgSendStatus), OS_MESSAGE_BLOCK);
 
-        pMessage->mSentErr = sendMessage(pMessage, &pMessage->mSentSize);
-        pMessage->_18 = true;
+        pMsgSendStatus->mSentErr = sendMessage(pMsgSendStatus, &pMsgSendStatus->mSentSize);
+        pMsgSendStatus->_18 = true;
     }
 }
 
