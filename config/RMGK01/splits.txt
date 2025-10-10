@@ -2368,14 +2368,15 @@ Game/Effect/ParticleEmitter.cpp:
 
 Game/Effect/ParticleEmitterHolder.cpp:
 	.text       start:0x800CA05C end:0x800CA47C
-	.data       start:0x805787C8 end:0x80578860
+	.data       start:0x805787C8 end:0x805787D8
 
 Game/Effect/ParticleResourceHolder.cpp:
 	.text       start:0x800CA47C end:0x800CA934
+	.data       start:0x805787D8 end:0x80578820
 
 Game/Effect/RandomEffectObj.cpp:
 	.text       start:0x800CA934 end:0x800CAC10
-	.data       start:0x80578860 end:0x805788F0
+	.data       start:0x80578820 end:0x805788F0
 	.sdata2     start:0x806B9D70 end:0x806B9D80
 
 Game/Effect/SimpleEffectObj.cpp:
