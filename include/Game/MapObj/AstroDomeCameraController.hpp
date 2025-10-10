@@ -2,7 +2,6 @@
 
 #include "Game/LiveActor/LiveActor.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
-#include "revolution/mtx.h"
 
 class AstroDomeCameraController : public LiveActor {
 public:
@@ -12,11 +11,6 @@ public:
         Position();
 
         void reset(const TVec3f &);
-        void set(TVec3f vec) {
-            _0.set<f32>(vec);
-            _C.set<f32>(vec);
-            _18.set<f32>(vec);
-        }
 
         TVec3f _0;
         TVec3f _C;
