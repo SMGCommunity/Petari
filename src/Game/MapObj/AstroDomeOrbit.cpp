@@ -63,10 +63,6 @@ void AstroDomeOrbit::drawBloom() const {
     }
 }
 
-void AstroDomeOrbit::moveCoord() {
-    _90 = calcRepeatedRotateCoord(_90 + -0.05f);
-}
-
 void AstroDomeOrbit::setup(s32 radiusIdx) {
     s32 miniNum = MiniatureGalaxyFunction::getMiniatureGalaxyNum();
     f32* domes = cRadiusLastDome;
