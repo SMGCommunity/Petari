@@ -137,7 +137,7 @@ bool MiiFacePartsHolder::isError() const {
 MiiFaceParts* MiiFacePartsHolder::createPartsFromReceipe(const char* pName, const MiiFaceRecipe& rRecipe) {
     MiiFaceParts* pParts = new MiiFaceParts(pName, rRecipe);
 
-    MR::getSceneObj<MiiFacePartsHolder*>(SceneObj_MiiFacePartsHolder)->registerActor(pParts);
+    MR::getSceneObj<MiiFacePartsHolder>(SceneObj_MiiFacePartsHolder)->registerActor(pParts);
 
     MR::FunctorV0M<NameObj*, void (NameObj::*)()> initFunc(
         pParts, &NameObj::initWithoutIter);

@@ -26,7 +26,7 @@
 
 namespace {
     CometRetryButton* getCometRetryButton() {
-        return MR::getSceneObj<CometRetryButton*>(SceneObj_CometRetryButton);
+        return MR::getSceneObj<CometRetryButton>(SceneObj_CometRetryButton);
     }
 };
 

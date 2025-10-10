@@ -21,7 +21,7 @@ namespace {
 
 namespace DemoFunction {
     DemoDirector* getDemoDirector() {
-        return MR::getSceneObj<DemoDirector*>(SceneObj_DemoDirector);
+        return MR::getSceneObj<DemoDirector>(SceneObj_DemoDirector);
     }
 
     DemoCastGroupHolder* getDemoCastSubGroupHolder() { return getDemoDirector()->_1C; }

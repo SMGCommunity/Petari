@@ -13,11 +13,11 @@
 #include <JSystem/J3DGraphBase/J3DSys.hpp>
 
 void SceneFunction::movementStopSceneController() {
-    MR::getSceneObj<StopSceneController*>(SceneObj_StopSceneController)->movement();
+    MR::getSceneObj<StopSceneController>(SceneObj_StopSceneController)->movement();
 }
 
 void SceneFunction::executeMovementList() {
-    if (MR::getSceneObj<StopSceneController*>(SceneObj_StopSceneController)->isSceneStopped()) {
+    if (MR::getSceneObj<StopSceneController>(SceneObj_StopSceneController)->isSceneStopped()) {
         return;
     }
 

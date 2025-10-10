@@ -344,7 +344,7 @@ void MoviePlayingSequence::exeWait() {
 
 namespace {
     MoviePlayingSequenceHolder* getMoviePlayingSequenceHolder() {
-        return MR::getSceneObj<MoviePlayingSequenceHolder*>(SceneObj_MoviePlayingSequenceHolder);
+        return MR::getSceneObj<MoviePlayingSequenceHolder>(SceneObj_MoviePlayingSequenceHolder);
     }
 
     MoviePlayingSequence* getMoviePlayingSequence(int idx) {

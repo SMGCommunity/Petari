@@ -180,7 +180,7 @@ void AirFar100m::setFarClipping() {
 
 PriorDrawAir::PriorDrawAir(const char *pName) : Air(pName) {
     MR::createSceneObj(SceneObj_PriorDrawAirHolder);
-    MR::getSceneObj<PriorDrawAirHolder*>(SceneObj_PriorDrawAirHolder)->add(this);
+    MR::getSceneObj<PriorDrawAirHolder>(SceneObj_PriorDrawAirHolder)->add(this);
 }
 
 PriorDrawAirHolder::PriorDrawAirHolder() : NameObj("先描画大気保持") {
@@ -210,7 +210,7 @@ namespace MR {
             return false;
         }
 
-        return MR::getSceneObj<PriorDrawAirHolder*>(SceneObj_PriorDrawAirHolder)->isExistValidDrawAir();
+        return MR::getSceneObj<PriorDrawAirHolder>(SceneObj_PriorDrawAirHolder)->isExistValidDrawAir();
     }
 };
 

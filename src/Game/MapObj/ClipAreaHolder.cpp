@@ -4,7 +4,7 @@
 
 namespace {
     ClipAreaHolder* getClipAreaHolder() {
-        return MR::getSceneObj<ClipAreaHolder*>(SceneObj_ClipAreaHolder);
+        return MR::getSceneObj<ClipAreaHolder>(SceneObj_ClipAreaHolder);
     }
 };
 

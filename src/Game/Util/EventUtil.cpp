@@ -18,7 +18,7 @@
 
 namespace {
     ScenePlayingResult* getScenePlayingResult() {
-        return MR::getSceneObj<ScenePlayingResult*>(SceneObj_ScenePlayingResult);
+        return MR::getSceneObj<ScenePlayingResult>(SceneObj_ScenePlayingResult);
     }
 };
 

@@ -278,7 +278,7 @@ void NoteFairy::exeDemoAppear() {
     }
 
     MR::startLevelSound(this, "SE_OJ_LV_FLOWER_FAIRY_MOVE", -1, -1, -1);
-    mRotation.y = MR::getSceneObj<NoteGroup*>(SceneObj_NoteGroup)->mRotation;
+    mRotation.y = MR::getSceneObj<NoteGroup>(SceneObj_NoteGroup)->mRotation;
 
     if (MR::isStep(this, 130)) {
         setNerve(&NrvNoteFairy::NoteFairyNrvAppearNoteBloom::sInstance);
@@ -298,7 +298,7 @@ void NoteFairy::exeAppearNoteBloom() {
 
     MR::startLevelSound(this, "SE_OJ_LV_FLOWER_FAIRY_MOVE", -1, -1, -1);
     MR::moveCoordAndFollowTrans(this, mAppearanceSpeed);
-    mRotation.y = MR::getSceneObj<NoteGroup*>(SceneObj_NoteGroup)->mRotation;
+    mRotation.y = MR::getSceneObj<NoteGroup>(SceneObj_NoteGroup)->mRotation;
 
     while (_B0 >= mMelodyNoteNum && MR::getRailCoord(this) >= getNoteCoord(_B0)) {
         mNoteArray[_B0]->appear();
@@ -405,7 +405,7 @@ void NoteFairy::enterDemoAppear(const Nerve *pNerve, bool hasNoFrame) {
         MR::requestStartDemoWithoutCinemaFrame(this, "出現", pNerve, nullptr);
     }
 
-    MR::requestMovementOn(MR::getSceneObj<NoteGroup*>(SceneObj_NoteGroup));
+    MR::requestMovementOn(MR::getSceneObj<NoteGroup>(SceneObj_NoteGroup));
     MR::requestMovementOn(this);
 }
 
