@@ -22,7 +22,8 @@ void Banekiti::init(const JMapInfoIter &rIter) {
     mRailMover->init(rIter);
     mRailMover->start();
     TVec3f offset;
-    MR::initStarPointerTarget(this, 120.0f, TVec3f(0.0f));
+    offset.y = offset.z = offset.x = 0.0f;
+    MR::initStarPointerTarget(this, 120.0f, offset);
     mAnimScaleCtrl = new AnimScaleController(nullptr);
     mBindStarPointer = new WalkerStateBindStarPointer(this, mAnimScaleCtrl);
     initNerve(&NrvBanekiti::BanekitiNrvWait::sInstance);

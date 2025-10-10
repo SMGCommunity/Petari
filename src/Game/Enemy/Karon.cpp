@@ -157,12 +157,10 @@ void Karon::exeStepBroken() {
         MR::calcGravity(this);
     }
     else if (MR::isBinded(this)) {
-        TVec3f* bindNormal = &MR::getBindedNormal(this);
-        mVelocity.scale(bindNormal->dot(mVelocity));
+        mVelocity.scale(MR::getBindedNormal(this)->dot(mVelocity));
     }
     else {
-        TVec3f* g = &mGravity;
-        mVelocity.scale(g->dot(mVelocity), mGravity);
+        mVelocity.scale(mGravity.dot(mVelocity), mGravity);
         MR::forceBindOnGround(this, 1.0f, 0.8f);
     }
 

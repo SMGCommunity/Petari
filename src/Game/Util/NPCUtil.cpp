@@ -6,11 +6,11 @@
 #include "Game/Util/ObjUtil.hpp"
 
 namespace {
-    static s32 sStarAppearSeStep = 0x67;
-    static s32 sStarAppearSeStepCaretaker = 0x20;
-    static s32 sStarAppearSeStepPenguinCoach = 0x5F;
-    static s32 sStarAppearSeStepTeresaRacer = 0x59;
-    static s32 sStarAppearSeStepTrickRabbit = 0x16;
+    static s32 sStarAppearSeStep = 103;
+    static s32 sStarAppearSeStepCaretaker = 32;
+    static s32 sStarAppearSeStepPenguinCoach = 95;
+    static s32 sStarAppearSeStepTeresaRacer = 89;
+    static s32 sStarAppearSeStepTrickRabbit = 22;
 };
 
 namespace NrvTakeOutStar {
@@ -51,14 +51,8 @@ bool TakeOutStar::takeOut() {
 }
 
 bool TakeOutStar::isFirstStep() {
-    bool ret = false;
-    if (isNerve(&NrvTakeOutStar::TakeOutStarNrvAnim::sInstance)) {
-        if (MR::isFirstStep(this)) {
-            ret = true;
-        }
-    }
-
-    return ret;
+    return isNerve(&NrvTakeOutStar::TakeOutStarNrvAnim::sInstance)
+        && MR::isFirstStep(this);
 }
 
 bool TakeOutStar::isLastStep() {
@@ -71,7 +65,7 @@ void TakeOutStar::exeAnim() {
             mActor->pushNerve(mNerve);
         }
         else {
-            mActor->tryPullNullNerve();
+            mActor->tryPushNullNerve();
         }
 
         mStarModel->appear();
@@ -82,6 +76,7 @@ void TakeOutStar::exeAnim() {
     }
 
     s32 step = sStarAppearSeStep;
+
     if (MR::isEqualString(mAnimName, "TakeOutStarCaretaker")) {
         step = sStarAppearSeStepCaretaker;
     }
@@ -96,11 +91,7 @@ void TakeOutStar::exeAnim() {
     }
 
     if (MR::isGreaterStep(this, step)) {
-        TVec3f offs;
-        offs.x = 0.0f;
-        offs.y = 0.0f;
-        offs.z = 0.0f;
-        if (MR::isInWater(mStarModel, offs)) {
+        if (MR::isInWater(mStarModel, TVec3f(0.0f, 0.0f, 0.0f))) {
             MR::startLevelSound(mStarModel, "SE_OJ_LV_POW_STAR_EXIST_W", -1, -1, -1);
         }
         else {
@@ -207,7 +198,7 @@ void DemoStarter::exeTerm() {
 }
 
 void DemoStarter::exeWait() {
-    if (!MR::isLessStep(this, 0x1E)) {
+    if (!MR::isLessStep(this, 30)) {
         if (MR::canStartDemo()) {
             setNerve(&NrvDemoStarter::DemoStarterNrvTerm::sInstance);
         }

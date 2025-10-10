@@ -12,11 +12,8 @@
 
 namespace {
     bool isExistEffect(const LiveActor *pActor, const char *pEffectName) {
-        bool ret = pActor->mEffectKeeper;
-        if (ret) {
-            ret = MR::isRegisteredEffect(pActor, pEffectName);
-        }
-        return ret;
+        return MR::isExistEffectKeeper(pActor)
+            && MR::isRegisteredEffect(pActor, pEffectName);
     }
 };
 
@@ -61,7 +58,7 @@ namespace MR {
     }
 
     MultiEmitter* emitEffectWithEmitterCallBack(LiveActor *pActor, const char *pEffectName, MultiEmitterCallBackBase *pCallBack) {
-        MultiEmitter* pEmitter = pActor->mEffectKeeper->createEmitter(pEffectName);
+        MultiEmitter* pEmitter = pActor->mEffectKeeper->getEmitter(pEffectName);
         pEmitter->createEmitterWithCallBack(pCallBack);
         return pEmitter;
     }

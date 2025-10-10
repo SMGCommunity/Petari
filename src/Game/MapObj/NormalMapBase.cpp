@@ -4,10 +4,11 @@
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/ModelUtil.hpp"
 #include "JSystem/JUtility/JUTTexture.hpp"
-#include "revolution/gx/GXEnum.h"
-#include "revolution/gx/GXGeometry.h"
+#include <JSystem/J3DGraphAnimator/J3DModel.hpp>
 #include <JSystem/J3DGraphBase/J3DMaterial.hpp>
 #include <JSystem/JKernel/JKRHeap.hpp>
+#include <revolution/gx/GXEnum.h>
+#include <revolution/gx/GXGeometry.h>
 #include <cstring>
 
 NormalMapBase::NormalMapBase(const char *pName) : LiveActor(pName) {

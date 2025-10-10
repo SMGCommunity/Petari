@@ -1,6 +1,7 @@
 #pragma once
 
 #include <nw4r/lyt/drawInfo.h>
+#include <nw4r/lyt/layout.h>
 #include <nw4r/lyt/pane.h>
 
 class LayoutManager {
@@ -14,7 +15,7 @@ public:
     nw4r::lyt::Pane* getPane(const char *) const;
 
     u32 _0;
-    u32 _4;
+    nw4r::lyt::Layout* mLayout;     // 0x4
     u32 _8;
     nw4r::lyt::DrawInfo mDrawInfo;  // 0xC
     bool mIsScreenHidden;           // 0x60

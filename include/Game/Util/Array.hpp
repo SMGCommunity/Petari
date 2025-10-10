@@ -253,9 +253,23 @@ namespace MR {
                 mEnd = head + S;
             }
 
+            void operator++() {
+                mHead++;
+
+                if (mHead >= mEnd) {
+                    mHead = mTail;
+                }
+            }
+
             T* mHead;   // 0x0
             T* mTail;   // 0x4
             T* mEnd;    // 0x8
         };
+
+        void push_back(const T &);
+
+        T* mBuffer[S];
+
+        int _58;
     };
 };

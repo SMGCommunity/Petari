@@ -51,4 +51,5 @@ namespace MR {
 class Collision {
 public:
     static bool checkStrikeLineToMap(const TVec3f &, const TVec3f &, s32, const CollisionPartsFilterBase *, const TriangleFilterBase *);
+    static bool checkStrikeLineToSunshade(const TVec3f &, const TVec3f &, s32, const CollisionPartsFilterBase *, const TriangleFilterBase *);
 };

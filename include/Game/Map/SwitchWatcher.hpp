@@ -3,6 +3,8 @@
 #include "Game/NameObj/NameObj.hpp"
 #include "Game/Map/StageSwitch.hpp"
 
+class SwitchEventListener;
+
 class SwitchWatcher : public NameObj {
 public:
     SwitchWatcher(const StageSwitchCtrl *);
