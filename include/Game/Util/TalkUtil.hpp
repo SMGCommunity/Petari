@@ -45,6 +45,7 @@ namespace MR {
 
     void setMessageBalloonFollowOffset(TalkMessageCtrl *, const TVec3f &);
 
+    TalkMessageCtrl* createTalkCtrl(LiveActor *, const JMapInfoIter &, const char *,const TVec3f &, MtxPtr);
     TalkMessageCtrl* createTalkCtrlDirect(LiveActor *, const JMapInfoIter &, const char *,const TVec3f &, MtxPtr);
     TalkMessageCtrl* createTalkCtrlDirectOnRootNodeAutomatic(LiveActor *, const JMapInfoIter &, const char *, const TVec3f &, MtxPtr);
 

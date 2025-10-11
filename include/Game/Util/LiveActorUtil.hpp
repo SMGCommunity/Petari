@@ -240,6 +240,7 @@ namespace MR {
     bool isBckPlaying(const LiveActor*, const char*);
 
     bool isBckLooped(const LiveActor *);
+    bool checkPassBckFrame(const LiveActor* pActor, f32 f);
 
     bool isBckStopped(const LiveActor*);
     bool isBrkStopped(const LiveActor*);

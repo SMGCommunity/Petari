@@ -39,8 +39,8 @@ void SwitchBox::init(const JMapInfoIter &rIter) {
 		MR::initShadowVolumeBox(this, TVec3f(150.0f, 150.0f, 150.0f));
 		MR::setShadowVolumeStartDropOffset(this, nullptr, 77.0f);
 		MR::setShadowVolumeEndDropOffset(this, nullptr, 150.0f);
-		MR::excludeCalcShadowToMyCollision(this, nullptr);
 		MR::onShadowVolumeCutDropLength(this, nullptr);
+		MR::excludeCalcShadowToMyCollision(this, nullptr);
 		MR::onCalcGravity(this);
 		MR::onCalcShadowOneTime(this, nullptr);
 	}
