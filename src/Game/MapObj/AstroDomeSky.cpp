@@ -3,17 +3,14 @@
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Map/SphereSelector.hpp"
-#include "Game/Util/Color.hpp"
 #include "Game/Util/DemoUtil.hpp"
 #include "Game/Util/DrawUtil.hpp"
 #include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/JMapUtil.hpp"
-#include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "revolution/gx/GXStruct.h"
 #include "revolution/types.h"
-#include <cmath>
 
 namespace NrvAstroDomeSky {
     NEW_NERVE(AstroDomeNrvHide, AstroDomeSky, Hide);
@@ -63,12 +60,12 @@ void AstroDomeSky::draw() const {
     MR::fillScreen(_90);
 }
 
-bool AstroDomeSky::receiveOtherMsg(u32 v1, HitSensor* pSender, HitSensor* pReceiver) {
-    if (SphereSelectorFunction::isMsgSelectStart(v1)) {
+bool AstroDomeSky::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
+    if (SphereSelectorFunction::isMsgSelectStart(msg)) {
         setNerve(&NrvAstroDomeSky::AstroDomeNrvAppear::sInstance);
         return true;
     }
-    else if (SphereSelectorFunction::isMsgSelectEnd(v1)) {
+    else if (SphereSelectorFunction::isMsgSelectEnd(msg)) {
         setNerve(&NrvAstroDomeSky::AstroDomeNrvDisappear::sInstance);
         return true;
     }
