@@ -6,7 +6,6 @@
 #include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
-#include "JSystem/JKernel/JKRHeap.hpp"
 #include "Game/Map/SphereSelector.hpp"
 #include "JSystem/JGeometry/TMatrix.hpp"
 #include "revolution/gx/GXEnum.h"
