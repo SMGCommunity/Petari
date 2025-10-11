@@ -8,22 +8,22 @@
 #include <revolution.h>
 
 class MiniatureGalaxyHolder : LiveActor {
-    public:
-        MiniatureGalaxyHolder();
-        ~MiniatureGalaxyHolder();
-        void registerActor(LiveActor*, const JMapInfoIter&);
-        virtual void init(const JMapInfoIter&);
-        bool isRegisteredActor(const LiveActor*);
-        MiniatureGalaxy* findMiniatureGalaxy(const char*) const; // MiniatureGalaxy* ?
-        void killAllMiniatureGalaxy();
-        void calcIndex(const LiveActor*) const;
-        void updateCometStatus();
+public:
+    MiniatureGalaxyHolder();
+    ~MiniatureGalaxyHolder();
+    void registerActor(LiveActor*, const JMapInfoIter&);
+    virtual void init(const JMapInfoIter&);
+    bool isRegisteredActor(const LiveActor*);
+    MiniatureGalaxy* findMiniatureGalaxy(const char*) const; // MiniatureGalaxy* ?
+    void killAllMiniatureGalaxy();
+    void calcIndex(const LiveActor*) const;
+    void updateCometStatus();
 
-        LiveActorGroup* _8C;
-        bool _90;
-        s32 _94;
-        s32 _98;
-        s32 _9C;
+    LiveActorGroup* _8C;
+    bool _90;
+    s32 _94;
+    s32 _98;
+    s32 _9C;
 };
 
 class MiniatureGalaxyFunction {
