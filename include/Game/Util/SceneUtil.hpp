@@ -1,105 +1,83 @@
 #pragma once
 
-#include "Game/Util/JMapInfo.hpp"
-#include "JSystem/JGeometry/TMatrix.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
-#include "revolution/types.h"
-#include <revolution.h>
+#include <JSystem/JGeometry/TMatrix.hpp>
+#include <JSystem/JGeometry/TVec.hpp>
+#include <revolution/types.h>
 
-class JMapLinkInfo;
+class JKRMemArchive;
 class JMapIdInfo;
+class JMapInfo;
+class JMapInfoIter;
+class JMapLinkInfo;
 class NameObj;
 
 namespace MR {
-    s32 getPlacedZoneId(const JMapInfoIter &);
-    void setCurrentPlacementZoneId(s32);
-    s32 getCurrentPlacementZoneId();
-    void clearCurrentPlacementZoneId();
-
-    s32 getChildObjNum(const JMapInfoIter &);
-    void getChildObjName(const char **, const JMapInfoIter &, int);
-    void initChildObj(NameObj *, const JMapInfoIter &, int);
-
-    const char* getCurrentPlacementZoneName();
-
     s32 getCurrentScenarioNo();
-
+    s32 getCurrentSelectedScenarioNo();
+    void setCurrentScenarioNo(s32, s32);
+    bool isScenarioDecided();
     const char* getCurrentStageName();
-
-    s32 getPowerStarNum();
-    s32 getCurrentStagePowerStarNum();
-    s32 getZoneNum();
-
-    s32 getPlacedRailNum();
-
-    const char* getZoneNameFromZoneId(s32);
-
-    TMtx34f *getZonePlacementMtx(s32);
-    TMtx34f *getZonePlacementMtx(const JMapInfoIter &);
-
-    void getStageCameraData(void **, s32 *, s32);
-
-    void getRailInfo(JMapInfoIter *, const JMapInfo **, const JMapInfoIter &);
-
-    void getCameraRailInfo(JMapInfoIter *, const JMapInfo **, s32, s32);
-
-    void setInitializeStatePlacementPlayer();
-    void setInitializeStatePlacementHighPriority();
-    void setInitializeStatePlacement();
-    void setInitializeStateAfterPlacement();
-
-    s32 getGeneralPosNum();
-    void getGeneralPosData(const char **, TVec3f *, TVec3f *, JMapLinkInfo **, int);
-
-    void getCurrentScenarioStartAnimCameraData(void **, s32 *);
-
-    void playSceneForScenarioOpeningCamera();
-
-    s32 getCurrentStartCameraID();
-    s32 getCurrentStartZoneID();
-
-    bool isEqualStageName(const char *);
-
+    bool isEqualSceneName(const char*);
+    bool isEqualStageName(const char*);
     bool isStageBeginPrologueEvent();
     bool isStageBeginFadeWipe();
     bool isStageBeginTitleWipe();
     bool isStageBeginWithoutWipe();
     bool isStageDisablePauseMenu();
-
+    bool isStageAstroLocation();
+    bool isStageSwimAngleLimit();
+    bool isStageStarPieceFollowGroupLimit();
+    bool isStageFileSelect();
     bool isStageKoopaVs();
     bool isStageKoopaVs3();
-
-    bool isStageAstroLocation();
-
+    bool isStageEpilogueDemo();
     bool isBeginScenarioStarter();
-
+    bool isStageSuddenDeathDodoryu();
+    void setInitializeStatePlacementPlayer();
+    void setInitializeStatePlacementHighPriority();
+    void setInitializeStatePlacement();
+    void setInitializeStateAfterPlacement();
+    bool isInitializeStateEnd();
+    bool isInitializeStatePlacementSomething();
+    void stopSceneForScenarioOpeningCamera();
+    void playSceneForScenarioOpeningCamera();
+    const JMapIdInfo& getCurrentMarioStartIdInfo();
+    s32 getStartPosNum();
+    s32 getCurrentStartZoneId();
+    const JMapIdInfo& getInitializeStartIdInfo();
+    JKRMemArchive* getStageArchive(const char*);
+    s32 getGeneralPosNum();
+    void getGeneralPosData(const char**, TVec3f*, TVec3f*, JMapLinkInfo**, int);
+    s32 getChildObjNum(const JMapInfoIter&);
+    const char* getChildObjName(const char**, const JMapInfoIter&, int);
+    void initChildObj(NameObj*, const JMapInfoIter&, int);
+    const char* getAppearPowerStarObjName(s32);
+    s32 getCurrentStageNormalScenarioNum();
+    s32 getCurrentStagePowerStarNum();
+    s32 getZoneNum();
+    const char* getZoneNameFromZoneId(s32);
+    s32 getPlacedHiddenStarScenarioNo(const char*, s32);
+    void getRailInfo(JMapInfoIter*, const JMapInfo**, const JMapInfoIter&);
+    bool getNextLinkRailInfo(JMapInfoIter*, const JMapInfo**, const JMapInfoIter&);
+    s32 getCurrentStartCameraId();
+    void getStartCameraIdInfoFromStartDataIndex(JMapIdInfo*, int);
+    s32 getPlacedRailNum(s32);
+    void getCameraRailInfo(JMapInfoIter*, const JMapInfo**, s32, s32);
+    bool getCameraRailInfoFromRailDataIndex(JMapInfoIter*, const JMapInfo**, int, s32);
+    void getStageCameraData(void**, s32*, s32);
+    void getCurrentScenarioStartAnimCameraData(void**, s32*);
     void incCoin(int);
     void incPurpleCoin();
-
     s32 getCoinNum();
     s32 getPurpleCoinNum();
-
+    s32 getPowerStarNum();
     bool isPlacementLocalStage();
-
-    bool isInitializeStateEnd();
-
-    bool isStageSwimAngleLimit();
-
-    const char* getAppearPowerStarObjName(s32);
-
-    JMapIdInfo& getInitializeStartIdInfo();
-
-    bool isScenarioDecided();
-
-    s32 getCurrentStageNormalScenarioNum();
-
-    const char* getJapaneseObjectName(const char *);
-
-    s32 getPlacedHiddenStarScenarioNo(const char *, s32);
-
-    void setCurrentScenarioNo(s32, s32);
-
-    void stopSceneForScenarioOpeningCamera();
-
-    bool isStageEpilogueDemo();
+    s32 getPlacedZoneId(const JMapInfoIter&);
+    TMtx34f* getZonePlacementMtx(const JMapInfoIter&);
+    TMtx34f* getZonePlacementMtx(s32);
+    const char* getJapaneseObjectName(const char*);
+    void setCurrentPlacementZoneId(s32);
+    void clearCurrentPlacementZoneId();
+    s32 getCurrentPlacementZoneId();
+    const char* getCurrentPlacementZoneName();
 };

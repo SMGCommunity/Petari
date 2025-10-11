@@ -2,66 +2,85 @@
 
 #include <revolution.h>
 
+class GameDataHolder;
+class GameDataSomeScenarioAccessor;
 class JMapInfoIter;
 
-class GameDataFunction {
-public:
-    static bool isDataMario();
-
-    static bool canOnGameEventFlag(const char *);
-
-    static void onGameEventFlag(const char *);
-
-    static s32 getPowerStarNumOwned(const char *);
-
-    static bool hasPowerStar(const char *, s32);
-    static bool hasGrandStar(int);
-
-    static bool isPowerStarLeftInCometOnly();
-    static bool isOnGameEventFlag(const char *);
-    static bool isOnJustGameEventFlag(const char *);
-    static void updateGalaxyCometStatus(s32, s16, u16);
-    static void restoreGalaxyCometStatus(s32, u16 *, u16 *);
-
-    static s32 getStarPieceNum();
-    static s32 getStockedStarPieceNum();
-    static void addStarPiece(int);
-    static void addStockedStarPiece(int);
-    static s32 getLast1upStarPieceNum();
-
-    static void setLast1upStarPieceNum(int);
-
-    static OSTime getSysConfigFileTimeAnnounced();
-    static void updateSysConfigFileTimeAnnounced();
-
-    static s32 getPlayerLeft();
-    static void addPlayerLeft(int);
-
-    static void addMissPoint(int);
-    static void resetMissPoint();
-    static void incPlayerMissNum();
-
-    static bool isPlayerLeftSupply();
-    static bool isLuigiLeftSupply();
-
-    static void offPlayerLeftSupply();
-    static void offLuigiLeftSupply();
-
-    static bool isPointCollectForLetter();
-
-    static bool isPassedStoryEvent(const char *);
-
-    static bool isOnCompleteEndingMarioAndLuigi();
-
-    static s32 setupAlreadyDoneFlag(const char *, const JMapInfoIter &, u32 *);
-    static void updateAlreadyDoneFlag(int, u32);
-
-    static bool isOnGalaxyScenarioFlagAlreadyVisited(const char *, s32);
-
-    static bool isAppearGalaxy(const char *);
-    static bool isAppearGalaxyGreenDriver(const char *);
-
-    static bool hasPowerStarYetAtResultSequence();
-    static bool isPowerStarGreenAtResultSequence();
-    static bool isPowerStarRedAtResultSequence();
+namespace GameDataFunction {
+    bool isDataMario();
+    bool hasPowerStar(const char*, s32);
+    bool hasGrandStar(int);
+    void setGameFlagPowerStarSuccess(const char*, s32, bool);
+    GameDataSomeScenarioAccessor makeGalaxyScenarioAccessor(const char*, s32);
+    bool isOnGalaxyScenarioFlagAlreadyVisited(const char*, s32);
+    void onGalaxyScenarioFlagAlreadyVisited(const char*, s32);
+    bool isAppearGalaxy(const char*);
+    s32 calcCurrentPowerStarNum();
+    s32 getPowerStarNumOwned(const char*);
+    s32 getPowerStarNumMax();
+    s32 getPictureBookChapterCanRead();
+    s32 getPictureBookChapterAlreadyRead();
+    void setPictureBookChapterAlreadyRead(int);
+    void onGameEventFlag(const char*);
+    bool canOnGameEventFlag(const char*);
+    bool canOnAndIsOffGameEventFlag(const char*);
+    bool isOnGameEventFlag(const char*);
+    u16 getGameEventValue(const char*);
+    void setGameEventValue(const char*, u16);
+    bool isOnGameEventValueForBit(const char*, int);
+    void setGameEventValueForBit(const char*, int, bool);
+    s32 setupAlreadyDoneFlag(const char*, const JMapInfoIter&, u32*);
+    void updateAlreadyDoneFlag(int, u32);
+    void restoreGalaxyCometStatus(int, u16*, u16*);
+    void setRaceBestTime(const char*, u32);
+    s32 getRaceBestTime(const char*);
+    void addMissPoint(int);
+    void resetMissPoint();
+    bool isPointCollectForLetter();
+    void incPlayerMissNum();
+    s32 registerStorageSpinDriverPathDrawRange(const char*, int, int, int, f32*);
+    void updateStorageSpinDriverPathDrawRange(const char*, int, int, f32);
+    s32 getStarPieceNumGivingToTicoSeed(int);
+    s32 getStarPieceNumMaxGivingToTicoSeed(int);
+    void addStarPieceGivingToTicoSeed(int, int);
+    bool isPassedStoryEvent(const char*);
+    void followStoryEventByName(const char*);
+    s32 getPlayerLeft();
+    void addPlayerLeft(int);
+    bool isPlayerLeftSupply();
+    void offPlayerLeftSupply();
+    s32 getStockedStarPieceNum();
+    s32 getStarPieceNum();
+    void addStarPiece(int);
+    void setLast1upStarPieceNum(int);
+    s32 getLast1upStarPieceNum();
+    const wchar_t* getUserName();
+    u16 getUserFileIndex();
+    void resetAllGameData();
+    bool isOnJustGameEventFlag(const char*);
+    bool canOnJustGameEventFlag(const char*);
+    bool isOnJustAppearGalaxy(const char*);
+    bool isEqualJustPowerStarNum(int);
+    GameDataHolder* getCurrentGameDataHolder();
+    GameDataHolder* getSceneStartGameDataHolder();
+    s32 calcTicoGalaxyNum(const GameDataHolder*);
+    s32 calcGrandStarNum(const GameDataHolder*);
+    void resetGameDataGoToGalaxyFirst();
+    void resetGameDataGoToGalaxyRetry();
+    void onCompleteEndingCurrentPlayer();
+    bool isOnCompleteEndingMarioAndLuigi();
+    OSTime getSysConfigFileTimeAnnounced();
+    void updateSysConfigFileTimeAnnounced();
+    OSTime getSysConfigFileTimeSent();
+    void setSysConfigFileTimeSent(OSTime);
+    u32 getSysConfigFileSentBytes();
+    void setSysConfigFileSentBytes(u32);
+    bool isLuigiLeftSupply();
+    void offLuigiLeftSupply();
+    bool isOnGameEventFlagNormalComet(const char*);
+    bool isOnGameEventFlagCoin100Comet(const char*);
+    void updateGalaxyCometStatus(int, u16, u16);
+    void addStockedStarPiece(int);
+    bool isPowerStarLeftInCometOnly();
+    s32 calcGreenStarNum(const GameDataHolder*);
 };

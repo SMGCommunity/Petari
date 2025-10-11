@@ -150,13 +150,13 @@ void FireMarioBall::exeThrow() {
     }
     if (MR::isBindedGround(this)) {
         MR::startSound(this, "SE_OJ_MARIO_FIRE_BALL_BOUND", -1, -1);
-        TVec3f* v1 = MR::getGroundNormal(this);
+        const TVec3f* v1 = MR::getGroundNormal(this);
         mVelocity += -*v1 * MR::vecKillElement(mVelocity, *v1, &mVelocity) * cBoundReduction;
 
     }
     else if (MR::isBindedRoof(this)) {
         MR::startSound(this, "SE_OJ_MARIO_FIRE_BALL_BOUND", -1, -1);
-        TVec3f* v2 = MR::getRoofNormal(this);
+        const TVec3f* v2 = MR::getRoofNormal(this);
         mVelocity += -*v2 * MR::vecKillElement(mVelocity, *v2, &mVelocity) * cBoundReduction;
     }
     else {

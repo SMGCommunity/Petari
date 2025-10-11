@@ -9,10 +9,10 @@ public:
 	GalaxyStatusAccessor(const ScenarioData *);
 	
     const char* getName() const;
-    u32 getScenarioNum() const;
-    u32 getPowerStarNum() const;
-    u32 getZoneNum() const;
-    u32 getZoneId(const char *) const;
+    s32 getScenarioNum() const;
+    s32 getPowerStarNum() const;
+    s32 getZoneNum() const;
+    s32 getZoneId(const char *) const;
     const char* getZoneName(int) const;
     const char* getCometName(s32) const;
 	bool isValidNormalComet(s32) const;
@@ -36,6 +36,6 @@ public:
 };
 
 namespace MR {
-    GalaxyStatusAccessor makeGalaxyStatusAcessor(const char *);
+    GalaxyStatusAccessor makeGalaxyStatusAccessor(const char *);
     GalaxyStatusAccessor makeCurrentGalaxyStatusAccessor();
 };

@@ -267,7 +267,7 @@ void CocoNut::processMove() {
 	if (isOnGround()) {
 		f32 temp_f31 = calcMoveSpeed();
 		bool temp_r31 = MR::isBindedGroundWater(this);
-		TVec3f *temp_r3_1 = MR::getGroundNormal(this);
+		const TVec3f *temp_r3_1 = MR::getGroundNormal(this);
 		if (2.5f < _90) {
 			if (mGravity.dot(*temp_r3_1) < 0.0f) {
 				_90 *= 0.5f;
@@ -586,7 +586,7 @@ void CocoNut::calcHitSpeedAndFrontVec(f32 *arg0, f32 *arg1, TVec3f *arg2, TVec3f
 
 bool CocoNut::isOnGround() const {
 	if (0.0f < _90 && MR::isOnGround(this)) {
-		TVec3f *groundNormal = MR::getGroundNormal(this);
+		const TVec3f *groundNormal = MR::getGroundNormal(this);
 		if (groundNormal->dot(mGravity) < MR::cosDegree(120.0f)) {
 			return true;
 		}
@@ -663,7 +663,7 @@ void CocoNut::calcAndSetBaseMtx() {
 	MR::setBaseTRMtx(this, _A0);
 
 	if (isNerve(&NrvCocoNut::CocoNutNrvMove::sInstance) && MR::isOnGround(this)) {
-		TVec3f *groundNormal = MR::getGroundNormal(this);
+		const TVec3f *groundNormal = MR::getGroundNormal(this);
 		f32 temp_f31 = _D0;
 
 		TVec3f stack_8(*groundNormal);

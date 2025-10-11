@@ -1,10 +1,9 @@
 #pragma once
 
-#include "JSystem/J3DGraphAnimator/J3DAnimation.hpp"
-#include "JSystem/J3DGraphAnimator/J3DModel.hpp"
-#include "JSystem/J3DGraphAnimator/J3DModelData.hpp"
+#include <JSystem/J3DGraphAnimator/J3DAnimation.hpp>
 
 class J3DAnmBase;
+class J3DModelData;
 class ResTable;
 class ResourceHolder;
 
@@ -22,9 +21,9 @@ public:
     bool isPlaying(const char *) const;
     bool isStop() const;
 
-    void* mData;                        // 0x4
-    const ResTable* mResourceTable;     // 0x8
-    J3DFrameCtrl mFrameCtrl;            // 0xC
+    /* 0x4 */ J3DAnmBase* mAnmRes;
+    /* 0x8 */ const ResTable* mResTable;
+    /* 0xC */ J3DFrameCtrl mFrameCtrl;
 };
 
 class MaterialAnmPlayerBase : public AnmPlayerBase {
@@ -37,47 +36,5 @@ public:
     void beginDiff();
     void endDiff();
 
-    J3DModelData* mModelData;   // 0x20
-};
-
-class BpkPlayer : public MaterialAnmPlayerBase {
-public:
-    BpkPlayer(const ResourceHolder *, J3DModelData *);
-
-    virtual void attach(J3DAnmBase *, J3DModelData *);
-    virtual void detach(J3DAnmBase *, J3DModelData *);
-};
-
-class BrkPlayer : public MaterialAnmPlayerBase {
-public:
-    BrkPlayer(const ResourceHolder *, J3DModelData *);
-
-    virtual void attach(J3DAnmBase *, J3DModelData *);
-    virtual void detach(J3DAnmBase *, J3DModelData *);
-};
-
-class BtkPlayer : public MaterialAnmPlayerBase {
-public:
-    BtkPlayer(const ResourceHolder *, J3DModelData *);
-
-    virtual void attach(J3DAnmBase *, J3DModelData *);
-    virtual void detach(J3DAnmBase *, J3DModelData *);
-};
-
-class BtpPlayer : public MaterialAnmPlayerBase {
-public:
-    BtpPlayer(const ResourceHolder *, J3DModelData *);
-
-    virtual void attach(J3DAnmBase *, J3DModelData *);
-    virtual void detach(J3DAnmBase *, J3DModelData *);
-};
-
-class BvaPlayer : public AnmPlayerBase {
-public:
-    BvaPlayer(const ResTable *, J3DModel *);
-
-    void calc();
-    bool getAnmVisibility();
-
-    J3DModel* mModel;   // 0x20
+    /* 0x20 */ J3DModelData* mModelData;
 };

@@ -1,13 +1,11 @@
 #pragma once
 
-#include <revolution.h>
-
 class LayoutActorFlag {
 public:
     LayoutActorFlag();
 
-    u8 mIsDead;             // 0x0
-    u8 mIsStopAnimFrame;    // 0x1
-    u8 mIsHidden;           // 0x2
-    u8 mIsOffCalcAnim;      // 0x3
+    /* 0x0 */ bool mIsDead;
+    /* 0x1 */ bool mIsStopAnimFrame;
+    /* 0x2 */ bool mIsHidden;
+    /* 0x3 */ bool mIsOffCalcAnim;
 };

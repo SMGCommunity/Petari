@@ -77,7 +77,7 @@ public:
     bool isLastStep();
     void exeAnim();
     void exeDemo();
-    inline void exeTerm();
+    void exeTerm();
 
     ModelObj* mStarModel;           // 0x08
     NPCActor* mActor;               // 0x0C
@@ -94,7 +94,7 @@ public:
 
     bool update();
     void exeFade();
-    inline void exeTerm();
+    void exeTerm();
 
     NPCActor* mActor;           // 0x08
     const Nerve* _C;

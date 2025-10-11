@@ -1,32 +1,37 @@
-#include "Game/LiveActor/ModelManager.hpp"
-#include "Game/LiveActor/DisplayListMaker.hpp"
+#include "Game/Animation/BpkPlayer.hpp"
+#include "Game/Animation/BrkPlayer.hpp"
+#include "Game/Animation/BtkPlayer.hpp"
+#include "Game/Animation/BtpPlayer.hpp"
+#include "Game/Animation/BvaPlayer.hpp"
 #include "Game/Animation/XanimePlayer.hpp"
+#include "Game/LiveActor/DisplayListMaker.hpp"
+#include "Game/LiveActor/ModelManager.hpp"
 
 void ModelManager::update() {
     XanimePlayer* player = mXanimePlayer;
 
-    if (player) {
+    if (player != nullptr) {
         player->updateBeforeMovement();
         player->updateAfterMovement();
     }
 
-    if (mBtkPlayer) {
+    if (mBtkPlayer != nullptr) {
         mBtkPlayer->update();
     }
 
-    if (mBrkPlayer) {
+    if (mBrkPlayer != nullptr) {
         mBrkPlayer->update();
     }
 
-    if (mBtpPlayer) {
+    if (mBtpPlayer != nullptr) {
         mBtpPlayer->update();
     }
 
-    if (mBpkPlayer) {
+    if (mBpkPlayer != nullptr) {
         mBpkPlayer->update();
     }
 
-    if (mBvaPlayer) {
+    if (mBvaPlayer != nullptr) {
         mBvaPlayer->update();
     }
 }
@@ -65,25 +70,25 @@ void ModelManager::startBckWithInterpole(const char *pAnimName, s32 interpole) {
 void ModelManager::startBtk(const char *pBtkName) {
     stopBtk();
     mBtkPlayer->start(pBtkName);
-    mDisplayListMaker->onCurFlagBtk(reinterpret_cast<const J3DAnmBase*>(mBtkPlayer->mData));
+    mDisplayListMaker->onCurFlagBtk(mBtkPlayer->mAnmRes);
 }
 
 void ModelManager::startBrk(const char *pBrkName) {
     stopBrk();
     mBrkPlayer->start(pBrkName);
-    mDisplayListMaker->onCurFlagBrk(reinterpret_cast<const J3DAnmBase*>(mBrkPlayer->mData));
+    mDisplayListMaker->onCurFlagBrk(mBrkPlayer->mAnmRes);
 }
 
 void ModelManager::startBtp(const char *pBtpName) {
     stopBtp();
     mBtpPlayer->start(pBtpName);
-    mDisplayListMaker->onCurFlagBtp(reinterpret_cast<const J3DAnmBase*>(mBtpPlayer->mData));
+    mDisplayListMaker->onCurFlagBtp(mBtpPlayer->mAnmRes);
 }
 
 void ModelManager::startBpk(const char *pBpkName) {
     stopBpk();
     mBpkPlayer->start(pBpkName);
-    mDisplayListMaker->onCurFlagBpk(reinterpret_cast<const J3DAnmBase*>(mBpkPlayer->mData));
+    mDisplayListMaker->onCurFlagBpk(mBpkPlayer->mAnmRes);
 }
 
 void ModelManager::startBva(const char *pBvaName) {
@@ -92,41 +97,41 @@ void ModelManager::startBva(const char *pBvaName) {
 }
 
 void ModelManager::stopBtk() {
-    if (mBtkPlayer->mData) {
-        mDisplayListMaker->offCurFlagBtk((const J3DAnmBase*)mBtkPlayer->mData);
+    if (mBtkPlayer->mAnmRes != nullptr) {
+        mDisplayListMaker->offCurFlagBtk(mBtkPlayer->mAnmRes);
         mBtkPlayer->stop();
     }
 }
 
 void ModelManager::stopBrk() {
-    if (mBrkPlayer->mData) {
-        mDisplayListMaker->offCurFlagBrk((const J3DAnmBase*)mBrkPlayer->mData);
+    if (mBrkPlayer->mAnmRes != nullptr) {
+        mDisplayListMaker->offCurFlagBrk(mBrkPlayer->mAnmRes);
         mBrkPlayer->stop();
     }
 }
 
 void ModelManager::stopBtp() {
-    if (mBtpPlayer->mData) {
-        mDisplayListMaker->offCurFlagBtp((const J3DAnmBase*)mBtpPlayer->mData);
+    if (mBtpPlayer->mAnmRes != nullptr) {
+        mDisplayListMaker->offCurFlagBtp(mBtpPlayer->mAnmRes);
         mBtpPlayer->stop();
     }
 }
 
 void ModelManager::stopBpk() {
-    if (mBpkPlayer->mData) {
-        mDisplayListMaker->offCurFlagBpk((const J3DAnmBase*)mBpkPlayer->mData);
+    if (mBpkPlayer->mAnmRes != nullptr) {
+        mDisplayListMaker->offCurFlagBpk(mBpkPlayer->mAnmRes);
         mBpkPlayer->stop();
     }
 }
 
 void ModelManager::stopBva() {
-    if (mBvaPlayer->mData) {
+    if (mBvaPlayer->mAnmRes) {
         mBvaPlayer->stop();
     }
 }
 
 bool ModelManager::isBtkStopped() const {
-    if (mBtkPlayer) {
+    if (mBtkPlayer != nullptr) {
         return mBtkPlayer->isStop();
     }
 
@@ -134,7 +139,7 @@ bool ModelManager::isBtkStopped() const {
 }
 
 bool ModelManager::isBrkStopped() const {
-    if (mBrkPlayer) {
+    if (mBrkPlayer != nullptr) {
         return mBrkPlayer->isStop();
     }
 
@@ -142,7 +147,7 @@ bool ModelManager::isBrkStopped() const {
 }
 
 bool ModelManager::isBtpStopped() const {
-    if (mBtpPlayer) {
+    if (mBtpPlayer != nullptr) {
         return mBtpPlayer->isStop();
     }
 
@@ -150,7 +155,7 @@ bool ModelManager::isBtpStopped() const {
 }
 
 bool ModelManager::isBpkStopped() const {
-    if (mBpkPlayer) {
+    if (mBpkPlayer != nullptr) {
         return mBpkPlayer->isStop();
     }
 
@@ -158,7 +163,7 @@ bool ModelManager::isBpkStopped() const {
 }
 
 bool ModelManager::isBvaStopped() const {
-    if (mBvaPlayer) {
+    if (mBvaPlayer != nullptr) {
         return mBvaPlayer->isStop();
     }
 

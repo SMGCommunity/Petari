@@ -44,12 +44,28 @@ namespace MR {
         return MR::getWPad(channel)->mButtons->testButtonDown();
     }
 
+    bool testCorePadButtonLeft(s32 channel) {
+        return MR::getWPad(channel)->mButtons->testButtonLeft();
+    }
+
+    bool testCorePadButtonRight(s32 channel) {
+        return MR::getWPad(channel)->mButtons->testButtonRight();
+    }
+
     bool testCorePadButtonA(s32 channel) {
         return MR::getWPad(channel)->mButtons->testButtonA();
     }
 
     bool testCorePadButtonB(s32 channel) {
         return MR::getWPad(channel)->mButtons->testButtonB();
+    }
+
+    bool testCorePadButton1(s32 channel) {
+        return MR::getWPad(channel)->mButtons->testButton1();
+    }
+
+    bool testCorePadButton2(s32 channel) {
+        return MR::getWPad(channel)->mButtons->testButton2();
     }
 
     bool testCorePadButtonPlus(s32 channel) {
@@ -66,6 +82,21 @@ namespace MR {
 
     bool testSubPadButtonZ(s32 channel) {
         return MR::getWPad(channel)->mButtons->testButtonZ();
+    }
+
+    bool testPadButtonAnyWithoutHome(s32 channel) {
+        return testCorePadButtonUp(channel)
+            || testCorePadButtonDown(channel)
+            || testCorePadButtonLeft(channel)
+            || testCorePadButtonRight(channel)
+            || testCorePadButtonA(channel)
+            || testCorePadButtonB(channel)
+            || testCorePadButton1(channel)
+            || testCorePadButton2(channel)
+            || testCorePadButtonPlus(channel)
+            || testCorePadButtonMinus(channel)
+            || testSubPadButtonC(channel)
+            || testSubPadButtonZ(channel);
     }
 
     bool testCorePadTriggerUp(s32 channel) {
@@ -92,12 +123,33 @@ namespace MR {
         return MR::getWPad(channel)->mButtons->testTriggerB();
     }
 
+    bool testCorePadTrigger1(s32 channel) {
+        return MR::getWPad(channel)->mButtons->testTrigger1();
+    }
+
+    bool testCorePadTrigger2(s32 channel) {
+        return MR::getWPad(channel)->mButtons->testTrigger2();
+    }
+
     bool testCorePadTriggerPlus(s32 channel) {
         return MR::getWPad(channel)->mButtons->testTriggerPlus();
     }
 
     bool testCorePadTriggerMinus(s32 channel) {
         return MR::getWPad(channel)->mButtons->testTriggerMinus();
+    }
+
+    bool testCorePadTriggerAnyWithoutHome(s32 channel) {
+        return testCorePadTriggerUp(channel)
+            || testCorePadTriggerDown(channel)
+            || testCorePadTriggerLeft(channel)
+            || testCorePadTriggerRight(channel)
+            || testCorePadTriggerA(channel)
+            || testCorePadTriggerB(channel)
+            || testCorePadTrigger1(channel)
+            || testCorePadTrigger2(channel)
+            || testCorePadTriggerPlus(channel)
+            || testCorePadTriggerMinus(channel);
     }
 
     bool testCorePadTriggerHome(s32 channel) {
@@ -133,7 +185,7 @@ namespace MR {
     }
 
     bool testSubPadStickTriggerUp(s32 channel) {
-        return MR::getWPad(channel)->mStick->_14 & 1;
+        return (MR::getWPad(channel)->mStick->_14 >> 0) & 1;
     }
 
     bool testSubPadStickTriggerDown(s32 channel) {
@@ -157,63 +209,81 @@ namespace MR {
     }
 
     bool isPadSwing(s32 channel) {
-        return MR::getWPad(channel)->mCorePadSwing->mIsSwing || MR::getWPad(channel)->mSubPadSwing->mIsSwing;
+        return isCorePadSwing(channel) || isSubPadSwing(channel);
     }
 
     bool testSystemPadTriggerDecide() {
-        return MR::getWPad(0)->mButtons->testTriggerA() != 0;
+        return testCorePadTriggerA(0) != false;
     }
 
     bool testSystemTriggerA() {
-        return MR::getWPad(0)->mButtons->testTriggerA() != 0;
+        return testCorePadTriggerA(0) != false;
     }
 
     bool testSystemTriggerB() {
-        return MR::getWPad(0)->mButtons->testTriggerB() != 0;
+        return testCorePadTriggerB(0) != false;
     }
 
     bool testDPDMenuPadDecideTrigger() {
-        return MR::getWPad(0)->mButtons->testTriggerA();
+        return testCorePadTriggerA(0);
     }
 
     bool testFpViewStartTrigger() {
-        return MR::getWPad(0)->mButtons->testTriggerUp();
+        return testCorePadTriggerUp(0);
     }
 
     bool testFpViewOutTrigger() {
-        return MR::getWPad(0)->mButtons->testTriggerDown() || MR::getWPad(0)->mButtons->testTriggerA();
+        return testCorePadTriggerDown(0) || testCorePadTriggerA(0);
     }
 
+    // getPlayerStickX
+    // getPlayerStickY
+
     bool getPlayerTriggerA() {
-        return MR::getWPad(0)->mButtons->testTriggerA();
+        return testCorePadTriggerA(0);
     }
 
     bool getPlayerTriggerB() {
-        return MR::getWPad(0)->mButtons->testTriggerB();
+        return testCorePadTriggerB(0);
     }
 
     bool getPlayerTriggerZ() {
-        return MR::getWPad(0)->mButtons->testTriggerZ();
+        return testSubPadTriggerZ(0);
     }
 
     bool getPlayerTriggerC() {
-        return MR::getWPad(0)->mButtons->testTriggerC();
+        return testSubPadTriggerC(0);
     }
 
     bool getPlayerLevelA() {
-        return MR::getWPad(0)->mButtons->testButtonA();
+        return testCorePadButtonA(0);
     }
 
     bool getPlayerLevelB() {
-        return MR::getWPad(0)->mButtons->testButtonB();
+        return testCorePadButtonB(0);
     }
 
     bool getPlayerLevelZ() {
-        return MR::getWPad(0)->mButtons->testButtonZ();
+        return testSubPadButtonZ(0);
     }
 
     bool getPlayerLevelC() {
-        return MR::getWPad(0)->mButtons->testButtonC();
+        return testSubPadButtonC(0);
+    }
+
+    bool isGamePadStickOperated(s32 channel) {
+        f32 x = getSubPadStickX(channel);
+        f32 y = getSubPadStickY(channel);
+
+        return __fabsf(x) + __fabsf(y) > 0.0f;
+    }
+
+    // calcWorldStickDirectionXZ
+
+    void calcWorldStickDirectionXZ(TVec3f* pDir, s32 channel) {
+        pDir->y = 0.0f;
+
+        calcWorldStickDirectionXZ(&pDir->x, &pDir->z, channel);
     }
 
     u32 getWPadMaxCount() {
@@ -223,6 +293,8 @@ namespace MR {
     bool isConnectedWPad(s32 channel) {
         return MR::getWPad(channel)->mIsConnected;
     }
+
+    // isOperatingWPad
 }
 
 namespace WPadFunction {
