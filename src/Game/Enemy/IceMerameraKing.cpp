@@ -403,7 +403,7 @@ void IceMerameraKing::tearDownThrow() {
 }
 
 void IceMerameraKing::exeExtinguish() {
-    f32 aa = hOnAirParam[1];
+    f32 temp = hOnAirParam[1]; // I have no idea how it's loaded
     if (MR::isFirstStep(this)) {
         MR::startAction(this, "GoOut");
         MR::startSound(this, "SE_BM_ICEMERAKING_BLOW", -1, -1);
@@ -415,7 +415,7 @@ void IceMerameraKing::exeExtinguish() {
         v4.sub(*v3);
         MR::vecKillElement(v4, mGravity, &v4);
         MR::normalizeOrZero(&v4);
-        MR::setVelocitySeparateHV(this, v4, 20.0f, aa);
+        MR::setVelocitySeparateHV(this, v4, 20.0f, temp);
         _11C = 200.0f + MR::getShadowNearProjectionLength(this);
     }
 
