@@ -7406,7 +7406,7 @@ Game/Scene/LogoScene.cpp:
 	.text       start:0x8034091C end:0x80341390
 	.ctors      start:0x8052F20C end:0x8052F210
 	.data       start:0x805D1958 end:0x805D1A08
-	.sdata      start:0x806B2348 end:0x806B2398
+	.sdata      start:0x806B2348 end:0x806B2358
 	.sbss       start:0x806B65D0 end:0x806B65F8
 	.sdata2     start:0x806C0DD8 end:0x806C0DE8
 
@@ -7474,6 +7474,7 @@ Game/Scene/SceneNameObjListExecutor.cpp:
 	.text       start:0x80346348 end:0x8034654C
 	.rodata     start:0x80539DD0 end:0x8053A540
 	.data       start:0x805D23E0 end:0x805D2420
+	.sdata      start:0x806B2360 end:0x806B2368
 
 Game/Scene/SceneNameObjMovementController.cpp:
 	.text       start:0x8034654C end:0x80346C0C
