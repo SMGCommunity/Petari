@@ -16,18 +16,19 @@ public:
     bool isRegisteredActor(const LiveActor*);
     MiniatureGalaxy* findMiniatureGalaxy(const char*) const; // MiniatureGalaxy* ?
     void killAllMiniatureGalaxy();
-    void calcIndex(const LiveActor*) const;
+    s32 calcIndex(const LiveActor*) const;
     void updateCometStatus();
 
+    
     LiveActorGroup* _8C;
     bool _90;
-    s32 _94;
+    MiniatureGalaxy* _94;
     s32 _98;
     s32 _9C;
 };
 
 class MiniatureGalaxyFunction {
-public:
+    public:
     static void registerMiniatureGalaxyToHolder(LiveActor*, const JMapInfoIter&); 
     static s32 getMiniatureGalaxyNum();
     static void calcMiniatureGalaxyIndex(const LiveActor*);
@@ -35,4 +36,10 @@ public:
     static MiniatureGalaxy* getCometLandMiniatureGalaxy();
     static s32 getCometNameId();
     static MiniatureGalaxy* getPointingMiniatureGalaxy();
+    
+    inline static MiniatureGalaxyHolder* getMiniGalaxyHolder() {    // No proves, no doubts
+        SceneObjHolder* mHolder = MR::getSceneObjHolder();
+        MiniatureGalaxyHolder* mMiniatureGalaxyHolder = (MiniatureGalaxyHolder*)mHolder->getObj(115);
+        return mMiniatureGalaxyHolder;
+    }
 };

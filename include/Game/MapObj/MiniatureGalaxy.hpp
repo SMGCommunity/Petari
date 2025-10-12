@@ -39,5 +39,7 @@ class MiniatureGalaxy : public LiveActor {
         void exeNotSelected();
         void exeOpen();
 
+        s32 _8C;
+        u8 unc[0x88];
         const char* _118;
 };
