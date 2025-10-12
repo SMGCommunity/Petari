@@ -61,7 +61,7 @@ public:
     TVec3f _D4; 
     s32 _E0; 
     s32 _E4; 
-    s32 _E8; 
+    u32 _E8; 
     s32 _EC; 
     s32 _F0;
     MR::Vector<MR::AssignableArray<ThrowingIce*> > mModelArray; //_F4
