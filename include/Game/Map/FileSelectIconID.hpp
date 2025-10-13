@@ -30,6 +30,20 @@ public:
     /// @param rOther The reference to the `FileSelectIconID` to copy from.
     FileSelectIconID(const FileSelectIconID& rOther);
 
+    /// @brief Determines if `this` is equal to `rOther`.
+    /// @param rOther A reference to the `FileSelectIconID` to compare with.
+    /// @return `true` if `this` is equal to `other`, `false` otherwise.
+    bool operator==(const FileSelectIconID &rOther) const {
+        return mIsMii == rOther.mIsMii && mData == rOther.mData;
+    }
+
+    /// @brief Determines if `this` is inequal to `rOther`.
+    /// @param rOther A reference to the `FileSelectIconID` to compare with.
+    /// @return `true` if `this` is inequal to `other`, `false` otherwise.
+    bool operator!=(const FileSelectIconID &rOther) const {
+        return !(*this == rOther);
+    }
+
     /// @brief Updates the value of each member variable.
     /// @param rOther The reference to the `FileSelectIconID` to copy from.
     void set(const FileSelectIconID& rOther);
@@ -60,8 +74,8 @@ public:
 
 private:
     /// @brief Determines if the icon represents a Mii character.
-    bool mIsMii;
+    /* 0x0 */ bool mIsMii;
 
     /// @brief The position of the Mii data in the Mii database or the identifier of a Mario character.
-    u16 mData;
+    /* 0x2 */ u16 mData;
 };
