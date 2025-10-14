@@ -1,11 +1,6 @@
 #pragma once
 
-#include "Game/LiveActor/LiveActor.hpp"
-#include "Game/LiveActor/LiveActorGroup.hpp"
 #include "Game/MapObj/MiniatureGalaxy.hpp"
-#include "Game/Util/JMapInfo.hpp"
-#include "revolution/types.h"
-#include <revolution.h>
 
 class MiniatureGalaxyHolder : LiveActor {
 public:

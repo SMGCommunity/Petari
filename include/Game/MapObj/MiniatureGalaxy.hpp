@@ -1,10 +1,10 @@
 #pragma once
 
-#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/NameObj/NameObjArchiveListCollector.hpp"
 #include "Game/Util/JMapInfo.hpp"
 #include "revolution/types.h"
+
+class NameObjArchiveListCollector;
 
 class MiniatureGalaxy : public LiveActor {
     public:
