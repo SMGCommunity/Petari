@@ -163,6 +163,7 @@
 #include "Game/MapObj/Rock.hpp"
 #include "Game/MapObj/RockCreator.hpp"
 #include "Game/MapObj/RosettaChair.hpp"
+#include "Game/MapObj/RosettaPictureBook.hpp"
 #include "Game/MapObj/RotateMoveObj.hpp"
 #include "Game/MapObj/SandCapsuleInsidePlanet.hpp"
 #include "Game/MapObj/ScrewSwitch.hpp"

@@ -6306,14 +6306,14 @@ Game/NPC/RosettaDemoEpilogue.cpp:
 Game/NPC/RosettaDemoHeavensDoor.cpp:
 	.text       start:0x80283E94 end:0x80284A6C
 	.ctors      start:0x8052EFE4 end:0x8052EFE8
-	.data       start:0x805B2BD0 end:0x805B2FD8
+	.data       start:0x805B2BD0 end:0x805B2EF8
 	.sbss       start:0x806B5F18 end:0x806B5F30
 	.sdata2     start:0x806BEE40 end:0x806BEE70
 
 Game/NPC/RosettaReading.cpp:
 	.text       start:0x80284A6C end:0x80284FDC
 	.ctors      start:0x8052EFE8 end:0x8052EFEC
-	.data       start:0x805B2FD8 end:0x805B3080
+	.data       start:0x805B2EF8 end:0x805B3080
 	.sbss       start:0x806B5F30 end:0x806B5F40
 
 Game/NPC/RunawayRabbit.cpp:
