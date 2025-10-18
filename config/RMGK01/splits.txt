@@ -8033,14 +8033,14 @@ Game/Screen/PictureBookLayout.cpp:
 	.text       start:0x80376F30 end:0x80379130
 	.ctors      start:0x8052F2EC end:0x8052F2F0
 	.rodata     start:0x8053B190 end:0x8053B1E0
-	.data       start:0x805D8028 end:0x805D8598
+	.data       start:0x805D8028 end:0x805D8440
 	.sbss       start:0x806B6A90 end:0x806B6AC0
 	.sdata2     start:0x806C11A0 end:0x806C11A8
 
 Game/Screen/PlayerActionGuidance.cpp:
 	.text       start:0x80379130 end:0x80379BC8
 	.ctors      start:0x8052F2F0 end:0x8052F2F4
-	.data       start:0x805D8598 end:0x805D8650
+	.data       start:0x805D8440 end:0x805D8650
 	.sbss       start:0x806B6AC0 end:0x806B6AD8
 	.sdata2     start:0x806C11A8 end:0x806C11B0
 
@@ -8070,27 +8070,28 @@ Game/Screen/PowerStarList.cpp:
 Game/Screen/PrologueLetter.cpp:
 	.text       start:0x8037C78C end:0x8037CB38
 	.ctors      start:0x8052F300 end:0x8052F304
-	.data       start:0x805D8B68 end:0x805D8C58
+	.data       start:0x805D8B68 end:0x805D8C08
 	.sbss       start:0x806B6B20 end:0x806B6B30
 
 Game/Screen/ProloguePictureBook.cpp:
 	.text       start:0x8037CB38 end:0x8037CF70
 	.ctors      start:0x8052F304 end:0x8052F308
 	.rodata     start:0x8053B268 end:0x8053B290
-	.data       start:0x805D8C58 end:0x805D8D10
+	.data       start:0x805D8C08 end:0x805D8CC8
 	.sbss       start:0x806B6B30 end:0x806B6B40
 	.sdata2     start:0x806C11D8 end:0x806C11E0
 
 Game/Screen/PurpleCoinCounter.cpp:
 	.text       start:0x8037CF70 end:0x8037D3C0
 	.ctors      start:0x8052F308 end:0x8052F30C
-	.data       start:0x805D8D10 end:0x805D8DD0
+	.data       start:0x805D8CC8 end:0x805D8D60
 	.sbss       start:0x806B6B40 end:0x806B6B48
 	.sdata2     start:0x806C11E0 end:0x806C11E8
 
 Game/Screen/ReplaceTagProcessor.cpp:
 	.text       start:0x8037D3C0 end:0x8037DB64
 	.rodata     start:0x8053B290 end:0x8053B2C8
+	.data       start:0x805D8D60 end:0x805D8DD0
 
 Game/Screen/SaveIcon.cpp:
 	.text       start:0x8037DB64 end:0x8037DCAC
