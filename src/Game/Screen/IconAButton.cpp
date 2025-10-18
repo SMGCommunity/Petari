@@ -83,7 +83,16 @@ void IconAButton::openWithoutMessage() {
     MR::clearTextBoxMessageRecursive(this, "IconAButton");
 }
 
-// IconAButton::term
+void IconAButton::term() {
+    bool isAlive = !MR::isDead(this);
+
+    if (isAlive
+        && (isNerve(&NrvIconAButton::IconAButtonNrvWait::sInstance)
+            || isNerve(&NrvIconAButton::IconAButtonNrvOpen::sInstance)))
+    {
+        setNerve(&NrvIconAButton::IconAButtonNrvTerm::sInstance);
+    }
+}
 
 void IconAButton::exeOpen() {
     if (MR::isFirstStep(this)) {

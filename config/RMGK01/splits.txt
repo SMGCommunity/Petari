@@ -7784,20 +7784,20 @@ Game/Screen/GameStageClearSequence.cpp:
 
 Game/Screen/HeatHazeEffect.cpp:
 	.text       start:0x803629F4 end:0x80362E84
-	.data       start:0x805D5898 end:0x805D59C0
+	.data       start:0x805D5898 end:0x805D5950
 	.sdata2     start:0x806C0FB0 end:0x806C0FD8
 
 Game/Screen/HomeButtonLayout.cpp:
 	.text       start:0x80362E84 end:0x8036372C
 	.ctors      start:0x8052F294 end:0x8052F298
-	.data       start:0x805D59C0 end:0x805D5AB0
+	.data       start:0x805D5950 end:0x805D5A10
 	.sbss       start:0x806B68E0 end:0x806B68E8
 	.sdata2     start:0x806C0FD8 end:0x806C0FF0
 
 Game/Screen/IconAButton.cpp:
 	.text       start:0x8036372C end:0x80363D28
 	.ctors      start:0x8052F298 end:0x8052F29C
-	.data       start:0x805D5AB0 end:0x805D5B10
+	.data       start:0x805D5A10 end:0x805D5B10
 	.sbss       start:0x806B68E8 end:0x806B68F8
 	.sdata2     start:0x806C0FF0 end:0x806C0FF8
 
