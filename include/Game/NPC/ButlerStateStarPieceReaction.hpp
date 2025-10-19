@@ -1,22 +1,20 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/NPC/TalkMessageCtrl.hpp"
-#include "Game/Util/JMapInfo.hpp"
-#include "revolution/types.h"
+#include <revolution/types.h>
+
+class TalkMessageCtrl;
 
 class ButlerStateStarPieceReaction : public ActorStateBase<LiveActor> {
 public:
     ButlerStateStarPieceReaction(LiveActor *, const JMapInfoIter &, const char *);
 
-    virtual ~ButlerStateStarPieceReaction();
     virtual void init();
     virtual void appear();
 
     void exeWait();
 
-    u8 _8;
-    LiveActor *mActor; // _C
-    TalkMessageCtrl *mTalkMessage; // _10
-    bool _14;
+    /* 0x0C */ LiveActor *mHost;
+    /* 0x10 */ TalkMessageCtrl *mTalkMessage;
+    /* 0x14 */ bool _14;
 };

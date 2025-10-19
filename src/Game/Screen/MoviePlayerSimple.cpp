@@ -45,10 +45,6 @@ MoviePlayerSimple::~MoviePlayerSimple() {
     JKRHeap::destroy(mHeap);
 }
 
-THPSimplePlayerWrapper::~THPSimplePlayerWrapper() {
-    
-}
-
 void MoviePlayerSimple::init(const JMapInfoIter &rIter) {
     MR::connectToSceneMovie(this);
     mPlayerWrapper = new THPSimplePlayerWrapper("THPシンプルプレイヤーのラッパ");
