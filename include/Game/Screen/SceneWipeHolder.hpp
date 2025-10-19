@@ -6,9 +6,6 @@ class SceneWipeHolder : public WipeHolderBase {
 public:
     /// @brief Creates a new `SceneWipeHolder`.
     SceneWipeHolder();
-
-    /// @brief Destroys the `SceneWipeHolder`.
-    virtual ~SceneWipeHolder() {}
 };
 
 namespace SceneWipeHolderFunction {

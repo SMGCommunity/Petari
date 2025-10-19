@@ -5,7 +5,6 @@
 class HomeButtonLayout : public LayoutActor {
 public:
     HomeButtonLayout();
-    ~HomeButtonLayout();
 
     bool isActive() const;
 

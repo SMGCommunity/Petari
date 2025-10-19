@@ -10,9 +10,6 @@ public:
     /// @param pName The pointer to the null-terminated name of the object.
     DepthOfFieldBlur(const char* pName);
 
-    /// @brief Destroys the `DepthOfFieldBlur`.
-    virtual ~DepthOfFieldBlur() {}
-
     /// @brief Draws the `DepthOfFieldBlur` to the screen.
     virtual void draw() const;
 

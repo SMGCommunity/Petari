@@ -9,9 +9,6 @@ public:
     /// @brief Creates a new `BloomEffectSimple`.
     BloomEffectSimple();
 
-    /// @brief Destroys the `BloomEffectSimple`.
-    virtual ~BloomEffectSimple() {}
-
     /// @brief Draws the `BloomEffectSimple` to the screen.
     virtual void draw() const;
 

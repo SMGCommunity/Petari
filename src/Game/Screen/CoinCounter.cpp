@@ -172,7 +172,3 @@ void CoinCounter::exeDisappear() {
         setNerve(&NrvCoinCounter::CoinCounterNrvHide::sInstance);
     }
 }
-
-CoinCounter::~CoinCounter() {
-    
-}

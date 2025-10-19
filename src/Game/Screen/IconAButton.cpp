@@ -129,7 +129,3 @@ void IconAButton::updateFollowPos() {
         MR::copyPaneTrans(&mFollowPos, mFollowActor, mFollowPaneName);
     }
 }
-
-IconAButton::~IconAButton() {
-
-}

@@ -43,7 +43,3 @@ void IntermissionScene::setCurrentSceneControllerState(const char *pState, ...) 
     va_end();
     _54 = 0;
 }
-
-IntermissionScene::~IntermissionScene() {
-
-}

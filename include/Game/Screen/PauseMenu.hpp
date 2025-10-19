@@ -11,9 +11,6 @@ public:
     /// @brief Creates a new `PauseMenu`.
     PauseMenu();
 
-    /// @brief Destroys the `PauseMenu`.
-    virtual ~PauseMenu() {}
-
     /// @brief Intializes the `PauseMenu` while being placed into a scene.
     /// @param rIter The reference to an iterator over a `JMapInfo`.
     virtual void init(const JMapInfoIter& rIter);

@@ -338,7 +338,3 @@ void StarPieceCounter::exeDisappear() {
         setNerve(&NrvStarPieceCounter::StarPieceCounterNrvHide::sInstance);
     }
 }
-
-StarPieceCounter::~StarPieceCounter() {
-    
-}

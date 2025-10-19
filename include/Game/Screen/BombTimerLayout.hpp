@@ -6,7 +6,6 @@ class BombTimerLayout : public LayoutActor {
 public:
     BombTimerLayout(bool param1);
 
-    virtual ~BombTimerLayout();
     virtual void init(const JMapInfoIter& rIter);
     virtual void appear();
 

@@ -55,7 +55,3 @@ void ScenarioTitle::exeEnd() {
         kill();
     }
 }
-
-ScenarioTitle::~ScenarioTitle() {
-    
-}

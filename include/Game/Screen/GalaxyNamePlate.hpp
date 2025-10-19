@@ -1,19 +1,16 @@
 #pragma once
 
-#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/LayoutActor.hpp"
-#include "Game/Util/MessageUtil.hpp"
 
 struct GalaxyNamePlateDrawerEntry {
-    LayoutActor* mHostActor;    // 0x0
-    u32 mZ;                     // 0x4
+    /* 0x0 */ LayoutActor* mHostActor;
+    /* 0x4 */ u32 mZ;
 };
 
 class GalaxyNamePlate : public LayoutActor {
 public:
     GalaxyNamePlate(const char *, bool);
 
-    virtual ~GalaxyNamePlate();
     virtual void init(const JMapInfoIter &);
     virtual void kill();
     virtual void control();
@@ -30,18 +27,11 @@ public:
     void exeAppear();
     void exeWait();
 
-    const char* mGalaxyName;                    // 0x20
-    bool _24;
-    bool _25;
-    bool mShowBalloonNozzle;                    // 0x26
-    u8 _27;
-    GalaxyNamePlateDrawerEntry* mDrawerEntry;   // 0x28
-    s32 _2C;
-    u8 _30;
-};
-
-namespace NrvGalaxyNamePlate {
-    NERVE_DECL(GalaxyNamePlateNrvAppearReady, GalaxyNamePlate, GalaxyNamePlate::exeAppearReady);
-    NERVE_DECL(GalaxyNamePlateNrvAppear, GalaxyNamePlate, GalaxyNamePlate::exeAppear);
-    NERVE_DECL(GalaxyNamePlateNrvWait, GalaxyNamePlate, GalaxyNamePlate::exeWait);
+    /* 0x20 */ const char* mGalaxyName;
+    /* 0x24 */ bool _24;
+    /* 0x25 */ bool _25;
+    /* 0x26 */ bool mShowBalloonNozzle;
+    /* 0x28 */ GalaxyNamePlateDrawerEntry* mDrawerEntry;
+    /* 0x2C */ s32 _2C;
+    /* 0x30 */ u8 _30;
 };

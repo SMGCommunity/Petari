@@ -134,7 +134,3 @@ void GameStageClearSequence::exeGrandStarGetDemo() {
         }
     }
 }
-
-GameStageClearSequence::~GameStageClearSequence() {
-    
-}

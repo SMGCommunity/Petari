@@ -11,7 +11,9 @@ namespace {
 
 MissLayout::MissLayout() :
     LayoutActor("ミス!", true)
-{}
+{
+    
+}
 
 void MissLayout::init(const JMapInfoIter& rIter) {
     MR::connectToSceneLayout(this);
@@ -60,9 +62,5 @@ void MissLayout::exeActive() {
 }
 
 void MissLayout::exeEnd() {
-    
-}
-
-MissLayout::~MissLayout() {
     
 }

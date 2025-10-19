@@ -10,9 +10,6 @@ public:
     /// @brief Creates a new `ImageEffectSystemHolder`.
     ImageEffectSystemHolder();
 
-    /// @brief Destroys the `ImageEffectSystemHolder`.
-    virtual ~ImageEffectSystemHolder() {}
-
     void pauseOff();
 
 private:

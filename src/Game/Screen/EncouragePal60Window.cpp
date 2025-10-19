@@ -65,7 +65,3 @@ void EncouragePal60Window::exeDisappear() {
         kill();
     }
 }
-
-EncouragePal60Window::~EncouragePal60Window() {
-    
-}

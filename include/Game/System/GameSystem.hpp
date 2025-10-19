@@ -27,9 +27,6 @@ public:
     /// @brief Creates a new `GameSystem`.
     GameSystem();
 
-    /// @brief Destroys the `GameSystem`.
-    virtual ~GameSystem() {}
-
     void init();
     bool isExecuteLoadSystemArchive() const;
     bool isDoneLoadSystemArchive() const;

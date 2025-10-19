@@ -7,23 +7,13 @@ class EncouragePal60Window;
 class TriggerChecker;
 
 namespace TitleSequenceProductSub {
-    class LogoLayout : public SimpleLayout {
-    public:
-        /// @brief Creates a new `LogoLayout`.
-        LogoLayout();
-
-        /// @brief Destroys the `LogoLayout`.
-        virtual ~LogoLayout() {}
-    };
+    class LogoLayout;
 };
 
 class TitleSequenceProduct : public NerveExecutor {
 public:
     /// @brief Creates a new `TitleSequenceProduct`.
     TitleSequenceProduct();
-
-    /// @brief Destroys the `TitleSequenceProduct`.
-    virtual ~TitleSequenceProduct() {}
 
     void appear();
     void kill();
@@ -45,4 +35,12 @@ private:
     /* 0x14 */ TriggerChecker* mAButtonChecker;
     /* 0x18 */ TriggerChecker* mBButtonChecker;
     /* 0x1C */ bool mIsDisplayEncouragePal60Window;
+};
+
+namespace TitleSequenceProductSub {
+    class LogoLayout : public SimpleLayout {
+    public:
+        /// @brief Creates a new `LogoLayout`.
+        LogoLayout();
+    };
 };

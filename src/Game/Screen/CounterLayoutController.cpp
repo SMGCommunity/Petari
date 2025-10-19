@@ -218,7 +218,3 @@ void CounterLayoutController::exePlayerNotMoving() {
         setNerve(&NrvCounterLayoutController::CounterLayoutControllerNrvPlayerMoving::sInstance);
     }
 }
-
-CounterLayoutController::~CounterLayoutController() {
-    
-}

@@ -18,9 +18,6 @@ public:
     /// @brief Creates a new `GameSceneLayoutHolder`.
     GameSceneLayoutHolder();
 
-    /// @brief Destroys the `GameSceneLayoutHolder`.
-    virtual ~GameSceneLayoutHolder() {}
-
     virtual void movement();
 
     void createPurpleCoinCounter();

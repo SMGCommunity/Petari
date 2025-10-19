@@ -9,9 +9,6 @@ public:
     /// @brief Creates a new `ScreenBlurEffect`.
     ScreenBlurEffect();
 
-    /// @brief Destroys the `ScreenBlurEffect`.
-    virtual ~ScreenBlurEffect() {}
-
     /// @brief Draws the `ScreenBlurEffect` to the screen.
     virtual void draw() const;
 

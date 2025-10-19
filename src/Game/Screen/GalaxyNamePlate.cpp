@@ -1,4 +1,12 @@
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/GalaxyNamePlate.hpp"
+#include "Game/Util/MessageUtil.hpp"
+
+namespace NrvGalaxyNamePlate {
+    NEW_NERVE(GalaxyNamePlateNrvAppearReady, GalaxyNamePlate, AppearReady);
+    NEW_NERVE(GalaxyNamePlateNrvAppear, GalaxyNamePlate, Appear);
+    NEW_NERVE(GalaxyNamePlateNrvWait, GalaxyNamePlate, Wait);
+};
 
 void GalaxyNamePlate::showUnknown(bool a1) {
     show(MR::getGameMessageDirect("GalaxyNameShort_Unkonwn"), 0, true, a1);

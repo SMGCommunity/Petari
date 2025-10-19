@@ -115,7 +115,3 @@ void PurpleCoinCounter::exeAppear() {
 void PurpleCoinCounter::exeWait() {
 
 }
-
-PurpleCoinCounter::~PurpleCoinCounter() {
-    
-}

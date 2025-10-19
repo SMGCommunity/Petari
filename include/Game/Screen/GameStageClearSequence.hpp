@@ -8,7 +8,6 @@ class GameStageClearSequence : public LayoutActor {
 public:
     GameStageClearSequence();
 
-    virtual ~GameStageClearSequence();
     virtual void init(const JMapInfoIter &);
 
     void startPowerStarGetDemo();

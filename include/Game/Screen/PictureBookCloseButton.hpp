@@ -2,13 +2,12 @@
 
 #include "Game/Screen/LayoutActor.hpp"
 
+class ButtonPaneController;
+
 class PictureBookCloseButton : public LayoutActor {
 public:
     /// @brief Creates a new `PictureBookCloseButton`.
     PictureBookCloseButton(bool);
-
-    /// @brief Destroys the `PictureBookCloseButton`.
-    virtual ~PictureBookCloseButton();
 
     virtual void init(const JMapInfoIter& rIter);
     virtual void appear();

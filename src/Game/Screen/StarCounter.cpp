@@ -93,7 +93,3 @@ void StarCounter::exeDisappear() {
         kill();
     }
 }
-
-StarCounter::~StarCounter() {
-    
-}

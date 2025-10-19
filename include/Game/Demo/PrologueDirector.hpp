@@ -14,9 +14,6 @@ public:
     /// @param pName The pointer to the null-terminated name of the object.
     PrologueDirector(const char* pName);
 
-    /// @brief Destroys the `PrologueDirector`.
-    virtual ~PrologueDirector() {}
-
     virtual void init(const JMapInfoIter& rIter);
     virtual void initAfterPlacement();
     virtual void appear();
@@ -54,9 +51,6 @@ public:
     /// @brief Creates a new `PrologueHolder`.
     /// @param pName The pointer to the null-terminated name of the object.
     PrologueHolder(const char* pName);
-
-    /// @brief Destroys the `PrologueHolder`.
-    virtual ~PrologueHolder() {}
 
     void registerPrologueObj(PrologueDirector* pDirector);
     void start();

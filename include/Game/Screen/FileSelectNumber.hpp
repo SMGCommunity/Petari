@@ -10,9 +10,6 @@ namespace FileSelectNumberSub {
         /// @param pHost The pointer to the owning actor instance.
         SelectAnimController(LayoutActor* pHost);
 
-        /// @brief Destroys the `SelectAnimController`.
-        virtual ~SelectAnimController() {}
-
         void appear();
         void selectIn();
         void selectOut();
@@ -32,9 +29,6 @@ public:
     /// @brief Creates a new `FileSelectNumber`.
     /// @param pName The pointer to the null-terminated name of the object.
     FileSelectNumber(const char* pName);
-
-    /// @brief Destroys the `FileSelectNumber`.
-    virtual ~FileSelectNumber() {}
 
     virtual void init(const JMapInfoIter&);
     virtual void appear();

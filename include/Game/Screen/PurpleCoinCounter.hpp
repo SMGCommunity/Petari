@@ -9,7 +9,6 @@ class PurpleCoinCounter : public LayoutActor {
 public:
     PurpleCoinCounter(const char* pName);
 
-    virtual ~PurpleCoinCounter();
     virtual void init(const JMapInfoIter& rIter);
     virtual void appear();
     virtual void control();

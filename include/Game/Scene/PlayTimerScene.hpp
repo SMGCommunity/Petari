@@ -11,9 +11,6 @@ public:
     /// @brief Creates a new `PlayTimerScene`.
     PlayTimerScene();
 
-    /// @brief Destroys the `PlayTimerScene`.
-    virtual ~PlayTimerScene() {}
-
     virtual void init();
     virtual void start();
     virtual void update();

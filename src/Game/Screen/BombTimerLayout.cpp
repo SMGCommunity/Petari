@@ -128,7 +128,3 @@ void BombTimerLayout::exeEnd() {
         kill();
     }
 }
-
-BombTimerLayout::~BombTimerLayout() {
-    
-}

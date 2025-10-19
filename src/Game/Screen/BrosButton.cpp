@@ -106,7 +106,3 @@ void BrosButton::control() {
         MR::startSystemSE("SE_SY_BUTTON_CURSOR_ON", -1, -1);
     }
 }
-
-BrosButton::~BrosButton() {
-    
-}

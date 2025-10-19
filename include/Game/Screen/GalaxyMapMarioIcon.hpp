@@ -6,8 +6,6 @@ class GalaxyMapMarioIcon : public LayoutActor {
 public:
     GalaxyMapMarioIcon(LayoutActor*, const char*);
 
-    virtual ~GalaxyMapMarioIcon() {}
-
     virtual void init(const JMapInfoIter& rIter);
     virtual void control();
 

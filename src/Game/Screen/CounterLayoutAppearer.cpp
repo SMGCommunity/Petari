@@ -101,7 +101,3 @@ void CounterLayoutAppearer::exeDisappear() {
         setNerve(&NrvCounterLayoutAppearer::CounterLayoutAppearerNrvHide::sInstance);
     }
 }
-
-CounterLayoutAppearer::~CounterLayoutAppearer() {
-    
-}

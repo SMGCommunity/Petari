@@ -10,7 +10,6 @@ class WipeHolderBase : public NameObj {
 public:
     WipeHolderBase(u32, const char*);
 
-    virtual ~WipeHolderBase() {}
     virtual void setCurrent(const char*);
     virtual void wipe(const char*, s32);
     virtual void forceClose(const char*);

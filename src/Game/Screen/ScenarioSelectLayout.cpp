@@ -505,7 +505,3 @@ void ScenarioSelectLayout::exeWaitCometWarning() {
     MR::startPaneAnimAtFirstStep(this, "CometAppear", "CometWait", 0);
     MR::setNerveAtStep(this, &NrvScenarioSelectLayout::ScenarioSelectLayoutNrvDisappearCometWarning::sInstance, 180);
 }
-
-ScenarioSelectLayout::~ScenarioSelectLayout() {
-
-}
