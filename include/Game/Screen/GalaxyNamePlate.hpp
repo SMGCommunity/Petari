@@ -2,10 +2,7 @@
 
 #include "Game/Screen/LayoutActor.hpp"
 
-struct GalaxyNamePlateDrawerEntry {
-    /* 0x0 */ LayoutActor* mHostActor;
-    /* 0x4 */ u32 mZ;
-};
+class GalaxyNamePlateDrawerEntry;
 
 class GalaxyNamePlate : public LayoutActor {
 public:
@@ -33,5 +30,5 @@ public:
     /* 0x26 */ bool mShowBalloonNozzle;
     /* 0x28 */ GalaxyNamePlateDrawerEntry* mDrawerEntry;
     /* 0x2C */ s32 _2C;
-    /* 0x30 */ u8 _30;
+    /* 0x30 */ bool _30;
 };
