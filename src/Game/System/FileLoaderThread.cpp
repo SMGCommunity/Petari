@@ -20,21 +20,7 @@ FileLoaderThread::FileLoaderThread(int priority, int msgCount, JKRHeap *pHeap) :
 }
 
 void* FileLoaderThread::run() {
-    // OSInitFastCast
-    __asm {
-        li r3, 4
-        oris r3, r3, 4
-        mtspr 0x392, r3
-        li r3, 5
-        oris r3, r3, 5
-        mtspr 0x393, r3
-        li r3, 6
-        oris r3, r3, 6
-        mtspr 0x394, r3
-        li r3, 7
-        oris r3, r3, 7
-        mtspr 0x395, r3
-    };
+    OSInitFastCast();
 
     while (true) {
         OSMessage msg;
@@ -42,12 +28,12 @@ void* FileLoaderThread::run() {
         RequestFileInfo* info = (RequestFileInfo*)msg;
 
         switch (info->_0) {
-            case 0:
-                loadToMainRAM(info);
-                break;
-            case 1:
-                mountArchiveAndStartCreateResource(info);
-                break;
+        case 0:
+            loadToMainRAM(info);
+            break;
+        case 1:
+            mountArchiveAndStartCreateResource(info);
+            break;
         }
     }
 }
