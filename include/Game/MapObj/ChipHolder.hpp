@@ -24,7 +24,7 @@ namespace MR {
     void deactivateChipLayout();
 };
 
-class ChipHolder : NameObj {
+class ChipHolder : public NameObj {
 public:
     enum ChipType {
         Chip_Blue   = 0,

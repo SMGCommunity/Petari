@@ -23,7 +23,7 @@ public:
     char _28[0x30];
 };
 
-class LiveActorGroupArray : NameObj {
+class LiveActorGroupArray : public NameObj {
 public:
     LiveActorGroupArray(const char *pName);
 
