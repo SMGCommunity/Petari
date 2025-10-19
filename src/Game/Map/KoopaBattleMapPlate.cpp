@@ -27,12 +27,12 @@ void KoopaBattleMapPlate::init(const JMapInfoIter& rIter) {
     MR::calcGravity(this);
     JMathInlineVEC::PSVECNegate(&mGravity, &v1);
     MR::makeMtxUpNoSupportPos(&_8C, v1, mPosition);
-    initModelManagerWithAnm("KoopaPlate", NULL, false);
+    initModelManagerWithAnm("KoopaPlate", nullptr, false);
     MR::connectToSceneMapObj(this);
     initHitSensor(1);
     MR::addHitSensor(this, "Attack", ATYPE_KOOPA_PLATE, 8, 250.0f, TVec3f(0.0f, -150.0f, 0.0f));
     MR::initCollisionParts(this, "KoopaPlate", getSensor("Attack"), _8C);
-    initEffectKeeper(1, NULL, false);
+    initEffectKeeper(1, nullptr, false);
     MR::addEffectHitNormal(this, "Hit");
     MR::setEffectBaseScale(this, "Hit", 3.0f);
     initSound(4, false);

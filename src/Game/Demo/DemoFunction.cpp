@@ -86,7 +86,7 @@ namespace DemoFunction {
                 return executor;
             }
         }
-        return NULL;
+        return nullptr;
     }
 
     DemoExecutor* findDemoExecutorActive(const LiveActor* pActor) {
@@ -97,7 +97,7 @@ namespace DemoFunction {
                 return executor;
             }
         }
-        return NULL;
+        return nullptr;
     }
 
     bool isDemoCast(const DemoExecutor* pExecutor, const LiveActor* pActor) { return DemoExecutorFunction::isRegisteredDemoCast(pExecutor, pActor); }

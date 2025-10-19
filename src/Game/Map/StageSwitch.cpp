@@ -71,7 +71,7 @@ ZoneSwitch* StageSwitchContainer::findZoneSwitchFromTable(const SwitchIdInfo &rI
         }
     }
 
-    return NULL;
+    return nullptr;
 }
 
 void StageSwitchCtrl::onSwitchA() {

@@ -3,7 +3,7 @@
 #include <revolution.h>
 
 GameSystemDimmingWatcher::GameSystemDimmingWatcher() :
-    mChecker(NULL),
+    mChecker(nullptr),
     _4(true),
     _5(false)
 {

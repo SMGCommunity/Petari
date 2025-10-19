@@ -25,11 +25,11 @@ namespace {
 
 PrologueDirector::PrologueDirector(const char* pName) :
     LiveActor(pName),
-    mPictureBook(NULL),
-    mLetter(NULL),
-    mScenery(NULL),
-    mMarioPosDummyModel(NULL),
-    mCameraTarget(NULL),
+    mPictureBook(nullptr),
+    mLetter(nullptr),
+    mScenery(nullptr),
+    mMarioPosDummyModel(nullptr),
+    mCameraTarget(nullptr),
     _D0(false)
 {
     _A0.identity();
@@ -166,7 +166,7 @@ void PrologueDirector::exeBindWait() {
         MR::startBck(mMarioPosDummyModel, "DemoPeachCastleGate", 0);
 
         ActorCameraInfo cameraInfo = ActorCameraInfo(-1, 0);
-        CameraTargetArg cameraTarget = CameraTargetArg(NULL, mCameraTarget, NULL, NULL);
+        CameraTargetArg cameraTarget = CameraTargetArg(nullptr, mCameraTarget, nullptr, nullptr);
 
         MR::startAnimCameraTargetOther(mMarioPosDummyModel, &cameraInfo, "DemoPeachCastleGate", cameraTarget, 0, 1.0f);
         setNerve(&PrologueDirectorNrvArrive::sInstance);
@@ -186,7 +186,7 @@ void PrologueDirector::exeArrive() {
         baseMtx.getTransInline(trans);
 
         MR::setPlayerBaseMtx(baseMtx);
-        MR::startBckPlayer("DemoPeachCastleGate", (const char*)NULL);
+        MR::startBckPlayer("DemoPeachCastleGate", (const char*)nullptr);
         MR::openWipeFade(30);
         MR::setImageEffectControlAuto();
     }
@@ -237,7 +237,7 @@ void PrologueDirector::createLetter() {
 }
 
 void PrologueDirector::createScenery() {
-    mScenery = new ModelObj("背景書割", "DemoLetter", NULL, 10, -2, -2, false);
+    mScenery = new ModelObj("背景書割", "DemoLetter", nullptr, 10, -2, -2, false);
 
     MR::invalidateClipping(mScenery);
     mScenery->initWithoutIter();
@@ -252,7 +252,7 @@ void PrologueDirector::createScenery() {
 #ifdef NON_MATCHING
 // PrologueDirector::mMarioPosDummyModel should be loaded each time there is a store.
 void PrologueDirector::createMarioPosDummyModel() {
-    mMarioPosDummyModel = new ModelObj("マリオの経路", "DemoPeachCastleGate", NULL, -2, -2, -2, false);
+    mMarioPosDummyModel = new ModelObj("マリオの経路", "DemoPeachCastleGate", nullptr, -2, -2, -2, false);
     mMarioPosDummyModel->initWithoutIter();
 
     MR::invalidateClipping(mMarioPosDummyModel);
@@ -286,7 +286,7 @@ void PrologueDirector::pauseOff() {
 
 PrologueHolder::PrologueHolder(const char* pName) :
     NameObj(pName),
-    mDirector(NULL)
+    mDirector(nullptr)
 {}
 
 void PrologueHolder::registerPrologueObj(PrologueDirector* pDirector) {

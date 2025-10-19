@@ -22,7 +22,7 @@ void OneUpBoard::init(const JMapInfoIter& rIter) {
     initNerve(&NrvOneUpBoard::HostTypeWait::sInstance);
     MR::connectToSceneLayout(this);
     MR::registerDemoSimpleCastAll(this);
-    initEffectKeeper(1, "OneUp", NULL);
+    initEffectKeeper(1, "OneUp", nullptr);
     kill();
 }
 

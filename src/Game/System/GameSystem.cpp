@@ -67,17 +67,17 @@ void main(void) {
 
 GameSystem::GameSystem() :
     NerveExecutor("GameSystem"),
-    mFifoBase(NULL),
-    mSequenceDirector(NULL),
-    mErrorWatcher(NULL),
-    mFontHolder(NULL),
-    mFrameControl(NULL),
-    mObjHolder(NULL),
-    mSceneController(NULL),
-    mStationedArchiveLoader(NULL),
-    mHomeButtonLayout(NULL),
-    mSystemWipeHolder(NULL),
-    mHomeButtonStateNotifier(NULL),
+    mFifoBase(nullptr),
+    mSequenceDirector(nullptr),
+    mErrorWatcher(nullptr),
+    mFontHolder(nullptr),
+    mFrameControl(nullptr),
+    mObjHolder(nullptr),
+    mSceneController(nullptr),
+    mStationedArchiveLoader(nullptr),
+    mHomeButtonLayout(nullptr),
+    mSystemWipeHolder(nullptr),
+    mHomeButtonStateNotifier(nullptr),
     mIsExecuteLoadSystemArchive(false)
 {
     

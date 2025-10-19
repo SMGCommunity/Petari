@@ -17,8 +17,8 @@ namespace NrvLuigiLetter {
 
 LuigiLetter::LuigiLetter(bool param1, const char* pParam2) :
     LayoutActor("ルイージの手紙", true),
-    mTexture(NULL),
-    mAButtonIcon(NULL),
+    mTexture(nullptr),
+    mAButtonIcon(nullptr),
     _28(pParam2),
     _2C(param1)
 {
@@ -110,7 +110,7 @@ void LuigiLetter::makeArchiveListForMenu(NameObjArchiveListCollector* pCollector
 void LuigiLetter::makeArchiveListCommon(NameObjArchiveListCollector* pCollector, const char* pParam2) {
     char archiveName[256];
 
-    if (pParam2 == NULL) {
+    if (pParam2 == nullptr) {
         return;
     }
 

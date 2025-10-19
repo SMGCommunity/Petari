@@ -18,7 +18,7 @@ namespace FileSelectFunc {
         }
         else if (rIcon.isMii()) {
             RFLAdditionalInfo info;
-            RFLErrcode err = RFLGetAdditionalInfo(&info, RFLDataSource_Official, NULL, rIcon.getMiiIndex());
+            RFLErrcode err = RFLGetAdditionalInfo(&info, RFLDataSource_Official, nullptr, rIcon.getMiiIndex());
 
             if (err == RFLErrcode_Success) {
                 MR::copyMemory(pName, info.name, getMiiNameBufferSize() * sizeof(wchar_t));

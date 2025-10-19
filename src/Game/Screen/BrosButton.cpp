@@ -15,7 +15,7 @@ namespace {
 BrosButton::BrosButton(const char* pName) :
     LayoutActor(pName, true),
     mIsSelectedMario(true),
-    mPaneCtrl(NULL)
+    mPaneCtrl(nullptr)
 {}
 
 void BrosButton::init(const JMapInfoIter& rIter) {

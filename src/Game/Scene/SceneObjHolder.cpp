@@ -126,14 +126,14 @@
 
 SceneObjHolder::SceneObjHolder() {
     for (int i = 0; i < SceneObj_COUNT; i++) {
-        mObj[i] = NULL;
+        mObj[i] = nullptr;
     }
 }
 
 NameObj* SceneObjHolder::create(int id) {
     NameObj* pObj = mObj[id];
 
-    if (pObj != NULL) {
+    if (pObj != nullptr) {
         return pObj;
     }
 
@@ -150,7 +150,7 @@ NameObj* SceneObjHolder::getObj(int id) const {
 }
 
 bool SceneObjHolder::isExist(int id) const {
-    return mObj[id] != NULL;
+    return mObj[id] != nullptr;
 }
 
 /*
@@ -393,7 +393,7 @@ NameObj* SceneObjHolder::newEachObj(int id) {
     case SceneObj_StaffRoll:
         return new StaffRoll("スタッフロール");
     default:
-        return NULL;
+        return nullptr;
     }
 }
 */

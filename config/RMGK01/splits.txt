@@ -8903,14 +8903,16 @@ Game/Util/MathUtil.cpp:
 
 Game/Util/MemoryUtil.cpp:
 	.text       start:0x803E8924 end:0x803E8E14
-	.data       start:0x805E1838 end:0x805E1A58
+	.data       start:0x805E1838 end:0x805E1868
 	.sbss       start:0x806B7018 end:0x806B7020
 
 Game/Util/MessageUtil.cpp:
 	.text       start:0x803E8E14 end:0x803E9560
+	.data       start:0x805E1868 end:0x805E18B8
 
 Game/Util/ModelUtil.cpp:
 	.text       start:0x803E9560 end:0x803EB224
+	.data       start:0x805E18B8 end:0x805E1A58
 	.sdata2     start:0x806C17D0 end:0x806C17E0
 
 Game/Util/MtxUtil.cpp:

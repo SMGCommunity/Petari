@@ -14,10 +14,10 @@ namespace NrvPlayTimerScene {
 
 PlayTimerScene::PlayTimerScene() :
     Scene("PlayTimerScene"),
-    mTimeLimitLayout(NULL),
-    mTimeUpLayout(NULL),
+    mTimeLimitLayout(nullptr),
+    mTimeUpLayout(nullptr),
     mTimeLimit(36000),
-    _20(NULL)
+    _20(nullptr)
 {
     initNerve(&NrvPlayTimerScene::PlayTimerSceneNormal::sInstance);
 
@@ -45,7 +45,7 @@ void PlayTimerScene::start() {
 // PlayTimerScene::draw
 
 bool PlayTimerScene::isActive() const {
-    if (mTimeLimitLayout == NULL) {
+    if (mTimeLimitLayout == nullptr) {
         return false;
     }
 
@@ -65,7 +65,7 @@ bool PlayTimerScene::isEndGlobalTimer() const {
 }
 
 void PlayTimerScene::stop() {
-    if (mTimeLimitLayout != NULL) {
+    if (mTimeLimitLayout != nullptr) {
         mTimeLimitLayout->kill();
     }
 

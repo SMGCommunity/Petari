@@ -16,11 +16,11 @@ namespace NrvChipBase {
 
 ChipBase::ChipBase(const char *pName, s32 chipType, const char *pChipName) :
     LiveActor(pName),
-    mFlashingCtrl(NULL),
-    mRailMover(NULL),
-    mAirBubble(NULL),
+    mFlashingCtrl(nullptr),
+    mRailMover(nullptr),
+    mAirBubble(nullptr),
     mChipName(pChipName),
-    mHost(NULL),
+    mHost(nullptr),
     mClippingRange(0.0f, 0.0f, 0.0f),
     mGroupID(-1),
     mChipType(chipType),
@@ -74,7 +74,7 @@ void ChipBase::initSensor() {
 
     initHitSensor(1);
 
-    if (mAirBubble != NULL) {
+    if (mAirBubble != nullptr) {
         radius = 150.0f;
     }
     else {
@@ -160,13 +160,13 @@ void ChipBase::makeActorAppeared() {
 
     LiveActor::makeActorAppeared();
 
-    if (mRailMover != NULL) {
+    if (mRailMover != nullptr) {
         mRailMover->start();
     }
 }
 
 void ChipBase::makeActorDead() {
-    if (mRailMover != NULL) {
+    if (mRailMover != nullptr) {
         mRailMover->end();
     }
 
@@ -174,7 +174,7 @@ void ChipBase::makeActorDead() {
 }
 
 void ChipBase::control() {
-    if (mRailMover != NULL) {
+    if (mRailMover != nullptr) {
         mRailMover->movement();
         mPosition.x = mRailMover->_28.x;
         mPosition.y = mRailMover->_28.y;
@@ -209,7 +209,7 @@ bool ChipBase::requestGet(HitSensor *pSender, HitSensor *pReceiver) {
         MR::noticeGetChip(mChipType, this, mGroupID);
         setNerve(&NrvChipBase::ChipBaseNrvGot::sInstance);
 
-        if (mHost != NULL) {
+        if (mHost != nullptr) {
             mHost->receiveMessage(0x87, pSender, pReceiver);
         }
 

@@ -123,7 +123,7 @@ namespace MR {
             return "Kr";
         }
 
-        return NULL;
+        return nullptr;
     }
 
     u32 getLanguageNum() {

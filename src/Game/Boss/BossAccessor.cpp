@@ -4,7 +4,7 @@
 
 BossAccessor::BossAccessor() :
     NameObj("ボスへのアクセス"),
-    mBoss(NULL)
+    mBoss(nullptr)
 {}
 
 namespace BossAccess {
@@ -19,7 +19,7 @@ namespace BossAccess {
                 MR::getSceneObj<BossAccessor>(SceneObj_BossAccessor)->getBoss());
         }
 
-        return NULL;
+        return nullptr;
     }
 };
 

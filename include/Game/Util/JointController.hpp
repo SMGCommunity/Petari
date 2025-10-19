@@ -61,7 +61,7 @@ public:
     }
 
     virtual bool calcJointMatrix(TPos3f *a1, const JointControllerInfo &a2) {
-        if (mMtxCalcFunc != NULL) {
+        if (mMtxCalcFunc != nullptr) {
             return (mHost->*mMtxCalcFunc)(a1, a2);
         } else {
             return false;
@@ -69,7 +69,7 @@ public:
     }
 
     virtual bool calcJointMatrixAfterChild(TPos3f *a1, const JointControllerInfo &a2) {
-        if (mMtxCalcAfterChildFunc != NULL) {
+        if (mMtxCalcAfterChildFunc != nullptr) {
             return (mHost->*mMtxCalcAfterChildFunc)(a1, a2);
         } else {
             return false;

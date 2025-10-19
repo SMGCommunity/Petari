@@ -66,37 +66,37 @@ namespace {
         },
         {
             "OceanPierFloaterA",
-            NULL,
-            NULL,
-            NULL
+            nullptr,
+            nullptr,
+            nullptr
         },
         {
             "OceanHexagonFloater",
-            NULL,
-            NULL,
-            NULL
+            nullptr,
+            nullptr,
+            nullptr
         },
         {
             "PhantomShipBoxFloaterA",
-            NULL,
-            NULL,
-            NULL
+            nullptr,
+            nullptr,
+            nullptr
         },
         {
             "PhantomShipBoxFloaterB",
-            NULL,
-            NULL,
-            NULL
+            nullptr,
+            nullptr,
+            nullptr
         },
         {
             "PhantomShipBoxFloaterC",
-            NULL,
-            NULL,
-            NULL
+            nullptr,
+            nullptr,
+            nullptr
         },
         {
             "IceMountainFloaterA",
-            NULL,
+            nullptr,
             "SE_OJ_LV_ICE_M_FLOATER_DOWN",
             "SE_OJ_LV_ICE_M_FLOATER_UP"
         },
@@ -113,7 +113,7 @@ namespace {
             }
         }
 
-        return NULL;
+        return nullptr;
     }
 };
 

@@ -44,12 +44,12 @@ namespace SceneWipeHolderFunction {
 
     void openWipe(const char* pWipeName, s32 step) {
         getSceneWipeHolder()->forceClose(pWipeName);
-        getSceneWipeHolder()->wipe(NULL, step);
+        getSceneWipeHolder()->wipe(nullptr, step);
     }
 
     void closeWipe(const char* pWipeName, s32 step) {
         getSceneWipeHolder()->forceOpen(pWipeName);
-        getSceneWipeHolder()->wipe(NULL, step);
+        getSceneWipeHolder()->wipe(nullptr, step);
     }
 
     void forceOpenWipe(const char* pWipeName) {

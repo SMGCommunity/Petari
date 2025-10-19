@@ -58,7 +58,7 @@ void ButtonPaneController::appear() {
     mIsPointing = false;
     _24 = true;
 
-    if (mAppearAnimName != NULL) {
+    if (mAppearAnimName != nullptr) {
         setNerve(&NrvButtonPaneController::ButtonPaneControllerNrvAppear::sInstance);
     }
     else {
@@ -80,7 +80,7 @@ bool ButtonPaneController::trySelect() {
 
     mIsPointing = true;
 
-    if (mDecideAnimName != NULL && isPointing() && MR::testDPDMenuPadDecideTrigger()) {
+    if (mDecideAnimName != nullptr && isPointing() && MR::testDPDMenuPadDecideTrigger()) {
         mIsSelected = true;
 
         setNerve(&NrvButtonPaneController::ButtonPaneControllerNrvDecided::sInstance);
@@ -108,12 +108,12 @@ bool ButtonPaneController::isTimingForSelectedSe() const {
 }
 
 void ButtonPaneController::invalidateDecide() {
-    mDecideAnimName = NULL;
+    mDecideAnimName = nullptr;
 }
 
 void ButtonPaneController::invalidateAppearance() {
-    mAppearAnimName = NULL;
-    mDisappearAnimName = NULL;
+    mAppearAnimName = nullptr;
+    mDisappearAnimName = nullptr;
     _22 = false;
 }
 

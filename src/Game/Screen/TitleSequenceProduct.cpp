@@ -14,7 +14,7 @@ namespace TitleSequenceProductSub {
     LogoLayout::LogoLayout() :
         SimpleLayout("ロゴ", "TitleLogo", 2, -1)
     {
-        initEffectKeeper(1, "TitleLogo", NULL);
+        initEffectKeeper(1, "TitleLogo", nullptr);
         kill();
     }
 };
@@ -31,11 +31,11 @@ namespace {
 
 TitleSequenceProduct::TitleSequenceProduct() :
     NerveExecutor(""),
-    mLogoLayout(NULL),
-    mPressStartLayout(NULL),
-    mEncouragePal60Window(NULL),
-    mAButtonChecker(NULL),
-    mBButtonChecker(NULL)
+    mLogoLayout(nullptr),
+    mPressStartLayout(nullptr),
+    mEncouragePal60Window(nullptr),
+    mAButtonChecker(nullptr),
+    mBButtonChecker(nullptr)
 {
     if (MR::isDisplayEncouragePal60Window()) {
         initNerve(&TitleSequenceProductDisplayEncouragePal60Window::sInstance);

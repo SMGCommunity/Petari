@@ -18,7 +18,7 @@ MissLayout::MissLayout() :
 void MissLayout::init(const JMapInfoIter& rIter) {
     MR::connectToSceneLayout(this);
     initLayoutManager("TooBad", 1);
-    initEffectKeeper(0, NULL, NULL);
+    initEffectKeeper(0, nullptr, nullptr);
     initNerve(&MissLayoutNrvWait::sInstance);
     kill();
 }

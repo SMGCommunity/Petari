@@ -14,8 +14,8 @@ namespace NrvGalaxyConfirmLayout {
 
 GalaxyConfirmLayout::GalaxyConfirmLayout() :
     LayoutActor("ギャラクシー確認レイアウト", true),
-    mPaneCtrl(NULL),
-    mBackButton(NULL)
+    mPaneCtrl(nullptr),
+    mBackButton(nullptr)
 {
     
 }

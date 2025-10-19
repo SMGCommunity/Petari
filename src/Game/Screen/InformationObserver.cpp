@@ -18,16 +18,16 @@ struct InformationObserverAttribute {
 };
 
 static InformationObserverAttribute sAttr[] = {
-    {"InformationObserverBee", true, "BGM_FIRST_MORPH_B", NULL},
-    {"InformationObserverTeresa", true, "BGM_FIRST_MORPH_B", NULL},
-    {"InformationObserverHopper", true, "BGM_FIRST_MORPH_B", NULL},
+    {"InformationObserverBee", true, "BGM_FIRST_MORPH_B", nullptr},
+    {"InformationObserverTeresa", true, "BGM_FIRST_MORPH_B", nullptr},
+    {"InformationObserverHopper", true, "BGM_FIRST_MORPH_B", nullptr},
     {"InformationObserverFire", true, "BGM_FIRST_MORPH_A", "BGM_FIRE_B"},
     {"InformationObserverIce", true, "BGM_FIRST_MORPH_A", "BGM_ICE_B"},
     {"InformationObserverFlying", true, "BGM_FIRST_MORPH_A", "BGM_FLYING_B"},
     {"InformationObserverInvincible", true, "BGM_FIRST_MORPH_A", "BGM_MUTEKI_B"},
-    {"InformationObserverLifeUpMario", false, NULL, NULL},
-    {"InformationObserverOneUp", false, NULL, NULL},
-    {"InformationObserverSpin", false, NULL, NULL},
+    {"InformationObserverLifeUpMario", false, nullptr, nullptr},
+    {"InformationObserverOneUp", false, nullptr, nullptr},
+    {"InformationObserverSpin", false, nullptr, nullptr},
 };
 
 namespace {
@@ -93,7 +93,7 @@ void InformationObserver::exeDisp() {
             MR::appearInformationMessage(MR::getLayoutMessageDirect(sAttr[mType].mMessageId), true);
         }
 
-        if (sAttr[mType].mFirstMorphBgmName != NULL) {
+        if (sAttr[mType].mFirstMorphBgmName != nullptr) {
             MR::stopSubBGM(0);
             MR::startSubBGM(sAttr[mType].mFirstMorphBgmName, false);
         }
@@ -116,7 +116,7 @@ void InformationObserver::exeDisp() {
         MR::endDemo(this, "初出表示");
     }
 
-    if (sAttr[mType].mBgmName != NULL) {
+    if (sAttr[mType].mBgmName != nullptr) {
         if (mType == Type_Flying) {
             MR::stopSubBGM(5);
             MR::startStageBGM(sAttr[mType].mBgmName, false);
@@ -167,39 +167,39 @@ void InformationObserver::exeDisp() {
 
 namespace InformationObserverFunction {
     void explainBee() {
-        getInformationObserver()->entry(InformationObserver::Type_Bee, NULL);
+        getInformationObserver()->entry(InformationObserver::Type_Bee, nullptr);
     }
 
     void explainTeresa() {
-        getInformationObserver()->entry(InformationObserver::Type_Teresa, NULL);
+        getInformationObserver()->entry(InformationObserver::Type_Teresa, nullptr);
     }
 
     void explainHopper() {
-        getInformationObserver()->entry(InformationObserver::Type_Hopper, NULL);
+        getInformationObserver()->entry(InformationObserver::Type_Hopper, nullptr);
     }
 
     void explainFire() {
-        getInformationObserver()->entry(InformationObserver::Type_Fire, NULL);
+        getInformationObserver()->entry(InformationObserver::Type_Fire, nullptr);
     }
 
     void explainIce() {
-        getInformationObserver()->entry(InformationObserver::Type_Ice, NULL);
+        getInformationObserver()->entry(InformationObserver::Type_Ice, nullptr);
     }
 
     void explainFlying() {
-        getInformationObserver()->entry(InformationObserver::Type_Flying, NULL);
+        getInformationObserver()->entry(InformationObserver::Type_Flying, nullptr);
     }
 
     void explainInvincible() {
-        getInformationObserver()->entry(InformationObserver::Type_Invincible, NULL);
+        getInformationObserver()->entry(InformationObserver::Type_Invincible, nullptr);
     }
 
     void explainLifeUp() {
-        getInformationObserver()->entry(InformationObserver::Type_LifeUp, NULL);
+        getInformationObserver()->entry(InformationObserver::Type_LifeUp, nullptr);
     }
 
     void explainOneUp() {
-        getInformationObserver()->entry(InformationObserver::Type_OneUp, NULL);
+        getInformationObserver()->entry(InformationObserver::Type_OneUp, nullptr);
     }
 
     void explainSpin(LiveActor* pParam1) {
