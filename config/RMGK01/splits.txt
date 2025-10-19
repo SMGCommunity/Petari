@@ -8443,13 +8443,13 @@ Game/System/GameSystemObjHolder.cpp:
 Game/System/GameSystemStationedArchiveLoader.cpp:
 	.text       start:0x8039D374 end:0x8039E130
 	.ctors      start:0x8052F374 end:0x8052F378
-	.data       start:0x805DB558 end:0x805DB750
+	.data       start:0x805DB558 end:0x805DB6E0
 	.sbss       start:0x806B6E60 end:0x806B6E80
 
 Game/System/GameSystemSceneController.cpp:
 	.text       start:0x8039E130 end:0x8039F628
 	.ctors      start:0x8052F378 end:0x8052F37C
-	.data       start:0x805DB750 end:0x805DB8B0
+	.data       start:0x805DB6E0 end:0x805DB8A0
 	.sdata      start:0x806B2548 end:0x806B2550
 	.sbss       start:0x806B6E80 end:0x806B6EB0
 
@@ -8457,24 +8457,26 @@ Game/System/GameSystemResetAndPowerProcess.cpp:
 	.text       start:0x8039F628 end:0x8039FF74
 	.ctors      start:0x8052F37C end:0x8052F380
 	.rodata     start:0x8053B7E8 end:0x8053B7F0
-	.data       start:0x805DB8B0 end:0x805DBA48
+	.data       start:0x805DB8A0 end:0x805DB940
 	.sbss       start:0x806B6EB0 end:0x806B6EC8
 	.sdata2     start:0x806C1430 end:0x806C1438
 
 Game/System/HeapMemoryWatcher.cpp:
 	.text       start:0x8039FF74 end:0x803A04D8
+	.data       start:0x805DB940 end:0x805DB958
 	.sdata      start:0x806B2550 end:0x806B2558
 	.sbss       start:0x806B6EC8 end:0x806B6ED0
 
 Game/System/Language.cpp:
 	.text       start:0x803A04D8 end:0x803A0698
 	.rodata     start:0x8053B7F0 end:0x8053B890
+	.data       start:0x805DB958 end:0x805DB9D8
 	.sdata      start:0x806B2558 end:0x806B2568
 
 Game/System/LayoutHolder.cpp:
 	.text       start:0x803A0698 end:0x803A0D94
 	.rodata     start:0x8053B890 end:0x8053B8A0
-	.data       start:0x805DBA48 end:0x805DBA80
+	.data       start:0x805DB9D8 end:0x805DBA80
 	.sdata      start:0x806B2568 end:0x806B2570
 
 Game/System/MainLoopFramework.cpp:

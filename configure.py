@@ -2164,7 +2164,7 @@ config.libs = [
             Object(NonMatching, "Game/System/GameSystemSceneController.cpp"),
             Object(NonMatching, "Game/System/GameSystemResetAndPowerProcess.cpp"),
             Object(Matching, "Game/System/HeapMemoryWatcher.cpp"),
-            Object(NonMatching, "Game/System/Language.cpp"),
+            Object(Matching, "Game/System/Language.cpp"),
             Object(NonMatching, "Game/System/LayoutHolder.cpp"),
             Object(NonMatching, "Game/System/MainLoopFramework.cpp"),
             Object(Matching, "Game/System/MessageHolder.cpp"),
