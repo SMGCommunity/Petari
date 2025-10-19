@@ -2181,18 +2181,19 @@ Game/Demo/DemoCameraKeeper.cpp:
 
 Game/Demo/DemoCastGroup.cpp:
 	.text       start:0x800B9CA0 end:0x800B9F08
-	.data       start:0x805771C0 end:0x80577218
+	.data       start:0x805771C0 end:0x80577200
 
 Game/Demo/DemoCastGroupHolder.cpp:
 	.text       start:0x800B9F08 end:0x800BA15C
-	.data       start:0x80577218 end:0x80577240
+	.data       start:0x80577200 end:0x80577240
 
 Game/Demo/DemoCastSubGroup.cpp:
 	.text       start:0x800BA15C end:0x800BA2C4
-	.data       start:0x80577240 end:0x80577288
+	.data       start:0x80577240 end:0x80577270
 
 Game/Demo/DemoCtrlBase.cpp:
 	.text       start:0x800BA2C4 end:0x800BA534
+	.data       start:0x80577270 end:0x80577288
 
 Game/Demo/DemoDirector.cpp:
 	.text       start:0x800BA534 end:0x800BAC3C
@@ -2242,21 +2243,23 @@ Game/Demo/DemoSimpleCastHolder.cpp:
 
 Game/Demo/DemoSoundKeeper.cpp:
 	.text       start:0x800BD938 end:0x800BDC9C
-	.data       start:0x80577660 end:0x80577760
+	.data       start:0x80577660 end:0x805776F8
 
 Game/Demo/DemoStartRequestHolder.cpp:
 	.text       start:0x800BDC9C end:0x800BE3A4
+	.data       start:0x805776F8 end:0x80577700
 
 Game/Demo/DemoStartRequestUtil.cpp:
 	.text       start:0x800BE3A4 end:0x800BF030
 
 Game/Demo/DemoSubPartKeeper.cpp:
 	.text       start:0x800BF030 end:0x800BF32C
+	.data       start:0x80577700 end:0x80577740
 
 Game/Demo/DemoTalkAnimCtrl.cpp:
 	.text       start:0x800BF32C end:0x800BFC98
 	.rodata     start:0x80531A20 end:0x80531A28
-	.data       start:0x80577760 end:0x80577770
+	.data       start:0x80577740 end:0x80577770
 	.sdata2     start:0x806B9C48 end:0x806B9C50
 
 Game/Demo/DemoTimeKeeper.cpp:
@@ -2271,15 +2274,15 @@ Game/Demo/GrandStarReturnDemoStarter.cpp:
 	.text       start:0x800C02B8 end:0x800C1018
 	.ctors      start:0x8052EA10 end:0x8052EA14
 	.rodata     start:0x80531A28 end:0x80531A30
-	.data       start:0x80577838 end:0x80577BD8
+	.data       start:0x80577838 end:0x80577AE0
 	.sbss       start:0x806B3A70 end:0x806B3A90
 	.sdata2     start:0x806B9C50 end:0x806B9C68
 
 Game/Demo/PrologueDirector.cpp:
 	.text       start:0x800C1018 end:0x800C1CE0
 	.ctors      start:0x8052EA14 end:0x8052EA18
-	.data       start:0x80577BD8 end:0x80577D08
-	.sdata      start:0x806B1878 end:0x806B18E0
+	.data       start:0x80577AE0 end:0x80577D08
+	.sdata      start:0x806B1878 end:0x806B1880
 	.sbss       start:0x806B3A90 end:0x806B3AB8
 	.sdata2     start:0x806B9C68 end:0x806B9C70
 
@@ -2293,7 +2296,7 @@ Game/Demo/ScenarioStarter.cpp:
 	.text       start:0x800C2310 end:0x800C35F8
 	.ctors      start:0x8052EA18 end:0x8052EA1C
 	.rodata     start:0x80531A38 end:0x80531A40
-	.data       start:0x80577D80 end:0x805780E8
+	.data       start:0x80577D80 end:0x80577F20
 	.sbss       start:0x806B3AB8 end:0x806B3AD0
 	.sdata2     start:0x806B9C88 end:0x806B9CC0
 
@@ -2301,7 +2304,7 @@ Game/Demo/StarReturnDemoStarter.cpp:
 	.text       start:0x800C35F8 end:0x800C44B4
 	.ctors      start:0x8052EA1C end:0x8052EA20
 	.rodata     start:0x80531A40 end:0x80531A48
-	.data       start:0x805780E8 end:0x80578200
+	.data       start:0x80577F20 end:0x80578200
 	.sbss       start:0x806B3AD0 end:0x806B3AF8
 	.sdata2     start:0x806B9CC0 end:0x806B9CE0
 

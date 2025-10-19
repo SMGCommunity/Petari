@@ -7,8 +7,17 @@
 #include "Game/Screen/ProloguePictureBook.hpp"
 
 namespace {
-    const char* sPictureBookDemoName = "プロローグデモ";
-    const char* sArriveDemoName = "主人公ピーチ城に到着";
+    static const char* sPictureBookDemoName = "プロローグデモ";
+    static const char* sArriveDemoName = "主人公ピーチ城に到着";
+    static const s32 sPicBookStartWipeFrame = 60;
+    static const s32 sPeachLetterWait = 20;
+    static const s32 sPeachLetterStartWipeFrame = 60;
+    static const s32 sPeachLetterEndWipeFrame = 60;
+    static const s32 sArriveStartWipeFrame = 30;
+    static const s32 sArriveEndWipeFrame = 30;
+    static const s32 sGameStartWipeFrame = 30;
+    static const s32 sGameStartFrame = 15;
+    static const s32 sFallingStarStep = 130;
 };
 
 namespace {
@@ -93,15 +102,15 @@ void PrologueDirector::exePictureBook() {
 
     if (MR::isFirstStep(this)) {
         mPictureBook->appear();
-        MR::openWipeFade(60);
+        MR::openWipeFade(sPicBookStartWipeFrame);
         mScenery->appear();
         MR::startAnimCameraTargetSelf(mScenery, &cameraInfo, "DemoLetter", 0, 1.0f);
         MR::startStageBGM("STM_PROLOGUE_01", false);
     }
 
-    bool isPictureBookEndOrDead = mPictureBook->isEnd() || MR::isDead(mPictureBook);
+    bool isEndOrDead = mPictureBook->isEnd() || MR::isDead(mPictureBook);
 
-    if (isPictureBookEndOrDead) {
+    if (isEndOrDead) {
         MR::forceCloseWipeFade();
         mPictureBook->kill();
         MR::stopStageBGM(90);
@@ -111,7 +120,7 @@ void PrologueDirector::exePictureBook() {
 
 void PrologueDirector::exePeachLetterStart() {
     if (MR::isFirstStep(this)) {
-        MR::openWipeFade(60);
+        MR::openWipeFade(sPeachLetterStartWipeFrame);
     }
 
     if (MR::isStep(this, 90)) {
@@ -134,14 +143,14 @@ void PrologueDirector::exePeachLetter() {
 }
 
 void PrologueDirector::exePeachLetterWait() {
-    if (MR::isGreaterEqualStep(this, 20)) {
+    if (MR::isGreaterEqualStep(this, sPeachLetterWait)) {
         setNerve(&PrologueDirectorNrvPeachLetterEnd::sInstance);
     }
 }
 
 void PrologueDirector::exePeachLetterEnd() {
     if (MR::isFirstStep(this)) {
-        MR::closeWipeFade(60);
+        MR::closeWipeFade(sPeachLetterEndWipeFrame);
     }
 
     if (MR::isWipeActive()) {
@@ -187,7 +196,7 @@ void PrologueDirector::exeArrive() {
 
         MR::setPlayerBaseMtx(baseMtx);
         MR::startBckPlayer("DemoPeachCastleGate", (const char*)nullptr);
-        MR::openWipeFade(30);
+        MR::openWipeFade(sArriveStartWipeFrame);
         MR::setImageEffectControlAuto();
     }
 
@@ -196,12 +205,12 @@ void PrologueDirector::exeArrive() {
 
     MR::setPlayerBaseMtx(baseMtx);
 
-    if (MR::isStep(this, 130)) {
+    if (MR::isStep(this, sFallingStarStep)) {
         MR::startAtmosphereSE("SE_DM_ARRIVE_CASTLE_STAR", -1, -1);
     }
 
-    if (MR::isStep(this, MR::getBckFrameMaxPlayer("DemoPeachCastleGate") - 30)) {
-        MR::closeWipeFade(30);
+    if (MR::isStep(this, MR::getBckFrameMaxPlayer("DemoPeachCastleGate") - sArriveEndWipeFrame)) {
+        MR::closeWipeFade(sArriveEndWipeFrame);
     }
 
     if (MR::isBckStoppedPlayer()) {
@@ -217,8 +226,8 @@ void PrologueDirector::exeGameStart() {
         MR::forceCloseWipeFade();
     }
 
-    if (MR::isStep(this, 15)) {
-        MR::openWipeFade(30);
+    if (MR::isStep(this, sGameStartFrame)) {
+        MR::openWipeFade(sGameStartWipeFrame);
         MR::endDemo(this, sArriveDemoName);
         MR::initPlayerAfterOpeningDemo();
         kill();
@@ -249,8 +258,6 @@ void PrologueDirector::createScenery() {
     MR::initAnimCamera(mScenery, &cameraInfo, "DemoLetter");
 }
 
-#ifdef NON_MATCHING
-// PrologueDirector::mMarioPosDummyModel should be loaded each time there is a store.
 void PrologueDirector::createMarioPosDummyModel() {
     mMarioPosDummyModel = new ModelObj("マリオの経路", "DemoPeachCastleGate", nullptr, -2, -2, -2, false);
     mMarioPosDummyModel->initWithoutIter();
@@ -258,15 +265,13 @@ void PrologueDirector::createMarioPosDummyModel() {
     MR::invalidateClipping(mMarioPosDummyModel);
 
     mMarioPosDummyModel->kill();
-    mMarioPosDummyModel->mPosition.z = 0.0f;
-    mMarioPosDummyModel->mPosition.y = 0.0f;
-    mMarioPosDummyModel->mPosition.x = 0.0f;
+    // FIXME: Order of store instructions is swapped.
+    mMarioPosDummyModel->mPosition.set(0.0f, 0.0f, 0.0f);
 
     ActorCameraInfo cameraInfo = ActorCameraInfo(-1, 0);
 
     MR::initAnimCamera(mMarioPosDummyModel, &cameraInfo, "DemoPeachCastleGate");
 }
-#endif
 
 void PrologueDirector::createCameraTarget() {
     mCameraTarget = new CameraTargetMtx("カメラターゲットダミー");
