@@ -3,8 +3,8 @@
 #include "Game/Util/SceneUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
 
-GalaxyMoveArgument::GalaxyMoveArgument(u32 a1, const char *pStageName, s32 scenario, const JMapIdInfo *pMapIdInfo) {
-    _0 = a1;
+GalaxyMoveArgument::GalaxyMoveArgument(u32 moveType, const char *pStageName, s32 scenario, const JMapIdInfo *pMapIdInfo) {
+    mMoveType = moveType;
     mStageName = pStageName;
     mScenario = scenario;
     _C = -1;
