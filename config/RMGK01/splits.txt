@@ -8105,7 +8105,7 @@ Game/Screen/SaveIcon.cpp:
 Game/Screen/ScenarioSelectLayout.cpp:
 	.text       start:0x8037DCAC end:0x8037FE8C
 	.ctors      start:0x8052F30C end:0x8052F310
-	.rodata     start:0x8053B2C8 end:0x8053B310
+	.rodata     start:0x8053B2C8 end:0x8053B300
 	.data       start:0x805D8E30 end:0x805D9198
 	.sbss       start:0x806B6B48 end:0x806B6B78
 	.sdata2     start:0x806C11E8 end:0x806C1220
