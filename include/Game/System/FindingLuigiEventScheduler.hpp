@@ -28,7 +28,4 @@ public:
     /* 0x00 */ const char* mLuigiLostStageName;
     /* 0x04 */ s32 mLuigiLostStarID;
     /* 0x08 */ LuigiMailDirector* mLuigiMailDirector;
-    /* 0x0C */ u32 _C;
-    /* 0x10 */ u32 _10;
-    /* 0x14 */ u32 _14;
 };
