@@ -24,7 +24,7 @@ public:
 
 private:
     /* 0x20 */ u32 mTimeLimit;
-    /* 0x24 */ u32 mDangerTime;
-    /* 0x28 */ u32 mTime;
+    /* 0x24 */ u32 mDangerTransFrame;
+    /* 0x28 */ u32 mFrame;
     /* 0x2C */ bool mIsSuspend;
 };

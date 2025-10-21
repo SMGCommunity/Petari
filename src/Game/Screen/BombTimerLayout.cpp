@@ -3,6 +3,10 @@
 #include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 
+namespace {
+    static const s32 sDangerTransFrame = 600;
+};
+
 namespace NrvBombTimerLayout {
     NEW_NERVE(BombTimerLayoutNrvAppear, BombTimerLayout, Appear);
     NEW_NERVE(BombTimerLayoutNrvWait, BombTimerLayout, Wait);
@@ -12,8 +16,8 @@ namespace NrvBombTimerLayout {
 
 BombTimerLayout::BombTimerLayout(bool param1) :
     LayoutActor("ボムタイマーレイアウト", true),
-    mDangerTime(600),
-    mTime(0),
+    mDangerTransFrame(sDangerTransFrame),
+    mFrame(0),
     mIsSuspend(false)
 {
     if (param1) {
@@ -28,7 +32,7 @@ void BombTimerLayout::init(const JMapInfoIter& rIter) {
 }
 
 void BombTimerLayout::appear() {
-    mTime = 0;
+    mFrame = 0;
 
     LayoutActor::appear();
     setNerve(&NrvBombTimerLayout::BombTimerLayoutNrvAppear::sInstance);
@@ -49,7 +53,7 @@ void BombTimerLayout::resume() {
 }
 
 bool BombTimerLayout::isReadyToTimeUp() const {
-    return mTime < mTimeLimit == false;
+    return mFrame < mTimeLimit == false;
 }
 
 void BombTimerLayout::addFrame() {
@@ -57,7 +61,7 @@ void BombTimerLayout::addFrame() {
         return;
     }
 
-    mTime++;
+    mFrame++;
 
     updateTextBox();
 }
@@ -79,7 +83,7 @@ bool BombTimerLayout::update() {
 }
 
 u32 BombTimerLayout::getRestTime() const {
-    return mTimeLimit - mTime;
+    return mTimeLimit - mFrame;
 }
 
 void BombTimerLayout::updateTextBox() {
@@ -105,7 +109,7 @@ void BombTimerLayout::exeWait() {
 
     update();
 
-    if (getRestTime() < mDangerTime) {
+    if (getRestTime() < mDangerTransFrame) {
         setNerve(&NrvBombTimerLayout::BombTimerLayoutNrvDanger::sInstance);
     }
 }

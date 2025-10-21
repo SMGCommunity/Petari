@@ -5,6 +5,10 @@
 #include "Game/Util/NerveUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
 
+namespace {
+    const f32 cDecidedToDisappearAnimRate = 1.5f;
+};
+
 namespace NrvButtonPaneController {
     NEW_NERVE(ButtonPaneControllerNrvHidden, ButtonPaneController, Hidden);
     NEW_NERVE(ButtonPaneControllerNrvAppear, ButtonPaneController, Appear);
@@ -329,7 +333,7 @@ void ButtonPaneController::exeDecidedWait() {
 
 void ButtonPaneController::exeDecidedToDisappear() {
     if (startAnimAtFirstStep(mNotPointingAnimName)) {
-        MR::setPaneAnimRate(mHost, mPaneName, 1.5f, mAnimIndex);
+        MR::setPaneAnimRate(mHost, mPaneName, cDecidedToDisappearAnimRate, mAnimIndex);
     }
 
     if (_22) {
