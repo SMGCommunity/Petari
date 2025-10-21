@@ -8,6 +8,8 @@ class FindingLuigiEventScheduler {
 public:
     FindingLuigiEventScheduler();
 
+    inline bool isLuigiRescued();
+
     void initAfterResourceLoaded();
     void setStateHiding();
     void getHidingGalaxyNameAndStarId(const char **, s32 *) const;
@@ -24,6 +26,7 @@ public:
     void setStateReturnAstroGalaxy(int);
     void update(const GalaxyMoveArgument&);
     void updateOnStageResult(const char *, s32);
+    
 
     /* 0x00 */ const char* mLuigiLostStageName;
     /* 0x04 */ s32 mLuigiLostStarID;

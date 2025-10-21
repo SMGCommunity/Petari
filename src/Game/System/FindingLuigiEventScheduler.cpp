@@ -9,6 +9,17 @@
 #include <cstdio>
 
 
+/*
+// TODO: USA version of this is very slightly different.
+// MR::isOnGameEventFlagGalaxyOpen in USA is 
+// GameDataFunction::isOnGameEventFlag in Korean version.
+// This may possibly be due to MR::isOnGameEventFlagGalaxyOpen
+// being an inline function (?)
+// .data and .rodata section strings slightly out of order
+// also possibly due to inlines (?).
+*/
+
+
 #define STATE_NULL 0xff00
 #define STATE_RESCUED 0xff01
 #define STATE_DISAPPEAR 0xff02
@@ -30,23 +41,18 @@ void FindingLuigiEventScheduler::initAfterResourceLoaded()
 }
 
 
-
 void FindingLuigiEventScheduler::setStateHiding()
 {
 	GameDataFunction::setGameEventValue("LuigiEventState",STATE_HIDING);
 	getHidingGalaxyNameAndStarId(&mLuigiLostStageName,&mLuigiLostStarID);
 }
 
-/*
-// TODO USA version of this function is very slightly different
-// MR::isOnGameEventFlagGalaxyOpen in USA is 
-// GameDataFunction::isOnGameEventFlag in Korean version
-*/
+
 void FindingLuigiEventScheduler::getHidingGalaxyNameAndStarId(const char **pStageName, long *pStarID) const
 {	
 	char printBuffer[25] = "SpecialStarFindingLuigi1";
 	int index = 1;
-	
+
 	do {
 		snprintf(printBuffer,0x19,"SpecialStarFindingLuigi%1d",index);
 		if (!GameDataFunction::isOnGameEventFlag(printBuffer)) 
@@ -125,11 +131,7 @@ void FindingLuigiEventScheduler::syncWithGameEventFlag()
 	}
 }
 
-/*
-// TODO USA version of this function is very slightly different
-// MR::isOnGameEventFlagGalaxyOpen in USA is 
-// GameDataFunction::isOnGameEventFlag in Korean version
-*/
+
 int FindingLuigiEventScheduler::calcPowerStarIndexLuigiHas() const
 {
 	
@@ -186,8 +188,6 @@ void FindingLuigiEventScheduler::setStateReturnAstroGalaxy(int event)
 }
 
 
-
-
 void FindingLuigiEventScheduler::update(const GalaxyMoveArgument& rMoveArg)
 {
 	switch (rMoveArg.mMoveType)
@@ -214,11 +214,6 @@ void FindingLuigiEventScheduler::update(const GalaxyMoveArgument& rMoveArg)
 }
 
 
-/*
-// TODO USA version of this function is very slightly different
-// MR::isOnGameEventFlagGalaxyOpen in USA is 
-// GameDataFunction::isOnGameEventFlag in Korean version
-*/
 void FindingLuigiEventScheduler::updateOnStageResult(const char *pClearedStageName, s32 clearedStarID)
 {
 	u32 luigiEventState = GameDataFunction::getGameEventValue("LuigiEventState");
