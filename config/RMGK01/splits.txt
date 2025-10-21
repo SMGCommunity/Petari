@@ -7420,13 +7420,13 @@ Game/Scene/MultiSceneEffectKeeper.cpp:
 
 Game/Scene/MultiSceneActor.cpp:
 	.text       start:0x80341844 end:0x80341F58
-	.data       start:0x805D1A38 end:0x805D1A78
+	.data       start:0x805D1A38 end:0x805D1A68
 	.sdata2     start:0x806C0DF0 end:0x806C0DF8
 
 Game/Scene/PlayTimerScene.cpp:
 	.text       start:0x80341F58 end:0x80342678
 	.ctors      start:0x8052F210 end:0x8052F214
-	.data       start:0x805D1A78 end:0x805D1B30
+	.data       start:0x805D1A68 end:0x805D1B30
 	.sbss       start:0x806B65F8 end:0x806B6608
 	.sdata2     start:0x806C0DF8 end:0x806C0E00
 

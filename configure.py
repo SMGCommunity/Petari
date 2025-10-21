@@ -1958,7 +1958,7 @@ config.libs = [
             Object(Matching, "Game/Scene/LogoScene.cpp"),
             Object(NonMatching, "Game/Scene/MultiSceneEffectKeeper.cpp"),
             Object(NonMatching, "Game/Scene/MultiSceneActor.cpp"),
-            Object(NonMatching, "Game/Scene/PlayTimerScene.cpp"),
+            Object(Matching, "Game/Scene/PlayTimerScene.cpp"),
             Object(NonMatching, "Game/Scene/PlacementInfoOrdered.cpp"),
             Object(Matching, "Game/Scene/PlacementStateChecker.cpp"),
             Object(NonMatching, "Game/Scene/ScenarioSelectScene.cpp"),

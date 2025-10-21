@@ -27,6 +27,6 @@ public:
 private:
     /* 0x14 */ TimeLimitLayout* mTimeLimitLayout;
     /* 0x18 */ TimeUpLayout* mTimeUpLayout;
-    /* 0x1C */ u32 mTimeLimit;
+    /* 0x1C */ u32 mTimeUpWaitFrame;
     /* 0x20 */ ValueControl* _20;
 };
