@@ -21,6 +21,7 @@
 #include "Game/System/HeapMemoryWatcher.hpp"
 #include "Game/System/HomeButtonStateNotifier.hpp"
 #include "Game/System/MainLoopFramework.hpp"
+#include "Game/Util/Functor.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/MemoryUtil.hpp"
 #include "Game/Util/MutexHolder.hpp"
@@ -31,6 +32,10 @@
 #include <JSystem/JKernel/JKRAram.hpp>
 #include <nw4r/lyt/init.h>
 #include <revolution.h>
+
+#define GX_FIFO_SIZE 0x80000
+
+#define INIT_AUDIO_KEY "オーディオ初期化" // "Audio Initialization"
 
 namespace NrvGameSystem {
     NEW_NERVE(GameSystemInitializeAudio, GameSystem, InitializeAudio);
@@ -84,14 +89,14 @@ GameSystem::GameSystem() :
 }
 
 void GameSystem::init() {
-    JKRAram::create(0xe00000, 0xffffffff, 8, 7, 3);
+    JKRAram::create(0xE00000, 0xFFFFFFFF, 8, 7, 3);
     mObjHolder = new GameSystemObjHolder();
     mFontHolder = new GameSystemFontHolder();
     mFontHolder->createFontFromEmbeddedData();
     initNerve(&NrvGameSystem::GameSystemInitializeAudio::sInstance);
     mSequenceDirector = new GameSequenceDirector();
     initGX();
-    DrawSyncManager::start(0x300, 0xf);
+    DrawSyncManager::start(0x300, 15);
     mSceneController = new GameSystemSceneController();
     mObjHolder->init();
     mErrorWatcher = new GameSystemErrorWatcher();
@@ -123,11 +128,14 @@ void GameSystem::startToLoadSystemArchive() {
 
 void GameSystem::exeInitializeAudio() {
     if (MR::isFirstStep(this)) {
-        MR::startFunctionAsyncExecute(MR::Functor_Inline<GameSystemObjHolder>(mObjHolder, &GameSystemObjHolder::createAudioSystem), 0xe, INIT_AUDIO_KEY);
+        MR::startFunctionAsyncExecute(MR::Functor_Inline(mObjHolder, &GameSystemObjHolder::createAudioSystem), 14, INIT_AUDIO_KEY);
     }
+
     updateSceneController();
-    if (MR::isEndFunctionAsyncExecute(INIT_AUDIO_KEY) 
-        && mObjHolder->mSysWrapper->isLoadDoneWaveDataAtSystemInit()) {
+
+    if (MR::isEndFunctionAsyncExecute(INIT_AUDIO_KEY)
+        && mObjHolder->mSysWrapper->isLoadDoneWaveDataAtSystemInit())
+    {
         MR::waitForEndFunctionAsyncExecute(INIT_AUDIO_KEY);
         setNerve(&NrvGameSystem::GameSystemInitializeLogoScene::sInstance);
     }
@@ -137,10 +145,11 @@ void GameSystem::exeInitializeLogoScene() {
     if (GameSystemFunction::isResetProcessing()) {
         setNerve(&NrvGameSystem::GameSystemWaitForReboot::sInstance);
     }
-    else{
+    else {
         if (MR::isFirstStep(this)) {
             MR::requestChangeScene("Logo");
         }
+
         updateSceneController();
     }
 }
@@ -164,9 +173,10 @@ void GameSystem::exeNormal() {
 }
 
 void GameSystem::initGX() {
-    if (!mFifoBase) {
-        mFifoBase = new (0x20) u8[GX_FIFO_SIZE];
+    if (mFifoBase == nullptr) {
+        mFifoBase = new(32) u8[GX_FIFO_SIZE];
     }
+
     GXInit(mFifoBase, GX_FIFO_SIZE);
 }
 
@@ -193,7 +203,9 @@ inline bool isSystemNormal(const GameSystem* pGameSys) {
 }
 
 bool GameSystem::isPreparedReset() const {
-    return isSystemWaitForReboot(this) || isSystemNormal(this) || mStationedArchiveLoader->isPreparedReset();
+    return isSystemWaitForReboot(this)
+        || isSystemNormal(this)
+        || mStationedArchiveLoader->isPreparedReset();
 }
 
 void GameSystem::frameLoop() {
@@ -212,9 +224,11 @@ void GameSystem::draw() {
     mSequenceDirector->draw();
     mObjHolder->drawStarPointer();
     mObjHolder->drawBeforeEndRender();
-    if (mSystemWipeHolder) {
+
+    if (mSystemWipeHolder != nullptr) {
         mSystemWipeHolder->draw();
     }
+
     mErrorWatcher->draw();
     mHomeButtonLayout->draw();
     SingletonHolder<GameSystemResetAndPowerProcess>::get()->draw();
@@ -225,12 +239,14 @@ void GameSystem::update() {
     mSceneController->checkRequestAndChangeScene();
     mObjHolder->update();
     mHomeButtonLayout->movement();
+
     if (!mHomeButtonLayout->isActive()) {
         mErrorWatcher->movement();
     }
-    mDimmingWatcher->_5 = mErrorWatcher->isWarning() 
-                          || mHomeButtonLayout->isActive() 
-                          || GameSequenceFunction::isActiveSaveDataHandleSequence();
+
+    mDimmingWatcher->_5 = mErrorWatcher->isWarning()
+        || mHomeButtonLayout->isActive()
+        || GameSequenceFunction::isActiveSaveDataHandleSequence();
     mDimmingWatcher->update();
     updateNerve();
 }
@@ -244,9 +260,11 @@ void GameSystem::updateSceneController() {
     if (resetProcessing) {
         doSceneUpdate = false;
     }
+
     if (mHomeButtonLayout->isActive()) {
         doSceneUpdate = false;
     }
+
     if (GameSystemFunction::isOccurredSystemWarning()) {
         doSceneUpdate = false;
     }
@@ -261,6 +279,7 @@ void GameSystem::updateSceneController() {
         if (mSystemWipeHolder) {
             mSystemWipeHolder->movement();
         }
+
         mSceneController->updateScene();
     }
     
@@ -271,7 +290,8 @@ void GameSystem::updateSceneController() {
 
 void GameSystem::calcAnim() {
     mSceneController->calcAnimScene();
-    if (mSystemWipeHolder) {
+
+    if (mSystemWipeHolder != nullptr) {
         mSystemWipeHolder->calcAnim();
     }
 }
