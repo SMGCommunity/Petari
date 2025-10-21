@@ -516,60 +516,60 @@ namespace MR {
         return pActor->getNerveStep() < 0;
     }
 
-    f32 calcNerveRate(const LiveActor *pActor, s32 maxStep) {
-        return maxStep <= 0 ? 1.0f : clamp(static_cast<f32>(pActor->getNerveStep()) / maxStep, 0.0f, 1.0f);
+    f32 calcNerveRate(const LiveActor *pActor, s32 stepMax) {
+        return stepMax <= 0 ? 1.0f : clamp(static_cast<f32>(pActor->getNerveStep()) / stepMax, 0.0f, 1.0f);
     }
 
-    f32 calcNerveRate(const LiveActor *pActor, s32 minStep, s32 maxStep) {
-        return clamp(normalize(pActor->getNerveStep(), minStep, maxStep), 0.0f, 1.0f);
+    f32 calcNerveRate(const LiveActor *pActor, s32 stepMin, s32 stepMax) {
+        return clamp(normalize(pActor->getNerveStep(), stepMin, stepMax), 0.0f, 1.0f);
     }
 
-    f32 calcNerveEaseInRate(const LiveActor *pActor, s32 maxStep) {
-        return getEaseInValue(calcNerveRate(pActor, maxStep), 0.0f, 1.0f, 1.0f);
+    f32 calcNerveEaseInRate(const LiveActor *pActor, s32 stepMax) {
+        return getEaseInValue(calcNerveRate(pActor, stepMax), 0.0f, 1.0f, 1.0f);
     }
 
-    f32 calcNerveEaseOutRate(const LiveActor *pActor, s32 maxStep) {
-        return getEaseOutValue(calcNerveRate(pActor, maxStep), 0.0f, 1.0f, 1.0f);
+    f32 calcNerveEaseOutRate(const LiveActor *pActor, s32 stepMax) {
+        return getEaseOutValue(calcNerveRate(pActor, stepMax), 0.0f, 1.0f, 1.0f);
     }
 
-    f32 calcNerveEaseOutRate(const LiveActor *pActor, s32 minStep, s32 maxStep) {
-        return getEaseOutValue(calcNerveRate(pActor, minStep, maxStep), 0.0f, 1.0f, 1.0f);
+    f32 calcNerveEaseOutRate(const LiveActor *pActor, s32 stepMin, s32 stepMax) {
+        return getEaseOutValue(calcNerveRate(pActor, stepMin, stepMax), 0.0f, 1.0f, 1.0f);
     }
 
-    f32 calcNerveEaseInOutRate(const LiveActor *pActor, s32 maxStep) {
-        return getEaseInOutValue(calcNerveRate(pActor, maxStep), 0.0f, 1.0f, 1.0f);
+    f32 calcNerveEaseInOutRate(const LiveActor *pActor, s32 stepMax) {
+        return getEaseInOutValue(calcNerveRate(pActor, stepMax), 0.0f, 1.0f, 1.0f);
     }
 
-    f32 calcNerveEaseInOutRate(const LiveActor *pActor, s32 minStep, s32 maxStep) {
-        return getEaseInOutValue(calcNerveRate(pActor, minStep, maxStep), 0.0f, 1.0f, 1.0f);
+    f32 calcNerveEaseInOutRate(const LiveActor *pActor, s32 stepMin, s32 stepMax) {
+        return getEaseInOutValue(calcNerveRate(pActor, stepMin, stepMax), 0.0f, 1.0f, 1.0f);
     }
 
-    f32 calcNerveValue(const LiveActor *pActor, s32 maxStep, f32 startValue, f32 endValue) {
-        return getLinerValue(calcNerveRate(pActor, maxStep), startValue, endValue, 1.0f);
+    f32 calcNerveValue(const LiveActor *pActor, s32 stepMax, f32 valueStart, f32 valueEnd) {
+        return getLinerValue(calcNerveRate(pActor, stepMax), valueStart, valueEnd, 1.0f);
     }
 
-    f32 calcNerveValue(const LiveActor *pActor, s32 minStep, s32 maxStep, f32 startValue, f32 endValue) {
-        return getLinerValue(calcNerveRate(pActor, minStep, maxStep), startValue, endValue, 1.0f);
+    f32 calcNerveValue(const LiveActor *pActor, s32 stepMin, s32 stepMax, f32 valueStart, f32 valueEnd) {
+        return getLinerValue(calcNerveRate(pActor, stepMin, stepMax), valueStart, valueEnd, 1.0f);
     }
 
-    f32 calcNerveEaseInValue(const LiveActor *pActor, s32 maxStep, f32 startValue, f32 endValue) {
-        return getEaseInValue(calcNerveRate(pActor, maxStep), startValue, endValue, 1.0f);
+    f32 calcNerveEaseInValue(const LiveActor *pActor, s32 stepMax, f32 valueStart, f32 valueEnd) {
+        return getEaseInValue(calcNerveRate(pActor, stepMax), valueStart, valueEnd, 1.0f);
     }
 
-    f32 calcNerveEaseInValue(const LiveActor *pActor, s32 minStep, s32 maxStep, f32 startValue, f32 endValue) {
-        return getEaseInValue(calcNerveRate(pActor, minStep, maxStep), startValue, endValue, 1.0f);
+    f32 calcNerveEaseInValue(const LiveActor *pActor, s32 stepMin, s32 stepMax, f32 valueStart, f32 valueEnd) {
+        return getEaseInValue(calcNerveRate(pActor, stepMin, stepMax), valueStart, valueEnd, 1.0f);
     }
 
-    f32 calcNerveEaseOutValue(const LiveActor *pActor, s32 maxStep, f32 startValue, f32 endValue) {
-        return getEaseOutValue(calcNerveRate(pActor, maxStep), startValue, endValue, 1.0f);
+    f32 calcNerveEaseOutValue(const LiveActor *pActor, s32 stepMax, f32 valueStart, f32 valueEnd) {
+        return getEaseOutValue(calcNerveRate(pActor, stepMax), valueStart, valueEnd, 1.0f);
     }
 
-    f32 calcNerveEaseInOutValue(const LiveActor *pActor, s32 maxStep, f32 startValue, f32 endValue) {
-        return getEaseInOutValue(calcNerveRate(pActor, maxStep), startValue, endValue, 1.0f);
+    f32 calcNerveEaseInOutValue(const LiveActor *pActor, s32 stepMax, f32 valueStart, f32 valueEnd) {
+        return getEaseInOutValue(calcNerveRate(pActor, stepMax), valueStart, valueEnd, 1.0f);
     }
 
-    f32 calcNerveEaseInOutValue(const LiveActor *pActor, s32 minStep, s32 maxStep, f32 startValue, f32 endValue) {
-        return getEaseInOutValue(calcNerveRate(pActor, minStep, maxStep), startValue, endValue, 1.0f);
+    f32 calcNerveEaseInOutValue(const LiveActor *pActor, s32 stepMin, s32 stepMax, f32 valueStart, f32 valueEnd) {
+        return getEaseInOutValue(calcNerveRate(pActor, stepMin, stepMax), valueStart, valueEnd, 1.0f);
     }
 
     void setNerveAtStep(LiveActor *pActor, const Nerve *pNerve, s32 step) {
