@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Game/LiveActor/ActorStateBase.hpp"
 #include "Game/NPC/ButlerStateStarPieceReaction.hpp"
 #include "Game/NPC/NPCActor.hpp"
 #include "Game/Util/NPCUtil.hpp"
