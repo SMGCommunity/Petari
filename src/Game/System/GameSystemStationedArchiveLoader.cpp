@@ -10,6 +10,7 @@
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/SystemUtil.hpp"
 #include "Game/SingletonHolder.hpp"
+#include <JSystem/JKernel/JKRExpHeap.hpp>
 
 namespace {
     NEW_NERVE(GameSystemStationedArchiveLoaderLoadAudio1stWaveData, GameSystemStationedArchiveLoader, LoadAudio1stWaveData);

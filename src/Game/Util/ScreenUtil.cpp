@@ -32,11 +32,11 @@
 #include "Game/SingletonHolder.hpp"
 
 namespace {
-    CaptureScreenDirector* getCaptureScreenDirector() {
+    CaptureScreenDirector* getCaptureScreenDirector() NO_INLINE {
         return SingletonHolder<GameSystem>::get()->mObjHolder->mCaptureScreenDir;
     }
 
-    PlayTimerScene* getPlayTimerScene() {
+    PlayTimerScene* getPlayTimerScene() NO_INLINE {
         return SingletonHolder<GameSystem>::get()->mSceneController->mPlayTimerScene;
     }
 
@@ -56,11 +56,11 @@ namespace {
         }
     }
 
-    StarCounter* getStarCounter() {
+    StarCounter* getStarCounter() NO_INLINE {
         return MR::getGameSceneLayoutHolder()->mCounterLayoutCtrl->mStarCounter;
     }
 
-    StarPieceCounter* getStarPieceCounter() {
+    StarPieceCounter* getStarPieceCounter() NO_INLINE {
         return MR::getGameSceneLayoutHolder()->mCounterLayoutCtrl->mStarPieceCounter;
     }
 

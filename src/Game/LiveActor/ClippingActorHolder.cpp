@@ -1,15 +1,22 @@
 #include "Game/LiveActor/ClippingActorHolder.hpp"
+#include "Game/LiveActor/ClippingActorInfo.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
+#include "Game/LiveActor/ViewGroupCtrl.hpp"
 #include "Game/Util.hpp"
 
-ClippingActorHolder::ClippingActorHolder() : NameObj("クリッピングアクター保持") {
-    _C = 0;
-    _10 = 0;
-    _14 = 0;
-    _18 = 0;
-    _1C = 0;
-    mViewGroupCtrl = 0;
+namespace {
+    static int sActorNumMax = 2560;
+};
 
+ClippingActorHolder::ClippingActorHolder() :
+    NameObj("クリッピングアクター保持"),
+    _C(0),
+    _10(nullptr),
+    _14(nullptr),
+    _18(nullptr),
+    _1C(nullptr),
+    mViewGroupCtrl(nullptr)
+{
     _10 = new ClippingActorInfoList(sActorNumMax);
     _14 = new ClippingActorInfoList(sActorNumMax);
     _18 = new ClippingActorInfoList(sActorNumMax);
@@ -33,9 +40,8 @@ void ClippingActorHolder::registerActor(LiveActor *pActor) {
 
 void ClippingActorHolder::initSystemInfo(LiveActor *pActor, const JMapInfoIter &rIter) {
     s32 viewGroupID = -1;
-    bool res = MR::getJMapInfoViewGroupID(rIter, &viewGroupID);
 
-    if (res) {
+    if (MR::getJMapInfoViewGroupID(rIter, &viewGroupID)) {
         mViewGroupCtrl->initActorInfo(find(pActor), viewGroupID);
     }
 }
@@ -62,10 +68,10 @@ void ClippingActorHolder::validateClipping(LiveActor *pActor) {
     }
     else {
         if (inf->isGroupClipping()) {
-            _10->add(inf);
+            _1C->add(inf);
         }
         else {
-            _1C->add(inf);
+            _10->add(inf);
         }  
     }
 }

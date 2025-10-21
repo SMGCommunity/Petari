@@ -1,6 +1,12 @@
 #include "Game/AreaObj/WarpCube.hpp"
 #include "Game/LiveActor/ActorCameraInfo.hpp"
+#include "Game/Util/AreaObjUtil.hpp"
+#include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/DirectDraw.hpp"
+#include "Game/Util/JMapIdInfo.hpp"
+#include "Game/Util/JMapUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
 #include <cstdio>
 #include <cstring>
 

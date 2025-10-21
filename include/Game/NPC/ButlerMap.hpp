@@ -20,9 +20,9 @@ public:
     void startLectureDemo();
     void resetStatus();
     void forceNerveToWait();
-    inline void exeTalk();
+    void exeTalk();
     void exeShowGalaxyMap();
-    inline void exeLectureDemoShowMapBefore();
+    void exeLectureDemoShowMapBefore();
     void exeLectureDemoShowMap();
     void exeLectureDemoShowMapAfter();
     void exeStarPieceReaction();
@@ -30,7 +30,3 @@ public:
     ButlerStateStarPieceReaction* _15C;
     bool _160;
 };
-
-namespace {
-    const char* cDemoNameMapLecture = "バトラーマップレクチャー";
-}

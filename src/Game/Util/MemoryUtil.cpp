@@ -2,7 +2,7 @@
 #include "Game/Util/MemoryUtil.hpp"
 #include "Game/Util/MutexHolder.hpp"
 #include "Game/SingletonHolder.hpp"
-#include <JSystem/JKernel/JKRHeap.hpp>
+#include <JSystem/JKernel/JKRExpHeap.hpp>
 #include <mem.h>
 
 namespace MR {
