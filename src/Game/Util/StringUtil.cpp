@@ -179,7 +179,7 @@ namespace MR {
     const char* getBasename(const char* pPath) {
         const char* pBasename = strrchr(pPath, '/');
 
-        if (pBasename == NULL) {
+        if (pBasename == nullptr) {
             return pBasename;
         }
 
@@ -227,11 +227,11 @@ namespace MR {
     }
 
     bool isEqualSubString(const char* pStr, const char* pSubStr) {
-        return strstr(pStr, pSubStr) != NULL;
+        return strstr(pStr, pSubStr) != nullptr;
     }
 
     bool hasStringSpace(const char* pStr) {
-        return strchr(pStr, ' ') != NULL;
+        return strchr(pStr, ' ') != nullptr;
     }
 
     bool isDigitStringTail(const char* pStr, int digitNum) {
@@ -257,7 +257,7 @@ namespace MR {
     }
 
     bool isNullOrEmptyString(const char* pStr) {
-        return pStr == NULL || MR::isEqualString(pStr, "");
+        return pStr == nullptr || MR::isEqualString(pStr, "");
     }
 
     bool isMessageEditorNextTag(const wchar_t* pStr) {
@@ -292,7 +292,7 @@ namespace MR {
     }
 
     void scan32(const char* pSrc, const char* pSubStr, s32* pDst) {
-        if (strstr(pSrc, pSubStr) == NULL) {
+        if (strstr(pSrc, pSubStr) == nullptr) {
             return;
         }
 
@@ -302,7 +302,7 @@ namespace MR {
     void scan16(const char* pSrc, const char* pSubStr, u16* pDst) {
         int temp;
 
-        if (strstr(pSrc, pSubStr) == NULL) {
+        if (strstr(pSrc, pSubStr) == nullptr) {
             return;
         }
 
@@ -314,7 +314,7 @@ namespace MR {
     void scan8(const char* pSrc, const char* pSubStr, u8* pDst) {
         int temp;
 
-        if (strstr(pSrc, pSubStr) == NULL) {
+        if (strstr(pSrc, pSubStr) == nullptr) {
             return;
         }
 
@@ -324,7 +324,7 @@ namespace MR {
     }
 
     void scanf32(const char* pSrc, const char* pSubStr, f32* pDst) {
-        if (strstr(pSrc, pSubStr) == NULL) {
+        if (strstr(pSrc, pSubStr) == nullptr) {
             return;
         }
 
@@ -334,7 +334,7 @@ namespace MR {
     void scanu8x4(const char* pSrc, const char* pSubStr, u8* pDst) {
         int temp[4];
 
-        if (strstr(pSrc, pSubStr) == NULL) {
+        if (strstr(pSrc, pSubStr) == nullptr) {
             return;
         }
 
@@ -348,7 +348,7 @@ namespace MR {
     void scans16x4(const char* pSrc, const char* pSubStr, s16* pDst) {
         int temp[4];
 
-        if (strstr(pSrc, pSubStr) == NULL) {
+        if (strstr(pSrc, pSubStr) == nullptr) {
             return;
         }
 
@@ -360,7 +360,7 @@ namespace MR {
     }
 
     void scanf32x4(const char* pSrc, const char* pSubStr, f32* pDst) {
-        if (strstr(pSrc, pSubStr) == NULL) {
+        if (strstr(pSrc, pSubStr) == nullptr) {
             return;
         }
 

@@ -18,7 +18,7 @@ namespace MR {
 
         /// @brief Destroys the `AssignableArray`.
         ~AssignableArray() {
-            if (mArr != NULL) {
+            if (mArr != nullptr) {
                 delete[] mArr;
             }
         }

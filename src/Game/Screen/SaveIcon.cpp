@@ -17,7 +17,3 @@ void SaveIcon::calcAnim() {
     MR::setLayoutScalePosAtPaneScaleTransIfExecCalcAnim(this, mActor, "SaveIconPosition");
     LayoutActor::calcAnim();
 }
-
-SaveIcon::~SaveIcon() {
-    
-}

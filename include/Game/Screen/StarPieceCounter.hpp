@@ -11,9 +11,6 @@ public:
     /// @param pName The pointer to the null-terminated name of the object.
     StarPieceCounter(const char* pName);
 
-    /// @brief Destroys the `StarPieceCounter`.
-    virtual ~StarPieceCounter();
-
     virtual void init(const JMapInfoIter& rIter);
     virtual void appear();
     virtual void control();

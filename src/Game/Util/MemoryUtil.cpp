@@ -130,7 +130,7 @@ namespace MR {
     }
 
     template<int N>
-    MEMAllocator JKRHeapAllocator<N>::sAllocator = { &sAllocatorFunc, NULL, 4, 0 };
+    MEMAllocator JKRHeapAllocator<N>::sAllocator = { &sAllocatorFunc, nullptr, 4, 0 };
 
     template<int N>
     MEMAllocatorFunc JKRHeapAllocator<N>::sAllocatorFunc = {

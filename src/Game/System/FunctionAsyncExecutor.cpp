@@ -4,11 +4,12 @@
 #include <JSystem/JKernel/JKRExpHeap.hpp>
 #include <JSystem/JKernel/JKRUnitHeap.hpp>
 
-FunctionAsyncExecInfo::FunctionAsyncExecInfo(MR::FunctorBase *pFuncPtr, int a2, const char *a3) {
-    mFunc = pFuncPtr;
-    mPriority = a2;
-    _8 = a3;
-    _C = 0;
+FunctionAsyncExecInfo::FunctionAsyncExecInfo(MR::FunctorBase *pFunc, int priority, const char *a3) :
+    mFunc(pFunc),
+    mPriority(priority),
+    _8(a3),
+    _C(0)
+{
     OSInitMessageQueue(&mQueue, &mMessage, 1);
 }
 
@@ -24,30 +25,19 @@ void FunctionAsyncExecInfo::execute() {
     OSSetThreadPriority(thread, prio);
 }
 
-FunctionAsyncExecutorThread::FunctionAsyncExecutorThread(JKRHeap *pHeap) : OSThreadWrapper(0x10000, 4, 1, pHeap) {
-    mIsSuspended = false;
-    _40 = 0;
+FunctionAsyncExecutorThread::FunctionAsyncExecutorThread(JKRHeap *pHeap) :
+    OSThreadWrapper(0x10000, 4, 1, pHeap),
+    mIsSuspended(false),
+    _40(nullptr)
+{
 }
 
-s32 FunctionAsyncExecutorThread::run() {
-    __asm {
-        li r3, 4
-        oris r3, r3, 4
-        mtspr 0x392, r3
-        li r3, 5
-        oris r3, r3, 5
-        mtspr 0x393, r3
-        li r3, 6
-        oris r3, r3, 6
-        mtspr 0x394, r3
-        li r3, 7
-        oris r3, r3, 7
-        mtspr 0x395, r3
-    };
+void* FunctionAsyncExecutorThread::run() {
+    OSInitFastCast();
 
-    while(1) {
+    while (true) {
         mIsSuspended = false;
-        _40 = 0;
+        _40 = nullptr;
         OSMessage msg;
         OSReceiveMessage(&mQueue, &msg, OS_MESSAGE_BLOCK);
         FunctionAsyncExecInfo* info = reinterpret_cast<FunctionAsyncExecInfo*>(msg);
@@ -59,10 +49,11 @@ s32 FunctionAsyncExecutorThread::run() {
     }
 }
 
-FunctionAsyncExecutorOnMainThread::FunctionAsyncExecutorOnMainThread(OSThread* pThread) {
-    mThread = pThread;
-    _0 = 0;
-    OSInitMessageQueue(&mQueue, mMsgArray, 0x40);
+FunctionAsyncExecutorOnMainThread::FunctionAsyncExecutorOnMainThread(OSThread* pThread) :
+    mThread(pThread),
+    _0(0)
+{
+    OSInitMessageQueue(&mQueue, mMsgArray, 64);
 }
 
 void FunctionAsyncExecutorOnMainThread::update() {
@@ -78,12 +69,12 @@ void FunctionAsyncExecutorOnMainThread::update() {
     }
 }
 
-FunctionAsyncExecutor::FunctionAsyncExecutor() {
-    mMainThreadExec = nullptr;
-    _40C = 0;
-    _410 = nullptr;
-    _414 = nullptr;
-
+FunctionAsyncExecutor::FunctionAsyncExecutor() :
+    mMainThreadExec(nullptr),
+    _40C(0),
+    _410(nullptr),
+    _414(nullptr)
+{
     s32 size = sizeof(mThreads) / sizeof(*mThreads);
 
     for (int i = 0; i < size; i++) {
@@ -162,8 +153,8 @@ bool FunctionAsyncExecutor::isEnd(const char *pName) const {
 
     while((cur != lst) && !(*cur)->isSame(pName)) {
         cur++;
-    } 
- 
+    }
+
     FunctionAsyncExecInfo* info = *cur;
     OSUnlockMutex(&MR::MutexHolder<2>::sMutex);
     return info->_C;
@@ -205,8 +196,4 @@ FunctionAsyncExecutorThread* FunctionAsyncExecutor::getSuspendThread() {
     }
 
     return nullptr;
-}
-
-FunctionAsyncExecutorThread::~FunctionAsyncExecutorThread() {
-
 }

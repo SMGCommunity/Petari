@@ -10,6 +10,7 @@
 #include "Game/Util/MessageUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
 #include "Game/SingletonHolder.hpp"
+#include <nw4r/lyt/layout.h>
 
 extern "C" int vswprintf(wchar_t*, size_t, const wchar_t*, va_list);
 

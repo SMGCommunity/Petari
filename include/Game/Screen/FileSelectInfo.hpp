@@ -3,44 +3,9 @@
 #include "Game/Screen/LayoutActor.hpp"
 #include "Game/System/NerveExecutor.hpp"
 
-class FileSelectInfo;
-
 namespace FileSelectInfoSub {
-    class SlideState : public NerveExecutor {
-    public:
-        /// @brief Creates a new `SlideState`.
-        /// @param pHost TODO.
-        SlideState(FileSelectInfo* pHost);
-
-        /// @brief Destroys the `SlideState`.
-        virtual ~SlideState() {}
-
-        void exeNormalPos();
-        void exeSliding();
-        void exeSlidePos();
-        void exeSlidingBack();
-
-    private:
-        /* 0x8 */ FileSelectInfo* mHost;
-    };
-
-    class CharaState : public NerveExecutor {
-    public:
-        /// @brief Creates a new `CharaState`.
-        /// @param pHost TODO.
-        CharaState(FileSelectInfo* pHost);
-
-        /// @brief Destroys the `CharaState`.
-        virtual ~CharaState() {}
-
-        void exeMario();
-        void exeToLuigi();
-        void exeLuigi();
-        void exeToMario();
-
-    private:
-        /* 0x8 */ FileSelectInfo* mHost;
-    };
+    class SlideState;
+    class CharaState;
 };
 
 class FileSelectInfo : public LayoutActor {
@@ -49,9 +14,6 @@ public:
     /// @param nameBufferSize The number of wide characters to allocate memory for in the file name buffer.
     /// @param pName The pointer to the null-terminated name of the object.
     FileSelectInfo(s32 nameBufferSize, const char* pName);
-
-    /// @brief Destroys the `FileSelectInfo`.
-    virtual ~FileSelectInfo() {}
 
     virtual void init(const JMapInfoIter& rIter);
     virtual void appear();
@@ -83,4 +45,36 @@ private:
     /* 0xBB */ bool mIsViewCompleteEnding;
     /* 0xBC */ FileSelectInfoSub::SlideState* mSlideState;
     /* 0xC0 */ FileSelectInfoSub::CharaState* mCharaState;
+};
+
+namespace FileSelectInfoSub {
+    class SlideState : public NerveExecutor {
+    public:
+        /// @brief Creates a new `SlideState`.
+        /// @param pHost TODO.
+        SlideState(FileSelectInfo* pHost);
+
+        void exeNormalPos();
+        void exeSliding();
+        void exeSlidePos();
+        void exeSlidingBack();
+
+    private:
+        /* 0x8 */ FileSelectInfo* mHost;
+    };
+
+    class CharaState : public NerveExecutor {
+    public:
+        /// @brief Creates a new `CharaState`.
+        /// @param pHost TODO.
+        CharaState(FileSelectInfo* pHost);
+
+        void exeMario();
+        void exeToLuigi();
+        void exeLuigi();
+        void exeToMario();
+
+    private:
+        /* 0x8 */ FileSelectInfo* mHost;
+    };
 };

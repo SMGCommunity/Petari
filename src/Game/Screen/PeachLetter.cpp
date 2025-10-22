@@ -15,7 +15,7 @@ namespace NrvPeachLetter {
 
 PeachLetter::PeachLetter(const char* pName) :
     LayoutActor(pName, true),
-    mAButtonIcon(NULL)
+    mAButtonIcon(nullptr)
 {
     
 }

@@ -5,8 +5,6 @@
 
 /// @brief The resource creator for the head of a Mii character.
 class MiiFaceRecipe {
-    friend class MiiFaceIcon;
-
 public:
     /// @brief Creates a new `MiiFaceRecipe`.
     /// @param dataSource The type of database to obtain Mii data from.
@@ -52,7 +50,6 @@ public:
     /// @retval RFLErrcode_Broken The Mii data is corrupted.
     RFLErrcode makeIconWithFavoriteColor(void* pBuffer, int width, int height) const;
 
-private:
     /// @brief The type of database to obtain Mii data from.
     /* 0x00 */ RFLDataSource mDataSource;
 

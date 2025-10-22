@@ -6,20 +6,20 @@
 
 namespace DemoCameraFunction {
     bool isCameraTargetMario(const DemoCameraInfo* pInfo) {
-        if (pInfo->_4 == NULL) {
-            return NULL;
+        if (pInfo->_4 == nullptr) {
+            return nullptr;
         }
 
         return MR::isEqualString(pInfo->_4, MR::getPlayerDemoActor()->mName);
     }
 
     bool setStringNullIfEmpty(const char** ppStr) {
-        if (*ppStr == NULL) {
+        if (*ppStr == nullptr) {
             return false;
         }
 
         if (*ppStr[0] == '\0') {
-            *ppStr = NULL;
+            *ppStr = nullptr;
 
             return true;
         }

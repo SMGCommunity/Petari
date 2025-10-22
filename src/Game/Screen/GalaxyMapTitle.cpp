@@ -12,7 +12,7 @@ namespace {
 
 GalaxyMapTitle::GalaxyMapTitle() :
     LayoutActor("MapTitle", true),
-    mMessageID(NULL)
+    mMessageID(nullptr)
 {}
 
 void GalaxyMapTitle::init(const JMapInfoIter& rIter) {
@@ -24,7 +24,7 @@ void GalaxyMapTitle::init(const JMapInfoIter& rIter) {
 void GalaxyMapTitle::appear() {
     LayoutActor::appear();
 
-    mMessageID = NULL;
+    mMessageID = nullptr;
 }
 
 void GalaxyMapTitle::setModeNormal() {
@@ -102,8 +102,4 @@ bool GalaxyMapTitle::tryDisappear() {
     }
 
     return false;
-}
-
-GalaxyMapTitle::~GalaxyMapTitle() {
-    
 }

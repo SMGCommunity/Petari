@@ -10,9 +10,6 @@ public:
     /// @brief Creates a new `EncouragePal60Window`.
     EncouragePal60Window();
 
-    /// @brief Destroys the `EncouragePal60Window`.
-    virtual ~EncouragePal60Window();
-
     virtual void init(const JMapInfoIter& rIter);
     virtual void appear();
 

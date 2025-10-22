@@ -17,10 +17,9 @@ public:
     /// @brief Creates a new `TimeUpLayout`.
     TimeUpLayout() :
         LayoutActor("タイムアップ画面", true)
-    {}
-
-    /// @brief Destroys the `TimeUpLayout`.
-    virtual ~TimeUpLayout() {}
+    {
+        
+    }
 
     virtual void init(const JMapInfoIter& rIter);
 };
@@ -28,8 +27,6 @@ public:
 class TimeLimitLayout : public LayoutActor {
 public:
     TimeLimitLayout(u32 timeLimit);
-
-    virtual ~TimeLimitLayout() {}
 
     virtual void init(const JMapInfoIter& rIter);
     virtual void appear();

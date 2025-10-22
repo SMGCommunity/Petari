@@ -6,10 +6,10 @@ namespace MR {
     /// @brief Computes the size of a message, in bytes.
     /// @param[in] pTitle A pointer to the null-terminated wide title of the message.
     /// @param[in] pBody A pointer to the null-terminated wide body of the message.
-    /// @param imageSize The size of the embedded image, in bytes.
-    /// @param param4 TODO.
+    /// @param pictureSize The size of the attached picture data, in bytes.
+    /// @param letterSize The size of the letterhead data, in bytes.
     /// @return The size of the message, in bytes.
-    u32 calcWiiMailSize(const u16* pTitle, const u16* pBody, u32 imageSize, u32 param4);
+    u32 calcWiiMailSize(const u16* pTitle, const u16* pBody, u32 pictureSize, u32 letterSize);
 
     /// @brief Determines if the Wii Message Board can receive more messages from this application.
     /// @param mailSize The size of the message, in bytes.

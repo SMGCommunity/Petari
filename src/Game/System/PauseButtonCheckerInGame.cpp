@@ -1,6 +1,10 @@
 #include "Game/System/PauseButtonCheckerInGame.hpp"
 #include "Game/Util/GamePadUtil.hpp"
 
+namespace {
+    static const s32 sHoldCounterMax = 12;
+};
+
 PauseButtonCheckerInGame::PauseButtonCheckerInGame() :
     mPlusHoldFrame(0),
     mMinusHoldFrame(0)
@@ -25,11 +29,11 @@ void PauseButtonCheckerInGame::update() {
 }
 
 bool PauseButtonCheckerInGame::isPermitToPlusPause() const {
-    return isPermitToPause() && mPlusHoldFrame == 12;
+    return isPermitToPause() && mPlusHoldFrame == sHoldCounterMax;
 }
 
 bool PauseButtonCheckerInGame::isPermitToMinusPause() const {
-    return isPermitToPause() && mMinusHoldFrame == 12;
+    return isPermitToPause() && mMinusHoldFrame == sHoldCounterMax;
 }
 
 bool PauseButtonCheckerInGame::isPermitToPause() const {

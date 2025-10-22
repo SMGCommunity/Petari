@@ -7,10 +7,8 @@ class JUTTexture;
 class ScreenBlurEffect : public ImageEffectBase {
 public:
     /// @brief Creates a new `ScreenBlurEffect`.
-    ScreenBlurEffect();
-
-    /// @brief Destroys the `ScreenBlurEffect`.
-    virtual ~ScreenBlurEffect() {}
+    /// @param pName A pointer to the null-terminated name of the object.
+    ScreenBlurEffect(const char* pName);
 
     /// @brief Draws the `ScreenBlurEffect` to the screen.
     virtual void draw() const;

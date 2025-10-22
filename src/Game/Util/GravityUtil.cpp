@@ -32,7 +32,7 @@ namespace {
 		}
 
 		PlanetGravityManager* pPlanetGravityManager
-            = MR::getSceneObj<PlanetGravityManager*>(SceneObj_PlanetGravityManager);
+            = MR::getSceneObj<PlanetGravityManager>(SceneObj_PlanetGravityManager);
 
 		return pPlanetGravityManager->calcTotalGravityVector(pDest, pInfo, rPosition, gravityType, host);
 	}
@@ -40,7 +40,7 @@ namespace {
 
 namespace MR {
 	void registerGravity(PlanetGravity *pGravity) {
-		MR::getSceneObj<PlanetGravityManager*>(SceneObj_PlanetGravityManager)->registerGravity(pGravity);
+		MR::getSceneObj<PlanetGravityManager>(SceneObj_PlanetGravityManager)->registerGravity(pGravity);
 	}
 
 	bool calcGravityVector(const LiveActor *pActor, TVec3f *pDest, GravityInfo *pInfo, u32 host) {

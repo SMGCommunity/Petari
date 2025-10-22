@@ -23,7 +23,7 @@ void DemoTalkAnimCtrl::initForScene(const char* a1, const char* a2, const JMapIn
     snprintf(buf, sizeof(buf), "%s.canm", a2);
     initForActor(a1);
     _35 = true;
-    _34 = _10 == NULL;
+    _34 = _10 == nullptr;
     mHaveCamera = MR::getResourceHolder(mActor)->mFileInfoTable->isExistRes(buf);
     _48 = MR::isExistBck(MR::getPlayerDemoActor(), a1);
     if (mHaveCamera) {

@@ -1,8 +1,14 @@
 #pragma once
 
 #include <nw4r/lyt/drawInfo.h>
-#include <nw4r/lyt/layout.h>
-#include <nw4r/lyt/pane.h>
+
+namespace nw4r {
+    namespace lyt {
+        class AnimTransform;
+        class Layout;
+        class Pane;
+    };
+};
 
 class LayoutManager {
 public:
@@ -12,11 +18,12 @@ public:
     void calcAnim();
     void draw() const;
 
+    nw4r::lyt::AnimTransform* getAnimTransform(const char *) const;
     nw4r::lyt::Pane* getPane(const char *) const;
 
     u32 _0;
     nw4r::lyt::Layout* mLayout;     // 0x4
-    u32 _8;
+    nw4r::lyt::AnimTransform** mAnimTransList;
     nw4r::lyt::DrawInfo mDrawInfo;  // 0xC
     bool mIsScreenHidden;           // 0x60
     u8 _61;

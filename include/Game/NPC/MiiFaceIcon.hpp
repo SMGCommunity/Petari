@@ -7,8 +7,6 @@ class MiiFaceRecipe;
 
 /// @brief The resource creator for the icon of a Mii character.
 class MiiFaceIcon : public NameObj {
-    friend class MiiFaceIconHolder;
-
 public:
     /// @brief Creates a new `MiiFaceIcon`.
     /// @param width The width of the texture, in pixels.
@@ -16,9 +14,6 @@ public:
     /// @param rRecipe The reference to the resource creator for the head of a Mii character.
     /// @param pName The pointer to the null-terminated name of the object.
     MiiFaceIcon(u16 width, u16 height, const MiiFaceRecipe& rRecipe, const char* pName);
-
-    /// @brief Destroys the `MiiFaceIcon`.
-    virtual ~MiiFaceIcon() {}
 
     virtual void init(const JMapInfoIter& rIter);
     virtual void movement();
@@ -36,7 +31,6 @@ public:
     /// @brief Initializes the texture data buffer.
     void createImageBuffer();
 
-private:
     /// @brief The position of the Mii data in the database.
     /* 0x0C */ u16 mIndex;
 

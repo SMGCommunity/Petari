@@ -13,7 +13,7 @@ namespace NrvPictureBookCloseButton {
 
 PictureBookCloseButton::PictureBookCloseButton(bool canCloseWithPad) :
     LayoutActor("絵本閉じるボタン", true),
-    mPaneCtrl(NULL),
+    mPaneCtrl(nullptr),
     mCanCloseWithPad(canCloseWithPad)
 {}
 
@@ -41,7 +41,7 @@ void PictureBookCloseButton::disappear() {
 bool PictureBookCloseButton::trySelect() {
     if (mPaneCtrl->trySelect()) {
         MR::startSystemSE("SE_SY_GALAXY_DECIDE_CANCEL", -1, -1);
-        MR::startCSSound("CS_CLICK_CLOSE", NULL, 0);
+        MR::startCSSound("CS_CLICK_CLOSE", nullptr, 0);
         setNerve(&NrvPictureBookCloseButton::PictureBookCloseButtonNrvSelected::sInstance);
 
         return true;
@@ -50,7 +50,7 @@ bool PictureBookCloseButton::trySelect() {
     if (!mPaneCtrl->isAppearing() && MR::testCorePadTriggerB(0) && mCanCloseWithPad) {
         mPaneCtrl->disappear();
         MR::startSystemSE("SE_SY_GALAXY_DECIDE_CANCEL", -1, -1);
-        MR::startCSSound("CS_CLICK_CLOSE", NULL, 0);
+        MR::startCSSound("CS_CLICK_CLOSE", nullptr, 0);
         setNerve(&NrvPictureBookCloseButton::PictureBookCloseButtonNrvSelected::sInstance);
 
         return true;
@@ -85,8 +85,4 @@ void PictureBookCloseButton::exeNotSelected() {
     if (mPaneCtrl->isHidden()) {
         kill();
     }
-}
-
-PictureBookCloseButton::~PictureBookCloseButton() {
-    
 }

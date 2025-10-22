@@ -16,7 +16,7 @@ namespace {
 
 namespace MR {
     PlayerActionGuidance* getPlayerActionGuidance() {
-        return MR::getSceneObj<PlayerActionGuidance*>(SceneObj_PlayerActionGuidance);
+        return MR::getSceneObj<PlayerActionGuidance>(SceneObj_PlayerActionGuidance);
     }
 };
 
@@ -30,9 +30,9 @@ namespace {
 
 PlayerActionGuidance::PlayerActionGuidance() :
     LayoutActor("プレイヤーアクションガイダンス", true),
-    mSpinLayout(NULL),
-    mTamakoroLayout(NULL),
-    mCurrentLayout(NULL),
+    mSpinLayout(nullptr),
+    mTamakoroLayout(nullptr),
+    mCurrentLayout(nullptr),
     mGuidanceState(3),
     mGuidancePrevState(3),
     _34(false),
@@ -46,16 +46,16 @@ PlayerActionGuidance::PlayerActionGuidance() :
 void PlayerActionGuidance::control() {
     mGuidancePrevState = mGuidanceState;
 
-    if (mSpinLayout != NULL && isInVolumePlayer("SpinGuidanceCube", false)) {
+    if (mSpinLayout != nullptr && isInVolumePlayer("SpinGuidanceCube", false)) {
         mCurrentLayout = mSpinLayout;
         _35 = true;
     }
-    else if (mTamakoroLayout != NULL && (_36 || isInVolumePlayer("TamakoroMoveGuidanceCube", true))) {
+    else if (mTamakoroLayout != nullptr && (_36 || isInVolumePlayer("TamakoroMoveGuidanceCube", true))) {
         mCurrentLayout = mTamakoroLayout;
         mGuidanceState = 3;
         _35 = true;
     }
-    else if (mTamakoroLayout != NULL && (_36 || isInVolumePlayer("TamakoroJumpGuidanceCube", true))) {
+    else if (mTamakoroLayout != nullptr && (_36 || isInVolumePlayer("TamakoroJumpGuidanceCube", true))) {
         mCurrentLayout = mTamakoroLayout;
         mGuidanceState = 4;
         _35 = true;
@@ -81,7 +81,7 @@ void PlayerActionGuidance::init(const JMapInfoIter& rIter) {
 }
 
 void PlayerActionGuidance::createSpinLayout() {
-    if (mSpinLayout != NULL) {
+    if (mSpinLayout != nullptr) {
         return;
     }
 
@@ -90,7 +90,7 @@ void PlayerActionGuidance::createSpinLayout() {
 }
 
 void PlayerActionGuidance::createTamakoroLayout() {
-    if (mTamakoroLayout != NULL) {
+    if (mTamakoroLayout != nullptr) {
         return;
     }
 
@@ -124,7 +124,7 @@ void PlayerActionGuidance::exeFadein() {
 }
 
 void PlayerActionGuidance::startWaitAnimTamakoro() {
-    if (mTamakoroLayout == NULL) {
+    if (mTamakoroLayout == nullptr) {
         return;
     }
 
@@ -155,11 +155,11 @@ void PlayerActionGuidance::exeDisplay() {
     if (MR::isFirstStep(this)) {
         startWaitAnimAllLayout();
 
-        if (mSpinLayout != NULL) {
+        if (mSpinLayout != nullptr) {
             MR::startCSSound("CS_NOTICE_USE_DPD", "SE_SY_CS_NOTICE_USE_DPD", 0);
         }
 
-        if (mTamakoroLayout != NULL && mGuidanceState == 0) {
+        if (mTamakoroLayout != nullptr && mGuidanceState == 0) {
             MR::startSystemSE("SE_SY_CTRL_GUIDE_APPEAR", -1, -1);
         }
     }
@@ -212,41 +212,41 @@ void PlayerActionGuidance::exeFadeout() {
 }
 
 void PlayerActionGuidance::startAnimAllLayout(const char* pAnimName) {
-    if (mSpinLayout != NULL) {
+    if (mSpinLayout != nullptr) {
         MR::startAnim(mSpinLayout, pAnimName, 0);
     }
 
-    if (mTamakoroLayout != NULL) {
+    if (mTamakoroLayout != nullptr) {
         MR::startAnim(mTamakoroLayout, pAnimName, 0);
     }
 }
 
 void PlayerActionGuidance::startWaitAnimAllLayout() {
-    if (mSpinLayout != NULL) {
+    if (mSpinLayout != nullptr) {
         MR::startAnim(mSpinLayout, "Wait", 0);
     }
 
-    if (mTamakoroLayout != NULL && mCurrentLayout == mTamakoroLayout) {
+    if (mTamakoroLayout != nullptr && mCurrentLayout == mTamakoroLayout) {
         startWaitAnimTamakoro();
     }
 }
 
 void PlayerActionGuidance::setAnimFrameAndStopAllLayout(f32 animFrame) {
-    if (mSpinLayout != NULL) {
+    if (mSpinLayout != nullptr) {
         MR::setAnimFrameAndStop(mSpinLayout, animFrame, 0);
     }
 
-    if (mTamakoroLayout != NULL) {
+    if (mTamakoroLayout != nullptr) {
         MR::setAnimFrameAndStop(mTamakoroLayout, animFrame, 0);
     }
 }
 
 void PlayerActionGuidance::hideAllLayout() {
-    if (mSpinLayout != NULL) {
+    if (mSpinLayout != nullptr) {
         MR::hideLayout(mSpinLayout);
     }
 
-    if (mTamakoroLayout != NULL) {
+    if (mTamakoroLayout != nullptr) {
         MR::hideLayout(mTamakoroLayout);
     }
 }
@@ -258,7 +258,7 @@ bool PlayerActionGuidance::isInVolumePlayer(const char* pObjName, bool param2) c
 
     AreaObj* pObj = MR::getAreaObj(pObjName, *MR::getPlayerPos());
 
-    if (pObj == NULL) {
+    if (pObj == nullptr) {
         return false;
     }
 

@@ -15,7 +15,7 @@ namespace NrvBossBegomanHead {
 BossBegomanHead::BossBegomanHead(LiveActor *pParent, MtxPtr pMtx) :
     PartsModel(pParent, "スイッチ頭", "BossBegomanHead", pMtx, 0x12, false),
     _9C(0.0f),
-    mJointDelegator(NULL)
+    mJointDelegator(nullptr)
 {
     
 }

@@ -9,8 +9,6 @@ class SuddenDeathMeter : public LayoutActor {
 public:
     SuddenDeathMeter(const char *, const char *);
 
-    virtual ~SuddenDeathMeter();
-
     virtual void init(const JMapInfoIter &rIter);
     virtual void control();
 

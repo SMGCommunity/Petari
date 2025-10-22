@@ -14,11 +14,11 @@ public:
     void initConnectting();
     void requestConnect(u8 *);
     void requestDisconnect(u8 *, bool);
-    void executeRequirementConnectMovement();
-    void executeRequirementDisconnectMovement();
-    void executeRequirementConnectDraw();
-    void executeRequirementDisconnectDraw();
-    void executeRequirementDisconnectDrawDelay();
+    void executeRequirementConnectMovement() NO_INLINE;
+    void executeRequirementDisconnectMovement() NO_INLINE;
+    void executeRequirementConnectDraw() NO_INLINE;
+    void executeRequirementDisconnectDraw() NO_INLINE;
+    void executeRequirementDisconnectDrawDelay() NO_INLINE;
     void requestMovementOn(int);
     void requestMovementOff(int);
     void findLightInfo() const;
@@ -28,7 +28,7 @@ public:
     void disconnectToDraw();
 
 private:
-    /* 0x0 */ NameObj* mExecutedObject;
+    /* 0x0 */ NameObj* mExecutedObj;
     /* 0x4 */ s8 _4;
     /* 0x5 */ s8 _5;
     /* 0x6 */ s8 _6;
@@ -41,8 +41,6 @@ private:
 class NameObjExecuteHolder : public NameObj { 
 public:
     NameObjExecuteHolder(int);
-
-    virtual ~NameObjExecuteHolder() {}
 
     void registerActor(NameObj *, int, int, int, int);
     void initConnectting();

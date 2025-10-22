@@ -81,11 +81,11 @@ bool CubeGravity::calcOwnGravityVector(TVec3f *pDest, f32 *pScalar, const TVec3f
         return false;
     }
 
-    if (pDest != NULL) {
+    if (pDest != nullptr) {
         *pDest = gravityForce;
     }
 
-    if (pScalar != NULL) {
+    if (pScalar != nullptr) {
         *pScalar = scalar;
     }
     return true;

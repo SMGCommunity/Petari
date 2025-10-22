@@ -464,7 +464,7 @@ namespace MR {
     }
 
     HitSensor* getMessageSensor() {
-        return getSceneObj<MessageSensorHolder*>(SceneObj_MessageSensorHolder)->getSensor(nullptr);
+        return getSceneObj<MessageSensorHolder>(SceneObj_MessageSensorHolder)->getSensor(nullptr);
     }
 
     bool sendArbitraryMsg(u32 msg, HitSensor* pReceiver, HitSensor* pSender) {

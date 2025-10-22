@@ -86,7 +86,7 @@ namespace MR {
     bool isSuspendedAsyncExecuteThread(const char* pParam1) {
         OSThread* pThread = getFunctionAsyncExecutor()->getOSThread(pParam1);
 
-        if (pThread == NULL) {
+        if (pThread == nullptr) {
             return false;
         }
 

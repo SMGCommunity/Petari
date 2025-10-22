@@ -17,8 +17,8 @@ CounterLayoutAppearer::CounterLayoutAppearer(LayoutActor* pActor, const TVec2f& 
     mFollowPos(0.0f, 0.0f),
     _1C(0.0f, 0.0f)
 {
-    MR::setFollowPos(&mFollowPos, pActor, NULL);
-    MR::setFollowTypeAdd(mLayout, NULL);
+    MR::setFollowPos(&mFollowPos, pActor, nullptr);
+    MR::setFollowTypeAdd(mLayout, nullptr);
     initNerve(&NrvCounterLayoutAppearer::CounterLayoutAppearerNrvHide::sInstance);
     MR::startAnimAndSetFrameAndStop(mLayout, "Appear", 0.0f, 0);
     setNerve(&NrvCounterLayoutAppearer::CounterLayoutAppearerNrvHide::sInstance);
@@ -100,8 +100,4 @@ void CounterLayoutAppearer::exeDisappear() {
     if (MR::isAnimStopped(mLayout, 0)) {
         setNerve(&NrvCounterLayoutAppearer::CounterLayoutAppearerNrvHide::sInstance);
     }
-}
-
-CounterLayoutAppearer::~CounterLayoutAppearer() {
-    
 }

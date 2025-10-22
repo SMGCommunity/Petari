@@ -27,11 +27,11 @@ CounterLayoutController::CounterLayoutController() :
     LayoutActor("カウンタ系レイアウト制御", true),
     mPlayerNotMovingFrame(0),
     _24(false),
-    mCoinCounter(NULL),
-    mStarPieceCounter(NULL),
-    mPlayerLeft(NULL),
-    mStarCounter(NULL),
-    mHPMeter(NULL)
+    mCoinCounter(nullptr),
+    mStarPieceCounter(nullptr),
+    mPlayerLeft(nullptr),
+    mStarCounter(nullptr),
+    mHPMeter(nullptr)
 {}
 
 void CounterLayoutController::init(const JMapInfoIter& rIter) {
@@ -217,8 +217,4 @@ void CounterLayoutController::exePlayerNotMoving() {
         hideAllLayout();
         setNerve(&NrvCounterLayoutController::CounterLayoutControllerNrvPlayerMoving::sInstance);
     }
-}
-
-CounterLayoutController::~CounterLayoutController() {
-    
 }

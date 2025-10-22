@@ -277,7 +277,7 @@ void PauseMenu::exeConfirm() {
             ? "PauseMenu_ConfirmEndGame"
             : "PauseMenu_ConfirmBackAstroDome";
 
-        _30->appear(pMessageId, SysInfoWindow::INFOTYPE_2, SysInfoWindow::TEXTPOS_0, SysInfoWindow::MESSAGETYPE_1);
+        _30->appear(pMessageId, SysInfoWindow::Type_YesNo, SysInfoWindow::TextPos_Center, SysInfoWindow::MessageType_System);
     }
 
     if (MR::isDead(_30)) {

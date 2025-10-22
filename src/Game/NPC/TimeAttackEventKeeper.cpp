@@ -2,7 +2,7 @@
 #include "Game/NPC/TimeAttackEventKeeper.hpp"
 
 TimeAttackEventKeeper::TimeAttackEventKeeper() :
-    _0(NULL)
+    _0(nullptr)
 {
     
 }
@@ -12,7 +12,7 @@ void TimeAttackEventKeeper::init(bool) {
 }
 
 void TimeAttackEventKeeper::startEventIfExecute() {
-    if (_0 == NULL) {
+    if (_0 == nullptr) {
         return;
     }
 
@@ -20,7 +20,7 @@ void TimeAttackEventKeeper::startEventIfExecute() {
 }
 
 void TimeAttackEventKeeper::endEvent() {
-    if (_0 == NULL) {
+    if (_0 == nullptr) {
         return;
     }
 

@@ -10,7 +10,7 @@ MovementOnOffGroupHolder::MovementOnOffGroupHolder(const char *pName) :
 NameObjGroup* MovementOnOffGroupHolder::joinToGroup(const char *pName, NameObj *pobj, u32 a3) {
     NameObjGroup* pGroup = findGroupFromName(pName);
 
-    if (pGroup == NULL) {
+    if (pGroup == nullptr) {
         pGroup = createGroup(pName, a3);
     }
 
@@ -43,7 +43,7 @@ NameObjGroup* MovementOnOffGroupHolder::findGroupFromName(const char *pName) con
         }
     }
 
-    return NULL;
+    return nullptr;
 }
 
 MovementOnOffGroupHolder::~MovementOnOffGroupHolder() {

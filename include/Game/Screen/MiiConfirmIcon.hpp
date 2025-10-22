@@ -14,9 +14,6 @@ public:
     /// @param pName The pointer to the null-terminated name of the object.
     MiiConfirmIcon(const char* pName);
 
-    /// @brief Destroys the `MiiConfirmIcon`.
-    virtual ~MiiConfirmIcon();
-
     virtual void init(const JMapInfoIter& rIter);
     virtual void appear();
 

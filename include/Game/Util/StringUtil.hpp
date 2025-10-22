@@ -138,9 +138,9 @@ namespace MR {
     /// @return `true` if the array of strings contains a string equivalent to `pStr`, `false` otherwise.
     bool isExistString(const char* pStr, const char* const* ppStr, u32 strNum);
 
-    /// @brief Determines if the pointer to the given character string is `NULL` or contains no characters.
+    /// @brief Determines if the pointer to the given character string is `nullptr` or contains no characters.
     /// @param pStr The pointer to the null-terminated character string.
-    /// @return `true` if the pointer to the string is `NULL` or contains no characters, `false` otherwise.
+    /// @return `true` if the pointer to the string is `nullptr` or contains no characters, `false` otherwise.
     bool isNullOrEmptyString(const char* pStr);
 
     bool isMessageEditorNextTag(const wchar_t*);

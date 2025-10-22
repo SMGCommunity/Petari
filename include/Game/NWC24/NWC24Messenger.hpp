@@ -15,20 +15,20 @@ namespace NWC24MessengerSub {
         SendTask();
 
         /* 0x00 */ bool _0;
-        /* 0x01 */ bool _1;
+        /* 0x01 */ bool mIsBG;
         /* 0x02 */ bool _2;
-        /* 0x03 */ bool _3;
+        /* 0x03 */ bool mIsMsgLedPattern;
         /* 0x04 */ s32 mRetryNo;
         /* 0x08 */ NWC24Err mErr;
         /* 0x0C */ s32 mErrCode;
-        /* 0x10 */ u32 _10;
-        /* 0x14 */ u16 _14;
-        /* 0x14 */ u8 _16;
+        /* 0x10 */ u32 mSentSize;
+        /* 0x14 */ u16 mTag;
+        /* 0x14 */ u8 mDelayHours;
         /* 0x18 */ const char* mTaskName;
-        /* 0x1C */ const wchar_t* _1C;
-        /* 0x20 */ const wchar_t* _20;
-        /* 0x24 */ const u8* _24;
-        /* 0x28 */ u32 _28;
+        /* 0x1C */ const wchar_t* mMessage;
+        /* 0x20 */ const wchar_t* mAltName;
+        /* 0x24 */ const u8* mPicture;
+        /* 0x28 */ u32 mPictureSize;
     };
 
     class SendState : public NerveExecutor {
@@ -100,7 +100,7 @@ public:
     NWC24MessengerSub::SendTask* selectTask() const;
     void clearBackgroundTask();
 
-    /* 0x0C */ NWC24MessengerSub::SendTask* mSendTask;
+    /* 0x0C */ NWC24MessengerSub::SendTask* mForegroundTask;
     /* 0x10 */ NWC24MessengerSub::SendTask* mBackgroundTaskArray;
     /* 0x14 */ NWC24MessengerSub::SendState* mSendState;
     /* 0x18 */ NWC24System* mSystem;
@@ -130,8 +130,8 @@ namespace MR {
         /* 0x08 */ const wchar_t* mSenderID;
         /* 0x0C */ const u8* mImage;
         /* 0x10 */ u32 mImageSize;
-        /* 0x14 */ bool mBG;
-        /* 0x15 */ bool mLed;
+        /* 0x14 */ bool mIsBG;
+        /* 0x15 */ bool mIsLed;
         /* 0x16 */ u16 mTag;
         /* 0x18 */ u8 mDelay;
     };

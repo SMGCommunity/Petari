@@ -384,13 +384,13 @@ namespace MR {
     }
 
     NameObjGroup* joinToMovementOnOffGroup(const char *pName, NameObj *pObj, u32 a3) {
-        MovementOnOffGroupHolder* pGroupHolder = MR::getSceneObj<MovementOnOffGroupHolder*>(SceneObj_MovementOnOffGroupHolder);
+        MovementOnOffGroupHolder* pGroupHolder = MR::getSceneObj<MovementOnOffGroupHolder>(SceneObj_MovementOnOffGroupHolder);
 
         return pGroupHolder->joinToGroup(pName, pObj, a3);
     }
 
     void onMovementOnOffGroup(const char *pGroupName) {
-        MR::getSceneObj<MovementOnOffGroupHolder*>(SceneObj_MovementOnOffGroupHolder)->onMovementGroup(pGroupName);
+        MR::getSceneObj<MovementOnOffGroupHolder>(SceneObj_MovementOnOffGroupHolder)->onMovementGroup(pGroupName);
     }
 
     void registerPreDrawFunction(const MR::FunctorBase &rFunc, int a2) {

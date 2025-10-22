@@ -23,7 +23,7 @@ LiveActor* LiveActorGroup::getDeadActor() const {
         }
     }
 
-    return NULL;
+    return nullptr;
 }
 
 s32 LiveActorGroup::getLivingActorNum() const {

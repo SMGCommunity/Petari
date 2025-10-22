@@ -20,8 +20,8 @@ PurpleCoinCounter::PurpleCoinCounter(const char* pName) :
     mPurpleCoinNum(0),
     mPurpleCoinDisplayNum(0),
     mInvalidCountUpFrame(0),
-    mLayoutAppearer(NULL),
-    mPaneRumbler(NULL),
+    mLayoutAppearer(nullptr),
+    mPaneRumbler(nullptr),
     mIsValid(false)
 {
     
@@ -30,7 +30,7 @@ PurpleCoinCounter::PurpleCoinCounter(const char* pName) :
 void PurpleCoinCounter::init(const JMapInfoIter& rIter) {
     initLayoutManager("PurpleCoinCounter", 2);
     MR::createAndAddPaneCtrl(this, "Counter", 1);
-    initEffectKeeper(0, NULL, NULL);
+    initEffectKeeper(0, nullptr, nullptr);
 
     mLayoutAppearer = new CounterLayoutAppearer(this, TVec2f(-50.0f, 0.0f));
     mPaneRumbler = new CountUpPaneRumbler(this, "Counter");
@@ -114,8 +114,4 @@ void PurpleCoinCounter::exeAppear() {
 
 void PurpleCoinCounter::exeWait() {
 
-}
-
-PurpleCoinCounter::~PurpleCoinCounter() {
-    
 }

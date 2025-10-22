@@ -10,7 +10,9 @@ namespace {
 
 MiiConfirmIcon::MiiConfirmIcon(const char* pName) :
     LayoutActor(pName, true)
-{}
+{
+    
+}
 
 void MiiConfirmIcon::init(const JMapInfoIter& rIter) {
     initLayoutManager("MiiConfirmIcon", 1);
@@ -61,8 +63,4 @@ bool MiiConfirmIcon::isDisappear() const {
 
 void MiiConfirmIcon::appear() {
     LayoutActor::appear();
-}
-
-MiiConfirmIcon::~MiiConfirmIcon() {
-    
 }

@@ -16,7 +16,7 @@ WPadButton::WPadButton(const WPad* pPad) :
 void WPadButton::update() {
     KPADStatus* pStatus = mPad->getKPadStatus(0);
 
-    if (pStatus == NULL) {
+    if (pStatus == nullptr) {
         return;
     }
 

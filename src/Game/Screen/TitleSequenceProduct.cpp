@@ -10,11 +10,15 @@
 #include "Game/Util/SystemUtil.hpp"
 #include "Game/Util/TriggerChecker.hpp"
 
+namespace {
+    static const s32 sPressABAppearFrame = 25;
+};
+
 namespace TitleSequenceProductSub {
     LogoLayout::LogoLayout() :
         SimpleLayout("ロゴ", "TitleLogo", 2, -1)
     {
-        initEffectKeeper(1, "TitleLogo", NULL);
+        initEffectKeeper(1, "TitleLogo", nullptr);
         kill();
     }
 };
@@ -31,11 +35,11 @@ namespace {
 
 TitleSequenceProduct::TitleSequenceProduct() :
     NerveExecutor(""),
-    mLogoLayout(NULL),
-    mPressStartLayout(NULL),
-    mEncouragePal60Window(NULL),
-    mAButtonChecker(NULL),
-    mBButtonChecker(NULL)
+    mLogoLayout(nullptr),
+    mPressStartLayout(nullptr),
+    mEncouragePal60Window(nullptr),
+    mAButtonChecker(nullptr),
+    mBButtonChecker(nullptr)
 {
     if (MR::isDisplayEncouragePal60Window()) {
         initNerve(&TitleSequenceProductDisplayEncouragePal60Window::sInstance);
@@ -108,7 +112,7 @@ void TitleSequenceProduct::exeLogoWait() {
         MR::emitEffect(mLogoLayout, "TitleLogoLightG");
     }
 
-    if (MR::isStep(this, 25)) {
+    if (MR::isStep(this, sPressABAppearFrame)) {
         setNerve(&TitleSequenceProductLogoDisplay::sInstance);
     }
 }

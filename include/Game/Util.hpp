@@ -37,7 +37,6 @@
 #include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/LightUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
-#include "Game/Util/MapObjUtil.hpp"
 #include "Game/Util/MapPartsUtil.hpp"
 #include "Game/Util/MapUtil.hpp"
 #include "Game/Util/MathUtil.hpp"

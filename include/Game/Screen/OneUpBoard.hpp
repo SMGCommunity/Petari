@@ -6,7 +6,6 @@ class OneUpBoard : public LayoutActor {
 public:
     OneUpBoard();
 
-    virtual ~OneUpBoard();
     virtual void init(const JMapInfoIter& rIter);
     virtual void appear();
     virtual void control();

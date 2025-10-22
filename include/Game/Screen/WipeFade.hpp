@@ -7,7 +7,6 @@ class WipeFade : public WipeLayoutBase {
 public:
     WipeFade(const char*, const Color8&);
 
-    virtual ~WipeFade() {}
     virtual void init(const JMapInfoIter&);
     virtual void draw() const;
     virtual void control();

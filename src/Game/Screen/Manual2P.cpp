@@ -24,11 +24,11 @@ Manual2P::Manual2P(const char* pName) :
     LayoutActor(pName, true),
     mPageIndex(0),
     _24(0),
-    mLeftPaneCtrl(NULL),
-    mRightPaneCtrl(NULL),
+    mLeftPaneCtrl(nullptr),
+    mRightPaneCtrl(nullptr),
     _30(false),
     _31(false),
-    mBackButton(NULL)
+    mBackButton(nullptr)
 {
     
 }
