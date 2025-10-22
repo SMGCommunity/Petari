@@ -1,6 +1,6 @@
-#include "Game/NPC/TicoDemoGetPower.hpp"
-#include "Game/NPC/Tico.hpp"
 #include "Game/Demo/DemoFunction.hpp"
+#include "Game/NPC/Tico.hpp"
+#include "Game/NPC/TicoDemoGetPower.hpp"
 #include "Game/Util/DemoUtil.hpp"
 
 namespace NrvTicoDemoGetPower {
@@ -8,8 +8,10 @@ namespace NrvTicoDemoGetPower {
     NEW_NERVE(TicoDemoGetPowerNrvDemo, TicoDemoGetPower, Demo);
 };
 
-TicoDemoGetPower::TicoDemoGetPower(Tico *pTico, const JMapInfoIter &rIter) : NerveExecutor("チコゲットパワーデモ実行者") {
-    mTico = pTico;
+TicoDemoGetPower::TicoDemoGetPower(Tico *pTico, const JMapInfoIter &rIter) :
+    NerveExecutor("チコゲットパワーデモ実行者"),
+    mTico(pTico)
+{
     initNerve(&NrvTicoDemoGetPower::TicoDemoGetPowerNrvWait::sInstance);
     DemoFunction::tryCreateDemoTalkAnimCtrlForScene(mTico, rIter, "DemoGetPower", "スピンゲット[デモ1]", 0, 0);
     MR::registerDemoActionFunctor(mTico, MR::Functor_Inline(this, &TicoDemoGetPower::startDemo), "スピンゲット[デモ1]");
@@ -22,6 +24,10 @@ void TicoDemoGetPower::startDemo() {
     exeDemo();
 }
 
+void TicoDemoGetPower::exeWait() {
+    
+}
+
 void TicoDemoGetPower::exeDemo() {
     if (MR::isDemoPartFirstStep("スピンゲット[デモ5]")) {
         MR::explainEnableToSpin(mTico);
@@ -29,6 +35,7 @@ void TicoDemoGetPower::exeDemo() {
 
     if (MR::isDemoPartActive("スピンゲット[デモ3]")) {
         s32 partStep = MR::getDemoPartStep("スピンゲット[デモ3]");
+
         if (partStep == 110) {
             MR::startSound(mTico, "SE_SM_TICO_OP_APPEAR", -1, -1);
         }
@@ -69,12 +76,4 @@ void TicoDemoGetPower::exeDemo() {
             MR::startSoundPlayer("SE_PV_POWER_STAR_GET", -1);
         }
     }
-}
-
-void TicoDemoGetPower::exeWait() {
-    
-}
-
-TicoDemoGetPower::~TicoDemoGetPower() {
-    
 }

@@ -1,6 +1,7 @@
 #include "Game/NPC/HoneyQueen.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/LodCtrl.hpp"
+#include "Game/LiveActor/ModelObj.hpp"
 #include "Game/Map/CollisionParts.hpp"
 #include "Game/NPC/NPCActor.hpp"
 #include "Game/Util/ActorMovementUtil.hpp"

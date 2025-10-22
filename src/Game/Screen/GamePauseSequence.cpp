@@ -1,10 +1,14 @@
 #include "Game/AudioLib/AudSystem.hpp"
 #include "Game/AudioLib/AudWrap.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/GamePauseSequence.hpp"
 #include "Game/Screen/PauseMenu.hpp"
 #include "Game/System/GalaxyMapController.hpp"
 #include "Game/System/GameSystemFunction.hpp"
+#include "Game/Util/Functor.hpp"
+#include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/SceneUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
 
 namespace {
@@ -63,6 +67,10 @@ void GamePauseSequence::deactivate() {
     setNerve(&GamePauseSequenceDeactive::sInstance);
 }
 
+void GamePauseSequence::exeDeactive() {
+    
+}
+
 void GamePauseSequence::exeActivePauseMenu() {
     if (MR::isDead(mPauseMenu)) {
         (*mWindowMenuFunc)();
@@ -80,9 +88,5 @@ void GamePauseSequence::exeActivePowerStarList() {
 }
 
 void GamePauseSequence::exeSceneInformation() {
-    
-}
-
-void GamePauseSequence::exeDeactive() {
     
 }
