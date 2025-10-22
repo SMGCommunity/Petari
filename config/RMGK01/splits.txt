@@ -10821,7 +10821,7 @@ RVL_SDK/fs/fs.c:
 
 RVL_SDK/pad/Pad.c:
 	.text       start:0x804D6B28 end:0x804D6B84
-	.sbss       start:0x806B7AD0 end:0x806B7AE0
+	.sbss       start:0x806B7AD0 end:0x806B7AD8
 
 RVL_SDK/wpad/WPAD.c:
 	.text       start:0x804D6B84 end:0x804DE36C
@@ -10829,7 +10829,7 @@ RVL_SDK/wpad/WPAD.c:
 	.data       start:0x80600B38 end:0x80600EF0
 	.bss        start:0x80674AC0 end:0x80678238
 	.sdata      start:0x806B2D60 end:0x806B2D78
-	.sbss       start:0x806B7AE0 end:0x806B7B10
+	.sbss       start:0x806B7AD8 end:0x806B7B10
 	.sdata2     start:0x806C2290 end:0x806C22A8
 
 RVL_SDK/wpad/WPADHIDParser.c:
