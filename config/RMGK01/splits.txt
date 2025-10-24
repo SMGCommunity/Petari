@@ -7420,13 +7420,13 @@ Game/Scene/MultiSceneEffectKeeper.cpp:
 
 Game/Scene/MultiSceneActor.cpp:
 	.text       start:0x80341844 end:0x80341F58
-	.data       start:0x805D1A38 end:0x805D1A78
+	.data       start:0x805D1A38 end:0x805D1A68
 	.sdata2     start:0x806C0DF0 end:0x806C0DF8
 
 Game/Scene/PlayTimerScene.cpp:
 	.text       start:0x80341F58 end:0x80342678
 	.ctors      start:0x8052F210 end:0x8052F214
-	.data       start:0x805D1A78 end:0x805D1B30
+	.data       start:0x805D1A68 end:0x805D1B30
 	.sbss       start:0x806B65F8 end:0x806B6608
 	.sdata2     start:0x806C0DF8 end:0x806C0E00
 
@@ -8105,7 +8105,7 @@ Game/Screen/SaveIcon.cpp:
 Game/Screen/ScenarioSelectLayout.cpp:
 	.text       start:0x8037DCAC end:0x8037FE8C
 	.ctors      start:0x8052F30C end:0x8052F310
-	.rodata     start:0x8053B2C8 end:0x8053B310
+	.rodata     start:0x8053B2C8 end:0x8053B300
 	.data       start:0x805D8E30 end:0x805D9198
 	.sbss       start:0x806B6B48 end:0x806B6B78
 	.sdata2     start:0x806C11E8 end:0x806C1220
@@ -10821,7 +10821,7 @@ RVL_SDK/fs/fs.c:
 
 RVL_SDK/pad/Pad.c:
 	.text       start:0x804D6B28 end:0x804D6B84
-	.sbss       start:0x806B7AD0 end:0x806B7AE0
+	.sbss       start:0x806B7AD0 end:0x806B7AD8
 
 RVL_SDK/wpad/WPAD.c:
 	.text       start:0x804D6B84 end:0x804DE36C
@@ -10829,7 +10829,7 @@ RVL_SDK/wpad/WPAD.c:
 	.data       start:0x80600B38 end:0x80600EF0
 	.bss        start:0x80674AC0 end:0x80678238
 	.sdata      start:0x806B2D60 end:0x806B2D78
-	.sbss       start:0x806B7AE0 end:0x806B7B10
+	.sbss       start:0x806B7AD8 end:0x806B7B10
 	.sdata2     start:0x806C2290 end:0x806C22A8
 
 RVL_SDK/wpad/WPADHIDParser.c:

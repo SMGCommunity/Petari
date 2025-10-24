@@ -1,7 +1,8 @@
 #pragma once
 
-#include "Game/System/NerveExecutor.hpp"
+#include "Game/LiveActor/ActorStateBase.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
+#include "Game/System/NerveExecutor.hpp"
 
 class WalkerStateParam;
 

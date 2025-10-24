@@ -198,6 +198,12 @@ void KoopaBattleMapStair::exeWaitSwitch() {
     }
 }
 
+void KoopaBattleMapStair::exeWaitKoopaFire() {
+    if (MR::isStep(this, mFireTimer)) {
+        setNerve(&NrvKoopaBattleMapStair::KoopaBattleMapStairNrvWaitFall::sInstance);
+    }
+}
+
 void KoopaBattleMapStair::exeWaitFall() {
     if (MR::isFirstStep(this)) {
         MR::startSound(this, "SE_OJ_STAIR_BREAK_START", -1, -1);
@@ -217,7 +223,7 @@ void KoopaBattleMapStair::exeFall() {
         MR::startAllAnim(this, "Fall");
     }
 
-    MR::addVelocityToGravity(this, 0.029999999f);
+    MR::addVelocityToGravity(this, 0.03f);
     MR::restrictVelocity(this, 1.5f);
     MR::startLevelSound(this, "SE_OJ_LV_STAIR_BREAK", -1, -1, -1);
     if (MR::isStep(this, _BC)) {
@@ -232,19 +238,9 @@ void KoopaBattleMapStair::exeDisappear() {
         MR::setBrkRate(this, 0.25f);
     }
 
-    MR::addVelocityToGravity(this, 0.029999999f);
+    MR::addVelocityToGravity(this, 0.03f);
     MR::restrictVelocity(this, 1.5f);
     if (MR::isBrkStopped(this)) {
         kill();
     }
-}
-
-void KoopaBattleMapStair::exeWaitKoopaFire() {
-    if (MR::isStep(this, mFireTimer)) {
-        setNerve(&NrvKoopaBattleMapStair::KoopaBattleMapStairNrvWaitFall::sInstance);
-    }
-}
-
-KoopaBattleMapStair::~KoopaBattleMapStair() {
-    
 }

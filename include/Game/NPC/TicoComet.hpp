@@ -7,7 +7,6 @@ class TicoEat : public Tico {
 public:
     TicoEat(const char *);
 
-    virtual ~TicoEat();
     virtual void init(const JMapInfoIter &);
     virtual void control();
     virtual bool receiveMsgPlayerAttack(u32, HitSensor *, HitSensor *);
@@ -21,7 +20,7 @@ public:
     void exeEatPre();
     void exeEatNow();
     void exeEatPst();
-    inline void exeEatEnd();
+    void exeEatEnd();
 
     u32 _190;
     s32 _194;
@@ -32,7 +31,6 @@ class TicoComet : public TicoEat {
 public:
     TicoComet(const char *);
 
-    virtual ~TicoComet();
     virtual void init(const JMapInfoIter &);
     virtual void startReactionSound();
 
@@ -41,5 +39,5 @@ public:
     bool eventFunc(u32);
     void exeDemoAnim();
     void exeDemoFade();
-    inline void exeDemoEnd();
+    void exeDemoEnd();
 };

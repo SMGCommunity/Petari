@@ -10,24 +10,20 @@ class FunctionAsyncExecInfo {
 public:
     FunctionAsyncExecInfo(MR::FunctorBase *, int, const char *);
 
-    FunctionAsyncExecInfo() {
-
-    }
-
     ~FunctionAsyncExecInfo();
 
     void execute();
     
-    inline bool isSame(const char *pStr) {
-        return MR::strcasecmp(_8, pStr) == 0;
+    bool isSame(const char *pStr) {
+        return MR::strcasecmp(mName, pStr) == 0;
     }
 
-    MR::FunctorBase* mFunc;     // 0x0
-    int mPriority;              // 0x4
-    const char* _8;
-    bool _C;
-    OSMessageQueue mQueue;      // 0x10
-    OSMessage mMessage;         // 0x30
+    /* 0x00 */ MR::FunctorBase* mFunc;
+    /* 0x04 */ int mPriority;
+    /* 0x08 */ const char* mName;
+    /* 0x0C */ bool mIsEnd;
+    /* 0x10 */ OSMessageQueue mQueue;
+    /* 0x30 */ OSMessage mMessage;
 };
 
 class FunctionAsyncExecutorThread : public OSThreadWrapper {
@@ -36,8 +32,8 @@ public:
 
     virtual void* run();
 
-    bool mIsSuspended;      // 0x3C
-    const char* _40;
+    /* 0x3C */ bool mIsSuspended;
+    /* 0x40 */ const char* mName;
 };
 
 class FunctionAsyncExecutorOnMainThread {
@@ -46,13 +42,10 @@ public:
 
     void update();
 
-    u8 _0;
-    u8 _1;
-    u8 _2;
-    u8 _3;
-    OSMessageQueue mQueue;      // 0x4
-    OSMessage mMsgArray[0x40];  // 0x24
-    OSThread* mThread;          // 0x124
+    /* 0x000 */ bool _0;
+    /* 0x004 */ OSMessageQueue mQueue;
+    /* 0x024 */ OSMessage mMsgArray[64];
+    /* 0x124 */ OSThread* mThread;
 };
 
 class FunctionAsyncExecutor {
@@ -68,18 +61,9 @@ public:
     FunctionAsyncExecInfo* createAndAddExecInfo(const MR::FunctorBase &, int, const char *);
     FunctionAsyncExecutorThread* getSuspendThread();
 
-    inline FunctionAsyncExecInfo* const* first() const {
-        return &mHolders[0];
-    }
-
-    inline FunctionAsyncExecInfo* const* last() const {
-        return &mHolders[_40C];
-    }
-
-    FunctionAsyncExecutorThread* mThreads[2];               // 0x0
-    FunctionAsyncExecutorOnMainThread* mMainThreadExec;     // 0x8
-    FunctionAsyncExecInfo* mHolders[0x100];
-    u32 _40C;
-    JKRUnitHeap* _410;
-    JKRExpHeap* _414;
+    /* 0x000 */ FunctionAsyncExecutorThread* mThreads[2];
+    /* 0x008 */ FunctionAsyncExecutorOnMainThread* mMainThreadExec;
+    /* 0x00C */ MR::Vector<MR::FixedArray<FunctionAsyncExecInfo*, 256> > mHolders;
+    /* 0x410 */ JKRUnitHeap* _410;
+    /* 0x414 */ JKRExpHeap* _414;
 };

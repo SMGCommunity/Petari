@@ -22,8 +22,10 @@
 #include "Game/Camera/OnlyCamera.hpp"
 #include "Game/LiveActor/ActorCameraInfo.hpp"
 #include "Game/Util/CameraUtil.hpp"
+#include "Game/Util/DemoUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
+#include "Game/Util/SceneUtil.hpp"
 #include "Game/Util/ScreenUtil.hpp"
 #include "Game/Util/SequenceUtil.hpp"
 #include <cstring>

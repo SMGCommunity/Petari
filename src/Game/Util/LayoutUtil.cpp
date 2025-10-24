@@ -28,7 +28,21 @@ namespace {
     void initFrameCtrlReverse(J3DFrameCtrl*);
     bool getTextDrawRectRecursive(nw4r::ut::Rect*, const nw4r::lyt::Pane*, bool);
     u32 getTextLineNumMaxRecursiveSub(const nw4r::lyt::Pane*);
-    f32 getCometColorAnimFrameFromId(s32);
+
+    f32 getCometColorAnimFrameFromId(s32 id) {
+        switch (id) {
+        case 0:
+            return 0.0f;
+        case 1:
+            return 4.0f;
+        case 2:
+            return 1.0f;
+        case 3:
+            return 2.0f;
+        case 4:
+            return 3.0f;
+        }
+    }
 };
 
 namespace MR {
@@ -137,9 +151,9 @@ namespace MR {
         pLayoutManager->mIsScreenHidden = true;
     }
 
-    void startAnimAtFirstStep(LayoutActor* pActor, const char* pAnimName, u32 param3) {
+    void startAnimAtFirstStep(LayoutActor* pActor, const char* pAnimName, u32 animLayer) {
         if (isFirstStep(pActor)) {
-            startAnim(pActor, pAnimName, param3);
+            startAnim(pActor, pAnimName, animLayer);
         }
     }
 
@@ -196,20 +210,20 @@ namespace MR {
         return pActor->getNerveStep() < 0;
     }
 
-    f32 calcNerveRate(const LayoutActor* pActor, s32 maxStep) {
-        return maxStep <= 0 ? 1.0f : clamp(static_cast<f32>(pActor->getNerveStep()) / maxStep, 0.0f, 1.0f);
+    f32 calcNerveRate(const LayoutActor* pActor, s32 stepMax) {
+        return stepMax <= 0 ? 1.0f : clamp(static_cast<f32>(pActor->getNerveStep()) / stepMax, 0.0f, 1.0f);
     }
 
-    f32 calcNerveRate(const LayoutActor* pActor, s32 minStep, s32 maxStep) {
-        return clamp(normalize(pActor->getNerveStep(), minStep, maxStep), 0.0f, 1.0f);
+    f32 calcNerveRate(const LayoutActor* pActor, s32 stepMin, s32 stepMax) {
+        return clamp(normalize(pActor->getNerveStep(), stepMin, stepMax), 0.0f, 1.0f);
     }
 
-    f32 calcNerveEaseInRate(const LayoutActor* pActor, s32 maxStep) {
-        return getEaseInValue(calcNerveRate(pActor, maxStep), 0.0f, 1.0f, 1.0f);
+    f32 calcNerveEaseInRate(const LayoutActor* pActor, s32 stepMax) {
+        return getEaseInValue(calcNerveRate(pActor, stepMax), 0.0f, 1.0f, 1.0f);
     }
 
-    f32 calcNerveEaseInValue(const LayoutActor* pActor, s32 minStep, s32 maxStep, f32 minValue, f32 maxValue) {
-        return getEaseInValue(calcNerveRate(pActor, minStep, maxStep), minValue, maxValue, 1.0f);
+    f32 calcNerveEaseInValue(const LayoutActor* pActor, s32 stepMin, s32 stepMax, f32 valueMin, f32 valueMax) {
+        return getEaseInValue(calcNerveRate(pActor, stepMin, stepMax), valueMin, valueMax, 1.0f);
     }
 
     void setNerveAtStep(LayoutActor* pActor, const Nerve* pNerve, s32 step) {
@@ -321,6 +335,11 @@ namespace MR {
         pLayoutManager->_61 = 0;
     }
 
+    void setCometPaneAnimFromId(LayoutActor* pActor, const char* pPaneName, int cometId, u32 animLayer) {
+        startPaneAnim(pActor, pPaneName, "Color", animLayer);
+        setPaneAnimFrameAndStop(pActor, pPaneName, ::getCometColorAnimFrameFromId(cometId), animLayer);
+    }
+
     void setTextBoxNumberRecursive(LayoutActor* pActor, const char* pPaneName, s32 number) {
         setTextBoxFormatRecursive(pActor, pPaneName, L"%d", number);
     }
@@ -336,5 +355,10 @@ namespace MR {
         pIconAButton->setFollowActorPane(pActor, "AButtonPosition");
 
         return pIconAButton;
+    }
+
+    void setCometAnimFromId(LayoutActor* pActor, int cometId, u32 animLayer) {
+        startAnim(pActor, "Color", animLayer);
+        setAnimFrameAndStop(pActor, ::getCometColorAnimFrameFromId(cometId), animLayer);
     }
 };

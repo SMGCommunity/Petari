@@ -11,7 +11,7 @@
 #include "Game/System/HeapMemoryWatcher.hpp"
 #include "Game/System/ScenarioDataParser.hpp"
 #include "Game/System/WPadHolder.hpp"
-#include "Game/Util.hpp"
+#include <JSystem/JKernel/JKRSolidHeap.hpp>
 #include <cstdio>
 
 SceneControlInfo::SceneControlInfo() {

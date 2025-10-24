@@ -1958,7 +1958,7 @@ config.libs = [
             Object(Matching, "Game/Scene/LogoScene.cpp"),
             Object(NonMatching, "Game/Scene/MultiSceneEffectKeeper.cpp"),
             Object(NonMatching, "Game/Scene/MultiSceneActor.cpp"),
-            Object(NonMatching, "Game/Scene/PlayTimerScene.cpp"),
+            Object(Matching, "Game/Scene/PlayTimerScene.cpp"),
             Object(NonMatching, "Game/Scene/PlacementInfoOrdered.cpp"),
             Object(Matching, "Game/Scene/PlacementStateChecker.cpp"),
             Object(NonMatching, "Game/Scene/ScenarioSelectScene.cpp"),
@@ -2160,7 +2160,7 @@ config.libs = [
             Object(Matching, "Game/System/GameSystemFrameControl.cpp"),
             Object(NonMatching, "Game/System/GameSystemFunction.cpp"),
             Object(NonMatching, "Game/System/GameSystemObjHolder.cpp"),
-            Object(NonMatching, "Game/System/GameSystemStationedArchiveLoader.cpp"),
+            Object(Matching, "Game/System/GameSystemStationedArchiveLoader.cpp"),
             Object(NonMatching, "Game/System/GameSystemSceneController.cpp"),
             Object(NonMatching, "Game/System/GameSystemResetAndPowerProcess.cpp"),
             Object(Matching, "Game/System/HeapMemoryWatcher.cpp"),
@@ -2538,7 +2538,7 @@ config.libs = [
             Object(Matching, "RVL_SDK/ipc/ipcMain.c"),
             Object(Matching, "RVL_SDK/ipc/ipcclt.c"),
             Object(Matching, "RVL_SDK/ipc/memory.c"),
-            Object(NonMatching, "RVL_SDK/ipc/ipcProfile.c")
+            Object(Matching, "RVL_SDK/ipc/ipcProfile.c")
         ]
     ),
 
@@ -2660,7 +2660,7 @@ config.libs = [
     SDKLib(
         "pad",
         [
-            Object(NonMatching, "RVL_SDK/pad/Pad.c")
+            Object(Matching, "RVL_SDK/pad/Pad.c")
         ]
     ),
 

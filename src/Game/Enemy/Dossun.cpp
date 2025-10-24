@@ -114,6 +114,12 @@ s32 Dossun::getUpperFrame() const {
     return mRisenWaitTime;
 }
 
+void Dossun::exeReady() {
+    if (MR::isOnSwitchA(this)) {
+        setNerve(&NrvDossun::DossunNrvFallSign::sInstance);
+    }
+}
+
 void Dossun::exeUpper() {
     if (MR::isFirstStep(this)) {
         mPosition.set<f32>(_8C);
@@ -177,14 +183,4 @@ void Dossun::exeRising() {
         MR::startSound(this, "SE_OJ_DOSSUN_STOP", -1, -1);
         setNerve(&NrvDossun::DossunNrvUpper::sInstance);
     }
-}
-
-void Dossun::exeReady() {
-    if (MR::isOnSwitchA(this)) {
-        setNerve(&NrvDossun::DossunNrvFallSign::sInstance);
-    }
-}
-
-Dossun::~Dossun() {
-    
 }

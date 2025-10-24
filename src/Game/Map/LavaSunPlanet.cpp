@@ -1,6 +1,7 @@
 #include "Game/Map/LavaSunPlanet.hpp"
 #include "Game/LiveActor/LodCtrl.hpp"
 #include "Game/LiveActor/MaterialCtrl.hpp"
+#include "Game/LiveActor/ModelObj.hpp"
 #include "Game/MapObj/MapPartsRotator.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "revolution/types.h"

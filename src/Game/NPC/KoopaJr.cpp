@@ -1,5 +1,6 @@
 #include "Game/NPC/KoopaJr.hpp"
 #include "Game/LiveActor/LodCtrl.hpp"
+#include "Game/LiveActor/ModelObj.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/NPCUtil.hpp"
 

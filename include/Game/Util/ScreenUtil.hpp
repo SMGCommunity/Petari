@@ -3,19 +3,7 @@
 #include <JSystem/JGeometry/TVec.hpp>
 #include <revolution/types.h>
 
-class CaptureScreenDirector;
-class PlayTimerScene;
-class StarCounter;
-class StarPieceCounter;
 struct ResTIMG;
-
-namespace {
-    CaptureScreenDirector* getCaptureScreenDirector() NO_INLINE;
-    PlayTimerScene* getPlayTimerScene() NO_INLINE;
-    void appearInformationMessage(bool, bool);
-    StarCounter* getStarCounter() NO_INLINE;
-    StarPieceCounter* getStarPieceCounter() NO_INLINE;
-};
 
 namespace MR {
     u32 getViWidth();

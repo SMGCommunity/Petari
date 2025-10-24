@@ -1,15 +1,9 @@
 #pragma once
 
 #include "Game/System/ResourceInfo.hpp"
-#include "JSystem/JKernel/JKRArchive.hpp"
-#include "nw4r/lyt/resourceAccessor.h"
+#include <nw4r/lyt/resourceAccessor.h>
 
-typedef const char* Something;
-
-namespace {
-    Something sLayoutExt = ".brlyt";
-    Something sAnimationExt = ".brlan";
-};
+class JKRArchive;
 
 class LayoutHolder : public nw4r::lyt::ResourceAccessor {
 public:
@@ -26,7 +20,7 @@ public:
 
     void initializeArc();
 
-    u32 initEachResTable(ResTable *, const Something *);
+    u32 initEachResTable(ResTable *, const char* const *);
 
     void mount(char *);
 

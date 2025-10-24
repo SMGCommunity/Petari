@@ -55,21 +55,21 @@ public:
     void exeWaitCometWarning();
     void exeDisappearCometWarning();
 
-    s32 mSelectedScenarioNo;                // 0x24
-    u32 _24;
-    u8 _28;
-    TMtx34f mEffectHostMtx;                 // 0x2C
-    ScenarioSelectStar** mStars;            // 0x5C
-    MultiSceneActor* mScenarioSky;          // 0x60
-    EffectSystem* mEffectSystem;            // 0x64
-    const CameraContext* mCameraContext;    // 0x68
-    TVec2f mNewTextFollowPos;               // 0x6C
-    TVec2f mNewGreenTextFollowPos;          // 0x74
-    TVec2f mQuestionPane[2];                // 0x7C
-    TVec2f mStarTopFollowPos;               // 0x8C
-    BackButton* mBackButton;                // 0x94
-    TVec2f mMarioIconFollowPos;             // 0x98
-    const char* _A0;
-    u32 _A4;
-    s32 _A8;
+    /* 0x20 */ s32 mSelectedScenarioNo;
+    /* 0x24 */ u32 _24;
+    /* 0x28 */ bool _28;
+    /* 0x2C */ TMtx34f mEffectHostMtx;
+    /* 0x5C */ ScenarioSelectStar** mStar;
+    /* 0x60 */ MultiSceneActor* mScenarioSky;
+    /* 0x64 */ EffectSystem* mEffectSystem;
+    /* 0x68 */ const CameraContext* mCameraContext;
+    /* 0x6C */ TVec2f mNewTextFollowPos;
+    /* 0x74 */ TVec2f mNewGreenTextFollowPos;
+    /* 0x7C */ TVec2f mQuestionPane[2];
+    /* 0x8C */ TVec2f mStarTopFollowPos;
+    /* 0x94 */ BackButton* mBackButton;
+    /* 0x98 */ TVec2f mMarioPaneFollowPos;
+    /* 0xA0 */ const char* mMarioPaneName;
+    /* 0xA4 */ u32 _A4;
+    /* 0xA8 */ s32 _A8;
 };

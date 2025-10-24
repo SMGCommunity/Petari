@@ -27,6 +27,10 @@ void LavaShellTower::init(const JMapInfoIter &rIter) {
     makeActorAppeared();
 }
 
+void LavaShellTower::exeWait() {
+    
+}
+
 void LavaShellTower::exeDemo() {
     if (MR::isFirstStep(this)) {
         MR::shakeCameraInfinity(this, 0.1f, 2.2f);
@@ -35,21 +39,14 @@ void LavaShellTower::exeDemo() {
 
     MR::startSystemLevelSE("SE_DM_LV_SHELL_TOWER", -1, -1);
     MR::tryRumblePadStrong(this, 0);
+
     if (MR::isGreaterStep(this, 1) && MR::isDemoLastStep()) {
         MR::stopShakingCamera(this);
         setNerve(&NrvLavaShellTower::HostTypeDone::sInstance);
     }
 }
 
-void LavaShellTower::exeWait() {
-
-}
-
 void LavaShellTower::exeDone() {
-    
-}
-
-LavaShellTower::~LavaShellTower() {
     
 }
 

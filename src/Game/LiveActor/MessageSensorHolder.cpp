@@ -1,8 +1,10 @@
 #include "Game/LiveActor/MessageSensorHolder.hpp"
 #include "Game/Util.hpp"
 
-MessageSensorHolder::MessageSensorHolder(const char *pName) : LiveActor(pName) {
-
+MessageSensorHolder::MessageSensorHolder(const char *pName) :
+    LiveActor(pName)
+{
+    
 }
 
 void MessageSensorHolder::init(const JMapInfoIter &rIter) {
@@ -10,8 +12,4 @@ void MessageSensorHolder::init(const JMapInfoIter &rIter) {
     MR::addBodyMessageSensor(this, ATYPE_MESSAGE_SENSOR);
     MR::invalidateClipping(this);
     makeActorAppeared();
-}
-
-MessageSensorHolder::~MessageSensorHolder() {
-    
 }

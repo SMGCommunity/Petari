@@ -10,6 +10,10 @@
 #include "Game/Util/SystemUtil.hpp"
 #include "Game/Util/TriggerChecker.hpp"
 
+namespace {
+    static const s32 sPressABAppearFrame = 25;
+};
+
 namespace TitleSequenceProductSub {
     LogoLayout::LogoLayout() :
         SimpleLayout("ロゴ", "TitleLogo", 2, -1)
@@ -108,7 +112,7 @@ void TitleSequenceProduct::exeLogoWait() {
         MR::emitEffect(mLogoLayout, "TitleLogoLightG");
     }
 
-    if (MR::isStep(this, 25)) {
+    if (MR::isStep(this, sPressABAppearFrame)) {
         setNerve(&TitleSequenceProductLogoDisplay::sInstance);
     }
 }

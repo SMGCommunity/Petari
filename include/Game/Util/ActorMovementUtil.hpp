@@ -1,15 +1,11 @@
 #pragma once
 
-#include <revolution.h>
-#include "JSystem/JGeometry/TVec.hpp"
-#include "JSystem/JGeometry/TMatrix.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
+#include <JSystem/JGeometry/TVec.hpp>
+#include <revolution/types.h>
 
-class LiveActor;
 class HitSensor;
-
-namespace {
-    void calcRotate(LiveActor *, const TVec3f &, f32);
-};
+class LiveActor;
 
 namespace MR {
     f32 calcDistance(const HitSensor *, const HitSensor *, TVec3f *);

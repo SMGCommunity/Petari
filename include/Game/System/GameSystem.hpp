@@ -14,10 +14,6 @@ class HomeButtonLayout;
 class HomeButtonStateNotifier;
 class SystemWipeHolder;
 
-#define GX_FIFO_SIZE 0x80000
-
-#define INIT_AUDIO_KEY "オーディオ初期化" // "Audio Initialization"
-
 #ifdef __MWERKS__
 void main(void);
 #endif

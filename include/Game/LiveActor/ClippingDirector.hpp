@@ -1,20 +1,18 @@
 #pragma once
 
-#include <revolution.h>
 #include "Game/NameObj/NameObj.hpp"
-#include "Game/LiveActor/ClippingJudge.hpp"
-#include "Game/LiveActor/ClippingActorHolder.hpp"
-#include "Game/LiveActor/ClippingGroupHolder.hpp"
-#include "Game/LiveActor/LodCtrl.hpp"
-#include "Game/Util.hpp"
+#include <revolution/types.h>
 
+class ClippingActorHolder;
+class ClippingGroupHolder;
+class ClippingJudge;
 class LiveActor;
+class LodCtrl;
 
 class ClippingDirector : public NameObj {
 public:
     ClippingDirector();
 
-    virtual ~ClippingDirector();
     virtual void movement();
 
     void endInitActorSystemInfo();

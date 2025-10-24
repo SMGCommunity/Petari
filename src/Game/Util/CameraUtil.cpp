@@ -17,6 +17,11 @@
 #include "revolution/gx/GXEnum.h"
 #include "revolution/mtx.h"
 
+namespace {
+    void calcNormalizedScreenPosToScreenPos(TVec3f *, const TVec3f &);
+    char* createRegisterName(const NameObj *, u32);
+};
+
 namespace MR {
     bool calcScreenPosition(TVec2f *pResult, const TVec3f &rViewMtxMult) {
         TVec3f normalizedScreenPos;

@@ -1,16 +1,15 @@
 #pragma once
 
-#include <revolution.h>
-#include <JSystem/JGeometry.hpp>
 #include "Game/System/NerveExecutor.hpp"
-#include "Game/Util/JMapInfo.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
+#include <JSystem/JGeometry/TVec.hpp>
+#include <revolution/types.h>
 
+class JMapInfoIter;
+class LiveActor;
+class ModelObj;
+class NPCActor;
 class NPCActorItem;
 class TalkMessageCtrl;
-class NPCActor;
-class ModelObj;
-class LiveActor;
 
 namespace MR {
     bool getNPCItemData(NPCActorItem *, s32);
@@ -54,23 +53,19 @@ class DemoStarter : public NerveExecutor {
 public:
     DemoStarter(NPCActor *);
 
-    virtual ~DemoStarter();
-
     bool update();
     void start();
+    void exeInit();
     void exeFade();
-    inline void exeTerm();
-    inline void exeWait();
-    inline void exeInit();
+    void exeWait();
+    void exeTerm();
 
-    NPCActor* mActor;           // 0x08
+    /* 0x8 */ NPCActor* mActor;
 };
 
 class TakeOutStar : public NerveExecutor {
 public:
     TakeOutStar(NPCActor *, const char *, const char *, const Nerve *);
-
-    virtual ~TakeOutStar();
 
     bool takeOut();
     bool isFirstStep();
@@ -79,24 +74,22 @@ public:
     void exeDemo();
     void exeTerm();
 
-    ModelObj* mStarModel;           // 0x08
-    NPCActor* mActor;               // 0x0C
-    const Nerve* mNerve;            // 0x10
-    const char* mActionName;        // 0x14
-    const char* mAnimName;          // 0x18
+    /* 0x08 */ ModelObj* mStarModel;
+    /* 0x0C */ NPCActor* mActor;
+    /* 0x10 */ const Nerve* mNerve;
+    /* 0x14 */ const char* mActionName;
+    /* 0x18 */ const char* mAnimName;
 };
 
 class FadeStarter : public NerveExecutor {
 public:
     FadeStarter(NPCActor *, s32);
 
-    virtual ~FadeStarter();
-
     bool update();
     void exeFade();
     void exeTerm();
 
-    NPCActor* mActor;           // 0x08
-    const Nerve* _C;
-    s32 _10;
+    /* 0x08 */ NPCActor* mActor;
+    /* 0x0C */ const Nerve* _C;
+    /* 0x10 */ s32 _10;
 };
