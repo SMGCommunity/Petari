@@ -8,8 +8,6 @@ class FindingLuigiEventScheduler {
 public:
     FindingLuigiEventScheduler();
 
-    inline bool isLuigiRescued();
-
     void initAfterResourceLoaded();
     void setStateHiding();
     void getHidingGalaxyNameAndStarId(const char **, s32 *) const;
@@ -21,12 +19,11 @@ public:
     void writeSendSize();
     void clearLostAndFoundCount();
     void syncWithGameEventFlag();
-    int calcPowerStarIndexLuigiHas() const;
-    bool isState(unsigned long) const;
+    s32 calcPowerStarIndexLuigiHas() const;
+    bool isState(u32) const;
     void setStateReturnAstroGalaxy(int);
     void update(const GalaxyMoveArgument&);
     void updateOnStageResult(const char *, s32);
-    
 
     /* 0x00 */ const char* mLuigiLostStageName;
     /* 0x04 */ s32 mLuigiLostStarID;
