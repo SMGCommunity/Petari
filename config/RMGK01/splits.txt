@@ -8742,16 +8742,17 @@ Game/System/ScenarioProgressTestRun.cpp:
 
 Game/System/SpinDriverPathStorage.cpp:
 	.text       start:0x803BA62C end:0x803BB49C
-	.data       start:0x805E0040 end:0x805E00A8
+	.data       start:0x805E0040 end:0x805E0078
 	.sdata2     start:0x806C14F8 end:0x806C1510
 
 Game/System/StageResultSequenceChecker.cpp:
 	.text       start:0x803BB49C end:0x803BB7BC
+	.data       start:0x805E0078 end:0x805E0090
 
 Game/System/StarPieceAlmsStorage.cpp:
 	.text       start:0x803BB7BC end:0x803BB954
 	.rodata     start:0x8053D8D0 end:0x8053D910
-	.data       start:0x805E00A8 end:0x805E00E0
+	.data       start:0x805E0090 end:0x805E00E0
 
 Game/System/StorySequenceExecutor.cpp:
 	.text       start:0x803BB954 end:0x803BD404
