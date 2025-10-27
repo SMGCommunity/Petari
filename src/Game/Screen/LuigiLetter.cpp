@@ -82,7 +82,7 @@ void LuigiLetter::exeWait() {
         mAButtonIcon->openWithoutMessage();
     }
 
-    if (mAButtonIcon->isWait() && MR::testCorePadTriggerA(0)) {
+    if (mAButtonIcon->isWait() && MR::testCorePadButtonA(0)) {
         MR::startSystemSE("SE_SY_TALK_OK", -1, -1);
         setNerve(&NrvLuigiLetter::HostTypeNrvEnd::sInstance);
     }
