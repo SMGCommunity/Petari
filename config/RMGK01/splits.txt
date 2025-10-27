@@ -6264,11 +6264,12 @@ Game/NPC/PenguinStudent.cpp:
 
 Game/NPC/PowerStarEventKeeper.cpp:
 	.text       start:0x8027F284 end:0x8027F8CC
+	.data       start:0x805B1E40 end:0x805B1E50
 
 Game/NPC/Rabbit.cpp:
 	.text       start:0x8027F8CC end:0x8028110C
 	.ctors      start:0x8052EFCC end:0x8052EFD0
-	.data       start:0x805B1E40 end:0x805B2180
+	.data       start:0x805B1E50 end:0x805B2180
 	.sdata      start:0x806B2128 end:0x806B2160
 	.sbss       start:0x806B5E88 end:0x806B5EC8
 	.sdata2     start:0x806BED78 end:0x806BEDE8
@@ -6474,24 +6475,26 @@ Game/NPC/TrickRabbitSnowCollect.cpp:
 Game/NPC/TrickRabbitSnow.cpp:
 	.text       start:0x802989EC end:0x80299D40
 	.ctors      start:0x8052F038 end:0x8052F03C
-	.data       start:0x805B5DF0 end:0x805B60D0
+	.data       start:0x805B5DF0 end:0x805B6098
 	.sdata      start:0x806B21B8 end:0x806B21C0
 	.sbss       start:0x806B61E0 end:0x806B6208
 	.sdata2     start:0x806BF238 end:0x806BF290
 
 Game/NPC/TrickRabbitUtil.cpp:
 	.text       start:0x80299D40 end:0x80299DD4
+	.data       start:0x805B6098 end:0x805B60B8
 	.sdata2     start:0x806BF290 end:0x806BF2A0
 
 Game/NPC/CometEventExecutorTimeLimit.cpp:
 	.text       start:0x80299DD4 end:0x8029A07C
 	.ctors      start:0x8052F03C end:0x8052F040
-	.data       start:0x805B60D0 end:0x805B61E8
+	.data       start:0x805B60B8 end:0x805B6158
 	.sbss       start:0x806B6208 end:0x806B6210
 
 Game/NPC/CometEventKeeper.cpp:
 	.text       start:0x8029A07C end:0x8029A300
-	.rodata     start:0x80539848 end:0x805398D0
+	.rodata     start:0x80539848 end:0x805398B8
+	.data       start:0x805B6158 end:0x805B61E8
 	.sdata      start:0x806B21C0 end:0x806B21C8
 
 Game/NPC/EventDirector.cpp:
@@ -6531,6 +6534,7 @@ Game/NPC/StageStateKeeper.cpp:
 Game/NPC/TalkBalloon.cpp:
 	.text       start:0x8029D368 end:0x8029EB24
 	.ctors      start:0x8052F044 end:0x8052F048
+	.rodata     start:0x805398B8 end:0x805398C0
 	.data       start:0x805B65A8 end:0x805B69D8
 	.sdata      start:0x806B21E0 end:0x806B21E8
 	.sbss       start:0x806B6220 end:0x806B6240
@@ -6539,6 +6543,7 @@ Game/NPC/TalkBalloon.cpp:
 Game/NPC/TalkDirector.cpp:
 	.text       start:0x8029EB24 end:0x802A0400
 	.ctors      start:0x8052F048 end:0x8052F04C
+	.rodata     start:0x805398C0 end:0x805398D0
 	.data       start:0x805B69D8 end:0x805B6A80
 	.sbss       start:0x806B6240 end:0x806B6258
 	.sdata2     start:0x806BF328 end:0x806BF338
