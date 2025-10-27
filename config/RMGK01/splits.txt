@@ -8558,14 +8558,16 @@ Game/System/ShapePacketUserData.cpp:
 
 Game/System/StarPointerOnOffController.cpp:
 	.text       start:0x803AA288 end:0x803AB42C
-	.data       start:0x805DBFC0 end:0x805DD650
+	.data       start:0x805DBFC0 end:0x805DC050
 
 Game/System/StationedArchiveLoader.cpp:
 	.text       start:0x803AB42C end:0x803AB6B0
+	.data       start:0x805DC050 end:0x805DC060
 
 Game/System/StationedFileInfo.cpp:
 	.text       start:0x803AB6B0 end:0x803AB6BC
 	.rodata     start:0x8053BBA8 end:0x8053C4A0
+	.data       start:0x805DC060 end:0x805DD650
 
 Game/System/WPad.cpp:
 	.text       start:0x803AB6BC end:0x803ABD30
@@ -8601,12 +8603,12 @@ Game/System/WPadPointer.cpp:
 
 Game/System/WPadRumble.cpp:
 	.text       start:0x803AD6D4 end:0x803ADD4C
-	.data       start:0x805DD650 end:0x805DD650
+	.data       start:0x805DD650 end:0x805DD660
 	.sbss       start:0x806B6F28 end:0x806B6F30
 
 Game/System/WPadRumbleData.cpp:
 	.text       start:0x803ADD4C end:0x803ADE0C
-	.data       start:0x805DD650 end:0x805DE170
+	.data       start:0x805DD660 end:0x805DE170
 
 Game/System/WPadStick.cpp:
 	.text       start:0x803ADE0C end:0x803AE034

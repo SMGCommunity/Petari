@@ -1,12 +1,12 @@
 #pragma once
 
-#include <revolution.h>
+#include <revolution/types.h>
 
 namespace MR {
     struct StationedFileInfo {
-        s32 mHeapType;              // 0x0
-        s32 mLoadType;              // 0x4
-        const char* mArchive;       // 0x8
+        /* 0x0 */ s32 mHeapType;
+        /* 0x4 */ s32 mLoadType;
+        /* 0x8 */ const char* mArchive;
     };
 
     const StationedFileInfo* getStationedFileInfoTable();

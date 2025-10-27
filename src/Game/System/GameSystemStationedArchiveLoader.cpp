@@ -3,6 +3,7 @@
 #include "Game/System/GameSystemStationedArchiveLoader.hpp"
 #include "Game/System/HeapMemoryWatcher.hpp"
 #include "Game/System/ResourceHolder.hpp"
+#include "Game/System/StationedFileInfo.hpp"
 #include "Game/Util/FileUtil.hpp"
 #include "Game/Util/Functor.hpp"
 #include "Game/Util/MemoryUtil.hpp"
