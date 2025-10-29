@@ -10,6 +10,8 @@ namespace nw4r {
     };
 };
 
+class LayoutPaneCtrl;
+
 class LayoutManager {
 public:
     LayoutManager(const char *, bool, u32, u32);
@@ -19,6 +21,8 @@ public:
     void draw() const;
 
     nw4r::lyt::AnimTransform* getAnimTransform(const char *) const;
+    void bindPaneCtrlAnim(LayoutPaneCtrl* pPaneCtrl, nw4r::lyt::AnimTransform*);
+    void unbindPaneCtrlAnim(LayoutPaneCtrl*, nw4r::lyt::AnimTransform*);
     nw4r::lyt::Pane* getPane(const char *) const;
 
     u32 _0;
