@@ -2137,7 +2137,7 @@ config.libs = [
         "System",
         [
             Object(NonMatching, "Game/System/AlreadyDoneFlagInGalaxy.cpp"),
-            Object(NonMatching, "Game/System/ArchiveHolder.cpp"),
+            Object(Matching, "Game/System/ArchiveHolder.cpp"),
             Object(NonMatching, "Game/System/AudSystemWrapper.cpp"),
             Object(NonMatching, "Game/System/BinaryDataChunkHolder.cpp"),
             Object(NonMatching, "Game/System/BinaryDataContentAccessor.cpp"),
