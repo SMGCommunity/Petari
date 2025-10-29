@@ -62,7 +62,7 @@ void PeachLetter::exeWait() {
         mAButtonIcon->openWithoutMessage();
     }
 
-    if (mAButtonIcon->isWait() && MR::testCorePadTriggerA(0)) {
+    if (mAButtonIcon->isWait() && MR::testCorePadTriggerA(WPAD_CHAN0)) {
         MR::startSystemSE("SE_SY_TALK_OK", -1, -1);
         setNerve(&NrvPeachLetter::PeachLetterNrvEnd::sInstance);
     }

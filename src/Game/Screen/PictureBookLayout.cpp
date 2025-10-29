@@ -717,9 +717,9 @@ void PictureBookLayout::exeWaitWithText() {
         setNerve(&NrvPictureBookLayout::PictureBookLayoutNrvFadeOutText::sInstance);
     }
     else {
-        bool isTriggerNextPage = MR::testCorePadTriggerA(0)
-            || MR::testCorePadTriggerRight(0)
-            || MR::testSubPadStickTriggerRight(0);
+        bool isTriggerNextPage = MR::testCorePadTriggerA(WPAD_CHAN0)
+            || MR::testCorePadTriggerRight(WPAD_CHAN0)
+            || MR::testSubPadStickTriggerRight(WPAD_CHAN0);
 
         if (isTriggerNextPage) {
             MR::startSystemSE("SE_SY_TALK_FOCUS_ITEM", -1, -1);
@@ -739,8 +739,8 @@ void PictureBookLayout::exeWaitWithText() {
             setNerve(&NrvPictureBookLayout::PictureBookLayoutNrvFadeOutText::sInstance);
         }
         else {
-            bool isTriggerPrevPage = MR::testCorePadTriggerLeft(0)
-                || MR::testSubPadStickTriggerLeft(0);
+            bool isTriggerPrevPage = MR::testCorePadTriggerLeft(WPAD_CHAN0)
+                || MR::testSubPadStickTriggerLeft(WPAD_CHAN0);
 
             if (isTriggerPrevPage) {
                 if (mChapterMin < mChapterNo || mPageNo > 0 || mTextIndex > 0) {

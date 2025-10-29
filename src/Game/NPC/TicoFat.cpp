@@ -330,7 +330,7 @@ void TicoFat::control() {
 
         if (_178 > 0) {
             if (MR::isIntervalStep(this, _1F0)) {
-                if (MR::testCorePadButtonB(0)) {
+                if (MR::testCorePadButtonB(WPAD_CHAN0)) {
                     if (!MR::isDemoActive() && !isNerve(&NrvTicoFat::TicoFatNrvReaction::sInstance)) {
                         if (_1E0 && MR::getStarPieceNum() > 0) {
                             shootStarPiece();
@@ -967,7 +967,7 @@ void TicoFat::exeInfo() {
         appearInformation();
     }
 
-    if (MR::testCorePadTriggerA(0)) {
+    if (MR::testCorePadTriggerA(WPAD_CHAN0)) {
         MR::startSystemSE("SE_SY_TALK_OK", -1, -1);
         MR::disappearInformationMessage();
         setNerve(&NrvTicoFat::TicoFatNrvAfter::sInstance);

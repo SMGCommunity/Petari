@@ -377,7 +377,7 @@ bool ScenarioSelectLayout::tryCancel() {
         return true;
     }
 
-    if (MR::testCorePadTriggerB(0)) {
+    if (MR::testCorePadTriggerB(WPAD_CHAN0)) {
         MR::startSystemSE("SE_SY_GALAXY_DECIDE_CANCEL", -1, -1);
         mBackButton->disappear();
         setNerve(&NrvScenarioSelectLayout::ScenarioSelectLayoutNrvCancel::sInstance);

@@ -213,62 +213,62 @@ namespace MR {
     }
 
     bool testSystemPadTriggerDecide() {
-        return testCorePadTriggerA(0) != false;
+        return testCorePadTriggerA(WPAD_CHAN0) != false;
     }
 
     bool testSystemTriggerA() {
-        return testCorePadTriggerA(0) != false;
+        return testCorePadTriggerA(WPAD_CHAN0) != false;
     }
 
     bool testSystemTriggerB() {
-        return testCorePadTriggerB(0) != false;
+        return testCorePadTriggerB(WPAD_CHAN0) != false;
     }
 
     bool testDPDMenuPadDecideTrigger() {
-        return testCorePadTriggerA(0);
+        return testCorePadTriggerA(WPAD_CHAN0);
     }
 
     bool testFpViewStartTrigger() {
-        return testCorePadTriggerUp(0);
+        return testCorePadTriggerUp(WPAD_CHAN0);
     }
 
     bool testFpViewOutTrigger() {
-        return testCorePadTriggerDown(0) || testCorePadTriggerA(0);
+        return testCorePadTriggerDown(WPAD_CHAN0) || testCorePadTriggerA(WPAD_CHAN0);
     }
 
     // getPlayerStickX
     // getPlayerStickY
 
     bool getPlayerTriggerA() {
-        return testCorePadTriggerA(0);
+        return testCorePadTriggerA(WPAD_CHAN0);
     }
 
     bool getPlayerTriggerB() {
-        return testCorePadTriggerB(0);
+        return testCorePadTriggerB(WPAD_CHAN0);
     }
 
     bool getPlayerTriggerZ() {
-        return testSubPadTriggerZ(0);
+        return testSubPadTriggerZ(WPAD_CHAN0);
     }
 
     bool getPlayerTriggerC() {
-        return testSubPadTriggerC(0);
+        return testSubPadTriggerC(WPAD_CHAN0);
     }
 
     bool getPlayerLevelA() {
-        return testCorePadButtonA(0);
+        return testCorePadButtonA(WPAD_CHAN0);
     }
 
     bool getPlayerLevelB() {
-        return testCorePadButtonB(0);
+        return testCorePadButtonB(WPAD_CHAN0);
     }
 
     bool getPlayerLevelZ() {
-        return testSubPadButtonZ(0);
+        return testSubPadButtonZ(WPAD_CHAN0);
     }
 
     bool getPlayerLevelC() {
-        return testSubPadButtonC(0);
+        return testSubPadButtonC(WPAD_CHAN0);
     }
 
     bool isGamePadStickOperated(s32 channel) {

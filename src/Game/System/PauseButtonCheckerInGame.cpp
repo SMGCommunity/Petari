@@ -13,14 +13,14 @@ PauseButtonCheckerInGame::PauseButtonCheckerInGame() :
 }
 
 void PauseButtonCheckerInGame::update() {
-    if (MR::testCorePadButtonPlus(0)) {
+    if (MR::testCorePadButtonPlus(WPAD_CHAN0)) {
         mPlusHoldFrame++;
     }
     else {
         mPlusHoldFrame = 0;
     }
 
-    if (MR::testCorePadButtonMinus(0)) {
+    if (MR::testCorePadButtonMinus(WPAD_CHAN0)) {
         mMinusHoldFrame++;
     }
     else {
@@ -37,5 +37,5 @@ bool PauseButtonCheckerInGame::isPermitToMinusPause() const {
 }
 
 bool PauseButtonCheckerInGame::isPermitToPause() const {
-    return !MR::isOperatingWPad(0);
+    return !MR::isOperatingWPad(WPAD_CHAN0);
 }

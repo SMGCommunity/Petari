@@ -105,7 +105,7 @@ void InformationObserver::exeDisp() {
         mDisplayFrame--;
     }
 
-    if (!MR::testCorePadTriggerA(0) || mDisplayFrame >= 0) {
+    if (!MR::testCorePadTriggerA(WPAD_CHAN0) || mDisplayFrame >= 0) {
         return;
     }
 

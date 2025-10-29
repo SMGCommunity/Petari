@@ -144,7 +144,7 @@ void WaterPressureBullet::exeFly() {
         JMAVECScaleAdd(&mGravity, &mVelocity, &mVelocity, 0.40000001f);
     }
 
-    if (MR::isPadSwing(0) && mHostActor != nullptr && !_B2) {
+    if (MR::isPadSwing(WPAD_CHAN0) && mHostActor != nullptr && !_B2) {
         MR::startSound(mHostActor, "SE_PV_TWIST_START", -1, -1);
         MR::startSound(mHostActor, "SE_PM_SPIN_ATTACK", -1, -1);
         MR::tryRumblePadMiddle(this, 0);

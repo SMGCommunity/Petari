@@ -278,7 +278,7 @@ bool MoviePlayingSequence::trySkip() {
         return false;
     }
 
-    if (!MR::testCorePadButtonA(0)) {
+    if (!MR::testCorePadButtonA(WPAD_CHAN0)) {
         return false;
     }
 

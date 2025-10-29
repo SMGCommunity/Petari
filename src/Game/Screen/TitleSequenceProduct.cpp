@@ -127,8 +127,8 @@ void TitleSequenceProduct::exeLogoDisplay() {
         MR::startAnim(mPressStartLayout, "Wait", 0);
     }
 
-    mAButtonChecker->update(MR::testCorePadButtonA(0));
-    mBButtonChecker->update(MR::testCorePadButtonB(0));
+    mAButtonChecker->update(MR::testCorePadButtonA(WPAD_CHAN0));
+    mBButtonChecker->update(MR::testCorePadButtonB(WPAD_CHAN0));
 
     if (mAButtonChecker->getLevel() && mBButtonChecker->getLevel()) {
         MR::stopStageBGM(75);
