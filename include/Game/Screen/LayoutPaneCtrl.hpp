@@ -30,12 +30,11 @@ public:
     J3DFrameCtrl* getFrameCtrl(u32) const;
     void recalcChildGlobalMtx(nw4r::lyt::Pane*);
 
-private:
     /* 0x00 */ LayoutManager* mHost;
     /* 0x04 */ nw4r::lyt::Pane* mPane;
     /* 0x08 */ s32 mPaneIndex;
     /* 0x0C */ MR::AssignableArray<LayoutAnmPlayer*> mAnmPlayerArray;
-    /* 0x14 */ u32 _14;
-    /* 0x18 */ u32 _18;
+    /* 0x14 */ u32 mFollowType;
+    /* 0x18 */ const TVec2f* mFollowPos;
 };
 

@@ -8,8 +8,8 @@ LayoutPaneCtrl::LayoutPaneCtrl(LayoutManager* pHost, const char* pPaneName, u32 
     mPane(nullptr),
     mPaneIndex(-1),
     mAnmPlayerArray(animLayerNum),
-    _14(0),
-    _18(0)
+    mFollowType(0),
+    mFollowPos(nullptr)
 {
     mPane = mHost->getPane(pPaneName);
 
