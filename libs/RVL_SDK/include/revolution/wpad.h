@@ -8,6 +8,11 @@
 extern "C" {
 #endif
 
+#define WPAD_CHAN0 0
+#define WPAD_CHAN1 1
+#define WPAD_CHAN2 2
+#define WPAD_CHAN3 3
+
 #define WPAD_BUTTON_LEFT 0x0001
 #define WPAD_BUTTON_RIGHT 0x0002
 #define WPAD_BUTTON_DOWN 0x0004

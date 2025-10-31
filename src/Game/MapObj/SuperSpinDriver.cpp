@@ -23,13 +23,10 @@ bool SuperSpinDriver::tryForceCancel() {
 }
 
 bool SuperSpinDriver::tryShootStart() {
-    bool flag = false;
+    bool isSwingOrPointed = MR::isPadSwing(WPAD_CHAN0)
+        || MR::isPlayerPointedBy2POnTriggerButton();
 
-    if (MR::isPadSwing(0) || MR::isPlayerPointedBy2POnTriggerButton()) {
-        flag = true;
-    }
-
-    if (flag) {
+    if (isSwingOrPointed) {
         MR::deleteEffect(this, "SuperSpinDriverLight");
         setNerve(&NrvSuperSpinDriver::SuperSpinDriverNrvShootStart::sInstance);
         return true;
@@ -332,13 +329,10 @@ void SuperSpinDriver::calcShootMotionTime() {
 
 /*
 void SuperSpinDriver::addSwingSignRotateY() {
-    bool flag = false;
+    bool isSwingOrPointed = MR::isPadSwing(WPAD_CHAN0)
+        || MR::isPlayerPointedBy2POnTriggerButton();
 
-    if (MR::isPadSwing(0) || MR::isPlayerPointedBy2POnTriggerButton()) {
-        flag = true;
-    }
-
-    if (flag) {
+    if (isSwingOrPointed) {
         f32 v4 = MR::add(_144, 0.1f);
         _144 += 0.1f;
 

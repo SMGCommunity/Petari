@@ -142,7 +142,7 @@ void AstroDomeGalaxySelector::exeGalaxySelect() {
     if (MR::isFirstStep(this)) {
         pGSBackButton->appear();
     }
-    if (SphereSelectorFunction::isValidPointing() && MR::testCorePadTriggerB(0)) {
+    if (SphereSelectorFunction::isValidPointing() && MR::testCorePadTriggerB(WPAD_CHAN0)) {
             MR::startSystemSE("SE_SY_GALAXY_DECIDE_CANCEL", -1, -1);
             if (pGSBackButton->isAppearing()) {
                 pGSBackButton->kill();

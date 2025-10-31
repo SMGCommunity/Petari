@@ -234,7 +234,7 @@ bool SpinDriver::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiv
 }
 
 bool SpinDriver::tryStartShoot() {
-    bool isSwingOrPointed = MR::isPadSwing(0)
+    bool isSwingOrPointed = MR::isPadSwing(WPAD_CHAN0)
         || MR::isPlayerPointedBy2POnTriggerButton();
 
     if (isSwingOrPointed) {
@@ -316,7 +316,8 @@ void SpinDriver::exeNonActive() {
         MR::startBpk(this, "Wait");
     }
 
-    bool isSwingOrPointed = MR::isPadSwing(0) || MR::isPlayerPointedBy2POnTriggerButton();
+    bool isSwingOrPointed = MR::isPadSwing(WPAD_CHAN0)
+        || MR::isPlayerPointedBy2POnTriggerButton();
 
     if (isSwingOrPointed) {
         f32 v3 = _108;
@@ -357,7 +358,8 @@ void SpinDriver::exeWait() {
         MR::startBpk(this, "Wait");
     }
 
-    bool isSwingOrPointed = MR::isPadSwing(0) || MR::isPlayerPointedBy2POnTriggerButton();
+    bool isSwingOrPointed = MR::isPadSwing(WPAD_CHAN0)
+        || MR::isPlayerPointedBy2POnTriggerButton();
 
     if (isSwingOrPointed) {
         _108 += 0.050000001f;
@@ -520,7 +522,8 @@ bool SpinDriver::startBind(HitSensor *pSensor) {
         return false;
     }
 
-    bool isSwingOrPointed = MR::isPadSwing(0) || MR::isPlayerPointedBy2POnTriggerButton();
+    bool isSwingOrPointed = MR::isPadSwing(WPAD_CHAN0)
+        || MR::isPlayerPointedBy2POnTriggerButton();
 
     if (isSwingOrPointed) {
         if (MR::hasME()) {
@@ -694,7 +697,8 @@ bool SpinDriver::canBind(HitSensor *pSensor) const {
         return false;
     }
 
-    bool isSwingOrPointed = MR::isPadSwing(0) || MR::isPlayerPointedBy2POnTriggerButton();
+    bool isSwingOrPointed = MR::isPadSwing(WPAD_CHAN0)
+        || MR::isPlayerPointedBy2POnTriggerButton();
 
     if (isSwingOrPointed) {
         return true;

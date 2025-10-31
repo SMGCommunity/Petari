@@ -182,7 +182,7 @@ namespace nw4r {
 
         void Layout::BindAnimation(AnimTransform *pAnimTrans) {
             if (mpRootPane != nullptr) {
-                mpRootPane->BindAnimation(pAnimTrans, true, false);
+                mpRootPane->BindAnimation(pAnimTrans, true);
             }
         }
 

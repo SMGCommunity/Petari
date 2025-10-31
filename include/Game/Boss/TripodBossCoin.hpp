@@ -1,22 +1,24 @@
 #pragma once
 
-#include "Game/LiveActor/LiveActor.hpp"
-#include "Game/MapObj/Coin.hpp"
+#include "Game/NameObj/NameObj.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
+
+class Coin;
+class Spine;
 
 class TripodBossCoin : public NameObj {
 public:
     TripodBossCoin(const char *);
 
-    virtual ~TripodBossCoin();
     virtual void init(const JMapInfoIter &);
     virtual void movement();
 
     void exeNonActive();
     void exeActive();
-    void exeEnd() { }
+    void exeEnd();
 
-    Coin* mCoin;        // 0xC
-    Spine* mSpine;      // 0x10
-    TPos3f _14;
-    s32 _44;
+    /* 0x0C */ Coin* mCoin;
+    /* 0x10 */ Spine* mSpine;
+    /* 0x14 */ TPos3f _14;
+    /* 0x44 */ s32 _44;
 };
