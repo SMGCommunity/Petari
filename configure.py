@@ -2146,7 +2146,7 @@ config.libs = [
             Object(NonMatching, "Game/System/DrawBufferGroup.cpp"),
             Object(NonMatching, "Game/System/DrawBufferHolder.cpp"),
             Object(NonMatching, "Game/System/DrawSyncManager.cpp"),
-            Object(NonMatching, "Game/System/FileHolder.cpp"),
+            Object(Matching, "Game/System/FileHolder.cpp"),
             Object(NonMatching, "Game/System/FileLoader.cpp"),
             Object(Matching, "Game/System/FileLoaderThread.cpp"),
             Object(Matching, "Game/System/FileRipper.cpp"),

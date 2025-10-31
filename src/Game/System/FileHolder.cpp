@@ -1,82 +1,96 @@
 #include "Game/System/FileHolder.hpp"
+#include "Game/Util.hpp"
 
-FileHolderFileEntry::FileHolderFileEntry(const char* pName, JKRHeap* pHeap, void* pData) {
-    mEntryNum = DVDConvertPathToEntrynum(pName);
-    mContext = 0;
-    mHeap = pHeap;
-    mState = 0;
-    mContextSet = true;
+#define FILE_HOLDER_STATE_NONE      0
+#define FILE_HOLDER_STATE_READING   1
+#define FILE_HOLDER_STATE_DONE      2
 
+FileHolderFileEntry::FileHolderFileEntry(const char *pFilePath, JKRHeap *pHeap, void *pContext) :
+    mEntryNum(DVDConvertPathToEntrynum(pFilePath)),
+    mContext(nullptr),
+    mHeap(pHeap),
+    mState(FILE_HOLDER_STATE_NONE),
+    mContextSet(true)
+{
     OSInitMessageQueue(&mQueue, &mMessage, 1);
 
-    if (pData) {
+    if (pContext) {
         mContextSet = false;
-        mContext = pData;
+        mContext = pContext;
     }
 }
 
 FileHolderFileEntry::~FileHolderFileEntry() {
-    if (mContextSet) {
-        if (mContext) {
-            delete (u8*)mContext;
-        }
+    if (mContextSet && (mContext != nullptr)) {
+        delete (u8*)mContext;
     }
 }
 
 void FileHolderFileEntry::waitReadDone() {
-    if (mState != 2) {
+    if (mState != FILE_HOLDER_STATE_DONE) {
         OSMessage msg;
         OSReceiveMessage(&mQueue, &msg, OS_MESSAGE_BLOCK);
-        mState = 2;
+        mState = FILE_HOLDER_STATE_DONE;
     }
 }
 
-void FileHolderFileEntry::setContext(void* pData, JKRHeap* pHeap) {
-    mContext = pData;
+void FileHolderFileEntry::setContext(void *pContext, JKRHeap *pHeap) {
+    mContext = pContext;
     mHeap = pHeap;
 
     OSSendMessage(&mQueue, nullptr, OS_MESSAGE_NOBLOCK);
-    mState = 1;
+    mState = FILE_HOLDER_STATE_READING;
 }
 
 FileHolder::FileHolder() {
-    mArray.init(0x180);
+    mEntries.init(0x180);
 }
 
-FileHolderFileEntry* FileHolder::add(const char* pName, JKRHeap* pHeap, void* pData) {
-    FileHolderFileEntry* pEntry = new (pHeap, 0) FileHolderFileEntry(pName, pHeap, pData);
-
-    mArray.push_back(pEntry);
-
+FileHolderFileEntry *FileHolder::add(const char *pFilePath, JKRHeap *pHeap, void *pContext) {
+    FileHolderFileEntry *pEntry = new(pHeap, 0) FileHolderFileEntry(pFilePath, pHeap, pContext);
+    mEntries.push_back(pEntry);
     return pEntry;
 }
 
-bool FileHolder::isExist(const char* pFile) const {
-    return findEntry(pFile);
+bool FileHolder::isExist(const char *pFilePath) const {
+    return findEntry(pFilePath);
 }
 
-void* FileHolder::getContext(const char* pFile) const {
-    return findEntry(pFile)->mContext;
+void *FileHolder::getContext(const char *pFilePath) const {
+    return findEntry(pFilePath)->mContext;
 }
 
-// FileHolder::removeIfIsEqualHeap
-
-FileHolderFileEntry** FileHolder::removeFile(const char* pFile) {
-    FileHolderFileEntry** p;
-    FileHolderFileEntry* pEntry = findEntry(pFile);
-
-    for (p = mArray.begin(); p != mArray.end() && *p != pEntry; p++) {
+void FileHolder::removeIfIsEqualHeap(JKRHeap *pHeap) {
+    if (pHeap == nullptr) {
+        return;
     }
 
-    delete *p;
-
-    return mArray.erase(p);
+    for (FileHolderFileEntry **i = mEntries.begin(); i != mEntries.end(); ) {
+        if ((*i)->mHeap == pHeap
+            || MR::getHeapNapa((*i)->mHeap) == pHeap
+            || MR::getHeapGDDR3((*i)->mHeap) == pHeap)
+        {
+            delete *i;
+            mEntries.erase(i);
+        } else {
+            i++;
+        }
+    }
 }
 
-FileHolderFileEntry* FileHolder::findEntry(const char* pFile) const {
-    s32 entryNum = DVDConvertPathToEntrynum(pFile);
+FileHolderFileEntry **FileHolder::removeFile(const char *pFilePath) {
+    FileHolderFileEntry **p;
+    FileHolderFileEntry *pEntry = findEntry(pFilePath);
 
-    for (FileHolderFileEntry* const* pEntry = mArray.begin(); pEntry != mArray.end(); pEntry++) {
+    for (p = mEntries.begin(); p != mEntries.end() && *p != pEntry; p++);
+    delete *p;
+
+    return mEntries.erase(p);
+}
+
+FileHolderFileEntry *FileHolder::findEntry(const char *pFilePath) const {
+    s32 entryNum = DVDConvertPathToEntrynum(pFilePath);
+    for (FileHolderFileEntry * const *pEntry = mEntries.begin(); pEntry != mEntries.end(); pEntry++) {
         if (entryNum == (*pEntry)->mEntryNum) {
             return *pEntry;
         }

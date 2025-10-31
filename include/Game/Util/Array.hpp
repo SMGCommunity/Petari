@@ -171,7 +171,7 @@ namespace MR {
         /// @brief Removes the value at the given position from the container.
         /// @param pIter The pointer to the position where the value should be removed.
         /// @return The pointer to the position of the removed value.
-        T::Item* erase(T::Item* pIter) NO_INLINE {
+        T::Item* erase(T::Item* pIter) {
             if (end() - pIter - 1 > 0) {
                 for (T::Item* p = pIter; p + 1 != end(); p++) {
                     *p = *(p + 1);
