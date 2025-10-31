@@ -1,7 +1,8 @@
 #pragma once
 
-#include <JSystem/JKernel/JKRMemArchive.hpp>
+#include "Game/Util/Array.hpp"
 #include <revolution/types.h>
+#include <JSystem/JKernel/JKRMemArchive.hpp>
 
 class ArchiveHolderArchiveEntry {
 public:
@@ -20,18 +21,6 @@ class ArchiveHolder {
 public:
     /// @brief Creates a new `ArchiveHolder`.
     ArchiveHolder();
-
-    /// @brief Gets the pointer to the first entry.
-    /// @return The pointer to the first entry.
-    ArchiveHolderArchiveEntry **first() const {
-        return mEntries;
-    }
-
-    /// @brief Gets the pointer to the last entry.
-    /// @return The pointer to the last entry.
-    ArchiveHolderArchiveEntry **last() const {
-        return &mEntries[mCurEntryNum];
-    }
 
     /// @brief Creates and adds a new archive entry.
     /// @param pData The data for the archive.
@@ -60,8 +49,6 @@ public:
     /// @return The pointer to the found entry, or `nullptr` if not found.
     ArchiveHolderArchiveEntry *findEntry(const char *) const;
 
-    /* 0x0 */ ArchiveHolderArchiveEntry **mEntries;
-    /* 0x4 */ s32 mMaxEntries;
-    /* 0x8 */ s32 mCurEntryNum;
+    /* 0x0 */ MR::Vector<MR::AssignableArray<ArchiveHolderArchiveEntry*> > mEntries;
     /* 0xC */ OSMutex mMutex;
 };

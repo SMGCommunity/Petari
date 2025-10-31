@@ -10,6 +10,7 @@ ArchiveHolderArchiveEntry::ArchiveHolderArchiveEntry(void *pData, JKRHeap *pHeap
     JKRMemArchive *archive = new(pHeap, 0) JKRMemArchive();
     archive->mountFixed(pData, JKR_MEM_BREAK_FLAG_0);
     mArchive = archive;
+
     s32 len = strlen(pArchiveName) + 1;
     mArchiveName = new(pHeap, 0) char[len];
     MR::copyString(mArchiveName, pArchiveName, len);
@@ -20,13 +21,8 @@ ArchiveHolderArchiveEntry::~ArchiveHolderArchiveEntry() {
     delete mArchiveName;
 }
 
-ArchiveHolder::ArchiveHolder() :
-    mEntries(nullptr),
-    mMaxEntries(0),
-    mCurEntryNum(0)
-{
-    mEntries = new ArchiveHolderArchiveEntry*[0x180];
-    mMaxEntries = 0x180;
+ArchiveHolder::ArchiveHolder() {
+    mEntries.init(0x180);
     OSInitMutex(&mMutex);
 }
 
@@ -34,9 +30,9 @@ ArchiveHolderArchiveEntry *ArchiveHolder::createAndAdd(void *pData, JKRHeap *pHe
     ArchiveHolderArchiveEntry *entry = new(pHeap, 0) ArchiveHolderArchiveEntry(pData, pHeap, pArchiveName);
     OSMutex *mutex = &mMutex;
     OSLockMutex(mutex);
-    s32 num = mCurEntryNum;
-    mCurEntryNum = num + 1;
-    mEntries[num] = entry;
+    
+    mEntries.push_back(entry);
+
     OSUnlockMutex(mutex);
     return entry;
 }
@@ -60,28 +56,22 @@ void ArchiveHolder::removeIfIsEqualHeap(JKRHeap *pHeap) {
         return;
     }
 
-    for (ArchiveHolderArchiveEntry **i = first(); i != last(); ) {
+    for (ArchiveHolderArchiveEntry **i = mEntries.begin(); i != mEntries.end(); ) {
         if ((*i)->mHeap == pHeap
             || MR::getHeapNapa((*i)->mHeap) == pHeap
             || MR::getHeapGDDR3((*i)->mHeap) == pHeap)
         {
             delete *i;
-
-            if (last() - i - 1 > 0) {
-                for (ArchiveHolderArchiveEntry **j = i; j + 1 != last(); j++) {
-                    *j = *(j + 1);
-                }
-            }
-
-            mCurEntryNum--;
+            mEntries.erase(i);
         } else {
             i++;
         }
     }
 }
 
+
 ArchiveHolderArchiveEntry *ArchiveHolder::findEntry(const char *pArchiveName) const {
-    for (ArchiveHolderArchiveEntry **i = first(); i != last(); i++) {
+    for (ArchiveHolderArchiveEntry * const *i = mEntries.begin(); i != mEntries.end(); i++) {
         if (MR::isEqualStringCase((*i)->mArchiveName, pArchiveName)) {
             return *i;
         }
