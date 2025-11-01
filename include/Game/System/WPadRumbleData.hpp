@@ -4,7 +4,7 @@
 
 struct RumblePattern {
     /* 0x00 */ const char* mName;
-    /* 0x04 */ u32 mFrame;
+    /* 0x04 */ s32 mFrame;
     /* 0x08 */ u8 mPattern[180];
     /* 0xBC */ u32 mHash;
 };

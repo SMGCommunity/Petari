@@ -1,5 +1,7 @@
 #pragma once
 
+#include <revolution/types.h>
+
 class WPad;
 struct RumblePattern;
 
@@ -9,8 +11,7 @@ public:
     void update();
     void setPattern(const void*, const RumblePattern&, u32, bool);
 
-private:
-    /* 0x00 */ const RumblePattern& _0;
+    /* 0x00 */ const RumblePattern* _0;
     /* 0x04 */ bool _4;
     /* 0x08 */ u32 _8;
     /* 0x0C */ s16 _C;
@@ -37,9 +38,12 @@ public:
     /* 0x04 */ WPad* mPad;
     /* 0x08 */ bool _8;
     /* 0x0C */ u32 _C;
-    /* 0x10 */ RumbleChannel _10[8];
+    /* 0x10 */ RumbleChannel mChannel[8];
     /* 0xB0 */ s32 _B0;
     /* 0xB4 */ s32 _B4;
     /* 0xB8 */ bool _B8;
     /* 0xBC */ s32 _BC;
+
+private:
+    static WPadRumble** sInstanceForCallback;
 };
