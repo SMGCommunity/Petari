@@ -52,10 +52,10 @@ public:
     /* 0x30 */ WPadInfoChecker* mInfoChecker;
     /* 0x34 */ bool _34;
     /* 0x35 */ bool mIsConnected;
-    /* 0x36 */ bool mIsSubConnected;
+    /* 0x36 */ bool mIsSubPadConnected;
 };
 
 namespace MR {
-    bool isDeviceFreeStyle(const KPADStatus* pStatus);
+    bool isDeviceFreeStyle(const KPADStatus*);
     void getPadDataForExceptionNoInit(u32, u32*, u32*);
 };
