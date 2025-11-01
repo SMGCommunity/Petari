@@ -1,7 +1,13 @@
+#include "Game/System/WPad.hpp"
 #include "Game/System/WPadInfoChecker.hpp"
 
-WPadInfoChecker::WPadInfoChecker(WPad *pPad) {
-    mPad = pPad;
+namespace {
+    static const s32 sCheckInfoInterval = 18000;
+};
+
+WPadInfoChecker::WPadInfoChecker(WPad *pPad) :
+    mPad(pPad)
+{
     reset();
 }
 
@@ -15,21 +21,22 @@ void WPadInfoChecker::successGetInfo() {
 
 void WPadInfoChecker::startCheck() {
     WPADGetInfoAsync(mPad->mChannel, &mPadInfo, WPad::getInfoCallback);
-    _1C = 0x4650;
+
+    mCheckInfoFrame = sCheckInfoInterval;
 }
 
 void WPadInfoChecker::reset() {
-    _1C = 0;
+    mCheckInfoFrame = 0;
     mBattery = -1;
 }
 
 void WPadInfoChecker::update() {
     if (mPad->mIsConnected) {
-        if (_1C <= 0) {
+        if (mCheckInfoFrame <= 0) {
             startCheck();
         }
         else {
-            _1C--;
+            mCheckInfoFrame--;
         }
     }
     else {
