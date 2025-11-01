@@ -8616,6 +8616,7 @@ Game/System/WPadRumble.cpp:
 Game/System/WPadRumbleData.cpp:
 	.text       start:0x803ADD4C end:0x803ADE0C
 	.data       start:0x805DD660 end:0x805DE170
+	.sdata      start:0x806B25B8 end:0x806B25C8
 
 Game/System/WPadStick.cpp:
 	.text       start:0x803ADE0C end:0x803AE034

@@ -2194,7 +2194,7 @@ config.libs = [
             Object(NonMatching, "Game/System/WPadLeaveWatcher.cpp"),
             Object(NonMatching, "Game/System/WPadPointer.cpp"),
             Object(NonMatching, "Game/System/WPadRumble.cpp"),
-            Object(NonMatching, "Game/System/WPadRumbleData.cpp"),
+            Object(Matching, "Game/System/WPadRumbleData.cpp"),
             Object(Matching, "Game/System/WPadStick.cpp"),
             Object(Matching, "Game/System/HomeButtonMenuWrapper.cpp"),
             Object(Matching, "Game/System/HomeButtonStateNotifier.cpp"),
