@@ -1,11 +1,11 @@
-#include "Game/Util/GamePadUtil.hpp"
 #include "Game/System/WPad.hpp"
 #include "Game/System/WPadAcceleration.hpp"
 #include "Game/System/WPadButton.hpp"
-#include "Game/System/WPadHolder.hpp"
 #include "Game/System/WPadHVSwing.hpp"
+#include "Game/System/WPadHolder.hpp"
 #include "Game/System/WPadPointer.hpp"
 #include "Game/System/WPadStick.hpp"
+#include "Game/Util/GamePadUtil.hpp"
 
 namespace MR {
     void getCorePadPointingPosBasedOnScreen(TVec2f* pPos, s32 channel) {
@@ -185,19 +185,19 @@ namespace MR {
     }
 
     bool testSubPadStickTriggerUp(s32 channel) {
-        return (MR::getWPad(channel)->mStick->_14 >> 0) & 1;
+        return (MR::getWPad(channel)->mStick->mTrigger & 1) != 0;
     }
 
     bool testSubPadStickTriggerDown(s32 channel) {
-        return (MR::getWPad(channel)->mStick->_14 >> 1) & 1;
+        return (MR::getWPad(channel)->mStick->mTrigger & 2) != 0;
     }
 
     bool testSubPadStickTriggerLeft(s32 channel) {
-        return (MR::getWPad(channel)->mStick->_14 >> 3) & 1;
+        return (MR::getWPad(channel)->mStick->mTrigger & 8) != 0;
     }
 
     bool testSubPadStickTriggerRight(s32 channel) {
-        return (MR::getWPad(channel)->mStick->_14 >> 2) & 1;
+        return (MR::getWPad(channel)->mStick->mTrigger & 4) != 0;
     }
 
     void getSubPadAcceleration(TVec3f* pAccel, s32 channel) {
