@@ -2,7 +2,7 @@
 #include "Game/NPC/TalkMessageCtrl.hpp"
 
 void TalkState::init(TalkMessageCtrl *pArg1, TalkBalloon *pArg2) {
-    this->_04 = pArg1;
-    this->_08 = pArg2;
-    this->mMessageID = this->_04->getMessageID();
+    _04 = pArg1;
+    _08 = pArg2;
+    mMessageID = _04->getMessageID();
 }
