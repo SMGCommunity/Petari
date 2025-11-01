@@ -24,7 +24,7 @@ class SysInfoWindow : public LayoutActor {
     };
 
     enum SysInfoType {
-        Type_AButton,
+        Type_Key,
         Type_Blocking,
         Type_YesNo,
     };

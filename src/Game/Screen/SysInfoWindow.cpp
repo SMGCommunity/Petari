@@ -23,7 +23,7 @@ namespace NrvSysInfoWindow {
 SysInfoWindow::SysInfoWindow(SysInfoWindowType windowType, SysInfoExecuteType executeType) :
     LayoutActor("システム用インフォメーションウィンドウ", true),
     mWindowType(windowType),
-    mType(Type_AButton),
+    mType(Type_Key),
     mYesNoSelector(nullptr),
     mIconAButton(nullptr),
     mTextParentPaneName(nullptr),
@@ -97,7 +97,7 @@ void SysInfoWindow::appear(const char* pMessageId, SysInfoType type, SysInfoText
     mType = type;
 
     switch (type) {
-    case Type_AButton:
+    case Type_Key:
     case Type_Blocking:
         if (mWindowType != WindowType_Mini) {
             MR::hidePaneRecursive(this, "Left");
@@ -135,7 +135,7 @@ void SysInfoWindow::appear(const char* pMessageId, SysInfoType type, SysInfoText
     appear();
 
     switch (type) {
-    case Type_AButton:
+    case Type_Key:
         mIconAButton->openWithoutMessage();
         break;
     case Type_Blocking:
@@ -206,7 +206,7 @@ void SysInfoWindow::exeWait() {
         MR::startPaneAnim(this, mWindowParentPaneName, pAnimName, 0);
     }
 
-    if (mType == Type_AButton) {
+    if (mType == Type_Key) {
         if (MR::testSystemPadTriggerDecide()) {
             MR::startSystemSE("SE_SY_TALK_OK", -1, -1);
             MR::startCSSound("CS_CLICK_CLOSE", 0, 0);
@@ -227,13 +227,13 @@ void SysInfoWindow::exeDisappear() {
         MR::startPaneAnim(this, mTextParentPaneName, pAnimName, 0);
         MR::startPaneAnim(this, mWindowParentPaneName, pAnimName, 0);
 
-        if (mType == Type_AButton) {
+        if (mType == Type_Key) {
             mIconAButton->term();
         }
     }
 
     if (MR::isPaneAnimStopped(this, mTextParentPaneName, 0)) {
-        if (mType == Type_AButton
+        if (mType == Type_Key
             || mType == Type_Blocking
             || mYesNoSelector != nullptr && !mYesNoSelector->_C)
         {

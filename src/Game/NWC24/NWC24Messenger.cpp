@@ -455,7 +455,7 @@ namespace NWC24MessengerSub {
             const char* pMessageId = "WC24_04";
 
             if (mWindow != nullptr) {
-                mWindow->appear(pMessageId, SysInfoWindow::Type_AButton, SysInfoWindow::TextPos_Center, SysInfoWindow::MessageType_System);
+                mWindow->appear(pMessageId, SysInfoWindow::Type_Key, SysInfoWindow::TextPos_Center, SysInfoWindow::MessageType_System);
             }
         }
 
@@ -516,7 +516,7 @@ namespace NWC24MessengerSub {
                 pMessageId = "WC24_09";
 
                 if (mWindow != nullptr) {
-                    mWindow->appear(pMessageId, SysInfoWindow::Type_AButton, SysInfoWindow::TextPos_Center, SysInfoWindow::MessageType_System);
+                    mWindow->appear(pMessageId, SysInfoWindow::Type_Key, SysInfoWindow::TextPos_Center, SysInfoWindow::MessageType_System);
                 }
                 break;
             case NWC24_ERR_NAND_CORRUPT:
@@ -526,14 +526,14 @@ namespace NWC24MessengerSub {
                 pMessageId = "WC24_08";
 
                 if (mWindow != nullptr) {
-                    mWindow->appear(pMessageId, SysInfoWindow::Type_AButton, SysInfoWindow::TextPos_Center, SysInfoWindow::MessageType_System);
+                    mWindow->appear(pMessageId, SysInfoWindow::Type_Key, SysInfoWindow::TextPos_Center, SysInfoWindow::MessageType_System);
                 }
                 break;
             default:
                 pMessageId = "WC24_10";
 
                 if (mWindow != nullptr) {
-                    mWindow->appear(pMessageId, SysInfoWindow::Type_AButton, SysInfoWindow::TextPos_Center, SysInfoWindow::MessageType_System);
+                    mWindow->appear(pMessageId, SysInfoWindow::Type_Key, SysInfoWindow::TextPos_Center, SysInfoWindow::MessageType_System);
                 }
                 break;
             }
@@ -560,14 +560,14 @@ namespace NWC24MessengerSub {
                 pMessageId = "WC24_10";
 
                 if (mWindow != nullptr) {
-                    mWindow->appear(pMessageId, SysInfoWindow::Type_AButton, SysInfoWindow::TextPos_Center, SysInfoWindow::MessageType_System);
+                    mWindow->appear(pMessageId, SysInfoWindow::Type_Key, SysInfoWindow::TextPos_Center, SysInfoWindow::MessageType_System);
                 }
                 break;
             default:
                 pMessageId = "WC24_09";
 
                 if (mWindow != nullptr) {
-                    mWindow->appear(pMessageId, SysInfoWindow::Type_AButton, SysInfoWindow::TextPos_Center, SysInfoWindow::MessageType_System);
+                    mWindow->appear(pMessageId, SysInfoWindow::Type_Key, SysInfoWindow::TextPos_Center, SysInfoWindow::MessageType_System);
                 }
                 break;
             }
@@ -588,14 +588,14 @@ namespace NWC24MessengerSub {
                 pMessageId = "WC24_10";
 
                 if (mWindow != nullptr) {
-                    mWindow->appear(pMessageId, SysInfoWindow::Type_AButton, SysInfoWindow::TextPos_Center, SysInfoWindow::MessageType_System);
+                    mWindow->appear(pMessageId, SysInfoWindow::Type_Key, SysInfoWindow::TextPos_Center, SysInfoWindow::MessageType_System);
                 }
                 break;
             default:
                 pMessageId = "WC24_SENDLIMIT";
 
                 if (mWindow != nullptr) {
-                    mWindow->appear(pMessageId, SysInfoWindow::Type_AButton, SysInfoWindow::TextPos_Center, SysInfoWindow::MessageType_System);
+                    mWindow->appear(pMessageId, SysInfoWindow::Type_Key, SysInfoWindow::TextPos_Center, SysInfoWindow::MessageType_System);
                 }
                 break;
             }
@@ -691,7 +691,7 @@ namespace NWC24MessengerSub {
             return;
         }
 
-        mWindow->appear(pParam1, SysInfoWindow::Type_AButton, SysInfoWindow::TextPos_Center, SysInfoWindow::MessageType_System);
+        mWindow->appear(pParam1, SysInfoWindow::Type_Key, SysInfoWindow::TextPos_Center, SysInfoWindow::MessageType_System);
 
         if (param2 == 0) {
             return;
