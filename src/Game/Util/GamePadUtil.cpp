@@ -294,8 +294,20 @@ namespace MR {
         return MR::getWPad(channel)->mIsConnected;
     }
 
-    // isOperatingWPad
-}
+    bool isOperatingWPad(s32 channel) {
+        WPad* pWPad = MR::getWPad(channel);
+
+        if (!pWPad->mCorePadAccel->isBalanced()) {
+            return true;
+        }
+
+        if (pWPad->mButton->testButtonA()) {
+            return true;
+        }
+
+        return pWPad->mButton->testButtonB();
+    }
+};
 
 namespace WPadFunction {
     WPadRumble* getWPadRumble(s32 channel) {
