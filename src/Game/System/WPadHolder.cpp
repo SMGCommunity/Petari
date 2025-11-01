@@ -127,6 +127,13 @@ WPad* WPadHolder::getWPad(s32 channel) {
     return nullptr;
 }
 
+void WPadHolder::setConnectCallback() {
+    for (s32 chan = WPAD_CHAN0; chan < WPAD_CHAN0 + WPAD_MAX_CONTROLLERS; chan++) {
+        WPADSetConnectCallback(chan, WPad::connectCallback);
+        WPADSetExtensionCallback(chan, WPad::extensionCallback);
+    }
+}
+
 namespace {
     WPadHolder* getWPadHolder() NO_INLINE {
         return SingletonHolder<GameSystem>::get()->mObjHolder->mWPadHolder;
