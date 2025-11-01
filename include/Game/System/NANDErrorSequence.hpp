@@ -40,7 +40,7 @@ public:
     bool tryConfirm(const char*, bool*);
     bool tryProcessDoneKeyWait(const char*);
     bool tryCheckEnableToCreate();
-    bool tryVerifyNANDCheckResult();
+    bool tryVerifyNANDCheckResult() NO_INLINE;
 
 private:
     /* 0x0C */ SaveDataHandleSequence* mHost;
