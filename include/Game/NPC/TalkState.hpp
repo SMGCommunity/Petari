@@ -36,5 +36,8 @@ public:
 
     virtual u32 getPageCount() const;
     
+    TalkMessageCtrl *_04;
+    TalkBalloon *_08;
+
     u32 mMessageID;     // 0xC
 };
