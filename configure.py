@@ -2225,7 +2225,7 @@ config.libs = [
             Object(NonMatching, "Game/System/SaveDataBannerCreator.cpp"),
             Object(NonMatching, "Game/System/SaveDataFileAccessor.cpp"),
             Object(NonMatching, "Game/System/SaveDataHandler.cpp"),
-            Object(NonMatching, "Game/System/SaveDataHandleSequence.cpp"),
+            Object(Matching, "Game/System/SaveDataHandleSequence.cpp"),
             Object(Matching, "Game/System/ScenarioProgressTestRun.cpp"),
             Object(NonMatching, "Game/System/SpinDriverPathStorage.cpp"),
             Object(NonMatching, "Game/System/StageResultSequenceChecker.cpp"),
