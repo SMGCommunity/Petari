@@ -35,8 +35,8 @@ public:
     bool getMiiId(void *) const;
     bool getIconId(u32 *) const;
     void resetAllData();
-    void makeFileBinary(u8 *, u32);
-    void loadFromFileBinary(const char *, const u8 *, u32);
+    s32 makeFileBinary(u8 *, u32);
+    bool loadFromFileBinary(const char *, const u8 *, u32);
 
     BinaryDataChunkHolder* mChunkHolder;    // 0x0
     ConfigDataCreateChunk* mCreateChunk;    // 0x4
