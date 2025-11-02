@@ -2158,7 +2158,7 @@ config.libs = [
             Object(Matching, "Game/System/GameSystemException.cpp"),
             Object(NonMatching, "Game/System/GameSystemFontHolder.cpp"),
             Object(Matching, "Game/System/GameSystemFrameControl.cpp"),
-            Object(NonMatching, "Game/System/GameSystemFunction.cpp"),
+            Object(Matching, "Game/System/GameSystemFunction.cpp"),
             Object(NonMatching, "Game/System/GameSystemObjHolder.cpp"),
             Object(Matching, "Game/System/GameSystemStationedArchiveLoader.cpp"),
             Object(NonMatching, "Game/System/GameSystemSceneController.cpp"),

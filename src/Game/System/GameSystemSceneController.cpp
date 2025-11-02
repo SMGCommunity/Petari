@@ -42,7 +42,7 @@ GameSystemSceneController::GameSystemSceneController()
       _A0(false),
       mScenarioParser(nullptr),
       mObjHolder(nullptr),
-      mGameScene(nullptr),
+      mScene(nullptr),
       mInitState(State_NotInit),
       mIntermissionScene(nullptr),
       mPlayTimerScene(nullptr),
@@ -96,10 +96,10 @@ void GameSystemSceneController::initializeScene() {
         mScenarioScene->validateScenarioSelect();
     }
     MR::resetWPad();
-    mGameScene = static_cast<GameScene*>(MR::createScene(_0.mScene));
-    mGameScene->initNameObjListExecutor();
-    mGameScene->initSceneObjHolder();
-    mGameScene->init();
+    mScene = MR::createScene(_0.mScene);
+    mScene->initNameObjListExecutor();
+    mScene->initSceneObjHolder();
+    mScene->init();
     SceneFunction::allocateDrawBufferActorList();
     MR::clearFileLoaderRequestFileInfo(_A0);
     SingletonHolder<HeapMemoryWatcher>::get()->checkRestMemory();
@@ -108,9 +108,9 @@ void GameSystemSceneController::initializeScene() {
 void GameSystemSceneController::destroyScene() {
     bool stopSound = isStopSound();
 
-    GameScene* gameScene = mGameScene;
-    mGameScene = nullptr;
-    delete gameScene;
+    Scene* pScene = mScene;
+    mScene = nullptr;
+    delete pScene;
 
     mObjHolder->clearArray();
     if (stopSound) {
@@ -126,7 +126,7 @@ void GameSystemSceneController::destroyScene() {
 }
 
 void GameSystemSceneController::startScene() {
-    mGameScene->start();
+    mScene->start();
     GameSystemFunction::restartControllerLeaveWatcher();
     requestChangeNerve(&NrvGameSystemSceneController::GameSystemSceneControllerNormal::sInstance);
 }
@@ -167,15 +167,15 @@ void GameSystemSceneController::drawScene() {
 }
 
 NameObjListExecutor* GameSystemSceneController::getNameObjListExecutor() const {
-    return mGameScene->mListExecutor;
+    return mScene->mListExecutor;
 }
 
 SceneObjHolder* GameSystemSceneController::getSceneObjHolder() const {
-    return mGameScene->mSceneObjHolder;
+    return mScene->mSceneObjHolder;
 }
 
 bool GameSystemSceneController::isExistSceneObjHolder() const {
-    return mGameScene && mGameScene->mSceneObjHolder;
+    return mScene && mScene->mSceneObjHolder;
 }
 
 s32 GameSystemSceneController::getCurrentScenarioNo() const {

@@ -8424,7 +8424,7 @@ Game/System/GameSystemErrorWatcher.cpp:
 	.text       start:0x8039B618 end:0x8039BE64
 	.ctors      start:0x8052F370 end:0x8052F374
 	.rodata     start:0x8053B790 end:0x8053B7C8
-	.data       start:0x805DB2B8 end:0x805DB558
+	.data       start:0x805DB2B8 end:0x805DB3E0
 	.sbss       start:0x806B6E38 end:0x806B6E48
 
 Game/System/GameSystemException.cpp:
@@ -8434,15 +8434,18 @@ Game/System/GameSystemException.cpp:
 
 Game/System/GameSystemFontHolder.cpp:
 	.text       start:0x8039C068 end:0x8039C428
+	.data       start:0x805DB3E0 end:0x805DB4A8
 
 Game/System/GameSystemFrameControl.cpp:
 	.text       start:0x8039C428 end:0x8039C4B8
 
 Game/System/GameSystemFunction.cpp:
 	.text       start:0x8039C4B8 end:0x8039CC68
+	.data       start:0x805DB4A8 end:0x805DB4B0
 
 Game/System/GameSystemObjHolder.cpp:
 	.text       start:0x8039CC68 end:0x8039D374
+	.data       start:0x805DB4B0 end:0x805DB558
 	.sbss       start:0x806B6E50 end:0x806B6E60
 
 Game/System/GameSystemStationedArchiveLoader.cpp:

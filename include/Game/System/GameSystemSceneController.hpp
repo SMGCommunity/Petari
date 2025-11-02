@@ -3,7 +3,6 @@
 #include "Game/LiveActor/Nerve.hpp"
 #include <revolution.h>
 
-class GameScene;
 class IntermissionScene;
 class JMapIdInfo;
 class NameObjHolder;
@@ -98,7 +97,7 @@ public:
     bool _A0;
     ScenarioDataParser* mScenarioParser;        // 0xA4
     NameObjHolder* mObjHolder;                  // 0xA8
-    GameScene* mGameScene;                      // 0xAC
+    Scene* mScene;                              // 0xAC
     SceneInitializeState mInitState;            // 0xB0
     IntermissionScene* mIntermissionScene;      // 0xB4
     PlayTimerScene* mPlayTimerScene;            // 0xB8
