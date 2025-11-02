@@ -6561,12 +6561,12 @@ Game/NPC/TalkNodeCtrl.cpp:
 
 Game/NPC/TurnJointCtrl.cpp:
 	.text       start:0x802A1E9C end:0x802A28F4
-	.data       start:0x805B6C98 end:0x805B6D18
+	.data       start:0x805B6C98 end:0x805B6CC8
 	.sdata2     start:0x806BF348 end:0x806BF368
 
 Game/NPC/TalkState.cpp:
 	.text       start:0x802A28F4 end:0x802A3570
-	.data       start:0x805B6D18 end:0x805B6E90
+	.data       start:0x805B6CC8 end:0x805B6DE0
 	.sdata2     start:0x806BF368 end:0x806BF380
 
 Game/NPC/TalkSupportPlayerWatcher.cpp:
@@ -6575,6 +6575,7 @@ Game/NPC/TalkSupportPlayerWatcher.cpp:
 
 Game/NPC/TalkTextFormer.cpp:
 	.text       start:0x802A3738 end:0x802A3D3C
+	.data       start:0x805B6DE0 end:0x805B6E90
 	.sdata2     start:0x806BF390 end:0x806BF3B0
 
 Game/NPC/TimeAttackEventKeeper.cpp:
