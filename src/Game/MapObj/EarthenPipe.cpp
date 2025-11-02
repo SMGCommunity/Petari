@@ -33,7 +33,7 @@ EarthenPipe::EarthenPipe(const char *pName) : LiveActor(pName) {
 
 void EarthenPipe::init(const JMapInfoIter &rIter) {
     MR::createSceneObj(SceneObj_EarthenPipeMediator);
-    MR::getSceneObj<EarthenPipeMediator*>(SceneObj_EarthenPipeMediator)->entry(this, rIter);
+    MR::getSceneObj<EarthenPipeMediator>(SceneObj_EarthenPipeMediator)->entry(this, rIter);
     MR::initDefaultPos(this, rIter);
     MR::getJMapInfoArg0NoInit(rIter, &mHorizExitForce);
     MR::getJMapInfoArg1NoInit(rIter, &mVertExitForce);

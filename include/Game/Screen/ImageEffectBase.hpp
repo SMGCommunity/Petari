@@ -8,9 +8,6 @@ public:
     /// @param pName The pointer to the null-terminated name of the object.
     ImageEffectBase(const char* pName);
 
-    /// @brief Destroys the `ImageEffectBase`.
-    virtual ~ImageEffectBase() {}
-
     virtual void calcAnim();
     virtual void calcAnimSub();
     virtual void notifyTurnOn();

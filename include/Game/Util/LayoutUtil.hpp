@@ -118,8 +118,8 @@ private:
 namespace MR {
     LayoutHolder* createAndAddLayoutHolder(const char*);
     LayoutHolder* createAndAddLayoutHolderRawData(const char*);
-    LayoutHolder* createAndAddPaneCtrl(LayoutActor*, const char*, u32);
-    LayoutHolder* createAndAddGroupCtrl(LayoutActor*, const char*, u32);
+    void createAndAddPaneCtrl(LayoutActor*, const char*, u32);
+    void createAndAddGroupCtrl(LayoutActor*, const char*, u32);
     bool isExistPaneCtrl(LayoutActor*, const char*);
     u8 getPaneAlpha(const LayoutActor*, const char*);
     void setInfluencedAlphaToChild(const LayoutActor*);

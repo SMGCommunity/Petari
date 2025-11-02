@@ -143,7 +143,7 @@ bool BigBubble::tryBreakEnd() {
 }
 
 bool BigBubble::tryEscape() {
-    if (MR::testSubPadTriggerZ(0)) {
+    if (MR::testSubPadTriggerZ(WPAD_CHAN0)) {
         setNerve(&NrvBigBubble::BigBubbleNrvEscape::sInstance);
         return true;
     }

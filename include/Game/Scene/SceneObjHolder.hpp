@@ -179,7 +179,7 @@ namespace MR {
     /// @param id The index of the object.
     /// @return The pointer to the object.
     template <class T>
-    inline T getSceneObj(int id) {
-        return static_cast<T>(MR::getSceneObjHolder()->getObj(id));
+    T* getSceneObj(int id) {
+        return static_cast<T*>(getSceneObjHolder()->getObj(id));
     }
 };

@@ -37,7 +37,3 @@ void IconComet::appearByCometNameId(int id) {
 void IconComet::exeWait() {
     
 }
-
-IconComet::~IconComet() {
-
-}

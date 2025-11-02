@@ -7,7 +7,6 @@ class Dossun : public LiveActor {
 public:
     Dossun(const char *);
 
-    virtual ~Dossun();
     virtual void init(const JMapInfoIter &);
     virtual void appear();
 
@@ -15,12 +14,12 @@ public:
     void initShadow();
     void calcParameters();
     s32 getUpperFrame() const;
+    void exeReady();
     void exeUpper();
     void exeFallSign();
     void exeFalling();
     void exeOnGround();
     void exeRising();
-    inline void exeReady();
 
     TVec3f _8C;
     TVec3f _98;

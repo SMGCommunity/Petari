@@ -192,11 +192,11 @@ void TicoEat::exeEatPst() {
     }
 }
 
-TicoComet::TicoComet(const char *pName) : TicoEat(pName) {
+void TicoEat::exeEatEnd() {
     
 }
 
-TicoEat::~TicoEat() {
+TicoComet::TicoComet(const char *pName) : TicoEat(pName) {
     
 }
 
@@ -327,18 +327,10 @@ void TicoComet::exeDemoFade() {
     }
 }
 
-void TicoEat::exeEatEnd() {
-    
-}
-
 void TicoComet::exeDemoEnd() {
 
 }
 
 void TicoEat::startReactionSound() {
 
-}
-
-TicoComet::~TicoComet() {
-    
 }

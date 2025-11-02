@@ -644,7 +644,7 @@ void BombTeresa::exeDrift() {
     MR::vecBlend(_C4, v13, &_C4, MR::calcNerveEaseInRate(this, 15));
     MR::turnDirectionToTarget(this, &_AC, *MR::getPlayerPos(), 0.0f);
     if (_E8 <= 0) {
-        if (MR::isPadSwing(0)) {
+        if (MR::isPadSwing(WPAD_CHAN0)) {
             MR::tryRumblePadMiddle(this, 0);
             _E8 = 40;
             _E0 += 20.0f;

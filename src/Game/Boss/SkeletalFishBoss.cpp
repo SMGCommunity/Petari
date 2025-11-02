@@ -916,7 +916,7 @@ void SkeletalFishBoss::playDamageBrk() {
 }
 
 void SkeletalFishBoss::startAppearDemo() {
-    MR::requestMovementOn(MR::getSceneObj<SensorHitChecker*>(SceneObj_SensorHitChecker));
+    MR::requestMovementOn(MR::getSceneObj<SensorHitChecker>(SceneObj_SensorHitChecker));
     Mtx namePosMtx;
     if (MR::tryFindNamePos("マリオ再セット位置1", namePosMtx)) {
         MR::setPlayerBaseMtx(namePosMtx);
@@ -957,7 +957,7 @@ void SkeletalFishBoss::endAppearDemo() {
 }
 
 void SkeletalFishBoss::startPowerUpDemo() {
-    MR::requestMovementOn(MR::getSceneObj<SensorHitChecker*>(SceneObj_SensorHitChecker));
+    MR::requestMovementOn(MR::getSceneObj<SensorHitChecker>(SceneObj_SensorHitChecker));
     MR::overlayWithPreviousScreen(2);
     MR::hidePlayer();
 

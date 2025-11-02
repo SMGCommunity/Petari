@@ -11,7 +11,7 @@ namespace NrvYesNoLayout {
 
 YesNoLayout::YesNoLayout() :
     SimpleLayout("Yes/Noレイアウト", "SelectButton", 1, 68),
-    mController(NULL),
+    mController(nullptr),
     _24(false)
 {
     
@@ -20,7 +20,7 @@ YesNoLayout::YesNoLayout() :
 void YesNoLayout::init(const JMapInfoIter& rIter) {
     MR::createAndAddPaneCtrl(this, "Left", 1);
     MR::createAndAddPaneCtrl(this, "Right", 1);
-    initEffectKeeper(0, NULL, NULL);
+    initEffectKeeper(0, nullptr, nullptr);
 
     mController = new YesNoController(this);
 

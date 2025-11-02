@@ -644,7 +644,7 @@ bool Pole::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
 
 /*
 bool Pole::tryJump(bool statement, f32 num) {
-    if (MR::testCorePadTriggerA(0) || MR::testSystemTriggerA()) {
+    if (MR::testCorePadTriggerA(WPAD_CHAN0) || MR::testSystemTriggerA()) {
         TPos3f pos;
         calcGravityMtx(&pos);
         f32 v7 = MR::modAndAdd(0.0f, MR::subtractFromSum_2(mRotation.y, num, 0.0f));
@@ -773,21 +773,21 @@ void Pole::updateTopPos(f32 num) {
 
 f32 Pole::getPoleSubPadStickX() const {
     if (_AB) {
-        f32 negNum = -MR::getSubPadStickX(0);
+        f32 negNum = -MR::getSubPadStickX(WPAD_CHAN0);
         return negNum;
     }
     else {
-        return MR::getSubPadStickX(0);
+        return MR::getSubPadStickX(WPAD_CHAN0);
     }
 }
 
 f32 Pole::getPoleSubPadStickY() const {
     if (_AB) {
-        f32 negNum = -MR::getSubPadStickY(0);
+        f32 negNum = -MR::getSubPadStickY(WPAD_CHAN0);
         return negNum;
     }
     else {
-        return MR::getSubPadStickY(0);
+        return MR::getSubPadStickY(WPAD_CHAN0);
     }
 }
 

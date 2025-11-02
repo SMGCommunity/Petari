@@ -28,7 +28,7 @@ namespace {
     }
 
     RaceManager* getRaceManager() {
-        return MR::getSceneObj<RaceManager*>(SceneObj_RaceManager);
+        return MR::getSceneObj<RaceManager>(SceneObj_RaceManager);
     }
 };
 

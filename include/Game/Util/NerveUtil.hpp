@@ -52,48 +52,48 @@ namespace MR {
     /// @return `true` if the working nerve action has not yet been executed, `false` otherwise.
     bool isNewNerve(const NerveExecutor* pExecutor);
 
-    /// @brief Computes the ratio of execution frames to `maxStep` frames.
+    /// @brief Computes the ratio of execution frames to `stepMax` frames.
     /// @param pExecutor The pointer to the nerve action executor.
-    /// @param maxStep The number of frames to divide the working frame of execution by.
-    /// @return The ratio of execution frames to `maxStep` frames.
-    f32 calcNerveRate(const NerveExecutor* pExecutor, s32 maxStep);
+    /// @param stepMax The number of frames to divide the working frame of execution by.
+    /// @return The ratio of execution frames to `stepMax` frames.
+    f32 calcNerveRate(const NerveExecutor* pExecutor, s32 stepMax);
 
-    /// @brief Computes the ratio of execution frames to `maxStep` frames, fit along an ease-in sine curve.
+    /// @brief Computes the ratio of execution frames to `stepMax` frames, fit along an ease-in sine curve.
     /// @param pExecutor The pointer to the nerve action executor.
-    /// @param maxStep The number of frames to divide the working frame of execution by.
-    /// @return The fitted ratio of execution frames to `maxStep` frames.
-    f32 calcNerveEaseInRate(const NerveExecutor* pExecutor, s32 maxStep);
+    /// @param stepMax The number of frames to divide the working frame of execution by.
+    /// @return The fitted ratio of execution frames to `stepMax` frames.
+    f32 calcNerveEaseInRate(const NerveExecutor* pExecutor, s32 stepMax);
 
-    /// @brief Computes the ratio of execution frames to `maxStep` frames, fit along an ease-out sine curve.
+    /// @brief Computes the ratio of execution frames to `stepMax` frames, fit along an ease-out sine curve.
     /// @param pExecutor The pointer to the nerve action executor.
-    /// @param maxStep The number of frames to divide the working frame of execution by.
-    /// @return The fitted ratio of execution frames to `maxStep` frames.
-    f32 calcNerveEaseOutRate(const NerveExecutor* pExecutor, s32 maxStep);
+    /// @param stepMax The number of frames to divide the working frame of execution by.
+    /// @return The fitted ratio of execution frames to `stepMax` frames.
+    f32 calcNerveEaseOutRate(const NerveExecutor* pExecutor, s32 stepMax);
 
-    /// @brief Computes the ratio of execution frames to `maxStep` frames as the linear interpolant to the given value interval.
+    /// @brief Computes the ratio of execution frames to `stepMax` frames as the linear interpolant to the given value interval.
     /// @param pExecutor The pointer to the nerve action executor.
-    /// @param maxStep The number of frames to divide the working frame of execution by.
-    /// @param startValue The starting value.
-    /// @param endValue The ending value.
+    /// @param stepMax The number of frames to divide the working frame of execution by.
+    /// @param valueStart The starting value.
+    /// @param valueEnd The ending value.
     /// @return The result of linear interpolation.
-    f32 calcNerveValue(const NerveExecutor* pExecutor, s32 maxStep, f32 startValue, f32 endValue);
+    f32 calcNerveValue(const NerveExecutor* pExecutor, s32 stepMax, f32 valueStart, f32 valueEnd);
 
-    /// @brief Computes the ratio of execution frames to `maxStep` frames as the linear interpolant to the given value interval, fit along an ease-in-out sine curve.
+    /// @brief Computes the ratio of execution frames to `stepMax` frames as the linear interpolant to the given value interval, fit along an ease-in-out sine curve.
     /// @param pExecutor The pointer to the nerve action executor.
-    /// @param maxStep The number of frames to divide the working frame of execution by.
-    /// @param startValue The starting value.
-    /// @param endValue The ending value.
+    /// @param stepMax The number of frames to divide the working frame of execution by.
+    /// @param valueStart The starting value.
+    /// @param valueEnd The ending value.
     /// @return The fitted result of linear interpolation.
-    f32 calcNerveEaseInOutValue(const NerveExecutor* pExecutor, s32 maxStep, f32 startValue, f32 endValue);
+    f32 calcNerveEaseInOutValue(const NerveExecutor* pExecutor, s32 stepMax, f32 valueStart, f32 valueEnd);
 
-    /// @brief Computes the ratio of execution frames to `maxStep` frames as the linear interpolant to the given value interval, fit along an ease-in-out sine curve.
+    /// @brief Computes the ratio of execution frames to `stepMax` frames as the linear interpolant to the given value interval, fit along an ease-in-out sine curve.
     /// @param pExecutor The pointer to the nerve action executor.
-    /// @param minStep The minimum number of frames to clamp the working frame of execution between.
-    /// @param maxStep The maximum number of frames to clamp the working frame of execution between.
-    /// @param startValue The starting value.
-    /// @param endValue The ending value.
+    /// @param stepMin The minimum number of frames to clamp the working frame of execution between.
+    /// @param stepMax The maximum number of frames to clamp the working frame of execution between.
+    /// @param valueStart The starting value.
+    /// @param valueEnd The ending value.
     /// @return The fitted result of linear interpolation.
-    f32 calcNerveEaseInOutValue(const NerveExecutor* pExecutor, s32 minStep, s32 maxStep, f32 startValue, f32 endValue);
+    f32 calcNerveEaseInOutValue(const NerveExecutor* pExecutor, s32 stepMin, s32 stepMax, f32 valueStart, f32 valueEnd);
 
     /// @brief Updates the working nerve action with the given nerve action if the working nerve action's frame of execution is equal to the given frame value.
     /// @param pExecutor The pointer to the nerve action executor.

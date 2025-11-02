@@ -1,6 +1,11 @@
 #include "Game/Screen/SubMeterLayout.hpp"
 #include "Game/Util.hpp"
 
+namespace {
+    static f32 sScreenOffsetX = 60.0f;
+    static f32 sScreenOffsetY = -70.0f;
+};
+
 SubMeterLayout::SubMeterLayout(const char *pName, const char *pLayoutName) : LayoutActor(pName, true) {
     MR::connectToSceneLayout(this);
     initLayoutManager(pLayoutName, 1);
@@ -113,8 +118,4 @@ void SubMeterLayout::control() {
         screenPos.y += sScreenOffsetY;
         setTrans(screenPos);
     }
-}
-
-SubMeterLayout::~SubMeterLayout() {
-
 }

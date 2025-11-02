@@ -180,7 +180,7 @@ void LogoScene::exeStrapDisplay() {
     }
 
     if (MR::isGreaterStep(this, STRAP_DISPLAY_MIN_FRAME)
-        && (MR::testCorePadTriggerAnyWithoutHome(0)
+        && (MR::testCorePadTriggerAnyWithoutHome(WPAD_CHAN0)
             || MR::isGreaterEqualStep(this, STRAP_DISPLAY_MAX_FRAME)))
     {
         setNerve(&LogoSceneStrapFadeout::sInstance);

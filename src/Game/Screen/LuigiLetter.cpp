@@ -17,8 +17,8 @@ namespace NrvLuigiLetter {
 
 LuigiLetter::LuigiLetter(bool param1, const char* pParam2) :
     LayoutActor("ルイージの手紙", true),
-    mTexture(NULL),
-    mAButtonIcon(NULL),
+    mTexture(nullptr),
+    mAButtonIcon(nullptr),
     _28(pParam2),
     _2C(param1)
 {
@@ -82,7 +82,7 @@ void LuigiLetter::exeWait() {
         mAButtonIcon->openWithoutMessage();
     }
 
-    if (mAButtonIcon->isWait() && MR::testCorePadTriggerA(0)) {
+    if (mAButtonIcon->isWait() && MR::testCorePadButtonA(WPAD_CHAN0)) {
         MR::startSystemSE("SE_SY_TALK_OK", -1, -1);
         setNerve(&NrvLuigiLetter::HostTypeNrvEnd::sInstance);
     }
@@ -110,7 +110,7 @@ void LuigiLetter::makeArchiveListForMenu(NameObjArchiveListCollector* pCollector
 void LuigiLetter::makeArchiveListCommon(NameObjArchiveListCollector* pCollector, const char* pParam2) {
     char archiveName[256];
 
-    if (pParam2 == NULL) {
+    if (pParam2 == nullptr) {
         return;
     }
 

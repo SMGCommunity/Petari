@@ -10,9 +10,6 @@ public:
     /// @brief Creates a new `ButtonPaneController`.
     ButtonPaneController(LayoutActor* pHost, const char* pPaneName, const char* pBoundingPaneName, u32 animIndex, bool);
 
-    /// @brief Destroys the `ButtonPaneController`.
-    virtual ~ButtonPaneController() {}
-
     void update();
     void appear();
     void disappear();

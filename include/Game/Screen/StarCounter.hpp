@@ -10,9 +10,6 @@ public:
     /// @brief Creates a new `StarCounter`.
     StarCounter();
 
-    /// @brief Destroys the `StarCounter`.
-    virtual ~StarCounter();
-
     virtual void init(const JMapInfoIter& rIter);
     virtual void appear();
     virtual void control();

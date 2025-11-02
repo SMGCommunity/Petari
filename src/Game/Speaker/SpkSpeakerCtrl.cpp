@@ -219,7 +219,7 @@ void SpkSpeakerCtrl::extensionProcess(s32, s32) {
 }
 
 f32 SpkSpeakerCtrl::getDeviceVolume(s32 channel) {
-    if (channel >= 0 && !WPADIsSpeakerEnabled(channel)) {
+    if (channel >= WPAD_CHAN0 && !WPADIsSpeakerEnabled(channel)) {
         return 0.0f;   
     }
 

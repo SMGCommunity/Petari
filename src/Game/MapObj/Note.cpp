@@ -86,7 +86,7 @@ void Note::exeFlyUp() {
 */
 
 void Note::control() {
-    mRotation.y = MR::getSceneObj<NoteGroup*>(SceneObj_NoteGroup)->mRotation;
+    mRotation.y = MR::getSceneObj<NoteGroup>(SceneObj_NoteGroup)->mRotation;
 }
 
 /*
@@ -96,7 +96,7 @@ void Note::calcAndSetBaseMtx() {
     TPos3f stack_44;
     MR::makeMtxUpFront(&stack_44, stack_8, mRailDirection);
     Mtx mtxRotateY;
-    f32 val = MR::getSceneObj<NoteGroup*>(SceneObj_NoteGroup)->mRotation;
+    f32 val = MR::getSceneObj<NoteGroup>(SceneObj_NoteGroup)->mRotation;
     MR::makeMtxRotateY(mtxRotateY, val);
     PSMTXConcat(stack_44.toMtxPtr(), mtxRotateY, stack_44.toMtxPtr());
     stack_44.mMtx[0][3] = mPosition.x;

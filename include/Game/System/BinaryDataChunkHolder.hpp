@@ -15,11 +15,9 @@ class BinaryDataChunkHolder {
 public:
     BinaryDataChunkHolder(u32, int);
 
-    void loadFromFileBinary(const u8 *, u32);
-    void makeFileBinary(u8 *, u32);
-
     void addChunk(BinaryDataChunkBase *);
-
+    s32 makeFileBinary(u8 *, u32);
+    bool loadFromFileBinary(const u8 *, u32);
     BinaryDataChunkBase* findFromSignature(u32) const;
 
     BinaryDataChunkBase** mChunks;  // 0x0

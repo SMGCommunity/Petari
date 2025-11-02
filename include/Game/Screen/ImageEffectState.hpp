@@ -10,10 +10,14 @@ public:
     /// @brief Creates a new `ImageEffectState`.
     ImageEffectState(ImageEffectDirector* pHost) :
         mHost(pHost)
-    {}
+    {
+        
+    }
 
     /// @brief Destroys the `ImageEffectState`.
-    virtual ~ImageEffectState() {}
+    virtual ~ImageEffectState() {
+        
+    }
 
     virtual void update();
     virtual bool doesEffectExist() const;
@@ -33,9 +37,6 @@ namespace ImageEffectStateImpl {
         /// @param pHost The pointer to the owning `ImageEffectDirector` instance.
         StateNull(ImageEffectDirector* pHost);
         
-        /// @brief Destroys the `StateNull`.
-        virtual ~StateNull() {}
-
         virtual bool doesEffectExist() const;
         virtual ImageEffectBase* getEffect() const;
     };
@@ -45,9 +46,6 @@ namespace ImageEffectStateImpl {
         /// @param pHost The pointer to the owning `ImageEffectDirector` instance.
         StateBloomNormal(ImageEffectDirector* pHost);
         
-        /// @brief Destroys the `StateBloomNormal`.
-        virtual ~StateBloomNormal() {}
-
         virtual void update();
         virtual bool doesEffectExist() const;
         virtual ImageEffectBase* getEffect() const;
@@ -79,9 +77,6 @@ namespace ImageEffectStateImpl {
         /// @param pHost The pointer to the owning `ImageEffectDirector` instance.
         StateBloomSimple(ImageEffectDirector* pHost);
         
-        /// @brief Destroys the `StateBloomSimple`.
-        virtual ~StateBloomSimple() {}
-
         virtual bool doesEffectExist() const;
         virtual ImageEffectBase* getEffect() const;
 
@@ -99,9 +94,6 @@ namespace ImageEffectStateImpl {
         /// @param pHost The pointer to the owning `ImageEffectDirector` instance.
         StateScreenBlur(ImageEffectDirector* pHost);
         
-        /// @brief Destroys the `StateScreenBlur`.
-        virtual ~StateScreenBlur() {}
-
         virtual bool doesEffectExist() const;
         virtual ImageEffectBase* getEffect() const;
 
@@ -114,9 +106,6 @@ namespace ImageEffectStateImpl {
         /// @param pHost The pointer to the owning `ImageEffectDirector` instance.
         StateDepthOfField(ImageEffectDirector* pHost);
         
-        /// @brief Destroys the `StateDepthOfField`.
-        virtual ~StateDepthOfField() {}
-
         virtual bool doesEffectExist() const;
         virtual ImageEffectBase* getEffect() const;
 

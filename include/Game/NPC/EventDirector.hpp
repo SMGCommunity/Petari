@@ -14,9 +14,6 @@ public:
     /// @brief Creates a new `EventDirector`.
     EventDirector();
 
-    /// @brief Destroys the `EventDirector`.
-    virtual ~EventDirector() {}
-
     virtual void init(const JMapInfoIter& rIter);
 
     /* 0x0C */ PowerStarEventKeeper* mPowerStarEventKeeper;

@@ -6,7 +6,6 @@ class IconComet : public LayoutActor {
 public:
     IconComet();
 
-    virtual ~IconComet();
     virtual void init(const JMapInfoIter &);
 
     bool appearIfLanding(const char *);

@@ -1,9 +1,10 @@
 #include <revolution.h>
 
-static u32 IpcNumPendingReqs = 0;
-static u32 IpcNumUnIssuedReqs = 0;
 static s32 IpcFdArray[32];
 static u32 IpcReqPtrArray[32];
+
+static u32 IpcNumPendingReqs = 0;
+static u32 IpcNumUnIssuedReqs = 0;
 
 static void AddReqInfo(void *, s32);
 static void DelReqInfo(void *, s32);

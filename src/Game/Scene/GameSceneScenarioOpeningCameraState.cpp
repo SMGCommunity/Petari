@@ -1,20 +1,27 @@
+#include "Game/AudioLib/AudSystem.hpp"
+#include "Game/AudioLib/AudWrap.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Scene/GameSceneScenarioOpeningCameraState.hpp"
 #include "Game/Screen/ScenarioTitle.hpp"
-#include "Game/Util.hpp"
 #include "Game/Util/CameraUtil.hpp"
+#include "Game/Util/EventUtil.hpp"
 #include "Game/Util/GamePadUtil.hpp"
+#include "Game/Util/NerveUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/SceneUtil.hpp"
 #include "Game/Util/ScreenUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
-#include "Game/AudioLib/AudWrap.hpp"
-#include "Game/AudioLib/AudSystem.hpp"
 
 namespace {
     NEW_NERVE(GameSceneScenarioOpeningCameraStateWait, GameSceneScenarioOpeningCameraState, Wait);
     NEW_NERVE(GameSceneScenarioOpeningCameraStatePlay, GameSceneScenarioOpeningCameraState, Play);
 };
 
-GameSceneScenarioOpeningCameraState::GameSceneScenarioOpeningCameraState() : NerveExecutor("シナリオ開始カメラ再生") {
+GameSceneScenarioOpeningCameraState::GameSceneScenarioOpeningCameraState() :
+    NerveExecutor("シナリオ開始カメラ再生")
+{
     mBaseMtx.identity();
     initNerve(&GameSceneScenarioOpeningCameraStatePlay::sInstance);
     mScenarioTitle = new ScenarioTitle();
@@ -39,20 +46,26 @@ void GameSceneScenarioOpeningCameraState::start() {
     MR::forceToFrameCinemaFrame();
     MR::startStageBGM("BGM_START_DEMO", false);
     PSMTXCopy(MR::getPlayerBaseMtx(), mBaseMtx);
+
     TVec3f namePos;
+
     if (MR::tryFindNamePos("スタートカメラマリオ座標", &namePos, nullptr)) {
         MR::setPlayerPos("スタートカメラマリオ座標");
     }
 }
 
 void GameSceneScenarioOpeningCameraState::end() {
-    MR::stopStageBGM(0xA);
+    MR::stopStageBGM(10);
     MR::playSceneForScenarioOpeningCamera();
     MR::showPlayer();
     MR::endStartAnimCamera();
     MR::endStarPointerMode(this);
     mScenarioTitle->kill();
     MR::setPlayerBaseMtx(mBaseMtx);
+}
+
+void GameSceneScenarioOpeningCameraState::exeWait() {
+    
 }
 
 void GameSceneScenarioOpeningCameraState::exePlay() {
@@ -89,13 +102,5 @@ bool GameSceneScenarioOpeningCameraState::trySkipTrigger() const {
         return false;
     }
 
-    return !MR::isAlreadyVisitedCurrentStageAndScenario() ? false :  MR::testSystemPadTriggerDecide(); 
-}
-
-GameSceneScenarioOpeningCameraState::~GameSceneScenarioOpeningCameraState() {
-
-}
-
-void GameSceneScenarioOpeningCameraState::exeWait() {
-    
+    return !MR::isAlreadyVisitedCurrentStageAndScenario() ? false : MR::testSystemPadTriggerDecide(); 
 }

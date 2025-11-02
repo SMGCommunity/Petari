@@ -389,7 +389,7 @@ void Mario::checkKeyLock() {
     if (isSwimming()) {
         mMovementStates._22 = 0;
     }
-    if (MR::testSubPadButtonC(0)) {
+    if (MR::testSubPadButtonC(WPAD_CHAN0)) {
         mDrawStates._7 = 1;
     }
 }

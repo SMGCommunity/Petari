@@ -14,8 +14,8 @@ namespace {
 
 ErrorMessageWindow::ErrorMessageWindow() :
     LayoutActor("エラーメッセージ表示", false),
-    mMessageId(NULL),
-    mTexture(NULL)
+    mMessageId(nullptr),
+    mTexture(nullptr)
 {
     
 }
@@ -64,7 +64,7 @@ void ErrorMessageWindow::exeHide() {
 
 void ErrorMessageWindow::exeAppear() {
     if (MR::isFirstStep(this)) {
-        const wchar_t* pMessage = NULL;
+        const wchar_t* pMessage = nullptr;
 
         switch (mMessageType) {
         case MessageType_System:
@@ -75,7 +75,7 @@ void ErrorMessageWindow::exeAppear() {
             break;
         }
 
-        if (mTexture != NULL) {
+        if (mTexture != nullptr) {
             MR::showPane(this, "PicDummy");
             MR::showPane(this, "ErrorTextHalf");
             MR::hidePane(this, "ErrorMessage");

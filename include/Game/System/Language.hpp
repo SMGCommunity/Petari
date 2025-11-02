@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Inline.hpp"
-#include <revolution/sc.h>
 
 /// @brief A regional variant of a language.
 struct Language {

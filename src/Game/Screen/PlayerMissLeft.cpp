@@ -20,8 +20,8 @@ namespace NrvPlayerMissLeft {
 
 PlayerMissLeft::PlayerMissLeft(const char* pName) :
     LayoutActor(pName, true),
-    mLayoutAppearer(NULL),
-    mPaneRumbler(NULL)
+    mLayoutAppearer(nullptr),
+    mPaneRumbler(nullptr)
 {}
 
 void PlayerMissLeft::init(const JMapInfoIter& rIter) {
@@ -97,8 +97,4 @@ void PlayerMissLeft::exeEnd() {
     if (mLayoutAppearer->isDisappeared()) {
         kill();
     }
-}
-
-PlayerMissLeft::~PlayerMissLeft() {
-    
 }

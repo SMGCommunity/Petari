@@ -1,13 +1,13 @@
 #pragma once
 
 #include "Game/NameObj/NameObj.hpp"
-#include "Game/LiveActor/ClippingActorInfo.hpp"
-#include "Game/LiveActor/LodCtrl.hpp"
-#include "Game/LiveActor/ViewGroupCtrl.hpp"
+#include <JSystem/JGeometry/TVec.hpp>
 
-namespace {
-    static int sActorNumMax;
-};
+class ClippingActorInfo;
+class ClippingActorInfoList;
+class LiveActor;
+class LodCtrl;
+class ViewGroupCtrl;
 
 class ClippingActorHolder : public NameObj {
 public:

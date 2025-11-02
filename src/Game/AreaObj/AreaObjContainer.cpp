@@ -128,7 +128,7 @@ AreaObj* AreaObjContainer::getAreaObj(const char* pName, const TVec3f& rVec) con
 
 namespace MR {
     AreaObjContainer* getAreaObjContainer() {
-        return MR::getSceneObj<AreaObjContainer*>(SceneObj_AreaObjContainer);
+        return MR::getSceneObj<AreaObjContainer>(SceneObj_AreaObjContainer);
     }
 };
 

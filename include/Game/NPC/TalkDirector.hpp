@@ -15,6 +15,7 @@ class TalkState;
 
 class TalkDirector : public LayoutActor {
 public:
+    TalkDirector(const char*);
 
     virtual ~TalkDirector();
     virtual void init(const JMapInfoIter &);

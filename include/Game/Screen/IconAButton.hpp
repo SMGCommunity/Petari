@@ -6,7 +6,6 @@ class IconAButton : public LayoutActor {
 public:
     IconAButton(bool, bool);
 
-    virtual ~IconAButton();
     virtual void init(const JMapInfoIter &);
     virtual void control();
 

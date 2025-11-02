@@ -48,6 +48,8 @@ namespace MR {
     bool isPlayingStageBgm();
     bool isPlayingStageBgmID(u32);
     bool isPlayingStageBgmName(const char *);
+    bool isStopOrFadeoutStageBgmID(u32);
+    bool isStopOrFadeoutBgmName(const char *);
     bool isPreparedStageBgm();
 
     void setStageBGMState(s32, u32);

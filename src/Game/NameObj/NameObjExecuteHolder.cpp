@@ -5,8 +5,14 @@
 #include "Game/System/GameSystemSceneController.hpp"
 #include "Game/SingletonHolder.hpp"
 
+namespace {
+    NameObjExecuteHolder* getNameObjExecuteHolder() {
+        return MR::getSceneObj<NameObjExecuteHolder>(SceneObj_NameObjExecuteHolder);
+    }
+};
+
 NameObjExecuteInfo::NameObjExecuteInfo() :
-    mExecutedObject(nullptr),
+    mExecutedObj(nullptr),
     _4(0),
     _5(0),
     _6(-1),
@@ -14,11 +20,13 @@ NameObjExecuteInfo::NameObjExecuteInfo() :
     _8(-1),
     _9(-1),
     _A(-1)
-{}
+{
+    
+}
 
 void NameObjExecuteInfo::setConnectInfo(NameObj *pObj, int a2, int a3, int a4, int a5) {
     _4 = 2;
-    mExecutedObject = pObj;
+    mExecutedObj = pObj;
     _5 = 2;
     _6 = a2;
     _7 = a3;
@@ -63,44 +71,45 @@ void NameObjExecuteInfo::initConnectting() {
 
 void NameObjExecuteInfo::requestConnect(u8 *pData) {
     switch (*pData) {
-        case 2:
-            *pData = 1;
-            break;
-        case 5:
-            *pData = 4;
-            break;
-        case 6:
-        case 7:
-            *pData = 3;
-            break;
-        case 1:
-            return;
+    case 2:
+        *pData = 1;
+        break;
+    case 5:
+        *pData = 4;
+        break;
+    case 6:
+    case 7:
+        *pData = 3;
+        break;
+    case 1:
+        return;
     }
 }
 
 void NameObjExecuteInfo::requestDisconnect(u8 *pData, bool a2) {
     u8 val;
-    switch (*pData) {
-        case 1:
-            *pData = 2;
-            break;
-        case 3:
-            val = 6;
-            if (a2) {
-                val = 7;
-            }
 
-            *pData = val;
-            break;
-        case 5:
-        case 6:
-        case 7:
-            break;
-        case 4:
-            *pData = 5;
-            break;
-        case 2:
-            return;
+    switch (*pData) {
+    case 1:
+        *pData = 2;
+        break;
+    case 3:
+        val = 6;
+        if (a2) {
+            val = 7;
+        }
+
+        *pData = val;
+        break;
+    case 5:
+    case 6:
+    case 7:
+        break;
+    case 4:
+        *pData = 5;
+        break;
+    case 2:
+        return;
     }
 }
 
@@ -139,7 +148,7 @@ void NameObjExecuteInfo::requestMovementOn(int a1) {
         return;
     }
 
-    MR::requestMovementOn(mExecutedObject);
+    MR::requestMovementOn(mExecutedObj);
 }
 
 void NameObjExecuteInfo::requestMovementOff(int a1) {
@@ -147,11 +156,11 @@ void NameObjExecuteInfo::requestMovementOff(int a1) {
         return;
     }
 
-    MR::requestMovementOff(mExecutedObject);
+    MR::requestMovementOff(mExecutedObj);
 }
 
 void NameObjExecuteInfo::findLightInfo() const {
-    SingletonHolder<GameSystem>::get()->mSceneController->getNameObjListExecutor()->findLightInfo(static_cast<LiveActor*>(mExecutedObject), _9, _A);
+    SingletonHolder<GameSystem>::get()->mSceneController->getNameObjListExecutor()->findLightInfo(static_cast<LiveActor*>(mExecutedObj), _9, _A);
 }
 
 void NameObjExecuteInfo::connectToScene() {
@@ -159,11 +168,11 @@ void NameObjExecuteInfo::connectToScene() {
     NameObjListExecutor* pListExecutor = SingletonHolder<GameSystem>::get()->mSceneController->getNameObjListExecutor();
 
     if (_6 != -1) {
-        pListExecutor->addToMovement(mExecutedObject, _6);
+        pListExecutor->addToMovement(mExecutedObj, _6);
     }
 
     if (_7 != -1) {
-        pListExecutor->addToCalcAnim(mExecutedObject, _7);
+        pListExecutor->addToCalcAnim(mExecutedObj, _7);
     }
 }
 
@@ -172,11 +181,11 @@ void NameObjExecuteInfo::disconnectToScene() {
     NameObjListExecutor* pListExecutor = SingletonHolder<GameSystem>::get()->mSceneController->getNameObjListExecutor();
 
     if (_6 != -1) {
-        pListExecutor->removeToMovement(mExecutedObject, _6);
+        pListExecutor->removeToMovement(mExecutedObj, _6);
     }
 
     if (_7 != -1) {
-        pListExecutor->removeToCalcAnim(mExecutedObject, _7);
+        pListExecutor->removeToCalcAnim(mExecutedObj, _7);
     }   
 }
 
@@ -185,11 +194,11 @@ void NameObjExecuteInfo::connectToDraw() {
     NameObjListExecutor* pListExecutor = SingletonHolder<GameSystem>::get()->mSceneController->getNameObjListExecutor();
 
     if (_8 != -1) {
-        pListExecutor->addToDraw(mExecutedObject, _8);
+        pListExecutor->addToDraw(mExecutedObj, _8);
     }
 
     if (_9 != -1) {
-        pListExecutor->addToDrawBuffer(static_cast<LiveActor*>(mExecutedObject), _9, _A);
+        pListExecutor->addToDrawBuffer(static_cast<LiveActor*>(mExecutedObj), _9, _A);
     }
 }
 
@@ -198,11 +207,11 @@ void NameObjExecuteInfo::disconnectToDraw() {
     NameObjListExecutor* pListExecutor = SingletonHolder<GameSystem>::get()->mSceneController->getNameObjListExecutor();
 
     if (_8 != -1) {
-        pListExecutor->removeToDraw(mExecutedObject, _8);
+        pListExecutor->removeToDraw(mExecutedObj, _8);
     }
 
     if (_9 != -1) {
-        pListExecutor->removeToDrawBuffer(static_cast<LiveActor*>(mExecutedObject), _9, _A);
+        pListExecutor->removeToDrawBuffer(static_cast<LiveActor*>(mExecutedObj), _9, _A);
     }
 }
 
@@ -268,13 +277,7 @@ void NameObjExecuteHolder::disconnectToDraw(NameObj *pObj) {
 
 bool NameObjExecuteHolder::isConnectToDraw(const NameObj *pObj) const {
     NameObjExecuteInfo* pInfo = getConnectToSceneInfo(pObj);
-    bool ret = false;
-
-    if (pInfo != nullptr) {
-        if (pInfo->_5 == 3) {
-            ret = true;
-        }
-    }
+    bool ret = pInfo != nullptr && pInfo->_5 == 3;
 
     return ret;
 }
@@ -312,7 +315,7 @@ void NameObjExecuteHolder::executeRequirementConnectDraw() {
         mExecuteArray[i].executeRequirementConnectDraw();
     }
 
-    _1A = 0;
+    _1A = false;
 }
 
 void NameObjExecuteHolder::executeRequirementDisconnectDraw() {
@@ -324,7 +327,7 @@ void NameObjExecuteHolder::executeRequirementDisconnectDraw() {
         mExecuteArray[i].executeRequirementDisconnectDraw();
     }
 
-    _1B = 0;
+    _1B = false;
 }
 
 void NameObjExecuteHolder::executeRequirementDisconnectDrawDelay() {
@@ -336,7 +339,7 @@ void NameObjExecuteHolder::executeRequirementDisconnectDrawDelay() {
         mExecuteArray[i].executeRequirementDisconnectDrawDelay();
     }
 
-    _1C = 0;
+    _1C = false;
 }
 
 void NameObjExecuteHolder::requestMovementOn(int idx) {
@@ -356,68 +359,68 @@ NameObjExecuteInfo* NameObjExecuteHolder::getConnectToSceneInfo(const NameObj *p
         return &mExecuteArray[pObj->mExecutorIdx];
     }
 
-    return 0;
+    return nullptr;
 }
 
 namespace MR {
     void registerNameObjToExecuteHolder(NameObj *pObj, int a2, int a3, int a4, int a5) {
-        MR::getSceneObj<NameObjExecuteHolder*>(SceneObj_NameObjExecuteHolder)->registerActor(pObj, a2, a3, a4, a5);
+        getNameObjExecuteHolder()->registerActor(pObj, a2, a3, a4, a5);
     }
 
     void initConnectting() {
-        MR::getSceneObj<NameObjExecuteHolder*>(SceneObj_NameObjExecuteHolder)->initConnectting();
+        getNameObjExecuteHolder()->initConnectting();
     }
 
     void connectToSceneTemporarily(NameObj *pObj) {
-        MR::getSceneObj<NameObjExecuteHolder*>(SceneObj_NameObjExecuteHolder)->connectToScene(pObj);
+        getNameObjExecuteHolder()->connectToScene(pObj);
     }
 
     void disconnectToSceneTemporarily(NameObj *pObj) {
-        MR::getSceneObj<NameObjExecuteHolder*>(SceneObj_NameObjExecuteHolder)->disconnectToScene(pObj);
+        getNameObjExecuteHolder()->disconnectToScene(pObj);
     }
 
     void connectToDrawTemporarily(NameObj *pObj) {
-        MR::getSceneObj<NameObjExecuteHolder*>(SceneObj_NameObjExecuteHolder)->connectToDraw(pObj);
+        getNameObjExecuteHolder()->connectToDraw(pObj);
     }
 
     void disconnectToDrawTemporarily(NameObj *pObj) {
-        MR::getSceneObj<NameObjExecuteHolder*>(SceneObj_NameObjExecuteHolder)->disconnectToDraw(pObj);
+        getNameObjExecuteHolder()->disconnectToDraw(pObj);
     }
     
     bool isConnectToDrawTemporarily(const NameObj *pObj) {
-        return MR::getSceneObj<NameObjExecuteHolder*>(SceneObj_NameObjExecuteHolder)->isConnectToDraw(pObj);
+        return getNameObjExecuteHolder()->isConnectToDraw(pObj);
     }
 
     void executeRequirementConnectMovement() {
-        MR::getSceneObj<NameObjExecuteHolder*>(SceneObj_NameObjExecuteHolder)->executeRequirementConnectMovement();
+        getNameObjExecuteHolder()->executeRequirementConnectMovement();
     }
 
     void executeRequirementDisconnectMovement() {
-        MR::getSceneObj<NameObjExecuteHolder*>(SceneObj_NameObjExecuteHolder)->executeRequirementDisconnectMovement();
+        getNameObjExecuteHolder()->executeRequirementDisconnectMovement();
     }
 
     void executeRequirementConnectDraw() {
-        MR::getSceneObj<NameObjExecuteHolder*>(SceneObj_NameObjExecuteHolder)->executeRequirementConnectDraw();
+        getNameObjExecuteHolder()->executeRequirementConnectDraw();
     }
 
     void executeRequirementDisconnectDraw() {
-        MR::getSceneObj<NameObjExecuteHolder*>(SceneObj_NameObjExecuteHolder)->executeRequirementDisconnectDraw();
+        getNameObjExecuteHolder()->executeRequirementDisconnectDraw();
     }
 
     void executeRequirementDisconnectDrawDelay() {
-        MR::getSceneObj<NameObjExecuteHolder*>(SceneObj_NameObjExecuteHolder)->executeRequirementDisconnectDrawDelay();
+        getNameObjExecuteHolder()->executeRequirementDisconnectDrawDelay();
     }
 
     void requestMovementOnWithCategory(int category) {
-        MR::getSceneObj<NameObjExecuteHolder*>(SceneObj_NameObjExecuteHolder)->requestMovementOn(category);
+        getNameObjExecuteHolder()->requestMovementOn(category);
     }
 
     void requestMovementOffWithCategory(int category) {
-        MR::getSceneObj<NameObjExecuteHolder*>(SceneObj_NameObjExecuteHolder)->requestMovementOff(category);
+        getNameObjExecuteHolder()->requestMovementOff(category);
     }
 
     void findActorLightInfo(const LiveActor *pActor) {
-        MR::getSceneObj<NameObjExecuteHolder*>(SceneObj_NameObjExecuteHolder)->getConnectToSceneInfo(pActor)->findLightInfo();
+        getNameObjExecuteHolder()->getConnectToSceneInfo(pActor)->findLightInfo();
     }
 };
 

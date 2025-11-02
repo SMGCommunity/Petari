@@ -4,17 +4,6 @@
 
 class FileSelectIconID;
 
-namespace {
-    /// @brief The array of message identifiers corresponding to File Selection Screen icon names.
-    static const char* sIconNameMessageID[] = {
-        "System_FileSelect_Icon000",
-        "System_FileSelect_Icon001",
-        "System_FileSelect_Icon002",
-        "System_FileSelect_Icon003",
-        "System_FileSelect_Icon004"
-    };
-};
-
 /// @brief Helper functions for the File Selection Screen.
 namespace FileSelectFunc {
     /// @brief Returns the size of an icon's name buffer, in bytes.

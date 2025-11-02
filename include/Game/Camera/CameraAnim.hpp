@@ -67,8 +67,8 @@ public:
 class KeyCamAnmDataAccessor : public BaseCamAnmDataAccessor {
 public:
     inline KeyCamAnmDataAccessor() {
-        mInfo = NULL;
-        mValues = NULL;
+        mInfo = nullptr;
+        mValues = nullptr;
     }
 
     virtual ~KeyCamAnmDataAccessor();
@@ -92,8 +92,8 @@ public:
 class CamAnmDataAccessor : public BaseCamAnmDataAccessor {
 public:
     inline CamAnmDataAccessor() {
-        mInfo = NULL;
-        mValues = NULL;
+        mInfo = nullptr;
+        mValues = nullptr;
     }
 
     virtual ~CamAnmDataAccessor();

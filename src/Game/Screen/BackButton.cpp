@@ -6,7 +6,7 @@
 
 BackButton::BackButton(const char* pName, bool param2) :
     LayoutActor(pName, true),
-    mPaneCtrl(NULL),
+    mPaneCtrl(nullptr),
     _24(false),
     _25(true)
 {

@@ -32,11 +32,11 @@
 #include "Game/SingletonHolder.hpp"
 
 namespace {
-    CaptureScreenDirector* getCaptureScreenDirector() {
+    CaptureScreenDirector* getCaptureScreenDirector() NO_INLINE {
         return SingletonHolder<GameSystem>::get()->mObjHolder->mCaptureScreenDir;
     }
 
-    PlayTimerScene* getPlayTimerScene() {
+    PlayTimerScene* getPlayTimerScene() NO_INLINE {
         return SingletonHolder<GameSystem>::get()->mSceneController->mPlayTimerScene;
     }
 
@@ -56,11 +56,11 @@ namespace {
         }
     }
 
-    StarCounter* getStarCounter() {
+    StarCounter* getStarCounter() NO_INLINE {
         return MR::getGameSceneLayoutHolder()->mCounterLayoutCtrl->mStarCounter;
     }
 
-    StarPieceCounter* getStarPieceCounter() {
+    StarPieceCounter* getStarPieceCounter() NO_INLINE {
         return MR::getGameSceneLayoutHolder()->mCounterLayoutCtrl->mStarPieceCounter;
     }
 
@@ -69,15 +69,15 @@ namespace {
     }
 
     BloomEffect* getNormalBloom() {
-        return MR::getSceneObj<BloomEffect*>(SceneObj_BloomEffect);
+        return MR::getSceneObj<BloomEffect>(SceneObj_BloomEffect);
     }
 
     CinemaFrame* getCinemaFrame() {
-        return MR::getSceneObj<CinemaFrame*>(SceneObj_CinemaFrame);
+        return MR::getSceneObj<CinemaFrame>(SceneObj_CinemaFrame);
     }
 
     MoviePlayerSimple* getMoviePlayer() {
-        return MR::getSceneObj<MoviePlayerSimple*>(SceneObj_MoviePlayerSimple);
+        return MR::getSceneObj<MoviePlayerSimple>(SceneObj_MoviePlayerSimple);
     }
 };
 
@@ -261,15 +261,15 @@ namespace MR {
         }
 
         if (isExistSceneObj(SceneObj_BloomEffectSimple)) {
-            requestMovementOn(getSceneObj<BloomEffectSimple*>(SceneObj_BloomEffectSimple));
+            requestMovementOn(getSceneObj<BloomEffectSimple>(SceneObj_BloomEffectSimple));
         }
 
         if (isExistSceneObj(SceneObj_ScreenBlurEffect)) {
-            requestMovementOn(getSceneObj<ScreenBlurEffect*>(SceneObj_ScreenBlurEffect));
+            requestMovementOn(getSceneObj<ScreenBlurEffect>(SceneObj_ScreenBlurEffect));
         }
 
         if (isExistSceneObj(SceneObj_DepthOfFieldBlur)) {
-            requestMovementOn(getSceneObj<DepthOfFieldBlur*>(SceneObj_DepthOfFieldBlur));
+            requestMovementOn(getSceneObj<DepthOfFieldBlur>(SceneObj_DepthOfFieldBlur));
         }
     }
 
@@ -356,7 +356,7 @@ namespace MR {
     }
 
     void startCenterScreenBlur(s32 param1, f32 param2, u8 param3, s32 param4, s32 param5) {
-        getSceneObj<CenterScreenBlur*>(SceneObj_CenterScreenBlur)->start(param1, param2, param3, param4, param5);
+        getSceneObj<CenterScreenBlur>(SceneObj_CenterScreenBlur)->start(param1, param2, param3, param4, param5);
     }
 
     void startGlobalTimer() {
@@ -413,7 +413,7 @@ namespace MR {
             return;
         }
 
-        getSceneObj<LensFlareDirector*>(SceneObj_LensFlareDirector)->pauseOff();
+        getSceneObj<LensFlareDirector>(SceneObj_LensFlareDirector)->pauseOff();
     }
 
     void tryScreenToFrameCinemaFrame() {

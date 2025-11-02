@@ -37,10 +37,7 @@ public:
     void updateTopPos(f32);
     f32 getPoleSubPadStickX() const;
     f32 getPoleSubPadStickY() const;
-    inline void exeCalcFoot() {
-        MR::calcPerpendicFootToLineInside(&mPosition, *MR::getPlayerCenterPos(), _98, _8C);
-    }  
-        
+
     TVec3f _8C;
     TVec3f _98;
     f32 _A4;

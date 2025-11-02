@@ -32,8 +32,8 @@ StarPieceCounter::StarPieceCounter(const char* pName) :
     mStarPieceNum(0),
     mStarPieceDisplayNum(0),
     mInvalidCountUpFrame(0),
-    mLayoutAppearer(NULL),
-    mPaneRumbler(NULL),
+    mLayoutAppearer(nullptr),
+    mPaneRumbler(nullptr),
     mFollowPos(0.0f, 0.0f),
     _3C(0),
     mMode(0)
@@ -55,7 +55,7 @@ void StarPieceCounter::init(const JMapInfoIter& rIter) {
         mPaneRumbler->connectPane(this, "Counter");
     }
 
-    initEffectKeeper(0, NULL, NULL);
+    initEffectKeeper(0, nullptr, nullptr);
 
     mStarPieceNum = MR::getStarPieceNum();
     mStarPieceDisplayNum = mStarPieceNum;
@@ -337,8 +337,4 @@ void StarPieceCounter::exeDisappear() {
 
         setNerve(&NrvStarPieceCounter::StarPieceCounterNrvHide::sInstance);
     }
-}
-
-StarPieceCounter::~StarPieceCounter() {
-    
 }

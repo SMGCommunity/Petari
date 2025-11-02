@@ -15,9 +15,6 @@ public:
     /// @param pName The pointer to the null-terminated name of the object.
     MiiFaceIcon(u16 width, u16 height, const MiiFaceRecipe& rRecipe, const char* pName);
 
-    /// @brief Destroys the `MiiFaceIcon`.
-    virtual ~MiiFaceIcon() {}
-
     virtual void init(const JMapInfoIter& rIter);
     virtual void movement();
 

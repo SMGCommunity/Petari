@@ -20,9 +20,6 @@ public:
     /// @param pName The pointer to the null-terminated name of the object.
     ImageEffectDirector(const char* pName);
 
-    /// @brief Destroys the `ImageEffectDirector`.
-    virtual ~ImageEffectDirector() {}
-
     virtual void movement();
 
     void setCurrentEffect(ImageEffectBase*);

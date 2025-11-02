@@ -8,9 +8,6 @@ public:
     /// @param pName The pointer to the null-terminated name of the object.
     LogoFader(const char* pName);
 
-    /// @brief Destroys the `LogoFader`.
-    virtual ~LogoFader();
-
     virtual void draw() const;
 
     void exeBlank();

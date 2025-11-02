@@ -1,12 +1,14 @@
 #include "Game/System/HeapMemoryWatcher.hpp"
-#include "Game/Util.hpp"
-#include <revolution/wpad.h>
+#include "Game/Util/MemoryUtil.hpp"
+#include <JSystem/JKernel/JKRExpHeap.hpp>
+#include <JSystem/JKernel/JKRSolidHeap.hpp>
 #include <revolution/os.h>
+#include <revolution/wpad.h>
 
 JKRExpHeap* HeapMemoryWatcher::sRootHeapGDDR3;
 
 namespace {
-    JKRExpHeap* createExpHeap(u32 size, JKRHeap *pHeap, bool a3) {
+    JKRExpHeap* createExpHeap(u32 size, JKRHeap *pHeap, bool a3) NO_INLINE {
         JKRExpHeap* heap;
 
         if (a3) {
@@ -34,32 +36,34 @@ namespace {
         return heap;
     }
 
-    void destroyHeapAndSetnullptr(JKRHeap **pHeap) {
-        if (*pHeap) {
+    void destroyHeapAndSetNULL(JKRHeap **pHeap) {
+        if (*pHeap != nullptr) {
             JKRHeap::destroy(*pHeap);
             *pHeap = nullptr;
         }
     }
 };
 
-JKRHeap* HeapMemoryWatcher::getHeapNapa(const JKRHeap *pHeap)
-{
-    if (pHeap == mStationedHeapNapa || pHeap == mStationedHeapGDDR)
+JKRHeap* HeapMemoryWatcher::getHeapNapa(const JKRHeap *pHeap) {
+    if (pHeap == mStationedHeapNapa || pHeap == mStationedHeapGDDR) {
         return mStationedHeapNapa;
+    }
     
-    if (pHeap == mSceneHeapNapa || pHeap == mSceneHeapGDDR)
+    if (pHeap == mSceneHeapNapa || pHeap == mSceneHeapGDDR) {
         return mSceneHeapNapa;
+    }
 
     return nullptr;
 }
 
-JKRHeap* HeapMemoryWatcher::getHeapGDDR3(const JKRHeap *pHeap)
-{
-    if (pHeap == mStationedHeapNapa || pHeap == mStationedHeapGDDR)
+JKRHeap* HeapMemoryWatcher::getHeapGDDR3(const JKRHeap *pHeap) {
+    if (pHeap == mStationedHeapNapa || pHeap == mStationedHeapGDDR) {
         return mStationedHeapGDDR;
+    }
 
-    if (pHeap == mSceneHeapNapa || pHeap == mSceneHeapGDDR)
+    if (pHeap == mSceneHeapNapa || pHeap == mSceneHeapGDDR) {
         return mSceneHeapGDDR;
+    }
 
     return nullptr;
 }
@@ -91,25 +95,25 @@ void HeapMemoryWatcher::setCurrentHeapToSceneHeap() {
 }
 
 void HeapMemoryWatcher::destroySceneHeap() {
-    destroyHeapAndSetnullptr((JKRHeap**)&mSceneHeapNapa);
-    destroyHeapAndSetnullptr((JKRHeap**)&mSceneHeapGDDR);
+    destroyHeapAndSetNULL((JKRHeap**)&mSceneHeapNapa);
+    destroyHeapAndSetNULL((JKRHeap**)&mSceneHeapGDDR);
 }
 
 void HeapMemoryWatcher::destroyGameHeap() {
-    if (mSceneHeapNapa) {
-        destroyHeapAndSetnullptr((JKRHeap**)&mSceneHeapNapa);
+    if (mSceneHeapNapa != nullptr) {
+        destroyHeapAndSetNULL((JKRHeap**)&mSceneHeapNapa);
     }
 
-    if (mSceneHeapGDDR) {
-        destroyHeapAndSetnullptr((JKRHeap**)&mSceneHeapGDDR);
+    if (mSceneHeapGDDR != nullptr) {
+        destroyHeapAndSetNULL((JKRHeap**)&mSceneHeapGDDR);
     }
 
-    if (mFileCacheHeap) {
-        destroyHeapAndSetnullptr((JKRHeap**)&mFileCacheHeap);
+    if (mFileCacheHeap != nullptr) {
+        destroyHeapAndSetNULL((JKRHeap**)&mFileCacheHeap);
     }
 
-    destroyHeapAndSetnullptr((JKRHeap**)&mGameHeapNapa);
-    destroyHeapAndSetnullptr((JKRHeap**)&mGameHeapGDDR);
+    destroyHeapAndSetNULL((JKRHeap**)&mGameHeapNapa);
+    destroyHeapAndSetNULL((JKRHeap**)&mGameHeapGDDR);
     createGameHeap();
 }
 
@@ -139,7 +143,7 @@ void HeapMemoryWatcher::createHeaps() {
     mAudSystemHeap = createSolidHeap(0x1E0000, JKRHeap::sRootHeap);
     mStationedHeapNapa = createExpHeap(0x900000, JKRHeap::sRootHeap, false);
     JKRHeap* gddr = HeapMemoryWatcher::sRootHeapGDDR3;
-    u32 thing = ((WPADGetWorkMemorySize() + 0x1F) & 0xFFFFFFE0) + 208;
+    u32 thing = OSRoundUp32B(WPADGetWorkMemorySize()) + 208;
     mWPadHeap = createExpHeap(thing, gddr, false);
     mHomeButtonLayoutHeap = createExpHeap(0x80000, HeapMemoryWatcher::sRootHeapGDDR3, false);
     mStationedHeapGDDR = createExpHeap(0x1400000, HeapMemoryWatcher::sRootHeapGDDR3, false);
@@ -151,17 +155,18 @@ void HeapMemoryWatcher::createGameHeap() {
     mGameHeapGDDR = createExpHeap(-1, HeapMemoryWatcher::sRootHeapGDDR3, false);
 }
 
-HeapMemoryWatcher::HeapMemoryWatcher() {
-    mStationedHeapNapa = nullptr;
-    mStationedHeapGDDR = nullptr;
-    mGameHeapNapa = nullptr;
-    mGameHeapGDDR = nullptr;
-    mFileCacheHeap = nullptr;
-    mSceneHeapNapa = nullptr;
-    mSceneHeapGDDR = nullptr;
-    mWPadHeap = nullptr;
-    mHomeButtonLayoutHeap = nullptr;
-    mAudSystemHeap = nullptr;
+HeapMemoryWatcher::HeapMemoryWatcher() :
+    mStationedHeapNapa(nullptr),
+    mStationedHeapGDDR(nullptr),
+    mGameHeapNapa(nullptr),
+    mGameHeapGDDR(nullptr),
+    mFileCacheHeap(nullptr),
+    mSceneHeapNapa(nullptr),
+    mSceneHeapGDDR(nullptr),
+    mWPadHeap(nullptr),
+    mHomeButtonLayoutHeap(nullptr),
+    mAudSystemHeap(nullptr)
+{
     JKRHeap::setErrorHandler(HeapMemoryWatcher::memoryErrorCallback);
     createHeaps(); 
 }

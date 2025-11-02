@@ -24,11 +24,11 @@ Manual2P::Manual2P(const char* pName) :
     LayoutActor(pName, true),
     mPageIndex(0),
     _24(0),
-    mLeftPaneCtrl(NULL),
-    mRightPaneCtrl(NULL),
+    mLeftPaneCtrl(nullptr),
+    mRightPaneCtrl(nullptr),
     _30(false),
     _31(false),
-    mBackButton(NULL)
+    mBackButton(nullptr)
 {
     
 }
@@ -114,7 +114,7 @@ void Manual2P::exeWait() {
             return;
         }
 
-        if (MR::testSubPadStickTriggerLeft(0) || MR::testCorePadTriggerLeft(0)) {
+        if (MR::testSubPadStickTriggerLeft(WPAD_CHAN0) || MR::testCorePadTriggerLeft(WPAD_CHAN0)) {
             mLeftPaneCtrl->_24 = false;
 
             MR::startSystemSE("SE_SY_FILE_SEL_TIPS_PAGE", -1, -1);
@@ -132,7 +132,7 @@ void Manual2P::exeWait() {
             return;
         }
 
-        if (MR::testSubPadStickTriggerRight(0) || MR::testCorePadTriggerRight(0)) {
+        if (MR::testSubPadStickTriggerRight(WPAD_CHAN0) || MR::testCorePadTriggerRight(WPAD_CHAN0)) {
             mRightPaneCtrl->_24 = false;
 
             MR::startSystemSE("SE_SY_FILE_SEL_TIPS_PAGE", -1, -1);

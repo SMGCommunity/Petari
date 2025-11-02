@@ -15,7 +15,3 @@ GalaxyCometScreenFilter::GalaxyCometScreenFilter() :
 void GalaxyCometScreenFilter::setCometType(const char* pCometName) {
     MR::setCometAnimFromId(this, MR::getCometNameIdFromString(pCometName), 0);
 }
-
-GalaxyCometScreenFilter::~GalaxyCometScreenFilter() {
-    
-}

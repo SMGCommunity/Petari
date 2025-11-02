@@ -54,7 +54,7 @@ namespace nw4r {
             virtual void SetVtxColorElement(u32, u8);
             virtual Pane* FindPaneByName(const char *, bool);
             virtual Material* FindMaterialByName(const char *, bool);
-            virtual void BindAnimation(AnimTransform *, bool, bool);
+            virtual void BindAnimation(AnimTransform *, bool);
             virtual void UnbindAnimation(AnimTransform *, bool);
             virtual void UnbindAllAnimation(bool);
             virtual void UnbindAnimationSelf(AnimTransform *);

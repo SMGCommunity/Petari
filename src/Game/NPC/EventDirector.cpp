@@ -8,11 +8,11 @@
 
 EventDirector::EventDirector() :
     NameObj("イベント指揮"),
-    mPowerStarEventKeeper(NULL),
-    mStageStateKeeper(NULL),
-    mPowerStarHolder(NULL),
-    mCometEventKeeper(NULL),
-    mTimeAttackEventKeeper(NULL)
+    mPowerStarEventKeeper(nullptr),
+    mStageStateKeeper(nullptr),
+    mPowerStarHolder(nullptr),
+    mCometEventKeeper(nullptr),
+    mTimeAttackEventKeeper(nullptr)
 {
     
 }
@@ -30,23 +30,23 @@ void EventDirector::init(const JMapInfoIter& rIter) {
 
 namespace EventFunction {
     PowerStarEventKeeper* getPowerStarEventKeeper() {
-        return MR::getSceneObj<EventDirector*>(SceneObj_EventDirector)->mPowerStarEventKeeper;
+        return MR::getSceneObj<EventDirector>(SceneObj_EventDirector)->mPowerStarEventKeeper;
     }
 
     StageStateKeeper* getStageStateKeeper() {
-        return MR::getSceneObj<EventDirector*>(SceneObj_EventDirector)->mStageStateKeeper;
+        return MR::getSceneObj<EventDirector>(SceneObj_EventDirector)->mStageStateKeeper;
     }
 
     PowerStarHolder* getPowerStarHolder() {
-        return MR::getSceneObj<EventDirector*>(SceneObj_EventDirector)->mPowerStarHolder;
+        return MR::getSceneObj<EventDirector>(SceneObj_EventDirector)->mPowerStarHolder;
     }
 
     CometEventKeeper* getCometEventKeeper() {
-        return MR::getSceneObj<EventDirector*>(SceneObj_EventDirector)->mCometEventKeeper;
+        return MR::getSceneObj<EventDirector>(SceneObj_EventDirector)->mCometEventKeeper;
     }
 
     TimeAttackEventKeeper* getTimeAttackEventKeeper() {
-        return MR::getSceneObj<EventDirector*>(SceneObj_EventDirector)->mTimeAttackEventKeeper;
+        return MR::getSceneObj<EventDirector>(SceneObj_EventDirector)->mTimeAttackEventKeeper;
     }
 
     bool isStartCometEvent(const char* pParam1) {
@@ -76,7 +76,7 @@ namespace MR {
     void declareEventPowerStar(const NameObj* pParam1, s32 param2, bool param3) {
         const char* pVar1 = pParam1->mName;
 
-        EventFunction::getPowerStarEventKeeper()->declareStar(pVar1, NULL, param2, param3);
+        EventFunction::getPowerStarEventKeeper()->declareStar(pVar1, nullptr, param2, param3);
     }
 
     bool isSuccessEventPowerStar(const char* pParam1, s32 param2) {

@@ -98,7 +98,7 @@ public:
     void updateProjection();
 
     inline void appendToHolder() {
-        MR::getSceneObj<ShadowControllerHolder*>(SceneObj_ShadowControllerHolder)->_18.push_back(this);
+        MR::getSceneObj<ShadowControllerHolder>(SceneObj_ShadowControllerHolder)->_18.push_back(this);
     }
 
     LiveActor* mActor;                                  // 0x0

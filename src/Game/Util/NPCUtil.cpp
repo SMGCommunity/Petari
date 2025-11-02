@@ -1,8 +1,7 @@
-#include "Game/Util/NPCUtil.hpp"
-#include "Game/NPC/NPCActor.hpp"
-#include "Game/LiveActor/Nerve.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
+#include "Game/NPC/NPCActor.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/NPCUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 
 namespace {
@@ -31,13 +30,16 @@ namespace NrvDemoStarter {
     NEW_NERVE(DemoStarterNrvTerm, DemoStarter, Term);
 };
 
-TakeOutStar::TakeOutStar(NPCActor *pActor, const char *pActionName, const char *pAnimName, const Nerve *pNerve) : NerveExecutor("パワースター取り出しデモ実行者") {
-    mActor = pActor;
-    mNerve = pNerve;
-    mActionName = pActionName;
-    mAnimName = pAnimName;
+TakeOutStar::TakeOutStar(NPCActor *pActor, const char *pActionName, const char *pAnimName, const Nerve *pNerve) :
+    NerveExecutor("パワースター取り出しデモ実行者"),
+    mActor(pActor),
+    mNerve(pNerve),
+    mActionName(pActionName),
+    mAnimName(pAnimName)
+{
     mStarModel = MR::createPowerStarDemoModel(mActor, "パワースターデモモデル", pActor->getBaseMtx());
     mStarModel->makeActorDead();
+
     initNerve(&NrvTakeOutStar::TakeOutStarNrvAnim::sInstance);
 }
 
@@ -47,6 +49,7 @@ bool TakeOutStar::takeOut() {
     }
 
     updateNerve();
+
     return false;
 }
 
@@ -119,10 +122,16 @@ void TakeOutStar::exeDemo() {
     }
 }
 
-FadeStarter::FadeStarter(NPCActor *pActor, s32 a2) : NerveExecutor("フェード開始制御") {
-    mActor = pActor;
-    _C = 0;
-    _10 = a2;
+void TakeOutStar::exeTerm() {
+    
+}
+
+FadeStarter::FadeStarter(NPCActor *pActor, s32 a2) :
+    NerveExecutor("フェード開始制御"),
+    mActor(pActor),
+    _C(nullptr),
+    _10(a2)
+{
     initNerve(&NrvFadeStarter::FadeStarterNrvFade::sInstance);
 }
 
@@ -132,6 +141,7 @@ bool FadeStarter::update() {
     }
 
     updateNerve();
+
     return false;
 }
 
@@ -145,25 +155,35 @@ void FadeStarter::exeFade() {
         MR::closeWipeFade(_10);
     }
 
-    if (!MR::isWipeActive()) {
-        mActor->popNerve();
-        if (_C != nullptr) {
-            mActor->pushNerve(_C);
-            _C = nullptr;
-        }
-
-        MR::openWipeFade(_10);
-        setNerve(&NrvFadeStarter::FadeStarterNrvTerm::sInstance);
+    if (MR::isWipeActive()) {
+        return;
     }
+
+    mActor->popNerve();
+
+    if (_C != nullptr) {
+        mActor->pushNerve(_C);
+        _C = nullptr;
+    }
+
+    MR::openWipeFade(_10);
+    setNerve(&NrvFadeStarter::FadeStarterNrvTerm::sInstance);
 }
 
-DemoStarter::DemoStarter(NPCActor *pActor) : NerveExecutor("デモ開始制御") {
-    mActor = pActor;
+void FadeStarter::exeTerm() {
+    
+}
+
+DemoStarter::DemoStarter(NPCActor *pActor) :
+    NerveExecutor("デモ開始制御"),
+    mActor(pActor)
+{
     initNerve(&NrvDemoStarter::DemoStarterNrvInit::sInstance);
 }
 
 bool DemoStarter::update() {
     updateNerve();
+
     return isNerve(&NrvDemoStarter::DemoStarterNrvTerm::sInstance);
 }
 
@@ -173,6 +193,10 @@ void DemoStarter::start() {
     }
 }
 
+void DemoStarter::exeInit() {
+    
+}
+
 void DemoStarter::exeFade() {
     if (MR::isFirstStep(this)) {
         MR::invalidateClipping(mActor);
@@ -180,39 +204,23 @@ void DemoStarter::exeFade() {
         MR::closeWipeFade(-1);
     }
 
-    if (!MR::isWipeActive()) {
-        setNerve(&NrvDemoStarter::DemoStarterNrvWait::sInstance);
+    if (MR::isWipeActive()) {
+        return;
     }
+
+    setNerve(&NrvDemoStarter::DemoStarterNrvWait::sInstance);
 }
 
-TakeOutStar::~TakeOutStar() {
+void DemoStarter::exeWait() {
+    if (MR::isLessStep(this, 30)) {
+        return;
+    }
 
-}
-
-FadeStarter::~FadeStarter() {
-
+    if (MR::canStartDemo()) {
+        setNerve(&NrvDemoStarter::DemoStarterNrvTerm::sInstance);
+    }
 }
 
 void DemoStarter::exeTerm() {
 
-}
-
-void DemoStarter::exeWait() {
-    if (!MR::isLessStep(this, 30)) {
-        if (MR::canStartDemo()) {
-            setNerve(&NrvDemoStarter::DemoStarterNrvTerm::sInstance);
-        }
-    }
-}
-
-void DemoStarter::exeInit() {
-    
-}
-
-void TakeOutStar::exeTerm() {
-    
-}
-
-void FadeStarter::exeTerm() {
-    
 }

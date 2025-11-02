@@ -35,5 +35,4 @@ public:
     u32 mEnablePastCount;           // 0x40
     bool mIsPointInScreen;          // 0x44
     u8 _45;
-    f32 _48;
 };

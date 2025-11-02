@@ -85,7 +85,7 @@ void BatteryInfo::exeLowHide() {
     }
 
     if (MR::getWPad(mChannel)->getBattery() == -1) {
-        if (mChannel == 1) {
+        if (mChannel == WPAD_CHAN1) {
             setNerve(&BatteryInfoNoneAppear::sInstance);
         }
         else {
@@ -176,7 +176,7 @@ bool BatteryInfo::tryChangeNerveWithBatteryLeftAlreadyAppear() {
 
     switch (MR::getWPad(mChannel)->getBattery()) {
     case -1:
-        if (mChannel == 1) {
+        if (mChannel == WPAD_CHAN1) {
             pNerve = &BatteryInfoNoneAppear::sInstance;
         }
         else {

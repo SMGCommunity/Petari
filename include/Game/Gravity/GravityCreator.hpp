@@ -26,7 +26,7 @@ public:
 
 class CubeGravityCreator : public GravityCreator {
 public:
-	inline CubeGravityCreator() : GravityCreator(), mGravityInstance(NULL) {}
+	inline CubeGravityCreator() : GravityCreator(), mGravityInstance(nullptr) {}
 
 	virtual PlanetGravity* getGravity();
 	virtual PlanetGravity* createInstance();
@@ -38,7 +38,7 @@ public:
 
 class DiskGravityCreator : public GravityCreator {
 public:
-	inline DiskGravityCreator() : GravityCreator(), mGravityInstance(NULL) {}
+	inline DiskGravityCreator() : GravityCreator(), mGravityInstance(nullptr) {}
 
 	virtual PlanetGravity* getGravity();
 	virtual PlanetGravity* createInstance();
@@ -50,7 +50,7 @@ public:
 
 class DiskTorusGravityCreator : public GravityCreator {
 public:
-	inline DiskTorusGravityCreator() : GravityCreator(), mGravityInstance(NULL) {}
+	inline DiskTorusGravityCreator() : GravityCreator(), mGravityInstance(nullptr) {}
 
 	virtual PlanetGravity* getGravity();
 	virtual PlanetGravity* createInstance();
@@ -62,7 +62,7 @@ public:
 
 class ConeGravityCreator : public GravityCreator {
 public:
-	inline ConeGravityCreator() : GravityCreator(), mGravityInstance(NULL) {}
+	inline ConeGravityCreator() : GravityCreator(), mGravityInstance(nullptr) {}
 
 	virtual PlanetGravity* getGravity();
 	virtual PlanetGravity* createInstance();
@@ -74,7 +74,7 @@ public:
 
 class PlaneGravityCreator : public GravityCreator {
 public:
-	inline PlaneGravityCreator() : GravityCreator(), mGravityInstance(NULL) {}
+	inline PlaneGravityCreator() : GravityCreator(), mGravityInstance(nullptr) {}
 
 	virtual PlanetGravity* getGravity();
 	virtual PlanetGravity* createInstance();
@@ -85,7 +85,7 @@ public:
 
 class PlaneInBoxGravityCreator : public GravityCreator {
 public:
-	inline PlaneInBoxGravityCreator() : GravityCreator(), mGravityInstance(NULL) {}
+	inline PlaneInBoxGravityCreator() : GravityCreator(), mGravityInstance(nullptr) {}
 
 	virtual PlanetGravity* getGravity();
 	virtual PlanetGravity* createInstance();
@@ -97,7 +97,7 @@ public:
 
 class PlaneInCylinderGravityCreator : public GravityCreator {
 public:
-	inline PlaneInCylinderGravityCreator() : GravityCreator(), mGravityInstance(NULL) {}
+	inline PlaneInCylinderGravityCreator() : GravityCreator(), mGravityInstance(nullptr) {}
 
 	virtual PlanetGravity* getGravity();
 	virtual PlanetGravity* createInstance();
@@ -109,7 +109,7 @@ public:
 
 class PointGravityCreator : public GravityCreator {
 public:
-	inline PointGravityCreator() : GravityCreator(), mGravityInstance(NULL) {}
+	inline PointGravityCreator() : GravityCreator(), mGravityInstance(nullptr) {}
 
 	virtual PlanetGravity* getGravity();
 	virtual PlanetGravity* createInstance();
@@ -120,7 +120,7 @@ public:
 
 class SegmentGravityCreator : public GravityCreator {
 public:
-	inline SegmentGravityCreator() : GravityCreator(), mGravityInstance(NULL) {}
+	inline SegmentGravityCreator() : GravityCreator(), mGravityInstance(nullptr) {}
 
 	virtual PlanetGravity* getGravity();
 	virtual PlanetGravity* createInstance();
@@ -132,7 +132,7 @@ public:
 
 class WireGravityCreator : public GravityCreator {
 public:
-	inline WireGravityCreator() : GravityCreator(), mRailRider(NULL), mGravityInstance(NULL) {}
+	inline WireGravityCreator() : GravityCreator(), mRailRider(nullptr), mGravityInstance(nullptr) {}
 
 	virtual PlanetGravity* getGravity();
 	virtual PlanetGravity* createInstance();

@@ -30,6 +30,23 @@
 #include "JSystem/JMath/JMath.hpp"
 #include "revolution/types.h"
 
+namespace {
+    const char* cMessageId[] = {
+        "AstroDome_Butler002",
+        "AstroDome_Butler003",
+        "AstroDome_Butler006",
+        "AstroDome_Butler007",
+        "AstroGalaxy_Butler005",
+        "AstroGalaxy_Butler006",
+    };
+    const char* cDemoNameGreenDriver = "バトラーグリーンドライバ説明";
+    const char* cDemoNameButlerReport = "バトラー報告";
+    const char* cDemoNameDomeLecture1 = "ドームレクチャー１";
+    const char* cDemoNameDomeLecture2 = "ドームレクチャー2";
+    const char* cDemoNameStarPiece1 = "スターピース解説前半";
+    const char* cDemoNameStarPiece2 = "スターピース解説後半";
+};
+
 namespace NrvButler {
     NEW_NERVE(ButlerNrvStarPieceReaction, Butler, StarPieceReaction);
     NEW_NERVE(ButlerNrvDemo, Butler, Demo);

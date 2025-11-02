@@ -2,7 +2,9 @@
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/NPC/TalkTextFormer.hpp"
 #include "Game/Screen/LayoutActor.hpp"
-#include "Game/Util.hpp"
+#include "Game/Util/LayoutUtil.hpp"
+#include "Game/Util/MessageUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
 
 namespace NrvMovieSubtitles {
     NEW_NERVE(HostTypeWait, MovieSubtitles, Wait);
@@ -10,13 +12,17 @@ namespace NrvMovieSubtitles {
     NEW_NERVE(HostTypeTalkWait, MovieSubtitles, TalkWait);
 };
 
-MovieSubtitles::MovieSubtitles(const char *pName, s32 a2) : LayoutActor("ムービーの字幕", true) {
-    mFormerText = nullptr;
-    _24 = a2;
+MovieSubtitles::MovieSubtitles(const char *pName, s32 a2) :
+    LayoutActor("ムービーの字幕", true),
+    mFormerText(nullptr),
+    _24(a2)
+{
     MR::connectToScene(this, 19, 15, -1, 64);
     initLayoutManager("CinemaSuper", 1);
+
     mFormerText = new TalkTextFormer(this, "Text00");
     mFormerText->formMessage(MR::getLayoutMessageDirect(pName), 2);
+
     initNerve(&NrvMovieSubtitles::HostTypeWait::sInstance);
     kill();
 }
@@ -26,8 +32,13 @@ void MovieSubtitles::appear() {
     setNerve(&NrvMovieSubtitles::HostTypeTalk::sInstance);
 }
 
+void MovieSubtitles::exeWait() {
+    
+}
+
 void MovieSubtitles::exeTalk() {
     mFormerText->updateTalking();
+
     if (mFormerText->isTextAppearedAll()) {
         setNerve(&NrvMovieSubtitles::HostTypeTalkWait::sInstance);
     }
@@ -45,12 +56,4 @@ void MovieSubtitles::exeTalkWait() {
             kill();
         }
     }
-}
-
-MovieSubtitles::~MovieSubtitles() {
-
-}
-
-void MovieSubtitles::exeWait() {
-
 }

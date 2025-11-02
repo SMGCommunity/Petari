@@ -12,30 +12,10 @@ struct TimingInfo {
     /* 0x0 */ u32 _C;
 };
 
-class CaptureScreenActor : public NameObj {
-public:
-    /// @brief Creates a new `CaptureScreenActor`.
-    /// @param param1 TODO.
-    /// @param pCameraName TODO.
-    CaptureScreenActor(u32 param1, const char* pCameraName);
-
-    /// @brief Destroys the `CaptureScreenActor`.
-    virtual ~CaptureScreenActor() {}
-
-    /// @brief Draws the `CaptureScreenActor` to the screen.
-    virtual void draw() const;
-
-private:
-    /* 0xC */ const char* mCameraName;
-};
-
 class CaptureScreenDirector : public NameObj {
 public:
     /// @brief Creates a new `CaptureScreenDirector`.
     CaptureScreenDirector();
-
-    /// @brief Destroys the `CaptureScreenDirector`.
-    virtual ~CaptureScreenDirector() {}
 
     void captureIfAllow(const char* pName);
     void capture();
@@ -52,4 +32,18 @@ private:
     /* 0x10 */ const char* mTimingType;
     /* 0x14 */ JUTTexture* mTexture;
     /* 0x18 */ bool _18;
+};
+
+class CaptureScreenActor : public NameObj {
+public:
+    /// @brief Creates a new `CaptureScreenActor`.
+    /// @param param1 TODO.
+    /// @param pCameraName TODO.
+    CaptureScreenActor(u32 param1, const char* pCameraName);
+
+    /// @brief Draws the `CaptureScreenActor` to the screen.
+    virtual void draw() const;
+
+private:
+    /* 0xC */ const char* mCameraName;
 };

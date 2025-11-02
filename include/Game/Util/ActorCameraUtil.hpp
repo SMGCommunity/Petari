@@ -1,20 +1,12 @@
 #pragma once
 
-#include "Game/Camera/CameraTargetArg.hpp"
-#include "Game/LiveActor/ActorCameraInfo.hpp"
-#include "Game/Util/ActorSwitchUtil.hpp"
-#include "Game/Util/JMapInfo.hpp"
-#include "JSystem/JGeometry.hpp"
-
-#include <revolution.h>
+#include <JSystem/JGeometry/TVec.hpp>
+#include <revolution/types.h>
 
 class ActorCameraInfo;
+class CameraTargetArg;
 class LiveActor;
-
-namespace {
-    char* createActorCameraName (char *, u32, const LiveActor *, const ActorCameraInfo *);
-    char* createMultiActorCameraName (char *, u32, const LiveActor *, const ActorCameraInfo *, const char *);
-};
+class JMapInfoIter;
 
 namespace MR {
     void initAnimCamera(const LiveActor *, const ActorCameraInfo *, const char *);

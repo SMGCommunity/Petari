@@ -2,7 +2,7 @@
 #include "Game/Screen/CinemaFrame.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
-#include "JSystem/J3DGraphAnimator/J3DAnimation.hpp"
+#include <JSystem/J3DGraphAnimator/J3DAnimation.hpp>
 
 namespace NrvCinemaFrame {
     NEW_NERVE(CinemaFrameNrvScreen, CinemaFrame, Screen);
@@ -167,8 +167,4 @@ void CinemaFrame::exeBlankToFrame() {
 void CinemaFrame::exeFrameToScreen() {
     MR::startAnimAtFirstStep(this, "End", 0);
     MR::setNerveAtAnimStopped(this, &NrvCinemaFrame::CinemaFrameNrvScreen::sInstance, 0);
-}
-
-CinemaFrame::~CinemaFrame() {
-    
 }

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "revolution.h"
+#include <revolution/types.h>
 
 struct WaveData {
     u32 mSize;
@@ -20,5 +20,5 @@ public:
     u8** getWave(s32) const;
     WaveData* getWaveData(s32) const;
 
-    void* mResource;    // 0x0, Raw data of AudioRes/SpkRes/SpkRes.arc
+    /* 0x0 */ void* mResource; // Raw data of AudioRes/SpkRes/SpkRes.arc
 };
