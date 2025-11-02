@@ -2231,7 +2231,7 @@ config.libs = [
             Object(NonMatching, "Game/System/StageResultSequenceChecker.cpp"),
             Object(NonMatching, "Game/System/StarPieceAlmsStorage.cpp"),
             Object(NonMatching, "Game/System/StorySequenceExecutor.cpp"),
-            Object(NonMatching, "Game/System/SysConfigFile.cpp"),
+            Object(Matching, "Game/System/SysConfigFile.cpp"),
             Object(NonMatching, "Game/System/UserFile.cpp")
         ],
     ),
