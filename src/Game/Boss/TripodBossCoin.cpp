@@ -1,5 +1,6 @@
-#include "Game/Boss/TripodBossCoin.hpp"
 #include "Game/Boss/TripodBossAccesser.hpp"
+#include "Game/Boss/TripodBossCoin.hpp"
+#include "Game/MapObj/Coin.hpp"
 
 namespace NrvTripodBossCoin {
     NEW_NERVE(TripodBossCoinNrvNonActive, TripodBossCoin, NonActive);
@@ -7,10 +8,12 @@ namespace NrvTripodBossCoin {
     NEW_NERVE(TripodBossCoinNrvEnd, TripodBossCoin, End);
 };
 
-TripodBossCoin::TripodBossCoin(const char *pName) : NameObj(pName) {
-    mCoin = nullptr;
-    mSpine = nullptr;
-    _44 = -1;
+TripodBossCoin::TripodBossCoin(const char *pName) :
+    NameObj(pName),
+    mCoin(nullptr),
+    mSpine(nullptr),
+    _44(-1)
+{
     _14.identity();
 }
 
@@ -58,6 +61,6 @@ void TripodBossCoin::exeActive() {
     }
 }
 
-TripodBossCoin::~TripodBossCoin() {
+void TripodBossCoin::exeEnd() {
     
 }

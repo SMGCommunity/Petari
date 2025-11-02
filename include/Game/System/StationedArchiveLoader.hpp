@@ -1,8 +1,10 @@
 #pragma once
 
-#include "Game/System/StationedFileInfo.hpp"
-#include <JSystem/JKernel/JKRHeap.hpp>
-#include <revolution.h>
+class JKRHeap;
+
+namespace MR {
+    struct StationedFileInfo;
+};
 
 class StationedArchiveLoader {
 public:

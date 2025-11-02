@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
+#include "Game/MapObj/BlackHole.hpp"
 #include "Game/Player/Mario.hpp"
 #include "Game/MapObj/BlackHole.hpp"
 
@@ -183,6 +184,7 @@ public:
     bool tryStandardRush();
     void checkPriorRushTarget();
     u8 selectAction(const char *) const;
+    void changeMorphString(const char*) const;
     bool tryRushInRush();
     void bodyClap();
     bool selectWaterInOut(const char *) const;
@@ -199,6 +201,8 @@ public:
     bool isRequestRush() const;
     bool isRequestSpinJump2P() const;
     bool tryReleaseBombTeresa();
+    void initBlackHoleOut(); // void ?
+    void exeGameOverBlackHole2();
     bool isEnableSpinPunch();
     bool trySpinPunch();
     void shootFireBall();

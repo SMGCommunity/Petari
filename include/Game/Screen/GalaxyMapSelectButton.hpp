@@ -10,9 +10,6 @@ public:
     /// @brief Creates a new `GalaxyMapSelectButton`.
     GalaxyMapSelectButton();
 
-    /// @brief Destroys the `GalaxyMapSelectButton`.
-    virtual ~GalaxyMapSelectButton() {}
-
     virtual void init(const JMapInfoIter& rIter);
     virtual void appear();
     virtual void control();

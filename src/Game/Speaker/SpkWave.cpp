@@ -1,45 +1,48 @@
 #include "Game/Speaker/SpkWave.hpp"
+#include <revolution/os.h>
 
-SpkWave::SpkWave() {
-    mResource = nullptr;
+SpkWave::SpkWave() :
+    mResource(nullptr)
+{
+    
 }
 
-void SpkWave::setResource(void * pResource) {
-    OSDisableInterrupts();
+void SpkWave::setResource(void* pResource) {
+    BOOL status = OSDisableInterrupts();
     mResource = pResource;
-    OSEnableInterrupts();
+    OSRestoreInterrupts(status);
 }
 
 u32 SpkWave::getWaveSize(s32 wave) const {
     if (mResource == nullptr) {
         return 0;
-    } else {
-        return getWaveData(wave)->mSize;
     }
+
+    return getWaveData(wave)->mSize;
 }
 
 u32 SpkWave::getLoopStartPos(s32 wave) const {
     if (mResource == nullptr) {
         return 0;
-    } else {
-        return getWaveData(wave)->mLoopStartPos;
     }
+
+    return getWaveData(wave)->mLoopStartPos;
 }
 
 u32 SpkWave::getLoopEndPos(s32 wave) const {
     if (mResource == nullptr) {
         return 0;
-    } else {
-        return getWaveData(wave)->mLoopEndPos;
     }
+
+    return getWaveData(wave)->mLoopEndPos;
 }
 
 u8** SpkWave::getWave(s32 wave) const {
     if (mResource == nullptr) {
-        return 0;
-    } else {
-        return &getWaveData(wave)->mWave;
+        return nullptr;
     }
+
+    return &getWaveData(wave)->mWave;
 }
 
 WaveData* SpkWave::getWaveData(s32 wave) const {

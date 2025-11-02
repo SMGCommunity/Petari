@@ -28,6 +28,7 @@ namespace MR {
     void moveCoordToNearestPos(LiveActor *, const TVec3f &);
 
     void moveCoordAndTransToNearestRailPos(LiveActor *);
+    void moveCoordAndTransToRailPoint(LiveActor *, s32);
     void moveTransToCurrentRailPos(LiveActor *);
 
     void reverseRailDirection(LiveActor *);

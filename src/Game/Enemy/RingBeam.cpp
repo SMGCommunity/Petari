@@ -1,10 +1,17 @@
+#include "Game/AudioLib/AudAnmSoundObject.hpp"
 #include "Game/Enemy/RingBeam.hpp"
+#include "Game/LiveActor/HitSensor.hpp"
+#include "Game/LiveActor/ModelObj.hpp"
+#include "Game/Map/HitInfo.hpp"
 
 //GX function that is included as a local symbol for some reason
-extern "C"{
-void GXPosition3f32(f32,f32,f32);
+extern "C" {
+    void GXPosition3f32(f32,f32,f32);
 }
 
+namespace NrvRingBeam {
+	NEW_NERVE(RingBeamNrvSpread, RingBeam, Spread);
+}
 
 RingBeamShadowDrawer::RingBeamShadowDrawer(const LiveActor * unk0) : ShadowVolumeDrawer("影描画[リングビーム]"){
     _1c = unk0;
@@ -252,34 +259,33 @@ void RingBeam::initPos(const LiveActor * actor){
 
 
 
-void RingBeam::attackSensor(HitSensor *pSender, HitSensor *pReceiver){
-
+void RingBeam::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
     TRot3f mtx;
     TVec3f temp;
     TVec3f temp2;
     TVec3f sensordiff = pReceiver->mPosition;
     sensordiff -= pSender->mPosition;
-    MR::makeMtxTR((MtxPtr)&mtx,this);
+    MR::makeMtxTR((MtxPtr)&mtx, this);
     //this is 100% certainly an inline
     f32 x = mtx.mMtx[0][1];
     f32 y = mtx.mMtx[1][1];
     f32 z = mtx.mMtx[2][1];
     temp.set<f32>(x, y, z);
-    MR::vecKillElement(sensordiff,temp,&temp2);
+    MR::vecKillElement(sensordiff, temp, &temp2);
     temp2.setLength(pSender->mRadius);
     
     TVec3f temp3 = temp2;
     temp3 -= sensordiff;
     f32 length = temp3.length();
-    f32 recieveradius = pReceiver->mRadius;
-    if(!(length > 5.0f + recieveradius) && MR::isSensorPlayerOrRide(pReceiver)){
-        MR::sendMsgEnemyAttackElectric(pReceiver,pSender);
-    }
+    f32 receiverRadius = pReceiver->mRadius;
 
+    if (!(length > 5.0f + receiverRadius) && MR::isSensorPlayerOrRide(pReceiver)) {
+        MR::sendMsgEnemyAttackElectric(pReceiver, pSender);
+    }
 }
 
 
-bool RingBeam::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver){
+bool RingBeam::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     return false;
 }
 
@@ -368,14 +374,10 @@ void RingBeam::exeSpread(){
      }
 }
 
-namespace NrvRingBeam {
-    INIT_NERVE(RingBeamNrvSpread);
-    void RingBeamNrvSpread::execute(Spine *pSpine) const{
-        RingBeam *pActor = (RingBeam*)pSpine->mExecutor;
-        pActor->exeSpread();
-    }
-
+RingBeam::~RingBeam() {
+    
 }
 
-RingBeam::~RingBeam(){};
-RingBeamShadowDrawer::~RingBeamShadowDrawer(){};
+RingBeamShadowDrawer::~RingBeamShadowDrawer() {
+    
+}

@@ -165,9 +165,9 @@ void FireBar::makeActorDead() {
     LiveActor::makeActorDead();
 }
 
-void FireBar::attackSensor(HitSensor *a1, HitSensor *a2) {
-    if (MR::isSensorPlayerOrRide(a2) && MR::isSensorEnemyAttack(a1)) {
-        MR::sendMsgEnemyAttackFire(a2, a1);
+void FireBar::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
+    if (MR::isSensorPlayerOrRide(pReceiver) && MR::isSensorEnemyAttack(pSender)) {
+        MR::sendMsgEnemyAttackFire(pReceiver, pSender);
     }
 }
 

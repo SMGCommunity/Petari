@@ -1,23 +1,24 @@
 #pragma once
 
-#include "JSystem/JMath/JMath.hpp"
-#include "revolution/types.h"
 #include <revolution.h>
 
-f32 JMAAsinRadian(f32);
-f32 JMACosRadian(f32);
-
 f32 JMAAcosRadian(f32);
-
-f32 JMASinDegree(f32);
+f32 JMAAsinRadian(f32);
 f32 JMACosDegree(f32);
-
-void JMAVECScaleAdd(const Vec *, const Vec *, Vec *, f32);
+f32 JMACosRadian(f32);
+f32 JMASinDegree(f32);
+f32 JMASinRadian(f32);
 void JMAVECLerp(const Vec *, const Vec *, Vec *, f32);
-
+void JMAVECScaleAdd(const Vec *, const Vec *, Vec *, f32);
 
 namespace JMath {
+    f32 fastReciprocal(f32);
+
+    template<typename T>
+    f32 fastSqrt(T);
+
     void gekko_ps_copy12(void *, const void *);
+    void gekko_ps_copy16(void *, const void *);
 };
 
 namespace JMathInlineVEC {

@@ -1,3 +1,4 @@
+#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/MapObj/Candlestand.hpp"
 
 struct Param {
@@ -113,32 +114,43 @@ void Candlestand::makeActorAppeared() {
 void Candlestand::startClipped() {
     MapObjActor::startClipped();
 
-    if (isNerve(&NrvCandlestand::HostTypeBurn::sInstance) || isNerve(&NrvCandlestand::HostTypeAttack::sInstance)) {
+    if (isNerve(&NrvCandlestand::HostTypeBurn::sInstance)
+        || isNerve(&NrvCandlestand::HostTypeAttack::sInstance))
+    {
         deleteEffectFire();
     }
 }
 
 void Candlestand::endClipped() {
-    if (isNerve(&NrvCandlestand::HostTypeBurn::sInstance) || isNerve(&NrvCandlestand::HostTypeAttack::sInstance)) {
+    if (isNerve(&NrvCandlestand::HostTypeBurn::sInstance)
+        || isNerve(&NrvCandlestand::HostTypeAttack::sInstance))
+    {
         emitEffectFire();
     }
 
     MapObjActor::endClipped();
 }
 
-void Candlestand::attackSensor(HitSensor* a2, HitSensor *a3) {
-    if (isNerve(&NrvCandlestand::HostTypeBurn::sInstance)) {
-        f32 range = mScale.x * 50.0f;
-        f32 radius = a3->mRadius;
-        if (MR::isNear(a2, a3, range + radius)) {
-            if (MR::sendMsgEnemyAttackFire(a3, a2)) {
-                setNerve(&NrvCandlestand::HostTypeAttack::sInstance);
-            }
-        }
+void Candlestand::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
+    if (!isNerve(&NrvCandlestand::HostTypeBurn::sInstance)) {
+        return;
     }
+
+    f32 range = mScale.x * 50.0f;
+    f32 radius = pReceiver->mRadius;
+
+    if (!MR::isNear(pSender, pReceiver, range + radius)) {
+        return;
+    }
+
+    if (!MR::sendMsgEnemyAttackFire(pReceiver, pSender)) {
+        return;
+    }
+
+    setNerve(&NrvCandlestand::HostTypeAttack::sInstance);
 }
 
-bool Candlestand::receiveMsgPlayerAttack(u32 msg, HitSensor *a3, HitSensor *a4) {
+bool Candlestand::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     if (!isNerve(&NrvCandlestand::HostTypeWaitFire::sInstance)) {
         return false;
     }
@@ -148,9 +160,9 @@ bool Candlestand::receiveMsgPlayerAttack(u32 msg, HitSensor *a3, HitSensor *a4) 
     }
 
     f32 range = mScale.x * 150.0f;
-    f32 radius = a3->mRadius;
+    f32 radius = pSender->mRadius;
 
-    if (!MR::isNear(a3, a4, range + radius)) {
+    if (!MR::isNear(pSender, pReceiver, range + radius)) {
         return false;
     }
 
@@ -158,7 +170,7 @@ bool Candlestand::receiveMsgPlayerAttack(u32 msg, HitSensor *a3, HitSensor *a4) 
     return true;
 }
 
-bool Candlestand::receiveMsgEnemyAttack(u32 msg, HitSensor *a3, HitSensor *a4) {
+bool Candlestand::receiveMsgEnemyAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     if (!isNerve(&NrvCandlestand::HostTypeWaitFire::sInstance)) {
         return false;
     }
@@ -168,9 +180,9 @@ bool Candlestand::receiveMsgEnemyAttack(u32 msg, HitSensor *a3, HitSensor *a4) {
     }
 
     f32 range = mScale.x * 150.0f;
-    f32 radius = a3->mRadius;
+    f32 radius = pSender->mRadius;
 
-    if (!MR::isNear(a3, a4, range + radius)) {
+    if (!MR::isNear(pSender, pReceiver, range + radius)) {
         return false;
     }
 
@@ -178,8 +190,10 @@ bool Candlestand::receiveMsgEnemyAttack(u32 msg, HitSensor *a3, HitSensor *a4) {
     return true;
 }
 
-bool Candlestand::receiveOtherMsg(u32 msg, HitSensor *a3, HitSensor *a4) {
-    if (MR::isInSpinStormRange(msg, a3, a4, (350.0f * mScale.x)) && isNerve(&NrvCandlestand::HostTypeBurn::sInstance)) {
+bool Candlestand::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+    if (MR::isInSpinStormRange(msg, pSender, pReceiver, (350.0f * mScale.x))
+        && isNerve(&NrvCandlestand::HostTypeBurn::sInstance))
+    {
         if (getParam(mObjectName)->mCanUseSwitch) {
             setNerve(&NrvCandlestand::HostTypeFlicker::sInstance);
             return true;

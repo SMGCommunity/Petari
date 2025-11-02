@@ -1,3 +1,4 @@
+#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/MapObj/ValveSwitch.hpp"
 
 ValveSwitch::ValveSwitch(const char *pName) : LiveActor(pName) {
@@ -19,7 +20,7 @@ void ValveSwitch::init(const JMapInfoIter &rIter) {
     MR::addHitSensorMapObj(this, "body", 8, 100.0f, TVec3f(0.0f, 0.0f, 0.0f));
     TVec3f binder;
     binder.scale(-75.0f, mGravity);
-    MR::addHitSensorAtJoint(this, "binder", "Valve", 97, 8, 150.0f, binder);
+    MR::addHitSensorAtJoint(this, "binder", "Valve", ATYPE_BINDER, 8, 150.0f, binder);
     _90.set(MR::getJointMtx(this, "Valve"));
     MR::initCollisionParts(this, "ValveCol", getSensor("binder"), _90.toMtxPtr());
     initEffectKeeper(0, nullptr, false);

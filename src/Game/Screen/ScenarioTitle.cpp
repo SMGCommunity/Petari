@@ -1,18 +1,20 @@
 #include "Game/Screen/ScenarioTitle.hpp"
 #include "Game/LiveActor/Nerve.hpp"
-#include "Game/Util.hpp"
+#include "Game/Util/LayoutUtil.hpp"
+#include "Game/Util/MessageUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
 
 namespace {
-    NERVE_DECL_EXE(ScenarioTitleAppear, ScenarioTitle, Appear);
-    NERVE_DECL_EXE(ScenarioTitleWait, ScenarioTitle, Wait);
-    NERVE_DECL_EXE(ScenarioTitleEnd, ScenarioTitle, End);
+    NEW_NERVE(ScenarioTitleAppear, ScenarioTitle, Appear);
+    NEW_NERVE(ScenarioTitleWait, ScenarioTitle, Wait);
+    NEW_NERVE(ScenarioTitleEnd, ScenarioTitle, End);
+};
 
-    INIT_NERVE(ScenarioTitleAppear);
-    INIT_NERVE(ScenarioTitleWait);
-    INIT_NERVE(ScenarioTitleEnd);
-};  // namespace
-
-ScenarioTitle::ScenarioTitle() : LayoutActor("シナリオ名表示", true) {}
+ScenarioTitle::ScenarioTitle() :
+    LayoutActor("シナリオ名表示", true)
+{
+    
+}
 
 void ScenarioTitle::init(const JMapInfoIter& rInfo) {
     initNerve(&ScenarioTitleAppear::sInstance);
@@ -40,6 +42,10 @@ void ScenarioTitle::exeAppear() {
     MR::setNerveAtAnimStopped(this, &ScenarioTitleWait::sInstance, 0);
 }
 
+void ScenarioTitle::exeWait() {
+    
+}
+
 void ScenarioTitle::exeEnd() {
     if (MR::isFirstStep(this)) {
         MR::startAnim(this, "End", 0);
@@ -49,5 +55,3 @@ void ScenarioTitle::exeEnd() {
         kill();
     }
 }
-
-ScenarioTitle::~ScenarioTitle() {}

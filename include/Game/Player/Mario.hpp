@@ -674,7 +674,7 @@ public:
     TVec3f _3B0;
     u16 _3BC;
     u16 _3BE;
-    u8 _3C0;
+    u16 _3C0;
     u16 _3C2;
     u16 _3C4;
     u16 _3C6;

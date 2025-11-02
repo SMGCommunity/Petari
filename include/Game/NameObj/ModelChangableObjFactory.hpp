@@ -1,38 +1,19 @@
 #pragma once
 
-#include "Game/Boss/TripodBossRailMoveParts.hpp"
-#include "Game/Boss/TripodBossRotateParts.hpp"
-#include "Game/NameObj/NameObjFactory.hpp"
-#include "Game/MapObj/SimpleNormalMapObj.hpp"
-#include "Game/Util.hpp"
+#include <revolution/types.h>
 
-namespace MR {
-    CreationFuncPtr getModelChangableObjCreator(const char *);
-    void requestMountModelChangableObjArchives(const char *, s32);
-    bool isReadResourceFromDVDAtModelChangableObj(const char *, s32);
-};
+class NameObj;
 
-typedef NameObj* (*CreationFuncPtr)(const char *);
+typedef NameObj* (*CreatorFuncPtr)(const char *);
 
 struct Model2CreateFunc {
-    const char* _0;
-    const char* mArchiveName;                   // 0x4
-    NameObj* (*mCreationFunc)(const char *);    // 0x8
+    /* 0x0 */ const char* _0;
+    /* 0x4 */ const char* mArchiveName;
+    /* 0x8 */ CreatorFuncPtr mCreatorFunc;
 };
 
-namespace {
-    const Model2CreateFunc cModelChangableObjCreatorTable[12] = {
-        { nullptr, "AssemblyBlock", createNameObj<AssemblyBlock> },
-        { nullptr, "ClipFieldMapParts", nullptr },
-        { nullptr, "FlexibleSphere", nullptr },
-        { nullptr, "MercatorFixParts", nullptr },
-        { nullptr, "MercatorRailMoveParts", nullptr },
-        { nullptr, "MercatorRotateParts", nullptr },
-        { nullptr, "TripodBossFixParts", createNameObj<TripodBossFixParts> },
-        { nullptr, "TripodBossRailMoveParts", createNameObj<TripodBossRailMoveParts> },
-        { nullptr, "TripodBossRotateParts", createNameObj<TripodBossRotateParts> },
-        { nullptr, "TripodBossRotateParts", createNameObj<TripodBossRotateParts> },
-        { nullptr, "SimpleNormalMapObj", createNameObj<SimpleNormalMapObj> },
-        { nullptr, "SunshadeMapParts", nullptr },
-    };
+namespace MR {
+    CreatorFuncPtr getModelChangableObjCreator(const char *);
+    void requestMountModelChangableObjArchives(const char *, s32);
+    bool isReadResourceFromDVDAtModelChangableObj(const char *, s32);
 };

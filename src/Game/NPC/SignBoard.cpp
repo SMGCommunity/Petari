@@ -36,9 +36,9 @@ void SignBoard::control() {
 
 }
 
-void SignBoard::attackSensor(HitSensor *a1, HitSensor *a2) {
-    if (MR::isSensorEnemy(a2)) {
-        MR::sendMsgPush(a2, a1);
+void SignBoard::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
+    if (MR::isSensorEnemy(pReceiver)) {
+        MR::sendMsgPush(pReceiver, pSender);
     }
 }
 

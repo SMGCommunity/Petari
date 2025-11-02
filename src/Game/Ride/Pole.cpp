@@ -1,38 +1,47 @@
+#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/Ride/Pole.hpp"
 #include <JSystem/JMath.hpp>
 #include <cstring>
 
-Pole::Pole(const char *pName) : LiveActor(pName) {
-    _8C.x = 0.0f;
-    _8C.y = 0.0f;
-    _8C.z = 0.0f;
-    _98.x = 0.0f;
-    _98.y = 0.0f;
-    _98.z = 0.0f;
-    _A4 = 0.0f;
-    _A8 = false;
-    _A9 = false;
-    _AA = false;
-    _AB = false;
-    _AC = false;
-    _B0 = 0.0f;
-    _B4 = 0.0f;
-    mActor = nullptr;
-    mInfo = nullptr;
-    _C0.x = 0.0f;
-    _C0.y = 0.0f;
-    _C0.z = 0.0f;
-    _CC.x = 1.0f;
-    _CC.y = 0.0f;
-    _CC.z = 0.0f;
-    _D8.x = 0.0f;
-    _D8.y = 1.0f;
-    _D8.z = 0.0f;
-    _E4.x = 0.0f;
-    _E4.y = 0.0f;
-    _E4.z = 1.0f;
-    _120 = nullptr;
-    _124 = nullptr;    
+namespace NrvPole {
+    NEW_NERVE(PoleNrvDemoAppear, Pole, DemoAppear);
+    NEW_NERVE(PoleNrvFree, Pole, Free);
+    NEW_NERVE(PoleNrvFreeInvalid, Pole, FreeInvalid);
+    NEW_NERVE(PoleNrvBindStart, Pole, BindStart);
+    NEW_NERVE(PoleNrvBindStartFast, Pole, BindStart);
+    NEW_NERVE(PoleNrvBindWait, Pole, BindWait);
+    NEW_NERVE(PoleNrvBindTurnLeft, Pole, BindTurn);
+    NEW_NERVE(PoleNrvBindTurnRight, Pole, BindTurn);
+    NEW_NERVE(PoleNrvBindTurnEnd, Pole, BindWait);
+    NEW_NERVE(PoleNrvBindClimbUp, Pole, BindClimbUp);
+    NEW_NERVE(PoleNrvBindFallDown, Pole, BindFallDown);
+    NEW_NERVE(PoleNrvBindHandstandStart, Pole, BindHandstandStart);
+    NEW_NERVE(PoleNrvBindHandstandWait, Pole, BindHandstandWait);
+    NEW_NERVE(PoleNrvBindHandstandEnd, Pole, BindHandstandEnd);
+    NEW_NERVE(PoleNrvBindHandstandTurn, Pole, BindHandstandTurn);
+};
+
+Pole::Pole(const char *pName) :
+    LiveActor(pName),
+    _8C(0.0f, 0.0f, 0.0f),
+    _98(0.0f, 0.0f, 0.0f),
+    _A4(0.0f),
+    _A8(false),
+    _A9(false),
+    _AA(false),
+    _AB(false),
+    _AC(false),
+    _B0(0.0f),
+    _B4(0.0f),
+    mActor(nullptr),
+    mInfo(nullptr),
+    _C0(0.0f, 0.0f, 0.0f),
+    _CC(1.0f, 0.0f, 0.0f),
+    _D8(0.0f, 1.0f, 0.0f),
+    _E4(0.0f, 0.0f, 1.0f),
+    _120(nullptr),
+    _124(nullptr)
+{
     _F0.identity();
     _128.identity();
 }
@@ -188,6 +197,8 @@ void Pole::exeDemoAppear() {
         setNerve(&NrvPole::PoleNrvFree::sInstance);
     }
 }
+
+// Pole::exeFree
 
 void Pole::exeFreeInvalid() {
     if (MR::isFirstStep(this)) {
@@ -374,14 +385,14 @@ void Pole::exeBindFallDown() {
         _B4 = _B4 >= -18.0f ? _B4 : -18.0f;
     }
     else {
-        _B4 -= 0.30000001f;
+        _B4 -= 0.3f;
         _B4 = _B4 >= -15.0f ? _B4 : -15.0f;
     }
 
     _B0 += _B4;
 
     if (!_A9) {
-        mRotation.y += 0.80000001f * _B4;
+        mRotation.y += 0.8f * _B4;
     }
 
     updateBindTrans();
@@ -443,7 +454,7 @@ void Pole::exeBindHandstandWait() {
     }
 
     if (!Pole::tryJump(true, 0.0f) && !Pole::tryHandstandTurn()) {
-        if (getPoleSubPadStickY() < -0.80000001f) {
+        if (getPoleSubPadStickY() < -0.8f) {
             setNerve(&NrvPole::PoleNrvBindHandstandEnd::sInstance);
         }
     }
@@ -551,7 +562,7 @@ bool Pole::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
                     else {
                         v22.set<f32>(_E4);
                     }
-                    mActor = pSender->mActor;
+                    mActor = pSender->mHost;
                     mRotation.y = MR::calcRotateY(v22.x, v22.z);
                     if (_A9) {
                         s32 temp = (45.0f + mRotation.y) / 90.0f;
@@ -633,7 +644,7 @@ bool Pole::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
 
 /*
 bool Pole::tryJump(bool statement, f32 num) {
-    if (MR::testCorePadTriggerA(0) || MR::testSystemTriggerA()) {
+    if (MR::testCorePadTriggerA(WPAD_CHAN0) || MR::testSystemTriggerA()) {
         TPos3f pos;
         calcGravityMtx(&pos);
         f32 v7 = MR::modAndAdd(0.0f, MR::subtractFromSum_2(mRotation.y, num, 0.0f));
@@ -726,7 +737,7 @@ bool Pole::tryHandstandTurn() {
 bool Pole::isEnableTurn() const {
     f32 num = __fabsf(getPoleSubPadStickX()); 
 
-    if ( num > 0.80000001f) {
+    if ( num > 0.8f) {
         return true;
     }
     return false;
@@ -762,21 +773,21 @@ void Pole::updateTopPos(f32 num) {
 
 f32 Pole::getPoleSubPadStickX() const {
     if (_AB) {
-        f32 negNum = -MR::getSubPadStickX(0);
+        f32 negNum = -MR::getSubPadStickX(WPAD_CHAN0);
         return negNum;
     }
     else {
-        return MR::getSubPadStickX(0);
+        return MR::getSubPadStickX(WPAD_CHAN0);
     }
 }
 
 f32 Pole::getPoleSubPadStickY() const {
     if (_AB) {
-        f32 negNum = -MR::getSubPadStickY(0);
+        f32 negNum = -MR::getSubPadStickY(WPAD_CHAN0);
         return negNum;
     }
     else {
-        return MR::getSubPadStickY(0);
+        return MR::getSubPadStickY(WPAD_CHAN0);
     }
 }
 
@@ -788,96 +799,3 @@ MtxPtr Pole::getBaseMtx() const {
         return LiveActor::getBaseMtx();
     }
 }
-
-namespace NrvPole {
-    INIT_NERVE(PoleNrvDemoAppear);
-    INIT_NERVE(PoleNrvFree);
-    INIT_NERVE(PoleNrvFreeInvalid);
-    INIT_NERVE(PoleNrvBindStart);
-    INIT_NERVE(PoleNrvBindStartFast);
-    INIT_NERVE(PoleNrvBindWait);    
-    INIT_NERVE(PoleNrvBindTurnLeft);
-    INIT_NERVE(PoleNrvBindTurnRight);
-    INIT_NERVE(PoleNrvBindTurnEnd);
-    INIT_NERVE(PoleNrvBindClimbUp);
-    INIT_NERVE(PoleNrvBindFallDown);
-    INIT_NERVE(PoleNrvBindHandstandStart);       
-    INIT_NERVE(PoleNrvBindHandstandWait);
-    INIT_NERVE(PoleNrvBindHandstandEnd);
-    INIT_NERVE(PoleNrvBindHandstandTurn);       
-
-	void PoleNrvDemoAppear::execute(Spine *pSpine) const {
-		Pole *pActor = (Pole*)pSpine->mExecutor;
-		pActor->exeDemoAppear();
-	}    
-
-	void PoleNrvFree::execute(Spine *pSpine) const {
-		Pole *pActor = (Pole*)pSpine->mExecutor;
-		pActor->exeCalcFoot();
-	}    
-
-	void PoleNrvFreeInvalid::execute(Spine *pSpine) const {
-		Pole *pActor = (Pole*)pSpine->mExecutor;
-		pActor->exeFreeInvalid();
-	}         
-
-	void PoleNrvBindStart::execute(Spine *pSpine) const {
-		Pole *pActor = (Pole*)pSpine->mExecutor;
-		pActor->exeBindStart();
-	}    
-
-	void PoleNrvBindStartFast::execute(Spine *pSpine) const {
-		Pole *pActor = (Pole*)pSpine->mExecutor;
-		pActor->exeBindStart();
-	}    
-    
-	void PoleNrvBindWait::execute(Spine *pSpine) const {
-		Pole *pActor = (Pole*)pSpine->mExecutor;
-		pActor->exeBindWait();
-	}       
-
-	void PoleNrvBindTurnLeft::execute(Spine *pSpine) const {
-		Pole *pActor = (Pole*)pSpine->mExecutor;
-		pActor->exeBindTurn();
-	}    
-
-	void PoleNrvBindTurnRight::execute(Spine *pSpine) const {
-		Pole *pActor = (Pole*)pSpine->mExecutor;
-		pActor->exeBindTurn();
-	}    
-    
-	void PoleNrvBindTurnEnd::execute(Spine *pSpine) const {
-		Pole *pActor = (Pole*)pSpine->mExecutor;
-		pActor->exeBindWait();
-	}       
-
-	void PoleNrvBindClimbUp::execute(Spine *pSpine) const {
-		Pole *pActor = (Pole*)pSpine->mExecutor;
-		pActor->exeBindClimbUp();
-	}    
-
-	void PoleNrvBindFallDown::execute(Spine *pSpine) const {
-		Pole *pActor = (Pole*)pSpine->mExecutor;
-		pActor->exeBindFallDown();
-	}    
-    
-	void PoleNrvBindHandstandStart::execute(Spine *pSpine) const {
-		Pole *pActor = (Pole*)pSpine->mExecutor;
-		pActor->exeBindHandstandStart();
-	}       
-
-	void PoleNrvBindHandstandWait::execute(Spine *pSpine) const {
-		Pole *pActor = (Pole*)pSpine->mExecutor;
-		pActor->exeBindHandstandWait();
-	}    
-
-	void PoleNrvBindHandstandEnd::execute(Spine *pSpine) const {
-		Pole *pActor = (Pole*)pSpine->mExecutor;
-		pActor->exeBindHandstandEnd();
-	}    
-    
-	void PoleNrvBindHandstandTurn::execute(Spine *pSpine) const {
-		Pole *pActor = (Pole*)pSpine->mExecutor;
-		pActor->exeBindHandstandTurn();
-	}       
-};

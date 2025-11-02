@@ -16,9 +16,15 @@ namespace MR {
             mMaxSize = 0;
         }
 
+        /// @brief Creates a new `AssignableArray`.
+        /// @param num The number of elements.
+        AssignableArray(s32 num) {
+            init(num);
+        }
+
         /// @brief Destroys the `AssignableArray`.
         ~AssignableArray() {
-            if (mArr != NULL) {
+            if (mArr != nullptr) {
                 delete[] mArr;
             }
         }
@@ -253,9 +259,23 @@ namespace MR {
                 mEnd = head + S;
             }
 
+            void operator++() {
+                mHead++;
+
+                if (mHead >= mEnd) {
+                    mHead = mTail;
+                }
+            }
+
             T* mHead;   // 0x0
             T* mTail;   // 0x4
             T* mEnd;    // 0x8
         };
+
+        void push_back(const T &);
+
+        T* mBuffer[S];
+
+        int _58;
     };
 };

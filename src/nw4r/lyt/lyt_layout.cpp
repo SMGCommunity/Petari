@@ -182,7 +182,7 @@ namespace nw4r {
 
         void Layout::BindAnimation(AnimTransform *pAnimTrans) {
             if (mpRootPane != nullptr) {
-                mpRootPane->BindAnimation(pAnimTrans, true, false);
+                mpRootPane->BindAnimation(pAnimTrans, true);
             }
         }
 
@@ -196,6 +196,7 @@ namespace nw4r {
             UnbindAnimation(0);
         }
 
+        /*
         bool Layout::BindAnimationAuto(const AnimResource &animRes, ResourceAccessor *pResAcsr) {
             if (mpRootPane == nullptr) {
                 return false;
@@ -262,6 +263,7 @@ namespace nw4r {
 
             return true;
         }
+        */
 
         void Layout::SetAnimationEnable(AnimTransform *pAnimTrans, bool bEnable) {
             if (mpRootPane != nullptr) {

@@ -18,9 +18,6 @@ public:
     /// @brief Creates a new `ErrorMessageWindow`.
     ErrorMessageWindow();
 
-    /// @brief Destroys the `ErrorMessageWindow`.
-    virtual ~ErrorMessageWindow() {}
-
     virtual void init(const JMapInfoIter& rIter);
     virtual void appear();
 

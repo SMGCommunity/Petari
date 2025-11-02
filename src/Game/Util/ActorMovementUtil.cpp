@@ -21,7 +21,7 @@
 #include <cmath>
 
 namespace {
-    /* void calcRotate(LiveActor *pActor, const TVec3f &a2, f32 a3) {
+    void calcRotate(LiveActor *pActor, const TVec3f &a2, f32 a3); /* {
         TPos3f stack_44;
         TVec3f stack_38;
         TVec3f stack_2c;
@@ -66,8 +66,8 @@ namespace {
             stack_14.y = asin(stack_44[2][0]);
         }
         pActor->mRotation.multiplyOperatorInline(57.29578f);
-
-    } */
+    }
+    */
 };
 
 namespace MR {
@@ -345,19 +345,13 @@ namespace MR {
     }
 
     bool isInSightConePlayer(const LiveActor *pActor, const TVec3f &a2, f32 dist, f32 angle) {
-        bool ret = false;
-        if (isNearPlayerAnyTime(pActor, dist) && isFaceToPlayerDegree(pActor, a2, angle)) {
-            ret = true;
-        }
-        return ret;
+        return isNearPlayerAnyTime(pActor, dist)
+            && isFaceToPlayerDegree(pActor, a2, angle);
     }
 
     bool isInSightFanPlayer(const LiveActor *pActor, const TVec3f &a2, f32 dist, f32 a3, f32 a4) {
-        bool ret = false;
-        if (isNearPlayerAnyTime(pActor, dist) && isFaceToPlayerDegreeHV(pActor, a2, a3, a4)) {
-            ret = true;
-        }
-        return ret;
+        return isNearPlayerAnyTime(pActor, dist)
+            && isFaceToPlayerDegreeHV(pActor, a2, a3, a4);
     }
     
     bool isBindedWallFront(const LiveActor *pActor, const TVec3f &v1, float a3) {
@@ -614,7 +608,7 @@ namespace MR {
     void calcVelocityMoveToDirection(TVec3f *a1, const LiveActor *pActor, const TVec3f &a3, f32 a4) {
         calcVelocityMoveToDirectionHorizon(a1, pActor, a3, a4);
         if (isOnGround(pActor)) {
-            TVec3f* pGroundNormal = getGroundNormal(pActor);
+            const TVec3f* pGroundNormal = getGroundNormal(pActor);
             JMAVECScaleAdd((Vec*)pGroundNormal, (Vec*)a1, (Vec*)a1, -pGroundNormal->dot(*a1));
         }
     }
@@ -622,7 +616,7 @@ namespace MR {
     void calcVelocityMoveToDirection(TVec3f *a1, const LiveActor *pActor, const TVec3f &a3, f32 a4, f32 a5, f32 a6, f32 a7) {
         calcVelocityMoveToDirectionHorizon(a1, pActor, a3, a4, a5, a6, a7);
         if (isOnGround(pActor)) {
-            TVec3f* pGroundNormal = getGroundNormal(pActor);
+            const TVec3f* pGroundNormal = getGroundNormal(pActor);
             JMAVECScaleAdd((Vec*)pGroundNormal, (Vec*)a1, (Vec*)a1, -pGroundNormal->dot(*a1));
         }
     }
@@ -871,14 +865,14 @@ namespace MR {
 
     void killVelocityOnGroundH(LiveActor *pActor) {
         if (isOnGround(pActor)) {
-            TVec3f* pNormal = getGroundNormal(pActor);
+            const TVec3f* pNormal = getGroundNormal(pActor);
             pActor->mVelocity.scale(pNormal->dot(pActor->mVelocity), *pNormal);
         }
     }
 
     void killVelocityOnGroundCosH(LiveActor *pActor, f32 a2) {
         if (isOnGround(pActor) && isFloorPolygonCos(*getGroundNormal(pActor), pActor->mGravity, a2)) {
-            TVec3f* pNormal = getGroundNormal(pActor);
+            const TVec3f* pNormal = getGroundNormal(pActor);
             pActor->mVelocity.scale(pNormal->dot(pActor->mVelocity), *pNormal);
         }
     }
@@ -1127,11 +1121,8 @@ namespace MR {
     }
 
     bool calcVelocityAreaOrRailMoveOnGround(TVec3f *a1, const LiveActor *pActor) {
-        bool ret = false;
-        if (calcVelocityAreaMoveOnGround(a1, pActor) != false || calcVelocityRailMoveOnGround(a1, pActor)) {
-            ret = true;
-        }
-        return ret;
+        return calcVelocityAreaMoveOnGround(a1, pActor)
+            || calcVelocityRailMoveOnGround(a1, pActor);
     }
 
     void rotateDirectionGravityDegree(const LiveActor *pActor, TVec3f *a2, f32 angle) {

@@ -1,11 +1,15 @@
-#include "Game/Screen/GamePauseSequence.hpp"
-#include "Game/Screen/PauseMenu.hpp"
-#include "Game/Util/SceneUtil.hpp"
 #include "Game/AudioLib/AudSystem.hpp"
 #include "Game/AudioLib/AudWrap.hpp"
-#include "Game/Util/StarPointerUtil.hpp"
-#include "Game/System/GameSystemFunction.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Screen/GamePauseSequence.hpp"
+#include "Game/Screen/PauseMenu.hpp"
 #include "Game/System/GalaxyMapController.hpp"
+#include "Game/System/GameSystemFunction.hpp"
+#include "Game/Util/Functor.hpp"
+#include "Game/Util/LayoutUtil.hpp"
+#include "Game/Util/SceneUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
+#include "Game/Util/StarPointerUtil.hpp"
 
 namespace {
     NEW_NERVE(GamePauseSequenceDeactive, GamePauseSequence, Deactive);
@@ -14,13 +18,16 @@ namespace {
     NEW_NERVE(GamePauseSequenceSceneInformation, GamePauseSequence, SceneInformation);
 };
 
-GamePauseSequence::GamePauseSequence() : LayoutActor("ポーズ画面管理", true) {
-    mMenuType = ActivePause;
-    mPauseMenu = nullptr;
-    mWindowMenuFunc = nullptr;
+GamePauseSequence::GamePauseSequence() :
+    LayoutActor("ポーズ画面管理", true),
+    mMenuType(ActivePause),
+    mPauseMenu(nullptr),
+    mWindowMenuFunc(nullptr)
+{
+    
 }
 
-void GamePauseSequence::init(const JMapInfoIter &) {
+void GamePauseSequence::init(const JMapInfoIter& rIter) {
     if (!MR::isStageDisablePauseMenu()) {
         mPauseMenu = new PauseMenu();
         mPauseMenu->initWithoutIter();
@@ -43,13 +50,13 @@ void GamePauseSequence::startPause(MenuType type) {
     MR::startCSSound("CS_CLICK_OPEN", nullptr, 0);
 
     switch (mMenuType) {
-        case ActivePause:
-            mPauseMenu->appear();
-            setNerve(&GamePauseSequenceActivePauseMenu::sInstance);
-            break;
-        case SceneInformation:
-            setNerve(&GamePauseSequenceSceneInformation::sInstance);
-            break;
+    case ActivePause:
+        mPauseMenu->appear();
+        setNerve(&GamePauseSequenceActivePauseMenu::sInstance);
+        break;
+    case SceneInformation:
+        setNerve(&GamePauseSequenceSceneInformation::sInstance);
+        break;
     }
 }
 
@@ -60,6 +67,10 @@ void GamePauseSequence::deactivate() {
     setNerve(&GamePauseSequenceDeactive::sInstance);
 }
 
+void GamePauseSequence::exeDeactive() {
+    
+}
+
 void GamePauseSequence::exeActivePauseMenu() {
     if (MR::isDead(mPauseMenu)) {
         (*mWindowMenuFunc)();
@@ -67,7 +78,9 @@ void GamePauseSequence::exeActivePauseMenu() {
 }
 
 void GamePauseSequence::exeActivePowerStarList() {
-    MR::isFirstStep(this);
+    if (MR::isFirstStep(this)) {
+        
+    }
 
     if (!MR::isActiveGalaxyMapLayout()) {
         (*mWindowMenuFunc)();
@@ -75,13 +88,5 @@ void GamePauseSequence::exeActivePowerStarList() {
 }
 
 void GamePauseSequence::exeSceneInformation() {
-    
-}
-
-void GamePauseSequence::exeDeactive() {
-
-}
-
-GamePauseSequence::~GamePauseSequence() {
     
 }

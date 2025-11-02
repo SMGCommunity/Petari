@@ -93,8 +93,8 @@ void ConfigDataHolder::resetAllData() {
     mMiscCreateChunk->initializeData();
 }
 
-void ConfigDataHolder::makeFileBinary(u8 *pData, u32 len) {
-    mChunkHolder->makeFileBinary(pData, len);
+s32 ConfigDataHolder::makeFileBinary(u8 *pData, u32 len) {
+    return mChunkHolder->makeFileBinary(pData, len);
 }
 
 ConfigDataHolder::ConfigDataHolder() : mChunkHolder(0), mCreateChunk(0), mMiiCreateChunk(0), mMiscCreateChunk(0) {
@@ -109,7 +109,7 @@ ConfigDataHolder::ConfigDataHolder() : mChunkHolder(0), mCreateChunk(0), mMiiCre
     snprintf(mName, sizeof(mName), "config1");
 }
 
-void ConfigDataHolder::loadFromFileBinary(const char *pName, const u8 *pData, u32 len) {
+bool ConfigDataHolder::loadFromFileBinary(const char *pName, const u8 *pData, u32 len) {
     snprintf(mName, sizeof(mName), "%s", pName);
-    mChunkHolder->loadFromFileBinary(pData, len);
+    return mChunkHolder->loadFromFileBinary(pData, len);
 }

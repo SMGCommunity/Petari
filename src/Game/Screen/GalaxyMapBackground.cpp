@@ -11,7 +11,3 @@ void GalaxyMapBackground::appear() {
     LayoutActor::appear();
     MR::startAnim(this, "Wait", 0);
 }
-
-GalaxyMapBackground::~GalaxyMapBackground() {
-    
-}

@@ -8,7 +8,7 @@ namespace MR {
     }
 
     bool isFirstStep(const NerveExecutor* pExecutor) {
-        return MR::isStep(pExecutor, 0);
+        return isStep(pExecutor, 0);
     }
 
     bool isLessStep(const NerveExecutor* pExecutor, s32 step) {
@@ -35,75 +35,30 @@ namespace MR {
         return pExecutor->getNerveStep() < 0;
     }
 
-    f32 calcNerveRate(const NerveExecutor* pExecutor, s32 maxStep) {
-        f32 rate;
-
-        if (maxStep <= 0) {
-            rate = 1.0f;
-        }
-        else {
-            rate = MR::clamp(static_cast<f32>(pExecutor->getNerveStep()) / maxStep, 0.0f, 1.0f);
-        }
-
-        return rate;
+    f32 calcNerveRate(const NerveExecutor* pExecutor, s32 stepMax) {
+        return stepMax <= 0 ? 1.0f : clamp(static_cast<f32>(pExecutor->getNerveStep()) / stepMax, 0.0f, 1.0f);
     }
 
-    f32 calcNerveEaseInRate(const NerveExecutor* pExecutor, s32 maxStep) {
-        f32 rate;
-
-        if (maxStep <= 0) {
-            rate = 1.0f;
-        }
-        else {
-            rate = MR::clamp(static_cast<f32>(pExecutor->getNerveStep()) / maxStep, 0.0f, 1.0f);
-        }
-
-        return MR::getEaseInValue(rate, 0.0f, 1.0f, 1.0f);
+    f32 calcNerveEaseInRate(const NerveExecutor* pExecutor, s32 stepMax) {
+        return getEaseInValue(calcNerveRate(pExecutor, stepMax), 0.0f, 1.0f, 1.0f);
     }
 
-    f32 calcNerveEaseOutRate(const NerveExecutor* pExecutor, s32 maxStep) {
-        f32 rate;
-
-        if (maxStep <= 0) {
-            rate = 1.0f;
-        }
-        else {
-            rate = MR::clamp(static_cast<f32>(pExecutor->getNerveStep()) / maxStep, 0.0f, 1.0f);
-        }
-
-        return MR::getEaseOutValue(rate, 0.0f, 1.0f, 1.0f);
+    f32 calcNerveEaseOutRate(const NerveExecutor* pExecutor, s32 stepMax) {
+        return getEaseOutValue(calcNerveRate(pExecutor, stepMax), 0.0f, 1.0f, 1.0f);
     }
 
-    f32 calcNerveValue(const NerveExecutor* pExecutor, s32 maxStep, f32 startValue, f32 endValue) {
-        f32 rate;
-
-        if (maxStep <= 0) {
-            rate = 1.0f;
-        }
-        else {
-            rate = MR::clamp(static_cast<f32>(pExecutor->getNerveStep()) / maxStep, 0.0f, 1.0f);
-        }
-
-        return MR::getLinerValue(rate, startValue, endValue, 1.0f);
+    f32 calcNerveValue(const NerveExecutor* pExecutor, s32 stepMax, f32 valueStart, f32 valueEnd) {
+        return getLinerValue(calcNerveRate(pExecutor, stepMax), valueStart, valueEnd, 1.0f);
     }
 
-    f32 calcNerveEaseInOutValue(const NerveExecutor* pExecutor, s32 maxStep, f32 startValue, f32 endValue) {
-        f32 rate;
-
-        if (maxStep <= 0) {
-            rate = 1.0f;
-        }
-        else {
-            rate = MR::clamp(static_cast<f32>(pExecutor->getNerveStep()) / maxStep, 0.0f, 1.0f);
-        }
-
-        return MR::getEaseInOutValue(rate, startValue, endValue, 1.0f);
+    f32 calcNerveEaseInOutValue(const NerveExecutor* pExecutor, s32 stepMax, f32 valueStart, f32 valueEnd) {
+        return getEaseInOutValue(calcNerveRate(pExecutor, stepMax), valueStart, valueEnd, 1.0f);
     }
 
-    f32 calcNerveEaseInOutValue(const NerveExecutor* pExecutor, s32 minStep, s32 maxStep, f32 startValue, f32 endValue) {
-        f32 rate = MR::clamp(MR::normalize(pExecutor->getNerveStep(), minStep, maxStep), 0.0f, 1.0f);
+    f32 calcNerveEaseInOutValue(const NerveExecutor* pExecutor, s32 stepMin, s32 stepMax, f32 valueStart, f32 valueEnd) {
+        f32 rate = clamp(normalize(pExecutor->getNerveStep(), stepMin, stepMax), 0.0f, 1.0f);
 
-        return MR::getEaseInOutValue(rate, startValue, endValue, 1.0f);
+        return getEaseInOutValue(rate, valueStart, valueEnd, 1.0f);
     }
 
     void setNerveAtStep(NerveExecutor* pExecutor, const Nerve* pNerve, s32 step) {

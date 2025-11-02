@@ -8,5 +8,6 @@ bool ActorStateBaseInterface::update() {
     }
 
     control();
+
     return false;
 }

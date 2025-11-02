@@ -1,9 +1,16 @@
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/IconComet.hpp"
 #include "Game/Util/EventUtil.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 
-IconComet::IconComet() : LayoutActor("コメットアイコン", true) {
+namespace NrvIconComet {
+    NEW_NERVE(IconCometNrvWait, IconComet, Wait);
+};
 
+IconComet::IconComet() :
+    LayoutActor("コメットアイコン", true)
+{
+    
 }
 
 void IconComet::init(const JMapInfoIter &rIter) {
@@ -18,6 +25,7 @@ bool IconComet::appearIfLanding(const char *pStageName) {
 
     MR::setCometAnimFromId(this, MR::getEncounterGalaxyCometNameId(pStageName), 0);
     LayoutActor::appear();
+
     return true;
 }
 
@@ -26,10 +34,6 @@ void IconComet::appearByCometNameId(int id) {
     LayoutActor::appear();
 }
 
-IconComet::~IconComet() {
-
+void IconComet::exeWait() {
+    
 }
-
-namespace NrvIconComet {
-    INIT_NERVE(IconCometNrvWait);
-};

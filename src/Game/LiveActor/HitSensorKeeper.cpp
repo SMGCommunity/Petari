@@ -1,14 +1,15 @@
-#include "Game/LiveActor/HitSensorKeeper.hpp"
+#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/HitSensorInfo.hpp"
-#include "Game/Util.hpp"
+#include "Game/LiveActor/HitSensorKeeper.hpp"
+#include "Game/Util/HashUtil.hpp"
 #include <cstring>
 
 HitSensorKeeper::HitSensorKeeper(int sensorCount) {
     mSensorCount = sensorCount;
     mSensorInfosSize = 0;
     mSensorInfos = nullptr;
-    mTaking = 0;
-    mTaken = 0;
+    mTaking = nullptr;
+    mTaken = nullptr;
     mSensorInfos = new HitSensorInfo*[sensorCount];
 
     for (s32 i = 0; i < mSensorCount; i++) {

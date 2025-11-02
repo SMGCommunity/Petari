@@ -3,6 +3,7 @@
 #include "Game/Enemy/KariKariDirector.hpp"
 #include "Game/Gravity.hpp"
 #include "Game/LiveActor/Binder.hpp"
+#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/Map/CollisionParts.hpp"
 #include "Game/Map/HitInfo.hpp"
 #include "Game/Map/WaterInfo.hpp"
@@ -278,7 +279,7 @@ void MarioActor::init2(const TVec3f &a, const TVec3f &b, s32 initialAnimation)
     _214 = new CollisionShadow(100.0f, 360.0f);
     mConst = new MarioConst();
     if (gIsLuigi) {
-        mConst->mCurrentTable = 1;
+        mConst->changeTable(1);
     }
     mMario->initAfterConst();
     _36C = new GravityInfo();
@@ -625,7 +626,7 @@ bool MarioActor::isJumping() const {
     if (_934) {
         return _938.dot(getGravityVec()) < -10.0f;
     }
-    if (mPlayerMode == 6 && mMario->_488 < mConst->mTable[mConst->mCurrentTable]->mTeresaDropDownHeight) {
+    if (mPlayerMode == 6 && mMario->_488 < mConst->getTable()->mTeresaDropDownHeight) {
         return false;
     }
     if (mMario->isWalling()) {
@@ -1149,7 +1150,7 @@ bool MarioActor::doRush()
                 mMario->forceExitSwim();
             }
         }
-        else if (!selectWaterInOut(_924->mActor->mName)) {
+        else if (!selectWaterInOut(_924->mHost->mName)) {
             s32 initial = mMario->mSwim->_144;
             mMario->mSwim->checkWaterCube(false);
             if ((int)mMario->mSwim->_144 != initial) {
@@ -1163,11 +1164,11 @@ bool MarioActor::doRush()
                 }
                 if (initial == 2) {
                     mWaterLife = 8;
-                    MR::getGameSceneLayoutHolder().changeLifeMeterModeGround();
+                    MR::getGameSceneLayoutHolder()->changeLifeMeterModeGround();
                     mMario->forceExitSwim();
                 }
                 else if (initial == 0) {
-                    MR::getGameSceneLayoutHolder().changeLifeMeterModeWater();
+                    MR::getGameSceneLayoutHolder()->changeLifeMeterModeWater();
                 }
             }
         }
@@ -1346,7 +1347,7 @@ void MarioActor::updateSwingAction()
             }
         }
         if (didSpinPunch) {
-            _946 = mConst->mTable[mConst->mCurrentTable]->mSpinIntervalTime + 0x22;
+            _946 = mConst->getTable()->mSpinIntervalTime + 0x22;
         }
         break;
     case 2:
@@ -1365,7 +1366,7 @@ void MarioActor::updateSwingAction()
             break;
         }
         mMario->startTeresaDisappear();
-        const MarioConstTable *pConstants = mConst->mTable[mConst->mCurrentTable];
+        const MarioConstTable *pConstants = mConst->getTable();
         _946 = pConstants->mTeresaWallThroughTime + pConstants->mSpinIntervalTime;
         break;
     case 5:
@@ -1383,7 +1384,7 @@ void MarioActor::updateSwingAction()
                 mMario->changeAnimation("ハチスピン", (const char *)nullptr);
             }
         }
-        _946 = mConst->mTable[mConst->mCurrentTable]->mSpinIntervalTime + 0x22;
+        _946 = mConst->getTable()->mSpinIntervalTime + 0x22;
         break;
     }
 }

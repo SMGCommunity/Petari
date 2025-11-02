@@ -1,7 +1,8 @@
 #pragma once
 
-#include <revolution.h>
-#include "Game/System/WPad.hpp"
+#include <revolution/wpad.h>
+
+class WPad;
 
 class WPadInfoChecker {
 public:
@@ -13,8 +14,9 @@ public:
     void reset();
     void update();
 
-    WPad* mPad;             // 0x0
-    WPADInfo mPadInfo;      // 0x4
-    u32 _1C;
-    s32 mBattery;           // 0x20
+private:
+    /* 0x00 */ WPad* mPad;
+    /* 0x04 */ WPADInfo mPadInfo;
+    /* 0x1C */ s32 mCheckInfoFrame;
+    /* 0x20 */ s32 mBattery;
 };

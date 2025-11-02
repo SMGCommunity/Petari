@@ -8,14 +8,11 @@ namespace nw4r {
     };
 };
 
-class MiiConfirmIcon : LayoutActor {
+class MiiConfirmIcon : public LayoutActor {
 public:
     /// @brief Creates a new `MiiConfirmIcon`.
     /// @param pName The pointer to the null-terminated name of the object.
     MiiConfirmIcon(const char* pName);
-
-    /// @brief Destroys the `MiiConfirmIcon`.
-    virtual ~MiiConfirmIcon();
 
     virtual void init(const JMapInfoIter& rIter);
     virtual void appear();

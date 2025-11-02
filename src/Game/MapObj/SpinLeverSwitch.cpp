@@ -57,14 +57,17 @@ bool SpinLeverSwitch::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSen
     if (!isNerve(&NrvSpinLeverSwitch::SpinLeverSwitchNrvWait::sInstance)) {
         return false;
     }
+
     if (pReceiver != getSensor("spin")) {
         return false;
     }
+
     if (MR::isMsgPlayerHitAll(msg)) {
         setNerve(&NrvSpinLeverSwitch::SpinLeverSwitchNrvSwitchOn::sInstance);
         MR::stopSceneForDefaultHit(8);
         return true;
     }
+
     return false;
 }
 

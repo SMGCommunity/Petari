@@ -1,8 +1,11 @@
 #include "Game/Scene/PlacementStateChecker.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 
-PlacementStateChecker::PlacementStateChecker(const char *pName) : NameObj(pName), mCurrentZoneId(-1) {
-
+PlacementStateChecker::PlacementStateChecker(const char *pName) :
+    NameObj(pName),
+    mCurrentZoneId(-1)
+{
+    
 }
 
 void PlacementStateChecker::setCurrentPlacementZoneId(int zoneID) {
@@ -19,10 +22,6 @@ int PlacementStateChecker::getCurrentPlacementZoneId() const {
 
 namespace MR {
     PlacementStateChecker* getPlacementStateChecker() {
-        return MR::getSceneObj<PlacementStateChecker*>(SceneObj_PlacementStateChecker);
+        return MR::getSceneObj<PlacementStateChecker>(SceneObj_PlacementStateChecker);
     }
 };
-
-PlacementStateChecker::~PlacementStateChecker() {
-
-}

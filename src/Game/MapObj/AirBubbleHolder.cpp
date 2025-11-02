@@ -35,6 +35,6 @@ namespace MR {
     }
 
     void appearAirBubble(const TVec3f &a1, s32 a2) {
-        MR::getSceneObj<AirBubbleHolder*>(SceneObj_AirBubbleHolder)->appearAirBubble(a1, a2);
+        MR::getSceneObj<AirBubbleHolder>(SceneObj_AirBubbleHolder)->appearAirBubble(a1, a2);
     }
 };

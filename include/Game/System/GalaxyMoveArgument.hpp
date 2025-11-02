@@ -10,9 +10,9 @@ public:
     bool isEqualStage(char const *) const;
     bool isEqualStageScenario(char const *, int) const;
 
-    u32 _0;
+    /* 0x0 */ u32 mMoveType;
     /* 0x4 */ const char* mStageName;
-    /* 0x8 */ s32 mScenario;
+    /* 0x8 */ s32 mScenarioNo;
     s32 _C;
     /* 0x10 */ JMapIdInfo mIDInfo;
 };

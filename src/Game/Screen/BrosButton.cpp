@@ -15,7 +15,7 @@ namespace {
 BrosButton::BrosButton(const char* pName) :
     LayoutActor(pName, true),
     mIsSelectedMario(true),
-    mPaneCtrl(NULL)
+    mPaneCtrl(nullptr)
 {}
 
 void BrosButton::init(const JMapInfoIter& rIter) {
@@ -105,8 +105,4 @@ void BrosButton::control() {
     if (mPaneCtrl->isPointingTrigger()) {
         MR::startSystemSE("SE_SY_BUTTON_CURSOR_ON", -1, -1);
     }
-}
-
-BrosButton::~BrosButton() {
-    
 }

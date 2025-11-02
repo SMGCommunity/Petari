@@ -104,7 +104,7 @@ void WaterLeakPipe::exeFreeze() {
 }
 
 /*
-bool WaterLeakPipe::receiveMsgPlayerAttack(u32 msg, HitSensor *a1, HitSensor *a2) {
+bool WaterLeakPipe::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     if (!MR::isPlayerElementModeIce()) {
         return false;
     }

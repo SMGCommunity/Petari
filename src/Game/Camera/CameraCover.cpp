@@ -39,11 +39,8 @@ void CameraCover::movement() {
 
 void CameraCover::draw() const {
     if (_3C) {
-        const ResTIMG* timg = MR::getScreenResTIMG();
-        JUTTexture texture;
-        texture._28 = 0;
-        texture.storeTIMG(timg, (u8)0);
-        texture._3B &= 2;
+        JUTTexture texture(MR::getScreenResTIMG(), 0);
+
         ImageEffectLocalUtil::setupDrawTexture();
         ImageEffectLocalUtil::drawTexture(&texture, 1, 0, 255, (ImageEffectLocalUtil::ETexDrawType)0);
     }

@@ -1,5 +1,6 @@
-#include "Game/MapObj/BlackHole.hpp"
+#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
+#include "Game/MapObj/BlackHole.hpp"
 #include "Game/Util.hpp"
 
 // BlackHole::BlackHole
@@ -9,7 +10,7 @@ void BlackHole::init(const JMapInfoIter &rIter) {
     initModel();
     MR::connectToSceneMapObj(this);
     initHitSensor(1);
-    MR::addHitSensorEye(this, "body", 0x10, _A0, TVec3f(0.0f, 0.0f, 0.0f));
+    MR::addHitSensorEye(this, "body", 16, _A0, TVec3f(0.0f, 0.0f, 0.0f));
     initEffectKeeper(0, 0, false);
     MR::setEffectHostMtx(this, "BlackHoleSuction", (MtxPtr)&_D8);
     f32 radius = _A0;
@@ -74,16 +75,24 @@ bool BlackHole::tryStartDemoCamera() {
     return false;
 }
 
-void BlackHole::attackSensor(HitSensor *a1, HitSensor *a2) {
-    if (isNerve(&NrvBlackHole::BlackHoleNrvWait::sInstance)) {
-        if (!_A4 || isInCubeBox(a2->mPosition)) {
-            if (MR::sendArbitraryMsg(0x73, a2, a1)) {
-                if (MR::isSensorPlayer(a2)) {
-                    setNerve(&NrvBlackHole::BlackHoleNrvDemo::sInstance);
-                }
-            }
-        }
+void BlackHole::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
+    if (!isNerve(&NrvBlackHole::BlackHoleNrvWait::sInstance)) {
+        return;
     }
+
+    if (_A4 && !isInCubeBox(pReceiver->mPosition)) {
+        return;
+    }
+
+    if (!MR::sendArbitraryMsg(ACTMES_INHALE_BLACK_HOLE, pReceiver, pSender)) {
+        return;
+    }
+
+    if (!MR::isSensorPlayer(pReceiver)) {
+        return;
+    }
+
+    setNerve(&NrvBlackHole::BlackHoleNrvDemo::sInstance);
 }
 
 #ifdef NON_MATCHING

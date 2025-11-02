@@ -83,12 +83,12 @@ void TripodBossLeg::control() {
     _260->process();
 }
 
-void TripodBossLeg::attackSensor(HitSensor *a1, HitSensor *a2) {
-    if (a2->receiveMessage(0xA9, a1)) {
+void TripodBossLeg::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
+    if (pReceiver->receiveMessage(0xA9, pSender)) {
         _254 = 1;
     }
 
-    if (MR::isSensorPlayer(a2)) {
+    if (MR::isSensorPlayer(pReceiver)) {
         mIsPressPlayer = 1;
     }
 }
@@ -736,7 +736,7 @@ namespace MR {
         f32 y = v17.mMtx[1][0];
         f32 x = v17.mMtx[0][0];
         v16.set<f32>(x, y, z);
-        f32 v10 = MR::speedySqrtf((v16.x * v16.x) + (v16.z * v16.z));
+        f32 v10 = MR::sqrt((v16.x * v16.x) + (v16.z * v16.z));
 
         if (MR::isNearZero(v10, 0.000001f)) {
             if (v16.y >= 0.0f) {

@@ -9,9 +9,6 @@ public:
     /// @brief Creates a new `YesNoLayout`.
     YesNoLayout();
 
-    /// @brief Destroys the `YesNoLayout`.
-    virtual ~YesNoLayout() {}
-
     virtual void init(const JMapInfoIter& rIter);
     virtual void appear();
     virtual void kill();
@@ -21,7 +18,6 @@ public:
     void setSelectMessage(const char*, const char*);
     void exeSelecting();
 
-private:
     /* 0x20 */ YesNoController* mController;
     /* 0x24 */ bool _24;
 };

@@ -1,19 +1,12 @@
 #pragma once
 
-#include "JSystem/JGeometry.hpp"
+#include <JSystem/JGeometry/TVec.hpp>
 
-class JMapInfoIter;
-class PlanetGravity;
 class GravityInfo;
-class NameObj;
+class JMapInfoIter;
 class LiveActor;
 class NameObj;
-
-namespace {
-	//void getJMapInfoArgPlus(const JMapInfoIter &rIter, const char *pFieldName, f32 *pDest) NO_INLINE;
-	//void getJMapInfoArgPlus(const JMapInfoIter &rIter, const char *pFieldName, s32 *pDest) NO_INLINE;
-	//bool calcGravityVectorOrZero(const NameObj *pActor, const TVec3f &rPosition, u32 gravityType, TVec3f * pDest, GravityInfo *pInfo, u32 host) NO_INLINE;
-};
+class PlanetGravity;
 
 namespace MR {
 	void registerGravity(PlanetGravity *pGravity);

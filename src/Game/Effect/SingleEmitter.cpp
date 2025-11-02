@@ -40,7 +40,7 @@ bool SingleEmitter::isValid() const {
     if (mEmitter == nullptr) {
         return false;
     } else {
-        return mEmitter->mManager;
+        return mEmitter->mEmitter != nullptr;
     }
 }
 

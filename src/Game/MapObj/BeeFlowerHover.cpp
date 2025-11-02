@@ -197,9 +197,9 @@ void BeeFlowerHover::calcAndSetBaseMtx() {
     MR::setBaseTRMtx(this, stack_8);
 }
 
-bool BeeFlowerHover::receiveOtherMsg(u32 msg, HitSensor *, HitSensor *) {
+bool BeeFlowerHover::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     if (!isNerve(&NrvBeeFlowerHover::BeeFlowerHoverNrvWait::sInstance)) {
-        return 0;
+        return false;
     }
 
     if (MR::isMsgFloorTouch(msg)) {
@@ -210,10 +210,10 @@ bool BeeFlowerHover::receiveOtherMsg(u32 msg, HitSensor *, HitSensor *) {
             setNerve(&NrvBeeFlowerHover::BeeFlowerHoverNrvHardTouch::sInstance);
         }
 
-        return 1;
+        return true;
     }
 
-    return 0;
+    return false;
 }
 
 BeeFlowerHover::~BeeFlowerHover() {

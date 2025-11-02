@@ -64,9 +64,10 @@ void TripodBossFixPartsBase::calcAndSetBaseMtx() {
     MR::setBaseTRMtx(this, _8C);
 }
 
-bool TripodBossFixPartsBase::receiveOtherMsg(u32 msg, HitSensor *a2, HitSensor *a3) {
-    if (msg == 170) {
+bool TripodBossFixPartsBase::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+    if (msg == ACTMES_TRIPODBOSS_STARTED) {
         activateTripodBoss();
+
         return true;
     }
 

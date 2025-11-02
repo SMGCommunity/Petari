@@ -1,11 +1,10 @@
 #pragma once
 
-#include "Game/LiveActor/ModelObj.hpp"
-#include "Game/Util.hpp"
-#include <revolution.h>
+#include <revolution/types.h>
 
-class LiveActor;
 class ActorLightCtrl;
+class LiveActor;
+class ModelObj;
 
 class LodCtrl { 
 public:
@@ -57,11 +56,4 @@ public:
 
 class LodCtrlFunction {
     static bool isExistLodLowModel(const char *);
-};
-
-namespace {
-    void LodFuntionCall(LodCtrl *, void (*)(LiveActor *)) NO_INLINE;
-
-    template<typename T>
-    void LodFuntionCall(LodCtrl *, void (*)(LiveActor *, T), T) NO_INLINE;
 };

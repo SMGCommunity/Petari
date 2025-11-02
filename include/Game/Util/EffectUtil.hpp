@@ -11,10 +11,6 @@ class MultiEmitterCallBackBase;
 class MultiEmitterParticleCallBack;
 class Triangle;
 
-namespace {
-    bool isExistEffect(const LiveActor*, const char*);
-};
-
 namespace MR {
     void requestEffectStopSceneStart();
     void requestEffectStopSceneEnd();

@@ -11,9 +11,6 @@ public:
     /// @param pName The pointer to the null-terminated name of the object.
     CometRetryButton(const char* pName);
 
-    /// @brief Destroys the `CometRetryButton`.
-    virtual ~CometRetryButton() {}
-
     virtual void init(const JMapInfoIter& rIter);
     virtual void draw() const;
     virtual void appear();

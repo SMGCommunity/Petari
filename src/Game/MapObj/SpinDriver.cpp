@@ -40,7 +40,7 @@ void SpinDriver::init(const JMapInfoIter &rIter) {
     sensorOffs.x = 0.0f;
     sensorOffs.y = 0.0f;
     sensorOffs.z = 0.0f;
-    MR::addHitSensor(this, "body", 0x64, 0x10, 300.0f, sensorOffs);
+    MR::addHitSensor(this, "body", ATYPE_SPIN_DRIVER_BIND, 16, 300.0f, sensorOffs);
     initEffectKeeper(0, nullptr, false);
     initSound(6, false);
     initEventCamera(rIter);
@@ -187,39 +187,46 @@ void SpinDriver::calcAndSetBaseMtx() {
     MR::setBaseTRMtx(this, position);
 }
 
-bool SpinDriver::receiveOtherMsg(u32 msg, HitSensor *a2, HitSensor *a3) {
-    if (msg == 152) {
+bool SpinDriver::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+    if (msg == ACTMES_IS_RUSH_TAKEOVER) {
         _13C = 60;
-        return canBind(a2);
+
+        return canBind(pSender);
     }
 
-    if (msg == 146) {
+    if (msg == ACTMES_AUTORUSH_BEGIN) {
         _13C = 60;
-        if (startBind(a2)) {
+
+        if (startBind(pSender)) {
             return true;
         }
     }
 
-    if (msg == 147) {
+    if (msg == ACTMES_RUSH_CANCEL) {
         if (isNerve(&NrvSpinDriver::SpinDriverNrvShootStart::sInstance)) {
             return false;
         }
 
         if (_8C) {
             _8C = 0;
+
             cancelCamera();
+
             return true;
         }
     }
 
-    if (msg == 148 && _8C) {
+    if (msg == ACTMES_RUSH_FORCE_CANCEL && _8C) {
         _8C = 0;
+
         cancelCamera();
+
         return true;
     }
 
-    if (msg == 161 && _8C) {
+    if (msg == ACTMES_UPDATE_BASEMTX && _8C) {
         calcBindActorMatrix();
+
         return true;
     }
 
@@ -227,7 +234,8 @@ bool SpinDriver::receiveOtherMsg(u32 msg, HitSensor *a2, HitSensor *a3) {
 }
 
 bool SpinDriver::tryStartShoot() {
-    bool isSwingOrPointed = MR::isPadSwing(0) || MR::isPlayerPointedBy2POnTriggerButton();
+    bool isSwingOrPointed = MR::isPadSwing(WPAD_CHAN0)
+        || MR::isPlayerPointedBy2POnTriggerButton();
 
     if (isSwingOrPointed) {
         MR::startSound(_8C, "SE_PM_SPIN_ATTACK", -1, -1);
@@ -308,7 +316,8 @@ void SpinDriver::exeNonActive() {
         MR::startBpk(this, "Wait");
     }
 
-    bool isSwingOrPointed = MR::isPadSwing(0) || MR::isPlayerPointedBy2POnTriggerButton();
+    bool isSwingOrPointed = MR::isPadSwing(WPAD_CHAN0)
+        || MR::isPlayerPointedBy2POnTriggerButton();
 
     if (isSwingOrPointed) {
         f32 v3 = _108;
@@ -349,7 +358,8 @@ void SpinDriver::exeWait() {
         MR::startBpk(this, "Wait");
     }
 
-    bool isSwingOrPointed = MR::isPadSwing(0) || MR::isPlayerPointedBy2POnTriggerButton();
+    bool isSwingOrPointed = MR::isPadSwing(WPAD_CHAN0)
+        || MR::isPlayerPointedBy2POnTriggerButton();
 
     if (isSwingOrPointed) {
         _108 += 0.050000001f;
@@ -512,7 +522,8 @@ bool SpinDriver::startBind(HitSensor *pSensor) {
         return false;
     }
 
-    bool isSwingOrPointed = MR::isPadSwing(0) || MR::isPlayerPointedBy2POnTriggerButton();
+    bool isSwingOrPointed = MR::isPadSwing(WPAD_CHAN0)
+        || MR::isPlayerPointedBy2POnTriggerButton();
 
     if (isSwingOrPointed) {
         if (MR::hasME()) {
@@ -522,7 +533,7 @@ bool SpinDriver::startBind(HitSensor *pSensor) {
             MR::startSystemSE("SE_SY_S_SPIN_DRV_ME_ALT", -1, -1);
         }
 
-        MR::startSound(pSensor->mActor, "SE_PM_SPIN_ATTACK", -1, -1);
+        MR::startSound(pSensor->mHost, "SE_PM_SPIN_ATTACK", -1, -1);
 
         if (MR::isInAreaObj("Water", mPosition)) {
             MR::startSound(this, "SE_PM_SPIN_DRV_IN_WATER_1", -1, -1);
@@ -539,7 +550,7 @@ bool SpinDriver::startBind(HitSensor *pSensor) {
         }
     }
 
-    _8C = pSensor->mActor;
+    _8C = pSensor->mHost;
     _B8 = mPosition;
     _C4 = *MR::getPlayerLastMove();
     f32 mag = PSVECMag(&_C4);
@@ -686,7 +697,8 @@ bool SpinDriver::canBind(HitSensor *pSensor) const {
         return false;
     }
 
-    bool isSwingOrPointed = MR::isPadSwing(0) || MR::isPlayerPointedBy2POnTriggerButton();
+    bool isSwingOrPointed = MR::isPadSwing(WPAD_CHAN0)
+        || MR::isPlayerPointedBy2POnTriggerButton();
 
     if (isSwingOrPointed) {
         return true;

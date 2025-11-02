@@ -74,7 +74,7 @@ namespace AstroDemoFunction {
             pDemoName = cGrandStarReturnDemoTable[i];
 
             if (MR::isDemoExist(pDemoName) && MR::tryRegisterDemoCast(pParam1, pDemoName, rIter)) {
-                MR::tryRegisterDemoActionFunctorDirect(pParam1, rFunctor, pDemoName, NULL);
+                MR::tryRegisterDemoActionFunctorDirect(pParam1, rFunctor, pDemoName, nullptr);
             }
         }
     }
@@ -102,7 +102,7 @@ namespace AstroDemoFunction {
     void tryRegisterDemoForTico(LiveActor* pParam1, const JMapInfoIter& rIter) {
         if (tryRegisterSimpleCastIfAstroGalaxy(pParam1)) {
             s32 demoCastID = MR::getDemoCastID(rIter);
-            const char* pDemoName = NULL;
+            const char* pDemoName = nullptr;
 
             switch (demoCastID) {
             case 0:
@@ -116,7 +116,7 @@ namespace AstroDemoFunction {
                 break;
             }
 
-            if (pDemoName != NULL) {
+            if (pDemoName != nullptr) {
                 AstroDemoFunction::tryRegisterDemo(pParam1, pDemoName, rIter);
             }
         }

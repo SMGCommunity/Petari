@@ -10,9 +10,6 @@ public:
     /// @brief Creates a new `GalaxyConfirmLayout`.
     GalaxyConfirmLayout();
 
-    /// @brief Destroys the `GalaxyConfirmLayout`.
-    virtual ~GalaxyConfirmLayout() {}
-
     virtual void init(const JMapInfoIter& rIter);
     virtual void appear();
     virtual void control();

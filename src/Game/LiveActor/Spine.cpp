@@ -1,24 +1,26 @@
 #include "Game/LiveActor/Spine.hpp"
 #include "Game/LiveActor/ActorStateKeeper.hpp"
 
-Spine::Spine(void *pExecutor, const Nerve *pNerve) {
-    mExecutor = pExecutor;
-    mCurNerve = pNerve;
-    mNextNerve = nullptr;
-    mStep = 0;
-    mStateKeeper = 0;
+Spine::Spine(void *pExecutor, const Nerve *pNerve) :
+    mExecutor(pExecutor),
+    mCurrNerve(pNerve),
+    mNextNerve(nullptr),
+    mStep(0),
+    mStateKeeper(nullptr)
+{
+    
 }
 
 void Spine::update() {
     changeNerve();
-    mCurNerve->execute(this);
+    mCurrNerve->execute(this);
     mStep++;
     changeNerve();
 }
 
 void Spine::setNerve(const Nerve *pNerve) {
     if (mStep >= 0) {
-        mCurNerve->executeOnEnd(this);
+        mCurrNerve->executeOnEnd(this);
     }
 
     mNextNerve = pNerve;
@@ -26,10 +28,11 @@ void Spine::setNerve(const Nerve *pNerve) {
 }
 
 const Nerve* Spine::getCurrentNerve() const{
-    if (mNextNerve) {
+    if (mNextNerve != nullptr) {
         return mNextNerve;
     }
-    return mCurNerve;
+
+    return mCurrNerve;
 }
 
 void Spine::changeNerve() {
@@ -37,15 +40,14 @@ void Spine::changeNerve() {
         return;
     }
 
-    if (mStateKeeper != 0) {
-        mStateKeeper->endState(mCurNerve);
+    if (mStateKeeper != nullptr) {
+        mStateKeeper->endState(mCurrNerve);
         mStateKeeper->startState(mNextNerve);
     }
 
-    const Nerve* pNextState = mNextNerve;
-    mStep = 0;
-    mCurNerve = pNextState;
+    mCurrNerve = mNextNerve;
     mNextNerve = nullptr;
+    mStep = 0;
 }
 
 void Spine::initStateKeeper(int capacity) {

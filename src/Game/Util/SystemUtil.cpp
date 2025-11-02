@@ -27,7 +27,7 @@ namespace {
 };
 
 namespace MR {
-    void callMethodAllSceneNameObj(void (NameObj::*pMethod)()) {
+    void callMethodAllSceneNameObj(NameObjMethod pMethod) {
         getSceneNameObjHolder()->callMethodAllObj(pMethod);
     }
 
@@ -47,25 +47,25 @@ namespace MR {
         getGameSystemObjHolder()->clearRequestFileInfo(param1);
     }
 
-    void startFunctionAsyncExecute(const MR::FunctorBase& rFunctor, int param1, const char* pParam3) {
-        getFunctionAsyncExecutor()->start(rFunctor, param1, pParam3);
+    void startFunctionAsyncExecute(const MR::FunctorBase& rFunc, int threadPriority, const char* pThreadName) {
+        getFunctionAsyncExecutor()->start(rFunc, threadPriority, pThreadName);
     }
 
-    bool startFunctionAsyncExecuteOnMainThread(const MR::FunctorBase& rFunctor, const char* pParam2) {
-        return getFunctionAsyncExecutor()->startOnMainThread(rFunctor, pParam2);
+    bool startFunctionAsyncExecuteOnMainThread(const MR::FunctorBase& rFunc, const char* pThreadName) {
+        return getFunctionAsyncExecutor()->startOnMainThread(rFunc, pThreadName);
     }
 
-    void waitForEndFunctionAsyncExecute(const char* pParam1) {
-        getFunctionAsyncExecutor()->waitForEnd(pParam1);
+    void waitForEndFunctionAsyncExecute(const char* pThreadName) {
+        getFunctionAsyncExecutor()->waitForEnd(pThreadName);
     }
 
-    bool isEndFunctionAsyncExecute(const char* pParam1) {
-        return getFunctionAsyncExecutor()->isEnd(pParam1);
+    bool isEndFunctionAsyncExecute(const char* pThreadName) {
+        return getFunctionAsyncExecutor()->isEnd(pThreadName);
     }
 
-    bool tryEndFunctionAsyncExecute(const char* pParam1) {
-        if (getFunctionAsyncExecutor()->isEnd(pParam1)) {
-            getFunctionAsyncExecutor()->waitForEnd(pParam1);
+    bool tryEndFunctionAsyncExecute(const char* pThreadName) {
+        if (isEndFunctionAsyncExecute(pThreadName)) {
+            waitForEndFunctionAsyncExecute(pThreadName);
 
             return true;
         }
@@ -73,20 +73,20 @@ namespace MR {
         return false;
     }
 
-    void suspendAsyncExecuteThread(const char* pParam1) {
-        OSSuspendThread(getFunctionAsyncExecutor()->getOSThread(pParam1));
+    void suspendAsyncExecuteThread(const char* pThreadName) {
+        OSSuspendThread(getFunctionAsyncExecutor()->getOSThread(pThreadName));
     }
 
-    void resumeAsyncExecuteThread(const char* pParam1) {
-        OSThread* pThread = getFunctionAsyncExecutor()->getOSThread(pParam1);
+    void resumeAsyncExecuteThread(const char* pThreadName) {
+        OSThread* pThread = getFunctionAsyncExecutor()->getOSThread(pThreadName);
 
-        OSResumeThread(getFunctionAsyncExecutor()->getOSThread(pParam1));
+        OSResumeThread(getFunctionAsyncExecutor()->getOSThread(pThreadName));
     }
 
-    bool isSuspendedAsyncExecuteThread(const char* pParam1) {
-        OSThread* pThread = getFunctionAsyncExecutor()->getOSThread(pParam1);
+    bool isSuspendedAsyncExecuteThread(const char* pThreadName) {
+        OSThread* pThread = getFunctionAsyncExecutor()->getOSThread(pThreadName);
 
-        if (pThread == NULL) {
+        if (pThread == nullptr) {
             return false;
         }
 

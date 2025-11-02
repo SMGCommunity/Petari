@@ -35,7 +35,7 @@ void AstroDomeAsteroid::calcAndSetBaseMtx() {
     MR::setBaseTRMtx(this, other);
 }
 
-bool AstroDomeAsteroid::receiveOtherMsg(u32 msg, HitSensor *, HitSensor *) {
+bool AstroDomeAsteroid::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     return SphereSelectorFunction::trySyncAppearMsgSelectStart(this, msg);
 }
 

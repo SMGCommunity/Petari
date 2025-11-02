@@ -4,14 +4,16 @@ SnowplowSwitch::SnowplowSwitch(const char *pName) : LiveActor(pName) {
     _8C = 0;
 }
 
-bool SnowplowSwitch::receiveOtherMsg(u32 msg, HitSensor *, HitSensor *) {
-    if (msg == 73) {
+bool SnowplowSwitch::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+    if (msg == ACTMES_ASK_HIDDEN_BY_SNOW) {
         return _8C == 0;
     }
 
-    if (msg == 74 && _8C) {
+    if (msg == ACTMES_NOTIFY_DISCOVER_SNOW && _8C) {
         _8C = 1;
+
         MR::onSwitchA(this);
+
         return true;
     }
 
@@ -27,11 +29,7 @@ void SnowplowSwitch::init(const JMapInfoIter &rIter) {
     MR::connectToSceneMapObjMovement(this);
     MR::invalidateClipping(this);
     initHitSensor(1);
-    TVec3f sensorOffs;
-    sensorOffs.x = 0.0f;
-    sensorOffs.y = 0.0f;
-    sensorOffs.z = 0.0f;
-    MR::addHitSensorEnemy(this, "Body", 8, 70.0f, sensorOffs);
+    MR::addHitSensorEnemy(this, "Body", 8, 70.0f, TVec3f(0.0f, 0.0f, 0.0f));
     MR::needStageSwitchWriteA(this, rIter);
 
     if (MR::useStageSwitchReadAppear(this, rIter)) {

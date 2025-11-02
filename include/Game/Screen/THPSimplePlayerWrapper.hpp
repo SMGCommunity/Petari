@@ -20,8 +20,6 @@ class THPSimplePlayerWrapper : public NerveExecutor {
 public:
     THPSimplePlayerWrapper(const char *);
 
-    virtual ~THPSimplePlayerWrapper();
-
     bool init(s32);
     void quit();
     bool open(const char *);

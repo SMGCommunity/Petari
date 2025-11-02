@@ -10,8 +10,6 @@ class MeterLayout : public LayoutActor {
 public:
     MeterLayout(const char *, const char *);
 
-    virtual ~MeterLayout();
-
     virtual void init(const JMapInfoIter &rIter);
     virtual void control();
 

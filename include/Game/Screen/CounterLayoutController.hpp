@@ -8,13 +8,10 @@ class PlayerLeft;
 class StarCounter;
 class StarPieceCounter;
 
-class CounterLayoutController : LayoutActor {
+class CounterLayoutController : public LayoutActor {
 public:
     /// @brief Creates a new `CounterLayoutController`.
     CounterLayoutController();
-
-    /// @brief Destroys the `CounterLayoutController`.
-    virtual ~CounterLayoutController();
 
     virtual void init(const JMapInfoIter& rIter);
     virtual void appear();
@@ -36,7 +33,6 @@ public:
     void exePlayerMoving();
     void exePlayerNotMoving();
 
-private:
     /* 0x20 */ s32 mPlayerNotMovingFrame;
     /* 0x24 */ bool _24;
     /* 0x28 */ CoinCounter* mCoinCounter;

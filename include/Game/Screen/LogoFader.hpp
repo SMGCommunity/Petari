@@ -2,14 +2,11 @@
 
 #include "Game/Screen/LayoutActor.hpp"
 
-class LogoFader : LayoutActor {
+class LogoFader : public LayoutActor {
 public:
     /// @brief Creates a new `LogoFader`.
     /// @param pName The pointer to the null-terminated name of the object.
     LogoFader(const char* pName);
-
-    /// @brief Destroys the `LogoFader`.
-    virtual ~LogoFader();
 
     virtual void draw() const;
 
@@ -22,7 +19,6 @@ public:
     void startFadeOut();
     bool isFadeEnd() const;
 
-private:
     /* 0x20 */ bool _20;
     /* 0x24 */ s32 mMaxStep;
     /* 0x28 */ f32 mRate;

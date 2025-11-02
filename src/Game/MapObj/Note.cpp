@@ -19,16 +19,13 @@ void Note::init(const JMapInfoIter &rIter) {
     initModelManagerWithAnm("Note", nullptr, false);
     MR::connectToSceneNoSilhouettedMapObjStrongLight(this);
     initHitSensor(1);
-    TVec3f offs;
-    offs.x = 0.0f;
-    offs.y = 0.0f;
-    offs.z = 0.0f;
-    MR::addHitSensorMapObj(this, "body", 8, 80.0f, offs);
+    MR::addHitSensorMapObj(this, "body", 8, 80.0f, TVec3f(0.0f, 0.0f, 0.0f));
     initEffectKeeper(0, nullptr, false);
     initSound(4, false);
     initNerve(&NrvNote::NoteNrvWait::sInstance);
     mFlashCtrl = new FlashingCtrl(this, true);
     MR::calcGravityAndDropShadowVector(this, &mGravity, nullptr, 0);
+
     if (MR::isNearZero(mGravity, 0.001f)) {
         mGravity.x = 0.0f;
         mGravity.y = -1.0f;
@@ -89,7 +86,7 @@ void Note::exeFlyUp() {
 */
 
 void Note::control() {
-    mRotation.y = MR::getSceneObj<NoteGroup*>(SceneObj_NoteGroup)->mRotation;
+    mRotation.y = MR::getSceneObj<NoteGroup>(SceneObj_NoteGroup)->mRotation;
 }
 
 /*
@@ -99,7 +96,7 @@ void Note::calcAndSetBaseMtx() {
     TPos3f stack_44;
     MR::makeMtxUpFront(&stack_44, stack_8, mRailDirection);
     Mtx mtxRotateY;
-    f32 val = MR::getSceneObj<NoteGroup*>(SceneObj_NoteGroup)->mRotation;
+    f32 val = MR::getSceneObj<NoteGroup>(SceneObj_NoteGroup)->mRotation;
     MR::makeMtxRotateY(mtxRotateY, val);
     PSMTXConcat(stack_44.toMtxPtr(), mtxRotateY, stack_44.toMtxPtr());
     stack_44.mMtx[0][3] = mPosition.x;
@@ -109,8 +106,8 @@ void Note::calcAndSetBaseMtx() {
 }
 */
 
-void Note::attackSensor(HitSensor *a1, HitSensor *a2) {
-    if (MR::isSensorPlayerOrRide(a2)) {
+void Note::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
+    if (MR::isSensorPlayerOrRide(pReceiver)) {
         if (!isNerve(&NrvNote::NoteNrvFlyUp::sInstance)) {
             MR::emitEffect(this, "Get");
             MR::addNoteToCounter();

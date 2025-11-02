@@ -1,26 +1,42 @@
 #include "Game/Animation/AnmPlayer.hpp"
-#include "Game/Util.hpp"
 #include "Game/System/ResourceInfo.hpp"
+#include "Game/Util/StringUtil.hpp"
+#include <JSystem/J3DGraphAnimator/J3DModel.hpp>
+#include <JSystem/J3DGraphAnimator/J3DModelData.hpp>
 
-AnmPlayerBase::AnmPlayerBase(const ResTable *pTable) : 
-    mResourceTable(pTable), mData(0), mFrameCtrl(0) {
+AnmPlayerBase::AnmPlayerBase(const ResTable *pResTable) :
+    mResTable(pResTable),
+    mAnmRes(nullptr),
+    mFrameCtrl(0)
+{
+    
 }
 
 void AnmPlayerBase::update() {
-    if (!mData) {
-        return;
+    if (mAnmRes != nullptr) {
+        mFrameCtrl.update();
     }
-
-    mFrameCtrl.update();
 }
 
-/*
 void AnmPlayerBase::reflectFrame() {
-    if (!_4) {
-        void* 
-        _4 = 
+    if (mAnmRes != nullptr) {
+        mAnmRes->mCurrentFrame = mFrameCtrl.mCurrentFrame;
     }
-}*/
+}
+
+void AnmPlayerBase::start(const char *pResName) {
+    J3DAnmBase* pAnmRes = reinterpret_cast<J3DAnmBase*>(mResTable->getRes(pResName));
+
+    if (pAnmRes != mAnmRes) {
+        changeAnimation(pAnmRes);
+        mAnmRes = pAnmRes;
+    }
+
+    mFrameCtrl.init(mAnmRes->mLoopDuration);
+    mFrameCtrl.mLoopMode = mAnmRes->mLoopMode;
+    mFrameCtrl.mCurrentFrame = 0.0f;
+    mFrameCtrl.mSpeed = 1.0f;
+}
 
 void AnmPlayerBase::stop() {
     stopAnimation();
@@ -28,8 +44,8 @@ void AnmPlayerBase::stop() {
 }
 
 bool AnmPlayerBase::isPlaying(const char *pAnimName) const {
-    if (mData) {
-        if (MR::isEqualStringCase(pAnimName, mResourceTable->getResName(mData))) {
+    if (mAnmRes != nullptr) {
+        if (MR::isEqualStringCase(pAnimName, mResTable->getResName(mAnmRes))) {
             return true;
         }
     }
@@ -37,25 +53,24 @@ bool AnmPlayerBase::isPlaying(const char *pAnimName) const {
     return false;
 }
 
-MaterialAnmPlayerBase::MaterialAnmPlayerBase(const ResTable *pTable, J3DModelData *pModelData) : AnmPlayerBase(pTable) {
-    mModelData = pModelData;
+MaterialAnmPlayerBase::MaterialAnmPlayerBase(const ResTable *pResTable, J3DModelData *pModelData) :
+    AnmPlayerBase(pResTable),
+    mModelData(pModelData)
+{
+    
 }
 
 void MaterialAnmPlayerBase::beginDiff() {
-    if (!mData) {
-        return;
+    if (mAnmRes != nullptr) {
+        reflectFrame();
+        attach(mAnmRes, mModelData);
     }
-
-    reflectFrame();
-    attach(reinterpret_cast<J3DAnmBase*>(mData), mModelData);
 }
 
 void MaterialAnmPlayerBase::endDiff() {
-    if (!mData) {
-        return;
+    if (mAnmRes != nullptr) {
+        detach(mAnmRes, mModelData);
     }
-
-    detach(reinterpret_cast<J3DAnmBase*>(mData), mModelData);
 }
 
 void AnmPlayerBase::changeAnimation(J3DAnmBase *) {

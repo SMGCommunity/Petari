@@ -16,8 +16,8 @@ namespace NrvStarCounter {
 StarCounter::StarCounter() :
     LayoutActor("スターカウンタ", true),
     mPowerStarNum(0),
-    mLayoutAppearer(NULL),
-    mPaneRumbler(NULL)
+    mLayoutAppearer(nullptr),
+    mPaneRumbler(nullptr)
 {}
 
 void StarCounter::init(const JMapInfoIter& rIter) {
@@ -92,8 +92,4 @@ void StarCounter::exeDisappear() {
     if (mLayoutAppearer->isDisappeared()) {
         kill();
     }
-}
-
-StarCounter::~StarCounter() {
-    
 }

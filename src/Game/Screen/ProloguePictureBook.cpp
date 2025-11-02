@@ -20,7 +20,7 @@ namespace NrvProloguePictureBook {
 
 ProloguePictureBook::ProloguePictureBook() :
     LayoutActor("プロローグの絵本", true),
-    mAButtonIcon(NULL),
+    mAButtonIcon(nullptr),
     mPage(0)
 {}
 
@@ -87,7 +87,7 @@ void ProloguePictureBook::exeKeyWait() {
         pAnimCtrl->mSpeed = 0.0f;
     }
 
-    if (MR::testCorePadTriggerA(0)) {
+    if (MR::testCorePadTriggerA(WPAD_CHAN0)) {
         MR::startSystemSE("SE_SY_TALK_FOCUS_ITEM", -1, -1);
         mAButtonIcon->term();
 
@@ -108,8 +108,4 @@ bool ProloguePictureBook::isEnd() const {
 
 void ProloguePictureBook::control() {
     MR::setLayoutScalePosAtPaneScaleTrans(mAButtonIcon, this, "AButtonPosition");
-}
-
-ProloguePictureBook::~ProloguePictureBook() {
-    
 }

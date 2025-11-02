@@ -1,3 +1,4 @@
+#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/MapObj/MeteoContainer.hpp"
 
 MeteoContainer::MeteoContainer(const char *pName) : LiveActor(pName) {
@@ -19,7 +20,7 @@ void MeteoContainer::init(const JMapInfoIter &rIter) {
     sensorOffs.x = 0.0f;
     sensorOffs.y = 150.0f;
     sensorOffs.z = 0.0f;
-    MR::addHitSensorMapObj(this, "body", 0x10, 150.0f, sensorOffs);
+    MR::addHitSensorMapObj(this, "body", 16, 150.0f, sensorOffs);
     initSound(4, false);
     initNerve(&NrvMeteoContainer::MeteoContainerNrvWait::sInstance);
     MR::initShadowVolumeSphere(this, 150.0f);
@@ -48,19 +49,22 @@ void MeteoContainer::control() {
 
 }
 
-void MeteoContainer::attackSensor(HitSensor *a1, HitSensor *a2) {
-    if (MR::isSensorPlayer(a2)) {
-        a2->receiveMessage(41, a1);
+void MeteoContainer::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
+    if (MR::isSensorPlayer(pReceiver)) {
+        pReceiver->receiveMessage(41, pSender);
     }
 }
 
-bool MeteoContainer::receiveMsgPush(HitSensor *a1, HitSensor *a2) {
-    return MR::isSensorPlayer(a1);
+bool MeteoContainer::receiveMsgPush(HitSensor *pSender, HitSensor *pReceiver) {
+    return MR::isSensorPlayer(pSender);
 }
 
-bool MeteoContainer::receiveOtherMsg(u32 msg, HitSensor *, HitSensor *) {
-    if (msg == 49 && isNerve(&NrvMeteoContainer::MeteoContainerNrvWait::sInstance)) {
+bool MeteoContainer::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+    if (msg == ACTMES_TORNADO_ATTACK
+        && isNerve(&NrvMeteoContainer::MeteoContainerNrvWait::sInstance))
+    {
         setNerve(&NrvMeteoContainer::MeteoContainerNrvDestroy::sInstance);
+
         return true;
     }
 

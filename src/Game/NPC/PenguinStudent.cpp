@@ -171,6 +171,7 @@ void PenguinStudent::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
     if (MR::isSensorPlayer(pReceiver)) {
         tryReleaseTurtle();
     }
+
     NPCActor::attackSensor(pSender, pReceiver);
 }
 
@@ -178,5 +179,6 @@ bool PenguinStudent::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pRe
     if (MR::isMsgSpinStormRange(msg) && tryReleaseTurtle()) {
         return true;
     }
+
     return false;
 }

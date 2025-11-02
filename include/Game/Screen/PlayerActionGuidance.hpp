@@ -9,9 +9,6 @@ public:
     /// @brief Creates a new `PlayerActionGuidance`.
     PlayerActionGuidance();
 
-    /// @brief Destroys the `PlayerActionGuidance`.
-    virtual ~PlayerActionGuidance() {}
-
     virtual void init(const JMapInfoIter& rIter);
     virtual void control();
 

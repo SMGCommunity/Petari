@@ -83,5 +83,5 @@ FileHolderFileEntry* FileHolder::findEntry(const char *pFile) const {
         }
     }
 
-    return NULL;
+    return nullptr;
 }

@@ -37,7 +37,7 @@ namespace MR {
         }
 
         if (pIter == pEnd) {
-            return NULL;
+            return nullptr;
         }
 
         return (*pIter->mCreateFunc)();

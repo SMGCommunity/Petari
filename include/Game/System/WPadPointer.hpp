@@ -14,7 +14,7 @@ public:
     void getHorizonVec(TVec2f *) const;
     void getPastPointingPos(TVec2f *, s32) const;
     u32 getEnablePastCount() const;
-    void getPointingPosBasedOnScreen(TVec2f *) const;
+    void getPointingPosBasedOnScreen(TVec2f *) const;    
 
     const WPad* mPad;               // 0x0
     TVec2f* mPointingPosArray;      // 0x4
@@ -28,12 +28,11 @@ public:
     f32 mDistPlayRadius;            // 0x24
     f32 mDistSensitivity;           // 0x28
     u32 _2C;
-    f32 _30;
+    f32 mDistDisplay;               // 0x30
     u8 _34;
     u32 _38;
     u32 _3C;
     u32 mEnablePastCount;           // 0x40
-    u8 _44;
+    bool mIsPointInScreen;          // 0x44
     u8 _45;
-    f32 _48;
 };

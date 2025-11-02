@@ -27,11 +27,11 @@ CounterLayoutController::CounterLayoutController() :
     LayoutActor("カウンタ系レイアウト制御", true),
     mPlayerNotMovingFrame(0),
     _24(false),
-    mCoinCounter(NULL),
-    mStarPieceCounter(NULL),
-    mPlayerLeft(NULL),
-    mStarCounter(NULL),
-    mHPMeter(NULL)
+    mCoinCounter(nullptr),
+    mStarPieceCounter(nullptr),
+    mPlayerLeft(nullptr),
+    mStarCounter(nullptr),
+    mHPMeter(nullptr)
 {}
 
 void CounterLayoutController::init(const JMapInfoIter& rIter) {
@@ -133,11 +133,11 @@ bool CounterLayoutController::isPlayerMoving() const {
         return true;
     }
 
-    if (!MR::isNearZero(MR::getSubPadStickX(0), 0.001f)
-        || !MR::isNearZero(MR::getSubPadStickY(0), 0.001f)
-        || MR::testPadButtonAnyWithoutHome(0)
-        || MR::isCorePadSwing(0)
-        || MR::isSubPadSwing(0))
+    if (!MR::isNearZero(MR::getSubPadStickX(WPAD_CHAN0), 0.001f)
+        || !MR::isNearZero(MR::getSubPadStickY(WPAD_CHAN0), 0.001f)
+        || MR::testPadButtonAnyWithoutHome(WPAD_CHAN0)
+        || MR::isCorePadSwing(WPAD_CHAN0)
+        || MR::isSubPadSwing(WPAD_CHAN0))
     {
         return true;
     }
@@ -217,8 +217,4 @@ void CounterLayoutController::exePlayerNotMoving() {
         hideAllLayout();
         setNerve(&NrvCounterLayoutController::CounterLayoutControllerNrvPlayerMoving::sInstance);
     }
-}
-
-CounterLayoutController::~CounterLayoutController() {
-    
 }

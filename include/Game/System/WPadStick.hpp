@@ -1,7 +1,9 @@
 #pragma once
 
-#include <revolution.h>
-#include "Game/System/WPad.hpp"
+#include <JSystem/JGeometry/TVec.hpp>
+#include <revolution/types.h>
+
+class WPad;
 
 class WPadStick {
 public:
@@ -10,14 +12,14 @@ public:
     void update();
     bool isChanged() const;
 
-    const WPad* mPad;           // 0x00
-    Vec2 mStick;                // 0x04
-    f32 _C;
-    u32 _10;
-    u32 _14;
-    u32 _18;
-    u8 _1C;
-    u8 _1D;
-    u8 _1E;
-    u8 _1F;
+    /* 0x00 */ const WPad* mPad;
+    /* 0x04 */ TVec2f mStick;
+    /* 0x0C */ f32 mSpeed;
+    /* 0x10 */ u32 mHold;
+    /* 0x14 */ u32 mTrigger;
+    /* 0x18 */ u32 mRelease;
+    /* 0x1C */ bool mIsTriggerUp;
+    /* 0x1D */ bool mIsTriggerDown;
+    /* 0x1E */ bool mIsHoldUp;
+    /* 0x1F */ bool mIsHoldDown;
 };

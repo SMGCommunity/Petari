@@ -6,14 +6,12 @@ class PlacementStateChecker : public NameObj {
 public:
     PlacementStateChecker(const char *);
 
-    virtual ~PlacementStateChecker();
-
     void setCurrentPlacementZoneId(int);
     void clearCurrentPlacementZoneId();
     int getCurrentPlacementZoneId() const;
 
 private:
-    int mCurrentZoneId;    // 0xC
+    /* 0xC */ int mCurrentZoneId;
 };
 
 namespace MR {

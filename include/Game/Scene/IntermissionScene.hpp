@@ -6,7 +6,6 @@ class IntermissionScene : public Scene {
 public:
     IntermissionScene();
 
-    virtual ~IntermissionScene();
     virtual void update();
     virtual void draw() const;
 

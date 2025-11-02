@@ -279,7 +279,7 @@ namespace MR {
             return false;
         }
         else {
-            return getSceneObj<TalkDirector*>(SceneObj_TalkDirector)->isSystemTalking();
+            return getSceneObj<TalkDirector>(SceneObj_TalkDirector)->isSystemTalking();
         }
     }
 
@@ -288,7 +288,7 @@ namespace MR {
             return false;
         }
         else {
-            return getSceneObj<TalkDirector*>(SceneObj_TalkDirector)->isNormalTalking();
+            return getSceneObj<TalkDirector>(SceneObj_TalkDirector)->isNormalTalking();
         }
     }
 
@@ -297,7 +297,7 @@ namespace MR {
             return false;
         }
         else {
-            return getSceneObj<TalkDirector*>(SceneObj_TalkDirector)->getTalkingActor();
+            return getSceneObj<TalkDirector>(SceneObj_TalkDirector)->getTalkingActor();
         }
     }
 

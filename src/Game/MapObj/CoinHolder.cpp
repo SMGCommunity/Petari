@@ -1,5 +1,7 @@
 #include "Game/MapObj/CoinHolder.hpp"
 #include "Game/MapObj/Coin.hpp"
+#include "Game/NameObj/NameObj.hpp"
+#include "Game/Scene/SceneObjHolder.hpp"
 
 CoinHolder::CoinHolder(const char *pName) : DeriveActorGroup<Coin>(pName, 0x200), mHostInfoArr(nullptr), mHostInfoCount(0) {
     mHostInfoArr = new CoinHostInfo[0x200];
@@ -28,14 +30,12 @@ bool CoinHolder::appearCoinFix(const NameObj *pObj, const TVec3f &a2, s32 a3) {
     return appearCoin(pObj, a2, stack_8, a3, -1, -1, a3 == 1 ? 0.0f : 4.0f);
 }
 
-/*
 bool CoinHolder::appearCoinPop(const NameObj *pObj, const TVec3f &a2, s32 a3) {
     TVec3f stack_20;
     MR::calcGravityVector(this, a2, &stack_20, nullptr, nullptr);
-    TVec3f stack_8 = -stack_20 % 25.0f;
-    return appearCoin(pObj, a2, stack_8, a3, -1, -1, a3 == 1 ? 0.0f : 4.0f);
+    TVec3f stack_14 = (-stack_20).scaleInline(25.0f);
+    return appearCoin(pObj, a2, stack_14, a3, -1, -1, a3 == 1 ? 0.0f : 4.0f);
 }
-*/
 
 bool CoinHolder::appearCoinToVelocity(const NameObj *pObj, const TVec3f &a2, const TVec3f &a3, s32 a4) {
     return appearCoin(pObj, a2, a3, a4, -1, -1, a4 == 1 ? 0.0f : 4.0f);
@@ -86,3 +86,23 @@ void CoinHolder::init(const JMapInfoIter &rIter) {
         registerActor(coin);
     }
 }
+
+namespace MR {
+    void createCoinHolder() {
+        MR::createSceneObj(SceneObj_CoinRotater);
+        MR::createSceneObj(SceneObj_CoinHolder);
+    }
+
+    NameObj* getCoinHolder() {
+        SceneObjHolder* holder = MR::getSceneObjHolder();
+        return holder->getObj(SceneObj_CoinHolder);
+    }
+
+    void addToCoinHolder(const NameObj* pNameObj, Coin* pCoin) {
+        //Grabs the Coin holder obj, then discards that and does it again?????
+        SceneObjHolder* holder = MR::getSceneObjHolder();
+        holder->getObj(SceneObj_CoinHolder);   
+        CoinHolder* coinHolder = (CoinHolder*)MR::getSceneObjHolder()->getObj(SceneObj_CoinHolder);
+        pCoin->setHostInfo(coinHolder->declare(pNameObj, 1));
+    }
+};

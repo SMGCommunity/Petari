@@ -1,19 +1,14 @@
 #pragma once
 
-#include <revolution.h>
-#include "JSystem/JGeometry.hpp"
-#include "revolution/types.h"
+#include <JSystem/JGeometry/TMatrix.hpp>
+#include <JSystem/JGeometry/TVec.hpp>
+#include <revolution/types.h>
 
 class LiveActor;
 class ActorCameraInfo;
 class CameraTargetArg;
 class NameObj;
 class JMapInfoIter;
-
-namespace {
-    void calcNormalizedScreenPosToScreenPos(TVec3f *, const TVec3f &);
-    char* createRegisterName(const NameObj *, u32);
-};
 
 namespace MR {
     const TVec3f getCamPos();
@@ -88,6 +83,10 @@ namespace MR {
 
     void pauseOnAnimCamera(const ActorCameraInfo *, const char *);
     void pauseOffAnimCamera(const ActorCameraInfo *, const char *);
+
+    void startBlackHoleCamera(const char *, const TVec3f &, const TVec3f &);
+
+    bool createActorCameraInfoIfExist(const JMapInfoIter &, ActorCameraInfo **);
 
     void pauseOnCameraDirector();
     void pauseOffCameraDirector();

@@ -74,16 +74,18 @@ void SnowMan::kill() {
     LiveActor::kill();
 }
 
-bool SnowMan::receiveMsgPlayerAttack(u32 a1, HitSensor* a2, HitSensor* a3) {
-    if (MR::isMsgFireBallAttack(a1)) {
-        if (a3 == getSensor("head")) {
+bool SnowMan::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+    if (MR::isMsgFireBallAttack(msg)) {
+        if (pReceiver == getSensor("head")) {
             damageHead();
         } else {
             damageBody();
         }
+
         return true;
     }
-    else if (MR::isMsgPlayerSpinAttack(a1)) {
+
+    if (MR::isMsgPlayerSpinAttack(msg)) {
         if (mAnimScaleCtrl->isHitReaction(-1)) {
             return false;
         } else {
@@ -91,6 +93,7 @@ bool SnowMan::receiveMsgPlayerAttack(u32 a1, HitSensor* a2, HitSensor* a3) {
             return true;
         }
     }
+
     return false;
 }
 

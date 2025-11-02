@@ -1,26 +1,31 @@
 #include "Game/Map/SphereSelector.hpp"
-
-inline void SphereSelector::exeConfirm() {
-    if (MR::isFirstStep(this)) {
-        sendMsgToAllActor(0xE4);
-        MR::stopStageBGM(0x5A);
-    }
-}
-
-inline void SphereSelector::exeSelectStart() {
-    if (MR::isFirstStep(this)) {
-        sendMsgToAllActor(0xE0);
-    }
-
-    MR::setNerveAtStep(this, &NrvSphereSelector::SphereSelectorNrvSelectWait::sInstance, 0x3C);
-}
+#include "Game/LiveActor/LiveActorGroup.hpp"
 
 namespace NrvSphereSelector {
-    INIT_NERVE(SphereSelectorNrvSelectStart);
-    INIT_NERVE(SphereSelectorNrvSelectWait);
-    INIT_NERVE(SphereSelectorNrvSelectCancel);
-    INIT_NERVE(SphereSelectorNrvConfirmStart);
-    INIT_NERVE(SphereSelectorNrvConfirmWait);
-    INIT_NERVE(SphereSelectorNrvConfirmCancel);
-    INIT_NERVE(SphereSelectorNrvConfirmed);
-}; 
+    NEW_NERVE(SphereSelectorNrvSelectStart, SphereSelector, SelectStart);
+    NEW_NERVE(SphereSelectorNrvSelectWait, SphereSelector, SelectWait);
+    NEW_NERVE(SphereSelectorNrvSelectCancel, SphereSelector, SelectCancel);
+    NEW_NERVE(SphereSelectorNrvConfirmStart, SphereSelector, ConfirmStart);
+    NEW_NERVE(SphereSelectorNrvConfirmWait, SphereSelector, ConfirmWait);
+    NEW_NERVE(SphereSelectorNrvConfirmCancel, SphereSelector, ConfirmCancel);
+    NEW_NERVE(SphereSelectorNrvConfirmed, SphereSelector, Confirm);
+};
+
+void SphereSelector::exeSelectStart() {
+    if (MR::isFirstStep(this)) {
+        sendMsgToAllActor(ACTMES_SPHERE_SELECTOR_SELECT_START);
+    }
+
+    MR::setNerveAtStep(this, &NrvSphereSelector::SphereSelectorNrvSelectWait::sInstance, 60);
+}
+
+void SphereSelector::exeConfirmWait() {
+    
+}
+
+void SphereSelector::exeConfirm() {
+    if (MR::isFirstStep(this)) {
+        sendMsgToAllActor(ACTMES_SPHERE_SELECTOR_CONFIRMED);
+        MR::stopStageBGM(90);
+    }
+}

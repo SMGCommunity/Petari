@@ -1,3 +1,5 @@
+#pragma once
+
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/NPC/NPCActor.hpp"
 

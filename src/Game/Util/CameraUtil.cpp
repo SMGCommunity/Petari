@@ -17,12 +17,17 @@
 #include "revolution/gx/GXEnum.h"
 #include "revolution/mtx.h"
 
+namespace {
+    void calcNormalizedScreenPosToScreenPos(TVec3f *, const TVec3f &);
+    char* createRegisterName(const NameObj *, u32);
+};
+
 namespace MR {
     bool calcScreenPosition(TVec2f *pResult, const TVec3f &rViewMtxMult) {
         TVec3f normalizedScreenPos;
         TVec3f screenPos;
         TVec3f multedViewMtx;
-        getSceneObj<CameraContext*>(SceneObj_CameraContext)->getViewMtx()->mult(rViewMtxMult, multedViewMtx);
+        getSceneObj<CameraContext>(SceneObj_CameraContext)->getViewMtx()->mult(rViewMtxMult, multedViewMtx);
         bool ret = calcNormalizedScreenPositionFromView(&normalizedScreenPos, multedViewMtx);
         ::calcNormalizedScreenPosToScreenPos(&screenPos, normalizedScreenPos);
         pResult->x = screenPos.x;
@@ -33,7 +38,7 @@ namespace MR {
     bool calcScreenPosition(TVec3f *pResult, const TVec3f &rViewMtxMult) {
         TVec3f normalizedScreenPos;
         TVec3f multedViewMtx;
-        getSceneObj<CameraContext*>(SceneObj_CameraContext)->getViewMtx()->mult(rViewMtxMult, multedViewMtx);
+        getSceneObj<CameraContext>(SceneObj_CameraContext)->getViewMtx()->mult(rViewMtxMult, multedViewMtx);
         bool ret = calcNormalizedScreenPositionFromView(&normalizedScreenPos, multedViewMtx);
         ::calcNormalizedScreenPosToScreenPos(pResult, normalizedScreenPos);
         return ret;
@@ -41,7 +46,7 @@ namespace MR {
 
     bool calcNormalizedScreenPosition(TVec3f *pResult, const TVec3f &rViewMtxMult) {
         TVec3f multedViewMtx;
-        getSceneObj<CameraContext*>(SceneObj_CameraContext)->getViewMtx()->mult(rViewMtxMult, multedViewMtx);
+        getSceneObj<CameraContext>(SceneObj_CameraContext)->getViewMtx()->mult(rViewMtxMult, multedViewMtx);
         return calcNormalizedScreenPositionFromView(pResult, multedViewMtx);
     }
 
@@ -52,66 +57,66 @@ namespace MR {
     }
 
     void loadProjectionMtx() {
-        GXSetProjection(getSceneObj<CameraContext*>(SceneObj_CameraContext)->mProjection, (GXProjectionType)nullptr);
+        GXSetProjection(getSceneObj<CameraContext>(SceneObj_CameraContext)->mProjection, (GXProjectionType)nullptr);
     }
 
     void loadViewMtx() {
-        PSMTXCopy((MtxPtr)getSceneObj<CameraContext*>(SceneObj_CameraContext)->getViewMtx(), j3dSys.mViewMtx);
+        PSMTXCopy((MtxPtr)getSceneObj<CameraContext>(SceneObj_CameraContext)->getViewMtx(), j3dSys.mViewMtx);
     }
 
     const MtxPtr getCameraViewMtx() {
-        return (MtxPtr)getSceneObj<CameraContext*>(SceneObj_CameraContext)->getViewMtx();
+        return (MtxPtr)getSceneObj<CameraContext>(SceneObj_CameraContext)->getViewMtx();
     }
 
     TPos3f* getCameraInvViewMtx() {
-        return const_cast<TPos3f*>(getSceneObj<CameraContext*>(SceneObj_CameraContext)->getInvViewMtx());
+        return const_cast<TPos3f*>(getSceneObj<CameraContext>(SceneObj_CameraContext)->getInvViewMtx());
     }
 
     const TPos3f* getCameraProjectionMtx() {
-        return &getSceneObj<CameraContext*>(SceneObj_CameraContext)->mProjection;
+        return &getSceneObj<CameraContext>(SceneObj_CameraContext)->mProjection;
     }
 
     void setCameraViewMtx(const TPos3f &a1, bool a2, bool a3, const TVec3f &a4) {
-        getSceneObj<CameraContext*>(SceneObj_CameraContext)->setViewMtx(a1, a2, a3, a4);
+        getSceneObj<CameraContext>(SceneObj_CameraContext)->setViewMtx(a1, a2, a3, a4);
     }
 
     f32 getAspect() {
-        return MR::getSceneObj<CameraContext*>(SceneObj_CameraContext)->getAspect();
+        return MR::getSceneObj<CameraContext>(SceneObj_CameraContext)->getAspect();
     }
 
     f32 getNearZ() {
-        return MR::getSceneObj<CameraContext*>(SceneObj_CameraContext)->mNearZ;
+        return MR::getSceneObj<CameraContext>(SceneObj_CameraContext)->mNearZ;
     }
 
     f32 getFarZ() {
-        return MR::getSceneObj<CameraContext*>(SceneObj_CameraContext)->mFarZ;
+        return MR::getSceneObj<CameraContext>(SceneObj_CameraContext)->mFarZ;
     }
 
     f32 getFovy() {
-        return MR::getSceneObj<CameraContext*>(SceneObj_CameraContext)->mFovy;
+        return MR::getSceneObj<CameraContext>(SceneObj_CameraContext)->mFovy;
     }
 
     void setNearZ(f32 nearZ) {
-        MR::getSceneObj<CameraContext*>(SceneObj_CameraContext)->setNearZ(nearZ);
+        MR::getSceneObj<CameraContext>(SceneObj_CameraContext)->setNearZ(nearZ);
     }
 
     void setFovy(f32 fovy) {
-        MR::getSceneObj<CameraContext*>(SceneObj_CameraContext)->setFovy(fovy);
+        MR::getSceneObj<CameraContext>(SceneObj_CameraContext)->setFovy(fovy);
     }
 
     void setShakeOffset(f32 a1, f32 a2) {
-        MR::getSceneObj<CameraContext*>(SceneObj_CameraContext)->setShakeOffset(a1, a2);
+        MR::getSceneObj<CameraContext>(SceneObj_CameraContext)->setShakeOffset(a1, a2);
     }
 
     const TVec3f getCamPos() {
-        TPos3f viewMtx = *MR::getSceneObj<CameraContext*>(SceneObj_CameraContext)->getInvViewMtx();
+        TPos3f viewMtx = *MR::getSceneObj<CameraContext>(SceneObj_CameraContext)->getInvViewMtx();
         TVec3f pos;
         MR::extractMtxTrans(viewMtx.toMtxPtr(), &pos);
         return pos;
     }
 
     TVec3f getCamXDir() {
-        TPos3f viewMtx = *MR::getSceneObj<CameraContext*>(SceneObj_CameraContext)->getInvViewMtx();
+        TPos3f viewMtx = *MR::getSceneObj<CameraContext>(SceneObj_CameraContext)->getInvViewMtx();
         TVec3f dir;
         viewMtx.getXDir(dir);
         MR::normalizeOrZero(&dir);
@@ -119,7 +124,7 @@ namespace MR {
     }
 
     TVec3f getCamYdir() {
-        TPos3f viewMtx = *MR::getSceneObj<CameraContext*>(SceneObj_CameraContext)->getInvViewMtx();
+        TPos3f viewMtx = *MR::getSceneObj<CameraContext>(SceneObj_CameraContext)->getInvViewMtx();
         TVec3f dir;
         viewMtx.getYDir(dir);
         MR::normalizeOrZero(&dir);
@@ -127,7 +132,7 @@ namespace MR {
     }
 
     TVec3f getCamZdir() {
-        TPos3f viewMtx = *MR::getSceneObj<CameraContext*>(SceneObj_CameraContext)->getInvViewMtx();
+        TPos3f viewMtx = *MR::getSceneObj<CameraContext>(SceneObj_CameraContext)->getInvViewMtx();
         TVec3f dir;
         viewMtx.getZDir(dir);
         MR::normalizeOrZero(&dir);
