@@ -120,9 +120,6 @@ public:
     void forceGameOverNonStop();
     void forceGameOverSink();
 
-    void initBlackHoleOut();
-    void exeGameOverBlackHole2();
-
     void updateCameraInfo();
     bool binderFilter(const Triangle *);
 
