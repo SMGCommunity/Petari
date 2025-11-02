@@ -37,7 +37,7 @@ public:
     const char* getGalaxyNameWithStarPiece() const;
     u8 getNeedStarPieceNum() const;
     const char* getEventValueName() const;
-    u32 getRequirement() const;
+    const char* getRequirement() const;
 
     const GameEventFlag* mFlag;     // 0x0
 };

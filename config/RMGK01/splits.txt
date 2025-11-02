@@ -8616,6 +8616,7 @@ Game/System/WPadRumble.cpp:
 Game/System/WPadRumbleData.cpp:
 	.text       start:0x803ADD4C end:0x803ADE0C
 	.data       start:0x805DD660 end:0x805DE170
+	.sdata      start:0x806B25B8 end:0x806B25C8
 
 Game/System/WPadStick.cpp:
 	.text       start:0x803ADE0C end:0x803AE034
@@ -8623,7 +8624,7 @@ Game/System/WPadStick.cpp:
 
 Game/System/HomeButtonMenuWrapper.cpp:
 	.text       start:0x803AE034 end:0x803AE1C0
-	.data       start:0x805DE170 end:0x805DE260
+	.data       start:0x805DE170 end:0x805DE258
 	.sbss       start:0x806B6F30 end:0x806B6F50
 
 Game/System/HomeButtonStateNotifier.cpp:
@@ -8631,7 +8632,7 @@ Game/System/HomeButtonStateNotifier.cpp:
 
 Game/System/ConfigDataHolder.cpp:
 	.text       start:0x803AE294 end:0x803AE640
-	.data       start:0x805DE260 end:0x805DE280
+	.data       start:0x805DE258 end:0x805DE280
 
 Game/System/ConfigDataMii.cpp:
 	.text       start:0x803AE640 end:0x803AE988
@@ -8655,7 +8656,7 @@ Game/System/GalaxyCometScheduler.cpp:
 Game/System/GalaxyCometState.cpp:
 	.text       start:0x803AFDC8 end:0x803AFFB4
 	.ctors      start:0x8052F38C end:0x8052F390
-	.data       start:0x805DE478 end:0x805DE668
+	.data       start:0x805DE478 end:0x805DE4B8
 	.sbss       start:0x806B6F50 end:0x806B6F58
 
 Game/System/GalaxyMoveArgument.cpp:
@@ -8663,23 +8664,28 @@ Game/System/GalaxyMoveArgument.cpp:
 
 Game/System/GalaxyNameSortTable.cpp:
 	.text       start:0x803B00A0 end:0x803B0208
+	.data       start:0x805DE4B8 end:0x805DE4C0
 
 Game/System/GalaxyStatusAccessor.cpp:
 	.text       start:0x803B0208 end:0x803B0A08
+	.data       start:0x805DE4C0 end:0x805DE520
 
 Game/System/GameDataConst.cpp:
 	.text       start:0x803B0A08 end:0x803B0DCC
+	.data       start:0x805DE520 end:0x805DE5C0
 
 Game/System/GameDataFunction.cpp:
 	.text       start:0x803B0DCC end:0x803B2220
+	.data       start:0x805DE5C0 end:0x805DE630
 
 Game/System/GameDataGalaxyStorage.cpp:
 	.text       start:0x803B2220 end:0x803B2C60
-	.data       start:0x805DE668 end:0x805DE738
+	.data       start:0x805DE630 end:0x805DE6C0
 
 Game/System/GameDataHolder.cpp:
 	.text       start:0x803B2C60 end:0x803B37C0
 	.rodata     start:0x8053C908 end:0x8053C918
+	.data       start:0x805DE6C0 end:0x805DE738
 
 Game/System/GameDataPlayerStatus.cpp:
 	.text       start:0x803B37C0 end:0x803B3A5C
@@ -8712,15 +8718,16 @@ Game/System/GameEventValueChecker.cpp:
 
 Game/System/GameSequenceDirector.cpp:
 	.text       start:0x803B59D4 end:0x803B5CE4
-	.data       start:0x805DFB80 end:0x805DFCB8
+	.data       start:0x805DFB80 end:0x805DFBC8
 
 Game/System/GameSequenceFunction.cpp:
 	.text       start:0x803B5CE4 end:0x803B68C8
+	.data       start:0x805DFBC8 end:0x805DFC00
 
 Game/System/GameSequenceProgress.cpp:
 	.text       start:0x803B68C8 end:0x803B7704
 	.ctors      start:0x8052F390 end:0x8052F394
-	.data       start:0x805DFCB8 end:0x805DFD90
+	.data       start:0x805DFC00 end:0x805DFD28
 	.sbss       start:0x806B6F60 end:0x806B6F78
 
 Game/System/LuigiLeftSupplier.cpp:
@@ -8729,11 +8736,12 @@ Game/System/LuigiLeftSupplier.cpp:
 Game/System/SaveDataBannerCreator.cpp:
 	.text       start:0x803B7758 end:0x803B7B18
 	.ctors      start:0x8052F394 end:0x8052F398
-	.data       start:0x805DFD90 end:0x805DFDE8
+	.data       start:0x805DFD28 end:0x805DFDD0
 	.sbss       start:0x806B6F78 end:0x806B6F88
 
 Game/System/SaveDataFileAccessor.cpp:
 	.text       start:0x803B7B18 end:0x803B7C68
+	.data       start:0x805DFDD0 end:0x805DFDE8
 
 Game/System/SaveDataHandler.cpp:
 	.text       start:0x803B7C68 end:0x803B8B38
@@ -8774,13 +8782,15 @@ Game/System/StorySequenceExecutor.cpp:
 
 Game/System/SysConfigFile.cpp:
 	.text       start:0x803BD404 end:0x803BD7EC
-	.data       start:0x805E07E8 end:0x805E08C8
+	.data       start:0x805E07E8 end:0x805E0848
 
 Game/System/UserFile.cpp:
 	.text       start:0x803BD7EC end:0x803BDA7C
+	.data       start:0x805E0848 end:0x805E0888
 
 Game/Util/ActorCameraUtil.cpp:
 	.text       start:0x803BDA7C end:0x803BE7F8
+	.data       start:0x805E0888 end:0x805E08C8
 
 Game/Util/ActorMovementUtil.cpp:
 	.text       start:0x803BE7F8 end:0x803C3144

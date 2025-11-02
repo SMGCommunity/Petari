@@ -53,6 +53,12 @@ private:
 
 class NANDResultCode {
 public:
+    NANDResultCode(s32 code) :
+        mCode(code)
+    {
+        
+    }
+
     s32 getCode() const;
     bool isSuccess() const;
     bool isSaveDataCorrupted() const;
