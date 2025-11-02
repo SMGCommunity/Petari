@@ -5,19 +5,19 @@
 void MarioActor::initBlackHoleOut(){
     
     mPosRelativeToBlackHole = mPosition - mBlackHolePosition;
-    TVec3f NormalisedRelativePos(mPosRelativeToBlackHole);
-    TVec3f NormalisedRelativeCameraPos = mCamPos - mBlackHolePosition;
-    MR::normalizeOrZero(&NormalisedRelativeCameraPos);
-    MR::normalizeOrZero(&NormalisedRelativePos);
-    Mtx Rotation;
-    TVec3f RotateAxis;
-    PSVECCrossProduct(&NormalisedRelativeCameraPos, &NormalisedRelativePos, &RotateAxis);
+    TVec3f normalisedRelativePos(mPosRelativeToBlackHole);
+    TVec3f normalisedRelativeCameraPos = mCamPos - mBlackHolePosition;
+    MR::normalizeOrZero(&normalisedRelativeCameraPos);
+    MR::normalizeOrZero(&normalisedRelativePos);
+    Mtx rotation;
+    TVec3f rotateAxis;
+    PSVECCrossProduct(&normalisedRelativeCameraPos, &normalisedRelativePos, &rotateAxis);
     f32 mag = PSVECMag(&mPosRelativeToBlackHole);
     TVec3f killed;
     f32 flt = MR::vecKillElement(mCamPos - mPosition,mCamDirZ,&killed);
     flt *= mConst->getTable()->mBlackHoleFirstRadius;
-    PSMTXRotAxisRad(Rotation, &RotateAxis, atan(flt / mag));
-    PSMTXMultVec(Rotation,&mPosRelativeToBlackHole,&mBlackHoleRotateAxis);
+    PSMTXRotAxisRad(rotation, &rotateAxis, atan(flt / mag));
+    PSMTXMultVec(rotation,&mPosRelativeToBlackHole,&mBlackHoleRotateAxis);
     MR::normalizeOrZero(&mBlackHoleRotateAxis);
     damageDropThrowMemoSensor();
     MR::removeAllClingingKarikari();
@@ -40,7 +40,7 @@ void MarioActor::exeGameOverBlackHole2(){
         MR::startStarPointerModeDemoMarioDeath(this);
         MR::deactivateDefaultGameLayout();
     }   
-    if(getNerveStep() == 0x3c){
+    if(getNerveStep() == 60){
         if(!MR::getPlayerLeft()){
             MR::startPlayerEvent("ゲームオーバー");
         }else{
@@ -66,15 +66,15 @@ void MarioActor::exeGameOverBlackHole2(){
     Mtx rotationMatrix;
     PSMTXRotAxisRad(rotationMatrix,&mBlackHoleRotateAxis,angle);
     PSMTXMultVec(rotationMatrix,&mPosRelativeToBlackHole,&mPosRelativeToBlackHole);
-    TVec3f CamDirZNegate;
-    JMathInlineVEC::PSVECNegate(&mCamDirZ,&CamDirZNegate);
-    MR::vecBlendSphere(mBlackHoleRotateAxis,CamDirZNegate,&mBlackHoleRotateAxis,0.01f);
-    f32 distChangeFactor = 0xb4 - getNerveStep();
+    TVec3f camDirZNegate;
+    JMathInlineVEC::PSVECNegate(&mCamDirZ,&camDirZNegate);
+    MR::vecBlendSphere(mBlackHoleRotateAxis,camDirZNegate,&mBlackHoleRotateAxis,0.01f);
+    f32 distChangeFactor = 180 - getNerveStep();
     if(distChangeFactor < 0.0f){
         distChangeFactor = 0.0f;
     }
-    f32 NewDistToBlackHole = PSVECMag(&mPosRelativeToBlackHole) * distChangeFactor/(1+distChangeFactor);
-    mPosRelativeToBlackHole.setLength(NewDistToBlackHole);
+    f32 newDistToBlackHole = PSVECMag(&mPosRelativeToBlackHole) * distChangeFactor/(1+distChangeFactor);
+    mPosRelativeToBlackHole.setLength(newDistToBlackHole);
     f32 scale = getNerveStep() * mConst->getTable()->mBlackHoleScaleSpeed;
     scale = 1-scale;
     if(scale < mConst->getTable()->mBlackHoleScaleLimit){
