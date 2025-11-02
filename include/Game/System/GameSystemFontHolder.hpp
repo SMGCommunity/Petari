@@ -1,18 +1,30 @@
 #pragma once
 
+namespace nw4r {
+    namespace ut {
+        class Font;
+        class ResFont;
+    };
+};
+
+class JKRMemArchive;
+
 class GameSystemFontHolder {
 public:
+    /// @brief Creates a new `GameSystemFontHolder`.
     GameSystemFontHolder();
 
+    nw4r::ut::Font* getMessageFont() const;
     void createFontFromEmbeddedData();
     void createFontFromFile();
 
-    u32 _0;
-    u32 _4;
-    u32 _8;
-    u32 _C;
-    u32 _10;
-    u32 _14;
-    u32 _18;
-    u32 _1C;
+private:
+    /* 0x00 */ void* _0;
+    /* 0x04 */ JKRMemArchive* _4;
+    /* 0x08 */ nw4r::ut::ResFont* mEmbeddedMessageFont;
+    /* 0x0C */ nw4r::ut::ResFont* mMessageFont;
+    /* 0x10 */ nw4r::ut::ResFont* mPictureFont;
+    /* 0x14 */ nw4r::ut::ResFont* mMenuFont;
+    /* 0x18 */ nw4r::ut::ResFont* mNumberFont;
+    /* 0x1C */ nw4r::ut::ResFont* mCinemaFont;
 };
