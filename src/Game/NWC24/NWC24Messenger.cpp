@@ -21,7 +21,7 @@ namespace {
     static const s32 sRetryMax = 10;
 
     NWC24Messenger* getNWC24Messenger() NO_INLINE {
-        return SingletonHolder<GameSystem>::get()->mSequenceDirector->mMessenger;
+        return SingletonHolder<GameSystem>::get()->mSequenceDirector->mNWC24Messenger;
     }
 };
 
