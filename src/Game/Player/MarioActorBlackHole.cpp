@@ -5,19 +5,19 @@
 void MarioActor::initBlackHoleOut(){
     
     mPosRelativeToBlackHole = mPosition - mBlackHolePosition;
-    TVec3f F68copy(mPosRelativeToBlackHole);
-    TVec3f dif = mCamPos - mBlackHolePosition;
-    MR::normalizeOrZero(&dif);
-    MR::normalizeOrZero(&F68copy);
-    Mtx trans;
-    TVec3f cross;
-    PSVECCrossProduct(&dif, &F68copy, &cross);
+    TVec3f NormalisedRelativePos(mPosRelativeToBlackHole);
+    TVec3f NormalisedRelativeCameraPos = mCamPos - mBlackHolePosition;
+    MR::normalizeOrZero(&NormalisedRelativeCameraPos);
+    MR::normalizeOrZero(&NormalisedRelativePos);
+    Mtx Rotation;
+    TVec3f RotateAxis;
+    PSVECCrossProduct(&NormalisedRelativeCameraPos, &NormalisedRelativePos, &RotateAxis);
     f32 mag = PSVECMag(&mPosRelativeToBlackHole);
     TVec3f killed;
     f32 flt = MR::vecKillElement(mCamPos - mPosition,mCamDirZ,&killed);
     flt *= mConst->getTable()->mBlackHoleFirstRadius;
-    PSMTXRotAxisRad(trans, &cross, atan(flt / mag));
-    PSMTXMultVec(trans,&mPosRelativeToBlackHole,&mBlackHoleRotateAxis);
+    PSMTXRotAxisRad(Rotation, &RotateAxis, atan(flt / mag));
+    PSMTXMultVec(Rotation,&mPosRelativeToBlackHole,&mBlackHoleRotateAxis);
     MR::normalizeOrZero(&mBlackHoleRotateAxis);
     damageDropThrowMemoSensor();
     MR::removeAllClingingKarikari();
@@ -66,9 +66,9 @@ void MarioActor::exeGameOverBlackHole2(){
     Mtx rotationMatrix;
     PSMTXRotAxisRad(rotationMatrix,&mBlackHoleRotateAxis,angle);
     PSMTXMultVec(rotationMatrix,&mPosRelativeToBlackHole,&mPosRelativeToBlackHole);
-    TVec3f vec;
-    JMathInlineVEC::PSVECNegate(&mCamDirZ,&vec);
-    MR::vecBlendSphere(mBlackHoleRotateAxis,vec,&mBlackHoleRotateAxis,0.01f);
+    TVec3f CamDirZNegate;
+    JMathInlineVEC::PSVECNegate(&mCamDirZ,&CamDirZNegate);
+    MR::vecBlendSphere(mBlackHoleRotateAxis,CamDirZNegate,&mBlackHoleRotateAxis,0.01f);
     f32 distChangeFactor = 0xb4 - getNerveStep();
     if(distChangeFactor < 0.0f){
         distChangeFactor = 0.0f;
