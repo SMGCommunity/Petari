@@ -23,25 +23,25 @@ void TalkState::balloonOff() const {
 bool TalkState::isLostMessage(const TalkMessageCtrl *pArg1) const {
     if (pArg1 == nullptr) {
         return true;
-    } else {
-        if (pArg1 != _04) {
-            return true;  
-        } else {
-            return _04->getMessageID() != mMessageID;
-        }
     }
+
+    if (pArg1 != _04) {
+        return true;  
+    }
+
+    return _04->getMessageID() != mMessageID;
 };
 
 bool TalkState::isSelfInterrupt(const TalkMessageCtrl *pArg1) const {
     if (pArg1 == nullptr) {
         return false;
-    } else {
-        if (pArg1 != _04) {
-            return false;  
-        } else {
-            return _04->getMessageID() != mMessageID;
-        }
     }
+
+    if (pArg1 != _04) {
+        return false;  
+    }
+    
+    return _04->getMessageID() != mMessageID;
 }
 
 
