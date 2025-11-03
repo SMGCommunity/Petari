@@ -72,5 +72,5 @@ public:
     u32 _18;
     u8 _1C;
     bool _1D;
-    u32 mPageCount; // 0x20
+    /* 0x20 */ u32 mPageCount;
 };
