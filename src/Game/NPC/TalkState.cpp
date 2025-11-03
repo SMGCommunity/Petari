@@ -1,9 +1,11 @@
 #include "Game/NPC/TalkState.hpp"
 #include "Game/NPC/TalkMessageCtrl.hpp"
 
-TalkState::TalkState() {
-    _04 = nullptr;
-    _08 = nullptr;
+TalkState::TalkState() :
+    _04(nullptr),
+    _08(nullptr)
+{
+
 }
 
 void TalkState::init(TalkMessageCtrl *pArg1, TalkBalloon *pArg2) {
