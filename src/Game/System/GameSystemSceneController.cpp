@@ -1,27 +1,49 @@
-#include "Game/System/GameSystemSceneController.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/NameObj/NameObjHolder.hpp"
-#include "Game/Scene/GameScene.hpp"
 #include "Game/Scene/IntermissionScene.hpp"
 #include "Game/Scene/PlayTimerScene.hpp"
 #include "Game/Scene/ScenarioSelectScene.hpp"
 #include "Game/Scene/SceneFactory.hpp"
 #include "Game/Scene/SceneFunction.hpp"
-#include "Game/SingletonHolder.hpp"
+#include "Game/System/AudSystemWrapper.hpp"
+#include "Game/System/GameSystem.hpp"
 #include "Game/System/GameSystemFunction.hpp"
+#include "Game/System/GameSystemObjHolder.hpp"
+#include "Game/System/GameSystemSceneController.hpp"
 #include "Game/System/HeapMemoryWatcher.hpp"
 #include "Game/System/ScenarioDataParser.hpp"
 #include "Game/System/WPadHolder.hpp"
-#include <JSystem/JKernel/JKRSolidHeap.hpp>
+#include "Game/SingletonHolder.hpp"
 #include <cstdio>
 
-SceneControlInfo::SceneControlInfo() {
-    _48 = nullptr;
-    mScene[0] = 0;
-    mStage[0] = 0;
+namespace {
+    AudSystemWrapper* getAudioSystemWrapper() {
+        return SingletonHolder<GameSystem>::get()->mObjHolder->mSysWrapper;
+    }
+};
+
+namespace NrvGameSystemSceneController {
+    NEW_NERVE(GameSystemSceneControllerNotInitialized, GameSystemSceneController, NotInitialized);
+    NEW_NERVE(GameSystemSceneControllerNormal, GameSystemSceneController, Normal);
+    NEW_NERVE(GameSystemSceneControllerChangeWaveBank, GameSystemSceneController, ChangeWaveBank);
+    NEW_NERVE(GameSystemSceneControllerInitializeScene, GameSystemSceneController, InitializeScene);
+    NEW_NERVE(GameSystemSceneControllerInvalidateSystemWipe, GameSystemSceneController, InvalidateSystemWipe);
+    NEW_NERVE(GameSystemSceneControllerWaitDrawDoneScene, GameSystemSceneController, WaitDrawDoneScene);
+    NEW_NERVE(GameSystemSceneControllerDestroyScene, GameSystemSceneController, DestroyScene);
+    NEW_NERVE(GameSystemSceneControllerReadyToStartScene, GameSystemSceneController, ReadyToStartScene);
+    NEW_NERVE(GameSystemSceneControllerWaitDrawDoneSceneForDestroy, GameSystemSceneController, WaitDrawDoneScene);
+    NEW_NERVE(GameSystemSceneControllerDestroySceneForDestroy, GameSystemSceneController, DestroyScene);
+    NEW_NERVE(GameSystemSceneControllerDestroyed, GameSystemSceneController, Destroyed);
+};
+
+SceneControlInfo::SceneControlInfo() :
+    mStartIdInfo(nullptr)
+{
+    mScene[0] = '\0';
+    mStage[0] = '\0';
     mCurrentScenarioNo = 1;
     mCurrentSelectedScenarioNo = 1;
-    _48 = new JMapIdInfo(MR::getInitializeStartIdInfo());
-    
+    mStartIdInfo = new JMapIdInfo(MR::getInitializeStartIdInfo());
 }
 
 void SceneControlInfo::setScene(const char *pSceneName) {
@@ -33,73 +55,84 @@ void SceneControlInfo::setStage(const char *pStageName) {
 }
 
 void SceneControlInfo::setStartIdInfo(const JMapIdInfo &rInfo) {
-    *_48 = rInfo;
+    *mStartIdInfo = rInfo;
 }
 
-GameSystemSceneController::GameSystemSceneController()
-    : _98(nullptr),
-      _9C(nullptr),
-      _A0(false),
-      mScenarioParser(nullptr),
-      mObjHolder(nullptr),
-      mScene(nullptr),
-      mInitState(State_NotInit),
-      mIntermissionScene(nullptr),
-      mPlayTimerScene(nullptr),
-      mScenarioScene(nullptr) {
-
+GameSystemSceneController::GameSystemSceneController() :
+    _98(nullptr),
+    _9C(nullptr),
+    _A0(false),
+    mScenarioParser(nullptr),
+    mObjHolder(nullptr),
+    mScene(nullptr),
+    mInitState(State_NotInit),
+    mIntermissionScene(nullptr),
+    mPlayTimerScene(nullptr),
+    mScenarioSelectScene(nullptr)
+{
     mObjHolder = new NameObjHolder(0x1300);
-    _98 = new Spine(
-        this, &NrvGameSystemSceneController::GameSystemSceneControllerNotInitialized::sInstance);
-
-    extern const char lbl_805DB6E0[]; // = "Intermission";
-    mIntermissionScene = static_cast<IntermissionScene*>(MR::createScene(lbl_805DB6E0));
+    _98 = new Spine(this, &NrvGameSystemSceneController::GameSystemSceneControllerNotInitialized::sInstance);
+    mIntermissionScene = static_cast<IntermissionScene*>(MR::createScene("Intermission"));
     mPlayTimerScene = new PlayTimerScene();
-    mScenarioScene = new ScenarioSelectScene();
+    mScenarioSelectScene = new ScenarioSelectScene();
 }
 
-extern const char lbl_805DB6ED[];
 void GameSystemSceneController::initAfterStationedResourceLoaded() {
-    mScenarioParser = new ScenarioDataParser(lbl_805DB6ED);
+    mScenarioParser = new ScenarioDataParser("シナリオデータ解析");
     mScenarioParser->initWithoutIter();
+
     mPlayTimerScene->init();
-    mScenarioScene->init();
+    mScenarioSelectScene->init();
 }
 
 void GameSystemSceneController::requestChangeScene() {
-    if (!isExistRequest() && !_A0) {
-        mInitState = State_NotInit;
-        requestChangeNerve(
-            &NrvGameSystemSceneController::GameSystemSceneControllerWaitDrawDoneScene::sInstance);
+    if (isExistRequest()) {
+        return;
     }
+
+    if (_A0) {
+        return;
+    }
+
+    mInitState = State_NotInit;
+
+    requestChangeNerve(&NrvGameSystemSceneController::GameSystemSceneControllerWaitDrawDoneScene::sInstance);
 }
 
 void GameSystemSceneController::checkRequestAndChangeScene() {
-    if (_9C) {
+    if (_9C != nullptr) {
         _98->setNerve(_9C);
         _9C = nullptr;
     }
+
     _98->update();
 }
 
 void GameSystemSceneController::initializeScene() {
     mInitState = State_Init;
-    if (!SingletonHolder<HeapMemoryWatcher>::get()->mFileCacheHeap ||
-        !isSameAtNextSceneAndStage()) {
+
+    if (!SingletonHolder<HeapMemoryWatcher>::get()->mFileCacheHeap != nullptr
+        || !isSameAtNextSceneAndStage())
+    {
         SingletonHolder<HeapMemoryWatcher>::get()->createFileCacheHeapOnGameHeap(0x1040400);
     }
+
     SingletonHolder<HeapMemoryWatcher>::get()->createSceneHeapOnGameHeap();
     SingletonHolder<HeapMemoryWatcher>::get()->setCurrentHeapToSceneHeap();
     updateSceneControlInfo();
     MR::setRandomSeedFromStageName();
-    if (mScenarioScene->isActive()) {
-        mScenarioScene->validateScenarioSelect();
+
+    if (mScenarioSelectScene->isActive()) {
+        mScenarioSelectScene->validateScenarioSelect();
     }
+
     MR::resetWPad();
+
     mScene = MR::createScene(_0.mScene);
     mScene->initNameObjListExecutor();
     mScene->initSceneObjHolder();
     mScene->init();
+
     SceneFunction::allocateDrawBufferActorList();
     MR::clearFileLoaderRequestFileInfo(_A0);
     SingletonHolder<HeapMemoryWatcher>::get()->checkRestMemory();
@@ -113,17 +146,25 @@ void GameSystemSceneController::destroyScene() {
     delete pScene;
 
     mObjHolder->clearArray();
+
     if (stopSound) {
         MR::stopAllSound(0);
     }
+
     GameSystemFunction::resetAllControllerRumble();
     MR::removeResourceAndFileHolderIfIsEqualHeap(MR::getSceneHeapNapa());
+
     if (tryDestroyFileCacheHeap(false)) {
         SingletonHolder<HeapMemoryWatcher>::get()->destroyGameHeap();
-    } else {
+    }
+    else {
         SingletonHolder<HeapMemoryWatcher>::get()->destroySceneHeap();
     }
 }
+
+// GameSystemSceneController::isStopSound
+// GameSystemSceneController::isReadyToStartScene
+// GameSystemSceneController::isFirstUpdateSceneNerveNormal
 
 void GameSystemSceneController::startScene() {
     mScene->start();
@@ -132,37 +173,42 @@ void GameSystemSceneController::startScene() {
 }
 
 void GameSystemSceneController::updateScene() {
-    if (!_A0) {
-        Scene* scene = getCurrentSceneForExecute();
-        if (scene) {
-            scene->update();
-            mPlayTimerScene->update();
-            mScenarioScene->update();
-        }
+    if (_A0) {
+        return;
+    }
+
+    Scene* pScene = getCurrentSceneForExecute();
+
+    if (pScene != nullptr) {
+        pScene->update();
+        mPlayTimerScene->update();
+        mScenarioSelectScene->update();
     }
 }
 
 void GameSystemSceneController::updateSceneDuringResetProcessing() {
     if (_A0) {
-        mScenarioScene->update();
+        mScenarioSelectScene->update();
     }
 }
 
 void GameSystemSceneController::calcAnimScene() {
-    Scene* scene = getCurrentSceneForExecute();
-    if (scene) {
-        scene->calcAnim();
+    Scene* pScene = getCurrentSceneForExecute();
+
+    if (pScene != nullptr) {
+        pScene->calcAnim();
         mPlayTimerScene->calcAnim();
-        mScenarioScene->calcAnim();
+        mScenarioSelectScene->calcAnim();
     }
 }
 
 void GameSystemSceneController::drawScene() {
-    Scene* scene = getCurrentSceneForExecute();
-    if (scene) {
-        scene->draw();
+    Scene* pScene = getCurrentSceneForExecute();
+
+    if (pScene != nullptr) {
+        pScene->draw();
         mPlayTimerScene->draw();
-        mScenarioScene->draw();
+        mScenarioSelectScene->draw();
     }
 }
 
@@ -175,7 +221,8 @@ SceneObjHolder* GameSystemSceneController::getSceneObjHolder() const {
 }
 
 bool GameSystemSceneController::isExistSceneObjHolder() const {
-    return mScene && mScene->mSceneObjHolder;
+    return mScene != nullptr
+        && mScene->mSceneObjHolder != nullptr;
 }
 
 s32 GameSystemSceneController::getCurrentScenarioNo() const {
@@ -195,11 +242,11 @@ bool GameSystemSceneController::isSceneInitializeState(SceneInitializeState init
 }
 
 void GameSystemSceneController::startScenarioSelectScene() {
-    mScenarioScene->start();
+    mScenarioSelectScene->start();
 }
 
 void GameSystemSceneController::startScenarioSelectSceneBackground() {
-    mScenarioScene->startBackground();
+    mScenarioSelectScene->startBackground();
 }
 
 void GameSystemSceneController::setCurrentScenarioNo(s32 current, s32 currentSelected) {
@@ -210,3 +257,30 @@ void GameSystemSceneController::setCurrentScenarioNo(s32 current, s32 currentSel
 void GameSystemSceneController::resetCurrentScenarioNo() {
     _0.mCurrentScenarioNo = -1;
 }
+
+// GameSystemSceneController::isScenarioDecided
+// GameSystemSceneController::loadScenarioWaveData
+// GameSystemSceneController::isLoadDoneScenarioWaveData
+// GameSystemSceneController::exeNotInitialized
+
+void GameSystemSceneController::exeNormal() {
+
+}
+
+// GameSystemSceneController::exeWaitDrawDoneScene
+// GameSystemSceneController::exeDestroyScene
+// GameSystemSceneController::exeChangeWaveBank
+// GameSystemSceneController::exeInitializeScene
+// GameSystemSceneController::exeInvalidateSystemWipe
+// GameSystemSceneController::exeDestroyed
+// GameSystemSceneController::exeReadyToStartScene
+// GameSystemSceneController::prepareReset
+// GameSystemSceneController::isPreparedReset
+// GameSystemSceneController::restartGameAfterResetting
+// GameSystemSceneController::isExistRequest
+// GameSystemSceneController::isSameAtNextSceneAndStage
+// GameSystemSceneController::updateSceneControlInfo
+// GameSystemSceneController::getCurrentSceneForExecute
+// GameSystemSceneController::getNextNerveOnResetProcessing
+// GameSystemSceneController::tryDestroyFileCacheHeap
+// GameSystemSceneController::requestChangeNerve
