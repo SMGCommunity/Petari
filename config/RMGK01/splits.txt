@@ -8146,15 +8146,16 @@ Game/Screen/SimpleLayout.cpp:
 Game/Screen/StaffRoll.cpp:
 	.text       start:0x80381434 end:0x80383124
 	.ctors      start:0x8052F314 end:0x8052F318
-	.rodata     start:0x8053B310 end:0x8053B6F8
+	.rodata     start:0x8053B310 end:0x8053B5E8
 	.data       start:0x805D93C8 end:0x805D9820
-	.sdata      start:0x806B24A0 end:0x806B24E8
+	.sdata      start:0x806B24A0 end:0x806B24D8
 	.sbss       start:0x806B6B88 end:0x806B6BE0
 	.sdata2     start:0x806C1250 end:0x806C1268
 
 Game/Screen/StageResultInformer.cpp:
 	.text       start:0x80383124 end:0x80384620
 	.ctors      start:0x8052F318 end:0x8052F31C
+	.rodata     start:0x8053B5E8 end:0x8053B6B8
 	.data       start:0x805D9820 end:0x805D9B00
 	.sbss       start:0x806B6BE0 end:0x806B6C38
 
@@ -8174,6 +8175,7 @@ Game/Screen/StarPieceCounter.cpp:
 
 Game/Screen/StarPointerBlur.cpp:
 	.text       start:0x80385644 end:0x80385FE8
+	.rodata     start:0x8053B6B8 end:0x8053B6C0
 	.data       start:0x805D9CF8 end:0x805D9D38
 	.sdata2     start:0x806C1288 end:0x806C1298
 
@@ -8186,10 +8188,12 @@ Game/Screen/StarPointerCommandStream.cpp:
 
 Game/Screen/StarPointerController.cpp:
 	.text       start:0x80386590 end:0x80386B18
+	.rodata     start:0x8053B6C0 end:0x8053B6D0
 	.sdata2     start:0x806C12C8 end:0x806C12D8
 
 Game/Screen/StarPointerDirector.cpp:
 	.text       start:0x80386B18 end:0x8038771C
+	.rodata     start:0x8053B6D0 end:0x8053B6D8
 	.data       start:0x805D9DE8 end:0x805D9E58
 	.sdata2     start:0x806C12D8 end:0x806C12F0
 
@@ -8202,16 +8206,19 @@ Game/Screen/StarPointerGuidance.cpp:
 Game/Screen/StarPointerLayout.cpp:
 	.text       start:0x80388448 end:0x8038AA48
 	.ctors      start:0x8052F32C end:0x8052F330
+	.rodata     start:0x8053B6D8 end:0x8053B6E0
 	.data       start:0x805D9FF8 end:0x805DA2A0
 	.sbss       start:0x806B6C90 end:0x806B6CC0
 	.sdata2     start:0x806C12F0 end:0x806C1318
 
 Game/Screen/StarPointerTarget.cpp:
 	.text       start:0x8038AA48 end:0x8038B3C8
+	.rodata     start:0x8053B6E0 end:0x8053B6E8
 	.sdata2     start:0x806C1318 end:0x806C1338
 
 Game/Screen/SubMeterLayout.cpp:
 	.text       start:0x8038B3C8 end:0x8038B910
+	.rodata     start:0x8053B6E8 end:0x8053B6F0
 	.data       start:0x805DA2A0 end:0x805DA2F0
 	.sdata      start:0x806B24E8 end:0x806B24F8
 	.sdata2     start:0x806C1338 end:0x806C1348
@@ -8219,6 +8226,7 @@ Game/Screen/SubMeterLayout.cpp:
 Game/Screen/SuddenDeathMeter.cpp:
 	.text       start:0x8038B910 end:0x8038C444
 	.ctors      start:0x8052F330 end:0x8052F334
+	.rodata     start:0x8053B6F0 end:0x8053B6F8
 	.data       start:0x805DA2F0 end:0x805DA440
 	.sbss       start:0x806B6CC0 end:0x806B6CE0
 	.sdata2     start:0x806C1348 end:0x806C1368
@@ -8240,12 +8248,14 @@ Game/Screen/SysInfoWindow.cpp:
 
 Game/Screen/SystemWipeHolder.cpp:
 	.text       start:0x8038D7E0 end:0x8038DE10
+	.rodata     start:0x8053B700 end:0x8053B708
 	.data       start:0x805DA758 end:0x805DA7F8
 	.sdata2     start:0x806C1378 end:0x806C1380
 
 Game/Screen/THPSimplePlayerWrapper.cpp:
 	.text       start:0x8038DE10 end:0x8038F990
 	.ctors      start:0x8052F33C end:0x8052F340
+	.rodata     start:0x8053B708 end:0x8053B710
 	.data       start:0x805DA7F8 end:0x805DA968
 	.sdata      start:0x806B2500 end:0x806B2508
 	.sbss       start:0x806B6D20 end:0x806B6D40

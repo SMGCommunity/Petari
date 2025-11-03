@@ -34,5 +34,5 @@ public:
 };
 
 namespace MR {
-    u16 getScreenHeight();
+    s32 getScreenHeight();
 };
