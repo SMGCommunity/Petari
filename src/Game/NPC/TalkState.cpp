@@ -68,7 +68,7 @@ bool TalkStateEvent::prep(const TalkMessageCtrl *pArg1) {
 }
 
 bool TalkStateEvent::term(const TalkMessageCtrl *pArg1) {
-    if (_14++ > 0x1e) {
+    if (_14++ > 30) {
         _14 = 0;
         return true;
     } else {
