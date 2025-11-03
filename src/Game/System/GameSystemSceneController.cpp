@@ -17,7 +17,7 @@
 #include <cstdio>
 
 namespace {
-    AudSystemWrapper* getAudioSystemWrapper() {
+    AudSystemWrapper* getAudioSystemWrapper() NO_INLINE {
         return SingletonHolder<GameSystem>::get()->mObjHolder->mSysWrapper;
     }
 };
@@ -65,7 +65,7 @@ GameSystemSceneController::GameSystemSceneController() :
     mScenarioParser(nullptr),
     mObjHolder(nullptr),
     mScene(nullptr),
-    mInitState(State_NotInit),
+    mSceneInitializeState(State_NotInit),
     mIntermissionScene(nullptr),
     mPlayTimerScene(nullptr),
     mScenarioSelectScene(nullptr)
@@ -94,7 +94,7 @@ void GameSystemSceneController::requestChangeScene() {
         return;
     }
 
-    mInitState = State_NotInit;
+    mSceneInitializeState = State_NotInit;
 
     requestChangeNerve(&NrvGameSystemSceneController::GameSystemSceneControllerWaitDrawDoneScene::sInstance);
 }
@@ -109,9 +109,9 @@ void GameSystemSceneController::checkRequestAndChangeScene() {
 }
 
 void GameSystemSceneController::initializeScene() {
-    mInitState = State_Init;
+    mSceneInitializeState = State_Init;
 
-    if (!SingletonHolder<HeapMemoryWatcher>::get()->mFileCacheHeap != nullptr
+    if (SingletonHolder<HeapMemoryWatcher>::get()->mFileCacheHeap == nullptr
         || !isSameAtNextSceneAndStage())
     {
         SingletonHolder<HeapMemoryWatcher>::get()->createFileCacheHeapOnGameHeap(0x1040400);
@@ -162,9 +162,64 @@ void GameSystemSceneController::destroyScene() {
     }
 }
 
-// GameSystemSceneController::isStopSound
-// GameSystemSceneController::isReadyToStartScene
-// GameSystemSceneController::isFirstUpdateSceneNerveNormal
+bool GameSystemSceneController::isStopSound() const {
+    if (MR::isEqualSceneName("Title")) {
+        return false;
+    }
+
+    if (MR::isEqualStageName("AstroDome")
+        && MR::isEqualString(_4C.mScene, "Game"))
+    {
+        return false;
+    }
+
+    if (MR::isEqualStageName("AstroGalaxy")
+        && MR::isEqualString(_4C.mScene, "Game")
+        && MR::isEqualString(_4C.mStage, "AstroDome"))
+    {
+        return false;
+    }
+
+    if (MR::isEqualStageName("LibraryRoom")
+        && MR::isEqualString(_4C.mScene, "Game"))
+    {
+        return false;
+    }
+
+    if (MR::isEqualStageName("AstroGalaxy")
+        && MR::isEqualString(_4C.mScene, "Game")
+        && MR::isEqualString(_4C.mStage, "LibraryRoom"))
+    {
+        return false;
+    }
+
+    if (MR::isEqualStageName("HeavensDoorGalaxy")
+        && MR::isEqualString(_4C.mScene, "Game"))
+    {
+        return false;
+    }
+
+    if (MR::isEqualStageName("AstroGalaxy")
+        && MR::isEqualString(_4C.mScene, "Game")
+        && MR::isEqualString(_4C.mStage, "HeavensDoorGalaxy"))
+    {
+        return false;
+    }
+
+    return true;
+}
+
+bool GameSystemSceneController::isReadyToStartScene() const {
+    // FIXME: Probably an inline of `Spine::isNerve`
+    return !(_98->getCurrentNerve() == &NrvGameSystemSceneController::GameSystemSceneControllerReadyToStartScene::sInstance)
+        && !mScenarioSelectScene->isScenarioSelecting();
+}
+
+bool GameSystemSceneController::isFirstUpdateSceneNerveNormal() const {
+    // FIXME: Probably an inline of `Spine::isNerve`
+    return !(_98->getCurrentNerve() == &NrvGameSystemSceneController::GameSystemSceneControllerNormal::sInstance)
+        && _98->mStep == 1;
+}
 
 void GameSystemSceneController::startScene() {
     mScene->start();
@@ -233,12 +288,12 @@ s32 GameSystemSceneController::getCurrentSelectedScenarioNo() const {
     return _0.mCurrentSelectedScenarioNo;
 }
 
-void GameSystemSceneController::setSceneInitializeState(SceneInitializeState initState) {
-    mInitState = initState;
+void GameSystemSceneController::setSceneInitializeState(SceneInitializeState state) {
+    mSceneInitializeState = state;
 }
 
-bool GameSystemSceneController::isSceneInitializeState(SceneInitializeState initState) const {
-    return mInitState == initState;
+bool GameSystemSceneController::isSceneInitializeState(SceneInitializeState state) const {
+    return mSceneInitializeState == state;
 }
 
 void GameSystemSceneController::startScenarioSelectScene() {
@@ -259,28 +314,279 @@ void GameSystemSceneController::resetCurrentScenarioNo() {
 }
 
 // GameSystemSceneController::isScenarioDecided
-// GameSystemSceneController::loadScenarioWaveData
-// GameSystemSceneController::isLoadDoneScenarioWaveData
-// GameSystemSceneController::exeNotInitialized
+
+void GameSystemSceneController::loadScenarioWaveData() {
+    getAudioSystemWrapper()->loadScenarioWaveData(_0.mScene, _0.mStage, _0.mCurrentScenarioNo);
+}
+
+bool GameSystemSceneController::isLoadDoneScenarioWaveData() const {
+    return getAudioSystemWrapper()->isLoadDoneScenarioWaveData();
+}
+
+void GameSystemSceneController::exeNotInitialized() {
+    if (_98->mStep == 0) {
+        mIntermissionScene->setCurrentSceneControllerState("[system setup]");
+    }
+}
 
 void GameSystemSceneController::exeNormal() {
 
 }
 
-// GameSystemSceneController::exeWaitDrawDoneScene
-// GameSystemSceneController::exeDestroyScene
-// GameSystemSceneController::exeChangeWaveBank
-// GameSystemSceneController::exeInitializeScene
+void GameSystemSceneController::exeWaitDrawDoneScene() {
+    const Nerve* pNerve;
+
+    bool isNerve = &NrvGameSystemSceneController::GameSystemSceneControllerWaitDrawDoneScene::sInstance
+        == _98->getCurrentNerve();
+
+    if (isNerve) {
+        if (mScene != nullptr) {
+            pNerve = &NrvGameSystemSceneController::GameSystemSceneControllerDestroyScene::sInstance;
+        }
+        else {
+            pNerve = &NrvGameSystemSceneController::GameSystemSceneControllerChangeWaveBank::sInstance;
+        }
+    }
+    else if (mScene != nullptr) {
+        pNerve = &NrvGameSystemSceneController::GameSystemSceneControllerDestroySceneForDestroy::sInstance;
+    }
+    else {
+        pNerve = &NrvGameSystemSceneController::GameSystemSceneControllerDestroyed::sInstance;
+    }
+
+    requestChangeNerve(pNerve);
+}
+
+void GameSystemSceneController::exeDestroyScene() {
+    if (_98->mStep == 0) {
+        mIntermissionScene->setCurrentSceneControllerState("[destroy Scene: %s]", _0.mScene);
+        MR::startFunctionAsyncExecute(
+            MR::Functor(this, &GameSystemSceneController::destroyScene),
+            17,
+            "シーン破棄");
+    }
+
+    if (MR::tryEndFunctionAsyncExecute("シーン破棄")) {
+        const Nerve* pNerve = &NrvGameSystemSceneController::GameSystemSceneControllerChangeWaveBank::sInstance;
+        bool isNerve = &NrvGameSystemSceneController::GameSystemSceneControllerDestroySceneForDestroy::sInstance
+            == _98->getCurrentNerve();
+
+        if (isNerve) {
+            pNerve = &NrvGameSystemSceneController::GameSystemSceneControllerDestroyed::sInstance;
+        }
+
+        requestChangeNerve(pNerve);
+    }
+}
+
+void GameSystemSceneController::exeChangeWaveBank() {
+    if (_98->mStep == 0) {
+        mIntermissionScene->setCurrentSceneControllerState("[change Wave Data]");
+
+        bool isPlayerLuigi = GameSystemFunction::isCreatedGameDataHolder()
+            ? MR::isPlayerLuigi()
+            : false;
+
+        getAudioSystemWrapper()->loadStageWaveData(_4C.mScene, _4C.mStage, isPlayerLuigi);
+    }
+
+    if (getAudioSystemWrapper()->isLoadDoneStageWaveData()) {
+        requestChangeNerve(&NrvGameSystemSceneController::GameSystemSceneControllerInitializeScene::sInstance);
+    }
+}
+
+void GameSystemSceneController::exeInitializeScene() {
+    if (_98->mStep == 0) {
+        mIntermissionScene->setCurrentSceneControllerState("[initialize Scene: %s]", _4C.mScene);
+        MR::startFunctionAsyncExecute(
+            MR::Functor(this, &GameSystemSceneController::initializeScene),
+            17,
+            "シーン初期化");
+    }
+
+    if (MR::tryEndFunctionAsyncExecute("シーン初期化")) {
+        mSceneInitializeState = State_End;
+
+        requestChangeNerve(&NrvGameSystemSceneController::GameSystemSceneControllerInvalidateSystemWipe::sInstance);
+    }
+}
+
 // GameSystemSceneController::exeInvalidateSystemWipe
-// GameSystemSceneController::exeDestroyed
-// GameSystemSceneController::exeReadyToStartScene
-// GameSystemSceneController::prepareReset
+
+void GameSystemSceneController::exeDestroyed() {
+    if (_98->mStep == 0) {
+        mIntermissionScene->setCurrentSceneControllerState("[empty scene]");
+    }
+}
+
+void GameSystemSceneController::exeReadyToStartScene() {
+    if (_A0) {
+        const Nerve* pNerve = getNextNerveOnResetProcessing();
+
+        if (pNerve != nullptr) {
+            requestChangeNerve(pNerve);
+        }
+    }
+}
+
+void GameSystemSceneController::prepareReset() {
+    _A0 = true;
+
+    mPlayTimerScene->stop();
+}
+
 // GameSystemSceneController::isPreparedReset
-// GameSystemSceneController::restartGameAfterResetting
+
+void GameSystemSceneController::restartGameAfterResetting() {
+    tryDestroyFileCacheHeap(true);
+    SingletonHolder<HeapMemoryWatcher>::get()->destroyGameHeap();
+
+    _A0 = false;
+}
+
 // GameSystemSceneController::isExistRequest
-// GameSystemSceneController::isSameAtNextSceneAndStage
-// GameSystemSceneController::updateSceneControlInfo
-// GameSystemSceneController::getCurrentSceneForExecute
-// GameSystemSceneController::getNextNerveOnResetProcessing
-// GameSystemSceneController::tryDestroyFileCacheHeap
-// GameSystemSceneController::requestChangeNerve
+
+bool GameSystemSceneController::isSameAtNextSceneAndStage() const {
+    return MR::isEqualString(_0.mScene, _4C.mScene)
+        && MR::isEqualString(_0.mStage, _4C.mStage)
+        && _0.mCurrentScenarioNo == _4C.mCurrentScenarioNo;
+}
+
+void GameSystemSceneController::updateSceneControlInfo() {
+    _0.setScene(_4C.mScene);
+    _0.setStage(_4C.mStage);
+    _0.mCurrentScenarioNo = _4C.mCurrentScenarioNo;
+    _0.mCurrentSelectedScenarioNo = _4C.mCurrentSelectedScenarioNo;
+    _0.setStartIdInfo(*_4C.mStartIdInfo);
+
+    _4C.mScene[0] = '\0';
+    _4C.mStage[0] = '\0';
+    _4C.mCurrentScenarioNo = -1;
+    _4C.mCurrentSelectedScenarioNo = -1;
+}
+
+Scene* GameSystemSceneController::getCurrentSceneForExecute() const {
+    if (mScene != nullptr) {
+        bool isNerve = &NrvGameSystemSceneController::GameSystemSceneControllerNormal::sInstance == _98->getCurrentNerve();
+
+        if (isNerve) {
+            return mScene;
+        }
+    }
+
+    return mIntermissionScene;
+}
+
+const Nerve* GameSystemSceneController::getNextNerveOnResetProcessing() const {
+    bool isNerve;
+
+    isNerve = &NrvGameSystemSceneController::GameSystemSceneControllerWaitDrawDoneSceneForDestroy::sInstance
+        == _98->getCurrentNerve();
+
+    if (isNerve) {
+        return nullptr;
+    }
+
+    isNerve = &NrvGameSystemSceneController::GameSystemSceneControllerDestroySceneForDestroy::sInstance
+        == _98->getCurrentNerve();
+
+    if (isNerve) {
+        return nullptr;
+    }
+
+    isNerve = &NrvGameSystemSceneController::GameSystemSceneControllerDestroyed::sInstance
+        == _98->getCurrentNerve();
+
+    if (isNerve) {
+        return nullptr;
+    }
+
+    isNerve = &NrvGameSystemSceneController::GameSystemSceneControllerDestroyScene::sInstance
+        == _98->getCurrentNerve();
+
+    if (isNerve) {
+        return nullptr;
+    }
+
+    isNerve = &NrvGameSystemSceneController::GameSystemSceneControllerChangeWaveBank::sInstance
+        == _98->getCurrentNerve();
+
+    if (isNerve) {
+        return nullptr;
+    }
+
+    isNerve = &NrvGameSystemSceneController::GameSystemSceneControllerNotInitialized::sInstance
+        == _98->getCurrentNerve();
+
+    if (isNerve) {
+        return &NrvGameSystemSceneController::GameSystemSceneControllerDestroyed::sInstance;
+    }
+
+    isNerve = &NrvGameSystemSceneController::GameSystemSceneControllerWaitDrawDoneScene::sInstance
+        == _98->getCurrentNerve();
+
+    if (isNerve) {
+        return nullptr;
+    }
+
+    isNerve = &NrvGameSystemSceneController::GameSystemSceneControllerNormal::sInstance
+        == _98->getCurrentNerve();
+
+    if (isNerve) {
+        return nullptr;
+    }
+
+    isNerve = &NrvGameSystemSceneController::GameSystemSceneControllerInitializeScene::sInstance
+        == _98->getCurrentNerve();
+
+    if (isNerve) {
+        return nullptr;
+    }
+
+    isNerve = &NrvGameSystemSceneController::GameSystemSceneControllerInvalidateSystemWipe::sInstance
+        == _98->getCurrentNerve();
+
+    if (isNerve) {
+        return nullptr;
+    }
+
+    isNerve = &NrvGameSystemSceneController::GameSystemSceneControllerReadyToStartScene::sInstance
+        == _98->getCurrentNerve();
+
+    if (isNerve) {
+        return nullptr;
+    }
+
+    return &NrvGameSystemSceneController::GameSystemSceneControllerWaitDrawDoneSceneForDestroy::sInstance;
+}
+
+bool GameSystemSceneController::tryDestroyFileCacheHeap(bool param1) {
+    if (!param1
+        && SingletonHolder<HeapMemoryWatcher>::get()->mFileCacheHeap != nullptr
+        && isSameAtNextSceneAndStage())
+    {
+        return false;
+    }
+
+    MR::removeResourceAndFileHolderIfIsEqualHeap(
+        SingletonHolder<HeapMemoryWatcher>::get()->mFileCacheHeap);
+
+    return true;
+}
+
+void GameSystemSceneController::requestChangeNerve(const Nerve* pNerve) {
+    const Nerve* pNextNerve;
+
+    if (_A0) {
+        pNextNerve = getNextNerveOnResetProcessing();
+    }
+    else {
+        pNextNerve = nullptr;
+    }
+
+    if (pNextNerve == nullptr) {
+        pNextNerve = pNerve;
+    }
+
+    _9C = pNextNerve;
+}

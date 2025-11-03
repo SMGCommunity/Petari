@@ -24,8 +24,8 @@ public:
 
     /* 0x00 */ char mScene[32];
     /* 0x20 */ char mStage[32];
-    /* 0x40 */ u32 mCurrentScenarioNo;
-    /* 0x44 */ u32 mCurrentSelectedScenarioNo;
+    /* 0x40 */ s32 mCurrentScenarioNo;
+    /* 0x44 */ s32 mCurrentSelectedScenarioNo;
     /* 0x48 */ JMapIdInfo* mStartIdInfo;
 };
 
@@ -86,19 +86,19 @@ public:
     bool isSameAtNextSceneAndStage() const;
     void updateSceneControlInfo();
     Scene* getCurrentSceneForExecute() const;
-    Nerve* getNextNerveOnResetProcessing() const;
-    bool tryDestroyFileCacheHeap(bool);
-    bool requestChangeNerve(const Nerve *);
+    const Nerve* getNextNerveOnResetProcessing() const;
+    bool tryDestroyFileCacheHeap(bool) NO_INLINE;
+    void requestChangeNerve(const Nerve *);
 
     /* 0x00 */ SceneControlInfo _0;
     /* 0x4C */ SceneControlInfo _4C;
     /* 0x98 */ Spine* _98;
-    /* 0x9C */ Nerve* _9C;
+    /* 0x9C */ const Nerve* _9C;
     /* 0xA0 */ bool _A0;
     /* 0xA4 */ ScenarioDataParser* mScenarioParser;
     /* 0xA8 */ NameObjHolder* mObjHolder;
     /* 0xAC */ Scene* mScene;
-    /* 0xB0 */ SceneInitializeState mInitState;
+    /* 0xB0 */ SceneInitializeState mSceneInitializeState;
     /* 0xB4 */ IntermissionScene* mIntermissionScene;
     /* 0xB8 */ PlayTimerScene* mPlayTimerScene;
     /* 0xBC */ ScenarioSelectScene* mScenarioSelectScene;
