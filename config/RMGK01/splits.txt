@@ -7407,13 +7407,13 @@ Game/Scene/GameSceneScenarioOpeningCameraState.cpp:
 
 Game/Scene/IntermissionScene.cpp:
 	.text       start:0x80340638 end:0x8034091C
-	.data       start:0x805D1870 end:0x805D1958
+	.data       start:0x805D1870 end:0x805D18A8
 	.sdata2     start:0x806C0DD0 end:0x806C0DD8
 
 Game/Scene/LogoScene.cpp:
 	.text       start:0x8034091C end:0x80341390
 	.ctors      start:0x8052F20C end:0x8052F210
-	.data       start:0x805D1958 end:0x805D1A08
+	.data       start:0x805D18A8 end:0x805D1A08
 	.sdata      start:0x806B2348 end:0x806B2358
 	.sbss       start:0x806B65D0 end:0x806B65F8
 	.sdata2     start:0x806C0DD8 end:0x806C0DE8
@@ -7451,11 +7451,11 @@ Game/Scene/ScenarioSelectScene.cpp:
 
 Game/Scene/Scene.cpp:
 	.text       start:0x80344048 end:0x803441E8
-	.data       start:0x805D1C68 end:0x805D1CB8
+	.data       start:0x805D1C68 end:0x805D1C88
 
 Game/Scene/SceneDataInitializer.cpp:
 	.text       start:0x803441E8 end:0x803443E8
-	.data       start:0x805D1CB8 end:0x805D1CE0
+	.data       start:0x805D1C88 end:0x805D1CE0
 	.sdata2     start:0x806C0E10 end:0x806C0E18
 
 Game/Scene/SceneExecutor.cpp:
@@ -7507,6 +7507,7 @@ Game/Scene/StopSceneController.cpp:
 
 Game/Screen/THPDraw.c:
 	.text       start:0x803491EC end:0x803499F4
+	.rodata     start:0x8053A540 end:0x8053A550
 	.sbss       start:0x806B6638 end:0x806B6640
 	.sdata2     start:0x806C0E20 end:0x806C0E38
 
@@ -8335,6 +8336,7 @@ Game/Screen/YesNoLayout.cpp:
 Game/Speaker/SpkSpeakerCtrl.cpp:
 	.text       start:0x80393D98 end:0x8039468C
 	.ctors      start:0x8052F360 end:0x8052F364
+	.rodata     start:0x8053B770 end:0x8053B778
 	.bss        start:0x8060B1B0 end:0x8060B2D0
 	.sbss       start:0x806B6DE0 end:0x806B6DE8
 	.sdata2     start:0x806C1418 end:0x806C1420
@@ -8347,6 +8349,7 @@ Game/Speaker/SpkSystem.cpp:
 
 Game/Speaker/SpkMixingBuffer.cpp:
 	.text       start:0x8039498C end:0x80394ADC
+	.rodata     start:0x8053B778 end:0x8053B780
 
 Game/Speaker/SpkWave.cpp:
 	.text       start:0x80394ADC end:0x80394C20
@@ -8360,6 +8363,7 @@ Game/Speaker/SpkData.cpp:
 Game/Speaker/SpkSound.cpp:
 	.text       start:0x80394D8C end:0x8039590C
 	.ctors      start:0x8052F368 end:0x8052F36C
+	.rodata     start:0x8053B780 end:0x8053B790
 	.bss        start:0x8060B2F0 end:0x8060B300
 	.sdata2     start:0x806C1420 end:0x806C1430
 
