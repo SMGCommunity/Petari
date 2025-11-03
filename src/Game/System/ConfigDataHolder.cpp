@@ -1,10 +1,100 @@
 #include "Game/System/ConfigDataHolder.hpp"
-#include "JSystem/JSupport/JSUMemoryInputStream.hpp"
-#include "JSystem/JSupport/JSUMemoryOutputStream.hpp"
+#include "Game/System/ConfigDataMii.hpp"
+#include "Game/System/ConfigDataMisc.hpp"
+#include <JSystem/JSupport/JSUMemoryInputStream.hpp>
+#include <JSystem/JSupport/JSUMemoryOutputStream.hpp>
 #include <cstdio>
 
-ConfigDataCreateChunk::ConfigDataCreateChunk() : mData(0) {
-  initializeData();
+ConfigDataHolder::ConfigDataHolder() :
+    mChunkHolder(nullptr),
+    mCreateChunk(nullptr),
+    mMii(nullptr),
+    mMisc(nullptr)
+{
+    mChunkHolder = new BinaryDataChunkHolder(64, 3);
+    mCreateChunk = new ConfigDataCreateChunk();
+    mMii = new ConfigDataMii();
+    mMisc = new ConfigDataMisc();
+
+    mChunkHolder->addChunk(mCreateChunk);
+    mChunkHolder->addChunk(mMii);
+    mChunkHolder->addChunk(mMisc);
+    resetAllData();
+    snprintf(mName, sizeof(mName), "config1");
+}
+
+void ConfigDataHolder::setIsCreated(bool isCreated) {
+    mCreateChunk->mIsCreated = isCreated;
+}
+
+bool ConfigDataHolder::isCreated() const {
+    return mCreateChunk->mIsCreated;
+}
+
+void ConfigDataHolder::setLastLoadedMario(bool lastLoadedMario) {
+    mMisc->setLastLoadedMario(lastLoadedMario);
+}
+
+bool ConfigDataHolder::isLastLoadedMario() const {
+    return mMisc->isLastLoadedMario();
+}
+
+void ConfigDataHolder::onCompleteEndingMario() {
+    mMisc->onCompleteEndingMario();
+}
+
+void ConfigDataHolder::onCompleteEndingLuigi() {
+    mMisc->onCompleteEndingLuigi();
+}
+
+bool ConfigDataHolder::isOnCompleteEndingMario() {
+    return mMisc->isOnCompleteEndingMario();
+}
+
+bool ConfigDataHolder::isOnCompleteEndingLuigi() {
+    return mMisc->isOnCompleteEndingLuigi();
+}
+
+void ConfigDataHolder::updateLastModified() {
+    mMisc->updateLastModified();
+}
+
+OSTime ConfigDataHolder::getLastModified() const {
+    return mMisc->getLastModified();
+}
+
+void ConfigDataHolder::setMiiOrIconId(const void* pMiiId, const u32* pIconId) {
+    mMii->setMiiOrIconId(pMiiId, pIconId);
+}
+
+bool ConfigDataHolder::getMiiId(void* pMiiId) const {
+    return mMii->getMiiId(pMiiId);
+}
+
+bool ConfigDataHolder::getIconId(u32* pIconId) const {
+    return mMii->getIconId(pIconId);
+}
+
+void ConfigDataHolder::resetAllData() {
+    mCreateChunk->initializeData();
+    mMii->initializeData();
+    mMisc->initializeData();
+}
+
+s32 ConfigDataHolder::makeFileBinary(u8* pBuffer, u32 size) {
+    return mChunkHolder->makeFileBinary(pBuffer, size);
+}
+
+bool ConfigDataHolder::loadFromFileBinary(const char* pName, const u8* pBuffer, u32 size) {
+    snprintf(mName, sizeof(mName), "%s", pName);
+
+    return mChunkHolder->loadFromFileBinary(pBuffer, size);
+}
+
+ConfigDataCreateChunk::ConfigDataCreateChunk() :
+    mIsCreated(false)
+{
+    initializeData();
 }
 
 u32 ConfigDataCreateChunk::makeHeaderHashCode() const {
@@ -12,104 +102,30 @@ u32 ConfigDataCreateChunk::makeHeaderHashCode() const {
 }
 
 u32 ConfigDataCreateChunk::getSignature() const {
-    return 0x434F4E46;
+    return 'CONF';
 }
 
-s32 ConfigDataCreateChunk::serialize(u8 *pData, u32 len) const {
-    JSUMemoryOutputStream stream = JSUMemoryOutputStream(pData, len);
-    u8 data = -(mData != 0); 
-    stream.write(&data, 1);
+s32 ConfigDataCreateChunk::serialize(u8* pBuffer, u32 size) const {
+    JSUMemoryOutputStream stream = JSUMemoryOutputStream(pBuffer, size);
+
+    u8 isCreated = -(mIsCreated != false);
+    stream.write(&isCreated, sizeof(mIsCreated));
+
     return stream.mPosition;
 }
 
-s32 ConfigDataCreateChunk::deserialize(const u8 *pData, u32 len) {
+s32 ConfigDataCreateChunk::deserialize(const u8* pBuffer, u32 size) {
     initializeData();
-    JSUMemoryInputStream stream = JSUMemoryInputStream(pData, len);
-    u8 data;
-    stream.read(&data, 1);
-    mData = data != 0;
+
+    JSUMemoryInputStream stream = JSUMemoryInputStream(pBuffer, size);
+
+    u8 isCreated;
+    stream.read(&isCreated, sizeof(mIsCreated));
+    mIsCreated = isCreated != 0;
+
     return 0;
 }
 
 void ConfigDataCreateChunk::initializeData() {
-    mData = 0;
-}
-
-void ConfigDataHolder::setIsCreated(bool isCreated) {
-    mCreateChunk->mData = isCreated;
-}
-
-bool ConfigDataHolder::isCreated() const {
-    return mCreateChunk->mData;
-} 
-
-void ConfigDataHolder::setLastLoadedMario(bool isLoaded) {
-    mMiscCreateChunk->setLastLoadedMario(isLoaded);
-}
-
-bool ConfigDataHolder::isLastLoadedMario() const {
-    return mMiscCreateChunk->isLastLoadedMario();
-}
-
-void ConfigDataHolder::onCompleteEndingMario() {
-    mMiscCreateChunk->onCompleteEndingMario();
-}
-
-void ConfigDataHolder::onCompleteEndingLuigi() {
-    mMiscCreateChunk->onCompleteEndingLuigi();
-}
-
-bool ConfigDataHolder::isOnCompleteEndingMario() {
-    return mMiscCreateChunk->isOnCompleteEndingMario();
-}
-
-bool ConfigDataHolder::isOnCompleteEndingLuigi() {
-    return mMiscCreateChunk->isOnCompleteEndingLuigi();
-}
-
-void ConfigDataHolder::updateLastModified() {
-    mMiscCreateChunk->updateLastModified();
-}
-
-OSTime ConfigDataHolder::getLastModified() const {
-    return mMiscCreateChunk->getLastModified();
-}
-
-void ConfigDataHolder::setMiiOrIconId(const void *pMiiId, const u32 *pIconId) {
-    mMiiCreateChunk->setMiiOrIconId(pMiiId, pIconId);
-}
-
-bool ConfigDataHolder::getMiiId(void *pId) const {
-    return mMiiCreateChunk->getMiiId(pId);
-}
-
-bool ConfigDataHolder::getIconId(u32 *pId) const {
-    return mMiiCreateChunk->getIconId(pId);
-}
-
-void ConfigDataHolder::resetAllData() {
-    mCreateChunk->initializeData();
-    mMiiCreateChunk->initializeData();
-    mMiscCreateChunk->initializeData();
-}
-
-s32 ConfigDataHolder::makeFileBinary(u8 *pData, u32 len) {
-    return mChunkHolder->makeFileBinary(pData, len);
-}
-
-ConfigDataHolder::ConfigDataHolder() : mChunkHolder(0), mCreateChunk(0), mMiiCreateChunk(0), mMiscCreateChunk(0) {
-    mChunkHolder = new BinaryDataChunkHolder(0x40, 3);
-    mCreateChunk = new ConfigDataCreateChunk();
-    mMiiCreateChunk = new ConfigDataMii();
-    mMiscCreateChunk = new ConfigDataMisc();
-    mChunkHolder->addChunk(mCreateChunk);
-    mChunkHolder->addChunk(mMiiCreateChunk);
-    mChunkHolder->addChunk(mMiscCreateChunk);
-    resetAllData();
-    snprintf(mName, sizeof(mName), "config1");
-}
-
-bool ConfigDataHolder::loadFromFileBinary(const char *pName, const u8 *pData, u32 len) {
-    snprintf(mName, sizeof(mName), "%s", pName);
-    return mChunkHolder->loadFromFileBinary(pData, len);
+    mIsCreated = false;
 }

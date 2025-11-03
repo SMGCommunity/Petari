@@ -112,8 +112,11 @@ void FileLoader::removeFile(const char* pName) {
 }
 
 bool FileLoader::isNeedToLoad(const char* pName) const {
-    const RequestFileInfo* info = getRequestFileInfoConst(pName);
-    return (info == nullptr) ? false : mFileHolder->isExist(pName) == false;
+    if (getRequestFileInfoConst(pName) != nullptr) {
+        return false;
+    }
+
+    return !isLoaded(pName);
 }
 
 const RequestFileInfo* FileLoader::getRequestFileInfoConst(const char* pName) const {

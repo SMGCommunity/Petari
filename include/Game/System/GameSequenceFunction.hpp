@@ -29,8 +29,8 @@ namespace GameSequenceFunction {
     void requestGalaxyMove(const GalaxyMoveArgument&);
     void requestCancelScenarioSelect();
     void sendStageResultSequenceParam(const char*, s32, int, int);
-    bool hasStageResultSequence();
-    const char* getClearedStageName();
+    bool hasStageResultSequence() NO_INLINE;
+    const char* getClearedStageName() NO_INLINE;
     s32 getClearedPowerStarId();
     int getClearedStarPieceNum();
     int getClearedCoinNum();
