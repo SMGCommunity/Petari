@@ -2008,7 +2008,7 @@ config.libs = [
             Object(Matching, "Game/Screen/FileSelectNumber.cpp"),
             Object(Matching, "Game/Screen/FullnessMeter.cpp"),
             Object(NonMatching, "Game/Screen/FullScreenBlur.cpp"),
-            Object(NonMatching, "Game/Screen/GalaxyCometScreenFilter.cpp"),
+            Object(Matching, "Game/Screen/GalaxyCometScreenFilter.cpp"),
             Object(Matching, "Game/Screen/GalaxyConfirmLayout.cpp"),
             Object(NonMatching, "Game/Screen/GalaxyInfoLayoutSetter.cpp"),
             Object(NonMatching, "Game/Screen/GalaxyMap.cpp"),
