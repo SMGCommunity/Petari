@@ -6731,7 +6731,7 @@ Game/Player/MarioActorOffensiveMsg.cpp:
 Game/Player/MarioActorDefensiveMsg.cpp:
 	.text       start:0x802C7078 end:0x802C8830
 	.ctors      start:0x8052F0A4 end:0x8052F0A8
-	.data       start:0x805BA840 end:0x805BAD70
+	.data       start:0x805BA840 end:0x805BAB40
 	.sdata2     start:0x806BF8C8 end:0x806BF8F0
 
 Game/Player/MarioActorRushMsg.cpp:
@@ -6747,6 +6747,7 @@ Game/Player/MarioActorTakeMsg.cpp:
 Game/Player/MarioActorBlackHole.cpp:
 	.text       start:0x802CA7F8 end:0x802CAD30
 	.ctors      start:0x8052F0B0 end:0x8052F0B4
+	.data       start:0x805BAB40 end:0x805BAD70
 	.sdata2     start:0x806BF948 end:0x806BF968
 
 Game/Player/MarioAnimator.cpp:
