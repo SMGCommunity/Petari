@@ -29,7 +29,7 @@ void MarioActor::initBlackHoleOut() {
     MR::removeAllClingingKarikari();
 }
 
-void MarioActor::exeGameOverBlackHole2(){
+void MarioActor::exeGameOverBlackHole2() {
     if (MR::isFirstStep(this)) {
         MR::setCubeBgmChangeInvalid();
         MR::clearBgmQueue();
@@ -105,7 +105,7 @@ void MarioActor::exeGameOverBlackHole2(){
     f32 scale = getNerveStep() * mConst->getTable()->mBlackHoleScaleSpeed;
     scale = 1-scale;
     
-    if (scale < mConst->getTable()->mBlackHoleScaleLimit){
+    if (scale < mConst->getTable()->mBlackHoleScaleLimit) {
         scale = mConst->getTable()->mBlackHoleScaleLimit;
     }
     
