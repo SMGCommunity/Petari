@@ -7226,7 +7226,7 @@ Game/RhythmLib/AudMeHandles.cpp:
 
 Game/RhythmLib/AudMeObject.cpp:
 	.text       start:0x8031C5A8 end:0x8031C920
-	.data       start:0x805CE9A0 end:0x805CEAD0
+	.data       start:0x805CE9A0 end:0x805CE9C0
 
 Game/RhythmLib/AudChordInfo.cpp:
 	.text       start:0x8031C920 end:0x8031DF40
@@ -7243,35 +7243,35 @@ Game/RhythmLib/AudRhythmWrap.cpp:
 Game/Ride/BigBubble.cpp:
 	.text       start:0x8031E3A8 end:0x8032171C
 	.ctors      start:0x8052F1C0 end:0x8052F1C4
-	.data       start:0x805CEAD0 end:0x805CED00
+	.data       start:0x805CE9C0 end:0x805CEBB8
 	.sbss       start:0x806B62E0 end:0x806B6300
 	.sdata2     start:0x806C0690 end:0x806C0740
 
 Game/Ride/Creeper.cpp:
 	.text       start:0x8032171C end:0x80323350
 	.ctors      start:0x8052F1C4 end:0x8052F1C8
-	.data       start:0x805CED00 end:0x805CEFF0
+	.data       start:0x805CEBB8 end:0x805CEDC8
 	.sbss       start:0x806B6300 end:0x806B6320
 	.sdata2     start:0x806C0740 end:0x806C0798
 
 Game/Ride/Fluff.cpp:
 	.text       start:0x80323350 end:0x80324CD8
 	.ctors      start:0x8052F1C8 end:0x8052F1CC
-	.data       start:0x805CEFF0 end:0x805CF0F8
+	.data       start:0x805CEDC8 end:0x805CF104
 	.sbss       start:0x806B6320 end:0x806B6348
 	.sdata2     start:0x806C0798 end:0x806C0818
 
 Game/Ride/FluffWind.cpp:
 	.text       start:0x80324CD8 end:0x8032551C
 	.ctors      start:0x8052F1CC end:0x8052F1D0
-	.data       start:0x805CF0F8 end:0x805CF2F0
+	.data       start:0x805CF104 end:0x805CF270
 	.sbss       start:0x806B6348 end:0x806B6350
 	.sdata2     start:0x806C0818 end:0x806C0830
 
 Game/Ride/JumpBranch.cpp:
 	.text       start:0x8032551C end:0x80326030
 	.ctors      start:0x8052F1D0 end:0x8052F1D4
-	.data       start:0x805CF2F0 end:0x805CF528
+	.data       start:0x805CF270 end:0x805CF398
 	.bss        start:0x8060B108 end:0x8060B118
 	.sbss       start:0x806B6350 end:0x806B6360
 	.sdata2     start:0x806C0830 end:0x806C0870
@@ -7279,67 +7279,67 @@ Game/Ride/JumpBranch.cpp:
 Game/Ride/Plant.cpp:
 	.text       start:0x80326030 end:0x80328144
 	.ctors      start:0x8052F1D4 end:0x8052F1D8
-	.data       start:0x805CF528 end:0x805CF680
+	.data       start:0x805CF398 end:0x805CF670
 	.sbss       start:0x806B6360 end:0x806B6398
 	.sdata2     start:0x806C0870 end:0x806C08D8
 
 Game/Ride/PlantLeaf.cpp:
 	.text       start:0x80328144 end:0x803288CC
-	.data       start:0x805CF680 end:0x805CF798
+	.data       start:0x805CF670 end:0x805CF7A4
 	.sdata2     start:0x806C08D8 end:0x806C0908
 
 Game/Ride/PlantStalk.cpp:
 	.text       start:0x803288CC end:0x8032982C
 	.ctors      start:0x8052F1D8 end:0x8052F1DC
-	.data       start:0x805CF798 end:0x805CFAA8
+	.data       start:0x805CF7A4 end:0x805CF888
 	.sbss       start:0x806B6398 end:0x806B63A8
 	.sdata2     start:0x806C0908 end:0x806C0930
 
 Game/Ride/Pole.cpp:
 	.text       start:0x8032982C end:0x8032B838
 	.ctors      start:0x8052F1DC end:0x8052F1E0
-	.data       start:0x805CFAA8 end:0x805CFC10
+	.data       start:0x805CF888 end:0x805CFC00
 	.sbss       start:0x806B63A8 end:0x806B63E8
 	.sdata2     start:0x806C0930 end:0x806C09B0
 
 Game/Ride/SledRopePoint.cpp:
 	.text       start:0x8032B838 end:0x8032BA6C
-	.data       start:0x805CFC10 end:0x805CFE88
+	.data       start:0x805CFC00 end:0x805CFC10
 	.sdata2     start:0x806C09B0 end:0x806C09C0
 
 Game/Ride/SlingShooter.cpp:
 	.text       start:0x8032BA6C end:0x8032DB5C
 	.ctors      start:0x8052F1E0 end:0x8052F1E4
-	.data       start:0x805CFE88 end:0x805CFF70
+	.data       start:0x805CFC10 end:0x805CFE88
 	.sbss       start:0x806B63E8 end:0x806B6408
 	.sdata2     start:0x806C09C0 end:0x806C0A00
 
 Game/Ride/SpaceCocoon.cpp:
 	.text       start:0x8032DB5C end:0x803306A8
 	.ctors      start:0x8052F1E4 end:0x8052F1E8
-	.data       start:0x805CFF70 end:0x805D02A8
+	.data       start:0x805CFE88 end:0x805CFF70
 	.sbss       start:0x806B6408 end:0x806B6448
 	.sdata2     start:0x806C0A00 end:0x806C0A78
 
 Game/Ride/SphereAccelSensorController.cpp:
 	.text       start:0x803306A8 end:0x80330AF8
-	.data       start:0x805D02A8 end:0x805D02D0
+	.data       start:0x805CFF70 end:0x805D02A8
 	.sdata2     start:0x806C0A78 end:0x806C0AB8
 
 Game/Ride/SphereController.cpp:
 	.text       start:0x80330AF8 end:0x80330B38
-	.data       start:0x805D02D0 end:0x805D02F0
+	.data       start:0x805D02A8 end:0x805D02D0
 	.sdata2     start:0x806C0AB8 end:0x806C0AC0
 
 Game/Ride/SpherePadController.cpp:
 	.text       start:0x80330B38 end:0x80330F98
-	.data       start:0x805D02F0 end:0x805D04F8
+	.data       start:0x805D02D0 end:0x805D0318
 	.sdata2     start:0x806C0AC0 end:0x806C0AD0
 
 Game/Ride/SurfRay.cpp:
 	.text       start:0x80330F98 end:0x80333BEC
 	.ctors      start:0x8052F1E8 end:0x8052F1EC
-	.data       start:0x805D04F8 end:0x805D07D0
+	.data       start:0x805D0318 end:0x805D07D0
 	.sbss       start:0x806B6448 end:0x806B6488
 	.sdata2     start:0x806C0AD0 end:0x806C0BB8
 
