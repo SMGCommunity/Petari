@@ -2015,7 +2015,7 @@ config.libs = [
             Object(NonMatching, "Game/Screen/GalaxyMapBackground.cpp"),
             Object(NonMatching, "Game/Screen/GalaxyMapCometIcon.cpp"),
             Object(NonMatching, "Game/Screen/GalaxyMapController.cpp"),
-            Object(NonMatching, "Game/Screen/GalaxyMapDomeIcon.cpp"),
+            Object(Matching, "Game/Screen/GalaxyMapDomeIcon.cpp"),
             Object(NonMatching, "Game/Screen/GalaxyMapGalaxyDetail.cpp"),
             Object(NonMatching, "Game/Screen/GalaxyMapGalaxyPlain.cpp"),
             Object(NonMatching, "Game/Screen/GalaxyMapIcon.cpp"),
