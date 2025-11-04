@@ -196,8 +196,8 @@ void FindingLuigiEventScheduler::updateOnStageResult(const char *pClearedStageNa
 				if (GameDataFunction::calcCurrentPowerStarNum() > 108 ||
 					GameDataFunction::isOnGameEventFlag("LuigiTalkAfterRescued")) {
 					// if number of stars safeguard passed or eventflag open 
-					// of luigi rescued from ghostly galaxy
-					// set force luigi to lost state
+					// of speaking to luigi in garage after rescued from ghostly galaxy
+					// force luigi to lost state
 					mLuigiMailDirector->lost();
 					GameDataFunction::setGameEventValue("LuigiEventState", STATE_DISAPPEAR);
 					return;

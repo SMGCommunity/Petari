@@ -54,6 +54,15 @@ public:
     bool isTwistStart() const;
     bool isRotateStart() const;
 
+    inline TVec3f addFromPos(const TVec3f& vec, f32 mag) {
+        TVec3f v1(vec);
+        v1.scale(mag);
+        TVec3f v2(v1);
+        v2.add(mPosition);
+
+        return v2;
+    }
+
     /* 0x8C */ f32 mSurfSpeed;
     /* 0x90 */ f32 mOrthoSpeed;
     /* 0x94 */ TVec3f mOrthoVelocity;

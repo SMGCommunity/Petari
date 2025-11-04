@@ -21,19 +21,20 @@ namespace NrvSurfRay {
     NEW_NERVE(SurfRayNrvReady, SurfRay, Ready);
 };
 
-inline void scaleVec3f(TVec3f& vec, f32 scale) {
-    vec.x *= scale;
-    vec.y *= scale;
-    vec.z *= scale;
+void unusedStrippedMatchsdata2() {
+    // this is not a real function, this is just to match .sdata2 data order
+    f32 _f00 = 1.0f;
+    f32 _f01 = 0.0f;
+    f32 _f02 = 0.5f;
+    f32 _f03 = 3.0f;
+    f32 _f04 = -1.0f;
 }
 
-inline TVec3f scaleVecFromPos(const TVec3f& pPosVec, const TVec3f& pDirVec, f32 pScale) {
-    TVec3f v1(pDirVec);
-    v1.scale(pScale);
-    TVec3f v2(v1);
-    v2.add(pPosVec);
-
-    return v2;
+inline f32 min(f32 a, f32 b) {
+    if (a >= b) {
+        return b;
+    }
+    return a;
 }
 
 namespace {
@@ -92,14 +93,14 @@ SurfRay::SurfRay(const char* pName, s32 pChannel) :
 
 void SurfRay::init(const JMapInfoIter& pMapInfoIter) {
     if (MR::hasRetryGalaxySequence()) {
-        MR::resetPosition(this,"スタート位置（サーフィン）");
+        MR::resetPosition(this, "スタート位置（サーフィン）");
     }
     else {
-        MR::initDefaultPos(this,pMapInfoIter);
+        MR::initDefaultPos(this, pMapInfoIter);
     }
 
     resetAllInfo();
-    initModelManagerWithAnm("SurfRay", 0, this != nullptr);    // 
+    initModelManagerWithAnm("SurfRay", 0, this != nullptr);
     
     mProjmapFxMtxSetter = MR::initDLMakerProjmapEffectMtxSetter(this);
     MR::newDifferedDLBuffer(this);
@@ -120,10 +121,11 @@ void SurfRay::init(const JMapInfoIter& pMapInfoIter) {
     initSound(15, false);
 
     MR::initShadowFromCSV(this, "Shadow");
-    MR::setShadowSurfaceOvalColor(this, 0, Color8(0, 40, 128, 64));
+    Color8 shadowColor(0, 40, 128, 64);
+    MR::setShadowSurfaceOvalColor(this, 0, shadowColor);
     MR::setShadowSurfaceOvalAlpha(this, 0, 64);
     MR::setShadowProjectionPtr(this, 0, &mWaterShadowPos, &mWaterNormal);
-    MR::setShadowSurfaceOvalAlpha(this, 0, mShadowAlpha);
+    MR::setShadowSurfaceOvalAlpha(this, 0, (u8)mShadowAlpha & 0xff);
 
     initNerve(&NrvSurfRay::SurfRayNrvWaitPlayer::sInstance);
 
@@ -154,7 +156,7 @@ void SurfRay::exeWaitPlayer() {
 
     calcWaterShadowPos(&mWaterShadowPos, mPosition, mGravity);
 
-    if (MR::isNearPlayer(this, 0.0f)) {
+    if (MR::isNearPlayer(this, 1300.0f)) {
         setNerve(&NrvSurfRay::SurfRayNrvTurnToWait::sInstance);
     }
 }
@@ -273,7 +275,7 @@ void SurfRay::exeRideLand() {
 void SurfRay::exeTutorial() {
     TVec3f v1(mFront);
     updateRide();
-    scaleVec3f(mOrthoVelocity, 0.5f);
+    mOrthoVelocity.mult(0.5f);
     mFront.set(v1);
     
     mSurfSpeed = 0.0f;
@@ -390,23 +392,17 @@ void SurfRay::exeReady() {
     updateToMap();
     updateSound();
     updateRiderMtx();
-    scaleVec3f(mOrthoVelocity, 0.5f);
+    mOrthoVelocity.mult(0.5f);
     mSurfSpeed = 0.0f;
     mRotation.z = 0.0f;
     
-}
-
-inline f32 min(f32 a, f32 b) {
-    if (a >= b) {
-        return b;
-    }
-    return a;
 }
 
 void SurfRay::control() {
     mVelocity.set(mFront);
     mVelocity.scale(mSurfSpeed);
     mVelocity.add(mOrthoVelocity);
+    // this causes a single nonmatch in the order of a mr r3,r31 instruction 
     MR::setBtkRate(this, min(mSurfSpeed * 0.4f + 1.0f, 4.0f));
     mActorJointCtrl->update();
 }
@@ -728,15 +724,15 @@ void SurfRay::updateToWater() {
     }
     else {
         if (mInWater) {
-            f32 lvl = MR::getLinerValueFromMinMax(mSurfSpeed, 0.0f, 20.0f, 100.0f, 1000.0f);
-            MR::startSound(this, "SE_SM_SURF_RAY_JUMPIN1", lvl, -1);
+            f32 lvl = MR::getLinerValueFromMinMax(mSurfSpeed, 0.0f, 30.0f, 200.0f, 1000.0f);
+            MR::startSound(this, "SE_SM_SURF_RAY_JUMPOUT1", lvl, -1);
             mInWater = false;
         }
         mAirtime++;
     }
 
     WaterInfo waterInfo;
-    if (MR::getWaterAreaObj(&waterInfo, scaleVecFromPos(mPosition, mGravity, 20.0f))) {
+    if (MR::getWaterAreaObj(&waterInfo, addFromPos(mGravity, 20.0f))) {
         mShadowAlpha -= 10.0f;
     }
     else if (calcWaterShadowPos(&mWaterShadowPos, mPosition, mGravity)) {
@@ -775,17 +771,16 @@ void SurfRay::updateAccel(){
     }
     else {
         MR::tryEmitEffect(this, "Ripple");
-        MR::tryDeleteEffect(this, "SwimSplash");
         MR::tryDeleteEffect(this, "RunDashSplash");
-        TVec3f v1 = -mGravity;
-        MR::makeMtxUpFrontPos(&mEffectHostMtx, v1, mFront, mWaterInfo.mSurfacePos);
+        MR::tryDeleteEffect(this, "SwimSplash");
+        MR::makeMtxUpFrontPos(&mEffectHostMtx, -mGravity, mFront, mWaterInfo.mSurfacePos);
     }
 
     if (MR::isBinded(this)) {
-        scaleVec3f(mOrthoVelocity, 0.9f);
+        mOrthoVelocity.mult(0.9f);
     }
     else {
-        scaleVec3f(mOrthoVelocity, 0.995f);
+        mOrthoVelocity.mult(0.995f);
     }
 
     if (MR::isNearZero(mOrthoVelocity, 0.1f)) {
@@ -793,7 +788,7 @@ void SurfRay::updateAccel(){
     }
 
     if (mWaterInfo.isInWater() && !isNerve(&NrvSurfRay::SurfRayNrvRideJump::sInstance)) {
-        scaleVec3f(mOrthoVelocity, 0.95f);
+        mOrthoVelocity.mult(0.95f);
     }
 }
 
@@ -932,38 +927,39 @@ void SurfRay::updateRiderMtx() {
 }
 
 bool SurfRay::tryInWater() {
-    // ... no. i refuse to believe this is how this was written.
-    if (MR::getWaterAreaObj(&mWaterInfo, mPosition)) {
+    // nonmatching, improper stack access order
+    
+    if (MR::getWaterAreaObj(&mWaterInfo, mPosition) != nullptr) {
         return true;
     }
 
-    if (MR::getWaterAreaObj(&mWaterInfo, scaleVecFromPos(mPosition, mFront, 100.0f))) {
+    if (MR::getWaterAreaObj(&mWaterInfo, addFromPos(mFront, 100.0f)) != nullptr) {
         return true;
     }
     
-    if (MR::getWaterAreaObj(&mWaterInfo, scaleVecFromPos(mPosition, mUp, 150.0f))) {
+    if (MR::getWaterAreaObj(&mWaterInfo, addFromPos(mUp, 150.0f)) != nullptr) {
         return true;
     }
 
     TVec3f v3(mFront);
-    TVec3f v3a = -mGravity;
-    MR::rotateVecDegree(&v3, v3a, -90.0f);
-    if (MR::getWaterAreaObj(&mWaterInfo, scaleVecFromPos(mPosition, v3, 150.0f))) {
+    MR::rotateVecDegree(&v3, -mGravity, -90.0f);
+    if (MR::getWaterAreaObj(&mWaterInfo, addFromPos(v3, 150.0f)) != nullptr) {
         return true;
     }
 
     TVec3f v4(mFront);
-    TVec3f v4a = -mGravity;
-    MR::rotateVecDegree(&v4, v4a, 90.0f);
-    if (MR::getWaterAreaObj(&mWaterInfo, scaleVecFromPos(mPosition, v4, 150.0f))) {
+    MR::rotateVecDegree(&v4, -mGravity, 90.0f);
+    if (MR::getWaterAreaObj(&mWaterInfo, addFromPos(v4, 150.0f)) != nullptr) {
         return true;
     }
 
-    if (MR::getWaterAreaObj(&mWaterInfo, scaleVecFromPos(mPosition, mSide, 150.0f))) {
+    if (MR::getWaterAreaObj(&mWaterInfo, addFromPos(mSide, 150.0f)) != nullptr) {
         return true;
     }
 
-    if (MR::getWaterAreaObj(&mWaterInfo, scaleVecFromPos(mPosition, -mSide, 150.0f))) {
+    // non matching at "else" condition here
+    // impoproper register access between r3 and r4 here
+    if (MR::getWaterAreaObj(&mWaterInfo, addFromPos(-mSide, 150.0f)) != nullptr) {
         return true;
     }
 
@@ -989,7 +985,7 @@ bool SurfRay::tryJumpOrFall() {
 
         if (PSVECMag(&mOrthoVelocity) > 25.0f) {
             MR::normalize(&mOrthoVelocity);
-            scaleVec3f(mOrthoVelocity, 25.0f);
+            mOrthoVelocity.mult(25.0f);
         }
 
         if (PSVECMag(&mOrthoVelocity) > 23.0f) {
