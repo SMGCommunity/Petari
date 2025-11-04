@@ -7339,14 +7339,14 @@ Game/Ride/SpherePadController.cpp:
 Game/Ride/SurfRay.cpp:
 	.text       start:0x80330F98 end:0x80333BEC
 	.ctors      start:0x8052F1E8 end:0x8052F1EC
-	.data       start:0x805D04F8 end:0x805D08A0
+	.data       start:0x805D04F8 end:0x805D07D0
 	.sbss       start:0x806B6448 end:0x806B6488
 	.sdata2     start:0x806C0AD0 end:0x806C0BB8
 
 Game/Ride/SurfRayTutorial.cpp:
 	.text       start:0x80333BEC end:0x80334C58
 	.ctors      start:0x8052F1EC end:0x8052F1F0
-	.data       start:0x805D08A0 end:0x805D0990
+	.data       start:0x805D07D0 end:0x805D0990
 	.sbss       start:0x806B6488 end:0x806B64C0
 	.sdata2     start:0x806C0BB8 end:0x806C0BD0
 
@@ -7373,7 +7373,7 @@ Game/Ride/TamakoroTutorial.cpp:
 	.text       start:0x8033B384 end:0x8033C42C
 	.ctors      start:0x8052F1F8 end:0x8052F1FC
 	.data       start:0x805D0FC8 end:0x805D1290
-	.bss        start:0x8060B118 end:0x8060B1B0
+	.bss        start:0x8060B118 end:0x8060B140
 	.sbss       start:0x806B6538 end:0x806B6578
 	.sdata2     start:0x806C0D28 end:0x806C0D48
 
@@ -8259,6 +8259,7 @@ Game/Screen/THPSimplePlayerWrapper.cpp:
 	.ctors      start:0x8052F33C end:0x8052F340
 	.rodata     start:0x8053B708 end:0x8053B710
 	.data       start:0x805DA7F8 end:0x805DA968
+	.bss        start:0x8060B140 end:0x8060B180
 	.sdata      start:0x806B2500 end:0x806B2508
 	.sbss       start:0x806B6D20 end:0x806B6D40
 	.sdata2     start:0x806C1380 end:0x806C1398
@@ -8338,7 +8339,7 @@ Game/Speaker/SpkSpeakerCtrl.cpp:
 	.text       start:0x80393D98 end:0x8039468C
 	.ctors      start:0x8052F360 end:0x8052F364
 	.rodata     start:0x8053B770 end:0x8053B778
-	.bss        start:0x8060B1B0 end:0x8060B2D0
+	.bss        start:0x8060B180 end:0x8060B2D0
 	.sbss       start:0x806B6DE0 end:0x806B6DE8
 	.sdata2     start:0x806C1418 end:0x806C1420
 
