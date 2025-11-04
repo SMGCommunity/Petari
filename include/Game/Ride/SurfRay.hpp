@@ -14,7 +14,11 @@ class SurfRay : public LiveActor {
 public:
     SurfRay(const char*, s32);
 
-    void init(const JMapInfoIter&);
+    virtual void init(const JMapInfoIter&);
+    virtual void control();
+    virtual void calcAndSetBaseMtx();
+    virtual void attackSensor(HitSensor*, HitSensor*);
+    virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
     
     void exeWaitPlayer();
     void exeTurnToWait();
@@ -32,10 +36,6 @@ public:
     void exeWipeIn();
     void exeReady();
     
-    void control();
-    void calcAndSetBaseMtx();
-    void attackSensor(HitSensor*, HitSensor*);
-    bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
     void resetAllInfo();
     
     bool updateRideAccel();

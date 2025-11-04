@@ -470,36 +470,43 @@ bool SurfRay::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver)
             return true;
         }
     }
-    else if (MR::isMsgUpdateBaseMtx(msg)) {
+    
+    if (MR::isMsgUpdateBaseMtx(msg)) {
         updateRiderMtx();
         return true;
     }
-    else if (MR::isMsgRushCancel(msg)) {
+    
+    if (MR::isMsgRushCancel(msg)) {
         mRider = nullptr;
         setNerve(&NrvSurfRay::SurfRayNrvRideFree::sInstance);
         return true;
     }
-    else if (MR::isMsgTutorialStart(msg)) {
+    
+    if (MR::isMsgTutorialStart(msg)) {
         MR::setPlayerPos(mPosition);
         mInTutorial = true;
         return true;
     }
-    else if (MR::isMsgTutorialNext(msg)) {
+    
+    if (MR::isMsgTutorialNext(msg)) {
         mLectureIdx++;
         setNerve(&NrvSurfRay::SurfRayNrvTutorial::sInstance);
         return true;
     }
-    else if (MR::isMsgTutorialPrev(msg)) {
+    
+    if (MR::isMsgTutorialPrev(msg)) {
         mLectureIdx--;
         setNerve(&NrvSurfRay::SurfRayNrvTutorial::sInstance);
         return true;
     }
-    else if (MR::isMsgTutorialPass(msg)) {
+    
+    if (MR::isMsgTutorialPass(msg)) {
         mInTutorial = false;
         setNerve(&NrvSurfRay::SurfRayNrvRideFree::sInstance);
         return true;
     }
-    else if (MR::isMsgTutorialOmit(msg)) {
+    
+    if (MR::isMsgTutorialOmit(msg)) {
         mInTutorialArea = false;
         MR::resetPosition(this, "スタート位置（サーフィン）");
         resetAllInfo();
@@ -508,15 +515,18 @@ bool SurfRay::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver)
         MR::resetCameraMan();
         return true;
     }
-    else if (MR::isMsgRaceReady(msg)) {
+    
+    if (MR::isMsgRaceReady(msg)) {
         setNerve(&NrvSurfRay::SurfRayNrvReady::sInstance);
         return true;
     }
-    else if (MR::isMsgRaceStart(msg)) {
+    
+    if (MR::isMsgRaceStart(msg)) {
         setNerve(&NrvSurfRay::SurfRayNrvRideFree::sInstance);
         return true;
     }
-    else if (MR::isMsgRaceReset(msg)) {
+    
+    if (MR::isMsgRaceReset(msg)) {
         MR::endBindAndPlayerWait(this);
         resetAllInfo();
         setNerve(&NrvSurfRay::SurfRayNrvWait::sInstance);
@@ -524,9 +534,8 @@ bool SurfRay::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver)
         kill();
         return true;
     }
-    else {
-        return false;
-    }
+    
+    return false;
 }
 
 void SurfRay::resetAllInfo() {
@@ -611,7 +620,7 @@ bool SurfRay::updateRide() {
 
 void SurfRay::updateInfo() {
     if (MR::isBindedGround(this)) {
-        f32 sfxLvl = MR::getLinerValueFromMinMax(mSurfSpeed, 0.0f, 40.0f, 100.f, 1000.0f);
+        f32 sfxLvl = MR::getLinerValueFromMinMax(mSurfSpeed, 0.0f, 40.0f, 100.0f, 1000.0f);
         MR::startLevelSound(this, "SE_SM_LV_SURF_RAY_LAND", sfxLvl, -1, -1);
         if (MR::reboundVelocityFromCollision(this, 0.3f, 10.0f, 1.0f) 
           && PSVECMag(&mVelocity) > 5.0f) {
@@ -1008,16 +1017,14 @@ bool SurfRay::tryJumpOrFall() {
 bool SurfRay::isTwistStart() const {
     u32 idx = 1;
     f32 maxTwist = 0.0f;
-    s32 cnt = mTwistBufferSize;
-
-    while (cnt > 1) {
+    
+    for (s32 cnt = mTwistBufferSize; cnt > 1; cnt--) {
         f32 twistDiff = __fabsf(mTwistBuffer[0] - mTwistBuffer[idx]);
         if (twistDiff > maxTwist) {
             maxTwist = twistDiff;
         }
         idx++;
-        cnt--;
-    } 
+    }
 
     return maxTwist > 0.2f;
 }
