@@ -25,7 +25,7 @@ void NameObjCategoryList::execute(int idx) {
         return;
     }
 
-    if (pCategoryInfo->_C != NULL) {
+    if (pCategoryInfo->_C != nullptr) {
         (*pCategoryInfo->_C)();
     }
 
@@ -69,7 +69,7 @@ void NameObjCategoryList::initTable(u32 count, const CategoryListInitialTable *p
     mCategoryInfo.init(count);
 
     for (CategoryInfo* pCategoryInfo = mCategoryInfo.begin(); pCategoryInfo != mCategoryInfo.end(); pCategoryInfo++) {
-        pCategoryInfo->_C = NULL;
+        pCategoryInfo->_C = nullptr;
     }
 
     for (const CategoryListInitialTable* pEntry = &pTable[0]; pEntry->mIndex != -1; pEntry++) {

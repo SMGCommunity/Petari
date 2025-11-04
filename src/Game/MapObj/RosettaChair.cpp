@@ -1,8 +1,10 @@
 #include "Game/MapObj/RosettaChair.hpp"
 
-RosettaChair::RosettaChair(const char *pName) : LiveActor(pName) {
-    _8C.set(0.0f);
-    _98.set(0.0f);
+RosettaChair::RosettaChair(const char *pName) :
+    LiveActor(pName),
+    _8C(0.0f, 0.0f, 0.0f),
+    _98(0.0f, 0.0f, 0.0f)
+{
     _A0.identity();
 }
 
@@ -19,8 +21,7 @@ void RosettaChair::init(const JMapInfoIter &rIter) {
     MR::connectToSceneMapObj(this);
     initHitSensor(1);
     MR::addBodyMessageSensorMapObj(this);
-    MtxPtr baseMtx = getBaseMtx();
-    _A0.setInline(baseMtx);
+    _A0.setInline(getBaseMtx());
     _A0.mMtx[0][0] *= 1.7f;
     _A0.mMtx[0][1] *= 1.7f;
     _A0.mMtx[0][2] *= 1.7f;
@@ -30,7 +31,7 @@ void RosettaChair::init(const JMapInfoIter &rIter) {
     _A0.mMtx[2][0] *= 1.7f;
     _A0.mMtx[2][1] *= 1.7f;
     _A0.mMtx[2][2] *= 1.7f;
-    MR::initCollisionPartsAutoEqualScale(this, "RosettaChair", getSensor("body"), _A0.toMtxPtr());
+    MR::initCollisionPartsAutoEqualScale(this, "RosettaChair", getSensor("body"), _A0);
     MR::setClippingTypeSphere(this, 500.0f);
     MR::tryRegisterDemoCast(this, rIter);
     MR::registerDemoActionFunctor(this, MR::Functor(this, &RosettaChair::startDemo), "朗読開始");
@@ -44,8 +45,4 @@ void RosettaChair::init(const JMapInfoIter &rIter) {
 void RosettaChair::startDemo() {
     MR::startBck(this, "DemoRosettaReading", nullptr);
     MR::invalidateCollisionParts(this);
-}
-
-RosettaChair::~RosettaChair() {
-
 }

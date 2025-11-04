@@ -6,7 +6,6 @@ class KoopaBattleMapStair : public LiveActor {
 public:
     KoopaBattleMapStair(const char *);
 
-    virtual ~KoopaBattleMapStair();
     virtual void init(const JMapInfoIter &);
     virtual void initAfterPlacement();
 
@@ -22,10 +21,10 @@ public:
     bool isTypeNoRequestFire() const NO_INLINE;
 
     void exeWaitSwitch();
+    void exeWaitKoopaFire();
     void exeWaitFall();
     void exeFall();
     void exeDisappear();
-    inline void exeWaitKoopaFire();
 
     s32 mFireTimer;         // _8C
     s32 _90;

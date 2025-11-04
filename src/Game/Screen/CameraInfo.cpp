@@ -197,10 +197,10 @@ bool CameraInfo::tryShow() {
         return false;
     }
 
-    bool isTriggerAnyDir = MR::testCorePadTriggerUp(0)
-        || MR::testCorePadTriggerDown(0)
-        || MR::testCorePadTriggerLeft(0)
-        || MR::testCorePadTriggerRight(0);
+    bool isTriggerAnyDir = MR::testCorePadTriggerUp(WPAD_CHAN0)
+        || MR::testCorePadTriggerDown(WPAD_CHAN0)
+        || MR::testCorePadTriggerLeft(WPAD_CHAN0)
+        || MR::testCorePadTriggerRight(WPAD_CHAN0);
 
     if (!isTriggerAnyDir) {
         return false;
@@ -224,10 +224,10 @@ bool CameraInfo::tryHide() {
         return false;
     }
 
-    bool isTriggerAnyDir = MR::testCorePadTriggerUp(0)
-        || MR::testCorePadTriggerDown(0)
-        || MR::testCorePadTriggerLeft(0)
-        || MR::testCorePadTriggerRight(0);
+    bool isTriggerAnyDir = MR::testCorePadTriggerUp(WPAD_CHAN0)
+        || MR::testCorePadTriggerDown(WPAD_CHAN0)
+        || MR::testCorePadTriggerLeft(WPAD_CHAN0)
+        || MR::testCorePadTriggerRight(WPAD_CHAN0);
 
     if (isTriggerAnyDir || getNerveStep() == 0) {
         mStep = 0;

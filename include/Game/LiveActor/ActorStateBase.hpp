@@ -2,46 +2,49 @@
 
 #include "Game/System/NerveExecutor.hpp"
 
-class ActorStateBaseInterface : public NerveExecutor
-{
+class ActorStateBaseInterface : public NerveExecutor {
 public:
-    inline ActorStateBaseInterface(const char *pName) : NerveExecutor(pName) {
-
+    ActorStateBaseInterface(const char *pName) :
+        NerveExecutor(pName)
+    {
+        
     }
 
-    virtual inline ~ActorStateBaseInterface() {
-
+    virtual ~ActorStateBaseInterface() {
+        
     }
 
     virtual void init() {
-        return;
+        
     }
 
     virtual void appear() {
-        mIsDead = 0;
+        mIsDead = false;
     }
 
     virtual void kill() {
-        mIsDead = 1;
+        mIsDead = true;
     }
 
     virtual bool update();
 
     virtual void control() {
-        return;
+        
     }
 
-    u8 mIsDead; // 0x8
+    /* 0x8 */ bool mIsDead;
 };
 
 template<typename T>
 class ActorStateBase : public ActorStateBaseInterface {
 public:
-    inline ActorStateBase(const char *pName) : ActorStateBaseInterface(pName) {
-
+    ActorStateBase(const char *pName) :
+        ActorStateBaseInterface(pName)
+    {
+        
     }
 
     virtual ~ActorStateBase() {
-
+        
     }
 };

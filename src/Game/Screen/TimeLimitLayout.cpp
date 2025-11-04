@@ -33,9 +33,9 @@ TimeLimitLayout::TimeLimitLayout(u32 timeLimit) :
     LayoutActor("タイムリミット", true),
     mTime(0),
     mTimeLimit(timeLimit),
-    mScaleCtrl(NULL),
-    mAlphaCtrl(NULL),
-    mCurrentTiming(NULL),
+    mScaleCtrl(nullptr),
+    mAlphaCtrl(nullptr),
+    mCurrentTiming(nullptr),
     mIsSuspend(false),
     _35(false)
 {
@@ -121,7 +121,7 @@ void TimeLimitLayout::exeCountDown() {
 
     const Timing* pTiming = getCurrentTiming();
 
-    if (pTiming != NULL) {
+    if (pTiming != nullptr) {
         mCurrentTiming = pTiming;
 
         MR::startSystemSE("SE_SY_E3_TIMER_SCALE_UP", -1, -1);

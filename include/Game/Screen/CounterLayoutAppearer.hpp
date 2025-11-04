@@ -1,15 +1,13 @@
 #pragma once
 
 #include "Game/System/NerveExecutor.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
+#include <JSystem/JGeometry/TVec.hpp>
 
 class LayoutActor;
 
 class CounterLayoutAppearer : public NerveExecutor {
 public:
     CounterLayoutAppearer(LayoutActor *, const TVec2f&);
-
-    virtual ~CounterLayoutAppearer();
 
     void update();
     void appear(const TVec2f&);

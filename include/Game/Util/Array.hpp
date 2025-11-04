@@ -16,9 +16,15 @@ namespace MR {
             mMaxSize = 0;
         }
 
+        /// @brief Creates a new `AssignableArray`.
+        /// @param num The number of elements.
+        AssignableArray(s32 num) {
+            init(num);
+        }
+
         /// @brief Destroys the `AssignableArray`.
         ~AssignableArray() {
-            if (mArr != NULL) {
+            if (mArr != nullptr) {
                 delete[] mArr;
             }
         }

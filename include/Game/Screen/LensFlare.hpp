@@ -14,9 +14,6 @@ public:
     /// @param pArcName The pointer to the null-terminated base name of the resource archive.
     LensFlareModel(const char* pName, const char* pArcName);
 
-    /// @brief Destroys the `LensFlareModel`.
-    virtual ~LensFlareModel() {}
-
     virtual void appear();
     virtual void control();
     virtual void appearAnim();
@@ -40,9 +37,6 @@ public:
     /// @brief Creates a new `LensFlareRing`.
     LensFlareRing();
 
-    /// @brief Destroys the `LensFlareRing`.
-    virtual ~LensFlareRing() {}
-
     virtual void appearAnim();
     virtual void controlAnim();
 };
@@ -51,9 +45,6 @@ class LensFlareGlow : public LensFlareModel {
 public:
     /// @brief Creates a new `LensFlareGlow`.
     LensFlareGlow();
-
-    /// @brief Destroys the `LensFlareGlow`.
-    virtual ~LensFlareGlow() {}
 
     virtual void appearAnim();
     virtual void controlAnim();
@@ -64,9 +55,6 @@ public:
     /// @brief Creates a new `LensFlareLine`.
     LensFlareLine();
 
-    /// @brief Destroys the `LensFlareLine`.
-    virtual ~LensFlareLine() {}
-
     virtual void appearAnim();
     virtual void controlAnim();
 };
@@ -75,9 +63,6 @@ class LensFlareDirector : public NameObj {
 public:
     /// @brief Creates a new `LensFlareDirector`.
     LensFlareDirector();
-
-    /// @brief Destroys the `LensFlareDirector`.
-    virtual ~LensFlareDirector() {}
 
     /// @brief Intializes the `LensFlareDirector` while being placed into a scene.
     /// @param rIter The reference to an iterator over a `JMapInfo`.

@@ -11,9 +11,6 @@ public:
     /// @param pName The pointer to the null-terminated name of the object.
     CoinCounter(const char* pName);
 
-    /// @brief Destroys the `CoinCounter`.
-    virtual ~CoinCounter();
-
     virtual void init(const JMapInfoIter& rIter);
     virtual void appear();
     virtual void control();

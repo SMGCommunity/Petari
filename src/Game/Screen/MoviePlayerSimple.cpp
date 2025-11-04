@@ -25,8 +25,8 @@ namespace {
 MoviePlayerSimple::MoviePlayerSimple() : LayoutActor("ムービープレイヤー", true), JKRDisposer() {
     mMovie = nullptr;
     mPlayerWrapper = nullptr;
-    _44 = 0;
-    _45 = 0;
+    _44 = false;
+    _45 = false;
     mMovie = new Movie();
     mMovie->mMovieName = "";
     mMovie->mBuffer = nullptr;
@@ -43,10 +43,6 @@ MoviePlayerSimple::~MoviePlayerSimple() {
     mPlayerWrapper->quit();
     delete mPlayerWrapper;
     JKRHeap::destroy(mHeap);
-}
-
-THPSimplePlayerWrapper::~THPSimplePlayerWrapper() {
-    
 }
 
 void MoviePlayerSimple::init(const JMapInfoIter &rIter) {
@@ -154,6 +150,10 @@ void MoviePlayerSimple::setUnpauseHomeButtonFlag() {
     mPlayerWrapper->setUnpauseFrameFlag();
 }
 
+void MoviePlayerSimple::exeSimpleOff() {
+    
+}
+
 void MoviePlayerSimple::exeOpen() {
     if (MR::isFirstStep(this)) {
         mPlayerWrapper->open(mMovie->mMovieName);
@@ -166,7 +166,7 @@ void MoviePlayerSimple::exeOpen() {
         setFrameRateDefault();
         mMovie->mBuffer = new(mHeap, 32) u8[mPlayerWrapper->calcNeedMemory()];
         mPlayerWrapper->setBuffer(mMovie->mBuffer);
-        mPlayerWrapper->preLoad(_44 != 0);
+        mPlayerWrapper->preLoad(_44 != false);
         setNerve(&MoviePlayerSimplePreload::sInstance);
     }
 }
@@ -211,6 +211,10 @@ void MoviePlayerSimple::exePlaying() {
             mMovie->_19 = 0;
         }
     }
+}
+
+void MoviePlayerSimple::exeSimpleSuspend() {
+    
 }
 
 void MoviePlayerSimple::control() {
@@ -264,12 +268,4 @@ void MoviePlayerSimple::drawCinemaFrame() const {
     s16 height = MR::getFrameBufferHeight();
     TBox2s box_1(0, 412, width, height);
     MR::fillScreenArea(box_1._0, box_1._8);
-}
-
-void MoviePlayerSimple::exeSimpleOff() {
-    
-}
-
-void MoviePlayerSimple::exeSimpleSuspend() {
-    
 }

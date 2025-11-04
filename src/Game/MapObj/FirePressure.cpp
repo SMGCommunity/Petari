@@ -21,7 +21,7 @@ void FirePressure::initBullet(const JMapInfoIter &rIter) {
 }
 
 bool FirePressure::shotBullet(f32 a1) {
-    FirePressureBulletHolder* hldr = MR::getSceneObj<FirePressureBulletHolder*>(SceneObj_FirePressureBulletHolder);
+    FirePressureBulletHolder* hldr = MR::getSceneObj<FirePressureBulletHolder>(SceneObj_FirePressureBulletHolder);
     FirePressureBullet* bullet = hldr->callEmptyBullet();
 
     // do we have an empty bullet slot available?

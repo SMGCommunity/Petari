@@ -13,9 +13,6 @@ public:
     /// @brief Creates a new `CounterLayoutController`.
     CounterLayoutController();
 
-    /// @brief Destroys the `CounterLayoutController`.
-    virtual ~CounterLayoutController();
-
     virtual void init(const JMapInfoIter& rIter);
     virtual void appear();
     virtual void kill();

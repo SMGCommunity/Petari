@@ -2,16 +2,10 @@
 
 #include "Game/Screen/LayoutActor.hpp"
 
-namespace {
-    static f32 sScreenOffsetX = 60.0f;
-    static f32 sScreenOffsetY = -70.0f;
-};
-
 class SubMeterLayout : public LayoutActor {
 public:
     SubMeterLayout(const char *, const char *);
 
-    virtual ~SubMeterLayout();
     virtual void init(const JMapInfoIter &);
     virtual void control();
 

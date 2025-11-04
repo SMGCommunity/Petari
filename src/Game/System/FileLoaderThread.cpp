@@ -1,10 +1,8 @@
 #include "Game/System/FileLoaderThread.hpp"
 #include "Game/System/FileRipper.hpp"
 
-#include "Inline.hpp"
-
 namespace {
-    void* loadFileUsingRipper(RequestFileInfo *pInfo) NO_INLINE {
+    void* loadFileUsingRipper(RequestFileInfo *pInfo) {
         s32 val = 0;
 
         if (pInfo->mRequestType != 1) {
@@ -15,26 +13,14 @@ namespace {
     }
 };
 
-FileLoaderThread::FileLoaderThread(int a1, int a2, JKRHeap *pHeap) : OSThreadWrapper(0x8000, a2, a1, pHeap) {
+FileLoaderThread::FileLoaderThread(int priority, int msgCount, JKRHeap *pHeap) :
+    OSThreadWrapper(0x8000, msgCount, priority, pHeap)
+{
+    
+}
 
-} 
-
-s32 FileLoaderThread::run() {
-    // OSInitFastCast
-    __asm {
-        li r3, 4
-        oris r3, r3, 4
-        mtspr 0x392, r3
-        li r3, 5
-        oris r3, r3, 5
-        mtspr 0x393, r3
-        li r3, 6
-        oris r3, r3, 6
-        mtspr 0x394, r3
-        li r3, 7
-        oris r3, r3, 7
-        mtspr 0x395, r3
-    };
+void* FileLoaderThread::run() {
+    OSInitFastCast();
 
     while (true) {
         OSMessage msg;
@@ -42,12 +28,12 @@ s32 FileLoaderThread::run() {
         RequestFileInfo* info = (RequestFileInfo*)msg;
 
         switch (info->_0) {
-            case 0:
-                loadToMainRAM(info);
-                break;
-            case 1:
-                mountArchiveAndStartCreateResource(info);
-                break;
+        case 0:
+            loadToMainRAM(info);
+            break;
+        case 1:
+            mountArchiveAndStartCreateResource(info);
+            break;
         }
     }
 }
@@ -67,8 +53,4 @@ void FileLoaderThread::mountArchiveAndStartCreateResource(RequestFileInfo *pInfo
     MR::createAndAddArchive(data, pInfo->mFileEntry->mHeap, pInfo->mFileName);
     pInfo->mFileEntry->setContext(data, pInfo->mFileEntry->mHeap);
     pInfo->_88 = 2;
-}
-
-FileLoaderThread::~FileLoaderThread() {
-
 }

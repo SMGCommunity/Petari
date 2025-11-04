@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Game/System/NANDManagerThread.hpp"
 #include <revolution.h>
 
+class NANDManagerThread;
 class NANDRequestInfo;
 
 typedef void (NANDReqFunc)(NANDRequestInfo *);
@@ -19,19 +19,25 @@ public:
     const char* setCheck(u32, u32, u32 *);
     const char* setDelete(const char *);
 
-    char mReqStr[0x40];         // 0x0
-    u32 _40;
-    s32 mRequestStatus;         // 0x44
-    s32 mRequestResult;         // 0x48
-    const void* _4C;
-    void* _50;
-    NANDReqFunc* _54;
-    u8 mPermission;             // 0x58
-    u8 mAttribute;              // 0x59
-    u8 _5A;
-    u8 _5B;
-    u32 mFSBlock;               // 0x5C
-    u32 mINode;                 // 0x60
+    /* 0x00 */ char mPath[NAND_MAX_PATH];
+    /* 0x40 */ u32 _40;
+    /* 0x44 */ s32 mType;
+    /* 0x48 */ s32 mResult;
+    /* 0x4C */ union {
+        void* mReadBuf;
+        const void* mWriteBuf;
+    };
+    /* 0x50 */ union {
+        const char* mMoveDestDir;
+        u32* mReadLength;
+        u32* mCheckAnswer;
+    };
+    /* 0x54 */ NANDReqFunc* _54;
+    /* 0x58 */ u8 mPermission;
+    /* 0x59 */ u8 mAttribute;
+    /* 0x5C */ u32 mFsBlock;
+    /* 0x60 */ u32 mInode;
+    /* 0x64 */ u8 _64[0x1C];
 };
 
 class NANDManager {
@@ -40,12 +46,19 @@ public:
 
     bool addRequest(NANDRequestInfo *);
 
-    OSMutex mMutex;                     // 0x0
-    NANDManagerThread* mManager;        // 0x18
+private:
+    /* 0x00 */ OSMutex mMutex;
+    /* 0x18 */ NANDManagerThread* mManagerThread;
 };
 
 class NANDResultCode {
 public:
+    NANDResultCode(s32 code) :
+        mCode(code)
+    {
+        
+    }
+
     s32 getCode() const;
     bool isSuccess() const;
     bool isSaveDataCorrupted() const;
@@ -57,7 +70,7 @@ public:
     bool isUnknown() const;
 
 private:
-    s32 mCode;      // 0x0
+    /* 0x0 */ s32 mCode;
 };
 
 namespace MR {

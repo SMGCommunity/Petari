@@ -8,7 +8,7 @@ class JMapIdInfo;
 class WarpCube : public AreaObj {
 public:
     inline WarpCube(int type, const char *pName) : AreaObj(type, pName) {
-        mMapIdInfo = NULL;
+        mMapIdInfo = nullptr;
     }
 
     virtual ~WarpCube();

@@ -49,7 +49,7 @@ void RevolvingWay::exeWait() {
     addAccelMoment();
     MR::rotateQuatMoment(&_8C, _9C);
     f32 v2;
-    if (MR::testCorePadButtonB(0)) {
+    if (MR::testCorePadButtonB(WPAD_CHAN0)) {
         v2 = 0.98f;
     } else {
         v2 = 0.9f;
@@ -60,7 +60,7 @@ void RevolvingWay::exeWait() {
 void RevolvingWay::addAccelMoment() {
     TVec3f stack_14;
     TVec3f stack_10;
-    if (MR::isStarPointerPointing(this, 0, true, "弱") && MR::testCorePadButtonB(0)
+    if (MR::isStarPointerPointing(this, 0, true, "弱") && MR::testCorePadButtonB(WPAD_CHAN0)
     && MR::calcStarPointerStrokeRotateMoment(&stack_14, mPosition, _A8, 0)) {
 
     }

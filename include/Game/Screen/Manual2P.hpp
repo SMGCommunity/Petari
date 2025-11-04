@@ -11,9 +11,6 @@ public:
     /// @param pName The pointer to the null-terminated name of the object.
     Manual2P(const char* pName);
 
-    /// @brief Destroys the `Manual2P`.
-    virtual ~Manual2P() {}
-
     virtual void init(const JMapInfoIter& rIter);
     virtual void appear();
     virtual void control();

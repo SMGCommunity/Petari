@@ -3,7 +3,7 @@
 
 HomeButtonStateNotifier::HomeButtonStateNotifier() :
     _0(false),
-    mMoviePlayer(NULL)
+    mMoviePlayer(nullptr)
 {}
 
 void HomeButtonStateNotifier::update(bool param1) {
@@ -19,11 +19,11 @@ void HomeButtonStateNotifier::registerMoviePlayerSimple(MoviePlayerSimple* pMovi
 }
 
 void HomeButtonStateNotifier::unregisterMoviePlayerSimple(MoviePlayerSimple* pMoviePlayer) {
-    mMoviePlayer = NULL;
+    mMoviePlayer = nullptr;
 }
 
 void HomeButtonStateNotifier::notifyHomeButtonDeactive() {
-    if (mMoviePlayer == NULL) {
+    if (mMoviePlayer == nullptr) {
         return;
     }
 

@@ -3,7 +3,7 @@
 
 namespace MR {
     BitArray::BitArray(int bitNum) :
-        mArray(NULL),
+        mArray(nullptr),
         mArraySize(bitNum)
     {
         int byteNum = (bitNum + 7 & ~7) / 8;

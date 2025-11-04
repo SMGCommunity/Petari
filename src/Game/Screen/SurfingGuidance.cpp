@@ -203,7 +203,3 @@ void SurfingGuidance::exeFadeOut() {
         kill();
     }
 }
-
-SurfingGuidance::~SurfingGuidance() {
-    
-}

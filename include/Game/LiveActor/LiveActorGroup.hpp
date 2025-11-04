@@ -32,7 +32,7 @@ public:
             return reinterpret_cast<T*>(getDeadActor());
         }
 
-        return NULL;
+        return nullptr;
     }
 
     ~DeriveActorGroup() {

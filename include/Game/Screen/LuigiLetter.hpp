@@ -16,9 +16,6 @@ public:
     /// @brief Creates a new `LuigiLetter`.
     LuigiLetter(bool, const char*);
 
-    /// @brief Destroys the `LuigiLetter`.
-    virtual ~LuigiLetter() {}
-
     virtual void init(const JMapInfoIter&);
     virtual void appear();
     virtual void movement();

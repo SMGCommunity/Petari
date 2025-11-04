@@ -19,30 +19,28 @@ public:
     GameEventFlagTableInstance();
 
     void initSortTable();
-    GameEventFlag* findFlag(const char *);
+    const GameEventFlag* findFlag(const char *);
 
     u32 _0;
     u32 _4;
 };
 
-class GameEventFlagTable {
-public:
-    static GameEventFlagIter getBeginIter();
-    static GameEventFlagAccessor makeAccessor(const char *);
-    static s32 getTableSize();
-    static const GameEventFlag* getFlag(int);
-    static const GameEventFlag* findFlag(const char *);
-    const char* getEventFlagNameSpecialPowerStar(const char *, s32);
-    bool isPowerStarType(const char *, s32, const char *);
+namespace GameEventFlagTable {
+    GameEventFlagIter getBeginIter();
+    GameEventFlagAccessor makeAccessor(const char*);
+    s32 getTableSize();
+    const GameEventFlag* getFlag(int);
+    const GameEventFlag* findFlag(const char*);
+    const char* getEventFlagNameSpecialPowerStar(const char*, s32);
+    bool isPowerStarType(const char*, s32, const char*);
     s32 calcExclamationGalaxyNum();
-    static const char* getExclamationGalaxyNameFromIndex(int);
-    static bool isExist(const char *);
-    static int getIndex(const GameEventFlag *);
-    static bool isDependedAnother(const char *, const char *);
-    int getIndexFromHashCode(u16);
-    s32 calcSpecialPowerStarNum(const char *);
-    static s32 getStarPieceNumToOpenExclamationGalaxy(const char *);
-    s32 calcGreenStarPowerNum();
-    u32 getGalaxyDependFlags(const char **, int, const char *);
-    
+    const char* getExclamationGalaxyNameFromIndex(int);
+    bool isExist(const char*);
+    s32 getIndex(const GameEventFlag*);
+    bool isDependedAnother(const char*, const char*);
+    s32 getIndexFromHashCode(u16);
+    s32 calcSpecialPowerStarNum(const char*);
+    s32 getStarPieceNumToOpenExclamationGalaxy(const char*);
+    s32 calcGreenPowerStarNum();
+    u32 getGalaxyDependedFlags(const char**, int, const char*);
 };

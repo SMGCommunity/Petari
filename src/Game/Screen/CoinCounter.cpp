@@ -25,8 +25,8 @@ CoinCounter::CoinCounter(const char* pName) :
     mCoinNum(0),
     mCoinDisplayNum(0),
     mInvalidCountUpFrame(0),
-    mLayoutAppearer(NULL),
-    mPaneRumbler(NULL),
+    mLayoutAppearer(nullptr),
+    mPaneRumbler(nullptr),
     mIsForceAppear(false),
     mFollowPos(0.0f, 0.0f)
 {}
@@ -36,7 +36,7 @@ void CoinCounter::init(const JMapInfoIter& rIter) {
     MR::createAndAddPaneCtrl(this, "Counter", 1);
     MR::createAndAddPaneCtrl(this, "CoinCounter", 1);
     MR::setFollowPos(&mFollowPos, this, "CoinCounter");
-    initEffectKeeper(0, NULL, NULL);
+    initEffectKeeper(0, nullptr, nullptr);
 
     mLayoutAppearer = new CounterLayoutAppearer(this, TVec2f(50.0f, 0.0f));
     mPaneRumbler = new CountUpPaneRumbler(this, "Counter");
@@ -171,8 +171,4 @@ void CoinCounter::exeDisappear() {
     if (mLayoutAppearer->isDisappeared()) {
         setNerve(&NrvCoinCounter::CoinCounterNrvHide::sInstance);
     }
-}
-
-CoinCounter::~CoinCounter() {
-    
 }

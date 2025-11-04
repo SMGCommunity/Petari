@@ -16,9 +16,6 @@ public:
     /// @param pName The pointer to the null-terminated name of the object.
     BloomEffect(const char* pName);
 
-    /// @brief Destroys the `BloomEffect`.
-    virtual ~BloomEffect() {}
-
     void preDraw() const;
     void postDraw() const;
     void getIntensity1Default() const;

@@ -14,24 +14,24 @@ public:
     CameraTargetArg(const LiveActor *);
 
     CameraTargetArg(CameraTargetMtx *pTargetMtx) NO_INLINE {
-        mTargetObj = NULL;
+        mTargetObj = nullptr;
         mTargetMtx = pTargetMtx;
-        mLiveActor = NULL;
-        mMarioActor = NULL;
+        mLiveActor = nullptr;
+        mMarioActor = nullptr;
     }
     
     inline INLINE_FUNC_DECL_NO_ARG(CameraTargetArg) {
-        mTargetObj = NULL;
-        mTargetMtx = NULL;
-        mLiveActor = NULL;
-        mMarioActor = NULL;
+        mTargetObj = nullptr;
+        mTargetMtx = nullptr;
+        mLiveActor = nullptr;
+        mMarioActor = nullptr;
     }
     
     inline INLINE_FUNC_DECL(CameraTargetArg, CameraTargetMtx *pTargetMtx) {
-        mTargetObj = NULL;
+        mTargetObj = nullptr;
         mTargetMtx = pTargetMtx;
-        mLiveActor = NULL;
-        mMarioActor = NULL;
+        mLiveActor = nullptr;
+        mMarioActor = nullptr;
     }
 
     inline CameraTargetArg(CameraTargetObj *pTargetObj, CameraTargetMtx *pMtx, const LiveActor *pActor, MarioActor *pMario) {

@@ -8,9 +8,6 @@ public:
     /// @brief Creates a new `CenterScreenBlur`.
     CenterScreenBlur();
 
-    /// @brief Destroys the `CenterScreenBlur`.
-    virtual ~CenterScreenBlur() {}
-
     /// @brief Intializes the `CenterScreenBlur` while being placed into a scene.
     /// @param rIter The reference to an iterator over a `JMapInfo`.
     virtual void init(const JMapInfoIter& rIter);

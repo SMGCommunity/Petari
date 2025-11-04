@@ -1,15 +1,11 @@
 #pragma once
 
-#include <revolution.h>
-#include "JSystem/JKernel/JKRExpHeap.hpp"
-#include "JSystem/JKernel/JKRSolidHeap.hpp"
 #include "Inline.hpp"
+#include <revolution/types.h>
 
-namespace {
-    JKRExpHeap* createExpHeap(u32, JKRHeap *, bool) NO_INLINE;
-    JKRSolidHeap* createSolidHeap(u32, JKRHeap *) NO_INLINE;
-    void destroyHeapAndSetNULL(JKRHeap **) NO_INLINE;
-};
+class JKRExpHeap;
+class JKRHeap;
+class JKRSolidHeap;
 
 class HeapMemoryWatcher {
 public:

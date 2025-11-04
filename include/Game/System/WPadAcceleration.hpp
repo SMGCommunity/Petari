@@ -9,8 +9,8 @@ class WPadAcceleration {
 public:
     WPadAcceleration(const WPad*, u32);
 
-    void getAcceleration(TVec3f *) const;
-    void getPastAcceleration(TVec3f *, s32) const;
+    bool getAcceleration(TVec3f *) const;
+    bool getPastAcceleration(TVec3f *, s32) const;
     bool isStationary() const;
     bool isBalanced() const;
     void update();

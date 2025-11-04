@@ -1,10 +1,11 @@
 #include "Game/LiveActor/ActorLightCtrl.hpp"
 #include "Game/LiveActor/ClippingDirector.hpp"
 #include "Game/LiveActor/LodCtrl.hpp"
+#include "Game/LiveActor/ModelObj.hpp"
 #include <cstdio>
 
 namespace {
-    void LodFuntionCall(LodCtrl *pCtrl, void (*pFunc)(LiveActor *)) {
+    void LodFuntionCall(LodCtrl *pCtrl, void (*pFunc)(LiveActor *)) NO_INLINE {
         pFunc(pCtrl->mActor);
 
         if (pCtrl->_10) {
@@ -17,7 +18,7 @@ namespace {
     }
 
     template<typename T>
-    void LodFuntionCall(LodCtrl *pCtrl, void (*pFunc)(LiveActor *, T), T arg) {
+    void LodFuntionCall(LodCtrl *pCtrl, void (*pFunc)(LiveActor *, T), T arg) NO_INLINE {
         pFunc(pCtrl->mActor, arg);
 
         if (pCtrl->_10) {
@@ -112,14 +113,8 @@ void LodCtrl::invalidate() {
 }
 
 bool LodCtrl::isShowLowModel() const {
-    ModelObj* obj = _14;
-    bool ret = false;
-
-    if (obj && obj == _8) {
-        ret = true;
-    }
-
-    return ret;
+    return _14 != nullptr
+        && _14 == _8;
 }
 
 void LodCtrl::setDistanceToMiddle(f32 dist) {

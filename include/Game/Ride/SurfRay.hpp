@@ -1,0 +1,107 @@
+#pragma once
+
+
+#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/Map/WaterInfo.hpp"
+#include "revolution/mtx.h"
+#include "revolution/types.h"
+#include <JSystem/JGeometry/TVec.hpp>
+
+class ActorJointCtrl;
+class ProjmapEffectMtxSetter;
+
+class SurfRay : public LiveActor {
+public:
+    SurfRay(const char*, s32);
+
+    virtual void init(const JMapInfoIter&);
+    virtual void control();
+    virtual void calcAndSetBaseMtx();
+    virtual void attackSensor(HitSensor*, HitSensor*);
+    virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
+    
+    void exeWaitPlayer();
+    void exeTurnToWait();
+    void exeWait();
+    void exeRideAccel();
+    void exeRideAccelTwist();
+    void exeRideFree();
+    void exeRideFreeTwist();
+    void exeRideJump();
+    void exeRideJumpHigh();
+    void exeRideFall();
+    void exeRideLand();
+    void exeTutorial();
+    void exeWipeOut();
+    void exeWipeIn();
+    void exeReady();
+    
+    void resetAllInfo();
+    
+    bool updateRideAccel();
+    bool updateRideFree();
+    bool updateRide();
+    void updateInfo();
+    void updateToMap();
+    void updateToWater();
+    void updateAccel();
+    void updateRotate();
+    void updateSound();
+    void updateRiderMtx();
+    
+    bool tryInWater();
+    bool tryJumpOrFall();
+    bool isTwistStart() const;
+    bool isRotateStart() const;
+
+    inline TVec3f addFromPos(const TVec3f& vec, f32 mag) {
+        TVec3f v1(vec);
+        v1.scale(mag);
+        TVec3f v2(v1);
+        v2.add(mPosition);
+
+        return v2;
+    }
+
+    /* 0x8C */ f32 mSurfSpeed;
+    /* 0x90 */ f32 mOrthoSpeed;
+    /* 0x94 */ TVec3f mOrthoVelocity;
+
+    /* 0xA0 */ f32 mSteerRate;
+    /* 0xA4 */ f32 mSteerAccel;
+
+    /* 0xA8 */ TVec3f mFront;
+    /* 0xB4 */ TVec3f mUp;
+    /* 0xC0 */ TVec3f mSide;
+    /* 0xCC */ TVec3f mBaseUp; // base up vector for modification
+    /* 0xD8 */ TVec3f mBaseSide; // base side vector for modification
+    /* 0xE4 */ TVec3f mGroundNormal;
+    /* 0xF0 */ TVec3f mWarpPos;
+
+    /* 0xFC */ LiveActor* mRider;
+
+    /* 0x100 */ s32 mChannel; 
+    /* 0x104 */ f32 mRayTilt; 
+    /* 0x108 */ bool mInWater;
+    /* 0x109 */ u8 _109; // not used?
+    /* 0x10A */ u8 _10A; // not used?
+    /* 0x10B */ u8 _10B; // not used?
+    /* 0x10C */ s32 mAirtime;
+    /* 0x110 */ TVec3f mWaterNormal;
+    /* 0x11C */ WaterInfo mWaterInfo;
+    /* 0x16C */ TVec3f mWaterShadowPos;
+    /* 0x178 */ f32 mShadowAlpha;
+
+    /* 0x17C */ s32 mTwistBufferSize;
+    /* 0x180 */ f32* mTwistBuffer;
+
+    /* 0x184 */ bool mInTutorialArea; 
+    /* 0x185 */ bool mInTutorial;
+    /* 0x186 */ u8 _186; // not used?
+    /* 0x187 */ u8 _187; // not used?
+    /* 0x188 */ s32 mLectureIdx; 
+    
+    /* 0x18C */ TPos3f mEffectHostMtx;
+    /* 0x1BC */ ActorJointCtrl* mActorJointCtrl;
+    /* 0x1C0 */ ProjmapEffectMtxSetter* mProjmapFxMtxSetter;
+};

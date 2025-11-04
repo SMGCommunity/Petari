@@ -8,7 +8,7 @@
 class CoinHostInfo {
 public:
     CoinHostInfo() {
-        mHostActor = NULL;
+        mHostActor = nullptr;
         _4 = 0;
         _8 = 0;
         _C = 0;

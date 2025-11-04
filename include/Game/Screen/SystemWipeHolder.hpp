@@ -8,9 +8,6 @@ public:
     /// @brief Creates a new `SystemWipeHolder`.
     SystemWipeHolder();
 
-    /// @brief Destroys the `SystemWipeHolder`.
-    virtual ~SystemWipeHolder() {}
-
     /// @brief Intializes the `SystemWipeHolder` while being placed into a scene.
     /// @param rIter The reference to an iterator over a `JMapInfo`.
     virtual void init(const JMapInfoIter& rIter);

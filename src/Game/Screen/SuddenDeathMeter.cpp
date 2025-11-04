@@ -202,5 +202,3 @@ void SuddenDeathMeter::setRecoveryCountAnimFrame() {
     MR::startPaneAnim(this, "HitPointMeter", "RecoveryCount", 0);
     MR::setPaneAnimFrameAndStop(this, "HitPointMeter", mCount, 0);
 }
-
-SuddenDeathMeter::~SuddenDeathMeter() {}

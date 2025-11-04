@@ -39,7 +39,7 @@ public:
             }
         }
 
-        return NULL;
+        return nullptr;
     }
     
     f32 mDistance;  // 0xC4

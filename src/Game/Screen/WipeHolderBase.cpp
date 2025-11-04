@@ -11,7 +11,7 @@ WipeHolderBase::WipeHolderBase(u32 num, const char *pName) :
 }
 
 void WipeHolderBase::setCurrent(const char* pWipeName) {
-    if (mCurrentWipeLayout != NULL) {
+    if (mCurrentWipeLayout != nullptr) {
         mCurrentWipeLayout->forceOpen();
         mCurrentWipeLayout->kill();
     }
@@ -59,7 +59,7 @@ bool WipeHolderBase::isCurrent(const char* pWipeName) const {
 void WipeHolderBase::addWipeLayout(WipeLayoutBase* pWipeLayout) {
     pWipeLayout->initWithoutIter();
 
-    if (mCurrentWipeLayout == NULL) {
+    if (mCurrentWipeLayout == nullptr) {
         mCurrentWipeLayout = pWipeLayout;
     }
 
@@ -67,7 +67,7 @@ void WipeHolderBase::addWipeLayout(WipeLayoutBase* pWipeLayout) {
 }
 
 void WipeHolderBase::updateWipe(const char* pWipeName) {
-    if (pWipeName == NULL) {
+    if (pWipeName == nullptr) {
         return;
     }
 
@@ -93,5 +93,5 @@ WipeLayoutBase* WipeHolderBase::findWipe(const char* pWipeName) const {
         }
     }
 
-    return NULL;
+    return nullptr;
 }

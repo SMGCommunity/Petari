@@ -14,7 +14,7 @@ namespace {
 
 PrologueLetter::PrologueLetter(const char* pName) :
     LayoutActor(pName, true),
-    mAButtonIcon(NULL)
+    mAButtonIcon(nullptr)
 {}
 
 void PrologueLetter::init(const JMapInfoIter& rIter) {
@@ -79,8 +79,4 @@ void PrologueLetter::exeDisappear() {
     if (MR::isAnimStopped(this, 0)) {
         kill();
     }
-}
-
-PrologueLetter::~PrologueLetter() {
-    
 }

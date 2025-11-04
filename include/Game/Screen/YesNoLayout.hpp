@@ -9,9 +9,6 @@ public:
     /// @brief Creates a new `YesNoLayout`.
     YesNoLayout();
 
-    /// @brief Destroys the `YesNoLayout`.
-    virtual ~YesNoLayout() {}
-
     virtual void init(const JMapInfoIter& rIter);
     virtual void appear();
     virtual void kill();

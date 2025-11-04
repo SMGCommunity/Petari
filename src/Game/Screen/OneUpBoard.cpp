@@ -13,14 +13,16 @@ namespace NrvOneUpBoard {
 
 OneUpBoard::OneUpBoard() :
     LayoutActor("1UPボード", true)
-{}
+{
+    
+}
 
 void OneUpBoard::init(const JMapInfoIter& rIter) {
     initLayoutManager("OneUp", 2);
     initNerve(&NrvOneUpBoard::HostTypeWait::sInstance);
     MR::connectToSceneLayout(this);
     MR::registerDemoSimpleCastAll(this);
-    initEffectKeeper(1, "OneUp", NULL);
+    initEffectKeeper(1, "OneUp", nullptr);
     kill();
 }
 
@@ -66,8 +68,4 @@ void OneUpBoard::exeAppear() {
     if (MR::isAnimStopped(this, 0)) {
         kill();
     }
-}
-
-OneUpBoard::~OneUpBoard() {
-    
 }

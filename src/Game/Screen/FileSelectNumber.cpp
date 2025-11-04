@@ -14,7 +14,7 @@ namespace {
 FileSelectNumber::FileSelectNumber(const char* pName) :
     LayoutActor(pName, true),
     mNumber(-1),
-    mSelectAnimCtrl(NULL)
+    mSelectAnimCtrl(nullptr)
 {
     
 }
@@ -139,7 +139,7 @@ namespace FileSelectNumberSub {
         if (isNerve(&SelectAnimControllerNrvSelectOut::sInstance)) {
             setNerve(&SelectAnimControllerNrvSelectInStart::sInstance);
 
-            _C = NULL;
+            _C = nullptr;
         }
         else if (isNerve(&SelectAnimControllerNrvSelectOutStart::sInstance)) {
             _C = &SelectAnimControllerNrvSelectIn::sInstance;
@@ -150,7 +150,7 @@ namespace FileSelectNumberSub {
         if (isNerve(&SelectAnimControllerNrvSelectIn::sInstance)) {
             setNerve(&SelectAnimControllerNrvSelectOutStart::sInstance);
 
-            _C = NULL;
+            _C = nullptr;
         }
         else if (isNerve(&SelectAnimControllerNrvSelectInStart::sInstance)) {
             _C = &SelectAnimControllerNrvSelectOut::sInstance;
@@ -170,7 +170,7 @@ namespace FileSelectNumberSub {
                 setNerve(&SelectAnimControllerNrvSelectIn::sInstance);
             }
 
-            _C = NULL;
+            _C = nullptr;
         }
     }
 
@@ -191,7 +191,7 @@ namespace FileSelectNumberSub {
                 setNerve(&SelectAnimControllerNrvSelectOut::sInstance);
             }
 
-            _C = NULL;
+            _C = nullptr;
         }
     }
 

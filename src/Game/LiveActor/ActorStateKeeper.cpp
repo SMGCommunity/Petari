@@ -1,14 +1,19 @@
 #include "Game/LiveActor/ActorStateKeeper.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 
-ActorStateKeeper::ActorStateKeeper(int capacity)
-	: mStatesCapacity(capacity), mLength(0), mStates(NULL), mCurrentState(NULL) {
-	mStates = new State [capacity];
-	for(s32 i = 0; i < mStatesCapacity; i++) {
+ActorStateKeeper::ActorStateKeeper(int capacity) :
+    mStatesCapacity(capacity),
+    mLength(0),
+    mStates(nullptr),
+    mCurrentState(nullptr)
+{
+	mStates = new State[capacity];
+
+	for (s32 i = 0; i < mStatesCapacity; i++) {
 		State& e = mStates[i];
-		e.mInterface = NULL;
-		e.mNerve = NULL;
-		e.mName = NULL;
+		e.mInterface = nullptr;
+		e.mNerve = nullptr;
+		e.mName = nullptr;
 	}
 }
 
@@ -30,6 +35,7 @@ void ActorStateKeeper::endState(const Nerve *pNerve) {
 
     if (mCurrentState) {
         ActorStateBaseInterface* interface = mCurrentState->mInterface;
+
         if (!interface->mIsDead) {
             interface->kill();
         }
@@ -45,8 +51,11 @@ void ActorStateKeeper::addState(ActorStateBaseInterface* pInterface, const Nerve
 }
 
 ActorStateKeeper::State* ActorStateKeeper::findStateInfo(const Nerve *pNerve) {
-	for(int i = 0; i < mLength; i++) {
-		if(mStates[i].mNerve == pNerve) return &mStates[i];
+	for (int i = 0; i < mLength; i++) {
+		if (mStates[i].mNerve == pNerve) {
+            return &mStates[i];
+        }
 	}
-	return NULL;
+
+	return nullptr;
 }

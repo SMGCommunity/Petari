@@ -11,12 +11,14 @@ namespace {
 
 MissLayout::MissLayout() :
     LayoutActor("ミス!", true)
-{}
+{
+    
+}
 
 void MissLayout::init(const JMapInfoIter& rIter) {
     MR::connectToSceneLayout(this);
     initLayoutManager("TooBad", 1);
-    initEffectKeeper(0, NULL, NULL);
+    initEffectKeeper(0, nullptr, nullptr);
     initNerve(&MissLayoutNrvWait::sInstance);
     kill();
 }
@@ -60,9 +62,5 @@ void MissLayout::exeActive() {
 }
 
 void MissLayout::exeEnd() {
-    
-}
-
-MissLayout::~MissLayout() {
     
 }

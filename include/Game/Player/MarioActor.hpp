@@ -3,6 +3,8 @@
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/MapObj/BlackHole.hpp"
 #include "Game/Player/Mario.hpp"
+#include "Game/MapObj/BlackHole.hpp"
+
 
 class FootPrint;
 class JAIAudible;
@@ -41,6 +43,7 @@ public:
     void changeAnimation(const char *, const char *);
     void changeAnimationNonStop(const char *);
     void changeAnimationUpper(const char *);
+    const char* changeMorphString(const char *) const;
     void stopAnimation(const char *);
     bool isAnimationRun(const char *) const;
     void changeNullAnimation(const char *, s8);
@@ -178,7 +181,6 @@ public:
     bool tryStandardRush();
     void checkPriorRushTarget();
     u8 selectAction(const char *) const;
-    void changeMorphString(const char*) const;
     bool tryRushInRush();
     void bodyClap();
     bool selectWaterInOut(const char *) const;
@@ -208,6 +210,8 @@ public:
     bool sendPunch(HitSensor *, bool);
     void reactionPunch(HitSensor *);
     void tryCoinPullInRush();
+
+    void damageDropThrowMemoSensor();
 
     void setPlayerMode(u16, bool);
 
@@ -619,10 +623,10 @@ public:
     bool _F44;
     // padding
     u32 _F48;
-    BlackHole *_F4C;
-    TVec3f _F50;
-    TVec3f _F5C;
-    TVec3f _F68;
+    BlackHole* mBlackHole;
+    TVec3f mBlackHolePosition;
+    TVec3f mBlackHoleRotateAxis;
+    TVec3f mPosRelativeToBlackHole;
     u8 _F74;
     // padding
     TVec3f mCamPos;              // 0xF78

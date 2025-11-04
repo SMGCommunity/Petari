@@ -45,8 +45,7 @@ void LogoFader::exeDisplay() {
     }
 }
 
-#ifdef NON_MATCHING
-// Conversion from integer to floating-point is not producing the correct instructions.
+// FIXME: Conversion from integer to floating-point is not producing the correct instructions.
 void LogoFader::exeFadeIn() {
     f32 step = getNerveStep();
     f32 maxStep = mMaxStep;
@@ -61,10 +60,8 @@ void LogoFader::exeFadeIn() {
         setNerve(&LogoFaderNrvDisplay::sInstance);
     }
 }
-#endif
 
-#ifdef NON_MATCHING
-// Conversion from integer to floating-point is not producing the correct instructions.
+// FIXME: Conversion from integer to floating-point is not producing the correct instructions.
 void LogoFader::exeFadeOut() {
     f32 step = getNerveStep();
     f32 maxStep = mMaxStep;
@@ -79,7 +76,6 @@ void LogoFader::exeFadeOut() {
         setNerve(&LogoFaderNrvBlank::sInstance);
     }
 }
-#endif
 
 void LogoFader::setBlank() {
     setNerve(&LogoFaderNrvBlank::sInstance);
@@ -96,8 +92,4 @@ void LogoFader::startFadeOut() {
 bool LogoFader::isFadeEnd() const {
     return isNerve(&LogoFaderNrvDisplay::sInstance)
         || isNerve(&LogoFaderNrvBlank::sInstance);
-}
-
-LogoFader::~LogoFader() {
-    
 }

@@ -11,9 +11,6 @@ public:
     /// @param channel The handle to the Wii Remote.
     BatteryInfo(LayoutActor* pHost, const char* pPaneName, int channel);
 
-    /// @brief Destroys the `BatteryInfo`.
-    virtual ~BatteryInfo() {}
-
     /// @brief Updates the object when the popup is hidden for a sufficient battery level.
     void exeEnought();
 
@@ -75,9 +72,6 @@ class BatteryLayout : public LayoutActor {
 public:
     /// @brief Creates a new `BatteryLayout`.
     BatteryLayout();
-
-    /// @brief Destroys the `BatteryLayout`.
-    virtual ~BatteryLayout() {}
 
     virtual void init(const JMapInfoIter& rIter);
     virtual void appear();

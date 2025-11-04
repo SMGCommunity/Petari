@@ -63,16 +63,16 @@ PowerStar::PowerStar(const char *pName) :
     mAppearPosition(gZeroVec),
     _A0(gZeroVec),
     _AC(gZeroVec),
-    mPowerStarModelObj(NULL),
+    mPowerStarModelObj(nullptr),
     _11C(0),
     mColorFrame(0),
     mIsGrandStar(false),
     _125(false),
     _126(false),
     _127(false),
-    mCameraInfo(NULL),
-    mCameraActor(NULL),
-    mLuigiNPC(NULL),
+    mCameraInfo(nullptr),
+    mCameraActor(nullptr),
+    mLuigiNPC(nullptr),
     _164(false)
 {
     _B8.identity();
@@ -96,7 +96,7 @@ void PowerStar::init(const JMapInfoIter &rIter) {
         MR::addHitSensor(this, "body", ATYPE_POWER_STAR_BIND, 8, 75.0f, TVec3f(0.0f, 0.0f, 0.0f));
     }
 
-    initEffectKeeper(0, NULL, false);
+    initEffectKeeper(0, nullptr, false);
 
     if (MR::isGalaxyGhostCometAppearInCurrentStage()) {
         MR::invalidateClipping(this);
@@ -170,10 +170,10 @@ void PowerStar::requestAppear() {
     setNerve(&NrvPowerStar::PowerStarNrvWaitStartAppear::sInstance);
 
     if (MR::isStageKoopaVs()) {
-        MR::requestStartDemoMarioPuppetableWithoutCinemaFrame(this, cAppearDemoName, &NrvPowerStar::PowerStarNrvAppearDemoKoopa::sInstance, NULL);
+        MR::requestStartDemoMarioPuppetableWithoutCinemaFrame(this, cAppearDemoName, &NrvPowerStar::PowerStarNrvAppearDemoKoopa::sInstance, nullptr);
     }
     else {
-        MR::requestStartDemoWithoutCinemaFrame(this, cAppearDemoName, &NrvPowerStar::PowerStarNrvAppearDemoRise::sInstance, NULL);
+        MR::requestStartDemoWithoutCinemaFrame(this, cAppearDemoName, &NrvPowerStar::PowerStarNrvAppearDemoRise::sInstance, nullptr);
     }
 }
 
@@ -528,7 +528,7 @@ void PowerStar::endAppearDemo() {
 PowerStarAppearPoint* PowerStar::getNearestAppearPoint(const TVec3f &rPos) const {
     LiveActorGroup* pGroup = MR::getGroupFromArray(this);
     f32 minDist = 3.4028235e38f;
-    PowerStarAppearPoint* pNearestAppearPoint = NULL;
+    PowerStarAppearPoint* pNearestAppearPoint = nullptr;
 
     for (int i = 0; i < pGroup->mObjectCount; i++) {
         LiveActor* pActor = pGroup->getActor(i);
@@ -547,7 +547,7 @@ PowerStarAppearPoint* PowerStar::getNearestAppearPoint(const TVec3f &rPos) const
 }
 
 LiveActor* PowerStar::getAppearCameraActor() {
-    if (mCameraActor == NULL) {
+    if (mCameraActor == nullptr) {
         return this;
     }
 
@@ -555,7 +555,7 @@ LiveActor* PowerStar::getAppearCameraActor() {
 }
 
 ActorCameraInfo* PowerStar::getAppearCameraInfo() const {
-    if (mCameraActor == NULL) {
+    if (mCameraActor == nullptr) {
         return mCameraInfo;
     }
 

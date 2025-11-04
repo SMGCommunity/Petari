@@ -13,6 +13,7 @@
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MemoryUtil.hpp"
 #include "Game/Util/ModelUtil.hpp"
+#include <JSystem/J3DGraphAnimator/J3DModel.hpp>
 
 LiveActor::LiveActor(const char* pName) :
     NameObj(pName),

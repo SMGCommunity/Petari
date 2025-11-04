@@ -217,7 +217,7 @@ namespace MR {
     void startBrkAndSetFrameAndStop(const LiveActor*, const char*, f32);
     bool tryStartBck(const LiveActor*, const char*, const char*);
     void setBckRate(const LiveActor*, f32);
-
+    void setBtkRate(const LiveActor*, f32);
     void setBrkRate(const LiveActor*, f32);
 
     void setBvaRate(const LiveActor *, f32);

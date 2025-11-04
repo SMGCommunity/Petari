@@ -21,14 +21,14 @@ namespace {
     static const s32 sRetryMax = 10;
 
     NWC24Messenger* getNWC24Messenger() NO_INLINE {
-        return SingletonHolder<GameSystem>::get()->mSequenceDirector->mMessenger;
+        return SingletonHolder<GameSystem>::get()->mSequenceDirector->mNWC24Messenger;
     }
 };
 
 NWC24Messenger::NWC24Messenger(const char* pName) :
     NameObj(pName)
 {
-    mSendTask = new NWC24MessengerSub::SendTask();
+    mForegroundTask = new NWC24MessengerSub::SendTask();
     mBackgroundTaskArray = new NWC24MessengerSub::SendTask[BACKGROUND_TASK_NUM];
     mSendState = new NWC24MessengerSub::SendState(this);
     mSystem = new NWC24System(MR::getStationedHeapGDDR3(), 18);
@@ -53,14 +53,14 @@ void NWC24Messenger::draw() const {
 
 void NWC24Messenger::send(
     const char* pTaskName,
-    const wchar_t* pParam2,
-    const wchar_t* pParam3,
-    const u8* pParam4,
-    u32 param5,
-    bool param6,
-    bool param7,
-    u16 param8,
-    u8 param9)
+    const wchar_t* pMessage,
+    const wchar_t* pAltName,
+    const u8* pPicture,
+    u32 pictureSize,
+    bool isBG,
+    bool isMsgLedPattern,
+    u16 tag,
+    u8 delayHours)
 {
     if (_1C) {
         return;
@@ -68,7 +68,7 @@ void NWC24Messenger::send(
 
     NWC24MessengerSub::SendTask* pTask;
 
-    if (param6) {
+    if (isBG) {
         int i;
 
         for (i = 0; i < BACKGROUND_TASK_NUM; i++) {
@@ -80,24 +80,24 @@ void NWC24Messenger::send(
         pTask = &mBackgroundTaskArray[i];
     }
     else {
-        pTask = mSendTask;
+        pTask = mForegroundTask;
     }
 
     if (pTask != nullptr) {
         pTask->_0 = true;
-        pTask->_1 = param6;
+        pTask->mIsBG = isBG;
         pTask->_2 = false;
-        pTask->_3 = param7;
+        pTask->mIsMsgLedPattern = isMsgLedPattern;
         pTask->mRetryNo = 0;
         pTask->mErr = NWC24_OK;
         pTask->mErrCode = 0;
-        pTask->_14 = param8;
-        pTask->_16 = param9;
+        pTask->mTag = tag;
+        pTask->mDelayHours = delayHours;
         pTask->mTaskName = pTaskName;
-        pTask->_1C = pParam2;
-        pTask->_20 = pParam3;
-        pTask->_24 = pParam4;
-        pTask->_28 = param5;
+        pTask->mMessage = pMessage;
+        pTask->mAltName = pAltName;
+        pTask->mPicture = pPicture;
+        pTask->mPictureSize = pictureSize;
     }
 }
 
@@ -136,8 +136,8 @@ bool NWC24Messenger::isError(const char* pTaskName) const {
 }
 
 void NWC24Messenger::prepareReset() {
-    mSendTask->_0 = false;
-    mSendTask->_2 = true;
+    mForegroundTask->_0 = false;
+    mForegroundTask->_2 = true;
 
     for (int i = 0; i < BACKGROUND_TASK_NUM; i++) {
         mBackgroundTaskArray[i]._0 = false;
@@ -164,10 +164,10 @@ void NWC24Messenger::reset() {
 }
 
 NWC24MessengerSub::SendTask* NWC24Messenger::findTask(const char* pTaskName) const {
-    if (MR::isEqualString(mSendTask->mTaskName, pTaskName)
-        && mSendTask->_0)
+    if (MR::isEqualString(mForegroundTask->mTaskName, pTaskName)
+        && mForegroundTask->_0)
     {
-        return mSendTask;
+        return mForegroundTask;
     }
 
     for (int i = 0; i < BACKGROUND_TASK_NUM; i++) {
@@ -184,8 +184,8 @@ NWC24MessengerSub::SendTask* NWC24Messenger::findTask(const char* pTaskName) con
 NWC24MessengerSub::SendTask* NWC24Messenger::selectTask() const {
     NWC24MessengerSub::SendTask* pTask = nullptr;
 
-    if (mSendTask->_0 && !mSendTask->_2) {
-        pTask = mSendTask;
+    if (mForegroundTask->_0 && !mForegroundTask->_2) {
+        pTask = mForegroundTask;
     }
     else {
         for (int i = 0; i < BACKGROUND_TASK_NUM; i++) {
@@ -301,12 +301,12 @@ namespace NWC24MessengerSub {
             return;
         }
 
-        if (!mTask->_1) {
+        if (!mTask->mIsBG) {
             if (mTask->mRetryNo > 0 && isEndSysInfoMini()) {
                 const char* pMessageId = "WiiMessageSending";
 
                 if (mMiniWindow != nullptr) {
-                    mMiniWindow->appear(pMessageId, SysInfoWindow::INFOTYPE_1, SysInfoWindow::TEXTPOS_0, SysInfoWindow::MESSAGETYPE_1);
+                    mMiniWindow->appear(pMessageId, SysInfoWindow::Type_Blocking, SysInfoWindow::TextPos_Center, SysInfoWindow::MessageType_System);
                 }
             }
 
@@ -365,7 +365,7 @@ namespace NWC24MessengerSub {
             doneTask();
 
             if (selectTask() != nullptr) {
-                if (!mTask->_1) {
+                if (!mTask->mIsBG) {
                     setNerve(&SendStateNrvRunFG::sInstance);
                 }
                 else {
@@ -438,7 +438,7 @@ namespace NWC24MessengerSub {
 
     void SendState::exeUpdateLimitFG() {
         if (MR::isFirstStep(this)) {
-            MR::updateWiiMailSentSize(mTask->_10);
+            MR::updateWiiMailSentSize(mTask->mSentSize);
             GameSequenceFunction::startTotalMailSizeSaveSequence();
         }
 
@@ -455,7 +455,7 @@ namespace NWC24MessengerSub {
             const char* pMessageId = "WC24_04";
 
             if (mWindow != nullptr) {
-                mWindow->appear(pMessageId, SysInfoWindow::INFOTYPE_0, SysInfoWindow::TEXTPOS_0, SysInfoWindow::MESSAGETYPE_1);
+                mWindow->appear(pMessageId, SysInfoWindow::Type_Key, SysInfoWindow::TextPos_Center, SysInfoWindow::MessageType_System);
             }
         }
 
@@ -516,7 +516,7 @@ namespace NWC24MessengerSub {
                 pMessageId = "WC24_09";
 
                 if (mWindow != nullptr) {
-                    mWindow->appear(pMessageId, SysInfoWindow::INFOTYPE_0, SysInfoWindow::TEXTPOS_0, SysInfoWindow::MESSAGETYPE_1);
+                    mWindow->appear(pMessageId, SysInfoWindow::Type_Key, SysInfoWindow::TextPos_Center, SysInfoWindow::MessageType_System);
                 }
                 break;
             case NWC24_ERR_NAND_CORRUPT:
@@ -526,14 +526,14 @@ namespace NWC24MessengerSub {
                 pMessageId = "WC24_08";
 
                 if (mWindow != nullptr) {
-                    mWindow->appear(pMessageId, SysInfoWindow::INFOTYPE_0, SysInfoWindow::TEXTPOS_0, SysInfoWindow::MESSAGETYPE_1);
+                    mWindow->appear(pMessageId, SysInfoWindow::Type_Key, SysInfoWindow::TextPos_Center, SysInfoWindow::MessageType_System);
                 }
                 break;
             default:
                 pMessageId = "WC24_10";
 
                 if (mWindow != nullptr) {
-                    mWindow->appear(pMessageId, SysInfoWindow::INFOTYPE_0, SysInfoWindow::TEXTPOS_0, SysInfoWindow::MESSAGETYPE_1);
+                    mWindow->appear(pMessageId, SysInfoWindow::Type_Key, SysInfoWindow::TextPos_Center, SysInfoWindow::MessageType_System);
                 }
                 break;
             }
@@ -560,14 +560,14 @@ namespace NWC24MessengerSub {
                 pMessageId = "WC24_10";
 
                 if (mWindow != nullptr) {
-                    mWindow->appear(pMessageId, SysInfoWindow::INFOTYPE_0, SysInfoWindow::TEXTPOS_0, SysInfoWindow::MESSAGETYPE_1);
+                    mWindow->appear(pMessageId, SysInfoWindow::Type_Key, SysInfoWindow::TextPos_Center, SysInfoWindow::MessageType_System);
                 }
                 break;
             default:
                 pMessageId = "WC24_09";
 
                 if (mWindow != nullptr) {
-                    mWindow->appear(pMessageId, SysInfoWindow::INFOTYPE_0, SysInfoWindow::TEXTPOS_0, SysInfoWindow::MESSAGETYPE_1);
+                    mWindow->appear(pMessageId, SysInfoWindow::Type_Key, SysInfoWindow::TextPos_Center, SysInfoWindow::MessageType_System);
                 }
                 break;
             }
@@ -588,14 +588,14 @@ namespace NWC24MessengerSub {
                 pMessageId = "WC24_10";
 
                 if (mWindow != nullptr) {
-                    mWindow->appear(pMessageId, SysInfoWindow::INFOTYPE_0, SysInfoWindow::TEXTPOS_0, SysInfoWindow::MESSAGETYPE_1);
+                    mWindow->appear(pMessageId, SysInfoWindow::Type_Key, SysInfoWindow::TextPos_Center, SysInfoWindow::MessageType_System);
                 }
                 break;
             default:
                 pMessageId = "WC24_SENDLIMIT";
 
                 if (mWindow != nullptr) {
-                    mWindow->appear(pMessageId, SysInfoWindow::INFOTYPE_0, SysInfoWindow::TEXTPOS_0, SysInfoWindow::MESSAGETYPE_1);
+                    mWindow->appear(pMessageId, SysInfoWindow::Type_Key, SysInfoWindow::TextPos_Center, SysInfoWindow::MessageType_System);
                 }
                 break;
             }
@@ -639,15 +639,15 @@ namespace NWC24MessengerSub {
 
     bool SendState::send() {
         if (!mHost->mSystem->send(
-            reinterpret_cast<const u16*>(mTask->_1C),
-            reinterpret_cast<const u16*>(mTask->_20),
+            reinterpret_cast<const u16*>(mTask->mMessage),
+            reinterpret_cast<const u16*>(mTask->mAltName),
             nullptr,
             0,
-            mTask->_24,
-            mTask->_28,
-            mTask->_14,
-            mTask->_3,
-            mTask->_16))
+            mTask->mPicture,
+            mTask->mPictureSize,
+            mTask->mTag,
+            mTask->mIsMsgLedPattern,
+            mTask->mDelayHours))
         {
             setNerve(&SendStateNrvRetry::sInstance);
 
@@ -658,7 +658,7 @@ namespace NWC24MessengerSub {
     }
 
     bool SendState::checkFinish() {
-        return mHost->mSystem->isSent(&mTask->mErr, &mTask->_10);
+        return mHost->mSystem->isSent(&mTask->mErr, &mTask->mSentSize);
     }
 
     bool SendState::closeSystem() {
@@ -681,7 +681,7 @@ namespace NWC24MessengerSub {
     void SendState::doneTask() {
         mTask->_2 = true;
 
-        if (mTask->_1) {
+        if (mTask->mIsBG) {
             mTask->_0 = false;
         }
     }
@@ -691,7 +691,7 @@ namespace NWC24MessengerSub {
             return;
         }
 
-        mWindow->appear(pParam1, SysInfoWindow::INFOTYPE_0, SysInfoWindow::TEXTPOS_0, SysInfoWindow::MESSAGETYPE_1);
+        mWindow->appear(pParam1, SysInfoWindow::Type_Key, SysInfoWindow::TextPos_Center, SysInfoWindow::MessageType_System);
 
         if (param2 == 0) {
             return;
@@ -724,16 +724,16 @@ namespace NWC24MessengerSub {
 
     SendTask::SendTask() :
         _0(false),
-        _1(false),
+        mIsBG(false),
         _2(false),
-        _3(false),
+        mIsMsgLedPattern(false),
         mRetryNo(0),
         mErr(NWC24_OK),
         mErrCode(0),
-        _10(0),
+        mSentSize(0),
         mTaskName(nullptr),
-        _1C(nullptr),
-        _20(nullptr)
+        mMessage(nullptr),
+        mAltName(nullptr)
     {
         
     }
@@ -746,8 +746,8 @@ namespace MR {
         mSenderID(nullptr),
         mImage(nullptr),
         mImageSize(0),
-        mBG(true),
-        mLed(true),
+        mIsBG(true),
+        mIsLed(true),
         mTag(0),
         mDelay(0)
     {
@@ -768,15 +768,15 @@ namespace MR {
     }
 
     void SendMailObj::setBGEnable() {
-        mBG = true;
+        mIsBG = true;
     }
 
     void SendMailObj::setBGDisable() {
-        mBG = false;
+        mIsBG = false;
     }
 
     void SendMailObj::setLedOff() {
-        mLed = false;
+        mIsLed = false;
     }
 
     void SendMailObj::setTag(u16 tag) {
@@ -788,18 +788,18 @@ namespace MR {
     }
 
     void SendMailObj::send() {
-        getNWC24Messenger()->send(mTaskName, mMessage, mSenderID, mImage, mImageSize, mBG, mLed, mTag, mDelay);
+        getNWC24Messenger()->send(mTaskName, mMessage, mSenderID, mImage, mImageSize, mIsBG, mIsLed, mTag, mDelay);
     }
 
-    void termMail(const char* pParam1) {
-        getNWC24Messenger()->term(pParam1);
+    void termMail(const char* pTaskName) {
+        getNWC24Messenger()->term(pTaskName);
     }
 
-    bool isMailSent(const char* pParam1) {
-        return getNWC24Messenger()->isSent(pParam1);
+    bool isMailSent(const char* pTaskName) {
+        return getNWC24Messenger()->isSent(pTaskName);
     }
 
-    bool isMailErrorHappened(const char* pParam1) {
-        return getNWC24Messenger()->isError(pParam1);
+    bool isMailErrorHappened(const char* pTaskName) {
+        return getNWC24Messenger()->isError(pTaskName);
     }
 };

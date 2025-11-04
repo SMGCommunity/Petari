@@ -56,7 +56,7 @@ void TalkNodeCtrl::forwardFlowNode() {
         mCurrentNode = msg->getNode(idx);
     }
     else if (node->mNodeType == 3) {
-        u16 idx = node->mNextIdx;
+        u16 idx = node->mIndex;
         MessageData* msg = MessageSystem::getSceneMessageData();
         mCurrentNode = msg->getBranchNode(idx);
     }
@@ -71,7 +71,7 @@ bool TalkNodeCtrl::isExistNextNode() const {
 bool TalkNodeCtrl::isNextNodeMessage() const {
     TalkNode* next = getNextNode();
 
-    if (next != nullptr || next->mNodeType != 1) {
+    if (next == nullptr || next->mNodeType != 1) {
         return false;
     }
 

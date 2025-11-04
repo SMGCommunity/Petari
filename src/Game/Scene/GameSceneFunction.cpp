@@ -6,7 +6,7 @@
 
 namespace {
     GameScene* getGameScene() NO_INLINE {
-        return SingletonHolder<GameSystem>::get()->mSceneController->mGameScene;
+        return static_cast<GameScene*>(SingletonHolder<GameSystem>::get()->mSceneController->mScene);
     }
 };
 

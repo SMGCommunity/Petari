@@ -238,21 +238,21 @@ bool PlanetMapCreator::isScenarioForceLow(const PlanetMapData *pData) const {
 }
 
 void PlanetMapCreatorFunction::makeArchiveList(NameObjArchiveListCollector *pArchiveList, const JMapInfoIter &rIter, const char *pName) {
-    MR::getSceneObj<PlanetMapCreator*>(SceneObj_PlanetMapCreator)->makeArchiveListPlanet(pArchiveList, rIter, pName);
+    MR::getSceneObj<PlanetMapCreator>(SceneObj_PlanetMapCreator)->makeArchiveListPlanet(pArchiveList, rIter, pName);
 }
 
 // PlanetMapCreatorFunction::getPlanetMapCreator
 
 bool PlanetMapCreatorFunction::isLoadArchiveAfterScenarioSelected(const char *pArchive) {
-    bool isExistTableData = MR::getSceneObj<PlanetMapCreator*>(SceneObj_PlanetMapCreator)->getTableData(pArchive);
+    bool isExistTableData = MR::getSceneObj<PlanetMapCreator>(SceneObj_PlanetMapCreator)->getTableData(pArchive);
 
     if (!isExistTableData) {
         return false;
     }
 
-    return isDataForceLow(MR::getSceneObj<PlanetMapCreator*>(SceneObj_PlanetMapCreator)->getTableData(pArchive));
+    return isDataForceLow(MR::getSceneObj<PlanetMapCreator>(SceneObj_PlanetMapCreator)->getTableData(pArchive));
 }
 
 bool PlanetMapCreatorFunction::isRegisteredObj(const char *pArchive) {
-    return MR::getSceneObj<PlanetMapCreator*>(SceneObj_PlanetMapCreator)->getTableData(pArchive);
+    return MR::getSceneObj<PlanetMapCreator>(SceneObj_PlanetMapCreator)->getTableData(pArchive);
 }

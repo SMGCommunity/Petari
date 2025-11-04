@@ -8,7 +8,6 @@ class BrosButton : public LayoutActor {
 public:
     BrosButton(const char* pName);
 
-    virtual ~BrosButton();
     virtual void init(const JMapInfoIter& rIter);
     virtual void appear();
     virtual void control();

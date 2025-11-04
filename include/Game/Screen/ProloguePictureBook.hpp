@@ -8,7 +8,6 @@ class ProloguePictureBook : public LayoutActor {
 public:
     ProloguePictureBook();
 
-    virtual ~ProloguePictureBook();
     virtual void init(const JMapInfoIter& rIter);
     virtual void appear();
     virtual void kill();

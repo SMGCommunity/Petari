@@ -5,9 +5,9 @@
 
 class LayoutActor;
 class LiveActor;
+class StarPointerOnOffController;
 
 namespace {
-    class StarPointerOnOffController;
     class StarPointerTargetInfo;
 
     typedef bool (*StarPointerFunc1)(StarPointerTargetInfo*, const TVec3f&, const TVec2f&, f32, f32);

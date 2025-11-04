@@ -1,11 +1,23 @@
 #include "Game/System/LayoutHolder.hpp"
+#include <JSystem/JKernel/JKRArchive.hpp>
+
+namespace {
+    const char* sLayoutExt[] = {
+        ".brlyt",
+        nullptr,
+    };
+    const char* sAnimationExt[] = {
+        ".brlan",
+        nullptr,
+    };
+};
 
 LayoutHolder::LayoutHolder(JKRArchive &rArchive) : nw4r::lyt::ResourceAccessor(), mArchive(&rArchive) {
     initializeArc();
 }
 
 LayoutHolder::~LayoutHolder() {
-
+    
 }
 
 /*

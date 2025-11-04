@@ -10,9 +10,6 @@ public:
     /// @param timeLimit The number of seconds to initialize the timer with.
     CometEventExecutorTimeLimit(u32 timeLimit);
 
-    /// @brief Destroys the `CometEventExecutorTimeLimit`.
-    virtual ~CometEventExecutorTimeLimit() {}
-
     virtual void init(const JMapInfoIter&);
     virtual void appear();
     virtual void kill();

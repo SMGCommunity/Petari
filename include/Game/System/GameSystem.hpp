@@ -14,10 +14,6 @@ class HomeButtonLayout;
 class HomeButtonStateNotifier;
 class SystemWipeHolder;
 
-#define GX_FIFO_SIZE 0x80000
-
-#define INIT_AUDIO_KEY "オーディオ初期化" // "Audio Initialization"
-
 #ifdef __MWERKS__
 void main(void);
 #endif
@@ -26,9 +22,6 @@ class GameSystem : public NerveExecutor {
 public:
     /// @brief Creates a new `GameSystem`.
     GameSystem();
-
-    /// @brief Destroys the `GameSystem`.
-    virtual ~GameSystem() {}
 
     void init();
     bool isExecuteLoadSystemArchive() const;
