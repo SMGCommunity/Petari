@@ -1,8 +1,18 @@
+#include "Game/Speaker/SpkMixingBuffer.hpp"
+#include "Game/Speaker/SpkSound.hpp"
 #include "Game/Speaker/SpkSpeakerCtrl.hpp"
 #include <revolution/wpad.h>
 #include <mem.h>
 
-SpkSoundHandle sAdjustSoundHandle[4];
+SpkSoundHandle sAdjustSoundHandle[WPAD_MAX_CONTROLLERS];
+SpkMixingBuffer* sMixingBuffer;
+SpeakerInfo sSpeakerInfo[WPAD_MAX_CONTROLLERS];
+
+namespace {
+    SpeakerInfo& getSpeakerInfo(s32 idx) {
+        return sSpeakerInfo[idx];
+    }
+};
 
 void SpkSpeakerCtrl::setMixingBuffer(SpkMixingBuffer *pMixingBuffer) {
     BOOL status = OSDisableInterrupts();
@@ -66,7 +76,6 @@ void SpkSpeakerCtrl::setSpeakerPlay(s32 idx) {
     OSRestoreInterrupts(state);
 }
 
-#ifdef NON_MATCHING
 void SpkSpeakerCtrl::startPlayCallback(s32 idx, s32 a2) {
     BOOL enabled = OSDisableInterrupts();
 
@@ -86,7 +95,6 @@ void SpkSpeakerCtrl::startPlayCallback(s32 idx, s32 a2) {
 
     OSRestoreInterrupts(enabled);
 }
-#endif
 
 void SpkSpeakerCtrl::setSpeakerOff(s32 idx) {
     sSpeakerInfo[idx]._1 = 0;
@@ -116,7 +124,7 @@ void SpkSpeakerCtrl::reconnect(s32 idx) {
 }
 
 void SpkSpeakerCtrl::framework() {
-    for (int i = 0; i < 4; i++) {
+    for (s32 i = 0; i < WPAD_MAX_CONTROLLERS; i++) {
         SpkSpeakerCtrl::continuousUsingProcess(i);
         SpkSpeakerCtrl::reconnectProcess(i);
         SpkSpeakerCtrl::retryConnection(i);
@@ -136,7 +144,7 @@ void SpkSpeakerCtrl::reconnectProcess(s32 idx) {
             case 2:
                 sSpeakerInfo[idx]._2C--;
 
-                if (sSpeakerInfo[idx]._2C > 0) {
+                if (sSpeakerInfo[idx]._2C <= 0) {
                     sSpeakerInfo[idx]._2C = -1;
                     sSpeakerInfo[idx]._28 = 3;
                 }
@@ -165,7 +173,7 @@ void SpkSpeakerCtrl::continuousUsingProcess(s32 idx) {
 }
 
 void SpkSpeakerCtrl::updateSpeaker(OSAlarm *, OSContext *) {
-    for (s32 i = 0; i < 4; i++) {
+    for (s32 i = 0; i < WPAD_MAX_CONTROLLERS; i++) {
         if (sMixingBuffer != nullptr) {
             SpeakerInfo& inf = getSpeakerInfo(i);
 
@@ -205,13 +213,10 @@ void SpkSpeakerCtrl::updateSpeaker(OSAlarm *, OSContext *) {
 }
 
 bool SpkSpeakerCtrl::isEnable(s32 idx) {
-    bool ret = false;
-
-    if (WPADIsSpeakerEnabled(idx) && sSpeakerInfo[idx]._1 != 0 && sSpeakerInfo[idx]._24 != 0 && sMixingBuffer != 0) {
-        ret = true;
-    }
-
-    return ret;
+    return WPADIsSpeakerEnabled(idx)
+        && sSpeakerInfo[idx]._1 != 0
+        && sSpeakerInfo[idx]._24 == 0
+        && sMixingBuffer != nullptr;
 }
 
 void SpkSpeakerCtrl::extensionProcess(s32, s32) {

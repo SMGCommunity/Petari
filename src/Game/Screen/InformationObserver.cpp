@@ -25,8 +25,8 @@ static InformationObserverAttribute sAttr[] = {
     {"InformationObserverIce", true, "BGM_FIRST_MORPH_A", "BGM_ICE_B"},
     {"InformationObserverFlying", true, "BGM_FIRST_MORPH_A", "BGM_FLYING_B"},
     {"InformationObserverInvincible", true, "BGM_FIRST_MORPH_A", "BGM_MUTEKI_B"},
-    {"InformationObserverLifeUpMario", false, nullptr, nullptr},
-    {"InformationObserverOneUp", false, nullptr, nullptr},
+    {"InformationObserverLifeUpMario", true, nullptr, nullptr},
+    {"InformationObserverOneUp", true, nullptr, nullptr},
     {"InformationObserverSpin", false, nullptr, nullptr},
 };
 

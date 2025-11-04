@@ -126,7 +126,7 @@ namespace {
 };
 
 namespace MR {
-    u8 getDecidedLanguageFromIPL() {
+    u32 getDecidedLanguageFromIPL() {
         s32 language = SCGetLanguage();
         s32 i;
 
