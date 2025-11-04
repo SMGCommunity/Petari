@@ -30,11 +30,11 @@ void MarioActor::initBlackHoleOut() {
 }
 
 void MarioActor::exeGameOverBlackHole2(){
-    if(MR::isFirstStep(this)) {
+    if (MR::isFirstStep(this)) {
         MR::setCubeBgmChangeInvalid();
         MR::clearBgmQueue();
         
-        if(!(mBlackHole->tryStartDemoCamera()) && !(mMario->mMovementStates_HIGH_WORD >> 8 & 0x1)) {
+        if (!(mBlackHole->tryStartDemoCamera()) && !(mMario->mMovementStates_HIGH_WORD >> 8 & 0x1)) {
             MR::startBlackHoleCamera("ブラックホール", mBlackHolePosition, mPosition);
         }
         
@@ -52,9 +52,9 @@ void MarioActor::exeGameOverBlackHole2(){
         MR::deactivateDefaultGameLayout();
     }
     
-    if(getNerveStep() == 60) {
+    if (getNerveStep() == 60) {
         
-        if(!MR::getPlayerLeft()) {
+        if (!MR::getPlayerLeft()) {
             MR::startPlayerEvent("ゲームオーバー");
         }
         else {
@@ -62,7 +62,7 @@ void MarioActor::exeGameOverBlackHole2(){
         }
     }
     
-    if(getNerveStep() == mConst->getTable()->mBlackHoleHideTime) {
+    if (getNerveStep() == mConst->getTable()->mBlackHoleHideTime) {
         _482 = true;
         
         MR::hidePlayer();
@@ -72,7 +72,7 @@ void MarioActor::exeGameOverBlackHole2(){
     f32 nervestepfloat = getNerveStep();
     f32 flt = 1.0f;
     
-    if(nervestepfloat < 180.0f) {
+    if (nervestepfloat < 180.0f) {
         flt = MR::sqrt(nervestepfloat/180.0f);
     }
     
@@ -80,7 +80,7 @@ void MarioActor::exeGameOverBlackHole2(){
     angle = nervestepfloat * angle;
     angle = flt * angle;
     
-    if(angle > mConst->getTable()->mBlackHoleRotateLimit) {
+    if (angle > mConst->getTable()->mBlackHoleRotateLimit) {
         angle = mConst->getTable()->mBlackHoleRotateLimit;
     }
     
@@ -94,7 +94,7 @@ void MarioActor::exeGameOverBlackHole2(){
     
     f32 distChangeFactor = 180 - getNerveStep();
     
-    if(distChangeFactor < 0.0f) {
+    if (distChangeFactor < 0.0f) {
         distChangeFactor = 0.0f;
     }
     
@@ -105,7 +105,7 @@ void MarioActor::exeGameOverBlackHole2(){
     f32 scale = getNerveStep() * mConst->getTable()->mBlackHoleScaleSpeed;
     scale = 1-scale;
     
-    if(scale < mConst->getTable()->mBlackHoleScaleLimit){
+    if (scale < mConst->getTable()->mBlackHoleScaleLimit){
         scale = mConst->getTable()->mBlackHoleScaleLimit;
     }
     
