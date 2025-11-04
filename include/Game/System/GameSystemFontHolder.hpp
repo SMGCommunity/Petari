@@ -18,7 +18,6 @@ public:
     void createFontFromEmbeddedData();
     void createFontFromFile();
 
-private:
     /* 0x00 */ void* _0;
     /* 0x04 */ JKRMemArchive* _4;
     /* 0x08 */ nw4r::ut::ResFont* mEmbeddedMessageFont;
