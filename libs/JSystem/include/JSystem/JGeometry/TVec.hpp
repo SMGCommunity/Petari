@@ -266,7 +266,7 @@ namespace JGeometry {
         }
 
         inline void set(f32 val) {
-            z = val;
+            x = val;
             y = val;
             z = val;
         }
@@ -388,7 +388,7 @@ namespace JGeometry {
             this->z *= -1.0f;
         }
 
-        void scale(f32);
+        void scale(f32 scale);
         void scale(f32, const TVec3 &);
         void negate();
         f32 squared() const;
