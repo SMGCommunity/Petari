@@ -59,7 +59,10 @@ namespace JGeometry {
         void setMax(const TVec2<T> &);
 
         void sub(const TVec2<T> &rOther);
-        T length() const;
+        
+        T length() const {
+            return JGeometry::TUtil<T>::sqrt((x * x) + (y * y));
+        };
         T squared() const;
         T squared(const TVec2<T> &) const;
         T dot(const TVec2<T> &rOther) const;
