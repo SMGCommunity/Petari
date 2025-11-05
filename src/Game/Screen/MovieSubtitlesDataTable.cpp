@@ -5,7 +5,7 @@
 #define NULL_ENTRY { nullptr, 0xFFFFFFFF, 0xFFFFFFFF }
 
 namespace {
-    static SubtitleInfo sSubtitlesInfo[7] = {
+    static const SubtitleInfo sSubtitlesInfo[7] = {
         { "/MovieData/PrologueA.thp", 
             {
                 ENTRY("Layout_StoryDemoKoopaTalk000", 0xF2F, 0x84),
@@ -73,7 +73,7 @@ namespace {
 };
 
 namespace MovieSubtitlesUtil {
-    inline SubtitleInfo* getSubtitleInfo(const SubtitleInfo* pInfos, const char *pTag) {
+    inline const SubtitleInfo* getSubtitleInfo(const SubtitleInfo* pInfos, const char *pTag) {
         for (u32 i = 0; i < 7; i++) {
             if (MR::isEqualString(pTag, pInfos[i].mFile)) {
                 return &sSubtitlesInfo[i];
@@ -83,7 +83,7 @@ namespace MovieSubtitlesUtil {
         return nullptr;
     }
 
-    SubtitleMessageInfo* getSubtitlesMessageInfo(const char *pTag, s32 idx) {
+    const SubtitleMessageInfo* getSubtitlesMessageInfo(const char *pTag, s32 idx) {
         return &getSubtitleInfo(sSubtitlesInfo, pTag)->mMessageInfos[idx];
     }
 
@@ -92,7 +92,7 @@ namespace MovieSubtitlesUtil {
     }
 
     const char* getSubtitlesMessageId(const char *pTag, s32 idx) {
-        SubtitleMessageInfo* inf = getSubtitlesMessageInfo(pTag, idx);
+        const SubtitleMessageInfo* inf = getSubtitlesMessageInfo(pTag, idx);
         if (inf != nullptr) {
             return inf->mMessageID;
         }
@@ -101,7 +101,7 @@ namespace MovieSubtitlesUtil {
     }
 
     u32 getSubtitlesStartStep(const char *pTag, s32 idx) {
-        SubtitleMessageInfo* inf = getSubtitlesMessageInfo(pTag, idx);
+        const SubtitleMessageInfo* inf = getSubtitlesMessageInfo(pTag, idx);
         if (inf != nullptr) {
             return inf->mStartStep;
         }
@@ -110,7 +110,7 @@ namespace MovieSubtitlesUtil {
     }
 
     u32 getSubtitlesAppearTime(const char *pTag, s32 idx) {
-        SubtitleMessageInfo* inf = getSubtitlesMessageInfo(pTag, idx);
+        const SubtitleMessageInfo* inf = getSubtitlesMessageInfo(pTag, idx);
         if (inf != nullptr) {
             return inf->mAppearTime;
         }

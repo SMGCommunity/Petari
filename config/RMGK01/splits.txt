@@ -7782,7 +7782,7 @@ Game/Screen/GalaxyNamePlate.cpp:
 Game/Screen/GalaxyNamePlateDrawer.cpp:
 	.text       start:0x80360B04 end:0x803613A4
 	.data       start:0x805D5500 end:0x805D5540
-	.sdata      start:0x806B23E8 end:0x806B2400
+	.sdata      start:0x806B23E8 end:0x806B23F8
 
 Game/Screen/GalaxySelectBackButton.cpp:
 	.text       start:0x803613A4 end:0x803616C0
@@ -7875,6 +7875,7 @@ Game/Screen/InformationMessage.cpp:
 	.text       start:0x80366370 end:0x80366738
 	.ctors      start:0x8052F2A0 end:0x8052F2A4
 	.data       start:0x805D5D18 end:0x805D5E08
+	.sdata      start:0x806B23F8 end:0x806B2400
 	.sbss       start:0x806B6900 end:0x806B6910
 
 Game/Screen/InformationObserver.cpp:
@@ -8018,7 +8019,7 @@ Game/Screen/MovieSubtitles.cpp:
 
 Game/Screen/MovieSubtitlesDataTable.cpp:
 	.text       start:0x80372C78 end:0x80372E28
-	.rodata     start:0x8053A930 end:0x8053AC38
+	.rodata     start:0x8053A930 end:0x8053AAF0
 	.data       start:0x805D76D0 end:0x805D7960
 
 Game/Screen/MovieStarter.cpp:
@@ -8028,17 +8029,19 @@ Game/Screen/MovieStarter.cpp:
 Game/Screen/NoteCounter.cpp:
 	.text       start:0x80373124 end:0x80373794
 	.ctors      start:0x8052F2D8 end:0x8052F2DC
+	.rodata     start:0x8053AAF0 end:0x8053AAF8
 	.data       start:0x805D79F8 end:0x805D7A90
 	.sbss       start:0x806B6A38 end:0x806B6A50
 	.sdata2     start:0x806C1140 end:0x806C1150
 
 Game/Screen/odh.cpp:
 	.text       start:0x80373794 end:0x803748E4
-	.rodata     start:0x8053AC38 end:0x8053B150
+	.rodata     start:0x8053AAF8 end:0x8053B148
 	.sdata2     start:0x806C1150 end:0x806C1168
 
 Game/Screen/OdhConverter.cpp:
 	.text       start:0x803748E4 end:0x80374DC8
+	.rodata     start:0x8053B148 end:0x8053B150
 	.data       start:0x805D7A90 end:0x805D7AD0
 	.sdata2     start:0x806C1168 end:0x806C117C
 
@@ -9042,7 +9045,7 @@ Game/Util/ParabolicPath.cpp:
 Game/Util/PlayerUtil.cpp:
 	.text       start:0x803F3500 end:0x803F4BF0
 	.ctors      start:0x8052F3B8 end:0x8052F3BC
-	.data       start:0x805E1DD8 end:0x805E2070
+	.data       start:0x805E1DD8 end:0x805E1E20
 	.sdata2     start:0x806C1878 end:0x806C1888
 
 Game/Util/RailGraphUtil.cpp:
@@ -9052,11 +9055,13 @@ Game/Util/RailGraphUtil.cpp:
 Game/Util/RailUtil.cpp:
 	.text       start:0x803F50E4 end:0x803F70D4
 	.rodata     start:0x8053EC48 end:0x8053EC50
+	.data       start:0x805E1E20 end:0x805E1EC8
 	.sdata2     start:0x806C1898 end:0x806C18A8
 
 Game/Util/SceneUtil.cpp:
 	.text       start:0x803F70D4 end:0x803F7FF4
 	.ctors      start:0x8052F3BC end:0x8052F3C0
+	.data       start:0x805E1EC8 end:0x805E1FF8
 	.bss        start:0x8060C580 end:0x8060C5A0
 
 Game/Util/SchedulerUtil.cpp:
@@ -9065,6 +9070,7 @@ Game/Util/SchedulerUtil.cpp:
 Game/Util/ScreenUtil.cpp:
 	.text       start:0x803F808C end:0x803F9848
 	.rodata     start:0x8053EC50 end:0x8053EC58
+	.data       start:0x805E1FF8 end:0x805E2048
 	.sdata2     start:0x806C18A8 end:0x806C18B8
 
 Game/Util/SequenceUtil.cpp:

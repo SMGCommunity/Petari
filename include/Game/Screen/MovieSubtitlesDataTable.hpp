@@ -14,7 +14,7 @@ struct SubtitleInfo {
 };
 
 namespace MovieSubtitlesUtil {
-    SubtitleMessageInfo* getSubtitlesMessageInfo(const char *, s32);
+    const SubtitleMessageInfo* getSubtitlesMessageInfo(const char *, s32);
     bool isExistSubtitles(const char *, s32);
     const char* getSubtitlesMessageId(const char *, s32);
     u32 getSubtitlesStartStep(const char *, s32);
