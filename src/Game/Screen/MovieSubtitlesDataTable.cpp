@@ -1,131 +1,144 @@
 #include "Game/Screen/MovieSubtitlesDataTable.hpp"
-#include "Game/Util.hpp"
+#include "Game/Util/StringUtil.hpp"
 
 #define ENTRY(name, step, appear) { name, step, appear }
-#define NULL_ENTRY { nullptr, 0xFFFFFFFF, 0xFFFFFFFF }
+#define NULL_ENTRY { nullptr, -1, -1 }
 
 namespace {
-    static const SubtitleInfo sSubtitlesInfo[7] = {
-        { "/MovieData/PrologueA.thp", 
+    static const SubtitleInfo sSubtitlesInfo[] = {
+        {
+            "/MovieData/PrologueA.thp", 
             {
-                ENTRY("Layout_StoryDemoKoopaTalk000", 0xF2F, 0x84),
-                ENTRY("Layout_StoryDemoKoopaTalk001", 0xFB4, 0x9A),
-                ENTRY("Layout_StoryDemoKoopaTalk002", 0x104F, 0x78),
-                ENTRY("Layout_StoryDemoKoopaTalk003", 0x1248, 0xB3),
-                ENTRY("Layout_StoryDemoKoopaTalk004", 0x11D0, 0x78),
-            }
+                ENTRY("Layout_StoryDemoKoopaTalk000", 3887, 132),
+                ENTRY("Layout_StoryDemoKoopaTalk001", 4020, 154),
+                ENTRY("Layout_StoryDemoKoopaTalk002", 4175, 120),
+                ENTRY("Layout_StoryDemoKoopaTalk003", 4680, 179),
+                ENTRY("Layout_StoryDemoKoopaTalk004", 4560, 120),
+            },
         },
-        { "/MovieData/PrologueB.thp", 
+        {
+            "/MovieData/PrologueB.thp", 
             {
-                ENTRY("Layout_StoryDemoPeachTalk000", 0x1338, 0x78),
-                ENTRY("Layout_StoryDemoKameckTalk000", 0x1554, 0xB4),
+                ENTRY("Layout_StoryDemoPeachTalk000", 4920, 120),
+                ENTRY("Layout_StoryDemoKameckTalk000", 5460, 180),
                 NULL_ENTRY,
                 NULL_ENTRY,
-                NULL_ENTRY
-            }
+                NULL_ENTRY,
+            },
         },
-        { "/MovieData/FinalBattle.thp", 
+        {
+            "/MovieData/FinalBattle.thp", 
             {
-                ENTRY("Layout_StoryDemoRosettaTalk000", 0xB9A, 0x9F),
-                ENTRY("Layout_StoryDemoRosettaTalk006", 0xC3A, 0xB4),
+                ENTRY("Layout_StoryDemoRosettaTalk000", 2970, 159),
+                ENTRY("Layout_StoryDemoRosettaTalk006", 3130, 180),
                 NULL_ENTRY,
                 NULL_ENTRY,
-                NULL_ENTRY
-            }
+                NULL_ENTRY,
+            },
         },
-        { "/MovieData/EpilogueA.thp", 
+        {
+            "/MovieData/EpilogueA.thp", 
             {
-                ENTRY("Layout_StoryDemoKoopaTalk005", 0x11FF, 0xBB),
-                ENTRY("Layout_StoryDemoKoopaTalk006", 0x12BB, 0xE2),
+                ENTRY("Layout_StoryDemoKoopaTalk005", 4607, 187),
+                ENTRY("Layout_StoryDemoKoopaTalk006", 4795, 226),
                 NULL_ENTRY,
                 NULL_ENTRY,
-                NULL_ENTRY
-            }
+                NULL_ENTRY,
+            },
         },
-        { "/MovieData/EpilogueB.thp", 
+        {
+            "/MovieData/EpilogueB.thp", 
             {
                 NULL_ENTRY,
                 NULL_ENTRY,
                 NULL_ENTRY,
                 NULL_ENTRY,
-                NULL_ENTRY
-            }
+                NULL_ENTRY,
+            },
         },
-        { "/MovieData/EndingA.thp", 
+        {
+            "/MovieData/EndingA.thp", 
             {
-                ENTRY("Layout_StoryDemoRosettaTalk001", 0x1374, 0x77),
-                ENTRY("Layout_StoryDemoRosettaTalk002", 0x13EC, 0x95),
-                ENTRY("Layout_StoryDemoRosettaTalk003", 0x1482, 0x78),
+                ENTRY("Layout_StoryDemoRosettaTalk001", 4980, 119),
+                ENTRY("Layout_StoryDemoRosettaTalk002", 5100, 149),
+                ENTRY("Layout_StoryDemoRosettaTalk003", 5250, 120),
                 NULL_ENTRY,
-                NULL_ENTRY
-            }
+                NULL_ENTRY,
+            },
         },
-        { "/MovieData/EndingB.thp", 
+        {
+            "/MovieData/EndingB.thp", 
             {
-                ENTRY("Layout_StoryDemoRosettaTalk004", 0x744, 0x86),
-                ENTRY("Layout_StoryDemoRosettaTalk005", 0x7CB, 0x113),
+                ENTRY("Layout_StoryDemoRosettaTalk004", 1860, 134),
+                ENTRY("Layout_StoryDemoRosettaTalk005", 1995, 275),
                 NULL_ENTRY,
                 NULL_ENTRY,
-                NULL_ENTRY
-            }
+                NULL_ENTRY,
+            },
         },
     };
-};
 
-namespace MovieSubtitlesUtil {
-    inline const SubtitleInfo* getSubtitleInfo(const SubtitleInfo* pInfos, const char *pTag) {
-        for (u32 i = 0; i < 7; i++) {
-            if (MR::isEqualString(pTag, pInfos[i].mFile)) {
+    const SubtitleInfo* getSubtitleInfo(const char *pMovieName) {
+        for (s32 i = 0; i < sizeof(sSubtitlesInfo) / sizeof(*sSubtitlesInfo); i++) {
+            if (MR::isEqualString(pMovieName, sSubtitlesInfo[i].mMovieName)) {
                 return &sSubtitlesInfo[i];
             }
         }
 
         return nullptr;
     }
+};
 
-    const SubtitleMessageInfo* getSubtitlesMessageInfo(const char *pTag, s32 idx) {
-        return &getSubtitleInfo(sSubtitlesInfo, pTag)->mMessageInfos[idx];
+namespace MovieSubtitlesUtil {
+    const SubtitleMessageInfo* getSubtitlesMessageInfo(const char *pMovieName, s32 idx) {
+        return &getSubtitleInfo(pMovieName)->mMessageInfo[idx];
     }
 
-    bool isExistSubtitles(const char *pTag, s32 idx) {
-        return getSubtitlesMessageInfo(pTag, idx)->mMessageID != 0;
+    bool isExistSubtitles(const char *pMovieName, s32 idx) {
+        return getSubtitlesMessageInfo(pMovieName, idx)->mMessageID != nullptr;
     }
 
-    const char* getSubtitlesMessageId(const char *pTag, s32 idx) {
-        const SubtitleMessageInfo* inf = getSubtitlesMessageInfo(pTag, idx);
-        if (inf != nullptr) {
-            return inf->mMessageID;
+    const char* getSubtitlesMessageId(const char *pMovieName, s32 idx) {
+        const SubtitleMessageInfo* pSubtitles = getSubtitlesMessageInfo(pMovieName, idx);
+
+        if (pSubtitles != nullptr) {
+            return pSubtitles->mMessageID;
         }
 
         return nullptr;
     }
 
-    u32 getSubtitlesStartStep(const char *pTag, s32 idx) {
-        const SubtitleMessageInfo* inf = getSubtitlesMessageInfo(pTag, idx);
-        if (inf != nullptr) {
-            return inf->mStartStep;
+    s32 getSubtitlesStartStep(const char *pMovieName, s32 idx) {
+        const SubtitleMessageInfo* pSubtitles = getSubtitlesMessageInfo(pMovieName, idx);
+
+        if (pSubtitles != nullptr) {
+            return pSubtitles->mStartStep;
         }
 
         return 0;
     }
 
-    u32 getSubtitlesAppearTime(const char *pTag, s32 idx) {
-        const SubtitleMessageInfo* inf = getSubtitlesMessageInfo(pTag, idx);
-        if (inf != nullptr) {
-            return inf->mAppearTime;
+    s32 getSubtitlesAppearTime(const char *pMovieName, s32 idx) {
+        const SubtitleMessageInfo* pSubtitles = getSubtitlesMessageInfo(pMovieName, idx);
+
+        if (pSubtitles != nullptr) {
+            return pSubtitles->mAppearTime;
         }
 
         return 0;
     }
 
-    u32 getSubtitlesMessageNum(const char *pTag) {
-        for (s32 i = 0; i < 5; i++) {
-            bool exist = getSubtitlesMessageInfo(pTag, i)->mMessageID != nullptr;
-            if (!exist) {
-                return i;
+    s32 getSubtitlesMessageNum(const char *pMovieName) {
+        s32 size = sizeof(sSubtitlesInfo->mMessageInfo) / sizeof(*sSubtitlesInfo->mMessageInfo);
+
+        for (s32 i = 0; i < size; i++) {
+            if (isExistSubtitles(pMovieName, i)) {
+                continue;
             }
+
+            return i;
         }
-        
-        return 5;
+
+        return size;
     }
 };
