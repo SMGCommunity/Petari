@@ -7,7 +7,6 @@ class FireBall : public LiveActor {
 public:
     FireBall(const char*);
 
-    virtual ~FireBall();
     virtual void init(const JMapInfoIter &);
     virtual void appear();
     virtual void kill();

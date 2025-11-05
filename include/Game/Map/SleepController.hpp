@@ -1,8 +1,9 @@
 #pragma once
 
-#include "Game/Map/ActorAppearSwitchListener.hpp"
-#include "Game/Map/StageSwitch.hpp"
 #include "Game/Util/JMapInfo.hpp"
+
+class SwitchIdInfo;
+class SwitchEventListener;
 
 class SleepController {
 public:

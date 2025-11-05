@@ -25,14 +25,11 @@
 namespace NrvFireBall {
     NEW_NERVE(FireBallNrvThrow, FireBall, Throw);
     NEW_NERVE(FireBallNrvReflect, FireBall, Reflect);
-}
+};
 
-FireBall::FireBall(const char* pName) : LiveActor(pName) {
-    _8C = nullptr;
-    _90.x = 0.0f;
-    _90.y = 1.0f;
-    _90.z = 0.0f;
-}
+FireBall::FireBall(const char* pName) : LiveActor(pName),
+    _8C(nullptr),
+    _90(0.0f, 1.0f, 0.0f) { }
 
 void FireBall::init(const JMapInfoIter & rIter) {
     initModelManagerWithAnm("FireBall", nullptr, false);
@@ -65,7 +62,7 @@ void FireBall::kill() {
 
 void FireBall::control() {
     Color8 color;
-    color.set(0xFF, 0xC0, 0x00, 0xFF);
+    color.set(255, 192, 0, 255);
     MR::requestPointLight(this, mPosition, color, 1.0f, -1);
 }
 
@@ -125,7 +122,8 @@ bool FireBall::tryToKill() {
         MR::sendMsgEnemyAttack(bindedSensor, getSensor("body"));
         kill();
         return true;
-    } else if (!MR::isNearPlayer(this, 5000.0f)) {
+    }
+    if (!MR::isNearPlayer(this, 5000.0f)) {
         kill();
         return true;
     }
@@ -174,15 +172,18 @@ void FireBall::exeThrow() {
     }
 
     if (MR::isGreaterStep(this, 30) && MR::isStarPointerPointing2POnPressButton(this, "弱", true, false)) {
-        s32* StarPointerLastPointedPort = MR::getStarPointerLastPointedPort(this);
-        TVec2f PointerScreenVel = *MR::getStarPointerScreenVelocity(*StarPointerLastPointedPort);
-        if (30.0f < PointerScreenVel.length()) {
+        s32* starPointerLastPointedPort = MR::getStarPointerLastPointedPort(this);
+        TVec2f pointerScreenVel = *MR::getStarPointerScreenVelocity(*starPointerLastPointedPort);
+        if (30.0f < pointerScreenVel.length()) {
             calcReflectVelocity();
             setNerve(&NrvFireBall::FireBallNrvReflect::sInstance);
             return;
         }
     }
-    if(tryToKill()) return;
+
+    if (tryToKill())  {
+        return;
+    }
 }
 
 void FireBall::exeReflect() {

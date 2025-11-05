@@ -1,11 +1,11 @@
 #include "Game/Map/SleepController.hpp"
 #include "Game/Map/StageSwitch.hpp"
+#include "Game/Map/ActorAppearSwitchListener.hpp"
 #include "revolution/types.h"
 
-SleepController::SleepController(const JMapInfoIter& rIter, SwitchEventListener* param2) {
-    _4 = param2;
-    _0 = nullptr;
-    _8 = false;
+SleepController::SleepController(const JMapInfoIter& rIter, SwitchEventListener* param2) : _4(param2),
+    _0(nullptr),
+    _8(false) {
     _0 = StageSwitchFunction::createSwitchIdInfo("SW_SLEEP", rIter, false);
 }
 
