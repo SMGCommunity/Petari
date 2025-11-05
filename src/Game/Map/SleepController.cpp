@@ -21,10 +21,10 @@ void SleepController::initSync() {
 void SleepController::update() {
     bool v8 = StageSwitchFunction::isOnSwitchBySwitchIdInfo(*_0);
     if ( !_8 && v8 ) {
-            _4->listenSwitchOnEvent();
+        _4->listenSwitchOnEvent();
     }
     if ( _8 && !v8) {
-            _4->listenSwitchOffEvent();
+        _4->listenSwitchOffEvent();
     }
     _8 = v8;
 }
