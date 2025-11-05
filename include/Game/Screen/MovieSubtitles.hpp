@@ -14,6 +14,7 @@ public:
     void exeTalk();
     void exeTalkWait();
 
+private:
     /* 0x20 */ TalkTextFormer* mFormerText;
-    /* 0x24 */ s32 _24;
+    /* 0x24 */ s32 mAppearTime;
 };
