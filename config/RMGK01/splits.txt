@@ -3895,16 +3895,17 @@ Game/Map/SeaGull.cpp:
 Game/Map/Sky.cpp:
 	.text       start:0x8019B0A0 end:0x8019B7D4
 	.ctors      start:0x8052EBEC end:0x8052EBF0
-	.data       start:0x8058C440 end:0x8058C5D8
+	.data       start:0x8058C440 end:0x8058C5B0
 	.sdata      start:0x806B1C88 end:0x806B1C90
 	.sbss       start:0x806B4C68 end:0x806B4C70
 
 Game/Map/SleepController.cpp:
 	.text       start:0x8019B7D4 end:0x8019B918
+	.data       start:0x8058C5B0 end:0x8058C5C0
 
 Game/Map/SleepControllerHolder.cpp:
 	.text       start:0x8019B918 end:0x8019BE70
-	.data       start:0x8058C5D8 end:0x8058C658
+	.data       start:0x8058C5C0 end:0x8058C658
 
 Game/Map/SpaceInner.cpp:
 	.text       start:0x8019BE70 end:0x8019C140
