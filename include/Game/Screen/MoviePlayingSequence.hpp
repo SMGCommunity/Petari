@@ -7,18 +7,18 @@ class DemoPadRumbler;
 class MovieSubtitles;
 
 struct MoviePlayingInfo {
-    const char* mMovieName;             // 0x00
-    const char* mMovieNameLuigi;        // 0x04
-    const char* mGalaxyName;            // 0x08
-    const char* mMusic;                 // 0x0C
-    s32 mPlayWaitTime;
-    s32 _14;
-    s32 _18;
-    s32 _1C;
-    s32 _20;
-    s32 _24;
-    s32 _28;
-    f32 mVolume;                // 0x2C
+    /* 0x00 */ const char* mMovieName;
+    /* 0x04 */ const char* mMovieNameLuigi;
+    /* 0x08 */ const char* mStageName;
+    /* 0x0C */ const char* mStageBgmName;
+    /* 0x10 */ s32 mPlayWaitTime;
+    /* 0x14 */ s32 mEndWaitTime;
+    /* 0x18 */ s32 mOpenWipeType;
+    /* 0x1C */ s32 mOpenWipeTime;
+    /* 0x20 */ s32 mCloseWipeType;
+    /* 0x24 */ s32 mCloseWipeTime;
+    /* 0x28 */ s32 mEndWaitWipeType;
+    /* 0x2C */ f32 mVolume;
 };
 
 class MoviePlayingSequence : public LayoutActor {
@@ -28,14 +28,13 @@ public:
         MovieType_PrologueB,
         MovieType_FinalBattle,
         MovieType_EpilogueA,
-        Unk_4,
+        MovieType_EpilogueB,
         MovieType_EndingA,
-        MovieType_EndingB
+        MovieType_EndingB,
     };
 
     MoviePlayingSequence(const char *, s32);
 
-    virtual ~MoviePlayingSequence();
     virtual void appear();
     virtual void kill();
 
@@ -51,18 +50,17 @@ public:
     void exeCloseWipeOnPlaying();
     void exeEndWait();
 
-    const MoviePlayingInfo* mInfo;                                      // 0x20
-    MR::Vector<MR::AssignableArray<MovieSubtitles*> > mSubtitles;       // 0x24
-    DemoPadRumbler* mPadRumbler;                                        // 0x30
+private:
+    /* 0x20 */ const MoviePlayingInfo* mInfo;
+    /* 0x24 */ MR::Vector<MR::AssignableArray<MovieSubtitles*> > mSubtitles;
+    /* 0x30 */ DemoPadRumbler* mPadRumbler;
 };
 
 class MoviePlayingSequenceHolder : public NameObj {
 public:
     MoviePlayingSequenceHolder(const char *);
 
-    virtual ~MoviePlayingSequenceHolder();
-
-    MR::AssignableArray<MoviePlayingSequence*> mSequences;          // 0xC
+    /* 0x0C */ MR::AssignableArray<MoviePlayingSequence*> mSequence;
 };
 
 namespace MR {
