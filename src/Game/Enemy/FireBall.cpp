@@ -199,7 +199,8 @@ void FireBall::exeReflect() {
     mVelocity.mult(0.96f);    
 
     if (!tryToKill()) {
-        if (MR::isStep(this, 60))
+        if (MR::isStep(this, 60)) {
             kill();
+        }
     }
 }
