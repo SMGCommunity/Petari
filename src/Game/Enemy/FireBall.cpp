@@ -175,13 +175,8 @@ void FireBall::exeThrow() {
 
     if (MR::isGreaterStep(this, 30) && MR::isStarPointerPointing2POnPressButton(this, "弱", true, false)) {
         s32* StarPointerLastPointedPort = MR::getStarPointerLastPointedPort(this);
-        TVec2f* PointerScreenVel = MR::getStarPointerScreenVelocity(*StarPointerLastPointedPort);
-        TVec2f v7;
-        //PointerScreenVel->x *= PointerScreenVel->x;
-        
-        v7.x =  PointerScreenVel->x * PointerScreenVel->x;
-        v7.y =  PointerScreenVel->y;
-        if (30.0f < JGeometry::TUtil<f32>::sqrt(v7.x + (PointerScreenVel->y * PointerScreenVel->y))) {
+        TVec2f PointerScreenVel = *MR::getStarPointerScreenVelocity(*StarPointerLastPointedPort);
+        if (30.0f < PointerScreenVel.length()) {
             calcReflectVelocity();
             setNerve(&NrvFireBall::FireBallNrvReflect::sInstance);
             return;

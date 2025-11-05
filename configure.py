@@ -1325,7 +1325,7 @@ config.libs = [
             Object(NonMatching, "Game/Map/ScenarioSelectStar.cpp"),
             Object(NonMatching, "Game/Map/SeaGull.cpp"),
             Object(NonMatching, "Game/Map/Sky.cpp"),
-            Object(NonMatching, "Game/Map/SleepController.cpp"),
+            Object(Matching, "Game/Map/SleepController.cpp"),
             Object(NonMatching, "Game/Map/SleepControllerHolder.cpp"),
             Object(Matching, "Game/Map/SpaceInner.cpp"),
             Object(NonMatching, "Game/Map/SphereSelector.cpp"),
