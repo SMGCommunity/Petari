@@ -36,7 +36,7 @@ namespace MR {
         return MR::getJ3DModel(pActor)->mMtxBuffer->mpAnmMtx[idx];
     }
 
-    u16 getJointIndex(const LiveActor *pActor, const char *pName) {
+    s32 getJointIndex(const LiveActor *pActor, const char *pName) {
         return MR::getJ3DModelData(pActor)->mJointTree.mJointName->getIndex(pName);
     }
 
@@ -44,7 +44,7 @@ namespace MR {
         return MR::getJ3DModelData(pActor)->mJointTree.mJointName->getName(idx);
     }
 
-    u32 getJointNum(const LiveActor *pActor) {
+    s32 getJointNum(const LiveActor *pActor) {
         return MR::getJ3DModelData(pActor)->mJointTree.mJointNum;
     }
     
