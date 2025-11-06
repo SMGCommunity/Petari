@@ -5,7 +5,7 @@
 #define NULL_ENTRY { nullptr, -1, -1 }
 
 namespace {
-    static const SubtitleInfo sSubtitlesInfo[] = {
+    static const SubtitlesInfo sSubtitlesInfo[] = {
         {
             "/MovieData/PrologueA.thp", 
             {
@@ -78,7 +78,7 @@ namespace {
         },
     };
 
-    const SubtitleInfo* getSubtitleInfo(const char *pMovieName) {
+    const SubtitlesInfo* getSubtitlesInfo(const char *pMovieName) {
         for (s32 i = 0; i < sizeof(sSubtitlesInfo) / sizeof(*sSubtitlesInfo); i++) {
             if (MR::isEqualString(pMovieName, sSubtitlesInfo[i].mMovieName)) {
                 return &sSubtitlesInfo[i];
@@ -90,8 +90,8 @@ namespace {
 };
 
 namespace MovieSubtitlesUtil {
-    const SubtitleMessageInfo* getSubtitlesMessageInfo(const char *pMovieName, s32 idx) {
-        return &getSubtitleInfo(pMovieName)->mMessageInfo[idx];
+    const SubtitlesMessageInfo* getSubtitlesMessageInfo(const char *pMovieName, s32 idx) {
+        return &getSubtitlesInfo(pMovieName)->mMessageInfo[idx];
     }
 
     bool isExistSubtitles(const char *pMovieName, s32 idx) {
@@ -99,7 +99,7 @@ namespace MovieSubtitlesUtil {
     }
 
     const char* getSubtitlesMessageId(const char *pMovieName, s32 idx) {
-        const SubtitleMessageInfo* pSubtitles = getSubtitlesMessageInfo(pMovieName, idx);
+        const SubtitlesMessageInfo* pSubtitles = getSubtitlesMessageInfo(pMovieName, idx);
 
         if (pSubtitles != nullptr) {
             return pSubtitles->mMessageID;
@@ -109,7 +109,7 @@ namespace MovieSubtitlesUtil {
     }
 
     s32 getSubtitlesStartStep(const char *pMovieName, s32 idx) {
-        const SubtitleMessageInfo* pSubtitles = getSubtitlesMessageInfo(pMovieName, idx);
+        const SubtitlesMessageInfo* pSubtitles = getSubtitlesMessageInfo(pMovieName, idx);
 
         if (pSubtitles != nullptr) {
             return pSubtitles->mStartStep;
@@ -119,7 +119,7 @@ namespace MovieSubtitlesUtil {
     }
 
     s32 getSubtitlesAppearTime(const char *pMovieName, s32 idx) {
-        const SubtitleMessageInfo* pSubtitles = getSubtitlesMessageInfo(pMovieName, idx);
+        const SubtitlesMessageInfo* pSubtitles = getSubtitlesMessageInfo(pMovieName, idx);
 
         if (pSubtitles != nullptr) {
             return pSubtitles->mAppearTime;

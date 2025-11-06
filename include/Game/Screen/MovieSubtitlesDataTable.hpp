@@ -2,19 +2,29 @@
 
 #include <revolution/types.h>
 
-struct SubtitleMessageInfo {
+/// @brief The general parameters for a subtitle.
+struct SubtitlesMessageInfo {
+    /// @brief A pointer to the null-terminated name of the subtitle message.
     /* 0x00 */ const char* mMessageID;
-    /* 0x04 */ u32 mStartStep;
-    /* 0x08 */ u32 mAppearTime;
+
+    /// @brief The number of frames to wait before displaying the subtitle.
+    /* 0x04 */ s32 mStartStep;
+
+    /// @brief The number of frames to display the subtitle for.
+    /* 0x08 */ s32 mAppearTime;
 };
 
-struct SubtitleInfo {
+/// @brief The general parameters for a movie's subtitles.
+struct SubtitlesInfo {
+    /// @brief A pointer to the null-terminated absolute path of the associated movie file.
     /* 0x00 */ const char* mMovieName;
-    /* 0x04 */ SubtitleMessageInfo mMessageInfo[5];
+
+    /// @brief An array of general parameters for each subtitle.
+    /* 0x04 */ SubtitlesMessageInfo mMessageInfo[5];
 };
 
 namespace MovieSubtitlesUtil {
-    const SubtitleMessageInfo* getSubtitlesMessageInfo(const char *, s32);
+    const SubtitlesMessageInfo* getSubtitlesMessageInfo(const char *, s32);
     bool isExistSubtitles(const char *, s32);
     const char* getSubtitlesMessageId(const char *, s32);
     s32 getSubtitlesStartStep(const char *, s32);
