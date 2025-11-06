@@ -394,3 +394,9 @@ void StageDataHolder::updateDataAddress(const MR::AssignableArray<JMapInfo> *pIn
         }
     }
 }
+
+namespace MR {
+    StageDataHolder* getStageDataHolder() {
+        return getSceneObj<StageDataHolder>(SceneObj_StageDataHolder);
+    }
+};
