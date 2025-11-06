@@ -2,6 +2,7 @@
 
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/NPC/TalkMessageFunc.hpp"
+#include "Game/NPC/TalkMessageInfo.hpp"
 
 class TalkNodeCtrl;
 class ActorCameraInfo;
@@ -100,4 +101,6 @@ public:
     static bool isTalkSystemEnd(const TalkMessageCtrl *);
     static bool getBranchAstroGalaxyResult(u16);
     static void registerTalkSystem(TalkMessageCtrl *);
+
+    static TalkMessageInfo* getMessageInfo(const TalkMessageCtrl *);
 };
