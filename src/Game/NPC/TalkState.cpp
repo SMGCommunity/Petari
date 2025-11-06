@@ -187,10 +187,9 @@ bool TalkStateNormal::term(const TalkMessageCtrl *pArg1) {
     return TalkStateEvent::term(pArg1);
 }
 
-
-//const char* sfxs = "SE_SM_TALK_BUTTON_APPEAR\0SE_SY_TALK_START\0CS_CLICK_OPEN";
+#ifdef NON_MATCHING
+// Stuck at 99% because assembly string labels don't match, even though the code *should* be correct.
 bool TalkStateNormal::prep(const TalkMessageCtrl *pArg1) {
-    
     if (TalkStateNormal::isLostMessage(pArg1)) {
         _24->term();
         return false;
@@ -218,6 +217,7 @@ bool TalkStateNormal::prep(const TalkMessageCtrl *pArg1) {
 
     return true;
 }
+#endif
 
 
 void TalkStateCompose::init(TalkMessageCtrl *pArg1, TalkBalloon *pArg2) {
