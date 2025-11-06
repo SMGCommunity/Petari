@@ -258,11 +258,11 @@ bool TalkStateCompose::prep(const TalkMessageCtrl *pArg1) {
 }
 
 void TalkStateHolder::update() {
-    _0->update();
+    _00->update();
 }
 
 void TalkStateHolder::pauseOff() {
-    MR::requestMovementOn(_4);
+    MR::requestMovementOn(_04);
 }
 
 u32 TalkStateHolder::getState(const TalkMessageCtrl *pArg1) {

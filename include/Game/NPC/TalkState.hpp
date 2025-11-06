@@ -110,17 +110,15 @@ public:
 
     void update();
     void pauseOff();
-
-    TalkSupportPlayerWatcher *_0;
-    LayoutActor *_4;
-
-    u32 mTalkShort;
-    u32 mTalkNormal;
-    u32 mTalkEvent;
-    u32 mTalkCompose;
-    u32 mTalkUnknown;
-
     u32 getState(const TalkMessageCtrl *);
+
+    TalkSupportPlayerWatcher *_00;
+    LayoutActor *_04;
+    /* 0x08 */ u32 mTalkShort;
+    /* 0x0C */ u32 mTalkNormal;
+    /* 0x10 */ u32 mTalkEvent;
+    /* 0x14 */ u32 mTalkCompose;
+    /* 0x18 */ u32 mTalkUnknown;
 };
 
 namespace MR {
