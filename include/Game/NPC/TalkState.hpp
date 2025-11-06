@@ -101,7 +101,7 @@ public:
     virtual bool test();
     virtual void open();
 
-    /* 0x28 */ TalkBalloon *mSecondBallon;
+    /* 0x28 */ TalkBalloon *mSecondBalloon;
 };
 
 class TalkStateHolder {

@@ -222,7 +222,7 @@ bool TalkStateNormal::prep(const TalkMessageCtrl *pArg1) {
 
 void TalkStateCompose::init(TalkMessageCtrl *pArg1, TalkBalloon *pArg2) {
     TalkState::init(pArg1, pArg2);
-    mSecondBallon->open(pArg1);
+    mSecondBalloon->open(pArg1);
 }
 
 bool TalkStateCompose::test() {
@@ -235,7 +235,7 @@ bool TalkStateCompose::test() {
 
 void TalkStateCompose::open() {
     TalkStateEvent::open();
-    mSecondBallon->close();
+    mSecondBalloon->close();
 }
 
 bool TalkStateCompose::prep(const TalkMessageCtrl *pArg1) {
@@ -251,7 +251,7 @@ bool TalkStateCompose::prep(const TalkMessageCtrl *pArg1) {
 
     if (!unknown_bool) {
         _24->term();
-        mSecondBallon->close();
+        mSecondBalloon->close();
     }
 
     return unknown_bool;
