@@ -1,19 +1,27 @@
 #pragma once
 
-#include "Game/LiveActor/ModelManager.hpp"
+#include "Game/Util/Array.hpp"
 
+class EffectSystem;
+class ModelManager;
 class MultiEmitter;
 class MultiSceneActor;
 
 class MultiSceneEffectKeeper {
 public:
-    MultiSceneEffectKeeper(const char *,  ModelManager *, int, const char *);
+    MultiSceneEffectKeeper(const char*, ModelManager*, int, const char*);
 
-    void init(const MultiSceneActor *, const EffectSystem *);
+    void init(const MultiSceneActor*, const EffectSystem*);
+    void add(const char*, const TVec3f*, const TVec3f*, const TVec3f*, const char*);
+    void add(const char*, MtxPtr, const char*);
+    MultiEmitter* create(const char*, EffectSystem*);
+    void deleteAll();
+    void forceDeleteAll(EffectSystem*);
     void clear();
+    MultiEmitter* get(const char*) const;
+    MultiEmitter* find(const char*) const;
+    void registerEmitter(MultiEmitter*, const char*);
 
-    MultiEmitter** mEmitters;       // 0x0
-    u32 mEmitterNum;                // 0x4
-    u32 _8;
-    const char* mResName;           // 0xC
+    /* 0x00 */ MR::Vector<MR::AssignableArray<MultiEmitter*> > mEmitter;
+    /* 0x0C */ const char* mResName;
 };
