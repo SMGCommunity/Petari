@@ -269,20 +269,20 @@ u32 TalkStateHolder::getState(const TalkMessageCtrl *pArg1) {
     TalkMessageInfo *info = TalkFunction::getMessageInfo(pArg1);
 
     if (info->isNormalTalk()) {
-        return TalkNormal;
+        return mTalkNormal;
     }
 
     if (info->isShortTalk()) {
-        return TalkShort;
+        return mTalkShort;
     }
 
     if (info->isEventTalk()) {
-        return TalkEvent;
+        return mTalkEvent;
     }
 
     if (info->isComposeTalk()) {
-        return TalkCompose;
+        return mTalkCompose;
     }
 
-    return TalkUnknown;
+    return mTalkUnknown;
 }

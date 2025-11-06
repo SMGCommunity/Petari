@@ -114,11 +114,11 @@ public:
     TalkSupportPlayerWatcher *_0;
     LayoutActor *_4;
 
-    u32 TalkShort;
-    u32 TalkNormal;
-    u32 TalkEvent;
-    u32 TalkCompose;
-    u32 TalkUnknown;
+    u32 mTalkShort;
+    u32 mTalkNormal;
+    u32 mTalkEvent;
+    u32 mTalkCompose;
+    u32 mTalkUnknown;
 
     u32 getState(const TalkMessageCtrl *);
 };
