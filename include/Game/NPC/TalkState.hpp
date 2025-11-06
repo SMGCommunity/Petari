@@ -1,6 +1,10 @@
 #pragma once
 
 #include <revolution.h>
+#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/NPC/TalkSupportPlayerWatcher.hpp"
+#include "Game/Screen/IconAButton.hpp"
+#include "Game/Screen/LayoutActor.hpp"
 
 class TalkMessageCtrl;
 class TalkBalloon;
@@ -41,7 +45,7 @@ public:
     bool isSelfInterrupt(const TalkMessageCtrl*) const;
     
     TalkMessageCtrl *_04;
-    TalkBalloon *_08;
+    /* 0x08 */ TalkBalloon *mBalloon;
     u32 mMessageID;     // 0xC
 };
 
@@ -60,7 +64,7 @@ public:
     TalkStateEvent();
 
     virtual bool prep(const TalkMessageCtrl *);
-    virtual bool test();
+    virtual bool test() NO_INLINE;
     virtual void open();
     virtual bool talk(const TalkMessageCtrl *);
     virtual void clos();
@@ -69,8 +73,56 @@ public:
 
     s32 _10;
     s32 _14;
-    u32 _18;
+    TalkSupportPlayerWatcher* _18;
     u8 _1C;
     bool _1D;
     /* 0x20 */ u32 mPageCount;
+};
+
+class TalkStateNormal : public TalkStateEvent {
+public:
+    TalkStateNormal();
+
+    virtual bool prep(const TalkMessageCtrl *);
+    virtual bool test();
+    virtual void clos();
+    virtual bool term(const TalkMessageCtrl *);
+    void updateButton();
+
+    IconAButton *_24;
+};
+
+class TalkStateCompose : public TalkStateNormal {
+public:
+    TalkStateCompose();
+
+    virtual void init(TalkMessageCtrl *, TalkBalloon *);
+    virtual bool prep(const TalkMessageCtrl *);
+    virtual bool test();
+    virtual void open();
+
+    /* 0x28 */ TalkBalloon *mSecondBallon;
+};
+
+class TalkStateHolder {
+public:
+    TalkStateHolder();
+
+    void update();
+    void pauseOff();
+
+    TalkSupportPlayerWatcher *_0;
+    LayoutActor *_4;
+
+    u32 TalkShort;
+    u32 TalkNormal;
+    u32 TalkEvent;
+    u32 TalkCompose;
+    u32 TalkUnknown;
+
+    u32 getState(const TalkMessageCtrl *);
+};
+
+namespace MR {
+    void startTalkSound(unsigned char, const LiveActor *);
 };
