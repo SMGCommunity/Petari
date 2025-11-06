@@ -17,6 +17,7 @@
 #include "Game/Util/StringUtil.hpp"
 
 namespace {
+    /// @brief A type of screen transition.
     enum WipeType {
         WipeType_None,
         WipeType_ForceWipeFade,
@@ -446,7 +447,7 @@ namespace {
     }
 
     MoviePlayingSequence* getMoviePlayingSequence(int idx) {
-        return getMoviePlayingSequenceHolder()->mSequence[idx];
+        return getMoviePlayingSequenceHolder()->getSequence(idx);
     }
 };
 
@@ -466,6 +467,14 @@ MoviePlayingSequenceHolder::MoviePlayingSequenceHolder(const char *pName) : Name
             *pSequence = new MoviePlayingSequence(pMovieName, diff);
         }
     }
+}
+
+MoviePlayingSequence* MoviePlayingSequenceHolder::getSequence(int idx) const {
+    return mSequence[idx];
+}
+
+s32 MoviePlayingSequenceHolder::getSequenceNum() const {
+    return mSequence.size();
 }
 
 namespace MR {
@@ -510,7 +519,7 @@ namespace MR {
             return false;
         }
 
-        for (int i = 0; i < getMoviePlayingSequenceHolder()->mSequence.size(); i++) {
+        for (int i = 0; i < getMoviePlayingSequenceHolder()->getSequenceNum(); i++) {
             MoviePlayingSequence* pSequence = getMoviePlayingSequence(i);
 
             if (pSequence == nullptr) {
