@@ -20,9 +20,9 @@ TalkState::TalkState() :
 
 }
 
-void TalkState::init(TalkMessageCtrl *pArg1, TalkBalloon *pArg2) {
+void TalkState::init(TalkMessageCtrl *pArg1, TalkBalloon *pBalloon) {
     _04 = pArg1;
-    mBalloon = pArg2;
+    mBalloon = pBalloon;
     mMessageID = _04->getMessageID();
 }
 
