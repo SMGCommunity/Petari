@@ -128,20 +128,20 @@ bool TalkStateEvent::talk(const TalkMessageCtrl *pArg1) {
         return false;
     }
 
-    bool unknown_bool = false;
+    bool unknownBool = false;
 
     if (_1C != nullptr) {
         _1C = MR::testCorePadButtonA(0);
     } else if (MR::testCorePadButtonA(0) && !MR::testCorePadTriggerA(0)) {
         _1C = true;
-        unknown_bool = true;
+        unknownBool = true;
     }
 
     if (TalkFunction::isSelectTalk(_04) && !mBalloon->hasNextPage()) {
         return true;
     }
 
-    if (unknown_bool) {
+    if (unknownBool) {
         mPageCount++;
         return !mBalloon->turnPage();
     }
@@ -239,22 +239,22 @@ void TalkStateCompose::open() {
 }
 
 bool TalkStateCompose::prep(const TalkMessageCtrl *pArg1) {
-    bool unknown_bool = true;
+    bool unknownBool = true;
 
     if (TalkState::isLostMessage(pArg1)) {
-        unknown_bool = false;
+        unknownBool = false;
     } else if (_04->isNearPlayer(_04->mTalkDistance)) {
-        unknown_bool = TalkStateNormal::prep(pArg1);
+        unknownBool = TalkStateNormal::prep(pArg1);
     } else {
         _24->term();
     }
 
-    if (!unknown_bool) {
+    if (!unknownBool) {
         _24->term();
         mSecondBalloon->close();
     }
 
-    return unknown_bool;
+    return unknownBool;
 }
 
 void TalkStateHolder::update() {
