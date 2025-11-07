@@ -2,10 +2,10 @@
 
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/NPC/TalkMessageFunc.hpp"
-#include "Game/NPC/TalkMessageInfo.hpp"
 
 class TalkNodeCtrl;
 class ActorCameraInfo;
+class TalkMessageInfo;
 
 class CustomTagArg {
 public:

@@ -1,7 +1,8 @@
 #pragma once
 
-#include "Game/NPC/TalkMessageCtrl.hpp"
 #include "Game/Screen/LayoutActor.hpp"
+
+class TalkMessageCtrl;
 
 class TalkBalloon : public LayoutActor {
 public:

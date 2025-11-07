@@ -1,13 +1,13 @@
 #pragma once
 
 #include <revolution.h>
-#include "Game/LiveActor/LiveActor.hpp"
-#include "Game/NPC/TalkSupportPlayerWatcher.hpp"
-#include "Game/Screen/IconAButton.hpp"
-#include "Game/Screen/LayoutActor.hpp"
 
 class TalkMessageCtrl;
 class TalkBalloon;
+class LiveActor;
+class TalkSupportPlayerWatcher;
+class IconAButton;
+class LayoutActor;
 
 class TalkState {
 public:
