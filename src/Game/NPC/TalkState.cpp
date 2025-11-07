@@ -5,7 +5,6 @@
 #include "Game/NPC/TalkMessageInfo.hpp"
 #include "Game/NPC/TalkSupportPlayerWatcher.hpp"
 #include "Game/Screen/IconAButton.hpp"
-#include "Game/Screen/LayoutActor.hpp"
 #include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/DemoUtil.hpp"
 #include "Game/Util/GamePadUtil.hpp"
