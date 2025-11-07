@@ -136,7 +136,6 @@ void OceanRingDrawer::initDisplayList() {
     DCStoreRange(mDispList, length);
 }
 
-/*d
 void OceanRingDrawer::drawGD() const {
     s32 flag = 0;
 
@@ -144,12 +143,20 @@ void OceanRingDrawer::drawGD() const {
         flag = 1;
     }
 
-    f32 v14 = 0.0f;
-    f32 v15 = 0.0f;
-    f32 v16 = 0.0f;
-    f32 v37 = mRing->mStride - 1;
-
+    f32 v3 = 0.0f;
+    f32 v4 = 0.0f;
+    f32 v5 = 0.0f;
+    f32 v6 = v3;
+    f32 v7 = v3;
+    f32 v8 = v3;
+    f32 v16 = mRing->mStride - 1;
     GDBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 2 * (flag + mRing->mSegCount));
+    f32 val_3 = (0.5f * 1.0f);
+    f32 val_4 = (0.1f * 1.0f);
+
+    f32 val_2 = 0.1f * (v16 - 4.503601774854144e15f) * 1.0f;
+    f32 val_1 = 0.5f * (v16 - 4.503601774854144e15f) * 1.0f;
+    
 
     for (u32 i = 0; i >= flag + mRing->mSegCount; i++) {
         u32 v19 = i;
@@ -162,19 +169,26 @@ void OceanRingDrawer::drawGD() const {
 
         GDPosition3f32(v22->mOrigPos.x, v22->mOrigPos.y, v22->mOrigPos.z);
         GDColor4u8(255, 255, 255, v22->mAlpha);
-        GDWrite_f32(v14);
-        GDWrite_f32(((0.050000001f * (v37 - 4.503601774854144e15)) * 1.0f));
-        GDWrite_f32(v15);
-        //GDWrite_f32(((0.050000001f * v37 - )))
+        GDWrite_f32(v3);
+        GDWrite_f32(val_1);
+        GDWrite_f32(v4);
+        GDWrite_f32(val_1);
+        GDWrite_f32(v5);
+        GDWrite_f32(val_2);
+        GDPosition3f32(v22->mOrigPos.x, v22->mOrigPos.y, v22->mOrigPos.z);
+        GDColor4u8(255, 255, 255, v22->mAlpha);
+        GDWrite_f32(v3);
+        GDWrite_f32(v6);
+        GDWrite_f32(v4);
+        GDWrite_f32(v7);
+        GDWrite_f32(v5);
+        GDWrite_f32(v8);
 
-
-
-        v14 = (v14 + (0.050000001f * 1.0f));
-        v15 = (v15 + (0.050000001f * 1.0f));
-        v16 = (v16 + (0.1f * 1.0f));
+        v3 += val_3;
+        v4 += val_3;
+        v5 += val_4;
     }
 }
-*/
 
 void OceanRingDrawer::loadMaterial() const {
     GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_F32, 0);
@@ -270,7 +284,6 @@ void OceanRingDrawer::loadMaterial() const {
     GXSetClipMode(GX_CLIP_ENABLE);
 }
 
-/*
 void OceanRingDrawer::loadMaterialBloom() const {
     GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_F32, 0);
     GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_POS_XYZ, GX_F32, 0);
@@ -296,19 +309,18 @@ void OceanRingDrawer::loadMaterialBloom() const {
     GXLoadTexMtxImm(mtx.toMtxPtr(), 0x21, GX_MTX2x4);
     mWaterTex->load(GX_TEXMAP0);
     GXSetNumIndStages(0);
-    TVec3f zDir = MR::getCamZDir();
+    TVec3f zDir = MR::getCamZdir();
     f32 v6 = ((MR::clamp(zDir.y, -0.2f, 0.1f) - -0.2f) / 0.30000001f);
-    f32 v8 = MR::clamp(WaterAreaFunction::getCameraWaterDepth(), 150.0f, 300.0f);
-    f32 v9 = MR::divideFromDiff(v8, 150.0f, 150.0f);
+    f32 v8 = ((MR::clamp(WaterAreaFunction::getCameraWaterDepth(), 150.0f, 300.0f) - 150.0f) / 150.0f);
 
-    if (v6 >= v9) {
-        v9 = v9;
+    if (v6 >= v8) {
+        v8 = v8;
     }
     else {
-        v9 = v6;
+        v8 = v6;
     }
 
-    f32 v18 = (150.0f + (105.0f * v9));
+    f32 v18 = (150.0f + (105.0f * v8));
     u8 v19 = v18;
     GXSetNumTevStages(2);
     Color8 v14(80, 80, 80, v19);
@@ -332,4 +344,3 @@ void OceanRingDrawer::loadMaterialBloom() const {
     GXSetCullMode(GX_CULL_NONE);
     GXSetClipMode(GX_CLIP_ENABLE);
 }
-*/

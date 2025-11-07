@@ -67,7 +67,7 @@ void TicoEat::control() {
     Tico::control();
 }
 
-bool TicoEat::receiveMsgPlayerAttack(u32 msg, HitSensor *a2, HitSensor *a3) {
+bool TicoEat::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     if (MR::isMsgStarPieceGift(msg)) {
         if (_198 == _194) {
             MR::startAction(this, "Eat0");
@@ -96,7 +96,7 @@ bool TicoEat::receiveMsgPlayerAttack(u32 msg, HitSensor *a2, HitSensor *a3) {
         return true;
     }
 
-    return Tico::receiveMsgPlayerAttack(msg, a2, a3);
+    return Tico::receiveMsgPlayerAttack(msg, pSender, pReceiver);
 }
 
 void TicoEat::initStarPiece(s32 num) {
@@ -167,8 +167,11 @@ void TicoEat::exeEatPre() {
 }
 
 void TicoEat::exeEatNow() {
-    MR::isFirstStep(this);
-    if (_198 && MR::isIntervalStep(this, 100/ _194)) {
+    if (MR::isFirstStep(this)) {
+        
+    }
+
+    if (_198 != 0 && MR::isIntervalStep(this, 100 / _194)) {
         MR::giftStarPieceToTarget(getSensor("Mouth"), 1);
     }
 
@@ -189,11 +192,11 @@ void TicoEat::exeEatPst() {
     }
 }
 
-TicoComet::TicoComet(const char *pName) : TicoEat(pName) {
+void TicoEat::exeEatEnd() {
     
 }
 
-TicoEat::~TicoEat() {
+TicoComet::TicoComet(const char *pName) : TicoEat(pName) {
     
 }
 
@@ -324,18 +327,10 @@ void TicoComet::exeDemoFade() {
     }
 }
 
-void TicoEat::exeEatEnd() {
-    
-}
-
 void TicoComet::exeDemoEnd() {
 
 }
 
 void TicoEat::startReactionSound() {
 
-}
-
-TicoComet::~TicoComet() {
-    
 }

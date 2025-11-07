@@ -23,6 +23,7 @@ public:
 
     ~MainLoopFramework();
 
+    static MainLoopFramework* createManager(const GXRenderModeObj*, void*, void*, void*, bool);
     void ctor_subroutine(bool);
     void prepareCopyDisp();
     void drawendXfb_single();
@@ -40,17 +41,8 @@ public:
     void clearEfb(GXColor);
     void clearEfb(int, int, int, int, GXColor);
     void calcCombinationRatio();
-    u32 frameToTick(f32);
-    void setForOSResetSystem();
-
-    void setCombinationRatio(f32 ratio) {
-        mCombinationRatio = ratio;
-        if (mCombinationRatio > 1f) {
-            mCombinationRatio = 1f;
-        }
-    }
-
-    static MainLoopFramework* createManager(const GXRenderModeObj*, void*, void*, void*, bool);
+    static u32 frameToTick(f32);
+    static void setForOSResetSystem();
 
     /* 0x0 */ Color8 mClearColor;
     /* 0x4 */ u32 mClearZ;

@@ -1,8 +1,6 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/LiveActor/ModelManager.hpp"
-#include "Game/Util/MathUtil.hpp"
 
 class Pole : public LiveActor {
 public:
@@ -17,6 +15,7 @@ public:
     virtual MtxPtr getBaseMtx() const;        
 
     void exeDemoAppear();
+    void exeFree();
     void exeFreeInvalid();
     void exeBindStart();
     void exeBindWait();
@@ -38,10 +37,7 @@ public:
     void updateTopPos(f32);
     f32 getPoleSubPadStickX() const;
     f32 getPoleSubPadStickY() const;
-    inline void exeCalcFoot() {
-        MR::calcPerpendicFootToLineInside(&mPosition, *MR::getPlayerCenterPos(), _98, _8C);
-    }  
-        
+
     TVec3f _8C;
     TVec3f _98;
     f32 _A4;
@@ -62,22 +58,4 @@ public:
     MtxPtr _120;
     MtxPtr _124;
     TMtx34f _128;
-};
-
-namespace NrvPole {
-    NERVE(PoleNrvDemoAppear);
-    NERVE(PoleNrvFree);
-    NERVE(PoleNrvFreeInvalid);
-    NERVE(PoleNrvBindStart);
-    NERVE(PoleNrvBindStartFast);
-    NERVE(PoleNrvBindWait);        
-    NERVE(PoleNrvBindTurnLeft);
-    NERVE(PoleNrvBindTurnRight);
-    NERVE(PoleNrvBindTurnEnd);
-    NERVE(PoleNrvBindClimbUp);
-    NERVE(PoleNrvBindFallDown);
-    NERVE(PoleNrvBindHandstandStart);
-    NERVE(PoleNrvBindHandstandWait);
-    NERVE(PoleNrvBindHandstandEnd);
-    NERVE(PoleNrvBindHandstandTurn);             
 };

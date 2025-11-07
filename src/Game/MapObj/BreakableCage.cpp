@@ -1,9 +1,6 @@
+#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/MapObj/BreakableCage.hpp"
 #include "Game/MapObj/PowerStar.hpp"
-
-inline f32 normalizeAngle(f32 a1, f32 a2) {
-    return a1 + (f32)fmod(360.0f + (a2 - a1), 360.0f);
-}
 
 BreakableCage::BreakableCage(const char *pName) : LiveActor(pName) {
     mBreakModel = nullptr;
@@ -52,7 +49,7 @@ void BreakableCage::init(const JMapInfoIter &rIter) {
     initModel(modelName, rIter);
     MR::connectToSceneMapObjStrongLight(this);
     initHitSensor(1);
-    MR::addHitSensor(this, "body", 82, 8, v9, stack_C);
+    MR::addHitSensor(this, "body", ATYPE_BREAKABLE_CAGE, 8, v9, stack_C);
     MR::initCollisionParts(this, modelName, getSensor("body"), nullptr);
 
     if (!isTypeCage()) {
@@ -171,7 +168,7 @@ void BreakableCage::calcAndSetBaseMtx() {
 }
 #endif
 
-bool BreakableCage::receiveMsgPlayerAttack(u32 msg, HitSensor *a2, HitSensor *a3) {
+bool BreakableCage::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     bool result;
     if (MR::isMsgJetTurtleAttack(msg)) {
         result = tryBreak();
@@ -183,7 +180,7 @@ bool BreakableCage::receiveMsgPlayerAttack(u32 msg, HitSensor *a2, HitSensor *a3
     return result;
 }
 
-bool BreakableCage::receiveMsgEnemyAttack(u32 msg, HitSensor *a2, HitSensor *a3) {
+bool BreakableCage::receiveMsgEnemyAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     bool result;
 
     if (MR::isMsgEnemyAttackFire(msg) || MR::isMsgEnemyAttackFireStrong(msg)) {
@@ -307,13 +304,13 @@ bool BreakableCage::tryBreak() {
 
 void BreakableCage::exeWait() {
     if (mCageType == CAGE_NORMAL) {
-        mRotation.y = normalizeAngle(0.0f, mRotationSpeed + mRotation.y);
+        mRotation.y = MR::wrapAngleTowards(0.0f, mRotationSpeed + mRotation.y);
     }
 
     if (mItemModel != nullptr) {
         if (isAppearPowerStar()) {
             DummyDisplayModel* model = mItemModel;
-            mItemModel->mRotation.y = normalizeAngle(0.0f, model->mRotation.y + PowerStar::getPowerStarWaitRotateSpeed());
+            mItemModel->mRotation.y = MR::wrapAngleTowards(0.0f, model->mRotation.y + PowerStar::getPowerStarWaitRotateSpeed());
         }
     }
 }

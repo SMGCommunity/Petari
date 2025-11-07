@@ -1,6 +1,7 @@
 #include "Game/MapObj/UFOBase.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/LodCtrl.hpp"
+#include "Game/LiveActor/ModelObj.hpp"
 #include "Game/MapObj/MapPartsRailMover.hpp"
 #include "Game/Util/ActorMovementUtil.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
@@ -197,11 +198,7 @@ UFOBreakable::UFOBreakable(const char *pName) : UFOBase(pName) {
 }
 
 void UFOBreakable::initSensorType() {
-    TVec3f vec;
-    vec.x = 0.0f;
-    vec.y = 0.0f;
-    vec.z = 0.0f;
-    MR::addHitSensor(this, "body", 84, 8, 100.0f, vec);
+    MR::addHitSensor(this, "body", ATYPE_KILLER_TARGET_MAPOBJ, 8, 100.0f, TVec3f(0.0f, 0.0f, 0.0f));
 }
 
 bool UFOBreakable::receiveMsgEnemyAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {

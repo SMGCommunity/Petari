@@ -1,80 +1,76 @@
 #pragma once
 
-#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/LayoutActor.hpp"
-#include "Game/Screen/YesNoController.hpp"
-#include "Game/Screen/IconAButton.hpp"
 
-typedef void (*MessageChangeFuncPtr)(LayoutActor*, const char*, const char*);
+typedef void (MessageChangeFunc)(LayoutActor*, const char*, const char*);
 
-struct MessageChangeFuncTable {
-    MessageChangeFuncPtr mFuncPtr;
+class IconAButton;
+class YesNoController;
+
+struct MessageChangeFuncTableEntry {
+    MessageChangeFunc* mFuncPtr;
 };
 
 class SysInfoWindow : public LayoutActor {
     public:
     enum SysInfoWindowType {
-        WINDOWTYPE_0,
-        WINDOWTYPE_1
+        WindowType_Normal,
+        WindowType_Mini,
     };
 
     enum SysInfoExecuteType {
-        EXECUTETYPE_0,
-        EXECUTETYPE_1
+        ExecuteType_Normal,
+        ExecuteType_Children,
     };
 
     enum SysInfoType {
-        INFOTYPE_0,
-        INFOTYPE_1,
-        INFOTYPE_2
+        Type_Key,
+        Type_Blocking,
+        Type_YesNo,
     };
 
     enum SysInfoTextPos {
-        TEXTPOS_0,
-        TEXTPOS_1
+        TextPos_Center,
+        TextPos_Bottom,
     };
 
     enum SysInfoMessageType {
-        MESSAGETYPE_0,
-        MESSAGETYPE_1
+        MessageType_Game,
+        MessageType_System,
     };
 
     SysInfoWindow(SysInfoWindowType, SysInfoExecuteType);
-    virtual ~SysInfoWindow();
+
     virtual void init(const JMapInfoIter& rIter);
     virtual void movement();
-    virtual void calcAnim();
     virtual void draw() const;
+    virtual void calcAnim();
     virtual void appear();
-    void appear(const char*, SysInfoType, SysInfoTextPos, SysInfoMessageType);
-    virtual void disappear();
     virtual void kill();
+    virtual void control();
+
+    void appear(const char*, SysInfoType, SysInfoTextPos, SysInfoMessageType);
+    void disappear();
     void forceKill();
     bool isWait() const;
     bool isSelectedYes() const;
     bool isDisappear() const;
-    void control();
     const char* getLayoutName() const;
+    void exeAppear();
     void exeWait();
     void exeDisappear();
     void setYesNoSelectorSE(const char*,const char*,const char*);
     void resetYesNoSelectorSE();
     void setTextBoxArgNumber(s32, s32);
     void setTextBoxArgString(const wchar_t*, s32);
-    
-    s32 _20;
-    s32 _24;
-    YesNoController* _28;
-    IconAButton* _2C;
-    const char* _30;
-    const char* _34;
-    bool _38;
-};
 
-namespace NrvSysInfoWindow {
-    NERVE(SysInfoWindowNrvAppear);
-    NERVE_DECL(SysInfoWindowNrvWait, SysInfoWindow, SysInfoWindow::exeWait);
-    NERVE_DECL(SysInfoWindowNrvDisappear, SysInfoWindow, SysInfoWindow::exeDisappear);
+    /* 0x20 */ SysInfoWindowType mWindowType;
+    /* 0x24 */ SysInfoType mType;
+    /* 0x28 */ YesNoController* mYesNoSelector;
+    /* 0x2C */ IconAButton* mIconAButton;
+    /* 0x30 */ const char* mTextParentPaneName;
+    /* 0x34 */ const char* mWindowParentPaneName;
+    /* 0x38 */ bool _38;
 };
 
 namespace MR {

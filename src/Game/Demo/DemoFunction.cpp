@@ -21,7 +21,7 @@ namespace {
 
 namespace DemoFunction {
     DemoDirector* getDemoDirector() {
-        return MR::getSceneObj<DemoDirector*>(SceneObj_DemoDirector);
+        return MR::getSceneObj<DemoDirector>(SceneObj_DemoDirector);
     }
 
     DemoCastGroupHolder* getDemoCastSubGroupHolder() { return getDemoDirector()->_1C; }
@@ -86,7 +86,7 @@ namespace DemoFunction {
                 return executor;
             }
         }
-        return NULL;
+        return nullptr;
     }
 
     DemoExecutor* findDemoExecutorActive(const LiveActor* pActor) {
@@ -97,7 +97,7 @@ namespace DemoFunction {
                 return executor;
             }
         }
-        return NULL;
+        return nullptr;
     }
 
     bool isDemoCast(const DemoExecutor* pExecutor, const LiveActor* pActor) { return DemoExecutorFunction::isRegisteredDemoCast(pExecutor, pActor); }

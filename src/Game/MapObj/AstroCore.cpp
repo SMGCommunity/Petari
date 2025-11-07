@@ -1,3 +1,4 @@
+#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/MapObj/AstroCore.hpp"
 #include "Game/MapObj/AstroDemoFunction.hpp"
 #include <cstdio>
@@ -52,7 +53,7 @@ void AstroCore::exeGrow() {
     }
 }
 
-bool AstroCore::receiveOtherMsg(u32 msg, HitSensor *, HitSensor *) {
+bool AstroCore::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     return false;
 }
 
@@ -79,9 +80,9 @@ void AstroCore::setStateBeforeGrow() {
     getSensor(nullptr)->mRadius = sSensorSizeTable[v3];
 }
 
-void AstroCore::attackSensor(HitSensor *a1, HitSensor *a2) {
-    if (MR::isSensorPlayer(a2)) {
-        MR::sendMsgPush(a2, a1);
+void AstroCore::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
+    if (MR::isSensorPlayer(pReceiver)) {
+        MR::sendMsgPush(pReceiver, pSender);
     }
 }
 

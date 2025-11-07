@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
+#include "Game/MapObj/BlackHole.hpp"
 #include "Game/Player/Mario.hpp"
 #include "Game/MapObj/BlackHole.hpp"
 
@@ -119,9 +120,6 @@ public:
     void forceGameOverNonStop();
     void forceGameOverSink();
 
-    void initBlackHoleOut();
-    void exeGameOverBlackHole2();
-
     void updateCameraInfo();
     bool binderFilter(const Triangle *);
 
@@ -199,6 +197,8 @@ public:
     bool isRequestRush() const;
     bool isRequestSpinJump2P() const;
     bool tryReleaseBombTeresa();
+    void initBlackHoleOut(); // void ?
+    void exeGameOverBlackHole2();
     bool isEnableSpinPunch();
     bool trySpinPunch();
     void shootFireBall();

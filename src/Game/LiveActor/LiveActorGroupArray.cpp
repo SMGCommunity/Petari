@@ -1,5 +1,6 @@
-#include "Game/LiveActor/LiveActorGroupArray.hpp"
+#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
+#include "Game/LiveActor/LiveActorGroupArray.hpp"
 #include <cstdio>
 #include <cstring>
 

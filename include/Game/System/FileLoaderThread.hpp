@@ -15,8 +15,7 @@ class FileLoaderThread : public OSThreadWrapper {
 public:
     FileLoaderThread(int, int, JKRHeap *);
 
-    virtual ~FileLoaderThread();
-    virtual s32 run();
+    virtual void* run();
 
     void loadToMainRAM(RequestFileInfo *);
     void mountArchiveAndStartCreateResource(RequestFileInfo *);

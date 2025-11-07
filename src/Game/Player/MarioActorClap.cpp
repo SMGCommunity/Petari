@@ -1,3 +1,4 @@
+#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/Player/MarioActor.hpp"
 
 // regswap

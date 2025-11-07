@@ -1,3 +1,4 @@
+#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/MapObj/ClipFieldMapParts.hpp"
 
 ClipFieldMapParts::ClipFieldMapParts(const char *pName) : GeneralMapParts(pName) {

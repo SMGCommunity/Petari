@@ -21,4 +21,5 @@ public:
 
 namespace MR {
     SceneNameObjMovementController* getSceneNameObjMovementController();
+    void notifyRequestNameObjMovementOnOff();
 };

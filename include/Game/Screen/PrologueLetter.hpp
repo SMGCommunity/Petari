@@ -11,9 +11,6 @@ public:
     /// @param pName The pointer to the null-terminated name of the object.
     PrologueLetter(const char* pName);
 
-    /// @brief Destroys the `PrologueLetter`.
-    virtual ~PrologueLetter();
-
     virtual void init(const JMapInfoIter& rIter);
     virtual void appear();
     virtual void kill();

@@ -1,10 +1,11 @@
 #include "Game/NameObj/NameObj.hpp"
-#include "Game/SingletonHolder.hpp"
 #include "Game/System/GameSystem.hpp"
 #include "Game/System/GameSystemObjHolder.hpp"
 #include "Game/System/Language.hpp"
 #include "Game/Util/StringUtil.hpp"
 #include "Game/Util/SystemUtil.hpp"
+#include "Game/SingletonHolder.hpp"
+#include <revolution/sc.h>
 
 #define REGION_EU 0
 #define REGION_JP 1
@@ -34,17 +35,79 @@
 #define LANGUAGE_MASK (~REGION_MASK)
 
 namespace {
-    const u8 cLanguageMap[] = {
-        LANGUAGE_JPJAPANESE,
-        LANGUAGE_USENGLISH,
-        LANGUAGE_EUGERMAN,
-        LANGUAGE_EUFRENCH,
-        LANGUAGE_EUSPANISH,
-        LANGUAGE_EUITALIAN,
-        LANGUAGE_EUDUTCH,
-        LANGUAGE_CNSIMPCHINESE,
-        LANGUAGE_CNSIMPCHINESE,
-        LANGUAGE_KRKOREAN,
+    const u8 cLanguageMap[][10] = {
+        { // RMGJ
+            LANGUAGE_JPJAPANESE,
+            LANGUAGE_USENGLISH,
+            LANGUAGE_EUGERMAN,
+            LANGUAGE_EUFRENCH,
+            LANGUAGE_EUSPANISH,
+            LANGUAGE_EUITALIAN,
+            LANGUAGE_EUDUTCH,
+            LANGUAGE_CNSIMPCHINESE,
+            LANGUAGE_CNSIMPCHINESE,
+            LANGUAGE_KRKOREAN,
+        },
+        { // RMGE
+            LANGUAGE_JPJAPANESE,
+            LANGUAGE_USENGLISH,
+            LANGUAGE_EUGERMAN,
+            LANGUAGE_USFRENCH,
+            LANGUAGE_USSPANISH,
+            LANGUAGE_EUITALIAN,
+            LANGUAGE_EUDUTCH,
+            LANGUAGE_CNSIMPCHINESE,
+            LANGUAGE_CNSIMPCHINESE,
+            LANGUAGE_KRKOREAN,
+        },
+        { // RMGP
+            LANGUAGE_JPJAPANESE,
+            LANGUAGE_EUENGLISH,
+            LANGUAGE_EUGERMAN,
+            LANGUAGE_EUFRENCH,
+            LANGUAGE_EUSPANISH,
+            LANGUAGE_EUITALIAN,
+            LANGUAGE_EUDUTCH,
+            LANGUAGE_CNSIMPCHINESE,
+            LANGUAGE_CNSIMPCHINESE,
+            LANGUAGE_KRKOREAN,
+        },
+        { // ???
+            LANGUAGE_JPJAPANESE,
+            LANGUAGE_USENGLISH,
+            LANGUAGE_EUGERMAN,
+            LANGUAGE_EUFRENCH,
+            LANGUAGE_EUSPANISH,
+            LANGUAGE_EUITALIAN,
+            LANGUAGE_EUDUTCH,
+            LANGUAGE_CNSIMPCHINESE,
+            LANGUAGE_CNSIMPCHINESE,
+            LANGUAGE_KRKOREAN,
+        },
+        { // RMGK
+            LANGUAGE_JPJAPANESE,
+            LANGUAGE_USENGLISH,
+            LANGUAGE_EUGERMAN,
+            LANGUAGE_EUFRENCH,
+            LANGUAGE_EUSPANISH,
+            LANGUAGE_EUITALIAN,
+            LANGUAGE_EUDUTCH,
+            LANGUAGE_CNSIMPCHINESE,
+            LANGUAGE_CNSIMPCHINESE,
+            LANGUAGE_KRKOREAN,
+        },
+        { // ???
+            LANGUAGE_JPJAPANESE,
+            LANGUAGE_USENGLISH,
+            LANGUAGE_EUGERMAN,
+            LANGUAGE_EUFRENCH,
+            LANGUAGE_EUSPANISH,
+            LANGUAGE_EUITALIAN,
+            LANGUAGE_EUDUTCH,
+            LANGUAGE_CNSIMPCHINESE,
+            LANGUAGE_CNSIMPCHINESE,
+            LANGUAGE_KRKOREAN,
+        },
     };
     const Language cLanguages[] = {
         {LANGUAGE_JPJAPANESE, "JpJapanese"},
@@ -63,21 +126,26 @@ namespace {
 };
 
 namespace MR {
-#ifdef NON_MATCHING
-    u8 getDecidedLanguageFromIPL() {
-        u8 language = SCGetLanguage();
+    u32 getDecidedLanguageFromIPL() {
+        s32 language = SCGetLanguage();
+        s32 i;
 
-        if (language >= 0) {
-            s32 size = sizeof(cLanguageMap) / sizeof(*cLanguageMap);
-            s32 i = language > size ? size : language;
-
-            return cLanguageMap[i];
+        if (language < 0) {
+            i = 0;
         }
         else {
-            return cLanguageMap[0];
+            s32 size = sizeof(cLanguageMap[4]) / sizeof(*cLanguageMap[4]);
+
+            if (language <= size) {
+                i = language;
+            }
+            else {
+                i = size;
+            }
         }
+
+        return cLanguageMap[4][i];
     }
-#endif
 
     u32 getLanguage() {
         return SingletonHolder<GameSystem>::get()->mObjHolder->mLanguage;
@@ -123,7 +191,7 @@ namespace MR {
             return "Kr";
         }
 
-        return NULL;
+        return nullptr;
     }
 
     u32 getLanguageNum() {

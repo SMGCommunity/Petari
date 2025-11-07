@@ -9,7 +9,7 @@
 
 namespace {
     SceneDataInitializer* getSceneDataInitializer() {
-        return MR::getSceneObj<SceneDataInitializer*>(SceneObj_SceneDataInitializer);
+        return MR::getSceneObj<SceneDataInitializer>(SceneObj_SceneDataInitializer);
     }
 };
 

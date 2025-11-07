@@ -1,8 +1,10 @@
 #pragma once
 
-#include <revolution.h>
+#include <revolution/types.h>
 
 class WPad;
+struct HBMKPadData;
+struct KPADStatus;
 
 class WPadReadDataInfo {
 public:
@@ -11,8 +13,8 @@ public:
     KPADStatus* getKPadStatus(u32) const;
     u32 getValidStatusCount() const;
 
-    KPADStatus* mStatusArray;       // 0x0 
-    u32 mValidStatusCount;          // 0x4
+    /* 0x00 */ KPADStatus* mStatusArray;
+    /* 0x04 */ u32 mValidStatusCount;
 };
 
 class WPadHolder {
@@ -28,11 +30,16 @@ public:
     WPad* getWPad(s32);
     static void setConnectCallback();
 
-    WPad* mPads[2];                             // 0x0
-    WPadReadDataInfo* mDataInfoArray;           // 0x8
-    u32 mHolderMode;                            // 0xC
+    /* 0x00 */ WPad* mPad[2];
+    /* 0x08 */ WPadReadDataInfo* mReadDataInfoArray;
+    /* 0x0C */ u32 mMode;
 };
 
 namespace MR {
-    WPad* getWPad(s32 channel);
+    WPad* getWPad(s32);
+    void resetWPad();
+    void setWPadHolderModeHomeButton();
+    void setWPadHolderModeGame();
+    void getHBMKPadData(HBMKPadData*, s32);
+    void setAutoSleepTimeWiiRemote(bool);
 };

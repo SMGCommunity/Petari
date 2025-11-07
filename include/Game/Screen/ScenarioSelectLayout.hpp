@@ -1,15 +1,17 @@
 #pragma once
 
-#include "Game/Screen/BackButton.hpp"
 #include "Game/Screen/LayoutActor.hpp"
-#include "Game/Camera/CameraContext.hpp"
-#include "Game/Map/ScenarioSelectStar.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
+
+class BackButton;
+class CameraContext;
+class MultiSceneActor;
+class ScenarioSelectStar;
 
 class ScenarioSelectLayout : public LayoutActor {
 public:
     ScenarioSelectLayout(EffectSystem *, const CameraContext *);
 
-    virtual ~ScenarioSelectLayout();
     virtual void init(const JMapInfoIter &);
     virtual void movement();
     virtual void draw() const;
@@ -48,41 +50,26 @@ public:
     void exeAfterScenarioSelected();
     void exeDisappear();
     void exeCancel();
+    void exeCancelFadeOut();
     void exeAppearCometWarning();
     void exeWaitCometWarning();
-
     void exeDisappearCometWarning();
-    inline void exeCancelFadeOut();
 
-    s32 mSelectedScenarioNo;                // 0x24
-    u32 _24;
-    u8 _28;
-    TMtx34f mEffectHostMtx;                 // 0x2C
-    ScenarioSelectStar** mStars;            // 0x5C
-    MultiSceneActor* mScenarioSky;          // 0x60
-    EffectSystem* mEffectSystem;            // 0x64
-    const CameraContext* mCameraContext;    // 0x68
-    TVec2f mNewTextFollowPos;               // 0x6C
-    TVec2f mNewGreenTextFollowPos;          // 0x74
-    TVec2f mQuestionPane[2];                // 0x7C
-    TVec2f mStarTopFollowPos;               // 0x8C
-    BackButton* mBackButton;                // 0x94
-    TVec2f mMarioIconFollowPos;             // 0x98
-    const char* _A0;
-    u32 _A4;
-    s32 _A8;
-};
-
-namespace NrvScenarioSelectLayout {
-    NERVE_DECL(ScenarioSelectLayoutNrvAppearStar, ScenarioSelectLayout, ScenarioSelectLayout::exeAppearStar)
-    NERVE_DECL(ScenarioSelectLayoutNrvAppear, ScenarioSelectLayout, ScenarioSelectLayout::exeAppear)
-    NERVE_DECL(ScenarioSelectLayoutNrvWaitScenarioSelect, ScenarioSelectLayout, ScenarioSelectLayout::exeWaitScenarioSelect)
-    NERVE_DECL(ScenarioSelectLayoutNrvDecide, ScenarioSelectLayout, ScenarioSelectLayout::exeDecide)
-    NERVE_DECL(ScenarioSelectLayoutNrvAfterScenarioSelected, ScenarioSelectLayout, ScenarioSelectLayout::exeAfterScenarioSelected)
-    NERVE_DECL(ScenarioSelectLayoutNrvDisappear, ScenarioSelectLayout, ScenarioSelectLayout::exeDisappear)
-    NERVE_DECL(ScenarioSelectLayoutNrvCancel, ScenarioSelectLayout, ScenarioSelectLayout::exeCancel)
-    NERVE_DECL(ScenarioSelectLayoutNrvCancelFadeOut, ScenarioSelectLayout, ScenarioSelectLayout::exeCancelFadeOut)
-    NERVE_DECL(ScenarioSelectLayoutNrvAppearCometWarning, ScenarioSelectLayout, ScenarioSelectLayout::exeAppearCometWarning)
-    NERVE_DECL(ScenarioSelectLayoutNrvWaitCometWarning, ScenarioSelectLayout, ScenarioSelectLayout::exeWaitCometWarning)
-    NERVE_DECL(ScenarioSelectLayoutNrvDisappearCometWarning, ScenarioSelectLayout, ScenarioSelectLayout::exeDisappearCometWarning)
+    /* 0x20 */ s32 mSelectedScenarioNo;
+    /* 0x24 */ u32 _24;
+    /* 0x28 */ bool _28;
+    /* 0x2C */ TMtx34f mEffectHostMtx;
+    /* 0x5C */ ScenarioSelectStar** mStar;
+    /* 0x60 */ MultiSceneActor* mScenarioSky;
+    /* 0x64 */ EffectSystem* mEffectSystem;
+    /* 0x68 */ const CameraContext* mCameraContext;
+    /* 0x6C */ TVec2f mNewTextFollowPos;
+    /* 0x74 */ TVec2f mNewGreenTextFollowPos;
+    /* 0x7C */ TVec2f mQuestionPane[2];
+    /* 0x8C */ TVec2f mStarTopFollowPos;
+    /* 0x94 */ BackButton* mBackButton;
+    /* 0x98 */ TVec2f mMarioPaneFollowPos;
+    /* 0xA0 */ const char* mMarioPaneName;
+    /* 0xA4 */ u32 _A4;
+    /* 0xA8 */ s32 _A8;
 };

@@ -24,9 +24,9 @@ namespace {
 };
 
 CometEventKeeper::CometEventKeeper() :
-    mExecutorTimeLimit(NULL),
-    mScreenFilter(NULL),
-    mCometName(NULL),
+    mExecutorTimeLimit(nullptr),
+    mScreenFilter(nullptr),
+    mCometName(nullptr),
     mCometStateIndex(0)
 {
     
@@ -42,7 +42,7 @@ void CometEventKeeper::init() {
         mExecutorTimeLimit->kill();
     }
 
-    if (mCometName != NULL) {
+    if (mCometName != nullptr) {
         mScreenFilter = new GalaxyCometScreenFilter();
         mScreenFilter->initWithoutIter();
         mScreenFilter->_20 = true;
@@ -51,7 +51,7 @@ void CometEventKeeper::init() {
 }
 
 bool CometEventKeeper::isStartEvent(const char* pParam1) const {
-    if (mCometName == NULL) {
+    if (mCometName == nullptr) {
         return false;
     }
 
@@ -59,11 +59,11 @@ bool CometEventKeeper::isStartEvent(const char* pParam1) const {
 }
 
 bool CometEventKeeper::isStartTimeLimitEvent() const {
-    return mExecutorTimeLimit != NULL;
+    return mExecutorTimeLimit != nullptr;
 }
 
 void CometEventKeeper::startCometEventIfExist() {
-    if (mExecutorTimeLimit == NULL) {
+    if (mExecutorTimeLimit == nullptr) {
         return;
     }
 
@@ -71,7 +71,7 @@ void CometEventKeeper::startCometEventIfExist() {
 }
 
 void CometEventKeeper::endCometEvent() {
-    if (mExecutorTimeLimit == NULL) {
+    if (mExecutorTimeLimit == nullptr) {
         return;
     }
 

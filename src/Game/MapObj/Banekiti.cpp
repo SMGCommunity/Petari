@@ -22,7 +22,8 @@ void Banekiti::init(const JMapInfoIter &rIter) {
     mRailMover->init(rIter);
     mRailMover->start();
     TVec3f offset;
-    MR::initStarPointerTarget(this, 120.0f, TVec3f(0.0f));
+    offset.y = offset.z = offset.x = 0.0f;
+    MR::initStarPointerTarget(this, 120.0f, offset);
     mAnimScaleCtrl = new AnimScaleController(nullptr);
     mBindStarPointer = new WalkerStateBindStarPointer(this, mAnimScaleCtrl);
     initNerve(&NrvBanekiti::BanekitiNrvWait::sInstance);
@@ -85,8 +86,10 @@ void Banekiti::control() {
 bool Banekiti::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     if (MR::isMsgStarPieceAttack(msg)) {
         mAnimScaleCtrl->startHitReaction();
+
         return true;
     }
+
     return false;
 }
 
@@ -94,13 +97,17 @@ bool Banekiti::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver
     if (!MR::isSensorPlayer(pSender)) {
         return false;
     }
+
     if (isNerve(&NrvBanekiti::BanekitiNrvRepel::sInstance)) {
         return false;
     }
-    if (msg == 68) {
+
+    if (msg == ACTMES_TERESA_PLAYER_TOUCH) {
         setNerve(&NrvBanekiti::BanekitiNrvRepel::sInstance);
+
         return true;
     }   
+
     return false;
 }
 

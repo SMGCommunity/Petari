@@ -189,11 +189,14 @@ bool MarioModule::isAnimationRun(const char *pAnim, u32 index) {
     if (mActor->mMario->_A6C[index] == 0) {
         return false;
     }
-    else {
-        if (!isAnimationRun(pAnim)) {
-            mActor->mMario->_A6C[index] = 0;
-        }
+
+    bool isAnimRun = isAnimationRun(pAnim);
+
+    if (!isAnimRun) {
+        mActor->mMario->_A6C[index] = 0;
     }
+
+    return isAnimRun;
 }
 
 // regwap again
@@ -238,26 +241,26 @@ bool MarioModule::calcWorldPadDir(TVec3f *pDest, f32 a2, f32 a3, bool a4) {
         return false;
     }
     if (!mActor->mMario->_10._11) {
-        if (__fabsf(a3) > mActor->mConst->mTable[mActor->mConst->mCurrentTable]->mStickMarginYstart) {
-            if (__fabsf(a2) < mActor->mConst->mTable[mActor->mConst->mCurrentTable]->mStickMarginX) {
+        if (__fabsf(a3) > mActor->mConst->getTable()->mStickMarginYstart) {
+            if (__fabsf(a2) < mActor->mConst->getTable()->mStickMarginX) {
                 a2 = 0.0f;
             }
             else if (a2 > 0.0f) {
-                a2 = (a2 - mActor->mConst->mTable[mActor->mConst->mCurrentTable]->mStickMarginX) / (1.0f - mActor->mConst->mTable[mActor->mConst->mCurrentTable]->mStickMarginX);
+                a2 = (a2 - mActor->mConst->getTable()->mStickMarginX) / (1.0f - mActor->mConst->getTable()->mStickMarginX);
             }
             else {
-                a2 = (a2 + mActor->mConst->mTable[mActor->mConst->mCurrentTable]->mStickMarginX) / (1.0f - mActor->mConst->mTable[mActor->mConst->mCurrentTable]->mStickMarginX);
+                a2 = (a2 + mActor->mConst->getTable()->mStickMarginX) / (1.0f - mActor->mConst->getTable()->mStickMarginX);
             }
         }
-        else if (__fabsf(a2) > mActor->mConst->mTable[mActor->mConst->mCurrentTable]->mStickMarginXstart) {
-            if (__fabsf(a3) < mActor->mConst->mTable[mActor->mConst->mCurrentTable]->mStickMarginY) {
+        else if (__fabsf(a2) > mActor->mConst->getTable()->mStickMarginXstart) {
+            if (__fabsf(a3) < mActor->mConst->getTable()->mStickMarginY) {
                 a3 = 0.0f;
             }
             else if (a3 > 0.0f) {
-                a3 = (a3 - mActor->mConst->mTable[mActor->mConst->mCurrentTable]->mStickMarginY) / (1.0f - mActor->mConst->mTable[mActor->mConst->mCurrentTable]->mStickMarginY);
+                a3 = (a3 - mActor->mConst->getTable()->mStickMarginY) / (1.0f - mActor->mConst->getTable()->mStickMarginY);
             }
             else {
-                a3 = (a3 + mActor->mConst->mTable[mActor->mConst->mCurrentTable]->mStickMarginY) / (1.0f - mActor->mConst->mTable[mActor->mConst->mCurrentTable]->mStickMarginY);
+                a3 = (a3 + mActor->mConst->getTable()->mStickMarginY) / (1.0f - mActor->mConst->getTable()->mStickMarginY);
             }
         }
     }
@@ -503,32 +506,28 @@ bool MarioModule::isSlipFloorCode(s32 a1) const {
     return true;
 }
 
-// random extra instruction??
 bool MarioModule::isSlipPolygon(const Triangle *pTri) const {
     if (!pTri->isValid()) {
         return false;
     }
+
     u32 code = mActor->mMario->_95C->getCode(pTri);
-    if (code > 0x1e == false) {
-        switch (code) {
-            case 2:
-                return !(calcAngleD(*pTri->getNormal(0)) <= 3.0f);
-            case 3:
-            case 0xd:
-            case 0x14:
-            case 0x15:
-            case 0x16:
-            case 0x1e:
-                return false;
-            default:
-                break;
-        }
+
+    switch (code) {
+    case 2:
+        return !(calcAngleD(*pTri->getNormal(0)) <= 3.0f);
+    case 3:
+    case 0xd:
+    case 0x14:
+    case 0x15:
+    case 0x16:
+    case 0x1e:
+        return false;
     }
-    else {
-        //MarioConst* pConst = mActor->mConst;
-        float angle = calcAngleD(*pTri->getNormal(0));
-        return angle >= mActor->mConst->mTable[mActor->mConst->mCurrentTable]->mFlatAngle - 0.5f;
-    }
+
+    float angle = calcAngleD(*pTri->getNormal(0));
+
+    return angle >= mActor->mConst->getTable()->mFlatAngle - 0.5f;
 }
 
 u32 MarioModule::getFloorCode() const {

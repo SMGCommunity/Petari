@@ -168,27 +168,27 @@ void KeySwitch::control() {
     }
 }
 
-bool KeySwitch::receiveMsgPlayerAttack(u32 msg, HitSensor *a1, HitSensor *a2) {
+bool KeySwitch::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     return MR::isMsgStarPieceReflect(msg);
 }
 
-bool KeySwitch::receiveOtherMsg(u32 msg, HitSensor *a1, HitSensor *a2) {
+bool KeySwitch::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     if (MR::isMsgStarPieceReflect(msg)) {
-        return 1;
+        return true;
     }
 
     if (isNerve(&NrvKeySwitch::KeySwitchNrvAppear::sInstance) && MR::isLessEqualStep(this, 0x3C)) {
-        return 0;
+        return false;
     }
 
     if (MR::isMsgItemGet(msg)) {
         MR::startSound(this, "SE_OJ_KEY_SWITCH_GET", -1, -1);
         MR::tryRumblePadMiddle(this, 0);
         kill();
-        return 1;
+        return true;
     }
 
-    return 0;
+    return false;
 }
 
 /*
@@ -207,11 +207,11 @@ bool KeySwitch::tryAvoid() {
         return false;
     }
 
-    if (sensor->mSensorType != 0x58) {
+    if (sensor->mType != 0x58) {
         return false;
     }
     
-    sensorActor = sensor->mActor;
+    sensorActor = sensor->mHost;
     TVec3f up;
     MR::calcUpVec(&up, sensorActor);
     TVec3f thing;

@@ -25,7 +25,7 @@ void NameObjCategoryList::execute(int idx) {
         return;
     }
 
-    if (pCategoryInfo->_C != NULL) {
+    if (pCategoryInfo->_C != nullptr) {
         (*pCategoryInfo->_C)();
     }
 
@@ -62,14 +62,14 @@ void NameObjCategoryList::add(NameObj *pObj, int idx) {
 void NameObjCategoryList::registerExecuteBeforeFunction(const MR::FunctorBase &rFunc, int idx) {
     NameObjCategoryList::CategoryInfo* pCategoryInfo = &mCategoryInfo[idx];
 
-    pCategoryInfo->_C = rFunc.clone(0);
+    pCategoryInfo->_C = rFunc.clone(nullptr);
 }
 
 void NameObjCategoryList::initTable(u32 count, const CategoryListInitialTable *pTable) {
     mCategoryInfo.init(count);
 
     for (CategoryInfo* pCategoryInfo = mCategoryInfo.begin(); pCategoryInfo != mCategoryInfo.end(); pCategoryInfo++) {
-        pCategoryInfo->_C = NULL;
+        pCategoryInfo->_C = nullptr;
     }
 
     for (const CategoryListInitialTable* pEntry = &pTable[0]; pEntry->mIndex != -1; pEntry++) {

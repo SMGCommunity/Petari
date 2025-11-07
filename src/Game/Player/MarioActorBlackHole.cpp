@@ -15,14 +15,14 @@ void MarioActor::initBlackHoleOut() {
     TVec3f rotateAxis;
     
     PSVECCrossProduct(&normalisedRelativeCameraPos, &normalisedRelativePos, &rotateAxis);
-
+    
     f32 mag = PSVECMag(&mPosRelativeToBlackHole);
     TVec3f killed;
-    f32 flt = MR::vecKillElement(mCamPos - mPosition,mCamDirZ,&killed);
+    f32 flt = MR::vecKillElement(mCamPos - mPosition, mCamDirZ, &killed);
     flt *= mConst->getTable()->mBlackHoleFirstRadius;
-
+    
     PSMTXRotAxisRad(rotation, &rotateAxis, atan(flt / mag));
-    PSMTXMultVec(rotation,&mPosRelativeToBlackHole,&mBlackHoleRotateAxis);
+    PSMTXMultVec(rotation, &mPosRelativeToBlackHole, &mBlackHoleRotateAxis);
     MR::normalizeOrZero(&mBlackHoleRotateAxis);
     
     damageDropThrowMemoSensor();
@@ -33,26 +33,27 @@ void MarioActor::exeGameOverBlackHole2() {
     if (MR::isFirstStep(this)) {
         MR::setCubeBgmChangeInvalid();
         MR::clearBgmQueue();
-
+        
         if (!(mBlackHole->tryStartDemoCamera()) && !(mMario->mMovementStates_HIGH_WORD >> 8 & 0x1)) {
-            MR::startBlackHoleCamera("ブラックホール", mBlackHolePosition,mPosition);
+            MR::startBlackHoleCamera("ブラックホール", mBlackHolePosition, mPosition);
         }
-
+        
         _F44 = false;
-
+        
         changeAnimationNonStop("ブラックホール落下");
         playEffect("共通ブラックホール");
         playSound("ブラックホール吸い込まれ", -1);
         playEffect(changeMorphString("DieBlackHole"));
         initBlackHoleOut();
-
+        
         mMario->mMovementStates_HIGH_WORD |= 0x8;
-
+        
         MR::startStarPointerModeDemoMarioDeath(this);
         MR::deactivateDefaultGameLayout();
     }
     
     if (getNerveStep() == 60) {
+        
         if (!MR::getPlayerLeft()) {
             MR::startPlayerEvent("ゲームオーバー");
         }
@@ -63,15 +64,18 @@ void MarioActor::exeGameOverBlackHole2() {
     
     if (getNerveStep() == mConst->getTable()->mBlackHoleHideTime) {
         _482 = true;
+        
         MR::hidePlayer();
         MR::emitEffect(this, "ブラックホール消滅");
     }
     
     f32 nervestepfloat = getNerveStep();
     f32 flt = 1.0f;
+    
     if (nervestepfloat < 180.0f) {
         flt = MR::sqrt(nervestepfloat/180.0f);
     }
+    
     f32 angle = mConst->getTable()->mBlackHoleRotateSpeed;
     angle = nervestepfloat * angle;
     angle = flt * angle;
@@ -95,6 +99,7 @@ void MarioActor::exeGameOverBlackHole2() {
     }
     
     f32 newDistToBlackHole = PSVECMag(&mPosRelativeToBlackHole) * distChangeFactor/(1+distChangeFactor);
+    
     mPosRelativeToBlackHole.setLength(newDistToBlackHole);
     
     f32 scale = getNerveStep() * mConst->getTable()->mBlackHoleScaleSpeed;
@@ -107,5 +112,6 @@ void MarioActor::exeGameOverBlackHole2() {
     mScale.set(scale);
     
     mPosition = mBlackHolePosition + mPosRelativeToBlackHole;
+    
     mVelocity.zero();
 }

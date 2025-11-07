@@ -5,8 +5,7 @@
 
 class HitSensor;
 
-class HitSensorInfo
-{
+class HitSensorInfo {
 public:
     HitSensorInfo(const char *, HitSensor *, const TVec3f *, MtxPtr, const TVec3f &, bool);
 

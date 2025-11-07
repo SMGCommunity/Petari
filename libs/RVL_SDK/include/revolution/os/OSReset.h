@@ -17,13 +17,19 @@ struct OSShutdownFunctionInfo {
     OSShutdownFunctionInfo* prev;
 };
 
-void OSReturnToMenu(void);
-void OSResetSystem(int, u32, BOOL);
 void OSRegisterShutdownFunction(OSShutdownFunctionInfo *);
-BOOL __OSCallShutdownFunctions(BOOL, u32);
-void __OSReturnToMenuForError(void);
+
+void OSRebootSystem(void);
+void OSShutdownSystem(void);
+void OSRestart(u32);
+void OSReturnToMenu(void);
 
 u32 OSGetResetCode(void);
+
+void OSResetSystem(int, u32, BOOL);
+
+BOOL __OSCallShutdownFunctions(BOOL, u32);
+void __OSReturnToMenuForError(void);
 
 u8 __OSGetDiscState(u8);
 void __OSShutdownDevices(u32);

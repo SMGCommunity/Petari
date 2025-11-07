@@ -10,9 +10,6 @@ public:
     /// @param pHost The pointer to the owning actor instance.
     GalaxyMapGalaxyPlain(const LayoutActor* pHost);
 
-    /// @brief Destroys the `GalaxyMapGalaxyPlain`.
-    virtual ~GalaxyMapGalaxyPlain() {}
-
     virtual void init(const JMapInfoIter& rIter);
     virtual void movement();
     virtual void draw() const;

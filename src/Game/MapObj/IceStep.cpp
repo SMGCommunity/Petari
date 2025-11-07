@@ -99,11 +99,11 @@ void IceStep::doHit() {
     mTimer = 0;
 }
 
-bool IceStep::receiveMsgPlayerAttack(u32 , HitSensor *, HitSensor *) {
+bool IceStep::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     return false;
 }
 
-bool IceStep::receiveMsgEnemyAttack(u32 msg, HitSensor *, HitSensor *) {
+bool IceStep::receiveMsgEnemyAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     if (MR::isOnPlayer(this)) {
         return false;
     }

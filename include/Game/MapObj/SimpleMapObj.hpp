@@ -92,7 +92,7 @@ public:
 
 class SimpleMirrorObj : public MapObjActor {
 public:
-    SimpleMirrorObj(const char *pName, const char *a2 = NULL, MtxPtr = NULL);
+    SimpleMirrorObj(const char *pName, const char *a2 = nullptr, MtxPtr = nullptr);
 
     virtual ~SimpleMirrorObj();
     virtual void init(const JMapInfoIter &);

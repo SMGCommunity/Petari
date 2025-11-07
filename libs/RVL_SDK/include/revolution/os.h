@@ -136,6 +136,7 @@ extern void __RAS_OSDisableInterrupts_end(void);
 #include <revolution/os/OSPlayRecord.h>
 #include <revolution/os/OSPlayTime.h>
 #include <revolution/os/OSReset.h>
+#include <revolution/os/OSResetSW.h>
 #include <revolution/os/OSTime.h>
 #include <revolution/os/OSThread.h>
 #include <revolution/gx.h>

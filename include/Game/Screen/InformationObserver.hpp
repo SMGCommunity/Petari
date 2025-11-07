@@ -20,9 +20,6 @@ public:
     /// @brief Creates a new `InformationObserver`.
     InformationObserver();
 
-    /// @brief Destroys the `InformationObserver`.
-    virtual ~InformationObserver() {}
-
     virtual void init(const JMapInfoIter& rIter);
 
     void entry(InformationObserver::TYPE, LiveActor*);

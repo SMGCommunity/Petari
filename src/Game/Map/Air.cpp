@@ -3,6 +3,11 @@
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Util.hpp"
 
+namespace NrvAir {
+    NEW_NERVE(HostTypeIn, Air, In);
+    NEW_NERVE(HostTypeOut, Air, Out);
+};
+
 Air::Air(const char *pName) : LiveActor(pName) {
     _8C = 0;
     _8D = 0;
@@ -114,11 +119,7 @@ void Air::appearFadeOut() {
 }
 
 void Air::exeIn() {
-    bool isCameraNotEnd = false;
-
-    if (_8D && !MR::isStartAnimCameraEnd()) {
-        isCameraNotEnd = true;
-    }
+    bool isCameraNotEnd = _8D && !MR::isStartAnimCameraEnd();
 
     if (!isCameraNotEnd) {
         tryChange();
@@ -131,11 +132,7 @@ void Air::exeIn() {
 }
 
 void Air::exeOut() {
-    bool flag = false;
-
-    if (_8D && !MR::isStartAnimCameraEnd()) {
-        flag = true;
-    }
+    bool flag = _8D && !MR::isStartAnimCameraEnd();
 
     if (!flag) {
         tryChange();
@@ -183,7 +180,7 @@ void AirFar100m::setFarClipping() {
 
 PriorDrawAir::PriorDrawAir(const char *pName) : Air(pName) {
     MR::createSceneObj(SceneObj_PriorDrawAirHolder);
-    MR::getSceneObj<PriorDrawAirHolder*>(SceneObj_PriorDrawAirHolder)->add(this);
+    MR::getSceneObj<PriorDrawAirHolder>(SceneObj_PriorDrawAirHolder)->add(this);
 }
 
 PriorDrawAirHolder::PriorDrawAirHolder() : NameObj("先描画大気保持") {
@@ -213,13 +210,8 @@ namespace MR {
             return false;
         }
 
-        return MR::getSceneObj<PriorDrawAirHolder*>(SceneObj_PriorDrawAirHolder)->isExistValidDrawAir();
+        return MR::getSceneObj<PriorDrawAirHolder>(SceneObj_PriorDrawAirHolder)->isExistValidDrawAir();
     }
-};
-
-namespace NrvAir {
-    INIT_NERVE(HostTypeIn);
-    INIT_NERVE(HostTypeOut);
 };
 
 AirFar100m::~AirFar100m() {

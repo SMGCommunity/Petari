@@ -43,15 +43,15 @@ namespace MR {
     }
 
     TMtx34f& getCoinRotateYMatrix() {
-        return MR::getSceneObj<CoinRotater*>(SceneObj_CoinRotater)->mRotateYMtx;
+        return MR::getSceneObj<CoinRotater>(SceneObj_CoinRotater)->mRotateYMtx;
     }
 
     TMtx34f& getCoinHiSpeedRotateYMatrix() {
-        return MR::getSceneObj<CoinRotater*>(SceneObj_CoinRotater)->mHiSpeedRotateYMtx;
+        return MR::getSceneObj<CoinRotater>(SceneObj_CoinRotater)->mHiSpeedRotateYMtx;
     }
 
     TMtx34f& getCoinInWaterRotateYMatrix() {
-        return MR::getSceneObj<CoinRotater*>(SceneObj_CoinRotater)->mWaterRotateMtx;
+        return MR::getSceneObj<CoinRotater>(SceneObj_CoinRotater)->mWaterRotateMtx;
     }
 };
 

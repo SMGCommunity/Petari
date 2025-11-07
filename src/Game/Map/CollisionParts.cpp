@@ -45,7 +45,7 @@ void CollisionParts::init(const TPos3f &a1, HitSensor *pHitSensor, const void *p
 
     mZone = keeper->getZone(zoneID);
 
-    MR::initCameraCodeCollection(pHitSensor->mActor->mName, mZone->mZoneID);
+    MR::initCameraCodeCollection(pHitSensor->mHost->mName, mZone->mZoneID);
     mServer->calcFarthestVertexDistance();
     MR::termCameraCodeCollection();
 
@@ -249,7 +249,7 @@ const char *CollisionParts::getHostName() const {
         return nullptr;
     }
 
-    LiveActor *actor = mHitSensor->mActor;
+    LiveActor *actor = mHitSensor->mHost;
 
     if (actor == nullptr) {
         return nullptr;

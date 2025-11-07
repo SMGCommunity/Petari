@@ -1,137 +1,166 @@
-#include "JSystem/JUtility/JUTTexture.hpp"
-#include "JSystem/JKernel/JKRHeap.hpp"
-#include <revolution.h>
+#include <JSystem/JKernel/JKRHeap.hpp>
+#include <JSystem/JUtility/JUTPalette.hpp>
+#include <JSystem/JUtility/JUTTexture.hpp>
 
-JUTTexture::JUTTexture(const ResTIMG *pImgData, u8 a2) {
-    _28 = 0;
-    storeTIMG(pImgData, a2);
-    _3B &= 2;
+JUTTexture::JUTTexture() {
+    setCaptureFlag(false);
+
+    mEmbPalette = nullptr;
+    mTIMG = nullptr;
 }
 
-JUTTexture::JUTTexture(int width, int height, _GXTexFmt texFmt) {
-    _3B = _3B & 2 | 1;
-    u32 bufSize = GXGetTexBufferSize(width, height, texFmt, GX_FALSE, 1);
+JUTTexture::JUTTexture(const ResTIMG* pTIMG, u8 param2) {
+    mEmbPalette = nullptr;
 
-    ResTIMG* texBuf = reinterpret_cast<ResTIMG*>(new(0x20) u8[bufSize + 0x20]);
+    storeTIMG(pTIMG, param2);
+
+    mFlag &= 2;
+}
+
+JUTTexture::JUTTexture(int width, int height, GXTexFmt format) {
+    mFlag = mFlag & 2 | 1;
+    u32 bufSize = GXGetTexBufferSize(width, height, format, GX_FALSE, 1);
+
+    ResTIMG* texBuf = reinterpret_cast<ResTIMG*>(new(sizeof(ResTIMG)) u8[bufSize + sizeof(ResTIMG)]);
     _3C = texBuf;
-    texBuf->mFormat = texFmt;
-    texBuf->mEnableAlpha = 0;
+    texBuf->mFormat = format;
+    texBuf->mTransparency = 0;
     texBuf->mWidth = width;
     texBuf->mHeight = height;
-    texBuf->mWrapS = 0;
-    texBuf->mWrapT = 0;
-    texBuf->mPaletteFormat = 0;
-    texBuf->_9 = 0;
-    texBuf->mPaletteCount = 0;
-    texBuf->mPaletteOffs = 0;
-    texBuf->_10 = 0;
-    texBuf->_11 = 0;
-    texBuf->_12 = 0;
-    texBuf->_13 = 0;
-    texBuf->mMagType = 1;
-    texBuf->mMinType = 1;
-    texBuf->_16 = 0;
-    texBuf->_17 = 0;
-    texBuf->mTotalImgCount = 1;
-    texBuf->_1A = 0;
-    texBuf->mImgDataOffs = 0x20;
-    _28 = 0;
+    texBuf->mWrapS = GX_CLAMP;
+    texBuf->mWrapT = GX_CLAMP;
+    texBuf->mPaletteName = GX_TLUT0;
+    texBuf->mPaletteFormat = GX_TL_IA8;
+    texBuf->mPaletteNum = 0;
+    texBuf->mPaletteDataOffset = 0;
+    texBuf->mMipmap = false;
+    texBuf->mDoEdgeLod = false;
+    texBuf->mBiasClamp = false;
+    texBuf->mMaxAnisotropy = GX_ANISO_1;
+    texBuf->mMinType = GX_LINEAR;
+    texBuf->mMagType = GX_LINEAR;
+    texBuf->mMinLod = 0;
+    texBuf->mMaxLod = 0;
+    texBuf->mImageNum = 1;
+    texBuf->mLodBias = 0;
+    texBuf->mImageDataOffset = sizeof(ResTIMG);
+    mEmbPalette = nullptr;
 
     // cast to u8 solves ambiguity
-    storeTIMG(texBuf, (u8)0);
-    DCFlushRange(_24, bufSize);
+    storeTIMG(texBuf, static_cast<u8>(0));
+    DCFlushRange(mImage, bufSize);
 }
 
 JUTTexture::~JUTTexture() {
-    if (_3B & 0x1) {
+    if (mFlag & 0x1) {
         delete[] _3C;
     }
 
-    if (_3B & 0x2) {
-        delete _28;
+    if (mFlag & 0x2) {
+        delete mEmbPalette;
     }
 }
 
-// JUTTexture::storeTIMG((ResTIMG const *, unsigned char))
+// JUTTexture::storeTIMG(const ResTIMG *, u8)
 
-void JUTTexture::storeTIMG(const ResTIMG *pImg, JUTPalette *pPalette) {
-    _GXTlut tlut;
+void JUTTexture::storeTIMG(const ResTIMG* pTIMG, JUTPalette* pPalette) {
+    GXTlut tlut;
 
-    if (!pPalette) {
+    if (pPalette != nullptr) {
+        tlut = static_cast<GXTlut>(pPalette->mName);
+    }
+    else {
         tlut = GX_TLUT0;
     }
+
+    storeTIMG(pTIMG, pPalette, tlut);
+}
+
+// JUTTexture::storeTIMG(ResTIMG const *, JUTPalette *, GXTlut)
+
+void JUTTexture::attachPalette(JUTPalette* pPalette) {
+    if (mTIMG->mPaletteName == GX_TLUT0) {
+        return;
+    }
+
+    if (pPalette == nullptr && mEmbPalette != nullptr) {
+        mPalette = mEmbPalette;
+    }
     else {
-        tlut = pPalette->_C;
+        mPalette = pPalette;
     }
 
-    storeTIMG(pImg, pPalette, tlut);
+    initTexObj(static_cast<GXTlut>(mPalette->mName));
 }
-
-// JUTTexture::storeTIMG((ResTIMG const *, JUTPalette *, _GXTlut))
-
-#ifdef NON_MATCHING
-void JUTTexture::attachPalette(JUTPalette *pPalette) {
-    JUTPalette* thing;
-    if (_20->mPaletteFormat) {
-        if (pPalette || (thing = _28) == 0) {
-            mPalette = pPalette;
-        }
-        else {
-            mPalette = thing;
-        }
-
-        initTexObj(mPalette->_C);
-    }
-}
-#endif
 
 void JUTTexture::init() {
-    if (!_20->mPaletteCount) {
+    if (mTIMG->mPaletteNum == 0) {
         initTexObj();
     }
-    else {
-        if (_28) {
-            mPalette = _28;
-            initTexObj(mPalette->_C);
-        }
+    else if (mEmbPalette != nullptr) {
+        mPalette = mEmbPalette;
+
+        initTexObj(static_cast<GXTlut>(mPalette->mName));
     }
 }
 
-/*void JUTTexture::initTexObj() {
-    u32 offs = 0x20;
-    if (_20->mImgDataOffs) {
-        offs = _20->mImgDataOffs;
-    }
+/*
+void JUTTexture::initTexObj() {
+    u32 imageDataOffset = mTIMG->mImageDataOffset != 0
+        ? mTIMG->mImageDataOffset
+        : sizeof(ResTIMG);
 
-    //GXInitTexObj(&mTexObj, reinterpret_cast<void*>(_20 + offs), _20->mWidth, _20->mHeight, (_GXTexFmt)_20->mFormat, (_GXTexWrapMode)_20->mWrapS, (_GXTexWrapMode)_20->mWrapT, _20->_10);
-    //GXInitTexObjLOD(&mTexObj, (GXTexFilter)mMagType, (GXTexFilter)mMinType,  _34 * 0.125f, _36 * 0.125f, _38 / 100.0f, _20->_12, _20->_11, (GXAnisotropy)_20->_13);
-}*/
+    GXInitTexObj(
+        &mObj,
+        static_cast<void*>(mTIMG + imageDataOffset),
+        mTIMG->mWidth,
+        mTIMG->mHeight,
+        static_cast<GXTexFmt>(mTIMG->mFormat),
+        static_cast<GXTexWrapMode>(mTIMG->mWrapS),
+        static_cast<GXTexWrapMode>(mTIMG->mWrapT),
+        mTIMG->mMipmap != false);
+    GXInitTexObjLOD(
+        &mObj,
+        static_cast<GXTexFilter>(mMinType),
+        static_cast<GXTexFilter>(mMagType),
+        mMinLod * 8.0f,
+        mMaxLod * 8.0f,
+        mLodBias * 100.0f,
+        mTIMG->mBiasClamp,
+        mTIMG->mDoEdgeLod,
+        static_cast<GXAnisotropy>(mTIMG->mMaxAnisotropy));
+}
+*/
 
-// JUTTexture::initTexObj((_GXTlut))
+// JUTTexture::initTexObj(GXTlut)
 
-void JUTTexture::load(_GXTexMapID texMapID) {
-    if (mPalette) {
+void JUTTexture::load(GXTexMapID texMapID) {
+    if (mPalette != nullptr) {
         mPalette->load();
     }
 
-    GXLoadTexObj(&mTexObj, texMapID);
+    GXLoadTexObj(&mObj, texMapID);
 }
 
-void JUTTexture::capture(int width, int height, _GXTexFmt texFmt, bool useMipmap, GXBool clear) {
-    if (_3B & 0x1) {
-        if (useMipmap) {
-            GXSetTexCopySrc(width, height, (2 * _20->mWidth), (2 * _20->mHeight));
+void JUTTexture::capture(int width, int height, GXTexFmt format, bool mipmap, GXBool clear) {
+    if (mFlag & 0x1) {
+        if (mipmap) {
+            GXSetTexCopySrc(width, height, mTIMG->mWidth * 2, mTIMG->mHeight * 2);
         }
         else {
-            GXSetTexCopySrc(width, height, _20->mWidth, _20->mHeight);
+            GXSetTexCopySrc(width, height, mTIMG->mWidth, mTIMG->mHeight);
         }
 
-        GXSetTexCopyDst(_20->mWidth, _20->mHeight, texFmt, useMipmap);
-        GXCopyTex(_24, clear);
+        GXSetTexCopyDst(mTIMG->mWidth, mTIMG->mHeight, format, mipmap);
+        GXCopyTex(mImage, clear);
         GXPixModeSync();
     }
 }
 
+void JUTTexture::setCaptureFlag(bool set) {
+    mFlag = mFlag & 0x2 | (set << 0);
+}
+
 void JUTTexture::setEmbPaletteDelFlag(bool set) {
-    _3B = _3B & 0x1 | (2 * set);
+    mFlag = mFlag & 0x1 | (set << 1);
 }

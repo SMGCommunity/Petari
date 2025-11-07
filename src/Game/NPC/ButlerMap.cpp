@@ -23,6 +23,10 @@
 #include "revolution/types.h"
 #include <cstddef>
 
+namespace {
+    const char* cDemoNameMapLecture = "バトラーマップレクチャー";
+};
+
 namespace NrvButlerMap {
     NEW_NERVE(ButlerMapNrvTalk, ButlerMap, Talk);
     NEW_NERVE(ButlerMapNrvShowGalaxyMap, ButlerMap, ShowGalaxyMap);

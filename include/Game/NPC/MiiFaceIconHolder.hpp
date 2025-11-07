@@ -12,9 +12,6 @@ public:
     /// @param pName The pointer to the null-terminated name of the object.
     MiiFaceIconHolder(u32 iconNum, const char* pName);
 
-    /// @brief Destroys the `MiiFaceIconHolder`.
-    virtual ~MiiFaceIconHolder() {}
-
     /// @brief Creates the icon texture for the first Mii character with an open request.
     void drawIcons();
 

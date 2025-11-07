@@ -28,6 +28,13 @@ extern "C" {
 #define NAND_RESULT_UNKNOWN        (-64)
 #define NAND_RESULT_FATAL_ERROR   (-128)
 
+#define NAND_MAX_PATH 64
+
+#define NAND_CHECK_HOME_INSSPACE 0x00000001
+#define NAND_CHECK_HOME_INSINODE 0x00000002
+#define NAND_CHECK_SYS_INSSPACE 0x00000004
+#define NAND_CHECK_SYS_INSINODE 0x00000008
+
 typedef enum {
     NAND_ACCESS_NONE,
     NAND_ACCESS_READ,
@@ -55,8 +62,8 @@ typedef struct NANDFileInfo
 {
     s32  fileDescriptor;
     s32  origFd;
-    char origPath[64];
-    char tmpPath[64];
+    char origPath[NAND_MAX_PATH];
+    char tmpPath[NAND_MAX_PATH];
     u8   accType;
     u8   stage;
     u8   mark;
@@ -77,7 +84,7 @@ typedef struct NANDCommandBlock {
     u32 groupAcc;
     u32 othersAcc;
     u32 num;
-    char absPath[64];
+    char absPath[NAND_MAX_PATH];
     u32 *length;
     u32 *pos;
     int state;
@@ -162,7 +169,7 @@ s32 NANDPrivateGetStatus(const char *, NANDStatus *);
 s32 NANDPrivateDelete(const char *);
 s32 NANDPrivateCreate(const char *, u8, u8);
 
-s32 NANDGetHomeDir(char *);
+s32 NANDGetHomeDir(char[NAND_MAX_PATH]);
 
 s32 NANDGetStatus(const char *, NANDStatus *);
 

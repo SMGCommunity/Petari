@@ -6,7 +6,6 @@ class WipeGameOver : public WipeLayoutBase {
 public:
     WipeGameOver();
 
-    virtual ~WipeGameOver() {}
     virtual void init(const JMapInfoIter&);
     virtual void kill();
     virtual void wipe(s32);

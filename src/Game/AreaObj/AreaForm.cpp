@@ -64,7 +64,7 @@ bool AreaFormCube::isInVolume(const TVec3f &rPos) const {
 }
 
 void AreaFormCube::calcWorldPos(TVec3f *pPos) const {
-    if (_4 != NULL) {
+    if (_4 != nullptr) {
         _4->mult(mTranslation, *pPos);
     }
     else {
@@ -176,7 +176,7 @@ AreaFormSphere::AreaFormSphere() {
 }
 
 void AreaFormSphere::calcUpVec(TVec3f *pOut) const {
-    if (_4 != NULL) {
+    if (_4 != nullptr) {
         _4->mult33(mUp, *pOut);
         MR::normalize(pOut);
     }
@@ -186,7 +186,7 @@ void AreaFormSphere::calcUpVec(TVec3f *pOut) const {
 }
 
 void AreaFormSphere::calcPos(TVec3f *pOut) const {
-    if (_4 != NULL) {
+    if (_4 != nullptr) {
         _4->mult(mTranslation, *pOut);
     }
     else {
@@ -205,7 +205,7 @@ bool AreaFormSphere::isInVolume(const TVec3f &rVector) const {
 }
 
 AreaFormBowl::AreaFormBowl() {
-    _4 = NULL;
+    _4 = nullptr;
     mTranslation.x = 0.0f;
     mTranslation.y = 0.0f;
     mTranslation.z = 0.0f;

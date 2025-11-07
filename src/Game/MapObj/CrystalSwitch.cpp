@@ -1,3 +1,4 @@
+#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/MapObj/CrystalSwitch.hpp"
 
 /* Note -- this file was compiled super early on in the game's life, so it was compiled under -O2 where the release build is -O4,p. Keep this in mind! */
@@ -34,15 +35,15 @@ void CrystalSwitch::control() {
     _98 = 0;
 }
 
-void CrystalSwitch::attackSensor(HitSensor *a1, HitSensor *a2) {
-    if (MR::isSensorPlayer(a2)) {
-        a2->receiveMessage(41, a1);
+void CrystalSwitch::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
+    if (MR::isSensorPlayer(pReceiver)) {
+        pReceiver->receiveMessage(41, pSender);
     }
 }
 
-bool CrystalSwitch::receiveMsgPlayerAttack(u32, HitSensor *, HitSensor *) {
+bool CrystalSwitch::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     _98 = 1;
-    return 1;
+    return true;
 }
 
 bool CrystalSwitch::trySwitchDown() {

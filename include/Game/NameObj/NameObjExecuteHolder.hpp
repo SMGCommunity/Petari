@@ -5,6 +5,8 @@
 class LiveActor;
 
 class NameObjExecuteInfo {
+    friend class NameObjExecuteHolder;
+
 public:
     NameObjExecuteInfo();
 
@@ -12,11 +14,11 @@ public:
     void initConnectting();
     void requestConnect(u8 *);
     void requestDisconnect(u8 *, bool);
-    void executeRequirementConnectMovement();
-    void executeRequirementDisconnectMovement();
-    void executeRequirementConnectDraw();
-    void executeRequirementDisconnectDraw();
-    void executeRequirementDisconnectDrawDelay();
+    void executeRequirementConnectMovement() NO_INLINE;
+    void executeRequirementDisconnectMovement() NO_INLINE;
+    void executeRequirementConnectDraw() NO_INLINE;
+    void executeRequirementDisconnectDraw() NO_INLINE;
+    void executeRequirementDisconnectDrawDelay() NO_INLINE;
     void requestMovementOn(int);
     void requestMovementOff(int);
     void findLightInfo() const;
@@ -25,21 +27,20 @@ public:
     void connectToDraw();
     void disconnectToDraw();
 
-    NameObj* mExecutedObject;   // 0x0
-    s8 _4;
-    s8 _5;
-    s8 _6;
-    s8 _7;
-    s8 _8;
-    s8 _9;
-    s16 _A;
+private:
+    /* 0x0 */ NameObj* mExecutedObj;
+    /* 0x4 */ s8 _4;
+    /* 0x5 */ s8 _5;
+    /* 0x6 */ s8 _6;
+    /* 0x7 */ s8 _7;
+    /* 0x8 */ s8 _8;
+    /* 0x9 */ s8 _9;
+    /* 0xA */ s16 _A;
 };
 
 class NameObjExecuteHolder : public NameObj { 
 public:
     NameObjExecuteHolder(int);
-
-    virtual ~NameObjExecuteHolder();
 
     void registerActor(NameObj *, int, int, int, int);
     void initConnectting();
@@ -57,14 +58,15 @@ public:
     void requestMovementOff(int);
     NameObjExecuteInfo* getConnectToSceneInfo(const NameObj *) const;
 
-    NameObjExecuteInfo* mExecuteArray;  // 0xC
-    s32 mExecuteCount;                  // 0x10
-    u32 _14;
-    u8 _18;
-    u8 _19;
-    u8 _1A;
-    u8 _1B;
-    u8 _1C;
+private:
+    /* 0x0C */ NameObjExecuteInfo* mExecuteArray;
+    /* 0x10 */ s32 mExecuteArrayMaxSize;
+    /* 0x14 */ s32 mExecuteArraySize;
+    /* 0x18 */ bool _18;
+    /* 0x19 */ bool _19;
+    /* 0x1A */ bool _1A;
+    /* 0x1B */ bool _1B;
+    /* 0x1C */ bool _1C;
 };
 
 namespace MR {

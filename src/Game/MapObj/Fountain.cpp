@@ -46,7 +46,7 @@ void Fountain::init(const JMapInfoIter &rIter) {
     offs.x = 0.0f;
     offs.y = 300.0f;
     offs.z = 0.0f;
-    MR::addHitSensorMapObj(this, "body", 0x10, 300.0f, offs);
+    MR::addHitSensorMapObj(this, "body", 16, 300.0f, offs);
     MR::setClippingTypeSphere(this, 3500.0f);
     MR::useStageSwitchReadA(this, rIter);
     initNerve(&NrvFountain::HostTypeMove::sInstance);

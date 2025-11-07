@@ -1,3 +1,4 @@
+#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/MapObj/PicketSwitch.hpp"
 
 PicketSwitch::PicketSwitch(const char *pName) : LiveActor(pName) {
@@ -16,7 +17,7 @@ void PicketSwitch::init(const JMapInfoIter &rIter) {
     initModelManagerWithAnm(pName, nullptr, false);
     MR::connectToSceneMapObjDecorationStrongLight(this);
     initHitSensor(1);
-    MR::addBodyMessageSensor(this, 79);
+    MR::addBodyMessageSensor(this, ATYPE_SWITCH);
     MR::initCollisionPartsAutoEqualScale(this, pName, getSensor(0), MR::getJointMtx(this, "Picket"));
     initEffectKeeper(0, nullptr, false);
     initSound(4, false);

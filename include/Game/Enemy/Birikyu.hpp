@@ -27,6 +27,7 @@ public:
     void exeMoveCircle();
     void exeWaitAtEdge();
     void exeAttack();
+    void exeAttackWait();
     void exeStopPointing();
 
     const char* _8C; 
@@ -50,13 +51,4 @@ public:
     virtual char *getCenterJointName() const;
 
     bool _CC;
-};
-
-namespace NrvBirikyu {
-    NERVE(HostTypeMove);
-    NERVE(HostTypeMoveCircle);
-    NERVE(HostTypeAttack);
-    NERVE(HostTypeAttackWait);
-    NERVE(HostTypeWaitAtEdge);
-    NERVE(HostTypeStopPointing);        
 };

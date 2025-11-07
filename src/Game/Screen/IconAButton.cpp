@@ -1,12 +1,20 @@
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/IconAButton.hpp"
-#include "Game/Util.hpp"
+#include "Game/Util/LayoutUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
 #include <cstdio>
 
-IconAButton::IconAButton(bool connectToScene, bool connectToPause) : LayoutActor("Aボタンアイコン", true) {
-    mFollowPos.x = 0.0f;
-    mFollowPos.y = 0.0f;
-    mFollowActor = nullptr;
+namespace NrvIconAButton {
+    NEW_NERVE(IconAButtonNrvOpen, IconAButton, Open);
+    NEW_NERVE(IconAButtonNrvWait, IconAButton, Wait);
+    NEW_NERVE(IconAButtonNrvTerm, IconAButton, Term);
+};
 
+IconAButton::IconAButton(bool connectToScene, bool connectToPause) :
+    LayoutActor("Aボタンアイコン", true),
+    mFollowPos(0.0f, 0.0f),
+    mFollowActor(nullptr)
+{
     if (connectToScene) {
         if (connectToPause) {
             MR::connectToSceneLayoutOnPause(this);
@@ -16,7 +24,7 @@ IconAButton::IconAButton(bool connectToScene, bool connectToPause) : LayoutActor
         }
     }
 
-    mFollowPane[0] = 0;
+    mFollowPaneName[0] = '\0';
 }
 
 void IconAButton::init(const JMapInfoIter &rIter) {
@@ -29,12 +37,13 @@ void IconAButton::init(const JMapInfoIter &rIter) {
 
 void IconAButton::setFollowActorPane(LayoutActor *pActor, const char *pName) {
     mFollowActor = pActor;
-    snprintf(mFollowPane, sizeof(mFollowPane), "%s", pName);
+
+    snprintf(mFollowPaneName, sizeof(mFollowPaneName), "%s", pName);
     MR::setFollowPos(&mFollowPos, this, nullptr);
 }
 
 bool IconAButton::isOpen() {
-    return MR::isDead(this) == false;
+    return !MR::isDead(this);
 }
 
 bool IconAButton::isWait() {
@@ -74,7 +83,16 @@ void IconAButton::openWithoutMessage() {
     MR::clearTextBoxMessageRecursive(this, "IconAButton");
 }
 
-// IconAButton::term
+void IconAButton::term() {
+    bool isAlive = !MR::isDead(this);
+
+    if (isAlive
+        && (isNerve(&NrvIconAButton::IconAButtonNrvWait::sInstance)
+            || isNerve(&NrvIconAButton::IconAButtonNrvOpen::sInstance)))
+    {
+        setNerve(&NrvIconAButton::IconAButtonNrvTerm::sInstance);
+    }
+}
 
 void IconAButton::exeOpen() {
     if (MR::isFirstStep(this)) {
@@ -83,6 +101,12 @@ void IconAButton::exeOpen() {
 
     if (MR::isAnimStopped(this, 0)) {
         setNerve(&NrvIconAButton::IconAButtonNrvWait::sInstance);
+    }
+}
+
+void IconAButton::exeWait() {
+    if (MR::isFirstStep(this)) {
+        MR::startAnim(this, "Press", 0);
     }
 }
 
@@ -102,16 +126,6 @@ void IconAButton::control() {
 
 void IconAButton::updateFollowPos() {
     if (mFollowActor != nullptr) {
-        MR::copyPaneTrans(&mFollowPos, mFollowActor, mFollowPane);
+        MR::copyPaneTrans(&mFollowPos, mFollowActor, mFollowPaneName);
     }
 }
-
-IconAButton::~IconAButton() {
-
-}
-
-namespace NrvIconAButton {
-    INIT_NERVE(IconAButtonNrvOpen);
-    INIT_NERVE(IconAButtonNrvWait);
-    INIT_NERVE(IconAButtonNrvTerm);
-};

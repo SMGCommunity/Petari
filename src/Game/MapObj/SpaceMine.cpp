@@ -77,16 +77,16 @@ void SpaceMine::initAfterPlacement() {
     }
 }
 
-void SpaceMine::attackSensor(HitSensor *a1, HitSensor *a2) {
-    if (MR::sendMsgEnemyAttackExplosion(a2, a1)) {
+void SpaceMine::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
+    if (MR::sendMsgEnemyAttackExplosion(pReceiver, pSender)) {
         kill();
     }
     else {
-        MR::sendMsgPush(a2, a1);
+        MR::sendMsgPush(pReceiver, pSender);
     }
 }
 
-bool SpaceMine::receiveMsgPlayerAttack(u32 msg, HitSensor *, HitSensor *) {
+bool SpaceMine::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     if (MR::isMsgInvincibleAttack(msg)) {
         kill();
         return true;

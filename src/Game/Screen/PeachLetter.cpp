@@ -1,3 +1,4 @@
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/NameObj/NameObjArchiveListCollector.hpp"
 #include "Game/Screen/IconAButton.hpp"
 #include "Game/Screen/PeachLetter.hpp"
@@ -14,7 +15,7 @@ namespace NrvPeachLetter {
 
 PeachLetter::PeachLetter(const char* pName) :
     LayoutActor(pName, true),
-    mAButtonIcon(NULL)
+    mAButtonIcon(nullptr)
 {
     
 }
@@ -61,7 +62,7 @@ void PeachLetter::exeWait() {
         mAButtonIcon->openWithoutMessage();
     }
 
-    if (mAButtonIcon->isWait() && MR::testCorePadTriggerA(0)) {
+    if (mAButtonIcon->isWait() && MR::testCorePadTriggerA(WPAD_CHAN0)) {
         MR::startSystemSE("SE_SY_TALK_OK", -1, -1);
         setNerve(&NrvPeachLetter::PeachLetterNrvEnd::sInstance);
     }

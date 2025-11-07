@@ -1,20 +1,16 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/LiveActor/ModelObj.hpp"
-#include "Game/Enemy/AnimScaleController.hpp"
-#include "Game/Enemy/WalkerStateBindStarPointer.hpp"
-
-#define POIHANA_BEHAVIOR_NORMAL 0
-#define POIHANA_BEHAVIOR_SLEEP 1
-#define POIHANA_BEHAVIOR_NEW_HOME 2
 
 class ActorCameraInfo;
+class AnimScaleController;
+class WalkerStateBindStarPointer;
 
 class Poihana : public LiveActor {
 public:
 	Poihana(const char *pName);
 
+	virtual ~Poihana();
 	virtual void init(const JMapInfoIter &rIter);
 	virtual void initAfterPlacement();
 	virtual void control();
@@ -52,7 +48,7 @@ public:
 	bool tryToStartBind(HitSensor *pSender);
 	void updateBindActorMtx();
 	void endBind();
-	void startBound() NO_INLINE;
+	void startBound();
 	void calcBound();
 	void contactMario(HitSensor *pSender, HitSensor *pReceiver);
 	void controlVelocity();
@@ -85,27 +81,4 @@ public:
 	TVec3f mFrontVec; // 0xD8
 	bool mIsActive; // 0xE4
 	u8 _E5; // 0xE5
-};
-
-namespace NrvPoihana {
-	NERVE_EXECEND(PoihanaNrvNonActive);
-	NERVE(PoihanaNrvWait);
-	NERVE(PoihanaNrvWalkAround);
-	NERVE(PoihanaNrvSleepStart);
-	NERVE(PoihanaNrvSleep);
-	NERVE(PoihanaNrvGetUp);
-	NERVE(PoihanaNrvSearch);
-	NERVE(PoihanaNrvChasePlayer);
-	NERVE(PoihanaNrvShootUpCharge);
-	NERVE_EXECEND(PoihanaNrvShootUp);
-	NERVE(PoihanaNrvGoBack);
-	NERVE(PoihanaNrvShock);
-	NERVE(PoihanaNrvSwoon);
-	NERVE(PoihanaNrvSwoonLand);
-	NERVE(PoihanaNrvRecover);
-	NERVE(PoihanaNrvShake);
-	NERVE(PoihanaNrvDrown);
-	NERVE(PoihanaNrvHide);
-	NERVE(PoihanaNrvAppear);
-	NERVE_EXECEND(PoihanaNrvDPDSwoon);
 };

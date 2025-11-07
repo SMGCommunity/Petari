@@ -4,6 +4,7 @@
 
 class AudSoundObject;
 class LiveActor;
+class JAISoundID;
 
 namespace MR {
 
@@ -28,6 +29,8 @@ namespace MR {
 
     void startSound(const LiveActor *, const char *, s32, s32);
 
+    void actorSoundMovement(LiveActor*);
+
     void startSystemSE(const char *, s32, s32);
     void stopSystemSE(const char *, u32);
     void startSpinHitSound(const LiveActor *);
@@ -37,7 +40,7 @@ namespace MR {
     void startSoundObject(AudSoundObject *, const char *);
 
     void startLevelSound(const LiveActor *, const char *, s32, s32, s32);
-
+    void startLevelSound(const LiveActor *, JAISoundID, s32, s32, s32);
     void releaseSoundHandle(const LiveActor *, const char *);
 
     void setAudioEffectType(s32, s32);
@@ -45,6 +48,8 @@ namespace MR {
     bool isPlayingStageBgm();
     bool isPlayingStageBgmID(u32);
     bool isPlayingStageBgmName(const char *);
+    bool isStopOrFadeoutStageBgmID(u32);
+    bool isStopOrFadeoutBgmName(const char *);
     bool isPreparedStageBgm();
 
     void setStageBGMState(s32, u32);
@@ -53,6 +58,7 @@ namespace MR {
     bool isCubeBgmChangeInvalid();
     void clearBgmQueue();
 
+    void startEventBGM(s32);
     void startAfterBossBGM();
 
     void startCSSound(const char *, const char *, s32);

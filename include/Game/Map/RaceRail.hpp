@@ -16,7 +16,7 @@ public:
     virtual void initRacer();
     virtual void prepRacer(const RaceManager *);
     virtual void startRacer();
-    virtual void updateRacer(const RaceManager *);
+    virtual bool updateRacer(const RaceManager *);
     virtual bool goalRacer();
     virtual void loseRacer();
     virtual void resetRacer(const RaceManager *);

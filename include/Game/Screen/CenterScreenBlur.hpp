@@ -5,14 +5,19 @@
 
 class CenterScreenBlur : public LiveActor {
 public:
+    /// @brief Creates a new `CenterScreenBlur`.
     CenterScreenBlur();
-    ~CenterScreenBlur();
 
-    virtual void init(JMapInfoIter const &);
-    virtual void appear();
+    /// @brief Intializes the `CenterScreenBlur` while being placed into a scene.
+    /// @param rIter The reference to an iterator over a `JMapInfo`.
+    virtual void init(const JMapInfoIter& rIter);
+
+    /// @brief Draws the `CenterScreenBlur` to the screen.
     virtual void draw() const;
 
-    void start(s32, f32, bool, s32, s32);
+    virtual void appear();
+
+    void start(s32, f32, u8, s32, s32);
     void exeFadeIn();
     void exeKeep();
     void exeFadeOut();
@@ -21,6 +26,6 @@ public:
     s32 _90;
     s32 _94;
     f32 _98;
-    bool _9C;
+    u8 _9C;
     f32 _A0;
 };

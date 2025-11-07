@@ -26,7 +26,7 @@
 
 namespace {
     CometRetryButton* getCometRetryButton() {
-        return MR::getSceneObj<CometRetryButton*>(SceneObj_CometRetryButton);
+        return MR::getSceneObj<CometRetryButton>(SceneObj_CometRetryButton);
     }
 };
 
@@ -596,7 +596,10 @@ void GameScene::exePowerStarGet() {
 }
 
 void GameScene::exePauseMenu() {
-    MR::isFirstStep(this);
+    if (MR::isFirstStep(this)) {
+        
+    }
+
     mPauseSeq->movement();
     CategoryList::execute(MR::MovementType_LayoutOnPause);
 }

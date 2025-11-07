@@ -76,7 +76,7 @@ void CoinSpot::exeIsInTornado() {
     }
 }
 
-void CoinSpot::attackSensor(HitSensor *, HitSensor *) {
+void CoinSpot::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
 
 }
 

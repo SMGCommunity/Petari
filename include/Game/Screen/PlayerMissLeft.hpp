@@ -9,7 +9,6 @@ class PlayerMissLeft : public LayoutActor {
 public:
     PlayerMissLeft(const char* pName);
 
-    virtual ~PlayerMissLeft();
     virtual void init(const JMapInfoIter& rIter);
     virtual void appear();
     virtual void control();

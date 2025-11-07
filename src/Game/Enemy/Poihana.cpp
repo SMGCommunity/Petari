@@ -1,10 +1,40 @@
+#include "Game/Enemy/AnimScaleController.hpp"
 #include "Game/Enemy/Poihana.hpp"
-#include "Game/Util.hpp"
-#include "JSystem/JMath/JMath.hpp"
+#include "Game/Enemy/WalkerStateBindStarPointer.hpp"
+#include "Game/LiveActor/HitSensor.hpp"
+#include "Game/LiveActor/ModelObj.hpp"
+#include <JSystem/JMath/JMath.hpp>
+
+#define POIHANA_BEHAVIOR_NORMAL 0
+#define POIHANA_BEHAVIOR_SLEEP 1
+#define POIHANA_BEHAVIOR_NEW_HOME 2
 
 namespace {
 	const Vec sNormalBinderPos = { 0.0f, 130.0f, 120.0f };
 	const Vec sTrampleBinderPos = { 0.0f, 150.0f, 0.0f };
+};
+
+namespace NrvPoihana {
+	NEW_NERVE_ONEND(PoihanaNrvNonActive, Poihana, NonActive, NonActive);
+	NEW_NERVE(PoihanaNrvWait, Poihana, Wait);
+	NEW_NERVE(PoihanaNrvWalkAround, Poihana, WalkAround);
+	NEW_NERVE(PoihanaNrvSleepStart, Poihana, SleepStart);
+	NEW_NERVE(PoihanaNrvSleep, Poihana, Sleep);
+	NEW_NERVE(PoihanaNrvGetUp, Poihana, GetUp);
+	NEW_NERVE(PoihanaNrvSearch, Poihana, Search);
+	NEW_NERVE(PoihanaNrvChasePlayer, Poihana, ChasePlayer);
+	NEW_NERVE(PoihanaNrvShootUpCharge, Poihana, ShootUpCharge);
+	NEW_NERVE_ONEND(PoihanaNrvShootUp, Poihana, ShootUp, ShootUp);
+	NEW_NERVE(PoihanaNrvGoBack, Poihana, GoBack);
+	NEW_NERVE(PoihanaNrvShock, Poihana, Shock);
+	NEW_NERVE(PoihanaNrvSwoon, Poihana, Swoon);
+	NEW_NERVE(PoihanaNrvSwoonLand, Poihana, SwoonLand);
+	NEW_NERVE(PoihanaNrvRecover, Poihana, Recover);
+	NEW_NERVE(PoihanaNrvShake, Poihana, Shake);
+	NEW_NERVE(PoihanaNrvDrown, Poihana, Drown);
+	NEW_NERVE(PoihanaNrvHide, Poihana, Hide);
+	NEW_NERVE(PoihanaNrvAppear, Poihana, Appear);
+	NEW_NERVE_ONEND(PoihanaNrvDPDSwoon, Poihana, DPDSwoon, DPDSwoon);
 };
 
 Poihana::Poihana(const char *pName) : LiveActor(pName) {
@@ -26,6 +56,8 @@ Poihana::Poihana(const char *pName) : LiveActor(pName) {
 	_E5 = 0;
 }
 
+Poihana::~Poihana() { }
+
 /*void Poihana::init(const JMapInfoIter &rIter) {
 	MR::initDefaultPos(this, rIter);
 	MR::initActorCamera(this, rIter, &mCamInfo);
@@ -36,7 +68,7 @@ Poihana::Poihana(const char *pName) : LiveActor(pName) {
 	// Initialize sensors
 	initHitSensor(2);
 	MR::addHitSensorPriorBinder(this, "binder", 8, 125.0f, sNormalBinderPos);
-	MR::addHitSensorAtJoint(this, "body", "Body", 30, 8, 70.0f, TVec3f(0.0f, 0.0f, 0.0f));
+	MR::addHitSensorAtJoint(this, "body", "Body", ATYPE_KILLER_TARGET_ENEMY, 8, 70.0f, TVec3f(0.0f, 0.0f, 0.0f));
 
 	// Initialize binder
 	bool useSmallBinder = false;
@@ -151,51 +183,51 @@ inline void calcRepelVector(const TVec3f &agent, const TVec3f &object, TVec3f& d
 }
 
 void Poihana::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
-	bool ret = false;
-
-	if (MR::isSensorPlayer(pReceiver) || MR::isSensorEnemy(pReceiver) ||
-	    MR::isSensorMapObj(pReceiver)) {
-		ret = true;
-	}
+	bool ret = MR::isSensorPlayer(pReceiver)
+		|| MR::isSensorEnemy(pReceiver)
+		|| MR::isSensorMapObj(pReceiver);
 
 	if (!ret) {
 		return;
 	}
 
-	if (MR::isSensorEnemy(pSender)) {
-		if (MR::isSensorPlayer(pReceiver)) {
-			contactMario(pSender, pReceiver);
+	if (!MR::isSensorEnemy(pSender)) {
+		return;
+	}
+
+	if (MR::isSensorPlayer(pReceiver)) {
+		contactMario(pSender, pReceiver);
+	}
+	
+	if (!MR::sendMsgPush(pReceiver, pSender)) {
+		return;
+	}
+
+	if (MR::isSensorPlayer(pReceiver)) {
+		ret = isNerve(&NrvPoihana::PoihanaNrvShock::sInstance)
+			|| isNerve(&NrvPoihana::PoihanaNrvSwoonLand::sInstance)
+			|| isNerve(&NrvPoihana::PoihanaNrvSwoon::sInstance)
+			|| isNerve(&NrvPoihana::PoihanaNrvRecover::sInstance);
+
+		if (ret) {
+			return;
 		}
+	}
 
-		if (MR::sendMsgPush(pReceiver, pSender)) {
-			if (MR::isSensorPlayer(pReceiver)) {
-				ret = false;
-				if (isNerve(&NrvPoihana::PoihanaNrvShock::sInstance) ||
-				    isNerve(&NrvPoihana::PoihanaNrvSwoonLand::sInstance) ||
-				    isNerve(&NrvPoihana::PoihanaNrvSwoon::sInstance) ||
-				    isNerve(&NrvPoihana::PoihanaNrvRecover::sInstance)) {
-					ret = true;
-				}
+	TVec3f pushVelocity;
+	pushVelocity.sub(mPosition, pReceiver->mHost->mPosition);
 
-				if (ret) {
-					return;
-				}
-			}
+	MR::normalizeOrZero(&pushVelocity);
 
-			TVec3f pushVelocity(mPosition - pReceiver->mActor->mPosition);
-			MR::normalizeOrZero(&pushVelocity);
-
-			if (mVelocity.dot(pushVelocity) < 0.0f) {
-				const TVec3f& velocity = mVelocity;
-				calcRepelVector(pushVelocity, velocity, mVelocity);
-			}
-		}
+	if (mVelocity.dot(pushVelocity) < 0.0f) {
+		const TVec3f& velocity = mVelocity;
+		calcRepelVector(pushVelocity, velocity, mVelocity);
 	}
 }
 
 bool Poihana::receiveMsgPush(HitSensor *pSender, HitSensor *pReceiver) {
 	if (MR::isSensorEnemy(pSender) || MR::isSensorMapObj(pSender)) {
-		TVec3f pushOffset(mPosition - pSender->mActor->mPosition);
+		TVec3f pushOffset(mPosition - pSender->mHost->mPosition);
 		MR::normalizeOrZero(&pushOffset);
 		JMAVECScaleAdd(&pushOffset, &mVelocity, &mVelocity, 1.5f);
 
@@ -211,25 +243,18 @@ bool Poihana::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pRe
 	}
 
 	if (MR::isMsgPlayerTrample(msg) || MR::isMsgPlayerHipDrop(msg)) {
-		bool flag = false;
-
-		if (isNerve(&NrvPoihana::PoihanaNrvDrown::sInstance) ||
-		    isNerve(&NrvPoihana::PoihanaNrvHide::sInstance) ||
-		    isNerve(&NrvPoihana::PoihanaNrvAppear::sInstance) ||
-		    isNerve(&NrvPoihana::PoihanaNrvShock::sInstance)) {
-			flag = true;
-		}
+		bool flag = isNerve(&NrvPoihana::PoihanaNrvShock::sInstance)
+			|| isNerve(&NrvPoihana::PoihanaNrvSwoonLand::sInstance)
+			|| isNerve(&NrvPoihana::PoihanaNrvSwoon::sInstance)
+			|| isNerve(&NrvPoihana::PoihanaNrvRecover::sInstance);
 
 		if (flag) {
 			goto here;
 		}
 
-		flag = false;
-		if (isNerve(&NrvPoihana::PoihanaNrvSleepStart::sInstance) ||
-		    isNerve(&NrvPoihana::PoihanaNrvSleep::sInstance) ||
-		    isNerve(&NrvPoihana::PoihanaNrvGetUp::sInstance)) {
-			flag = true;
-		}
+		flag = isNerve(&NrvPoihana::PoihanaNrvSleepStart::sInstance)
+			|| isNerve(&NrvPoihana::PoihanaNrvSleep::sInstance)
+			|| isNerve(&NrvPoihana::PoihanaNrvGetUp::sInstance);
 
 		if (flag) {
 here:
@@ -277,8 +302,9 @@ bool Poihana::receiveMsgEnemyAttack(u32 msg, HitSensor *pSender, HitSensor *pRec
 					}
 				}
 			}
-			else if (isNerve(&NrvPoihana::PoihanaNrvShootUpCharge::sInstance) ||
-			         !MR::isNear(pSender, pReceiver, 100.0f)) {
+			else if (isNerve(&NrvPoihana::PoihanaNrvShootUpCharge::sInstance)
+				|| !MR::isNear(pSender, pReceiver, 100.0f))
+			{
 				return false;
 			}
 			else {
@@ -290,7 +316,7 @@ bool Poihana::receiveMsgEnemyAttack(u32 msg, HitSensor *pSender, HitSensor *pRec
 			return true;
 		}
 	}
-	else if (MR::isMsgUpdateBaseMtx(msg) && mBindedActor) {
+	else if (MR::isMsgUpdateBaseMtx(msg) && mBindedActor != nullptr) {
 		updateBindActorMtx();
 		return true;
 	}
@@ -367,11 +393,9 @@ void Poihana::exeWalkAround() {
 	if (isNeedForBackHome()) {
 		setNerve(&NrvPoihana::PoihanaNrvGoBack::sInstance);
 	}
-
 	else if (MR::isNearPlayer(this, 800.0f)) {
 		setNerve(&NrvPoihana::PoihanaNrvSearch::sInstance);
 	}
-
 	else if (MR::isGreaterStep(this, 120)) {
 		if (mBehavior == POIHANA_BEHAVIOR_SLEEP) {
 			setNerve(&NrvPoihana::PoihanaNrvSleepStart::sInstance);
@@ -646,7 +670,7 @@ void Poihana::exeDPDSwoon() {
 	}
 
 	MR::updateActorStateAndNextNerve(this, (ActorStateBaseInterface*)mBindStarPointer,
-	                                 &NrvPoihana::PoihanaNrvWait::sInstance);
+									 &NrvPoihana::PoihanaNrvWait::sInstance);
 }
 
 void Poihana::endDPDSwoon() {
@@ -662,13 +686,13 @@ bool Poihana::tryToStartBind(HitSensor* pSender) {
 		return false;
 	}
 
-	LiveActor *bindedActor = pSender->mActor;
+	LiveActor *bindedActor = pSender->mHost;
 	if (MR::isInWater(bindedActor, TVec3f(0.0f, 0.0f, 0.0f))) {
 		return false;
 	}
 
 	MR::tryRumblePadMiddle(this, 0);
-	mBindedActor = pSender->mActor;
+	mBindedActor = pSender->mHost;
 	MR::startBckPlayer("Rise", (const char *)nullptr);
 	MR::invalidateClipping(this);
 	return true;
@@ -695,7 +719,9 @@ void Poihana::endBind() {
 
 void Poihana::startBound() {
 	mBoundTimer = 0;
-	mScale.set(1.0f);
+	mScale.x = 1.0f;
+	mScale.y = 1.0f;
+	mScale.z = 1.0f;
 }
 
 /*
@@ -724,11 +750,8 @@ void Poihana::contactMario(HitSensor *pSender, HitSensor *pReceiver) {
 	bool isShooting;
 
 	if (!isNerveTypeWalkOrWait()) {
-		isShooting = false;
-		if (isNerve(&NrvPoihana::PoihanaNrvShootUpCharge::sInstance) ||
-		    isNerve(&NrvPoihana::PoihanaNrvShootUp::sInstance)) {
-			isShooting = true;
-		}
+		isShooting = isNerve(&NrvPoihana::PoihanaNrvShootUpCharge::sInstance)
+			|| isNerve(&NrvPoihana::PoihanaNrvShootUp::sInstance);
 	} else {
 		goto doFlip;
 	}
@@ -861,13 +884,9 @@ bool Poihana::tryDPDSwoon() {
 }
 
 bool Poihana::tryShock() {
-	bool ret = false;
-
-	if (isNerve(&NrvPoihana::PoihanaNrvDrown::sInstance) ||
-	    isNerve(&NrvPoihana::PoihanaNrvHide::sInstance) ||
-	    isNerve(&NrvPoihana::PoihanaNrvAppear::sInstance)) {
-		ret = true;
-	}
+	bool ret = isNerve(&NrvPoihana::PoihanaNrvDrown::sInstance)
+		|| isNerve(&NrvPoihana::PoihanaNrvHide::sInstance)
+		|| isNerve(&NrvPoihana::PoihanaNrvAppear::sInstance);
 
 	if (ret) {
 		return false;
@@ -901,11 +920,11 @@ bool Poihana::tryHipDropShock() {
 }
 
 bool Poihana::isNerveTypeWalkOrWait() const {
-	return (isNerve(&NrvPoihana::PoihanaNrvWait::sInstance) ||
-	        isNerve(&NrvPoihana::PoihanaNrvSearch::sInstance) ||
-	        isNerve(&NrvPoihana::PoihanaNrvWalkAround::sInstance) ||
-	        isNerve(&NrvPoihana::PoihanaNrvChasePlayer::sInstance) ||
-	        isNerve(&NrvPoihana::PoihanaNrvGoBack::sInstance));
+	return isNerve(&NrvPoihana::PoihanaNrvWait::sInstance)
+			|| isNerve(&NrvPoihana::PoihanaNrvSearch::sInstance)
+			|| isNerve(&NrvPoihana::PoihanaNrvWalkAround::sInstance)
+			|| isNerve(&NrvPoihana::PoihanaNrvChasePlayer::sInstance)
+			|| isNerve(&NrvPoihana::PoihanaNrvGoBack::sInstance);
 }
 
 bool Poihana::isNeedForBackHome() const {
@@ -913,15 +932,14 @@ bool Poihana::isNeedForBackHome() const {
 		return !MR::isNear(this, mHomePos, 350.0f);
 	}
 
-	if (!isNerve(&NrvPoihana::PoihanaNrvChasePlayer::sInstance)) {
+	if (isNerve(&NrvPoihana::PoihanaNrvChasePlayer::sInstance)) {
 		bool ret;
+
 		if (mBehavior == POIHANA_BEHAVIOR_NEW_HOME) {
 			ret = !MR::isNearPlayer(this, 1100.0f);
 		} else {
-			ret = false;
-			if (!MR::isNear(this, mHomePos, 2000.0f) || !MR::isNearPlayer(this, 1110.0f)) {
-				ret = true;
-			}
+			ret = !MR::isNear(this, mHomePos, 2000.0f)
+				|| !MR::isNearPlayer(this, 1110.0f);
 		}
 
 		return ret;
@@ -936,7 +954,7 @@ bool Poihana::isNeedForGetUp() const {
 	if (MR::isNearPlayer(this, 500.0f)) {
 		bool flag = true;
 
-		f32 mag = PSVECMag((Vec *)MR::getPlayerVelocity());
+		f32 mag = PSVECMag(MR::getPlayerVelocity());
 
 		if (!(mag >= 10.0f) && !MR::isPlayerSwingAction()) {
 			flag = false;
@@ -957,142 +975,4 @@ bool Poihana::isBackAttack(HitSensor *pMySensor) const {
 
 	TVec3f sensorRelative(pMySensor->mPosition - mPosition);
 	return sensorRelative.dot(frontVec) > 0.0f;
-}
-
-namespace NrvPoihana {
-	INIT_NERVE(PoihanaNrvNonActive);
-	INIT_NERVE(PoihanaNrvWait);
-	INIT_NERVE(PoihanaNrvWalkAround);
-	INIT_NERVE(PoihanaNrvSleepStart);
-	INIT_NERVE(PoihanaNrvSleep);
-	INIT_NERVE(PoihanaNrvGetUp);
-	INIT_NERVE(PoihanaNrvSearch);
-	INIT_NERVE(PoihanaNrvChasePlayer);
-	INIT_NERVE(PoihanaNrvShootUpCharge);
-	INIT_NERVE(PoihanaNrvShootUp);
-	INIT_NERVE(PoihanaNrvGoBack);
-	INIT_NERVE(PoihanaNrvShock);
-	INIT_NERVE(PoihanaNrvSwoon);
-	INIT_NERVE(PoihanaNrvSwoonLand);
-	INIT_NERVE(PoihanaNrvRecover);
-	INIT_NERVE(PoihanaNrvShake);
-	INIT_NERVE(PoihanaNrvDrown);
-	INIT_NERVE(PoihanaNrvHide);
-	INIT_NERVE(PoihanaNrvAppear);
-	INIT_NERVE(PoihanaNrvDPDSwoon);
-
-	void PoihanaNrvNonActive::execute(Spine *pSpine) const {
-		Poihana *pActor = (Poihana*)pSpine->mExecutor;
-		pActor->exeNonActive();
-	}
-
-	void PoihanaNrvNonActive::executeOnEnd(Spine *pSpine) const {
-		Poihana *pActor = (Poihana*)pSpine->mExecutor;
-		pActor->endNonActive();
-	}
-
-	void PoihanaNrvWait::execute(Spine *pSpine) const {
-		Poihana *pActor = (Poihana*)pSpine->mExecutor;
-		pActor->exeWait();
-	}
-
-	void PoihanaNrvWalkAround::execute(Spine *pSpine) const {
-		Poihana *pActor = (Poihana*)pSpine->mExecutor;
-		pActor->exeWalkAround();
-	}
-
-	void PoihanaNrvSleepStart::execute(Spine *pSpine) const {
-		Poihana *pActor = (Poihana*)pSpine->mExecutor;
-		pActor->exeSleepStart();
-	}
-
-	void PoihanaNrvSleep::execute(Spine *pSpine) const {
-		Poihana *pActor = (Poihana*)pSpine->mExecutor;
-		pActor->exeSleep();
-	}
-
-	void PoihanaNrvGetUp::execute(Spine *pSpine) const {
-		Poihana *pActor = (Poihana*)pSpine->mExecutor;
-		pActor->exeGetUp();
-	}
-
-	void PoihanaNrvSearch::execute(Spine *pSpine) const {
-		Poihana *pActor = (Poihana*)pSpine->mExecutor;
-		pActor->exeSearch();
-	}
-
-	void PoihanaNrvChasePlayer::execute(Spine *pSpine) const {
-		Poihana *pActor = (Poihana*)pSpine->mExecutor;
-		pActor->exeChasePlayer();
-	}
-
-	void PoihanaNrvShootUpCharge::execute(Spine *pSpine) const {
-		Poihana *pActor = (Poihana*)pSpine->mExecutor;
-		pActor->exeShootUpCharge();
-	}
-
-	void PoihanaNrvShootUp::execute(Spine *pSpine) const {
-		Poihana *pActor = (Poihana*)pSpine->mExecutor;
-		pActor->exeShootUp();
-	}
-
-	void PoihanaNrvShootUp::executeOnEnd(Spine *pSpine) const {
-		Poihana *pActor = (Poihana*)pSpine->mExecutor;
-		pActor->endShootUp();
-	}
-
-	void PoihanaNrvGoBack::execute(Spine *pSpine) const {
-		Poihana *pActor = (Poihana*)pSpine->mExecutor;
-		pActor->exeGoBack();
-	}
-
-	void PoihanaNrvShock::execute(Spine *pSpine) const {
-		Poihana *pActor = (Poihana*)pSpine->mExecutor;
-		pActor->exeShock();
-	}
-
-	void PoihanaNrvSwoon::execute(Spine *pSpine) const {
-		Poihana *pActor = (Poihana*)pSpine->mExecutor;
-		pActor->exeSwoon();
-	}
-
-	void PoihanaNrvSwoonLand::execute(Spine *pSpine) const {
-		Poihana *pActor = (Poihana*)pSpine->mExecutor;
-		pActor->exeSwoonLand();
-	}
-
-	void PoihanaNrvRecover::execute(Spine *pSpine) const {
-		Poihana *pActor = (Poihana*)pSpine->mExecutor;
-		pActor->exeRecover();
-	}
-
-	void PoihanaNrvShake::execute(Spine *pSpine) const {
-		Poihana *pActor = (Poihana*)pSpine->mExecutor;
-		pActor->exeShake();
-	}
-
-	void PoihanaNrvDrown::execute(Spine *pSpine) const {
-		Poihana *pActor = (Poihana*)pSpine->mExecutor;
-		pActor->exeDrown();
-	}
-
-	void PoihanaNrvHide::execute(Spine *pSpine) const {
-		Poihana *pActor = (Poihana*)pSpine->mExecutor;
-		pActor->exeHide();
-	}
-
-	void PoihanaNrvAppear::execute(Spine *pSpine) const {
-		Poihana *pActor = (Poihana*)pSpine->mExecutor;
-		pActor->exeAppear();
-	}
-
-	void PoihanaNrvDPDSwoon::execute(Spine *pSpine) const {
-		Poihana *pActor = (Poihana*)pSpine->mExecutor;
-		pActor->exeDPDSwoon();
-	}
-
-	void PoihanaNrvDPDSwoon::executeOnEnd(Spine *pSpine) const {
-		Poihana *pActor = (Poihana*)pSpine->mExecutor;
-		pActor->endDPDSwoon();
-	}
 }

@@ -14,11 +14,7 @@ void FirePressureBullet::init(const JMapInfoIter  &rIter) {
     initModelManagerWithAnm("FireBullet", nullptr, false);
     MR::connectToSceneMapObj(this);
     initHitSensor(1);
-    TVec3f offs;
-    offs.x = 0.0f;
-    offs.y = 0.0f;
-    offs.z = 0.0f;
-    MR::addHitSensorEnemyAttack(this, "body", 8, 100.0f, offs);
+    MR::addHitSensorEnemyAttack(this, "body", 8, 100.0f, TVec3f(0.0f, 0.0f, 0.0f));
     initBinder(100.0f, 0.0f, 0);
     MR::onCalcGravity(this);
     initEffectKeeper(0, nullptr, false);
@@ -87,11 +83,11 @@ void FirePressureBullet::exeFly() {
     }
 }
 
-void FirePressureBullet::attackSensor(HitSensor *a1, HitSensor *a2) {
-    if (MR::isSensorEnemy(a2) || MR::isSensorMapObj(a2)) {
+void FirePressureBullet::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
+    if (MR::isSensorEnemy(pReceiver) || MR::isSensorMapObj(pReceiver)) {
         kill();
     }
-    else if (!MR::isSensorPlayer(a2) && MR::sendMsgEnemyAttackFire(a2, a1)) {
+    else if (!MR::isSensorPlayer(pReceiver) && MR::sendMsgEnemyAttackFire(pReceiver, pSender)) {
         kill();
     }
 }

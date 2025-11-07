@@ -29,10 +29,10 @@ namespace MR {
     }
 
     void registerArrowSwitchMulti(ArrowSwitchMulti *pSwitch) {
-        MR::getSceneObj<ArrowSwitchMultiHolder*>(SceneObj_ArrowSwitchMultiHolder)->registerActor(pSwitch);
+        MR::getSceneObj<ArrowSwitchMultiHolder>(SceneObj_ArrowSwitchMultiHolder)->registerActor(pSwitch);
     }
 
     void registerArrowSwitchTarget(ArrowSwitchTarget *pTarget) {
-        MR::getSceneObj<ArrowSwitchMultiHolder*>(SceneObj_ArrowSwitchMultiHolder)->findSwitch(pTarget->mJMapIDInfo)->registerTarget(pTarget);
+        MR::getSceneObj<ArrowSwitchMultiHolder>(SceneObj_ArrowSwitchMultiHolder)->findSwitch(pTarget->mJMapIDInfo)->registerTarget(pTarget);
     }
 };

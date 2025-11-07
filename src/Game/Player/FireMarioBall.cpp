@@ -72,29 +72,26 @@ void FireMarioBall::appearAndThrow(const TVec3f& v1 , const TVec3f& v2) {
     appear();
 }
 
-void FireMarioBall::attackSensor(HitSensor* v1, HitSensor* v2) {
-    if (!MR::isSensorPlayer(v2)) {
-        attackFire(v2);
+void FireMarioBall::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
+    if (!MR::isSensorPlayer(pReceiver)) {
+        attackFire(pReceiver);
     }
 }
 
-bool FireMarioBall::attackFire(HitSensor* v1) {
-    if (MR::sendArbitraryMsg(8, v1, getSensor("body"))) {
+bool FireMarioBall::attackFire(HitSensor* pReceiver) {
+    if (MR::sendArbitraryMsg(ACTMES_FIREBALL_ATTACK, pReceiver, getSensor("body"))) {
         MR::tryRumblePadMiddle(this, 0);
         kill();
+
         return true;
     }
+
     return false;
 }
 
 void FireMarioBall::initSensor() {
-    TVec3f v1;
-
     initHitSensor(1);
-    v1.x = 0.0f;
-    v1.y = 0.0f;
-    v1.z = 0.0f;
-    MR::addHitSensorEnemy(this, "body", 8, cSensorRadius, v1);
+    MR::addHitSensorEnemy(this, "body", 8, cSensorRadius, TVec3f(0.0f, 0.0f, 0.0f));
 }
 
 HitSensor* FireMarioBall::isBindedAny() const {
@@ -153,13 +150,13 @@ void FireMarioBall::exeThrow() {
     }
     if (MR::isBindedGround(this)) {
         MR::startSound(this, "SE_OJ_MARIO_FIRE_BALL_BOUND", -1, -1);
-        TVec3f* v1 = MR::getGroundNormal(this);
+        const TVec3f* v1 = MR::getGroundNormal(this);
         mVelocity += -*v1 * MR::vecKillElement(mVelocity, *v1, &mVelocity) * cBoundReduction;
 
     }
     else if (MR::isBindedRoof(this)) {
         MR::startSound(this, "SE_OJ_MARIO_FIRE_BALL_BOUND", -1, -1);
-        TVec3f* v2 = MR::getRoofNormal(this);
+        const TVec3f* v2 = MR::getRoofNormal(this);
         mVelocity += -*v2 * MR::vecKillElement(mVelocity, *v2, &mVelocity) * cBoundReduction;
     }
     else {

@@ -8,6 +8,7 @@ BossKameckDemoPosition::BossKameckDemoPosition() : LiveActor("キャスト位") 
 void BossKameckDemoPosition::init(const JMapInfoIter &rIter) {
     MR::initDefaultPos(this, rIter);
     initModelManagerWithAnm("BossKameckBattleDemo", nullptr, false);
+
     mCameraInfo = MR::createActorCameraInfo(rIter);
 
     MR::initAnimCamera(this, mCameraInfo, "DemoBossKameckStart");
@@ -19,6 +20,18 @@ void BossKameckDemoPosition::init(const JMapInfoIter &rIter) {
     MR::invalidateClipping(this);
     makeActorDead();
 }
+
+namespace NrvBossKamecBattleDemo {
+    NEW_NERVE(BossKameckBattleDemoNrvTryStartDemo, BossKameckBattleDemo, TryStartDemo);
+    NEW_NERVE(BossKameckBattleDemoNrvWaitAppearVs1, BossKameckBattleDemo, WaitAppearVs1);
+    NEW_NERVE(BossKameckBattleDemoNrvAppearVs1, BossKameckBattleDemo, AppearVs1);
+    NEW_NERVE(BossKameckBattleDemoNrvPowerUpVs1, BossKameckBattleDemo, PowerUpVs1);
+    NEW_NERVE(BossKameckBattleDemoNrvDownVs1, BossKameckBattleDemo, DownVs1);
+    NEW_NERVE(BossKameckBattleDemoNrvWaitAppearVs2, BossKameckBattleDemo, WaitAppearVs2);
+    NEW_NERVE(BossKameckBattleDemoNrvAppearVs2, BossKameckBattleDemo, AppearVs2);
+    NEW_NERVE(BossKameckBattleDemoNrvPowerUpVs2, BossKameckBattleDemo, PowerUpVs2);
+    NEW_NERVE(BossKameckBattleDemoNrvDownVs2, BossKameckBattleDemo, DownVs2);
+};
 
 BossKameckBattleDemo::BossKameckBattleDemo(BossKameck *pBoss, const JMapInfoIter &rIter) : BossKameckAction("ボスカメック戦デモ", pBoss) {
     mDemoPos = nullptr;
@@ -44,6 +57,7 @@ void BossKameckBattleDemo::kill() {
 
 void BossKameckBattleDemo::startTryDemo(const char *pName, const Nerve *pNerve) {
     appear();
+
     if (MR::tryStartDemoMarioPuppetable(mBossKameck, pName)) {
         MR::overlayWithPreviousScreen(2);
         setNerve(pNerve);
@@ -128,6 +142,7 @@ void BossKameckBattleDemo::exeAppearVs1() {
     }
 
     updateCastPose();
+
     if (MR::isActionEnd(mBossKameck)) {
         BossKameckDemoPosition* pos = mDemoPos;
         MR::endAnimCamera(pos, pos->mCameraInfo, "DemoBossKameckStart", 0, true);
@@ -177,6 +192,7 @@ void BossKameckBattleDemo::exeAppearVs2() {
     }
 
     updateCastPose();
+
     if (MR::isActionEnd(mBossKameck)) {
         BossKameckDemoPosition* pos = mDemoPos;
         MR::endAnimCamera(pos, pos->mCameraInfo, "DemoBossKameckStart2", 0, true);
@@ -356,15 +372,3 @@ BossKameckBattleDemo::~BossKameckBattleDemo() {
 BossKameckDemoPosition::~BossKameckDemoPosition() {
 
 }
-
-namespace NrvBossKamecBattleDemo {
-    INIT_NERVE(BossKameckBattleDemoNrvTryStartDemo);
-    INIT_NERVE(BossKameckBattleDemoNrvWaitAppearVs1);
-    INIT_NERVE(BossKameckBattleDemoNrvAppearVs1);
-    INIT_NERVE(BossKameckBattleDemoNrvPowerUpVs1);
-    INIT_NERVE(BossKameckBattleDemoNrvDownVs1);
-    INIT_NERVE(BossKameckBattleDemoNrvWaitAppearVs2);
-    INIT_NERVE(BossKameckBattleDemoNrvAppearVs2);
-    INIT_NERVE(BossKameckBattleDemoNrvPowerUpVs2);
-    INIT_NERVE(BossKameckBattleDemoNrvDownVs2);
-};

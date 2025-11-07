@@ -134,6 +134,7 @@ namespace JGeometry {
             setTVec3f(&vec.x, &x);
         }
 
+        //Used inlined and non-inlined?
         TVec3(const TVec3<f32> &vec) {
             const register Vec* v_a = &vec;
             register Vec* v_b = this;

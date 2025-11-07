@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
-#include "JSystem/JGeometry/TMatrix.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
 
 class CameraTargetMtx;
 class ModelObj;
@@ -11,11 +11,8 @@ class ProloguePictureBook;
 class PrologueDirector : public LiveActor {
 public:
     /// @brief Creates a new `PrologueDirector`.
-    /// @param pName The pointer to the null-terminated name of the object.
+    /// @param pName A pointer to the null-terminated name of the object.
     PrologueDirector(const char* pName);
-
-    /// @brief Destroys the `PrologueDirector`.
-    virtual ~PrologueDirector() {}
 
     virtual void init(const JMapInfoIter& rIter);
     virtual void initAfterPlacement();
@@ -54,9 +51,6 @@ public:
     /// @brief Creates a new `PrologueHolder`.
     /// @param pName The pointer to the null-terminated name of the object.
     PrologueHolder(const char* pName);
-
-    /// @brief Destroys the `PrologueHolder`.
-    virtual ~PrologueHolder() {}
 
     void registerPrologueObj(PrologueDirector* pDirector);
     void start();

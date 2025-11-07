@@ -17,8 +17,8 @@ namespace NrvPlayerLeft {
 PlayerLeft::PlayerLeft(const char* pName) :
     LayoutActor(pName, true),
     mPlayerLeft(0),
-    mLayoutAppearer(NULL),
-    mPaneRumbler(NULL),
+    mLayoutAppearer(nullptr),
+    mPaneRumbler(nullptr),
     mIsForceAppear(false)
 {}
 
@@ -135,8 +135,4 @@ void PlayerLeft::exeDisappear() {
     if (mLayoutAppearer->isDisappeared()) {
         setNerve(&NrvPlayerLeft::PlayerLeftNrvHide::sInstance);
     }
-}
-
-PlayerLeft::~PlayerLeft() {
-    
 }

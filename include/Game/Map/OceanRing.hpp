@@ -9,10 +9,6 @@ class OceanRingDrawer;
 class OceanRingPipe;
 class OceanRingBloomDrawer;
 
-namespace {
-    static f32 sEdgePointNum = 2.0f;
-};
-
 class OceanRing : public LiveActor {
 public:
     OceanRing(const char *);
@@ -39,7 +35,7 @@ public:
     WaterPoint* getPoint(int, int) const NO_INLINE;
 
     s32 mWaterPointNum;                 // 0x8C
-    u32 mSegCount;                      // 0x90
+    s32 mSegCount;                      // 0x90
     s32 mStride;                        // 0x94
     WaterPoint** mWaterPoints;          // 0x98
     f32 mWidthMax;                      // 0x9C

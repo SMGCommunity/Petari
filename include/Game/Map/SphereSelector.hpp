@@ -2,7 +2,9 @@
 
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/LiveActorGroup.hpp"
+#include "revolution/types.h"
 
+class LiveActorGroup;
 class SphereSelectorHandle;
 
 enum HandlePointingPriority {
@@ -20,19 +22,20 @@ public:
     virtual void appear();
     virtual void kill();
 
-
+    void registerPointingTarget(LiveActor*, HandlePointingPriority);
     void validatePointing();
     void invalidatePointing();
     void sendMsgToAllActor(u32);
     bool isMoveClickedPos() const;
     void playSelectedME();
     void playCanceledME();
-    void exeConfirm();
-    void exeConfirmCancel();
-    void exeConfirmStart();
-    void exeSelectCancel();
-    void exeSelectWait();
     void exeSelectStart();
+    void exeSelectWait();
+    void exeSelectCancel();
+    void exeConfirmStart();
+    void exeConfirmWait();
+    void exeConfirmCancel();
+    void exeConfirm();
 
     LiveActorGroup* mSphereGroup;   // 0x8C
 
@@ -46,16 +49,18 @@ public:
     static s32 getSelectStartFrame();
     static s32 getConfirmStartCancelFrame();
     static void selectStart();
-    static void selectCancel();
+    static void selectCancel(bool);
     static void selectEnd();
     static void confirmStart();
-    static void confirmCancel();
+    static void confirmCancel(bool);
     static void confirmed();
     static bool isSelectWait();
     static bool isConfirmWait();
     
     static bool isMsgSelectStart(u32);
     static bool isMsgSelectEnd(u32);
+    static bool isMsgConfirmStart(u32);
+    static bool isMsgConfirmCancel(u32);
 
     static bool isMsgConfirmed(u32);
     static bool isMsgTargetSelected(u32);
@@ -79,14 +84,4 @@ public:
     static TVec3f& getSelectedActorTrans();
     static void calcOffsetPos(TVec3f *, const TVec3f &, const TVec3f &, const TVec3f &, const TVec3f &);
 
-};
-
-namespace NrvSphereSelector {
-    NERVE_DECL(SphereSelectorNrvConfirmed, SphereSelector, SphereSelector::exeConfirm);
-    NERVE_DECL(SphereSelectorNrvConfirmCancel, SphereSelector, SphereSelector::exeConfirmCancel);
-    NERVE_DECL_NULL(SphereSelectorNrvConfirmWait);
-    NERVE_DECL(SphereSelectorNrvConfirmStart, SphereSelector, SphereSelector::exeConfirmStart);
-    NERVE_DECL(SphereSelectorNrvSelectCancel, SphereSelector, SphereSelector::exeSelectCancel);
-    NERVE_DECL(SphereSelectorNrvSelectWait, SphereSelector, SphereSelector::exeSelectWait);
-    NERVE_DECL(SphereSelectorNrvSelectStart, SphereSelector, SphereSelector::exeSelectStart);
 };

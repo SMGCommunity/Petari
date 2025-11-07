@@ -1,9 +1,12 @@
 #pragma once
 
 #include "Game/Screen/LayoutActor.hpp"
-#include "Game/Util.hpp"
 
 class PauseMenu;
+
+namespace MR {
+    class FunctorBase;
+};
 
 class GamePauseSequence : public LayoutActor {
 public:
@@ -14,18 +17,17 @@ public:
 
     GamePauseSequence();
 
-    virtual ~GamePauseSequence();
     virtual void init(const JMapInfoIter &);
 
     void initWindowMenu(const MR::FunctorBase &);
     void startPause(MenuType);
     void deactivate();
+    void exeDeactive();
     void exeActivePauseMenu();
     void exeActivePowerStarList();
-    inline void exeSceneInformation();
-    inline void exeDeactive();
+    void exeSceneInformation();
 
-    MenuType mMenuType;                     // 0x20
-    PauseMenu* mPauseMenu;                  // 0x24
-    MR::FunctorBase* mWindowMenuFunc;       // 0x28
+    /* 0x20 */ MenuType mMenuType;
+    /* 0x24 */ PauseMenu* mPauseMenu;
+    /* 0x28 */ MR::FunctorBase* mWindowMenuFunc;
 };

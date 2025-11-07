@@ -27,6 +27,7 @@ namespace MR {
 
     void setBindTriangleFilter(LiveActor *, TriangleFilterBase *);
 
+    bool isExistMapCollision(const TVec3f &, const TVec3f &);
     bool isExistMapCollisionExceptActor(const TVec3f &, const TVec3f &, const LiveActor *);
 
     bool checkStikeBallToMap(const TVec3f &, f32);
@@ -50,4 +51,5 @@ namespace MR {
 class Collision {
 public:
     static bool checkStrikeLineToMap(const TVec3f &, const TVec3f &, s32, const CollisionPartsFilterBase *, const TriangleFilterBase *);
+    static bool checkStrikeLineToSunshade(const TVec3f &, const TVec3f &, s32, const CollisionPartsFilterBase *, const TriangleFilterBase *);
 };

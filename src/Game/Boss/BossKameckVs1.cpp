@@ -14,6 +14,15 @@ namespace {
     BossKameckBattlePattarn sPatternLv3 = BossKameckBattlePattarn(sBeamPatternLv3, false);
 };
 
+namespace NrvBossKameckVs1 {
+    NEW_NERVE(BossKameckVs1NrvOpeningDemo, BossKameckVs1, OpeningDemo);
+    NEW_NERVE(BossKameckVs1NrvBattleLv1, BossKameckVs1, BattleLv1);
+    NEW_NERVE(BossKameckVs1NrvBattleLv2, BossKameckVs1, BattleLv2);
+    NEW_NERVE(BossKameckVs1NrvPowerUpDemo, BossKameckVs1, PowerUpDemo);
+    NEW_NERVE(BossKameckVs1NrvBattleLv3, BossKameckVs1, BattleLv3);
+    NEW_NERVE(BossKameckVs1NrvEndDemo, BossKameckVs1, EndDemo);
+};
+
 BossKameckVs1::BossKameckVs1() : BossKameckSequencer("ボスカメックVs1") {
     mStateBattle = nullptr;
 }
@@ -30,15 +39,15 @@ void BossKameckVs1::start() {
     setNerve(&NrvBossKameckVs1::BossKameckVs1NrvOpeningDemo::sInstance);
 }
 
-void BossKameckVs1::attackSensor(HitSensor *a1, HitSensor *a2) {
+void BossKameckVs1::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
     if (isBattle()) {
-        mStateBattle->attackSensor(a1, a2);
+        mStateBattle->attackSensor(pSender, pReceiver);
     }
 }
 
-bool BossKameckVs1::receiveMsgPlayerAttack(u32 msg, HitSensor *a2, HitSensor *a3) {
+bool BossKameckVs1::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     if (isBattle()) {
-        return mStateBattle->receiveMsgPlayerAttack(msg, a2, a3);
+        return mStateBattle->receiveMsgPlayerAttack(msg, pSender, pReceiver);
     }
 
     return false;
@@ -87,7 +96,7 @@ void BossKameckVs1::exePowerUpDemo() {
 
 void BossKameckVs1::exeBattleLv3() {
     if (MR::isFirstStep(this)) {
-        mBossKameck->appearStarPieceToPlayer(16);
+        mBossKameck->appearStarPieceToUp(16);
         mStateBattle->setMoveRail(mBossKameck->getMoveRail(2));
         mStateBattle->setBattlePattarn(&sPatternLv3);
         mStateBattle->_3C = 1;
@@ -117,12 +126,3 @@ bool BossKameckVs1::isBattle() const {
 BossKameckVs1::~BossKameckVs1() {
     
 } 
-
-namespace NrvBossKameckVs1 {
-    INIT_NERVE(BossKameckVs1NrvOpeningDemo);
-    INIT_NERVE(BossKameckVs1NrvBattleLv1);
-    INIT_NERVE(BossKameckVs1NrvBattleLv2);
-    INIT_NERVE(BossKameckVs1NrvPowerUpDemo);
-    INIT_NERVE(BossKameckVs1NrvBattleLv3);
-    INIT_NERVE(BossKameckVs1NrvEndDemo);
-};

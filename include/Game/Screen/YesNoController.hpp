@@ -11,9 +11,6 @@ public:
     /// @param pHost The pointer to the owning actor instance.
     YesNoController(LayoutActor* pHost);
 
-    /// @brief Destroys the `YesNoController`.
-    virtual ~YesNoController() {}
-
     void appear();
     void kill();
     void update();

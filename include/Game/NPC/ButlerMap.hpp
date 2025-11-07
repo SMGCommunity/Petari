@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Game/LiveActor/ActorStateBase.hpp"
 #include "Game/NPC/ButlerStateStarPieceReaction.hpp"
 #include "Game/NPC/NPCActor.hpp"
 #include "Game/Util/NPCUtil.hpp"
@@ -19,9 +20,9 @@ public:
     void startLectureDemo();
     void resetStatus();
     void forceNerveToWait();
-    inline void exeTalk();
+    void exeTalk();
     void exeShowGalaxyMap();
-    inline void exeLectureDemoShowMapBefore();
+    void exeLectureDemoShowMapBefore();
     void exeLectureDemoShowMap();
     void exeLectureDemoShowMapAfter();
     void exeStarPieceReaction();
@@ -29,7 +30,3 @@ public:
     ButlerStateStarPieceReaction* _15C;
     bool _160;
 };
-
-namespace {
-    const char* cDemoNameMapLecture = "バトラーマップレクチャー";
-}

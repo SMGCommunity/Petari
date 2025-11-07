@@ -17,7 +17,7 @@ AreaObj::AreaObj(int type, const char *pName) :
     mObjArg5(-1),
     mObjArg6(-1),
     mObjArg7(-1),
-    mSwitchCtrl(NULL)
+    mSwitchCtrl(nullptr)
 {
     switch(type) {
     case 0:

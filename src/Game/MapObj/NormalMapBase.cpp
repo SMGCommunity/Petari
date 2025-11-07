@@ -4,10 +4,11 @@
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/ModelUtil.hpp"
 #include "JSystem/JUtility/JUTTexture.hpp"
-#include "revolution/gx/GXEnum.h"
-#include "revolution/gx/GXGeometry.h"
+#include <JSystem/J3DGraphAnimator/J3DModel.hpp>
 #include <JSystem/J3DGraphBase/J3DMaterial.hpp>
 #include <JSystem/JKernel/JKRHeap.hpp>
+#include <revolution/gx/GXEnum.h>
+#include <revolution/gx/GXGeometry.h>
 #include <cstring>
 
 NormalMapBase::NormalMapBase(const char *pName) : LiveActor(pName) {
@@ -148,7 +149,7 @@ void NormalMapBase::standardDraw(J3DModel *pModel) const {
 static s16 width = 0x100;
 static s16 height = 0x100;
 
-void NormalMapBase::loadDiffuseGradTex(_GXTexMapID mapID) const {
+void NormalMapBase::loadDiffuseGradTex(GXTexMapID mapID) const {
     GXTexObj obj;
     GXInitTexObj(&obj, mImagePtr, width, height, GX_TF_IA8, GX_CLAMP, GX_CLAMP, GX_FALSE);
 
@@ -162,9 +163,9 @@ void NormalMapBase::loadDiffuseGradTex(_GXTexMapID mapID) const {
     GXLoadTexObj(&obj, mapID);
 }
 
-void NormalMapBase::loadNormalTex(const JUTTexture *pTex, _GXTexMapID id) const {
+void NormalMapBase::loadNormalTex(const JUTTexture *pTex, GXTexMapID id) const {
     GXTexObj obj;
-    GXInitTexObj(&obj, pTex->_24, pTex->_20->mWidth, pTex->_20->mHeight, GX_TF_RGBA8, GX_CLAMP, GX_CLAMP, GX_FALSE);
+    GXInitTexObj(&obj, pTex->mImage, pTex->mTIMG->mWidth, pTex->mTIMG->mHeight, GX_TF_RGBA8, GX_CLAMP, GX_CLAMP, GX_FALSE);
     if ((_13A & 2) != 0 && (_13A & 0x4) != 0) {
         GXInitTexObjLOD(&obj, GX_NEAR, GX_NEAR, 0.0f, 0.0f, 0.0f, GX_FALSE, GX_FALSE, GX_ANISO_1);
     }

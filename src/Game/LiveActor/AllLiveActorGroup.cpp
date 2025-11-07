@@ -27,7 +27,7 @@ void AllLiveActorGroup::initActorSystemInfo(const JMapInfoIter &rIter) {
 
 namespace MR {
     AllLiveActorGroup* getAllLiveActorGroup() {
-        return MR::getSceneObj<AllLiveActorGroup*>(SceneObj_AllLiveActorGroup);
+        return MR::getSceneObj<AllLiveActorGroup>(SceneObj_AllLiveActorGroup);
     }
 
     void startInitLiveActorSystemInfo() {

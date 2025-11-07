@@ -60,13 +60,14 @@ bool LuigiNPC::branchFunc(u32 msg) {
 }
 
 bool LuigiNPC::eventFunc(u32 msg) {
-    if (!msg) {
+    if (msg == 0) {
         return mTakeOutStar->takeOut();
     }
     
     if (msg == 1) {
         MR::onGameEventFlagTalkedToLuigiAfterRescued();
     }
+
     return true;
 }
 
@@ -74,6 +75,7 @@ void LuigiNPC::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
     if (MR::isSensorPlayer(pReceiver) && isNerve(&NrvLuigiNPC::LuigiNPCNrvOnTreeWait::sInstance)) {
         setNerve(&NrvLuigiNPC::LuigiNPCNrvOnTreeTouch::sInstance);
     }
+
     NPCActor::attackSensor(pSender, pReceiver);
 }
 
@@ -82,6 +84,7 @@ bool LuigiNPC::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver
         makeActorDead();
         return true;
     }
+
     return false;
 }
 
@@ -99,11 +102,13 @@ bool LuigiNPC::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pR
             || MR::isMsgPlayerTrample(msg)
             || MR::isMsgPlayerHipDrop(msg)
             || MR::isMsgStarPieceReflect(msg))
-            && (isNerve(&NrvLuigiNPC::LuigiNPCNrvOnTreeWait::sInstance)
-            || isNerve(&NrvLuigiNPC::LuigiNPCNrvOnTreeTouch::sInstance))) {
-                setNerve(&NrvLuigiNPC::LuigiNPCNrvOnTreeFall::sInstance);
+        && (isNerve(&NrvLuigiNPC::LuigiNPCNrvOnTreeWait::sInstance)
+            || isNerve(&NrvLuigiNPC::LuigiNPCNrvOnTreeTouch::sInstance)))
+        {
+            setNerve(&NrvLuigiNPC::LuigiNPCNrvOnTreeFall::sInstance);
         }
     }
+
     return NPCActor::receiveMsgPlayerAttack(msg, pSender, pReceiver);
 }
 
@@ -280,7 +285,10 @@ void LuigiNPC::exeReaction() {
 }
 
 void LuigiNPC::exeTakeOutStar() {
-    MR::isFirstStep(this);
+    if (MR::isFirstStep(this)) {
+        
+    }
+
     if (MR::isStep(this, 87)) {
         MR::startSound(this, "SE_SV_LUIGI_LIFT_UP", -1, -1);
     }

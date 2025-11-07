@@ -1,9 +1,9 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/NameObj/NameObjArchiveListCollector.hpp"
-#include "Game/Enemy/RingBeam.hpp"
 
+class NameObjArchiveListCollector;
+class RingBeam;
 
 class BallBeamer : public LiveActor {
 public:
@@ -30,10 +30,4 @@ public:
     u8 _94[4]; // unused?
     TMtx34f _98;
 
-};
-
-namespace NrvBallBeamer {
-    NERVE(BallBeamerNrvWait);
-    NERVE(BallBeamerNrvAttack);
-    NERVE(BallBeamerNrvInter);
 };

@@ -28,7 +28,7 @@ namespace nw4r {
 class TextBoxRecursiveOperation {
 public:
     /// @brief Destroys the `TextBoxRecursiveOperation`.
-    virtual ~TextBoxRecursiveOperation();
+    virtual ~TextBoxRecursiveOperation() {}
 
     virtual void execute(nw4r::lyt::TextBox* pTextBox) const = 0;
 };
@@ -39,9 +39,6 @@ public:
     TextBoxRecursiveSetMessage(const wchar_t* pMessage) :
         mMessage(pMessage)
     {}
-
-    /// @brief Destroys the `TextBoxRecursiveSetMessage`.
-    virtual ~TextBoxRecursiveSetMessage();
 
     virtual void execute(nw4r::lyt::TextBox* pTextBox) const;
 
@@ -56,9 +53,6 @@ public:
         mArg(arg),
         _8(param2)
     {}
-
-    /// @brief Destroys the `TextBoxRecursiveSetArgNumber`.
-    virtual ~TextBoxRecursiveSetArgNumber();
 
     virtual void execute(nw4r::lyt::TextBox* pTextBox) const;
 
@@ -75,9 +69,6 @@ public:
         _8(param2)
     {}
 
-    /// @brief Destroys the `TextBoxRecursiveSetArgString`.
-    virtual ~TextBoxRecursiveSetArgString();
-
     virtual void execute(nw4r::lyt::TextBox* pTextBox) const;
 
 private:
@@ -92,9 +83,6 @@ public:
         mPosition(position)
     {}
 
-    /// @brief Destroys the `TextBoxRecursiveSetVerticalPosition`.
-    virtual ~TextBoxRecursiveSetVerticalPosition();
-
     virtual void execute(nw4r::lyt::TextBox* pTextBox) const;
 
 private:
@@ -107,9 +95,6 @@ public:
     TextBoxRecursiveSetHorizontalPosition(u8 position) :
         mPosition(position)
     {}
-
-    /// @brief Destroys the `TextBoxRecursiveSetHorizontalPosition`.
-    virtual ~TextBoxRecursiveSetHorizontalPosition();
 
     virtual void execute(nw4r::lyt::TextBox* pTextBox) const;
 
@@ -124,32 +109,17 @@ public:
         mFont(pFont)
     {}
 
-    /// @brief Destroys the `TextBoxRecursiveSetFont`.
-    virtual ~TextBoxRecursiveSetFont();
-
     virtual void execute(nw4r::lyt::TextBox* pTextBox) const;
 
 private:
     /* 0x4 */ nw4r::ut::Font* mFont;
 };
 
-void setTextBoxHorizontalPositionRecursive(LayoutActor*, const char*, u8);
-void setTextBoxVerticalPositionRecursive(LayoutActor*, const char*, u8);
-
-namespace {
-    void showPaneRecursive(nw4r::lyt::Pane*);
-    void hidePaneRecursive(nw4r::lyt::Pane*);
-    void initFrameCtrlReverse(J3DFrameCtrl*);
-    bool getTextDrawRectRecursive(nw4r::ut::Rect*, const nw4r::lyt::Pane*, bool);
-    u32 getTextLineNumMaxRecursiveSub(const nw4r::lyt::Pane*);
-    f32 getCometColorAnimFrameFromId(s32);
-};
-
 namespace MR {
     LayoutHolder* createAndAddLayoutHolder(const char*);
     LayoutHolder* createAndAddLayoutHolderRawData(const char*);
-    LayoutHolder* createAndAddPaneCtrl(LayoutActor*, const char*, u32);
-    LayoutHolder* createAndAddGroupCtrl(LayoutActor*, const char*, u32);
+    void createAndAddPaneCtrl(LayoutActor*, const char*, u32);
+    void createAndAddGroupCtrl(LayoutActor*, const char*, u32);
     bool isExistPaneCtrl(LayoutActor*, const char*);
     u8 getPaneAlpha(const LayoutActor*, const char*);
     void setInfluencedAlphaToChild(const LayoutActor*);
@@ -241,13 +211,13 @@ namespace MR {
     void copyLayoutDrawInfoWithAspect(nw4r::lyt::DrawInfo*, const LayoutActor*, bool);
     void calcAnimLayoutWithDrawInfo(const LayoutActor*, const nw4r::lyt::DrawInfo&);
     void drawLayoutWithDrawInfoWithoutProjectionSetup(const LayoutActor*, const nw4r::lyt::DrawInfo&);
-    bool isStep(const LayoutActor*, s32);
+    bool isStep(const LayoutActor*, s32) NO_INLINE;
     bool isFirstStep(const LayoutActor*);
     bool isLessStep(const LayoutActor*, s32);
     bool isGreaterStep(const LayoutActor*, s32);
     bool isGreaterEqualStep(const LayoutActor*, s32);
     bool isIntervalStep(const LayoutActor*, s32);
-    bool isNewNerve(const LayoutActor*);
+    bool isNewNerve(const LayoutActor*) NO_INLINE;
     f32 calcNerveRate(const LayoutActor*, s32);
     f32 calcNerveRate(const LayoutActor*, s32, s32);
     f32 calcNerveEaseInRate(const LayoutActor*, s32);

@@ -8,12 +8,10 @@ class ModelObj : public LiveActor {
 public:
     ModelObj(const char *, const char *, MtxPtr, int, int, int, bool);
 
-    inline virtual ~ModelObj();
     virtual void init(const JMapInfoIter &);
-
     virtual void calcAndSetBaseMtx();
 
-    MtxPtr mMtx;    // 0x8C
+    /* 0x8C */ MtxPtr mMtx;
 };
 
 class ModelObjNpc : public LiveActor {
@@ -25,7 +23,7 @@ public:
     virtual void control();
     virtual void calcAndSetBaseMtx();
 
-    MtxPtr mMtx;                // 0x8C
-    LodCtrl* mLODCtrl;          // 0x90
-    ActorJointCtrl* mJointCtrl; // 0x94
+    /* 0x8C */ MtxPtr mMtx;
+    /* 0x8C */ LodCtrl* mLodCtrl;
+    /* 0x8C */ ActorJointCtrl* mJointCtrl;
 };

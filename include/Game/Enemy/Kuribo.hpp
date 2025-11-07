@@ -57,6 +57,7 @@ public:
     void exeChase();
     void exeStagger();
     void exeNonActive();
+    void endNonActive();
     void exeAppearFromBox();
     void exeBlow();
     void exeAttackSuccess();
@@ -65,9 +66,8 @@ public:
     void exePressDown();
     void exeBlowDown();
     void exeBindStarPointer();
-    void exeOnEndBindStarPointer();
+    void endBindStarPointer();
     void exeBlowLand();
-    void exeOnEndNonActive();
     void calcPassiveMovement();
     bool isEnableKick() const;
     bool isUpsideDown() const;

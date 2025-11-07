@@ -9,9 +9,6 @@ public:
     /// @brief Creates a new `GalaxySelectBackButton`.
     GalaxySelectBackButton();
 
-    /// @brief Destroys the `GalaxySelectBackButton`.
-    virtual ~GalaxySelectBackButton() {}
-
     virtual void init(const JMapInfoIter&);
     virtual void appear();
     virtual void control();

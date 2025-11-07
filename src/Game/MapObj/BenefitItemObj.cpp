@@ -1,3 +1,4 @@
+#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/MapObj/BenefitItemObj.hpp"
 #include "JSystem/JGeometry/TUtil.hpp"
 
@@ -53,7 +54,7 @@ void BenefitItemObj::initModelAndEfx() {
     initEffectKeeper(5, _120, false);
     initBinder(50.0f, 50.0f, 0);
     initHitSensor(1);
-    MR::addHitSensor(this, "body", 77, 4, 50.0f, TVec3f(0.0f, 50.0f, 0.0f));
+    MR::addHitSensor(this, "body", ATYPE_KINOKO_ONEUP, 4, 50.0f, TVec3f(0.0f, 50.0f, 0.0f));
 }
 
 void BenefitItemObj::init(const JMapInfoIter &rIter) {
@@ -500,34 +501,36 @@ void BenefitItemObj::exeCatch() {
     mPosition.set<f32>(mHitSensorActor->mPosition);
 }
 
-bool BenefitItemObj::receiveMsgPlayerAttack(u32 msg, HitSensor *, HitSensor *) {
+bool BenefitItemObj::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     return MR::isMsgStarPieceReflect(msg);
 }
 
-bool BenefitItemObj::receiveOtherMsg(u32 msg, HitSensor *a2, HitSensor *a3) {
+bool BenefitItemObj::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     if (MR::isDead(this)) {
         return false;
     }
 
-    if (MR::receiveItemShowMsg(msg, a2, a3)) {
+    if (MR::receiveItemShowMsg(msg, pSender, pReceiver)) {
         return true;
     }
 
-    if (MR::receiveItemHideMsg(msg, a2, a3)) {
+    if (MR::receiveItemHideMsg(msg, pSender, pReceiver)) {
         return true;
     }
 
     if (MR::isMsgItemStartMove(msg)) {
         _E2 = 1;
+
         return true;
     }
 
     if (MR::isMsgItemEndMove(msg)) {
         _E2 = 0;
+
         return true;
     }
 
-    if (msg == 135) {
+    if (msg == ACTMES_ITEM_GET) {
         if (mHitSensorActor) {
             return false;
         }
@@ -535,11 +538,13 @@ bool BenefitItemObj::receiveOtherMsg(u32 msg, HitSensor *a2, HitSensor *a3) {
         if (isNerve(&NrvBenefitItemObj::HostTypeNrvWait::sInstance) 
             || isNerve(&NrvBenefitItemObj::HostTypeNrvShoot::sInstance) 
             || isNerve(&NrvBenefitItemObj::HostTypeNrvAppearGround::sInstance) 
-            || isNerve(&NrvBenefitItemObj::HostTypeNrvEscape::sInstance)) {
-                mHitSensorActor = a2->mActor;
-                setNerve(&NrvBenefitItemObj::HostTypeNrvCatch::sInstance);
-                MR::tryRumblePadWeak(this, 0);
-                return true;
+            || isNerve(&NrvBenefitItemObj::HostTypeNrvEscape::sInstance))
+        {
+            mHitSensorActor = pSender->mHost;
+            setNerve(&NrvBenefitItemObj::HostTypeNrvCatch::sInstance);
+            MR::tryRumblePadWeak(this, 0);
+
+            return true;
         }
     }
 

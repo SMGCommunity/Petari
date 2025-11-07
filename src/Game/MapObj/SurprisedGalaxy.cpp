@@ -20,11 +20,7 @@ void SurprisedGalaxy::init(const JMapInfoIter &rIter) {
     f32 rad = 0.0f;
     MR::calcModelBoundingRadius(&rad, this);
     initHitSensor(1);
-    TVec3f vec;
-    vec.x = 0.0f;
-    vec.y = 0.0f;
-    vec.z = 0.0f;
-    MR::addHitSensorMapObj(this, "body", 8, rad, vec);
+    MR::addHitSensorMapObj(this, "body", 8, rad, TVec3f(0.0f, 0.0f, 0.0f));
     MR::setClippingFar200m(this);
     initNerve(&NrvSurprisedGalaxy::SurprisedGalaxyNrvWait::sInstance);
     MR::useStageSwitchSleep(this, rIter);

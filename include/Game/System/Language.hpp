@@ -1,5 +1,6 @@
+#pragma once
+
 #include "Inline.hpp"
-#include <revolution/sc.h>
 
 /// @brief A regional variant of a language.
 struct Language {
@@ -13,7 +14,7 @@ struct Language {
 namespace MR {
     /// @brief Returns the region-language identifier based on the console's language setting.
     /// @return The region-language identifier.
-    u8 getDecidedLanguageFromIPL();
+    u32 getDecidedLanguageFromIPL();
 
     /// @brief Returns the working region-language identifier.
     /// @return The region-language identifier.

@@ -3,15 +3,15 @@
 
 namespace ActorShadow {
     u32 getShadowControllerCount(const LiveActor *pActor) {
-        return pActor->mShadowList->getControllerCount();
+        return pActor->mShadowControllerList->getControllerCount();
     }
 
     ShadowController* getShadowController(const LiveActor *pActor, u32 a2) {
-        return pActor->mShadowList->getController(a2);
+        return pActor->mShadowControllerList->getController(a2);
     }
 
     ShadowController* getShadowController(const LiveActor *pActor, const char *pName) {
-        return pActor->mShadowList->getController(pName);
+        return pActor->mShadowControllerList->getController(pName);
     }
 
     ShadowController* createShadowControllerVolumeParam(LiveActor *pActor, const char *pName) {
@@ -20,7 +20,7 @@ namespace ActorShadow {
         pController->setDropDirPtr(&pActor->mGravity);
         pController->setDropLength(1000.0f);
         pController->setDropTypeNormal();
-        pActor->mShadowList->addController(pController);
+        pActor->mShadowControllerList->addController(pController);
         return pController;
     }
 
@@ -30,28 +30,28 @@ namespace ActorShadow {
         pController->setDropDirPtr(&pActor->mGravity);
         pController->setDropLength(1000.0f);
         pController->setDropTypeSurface();
-        pActor->mShadowList->addController(pController);
+        pActor->mShadowControllerList->addController(pController);
         return pController;
     }
 
     ShadowDrawer* getShadowSurfaceOval(const LiveActor *pActor, const char *pName) {
-        return pActor->mShadowList->getController(pName)->getShadowDrawer();
+        return pActor->mShadowControllerList->getController(pName)->getShadowDrawer();
     }
 
     ShadowDrawer* getShadowVolumeSphere(const LiveActor *pActor, const char *pName) {
-        return pActor->mShadowList->getController(pName)->getShadowDrawer();
+        return pActor->mShadowControllerList->getController(pName)->getShadowDrawer();
     }
 
     ShadowDrawer* getShadowVolumeCylinder(const LiveActor *pActor, const char *pName) {
-        return pActor->mShadowList->getController(pName)->getShadowDrawer();
+        return pActor->mShadowControllerList->getController(pName)->getShadowDrawer();
     }
 
     ShadowDrawer* getShadowVolumeBox(const LiveActor *pActor, const char *pName) {
-        return pActor->mShadowList->getController(pName)->getShadowDrawer();
+        return pActor->mShadowControllerList->getController(pName)->getShadowDrawer();
     }
 
     ShadowDrawer* getShadowVolumeDrawer(const LiveActor *pActor, const char *pName) {
-        return pActor->mShadowList->getController(pName)->getShadowDrawer();
+        return pActor->mShadowControllerList->getController(pName)->getShadowDrawer();
     }
 
     // Fails as JMapInfo::getValueFast lacks an implementation that returns a bool pointer
@@ -100,7 +100,7 @@ namespace ActorShadow {
         pController->setGroupName(stack_8);
         pController->setDropDirPtr(&pActor->mGravity);
         setUpShadowControlFromCSV(pController, pActor, rIter);
-        pActor->mShadowList->addController(pController);
+        pActor->mShadowControllerList->addController(pController);
         return pController;
     } */
     

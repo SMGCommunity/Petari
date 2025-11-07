@@ -2,7 +2,7 @@
 #include "Game/Util/MemoryUtil.hpp"
 #include "Game/Util/MutexHolder.hpp"
 #include "Game/SingletonHolder.hpp"
-#include <JSystem/JKernel/JKRHeap.hpp>
+#include <JSystem/JKernel/JKRExpHeap.hpp>
 #include <mem.h>
 
 namespace MR {
@@ -130,7 +130,7 @@ namespace MR {
     }
 
     template<int N>
-    MEMAllocator JKRHeapAllocator<N>::sAllocator = { &sAllocatorFunc, NULL, 4, 0 };
+    MEMAllocator JKRHeapAllocator<N>::sAllocator = { &sAllocatorFunc, nullptr, 4, 0 };
 
     template<int N>
     MEMAllocatorFunc JKRHeapAllocator<N>::sAllocatorFunc = {
