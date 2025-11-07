@@ -31,7 +31,7 @@ u32 TalkState::getPageCount() const {
 }
 
 void TalkState::balloonOff() const {
-    MR::hideScreen((LayoutActor *)mBalloon);
+    MR::hideScreen(mBalloon);
 }
 
 bool TalkState::isLostMessage(const TalkMessageCtrl *pArg1) const {
