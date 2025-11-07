@@ -4,6 +4,7 @@
 
 #include <revolution.h>
 
+
 class GameEventFlagIter {
 public:
     bool isEnd() const;
@@ -11,7 +12,7 @@ public:
     const GameEventFlag* getFlag() const;
     bool isValid() const;
 
-    u32 mIter;  // 0x0
+    s32 mIter;  // 0x0
 };
 
 class GameEventFlagTableInstance {
@@ -19,10 +20,14 @@ public:
     GameEventFlagTableInstance();
 
     void initSortTable();
-    GameEventFlag* findFlag(const char *);
-
-    u32 _0;
-    u32 _4;
+    const GameEventFlag* findFlag(const char *);
+    
+    struct Key {
+        u16 mHashCode;
+        const GameEventFlag* mFlag;
+    };
+    Key* mSortTable;
+    s32 mLength;
 };
 
 class GameEventFlagTable {
@@ -32,17 +37,17 @@ public:
     static s32 getTableSize();
     static const GameEventFlag* getFlag(int);
     static const GameEventFlag* findFlag(const char *);
-    const char* getEventFlagNameSpecialPowerStar(const char *, s32);
-    bool isPowerStarType(const char *, s32, const char *);
-    s32 calcExclamationGalaxyNum();
+    static const char* getEventFlagNameSpecialPowerStar(const char *, s32);
+    static bool isPowerStarType(const char *, s32, const char *);
+    static s32 calcExclamationGalaxyNum();
     static const char* getExclamationGalaxyNameFromIndex(int);
     static bool isExist(const char *);
     static int getIndex(const GameEventFlag *);
     static bool isDependedAnother(const char *, const char *);
-    int getIndexFromHashCode(u16);
-    s32 calcSpecialPowerStarNum(const char *);
+    static int getIndexFromHashCode(u16);
+    static s32 calcSpecialPowerStarNum(const char *);
     static s32 getStarPieceNumToOpenExclamationGalaxy(const char *);
-    s32 calcGreenStarPowerNum();
-    u32 getGalaxyDependFlags(const char **, int, const char *);
+    static s32 calcGreenPowerStarNum();
+    static s32 getGalaxyDependedFlags(const char **, int, const char *);
     
 };

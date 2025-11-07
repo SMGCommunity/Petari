@@ -8670,6 +8670,7 @@ Game/System/GameEventFlag.cpp:
 Game/System/GameEventFlagTable.cpp:
 	.text       start:0x803B3D74 end:0x803B4D8C
 	.rodata     start:0x8053C918 end:0x8053D7C8
+	.data       start:0x805DE758 end:0x805DF8C8
 	.sdata      start:0x806B25E0 end:0x806B2608
 	.sbss       start:0x806B6F58 end:0x806B6F60
 
@@ -11349,12 +11350,12 @@ MSL_C/MSL_Common_Embedded/Math/Double_precision/e_log10.c:
 
 MSL_C/MSL_Common_Embedded/Math/Double_precision/e_pow.c:
 	.text       start:0x8052538C end:0x80525BD4
-	.rodata     start:0x80562F08 end:0x80563040
+	.rodata     start:0x80562F08 end:0x80562F38
 	.sdata2     start:0x806C25F0 end:0x806C2700
 
 MSL_C/MSL_Common_Embedded/Math/Double_precision/e_rem_pio2.c:
 	.text       start:0x80525BD4 end:0x80525F6C
-	.rodata     start:0x80563040 end:0x805630C0
+	.rodata     start:0x80562F38 end:0x805630C0
 	.sdata2     start:0x806C2700 end:0x806C2758
 
 MSL_C/MSL_Common_Embedded/Math/Double_precision/k_cos.c:

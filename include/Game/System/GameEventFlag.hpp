@@ -8,10 +8,7 @@ struct GameEventFlag {
     u8 _5;
     u8 mStarID;                 // 0x6
     u8 mStarPieceNum;           // 0x7
-    u8 _8;
-    u8 _9;
-    u8 _A;
-    u8 _B;
+    u32 _8;
 
     // 0xC
     union {
@@ -19,7 +16,7 @@ struct GameEventFlag {
         const char* mEventValueName;
     };
 
-    u32 mRequirement;           // 0x10
+    const char* mRequirement;           // 0x10
 };
 
 class GameEventFlagAccessor {
@@ -33,11 +30,11 @@ public:
     bool isTypeEventValueIsZero() const;
     const char* getGalaxyName() const;
     s32 getStarId() const;
-    u8 getStarPieceIndex() const;
+    s32 getStarPieceIndex() const;
     const char* getGalaxyNameWithStarPiece() const;
-    u8 getNeedStarPieceNum() const;
+    s32 getNeedStarPieceNum() const;
     const char* getEventValueName() const;
-    u32 getRequirement() const;
+    const char* getRequirement() const;
 
     const GameEventFlag* mFlag;     // 0x0
 };
