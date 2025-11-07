@@ -187,7 +187,6 @@ bool TalkStateNormal::term(const TalkMessageCtrl *pArg1) {
     return TalkStateEvent::term(pArg1);
 }
 
-#ifdef NON_MATCHING
 // Stuck at 99% because assembly string labels don't match, even though the code *should* be correct.
 bool TalkStateNormal::prep(const TalkMessageCtrl *pArg1) {
     if (TalkStateNormal::isLostMessage(pArg1)) {
@@ -217,7 +216,6 @@ bool TalkStateNormal::prep(const TalkMessageCtrl *pArg1) {
 
     return true;
 }
-#endif
 
 
 void TalkStateCompose::init(TalkMessageCtrl *pArg1, TalkBalloon *pArg2) {
