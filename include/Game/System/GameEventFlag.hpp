@@ -5,8 +5,15 @@
 struct GameEventFlag {
     const char* mName;          // 0x0
     u8 mType;                   // 0x4
-    u8 _5;
-    u8 mStarID;                 // 0x6
+    u8 saveFlag;
+
+    // 0x6
+    union {
+    u8 mStarID;  
+    u8 mStarNum;
+    u8 StarPieceIndex;  
+    };        
+    
     u8 mStarPieceNum;           // 0x7
     u32 _8;
 
@@ -14,9 +21,14 @@ struct GameEventFlag {
     union {
         const char* mGalaxyName;
         const char* mEventValueName;
+        const char* mRequirement1;
     };
 
-    const char* mRequirement;           // 0x10
+    //0x10
+    union {
+        const char* mRequirement;
+        const char* mRequirement2;  
+    };
 };
 
 class GameEventFlagAccessor {

@@ -18,14 +18,16 @@ bool GameEventFlagChecker::canOn(const char *flagName) const {
     case 0:
         return true;
     case 1:
-        return mDataHolder->calcCurrentPowerStarNum() >= flag->mStarID;
+        return mDataHolder->calcCurrentPowerStarNum() >= flag->mStarNum;
     case 2:
-        return GameDataConst::getPowerStarNumToOpenGalaxy(flag->mGalaxyName) <= mDataHolder->calcCurrentPowerStarNum();
+        s32 currentPowerStarNum = mDataHolder->calcCurrentPowerStarNum();
+        s32 powerStarOpenNum = GameDataConst::getPowerStarNumToOpenGalaxy(flag->mGalaxyName);
+        return powerStarOpenNum <= currentPowerStarNum;
     case 3:
         return mDataHolder->hasPowerStar(flag->mGalaxyName, flag->mStarID);
     case 4:
-        const char* condition1 = flag->mEventValueName;
-        const char* condition2 = flag->mRequirement;
+        const char* condition1 = flag->mRequirement1;
+        const char* condition2 = flag->mRequirement2;
         bool condition1True = condition1 != nullptr ? isOn(condition1) : true;
         bool condition2True = condition2 != nullptr ? isOn(condition2) : true;
         return condition1True && condition2True;
@@ -35,11 +37,12 @@ bool GameEventFlagChecker::canOn(const char *flagName) const {
         return isOnGalaxy(flagName);
     case 7:
         return isOnComet(flag);
-    case 0xB:
+    case 11:
         return isOn(flag->mEventValueName);
     case 8:
         GameEventFlagAccessor accessor = GameEventFlagAccessor(flag);
-        return  mDataHolder->getStarPieceNumGivingToTicoSeed(flag->mStarID + 8) >= accessor.getNeedStarPieceNum();
+        s32 needStarPieceNum = accessor.getNeedStarPieceNum();
+        return  mDataHolder->getStarPieceNumGivingToTicoSeed(flag->StarPieceIndex + 8) >= needStarPieceNum;
     case 9:
         GameEventFlagAccessor accessor2 = GameEventFlagAccessor(flag);
 
@@ -48,7 +51,7 @@ bool GameEventFlagChecker::canOn(const char *flagName) const {
         }
 
         return mDataHolder->getGameEventValue(accessor2.getEventValueName()) == false;
-    case 0xA:
+    case 10:
       return mDataHolder->isCompleteMarioAndLuigi();
     default:
       return false;
@@ -57,7 +60,7 @@ bool GameEventFlagChecker::canOn(const char *flagName) const {
 bool GameEventFlagChecker::isOn(const char *flagName) const {
     const GameEventFlag* flag = GameEventFlagTable::findFlag(flagName);
 
-    if(flag->_5 & 0x1){
+    if(flag->saveFlag & 0x1){
         return canOn(flagName);
     }
 
@@ -73,8 +76,8 @@ bool GameEventFlagChecker::isOn(const char *flagName) const {
             return mFlagStorage->isOn(flag);
         case 7:
         case 8:
-        case 0xA:
-        case 0xB:
+        case 10:
+        case 11:
         default: 
             return false;
     }
@@ -87,7 +90,7 @@ bool GameEventFlagChecker::tryOn(const char *flagName) {
 
     const GameEventFlag* flag = GameEventFlagTable::findFlag(flagName);
 
-    if (flag->_5 & 0x1) {
+    if (flag->saveFlag & 0x1) {
         return false;
     }
 
@@ -111,12 +114,12 @@ bool GameEventFlagChecker::tryOn(const char *flagName) {
     }
 }
 
-GameEventFlagStorage* GameEventFlagChecker::getChunk() {
-    return mFlagStorage;
-}
-
 void GameEventFlagChecker::reset() {
     mFlagStorage->initializeData();
+}
+
+GameEventFlagStorage* GameEventFlagChecker::getChunk() {
+    return mFlagStorage;
 }
 
 bool GameEventFlagChecker::isOnGalaxy(const char * galaxyName) const {

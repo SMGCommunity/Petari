@@ -26,7 +26,7 @@ s32 GameEventFlagStorage::serialize(u8 *pData, u32 size) const {
     JSUMemoryOutputStream stream(pData,size);
 
     for (GameEventFlagIter iter = GameEventFlagTable::getBeginIter(); !iter.isEnd(); iter.goNext()) {
-        if (!(iter.getFlag()->_5 & 0x1)) {
+        if (!(iter.getFlag()->saveFlag & 0x1)) {
             GameEventFlagAccessor accessor(iter.getFlag());
             s16 shortHash = MR::getHashCode(accessor.getName()) & 0x7FFF;
             s16 data = shortHash | (mFlagBitArray->isOn(GameEventFlagTable::getIndex(iter.getFlag())) ? 0x8000 : 0);
@@ -39,8 +39,8 @@ s32 GameEventFlagStorage::serialize(u8 *pData, u32 size) const {
 s32 GameEventFlagStorage::deserialize(const u8 *pData, u32 size) {
     s32 deserializationFailed = false;
     JSUMemoryInputStream stream(pData,size);
-
-    for(s32 i = 0; i < (s32)size/2; i++){
+    
+    for(int i = 0; i < (int)size/2; i++) {
         u16 data;
 
         stream.read(&data,2);
@@ -55,7 +55,7 @@ s32 GameEventFlagStorage::deserialize(const u8 *pData, u32 size) {
             deserializationFailed = true;
         }
     }
-    return !deserializationFailed ? false : true;
+    return deserializationFailed ? true : false;
 }
 
 void GameEventFlagStorage::initializeData() {

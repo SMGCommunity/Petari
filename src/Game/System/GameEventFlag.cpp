@@ -34,7 +34,7 @@ s32 GameEventFlagAccessor::getStarId() const {
 }
 
 s32 GameEventFlagAccessor::getStarPieceIndex() const {
-    return mFlag->mStarID;
+    return mFlag->StarPieceIndex;
 }
 
 const char* GameEventFlagAccessor::getGalaxyNameWithStarPiece() const {
