@@ -1,14 +1,13 @@
 #pragma once
 
-#include "JSystem/JUtility/JUTTexture.hpp"
-#include "revolution/gx/GXStruct.h"
-#include <revolution.h>
-#include <JSystem/JGeometry.hpp>
+#include <revolution/gx.h>
 #include <JSystem/J2DGraph/J2DOrthoGraph.hpp>
+#include <JSystem/JGeometry/TVec.hpp>
 
 class J3DModelData;
 class J3DModel;
 class J3DMaterial;
+class JUTTexture;
 
 class J2DOrthoGraphSimple : public J2DOrthoGraph {
 public:
@@ -19,10 +18,6 @@ public:
     }
     
     void setPort();
-};
-
-namespace {
-    GXTexObj clear_z_tobj;
 };
 
 namespace MR {
@@ -37,15 +32,15 @@ namespace MR {
     void clearZBuffer();
     void clearAlphaBuffer(u8);
     void clearAlphaBuffer(u8, const TVec2f &, const TVec2f &);
-    void fillScreenSetup(const _GXColor &);
+    void fillScreenSetup(const GXColor &);
     void fillScreenArea(const TVec2s &, const TVec2s &);
-    void fillScreen(const _GXColor &);
+    void fillScreen(const GXColor &);
     void setupShadowVolumeDraw();
     void drawSimpleModel(J3DModelData*);
     void fillSilhouetteColor();
-    JUTTexture* getMarioShadowTex();
-    JUTTexture* getMarioShadowTexForLoad();
-    TVec3f* getMarioShadowVec();
+    const JUTTexture* getMarioShadowTex();
+    const JUTTexture* getMarioShadowTexForLoad();
+    const TVec3f& getMarioShadowVec();
     void setMarioShadowTex(const JUTTexture *);
     void setMarioShadowVec(const TVec3f &);
     void loadTexProjectionMtx(u32);
@@ -55,4 +50,4 @@ namespace MR {
     void deactivateGameSceneDraw3D();  
 };  // namespace MR
 
-static _GXTexCacheSize sReinitTextureCacheSize;
+static GXTexCacheSize sReinitTextureCacheSize;

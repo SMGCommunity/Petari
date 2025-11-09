@@ -5,6 +5,7 @@
 
 class TalkNodeCtrl;
 class ActorCameraInfo;
+class TalkMessageInfo;
 
 class CustomTagArg {
 public:
@@ -100,4 +101,6 @@ public:
     static bool isTalkSystemEnd(const TalkMessageCtrl *);
     static bool getBranchAstroGalaxyResult(u16);
     static void registerTalkSystem(TalkMessageCtrl *);
+
+    static TalkMessageInfo* getMessageInfo(const TalkMessageCtrl *);
 };

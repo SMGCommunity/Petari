@@ -84,3 +84,7 @@ public:
     PlacementInfoOrdered* _108;
     PlacementInfoOrdered* _10C;
 };
+
+namespace MR {
+    StageDataHolder* getStageDataHolder();
+};

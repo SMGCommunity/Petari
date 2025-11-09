@@ -194,12 +194,12 @@ void GameSystem::prepareReset() {
     mStationedArchiveLoader->prepareReset();
 }
 
-inline bool isSystemWaitForReboot(const GameSystem* pGameSys) {
-    return pGameSys->isNerve(&NrvGameSystem::GameSystemWaitForReboot::sInstance);
+inline bool isSystemWaitForReboot(const GameSystem* pGameSystem) {
+    return pGameSystem->isNerve(&NrvGameSystem::GameSystemWaitForReboot::sInstance);
 }
 
-inline bool isSystemNormal(const GameSystem* pGameSys) {
-    return pGameSys->isNerve(&NrvGameSystem::GameSystemNormal::sInstance);
+inline bool isSystemNormal(const GameSystem* pGameSystem) {
+    return pGameSystem->isNerve(&NrvGameSystem::GameSystemNormal::sInstance);
 }
 
 bool GameSystem::isPreparedReset() const {
@@ -252,38 +252,39 @@ void GameSystem::update() {
 }
 
 void GameSystem::updateSceneController() {
-    bool doSceneUpdate = true;
-    bool resetProcessing = SingletonHolder<GameSystemResetAndPowerProcess>::get()->isActive();
+    bool isSceneUpdate = true;
+    bool isResetProcessing = SingletonHolder<GameSystemResetAndPowerProcess>::get()->isActive();
     
     mObjHolder->updateAudioSystem();
     
-    if (resetProcessing) {
-        doSceneUpdate = false;
+    if (isResetProcessing) {
+        isSceneUpdate = false;
     }
 
     if (mHomeButtonLayout->isActive()) {
-        doSceneUpdate = false;
+        isSceneUpdate = false;
     }
 
     if (GameSystemFunction::isOccurredSystemWarning()) {
-        doSceneUpdate = false;
+        isSceneUpdate = false;
     }
 
-    mHomeButtonStateNotifier->update(mHomeButtonLayout->isActive() || GameSystemFunction::isOccurredSystemWarning());
+    mHomeButtonStateNotifier->update(mHomeButtonLayout->isActive()
+        || GameSystemFunction::isOccurredSystemWarning());
 
-    if (doSceneUpdate || resetProcessing) {
+    if (isSceneUpdate || isResetProcessing) {
         mSequenceDirector->update();
     }
     
-    if (doSceneUpdate || mSceneController->isFirstUpdateSceneNerveNormal()) {
-        if (mSystemWipeHolder) {
+    if (isSceneUpdate || mSceneController->isFirstUpdateSceneNerveNormal()) {
+        if (mSystemWipeHolder != nullptr) {
             mSystemWipeHolder->movement();
         }
 
         mSceneController->updateScene();
     }
     
-    if (resetProcessing) {
+    if (isResetProcessing) {
         mSceneController->updateSceneDuringResetProcessing();
     }
 }

@@ -4,6 +4,10 @@
 
 class TalkMessageCtrl;
 class TalkBalloon;
+class LiveActor;
+class TalkSupportPlayerWatcher;
+class IconAButton;
+class LayoutActor;
 
 class TalkState {
 public:
@@ -41,7 +45,7 @@ public:
     bool isSelfInterrupt(const TalkMessageCtrl*) const;
     
     TalkMessageCtrl *_04;
-    TalkBalloon *_08;
+    /* 0x08 */ TalkBalloon *mBalloon;
     u32 mMessageID;     // 0xC
 };
 
@@ -60,7 +64,7 @@ public:
     TalkStateEvent();
 
     virtual bool prep(const TalkMessageCtrl *);
-    virtual bool test();
+    virtual bool test() NO_INLINE;
     virtual void open();
     virtual bool talk(const TalkMessageCtrl *);
     virtual void clos();
@@ -69,8 +73,54 @@ public:
 
     s32 _10;
     s32 _14;
-    u32 _18;
+    TalkSupportPlayerWatcher* _18;
     u8 _1C;
     bool _1D;
     /* 0x20 */ u32 mPageCount;
+};
+
+class TalkStateNormal : public TalkStateEvent {
+public:
+    TalkStateNormal();
+
+    virtual bool prep(const TalkMessageCtrl *);
+    virtual bool test();
+    virtual void clos();
+    virtual bool term(const TalkMessageCtrl *);
+    void updateButton();
+
+    IconAButton *_24;
+};
+
+class TalkStateCompose : public TalkStateNormal {
+public:
+    TalkStateCompose();
+
+    virtual void init(TalkMessageCtrl *, TalkBalloon *);
+    virtual bool prep(const TalkMessageCtrl *);
+    virtual bool test();
+    virtual void open();
+
+    /* 0x28 */ TalkBalloon *mSecondBalloon;
+};
+
+class TalkStateHolder {
+public:
+    TalkStateHolder();
+
+    void update();
+    void pauseOff();
+    u32 getState(const TalkMessageCtrl *);
+
+    TalkSupportPlayerWatcher *_00;
+    LayoutActor *_04;
+    /* 0x08 */ u32 mTalkShort;
+    /* 0x0C */ u32 mTalkNormal;
+    /* 0x10 */ u32 mTalkEvent;
+    /* 0x14 */ u32 mTalkCompose;
+    /* 0x18 */ u32 mTalkUnknown;
+};
+
+namespace MR {
+    void startTalkSound(unsigned char, const LiveActor *);
 };

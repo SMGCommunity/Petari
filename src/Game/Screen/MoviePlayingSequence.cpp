@@ -17,62 +17,158 @@
 #include "Game/Util/StringUtil.hpp"
 
 namespace {
+    /// @brief A type of screen transition.
     enum WipeType {
-        Unk = 0,
-        WipeType_ForceOpenWipeFade = 1,
-        WipeType_OpenWipeFade = 2,
-        WipeType_SystemWipeWhiteFade = 3,
-        WipeType_OpenWipeWhiteFade = 4,
-        WipeType_WipeWhiteFade = 5
+        WipeType_None,
+        WipeType_ForceWipeFade,
+        WipeType_WipeFade,
+        WipeType_SystemWipeWhiteFade,
+        WipeType_WipeWhiteFade,
+        WipeType_ForceWipeWhiteFade,
     };
 
-    const static MoviePlayingInfo sInfoTable[7] = {
-        { "/MovieData/PrologueA.thp", nullptr, nullptr, "STM_PROLOGUE_05", 0x4B, 0x3C, WipeType_OpenWipeFade, -1, WipeType_ForceOpenWipeFade, -1, WipeType_OpenWipeFade, 1.0f },
-        { "/MovieData/PrologueB.thp", nullptr, "HeavensDoorGalaxy", nullptr, 0x4B, 0, WipeType_OpenWipeFade, -1, WipeType_ForceOpenWipeFade, -1, WipeType_OpenWipeFade, 0.92000002f },
-        { "/MovieData/FinalBattle.thp", "/MovieData/FinalBattleLuigi.thp", "KoopaBattleVs3Galaxy", nullptr, 0, 0x3C, WipeType_OpenWipeFade, -1, WipeType_ForceOpenWipeFade, -1, WipeType_OpenWipeFade, 1.0f },
-        { "/MovieData/EpilogueA.thp", "/MovieData/EpilogueALuigi.thp", nullptr, nullptr, 0, 0x78, WipeType_SystemWipeWhiteFade, 0x5A, WipeType_OpenWipeWhiteFade, 0xB4, Unk, 1.0f },
-        { "/MovieData/EpilogueB.thp", nullptr, nullptr, nullptr, 0x4B, 0x3C, WipeType_OpenWipeFade, -1, WipeType_ForceOpenWipeFade, -1, WipeType_OpenWipeFade, 1.0f },
-        { "/MovieData/EndingA.thp", "/MovieData/EndingALuigi.thp", nullptr, nullptr, 0, 0, WipeType_OpenWipeWhiteFade, 0xB4, WipeType_ForceOpenWipeFade, -1, Unk, 1.0f },
-        { "/MovieData/EndingB.thp", nullptr, nullptr, nullptr, 0xF0, 0x3C, WipeType_OpenWipeFade, 0xB4, WipeType_ForceOpenWipeFade, -1, WipeType_OpenWipeFade, 1.0f }
+    static const MoviePlayingInfo sInfoTable[] = {
+        {
+            "/MovieData/PrologueA.thp",
+            nullptr,
+            nullptr,
+            "STM_PROLOGUE_05",
+            75,
+            60,
+            WipeType_WipeFade,
+            -1,
+            WipeType_ForceWipeFade,
+            -1,
+            WipeType_WipeFade,
+            1.0f,
+        },
+        {
+            "/MovieData/PrologueB.thp",
+            nullptr,
+            "HeavensDoorGalaxy",
+            nullptr,
+            75,
+            0,
+            WipeType_WipeFade,
+            -1,
+            WipeType_ForceWipeFade,
+            -1,
+            WipeType_WipeFade,
+            0.92f,
+        },
+        {
+            "/MovieData/FinalBattle.thp",
+            "/MovieData/FinalBattleLuigi.thp",
+            "KoopaBattleVs3Galaxy",
+            nullptr,
+            0,
+            60,
+            WipeType_WipeFade,
+            -1,
+            WipeType_ForceWipeFade,
+            -1,
+            WipeType_WipeFade,
+            1.0f,
+        },
+        {
+            "/MovieData/EpilogueA.thp",
+            "/MovieData/EpilogueALuigi.thp",
+            nullptr,
+            nullptr,
+            0,
+            120,
+            WipeType_SystemWipeWhiteFade,
+            90,
+            WipeType_WipeWhiteFade,
+            180,
+            WipeType_None,
+            1.0f,
+        },
+        {
+            "/MovieData/EpilogueB.thp",
+            nullptr,
+            nullptr,
+            nullptr,
+            75,
+            60,
+            WipeType_WipeFade,
+            -1,
+            WipeType_ForceWipeFade,
+            -1,
+            WipeType_WipeFade,
+            1.0f,
+        },
+        {
+            "/MovieData/EndingA.thp",
+            "/MovieData/EndingALuigi.thp",
+            nullptr,
+            nullptr,
+            0,
+            0,
+            WipeType_WipeWhiteFade,
+            180,
+            WipeType_ForceWipeFade,
+            -1,
+            WipeType_None,
+            1.0f,
+        },
+        {
+            "/MovieData/EndingB.thp",
+            nullptr,
+            nullptr,
+            nullptr,
+            240,
+            60,
+            WipeType_WipeFade,
+            180,
+            WipeType_ForceWipeFade,
+            -1,
+            WipeType_WipeFade,
+            1.0f,
+        },
     };
 
     void openWipe(WipeType type, s32 time) {
         switch (type) {
-            case WipeType_ForceOpenWipeFade:
-                MR::forceOpenWipeFade();
-                break;
-            case WipeType_OpenWipeFade:
-                MR::openWipeFade(time);
-                break;
-            case WipeType_SystemWipeWhiteFade:
-                MR::openSystemWipeWhiteFade(time);
-                break;
-            case WipeType_OpenWipeWhiteFade:
-                MR::openWipeWhiteFade(time);
-                break;
-            case WipeType_WipeWhiteFade:
-                MR::forceOpenWipeWhiteFade();
-                break;
+        case WipeType_None:
+            break;
+        case WipeType_ForceWipeFade:
+            MR::forceOpenWipeFade();
+            break;
+        case WipeType_WipeFade:
+            MR::openWipeFade(time);
+            break;
+        case WipeType_SystemWipeWhiteFade:
+            MR::openSystemWipeWhiteFade(time);
+            break;
+        case WipeType_WipeWhiteFade:
+            MR::openWipeWhiteFade(time);
+            break;
+        case WipeType_ForceWipeWhiteFade:
+            MR::forceOpenWipeWhiteFade();
+            break;
         }
     }
 
     void closeWipe(WipeType type, s32 time) {
         switch (type) {
-            case WipeType_ForceOpenWipeFade:
-                MR::forceCloseWipeFade();
-                break;
-            case WipeType_OpenWipeFade:
-                MR::closeWipeFade(time);
-                break;
-            case WipeType_SystemWipeWhiteFade:
-                MR::forceCloseSystemWipeWhiteFade();
-                break;
-            case WipeType_OpenWipeWhiteFade:
-                MR::closeWipeWhiteFade(time);
-                break;
-            case WipeType_WipeWhiteFade:
-                MR::forceCloseWipeWhiteFade();
-                break;
+        case WipeType_None:
+            break;
+        case WipeType_ForceWipeFade:
+            MR::forceCloseWipeFade();
+            break;
+        case WipeType_WipeFade:
+            MR::closeWipeFade(time);
+            break;
+        case WipeType_SystemWipeWhiteFade:
+            MR::forceCloseSystemWipeWhiteFade();
+            break;
+        case WipeType_WipeWhiteFade:
+            MR::closeWipeWhiteFade(time);
+            break;
+        case WipeType_ForceWipeWhiteFade:
+            MR::forceCloseWipeWhiteFade();
+            break;
         }
     }
 
@@ -99,19 +195,24 @@ const char* MoviePlayingSequence::getMovieName(MoviePlayingSequence::MovieType t
     if (type == MovieType_PrologueA) {
         return "PrologueA";
     }
-    else if (type == MovieType_PrologueB) {
+
+    if (type == MovieType_PrologueB) {
         return "PrologueB";
     }
-    else if (type == MovieType_FinalBattle) {
+
+    if (type == MovieType_FinalBattle) {
         return "FinalBattle";
     }
-    else if (type == MovieType_EpilogueA) {
+
+    if (type == MovieType_EpilogueA) {
         return "EpilogueA";
     }
-    else if (type == MovieType_EndingA) {
+
+    if (type == MovieType_EndingA) {
         return "EndingA";
     }
-    else if (type == MovieType_EndingB) {
+
+    if (type == MovieType_EndingB) {
         return "EndingB";
     }
 
@@ -124,7 +225,8 @@ MoviePlayingSequence::MoviePlayingSequence(const char *pName, s32 movieType) :
     mSubtitles()
 {
     mInfo = &sInfoTable[movieType];
-    mPadRumbler = new DemoPadRumbler(getMovieName((MovieType)movieType));
+    mPadRumbler = new DemoPadRumbler(getMovieName(MovieType(movieType)));
+
     MR::createSceneObj(SceneObj_MoviePlayerSimple);
     MR::connectToSceneLayoutMovement(this);
     initNerve(&NrvMoviePlayingSequence::HostTypeWait::sInstance);
@@ -147,10 +249,6 @@ MoviePlayingSequence::MoviePlayingSequence(const char *pName, s32 movieType) :
     kill();
 }
 
-MoviePlayingSequence::~MoviePlayingSequence() {
-
-}
-
 void MoviePlayingSequence::appear() {
     LayoutActor::appear();
     setNerve(&NrvMoviePlayingSequence::HostTypePlayWait::sInstance);
@@ -158,6 +256,10 @@ void MoviePlayingSequence::appear() {
 
 void MoviePlayingSequence::kill() {
     LayoutActor::kill();
+}
+
+void MoviePlayingSequence::exeWait() {
+    
 }
 
 void MoviePlayingSequence::exePlayWait() {
@@ -169,11 +271,11 @@ void MoviePlayingSequence::exePlayWait() {
 
         bool val;
 
-        if (mInfo->_18 == WipeType_SystemWipeWhiteFade) {
+        if (mInfo->mOpenWipeType == WipeType_SystemWipeWhiteFade) {
             val = false;
         }
         else {
-            val = mInfo->_18 != WipeType_OpenWipeWhiteFade;
+            val = mInfo->mOpenWipeType != WipeType_WipeWhiteFade;
         }
 
         if (val) {
@@ -183,7 +285,7 @@ void MoviePlayingSequence::exePlayWait() {
         if (MR::isEqualStringCase(mInfo->mMovieName, "/MovieData/PrologueA.thp")) {
             MarioAccess::readyRemoteDemo();
             MR::setPlayerPosOnGroundAndWait("リスタート");
-            MR::startBckPlayer("Wait", (const char *)0);
+            MR::startBckPlayer("Wait", static_cast<const char*>(nullptr));
         }
     }
 
@@ -198,14 +300,14 @@ void MoviePlayingSequence::exePlayStart() {
         MR::tryFrameToScreenCinemaFrame();
     }
     else if (MR::isMoviePlayerPlaying()) {
-        MR::setMovieVolume(0, 0.0f);
+        MR::setMovieVolume(0.0f, 0);
         setNerve(&NrvMoviePlayingSequence::HostTypePlay::sInstance);
     }
 }
 
 void MoviePlayingSequence::exePlay() {
     if (MR::isFirstStep(this)) {
-        openWipe((WipeType)mInfo->_18, mInfo->_1C);
+        openWipe(WipeType(mInfo->mOpenWipeType), mInfo->mOpenWipeTime);
     }
 
     if (MR::isStep(this, 3)) {
@@ -228,40 +330,40 @@ bool MoviePlayingSequence::tryStartSubtitles() {
     for (MovieSubtitles** pSubtitles = mSubtitles.begin(); pSubtitles != mSubtitles.end(); pSubtitles++) {
         s32 index = pSubtitles - mSubtitles.begin();
 
-        if ((s32)MR::getMovieCurrentFrame() == (s32)MovieSubtitlesUtil::getSubtitlesStartStep(mInfo->mMovieName, index)) {
-            MR::requestMovementOn(*pSubtitles);
-            (*pSubtitles)->appear();
-
-            return true;
+        if (MR::getMovieCurrentFrame() != MovieSubtitlesUtil::getSubtitlesStartStep(mInfo->mMovieName, index)) {
+            continue;
         }
+
+        MR::requestMovementOn(*pSubtitles);
+        (*pSubtitles)->appear();
+
+        return true;
     }
 
     return false;
 }
 
 bool MoviePlayingSequence::tryEnd() {
-    if (mInfo->_24 == -1) {
+    if (mInfo->mCloseWipeTime == -1) {
         if (!MR::isActiveMoviePlayer()) {
-            closeWipe((WipeType)mInfo->_20, mInfo->_24);
+            closeWipe(WipeType(mInfo->mCloseWipeType), mInfo->mCloseWipeTime);
             setNerve(&NrvMoviePlayingSequence::HostTypeEndWait::sInstance);
+
             return true;
-            
         }
-        else {
-            return false;
-        }
+
+        return false;
     }
     else {
-        s32 totalFrame = MR::getMovieTotalFrame();
-        s32 diff = totalFrame - mInfo->_24;
-        if (diff <= (s32)MR::getMovieCurrentFrame()) {
+        s32 closeWipeFrame = MR::getMovieTotalFrame() - mInfo->mCloseWipeTime;
+
+        if (closeWipeFrame <= MR::getMovieCurrentFrame()) {
             setNerve(&NrvMoviePlayingSequence::HostTypeCloseWipeOnPlaying::sInstance);
-            return true;
-            
+
+            return true;            
         }
-        else {
-            return false;
-        }
+
+        return false;
     }
 }
 
@@ -285,12 +387,13 @@ bool MoviePlayingSequence::trySkip() {
     MR::stopMoviePlayer();
     MR::forceCloseWipeFade();
     setNerve(&NrvMoviePlayingSequence::HostTypeEndWait::sInstance);
+
     return true;
 }
 
 void MoviePlayingSequence::exeCloseWipeOnPlaying() {
     if (MR::isFirstStep(this)) {
-        closeWipe((WipeType)mInfo->_20, -1);
+        closeWipe(WipeType(mInfo->mCloseWipeType), -1);
     }
 
     if (!MR::isActiveMoviePlayer()) {
@@ -301,15 +404,15 @@ void MoviePlayingSequence::exeCloseWipeOnPlaying() {
 void MoviePlayingSequence::exeEndWait() {
     bool noWipe;
 
-    if (MR::isStep(this, mInfo->_14)) {
+    if (MR::isStep(this, mInfo->mEndWaitTime)) {
         const MoviePlayingInfo* pInfo = mInfo;
 
         if (MR::isEqualStringCase(pInfo->mMovieName, "/MovieData/FinalBattle.thp")) {
-            MR::requestStartScenarioSelect(pInfo->mGalaxyName);
+            MR::requestStartScenarioSelect(pInfo->mStageName);
             noWipe = true;
         }
-        else if (pInfo->mGalaxyName != nullptr) {
-            MR::requestChangeStageInGameMoving(pInfo->mGalaxyName, 1);
+        else if (pInfo->mStageName != nullptr) {
+            MR::requestChangeStageInGameMoving(pInfo->mStageName, 1);
             noWipe = true;
         }
         else {
@@ -317,11 +420,11 @@ void MoviePlayingSequence::exeEndWait() {
         }
 
         if (!noWipe) {
-            openWipe((WipeType)mInfo->_28, -1);
+            openWipe(WipeType(mInfo->mEndWaitWipeType), -1);
         }
 
-        if (mInfo->mMusic) {
-            MR::startStageBGM(mInfo->mMusic, 0);
+        if (mInfo->mStageBgmName != nullptr) {
+            MR::startStageBGM(mInfo->mStageBgmName, 0);
         }
 
         if (!MR::isEqualStringCase(mInfo->mMovieName, "/MovieData/PrologueB.thp")) {
@@ -338,28 +441,24 @@ void MoviePlayingSequence::exeEndWait() {
     }
 }
 
-void MoviePlayingSequence::exeWait() {
-    
-}
-
 namespace {
     MoviePlayingSequenceHolder* getMoviePlayingSequenceHolder() {
         return MR::getSceneObj<MoviePlayingSequenceHolder>(SceneObj_MoviePlayingSequenceHolder);
     }
 
     MoviePlayingSequence* getMoviePlayingSequence(int idx) {
-        return getMoviePlayingSequenceHolder()->mSequences[idx];
+        return getMoviePlayingSequenceHolder()->getSequence(idx);
     }
 };
 
 MoviePlayingSequenceHolder::MoviePlayingSequenceHolder(const char *pName) : NameObj(pName) {
     s32 diff;
 
-    mSequences.init(7);
+    mSequence.init(7);
 
-    for (MoviePlayingSequence** pSequence = mSequences.begin(); pSequence != mSequences.end(); pSequence++) {
-        diff = pSequence - mSequences.begin();
-        const char* pMovieName = MoviePlayingSequence::getMovieName((MoviePlayingSequence::MovieType)diff);
+    for (MoviePlayingSequence** pSequence = mSequence.begin(); pSequence != mSequence.end(); pSequence++) {
+        diff = pSequence - mSequence.begin();
+        const char* pMovieName = MoviePlayingSequence::getMovieName(MoviePlayingSequence::MovieType(diff));
 
         if (pMovieName == nullptr) {
             *pSequence = nullptr;
@@ -370,60 +469,70 @@ MoviePlayingSequenceHolder::MoviePlayingSequenceHolder(const char *pName) : Name
     }
 }
 
+MoviePlayingSequence* MoviePlayingSequenceHolder::getSequence(int idx) const {
+    return mSequence[idx];
+}
+
+s32 MoviePlayingSequenceHolder::getSequenceNum() const {
+    return mSequence.size();
+}
+
 namespace MR {
     void createMoviePlayingSequence() {
-        MR::createSceneObj(SceneObj_MoviePlayingSequenceHolder);
+        createSceneObj(SceneObj_MoviePlayingSequenceHolder);
     }
 
-    void startMovie(int idx) {
-        getMoviePlayingSequence(idx)->appear();
+    void startMovie(int type) {
+        getMoviePlayingSequence(type)->appear();
     }
 
-    bool isEndMovie(int idx) {
-        return MR::isDead(getMoviePlayingSequence(idx));
+    bool isEndMovie(int type) {
+        return isDead(getMoviePlayingSequence(type));
     }
 
     void startMovieEpilogueA() {
-        getMoviePlayingSequence(3)->appear();
+        startMovie(MoviePlayingSequence::MovieType_EpilogueA);
     }
 
     void startMovieEndingA() {
-        getMoviePlayingSequence(5)->appear();
+        startMovie(MoviePlayingSequence::MovieType_EndingA);
     }
 
     void startMovieEndingB() {
-        getMoviePlayingSequence(6)->appear();
+        startMovie(MoviePlayingSequence::MovieType_EndingB);
     }
 
     bool isEndMovieEpilogueA() {
-        return MR::isDead(getMoviePlayingSequence(3));
+        return isEndMovie(MoviePlayingSequence::MovieType_EpilogueA);
     }
 
     bool isEndMovieEndingA() {
-        return MR::isDead(getMoviePlayingSequence(5));
+        return isEndMovie(MoviePlayingSequence::MovieType_EndingA);
     }
 
     bool isEndMovieEndingB() {
-        return MR::isDead(getMoviePlayingSequence(6));
+        return isEndMovie(MoviePlayingSequence::MovieType_EndingB);
     }
 
     bool isMoviePlayingOnSequence() {
-        if (!MR::isExistSceneObj(SceneObj_MoviePlayingSequenceHolder)) {
+        if (!isExistSceneObj(SceneObj_MoviePlayingSequenceHolder)) {
             return false;
         }
 
-        for (int i = 0; i < getMoviePlayingSequenceHolder()->mSequences.size(); i++) {
+        for (int i = 0; i < getMoviePlayingSequenceHolder()->getSequenceNum(); i++) {
             MoviePlayingSequence* pSequence = getMoviePlayingSequence(i);
 
-            if (pSequence != nullptr && !MR::isDead(pSequence)) {
-                return true;
+            if (pSequence == nullptr) {
+                continue;
             }
+
+            if (isDead(pSequence)) {
+                continue;
+            }
+
+            return true;
         }
 
         return false;
     }
 };
-
-MoviePlayingSequenceHolder::~MoviePlayingSequenceHolder() {
-    
-}

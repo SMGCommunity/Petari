@@ -161,9 +161,9 @@ const GalaxyCometTimePaper * const sGalaxyCometTimerPaper[] = {
     sCometTimeTableGrandGalaxy6,
 };
 
-const GalaxyCometSerializeInfo cOverrideTerraceDomeState = { 0x0007, 0 };
+const GalaxyCometSerializeInfo cSerializeInfoPurpleCometAppear = { 0x0007, 0 };
 
-const GalaxyCometSerializeInfo cFirstContact[] = {
+const GalaxyCometSerializeInfo cSerializeInfoFirstContact[] = {
     { 0x0001, 0 },
     { 0x0000, 0 },
     { 0x0000, 0 },
@@ -360,14 +360,14 @@ void GalaxyCometScheduler::restoreStateFromGameData() {
 
     if (GameDataFunction::isOnGameEventFlag("Coin100CometEggStarGalaxy")) {
         if (!GameDataFunction::isOnGameEventFlag("SpecialStarCoin100CometRelease")) {
-            mTimeTables[0]->deserializeStateFromGameData(&cOverrideTerraceDomeState);
+            mTimeTables[0]->deserializeStateFromGameData(&cSerializeInfoPurpleCometAppear);
         }
     }
 }
 
 void GalaxyCometScheduler::setScheduleFirstContact() {
     for (s32 i = 0; i < mTimeTables.size(); i++) {
-        mTimeTables[i]->deserializeStateFromGameData(&cFirstContact[i]);
+        mTimeTables[i]->deserializeStateFromGameData(&cSerializeInfoFirstContact[i]);
     }
 }
 

@@ -4,15 +4,15 @@
 
 class ScreenPreserver : public NameObj {
 public:
+    /// @brief Creates a new `ScreenPreserver`.
     ScreenPreserver();
 
-    virtual ~ScreenPreserver();
     virtual void draw() const;
 
     void captureIfAllow();
     void activate();
     void deactivate();
 
-    bool mIsActive;     // 0xC
-    u8 _D[3];
+    /* 0x0C */ bool mIsActive;
+    /* 0x0D */ u8 _D[3];
 };
