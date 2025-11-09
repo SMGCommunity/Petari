@@ -32,20 +32,20 @@ public:
 
 namespace GameEventFlagTable {
     GameEventFlagIter getBeginIter();
-    GameEventFlagAccessor makeAccessor(const char *);
+    GameEventFlagAccessor makeAccessor(const char*);
     s32 getTableSize();
     const GameEventFlag* getFlag(int);
-    const GameEventFlag* findFlag(const char *);
-    const char* getEventFlagNameSpecialPowerStar(const char *, s32);
-    bool isPowerStarType(const char *, s32, const char *);
+    const GameEventFlag* findFlag(const char*);
+    const char* getEventFlagNameSpecialPowerStar(const char*, s32);
+    bool isPowerStarType(const char*, s32, const char*);
     s32 calcExclamationGalaxyNum();
     const char* getExclamationGalaxyNameFromIndex(int);
-    bool isExist(const char *);
-    int getIndex(const GameEventFlag *);
-    bool isDependedAnother(const char *, const char *);
+    bool isExist(const char*);
+    int getIndex(const GameEventFlag*);
+    bool isDependedAnother(const char*, const char*);
     int getIndexFromHashCode(u16);
-    s32 calcSpecialPowerStarNum(const char *);
-    s32 getStarPieceNumToOpenExclamationGalaxy(const char *);
+    s32 calcSpecialPowerStarNum(const char*);
+    s32 getStarPieceNumToOpenExclamationGalaxy(const char*);
     s32 calcGreenPowerStarNum();
-    s32 getGalaxyDependedFlags(const char **, int, const char *);
+    s32 getGalaxyDependedFlags(const char**, int, const char*);
 };
