@@ -792,6 +792,7 @@ bool TrickRabbit::selectEdgeStartEvent(RailGraphIter* pIter) {
     return b;
 }
 
+// 100% but has gotos
 void TrickRabbit::selectEdgeRunnaway(RailGraphIter* pIter, const TVec3f& rVec, f32 f) {
     TVec3f stack_14;
     MR::normalizeOrZero(rVec, &stack_14);
@@ -818,38 +819,44 @@ void TrickRabbit::selectEdgeRunnaway(RailGraphIter* pIter, const TVec3f& rVec, f
             bool v18 = dot > f;
             bool isWatched = !MR::isWatchedPrevEdge(pIter);
             bool v20 = 0;
+
+
             if (!r29 || v17) {
                 if (!r29 && v17)
                     v20 = 1;
 
                 if (!v20) {
-                    if (!r28 || v18) {
-                        if (!r28 && v18) {
+                    if (r28 && !v18) {
+                        goto endif;
+                    }
+                    if (!r28 && v18) {
                             v20 = 1;
                         }
+                }
 
-                        if (!v20 && !r27 || isWatched) {
-                            if (r27 || isWatched) {
-                                v20 = 1;
-                            }
-                            
-                            if (!v20) {
-                                if (v10 < dot)
-                                    v20 = 1;
-                            }
-                            
-                            if (v20) {
-                                v10 = dot;
-                                r29 = v17;
-                                r28 = v18;
-                                r27 = isWatched;
-                                pIter->selectEdge();
-                            }
-                        }
+                if (!v20) {
+                    if (r27 && !isWatched){
+                        goto endif;
                     }
+                    if (!r27 && isWatched)
+                    v20 = 1;
+                }
+
+                if (!v20) {
+                    if (v10 < dot)
+                        v20 = 1;
+                }
+
+                if (v20) {
+                    v10 = dot;
+                    r29 = v17;
+                    r28 = v18;
+                    r27 = isWatched;
+                    pIter->selectEdge();
                 }
             }
         }
+        endif:
         pIter->watchNextEdge();
     }
 }
