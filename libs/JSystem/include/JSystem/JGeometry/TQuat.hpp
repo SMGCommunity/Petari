@@ -30,7 +30,12 @@ namespace JGeometry {
         void normalize();
         void normalize(const TQuat4<T> &rSrc);
 
-        void getXDir(TVec3<T> &rDest) const;
+        void getXDir(TVec3<T> &rDest) const {
+            f32 _y = this->y;
+            f32 _z = this->z;
+            rDest.template set<T>((1.0f - (2.0f *(_y*_y)))-(2.0f*_z*_z), (2.0f*((this->x)*_y)+(2.0f*(this->w)*_z)), ((2.0f*(this->x)*_z)-(2.0f*(this->w)*_y)));
+        };
+
         void getYDir(TVec3<T> &rDest) const;
         void getZDir(TVec3<T> &rDest) const;
 

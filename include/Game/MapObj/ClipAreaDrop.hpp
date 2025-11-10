@@ -1,10 +1,11 @@
 #pragma once
 
 #include "Game/MapObj/ClipArea.hpp"
+#include "Game/MapObj/ClipAreaShape.hpp"
 #include "Game/Util/JMapInfo.hpp"
 #include "revolution/types.h"
 
-class ClipAreaDrop : ClipArea {
+class ClipAreaDrop : public ClipArea {
 public:
     ClipAreaDrop(const char*);
     virtual void init(const JMapInfoIter&);
@@ -15,6 +16,6 @@ public:
     void setBaseSize(f32);
     void exeWait();
 
-    u32 _C0;
+    ClipAreaShapeSphere* _C0;
     f32 _C4;
 };

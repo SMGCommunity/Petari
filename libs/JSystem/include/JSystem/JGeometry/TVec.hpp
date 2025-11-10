@@ -412,7 +412,7 @@ namespace JGeometry {
             return magnitude;
         }
         
-        f32 setLength(f32 newlength){
+        f32 setLength(f32 newlength) {
             f32 oldlength = squareMag();
             if(oldlength <=  0.0000038146973f){
                 return 0.0f;
