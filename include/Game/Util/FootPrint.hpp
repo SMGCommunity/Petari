@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Game/NameObj/NameObj.hpp"
+#include "JSystem/JGeometry/TVec.hpp"
 
 class ResTIMG;
 class JUTTexture;
@@ -10,6 +11,7 @@ class FootPrint : public NameObj {
 public:
     FootPrint(const char *, s32, s32);
     void setTexture(ResTIMG *);
+    void addPrint(const TVec3f&, const TVec3f&, const TVec3f&, bool);
     void clear();
 
     JUTTexture *_C;
