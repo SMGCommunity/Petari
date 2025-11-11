@@ -141,8 +141,4 @@ namespace MR {
     void onStartOnlyFront(TalkMessageCtrl*);
     bool isTalkStart(const TalkMessageCtrl*);
     bool isTalkEnd(const TalkMessageCtrl*);
-
-    inline void setMessageArgToCurrentGalaxyName(TalkMessageCtrl *pCtrl, const char *pName) {
-        MR::setMessageArg(pCtrl, MR::getGalaxyNameOnCurrentLanguage(pName));
-    }
 };
