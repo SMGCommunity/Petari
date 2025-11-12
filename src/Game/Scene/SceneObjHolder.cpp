@@ -111,7 +111,7 @@
 #include "Game/Screen/SceneWipeHolder.hpp"
 #include "Game/Screen/ScreenAlphaCapture.hpp"
 #include "Game/Screen/ScreenBlurEffect.hpp"
-// #include "Game/Screen/StaffRoll.hpp"
+#include "Game/Screen/StaffRoll.hpp"
 #include "Game/System/GameSystem.hpp"
 #include "Game/System/GameSystemSceneController.hpp"
 #include "Game/Util/BaseMatrixFollowTargetHolder.hpp"
@@ -418,8 +418,7 @@ NameObj* SceneObjHolder::newEachObj(int id) {
     case SceneObj_PrologueHolder:
         return new PrologueHolder("プロローグ保持");
     case SceneObj_StaffRoll:
-        // return new StaffRoll("スタッフロール");
-        return nullptr;
+        return new StaffRoll("スタッフロール");
     default:
         return nullptr;
     }
