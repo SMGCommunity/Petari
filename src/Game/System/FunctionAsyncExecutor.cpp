@@ -56,7 +56,7 @@ FunctionAsyncExecutorOnMainThread::FunctionAsyncExecutorOnMainThread(OSThread* p
     mThread(pThread),
     _0(false)
 {
-    OSInitMessageQueue(&mQueue, mMsgArray, 64);
+    OSInitMessageQueue(&mQueue, mMsgArray, sizeof(mMsgArray) / sizeof(*mMsgArray));
 }
 
 void FunctionAsyncExecutorOnMainThread::update() {
@@ -65,10 +65,13 @@ void FunctionAsyncExecutorOnMainThread::update() {
 
     if (OSReceiveMessage(&mQueue, &msg, OS_MESSAGE_NOBLOCK)) {
         _0 = true;
-        info = (FunctionAsyncExecInfo*)msg;
+
+        info = static_cast<FunctionAsyncExecInfo*>(msg);
         info->mPriority = OSGetThreadPriority(OSGetCurrentThread());
         info->execute();
+
         OSSendMessage(&info->mQueue, 0, OS_MESSAGE_NOBLOCK);
+
         info->mIsEnd = true;
     }
 }
