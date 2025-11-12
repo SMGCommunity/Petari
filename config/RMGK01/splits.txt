@@ -7507,15 +7507,16 @@ Game/Scene/SceneNameObjListExecutor.cpp:
 Game/Scene/SceneNameObjMovementController.cpp:
 	.text       start:0x8034654C end:0x80346C0C
 	.ctors      start:0x8052F21C end:0x8052F220
-	.data       start:0x805D2420 end:0x805D2520
+	.data       start:0x805D2420 end:0x805D24A8
 	.sbss       start:0x806B6630 end:0x806B6638
 
 Game/Scene/StageDataHolder.cpp:
 	.text       start:0x80346C0C end:0x80348C74
-	.data       start:0x805D2520 end:0x805D2730
+	.data       start:0x805D24A8 end:0x805D2730
 
 Game/Scene/StageFileLoader.cpp:
 	.text       start:0x80348C74 end:0x80348F4C
+	.data       start:0x805D2730 end:0x805D2748
 	.sdata2     start:0x806C0E18 end:0x806C0E20
 
 Game/Scene/StageResourceLoader.cpp:
@@ -7523,7 +7524,7 @@ Game/Scene/StageResourceLoader.cpp:
 
 Game/Scene/StopSceneController.cpp:
 	.text       start:0x80348F5C end:0x803491EC
-	.data       start:0x805D2730 end:0x805D27D8
+	.data       start:0x805D2748 end:0x805D27D8
 
 Game/Screen/THPDraw.c:
 	.text       start:0x803491EC end:0x803499F4

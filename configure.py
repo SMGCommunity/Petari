@@ -1970,7 +1970,7 @@ config.libs = [
             Object(NonMatching, "Game/Scene/SceneObjHolder.cpp"),
             Object(Matching, "Game/Scene/ScenePlayingResult.cpp"),
             Object(Matching, "Game/Scene/SceneNameObjListExecutor.cpp"),
-            Object(NonMatching, "Game/Scene/SceneNameObjMovementController.cpp"),
+            Object(Matching, "Game/Scene/SceneNameObjMovementController.cpp"),
             Object(NonMatching, "Game/Scene/StageDataHolder.cpp"),
             Object(Matching, "Game/Scene/StageFileLoader.cpp"),
             Object(Matching, "Game/Scene/StageResourceLoader.cpp"),
