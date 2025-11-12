@@ -1,0 +1,15 @@
+#pragma once
+
+#include "Game/NameObj/ModelChangableObjFactory.hpp"
+#include "Game/NameObj/MovementOnOffGroupHolder.hpp"
+#include "Game/NameObj/NameObj.hpp"
+#include "Game/NameObj/NameObjAdaptor.hpp"
+#include "Game/NameObj/NameObjArchiveListCollector.hpp"
+#include "Game/NameObj/NameObjCategoryList.hpp"
+#include "Game/NameObj/NameObjExecuteHolder.hpp"
+#include "Game/NameObj/NameObjFactory.hpp"
+#include "Game/NameObj/NameObjFinder.hpp"
+#include "Game/NameObj/NameObjGroup.hpp"
+#include "Game/NameObj/NameObjHolder.hpp"
+#include "Game/NameObj/NameObjListExecutor.hpp"
+#include "Game/NameObj/NameObjRegister.hpp"

@@ -1,0 +1,15 @@
+#pragma once
+
+#include "Game/AudioLib/AudAnmSoundObject.hpp"
+#include "Game/AudioLib/AudBgm.hpp"
+#include "Game/AudioLib/AudEffector.hpp"
+#include "Game/AudioLib/AudParams.hpp"
+#include "Game/AudioLib/AudRemixMgr.hpp"
+#include "Game/AudioLib/AudRemixSequencer.hpp"
+#include "Game/AudioLib/AudSceneMgr.hpp"
+#include "Game/AudioLib/AudSoundNameConverter.hpp"
+#include "Game/AudioLib/AudSoundObject.hpp"
+#include "Game/AudioLib/AudSpeakerWrap.hpp"
+#include "Game/AudioLib/AudSystem.hpp"
+#include "Game/AudioLib/AudSystemWrapper.hpp"
+#include "Game/AudioLib/AudWrap.hpp"
