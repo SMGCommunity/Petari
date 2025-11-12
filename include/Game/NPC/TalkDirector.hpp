@@ -100,7 +100,9 @@ public:
 };
 
 namespace MR {
-    bool isActiveTalkBalloonShort();
-
+    void pauseOffTalkDirector();
+    void balloonOffTalkDirector();
+    void invalidateTalkDirector();
     void setTalkDirectorDrawSyncToken();
+    bool isActiveTalkBalloonShort();
 };
