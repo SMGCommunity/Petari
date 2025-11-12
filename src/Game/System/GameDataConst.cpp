@@ -4,7 +4,7 @@
 #include "Game/Util.hpp"
 #include <cstdio>
 
-u32 GameDataConst::getPowerStarNumToOpenGalaxy(const char *pGalaxy) {
+s32 GameDataConst::getPowerStarNumToOpenGalaxy(const char *pGalaxy) {
     JMapInfo info;
     info.attach(&GalaxyIDBCSV);
     JMapInfoIter element;
