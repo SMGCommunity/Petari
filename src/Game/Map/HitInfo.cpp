@@ -205,7 +205,7 @@ TPos3f *Triangle::getPrevBaseMtx() const {
 }
 
 HitInfo::HitInfo() : mParentTriangle(), _60(0.0f),
-    _64(0, 0, 0), _70(0, 0, 0), _7C(0, 0, 0) {
+    mHitPos(0, 0, 0), _70(0, 0, 0), _7C(0, 0, 0) {
     _88 = 0;
 }
 
