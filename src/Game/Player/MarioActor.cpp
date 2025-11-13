@@ -830,7 +830,7 @@ void MarioActor::movement()
                     }
                 }
                 else {
-                    const u32 stop = mBinder->_28;
+                    const u32 stop = mBinder->mPlaneNum;
                     for (int i = 0; i < stop; i++) {
                         if (MR::isSensorPressObj(mBinder->getPlane(i)->mSensor)) {
                             mMario->mDrawStates._1E = true;
@@ -865,7 +865,7 @@ void MarioActor::movement()
             }
         }
         else if (mMario->getMovementStates()._1) {
-            const u32 stop = mBinder->_28;
+            const u32 stop = mBinder->mPlaneNum;
             bool eject = false;
             for (u32 i = 0; i < stop; i++) {
                 const Triangle *plane = mBinder->getPlane(i);
