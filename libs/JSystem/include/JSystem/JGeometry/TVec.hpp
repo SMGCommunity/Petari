@@ -203,6 +203,17 @@ namespace JGeometry {
             return ret;
         }
 
+        // needed to match TVec stack access order in many places
+        TVec3 addOperatorInLine(const TVec3 &op) const {
+            TVec3 ret(*this);
+            ret.add(op);
+            return ret;
+        }
+
+        void addInLine(const TVec3 &op) {
+            JMathInlineVEC::PSVECAdd(this, &op, this);
+        }
+
         TVec3 operator*(f32 scalar) const NO_INLINE {
             TVec3 ret(*this);
             ret.x *= scalar;

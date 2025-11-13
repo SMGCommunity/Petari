@@ -228,6 +228,8 @@ namespace JGeometry {
         void getScale(TVec3f &rDest) const;
         void setScale(const TVec3f &rSrc);
         void setRotate(const TVec3f &, f32);
+        void setRotate(const TVec3f &, const TVec3f &);
+
         void mult33(TVec3f &) const;
         void mult33(const TVec3f &rDst, TVec3f &rSrc) const;
 
@@ -373,6 +375,44 @@ namespace JGeometry {
             this->mMtx[2][2] = (negc * (z * z) + c);
         }
 
+        void setRotateQuaternionInline(const TQuat4f &q) {
+            f32 two = 2.0f;
+
+            f32 y = q.y;
+            f32 x = q.x;
+            f32 z = q.z;
+            f32 w = q.w;
+
+
+            // NOTE: this doesnt quite match yet, needs some
+            // messing around with to actually properly match...
+            /*
+            // this is the actual math going on
+            this->mMtx[0][0] = (1.0f - 2.0f * y * y) - 2.0f * z * z;
+            this->mMtx[0][1] = 2.0f * x * y - 2.0f * w * z;
+            this->mMtx[0][2] = 2.0f * x * z + 2.0f * w * y;
+            this->mMtx[1][0] = 2.0f * x * y + 2.0f * w * z;
+            this->mMtx[1][1] = (1.0f - 2.0f * x * x) - 2.0f * z * z;
+            this->mMtx[1][2] = 2.0f * z * y - 2.0f * w * x;
+            this->mMtx[2][0] = 2.0f * x * z - 2.0f * w * y;
+            this->mMtx[2][1] = 2.0f * z * y + 2.0f * w * x;
+            this->mMtx[2][2] = (1.0f - 2.0f * x * x) - 2.0f * y * y;
+            */
+
+            // this is the closest match I have so far
+            this->mMtx[0][0] = (1.0f - two * y * y) - two * z * z;
+            this->mMtx[2][0] = two * x * z - two * w * y;
+            this->mMtx[0][2] = two * x * z + two * w * y;
+            
+            this->mMtx[0][1] = two * x * y - two * w * z;
+            this->mMtx[1][0] = two * x * y + two * w * z;
+            this->mMtx[1][1] = (1.0f - two * x * x) - two * z * z;
+            
+            this->mMtx[2][1] = two * z * y + two * w * x;
+            this->mMtx[1][2] = two * z * y - two * w * x;
+            this->mMtx[2][2] = (1.0f - two * x * x) - two * y * y;
+
+        }
 
 
         inline void mult33Inline(const TVec3f &rSrc, TVec3f &rDst) const {
