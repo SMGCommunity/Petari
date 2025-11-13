@@ -400,6 +400,7 @@ namespace JGeometry {
             */
 
             // this is the closest match I have so far
+            // https://decomp.me/scratch/N91r6
             this->mMtx[0][0] = (1.0f - two * y * y) - two * z * z;
             this->mMtx[2][0] = two * x * z - two * w * y;
             this->mMtx[0][2] = two * x * z + two * w * y;

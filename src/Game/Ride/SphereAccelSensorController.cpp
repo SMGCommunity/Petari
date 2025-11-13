@@ -66,6 +66,7 @@ void SphereAccelSensorController::update(const TVec3f&) {
 void SphereAccelSensorController::clacXY(f32* pX, f32* pY) {
     // this cannot be properly completed until some specific
     // table is made in J3DMtxBuffer.cpp
+    // https://decomp.me/scratch/L8lBc
 
     f32 d8;
     if (_B8 == 0) {
