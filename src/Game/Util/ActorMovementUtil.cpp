@@ -548,6 +548,22 @@ namespace MR {
         return;
     }
 
+    void turnQuatUpToGravity(TQuat4f *pQuatDest, const TQuat4f &pQuatSrc, const LiveActor *pActor) {
+        TVec3f yDir;
+        pQuatSrc.getYDir(yDir);
+
+        TQuat4f q1;
+        if (yDir.dot(-pActor->mGravity) <= -0.999f) {
+            TVec3f xDir;
+            pQuatSrc.getXDir(xDir);
+            q1.setRotate(xDir, PI);
+        }
+        else {
+            q1.setRotate(yDir, -pActor->mGravity);
+        }
+        PSQUATMultiply(reinterpret_cast<const Quaternion*>(&q1), reinterpret_cast<const Quaternion*>(&pQuatSrc), reinterpret_cast<Quaternion*>(pQuatDest));
+        pQuatDest->normalize();
+    }
 
     void blendQuatFromGroundAndFront(TQuat4f *a1, const LiveActor *pActor, const TVec3f &a3, f32 a4, f32 a5) {
         MR::blendQuatUpFront(a1, MR::isBindedGround(pActor) ? *MR::getGroundNormal(pActor) : -pActor->mGravity, a3, a4, a5);

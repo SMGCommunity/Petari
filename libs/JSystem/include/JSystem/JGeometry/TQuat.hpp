@@ -1,6 +1,7 @@
 #pragma once
 
 #include "JSystem/JGeometry/TVec.hpp"
+#include "cmath"
 
 namespace JGeometry {
     template<typename T>
@@ -60,7 +61,13 @@ namespace JGeometry {
 
         void setRotate(const TVec3<T> &, const TVec3<T> &, T);
         void setRotate(const TVec3<T> &, const TVec3<T> &);
-        void setRotate(const TVec3<T> &, f32);
+
+        void setRotate(const TVec3<T> & pVec, f32 pAngle) {
+            f32 halfAngle = pAngle * 0.5f;
+            scale(sin(halfAngle), pVec);
+            this->w = cos(halfAngle);
+        }
+        
         void rotate(TVec3f &rDest) const;
 
         void slerp(const TQuat4<T> &a1, const TQuat4<T> &a2, T a3) {
