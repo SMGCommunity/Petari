@@ -14,7 +14,7 @@ HitInfo &HitInfo::operator=(const HitInfo &rOther)
     mParentTriangle.mPos[1] = rOther.mParentTriangle.mPos[1];
     mParentTriangle.mPos[2] = rOther.mParentTriangle.mPos[2];
     _60 = rOther._60;
-    _64 = rOther._64;
+    mHitPos = rOther.mHitPos;
     _70 = rOther._70;
     _7C = rOther._7C;
     _88 = rOther._88;
@@ -22,13 +22,13 @@ HitInfo &HitInfo::operator=(const HitInfo &rOther)
     return *this;
 }
 
-Binder::Binder(MtxPtr mtx, const TVec3f *v1, const TVec3f *v2, f32 a, f32 b, u32 c) : BinderParent(mtx), _10(v1), _14(v2), _18(a), _1C(b), _20(0), _24(c), _28(0), _2C(0), _30(0, 0, 0), mGroundInfo(), mWallInfo(), mRoofInfo(), _C8(131076.953125f), _158(131076.953125f), _1E8(131076.953125f)
+Binder::Binder(MtxPtr mtx, const TVec3f *v1, const TVec3f *v2, f32 a, f32 b, u32 c) : BinderParent(mtx), _10(v1), _14(v2), mRadius(a), _1C(b), mOffsetVec(0), _24(c), mPlaneNum(0), mPlaneInfos(0), mFixReactionVector(0, 0, 0), mGroundInfo(), mWallInfo(), mRoofInfo(), _C8(131076.953125f), _158(131076.953125f), _1E8(131076.953125f)
 {
     if (!_24) {
-        _2C = nullptr;
+        mPlaneInfos = nullptr;
     }
     else {
-        _2C = new HitInfo[_24];
+        mPlaneInfos = new HitInfo[_24];
     }
     clear();
     _1EC._0 = true;

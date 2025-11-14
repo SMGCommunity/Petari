@@ -50,7 +50,7 @@ public:
 
     Triangle mParentTriangle;   // 0x0
     f32 _60;
-    TVec3f _64;
+    TVec3f mHitPos;             // 0x64
     TVec3f _70;
     TVec3f _7C;
     u8 _88;

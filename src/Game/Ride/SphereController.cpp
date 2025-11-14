@@ -21,11 +21,3 @@ bool SphereController::doBrake() const {
 f32 SphereController::calcJumpPower() const {
     return 0.0f;
 }
-
-void SphereController::notifyActivate() {
-    
-}
-
-void SphereController::notifyDeactivate() {
-    
-}

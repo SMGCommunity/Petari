@@ -623,6 +623,97 @@ namespace MR {
         return getGroundNormal(pActor);
     }
 
+    const TVec3f* getBindedHitPos(const LiveActor* pActor) {
+        if (isBindedGround(pActor)) {
+            return getGroundHitPos(pActor);
+        }
+
+        if (isBindedWall(pActor)) {
+            return getWallHitPos(pActor);
+        }
+
+        if (isBindedRoof(pActor)) {
+            return getRoofHitPos(pActor);
+        }
+
+        return getGroundHitPos(pActor);
+    }
+    
+    const TVec3f* getGroundHitPos(const LiveActor* pActor) {
+        return &pActor->mBinder->mGroundInfo.mHitPos;
+    }
+
+    const TVec3f* getWallHitPos(const LiveActor* pActor) {
+        return &pActor->mBinder->mWallInfo.mHitPos;
+    }
+
+    const TVec3f* getRoofHitPos(const LiveActor* pActor) {
+        return &pActor->mBinder->mRoofInfo.mHitPos;
+    }
+
+    void calcWallNormalHorizontal(TVec3f* pVec, const LiveActor* pActor) {
+        const TVec3f* normal = getWallNormal(pActor);
+        const TVec3f* grav = &pActor->mGravity;
+        f32 dot = grav->dot(*normal);
+        JMAVECScaleAdd(grav, normal, pVec, -dot);
+    }
+
+    f32 calcHitPowerToGround(const LiveActor *pActor) {
+        if (!isBindedGround(pActor)) {
+            return 0.0f;
+        }
+
+        f32 dot = pActor->mVelocity.dot(*getGroundNormal(pActor));
+        if (-dot > 0.0f) {
+            return -dot;
+        }
+        
+        return 0.0f;
+    }
+
+    f32 calcHitPowerToWall(const LiveActor *pActor) {
+        if (!isBindedWall(pActor)) {
+            return 0.0f;
+        }
+
+        f32 dot = pActor->mVelocity.dot(*getWallNormal(pActor));
+        if (-dot > 0.0f) {
+            return -dot;
+        }
+        
+        return 0.0f;
+    }
+
+    int getBindedPlaneNum(const LiveActor* pActor) {
+        return pActor->mBinder->mPlaneNum;
+    }
+
+    const TVec3f* getBindedPlaneNormal(const LiveActor* pActor, int planeIndex) {
+        return pActor->mBinder->getPlane(planeIndex)->getNormal(0);
+    }
+
+    HitSensor* getBindedPlaneSensor(const LiveActor* pActor, int planeIndex) {
+        return pActor->mBinder->getPlane(planeIndex)->mSensor;
+    }
+
+    TVec3f* getBindedFixReactionVector(const LiveActor* pActor) {
+        return &pActor->mBinder->mFixReactionVector;
+    }
+
+    void setBinderOffsetVec(LiveActor* pActor, const TVec3f* pVec, bool b) {
+        Binder* binder = pActor->mBinder;
+        binder->mOffsetVec = pVec;
+        binder->_1EC._4 = b;
+    }
+
+    void setBinderRadius(LiveActor* pActor, f32 radius) {
+        pActor->mBinder->mRadius = radius;
+    }
+
+    f32 getBinderRadius(const LiveActor* pActor) {
+        return pActor->mBinder->mRadius;
+    }
+
 
     // setBinderCollisionPartsFilter
     // setBinderExceptActor

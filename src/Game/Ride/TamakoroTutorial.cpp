@@ -3,6 +3,7 @@
 #include "Game/Ride/Tamakoro.hpp"
 #include "Game/Ride/TamakoroTutorial.hpp"
 #include "Game/Screen/PlayerActionGuidance.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
 #include "Game/Util/EventUtil.hpp"
 #include "Game/Util/GamePadUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
@@ -355,7 +356,8 @@ bool TamakoroTutorial::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSe
             || isNerve(&NrvTamakoroTutorial::HostTypeNrvRecoverFront::sInstance)
             || isNerve(&NrvTamakoroTutorial::HostTypeNrvRecoverBack::sInstance))
         {
-            TVec3f v1 = pSender->mPosition - pReceiver->mPosition;
+            TVec3f v1 = pSender->mPosition;
+            v1 -= pReceiver->mPosition;
             TVec3f v2;
 
             MR::calcFrontVec(&v2, this);
@@ -382,7 +384,22 @@ bool TamakoroTutorial::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSe
     return false;
 }
 
-// TamakoroTutorial::updateHitSensor
+void TamakoroTutorial::updateHitSensor(HitSensor* pSensor) {
+    TVec3f upVec;
+    MR::calcUpVec(&upVec, this);
+    TVec3f vHostToPlayer(*MR::getPlayerCenterPos());
+    vHostToPlayer -= mHost->mPosition;
+    
+    f32 dot = upVec.dot(vHostToPlayer);
+
+    pSensor->mPosition.set(mHost->mPosition);
+
+    TVec3f up(upVec);
+    up.mult(dot);
+    
+    pSensor->mPosition.addInLine(up);
+
+}
 
 void TamakoroTutorial::startTimerSound(s32 step, s32 param2) {
     if (step == 20) {
