@@ -215,7 +215,7 @@ void TalkBalloonEvent::open(TalkMessageCtrl *pArg) {
     _20 = pArg;
     LayoutActor::appear();
     TalkMessageInfo *info = TalkFunction::getMessageInfo(pArg);
-    _24->formMessage(info->_0, _2C);
+    _24->formMessage((const wchar_t*)info->_0, _2C);
     _24->setArg(pArg->mTagArg, 0);
     _30->kill();
     _30->setFollowActorPane(this, "AButtonPosition");
@@ -333,7 +333,7 @@ TalkBalloonInfo::~TalkBalloonInfo() {
 
 void TalkBalloonInfo::open(TalkMessageCtrl *pArg) {
     TalkMessageInfo *info = TalkFunction::getMessageInfo(pArg);
-    MR::appearInformationMessage(info->_0, true);
+    MR::appearInformationMessage((const wchar_t*)info->_0, true);
 }
 
 void TalkBalloonInfo::close() {
