@@ -102,5 +102,7 @@ public:
     static bool getBranchAstroGalaxyResult(u16);
     static void registerTalkSystem(TalkMessageCtrl *);
 
-    static TalkMessageInfo* getMessageInfo(const TalkMessageCtrl *);
+    static TalkMessageInfo *getMessageInfo(const TalkMessageCtrl *);
+    static const wchar_t *getMessage(const TalkMessageCtrl *);
+    static const wchar_t *getSubMessage(const TalkMessageCtrl *);
 };
