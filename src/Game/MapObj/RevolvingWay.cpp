@@ -59,9 +59,16 @@ void RevolvingWay::exeWait() {
 
 void RevolvingWay::addAccelMoment() {
     TVec3f stack_14;
-    TVec3f stack_10;
     if (MR::isStarPointerPointing(this, 0, true, "弱") && MR::testCorePadButtonB(WPAD_CHAN0)
     && MR::calcStarPointerStrokeRotateMoment(&stack_14, mPosition, _A8, 0)) {
-
+        TVec3f stack_8;
+        stack_8.setPS(stack_14);
+        f32 temp = 0.04f;
+        stack_8 *= temp;
+        JMathInlineVEC::PSVECAdd(&_9C, &stack_8, &_9C);
+        f32 mag = PSVECMag(&_9C); 
+        if (mag > 0.15f) {
+            _9C *= (0.15f / mag);
+        }
     }
 }
