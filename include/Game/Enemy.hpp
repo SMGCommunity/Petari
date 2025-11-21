@@ -9,6 +9,7 @@
 #include "Game/Enemy/Dossun.hpp"
 #include "Game/Enemy/ElectricPressureBullet.hpp"
 #include "Game/Enemy/EyeBeamer.hpp"
+#include "Game/Enemy/FireBall.hpp"
 #include "Game/Enemy/HomingKiller.hpp"
 #include "Game/Enemy/IceMerameraKing.hpp"
 #include "Game/Enemy/ItemGenerator.hpp"

@@ -2,4 +2,8 @@
 
 #include "Game/Ride/BigBubble.hpp"
 #include "Game/Ride/Pole.hpp"
+#include "Game/Ride/SphereController.hpp"
+#include "Game/Ride/SurfRay.hpp"
 #include "Game/Ride/SurfRayTutorial.hpp"
+#include "Game/Ride/Tamakoro.hpp"
+#include "Game/Ride/TamakoroTutorial.hpp"
