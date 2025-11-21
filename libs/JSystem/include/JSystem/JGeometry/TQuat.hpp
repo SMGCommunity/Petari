@@ -1,7 +1,7 @@
 #pragma once
 
 #include "JSystem/JGeometry/TVec.hpp"
-#include "cmath"
+#include <cmath>
 
 namespace JGeometry {
     template<typename T>
