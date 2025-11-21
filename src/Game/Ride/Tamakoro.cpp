@@ -49,16 +49,6 @@ namespace NrvTamakoro {
     NEW_NERVE(TamakoroNrvBindEnd, Tamakoro, BindEnd);
 }
 
-void unusedStrippedMatchsdata2() {
-    // this is not a real function, this is just to match .sdata2 data order
-    f32 _f00 = 1.0f;
-    f32 _f01 = 0.0f;
-    f32 _f02 = 0.5f;
-    f32 _f03 = 3.0f;
-    f32 _f04 = -1.0f;
-    f32 _f05 = 2.0f;
-}
-
 Tamakoro::Tamakoro(const char* pName) :
     LiveActor(pName),
     mAccelSensorCtrl(nullptr),
@@ -541,15 +531,6 @@ void Tamakoro::reactionCollision() {
     } 
 }
 
-void unusedStrippedMatchsdata2Again() {
-    // this is not a real function, this is just to match .sdata2 data order
-    // this time because of the two functions below not inlining
-    // properly in the nerve executors
-    f32 _f00 = 0.95f;
-    f32 _f01 = 0.995f;
-}
-
-// techincally should not be labelled inline (see above)
 inline void Tamakoro::exeStandByTutorial() {
     TVec3f vel(mVelocity);  // unused! woo!
     MR::reboundVelocityFromCollision(this, 0.0f, 0.0f, 1.0f);
@@ -564,7 +545,6 @@ inline void Tamakoro::exeStandByTutorial() {
     MR::attenuateVelocity(this, attenuation);
 }
 
-// techincally should not be labelled inline (see above)
 inline void Tamakoro::exeStandByBind() {
     TVec3f vel(mVelocity);  // unused! woo!
     MR::reboundVelocityFromCollision(this, 0.0f, 0.0f, 1.0f);

@@ -21,15 +21,6 @@ namespace NrvSurfRay {
     NEW_NERVE(SurfRayNrvReady, SurfRay, Ready);
 };
 
-void unusedStrippedMatchsdata2() {
-    // this is not a real function, this is just to match .sdata2 data order
-    f32 _f00 = 1.0f;
-    f32 _f01 = 0.0f;
-    f32 _f02 = 0.5f;
-    f32 _f03 = 3.0f;
-    f32 _f04 = -1.0f;
-}
-
 inline f32 min(f32 a, f32 b) {
     if (a >= b) {
         return b;
