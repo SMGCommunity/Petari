@@ -1,14 +1,13 @@
 #include "Game/NPC/TicoShop.hpp"
-#include "Game/NPC/NPCActorItem.hpp"
 #include "Game/LiveActor/PartsModel.hpp"
+#include "Game/NPC/NPCActorItem.hpp"
 #include "Game/Util/ObjUtil.hpp"
 
 namespace NrvTicoShop {
     NEW_NERVE(TicoShopNrvDemo, TicoShop, Demo);
 };
 
-TicoShop::TicoShop(const char* pName)
-    : TicoComet(pName) {
+TicoShop::TicoShop(const char* pName) : TicoComet(pName) {
     mOneUp = nullptr;
     mLifeUp = nullptr;
     mChoseOneUp = false;
@@ -129,5 +128,4 @@ void TicoShop::exeDemo() {
     }
 }
 
-TicoShop::~TicoShop() {
-}
+TicoShop::~TicoShop() {}

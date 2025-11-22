@@ -1,8 +1,7 @@
 #include "Game/Boss/BossKameckBattleDemo.hpp"
 #include "Game/Boss/BossKameck.hpp"
 
-BossKameckDemoPosition::BossKameckDemoPosition()
-    : LiveActor("キャスト位") {
+BossKameckDemoPosition::BossKameckDemoPosition() : LiveActor("キャスト位") {
     makeActorDead();
 }
 
@@ -32,10 +31,9 @@ namespace NrvBossKamecBattleDemo {
     NEW_NERVE(BossKameckBattleDemoNrvAppearVs2, BossKameckBattleDemo, AppearVs2);
     NEW_NERVE(BossKameckBattleDemoNrvPowerUpVs2, BossKameckBattleDemo, PowerUpVs2);
     NEW_NERVE(BossKameckBattleDemoNrvDownVs2, BossKameckBattleDemo, DownVs2);
-}; // namespace NrvBossKamecBattleDemo
+};  // namespace NrvBossKamecBattleDemo
 
-BossKameckBattleDemo::BossKameckBattleDemo(BossKameck* pBoss, const JMapInfoIter& rIter)
-    : BossKameckAction("ボスカメック戦デモ", pBoss) {
+BossKameckBattleDemo::BossKameckBattleDemo(BossKameck* pBoss, const JMapInfoIter& rIter) : BossKameckAction("ボスカメック戦デモ", pBoss) {
     mDemoPos = nullptr;
     mCurDemoName = nullptr;
     mDemoNerve = nullptr;
@@ -124,7 +122,7 @@ void BossKameckBattleDemo::exeAppearVs1() {
         MR::overlayWithPreviousScreen(1);
         MR::showModel(mBossKameck);
         BossKameckDemoPosition* pos = mDemoPos;
-        const char*             demoName = "DemoBossKameckStart";
+        const char* demoName = "DemoBossKameckStart";
         pos->makeActorAppeared();
         MR::startAnimCameraTargetSelf(pos, pos->mCameraInfo, demoName, 0, 1.0f);
         MR::startBck(pos, "DemoBossKameckStart", nullptr);
@@ -171,7 +169,7 @@ void BossKameckBattleDemo::exeAppearVs2() {
         MR::overlayWithPreviousScreen(1);
         MR::showModel(mBossKameck);
         BossKameckDemoPosition* pos = mDemoPos;
-        const char*             demoName = "DemoBossKameckStart2";
+        const char* demoName = "DemoBossKameckStart2";
         pos->makeActorAppeared();
         MR::startAnimCameraTargetSelf(pos, pos->mCameraInfo, demoName, 0, 1.0f);
         MR::startBck(pos, "DemoBossKameckStart2", nullptr);
@@ -207,7 +205,7 @@ void BossKameckBattleDemo::exeAppearVs2() {
 void BossKameckBattleDemo::exePowerUpVs1() {
     if (MR::isFirstStep(this)) {
         BossKameckDemoPosition* pos = mDemoPos;
-        const char*             powerUpName = "DemoBossKameckPowerUp";
+        const char* powerUpName = "DemoBossKameckPowerUp";
         pos->makeActorAppeared();
         MR::startAnimCameraTargetSelf(pos, pos->mCameraInfo, powerUpName, 0, 1.0f);
         MR::startBck(pos, powerUpName, nullptr);
@@ -225,7 +223,7 @@ void BossKameckBattleDemo::exePowerUpVs1() {
     if (MR::isActionEnd(mBossKameck)) {
         MR::endDemo(mBossKameck, "カメックパワーアップVs1");
         BossKameckDemoPosition* pos = mDemoPos;
-        const char*             powerUpName = "DemoBossKameckPowerUp";
+        const char* powerUpName = "DemoBossKameckPowerUp";
         MR::endAnimCamera(pos, pos->mCameraInfo, powerUpName, 0, true);
         pos->makeActorDead();
         mBossKameck->endDemoAppearKameck();
@@ -237,7 +235,7 @@ void BossKameckBattleDemo::exePowerUpVs1() {
 void BossKameckBattleDemo::exePowerUpVs2() {
     if (MR::isFirstStep(this)) {
         BossKameckDemoPosition* pos = mDemoPos;
-        const char*             powerUpName = "DemoBossKameckPowerUp2";
+        const char* powerUpName = "DemoBossKameckPowerUp2";
         pos->makeActorAppeared();
         MR::startAnimCameraTargetSelf(pos, pos->mCameraInfo, powerUpName, 0, 1.0f);
         MR::startBck(pos, powerUpName, nullptr);
@@ -257,7 +255,7 @@ void BossKameckBattleDemo::exePowerUpVs2() {
     if (MR::isActionEnd(mBossKameck)) {
         MR::endDemo(mBossKameck, "カメックパワーアップVs2");
         BossKameckDemoPosition* pos = mDemoPos;
-        const char*             powerUpName = "DemoBossKameckPowerUp2";
+        const char* powerUpName = "DemoBossKameckPowerUp2";
         MR::endAnimCamera(pos, pos->mCameraInfo, powerUpName, 0, true);
         pos->makeActorDead();
         mBossKameck->endDemoAppearKameck();
@@ -269,7 +267,7 @@ void BossKameckBattleDemo::exePowerUpVs2() {
 void BossKameckBattleDemo::exeDownVs1() {
     if (MR::isFirstStep(this)) {
         BossKameckDemoPosition* pos = mDemoPos;
-        const char*             powerUpName = "DemoBossKameckDown";
+        const char* powerUpName = "DemoBossKameckDown";
         pos->makeActorAppeared();
         MR::startAnimCameraTargetSelf(pos, pos->mCameraInfo, powerUpName, 0, 1.0f);
         MR::startBck(pos, powerUpName, nullptr);
@@ -302,7 +300,7 @@ void BossKameckBattleDemo::exeDownVs1() {
     if (MR::isActionEnd(mBossKameck)) {
         MR::endDemo(mBossKameck, "ボスカメックダウンLv1");
         BossKameckDemoPosition* pos = mDemoPos;
-        const char*             powerUpName = "DemoBossKameckDown";
+        const char* powerUpName = "DemoBossKameckDown";
         MR::endAnimCamera(pos, pos->mCameraInfo, powerUpName, 0, true);
         pos->makeActorDead();
         MR::appearPowerStarWithoutDemo(mBossKameck);
@@ -315,7 +313,7 @@ void BossKameckBattleDemo::exeDownVs1() {
 void BossKameckBattleDemo::exeDownVs2() {
     if (MR::isFirstStep(this)) {
         BossKameckDemoPosition* pos = mDemoPos;
-        const char*             powerUpName = "DemoBossKameckDown2";
+        const char* powerUpName = "DemoBossKameckDown2";
         pos->makeActorAppeared();
         MR::startAnimCameraTargetSelf(pos, pos->mCameraInfo, powerUpName, 0, 1.0f);
         MR::startBck(pos, powerUpName, nullptr);
@@ -348,7 +346,7 @@ void BossKameckBattleDemo::exeDownVs2() {
     if (MR::isActionEnd(mBossKameck)) {
         MR::endDemo(mBossKameck, "ボスカメックダウンLv2");
         BossKameckDemoPosition* pos = mDemoPos;
-        const char*             powerUpName = "DemoBossKameckDown2";
+        const char* powerUpName = "DemoBossKameckDown2";
         MR::endAnimCamera(pos, pos->mCameraInfo, powerUpName, 0, true);
         pos->makeActorDead();
         MR::appearPowerStarWithoutDemo(mBossKameck);
@@ -366,8 +364,6 @@ void BossKameckBattleDemo::updateCastPose() {
     boss->setPose(MR::getJointMtx(mDemoPos, "KameckPosition"));
 }
 
-BossKameckBattleDemo::~BossKameckBattleDemo() {
-}
+BossKameckBattleDemo::~BossKameckBattleDemo() {}
 
-BossKameckDemoPosition::~BossKameckDemoPosition() {
-}
+BossKameckDemoPosition::~BossKameckDemoPosition() {}

@@ -21,12 +21,7 @@ public:
     virtual void control();
 
     void disappear();
-    void setCallbackFunctor(
-        const MR::FunctorBase&,
-        const MR::FunctorBase&,
-        const MR::FunctorBase&,
-        const MR::FunctorBase&,
-        const MR::FunctorBase&);
+    void setCallbackFunctor(const MR::FunctorBase&, const MR::FunctorBase&, const MR::FunctorBase&, const MR::FunctorBase&, const MR::FunctorBase&);
     void shiftSelect();
     void exeSelect();
     void exeWait();
@@ -37,6 +32,6 @@ public:
 
 private:
     /* 0x20 */ ButtonPaneController* mButtonCtrl[5];
-    /* 0x34 */ MR::FunctorBase*      mCallbackFunctor[5];
+    /* 0x34 */ MR::FunctorBase* mCallbackFunctor[5];
     /* 0x48 */ GalaxyMapGalaxyPlain* _48;
 };

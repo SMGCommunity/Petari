@@ -1,7 +1,7 @@
 #pragma once
 
-#include <revolution.h>
 #include <JSystem/JGeometry.hpp>
+#include <revolution.h>
 
 class NameObj;
 class LiveActor;
@@ -17,13 +17,13 @@ public:
     bool execute(LiveActor*);
     void emitItem(LiveActor*);
 
-    s32  _0;
-    s32  _4;
-    s32  _8;
-    f32  _C;
-    f32  _10;
-    f32  _14;
+    s32 _0;
+    s32 _4;
+    s32 _8;
+    f32 _C;
+    f32 _10;
+    f32 _14;
     bool _18;
     bool _19;
-    u32  _1C;
+    u32 _1C;
 };

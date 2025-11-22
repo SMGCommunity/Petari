@@ -1,8 +1,7 @@
 #include "Game/MapObj/DeadLeaves.hpp"
 #include "Game/MapObj/MapObjActorInitInfo.hpp"
 
-DeadLeaves::DeadLeaves(const char* pName)
-    : MapObjActor(pName) {
+DeadLeaves::DeadLeaves(const char* pName) : MapObjActor(pName) {
     mItemType = -1;
 }
 
@@ -56,8 +55,7 @@ bool DeadLeaves::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* 
     return false;
 }
 
-DeadLeaves::~DeadLeaves() {
-}
+DeadLeaves::~DeadLeaves() {}
 
 namespace NrvDeadLeaves {
     INIT_NERVE(DeadLeavesNrvWait);
@@ -68,6 +66,5 @@ namespace NrvDeadLeaves {
         leaves->exeSpin();
     }
 
-    void DeadLeavesNrvWait::execute(Spine* pSpine) const {
-    }
-}; // namespace NrvDeadLeaves
+    void DeadLeavesNrvWait::execute(Spine* pSpine) const {}
+};  // namespace NrvDeadLeaves

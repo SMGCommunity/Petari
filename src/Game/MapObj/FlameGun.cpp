@@ -1,7 +1,6 @@
 #include "Game/MapObj/FlameGun.hpp"
 
-FlameGun::FlameGun(const char* pName)
-    : LiveActor(pName) {
+FlameGun::FlameGun(const char* pName) : LiveActor(pName) {
     _8C.x = 0.0f;
     _8C.y = -1.0f;
     _8C.z = 0.0f;
@@ -153,8 +152,7 @@ void FlameGun::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     }
 }
 
-FlameGun::~FlameGun() {
-}
+FlameGun::~FlameGun() {}
 
 namespace NrvFlameGun {
     INIT_NERVE(HostTypeNrvSwitchWait);
@@ -163,4 +161,4 @@ namespace NrvFlameGun {
     INIT_NERVE(HostTypeNrvRadiate);
     INIT_NERVE(HostTypeNrvRotate);
     INIT_NERVE(HostTypeNrvRadiateOnly);
-}; // namespace NrvFlameGun
+};  // namespace NrvFlameGun

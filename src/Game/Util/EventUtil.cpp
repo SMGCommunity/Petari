@@ -17,19 +17,13 @@
 #include <cstdio>
 
 namespace {
-    ScenePlayingResult* getScenePlayingResult() {
-        return MR::getSceneObj< ScenePlayingResult >(SceneObj_ScenePlayingResult);
-    }
-}; // namespace
+    ScenePlayingResult* getScenePlayingResult() { return MR::getSceneObj< ScenePlayingResult >(SceneObj_ScenePlayingResult); }
+};  // namespace
 
 namespace MR {
-    s32 getPlayerLeft() {
-        return GameDataFunction::getPlayerLeft();
-    }
+    s32 getPlayerLeft() { return GameDataFunction::getPlayerLeft(); }
 
-    void incPlayerLeft() {
-        GameDataFunction::addPlayerLeft(1);
-    }
+    void incPlayerLeft() { GameDataFunction::addPlayerLeft(1); }
 
     void decPlayerLeft() {
         GameDataFunction::addPlayerLeft(-1);
@@ -37,9 +31,7 @@ namespace MR {
         GameDataFunction::incPlayerMissNum();
     }
 
-    bool isLuigiLeftSupply() {
-        return GameDataFunction::isLuigiLeftSupply();
-    }
+    bool isLuigiLeftSupply() { return GameDataFunction::isLuigiLeftSupply(); }
 
     void incPlayerGameOverNum() {
         GameDataFunction::addMissPoint(3);
@@ -78,214 +70,112 @@ namespace MR {
         }
     }
 
-    s32 getStockedStarPieceNum() {
-        return GameDataFunction::getStockedStarPieceNum();
-    }
+    s32 getStockedStarPieceNum() { return GameDataFunction::getStockedStarPieceNum(); }
 
-    void addStockedStarPiece(int num) {
-        GameDataFunction::addStockedStarPiece(num);
-    }
+    void addStockedStarPiece(int num) { GameDataFunction::addStockedStarPiece(num); }
 
-    bool isPlayerLuigi() {
-        return !GameDataFunction::isDataMario();
-    }
+    bool isPlayerLuigi() { return !GameDataFunction::isDataMario(); }
 
-    void explainEnableToSpin(LiveActor* pActor) {
-        InformationObserverFunction::explainSpin(pActor);
-    }
+    void explainEnableToSpin(LiveActor* pActor) { InformationObserverFunction::explainSpin(pActor); }
 
-    void onGameEventFlagBeeMarioAtFirst() {
-        GameDataFunction::onGameEventFlag("ハチマリオ初変身");
-    }
+    void onGameEventFlagBeeMarioAtFirst() { GameDataFunction::onGameEventFlag("ハチマリオ初変身"); }
 
-    void onGameEventFlagTeresaMarioAtFirst() {
-        GameDataFunction::onGameEventFlag("テレサマリオ初変身");
-    }
+    void onGameEventFlagTeresaMarioAtFirst() { GameDataFunction::onGameEventFlag("テレサマリオ初変身"); }
 
-    void onGameEventFlagHopperMarioAtFirst() {
-        GameDataFunction::onGameEventFlag("ホッパーマリオ初変身");
-    }
+    void onGameEventFlagHopperMarioAtFirst() { GameDataFunction::onGameEventFlag("ホッパーマリオ初変身"); }
 
-    void onGameEventFlagFireMarioAtFirst() {
-        GameDataFunction::onGameEventFlag("ファイアマリオ初変身");
-    }
+    void onGameEventFlagFireMarioAtFirst() { GameDataFunction::onGameEventFlag("ファイアマリオ初変身"); }
 
-    void onGameEventFlagIceMarioAtFirst() {
-        GameDataFunction::onGameEventFlag("アイスマリオ初変身");
-    }
+    void onGameEventFlagIceMarioAtFirst() { GameDataFunction::onGameEventFlag("アイスマリオ初変身"); }
 
-    void onGameEventFlagFlyingMarioAtFirst() {
-        GameDataFunction::onGameEventFlag("フライングマリオ初変身");
-    }
+    void onGameEventFlagFlyingMarioAtFirst() { GameDataFunction::onGameEventFlag("フライングマリオ初変身"); }
 
-    void onGameEventFlagInvincibleMarioAtFirst() {
-        GameDataFunction::onGameEventFlag("無敵マリオ初変身");
-    }
+    void onGameEventFlagInvincibleMarioAtFirst() { GameDataFunction::onGameEventFlag("無敵マリオ初変身"); }
 
-    void onGameEventFlagLifeUpAtFirst() {
-        GameDataFunction::onGameEventFlag("ライフアップキノコ解説");
-    }
+    void onGameEventFlagLifeUpAtFirst() { GameDataFunction::onGameEventFlag("ライフアップキノコ解説"); }
 
-    void onGameEventFlagOneUpAtFirst() {
-        GameDataFunction::onGameEventFlag("１ＵＰキノコ解説");
-    }
+    void onGameEventFlagOneUpAtFirst() { GameDataFunction::onGameEventFlag("１ＵＰキノコ解説"); }
 
-    bool isOnGameEventFlagPlayMoviePrologueA() {
-        return GameDataFunction::isPassedStoryEvent("クッパ襲来後");
-    }
+    bool isOnGameEventFlagPlayMoviePrologueA() { return GameDataFunction::isPassedStoryEvent("クッパ襲来後"); }
 
-    bool isOnGameEventFlagEndTicoGuideDemo() {
-        return GameDataFunction::isPassedStoryEvent("チコガイドデモ終了");
-    }
+    bool isOnGameEventFlagEndTicoGuideDemo() { return GameDataFunction::isPassedStoryEvent("チコガイドデモ終了"); }
 
-    bool isOnGameEventFlagEndButlerDomeLecture() {
-        return GameDataFunction::isPassedStoryEvent("天球儀レクチャー");
-    }
+    bool isOnGameEventFlagEndButlerDomeLecture() { return GameDataFunction::isPassedStoryEvent("天球儀レクチャー"); }
 
-    bool isOnGameEventFlagEndButlerGalaxyMoveLecture() {
-        return GameDataFunction::isPassedStoryEvent("ギャラクシー移動レクチャー");
-    }
+    bool isOnGameEventFlagEndButlerGalaxyMoveLecture() { return GameDataFunction::isPassedStoryEvent("ギャラクシー移動レクチャー"); }
 
-    bool isOnGameEventFlagEndButlerStarPieceLecture() {
-        return GameDataFunction::isPassedStoryEvent("スターピースレクチャー");
-    }
+    bool isOnGameEventFlagEndButlerStarPieceLecture() { return GameDataFunction::isPassedStoryEvent("スターピースレクチャー"); }
 
-    bool isOnGameEventFlagBeeMarioAtFirst() {
-        return GameDataFunction::isOnGameEventFlag("ハチマリオ初変身");
-    }
+    bool isOnGameEventFlagBeeMarioAtFirst() { return GameDataFunction::isOnGameEventFlag("ハチマリオ初変身"); }
 
-    bool isOnGameEventFlagTeresaMarioAtFirst() {
-        return GameDataFunction::isOnGameEventFlag("テレサマリオ初変身");
-    }
+    bool isOnGameEventFlagTeresaMarioAtFirst() { return GameDataFunction::isOnGameEventFlag("テレサマリオ初変身"); }
 
-    bool isOnGameEventFlagHopperMarioAtFirst() {
-        return GameDataFunction::isOnGameEventFlag("ホッパーマリオ初変身");
-    }
+    bool isOnGameEventFlagHopperMarioAtFirst() { return GameDataFunction::isOnGameEventFlag("ホッパーマリオ初変身"); }
 
-    bool isOnGameEventFlagFireMarioAtFirst() {
-        return GameDataFunction::isOnGameEventFlag("ファイアマリオ初変身");
-    }
+    bool isOnGameEventFlagFireMarioAtFirst() { return GameDataFunction::isOnGameEventFlag("ファイアマリオ初変身"); }
 
-    bool isOnGameEventFlagIceMarioAtFirst() {
-        return GameDataFunction::isOnGameEventFlag("アイスマリオ初変身");
-    }
+    bool isOnGameEventFlagIceMarioAtFirst() { return GameDataFunction::isOnGameEventFlag("アイスマリオ初変身"); }
 
-    bool isOnGameEventFlagFlyingMarioAtFirst() {
-        return GameDataFunction::isOnGameEventFlag("フライングマリオ初変身");
-    }
+    bool isOnGameEventFlagFlyingMarioAtFirst() { return GameDataFunction::isOnGameEventFlag("フライングマリオ初変身"); }
 
-    bool isOnGameEventFlagSurfingTutorialAtFirst() {
-        return GameDataFunction::isOnGameEventFlag("サーフィンチュートリアル");
-    }
+    bool isOnGameEventFlagSurfingTutorialAtFirst() { return GameDataFunction::isOnGameEventFlag("サーフィンチュートリアル"); }
 
-    bool isOnGameEventFlagTamakoroTutorialAtFirst() {
-        return GameDataFunction::isOnGameEventFlag("タマコロチュートリアル");
-    }
+    bool isOnGameEventFlagTamakoroTutorialAtFirst() { return GameDataFunction::isOnGameEventFlag("タマコロチュートリアル"); }
 
-    bool isOnGameEventFlagViewCompleteEnding() {
-        return GameDataFunction::isOnGameEventFlag("ViewCompleteEnding");
-    }
+    bool isOnGameEventFlagViewCompleteEnding() { return GameDataFunction::isOnGameEventFlag("ViewCompleteEnding"); }
 
-    bool isOnGameEventFlagViewCompleteEndingMarioAndLuigi() {
-        return GameDataFunction::isOnCompleteEndingMarioAndLuigi();
-    }
+    bool isOnGameEventFlagViewCompleteEndingMarioAndLuigi() { return GameDataFunction::isOnCompleteEndingMarioAndLuigi(); }
 
-    bool isOnGameEventFlagOffAstroDomeGuidance() {
-        return GameDataFunction::hasGrandStar(2);
-    }
+    bool isOnGameEventFlagOffAstroDomeGuidance() { return GameDataFunction::hasGrandStar(2); }
 
-    bool isOnGameEventFlagChildsRoom() {
-        return MR::calcOpenedAstroDomeNum() >= 6;
-    }
+    bool isOnGameEventFlagChildsRoom() { return MR::calcOpenedAstroDomeNum() >= 6; }
 
-    bool isOnGameEventFlagLibraryRoom() {
-        return GameDataFunction::getPictureBookChapterCanRead() > 0;
-    }
+    bool isOnGameEventFlagLibraryRoom() { return GameDataFunction::getPictureBookChapterCanRead() > 0; }
 
-    bool isOnGameEventFlagRosettaTalkAboutTicoInTower() {
-        return GameDataFunction::isOnGameEventFlag("RosettaTalkAboutTico");
-    }
+    bool isOnGameEventFlagRosettaTalkAboutTicoInTower() { return GameDataFunction::isOnGameEventFlag("RosettaTalkAboutTico"); }
 
-    bool isRosettaTalkTorchProgress() {
-        return GameDataFunction::hasGrandStar(6);
-    }
+    bool isRosettaTalkTorchProgress() { return GameDataFunction::hasGrandStar(6); }
 
-    bool isRosettaTalkCountDownStart() {
-        return GameDataFunction::hasGrandStar(5);
-    }
+    bool isRosettaTalkCountDownStart() { return GameDataFunction::hasGrandStar(5); }
 
-    bool isRosettaTalkAstroDomeRecover() {
-        return GameDataFunction::hasGrandStar(4);
-    }
+    bool isRosettaTalkAstroDomeRecover() { return GameDataFunction::hasGrandStar(4); }
 
-    bool isRosettaTalkKoopa() {
-        return GameDataFunction::hasGrandStar(3);
-    }
+    bool isRosettaTalkKoopa() { return GameDataFunction::hasGrandStar(3); }
 
-    bool isRosettaTalkTorchLecture() {
-        return GameDataFunction::hasGrandStar(2);
-    }
+    bool isRosettaTalkTorchLecture() { return GameDataFunction::hasGrandStar(2); }
 
-    bool isKinopioExplorerCompleteTrickComet() {
-        return false;
-    }
+    bool isKinopioExplorerCompleteTrickComet() { return false; }
 
-    bool isKinopioExplorerTalkGoFinalBattle() {
-        return GameDataFunction::canOnGameEventFlag("KoopaBattleVs3Galaxy");
-    }
+    bool isKinopioExplorerTalkGoFinalBattle() { return GameDataFunction::canOnGameEventFlag("KoopaBattleVs3Galaxy"); }
 
-    bool isKinopioExplorerTalkGetGrandStar6() {
-        return GameDataFunction::hasGrandStar(6);
-    }
+    bool isKinopioExplorerTalkGetGrandStar6() { return GameDataFunction::hasGrandStar(6); }
 
-    bool isKinopioExplorerTalkGetGrandStar5() {
-        return GameDataFunction::hasGrandStar(5);
-    }
+    bool isKinopioExplorerTalkGetGrandStar5() { return GameDataFunction::hasGrandStar(5); }
 
-    bool isKinopioExplorerTalkGetGrandStar4() {
-        return GameDataFunction::hasGrandStar(4);
-    }
+    bool isKinopioExplorerTalkGetGrandStar4() { return GameDataFunction::hasGrandStar(4); }
 
-    bool isKinopioExplorerTalkGetGrandStar3() {
-        return GameDataFunction::hasGrandStar(3);
-    }
+    bool isKinopioExplorerTalkGetGrandStar3() { return GameDataFunction::hasGrandStar(3); }
 
-    bool isKinopioExplorerTrickComet() {
-        return GameDataFunction::isOnGameEventFlag("EventCometStarter");
-    }
+    bool isKinopioExplorerTrickComet() { return GameDataFunction::isOnGameEventFlag("EventCometStarter"); }
 
-    bool isKinopioExplorerTalkGetGrandStar2() {
-        return GameDataFunction::hasGrandStar(2);
-    }
+    bool isKinopioExplorerTalkGetGrandStar2() { return GameDataFunction::hasGrandStar(2); }
 
-    bool isUFOKinokoBeforeConstruction() {
-        return !GameDataFunction::isOnGameEventFlag("EventKinopioExplorerRescued");
-    }
+    bool isUFOKinokoBeforeConstruction() { return !GameDataFunction::isOnGameEventFlag("EventKinopioExplorerRescued"); }
 
-    bool isUFOKinokoUnderConstruction() {
-        return !GameDataFunction::isOnGameEventFlag("EventKinopioExplorerOrganize");
-    }
+    bool isUFOKinokoUnderConstruction() { return !GameDataFunction::isOnGameEventFlag("EventKinopioExplorerOrganize"); }
 
-    bool isButlerMapAppear() {
-        return GameDataFunction::hasGrandStar(2);
-    }
+    bool isButlerMapAppear() { return GameDataFunction::hasGrandStar(2); }
 
     s32 setupAlreadyDoneFlag(const char* pParam1, const JMapInfoIter& rIter, u32* pParam3) {
         return GameDataFunction::setupAlreadyDoneFlag(pParam1, rIter, pParam3);
     }
 
-    void updateAlreadyDoneFlag(int param1, u32 param2) {
-        GameDataFunction::updateAlreadyDoneFlag(param1, param2);
-    }
+    void updateAlreadyDoneFlag(int param1, u32 param2) { GameDataFunction::updateAlreadyDoneFlag(param1, param2); }
 
-    bool isOnGameEventFlagGalaxyOpen(const char* pKey) {
-        return GameDataFunction::isOnGameEventFlag(pKey);
-    }
+    bool isOnGameEventFlagGalaxyOpen(const char* pKey) { return GameDataFunction::isOnGameEventFlag(pKey); }
 
     bool isAlreadyVisitedCurrentStageAndScenario() {
-        return GameDataFunction::isOnGalaxyScenarioFlagAlreadyVisited(
-            MR::getCurrentStageName(),
-            MR::getCurrentScenarioNo());
+        return GameDataFunction::isOnGalaxyScenarioFlagAlreadyVisited(MR::getCurrentStageName(), MR::getCurrentScenarioNo());
     }
 
     bool isAlreadyVisitedStage(const char* pGalaxyName) {
@@ -300,81 +190,43 @@ namespace MR {
         return false;
     }
 
-    bool canOpenGalaxy(const char* pGalaxyName) {
-        return GameDataFunction::canOnGameEventFlag(pGalaxyName);
-    }
+    bool canOpenGalaxy(const char* pGalaxyName) { return GameDataFunction::canOnGameEventFlag(pGalaxyName); }
 
-    bool isAppearGalaxy(const char* pGalaxyName) {
-        return GameDataFunction::isAppearGalaxy(pGalaxyName);
-    }
+    bool isAppearGalaxy(const char* pGalaxyName) { return GameDataFunction::isAppearGalaxy(pGalaxyName); }
 
-    bool isGalaxyAppearGreenDriver(const char* pGalaxyName) {
-        return GameDataConst::isGalaxyAppearGreenDriver(pGalaxyName);
-    }
+    bool isGalaxyAppearGreenDriver(const char* pGalaxyName) { return GameDataConst::isGalaxyAppearGreenDriver(pGalaxyName); }
 
-    void onGameEventFlagGalaxyOpen(const char* pKey) {
-        GameDataFunction::onGameEventFlag(pKey);
-    }
+    void onGameEventFlagGalaxyOpen(const char* pKey) { GameDataFunction::onGameEventFlag(pKey); }
 
-    bool hasPowerStarInCurrentStage(s32 starId) {
-        return MR::makeCurrentGalaxyStatusAccessor().hasPowerStar(starId);
-    }
+    bool hasPowerStarInCurrentStage(s32 starId) { return MR::makeCurrentGalaxyStatusAccessor().hasPowerStar(starId); }
 
-    bool isPowerStarGreenInCurrentStage(s32 starId) {
-        return GameDataConst::isPowerStarGreen(MR::getCurrentStageName(), starId);
-    }
+    bool isPowerStarGreenInCurrentStage(s32 starId) { return GameDataConst::isPowerStarGreen(MR::getCurrentStageName(), starId); }
 
-    bool isPowerStarRedInCurrentStage(s32 starId) {
-        return GameDataConst::isPowerStarRed(MR::getCurrentStageName(), starId);
-    }
+    bool isPowerStarRedInCurrentStage(s32 starId) { return GameDataConst::isPowerStarRed(MR::getCurrentStageName(), starId); }
 
-    bool isGrandStarInCurrentStage(s32 starId) {
-        return GameDataConst::isGrandStar(MR::getCurrentStageName(), starId);
-    }
+    bool isGrandStarInCurrentStage(s32 starId) { return GameDataConst::isGrandStar(MR::getCurrentStageName(), starId); }
 
-    bool hasPowerStarInCurrentStageWithDeclarer(const char* pParam1, s32 param2) {
-        return MR::isSuccessEventPowerStar(pParam1, param2);
-    }
+    bool hasPowerStarInCurrentStageWithDeclarer(const char* pParam1, s32 param2) { return MR::isSuccessEventPowerStar(pParam1, param2); }
 
-    bool isPowerStarGreenInCurrentStageWithDeclarer(const char* pParam1, s32 param2) {
-        return MR::isGreenEventPowerStar(pParam1, param2);
-    }
+    bool isPowerStarGreenInCurrentStageWithDeclarer(const char* pParam1, s32 param2) { return MR::isGreenEventPowerStar(pParam1, param2); }
 
-    bool isPowerStarRedInCurrentStageWithDeclarer(const char* pParam1, s32 param2) {
-        return MR::isRedEventPowerStar(pParam1, param2);
-    }
+    bool isPowerStarRedInCurrentStageWithDeclarer(const char* pParam1, s32 param2) { return MR::isRedEventPowerStar(pParam1, param2); }
 
-    bool isGrandStarInCurrentStageWithDeclarer(const char* pParam1, s32 param2) {
-        return MR::isGrandEventPowerStar(pParam1, param2);
-    }
+    bool isGrandStarInCurrentStageWithDeclarer(const char* pParam1, s32 param2) { return MR::isGrandEventPowerStar(pParam1, param2); }
 
-    bool hasPowerStarAtResultSequence() {
-        return GameSequenceFunction::hasPowerStarYetAtResultSequence();
-    }
+    bool hasPowerStarAtResultSequence() { return GameSequenceFunction::hasPowerStarYetAtResultSequence(); }
 
-    bool isPowerStarGreenAtResultSequence() {
-        return GameSequenceFunction::isPowerStarGreenAtResultSequence();
-    }
+    bool isPowerStarGreenAtResultSequence() { return GameSequenceFunction::isPowerStarGreenAtResultSequence(); }
 
-    bool isPowerStarRedAtResultSequence() {
-        return GameSequenceFunction::isPowerStarRedAtResultSequence();
-    }
+    bool isPowerStarRedAtResultSequence() { return GameSequenceFunction::isPowerStarRedAtResultSequence(); }
 
     void sendStageResultSequenceParam(s32 scenarioNo) {
-        GameSequenceFunction::sendStageResultSequenceParam(
-            MR::getCurrentStageName(),
-            scenarioNo,
-            MR::getStarPieceNum(),
-            MR::getCoinNum());
+        GameSequenceFunction::sendStageResultSequenceParam(MR::getCurrentStageName(), scenarioNo, MR::getStarPieceNum(), MR::getCoinNum());
     }
 
-    bool isOnGameEventFlagPowerStarSuccess(const char* pGalaxyName, s32 starId) {
-        return GameDataFunction::hasPowerStar(pGalaxyName, starId);
-    }
+    bool isOnGameEventFlagPowerStarSuccess(const char* pGalaxyName, s32 starId) { return GameDataFunction::hasPowerStar(pGalaxyName, starId); }
 
-    bool hasGrandStar(int grandStarId) {
-        return GameDataFunction::hasGrandStar(grandStarId);
-    }
+    bool hasGrandStar(int grandStarId) { return GameDataFunction::hasGrandStar(grandStarId); }
 
     s32 calcOpenedAstroDomeNum() {
         s32 openedAstroDomeNum;
@@ -392,33 +244,19 @@ namespace MR {
         return openedAstroDomeNum;
     }
 
-    s32 calcCurrentGreenStarNum() {
-        return GameDataFunction::calcGreenStarNum(GameDataFunction::getCurrentGameDataHolder());
-    }
+    s32 calcCurrentGreenStarNum() { return GameDataFunction::calcGreenStarNum(GameDataFunction::getCurrentGameDataHolder()); }
 
-    s32 getPowerStarNumToOpenGalaxy(const char* pGalaxyName) {
-        return GameDataConst::getPowerStarNumToOpenGalaxy(pGalaxyName);
-    }
+    s32 getPowerStarNumToOpenGalaxy(const char* pGalaxyName) { return GameDataConst::getPowerStarNumToOpenGalaxy(pGalaxyName); }
 
-    s32 getPowerStarNumSucceed(const char* pGalaxyName) {
-        return MR::makeGalaxyStatusAccessor(pGalaxyName).getPowerStarNumOwned();
-    }
+    s32 getPowerStarNumSucceed(const char* pGalaxyName) { return MR::makeGalaxyStatusAccessor(pGalaxyName).getPowerStarNumOwned(); }
 
-    bool isPowerStarGreen(const char* pGalaxyName, s32 starId) {
-        return GameDataConst::isPowerStarGreen(pGalaxyName, starId);
-    }
+    bool isPowerStarGreen(const char* pGalaxyName, s32 starId) { return GameDataConst::isPowerStarGreen(pGalaxyName, starId); }
 
-    s32 getPictureBookChapterCanRead() {
-        return GameDataFunction::getPictureBookChapterCanRead();
-    }
+    s32 getPictureBookChapterCanRead() { return GameDataFunction::getPictureBookChapterCanRead(); }
 
-    s32 getPictureBookChapterAlreadyRead() {
-        return GameDataFunction::getPictureBookChapterAlreadyRead();
-    }
+    s32 getPictureBookChapterAlreadyRead() { return GameDataFunction::getPictureBookChapterAlreadyRead(); }
 
-    void setPictureBookChapterAlreadyRead(int chapterAlreadyRead) {
-        GameDataFunction::setPictureBookChapterAlreadyRead(chapterAlreadyRead);
-    }
+    void setPictureBookChapterAlreadyRead(int chapterAlreadyRead) { GameDataFunction::setPictureBookChapterAlreadyRead(chapterAlreadyRead); }
 
     void setRaceBestTime(int id, u32 bestTime) {
         const char* pRaceName = RaceManagerFunction::getRaceName(id);
@@ -432,18 +270,14 @@ namespace MR {
         return GameDataFunction::getRaceBestTime(pRaceName);
     }
 
-    u32 getRaceCurrentTime() {
-        return RaceManagerFunction::getRaceTime();
-    }
+    u32 getRaceCurrentTime() { return RaceManagerFunction::getRaceTime(); }
 
-    void setWarpPodPathFlag(int bit, bool isOn) {
-        GameDataFunction::setGameEventValueForBit("WarpPodSaveBits", bit, isOn);
-    }
+    void setWarpPodPathFlag(int bit, bool isOn) { GameDataFunction::setGameEventValueForBit("WarpPodSaveBits", bit, isOn); }
 
     s32 registerStorageSpinDriverPathDrawRange(const NameObj* pParam1, const JMapInfoIter& rIter, int param3, f32* pParam4) {
         const char* pStageName = MR::getCurrentStageName();
-        int         scenarioNo = MR::getCurrentScenarioNo();
-        int         zoneId = MR::getPlacedZoneId(rIter);
+        int scenarioNo = MR::getCurrentScenarioNo();
+        int zoneId = MR::getPlacedZoneId(rIter);
 
         if (param3 <= 0) {
             return -1;
@@ -454,77 +288,51 @@ namespace MR {
 
     void updateStorageSpinDriverPathDrawRange(int param1, f32 param2) {
         const char* pStageName = MR::getCurrentStageName();
-        s32         scenarioNo = MR::getCurrentScenarioNo();
+        s32 scenarioNo = MR::getCurrentScenarioNo();
 
         GameDataFunction::updateStorageSpinDriverPathDrawRange(pStageName, scenarioNo, param1, param2);
     }
 
-    s32 getStarPieceNumGivingToTicoSeed(int index) {
-        return GameDataFunction::getStarPieceNumGivingToTicoSeed(index);
-    }
+    s32 getStarPieceNumGivingToTicoSeed(int index) { return GameDataFunction::getStarPieceNumGivingToTicoSeed(index); }
 
-    void addStarPieceGivingToTicoSeed(int index, int num) {
-        GameDataFunction::addStarPieceGivingToTicoSeed(index, num);
-    }
+    void addStarPieceGivingToTicoSeed(int index, int num) { GameDataFunction::addStarPieceGivingToTicoSeed(index, num); }
 
-    s32 getStarPieceNumGivingToTicoGalaxy(int index) {
-        return GameDataFunction::getStarPieceNumGivingToTicoSeed(index + 8);
-    }
+    s32 getStarPieceNumGivingToTicoGalaxy(int index) { return GameDataFunction::getStarPieceNumGivingToTicoSeed(index + 8); }
 
-    s32 getStarPieceNumMaxGivingToTicoGalaxy(int index) {
-        return GameDataFunction::getStarPieceNumMaxGivingToTicoSeed(index + 8);
-    }
+    s32 getStarPieceNumMaxGivingToTicoGalaxy(int index) { return GameDataFunction::getStarPieceNumMaxGivingToTicoSeed(index + 8); }
 
-    void addStarPieceGivingToTicoGalaxy(int index, int num) {
-        GameDataFunction::addStarPieceGivingToTicoSeed(index + 8, num);
-    }
+    void addStarPieceGivingToTicoGalaxy(int index, int num) { GameDataFunction::addStarPieceGivingToTicoSeed(index + 8, num); }
 
-    void setTicoGalaxyAlreadyTalk(int bit, bool isTalk) {
-        GameDataFunction::setGameEventValueForBit("TicoGalaxyAlreadyTalk", bit, isTalk);
-    }
+    void setTicoGalaxyAlreadyTalk(int bit, bool isTalk) { GameDataFunction::setGameEventValueForBit("TicoGalaxyAlreadyTalk", bit, isTalk); }
 
     // isGalaxyAnyCometAppearInCurrentStage
 
-    void startGalaxyCometEvent() {
-        EventFunction::startCometEvent();
-    }
+    void startGalaxyCometEvent() { EventFunction::startCometEvent(); }
 
-    void endGalaxyCometEvent() {
-        EventFunction::endCometEvent();
-    }
+    void endGalaxyCometEvent() { EventFunction::endCometEvent(); }
 
-    s32 getGalaxyCometStateIndexInCurrentStage() {
-        return GameSequenceFunction::getGalaxyCometState(MR::getCurrentStageName());
-    }
+    s32 getGalaxyCometStateIndexInCurrentStage() { return GameSequenceFunction::getGalaxyCometState(MR::getCurrentStageName()); }
 
-    void forceToNextStateGalaxyCometScheduler() {
-        GameSequenceFunction::forceToNextStateGalaxyCometScheduler();
-    }
+    void forceToNextStateGalaxyCometScheduler() { GameSequenceFunction::forceToNextStateGalaxyCometScheduler(); }
 
-    bool isGalaxyCometLandInStage(const char* pParam1) {
-        return GameSequenceFunction::isGalaxyCometLand(pParam1);
-    }
+    bool isGalaxyCometLandInStage(const char* pParam1) { return GameSequenceFunction::isGalaxyCometLand(pParam1); }
 
-    s32 getEncounterGalaxyCometPowerStarId(const char* pParam1) {
-        return GameSequenceFunction::getEncounterGalaxyCometPowerStarId(pParam1);
-    }
+    s32 getEncounterGalaxyCometPowerStarId(const char* pParam1) { return GameSequenceFunction::getEncounterGalaxyCometPowerStarId(pParam1); }
 
-    bool isGalaxyPurpleCometLaunch() {
-        return MR::isOnGameEventFlagGalaxyOpen("ViewNormalEnding");
-    }
+    bool isGalaxyPurpleCometLaunch() { return MR::isOnGameEventFlagGalaxyOpen("ViewNormalEnding"); }
 
     bool canAppearNormalComet(const char* pGalaxyName) {
         GalaxyStatusAccessor accessor = MR::makeGalaxyStatusAccessor(pGalaxyName);
-        bool                 isOnComet = GameDataFunction::isOnGameEventFlagNormalComet(pGalaxyName);
-        bool                 hasPowerStar = GameDataFunction::hasPowerStar(pGalaxyName, accessor.getNormalCometScenarioNo());
+        bool isOnComet = GameDataFunction::isOnGameEventFlagNormalComet(pGalaxyName);
+        bool hasPowerStar = GameDataFunction::hasPowerStar(pGalaxyName, accessor.getNormalCometScenarioNo());
 
         return isOnComet && !hasPowerStar;
     }
 
     bool canAppearCoin100Comet(const char* pGalaxyName) {
         GalaxyStatusAccessor accessor = MR::makeGalaxyStatusAccessor(pGalaxyName);
-        bool                 isOnComet = GameDataFunction::isOnGameEventFlagCoin100Comet(pGalaxyName);
-        bool                 hasPowerStar = GameDataFunction::hasPowerStar(pGalaxyName, accessor.getCoin100CometScenarioNo());
+        bool isOnComet = GameDataFunction::isOnGameEventFlagCoin100Comet(pGalaxyName);
+        bool hasPowerStar = GameDataFunction::hasPowerStar(pGalaxyName, accessor.getCoin100CometScenarioNo());
 
         return isOnComet && !hasPowerStar;
     }
@@ -581,8 +389,8 @@ namespace MR {
     bool isStarComplete(const char* pGalaxyName) {
         GalaxyStatusAccessor aAccessor = MR::makeGalaxyStatusAccessor(pGalaxyName);
         GalaxyStatusAccessor bAccessor = MR::makeGalaxyStatusAccessor(pGalaxyName);
-        s32                  powerStarNumOwned = bAccessor.getPowerStarNumOwned();
-        s32                  powerStarNum = aAccessor.getPowerStarNum();
+        s32 powerStarNumOwned = bAccessor.getPowerStarNumOwned();
+        s32 powerStarNum = aAccessor.getPowerStarNum();
 
         return powerStarNumOwned == powerStarNum;
     }
@@ -610,7 +418,7 @@ namespace MR {
 
     s32 getCoinBestScore(const char* pGalaxyName) {
         GalaxyStatusAccessor accessor = MR::makeGalaxyStatusAccessor(pGalaxyName);
-        s32                  coinBestScore = 0;
+        s32 coinBestScore = 0;
 
         for (s32 i = 1; i <= accessor.getPowerStarNum(); i++) {
             if (!MR::isPlacedCoin(pGalaxyName, i)) {
@@ -629,37 +437,25 @@ namespace MR {
 
     bool isPlacedCoin(const char* pGalaxyName, s32 scenarioNo) {
         GalaxyStatusAccessor accessor = MR::makeGalaxyStatusAccessor(pGalaxyName);
-        const char*          pCometName = accessor.getCometName(scenarioNo);
+        const char* pCometName = accessor.getCometName(scenarioNo);
 
         return pCometName == nullptr || !MR::isEqualString(pCometName, "Dark");
     }
 
-    bool isActiveLuigiHideAndSeekEvent() {
-        return GameSequenceFunction::isActiveLuigiHideAndSeekEvent();
-    }
+    bool isActiveLuigiHideAndSeekEvent() { return GameSequenceFunction::isActiveLuigiHideAndSeekEvent(); }
 
-    bool isEndLuigiHideAndSeekEvent() {
-        return GameSequenceFunction::isEndLuigiHideAndSeekEvent();
-    }
+    bool isEndLuigiHideAndSeekEvent() { return GameSequenceFunction::isEndLuigiHideAndSeekEvent(); }
 
-    bool isLuigiDisappearFromAstroGalaxy() {
-        return GameSequenceFunction::isLuigiDisappearFromAstroGalaxy();
-    }
+    bool isLuigiDisappearFromAstroGalaxy() { return GameSequenceFunction::isLuigiDisappearFromAstroGalaxy(); }
 
-    bool isOnGameEventFlagLuigiRescued() {
-        return MR::isOnGameEventFlagGalaxyOpen("SpecialStarLuigiRescued");
-    }
+    bool isOnGameEventFlagLuigiRescued() { return MR::isOnGameEventFlagGalaxyOpen("SpecialStarLuigiRescued"); }
 
-    void onGameEventFlagTalkedToLuigiAfterRescued() {
-        MR::onGameEventFlagGalaxyOpen("LuigiTalkAfterRescued");
-    }
+    void onGameEventFlagTalkedToLuigiAfterRescued() { MR::onGameEventFlagGalaxyOpen("LuigiTalkAfterRescued"); }
 
-    void onGameEventFlagGetLuigiLetter() {
-        GameSequenceFunction::onGameEventFlagGetLuigiLetter();
-    }
+    void onGameEventFlagGetLuigiLetter() { GameSequenceFunction::onGameEventFlagGetLuigiLetter(); }
 
     bool isOnLuigiHiding() {
-        s32  scenarioNo = MR::getCurrentSelectedScenarioNo();
+        s32 scenarioNo = MR::getCurrentSelectedScenarioNo();
         bool v1 = scenarioNo != -1 && GameDataConst::isPowerStarLuigiHas(MR::getCurrentStageName(), scenarioNo);
 
         if (v1) {
@@ -674,14 +470,14 @@ namespace MR {
             return false;
         }
 
-        s32  scenarioNo = MR::getCurrentSelectedScenarioNo();
+        s32 scenarioNo = MR::getCurrentSelectedScenarioNo();
         bool v1 = scenarioNo != -1 && GameDataConst::isPowerStarLuigiHas(MR::getCurrentStageName(), scenarioNo);
 
         if (v1) {
             return true;
         }
 
-        s32         starId = 0;
+        s32 starId = 0;
         const char* pHidingGalaxyName = nullptr;
 
         GameSequenceFunction::getLuigiHidingGalaxyNameAndStarId(&pHidingGalaxyName, &starId);
@@ -724,7 +520,7 @@ namespace MR {
 
     // FIXME: Improper stack accesses.
     const char* getLuigiLetterGalaxyNameForNPC() {
-        s32         starId;
+        s32 starId;
         const char* pGalaxyName;
 
         if (GameSequenceFunction::isLuigiDisappearFromAstroGalaxy() || MR::isOnLuigiHiding()) {
@@ -745,13 +541,9 @@ namespace MR {
         GameDataFunction::setGameEventValue("MessageAlreadyRead", value | mask);
     }
 
-    void offMsgLedPattern() {
-        GameDataFunction::setGameEventValue("MsgLedPattern", 0);
-    }
+    void offMsgLedPattern() { GameDataFunction::setGameEventValue("MsgLedPattern", 0); }
 
-    bool isMsgLedPattern() {
-        return GameDataFunction::getGameEventValue("MsgLedPattern") != 0;
-    }
+    bool isMsgLedPattern() { return GameDataFunction::getGameEventValue("MsgLedPattern") != 0; }
 
     void explainBeeMarioIfAtFirst() {
         if (!GameDataFunction::isOnGameEventFlag("ハチマリオ初変身")) {
@@ -807,46 +599,28 @@ namespace MR {
         }
     }
 
-    void onGameEventFlagPlayMoviePrologueA() {
-        GameDataFunction::followStoryEventByName("クッパ襲来後");
-    }
+    void onGameEventFlagPlayMoviePrologueA() { GameDataFunction::followStoryEventByName("クッパ襲来後"); }
 
-    void onGameEventFlagPlayMoviePrologueB() {
-        GameDataFunction::followStoryEventByName("ピーチ城浮上後");
-    }
+    void onGameEventFlagPlayMoviePrologueB() { GameDataFunction::followStoryEventByName("ピーチ城浮上後"); }
 
-    void onGameEventFlagEndTicoGuideDemo() {
-        GameDataFunction::followStoryEventByName("チコガイドデモ終了");
-    }
+    void onGameEventFlagEndTicoGuideDemo() { GameDataFunction::followStoryEventByName("チコガイドデモ終了"); }
 
     void onGameEventFlagEnableToSpinAndStarPointer() {
         GameDataFunction::followStoryEventByName("スピン権利");
         MR::setPlayerSwingPermission(true);
     }
 
-    void onGameEventFlagEndButlerDomeLecture() {
-        GameDataFunction::followStoryEventByName("天球儀レクチャー");
-    }
+    void onGameEventFlagEndButlerDomeLecture() { GameDataFunction::followStoryEventByName("天球儀レクチャー"); }
 
-    void onGameEventFlagEndButlerGalaxyMoveLecture() {
-        GameDataFunction::followStoryEventByName("ギャラクシー移動レクチャー");
-    }
+    void onGameEventFlagEndButlerGalaxyMoveLecture() { GameDataFunction::followStoryEventByName("ギャラクシー移動レクチャー"); }
 
-    void onGameEventFlagEndButlerStarPieceLecture() {
-        GameDataFunction::followStoryEventByName("スターピースレクチャー");
-    }
+    void onGameEventFlagEndButlerStarPieceLecture() { GameDataFunction::followStoryEventByName("スターピースレクチャー"); }
 
-    void onGameEventFlagSurfingTutorialAtFirst() {
-        GameDataFunction::onGameEventFlag("サーフィンチュートリアル");
-    }
+    void onGameEventFlagSurfingTutorialAtFirst() { GameDataFunction::onGameEventFlag("サーフィンチュートリアル"); }
 
-    void onGameEventFlagTamakoroTutorialAtFirst() {
-        GameDataFunction::onGameEventFlag("タマコロチュートリアル");
-    }
+    void onGameEventFlagTamakoroTutorialAtFirst() { GameDataFunction::onGameEventFlag("タマコロチュートリアル"); }
 
-    void onGameEventFlagRosettaTalkAboutTicoInTower() {
-        GameDataFunction::onGameEventFlag("RosettaTalkAboutTico");
-    }
+    void onGameEventFlagRosettaTalkAboutTicoInTower() { GameDataFunction::onGameEventFlag("RosettaTalkAboutTico"); }
 
     void onGameEventFlagViewNormalEnding() {
         GameEventFlagAccessor accessor = GameEventFlagTable::makeAccessor("SpecialStarGrand7");
@@ -859,42 +633,26 @@ namespace MR {
         GameDataFunction::onCompleteEndingCurrentPlayer();
     }
 
-    bool isOnGameEventFlagUseAstroDome() {
-        return GameDataFunction::isPassedStoryEvent("バトラー情報Ａ");
-    }
+    bool isOnGameEventFlagUseAstroDome() { return GameDataFunction::isPassedStoryEvent("バトラー情報Ａ"); }
 
-    bool isOnGameEventFlagGreenDriver() {
-        return GameDataFunction::isOnGameEventFlag("SpecialStarGreenAll");
-    }
+    bool isOnGameEventFlagGreenDriver() { return GameDataFunction::isOnGameEventFlag("SpecialStarGreenAll"); }
 
-    bool isOnGameEventFlagRedDriver() {
-        return GameDataFunction::isOnGameEventFlag("SpecialStarRed1");
-    }
+    bool isOnGameEventFlagRedDriver() { return GameDataFunction::isOnGameEventFlag("SpecialStarRed1"); }
 
-    bool isOnGameEventFlagViewNormalEnding() {
-        return GameDataFunction::isOnGameEventFlag("ViewNormalEnding");
-    }
+    bool isOnGameEventFlagViewNormalEnding() { return GameDataFunction::isOnGameEventFlag("ViewNormalEnding"); }
 
-    bool isRosettaTalkTrickComet() {
-        return GameDataFunction::isOnGameEventFlag("EventCometStarter");
-    }
+    bool isRosettaTalkTrickComet() { return GameDataFunction::isOnGameEventFlag("EventCometStarter"); }
 
-    bool isKinopioExplorerStartMessenger() {
-        return GameDataFunction::isOnGameEventFlag("SpecialStarLuigiRescued");
-    }
+    bool isKinopioExplorerStartMessenger() { return GameDataFunction::isOnGameEventFlag("SpecialStarLuigiRescued"); }
 
-    bool isKinopioExplorerOrganize() {
-        return GameDataFunction::isOnGameEventFlag("EventKinopioExplorerOrganize");
-    }
+    bool isKinopioExplorerOrganize() { return GameDataFunction::isOnGameEventFlag("EventKinopioExplorerOrganize"); }
 
-    bool isKinopioExplorerRescued() {
-        return GameDataFunction::isOnGameEventFlag("EventKinopioExplorerRescued");
-    }
+    bool isKinopioExplorerRescued() { return GameDataFunction::isOnGameEventFlag("EventKinopioExplorerRescued"); }
 
     s32 getPowerStarLeftToDisplayCountDownPlate() {
-        s32 powerStarNumTarget = MR::isOnGameEventFlagGalaxyOpen("ViewNormalEnding")
-                                     ? GameDataFunction::getPowerStarNumMax() - 1
-                                     : GameDataConst::getPowerStarNumToOpenGalaxy("KoopaBattleVs3Galaxy");
+        s32 powerStarNumTarget = MR::isOnGameEventFlagGalaxyOpen("ViewNormalEnding") ?
+                                     GameDataFunction::getPowerStarNumMax() - 1 :
+                                     GameDataConst::getPowerStarNumToOpenGalaxy("KoopaBattleVs3Galaxy");
         s32 powerStarLeft = powerStarNumTarget - GameDataFunction::calcCurrentPowerStarNum();
 
         if (powerStarLeft < 0) {
@@ -903,20 +661,17 @@ namespace MR {
             powerStarLeft = powerStarNumTarget;
         }
 
-        if (GameDataFunction::isEqualJustPowerStarNum(powerStarNumTarget) || GameDataFunction::isOnJustGameEventFlag("SpecialStarGrand5") && powerStarLeft == 0) {
+        if (GameDataFunction::isEqualJustPowerStarNum(powerStarNumTarget) ||
+            GameDataFunction::isOnJustGameEventFlag("SpecialStarGrand5") && powerStarLeft == 0) {
             powerStarLeft += 1;
         }
 
         return powerStarLeft;
     }
 
-    bool isOnWarpPodPathFlag(int bit) {
-        return GameDataFunction::isOnGameEventValueForBit("WarpPodSaveBits", bit);
-    }
+    bool isOnWarpPodPathFlag(int bit) { return GameDataFunction::isOnGameEventValueForBit("WarpPodSaveBits", bit); }
 
-    bool isOnTicoGalaxyAlreadyTalk(int bit) {
-        return GameDataFunction::isOnGameEventValueForBit("TicoGalaxyAlreadyTalk", bit);
-    }
+    bool isOnTicoGalaxyAlreadyTalk(int bit) { return GameDataFunction::isOnGameEventValueForBit("TicoGalaxyAlreadyTalk", bit); }
 
     bool isKoopaFortressAppearInGalaxy() {
         char key[32];
@@ -938,37 +693,21 @@ namespace MR {
         return MR::isOnGameEventFlagGalaxyOpen(accessor.getGalaxyName()) && !MR::isOnGameEventFlagGalaxyOpen(key);
     }
 
-    bool isGalaxyRedCometAppearInCurrentStage() {
-        return EventFunction::isStartCometEvent("Red");
-    }
+    bool isGalaxyRedCometAppearInCurrentStage() { return EventFunction::isStartCometEvent("Red"); }
 
-    bool isGalaxyDarkCometAppearInCurrentStage() {
-        return EventFunction::isStartCometEvent("Dark");
-    }
+    bool isGalaxyDarkCometAppearInCurrentStage() { return EventFunction::isStartCometEvent("Dark"); }
 
-    bool isGalaxyGhostCometAppearInCurrentStage() {
-        return EventFunction::isStartCometEvent("Ghost");
-    }
+    bool isGalaxyGhostCometAppearInCurrentStage() { return EventFunction::isStartCometEvent("Ghost"); }
 
-    bool isGalaxyQuickCometAppearInCurrentStage() {
-        return EventFunction::isStartCometEvent("Quick");
-    }
+    bool isGalaxyQuickCometAppearInCurrentStage() { return EventFunction::isStartCometEvent("Quick"); }
 
-    bool isGalaxyBlackCometAppearInCurrentStage() {
-        return EventFunction::isStartCometEvent("Black");
-    }
+    bool isGalaxyBlackCometAppearInCurrentStage() { return EventFunction::isStartCometEvent("Black"); }
 
-    bool isStarCompleteAllGalaxy() {
-        return GameDataFunction::isOnGameEventFlag("PowerStarComplete");
-    }
+    bool isStarCompleteAllGalaxy() { return GameDataFunction::isOnGameEventFlag("PowerStarComplete"); }
 
-    bool isStarPieceCounterStop() {
-        return GameDataFunction::isOnGameEventFlag("StarPieceCounterStop");
-    }
+    bool isStarPieceCounterStop() { return GameDataFunction::isOnGameEventFlag("StarPieceCounterStop"); }
 
-    bool isOnGameEventFlagAstroGalaxyBgmBright() {
-        return GameDataFunction::hasPowerStar("EggStarGalaxy", 1);
-    }
+    bool isOnGameEventFlagAstroGalaxyBgmBright() { return GameDataFunction::hasPowerStar("EggStarGalaxy", 1); }
 
     bool isOnMessageAlreadyRead(s8 bit) {
         s32 value = GameDataFunction::getGameEventValue("MessageAlreadyRead");
@@ -977,7 +716,5 @@ namespace MR {
         return (mask & value) != 0;
     }
 
-    void onMsgLedPattern() {
-        GameDataFunction::setGameEventValue("MsgLedPattern", 1);
-    }
-}; // namespace MR
+    void onMsgLedPattern() { GameDataFunction::setGameEventValue("MsgLedPattern", 1); }
+};  // namespace MR

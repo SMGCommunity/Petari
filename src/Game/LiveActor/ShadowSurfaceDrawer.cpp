@@ -1,8 +1,8 @@
 #include "Game/LiveActor/ShadowSurfaceDrawer.hpp"
 #include "Game/LiveActor/ShadowVolumeDrawer.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
-#include "Game/Util/Functor.hpp"
 #include "Game/Util/DirectDraw.hpp"
+#include "Game/Util/Functor.hpp"
 
 /*
 ShadowSurfaceDrawInit::ShadowSurfaceDrawInit(const char *pName) : NameObj(pName) {
@@ -30,11 +30,9 @@ void ShadowSurfaceDrawInit::initDraw() {
 }
 #endif
 
-ShadowSurfaceDrawer::ShadowSurfaceDrawer(const char* pName)
-    : ShadowDrawer(pName) {
+ShadowSurfaceDrawer::ShadowSurfaceDrawer(const char* pName) : ShadowDrawer(pName) {
     MR::createSceneObj(SceneObj_ShadowSurfaceDrawInit);
     MR::connectToScene(this, -1, -1, -1, 0x26);
 }
 
-ShadowSurfaceDrawInit::~ShadowSurfaceDrawInit() {
-}
+ShadowSurfaceDrawInit::~ShadowSurfaceDrawInit() {}

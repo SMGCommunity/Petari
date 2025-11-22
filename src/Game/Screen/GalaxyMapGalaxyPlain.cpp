@@ -18,18 +18,12 @@ extern int swprintf(wchar_t*, size_t, const wchar_t*, ...);
 #endif
 
 GalaxyMapGalaxyPlain::GalaxyMapGalaxyPlain(const LayoutActor* pHost)
-    : LayoutActor("Galaxy情報簡易表示", true),
-      mHost(pHost),
-      mPaneName(nullptr),
-      mNamePlate(nullptr),
-      mGalaxyName(nullptr),
-      _30(false) {
-}
+    : LayoutActor("Galaxy情報簡易表示", true), mHost(pHost), mPaneName(nullptr), mNamePlate(nullptr), mGalaxyName(nullptr), _30(false) {}
 
 void GalaxyMapGalaxyPlain::show(const char* pGalaxyName, const char* pPaneName) {
-    wchar_t*       pDstGalaxyName;
+    wchar_t* pDstGalaxyName;
     const wchar_t* pShortGalaxyName;
-    wchar_t*       pFontTagIter;
+    wchar_t* pFontTagIter;
 
     appear();
 

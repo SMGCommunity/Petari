@@ -3,11 +3,9 @@
 #include "Game/NameObj/NameObjExecuteHolder.hpp"
 #include "JSystem/JMath/JMath.hpp"
 
-MirrorActor::~MirrorActor() {
-}
+MirrorActor::~MirrorActor() {}
 
-MirrorActor::MirrorActor(LiveActor* pActor, const char* a2, const char* a3)
-    : LiveActor(a2) {
+MirrorActor::MirrorActor(LiveActor* pActor, const char* a2, const char* a3) : LiveActor(a2) {
     _8C = pActor;
     _A0 = false;
     initModelManagerWithAnm(a3, 0, 0);

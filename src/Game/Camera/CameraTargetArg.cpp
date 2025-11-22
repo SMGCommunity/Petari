@@ -1,7 +1,7 @@
-#include "Game/Camera/CameraDirector.hpp"
 #include "Game/Camera/CameraTargetArg.hpp"
-#include "Game/Camera/CameraTargetObj.hpp"
+#include "Game/Camera/CameraDirector.hpp"
 #include "Game/Camera/CameraTargetMtx.hpp"
+#include "Game/Camera/CameraTargetObj.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
 
 CameraTargetArg::CameraTargetArg(const LiveActor* pLiveActor) {

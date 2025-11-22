@@ -13,13 +13,11 @@ namespace NrvTripodBossShell {
     NEW_NERVE(TripodBossShellNrvNonActive, TripodBossShell, NonActive);
     NEW_NERVE(TripodBossShellNrvWait, TripodBossShell, Wait);
     NEW_NERVE(TripodBossShellNrvBreak, TripodBossShell, Break);
-}; // namespace NrvTripodBossShell
+};  // namespace NrvTripodBossShell
 
-TripodBossShell::~TripodBossShell() {
-}
+TripodBossShell::~TripodBossShell() {}
 
-TripodBossShell::TripodBossShell(const char* pName)
-    : TripodBossFixPartsBase(pName) {
+TripodBossShell::TripodBossShell(const char* pName) : TripodBossFixPartsBase(pName) {
     mBreakModel = nullptr;
 }
 
@@ -111,5 +109,4 @@ void TripodBossShell::exeWait() {
     updateTripodMatrix();
 }
 
-void TripodBossShell::exeNonActive() {
-}
+void TripodBossShell::exeNonActive() {}

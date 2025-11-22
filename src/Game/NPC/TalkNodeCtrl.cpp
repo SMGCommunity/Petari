@@ -17,8 +17,7 @@ bool TalkMessageHistory::search(u16 msgID) const {
     return false;
 }
 
-TalkNodeCtrl::TalkNodeCtrl()
-    : _0(0), mCurrentNodeIdx(-1), mMessageInfo() {
+TalkNodeCtrl::TalkNodeCtrl() : _0(0), mCurrentNodeIdx(-1), mMessageInfo() {
     mHistory.mCount = 0;
     _38 = nullptr;
     mCurrentNode = nullptr;
@@ -52,11 +51,11 @@ void TalkNodeCtrl::forwardFlowNode() {
     }
 
     if (node->mNodeType == 1) {
-        u16          idx = node->mNextIdx;
+        u16 idx = node->mNextIdx;
         MessageData* msg = MessageSystem::getSceneMessageData();
         mCurrentNode = msg->getNode(idx);
     } else if (node->mNodeType == 3) {
-        u16          idx = node->mIndex;
+        u16 idx = node->mIndex;
         MessageData* msg = MessageSystem::getSceneMessageData();
         mCurrentNode = msg->getBranchNode(idx);
     }
@@ -84,7 +83,7 @@ bool TalkNodeCtrl::isCurrentNodeEvent() const {
 
 TalkNode* TalkNodeCtrl::getNextNode() const {
     TalkNode* node = mCurrentNode;
-    u16       idx;
+    u16 idx;
 
     if (node == nullptr) {
         return nullptr;
@@ -154,8 +153,8 @@ TalkNode* TalkNodeCtrl::getNextNodeEvent() const {
 }
 
 void TalkNodeCtrl::updateMessage() {
-    u16       idx;
-    u8        groupID;
+    u16 idx;
+    u8 groupID;
     TalkNode* cur = mCurrentNode;
 
     if (cur != nullptr) {
@@ -211,11 +210,11 @@ void TalkNodeCtrl::forwardCurrentBranchNode(bool storeCurrent) {
     TalkNode* cur = mCurrentNode;
 
     if (storeCurrent) {
-        u16          group = cur->mNextGroup;
+        u16 group = cur->mNextGroup;
         MessageData* msg = MessageSystem::getSceneMessageData();
         mCurrentNode = msg->getBranchNode(group);
     } else {
-        u16          group = cur->mNextGroup;
+        u16 group = cur->mNextGroup;
         MessageData* msg = MessageSystem::getSceneMessageData();
         mCurrentNode = msg->getBranchNode(group + 1);
     }
@@ -227,7 +226,7 @@ void TalkNodeCtrl::forwardCurrentBranchNode(bool storeCurrent) {
 // refuses to load the msgID before the getCurrentPlacementZoneName() call
 void TalkNodeCtrl::createFlowNode(TalkMessageCtrl* pMsgCtrl, const JMapInfoIter& rIter, const char* pName, ActorCameraInfo** pCameraInf) {
     char buf[0x100];
-    s32  msgID = MR::getMessageID(rIter);
+    s32 msgID = MR::getMessageID(rIter);
     snprintf(buf, sizeof(buf), "%s_%s%03d", MR::getCurrentPlacementZoneName(), pName, msgID);
     createFlowNodeDirect(pMsgCtrl, rIter, buf, pCameraInf);
 }

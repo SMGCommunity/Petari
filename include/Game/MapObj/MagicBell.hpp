@@ -8,10 +8,10 @@ public:
     MagicBell(const char*);
 
     virtual ~MagicBell();
-    virtual void   init(const JMapInfoIter&);
+    virtual void init(const JMapInfoIter&);
     virtual MtxPtr getBaseMtx() const;
-    virtual void   attackSensor(HitSensor*, HitSensor*);
-    virtual bool   receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
+    virtual void attackSensor(HitSensor*, HitSensor*);
+    virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
 
     void exeWait();
     void exeRing();
@@ -19,13 +19,13 @@ public:
     void startRing(const TVec3f&, const TVec3f&);
 
     Swinger* mBellSwinger;
-    MtxPtr   mSurface2Mtx; // 0x90
+    MtxPtr mSurface2Mtx;  // 0x90
     Swinger* mBellRodSwinger;
-    MtxPtr   mSurface1Mtx; // 0x98
-    TVec3f   mHitMarkPosition;
+    MtxPtr mSurface1Mtx;  // 0x98
+    TVec3f mHitMarkPosition;
 };
 
 namespace NrvMagicBell {
     NERVE_DECL(MagicBellNrvWait, MagicBell, MagicBell::exeWait);
     NERVE_DECL(MagicBellNrvRing, MagicBell, MagicBell::exeRing);
-}; // namespace NrvMagicBell
+};  // namespace NrvMagicBell

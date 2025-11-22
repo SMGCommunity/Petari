@@ -48,13 +48,11 @@ public:
     void endBindStarPointer();
     bool isFallNextMove(bool);
 
-    inline void moveAndTurn(const KaronParam* pParam) {
-        MR::moveAndTurnToPlayer(this, pParam->_0, pParam->_4, pParam->_8, pParam->_C);
-    }
+    inline void moveAndTurn(const KaronParam* pParam) { MR::moveAndTurnToPlayer(this, pParam->_0, pParam->_4, pParam->_8, pParam->_C); }
 
-    TerritoryMover*             mTerritoryMover; // 0x8C
-    u32                         _90;
-    u8                          _94;
-    AnimScaleController*        mScaleController;  // 0x98
-    WalkerStateBindStarPointer* mStateStarPointer; // 0x9C
+    TerritoryMover* mTerritoryMover;  // 0x8C
+    u32 _90;
+    u8 _94;
+    AnimScaleController* mScaleController;          // 0x98
+    WalkerStateBindStarPointer* mStateStarPointer;  // 0x9C
 };

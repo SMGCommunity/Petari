@@ -2,8 +2,7 @@
 #include "Game/LiveActor/ClippingActorInfo.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
 
-ClippingInfoGroup::ClippingInfoGroup(const char* pGroupName, int count)
-    : NameObj(pGroupName) {
+ClippingInfoGroup::ClippingInfoGroup(const char* pGroupName, int count) : NameObj(pGroupName) {
     _C = count;
     _10 = 0;
     _14 = 0;
@@ -104,7 +103,7 @@ ClippingInfoGroup* ClippingGroupHolder::findGroup(const JMapInfoIter& rIter) {
     JMapIdInfo info = MR::createJMapIdInfoFromClippingGroupId(rIter);
 
     for (s32 i = 0; i < mNumGroups; i++) {
-        bool        isFound = false;
+        bool isFound = false;
         JMapIdInfo* inf = mInfoGroups[i]->_18;
 
         if (*inf == info) {
@@ -116,14 +115,11 @@ ClippingInfoGroup* ClippingGroupHolder::findGroup(const JMapInfoIter& rIter) {
 }
 #endif
 
-ClippingInfoGroup::~ClippingInfoGroup() {
-}
+ClippingInfoGroup::~ClippingInfoGroup() {}
 
-ClippingGroupHolder::~ClippingGroupHolder() {
-}
+ClippingGroupHolder::~ClippingGroupHolder() {}
 
-ClippingGroupHolder::ClippingGroupHolder()
-    : NameObj("クリッピングアクター保持") {
+ClippingGroupHolder::ClippingGroupHolder() : NameObj("クリッピングアクター保持") {
     mNumGroups = 0;
     mInfoGroups = 0;
     mInfoGroups = new ClippingInfoGroup*[0x40];

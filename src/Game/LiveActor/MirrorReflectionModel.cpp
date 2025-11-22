@@ -1,8 +1,7 @@
 #include "Game/LiveActor/MirrorReflectionModel.hpp"
 #include "Game/NameObj/NameObjExecuteHolder.hpp"
 
-MirrorReflectionModel::MirrorReflectionModel(const LiveActor* pActor, const char* pName, const char* pInternalName, MtxPtr mtx)
-    : LiveActor(pName) {
+MirrorReflectionModel::MirrorReflectionModel(const LiveActor* pActor, const char* pName, const char* pInternalName, MtxPtr mtx) : LiveActor(pName) {
     _8C = pActor;
     _90 = mtx;
     _94 = 0;
@@ -78,5 +77,4 @@ void MirrorReflectionModel::calcAndSetBaseMtx() {
     }
 }
 
-MirrorReflectionModel::~MirrorReflectionModel() {
-}
+MirrorReflectionModel::~MirrorReflectionModel() {}

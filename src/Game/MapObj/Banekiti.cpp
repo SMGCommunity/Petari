@@ -1,7 +1,6 @@
 #include "Game/MapObj/Banekiti.hpp"
 
-Banekiti::Banekiti(const char* pName)
-    : LiveActor(pName) {
+Banekiti::Banekiti(const char* pName) : LiveActor(pName) {
     mAnimScaleCtrl = nullptr;
     mBindStarPointer = nullptr;
     mRailMover = nullptr;
@@ -136,4 +135,4 @@ namespace NrvBanekiti {
         Banekiti* pActor = (Banekiti*)pSpine->mExecutor;
         pActor->endDPDSwoon();
     }
-}; // namespace NrvBanekiti
+};  // namespace NrvBanekiti

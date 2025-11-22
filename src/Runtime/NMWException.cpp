@@ -2,11 +2,11 @@
 
 class __partial_array_destructor {
 public:
-    void*         mArrayStart; // 0x0
-    size_t        mElemSize;   // 0x4
-    size_t        mArraySize;  // 0x8
-    ctor_dtor_ptr mDtorPtr;    // 0xC
-    size_t        mCurElement; // 0x10
+    void* mArrayStart;       // 0x0
+    size_t mElemSize;        // 0x4
+    size_t mArraySize;       // 0x8
+    ctor_dtor_ptr mDtorPtr;  // 0xC
+    size_t mCurElement;      // 0x10
 
     __partial_array_destructor(void* arr, unsigned int size, unsigned int count, ctor_dtor_ptr ptr) {
         mArrayStart = arr;
@@ -46,7 +46,6 @@ void* __construct_new_array(void* block, ctor_dtor_ptr ctor, ctor_dtor_ptr dtor,
         ptr += 0x10;
 
         if (ctor) {
-
             __partial_array_destructor pad(ptr, size, n, dtor);
 
             char* p;
@@ -71,7 +70,7 @@ void __destroy_new_array(void* pArraySource, ctor_dtor_ptr dtor) {
     if (pArraySource != 0) {
         if (dtor != 0) {
             size_t i, objs, obj_size;
-            char*  cur;
+            char* cur;
 
             // why are the 8 and 12 important to match?
             obj_size = *(size_t*)((char*)pArraySource - 2 * 8);

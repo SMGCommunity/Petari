@@ -3,8 +3,7 @@
 #include "Game/Util.hpp"
 #include <cstring>
 
-DemoSubPartKeeper::DemoSubPartKeeper(const DemoExecutor* pExecutor)
-    : mExecutor(pExecutor), mNumSubPartInfos(0), mSubPartInfos(nullptr) {
+DemoSubPartKeeper::DemoSubPartKeeper(const DemoExecutor* pExecutor) : mExecutor(pExecutor), mNumSubPartInfos(0), mSubPartInfos(nullptr) {
     JMapInfo* map = nullptr;
     mNumSubPartInfos = DemoFunction::createSheetParser(mExecutor, "SubPart", &map);
     mSubPartInfos = new DemoSubPartInfo[mNumSubPartInfos];
@@ -17,8 +16,7 @@ DemoSubPartKeeper::DemoSubPartKeeper(const DemoExecutor* pExecutor)
     }
 }
 
-DemoSubPartInfo::DemoSubPartInfo()
-    : mSubPartName(nullptr), mSubPartTotalStep(1), mMainPartName(nullptr), mMainPartStep(1), _10(-1) {}
+DemoSubPartInfo::DemoSubPartInfo() : mSubPartName(nullptr), mSubPartTotalStep(1), mMainPartName(nullptr), mMainPartStep(1), _10(-1) {}
 
 void DemoSubPartKeeper::update() {
     if (mNumSubPartInfos > 0) {
@@ -61,7 +59,7 @@ s32 DemoSubPartKeeper::getDemoPartTotalStep(const char* pSubPartName) const {
 
 DemoSubPartInfo* DemoSubPartKeeper::findSubPart(const char* pSubPartName) const {
     DemoSubPartInfo* subpart;
-    s32              count = mNumSubPartInfos;
+    s32 count = mNumSubPartInfos;
     for (int i = 0; i < count; i++) {
         subpart = &mSubPartInfos[i];
         if (!strcmp(subpart->mSubPartName, pSubPartName)) {

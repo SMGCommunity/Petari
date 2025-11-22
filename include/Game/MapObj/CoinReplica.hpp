@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/NameObj/NameObj.hpp"
 #include "Game/MapObj/Coin.hpp"
+#include "Game/NameObj/NameObj.hpp"
 
 class CoinReplica : public NameObj {
 public:
@@ -15,5 +15,5 @@ public:
     void deactiveCoin();
     void removeCoin();
 
-    Coin* mCoin; // 0xC
+    Coin* mCoin;  // 0xC
 };

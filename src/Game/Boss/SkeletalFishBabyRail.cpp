@@ -1,8 +1,7 @@
 #include "Game/Boss/SkeletalFishBabyRail.hpp"
 #include "Game/Boss/SkeletalFishBabyRailHolder.hpp"
 
-SkeletalFishBabyRail::SkeletalFishBabyRail(const char* pName)
-    : LiveActor(pName) {
+SkeletalFishBabyRail::SkeletalFishBabyRail(const char* pName) : LiveActor(pName) {
     _8C = -1;
 };
 
@@ -14,5 +13,4 @@ void SkeletalFishBabyRail::init(const JMapInfoIter& rIter) {
     makeActorDead();
 }
 
-SkeletalFishBabyRail::~SkeletalFishBabyRail() {
-}
+SkeletalFishBabyRail::~SkeletalFishBabyRail() {}

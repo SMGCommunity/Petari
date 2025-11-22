@@ -20,13 +20,13 @@
 namespace MR {
     extern void startAstroMapLayoutForNewGalaxyDiscover();
     extern void startAstroMapLayoutForNewTicoGalaxyDiscover();
-}; // namespace MR
+};  // namespace MR
 
 namespace {
     static const s32 sWaitBeforeCountUpPowerStar = 85;
     static const s32 sWaitAppearInformationWindow = 15;
     static const s32 sWaitDisplayStarPieceCount = 45;
-}; // namespace
+};  // namespace
 
 namespace {
     NEW_NERVE(StageResultInformerAppearGetPowerStar, StageResultInformer, AppearGetPowerStar);
@@ -51,11 +51,9 @@ namespace {
     NEW_NERVE(DisplayInformationForResultDisplay, DisplayInformationForResult, Display);
     NEW_NERVE(DisplayInformationForResultDisappear, DisplayInformationForResult, Disappear);
     NEW_NERVE(DisplayInformationForResultIdle, DisplayInformationForResult, Idle);
-}; // namespace
+};  // namespace
 
-DisplayInformationForResult::DisplayInformationForResult(StageResultInformer* pHost)
-    : NerveExecutor("DisplayInformationForResult"),
-      mHost(pHost) {
+DisplayInformationForResult::DisplayInformationForResult(StageResultInformer* pHost) : NerveExecutor("DisplayInformationForResult"), mHost(pHost) {
     initNerve(&::DisplayInformationForResultIdle::sInstance);
 }
 
@@ -91,16 +89,10 @@ void DisplayInformationForResult::exeDisappear() {
     }
 }
 
-void DisplayInformationForResult::exeIdle() {
-}
+void DisplayInformationForResult::exeIdle() {}
 
 StageResultInformer::StageResultInformer()
-    : LayoutActor("リザルト通知", true),
-      mInformationDisplayer(nullptr),
-      mSequenceChecker(nullptr),
-      mIconAButton(nullptr),
-      _30(false),
-      _31(false) {
+    : LayoutActor("リザルト通知", true), mInformationDisplayer(nullptr), mSequenceChecker(nullptr), mIconAButton(nullptr), _30(false), _31(false) {
     mInformationDisplayer = new DisplayInformationForResult(this);
     mSequenceChecker = new StageResultSequenceChecker();
 }
@@ -146,7 +138,9 @@ void StageResultInformer::exeAppearGetPowerStar() {
 
         MR::setTextBoxGameMessageRecursive(this, "Result", pMessageId);
         MR::setTextBoxArgStringRecursive(this, "Result", MR::getGalaxyNameOnCurrentLanguage(GameSequenceFunction::getClearedStageName()), 0);
-        MR::setTextBoxArgStringRecursive(this, "Result", MR::getScenarioNameOnCurrentLanguage(GameSequenceFunction::getClearedStageName(), GameSequenceFunction::getClearedPowerStarId()), 1);
+        MR::setTextBoxArgStringRecursive(
+            this, "Result",
+            MR::getScenarioNameOnCurrentLanguage(GameSequenceFunction::getClearedStageName(), GameSequenceFunction::getClearedPowerStarId()), 1);
         MR::startAnim(this, "Line", 1);
         MR::setAnimFrameAndStopAdjustTextHeight(this, "Result", 1);
         MR::setTextBoxNumberRecursive(this, "ShaStarNum", mSequenceChecker->getPrevPowerStarNum());
@@ -432,10 +426,7 @@ bool StageResultInformer::tryShowAndKeyWaitInformationWindow(const char* pMessag
     return false;
 }
 
-void StageResultInformer::setCounterPaneShowHide(
-    bool isShowTotalStarPane,
-    bool isShowBestScorePane,
-    bool isShowTotalPiecePane) {
+void StageResultInformer::setCounterPaneShowHide(bool isShowTotalStarPane, bool isShowBestScorePane, bool isShowTotalPiecePane) {
     const char* pPaneName = "TotalStar";
 
     if (isShowTotalStarPane) {

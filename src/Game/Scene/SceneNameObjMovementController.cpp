@@ -1,3 +1,4 @@
+#include "Game/Scene/SceneNameObjMovementController.hpp"
 #include "Game/Camera/CameraContext.hpp"
 #include "Game/Camera/CameraDirector.hpp"
 #include "Game/LiveActor/ClippingDirector.hpp"
@@ -5,12 +6,11 @@
 #include "Game/LiveActor/SensorHitChecker.hpp"
 #include "Game/Map/CollisionDirector.hpp"
 #include "Game/Map/LightDirector.hpp"
-#include "Game/Map/SwitchWatcherHolder.hpp"
 #include "Game/Map/SleepControllerHolder.hpp"
+#include "Game/Map/SwitchWatcherHolder.hpp"
 #include "Game/Map/WaterAreaHolder.hpp"
 #include "Game/NPC/TalkDirector.hpp"
 #include "Game/NameObj/NameObjGroup.hpp"
-#include "Game/Scene/SceneNameObjMovementController.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Screen/CinemaFrame.hpp"
 #include "Game/Screen/InformationObserver.hpp"
@@ -47,15 +47,14 @@ namespace {
         CategoryList::requestMovementOn(MR::MovementType_AudCameraWatcher);
         CategoryList::requestMovementOn(MR::MovementType_AudEffectDirector);
     }
-}; // namespace
+};  // namespace
 
 namespace {
     NEW_NERVE(StopSceneStateControlNone, StopSceneStateControl, None);
     NEW_NERVE(StopSceneStateControlStopped, StopSceneStateControl, Stopped);
-}; // namespace
+};  // namespace
 
-StopSceneStateControl::StopSceneStateControl()
-    : NerveExecutor("StopSceneStateControl") {
+StopSceneStateControl::StopSceneStateControl() : NerveExecutor("StopSceneStateControl") {
     initNerve(&::StopSceneStateControlNone::sInstance);
 
     _8 = MR::MovementControlType_0;
@@ -176,16 +175,12 @@ void StopSceneStateControl::executeStopCategories(MR::MovementControlType param1
     }
 }
 
-void StopSceneStateControl::exeNone() {
-}
+void StopSceneStateControl::exeNone() {}
 
-void StopSceneStateControl::exeStopped() {
-}
+void StopSceneStateControl::exeStopped() {}
 
 SceneNameObjMovementController::SceneNameObjMovementController()
-    : NameObj("SceneNameObjMovementController"),
-      _C(false),
-      mStopSceneStateControl(nullptr) {
+    : NameObj("SceneNameObjMovementController"), _C(false), mStopSceneStateControl(nullptr) {
     mStopSceneStateControl = new StopSceneStateControl();
 }
 
@@ -220,7 +215,5 @@ namespace MR {
         return getSceneObj< SceneNameObjMovementController >(SceneObj_SceneNameObjMovementController);
     }
 
-    void notifyRequestNameObjMovementOnOff() {
-        getSceneNameObjMovementController()->notifyRequestNameObjMovementOnOff(true);
-    }
-}; // namespace MR
+    void notifyRequestNameObjMovementOnOff() { getSceneNameObjMovementController()->notifyRequestNameObjMovementOnOff(true); }
+};  // namespace MR

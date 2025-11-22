@@ -3,16 +3,14 @@
 #include "Game/MapObj/MapObjActor.hpp"
 
 struct HaloParam {
-    const char* haloName; // 0x0
-    f32         _4;
-    f32         _8;
-    f32         clippingRadius; // 0xC
+    const char* haloName;  // 0x0
+    f32 _4;
+    f32 _8;
+    f32 clippingRadius;  // 0xC
 };
 
 namespace {
-    HaloParam sParams[2] = {
-        {"ZoneHalo", 70.0f, 20.0f, 4.0f},
-        {"PowerStarHalo", 80.0f, 20.0f, 30.0f}};
+    HaloParam sParams[2] = {{"ZoneHalo", 70.0f, 20.0f, 4.0f}, {"PowerStarHalo", 80.0f, 20.0f, 30.0f}};
 };
 
 class Halo : public MapObjActor {
@@ -23,7 +21,7 @@ public:
     virtual void init(const JMapInfoIter&);
     virtual void appear();
     virtual void connectToScene(const MapObjActorInitInfo&);
-    virtual f32  getDistance() const;
+    virtual f32 getDistance() const;
 
     bool isDistanceAppear() const;
     bool isDistanceDisappear() const;
@@ -41,7 +39,7 @@ public:
         return nullptr;
     }
 
-    f32 mDistance; // 0xC4
+    f32 mDistance;  // 0xC4
 };
 
 class PowerStarHalo : public Halo {
@@ -51,7 +49,7 @@ public:
     virtual ~PowerStarHalo();
     virtual void init(const JMapInfoIter&);
     virtual void appear();
-    virtual f32  getDistance() const;
+    virtual f32 getDistance() const;
 
     void exeWaitScenarioOpeningEnd();
 
@@ -63,9 +61,9 @@ namespace NrvHalo {
     NERVE(HostTypeDisappear);
     INIT_NERVE(HostTypeAppear);
     INIT_NERVE(HostTypeDisappear);
-}; // namespace NrvHalo
+};  // namespace NrvHalo
 
 namespace NrvPowerStarHalo {
     NERVE(HostTypeWaitScenarioOpeningEnd);
     INIT_NERVE(HostTypeWaitScenarioOpeningEnd);
-}; // namespace NrvPowerStarHalo
+};  // namespace NrvPowerStarHalo

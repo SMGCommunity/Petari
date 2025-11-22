@@ -1,12 +1,11 @@
+#include "Game/MapObj/FlipPanel.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/LiveActorGroupArray.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
-#include "Game/MapObj/FlipPanel.hpp"
 #include "Game/Util.hpp"
 #include "JSystem/JMath/JMath.hpp"
 
-FlipPanel::FlipPanel(const char* pName)
-    : MapObjActor(pName) {
+FlipPanel::FlipPanel(const char* pName) : MapObjActor(pName) {
     mDelegator = 0;
     mFlipPanelGroup = 0;
     _CC = 0;
@@ -47,8 +46,8 @@ void FlipPanel::exeFrontLand() {
         if (mIsReverse) {
             MapObjActorUtil::appearBloomModel(this);
             ModelObj* bloomModel = mBloomModel;
-            u32       frameMax = MR::getBrkFrameMax(bloomModel);
-            u32       val = sBloomSyncStep / frameMax;
+            u32 frameMax = MR::getBrkFrameMax(bloomModel);
+            u32 val = sBloomSyncStep / frameMax;
             frameMax = sBloomSyncStep - (val)*frameMax;
             MR::setBrkFrame(bloomModel, frameMax);
         } else {
@@ -78,8 +77,8 @@ void FlipPanel::exeBackLand() {
         } else {
             MapObjActorUtil::appearBloomModel(this);
             ModelObj* bloomModel = mBloomModel;
-            u32       frameMax = MR::getBrkFrameMax(bloomModel);
-            u32       val = sBloomSyncStep / frameMax;
+            u32 frameMax = MR::getBrkFrameMax(bloomModel);
+            u32 val = sBloomSyncStep / frameMax;
             frameMax = sBloomSyncStep - (val)*frameMax;
             MR::setBrkFrame(bloomModel, frameMax);
         }
@@ -147,8 +146,8 @@ void FlipPanel::endClipped() {
 
     if (MR::getBrkCtrl(mBloomModel)) {
         ModelObj* bloomModel = mBloomModel;
-        u32       frameMax = MR::getBrkFrameMax(bloomModel);
-        u32       val = sBloomSyncStep / frameMax;
+        u32 frameMax = MR::getBrkFrameMax(bloomModel);
+        u32 val = sBloomSyncStep / frameMax;
         frameMax = sBloomSyncStep - (val)*frameMax;
         MR::setBrkFrame(bloomModel, frameMax);
     }
@@ -219,7 +218,9 @@ bool FlipPanel::checkPlayerOnTop() {
 
     TVec3f* groundNormal = MR::getPlayerGroundNormal();
 
-    bool ret = JGeometry::TUtil< f32 >::epsilonEquals(upVec.x, groundNormal->x, 0.0000038146973f) && JGeometry::TUtil< f32 >::epsilonEquals(upVec.y, groundNormal->y, 0.0000038146973f) && JGeometry::TUtil< f32 >::epsilonEquals(upVec.z, groundNormal->z, 0.0000038146973f);
+    bool ret = JGeometry::TUtil< f32 >::epsilonEquals(upVec.x, groundNormal->x, 0.0000038146973f) &&
+               JGeometry::TUtil< f32 >::epsilonEquals(upVec.y, groundNormal->y, 0.0000038146973f) &&
+               JGeometry::TUtil< f32 >::epsilonEquals(upVec.z, groundNormal->z, 0.0000038146973f);
 
     if (!ret) {
         _D0 = 0;
@@ -235,8 +236,7 @@ bool FlipPanel::checkPlayerOnTop() {
     return true;
 }
 
-FlipPanelObserver::FlipPanelObserver(const char* pName)
-    : LiveActor(pName) {
+FlipPanelObserver::FlipPanelObserver(const char* pName) : LiveActor(pName) {
     _8C = 0;
     _90 = 0;
     mDemoDelay = 0;
@@ -370,19 +370,19 @@ bool FlipPanelObserver::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* 
 }
 
 namespace NrvFlipPanel {
-    FlipPanelNrvFrontLand  FlipPanelNrvFrontLand::sInstance;
-    FlipPanelNrvBackLand   FlipPanelNrvBackLand::sInstance;
-    FlipPanelNrvFront      FlipPanelNrvFront::sInstance;
-    FlipPanelNrvBack       FlipPanelNrvBack::sInstance;
+    FlipPanelNrvFrontLand FlipPanelNrvFrontLand::sInstance;
+    FlipPanelNrvBackLand FlipPanelNrvBackLand::sInstance;
+    FlipPanelNrvFront FlipPanelNrvFront::sInstance;
+    FlipPanelNrvBack FlipPanelNrvBack::sInstance;
     FlipPanelNrvEndPrepare FlipPanelNrvEndPrepare::sInstance;
-    FlipPanelNrvEnd        FlipPanelNrvEnd::sInstance;
-}; // namespace NrvFlipPanel
+    FlipPanelNrvEnd FlipPanelNrvEnd::sInstance;
+};  // namespace NrvFlipPanel
 
 namespace NrvFlipPanelObserver {
-    FlipPanelObserverNrvWait     FlipPanelObserverNrvWait::sInstance;
+    FlipPanelObserverNrvWait FlipPanelObserverNrvWait::sInstance;
     FlipPanelObserverNrvComplete FlipPanelObserverNrvComplete::sInstance;
     FlipPanelObserverNrvDemoWait FlipPanelObserverNrvDemoWait::sInstance;
-}; // namespace NrvFlipPanelObserver
+};  // namespace NrvFlipPanelObserver
 
 void NrvFlipPanelObserver::FlipPanelObserverNrvDemoWait::execute(Spine* pSpine) const {
     FlipPanelObserver* obs = reinterpret_cast< FlipPanelObserver* >(pSpine->mExecutor);
@@ -432,8 +432,6 @@ void NrvFlipPanel::FlipPanelNrvFrontLand::execute(Spine* pSpine) const {
     panel->exeFrontLand();
 }
 
-FlipPanel::~FlipPanel() {
-}
+FlipPanel::~FlipPanel() {}
 
-FlipPanelObserver::~FlipPanelObserver() {
-}
+FlipPanelObserver::~FlipPanelObserver() {}

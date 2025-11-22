@@ -3,8 +3,7 @@
 #include "revolution/types.h"
 #include <cstddef>
 
-NPCSupportRail::NPCSupportRail(const char* pName)
-    : LiveActor(pName) {}
+NPCSupportRail::NPCSupportRail(const char* pName) : LiveActor(pName) {}
 
 NPCSupportRail::~NPCSupportRail() {}
 

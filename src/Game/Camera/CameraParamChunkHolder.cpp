@@ -1,7 +1,7 @@
+#include "Game/Camera/CameraParamChunkHolder.hpp"
 #include "Game/Camera/CameraHolder.hpp"
 #include "Game/Camera/CameraLocalUtil.hpp"
 #include "Game/Camera/CameraParamChunk.hpp"
-#include "Game/Camera/CameraParamChunkHolder.hpp"
 #include "Game/Camera/CameraParamChunkID.hpp"
 #include "Game/Camera/DotCamParams.hpp"
 #include "Game/Util/SceneUtil.hpp"
@@ -10,8 +10,7 @@
 
 #define CHUNK_CAPACITY 0x400
 
-CameraParamChunkHolder::CameraParamChunkHolder(CameraHolder* pCameraHolder, const char* pName)
-    : NameObj(pName) {
+CameraParamChunkHolder::CameraParamChunkHolder(CameraHolder* pCameraHolder, const char* pName) : NameObj(pName) {
     mCameraHolder = pCameraHolder;
     mChunkCapacity = CHUNK_CAPACITY;
     mNrChunks = 0;
@@ -19,12 +18,11 @@ CameraParamChunkHolder::CameraParamChunkHolder(CameraHolder* pCameraHolder, cons
     mIsSorted = 0;
 }
 
-CameraParamChunkHolder::~CameraParamChunkHolder() {
-}
+CameraParamChunkHolder::~CameraParamChunkHolder() {}
 
 CameraParamChunk* CameraParamChunkHolder::createChunk(const CameraParamChunkID& rID, JKRHeap* pHeap) {
     if (isNewAttribute(rID)) {
-        char              firstChar = rID.mName[0];
+        char firstChar = rID.mName[0];
         CameraParamChunk* chunk;
 
         if (firstChar == 'e') {
@@ -131,7 +129,7 @@ CameraParamChunk* CameraParamChunkHolder::findChunk(s32 zoneID, const char* pNam
 // Stack is 0x10 bytes smaller
 void CameraParamChunkHolder::loadFile(s32 zoneID) {
     void* data;
-    s32   local44;
+    s32 local44;
     MR::getStageCameraData(&data, &local44, zoneID);
 
     if (local44 != 0) {
@@ -166,8 +164,8 @@ void CameraParamChunkHolder::arrangeChunk(CameraParamChunk* pChunk) {
         if (mCameraVersion < 0x30001) {
             CameraGeneralParam* param = pChunk->mGeneralParam;
 
-            param->mAngleA = 0.17453294f; // 10 degrees
-            param->mAngleB = 0.34906587f; // 20 degrees
+            param->mAngleA = 0.17453294f;  // 10 degrees
+            param->mAngleB = 0.34906587f;  // 20 degrees
         }
 
         if (mCameraVersion < 0x30002) {

@@ -13,10 +13,9 @@ namespace {
     static const char* sParamNameGuard = "Id";
     static const char* sParamNameGuardPos = "GuardPosLv";
     static const char* sParamNameGuardWait = "GuardWaitLv";
-}; // namespace
+};  // namespace
 
-SkeletalFishBossInfo::SkeletalFishBossInfo(SkeletalFishBoss* pBoss, s32 levelNum, s32 guardNum, const char* pDesc)
-    : NameObj(pDesc) {
+SkeletalFishBossInfo::SkeletalFishBossInfo(SkeletalFishBoss* pBoss, s32 levelNum, s32 guardNum, const char* pDesc) : NameObj(pDesc) {
     mFishBoss = pBoss;
     mLevelNum = levelNum;
     mGuardNum = guardNum;
@@ -29,7 +28,7 @@ void SkeletalFishBossInfo::init(const JMapInfoIter& rIter) {
 
     if (info != nullptr) {
         /* there is something I am missing here */
-        JMapInfoIter          what;
+        JMapInfoIter what;
         volatile JMapInfoIter level_iter;
         level_iter.mInfo = (JMapInfo*)info;
         what.mInfo = (JMapInfo*)info;
@@ -63,8 +62,7 @@ void SkeletalFishBossInfo::createLevelStatus() {
     }
 }
 
-SkeletalFishBossInfo::GuardStatus::GuardStatus() {
-}
+SkeletalFishBossInfo::GuardStatus::GuardStatus() {}
 
 void SkeletalFishBossInfo::loadLevelStatus(const JMapInfoIter& rIter) {
     s32 levelNum;
@@ -103,5 +101,4 @@ void SkeletalFishBossInfo::loadGuardStatus(const JMapInfoIter& rIter, s32 levelI
     }
 }
 
-SkeletalFishBossInfo::~SkeletalFishBossInfo() {
-}
+SkeletalFishBossInfo::~SkeletalFishBossInfo() {}

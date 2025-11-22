@@ -2,8 +2,7 @@
 #include "Game/Map/WaterAreaHolder.hpp"
 #include "Game/Util.hpp"
 
-WaterArea::WaterArea(int type, const char* pName)
-    : AreaObj(type, pName) {
+WaterArea::WaterArea(int type, const char* pName) : AreaObj(type, pName) {
     _3C = 0;
 }
 
@@ -17,12 +16,8 @@ void WaterArea::init(const JMapInfoIter& rIter) {
     WaterAreaFunction::createWaterAreaHolder();
 }
 
-WaterAreaMgr::WaterAreaMgr(s32 type, const char* pName)
-    : AreaObjMgr(type, pName) {
-}
+WaterAreaMgr::WaterAreaMgr(s32 type, const char* pName) : AreaObjMgr(type, pName) {}
 
-WaterArea::~WaterArea() {
-}
+WaterArea::~WaterArea() {}
 
-WaterAreaMgr::~WaterAreaMgr() {
-}
+WaterAreaMgr::~WaterAreaMgr() {}

@@ -17,5 +17,5 @@ public:
     void exeWait();
 
     ClipAreaShapeSphere* _C0;
-    f32                  _C4;
+    f32 _C4;
 };

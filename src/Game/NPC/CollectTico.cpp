@@ -12,10 +12,9 @@ namespace NrvCollectTico {
     NEW_NERVE(CollectTicoNrvCompleteDemo, CollectTico, CompleteDemo);
     NEW_NERVE(CollectTicoNrvFlash, CollectTico, Flash);
     NEW_NERVE(CollectTicoNrvAppearPowerStar, CollectTico, AppearPowerStar);
-}; // namespace NrvCollectTico
+};  // namespace NrvCollectTico
 
-CollectTico::CollectTico(const char* pName)
-    : LiveActor(pName) {
+CollectTico::CollectTico(const char* pName) : LiveActor(pName) {
     mStrayTicos = nullptr;
     mTicoNum = 0;
     _A0 = 0;
@@ -54,7 +53,8 @@ void CollectTico::exeWait() {
     }
 
     if (needsDemo && !MR::isPlayerDead()) {
-        MR::requestStartDemo(this, "チコ集めコンプリート", &NrvCollectTico::CollectTicoNrvCompleteDemo::sInstance, &NrvCollectTico::CollectTicoNrvTryStartDemo::sInstance);
+        MR::requestStartDemo(this, "チコ集めコンプリート", &NrvCollectTico::CollectTicoNrvCompleteDemo::sInstance,
+                             &NrvCollectTico::CollectTicoNrvTryStartDemo::sInstance);
     }
 }
 
@@ -139,8 +139,6 @@ void CollectTico::startAppearPowerStar() {
     setNerve(&NrvCollectTico::CollectTicoNrvAppearPowerStar::sInstance);
 }
 
-void CollectTico::exeTryStartDemo() {
-}
+void CollectTico::exeTryStartDemo() {}
 
-CollectTico::~CollectTico() {
-}
+CollectTico::~CollectTico() {}

@@ -1,13 +1,11 @@
 #include "Game/AreaObj/DepthOfFieldArea.hpp"
 #include "Game/Util/ScreenUtil.hpp"
 
-DepthOfFieldArea::DepthOfFieldArea(int type, const char* pName)
-    : ImageEffectArea(IMAGE_EFFECT_TYPE_DOF, type, pName) {
+DepthOfFieldArea::DepthOfFieldArea(int type, const char* pName) : ImageEffectArea(IMAGE_EFFECT_TYPE_DOF, type, pName) {
     mIsPlayerSync = false;
 }
 
-DepthOfFieldArea::~DepthOfFieldArea() {
-}
+DepthOfFieldArea::~DepthOfFieldArea() {}
 
 void DepthOfFieldArea::init(const JMapInfoIter& rIter) {
     AreaObj::init(rIter);

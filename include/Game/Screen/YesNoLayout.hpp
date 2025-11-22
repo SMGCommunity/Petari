@@ -19,5 +19,5 @@ public:
     void exeSelecting();
 
     /* 0x20 */ YesNoController* mController;
-    /* 0x24 */ bool             _24;
+    /* 0x24 */ bool _24;
 };

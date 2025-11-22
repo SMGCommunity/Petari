@@ -3,11 +3,7 @@
 #include <JSystem/JMath/JMATrigonometric.hpp>
 
 SegmentGravity::SegmentGravity()
-    : PlanetGravity(),
-      mSideVector(1, 0, 0),
-      mOppositeSideVecOrtho(1, 0, 0),
-      mWorldOppositeSideVecOrtho(1, 0, 0),
-      mAxis(0, 0, 0) {
+    : PlanetGravity(), mSideVector(1, 0, 0), mOppositeSideVecOrtho(1, 0, 0), mWorldOppositeSideVecOrtho(1, 0, 0), mAxis(0, 0, 0) {
     mAxisLength = 0.0f;
     mValidSideDegree = 360.0f;
     mValidSideCos = -1.0f;
@@ -22,7 +18,7 @@ SegmentGravity::SegmentGravity()
 
 bool SegmentGravity::calcOwnGravityVector(TVec3f* pDest, f32* pScalar, const TVec3f& rPos) const {
     TVec3f relPosFromBase = rPos - mWorldGravityPoints[0];
-    f32    axisY = relPosFromBase.dot(mAxis);
+    f32 axisY = relPosFromBase.dot(mAxis);
     if (-1.0f < mValidSideCos) {
         if (!mWorldOppositeSideVecOrtho.isZero()) {
             TVec3f dirOnBasePlane = relPosFromBase - mAxis * axisY;
@@ -50,7 +46,7 @@ bool SegmentGravity::calcOwnGravityVector(TVec3f* pDest, f32* pScalar, const TVe
         }
     }
     TVec3f gravity = attraction - rPos;
-    f32    distance;
+    f32 distance;
     MR::separateScalarAndDirection(&distance, &gravity, gravity);
     if (!isInRangeDistance(distance)) {
         return false;
@@ -69,7 +65,7 @@ void SegmentGravity::updateLocalParam() {
 
     // Both of these variables are present because the codegen indicates they should be.
     // In the final game, however, they have no behavioral effect and are not given any storage.
-    bool  artifact = true;
+    bool artifact = true;
     bool& rArtifact = artifact;
 
     mValidSideCos = JMath::sSinCosTable.cosLap(0.5f * mValidSideDegree);

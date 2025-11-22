@@ -6,8 +6,7 @@
 #include "Game/Util/ObjUtil.hpp"
 #include <JSystem/JMath.hpp>
 
-TripodBossFixPartsBase::TripodBossFixPartsBase(const char* pName)
-    : LiveActor(pName) {
+TripodBossFixPartsBase::TripodBossFixPartsBase(const char* pName) : LiveActor(pName) {
     _BC.x = 0.0f;
     _BC.y = 0.0f;
     _BC.z = 0.0f;
@@ -79,8 +78,7 @@ void TripodBossFixPartsBase::calcTripodLocalMatrix(TPos3f* pPos) {
     MR::makeMtxTR(*pPos, _BC, mRotation);
 }
 
-void TripodBossFixPartsBase::activateTripodBoss() {
-}
+void TripodBossFixPartsBase::activateTripodBoss() {}
 
 void TripodBossFixPartsBase::startBreakMovement() {
     TPos3f mtx;

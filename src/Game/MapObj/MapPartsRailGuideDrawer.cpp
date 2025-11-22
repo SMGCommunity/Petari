@@ -13,8 +13,8 @@ void MapPartsRailGuideDrawer::initGuidePoints(const JMapInfoIter& rIter) {
     s32 shadowType = 0;
     MR::getMapPartsArgShadowType(&shadowType, rIter);
     bool hasShadow = MR::hasMapPartsShadow(shadowType);
-    f32  railLength = MR::getRailTotalLength(mHost);
-    f32  curLen = 0.0f;
+    f32 railLength = MR::getRailTotalLength(mHost);
+    f32 curLen = 0.0f;
 
     while (curLen < railLength) {
         MapPartsRailGuidePoint* pnt = new MapPartsRailGuidePoint(mHost, _424, curLen, hasShadow);
@@ -36,5 +36,4 @@ void MapPartsRailGuideDrawer::initGuidePoints(const JMapInfoIter& rIter) {
     }
 }
 
-MapPartsRailGuideDrawer::~MapPartsRailGuideDrawer() {
-}
+MapPartsRailGuideDrawer::~MapPartsRailGuideDrawer() {}

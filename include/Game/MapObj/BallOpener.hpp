@@ -19,17 +19,17 @@ public:
     void exeOpen();
     void bindHole();
 
-    BindCone*  _8C;
-    HitSensor* mSensor; // 0x90
-    TVec3f     _94;
-    TVec3f     _A0;
-    TVec3f     _AC;
-    TVec3f     _B8;
-    s32        _C4;
+    BindCone* _8C;
+    HitSensor* mSensor;  // 0x90
+    TVec3f _94;
+    TVec3f _A0;
+    TVec3f _AC;
+    TVec3f _B8;
+    s32 _C4;
 };
 
 namespace NrvBallOpener {
     NERVE_DECL(BallOpenerNrvWait, BallOpener, BallOpener::exeWait);
     NERVE_DECL(BallOpenerNrvSetCenter, BallOpener, BallOpener::exeSetCenter);
     NERVE_DECL(BallOpenerNrvOpen, BallOpener, BallOpener::exeOpen);
-}; // namespace NrvBallOpener
+};  // namespace NrvBallOpener

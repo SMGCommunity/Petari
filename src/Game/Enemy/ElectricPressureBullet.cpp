@@ -14,12 +14,7 @@ namespace NrvElectricPressureBullet {
     NEW_NERVE(ElectricPressureBulletNrvFly, ElectricPressureBullet, Fly);
 };
 
-ElectricPressureBullet::ElectricPressureBullet(const char* pName)
-    : LiveActor(pName),
-      _8C(0.0f, 0.0f, 0.0f),
-      _98(nullptr),
-      _9C(0.0f) {
-}
+ElectricPressureBullet::ElectricPressureBullet(const char* pName) : LiveActor(pName), _8C(0.0f, 0.0f, 0.0f), _98(nullptr), _9C(0.0f) {}
 
 void ElectricPressureBullet::init(const JMapInfoIter& rIter) {
     initModelManagerWithAnm("ElectricBullet", nullptr, false);
@@ -71,7 +66,7 @@ void ElectricPressureBullet::exeFly() {
             s32 v2 = getNerveStep();
             if (!(v2 % 5)) {
                 TVec3f* v1 = MR::getPlayerCenterPos();
-                TVec3f  v3;
+                TVec3f v3;
                 JMathInlineVEC::PSVECSubtract2(v1, &mPosition, &v3);
                 MR::normalize(&v3);
                 MR::turnVecToVecDegree(&_8C, _8C, v3, 4.0f, TVec3f(0, 1, 0));

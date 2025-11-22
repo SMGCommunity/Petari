@@ -1,8 +1,7 @@
 #include "Game/MapObj/BenefitItemLifeUp.hpp"
 #include <cstring>
 
-BenefitItemLifeUp::BenefitItemLifeUp(const char* pName)
-    : BenefitItemObj(pName, "KinokoLifeUp") {
+BenefitItemLifeUp::BenefitItemLifeUp(const char* pName) : BenefitItemObj(pName, "KinokoLifeUp") {
     if (MR::isGalaxyDarkCometAppearInCurrentStage()) {
         _D8 = 1;
     }
@@ -45,5 +44,4 @@ void BenefitItemLifeUp::stopEfx(const char* pName) {
     MR::emitEffect(this, str);
 }
 
-BenefitItemLifeUp::~BenefitItemLifeUp() {
-}
+BenefitItemLifeUp::~BenefitItemLifeUp() {}

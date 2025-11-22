@@ -6,8 +6,7 @@
 #include "JSystem/JGeometry/TVec.hpp"
 #include "revolution/mtx.h"
 
-AstroEffectObj::AstroEffectObj(const char* pName)
-    : SimpleEffectObj(pName) {
+AstroEffectObj::AstroEffectObj(const char* pName) : SimpleEffectObj(pName) {
     _9C = -1;
 }
 
@@ -37,5 +36,4 @@ void AstroEffectObj::selectNrvWait() {
     SimpleEffectObj::setStateWait();
 }
 
-AstroEffectObj::~AstroEffectObj() {
-}
+AstroEffectObj::~AstroEffectObj() {}

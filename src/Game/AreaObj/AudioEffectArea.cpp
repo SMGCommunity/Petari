@@ -1,8 +1,7 @@
 #include "Game/AreaObj/AudioEffectArea.hpp"
 #include "Game/Util.hpp"
 
-AudioEffectArea::AudioEffectArea(int a1, const char* pName)
-    : AreaObj(a1, pName) {
+AudioEffectArea::AudioEffectArea(int a1, const char* pName) : AreaObj(a1, pName) {
     _3C = 0;
     _40 = 0;
 }

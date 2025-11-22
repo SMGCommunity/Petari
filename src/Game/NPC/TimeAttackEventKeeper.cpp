@@ -1,12 +1,9 @@
-#include "Game/LiveActor/LiveActor.hpp"
 #include "Game/NPC/TimeAttackEventKeeper.hpp"
+#include "Game/LiveActor/LiveActor.hpp"
 
-TimeAttackEventKeeper::TimeAttackEventKeeper()
-    : _0(nullptr) {
-}
+TimeAttackEventKeeper::TimeAttackEventKeeper() : _0(nullptr) {}
 
-void TimeAttackEventKeeper::init(bool) {
-}
+void TimeAttackEventKeeper::init(bool) {}
 
 void TimeAttackEventKeeper::startEventIfExecute() {
     if (_0 == nullptr) {

@@ -14,27 +14,17 @@ public:
     TalkState();
 
     virtual void init(TalkMessageCtrl*, TalkBalloon*);
-    virtual bool prep(const TalkMessageCtrl*) {
-        return true;
-    }
+    virtual bool prep(const TalkMessageCtrl*) { return true; }
 
-    virtual bool test() {
-        return true;
-    }
+    virtual bool test() { return true; }
 
-    virtual void open() {
-    }
+    virtual void open() {}
 
-    virtual bool talk(const TalkMessageCtrl*) {
-        return true;
-    }
+    virtual bool talk(const TalkMessageCtrl*) { return true; }
 
-    virtual void clos() {
-    }
+    virtual void clos() {}
 
-    virtual bool term(const TalkMessageCtrl*) {
-        return true;
-    }
+    virtual bool term(const TalkMessageCtrl*) { return true; }
 
     virtual u32 getPageCount() const;
 
@@ -42,9 +32,9 @@ public:
     bool isLostMessage(const TalkMessageCtrl*) const;
     bool isSelfInterrupt(const TalkMessageCtrl*) const;
 
-    TalkMessageCtrl*        _04;
+    TalkMessageCtrl* _04;
     /* 0x08 */ TalkBalloon* mBalloon;
-    u32                     mMessageID; // 0xC
+    u32 mMessageID;  // 0xC
 };
 
 class TalkStateShort : public TalkState {
@@ -67,14 +57,14 @@ public:
     virtual bool talk(const TalkMessageCtrl*);
     virtual void clos();
     virtual bool term(const TalkMessageCtrl*);
-    virtual u32  getPageCount() const;
+    virtual u32 getPageCount() const;
 
-    s32                       _10;
-    s32                       _14;
+    s32 _10;
+    s32 _14;
     TalkSupportPlayerWatcher* _18;
-    u8                        _1C;
-    bool                      _1D;
-    /* 0x20 */ u32            mPageCount;
+    u8 _1C;
+    bool _1D;
+    /* 0x20 */ u32 mPageCount;
 };
 
 class TalkStateNormal : public TalkStateEvent {
@@ -85,7 +75,7 @@ public:
     virtual bool test();
     virtual void clos();
     virtual bool term(const TalkMessageCtrl*);
-    void         updateButton();
+    void updateButton();
 
     IconAButton* _24;
 };
@@ -108,15 +98,15 @@ public:
 
     void update();
     void pauseOff();
-    u32  getState(const TalkMessageCtrl*);
+    u32 getState(const TalkMessageCtrl*);
 
     TalkSupportPlayerWatcher* _00;
-    LayoutActor*              _04;
-    /* 0x08 */ u32            mTalkShort;
-    /* 0x0C */ u32            mTalkNormal;
-    /* 0x10 */ u32            mTalkEvent;
-    /* 0x14 */ u32            mTalkCompose;
-    /* 0x18 */ u32            mTalkUnknown;
+    LayoutActor* _04;
+    /* 0x08 */ u32 mTalkShort;
+    /* 0x0C */ u32 mTalkNormal;
+    /* 0x10 */ u32 mTalkEvent;
+    /* 0x14 */ u32 mTalkCompose;
+    /* 0x18 */ u32 mTalkUnknown;
 };
 
 namespace MR {

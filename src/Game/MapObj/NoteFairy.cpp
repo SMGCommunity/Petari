@@ -3,8 +3,7 @@
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Screen/NoteCounter.hpp"
 
-NoteFairy::NoteFairy(const char* pName)
-    : LiveActor(pName) {
+NoteFairy::NoteFairy(const char* pName) : LiveActor(pName) {
     _8C.x = 0.0f;
     _8C.y = 0.0f;
     _8C.z = 0.0f;
@@ -106,7 +105,6 @@ void NoteFairy::init(const JMapInfoIter& rIter) {
         mNoteCoord = MR::getRailTotalLength(this) / mMelodyNoteNum;
     } else {
         if (noteNum == -2) {
-
             s32 pointNum = MR::getRailPointNum(this);
             if (mSong < 0) {
                 mMelodyNoteNum = pointNum;
@@ -235,7 +233,7 @@ void NoteFairy::exeStartAppearDemo() {
     if (MR::isStep(this, 30)) {
         TVec3f* pos = MR::getPlayerPos();
         TVec3f stack_8(_8C);
-        stack_8.subInline(*pos); 
+        stack_8.subInline(*pos);
         MR::setPlayerFrontVec(stack_8, 1);
         enterDemoAppear(&NrvNoteFairy::NoteFairyNrvDemoAppear::sInstance, true);
     }
@@ -450,8 +448,7 @@ bool NoteFairy::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceive
     return false;
 }
 
-NoteFairy::~NoteFairy() {
-}
+NoteFairy::~NoteFairy() {}
 
 namespace NrvNoteFairy {
     INIT_NERVE(NoteFairyNrvHide);
@@ -463,4 +460,4 @@ namespace NrvNoteFairy {
     INIT_NERVE(NoteFairyNrvEndWait);
     INIT_NERVE(NoteFairyNrvSuccessDemo);
     INIT_NERVE(NoteFairyNrvSuccess);
-}; // namespace NrvNoteFairy
+};  // namespace NrvNoteFairy

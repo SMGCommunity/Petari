@@ -22,5 +22,5 @@ public:
     void exeRecover();
 
     CollisionParts* _8C;
-    f32             _90;
+    f32 _90;
 };

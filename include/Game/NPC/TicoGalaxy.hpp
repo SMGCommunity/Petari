@@ -19,6 +19,6 @@ public:
     virtual void disappear(bool);
     virtual void appearInformation() const;
 
-    const char*   mGalaxyName; // 0x208
-    TicoStarRing* mStarRing;   // 0x20C
+    const char* mGalaxyName;  // 0x208
+    TicoStarRing* mStarRing;  // 0x20C
 };

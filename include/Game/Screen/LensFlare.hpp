@@ -27,7 +27,7 @@ public:
     void notifyInArea();
 
 private:
-    /* 0x8C */ TVec3f          _8C;
+    /* 0x8C */ TVec3f _8C;
     /* 0x98 */ TriggerChecker* _98;
     /* 0x9C */ TriggerChecker* _9C;
 };
@@ -73,28 +73,28 @@ public:
 
     void pauseOff();
     void setDrawSyncToken();
-    s32  checkArea();
+    s32 checkArea();
     bool checkBrightObj(bool);
     void controlFlare(s32, bool);
 
 private:
-    /* 0x0C */ void*                                              _C;
-    /* 0x10 */ LensFlareRing*                                     mRing;
-    /* 0x14 */ LensFlareGlow*                                     mGlow;
-    /* 0x18 */ LensFlareLine*                                     mLine;
+    /* 0x0C */ void* _C;
+    /* 0x10 */ LensFlareRing* mRing;
+    /* 0x14 */ LensFlareGlow* mGlow;
+    /* 0x18 */ LensFlareLine* mLine;
     /* 0x1C */ MR::Vector< MR::FixedArray< BrightObjBase*, 16 > > mBrightObjArray;
-    /* 0x60 */ TVec2f                                             _60;
-    /* 0x68 */ f32                                                _68;
-    /* 0x6C */ TVec2f                                             _6C;
-    /* 0x74 */ f32                                                _74;
-    /* 0x78 */ f32                                                _78;
-    /* 0x7C */ u16                                                _7C;
-    /* 0x7E */ u16                                                mDrawSyncTokenIndex;
-    /* 0x80 */ BrightCamInfo*                                     mBrightCamInfo;
+    /* 0x60 */ TVec2f _60;
+    /* 0x68 */ f32 _68;
+    /* 0x6C */ TVec2f _6C;
+    /* 0x74 */ f32 _74;
+    /* 0x78 */ f32 _78;
+    /* 0x7C */ u16 _7C;
+    /* 0x7E */ u16 mDrawSyncTokenIndex;
+    /* 0x80 */ BrightCamInfo* mBrightCamInfo;
 };
 
 namespace MR {
     void addBrightObj(BrightObjBase* pBrightObj);
     void setLensFlareDrawSyncToken();
-    u16  getLensFlareDrawSyncTokenIndex();
-}; // namespace MR
+    u16 getLensFlareDrawSyncTokenIndex();
+};  // namespace MR

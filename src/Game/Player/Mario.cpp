@@ -43,8 +43,7 @@
 #include "Game/Util/DirectDraw.hpp"
 #include "revolution/mtx.h"
 
-Mario::Mario(MarioActor* actor)
-    : MarioModule(actor) {
+Mario::Mario(MarioActor* actor) : MarioModule(actor) {
     initMember();
     mVelocity.zero();
     _13C.zero();
@@ -406,7 +405,7 @@ void Mario::updateTimers() {
         _434--;
     }
     MarioHang* hang = mHang;
-    u16        hangTimer = hang->mHangTimer;
+    u16 hangTimer = hang->mHangTimer;
     if (hangTimer == 0) {
         return;
     } else {
@@ -675,8 +674,8 @@ void Mario::fixFrontVecFromUpSide() {
     if (MR::isNearZero(frontVec, 0.001f) == false) {
         setFrontVec(frontVec);
         _22C = mFrontVec;
-        float  scaleFactor = PSVECMag((Vec*)&_328);
-        TVec3f scaledFront(mFrontVec); // inlined when it shouldn't be
+        float scaleFactor = PSVECMag((Vec*)&_328);
+        TVec3f scaledFront(mFrontVec);  // inlined when it shouldn't be
         scaledFront.scale(scaleFactor);
         _328 = scaledFront;
     }
@@ -713,7 +712,7 @@ void Mario::setFrontVec(const TVec3f& rFront) {
         }
         if (plusMinus6A0.dot(rFront) > 0.0f) {
             // maybe this reflects rFront around _6A0?? (very unsure)
-            float  f1 = MR::vecKillElement(rFront, plusMinus6A0, &frontWithout6A0);
+            float f1 = MR::vecKillElement(rFront, plusMinus6A0, &frontWithout6A0);
             TVec3f scaled6A0(plusMinus6A0);
             scaled6A0.scale(f1);
             frontWithout6A0 -= scaled6A0;
@@ -759,7 +758,7 @@ void Mario::setFrontVecKeepUpAngle(const TVec3f& frontVec, f32 angle) {
 }
 
 void Mario::setFrontVecKeepUp(const TVec3f& rFront, u32 _750_set) {
-    Mtx    rotMtx;
+    Mtx rotMtx;
     TVec3f rotFrontVec;
     TVec3f rotVec2;
     PSMTXRotAxisRad(rotMtx, &mHeadVec, _74C);
@@ -805,7 +804,7 @@ void Mario::setFrontVecKeepUp(const TVec3f& rFront) {
     PSVECCrossProduct(&mSideVec, &mHeadVec, &front2);
     setFrontVec(front2);
     _22C = mFrontVec;
-    f32    _328mag = PSVECMag(&_328);
+    f32 _328mag = PSVECMag(&_328);
     TVec3f scaledFront(mFrontVec);
     scaledFront.scale(_328mag);
     _328 = scaledFront;
@@ -821,7 +820,7 @@ void Mario::setFrontVecKeepSide(const TVec3f& rFront) {
     PSVECCrossProduct(&mFrontVec, &mSideVec, &headVec);
     if (MR::normalizeOrZero(&headVec) != nullptr) {
         const TVec3f* gravity = getGravityVec();
-        TVec3f        up = -(*gravity);
+        TVec3f up = -(*gravity);
         mHeadVec = up;
         MR::normalize(&mHeadVec);
     } else {
@@ -831,7 +830,7 @@ void Mario::setFrontVecKeepSide(const TVec3f& rFront) {
     PSVECCrossProduct(&mSideVec, &mHeadVec, &front);
     setFrontVec(front);
     _22C = mFrontVec;
-    float  _328mag = PSVECMag(&_328);
+    float _328mag = PSVECMag(&_328);
     TVec3f scaledFront(mFrontVec);
     scaledFront.scale(_328mag);
     _328 = scaledFront;
@@ -840,7 +839,7 @@ void Mario::setFrontVecKeepSide(const TVec3f& rFront) {
 void Mario::setHeadAndFrontVecFromRotate(const TVec3f& rRotate) {
     TVec3f frontVec = TVec3f(0.0f, 0.0f, 1.0f);
     TVec3f headVec = TVec3f(0.0f, 1.0f, 0.0f);
-    Mtx    mtx;
+    Mtx mtx;
     MR::makeMtxTR(mtx, 0.0f, 0.0f, 0.0f, rRotate.x, rRotate.y, rRotate.z);
     PSMTXMultVec(mtx, (Vec*)&frontVec, (Vec*)&frontVec);
     PSMTXMultVecSR(mtx, (Vec*)&headVec, (Vec*)&headVec);
@@ -866,7 +865,7 @@ void Mario::draw() const {
         TDDraw::cameraInit3D();
         TDDraw::setup(0, 1, 0);
         TVec3f* p_2A0 = &mActor->_2A0;
-        TVec3f  diff31C_2A0(mShadowPos);
+        TVec3f diff31C_2A0(mShadowPos);
         diff31C_2A0 -= *p_2A0;
         TDDraw::drawCylinder(mPosition, diff31C_2A0, 32.0f, 0xffff0010, 0xff000004, 8);
         TVec3f diff2A0_31C(mActor->_2A0);
@@ -874,7 +873,7 @@ void Mario::draw() const {
         f32 diffMag = PSVECMag(&diff2A0_31C);
         MR::normalize(&diff2A0_31C);
         TVec3f _31CPlusStuff(mShadowPos);
-        f32    _37CMod10 = mActor->_37C % 0xa;
+        f32 _37CMod10 = mActor->_37C % 0xa;
         _31CPlusStuff += diff2A0_31C.scaleInline(diffMag).scaleInline(0.125f).scaleInline(_37CMod10).scaleInline(0.1f);
         f32 one_eighth = 0.125f;
         for (u32 i = 0; i < 8; i++) {
@@ -1007,7 +1006,7 @@ void Mario::setGravityVec(const TVec3f& rGravity) {
 }
 
 void Mario::updateSoundCode() {
-    s32    soundCode = -1;
+    s32 soundCode = -1;
     Mario* pPlayer = getPlayer();
     if (pPlayer->mMovementStates._1) {
         if (mGroundPolygon->isValid()) {
@@ -1194,9 +1193,8 @@ void Mario::initAfterConst() {
                         TVec3f stack_38 = -(*_57C[i]->getNormal(0));
                         TVec3f stack_44(stack_38);
                         stack_44.scale(300.0f);
-                        if (MR::getFirstPolyOnLineToMap(&stack_bc, &stack_110, mActor->_2A0, stack_44) && strcmp(MR::getWallCodeString(_57C[i]), "Fur")) {
-                            MarioActor* pActor2 = mActor;
-                            pActor2->entryWallWalkMode(stack_bc, *stack_110.getNormal(0));
+                        if (MR::getFirstPolyOnLineToMap(&stack_bc, &stack_110, mActor->_2A0, stack_44) && strcmp(MR::getWallCodeString(_57C[i]),
+"Fur")) { MarioActor* pActor2 = mActor; pActor2->entryWallWalkMode(stack_bc, *stack_110.getNormal(0));
                         }
                     }
                 }
@@ -1385,7 +1383,8 @@ const TVec3f* Mario::getGravityVec() const {
     } else if (_430 == 0xd) {
         b1 = false;
     }
-    if (!isSlipFloorCode(_960) && b1 && !isPlayerModeHopper() && !isPlayerModeTeresa() && !isDamaging() && !isStatusActive(6) && !isStatusActive(4) && !isStatusActive(0x13) && _430 != 5 && mActor->_334 == 0 && mMovementStates.jumping && !mMovementStates._22 && _3BC < 8) {
+    if (!isSlipFloorCode(_960) && b1 && !isPlayerModeHopper() && !isPlayerModeTeresa() && !isDamaging() && !isStatusActive(6) && !isStatusActive(4) &&
+        !isStatusActive(0x13) && _430 != 5 && mActor->_334 == 0 && mMovementStates.jumping && !mMovementStates._22 && _3BC < 8) {
         return &_374;
     }
     return &mAirGravityVec;

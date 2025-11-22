@@ -9,7 +9,7 @@ public:
     MarioHolder();
     ~MarioHolder();
 
-    void        setMarioActor(MarioActor* actor);
+    void setMarioActor(MarioActor* actor);
     MarioActor* getMarioActor() const;
 
     MarioActor* mActor;

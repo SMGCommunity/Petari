@@ -31,4 +31,4 @@ namespace MR {
     void settingGravityParamFromJMap(PlanetGravity* pGravity, const JMapInfoIter& rIter);
     void getJMapInfoGravityType(const JMapInfoIter& rIter, PlanetGravity* pGravity);
     void getJMapInfoGravityPower(const JMapInfoIter& rIter, PlanetGravity* pGravity);
-}; // namespace MR
+};  // namespace MR

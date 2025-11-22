@@ -1,9 +1,8 @@
 #include "Game/MapObj/ExterminationChecker.hpp"
-#include "Game/MapObj/KeySwitch.hpp"
 #include "Game/LiveActor/LiveActorGroup.hpp"
+#include "Game/MapObj/KeySwitch.hpp"
 
-ExterminationChecker::ExterminationChecker(const char* pName)
-    : LiveActor(pName) {
+ExterminationChecker::ExterminationChecker(const char* pName) : LiveActor(pName) {
     mGroup = nullptr;
     mKeySwitch = nullptr;
     mKeySwitchPos.x = 0.0f;
@@ -48,8 +47,7 @@ void ExterminationChecker::init(const JMapInfoIter& rIter) {
     }
 }
 
-void ExterminationChecker::control() {
-}
+void ExterminationChecker::control() {}
 
 void ExterminationChecker::exeWatching() {
     for (s32 i = 0; i < mGroup->mObjectCount; i++) {
@@ -115,14 +113,13 @@ namespace MR {
         checker->_A1 = 1;
         return checker;
     }
-}; // namespace MR
+};  // namespace MR
 
-ExterminationChecker::~ExterminationChecker() {
-}
+ExterminationChecker::~ExterminationChecker() {}
 
 namespace NrvExterminationChecker {
     INIT_NERVE(ExterminationCheckerNrvWatching);
     INIT_NERVE(ExterminationCheckerNrvTryStartDemoAppear);
     INIT_NERVE(ExterminationCheckerNrvAppearStar);
     INIT_NERVE(ExterminationCheckerNrvAppearKeySwitch);
-}; // namespace NrvExterminationChecker
+};  // namespace NrvExterminationChecker

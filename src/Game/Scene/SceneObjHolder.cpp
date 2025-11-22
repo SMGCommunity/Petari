@@ -425,13 +425,9 @@ NameObj* SceneObjHolder::newEachObj(int id) {
 }
 
 namespace MR {
-    NameObj* createSceneObj(int id) {
-        return getSceneObjHolder()->create(id);
-    }
+    NameObj* createSceneObj(int id) { return getSceneObjHolder()->create(id); }
 
-    SceneObjHolder* getSceneObjHolder() {
-        return SingletonHolder< GameSystem >::get()->mSceneController->getSceneObjHolder();
-    }
+    SceneObjHolder* getSceneObjHolder() { return SingletonHolder< GameSystem >::get()->mSceneController->getSceneObjHolder(); }
 
     bool isExistSceneObj(int id) {
         GameSystemSceneController* pSceneController = SingletonHolder< GameSystem >::get()->mSceneController;
@@ -446,4 +442,4 @@ namespace MR {
 
         return MR::getSceneObjHolder()->isExist(id);
     }
-}; // namespace MR
+};  // namespace MR

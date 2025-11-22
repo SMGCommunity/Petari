@@ -1,29 +1,17 @@
 #include "Game/AudioLib/AudRemixSequencer.hpp"
-#include "Game/AudioLib/AudWrap.hpp"
 #include "Game/AudioLib/AudSoundNameConverter.hpp"
 #include "Game/AudioLib/AudSoundObject.hpp"
+#include "Game/AudioLib/AudWrap.hpp"
 #include "Game/GameAudio/AudTalkSoundData.hpp"
 #include "Game/SingletonHolder.hpp"
 #include "JSystem/JAudio2/JAISoundHandles.hpp"
 
 namespace {
     static const char* cRemixNoteTrackSeId[] = {
-        "SE_RS_REMIX_NOTE_GET_TRK0",
-        "SE_RS_REMIX_NOTE_GET_TRK1",
-        "SE_RS_REMIX_NOTE_GET_TRK2",
-        "SE_RS_REMIX_NOTE_GET_TRK3",
-        "SE_RS_REMIX_NOTE_GET_TRK4",
-        "SE_RS_REMIX_NOTE_GET_TRK5",
-        "SE_RS_REMIX_NOTE_GET_TRK6",
-        "SE_RS_REMIX_NOTE_GET_TRK7",
-        "SE_RS_REMIX_NOTE_GET_TRK8",
-        "SE_RS_REMIX_NOTE_GET_TRK9",
-        "SE_RS_REMIX_NOTE_GET_TRK10",
-        "SE_RS_REMIX_NOTE_GET_TRK11",
-        "SE_RS_REMIX_NOTE_GET_TRK12",
-        "SE_RS_REMIX_NOTE_GET_TRK13",
-        "SE_RS_REMIX_NOTE_GET_TRK14",
-        "SE_RS_REMIX_NOTE_GET_TRK15",
+        "SE_RS_REMIX_NOTE_GET_TRK0",  "SE_RS_REMIX_NOTE_GET_TRK1",  "SE_RS_REMIX_NOTE_GET_TRK2",  "SE_RS_REMIX_NOTE_GET_TRK3",
+        "SE_RS_REMIX_NOTE_GET_TRK4",  "SE_RS_REMIX_NOTE_GET_TRK5",  "SE_RS_REMIX_NOTE_GET_TRK6",  "SE_RS_REMIX_NOTE_GET_TRK7",
+        "SE_RS_REMIX_NOTE_GET_TRK8",  "SE_RS_REMIX_NOTE_GET_TRK9",  "SE_RS_REMIX_NOTE_GET_TRK10", "SE_RS_REMIX_NOTE_GET_TRK11",
+        "SE_RS_REMIX_NOTE_GET_TRK12", "SE_RS_REMIX_NOTE_GET_TRK13", "SE_RS_REMIX_NOTE_GET_TRK14", "SE_RS_REMIX_NOTE_GET_TRK15",
     };
 }
 
@@ -60,8 +48,8 @@ bool AudRmxSeqNoteOnTimer::update(f32 f1) {
     if (_0 <= 0.0f) {
         if (_C != nullptr && _8 != nullptr) {
             AudRemixSequencer* pSeq = AudWrap::getRemixSequencer();
-            JAISoundID         id = getFreeSeID();
-            JAISoundHandle*    pHandle = AudWrap::getRemixSeqObject()->startSound(id);
+            JAISoundID id = getFreeSeID();
+            JAISoundHandle* pHandle = AudWrap::getRemixSeqObject()->startSound(id);
             AudWrap::getSystemSeObject()->writePort(pHandle, 0xc, _C->_0);
             AudWrap::getSystemSeObject()->writePort(pHandle, 0xb, _8->_0);
             AudWrap::getSystemSeObject()->writePort(pHandle, 0xf, _8->_4);
@@ -85,10 +73,9 @@ bool AudRmxSeqNoteOnTimer::update(f32 f1) {
 }
 
 JAISoundID AudRmxSeqNoteOnTimer::getFreeSeID() {
-
     for (u32 i = 0; i < 0x10; i++) {
         JAISoundID id = AudSingletonHolder< AudSoundNameConverter >::get()->getSoundID(cRemixNoteTrackSeId[i]);
-        u32*       handleID = AudWrap::getRemixSeqObject()->getHandleSoundID(id);
+        u32* handleID = AudWrap::getRemixSeqObject()->getHandleSoundID(id);
         if (handleID == nullptr) {
             return id;
         }

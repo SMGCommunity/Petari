@@ -4,8 +4,7 @@
 #include "Game/Util/DemoUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 
-AstroDomeBlueStar::CaptureActor::CaptureActor()
-    : LiveActor("キャプチャ用アクター") {
+AstroDomeBlueStar::CaptureActor::CaptureActor() : LiveActor("キャプチャ用アクター") {
     _8C.identity();
 }
 
@@ -40,12 +39,10 @@ namespace NrvAstroDomeBlueStar {
     NEW_NERVE(AstroDomeBlueStarNrvGalaxyConfirmStart, AstroDomeBlueStar, GalaxyConfirmStart);
     NEW_NERVE(AstroDomeBlueStarNrvGalaxyConfirm, AstroDomeBlueStar, GalaxyConfirm);
     NEW_NERVE(AstroDomeBlueStarNrvGalaxyConfirmCancel, AstroDomeBlueStar, GalaxyConfirmCancel);
-}; // namespace NrvAstroDomeBlueStar
+};  // namespace NrvAstroDomeBlueStar
 
 AstroDomeBlueStar::AstroDomeBlueStar(const char* pName)
-    : LiveActor(pName), mCaptureRibbon(nullptr), _F0(0), mCaptureActor(nullptr),
-      mZoomPos(gZeroVec) {
-
+    : LiveActor(pName), mCaptureRibbon(nullptr), _F0(0), mCaptureActor(nullptr), mZoomPos(gZeroVec) {
     _90.identity();
     _C0.identity();
 }

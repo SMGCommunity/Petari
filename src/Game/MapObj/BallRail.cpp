@@ -1,9 +1,8 @@
-#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/MapObj/BallRail.hpp"
+#include "Game/LiveActor/HitSensor.hpp"
 #include <JSystem/JMath/JMath.hpp>
 
-BallRail::BallRail(const char* pName)
-    : LiveActor(pName) {
+BallRail::BallRail(const char* pName) : LiveActor(pName) {
     mRailPoints = nullptr;
     _90 = nullptr;
     mNumPoints = 0;
@@ -38,8 +37,7 @@ void BallRail::init(const JMapInfoIter& rIter) {
     appear();
 }
 
-void BallRail::control() {
-}
+void BallRail::control() {}
 
 bool BallRail::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (msg == ACTMES_SPHERE_PLAYER_BINDED && isNerve(&NrvBallRail::BallRailNrvWait::sInstance)) {
@@ -194,16 +192,13 @@ void BallRail::exeNoBind() {
     }
 }
 
-BallRailPoint::BallRailPoint()
-    : _0(0, 0, 0), _C(1, 0, 0), _18(0, 1, 0), _24(0, 0, 1) {
-}
+BallRailPoint::BallRailPoint() : _0(0, 0, 0), _C(1, 0, 0), _18(0, 1, 0), _24(0, 0, 1) {}
 
-BallRail::~BallRail() {
-}
+BallRail::~BallRail() {}
 
 namespace NrvBallRail {
     INIT_NERVE(BallRailNrvWait);
     INIT_NERVE(BallRailNrvSetUp);
     INIT_NERVE(BallRailNrvRun);
     INIT_NERVE(BallRailNrvNoBind);
-}; // namespace NrvBallRail
+};  // namespace NrvBallRail

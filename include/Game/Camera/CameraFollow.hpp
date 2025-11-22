@@ -7,11 +7,11 @@ public:
     CameraFollow(const char*);
     virtual ~CameraFollow();
 
-    virtual void               reset();
-    virtual CameraTargetObj*   calc();
-    virtual bool               isEnableToRoundLeft() const;
-    virtual bool               isEnableToRoundRight() const;
-    virtual bool               isEnableToReset() const;
+    virtual void reset();
+    virtual CameraTargetObj* calc();
+    virtual bool isEnableToRoundLeft() const;
+    virtual bool isEnableToRoundRight() const;
+    virtual bool isEnableToReset() const;
     virtual CamTranslatorBase* createTranslator();
 
     void setParam(f32, f32, f32, f32, f32, bool);
@@ -20,7 +20,7 @@ public:
     void constrainDistance(TVec3f*, const TVec3f&);
     void constrainAngleX(f32*);
     void constrainAngleY(f32*, const TVec3f&, f32);
-    f32  getMagnitudeOfMovingRound() const;
+    f32 getMagnitudeOfMovingRound() const;
     void checkShiftStateToRound(const TVec3f&, const TVec3f&);
     void arrangeHeight();
     void reflectRotOffset();
@@ -45,12 +45,12 @@ public:
     f32 _70;
     f32 _74;
     f32 _78;
-    u8  _7C;
-    u8  _7D;
-    u8  _7E[2];
+    u8 _7C;
+    u8 _7D;
+    u8 _7E[2];
     f32 _80;
     f32 _84;
-    u8  _88;
-    u8  _89;
-    u8  _8A[2];
+    u8 _88;
+    u8 _89;
+    u8 _8A[2];
 };

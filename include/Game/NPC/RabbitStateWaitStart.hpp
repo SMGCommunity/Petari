@@ -13,27 +13,27 @@ public:
     virtual void control();
     virtual bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
     virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
-    void         setTalkActionName(const char* pName);
-    void         requestTrample();
-    void         requestSpin();
-    void         requestHitReaction();
-    bool         isEnableReaction() const;
-    bool         trySmallTurn();
-    bool         tryTalk();
-    bool         tryPointing();
-    void         exeWait();
-    void         exeSmallTurn();
-    void         exeHitReaction();
-    void         exeTrample();
-    void         exeSpin();
-    void         exePointing();
-    void         exeTalk();
+    void setTalkActionName(const char* pName);
+    void requestTrample();
+    void requestSpin();
+    void requestHitReaction();
+    bool isEnableReaction() const;
+    bool trySmallTurn();
+    bool tryTalk();
+    bool tryPointing();
+    void exeWait();
+    void exeSmallTurn();
+    void exeHitReaction();
+    void exeTrample();
+    void exeSpin();
+    void exePointing();
+    void exeTalk();
 
-    u32  _8;
-    u32  _C;
-    u32  _10;
-    u32  _14;
-    u32  _18;
+    u32 _8;
+    u32 _C;
+    u32 _10;
+    u32 _14;
+    u32 _18;
     bool _1C;
 };
 
@@ -45,4 +45,4 @@ namespace NrvRabbitStateWatiStart {
     NERVE_DECL_EXE(RabbitStateWaitStartNrvSpin, RabbitStateWaitStart, Spin);
     NERVE_DECL_EXE(RabbitStateWaitStartNrvPointing, RabbitStateWaitStart, Pointing);
     NERVE_DECL_EXE(RabbitStateWaitStartNrvTalk, RabbitStateWaitStart, Talk);
-} // namespace NrvRabbitStateWatiStart
+}  // namespace NrvRabbitStateWatiStart

@@ -3,29 +3,17 @@
 #include "Game/Camera/CameraShakeTask.hpp"
 #include "Game/Util/CameraUtil.hpp"
 
-f32 sVerticalTaskTable[7] = {
-    0.08f,
-    0.2f,
-    0.5f,
-    1.0f,
-    3.0f,
-    6.0f,
-    9.0f};
+f32 sVerticalTaskTable[7] = {0.08f, 0.2f, 0.5f, 1.0f, 3.0f, 6.0f, 9.0f};
 
-f32 sHorizontalTable[3] = {
-    0.3f,
-    1.0f,
-    3.0f};
+f32 sHorizontalTable[3] = {0.3f, 1.0f, 3.0f};
 
-CameraShaker::CameraShaker(const char* pName)
-    : NameObj(pName) {
+CameraShaker::CameraShaker(const char* pName) : NameObj(pName) {
     createSinglyVerticalTask();
     createSinglyHorizontalTask();
     createInfinityTask();
 }
 
-CameraShaker::~CameraShaker() {
-}
+CameraShaker::~CameraShaker() {}
 
 void CameraShaker::movement() {
     updateSinglyVerticalTask();
@@ -63,7 +51,7 @@ void CameraShaker::stopShakingInfinity(NameObj* pNameObj) {
 void CameraShaker::createSinglyVerticalTask() {
     for (u32 i = 0; i < NR_VERTICAL_TASKS; i++) {
         CameraShakePatternSingly* singly = new CameraShakePatternSingly(sVerticalTaskTable[i]);
-        CameraShakeTask*          task = new CameraShakeTask(singly);
+        CameraShakeTask* task = new CameraShakeTask(singly);
 
         mVerticalTasks[i] = task;
     }
@@ -95,7 +83,7 @@ void CameraShaker::createSinglyHorizontalTask() {
 void CameraShaker::createInfinityTask() {
     for (u32 i = 0; i < NR_INFINITY_TASKS; i++) {
         CameraShakePatternVerticalSin* sin = new CameraShakePatternVerticalSin(1.0f, 15.0f);
-        CameraShakeTask*               task = new CameraShakeTask(sin);
+        CameraShakeTask* task = new CameraShakeTask(sin);
 
         mInfinityTasks[i] = task;
         mInfinityNameObjs[i] = nullptr;

@@ -1,7 +1,7 @@
 #include "Game/Boss/BossKameckStateBattle.hpp"
+#include "Game/Boss/BossKameck.hpp"
 #include "Game/Boss/BossKameckBattlePattarn.hpp"
 #include "Game/Boss/BossKameckMoveRail.hpp"
-#include "Game/Boss/BossKameck.hpp"
 #include "Game/Enemy/KameckBeam.hpp"
 #include "Game/Enemy/KameckBeamHolder.hpp"
 
@@ -18,10 +18,9 @@ namespace NrvBossKameckStateBattle {
     NEW_NERVE(BossKameckStateBattleNrvDamage, BossKameckStateBattle, Damage);
     NEW_NERVE(BossKameckStateBattleNrvRecover, BossKameckStateBattle, Recover);
     NEW_NERVE(BossKameckStateBattleNrvGuard, BossKameckStateBattle, Guard);
-}; // namespace NrvBossKameckStateBattle
+};  // namespace NrvBossKameckStateBattle
 
-BossKameckStateBattle::BossKameckStateBattle(BossKameck* pBoss)
-    : mBossKameck(pBoss), ActorStateBase< BossKameck >("ボスカメック戦闘状態") {
+BossKameckStateBattle::BossKameckStateBattle(BossKameck* pBoss) : mBossKameck(pBoss), ActorStateBase< BossKameck >("ボスカメック戦闘状態") {
     mMoveRail = nullptr;
     mBattlePattarn = nullptr;
     mBeam = nullptr;
@@ -430,7 +429,14 @@ void BossKameckStateBattle::selectPosition() {
 bool BossKameckStateBattle::isEnableDamage() const {
     bool ret = false;
 
-    if (isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvWait::sInstance) || isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvMove::sInstance) || isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvHideMoveStart::sInstance) || isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvHideMoveEnd::sInstance) || isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvSummonKameckWait::sInstance) || isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvSummonKameck::sInstance) || isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvAttackWait::sInstance) || isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvAttack::sInstance)) {
+    if (isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvWait::sInstance) ||
+        isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvMove::sInstance) ||
+        isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvHideMoveStart::sInstance) ||
+        isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvHideMoveEnd::sInstance) ||
+        isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvSummonKameckWait::sInstance) ||
+        isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvSummonKameck::sInstance) ||
+        isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvAttackWait::sInstance) ||
+        isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvAttack::sInstance)) {
         return true;
     }
 
@@ -440,12 +446,18 @@ bool BossKameckStateBattle::isEnableDamage() const {
 bool BossKameckStateBattle::isEnableGuard() const {
     bool ret = false;
 
-    if (isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvWait::sInstance) || isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvMove::sInstance) || isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvHideMoveStart::sInstance) || isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvHideMoveEnd::sInstance) || isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvSummonKameckWait::sInstance) || isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvSummonKameck::sInstance) || isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvAttackWait::sInstance) || isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvAttack::sInstance)) {
+    if (isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvWait::sInstance) ||
+        isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvMove::sInstance) ||
+        isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvHideMoveStart::sInstance) ||
+        isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvHideMoveEnd::sInstance) ||
+        isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvSummonKameckWait::sInstance) ||
+        isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvSummonKameck::sInstance) ||
+        isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvAttackWait::sInstance) ||
+        isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvAttack::sInstance)) {
         return true;
     }
 
     return ret;
 }
 
-BossKameckStateBattle::~BossKameckStateBattle() {
-}
+BossKameckStateBattle::~BossKameckStateBattle() {}

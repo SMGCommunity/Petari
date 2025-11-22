@@ -4,8 +4,7 @@
 #include "Game/NameObj/NameObj.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 
-ClipAreaDropHolder::ClipAreaDropHolder()
-    : DeriveActorGroup< ClipAreaDrop >("クリップエリアのしずく管理", 32) {
+ClipAreaDropHolder::ClipAreaDropHolder() : DeriveActorGroup< ClipAreaDrop >("クリップエリアのしずく管理", 32) {
     ClipAreaDrop* pClipArea = 0;
     for (int i = 0; i < 32; i++) {
         pClipArea = new ClipAreaDrop("クリップエリアのしずく");
@@ -15,9 +14,7 @@ ClipAreaDropHolder::ClipAreaDropHolder()
 }
 
 namespace MR {
-    NameObj* createClipAreaDropHolder() {
-        return MR::createSceneObj(0x4F);
-    }
+    NameObj* createClipAreaDropHolder() { return MR::createSceneObj(0x4F); }
 
     ClipAreaDrop* getDeadClipAreaDrop() {
         ClipAreaDropHolder* pObj = (ClipAreaDropHolder*)MR::getSceneObjHolder()->getObj(0x4F);
@@ -38,5 +35,5 @@ namespace MR {
         pClipArea->appear();
         return true;
     }
-} // namespace MR
+}  // namespace MR
 ClipAreaDropHolder::~ClipAreaDropHolder() {}

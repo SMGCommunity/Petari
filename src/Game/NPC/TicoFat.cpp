@@ -1,12 +1,12 @@
 #include "Game/NPC/TicoFat.hpp"
 #include "Game/Demo/AstroDemoFunction.hpp"
 #include "Game/Effect/MultiEmitter.hpp"
+#include "Game/Enemy/AnimScaleController.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
+#include "Game/LiveActor/PartsModel.hpp"
 #include "Game/MapObj/SpinDriverShootPath.hpp"
 #include "Game/MapObj/StarPieceDirector.hpp"
 #include "Game/NPC/NPCActorItem.hpp"
-#include "Game/LiveActor/PartsModel.hpp"
-#include "Game/Enemy/AnimScaleController.hpp"
 #include "Game/Screen/FullnessMeter.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/ActorSwitchUtil.hpp"
@@ -38,7 +38,7 @@ namespace NrvTicoFat {
     NEW_NERVE(TicoFatNrvWipeIn, TicoFat, WipeIn);
     NEW_NERVE(TicoFatNrvInfo, TicoFat, Info);
     NEW_NERVE(TicoFatNrvAfter, TicoFat, After);
-}; // namespace NrvTicoFat
+};  // namespace NrvTicoFat
 
 namespace {
     class TicoFatParam : public AnimScaleParam {
@@ -50,10 +50,10 @@ namespace {
         }
     };
 
-    static const char*  sInfoMessageID = "InformationPlanet";
+    static const char* sInfoMessageID = "InformationPlanet";
     static TicoFatParam sParam;
-    static Color8       hPointLight = Color8(0xFF, 0x7D, 0xE6, 0xFF);
-}; // namespace
+    static Color8 hPointLight = Color8(0xFF, 0x7D, 0xE6, 0xFF);
+};  // namespace
 
 const char* TicoFat::getActionName(const char* pName) {
     if (calcScale() > 1.6f) {
@@ -111,8 +111,7 @@ const char* TicoFat::getActionName(const char* pName) {
     return pName;
 }
 
-TicoFat::TicoFat(const char* pName)
-    : NPCActor(pName) {
+TicoFat::TicoFat(const char* pName) : NPCActor(pName) {
     mCameraInfo = nullptr;
     mItem = nullptr;
     mShootPath = nullptr;
@@ -266,13 +265,18 @@ void TicoFat::setCameraParam() {
     TVec3f trans, yDir, zDir, xDir, v18;
     MR::extractMtxXYZDir(getBaseMtx(), &xDir, &yDir, &zDir);
     MR::extractMtxTrans(getBaseMtx(), &trans);
-    xDir.set< f32 >(((1.0f - (2.0f * (_B0.y * _B0.y))) - (2.0f * (_B0.z * _B0.z))), ((2.0f * (_B0.x * _B0.y)) + (2.0f * (_B0.h * _B0.z))), ((2.0f * (_B0.x * _B0.z)) - (2.0f * (_B0.h * _B0.y))));
-    yDir.set< f32 >(((2.0f * (_B0.x * _B0.y)) - (2.0f * (_B0.h * _B0.z))), ((1.0f - (2.0f * (_B0.x * _B0.x))) - (2.0f * (_B0.z * _B0.z))), ((2.0f * (_B0.y * _B0.z)) + (2.0f * (_B0.h * _B0.x))));
-    zDir.set< f32 >(((2.0f * (_B0.x * _B0.z)) + (2.0f * (_B0.h * _B0.y))), ((2.0f * (_B0.y * _B0.z)) - (2.0f * (_B0.h * _B0.x))), ((1.0f - (2.0f * (_B0.x * _B0.x))) - (2.0f * (_B0.y * _B0.y))));
+    xDir.set< f32 >(((1.0f - (2.0f * (_B0.y * _B0.y))) - (2.0f * (_B0.z * _B0.z))), ((2.0f * (_B0.x * _B0.y)) + (2.0f * (_B0.h * _B0.z))),
+                    ((2.0f * (_B0.x * _B0.z)) - (2.0f * (_B0.h * _B0.y))));
+    yDir.set< f32 >(((2.0f * (_B0.x * _B0.y)) - (2.0f * (_B0.h * _B0.z))), ((1.0f - (2.0f * (_B0.x * _B0.x))) - (2.0f * (_B0.z * _B0.z))),
+                    ((2.0f * (_B0.y * _B0.z)) + (2.0f * (_B0.h * _B0.x))));
+    zDir.set< f32 >(((2.0f * (_B0.x * _B0.z)) + (2.0f * (_B0.h * _B0.y))), ((2.0f * (_B0.y * _B0.z)) - (2.0f * (_B0.h * _B0.x))),
+                    ((1.0f - (2.0f * (_B0.x * _B0.x))) - (2.0f * (_B0.y * _B0.y))));
 
     v18.setPS2(_C0);
     TVec3f* ptr = &v18;
-    MR::setProgrammableCameraParam("デブチコカメラ", (*ptr + (xDir * 0.0f) + (yDir * 0.0f)) + (zDir * 0.0f), (*ptr + (xDir * 0.0f)) + ((yDir * 100.0f)) + (zDir * MR::getLinerValueFromMinMax(calcScale(), 1.0f, 1.9f, 1300.0f, 1680.0f)), yDir, false);
+    MR::setProgrammableCameraParam(
+        "デブチコカメラ", (*ptr + (xDir * 0.0f) + (yDir * 0.0f)) + (zDir * 0.0f),
+        (*ptr + (xDir * 0.0f)) + ((yDir * 100.0f)) + (zDir * MR::getLinerValueFromMinMax(calcScale(), 1.0f, 1.9f, 1300.0f, 1680.0f)), yDir, false);
 }
 
 void TicoFat::control() {
@@ -280,7 +284,10 @@ void TicoFat::control() {
     TVec3f trans;
     MR::extractMtxTrans(MR::getJointMtx(this, "Center"), &trans);
     MR::requestPointLight(this, TVec3f(trans), hPointLight, 0.99864602f, -1);
-    if (isNerve(&NrvTicoFat::TicoFatNrvPrep::sInstance) || isNerve(&NrvTicoFat::TicoFatNrvWait::sInstance) || isNerve(&NrvTicoFat::TicoFatNrvPoint::sInstance) || isNerve(&NrvTicoFat::TicoFatNrvEat::sInstance) || isNerve(&NrvTicoFat::TicoFatNrvChem::sInstance) || isNerve(&NrvTicoFat::TicoFatNrvFullness::sInstance) || isNerve(&NrvTicoFat::TicoFatNrvDemo::sInstance)) {
+    if (isNerve(&NrvTicoFat::TicoFatNrvPrep::sInstance) || isNerve(&NrvTicoFat::TicoFatNrvWait::sInstance) ||
+        isNerve(&NrvTicoFat::TicoFatNrvPoint::sInstance) || isNerve(&NrvTicoFat::TicoFatNrvEat::sInstance) ||
+        isNerve(&NrvTicoFat::TicoFatNrvChem::sInstance) || isNerve(&NrvTicoFat::TicoFatNrvFullness::sInstance) ||
+        isNerve(&NrvTicoFat::TicoFatNrvDemo::sInstance)) {
         MR::startLevelSound(this, "SE_SM_LV_TICO_WAIT", -1, -1, -1);
     }
 
@@ -289,8 +296,8 @@ void TicoFat::control() {
     if (mStartEat) {
         if (!_1E0) {
             MR::invalidateClipping(this);
-            if (isNerve(&NrvTicoFat::TicoFatNrvPoint::sInstance) || isNerve(&NrvTicoFat::TicoFatNrvEat::sInstance) || isNerve(&NrvTicoFat::TicoFatNrvChem::sInstance) || isNerve(&NrvTicoFat::TicoFatNrvWait::sInstance)) {
-
+            if (isNerve(&NrvTicoFat::TicoFatNrvPoint::sInstance) || isNerve(&NrvTicoFat::TicoFatNrvEat::sInstance) ||
+                isNerve(&NrvTicoFat::TicoFatNrvChem::sInstance) || isNerve(&NrvTicoFat::TicoFatNrvWait::sInstance)) {
                 setNerve(&NrvTicoFat::TicoFatNrvTest::sInstance);
             }
         }
@@ -499,8 +506,7 @@ void TicoFat::initStarPieceSaveData(const JMapInfoIter& rIter) {
     }
 }
 
-void TicoFat::addStarPieceSaveData(s32) {
-}
+void TicoFat::addStarPieceSaveData(s32) {}
 
 void TicoFat::appearInformation() const {
     MR::appearInformationMessage(MR::getGameMessageDirect(sInfoMessageID), true);
@@ -552,7 +558,7 @@ void TicoFat::emitScreenEffect() {
 
 void TicoFat::updateScreenEffect() {
     const TVec3f camPos = MR::getCamPos();
-    TVec3f       v19(mPosition);
+    TVec3f v19(mPosition);
     JMathInlineVEC::PSVECSubtract(&v19, &camPos, &v19);
     MR::normalizeOrZero(&v19);
     MR::makeMtxFrontUpPos(&_17C, -MR::getCamZdir(), MR::getCamYdir(), MR::getCamPos() + (v19 * 500.0f));
@@ -951,5 +957,4 @@ void TicoFat::exeAfter() {
     }
 }
 
-TicoFat::~TicoFat() {
-}
+TicoFat::~TicoFat() {}

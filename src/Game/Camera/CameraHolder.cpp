@@ -1,3 +1,4 @@
+#include "Game/Camera/CameraHolder.hpp"
 #include "Game/Camera/Camera.hpp"
 #include "Game/Camera/CameraAnim.hpp"
 #include "Game/Camera/CameraBehind.hpp"
@@ -17,7 +18,6 @@
 #include "Game/Camera/CameraFooFighterPlanet.hpp"
 #include "Game/Camera/CameraFrontAndBack.hpp"
 #include "Game/Camera/CameraGround.hpp"
-#include "Game/Camera/CameraHolder.hpp"
 #include "Game/Camera/CameraInnerCylinder.hpp"
 #include "Game/Camera/CameraInwardSphere.hpp"
 #include "Game/Camera/CameraInwardTower.hpp"
@@ -48,9 +48,9 @@
 #include <cstring>
 
 struct CameraTableEntry {
-    const char* mName;                // 0x0
-    const char* mJapaneseDescription; // 0x4
-    Camera* (*mCreateFunction)(void); // 0x8
+    const char* mName;                 // 0x0
+    const char* mJapaneseDescription;  // 0x4
+    Camera* (*mCreateFunction)(void);  // 0x8
     u8 _C;
     u8 _D[3];
 };
@@ -334,17 +334,15 @@ namespace {
         {"CAM_TYPE_WATER_PLANET_BOSS", "水中プラネットボス", createCamera< CameraWaterPlanetBoss >, 1},
         {"CAM_TYPE_RAIL_WATCH", "レール注目", createCamera< CameraRailWatch >, 1},
         {"CAM_TYPE_SUBJECTIVE", "主観", createCamera< CameraSubjective >, 1}};
-} // namespace
+}  // namespace
 
-CameraHolder::CameraHolder(const char* pName)
-    : NameObj(pName) {
+CameraHolder::CameraHolder(const char* pName) : NameObj(pName) {
     createCameras();
     mDefaultCameraIndex = getIndexOf(gDefaultCameraName);
     mDefaultTranslator = mTranslators[mDefaultCameraIndex];
 }
 
-CameraHolder::~CameraHolder() {
-}
+CameraHolder::~CameraHolder() {}
 
 CamTranslatorBase* CameraHolder::getTranslator(s32 index) {
     return mTranslators[index];

@@ -1,9 +1,7 @@
 #include "Game/LiveActor/MessageSensorHolder.hpp"
 #include "Game/Util.hpp"
 
-MessageSensorHolder::MessageSensorHolder(const char* pName)
-    : LiveActor(pName) {
-}
+MessageSensorHolder::MessageSensorHolder(const char* pName) : LiveActor(pName) {}
 
 void MessageSensorHolder::init(const JMapInfoIter& rIter) {
     initHitSensor(1);

@@ -35,12 +35,12 @@ public:
 
     /* 0x20 */ ButtonPaneController* _20;
     /* 0x24 */ ButtonPaneController* _24;
-    /* 0x28 */ TVec2f                _28;
-    /* 0x30 */ SysInfoWindow*        _30;
-    /* 0x34 */ LuigiLetter*          mLuigiLetter;
+    /* 0x28 */ TVec2f _28;
+    /* 0x30 */ SysInfoWindow* _30;
+    /* 0x34 */ LuigiLetter* mLuigiLetter;
     /* 0x38 */ ButtonPaneController* _38;
-    /* 0x3C */ TVec2f                mStageTitleOffset;
-    /* 0x44 */ TVec2f                mCoinNumPos;
-    /* 0x4C */ TVec2f                mStarPieceNumPos;
-    /* 0x54 */ bool                  _54;
+    /* 0x3C */ TVec2f mStageTitleOffset;
+    /* 0x44 */ TVec2f mCoinNumPos;
+    /* 0x4C */ TVec2f mStarPieceNumPos;
+    /* 0x54 */ bool _54;
 };

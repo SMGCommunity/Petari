@@ -12,7 +12,7 @@ namespace MR {
     void initAnimCamera(const LiveActor*, const ActorCameraInfo*, const char*);
 
     ActorCameraInfo* createActorCameraInfo(const JMapInfoIter&);
-    bool             createActorCameraInfoIfExist(const JMapInfoIter&, ActorCameraInfo**);
+    bool createActorCameraInfoIfExist(const JMapInfoIter&, ActorCameraInfo**);
 
     bool initActorCamera(const LiveActor*, const JMapInfoIter&, ActorCameraInfo**);
     bool initMultiActorCamera(const LiveActor*, const JMapInfoIter&, ActorCameraInfo**, const char*);
@@ -66,4 +66,4 @@ namespace MR {
     void startRumbleWithShakeCameraNormalWeak(const LiveActor*, const char*, const char*, f32, f32);
     void startRumbleWithShakeCameraStrong(const LiveActor*, const char*, const char*, f32, f32);
 
-}; // namespace MR
+};  // namespace MR

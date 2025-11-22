@@ -20,7 +20,7 @@ public:
 
     void loadModelDrawMtx() const;
 
-    MtxPtr        mMtx;       // 0xC
-    J3DModelData* mModelData; // 0x10
-    _GXColor      mColor;     // 0x14
+    MtxPtr mMtx;               // 0xC
+    J3DModelData* mModelData;  // 0x10
+    _GXColor mColor;           // 0x14
 };

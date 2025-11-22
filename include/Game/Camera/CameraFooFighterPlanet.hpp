@@ -7,13 +7,13 @@ public:
     CameraFooFighterPlanet(const char*);
     virtual ~CameraFooFighterPlanet();
 
-    virtual void               reset();
-    virtual CameraTargetObj*   calc();
+    virtual void reset();
+    virtual CameraTargetObj* calc();
     virtual CamTranslatorBase* createTranslator();
 
     void goRoundBehind(TVec3f&, TVec3f&, TVec3f&);
 
-    f32 mAxisX;  // 0x4C
-    f32 mAxisY;  // 0x50
-    f32 mAngleA; // 0x54
+    f32 mAxisX;   // 0x4C
+    f32 mAxisY;   // 0x50
+    f32 mAngleA;  // 0x54
 };

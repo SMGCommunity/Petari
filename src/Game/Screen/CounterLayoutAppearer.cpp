@@ -1,5 +1,5 @@
-#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/CounterLayoutAppearer.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/NerveUtil.hpp"
 
@@ -8,14 +8,10 @@ namespace NrvCounterLayoutAppearer {
     NEW_NERVE(CounterLayoutAppearerNrvAppear, CounterLayoutAppearer, Appear);
     NEW_NERVE(CounterLayoutAppearerNrvShow, CounterLayoutAppearer, Show);
     NEW_NERVE(CounterLayoutAppearerNrvDisappear, CounterLayoutAppearer, Disappear);
-}; // namespace NrvCounterLayoutAppearer
+};  // namespace NrvCounterLayoutAppearer
 
 CounterLayoutAppearer::CounterLayoutAppearer(LayoutActor* pActor, const TVec2f& param2)
-    : NerveExecutor("カウンタ出現制御"),
-      mLayout(pActor),
-      _C(param2.x, param2.y),
-      mFollowPos(0.0f, 0.0f),
-      _1C(0.0f, 0.0f) {
+    : NerveExecutor("カウンタ出現制御"), mLayout(pActor), _C(param2.x, param2.y), mFollowPos(0.0f, 0.0f), _1C(0.0f, 0.0f) {
     MR::setFollowPos(&mFollowPos, pActor, nullptr);
     MR::setFollowTypeAdd(mLayout, nullptr);
     initNerve(&NrvCounterLayoutAppearer::CounterLayoutAppearerNrvHide::sInstance);
@@ -71,8 +67,7 @@ void CounterLayoutAppearer::setAppearOffset(const TVec2f& param1) {
     _C.y = param1.y;
 }
 
-void CounterLayoutAppearer::exeHide() {
-}
+void CounterLayoutAppearer::exeHide() {}
 
 void CounterLayoutAppearer::exeAppear() {
     updateLayoutOffset(MR::calcNerveEaseOutRate(this, MR::getAnimFrameMax(mLayout, (u32)0)));

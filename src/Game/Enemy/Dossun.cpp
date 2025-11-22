@@ -13,10 +13,9 @@ namespace NrvDossun {
     NEW_NERVE(DossunNrvFalling, Dossun, Falling);
     NEW_NERVE(DossunNrvOnGround, Dossun, OnGround);
     NEW_NERVE(DossunNrvRising, Dossun, Rising);
-}; // namespace NrvDossun
+};  // namespace NrvDossun
 
-Dossun::Dossun(const char* pName)
-    : LiveActor(pName) {
+Dossun::Dossun(const char* pName) : LiveActor(pName) {
     _8C.x = 0.0f;
     _8C.y = 0.0f;
     _8C.z = 0.0f;
@@ -94,7 +93,7 @@ void Dossun::initShadow() {
 
 /*
 void Dossun::calcParameters() {
-    
+    
 }
 */
 

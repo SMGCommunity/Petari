@@ -1,5 +1,5 @@
-#include "Game/Map/FileSelectFunc.hpp"
 #include "Game/NWC24/LuigiMailDirector.hpp"
+#include "Game/Map/FileSelectFunc.hpp"
 #include "Game/NWC24/NWC24Function.hpp"
 #include "Game/NWC24/NWC24Messenger.hpp"
 #include "Game/Screen/ReplaceTagProcessor.hpp"
@@ -11,15 +11,10 @@
 namespace {
     const char* cLostMessageID = "KinopioEmergencyLetter_000";
     const char* cFoundMessageID = "KinopioEmergencyLetter_001";
-}; // namespace
+};  // namespace
 
 LuigiMailDirector::LuigiMailDirector()
-    : mLostMessageLength(0),
-      mLostMessage(nullptr),
-      mFoundMessageLength(0),
-      mFoundMessage(nullptr),
-      mLostMessageNum(0),
-      mFoundMessageNum(0) {}
+    : mLostMessageLength(0), mLostMessage(nullptr), mFoundMessageLength(0), mFoundMessage(nullptr), mLostMessageNum(0), mFoundMessageNum(0) {}
 
 void LuigiMailDirector::initAfterResourceLoaded() {
     u32 lostMessageLength = MR::getStringLengthWithMessageTag(MR::getGameMessageDirect(cLostMessageID)) + FileSelectFunc::getMiiNameBufferSize();
@@ -151,9 +146,9 @@ void LuigiMailDirector::writeSendSize() {
     prepareMessage();
 
     const u16* pMailSender = reinterpret_cast< const u16* >(MR::getMailSender("WiiMessageFromKinopio"));
-    u32        mailSize = 0;
-    s32        lostMessageNum = mLostMessageNum;
-    s32        foundMessageNum = mFoundMessageNum;
+    u32 mailSize = 0;
+    s32 lostMessageNum = mLostMessageNum;
+    s32 foundMessageNum = mFoundMessageNum;
 
     if (lostMessageNum != 0 || foundMessageNum != 0) {
         if (lostMessageNum != 0) {
@@ -178,17 +173,9 @@ void LuigiMailDirector::reset() {
 
 void LuigiMailDirector::prepareMessage() {
     // FIXME: Missing crclr instruction.
-    ReplaceTagFunction::ReplaceArgs(
-        mLostMessage,
-        mLostMessageLength,
-        MR::getGameMessageDirect(cLostMessageID),
-        GameDataFunction::getUserName());
+    ReplaceTagFunction::ReplaceArgs(mLostMessage, mLostMessageLength, MR::getGameMessageDirect(cLostMessageID), GameDataFunction::getUserName());
     // FIXME: Missing crclr instruction.
-    ReplaceTagFunction::ReplaceArgs(
-        mFoundMessage,
-        mFoundMessageLength,
-        MR::getGameMessageDirect(cFoundMessageID),
-        GameDataFunction::getUserName());
+    ReplaceTagFunction::ReplaceArgs(mFoundMessage, mFoundMessageLength, MR::getGameMessageDirect(cFoundMessageID), GameDataFunction::getUserName());
 }
 
 u8 LuigiMailDirector::calcDelayHours() const {

@@ -1,5 +1,5 @@
-#include "Game/Camera/CameraParamChunk.hpp"
 #include "Game/Camera/CamTranslatorCharmedFix.hpp"
+#include "Game/Camera/CameraParamChunk.hpp"
 #include "Game/Util/MathUtil.hpp"
 
 void CamTranslatorCharmedFix::setParam(const CameraParamChunk* pChunk) {

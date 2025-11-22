@@ -1,6 +1,6 @@
+#include "Game/Screen/SysInfoWindow.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/IconAButton.hpp"
-#include "Game/Screen/SysInfoWindow.hpp"
 #include "Game/Screen/YesNoController.hpp"
 #include "Game/Util/GamePadUtil.hpp"
 #include "Game/Util/LayoutUtil.hpp"
@@ -18,17 +18,11 @@ namespace NrvSysInfoWindow {
     NEW_NERVE(SysInfoWindowNrvAppear, SysInfoWindow, Appear);
     NEW_NERVE(SysInfoWindowNrvWait, SysInfoWindow, Wait);
     NEW_NERVE(SysInfoWindowNrvDisappear, SysInfoWindow, Disappear);
-}; // namespace NrvSysInfoWindow
+};  // namespace NrvSysInfoWindow
 
 SysInfoWindow::SysInfoWindow(SysInfoWindowType windowType, SysInfoExecuteType executeType)
-    : LayoutActor("システム用インフォメーションウィンドウ", true),
-      mWindowType(windowType),
-      mType(Type_Key),
-      mYesNoSelector(nullptr),
-      mIconAButton(nullptr),
-      mTextParentPaneName(nullptr),
-      mWindowParentPaneName(nullptr),
-      _38(executeType == ExecuteType_Children) {
+    : LayoutActor("システム用インフォメーションウィンドウ", true), mWindowType(windowType), mType(Type_Key), mYesNoSelector(nullptr),
+      mIconAButton(nullptr), mTextParentPaneName(nullptr), mWindowParentPaneName(nullptr), _38(executeType == ExecuteType_Children) {
     switch (windowType) {
     case WindowType_Normal:
         mTextParentPaneName = "InfoWindow";
@@ -259,9 +253,7 @@ void SysInfoWindow::setTextBoxArgString(const wchar_t* pArg, s32 param2) {
 
 namespace MR {
     SysInfoWindow* createSysInfoWindow() {
-        SysInfoWindow* pWindow = new SysInfoWindow(
-            SysInfoWindow::WindowType_Normal,
-            SysInfoWindow::ExecuteType_Normal);
+        SysInfoWindow* pWindow = new SysInfoWindow(SysInfoWindow::WindowType_Normal, SysInfoWindow::ExecuteType_Normal);
 
         pWindow->initWithoutIter();
 
@@ -269,9 +261,7 @@ namespace MR {
     }
 
     SysInfoWindow* createSysInfoWindowExecuteWithChildren() {
-        SysInfoWindow* pWindow = new SysInfoWindow(
-            SysInfoWindow::WindowType_Normal,
-            SysInfoWindow::ExecuteType_Children);
+        SysInfoWindow* pWindow = new SysInfoWindow(SysInfoWindow::WindowType_Normal, SysInfoWindow::ExecuteType_Children);
 
         pWindow->initWithoutIter();
 
@@ -279,12 +269,10 @@ namespace MR {
     }
 
     SysInfoWindow* createSysInfoWindowMiniExecuteWithChildren() {
-        SysInfoWindow* pWindow = new SysInfoWindow(
-            SysInfoWindow::WindowType_Mini,
-            SysInfoWindow::ExecuteType_Children);
+        SysInfoWindow* pWindow = new SysInfoWindow(SysInfoWindow::WindowType_Mini, SysInfoWindow::ExecuteType_Children);
 
         pWindow->initWithoutIter();
 
         return pWindow;
     }
-}; // namespace MR
+};  // namespace MR

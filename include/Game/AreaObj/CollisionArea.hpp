@@ -16,11 +16,11 @@ public:
     void invalidate();
     void validate();
 
-    u8        _120[4];
-    AreaForm* mForm; // 0x124
-    MtxPtr    _128;
-    TVec3f    _12C;
-    f32       _138;
+    u8 _120[4];
+    AreaForm* mForm;  // 0x124
+    MtxPtr _128;
+    TVec3f _12C;
+    f32 _138;
 };
 
 class CollisionArea : public AreaObj {
@@ -33,16 +33,16 @@ public:
 
     bool hitCheck(const TVec3f&, f32, TVec3f*, TVec3f*);
 
-    u32          _3C;
-    f32          _40;
-    TVec3f       _44;
-    s32          _50;
-    s32          _54;
-    bool         _58;
-    u8           _59[3];
-    s32          _5C;
-    s32          _60;
-    AreaPolygon* mPolygon; // 0x64
-    bool         mIsValid; // 0x68
-    u8           _69[3];
+    u32 _3C;
+    f32 _40;
+    TVec3f _44;
+    s32 _50;
+    s32 _54;
+    bool _58;
+    u8 _59[3];
+    s32 _5C;
+    s32 _60;
+    AreaPolygon* mPolygon;  // 0x64
+    bool mIsValid;          // 0x68
+    u8 _69[3];
 };

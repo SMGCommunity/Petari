@@ -1,16 +1,11 @@
-#include "Game/LiveActor/Spine.hpp"
 #include "Game/Screen/LayoutActor.hpp"
+#include "Game/LiveActor/Spine.hpp"
 #include "Game/Screen/LayoutManager.hpp"
 #include "Game/Screen/PaneEffectKeeper.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 
 LayoutActor::LayoutActor(const char* pName, bool)
-    : NameObj(pName),
-      mManager(nullptr),
-      mSpine(nullptr),
-      mPaneEffectKeeper(nullptr),
-      mStarPointerTargetKeeper(nullptr) {
-}
+    : NameObj(pName), mManager(nullptr), mSpine(nullptr), mPaneEffectKeeper(nullptr), mStarPointerTargetKeeper(nullptr) {}
 
 void LayoutActor::movement() {
     if (MR::isDead(this)) {

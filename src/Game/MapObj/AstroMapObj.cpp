@@ -21,14 +21,13 @@ namespace NrvAstroMapObj {
     NEW_NERVE(AstroMapObjNrvAliveAfterDemo, AstroMapObj, Wait);
     NEW_NERVE(AstroMapObjNrvRevival, AstroMapObj, Revival);
     NEW_NERVE(AstroMapObjNrvOpen, AstroMapObj, Open);
-} // namespace NrvAstroMapObj
+}  // namespace NrvAstroMapObj
 
 namespace {
     s32 sAstroPathAppearStep = 90;
 }
 
-AstroMapObj::AstroMapObj(const char* pName)
-    : MapObjActor(pName) {
+AstroMapObj::AstroMapObj(const char* pName) : MapObjActor(pName) {
     _C4 = 0;
     _C8 = 0;
     _CC = 0;
@@ -37,7 +36,7 @@ AstroMapObj::AstroMapObj(const char* pName)
     _D8 = -1;
 }
 
-void AstroMapObj::init(const JMapInfoIter& rIter) { // Pain
+void AstroMapObj::init(const JMapInfoIter& rIter) {  // Pain
     MR::getObjectName(&_CC, rIter);
     MapObjActorInitInfo mapObjInitInfo = MapObjActorInitInfo();
     _D8 = AstroMapObjFunction::getDomeIdFromArg0(rIter);
@@ -61,8 +60,8 @@ void AstroMapObj::init(const JMapInfoIter& rIter) { // Pain
     // If somebody wants to finish this part then go ahead. It matches, but not sure what the Functors are pointing to.
 
     /* if (MR::isDemoCast(this, 0)) {
-        MR::FunctorV0M<AstroMapObj*, void (AstroMapObj::*)()> demoFunctor = MR::Functor<AstroMapObj>(this, &AstroMapObj::startDemo); // Probably it's not startDemo
-        MR::registerDemoActionFunctor(this, demoFunctor, 0);
+        MR::FunctorV0M<AstroMapObj*, void (AstroMapObj::*)()> demoFunctor = MR::Functor<AstroMapObj>(this, &AstroMapObj::startDemo); // Probably it's
+    not startDemo MR::registerDemoActionFunctor(this, demoFunctor, 0);
     }
     MR::FunctorV0M<AstroMapObj*, void (AstroMapObj::*)()> otherFunct = MR::Functor<AstroMapObj>(this, &AstroMapObj::control);   // Same
     AstroMapObjFunction::tryRegisterMultiDemoAndFunction(_CC, this, rIter, otherFunct);
@@ -143,7 +142,8 @@ void AstroMapObj::exeWait() {
             setStateAlive();
         }
     }
-    if (AstroMapObj::isPlayMachineSE() && (isNerve(&NrvAstroMapObj::AstroMapObjNrvAlive::sInstance) || isNerve(&NrvAstroMapObj::AstroMapObjNrvAliveAfterDemo::sInstance))) {
+    if (AstroMapObj::isPlayMachineSE() &&
+        (isNerve(&NrvAstroMapObj::AstroMapObjNrvAlive::sInstance) || isNerve(&NrvAstroMapObj::AstroMapObjNrvAliveAfterDemo::sInstance))) {
         if (MR::isEqualString(_CC, "AstroRotateStepA")) {
             MR::startLevelSound(this, "SE_OJ_LV_ASTRO_ENGINE_1", -1, -1, -1);
         } else if (MR::isEqualString(_CC, "AstroRotateStepB")) {
@@ -241,8 +241,7 @@ void AstroMapObj::initCaseUseSwitchB(const MapObjActorInitInfo&) {}
 void AstroMapObj::initCaseNoUseSwitchA(const MapObjActorInitInfo&) {}
 void AstroMapObj::initCaseUseSwitchA(const MapObjActorInitInfo&) {}
 
-AstroSimpleObj::AstroSimpleObj(const char* pName)
-    : SimpleMapObjFarMax(pName) {
+AstroSimpleObj::AstroSimpleObj(const char* pName) : SimpleMapObjFarMax(pName) {
     _C4 = 0;
     _C8 = 0;
 }
@@ -261,5 +260,4 @@ void AstroSimpleObj::control() {
     }
 }
 
-AstroSimpleObj::~AstroSimpleObj() {
-}
+AstroSimpleObj::~AstroSimpleObj() {}

@@ -1,5 +1,5 @@
-#include "Game/Demo/AstroDemoFunction.hpp"
 #include "Game/MapObj/AstroMapObjFunction.hpp"
+#include "Game/Demo/AstroDemoFunction.hpp"
 #include "Game/Util/EventUtil.hpp"
 #include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
@@ -66,12 +66,12 @@ namespace {
 
         return num;
     }
-}; // namespace
+};  // namespace
 
 void AstroMapObjFunction::makeArchiveListFromArg0(NameObjArchiveListCollector* pList, const JMapInfoIter& rIter) {
     s32 domeId = -1;
     MR::getJMapInfoArg0NoInit(rIter, &domeId);
-    s32         domeIdx = domeId;
+    s32 domeIdx = domeId;
     const char* objName;
     MR::getObjectName(&objName, rIter);
     const char* modelName = AstroMapObjFunction::getModelName(objName, domeIdx);

@@ -39,11 +39,11 @@ public:
     void addSinglyVerticalTaskOffset(TVec2f*);
     void addSinglyHorizontalTaskOffset(TVec2f*);
     void addInfinityTaskOffset(TVec2f*);
-    void adjustOffsetToScreen(TVec2f*); // TODO
+    void adjustOffsetToScreen(TVec2f*);  // TODO
     void startInfinity(u32, f32, f32);
 
-    CameraShakeTask* mVerticalTasks[NR_VERTICAL_TASKS];     // 0xC
-    CameraShakeTask* mHorizontalTasks[NR_HORIZONTAL_TASKS]; // 0x28
-    CameraShakeTask* mInfinityTasks[NR_INFINITY_TASKS];     // 0x34
-    NameObj*         mInfinityNameObjs[NR_INFINITY_TASKS];  // 0x44
+    CameraShakeTask* mVerticalTasks[NR_VERTICAL_TASKS];      // 0xC
+    CameraShakeTask* mHorizontalTasks[NR_HORIZONTAL_TASKS];  // 0x28
+    CameraShakeTask* mInfinityTasks[NR_INFINITY_TASKS];      // 0x34
+    NameObj* mInfinityNameObjs[NR_INFINITY_TASKS];           // 0x44
 };

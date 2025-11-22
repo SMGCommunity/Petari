@@ -2,11 +2,9 @@
 #include <cstdio>
 #include <cstring>
 
-DotCamReader::~DotCamReader() {
-}
+DotCamReader::~DotCamReader() {}
 
-DotCamReaderInBin::DotCamReaderInBin(const void* pData)
-    : mVersion(0), _8(nullptr), mMapInfo() {
+DotCamReaderInBin::DotCamReaderInBin(const void* pData) : mVersion(0), _8(nullptr), mMapInfo() {
     mMapIter.mInfo = nullptr;
     mMapIter.mIndex = -1;
     init(pData);
@@ -29,7 +27,7 @@ bool DotCamReaderInBin::hasMoreChunk() const {
 
     if (mMapIter.isValid()) {
         const JMapData* mapData = mMapInfo.mData;
-        s32             iVar2 = mapData != nullptr ? mapData->_0 : 0;
+        s32 iVar2 = mapData != nullptr ? mapData->_0 : 0;
 
         bool bVar1 = false;
 
@@ -65,7 +63,7 @@ bool DotCamReaderInBin::getValueFloat(const char* pName, f32* pOut) {
 }
 
 bool DotCamReaderInBin::getValueVec(const char* pName, TVec3f* pOut) {
-    char  buffer[0x100];
+    char buffer[0x100];
     char* pBuffer = &buffer[0];
 
     f32 z;
@@ -91,9 +89,9 @@ bool DotCamReaderInBin::getValueVec(const char* pName, TVec3f* pOut) {
 }
 
 bool DotCamReaderInBin::getValueString(const char* pName, const char** pOut) {
-    s32             iVar3 = mMapIter.mIndex;
+    s32 iVar3 = mMapIter.mIndex;
     const JMapInfo* info = mMapIter.mInfo;
-    s32             index = info->searchItemInfo(pName);
+    s32 index = info->searchItemInfo(pName);
 
     if (index < 0) {
         return false;

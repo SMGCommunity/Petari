@@ -3,11 +3,7 @@
 #include <nw4r/lyt/layout.h>
 
 const char* IsbnManager::cIsbnNumberPaneName[] = {
-    "T_number_00",
-    "T_number_01",
-    "T_number_02",
-    "T_number_03",
-    "T_number_04",
+    "T_number_00", "T_number_01", "T_number_02", "T_number_03", "T_number_04",
 };
 const char* IsbnManager::cRegistNumberPaneName[] = {
     "T_number_05",
@@ -20,21 +16,10 @@ const char* IsbnManager::cOtherNumberPaneName[] = {
 };
 
 IsbnManager::IsbnManager(MEMAllocator* pAllocator)
-    : _0(true),
-      mpAllocator(pAllocator),
-      mpLayout(nullptr),
-      mpResAccessor(nullptr),
-      mDrawInfo(),
-      _68(0),
-      _64(180),
-      _66(180),
-      mpIsbnBuffer(nullptr),
-      mpLayoutBuffer(nullptr),
-      mpResAccBuffer(nullptr) {
-}
+    : _0(true), mpAllocator(pAllocator), mpLayout(nullptr), mpResAccessor(nullptr), mDrawInfo(), _68(0), _64(180), _66(180), mpIsbnBuffer(nullptr),
+      mpLayoutBuffer(nullptr), mpResAccBuffer(nullptr) {}
 
-IsbnManager::~IsbnManager() {
-}
+IsbnManager::~IsbnManager() {}
 
 void IsbnManager::setAdjustRate(f32 x, f32 y) {
     // TODO: Should be `mDrawInfo.SetLocationAdjustScale(nw4r::math::VEC2(x, y))`

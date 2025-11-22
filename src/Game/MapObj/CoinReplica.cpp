@@ -1,7 +1,6 @@
 #include "Game/MapObj/CoinReplica.hpp"
 
-CoinReplica::CoinReplica(const char* pName)
-    : NameObj(pName) {
+CoinReplica::CoinReplica(const char* pName) : NameObj(pName) {
     mCoin = nullptr;
 }
 
@@ -59,5 +58,4 @@ void CoinReplica::init(const JMapInfoIter& rIter) {
     }
 }
 
-CoinReplica::~CoinReplica() {
-}
+CoinReplica::~CoinReplica() {}

@@ -1,5 +1,5 @@
-#include "Game/Util.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
+#include "Game/Util.hpp"
 
 FixedPosition::FixedPosition(const LiveActor* pActor, const char* pJointName, const TVec3f& rLocalTrans, const TVec3f& a4) {
     MtxPtr jointMtx = MR::getJointMtx(pActor, pJointName);
@@ -15,7 +15,7 @@ FixedPosition::FixedPosition(MtxPtr mtx, const TVec3f& rLocalTrans, const TVec3f
     init(mtx, rLocalTrans, a3);
 }
 
-//FixedPosition::FixedPosition::calc()
+// FixedPosition::FixedPosition::calc()
 
 void FixedPosition::setBaseMtx(MtxPtr mtx) {
     mBaseMtx = mtx;
@@ -33,4 +33,4 @@ void FixedPosition::init(MtxPtr mtx, const TVec3f& rLocalTrans, const TVec3f& a3
     mNormalizeScale = true;
 }
 
-//FixedPosition::FixedPosition(const LiveActor *, const char *, const LiveActor *)
+// FixedPosition::FixedPosition(const LiveActor *, const char *, const LiveActor *)

@@ -13,7 +13,7 @@ public:
     u32 _90;
     u32 _94;
     u32 _98;
-    u8  _9C;
+    u8 _9C;
 };
 
 class WaterRoadModelInfo {
@@ -25,17 +25,17 @@ public:
     void sendGD() const;
     void drawGD() const;
     void drawDirect(const WaterRoad*) const;
-    s32  calcDemoDrawPointNum(const WaterRoad*) const;
+    s32 calcDemoDrawPointNum(const WaterRoad*) const;
     void loadMaterialHigh(const WaterRoad*) const;
     void loadMaterialLow() const;
 
-    bool        mIsLow; // 0x0
-    u32         _4;
-    s32         _8;
-    u32         _C;
-    TVec3f*     _10;
-    TVec3s*     _14;
-    f32*        _18;
-    u32         mDLLength; // 0x1C
-    const void* mList;     // 0x20
+    bool mIsLow;  // 0x0
+    u32 _4;
+    s32 _8;
+    u32 _C;
+    TVec3f* _10;
+    TVec3s* _14;
+    f32* _18;
+    u32 mDLLength;      // 0x1C
+    const void* mList;  // 0x20
 };

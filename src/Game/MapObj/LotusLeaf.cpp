@@ -20,10 +20,9 @@ namespace NrvLotusLeaf {
     NEW_NERVE(HostTypeShakeOnPlayer, LotusLeaf, Shake);
     NEW_NERVE(HostTypeShake, LotusLeaf, Shake);
     NEW_NERVE(HostTypeWaitPlayerOn, LotusLeaf, WaitPlayerOn);
-} // namespace NrvLotusLeaf
+}  // namespace NrvLotusLeaf
 
-LotusLeaf::LotusLeaf(const char* pName)
-    : LiveActor(pName) {
+LotusLeaf::LotusLeaf(const char* pName) : LiveActor(pName) {
     _8C.zero();
     //_8C.z = 0;
     _98 = 0.0f;
@@ -71,7 +70,7 @@ void LotusLeaf::exeWaitPlayerOn() {
     }
 }
 
-//Todo: Match. Decomp.me: https://decomp.me/scratch/zsY3a
+// Todo: Match. Decomp.me: https://decomp.me/scratch/zsY3a
 void LotusLeaf::exeShake() {
     if (MR::isFirstStep(this)) {
         _98 = 1.5f;

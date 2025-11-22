@@ -16,6 +16,6 @@ public:
     void exeShake();
 
     TVec3f _8C;
-    f32    _98;
-    f32    _9C;
+    f32 _98;
+    f32 _9C;
 };

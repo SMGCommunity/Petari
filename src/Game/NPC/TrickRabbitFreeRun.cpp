@@ -1,17 +1,8 @@
 #include "Game/NPC/TrickRabbitFreeRun.hpp"
 
 TrickRabbitFreeRun::TrickRabbitFreeRun(const char* pName)
-    : LiveActor(pName),
-      _8C(0.0f, 0.0f, 0.0f, 1.0f),
-      _9C(0.0f, 0.0f, 1.0f),
-      _A8(0),
-      _AC(0),
-      _B0(0),
-      _B4(0),
-      mTalkCtrl(0),
-      mFootPrint(0),
-      mSpotMarkLight(0) {
-}
+    : LiveActor(pName), _8C(0.0f, 0.0f, 0.0f, 1.0f), _9C(0.0f, 0.0f, 1.0f), _A8(0), _AC(0), _B0(0), _B4(0), mTalkCtrl(0), mFootPrint(0),
+      mSpotMarkLight(0) {}
 
 void TrickRabbitFreeRun::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);

@@ -11,6 +11,6 @@ public:
     virtual void init(const JMapInfoIter&);
     virtual void movement();
 
-    StageSwitchCtrl* mSwitchCtrl; // 0x0C
-    u8               _10;
+    StageSwitchCtrl* mSwitchCtrl;  // 0x0C
+    u8 _10;
 };

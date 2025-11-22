@@ -1,4 +1,6 @@
+#include "Game/System/GameSequenceFunction.hpp"
 #include "Game/NWC24/NWC24Messenger.hpp"
+#include "Game/SingletonHolder.hpp"
 #include "Game/System/FindingLuigiEventScheduler.hpp"
 #include "Game/System/GalaxyCometScheduler.hpp"
 #include "Game/System/GameDataConst.hpp"
@@ -6,7 +8,6 @@
 #include "Game/System/GameDataHolder.hpp"
 #include "Game/System/GameDataTemporaryInGalaxy.hpp"
 #include "Game/System/GameSequenceDirector.hpp"
-#include "Game/System/GameSequenceFunction.hpp"
 #include "Game/System/GameSequenceProgress.hpp"
 #include "Game/System/GameSystem.hpp"
 #include "Game/System/GameSystemSceneController.hpp"
@@ -14,7 +15,6 @@
 #include "Game/System/StorySequenceExecutor.hpp"
 #include "Game/System/UserFile.hpp"
 #include "Game/Util/StringUtil.hpp"
-#include "Game/SingletonHolder.hpp"
 
 namespace {
     GameSequenceProgress* getGameSequenceProgress() NO_INLINE {
@@ -29,27 +29,17 @@ namespace {
         return SingletonHolder< GameSystem >::get()->mSequenceDirector->mGameDataTemporaryInGalaxy;
     }
 
-    NWC24Messenger* getNWC24Messenger() NO_INLINE {
-        return SingletonHolder< GameSystem >::get()->mSequenceDirector->mNWC24Messenger;
-    }
-}; // namespace
+    NWC24Messenger* getNWC24Messenger() NO_INLINE { return SingletonHolder< GameSystem >::get()->mSequenceDirector->mNWC24Messenger; }
+};  // namespace
 
 namespace GameSequenceFunction {
-    void activateGalaxyCometScheduler() {
-        getGameSequenceProgress()->getGalaxyCometScheduler()->activate();
-    }
+    void activateGalaxyCometScheduler() { getGameSequenceProgress()->getGalaxyCometScheduler()->activate(); }
 
-    void deactivateGalaxyCometScheduler() {
-        getGameSequenceProgress()->getGalaxyCometScheduler()->deactivate();
-    }
+    void deactivateGalaxyCometScheduler() { getGameSequenceProgress()->getGalaxyCometScheduler()->deactivate(); }
 
-    void forceToNextStateGalaxyCometScheduler() {
-        getGameSequenceProgress()->getGalaxyCometScheduler()->forceToNextState();
-    }
+    void forceToNextStateGalaxyCometScheduler() { getGameSequenceProgress()->getGalaxyCometScheduler()->forceToNextState(); }
 
-    bool isGalaxyCometLand(const char* pGalaxyName) {
-        return getGameSequenceProgress()->getGalaxyCometScheduler()->isCometLand(pGalaxyName);
-    }
+    bool isGalaxyCometLand(const char* pGalaxyName) { return getGameSequenceProgress()->getGalaxyCometScheduler()->isCometLand(pGalaxyName); }
 
     s32 getEncounterGalaxyCometPowerStarId(const char* pGalaxyName) {
         return getGameSequenceProgress()->getGalaxyCometScheduler()->getEncounterCometPowerStarId(pGalaxyName);
@@ -63,91 +53,51 @@ namespace GameSequenceFunction {
         return getGameSequenceProgress()->getGalaxyCometScheduler()->getStateValueIncluded(pGalaxyName);
     }
 
-    bool isNeedMoviePlayerForStorySequenceEvent() {
-        return getGameSequenceProgress()->mStorySequenceExecutor->isNeedMoviePlayerExecutingEventEnum();
-    }
+    bool isNeedMoviePlayerForStorySequenceEvent() { return getGameSequenceProgress()->mStorySequenceExecutor->isNeedMoviePlayerExecutingEventEnum(); }
 
-    bool hasNextDemoForStorySequenceEvent() {
-        return getGameSequenceProgress()->mStorySequenceExecutor->hasNextDemo();
-    }
+    bool hasNextDemoForStorySequenceEvent() { return getGameSequenceProgress()->mStorySequenceExecutor->hasNextDemo(); }
 
-    s32 getExecutingStorySequenceEventNum() {
-        return getGameSequenceProgress()->mStorySequenceExecutor->getExecutingEventEnum();
-    }
+    s32 getExecutingStorySequenceEventNum() { return getGameSequenceProgress()->mStorySequenceExecutor->getExecutingEventEnum(); }
 
-    bool isLuigiDisappearFromAstroGalaxy() {
-        return getGameSequenceProgress()->mFindingLuigiEventScheduler->isDisappear();
-    }
+    bool isLuigiDisappearFromAstroGalaxy() { return getGameSequenceProgress()->mFindingLuigiEventScheduler->isDisappear(); }
 
-    bool isLuigiHidingAnyGalaxy() {
-        return getGameSequenceProgress()->mFindingLuigiEventScheduler->isHiding();
-    }
+    bool isLuigiHidingAnyGalaxy() { return getGameSequenceProgress()->mFindingLuigiEventScheduler->isHiding(); }
 
-    bool isActiveLuigiHideAndSeekEvent() {
-        return getGameSequenceProgress()->mFindingLuigiEventScheduler->isActive();
-    }
+    bool isActiveLuigiHideAndSeekEvent() { return getGameSequenceProgress()->mFindingLuigiEventScheduler->isActive(); }
 
-    bool isEndLuigiHideAndSeekEvent() {
-        return getGameSequenceProgress()->mFindingLuigiEventScheduler->isEnd();
-    }
+    bool isEndLuigiHideAndSeekEvent() { return getGameSequenceProgress()->mFindingLuigiEventScheduler->isEnd(); }
 
     void getLuigiHidingGalaxyNameAndStarId(const char** ppGalaxyName, s32* pStarId) {
-        return getGameSequenceProgress()->mFindingLuigiEventScheduler->getHidingGalaxyNameAndStarId(
-            ppGalaxyName,
-            pStarId);
+        return getGameSequenceProgress()->mFindingLuigiEventScheduler->getHidingGalaxyNameAndStarId(ppGalaxyName, pStarId);
     }
 
-    void onGameEventFlagGetLuigiLetter() {
-        getGameSequenceProgress()->mFindingLuigiEventScheduler->setStateHiding();
-    }
+    void onGameEventFlagGetLuigiLetter() { getGameSequenceProgress()->mFindingLuigiEventScheduler->setStateHiding(); }
 
-    bool isReadyToStartScene() {
-        return SingletonHolder< GameSystem >::get()->mSceneController->isReadyToStartScene();
-    }
+    bool isReadyToStartScene() { return SingletonHolder< GameSystem >::get()->mSceneController->isReadyToStartScene(); }
 
-    void startScene() {
-        SingletonHolder< GameSystem >::get()->mSceneController->startScene();
-    }
+    void startScene() { SingletonHolder< GameSystem >::get()->mSceneController->startScene(); }
 
-    void notifyToGameSequenceProgressToEndScene() {
-        getGameSequenceProgress()->endScene();
-    }
+    void notifyToGameSequenceProgressToEndScene() { getGameSequenceProgress()->endScene(); }
 
-    void requestChangeScene(const char* pSceneName) {
-        getGameSequenceProgress()->requestChangeScene(pSceneName);
-    }
+    void requestChangeScene(const char* pSceneName) { getGameSequenceProgress()->requestChangeScene(pSceneName); }
 
-    void requestGalaxyMove(const GalaxyMoveArgument& rArgument) {
-        getGameSequenceProgress()->requestGalaxyMove(rArgument);
-    }
+    void requestGalaxyMove(const GalaxyMoveArgument& rArgument) { getGameSequenceProgress()->requestGalaxyMove(rArgument); }
 
-    void requestCancelScenarioSelect() {
-        getGameSequenceProgress()->requestCancelScenarioSelect();
-    }
+    void requestCancelScenarioSelect() { getGameSequenceProgress()->requestCancelScenarioSelect(); }
 
     void sendStageResultSequenceParam(const char* pStageName, s32 powerStarId, int starPieceNum, int coinNum) {
         getGameDataTemporaryInGalaxy()->receiveStageResultParam(pStageName, powerStarId, starPieceNum, coinNum);
     }
 
-    bool hasStageResultSequence() {
-        return getGameDataTemporaryInGalaxy()->isStageCleared();
-    }
+    bool hasStageResultSequence() { return getGameDataTemporaryInGalaxy()->isStageCleared(); }
 
-    const char* getClearedStageName() {
-        return getGameDataTemporaryInGalaxy()->mStageName;
-    }
+    const char* getClearedStageName() { return getGameDataTemporaryInGalaxy()->mStageName; }
 
-    s32 getClearedPowerStarId() {
-        return getGameDataTemporaryInGalaxy()->mPowerStarId;
-    }
+    s32 getClearedPowerStarId() { return getGameDataTemporaryInGalaxy()->mPowerStarId; }
 
-    int getClearedStarPieceNum() {
-        return getGameDataTemporaryInGalaxy()->mStarPieceNum;
-    }
+    int getClearedStarPieceNum() { return getGameDataTemporaryInGalaxy()->mStarPieceNum; }
 
-    int getClearedCoinNum() {
-        return getGameDataTemporaryInGalaxy()->mCoinNum;
-    }
+    int getClearedCoinNum() { return getGameDataTemporaryInGalaxy()->mCoinNum; }
 
     bool hasPowerStarYetAtResultSequence() {
         if (hasStageResultSequence() == false) {
@@ -167,31 +117,15 @@ namespace GameSequenceFunction {
         return MR::isEqualString(getClearedStageName(), pClearedStageName) && getClearedPowerStarId() == clearedPowerStarId;
     }
 
-    bool isPowerStarGreenAtResultSequence() {
-        return GameDataConst::isPowerStarGreen(
-            getClearedStageName(),
-            getClearedPowerStarId());
-    }
+    bool isPowerStarGreenAtResultSequence() { return GameDataConst::isPowerStarGreen(getClearedStageName(), getClearedPowerStarId()); }
 
-    bool isPowerStarRedAtResultSequence() {
-        return GameDataConst::isPowerStarRed(
-            getClearedStageName(),
-            getClearedPowerStarId());
-    }
+    bool isPowerStarRedAtResultSequence() { return GameDataConst::isPowerStarRed(getClearedStageName(), getClearedPowerStarId()); }
 
-    bool isGrandStarAtResultSequence() {
-        return GameDataConst::isGrandStar(
-            getClearedStageName(),
-            getClearedPowerStarId());
-    }
+    bool isGrandStarAtResultSequence() { return GameDataConst::isGrandStar(getClearedStageName(), getClearedPowerStarId()); }
 
-    bool hasRetryGalaxySequence() {
-        return getGameDataTemporaryInGalaxy()->_4;
-    }
+    bool hasRetryGalaxySequence() { return getGameDataTemporaryInGalaxy()->_4; }
 
-    bool isNeedToReflectStageResultSequenceStarPiece() {
-        return getClearedStarPieceNum() != 0;
-    }
+    bool isNeedToReflectStageResultSequenceStarPiece() { return getClearedStarPieceNum() != 0; }
 
     /*
     // TODO: GameDataSomeScenarioAccessor has not yet been declared.
@@ -204,29 +138,17 @@ namespace GameSequenceFunction {
     }
     */
 
-    void resetStageResultSequenceParam() {
-        getGameDataTemporaryInGalaxy()->resetStageResultParam();
-    }
+    void resetStageResultSequenceParam() { getGameDataTemporaryInGalaxy()->resetStageResultParam(); }
 
-    void startPreLoadSaveDataSequence() {
-        getSaveDataHandleSequence()->startPreLoad();
-    }
+    void startPreLoadSaveDataSequence() { getSaveDataHandleSequence()->startPreLoad(); }
 
-    void startTotalMailSizeSaveSequence() {
-        getSaveDataHandleSequence()->startSaveTotalMailSize();
-    }
+    void startTotalMailSizeSaveSequence() { getSaveDataHandleSequence()->startSaveTotalMailSize(); }
 
-    void startGameDataLoadSequence(int userFileIndex, bool isPlayerMario) {
-        getSaveDataHandleSequence()->startLoad(userFileIndex, isPlayerMario);
-    }
+    void startGameDataLoadSequence(int userFileIndex, bool isPlayerMario) { getSaveDataHandleSequence()->startLoad(userFileIndex, isPlayerMario); }
 
-    void startCreateUserFileSequence(int userFileIndex) {
-        getSaveDataHandleSequence()->startCreateUserFile(userFileIndex);
-    }
+    void startCreateUserFileSequence(int userFileIndex) { getSaveDataHandleSequence()->startCreateUserFile(userFileIndex); }
 
-    void startDeleteUserFileSequence(int userFileIndex) {
-        getSaveDataHandleSequence()->startDeleteUserFile(userFileIndex);
-    }
+    void startDeleteUserFileSequence(int userFileIndex) { getSaveDataHandleSequence()->startDeleteUserFile(userFileIndex); }
 
     void startCopyUserFileSequence(int userFileIndexDst, int userFileIndexSrc) {
         storeCopyUserFileSequence(userFileIndexDst, userFileIndexSrc);
@@ -246,45 +168,27 @@ namespace GameSequenceFunction {
         getSaveDataHandleSequence()->storeCopyUserFile(userFileIndexDst, userFileIndexSrc);
     }
 
-    void startSaveAllUserFileSequence() {
-        getSaveDataHandleSequence()->startSaveAll();
-    }
+    void startSaveAllUserFileSequence() { getSaveDataHandleSequence()->startSaveAll(); }
 
-    bool isActiveSaveDataHandleSequence() {
-        return getSaveDataHandleSequence()->isActive();
-    }
+    bool isActiveSaveDataHandleSequence() { return getSaveDataHandleSequence()->isActive(); }
 
-    bool isSuccessSaveDataHandleSequence() {
-        return getSaveDataHandleSequence()->_24 == 2;
-    }
+    bool isSuccessSaveDataHandleSequence() { return getSaveDataHandleSequence()->_24 == 2; }
 
-    void restoreUserFile(UserFile* pUserFile, int userFileIndex) {
-        getSaveDataHandleSequence()->restoreUserFile(pUserFile, userFileIndex);
-    }
+    void restoreUserFile(UserFile* pUserFile, int userFileIndex) { getSaveDataHandleSequence()->restoreUserFile(pUserFile, userFileIndex); }
 
     void restoreUserFile(UserFile* pUserFile, int userFileIndex, bool isPlayerMario) {
         getSaveDataHandleSequence()->restoreUserFile(pUserFile, userFileIndex, isPlayerMario);
     }
 
-    void tryNANDErrorSequence(s32 code) {
-        getSaveDataHandleSequence()->tryNANDErrorSequence(code);
-    }
+    void tryNANDErrorSequence(s32 code) { getSaveDataHandleSequence()->tryNANDErrorSequence(code); }
 
-    void reserveUserName(const wchar_t* pUserName) {
-        getSaveDataHandleSequence()->getCurrentUserFile()->setUserName(pUserName);
-    }
+    void reserveUserName(const wchar_t* pUserName) { getSaveDataHandleSequence()->getCurrentUserFile()->setUserName(pUserName); }
 
-    void requestPrepareResetNWC24() {
-        getNWC24Messenger()->prepareReset();
-    }
+    void requestPrepareResetNWC24() { getNWC24Messenger()->prepareReset(); }
 
-    bool isEnableToResetNWC24() {
-        return !getNWC24Messenger()->isRunning();
-    }
+    bool isEnableToResetNWC24() { return !getNWC24Messenger()->isRunning(); }
 
-    void resetNWC24() {
-        getNWC24Messenger()->reset();
-    }
+    void resetNWC24() { getNWC24Messenger()->reset(); }
 
     void storeSceneStartGameDataHolder() {
         if (!GameDataFunction::isPassedStoryEvent("チコガイドデモ終了") || GameDataFunction::hasGrandStar(1)) {
@@ -310,4 +214,4 @@ namespace GameSequenceFunction {
             getSaveDataHandleSequence()->startSave(isConfirmRemind, isSaveAndQuitMsg);
         }
     }
-}; // namespace GameSequenceFunction
+};  // namespace GameSequenceFunction

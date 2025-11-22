@@ -4,10 +4,8 @@ namespace nw4r {
     namespace ut {
 
         namespace {
-            inline bool IsSJISLeadByte(u8 c) {
-                return ((0x81 <= c) && (c < 0xA0)) || (0xE0 <= c);
-            }
-        }; // namespace
+            inline bool IsSJISLeadByte(u8 c) { return ((0x81 <= c) && (c < 0xA0)) || (0xE0 <= c); }
+        };  // namespace
 
         u16 CharStrmReader::ReadNextCharUTF8() {
             u16 code;
@@ -18,8 +16,7 @@ namespace nw4r {
                 code = static_cast< u16 >(((GetChar< u8 >(0) & 0x1F) << 6) | ((GetChar< u8 >(1) & 0x3F)));
                 StepStrm< u8 >(2);
             } else {
-                code = static_cast< u16 >(
-                    ((GetChar< u8 >(0) & 0x1F) << 12) | ((GetChar< u8 >(1) & 0x3F) << 6) | ((GetChar< u8 >(2) & 0x3F)));
+                code = static_cast< u16 >(((GetChar< u8 >(0) & 0x1F) << 12) | ((GetChar< u8 >(1) & 0x3F) << 6) | ((GetChar< u8 >(2) & 0x3F)));
                 StepStrm< u8 >(3);
             }
 
@@ -51,5 +48,5 @@ namespace nw4r {
 
             return code;
         }
-    }; // namespace ut
-};     // namespace nw4r
+    };  // namespace ut
+};      // namespace nw4r

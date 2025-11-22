@@ -19,12 +19,12 @@ public:
     virtual void initCaseUseSwitchB(const MapObjActorInitInfo&);
     virtual void initCaseNoUseSwitchB(const MapObjActorInitInfo&);
 
-    void        exeStartCamera();
+    void exeStartCamera();
     inline void exeEndCamera();
-    void        exeOpen();
-    void        startOpen();
+    void exeOpen();
+    void startOpen();
 
-    ActorCameraInfo* mInfo; // 0xC4
+    ActorCameraInfo* mInfo;  // 0xC4
 };
 
 namespace NrvCapsuleCage {
@@ -32,4 +32,4 @@ namespace NrvCapsuleCage {
     NERVE_DECL(CapsuleCageNrvStartCamera, CapsuleCage, CapsuleCage::exeStartCamera);
     NERVE_DECL(CapsuleCageNrvOpen, CapsuleCage, CapsuleCage::exeOpen);
     NERVE_DECL(CapsuleCageNrvEndCamera, CapsuleCage, CapsuleCage::exeEndCamera);
-}; // namespace NrvCapsuleCage
+};  // namespace NrvCapsuleCage

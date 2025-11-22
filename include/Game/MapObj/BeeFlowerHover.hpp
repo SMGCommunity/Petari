@@ -19,12 +19,12 @@ public:
     void exeHardTouch();
     void exeRecover();
 
-    TMtx34f              _8C;
-    f32                  _BC;
-    LodCtrl*             mLodCtrlPlanet; // 0xC0
-    MapPartsRailMover*   mRailMover;     // 0xC4
-    MapPartsRailPosture* mRailPosture;   // 0xC8
-    TVec3f               _CC;
+    TMtx34f _8C;
+    f32 _BC;
+    LodCtrl* mLodCtrlPlanet;            // 0xC0
+    MapPartsRailMover* mRailMover;      // 0xC4
+    MapPartsRailPosture* mRailPosture;  // 0xC8
+    TVec3f _CC;
 };
 
 namespace NrvBeeFlowerHover {
@@ -33,4 +33,4 @@ namespace NrvBeeFlowerHover {
     NERVE(BeeFlowerHoverNrvSoftTouchWait);
     NERVE(BeeFlowerHoverNrvHardTouch);
     NERVE(BeeFlowerHoverNrvRecover);
-}; // namespace NrvBeeFlowerHover
+};  // namespace NrvBeeFlowerHover

@@ -1,7 +1,7 @@
+#include "Game/Scene/SceneFactory.hpp"
 #include "Game/Scene/GameScene.hpp"
 #include "Game/Scene/IntermissionScene.hpp"
 #include "Game/Scene/LogoScene.hpp"
-#include "Game/Scene/SceneFactory.hpp"
 #include <cstdio>
 
 namespace {
@@ -20,7 +20,7 @@ namespace {
         {"Intermission", createScene< IntermissionScene >},
         {"Logo", createScene< LogoScene >},
     };
-}; // namespace
+};  // namespace
 
 namespace MR {
     Scene* createScene(const char* pName) {
@@ -42,4 +42,4 @@ namespace MR {
 
         return (*pIter->mCreateFunc)();
     }
-}; // namespace MR
+};  // namespace MR

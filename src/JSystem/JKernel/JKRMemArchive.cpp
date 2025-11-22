@@ -1,17 +1,15 @@
+#include "JSystem/JKernel/JKRMemArchive.hpp"
 #include "JSystem/JKernel/JKRAram.hpp"
 #include "JSystem/JKernel/JKRDecomp.hpp"
 #include "JSystem/JKernel/JKRDvdRipper.hpp"
-#include "JSystem/JKernel/JKRMemArchive.hpp"
 #include "JSystem/JKernel/JKRHeap.hpp"
 #include "JSystem/JUtility/JUTException.hpp"
 #include "revolution.h"
 #include <cstring>
 
-JKRMemArchive::JKRMemArchive() {
-}
+JKRMemArchive::JKRMemArchive() {}
 
-JKRMemArchive::JKRMemArchive(long entryNum, EMountDirection mountDir)
-    : JKRArchive(entryNum, MOUNT_MODE_MEM) {
+JKRMemArchive::JKRMemArchive(long entryNum, EMountDirection mountDir) : JKRArchive(entryNum, MOUNT_MODE_MEM) {
     mIsMounted = false;
     mMountDir = mountDir;
 
@@ -113,12 +111,7 @@ void* JKRMemArchive::fetchResource(void* pData, unsigned long dataSize, SDIFileE
             compression = JKR_COMPRESSION_SZP;
         }
 
-        size = fetchResource_subroutine(
-            mFileDataStart + pFile->mDataOffset,
-            size,
-            reinterpret_cast< u8* >(pData),
-            dataSize,
-            compression);
+        size = fetchResource_subroutine(mFileDataStart + pFile->mDataOffset, size, reinterpret_cast< u8* >(pData), dataSize, compression);
     }
 
     if (pSize != nullptr) {
@@ -156,7 +149,7 @@ bool JKRMemArchive::mountFixed(void* a1, JKRMemBreakFlag breakFlag) {
     }
 
     SDIDirEntry* firstDir = mDirs;
-    char*        stringTable = mStringTable;
+    char* stringTable = mStringTable;
 
     mLoaderType = RARC_MAGIC;
     mLoaderName = stringTable + firstDir->mNameOffset;
@@ -184,16 +177,8 @@ bool JKRMemArchive::open(long entryNum, EMountDirection mountDir) {
     if (mountDir == MOUNT_DIRECTION_1) {
         u32 size;
 
-        u8* pData = JKRDvdRipper::loadToMainRAM(
-            entryNum,
-            nullptr,
-            JKR_EXPAND_SWITCH_1,
-            0,
-            mHeap,
-            JKRDvdRipper::ALLOC_DIRECTION_1,
-            0,
-            reinterpret_cast< int* >(&_5C),
-            &size);
+        u8* pData = JKRDvdRipper::loadToMainRAM(entryNum, nullptr, JKR_EXPAND_SWITCH_1, 0, mHeap, JKRDvdRipper::ALLOC_DIRECTION_1, 0,
+                                                reinterpret_cast< int* >(&_5C), &size);
 
         mHeader = reinterpret_cast< RarcHeader* >(pData);
 
@@ -203,16 +188,8 @@ bool JKRMemArchive::open(long entryNum, EMountDirection mountDir) {
     } else {
         u32 size;
 
-        u8* pData = JKRDvdRipper::loadToMainRAM(
-            entryNum,
-            nullptr,
-            JKR_EXPAND_SWITCH_1,
-            0,
-            mHeap,
-            JKRDvdRipper::ALLOC_DIRECTION_2,
-            0,
-            reinterpret_cast< int* >(&_5C),
-            &size);
+        u8* pData = JKRDvdRipper::loadToMainRAM(entryNum, nullptr, JKR_EXPAND_SWITCH_1, 0, mHeap, JKRDvdRipper::ALLOC_DIRECTION_2, 0,
+                                                reinterpret_cast< int* >(&_5C), &size);
 
         mHeader = reinterpret_cast< RarcHeader* >(pData);
 

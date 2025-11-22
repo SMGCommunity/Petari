@@ -12,23 +12,17 @@ struct AudEffectData {
 
 namespace {
     const AudEffectData cAudEffectDataList[5] = {
-        {0.0f, 0x7F, 1.0f, 0x5A},
-        {1.0f, 0x7F, 1.0f, 0x5A},
-        {0.0f, 0x0A, 1.0f, 0x5A},
-        {1.0f, 0x7F, 0.0f, 0x5A},
-        {0.80000001f, 0x7F, 1.0f, 0x5A},
+        {0.0f, 0x7F, 1.0f, 0x5A}, {1.0f, 0x7F, 1.0f, 0x5A}, {0.0f, 0x0A, 1.0f, 0x5A}, {1.0f, 0x7F, 0.0f, 0x5A}, {0.80000001f, 0x7F, 1.0f, 0x5A},
     };
 }
 
-AudEffectDirector::AudEffectDirector()
-    : NameObj("オーディオエフェクトディレクター") {
+AudEffectDirector::AudEffectDirector() : NameObj("オーディオエフェクトディレクター") {
     _C = 0;
     _10 = 0;
     _14 = 0;
 }
 
-AudEffectDirector::~AudEffectDirector() {
-}
+AudEffectDirector::~AudEffectDirector() {}
 
 void AudEffectDirector::init(const JMapInfoIter& rIter) {
     MR::connectToScene(this, 24, -1, -1, -1);

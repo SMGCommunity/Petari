@@ -18,10 +18,9 @@ namespace NrvTicoRail {
     NEW_NERVE(TicoRailNrvTalk, TicoRail, Talk);
     NEW_NERVE(TicoRailNrvTalkCancel, TicoRail, TalkCancel);
     NEW_NERVE(TicoRailNrvGoodBye, TicoRail, GoodBye);
-}; // namespace NrvTicoRail
+};  // namespace NrvTicoRail
 
-TicoRail::TicoRail(const char* pName)
-    : LiveActor(pName) {
+TicoRail::TicoRail(const char* pName) : LiveActor(pName) {
     _8C.x = 0.0f;
     _8C.y = 0.0f;
     _8C.z = 0.0f;
@@ -102,9 +101,9 @@ void TicoRail::exeMoveSign() {
         }
     }
 
-    f32           rate = MR::calcNerveRate(this, MR::getBckFrameMax(this));
+    f32 rate = MR::calcNerveRate(this, MR::getBckFrameMax(this));
     const TVec3f* railDirection = &MR::getRailDirection(this);
-    TVec3f        reversedDir;
+    TVec3f reversedDir;
     JMathInlineVEC::PSVECNegate(railDirection, &reversedDir);
     MR::blendVec(&_8C, reversedDir, MR::getRailDirection(this), rate);
     if (MR::isBckStopped(this)) {
@@ -234,7 +233,8 @@ void TicoRail::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isSensorPlayer(pReceiver)) {
         MR::sendMsgPush(pReceiver, pSender);
     } else if (MR::isSensorNpc(pReceiver)) {
-        bool v6 = isNerve(&NrvTicoRail::TicoRailNrvTalkStart::sInstance) || isNerve(&NrvTicoRail::TicoRailNrvTalk::sInstance) || isNerve(&NrvTicoRail::TicoRailNrvTalkCancel::sInstance) || isNerve(&NrvTicoRail::TicoRailNrvGoodBye::sInstance);
+        bool v6 = isNerve(&NrvTicoRail::TicoRailNrvTalkStart::sInstance) || isNerve(&NrvTicoRail::TicoRailNrvTalk::sInstance) ||
+                  isNerve(&NrvTicoRail::TicoRailNrvTalkCancel::sInstance) || isNerve(&NrvTicoRail::TicoRailNrvGoodBye::sInstance);
 
         if (v6) {
             return;
@@ -254,7 +254,8 @@ bool TicoRail::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver
         return false;
     }
 
-    bool v8 = isNerve(&NrvTicoRail::TicoRailNrvTalkStart::sInstance) || isNerve(&NrvTicoRail::TicoRailNrvTalk::sInstance) || isNerve(&NrvTicoRail::TicoRailNrvTalkCancel::sInstance) || isNerve(&NrvTicoRail::TicoRailNrvGoodBye::sInstance);
+    bool v8 = isNerve(&NrvTicoRail::TicoRailNrvTalkStart::sInstance) || isNerve(&NrvTicoRail::TicoRailNrvTalk::sInstance) ||
+              isNerve(&NrvTicoRail::TicoRailNrvTalkCancel::sInstance) || isNerve(&NrvTicoRail::TicoRailNrvGoodBye::sInstance);
 
     if (v8) {
         return false;
@@ -288,5 +289,4 @@ bool TicoRail::isSameRailActor(const LiveActor* pActor) const {
     return ret;
 }
 
-TicoRail::~TicoRail() {
-}
+TicoRail::~TicoRail() {}

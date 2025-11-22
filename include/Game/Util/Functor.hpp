@@ -7,27 +7,20 @@ class JKRHeap;
 namespace MR {
     class FunctorBase {
     public:
-        virtual void         operator()() const = 0;
+        virtual void operator()() const = 0;
         virtual FunctorBase* clone(JKRHeap*) const = 0;
     };
 
     template < typename T, typename U >
     class FunctorV0M : public FunctorBase {
     public:
-        inline FunctorV0M(T call, U callee)
-            : mCaller(call), mCallee(callee) {
-        }
+        inline FunctorV0M(T call, U callee) : mCaller(call), mCallee(callee) {}
 
-        inline FunctorV0M() {
-        }
+        inline FunctorV0M() {}
 
-        virtual void operator()() const {
-            (mCaller->*mCallee)();
-        }
+        virtual void operator()() const { (mCaller->*mCallee)(); }
 
-        virtual FunctorBase* clone(JKRHeap* pHeap) const {
-            return new (pHeap, 0) FunctorV0M(*this);
-        };
+        virtual FunctorBase* clone(JKRHeap* pHeap) const { return new (pHeap, 0) FunctorV0M(*this); };
 
         T mCaller;
         U mCallee;
@@ -42,16 +35,11 @@ namespace MR {
             mArg0 = arg_0;
         }
 
-        inline FunctorV1M() {
-        }
+        inline FunctorV1M() {}
 
-        virtual void operator()() const {
-            (mCaller->*mCallee)(mArg0);
-        }
+        virtual void operator()() const { (mCaller->*mCallee)(mArg0); }
 
-        virtual FunctorBase* clone(JKRHeap* pHeap) const {
-            return new (pHeap, 0x16) FunctorV1M(*this);
-        };
+        virtual FunctorBase* clone(JKRHeap* pHeap) const { return new (pHeap, 0x16) FunctorV1M(*this); };
 
         T mCaller;
         U mCallee;
@@ -68,16 +56,11 @@ namespace MR {
             mArg1 = arg_1;
         }
 
-        inline FunctorV2M() {
-        }
+        inline FunctorV2M() {}
 
-        virtual void operator()() const {
-            (mCaller->*mCallee)(mArg0, mArg1);
-        }
+        virtual void operator()() const { (mCaller->*mCallee)(mArg0, mArg1); }
 
-        virtual FunctorBase* clone(JKRHeap* pHeap) const {
-            return new (pHeap, 0x16) FunctorV2M(*this);
-        };
+        virtual FunctorBase* clone(JKRHeap* pHeap) const { return new (pHeap, 0x16) FunctorV2M(*this); };
 
         T mCaller;
         U mCallee;
@@ -122,13 +105,11 @@ namespace MR {
 
     class FunctorV0F : public FunctorBase {
     public:
-        inline FunctorV0F(void (*func)(void)) {
-            mFunc = func;
-        };
+        inline FunctorV0F(void (*func)(void)) { mFunc = func; };
 
-        virtual void         operator()() const;
+        virtual void operator()() const;
         virtual FunctorBase* clone(JKRHeap*) const;
 
-        void* mFunc; // 0x4
+        void* mFunc;  // 0x4
     };
-}; // namespace MR
+};  // namespace MR

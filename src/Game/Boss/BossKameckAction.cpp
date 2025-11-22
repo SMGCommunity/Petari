@@ -1,12 +1,10 @@
 #include "Game/Boss/BossKameckAction.hpp"
 
-BossKameckAction::BossKameckAction(const char* pName, BossKameck* pBoss)
-    : ActorStateBase< BossKameck >(pName) {
+BossKameckAction::BossKameckAction(const char* pName, BossKameck* pBoss) : ActorStateBase< BossKameck >(pName) {
     mBossKameck = pBoss;
 }
 
-BossKameckAction::~BossKameckAction() {
-}
+BossKameckAction::~BossKameckAction() {}
 
 bool BossKameckAction::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     return false;
@@ -24,5 +22,4 @@ bool BossKameckAction::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSe
     return false;
 }
 
-void BossKameckAction::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
-}
+void BossKameckAction::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {}

@@ -10,6 +10,6 @@ public:
     ~MiiDatabase();
 
 private:
-    /* 0x0 */ u8*                                   _0;
+    /* 0x0 */ u8* _0;
     /* 0x4 */ MR::AssignableArray< RFLStoreData* >* mStoreDataArray;
 };

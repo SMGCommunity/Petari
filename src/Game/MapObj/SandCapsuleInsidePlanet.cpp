@@ -1,8 +1,6 @@
 #include "Game/MapObj/SandCapsuleInsidePlanet.hpp"
 
-SandCapsuleInsidePlanet::SandCapsuleInsidePlanet(const char* pName)
-    : MapObjActor(pName) {
-}
+SandCapsuleInsidePlanet::SandCapsuleInsidePlanet(const char* pName) : MapObjActor(pName) {}
 
 void SandCapsuleInsidePlanet::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);
@@ -32,5 +30,4 @@ namespace NrvSandCapsuleInsidePlanet {
     INIT_NERVE(SandCapsuleInsidePlanetNrvWait);
 };
 
-SandCapsuleInsidePlanet::~SandCapsuleInsidePlanet() {
-}
+SandCapsuleInsidePlanet::~SandCapsuleInsidePlanet() {}

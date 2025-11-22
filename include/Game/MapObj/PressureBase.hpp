@@ -13,16 +13,15 @@ public:
 
     void exeSync();
 
-    MsgSharedGroup* mSharedGroup; // 0x8C
-    s32             _90;
+    MsgSharedGroup* mSharedGroup;  // 0x8C
+    s32 _90;
 };
 
 class PressureBase : public LiveActor {
 public:
     PressureBase(const char*);
 
-    virtual ~PressureBase() {
-    }
+    virtual ~PressureBase() {}
 
     virtual void init(const JMapInfoIter&);
     virtual void initAfterPlacement();
@@ -44,20 +43,20 @@ public:
     bool isShotTypeOnGravity() const;
     bool isShotTypeFollow() const;
 
-    JointControlDelegator< PressureBase >* mJointController; // 0x8C
-    TVec3f                                 mFront;           // 0x90
-    f32                                    _9C;
-    f32                                    mNozzleRotation; // 0xA0
-    s32                                    mWaitTime;       // 0xA4
-    f32                                    mBallSpeed;      // 0xA8
-    s32                                    mShotType;       // 0xAC
-    u8                                     _B0;
-    u8                                     _B1;
-    u8                                     _B2;
-    u8                                     _B3;
-    PressureMessenger*                     mMessenger; // 0xB4
-    MsgSharedGroup*                        mGroup;     // 0xB8
-    s8                                     _BC;
+    JointControlDelegator< PressureBase >* mJointController;  // 0x8C
+    TVec3f mFront;                                            // 0x90
+    f32 _9C;
+    f32 mNozzleRotation;  // 0xA0
+    s32 mWaitTime;        // 0xA4
+    f32 mBallSpeed;       // 0xA8
+    s32 mShotType;        // 0xAC
+    u8 _B0;
+    u8 _B1;
+    u8 _B2;
+    u8 _B3;
+    PressureMessenger* mMessenger;  // 0xB4
+    MsgSharedGroup* mGroup;         // 0xB8
+    s8 _BC;
 };
 
 namespace NrvPressureMessenger {
@@ -74,4 +73,4 @@ namespace NrvPressureBase {
     NERVE(PressureBaseNrvWait);
     NERVE(PressureBaseNrvPrepareToShot);
     NERVE(PressureBaseNrvShot);
-}; // namespace NrvPressureBase
+};  // namespace NrvPressureBase

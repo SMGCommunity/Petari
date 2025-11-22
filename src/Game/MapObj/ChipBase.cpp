@@ -1,6 +1,6 @@
+#include "Game/MapObj/ChipBase.hpp"
 #include "Game/LiveActor/FlashingCtrl.hpp"
 #include "Game/LiveActor/PartsModel.hpp"
-#include "Game/MapObj/ChipBase.hpp"
 #include "Game/MapObj/ChipHolder.hpp"
 #include "Game/MapObj/MapPartsRailMover.hpp"
 #include "Game/NameObj/NameObjArchiveListCollector.hpp"
@@ -12,20 +12,11 @@ namespace NrvChipBase {
     NEW_NERVE(ChipBaseNrvFlashing, ChipBase, Flashing);
     NEW_NERVE(ChipBaseNrvHide, ChipBase, Hide);
     NEW_NERVE(ChipBaseNrvGot, ChipBase, Got);
-}; // namespace NrvChipBase
+};  // namespace NrvChipBase
 
 ChipBase::ChipBase(const char* pName, s32 chipType, const char* pChipName)
-    : LiveActor(pName),
-      mFlashingCtrl(nullptr),
-      mRailMover(nullptr),
-      mAirBubble(nullptr),
-      mChipName(pChipName),
-      mHost(nullptr),
-      mClippingRange(0.0f, 0.0f, 0.0f),
-      mGroupID(-1),
-      mChipType(chipType),
-      _B5(false) {
-}
+    : LiveActor(pName), mFlashingCtrl(nullptr), mRailMover(nullptr), mAirBubble(nullptr), mChipName(pChipName), mHost(nullptr),
+      mClippingRange(0.0f, 0.0f, 0.0f), mGroupID(-1), mChipType(chipType), _B5(false) {}
 
 void ChipBase::init(const JMapInfoIter& rIter) {
     MR::createChipHolder(mChipType);
@@ -258,8 +249,7 @@ bool ChipBase::requestEndControl() {
     return false;
 }
 
-void ChipBase::exeDeactive() {
-}
+void ChipBase::exeDeactive() {}
 
 void ChipBase::exeWait() {
     if (MR::isFirstStep(this)) {
@@ -283,8 +273,7 @@ void ChipBase::exeFlashing() {
     }
 }
 
-void ChipBase::exeHide() {
-}
+void ChipBase::exeHide() {}
 
 #ifdef NON_MATCHING
 // mAirBubble load isn't loading twice

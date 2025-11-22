@@ -6,7 +6,7 @@ class InvisiblePolygonObj : public LiveActor {
 public:
     InvisiblePolygonObj(const char*);
 
-    virtual void   init(const JMapInfoIter&);
+    virtual void init(const JMapInfoIter&);
     virtual MtxPtr getBaseMtx() const;
 
     void initBaseMtx();

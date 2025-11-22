@@ -1,12 +1,12 @@
-#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Ride/SurfRayTutorial.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/SurfingGuidance.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/GamePadUtil.hpp"
 #include "Game/Util/NerveUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
-#include "Game/Util/TalkUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
+#include "Game/Util/TalkUtil.hpp"
 
 namespace NrvSurfRayTutorial {
     NEW_NERVE(SurfRayTutorialNrvTutorialAllStart, SurfRayTutorial, TutorialAllStart);
@@ -23,7 +23,7 @@ namespace NrvSurfRayTutorial {
     NEW_NERVE(SurfRayTutorialNrvTutorialTurnRightUpkeep, SurfRayTutorial, TutorialTurnRightUpkeep);
     NEW_NERVE(SurfRayTutorialNrvTutorialTurnRightSuccess, SurfRayTutorial, TutorialTurnRightSuccess);
     NEW_NERVE(SurfRayTutorialNrvTutorialAllEnd, SurfRayTutorial, TutorialAllEnd);
-}; // namespace NrvSurfRayTutorial
+};  // namespace NrvSurfRayTutorial
 
 namespace {
     static const s32 sStepTalk = 150;
@@ -34,15 +34,10 @@ namespace {
     // static const f32 sPadAccelTurnMinX = _;
     // static const f32 sPadAccelTurnLimitZ = _;
     // static const f32 sPadAccelTurnLimitY = _;
-}; // namespace
+};  // namespace
 
 SurfRayTutorial::SurfRayTutorial(LiveActor* pHost, TalkMessageCtrl* pTalkCtrl, const JMapInfoIter& rIter)
-    : NerveExecutor("チュートリアル演出"),
-      mHost(pHost),
-      mIsTutorialPass(false),
-      mPadAccel(0.0f, 0.0f, 0.0f),
-      mTalkCtrl(pTalkCtrl),
-      mChangeStep(0),
+    : NerveExecutor("チュートリアル演出"), mHost(pHost), mIsTutorialPass(false), mPadAccel(0.0f, 0.0f, 0.0f), mTalkCtrl(pTalkCtrl), mChangeStep(0),
       _28(0) {
     initNerve(&NrvSurfRayTutorial::SurfRayTutorialNrvTutorialAllStart::sInstance);
 

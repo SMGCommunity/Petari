@@ -1,4 +1,3 @@
 #include "Game/System/ScenarioProgressTestRun.hpp"
 
-ScenarioProgressTestRun::ScenarioProgressTestRun(GameDataHolder* pHost)
-    : mHost(pHost) {}
+ScenarioProgressTestRun::ScenarioProgressTestRun(GameDataHolder* pHost) : mHost(pHost) {}

@@ -8,7 +8,7 @@ namespace MR {
     void getCorePadPointingPosBasedOnScreen(TVec2f* pPos, s32 channel);
     void getCorePadPointingPos(TVec2f* pPos, s32 channel);
     void getCorePadPastPointingPos(TVec2f* pPos, s32 idx, s32 channel);
-    s32  getCorePadEnablePastCount(s32 channel);
+    s32 getCorePadEnablePastCount(s32 channel);
 
     /// @brief Determines if the given Wii Remote is pointing at the screen.
     /// @param channel The handle to the Wii Remote.
@@ -275,7 +275,7 @@ namespace MR {
     /// @param channel The handle to the Wii Remote.
     /// @return `true` if the Wii Remote is being controlled, `false` otherwise.
     bool isOperatingWPad(s32 channel);
-}; // namespace MR
+};  // namespace MR
 
 namespace WPadFunction {
     WPadRumble* getWPadRumble(s32 channel);

@@ -1,8 +1,7 @@
 #include "Game/MapObj/BeeFlowerHover.hpp"
 #include "Game/LiveActor/LodCtrl.hpp"
 
-BeeFlowerHover::BeeFlowerHover(const char* pName)
-    : LiveActor(pName) {
+BeeFlowerHover::BeeFlowerHover(const char* pName) : LiveActor(pName) {
     mLodCtrlPlanet = 0;
     _BC = 50.0f;
     mRailMover = 0;
@@ -87,7 +86,6 @@ void BeeFlowerHover::exeSoftTouchWait() {
     if (!MR::isPlayerElementModeBee()) {
         setNerve(&NrvBeeFlowerHover::BeeFlowerHoverNrvHardTouch::sInstance);
     } else {
-
         if (MR::isOnPlayer(getSensor(0))) {
             setNerve(&NrvBeeFlowerHover::BeeFlowerHoverNrvWait::sInstance);
         }
@@ -136,14 +134,14 @@ void BeeFlowerHover::control() {
         }
     }
 
-    f32    v5 = _BC;
+    f32 v5 = _BC;
     TVec3f v11;
     v5 = v5 * 0.017453292f;
     v11.y = 1.0f;
     v11.x = 0.0f;
     v11.z = 0.0f;
 
-    TMtx34f v12; // stack_20
+    TMtx34f v12;  // stack_20
     v12.mMtx[0][3] = 0.0f;
     v12.mMtx[1][3] = 0.0f;
     v12.mMtx[2][3] = 0.0f;
@@ -159,7 +157,7 @@ void BeeFlowerHover::control() {
 
     v12.mMtx[2][2] = v7 + ((1.0f - v7) * (v10.z * v10.z));
 
-    //f32 val_3 =
+    // f32 val_3 =
 
     v12.mMtx[0][1] = (v10.y * ((1.0f - v7) * v10.x)) - (v6 * v10.z);
     v12.mMtx[1][0] = (v10.y * ((1.0f - v7) * v10.x)) + (v6 * v10.z);
@@ -212,8 +210,7 @@ bool BeeFlowerHover::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pRe
     return false;
 }
 
-BeeFlowerHover::~BeeFlowerHover() {
-}
+BeeFlowerHover::~BeeFlowerHover() {}
 
 namespace NrvBeeFlowerHover {
     INIT_NERVE(BeeFlowerHoverNrvWait);
@@ -249,4 +246,4 @@ namespace NrvBeeFlowerHover {
             MR::startBck(flower, "Wait", 0);
         }
     }
-}; // namespace NrvBeeFlowerHover
+};  // namespace NrvBeeFlowerHover

@@ -13,8 +13,7 @@ namespace NrvClipAreaDrop {
     NEW_NERVE(ClipAreaDropNrvWait, ClipAreaDrop, Wait);
 }
 
-ClipAreaDrop::ClipAreaDrop(const char* pName)
-    : ClipArea(pName) {
+ClipAreaDrop::ClipAreaDrop(const char* pName) : ClipArea(pName) {
     _C0 = 0;
     _C4 = 0.0f;
     setShape(_C0 = new ClipAreaShapeSphere);

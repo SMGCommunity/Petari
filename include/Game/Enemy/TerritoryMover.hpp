@@ -1,7 +1,7 @@
 #pragma once
 
-#include <revolution.h>
 #include <JSystem/JGeometry.hpp>
+#include <revolution.h>
 
 class LiveActor;
 
@@ -12,7 +12,7 @@ public:
     void decideNextTargetPos(const LiveActor*);
     bool isReachedTarget(const LiveActor*, f32);
 
-    f32    _0;
+    f32 _0;
     TVec3f _4;
     TVec3f _10;
 };

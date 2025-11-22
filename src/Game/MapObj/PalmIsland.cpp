@@ -14,10 +14,9 @@
 namespace NrvPalmIsland {
     NEW_NERVE(PalmIslandNrvWait, PalmIsland, Wait);
     NEW_NERVE(PalmIslandNrvFloat, PalmIsland, Float);
-}; // namespace NrvPalmIsland
+};  // namespace NrvPalmIsland
 
-PalmIsland::PalmIsland(const char* pName)
-    : LiveActor(pName) {
+PalmIsland::PalmIsland(const char* pName) : LiveActor(pName) {
     _8C = 0;
     _90.x = 0.0f;
     _90.y = 0.0f;
@@ -56,7 +55,7 @@ void PalmIsland::exeFloat() {
         MR::emitEffect(this, "Ripple");
         MR::setEffectHostSRT(this, "Ripple", &_90, nullptr, nullptr);
     }
-    f32  value = JMath::sSinCosTable.sinLapRad(90.0f + 1.44f * getNerveStep()) * 1.5f;
+    f32 value = JMath::sSinCosTable.sinLapRad(90.0f + 1.44f * getNerveStep()) * 1.5f;
     bool temp = false;
 
     if (value > 0.0f) {

@@ -1,5 +1,5 @@
-#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/IconComet.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util/EventUtil.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 
@@ -7,9 +7,7 @@ namespace NrvIconComet {
     NEW_NERVE(IconCometNrvWait, IconComet, Wait);
 };
 
-IconComet::IconComet()
-    : LayoutActor("コメットアイコン", true) {
-}
+IconComet::IconComet() : LayoutActor("コメットアイコン", true) {}
 
 void IconComet::init(const JMapInfoIter& rIter) {
     initLayoutManager("IconComet", 1);
@@ -32,5 +30,4 @@ void IconComet::appearByCometNameId(int id) {
     LayoutActor::appear();
 }
 
-void IconComet::exeWait() {
-}
+void IconComet::exeWait() {}

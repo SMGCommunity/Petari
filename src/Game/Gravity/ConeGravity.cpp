@@ -1,7 +1,6 @@
 #include "Game/Gravity.hpp"
 
-ConeGravity::ConeGravity()
-    : PlanetGravity() {
+ConeGravity::ConeGravity() : PlanetGravity() {
     mValidDegree = 360.0f;
     mValidCos = -1.0f;
     mWorldRadius = 0.0f;
@@ -30,14 +29,13 @@ inline f32 absfInline(f32& orig, f32 v) {
 }
 
 bool ConeGravity::calcOwnGravityVector(TVec3f* pDest, f32* pScalar, const TVec3f& rPos) const {
-
     TVec3f worldBaseCenter, worldCentralAxis;
 
     mWorldMtx.getYDir(worldCentralAxis);
     mWorldMtx.getTransInline(worldBaseCenter);
 
     TVec3f unitWorldCentralAxis;
-    f32    centralAxisLength;
+    f32 centralAxisLength;
     MR::separateScalarAndDirection(&centralAxisLength, &unitWorldCentralAxis, worldCentralAxis);
 
     TVec3f relativePosition = rPos - worldBaseCenter;
@@ -45,12 +43,10 @@ bool ConeGravity::calcOwnGravityVector(TVec3f* pDest, f32* pScalar, const TVec3f
     positionOnBasePlane.rejection(relativePosition, unitWorldCentralAxis);
 
     if (MR::isNearZero(positionOnBasePlane, 0.00100000005f)) {
-
         f32 positionOnCentralAxis;
         f32 distance = absfInline(positionOnCentralAxis, relativePosition.dot(unitWorldCentralAxis));
 
         if (positionOnCentralAxis > 0.0f) {
-
             f32 height = centralAxisLength * (1.0f - mTopCutRate);
 
             distance -= height;
@@ -92,7 +88,6 @@ bool ConeGravity::calcOwnGravityVector(TVec3f* pDest, f32* pScalar, const TVec3f
     TVec3f apex = worldBaseCenter + worldCentralAxis;
 
     if (relativePosition.dot(worldCentralAxis) < 0.0f) {
-
         if (!mEnableBottom) {
             return false;
         }
@@ -100,7 +95,6 @@ bool ConeGravity::calcOwnGravityVector(TVec3f* pDest, f32* pScalar, const TVec3f
         MR::calcPerpendicFootToLineInside(&pointOfAttraction, rPos, worldBaseCenter, dirOnDirectrix);
 
         if (MR::isNearZero(pointOfAttraction - rPos, 0.00100000005f)) {
-
             *pDest = -unitWorldCentralAxis;
             *pScalar = 0.0f;
 
@@ -115,7 +109,6 @@ bool ConeGravity::calcOwnGravityVector(TVec3f* pDest, f32* pScalar, const TVec3f
     if (mTopCutRate < 0.00999999978f) {
         MR::calcPerpendicFootToLineInside(&pointOfAttraction, rPos, dirOnDirectrix, apex);
     } else {
-
         TVec3f generatrixTermination;
         generatrixTermination.set(apex * (1.0f - mTopCutRate) + dirOnDirectrix * mTopCutRate);
 
@@ -123,7 +116,6 @@ bool ConeGravity::calcOwnGravityVector(TVec3f* pDest, f32* pScalar, const TVec3f
         frustumBaseCenter.set(worldBaseCenter + worldCentralAxis * (1.0f - mTopCutRate));
 
         if ((rPos - generatrixTermination).dot(generatrixTermination - frustumBaseCenter) <= 0.0f) {
-
             // Attracted to the frustum
             f32 distanceToCentralAxis = unitWorldCentralAxis.dot(rPos - frustumBaseCenter);
 
@@ -144,7 +136,6 @@ bool ConeGravity::calcOwnGravityVector(TVec3f* pDest, f32* pScalar, const TVec3f
     }
 
     if (MR::isNearZero(pointOfAttraction - rPos, 0.00100000005f)) {
-
         TVec3f generatrixDirection = apex - dirOnDirectrix;
         MR::normalizeOrZero(&generatrixDirection);
 
@@ -177,7 +168,7 @@ void ConeGravity::updateMtx(const TPos3f& rMtx) {
     mWorldMtx.getXDirInline(sideVec);
     mWorldRadius = PSVECMag(&sideVec);
 
-    TVec3f axis; // unused
+    TVec3f axis;  // unused
     mWorldMtx.getYDir(axis);
     // The developers could have left this in because there originally was a height member
     // that they would set to ||axis|| * (1.0f - mTopCutRate)

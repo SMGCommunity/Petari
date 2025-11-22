@@ -1,5 +1,5 @@
-#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/MissLayout.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 
@@ -7,11 +7,9 @@ namespace {
     NEW_NERVE(MissLayoutNrvWait, MissLayout, Wait);
     NEW_NERVE(MissLayoutNrvActive, MissLayout, Active);
     NEW_NERVE(MissLayoutNrvEnd, MissLayout, End);
-}; // namespace
+};  // namespace
 
-MissLayout::MissLayout()
-    : LayoutActor("ミス!", true) {
-}
+MissLayout::MissLayout() : LayoutActor("ミス!", true) {}
 
 void MissLayout::init(const JMapInfoIter& rIter) {
     MR::connectToSceneLayout(this);
@@ -40,8 +38,7 @@ void MissLayout::start() {
     setNerve(&MissLayoutNrvActive::sInstance);
 }
 
-void MissLayout::exeWait() {
-}
+void MissLayout::exeWait() {}
 
 void MissLayout::exeActive() {
     if (MR::isFirstStep(this)) {
@@ -58,5 +55,4 @@ void MissLayout::exeActive() {
     }
 }
 
-void MissLayout::exeEnd() {
-}
+void MissLayout::exeEnd() {}

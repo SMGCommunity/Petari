@@ -8,17 +8,15 @@
 #include "Game/Util/ObjUtil.hpp"
 
 namespace {
-    static const char* cCometBrkName[5] = {
-        "Red", "Blue", "White", "Yellow", "Purple"};
+    static const char* cCometBrkName[5] = {"Red", "Blue", "White", "Yellow", "Purple"};
 };
 
 namespace NrvAstroDomeComet {
     NEW_NERVE(AstroDomeCometNrvSelect, AstroDomeComet, Select);
     NEW_NERVE(AstroDomeCometNrvConfirm, AstroDomeComet, Confirm);
-}; // namespace NrvAstroDomeComet
+};  // namespace NrvAstroDomeComet
 
-AstroDomeComet::AstroDomeComet(const char* pName)
-    : LiveActor(pName) {
+AstroDomeComet::AstroDomeComet(const char* pName) : LiveActor(pName) {
     mBloomModel = nullptr;
     mMiniGalaxy = nullptr;
     mPointingActors = nullptr;
@@ -147,5 +145,4 @@ void AstroDomeComet::exeConfirm() {
     }
 }
 
-AstroDomeComet::~AstroDomeComet() {
-}
+AstroDomeComet::~AstroDomeComet() {}

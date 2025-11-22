@@ -10,14 +10,12 @@ public:
     virtual ~SimpleFloaterObj();
     virtual void init(const JMapInfoIter&);
 
-    void        exeWait();
-    inline bool isVelocityClose() {
-        return PSVECMag(&_90->_50) < 0.3f;
-    }
+    void exeWait();
+    inline bool isVelocityClose() { return PSVECMag(&_90->_50) < 0.3f; }
 
-    const char*            _8C;
+    const char* _8C;
     MapPartsFloatingForce* _90;
-    TVec3f                 _94;
+    TVec3f _94;
 };
 
 namespace {

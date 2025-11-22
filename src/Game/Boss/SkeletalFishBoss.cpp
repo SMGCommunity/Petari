@@ -14,55 +14,32 @@
 #include "Game/NameObj/NameObjExecuteHolder.hpp"
 #include "Game/System/ResourceHolder.hpp"
 #include "Game/Util/JointController.hpp"
-#include <JSystem/JMath/JMath.hpp>
 #include <JSystem/JMath/JMATrigonometric.hpp>
+#include <JSystem/JMath/JMath.hpp>
 #include <cstdio>
 
 namespace {
     static SkeletalFishBoss::SensorToCollider sColInfo[0xE] = {
-        {"Joint01", "BackBone01"},
-        {"Joint02", "BackBone02"},
-        {"Joint03", "BackBone03"},
-        {"Joint04", "BackBone04"},
-        {"Joint05", "BackBone05"},
-        {"Joint06", "BackBone06"},
-        {"Joint07", "BackBone07"},
-        {"Joint08", "BackBone08"},
-        {"Joint09", "BackBone09"},
-        {"Joint10", "BackBone10"},
-        {"Joint11", "BackBone11"},
-        {"Joint12", "BackFin"},
-        {"LeftFinJoint", "LeftFinJoint"},
-        {"RightFinJoint", "RightFinJoint"}};
+        {"Joint01", "BackBone01"},        {"Joint02", "BackBone02"},         {"Joint03", "BackBone03"}, {"Joint04", "BackBone04"},
+        {"Joint05", "BackBone05"},        {"Joint06", "BackBone06"},         {"Joint07", "BackBone07"}, {"Joint08", "BackBone08"},
+        {"Joint09", "BackBone09"},        {"Joint10", "BackBone10"},         {"Joint11", "BackBone11"}, {"Joint12", "BackFin"},
+        {"LeftFinJoint", "LeftFinJoint"}, {"RightFinJoint", "RightFinJoint"}};
 
-    static SkeletalFishBoss::HitPos sHitPosData[0x10] = {
-        {"Wound0", "Head", {26.144243f, 414.56268f, 552.11462}}};
-}; // namespace
+    static SkeletalFishBoss::HitPos sHitPosData[0x10] = {{"Wound0", "Head", {26.144243f, 414.56268f, 552.11462}}};
+};  // namespace
 
 namespace {
-    char* test[] = {
-        "Shadow00",
-        "Joint02",
-        "SkeletalFishBossShadow"};
-    static SkeletalFishBoss::JointToShadow sShadowInfo = {
-        "Shadow00", "Joint02", "SkeletalFishBossShadow"};
+    char* test[] = {"Shadow00", "Joint02", "SkeletalFishBossShadow"};
+    static SkeletalFishBoss::JointToShadow sShadowInfo = {"Shadow00", "Joint02", "SkeletalFishBossShadow"};
 
-    inline SkeletalFishBoss::JointToShadow& testInline() {
-        return sShadowInfo;
-    }
+    inline SkeletalFishBoss::JointToShadow& testInline() { return sShadowInfo; }
 
-    inline const char* getName(SkeletalFishBoss::JointToShadow& jointToShadow) {
-        return jointToShadow.mName;
-    }
+    inline const char* getName(SkeletalFishBoss::JointToShadow& jointToShadow) { return jointToShadow.mName; }
 
-    inline const char* getShadowName(SkeletalFishBoss::JointToShadow& jointToShadow) {
-        return jointToShadow.mShadowName;
-    }
+    inline const char* getShadowName(SkeletalFishBoss::JointToShadow& jointToShadow) { return jointToShadow.mShadowName; }
 
-    inline const char* getJointName(SkeletalFishBoss::JointToShadow& jointToShadow) {
-        return jointToShadow.mJointName;
-    }
-}; // namespace
+    inline const char* getJointName(SkeletalFishBoss::JointToShadow& jointToShadow) { return jointToShadow.mJointName; }
+};  // namespace
 
 namespace {
     NEW_NERVE(SkeletalFishBossNrvSwim, SkeletalFishBoss, Swim);
@@ -80,10 +57,9 @@ namespace {
     NEW_NERVE(SkeletalFishBossNrvDeadDemo, SkeletalFishBoss, DeadDemo);
     NEW_NERVE(SkeletalFishBossNrvBreakDemo, SkeletalFishBoss, BreakDemo);
     NEW_NERVE(SkeletalFishBossNrvDemoWait, SkeletalFishBoss, DemoWait);
-}; // namespace
+};  // namespace
 
-SkeletalFishBoss::SkeletalFishBoss(const char* pName)
-    : LiveActor(pName) {
+SkeletalFishBoss::SkeletalFishBoss(const char* pName) : LiveActor(pName) {
     mJointIndicies = nullptr;
     mPartsArray = nullptr;
     mBossHead = nullptr;
@@ -199,7 +175,8 @@ void SkeletalFishBoss::control() {
     }
 
     if (!isNerve(&::SkeletalFishBossNrvDead::sInstance) && !isNerve(&::SkeletalFishBossNrvAppearWait::sInstance)) {
-        bool isInDemo = isNerve(&::SkeletalFishBossNrvAppearDemo::sInstance) || isNerve(&::SkeletalFishBossNrvPowerUpDemo::sInstance) || isNerve(&::SkeletalFishBossNrvDeadDemo::sInstance);
+        bool isInDemo = isNerve(&::SkeletalFishBossNrvAppearDemo::sInstance) || isNerve(&::SkeletalFishBossNrvPowerUpDemo::sInstance) ||
+                        isNerve(&::SkeletalFishBossNrvDeadDemo::sInstance);
 
         if (!isInDemo) {
             mRailControl->update();
@@ -225,7 +202,7 @@ void SkeletalFishBoss::calcAnim() {
         f32 idx_mult;
         f32 val = MR::getZero();
         idx_mult = 2607.5945f;
-        JMath::TSinCosTable<14, f32>* tbl = &JMath::sSinCosTable; 
+        JMath::TSinCosTable<14, f32>* tbl = &JMath::sSinCosTable;
 
         TPos3f jointMtx;
         JMath::gekko_ps_copy12(&jointMtx, MR::getJointMtx(this, shadow->mJointName));
@@ -240,7 +217,7 @@ void SkeletalFishBoss::calcAnim() {
         f64 e = tbl->get(v10);
 
         if (zDir.dot(gravity) < e) {
-            MR::invalidateShadow(this, shadow->mName); 
+            MR::invalidateShadow(this, shadow->mName);
         }
         else {
             MR::validateShadow(this, shadow->mName);
@@ -446,7 +423,7 @@ void SkeletalFishBoss::exeDead() {
         resetCamera();
     } else {
         ActorCameraInfo info(-1, 0);
-        bool            isCameraActive = MR::isEventCameraActive(&info, "デモ終了後カメラ") == false;
+        bool isCameraActive = MR::isEventCameraActive(&info, "デモ終了後カメラ") == false;
         if (isCameraActive) {
             kill();
         }
@@ -623,7 +600,8 @@ SkeletalFishBossHead* SkeletalFishBoss::getHeadActor() const {
 void SkeletalFishBoss::calcAndSetBaseMtx() {
     bool isInDemo = false;
 
-    if (isNerve(&::SkeletalFishBossNrvAppearDemo::sInstance) || isNerve(&::SkeletalFishBossNrvPowerUpDemo::sInstance) || isNerve(&::SkeletalFishBossNrvDeadDemo::sInstance)) {
+    if (isNerve(&::SkeletalFishBossNrvAppearDemo::sInstance) || isNerve(&::SkeletalFishBossNrvPowerUpDemo::sInstance) ||
+        isNerve(&::SkeletalFishBossNrvDeadDemo::sInstance)) {
         isInDemo = true;
     }
 
@@ -672,7 +650,8 @@ void SkeletalFishBoss::initCollision() {
     mPartsArray = new CollisionParts*[0xE];
 
     for (u32 i = 0; i < 0xE; i++) {
-        mPartsArray[i] = MR::createCollisionPartsFromLiveActor(this, sColInfo[i].mColliderName, mBossHead->getSensor("body"), MR::getJointMtx(this, sColInfo[i].mJointName), (MR::CollisionScaleType)2);
+        mPartsArray[i] = MR::createCollisionPartsFromLiveActor(this, sColInfo[i].mColliderName, mBossHead->getSensor("body"),
+                                                               MR::getJointMtx(this, sColInfo[i].mJointName), (MR::CollisionScaleType)2);
         MR::validateCollisionParts(mPartsArray[i]);
     }
 }
@@ -711,10 +690,10 @@ void SkeletalFishBoss::createGuards() {
 void SkeletalFishBoss::initShadow() {
     MR::initShadowController(this, 1);
     SkeletalFishBoss::JointToShadow& shadow = testInline();
-    const char**                     bruh = (const char**)test;
-    const char*                      name = bruh[0];
-    MtxPtr                           mtx = MR::getJointMtx(this, bruh[1]);
-    //SkeletalFishBoss::JointToShadow* shadow = &sShadowInfo;
+    const char** bruh = (const char**)test;
+    const char* name = bruh[0];
+    MtxPtr mtx = MR::getJointMtx(this, bruh[1]);
+    // SkeletalFishBoss::JointToShadow* shadow = &sShadowInfo;
     MR::addShadowVolumeFlatModel(this, name, test[2], mtx);
     MR::setShadowDropLength(this, name, 4000.0f);
     MR::excludeCalcShadowToSensorAll(this, mBossHead->getSensor("body"));
@@ -722,7 +701,7 @@ void SkeletalFishBoss::initShadow() {
 
 void SkeletalFishBoss::initCamera() {
     ActorCameraInfo cameraInfo(-1, 0);
-    const char*     fileName = "SkeletalFishBossBattleStart.canm";
+    const char* fileName = "SkeletalFishBossBattleStart.canm";
     MR::declareEventCameraAnim(&cameraInfo, "スカルシャーク出現", MR::getResourceHolder(this)->mFileInfoTable->getRes(fileName));
     fileName = "SkeletalFishBossPowerUp1.canm";
     MR::declareEventCameraAnim(&cameraInfo, "スカルシャークパワーアップ", MR::getResourceHolder(this)->mFileInfoTable->getRes(fileName));
@@ -800,7 +779,7 @@ bool SkeletalFishBoss::calcGravityCenter(TVec3f *pOut, const TVec3f &rFirstPoint
     TVec3f firstGravityVector;
     MR::calcGravityVector(this, firstGravityCenter, &firstGravityVector, nullptr, 0);
     firstGravityVector.negate();
-    
+    
     TVec3f secondGravityCenter(rSecondPoint);
     TVec3f secondGravityVector;
     MR::calcGravityVector(this, secondGravityCenter, &secondGravityVector, nullptr, 0);
@@ -810,7 +789,7 @@ bool SkeletalFishBoss::calcGravityCenter(TVec3f *pOut, const TVec3f &rFirstPoint
     f32 secondGravitySquared = secondGravityVector.squared();
     f32 dotProduct = firstGravityVector.dot(secondGravityVector);
     f32 dotProductSquared = dotProduct * dotProduct;
-    
+    
     TVec3f distanceVector(firstGravityCenter - secondGravityCenter);
     TVec3f reversedDistanceVector(secondGravityCenter - firstGravityCenter);
     f32 dotFirst = distanceVector.dot(secondGravityVector);
@@ -820,15 +799,14 @@ bool SkeletalFishBoss::calcGravityCenter(TVec3f *pOut, const TVec3f &rFirstPoint
         return false;
     }
 
-    f32 scaleFactor = ((1.0f / ((firstGravitySquared * secondGravitySquared) - dotProductSquared)) * ((secondGravitySquared * dotSecond) + (dotProduct * dotFirst)));
-    pOut->setInline(firstGravityCenter + MR::createVecAndScale(firstGravityVector, scaleFactor));
-    return true; 
+    f32 scaleFactor = ((1.0f / ((firstGravitySquared * secondGravitySquared) - dotProductSquared)) * ((secondGravitySquared * dotSecond) + (dotProduct
+* dotFirst))); pOut->setInline(firstGravityCenter + MR::createVecAndScale(firstGravityVector, scaleFactor)); return true;
 }
 */
 
 void SkeletalFishBoss::resetRail() {
     SkeletalFishBossInfo::LevelStatus* lvl = mBossInfo->getLevelStatus(_110);
-    SkeletalFishBossRail*              rail = MR::getSkeletalFishBossRailHolder()->getByID(lvl->mRailIDLevel);
+    SkeletalFishBossRail* rail = MR::getSkeletalFishBossRailHolder()->getByID(lvl->mRailIDLevel);
     mRailControl->setRailActor(rail, nullptr, true);
     mRailControl->_14 = mBossInfo->getLevelStatus(_110)->mSpeedLevel;
 }
@@ -840,7 +818,6 @@ void SkeletalFishBoss::updateBgm() {
         s32 bgType, v4;
 
         if (MR::calcDistanceToPlayer(this) <= 4200.0f) {
-
             bgType = 2;
             v4 = 60;
         } else {
@@ -927,7 +904,7 @@ void SkeletalFishBoss::endAppearDemo() {
     }
 
     MR::showPlayer();
-    const char*     cameraName = "スカルシャーク出現";
+    const char* cameraName = "スカルシャーク出現";
     ActorCameraInfo cameraInfo(-1, 0);
     MR::endEventCamera(&cameraInfo, cameraName, false, 0);
     resetCamera();
@@ -997,7 +974,7 @@ void SkeletalFishBoss::startDeadDemo() {
 }
 
 void SkeletalFishBoss::endBreakDemo() {
-    const char*     cameraName = "スカルシャーク死亡";
+    const char* cameraName = "スカルシャーク死亡";
     ActorCameraInfo info(-1, 0);
     MR::endEventCamera(&info, cameraName, false, 0);
     resetCamera();
@@ -1017,7 +994,10 @@ void SkeletalFishBoss::endBreakDemo() {
 bool SkeletalFishBoss::isEnableToBeDamaged() const {
     bool isDmg = false;
 
-    if (!isNerve(&::SkeletalFishBossNrvDamage::sInstance) && !isNerve(&::SkeletalFishBossNrvDown::sInstance) && !isNerve(&::SkeletalFishBossNrvDeadDamage::sInstance) && !isNerve(&::SkeletalFishBossNrvDead::sInstance) && !isNerve(&::SkeletalFishBossNrvDemoWait::sInstance) && !isNerve(&::SkeletalFishBossNrvAppearDemo::sInstance) && !isNerve(&::SkeletalFishBossNrvPowerUpDemo::sInstance) && !isNerve(&::SkeletalFishBossNrvDeadDemo::sInstance)) {
+    if (!isNerve(&::SkeletalFishBossNrvDamage::sInstance) && !isNerve(&::SkeletalFishBossNrvDown::sInstance) &&
+        !isNerve(&::SkeletalFishBossNrvDeadDamage::sInstance) && !isNerve(&::SkeletalFishBossNrvDead::sInstance) &&
+        !isNerve(&::SkeletalFishBossNrvDemoWait::sInstance) && !isNerve(&::SkeletalFishBossNrvAppearDemo::sInstance) &&
+        !isNerve(&::SkeletalFishBossNrvPowerUpDemo::sInstance) && !isNerve(&::SkeletalFishBossNrvDeadDemo::sInstance)) {
         isDmg = true;
     }
 
@@ -1031,9 +1011,9 @@ SkeletalFishBossHead::SkeletalFishBossHead(LiveActor* pActor)
     MR::addHitSensorAtJointEnemy(this, "body", "Head", 8, 400.0f, TVec3f(0.0f, -120.0f, 320.0f));
 
     for (u32 i = 0; i < 0xD; i++) {
-        //SkeletalFishBoss::HitPos* data = &sHitPosData[i];
+        // SkeletalFishBoss::HitPos* data = &sHitPosData[i];
         TVec3f offset(sHitPosData[i].mOffset);
-        //offset.setInlinePS((TVec3f)data->mOffset);
+        // offset.setInlinePS((TVec3f)data->mOffset);
         offset.scale(9.0f / 10.0f);
         MR::addHitSensorAtJointEnemyAttack(this, sHitPosData[i].mName, sHitPosData[i].mSensorName, 8, 270.0f, offset);
     }
@@ -1055,14 +1035,15 @@ void SkeletalFishBossHead::attackSensor(HitSensor* pSender, HitSensor* pReceiver
     }
 
     LiveActor* pHost = mHost;
-    bool       curFlag = pHost->isNerve(&::SkeletalFishBossNrvDeadDamage::sInstance) || pHost->isNerve(&::SkeletalFishBossNrvDead::sInstance);
+    bool curFlag = pHost->isNerve(&::SkeletalFishBossNrvDeadDamage::sInstance) || pHost->isNerve(&::SkeletalFishBossNrvDead::sInstance);
 
     if (curFlag) {
         return;
     }
 
     if (MR::isSensorPlayer(pReceiver)) {
-        curFlag = pHost->isNerve(&::SkeletalFishBossNrvAppearDemo::sInstance) || pHost->isNerve(&::SkeletalFishBossNrvPowerUpDemo::sInstance) || pHost->isNerve(&::SkeletalFishBossNrvDeadDemo::sInstance);
+        curFlag = pHost->isNerve(&::SkeletalFishBossNrvAppearDemo::sInstance) || pHost->isNerve(&::SkeletalFishBossNrvPowerUpDemo::sInstance) ||
+                  pHost->isNerve(&::SkeletalFishBossNrvDeadDemo::sInstance);
 
         if (curFlag) {
             return;
@@ -1169,11 +1150,8 @@ void SkeletalFishBossScarFlash::control() {
     }
 }
 
-SkeletalFishBoss::~SkeletalFishBoss() {
-}
+SkeletalFishBoss::~SkeletalFishBoss() {}
 
-SkeletalFishBossHead::~SkeletalFishBossHead() {
-}
+SkeletalFishBossHead::~SkeletalFishBossHead() {}
 
-SkeletalFishBossScarFlash::~SkeletalFishBossScarFlash() {
-}
+SkeletalFishBossScarFlash::~SkeletalFishBossScarFlash() {}

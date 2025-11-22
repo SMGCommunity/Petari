@@ -1,8 +1,8 @@
 #pragma once
 
-#include <revolution.h>
 #include "JSystem/J3DGraphAnimator/J3DModelData.hpp"
 #include "JSystem/J3DGraphBase/J3DStruct.hpp"
+#include <revolution.h>
 
 class MaterialCtrl {
 public:
@@ -11,8 +11,8 @@ public:
     virtual void update();
     virtual void updateMaterial(J3DMaterial*);
 
-    J3DModelData* mModelData; // 0x4
-    J3DMaterial*  mMaterial;  // 0x8
+    J3DModelData* mModelData;  // 0x4
+    J3DMaterial* mMaterial;    // 0x8
 };
 
 class FogCtrl : public MaterialCtrl {
@@ -21,9 +21,9 @@ public:
 
     virtual void update();
 
-    J3DFogInfo    mFogInfo;      // 0xC
-    s32           mNumMaterials; // 0x38
-    J3DMaterial** mMaterials;    // 0x3C
+    J3DFogInfo mFogInfo;       // 0xC
+    s32 mNumMaterials;         // 0x38
+    J3DMaterial** mMaterials;  // 0x3C
 };
 
 class MatColorCtrl : public MaterialCtrl {
@@ -32,8 +32,8 @@ public:
 
     virtual void updateMaterial(J3DMaterial*);
 
-    u32               mColorChoice; // 0xC
-    const J3DGXColor* mColor;       // 0x10
+    u32 mColorChoice;          // 0xC
+    const J3DGXColor* mColor;  // 0x10
 };
 
 class ViewProjmapEffectMtxSetter : public MaterialCtrl {
@@ -42,8 +42,8 @@ public:
 
     virtual void update();
 
-    J3DTexMtxInfo** mMatricies;    // 0xC
-    s32             mNumMatricies; // 0x10
+    J3DTexMtxInfo** mMatricies;  // 0xC
+    s32 mNumMatricies;           // 0x10
 };
 
 class TexMtxCtrl : public MaterialCtrl {
@@ -52,7 +52,7 @@ public:
 
     void setTexMtx(u32, J3DTexMtx*);
 
-    J3DTexMtx* mMatricies[8]; // 0xC
+    J3DTexMtx* mMatricies[8];  // 0xC
 };
 
 class ProjmapEffectMtxSetter {

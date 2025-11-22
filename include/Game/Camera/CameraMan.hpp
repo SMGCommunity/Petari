@@ -10,8 +10,7 @@ class CameraMan : public NameObj {
 public:
     CameraMan(const char*);
 
-    virtual inline ~CameraMan() {
-    }
+    virtual inline ~CameraMan() {}
 
     virtual void init(const JMapInfoIter&);
     virtual void movement();
@@ -35,10 +34,10 @@ public:
     void activate(CameraDirector*);
     void deactivate(CameraDirector*);
 
-    CameraDirector*  mDirector;    // 0xC
-    CameraPoseParam* mPoseParam;   // 0x10
-    bool             mIsActivated; // 0x14
-    bool             _15;
-    u8               _16[2];
-    TMtx34f          mMatrix; // 0x18
+    CameraDirector* mDirector;    // 0xC
+    CameraPoseParam* mPoseParam;  // 0x10
+    bool mIsActivated;            // 0x14
+    bool _15;
+    u8 _16[2];
+    TMtx34f mMatrix;  // 0x18
 };

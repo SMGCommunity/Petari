@@ -22,8 +22,8 @@ public:
 
     u32 _8C;
     s32 _90;
-    f32 mRotateSpeed; // 0x94
-    u8  _98;
+    f32 mRotateSpeed;  // 0x94
+    u8 _98;
 };
 
 namespace NrvCrystalSwitch {
@@ -31,4 +31,4 @@ namespace NrvCrystalSwitch {
     NERVE(CrystalSwitchNrvSwitchDown);
     NERVE(CrystalSwitchNrvOn);
     NERVE(CrystalSwitchNrvSwitchUp);
-}; // namespace NrvCrystalSwitch
+};  // namespace NrvCrystalSwitch

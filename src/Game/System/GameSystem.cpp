@@ -1,13 +1,14 @@
+#include "Game/System/GameSystem.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/NameObj/NameObjRegister.hpp"
 #include "Game/Screen/HomeButtonLayout.hpp"
 #include "Game/Screen/SystemWipeHolder.hpp"
+#include "Game/SingletonHolder.hpp"
 #include "Game/System/AudSystemWrapper.hpp"
 #include "Game/System/DrawSyncManager.hpp"
 #include "Game/System/FileRipper.hpp"
 #include "Game/System/GameSequenceDirector.hpp"
 #include "Game/System/GameSequenceFunction.hpp"
-#include "Game/System/GameSystem.hpp"
 #include "Game/System/GameSystemDimmingWatcher.hpp"
 #include "Game/System/GameSystemErrorWatcher.hpp"
 #include "Game/System/GameSystemException.hpp"
@@ -28,14 +29,13 @@
 #include "Game/Util/NerveUtil.hpp"
 #include "Game/Util/SequenceUtil.hpp"
 #include "Game/Util/SystemUtil.hpp"
-#include "Game/SingletonHolder.hpp"
 #include <JSystem/JKernel/JKRAram.hpp>
 #include <nw4r/lyt/init.h>
 #include <revolution.h>
 
 #define GX_FIFO_SIZE 0x80000
 
-#define INIT_AUDIO_KEY "オーディオ初期化" // "Audio Initialization"
+#define INIT_AUDIO_KEY "オーディオ初期化"  // "Audio Initialization"
 
 namespace NrvGameSystem {
     NEW_NERVE(GameSystemInitializeAudio, GameSystem, InitializeAudio);
@@ -43,7 +43,7 @@ namespace NrvGameSystem {
     NEW_NERVE(GameSystemLoadStationedArchive, GameSystem, LoadStationedArchive);
     NEW_NERVE(GameSystemWaitForReboot, GameSystem, WaitForReboot);
     NEW_NERVE(GameSystemNormal, GameSystem, Normal);
-}; // namespace NrvGameSystem
+};  // namespace NrvGameSystem
 
 void main(void) {
     OSInitFastCast();
@@ -71,20 +71,9 @@ void main(void) {
 }
 
 GameSystem::GameSystem()
-    : NerveExecutor("GameSystem"),
-      mFifoBase(nullptr),
-      mSequenceDirector(nullptr),
-      mErrorWatcher(nullptr),
-      mFontHolder(nullptr),
-      mFrameControl(nullptr),
-      mObjHolder(nullptr),
-      mSceneController(nullptr),
-      mStationedArchiveLoader(nullptr),
-      mHomeButtonLayout(nullptr),
-      mSystemWipeHolder(nullptr),
-      mHomeButtonStateNotifier(nullptr),
-      mIsExecuteLoadSystemArchive(false) {
-}
+    : NerveExecutor("GameSystem"), mFifoBase(nullptr), mSequenceDirector(nullptr), mErrorWatcher(nullptr), mFontHolder(nullptr),
+      mFrameControl(nullptr), mObjHolder(nullptr), mSceneController(nullptr), mStationedArchiveLoader(nullptr), mHomeButtonLayout(nullptr),
+      mSystemWipeHolder(nullptr), mHomeButtonStateNotifier(nullptr), mIsExecuteLoadSystemArchive(false) {}
 
 void GameSystem::init() {
     JKRAram::create(0xE00000, 0xFFFFFFFF, 8, 7, 3);
@@ -158,8 +147,7 @@ void GameSystem::exeLoadStationedArchive() {
     }
 }
 
-void GameSystem::exeWaitForReboot() {
-}
+void GameSystem::exeWaitForReboot() {}
 
 void GameSystem::exeNormal() {
     updateSceneController();

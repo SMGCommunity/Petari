@@ -2,9 +2,7 @@
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
 
-MovementOnOffGroupHolder::MovementOnOffGroupHolder(const char* pName)
-    : NameObj(pName),
-      mGroups() {}
+MovementOnOffGroupHolder::MovementOnOffGroupHolder(const char* pName) : NameObj(pName), mGroups() {}
 
 NameObjGroup* MovementOnOffGroupHolder::joinToGroup(const char* pName, NameObj* pobj, u32 a3) {
     NameObjGroup* pGroup = findGroupFromName(pName);
@@ -45,5 +43,4 @@ NameObjGroup* MovementOnOffGroupHolder::findGroupFromName(const char* pName) con
     return nullptr;
 }
 
-MovementOnOffGroupHolder::~MovementOnOffGroupHolder() {
-}
+MovementOnOffGroupHolder::~MovementOnOffGroupHolder() {}

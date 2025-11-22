@@ -17,7 +17,7 @@
 namespace NrvSimpleEffectObj {
     NEW_NERVE(HostTypeWait, SimpleEffectObj, Wait);
     NEW_NERVE(HostTypeMove, SimpleEffectObj, Move);
-}; // namespace NrvSimpleEffectObj
+};  // namespace NrvSimpleEffectObj
 
 namespace {
     const s_effectDataTable sEffectDataTable[12] = {
@@ -46,10 +46,9 @@ namespace {
         }
         return nullptr;
     }
-}; // namespace
+};  // namespace
 
-SimpleEffectObj::SimpleEffectObj(const char* pName)
-    : LiveActor(pName) {
+SimpleEffectObj::SimpleEffectObj(const char* pName) : LiveActor(pName) {
     _8C = nullptr;
 }
 
@@ -104,7 +103,6 @@ void SimpleEffectObj::setStateWait() {
 }
 
 void SimpleEffectObj::setStateMove() {
-
     setNerve(&NrvSimpleEffectObj::HostTypeMove::sInstance);
 }
 
@@ -173,5 +171,4 @@ void SimpleEffectObj::exeMove() {
     }
 }
 
-inline void SimpleEffectObj::exeWait() {
-}
+inline void SimpleEffectObj::exeWait() {}

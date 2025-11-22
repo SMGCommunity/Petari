@@ -1,12 +1,9 @@
 #include "Game/Map/RaceRail.hpp"
 #include "Game/Util.hpp"
 
-RaceRail::RaceRail(const char* pName)
-    : NameObj(pName) {
-}
+RaceRail::RaceRail(const char* pName) : NameObj(pName) {}
 
-PlayerRacer::PlayerRacer(const char* pName)
-    : LiveActor(pName) {
+PlayerRacer::PlayerRacer(const char* pName) : LiveActor(pName) {
     _B0 = 0;
     _B4 = 0;
     mCameraInfo = 0;
@@ -44,17 +41,13 @@ bool PlayerRacer::goalRacer() {
     return true;
 }
 
-void PlayerRacer::loseRacer() {
-}
+void PlayerRacer::loseRacer() {}
 
-void PlayerRacer::exitRacer() {
-}
+void PlayerRacer::exitRacer() {}
 
-PlayerRacer::~PlayerRacer() {
-}
+PlayerRacer::~PlayerRacer() {}
 
-RaceRail::~RaceRail() {
-}
+RaceRail::~RaceRail() {}
 
 void RaceRail::init(const JMapInfoIter& rIter) {
     mPlayerRacer = new PlayerRacer("レース判定用レール");

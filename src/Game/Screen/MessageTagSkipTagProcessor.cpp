@@ -1,8 +1,6 @@
 #include "Game/Screen/MessageTagSkipTagProcessor.hpp"
 
-MessageTagSkipTagProcessor::MessageTagSkipTagProcessor()
-    : nw4r::ut::TagProcessorBase< wchar_t >() {
-}
+MessageTagSkipTagProcessor::MessageTagSkipTagProcessor() : nw4r::ut::TagProcessorBase< wchar_t >() {}
 
 nw4r::ut::TagProcessorBase< wchar_t >::Operation MessageTagSkipTagProcessor::CalcRect(nw4r::ut::Rect* pRect, u16 code, ContextType* pPrintContext) {
     if (code != 0x1A) {

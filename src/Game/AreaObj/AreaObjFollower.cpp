@@ -1,14 +1,12 @@
 #include "Game/AreaObj/AreaObjFollower.hpp"
 
-AreaObjFollower::AreaObjFollower(AreaObj* pAreaObj, const JMapInfoIter& rIter)
-    : BaseMatrixFollower(pAreaObj, rIter) {
+AreaObjFollower::AreaObjFollower(AreaObj* pAreaObj, const JMapInfoIter& rIter) : BaseMatrixFollower(pAreaObj, rIter) {
     mObj = pAreaObj;
     mFollowMtx.identity();
     mObj->setFollowMtx(&mFollowMtx);
 }
 
 void AreaObjFollower::update() {
-
     if (MR::isDead((LiveActor*)getFollowTargetActor()) || !isValid()) {
         mObj->_15 = 0;
     } else {
@@ -27,4 +25,4 @@ namespace MR {
         MR::addBaseMatrixFollower(follower);
         return true;
     }
-}; // namespace MR
+};  // namespace MR

@@ -1,10 +1,10 @@
-#include "Game/AreaObj/AreaObj.hpp"
 #include "Game/AreaObj/AreaObjContainer.hpp"
-#include "Game/AreaObj/WarpCube.hpp"
+#include "Game/AreaObj/AreaObj.hpp"
 #include "Game/AreaObj/CubeCamera.hpp"
 #include "Game/AreaObj/GlaringLightArea.hpp"
 #include "Game/AreaObj/ImageEffectArea.hpp"
 #include "Game/AreaObj/LightAreaHolder.hpp"
+#include "Game/AreaObj/WarpCube.hpp"
 #include "Game/AreaObj/WaterArea.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 #include <cstring>
@@ -352,19 +352,16 @@ namespace {
             createManager< AreaObjMgr >,
         },
     };
-}; // namespace
+};  // namespace
 
-AreaObjContainer::AreaObjContainer(const char* pName)
-    : NameObj(pName) {
+AreaObjContainer::AreaObjContainer(const char* pName) : NameObj(pName) {
     mNumManagers = 0;
 }
 
 void AreaObjContainer::init(const JMapInfoIter& rIter) {
     for (s32 i = 0; i < sizeof(cCreateTable) / sizeof(*cCreateTable); i++) {
         const Name2CreateManagerFunc* pName2CreateManagerFunc = &cCreateTable[i];
-        AreaObjMgr*                   mgr = pName2CreateManagerFunc->mCreateFunc(
-            pName2CreateManagerFunc->_4,
-            pName2CreateManagerFunc->mName);
+        AreaObjMgr* mgr = pName2CreateManagerFunc->mCreateFunc(pName2CreateManagerFunc->_4, pName2CreateManagerFunc->mName);
         JMapInfoIter iter;
         iter.mInfo = nullptr;
         iter.mIndex = -1;
@@ -377,7 +374,7 @@ void AreaObjContainer::init(const JMapInfoIter& rIter) {
 
 /* this function is nearly impossible to match without context behind the random stack storages */
 AreaObjMgr* AreaObjContainer::getManager(const char* pName) const {
-    const char*  str;
+    const char* str;
     AreaObjMgr** first = (AreaObjMgr**)&mManagerArray[0];
     AreaObjMgr** last = (AreaObjMgr**)&mManagerArray[mNumManagers];
 
@@ -396,10 +393,7 @@ AreaObj* AreaObjContainer::getAreaObj(const char* pName, const TVec3f& rVec) con
 }
 
 namespace MR {
-    AreaObjContainer* getAreaObjContainer() {
-        return MR::getSceneObj< AreaObjContainer >(SceneObj_AreaObjContainer);
-    }
-}; // namespace MR
+    AreaObjContainer* getAreaObjContainer() { return MR::getSceneObj< AreaObjContainer >(SceneObj_AreaObjContainer); }
+};  // namespace MR
 
-AreaObjContainer::~AreaObjContainer() {
-}
+AreaObjContainer::~AreaObjContainer() {}

@@ -1,5 +1,5 @@
-#include "Game/AreaObj/LightArea.hpp"
 #include "Game/Map/LightFunction.hpp"
+#include "Game/AreaObj/LightArea.hpp"
 #include "Game/Map/LightDirector.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Util.hpp"

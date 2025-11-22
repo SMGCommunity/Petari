@@ -27,14 +27,8 @@ namespace {
     }
 
     const char* cPlayerArchiveLoaderObjTable[] = {
-        "Hopper",
-        "BenefitItemInvincible",
-        "MorphItemNeoBee",
-        "MorphItemNeoFire",
-        "MorphItemNeoFoo",
-        "MorphItemNeoHopper",
-        "MorphItemNeoIce",
-        "MorphItemNeoTeresa",
+        "Hopper",          "BenefitItemInvincible", "MorphItemNeoBee", "MorphItemNeoFire",
+        "MorphItemNeoFoo", "MorphItemNeoHopper",    "MorphItemNeoIce", "MorphItemNeoTeresa",
     };
     const NameObjFactory::Name2CreateFunc cCreateTable[] = {
         {
@@ -7926,7 +7920,7 @@ namespace {
         {"MorphItemNeoIce", /* MorphItemObjNeo::makeArchiveList, */},
         {"MorphItemNeoTeresa", /* MorphItemObjNeo::makeArchiveList, */},
     };
-}; // namespace
+};  // namespace
 
 namespace NameObjFactory {
     CreatorFuncPtr getCreator(const char* pName) {
@@ -7980,8 +7974,7 @@ namespace NameObjFactory {
             pTable = cCreateTable;
         }
 
-        for (const Name2CreateFunc* pName2CreateFunc = pTable;
-             pName2CreateFunc != cCreateTable + sizeof(cCreateTable) / sizeof(*cCreateTable);
+        for (const Name2CreateFunc* pName2CreateFunc = pTable; pName2CreateFunc != cCreateTable + sizeof(cCreateTable) / sizeof(*cCreateTable);
              pName2CreateFunc++) {
             if (pName2CreateFunc->mName == nullptr) {
                 continue;
@@ -8008,15 +8001,15 @@ namespace NameObjFactory {
             }
 
             for (const Name2Archive* pName2Archive = cName2ArchiveNamesTable;
-                 pName2Archive != cName2ArchiveNamesTable + sizeof(cName2ArchiveNamesTable) / sizeof(*cName2ArchiveNamesTable);
-                 pName2Archive++) {
+                 pName2Archive != cName2ArchiveNamesTable + sizeof(cName2ArchiveNamesTable) / sizeof(*cName2ArchiveNamesTable); pName2Archive++) {
                 if (MR::isEqualString(pName2Archive->mObjectName, pName)) {
                     pArchiveList->addArchive(pName2Archive->mArchiveName);
                 }
             }
 
             for (const Name2MakeArchiveListFunc* pName2ArchiveFunc = cName2MakeArchiveListFuncTable;
-                 pName2ArchiveFunc != cName2MakeArchiveListFuncTable + sizeof(cName2MakeArchiveListFuncTable) / sizeof(*cName2MakeArchiveListFuncTable);
+                 pName2ArchiveFunc !=
+                 cName2MakeArchiveListFuncTable + sizeof(cName2MakeArchiveListFuncTable) / sizeof(*cName2MakeArchiveListFuncTable);
                  pName2ArchiveFunc++) {
                 if (MR::isEqualString(pName2ArchiveFunc->mName, pName)) {
                     pName2ArchiveFunc->mArchiveFunc(pArchiveList, rIter);
@@ -8024,4 +8017,4 @@ namespace NameObjFactory {
             }
         }
     }
-}; // namespace NameObjFactory
+};  // namespace NameObjFactory

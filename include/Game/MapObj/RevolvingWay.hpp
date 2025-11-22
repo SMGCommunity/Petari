@@ -17,6 +17,6 @@ public:
     void addAccelMoment();
 
     TQuat4f _8C;
-    TVec3f  _9C;
-    f32     _A8;
+    TVec3f _9C;
+    f32 _A8;
 };

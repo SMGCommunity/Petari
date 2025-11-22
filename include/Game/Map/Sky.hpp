@@ -19,8 +19,8 @@ public:
     void disappearSpaceInner();
     void appearSpaceInner();
 
-    SpaceInner*            mSpaceInner;      // 0x8C
-    MirrorReflectionModel* mReflectionModel; // 0x90
+    SpaceInner* mSpaceInner;                  // 0x8C
+    MirrorReflectionModel* mReflectionModel;  // 0x90
 };
 
 class ProjectionMapSky : public Sky {
@@ -31,7 +31,7 @@ public:
     virtual void calcAndSetBaseMtx();
     virtual void initModel(const char*);
 
-    ProjmapEffectMtxSetter* mMtxSetter; // 0x94
+    ProjmapEffectMtxSetter* mMtxSetter;  // 0x94
 };
 
 namespace NrvSky {
@@ -39,4 +39,4 @@ namespace NrvSky {
 
     NERVE(HostTypeWait);
     NERVE(HostTypeChange);
-}; // namespace NrvSky
+};  // namespace NrvSky

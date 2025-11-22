@@ -1,5 +1,5 @@
-#include "Game/Demo/DemoActionKeeper.hpp"
 #include "Game/Demo/DemoExecutorFunction.hpp"
+#include "Game/Demo/DemoActionKeeper.hpp"
 #include "Game/Demo/DemoTalkAnimCtrl.hpp"
 #include "Game/Demo/DemoTimeKeeper.hpp"
 
@@ -81,7 +81,8 @@ namespace DemoExecutorFunction {
         return true;
     }
 
-    bool tryCreateDemoTalkAnimCtrlForScene(DemoExecutor* pExecutor, LiveActor* pActor, const JMapInfoIter& rIter, const char* a4, const char* a5, s32 a6, s32 a7) {
+    bool tryCreateDemoTalkAnimCtrlForScene(DemoExecutor* pExecutor, LiveActor* pActor, const JMapInfoIter& rIter, const char* a4, const char* a5,
+                                           s32 a6, s32 a7) {
         DemoTalkAnimCtrl* pTalkAnimCtrl = new DemoTalkAnimCtrl(pActor, pExecutor->mName, a5);
 
         pTalkAnimCtrl->initForScene(a4, a4, rIter);
@@ -100,15 +101,9 @@ namespace DemoExecutorFunction {
         pExecutor->setTalkMessageCtrl(pActor, pTalkCtrl);
     }
 
-    void pauseTimeKeepDemo(DemoExecutor* pExecutor) {
-        return pExecutor->pause();
-    }
+    void pauseTimeKeepDemo(DemoExecutor* pExecutor) { return pExecutor->pause(); }
 
-    void resumeTimeKeepDemo(DemoExecutor* pExecutor) {
-        return pExecutor->resume();
-    }
+    void resumeTimeKeepDemo(DemoExecutor* pExecutor) { return pExecutor->resume(); }
 
-    bool isPauseTimeKeepDemo(const DemoExecutor* pExecutor) {
-        return pExecutor->mTimeKeeper->mIsPaused;
-    }
-}; // namespace DemoExecutorFunction
+    bool isPauseTimeKeepDemo(const DemoExecutor* pExecutor) { return pExecutor->mTimeKeeper->mIsPaused; }
+};  // namespace DemoExecutorFunction

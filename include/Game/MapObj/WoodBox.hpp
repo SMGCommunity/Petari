@@ -20,18 +20,18 @@ public:
     void exeHit();
     void doHit(HitSensor*, HitSensor*);
 
-    u16             _8C;
-    u16             _8E;
-    u16             _90;
-    u16             _92;
-    bool            _94;
-    bool            _95;
-    bool            _96;
-    bool            _97;
-    Mtx             _98;
-    s32             mCoinCount;      // 0xC8
-    s32             mStarBitCount;   // 0xCC
-    ModelObj*       mBrokenBoxModel; // 0xD0
-    ModelObj*       mStarDemoModel;  // 0xD4
-    BenefitItemObj* mOneUp;          // 0xD8
+    u16 _8C;
+    u16 _8E;
+    u16 _90;
+    u16 _92;
+    bool _94;
+    bool _95;
+    bool _96;
+    bool _97;
+    Mtx _98;
+    s32 mCoinCount;             // 0xC8
+    s32 mStarBitCount;          // 0xCC
+    ModelObj* mBrokenBoxModel;  // 0xD0
+    ModelObj* mStarDemoModel;   // 0xD4
+    BenefitItemObj* mOneUp;     // 0xD8
 };

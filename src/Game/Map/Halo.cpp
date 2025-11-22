@@ -1,12 +1,11 @@
 #include "Game/Map/Halo.hpp"
 
-Halo::Halo(const char* pName)
-    : MapObjActor(pName) {
+Halo::Halo(const char* pName) : MapObjActor(pName) {
     mDistance = 70.0f;
 }
 
 /*
-void Halo::init(const JMapInfoIter &rIter) { 
+void Halo::init(const JMapInfoIter &rIter) {
     MapObjActor::init(rIter);
     MapObjActorInitInfo info;
     info.setupHioNode("環境");
@@ -89,7 +88,7 @@ bool Halo::isDistanceDisappear() const {
 
 void Halo::exeDisappear() {
     if (!MR::isHiddenModel(this)) {
-        bool        flag;
+        bool flag;
         const char* anim = "Disappear";
 
         if (MR::isExistBtk(this, anim) && MR::isBtkStopped(this)) {
@@ -116,13 +115,11 @@ void Halo::exeDisappear() {
     }
 }
 
-PowerStarHalo::PowerStarHalo(const char* pName)
-    : Halo(pName) {
+PowerStarHalo::PowerStarHalo(const char* pName) : Halo(pName) {
     _C8 = -1;
 }
 
-Halo::~Halo() {
-}
+Halo::~Halo() {}
 
 void PowerStarHalo::init(const JMapInfoIter& rIter) {
     Halo::init(rIter);
@@ -156,8 +153,7 @@ void PowerStarHalo::exeWaitScenarioOpeningEnd() {
     }
 }
 
-PowerStarHalo::~PowerStarHalo() {
-}
+PowerStarHalo::~PowerStarHalo() {}
 
 /* todo -- ordering of these functions is wrong */
 void NrvPowerStarHalo::HostTypeWaitScenarioOpeningEnd::execute(Spine* pSpine) const {

@@ -1,17 +1,15 @@
+#include "Game/Scene/SceneFunction.hpp"
 #include "Game/Effect/EffectSystem.hpp"
 #include "Game/NameObj/NameObjExecuteHolder.hpp"
 #include "Game/NameObj/NameObjListExecutor.hpp"
 #include "Game/Scene/SceneDataInitializer.hpp"
-#include "Game/Scene/SceneFunction.hpp"
+#include "Game/SingletonHolder.hpp"
 #include "Game/System/GameSystem.hpp"
 #include "Game/System/GameSystemSceneController.hpp"
-#include "Game/SingletonHolder.hpp"
 
 namespace {
-    SceneDataInitializer* getSceneDataInitializer() {
-        return MR::getSceneObj< SceneDataInitializer >(SceneObj_SceneDataInitializer);
-    }
-}; // namespace
+    SceneDataInitializer* getSceneDataInitializer() { return MR::getSceneObj< SceneDataInitializer >(SceneObj_SceneDataInitializer); }
+};  // namespace
 
 void SceneFunction::startStageFileLoad() {
     MR::createSceneObj(SceneObj_SceneDataInitializer);
@@ -132,5 +130,4 @@ void CategoryList::requestMovementOff(MR::MovementType type) {
     MR::requestMovementOffWithCategory(type);
 }
 
-void SceneFunction::createHioBasicNode(Scene*) {
-}
+void SceneFunction::createHioBasicNode(Scene*) {}

@@ -37,14 +37,7 @@ void OSThreadWrapper::initHeapSpecified(JKRHeap* pHeap, u32 stackSize, int prior
     mStack = new (mHeap, 32) u8[mStackSize];
     mThread = new (mHeap, 32) OSThread();
 
-    OSCreateThread(
-        mThread,
-        &OSThreadWrapper::start,
-        this,
-        &mStack[mStackSize],
-        mStackSize,
-        priority,
-        1 /* OS_THREAD_ATTR_DETACH */);
+    OSCreateThread(mThread, &OSThreadWrapper::start, this, &mStack[mStackSize], mStackSize, priority, 1 /* OS_THREAD_ATTR_DETACH */);
 }
 
 void* OSThreadWrapper::start(void* pArg) {

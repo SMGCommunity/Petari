@@ -1,8 +1,7 @@
 #include "Game/MapObj/CollapsePlane.hpp"
 #include "Game/Enemy/AnimScaleController.hpp"
 
-CollapsePlane::CollapsePlane(const char* pName)
-    : MapObjActor(pName) {
+CollapsePlane::CollapsePlane(const char* pName) : MapObjActor(pName) {
     mScaleController = nullptr;
     mStarPointerBind = nullptr;
     mJointController = nullptr;
@@ -94,7 +93,7 @@ void CollapsePlane::control() {
 }
 
 bool CollapsePlane::calcJointPlane(TPos3f* pPos, const JointControllerInfo&) {
-    f32     new_scale = (1.0f - ((0.69999999f * _D0)) / mTimer);
+    f32 new_scale = (1.0f - ((0.69999999f * _D0)) / mTimer);
     TMtx34f mtx;
     mtx.identity();
     MR::preScaleMtx(mtx.toMtxPtr(), new_scale, 1.0f, new_scale);
@@ -127,7 +126,6 @@ namespace NrvCollapsePlane {
     INIT_NERVE(CollapsePlaneNrvCollapse);
     INIT_NERVE(CollapsePlaneNrvDPDStop);
     INIT_NERVE(CollapsePlaneNrvEnd);
-}; // namespace NrvCollapsePlane
+};  // namespace NrvCollapsePlane
 
-CollapsePlane::~CollapsePlane() {
-}
+CollapsePlane::~CollapsePlane() {}

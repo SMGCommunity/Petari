@@ -37,13 +37,13 @@ public:
     bool isAttackable() const;
     bool isStarPointerPointing() const;
 
-    JointController*         mControllers[4]; // 0x8C
-    s32*                     mJointIndicies;  // 0x9C
-    f32                      _A0;
-    f32                      _A4;
-    SkeletalFishRailControl* mRailControl; // 0xA8
-    TPos3f                   _AC;
-    f32                      _DC;
-    AnimScaleController*     mScaleController;     // 0xE0
-    LiveActor*               mStarPieceTargets[4]; // 0xE4
+    JointController* mControllers[4];  // 0x8C
+    s32* mJointIndicies;               // 0x9C
+    f32 _A0;
+    f32 _A4;
+    SkeletalFishRailControl* mRailControl;  // 0xA8
+    TPos3f _AC;
+    f32 _DC;
+    AnimScaleController* mScaleController;  // 0xE0
+    LiveActor* mStarPieceTargets[4];        // 0xE4
 };

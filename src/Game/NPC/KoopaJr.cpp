@@ -14,10 +14,9 @@ namespace NrvKoopaJr {
     NEW_NERVE(HostTypeShipBattleShipDamage, KoopaJr, ShipBattleShipDamage);
     NEW_NERVE(HostTypeShipBattleDemoTalkStart, KoopaJr, ShipBattleDemoTalkStart);
     NEW_NERVE(HostTypeShipBattleDemoTalkWait, KoopaJr, ShipBattleDemoTalkWait);
-}; // namespace NrvKoopaJr
+};  // namespace NrvKoopaJr
 
-KoopaJr::KoopaJr(const char* pName)
-    : NPCActor(pName) {
+KoopaJr::KoopaJr(const char* pName) : NPCActor(pName) {
     _15C = 0;
     _15D = 0;
 }
@@ -224,5 +223,4 @@ void KoopaJr::exeShipBattleDemoTalkWait() {
     }
 }
 
-KoopaJr::~KoopaJr() {
-}
+KoopaJr::~KoopaJr() {}

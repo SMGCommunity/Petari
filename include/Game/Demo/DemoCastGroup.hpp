@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/NameObj/NameObj.hpp"
 #include "Game/LiveActor/LiveActorGroup.hpp"
+#include "Game/NameObj/NameObj.hpp"
 #include "Game/Util.hpp"
 
 class LiveActor;
@@ -17,6 +17,6 @@ public:
     virtual bool tryRegisterDemoActor(LiveActor*, const char*, const JMapInfoIter&);
     virtual void registerDemoActor(LiveActor*, const JMapInfoIter&);
 
-    JMapIdInfo*     mInfo;  // 0xC
-    LiveActorGroup* mGroup; // 0x10
+    JMapIdInfo* mInfo;       // 0xC
+    LiveActorGroup* mGroup;  // 0x10
 };

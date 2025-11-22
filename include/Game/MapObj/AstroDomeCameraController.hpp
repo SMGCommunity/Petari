@@ -42,10 +42,10 @@ public:
     void exeGalaxyConfirm();
     void exeGalaxyConfirmCancel();
 
-    TVec3f   _8C;
+    TVec3f _8C;
     Position _98;
     Position _BC;
     Position _E0;
-    f32      _104;
-    TVec3f   _108;
+    f32 _104;
+    TVec3f _108;
 };

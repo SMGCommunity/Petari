@@ -6,12 +6,9 @@ namespace NrvBallBeamer {
     NEW_NERVE(BallBeamerNrvWait, BallBeamer, Wait);
     NEW_NERVE(BallBeamerNrvAttack, BallBeamer, Attack);
     NEW_NERVE(BallBeamerNrvInter, BallBeamer, Inter);
-}; // namespace NrvBallBeamer
+};  // namespace NrvBallBeamer
 
-BallBeamer::BallBeamer(const char* pName)
-    : LiveActor(pName),
-      mBeams(nullptr),
-      _90(false) {
+BallBeamer::BallBeamer(const char* pName) : LiveActor(pName), mBeams(nullptr), _90(false) {
     _98.identity();
 }
 
@@ -39,7 +36,6 @@ void BallBeamer::init(const JMapInfoIter& rIter) {
     initNerve(&NrvBallBeamer::BallBeamerNrvWait::sInstance);
     makeActorAppeared();
     if (MR::useStageSwitchReadA(this, rIter)) {
-
         MR::listenStageSwitchOnOffA(this, MR::Functor< BallBeamer >(this, &BallBeamer::syncSwitchOffA),
                                     MR::Functor< BallBeamer >(this, &BallBeamer::syncSwitchOnA));
     }

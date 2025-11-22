@@ -1,9 +1,7 @@
 #include "Game/MapObj/TimeAppearObj.hpp"
 #include "Game/Util.hpp"
 
-TimeAppearObj::TimeAppearObj(const char* pName)
-    : MapObjActor(pName), mTimer(0x1E) {
-}
+TimeAppearObj::TimeAppearObj(const char* pName) : MapObjActor(pName), mTimer(0x1E) {}
 
 void TimeAppearObj::init(const JMapInfoIter& rIter) {
     MapObjActorInitInfo info;
@@ -38,8 +36,7 @@ void TimeAppearObj::appear() {
     setNerve(&NrvTimeAppearObj::TimeAppearObjNrvHide::sInstance);
 }
 
-TimeAppearObj::~TimeAppearObj() {
-}
+TimeAppearObj::~TimeAppearObj() {}
 
 namespace NrvTimeAppearObj {
     INIT_NERVE(TimeAppearObjNrvHide);
@@ -56,4 +53,4 @@ namespace NrvTimeAppearObj {
             obj->setNerve(&NrvTimeAppearObj::TimeAppearObjNrvEnd::sInstance);
         }
     }
-}; // namespace NrvTimeAppearObj
+};  // namespace NrvTimeAppearObj

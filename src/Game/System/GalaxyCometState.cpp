@@ -1,5 +1,5 @@
-#include "Game/LiveActor/Nerve.hpp"
 #include "Game/System/GalaxyCometState.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 
 #define STATE_HIDE 0
 #define STATE_LAND 1
@@ -7,11 +7,9 @@
 namespace {
     NEW_NERVE(GalaxyCometStateHide, GalaxyCometState, Hide);
     NEW_NERVE(GalaxyCometStateLand, GalaxyCometState, Land);
-}; // namespace
+};  // namespace
 
-GalaxyCometState::GalaxyCometState()
-    : NerveExecutor("GalaxyCometState"),
-      mIsUpdateNerve(true) {
+GalaxyCometState::GalaxyCometState() : NerveExecutor("GalaxyCometState"), mIsUpdateNerve(true) {
     initNerve(&GalaxyCometStateLand::sInstance);
 }
 
@@ -34,9 +32,7 @@ bool GalaxyCometState::isHide() const {
 }
 
 void GalaxyCometState::forceToNext() {
-    Nerve* pNerve = isLand()
-                        ? static_cast< Nerve* >(&GalaxyCometStateHide::sInstance)
-                        : static_cast< Nerve* >(&GalaxyCometStateLand::sInstance);
+    Nerve* pNerve = isLand() ? static_cast< Nerve* >(&GalaxyCometStateHide::sInstance) : static_cast< Nerve* >(&GalaxyCometStateLand::sInstance);
 
     setNerve(pNerve);
 }
@@ -64,8 +60,6 @@ void GalaxyCometState::setStateAndPastSecond(int state, u16 pastSecond) {
     }
 }
 
-void GalaxyCometState::exeHide() {
-}
+void GalaxyCometState::exeHide() {}
 
-void GalaxyCometState::exeLand() {
-}
+void GalaxyCometState::exeLand() {}

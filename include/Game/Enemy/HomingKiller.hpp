@@ -20,27 +20,27 @@ public:
     void appear(const TVec3f&, const TVec3f&);
     bool isMoveStart() const;
 
-    s32         _8C;
-    f32         mChaseStartDist; // 0x90
-    f32         mChaseEndDist;   // 0x94
-    u32         _98;
-    u32         _9C;
-    TVec3f      _A0;
-    TVec3f      _AC;
-    TVec3f      _B8;
-    TVec3f      _C4;
-    TVec3f      _D0;
-    TMtx34f     _DC;
-    TVec3f      _110;
-    u32         _118;
-    u32         _11C;
-    u32         _120;
-    u32         _124;
-    TMtx34f     _128;
-    HitSensor*  _158;
-    u8          _15C;
-    u8          _15D;
-    u8          _15E;
-    PartsModel* mPropeller;    // 0x160
-    ModelObj*   mTorpedoLight; // 0x164
+    s32 _8C;
+    f32 mChaseStartDist;  // 0x90
+    f32 mChaseEndDist;    // 0x94
+    u32 _98;
+    u32 _9C;
+    TVec3f _A0;
+    TVec3f _AC;
+    TVec3f _B8;
+    TVec3f _C4;
+    TVec3f _D0;
+    TMtx34f _DC;
+    TVec3f _110;
+    u32 _118;
+    u32 _11C;
+    u32 _120;
+    u32 _124;
+    TMtx34f _128;
+    HitSensor* _158;
+    u8 _15C;
+    u8 _15D;
+    u8 _15E;
+    PartsModel* mPropeller;   // 0x160
+    ModelObj* mTorpedoLight;  // 0x164
 };

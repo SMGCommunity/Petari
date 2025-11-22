@@ -5,4 +5,4 @@
 namespace MR {
     void initCameraCodeCollection(const char*, s32);
     void termCameraCodeCollection();
-} // namespace MR
+}  // namespace MR

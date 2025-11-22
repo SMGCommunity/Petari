@@ -1,7 +1,7 @@
 #pragma once
 
-#include "revolution.h"
 #include "Game/Util.hpp"
+#include "revolution.h"
 
 class J3DModel;
 class LiveActor;
@@ -18,10 +18,10 @@ public:
 
     void calcViewAndEntry();
 
-    u8          _0[0x8];
-    u32         _8;
-    const char* mName; // 0xC
-    u32         _10;
-    u32         _14;
-    u32         mDrawBufferCount; // 0x18
+    u8 _0[0x8];
+    u32 _8;
+    const char* mName;  // 0xC
+    u32 _10;
+    u32 _14;
+    u32 mDrawBufferCount;  // 0x18
 };

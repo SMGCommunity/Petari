@@ -13,7 +13,7 @@ public:
     virtual bool isDraw() const;
 
     const LiveActor* _1c;
-    f32              _20;
+    f32 _20;
 };
 
 class RingBeam : public LiveActor {
@@ -35,16 +35,16 @@ public:
     void startBrk(const char*);
     void exeSpread();
 
-    LiveActor*            _8c;
-    ModelObj*             mBloomModel;
-    f32                   mSpeed;
-    s32                   mLife;
-    bool                  _9c;
-    bool                  _9d;
+    LiveActor* _8c;
+    ModelObj* mBloomModel;
+    f32 mSpeed;
+    s32 mLife;
+    bool _9c;
+    bool _9d;
     RingBeamShadowDrawer* _a0;
-    ModelObj*             _a4;
-    TVec3f                _a8;
-    TVec3f                _b4;
-    TVec3f                _c0;
-    TVec3f                _cc;
+    ModelObj* _a4;
+    TVec3f _a8;
+    TVec3f _b4;
+    TVec3f _c0;
+    TVec3f _cc;
 };

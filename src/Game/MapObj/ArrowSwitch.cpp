@@ -1,13 +1,12 @@
 #include "Game/MapObj/ArrowSwitch.hpp"
-#include <cmath>
 #include "math_types.hpp"
+#include <cmath>
 
 namespace {
     const f32 sRotYTargetList[4] = {0.0f, 90.0f, 180.0f, -90.0f};
 };
 
-ArrowSwitch::ArrowSwitch(const char* pName)
-    : LiveActor(pName) {
+ArrowSwitch::ArrowSwitch(const char* pName) : LiveActor(pName) {
     _8C = 0.0f;
     mRotationIdx = 0;
     _94 = 0.0f;
@@ -26,7 +25,7 @@ void ArrowSwitch::init(const JMapInfoIter &rIter) {
     mScale.z = 1.0f;
     initModelManagerWithAnm("ArrowSwitch", nullptr, false);
     MR::connectToSceneNoShadowedMapObjStrongLight(this);
-    TVec3f up_vec; 
+    TVec3f up_vec;
     MR::calcUpVec(&up_vec, this);
     TVec3f neg_up_vec;
     neg_up_vec.negateInlineAndStore(up_vec, mGravity);
@@ -54,7 +53,7 @@ void ArrowSwitch::init(const JMapInfoIter &rIter) {
     if (arg >= 0) {
         MR::setShadowDropLength(this, nullptr, arg);
     }
-    
+    
     MR::needStageSwitchWriteA(this, rIter);
 
     if (!_9C) {
@@ -67,8 +66,7 @@ void ArrowSwitch::init(const JMapInfoIter &rIter) {
 }
 */
 
-void ArrowSwitch::control() {
-}
+void ArrowSwitch::control() {}
 
 void ArrowSwitch::calcAndSetBaseMtx() {
     LiveActor::calcAndSetBaseMtx();
@@ -345,7 +343,6 @@ namespace NrvArrowSwitch {
         ArrowSwitch* sw = reinterpret_cast< ArrowSwitch* >(pSpine->mExecutor);
         sw->exeWait();
     }
-}; // namespace NrvArrowSwitch
+};  // namespace NrvArrowSwitch
 
-ArrowSwitch::~ArrowSwitch() {
-}
+ArrowSwitch::~ArrowSwitch() {}

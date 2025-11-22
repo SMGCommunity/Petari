@@ -13,7 +13,7 @@ public:
     void initialize(LiveActor*, LiveActor*, const char*);
     void exeWait();
 
-    const char* mGalaxy; // 0x190
-    LiveActor*  _194;
-    LiveActor*  mTicoGalaxy; // 0x198
+    const char* mGalaxy;  // 0x190
+    LiveActor* _194;
+    LiveActor* mTicoGalaxy;  // 0x198
 };

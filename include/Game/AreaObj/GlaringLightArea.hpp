@@ -14,8 +14,8 @@ public:
 
     virtual const char* getManagerName() const;
 
-    AudSoundObject* mSound; // 0x3C
-    TVec3f          mPos;   // 0x40
+    AudSoundObject* mSound;  // 0x3C
+    TVec3f mPos;             // 0x40
 };
 
 class GlaringLightAreaMgr : public AreaObjMgr {

@@ -5,8 +5,7 @@ const char* sDummyMatrixName = "ダミーマトリクス";
 const char* sDummyVectorName = "ダミーベクトル";
 const char* sDummyFloatName = "ダミー浮動小数";
 
-CameraRegisterHolder::CameraRegisterHolder(const char* pName)
-    : NameObj(pName) {
+CameraRegisterHolder::CameraRegisterHolder(const char* pName) : NameObj(pName) {
     initMtx();
     initVec();
     initFloat();

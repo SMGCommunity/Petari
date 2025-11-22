@@ -1,9 +1,9 @@
 #pragma once
 
+#include "Game/MapObj/ClipArea.hpp"
 #include "Game/MapObj/MapPartsRailMover.hpp"
 #include "Game/MapObj/MapPartsRotator.hpp"
 #include "Game/Util/JMapInfo.hpp"
-#include "Game/MapObj/ClipArea.hpp"
 
 class ClipAreaMovable : public ClipArea {
     ClipAreaMovable(const char* pName);
@@ -11,14 +11,14 @@ class ClipAreaMovable : public ClipArea {
     virtual void makeActorAppeared();
     virtual void makeActorDead();
     virtual void control();
-    void         initMoveFunction(const JMapInfoIter& rIter);
-    void         startMoveFunction();
-    void         endMoveFunction();
-    void         movementMoveFunction();
-    void         updateMatrix();
+    void initMoveFunction(const JMapInfoIter& rIter);
+    void startMoveFunction();
+    void endMoveFunction();
+    void movementMoveFunction();
+    void updateMatrix();
 
-    MapPartsRailMover* mMapPartsRailMover; // 0xC0
-    MapPartsRotator*   mMapPartsRotator;   // 0xC4
+    MapPartsRailMover* mMapPartsRailMover;  // 0xC0
+    MapPartsRotator* mMapPartsRotator;      // 0xC4
 };
 
 namespace MR {
@@ -27,4 +27,4 @@ namespace MR {
     ClipArea* createClipAreaBottomBox(const char* pModel);
     ClipArea* createClipAreaTopCone(const char* pModel);
     ClipArea* createClipAreaBottomCone(const char* pModel);
-} // namespace MR
+}  // namespace MR

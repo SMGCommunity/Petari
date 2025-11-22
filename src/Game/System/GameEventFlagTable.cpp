@@ -1,8 +1,8 @@
 #include "Game/System/GameEventFlagTable.hpp"
-#include "Game/Util/HashUtil.hpp"
-#include "Game/Util/StringUtil.hpp"
 #include "Game/SingletonHolder.hpp"
+#include "Game/Util/HashUtil.hpp"
 #include "Game/Util/JMapInfo.hpp"
+#include "Game/Util/StringUtil.hpp"
 
 #include <algorithm>
 #include <cstdio>
@@ -203,7 +203,7 @@ namespace {
             return (key1->mHashCode < key2->mHashCode) ? true : false;
         }
     };
-}; // namespace
+};  // namespace
 
 bool GameEventFlagIter::isEnd() const {
     if (GameEventFlagIter::isValid() == false) {
@@ -277,17 +277,11 @@ void GameEventFlagTableInstance::initSortTable() {
 }
 namespace GameEventFlagTable {
 
-    GameEventFlagIter getBeginIter() {
-        return GameEventFlagIter();
-    }
+    GameEventFlagIter getBeginIter() { return GameEventFlagIter(); }
 
-    GameEventFlagAccessor makeAccessor(const char* flagName) {
-        return findFlag(flagName);
-    }
+    GameEventFlagAccessor makeAccessor(const char* flagName) { return findFlag(flagName); }
 
-    s32 getTableSize() {
-        return sizeof(sGameEventFlagStatic) / sizeof(*sGameEventFlagStatic);
-    }
+    s32 getTableSize() { return sizeof(sGameEventFlagStatic) / sizeof(*sGameEventFlagStatic); }
 
     const GameEventFlag* getFlag(int index) {
         if (index < 0 || index >= getTableSize()) {
@@ -297,9 +291,7 @@ namespace GameEventFlagTable {
         }
     }
 
-    const GameEventFlag* findFlag(const char* flagName) {
-        return SingletonHolder< GameEventFlagTableInstance >::get()->findFlag(flagName);
-    }
+    const GameEventFlag* findFlag(const char* flagName) { return SingletonHolder< GameEventFlagTableInstance >::get()->findFlag(flagName); }
 
     const char* getEventFlagNameSpecialPowerStar(const char* galaxyName, s32 starId) {
         for (GameEventFlagIter iter = getBeginIter(); !iter.isEnd(); iter.goNext()) {
@@ -349,13 +341,9 @@ namespace GameEventFlagTable {
         return nullptr;
     };
 
-    bool isExist(const char* flagName) {
-        return findFlag(flagName) != nullptr;
-    };
+    bool isExist(const char* flagName) { return findFlag(flagName) != nullptr; };
 
-    int getIndex(const GameEventFlag* eventFlag) {
-        return eventFlag - &sGameEventFlagStatic[0];
-    };
+    int getIndex(const GameEventFlag* eventFlag) { return eventFlag - &sGameEventFlagStatic[0]; };
 
     bool isDependedAnother(const char* flagName1, const char* flagName2) {
         const GameEventFlag* flag1 = findFlag(flagName1);
@@ -368,7 +356,7 @@ namespace GameEventFlagTable {
             }
         } else if (flag1->mType == 0x06) {
             const char* dependedFlags[3];
-            s32         length = getGalaxyDependedFlags(dependedFlags, 3, flagName1);
+            s32 length = getGalaxyDependedFlags(dependedFlags, 3, flagName1);
 
             for (s32 i = 0; i < length; i++) {
                 if (MR::isEqualString(dependedFlags[i], flagName2)) {
@@ -382,7 +370,6 @@ namespace GameEventFlagTable {
 
     int getIndexFromHashCode(u16 hashCode) {
         for (GameEventFlagIter iter = getBeginIter(); !iter.isEnd(); iter.goNext()) {
-
             if (!(iter.getFlag()->saveFlag & 0x1)) {
                 GameEventFlagAccessor flagAccessor = GameEventFlagAccessor(iter.getFlag());
 
@@ -418,8 +405,6 @@ namespace GameEventFlagTable {
         return flagAccessor.getNeedStarPieceNum();
     }
 
-    s32 calcGreenPowerStarNum() {
-        return calcSpecialPowerStarNum("SpecialStarGreen");
-    }
+    s32 calcGreenPowerStarNum() { return calcSpecialPowerStarNum("SpecialStarGreen"); }
 
-} // namespace GameEventFlagTable
+}  // namespace GameEventFlagTable

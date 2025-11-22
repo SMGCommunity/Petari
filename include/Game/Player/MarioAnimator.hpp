@@ -29,7 +29,7 @@ public:
     void stopUpper(const char*);
     void setUpperRotateY(f32);
     void entryCallback(const char*);
-    f32  getFrame() const;
+    f32 getFrame() const;
 
     inline void f1(const char* name) {
         getPlayer()->startBas(nullptr, false, 0.0f, 0.0f);
@@ -37,37 +37,35 @@ public:
         mXanimePlayer->setDefaultAnimation(name);
     }
 
-    inline bool isTeresaClear() const {
-        return !isPlayerModeTeresa();
-    }
+    inline bool isTeresaClear() const { return !isPlayerModeTeresa(); }
 
-    XanimeResourceTable* mResourceTable;     // 0x8
-    XanimePlayer*        mXanimePlayer;      // 0xC
-    XanimePlayer*        mXanimePlayerUpper; // 0x10
-    u8                   _14;
-    u8                   _15;
-    u8                   _16;
-    f32                  _18;
-    f32                  _1C;
-    f32                  _20;
-    f32                  _24;
-    TMtx34f              _28;
-    f32                  _58;
-    f32                  _5C;
-    TVec3f               _60;
-    bool                 _6C;
-    f32                  _70;
-    u32                  _74;
-    u16                  _78;
-    TMtx34f              _7C;
-    TMtx34f              _AC;
-    TMtx34f              _DC;
-    u8                   _10C;
-    u8                   _10D;
-    bool                 mUpperDefaultSet; // 0x10E
-    f32                  _110;
-    const char*          mCurrBck; // 0x114
-    f32                  _118;
+    XanimeResourceTable* mResourceTable;  // 0x8
+    XanimePlayer* mXanimePlayer;          // 0xC
+    XanimePlayer* mXanimePlayerUpper;     // 0x10
+    u8 _14;
+    u8 _15;
+    u8 _16;
+    f32 _18;
+    f32 _1C;
+    f32 _20;
+    f32 _24;
+    TMtx34f _28;
+    f32 _58;
+    f32 _5C;
+    TVec3f _60;
+    bool _6C;
+    f32 _70;
+    u32 _74;
+    u16 _78;
+    TMtx34f _7C;
+    TMtx34f _AC;
+    TMtx34f _DC;
+    u8 _10C;
+    u8 _10D;
+    bool mUpperDefaultSet;  // 0x10E
+    f32 _110;
+    const char* mCurrBck;  // 0x114
+    f32 _118;
 
     u8 _11C[8];
 };

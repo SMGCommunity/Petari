@@ -1,8 +1,7 @@
-#include "Game/Camera/CameraPoseParam.hpp"
 #include "Game/Camera/OnlyCamera.hpp"
+#include "Game/Camera/CameraPoseParam.hpp"
 
-OnlyCamera::OnlyCamera(const char* pName)
-    : NameObj(pName) {
+OnlyCamera::OnlyCamera(const char* pName) : NameObj(pName) {
     mPoseParam = new CameraPoseParam();
     _10 = true;
     _11 = false;
@@ -20,5 +19,4 @@ OnlyCamera::OnlyCamera(const char* pName)
     _3D = false;
 }
 
-OnlyCamera::~OnlyCamera() {
-}
+OnlyCamera::~OnlyCamera() {}

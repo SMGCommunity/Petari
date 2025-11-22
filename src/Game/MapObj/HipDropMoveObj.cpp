@@ -1,13 +1,11 @@
-#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/MapObj/HipDropMoveObj.hpp"
+#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/MapObj/StageEffectDataTable.hpp"
 #include "Game/Util.hpp"
 
-HipDropDemoMoveObj::~HipDropDemoMoveObj() {
-}
+HipDropDemoMoveObj::~HipDropDemoMoveObj() {}
 
-HipDropMoveObj::HipDropMoveObj(const char* pName)
-    : LiveActor(pName) {
+HipDropMoveObj::HipDropMoveObj(const char* pName) : LiveActor(pName) {
     mObjectName = 0;
 }
 
@@ -24,7 +22,7 @@ void HipDropMoveObj::init(const JMapInfoIter& rIter) {
     sensor.y = 0.0f;
     sensor.z = 0.0f;
     HitSensor* jointSensor = MR::addHitSensorAtJointMapObj(this, "body", cSwitchJointName, 0, 225.0f, sensor);
-    MtxPtr     mtx = MR::getJointMtx(this, cMoveJointName);
+    MtxPtr mtx = MR::getJointMtx(this, cMoveJointName);
     MR::initCollisionParts(this, mObjectName, jointSensor, mtx);
     MR::setClippingTypeSphereContainsModelBoundingBox(this, 100.0f);
     MR::setGroupClipping(this, rIter, 8);
@@ -72,7 +70,7 @@ void HipDropMoveObj::exeMove() {
         moveStart();
     }
 
-    s32         steps = MR::StageEffect::getStopSeSteps(mObjectName);
+    s32 steps = MR::StageEffect::getStopSeSteps(mObjectName);
     const char* movingSe = MR::StageEffect::getMovingSe(mObjectName);
 
     if (movingSe) {
@@ -122,20 +120,18 @@ void HipDropMoveObj::exeMove() {
     }
 }
 
-HipDropDemoMoveObj::HipDropDemoMoveObj(const char* pName)
-    : HipDropMoveObj(pName) {
+HipDropDemoMoveObj::HipDropDemoMoveObj(const char* pName) : HipDropMoveObj(pName) {
     mMtx.identity();
 }
 
-HipDropMoveObj::~HipDropMoveObj() {
-}
+HipDropMoveObj::~HipDropMoveObj() {}
 
 void HipDropDemoMoveObj::moveStart() {
     MR::startBckPlayer("Wait", (char*)nullptr);
-    MtxPtr  mtx = MR::getPlayerDemoActor()->getBaseMtx();
+    MtxPtr mtx = MR::getPlayerDemoActor()->getBaseMtx();
     TMtx34f stack_38;
     stack_38.set(mtx);
-    MtxPtr  jointMtx = MR::getJointMtx(this, cMoveJointName);
+    MtxPtr jointMtx = MR::getJointMtx(this, cMoveJointName);
     TMtx34f stack_8;
     stack_8.set(jointMtx);
     stack_8.invert(stack_8);
@@ -144,15 +140,15 @@ void HipDropDemoMoveObj::moveStart() {
 
 void HipDropDemoMoveObj::moving() {
     if (MR::isDemoActive()) {
-        MtxPtr  jointMtx = MR::getJointMtx(this, cMoveJointName);
+        MtxPtr jointMtx = MR::getJointMtx(this, cMoveJointName);
         TMtx34f stack_8;
         stack_8.set(jointMtx);
         stack_8.concat(stack_8, mMtx);
-        TVec3f     vec;
+        TVec3f vec;
         LiveActor* demoActor = MR::getPlayerDemoActor();
-        f32        z = stack_8.mMtx[2][3];
-        f32        y = stack_8.mMtx[1][3];
-        f32        x = stack_8.mMtx[0][3];
+        f32 z = stack_8.mMtx[2][3];
+        f32 y = stack_8.mMtx[1][3];
+        f32 x = stack_8.mMtx[0][3];
         demoActor->mPosition.set< f32 >(x, y, z);
         MR::setPlayerBaseMtx((MtxPtr)&stack_8);
     }
@@ -163,23 +159,18 @@ namespace NrvHipDropMoveObj {
     HostTypeMove HostTypeMove::sInstance;
     HostTypeDone HostTypeDone::sInstance;
 
-    void HostTypeDone::execute(Spine* pSpine) const {
-    }
+    void HostTypeDone::execute(Spine* pSpine) const {}
 
     void HostTypeMove::execute(Spine* pSpine) const {
         HipDropMoveObj* obj = reinterpret_cast< HipDropMoveObj* >(pSpine->mExecutor);
         obj->exeMove();
     }
 
-    void HostTypeWait::execute(Spine* pSpine) const {
-    }
-}; // namespace NrvHipDropMoveObj
+    void HostTypeWait::execute(Spine* pSpine) const {}
+};  // namespace NrvHipDropMoveObj
 
-void HipDropMoveObj::moveStart() {
-}
+void HipDropMoveObj::moveStart() {}
 
-void HipDropMoveObj::moving() {
-}
+void HipDropMoveObj::moving() {}
 
-void HipDropMoveObj::moveEnd() {
-}
+void HipDropMoveObj::moveEnd() {}

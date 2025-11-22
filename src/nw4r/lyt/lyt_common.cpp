@@ -8,13 +8,9 @@
 namespace nw4r {
     namespace lyt {
         namespace detail {
-            bool EqualsResName(const char* a1, const char* a2) {
-                return strncmp(a1, a2, 0x10) == 0;
-            }
+            bool EqualsResName(const char* a1, const char* a2) { return strncmp(a1, a2, 0x10) == 0; }
 
-            bool EqualsMaterialName(const char* a1, const char* a2) {
-                return strncmp(a1, a2, 0x14) == 0;
-            }
+            bool EqualsMaterialName(const char* a1, const char* a2) { return strncmp(a1, a2, 0x14) == 0; }
 
             bool TestFileHeader(const res::BinaryFileHeader& fileHeader, u32 sig) {
                 return GetSignatureInt(fileHeader.signature) == sig && fileHeader.byteOrder == 0xFEFF;
@@ -39,7 +35,7 @@ namespace nw4r {
             void TexCoordAry::Reserve(u8 num) {
                 if (mCap < num) {
                     Free();
-                    const u32         coordNum = num;
+                    const u32 coordNum = num;
                     math::VEC2* const ary = Layout::NewArray< math::VEC2 >(4 * coordNum);
                     mData = reinterpret_cast< TexCoordQuad >(ary);
                     if (mData != nullptr) {
@@ -50,7 +46,8 @@ namespace nw4r {
 
             void TexCoordAry::SetSize(u8 num) {
                 if (mData != nullptr && num <= mCap) {
-                    static const math::VEC2 texCoords[] = {math::VEC2(0.0f, 0.0f), math::VEC2(1.0f, 0.0f), math::VEC2(0.0f, 1.0f), math::VEC2(1.0f, 1.0f)};
+                    static const math::VEC2 texCoords[] = {math::VEC2(0.0f, 0.0f), math::VEC2(1.0f, 0.0f), math::VEC2(0.0f, 1.0f),
+                                                           math::VEC2(1.0f, 1.0f)};
 
                     for (int j = mNum; j < num; j++) {
                         for (int i = 0; i < 4; i++) {
@@ -166,13 +163,14 @@ namespace nw4r {
                 GXEnd();
             }
 
-            void DrawQuad(const math::VEC2& basePt, const Size& size, u8 num, const math::VEC2 (*texCoords)[4], const ut::Color* vtxColors, u8 alpha) {
+            void DrawQuad(const math::VEC2& basePt, const Size& size, u8 num, const math::VEC2 (*texCoords)[4], const ut::Color* vtxColors,
+                          u8 alpha) {
                 ut::Color colors[4];
                 if (vtxColors) {
                     MultipleAlpha(colors, vtxColors, alpha);
                 }
                 DrawQuad(basePt, size, num, texCoords, vtxColors ? colors : 0);
             }
-        }; // namespace detail
-    };     // namespace lyt
-};         // namespace nw4r
+        };  // namespace detail
+    };      // namespace lyt
+};          // namespace nw4r

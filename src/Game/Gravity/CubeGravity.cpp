@@ -14,8 +14,7 @@
 #define REGION_BETWEEN_Z 9
 #define REGION_POSITIVE_Z 18
 
-#define ENCODE_REGION(x, y, z) \
-    (x + y + z)
+#define ENCODE_REGION(x, y, z) (x + y + z)
 
 #define REGION_X_FACE_POSITIVE ENCODE_REGION(REGION_POSITIVE_X, REGION_BETWEEN_Y, REGION_BETWEEN_Z)
 #define REGION_X_FACE_NEGATIVE ENCODE_REGION(REGION_NEGATIVE_X, REGION_BETWEEN_Y, REGION_BETWEEN_Z)
@@ -28,15 +27,11 @@
 #define AXIS_Y 3
 #define AXIS_Z 9
 
-#define ENCODE_EDGE(axis, half1, half2) \
-    (axis + half1 + half2)
+#define ENCODE_EDGE(axis, half1, half2) (axis + half1 + half2)
 
-#define ENCODE_CORNER(signumx, signumy, signumz) \
-    ((signumx + 1) + (signumy + 1) * 3 + (signumz + 1) * 9)
+#define ENCODE_CORNER(signumx, signumy, signumz) ((signumx + 1) + (signumy + 1) * 3 + (signumz + 1) * 9)
 
-CubeGravity::CubeGravity()
-    : PlanetGravity() {
-
+CubeGravity::CubeGravity() : PlanetGravity() {
     lenX = 1.0;
     lenY = 1.0;
     lenZ = 1.0;
@@ -69,8 +64,9 @@ bool CubeGravity::calcOwnGravityVector(TVec3f* pDest, f32* pScalar, const TVec3f
         return false;
     }
     TVec3f gravityForce;
-    f32    scalar;
-    if (!calcFaceGravity(rPosition, area, &gravityForce, &scalar) && !calcEdgeGravity(rPosition, area, &gravityForce, &scalar) && !calcCornerGravity(rPosition, area, &gravityForce, &scalar)) {
+    f32 scalar;
+    if (!calcFaceGravity(rPosition, area, &gravityForce, &scalar) && !calcEdgeGravity(rPosition, area, &gravityForce, &scalar) &&
+        !calcCornerGravity(rPosition, area, &gravityForce, &scalar)) {
         return false;
     }
 
@@ -95,8 +91,9 @@ int CubeGravity::calcGravityArea(const TVec3f& rPosition) const {
     mPosition.getZDir(dirZ);
     mPosition.getTrans(trans);
     TVec3f relativePosition = rPosition - trans;
-    int    area; // Region of the cube
-    f32    xDirDistance = relativePosition.dot(dirX) / lenX, yDirDistance = relativePosition.dot(dirY) / lenY, zDirDistance = relativePosition.dot(dirZ) / lenZ;
+    int area;  // Region of the cube
+    f32 xDirDistance = relativePosition.dot(dirX) / lenX, yDirDistance = relativePosition.dot(dirY) / lenY,
+        zDirDistance = relativePosition.dot(dirZ) / lenZ;
 
     if (xDirDistance < -lenX) {
         if ((mActiveFaces & 2) != 2) {
@@ -150,9 +147,8 @@ int CubeGravity::calcGravityArea(const TVec3f& rPosition) const {
 }
 
 bool CubeGravity::calcFaceGravity(const TVec3f& rPosition, s32 area, TVec3f* pDest, f32* pScalar) const {
-    TVec3f antiFaceDir; // Negative of the normal vector of the face an object is on
+    TVec3f antiFaceDir;  // Negative of the normal vector of the face an object is on
     switch (area) {
-
     case REGION_Z_FACE_NEGATIVE:
         mPosition.getZDir(antiFaceDir);
         break;
@@ -184,7 +180,7 @@ bool CubeGravity::calcFaceGravity(const TVec3f& rPosition, s32 area, TVec3f* pDe
         return false;
     }
     TVec3f trans;
-    f32    length;
+    f32 length;
     mPosition.getTrans(trans);
     MR::separateScalarAndDirection(&length, &antiFaceDir, antiFaceDir);
     f32 height = antiFaceDir.dot(trans - rPosition) - length;
@@ -207,7 +203,8 @@ bool CubeGravity::calcEdgeGravity(const TVec3f& rPosition, s32 area, TVec3f* pDe
     // return here. The intent is that area should be neither even nor negative, since all edges
     // are odd and positive. However, this mistake does not really matter since the switch will
     // return if this does not.
-    if (!(((area & 1) ^ ((area & 0x80000000) >> 31)) - ((area & 0x80000000) >> 31)) || area == ENCODE_REGION(REGION_BETWEEN_X, REGION_BETWEEN_Y, REGION_BETWEEN_Z)) {
+    if (!(((area & 1) ^ ((area & 0x80000000) >> 31)) - ((area & 0x80000000) >> 31)) ||
+        area == ENCODE_REGION(REGION_BETWEEN_X, REGION_BETWEEN_Y, REGION_BETWEEN_Z)) {
         return false;
     }
 
@@ -218,7 +215,6 @@ bool CubeGravity::calcEdgeGravity(const TVec3f& rPosition, s32 area, TVec3f* pDe
     mPosition.getZDir(zDir);
 
     switch (area) {
-
     case ENCODE_EDGE(AXIS_X, REGION_NEGATIVE_Y, REGION_NEGATIVE_Z):
         edgeVector = xDir;
         edgeTranslation = negate(yDir) - zDir;
@@ -308,7 +304,6 @@ bool CubeGravity::calcCornerGravity(const TVec3f& rPosition, s32 area, TVec3f* p
     mPosition.getZDir(zDir);
 
     switch (area) {
-
     case ENCODE_CORNER(-1, -1, -1):
         vertex = negate(xDir) - yDir - zDir;
         break;

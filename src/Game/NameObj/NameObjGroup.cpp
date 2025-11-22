@@ -1,8 +1,7 @@
 #include "Game/NameObj/NameObjGroup.hpp"
 #include "Game/Util.hpp"
 
-NameObjGroup::NameObjGroup(const char* pGroupName, int maxCount)
-    : NameObj(pGroupName) {
+NameObjGroup::NameObjGroup(const char* pGroupName, int maxCount) : NameObj(pGroupName) {
     _C = 0;
     mObjectCount = 0;
     mObjects = 0;

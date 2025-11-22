@@ -11,16 +11,16 @@ public:
 
     void start(int);
     void end();
-    s32  getCurrentInterval() const;
+    s32 getCurrentInterval() const;
     bool isNowFlashing() const;
     bool isNowOn() const;
     void updateFlashing();
 
-    LiveActor* mActor;            // 0xC
-    bool       mToggleDraw;       // 0x10
-    bool       mIsEnded;          // 0x11
-    u8         mOverrideInterval; // 0x12
-    u8         _13;               // padding
-    s32        mTimer;            // 0x14
-    s32        mFlashStartTime;   // 0x18
+    LiveActor* mActor;     // 0xC
+    bool mToggleDraw;      // 0x10
+    bool mIsEnded;         // 0x11
+    u8 mOverrideInterval;  // 0x12
+    u8 _13;                // padding
+    s32 mTimer;            // 0x14
+    s32 mFlashStartTime;   // 0x18
 };

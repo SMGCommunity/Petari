@@ -17,8 +17,8 @@ public:
     void exeActive();
     void exeEnd();
 
-    /* 0x0C */ Coin*  mCoin;
+    /* 0x0C */ Coin* mCoin;
     /* 0x10 */ Spine* mSpine;
     /* 0x14 */ TPos3f _14;
-    /* 0x44 */ s32    _44;
+    /* 0x44 */ s32 _44;
 };

@@ -2,9 +2,7 @@
 #include "Game/Util/MemoryUtil.hpp"
 
 namespace MR {
-    BitArray::BitArray(int bitNum)
-        : mArray(nullptr),
-          mArraySize(bitNum) {
+    BitArray::BitArray(int bitNum) : mArray(nullptr), mArraySize(bitNum) {
         int byteNum = (bitNum + 7 & ~7) / 8;
 
         mArray = new u8[byteNum];
@@ -28,4 +26,4 @@ namespace MR {
             pArray[byteIdx] &= ~(1 << (bitIdx & 0x7));
         }
     }
-}; // namespace MR
+};  // namespace MR

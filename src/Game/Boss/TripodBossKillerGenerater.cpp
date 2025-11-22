@@ -18,10 +18,9 @@ namespace NrvTripodBossKillerGenerater {
     NEW_NERVE(TripodBossKillerGeneraterNrvBreak, TripodBossKillerGenerater, Break);
     NEW_NERVE(TripodBossKillerGeneraterNrvStop, TripodBossKillerGenerater, Stop);
     NEW_NERVE(TripodBossKillerGeneraterNrvRestart, TripodBossKillerGenerater, Restart);
-}; // namespace NrvTripodBossKillerGenerater
+};  // namespace NrvTripodBossKillerGenerater
 
-TripodBossKillerGenerater::TripodBossKillerGenerater(const char* pName)
-    : TripodBossFixPartsBase(pName) {
+TripodBossKillerGenerater::TripodBossKillerGenerater(const char* pName) : TripodBossFixPartsBase(pName) {
     mKiller = nullptr;
     _118 = 2000.0f;
     mActiveLabel = false;
@@ -194,8 +193,10 @@ bool TripodBossKillerGenerater::tryAbort() {
 }
 
 bool TripodBossKillerGenerater::requestBreak() {
-    if (isNerve(&NrvTripodBossKillerGenerater::TripodBossKillerGeneraterNrvReady::sInstance) || isNerve(&NrvTripodBossKillerGenerater::TripodBossKillerGeneraterNrvShootSetting::sInstance) || isNerve(&NrvTripodBossKillerGenerater::TripodBossKillerGeneraterNrvShoot::sInstance) || isNerve(&NrvTripodBossKillerGenerater::TripodBossKillerGeneraterNrvCoolDown::sInstance)) {
-
+    if (isNerve(&NrvTripodBossKillerGenerater::TripodBossKillerGeneraterNrvReady::sInstance) ||
+        isNerve(&NrvTripodBossKillerGenerater::TripodBossKillerGeneraterNrvShootSetting::sInstance) ||
+        isNerve(&NrvTripodBossKillerGenerater::TripodBossKillerGeneraterNrvShoot::sInstance) ||
+        isNerve(&NrvTripodBossKillerGenerater::TripodBossKillerGeneraterNrvCoolDown::sInstance)) {
         if (isNerve(&NrvTripodBossKillerGenerater::TripodBossKillerGeneraterNrvShootSetting::sInstance) && !MR::isDead(mKiller)) {
             mKiller->kill();
         }
@@ -331,8 +332,6 @@ void TripodBossKillerGenerater::exeHide() {
     updateTripodMatrix();
 }
 
-void TripodBossKillerGenerater::exeNonActive() {
-}
+void TripodBossKillerGenerater::exeNonActive() {}
 
-TripodBossKillerGenerater::~TripodBossKillerGenerater() {
-}
+TripodBossKillerGenerater::~TripodBossKillerGenerater() {}

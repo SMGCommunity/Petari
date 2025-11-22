@@ -11,7 +11,7 @@ public:
 };
 
 namespace MR {
-    NameObj*      createClipAreaDropHolder();
+    NameObj* createClipAreaDropHolder();
     ClipAreaDrop* getDeadClipAreaDrop();
-    bool          appearClipAreaDrop(const TVec3f&, f32);
-} // namespace MR
+    bool appearClipAreaDrop(const TVec3f&, f32);
+}  // namespace MR

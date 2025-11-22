@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/Util.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
+#include "Game/Util.hpp"
 #include "Game/Util/JMapInfo.hpp"
 
 class DemoDirector;
@@ -9,7 +9,7 @@ class DemoCastGroupHolder;
 class DemoExecutor;
 
 namespace DemoFunction {
-    DemoDirector*        getDemoDirector();
+    DemoDirector* getDemoDirector();
     DemoCastGroupHolder* getDemoCastSubGroupHolder();
 
     void registerDemoSimpleCastAllFunction(LiveActor*);
@@ -27,7 +27,7 @@ namespace DemoFunction {
     bool tryStartDemoRegistered(LiveActor*, const char*);
     bool tryStartDemoRegisteredMarioPuppetable(LiveActor*, const char*);
 
-    void          registerDemoExecutor(DemoExecutor*);
+    void registerDemoExecutor(DemoExecutor*);
     DemoExecutor* findDemoExecutor(const char*);
     DemoExecutor* findDemoExecutor(const LiveActor*);
     DemoExecutor* findDemoExecutorActive(const LiveActor*);
@@ -35,11 +35,11 @@ namespace DemoFunction {
     bool isDemoCast(const DemoExecutor*, const LiveActor*);
     bool isExistDemoPart(const DemoExecutor*, const char*);
 
-    bool        isDemoPartActiveFunction(const char*);
-    s32         getDemoPartStepFunction(const char*);
-    s32         getDemoPartTotalStepFunction(const char*);
-    bool        isDemoLastPartLastStep();
-    bool        isDemoSuspendOrLastPartLastStep();
+    bool isDemoPartActiveFunction(const char*);
+    s32 getDemoPartStepFunction(const char*);
+    s32 getDemoPartTotalStepFunction(const char*);
+    bool isDemoLastPartLastStep();
+    bool isDemoSuspendOrLastPartLastStep();
     const char* getCurrentDemoPartNameMain(const char*);
 
     bool isTargetDemoCast(LiveActor*, const JMapInfoIter&, const char*, s32);
@@ -70,4 +70,4 @@ namespace DemoFunction {
     s32 createSheetParser(const DemoExecutor*, const char*, JMapInfo**);
 
     bool isDemoPartTalk(const char*);
-}; // namespace DemoFunction
+};  // namespace DemoFunction

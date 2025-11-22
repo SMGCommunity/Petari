@@ -1,7 +1,7 @@
+#include "Game/Screen/PlayerMissLeft.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/CountUpPaneRumbler.hpp"
 #include "Game/Screen/CounterLayoutAppearer.hpp"
-#include "Game/Screen/PlayerMissLeft.hpp"
 #include "Game/Util/EventUtil.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
@@ -9,19 +9,16 @@
 namespace {
     const s32 hCountDownTime = 15;
     const s32 hEndTime = 90;
-}; // namespace
+};  // namespace
 
 namespace NrvPlayerMissLeft {
     NEW_NERVE(HostTypeNrvAppearWait, PlayerMissLeft, AppearWait);
     NEW_NERVE(HostTypeNrvAppear, PlayerMissLeft, Appear);
     NEW_NERVE(HostTypeNrvWait, PlayerMissLeft, Wait);
     NEW_NERVE(HostTypeNrvEnd, PlayerMissLeft, End);
-}; // namespace NrvPlayerMissLeft
+};  // namespace NrvPlayerMissLeft
 
-PlayerMissLeft::PlayerMissLeft(const char* pName)
-    : LayoutActor(pName, true),
-      mLayoutAppearer(nullptr),
-      mPaneRumbler(nullptr) {}
+PlayerMissLeft::PlayerMissLeft(const char* pName) : LayoutActor(pName, true), mLayoutAppearer(nullptr), mPaneRumbler(nullptr) {}
 
 void PlayerMissLeft::init(const JMapInfoIter& rIter) {
     initLayoutManager("PlayerLeft", 3);

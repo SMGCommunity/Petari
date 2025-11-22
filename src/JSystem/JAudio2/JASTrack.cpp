@@ -1,25 +1,20 @@
 #include "JSystem/JAudio2/JASTrack.hpp"
-#include "JSystem/JAudio2/JASChannel.hpp"
-#include "JSystem/JAudio2/JASSoundParams.hpp"
 #include "JSystem/JAudio2/JASAiCtrl.hpp"
+#include "JSystem/JAudio2/JASChannel.hpp"
 #include "JSystem/JAudio2/JASDriverIF.hpp"
 #include "JSystem/JAudio2/JASLfo.hpp"
+#include "JSystem/JAudio2/JASSoundParams.hpp"
 
 #include <cstring>
 #include <revolution/os.h>
 
-static const JASOscillator::Point sDefaultAdsr[4] = {
-    {0, 0, 0x7fff},
-    {0, 0, 0x7fff},
-    {0, 0, 0},
-    {0xe, 0, 0}};
+static const JASOscillator::Point sDefaultAdsr[4] = {{0, 0, 0x7fff}, {0, 0, 0x7fff}, {0, 0, 0}, {0xe, 0, 0}};
 
 const JASOscillator::Data JASTrack::sEnvOsc = {0, 1.0f, 0, 0, 1.0f, 0.0f};
 
 const JASOscillator::Data JASTrack::sPitchEnvOsc = {1, 1.0f, 0, 0, 1.0f, 0.0f};
 
-JASTrack::JASTrack()
-    : JASSeqCtrl(), mRegs(), mInitialMgr(this), mNumChannels(1), _240(0), mNode() {
+JASTrack::JASTrack() : JASSeqCtrl(), mRegs(), mInitialMgr(this), mNumChannels(1), _240(0), mNode() {
     mMgrs[0] = &mInitialMgr;
     for (u32 i = 1; i < 4; i++) {
         mMgrs[i] = nullptr;
@@ -296,7 +291,6 @@ bool JASTrack::noteOn(u32 channelNum, u32 pitch, u32 c) {
 }
 
 bool JASTrack::gateOn(u32 transposedPitch, u32 velocity, f32 seqTime, u32 flags) {
-
     transposedPitch += getTransposeTotal();
     if (mGateLatency != 100)
         seqTime *= mGateLatency / 100f;
@@ -388,11 +382,11 @@ void JASTrack::updateTrack(f32 num) {
         if (mgr) {
             f32 fr8 = _9C[0]._0;
             fr8 *= fr8;
-            f32             fr9 = 1f;
-            f32             fra = _9C[1]._0 * _230 * 0.333333343267f;
-            f32             frb = (_9C[3]._0 - 0.5f) * _218;
-            f32             frc = _9C[2]._0;
-            f32             frd = _9C[4]._0;
+            f32 fr9 = 1f;
+            f32 fra = _9C[1]._0 * _230 * 0.333333343267f;
+            f32 frb = (_9C[3]._0 - 0.5f) * _218;
+            f32 frc = _9C[2]._0;
+            f32 frd = _9C[4]._0;
             JASSoundParams* params = mgr->_48;
             if (params) {
                 fr8 *= params->_0[0];
@@ -472,7 +466,7 @@ void JASTrack::noteOffAll(u16 a) {
     for (u32 i = 0; i < 8; i++) {
         noteOff((u8)i, a);
     }
-    for (int i = 0; i < 0x10; i++) { // Probably a template
+    for (int i = 0; i < 0x10; i++) {  // Probably a template
         JASTrack* child = mChildren[i];
         if (child && child->_240 == 1)
             child->noteOffAll(a);
@@ -609,10 +603,9 @@ void JASTrack::updateChannel(JASChannel* channel, JASDsp::TChannel* dspChannel) 
     dspChannel->setDistFilter(32767f * _9C[5]._0);
 }
 
-void JASTrack::channelUpdateCallback(
-    u32 a, JASChannel* channel, JASDsp::TChannel* dspChannel, void* data) {
+void JASTrack::channelUpdateCallback(u32 a, JASChannel* channel, JASDsp::TChannel* dspChannel, void* data) {
     TChannelMgr* mgr = (TChannelMgr*)data;
-    JASTrack*    track = mgr->mParentTrack;
+    JASTrack* track = mgr->mParentTrack;
     switch (a) {
     case 0:
     case 1:
@@ -713,8 +706,7 @@ void JASTrack::TList::seqMain() {
     }
 }
 
-JASTrack::TChannelMgr::TChannelMgr(JASTrack* track)
-    : mChannelParams(), _48(0), mParentTrack(track) {
+JASTrack::TChannelMgr::TChannelMgr(JASTrack* track) : mChannelParams(), _48(0), mParentTrack(track) {
     for (u32 i = 0; i < 8; i++) {
         mChannels[i] = nullptr;
     }
@@ -774,72 +766,47 @@ JASTrack::TList JASTrack::sTrackList = JASTrack::TList();
 
 namespace JGadget {
 
-    TLinkListNode::TLinkListNode()
-        : mPrev(nullptr), mNext(nullptr) {}
+    TLinkListNode::TLinkListNode() : mPrev(nullptr), mNext(nullptr) {}
 
-    TLinkListNode* TNodeLinkList::end() {
-        return iterator(&mEnd).curr;
-    }
+    TLinkListNode* TNodeLinkList::end() { return iterator(&mEnd).curr; }
 
-    TNodeLinkList::iterator::iterator(TLinkListNode* node) {
-        curr = node;
-    }
+    TNodeLinkList::iterator::iterator(TLinkListNode* node) { curr = node; }
 
-    TNodeLinkList::iterator::iterator(const TNodeLinkList::iterator& rOther)
-        : curr(rOther.curr) {}
+    TNodeLinkList::iterator::iterator(const TNodeLinkList::iterator& rOther) : curr(rOther.curr) {}
 
     TNodeLinkList::iterator::iterator() {}
 
-    TLinkListNode* TNodeLinkList::begin() {
-        return iterator(mEnd.getNext()).curr;
-    }
+    TLinkListNode* TNodeLinkList::begin() { return iterator(mEnd.getNext()).curr; }
 
-    TLinkListNode* TLinkListNode::getNext() const {
-        return mNext;
-    }
+    TLinkListNode* TLinkListNode::getNext() const { return mNext; }
 
     TNodeLinkList::iterator& TNodeLinkList::iterator::operator++() {
         curr = curr->getNext();
         return *this;
     }
 
-    TLinkListNode* TNodeLinkList::iterator::operator->() const {
-        return curr;
-    }
+    TLinkListNode* TNodeLinkList::iterator::operator->() const { return curr; }
 
-    bool operator!=(
-        JASTrack::TList::InternalList::iterator a,
-        JASTrack::TList::InternalList::iterator b) {
-        return !(a == b);
-    }
+    bool operator!=(JASTrack::TList::InternalList::iterator a, JASTrack::TList::InternalList::iterator b) { return !(a == b); }
 
-    bool operator==(
-        JASTrack::TList::InternalList::iterator a,
-        JASTrack::TList::InternalList::iterator b) {
+    bool operator==(JASTrack::TList::InternalList::iterator a, JASTrack::TList::InternalList::iterator b) {
         return CALL_INLINE_FUNC(TNodeLinkList::iterator, a.curr) == CALL_INLINE_FUNC(TNodeLinkList::iterator, b.curr);
     }
 
-    bool operator==(TNodeLinkList::iterator a, TNodeLinkList::iterator b) {
-        return a.curr == b.curr;
-    }
+    bool operator==(TNodeLinkList::iterator a, TNodeLinkList::iterator b) { return a.curr == b.curr; }
 
-    TNodeLinkList::TNodeLinkList()
-        : mEnd() {
-        Initialize_();
-    }
-} // namespace JGadget
+    TNodeLinkList::TNodeLinkList() : mEnd() { Initialize_(); }
+}  // namespace JGadget
 
 JASTrack::TList::~TList() {}
 
-JASTrack::TList::TList()
-    : mList(), mIsInit(false) {}
+JASTrack::TList::TList() : mList(), mIsInit(false) {}
 
 JASCriticalSection::JASCriticalSection() {
     success = OSDisableInterrupts();
 }
 
-JASDefaultBankTable::JASDefaultBankTable()
-    : JASBankTable(), JASGlobalInstance(true) {}
+JASDefaultBankTable::JASDefaultBankTable() : JASBankTable(), JASGlobalInstance(true) {}
 
 JASDefaultBankTable::~JASDefaultBankTable() {}
 

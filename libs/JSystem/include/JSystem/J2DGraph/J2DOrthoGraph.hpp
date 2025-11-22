@@ -10,6 +10,6 @@ public:
     void setPort();
 
     TBox2f _BC;
-    f32    mNear; // 0xCC
-    f32    mFar;  // 0xD0
+    f32 mNear;  // 0xCC
+    f32 mFar;   // 0xD0
 };

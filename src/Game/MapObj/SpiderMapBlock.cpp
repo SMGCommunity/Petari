@@ -10,8 +10,7 @@
 #include "JSystem/JGeometry/TVec.hpp"
 #include "revolution/mtx.h"
 
-SpiderMapBlock::SpiderMapBlock(const char* pName)
-    : LiveActor(pName) {
+SpiderMapBlock::SpiderMapBlock(const char* pName) : LiveActor(pName) {
     _8C = 0.0f;
 }
 
@@ -28,8 +27,7 @@ bool SpiderMapBlock::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSenso
     return true;
 }
 
-SpiderMapBlock::~SpiderMapBlock() {
-}
+SpiderMapBlock::~SpiderMapBlock() {}
 
 void SpiderMapBlock::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);

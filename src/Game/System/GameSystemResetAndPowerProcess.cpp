@@ -1,19 +1,19 @@
+#include "Game/System/GameSystemResetAndPowerProcess.hpp"
 #include "Game/LiveActor/Nerve.hpp"
+#include "Game/SingletonHolder.hpp"
 #include "Game/System/DrawSyncManager.hpp"
 #include "Game/System/GameSequenceFunction.hpp"
 #include "Game/System/GameSystemFunction.hpp"
-#include "Game/System/GameSystemResetAndPowerProcess.hpp"
 #include "Game/System/MainLoopFramework.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/ScreenUtil.hpp"
 #include "Game/Util/TriggerChecker.hpp"
 #include "Game/Util/ValueControl.hpp"
-#include "Game/SingletonHolder.hpp"
 
 namespace {
     static const s32 sFadeinoutFrame = 30;
     static const s32 sResetWaitFrame = 15;
-}; // namespace
+};  // namespace
 
 namespace NrvGameSystemResetAndPowerProcess {
     NEW_NERVE(GameSystemResetAndPowerProcessPolling, GameSystemResetAndPowerProcess, Polling);
@@ -22,7 +22,7 @@ namespace NrvGameSystemResetAndPowerProcess {
     NEW_NERVE(GameSystemResetAndPowerProcessReset, GameSystemResetAndPowerProcess, Reset);
     NEW_NERVE(GameSystemResetAndPowerProcessWaitPrepareFadein, GameSystemResetAndPowerProcess, WaitPrepareFadein);
     NEW_NERVE(GameSystemResetAndPowerProcessFadein, GameSystemResetAndPowerProcess, Fadein);
-}; // namespace NrvGameSystemResetAndPowerProcess
+};  // namespace NrvGameSystemResetAndPowerProcess
 
 void GameSystemResetAndPowerProcess::init(const JMapInfoIter& rIter) {
     initNerve(&NrvGameSystemResetAndPowerProcess::GameSystemResetAndPowerProcessPolling::sInstance);
@@ -241,13 +241,8 @@ void GameSystemResetAndPowerProcess::handleCheckDiskAsync(s32 result, DVDCommand
 }
 
 GameSystemResetAndPowerProcess::GameSystemResetAndPowerProcess()
-    : LayoutActor("リセット・電源", false),
-      mResetTriggerChecker(nullptr),
-      mFadeinValueControl(nullptr),
-      mResetOperation(1),
-      _5C(true),
-      mIsValidPowerOff(false),
-      _5E(false) {
+    : LayoutActor("リセット・電源", false), mResetTriggerChecker(nullptr), mFadeinValueControl(nullptr), mResetOperation(1), _5C(true),
+      mIsValidPowerOff(false), _5E(false) {
     mResetTriggerChecker = new TriggerChecker();
 
     mFadeinValueControl = new ValueControl(sFadeinoutFrame);

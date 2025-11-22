@@ -2,13 +2,12 @@
 #include "Game/Boss/SkeletalFishBoss.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/LiveActorGroup.hpp"
-#include "Game/MapObj/SubmarineVolcanoBigColumn.hpp"
 #include "Game/Map/CollisionParts.hpp"
 #include "Game/Map/HitInfo.hpp"
+#include "Game/MapObj/SubmarineVolcanoBigColumn.hpp"
 #include <cstdio>
 
-SkeletalFishBossBattleDirector::SkeletalFishBossBattleDirector(SkeletalFishBoss* pBoss)
-    : NameObj("スカルシャークボス戦指揮") {
+SkeletalFishBossBattleDirector::SkeletalFishBossBattleDirector(SkeletalFishBoss* pBoss) : NameObj("スカルシャークボス戦指揮") {
     mFishBoss = pBoss;
     _90 = 0;
     _D4 = 0;
@@ -70,8 +69,7 @@ void SkeletalFishBossBattleDirector::playGuardAnim(const char* pAnimName, s32 nu
     }
 }
 
-void SkeletalFishBossBattleDirector::movement() {
-}
+void SkeletalFishBossBattleDirector::movement() {}
 
 void SkeletalFishBossBattleDirector::tryColumnCollision(HitSensor* pSensor) {
     for (s32 i = 0; i < _90; i++) {
@@ -130,5 +128,4 @@ void SkeletalFishBossBattleDirector::killBirdLouse() {
     }
 }
 
-SkeletalFishBossBattleDirector::~SkeletalFishBossBattleDirector() {
-}
+SkeletalFishBossBattleDirector::~SkeletalFishBossBattleDirector() {}

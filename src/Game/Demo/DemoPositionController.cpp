@@ -1,11 +1,10 @@
 #include "Game/Demo/DemoPositionController.hpp"
+#include "Game/LiveActor/ActorCameraInfo.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/Util/ActorCameraUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
-#include "Game/LiveActor/ActorCameraInfo.hpp"
 
-DemoPositionController::DemoPositionController(const char* pName, const JMapInfoIter& rIter)
-    : LiveActor("OSS_09_B"), pCameraInfo(nullptr) {
+DemoPositionController::DemoPositionController(const char* pName, const JMapInfoIter& rIter) : LiveActor("OSS_09_B"), pCameraInfo(nullptr) {
     MR::initDefaultPos(this, rIter);
     initModelManagerWithAnm(pName, nullptr, false);
     pCameraInfo = new ActorCameraInfo(rIter);

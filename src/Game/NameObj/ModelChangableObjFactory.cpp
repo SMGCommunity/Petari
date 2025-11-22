@@ -1,8 +1,8 @@
+#include "Game/NameObj/ModelChangableObjFactory.hpp"
 #include "Game/Boss/TripodBossRailMoveParts.hpp"
 #include "Game/Boss/TripodBossRotateParts.hpp"
 #include "Game/MapObj/AssemblyBlock.hpp"
 #include "Game/MapObj/SimpleNormalMapObj.hpp"
-#include "Game/NameObj/ModelChangableObjFactory.hpp"
 #include "Game/NameObj/NameObjFactory.hpp"
 #include "Game/Util/FileUtil.hpp"
 #include "Game/Util/MapPartsUtil.hpp"
@@ -67,7 +67,7 @@ namespace {
     const Model2CreateFunc* getModel2CreateFunc(const char* pName) {
         for (s32 i = 0; i < sizeof(cModelChangableObjCreatorTable) / sizeof(*cModelChangableObjCreatorTable); i++) {
             const Model2CreateFunc* pModel2CreateFunc = &cModelChangableObjCreatorTable[i];
-            bool                    v7;
+            bool v7;
 
             if (pModel2CreateFunc->_0 != nullptr) {
                 v7 = strncmp(pName, pModel2CreateFunc->_0, strlen(pModel2CreateFunc->_0)) == 0;
@@ -82,7 +82,7 @@ namespace {
 
         return nullptr;
     }
-}; // namespace
+};  // namespace
 
 namespace MR {
     CreatorFuncPtr getModelChangableObjCreator(const char* pName) {
@@ -111,4 +111,4 @@ namespace MR {
 
         return !MR::isLoadedFile(archiveName);
     }
-}; // namespace MR
+};  // namespace MR

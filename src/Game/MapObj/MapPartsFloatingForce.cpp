@@ -1,6 +1,6 @@
 #include "Game/MapObj/MapPartsFloatingForce.hpp"
-#include "Game/MapObj/FloaterFunction.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
+#include "Game/MapObj/FloaterFunction.hpp"
 #include "Game/Util.hpp"
 
 SpringStep::SpringStep(f32 cond, f32 speed, f32 angle) {
@@ -20,8 +20,7 @@ void SpringStep::setSpringBaseValue(f32 val) {
     mSpringValue->setParam((f64)val, 0.0f, mSpeed, mAngle, 0.0f);
 }
 
-MapPartsFloatingForce::MapPartsFloatingForce(LiveActor* pActor)
-    : MapPartsFunction(pActor, "浮力") {
+MapPartsFloatingForce::MapPartsFloatingForce(LiveActor* pActor) : MapPartsFunction(pActor, "浮力") {
     mSpringStep = 0;
     mObjectName = 0;
     _20 = 0.0f;
@@ -164,8 +163,7 @@ void MapPartsFloatingForce::exeMoveSpring() {
 
 // MapPartsFloatingForce::exeMoveReturn
 
-MapPartsFloatingForce::~MapPartsFloatingForce() {
-}
+MapPartsFloatingForce::~MapPartsFloatingForce() {}
 
 namespace NrvMapPartsFloatingForce {
     INIT_NERVE(HostTypeWait);
@@ -192,4 +190,4 @@ namespace NrvMapPartsFloatingForce {
         MapPartsFloatingForce* force = reinterpret_cast< MapPartsFloatingForce* >(pSpine->mExecutor);
         force->exeWait();
     }
-}; // namespace NrvMapPartsFloatingForce
+};  // namespace NrvMapPartsFloatingForce

@@ -1,17 +1,16 @@
+#include "Game/Camera/CameraManGame.hpp"
 #include "Game/AreaObj/CubeCamera.hpp"
 #include "Game/Boss/SkeletalFishGuard.hpp"
-#include "Game/Camera/Camera.hpp"
+#include "Game/Camera/CamHeliEffector.hpp"
+#include "Game/Camera/CamKarikariEffector.hpp"
 #include "Game/Camera/Camera.hpp"
 #include "Game/Camera/CameraDirector.hpp"
 #include "Game/Camera/CameraHeightArrange.hpp"
 #include "Game/Camera/CameraHolder.hpp"
 #include "Game/Camera/CameraLocalUtil.hpp"
-#include "Game/Camera/CameraManGame.hpp"
 #include "Game/Camera/CameraParamChunk.hpp"
 #include "Game/Camera/CameraParamChunkHolder.hpp"
 #include "Game/Camera/CameraTargetObj.hpp"
-#include "Game/Camera/CamKarikariEffector.hpp"
-#include "Game/Camera/CamHeliEffector.hpp"
 #include "Game/MapObj/GCapture.hpp"
 #include <cstring>
 
@@ -21,7 +20,7 @@ namespace {
     const char* gDefaultWaterSurfaceCameraName = "デフォルト水面カメラ";
     const char* gDefaultFooFighterCameraName = "デフォルトフーファイターカメラ";
     const char* gDefaultStartAnimCameraName = "スタートアニメカメラ";
-} // namespace
+}  // namespace
 
 const char* CameraParamChunk::getClassName() const {
     return "Base";
@@ -47,8 +46,7 @@ Triangle* CameraTargetObj::getGroundTriangle() const {
     return nullptr;
 }
 
-CameraManGame::CameraManGame(CameraHolder* pHolder, CameraParamChunkHolder* pChunkHolder, const char* pName)
-    : CameraMan(pName) {
+CameraManGame::CameraManGame(CameraHolder* pHolder, CameraParamChunkHolder* pChunkHolder, const char* pName) : CameraMan(pName) {
     mHolder = pHolder;
     mChunkHolder = pChunkHolder;
     _58 = 0;
@@ -64,11 +62,9 @@ CameraManGame::CameraManGame(CameraHolder* pHolder, CameraParamChunkHolder* pChu
     CameraLocalUtil::setWatchPos(this, TVec3f(0.0f, 0.0f, 300.0f));
 }
 
-CameraManGame::~CameraManGame() {
-}
+CameraManGame::~CameraManGame() {}
 
-void CameraManGame::init(const JMapInfoIter& rIter) {
-}
+void CameraManGame::init(const JMapInfoIter& rIter) {}
 
 void CameraManGame::calc() {
     selectCameraChunk();
@@ -84,8 +80,7 @@ void CameraManGame::notifyActivate() {
     _58 = 1;
 }
 
-void CameraManGame::notifyDeactivate() {
-}
+void CameraManGame::notifyDeactivate() {}
 
 bool CameraManGame::isInterpolationOff() const {
     if (mCamera != nullptr && mCamera->isInterpolationOff()) {
@@ -449,7 +444,7 @@ void CameraManGame::setSafePose() {
 // Stack issues
 void CameraManGame::keepAwayWatchPos(TVec3f* watchPos, const TVec3f& pos) {
     TVec3f dir = *watchPos - pos;
-    f32    length = PSVECMag(reinterpret_cast< Vec* >(&dir));
+    f32 length = PSVECMag(reinterpret_cast< Vec* >(&dir));
 
     if (length < 300.0f) {
         if (length < 1.0f) {
@@ -537,7 +532,7 @@ void CameraManGame::createDefaultFooFighterCamera() {
 
 void CameraManGame::createStartAnimCamera() {
     void* data;
-    s32   size;
+    s32 size;
     MR::getCurrentScenarioStartAnimCameraData(&data, &size);
 
     if (size >= 0) {
@@ -650,7 +645,7 @@ void CameraManGame::updateWaterSurface() {
 void CameraManGame::updateGCapture() {
     CubeCameraArea::setCurrentCategory(CubeCameraArea::CATEGORY_UNKNOWN_3);
     CameraTargetObj* target = CameraLocalUtil::getTarget(this);
-    const TVec3f*    position = target->getPosition();
+    const TVec3f* position = target->getPosition();
 
     CubeCameraArea* area = reinterpret_cast< CubeCameraArea* >(MR::getAreaObj("CubeCamera", *position));
 
@@ -677,7 +672,7 @@ void CameraManGame::updateFooFighter() {
 bool CameraManGame::setCubeChunk(CubeCameraArea::ECategory category) {
     CubeCameraArea::setCurrentCategory(static_cast< s32 >(category));
     CameraTargetObj* target = CameraLocalUtil::getTarget(this);
-    CubeCameraArea*  area = target->getCubeCameraArea();
+    CubeCameraArea* area = target->getCubeCameraArea();
 
     if (area != nullptr) {
         CameraParamChunkID_Tmp chunkID = CameraParamChunkID_Tmp();
@@ -696,8 +691,8 @@ bool CameraManGame::tryStartPosCamera() {
     }
 
     CameraParamChunkID_Tmp chunkID = CameraParamChunkID_Tmp();
-    u16                    startCameraID = static_cast< u16 >(MR::getCurrentStartCameraId());
-    s32                    startZoneID = MR::getCurrentStartZoneId();
+    u16 startCameraID = static_cast< u16 >(MR::getCurrentStartCameraId());
+    s32 startZoneID = MR::getCurrentStartZoneId();
 
     chunkID.createStartID(startZoneID, startCameraID);
     setChunk(chunkID);

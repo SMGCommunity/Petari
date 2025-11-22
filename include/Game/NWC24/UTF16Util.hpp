@@ -8,4 +8,4 @@ namespace MR {
     /// @param pStr The pointer to the null-terminated wide string to be examined.
     /// @return The length of the string.
     size_t strlenUTF16(const u16* pStr);
-}; // namespace MR
+};  // namespace MR

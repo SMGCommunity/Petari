@@ -6,7 +6,7 @@ namespace nw4r {
     namespace lyt {
         class TexMap;
     };
-}; // namespace nw4r
+};  // namespace nw4r
 
 class ErrorMessageWindow : public LayoutActor {
 public:
@@ -31,7 +31,7 @@ public:
     void exeDisappearBeforeAppear();
 
 private:
-    /* 0x20 */ MessageType              mMessageType;
-    /* 0x24 */ const char*              mMessageId;
+    /* 0x20 */ MessageType mMessageType;
+    /* 0x24 */ const char* mMessageId;
     /* 0x28 */ const nw4r::lyt::TexMap* mTexture;
 };

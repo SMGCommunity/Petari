@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/Screen/LayoutActor.hpp"
 #include "Game/LiveActor/Nerve.hpp"
+#include "Game/Screen/LayoutActor.hpp"
 #include "JSystem/JGeometry.hpp"
 
 class CollectCounter : public LayoutActor {
@@ -16,10 +16,10 @@ public:
     bool tryEndShow();
     void setPosition();
 
-    TVec2f mFollowPosition; // 0x20
+    TVec2f mFollowPosition;  // 0x20
 };
 
 namespace NrvCollectCounter {
     NERVE(CollectCounterNrvHide);
     NERVE(CollectCounterNrvShow);
-}; // namespace NrvCollectCounter
+};  // namespace NrvCollectCounter

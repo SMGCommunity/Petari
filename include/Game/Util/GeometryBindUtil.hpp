@@ -6,7 +6,7 @@
 class BindSphere {
 public:
     TVec3f _0;
-    f32    _C;
+    f32 _C;
 };
 
 class BindCone {

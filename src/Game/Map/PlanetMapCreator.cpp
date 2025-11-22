@@ -126,8 +126,7 @@ namespace {
     static const char* sArcName = "PlanetMapDataTable.arc";
     static const char* sFileName = "PlanetMapDataTable.bcsv";
 
-    void makeSubModelName(const char**, const JMapInfo*, s32, const char*, const char*) {
-    }
+    void makeSubModelName(const char**, const JMapInfo*, s32, const char*, const char*) {}
 
     static bool isDataForceLow(const PlanetMapData* pMapData) {
         for (int i = 0; i < 8; i++) {
@@ -138,12 +137,10 @@ namespace {
 
         return false;
     }
-}; // namespace
+};  // namespace
 
 // FIXME: Scheduling issues
-PlanetMapCreator::PlanetMapCreator(const char* pName)
-    : NameObj(pName),
-      mPlanetMapData(nullptr) {
+PlanetMapCreator::PlanetMapCreator(const char* pName) : NameObj(pName), mPlanetMapData(nullptr) {
     JMapInfo* pIter = MR::createCsvParser(sArcName, sFileName);
 
     mTableCount = MR::getCsvDataElementNum(pIter);
@@ -153,7 +150,7 @@ PlanetMapCreator::PlanetMapCreator(const char* pName)
 
 CreatorFuncPtr PlanetMapCreator::getCreateFunc(const char* pParam1) {
     if (isScenarioForceLow(getTableData(pParam1))) {
-        return nullptr; // createNameObj<PlanetMapWithoutHighModel>
+        return nullptr;  // createNameObj<PlanetMapWithoutHighModel>
     }
 
     const PlanetEntry* pEntry = nullptr;
@@ -170,7 +167,7 @@ CreatorFuncPtr PlanetMapCreator::getCreateFunc(const char* pParam1) {
         return pEntry->mCreateFunc;
     }
 
-    return nullptr; // createNameObj<PlanetMap>
+    return nullptr;  // createNameObj<PlanetMap>
 }
 
 #ifdef NON_MATCHING

@@ -1,7 +1,6 @@
 #include "Game/AreaObj/BgmProhibitArea.hpp"
 
-BgmProhibitArea::~BgmProhibitArea() {
-}
+BgmProhibitArea::~BgmProhibitArea() {}
 
 namespace {
     BgmMuteSet* findDataElement(const char* pName) {
@@ -15,10 +14,9 @@ namespace {
 
         return 0;
     }
-}; // namespace
+};  // namespace
 
-BgmProhibitArea::BgmProhibitArea(int a1, const char* pName)
-    : AreaObj(a1, pName) {
+BgmProhibitArea::BgmProhibitArea(int a1, const char* pName) : AreaObj(a1, pName) {
     _3C = 0;
     _3D = 0;
     _40.x = 0.0f;
@@ -42,7 +40,7 @@ void BgmProhibitArea::movement() {
 
             if (!_3C && MR::isPlayingStageBgm()) {
                 BgmMuteSet* set = findDataElement(MR::getCurrentStageName());
-                s32         v10 = set ? set->_4 : -1;
+                s32 v10 = set ? set->_4 : -1;
                 if (v10 >= 0) {
                     if (dist >= 10000.0f) {
                         MR::setStageBGMState(v10, 0);
@@ -57,7 +55,7 @@ void BgmProhibitArea::movement() {
             _3C = 0;
             if (!_3D && MR::isPlayingStageBgm()) {
                 BgmMuteSet* set = findDataElement(MR::getCurrentStageName());
-                s32         v14 = set ? set->_8 : -1;
+                s32 v14 = set ? set->_8 : -1;
 
                 if (v14 >= 0) {
                     MR::setStageBGMState(v14, 120);

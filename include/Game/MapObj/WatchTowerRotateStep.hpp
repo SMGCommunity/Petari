@@ -14,7 +14,7 @@ public:
     void initLift(const JMapInfoIter&);
     void attachLift();
 
-    TVec3f       mRotDeg; // 0x8C
+    TVec3f mRotDeg;       // 0x8C
     PartsModel** mLifts;  // 0x98
 };
 
@@ -22,4 +22,4 @@ namespace NrvWatchTowerRotateStep {
     NERVE(WatchTowerRotateStepNrvWait);
     NERVE(WatchTowerRotateStepNrvMoveStart);
     NERVE(WatchTowerRotateStepNrvMove);
-}; // namespace NrvWatchTowerRotateStep
+};  // namespace NrvWatchTowerRotateStep

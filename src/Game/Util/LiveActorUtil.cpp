@@ -1,3 +1,4 @@
+#include "Game/Util/LiveActorUtil.hpp"
 #include "Game/LiveActor/ActorLightCtrl.hpp"
 #include "Game/LiveActor/Binder.hpp"
 #include "Game/LiveActor/ClippingActorHolder.hpp"
@@ -8,16 +9,16 @@
 #include "Game/Map/LightFunction.hpp"
 #include "Game/NameObj/NameObjExecuteHolder.hpp"
 #include "Game/System/ResourceHolder.hpp"
-#include "Game/Util/LiveActorUtil.hpp"
-#include "Game/Util/ModelUtil.hpp"
 #include "Game/Util/MapUtil.hpp"
+#include "Game/Util/ModelUtil.hpp"
 #include <JSystem/JUtility/JUTNameTab.hpp>
 #include <cstdio>
 
 namespace {
-    CollisionParts* createCollisionParts(ResourceHolder* pResHolder, const char* pName, HitSensor* pSensor, const TPos3f& rMtx, MR::CollisionScaleType scaleType, s32 unk) {
+    CollisionParts* createCollisionParts(ResourceHolder* pResHolder, const char* pName, HitSensor* pSensor, const TPos3f& rMtx,
+                                         MR::CollisionScaleType scaleType, s32 unk) {
         CollisionParts* parts = new CollisionParts();
-        char            kcl[0x80];
+        char kcl[0x80];
         snprintf(kcl, sizeof(kcl), "%s.kcl", pName);
         char pa[0x80];
         snprintf(pa, sizeof(pa), "%s.pa", pName);
@@ -42,7 +43,7 @@ namespace {
 
         return parts;
     }
-}; // namespace
+};  // namespace
 
 namespace MR {
     bool isExistIndirectTexture(const LiveActor* pActor) {
@@ -111,9 +112,7 @@ namespace MR {
         }
     }
 
-    void setClippingTypeSphere(LiveActor* pActor, f32 rad) {
-        MR::getClippingDirector()->mActorHolder->setTypeToSphere(pActor, rad, 0);
-    }
+    void setClippingTypeSphere(LiveActor* pActor, f32 rad) { MR::getClippingDirector()->mActorHolder->setTypeToSphere(pActor, rad, 0); }
 
     void setClippingTypeSphere(LiveActor* pActor, f32 rad, const TVec3f* a3) {
         MR::getClippingDirector()->mActorHolder->setTypeToSphere(pActor, rad, a3);
@@ -126,25 +125,15 @@ namespace MR {
         MR::getClippingDirector()->mActorHolder->setTypeToSphere(pActor, rad, 0);
     }
 
-    void setClippingFar50m(LiveActor* pActor) {
-        MR::getClippingDirector()->mActorHolder->setFarClipLevel(pActor, 7);
-    }
+    void setClippingFar50m(LiveActor* pActor) { MR::getClippingDirector()->mActorHolder->setFarClipLevel(pActor, 7); }
 
-    void setClippingFar100m(LiveActor* pActor) {
-        MR::getClippingDirector()->mActorHolder->setFarClipLevel(pActor, 6);
-    }
+    void setClippingFar100m(LiveActor* pActor) { MR::getClippingDirector()->mActorHolder->setFarClipLevel(pActor, 6); }
 
-    void setClippingFar200m(LiveActor* pActor) {
-        MR::getClippingDirector()->mActorHolder->setFarClipLevel(pActor, 5);
-    }
+    void setClippingFar200m(LiveActor* pActor) { MR::getClippingDirector()->mActorHolder->setFarClipLevel(pActor, 5); }
 
-    void setClippingFar300m(LiveActor* pActor) {
-        MR::getClippingDirector()->mActorHolder->setFarClipLevel(pActor, 4);
-    }
+    void setClippingFar300m(LiveActor* pActor) { MR::getClippingDirector()->mActorHolder->setFarClipLevel(pActor, 4); }
 
-    void setClippingFarMax(LiveActor* pActor) {
-        MR::getClippingDirector()->mActorHolder->setFarClipLevel(pActor, 0);
-    }
+    void setClippingFarMax(LiveActor* pActor) { MR::getClippingDirector()->mActorHolder->setFarClipLevel(pActor, 0); }
 
     void setClippingFar(LiveActor* pActor, f32 clipping) {
         s32 clip = clipping;
@@ -177,9 +166,7 @@ namespace MR {
         }
     }
 
-    void setGroupClipping(LiveActor* pActor, const JMapInfoIter& rIter, int a3) {
-        MR::getClippingDirector()->joinToGroupClipping(pActor, rIter, a3);
-    }
+    void setGroupClipping(LiveActor* pActor, const JMapInfoIter& rIter, int a3) { MR::getClippingDirector()->joinToGroupClipping(pActor, rIter, a3); }
 
     void validateClipping(LiveActor* pActor) {
         if (pActor->mFlag.mIsInvalidClipping) {
@@ -197,37 +184,21 @@ namespace MR {
         }
     }
 
-    bool isBckStopped(const LiveActor* pActor) {
-        return pActor->mModelManager->isBckStopped();
-    }
+    bool isBckStopped(const LiveActor* pActor) { return pActor->mModelManager->isBckStopped(); }
 
-    bool isBtkStopped(const LiveActor* pActor) {
-        return pActor->mModelManager->isBtkStopped();
-    }
+    bool isBtkStopped(const LiveActor* pActor) { return pActor->mModelManager->isBtkStopped(); }
 
-    bool isBrkStopped(const LiveActor* pActor) {
-        return pActor->mModelManager->isBrkStopped();
-    }
+    bool isBrkStopped(const LiveActor* pActor) { return pActor->mModelManager->isBrkStopped(); }
 
-    bool isBtpStopped(const LiveActor* pActor) {
-        return pActor->mModelManager->isBtpStopped();
-    }
+    bool isBtpStopped(const LiveActor* pActor) { return pActor->mModelManager->isBtpStopped(); }
 
-    bool isBpkStopped(const LiveActor* pActor) {
-        return pActor->mModelManager->isBpkStopped();
-    }
+    bool isBpkStopped(const LiveActor* pActor) { return pActor->mModelManager->isBpkStopped(); }
 
-    bool isBvaStopped(const LiveActor* pActor) {
-        return pActor->mModelManager->isBvaStopped();
-    }
+    bool isBvaStopped(const LiveActor* pActor) { return pActor->mModelManager->isBvaStopped(); }
 
-    bool isBckOneTimeAndStopped(const LiveActor* pActor) {
-        return pActor->mModelManager->isBckStopped();
-    }
+    bool isBckOneTimeAndStopped(const LiveActor* pActor) { return pActor->mModelManager->isBckStopped(); }
 
-    bool isBrkOneTimeAndStopped(const LiveActor* pActor) {
-        return pActor->mModelManager->isBrkStopped();
-    }
+    bool isBrkOneTimeAndStopped(const LiveActor* pActor) { return pActor->mModelManager->isBrkStopped(); }
 
     // isBckLooped
     // checkPassBckFrame
@@ -256,25 +227,15 @@ namespace MR {
         setBtpFrameAndStop(pActor, frame);
     }
 
-    void startBtk(const LiveActor* pActor, const char* pBtkName) {
-        pActor->mModelManager->startBtk(pBtkName);
-    }
+    void startBtk(const LiveActor* pActor, const char* pBtkName) { pActor->mModelManager->startBtk(pBtkName); }
 
-    void startBrk(const LiveActor* pActor, const char* pBrkName) {
-        pActor->mModelManager->startBrk(pBrkName);
-    }
+    void startBrk(const LiveActor* pActor, const char* pBrkName) { pActor->mModelManager->startBrk(pBrkName); }
 
-    void startBtp(const LiveActor* pActor, const char* pBtpName) {
-        pActor->mModelManager->startBtp(pBtpName);
-    }
+    void startBtp(const LiveActor* pActor, const char* pBtpName) { pActor->mModelManager->startBtp(pBtpName); }
 
-    void startBpk(const LiveActor* pActor, const char* pBpkName) {
-        pActor->mModelManager->startBpk(pBpkName);
-    }
+    void startBpk(const LiveActor* pActor, const char* pBpkName) { pActor->mModelManager->startBpk(pBpkName); }
 
-    void startBva(const LiveActor* pActor, const char* pBvaName) {
-        pActor->mModelManager->startBva(pBvaName);
-    }
+    void startBva(const LiveActor* pActor, const char* pBvaName) { pActor->mModelManager->startBva(pBvaName); }
 
     // startBckIfExist
     // startBtkIfExist
@@ -283,25 +244,15 @@ namespace MR {
     // startBpkIfExist
     // startBvaIfExist
 
-    bool isBtkPlaying(const LiveActor* pActor, const char* pBtkName) {
-        return pActor->mModelManager->isBtkPlaying(pBtkName);
-    }
+    bool isBtkPlaying(const LiveActor* pActor, const char* pBtkName) { return pActor->mModelManager->isBtkPlaying(pBtkName); }
 
-    bool isBrkPlaying(const LiveActor* pActor, const char* pBrkName) {
-        return pActor->mModelManager->isBrkPlaying(pBrkName);
-    }
+    bool isBrkPlaying(const LiveActor* pActor, const char* pBrkName) { return pActor->mModelManager->isBrkPlaying(pBrkName); }
 
-    bool isBtpPlaying(const LiveActor* pActor, const char* pBtpName) {
-        return pActor->mModelManager->isBtpPlaying(pBtpName);
-    }
+    bool isBtpPlaying(const LiveActor* pActor, const char* pBtpName) { return pActor->mModelManager->isBtpPlaying(pBtpName); }
 
-    bool isBpkPlaying(const LiveActor* pActor, const char* pBpkName) {
-        return pActor->mModelManager->isBpkPlaying(pBpkName);
-    }
+    bool isBpkPlaying(const LiveActor* pActor, const char* pBpkName) { return pActor->mModelManager->isBpkPlaying(pBpkName); }
 
-    bool isBvaPlaying(const LiveActor* pActor, const char* pBvaName) {
-        return pActor->mModelManager->isBvaPlaying(pBvaName);
-    }
+    bool isBvaPlaying(const LiveActor* pActor, const char* pBvaName) { return pActor->mModelManager->isBvaPlaying(pBvaName); }
 
     bool isBckExist(const LiveActor* pActor, const char* pBckName) {
         ResTable* pBckResTable = getResourceHolder(pActor)->mMotionResTable;
@@ -377,21 +328,13 @@ namespace MR {
 
     // stopBck
 
-    void stopBtk(const LiveActor* pActor) {
-        pActor->mModelManager->stopBtk();
-    }
+    void stopBtk(const LiveActor* pActor) { pActor->mModelManager->stopBtk(); }
 
-    void stopBrk(const LiveActor* pActor) {
-        pActor->mModelManager->stopBrk();
-    }
+    void stopBrk(const LiveActor* pActor) { pActor->mModelManager->stopBrk(); }
 
-    void stopBtp(const LiveActor* pActor) {
-        pActor->mModelManager->stopBtp();
-    }
+    void stopBtp(const LiveActor* pActor) { pActor->mModelManager->stopBtp(); }
 
-    void stopBva(const LiveActor* pActor) {
-        pActor->mModelManager->stopBva();
-    }
+    void stopBva(const LiveActor* pActor) { pActor->mModelManager->stopBva(); }
 
     // setBckRate
     // setBtkRate
@@ -411,17 +354,13 @@ namespace MR {
     // getBpkCtrl
     // getBvaCtrl
 
-    void updateMaterial(LiveActor* pActor) {
-        pActor->mModelManager->updateDL(true);
-    }
+    void updateMaterial(LiveActor* pActor) { pActor->mModelManager->updateDL(true); }
 
     // setMirrorReflectionInfoFromMtxYUp
     // setMirrorReflectionInfoFromModel
     // changeModelDataTexAll
 
-    void initJointTransform(const LiveActor* pActor) {
-        pActor->mModelManager->initJointTransform();
-    }
+    void initJointTransform(const LiveActor* pActor) { pActor->mModelManager->initJointTransform(); }
 
     // getJointTransform
     // setJointTransformLocalMtx
@@ -456,17 +395,11 @@ namespace MR {
         pActor->mActorLightCtrl->init(3, true);
     }
 
-    void updateLightCtrl(LiveActor* pActor) {
-        pActor->mActorLightCtrl->update(false);
-    }
+    void updateLightCtrl(LiveActor* pActor) { pActor->mActorLightCtrl->update(false); }
 
-    void updateLightCtrlDirect(LiveActor* pActor) {
-        pActor->mActorLightCtrl->update(true);
-    }
+    void updateLightCtrlDirect(LiveActor* pActor) { pActor->mActorLightCtrl->update(true); }
 
-    void loadActorLight(const LiveActor* pActor) {
-        pActor->mActorLightCtrl->loadLight();
-    }
+    void loadActorLight(const LiveActor* pActor) { pActor->mActorLightCtrl->loadLight(); }
 
     void calcLightPos0(TVec3f* pPos, const LiveActor* pActor) {
         LightFunction::calcLightWorldPos(pPos, pActor->mActorLightCtrl->getActorLight()->mInfo0);
@@ -476,45 +409,25 @@ namespace MR {
         LightFunction::calcLightWorldPos(pPos, pActor->mActorLightCtrl->getActorLight()->mInfo1);
     }
 
-    const GXColor* getLightAmbientColor(const LiveActor* pActor) {
-        return &pActor->mActorLightCtrl->getActorLight()->mColor;
-    }
+    const GXColor* getLightAmbientColor(const LiveActor* pActor) { return &pActor->mActorLightCtrl->getActorLight()->mColor; }
 
-    ActorLightCtrl* getLightCtrl(const LiveActor* pActor) {
-        return pActor->mActorLightCtrl;
-    }
+    ActorLightCtrl* getLightCtrl(const LiveActor* pActor) { return pActor->mActorLightCtrl; }
 
-    bool isStep(const LiveActor* pActor, s32 step) {
-        return pActor->getNerveStep() == step;
-    }
+    bool isStep(const LiveActor* pActor, s32 step) { return pActor->getNerveStep() == step; }
 
-    bool isFirstStep(const LiveActor* pActor) {
-        return isStep(pActor, 0);
-    }
+    bool isFirstStep(const LiveActor* pActor) { return isStep(pActor, 0); }
 
-    bool isLessStep(const LiveActor* pActor, s32 step) {
-        return pActor->getNerveStep() < step;
-    }
+    bool isLessStep(const LiveActor* pActor, s32 step) { return pActor->getNerveStep() < step; }
 
-    bool isLessEqualStep(const LiveActor* pActor, s32 step) {
-        return pActor->getNerveStep() <= step;
-    }
+    bool isLessEqualStep(const LiveActor* pActor, s32 step) { return pActor->getNerveStep() <= step; }
 
-    bool isGreaterStep(const LiveActor* pActor, s32 step) {
-        return pActor->getNerveStep() > step;
-    }
+    bool isGreaterStep(const LiveActor* pActor, s32 step) { return pActor->getNerveStep() > step; }
 
-    bool isGreaterEqualStep(const LiveActor* pActor, s32 step) {
-        return pActor->getNerveStep() >= step;
-    }
+    bool isGreaterEqualStep(const LiveActor* pActor, s32 step) { return pActor->getNerveStep() >= step; }
 
-    bool isIntervalStep(const LiveActor* pActor, s32 step) {
-        return pActor->getNerveStep() % step == 0;
-    }
+    bool isIntervalStep(const LiveActor* pActor, s32 step) { return pActor->getNerveStep() % step == 0; }
 
-    bool isNewNerve(const LiveActor* pActor) {
-        return pActor->getNerveStep() < 0;
-    }
+    bool isNewNerve(const LiveActor* pActor) { return pActor->getNerveStep() < 0; }
 
     f32 calcNerveRate(const LiveActor* pActor, s32 stepMax) {
         return stepMax <= 0 ? 1.0f : clamp(static_cast< f32 >(pActor->getNerveStep()) / stepMax, 0.0f, 1.0f);
@@ -524,21 +437,15 @@ namespace MR {
         return clamp(normalize(pActor->getNerveStep(), stepMin, stepMax), 0.0f, 1.0f);
     }
 
-    f32 calcNerveEaseInRate(const LiveActor* pActor, s32 stepMax) {
-        return getEaseInValue(calcNerveRate(pActor, stepMax), 0.0f, 1.0f, 1.0f);
-    }
+    f32 calcNerveEaseInRate(const LiveActor* pActor, s32 stepMax) { return getEaseInValue(calcNerveRate(pActor, stepMax), 0.0f, 1.0f, 1.0f); }
 
-    f32 calcNerveEaseOutRate(const LiveActor* pActor, s32 stepMax) {
-        return getEaseOutValue(calcNerveRate(pActor, stepMax), 0.0f, 1.0f, 1.0f);
-    }
+    f32 calcNerveEaseOutRate(const LiveActor* pActor, s32 stepMax) { return getEaseOutValue(calcNerveRate(pActor, stepMax), 0.0f, 1.0f, 1.0f); }
 
     f32 calcNerveEaseOutRate(const LiveActor* pActor, s32 stepMin, s32 stepMax) {
         return getEaseOutValue(calcNerveRate(pActor, stepMin, stepMax), 0.0f, 1.0f, 1.0f);
     }
 
-    f32 calcNerveEaseInOutRate(const LiveActor* pActor, s32 stepMax) {
-        return getEaseInOutValue(calcNerveRate(pActor, stepMax), 0.0f, 1.0f, 1.0f);
-    }
+    f32 calcNerveEaseInOutRate(const LiveActor* pActor, s32 stepMax) { return getEaseInOutValue(calcNerveRate(pActor, stepMax), 0.0f, 1.0f, 1.0f); }
 
     f32 calcNerveEaseInOutRate(const LiveActor* pActor, s32 stepMin, s32 stepMax) {
         return getEaseInOutValue(calcNerveRate(pActor, stepMin, stepMax), 0.0f, 1.0f, 1.0f);
@@ -594,17 +501,11 @@ namespace MR {
         return true;
     }
 
-    const TVec3f* getGroundNormal(const LiveActor* pActor) {
-        return pActor->mBinder->mGroundInfo.mParentTriangle.getNormal(0);
-    }
+    const TVec3f* getGroundNormal(const LiveActor* pActor) { return pActor->mBinder->mGroundInfo.mParentTriangle.getNormal(0); }
 
-    const TVec3f* getWallNormal(const LiveActor* pActor) {
-        return pActor->mBinder->mWallInfo.mParentTriangle.getNormal(0);
-    }
+    const TVec3f* getWallNormal(const LiveActor* pActor) { return pActor->mBinder->mWallInfo.mParentTriangle.getNormal(0); }
 
-    const TVec3f* getRoofNormal(const LiveActor* pActor) {
-        return pActor->mBinder->mRoofInfo.mParentTriangle.getNormal(0);
-    }
+    const TVec3f* getRoofNormal(const LiveActor* pActor) { return pActor->mBinder->mRoofInfo.mParentTriangle.getNormal(0); }
 
     const TVec3f* getBindedNormal(const LiveActor* pActor) {
         if (isBindedGround(pActor)) {
@@ -638,22 +539,16 @@ namespace MR {
         return getGroundHitPos(pActor);
     }
 
-    const TVec3f* getGroundHitPos(const LiveActor* pActor) {
-        return &pActor->mBinder->mGroundInfo.mHitPos;
-    }
+    const TVec3f* getGroundHitPos(const LiveActor* pActor) { return &pActor->mBinder->mGroundInfo.mHitPos; }
 
-    const TVec3f* getWallHitPos(const LiveActor* pActor) {
-        return &pActor->mBinder->mWallInfo.mHitPos;
-    }
+    const TVec3f* getWallHitPos(const LiveActor* pActor) { return &pActor->mBinder->mWallInfo.mHitPos; }
 
-    const TVec3f* getRoofHitPos(const LiveActor* pActor) {
-        return &pActor->mBinder->mRoofInfo.mHitPos;
-    }
+    const TVec3f* getRoofHitPos(const LiveActor* pActor) { return &pActor->mBinder->mRoofInfo.mHitPos; }
 
     void calcWallNormalHorizontal(TVec3f* pVec, const LiveActor* pActor) {
         const TVec3f* normal = getWallNormal(pActor);
         const TVec3f* grav = &pActor->mGravity;
-        f32           dot = grav->dot(*normal);
+        f32 dot = grav->dot(*normal);
         JMAVECScaleAdd(grav, normal, pVec, -dot);
     }
 
@@ -683,21 +578,13 @@ namespace MR {
         return 0.0f;
     }
 
-    int getBindedPlaneNum(const LiveActor* pActor) {
-        return pActor->mBinder->mPlaneNum;
-    }
+    int getBindedPlaneNum(const LiveActor* pActor) { return pActor->mBinder->mPlaneNum; }
 
-    const TVec3f* getBindedPlaneNormal(const LiveActor* pActor, int planeIndex) {
-        return pActor->mBinder->getPlane(planeIndex)->getNormal(0);
-    }
+    const TVec3f* getBindedPlaneNormal(const LiveActor* pActor, int planeIndex) { return pActor->mBinder->getPlane(planeIndex)->getNormal(0); }
 
-    HitSensor* getBindedPlaneSensor(const LiveActor* pActor, int planeIndex) {
-        return pActor->mBinder->getPlane(planeIndex)->mSensor;
-    }
+    HitSensor* getBindedPlaneSensor(const LiveActor* pActor, int planeIndex) { return pActor->mBinder->getPlane(planeIndex)->mSensor; }
 
-    TVec3f* getBindedFixReactionVector(const LiveActor* pActor) {
-        return &pActor->mBinder->mFixReactionVector;
-    }
+    TVec3f* getBindedFixReactionVector(const LiveActor* pActor) { return &pActor->mBinder->mFixReactionVector; }
 
     void setBinderOffsetVec(LiveActor* pActor, const TVec3f* pVec, bool b) {
         Binder* binder = pActor->mBinder;
@@ -705,24 +592,16 @@ namespace MR {
         binder->_1EC._4 = b;
     }
 
-    void setBinderRadius(LiveActor* pActor, f32 radius) {
-        pActor->mBinder->mRadius = radius;
-    }
+    void setBinderRadius(LiveActor* pActor, f32 radius) { pActor->mBinder->mRadius = radius; }
 
-    f32 getBinderRadius(const LiveActor* pActor) {
-        return pActor->mBinder->mRadius;
-    }
+    f32 getBinderRadius(const LiveActor* pActor) { return pActor->mBinder->mRadius; }
 
     // setBinderCollisionPartsFilter
     // setBinderExceptActor
 
-    void setBindTriangleFilter(LiveActor* pActor, TriangleFilterBase* pTriangleFilter) {
-        pActor->mBinder->setTriangleFilter(pTriangleFilter);
-    }
+    void setBindTriangleFilter(LiveActor* pActor, TriangleFilterBase* pTriangleFilter) { pActor->mBinder->setTriangleFilter(pTriangleFilter); }
 
-    bool isExistBinder(const LiveActor* pActor) {
-        return pActor->mBinder != nullptr;
-    }
+    bool isExistBinder(const LiveActor* pActor) { return pActor->mBinder != nullptr; }
 
     void onEntryDrawBuffer(LiveActor* pActor) {
         if (!isNoEntryDrawBuffer(pActor)) {
@@ -748,13 +627,9 @@ namespace MR {
         pActor->mFlag.mIsHiddenModel = true;
     }
 
-    bool isDead(const LiveActor* pActor) {
-        return pActor->mFlag.mIsDead;
-    }
+    bool isDead(const LiveActor* pActor) { return pActor->mFlag.mIsDead; }
 
-    bool isHiddenModel(const LiveActor* pActor) {
-        return pActor->mFlag.mIsHiddenModel;
-    }
+    bool isHiddenModel(const LiveActor* pActor) { return pActor->mFlag.mIsHiddenModel; }
 
     void showModel(LiveActor* pActor) {
         if (isNoCalcAnim(pActor)) {
@@ -812,49 +687,27 @@ namespace MR {
         onCalcAnim(pActor);
     }
 
-    void stopAnimFrame(LiveActor* pActor) {
-        pActor->mFlag.mIsStoppedAnim = true;
-    }
+    void stopAnimFrame(LiveActor* pActor) { pActor->mFlag.mIsStoppedAnim = true; }
 
-    void releaseAnimFrame(LiveActor* pActor) {
-        pActor->mFlag.mIsStoppedAnim = false;
-    }
+    void releaseAnimFrame(LiveActor* pActor) { pActor->mFlag.mIsStoppedAnim = false; }
 
-    bool isNoCalcAnim(const LiveActor* pActor) {
-        return pActor->mFlag.mIsNoCalcAnim;
-    }
+    bool isNoCalcAnim(const LiveActor* pActor) { return pActor->mFlag.mIsNoCalcAnim; }
 
-    void onCalcAnim(LiveActor* pActor) {
-        pActor->mFlag.mIsNoCalcAnim = false;
-    }
+    void onCalcAnim(LiveActor* pActor) { pActor->mFlag.mIsNoCalcAnim = false; }
 
-    void offCalcAnim(LiveActor* pActor) {
-        pActor->mFlag.mIsNoCalcAnim = true;
-    }
+    void offCalcAnim(LiveActor* pActor) { pActor->mFlag.mIsNoCalcAnim = true; }
 
-    bool isNoCalcView(const LiveActor* pActor) {
-        return pActor->mFlag.mIsNoCalcView;
-    }
+    bool isNoCalcView(const LiveActor* pActor) { return pActor->mFlag.mIsNoCalcView; }
 
-    bool isNoEntryDrawBuffer(const LiveActor* pActor) {
-        return pActor->mFlag.mIsHiddenModel;
-    }
+    bool isNoEntryDrawBuffer(const LiveActor* pActor) { return pActor->mFlag.mIsHiddenModel; }
 
-    bool isNoBind(const LiveActor* pActor) {
-        return pActor->mFlag.mIsNoBind;
-    }
+    bool isNoBind(const LiveActor* pActor) { return pActor->mFlag.mIsNoBind; }
 
-    void onBind(LiveActor* pActor) {
-        pActor->mFlag.mIsNoBind = false;
-    }
+    void onBind(LiveActor* pActor) { pActor->mFlag.mIsNoBind = false; }
 
-    void offBind(LiveActor* pActor) {
-        pActor->mFlag.mIsNoBind = true;
-    }
+    void offBind(LiveActor* pActor) { pActor->mFlag.mIsNoBind = true; }
 
-    bool isCalcGravity(const LiveActor* pActor) {
-        return pActor->mFlag.mIsCalcGravity;
-    }
+    bool isCalcGravity(const LiveActor* pActor) { return pActor->mFlag.mIsCalcGravity; }
 
     void onCalcGravity(LiveActor* pActor) {
         if (!isDead(pActor)) {
@@ -864,21 +717,13 @@ namespace MR {
         pActor->mFlag.mIsCalcGravity = true;
     }
 
-    void offCalcGravity(LiveActor* pActor) {
-        pActor->mFlag.mIsCalcGravity = false;
-    }
+    void offCalcGravity(LiveActor* pActor) { pActor->mFlag.mIsCalcGravity = false; }
 
-    void setCollisionMtx(LiveActor* pActor) {
-        setCollisionMtx(pActor, getCollisionParts(pActor));
-    }
+    void setCollisionMtx(LiveActor* pActor) { setCollisionMtx(pActor, getCollisionParts(pActor)); }
 
     // setCollisionMtx
 
-    CollisionParts* getCollisionParts(const LiveActor* pActor) {
-        return pActor->mCollisionParts;
-    }
+    CollisionParts* getCollisionParts(const LiveActor* pActor) { return pActor->mCollisionParts; }
 
-    bool isExistCollisionParts(const LiveActor* pActor) {
-        return pActor->mCollisionParts != nullptr;
-    }
-}; // namespace MR
+    bool isExistCollisionParts(const LiveActor* pActor) { return pActor->mCollisionParts != nullptr; }
+};  // namespace MR

@@ -1,8 +1,8 @@
+#include "Game/System/StageResultSequenceChecker.hpp"
 #include "Game/System/GalaxyStatusAccessor.hpp"
 #include "Game/System/GameDataFunction.hpp"
 #include "Game/System/GameDataHolder.hpp"
 #include "Game/System/GameEventFlagTable.hpp"
-#include "Game/System/StageResultSequenceChecker.hpp"
 
 void StageResultSequenceCheckList::init() {
     mTicoGalaxyNum = 0;
@@ -64,7 +64,8 @@ void StageResultSequenceChecker::fillCheckList(StageResultSequenceCheckList* pCh
     pCheckList->mGreenStarNum = GameDataFunction::calcGreenStarNum(pGameDataHolder);
 }
 
-void StageResultSequenceChecker::fillCheckListIfComplete(StageResultSequenceCheckList* pCheckList, const GameDataHolder* pGameDataHolder, const char* pGalaxyName) {
+void StageResultSequenceChecker::fillCheckListIfComplete(StageResultSequenceCheckList* pCheckList, const GameDataHolder* pGameDataHolder,
+                                                         const char* pGalaxyName) {
     s32 powerStarNum = MR::makeGalaxyStatusAccessor(pGalaxyName).getPowerStarNum();
     s32 powerStarNumOwned = pGameDataHolder->getPowerStarNumOwned(pGalaxyName);
 

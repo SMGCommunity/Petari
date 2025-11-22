@@ -3,14 +3,14 @@
 
 template < class Arg, class Result >
 struct unary_function {
-    typedef Arg    argument_type;
+    typedef Arg argument_type;
     typedef Result result_type;
 };
 
 template < class Arg1, class Arg2, class Result >
 struct binary_function {
-    typedef Arg1   first_argument_type;
-    typedef Arg2   second_argument_type;
+    typedef Arg1 first_argument_type;
+    typedef Arg2 second_argument_type;
     typedef Result result_type;
 };
 
@@ -27,9 +27,7 @@ private:
 };
 
 template < class S, class T >
-inline mem_fun_t< S, T >::mem_fun_t(S (T::*mf)())
-    : mf_(mf) {
-}
+inline mem_fun_t< S, T >::mem_fun_t(S (T::*mf)()) : mf_(mf) {}
 
 template < class S, class T >
 inline S mem_fun_t< S, T >::operator()(T* p) const {
@@ -41,4 +39,4 @@ inline mem_fun_t< S, T > mem_func(S (T::*f)()) {
     return mem_fun_t< S, T >(f);
 }
 
-#endif // FUNCTIONAL_H
+#endif  // FUNCTIONAL_H

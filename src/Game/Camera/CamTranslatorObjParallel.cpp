@@ -1,5 +1,5 @@
-#include "Game/Camera/CameraParamChunk.hpp"
 #include "Game/Camera/CamTranslatorObjParallel.hpp"
+#include "Game/Camera/CameraParamChunk.hpp"
 
 void CamTranslatorObjParallel::setParam(const CameraParamChunk* pChunk) {
     CameraGeneralParam* general = pChunk->mGeneralParam;

@@ -1,8 +1,7 @@
 #include "Game/MapObj/MarioLauncherAttractor.hpp"
 #include "Game/Util.hpp"
 
-MarioLauncherAttractor::MarioLauncherAttractor(const char* pName)
-    : LiveActor(pName) {
+MarioLauncherAttractor::MarioLauncherAttractor(const char* pName) : LiveActor(pName) {
     mGravityCreator = nullptr;
 }
 
@@ -21,7 +20,7 @@ void MarioLauncherAttractor::init(const JMapInfoIter& rIter) {
     MR::setClippingTypeSphere(this, pGravity->mRange);
     MR::setClippingFar200m(this);
 
-    TVec3f _8; // unused
+    TVec3f _8;  // unused
     _8.x = clipping;
     _8.y = clipping;
     _8.z = clipping;
@@ -38,8 +37,7 @@ void MarioLauncherAttractor::init(const JMapInfoIter& rIter) {
 }
 
 namespace NrvMarioLauncherAttractor {
-    void MarioLauncherAttractorNrvWait::execute(Spine* pSpine) const {
-    }
+    void MarioLauncherAttractorNrvWait::execute(Spine* pSpine) const {}
 
     MarioLauncherAttractorNrvWait(MarioLauncherAttractorNrvWait::sInstance);
-}; // namespace NrvMarioLauncherAttractor
+};  // namespace NrvMarioLauncherAttractor

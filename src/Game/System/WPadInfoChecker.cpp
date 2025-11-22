@@ -1,12 +1,11 @@
-#include "Game/System/WPad.hpp"
 #include "Game/System/WPadInfoChecker.hpp"
+#include "Game/System/WPad.hpp"
 
 namespace {
     static const s32 sCheckInfoInterval = 18000;
 };
 
-WPadInfoChecker::WPadInfoChecker(WPad* pPad)
-    : mPad(pPad) {
+WPadInfoChecker::WPadInfoChecker(WPad* pPad) : mPad(pPad) {
     reset();
 }
 

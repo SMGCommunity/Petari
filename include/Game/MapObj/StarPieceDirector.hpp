@@ -8,4 +8,4 @@ namespace MR {
     void createStarPiece();
 
     bool giftStarPieceToTarget(HitSensor*, u32);
-}; // namespace MR
+};  // namespace MR

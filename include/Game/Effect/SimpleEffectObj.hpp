@@ -13,13 +13,9 @@ public:
     virtual void startClipped();
     virtual void endClipped();
 
-    virtual f32 getClippingRadius() const {
-        return 500.0f;
-    };
+    virtual f32 getClippingRadius() const { return 500.0f; };
 
-    virtual f32 getFarClipDistance() const {
-        return 50.0f;
-    };
+    virtual f32 getFarClipDistance() const { return 50.0f; };
 
     virtual TVec3f* getClippingCenterOffset() const {
         TVec3f vec;
@@ -27,9 +23,7 @@ public:
         return &vec;
     };
 
-    virtual bool isSyncClipping() const {
-        return false;
-    };
+    virtual bool isSyncClipping() const { return false; };
 
     virtual void setStateWait();
     virtual void setStateMove();
@@ -39,14 +33,14 @@ public:
     void exeMove();
 
     const char* _8C;
-    TVec3f      _90;
+    TVec3f _90;
 };
 
 typedef struct {
     const char* _0;
     const char* _4;
     const char* _8;
-    s32         _C;
+    s32 _C;
     const char* _10;
-    s32         _14;
+    s32 _14;
 } s_effectDataTable;

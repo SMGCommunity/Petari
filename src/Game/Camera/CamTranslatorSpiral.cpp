@@ -1,10 +1,10 @@
-#include "Game/Camera/CameraParamChunk.hpp"
 #include "Game/Camera/CamTranslatorSpiral.hpp"
+#include "Game/Camera/CameraParamChunk.hpp"
 
 #ifdef NON_MATCHING
 // Register mismatch
 void CamTranslatorSpiral::setParam(const CameraParamChunk* pChunk) {
-    CameraSpiral*       camera = mCamera;
+    CameraSpiral* camera = mCamera;
     CameraGeneralParam* general = pChunk->mGeneralParam;
 
     s32 uVar8;

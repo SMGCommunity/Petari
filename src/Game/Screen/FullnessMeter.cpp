@@ -1,5 +1,5 @@
-#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/FullnessMeter.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/SimpleLayout.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
@@ -10,13 +10,9 @@ namespace NrvFullnessMeter {
     NEW_NERVE(FullnessMeterNrvAppear, FullnessMeter, Appear);
     NEW_NERVE(FullnessMeterNrvWait, FullnessMeter, Wait);
     NEW_NERVE(FullnessMeterNrvEnd, FullnessMeter, End);
-}; // namespace NrvFullnessMeter
+};  // namespace NrvFullnessMeter
 
-FullnessMeter::FullnessMeter(LiveActor* pHost, s32 a2, s32 a3)
-    : LayoutActor("満腹計", true),
-      _20(a3),
-      _24(a2),
-      mHost(pHost) {
+FullnessMeter::FullnessMeter(LiveActor* pHost, s32 a2, s32 a3) : LayoutActor("満腹計", true), _20(a3), _24(a2), mHost(pHost) {
     MR::connectToSceneTalkLayout(this);
     initLayoutManager("StarPieceTargetMeter", 1);
     MR::createAndAddPaneCtrl(this, "TargetMeter", 1);
@@ -33,7 +29,7 @@ void FullnessMeter::init(const JMapInfoIter& rIter) {
 }
 
 void FullnessMeter::control() {
-    //const TVec2f& pos = ;
+    // const TVec2f& pos = ;
     setTrans(MR::getStarPointerScreenPositionOrEdge(0));
 }
 

@@ -17,11 +17,11 @@ public:
     void startClippedAll();
     void endClippedAll();
 
-    int                 _C;
-    s32                 _10;
+    int _C;
+    s32 _10;
     ClippingActorInfo** _14;
-    JMapIdInfo*         _18;
-    u8                  _1C;
+    JMapIdInfo* _18;
+    u8 _1C;
 };
 
 class ClippingGroupHolder : public NameObj {
@@ -31,11 +31,11 @@ public:
     virtual ~ClippingGroupHolder();
     virtual void movement();
 
-    void               createAndAdd(ClippingActorInfo*, const JMapInfoIter&, int);
+    void createAndAdd(ClippingActorInfo*, const JMapInfoIter&, int);
     ClippingInfoGroup* createGroup(ClippingActorInfo*, const JMapInfoIter&, int);
 
     ClippingInfoGroup* findGroup(const JMapInfoIter&);
 
-    s32                 mNumGroups;  // 0xC
-    ClippingInfoGroup** mInfoGroups; // 0x10
+    s32 mNumGroups;                   // 0xC
+    ClippingInfoGroup** mInfoGroups;  // 0x10
 };

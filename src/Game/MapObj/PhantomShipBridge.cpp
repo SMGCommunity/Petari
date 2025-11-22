@@ -1,16 +1,15 @@
 #include "Game/MapObj/PhantomShipBridge.hpp"
-#include "Game/Map/CollisionParts.hpp"
 #include "Game/Animation/BckCtrl.hpp"
+#include "Game/Map/CollisionParts.hpp"
 #include "Game/Util/ObjUtil.hpp"
 
 namespace NrvPhantomShipBridge {
     NEW_NERVE(HostTypeWait, PhantomShipBridge, Wait);
     NEW_NERVE(HostTypeMoveA, PhantomShipBridge, MoveA);
     NEW_NERVE(HostTypeMoveB, PhantomShipBridge, MoveB);
-}; // namespace NrvPhantomShipBridge
+};  // namespace NrvPhantomShipBridge
 
-PhantomShipBridge::PhantomShipBridge(const char* pName)
-    : LiveActor(pName) {
+PhantomShipBridge::PhantomShipBridge(const char* pName) : LiveActor(pName) {
     _8C = nullptr;
     mIsNutShipBridge = 0;
 }
@@ -127,8 +126,6 @@ void PhantomShipBridge::exeMoveB() {
     }
 }
 
-void PhantomShipBridge::exeWait() {
-}
+void PhantomShipBridge::exeWait() {}
 
-PhantomShipBridge::~PhantomShipBridge() {
-}
+PhantomShipBridge::~PhantomShipBridge() {}

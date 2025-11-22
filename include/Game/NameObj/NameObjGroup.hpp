@@ -13,11 +13,9 @@ public:
     void pauseOffAll() const;
     void initObjArray(int);
 
-    s32 getObjectCount() const {
-        return mObjectCount;
-    }
+    s32 getObjectCount() const { return mObjectCount; }
 
-    s32       _C;
-    s32       mObjectCount; // 0x10
-    NameObj** mObjects;     // 0x14
+    s32 _C;
+    s32 mObjectCount;    // 0x10
+    NameObj** mObjects;  // 0x14
 };

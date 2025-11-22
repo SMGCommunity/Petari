@@ -1,5 +1,5 @@
-#include "Game/MapObj/AstroDemoFunction.hpp"
 #include "Game/MapObj/AstroMapBoard.hpp"
+#include "Game/MapObj/AstroDemoFunction.hpp"
 #include "Game/Screen/GalaxyMapController.hpp"
 
 namespace {
@@ -10,9 +10,7 @@ namespace NrvAstroMapBoard {
     NERVE_DECL_NULL(AstroMapBoardNrvWait);
 };
 
-AstroMapBoard::AstroMapBoard(const char* pName)
-    : MapObjActor(pName) {
-}
+AstroMapBoard::AstroMapBoard(const char* pName) : MapObjActor(pName) {}
 
 void AstroMapBoard::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);
@@ -44,8 +42,7 @@ void AstroMapBoard::initAfterPlacement() {
     }
 }
 
-AstroMapBoard::~AstroMapBoard() {
-}
+AstroMapBoard::~AstroMapBoard() {}
 
 namespace NrvAstroMapBoard {
     INIT_NERVE(AstroMapBoardNrvWait);

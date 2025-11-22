@@ -8,6 +8,4 @@ void NameObjRegister::add(NameObj* pObj) {
     mHolder->add(pObj);
 }
 
-NameObjRegister::NameObjRegister()
-    : mHolder(0) {
-}
+NameObjRegister::NameObjRegister() : mHolder(0) {}

@@ -5,11 +5,7 @@
 #include <cstdio>
 
 GalaxyMapTicoIcon::GalaxyMapTicoIcon(int exclamationGalaxyIndex, const char* pGalaxyName, LayoutActor* pHost, const char* pPaneName)
-    : LayoutActor(pGalaxyName, true),
-      mExclamationGalaxyIndex(exclamationGalaxyIndex),
-      mGalaxyName(pGalaxyName),
-      mHost(pHost),
-      mPaneName(nullptr),
+    : LayoutActor(pGalaxyName, true), mExclamationGalaxyIndex(exclamationGalaxyIndex), mGalaxyName(pGalaxyName), mHost(pHost), mPaneName(nullptr),
       mMode(0) {
     u32 paneNameLen = strlen(pPaneName) + 1;
 
@@ -30,7 +26,8 @@ void GalaxyMapTicoIcon::appear() {
 }
 
 void GalaxyMapTicoIcon::syncStatus() {
-    f32 starPieceRate = static_cast< f32 >(MR::getStarPieceNumGivingToTicoGalaxy(mExclamationGalaxyIndex)) / MR::getStarPieceNumMaxGivingToTicoGalaxy(mExclamationGalaxyIndex);
+    f32 starPieceRate = static_cast< f32 >(MR::getStarPieceNumGivingToTicoGalaxy(mExclamationGalaxyIndex)) /
+                        MR::getStarPieceNumMaxGivingToTicoGalaxy(mExclamationGalaxyIndex);
 
     if (!MR::isAppearGalaxy(mGalaxyName) || 1.0f <= starPieceRate) {
         MR::hideLayout(this);

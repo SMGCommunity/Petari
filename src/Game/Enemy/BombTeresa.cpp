@@ -49,28 +49,12 @@ namespace NrvBombTeresa {
     NEW_NERVE(BombTeresaNrvDisperse, BombTeresa, Disperse);
     NEW_NERVE(BombTeresaNrvShock, BombTeresa, Shock);
     NEW_NERVE(BombTeresaNrvReadyRestart, BombTeresa, ReadyRestart);
-} // namespace NrvBombTeresa
+}  // namespace NrvBombTeresa
 
 BombTeresa::BombTeresa(const char* pName)
-    : LiveActor(pName),
-      mJointDelegator(nullptr),
-      mJointDelegator2(nullptr),
-      mScaleController(nullptr),
-      mBindStarPointer(nullptr),
-      _9C(0.0f, 0.0f, 0.0f, 1.0f),
-      _AC(0, 0, 1),
-      _B8(0, 0, 0),
-      _C4(0, 0, 0),
-      _D0(0, 0, 0),
-      _DC(1.0f),
-      _E0(1.0f),
-      _E4(1.0f),
-      _E8(0),
-      _EC(false),
-      mDisableRespawning(false),
-      _EE(true),
-      _EF(false) {
-}
+    : LiveActor(pName), mJointDelegator(nullptr), mJointDelegator2(nullptr), mScaleController(nullptr), mBindStarPointer(nullptr),
+      _9C(0.0f, 0.0f, 0.0f, 1.0f), _AC(0, 0, 1), _B8(0, 0, 0), _C4(0, 0, 0), _D0(0, 0, 0), _DC(1.0f), _E0(1.0f), _E4(1.0f), _E8(0), _EC(false),
+      mDisableRespawning(false), _EE(true), _EF(false) {}
 
 BombTeresa::~BombTeresa() {}
 
@@ -107,7 +91,7 @@ void BombTeresa::initAfterPlacement() {
     MR::trySetMoveLimitCollision(this);
 }
 
-//The 2.0 needs to be 1.0
+// The 2.0 needs to be 1.0
 void BombTeresa::initFromJMapParam(const JMapInfoIter& rIter) {
     if (MR::isValidInfo(rIter)) {
         MR::initDefaultPos(this, rIter);
@@ -149,7 +133,8 @@ void BombTeresa::makeActorAppeared() {
 }
 
 void BombTeresa::control() {
-    if (isNerve(&NrvBombTeresa::BombTeresaNrvWait::sInstance) || isNerve(&NrvBombTeresa::BombTeresaNrvWander::sInstance) || isNerve(&NrvBombTeresa::BombTeresaNrvChase::sInstance)) {
+    if (isNerve(&NrvBombTeresa::BombTeresaNrvWait::sInstance) || isNerve(&NrvBombTeresa::BombTeresaNrvWander::sInstance) ||
+        isNerve(&NrvBombTeresa::BombTeresaNrvChase::sInstance)) {
         MR::startLevelSound(this, "SE_EM_LV_BOMBTERE_MOVE", -1, -1, -1);
     }
     mScaleController->updateNerve();
@@ -221,7 +206,7 @@ bool BombTeresa::endTongueMtxCallBack(TPos3f* arg0, const JointControllerInfo& a
     }
     MR::turnMtxToXDirRate(arg0, v14, _DC);
     arg0->getXDir(v13);
-    f32    v7 = _DC;
+    f32 v7 = _DC;
     TVec3f v15(v14);
     v15 *= 0.35f;
     TVec3f v16(v15);
@@ -476,8 +461,7 @@ void BombTeresa::exeBallAppear() {
     }
     if (MR::isLessStep(this, 160)) {
         MR::rotateQuatRollBall(&_9C, mVelocity, -mGravity, 70.0f);
-        _AC.set< f32 >((2.0f * _9C.y * _9C.x) + (2.0f * _9C.y * _9C.z),
-                       (2.0f * _9C.z * _9C.x) - (2.0f * _9C.y * _9C.y),
+        _AC.set< f32 >((2.0f * _9C.y * _9C.x) + (2.0f * _9C.y * _9C.z), (2.0f * _9C.z * _9C.x) - (2.0f * _9C.y * _9C.y),
                        (1.0f - (2.0f * _9C.y * _9C.y) - (2.0f * _9C.z * _9C.z)));
     } else {
         f32 v3 = mGravity.dot(_AC);
@@ -630,7 +614,7 @@ void BombTeresa::exeDrift() {
     TVec3f v13;
     v16.getTrans(v13);
     TVec3f v12;
-    v12.set< f32 >(*v16[1], *v16[5], *v16[9]); //Wrong.
+    v12.set< f32 >(*v16[1], *v16[5], *v16[9]);  // Wrong.
     if (!MR::normalizeOrZero(&v12)) {
         JMAVECScaleAdd(&v12, &v13, &v13, 20.0f);
     }
@@ -757,14 +741,20 @@ bool BombTeresa::isTouchTongue() const {
 }
 
 bool BombTeresa::isEnableDrift() const {
-    if (isNerve(&NrvBombTeresa::BombTeresaNrvBallAppear::sInstance) || isNerve(&NrvBombTeresa::BombTeresaNrvShadowAppear::sInstance) || isNerve(&NrvBombTeresa::BombTeresaNrvDrift::sInstance) || isNerve(&NrvBombTeresa::BombTeresaNrvDriftRelease::sInstance) || isNerve(&NrvBombTeresa::BombTeresaNrvExplosion::sInstance) || isNerve(&NrvBombTeresa::BombTeresaNrvShock::sInstance) || isNerve(&NrvBombTeresa::BombTeresaNrvDisperse::sInstance) || isNerve(&NrvBombTeresa::BombTeresaNrvReadyRestart::sInstance)) {
+    if (isNerve(&NrvBombTeresa::BombTeresaNrvBallAppear::sInstance) || isNerve(&NrvBombTeresa::BombTeresaNrvShadowAppear::sInstance) ||
+        isNerve(&NrvBombTeresa::BombTeresaNrvDrift::sInstance) || isNerve(&NrvBombTeresa::BombTeresaNrvDriftRelease::sInstance) ||
+        isNerve(&NrvBombTeresa::BombTeresaNrvExplosion::sInstance) || isNerve(&NrvBombTeresa::BombTeresaNrvShock::sInstance) ||
+        isNerve(&NrvBombTeresa::BombTeresaNrvDisperse::sInstance) || isNerve(&NrvBombTeresa::BombTeresaNrvReadyRestart::sInstance)) {
         return false;
     }
     return true;
 }
 
 bool BombTeresa::isEnablePointBind() const {
-    if (isNerve(&NrvBombTeresa::BombTeresaNrvWait::sInstance) || isNerve(&NrvBombTeresa::BombTeresaNrvWander::sInstance) || isNerve(&NrvBombTeresa::BombTeresaNrvChase::sInstance) || isNerve(&NrvBombTeresa::BombTeresaNrvAttackTongueFailed::sInstance) || isNerve(&NrvBombTeresa::BombTeresaNrvDirectTackleSign::sInstance) || isNerve(&NrvBombTeresa::BombTeresaNrvDirectTackle::sInstance) || isNerve(&NrvBombTeresa::BombTeresaNrvDriftRelease::sInstance)) {
+    if (isNerve(&NrvBombTeresa::BombTeresaNrvWait::sInstance) || isNerve(&NrvBombTeresa::BombTeresaNrvWander::sInstance) ||
+        isNerve(&NrvBombTeresa::BombTeresaNrvChase::sInstance) || isNerve(&NrvBombTeresa::BombTeresaNrvAttackTongueFailed::sInstance) ||
+        isNerve(&NrvBombTeresa::BombTeresaNrvDirectTackleSign::sInstance) || isNerve(&NrvBombTeresa::BombTeresaNrvDirectTackle::sInstance) ||
+        isNerve(&NrvBombTeresa::BombTeresaNrvDriftRelease::sInstance)) {
         return true;
     }
     return false;
@@ -792,21 +782,28 @@ bool BombTeresa::isEnableHitExplosionToEnemy() const {
 }
 
 bool BombTeresa::isEnableHitExplosion() const {
-    if (isNerve(&NrvBombTeresa::BombTeresaNrvBallAppear::sInstance) || isNerve(&NrvBombTeresa::BombTeresaNrvShadowAppear::sInstance) || isNerve(&NrvBombTeresa::BombTeresaNrvExplosion::sInstance) || isNerve(&NrvBombTeresa::BombTeresaNrvShock::sInstance) || isNerve(&NrvBombTeresa::BombTeresaNrvDisperse::sInstance) || isNerve(&NrvBombTeresa::BombTeresaNrvDrift::sInstance) || isNerve(&NrvBombTeresa::BombTeresaNrvReadyRestart::sInstance)) {
+    if (isNerve(&NrvBombTeresa::BombTeresaNrvBallAppear::sInstance) || isNerve(&NrvBombTeresa::BombTeresaNrvShadowAppear::sInstance) ||
+        isNerve(&NrvBombTeresa::BombTeresaNrvExplosion::sInstance) || isNerve(&NrvBombTeresa::BombTeresaNrvShock::sInstance) ||
+        isNerve(&NrvBombTeresa::BombTeresaNrvDisperse::sInstance) || isNerve(&NrvBombTeresa::BombTeresaNrvDrift::sInstance) ||
+        isNerve(&NrvBombTeresa::BombTeresaNrvReadyRestart::sInstance)) {
         return false;
     }
     return true;
 }
 
 bool BombTeresa::isEnableStarPieceAttack() const {
-    if (isNerve(&NrvBombTeresa::BombTeresaNrvBallAppear::sInstance) || isNerve(&NrvBombTeresa::BombTeresaNrvShadowAppear::sInstance) || isNerve(&NrvBombTeresa::BombTeresaNrvExplosion::sInstance) || isNerve(&NrvBombTeresa::BombTeresaNrvShock::sInstance) || isNerve(&NrvBombTeresa::BombTeresaNrvDisperse::sInstance) || isNerve(&NrvBombTeresa::BombTeresaNrvDrift::sInstance) || isNerve(&NrvBombTeresa::BombTeresaNrvReadyRestart::sInstance)) {
+    if (isNerve(&NrvBombTeresa::BombTeresaNrvBallAppear::sInstance) || isNerve(&NrvBombTeresa::BombTeresaNrvShadowAppear::sInstance) ||
+        isNerve(&NrvBombTeresa::BombTeresaNrvExplosion::sInstance) || isNerve(&NrvBombTeresa::BombTeresaNrvShock::sInstance) ||
+        isNerve(&NrvBombTeresa::BombTeresaNrvDisperse::sInstance) || isNerve(&NrvBombTeresa::BombTeresaNrvDrift::sInstance) ||
+        isNerve(&NrvBombTeresa::BombTeresaNrvReadyRestart::sInstance)) {
         return false;
     }
     return true;
 }
 
 bool BombTeresa::isEnableShockWave() const {
-    if (isNerve(&NrvBombTeresa::BombTeresaNrvExplosion::sInstance) || isNerve(&NrvBombTeresa::BombTeresaNrvShock::sInstance) || isNerve(&NrvBombTeresa::BombTeresaNrvDisperse::sInstance)) {
+    if (isNerve(&NrvBombTeresa::BombTeresaNrvExplosion::sInstance) || isNerve(&NrvBombTeresa::BombTeresaNrvShock::sInstance) ||
+        isNerve(&NrvBombTeresa::BombTeresaNrvDisperse::sInstance)) {
         return false;
     }
     return true;
@@ -844,7 +841,8 @@ void BombTeresa::addTeresaSpinPullVelocity(f32 arg0) {
 }
 
 bool BombTeresa::requestDisperse() {
-    if (isNerve(&NrvBombTeresa::BombTeresaNrvExplosion::sInstance) || isNerve(&NrvBombTeresa::BombTeresaNrvShock::sInstance) || isNerve(&NrvBombTeresa::BombTeresaNrvDisperse::sInstance)) {
+    if (isNerve(&NrvBombTeresa::BombTeresaNrvExplosion::sInstance) || isNerve(&NrvBombTeresa::BombTeresaNrvShock::sInstance) ||
+        isNerve(&NrvBombTeresa::BombTeresaNrvDisperse::sInstance)) {
         return false;
     }
     setNerve(&NrvBombTeresa::BombTeresaNrvDisperse::sInstance);

@@ -1,5 +1,5 @@
-#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/BombTimerLayout.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 
@@ -12,13 +12,10 @@ namespace NrvBombTimerLayout {
     NEW_NERVE(BombTimerLayoutNrvWait, BombTimerLayout, Wait);
     NEW_NERVE(BombTimerLayoutNrvDanger, BombTimerLayout, Danger);
     NEW_NERVE(BombTimerLayoutNrvEnd, BombTimerLayout, End);
-}; // namespace NrvBombTimerLayout
+};  // namespace NrvBombTimerLayout
 
 BombTimerLayout::BombTimerLayout(bool param1)
-    : LayoutActor("ボムタイマーレイアウト", true),
-      mDangerTransFrame(sDangerTransFrame),
-      mFrame(0),
-      mIsSuspend(false) {
+    : LayoutActor("ボムタイマーレイアウト", true), mDangerTransFrame(sDangerTransFrame), mFrame(0), mIsSuspend(false) {
     if (param1) {
         MR::connectToSceneLayout(this);
     }

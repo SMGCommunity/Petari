@@ -1,10 +1,9 @@
 #include "Game/MapObj/ArrowSwitchMulti.hpp"
-#include "Game/MapObj/ArrowSwitchMultiHolder.hpp"
 #include "Game/Map/StageSwitch.hpp"
+#include "Game/MapObj/ArrowSwitchMultiHolder.hpp"
 #include "math_types.hpp"
 
-ArrowSwitchTarget::ArrowSwitchTarget(const char* pName)
-    : NameObj(pName) {
+ArrowSwitchTarget::ArrowSwitchTarget(const char* pName) : NameObj(pName) {
     mJMapIDInfo = nullptr;
     mStageSwitchCtrl = nullptr;
     mTargetIdx = -1;
@@ -43,8 +42,7 @@ void ArrowSwitchTarget::offTarget() {
     }
 }
 
-ArrowSwitchMulti::ArrowSwitchMulti(const char* pName)
-    : LiveActor(pName) {
+ArrowSwitchMulti::ArrowSwitchMulti(const char* pName) : LiveActor(pName) {
     mIDInfo = nullptr;
     _A0 = 0.0f;
     _A4 = 0.0f;
@@ -86,8 +84,7 @@ void ArrowSwitchMulti::init(const JMapInfoIter& rIter) {
     makeActorAppeared();
 }
 
-void ArrowSwitchMulti::control() {
-}
+void ArrowSwitchMulti::control() {}
 
 void ArrowSwitchMulti::calcAndSetBaseMtx() {
     LiveActor::calcAndSetBaseMtx();
@@ -158,11 +155,9 @@ void ArrowSwitchMulti::exeWait() {
 
 // ArrowSwitchMulti::exeRotate
 
-ArrowSwitchMulti::~ArrowSwitchMulti() {
-}
+ArrowSwitchMulti::~ArrowSwitchMulti() {}
 
-ArrowSwitchTarget::~ArrowSwitchTarget() {
-}
+ArrowSwitchTarget::~ArrowSwitchTarget() {}
 
 namespace NrvArrowSwitchMulti {
     INIT_NERVE(ArrowSwitchMultiNrvWait);
@@ -177,4 +172,4 @@ namespace NrvArrowSwitchMulti {
         ArrowSwitchMulti* sw = reinterpret_cast< ArrowSwitchMulti* >(pSpine->mExecutor);
         sw->exeWait();
     }
-}; // namespace NrvArrowSwitchMulti
+};  // namespace NrvArrowSwitchMulti

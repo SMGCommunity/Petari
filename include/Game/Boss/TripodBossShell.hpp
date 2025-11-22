@@ -13,9 +13,9 @@ public:
     virtual bool receiveMsgEnemyAttack(u32, HitSensor*, HitSensor*);
     virtual void activateTripodBoss();
 
-    void        exeBreak();
+    void exeBreak();
     inline void exeWait();
     inline void exeNonActive();
 
-    ModelObj* mBreakModel; // 0xE4
+    ModelObj* mBreakModel;  // 0xE4
 };

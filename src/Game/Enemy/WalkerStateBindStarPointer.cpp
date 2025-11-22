@@ -1,16 +1,12 @@
-#include "Game/Enemy/AnimScaleController.hpp"
 #include "Game/Enemy/WalkerStateBindStarPointer.hpp"
+#include "Game/Enemy/AnimScaleController.hpp"
 
 namespace NrvWalkerStateBindStarPointer {
     NEW_NERVE(WalkerStateBindStarPointerNrvBind, WalkerStateBindStarPointer, Bind);
 };
 
 WalkerStateBindStarPointer::WalkerStateBindStarPointer(LiveActor* pActor, AnimScaleController* pController)
-    : ActorStateBase("歩行型スターポインタ拘束"),
-      mHostActor(pActor),
-      mScaleController(pController),
-      mUpdateCounter(0),
-      mHasEffect(false) {
+    : ActorStateBase("歩行型スターポインタ拘束"), mHostActor(pActor), mScaleController(pController), mUpdateCounter(0), mHasEffect(false) {
     initNerve(&NrvWalkerStateBindStarPointer::WalkerStateBindStarPointerNrvBind::sInstance);
 
     if (!MR::isRegisteredEffect(pActor, "Touch")) {
@@ -69,5 +65,4 @@ void WalkerStateBindStarPointer::exeBind() {
     }
 }
 
-WalkerStateBindStarPointer::~WalkerStateBindStarPointer() {
-}
+WalkerStateBindStarPointer::~WalkerStateBindStarPointer() {}

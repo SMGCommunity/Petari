@@ -1,12 +1,12 @@
 #pragma once
 
-#include <revolution.h>
 #include "Game/Animation/AnmPlayer.hpp"
 #include "Game/Util/JMapInfo.hpp"
 #include "JSystem/JGeometry/TMatrix.hpp"
 #include "JSystem/JGeometry/TQuat.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
 #include "revolution/mtx.h"
+#include <revolution.h>
 
 class ActorLightCtrl;
 class BckCtrlData;
@@ -29,12 +29,7 @@ class TexMtxCtrl;
 class TriangleFilterBase;
 
 namespace MR {
-    enum CollisionScaleType {
-        AutoEqualScale = 0,
-        NoScale = 1,
-        UNKNOWN_2 = 2,
-        UNKNOWN_3 = 3
-    };
+    enum CollisionScaleType { AutoEqualScale = 0, NoScale = 1, UNKNOWN_2 = 2, UNKNOWN_3 = 3 };
 
     bool isExistIndirectTexture(const LiveActor*);
 
@@ -117,63 +112,63 @@ namespace MR {
 
     void zeroVelocity(LiveActor*);
 
-    void            initLightCtrl(LiveActor*);
-    void            initLightCtrlForPlayer(LiveActor*);
-    void            initLightCtrlNoDrawEnemy(LiveActor*);
-    void            initLightCtrlNoDrawMapObj(LiveActor*);
-    void            updateLightCtrl(LiveActor*);
-    void            updateLightCtrlDirect(LiveActor*);
-    void            loadActorLight(const LiveActor*);
-    void            calcLightPos0(TVec3f*, const LiveActor*);
-    void            calcLightPos1(TVec3f*, const LiveActor*);
-    const GXColor*  getLightAmbientColor(const LiveActor*);
+    void initLightCtrl(LiveActor*);
+    void initLightCtrlForPlayer(LiveActor*);
+    void initLightCtrlNoDrawEnemy(LiveActor*);
+    void initLightCtrlNoDrawMapObj(LiveActor*);
+    void updateLightCtrl(LiveActor*);
+    void updateLightCtrlDirect(LiveActor*);
+    void loadActorLight(const LiveActor*);
+    void calcLightPos0(TVec3f*, const LiveActor*);
+    void calcLightPos1(TVec3f*, const LiveActor*);
+    const GXColor* getLightAmbientColor(const LiveActor*);
     ActorLightCtrl* getLightCtrl(const LiveActor*);
-    bool            isStep(const LiveActor*, s32) NO_INLINE;
-    bool            isFirstStep(const LiveActor*);
-    bool            isLessStep(const LiveActor*, s32);
-    bool            isLessEqualStep(const LiveActor*, s32);
-    bool            isGreaterStep(const LiveActor*, s32);
-    bool            isGreaterEqualStep(const LiveActor*, s32);
-    bool            isIntervalStep(const LiveActor*, s32);
-    bool            isNewNerve(const LiveActor*);
-    f32             calcNerveRate(const LiveActor*, s32);
-    f32             calcNerveRate(const LiveActor*, s32, s32);
-    f32             calcNerveEaseInRate(const LiveActor*, s32);
-    f32             calcNerveEaseOutRate(const LiveActor*, s32);
-    f32             calcNerveEaseOutRate(const LiveActor*, s32, s32);
-    f32             calcNerveEaseInOutRate(const LiveActor*, s32);
-    f32             calcNerveEaseInOutRate(const LiveActor*, s32, s32);
-    f32             calcNerveValue(const LiveActor*, s32, f32, f32);
-    f32             calcNerveValue(const LiveActor*, s32, s32, f32, f32);
-    f32             calcNerveEaseInValue(const LiveActor*, s32, f32, f32);
-    f32             calcNerveEaseInValue(const LiveActor*, s32, s32, f32, f32);
-    f32             calcNerveEaseOutValue(const LiveActor*, s32, f32, f32);
-    f32             calcNerveEaseInOutValue(const LiveActor*, s32, f32, f32);
-    f32             calcNerveEaseInOutValue(const LiveActor*, s32, s32, f32, f32);
-    void            setNerveAtStep(LiveActor*, const Nerve*, s32);
-    void            setNerveAtBckStopped(LiveActor*, const Nerve*);
-    bool            trySetNerve(LiveActor*, const Nerve*);
-    const TVec3f*   getGroundNormal(const LiveActor*);
-    const TVec3f*   getWallNormal(const LiveActor*);
-    const TVec3f*   getRoofNormal(const LiveActor*);
-    const TVec3f*   getBindedNormal(const LiveActor*);
-    const TVec3f*   getBindedHitPos(const LiveActor*);
-    const TVec3f*   getGroundHitPos(const LiveActor*);
-    const TVec3f*   getWallHitPos(const LiveActor*);
-    const TVec3f*   getRoofHitPos(const LiveActor*);
-    const TVec3f*   getGroundHitPos(const LiveActor*);
-    const TVec3f*   getWallHitPos(const LiveActor*);
-    const TVec3f*   getRoofHitPos(const LiveActor*);
-    void            calcWallNormalHorizontal(TVec3f*, const LiveActor*);
-    f32             calcHitPowerToGround(const LiveActor*);
-    f32             calcHitPowerToWall(const LiveActor*);
-    int             getBindedPlaneNum(const LiveActor*);
-    const TVec3f*   getBindedPlaneNormal(const LiveActor*, int);
-    HitSensor*      getBindedPlaneSensor(const LiveActor*, int);
-    TVec3f*         getBindedFixReactionVector(const LiveActor*);
-    void            setBinderOffsetVec(LiveActor*, const TVec3f*, bool);
-    void            setBinderRadius(LiveActor*, f32);
-    f32             getBinderRadius(const LiveActor*);
+    bool isStep(const LiveActor*, s32) NO_INLINE;
+    bool isFirstStep(const LiveActor*);
+    bool isLessStep(const LiveActor*, s32);
+    bool isLessEqualStep(const LiveActor*, s32);
+    bool isGreaterStep(const LiveActor*, s32);
+    bool isGreaterEqualStep(const LiveActor*, s32);
+    bool isIntervalStep(const LiveActor*, s32);
+    bool isNewNerve(const LiveActor*);
+    f32 calcNerveRate(const LiveActor*, s32);
+    f32 calcNerveRate(const LiveActor*, s32, s32);
+    f32 calcNerveEaseInRate(const LiveActor*, s32);
+    f32 calcNerveEaseOutRate(const LiveActor*, s32);
+    f32 calcNerveEaseOutRate(const LiveActor*, s32, s32);
+    f32 calcNerveEaseInOutRate(const LiveActor*, s32);
+    f32 calcNerveEaseInOutRate(const LiveActor*, s32, s32);
+    f32 calcNerveValue(const LiveActor*, s32, f32, f32);
+    f32 calcNerveValue(const LiveActor*, s32, s32, f32, f32);
+    f32 calcNerveEaseInValue(const LiveActor*, s32, f32, f32);
+    f32 calcNerveEaseInValue(const LiveActor*, s32, s32, f32, f32);
+    f32 calcNerveEaseOutValue(const LiveActor*, s32, f32, f32);
+    f32 calcNerveEaseInOutValue(const LiveActor*, s32, f32, f32);
+    f32 calcNerveEaseInOutValue(const LiveActor*, s32, s32, f32, f32);
+    void setNerveAtStep(LiveActor*, const Nerve*, s32);
+    void setNerveAtBckStopped(LiveActor*, const Nerve*);
+    bool trySetNerve(LiveActor*, const Nerve*);
+    const TVec3f* getGroundNormal(const LiveActor*);
+    const TVec3f* getWallNormal(const LiveActor*);
+    const TVec3f* getRoofNormal(const LiveActor*);
+    const TVec3f* getBindedNormal(const LiveActor*);
+    const TVec3f* getBindedHitPos(const LiveActor*);
+    const TVec3f* getGroundHitPos(const LiveActor*);
+    const TVec3f* getWallHitPos(const LiveActor*);
+    const TVec3f* getRoofHitPos(const LiveActor*);
+    const TVec3f* getGroundHitPos(const LiveActor*);
+    const TVec3f* getWallHitPos(const LiveActor*);
+    const TVec3f* getRoofHitPos(const LiveActor*);
+    void calcWallNormalHorizontal(TVec3f*, const LiveActor*);
+    f32 calcHitPowerToGround(const LiveActor*);
+    f32 calcHitPowerToWall(const LiveActor*);
+    int getBindedPlaneNum(const LiveActor*);
+    const TVec3f* getBindedPlaneNormal(const LiveActor*, int);
+    HitSensor* getBindedPlaneSensor(const LiveActor*, int);
+    TVec3f* getBindedFixReactionVector(const LiveActor*);
+    void setBinderOffsetVec(LiveActor*, const TVec3f*, bool);
+    void setBinderRadius(LiveActor*, f32);
+    f32 getBinderRadius(const LiveActor*);
 
     void initFur(LiveActor*);
     void initFurPlanet(LiveActor*);
@@ -240,9 +235,9 @@ namespace MR {
     void setBvaRate(const LiveActor*, f32);
 
     void setBckFrame(const LiveActor*, f32);
-    f32  getBckFrameMax(const LiveActor*);
-    f32  getBrkFrameMax(const LiveActor*);
-    f32  getBtkFrameMax(const LiveActor*);
+    f32 getBckFrameMax(const LiveActor*);
+    f32 getBrkFrameMax(const LiveActor*);
+    f32 getBtkFrameMax(const LiveActor*);
     void setBckFrameAndStop(const LiveActor*, f32);
 
     s16 getBrkFrameMax(const LiveActor*, const char*);
@@ -323,7 +318,7 @@ namespace MR {
 
     bool changeShowModelFlagSyncNearClipping(LiveActor*, f32);
 
-    u32  createIndirectPlanetModel(LiveActor*, MtxPtr);
+    u32 createIndirectPlanetModel(LiveActor*, MtxPtr);
     bool tryCreateMirrorActor(LiveActor*, const char*);
 
     CollisionParts* createCollisionPartsFromLiveActor(LiveActor*, const char*, HitSensor*, CollisionScaleType);
@@ -379,7 +374,7 @@ namespace MR {
     void initCollisionPartsAutoEqualScaleOne(LiveActor*, const char*, HitSensor*, MtxPtr);
     void initCollisionPartsFromResourceHolder(LiveActor*, const char*, HitSensor*, ResourceHolder*, MtxPtr);
 
-    ResTIMG*    getTexFromArc(const char*, const LiveActor*);
+    ResTIMG* getTexFromArc(const char*, const LiveActor*);
     PartsModel* createBloomModel(LiveActor*, MtxPtr);
 
     CollisionParts* getCollisionParts(const LiveActor*);
@@ -404,4 +399,4 @@ namespace MR {
     TVec3f* getBindedFixReactionVector(const LiveActor*);
 
     CollisionParts* tryCreateCollisionSunshade(LiveActor*, HitSensor*);
-}; // namespace MR
+};  // namespace MR

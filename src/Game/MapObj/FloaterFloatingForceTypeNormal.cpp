@@ -1,10 +1,9 @@
 #include "Game/MapObj/FloaterFloatingForceTypeNormal.hpp"
-#include "Game/MapObj/FloaterFunction.hpp"
 #include "Game/LiveActor/Spine.hpp"
+#include "Game/MapObj/FloaterFunction.hpp"
 #include "Game/Util/MapPartsUtil.hpp"
 
-FloaterFloatingForceTypeNormal::FloaterFloatingForceTypeNormal(LiveActor* pActor, const char* pName)
-    : FloaterFloatingForce(pActor, pName) {
+FloaterFloatingForceTypeNormal::FloaterFloatingForceTypeNormal(LiveActor* pActor, const char* pName) : FloaterFloatingForce(pActor, pName) {
     mRotateAngle = 0.0f;
     mRotateSpeed = 0.0f;
     _40 = 0.0f;
@@ -84,13 +83,13 @@ void FloaterFloatingForceTypeNormal::exeMove() {
     updateVelocity(isOnPlayer);
     soundMoveSE();
 
-    if (!isOnPlayer && isNerve(&NrvFloaterFloatingForceTypeNormal::HostTypeMoveOnPlayer::sInstance) && MapPartsFunction::getStep() >= 7 || isOnPlayer && MapPartsFunction::isNerve(&NrvFloaterFloatingForceTypeNormal::HostTypeMoveOffPlayer::sInstance)) {
+    if (!isOnPlayer && isNerve(&NrvFloaterFloatingForceTypeNormal::HostTypeMoveOnPlayer::sInstance) && MapPartsFunction::getStep() >= 7 ||
+        isOnPlayer && MapPartsFunction::isNerve(&NrvFloaterFloatingForceTypeNormal::HostTypeMoveOffPlayer::sInstance)) {
         setStateMove();
     }
 }
 
-FloaterFloatingForceTypeNormal::~FloaterFloatingForceTypeNormal() {
-}
+FloaterFloatingForceTypeNormal::~FloaterFloatingForceTypeNormal() {}
 
 namespace NrvFloaterFloatingForceTypeNormal {
     INIT_NERVE(HostTypeWait);
@@ -120,7 +119,7 @@ namespace NrvFloaterFloatingForceTypeNormal {
             floater->_40 = 0.0f;
         }
     }
-}; // namespace NrvFloaterFloatingForceTypeNormal
+};  // namespace NrvFloaterFloatingForceTypeNormal
 
 const TVec3f& FloaterFloatingForceTypeNormal::getCurrentVelocity() const {
     return mVelocity;

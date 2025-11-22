@@ -1,14 +1,13 @@
 #include "Game/MapObj/SubmarineVolcanoBigColumn.hpp"
-#include "Game/MapObj/AirBubbleHolder.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
+#include "Game/MapObj/AirBubbleHolder.hpp"
 #include <cstdio>
 
 namespace {
     static f32 sShakeDistance = 800.0f;
 };
 
-SubmarineVolcanoBigColumn::SubmarineVolcanoBigColumn(const char* pName)
-    : LiveActor(pName) {
+SubmarineVolcanoBigColumn::SubmarineVolcanoBigColumn(const char* pName) : LiveActor(pName) {
     mBreakModel = nullptr;
     mIsSmallColumn = false;
 }
@@ -107,10 +106,9 @@ void SubmarineVolcanoBigColumn::initBreakModel(const char* pModelName) {
     mBreakModel->makeActorDead();
 }
 
-SubmarineVolcanoBigColumn::~SubmarineVolcanoBigColumn() {
-}
+SubmarineVolcanoBigColumn::~SubmarineVolcanoBigColumn() {}
 
 namespace NrvSubmarineVolcanoBigColumn {
     INIT_NERVE(SubmarineVolcanoBigColumnNrvWait);
     INIT_NERVE(SubmarineVolcanoBigColumnNrvBreak);
-}; // namespace NrvSubmarineVolcanoBigColumn
+};  // namespace NrvSubmarineVolcanoBigColumn

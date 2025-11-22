@@ -11,7 +11,7 @@ SpkMixingBuffer::SpkMixingBuffer(JKRHeap* pHeap) {
 }
 
 void SpkMixingBuffer::mix(s32 a1, s16* a2, s32 a3, f32 a4, s32 a5) {
-    //for (int i = 0; i < )
+    // for (int i = 0; i < )
 }
 
 const s16* SpkMixingBuffer::getSamples(s32 idx) const {

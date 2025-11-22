@@ -2,8 +2,7 @@
 #include "Game/AudioLib/AudWrap.hpp"
 #include "Game/GameAudio/AudStageBgmTable.hpp"
 
-EarthenPipe::EarthenPipe(const char* pName)
-    : LiveActor(pName) {
+EarthenPipe::EarthenPipe(const char* pName) : LiveActor(pName) {
     _8C.x = 0.0f;
     _8C.y = 0.0f;
     _8C.z = 0.0f;
@@ -435,8 +434,7 @@ void EarthenPipe::processBgmPlayerOut() {
     }
 }
 
-EarthenPipeMediator::EarthenPipeMediator()
-    : NameObj("土管仲介者") {
+EarthenPipeMediator::EarthenPipeMediator() : NameObj("土管仲介者") {
     mNumEntries = 0;
     mPipeEntries = nullptr;
     mPipeEntries = new Entry[0x20];
@@ -469,11 +467,9 @@ void EarthenPipeMediator::entry(EarthenPipe* pPipe, const JMapInfoIter& rIter) {
     mNumEntries++;
 }
 
-EarthenPipe::~EarthenPipe() {
-}
+EarthenPipe::~EarthenPipe() {}
 
-EarthenPipeMediator::~EarthenPipeMediator() {
-}
+EarthenPipeMediator::~EarthenPipeMediator() {}
 
 namespace NrvEarthenPipe {
     INIT_NERVE(EarthenPipeNrvHideDown);
@@ -488,7 +484,7 @@ namespace NrvEarthenPipe {
     INIT_NERVE(EarthenPipeNrvPlayerIn);
     INIT_NERVE(EarthenPipeNrvReady);
     INIT_NERVE(EarthenPipeNrvWait);
-}; // namespace NrvEarthenPipe
+};  // namespace NrvEarthenPipe
 
 void EarthenPipe::exeWaitToHideDown() {
     if (MR::isStep(this, 0x28)) {
@@ -506,5 +502,4 @@ MtxPtr EarthenPipe::getBaseMtx() const {
     return mTopJointMtx;
 }
 
-void EarthenPipe::calcAnim() {
-}
+void EarthenPipe::calcAnim() {}

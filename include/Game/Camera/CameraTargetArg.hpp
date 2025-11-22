@@ -1,7 +1,7 @@
 #pragma once
 
-#include "revolution.h"
 #include "Inline.hpp"
+#include "revolution.h"
 
 class CameraTargetObj;
 class CameraTargetMtx;
@@ -46,5 +46,5 @@ public:
     CameraTargetObj* mTargetObj;  // 0x0
     CameraTargetMtx* mTargetMtx;  // 0x4
     const LiveActor* mLiveActor;  // 0x8
-    MarioActor*      mMarioActor; // 0xC
+    MarioActor* mMarioActor;      // 0xC
 };

@@ -12,4 +12,4 @@ namespace MR {
 
         return 0;
     }
-}; // namespace MR
+};  // namespace MR

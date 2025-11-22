@@ -20,8 +20,7 @@ u32 JKRHeap::mMemorySize;
 
 u32 JKRHeap::ARALT_AramStartAddr = 0x90000000;
 
-JKRHeap::JKRHeap(void* data, u32 size, JKRHeap* parent, bool error)
-    : JKRDisposer(), mChildTree(this), mDisposerList() {
+JKRHeap::JKRHeap(void* data, u32 size, JKRHeap* parent, bool error) : JKRDisposer(), mChildTree(this), mDisposerList() {
     OSInitMutex(&mMutex);
     mSize = size;
     mStart = (u8*)data;
@@ -193,8 +192,7 @@ JKRHeap* JKRHeap::find(void* pData) const {
         const JSUTree< JKRHeap >& tree = mChildTree;
 
         if (tree.getNumChildren() != 0) {
-            for (JSUTreeIterator< JKRHeap > iterator(mChildTree.getFirstChild());
-                 iterator != mChildTree.getEndChild(); ++iterator) {
+            for (JSUTreeIterator< JKRHeap > iterator(mChildTree.getFirstChild()); iterator != mChildTree.getEndChild(); ++iterator) {
                 JKRHeap* result = iterator->find(pData);
 
                 if (result) {
@@ -266,7 +264,7 @@ void JKRHeap::dispose(void* begin, void* end) {
 }
 
 void JKRHeap::dispose() {
-    const JSUList< JKRDisposer >&  list = mDisposerList;
+    const JSUList< JKRDisposer >& list = mDisposerList;
     JSUListIterator< JKRDisposer > iterator;
 
     while (list.getFirst() != list.getEnd()) {
@@ -276,7 +274,7 @@ void JKRHeap::dispose() {
 }
 
 void JKRHeap::copyMemory(void* pDst, void* pSrc, u32 size) {
-    u32  count = (size + 3) / 4;
+    u32 count = (size + 3) / 4;
     u32* dst_32 = (u32*)pDst;
     u32* src_32 = (u32*)pSrc;
 

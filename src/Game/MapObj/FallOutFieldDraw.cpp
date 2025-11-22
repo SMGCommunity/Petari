@@ -16,7 +16,7 @@ void FallOutFieldDraw::setUpFillScreen() const {
     GXSetZCompLoc(0);
     GXSetColorUpdate(1u);
     GXSetAlphaUpdate(0);
-    GXSetZScaleOffset(0.0f, 1.0f); 
+    GXSetZScaleOffset(0.0f, 1.0f);
     GXSetBlendMode(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_NOOP);
 
 }*/

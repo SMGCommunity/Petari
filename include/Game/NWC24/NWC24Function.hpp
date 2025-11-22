@@ -24,4 +24,4 @@ namespace MR {
     /// @param[in] pMessageId A pointer to the null-terminated name of the target message identifier.
     /// @return A pointer to the null-terminated wide name.
     const wchar_t* getMailSender(const char* pMessageId);
-}; // namespace MR
+};  // namespace MR

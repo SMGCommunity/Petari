@@ -1,10 +1,9 @@
 #include "Game/MapObj/BigFan.hpp"
-#include "Game/MapObj/BigFanHolder.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
+#include "Game/MapObj/BigFanHolder.hpp"
 #include "JSystem/JMath/JMath.hpp"
 
-BigFan::BigFan(const char* pName)
-    : LiveActor(pName) {
+BigFan::BigFan(const char* pName) : LiveActor(pName) {
     mWindModel = 0;
     _90.x = 0.0f;
     _90.y = 0.0f;
@@ -66,7 +65,7 @@ void BigFan::initWindModel() {
 }
 
 /*
-void BigFan::calcWindInfo(TVec3f *pWindInfo, const TVec3f &a2) {    
+void BigFan::calcWindInfo(TVec3f *pWindInfo, const TVec3f &a2) {
     if (MR::isDead(this) || isStartOrWait()) {
         pWindInfo->zero();
     }
@@ -75,7 +74,7 @@ void BigFan::calcWindInfo(TVec3f *pWindInfo, const TVec3f &a2) {
             pWindInfo->zero();
             return;
         }
-        
+        
         TVec3f front_vec;
         MR::calcFrontVec(&front_vec, this);
         MR::normalize(&front_vec);
@@ -108,8 +107,7 @@ void BigFan::calcWindInfo(TVec3f *pWindInfo, const TVec3f &a2) {
 }
 */
 
-void BigFan::control() {
-}
+void BigFan::control() {}
 
 void BigFan::start() {
     if (isNerve(&NrvBigFan::BigFanNrvStop::sInstance)) {
@@ -171,7 +169,6 @@ namespace NrvBigFan {
             MR::stopBck(fan);
         }
     }
-}; // namespace NrvBigFan
+};  // namespace NrvBigFan
 
-BigFan::~BigFan() {
-}
+BigFan::~BigFan() {}

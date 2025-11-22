@@ -1,12 +1,9 @@
 #include "Game/MapObj/ClipFieldSwitch.hpp"
 #include "Game/MapObj/ClipAreaHolder.hpp"
 
-ClipFieldSwitch::~ClipFieldSwitch() {
-}
+ClipFieldSwitch::~ClipFieldSwitch() {}
 
-ClipFieldSwitch::ClipFieldSwitch(const char* pName)
-    : LiveActor(pName) {
-}
+ClipFieldSwitch::ClipFieldSwitch(const char* pName) : LiveActor(pName) {}
 
 void ClipFieldSwitch::control() {
     mPosition.setPS(*MR::getPlayerPos());

@@ -22,20 +22,20 @@ public:
     void exeLock();
     bool isPlusLimit() const;
     bool isMinusLimit() const;
-    s32  getOneStep() const;
+    s32 getOneStep() const;
 
-    f32  _8C;
-    s32  mRotationIdx; // 0x90
-    f32  _94;
-    s32  _98;
+    f32 _8C;
+    s32 mRotationIdx;  // 0x90
+    f32 _94;
+    s32 _98;
     bool _9C;
-    u8   _9D;
-    u8   _9E;
-    u8   _9F;
+    u8 _9D;
+    u8 _9E;
+    u8 _9F;
 };
 
 namespace NrvArrowSwitch {
     NERVE(ArrowSwitchNrvRotate);
     NERVE(ArrowSwitchNrvLock);
     NERVE(ArrowSwitchNrvWait);
-}; // namespace NrvArrowSwitch
+};  // namespace NrvArrowSwitch

@@ -33,14 +33,14 @@ public:
     void noticeEnd();
 
     CollectTico* mParent;      // 0x8C
-    PartsModel*  mBubbleModel; // 0x90
-    TQuat4f      _94;
-    TVec3f       _A4;
-    TVec3f       _B0;
-    TVec3f       _BC;
-    TVec3f       _C8;
-    TVec3f       _D4;
-    TVec3f       _E0;
-    f32          _EC;
-    f32          _F0;
+    PartsModel* mBubbleModel;  // 0x90
+    TQuat4f _94;
+    TVec3f _A4;
+    TVec3f _B0;
+    TVec3f _BC;
+    TVec3f _C8;
+    TVec3f _D4;
+    TVec3f _E0;
+    f32 _EC;
+    f32 _F0;
 };

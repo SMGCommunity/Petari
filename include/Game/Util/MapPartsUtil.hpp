@@ -18,7 +18,7 @@ namespace MR {
     bool getMapPartsArgRotateAccelType(s32*, const JMapInfoIter&);
     bool getMapPartsArgRotateStopTime(s32*, const JMapInfoIter&);
     bool getMapPartsArgRotateType(s32*, const JMapInfoIter&);
-    s32  getMapPartsArgShadowType(s32*, const JMapInfoIter&);
+    s32 getMapPartsArgShadowType(s32*, const JMapInfoIter&);
     bool getMapPartsArgSignMotionType(s32*, const JMapInfoIter&);
     bool getMapPartsArgMovePosture(s32*, const JMapInfoIter&);
     bool getMapPartsArgMoveStopType(s32*, const JMapInfoIter&);
@@ -69,4 +69,4 @@ namespace MR {
     bool isMapPartsRailMovePassedEndPointRepeat(const MapPartsRailMover*);
 
     bool isMapPartsRailMovePassedStartPointRepeat(const MapPartsRailMover*);
-}; // namespace MR
+};  // namespace MR

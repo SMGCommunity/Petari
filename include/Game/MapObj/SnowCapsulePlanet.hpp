@@ -19,4 +19,4 @@ namespace NrvSnowCapsulePlanet {
     NERVE(SnowCapsulePlanetNrvCloseWait);
     NERVE(SnowCapsulePlanetNrvOpenWait);
     NERVE(SnowCapsulePlanetNrvOpen);
-}; // namespace NrvSnowCapsulePlanet
+};  // namespace NrvSnowCapsulePlanet

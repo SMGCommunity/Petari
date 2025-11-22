@@ -1,15 +1,10 @@
+#include "Game/Screen/LayoutPaneCtrl.hpp"
 #include "Game/Animation/LayoutAnmPlayer.hpp"
 #include "Game/Screen/LayoutManager.hpp"
-#include "Game/Screen/LayoutPaneCtrl.hpp"
 #include <nw4r/lyt/pane.h>
 
 LayoutPaneCtrl::LayoutPaneCtrl(LayoutManager* pHost, const char* pPaneName, u32 animLayerNum)
-    : mHost(pHost),
-      mPane(nullptr),
-      mPaneIndex(-1),
-      mAnmPlayerArray(animLayerNum),
-      mFollowType(0),
-      mFollowPos(nullptr) {
+    : mHost(pHost), mPane(nullptr), mPaneIndex(-1), mAnmPlayerArray(animLayerNum), mFollowType(0), mFollowPos(nullptr) {
     mPane = mHost->getPane(pPaneName);
 
     for (u32 i = 0; i < mAnmPlayerArray.size(); i++) {

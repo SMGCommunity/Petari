@@ -1,8 +1,7 @@
 #include "Game/MapObj/MercatorRotateParts.hpp"
 #include "Game/AreaObj/MercatorTransformCube.hpp"
 
-MercatorRotateParts::MercatorRotateParts(const char* pName)
-    : LiveActor(pName) {
+MercatorRotateParts::MercatorRotateParts(const char* pName) : LiveActor(pName) {
     mRotator = nullptr;
     mAppearController = nullptr;
 }
@@ -26,10 +25,10 @@ void MercatorRotateParts::control() {
 }
 
 void MercatorRotateParts::calcAndSetBaseMtx() {
-    TVec3f  trans;
-    TPos3f  rotate;
+    TVec3f trans;
+    TPos3f rotate;
     TMtx34f mtx;
-    TPos3f  baseMtx;
+    TPos3f baseMtx;
     baseMtx.identity();
     MR::makeMtxRotate(mtx.toMtxPtr(), mLocalRotate.x, mLocalRotate.y, mLocalRotate.z);
     baseMtx.concat(mRotator->getRotateMtx(), mtx);
@@ -69,5 +68,4 @@ void MercatorRotateParts::init(const JMapInfoIter& rIter) {
     MR::initMapPartsClipping(this, rIter, nullptr, false);
 }
 
-MercatorRotateParts::~MercatorRotateParts() {
-}
+MercatorRotateParts::~MercatorRotateParts() {}

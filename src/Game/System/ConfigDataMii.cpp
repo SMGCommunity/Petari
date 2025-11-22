@@ -14,10 +14,7 @@
 #define ICON_ID_KINOPIO 4
 #define ICON_ID_PEACH 5
 
-ConfigDataMii::ConfigDataMii()
-    : mFlag(0),
-      mIconId(ICON_ID_MARIO),
-      mMiiId(nullptr) {
+ConfigDataMii::ConfigDataMii() : mFlag(0), mIconId(ICON_ID_MARIO), mMiiId(nullptr) {
     mMiiId = new u8[sizeof(RFLCreateID)];
 
     initializeData();

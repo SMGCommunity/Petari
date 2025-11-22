@@ -7,7 +7,7 @@ public:
     JKRAramArchive(long, EMountDirection);
     virtual ~JKRAramArchive();
 
-    virtual s32   getExpandedResSize(const void*) const;
+    virtual s32 getExpandedResSize(const void*) const;
     virtual void* fetchResource(SDIFileEntry*, unsigned long*);
     virtual void* fetchResource(void*, unsigned long, SDIFileEntry*, unsigned long*);
 

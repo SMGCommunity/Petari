@@ -1,7 +1,6 @@
 #include "Game/LiveActor/ShadowVolumeOval.hpp"
 
-ShadowVolumeOval::ShadowVolumeOval()
-    : ShadowVolumeModel("影描画[ボリューム楕球]") {
+ShadowVolumeOval::ShadowVolumeOval() : ShadowVolumeModel("影描画[ボリューム楕球]") {
     mSize.x = 100.0f;
     mSize.y = 100.0f;
     mSize.z = 200.0f;
@@ -10,7 +9,7 @@ ShadowVolumeOval::ShadowVolumeOval()
 
 bool ShadowVolumeOval::isDraw() const {
     ShadowController* controller = getController();
-    bool              ret = false;
+    bool ret = false;
 
     if (controller->isProjected()) {
         if (controller->isDraw()) {

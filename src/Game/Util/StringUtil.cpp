@@ -1,7 +1,7 @@
+#include "Game/Util/StringUtil.hpp"
 #include "Game/Screen/ReplaceTagProcessor.hpp"
 #include "Game/Util/EventUtil.hpp"
 #include "Game/Util/MessageUtil.hpp"
-#include "Game/Util/StringUtil.hpp"
 #include <cctype>
 // #include <cstdarg>
 #include <cstdio>
@@ -23,9 +23,9 @@ int wcsncpy(wchar_t*, const wchar_t*, size_t);
 
 namespace MR {
     struct Tag {
-        u16     _0;
-        u8      mDataSize;
-        u8      _3;
+        u16 _0;
+        u8 mDataSize;
+        u8 _3;
         wchar_t mBuffer[1];
     };
 
@@ -88,9 +88,7 @@ namespace MR {
         ReplaceTagFunction::ReplaceArgs(pDst, 16, pMessage, 0, minute, second);
     }
 
-    wchar_t* addNumberFontTag(wchar_t* pDst, int tag) {
-        return MR::addNumberFontTag(pDst, L"%d", tag);
-    }
+    wchar_t* addNumberFontTag(wchar_t* pDst, int tag) { return MR::addNumberFontTag(pDst, L"%d", tag); }
 
     char* removeExtensionString(char* pDst, u32 size, const char* pPath) {
         snprintf(pDst, size, "%s", pPath);
@@ -107,21 +105,13 @@ namespace MR {
         return pDirSeparator;
     }
 
-    void makeRaceBestTimeString(wchar_t* pDst, int raceId) {
-        MR::makeClearTimeString(pDst, getRaceBestTime(raceId));
-    }
+    void makeRaceBestTimeString(wchar_t* pDst, int raceId) { MR::makeClearTimeString(pDst, getRaceBestTime(raceId)); }
 
-    void makeRaceCurrentTimeString(wchar_t* pDst) {
-        MR::makeClearTimeString(pDst, getRaceCurrentTime());
-    }
+    void makeRaceCurrentTimeString(wchar_t* pDst) { MR::makeClearTimeString(pDst, getRaceCurrentTime()); }
 
-    void copyString(char* pDst, const char* pSrc, u32 num) {
-        strncpy(pDst, pSrc, num);
-    }
+    void copyString(char* pDst, const char* pSrc, u32 num) { strncpy(pDst, pSrc, num); }
 
-    void copyString(wchar_t* pDst, const wchar_t* pSrc, u32 num) {
-        wcsncpy(pDst, pSrc, num);
-    }
+    void copyString(wchar_t* pDst, const wchar_t* pSrc, u32 num) { wcsncpy(pDst, pSrc, num); }
 
     wchar_t* addPictureFontCode(wchar_t* pDst, int code) {
         pDst[0] = code;
@@ -212,25 +202,15 @@ namespace MR {
         return i;
     }
 
-    int strcasecmp(const char* pStr1, const char* pStr2) {
-        return ::strcasecmp(pStr1, pStr2);
-    }
+    int strcasecmp(const char* pStr1, const char* pStr2) { return ::strcasecmp(pStr1, pStr2); }
 
-    bool isEqualString(const char* pStr1, const char* pStr2) {
-        return strcmp(pStr1, pStr2) == 0;
-    }
+    bool isEqualString(const char* pStr1, const char* pStr2) { return strcmp(pStr1, pStr2) == 0; }
 
-    bool isEqualStringCase(const char* pStr1, const char* pStr2) {
-        return strcasecmp(pStr1, pStr2) == 0;
-    }
+    bool isEqualStringCase(const char* pStr1, const char* pStr2) { return strcasecmp(pStr1, pStr2) == 0; }
 
-    bool isEqualSubString(const char* pStr, const char* pSubStr) {
-        return strstr(pStr, pSubStr) != nullptr;
-    }
+    bool isEqualSubString(const char* pStr, const char* pSubStr) { return strstr(pStr, pSubStr) != nullptr; }
 
-    bool hasStringSpace(const char* pStr) {
-        return strchr(pStr, ' ') != nullptr;
-    }
+    bool hasStringSpace(const char* pStr) { return strchr(pStr, ' ') != nullptr; }
 
     bool isDigitStringTail(const char* pStr, int digitNum) {
         for (int i = 1; i <= digitNum; i++) {
@@ -254,14 +234,12 @@ namespace MR {
         return false;
     }
 
-    bool isNullOrEmptyString(const char* pStr) {
-        return pStr == nullptr || MR::isEqualString(pStr, "");
-    }
+    bool isNullOrEmptyString(const char* pStr) { return pStr == nullptr || MR::isEqualString(pStr, ""); }
 
     bool isMessageEditorNextTag(const wchar_t* pStr) {
         const Tag* pTag = reinterpret_cast< const Tag* >(pStr);
-        u8         v1 = pTag->_3;
-        wchar_t    v2 = pTag->mBuffer[0];
+        u8 v1 = pTag->_3;
+        wchar_t v2 = pTag->mBuffer[0];
 
         return v1 == 1 && v2 == 1;
     }
@@ -364,4 +342,4 @@ namespace MR {
 
         sscanf(pSrc, "\t{%ff,%ff,%ff,%ff}", &pDst[0], &pDst[1], &pDst[2], &pDst[3]);
     }
-}; // namespace MR
+};  // namespace MR

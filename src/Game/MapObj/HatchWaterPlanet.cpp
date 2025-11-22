@@ -2,8 +2,7 @@
 #include "Game/LiveActor/LodCtrl.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
 
-HatchWaterPlanet::HatchWaterPlanet(const char* pName)
-    : LiveActor(pName) {
+HatchWaterPlanet::HatchWaterPlanet(const char* pName) : LiveActor(pName) {
     mPlanetLODCtrl = nullptr;
     mCollisionParts = nullptr;
 }
@@ -60,8 +59,7 @@ void HatchWaterPlanet::exeWaitAfterOpen() {
     }
 }
 
-HatchWaterPlanet::~HatchWaterPlanet() {
-}
+HatchWaterPlanet::~HatchWaterPlanet() {}
 
 namespace NrvHatchWaterPlanet {
     INIT_NERVE(HatchWaterPlanetNrvWait);
@@ -78,6 +76,5 @@ namespace NrvHatchWaterPlanet {
         planet->exeOpen();
     }
 
-    void HatchWaterPlanetNrvWait::execute(Spine* pSpine) const {
-    }
-}; // namespace NrvHatchWaterPlanet
+    void HatchWaterPlanetNrvWait::execute(Spine* pSpine) const {}
+};  // namespace NrvHatchWaterPlanet

@@ -4,15 +4,13 @@
 #include "Game/Boss/BossKameckVs1.hpp"
 #include "Game/Boss/BossKameckVs2.hpp"
 #include "Game/Enemy/Kameck.hpp"
-#include "Game/Enemy/KameckHolder.hpp"
 #include "Game/Enemy/KameckBeamHolder.hpp"
+#include "Game/Enemy/KameckHolder.hpp"
 #include "Game/LiveActor/ActorJointCtrl.hpp"
 
 BossKameck::BossKameck(const char* pName, const char* pType)
-    : LiveActor(pName),
-      _8C(pType), _90(0.0f, 1.0f), _A0(0, 0, 1), mSequencer(nullptr), mKameckHolder(nullptr), mJointCtrl(nullptr),
+    : LiveActor(pName), _8C(pType), _90(0.0f, 1.0f), _A0(0, 0, 1), mSequencer(nullptr), mKameckHolder(nullptr), mJointCtrl(nullptr),
       mActorList(nullptr), mBeamListener(nullptr), mMoveRail(nullptr), _C4(0), _C8(0, 0, 0), _D4(-1) {
-
     mBeamListener = new BossKameckBeamEventListener(this);
     mActorList = new ActiveActorList(8);
 }
@@ -159,7 +157,7 @@ void BossKameck::updatePose() {
         f32 v4 = MR::normalize(mag, 0.0f, 3.0f);
         TVec3f v13(v18);
 
-        
+        
         ptr->scaleInline((4.0f * v4) / mag);
         ptr->addInline(v13);
 
@@ -213,8 +211,8 @@ void BossKameck::init(const JMapInfoIter& rIter) {
 }
 
 void BossKameck::initKameckHolder(const JMapInfoIter& rIter) {
-    s32         childNum = MR::getChildObjNum(rIter);
-    s32         kameckChildNum = 0;
+    s32 childNum = MR::getChildObjNum(rIter);
+    s32 kameckChildNum = 0;
     const char* objName;
 
     for (s32 i = 0; i < childNum; i++) {
@@ -314,7 +312,6 @@ namespace MR {
         boss->mSequencer = new BossKameckVs2();
         return boss;
     }
-}; // namespace MR
+};  // namespace MR
 
-BossKameck::~BossKameck() {
-}
+BossKameck::~BossKameck() {}

@@ -1,21 +1,18 @@
 #include "Game/NPC/ButlerExplain.hpp"
+#include "Game/Demo/DemoFunction.hpp"
 #include "Game/NPC/NPCActor.hpp"
 #include "Game/Util/DemoUtil.hpp"
 #include "Game/Util/Functor.hpp"
 #include "Game/Util/SoundUtil.hpp"
-#include "Game/Demo/DemoFunction.hpp"
 #include "revolution/types.h"
 
 namespace NrvButlerExplain {
     NEW_NERVE(ButlerExplainNrvDemo, ButlerExplain, Demo);
 };
 
-ButlerExplain::ButlerExplain(const char* pName)
-    : NPCActor(pName) {
-}
+ButlerExplain::ButlerExplain(const char* pName) : NPCActor(pName) {}
 
-ButlerExplain::~ButlerExplain() {
-}
+ButlerExplain::~ButlerExplain() {}
 
 void ButlerExplain::init(const JMapInfoIter& rIter) {
     NPCActorCaps caps("ButlerExplain");
@@ -42,5 +39,4 @@ void ButlerExplain::startDemo() {
     setNerve(&NrvButlerExplain::ButlerExplainNrvDemo::sInstance);
 }
 
-void ButlerExplain::exeDemo() {
-}
+void ButlerExplain::exeDemo() {}

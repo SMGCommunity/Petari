@@ -8,34 +8,28 @@
 #include <cstdio>
 
 namespace {
-    const Vec sStarPointerTargetOffset[4] = {
-        {
-            0.0f,
-            0.0f,
-            150.0f,
-        },
-        {0.0f, 0.0f, 0.0f},
-        {0.0f, 0.0f, 0.0f},
-        {0.0f, 0.0f, 0.0f}};
+    const Vec sStarPointerTargetOffset[4] = {{
+                                                 0.0f,
+                                                 0.0f,
+                                                 150.0f,
+                                             },
+                                             {0.0f, 0.0f, 0.0f},
+                                             {0.0f, 0.0f, 0.0f},
+                                             {0.0f, 0.0f, 0.0f}};
 
-    const f32 sStarPointerTargetSize[4] = {
-        220.0f,
-        150.0f,
-        120.0f,
-        120.0f};
+    const f32 sStarPointerTargetSize[4] = {220.0f, 150.0f, 120.0f, 120.0f};
 
     const char* sStarPointerTargetJoint[4] = {"Joint00", "Joint01", "Joint02", "Joint03"};
-}; // namespace
+};  // namespace
 
 namespace {
     NEW_NERVE(SkeletalFishBabyNrvSwim, SkeletalFishBaby, Swim);
     NEW_NERVE_ONEND(SkeletalFishBabyNrvBind, SkeletalFishBaby, Bind, Bind);
     NEW_NERVE(SkeletalFishBabyNrvBreak, SkeletalFishBaby, Break);
     NEW_NERVE(SkeletalFishBabyNrvDead, SkeletalFishBaby, Dead);
-}; // namespace
+};  // namespace
 
-SkeletalFishBaby::SkeletalFishBaby(const char* pName)
-    : LiveActor(pName) {
+SkeletalFishBaby::SkeletalFishBaby(const char* pName) : LiveActor(pName) {
     mJointIndicies = nullptr;
     _A0 = 20.0f;
     _A4 = 20.0f;
@@ -307,7 +301,8 @@ void SkeletalFishBaby::initSensor() {
 }
 
 bool SkeletalFishBaby::isAttackable() const {
-    bool isAttackable = !isNerve(&::SkeletalFishBabyNrvDead::sInstance) && !isNerve(&::SkeletalFishBabyNrvBreak::sInstance) && !isNerve(&::SkeletalFishBabyNrvBind::sInstance);
+    bool isAttackable = !isNerve(&::SkeletalFishBabyNrvDead::sInstance) && !isNerve(&::SkeletalFishBabyNrvBreak::sInstance) &&
+                        !isNerve(&::SkeletalFishBabyNrvBind::sInstance);
 
     return isAttackable;
 }
@@ -322,5 +317,4 @@ bool SkeletalFishBaby::isStarPointerPointing() const {
     return false;
 }
 
-SkeletalFishBaby::~SkeletalFishBaby() {
-}
+SkeletalFishBaby::~SkeletalFishBaby() {}

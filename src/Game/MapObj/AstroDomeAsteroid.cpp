@@ -1,8 +1,7 @@
 #include "Game/MapObj/AstroDomeAsteroid.hpp"
 #include "Game/Map/SphereSelector.hpp"
 
-AstroDomeAsteroid::AstroDomeAsteroid(const char* pName)
-    : LiveActor(pName) {
+AstroDomeAsteroid::AstroDomeAsteroid(const char* pName) : LiveActor(pName) {
     mRotationMtx.identity();
 }
 
@@ -40,8 +39,7 @@ bool AstroDomeAsteroid::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* 
     return SphereSelectorFunction::trySyncAppearMsgSelectStart(this, msg);
 }
 
-AstroDomeAsteroid::~AstroDomeAsteroid() {
-}
+AstroDomeAsteroid::~AstroDomeAsteroid() {}
 
 namespace NrvAstroDomeAsteroid {
     INIT_NERVE(AstroDomeAsteroidNrvWait);

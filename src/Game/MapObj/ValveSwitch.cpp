@@ -1,8 +1,7 @@
-#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/MapObj/ValveSwitch.hpp"
+#include "Game/LiveActor/HitSensor.hpp"
 
-ValveSwitch::ValveSwitch(const char* pName)
-    : LiveActor(pName) {
+ValveSwitch::ValveSwitch(const char* pName) : LiveActor(pName) {
     _8C = nullptr;
     mObjConnector = nullptr;
     _C4 = false;
@@ -66,7 +65,7 @@ void ValveSwitch::exeAdjust() {
         MR::setBrkFrameAndStop(this, 0.0f);
     }
 
-    f32        step = getNerveStep() / 3.0f;
+    f32 step = getNerveStep() / 3.0f;
     HitSensor* sensor = getSensor("body");
     JMAVECLerp(&_8C->mPosition, &sensor->mPosition, &_8C->mPosition, step);
 
@@ -130,7 +129,6 @@ namespace NrvValveSwitch {
     INIT_NERVE(ValveSwitchNrvAdjust);
     INIT_NERVE(ValveSwitchNrvValve);
     INIT_NERVE(ValveSwitchNrvEnd);
-}; // namespace NrvValveSwitch
+};  // namespace NrvValveSwitch
 
-ValveSwitch::~ValveSwitch() {
-}
+ValveSwitch::~ValveSwitch() {}

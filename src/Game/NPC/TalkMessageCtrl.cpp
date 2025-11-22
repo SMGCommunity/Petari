@@ -1,7 +1,7 @@
 #include "Game/NPC/TalkMessageCtrl.hpp"
-#include "Game/NPC/TalkNodeCtrl.hpp"
-#include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/ActorCameraInfo.hpp"
+#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/NPC/TalkNodeCtrl.hpp"
 
 #ifdef NON_MATCHING
 // one liner regswap with mNodeCtrl->mCurrentNode

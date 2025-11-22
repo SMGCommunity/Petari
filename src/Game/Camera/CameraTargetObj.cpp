@@ -1,16 +1,14 @@
-#include "Game/AreaObj/CubeCamera.hpp"
 #include "Game/Camera/CameraTargetObj.hpp"
+#include "Game/AreaObj/CubeCamera.hpp"
 #include "Game/Gravity/GravityInfo.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 
-CameraTargetObj::CameraTargetObj(const char* pName)
-    : NameObj(pName) {
+CameraTargetObj::CameraTargetObj(const char* pName) : NameObj(pName) {
     mCameraWall = false;
 }
 
-CameraTargetActor::CameraTargetActor(const char* pName)
-    : CameraTargetObj(pName) {
+CameraTargetActor::CameraTargetActor(const char* pName) : CameraTargetObj(pName) {
     mActor = nullptr;
     mUp.x = 0.0f;
     mUp.y = 1.0f;
@@ -24,8 +22,7 @@ CameraTargetActor::CameraTargetActor(const char* pName)
     mCameraArea = nullptr;
 }
 
-CameraTargetActor::~CameraTargetActor() {
-}
+CameraTargetActor::~CameraTargetActor() {}
 
 void CameraTargetActor::movement() {
     if (MR::isDead(mActor) || MR::isClipped(mActor)) {
@@ -98,8 +95,7 @@ Triangle* CameraTargetActor::getGroundTriangle() const {
     return nullptr;
 }
 
-CameraTargetPlayer::CameraTargetPlayer(const char* pName)
-    : CameraTargetObj(pName) {
+CameraTargetPlayer::CameraTargetPlayer(const char* pName) : CameraTargetObj(pName) {
     mGravity.x = 0.0f;
     mGravity.y = -1.0f;
     mGravity.z = 0.0f;
@@ -112,8 +108,7 @@ CameraTargetPlayer::CameraTargetPlayer(const char* pName)
     _5A = true;
 }
 
-CameraTargetPlayer::~CameraTargetPlayer() {
-}
+CameraTargetPlayer::~CameraTargetPlayer() {}
 
 const TVec3f* CameraTargetPlayer::getUpVec() const {
     return &mUp;

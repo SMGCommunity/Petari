@@ -1,12 +1,12 @@
 #include "Game/Util/JMapUtil.hpp"
 #include "Game/Util.hpp"
 #include "math_types.hpp"
-#include <cstdio>
 #include <cmath>
+#include <cstdio>
 
 namespace {
     bool getJMapInfoRailArg(const JMapInfoIter& rIter, const char* pName, s32* pOut) NO_INLINE {
-        s32  val;
+        s32 val;
         bool hasValue = rIter.getValue< s32 >(pName, &val);
 
         if (!hasValue) {
@@ -22,7 +22,7 @@ namespace {
     }
 
     bool getJMapInfoArgNoInit(const JMapInfoIter& rIter, const char* pName, s32* pOut) NO_INLINE {
-        s32  val;
+        s32 val;
         bool hasValue = rIter.getValue< s32 >(pName, &val);
 
         if (!hasValue) {
@@ -38,7 +38,7 @@ namespace {
     }
 
     bool getJMapInfoArgNoInit(const JMapInfoIter& rIter, const char* pName, f32* pOut) NO_INLINE {
-        s32  val;
+        s32 val;
         bool hasValue = ::getJMapInfoArgNoInit(rIter, pName, &val);
 
         if (!hasValue) {
@@ -50,7 +50,7 @@ namespace {
     }
 
     bool getJMapInfoArgNoInit(const JMapInfoIter& rIter, const char* pName, bool* pOut) NO_INLINE {
-        s32  val;
+        s32 val;
         bool hasValue = rIter.getValue< s32 >(pName, &val);
 
         if (!hasValue) {
@@ -65,12 +65,10 @@ namespace {
 
         return true;
     }
-}; // namespace
+};  // namespace
 
 namespace MR {
-    bool isValidInfo(const JMapInfoIter& rIter) {
-        return rIter.isValid();
-    }
+    bool isValidInfo(const JMapInfoIter& rIter) { return rIter.isValid(); }
 
     bool isObjectName(const JMapInfoIter& rIter, const char* pName) {
         const char* objName = nullptr;
@@ -95,7 +93,7 @@ namespace MR {
         *pOut = false;
         return ::getJMapInfoArgNoInit(rIter, pName, pOut);
     }
-}; // namespace MR
+};  // namespace MR
 
 namespace MR {
     bool getJMapInfoTrans(const JMapInfoIter& rIter, TVec3f* pOut) {
@@ -161,145 +159,75 @@ namespace MR {
         return true;
     }
 
-    bool getJMapInfoArg0WithInit(const JMapInfoIter& rIter, s32* pOut) {
-        return getArgAndInit(rIter, "Obj_arg0", pOut);
-    }
+    bool getJMapInfoArg0WithInit(const JMapInfoIter& rIter, s32* pOut) { return getArgAndInit(rIter, "Obj_arg0", pOut); }
 
-    bool getJMapInfoArg0WithInit(const JMapInfoIter& rIter, f32* pOut) {
-        return getArgAndInit(rIter, "Obj_arg0", pOut);
-    }
+    bool getJMapInfoArg0WithInit(const JMapInfoIter& rIter, f32* pOut) { return getArgAndInit(rIter, "Obj_arg0", pOut); }
 
-    bool getJMapInfoArg0WithInit(const JMapInfoIter& rIter, bool* pOut) {
-        return getArgAndInit(rIter, "Obj_arg0", pOut);
-    }
+    bool getJMapInfoArg0WithInit(const JMapInfoIter& rIter, bool* pOut) { return getArgAndInit(rIter, "Obj_arg0", pOut); }
 
-    bool getJMapInfoArg1WithInit(const JMapInfoIter& rIter, f32* pOut) {
-        return getArgAndInit(rIter, "Obj_arg1", pOut);
-    }
+    bool getJMapInfoArg1WithInit(const JMapInfoIter& rIter, f32* pOut) { return getArgAndInit(rIter, "Obj_arg1", pOut); }
 
-    bool getJMapInfoArg1WithInit(const JMapInfoIter& rIter, bool* pOut) {
-        return getArgAndInit(rIter, "Obj_arg1", pOut);
-    }
+    bool getJMapInfoArg1WithInit(const JMapInfoIter& rIter, bool* pOut) { return getArgAndInit(rIter, "Obj_arg1", pOut); }
 
-    bool getJMapInfoArg2WithInit(const JMapInfoIter& rIter, f32* pOut) {
-        return getArgAndInit(rIter, "Obj_arg2", pOut);
-    }
+    bool getJMapInfoArg2WithInit(const JMapInfoIter& rIter, f32* pOut) { return getArgAndInit(rIter, "Obj_arg2", pOut); }
 
-    bool getJMapInfoArg2WithInit(const JMapInfoIter& rIter, bool* pOut) {
-        return getArgAndInit(rIter, "Obj_arg2", pOut);
-    }
+    bool getJMapInfoArg2WithInit(const JMapInfoIter& rIter, bool* pOut) { return getArgAndInit(rIter, "Obj_arg2", pOut); }
 
-    bool getJMapInfoArg3WithInit(const JMapInfoIter& rIter, f32* pOut) {
-        return getArgAndInit(rIter, "Obj_arg3", pOut);
-    }
+    bool getJMapInfoArg3WithInit(const JMapInfoIter& rIter, f32* pOut) { return getArgAndInit(rIter, "Obj_arg3", pOut); }
 
-    bool getJMapInfoArg3WithInit(const JMapInfoIter& rIter, bool* pOut) {
-        return getArgAndInit(rIter, "Obj_arg3", pOut);
-    }
+    bool getJMapInfoArg3WithInit(const JMapInfoIter& rIter, bool* pOut) { return getArgAndInit(rIter, "Obj_arg3", pOut); }
 
-    bool getJMapInfoArg4WithInit(const JMapInfoIter& rIter, bool* pOut) {
-        return getArgAndInit(rIter, "Obj_arg4", pOut);
-    }
+    bool getJMapInfoArg4WithInit(const JMapInfoIter& rIter, bool* pOut) { return getArgAndInit(rIter, "Obj_arg4", pOut); }
 
-    bool getJMapInfoArg7WithInit(const JMapInfoIter& rIter, bool* pOut) {
-        return getArgAndInit(rIter, "Obj_arg7", pOut);
-    }
+    bool getJMapInfoArg7WithInit(const JMapInfoIter& rIter, bool* pOut) { return getArgAndInit(rIter, "Obj_arg7", pOut); }
 
-    bool getJMapInfoArg0NoInit(const JMapInfoIter& rIter, s32* pOut) {
-        return ::getJMapInfoArgNoInit(rIter, "Obj_arg0", pOut);
-    }
+    bool getJMapInfoArg0NoInit(const JMapInfoIter& rIter, s32* pOut) { return ::getJMapInfoArgNoInit(rIter, "Obj_arg0", pOut); }
 
-    bool getJMapInfoArg0NoInit(const JMapInfoIter& rIter, f32* pOut) {
-        return ::getJMapInfoArgNoInit(rIter, "Obj_arg0", pOut);
-    }
+    bool getJMapInfoArg0NoInit(const JMapInfoIter& rIter, f32* pOut) { return ::getJMapInfoArgNoInit(rIter, "Obj_arg0", pOut); }
 
-    bool getJMapInfoArg0NoInit(const JMapInfoIter& rIter, bool* pOut) {
-        return ::getJMapInfoArgNoInit(rIter, "Obj_arg0", pOut);
-    }
+    bool getJMapInfoArg0NoInit(const JMapInfoIter& rIter, bool* pOut) { return ::getJMapInfoArgNoInit(rIter, "Obj_arg0", pOut); }
 
-    bool getJMapInfoArg1NoInit(const JMapInfoIter& rIter, s32* pOut) {
-        return ::getJMapInfoArgNoInit(rIter, "Obj_arg1", pOut);
-    }
+    bool getJMapInfoArg1NoInit(const JMapInfoIter& rIter, s32* pOut) { return ::getJMapInfoArgNoInit(rIter, "Obj_arg1", pOut); }
 
-    bool getJMapInfoArg1NoInit(const JMapInfoIter& rIter, f32* pOut) {
-        return ::getJMapInfoArgNoInit(rIter, "Obj_arg1", pOut);
-    }
+    bool getJMapInfoArg1NoInit(const JMapInfoIter& rIter, f32* pOut) { return ::getJMapInfoArgNoInit(rIter, "Obj_arg1", pOut); }
 
-    bool getJMapInfoArg1NoInit(const JMapInfoIter& rIter, bool* pOut) {
-        return ::getJMapInfoArgNoInit(rIter, "Obj_arg1", pOut);
-    }
+    bool getJMapInfoArg1NoInit(const JMapInfoIter& rIter, bool* pOut) { return ::getJMapInfoArgNoInit(rIter, "Obj_arg1", pOut); }
 
-    bool getJMapInfoArg2NoInit(const JMapInfoIter& rIter, s32* pOut) {
-        return ::getJMapInfoArgNoInit(rIter, "Obj_arg2", pOut);
-    }
+    bool getJMapInfoArg2NoInit(const JMapInfoIter& rIter, s32* pOut) { return ::getJMapInfoArgNoInit(rIter, "Obj_arg2", pOut); }
 
-    bool getJMapInfoArg2NoInit(const JMapInfoIter& rIter, f32* pOut) {
-        return ::getJMapInfoArgNoInit(rIter, "Obj_arg2", pOut);
-    }
+    bool getJMapInfoArg2NoInit(const JMapInfoIter& rIter, f32* pOut) { return ::getJMapInfoArgNoInit(rIter, "Obj_arg2", pOut); }
 
-    bool getJMapInfoArg2NoInit(const JMapInfoIter& rIter, bool* pOut) {
-        return ::getJMapInfoArgNoInit(rIter, "Obj_arg2", pOut);
-    }
+    bool getJMapInfoArg2NoInit(const JMapInfoIter& rIter, bool* pOut) { return ::getJMapInfoArgNoInit(rIter, "Obj_arg2", pOut); }
 
-    bool getJMapInfoArg3NoInit(const JMapInfoIter& rIter, s32* pOut) {
-        return ::getJMapInfoArgNoInit(rIter, "Obj_arg3", pOut);
-    }
+    bool getJMapInfoArg3NoInit(const JMapInfoIter& rIter, s32* pOut) { return ::getJMapInfoArgNoInit(rIter, "Obj_arg3", pOut); }
 
-    bool getJMapInfoArg3NoInit(const JMapInfoIter& rIter, f32* pOut) {
-        return ::getJMapInfoArgNoInit(rIter, "Obj_arg3", pOut);
-    }
+    bool getJMapInfoArg3NoInit(const JMapInfoIter& rIter, f32* pOut) { return ::getJMapInfoArgNoInit(rIter, "Obj_arg3", pOut); }
 
-    bool getJMapInfoArg3NoInit(const JMapInfoIter& rIter, bool* pOut) {
-        return ::getJMapInfoArgNoInit(rIter, "Obj_arg3", pOut);
-    }
+    bool getJMapInfoArg3NoInit(const JMapInfoIter& rIter, bool* pOut) { return ::getJMapInfoArgNoInit(rIter, "Obj_arg3", pOut); }
 
-    bool getJMapInfoArg4NoInit(const JMapInfoIter& rIter, s32* pOut) {
-        return ::getJMapInfoArgNoInit(rIter, "Obj_arg4", pOut);
-    }
+    bool getJMapInfoArg4NoInit(const JMapInfoIter& rIter, s32* pOut) { return ::getJMapInfoArgNoInit(rIter, "Obj_arg4", pOut); }
 
-    bool getJMapInfoArg4NoInit(const JMapInfoIter& rIter, f32* pOut) {
-        return ::getJMapInfoArgNoInit(rIter, "Obj_arg4", pOut);
-    }
+    bool getJMapInfoArg4NoInit(const JMapInfoIter& rIter, f32* pOut) { return ::getJMapInfoArgNoInit(rIter, "Obj_arg4", pOut); }
 
-    bool getJMapInfoArg4NoInit(const JMapInfoIter& rIter, bool* pOut) {
-        return ::getJMapInfoArgNoInit(rIter, "Obj_arg4", pOut);
-    }
+    bool getJMapInfoArg4NoInit(const JMapInfoIter& rIter, bool* pOut) { return ::getJMapInfoArgNoInit(rIter, "Obj_arg4", pOut); }
 
-    bool getJMapInfoArg5NoInit(const JMapInfoIter& rIter, s32* pOut) {
-        return ::getJMapInfoArgNoInit(rIter, "Obj_arg5", pOut);
-    }
+    bool getJMapInfoArg5NoInit(const JMapInfoIter& rIter, s32* pOut) { return ::getJMapInfoArgNoInit(rIter, "Obj_arg5", pOut); }
 
-    bool getJMapInfoArg5NoInit(const JMapInfoIter& rIter, f32* pOut) {
-        return ::getJMapInfoArgNoInit(rIter, "Obj_arg5", pOut);
-    }
+    bool getJMapInfoArg5NoInit(const JMapInfoIter& rIter, f32* pOut) { return ::getJMapInfoArgNoInit(rIter, "Obj_arg5", pOut); }
 
-    bool getJMapInfoArg5NoInit(const JMapInfoIter& rIter, bool* pOut) {
-        return ::getJMapInfoArgNoInit(rIter, "Obj_arg5", pOut);
-    }
+    bool getJMapInfoArg5NoInit(const JMapInfoIter& rIter, bool* pOut) { return ::getJMapInfoArgNoInit(rIter, "Obj_arg5", pOut); }
 
-    bool getJMapInfoArg6NoInit(const JMapInfoIter& rIter, s32* pOut) {
-        return ::getJMapInfoArgNoInit(rIter, "Obj_arg6", pOut);
-    }
+    bool getJMapInfoArg6NoInit(const JMapInfoIter& rIter, s32* pOut) { return ::getJMapInfoArgNoInit(rIter, "Obj_arg6", pOut); }
 
-    bool getJMapInfoArg6NoInit(const JMapInfoIter& rIter, f32* pOut) {
-        return ::getJMapInfoArgNoInit(rIter, "Obj_arg6", pOut);
-    }
+    bool getJMapInfoArg6NoInit(const JMapInfoIter& rIter, f32* pOut) { return ::getJMapInfoArgNoInit(rIter, "Obj_arg6", pOut); }
 
-    bool getJMapInfoArg6NoInit(const JMapInfoIter& rIter, bool* pOut) {
-        return ::getJMapInfoArgNoInit(rIter, "Obj_arg6", pOut);
-    }
+    bool getJMapInfoArg6NoInit(const JMapInfoIter& rIter, bool* pOut) { return ::getJMapInfoArgNoInit(rIter, "Obj_arg6", pOut); }
 
-    bool getJMapInfoArg7NoInit(const JMapInfoIter& rIter, s32* pOut) {
-        return ::getJMapInfoArgNoInit(rIter, "Obj_arg7", pOut);
-    }
+    bool getJMapInfoArg7NoInit(const JMapInfoIter& rIter, s32* pOut) { return ::getJMapInfoArgNoInit(rIter, "Obj_arg7", pOut); }
 
-    bool getJMapInfoArg7NoInit(const JMapInfoIter& rIter, f32* pOut) {
-        return ::getJMapInfoArgNoInit(rIter, "Obj_arg7", pOut);
-    }
+    bool getJMapInfoArg7NoInit(const JMapInfoIter& rIter, f32* pOut) { return ::getJMapInfoArgNoInit(rIter, "Obj_arg7", pOut); }
 
-    bool getJMapInfoArg7NoInit(const JMapInfoIter& rIter, bool* pOut) {
-        return ::getJMapInfoArgNoInit(rIter, "Obj_arg7", pOut);
-    }
+    bool getJMapInfoArg7NoInit(const JMapInfoIter& rIter, bool* pOut) { return ::getJMapInfoArgNoInit(rIter, "Obj_arg7", pOut); }
 
     bool isEqualObjectName(const JMapInfoIter& rIter, const char* pOtherName) {
         const char* objName;
@@ -319,13 +247,9 @@ namespace MR {
         return linkID;
     }
 
-    bool getJMapInfoRailArg0NoInit(const JMapInfoIter& rIter, s32* pRailArg0) {
-        return ::getJMapInfoRailArg(rIter, "path_arg0", pRailArg0);
-    }
+    bool getJMapInfoRailArg0NoInit(const JMapInfoIter& rIter, s32* pRailArg0) { return ::getJMapInfoRailArg(rIter, "path_arg0", pRailArg0); }
 
-    bool getRailId(const JMapInfoIter& rIter, s32* pRailID) {
-        return getArgAndInit(rIter, "CommonPath_ID", pRailID);
-    }
+    bool getRailId(const JMapInfoIter& rIter, s32* pRailID) { return getArgAndInit(rIter, "CommonPath_ID", pRailID); }
 
     bool getObjectName(const char** pName, const JMapInfoIter& rIter) {
         if (!rIter.isValid()) {
@@ -348,9 +272,7 @@ namespace MR {
         return rIter.getValue< s32 >("Obj_arg0", &val);
     }
 
-    bool getJMapInfoShapeIdWithInit(const JMapInfoIter& rIter, s32* pShapeID) {
-        return rIter.getValue< s32 >("ShapeModelNo", pShapeID);
-    }
+    bool getJMapInfoShapeIdWithInit(const JMapInfoIter& rIter, s32* pShapeID) { return rIter.getValue< s32 >("ShapeModelNo", pShapeID); }
 
     bool getJMapInfoTransLocal(const JMapInfoIter& rIter, TVec3f* pOut) {
         if (!MR::getValue< f32 >(rIter, "pos_x", &pOut->x)) {
@@ -400,37 +322,21 @@ namespace MR {
         return MR::getValue< f32 >(rIter, str, &pOut->z);
     }
 
-    bool getJMapInfoArg1WithInit(const JMapInfoIter& rIter, s32* pOut) {
-        return MR::getArgAndInit(rIter, "Obj_arg1", pOut);
-    }
+    bool getJMapInfoArg1WithInit(const JMapInfoIter& rIter, s32* pOut) { return MR::getArgAndInit(rIter, "Obj_arg1", pOut); }
 
-    bool getJMapInfoArg2WithInit(const JMapInfoIter& rIter, s32* pOut) {
-        return MR::getArgAndInit(rIter, "Obj_arg2", pOut);
-    }
+    bool getJMapInfoArg2WithInit(const JMapInfoIter& rIter, s32* pOut) { return MR::getArgAndInit(rIter, "Obj_arg2", pOut); }
 
-    bool getJMapInfoArg3WithInit(const JMapInfoIter& rIter, s32* pOut) {
-        return MR::getArgAndInit(rIter, "Obj_arg3", pOut);
-    }
+    bool getJMapInfoArg3WithInit(const JMapInfoIter& rIter, s32* pOut) { return MR::getArgAndInit(rIter, "Obj_arg3", pOut); }
 
-    bool getJMapInfoArg4WithInit(const JMapInfoIter& rIter, s32* pOut) {
-        return MR::getArgAndInit(rIter, "Obj_arg4", pOut);
-    }
+    bool getJMapInfoArg4WithInit(const JMapInfoIter& rIter, s32* pOut) { return MR::getArgAndInit(rIter, "Obj_arg4", pOut); }
 
-    bool getJMapInfoArg5WithInit(const JMapInfoIter& rIter, s32* pOut) {
-        return MR::getArgAndInit(rIter, "Obj_arg5", pOut);
-    }
+    bool getJMapInfoArg5WithInit(const JMapInfoIter& rIter, s32* pOut) { return MR::getArgAndInit(rIter, "Obj_arg5", pOut); }
 
-    bool getJMapInfoArg6WithInit(const JMapInfoIter& rIter, s32* pOut) {
-        return MR::getArgAndInit(rIter, "Obj_arg6", pOut);
-    }
+    bool getJMapInfoArg6WithInit(const JMapInfoIter& rIter, s32* pOut) { return MR::getArgAndInit(rIter, "Obj_arg6", pOut); }
 
-    bool getJMapInfoArg7WithInit(const JMapInfoIter& rIter, s32* pOut) {
-        return MR::getArgAndInit(rIter, "Obj_arg7", pOut);
-    }
+    bool getJMapInfoArg7WithInit(const JMapInfoIter& rIter, s32* pOut) { return MR::getArgAndInit(rIter, "Obj_arg7", pOut); }
 
-    bool getJMapInfoFollowID(const JMapInfoIter& rIter, s32* pOut) {
-        return MR::getArgAndInit(rIter, "FollowId", pOut);
-    }
+    bool getJMapInfoFollowID(const JMapInfoIter& rIter, s32* pOut) { return MR::getArgAndInit(rIter, "FollowId", pOut); }
 
     bool getJMapInfoGroupID(const JMapInfoIter& rIter, s32* pOut) {
         if (MR::getArgAndInit(rIter, "GroupId", pOut)) {
@@ -440,17 +346,11 @@ namespace MR {
         return MR::getJMapInfoClippingGroupID(rIter, pOut);
     }
 
-    bool getJMapInfoClippingGroupID(const JMapInfoIter& rIter, s32* pOut) {
-        return MR::getArgAndInit(rIter, "ClippingGroupId", pOut);
-    }
+    bool getJMapInfoClippingGroupID(const JMapInfoIter& rIter, s32* pOut) { return MR::getArgAndInit(rIter, "ClippingGroupId", pOut); }
 
-    bool getJMapInfoDemoGroupID(const JMapInfoIter& rIter, s32* pOut) {
-        return MR::getArgAndInit(rIter, "DemoGroupId", pOut);
-    }
+    bool getJMapInfoDemoGroupID(const JMapInfoIter& rIter, s32* pOut) { return MR::getArgAndInit(rIter, "DemoGroupId", pOut); }
 
-    bool getJMapInfoLinkID(const JMapInfoIter& rIter, s32* pOut) {
-        return rIter.getValue< s32 >("l_id", pOut);
-    }
+    bool getJMapInfoLinkID(const JMapInfoIter& rIter, s32* pOut) { return rIter.getValue< s32 >("l_id", pOut); }
 
     bool isConnectedWithRail(const JMapInfoIter& rIter) {
         if (!rIter.isValid()) {
@@ -559,9 +459,7 @@ namespace MR {
         return name;
     }
 
-    bool getNextLinkRailID(const JMapInfoIter& rIter, s32* pOut) {
-        return rIter.getValue< s32 >("Path_ID", pOut);
-    }
+    bool getNextLinkRailID(const JMapInfoIter& rIter, s32* pOut) { return rIter.getValue< s32 >("Path_ID", pOut); }
 
     bool isEqualRailUsage(const JMapInfoIter& rIter, const char* pUsage) {
         const char* str = nullptr;
@@ -604,4 +502,4 @@ namespace MR {
         rIter.getValue< const char* >("closed", &status);
         return isEqualString(status, "CLOSE");
     }
-}; // namespace MR
+};  // namespace MR

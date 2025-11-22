@@ -11,7 +11,7 @@ void WaterRoadModelInfo::initDisplayList() {
     }
 
     mList = new u8[0x20];
-    //DCInvalidateRange(mList, )
+    // DCInvalidateRange(mList, )
 }
 
 void WaterRoadModelInfo::drawGD() const {

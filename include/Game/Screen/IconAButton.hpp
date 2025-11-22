@@ -22,7 +22,7 @@ public:
     void exeTerm();
     void updateFollowPos();
 
-    /* 0x20 */ TVec2f       mFollowPos;
+    /* 0x20 */ TVec2f mFollowPos;
     /* 0x28 */ LayoutActor* mFollowActor;
-    /* 0x2C */ char         mFollowPaneName[24];
+    /* 0x2C */ char mFollowPaneName[24];
 };

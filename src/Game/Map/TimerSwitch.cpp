@@ -1,7 +1,6 @@
 #include "Game/Map/TimerSwitch.hpp"
 
-TimerSwitch::TimerSwitch(const char* pName)
-    : LiveActor(pName) {
+TimerSwitch::TimerSwitch(const char* pName) : LiveActor(pName) {
     mTimerLength = -1;
     mCurrentTime = -1;
 }
@@ -31,5 +30,4 @@ void TimerSwitch::control() {
     }
 }
 
-TimerSwitch::~TimerSwitch() {
-}
+TimerSwitch::~TimerSwitch() {}

@@ -43,7 +43,7 @@ void SkeletalFishBabyRailGroupNode::tidy() {
         TVec3f endPointPos;
         MR::calcRailEndPointPos(&endPointPos, curLink->_0);
         SkeletalFishBabyRailSetLinkNode* v2 = curLink;
-        TVec3f                           nearestRailPos;
+        TVec3f nearestRailPos;
         MR::calcNearestRailPos(&nearestRailPos, curLink->_4, endPointPos);
         f32 totalDist = PSVECDistance(&endPointPos, &nearestRailPos);
 
@@ -73,8 +73,7 @@ void SkeletalFishBabyRailGroupNode::createChild() {
     mNumNodes++;
 }
 
-SkeletalFishBabyRailHolder::SkeletalFishBabyRailHolder(const char* pName)
-    : NameObj(pName) {
+SkeletalFishBabyRailHolder::SkeletalFishBabyRailHolder(const char* pName) : NameObj(pName) {
     mNodes = nullptr;
 }
 
@@ -121,13 +120,10 @@ namespace MR {
         return MR::getSceneObj< SkeletalFishBabyRailHolder >(SceneObj_SkeletalFishBabyRailHolder);
     }
 
-    void createSkeletalFishBabyRailHolder() {
-        MR::createSceneObj(SceneObj_SkeletalFishBabyRailHolder);
-    }
-}; // namespace MR
+    void createSkeletalFishBabyRailHolder() { MR::createSceneObj(SceneObj_SkeletalFishBabyRailHolder); }
+};  // namespace MR
 
-SkeletalFishBabyRailHolder::~SkeletalFishBabyRailHolder() {
-}
+SkeletalFishBabyRailHolder::~SkeletalFishBabyRailHolder() {}
 
 SkeletalFishBabyRailSetLinkNode::SkeletalFishBabyRailSetLinkNode() {
     _0 = 0;

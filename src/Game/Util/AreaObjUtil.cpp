@@ -5,21 +5,13 @@
 
 namespace MR {
 
-    inline AreaObj* getAreaIn(const char* pName, const TVec3f& rPos) {
-        return getAreaObjContainer()->getAreaObj(pName, rPos);
-    }
+    inline AreaObj* getAreaIn(const char* pName, const TVec3f& rPos) { return getAreaObjContainer()->getAreaObj(pName, rPos); }
 
-    AreaObjMgr* getAreaObjManager(const char* pMgrName) {
-        return MR::getAreaObjContainer()->getManager(pMgrName);
-    }
+    AreaObjMgr* getAreaObjManager(const char* pMgrName) { return MR::getAreaObjContainer()->getManager(pMgrName); }
 
-    AreaObj* getAreaObj(const char* pAreaName, const TVec3f& rVec) {
-        return MR::getAreaObjContainer()->getAreaObj(pAreaName, rVec);
-    }
+    AreaObj* getAreaObj(const char* pAreaName, const TVec3f& rVec) { return MR::getAreaObjContainer()->getAreaObj(pAreaName, rVec); }
 
-    bool isInAreaObj(const char* pAreaName, const TVec3f& rVec) {
-        return MR::getAreaObjContainer()->getAreaObj(pAreaName, rVec);
-    }
+    bool isInAreaObj(const char* pAreaName, const TVec3f& rVec) { return MR::getAreaObjContainer()->getAreaObj(pAreaName, rVec); }
 
     s32 getAreaObjArg(const AreaObj* pObj, s32 which) {
         switch (which) {
@@ -44,7 +36,5 @@ namespace MR {
         }
     }
 
-    AreaObj* getCurrentAstroOverlookAreaObj() {
-        return getAreaIn("AstroOverlookArea", *MR::getPlayerPos());
-    }
-}; // namespace MR
+    AreaObj* getCurrentAstroOverlookAreaObj() { return getAreaIn("AstroOverlookArea", *MR::getPlayerPos()); }
+};  // namespace MR

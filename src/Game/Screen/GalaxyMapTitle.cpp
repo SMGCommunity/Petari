@@ -1,5 +1,5 @@
-#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/GalaxyMapTitle.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 
 namespace {
@@ -8,11 +8,9 @@ namespace {
     NEW_NERVE(GalaxyMapTitleDisappear, GalaxyMapTitle, Disappear);
     NEW_NERVE(GalaxyMapTitleAppearToAnother, GalaxyMapTitle, AppearToAnother);
     NEW_NERVE(GalaxyMapTitleDisappearToAnother, GalaxyMapTitle, DisappearToAnother);
-}; // namespace
+};  // namespace
 
-GalaxyMapTitle::GalaxyMapTitle()
-    : LayoutActor("MapTitle", true),
-      mMessageID(nullptr) {}
+GalaxyMapTitle::GalaxyMapTitle() : LayoutActor("MapTitle", true), mMessageID(nullptr) {}
 
 void GalaxyMapTitle::init(const JMapInfoIter& rIter) {
     initLayoutManager("MapTitle", 1);

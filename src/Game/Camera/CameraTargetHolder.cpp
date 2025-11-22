@@ -8,8 +8,7 @@ CameraTargetHolder::CameraTargetHolder() {
     mTargetPlayer = new CameraTargetPlayer("マリオ注目");
 }
 
-CameraTargetHolder::~CameraTargetHolder() {
-}
+CameraTargetHolder::~CameraTargetHolder() {}
 
 void CameraTargetHolder::movement() {
     mTargetActor->movement();
@@ -39,7 +38,7 @@ bool CameraTargetHolder::isOnGround() const {
 
 bool CameraTargetHolder::isMoving() const {
     const TVec3f* lastMove = mTarget->getLastMove();
-    f32           length = PSVECMag(reinterpret_cast< const Vec* >(lastMove));
+    f32 length = PSVECMag(reinterpret_cast< const Vec* >(lastMove));
 
     return length > 1.0f;
 }

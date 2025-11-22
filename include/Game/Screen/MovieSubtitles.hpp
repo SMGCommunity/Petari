@@ -16,5 +16,5 @@ public:
 
 private:
     /* 0x20 */ TalkTextFormer* mFormerText;
-    /* 0x24 */ s32             mAppearTime;
+    /* 0x24 */ s32 mAppearTime;
 };

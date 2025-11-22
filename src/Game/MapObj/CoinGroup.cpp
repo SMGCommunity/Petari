@@ -1,8 +1,7 @@
 #include "Game/MapObj/CoinGroup.hpp"
 #include "Game/Util.hpp"
 
-CoinGroup::CoinGroup(const char* pName)
-    : LiveActor(pName) {
+CoinGroup::CoinGroup(const char* pName) : LiveActor(pName) {
     mCoinArray = nullptr;
     mCameraInfo = nullptr;
     mCoinCount = 0;
@@ -154,18 +153,16 @@ namespace NrvCoinGroup {
         coin->exeDemoAppear();
     }
 
-    void CoinGroupNrvTryStartDemo::execute(Spine* pSpine) const {
-    }
+    void CoinGroupNrvTryStartDemo::execute(Spine* pSpine) const {}
 
     void CoinGroupNrvAppear::execute(Spine* pSpine) const {
         CoinGroup* coin = reinterpret_cast< CoinGroup* >(pSpine->mExecutor);
         coin->exeAppear();
     }
-}; // namespace NrvCoinGroup
+};  // namespace NrvCoinGroup
 
 const char* CoinGroup::getCoinName() const {
     return "コイン(グループ配置)";
 }
 
-void CoinGroup::placementCoin() {
-}
+void CoinGroup::placementCoin() {}

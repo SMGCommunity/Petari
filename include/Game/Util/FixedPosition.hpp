@@ -1,7 +1,7 @@
 #pragma once
 
-#include "JSystem/JGeometry/TVec.hpp"
 #include "JSystem/JGeometry/TMatrix.hpp"
+#include "JSystem/JGeometry/TVec.hpp"
 #include <revolution.h>
 
 class LiveActor;
@@ -20,9 +20,9 @@ public:
     void copyTrans(TVec3f*) const;
     void copyRotate(TVec3f*) const;
 
-    MtxPtr mBaseMtx;    // 0x0
-    TVec3f mLocalTrans; // 0x4
+    MtxPtr mBaseMtx;     // 0x0
+    TVec3f mLocalTrans;  // 0x4
     TVec3f _10;
     TPos3f _1C;
-    bool   mNormalizeScale; // 0x4C
+    bool mNormalizeScale;  // 0x4C
 };

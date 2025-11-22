@@ -35,4 +35,4 @@ namespace MR {
         MR::addBaseMatrixFollower(new GraviryFollower(pGravityObj, rIter));
         return true;
     }
-} // namespace MR
+}  // namespace MR

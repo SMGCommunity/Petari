@@ -1,16 +1,15 @@
 #include "Game/MapObj/AstroCountDownPlate.hpp"
-#include "Game/MapObj/AstroMapObjFunction.hpp"
 #include "Game/LiveActor/MaterialCtrl.hpp"
+#include "Game/MapObj/AstroMapObjFunction.hpp"
 
 namespace {
     const char* cMaterialName01 = "StarNumber01_v_x";
     const char* cMaterialName10 = "StarNumber01_v_x(2)";
     const char* cLastBattleDemoName = "ロゼッタ最終決戦デモ";
     const char* cStartCountDownDemoName = "ロゼッタカウントダウン開始デモ";
-}; // namespace
+};  // namespace
 
-AstroCountDownPlate::AstroCountDownPlate(const char* pName)
-    : LiveActor(pName) {
+AstroCountDownPlate::AstroCountDownPlate(const char* pName) : LiveActor(pName) {
     _8C.mInfo = j3dDefaultTexMtxInfo;
     _120.mInfo = j3dDefaultTexMtxInfo;
     _1B4 = 0;
@@ -27,12 +26,14 @@ void AstroCountDownPlate::init(const JMapInfoIter& rIter) {
     MR::invalidateClipping(this);
 
     if (MR::tryRegisterDemoCast(this, cStartCountDownDemoName, rIter)) {
-        MR::FunctorV0M< AstroCountDownPlate*, void (AstroCountDownPlate::*)() > startDemoFunc = MR::Functor< AstroCountDownPlate >(this, &AstroCountDownPlate::startDemoStartCountDown);
+        MR::FunctorV0M< AstroCountDownPlate*, void (AstroCountDownPlate::*)() > startDemoFunc =
+            MR::Functor< AstroCountDownPlate >(this, &AstroCountDownPlate::startDemoStartCountDown);
         MR::tryRegisterDemoActionFunctorDirect(this, startDemoFunc, cStartCountDownDemoName, nullptr);
     }
 
     if (MR::tryRegisterDemoCast(this, cLastBattleDemoName, rIter)) {
-        MR::FunctorV0M< AstroCountDownPlate*, void (AstroCountDownPlate::*)() > lastBattleFunc = MR::Functor< AstroCountDownPlate >(this, &AstroCountDownPlate::startDemoLastBattle);
+        MR::FunctorV0M< AstroCountDownPlate*, void (AstroCountDownPlate::*)() > lastBattleFunc =
+            MR::Functor< AstroCountDownPlate >(this, &AstroCountDownPlate::startDemoLastBattle);
         MR::tryRegisterDemoActionFunctorDirect(this, lastBattleFunc, cLastBattleDemoName, nullptr);
     }
 
@@ -142,7 +143,6 @@ namespace NrvAstroCountDownPlate {
     INIT_NERVE(AstroCountDownPlateNrvAlive);
     INIT_NERVE(AstroCountDownPlateNrvRevival);
     INIT_NERVE(AstroCountDownPlateNrvCountToZero);
-}; // namespace NrvAstroCountDownPlate
+};  // namespace NrvAstroCountDownPlate
 
-AstroCountDownPlate::~AstroCountDownPlate() {
-}
+AstroCountDownPlate::~AstroCountDownPlate() {}

@@ -1,8 +1,7 @@
 #include "Game/MapObj/TreasureSpot.hpp"
 #include "Game/Util.hpp"
 
-TreasureSpot::TreasureSpot(const char* pName)
-    : MapObjActor(pName) {
+TreasureSpot::TreasureSpot(const char* pName) : MapObjActor(pName) {
     mIsCoinFlower = false;
 }
 
@@ -87,8 +86,7 @@ void TreasureSpot::switchEmitGlow() {
     }
 }
 
-TreasureSpot::~TreasureSpot() {
-}
+TreasureSpot::~TreasureSpot() {}
 
 namespace NrvTreasureSpot {
     INIT_NERVE(TreasureSpotNrvWait);
@@ -100,9 +98,7 @@ namespace NrvTreasureSpot {
         spot->exeSpout();
     }
 
-    void TreasureSpotNrvEnd::execute(Spine* pSpine) const {
-    }
+    void TreasureSpotNrvEnd::execute(Spine* pSpine) const {}
 
-    void TreasureSpotNrvWait::execute(Spine* pSpine) const {
-    }
-}; // namespace NrvTreasureSpot
+    void TreasureSpotNrvWait::execute(Spine* pSpine) const {}
+};  // namespace NrvTreasureSpot

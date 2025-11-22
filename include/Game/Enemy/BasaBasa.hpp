@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/Enemy/AnimStampController.hpp"
 #include "Game/Enemy/AnimScaleController.hpp"
+#include "Game/Enemy/AnimStampController.hpp"
 #include "Game/Enemy/SpinHitController.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
@@ -51,21 +51,21 @@ public:
     bool isNearTarget(f32) const;
     bool isNrvEnableStun() const;
 
-    ModelObj*            mHangModel;         // 0x8C
-    AnimScaleController* mScaleController;   // 0x90
-    AnimStampController* mStampController;   // 0x94
-    SpinHitController*   mSpinHitController; // 0x98
-    TVec3f               _9C;
-    f32                  _A8;
-    f32                  _AC;
-    u32                  _B0;
-    const TVec3f*        _B4;
-    f32                  _B8;
-    TVec3f               _BC;
-    bool                 mIsIceModel; // 0xC8
-    TVec3f               _CC;
-    TVec3f               _D8;
-    f32                  _E4;
-    s32                  _E8;
-    u8                   _EC;
+    ModelObj* mHangModel;                   // 0x8C
+    AnimScaleController* mScaleController;  // 0x90
+    AnimStampController* mStampController;  // 0x94
+    SpinHitController* mSpinHitController;  // 0x98
+    TVec3f _9C;
+    f32 _A8;
+    f32 _AC;
+    u32 _B0;
+    const TVec3f* _B4;
+    f32 _B8;
+    TVec3f _BC;
+    bool mIsIceModel;  // 0xC8
+    TVec3f _CC;
+    TVec3f _D8;
+    f32 _E4;
+    s32 _E8;
+    u8 _EC;
 };

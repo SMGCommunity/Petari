@@ -1,5 +1,5 @@
-#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/CenterScreenBlur.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/FullScreenBlur.hpp"
 #include "Game/Util/DemoUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
@@ -9,17 +9,9 @@ namespace NrvCenterScreenBlur {
     NEW_NERVE(CenterScreenBlurNrvFadeIn, CenterScreenBlur, FadeIn);
     NEW_NERVE(CenterScreenBlurNrvKeep, CenterScreenBlur, Keep);
     NEW_NERVE(CenterScreenBlurNrvFadeOut, CenterScreenBlur, FadeOut);
-}; // namespace NrvCenterScreenBlur
+};  // namespace NrvCenterScreenBlur
 
-CenterScreenBlur::CenterScreenBlur()
-    : LiveActor("画面中心ブラー"),
-      _8C(0),
-      _90(0),
-      _94(0),
-      _98(0.0f),
-      _9C(0),
-      _A0(0.0f) {
-}
+CenterScreenBlur::CenterScreenBlur() : LiveActor("画面中心ブラー"), _8C(0), _90(0), _94(0), _98(0.0f), _9C(0), _A0(0.0f) {}
 
 void CenterScreenBlur::init(const JMapInfoIter& rIter) {
     MR::connectToScene(this, 0x17, -1, -1, 0x2F);
@@ -40,7 +32,7 @@ void CenterScreenBlur::appear() {
 void CenterScreenBlur::draw() const {
     if (!MR::isDead(this)) {
         f32 a = _98 * _A0;
-        u8  b = _9C * _A0;
+        u8 b = _9C * _A0;
 
         MR::drawFullScreenBlur(a, a, b, b);
     }

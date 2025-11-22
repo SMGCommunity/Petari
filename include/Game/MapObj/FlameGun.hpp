@@ -22,7 +22,7 @@ public:
     void exeRadiateOnly();
 
     TVec3f _8C;
-    s32    mState; // 0x98
+    s32 mState;  // 0x98
 };
 
 namespace NrvFlameGun {
@@ -32,4 +32,4 @@ namespace NrvFlameGun {
     NERVE_DECL(HostTypeNrvRadiate, FlameGun, FlameGun::exeRadiate);
     NERVE_DECL(HostTypeNrvRotate, FlameGun, FlameGun::exeRotate);
     NERVE_DECL(HostTypeNrvRadiateOnly, FlameGun, FlameGun::exeRadiateOnly);
-}; // namespace NrvFlameGun
+};  // namespace NrvFlameGun

@@ -1,7 +1,6 @@
 #include "Game/MapObj/ShootingStar.hpp"
 
-ShootingStar::ShootingStar(const char* pName)
-    : LiveActor(pName), _8C(0, 0, 0), _98(0, 0, 1), _A4(0, -1, 0) {
+ShootingStar::ShootingStar(const char* pName) : LiveActor(pName), _8C(0, 0, 0), _98(0, 0, 1), _A4(0, -1, 0) {
     _B0 = 5;
     _B4 = 0xF0;
     _B8 = 2000.0f;
@@ -38,7 +37,8 @@ void ShootingStar::init(const JMapInfoIter& rIter) {
     MR::initShadowVolumeSphere(this, 30.0f);
 
     if (MR::useStageSwitchReadAppear(this, rIter)) {
-        MR::listenStageSwitchOnOffAppear(this, MR::FunctorV0M< LiveActor*, void (LiveActor::*)(void) >(this, &LiveActor::kill), MR::FunctorV0M< ShootingStar*, void (ShootingStar::*)(void) >(this, &ShootingStar::appearPreShooting));
+        MR::listenStageSwitchOnOffAppear(this, MR::FunctorV0M< LiveActor*, void (LiveActor::*)(void) >(this, &LiveActor::kill),
+                                         MR::FunctorV0M< ShootingStar*, void (ShootingStar::*)(void) >(this, &ShootingStar::appearPreShooting));
         makeActorDead();
     } else {
         makeActorAppeared();
@@ -46,7 +46,7 @@ void ShootingStar::init(const JMapInfoIter& rIter) {
 
     LiveActor::calcAndSetBaseMtx();
     TSMtxf matrix;
-    f32    x, y, z;
+    f32 x, y, z;
     matrix.setInline_2(getBaseMtx());
     x = matrix.mMtx[0][1];
     y = matrix.mMtx[1][1];
@@ -63,7 +63,7 @@ void ShootingStar::appearPreShooting() {
 
 /*
 void ShootingStar::control() {
-    
+    
     mRotation.y = zero + fmod((360.0f + ((10.0f + mRotation.y) - zero)), 360.0);
 }
 
@@ -125,7 +125,6 @@ namespace NrvShootingStar {
         ShootingStar* star = reinterpret_cast< ShootingStar* >(pSpine->mExecutor);
         star->exePreShooting();
     }
-}; // namespace NrvShootingStar
+};  // namespace NrvShootingStar
 
-ShootingStar::~ShootingStar() {
-}
+ShootingStar::~ShootingStar() {}

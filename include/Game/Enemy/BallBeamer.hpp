@@ -15,18 +15,18 @@ public:
     virtual bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
 
     static void makeArchiveList(NameObjArchiveListCollector*, const JMapInfoIter&);
-    void        syncSwitchOnA();
-    void        syncSwitchOffA();
-    void        syncSwitchOnB();
-    void        setupAttack();
-    bool        tryAttack();
-    void        exeWait();
-    void        exeAttack();
-    void        exeInter();
+    void syncSwitchOnA();
+    void syncSwitchOffA();
+    void syncSwitchOnB();
+    void setupAttack();
+    bool tryAttack();
+    void exeWait();
+    void exeAttack();
+    void exeInter();
 
     RingBeam** mBeams;
-    bool       _90;
+    bool _90;
     // needed to get _98 at correct offset
-    u8      _94[4]; // unused?
+    u8 _94[4];  // unused?
     TMtx34f _98;
 };

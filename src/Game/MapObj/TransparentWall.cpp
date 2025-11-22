@@ -1,12 +1,11 @@
-#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/MapObj/TransparentWall.hpp"
+#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/MapObj/InvisiblePolygonObj.hpp"
 #include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 
-TransparentWall::TransparentWall(const char* pName)
-    : InvisiblePolygonObj(pName) {}
+TransparentWall::TransparentWall(const char* pName) : InvisiblePolygonObj(pName) {}
 
 TransparentWall::~TransparentWall() {}
 

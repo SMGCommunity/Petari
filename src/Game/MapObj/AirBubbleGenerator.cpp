@@ -1,11 +1,9 @@
 #include "Game/MapObj/AirBubbleGenerator.hpp"
 #include "Game/MapObj/AirBubbleHolder.hpp"
 
-AirBubbleGenerator::~AirBubbleGenerator() {
-}
+AirBubbleGenerator::~AirBubbleGenerator() {}
 
-AirBubbleGenerator::AirBubbleGenerator(const char* pName)
-    : LiveActor(pName) {
+AirBubbleGenerator::AirBubbleGenerator(const char* pName) : LiveActor(pName) {
     _8C = 0;
     mSpawnDelay = 180;
     mBubbleDuration = -1;
@@ -33,8 +31,7 @@ void AirBubbleGenerator::init(const JMapInfoIter& rIter) {
     }
 }
 
-void AirBubbleGenerator::control() {
-}
+void AirBubbleGenerator::control() {}
 
 void AirBubbleGenerator::exeWait() {
     s32 spawnDelay = mSpawnDelay;
@@ -64,4 +61,4 @@ void AirBubbleGenerator::exeGenerate() {
 namespace NrvAirBubbleGenerator {
     INIT_NERVE(AirBubbleGenerateNrvWait);
     INIT_NERVE(AirBubbleGeneratorNrvGenerate);
-}; // namespace NrvAirBubbleGenerator
+};  // namespace NrvAirBubbleGenerator

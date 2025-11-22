@@ -3,10 +3,7 @@
 #include "Game/Util/LayoutUtil.hpp"
 
 GalaxyMapCometIcon::GalaxyMapCometIcon(const char* pName, LayoutActor* pParam2, const char* pParam3)
-    : LayoutActor(pName, true),
-      _20(pName),
-      _24(pParam2),
-      _28(pParam3) {}
+    : LayoutActor(pName, true), _20(pName), _24(pParam2), _28(pParam3) {}
 
 void GalaxyMapCometIcon::appear() {
     LayoutActor::appear();
@@ -23,11 +20,9 @@ void GalaxyMapCometIcon::calcAnimForCapture(const nw4r::lyt::DrawInfo& rDrawInfo
     MR::calcAnimLayoutWithDrawInfo(this, rDrawInfo);
 }
 
-void GalaxyMapCometIcon::control() {
-}
+void GalaxyMapCometIcon::control() {}
 
-GalaxyMapCometIcon::~GalaxyMapCometIcon() {
-}
+GalaxyMapCometIcon::~GalaxyMapCometIcon() {}
 
 void GalaxyMapCometIcon::init(const JMapInfoIter& rIter) {
     initLayoutManager("IconComet", 2);

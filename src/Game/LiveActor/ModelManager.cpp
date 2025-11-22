@@ -1,3 +1,4 @@
+#include "Game/LiveActor/ModelManager.hpp"
 #include "Game/Animation/BckCtrl.hpp"
 #include "Game/Animation/BpkPlayer.hpp"
 #include "Game/Animation/BrkPlayer.hpp"
@@ -7,23 +8,13 @@
 #include "Game/Animation/XanimePlayer.hpp"
 #include "Game/Animation/XanimeResource.hpp"
 #include "Game/LiveActor/DisplayListMaker.hpp"
-#include "Game/LiveActor/ModelManager.hpp"
 #include "Game/System/ResourceHolder.hpp"
 #include "Game/Util/MutexHolder.hpp"
 #include <JSystem/J3DGraphAnimator/J3DModel.hpp>
 
 ModelManager::ModelManager()
-    : mBtkPlayer(nullptr),
-      mBrkPlayer(nullptr),
-      mBtpPlayer(nullptr),
-      mBpkPlayer(nullptr),
-      mBvaPlayer(nullptr),
-      mXanimeResourceTable(nullptr),
-      mXanimePlayer(nullptr),
-      mModel(nullptr),
-      mModelResourceHolder(nullptr),
-      mDisplayListMaker(nullptr) {
-}
+    : mBtkPlayer(nullptr), mBrkPlayer(nullptr), mBtpPlayer(nullptr), mBpkPlayer(nullptr), mBvaPlayer(nullptr), mXanimeResourceTable(nullptr),
+      mXanimePlayer(nullptr), mModel(nullptr), mModelResourceHolder(nullptr), mDisplayListMaker(nullptr) {}
 
 void ModelManager::update() {
     XanimePlayer* pXanimePlayer = mXanimePlayer;
@@ -326,7 +317,7 @@ const char* ModelManager::getPlayingBckName() const {
 
 void ModelManager::initMaterialAnm() {
     ResourceHolder* pResourceHolder = getResourceHolder();
-    J3DModelData*   pModelData = getJ3DModelData();
+    J3DModelData* pModelData = getJ3DModelData();
 
     if (pResourceHolder->mMaterialBuf == nullptr) {
         pResourceHolder->newMaterialAnmBuffer(pModelData);

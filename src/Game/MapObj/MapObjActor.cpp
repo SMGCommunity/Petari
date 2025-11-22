@@ -1,12 +1,12 @@
 #include "Game/MapObj/MapObjActor.hpp"
-#include "Game/MapObj/MapPartsRotator.hpp"
-#include "Game/MapObj/MapPartsRailMover.hpp"
-#include "Game/MapObj/MapPartsRailGuideDrawer.hpp"
-#include "Game/MapObj/MapPartsRailPosture.hpp"
-#include "Game/MapObj/MapPartsRailRotator.hpp"
+#include "Game/LiveActor/LodCtrl.hpp"
 #include "Game/LiveActor/MaterialCtrl.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
-#include "Game/LiveActor/LodCtrl.hpp"
+#include "Game/MapObj/MapPartsRailGuideDrawer.hpp"
+#include "Game/MapObj/MapPartsRailMover.hpp"
+#include "Game/MapObj/MapPartsRailPosture.hpp"
+#include "Game/MapObj/MapPartsRailRotator.hpp"
+#include "Game/MapObj/MapPartsRotator.hpp"
 #include "Game/MapObj/StageEffectDataTable.hpp"
 #include "Game/Util.hpp"
 
@@ -26,10 +26,9 @@ namespace {
     const char* cFollowJointName = "Move";
     const char* cEffectNameBreak = "Break";
     const char* cBckNameBreak = "Break";
-}; // namespace
+};  // namespace
 
-MapObjActor::MapObjActor(const char* pName)
-    : LiveActor(pName) {
+MapObjActor::MapObjActor(const char* pName) : LiveActor(pName) {
     mObjectName = 0;
     mPlanetLodCtrl = 0;
     mBloomModel = 0;
@@ -48,8 +47,7 @@ MapObjActor::MapObjActor(const char* pName)
     mDoneNrv = &NrvMapObjActor::HostTypeDone::sInstance;
 }
 
-MapObjActor::MapObjActor(const char* pName, const char* pObjName)
-    : LiveActor(pName) {
+MapObjActor::MapObjActor(const char* pName, const char* pObjName) : LiveActor(pName) {
     mObjectName = pObjName;
     mPlanetLodCtrl = 0;
     mBloomModel = 0;
@@ -158,8 +156,7 @@ void MapObjActor::initCaseUseSwitchA(const MapObjActorInitInfo&) {
     setNerve(mWaitNrv);
 }
 
-void MapObjActor::initCaseNoUseSwitchA(const MapObjActorInitInfo&) {
-}
+void MapObjActor::initCaseNoUseSwitchA(const MapObjActorInitInfo&) {}
 
 void MapObjActor::initCaseUseSwitchB(const MapObjActorInitInfo& rInfo) {
     void (MapObjActor::*end)(void) = &MapObjActor::endMapPartsFunctions;
@@ -592,8 +589,7 @@ void MapObjActorUtil::appearBloomModel(MapObjActor* pActor) {
 }
 
 namespace NrvMapObjActor {
-    void HostTypeDone::execute(Spine* pSpine) const {
-    }
+    void HostTypeDone::execute(Spine* pSpine) const {}
 
     void HostTypeMove::execute(Spine* pSpine) const {
         MapObjActor* actor = reinterpret_cast< MapObjActor* >(pSpine->mExecutor);
@@ -604,4 +600,4 @@ namespace NrvMapObjActor {
         MapObjActor* actor = reinterpret_cast< MapObjActor* >(pSpine->mExecutor);
         actor->exeWait();
     }
-}; // namespace NrvMapObjActor
+};  // namespace NrvMapObjActor

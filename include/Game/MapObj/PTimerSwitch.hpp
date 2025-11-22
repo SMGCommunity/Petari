@@ -24,14 +24,14 @@ public:
     void exeSwitchDown();
     void exeOn();
 
-    CollisionParts*  mSwitchCollision; // 0x8C
+    CollisionParts* mSwitchCollision;  // 0x8C
     MapObjConnector* mConnector;       // 0x90
-    s32              _94;
-    bool             _98;
+    s32 _94;
+    bool _98;
 };
 
 namespace NrvPTimerSwitch {
     NERVE(PTimerSwitchNrvOn);
     NERVE(PTimerSwitchNrvSwitchDown);
     NERVE(PTimerSwitchNrvOff);
-}; // namespace NrvPTimerSwitch
+};  // namespace NrvPTimerSwitch

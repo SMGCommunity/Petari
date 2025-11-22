@@ -1,5 +1,5 @@
-#include "Game/NameObj/NameObj.hpp"
 #include "Game/NameObj/NameObjHolder.hpp"
+#include "Game/NameObj/NameObj.hpp"
 #include "Game/Util/ObjUtil.hpp"
 
 NameObjHolder::NameObjHolder(int num) {
@@ -30,8 +30,8 @@ void NameObjHolder::syncWithFlags() {
 // Missing stack variables?
 void NameObjHolder::callMethodAllObj(NameObjMethod pMethod) {
     NameObjMethod method = pMethod;
-    NameObj**     begin = mObjArray1.begin();
-    NameObj**     end = mObjArray1.end();
+    NameObj** begin = mObjArray1.begin();
+    NameObj** end = mObjArray1.end();
 
     for (NameObj** p = begin; p != end; p++) {
         (*p->*method)();

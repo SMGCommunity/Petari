@@ -14,13 +14,13 @@ public:
     virtual void appear();
     virtual void kill();
     virtual void attackSensor(HitSensor*, HitSensor*);
-    void         initSensor();
+    void initSensor();
 
-    bool       attackFire(HitSensor*);
-    void       exeThrow();
-    void       appearAndThrow(const TVec3f&, const TVec3f&);
+    bool attackFire(HitSensor*);
+    void exeThrow();
+    void appearAndThrow(const TVec3f&, const TVec3f&);
     HitSensor* isBindedAny() const;
-    bool       tryToKill();
+    bool tryToKill();
 
     u32 _8C;
     u16 _90;

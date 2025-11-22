@@ -23,17 +23,15 @@ namespace NrvPenguinStudent {
     NEW_NERVE(PenguinStudentNrvSwim, PenguinStudent, Swim);
     NEW_NERVE(PenguinStudentNrvLead, PenguinStudent, Lead);
     NEW_NERVE(PenguinStudentNrvSlow, PenguinStudent, Slow);
-}; // namespace NrvPenguinStudent
+};  // namespace NrvPenguinStudent
 
-PenguinStudent::PenguinStudent(const char* pName)
-    : NPCActor(pName) {
+PenguinStudent::PenguinStudent(const char* pName) : NPCActor(pName) {
     mRemovableTurtle = nullptr;
     mActor = nullptr;
     _15C = -1;
 }
 
-PenguinStudent::~PenguinStudent() {
-}
+PenguinStudent::~PenguinStudent() {}
 
 void PenguinStudent::init(const JMapInfoIter& rIter) {
     MR::initDefaultPosAndQuat(this, rIter);
@@ -101,7 +99,8 @@ bool PenguinStudent::branchFunc(u32 msg) {
 }
 
 bool PenguinStudent::tryReleaseTurtle() {
-    if (_15C == -1 && isNerve(&NrvPenguinStudent::PenguinStudentNrvLead::sInstance) && mRemovableTurtle->isPullRange() && mRemovableTurtle->tryRemove()) {
+    if (_15C == -1 && isNerve(&NrvPenguinStudent::PenguinStudentNrvLead::sInstance) && mRemovableTurtle->isPullRange() &&
+        mRemovableTurtle->tryRemove()) {
         setNerve(&NrvPenguinStudent::PenguinStudentNrvSlow::sInstance);
         return true;
     }

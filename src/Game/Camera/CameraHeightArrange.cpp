@@ -1,5 +1,5 @@
-#include "Game/Camera/Camera.hpp"
 #include "Game/Camera/CameraHeightArrange.hpp"
+#include "Game/Camera/Camera.hpp"
 #include "Game/Camera/CameraPoseParam.hpp"
 #include "Game/Camera/CameraTargetObj.hpp"
 
@@ -11,8 +11,7 @@ bool CameraTargetObj::isFastRise() const {
     return false;
 }
 
-CameraHeightArrange::CameraHeightArrange(Camera* pCamera)
-    : NameObj("CameraHeightArrange") {
+CameraHeightArrange::CameraHeightArrange(Camera* pCamera) : NameObj("CameraHeightArrange") {
     mCamera = pCamera;
     _10 = 0;
     _11 = 0;
@@ -97,7 +96,7 @@ void CameraHeightArrange::chase() {
 
 void CameraHeightArrange::updateHeightAndOffset() {
     TVec3f globalAxis = *getGlobalAxis();
-    f32    fVar1;
+    f32 fVar1;
 
     if (mVPanUse != 0) {
         fVar1 = 0.05f;
@@ -126,10 +125,9 @@ TVec3f* CameraHeightArrange::getGlobalAxis() {
         f32 axisY = mGlobalAxis.y;
         f32 axisZ = mGlobalAxis.z;
 
-        mGlobalAxis.set(
-            axisZ * matrix.mMtx[0][2] + axisX * matrix.mMtx[0][0] + axisY * matrix.mMtx[0][1],
-            axisZ * matrix.mMtx[1][2] + axisX * matrix.mMtx[1][0] + axisY * matrix.mMtx[1][1],
-            axisZ * matrix.mMtx[2][2] + axisX * matrix.mMtx[2][0] + axisY * matrix.mMtx[2][1]);
+        mGlobalAxis.set(axisZ * matrix.mMtx[0][2] + axisX * matrix.mMtx[0][0] + axisY * matrix.mMtx[0][1],
+                        axisZ * matrix.mMtx[1][2] + axisX * matrix.mMtx[1][0] + axisY * matrix.mMtx[1][1],
+                        axisZ * matrix.mMtx[2][2] + axisX * matrix.mMtx[2][0] + axisY * matrix.mMtx[2][1]);
     }
 
     return &mGlobalAxis;

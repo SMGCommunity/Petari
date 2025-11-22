@@ -1,5 +1,5 @@
-#include "Game/AreaObj/LightArea.hpp"
 #include "Game/Map/LightZoneDataHolder.hpp"
+#include "Game/AreaObj/LightArea.hpp"
 #include "Game/Map/LightFunction.hpp"
 #include "Game/Util.hpp"
 
@@ -71,7 +71,7 @@ const char* LightZoneDataHolder::getDefaultStageAreaLightName() const {
 
 void LightZoneInfo::init(s32 zoneID) {
     const char* zoneName = MR::getZoneNameFromZoneId(zoneID);
-    JMapInfo*   parser = 0;
+    JMapInfo* parser = 0;
     mAreaCount = LightFunction::createZoneDataParser(zoneName, &parser);
     mAreaInfo = new AreaInfo[mAreaCount];
 

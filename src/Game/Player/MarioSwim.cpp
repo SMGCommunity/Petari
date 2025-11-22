@@ -8,29 +8,18 @@
 #include "Game/Util/SceneUtil.hpp"
 
 namespace {
-    f32 cFrontAcc[40] = {-0.2f, -0.2f, -0.2f, -0.1f, -0.1f, -0.1f, -0.1f, -0.1f, -0.0f, -0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.2f, 0.2f, 0.2f, 0.3f, 0.3f, 0.4f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.4f, 0.4f, 0.3f, 0.3f, 0.2f, 0.2f, 0.1f, 0.1f, 0.1f, 0.1f, 0.1f, 0.0f};
+    f32 cFrontAcc[40] = {-0.2f, -0.2f, -0.2f, -0.1f, -0.1f, -0.1f, -0.1f, -0.1f, -0.0f, -0.0f, 0.0f, 0.0f, 0.0f, 0.0f,
+                         0.0f,  0.0f,  0.0f,  0.2f,  0.2f,  0.2f,  0.3f,  0.3f,  0.4f,  0.5f,  0.5f, 0.5f, 0.5f, 0.5f,
+                         0.4f,  0.4f,  0.3f,  0.3f,  0.2f,  0.2f,  0.1f,  0.1f,  0.1f,  0.1f,  0.1f, 0.0f};
 
-    f32 cFrontAccSpin[30] = {0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 8.0f, 6.0f, 4.0f, 2.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, -1.0f, -1.0f, -1.0f, -1.0f, -1.0f, -1.0f, -1.0f, -1.0f, -1.0f, -1.0f};
+    f32 cFrontAccSpin[30] = {0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 8.0f,  6.0f,  4.0f,  2.0f,  1.0f,  0.0f,  0.0f,  0.0f,  0.0f,  0.0f,
+                             0.0f, 0.0f, 0.0f, 0.0f, 0.0f, -1.0f, -1.0f, -1.0f, -1.0f, -1.0f, -1.0f, -1.0f, -1.0f, -1.0f, -1.0f};
 
-    f32 cFrontAccSpinSurface[20] = {0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 8.0f, 6.0f, 4.0f, 2.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f};
+    f32 cFrontAccSpinSurface[20] = {0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 8.0f, 6.0f, 4.0f, 2.0f, 1.0f,
+                                    0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f};
 
     f32 cWeightTable[16] = {
-        1.0f,
-        0.0f,
-        0.0f,
-        0.0f,
-        0.0f,
-        1.0f,
-        0.0f,
-        0.0f,
-        0.0f,
-        0.0f,
-        1.0f,
-        0.0f,
-        0.0f,
-        0.0f,
-        0.0f,
-        1.0f,
+        1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f,
     };
 
     f32 cWeightTableSP[4] = {0.0f, 0.0f, 0.75f, 0.25f};
@@ -45,7 +34,7 @@ namespace {
     // In const mem region?
     const f32 cTurnMotionSpeed = 5.0f;
 
-} // namespace
+}  // namespace
 
 bool Mario::isSwimming() const {
     if (isStatusActive(6)) {
@@ -156,8 +145,7 @@ void Mario::startSwim() {
     }
 }
 
-MarioSwim::MarioSwim(MarioActor* actor)
-    : MarioState(actor, 6), _F4() {
+MarioSwim::MarioSwim(MarioActor* actor) : MarioState(actor, 6), _F4() {
     _18 = 0;
     _19 = 0;
     _1A = 0;
@@ -490,7 +478,7 @@ static inline f32 funVecTime(const MarioSwim& self) {
 }
 
 static inline f32 funCalcTime() {
-    f32 tmp = 0.0f; // This line is included only to fix a register allocation mismatch
+    f32 tmp = 0.0f;  // This line is included only to fix a register allocation mismatch
     return 40.0f;
 }
 
@@ -556,10 +544,8 @@ bool MarioSwim::update()
             _144 = 1;
         }
     }
-    if (getPlayer()->mDrawStates._F && _19C > 0.963775992393f && MR::diffAngleAbsHorizontal(-getPlayer380(), getWorldPadDir(), getPlayer()->getAirGravityVec()) < 0.196349546313f) {
-        if (calcAngleD(getPlayer380()) >= 30.0f) {
-            _9E = 5;
-            return false;
+    if (getPlayer()->mDrawStates._F && _19C > 0.963775992393f && MR::diffAngleAbsHorizontal(-getPlayer380(), getWorldPadDir(),
+getPlayer()->getAirGravityVec()) < 0.196349546313f) { if (calcAngleD(getPlayer380()) >= 30.0f) { _9E = 5; return false;
         }
         else {
             _9E = 1;
@@ -1023,10 +1009,9 @@ bool MarioSwim::update()
             if (followMtx) {
                 TVec3f stack_F8;
                 MR::extractMtxTrans(followMtx->toMtxPtr(), &stack_F8);
-                bool cond = JGeometry::TUtil<f32>::epsilonEquals(stack_F8.x, _154.x, 0.000003814697265625f) && JGeometry::TUtil<f32>::epsilonEquals(stack_F8.y, _154.y, 0.000003814697265625f) && JGeometry::TUtil<f32>::epsilonEquals(stack_F8.z, _154.z, 0.000003814697265625f);
-                if (!cond) {
-                    if (PSVECMag((stack_F8 - _154)) < 10.0f) {
-                        addVelocity(stack_F8 - _154);
+                bool cond = JGeometry::TUtil<f32>::epsilonEquals(stack_F8.x, _154.x, 0.000003814697265625f) &&
+JGeometry::TUtil<f32>::epsilonEquals(stack_F8.y, _154.y, 0.000003814697265625f) && JGeometry::TUtil<f32>::epsilonEquals(stack_F8.z, _154.z,
+0.000003814697265625f); if (!cond) { if (PSVECMag((stack_F8 - _154)) < 10.0f) { addVelocity(stack_F8 - _154);
                     }
                     _154 = stack_F8;
                 }

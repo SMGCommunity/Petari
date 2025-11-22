@@ -75,7 +75,8 @@ void SuperSpinDriver::requestAppear() {
     MR::invalidateClipping(this);
 
     if (mSpinDriverCamera->isUseAppearCamera(this)) {
-        MR::requestStartDemo(this, "出現", &NrvSuperSpinDriver::SuperSpinDriverNrvAppear::sInstance, &NrvSuperSpinDriver::SuperSpinDriverNrvTryDemo::sInstance);
+        MR::requestStartDemo(this, "出現", &NrvSuperSpinDriver::SuperSpinDriverNrvAppear::sInstance,
+                             &NrvSuperSpinDriver::SuperSpinDriverNrvTryDemo::sInstance);
     } else {
         setNerve(&NrvSuperSpinDriver::SuperSpinDriverNrvAppear::sInstance);
     }
@@ -85,7 +86,8 @@ void SuperSpinDriver::requestEmptyAppear() {
     MR::invalidateClipping(this);
 
     if (mSpinDriverCamera->isUseAppearCamera(this)) {
-        MR::requestStartDemo(this, "出現", &NrvSuperSpinDriver::SuperSpinDriverNrvEmptyAppear::sInstance, &NrvSuperSpinDriver::SuperSpinDriverNrvTryDemo::sInstance);
+        MR::requestStartDemo(this, "出現", &NrvSuperSpinDriver::SuperSpinDriverNrvEmptyAppear::sInstance,
+                             &NrvSuperSpinDriver::SuperSpinDriverNrvTryDemo::sInstance);
     } else {
         setNerve(&NrvSuperSpinDriver::SuperSpinDriverNrvEmptyAppear::sInstance);
     }
@@ -375,18 +377,12 @@ void SuperSpinDriver::exeShootOnEnd() {
 }
 
 namespace MR {
-    NameObj* createSuperSpinDriverYellow(const char* pName) {
-        return new SuperSpinDriver(pName, 0);
-    }
+    NameObj* createSuperSpinDriverYellow(const char* pName) { return new SuperSpinDriver(pName, 0); }
 
-    NameObj* createSuperSpinDriverGreen(const char* pName) {
-        return new SuperSpinDriver(pName, 1);
-    }
+    NameObj* createSuperSpinDriverGreen(const char* pName) { return new SuperSpinDriver(pName, 1); }
 
-    NameObj* createSuperSpinDriverPink(const char* pName) {
-        return new SuperSpinDriver(pName, 2);
-    }
-}; // namespace MR
+    NameObj* createSuperSpinDriverPink(const char* pName) { return new SuperSpinDriver(pName, 2); }
+};  // namespace MR
 
 namespace NrvSuperSpinDriver {
     INIT_NERVE(SuperSpinDriverNrvTryDemo);
@@ -400,4 +396,4 @@ namespace NrvSuperSpinDriver {
     INIT_NERVE(SuperSpinDriverNrvShootStart);
     INIT_NERVE(SuperSpinDriverNrvShoot);
     INIT_NERVE(SuperSpinDriverNrvCoolDown);
-}; // namespace NrvSuperSpinDriver
+};  // namespace NrvSuperSpinDriver

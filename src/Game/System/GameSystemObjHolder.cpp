@@ -1,12 +1,13 @@
+#include "Game/System/GameSystemObjHolder.hpp"
 #include "Game/Effect/ParticleResourceHolder.hpp"
 #include "Game/NameObj/NameObjRegister.hpp"
 #include "Game/Screen/ScreenPreserver.hpp"
 #include "Game/Screen/StarPointerDirector.hpp"
+#include "Game/SingletonHolder.hpp"
 #include "Game/System/AudSystemWrapper.hpp"
 #include "Game/System/ErrorArchive.hpp"
 #include "Game/System/FileLoader.hpp"
 #include "Game/System/FunctionAsyncExecutor.hpp"
-#include "Game/System/GameSystemObjHolder.hpp"
 #include "Game/System/HeapMemoryWatcher.hpp"
 #include "Game/System/Language.hpp"
 #include "Game/System/MessageHolder.hpp"
@@ -14,21 +15,11 @@
 #include "Game/System/ResourceHolderManager.hpp"
 #include "Game/System/WPadHolder.hpp"
 #include "Game/Util/RenderMode.hpp"
-#include "Game/SingletonHolder.hpp"
 #include <JSystem/JUtility/JUTVideo.hpp>
 
 GameSystemObjHolder::GameSystemObjHolder()
-    : mObjHolder(nullptr),
-      mParticleResHolder(nullptr),
-      mRenderModeObj(nullptr),
-      mCaptureScreenDir(nullptr),
-      mScreenPreserver(nullptr),
-      mSysWrapper(nullptr),
-      mWPadHolder(nullptr),
-      mAsyncExec(nullptr),
-      mMsgHolder(nullptr),
-      mStarPointerDir(nullptr),
-      mRandom(0),
+    : mObjHolder(nullptr), mParticleResHolder(nullptr), mRenderModeObj(nullptr), mCaptureScreenDir(nullptr), mScreenPreserver(nullptr),
+      mSysWrapper(nullptr), mWPadHolder(nullptr), mAsyncExec(nullptr), mMsgHolder(nullptr), mStarPointerDir(nullptr), mRandom(0),
       mLanguage(MR::getDecidedLanguageFromIPL()) {
     initDvd();
     initNAND();
@@ -45,7 +36,7 @@ void GameSystemObjHolder::initAfterStationedResourceLoaded() {
 
 void GameSystemObjHolder::initMessageResource() {
     JKRArchive* pArchive = nullptr;
-    JKRHeap*    pHeap = nullptr;
+    JKRHeap* pHeap = nullptr;
     MR::getMountedArchiveAndHeap("ErrorMessageArchive.arc", &pArchive, &pHeap);
 
     char systemFilePath[128];
@@ -124,9 +115,7 @@ void GameSystemObjHolder::initNAND() {
 }
 
 void GameSystemObjHolder::initAudio() {
-    mSysWrapper = new AudSystemWrapper(
-        SingletonHolder< HeapMemoryWatcher >::get()->mAudSystemHeap,
-        MR::getStationedHeapNapa());
+    mSysWrapper = new AudSystemWrapper(SingletonHolder< HeapMemoryWatcher >::get()->mAudSystemHeap, MR::getStationedHeapNapa());
     mSysWrapper->requestResourceForInitialize();
 }
 

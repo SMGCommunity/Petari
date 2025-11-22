@@ -2,8 +2,7 @@
 #include "Game/Util/ObjUtil.hpp"
 #include <cstdio>
 
-DemoPadRumbler::DemoPadRumbler(const char* pName)
-    : mNumPadRumbleEntries(0), mPadRumbleEntries(nullptr), _8(0) {
+DemoPadRumbler::DemoPadRumbler(const char* pName) : mNumPadRumbleEntries(0), mPadRumbleEntries(nullptr), _8(0) {
     if (pName == nullptr)
         return;
 

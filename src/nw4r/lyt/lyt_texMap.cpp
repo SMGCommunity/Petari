@@ -1,5 +1,5 @@
-#include "nw4r/lyt/texMap.h"
 #include "nw4r/lyt/common.h"
+#include "nw4r/lyt/texMap.h"
 #include "revolution/gx/GXEnum.h"
 #include "revolution/gx/GXGet.h"
 #include "revolution/gx/GXStruct.h"
@@ -15,20 +15,18 @@ namespace nw4r {
                 GXInitTexObj(pTexObj, mImage, mWidth, mHeight, GetTexelFormat(), GetWrapModeS(), GetWrapModeT(), IsMipMap());
             }
 
-            GXInitTexObjLOD(pTexObj, GetMinFilter(), GetMagFilter(), GetMinLOD(), GetMaxLOD(), GetLODBias(), IsBiasClampEnable(), IsEdgeLODEnable(), GetAnisotropy());
+            GXInitTexObjLOD(pTexObj, GetMinFilter(), GetMagFilter(), GetMinLOD(), GetMaxLOD(), GetLODBias(), IsBiasClampEnable(), IsEdgeLODEnable(),
+                            GetAnisotropy());
         }
 
-        void TexMap::Get(_GXTlutObj* pTlutObj) const {
-            GXInitTlutObj(pTlutObj, GetPalette(), GetPaletteFormat(), GetPaletteEntryNum());
-        }
+        void TexMap::Get(_GXTlutObj* pTlutObj) const { GXInitTlutObj(pTlutObj, GetPalette(), GetPaletteFormat(), GetPaletteEntryNum()); }
 
         void TexMap::Set(const GXTexObj& texObj) {
-
-            void*         image;
-            u16           width, height;
-            GXTexFmt      format;
+            void* image;
+            u16 width, height;
+            GXTexFmt format;
             GXTexWrapMode wrapS, wrapT;
-            GXBool        mipmap;
+            GXBool mipmap;
 
             GXGetTexObjAll(&texObj, &image, &width, &height, &format, &wrapS, &wrapT, &mipmap);
 
@@ -38,9 +36,9 @@ namespace nw4r {
             SetWrapMode(wrapS, wrapT);
             SetMipMap(mipmap);
 
-            GXTexFilter  minFilter, magFilter;
-            f32          minLOD, maxLOD, lodBias;
-            GXBool       biasCLampEnable, edgeLODEnable;
+            GXTexFilter minFilter, magFilter;
+            f32 minLOD, maxLOD, lodBias;
+            GXBool biasCLampEnable, edgeLODEnable;
             GXAnisotropy aniso;
             GXGetTexObjLODAll(&texObj, &minFilter, &magFilter, &minLOD, &maxLOD, &lodBias, &biasCLampEnable, &edgeLODEnable, &aniso);
 
@@ -76,5 +74,5 @@ namespace nw4r {
 
             ReplaceImage(TPLGet(p, id));
         }
-    }; // namespace lyt
-};     // namespace nw4r
+    };  // namespace lyt
+};      // namespace nw4r

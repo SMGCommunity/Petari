@@ -6,5 +6,4 @@ J3DDrawMtxData::J3DDrawMtxData() {
     mDrawMtxArray = nullptr;
 }
 
-J3DDrawMtxData::~J3DDrawMtxData() {
-}
+J3DDrawMtxData::~J3DDrawMtxData() {}

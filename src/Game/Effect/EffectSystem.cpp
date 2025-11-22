@@ -5,8 +5,7 @@
 #include <JSystem/JParticle/JPAEmitter.hpp>
 #include <JSystem/JParticle/JPAEmitterManager.hpp>
 
-void EffectSystem::init(const JMapInfoIter& rIter) {
-}
+void EffectSystem::init(const JMapInfoIter& rIter) {}
 
 void EffectSystem::forceDeleteEmitter(ParticleEmitter* pEmitter) const {
     if (pEmitter->mEmitter != nullptr) {
@@ -32,7 +31,8 @@ void EffectSystem::forceDeleteSingleEmitter(SingleEmitter* pSingleEmitter) const
     }
 }
 
-void EffectSystem::createSingleEmitter(SingleEmitter* pSingleEmitter, MultiEmitterCallBackBase* pCallBack, MultiEmitterParticleCallBack* pParticleCallBack) {
+void EffectSystem::createSingleEmitter(SingleEmitter* pSingleEmitter, MultiEmitterCallBackBase* pCallBack,
+                                       MultiEmitterParticleCallBack* pParticleCallBack) {
     if (pSingleEmitter->isValid()) {
         if (!pSingleEmitter->isOneTime()) {
             return;
@@ -57,7 +57,5 @@ void EffectSystem::createSingleEmitter(SingleEmitter* pSingleEmitter, MultiEmitt
 }
 
 namespace MR {
-    EffectSystem* getEffectSystem() {
-        return getSceneObj< EffectSystem >(SceneObj_EffectSystem);
-    }
-}; // namespace MR
+    EffectSystem* getEffectSystem() { return getSceneObj< EffectSystem >(SceneObj_EffectSystem); }
+};  // namespace MR

@@ -12,8 +12,7 @@ namespace NrvSimpleClipPartsObj {
     NEW_NERVE(HostTypeWait, SimpleClipPartsObj, Wait);
 }
 
-SimpleClipPartsObj::SimpleClipPartsObj(const char* pName)
-    : MapObjActor(pName) {}
+SimpleClipPartsObj::SimpleClipPartsObj(const char* pName) : MapObjActor(pName) {}
 
 SimpleClipPartsObj::~SimpleClipPartsObj() {}
 

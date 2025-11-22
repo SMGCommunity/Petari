@@ -16,5 +16,5 @@ public:
     void exeMove();
 
     TMtx34f _18;
-    u32     _48;
+    u32 _48;
 };

@@ -21,9 +21,7 @@ public:
 
     virtual void updateMtx(const TPos3f& rMtx) {}
 
-    virtual bool calcOwnGravityVector(TVec3f* pDest, f32* pScalar, const TVec3f& rPosition) const {
-        return false;
-    }
+    virtual bool calcOwnGravityVector(TVec3f* pDest, f32* pScalar, const TVec3f& rPosition) const { return false; }
 
     bool calcGravity(TVec3f* pDest, const TVec3f& rPosition) const;
     bool calcGravityFromMassPosition(TVec3f* pDirection, f32* pScalar, const TVec3f& rPosition, const TVec3f& rMassPosition) const;
@@ -34,16 +32,16 @@ public:
     void setPriority(s32 priority);
     void updateIdentityMtx();
 
-    f32         mRange;         // 0x4
-    f32         mDistant;       // 0x8
-    s32         mPriority;      // 0xC
-    s32         mGravityId;     // 0x10, read from the stage files but never used
-    const void* mHost;          // 0x14, host object pointer, can be any pointer
-    u32         mGravityType;   // 0x18, gravity type bits
-    s32         mGravityPower;  // 0x1C, gravity power type
-    bool        mActivated;     // 0x20, corresponding GlobalGravityObj has switch activated?
-    bool        mIsInverse;     // 0x21, invert gravity vector?
-    bool        mValidFollower; // 0x22
-    bool        mIsRegistered;  // 0x23, is registered by PlanetGravityManager?
-    bool        mAppeared;      // 0x24, corresponding GlobalGravityObj has appeared?
+    f32 mRange;           // 0x4
+    f32 mDistant;         // 0x8
+    s32 mPriority;        // 0xC
+    s32 mGravityId;       // 0x10, read from the stage files but never used
+    const void* mHost;    // 0x14, host object pointer, can be any pointer
+    u32 mGravityType;     // 0x18, gravity type bits
+    s32 mGravityPower;    // 0x1C, gravity power type
+    bool mActivated;      // 0x20, corresponding GlobalGravityObj has switch activated?
+    bool mIsInverse;      // 0x21, invert gravity vector?
+    bool mValidFollower;  // 0x22
+    bool mIsRegistered;   // 0x23, is registered by PlanetGravityManager?
+    bool mAppeared;       // 0x24, corresponding GlobalGravityObj has appeared?
 };

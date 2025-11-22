@@ -12,7 +12,7 @@ public:
     virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
     virtual bool receiveMsgEnemyAttack(u32, HitSensor*, HitSensor*);
 
-    void        exeWait();
+    void exeWait();
     inline void exeHit() {
         s32 step = getNerveStep();
 
@@ -31,10 +31,10 @@ public:
     void doHit();
 
     Mtx _8C;
-    u16 mTimer; // 0xBC
+    u16 mTimer;  // 0xBC
 };
 
 namespace NrvIceStep {
     NERVE_DECL(IceStepNrvHit, IceStep, IceStep::exeHit);
     NERVE_DECL(IceStepNrvWait, IceStep, IceStep::exeWait);
-}; // namespace NrvIceStep
+};  // namespace NrvIceStep

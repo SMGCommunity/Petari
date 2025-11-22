@@ -1,6 +1,6 @@
 #include "Game/MapObj/RotateMoveObj.hpp"
-#include "Game/MapObj/StageEffectDataTable.hpp"
 #include "Game/MapObj/MapPartsRotator.hpp"
+#include "Game/MapObj/StageEffectDataTable.hpp"
 
 void RotateMoveObj::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);
@@ -15,7 +15,7 @@ void RotateMoveObj::init(const JMapInfoIter& rIter) {
     initialize(rIter, info);
 
     bool v5 = true;
-    s32  condType = 0;
+    s32 condType = 0;
     MR::getMapPartsArgMoveConditionType(&condType, rIter);
 
     if (!MR::isMoveStartTypeUnconditional(condType)) {
@@ -44,11 +44,11 @@ void RotateMoveObj::init(const JMapInfoIter& rIter) {
 /*
 void RotateMoveObj::initCaseUseSwitchB(const MapObjActorInitInfo &rInfo) {
     MR::FunctorV0M<RotateMoveObj *, void (RotateMoveObj::*)()> setFunc = MR::Functor<RotateMoveObj>(this, &RotateMoveObj::setStateMove);
-    MR::listenStageSwitchOnOffB(this, MR::FunctorV0M<RotateMoveObj *, void (RotateMoveObj::*)(void)>(this, &RotateMoveObj::pauseMapPartsFunctions), setFunc);
+    MR::listenStageSwitchOnOffB(this, MR::FunctorV0M<RotateMoveObj *, void (RotateMoveObj::*)(void)>(this, &RotateMoveObj::pauseMapPartsFunctions),
+setFunc);
 }*/
 
-void RotateMoveObj::initCaseNoUseSwitchB(const MapObjActorInitInfo& rInfo) {
-}
+void RotateMoveObj::initCaseNoUseSwitchB(const MapObjActorInitInfo& rInfo) {}
 
 void RotateMoveObj::setStateMove() {
     if (MR::isRegisteredEffect(this, "Appear")) {
@@ -98,7 +98,6 @@ namespace NrvRotateMoveObj {
     INIT_NERVE(HostTypeWait);
     INIT_NERVE(HostTypeMove);
     INIT_NERVE(HostTypeStop);
-}; // namespace NrvRotateMoveObj
+};  // namespace NrvRotateMoveObj
 
-RotateMoveObj::~RotateMoveObj() {
-}
+RotateMoveObj::~RotateMoveObj() {}

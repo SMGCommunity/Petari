@@ -1,9 +1,9 @@
 #include "Game/Enemy/Karon.hpp"
-#include "Game/Enemy/TerritoryMover.hpp"
 #include "Game/Enemy/AnimScaleController.hpp"
+#include "Game/Enemy/TerritoryMover.hpp"
 #include "Game/Enemy/WalkerStateBindStarPointer.hpp"
-#include "Game/LiveActor/Nerve.hpp"
 #include "Game/LiveActor/Binder.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util/ActorMovementUtil.hpp"
 #include "Game/Util/ActorSwitchUtil.hpp"
 #include "Game/Util/JMapUtil.hpp"
@@ -18,7 +18,7 @@ namespace {
     static const KaronParam hPursueParam = {0.25f, 1.2f, 0.94f, 2.0f};
     static const KaronParam hHitReactionOnGroundParam = {0.0f, 1.2f, 0.80f, 5.0f};
     static const KaronParam hHitReactionAirParam = {0.0f, 2.0f, 0.94f, 5.0f};
-}; // namespace
+};  // namespace
 
 namespace NrvKaron {
     NEW_NERVE(HostTypeNrvFixWait, Karon, FixWait);
@@ -37,10 +37,9 @@ namespace NrvKaron {
     NEW_NERVE(HostTypeNrvDeath, Karon, Death);
     NEW_NERVE(HostTypeNrvSinkDown, Karon, SinkDown);
     NEW_NERVE_ONEND(HostTypeNrvBindStarPointer, Karon, BindStarPointer, BindStarPointer);
-}; // namespace NrvKaron
+};  // namespace NrvKaron
 
-Karon::Karon(const char* pName)
-    : LiveActor(pName) {
+Karon::Karon(const char* pName) : LiveActor(pName) {
     mTerritoryMover = nullptr;
     _90 = 0;
     _94 = 0;
@@ -87,7 +86,7 @@ void Karon::init(const JMapInfoIter& rIter) {
     }
 
     initHitSensor(1);
-    f32    y_scale = (90.0f * mScale.y);
+    f32 y_scale = (90.0f * mScale.y);
     TVec3f v13;
     v13.x = 0.0f;
     v13.y = y_scale;
@@ -201,10 +200,12 @@ void Karon::exeHitReaction() {
         if (MR::isOnGround(this)) {
             MR::moveAndTurnToPlayer(this, hNoMoveNoTurnParam._0, hNoMoveNoTurnParam._4, hNoMoveNoTurnParam._8, hNoMoveNoTurnParam._C);
         } else {
-            MR::moveAndTurnToPlayer(this, hNoMoveNoTurnOnAirParam._0, hNoMoveNoTurnOnAirParam._4, hNoMoveNoTurnOnAirParam._8, hNoMoveNoTurnOnAirParam._C);
+            MR::moveAndTurnToPlayer(this, hNoMoveNoTurnOnAirParam._0, hNoMoveNoTurnOnAirParam._4, hNoMoveNoTurnOnAirParam._8,
+                                    hNoMoveNoTurnOnAirParam._C);
         }
     } else if (MR::isOnGround(this)) {
-        MR::moveAndTurnToPlayer(this, hHitReactionOnGroundParam._0, hHitReactionOnGroundParam._4, hHitReactionOnGroundParam._8, hHitReactionOnGroundParam._C);
+        MR::moveAndTurnToPlayer(this, hHitReactionOnGroundParam._0, hHitReactionOnGroundParam._4, hHitReactionOnGroundParam._8,
+                                hHitReactionOnGroundParam._C);
     } else {
         MR::moveAndTurnToPlayer(this, hHitReactionAirParam._0, hHitReactionAirParam._4, hHitReactionAirParam._8, hHitReactionAirParam._C);
     }

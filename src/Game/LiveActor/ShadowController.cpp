@@ -1,8 +1,7 @@
 #include "Game/LiveActor/ShadowController.hpp"
 #include "Game/LiveActor/ShadowDrawer.hpp"
 
-ShadowControllerHolder::ShadowControllerHolder()
-    : NameObj("影管理"), _C(), _18(), _24(false) {
+ShadowControllerHolder::ShadowControllerHolder() : NameObj("影管理"), _C(), _18(), _24(false) {
     mFarClip = 4000.0f;
     _C.init(0x500);
     _18.init(0x400);
@@ -19,7 +18,7 @@ void ShadowControllerHolder::movement() {
 
 void ShadowControllerHolder::initAfterPlacement() {
     ShadowController* pController;
-    int               size = _C.size();
+    int size = _C.size();
 
     for (u32 i = 0; i < size; i++) {
         pController = _C[i];
@@ -43,8 +42,7 @@ void ShadowControllerHolder::updateController() {
     _18.clear();
 }
 
-ShadowControllerList::ShadowControllerList(LiveActor* pActor, u32 listCount)
-    : mShadowList(), mHost(pActor) {
+ShadowControllerList::ShadowControllerList(LiveActor* pActor, u32 listCount) : mShadowList(), mHost(pActor) {
     mShadowList.init(listCount);
 }
 
@@ -191,7 +189,7 @@ bool ShadowController::isCalcCollision() const {
     }
 
     if (_60 == 2) {
-        return _65 >= 0; 
+        return _65 >= 0;
     }
 
     return true;
@@ -336,5 +334,4 @@ void ShadowController::invalidate() {
     _71 = 0;
 }
 
-ShadowControllerHolder::~ShadowControllerHolder() {
-}
+ShadowControllerHolder::~ShadowControllerHolder() {}

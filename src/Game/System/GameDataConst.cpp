@@ -32,8 +32,8 @@ bool GameDataConst::isGrandStar(const char* pName, s32 a2) {
 
 bool GameDataConst::isGalaxyLuigiArrested(const char* pGalaxy, s32 starId) {
     GameEventFlagAccessor accessor = GameEventFlagTable::makeAccessor("SpecialStarLuigiRescued");
-    bool                  ret = false;
-    const char*           galaxyName = accessor.getGalaxyName();
+    bool ret = false;
+    const char* galaxyName = accessor.getGalaxyName();
 
     if (MR::isEqualString(galaxyName, pGalaxy) && ((starId == -1) || starId == accessor.getStarId())) {
         ret = true;

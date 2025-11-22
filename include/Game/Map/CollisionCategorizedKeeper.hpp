@@ -1,9 +1,9 @@
 #pragma once
 
-#include <revolution.h>
 #include "Game/Map/CollisionParts.hpp"
 #include "Game/Map/HitInfo.hpp"
 #include "Game/NameObj/NameObj.hpp"
+#include <revolution.h>
 
 class CollisionZone;
 
@@ -19,27 +19,27 @@ public:
     void addToGlobal(CollisionParts*);
     void removeFromGlobal(CollisionParts*);
 
-    void           checkStrikePoint(const TVec3f&, HitInfo*);
-    void           checkStrikeBall(const TVec3f&, f32, bool, const CollisionPartsFilterBase*, const TriangleFilterBase*);
-    void           checkStrikeBallWithThickness(const TVec3f&, f32, f32, const CollisionPartsFilterBase*, const TriangleFilterBase*);
-    void           checkStrikeLine(const TVec3f&, const TVec3f&, s32, const CollisionPartsFilterBase*, const TriangleFilterBase*);
-    void           createAreaPolygonList(Triangle*, u32, const TVec3f&, const TVec3f&);
-    void           createAreaPolygonListArray(Triangle*, u32, TVec3f*, u32);
-    void           isSphereOverlappingWithBox(const TVec3f&, const TVec3f&, const TVec3f&, f32);
-    void           searchSameHostParts(CollisionParts**, CollisionParts*) const;
-    void           getStrikeInfo(u32);
+    void checkStrikePoint(const TVec3f&, HitInfo*);
+    void checkStrikeBall(const TVec3f&, f32, bool, const CollisionPartsFilterBase*, const TriangleFilterBase*);
+    void checkStrikeBallWithThickness(const TVec3f&, f32, f32, const CollisionPartsFilterBase*, const TriangleFilterBase*);
+    void checkStrikeLine(const TVec3f&, const TVec3f&, s32, const CollisionPartsFilterBase*, const TriangleFilterBase*);
+    void createAreaPolygonList(Triangle*, u32, const TVec3f&, const TVec3f&);
+    void createAreaPolygonListArray(Triangle*, u32, TVec3f*, u32);
+    void isSphereOverlappingWithBox(const TVec3f&, const TVec3f&, const TVec3f&, f32);
+    void searchSameHostParts(CollisionParts**, CollisionParts*) const;
+    void getStrikeInfo(u32);
     CollisionZone* getZone(int);
 
-    HitInfo*       mHitInfoArray; // 0xC
-    s32            _10;
-    s32            mZoneCount;   // 0x14
-    CollisionZone* mZones[0x20]; // 0x18
-    s32            mZoneNum;     // 0x98
-    u32            _9C;
-    u8             _A0;
-    u8             _A1;
-    u8             _A2;
-    u8             _A3;
+    HitInfo* mHitInfoArray;  // 0xC
+    s32 _10;
+    s32 mZoneCount;               // 0x14
+    CollisionZone* mZones[0x20];  // 0x18
+    s32 mZoneNum;                 // 0x98
+    u32 _9C;
+    u8 _A0;
+    u8 _A1;
+    u8 _A2;
+    u8 _A3;
 };
 
 class CollisionZone {
@@ -52,11 +52,11 @@ public:
     void addAndUpdateMinMax(TVec3f, TVec3f);
     void eraseParts(CollisionParts*);
 
-    s32             mZoneID;            // 0x0
-    CollisionParts* mPartsArray[0x200]; // 0x4
-    s32             mNumParts;          // 0x804
-    TVec3f          _808;
-    f32             mRadius; // 0x814
-    TVec3f          _818;
-    TVec3f          _824;
+    s32 mZoneID;                         // 0x0
+    CollisionParts* mPartsArray[0x200];  // 0x4
+    s32 mNumParts;                       // 0x804
+    TVec3f _808;
+    f32 mRadius;  // 0x814
+    TVec3f _818;
+    TVec3f _824;
 };

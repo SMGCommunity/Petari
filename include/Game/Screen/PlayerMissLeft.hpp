@@ -20,5 +20,5 @@ public:
 
 private:
     /* 0x20 */ CounterLayoutAppearer* mLayoutAppearer;
-    /* 0x24 */ CountUpPaneRumbler*    mPaneRumbler;
+    /* 0x24 */ CountUpPaneRumbler* mPaneRumbler;
 };

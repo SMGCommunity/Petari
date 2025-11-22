@@ -19,10 +19,9 @@ namespace NrvSnowMan {
     NEW_NERVE(SnowManNrvMeltBody, SnowMan, MeltBody);
     NEW_NERVE(SnowManNrvDownHead, SnowMan, DownHead);
     NEW_NERVE(SnowManNrvDownBody, SnowMan, DownBody);
-} // namespace NrvSnowMan
+}  // namespace NrvSnowMan
 
-SnowMan::SnowMan(const char* pName)
-    : LiveActor(pName) {
+SnowMan::SnowMan(const char* pName) : LiveActor(pName) {
     mHeadCollisionParts = nullptr;
     mBodyCollisionParts = nullptr;
     mAnimScaleCtrl = nullptr;
@@ -38,8 +37,10 @@ void SnowMan::init(const JMapInfoIter& rIfter) {
     initHitSensor(2);
     MR::addMessageSensorMapObj(this, "head");
     MR::addMessageSensorMapObj(this, "body");
-    mHeadCollisionParts = MR::createCollisionPartsFromLiveActor(this, "HeadCol", getSensor("head"), MR::getJointMtx(this, "Head"), (MR::CollisionScaleType)1);
-    mBodyCollisionParts = MR::createCollisionPartsFromLiveActor(this, "BodyCol", getSensor("body"), MR::getJointMtx(this, "Body"), (MR::CollisionScaleType)1);
+    mHeadCollisionParts =
+        MR::createCollisionPartsFromLiveActor(this, "HeadCol", getSensor("head"), MR::getJointMtx(this, "Head"), (MR::CollisionScaleType)1);
+    mBodyCollisionParts =
+        MR::createCollisionPartsFromLiveActor(this, "BodyCol", getSensor("body"), MR::getJointMtx(this, "Body"), (MR::CollisionScaleType)1);
     MR::validateCollisionParts(mHeadCollisionParts);
     MR::validateCollisionParts(mBodyCollisionParts);
     mAnimScaleParam = new AnimScaleParam();

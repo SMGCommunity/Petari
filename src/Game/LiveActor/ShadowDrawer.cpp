@@ -1,7 +1,6 @@
 #include "Game/LiveActor/ShadowDrawer.hpp"
 
-ShadowDrawer::ShadowDrawer(const char* pName)
-    : NameObj(pName) {
+ShadowDrawer::ShadowDrawer(const char* pName) : NameObj(pName) {
     mController = 0;
 }
 
@@ -13,5 +12,4 @@ void ShadowDrawer::setShadowController(ShadowController* pController) {
     mController = pController;
 }
 
-ShadowDrawer::~ShadowDrawer() {
-}
+ShadowDrawer::~ShadowDrawer() {}

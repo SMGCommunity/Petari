@@ -13,18 +13,18 @@ public:
     virtual void initCaseUseSwitchA(const MapObjActorInitInfo&);
     virtual void initCaseUseSwitchB(const MapObjActorInitInfo&);
     virtual void initCaseNoUseSwitchB(const MapObjActorInitInfo&);
-    void         startDemo();
-    void         updateDemoPlayerPos();
-    void         exeWait();
-    void         exeMoveDown();
-    void         exeMoveUp();
-    void         exeMoveSign();
-    void         exeStop();
+    void startDemo();
+    void updateDemoPlayerPos();
+    void exeWait();
+    void exeMoveDown();
+    void exeMoveUp();
+    void exeMoveSign();
+    void exeStop();
 
-    TVec3f  _C4;
-    TVec3f  _D0;
-    s32     _DC;
-    s32     _E0;
+    TVec3f _C4;
+    TVec3f _D0;
+    s32 _DC;
+    s32 _E0;
     TMtx34f _E4;
 };
 
@@ -36,7 +36,7 @@ namespace NrvDesertMovingLand {
     NERVE_DECL_EXE(HostTypeMoveDownSign, DesertMovingLand, MoveSign);
     NERVE_DECL_EXE(HostTypeMoveUpSign, DesertMovingLand, MoveSign);
     NERVE_DECL_EXE(HostTypeStop, DesertMovingLand, Stop);
-}; // namespace NrvDesertMovingLand
+};  // namespace NrvDesertMovingLand
 
 namespace {
     static const char* cDemoName = "砂漠ＵＦＯ上昇";

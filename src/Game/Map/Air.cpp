@@ -6,10 +6,9 @@
 namespace NrvAir {
     NEW_NERVE(HostTypeIn, Air, In);
     NEW_NERVE(HostTypeOut, Air, Out);
-}; // namespace NrvAir
+};  // namespace NrvAir
 
-Air::Air(const char* pName)
-    : LiveActor(pName) {
+Air::Air(const char* pName) : LiveActor(pName) {
     _8C = 0;
     _8D = 0;
     mDistance = 70.0f;
@@ -150,12 +149,9 @@ void Air::exeOut() {
     }
 }
 
-Air::~Air() {
-}
+Air::~Air() {}
 
-ProjectionMapAir::ProjectionMapAir(const char* pName)
-    : Air(pName) {
-}
+ProjectionMapAir::ProjectionMapAir(const char* pName) : Air(pName) {}
 
 void ProjectionMapAir::initModel(const char* pModelName) {
     initModelManagerWithAnm(pModelName, nullptr, true);
@@ -168,22 +164,18 @@ void Air::setFarClipping() {
     MR::setClippingFarMax(this);
 }
 
-AirFar100m::AirFar100m(const char* pName)
-    : Air(pName) {
-}
+AirFar100m::AirFar100m(const char* pName) : Air(pName) {}
 
 void AirFar100m::setFarClipping() {
     MR::setClippingFar100m(this);
 }
 
-PriorDrawAir::PriorDrawAir(const char* pName)
-    : Air(pName) {
+PriorDrawAir::PriorDrawAir(const char* pName) : Air(pName) {
     MR::createSceneObj(SceneObj_PriorDrawAirHolder);
     MR::getSceneObj< PriorDrawAirHolder >(SceneObj_PriorDrawAirHolder)->add(this);
 }
 
-PriorDrawAirHolder::PriorDrawAirHolder()
-    : NameObj("先描画大気保持") {
+PriorDrawAirHolder::PriorDrawAirHolder() : NameObj("先描画大気保持") {
     mAirCount = 0;
 }
 
@@ -212,16 +204,12 @@ namespace MR {
 
         return MR::getSceneObj< PriorDrawAirHolder >(SceneObj_PriorDrawAirHolder)->isExistValidDrawAir();
     }
-}; // namespace MR
+};  // namespace MR
 
-AirFar100m::~AirFar100m() {
-}
+AirFar100m::~AirFar100m() {}
 
-ProjectionMapAir::~ProjectionMapAir() {
-}
+ProjectionMapAir::~ProjectionMapAir() {}
 
-PriorDrawAir::~PriorDrawAir() {
-}
+PriorDrawAir::~PriorDrawAir() {}
 
-PriorDrawAirHolder::~PriorDrawAirHolder() {
-}
+PriorDrawAirHolder::~PriorDrawAirHolder() {}

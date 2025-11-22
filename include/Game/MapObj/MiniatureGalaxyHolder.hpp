@@ -6,10 +6,10 @@
 
 class MiniatureGalaxyFunction {
 public:
-    static s32              getMiniatureGalaxyNum();
+    static s32 getMiniatureGalaxyNum();
     static MiniatureGalaxy* getPointingMiniatureGalaxy();
     static MiniatureGalaxy* getCometLandMiniatureGalaxy();
 
     static void updateCometStatus();
-    static s32  getCometNameId();
+    static s32 getCometNameId();
 };

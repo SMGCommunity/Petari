@@ -1,9 +1,7 @@
 #include "Game/AreaObj/SwitchArea.hpp"
 #include "Game/Util.hpp"
 
-SwitchArea::SwitchArea(int type, const char* pName)
-    : AreaObj(type, pName) {
-}
+SwitchArea::SwitchArea(int type, const char* pName) : AreaObj(type, pName) {}
 
 void SwitchArea::init(const JMapInfoIter& rIter) {
     AreaObj::init(rIter);

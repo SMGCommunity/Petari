@@ -17,17 +17,15 @@ public:
     void exeWait();
     void exeAppear();
 
-    inline bool isShadowValid(s32 val) const {
-        return val > -1 && val < 2;
-    }
+    inline bool isShadowValid(s32 val) const { return val > -1 && val < 2; }
 
-    f32    _C4;
-    TVec3f mClippingRange; // 0xC8
-    s32    _D4;            // Obj_arg0
-    u8     _D8;
+    f32 _C4;
+    TVec3f mClippingRange;  // 0xC8
+    s32 _D4;                // Obj_arg0
+    u8 _D8;
 };
 
 namespace NrvSpaceMine {
     NERVE(HostTypeWait);
     NERVE(HostTypeAppear);
-}; // namespace NrvSpaceMine
+};  // namespace NrvSpaceMine

@@ -28,6 +28,6 @@ public:
     void exeBetweenMapToListFadein();
 
 private:
-    /* 0x20 */ Nerve*                _20;
+    /* 0x20 */ Nerve* _20;
     /* 0x24 */ ButtonPaneController* mPaneCtrl;
 };

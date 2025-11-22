@@ -81,8 +81,7 @@ void NPCActorCaps::setIndirect() {
 }
 
 #ifdef NON_MATCHING
-NPCActor::NPCActor(const char* pName)
-    : LiveActor(pName) {
+NPCActor::NPCActor(const char* pName) : LiveActor(pName) {
     _8C = 0;
     _90 = 0;
     _94 = 0;
@@ -144,7 +143,7 @@ void NPCActor::makeArchiveList(NameObjArchiveListCollector* pCollector, const JM
     const char* name;
     MR::getObjectName(&name, rIter);
     NPCActorItem item(name);
-    s32          item_type = -1;
+    s32 item_type = -1;
     MR::getJMapInfoArg7NoInit(rIter, &item_type);
 
     bool ret = MR::getNPCItemData(&item, item_type);
@@ -168,7 +167,7 @@ void NPCActor::makeArchiveListDefault(NameObjArchiveListCollector* pCollector, c
     const char* name;
     MR::getObjectName(&name, rIter);
     NPCActorItem item(name);
-    bool         ret = MR::getNPCItemData(&item, 0);
+    bool ret = MR::getNPCItemData(&item, 0);
 
     if (ret) {
         NPCActor::addArchive(pCollector, item);

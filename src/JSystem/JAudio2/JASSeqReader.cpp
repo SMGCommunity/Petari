@@ -72,7 +72,7 @@ u32 JASSeqReader::readMidiValue() {
         return byte;
     u32 byte2 = byte & 0x7f;
     s32 i = 0;
-    u8  byte4;
+    u8 byte4;
     while (true) {
         if (i > 2)
             return 0;

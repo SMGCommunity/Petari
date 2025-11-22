@@ -34,10 +34,10 @@ public:
     void setCountAnimFrame();
     void setRecoveryCountAnimFrame();
 
-    CountUpPaneRumbler* mCountUpPaneRumbler; // 0x20
-    TVec2f              mFollowPosW;         // 0x24
-    TVec2f              _2C;                 // 0x2C
-    s32                 mCount;              // 0x34
-    f32                 _38;                 // 0x38
-    f32                 _3C;                 // 0x3C
+    CountUpPaneRumbler* mCountUpPaneRumbler;  // 0x20
+    TVec2f mFollowPosW;                       // 0x24
+    TVec2f _2C;                               // 0x2C
+    s32 mCount;                               // 0x34
+    f32 _38;                                  // 0x38
+    f32 _3C;                                  // 0x3C
 };

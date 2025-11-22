@@ -1,7 +1,6 @@
 #include "Game/MapObj/CapsuleCage.hpp"
 
-CapsuleCage::CapsuleCage(const char* pName)
-    : MapObjActor(pName) {
+CapsuleCage::CapsuleCage(const char* pName) : MapObjActor(pName) {
     mInfo = nullptr;
 }
 
@@ -88,16 +87,12 @@ namespace NrvCapsuleCage {
     INIT_NERVE(CapsuleCageNrvStartCamera);
     INIT_NERVE(CapsuleCageNrvOpen);
     INIT_NERVE(CapsuleCageNrvEndCamera);
-}; // namespace NrvCapsuleCage
+};  // namespace NrvCapsuleCage
 
-void CapsuleCage::initCaseNoUseSwitchB(const MapObjActorInitInfo&) {
-}
+void CapsuleCage::initCaseNoUseSwitchB(const MapObjActorInitInfo&) {}
 
-void CapsuleCage::initCaseNoUseSwitchA(const MapObjActorInitInfo&) {
-}
+void CapsuleCage::initCaseNoUseSwitchA(const MapObjActorInitInfo&) {}
 
-void CapsuleCage::initCaseUseSwitchA(const MapObjActorInitInfo&) {
-}
+void CapsuleCage::initCaseUseSwitchA(const MapObjActorInitInfo&) {}
 
-CapsuleCage::~CapsuleCage() {
-}
+CapsuleCage::~CapsuleCage() {}

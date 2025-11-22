@@ -1,8 +1,8 @@
+#include "Game/Scene/ScenarioSelectScene.hpp"
 #include "Game/Camera/CameraContext.hpp"
 #include "Game/Effect/EffectSystem.hpp"
 #include "Game/Effect/EffectSystemUtil.hpp"
 #include "Game/LiveActor/Nerve.hpp"
-#include "Game/Scene/ScenarioSelectScene.hpp"
 #include "Game/Screen/CinemaFrame.hpp"
 #include "Game/Screen/ScenarioSelectLayout.hpp"
 #include "Game/System/GalaxyStatusAccessor.hpp"
@@ -28,7 +28,7 @@ namespace NrvScenarioSelectScene {
     NEW_NERVE(ScenarioSelectSceneNrvWaitDisappearLayout, ScenarioSelectScene, WaitDisappearLayout);
     NEW_NERVE(ScenarioSelectSceneNrvWaitResumeInitializeThreadIfRequestedReset, ScenarioSelectScene, WaitResumeInitializeThreadIfRequestedReset);
     NEW_NERVE(ScenarioSelectSceneNrvWaitResumeInitializeThreadIfCanceledSelect, ScenarioSelectScene, WaitResumeInitializeThreadIfCanceledSelect);
-}; // namespace NrvScenarioSelectScene
+};  // namespace NrvScenarioSelectScene
 
 namespace {
     J3DDrawBuffer* createDrawBuffer() {
@@ -46,19 +46,11 @@ namespace {
 
         return false;
     }
-}; // namespace
+};  // namespace
 
 ScenarioSelectScene::ScenarioSelectScene()
-    : Scene("シナリオ選択シーン"),
-      _14(0),
-      _15(0),
-      _16(0),
-      mScenarioLayout(nullptr),
-      mCinemaFrame(nullptr),
-      _28(0),
-      mEffectSystem(nullptr),
-      mCameraContext(nullptr) {
-}
+    : Scene("シナリオ選択シーン"), _14(0), _15(0), _16(0), mScenarioLayout(nullptr), mCinemaFrame(nullptr), _28(0), mEffectSystem(nullptr),
+      mCameraContext(nullptr) {}
 
 void ScenarioSelectScene::init() {
     _20 = createDrawBuffer();
@@ -174,8 +166,8 @@ void ScenarioSelectScene::setupCameraMtx() const {
 bool ScenarioSelectScene::trySetCurrentScenarioNo() const {
     if (mScenarioLayout->_28) {
         if (!MR::isScenarioDecided()) {
-            s32                  scenarioNo = mScenarioLayout->getSelectedScenarioNo();
-            s32                  placedNo = scenarioNo;
+            s32 scenarioNo = mScenarioLayout->getSelectedScenarioNo();
+            s32 placedNo = scenarioNo;
             GalaxyStatusAccessor accessor = MR::makeCurrentGalaxyStatusAccessor();
             if (accessor.isHiddenStar(scenarioNo)) {
                 placedNo = MR::getPlacedHiddenStarScenarioNo(MR::getCurrentStageName(), scenarioNo);
@@ -220,8 +212,7 @@ void ScenarioSelectScene::exeDeactive() {
     }
 }
 
-void ScenarioSelectScene::exeInvalidScenarioSelect() {
-}
+void ScenarioSelectScene::exeInvalidScenarioSelect() {}
 
 void ScenarioSelectScene::exeStartScenarioSelect() {
     if (MR::isFirstStep(this)) {
@@ -320,5 +311,4 @@ void ScenarioSelectScene::exeWaitResumeInitializeThreadIfCanceledSelect() {
     }
 }
 
-ScenarioSelectScene::~ScenarioSelectScene() {
-}
+ScenarioSelectScene::~ScenarioSelectScene() {}

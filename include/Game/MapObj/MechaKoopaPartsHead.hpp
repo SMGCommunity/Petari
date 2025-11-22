@@ -7,7 +7,7 @@ namespace {
     const char* sDemoPartNameFadeOut = "フェードアウト";
     const char* sDemoPartNameWhite = "白画面";
     const char* sDemoPartNameFadeIn = "フェードイン";
-}; // namespace
+};  // namespace
 
 class MechaKoopaPartsHead : public MapObjActor {
 public:
@@ -34,4 +34,4 @@ namespace NrvMechaKoopaPartsHead {
     NERVE(MechaKoopaPartsHeadNrvDemoWhiteWait);
     NERVE(MechaKoopaPartsHeadNrvDemoWhiteFadeIn);
     NERVE(MechaKoopaPartsHeadNrvDemoAppearStar);
-}; // namespace NrvMechaKoopaPartsHead
+};  // namespace NrvMechaKoopaPartsHead

@@ -1,12 +1,13 @@
+#include "Game/System/GameSequenceProgress.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/PlayerMissLeft.hpp"
+#include "Game/SingletonHolder.hpp"
 #include "Game/System/FindingLuigiEventScheduler.hpp"
 #include "Game/System/GalaxyCometScheduler.hpp"
 #include "Game/System/GalaxyMoveArgument.hpp"
 #include "Game/System/GameDataFunction.hpp"
 #include "Game/System/GameEventFlagTable.hpp"
 #include "Game/System/GameSequenceFunction.hpp"
-#include "Game/System/GameSequenceProgress.hpp"
 #include "Game/System/GameSystem.hpp"
 #include "Game/System/GameSystemFunction.hpp"
 #include "Game/System/GameSystemSceneController.hpp"
@@ -22,7 +23,6 @@
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
-#include "Game/SingletonHolder.hpp"
 
 namespace {
     static const s32 sTimingPlayingTicoSE = 180;
@@ -35,20 +35,11 @@ namespace {
     NEW_NERVE(GameSequenceProgressNormal, GameSequenceProgress, Normal);
     NEW_NERVE(GameSequenceProgressGalaxyMove, GameSequenceProgress, GalaxyMove);
     NEW_NERVE(GameSequenceProgressResetProcessing, GameSequenceProgress, ResetProcessing);
-}; // namespace
+};  // namespace
 
 GameSequenceProgress::GameSequenceProgress()
-    : NerveExecutor("シーケンス進行"),
-      mStarPointerOnOffController(nullptr),
-      mStorySequenceExecutor(nullptr),
-      mFindingLuigiEventScheduler(nullptr),
-      mGalaxyCometScheduler(nullptr),
-      mLuigiLeftSupplier(nullptr),
-      mPlayerMissLeft(nullptr),
-      _20(0),
-      _24(false),
-      _25(false),
-      _26(true) {
+    : NerveExecutor("シーケンス進行"), mStarPointerOnOffController(nullptr), mStorySequenceExecutor(nullptr), mFindingLuigiEventScheduler(nullptr),
+      mGalaxyCometScheduler(nullptr), mLuigiLeftSupplier(nullptr), mPlayerMissLeft(nullptr), _20(0), _24(false), _25(false), _26(true) {
     initNerve(&::GameSequenceProgressBooting::sInstance);
 
     mStarPointerOnOffController = new StarPointerOnOffController();
@@ -108,10 +99,8 @@ void GameSequenceProgress::startScene() {
         MR::startStarPointerModeGame(this);
     }
 
-    GameSystemFunction::setPermissionToCheckWiiRemoteConnectAndScreenDimming(
-        isScenePermittedIsUpdateWiiRemoteStatus());
-    GameSystemFunction::setAutoSleepTimeWiiRemote(
-        isSceneLongAutoSleepWiiRemote());
+    GameSystemFunction::setPermissionToCheckWiiRemoteConnectAndScreenDimming(isScenePermittedIsUpdateWiiRemoteStatus());
+    GameSystemFunction::setAutoSleepTimeWiiRemote(isSceneLongAutoSleepWiiRemote());
 
     if (MR::isEqualSceneName("Game")) {
         mStorySequenceExecutor->setNerveSceneStart();
@@ -260,8 +249,7 @@ bool GameSequenceProgress::isSceneLongAutoSleepWiiRemote() {
 void GameSequenceProgress::updateGameDataBeforeChangeScene() {
     if (GameSequenceFunction::hasStageResultSequence() && GameSequenceFunction::isPowerStarAtResultSequence("KoopaBattleVs3Galaxy", 1)) {
         GameSequenceFunction::reflectStageResultSequenceCoin();
-        GameDataFunction::addStockedStarPiece(
-            GameSequenceFunction::getClearedStarPieceNum());
+        GameDataFunction::addStockedStarPiece(GameSequenceFunction::getClearedStarPieceNum());
         GameSequenceFunction::resetStageResultSequenceParam();
     }
 }
@@ -285,7 +273,8 @@ void GameSequenceProgress::resetGameDataAfterChangeScene(const GalaxyMoveArgumen
         break;
     }
 
-    if (rParam1.isEqualStageScenario("HeavensDoorGalaxy", 1) && mStorySequenceExecutor->isEqualStageScenarioBefore("PeachCastleGardenGalaxy", 1) && rParam1.mMoveType == 0) {
+    if (rParam1.isEqualStageScenario("HeavensDoorGalaxy", 1) && mStorySequenceExecutor->isEqualStageScenarioBefore("PeachCastleGardenGalaxy", 1) &&
+        rParam1.mMoveType == 0) {
         GameDataFunction::addStarPiece(starPieceNum);
         GameDataFunction::setLast1upStarPieceNum(last1upStarPieceNum);
     }
@@ -294,16 +283,15 @@ void GameSequenceProgress::resetGameDataAfterChangeScene(const GalaxyMoveArgumen
 void GameSequenceProgress::updateGameDataGalaxyVisitedFlag() {
     if (MR::isEqualSceneName("Game") && !_25 && !isNerve(&::GameSequenceProgressResetProcessing::sInstance)) {
         const char* pStageName = MR::getCurrentStageName();
-        s32         scenarioNo = MR::getCurrentScenarioNo();
+        s32 scenarioNo = MR::getCurrentScenarioNo();
 
-        GameDataFunction::onGalaxyScenarioFlagAlreadyVisited(
-            pStageName,
-            scenarioNo);
+        GameDataFunction::onGalaxyScenarioFlagAlreadyVisited(pStageName, scenarioNo);
     }
 }
 
 void GameSequenceProgress::setMinFrameBeforeStartNextStage(const GalaxyMoveArgument& rParam1) {
-    if (MR::isEqualSceneName("Game") && MR::isEqualStageName("PeachCastleGardenGalaxy") && MR::isEqualString(rParam1.mStageName, "HeavensDoorGalaxy") && rParam1.mScenarioNo == 1) {
+    if (MR::isEqualSceneName("Game") && MR::isEqualStageName("PeachCastleGardenGalaxy") &&
+        MR::isEqualString(rParam1.mStageName, "HeavensDoorGalaxy") && rParam1.mScenarioNo == 1) {
         _20 = 300;
         _24 = true;
     }
@@ -340,9 +328,7 @@ void GameSequenceProgress::countDownGameEventValueFromNewPowerStar() {
 
             u16 eventValue = GameDataFunction::getGameEventValue(accessor.getEventValueName());
 
-            GameDataFunction::setGameEventValue(
-                accessor.getEventValueName(),
-                eventValue - 1);
+            GameDataFunction::setGameEventValue(accessor.getEventValueName(), eventValue - 1);
         }
     }
 }

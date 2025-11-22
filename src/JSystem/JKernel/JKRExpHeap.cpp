@@ -5,8 +5,8 @@
 #define ALIGN_PREV(X, N) ((X) & ~((N)-1))
 #define ALIGN_NEXT(X, N) ALIGN_PREV(((X) + (N)-1), N)
 
-static u32                    DBfoundSize;
-static u32                    DBfoundOffset;
+static u32 DBfoundSize;
+static u32 DBfoundOffset;
 static JKRExpHeap::CMemBlock* DBfoundBlock;
 static JKRExpHeap::CMemBlock* DBnewFreeBlock;
 static JKRExpHeap::CMemBlock* DBnewUsedBlock;
@@ -16,10 +16,10 @@ JKRExpHeap* JKRExpHeap::createRoot(int heapNum, bool a2) {
 
     if (!JKRHeap::sRootHeap) {
         char* stack_C;
-        u32   arenaSize;
+        u32 arenaSize;
         JKRHeap::initArena(&stack_C, &arenaSize, heapNum);
         char* area = stack_C + 0x90;
-        u32   size = arenaSize - 0x90;
+        u32 size = arenaSize - 0x90;
         heap = new (stack_C) JKRExpHeap(area, size, nullptr, a2);
         JKRHeap::sRootHeap = heap;
     }
@@ -75,14 +75,14 @@ JKRExpHeap* JKRExpHeap::create(void* ptr, u32 size, JKRHeap* pParent, bool error
     }
 
     JKRExpHeap* heap = nullptr;
-    u32         heapSize = ALIGN_NEXT(sizeof(JKRExpHeap), 0x10);
+    u32 heapSize = ALIGN_NEXT(sizeof(JKRExpHeap), 0x10);
 
     if (size < heapSize) {
         return nullptr;
     }
 
     void* data = (u8*)ptr + heapSize;
-    u32   alignSize = ALIGN_PREV((u32)ptr + size - (u32)data, 0x10);
+    u32 alignSize = ALIGN_PREV((u32)ptr + size - (u32)data, 0x10);
     if (ptr != nullptr) {
         heap = new (ptr) JKRExpHeap(data, alignSize, parent, errorFlag);
     }
@@ -145,9 +145,7 @@ void* JKRExpHeap::do_alloc(u32 size, int align) {
 // JKRExpheap::allocFromHead
 // JKRExpHeap::allocFromTail
 
-JKRExpHeap::JKRExpHeap(void* data, u32 size, JKRHeap* parent, bool error)
-    : JKRHeap(data, size, parent, error) {
-
+JKRExpHeap::JKRExpHeap(void* data, u32 size, JKRHeap* parent, bool error) : JKRHeap(data, size, parent, error) {
     CMemBlock* block = (CMemBlock*)data;
 
     _6A = 0;

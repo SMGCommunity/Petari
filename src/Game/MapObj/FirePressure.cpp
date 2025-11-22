@@ -3,11 +3,9 @@
 #include "Game/Scene/SceneObjHolder.hpp"
 #include <JSystem/JMath/JMath.hpp>
 
-FirePressure::~FirePressure() {
-}
+FirePressure::~FirePressure() {}
 
-FirePressure::FirePressure(const char* pName)
-    : PressureBase(pName) {
+FirePressure::FirePressure(const char* pName) : PressureBase(pName) {
     mDisableCollsion = false;
 }
 
@@ -22,7 +20,7 @@ void FirePressure::initBullet(const JMapInfoIter& rIter) {
 
 bool FirePressure::shotBullet(f32 a1) {
     FirePressureBulletHolder* hldr = MR::getSceneObj< FirePressureBulletHolder >(SceneObj_FirePressureBulletHolder);
-    FirePressureBullet*       bullet = hldr->callEmptyBullet();
+    FirePressureBullet* bullet = hldr->callEmptyBullet();
 
     // do we have an empty bullet slot available?
     if (bullet == nullptr) {
@@ -39,9 +37,9 @@ void FirePressure::calcGunPointFromCannon(TPos3f* pOutPoint) {
     Mtx jointMtx;
     JMath::gekko_ps_copy12(jointMtx, MR::getJointMtx(this, "Cannon1"));
     TVec3f stack_2C;
-    f32    z = jointMtx[2][0];
-    f32    y = jointMtx[1][0];
-    f32    x = jointMtx[0][0];
+    f32 z = jointMtx[2][0];
+    f32 y = jointMtx[1][0];
+    f32 x = jointMtx[0][0];
     stack_2C.set(x, y, z);
     TVec3f stack_20;
     z = jointMtx[2][3];

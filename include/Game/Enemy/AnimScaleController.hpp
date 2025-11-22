@@ -1,7 +1,7 @@
 #pragma once
 
-#include "JSystem/JGeometry.hpp"
 #include "Game/System/NerveExecutor.hpp"
+#include "JSystem/JGeometry.hpp"
 
 class AnimScaleParam {
 public:
@@ -40,6 +40,6 @@ public:
     void stopAndReset();
 
     AnimScaleParam* _8;
-    TVec3f          _C;
-    f32             _18;
+    TVec3f _C;
+    f32 _18;
 };

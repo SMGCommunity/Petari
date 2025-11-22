@@ -16,4 +16,4 @@ public:
 namespace NrvCoinBox {
     NERVE(CoinBoxNrvWait);
     NERVE(CoinBoxNrvHit);
-}; // namespace NrvCoinBox
+};  // namespace NrvCoinBox

@@ -13,8 +13,8 @@
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
-#include "revolution/types.h"
 #include "JSystem/JMath/JMATrigonometric.hpp"
+#include "revolution/types.h"
 
 namespace {
     f32 cSensorRadius = 80.0f;
@@ -23,7 +23,7 @@ namespace {
     f32 cForceKillDistance = 3000.0f;
     f32 cBoundReduction = 0.9f;
     f32 cGravityAcc = 2.0f;
-} // namespace
+}  // namespace
 
 namespace NrvFireMarioBall {
     NEW_NERVE(FireMarioBallNrvThrow, FireMarioBall, Throw);
@@ -31,8 +31,7 @@ namespace NrvFireMarioBall {
 
 FireMarioBall::~FireMarioBall() {}
 
-FireMarioBall::FireMarioBall(const char* pName)
-    : LiveActor(pName) {
+FireMarioBall::FireMarioBall(const char* pName) : LiveActor(pName) {
     _8C = 0;
 }
 

@@ -1,12 +1,11 @@
 #include "Game/System/GalaxyStatusAccessor.hpp"
-#include "Game/System/GameDataFunction.hpp"
 #include "Game/System/GameDataConst.hpp"
+#include "Game/System/GameDataFunction.hpp"
 #include "Game/System/ScenarioDataParser.hpp"
 #include "Game/Util/SceneUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
 
-GalaxyStatusAccessor::GalaxyStatusAccessor(const ScenarioData* pScenarioData)
-    : mScenarioData(pScenarioData) {}
+GalaxyStatusAccessor::GalaxyStatusAccessor(const ScenarioData* pScenarioData) : mScenarioData(pScenarioData) {}
 
 const char* GalaxyStatusAccessor::getName() const {
     return mScenarioData->mGalaxyName;
@@ -60,7 +59,7 @@ bool GalaxyStatusAccessor::isExistGrandStar() const {
     return false;
 }
 
-#ifdef NON_MATCHING // The good old registers problem
+#ifdef NON_MATCHING  // The good old registers problem
 bool GalaxyStatusAccessor::isExistAnyComet() const {
     const char* pIsComet;
 
@@ -164,7 +163,7 @@ bool GalaxyStatusAccessor::hasPowerStar(s32 scenarioNo) const {
 
 s32 GalaxyStatusAccessor::getNormalScenarioNum() const {
     const char* pCometName;
-    s32         scenarioNum = 0;
+    s32 scenarioNum = 0;
 
     for (s32 i = 0; i < mScenarioData->getScenarioNum(); i++) {
         const char* pScenarioComet = nullptr;
@@ -185,7 +184,7 @@ s32 GalaxyStatusAccessor::getNormalScenarioNum() const {
 
 const char* GalaxyStatusAccessor::getAppearPowerStarObjName(s32 scenarioNo) const {
     const char* pObjName;
-    bool        ret = mScenarioData->getValueString("AppearPowerStarObj", scenarioNo, &pObjName);
+    bool ret = mScenarioData->getValueString("AppearPowerStarObj", scenarioNo, &pObjName);
 
     if (isValidCoin100(scenarioNo)) {
         return "１００枚コイン";
@@ -237,4 +236,4 @@ namespace MR {
     GalaxyStatusAccessor makeCurrentGalaxyStatusAccessor() {
         return ScenarioDataFunction::getScenarioDataParser().makeAccessor(MR::getCurrentStageName());
     }
-}; // namespace MR
+};  // namespace MR

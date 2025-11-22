@@ -1,7 +1,7 @@
+#include "Game/Screen/PauseMenu.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/ButtonPaneController.hpp"
 #include "Game/Screen/LuigiLetter.hpp"
-#include "Game/Screen/PauseMenu.hpp"
 #include "Game/Screen/SysInfoWindow.hpp"
 #include "Game/System/GameSequenceFunction.hpp"
 #include "Game/Util/EventUtil.hpp"
@@ -19,10 +19,8 @@ namespace {
         return !MR::isOnGameEventFlagUseAstroDome() || (MR::isStageAstroLocation() && !MR::isEqualStageName("HeavensDoorGalaxy"));
     }
 
-    bool isStageHideScenarioTitle() {
-        return MR::isStageBeginPrologueEvent() || MR::isStageAstroLocation();
-    }
-}; // namespace
+    bool isStageHideScenarioTitle() { return MR::isStageBeginPrologueEvent() || MR::isStageAstroLocation(); }
+};  // namespace
 
 namespace NrvPauseMenu {
     NEW_NERVE(PauseMenuNrvSelecting, PauseMenu, Selecting);
@@ -31,21 +29,11 @@ namespace NrvPauseMenu {
     NEW_NERVE(PauseMenuNrvConfirm, PauseMenu, Confirm);
     NEW_NERVE(PauseMenuNrvGameDataSave, PauseMenu, GameDataSave);
     NEW_NERVE(PauseMenuNrvLuigiLetter, PauseMenu, LuigiLetter);
-}; // namespace NrvPauseMenu
+};  // namespace NrvPauseMenu
 
 PauseMenu::PauseMenu()
-    : LayoutActor("ポーズメニュー", true),
-      _20(nullptr),
-      _24(nullptr),
-      _28(0.0f, 50.0f),
-      _30(nullptr),
-      mLuigiLetter(nullptr),
-      _38(nullptr),
-      mStageTitleOffset(0.0f, 39.0f),
-      mCoinNumPos(0.0f, 0.0f),
-      mStarPieceNumPos(0.0f, 0.0f),
-      _54(true) {
-}
+    : LayoutActor("ポーズメニュー", true), _20(nullptr), _24(nullptr), _28(0.0f, 50.0f), _30(nullptr), mLuigiLetter(nullptr), _38(nullptr),
+      mStageTitleOffset(0.0f, 39.0f), mCoinNumPos(0.0f, 0.0f), mStarPieceNumPos(0.0f, 0.0f), _54(true) {}
 
 void PauseMenu::init(const JMapInfoIter& rIter) {
     initLayoutManager("PauseMenu", 1);
@@ -212,7 +200,8 @@ void PauseMenu::startPaneAnimWithoutButton(const char* pAnimName) {
 }
 
 bool PauseMenu::isPaneAnimStoppedWithoutButton() const {
-    return MR::isPaneAnimStopped(this, "BG", 0) && MR::isPaneAnimStopped(this, "PicStagebase", 0) && MR::isPaneAnimStopped(this, "PicStagebase1", 0) && MR::isPaneAnimStopped(this, "Stars", 0) && MR::isPaneAnimStopped(this, "Counter", 0);
+    return MR::isPaneAnimStopped(this, "BG", 0) && MR::isPaneAnimStopped(this, "PicStagebase", 0) &&
+           MR::isPaneAnimStopped(this, "PicStagebase1", 0) && MR::isPaneAnimStopped(this, "Stars", 0) && MR::isPaneAnimStopped(this, "Counter", 0);
 }
 
 void PauseMenu::forceToWaitAllButton() {
@@ -259,9 +248,7 @@ void PauseMenu::exeDisappear() {
 
 void PauseMenu::exeConfirm() {
     if (MR::isFirstStep(this)) {
-        const char* pMessageId = isInvalidBackAstroDome()
-                                     ? "PauseMenu_ConfirmEndGame"
-                                     : "PauseMenu_ConfirmBackAstroDome";
+        const char* pMessageId = isInvalidBackAstroDome() ? "PauseMenu_ConfirmEndGame" : "PauseMenu_ConfirmBackAstroDome";
 
         _30->appear(pMessageId, SysInfoWindow::Type_YesNo, SysInfoWindow::TextPos_Center, SysInfoWindow::MessageType_System);
     }

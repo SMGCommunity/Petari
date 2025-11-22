@@ -3,8 +3,7 @@
 #include "Game/MapObj/MapPartsRailRotator.hpp"
 #include "Game/MapObj/StageEffectDataTable.hpp"
 
-RailMoveObj::RailMoveObj(const char* pName)
-    : MapObjActor(pName) {
+RailMoveObj::RailMoveObj(const char* pName) : MapObjActor(pName) {
     _C4.zero();
     _D0 = 0;
 }
@@ -82,8 +81,7 @@ void RailMoveObj::initCaseUseSwitchB(const MapObjActorInitInfo& rInitInfo) {
     setNerve(&NrvRailMoveObj::HostTypeWait::sInstance);
 }
 
-void RailMoveObj::initCaseNoUseSwitchB(const MapObjActorInitInfo&) {
-}
+void RailMoveObj::initCaseNoUseSwitchB(const MapObjActorInitInfo&) {}
 
 void RailMoveObj::startMoveInner() {
     MR::StageEffect::tryStageEffectStart(this, mObjectName);
@@ -135,7 +133,9 @@ bool RailMoveObj::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pRecei
 }
 
 void RailMoveObj::exeWait() {
-    if (!isNerve(&NrvRailMoveObj::HostTypeDone::sInstance) && (!MR::isDemoCast(this, 0) || !MR::isRegisteredDemoActionNerve(this)) && (!MR::isValidSwitchB(this) || MR::isOnSwitchB(this)) && (!isNerve(&NrvRailMoveObj::HostTypeWaitForPlayerOn::sInstance) || MR::isOnPlayer(this))) {
+    if (!isNerve(&NrvRailMoveObj::HostTypeDone::sInstance) && (!MR::isDemoCast(this, 0) || !MR::isRegisteredDemoActionNerve(this)) &&
+        (!MR::isValidSwitchB(this) || MR::isOnSwitchB(this)) &&
+        (!isNerve(&NrvRailMoveObj::HostTypeWaitForPlayerOn::sInstance) || MR::isOnPlayer(this))) {
         tryStartMove();
     }
 }
@@ -166,18 +166,14 @@ void RailMoveObj::exeMove() {
     }
 }
 
-RailMoveObjPress::RailMoveObjPress(const char* pName)
-    : RailMoveObj(pName) {
-}
+RailMoveObjPress::RailMoveObjPress(const char* pName) : RailMoveObj(pName) {}
 
 void RailMoveObjPress::init(const JMapInfoIter& rIter) {
     RailMoveObj::init(rIter);
     MR::setBodySensorType(this, 0x76);
 }
 
-RailMoveObjBreakAtEnd::RailMoveObjBreakAtEnd(const char* pName)
-    : RailMoveObj(pName) {
-}
+RailMoveObjBreakAtEnd::RailMoveObjBreakAtEnd(const char* pName) : RailMoveObj(pName) {}
 
 void RailMoveObjBreakAtEnd::doAtEndPoint() {
     RailMoveObj::doAtEndPoint();
@@ -207,8 +203,7 @@ void RailMoveObjSwitchShadow::startOnShadow() {
     MR::validateShadow(this, 0);
 }
 
-RailDemoMoveObj::RailDemoMoveObj(const char* pName)
-    : RailMoveObj(pName) {
+RailDemoMoveObj::RailDemoMoveObj(const char* pName) : RailMoveObj(pName) {
     mDemoControl = 0;
 }
 
@@ -263,9 +258,7 @@ bool RailDemoMoveObj::endMove() {
     return mDemoControl->isDone();
 }
 
-RailRotateMoveObj::RailRotateMoveObj(const char* pName)
-    : RailMoveObj(pName) {
-}
+RailRotateMoveObj::RailRotateMoveObj(const char* pName) : RailMoveObj(pName) {}
 
 void RailRotateMoveObj::setupInitInfo(const JMapInfoIter& rIter, MapObjActorInitInfo* pInfo) {
     pInfo->setupRailRotator();
@@ -310,7 +303,7 @@ bool RailRotateMoveObj::tryStartRotateAtPoint() {
 
 bool RailRotateMoveObj::tryStartRotateBetweenPoints() {
     MapPartsRailRotator* rail_rotator = mRailRotator;
-    s32                  cur_point = MR::getCurrentRailPointNo(this);
+    s32 cur_point = MR::getCurrentRailPointNo(this);
 
     if (!rail_rotator->hasRotationBetweenPoints(cur_point)) {
         return false;
@@ -319,7 +312,7 @@ bool RailRotateMoveObj::tryStartRotateBetweenPoints() {
     f32 next_time = 0.0f;
     mRailMover->calcTimeToNextRailPoint(&next_time);
     MapPartsRailRotator* uhm = mRailRotator;
-    s32                  new_point = MR::getCurrentRailPointNo(this);
+    s32 new_point = MR::getCurrentRailPointNo(this);
     uhm->rotateBetweenPoints(new_point, next_time);
     return true;
 }
@@ -349,22 +342,16 @@ namespace NrvRailMoveObj {
         RailMoveObj* obj = reinterpret_cast< RailMoveObj* >(pSpine->mExecutor);
         obj->exeWait();
     }
-}; // namespace NrvRailMoveObj
+};  // namespace NrvRailMoveObj
 
-RailMoveObjPress::~RailMoveObjPress() {
-}
+RailMoveObjPress::~RailMoveObjPress() {}
 
-RailMoveObjBreakAtEnd::~RailMoveObjBreakAtEnd() {
-}
+RailMoveObjBreakAtEnd::~RailMoveObjBreakAtEnd() {}
 
-RailMoveIndirectObj::~RailMoveIndirectObj() {
-}
+RailMoveIndirectObj::~RailMoveIndirectObj() {}
 
-RailMoveObjSwitchShadow::~RailMoveObjSwitchShadow() {
-}
+RailMoveObjSwitchShadow::~RailMoveObjSwitchShadow() {}
 
-RailDemoMoveObj::~RailDemoMoveObj() {
-}
+RailDemoMoveObj::~RailDemoMoveObj() {}
 
-RailRotateMoveObj::~RailRotateMoveObj() {
-}
+RailRotateMoveObj::~RailRotateMoveObj() {}

@@ -21,16 +21,10 @@ namespace NrvPackunPetit {
     NEW_NERVE(PackunPetitNrvSwoon, PackunPetit, Swoon);
     NEW_NERVE(PackunPetitNrvSwoonToThreat, PackunPetit, SwoonToThreat);
     NEW_NERVE_ONEND(PackunPetitNrvDPDSwoon, PackunPetit, DPDSwoon, DPDSwoon);
-}; // namespace NrvPackunPetit
+};  // namespace NrvPackunPetit
 
 PackunPetit::PackunPetit(const char* pName)
-    : LiveActor(pName),
-      mScaleController(nullptr),
-      mStarPointerState(nullptr),
-      _94(0.0f, 0.0f, 1.0f),
-      mBlownModel(nullptr),
-      mDontTurn(false) {
-}
+    : LiveActor(pName), mScaleController(nullptr), mStarPointerState(nullptr), _94(0.0f, 0.0f, 1.0f), mBlownModel(nullptr), mDontTurn(false) {}
 
 void PackunPetit::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
@@ -323,7 +317,8 @@ void PackunPetit::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
 }*/
 
 bool PackunPetit::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    bool isTrampleOrPunch = isNerve(&NrvPackunPetit::PackunPetitNrvTrampleDown::sInstance) || isNerve(&NrvPackunPetit::PackunPetitNrvPunchDown::sInstance);
+    bool isTrampleOrPunch =
+        isNerve(&NrvPackunPetit::PackunPetitNrvTrampleDown::sInstance) || isNerve(&NrvPackunPetit::PackunPetitNrvPunchDown::sInstance);
 
     if (isTrampleOrPunch) {
         return false;
@@ -375,7 +370,8 @@ bool PackunPetit::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor*
 }
 
 bool PackunPetit::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    bool isTrampleOrPunch = isNerve(&NrvPackunPetit::PackunPetitNrvTrampleDown::sInstance) || isNerve(&NrvPackunPetit::PackunPetitNrvPunchDown::sInstance);
+    bool isTrampleOrPunch =
+        isNerve(&NrvPackunPetit::PackunPetitNrvTrampleDown::sInstance) || isNerve(&NrvPackunPetit::PackunPetitNrvPunchDown::sInstance);
 
     if (isTrampleOrPunch) {
         return false;
@@ -498,7 +494,8 @@ bool PackunPetit::tryDPDSwoon() {
         return false;
     }
 
-    bool isTrampleOrPunch = isNerve(&NrvPackunPetit::PackunPetitNrvTrampleDown::sInstance) || isNerve(&NrvPackunPetit::PackunPetitNrvPunchDown::sInstance);
+    bool isTrampleOrPunch =
+        isNerve(&NrvPackunPetit::PackunPetitNrvTrampleDown::sInstance) || isNerve(&NrvPackunPetit::PackunPetitNrvPunchDown::sInstance);
 
     if (isTrampleOrPunch) {
         return false;
@@ -512,5 +509,4 @@ bool PackunPetit::tryDPDSwoon() {
     return true;
 }
 
-PackunPetit::~PackunPetit() {
-}
+PackunPetit::~PackunPetit() {}

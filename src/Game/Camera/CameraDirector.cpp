@@ -1,11 +1,11 @@
-#include "Game/Boss/BossStinkBug.hpp"
-#include "Game/Camera/CameraLocalUtil.hpp"
-#include "Game/Camera/CameraCover.hpp"
 #include "Game/Camera/CameraDirector.hpp"
+#include "Game/Boss/BossStinkBug.hpp"
+#include "Game/Camera/CameraCover.hpp"
 #include "Game/Camera/CameraHolder.hpp"
+#include "Game/Camera/CameraLocalUtil.hpp"
 #include "Game/Camera/CameraMan.hpp"
-#include "Game/Camera/CameraManGame.hpp"
 #include "Game/Camera/CameraManEvent.hpp"
+#include "Game/Camera/CameraManGame.hpp"
 #include "Game/Camera/CameraManPause.hpp"
 #include "Game/Camera/CameraManSubjective.hpp"
 #include "Game/Camera/CameraParamChunk.hpp"
@@ -14,8 +14,8 @@
 #include "Game/Camera/CameraRailHolder.hpp"
 #include "Game/Camera/CameraRegisterHolder.hpp"
 #include "Game/Camera/CameraRotChecker.hpp"
-#include "Game/Camera/CameraTargetHolder.hpp"
 #include "Game/Camera/CameraShaker.hpp"
+#include "Game/Camera/CameraTargetHolder.hpp"
 #include "Game/Camera/CameraTargetMtx.hpp"
 #include "Game/Camera/CameraViewInterpolator.hpp"
 #include "Game/Camera/GameCameraCreator.hpp"
@@ -31,11 +31,11 @@
 #include <cstring>
 
 namespace {
-    u32         gMovementCounter;
+    u32 gMovementCounter;
     const char* gSubjectiveCameraName = "主観カメラ";
     const char* gStartCameraName = "スタートアニメカメラ";
     const char* gTalkCameraName = "共通会話カメラ";
-} // namespace
+}  // namespace
 
 void CameraPoseParam::copyFrom(const CameraPoseParam& rOther) {
     _0.set< f32 >(rOther._0);
@@ -86,14 +86,11 @@ bool CameraMan::isEnableToRoundRight() const {
     return false;
 }
 
-void CameraMan::roundLeft() {
-}
+void CameraMan::roundLeft() {}
 
-void CameraMan::roundRight() {
-}
+void CameraMan::roundRight() {}
 
-CameraDirector::CameraDirector(const char* pName)
-    : NameObj(pName) {
+CameraDirector::CameraDirector(const char* pName) : NameObj(pName) {
     _C = 0;
     mStack = new CameraManStack();
     mOnlyCamera = new OnlyCamera("OnlyCamera");
@@ -139,11 +136,9 @@ CameraDirector::CameraDirector(const char* pName)
     MR::createCenterScreenBlur();
 }
 
-CameraDirector::~CameraDirector() {
-}
+CameraDirector::~CameraDirector() {}
 
-void CameraDirector::init(const JMapInfoIter& rIter) {
-}
+void CameraDirector::init(const JMapInfoIter& rIter) {}
 
 void CameraDirector::movement() {
     gMovementCounter++;
@@ -246,7 +241,7 @@ void CameraDirector::calcPose() {
 }
 
 /*void CameraDirector::calcSubjective() {
-    
+    
 }*/
 
 bool CameraDirector::isInterpolationOff() {
@@ -275,10 +270,10 @@ void CameraDirector::createViewMtx() {
 
     CameraPoseParam* poseParam = mPoseParam1;
     CameraTargetObj* target = _C;
-    TVec3f&          rWatchPos = poseParam->mWatchPos;
+    TVec3f& rWatchPos = poseParam->mWatchPos;
 
     CameraMan* man = getCurrentCameraMan();
-    f32        fovy = CameraLocalUtil::getFovy(man);
+    f32 fovy = CameraLocalUtil::getFovy(man);
     mViewInterpolator->updateCameraMtx(reinterpret_cast< MtxPtr >(&view), rWatchPos, target, fovy);
 }
 
@@ -511,7 +506,7 @@ void CameraDirector::endStartAnimCamera() {
 #ifndef NON_MATCHING
 // Register mismatch
 void CameraDirector::startTalkCamera(const TVec3f& rPosition, const TVec3f& rUp, f32 axisX, f32 axisY, s32 a5) {
-    const char*            name = gTalkCameraName;
+    const char* name = gTalkCameraName;
     CameraParamChunkID_Tmp chunkID = CameraParamChunkID_Tmp();
     chunkID.createEventID(0, name);
 
@@ -578,7 +573,7 @@ void CameraDirector::endSubjectiveCamera(s32 a1) {
 
 bool CameraDirector::isAnimCameraEnd(s32 zoneID, const char* pName) const {
     CameraManEvent* eventMan = mCameraManEvent;
-    CameraMan*      man = getCurrentCameraMan();
+    CameraMan* man = getCurrentCameraMan();
 
     if (man == eventMan) {
         return eventMan->isAnimCameraEnd(zoneID, pName);
@@ -589,7 +584,7 @@ bool CameraDirector::isAnimCameraEnd(s32 zoneID, const char* pName) const {
 
 u32 CameraDirector::getAnimCameraFrame(s32 zoneID, const char* pName) const {
     CameraManEvent* eventMan = mCameraManEvent;
-    CameraMan*      man = getCurrentCameraMan();
+    CameraMan* man = getCurrentCameraMan();
 
     if (man == eventMan) {
         return eventMan->getAnimCameraFrame(zoneID, pName);
@@ -600,7 +595,7 @@ u32 CameraDirector::getAnimCameraFrame(s32 zoneID, const char* pName) const {
 
 void CameraDirector::pauseOnAnimCamera(s32 zoneID, const char* pName) {
     CameraManEvent* eventMan = mCameraManEvent;
-    CameraMan*      man = getCurrentCameraMan();
+    CameraMan* man = getCurrentCameraMan();
 
     if (man == eventMan) {
         eventMan->pauseOnAnimCamera(zoneID, pName);
@@ -609,7 +604,7 @@ void CameraDirector::pauseOnAnimCamera(s32 zoneID, const char* pName) {
 
 void CameraDirector::pauseOffAnimCamera(s32 zoneID, const char* pName) {
     CameraManEvent* eventMan = mCameraManEvent;
-    CameraMan*      man = getCurrentCameraMan();
+    CameraMan* man = getCurrentCameraMan();
 
     if (man == eventMan) {
         eventMan->pauseOffAnimCamera(zoneID, pName);
@@ -688,7 +683,7 @@ void CameraDirector::resetCameraMan() {
     CameraTargetObj* target1;
     CameraTargetObj* target2;
     CameraTargetObj* target3;
-    CameraMan*       man = getCurrentCameraMan();
+    CameraMan* man = getCurrentCameraMan();
 
     target1 = mTargetHolder->get();
     target2 = mTargetHolder->get();
@@ -709,7 +704,7 @@ void CameraDirector::resetCameraMan() {
 
 void CameraDirector::createStartAnimCamera() {
     void* data = nullptr;
-    s32   size = 0;
+    s32 size = 0;
     MR::getCurrentScenarioStartAnimCameraData(&data, &size);
 
     if (size > 0) {
@@ -720,13 +715,13 @@ void CameraDirector::createStartAnimCamera() {
 }
 
 void CameraDirector::createTalkCamera() {
-    const char*            name = gTalkCameraName;
+    const char* name = gTalkCameraName;
     CameraParamChunkID_Tmp chunkID = CameraParamChunkID_Tmp();
     chunkID.createEventID(0, name);
 
     mChunkHolder->createChunk(chunkID, nullptr);
 
-    const char*            name2 = gTalkCameraName;
+    const char* name2 = gTalkCameraName;
     CameraParamChunkID_Tmp chunkID2 = CameraParamChunkID_Tmp();
     chunkID2.createEventID(0, name2);
 
@@ -739,13 +734,13 @@ void CameraDirector::createTalkCamera() {
 }
 
 void CameraDirector::createSubjectiveCamera() {
-    const char*            name = gSubjectiveCameraName;
+    const char* name = gSubjectiveCameraName;
     CameraParamChunkID_Tmp chunkID = CameraParamChunkID_Tmp();
     chunkID.createEventID(0, name);
 
     mChunkHolder->createChunk(chunkID, nullptr);
 
-    const char*            name2 = gSubjectiveCameraName;
+    const char* name2 = gSubjectiveCameraName;
     CameraParamChunkID_Tmp chunkID2 = CameraParamChunkID_Tmp();
     chunkID2.createEventID(0, name2);
 

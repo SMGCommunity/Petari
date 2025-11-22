@@ -64,4 +64,4 @@ namespace MR {
     /// @return true if the state was updated and nerve transition occurred, false otherwise.
     /// @note Only transitions to the next nerve if the state indicates it should update.
     bool updateActorStateAndNextNerve(NerveExecutor* pExecutor, ActorStateBaseInterface* pActorState, const Nerve* pNextNerve);
-}; // namespace MR
+};  // namespace MR

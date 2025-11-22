@@ -6,9 +6,7 @@
 #define FLAG_COMPLETE_ENDING_MARIO 0x2
 #define FLAG_COMPLETE_ENDING_LUIGI 0x4
 
-ConfigDataMisc::ConfigDataMisc()
-    : mFlag(FLAG_LAST_LOADED_MARIO),
-      mLastModified(0) {
+ConfigDataMisc::ConfigDataMisc() : mFlag(FLAG_LAST_LOADED_MARIO), mLastModified(0) {
     initializeData();
 }
 

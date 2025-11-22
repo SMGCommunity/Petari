@@ -467,15 +467,15 @@ struct MarioConstTable {
     /* 0x71C */ f32 mTeresaWindMovingBrake2;
     /* 0x720 */ f32 mTeresaWindMovingBrake3;
     /* 0x724 */ f32 mSilhouetteZoffset;
-    /* 0x728 */ u8  mRibbonColor[4];
-    /* 0x72C */ u8  mDamageFogLow;
-    /* 0x72D */ u8  mDamageFogHigh;
+    /* 0x728 */ u8 mRibbonColor[4];
+    /* 0x72C */ u8 mDamageFogLow;
+    /* 0x72D */ u8 mDamageFogHigh;
     /* 0x730 */ f32 mStarPieceFogLevel;
-    /* 0x734 */ u8  mStarPieceFogTime;
-    /* 0x735 */ u8  mSearchLightAlphaLevel;
-    /* 0x736 */ u8  mSearchLightBlurAlpha[3];
+    /* 0x734 */ u8 mStarPieceFogTime;
+    /* 0x735 */ u8 mSearchLightAlphaLevel;
+    /* 0x736 */ u8 mSearchLightBlurAlpha[3];
     /* 0x73C */ f32 mSearchLightBlurScale[3];
-    /* 0x748 */ u8  mSearchLightColor[4];
+    /* 0x748 */ u8 mSearchLightColor[4];
     /* 0x74C */ f32 mRasterV;
     /* 0x750 */ s32 mRasterSpeed;
     /* 0x754 */ f32 mRasterRange;
@@ -512,15 +512,11 @@ public:
     MarioConst();
 
     /// @brief Returns the working table of player character constants.
-    MarioConstTable* getTable() const {
-        return mTable[mCurrentTable];
-    }
+    MarioConstTable* getTable() const { return mTable[mCurrentTable]; }
 
     /// @brief Switches the working table of player character constants.
     /// @param tbl The new table index.
-    void changeTable(u32 tbl) {
-        mCurrentTable = tbl;
-    }
+    void changeTable(u32 tbl) { mCurrentTable = tbl; }
 
 private:
     /// @brief The array of player character constant tables.

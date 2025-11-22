@@ -7,11 +7,9 @@ namespace NrvQuakeEffectGenerator {
     NEW_NERVE(HostTypeWait, QuakeEffectGenerator, Wait);
     NEW_NERVE(HostTypeWaitInArea, QuakeEffectGenerator, WaitInArea);
     NEW_NERVE(HostTypeQuaking, QuakeEffectGenerator, Quaking);
-}; // namespace NrvQuakeEffectGenerator
+};  // namespace NrvQuakeEffectGenerator
 
-QuakeEffectGenerator::QuakeEffectGenerator()
-    : LiveActor("地震効果生成") {
-}
+QuakeEffectGenerator::QuakeEffectGenerator() : LiveActor("地震効果生成") {}
 
 void QuakeEffectGenerator::init(const JMapInfoIter& rIter) {
     initNerve(&NrvQuakeEffectGenerator::HostTypeWait::sInstance);
@@ -55,5 +53,4 @@ void QuakeEffectGenerator::exeWait() {
     }
 }
 
-QuakeEffectGenerator::~QuakeEffectGenerator() {
-}
+QuakeEffectGenerator::~QuakeEffectGenerator() {}

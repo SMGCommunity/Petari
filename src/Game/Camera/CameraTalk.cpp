@@ -1,8 +1,7 @@
 #include "Game/Camera/CameraTalk.hpp"
 #include "Game/Camera/CamTranslatorTalk.hpp"
 
-CameraTalk::CameraTalk(const char* pName)
-    : Camera(pName) {
+CameraTalk::CameraTalk(const char* pName) : Camera(pName) {
     _4C = 0.0f;
     _50 = 0.0f;
     _54 = 0.0f;
@@ -14,8 +13,7 @@ CameraTalk::CameraTalk(const char* pName)
     _6C = 0;
 }
 
-CameraTalk::~CameraTalk() {
-}
+CameraTalk::~CameraTalk() {}
 
 CamTranslatorBase* CameraTalk::createTranslator() {
     return new CamTranslatorTalk(this);

@@ -7,19 +7,13 @@
 #include <RVLFaceLib.h>
 
 MiiFaceParts::MiiFaceParts(const char* pName, const MiiFaceRecipe& rRecipe)
-    : LiveActor(pName),
-      mCharModel(nullptr),
-      _90(nullptr),
-      mRecipe(nullptr),
-      _CC(nullptr),
-      _D0(false) {
+    : LiveActor(pName), mCharModel(nullptr), _90(nullptr), mRecipe(nullptr), _CC(nullptr), _D0(false) {
     mRecipe = new MiiFaceRecipe(rRecipe);
 
     MR::createSceneObj(SceneObj_MiiFacePartsHolder);
 }
 
-MiiFaceParts::~MiiFaceParts() {
-}
+MiiFaceParts::~MiiFaceParts() {}
 
 void MiiFaceParts::init(const JMapInfoIter& rIter) {
     _90 = new (32) u8[mRecipe->getModelBufferSize()];

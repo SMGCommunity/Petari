@@ -10,15 +10,13 @@ namespace {
         ".brlan",
         nullptr,
     };
-}; // namespace
+};  // namespace
 
-LayoutHolder::LayoutHolder(JKRArchive& rArchive)
-    : nw4r::lyt::ResourceAccessor(), mArchive(&rArchive) {
+LayoutHolder::LayoutHolder(JKRArchive& rArchive) : nw4r::lyt::ResourceAccessor(), mArchive(&rArchive) {
     initializeArc();
 }
 
-LayoutHolder::~LayoutHolder() {
-}
+LayoutHolder::~LayoutHolder() {}
 
 /*
 void LayoutHolder::initializeArc() {

@@ -35,19 +35,19 @@ public:
     void createAndAddOtherArchives();
 
     /* 0x8 */ PlayerHeapHolder* mHeapHolder;
-    /* 0xc */ bool              _C;
+    /* 0xc */ bool _C;
 };
 
 class ConditionUsePlayerHeap : public StationedArchiveLoader::Condition {
 public:
     ConditionUsePlayerHeap();
 
-    virtual bool     isExecute(const MR::StationedFileInfo*) const;
+    virtual bool isExecute(const MR::StationedFileInfo*) const;
     virtual JKRHeap* getProperHeap(const MR::StationedFileInfo*) const;
 
     /* 0x4 */ JKRExpHeap* mNapaHeap;
     /* 0x8 */ JKRExpHeap* mGDDRHeap;
-    /* 0xC */ bool        mIsDataMario;
+    /* 0xC */ bool mIsDataMario;
 };
 
 class ConditionIfIsNotPlayer : public StationedArchiveLoader::Condition {
@@ -83,7 +83,7 @@ public:
     static JKRExpHeap* createHeap(u32, JKRHeap*);
 
     /* 0x0 */ ConditionUsePlayerHeap* mCondition;
-    /* 0x4 */ JKRExpHeap*             mNapaHeap;
-    /* 0x8 */ JKRExpHeap*             mGDDRHeap;
-    /* 0xC */ bool                    mIsDataMario;
+    /* 0x4 */ JKRExpHeap* mNapaHeap;
+    /* 0x8 */ JKRExpHeap* mGDDRHeap;
+    /* 0xC */ bool mIsDataMario;
 };

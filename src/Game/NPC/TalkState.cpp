@@ -12,10 +12,7 @@
 #include "Game/Util/SoundUtil.hpp"
 #include "revolution/types.h"
 
-TalkState::TalkState()
-    : _04(nullptr),
-      mBalloon(nullptr) {
-}
+TalkState::TalkState() : _04(nullptr), mBalloon(nullptr) {}
 
 void TalkState::init(TalkMessageCtrl* pArg1, TalkBalloon* pBalloon) {
     _04 = pArg1;
@@ -65,7 +62,7 @@ bool TalkStateShort::talk(const TalkMessageCtrl*) {
 
 void TalkStateShort::open() {
     mBalloon->open(_04);
-    LiveActor*       actor = _04->mHostActor;
+    LiveActor* actor = _04->mHostActor;
     TalkMessageInfo* info = TalkFunction::getMessageInfo(_04);
     MR::startTalkSound(info->_6, actor);
 }

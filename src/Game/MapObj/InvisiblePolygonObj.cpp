@@ -1,8 +1,7 @@
 #include "Game/MapObj/InvisiblePolygonObj.hpp"
 #include <cstdio>
 
-InvisiblePolygonObj::InvisiblePolygonObj(const char* pName)
-    : LiveActor(pName) {
+InvisiblePolygonObj::InvisiblePolygonObj(const char* pName) : LiveActor(pName) {
     mMatrix.identity();
 }
 
@@ -30,7 +29,7 @@ void InvisiblePolygonObj::initBaseMtx() {
 void InvisiblePolygonObj::initCollision(const JMapInfoIter& rIter) {
     InvisiblePolygonObj::initBaseMtx();
     const char* name = nullptr;
-    char        pName[0x40];
+    char pName[0x40];
     MR::getObjectName(&name, rIter);
     snprintf(pName, sizeof(pName), "%s.arc", name);
     ResourceHolder* resource = MR::createAndAddResourceHolder(pName);

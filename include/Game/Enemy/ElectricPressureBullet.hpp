@@ -17,7 +17,7 @@ public:
     void shotElectricBullet(LiveActor*, const TPos3f&, const f32&);
     void exeFly();
 
-    TVec3f     _8C;
+    TVec3f _8C;
     LiveActor* _98;
-    f32        _9C;
+    f32 _9C;
 };

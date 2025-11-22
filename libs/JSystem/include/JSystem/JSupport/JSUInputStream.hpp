@@ -4,9 +4,7 @@
 
 class JSUInputStream : public JSUIosBase {
 public:
-    JSUInputStream()
-        : JSUIosBase() {
-    }
+    JSUInputStream() : JSUIosBase() {}
 
     virtual ~JSUInputStream();
     virtual s32 getAvailable() const = 0;

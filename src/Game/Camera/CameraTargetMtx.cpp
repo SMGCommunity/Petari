@@ -1,9 +1,8 @@
-#include "Game/AreaObj/CubeCamera.hpp"
 #include "Game/Camera/CameraTargetMtx.hpp"
+#include "Game/AreaObj/CubeCamera.hpp"
 #include "Game/Util/GravityUtil.hpp"
 
-void CameraTargetObj::init(const JMapInfoIter& rIter) {
-}
+void CameraTargetObj::init(const JMapInfoIter& rIter) {}
 
 bool CameraTargetObj::isTurning() const {
     return false;
@@ -41,11 +40,9 @@ bool CameraTargetObj::isDebugMode() const {
     return false;
 }
 
-void CameraTargetObj::resetStatus() {
-}
+void CameraTargetObj::resetStatus() {}
 
-CameraTargetMtx::CameraTargetMtx(const char* pName)
-    : CameraTargetObj(pName) {
+CameraTargetMtx::CameraTargetMtx(const char* pName) : CameraTargetObj(pName) {
     mPosition.x = 0.0f;
     mPosition.y = 0.0f;
     mPosition.z = 0.0f;
@@ -69,8 +66,7 @@ CameraTargetMtx::CameraTargetMtx(const char* pName)
     mMatrix.identity();
 }
 
-CameraTargetMtx::~CameraTargetMtx() {
-}
+CameraTargetMtx::~CameraTargetMtx() {}
 
 #ifdef NON_MATCHING
 // Wrong instruction order for the first 4 TVec3f.set(), register mismatch

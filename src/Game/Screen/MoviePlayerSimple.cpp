@@ -1,6 +1,7 @@
-#include "Game/Player/MarioActor.hpp"
 #include "Game/Screen/MoviePlayerSimple.hpp"
+#include "Game/Player/MarioActor.hpp"
 #include "Game/Screen/THPSimplePlayerWrapper.hpp"
+#include "Game/SingletonHolder.hpp"
 #include "Game/System/GameSystem.hpp"
 #include "Game/System/GameSystemFunction.hpp"
 #include "Game/System/HomeButtonStateNotifier.hpp"
@@ -8,17 +9,16 @@
 #include "Game/Util/ScreenUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
 #include "Game/Util/SystemUtil.hpp"
-#include "Game/SingletonHolder.hpp"
 #include <JSystem/JKernel/JKRDisposer.hpp>
 #include <JSystem/JKernel/JKRExpHeap.hpp>
 #include <JSystem/JUtility/JUTVideo.hpp>
 #include <revolution/gx/GXEnum.h>
 
 namespace {
-    static const s16     sCinemaFrameHeightTop = 44;
-    static const s16     sCinemaFrameHeightBottom = 412;
+    static const s16 sCinemaFrameHeightTop = 44;
+    static const s16 sCinemaFrameHeightBottom = 412;
     static const GXColor sCinemaFrameColor = {0, 0, 0, 255};
-}; // namespace
+};  // namespace
 
 namespace {
     NEW_NERVE(MoviePlayerSimpleOff, MoviePlayerSimple, SimpleOff);
@@ -26,15 +26,10 @@ namespace {
     NEW_NERVE(MoviePlayerSimplePreload, MoviePlayerSimple, Preload);
     NEW_NERVE(MoviePlayerSimplePlaying, MoviePlayerSimple, Playing);
     NEW_NERVE(MoviePlayerSimpleSuspend, MoviePlayerSimple, SimpleSuspend);
-}; // namespace
+};  // namespace
 
 MoviePlayerSimple::MoviePlayerSimple()
-    : LayoutActor("ムービープレイヤー", true),
-      JKRDisposer(),
-      mMovie(nullptr),
-      mPlayerWrapper(nullptr),
-      _44(false),
-      _45(false) {
+    : LayoutActor("ムービープレイヤー", true), JKRDisposer(), mMovie(nullptr), mPlayerWrapper(nullptr), _44(false), _45(false) {
     mMovie = new Movie();
     mMovie->mMovieName = "";
     mMovie->mBuffer = nullptr;
@@ -119,7 +114,8 @@ bool MoviePlayerSimple::isMovieActive() const {
         return false;
     }
 
-    return isNerve(&MoviePlayerSimpleOpen::sInstance) || isNerve(&MoviePlayerSimplePreload::sInstance) || isNerve(&MoviePlayerSimplePlaying::sInstance) || isNerve(&MoviePlayerSimpleSuspend::sInstance);
+    return isNerve(&MoviePlayerSimpleOpen::sInstance) || isNerve(&MoviePlayerSimplePreload::sInstance) ||
+           isNerve(&MoviePlayerSimplePlaying::sInstance) || isNerve(&MoviePlayerSimpleSuspend::sInstance);
 }
 
 bool MoviePlayerSimple::isMoviePlaying() const {
@@ -160,8 +156,7 @@ void MoviePlayerSimple::setUnpauseHomeButtonFlag() {
     mPlayerWrapper->setUnpauseFrameFlag();
 }
 
-void MoviePlayerSimple::exeSimpleOff() {
-}
+void MoviePlayerSimple::exeSimpleOff() {}
 
 void MoviePlayerSimple::exeOpen() {
     if (MR::isFirstStep(this)) {
@@ -225,8 +220,7 @@ void MoviePlayerSimple::exePlaying() {
     }
 }
 
-void MoviePlayerSimple::exeSimpleSuspend() {
-}
+void MoviePlayerSimple::exeSimpleSuspend() {}
 
 void MoviePlayerSimple::control() {
     mPlayerWrapper->updateNerve();
@@ -264,11 +258,11 @@ u32 MoviePlayerSimple::calcNeedMemoryForMovieWorks() {
 void MoviePlayerSimple::drawCinemaFrame() const {
     MR::fillScreenSetup(sCinemaFrameColor);
 
-    s16    width = MR::getFrameBufferWidth();
+    s16 width = MR::getFrameBufferWidth();
     TBox2s top(0, 0, width, sCinemaFrameHeightTop);
     MR::fillScreenArea(top._0, top._8);
 
-    s16    height = MR::getFrameBufferHeight();
+    s16 height = MR::getFrameBufferHeight();
     TBox2s bottom(0, sCinemaFrameHeightBottom, width, height);
     MR::fillScreenArea(bottom._0, bottom._8);
 }

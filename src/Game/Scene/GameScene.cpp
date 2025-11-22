@@ -1,3 +1,4 @@
+#include "Game/Scene/GameScene.hpp"
 #include "Game/AudioLib/AudSceneMgr.hpp"
 #include "Game/AudioLib/AudWrap.hpp"
 #include "Game/LiveActor/AllLiveActorGroup.hpp"
@@ -7,7 +8,6 @@
 #include "Game/NPC/EventDirector.hpp"
 #include "Game/NPC/NPCFunction.hpp"
 #include "Game/NPC/TalkDirector.hpp"
-#include "Game/Scene/GameScene.hpp"
 #include "Game/Scene/GameSceneFunction.hpp"
 #include "Game/Scene/GameScenePauseControl.hpp"
 #include "Game/Scene/GameSceneScenarioOpeningCameraState.hpp"
@@ -25,10 +25,8 @@
 #include <JSystem/J3DGraphBase/J3DSys.hpp>
 
 namespace {
-    CometRetryButton* getCometRetryButton() {
-        return MR::getSceneObj< CometRetryButton >(SceneObj_CometRetryButton);
-    }
-}; // namespace
+    CometRetryButton* getCometRetryButton() { return MR::getSceneObj< CometRetryButton >(SceneObj_CometRetryButton); }
+};  // namespace
 
 namespace NrvGameScene {
     NEW_NERVE(GameSceneScenarioOpeningCamera, GameScene, ScenarioOpeningCamera);
@@ -44,18 +42,10 @@ namespace NrvGameScene {
     NEW_NERVE(GameSceneTimeUp, GameScene, TimeUp);
     NEW_NERVE(GameSceneGalaxyMap, GameScene, GalaxyMap);
     NEW_NERVE(GameSceneStaffRoll, GameScene, StaffRoll);
-}; // namespace NrvGameScene
+};  // namespace NrvGameScene
 
 GameScene::GameScene()
-    : Scene("GameScene"),
-      _14(0),
-      mScenarioCamera(nullptr),
-      mPauseCtrl(nullptr),
-      mPauseSeq(nullptr),
-      mStageClearSeq(nullptr),
-      mDraw3D(true),
-      _29(1) {
-}
+    : Scene("GameScene"), _14(0), mScenarioCamera(nullptr), mPauseCtrl(nullptr), mPauseSeq(nullptr), mStageClearSeq(nullptr), mDraw3D(true), _29(1) {}
 
 GameScene::~GameScene() {
     MR::destroySceneMessage();
@@ -320,7 +310,8 @@ void GameScene::initSequences() {
     mPauseCtrl = new GameScenePauseControl(this);
     mPauseCtrl->registerNervePauseMenu(&NrvGameScene::GameScenePauseMenu::sInstance);
 
-    MR::FunctorV0M< GameScenePauseControl*, void (GameScenePauseControl::*)() > func = MR::Functor_Inline< GameScenePauseControl >(mPauseCtrl, &GameScenePauseControl::requestPauseMenuOff);
+    MR::FunctorV0M< GameScenePauseControl*, void (GameScenePauseControl::*)() > func =
+        MR::Functor_Inline< GameScenePauseControl >(mPauseCtrl, &GameScenePauseControl::requestPauseMenuOff);
     mPauseSeq->initWindowMenu(func);
 }
 
@@ -500,7 +491,8 @@ void GameScene::startStagePlayRetry() {
 }
 
 bool GameScene::isPermitToPauseMenu() const {
-    return !MR::isStageDisablePauseMenu() && isNerve(&NrvGameScene::GameSceneAction::sInstance) && !MR::isDemoActive() && !MR::isWipeActive() && !MR::isWipeBlank() && !MR::isPlayerDead() && !MR::isPlayerDamaging();
+    return !MR::isStageDisablePauseMenu() && isNerve(&NrvGameScene::GameSceneAction::sInstance) && !MR::isDemoActive() && !MR::isWipeActive() &&
+           !MR::isWipeBlank() && !MR::isPlayerDead() && !MR::isPlayerDamaging();
 }
 
 void GameScene::requestShowGalaxyMap() {

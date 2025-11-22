@@ -21,19 +21,19 @@ public:
     virtual void control();
     virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
 
-    void        initRailPoints();
-    void        exeWait();
-    void        exeSetUp();
-    void        exeRun();
+    void initRailPoints();
+    void exeWait();
+    void exeSetUp();
+    void exeRun();
     inline void exeNoBind();
 
-    BallRailPoint* mRailPoints; // 0x8C
-    HitSensor*     _90;
-    TVec3f         _94;
-    s32            mNumPoints;    // 0xA0
-    f32            mAcceleration; // 0xA4
-    f32            mDeceleration; // 0xA8
-    f32            _AC;
+    BallRailPoint* mRailPoints;  // 0x8C
+    HitSensor* _90;
+    TVec3f _94;
+    s32 mNumPoints;     // 0xA0
+    f32 mAcceleration;  // 0xA4
+    f32 mDeceleration;  // 0xA8
+    f32 _AC;
 };
 
 namespace NrvBallRail {
@@ -41,4 +41,4 @@ namespace NrvBallRail {
     NERVE_DECL(BallRailNrvSetUp, BallRail, BallRail::exeSetUp);
     NERVE_DECL(BallRailNrvRun, BallRail, BallRail::exeRun);
     NERVE_DECL(BallRailNrvNoBind, BallRail, BallRail::exeNoBind);
-}; // namespace NrvBallRail
+};  // namespace NrvBallRail

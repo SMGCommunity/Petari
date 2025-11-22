@@ -13,4 +13,4 @@ namespace JASDriver {
     u32 getSubFrames();
 
     void registerMixCallback(MixCallback, JASMixMode);
-} // namespace JASDriver
+}  // namespace JASDriver

@@ -1,14 +1,12 @@
 #include "Game/MapObj/PowerStarHolder.hpp"
 #include "Game/NPC/EventDirector.hpp"
 
-PowerStarHolder::PowerStarHolder(const char* pName)
-    : NameObj(pName) {
+PowerStarHolder::PowerStarHolder(const char* pName) : NameObj(pName) {
     mNumInfos = 0;
     MR::zeroMemory(mInfos, sizeof(mInfos));
 }
 
-void PowerStarHolder::init(const JMapInfoIter&) {
-}
+void PowerStarHolder::init(const JMapInfoIter&) {}
 
 void PowerStarHolder::registerPowerStar(PowerStar* pStar, int starNum) {
     PowerStarRequestInfo* info = new PowerStarRequestInfo();
@@ -69,10 +67,8 @@ PowerStarRequestInfo* PowerStarHolder::findPowerStarRequestInfo(int starNum) con
 }
 
 namespace MR {
-    void registerPowerStar(PowerStar* pStar, int starNum) {
-        EventFunction::getPowerStarHolder()->registerPowerStar(pStar, starNum);
-    }
-}; // namespace MR
+    void registerPowerStar(PowerStar* pStar, int starNum) { EventFunction::getPowerStarHolder()->registerPowerStar(pStar, starNum); }
+};  // namespace MR
 
 bool PowerStarFunction::isEndPowerStarAppearDemo(int starNum) {
     return EventFunction::getPowerStarHolder()->getAppearedPowerStar(starNum)->isEndAppearDemo();
@@ -82,5 +78,4 @@ PowerStar* PowerStarFunction::findPowerStar(int starNum) {
     return EventFunction::getPowerStarHolder()->findPowerStarRequestInfo(starNum)->mStar;
 }
 
-PowerStarHolder::~PowerStarHolder() {
-}
+PowerStarHolder::~PowerStarHolder() {}

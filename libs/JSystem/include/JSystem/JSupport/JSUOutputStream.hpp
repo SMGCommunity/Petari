@@ -4,8 +4,7 @@
 
 class JSUOutputStream : public JSUIosBase {
 public:
-    JSUOutputStream() {
-    }
+    JSUOutputStream() {}
 
     virtual ~JSUOutputStream();
     virtual s32 skip(s32, s8);

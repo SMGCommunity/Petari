@@ -1,7 +1,7 @@
+#include "Game/Screen/PlayerActionGuidance.hpp"
 #include "Game/AreaObj/AreaObj.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
-#include "Game/Screen/PlayerActionGuidance.hpp"
 #include "Game/Screen/SimpleLayout.hpp"
 #include "Game/Util/AreaObjUtil.hpp"
 #include "Game/Util/LayoutUtil.hpp"
@@ -12,13 +12,11 @@
 namespace {
     static const s32 sSuspendFrame = 60;
     static const s32 sChangeSoundFrame = 40;
-}; // namespace
+};  // namespace
 
 namespace MR {
-    PlayerActionGuidance* getPlayerActionGuidance() {
-        return MR::getSceneObj< PlayerActionGuidance >(SceneObj_PlayerActionGuidance);
-    }
-}; // namespace MR
+    PlayerActionGuidance* getPlayerActionGuidance() { return MR::getSceneObj< PlayerActionGuidance >(SceneObj_PlayerActionGuidance); }
+};  // namespace MR
 
 namespace {
     NEW_NERVE(PlayerActionGuidanceWaitFocusIn, PlayerActionGuidance, WaitFocusIn);
@@ -26,20 +24,11 @@ namespace {
     NEW_NERVE(PlayerActionGuidanceDisplay, PlayerActionGuidance, Display);
     NEW_NERVE(PlayerActionGuidanceSuspend, PlayerActionGuidance, Suspend);
     NEW_NERVE(PlayerActionGuidanceFadeout, PlayerActionGuidance, Fadeout);
-}; // namespace
+};  // namespace
 
 PlayerActionGuidance::PlayerActionGuidance()
-    : LayoutActor("プレイヤーアクションガイダンス", true),
-      mSpinLayout(nullptr),
-      mTamakoroLayout(nullptr),
-      mCurrentLayout(nullptr),
-      mGuidanceState(3),
-      mGuidancePrevState(3),
-      _34(false),
-      _35(false),
-      _36(false),
-      _37(false) {
-}
+    : LayoutActor("プレイヤーアクションガイダンス", true), mSpinLayout(nullptr), mTamakoroLayout(nullptr), mCurrentLayout(nullptr), mGuidanceState(3),
+      mGuidancePrevState(3), _34(false), _35(false), _36(false), _37(false) {}
 
 void PlayerActionGuidance::control() {
     mGuidancePrevState = mGuidanceState;

@@ -1,12 +1,9 @@
 #include "Game/Player/MarioNullBck.hpp"
 #include "Game/Util/MtxUtil.hpp"
 
-MarioNullBck::MarioNullBck(const char* pName)
-    : LiveActor(pName) {
-}
+MarioNullBck::MarioNullBck(const char* pName) : LiveActor(pName) {}
 
-MarioNullBck::~MarioNullBck() {
-}
+MarioNullBck::~MarioNullBck() {}
 
 void MarioNullBck::init(const JMapInfoIter& rIter) {
     initModelManagerWithAnm("MarioDummyItem", nullptr, false);

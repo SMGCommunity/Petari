@@ -22,10 +22,10 @@ namespace MR {
     void cleanEventCameraTarget_temporally();
 
     const TPos3f* getCameraProjectionMtx();
-    const MtxPtr  getCameraViewMtx();
-    const MtxPtr  getMirrorCameraViewMtx();
-    const MtxPtr  getMirrorModelTexMtx();
-    TPos3f*       getCameraInvViewMtx();
+    const MtxPtr getCameraViewMtx();
+    const MtxPtr getMirrorCameraViewMtx();
+    const MtxPtr getMirrorModelTexMtx();
+    TPos3f* getCameraInvViewMtx();
 
     void loadViewMtx();
     void loadProjectionMtx();
@@ -34,19 +34,19 @@ namespace MR {
     void startEventCameraNoTarget(const ActorCameraInfo*, const char*, s32);
     void startEventCameraTargetPlayer(const ActorCameraInfo*, const char*, long);
 
-    f32    getAspect();
-    f32    getNearZ();
-    f32    getFarZ();
-    f32    getFovy();
-    void   setCameraViewMtx(const TPos3f&, bool, bool, const TVec3f&);
-    void   setNearZ(f32);
-    void   setFovy(f32);
-    void   setShakeOffset(f32, f32);
+    f32 getAspect();
+    f32 getNearZ();
+    f32 getFarZ();
+    f32 getFovy();
+    void setCameraViewMtx(const TPos3f&, bool, bool, const TVec3f&);
+    void setNearZ(f32);
+    void setFovy(f32);
+    void setShakeOffset(f32, f32);
     TVec3f getCamXDir();
     TVec3f getCamYdir();
     TVec3f getCamZdir();
-    void   createMirrorCamera();
-    bool   isExistMirrorCamera();
+    void createMirrorCamera();
+    bool isExistMirrorCamera();
 
     void completeCameraParameters();
     void resetCameraMan();
@@ -122,7 +122,7 @@ namespace MR {
     void endGlobalEventCamera(const char*, s32, bool);
 
     void startStartAnimCamera();
-    s32  getStartAnimCameraFrame();
+    s32 getStartAnimCameraFrame();
 
     void startEventCameraAnim(const ActorCameraInfo*, const char*, const CameraTargetArg&, long, float);
 
@@ -155,4 +155,4 @@ namespace MR {
     void zoomOutTargetGameCamera();
 
     void changeEventCameraTarget(const ActorCameraInfo*, const char*, const CameraTargetArg&);
-}; // namespace MR
+};  // namespace MR

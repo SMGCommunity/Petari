@@ -1,13 +1,13 @@
+#include "Game/Screen/StaffRoll.hpp"
 #include "Game/Camera/CameraContext.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Screen/InformationMessage.hpp"
-#include "Game/Screen/StaffRoll.hpp"
 #include "Game/System/GameSequenceFunction.hpp"
 #include "Game/System/GameSystemFunction.hpp"
 #include "Game/System/Language.hpp"
-#include "Game/Util/DrawUtil.hpp"
 #include "Game/Util/DemoUtil.hpp"
+#include "Game/Util/DrawUtil.hpp"
 #include "Game/Util/EventUtil.hpp"
 #include "Game/Util/GamePadUtil.hpp"
 #include "Game/Util/LayoutUtil.hpp"
@@ -39,53 +39,15 @@ namespace {
     };
 
     static const StaffRollParam sStaffRollParamTable[] = {
-        {0.8f, 0.5f, 27.5f, 36.0f},
-        {0.8f, 0.5f, 24.5f, 29.5f},
-        {0.8f, 0.5f, 23.5f, 30.5f},
-        {0.85f, 0.5f, 27.5f, 32.5f},
-        {0.8f, 0.5f, 24.0f, 30.5f},
+        {0.8f, 0.5f, 27.5f, 36.0f}, {0.8f, 0.5f, 24.5f, 29.5f}, {0.8f, 0.5f, 23.5f, 30.5f}, {0.85f, 0.5f, 27.5f, 32.5f}, {0.8f, 0.5f, 24.0f, 30.5f},
     };
     static const PictureTiming sPictureTimingTable[] = {
-        {1100, 0, 2, 0},
-        {1900, 0, 2, 1},
-        {2000, 1, 1, 0},
-        {2800, 1, 1, 1},
-        {2900, 2, 0, 0},
-        {3700, 2, 0, 1},
-        {3800, 3, 3, 0},
-        {4600, 3, 3, 1},
-        {4700, 4, 2, 0},
-        {5500, 4, 2, 1},
-        {6100, 5, 0, 2},
-        {6600, 5, 0, 3},
-        {6100, 6, 3, 2},
-        {6600, 6, 3, 3},
-        {6700, 7, 1, 2},
-        {7200, 7, 1, 3},
-        {6700, 8, 2, 2},
-        {7200, 8, 2, 3},
-        {7300, 9, 0, 2},
-        {7800, 9, 0, 3},
-        {7300, 10, 3, 2},
-        {7800, 10, 3, 3},
-        {7900, 11, 1, 2},
-        {8300, 11, 1, 3},
-        {7900, 12, 2, 2},
-        {8300, 12, 2, 3},
-        {8500, 13, 0, 2},
-        {8900, 13, 0, 3},
-        {8500, 14, 3, 2},
-        {8900, 14, 3, 3},
-        {9400, 15, 3, 0},
-        {10200, 15, 3, 1},
-        {10300, 16, 2, 0},
-        {11100, 16, 2, 1},
-        {11200, 17, 1, 0},
-        {12000, 17, 1, 1},
-        {12090, 18, 0, 0},
-        {12890, 18, 0, 1},
-        {12990, 19, 3, 0},
-        {13990, 19, 3, 1},
+        {1100, 0, 2, 0},   {1900, 0, 2, 1},   {2000, 1, 1, 0},   {2800, 1, 1, 1},   {2900, 2, 0, 0},   {3700, 2, 0, 1},   {3800, 3, 3, 0},
+        {4600, 3, 3, 1},   {4700, 4, 2, 0},   {5500, 4, 2, 1},   {6100, 5, 0, 2},   {6600, 5, 0, 3},   {6100, 6, 3, 2},   {6600, 6, 3, 3},
+        {6700, 7, 1, 2},   {7200, 7, 1, 3},   {6700, 8, 2, 2},   {7200, 8, 2, 3},   {7300, 9, 0, 2},   {7800, 9, 0, 3},   {7300, 10, 3, 2},
+        {7800, 10, 3, 3},  {7900, 11, 1, 2},  {8300, 11, 1, 3},  {7900, 12, 2, 2},  {8300, 12, 2, 3},  {8500, 13, 0, 2},  {8900, 13, 0, 3},
+        {8500, 14, 3, 2},  {8900, 14, 3, 3},  {9400, 15, 3, 0},  {10200, 15, 3, 1}, {10300, 16, 2, 0}, {11100, 16, 2, 1}, {11200, 17, 1, 0},
+        {12000, 17, 1, 1}, {12090, 18, 0, 0}, {12890, 18, 0, 1}, {12990, 19, 3, 0}, {13990, 19, 3, 1},
     };
     const char* cStaffRollDemoName = "StaffRoll";
     const char* cSaveAfterStaffRollDemoName = "SaveAfterStaffRoll";
@@ -117,7 +79,7 @@ namespace {
     // static const _ sDoubleInterval = _;
     // static const _ sTripleInterval = _;
     static const f32 sEndLogoPosY = 220.0f;
-}; // namespace
+};  // namespace
 
 namespace {
     const StaffRollParam* getStaffRollParam() {
@@ -145,16 +107,13 @@ namespace {
 
         return nullptr;
     }
-}; // namespace
+};  // namespace
 
 namespace NrvStaffRollLine {
     NEW_NERVE(StaffRollLineNrvScroll, StaffRollLine, Scroll);
 };
 
-StaffRollLine::StaffRollLine(const char* pName)
-    : LayoutActor(pName, true),
-      mPosition(0.0f, 0.0f) {
-}
+StaffRollLine::StaffRollLine(const char* pName) : LayoutActor(pName, true), mPosition(0.0f, 0.0f) {}
 
 void StaffRollLine::init(const JMapInfoIter& rIter) {
     initLayoutManager("StaffRoll", 1);
@@ -186,10 +145,7 @@ namespace NrvStaffRollPicture {
     NEW_NERVE(StaffRollPictureNrvWork, StaffRollPicture, Work);
 };
 
-StaffRollPicture::StaffRollPicture(const char* pName)
-    : LayoutActor(pName, true),
-      mReplaceTexture(nullptr) {
-}
+StaffRollPicture::StaffRollPicture(const char* pName) : LayoutActor(pName, true), mReplaceTexture(nullptr) {}
 
 void StaffRollPicture::init(const JMapInfoIter& rIter) {
     initLayoutManager("StaffRollPicture", 1);
@@ -208,16 +164,13 @@ void StaffRollPicture::exeWork() {
         const PictureTiming* pPictureTiming = &sPictureTimingTable[i];
 
         if (MR::isStep(this, pPictureTiming->mAppearStep)) {
-            startPictureAction(
-                pPictureTiming->mReplaceTextureId,
-                cPaneNameTable[pPictureTiming->mPaneId],
-                cAnimNameTable[pPictureTiming->mAnimId]);
+            startPictureAction(pPictureTiming->mReplaceTextureId, cPaneNameTable[pPictureTiming->mPaneId], cAnimNameTable[pPictureTiming->mAnimId]);
         }
     }
 }
 
 void StaffRollPicture::initReplaceTexture() {
-    char        replaceTextureName[64];
+    char replaceTextureName[64];
     const char* pReplaceTexturePrefix;
 
     mReplaceTexture = new nw4r::lyt::TexMap*[PICTURE_TEXTURE_NUM];
@@ -285,21 +238,11 @@ namespace NrvStaffRoll {
     NEW_NERVE(StaffRollNrvPrepareSave, StaffRoll, PrepareSave);
     NEW_NERVE(StaffRollNrvSave, StaffRoll, Save);
     NEW_NERVE(StaffRollNrvEnd, StaffRoll, End);
-}; // namespace NrvStaffRoll
+};  // namespace NrvStaffRoll
 
 StaffRoll::StaffRoll(const char* pName)
-    : LayoutActor(pName, true),
-      mInfo(nullptr),
-      mLine(nullptr),
-      mPicture(nullptr),
-      mMsg(nullptr),
-      mMsgLineNum(0),
-      mMsgLine(0),
-      mTitleLogoPos(0.0f, 0.0f),
-      mEndLogoPos(0.0f, 0.0f),
-      _48(-1),
-      _4C(0) {
-}
+    : LayoutActor(pName, true), mInfo(nullptr), mLine(nullptr), mPicture(nullptr), mMsg(nullptr), mMsgLineNum(0), mMsgLine(0),
+      mTitleLogoPos(0.0f, 0.0f), mEndLogoPos(0.0f, 0.0f), _48(-1), _4C(0) {}
 
 void StaffRoll::init(const JMapInfoIter& rIter) {
     MR::connectToSceneLayout(this);
@@ -573,8 +516,7 @@ void StaffRoll::exeSave() {
     setNerve(&NrvStaffRoll::StaffRollNrvEnd::sInstance);
 }
 
-void StaffRoll::exeEnd() {
-}
+void StaffRoll::exeEnd() {}
 
 void StaffRoll::movement() {
     if (!MR::isExecuteCalcAnimLayout(this)) {
@@ -690,7 +632,5 @@ StaffRollLine* StaffRoll::getDeadLineLayout() const {
 }
 
 namespace MR {
-    StaffRoll* getStaffRoll() {
-        return MR::getSceneObj< StaffRoll >(SceneObj_StaffRoll);
-    }
-}; // namespace MR
+    StaffRoll* getStaffRoll() { return MR::getSceneObj< StaffRoll >(SceneObj_StaffRoll); }
+};  // namespace MR

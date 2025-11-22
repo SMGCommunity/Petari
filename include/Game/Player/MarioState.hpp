@@ -17,10 +17,10 @@ public:
     virtual void hitWall(const TVec3f&, HitSensor*);
     virtual void hitPoly(u8, const TVec3f&, HitSensor*);
     virtual bool passRing(const HitSensor*);
-    virtual f32  getBlurOffset() const;
+    virtual f32 getBlurOffset() const;
     virtual void draw3D() const;
 
     u32 _8;
-    u32 mStatusId; // 0xC
-    u8  _10;
+    u32 mStatusId;  // 0xC
+    u8 _10;
 };

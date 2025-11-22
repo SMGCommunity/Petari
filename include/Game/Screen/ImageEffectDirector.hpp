@@ -12,7 +12,7 @@ namespace ImageEffectStateImpl {
     class StateDepthOfField;
     class StateNull;
     class StateScreenBlur;
-}; // namespace ImageEffectStateImpl
+};  // namespace ImageEffectStateImpl
 
 class ImageEffectDirector : public NameObj {
 public:
@@ -49,17 +49,17 @@ public:
     void setPlayerSync(bool);
 
 private:
-    /* 0x0C */ bool                                     mIsAuto;
-    /* 0x0D */ bool                                     _D;
-    /* 0x0E */ bool                                     _E;
-    /* 0x0F */ bool                                     _F;
-    /* 0x10 */ s32                                      _10;
-    /* 0x14 */ f32                                      mDepthOfFieldIntensity;
-    /* 0x18 */ ImageEffectStateImpl::StateNull*         _18;
-    /* 0x1C */ ImageEffectStateImpl::StateBloomNormal*  _1C;
-    /* 0x20 */ ImageEffectStateImpl::StateBloomSimple*  _20;
-    /* 0x24 */ ImageEffectStateImpl::StateScreenBlur*   _24;
+    /* 0x0C */ bool mIsAuto;
+    /* 0x0D */ bool _D;
+    /* 0x0E */ bool _E;
+    /* 0x0F */ bool _F;
+    /* 0x10 */ s32 _10;
+    /* 0x14 */ f32 mDepthOfFieldIntensity;
+    /* 0x18 */ ImageEffectStateImpl::StateNull* _18;
+    /* 0x1C */ ImageEffectStateImpl::StateBloomNormal* _1C;
+    /* 0x20 */ ImageEffectStateImpl::StateBloomSimple* _20;
+    /* 0x24 */ ImageEffectStateImpl::StateScreenBlur* _24;
     /* 0x28 */ ImageEffectStateImpl::StateDepthOfField* _28;
-    /* 0x2C */ ImageEffectState*                        _2C;
-    /* 0x30 */ ImageEffectBase*                         _30;
+    /* 0x2C */ ImageEffectState* _2C;
+    /* 0x30 */ ImageEffectBase* _30;
 };

@@ -21,8 +21,8 @@ public:
     void exeLead();
     void exeSlow();
 
-    s32              _15C;
-    RemovableTurtle* mRemovableTurtle; //_160
-    LiveActor*       mActor;           //_164
-    f32              _168;
+    s32 _15C;
+    RemovableTurtle* mRemovableTurtle;  //_160
+    LiveActor* mActor;                  //_164
+    f32 _168;
 };

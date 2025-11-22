@@ -1,7 +1,6 @@
 #include "Game/MapObj/SimpleTimerObj.hpp"
 
-SimpleTimerObj::SimpleTimerObj(const char* pName)
-    : MapObjActor(pName) {
+SimpleTimerObj::SimpleTimerObj(const char* pName) : MapObjActor(pName) {
     mFlashingCtrl = 0;
     mTimer = 600;
     mTimeLeft = 0;
@@ -49,8 +48,7 @@ void SimpleTimerObj::control() {
     }
 }
 
-SimpleTimerObj::~SimpleTimerObj() {
-}
+SimpleTimerObj::~SimpleTimerObj() {}
 
 namespace NrvSimpleTimerObj {
     INIT_NERVE(SimpleTimerObjNrvTimer);
@@ -59,4 +57,4 @@ namespace NrvSimpleTimerObj {
         SimpleTimerObj* timer_obj = reinterpret_cast< SimpleTimerObj* >(pSpine->mExecutor);
         timer_obj->exeTimer();
     }
-}; // namespace NrvSimpleTimerObj
+};  // namespace NrvSimpleTimerObj

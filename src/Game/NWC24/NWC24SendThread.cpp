@@ -1,5 +1,5 @@
-#include "Game/NWC24/NWC24Function.hpp"
 #include "Game/NWC24/NWC24SendThread.hpp"
+#include "Game/NWC24/NWC24Function.hpp"
 // #include "Game/NWC24/UTF16Util.hpp"
 #include "Game/Util/MemoryUtil.hpp"
 #include <JSystem/JKernel/JKRHeap.hpp>
@@ -18,27 +18,12 @@ NWC24SendThread::NWC24SendThread(s32 priority, JKRHeap* pHeap) {
 
     u8* pStackBase = new (pHeap, 0) u8[STACK_SIZE];
 
-    OSCreateThread(
-        this,
-        &NWC24SendThread::threadProc,
-        nullptr,
-        &pStackBase[STACK_SIZE],
-        STACK_SIZE,
-        priority,
-        1 /* OS_THREAD_ATTR_DETACH */);
+    OSCreateThread(this, &NWC24SendThread::threadProc, nullptr, &pStackBase[STACK_SIZE], STACK_SIZE, priority, 1 /* OS_THREAD_ATTR_DETACH */);
     OSResumeThread(this);
 }
 
-bool NWC24SendThread::requestSend(
-    const u16* pText,
-    const u16* pAltName,
-    const u8*  pLetter,
-    u32        letterSize,
-    const u8*  pPicture,
-    u32        pictureSize,
-    u16        tag,
-    bool       isMsgLedPattern,
-    u8         delayHours) {
+bool NWC24SendThread::requestSend(const u16* pText, const u16* pAltName, const u8* pLetter, u32 letterSize, const u8* pPicture, u32 pictureSize,
+                                  u16 tag, bool isMsgLedPattern, u8 delayHours) {
     BOOL status = OSDisableInterrupts();
 
     if (mMessageQueue.usedCount >= mMessageQueue.msgCount) {
@@ -209,12 +194,7 @@ bool NWC24SendThread::checkTotalSize(MsgSendStatus* pMsgSendStatus) {
         pictureSize = pMsgSendStatus->mPictureSize;
     }
 
-    return MR::checkWiiMailLimit(
-        MR::calcWiiMailSize(
-            pMsgSendStatus->mAltName,
-            pMsgSendStatus->mText,
-            pictureSize,
-            letterSize));
+    return MR::checkWiiMailLimit(MR::calcWiiMailSize(pMsgSendStatus->mAltName, pMsgSendStatus->mText, pictureSize, letterSize));
 }
 
 /*

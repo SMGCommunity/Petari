@@ -12,16 +12,16 @@ class WaterInfo;
 
 namespace MR {
     AreaObjMgr* getAreaObjManager(const char*);
-    AreaObj*    getAreaObj(const char*, const TVec3f&);
-    bool        isInAreaObj(const char*, const TVec3f&);
-    s32         getAreaObjArg(const AreaObj*, s32);
+    AreaObj* getAreaObj(const char*, const TVec3f&);
+    bool isInAreaObj(const char*, const TVec3f&);
+    s32 getAreaObjArg(const AreaObj*, s32);
 
     void calcAreaMoveVelocity(TVec3f*, const TVec3f&);
 
     void calcCylinderPos(TVec3f*, const AreaObj*);
 
     void calcCylinderUpVec(TVec3f*, const AreaObj*);
-    f32  getCylinderRadius(const AreaObj*);
+    f32 getCylinderRadius(const AreaObj*);
 
     void calcCubePos(const AreaObj*, TVec3f*);
     void calcCubeLocalPos(TVec3f*, const AreaObj*, const TVec3f&);
@@ -36,7 +36,7 @@ namespace MR {
 
     AreaObj* getAreaIn(const char*, const TVec3f&);
 
-    bool      getWaterAreaObj(WaterInfo*, const TVec3f&);
+    bool getWaterAreaObj(WaterInfo*, const TVec3f&);
     AreaInfo* getWaterAreaInfo(WaterInfo*, const TVec3f&, const TVec3f&, bool);
 
-}; // namespace MR
+};  // namespace MR

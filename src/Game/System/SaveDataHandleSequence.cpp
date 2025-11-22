@@ -1,9 +1,9 @@
+#include "Game/System/SaveDataHandleSequence.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/SaveIcon.hpp"
 #include "Game/Screen/SysInfoWindow.hpp"
 #include "Game/System/NANDErrorSequence.hpp"
 #include "Game/System/NANDManager.hpp"
-#include "Game/System/SaveDataHandleSequence.hpp"
 #include "Game/System/SaveDataHandler.hpp"
 #include "Game/System/SysConfigFile.hpp"
 #include "Game/System/UserFile.hpp"
@@ -29,29 +29,13 @@ namespace {
     NEW_NERVE(SaveDataHandleSequencePreLoadDone, SaveDataHandleSequence, PreLoadDone);
     NEW_NERVE(SaveDataHandleSequenceNoSaveConfirmRemind, SaveDataHandleSequence, NoSaveConfirmRemind);
     NEW_NERVE(SaveDataHandleSequenceErrorHandling, SaveDataHandleSequence, ErrorHandling);
-}; // namespace
+};  // namespace
 
 SaveDataHandleSequence::SaveDataHandleSequence()
-    : NerveExecutor("セーブ/ロード"),
-      mSysConfigFile(nullptr),
-      mCurrentUserFile(nullptr),
-      mBackupUserFile(nullptr),
-      mSaveDataHandler(nullptr),
-      mNANDErrorSequence(nullptr),
-      mSysInfoWindowConfirm(nullptr),
-      mSysInfoWindowSave(nullptr),
-      _24(0),
-      mIsConfirmRemind(false),
-      mIsSaveAndQuitMsg(false),
-      _2A(false),
-      _2B(false),
-      _2C(false),
-      mWorkUserFile(nullptr),
-      mNerveForError(nullptr),
-      mTempBuffer(nullptr),
-      mOnSaveSuccessFunc(nullptr),
-      mJustBeforeSaveFunc(nullptr),
-      mSaveIcon(nullptr) {
+    : NerveExecutor("セーブ/ロード"), mSysConfigFile(nullptr), mCurrentUserFile(nullptr), mBackupUserFile(nullptr), mSaveDataHandler(nullptr),
+      mNANDErrorSequence(nullptr), mSysInfoWindowConfirm(nullptr), mSysInfoWindowSave(nullptr), _24(0), mIsConfirmRemind(false),
+      mIsSaveAndQuitMsg(false), _2A(false), _2B(false), _2C(false), mWorkUserFile(nullptr), mNerveForError(nullptr), mTempBuffer(nullptr),
+      mOnSaveSuccessFunc(nullptr), mJustBeforeSaveFunc(nullptr), mSaveIcon(nullptr) {
     mTempBuffer = new (32) u8[SaveDataHandler::getEnoughtTempBufferSize()];
 
     initNerve(&SaveDataHandleSequenceNoOperation::sInstance);
@@ -217,11 +201,16 @@ bool SaveDataHandleSequence::isPreparedReset() const {
         return false;
     }
 
-    if (isNerve(&SaveDataHandleSequenceNoOperation::sInstance) || isNerve(&SaveDataHandleSequenceSaveConfirm::sInstance) || isNerve(&SaveDataHandleSequenceSaveDoneKeyWait::sInstance) || isNerve(&SaveDataHandleSequenceNoSaveConfirmRemind::sInstance)) {
+    if (isNerve(&SaveDataHandleSequenceNoOperation::sInstance) || isNerve(&SaveDataHandleSequenceSaveConfirm::sInstance) ||
+        isNerve(&SaveDataHandleSequenceSaveDoneKeyWait::sInstance) || isNerve(&SaveDataHandleSequenceNoSaveConfirmRemind::sInstance)) {
         return true;
     }
 
-    if (isNerve(&SaveDataHandleSequencePreLoad::sInstance) || isNerve(&SaveDataHandleSequencePreLoadDone::sInstance) || isNerve(&SaveDataHandleSequenceSave::sInstance) || isNerve(&SaveDataHandleSequenceSaveWindowDisappear::sInstance) || isNerve(&SaveDataHandleSequenceSaveAllWithoutKeyWait::sInstance) || isNerve(&SaveDataHandleSequenceSaveAllWithoutKeyWaitDisappear::sInstance) || isNerve(&SaveDataHandleSequenceSaveAllWithoutWindow::sInstance)) {
+    if (isNerve(&SaveDataHandleSequencePreLoad::sInstance) || isNerve(&SaveDataHandleSequencePreLoadDone::sInstance) ||
+        isNerve(&SaveDataHandleSequenceSave::sInstance) || isNerve(&SaveDataHandleSequenceSaveWindowDisappear::sInstance) ||
+        isNerve(&SaveDataHandleSequenceSaveAllWithoutKeyWait::sInstance) ||
+        isNerve(&SaveDataHandleSequenceSaveAllWithoutKeyWaitDisappear::sInstance) ||
+        isNerve(&SaveDataHandleSequenceSaveAllWithoutWindow::sInstance)) {
         return false;
     }
 
@@ -301,7 +290,7 @@ void SaveDataHandleSequence::exeSaveConfirm() {
         mWorkUserFile->updateLastModified();
         setNerve(&SaveDataHandleSequenceSave::sInstance);
     } else {
-        bool        isSelectedYes = false;
+        bool isSelectedYes = false;
         const char* pSystemMessageId = "System_Save00";
 
         if (mIsSaveAndQuitMsg) {
@@ -567,11 +556,7 @@ void SaveDataHandleSequence::restoreSysConfigFile(SysConfigFile* pSysConfigFile)
 bool SaveDataHandleSequence::trySave() {
     if (MR::isFirstStep(this)) {
         mSaveDataHandler->requestSaveSaveData();
-        mSysInfoWindowSave->appear(
-            "System_Save01",
-            SysInfoWindow::Type_Blocking,
-            SysInfoWindow::TextPos_Center,
-            SysInfoWindow::MessageType_System);
+        mSysInfoWindowSave->appear("System_Save01", SysInfoWindow::Type_Blocking, SysInfoWindow::TextPos_Center, SysInfoWindow::MessageType_System);
     }
 
     if (MR::isDead(mSaveIcon) && mSysInfoWindowSave->isWait()) {
@@ -618,11 +603,7 @@ bool SaveDataHandleSequence::tryConfirm(const char* pSystemMessageId, bool* pIsS
     if (MR::isFirstStep(this)) {
         _24 = 1;
 
-        mSysInfoWindowConfirm->appear(
-            pSystemMessageId,
-            SysInfoWindow::Type_YesNo,
-            SysInfoWindow::TextPos_Center,
-            SysInfoWindow::MessageType_System);
+        mSysInfoWindowConfirm->appear(pSystemMessageId, SysInfoWindow::Type_YesNo, SysInfoWindow::TextPos_Center, SysInfoWindow::MessageType_System);
         MR::startSystemSE("SE_SY_SAVE_CONFIRM_INFO", -1, -1);
     }
 
@@ -637,11 +618,7 @@ bool SaveDataHandleSequence::tryConfirm(const char* pSystemMessageId, bool* pIsS
 
 bool SaveDataHandleSequence::tryProcessDoneKeyWait(const char* pSystemMessageId) {
     if (MR::isFirstStep(this)) {
-        mSysInfoWindowSave->appear(
-            pSystemMessageId,
-            SysInfoWindow::Type_Key,
-            SysInfoWindow::TextPos_Center,
-            SysInfoWindow::MessageType_System);
+        mSysInfoWindowSave->appear(pSystemMessageId, SysInfoWindow::Type_Key, SysInfoWindow::TextPos_Center, SysInfoWindow::MessageType_System);
     }
 
     if (MR::isDead(mSysInfoWindowSave)) {
@@ -666,7 +643,8 @@ bool SaveDataHandleSequence::tryNoSave() {
 }
 
 bool SaveDataHandleSequence::isEnablePointer() const {
-    if (isNerve(&SaveDataHandleSequenceNoOperation::sInstance) || isNerve(&SaveDataHandleSequencePreLoad::sInstance) || isNerve(&SaveDataHandleSequencePreLoadDone::sInstance)) {
+    if (isNerve(&SaveDataHandleSequenceNoOperation::sInstance) || isNerve(&SaveDataHandleSequencePreLoad::sInstance) ||
+        isNerve(&SaveDataHandleSequencePreLoadDone::sInstance)) {
         return false;
     }
 

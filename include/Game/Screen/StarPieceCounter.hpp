@@ -31,12 +31,12 @@ public:
     void exeWait();
     void exeDisappear();
 
-    /* 0x20 */ s32                    mStarPieceNum;
-    /* 0x24 */ s32                    mStarPieceDisplayNum;
-    /* 0x28 */ s32                    mInvalidCountUpFrame;
+    /* 0x20 */ s32 mStarPieceNum;
+    /* 0x24 */ s32 mStarPieceDisplayNum;
+    /* 0x28 */ s32 mInvalidCountUpFrame;
     /* 0x2C */ CounterLayoutAppearer* mLayoutAppearer;
-    /* 0x30 */ CountUpPaneRumbler*    mPaneRumbler;
-    /* 0x34 */ TVec2f                 mFollowPos;
-    /* 0x38 */ s32                    _3C;
-    /* 0x3C */ int                    mMode;
+    /* 0x30 */ CountUpPaneRumbler* mPaneRumbler;
+    /* 0x34 */ TVec2f mFollowPos;
+    /* 0x38 */ s32 _3C;
+    /* 0x3C */ int mMode;
 };

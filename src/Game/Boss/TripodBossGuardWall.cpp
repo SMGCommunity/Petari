@@ -16,29 +16,20 @@ struct WallPart2Angle {
 };
 
 namespace {
-    static WallPart2Angle sWallPartPlacementAngleTable[8] = {
-        {0.0f, 4},
-        {45.0f, 8},
-        {90.0f, 0xC},
-        {135.0f, 0x10},
-        {180.0f, 0x14},
-        {225.0f, 0x18},
-        {270.0f, 0x1C},
-        {315.0f, 0x20}};
+    static WallPart2Angle sWallPartPlacementAngleTable[8] = {{0.0f, 4},      {45.0f, 8},     {90.0f, 0xC},   {135.0f, 0x10},
+                                                             {180.0f, 0x14}, {225.0f, 0x18}, {270.0f, 0x1C}, {315.0f, 0x20}};
 
     static s32 sMoveSeLength = 0x3A;
-}; // namespace
+};  // namespace
 
 namespace NrvTriPodBossGuardWall {
     NEW_NERVE(TripodBossGuardWallNrvWait, TripodBossGuardWall, Wait);
     NEW_NERVE(TripodBossGuardWallNrvTryDemo, TripodBossGuardWall, TryDemo);
     NEW_NERVE(TripodBossGuardWallNrvDemo, TripodBossGuardWall, Demo);
     NEW_NERVE(TripodBossGuardWallNrvRotate, TripodBossGuardWall, Rotate);
-}; // namespace NrvTriPodBossGuardWall
+};  // namespace NrvTriPodBossGuardWall
 
-TripodBossGuardWall::TripodBossGuardWall(const char* pName)
-    : LiveActor(pName),
-      mCameraTargetMtx(nullptr) {
+TripodBossGuardWall::TripodBossGuardWall(const char* pName) : LiveActor(pName), mCameraTargetMtx(nullptr) {
     mCameraInfo = nullptr;
     _580.x = 0.0f;
     _580.y = 0.0f;
@@ -79,7 +70,8 @@ void TripodBossGuardWall::init(const JMapInfoIter& rIter) {
     mCameraTargetMtx = new CameraTargetMtx("カメラターゲットダミー");
 
     if (MR::useStageSwitchReadAppear(this, rIter)) {
-        MR::FunctorV0M< TripodBossGuardWall*, void (TripodBossGuardWall::*)() > validateFunc = MR::Functor_Inline< TripodBossGuardWall >(this, &TripodBossGuardWall::requestStart);
+        MR::FunctorV0M< TripodBossGuardWall*, void (TripodBossGuardWall::*)() > validateFunc =
+            MR::Functor_Inline< TripodBossGuardWall >(this, &TripodBossGuardWall::requestStart);
         MR::listenStageSwitchOnAppear(this, validateFunc);
     }
 

@@ -15,7 +15,7 @@ public:
     void exeIsInTornado();
 
     s32 _8C;
-    u8  _90;
+    u8 _90;
     s32 _94;
     s32 _98;
 };
@@ -23,4 +23,4 @@ public:
 namespace NrvCoinSpot {
     NERVE(CoinSpotNrvWait);
     NERVE(CoinSpotNrvIsInTornado);
-}; // namespace NrvCoinSpot
+};  // namespace NrvCoinSpot

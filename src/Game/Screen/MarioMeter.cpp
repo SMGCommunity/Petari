@@ -3,8 +3,7 @@
 #include "Game/Screen/SuddenDeathMeter.hpp"
 #include "Game/Util/ObjUtil.hpp"
 
-MarioMeter::MarioMeter(const char* pName)
-    : NameObj(pName) {
+MarioMeter::MarioMeter(const char* pName) : NameObj(pName) {
     mHitPointMeter = nullptr;
     mSuddenDeathMeter = nullptr;
     mUseSuddenDeath = false;
@@ -56,8 +55,7 @@ void MarioMeter::deactivate() {
     mUseSuddenDeath ? mSuddenDeathMeter->requestDeactivate() : mHitPointMeter->requestDeactivate();
 }
 
-MarioMeter::~MarioMeter() {
-}
+MarioMeter::~MarioMeter() {}
 
 void MarioMeter::init(const JMapInfoIter& rIter) {
     mHitPointMeter = new MeterLayout("通常HPメーター", "HitPointMeter");

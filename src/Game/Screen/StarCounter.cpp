@@ -1,7 +1,7 @@
+#include "Game/Screen/StarCounter.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/CountUpPaneRumbler.hpp"
 #include "Game/Screen/CounterLayoutAppearer.hpp"
-#include "Game/Screen/StarCounter.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/SceneUtil.hpp"
@@ -11,13 +11,9 @@ namespace NrvStarCounter {
     NEW_NERVE(StarCounterNrvWait, StarCounter, Wait);
     NEW_NERVE(StarCounterNrvCountUp, StarCounter, CountUp);
     NEW_NERVE(StarCounterNrvDisappear, StarCounter, Disappear);
-}; // namespace NrvStarCounter
+};  // namespace NrvStarCounter
 
-StarCounter::StarCounter()
-    : LayoutActor("スターカウンタ", true),
-      mPowerStarNum(0),
-      mLayoutAppearer(nullptr),
-      mPaneRumbler(nullptr) {}
+StarCounter::StarCounter() : LayoutActor("スターカウンタ", true), mPowerStarNum(0), mLayoutAppearer(nullptr), mPaneRumbler(nullptr) {}
 
 void StarCounter::init(const JMapInfoIter& rIter) {
     initLayoutManager("StarCounter", 2);

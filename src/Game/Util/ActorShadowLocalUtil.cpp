@@ -1,18 +1,12 @@
-#include "Game/Util.hpp"
 #include "Game/Util/ActorShadowLocalUtil.hpp"
+#include "Game/Util.hpp"
 
 namespace ActorShadow {
-    u32 getShadowControllerCount(const LiveActor* pActor) {
-        return pActor->mShadowControllerList->getControllerCount();
-    }
+    u32 getShadowControllerCount(const LiveActor* pActor) { return pActor->mShadowControllerList->getControllerCount(); }
 
-    ShadowController* getShadowController(const LiveActor* pActor, u32 a2) {
-        return pActor->mShadowControllerList->getController(a2);
-    }
+    ShadowController* getShadowController(const LiveActor* pActor, u32 a2) { return pActor->mShadowControllerList->getController(a2); }
 
-    ShadowController* getShadowController(const LiveActor* pActor, const char* pName) {
-        return pActor->mShadowControllerList->getController(pName);
-    }
+    ShadowController* getShadowController(const LiveActor* pActor, const char* pName) { return pActor->mShadowControllerList->getController(pName); }
 
     ShadowController* createShadowControllerVolumeParam(LiveActor* pActor, const char* pName) {
         ShadowController* pController = new ShadowController(pActor, pName);
@@ -64,7 +58,7 @@ namespace ActorShadow {
         else {
             pController->offFollowHostScale();
         }
-    } 
+    }
 
     void setUpShadowControlIsSyncShowFromCSV(ShadowController *pController, const JMapInfoIter &rIter) {
         bool stack_8(true);
@@ -115,4 +109,4 @@ namespace ActorShadow {
         pSurfaceCircle->setRadius(radius);
         return pSurfaceCircle;
     } */
-}; // namespace ActorShadow
+};  // namespace ActorShadow

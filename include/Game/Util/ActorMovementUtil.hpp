@@ -8,13 +8,13 @@ class HitSensor;
 class LiveActor;
 
 namespace MR {
-    f32  calcDistance(const HitSensor*, const HitSensor*, TVec3f*);
-    f32  calcDistance(const LiveActor*, const TVec3f&);
-    f32  calcDistanceHorizontal(const LiveActor*, const TVec3f&, const TVec3f&);
-    f32  calcDistanceVertical(const LiveActor*, const TVec3f&, const TVec3f&);
-    f32  calcDistanceVertical(const LiveActor*, const TVec3f&);
-    f32  calcDistanceToPlayer(const LiveActor*);
-    f32  calcDistanceToPlayerH(const LiveActor*);
+    f32 calcDistance(const HitSensor*, const HitSensor*, TVec3f*);
+    f32 calcDistance(const LiveActor*, const TVec3f&);
+    f32 calcDistanceHorizontal(const LiveActor*, const TVec3f&, const TVec3f&);
+    f32 calcDistanceVertical(const LiveActor*, const TVec3f&, const TVec3f&);
+    f32 calcDistanceVertical(const LiveActor*, const TVec3f&);
+    f32 calcDistanceToPlayer(const LiveActor*);
+    f32 calcDistanceToPlayerH(const LiveActor*);
     bool isNear(const HitSensor*, const HitSensor*, f32);
     bool isNear(const LiveActor*, const LiveActor*, f32);
     bool isNear(const LiveActor*, const TVec3f&, f32);
@@ -109,8 +109,8 @@ namespace MR {
     void setVelocity(LiveActor*, const TVec3f&);
     void addVelocity(LiveActor*, const TVec3f&);
     void scaleVelocity(LiveActor*, f32);
-    f32  calcVelocityLength(const LiveActor*);
-    f32  calcGravitySpeed(const LiveActor*);
+    f32 calcVelocityLength(const LiveActor*);
+    f32 calcGravitySpeed(const LiveActor*);
     void applyVelocityDampAndGravity(LiveActor*, f32, f32, f32, f32, f32);
     void setVelocityJumpAwayFromPlayer(LiveActor*, f32, f32);
     bool sendMsgPushAndKillVelocityToTarget(LiveActor*, HitSensor*, HitSensor*);
@@ -136,8 +136,8 @@ namespace MR {
     void turnDirectionFromTargetDegreeHorizon(const LiveActor*, TVec3f*, const TVec3f&, f32) NO_INLINE;
     void turnDirectionFromPlayerDegree(const LiveActor*, TVec3f*, f32);
     void turnDirectionFromPlayerDegreeHorizon(const LiveActor*, TVec3f*, f32);
-    f32  turnDirectionAndGravityH(TQuat4f*, const LiveActor*, const TVec3f&, f32, f32);
-    f32  turnDirectionAndGravityH(LiveActor*, const TVec3f&, f32, f32);
+    f32 turnDirectionAndGravityH(TQuat4f*, const LiveActor*, const TVec3f&, f32, f32);
+    f32 turnDirectionAndGravityH(LiveActor*, const TVec3f&, f32, f32);
     void turnDirectionToGround(const LiveActor*, TVec3f*);
     void moveAndTurnToDirection(LiveActor*, TVec3f*, const TVec3f&, f32, f32, f32, f32);
     void moveAndTurnToTarget(LiveActor*, TVec3f*, const TVec3f&, f32, f32, f32, f32);
@@ -148,4 +148,4 @@ namespace MR {
     void moveAndTurnToTarget(LiveActor*, const TVec3f&, f32, f32, f32, f32) NO_INLINE;
     void moveAndTurnToPlayer(LiveActor*, f32, f32, f32, f32);
     void moveAndTurnAlongRail(LiveActor*, f32, f32, f32, f32, f32, bool*);
-}; // namespace MR
+};  // namespace MR

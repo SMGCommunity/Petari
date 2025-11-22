@@ -20,13 +20,13 @@ public:
     TVec3f _8C;
     TVec3f _98;
     TVec3f _A4;
-    s32    _B0;
-    s32    _B4;
-    f32    _B8;
+    s32 _B0;
+    s32 _B4;
+    f32 _B8;
 };
 
 namespace NrvShootingStar {
     NERVE(HostTypeNrvPreShooting);
     NERVE(HostTypeNrvShooting);
     NERVE(HostTypeNrvWaitForNextShoot);
-}; // namespace NrvShootingStar
+};  // namespace NrvShootingStar

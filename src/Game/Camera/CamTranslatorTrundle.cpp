@@ -1,9 +1,9 @@
-#include "Game/Camera/CameraParamChunk.hpp"
 #include "Game/Camera/CamTranslatorTrundle.hpp"
+#include "Game/Camera/CameraParamChunk.hpp"
 #include "Game/Util/MathUtil.hpp"
 
 void CamTranslatorTrundle::setParam(const CameraParamChunk* pChunk) {
-    CameraTrundle*      camera;
+    CameraTrundle* camera;
     CameraGeneralParam* general = pChunk->mGeneralParam;
 
     TVec3f axis = general->mAxis;

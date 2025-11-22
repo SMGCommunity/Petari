@@ -1,5 +1,5 @@
-#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/SurfingGuidance.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
@@ -16,14 +16,9 @@ namespace {
     NEW_NERVE(SurfingGuidanceTurnRightHold, SurfingGuidance, TurnRightHold);
     NEW_NERVE(SurfingGuidanceTurnRightSuccess, SurfingGuidance, TurnRightSuccess);
     NEW_NERVE(SurfingGuidanceFadeOut, SurfingGuidance, FadeOut);
-}; // namespace
+};  // namespace
 
-SurfingGuidance::SurfingGuidance()
-    : LayoutActor("サーフィンガイダンス", true),
-      _20(0),
-      _24(0.0f),
-      _2C(0) {
-}
+SurfingGuidance::SurfingGuidance() : LayoutActor("サーフィンガイダンス", true), _20(0), _24(0.0f), _2C(0) {}
 
 void SurfingGuidance::init(const JMapInfoIter& rIter) {
     MR::connectToSceneLayout(this);

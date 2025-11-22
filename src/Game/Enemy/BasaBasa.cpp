@@ -3,8 +3,8 @@
 #include "Game/Enemy/AnimStampController.hpp"
 #include "Game/Enemy/SpinHitController.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
-#include "Game/LiveActor/Nerve.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util/ActorMovementUtil.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/JMapUtil.hpp"
@@ -34,26 +34,11 @@ namespace NrvBasaBasa {
     NEW_NERVE(BasaBasaNrvAttachCelling, BasaBasa, AttachCelling);
     NEW_NERVE_ONEND(BasaBasaNrvDPDSwoon, BasaBasa, DPDSwoon, DPDSwoon);
     NEW_NERVE(BasaBasaNrvStun, BasaBasa, Stun);
-}; // namespace NrvBasaBasa
+};  // namespace NrvBasaBasa
 
 BasaBasa::BasaBasa(const char* pName)
-    : LiveActor(pName),
-      mHangModel(nullptr),
-      mScaleController(nullptr),
-      mStampController(nullptr),
-      mSpinHitController(nullptr),
-      _9C(0.0f, 0.0f, 1.0f),
-      _A8(2000.0f),
-      _AC(0.0f),
-      _B4(0),
-      _B8(0.0f),
-      _BC(0.0f, 0.0f, 0.0f),
-      mIsIceModel(false),
-      _CC(0.0f, 0.0f, 0.0f),
-      _E4(-1.0f),
-      _E8(0),
-      _EC(0) {
-}
+    : LiveActor(pName), mHangModel(nullptr), mScaleController(nullptr), mStampController(nullptr), mSpinHitController(nullptr), _9C(0.0f, 0.0f, 1.0f),
+      _A8(2000.0f), _AC(0.0f), _B4(0), _B8(0.0f), _BC(0.0f, 0.0f, 0.0f), mIsIceModel(false), _CC(0.0f, 0.0f, 0.0f), _E4(-1.0f), _E8(0), _EC(0) {}
 
 void BasaBasa::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
@@ -174,7 +159,7 @@ void BasaBasa::exeChase() {
     TVec3f v5;
     v5.sub(*_B4, mPosition);
     TVec3f* gravityPtr = &mGravity;
-    f32     dot = gravityPtr->dot(v5);
+    f32 dot = gravityPtr->dot(v5);
     JMAVECScaleAdd(gravityPtr, &v5, &v5, -dot);
     MR::normalizeOrZero(&v5);
     if (!MR::isNearZero(v5, 0.001f)) {
@@ -552,7 +537,7 @@ void BasaBasa::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
             MR::normalizeOrZero(&v10);
             if (mVelocity.dot(v10) < 0.0f) {
                 TVec3f* velocityPtr = &mVelocity;
-                f32     dot = v10.dot(mVelocity);
+                f32 dot = v10.dot(mVelocity);
                 JMAVECScaleAdd(&v10, velocityPtr, velocityPtr, -dot);
             }
         }
@@ -742,12 +727,12 @@ void BasaBasa::controlVelocity() {
     if (!v1) {
         TVec3f v15;
         MR::calcSideVec(&v15, this);
-        f32    v3 = v15.dot(mVelocity);
+        f32 v3 = v15.dot(mVelocity);
         TVec3f v14;
         v14.scale(v3, v15);
         v14.scale(0.5f);
         TVec3f* velocity = &mVelocity;
-        f32     v4 = v15.dot(*velocity);
+        f32 v4 = v15.dot(*velocity);
         JMAVECScaleAdd(&v15, velocity, velocity, -v4);
         JMathInlineVEC::PSVECAdd(&mVelocity, &v14, &mVelocity);
         f32 v5 = 0.94999999f;
@@ -773,7 +758,7 @@ void BasaBasa::controlVelocity() {
 
         if (PSVECMag(&mVelocity) > v6) {
             TVec3f* velocityPtr = &mVelocity;
-            f32     sqr = JMathInlineVEC::PSVECSquareMag(velocityPtr);
+            f32 sqr = JMathInlineVEC::PSVECSquareMag(velocityPtr);
             if (sqr <= 0.0000038146973f) {
                 velocityPtr->scale(v6 * JGeometry::TUtil< f32 >::inv_sqrt(sqr));
             }
@@ -827,5 +812,4 @@ bool BasaBasa::isNrvEnableStun() const {
     return v1;
 }
 
-BasaBasa::~BasaBasa() {
-}
+BasaBasa::~BasaBasa() {}

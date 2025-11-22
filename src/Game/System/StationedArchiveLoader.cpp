@@ -1,13 +1,12 @@
-#include "Game/System/ResourceHolderManager.hpp"
 #include "Game/System/StationedArchiveLoader.hpp"
+#include "Game/SingletonHolder.hpp"
+#include "Game/System/ResourceHolderManager.hpp"
 #include "Game/System/StationedFileInfo.hpp"
 #include "Game/Util/FileUtil.hpp"
 #include "Game/Util/MemoryUtil.hpp"
-#include "Game/SingletonHolder.hpp"
 #include <JSystem/JKernel/JKRExpHeap.hpp>
 
-StationedArchiveLoader::Condition::~Condition() {
-}
+StationedArchiveLoader::Condition::~Condition() {}
 
 JKRHeap* StationedArchiveLoader::Condition::getProperHeap(const MR::StationedFileInfo* pInfo) const {
     return nullptr;
@@ -73,7 +72,7 @@ void StationedArchiveLoader::createAndAddResourcesFromTable(const Condition& rCo
 }
 
 void StationedArchiveLoader::loadScenarioData(JKRHeap* pHeap) {
-    DVDDir      dir;
+    DVDDir dir;
     DVDDirEntry dirEntry;
 
     DVDOpenDir("/StageData", &dir);

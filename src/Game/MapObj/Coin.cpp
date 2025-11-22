@@ -5,8 +5,7 @@
 #include "Game/Util.hpp"
 #include "JSystem/JMath/JMath.hpp"
 
-Coin::Coin(const char* pName)
-    : LiveActor(pName) {
+Coin::Coin(const char* pName) : LiveActor(pName) {
     mHostInfo = nullptr;
     mFlashCtrl = nullptr;
     mAirBubble = nullptr;
@@ -661,7 +660,7 @@ namespace MR {
         MR::addToPurpleCoinHolder(pObj, coin);
         return coin;
     }
-}; // namespace MR
+};  // namespace MR
 
 namespace NrvCoin {
     INIT_NERVE(CoinNrvNonActive);
@@ -698,8 +697,7 @@ namespace NrvCoin {
         coin->exeFixTimer();
     }
 
-    void CoinNrvFixHide::execute(Spine* pSpine) const {
-    }
+    void CoinNrvFixHide::execute(Spine* pSpine) const {}
 
     void CoinNrvFix::execute(Spine* pSpine) const {
         Coin* coin = reinterpret_cast< Coin* >(pSpine->mExecutor);
@@ -710,7 +708,6 @@ namespace NrvCoin {
         Coin* coin = reinterpret_cast< Coin* >(pSpine->mExecutor);
         coin->exeNonActive();
     }
-}; // namespace NrvCoin
+};  // namespace NrvCoin
 
-Coin::~Coin() {
-}
+Coin::~Coin() {}

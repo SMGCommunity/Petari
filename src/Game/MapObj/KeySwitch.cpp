@@ -1,11 +1,9 @@
 #include "Game/MapObj/KeySwitch.hpp"
 #include "JSystem/JMath/JMath.hpp"
 
-KeySwitch::~KeySwitch() {
-}
+KeySwitch::~KeySwitch() {}
 
-KeySwitch::KeySwitch(const char* pName)
-    : LiveActor(pName) {
+KeySwitch::KeySwitch(const char* pName) : LiveActor(pName) {
     mCameraInfo = 0;
     mCurDemoFrame = -1;
 }
@@ -207,7 +205,7 @@ bool KeySwitch::tryAvoid() {
     if (sensor->mType != 0x58) {
         return false;
     }
-    
+    
     sensorActor = sensor->mHost;
     TVec3f up;
     MR::calcUpVec(&up, sensorActor);
@@ -244,4 +242,4 @@ namespace NrvKeySwitch {
         KeySwitch* key = reinterpret_cast< KeySwitch* >(pSpine->mExecutor);
         key->exeDemoStart();
     }
-}; // namespace NrvKeySwitch
+};  // namespace NrvKeySwitch

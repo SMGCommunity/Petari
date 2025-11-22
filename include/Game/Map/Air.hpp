@@ -19,9 +19,9 @@ public:
     void exeIn();
     void exeOut();
 
-    u8   _8C;
+    u8 _8C;
     bool _8D;
-    f32  mDistance; // 0x90
+    f32 mDistance;  // 0x90
 };
 
 class ProjectionMapAir : public Air {
@@ -57,7 +57,7 @@ public:
     bool isExistValidDrawAir() const;
 
     PriorDrawAir* mAirs[8];  // 0xC
-    s32           mAirCount; // 0x2C
+    s32 mAirCount;           // 0x2C
 };
 
 namespace MR {

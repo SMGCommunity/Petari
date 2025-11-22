@@ -14,19 +14,19 @@ public:
     virtual void calcAndSetBaseMtx();
     virtual bool receiveMsgEnemyAttack(u32, HitSensor*, HitSensor*);
 
-    void        requestStartDemo();
-    bool        requestBreak();
-    bool        isEndDemo() const;
-    void        exeBreak();
-    void        exeRepair();
+    void requestStartDemo();
+    bool requestBreak();
+    bool isEndDemo() const;
+    void exeBreak();
+    void exeRepair();
     inline void exeActive();
     inline void exeDemo();
     inline void exeNonActive();
-    void        setHostMatrix(const TPos3f*);
-    void        setPlacementAngle(f32);
-    void        setStartTiming(s32);
+    void setHostMatrix(const TPos3f*);
+    void setPlacementAngle(f32);
+    void setStartTiming(s32);
 
-    const TPos3f* mHostMtx;        // 0x8C
-    f32           mPlacementAngle; // 0x90
-    s32           mStartTiming;    // 0x94
+    const TPos3f* mHostMtx;  // 0x8C
+    f32 mPlacementAngle;     // 0x90
+    s32 mStartTiming;        // 0x94
 };

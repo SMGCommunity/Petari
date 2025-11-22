@@ -41,7 +41,8 @@ void SimpleMapObjNoSilhouetted::connectToScene(const MapObjActorInitInfo& rInfo)
 }
 
 void SimpleTextureSwitchChangeObj::initCaseUseSwitchA(const MapObjActorInitInfo& rInfo) {
-    MR::FunctorV0M< SimpleTextureSwitchChangeObj*, void (SimpleTextureSwitchChangeObj::*)() > func = MR::Functor< SimpleTextureSwitchChangeObj >(this, &SimpleTextureSwitchChangeObj::changeTexture);
+    MR::FunctorV0M< SimpleTextureSwitchChangeObj*, void (SimpleTextureSwitchChangeObj::*)() > func =
+        MR::Functor< SimpleTextureSwitchChangeObj >(this, &SimpleTextureSwitchChangeObj::changeTexture);
     MR::listenStageSwitchOnA(this, func);
 }
 
@@ -51,8 +52,7 @@ void GlaringLight::connectToScene(const MapObjActorInitInfo& rInfo) {
     }
 }
 
-SimpleMirrorObj::SimpleMirrorObj(const char* pName, const char* a2, MtxPtr mtx)
-    : MapObjActor(pName) {
+SimpleMirrorObj::SimpleMirrorObj(const char* pName, const char* a2, MtxPtr mtx) : MapObjActor(pName) {
     mMtx = mtx;
     MR::createMirrorCamera();
 }
@@ -91,10 +91,9 @@ namespace {
 
         return nullptr;
     }
-}; // namespace
+};  // namespace
 
-SimpleSeesawObj::SimpleSeesawObj(const char* pName)
-    : MapObjActor(pName) {
+SimpleSeesawObj::SimpleSeesawObj(const char* pName) : MapObjActor(pName) {
     _C4.identity();
 }
 
@@ -103,7 +102,7 @@ void SimpleSeesawObj::init(const JMapInfoIter& rIter) {
     MapObjActorInitInfo info;
     MapObjActorUtil::setupInitInfoSimpleMapObj(&info);
     const SoundEffectDataEntry* entry = getSeParam(mObjectName);
-    const char*                 sound_name = entry != nullptr ? entry->soundName : nullptr;
+    const char* sound_name = entry != nullptr ? entry->soundName : nullptr;
     entry = getSeParam(mObjectName);
     MapObjActorUtil::setupInitInfoSeesaw(&info, rIter, sound_name, entry != nullptr ? entry->_8 : 0.0f);
     initialize(rIter, info);
@@ -129,7 +128,6 @@ void UFOKinokoUnderConstruction::init(const JMapInfoIter& rIter) {
     MapObjActorUtil::setupInitInfoShadowLengthArg2(&info, rIter);
 
     if (MR::isEqualString("UFOKinokoUnderConstruction", mObjectName)) {
-
         if (MR::isUFOKinokoUnderConstruction()) {
             info.mModelName = "UFOKinokoUnderConstruction";
         } else {
@@ -155,7 +153,7 @@ namespace MR {
 
         pArchiveList->addArchive(archive);
     }
-}; // namespace MR
+};  // namespace MR
 
 void SimpleEnvironmentObj::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);
@@ -173,7 +171,7 @@ void SimpleTextureSwitchChangeObj::changeTexture() {
 void SimpleMirrorObj::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);
     MapObjActorInitInfo info;
-    bool                hasMtx = false;
+    bool hasMtx = false;
 
     if (!mMtx) {
         MapObjActorUtil::setupInitInfoSimpleMapObj(&info);
@@ -196,29 +194,20 @@ s32 SimpleTextureSwitchChangeObj::getChangedTextureNo() const {
     return 1;
 }
 
-SimpleEnvironmentObj::~SimpleEnvironmentObj() {
-}
+SimpleEnvironmentObj::~SimpleEnvironmentObj() {}
 
-SimpleMapObjNoSilhouetted::~SimpleMapObjNoSilhouetted() {
-}
+SimpleMapObjNoSilhouetted::~SimpleMapObjNoSilhouetted() {}
 
-SimpleTextureSwitchChangeObj::~SimpleTextureSwitchChangeObj() {
-}
+SimpleTextureSwitchChangeObj::~SimpleTextureSwitchChangeObj() {}
 
-GlaringLight::~GlaringLight() {
-}
+GlaringLight::~GlaringLight() {}
 
-SimpleMirrorObj::~SimpleMirrorObj() {
-}
+SimpleMirrorObj::~SimpleMirrorObj() {}
 
-SimpleMirrorReflectionObj::~SimpleMirrorReflectionObj() {
-}
+SimpleMirrorReflectionObj::~SimpleMirrorReflectionObj() {}
 
-SimpleSeesawObj::~SimpleSeesawObj() {
-}
+SimpleSeesawObj::~SimpleSeesawObj() {}
 
-SimpleMapObjPush::~SimpleMapObjPush() {
-}
+SimpleMapObjPush::~SimpleMapObjPush() {}
 
-UFOKinokoUnderConstruction::~UFOKinokoUnderConstruction() {
-}
+UFOKinokoUnderConstruction::~UFOKinokoUnderConstruction() {}

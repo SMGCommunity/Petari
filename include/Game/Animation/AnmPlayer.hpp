@@ -21,9 +21,9 @@ public:
     bool isPlaying(const char*) const;
     bool isStop() const;
 
-    /* 0x4 */ J3DAnmBase*     mAnmRes;
+    /* 0x4 */ J3DAnmBase* mAnmRes;
     /* 0x8 */ const ResTable* mResTable;
-    /* 0xC */ J3DFrameCtrl    mFrameCtrl;
+    /* 0xC */ J3DFrameCtrl mFrameCtrl;
 };
 
 class MaterialAnmPlayerBase : public AnmPlayerBase {

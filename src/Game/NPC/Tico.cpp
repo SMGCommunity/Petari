@@ -32,23 +32,16 @@ namespace NrvTico {
     NEW_NERVE(TicoNrvGuide2, Tico, Guide2);
     NEW_NERVE(TicoNrvGuide3, Tico, Guide3);
     NEW_NERVE(TicoNrvLead0, Tico, Lead0);
-}; // namespace NrvTico
+};  // namespace NrvTico
 
 namespace {
-    static Color8 hPointLight[6] = {
-        Color8(0xFF, 0xFF, 0, 0xFF),
-        Color8(0, 0x64, 0xFF, 0xFF),
-        Color8(0, 0xFF, 0x32, 0xFF),
-        Color8(0xFF, 0, 0, 0xFF),
-        Color8(0x78, 0, 0xFF, 0xFF),
-        Color8(0xFF, 0x64, 0x64, 0xFF)};
+    static Color8 hPointLight[6] = {Color8(0xFF, 0xFF, 0, 0xFF), Color8(0, 0x64, 0xFF, 0xFF), Color8(0, 0xFF, 0x32, 0xFF),
+                                    Color8(0xFF, 0, 0, 0xFF),    Color8(0x78, 0, 0xFF, 0xFF), Color8(0xFF, 0x64, 0x64, 0xFF)};
 };
 
 Tico::Tico(const char* pName)
-    : NPCActor(pName), _15C(0), _160(0.0f, 0.0f, 0.0f),
-      _16C(0.0f), mDemoGetPower(nullptr), _174(0), _178(0), _17C(255, 255, 255, 255),
-      _180(0), mDemoStarter(this) {
-}
+    : NPCActor(pName), _15C(0), _160(0.0f, 0.0f, 0.0f), _16C(0.0f), mDemoGetPower(nullptr), _174(0), _178(0), _17C(255, 255, 255, 255), _180(0),
+      mDemoStarter(this) {}
 
 void Tico::makeArchiveList(NameObjArchiveListCollector* pCollector, const JMapInfoIter& rIter) {
     if (MR::isObjectName(rIter, "TicoBaby")) {

@@ -13,9 +13,9 @@ public:
     void onTarget();
     void offTarget();
 
-    JMapIdInfo*      mJMapIDInfo;      // 0xC
-    StageSwitchCtrl* mStageSwitchCtrl; // 0x10
-    s32              mTargetIdx;       // 0x14
+    JMapIdInfo* mJMapIDInfo;            // 0xC
+    StageSwitchCtrl* mStageSwitchCtrl;  // 0x10
+    s32 mTargetIdx;                     // 0x14
 };
 
 class ArrowSwitchMulti : public LiveActor {
@@ -33,16 +33,16 @@ public:
     void exeWait();
     void exeRotate();
 
-    JMapIdInfo*        mIDInfo;         // 0x8C
-    ArrowSwitchTarget* mTargetArray[4]; // 0x90
-    f32                _A0;
-    f32                _A4;
-    u32                _A8;
-    s32                _AC;
-    u8                 _B0;
+    JMapIdInfo* mIDInfo;                 // 0x8C
+    ArrowSwitchTarget* mTargetArray[4];  // 0x90
+    f32 _A0;
+    f32 _A4;
+    u32 _A8;
+    s32 _AC;
+    u8 _B0;
 };
 
 namespace NrvArrowSwitchMulti {
     NERVE(ArrowSwitchMultiNrvWait);
     NERVE(ArrowSwitchMultiNrvRotate);
-}; // namespace NrvArrowSwitchMulti
+};  // namespace NrvArrowSwitchMulti

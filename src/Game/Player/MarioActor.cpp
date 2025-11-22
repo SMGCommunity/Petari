@@ -38,8 +38,7 @@ Triangle& Triangle::operator=(const Triangle& rOther) {
     return *this;
 }
 
-MarioActor::MarioActor(const char* pName)
-    : LiveActor(pName), _1B0(0xFFFFFFFF) {
+MarioActor::MarioActor(const char* pName) : LiveActor(pName), _1B0(0xFFFFFFFF) {
     initMember();
     mMario = new Mario(this);
     _930 = 0;
@@ -353,7 +352,8 @@ void MarioActor::init2(const TVec3f& a, const TVec3f& b, s32 initialAnimation) {
     _27C.zero();
     _288.zero();
     _498 = new FixedPosition(this, "HandR", TVec3f(0.0f, 0.0f, 0.0f), TVec3f(0.0f, 0.0f, 0.0f));
-    _49C = new FixedPosition(this, "HandR", TVec3f(76.3300018311f, 15.6899995804f, 88.9899978638f), TVec3f(1.79999995232f, 52.5099983215f, 39.5800018311f));
+    _49C = new FixedPosition(this, "HandR", TVec3f(76.3300018311f, 15.6899995804f, 88.9899978638f),
+                             TVec3f(1.79999995232f, 52.5099983215f, 39.5800018311f));
     _494 = 0;
     _4B0 = 35.0f;
     _4B4 = 60.0f;
@@ -361,7 +361,7 @@ void MarioActor::init2(const TVec3f& a, const TVec3f& b, s32 initialAnimation) {
     _4C4 = -_4B8;
     _482 = true;
     appear();
-    _482 = false; // do we change this to control appearances?
+    _482 = false;  // do we change this to control appearances?
     _1C6 = 0;
     _1C8 = 0.0f;
     _1CC = 0.0f;
@@ -383,7 +383,7 @@ void MarioActor::init2(const TVec3f& a, const TVec3f& b, s32 initialAnimation) {
         rAudible._4 = 0.0f;
         rAudible._8 = 0.0f;
     }
-    _8C = 0; // is this to indicate that we are in the process of initialization?
+    _8C = 0;  // is this to indicate that we are in the process of initialization?
 }
 
 void MarioActor::initAfterPlacement() {
@@ -410,14 +410,14 @@ void MarioActor::initAfterOpeningDemo() {
 
 void MarioActor::calcBaseFrontVec(const TVec3f& rVec) {
     TVec3f cross, j(0.0f, 1.0f, 0.0f);
-    f32    y = j.dot(rVec);
+    f32 y = j.dot(rVec);
     if (y < -0.99f) {
         _258.set(0.0f, 0.0f, 1.0f);
     } else {
         f32 cosine;
         if (MR::makeAxisAndCosignVecToVec(&cross, &cosine, rVec, j)) {
             TVec3f k(0.0f, 0.0f, 1.0f);
-            Mtx    transformation;
+            Mtx transformation;
             PSMTXRotAxisRad(transformation, &cross, -JMAAcosRadian(cosine));
             PSMTXMultVecSR(transformation, &k, &_258);
             MR::normalize(&_258);
@@ -755,7 +755,7 @@ void MarioActor::movement() {
                 if (MR::isNearZero(stack_110, 0.001f)) {
                     MR::vecKillElement(stack_134, getGravityVec(), &stack_110);
                 }
-                stack_110.setLength(PSVECMag(&stack_134)); // needs to be inlined
+                stack_110.setLength(PSVECMag(&stack_134));  // needs to be inlined
                 mMario->push(stack_110);
                 if (mMario->_3BC <= 2) {
                     f32 scale = PSVECMag(&stack_128);
@@ -769,8 +769,8 @@ void MarioActor::movement() {
             TVec3f stack_104(mMario->_8F8);
             MR::normalizeOrZero(&stack_104);
             TVec3f stack_F8;
-            f32    elementA = MR::vecKillElement(stack_134, stack_104, &stack_F8);
-            f32    elementB = MR::vecKillElement(mVelocity, stack_104, &stack_F8);
+            f32 elementA = MR::vecKillElement(stack_134, stack_104, &stack_F8);
+            f32 elementB = MR::vecKillElement(mVelocity, stack_104, &stack_F8);
             if (PSVECMag(&mVelocity) > 20.0f && elementA < elementB * 0.5f) {
                 if (mMario->isAnimationRun("坂すべり下向きあおむけ")) {
                     mMario->push(mMario->mFrontVec.scaleInline(5.0f));
@@ -782,13 +782,14 @@ void MarioActor::movement() {
         }
         if (getMovementStates().jumping && !mAlphaEnable) {
             if (stack_128.dot(getGravityVec()) < -40.0f) {
-                TVec3f    stack_EC(mPosition - getGravityVec().scaleInline(100.0f));
-                TVec3f    stack_E0;
+                TVec3f stack_EC(mPosition - getGravityVec().scaleInline(100.0f));
+                TVec3f stack_E0;
                 Triangle* pTmp = mMario->getTmpPolygon();
 
                 if (MR::getFirstPolyOnLineToMap(&stack_E0, pTmp, stack_EC, getGravityVec().scaleInline(200.f))) {
                     TVec3f stack_D4;
-                    if (MR::vecKillElement(stack_E0 - mPosition, getGravityVec(), &stack_D4) < -5.0f && pTmp->mParts && !pTmp->mParts->_D4 && getMovementStates()._3E != 1) {
+                    if (MR::vecKillElement(stack_E0 - mPosition, getGravityVec(), &stack_D4) < -5.0f && pTmp->mParts && !pTmp->mParts->_D4 &&
+                        getMovementStates()._3E != 1) {
                         mPosition = stack_E0;
                         mMario->mPosition = mPosition;
                         mMario->stopJump();
@@ -810,7 +811,7 @@ void MarioActor::movement() {
                     }
                 }
                 if ((mMario->mShadowPos - mPosition).dot(getGravityVec()) < 0.0f) {
-                    bool            eject = true;
+                    bool eject = true;
                     CollisionParts* parts = mMario->_45C->mParts;
                     if (parts && !mMario->_45C->mParts->_D4) {
                         TVec3f stack_C8, stack_BC, stack_B0;
@@ -837,7 +838,7 @@ void MarioActor::movement() {
             }
         } else if (mMario->getMovementStates()._1) {
             const u32 stop = mBinder->mPlaneNum;
-            bool      eject = false;
+            bool eject = false;
             for (u32 i = 0; i < stop; i++) {
                 const Triangle* plane = mBinder->getPlane(i);
                 if (!MR::isSensorPressObj(plane->mSensor)) {
@@ -866,7 +867,7 @@ void MarioActor::movement() {
             }
             if (eject) {
                 TVec3f stack_98;
-                f32    element = MR::vecKillElement(stack_134, mMario->_368, &stack_98);
+                f32 element = MR::vecKillElement(stack_134, mMario->_368, &stack_98);
                 mPosition -= mMario->_368.scaleInline(element);
             }
         }
@@ -886,7 +887,7 @@ void MarioActor::movement() {
 
 void MarioActor::control() {
     if (mSuperKinokoCollected) {
-        if (MR::tryStartDemoWithoutCinemaFrame(this, "マリオスーパー化")) { // 6-up camera
+        if (MR::tryStartDemoWithoutCinemaFrame(this, "マリオスーパー化")) {  // 6-up camera
             mSuperKinokoCollected = false;
             changeMaxLife(6);
             MR::stopAnimFrame(this);
@@ -1030,7 +1031,7 @@ void MarioActor::updateBehavior() {
 
 void MarioActor::updateBindRatio() {
     if (!_934 && !MR::isNearZero(_978 - _264, 0.001f)) {
-        f32    mag = PSVECMag(&_978);
+        f32 mag = PSVECMag(&_978);
         TVec3f stack_38(_978);
         stack_38 -= _264;
         if (mag / PSVECMag(&stack_38) < 2.0f) {
@@ -1317,7 +1318,7 @@ void MarioActor::updateSwingAction() {
             mMario->changeAnimation("ハチスピン空中", (const char*)nullptr);
         } else {
             if (getMovementStates()._A || mAlphaEnable) {
-                mMario->changeAnimation("サマーソルト", (const char*)nullptr); // Summersault
+                mMario->changeAnimation("サマーソルト", (const char*)nullptr);  // Summersault
             } else {
                 mMario->changeAnimation("ハチスピン", (const char*)nullptr);
             }
@@ -1570,9 +1571,9 @@ bool MarioActor::doStun() {
 }
 
 void MarioActor::scaleMtx(MtxPtr rawMtx) {
-    TVec3f        i, j, k;
+    TVec3f i, j, k;
     const TRot3f* pMtx = (TRot3f*)rawMtx;
-    f32           scalar = 0.35f * (1.0f - _3B0) + 1.0f;
+    f32 scalar = 0.35f * (1.0f - _3B0) + 1.0f;
     pMtx->getXDir(i);
     pMtx->getYDir(j);
     pMtx->getZDir(k);

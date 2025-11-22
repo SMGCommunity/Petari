@@ -1,14 +1,12 @@
 #include "Game/MapObj/SnowCapsulePlanet.hpp"
 #include "Game/Map/CollisionParts.hpp"
 
-SnowCapsulePlanet::SnowCapsulePlanet(const char* pName)
-    : MapObjActor(pName) {
+SnowCapsulePlanet::SnowCapsulePlanet(const char* pName) : MapObjActor(pName) {
     mDoor1 = nullptr;
     mDoor2 = nullptr;
 }
 
-SnowCapsulePlanet::~SnowCapsulePlanet() {
-}
+SnowCapsulePlanet::~SnowCapsulePlanet() {}
 
 void SnowCapsulePlanet::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);
@@ -46,14 +44,12 @@ namespace NrvSnowCapsulePlanet {
     INIT_NERVE(SnowCapsulePlanetNrvOpenWait);
     INIT_NERVE(SnowCapsulePlanetNrvOpen);
 
-    void SnowCapsulePlanetNrvCloseWait::execute(Spine* pSpine) const {
-    }
+    void SnowCapsulePlanetNrvCloseWait::execute(Spine* pSpine) const {}
 
-    void SnowCapsulePlanetNrvOpenWait::execute(Spine* pSpine) const {
-    }
+    void SnowCapsulePlanetNrvOpenWait::execute(Spine* pSpine) const {}
 
     void SnowCapsulePlanetNrvOpen::execute(Spine* pSpine) const {
         SnowCapsulePlanet* planet = reinterpret_cast< SnowCapsulePlanet* >(pSpine->mExecutor);
         planet->exeOpen();
     }
-}; // namespace NrvSnowCapsulePlanet
+};  // namespace NrvSnowCapsulePlanet

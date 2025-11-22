@@ -7,4 +7,4 @@ namespace JUtility {
     public:
         TColor() {}
     };
-}; // namespace JUtility
+};  // namespace JUtility

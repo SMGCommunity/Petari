@@ -1,8 +1,8 @@
+#include "Game/Screen/StarPieceCounter.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/CountUpPaneRumbler.hpp"
 #include "Game/Screen/CounterLayoutAppearer.hpp"
 #include "Game/Screen/CounterLayoutController.hpp"
-#include "Game/Screen/StarPieceCounter.hpp"
 #include "Game/Util/EventUtil.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
@@ -18,26 +18,18 @@ namespace {
     const f32 cBaseOffsetEatTicoY = -120.0f;
     const f32 cBaseOffsetTicoFatY = -94.0f;
     const s32 cHideFrameMinTicoEat = 20;
-}; // namespace
+};  // namespace
 
 namespace NrvStarPieceCounter {
     NEW_NERVE(StarPieceCounterNrvHide, StarPieceCounter, Hide);
     NEW_NERVE(StarPieceCounterNrvAppear, StarPieceCounter, Appear);
     NEW_NERVE(StarPieceCounterNrvWait, StarPieceCounter, Wait);
     NEW_NERVE(StarPieceCounterNrvDisappear, StarPieceCounter, Disappear);
-}; // namespace NrvStarPieceCounter
+};  // namespace NrvStarPieceCounter
 
 StarPieceCounter::StarPieceCounter(const char* pName)
-    : LayoutActor(pName, true),
-      mStarPieceNum(0),
-      mStarPieceDisplayNum(0),
-      mInvalidCountUpFrame(0),
-      mLayoutAppearer(nullptr),
-      mPaneRumbler(nullptr),
-      mFollowPos(0.0f, 0.0f),
-      _3C(0),
-      mMode(0) {
-}
+    : LayoutActor(pName, true), mStarPieceNum(0), mStarPieceDisplayNum(0), mInvalidCountUpFrame(0), mLayoutAppearer(nullptr), mPaneRumbler(nullptr),
+      mFollowPos(0.0f, 0.0f), _3C(0), mMode(0) {}
 
 void StarPieceCounter::init(const JMapInfoIter& rIter) {
     initLayoutManager("StarPieceCounter", 3);
@@ -179,9 +171,7 @@ void StarPieceCounter::updateCounterValue() {
                 mStarPieceDisplayNum++;
 
                 MR::startAnim(this, "Flash", 0);
-                MR::emitEffect(this, MR::isStageAstroLocation()
-                                         ? "TStarPieceCounterLight"
-                                         : "StarPieceCounterLight");
+                MR::emitEffect(this, MR::isStageAstroLocation() ? "TStarPieceCounterLight" : "StarPieceCounterLight");
             } else if (mMode == 1) {
                 if (mStarPieceDisplayNum - mStarPieceNum > 10) {
                     mStarPieceDisplayNum -= cDecCounterValueFast;
@@ -220,7 +210,8 @@ bool StarPieceCounter::isDispCenter() const {
 }
 
 bool StarPieceCounter::tryChangeModeTicoEat(int mode) {
-    if (isNerve(&NrvStarPieceCounter::StarPieceCounterNrvAppear::sInstance) || isNerve(&NrvStarPieceCounter::StarPieceCounterNrvDisappear::sInstance)) {
+    if (isNerve(&NrvStarPieceCounter::StarPieceCounterNrvAppear::sInstance) ||
+        isNerve(&NrvStarPieceCounter::StarPieceCounterNrvDisappear::sInstance)) {
         return false;
     }
 
@@ -248,9 +239,7 @@ void StarPieceCounter::exeHide() {
         MR::hideLayout(this);
     }
 
-    s32 step = mMode != 0
-                   ? cHideFrameMinTicoEat
-                   : cHideFrameMin;
+    s32 step = mMode != 0 ? cHideFrameMinTicoEat : cHideFrameMin;
 
     if (MR::isGreaterStep(this, step) && isValidAppearSituation()) {
         setNerve(&NrvStarPieceCounter::StarPieceCounterNrvAppear::sInstance);

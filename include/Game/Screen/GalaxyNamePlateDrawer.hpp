@@ -5,7 +5,7 @@
 
 struct GalaxyNamePlateDrawerEntry {
     /* 0x0 */ LayoutActor* mHostActor;
-    /* 0x4 */ u32          mZ;
+    /* 0x4 */ u32 mZ;
 };
 
 class GalaxyNamePlateDrawer : public NameObj {

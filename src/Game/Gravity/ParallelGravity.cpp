@@ -1,14 +1,10 @@
 #include "Game/Gravity.hpp"
 #include "Game/Util.hpp"
-#include "JSystem/JMath.hpp"
 #include "Inline.hpp"
+#include "JSystem/JMath.hpp"
 
 ParallelGravity::ParallelGravity()
-    : PlanetGravity(),
-      mPlanePosition(0, 0, 0),
-      mPlaneUpVec(0.0f, 1.0f, 0.0f),
-      mWorldPlanePosition(0, 0, 0),
-      mWorldPlaneUpVec(0.0f, 1.0f, 0.0f) {
+    : PlanetGravity(), mPlanePosition(0, 0, 0), mPlaneUpVec(0.0f, 1.0f, 0.0f), mWorldPlanePosition(0, 0, 0), mWorldPlaneUpVec(0.0f, 1.0f, 0.0f) {
     mCylinderHeight = 1000.0f;
     mCylinderRadius = 500.0f;
     mBaseDistance = 2000.0f;
@@ -51,7 +47,7 @@ void ParallelGravity::updateMtx(const TPos3f& rMtx) {
 void ParallelGravity::setPlane(const TVec3f& rPlaneUp, const TVec3f& rPlanePos) {
     // Up vector
     mPlaneUpVec.set(rPlaneUp);
-    PSVECMag(&mPlaneUpVec); // unused result
+    PSVECMag(&mPlaneUpVec);  // unused result
     PSVECNormalize(&mPlaneUpVec, &mPlaneUpVec);
 
     // Position
@@ -93,7 +89,7 @@ bool ParallelGravity::isInSphereRange(const TVec3f& rPosition, f32* pScalar) con
         return true;
     } else {
         TVec3f dirToCenter(mWorldPlanePosition - rPosition);
-        f32    range = mRange;
+        f32 range = mRange;
         return dirToCenter.squared() < range * range;
     }
 }

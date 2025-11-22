@@ -144,7 +144,7 @@ namespace MR {
     bool isNullOrEmptyString(const char* pStr);
 
     bool isMessageEditorNextTag(const wchar_t*);
-    int  getStringLengthWithMessageTag(const wchar_t*);
+    int getStringLengthWithMessageTag(const wchar_t*);
 
     /// @brief Parses the given character string into a signed 32-bit integer.
     /// @param pSrc The pointer to the null-terminated character string to read from.
@@ -187,4 +187,4 @@ namespace MR {
     /// @param pSubStr The pointer to the null-terminated character substring to search for.
     /// @param pDst The output pointer for the parsed values.
     void scanf32x4(const char* pSrc, const char* pSubStr, f32* pDst);
-}; // namespace MR
+};  // namespace MR

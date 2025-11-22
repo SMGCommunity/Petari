@@ -1,5 +1,5 @@
-#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/CameraInfo.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/GamePadUtil.hpp"
 #include "Game/Util/LayoutUtil.hpp"
@@ -15,12 +15,9 @@ namespace NrvCameraInfo {
     NEW_NERVE(CameraInfoNrvNormal, CameraInfo, Normal);
     NEW_NERVE(CameraInfoNrvFirstPerson, CameraInfo, FirstPerson);
     NEW_NERVE(CameraInfoNrvEnd, CameraInfo, End);
-}; // namespace NrvCameraInfo
+};  // namespace NrvCameraInfo
 
-CameraInfo::CameraInfo(const char* pName)
-    : LayoutActor(pName, true),
-      mStep(-1),
-      mIsActive(true) {}
+CameraInfo::CameraInfo(const char* pName) : LayoutActor(pName, true), mStep(-1), mIsActive(true) {}
 
 void CameraInfo::init(const JMapInfoIter& rIter) {
     initLayoutManager("CameraInfo", 2);
@@ -192,7 +189,8 @@ bool CameraInfo::tryShow() {
         return false;
     }
 
-    bool isTriggerAnyDir = MR::testCorePadTriggerUp(WPAD_CHAN0) || MR::testCorePadTriggerDown(WPAD_CHAN0) || MR::testCorePadTriggerLeft(WPAD_CHAN0) || MR::testCorePadTriggerRight(WPAD_CHAN0);
+    bool isTriggerAnyDir = MR::testCorePadTriggerUp(WPAD_CHAN0) || MR::testCorePadTriggerDown(WPAD_CHAN0) || MR::testCorePadTriggerLeft(WPAD_CHAN0) ||
+                           MR::testCorePadTriggerRight(WPAD_CHAN0);
 
     if (!isTriggerAnyDir) {
         return false;
@@ -216,7 +214,8 @@ bool CameraInfo::tryHide() {
         return false;
     }
 
-    bool isTriggerAnyDir = MR::testCorePadTriggerUp(WPAD_CHAN0) || MR::testCorePadTriggerDown(WPAD_CHAN0) || MR::testCorePadTriggerLeft(WPAD_CHAN0) || MR::testCorePadTriggerRight(WPAD_CHAN0);
+    bool isTriggerAnyDir = MR::testCorePadTriggerUp(WPAD_CHAN0) || MR::testCorePadTriggerDown(WPAD_CHAN0) || MR::testCorePadTriggerLeft(WPAD_CHAN0) ||
+                           MR::testCorePadTriggerRight(WPAD_CHAN0);
 
     if (isTriggerAnyDir || getNerveStep() == 0) {
         mStep = 0;

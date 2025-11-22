@@ -8,8 +8,7 @@
 #include "JSystem/JGeometry/TVec.hpp"
 #include "revolution/mtx.h"
 
-HipDropRock::HipDropRock(const char* pName)
-    : LiveActor(pName) {
+HipDropRock::HipDropRock(const char* pName) : LiveActor(pName) {
     mModel = nullptr;
     _C0 = -1;
     _C4 = -1;
@@ -141,4 +140,4 @@ namespace NrvHipDropRock {
         HipDropRock* pActor = (HipDropRock*)pSpine->mExecutor;
         pActor->ValClip2();
     }
-}; // namespace NrvHipDropRock
+};  // namespace NrvHipDropRock

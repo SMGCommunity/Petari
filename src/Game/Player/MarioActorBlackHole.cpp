@@ -1,6 +1,6 @@
+#include "Game/Enemy/KariKariDirector.hpp"
 #include "Game/Player/MarioActor.hpp"
 #include "Game/Player/MarioConst.hpp"
-#include "Game/Enemy/KariKariDirector.hpp"
 
 void MarioActor::initBlackHoleOut() {
     mPosRelativeToBlackHole = mPosition - mBlackHolePosition;
@@ -11,14 +11,14 @@ void MarioActor::initBlackHoleOut() {
     MR::normalizeOrZero(&normalisedRelativeCameraPos);
     MR::normalizeOrZero(&normalisedRelativePos);
 
-    Mtx    rotation;
+    Mtx rotation;
     TVec3f rotateAxis;
 
     PSVECCrossProduct(&normalisedRelativeCameraPos, &normalisedRelativePos, &rotateAxis);
 
-    f32    mag = PSVECMag(&mPosRelativeToBlackHole);
+    f32 mag = PSVECMag(&mPosRelativeToBlackHole);
     TVec3f killed;
-    f32    flt = MR::vecKillElement(mCamPos - mPosition, mCamDirZ, &killed);
+    f32 flt = MR::vecKillElement(mCamPos - mPosition, mCamDirZ, &killed);
     flt *= mConst->getTable()->mBlackHoleFirstRadius;
 
     PSMTXRotAxisRad(rotation, &rotateAxis, atan(flt / mag));
@@ -53,7 +53,6 @@ void MarioActor::exeGameOverBlackHole2() {
     }
 
     if (getNerveStep() == 60) {
-
         if (!MR::getPlayerLeft()) {
             MR::startPlayerEvent("ゲームオーバー");
         } else {

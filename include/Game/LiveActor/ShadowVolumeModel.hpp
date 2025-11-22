@@ -13,5 +13,5 @@ public:
 
     void initVolumeModel(const char*);
 
-    J3DModelData* mModelData; // 0x1C
+    J3DModelData* mModelData;  // 0x1C
 };

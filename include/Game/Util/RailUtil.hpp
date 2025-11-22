@@ -1,8 +1,8 @@
 #pragma once
 
-#include <revolution.h>
 #include "JSystem/JGeometry.hpp"
 #include "JSystem/JGeometry/TBox.hpp"
+#include <revolution.h>
 
 class LiveActor;
 class RailRider;
@@ -18,8 +18,8 @@ namespace MR {
     void calcRailDirectionAtCoord(TVec3f*, const LiveActor*, f32);
 
     void calcRailPointPos(TVec3f*, const LiveActor*, int);
-    f32  getRailCoord(const LiveActor*);
-    f32  getRailPointCoord(const LiveActor*, int);
+    f32 getRailCoord(const LiveActor*);
+    f32 getRailPointCoord(const LiveActor*, int);
 
     bool isRailReachedGoal(const LiveActor*);
 
@@ -27,7 +27,7 @@ namespace MR {
 
     void moveCoordToNearestPos(LiveActor*, const TVec3f&);
 
-    s32  moveCoordAndCheckPassPointNo(LiveActor*, f32);
+    s32 moveCoordAndCheckPassPointNo(LiveActor*, f32);
     void moveCoordAndTransToNearestRailPos(LiveActor*);
     void moveCoordAndTransToRailPoint(LiveActor*, s32);
     void moveTransToCurrentRailPos(LiveActor*);
@@ -99,9 +99,9 @@ namespace MR {
     bool getNextRailPointArg1NoInit(const LiveActor*, f32*);
 
     const TVec3f& getRailPointPosEnd(const LiveActor*);
-    void          calcRailEndPointPos(TVec3f*, const LiveActor*);
-    void          calcNearestRailDirection(TVec3f*, const LiveActor*, const TVec3f&);
-    void          calcNearestRailPos(TVec3f*, const LiveActor*, const TVec3f&);
+    void calcRailEndPointPos(TVec3f*, const LiveActor*);
+    void calcNearestRailDirection(TVec3f*, const LiveActor*, const TVec3f&);
+    void calcNearestRailPos(TVec3f*, const LiveActor*, const TVec3f&);
 
     void calcMovingDirectionAlongRail(LiveActor*, TVec3f*, const TVec3f&, float, bool, bool*);
     void calcMovingDirectionAlongRailH(LiveActor*, TVec3f*, const TVec3f&, float, bool*);
@@ -112,4 +112,4 @@ namespace MR {
     void calcBoundingBox(const LiveActor*, TBox3f*, f32);
 
     void calcRailClippingInfo(TVec3f*, f32*, const LiveActor*, f32, f32);
-}; // namespace MR
+};  // namespace MR

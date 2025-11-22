@@ -17,7 +17,7 @@ namespace NrvMapObjActor {
     NERVE(HostTypeWait);
     NERVE(HostTypeMove);
     NERVE(HostTypeDone);
-}; // namespace NrvMapObjActor
+};  // namespace NrvMapObjActor
 
 class MapObjActor : public LiveActor {
 public:
@@ -54,22 +54,22 @@ public:
     void exeWait();
     void exeMove();
 
-    const char*                   mObjectName;      // 0x8C
-    LodCtrl*                      mPlanetLodCtrl;   // 0x90
-    ModelObj*                     mBloomModel;      // 0x94
-    ModelObj*                     mModelObj;        // 0x98
-    ProjmapEffectMtxSetter*       mMatrixSetter;    // 0x9C
-    MapPartsRailMover*            mRailMover;       // 0xA0
-    MapPartsRotator*              mRotator;         // 0xA4
-    MapPartsRailRotator*          mRailRotator;     // 0xA8
-    MapPartsRailPosture*          mRailPosture;     // 0xAC
-    MapPartsRailGuideDrawer*      mRailGuideDrawer; // 0xB0
-    u8                            _B4;
-    u8                            _B5;
-    u8                            _B6;
-    NrvMapObjActor::HostTypeWait* mWaitNrv; // 0xB8
-    NrvMapObjActor::HostTypeMove* mMoveNrv; // 0xBC
-    NrvMapObjActor::HostTypeDone* mDoneNrv; // 0xC0
+    const char* mObjectName;                    // 0x8C
+    LodCtrl* mPlanetLodCtrl;                    // 0x90
+    ModelObj* mBloomModel;                      // 0x94
+    ModelObj* mModelObj;                        // 0x98
+    ProjmapEffectMtxSetter* mMatrixSetter;      // 0x9C
+    MapPartsRailMover* mRailMover;              // 0xA0
+    MapPartsRotator* mRotator;                  // 0xA4
+    MapPartsRailRotator* mRailRotator;          // 0xA8
+    MapPartsRailPosture* mRailPosture;          // 0xAC
+    MapPartsRailGuideDrawer* mRailGuideDrawer;  // 0xB0
+    u8 _B4;
+    u8 _B5;
+    u8 _B6;
+    NrvMapObjActor::HostTypeWait* mWaitNrv;  // 0xB8
+    NrvMapObjActor::HostTypeMove* mMoveNrv;  // 0xBC
+    NrvMapObjActor::HostTypeDone* mDoneNrv;  // 0xC0
 };
 
 class MapObjActorUtil {
@@ -81,7 +81,7 @@ public:
     static bool isRotatorMoving(const MapObjActor*);
     static bool isRailMoverWorking(const MapObjActor*);
     static bool isRailMoverReachedEnd(const MapObjActor*);
-    static f32  getSeesaw1AxisAngularSpeed(const MapObjActor*);
+    static f32 getSeesaw1AxisAngularSpeed(const MapObjActor*);
     static void forceRotateSeesaw1Axis(const MapObjActor*, f32);
 
     static void startRotator(const MapObjActor*);

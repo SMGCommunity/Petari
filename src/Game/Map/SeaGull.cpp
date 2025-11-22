@@ -2,11 +2,10 @@
 #include "Game/Util.hpp"
 
 NrvSeaGull::SeaGullNrvHoverFront NrvSeaGull::SeaGullNrvHoverFront::sInstance;
-NrvSeaGull::SeaGullNrvHoverLeft  NrvSeaGull::SeaGullNrvHoverLeft::sInstance;
+NrvSeaGull::SeaGullNrvHoverLeft NrvSeaGull::SeaGullNrvHoverLeft::sInstance;
 NrvSeaGull::SeaGullNrvHoverRight NrvSeaGull::SeaGullNrvHoverRight::sInstance;
 
-SeaGull::SeaGull(SeaGullGroup* pGroup)
-    : LiveActor("カモメ") {
+SeaGull::SeaGull(SeaGullGroup* pGroup) : LiveActor("カモメ") {
     mSeaGullGroup = pGroup;
     _90 = 0;
     _94 = false;
@@ -52,7 +51,7 @@ void SeaGull::init(const JMapInfoIter& rIter) {
 
     TVec3f stack_14(_C4);
     TVec3f stack_8(_AC);
-    f32    scale = MR::getRandom(-1.0f, 1.0f);
+    f32 scale = MR::getRandom(-1.0f, 1.0f);
     stack_14.scale(scale);
     scale = MR::getRandom(-1.0f, 1.0f);
     stack_8.scale(scale);
@@ -188,8 +187,7 @@ void SeaGull::calcAndSetBaseMtx() {
     MR::setBaseTRMtx(this, mtx);
 }
 
-SeaGullGroup::SeaGullGroup(const char* pName)
-    : LiveActor(pName) {
+SeaGullGroup::SeaGullGroup(const char* pName) : LiveActor(pName) {
     _8C = 0;
     _90 = 0;
 }
@@ -212,11 +210,9 @@ TVec3f* SeaGullGroup::updatePosInfo(s32* a1, bool a2) const {
     return &_90[*a1];
 }
 
-SeaGull::~SeaGull() {
-}
+SeaGull::~SeaGull() {}
 
-SeaGullGroup::~SeaGullGroup() {
-}
+SeaGullGroup::~SeaGullGroup() {}
 
 namespace NrvSeaGull {
     void SeaGullNrvHoverRight::execute(Spine* pSpine) const {
@@ -233,4 +229,4 @@ namespace NrvSeaGull {
         SeaGull* gull = reinterpret_cast< SeaGull* >(pSpine->mExecutor);
         gull->exeHoverFront();
     }
-}; // namespace NrvSeaGull
+};  // namespace NrvSeaGull

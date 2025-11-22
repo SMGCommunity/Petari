@@ -1,8 +1,7 @@
 #include "Game/Camera/CameraBlackHole.hpp"
 #include "Game/Camera/CamTranslatorBlackHole.hpp"
 
-CameraBlackHole::CameraBlackHole(const char* pName)
-    : Camera(pName) {
+CameraBlackHole::CameraBlackHole(const char* pName) : Camera(pName) {
     _4C = 1.0f;
     _50 = 0.0f;
     mWPoint.x = 0.0f;
@@ -13,8 +12,7 @@ CameraBlackHole::CameraBlackHole(const char* pName)
     mAxis.z = 0.0f;
 }
 
-CameraBlackHole::~CameraBlackHole() {
-}
+CameraBlackHole::~CameraBlackHole() {}
 
 CamTranslatorBase* CameraBlackHole::createTranslator() {
     return new CamTranslatorBlackHole(this);

@@ -1,48 +1,45 @@
-#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/MapObj/Candlestand.hpp"
+#include "Game/LiveActor/HitSensor.hpp"
 
 struct Param {
-    const char* mObjName;        // 0x0
-    f32         mClippingRadius; // 0x4
-    f32         mSensorRange;    // 0x8
-    f32         _C;
-    f32         _10;
-    f32         _14;
-    bool        mCanUseSwitch; // 0x18
+    const char* mObjName;  // 0x0
+    f32 mClippingRadius;   // 0x4
+    f32 mSensorRange;      // 0x8
+    f32 _C;
+    f32 _10;
+    f32 _14;
+    bool mCanUseSwitch;  // 0x18
 };
 
 namespace {
-    static Param sParams[3] = {
-        {
-            "PhantomCandlestand",
-            500.0f, // mClippingRadius
-            50.0f,  // mSensorRange
-            220.0f, // 0xC
-            0.0f,   // 0x14
-            false   // mCanUseSwitch
-        },
-        {
-            "TeresaMansionCandlestand",
-            800.0f, // mClippingRadius
-            70.0f,  // mSensorRange
-            300.0f, // 0xC
-            220.0f, // 0x10
-            -5.0f,  // 0x14
-            false   // mCanUseSwitch
-        },
-        {
-            "CandlestandIceVolcano",
-            500.0f, // mClippingRadius
-            150.0f, // mSensorRange
-            220.0f, // 0xC
-            0.0f,   // 0x10
-            0.0f,   // 0x14
-            true    // mCanUseSwitch
-        }};
+    static Param sParams[3] = {{
+                                   "PhantomCandlestand",
+                                   500.0f,  // mClippingRadius
+                                   50.0f,   // mSensorRange
+                                   220.0f,  // 0xC
+                                   0.0f,    // 0x14
+                                   false    // mCanUseSwitch
+                               },
+                               {
+                                   "TeresaMansionCandlestand",
+                                   800.0f,  // mClippingRadius
+                                   70.0f,   // mSensorRange
+                                   300.0f,  // 0xC
+                                   220.0f,  // 0x10
+                                   -5.0f,   // 0x14
+                                   false    // mCanUseSwitch
+                               },
+                               {
+                                   "CandlestandIceVolcano",
+                                   500.0f,  // mClippingRadius
+                                   150.0f,  // mSensorRange
+                                   220.0f,  // 0xC
+                                   0.0f,    // 0x10
+                                   0.0f,    // 0x14
+                                   true     // mCanUseSwitch
+                               }};
 
-    Param* get(s32 idx) {
-        return &sParams[idx];
-    }
+    Param* get(s32 idx) { return &sParams[idx]; }
 
     Param* getParam(const char* pObjName) NO_INLINE {
         for (s32 i = 0; i < 3; i++) {
@@ -53,10 +50,9 @@ namespace {
 
         return nullptr;
     }
-}; // namespace
+};  // namespace
 
-Candlestand::Candlestand(const char* pName)
-    : MapObjActor(pName) {
+Candlestand::Candlestand(const char* pName) : MapObjActor(pName) {
     mItem = -1;
     mHasItemAppear = false;
     mSpinPtclCb = nullptr;
@@ -297,8 +293,7 @@ void Candlestand::exeBurn() {
     MR::startLevelSound(this, "SE_OJ_LV_PHANTOM_TOACH_BURN", -1, -1, -1);
 }
 
-Candlestand::~Candlestand() {
-}
+Candlestand::~Candlestand() {}
 
 namespace NrvCandlestand {
     INIT_NERVE(HostTypeWaitFire);
@@ -307,4 +302,4 @@ namespace NrvCandlestand {
     INIT_NERVE(HostTypeAttack);
     INIT_NERVE(HostTypeExtinguish);
     INIT_NERVE(HostTypeFlicker);
-}; // namespace NrvCandlestand
+};  // namespace NrvCandlestand

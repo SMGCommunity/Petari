@@ -1,7 +1,7 @@
 #pragma once
 
-#include "JSystem/JGeometry/TVec.hpp"
 #include "Game/Util.hpp"
+#include "JSystem/JGeometry/TVec.hpp"
 #include <revolution.h>
 
 class CollisionParts;
@@ -94,12 +94,12 @@ namespace MR {
     bool isShadowProjected(const LiveActor*, const char*);
     bool isShadowProjectedAny(const LiveActor*);
 
-    void       getShadowProjectionPos(const LiveActor*, const char*, TVec3f*);
-    void       getShadowProjectionNormal(const LiveActor*, const char*, TVec3f*);
-    f32        getShadowProjectionLength(const LiveActor*, const char*);
+    void getShadowProjectionPos(const LiveActor*, const char*, TVec3f*);
+    void getShadowProjectionNormal(const LiveActor*, const char*, TVec3f*);
+    f32 getShadowProjectionLength(const LiveActor*, const char*);
     HitSensor* getShadowProjectedSensor(const LiveActor*, const char*);
 
     f32 getShadowNearProjectionLength(const LiveActor*);
 
     void setShadowProjection(LiveActor*, const char*, const TVec3f&, const TVec3f&, bool);
-}; // namespace MR
+};  // namespace MR

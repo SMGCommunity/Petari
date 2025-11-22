@@ -1,12 +1,11 @@
+#include "Game/MapObj/ChipHolder.hpp"
 #include "Game/MapObj/ChipCounter.hpp"
 #include "Game/MapObj/ChipGroup.hpp"
-#include "Game/MapObj/ChipHolder.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
-#include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/JMapInfo.hpp"
+#include "Game/Util/PlayerUtil.hpp"
 
-ChipHolder::ChipHolder(const char* pName, s32 chipType)
-    : NameObj(pName) {
+ChipHolder::ChipHolder(const char* pName, s32 chipType) : NameObj(pName) {
     mChipCounter = nullptr;
     mChipGroups = nullptr;
     mNumChipGroups = 0;
@@ -70,7 +69,7 @@ void MR::registerChip(s32 chipHolderType, ChipBase* pChip, s32 chipGroupType) {
 
 void MR::noticeGetChip(s32 chipHolderType, ChipBase* pChip, s32 chipGroupType) {
     ChipHolder* holder = getChipHolder(chipHolderType);
-    ChipGroup*  group = holder->findChipGroup(chipGroupType);
+    ChipGroup* group = holder->findChipGroup(chipGroupType);
     group->noticeGet(pChip);
     holder->mChipCounter->setCount(group->getGotCount());
     incPlayerOxygen(8);
@@ -119,8 +118,7 @@ void MR::deactivateChipLayout() {
     }
 }
 
-ChipHolder::~ChipHolder() {
-}
+ChipHolder::~ChipHolder() {}
 
 void ChipHolder::init(const JMapInfoIter& rIter) {
     mChipGroups = new ChipGroup*[0x40];

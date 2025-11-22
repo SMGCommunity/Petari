@@ -1,5 +1,5 @@
-#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/FileSelectInfo.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/MemoryUtil.hpp"
 #include "Game/Util/NerveUtil.hpp"
@@ -15,34 +15,26 @@ namespace {
     NEW_NERVE(FileSelectInfoNrvAppear, FileSelectInfo, Appear);
     NEW_NERVE(FileSelectInfoNrvDisplay, FileSelectInfo, Display);
     NEW_NERVE(FileSelectInfoNrvDisappear, FileSelectInfo, Disappear);
-}; // namespace
+};  // namespace
 
 namespace FileSelectInfoSub {
     NEW_NERVE(SlideStateNrvNormalPos, SlideState, NormalPos);
     NEW_NERVE(SlideStateNrvSliding, SlideState, Sliding);
     NEW_NERVE(SlideStateNrvSlidePos, SlideState, SlidePos);
     NEW_NERVE(SlideStateNrvSlidingBack, SlideState, SlidingBack);
-}; // namespace FileSelectInfoSub
+};  // namespace FileSelectInfoSub
 
 namespace FileSelectInfoSub {
     NEW_NERVE(CharaStateNrvMario, CharaState, Mario);
     NEW_NERVE(CharaStateNrvToLuigi, CharaState, ToLuigi);
     NEW_NERVE(CharaStateNrvLuigi, CharaState, Luigi);
     NEW_NERVE(CharaStateNrvToMario, CharaState, ToMario);
-}; // namespace FileSelectInfoSub
+};  // namespace FileSelectInfoSub
 
 // FIXME: Any issues are likely related to dynamically allocating memory for the wide character buffer.
 FileSelectInfo::FileSelectInfo(s32 nameBufferSize, const char* pName)
-    : LayoutActor(pName, 1),
-      mNumber(0),
-      mStarNum(0),
-      mStarPieceNum(0),
-      mNameBufferSize(nameBufferSize * sizeof(wchar_t)),
-      mName(new wchar_t[nameBufferSize]),
-      mMissNum(-1),
-      mIsSelectedMarioPrev(true),
-      mIsSelectedMario(true),
-      mIsViewNormalEnding(false),
+    : LayoutActor(pName, 1), mNumber(0), mStarNum(0), mStarPieceNum(0), mNameBufferSize(nameBufferSize * sizeof(wchar_t)),
+      mName(new wchar_t[nameBufferSize]), mMissNum(-1), mIsSelectedMarioPrev(true), mIsSelectedMario(true), mIsViewNormalEnding(false),
       mIsViewCompleteEnding(false) {
     mSlideState = new FileSelectInfoSub::SlideState(this);
     mCharaState = new FileSelectInfoSub::CharaState(this);
@@ -99,17 +91,8 @@ void FileSelectInfo::slideBack() {
     mSlideState->setNerve(&FileSelectInfoSub::SlideStateNrvSlidingBack::sInstance);
 }
 
-void FileSelectInfo::setInfo(
-    u16*           pName,
-    s32            number,
-    s32            starNum,
-    s32            starPieceNum,
-    bool           isSelectedMario,
-    bool           isViewNormalEnding,
-    bool           isViewCompleteEnding,
-    const wchar_t* pDateMessage,
-    const wchar_t* pTimeMessage,
-    s32            missNum) {
+void FileSelectInfo::setInfo(u16* pName, s32 number, s32 starNum, s32 starPieceNum, bool isSelectedMario, bool isViewNormalEnding,
+                             bool isViewCompleteEnding, const wchar_t* pDateMessage, const wchar_t* pTimeMessage, s32 missNum) {
     mNumber = number;
     mStarNum = starNum;
     mStarPieceNum = starPieceNum;
@@ -132,13 +115,15 @@ void FileSelectInfo::change() {
     if (mIsSelectedMarioPrev && !mIsSelectedMario) {
         pCharaState = mCharaState;
 
-        if (!pCharaState->isNerve(&FileSelectInfoSub::CharaStateNrvLuigi::sInstance) && !pCharaState->isNerve(&FileSelectInfoSub::CharaStateNrvToLuigi::sInstance)) {
+        if (!pCharaState->isNerve(&FileSelectInfoSub::CharaStateNrvLuigi::sInstance) &&
+            !pCharaState->isNerve(&FileSelectInfoSub::CharaStateNrvToLuigi::sInstance)) {
             pCharaState->setNerve(&FileSelectInfoSub::CharaStateNrvToLuigi::sInstance);
         }
     } else if (!mIsSelectedMarioPrev && mIsSelectedMario) {
         pCharaState = mCharaState;
 
-        if (!pCharaState->isNerve(&FileSelectInfoSub::CharaStateNrvMario::sInstance) && !pCharaState->isNerve(&FileSelectInfoSub::CharaStateNrvToMario::sInstance)) {
+        if (!pCharaState->isNerve(&FileSelectInfoSub::CharaStateNrvMario::sInstance) &&
+            !pCharaState->isNerve(&FileSelectInfoSub::CharaStateNrvToMario::sInstance)) {
             pCharaState->setNerve(&FileSelectInfoSub::CharaStateNrvToMario::sInstance);
         }
     }
@@ -233,11 +218,7 @@ void FileSelectInfo::reflectInfo() {
 }
 
 namespace FileSelectInfoSub {
-    SlideState::SlideState(FileSelectInfo* pHost)
-        : NerveExecutor("スライド状態"),
-          mHost(pHost) {
-        initNerve(&SlideStateNrvNormalPos::sInstance);
-    }
+    SlideState::SlideState(FileSelectInfo* pHost) : NerveExecutor("スライド状態"), mHost(pHost) { initNerve(&SlideStateNrvNormalPos::sInstance); }
 
     void SlideState::exeNormalPos() {
         if (MR::isFirstStep(this)) {
@@ -272,14 +253,10 @@ namespace FileSelectInfoSub {
             setNerve(&SlideStateNrvNormalPos::sInstance);
         }
     }
-}; // namespace FileSelectInfoSub
+};  // namespace FileSelectInfoSub
 
 namespace FileSelectInfoSub {
-    CharaState::CharaState(FileSelectInfo* pHost)
-        : NerveExecutor("キャラ選択状態"),
-          mHost(pHost) {
-        initNerve(&CharaStateNrvMario::sInstance);
-    }
+    CharaState::CharaState(FileSelectInfo* pHost) : NerveExecutor("キャラ選択状態"), mHost(pHost) { initNerve(&CharaStateNrvMario::sInstance); }
 
     void CharaState::exeMario() {
         if (MR::isFirstStep(this)) {
@@ -320,4 +297,4 @@ namespace FileSelectInfoSub {
             setNerve(&CharaStateNrvMario::sInstance);
         }
     }
-}; // namespace FileSelectInfoSub
+};  // namespace FileSelectInfoSub

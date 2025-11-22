@@ -14,17 +14,17 @@ public:
     void exeRailMove();
 
     HitSensor* _8C;
-    TVec3f     _90;
-    f32        _9C;
-    f32        _A0;
-    TVec3f     _A4;
-    f32        _B0;
-    f32        _B4;
-    f32        _B8;
-    u32        _BC;
+    TVec3f _90;
+    f32 _9C;
+    f32 _A0;
+    TVec3f _A4;
+    f32 _B0;
+    f32 _B4;
+    f32 _B8;
+    u32 _BC;
 };
 
 namespace NrvSphereRailDash {
     NERVE(SphereRailDashNrvWait);
     NERVE(SphereRailDashNrvRailMove);
-}; // namespace NrvSphereRailDash
+};  // namespace NrvSphereRailDash

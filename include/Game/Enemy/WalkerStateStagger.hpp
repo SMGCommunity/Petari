@@ -1,8 +1,8 @@
 #pragma once
 
 #include "Game/LiveActor/HitSensor.hpp"
-#include "Game/System/NerveExecutor.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
+#include "Game/System/NerveExecutor.hpp"
 
 class WalkerStateParam;
 class WalkerStateStaggerParam;
@@ -43,9 +43,9 @@ public:
     bool isSpinning(s32, s32) const;
     bool isRecoverStart() const;
 
-    LiveActor*               mParent;       // 0x0C
-    WalkerStateParam*        mStateParam;   // 0x10
-    WalkerStateStaggerParam* mStaggerParam; // 0x14
-    TVec3f                   _18;
-    TVec3f*                  _24;
+    LiveActor* mParent;                      // 0x0C
+    WalkerStateParam* mStateParam;           // 0x10
+    WalkerStateStaggerParam* mStaggerParam;  // 0x14
+    TVec3f _18;
+    TVec3f* _24;
 };

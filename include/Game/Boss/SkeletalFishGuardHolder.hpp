@@ -20,16 +20,16 @@ public:
     void invalidate();
     void validate();
     void checkRailChangedAndReset();
-    s32  countAppearableGuard() const;
-    s32  countGuardAlive() const;
+    s32 countAppearableGuard() const;
+    s32 countGuardAlive() const;
     void checkDistanceAndAppear(s32);
     void appearGuard(s32, s32);
     void createAndInitGuard();
 
-    SkeletalFishBoss*     mFishBoss;  // 0xC
+    SkeletalFishBoss* mFishBoss;      // 0xC
     SkeletalFishBossRail* mBossRail;  // 0x10
-    s32                   mNumGuards; // 0x14
-    SkeletalFishGuard**   mGuards;    // 0x18
-    f32                   _1C;
-    u8                    _20;
+    s32 mNumGuards;                   // 0x14
+    SkeletalFishGuard** mGuards;      // 0x18
+    f32 _1C;
+    u8 _20;
 };

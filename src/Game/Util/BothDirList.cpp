@@ -1,12 +1,7 @@
 #include "Game/Util.hpp"
 
 namespace MR {
-    BothDirPtrLink::BothDirPtrLink(void* pLink)
-        : mValue(pLink),
-          mList(nullptr),
-          mPrevLink(nullptr),
-          mNextLink(nullptr) {
-    }
+    BothDirPtrLink::BothDirPtrLink(void* pLink) : mValue(pLink), mList(nullptr), mPrevLink(nullptr), mNextLink(nullptr) {}
 
     BothDirPtrLink::~BothDirPtrLink() {
         if (mList) {
@@ -22,7 +17,7 @@ namespace MR {
 
     BothDirPtrList::~BothDirPtrList() {
         BothDirPtrLink* pLink = mHead;
-        u32             i = 0;
+        u32 i = 0;
         while (i < mCount) {
             pLink->mList = nullptr;
             i++;
@@ -87,4 +82,4 @@ namespace MR {
         }
         return success;
     }
-}; // namespace MR
+};  // namespace MR

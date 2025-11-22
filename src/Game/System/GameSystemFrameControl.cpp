@@ -1,8 +1,7 @@
 #include "Game/System/GameSystemFrameControl.hpp"
 #include "Game/System/MainLoopFramework.hpp"
 
-GameSystemFrameControl::GameSystemFrameControl()
-    : mIs60fps(true) {
+GameSystemFrameControl::GameSystemFrameControl() : mIs60fps(true) {
     setMovement60fps();
 }
 

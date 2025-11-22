@@ -9,20 +9,11 @@ namespace NrvBirikyu {
     NEW_NERVE(HostTypeAttackWait, Birikyu, AttackWait);
     NEW_NERVE(HostTypeWaitAtEdge, Birikyu, WaitAtEdge);
     NEW_NERVE(HostTypeStopPointing, Birikyu, StopPointing);
-}; // namespace NrvBirikyu
+};  // namespace NrvBirikyu
 
 Birikyu::Birikyu(const char* pName)
-    : LiveActor(pName),
-      _8C(nullptr),
-      _90(gZeroVec),
-      _9C(gZeroVec),
-      _A8(false),
-      _A9(false),
-      _AC(0.0f, 1.0f, 0.0f),
-      _B8(0.0f, 0.0f, 1.0f),
-      _C4(0.0f),
-      _C8(10.0f) {
-}
+    : LiveActor(pName), _8C(nullptr), _90(gZeroVec), _9C(gZeroVec), _A8(false), _A9(false), _AC(0.0f, 1.0f, 0.0f), _B8(0.0f, 0.0f, 1.0f), _C4(0.0f),
+      _C8(10.0f) {}
 
 void Birikyu::init(const JMapInfoIter& rIter) {
     MR::getObjectName(&_8C, rIter);
@@ -253,8 +244,7 @@ void Birikyu::exeAttack() {
     }
 }
 
-void Birikyu::exeAttackWait() {
-}
+void Birikyu::exeAttackWait() {}
 
 void Birikyu::exeStopPointing() {
     if (MR::isFirstStep(this)) {
@@ -276,8 +266,7 @@ void Birikyu::exeStopPointing() {
     }
 }
 
-BirikyuWithFace::BirikyuWithFace(const char* pName)
-    : Birikyu(pName) {
+BirikyuWithFace::BirikyuWithFace(const char* pName) : Birikyu(pName) {
     _CC = false;
 }
 

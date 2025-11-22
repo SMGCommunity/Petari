@@ -5,9 +5,9 @@
 
 namespace {
     static s32 cJMapBoneIDToBoneIndexTableSize = 0x29;
-    static s32 cJMapBoneIDToBoneIndexTable[0x29] = {
-        0, 1, 2, 7, 8, 9, 0xE, 0xF, 0x10, 0x15, 3, 4, 0, 1, 5, 6, 2, -1, -1, -1,
-        0xA, 0xB, 7, 8, 0xC, 0xD, 9, -1, -1, -1, 0x11, 0x12, 0xE, 0xF, 0x13, 0x14, 0x10, -1, -1, -1, 0x15};
+    static s32 cJMapBoneIDToBoneIndexTable[0x29] = {0,  1,  2,    7,    8,   9,   0xE,  0xF,  0x10, 0x15, 3,   4,   0,   1,
+                                                    5,  6,  2,    -1,   -1,  -1,  0xA,  0xB,  7,    8,    0xC, 0xD, 9,   -1,
+                                                    -1, -1, 0x11, 0x12, 0xE, 0xF, 0x13, 0x14, 0x10, -1,   -1,  -1,  0x15};
 
     s32 convertBoneIDToIndex(s32 id) NO_INLINE {
         if (id < 0 || cJMapBoneIDToBoneIndexTableSize <= id) {
@@ -16,10 +16,9 @@ namespace {
             return cJMapBoneIDToBoneIndexTable[id];
         }
     }
-}; // namespace
+};  // namespace
 
-TripodBossAccesser::TripodBossAccesser(const char* pName)
-    : NameObj(pName) {
+TripodBossAccesser::TripodBossAccesser(const char* pName) : NameObj(pName) {
     mBoss = nullptr;
     mNumParts = 0;
 }
@@ -83,29 +82,19 @@ namespace MR {
         MR::joinToMovementOnOffGroup("三脚ボス部品", pActor, 0x100);
     }
 
-    void addTripodBossPartsMovement(NameObj* pObj) {
-        MR::joinToMovementOnOffGroup("三脚ボス部品", pObj, 0x100);
-    }
+    void addTripodBossPartsMovement(NameObj* pObj) { MR::joinToMovementOnOffGroup("三脚ボス部品", pObj, 0x100); }
 
     bool isTripoddBossParts(const NameObj* pObj) {
         return MR::getSceneObj< TripodBossAccesser >(SceneObj_TripodBossAccesser)->isTripoddBossParts(pObj);
     }
 
-    void showTripodBossParts() {
-        ((TripodBossAccesser*)MR::createSceneObj(SceneObj_TripodBossAccesser))->showTripodBossParts();
-    }
+    void showTripodBossParts() { ((TripodBossAccesser*)MR::createSceneObj(SceneObj_TripodBossAccesser))->showTripodBossParts(); }
 
-    void hideTripodBossParts() {
-        ((TripodBossAccesser*)MR::createSceneObj(SceneObj_TripodBossAccesser))->hideTripodBossParts();
-    }
+    void hideTripodBossParts() { ((TripodBossAccesser*)MR::createSceneObj(SceneObj_TripodBossAccesser))->hideTripodBossParts(); }
 
-    void activeTripodBossParts() {
-        ((TripodBossAccesser*)MR::createSceneObj(SceneObj_TripodBossAccesser))->activeTripodBossParts();
-    }
+    void activeTripodBossParts() { ((TripodBossAccesser*)MR::createSceneObj(SceneObj_TripodBossAccesser))->activeTripodBossParts(); }
 
-    void requestMovementTripodBossParts() {
-        MR::onMovementOnOffGroup("三脚ボス部品");
-    }
+    void requestMovementTripodBossParts() { MR::onMovementOnOffGroup("三脚ボス部品"); }
 
     bool isCreatedTripodBoss() {
         if (!MR::isExistSceneObj(SceneObj_TripodBossAccesser)) {
@@ -115,49 +104,27 @@ namespace MR {
         return MR::getSceneObj< TripodBossAccesser >(SceneObj_TripodBossAccesser)->mBoss != nullptr;
     }
 
-    bool isStartedTripodBoss() {
-        return MR::getSceneObj< TripodBossAccesser >(SceneObj_TripodBossAccesser)->mBoss->isStarted();
-    }
+    bool isStartedTripodBoss() { return MR::getSceneObj< TripodBossAccesser >(SceneObj_TripodBossAccesser)->mBoss->isStarted(); }
 
-    bool isBrokenTripodBoss() {
-        return MR::getSceneObj< TripodBossAccesser >(SceneObj_TripodBossAccesser)->mBoss->isBroken();
-    }
+    bool isBrokenTripodBoss() { return MR::getSceneObj< TripodBossAccesser >(SceneObj_TripodBossAccesser)->mBoss->isBroken(); }
 
-    bool isDemoTripodBoss() {
-        return MR::getSceneObj< TripodBossAccesser >(SceneObj_TripodBossAccesser)->mBoss->isDemo();
-    }
+    bool isDemoTripodBoss() { return MR::getSceneObj< TripodBossAccesser >(SceneObj_TripodBossAccesser)->mBoss->isDemo(); }
 
-    bool isStartDemoTripodBoss() {
-        return MR::getSceneObj< TripodBossAccesser >(SceneObj_TripodBossAccesser)->mBoss->isStartDemo();
-    }
+    bool isStartDemoTripodBoss() { return MR::getSceneObj< TripodBossAccesser >(SceneObj_TripodBossAccesser)->mBoss->isStartDemo(); }
 
-    bool isDamageDemoTripodBoss() {
-        return MR::getSceneObj< TripodBossAccesser >(SceneObj_TripodBossAccesser)->mBoss->isDamageDemo();
-    }
+    bool isDamageDemoTripodBoss() { return MR::getSceneObj< TripodBossAccesser >(SceneObj_TripodBossAccesser)->mBoss->isDamageDemo(); }
 
-    bool isEndBreakDownDemoTripodBoss() {
-        return MR::getSceneObj< TripodBossAccesser >(SceneObj_TripodBossAccesser)->mBoss->isEndBreakDownDemo();
-    }
+    bool isEndBreakDownDemoTripodBoss() { return MR::getSceneObj< TripodBossAccesser >(SceneObj_TripodBossAccesser)->mBoss->isEndBreakDownDemo(); }
 
-    bool isLeaveMarioNowTripodBoss() {
-        return MR::getSceneObj< TripodBossAccesser >(SceneObj_TripodBossAccesser)->mBoss->isLeaveMarioNow();
-    }
+    bool isLeaveMarioNowTripodBoss() { return MR::getSceneObj< TripodBossAccesser >(SceneObj_TripodBossAccesser)->mBoss->isLeaveMarioNow(); }
 
-    bool isRideMarioTripodBoss() {
-        return MR::getSceneObj< TripodBossAccesser >(SceneObj_TripodBossAccesser)->mBoss->isRideMario();
-    }
+    bool isRideMarioTripodBoss() { return MR::getSceneObj< TripodBossAccesser >(SceneObj_TripodBossAccesser)->mBoss->isRideMario(); }
 
-    bool tryDamageDemoTripodBoss() {
-        return MR::getSceneObj< TripodBossAccesser >(SceneObj_TripodBossAccesser)->mBoss->tryDamageDemo();
-    }
+    bool tryDamageDemoTripodBoss() { return MR::getSceneObj< TripodBossAccesser >(SceneObj_TripodBossAccesser)->mBoss->tryDamageDemo(); }
 
-    void requestEndDamageDemoTripodBoss() {
-        MR::getSceneObj< TripodBossAccesser >(SceneObj_TripodBossAccesser)->mBoss->requestEndDamageDemo();
-    }
+    void requestEndDamageDemoTripodBoss() { MR::getSceneObj< TripodBossAccesser >(SceneObj_TripodBossAccesser)->mBoss->requestEndDamageDemo(); }
 
-    u32 getTripodBossGravityHostID() {
-        return (u32)MR::getSceneObj< TripodBossAccesser >(SceneObj_TripodBossAccesser);
-    }
+    u32 getTripodBossGravityHostID() { return (u32)MR::getSceneObj< TripodBossAccesser >(SceneObj_TripodBossAccesser); }
 
     void setTripodBossJointAttachBaseMatrix(const TPos3f& rPos, s32 id) {
         TripodBoss* boss = MR::getSceneObj< TripodBossAccesser >(SceneObj_TripodBossAccesser)->mBoss;
@@ -196,7 +163,7 @@ namespace MR {
     }
 
     bool isSteppingTripodBossJointID(s32 id) {
-        s32  partID = TripodBoss::getPartIDFromBoneID(convertBoneIDToIndex(id));
+        s32 partID = TripodBoss::getPartIDFromBoneID(convertBoneIDToIndex(id));
         bool ret = false;
 
         if (partID >= 0 && partID < 3) {
@@ -209,7 +176,6 @@ namespace MR {
 
         return false;
     }
-}; // namespace MR
+};  // namespace MR
 
-TripodBossAccesser::~TripodBossAccesser() {
-}
+TripodBossAccesser::~TripodBossAccesser() {}

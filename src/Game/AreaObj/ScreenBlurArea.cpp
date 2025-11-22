@@ -1,8 +1,7 @@
 #include "Game/AreaObj/ScreenBlurArea.hpp"
 #include "Game/Util/ScreenUtil.hpp"
 
-ScreenBlurArea::ScreenBlurArea(int type, const char* pName)
-    : ImageEffectArea(IMAGE_EFFECT_TYPE_BLUR, type, pName) {
+ScreenBlurArea::ScreenBlurArea(int type, const char* pName) : ImageEffectArea(IMAGE_EFFECT_TYPE_BLUR, type, pName) {
     mIsPlayerSync = false;
 }
 
@@ -12,8 +11,7 @@ void ScreenBlurArea::init(const JMapInfoIter& rIter) {
     MR::createScreenBlur();
 }
 
-ScreenBlurArea::~ScreenBlurArea() {
-}
+ScreenBlurArea::~ScreenBlurArea() {}
 
 bool ScreenBlurArea::isSyncWithPlayer() const {
     return mIsPlayerSync;

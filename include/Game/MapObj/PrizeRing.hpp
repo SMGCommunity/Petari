@@ -10,7 +10,7 @@ namespace NrvPrizeRing {
     NERVE(PrizeRingReadyToPass);
     NERVE(PrizeRingPass);
     NERVE(PrizeRingReadyToKill);
-}; // namespace NrvPrizeRing
+};  // namespace NrvPrizeRing
 
 class PrizeRing : public ModelObj {
 public:
@@ -22,14 +22,14 @@ public:
     virtual void kill();
     virtual void attackSensor(HitSensor* pSender, HitSensor* pReceiver);
 
-    void        setLife(int);
-    void        setNumber(int);
-    void        setNervePass();
-    bool        isReadyToPass() const;
-    bool        isReadyToKill() const;
-    void        exeStart();
-    void        exeLoop();
-    void        exeTimeout();
+    void setLife(int);
+    void setNumber(int);
+    void setNervePass();
+    bool isReadyToPass() const;
+    bool isReadyToKill() const;
+    void exeStart();
+    void exeLoop();
+    void exeTimeout();
     inline void exeReadyToKill() {
         if (MR::isFirstStep(this)) {
             MR::hideModel(this);

@@ -1,9 +1,9 @@
 #pragma once
 
-#include <revolution.h>
 #include "Game/Map/LightDataHolder.hpp"
 #include "Game/Map/LightZoneDataHolder.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
+#include <revolution.h>
 
 class JMapInfo;
 class LightAreaHolder;
@@ -24,14 +24,14 @@ namespace {
     }
 
     void getDataActorLightInfo(JMapInfo*, int, ActorLightInfo*, const char*);
-}; // namespace
+};  // namespace
 
 class LightFunction {
 public:
-    static void            initLightRegisterAll();
-    static void            initLightData();
+    static void initLightRegisterAll();
+    static void initLightData();
     static ResourceHolder* loadLightArchive();
-    static s32             createLightDataParser(JMapInfo**);
+    static s32 createLightDataParser(JMapInfo**);
 
     static void loadAllLightWhite();
 
@@ -39,7 +39,7 @@ public:
 
     static void loadActorLightInfo(const ActorLightInfo*);
 
-    static void        getAreaLightLightData(JMapInfo*, int, AreaLightInfo*);
+    static void getAreaLightLightData(JMapInfo*, int, AreaLightInfo*);
     static const char* getDefaultAreaLightName();
 
     static s32 createZoneDataParser(const char*, JMapInfo**);

@@ -2,8 +2,7 @@
 #include "Game/Boss/SkeletalFishBossFunc.hpp"
 #include "Game/Boss/SkeletalFishBossRailHolder.hpp"
 
-SkeletalFishBossRail::SkeletalFishBossRail(const char* pName)
-    : LiveActor(pName) {
+SkeletalFishBossRail::SkeletalFishBossRail(const char* pName) : LiveActor(pName) {
     _8C = -1;
     mFillUpFlags = nullptr;
     mNamePosIDs = nullptr;
@@ -63,5 +62,4 @@ void SkeletalFishBossRail::linkFillUpNamePosID() {
     }
 }
 
-SkeletalFishBossRail::~SkeletalFishBossRail() {
-}
+SkeletalFishBossRail::~SkeletalFishBossRail() {}

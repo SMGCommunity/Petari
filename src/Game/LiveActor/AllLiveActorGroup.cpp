@@ -2,8 +2,7 @@
 #include "Game/LiveActor/ClippingDirector.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 
-AllLiveActorGroup::AllLiveActorGroup()
-    : LiveActorGroup("AllLiveActorGroup", 0xA00) {
+AllLiveActorGroup::AllLiveActorGroup() : LiveActorGroup("AllLiveActorGroup", 0xA00) {
     _18 = 0;
 }
 
@@ -27,9 +26,7 @@ void AllLiveActorGroup::initActorSystemInfo(const JMapInfoIter& rIter) {
 }
 
 namespace MR {
-    AllLiveActorGroup* getAllLiveActorGroup() {
-        return MR::getSceneObj< AllLiveActorGroup >(SceneObj_AllLiveActorGroup);
-    }
+    AllLiveActorGroup* getAllLiveActorGroup() { return MR::getSceneObj< AllLiveActorGroup >(SceneObj_AllLiveActorGroup); }
 
     void startInitLiveActorSystemInfo() {
         AllLiveActorGroup* pAllLiveActorGroup = getAllLiveActorGroup();
@@ -48,7 +45,6 @@ namespace MR {
 
         MR::getClippingDirector()->endInitActorSystemInfo();
     }
-}; // namespace MR
+};  // namespace MR
 
-AllLiveActorGroup::~AllLiveActorGroup() {
-}
+AllLiveActorGroup::~AllLiveActorGroup() {}

@@ -1,6 +1,6 @@
+#include "Game/Screen/OdhConverter.hpp"
 #include "Game/NameObj/NameObjAdaptor.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
-#include "Game/Screen/OdhConverter.hpp"
 #include "Game/Util/MemoryUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/ScreenUtil.hpp"
@@ -19,20 +19,12 @@ namespace {
     const u32 cTexPosX = 0;
     const u32 cTexPosY = 0;
 
-    OdhConverter* getConverter() {
-        return MR::getSceneObj< OdhConverter >(SceneObj_OdhConverter);
-    }
-}; // namespace
+    OdhConverter* getConverter() { return MR::getSceneObj< OdhConverter >(SceneObj_OdhConverter); }
+};  // namespace
 
 OdhConverter::OdhConverter()
-    : LayoutActor("ODH-jpeg変換", true),
-      mCaptureWidth(cCaptureWidth),
-      mCaptureHeight(cCaptureHeight),
-      mLimitSize(cLimitSize),
-      mIsRequestedCapture(false),
-      mImage(nullptr),
-      mCaptureImage(nullptr) {
-}
+    : LayoutActor("ODH-jpeg変換", true), mCaptureWidth(cCaptureWidth), mCaptureHeight(cCaptureHeight), mLimitSize(cLimitSize),
+      mIsRequestedCapture(false), mImage(nullptr), mCaptureImage(nullptr) {}
 
 void OdhConverter::init(const JMapInfoIter& rIter) {
     MR::connectToScene(this, -1, -1, -1, 62);
@@ -42,12 +34,11 @@ void OdhConverter::init(const JMapInfoIter& rIter) {
     mCaptureImage = new (32) u8[mCaptureWidth * mCaptureHeight * 3];
 }
 
-void OdhConverter::draw() const {
-}
+void OdhConverter::draw() const {}
 
 void OdhConverter::convert() {
     const GXRenderModeObj* pRenderModeObj;
-    u8*                    pScreenTexImage;
+    u8* pScreenTexImage;
 
     pScreenTexImage = MR::getScreenTexImage();
     pRenderModeObj = JUTVideo::sManager->mRenderModeObj;
@@ -64,13 +55,9 @@ void OdhConverter::convert() {
 }
 
 namespace MR {
-    void createOdhConverter() {
-        createSceneObj(SceneObj_OdhConverter);
-    }
+    void createOdhConverter() { createSceneObj(SceneObj_OdhConverter); }
 
-    void requestCaptureOdhImage() {
-        return getConverter()->requestCapture();
-    }
+    void requestCaptureOdhImage() { return getConverter()->requestCapture(); }
 
     bool isRequestedCaptureOdhImage() {
         if (!isExistSceneObj(SceneObj_OdhConverter)) {
@@ -80,16 +67,14 @@ namespace MR {
         return getConverter()->isRequestedCapture();
     }
 
-    void captureOdhImage() {
-        getConverter()->capture();
-    }
+    void captureOdhImage() { getConverter()->capture(); }
 
     void setPortCaptureOdhImage() {
         Mtx44 mtx;
-        f32   bottom;
-        f32   right;
-        f32   top;
-        f32   left;
+        f32 bottom;
+        f32 right;
+        f32 top;
+        f32 left;
 
         top = getFrameBufferHeight() * 0.5f - cCaptureOffsetX;
         left = -getFrameBufferWidth() * 0.5f + cCaptureOffsetY;
@@ -123,4 +108,4 @@ namespace MR {
 
         return pDrawAdaptor;
     }
-}; // namespace MR
+};  // namespace MR

@@ -1,5 +1,5 @@
-#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/IconAButton.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include <cstdio>
@@ -8,12 +8,10 @@ namespace NrvIconAButton {
     NEW_NERVE(IconAButtonNrvOpen, IconAButton, Open);
     NEW_NERVE(IconAButtonNrvWait, IconAButton, Wait);
     NEW_NERVE(IconAButtonNrvTerm, IconAButton, Term);
-}; // namespace NrvIconAButton
+};  // namespace NrvIconAButton
 
 IconAButton::IconAButton(bool connectToScene, bool connectToPause)
-    : LayoutActor("Aボタンアイコン", true),
-      mFollowPos(0.0f, 0.0f),
-      mFollowActor(nullptr) {
+    : LayoutActor("Aボタンアイコン", true), mFollowPos(0.0f, 0.0f), mFollowActor(nullptr) {
     if (connectToScene) {
         if (connectToPause) {
             MR::connectToSceneLayoutOnPause(this);

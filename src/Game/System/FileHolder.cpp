@@ -63,7 +63,7 @@ void* FileHolder::getContext(const char* pFile) const {
 
 FileHolderFileEntry** FileHolder::removeFile(const char* pFile) {
     FileHolderFileEntry** p;
-    FileHolderFileEntry*  pEntry = findEntry(pFile);
+    FileHolderFileEntry* pEntry = findEntry(pFile);
 
     for (p = mArray.begin(); p != mArray.end() && *p != pEntry; p++) {
     }

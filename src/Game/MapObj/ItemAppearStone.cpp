@@ -1,8 +1,6 @@
 #include "Game/MapObj/ItemAppearStone.hpp"
 
-ItemAppearStone::ItemAppearStone(const char* pName)
-    : LiveActor(pName) {
-}
+ItemAppearStone::ItemAppearStone(const char* pName) : LiveActor(pName) {}
 
 void ItemAppearStone::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
@@ -26,8 +24,7 @@ void ItemAppearStone::kill() {
     LiveActor::kill();
 }
 
-void ItemAppearStone::calcAndSetBaseMtx() {
-}
+void ItemAppearStone::calcAndSetBaseMtx() {}
 
 void ItemAppearStone::exeWait() {
     MR::startLevelSound(this, "SE_OJ_LV_ITEM_APR_STONE_MV", -1, -1, -1);
@@ -38,8 +35,7 @@ void ItemAppearStone::exeWait() {
     }
 }
 
-ItemAppearStone::~ItemAppearStone() {
-}
+ItemAppearStone::~ItemAppearStone() {}
 
 namespace NrvItemAppearStone {
     INIT_NERVE(HostTypeWait);
@@ -48,4 +44,4 @@ namespace NrvItemAppearStone {
         ItemAppearStone* stone = reinterpret_cast< ItemAppearStone* >(pSpine->mExecutor);
         stone->exeWait();
     }
-}; // namespace NrvItemAppearStone
+};  // namespace NrvItemAppearStone

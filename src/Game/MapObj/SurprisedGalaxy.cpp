@@ -1,9 +1,7 @@
 #include "Game/MapObj/SurprisedGalaxy.hpp"
 #include <cstring>
 
-SurprisedGalaxy::SurprisedGalaxy(const char* pName)
-    : LiveActor(pName) {
-}
+SurprisedGalaxy::SurprisedGalaxy(const char* pName) : LiveActor(pName) {}
 
 void SurprisedGalaxy::init(const JMapInfoIter& rIter) {
     const char* name;
@@ -95,6 +93,5 @@ namespace NrvSurprisedGalaxy {
         pActor->exeExit();
     }
 
-    void SurprisedGalaxyNrvWait::execute(Spine* pSpine) const {
-    }
-}; // namespace NrvSurprisedGalaxy
+    void SurprisedGalaxyNrvWait::execute(Spine* pSpine) const {}
+};  // namespace NrvSurprisedGalaxy

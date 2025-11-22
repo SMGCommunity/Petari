@@ -1,10 +1,9 @@
-#include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/MapPartsAppearController.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util/MapPartsUtil.hpp"
 #include "Game/Util/PostureHolder.hpp"
 
-MapPartsAppearController::MapPartsAppearController(LiveActor* pActor)
-    : MapPartsFunction(pActor, "出現制御") {
+MapPartsAppearController::MapPartsAppearController(LiveActor* pActor) : MapPartsFunction(pActor, "出現制御") {
     mSignMotionType = 0;
     mPostureHolder = nullptr;
     _20 = 0;
@@ -132,9 +131,7 @@ namespace NrvMapPartsAppearController {
         ctrl->exeDisappear();
     }
 
-    void HostTypeWait::execute(Spine* pSpine) const {
-    }
-}; // namespace NrvMapPartsAppearController
+    void HostTypeWait::execute(Spine* pSpine) const {}
+};  // namespace NrvMapPartsAppearController
 
-MapPartsAppearController::~MapPartsAppearController() {
-}
+MapPartsAppearController::~MapPartsAppearController() {}

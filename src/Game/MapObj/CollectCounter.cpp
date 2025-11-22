@@ -1,8 +1,7 @@
 #include "Game/MapObj/CollectCounter.hpp"
 #include "Game/Util.hpp"
 
-CollectCounter::CollectCounter(const char* pName)
-    : LayoutActor(pName, true) {
+CollectCounter::CollectCounter(const char* pName) : LayoutActor(pName, true) {
     mFollowPosition.x = 0.0f;
     mFollowPosition.y = 0.0f;
 }
@@ -36,7 +35,7 @@ bool CollectCounter::tryEndShow() {
 }
 
 void CollectCounter::setPosition() {
-    f32    point_rad = MR::calcPointRadius2D(*MR::getPlayerCenterPos(), 75.0f);
+    f32 point_rad = MR::calcPointRadius2D(*MR::getPlayerCenterPos(), 75.0f);
     TVec2f screen_pos;
     MR::calcScreenPosition(&screen_pos, *MR::getPlayerCenterPos());
     screen_pos.y -= point_rad;
@@ -44,8 +43,7 @@ void CollectCounter::setPosition() {
     mFollowPosition.y = screen_pos.y;
 }
 
-CollectCounter::~CollectCounter() {
-}
+CollectCounter::~CollectCounter() {}
 
 namespace NrvCollectCounter {
     CollectCounterNrvHide CollectCounterNrvHide::sInstance;
@@ -61,6 +59,5 @@ namespace NrvCollectCounter {
         counter->tryEndShow();
     }
 
-    void CollectCounterNrvHide::execute(Spine* pSpine) const {
-    }
-}; // namespace NrvCollectCounter
+    void CollectCounterNrvHide::execute(Spine* pSpine) const {}
+};  // namespace NrvCollectCounter

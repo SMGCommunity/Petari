@@ -10,14 +10,14 @@ void MarioActor::drawMarioModel() const {
     }
 
     if (mTornadoMario) {
-
         if (mMario->mMovementStates._F) {
             if (mMario->_544 > 2) {
                 return;
             }
         }
 
-        if (!MR::isDead(mTornadoMario) && (MR::isBckPlaying(mTornadoMario, "MarioTornadoEnd") || MR::isBckPlaying(mTornadoMario, "MarioTornadoLoop"))) {
+        if (!MR::isDead(mTornadoMario) &&
+            (MR::isBckPlaying(mTornadoMario, "MarioTornadoEnd") || MR::isBckPlaying(mTornadoMario, "MarioTornadoLoop"))) {
             return;
         }
     }
@@ -43,7 +43,6 @@ void MarioActor::drawMarioModel() const {
     if (!mFlag.mIsHiddenModel) {
         model->mFlags._1C = false;
         if (mMario->isStatusActive(0x12)) {
-
             if (_1A1) {
                 return;
             }

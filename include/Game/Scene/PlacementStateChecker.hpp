@@ -8,7 +8,7 @@ public:
 
     void setCurrentPlacementZoneId(int);
     void clearCurrentPlacementZoneId();
-    int  getCurrentPlacementZoneId() const;
+    int getCurrentPlacementZoneId() const;
 
 private:
     /* 0xC */ int mCurrentZoneId;

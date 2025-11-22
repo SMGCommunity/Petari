@@ -26,35 +26,35 @@ public:
     TVec3f _C;
     TVec3f _18;
     TVec3f _24;
-    f32    mLength; // 0x30
+    f32 mLength;  // 0x30
 };
 
 class BezierRail {
 public:
     BezierRail(const JMapInfoIter&, const JMapInfo*);
 
-    f32  normalizePos(f32, int) const;
-    f32  getPartLength(int) const;
+    f32 normalizePos(f32, int) const;
+    f32 getPartLength(int) const;
     void calcPos(TVec3f*, f32) const;
     void calcDirection(TVec3f*, f32) const;
     void calcPosDir(TVec3f*, TVec3f*, f32) const;
-    f32  getNearestRailPosCoord(const TVec3f&) const;
-    f32  getRailPosCoord(int) const;
+    f32 getNearestRailPosCoord(const TVec3f&) const;
+    f32 getRailPosCoord(int) const;
     void calcCurrentRailCtrlPointIter(JMapInfoIter*, f32, bool) const;
     void calcRailCtrlPointIter(JMapInfoIter*, int) const;
     void getIncludedSection(const RailPart**, f32*, f32, int) const;
-    int  getCurrentCtrlPointIndex(f32, bool) const;
+    int getCurrentCtrlPointIndex(f32, bool) const;
 
     f32 getTotalLength() const;
 
-    bool          mIsClosed; // 0x0
-    u8            _1;
-    u8            _2;
-    u8            _3;
-    u32           mPointNum; // 0x4
-    u32           _8;
-    RailPart*     mRailParts; // 0xC
-    f32*          _10;
-    JMapInfoIter* mIter; // 0x14
-    JMapInfo*     _18;
+    bool mIsClosed;  // 0x0
+    u8 _1;
+    u8 _2;
+    u8 _3;
+    u32 mPointNum;  // 0x4
+    u32 _8;
+    RailPart* mRailParts;  // 0xC
+    f32* _10;
+    JMapInfoIter* mIter;  // 0x14
+    JMapInfo* _18;
 };

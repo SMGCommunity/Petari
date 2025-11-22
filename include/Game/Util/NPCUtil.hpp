@@ -34,7 +34,7 @@ namespace MR {
     bool tryStartReactionAndPushNerve(NPCActor*, const Nerve*);
     bool tryStartReactionAndPopNerve(NPCActor*);
     bool tryChangeTalkActionRandom(NPCActor*, const char*, const char*, const char*);
-    f32  calcFloatOffset(const NPCActor*, f32, f32);
+    f32 calcFloatOffset(const NPCActor*, f32, f32);
     void calcAndSetFloatBaseMtx(NPCActor*, f32);
 
     bool tryStartTalkAction(NPCActor*);
@@ -47,7 +47,7 @@ namespace MR {
     void followRailPose(NPCActor*, f32, f32);
 
     void setDefaultPose(NPCActor*);
-}; // namespace MR
+};  // namespace MR
 
 class DemoStarter : public NerveExecutor {
 public:
@@ -74,11 +74,11 @@ public:
     void exeDemo();
     void exeTerm();
 
-    /* 0x08 */ ModelObj*    mStarModel;
-    /* 0x0C */ NPCActor*    mActor;
+    /* 0x08 */ ModelObj* mStarModel;
+    /* 0x0C */ NPCActor* mActor;
     /* 0x10 */ const Nerve* mNerve;
-    /* 0x14 */ const char*  mActionName;
-    /* 0x18 */ const char*  mAnimName;
+    /* 0x14 */ const char* mActionName;
+    /* 0x18 */ const char* mAnimName;
 };
 
 class FadeStarter : public NerveExecutor {
@@ -89,7 +89,7 @@ public:
     void exeFade();
     void exeTerm();
 
-    /* 0x08 */ NPCActor*    mActor;
+    /* 0x08 */ NPCActor* mActor;
     /* 0x0C */ const Nerve* _C;
-    /* 0x10 */ s32          _10;
+    /* 0x10 */ s32 _10;
 };

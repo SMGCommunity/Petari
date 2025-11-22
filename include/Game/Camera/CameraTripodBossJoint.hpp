@@ -7,22 +7,22 @@ public:
     CameraTripodBossJoint(const char*);
     virtual ~CameraTripodBossJoint();
 
-    virtual void               reset();
-    virtual CameraTargetObj*   calc();
-    virtual bool               isEnableToReset() const;
+    virtual void reset();
+    virtual CameraTargetObj* calc();
+    virtual bool isEnableToReset() const;
     virtual CamTranslatorBase* createTranslator();
 
     void calcIdealPose();
 
-    f32  mAngleB; // 0x4C
-    f32  mAngleA; // 0x50
-    f32  mDist;   // 0x54
-    s32  _58;
-    f32  mAxisX; // 0x5C
-    f32  mAxisY; // 0x60
-    f32  mAxisZ; // 0x64
+    f32 mAngleB;  // 0x4C
+    f32 mAngleA;  // 0x50
+    f32 mDist;    // 0x54
+    s32 _58;
+    f32 mAxisX;  // 0x5C
+    f32 mAxisY;  // 0x60
+    f32 mAxisZ;  // 0x64
     bool _68;
-    u8   _69[3];
-    f32  _6C;
-    f32  _70;
+    u8 _69[3];
+    f32 _6C;
+    f32 _70;
 };

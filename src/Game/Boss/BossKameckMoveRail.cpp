@@ -1,7 +1,6 @@
 #include "Game/Boss/BossKameckMoveRail.hpp"
 
-BossKameckMoveRail::BossKameckMoveRail(const char* pName)
-    : LiveActor(pName) {
+BossKameckMoveRail::BossKameckMoveRail(const char* pName) : LiveActor(pName) {
     _8C = 0;
     _90 = 0;
 }
@@ -76,5 +75,4 @@ s32 BossKameckMoveRail::calcRandomStoppableIndex(s32 idx) const {
     return 0;
 }
 
-BossKameckMoveRail::~BossKameckMoveRail() {
-}
+BossKameckMoveRail::~BossKameckMoveRail() {}

@@ -5,34 +5,24 @@
 #include "revolution/gx/GXStruct.h"
 #include "revolution/os.h"
 #include "revolution/os/OSInterrupt.h"
-#include "revolution/thp.h"
 #include "revolution/sc.h"
+#include "revolution/thp.h"
 #include <JSystem/JAudio2/JASAiCtrl.hpp>
 #include <cstring>
 
-static u16 VolumeTable[] =
-    {
-        0, 2, 8, 18, 32, 50, 73, 99,
-        130, 164, 203, 245, 292, 343, 398, 457,
-        520, 587, 658, 733, 812, 895, 983, 1074,
-        1170, 1269, 1373, 1481, 1592, 1708, 1828, 1952,
-        2080, 2212, 2348, 2488, 2632, 2781, 2933, 3090,
-        3250, 3415, 3583, 3756, 3933, 4114, 4298, 4487,
-        4680, 4877, 5079, 5284, 5493, 5706, 5924, 6145,
-        6371, 6600, 6834, 7072, 7313, 7559, 7809, 8063,
-        8321, 8583, 8849, 9119, 9394, 9672, 9954, 10241,
-        10531, 10826, 11125, 11427, 11734, 12045, 12360, 12679,
-        13002, 13329, 13660, 13995, 14335, 14678, 15025, 15377,
-        15732, 16092, 16456, 16823, 17195, 17571, 17951, 18335,
-        18723, 19115, 19511, 19911, 20316, 20724, 21136, 21553,
-        21974, 22398, 22827, 23260, 23696, 24137, 24582, 25031,
-        25484, 25941, 26402, 26868, 27337, 27810, 28288, 28769,
-        29255, 29744, 30238, 30736, 31238, 31744, 32254, 32768};
+static u16 VolumeTable[] = {0,     2,     8,     18,    32,    50,    73,    99,    130,   164,   203,   245,   292,   343,   398,   457,
+                            520,   587,   658,   733,   812,   895,   983,   1074,  1170,  1269,  1373,  1481,  1592,  1708,  1828,  1952,
+                            2080,  2212,  2348,  2488,  2632,  2781,  2933,  3090,  3250,  3415,  3583,  3756,  3933,  4114,  4298,  4487,
+                            4680,  4877,  5079,  5284,  5493,  5706,  5924,  6145,  6371,  6600,  6834,  7072,  7313,  7559,  7809,  8063,
+                            8321,  8583,  8849,  9119,  9394,  9672,  9954,  10241, 10531, 10826, 11125, 11427, 11734, 12045, 12360, 12679,
+                            13002, 13329, 13660, 13995, 14335, 14678, 15025, 15377, 15732, 16092, 16456, 16823, 17195, 17571, 17951, 18335,
+                            18723, 19115, 19511, 19911, 20316, 20724, 21136, 21553, 21974, 22398, 22827, 23260, 23696, 24137, 24582, 25031,
+                            25484, 25941, 26402, 26868, 27337, 27810, 28288, 28769, 29255, 29744, 30238, 30736, 31238, 31744, 32254, 32768};
 
 static s32 WorkBuffer[16] __attribute__((aligned(32)));
 
 THPSimplePlayerStaticAudio THPSimplePlayerWrapper::mStaticAudioPlayer;
-THPSimplePlayerWrapper*    THPSimplePlayerStaticAudio::mPlayer;
+THPSimplePlayerWrapper* THPSimplePlayerStaticAudio::mPlayer;
 
 namespace NrvTHPSimplePlayerWrapper {
     NEW_NERVE(HostTypeWait, THPSimplePlayerWrapper, Wait);
@@ -41,17 +31,16 @@ namespace NrvTHPSimplePlayerWrapper {
     NEW_NERVE(HostTypeReadVideoComp, THPSimplePlayerWrapper, ReadVideoComp);
     NEW_NERVE(HostTypeReadAudioComp, THPSimplePlayerWrapper, ReadAudioComp);
     NEW_NERVE(HostTypeReadPreLoad, THPSimplePlayerWrapper, ReadPreLoad);
-}; // namespace NrvTHPSimplePlayerWrapper
+};  // namespace NrvTHPSimplePlayerWrapper
 
 namespace {
     void dvdCallBackFunc(s32 a1, DVDFileInfo* pFileInfo) {
         THPSimplePlayerWrapper* player = (THPSimplePlayerWrapper*)pFileInfo->cb.userData;
         player->dvdCallBack(a1);
     }
-}; // namespace
+};  // namespace
 
-THPSimplePlayerWrapper::THPSimplePlayerWrapper(const char* pName)
-    : NerveExecutor(pName) {
+THPSimplePlayerWrapper::THPSimplePlayerWrapper(const char* pName) : NerveExecutor(pName) {
     _8 = 0;
     _9 = 0;
     _C = 0;
@@ -287,7 +276,7 @@ s32 THPSimplePlayerWrapper::decode(s32 audio) {
     bool isValid = mReadBuffer[mNextDecodeIndex].isValid == true;
     if (isValid) {
         u32* compSize = (u32*)mReadBuffer[mNextDecodeIndex].ptr + 2;
-        u8*  ptr = mReadBuffer[mNextDecodeIndex].ptr + mFrameComp.numComponents * 4 + 8;
+        u8* ptr = mReadBuffer[mNextDecodeIndex].ptr + mFrameComp.numComponents * 4 + 8;
 
         if (mAudioExist) {
             if (audio < 0 || audio >= mAudioInfo.sndNumTracks) {
@@ -353,7 +342,8 @@ s32 THPSimplePlayerWrapper::drawCurrentFrame(_GXRenderModeObj* rmode, u32 x, u32
     }
 
     THPGXYuv2RgbSetup(rmode);
-    THPGXYuv2RgbDraw(mTextureSet[_310].ytexture, mTextureSet[_310].utexture, mTextureSet[_310].vtexture, x, y, mVideoInfo.xSize, mVideoInfo.ySize, polyW, polyH);
+    THPGXYuv2RgbDraw(mTextureSet[_310].ytexture, mTextureSet[_310].utexture, mTextureSet[_310].vtexture, x, y, mVideoInfo.xSize, mVideoInfo.ySize,
+                     polyW, polyH);
     THPGXRestore();
     s32 ret = mTextureSet[_310].frameNumber;
     _310 = _310 == 0;
@@ -386,11 +376,7 @@ s32 THPSimplePlayerWrapper::getTotalFrame() const {
 }
 
 bool THPSimplePlayerWrapper::videoDecode(u8* pFile) {
-    if (THPVideoDecode(pFile,
-                       mTextureSet[_310].ytexture,
-                       mTextureSet[_310].utexture,
-                       mTextureSet[_310].vtexture,
-                       mTHPWork)) {
+    if (THPVideoDecode(pFile, mTextureSet[_310].ytexture, mTextureSet[_310].utexture, mTextureSet[_310].vtexture, mTHPWork)) {
         return false;
     }
 
@@ -556,7 +542,7 @@ namespace {
         THPSimplePlayerWrapper* player = (THPSimplePlayerWrapper*)pInfo->cb.userData;
         player->readAsyncCallBack(a1);
     }
-}; // namespace
+};  // namespace
 
 void THPSimplePlayerWrapper::exeReadHeader() {
     if (MR::isFirstStep(this)) {
@@ -706,10 +692,10 @@ s16* THPSimplePlayerWrapper::audioCallback(s32 sample) {
 }
 
 void THPSimplePlayerWrapper::mixAudio(s16* pDest, u32 sample) {
-    u32  sampleNum, requestSample;
-    s32  mix;
+    u32 sampleNum, requestSample;
+    s32 mix;
     s16 *libsrc, *thpsrc;
-    u16  attenuation;
+    u16 attenuation;
 
     if (isAudioProcessValid()) {
         if (_2F0) {
@@ -896,5 +882,4 @@ s16* THPSimplePlayerStaticAudio::audioCallback(s32 audio) {
     return player->audioCallback(audio);
 }
 
-THPSimplePlayerStaticAudio::THPSimplePlayerStaticAudio() {
-}
+THPSimplePlayerStaticAudio::THPSimplePlayerStaticAudio() {}

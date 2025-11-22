@@ -18,7 +18,7 @@ public:
     void exeBreak();
     void startBreak();
 
-    bool mIsRightArm; // 0xC4
+    bool mIsRightArm;  // 0xC4
 };
 
 namespace NrvMechaKoopaPartsArm {
@@ -30,4 +30,4 @@ namespace NrvMechaKoopaPartsArm {
     NERVE(MechaKoopaPartsArmNrvMoveRear);
     NERVE(MechaKoopaPartsArmNrvBreakStart);
     NERVE(MechaKoopaPartsArmNrvBreak);
-}; // namespace NrvMechaKoopaPartsArm
+};  // namespace NrvMechaKoopaPartsArm

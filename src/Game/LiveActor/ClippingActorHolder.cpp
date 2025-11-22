@@ -9,13 +9,7 @@ namespace {
 };
 
 ClippingActorHolder::ClippingActorHolder()
-    : NameObj("クリッピングアクター保持"),
-      _C(0),
-      _10(nullptr),
-      _14(nullptr),
-      _18(nullptr),
-      _1C(nullptr),
-      mViewGroupCtrl(nullptr) {
+    : NameObj("クリッピングアクター保持"), _C(0), _10(nullptr), _14(nullptr), _18(nullptr), _1C(nullptr), mViewGroupCtrl(nullptr) {
     _10 = new ClippingActorInfoList(sActorNumMax);
     _14 = new ClippingActorInfoList(sActorNumMax);
     _18 = new ClippingActorInfoList(sActorNumMax);

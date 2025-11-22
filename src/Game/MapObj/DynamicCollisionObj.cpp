@@ -1,9 +1,8 @@
+#include "Game/MapObj/DynamicCollisionObj.hpp"
 #include "Game/Map/CollisionParts.hpp"
 #include "Game/Map/KCollision.hpp"
-#include "Game/MapObj/DynamicCollisionObj.hpp"
 
-DynamicCollisionObj::DynamicCollisionObj(const char* pName)
-    : LiveActor(pName) {
+DynamicCollisionObj::DynamicCollisionObj(const char* pName) : LiveActor(pName) {
     _A4 = 0;
     _9C = 0;
     _11C = 0;

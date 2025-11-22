@@ -1,6 +1,6 @@
+#include "Game/NPC/RosettaReading.hpp"
 #include "Game/Demo/DemoFunction.hpp"
 #include "Game/LiveActor/Nerve.hpp"
-#include "Game/NPC/RosettaReading.hpp"
 #include "Game/Screen/PictureBookLayout.hpp"
 #include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/DemoUtil.hpp"
@@ -15,25 +15,18 @@ namespace {
     const s32 cOverlayStartStep = 122;
     // const s32 cOverlayFrame
 
-    s32 getChapterNumberMin() {
-        return MR::getPictureBookChapterAlreadyRead() + 1;
-    }
+    s32 getChapterNumberMin() { return MR::getPictureBookChapterAlreadyRead() + 1; }
 
-    s32 getChapterNumberMax() {
-        return MR::getPictureBookChapterCanRead();
-    }
-}; // namespace
+    s32 getChapterNumberMax() { return MR::getPictureBookChapterCanRead(); }
+};  // namespace
 
 namespace NrvRosettaReading {
     NEW_NERVE(RosettaReadingNrvPictureBookBefore, RosettaReading, PictureBookBefore);
     NEW_NERVE(RosettaReadingNrvPictureBook, RosettaReading, PictureBook);
     NEW_NERVE(RosettaReadingNrvPictureBookAfter, RosettaReading, PictureBookAfter);
-}; // namespace NrvRosettaReading
+};  // namespace NrvRosettaReading
 
-RosettaReading::RosettaReading(const char* pName)
-    : LiveActor(pName),
-      mPictureBookLayout(nullptr) {
-}
+RosettaReading::RosettaReading(const char* pName) : LiveActor(pName), mPictureBookLayout(nullptr) {}
 
 void RosettaReading::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
@@ -45,16 +38,11 @@ void RosettaReading::init(const JMapInfoIter& rIter) {
     MR::tryRegisterDemoCast(this, rIter);
     DemoFunction::tryCreateDemoTalkAnimCtrlForScene(this, rIter, "DemoRosettaReading", nullptr, 0, 0);
     DemoFunction::registerDemoTalkMessageCtrl(
-        this,
-        MR::createTalkCtrlDirectOnRootNodeAutomatic(
-            this,
-            rIter,
-            getChapterNumberMax() == PictureBookLayout::getChapterMax()
-                ? "LibraryRoom_RosettaReading003"
-                : "LibraryRoom_RosettaReading000",
-            // FIXME: Vector is not initialized correctly.
-            TVec3f(0.0f, 0.0f, 0.0f),
-            MR::getJointMtx(this, "Chin")));
+        this, MR::createTalkCtrlDirectOnRootNodeAutomatic(
+                  this, rIter,
+                  getChapterNumberMax() == PictureBookLayout::getChapterMax() ? "LibraryRoom_RosettaReading003" : "LibraryRoom_RosettaReading000",
+                  // FIXME: Vector is not initialized correctly.
+                  TVec3f(0.0f, 0.0f, 0.0f), MR::getJointMtx(this, "Chin")));
 
     if (getChapterNumberMin() <= getChapterNumberMax()) {
         mPictureBookLayout = new PictureBookLayout(getChapterNumberMin(), getChapterNumberMax(), true);

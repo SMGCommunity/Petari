@@ -10,8 +10,7 @@
 #include <cstdio>
 #include <cstring>
 
-WarpCube::~WarpCube() {
-}
+WarpCube::~WarpCube() {}
 
 // WarpCubeMgr::getPairCube
 

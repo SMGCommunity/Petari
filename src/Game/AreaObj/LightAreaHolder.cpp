@@ -1,9 +1,8 @@
 #include "Game/AreaObj/LightAreaHolder.hpp"
-#include "Game/Map/LightZoneDataHolder.hpp"
 #include "Game/Map/LightFunction.hpp"
+#include "Game/Map/LightZoneDataHolder.hpp"
 
-LightAreaHolder::LightAreaHolder(s32 type, const char* pName)
-    : AreaObjMgr(type, pName) {
+LightAreaHolder::LightAreaHolder(s32 type, const char* pName) : AreaObjMgr(type, pName) {
     LightFunction::registerLightAreaHolder(this);
 }
 
@@ -36,5 +35,4 @@ void LightAreaHolder::initAfterPlacement() {
     sort();
 }
 
-LightAreaHolder::~LightAreaHolder() {
-}
+LightAreaHolder::~LightAreaHolder() {}

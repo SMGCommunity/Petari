@@ -1,6 +1,6 @@
+#include "Game/Camera/GameCameraCreator.hpp"
 #include "Game/Camera/CameraDirector.hpp"
 #include "Game/Camera/CameraParamChunkHolder.hpp"
-#include "Game/Camera/GameCameraCreator.hpp"
 #include "Game/Util/AreaObjUtil.hpp"
 #include <cstring>
 #include <mem.h>

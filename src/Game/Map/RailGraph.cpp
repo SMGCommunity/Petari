@@ -71,7 +71,7 @@ bool RailGraph::isValidEdge(s32 edgeIdx) const {
 
 void RailGraph::connectEdgeToNode(s32 a1, s32 a2) {
     RailGraphNode* node = &mNodes[a1];
-    s32            val = node->_C;
+    s32 val = node->_C;
 
     if (val == -1) {
         node->_C = a2;

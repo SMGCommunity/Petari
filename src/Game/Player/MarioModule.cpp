@@ -577,7 +577,7 @@ bool MarioModule::isInputDisable() const {
     if (mActor->mMario->isStatusActive(12)) {
         return true;
     }
-    if (isAnimationRun("ハード着地")) { // "Hard landing"
+    if (isAnimationRun("ハード着地")) {  // "Hard landing"
         return true;
     }
     if (isAnimationRun("中ダメージ着地")) {

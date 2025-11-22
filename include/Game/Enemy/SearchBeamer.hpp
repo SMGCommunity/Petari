@@ -50,20 +50,20 @@ public:
     bool tryStopStart();
     bool tryDPDSwoon();
 
-    AnimScaleController*        mScaleController; // 0x8C
-    WalkerStateBindStarPointer* mBindStarPointer; // 0x90
-    TVec3f                      _94;
-    TVec3f                      _A0;
-    f32                         _AC;
-    f32                         _B0;
-    JointController*            mPropellerJointCtrl; // 0xB4
-    TMtx34f                     _B8;
-    TMtx34f                     _E8;
-    JointController*            mBeanStartJointCtrl; // 0x118
-    JointController*            mBeamEndJointCtrl;   // 0x11C
-    TVec3f                      _120;
-    TVec3f                      _12C;
-    f32                         _138;
-    f32                         _13C;
-    f32                         _140;
+    AnimScaleController* mScaleController;         // 0x8C
+    WalkerStateBindStarPointer* mBindStarPointer;  // 0x90
+    TVec3f _94;
+    TVec3f _A0;
+    f32 _AC;
+    f32 _B0;
+    JointController* mPropellerJointCtrl;  // 0xB4
+    TMtx34f _B8;
+    TMtx34f _E8;
+    JointController* mBeanStartJointCtrl;  // 0x118
+    JointController* mBeamEndJointCtrl;    // 0x11C
+    TVec3f _120;
+    TVec3f _12C;
+    f32 _138;
+    f32 _13C;
+    f32 _140;
 };

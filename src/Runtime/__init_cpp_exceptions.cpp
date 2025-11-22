@@ -1,5 +1,5 @@
-#include <__ppc_eabi_linker.h>
 #include <NMWException.h>
+#include <__ppc_eabi_linker.h>
 
 #ifdef __cplusplus
 extern "C" {

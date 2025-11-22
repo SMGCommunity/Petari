@@ -1,31 +1,29 @@
 #include "JSystem/JKernel/JKRDecomp.hpp"
-#include "JSystem/JKernel/JKRHeap.hpp"
 #include "JSystem/JKernel/JKRAramPiece.hpp"
+#include "JSystem/JKernel/JKRHeap.hpp"
 #include "revolution.h"
 
 #define NR_MESSAGES 8
 
 namespace {
-    JKRDecomp*     gDecompInstance;       // 0x806B71D8
-    OSMessage      gMessage[NR_MESSAGES]; // 0x8060D038
-    OSMessageQueue gMessageQueue;         // 0x8060D058
-} // namespace
+    JKRDecomp* gDecompInstance;       // 0x806B71D8
+    OSMessage gMessage[NR_MESSAGES];  // 0x8060D038
+    OSMessageQueue gMessageQueue;     // 0x8060D058
+}  // namespace
 
 JKRDecompCommand::JKRDecompCommand() {
     OSInitMessageQueue(&mMessageQueue, &mMessage, 1);
-    mThis = this; // Probably a pointer to the data stored at 0x00 instead
+    mThis = this;  // Probably a pointer to the data stored at 0x00 instead
     _14 = 0;
     _1C = nullptr;
     _20 = 0;
 }
 
-JKRDecomp::JKRDecomp(long a1)
-    : JKRThread(0x4000, 0x10, a1) {
+JKRDecomp::JKRDecomp(long a1) : JKRThread(0x4000, 0x10, a1) {
     OSResumeThread(mThread);
 }
 
-JKRDecomp::~JKRDecomp() {
-}
+JKRDecomp::~JKRDecomp() {}
 
 s32 JKRDecomp::run() {
     OSInitMessageQueue(&gMessageQueue, &gMessage[0], NR_MESSAGES);
@@ -37,11 +35,7 @@ s32 JKRDecomp::run() {
 
         JKRDecompCommand& command = *commandPtr;
 
-        decode(
-            command.mSrc,
-            command.mDst,
-            command.mCompressedSize,
-            command.mDecompressedSize);
+        decode(command.mSrc, command.mDst, command.mCompressedSize, command.mDecompressedSize);
 
         if (command._20 != 0) {
             if (command._20 == 1) {
@@ -72,7 +66,8 @@ JKRDecomp* JKRDecomp::create(long a1) {
     return gDecompInstance;
 }
 
-JKRDecompCommand* JKRDecomp::prepareCommand(unsigned char* pSrc, unsigned char* pDst, unsigned long compressedSize, unsigned long decompressedSize, void (*a5)(unsigned long)) {
+JKRDecompCommand* JKRDecomp::prepareCommand(unsigned char* pSrc, unsigned char* pDst, unsigned long compressedSize, unsigned long decompressedSize,
+                                            void (*a5)(unsigned long)) {
     JKRDecompCommand* command = new (JKRHeap::sGameHeap, -4) JKRDecompCommand();
 
     command->mSrc = pSrc;
@@ -124,10 +119,10 @@ void JKRDecomp::decode(unsigned char* pSrc, unsigned char* pDst, unsigned long c
 
 }*/
 
-#ifdef NON_MATCHING // Wrong registers
+#ifdef NON_MATCHING  // Wrong registers
 void JKRDecomp::decodeSZS(u8* pSrc, u8* pDst, u32 compressedSize, u32 a4) {
     u32 decompSize = ((s32)pDst + *(u32*)(pSrc + 4)) - a4;
-    u8  byte1, byte2;
+    u8 byte1, byte2;
     s32 validBitCount = 0;
     u32 curBlock;
 

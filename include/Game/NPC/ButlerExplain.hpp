@@ -11,9 +11,9 @@ public:
     virtual void init(const JMapInfoIter&);
     virtual void control();
 
-    void        startDemo();
+    void startDemo();
     inline void exeDemo();
 
-    bool             _D8;
+    bool _D8;
     TalkMessageCtrl* mTalk;
 };

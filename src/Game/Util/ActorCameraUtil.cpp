@@ -1,18 +1,16 @@
+#include "Game/Util/ActorCameraUtil.hpp"
 #include "Game/Camera/CameraTargetArg.hpp"
 #include "Game/LiveActor/ActorCameraInfo.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/Util/ActorCameraUtil.hpp"
 #include <cstdio>
 
 namespace {
     char* createActorCameraName(char*, u32, const LiveActor*, const ActorCameraInfo*);
     char* createMultiActorCameraName(char*, u32, const LiveActor*, const ActorCameraInfo*, const char*);
-}; // namespace
+};  // namespace
 
 namespace MR {
-    ActorCameraInfo* createActorCameraInfo(const JMapInfoIter& rIter) {
-        return new ActorCameraInfo(rIter);
-    }
+    ActorCameraInfo* createActorCameraInfo(const JMapInfoIter& rIter) { return new ActorCameraInfo(rIter); }
 
     bool createActorCameraInfoIfExist(const JMapInfoIter& rIter, ActorCameraInfo** pInfo) {
         ActorCameraInfo newInfo(rIter);
@@ -53,9 +51,7 @@ namespace MR {
         return true;
     } */
 
-    void initActorCameraProgrammable(const LiveActor* pActor) {
-        declareEventCameraProgrammable(pActor->mName);
-    }
+    void initActorCameraProgrammable(const LiveActor* pActor) { declareEventCameraProgrammable(pActor->mName); }
 
     bool startActorCameraNoTarget(const LiveActor* pActor, const ActorCameraInfo* pInfo, s32 a3) {
         CameraTargetArg target = CameraTargetArg();
@@ -93,10 +89,8 @@ namespace MR {
     }
 
     /*
-    bool startMultiActorCameraTargetOther(const LiveActor *pActor, const ActorCameraInfo *pInfo, const char *pName, const CameraTargetArg &rArg, s32 a5) {
-        char newName;
-        if (pInfo->mCameraSetID < 0) {
-            return false;
+    bool startMultiActorCameraTargetOther(const LiveActor *pActor, const ActorCameraInfo *pInfo, const char *pName, const CameraTargetArg &rArg, s32
+    a5) { char newName; if (pInfo->mCameraSetID < 0) { return false;
         }
         else {
             if (pName != nullptr) {
@@ -111,9 +105,7 @@ namespace MR {
     }
     */
 
-    void startActorCameraProgrammable(const LiveActor* pActor, s32 a2) {
-        startGlobalEventCameraNoTarget(pActor->mName, a2);
-    }
+    void startActorCameraProgrammable(const LiveActor* pActor, s32 a2) { startGlobalEventCameraNoTarget(pActor->mName, a2); }
 
     bool endActorCamera(const LiveActor* pActor, const ActorCameraInfo* pInfo, bool a3, s32 a4) {
         return endMultiActorCamera(pActor, pInfo, nullptr, a3, a4);
@@ -123,26 +115,15 @@ namespace MR {
         return endMultiActorCameraAtLanding(pActor, pInfo, nullptr, a3);
     }
 
-    void endActorCameraProgrammable(const LiveActor* pActor, s32 a2, bool a3) {
-        endGlobalEventCamera(pActor->mName, a2, a3);
-    }
+    void endActorCameraProgrammable(const LiveActor* pActor, s32 a2, bool a3) { endGlobalEventCamera(pActor->mName, a2, a3); }
 
-    bool isActiveActorCamera(const LiveActor* pActor, const ActorCameraInfo* pInfo) {
-        return isActiveMultiActorCamera(pActor, pInfo, nullptr);
-    }
+    bool isActiveActorCamera(const LiveActor* pActor, const ActorCameraInfo* pInfo) { return isActiveMultiActorCamera(pActor, pInfo, nullptr); }
 
     void setProgrammableCameraParam(const LiveActor* pActor, const TVec3f& v1, const TVec3f& v2, const TVec3f& v3) {
         setProgrammableCameraParam(pActor->mName, v1, v2, v3, true);
     }
 
-    void setProgrammableCameraParamFovy(const LiveActor* pActor, f32 fov) {
-        setProgrammableCameraParamFovy(pActor->mName, fov);
-    }
-}; // namespace MR
+    void setProgrammableCameraParamFovy(const LiveActor* pActor, f32 fov) { setProgrammableCameraParamFovy(pActor->mName, fov); }
+};  // namespace MR
 
-CameraTargetArg::CameraTargetArg()
-    : mTargetObj(nullptr),
-      mTargetMtx(nullptr),
-      mLiveActor(nullptr),
-      mMarioActor(nullptr) {
-}
+CameraTargetArg::CameraTargetArg() : mTargetObj(nullptr), mTargetMtx(nullptr), mLiveActor(nullptr), mMarioActor(nullptr) {}

@@ -1,5 +1,5 @@
-#include "Game/Camera/CameraHolder.hpp"
 #include "Game/Camera/CameraParamChunk.hpp"
+#include "Game/Camera/CameraHolder.hpp"
 #include "Game/Camera/CameraParamChunkID.hpp"
 #include "Game/Camera/DotCamParams.hpp"
 #include "Game/Util/MathUtil.hpp"
@@ -7,8 +7,7 @@
 
 #ifdef NON_MATCHING
 // String constructor called first instead of last
-CameraGeneralParam::CameraGeneralParam()
-    : mString() {
+CameraGeneralParam::CameraGeneralParam() : mString() {
     mDist = 1200.0f;
     mAxis.x = 0.0f;
     mAxis.y = 1.0f;
@@ -40,8 +39,7 @@ CameraGeneralParam& CameraGeneralParam::operator=(const CameraGeneralParam& rOth
     return *this;
 }
 
-CameraParamChunk::ExParam::ExParam() {
-}
+CameraParamChunk::ExParam::ExParam() {}
 
 void CameraParamChunk::ExParam::init() {
     mWOffset.set(0.0f, 100.0f, 0.0f);
@@ -136,13 +134,8 @@ void CameraParamChunk::load(DotCamReader* pReader, CameraHolder* pHolder) {
     pReader->getValueInt("vpanuse", &mExParam.mVPanUse);
     pReader->getValueVec("vpanaxis", &mExParam.mVPanAxis);
 
-    static const char* sFlagNames[6] = {
-        "flag.noreset",
-        "flag.nofovy",
-        "flag.lofserpoff",
-        "flag.antibluroff",
-        "flag.collisionoff",
-        "flag.subjectiveoff"};
+    static const char* sFlagNames[6] = {"flag.noreset",     "flag.nofovy",       "flag.lofserpoff",
+                                        "flag.antibluroff", "flag.collisionoff", "flag.subjectiveoff"};
 
     for (u32 i = 0; i < 6; i++) {
         s32 flag;
@@ -269,8 +262,7 @@ void CameraParamChunk::arrangeCamTypeName(u32 version, const char** ppType) {
     }
 }
 
-CameraParamChunkGame::CameraParamChunkGame(CameraHolder* pHolder, const CameraParamChunkID& rChunk)
-    : CameraParamChunk(pHolder, rChunk) {
+CameraParamChunkGame::CameraParamChunkGame(CameraHolder* pHolder, const CameraParamChunkID& rChunk) : CameraParamChunk(pHolder, rChunk) {
     mThru = 1;
     mEnableEndErpFrame = 0;
     mCamEndInt = 120;
@@ -314,8 +306,7 @@ const char* CameraParamChunkGame::getClassName() const {
     return "Game";
 }
 
-CameraParamChunkEvent::CameraParamChunkEvent(CameraHolder* pHolder, const CameraParamChunkID& rChunk)
-    : CameraParamChunk(pHolder, rChunk) {
+CameraParamChunkEvent::CameraParamChunkEvent(CameraHolder* pHolder, const CameraParamChunkID& rChunk) : CameraParamChunk(pHolder, rChunk) {
     mEnableErpFrame = 0;
     mEvFrame = 0;
     mEnableEndErpFrame = 0;

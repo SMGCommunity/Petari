@@ -1,6 +1,4 @@
 #include "Game/Demo/DemoFunction.hpp"
-#include <cstdio>
-#include <cstring>
 #include "Game/Demo/DemoCastGroup.hpp"
 #include "Game/Demo/DemoCastGroupHolder.hpp"
 #include "Game/Demo/DemoDirector.hpp"
@@ -8,40 +6,28 @@
 #include "Game/Demo/DemoSubPartKeeper.hpp"
 #include "Game/Demo/DemoTimeKeeper.hpp"
 #include "Game/Effect/EffectSystemUtil.hpp"
+#include <cstdio>
+#include <cstring>
 
 namespace {
-    DemoTimeKeeper* getCurrentTimeKeeper() NO_INLINE {
-        return DemoFunction::getDemoDirector()->mExecutor->mTimeKeeper;
-    }
-    DemoSubPartKeeper* getCurrentSubPartKeeper() NO_INLINE {
-        return DemoFunction::getDemoDirector()->mExecutor->mSubPartKeeper;
-    }
+    DemoTimeKeeper* getCurrentTimeKeeper() NO_INLINE { return DemoFunction::getDemoDirector()->mExecutor->mTimeKeeper; }
+    DemoSubPartKeeper* getCurrentSubPartKeeper() NO_INLINE { return DemoFunction::getDemoDirector()->mExecutor->mSubPartKeeper; }
     bool isCurrentMainPart(const char* pPartName) NO_INLINE {
         DemoTimeKeeper* timekeeper = getCurrentTimeKeeper();
         return MR::isEqualString(pPartName, timekeeper->mSubPartInfos[0].mName);
     }
-}; // namespace
+};  // namespace
 
 namespace DemoFunction {
-    DemoDirector* getDemoDirector() {
-        return MR::getSceneObj< DemoDirector >(SceneObj_DemoDirector);
-    }
+    DemoDirector* getDemoDirector() { return MR::getSceneObj< DemoDirector >(SceneObj_DemoDirector); }
 
-    DemoCastGroupHolder* getDemoCastSubGroupHolder() {
-        return getDemoDirector()->_1C;
-    }
+    DemoCastGroupHolder* getDemoCastSubGroupHolder() { return getDemoDirector()->_1C; }
 
-    void registerDemoSimpleCastAllFunction(LiveActor* pActor) {
-        return getDemoDirector()->registerDemoSimpleCast(pActor);
-    }
+    void registerDemoSimpleCastAllFunction(LiveActor* pActor) { return getDemoDirector()->registerDemoSimpleCast(pActor); }
 
-    void registerDemoSimpleCastAllFunction(LayoutActor* pActor) {
-        return getDemoDirector()->registerDemoSimpleCast(pActor);
-    }
+    void registerDemoSimpleCastAllFunction(LayoutActor* pActor) { return getDemoDirector()->registerDemoSimpleCast(pActor); }
 
-    void registerDemoSimpleCastAllFunction(NameObj* pObj) {
-        return getDemoDirector()->registerDemoSimpleCast(pObj);
-    }
+    void registerDemoSimpleCastAllFunction(NameObj* pObj) { return getDemoDirector()->registerDemoSimpleCast(pObj); }
 
     void registerDemoActionFunctorFunction(const LiveActor* pActor, const MR::FunctorBase& rFunctor, const char* pName) {
         DemoExecutorFunction::registerDemoActionFunction(findDemoExecutor(pActor), pActor, rFunctor, pName);
@@ -79,9 +65,7 @@ namespace DemoFunction {
         }
     }
 
-    void registerDemoExecutor(DemoExecutor* pExecutor) {
-        getDemoDirector()->_18->registerObj(pExecutor);
-    }
+    void registerDemoExecutor(DemoExecutor* pExecutor) { getDemoDirector()->_18->registerObj(pExecutor); }
 
     DemoExecutor* findDemoExecutor(const char* pDemoName) {
         DemoCastGroup* group = getDemoDirector()->_18->findCastGroup(pDemoName);
@@ -113,13 +97,9 @@ namespace DemoFunction {
         return nullptr;
     }
 
-    bool isDemoCast(const DemoExecutor* pExecutor, const LiveActor* pActor) {
-        return DemoExecutorFunction::isRegisteredDemoCast(pExecutor, pActor);
-    }
+    bool isDemoCast(const DemoExecutor* pExecutor, const LiveActor* pActor) { return DemoExecutorFunction::isRegisteredDemoCast(pExecutor, pActor); }
 
-    bool isExistDemoPart(const DemoExecutor* pExecutor, const char* pPartName) {
-        return DemoExecutorFunction::isExistDemoPart(pExecutor, pPartName);
-    }
+    bool isExistDemoPart(const DemoExecutor* pExecutor, const char* pPartName) { return DemoExecutorFunction::isExistDemoPart(pExecutor, pPartName); }
 
     bool isDemoPartActiveFunction(const char* pPartName) {
         if (!MR::isTimeKeepDemoActive()) {
@@ -231,29 +211,17 @@ namespace DemoFunction {
         return false;
     }
 
-    void pauseTimeKeepDemo(LiveActor* pActor) {
-        return DemoExecutorFunction::pauseTimeKeepDemo(DemoFunction::findDemoExecutorActive(pActor));
-    }
+    void pauseTimeKeepDemo(LiveActor* pActor) { return DemoExecutorFunction::pauseTimeKeepDemo(DemoFunction::findDemoExecutorActive(pActor)); }
 
-    void resumeTimeKeepDemo(LiveActor* pActor) {
-        return DemoExecutorFunction::resumeTimeKeepDemo(DemoFunction::findDemoExecutorActive(pActor));
-    }
+    void resumeTimeKeepDemo(LiveActor* pActor) { return DemoExecutorFunction::resumeTimeKeepDemo(DemoFunction::findDemoExecutorActive(pActor)); }
 
-    bool isPauseTimeKeepDemo(LiveActor* pActor) {
-        return DemoExecutorFunction::isPauseTimeKeepDemo(DemoFunction::findDemoExecutorActive(pActor));
-    }
+    bool isPauseTimeKeepDemo(LiveActor* pActor) { return DemoExecutorFunction::isPauseTimeKeepDemo(DemoFunction::findDemoExecutorActive(pActor)); }
 
-    void pauseTimeKeepDemo(const char* pDemoName) {
-        return DemoExecutorFunction::pauseTimeKeepDemo(DemoFunction::findDemoExecutor(pDemoName));
-    }
+    void pauseTimeKeepDemo(const char* pDemoName) { return DemoExecutorFunction::pauseTimeKeepDemo(DemoFunction::findDemoExecutor(pDemoName)); }
 
-    void resumeTimeKeepDemo(const char* pDemoName) {
-        return DemoExecutorFunction::resumeTimeKeepDemo(DemoFunction::findDemoExecutor(pDemoName));
-    }
+    void resumeTimeKeepDemo(const char* pDemoName) { return DemoExecutorFunction::resumeTimeKeepDemo(DemoFunction::findDemoExecutor(pDemoName)); }
 
-    bool isPauseTimeKeepDemo(const char* pDemoName) {
-        return DemoExecutorFunction::isPauseTimeKeepDemo(DemoFunction::findDemoExecutor(pDemoName));
-    }
+    bool isPauseTimeKeepDemo(const char* pDemoName) { return DemoExecutorFunction::isPauseTimeKeepDemo(DemoFunction::findDemoExecutor(pDemoName)); }
 
     bool tryCreateDemoTalkAnimCtrlForActor(LiveActor* pActor, const char* pFileBaseName, const char* a3) {
         DemoExecutor* executor = findDemoExecutor(pActor);
@@ -299,7 +267,7 @@ namespace DemoFunction {
 
     s32 createSheetParser(const DemoExecutor* pExecutor, const char* pNameSuffix, JMapInfo** pMap) {
         const char* sheet_name = pExecutor->mSheetName;
-        JMapInfo*   map = MR::tryCreateCsvParser(getDemoDirector()->mResourceHolder, "Demo%s%s.bcsv", sheet_name, pNameSuffix);
+        JMapInfo* map = MR::tryCreateCsvParser(getDemoDirector()->mResourceHolder, "Demo%s%s.bcsv", sheet_name, pNameSuffix);
         *pMap = map;
         if (map != nullptr) {
             const JMapData* data = map->mData;
@@ -311,7 +279,5 @@ namespace DemoFunction {
         return 0;
     }
 
-    bool isDemoPartTalk(const char* pDemoName) {
-        return MR::isEqualSubString(pDemoName, "会話");
-    }
-}; // namespace DemoFunction
+    bool isDemoPartTalk(const char* pDemoName) { return MR::isEqualSubString(pDemoName, "会話"); }
+};  // namespace DemoFunction

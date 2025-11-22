@@ -20,8 +20,8 @@ public:
     void exeWait();
     void exeEnd();
 
-    /* 0x20 */ s32           _20;
-    /* 0x24 */ s32           _24;
-    /* 0x28 */ LiveActor*    mHost;
+    /* 0x20 */ s32 _20;
+    /* 0x24 */ s32 _24;
+    /* 0x28 */ LiveActor* mHost;
     /* 0x2C */ SimpleLayout* mTargetCounter;
 };

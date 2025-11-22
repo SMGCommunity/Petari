@@ -7,7 +7,7 @@
 namespace {
     static s32 cSpaceFlyStartFrame = 0xA;
     static s32 cSpaceFlyEndFrame = 0x32;
-}; // namespace
+};  // namespace
 
 class SpinDriver : public LiveActor {
 public:
@@ -56,34 +56,34 @@ public:
     bool canStartBind() const NO_INLINE;
     bool canBind(HitSensor*) const;
 
-    LiveActor*           _8C;
-    SpinDriverShootPath* mShootPath;        // 0x90
-    SpinDriverCamera*    mSpinDriverCamera; // 0x94
-    TQuat4f              _98;
-    TQuat4f              _A8;
-    TVec3f               _B8;
-    TVec3f               _C4;
-    TVec3f               _D0;
-    TVec3f               _DC;
-    TVec3f               _E8;
-    TVec3f               _F4;
-    f32                  _100;
-    f32                  _104;
-    f32                  _108;
-    TVec3f               _10C;
-    f32                  _118;
-    f32                  _11C;
-    f32                  _120;
-    s32                  _124;
-    u32                  _128;
-    u32                  _12C;
-    u32                  _130;
-    f32                  _134;
-    u8                   _138;
-    s32                  _13C;
-    bool                 _140;
-    u8                   _141;
-    bool                 _142;
+    LiveActor* _8C;
+    SpinDriverShootPath* mShootPath;      // 0x90
+    SpinDriverCamera* mSpinDriverCamera;  // 0x94
+    TQuat4f _98;
+    TQuat4f _A8;
+    TVec3f _B8;
+    TVec3f _C4;
+    TVec3f _D0;
+    TVec3f _DC;
+    TVec3f _E8;
+    TVec3f _F4;
+    f32 _100;
+    f32 _104;
+    f32 _108;
+    TVec3f _10C;
+    f32 _118;
+    f32 _11C;
+    f32 _120;
+    s32 _124;
+    u32 _128;
+    u32 _12C;
+    u32 _130;
+    f32 _134;
+    u8 _138;
+    s32 _13C;
+    bool _140;
+    u8 _141;
+    bool _142;
 };
 
 namespace NrvSpinDriver {
@@ -95,4 +95,4 @@ namespace NrvSpinDriver {
     NERVE(SpinDriverNrvShootStart);
     NERVE(SpinDriverNrvShoot);
     NERVE(SpinDriverNrvCoolDown);
-}; // namespace NrvSpinDriver
+};  // namespace NrvSpinDriver

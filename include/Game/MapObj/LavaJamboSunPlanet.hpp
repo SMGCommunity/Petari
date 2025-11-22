@@ -18,7 +18,7 @@ public:
     void exeMove();
 
     PartsModel* mBloomModel;
-    LodCtrl*    mLodCtrl;
-    f32         _94;
-    TVec3f      _98;
+    LodCtrl* mLodCtrl;
+    f32 _94;
+    TVec3f _98;
 };

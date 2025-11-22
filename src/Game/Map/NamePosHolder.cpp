@@ -2,8 +2,7 @@
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Util/SceneUtil.hpp"
 
-NamePosHolder::NamePosHolder()
-    : NameObj("位置テーブル保持") {
+NamePosHolder::NamePosHolder() : NameObj("位置テーブル保持") {
     mPosNum = 0;
     mInfos = 0;
     mPosNum = MR::getGeneralPosNum();
@@ -17,14 +16,10 @@ NamePosHolder::NamePosHolder()
     }
 }
 
-NamePosInfo::NamePosInfo() {
-}
+NamePosInfo::NamePosInfo() {}
 
 namespace MR {
-    NamePosHolder* getNamePosHolder() {
-        return MR::getSceneObj< NamePosHolder >(SceneObj_NamePosHolder);
-    }
-}; // namespace MR
+    NamePosHolder* getNamePosHolder() { return MR::getSceneObj< NamePosHolder >(SceneObj_NamePosHolder); }
+};  // namespace MR
 
-NamePosHolder::~NamePosHolder() {
-}
+NamePosHolder::~NamePosHolder() {}

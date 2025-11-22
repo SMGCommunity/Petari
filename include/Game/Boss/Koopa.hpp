@@ -23,9 +23,9 @@ public:
     virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
 
 private:
-    /* 0x8C */ TVec3f           _8C;
-    /* 0x98 */ KoopaSequencer*  mSequencer;
+    /* 0x8C */ TVec3f _8C;
+    /* 0x98 */ KoopaSequencer* mSequencer;
     /* 0x9C */ KoopaSensorCtrl* mSensorCtrl;
-    /* 0xA0 */ KoopaParts*      mParts;
-    /* 0xA4 */ ActorJointCtrl*  mJointCtrl;
+    /* 0xA0 */ KoopaParts* mParts;
+    /* 0xA4 */ ActorJointCtrl* mJointCtrl;
 };

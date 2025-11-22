@@ -3,8 +3,7 @@
 #include "Game/NameObj/NameObjExecuteHolder.hpp"
 #include "Game/Util.hpp"
 
-ActorLightCtrl::ActorLightCtrl(const LiveActor* pActor)
-    : mActor(pActor), _4(-1), _8(0), _C(0), mAreaLightInf(0), mLightID() {
+ActorLightCtrl::ActorLightCtrl(const LiveActor* pActor) : mActor(pActor), _4(-1), _8(0), _C(0), mAreaLightInf(0), mLightID() {
     _1C = 0;
     mInterpolate = -1;
     _54 = -1;

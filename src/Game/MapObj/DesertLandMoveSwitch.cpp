@@ -21,8 +21,7 @@
 #include "revolution/mtx.h"
 #include "revolution/types.h"
 
-DesertLandMoveSwitch::DesertLandMoveSwitch(const char* pName)
-    : LiveActor(pName) {
+DesertLandMoveSwitch::DesertLandMoveSwitch(const char* pName) : LiveActor(pName) {
     mCollisionParts = 0;
     mSpringValue = new SpringValue();
     mMapObjConnector = new MapObjConnector(this);
@@ -70,9 +69,9 @@ void DesertLandMoveSwitch::calcAnim() {
     f32 val = mSpringValue->_4;
     if (!MR::isNearZero(val, 0.001f)) {
         TVec3f stack_20;
-        f32    f3 = mtx2[2][3];
-        f32    f2 = mtx2[1][3];
-        f32    f1 = mtx2[0][3];
+        f32 f3 = mtx2[2][3];
+        f32 f2 = mtx2[1][3];
+        f32 f1 = mtx2[0][3];
         stack_20.set< f32 >(f1, f2, f3);
         TVec3f stack_14, stack_8;
         MR::calcUpVec(&stack_14, this);
@@ -252,7 +251,7 @@ namespace NrvDesertLandMoveSwitch {
     HostTypeSwitchDown(HostTypeSwitchDown::sInstance);
     HostTypeOn(HostTypeOn::sInstance);
     HostTypeReturn(HostTypeReturn::sInstance);
-}; // namespace NrvDesertLandMoveSwitch
+};  // namespace NrvDesertLandMoveSwitch
 
 void SpringValue::reset() {
     _4 = _0;

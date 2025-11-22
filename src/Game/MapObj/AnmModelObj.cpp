@@ -5,10 +5,9 @@ namespace {
     const char* cFollowjointName = "Move";
     const char* cAnimFileName = "Move";
     const char* cEndLoopEffectName = "EndLoop";
-}; // namespace
+};  // namespace
 
-AnmModelObj::AnmModelObj(const char* pName)
-    : MapObjActor(pName) {
+AnmModelObj::AnmModelObj(const char* pName) : MapObjActor(pName) {
     mJointPos.x = 0.0f;
     mJointPos.y = 0.0f;
     mJointPos.z = 0.0f;
@@ -45,7 +44,7 @@ void AnmModelObj::exeMove() {
         startInner();
     }
 
-    s32         steps = MR::StageEffect::getStopSeSteps(mObjectName);
+    s32 steps = MR::StageEffect::getStopSeSteps(mObjectName);
     const char* movingSE = MR::StageEffect::getMovingSe(mObjectName);
     if (movingSE != nullptr) {
         if (steps > 0) {
@@ -114,12 +113,9 @@ void AnmModelObj::exeWait() {
     }
 }
 
-AnmModelSwitchMove::AnmModelSwitchMove(const char* pName)
-    : AnmModelObj(pName) {
-}
+AnmModelSwitchMove::AnmModelSwitchMove(const char* pName) : AnmModelObj(pName) {}
 
-AnmModelObj::~AnmModelObj() {
-}
+AnmModelObj::~AnmModelObj() {}
 
 void AnmModelSwitchMove::init(const JMapInfoIter& rIter) {
     AnmModelObj::init(rIter);
@@ -143,9 +139,7 @@ bool AnmModelSwitchMove::isOnStartAnmTrigger() const {
     return MR::isOnSwitchA(this);
 }
 
-AnmModelGroundOnMove::AnmModelGroundOnMove(const char* pName)
-    : AnmModelObj(pName) {
-}
+AnmModelGroundOnMove::AnmModelGroundOnMove(const char* pName) : AnmModelObj(pName) {}
 
 void AnmModelGroundOnMove::init(const JMapInfoIter& rIter) {
     AnmModelObj::init(rIter);
@@ -162,9 +156,7 @@ bool AnmModelGroundOnMove::isOnStartAnmTrigger() const {
     return MR::isOnPlayer(getSensor("body"));
 }
 
-AnmModelBindMove::AnmModelBindMove(const char* pName)
-    : AnmModelObj(pName) {
-}
+AnmModelBindMove::AnmModelBindMove(const char* pName) : AnmModelObj(pName) {}
 
 void AnmModelBindMove::init(const JMapInfoIter& rIter) {
     AnmModelObj::init(rIter);
@@ -191,13 +183,11 @@ bool AnmModelBindMove::isOnStartAnmTrigger() const {
     return false;
 }
 
-AnmModelSwitchMoveEventCamera::AnmModelSwitchMoveEventCamera(const char* pName)
-    : AnmModelSwitchMove(pName) {
+AnmModelSwitchMoveEventCamera::AnmModelSwitchMoveEventCamera(const char* pName) : AnmModelSwitchMove(pName) {
     mCameraInfo = nullptr;
 }
 
-AnmModelSwitchMove::~AnmModelSwitchMove() {
-}
+AnmModelSwitchMove::~AnmModelSwitchMove() {}
 
 void AnmModelSwitchMoveEventCamera::init(const JMapInfoIter& rIter) {
     AnmModelObj::init(rIter);
@@ -232,29 +222,23 @@ void AnmModelSwitchMoveEventCamera::stopInner() {
     MR::endActorCamera(this, mCameraInfo, false, -1);
 }
 
-AnmModelGroundOnMove::~AnmModelGroundOnMove() {
-}
+AnmModelGroundOnMove::~AnmModelGroundOnMove() {}
 
-AnmModelBindMove::~AnmModelBindMove() {
-}
+AnmModelBindMove::~AnmModelBindMove() {}
 
-AnmModelSwitchMoveEventCamera::~AnmModelSwitchMoveEventCamera() {
-}
+AnmModelSwitchMoveEventCamera::~AnmModelSwitchMoveEventCamera() {}
 
 namespace NrvAnmModelObj {
     INIT_NERVE(HostTypeWait);
     INIT_NERVE(HostTypeMove);
     INIT_NERVE(HostTypeDone);
-}; // namespace NrvAnmModelObj
+};  // namespace NrvAnmModelObj
 
-void AnmModelObj::startInner() {
-}
+void AnmModelObj::startInner() {}
 
-void AnmModelObj::moveInner() {
-}
+void AnmModelObj::moveInner() {}
 
-void AnmModelObj::stopInner() {
-}
+void AnmModelObj::stopInner() {}
 
 bool AnmModelObj::isKilledAtMoveDone() const {
     return false;
@@ -264,20 +248,15 @@ bool AnmModelObj::isRepeat() const {
     return false;
 }
 
-void AnmModelObj::control() {
-}
+void AnmModelObj::control() {}
 
-void AnmModelObj::initCaseNoUseSwitchB(const MapObjActorInitInfo&) {
-}
+void AnmModelObj::initCaseNoUseSwitchB(const MapObjActorInitInfo&) {}
 
-void AnmModelObj::initCaseUseSwitchB(const MapObjActorInitInfo&) {
-}
+void AnmModelObj::initCaseUseSwitchB(const MapObjActorInitInfo&) {}
 
-void AnmModelObj::initCaseNoUseSwitchA(const MapObjActorInitInfo&) {
-}
+void AnmModelObj::initCaseNoUseSwitchA(const MapObjActorInitInfo&) {}
 
-void AnmModelObj::initCaseUseSwitchA(const MapObjActorInitInfo&) {
-}
+void AnmModelObj::initCaseUseSwitchA(const MapObjActorInitInfo&) {}
 
 bool AnmModelBindMove::isRepeat() const {
     return true;

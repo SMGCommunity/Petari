@@ -20,8 +20,7 @@
 #include <cstdio>
 
 namespace {
-    static const char* sLegBoneNameTable[3] = {
-        "LeftLeg", "RightLeg", "BackLeg"};
+    static const char* sLegBoneNameTable[3] = {"LeftLeg", "RightLeg", "BackLeg"};
 
     static s32 sKillerGeneraterIncreaseSeTiming = 0x5A;
     static s32 sHeadExplodeSeTiming;
@@ -29,7 +28,7 @@ namespace {
     static TVec3f sPowerStarOffset(0.0f, 3200.0f, 0.0f);
     static TVec3f sAppearStarPieceOffset(0.0f, 3600.0f, 0.0f);
     static TVec3f sEndMarioPosition(0.0f, 2160.0f, 1260.0f);
-}; // namespace
+};  // namespace
 
 namespace NrvTripodBoss {
     NEW_NERVE(TripodBossNrvTryStartDemo, TripodBoss, TryStartDemo);
@@ -45,12 +44,11 @@ namespace NrvTripodBoss {
     NEW_NERVE(TripodBossNrvPainDemo, TripodBoss, PainDemo);
     NEW_NERVE(TripodBossNrvBreakDownDemo, TripodBoss, BreakDownDemo);
     NEW_NERVE(TripodBossNrvExplosionDemo, TripodBoss, ExplosionDemo);
-}; // namespace NrvTripodBoss
+};  // namespace NrvTripodBoss
 
 TripodBoss::TripodBoss(const char* pName)
-    : LiveActor(pName), mLowModel(nullptr), mMovableArea(nullptr), mDummyModel(nullptr),
-      _5BC(0.0f, 3200.0f), _5C8(0, 0, 0), _5D4(0, 0, 0), _5E0(0, 0, 0), _5EC(0, 0, 0) {
-
+    : LiveActor(pName), mLowModel(nullptr), mMovableArea(nullptr), mDummyModel(nullptr), _5BC(0.0f, 3200.0f), _5C8(0, 0, 0), _5D4(0, 0, 0),
+      _5E0(0, 0, 0), _5EC(0, 0, 0) {
     _5F8 = 7500.0f;
     _5FC = 0.0f;
     _600 = 1.0f;
@@ -179,10 +177,10 @@ void TripodBoss::initLegIKPlacement() {
     f32 ONEPOINTFIVEPI = 2.0943952f;
     for (u32 i = 0; i < 3; i++) {
         u32& rI = i;
-        f32  cur = -(f32)i * ONEPOINTFIVEPI;
-        f32  initAngle = ((0.5f * ONEPOINTFIVEPI) + cur);
-        f32  x = JMath::sSinCosTable.sinLapRad(initAngle);
-        f32  z = JMath::sSinCosTable.cosLapRad(initAngle);
+        f32 cur = -(f32)i * ONEPOINTFIVEPI;
+        f32 initAngle = ((0.5f * ONEPOINTFIVEPI) + cur);
+        f32 x = JMath::sSinCosTable.sinLapRad(initAngle);
+        f32 z = JMath::sSinCosTable.cosLapRad(initAngle);
 
         TVec3f legDirShadow;
         legDirShadow.x = x;
@@ -331,7 +329,7 @@ bool TripodBoss::tryChangeSequence() {
 
     TripodBossStepSequence* seq = getNextStepSequence();
     seq->reset();
-    s32  v9 = seq->getCurrentLeg();
+    s32 v9 = seq->getCurrentLeg();
     bool v10 = false;
     for (u32 i = 0; i < 3; i++) {
         if (i != v9 && !mLegs[i]->isStop()) {
@@ -398,8 +396,8 @@ bool TripodBoss::tryNextStep() {
     }
 
     TripodBossStepSequence* seq = getCurrentStepSequence();
-    s32                     leg = seq->getCurrentLeg();
-    s32                     waitTime = seq->getCurrentWaitTime();
+    s32 leg = seq->getCurrentLeg();
+    s32 waitTime = seq->getCurrentWaitTime();
     if (MR::isGreaterStep(this, waitTime) || mLegs[leg]->isBroken()) {
         seq->nextStep();
         setNerve(&NrvTripodBoss::TripodBossNrvStep::sInstance);
@@ -506,7 +504,7 @@ void TripodBoss::exeWait() {
 void TripodBoss::exeStep() {
     if (MR::isFirstStep(this)) {
         TripodBossStepSequence* stepSeq = getCurrentStepSequence();
-        s32                     curr = stepSeq->getCurrentLeg();
+        s32 curr = stepSeq->getCurrentLeg();
         if (mLegs[curr]->canStep()) {
             mLegs[curr]->requestStepTarget(stepSeq->getCurrentStepPoint());
         } else {
@@ -558,7 +556,7 @@ void TripodBoss::exeLeaveLegOutOfPlayer() {
 void TripodBoss::exeDamage() {
     if (MR::isGreaterStep(this, 30)) {
         TVec3f* center = &mMovableArea->mCenter;
-        TVec3f  v5(_5D4);
+        TVec3f v5(_5D4);
         v5 -= *center;
         MR::normalizeOrZero(&v5);
         if (getNerveStep() % 6 < 3) {
@@ -706,11 +704,9 @@ void TripodBoss::exeExplosionDemo() {
     }
 }
 
-void TripodBoss::exeNonActive() {
-}
+void TripodBoss::exeNonActive() {}
 
-void TripodBoss::exeTryStartDemo() {
-}
+void TripodBoss::exeTryStartDemo() {}
 
 bool TripodBoss::isStopLeg(s32 idx) const {
     bool ret = false;
@@ -793,7 +789,7 @@ void TripodBoss::setJointAttachBaseMatrix(const TPos3f& rPos, s32 idx) {
 }
 
 void TripodBoss::addStepPoint(TripodBossStepPoint* pPoint) {
-    s32    idx = pPoint->_B8;
+    s32 idx = pPoint->_B8;
     TVec3f nearPos;
     mMovableArea->calcNearLandingPosition(&nearPos, pPoint->mStepPosition);
     TVec3f landingNormal;
@@ -851,11 +847,11 @@ TripodBossStepSequence* TripodBoss::getNextStepSequence() {
 
 void TripodBoss::calcLegUpVector(TVec3f* pUp, const TVec3f& a2) {
     TVec3f* center = &mMovableArea->mCenter;
-    TVec3f  v8(a2);
+    TVec3f v8(a2);
     v8 -= *center;
     MR::normalizeOrZero(&v8);
     TVec3f* axis = &mMovableArea->mBaseAxis;
-    f32     v7 = axis->dot(v8);
+    f32 v7 = axis->dot(v8);
     JMAVECScaleAdd(axis, &v8, &v8, -v7);
     MR::normalizeOrZero(&v8);
     pUp->set< f32 >(v8);
@@ -922,12 +918,12 @@ void TripodBoss::addAccelToWeightPosition() {
 
     MR::vecBlend(v19, v20, &v18, 0.30000001f);
     TVec3f* center = &mMovableArea->mCenter;
-    TVec3f  v14(v18);
+    TVec3f v14(v18);
     v14 -= *center;
     TVec3f* axis = &mMovableArea->mBaseAxis;
-    f32     v7 = axis->dot(v14);
+    f32 v7 = axis->dot(v14);
     JMAVECScaleAdd(axis, &v14, &v18, -v7);
-    f32    v9 = (_5FC + (_604 + mMovableArea->mRadius));
+    f32 v9 = (_5FC + (_604 + mMovableArea->mRadius));
     TVec3f v13(mMovableArea->mBaseAxis);
     v13 *= v9;
     TVec3f v17(v13);
@@ -1015,7 +1011,7 @@ void TripodBoss::endDemo(const char* pName) {
 
 void TripodBoss::checkRideMario() {
     GravityInfo info;
-    TVec3f      v8;
+    TVec3f v8;
     MR::calcGravityAndMagnetVector(this, *MR::getPlayerPos(), v8, &info, 0);
 
     if (info.mGravityInstance != nullptr && MR::isTripoddBossParts((const NameObj*)info.mGravityInstance->mHost)) {
@@ -1140,15 +1136,18 @@ void TripodBossBone::setAttachBaseMatrix(const TPos3f& rPos) {
     JGeometry::TUtil< f32 >::sqrt(_0.dot());
 
     if (_0) {
-        f32 v3 = JGeometry::TUtil< f32 >::inv_sqrt((_0.mMtx[1][0] * _0.mMtx[1][0]) + (_0.mMtx[0][0] * _0.mMtx[0][0]) + (_0.mMtx[2][0] * _0.mMtx[2][0]));
+        f32 v3 =
+            JGeometry::TUtil< f32 >::inv_sqrt((_0.mMtx[1][0] * _0.mMtx[1][0]) + (_0.mMtx[0][0] * _0.mMtx[0][0]) + (_0.mMtx[2][0] * _0.mMtx[2][0]));
         _0.mMtx[0][0] = v3 * _0.mMtx[0][0];
         _0.mMtx[1][0] = v3 * _0.mMtx[1][0];
         _0.mMtx[2][0] = v3 * _0.mMtx[2][0];
-        f32 v8 = JGeometry::TUtil< f32 >::inv_sqrt((_0.mMtx[2][1] * _0.mMtx[2][1]) + ((_0.mMtx[1][1] * _0.mMtx[1][1]) + (_0.mMtx[0][1] * _0.mMtx[0][1])));
+        f32 v8 =
+            JGeometry::TUtil< f32 >::inv_sqrt((_0.mMtx[2][1] * _0.mMtx[2][1]) + ((_0.mMtx[1][1] * _0.mMtx[1][1]) + (_0.mMtx[0][1] * _0.mMtx[0][1])));
         _0.mMtx[0][1] = v8 * _0.mMtx[0][1];
         _0.mMtx[1][1] = v8 * _0.mMtx[1][1];
         _0.mMtx[2][1] = v8 * _0.mMtx[2][1];
-        f32 v13 = JGeometry::TUtil< f32 >::inv_sqrt((_0.mMtx[0][2] * _0.mMtx[0][2]) + ((_0.mMtx[1][2] * _0.mMtx[1][2]) + (_0.mMtx[2][2] * _0.mMtx[2][2])));
+        f32 v13 =
+            JGeometry::TUtil< f32 >::inv_sqrt((_0.mMtx[0][2] * _0.mMtx[0][2]) + ((_0.mMtx[1][2] * _0.mMtx[1][2]) + (_0.mMtx[2][2] * _0.mMtx[2][2])));
         _0.mMtx[0][2] = v13 * _0.mMtx[0][2];
         _0.mMtx[1][2] = v13 * _0.mMtx[1][2];
         _0.mMtx[2][2] = v13 * _0.mMtx[2][2];
@@ -1156,11 +1155,7 @@ void TripodBossBone::setAttachBaseMatrix(const TPos3f& rPos) {
 }
 
 namespace MR {
-    NameObj* createTripodBoss(const char* pName) {
-        return new TripodBoss(pName);
-    }
+    NameObj* createTripodBoss(const char* pName) { return new TripodBoss(pName); }
 
-    NameObj* createTripod2Boss(const char* pName) {
-        return new TripodBoss(pName);
-    }
-}; // namespace MR
+    NameObj* createTripod2Boss(const char* pName) { return new TripodBoss(pName); }
+};  // namespace MR

@@ -1,10 +1,10 @@
-#include "Game/AudioLib/AudAnmSoundObject.hpp"
 #include "Game/Enemy/RingBeam.hpp"
+#include "Game/AudioLib/AudAnmSoundObject.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
 #include "Game/Map/HitInfo.hpp"
 
-//GX function that is included as a local symbol for some reason
+// GX function that is included as a local symbol for some reason
 extern "C" {
 void GXPosition3f32(f32, f32, f32);
 }
@@ -13,8 +13,7 @@ namespace NrvRingBeam {
     NEW_NERVE(RingBeamNrvSpread, RingBeam, Spread);
 }
 
-RingBeamShadowDrawer::RingBeamShadowDrawer(const LiveActor* unk0)
-    : ShadowVolumeDrawer("影描画[リングビーム]") {
+RingBeamShadowDrawer::RingBeamShadowDrawer(const LiveActor* unk0) : ShadowVolumeDrawer("影描画[リングビーム]") {
     _1c = unk0;
     _20 = 0.0f;
 }
@@ -22,7 +21,7 @@ RingBeamShadowDrawer::RingBeamShadowDrawer(const LiveActor* unk0)
 void RingBeamShadowDrawer::drawShape() const {
     TPos3f MtxList[32];
     TPos3f baseMtxCopy;
-    Mtx    mtx;
+    Mtx mtx;
     TVec3f temp;
     TVec3f temp2;
     TVec3f temp3;
@@ -35,7 +34,7 @@ void RingBeamShadowDrawer::drawShape() const {
     TVec3f Trans;
     TVec3f listXDir;
     TVec3f listYDir;
-    float  f1 = 0.2026834f;
+    float f1 = 0.2026834f;
 
     JMath::gekko_ps_copy12(&baseMtxCopy, _1c->getBaseMtx());
     baseMtxCopy.getXDir(XDir);
@@ -121,7 +120,6 @@ void RingBeamShadowDrawer::drawShape() const {
 }
 
 void RingBeamShadowDrawer::loadModelDrawMtx() const {
-
     GXLoadPosMtxImm(MR::getCameraViewMtx(), 0);
     GXSetCurrentMtx(0);
     GXClearVtxDesc();
@@ -133,8 +131,7 @@ bool RingBeamShadowDrawer::isDraw() const {
     return MR::isValidDraw(_1c);
 }
 
-RingBeam::RingBeam(const char* pName, LiveActor* arg1, bool arg2, bool arg3)
-    : LiveActor(pName) {
+RingBeam::RingBeam(const char* pName, LiveActor* arg1, bool arg2, bool arg3) : LiveActor(pName) {
     _8c = arg1;
     mSpeed = 20.0f;
     mLife = 100;
@@ -263,7 +260,7 @@ void RingBeam::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     TVec3f sensordiff = pReceiver->mPosition;
     sensordiff -= pSender->mPosition;
     MR::makeMtxTR((MtxPtr)&mtx, this);
-    //this is 100% certainly an inline
+    // this is 100% certainly an inline
     f32 x = mtx.mMtx[0][1];
     f32 y = mtx.mMtx[1][1];
     f32 z = mtx.mMtx[2][1];
@@ -367,8 +364,6 @@ void RingBeam::exeSpread() {
     }
 }
 
-RingBeam::~RingBeam() {
-}
+RingBeam::~RingBeam() {}
 
-RingBeamShadowDrawer::~RingBeamShadowDrawer() {
-}
+RingBeamShadowDrawer::~RingBeamShadowDrawer() {}

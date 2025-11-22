@@ -1,6 +1,6 @@
+#include "Game/Screen/CounterLayoutController.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/CoinCounter.hpp"
-#include "Game/Screen/CounterLayoutController.hpp"
 #include "Game/Screen/MarioMeter.hpp"
 #include "Game/Screen/PlayerLeft.hpp"
 #include "Game/Screen/StarCounter.hpp"
@@ -16,22 +16,16 @@
 namespace {
     const s32 cJudgeNotMovingFrame = 60;
     const s32 cShowWaitFrame = 240;
-}; // namespace
+};  // namespace
 
 namespace NrvCounterLayoutController {
     NEW_NERVE(CounterLayoutControllerNrvPlayerMoving, CounterLayoutController, PlayerMoving);
     NEW_NERVE(CounterLayoutControllerNrvPlayerNotMoving, CounterLayoutController, PlayerNotMoving);
-}; // namespace NrvCounterLayoutController
+};  // namespace NrvCounterLayoutController
 
 CounterLayoutController::CounterLayoutController()
-    : LayoutActor("カウンタ系レイアウト制御", true),
-      mPlayerNotMovingFrame(0),
-      _24(false),
-      mCoinCounter(nullptr),
-      mStarPieceCounter(nullptr),
-      mPlayerLeft(nullptr),
-      mStarCounter(nullptr),
-      mHPMeter(nullptr) {}
+    : LayoutActor("カウンタ系レイアウト制御", true), mPlayerNotMovingFrame(0), _24(false), mCoinCounter(nullptr), mStarPieceCounter(nullptr),
+      mPlayerLeft(nullptr), mStarCounter(nullptr), mHPMeter(nullptr) {}
 
 void CounterLayoutController::init(const JMapInfoIter& rIter) {
     MR::connectToSceneLayout(this);
@@ -127,7 +121,8 @@ bool CounterLayoutController::isPlayerMoving() const {
         return true;
     }
 
-    if (!MR::isNearZero(MR::getSubPadStickX(WPAD_CHAN0), 0.001f) || !MR::isNearZero(MR::getSubPadStickY(WPAD_CHAN0), 0.001f) || MR::testPadButtonAnyWithoutHome(WPAD_CHAN0) || MR::isCorePadSwing(WPAD_CHAN0) || MR::isSubPadSwing(WPAD_CHAN0)) {
+    if (!MR::isNearZero(MR::getSubPadStickX(WPAD_CHAN0), 0.001f) || !MR::isNearZero(MR::getSubPadStickY(WPAD_CHAN0), 0.001f) ||
+        MR::testPadButtonAnyWithoutHome(WPAD_CHAN0) || MR::isCorePadSwing(WPAD_CHAN0) || MR::isSubPadSwing(WPAD_CHAN0)) {
         return true;
     }
 

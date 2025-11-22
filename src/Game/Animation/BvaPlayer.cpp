@@ -1,9 +1,6 @@
 #include "Game/Animation/BvaPlayer.hpp"
 
-BvaPlayer::BvaPlayer(const ResTable* pResTable, J3DModel* pModel)
-    : AnmPlayerBase(pResTable),
-      mModel(pModel) {
-}
+BvaPlayer::BvaPlayer(const ResTable* pResTable, J3DModel* pModel) : AnmPlayerBase(pResTable), mModel(pModel) {}
 
 // BvaPlayer::calc
 

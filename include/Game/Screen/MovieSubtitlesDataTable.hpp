@@ -25,9 +25,9 @@ struct SubtitlesInfo {
 
 namespace MovieSubtitlesUtil {
     const SubtitlesMessageInfo* getSubtitlesMessageInfo(const char*, s32);
-    bool                        isExistSubtitles(const char*, s32);
-    const char*                 getSubtitlesMessageId(const char*, s32);
-    s32                         getSubtitlesStartStep(const char*, s32);
-    s32                         getSubtitlesAppearTime(const char*, s32);
-    s32                         getSubtitlesMessageNum(const char*);
-}; // namespace MovieSubtitlesUtil
+    bool isExistSubtitles(const char*, s32);
+    const char* getSubtitlesMessageId(const char*, s32);
+    s32 getSubtitlesStartStep(const char*, s32);
+    s32 getSubtitlesAppearTime(const char*, s32);
+    s32 getSubtitlesMessageNum(const char*);
+};  // namespace MovieSubtitlesUtil

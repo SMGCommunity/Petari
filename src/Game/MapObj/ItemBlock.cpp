@@ -29,14 +29,13 @@ namespace NrvItemBlock {
             MR::startBck(block, "Wait", nullptr);
         }
     }
-}; // namespace NrvItemBlock
+};  // namespace NrvItemBlock
 
 namespace {
     static Color8 hPointLight(0xFF, 0xE6, 0, 0xFF);
 };
 
-ItemBlock::ItemBlock(const char* pName)
-    : LiveActor(pName) {
+ItemBlock::ItemBlock(const char* pName) : LiveActor(pName) {
     mKind = 0;
     mTimer = 0;
     mItemCount = 8;
@@ -146,16 +145,16 @@ void ItemBlock::checkKind(const JMapInfoIter& rIter) {
 }
 
 /*void ItemBlock::initBlock() {
-	initHitSensor(1);
+    initHitSensor(1);
 
-	if (mKind >= 6 || mKind < 1) {
-		return;
-	}
+    if (mKind >= 6 || mKind < 1) {
+        return;
+    }
 
-	initModelManagerWithAnm("CoinBlock", nullptr, false);
-	TVec3f *mtx = new TVec3f(0.0f, 100.0f, 0.0f);
-	MR::addHitSensorMtxMapObj(this, "body", 8, 100.0f, MR::getJointMtx(this, "CoinBlock"), *mtx);
-	MR::initCollisionPartsAutoEqualScale(this, "CoinBlock", getSensor("body"), (MtxPtr)mtx);
+    initModelManagerWithAnm("CoinBlock", nullptr, false);
+    TVec3f *mtx = new TVec3f(0.0f, 100.0f, 0.0f);
+    MR::addHitSensorMtxMapObj(this, "body", 8, 100.0f, MR::getJointMtx(this, "CoinBlock"), *mtx);
+    MR::initCollisionPartsAutoEqualScale(this, "CoinBlock", getSensor("body"), (MtxPtr)mtx);
 }*/
 
 void ItemBlock::appear() {
@@ -176,9 +175,9 @@ void ItemBlock::kill() {
 }
 
 /*void ItemBlock::control() {
-	TVec3f upVec;
-	MR::calcUpVec(&upVec, this);
-	MR::requestPointLight(this, TVec3f(upVec * 100.0f), hPointLight, 0.998646f, -1);
+    TVec3f upVec;
+    MR::calcUpVec(&upVec, this);
+    MR::requestPointLight(this, TVec3f(upVec * 100.0f), hPointLight, 0.998646f, -1);
 }*/
 
 bool ItemBlock::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
@@ -238,53 +237,53 @@ void ItemBlock::exeWait() {
 }
 
 /*void ItemBlock::exeAppearItem() {
-	if (MR::isFirstStep(this)) {
-		if (!mTimer) {
-			MR::forceDeleteEffect(this, "Glow");
-			MR::startBck(this, "Bomb", nullptr);
-		}
+    if (MR::isFirstStep(this)) {
+        if (!mTimer) {
+            MR::forceDeleteEffect(this, "Glow");
+            MR::startBck(this, "Bomb", nullptr);
+        }
 
-		MR::invalidateClipping(this);
-	}
+        MR::invalidateClipping(this);
+    }
 
-	if (MR::isStep(this, 1)) {
-		TVec3f gravVec;
-		TVec3f position(mPosition);
-		MR::calcGravityVector(this, &gravVec, nullptr, 0);
+    if (MR::isStep(this, 1)) {
+        TVec3f gravVec;
+        TVec3f position(mPosition);
+        MR::calcGravityVector(this, &gravVec, nullptr, 0);
 
-		position.subInline(mPosition, gravVec * 100.0f);
+        position.subInline(mPosition, gravVec * 100.0f);
 
-		if (mKind == 2) {
-			MR::startSystemSE("SE_SY_ITEM_APPEAR", -1, -1);
-		}
+        if (mKind == 2) {
+            MR::startSystemSE("SE_SY_ITEM_APPEAR", -1, -1);
+        }
 
-		if (mKind >= 1) {
-			MR::hopCoin(this, position, -gravVec);
-		}
+        if (mKind >= 1) {
+            MR::hopCoin(this, position, -gravVec);
+        }
 
-		if (mKind >= 4) {
-		} else {
-			if (mTimer || MR::getDeclareRemnantStarPieceCountNotExist(this) != 11) {
-				MR::appearStarPieceToDirection(this, position, -gravVec, 11, 10.0f, 40.0f, false);
-			} else {
-				MR::hopStarPiece(this, position, -gravVec);
-			}
+        if (mKind >= 4) {
+        } else {
+            if (mTimer || MR::getDeclareRemnantStarPieceCountNotExist(this) != 11) {
+                MR::appearStarPieceToDirection(this, position, -gravVec, 11, 10.0f, 40.0f, false);
+            } else {
+                MR::hopStarPiece(this, position, -gravVec);
+            }
 
-			MR::startSound(this, "SE_OJ_STAR_PIECE_BURST", -1, -1);
-		}
-	}
+            MR::startSound(this, "SE_OJ_STAR_PIECE_BURST", -1, -1);
+        }
+    }
 
-	decTimer();
+    decTimer();
 
-	if (!MR::isBckStopped(this)) {
-		return;
-	}
+    if (!MR::isBckStopped(this)) {
+        return;
+    }
 
-	if (mTimer) {
-		setNerve(&NrvItemBlock::ItemBlockNrvWait::sInstance);
-	} else {
-		kill();
-	}
+    if (mTimer) {
+        setNerve(&NrvItemBlock::ItemBlockNrvWait::sInstance);
+    } else {
+        kill();
+    }
 }*/
 
 void ItemBlock::exeAppearItemSplash() {
@@ -329,5 +328,4 @@ void ItemBlock::calcAnim() {
     mNoCalcAnim = false;
 }
 
-ItemBlock::~ItemBlock() {
-}
+ItemBlock::~ItemBlock() {}

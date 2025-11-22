@@ -7,8 +7,7 @@ JMapInfo::JMapInfo() {
     mName = "Undifined";
 }
 
-JMapInfo::~JMapInfo() {
-}
+JMapInfo::~JMapInfo() {}
 
 bool JMapInfo::attach(const void* pData) {
     if (pData == nullptr) {
@@ -54,7 +53,7 @@ s32 JMapInfo::getValueType(const char* pItem) const {
 
 bool JMapInfo::getValueFast(int entryIndex, int itemIndex, const char** pValueOut) const {
     const JMapItem* item = &mData->mItems[itemIndex];
-    const char*     valuePtr = getEntryAddress(mData, mData->mDataOffset, entryIndex) + item->mOffsData;
+    const char* valuePtr = getEntryAddress(mData, mData->mDataOffset, entryIndex) + item->mOffsData;
 
     switch (item->mType) {
     case JMAP_VALUE_TYPE_STRING_PTR:
@@ -71,7 +70,7 @@ bool JMapInfo::getValueFast(int entryIndex, int itemIndex, const char** pValueOu
 
 bool JMapInfo::getValueFast(int entryIndex, int itemIndex, u32* pValueOut) const {
     const JMapItem* item = &mData->mItems[itemIndex];
-    const char*     valuePtr = getEntryAddress(mData, mData->mDataOffset, entryIndex) + item->mOffsData;
+    const char* valuePtr = getEntryAddress(mData, mData->mDataOffset, entryIndex) + item->mOffsData;
 
     u32 rawValue;
     switch (item->mType) {
@@ -128,7 +127,7 @@ FAIL:
 }
 
 JMapInfoIter MR::findJMapInfoElementNoCase(const JMapInfo* pInfo, const char* key, const char* searchValue, int startIndex) {
-    int         entryIndex = startIndex;
+    int entryIndex = startIndex;
     const char* value;
     while (entryIndex < pInfo->getNumEntries()) {
         pInfo->getValue< const char* >(entryIndex, key, &value);

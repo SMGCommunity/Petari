@@ -17,7 +17,7 @@ public:
     virtual void initDrawList();
 
     void init();
-    s16  registerDrawBuffer(LiveActor*, int);
+    s16 registerDrawBuffer(LiveActor*, int);
     void allocateDrawBufferActorList();
     void registerPreDrawFunction(const MR::FunctorBase&, int);
     void findLightInfo(LiveActor*, int, int) const;
@@ -41,8 +41,8 @@ public:
     void drawXlu(int);
     void executeDraw(int);
 
-    DrawBufferHolder*    mBufferHolder; // 0x4
-    NameObjCategoryList* mMovementList; // 0x8
-    NameObjCategoryList* mCalcAnimList; // 0xC
-    NameObjCategoryList* mDrawList;     // 0x10
+    DrawBufferHolder* mBufferHolder;     // 0x4
+    NameObjCategoryList* mMovementList;  // 0x8
+    NameObjCategoryList* mCalcAnimList;  // 0xC
+    NameObjCategoryList* mDrawList;      // 0x10
 };

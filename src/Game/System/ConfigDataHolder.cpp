@@ -5,11 +5,7 @@
 #include <JSystem/JSupport/JSUMemoryOutputStream.hpp>
 #include <cstdio>
 
-ConfigDataHolder::ConfigDataHolder()
-    : mChunkHolder(nullptr),
-      mCreateChunk(nullptr),
-      mMii(nullptr),
-      mMisc(nullptr) {
+ConfigDataHolder::ConfigDataHolder() : mChunkHolder(nullptr), mCreateChunk(nullptr), mMii(nullptr), mMisc(nullptr) {
     mChunkHolder = new BinaryDataChunkHolder(64, 3);
     mCreateChunk = new ConfigDataCreateChunk();
     mMii = new ConfigDataMii();
@@ -90,8 +86,7 @@ bool ConfigDataHolder::loadFromFileBinary(const char* pName, const u8* pBuffer, 
     return mChunkHolder->loadFromFileBinary(pBuffer, size);
 }
 
-ConfigDataCreateChunk::ConfigDataCreateChunk()
-    : mIsCreated(false) {
+ConfigDataCreateChunk::ConfigDataCreateChunk() : mIsCreated(false) {
     initializeData();
 }
 

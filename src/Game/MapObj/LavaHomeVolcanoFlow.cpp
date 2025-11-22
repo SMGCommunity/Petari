@@ -1,5 +1,5 @@
-#include "Game/LiveActor/LiveActor.hpp"
 #include "Game/MapObj/LavaHomeVolcanoFlow.hpp"
+#include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util/ActorSwitchUtil.hpp"
 #include "Game/Util/EffectUtil.hpp"
@@ -13,10 +13,9 @@ namespace NrvLavaHomeVolcanoFlow {
     NEW_NERVE(HostTypeWait, LavaHomeVolcanoFlow, Wait);
     NEW_NERVE(HostTypeMove, LavaHomeVolcanoFlow, Move);
     NEW_NERVE(HostTypeDone, LavaHomeVolcanoFlow, Wait);
-}; // namespace NrvLavaHomeVolcanoFlow
+};  // namespace NrvLavaHomeVolcanoFlow
 
-LavaHomeVolcanoFlow::LavaHomeVolcanoFlow(const char* pName)
-    : LiveActor(pName) {}
+LavaHomeVolcanoFlow::LavaHomeVolcanoFlow(const char* pName) : LiveActor(pName) {}
 
 void LavaHomeVolcanoFlow::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);

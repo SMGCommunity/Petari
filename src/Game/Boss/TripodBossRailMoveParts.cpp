@@ -2,8 +2,7 @@
 #include "Game/Boss/TripodBossFixParts.hpp"
 #include "Game/MapObj/MapPartsRailMover.hpp"
 
-TripodBossRailMoveParts::TripodBossRailMoveParts(const char* pName)
-    : TripodBossFixParts(pName) {
+TripodBossRailMoveParts::TripodBossRailMoveParts(const char* pName) : TripodBossFixParts(pName) {
     mRailMover = nullptr;
 }
 
@@ -36,5 +35,4 @@ void TripodBossRailMoveParts::exeWaitOwn() {
     mRailMover->movement();
 }
 
-TripodBossRailMoveParts::~TripodBossRailMoveParts() {
-}
+TripodBossRailMoveParts::~TripodBossRailMoveParts() {}

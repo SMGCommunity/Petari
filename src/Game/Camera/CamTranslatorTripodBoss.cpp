@@ -1,11 +1,11 @@
-#include "Game/Camera/CameraParamChunk.hpp"
 #include "Game/Camera/CamTranslatorTripodBoss.hpp"
+#include "Game/Camera/CameraParamChunk.hpp"
 
 void CamTranslatorTripodBoss::setParam(const CameraParamChunk* pChunk) {
-    CameraTripodBoss*   camera;
+    CameraTripodBoss* camera;
     CameraGeneralParam* general = pChunk->mGeneralParam;
 
-    f32    dist;
+    f32 dist;
     TVec2f up;
 
     up.y = general->mUp.y;

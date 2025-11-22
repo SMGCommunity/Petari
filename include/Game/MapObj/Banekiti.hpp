@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Game/LiveActor/LiveActor.hpp"
 #include "Game/Enemy/AnimScaleController.hpp"
 #include "Game/Enemy/WalkerStateBindStarPointer.hpp"
+#include "Game/LiveActor/LiveActor.hpp"
 #include "Game/MapObj/MapPartsRailMover.hpp"
 
 class Banekiti : public LiveActor {
@@ -20,13 +20,13 @@ public:
     void exeDPDSwoon();
     void endDPDSwoon();
 
-    AnimScaleController*        mAnimScaleCtrl;   //_8C
-    WalkerStateBindStarPointer* mBindStarPointer; //_90
-    MapPartsRailMover*          mRailMover;       //_94
+    AnimScaleController* mAnimScaleCtrl;           //_8C
+    WalkerStateBindStarPointer* mBindStarPointer;  //_90
+    MapPartsRailMover* mRailMover;                 //_94
 };
 
 namespace NrvBanekiti {
     NERVE(BanekitiNrvWait);
     NERVE(BanekitiNrvRepel);
     NERVE_EXECEND(BanekitiNrvDPDSwoon);
-}; // namespace NrvBanekiti
+};  // namespace NrvBanekiti

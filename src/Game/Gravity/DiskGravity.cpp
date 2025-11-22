@@ -5,14 +5,8 @@
 #include <math_types.hpp>
 
 DiskGravity::DiskGravity()
-    : PlanetGravity(),
-      mLocalPosition(0.0f, 50.0f, 0.0f),
-      mWorldPosition(0.0f, 50.0f, 0.0f),
-      mLocalNormal(0, 1, 0),
-      mWorldNormal(0, 1, 0),
-      mSideDirection(1, 0, 0),
-      mOppositeSideVecOrtho(1, 0, 0),
-      mWorldOppositeSideVecOrtho(1, 0, 0) {
+    : PlanetGravity(), mLocalPosition(0.0f, 50.0f, 0.0f), mWorldPosition(0.0f, 50.0f, 0.0f), mLocalNormal(0, 1, 0), mWorldNormal(0, 1, 0),
+      mSideDirection(1, 0, 0), mOppositeSideVecOrtho(1, 0, 0), mWorldOppositeSideVecOrtho(1, 0, 0) {
     mLocalRadius = 2500.0f;
     mWorldRadius = 2500.0f;
     mValidDegree = 360.0f;
@@ -54,7 +48,6 @@ void DiskGravity::setEnableEdgeGravity(bool val) {
 }
 
 bool DiskGravity::calcOwnGravityVector(TVec3f* pDest, f32* pDistance, const TVec3f& rPosition) const {
-
     TVec3f relativePos;
     relativePos = rPosition - mWorldPosition;
 
@@ -64,14 +57,14 @@ bool DiskGravity::calcOwnGravityVector(TVec3f* pDest, f32* pDistance, const TVec
         return false;
 
     TVec3f dirOnDiskPlane = relativePos - mWorldNormal * centralAxisY;
-    f32    distanceToCentralAxis;
+    f32 distanceToCentralAxis;
     MR::separateScalarAndDirection(&distanceToCentralAxis, &dirOnDiskPlane, dirOnDiskPlane);
 
     if (mValidCos > -1.0f && dirOnDiskPlane.dot(mWorldOppositeSideVecOrtho) < mValidCos)
         return false;
 
     TVec3f gravity(0, 0, 0);
-    f32    distance = 0.0f;
+    f32 distance = 0.0f;
 
     if (distanceToCentralAxis <= mWorldRadius) {
         gravity = centralAxisY >= 0.0f ? mWorldNormal.negateInline() : mWorldNormal;
@@ -109,7 +102,7 @@ void DiskGravity::updateLocalParam() {
 
     // Both of these variables are present because the codegen indicates they should be.
     // In the final game, however, they have no behavioral effect and are not given any memory.
-    bool  artifact = false;
+    bool artifact = false;
     bool& rArtifact = artifact;
 
     mValidCos = JMath::sSinCosTable.cosLap(0.5f * mValidDegree);

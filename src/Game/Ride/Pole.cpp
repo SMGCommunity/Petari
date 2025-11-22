@@ -1,5 +1,5 @@
-#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/Ride/Pole.hpp"
+#include "Game/LiveActor/HitSensor.hpp"
 #include <JSystem/JMath.hpp>
 #include <cstring>
 
@@ -19,28 +19,12 @@ namespace NrvPole {
     NEW_NERVE(PoleNrvBindHandstandWait, Pole, BindHandstandWait);
     NEW_NERVE(PoleNrvBindHandstandEnd, Pole, BindHandstandEnd);
     NEW_NERVE(PoleNrvBindHandstandTurn, Pole, BindHandstandTurn);
-}; // namespace NrvPole
+};  // namespace NrvPole
 
 Pole::Pole(const char* pName)
-    : LiveActor(pName),
-      _8C(0.0f, 0.0f, 0.0f),
-      _98(0.0f, 0.0f, 0.0f),
-      _A4(0.0f),
-      _A8(false),
-      _A9(false),
-      _AA(false),
-      _AB(false),
-      _AC(false),
-      _B0(0.0f),
-      _B4(0.0f),
-      mActor(nullptr),
-      mInfo(nullptr),
-      _C0(0.0f, 0.0f, 0.0f),
-      _CC(1.0f, 0.0f, 0.0f),
-      _D8(0.0f, 1.0f, 0.0f),
-      _E4(0.0f, 0.0f, 1.0f),
-      _120(nullptr),
-      _124(nullptr) {
+    : LiveActor(pName), _8C(0.0f, 0.0f, 0.0f), _98(0.0f, 0.0f, 0.0f), _A4(0.0f), _A8(false), _A9(false), _AA(false), _AB(false), _AC(false),
+      _B0(0.0f), _B4(0.0f), mActor(nullptr), mInfo(nullptr), _C0(0.0f, 0.0f, 0.0f), _CC(1.0f, 0.0f, 0.0f), _D8(0.0f, 1.0f, 0.0f),
+      _E4(0.0f, 0.0f, 1.0f), _120(nullptr), _124(nullptr) {
     _F0.identity();
     _128.identity();
 }
@@ -221,7 +205,7 @@ void Pole::exeBindStart() {
             num = 9.0f;
         }
         J3DFrameCtrl* ctrl = MR::getBckCtrl(mActor);
-        s16           frame = ctrl->mEndFrame;
+        s16 frame = ctrl->mEndFrame;
         mRotation.y += (num * MR::getEaseOutValue(1.0f - ((f32)getNerveStep() / frame), 0.0f, 1.0f, 1.0f));
     }
 
@@ -277,7 +261,7 @@ void Pole::exeBindTurn() {
     }
 
     if (!_A9) {
-        
+        
         f32 pad = (2.5f * getPoleSubPadStickX());
         f32 sub = MR::subtractFromSum(pad, mRotation.y, 0.0f);
         mRotation.y += pad;
@@ -468,7 +452,7 @@ void Pole::exeBindHandstandTurn() {
         MR::startBckPlayer("TreeHandstandTurn", (const char *)nullptr);
     }
 
-    f32 pad = (2.5f * getPoleSubPadStickX()); 
+    f32 pad = (2.5f * getPoleSubPadStickX());
     f32 temp = MR::subtractFromSum(pad, mRotation.y, 0.0f);
     mRotation.y += pad;
     mRotation.y = MR::modAndAdd(0.0f, temp);

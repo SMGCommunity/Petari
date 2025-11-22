@@ -13,7 +13,8 @@ void SensorHitChecker::initGroup(HitSensor* pSensor) {
         pSensor->mSensorGroup = mRideGroup;
     } else if (pSensor->isType(0x7F)) {
         pSensor->mSensorGroup = mEyeGroup;
-    } else if (pSensor->isType(0x4A) || pSensor->isType(0x4C) || pSensor->isType(0x15) || pSensor->isType(0x47) || pSensor->isType(0x1F) || MR::isSensorRush(pSensor) || MR::isSensorAutoRush(pSensor)) {
+    } else if (pSensor->isType(0x4A) || pSensor->isType(0x4C) || pSensor->isType(0x15) || pSensor->isType(0x47) || pSensor->isType(0x1F) ||
+               MR::isSensorRush(pSensor) || MR::isSensorAutoRush(pSensor)) {
         pSensor->mSensorGroup = mSimpleGroup;
     } else {
         if (MR::isSensorMapObj(pSensor)) {
@@ -47,12 +48,12 @@ void SensorHitChecker::movement() {
     doObjColInSameGroup(mCharacterGroup);
 }
 
-#ifdef NON_MATCHING // Wrong registers
+#ifdef NON_MATCHING  // Wrong registers
 void SensorHitChecker::doObjColGroup(SensorGroup* pGroup1, SensorGroup* pGroup2) const {
     s32 group1SensorCount = pGroup1->mSensorCount;
     for (s32 i = 0; i < group1SensorCount; i++) {
         HitSensor* curGroup1Sensor = pGroup1->mSensors[i];
-        bool       group1Sensorvalidated = false;
+        bool group1Sensorvalidated = false;
 
         if (curGroup1Sensor->mValidByHost && curGroup1Sensor->mValidBySystem) {
             group1Sensorvalidated = true;
@@ -62,7 +63,7 @@ void SensorHitChecker::doObjColGroup(SensorGroup* pGroup1, SensorGroup* pGroup2)
             s32 group2SensorCount = pGroup2->mSensorCount;
             for (s32 x = 0; x < group2SensorCount; x++) {
                 HitSensor* curGroup2Sensor = pGroup2->mSensors[x];
-                bool       group2Validated = false;
+                bool group2Validated = false;
 
                 if (curGroup2Sensor->mValidByHost && curGroup2Sensor->mValidBySystem) {
                     group2Validated = true;
@@ -77,12 +78,12 @@ void SensorHitChecker::doObjColGroup(SensorGroup* pGroup1, SensorGroup* pGroup2)
 }
 #endif
 
-#ifdef NON_MATCHING // Same register issue
+#ifdef NON_MATCHING  // Same register issue
 void SensorHitChecker::doObjColInSameGroup(SensorGroup* pSensorGroup) const {
     s32 sensorGroupCount = pSensorGroup->mSensorCount;
     for (s32 i = 0; i < sensorGroupCount; i++) {
         HitSensor* pFirstSensor = pSensorGroup->mSensors[i];
-        bool       isFirstSensorValid = false;
+        bool isFirstSensorValid = false;
 
         if (pFirstSensor->mValidByHost && pFirstSensor->mValidBySystem) {
             isFirstSensorValid = true;
@@ -91,7 +92,7 @@ void SensorHitChecker::doObjColInSameGroup(SensorGroup* pSensorGroup) const {
         if (isFirstSensorValid && !MR::isClipped(pFirstSensor->mHost)) {
             for (s32 x = 0; x < sensorGroupCount; x++) {
                 HitSensor* pSecondSensor = pSensorGroup->mSensors[x];
-                bool       isSecondSensorValid = false;
+                bool isSecondSensorValid = false;
 
                 if (pSecondSensor->mValidByHost && pSecondSensor->mValidBySystem) {
                     isSecondSensorValid = true;
@@ -106,7 +107,7 @@ void SensorHitChecker::doObjColInSameGroup(SensorGroup* pSensorGroup) const {
 }
 #endif
 
-#ifdef NON_MATCHING // Wrong registers
+#ifdef NON_MATCHING  // Wrong registers
 void SensorHitChecker::checkAttack(HitSensor* pSensor1, HitSensor* pSensor2) const {
     if (pSensor1->mHost != pSensor2->mHost) {
         f32 xPos = pSensor1->mPosition.x - pSensor2->mPosition.x;
@@ -128,15 +129,12 @@ void SensorHitChecker::checkAttack(HitSensor* pSensor1, HitSensor* pSensor2) con
 #endif
 
 namespace MR {
-    void initHitSensorGroup(HitSensor* pSensor) {
-        MR::getSceneObj< SensorHitChecker >(SceneObj_SensorHitChecker)->initGroup(pSensor);
-    }
-}; // namespace MR
+    void initHitSensorGroup(HitSensor* pSensor) { MR::getSceneObj< SensorHitChecker >(SceneObj_SensorHitChecker)->initGroup(pSensor); }
+};  // namespace MR
 
 SensorHitChecker::~SensorHitChecker() {}
 
-SensorHitChecker::SensorHitChecker(const char* pName)
-    : NameObj(pName) {
+SensorHitChecker::SensorHitChecker(const char* pName) : NameObj(pName) {
     mPlayerGroup = nullptr;
     mRideGroup = nullptr;
     mEyeGroup = nullptr;

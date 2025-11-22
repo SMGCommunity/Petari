@@ -1,8 +1,7 @@
 #include "Game/Gravity.hpp"
 #include "Game/Util.hpp"
 
-GlobalGravityObj::GlobalGravityObj(const char* pName)
-    : LiveActor(pName) {
+GlobalGravityObj::GlobalGravityObj(const char* pName) : LiveActor(pName) {
     mGravityCreator = nullptr;
 }
 
@@ -123,4 +122,4 @@ namespace MR {
         ret->mGravityCreator = new WireGravityCreator();
         return ret;
     }
-} // namespace MR
+}  // namespace MR

@@ -4,8 +4,7 @@
 
 #ifdef NON_MATCHING
 // floating reg order on the inlined matrix set, but oh well
-MapPartsRotator::MapPartsRotator(LiveActor* pActor)
-    : MapPartsFunction(pActor, "自身回転") {
+MapPartsRotator::MapPartsRotator(LiveActor* pActor) : MapPartsFunction(pActor, "自身回転") {
     _18 = 0.0f;
     mRotateAngle = 0.0f;
     mRotateStopTime = 0;
@@ -41,7 +40,7 @@ void MapPartsRotator::init(const JMapInfoIter& rIter) {
     }
 
     bool cond = 0.0f < _18;
-    f32  angle;
+    f32 angle;
 
     if (cond) {
         angle = mRotateAngle;
@@ -141,15 +140,14 @@ void MapPartsRotator::calcRotateAxisDir(AxisType type, TVec3f* pDir) const {
     }
 }
 
-MapPartsRotator::~MapPartsRotator() {
-}
+MapPartsRotator::~MapPartsRotator() {}
 
 namespace NrvMapPartsRotator {
-    HostTypeNeverMove   HostTypeNeverMove::sInstance;
-    HostTypeWait        HostTypeWait::sInstance;
+    HostTypeNeverMove HostTypeNeverMove::sInstance;
+    HostTypeWait HostTypeWait::sInstance;
     HostTypeRotateStart HostTypeRotateStart::sInstance;
-    HostTypeRotate      HostTypeRotate::sInstance;
-    HostTypeStopAtEnd   HostTypeStopAtEnd::sInstance;
+    HostTypeRotate HostTypeRotate::sInstance;
+    HostTypeStopAtEnd HostTypeStopAtEnd::sInstance;
 
     void HostTypeStopAtEnd::execute(Spine* pSpine) const {
         MapPartsRotator* rotator = reinterpret_cast< MapPartsRotator* >(pSpine->mExecutor);
@@ -168,12 +166,10 @@ namespace NrvMapPartsRotator {
         rotator->exeRotateStart();
     }
 
-    void HostTypeWait::execute(Spine* pSpine) const {
-    }
+    void HostTypeWait::execute(Spine* pSpine) const {}
 
-    void HostTypeNeverMove::execute(Spine* pSpine) const {
-    }
-}; // namespace NrvMapPartsRotator
+    void HostTypeNeverMove::execute(Spine* pSpine) const {}
+};  // namespace NrvMapPartsRotator
 
 bool MapPartsRotator::isOnReverse() const {
     return mIsOnReverse;

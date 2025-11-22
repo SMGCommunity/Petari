@@ -2,8 +2,8 @@
 #include "Game/Demo/AstroDemoFunction.hpp"
 #include "Game/Enemy/AnimScaleController.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
-#include "Game/MapObj/StarPieceDirector.hpp"
 #include "Game/LiveActor/PartsModel.hpp"
+#include "Game/MapObj/StarPieceDirector.hpp"
 #include "Game/NPC/NPCActorItem.hpp"
 #include "Game/Screen/GalaxyMapController.hpp"
 #include "Game/Util/EventUtil.hpp"
@@ -17,13 +17,13 @@ namespace NrvTicoEat {
     NEW_NERVE(TicoEatNrvEatPst, TicoEat, EatPst);
     NEW_NERVE(TicoEatNrvEatEnd, TicoEat, EatEnd);
     NEW_NERVE(TicoEatNrvReaction, TicoEat, Reaction);
-}; // namespace NrvTicoEat
+};  // namespace NrvTicoEat
 
 namespace NrvTicoComet {
     NEW_NERVE(TicoCometNrvDemoAnim, TicoComet, DemoAnim);
     NEW_NERVE(TicoCometNrvDemoFade, TicoComet, DemoFade);
     NEW_NERVE(TicoCometNrvDemoEnd, TicoComet, DemoEnd);
-}; // namespace NrvTicoComet
+};  // namespace NrvTicoComet
 
 namespace {
     class TicoEatParam : public AnimScaleParam {
@@ -31,18 +31,16 @@ namespace {
         TicoEatParam();
     };
 
-    TicoEatParam::TicoEatParam()
-        : AnimScaleParam() {
+    TicoEatParam::TicoEatParam() : AnimScaleParam() {
         _20 = 0.12f;
         _24 = 0.12f;
         _28 = 0.89999998f;
     }
 
     static TicoEatParam sParam;
-}; // namespace
+};  // namespace
 
-TicoEat::TicoEat(const char* pName)
-    : Tico(pName) {
+TicoEat::TicoEat(const char* pName) : Tico(pName) {
     _190 = 0;
     _194 = 0;
     _198 = 0;
@@ -192,12 +190,9 @@ void TicoEat::exeEatPst() {
     }
 }
 
-void TicoEat::exeEatEnd() {
-}
+void TicoEat::exeEatEnd() {}
 
-TicoComet::TicoComet(const char* pName)
-    : TicoEat(pName) {
-}
+TicoComet::TicoComet(const char* pName) : TicoEat(pName) {}
 
 void TicoComet::init(const JMapInfoIter& rIter) {
     NPCActorCaps caps("TicoComet");
@@ -326,8 +321,6 @@ void TicoComet::exeDemoFade() {
     }
 }
 
-void TicoComet::exeDemoEnd() {
-}
+void TicoComet::exeDemoEnd() {}
 
-void TicoEat::startReactionSound() {
-}
+void TicoEat::startReactionSound() {}

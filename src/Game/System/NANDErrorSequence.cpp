@@ -1,10 +1,10 @@
+#include "Game/System/NANDErrorSequence.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/SysInfoWindow.hpp"
 #include "Game/System/GameSystemFunction.hpp"
-#include "Game/System/NANDErrorSequence.hpp"
 #include "Game/System/NANDManager.hpp"
-#include "Game/System/SaveDataHandler.hpp"
 #include "Game/System/SaveDataHandleSequence.hpp"
+#include "Game/System/SaveDataHandler.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/NerveUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
@@ -22,16 +22,10 @@ namespace {
     NEW_NERVE(NANDErrorSequenceGoWiiMenu, NANDErrorSequence, GoWiiMenu);
     NEW_NERVE(NANDErrorSequenceCheckEnableToCreateOnPreloading, NANDErrorSequence, CheckEnableToCreateOnPreloading);
     NEW_NERVE(NANDErrorSequenceCheckEnableToCreateAfterRemove, NANDErrorSequence, CheckEnableToCreateAfterRemove);
-}; // namespace
+};  // namespace
 
 NANDErrorSequence::NANDErrorSequence(SaveDataHandleSequence* pHost, SysInfoWindow* pParam2, SysInfoWindow*)
-    : ActorStateBase("NANDError"),
-      mHost(pHost),
-      mSystemMessageId(nullptr),
-      _14(false),
-      _15(false),
-      mResult(0),
-      mSysInfoWindow(pParam2) {
+    : ActorStateBase("NANDError"), mHost(pHost), mSystemMessageId(nullptr), _14(false), _15(false), mResult(0), mSysInfoWindow(pParam2) {
     initNerve(&NANDErrorSequenceIdle::sInstance);
     kill();
     resetParam();
@@ -143,7 +137,10 @@ bool NANDErrorSequence::isPreparedReset() const {
         return true;
     }
 
-    if (isNerve(&NANDErrorSequenceIdle::sInstance) || isNerve(&NANDErrorSequenceError::sInstance) || isNerve(&NANDErrorSequenceRemoveConfirm::sInstance) || isNerve(&NANDErrorSequenceRemoveDoneKeyWait::sInstance) || isNerve(&NANDErrorSequenceNoSaveConfirmBeforeRemove::sInstance) || isNerve(&NANDErrorSequenceNoSaveConfirmLessBlockOrInode::sInstance) || isNerve(&NANDErrorSequenceLessBlockOrInodeConfirm::sInstance) || isNerve(&NANDErrorSequenceGoWiiMenu::sInstance)) {
+    if (isNerve(&NANDErrorSequenceIdle::sInstance) || isNerve(&NANDErrorSequenceError::sInstance) ||
+        isNerve(&NANDErrorSequenceRemoveConfirm::sInstance) || isNerve(&NANDErrorSequenceRemoveDoneKeyWait::sInstance) ||
+        isNerve(&NANDErrorSequenceNoSaveConfirmBeforeRemove::sInstance) || isNerve(&NANDErrorSequenceNoSaveConfirmLessBlockOrInode::sInstance) ||
+        isNerve(&NANDErrorSequenceLessBlockOrInodeConfirm::sInstance) || isNerve(&NANDErrorSequenceGoWiiMenu::sInstance)) {
         return true;
     }
 
@@ -157,16 +154,11 @@ void NANDErrorSequence::restoreFromReset() {
     kill();
 }
 
-void NANDErrorSequence::exeIdle() {
-}
+void NANDErrorSequence::exeIdle() {}
 
 void NANDErrorSequence::exeError() {
     if (MR::isFirstStep(this)) {
-        mSysInfoWindow->appear(
-            mSystemMessageId,
-            SysInfoWindow::Type_Key,
-            SysInfoWindow::TextPos_Center,
-            SysInfoWindow::MessageType_System);
+        mSysInfoWindow->appear(mSystemMessageId, SysInfoWindow::Type_Key, SysInfoWindow::TextPos_Center, SysInfoWindow::MessageType_System);
         GameSystemFunction::setResetOperationReturnToMenu();
     }
 
@@ -177,11 +169,7 @@ void NANDErrorSequence::exeError() {
 
 void NANDErrorSequence::exeErrorToFreeze() {
     if (MR::isFirstStep(this)) {
-        mSysInfoWindow->appear(
-            mSystemMessageId,
-            SysInfoWindow::Type_Blocking,
-            SysInfoWindow::TextPos_Center,
-            SysInfoWindow::MessageType_System);
+        mSysInfoWindow->appear(mSystemMessageId, SysInfoWindow::Type_Blocking, SysInfoWindow::TextPos_Center, SysInfoWindow::MessageType_System);
     }
 
     if (!mSysInfoWindow->isWait()) {
@@ -308,7 +296,10 @@ void NANDErrorSequence::exeCheckEnableToCreateAfterRemove() {
 }
 
 bool NANDErrorSequence::isEnablePointer() const {
-    if (isNerve(&NANDErrorSequenceError::sInstance) || isNerve(&NANDErrorSequenceErrorToFreeze::sInstance) || isNerve(&NANDErrorSequenceRemoveConfirm::sInstance) || isNerve(&NANDErrorSequenceRemoveDoneKeyWait::sInstance) || isNerve(&NANDErrorSequenceNoSaveConfirmBeforeRemove::sInstance) || isNerve(&NANDErrorSequenceNoSaveConfirmLessBlockOrInode::sInstance) || isNerve(&NANDErrorSequenceLessBlockOrInodeConfirm::sInstance) || isNerve(&NANDErrorSequenceGoWiiMenu::sInstance)) {
+    if (isNerve(&NANDErrorSequenceError::sInstance) || isNerve(&NANDErrorSequenceErrorToFreeze::sInstance) ||
+        isNerve(&NANDErrorSequenceRemoveConfirm::sInstance) || isNerve(&NANDErrorSequenceRemoveDoneKeyWait::sInstance) ||
+        isNerve(&NANDErrorSequenceNoSaveConfirmBeforeRemove::sInstance) || isNerve(&NANDErrorSequenceNoSaveConfirmLessBlockOrInode::sInstance) ||
+        isNerve(&NANDErrorSequenceLessBlockOrInodeConfirm::sInstance) || isNerve(&NANDErrorSequenceGoWiiMenu::sInstance)) {
         return true;
     }
 
@@ -323,8 +314,7 @@ bool NANDErrorSequence::isResultFileCorrupted() const {
     return mResult == 3;
 }
 
-void NANDErrorSequence::control() {
-}
+void NANDErrorSequence::control() {}
 
 void NANDErrorSequence::resetParam() {
     mSystemMessageId = nullptr;
@@ -336,11 +326,7 @@ void NANDErrorSequence::resetParam() {
 
 bool NANDErrorSequence::tryConfirm(const char* pSystemMessageId, bool* pIsSelectedYes) {
     if (MR::isFirstStep(this)) {
-        mSysInfoWindow->appear(
-            pSystemMessageId,
-            SysInfoWindow::Type_YesNo,
-            SysInfoWindow::TextPos_Center,
-            SysInfoWindow::MessageType_System);
+        mSysInfoWindow->appear(pSystemMessageId, SysInfoWindow::Type_YesNo, SysInfoWindow::TextPos_Center, SysInfoWindow::MessageType_System);
         MR::startSystemSE("SE_SY_SAVE_CONFIRM_INFO", -1, -1);
     }
 
@@ -355,11 +341,7 @@ bool NANDErrorSequence::tryConfirm(const char* pSystemMessageId, bool* pIsSelect
 
 bool NANDErrorSequence::tryProcessDoneKeyWait(const char* pSystemMessageId) {
     if (MR::isFirstStep(this)) {
-        mSysInfoWindow->appear(
-            pSystemMessageId,
-            SysInfoWindow::Type_Key,
-            SysInfoWindow::TextPos_Center,
-            SysInfoWindow::MessageType_System);
+        mSysInfoWindow->appear(pSystemMessageId, SysInfoWindow::Type_Key, SysInfoWindow::TextPos_Center, SysInfoWindow::MessageType_System);
     }
 
     if (MR::isDead(mSysInfoWindow)) {

@@ -6,7 +6,7 @@
 namespace FileSelectInfoSub {
     class SlideState;
     class CharaState;
-}; // namespace FileSelectInfoSub
+};  // namespace FileSelectInfoSub
 
 class FileSelectInfo : public LayoutActor {
 public:
@@ -31,18 +31,18 @@ public:
     void reflectInfo();
 
 private:
-    /* 0x20 */ s32                            mNumber;
-    /* 0x24 */ s32                            mStarNum;
-    /* 0x28 */ s32                            mStarPieceNum;
-    /* 0x2C */ s32                            mNameBufferSize;
-    /* 0x30 */ wchar_t*                       mName;
-    /* 0x34 */ wchar_t                        mDateMessage[32];
-    /* 0x74 */ wchar_t                        mTimeMessage[32];
-    /* 0xB4 */ s32                            mMissNum;
-    /* 0xB8 */ bool                           mIsSelectedMarioPrev;
-    /* 0xB9 */ bool                           mIsSelectedMario;
-    /* 0xBA */ bool                           mIsViewNormalEnding;
-    /* 0xBB */ bool                           mIsViewCompleteEnding;
+    /* 0x20 */ s32 mNumber;
+    /* 0x24 */ s32 mStarNum;
+    /* 0x28 */ s32 mStarPieceNum;
+    /* 0x2C */ s32 mNameBufferSize;
+    /* 0x30 */ wchar_t* mName;
+    /* 0x34 */ wchar_t mDateMessage[32];
+    /* 0x74 */ wchar_t mTimeMessage[32];
+    /* 0xB4 */ s32 mMissNum;
+    /* 0xB8 */ bool mIsSelectedMarioPrev;
+    /* 0xB9 */ bool mIsSelectedMario;
+    /* 0xBA */ bool mIsViewNormalEnding;
+    /* 0xBB */ bool mIsViewCompleteEnding;
     /* 0xBC */ FileSelectInfoSub::SlideState* mSlideState;
     /* 0xC0 */ FileSelectInfoSub::CharaState* mCharaState;
 };
@@ -77,4 +77,4 @@ namespace FileSelectInfoSub {
     private:
         /* 0x8 */ FileSelectInfo* mHost;
     };
-}; // namespace FileSelectInfoSub
+};  // namespace FileSelectInfoSub

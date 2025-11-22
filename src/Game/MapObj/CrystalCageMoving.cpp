@@ -1,9 +1,8 @@
-#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/MapObj/CrystalCageMoving.hpp"
+#include "Game/LiveActor/HitSensor.hpp"
 #include "JSystem/JMath/JMath.hpp"
 
-CrystalCageMoving::CrystalCageMoving(const char* pName)
-    : MapObjActor(pName) {
+CrystalCageMoving::CrystalCageMoving(const char* pName) : MapObjActor(pName) {
     mTicoModel = nullptr;
     mCameraInfo = nullptr;
     _FC.x = 0.0f;
@@ -171,13 +170,13 @@ void CrystalCageMoving::updateHitSensor(HitSensor* pSensor) {
     if (!_108) {
         pSensor->mPosition.set< f32 >(mPosition);
     } else {
-        f32     radius = pSensor->mRadius;
+        f32 radius = pSensor->mRadius;
         TMtx34f joint_mtx;
         joint_mtx.set(MR::getJointMtx(this, nullptr));
         TVec3f joint_pos;
-        f32    z = joint_mtx.mMtx[2][1];
-        f32    y = joint_mtx.mMtx[1][1];
-        f32    x = joint_mtx.mMtx[0][1];
+        f32 z = joint_mtx.mMtx[2][1];
+        f32 y = joint_mtx.mMtx[1][1];
+        f32 x = joint_mtx.mMtx[0][1];
         joint_pos.set< f32 >(x, y, z);
         TVec3f stack_14;
         JMAVECScaleAdd(&joint_pos, &mPosition, &stack_14, (-450.0f + radius));
@@ -237,8 +236,7 @@ bool CrystalCageMoving::isNerveTypeEnd() const {
     return ret;
 }
 
-CrystalCageMoving::~CrystalCageMoving() {
-}
+CrystalCageMoving::~CrystalCageMoving() {}
 
 namespace NrvCrystalCageMoving {
     INIT_NERVE(CrystalCageMovingNrvWaitBig);
@@ -275,8 +273,7 @@ namespace NrvCrystalCageMoving {
         cage->exeBreakSmall();
     }
 
-    void CrystalCageMovingNrvWaitSmall::execute(Spine*) const {
-    }
+    void CrystalCageMovingNrvWaitSmall::execute(Spine*) const {}
 
     void CrystalCageMovingNrvBreakBig::executeOnEnd(Spine* pSpine) const {
         CrystalCageMoving* cage = reinterpret_cast< CrystalCageMoving* >(pSpine->mExecutor);
@@ -288,6 +285,5 @@ namespace NrvCrystalCageMoving {
         cage->exeBreakBig();
     }
 
-    void CrystalCageMovingNrvWaitBig::execute(Spine*) const {
-    }
-}; // namespace NrvCrystalCageMoving
+    void CrystalCageMovingNrvWaitBig::execute(Spine*) const {}
+};  // namespace NrvCrystalCageMoving

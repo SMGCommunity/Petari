@@ -1,7 +1,7 @@
+#include "Game/Screen/PurpleCoinCounter.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/CountUpPaneRumbler.hpp"
 #include "Game/Screen/CounterLayoutAppearer.hpp"
-#include "Game/Screen/PurpleCoinCounter.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/SceneUtil.hpp"
@@ -13,17 +13,11 @@ namespace {
 namespace NrvPurpleCoinCounter {
     NEW_NERVE(PurpleCoinCounterNrvAppear, PurpleCoinCounter, Appear);
     NEW_NERVE(PurpleCoinCounterNrvWait, PurpleCoinCounter, Wait);
-}; // namespace NrvPurpleCoinCounter
+};  // namespace NrvPurpleCoinCounter
 
 PurpleCoinCounter::PurpleCoinCounter(const char* pName)
-    : LayoutActor(pName, true),
-      mPurpleCoinNum(0),
-      mPurpleCoinDisplayNum(0),
-      mInvalidCountUpFrame(0),
-      mLayoutAppearer(nullptr),
-      mPaneRumbler(nullptr),
-      mIsValid(false) {
-}
+    : LayoutActor(pName, true), mPurpleCoinNum(0), mPurpleCoinDisplayNum(0), mInvalidCountUpFrame(0), mLayoutAppearer(nullptr), mPaneRumbler(nullptr),
+      mIsValid(false) {}
 
 void PurpleCoinCounter::init(const JMapInfoIter& rIter) {
     initLayoutManager("PurpleCoinCounter", 2);
@@ -108,5 +102,4 @@ void PurpleCoinCounter::exeAppear() {
     }
 }
 
-void PurpleCoinCounter::exeWait() {
-}
+void PurpleCoinCounter::exeWait() {}

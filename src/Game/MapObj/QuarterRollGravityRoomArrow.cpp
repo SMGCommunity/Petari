@@ -6,9 +6,7 @@
 #include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 
-QuarterRollGravityRoomArrow::QuarterRollGravityRoomArrow(const char* pName)
-    : MapObjActor(pName) {
-}
+QuarterRollGravityRoomArrow::QuarterRollGravityRoomArrow(const char* pName) : MapObjActor(pName) {}
 
 void QuarterRollGravityRoomArrow::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);
@@ -47,13 +45,15 @@ void QuarterRollGravityRoomArrow::exeRollOffB() {
 }
 
 void QuarterRollGravityRoomArrow::initCaseUseSwitchA(const MapObjActorInitInfo& rInfo) {
-    MR::listenStageSwitchOnOffA(this, MR::Functor(this, &QuarterRollGravityRoomArrow::onRollA), MR::Functor(this, &QuarterRollGravityRoomArrow::offRollA));
+    MR::listenStageSwitchOnOffA(this, MR::Functor(this, &QuarterRollGravityRoomArrow::onRollA),
+                                MR::Functor(this, &QuarterRollGravityRoomArrow::offRollA));
 }
 
 void QuarterRollGravityRoomArrow::initCaseNoUseSwitchA(const MapObjActorInitInfo& rInfo) {}
 
 void QuarterRollGravityRoomArrow::initCaseUseSwitchB(const MapObjActorInitInfo& rInfo) {
-    MR::listenStageSwitchOnOffB(this, MR::Functor(this, &QuarterRollGravityRoomArrow::onRollB), MR::Functor(this, &QuarterRollGravityRoomArrow::offRollB));
+    MR::listenStageSwitchOnOffB(this, MR::Functor(this, &QuarterRollGravityRoomArrow::onRollB),
+                                MR::Functor(this, &QuarterRollGravityRoomArrow::offRollB));
 }
 void QuarterRollGravityRoomArrow::initCaseNoUseSwitchB(const MapObjActorInitInfo& rInfo) {}
 
@@ -81,4 +81,4 @@ namespace NrvQuarterRollGravityRoomArrow {
     QuarterRollGravityRoomArrowNrvRollOffA(QuarterRollGravityRoomArrowNrvRollOffA::sInstance);
     QuarterRollGravityRoomArrowNrvRollOnB(QuarterRollGravityRoomArrowNrvRollOnB::sInstance);
     QuarterRollGravityRoomArrowNrvRollOffB(QuarterRollGravityRoomArrowNrvRollOffB::sInstance);
-} // namespace NrvQuarterRollGravityRoomArrow
+}  // namespace NrvQuarterRollGravityRoomArrow

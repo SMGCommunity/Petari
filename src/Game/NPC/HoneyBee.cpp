@@ -26,10 +26,9 @@ namespace NrvHoneyBee {
     NEW_NERVE(HoneyBeeNrvJumpLecture, HoneyBee, JumpLecture);
     NEW_NERVE(HoneyBeeNrvFlyLectureA, HoneyBee, FlyLectureA);
     NEW_NERVE(HoneyBeeNrvFlyLectureB, HoneyBee, FlyLectureB);
-}; // namespace NrvHoneyBee
+};  // namespace NrvHoneyBee
 
-HoneyBee::HoneyBee(const char* pName)
-    : NPCActor(pName) {
+HoneyBee::HoneyBee(const char* pName) : NPCActor(pName) {
     _15C = -1;
     _19C = 0;
     _1A0 = 0.0f;
@@ -37,14 +36,13 @@ HoneyBee::HoneyBee(const char* pName)
     _190.zero();
 }
 
-HoneyBee::~HoneyBee() {
-}
+HoneyBee::~HoneyBee() {}
 
 void HoneyBee::makeArchiveList(NameObjArchiveListCollector* pArchive, const JMapInfoIter& rIter) {
     const char* name;
     MR::getObjectName(&name, rIter);
     NPCActorItem npcItem = name;
-    s32          arg = -1;
+    s32 arg = -1;
     MR::getJMapInfoArg0NoInit(rIter, &arg);
     if (MR::getNPCItemData(&npcItem, arg)) {
         NPCActor::addArchive(pArchive, npcItem);
@@ -52,8 +50,8 @@ void HoneyBee::makeArchiveList(NameObjArchiveListCollector* pArchive, const JMap
 }
 
 void HoneyBee::init(const JMapInfoIter& rIter) {
-    f32          radius;
-    s32          arg;
+    f32 radius;
+    s32 arg;
     NPCActorCaps caps = "HoneyBee";
     caps.setDefault();
     caps._38 = 0;
@@ -290,4 +288,4 @@ namespace MR {
         _1C = a;
         _20 = a;
     }
-}; // namespace MR
+};  // namespace MR

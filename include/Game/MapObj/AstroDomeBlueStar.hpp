@@ -47,10 +47,10 @@ public:
     void exeGalaxyConfirmCancel();
     void exeGalaxyConfirm();
 
-    GCaptureRibbon* mCaptureRibbon; // 0x8C
-    TPos3f          _90;
-    TPos3f          _C0;
-    u32             _F0;
-    TVec3f          mZoomPos;      // 0xF4
-    CaptureActor*   mCaptureActor; // 0x100
+    GCaptureRibbon* mCaptureRibbon;  // 0x8C
+    TPos3f _90;
+    TPos3f _C0;
+    u32 _F0;
+    TVec3f mZoomPos;              // 0xF4
+    CaptureActor* mCaptureActor;  // 0x100
 };

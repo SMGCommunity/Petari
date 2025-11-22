@@ -1,10 +1,9 @@
+#include "Game/MapObj/MarblePlanet.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
-#include "Game/MapObj/MarblePlanet.hpp"
 #include "JSystem/JMath.hpp"
 
-MarblePlanet::MarblePlanet(const char* pName)
-    : LiveActor(pName) {
+MarblePlanet::MarblePlanet(const char* pName) : LiveActor(pName) {
     mCorePlanetModel = 0;
     mPlanetElectrons = 0;
     mWatermelonCollision = 0;
@@ -148,7 +147,7 @@ void MarblePlanet::initCoreAndElectron() {
     MR::calcFrontVec(&front, this);
 
     TVec3f* pos;
-    int     i = 0;
+    int i = 0;
 
     if (mNumElectrons > 0) {
         pos = &mPosition;
@@ -295,8 +294,7 @@ void MarblePlanetElectron::crashElectron(HitSensor *pSensor) {
 }
 */
 
-MarblePlanetElectronShadow::MarblePlanetElectronShadow(LiveActor* pElectronPtr, const TVec3f& rVec, const char* pName)
-    : LiveActor(pName) {
+MarblePlanetElectronShadow::MarblePlanetElectronShadow(LiveActor* pElectronPtr, const TVec3f& rVec, const char* pName) : LiveActor(pName) {
     mParentElectron = static_cast< MarblePlanetElectron* >(pElectronPtr);
     _90 = &rVec;
 }
@@ -320,20 +318,17 @@ void MarblePlanetElectronShadow::calcAndSetBaseMtx() {
 }
 */
 
-MarblePlanet::~MarblePlanet() {
-}
+MarblePlanet::~MarblePlanet() {}
 
-MarblePlanetElectron::~MarblePlanetElectron() {
-}
+MarblePlanetElectron::~MarblePlanetElectron() {}
 
-MarblePlanetElectronShadow::~MarblePlanetElectronShadow() {
-}
+MarblePlanetElectronShadow::~MarblePlanetElectronShadow() {}
 
 namespace NrvMarblePlanet {
     INIT_NERVE(MarblePlanetNrvWait);
     INIT_NERVE(MarblePlanetNrvScaleUpCore);
     INIT_NERVE(MarblePlanetNrvBreakCore);
-}; // namespace NrvMarblePlanet
+};  // namespace NrvMarblePlanet
 
 namespace NrvMarblePlanetElectron {
     INIT_NERVE(MarblePlanetElectronNrvMove);
@@ -348,7 +343,7 @@ namespace NrvMarblePlanetElectron {
         MarblePlanetElectron* electron = reinterpret_cast< MarblePlanetElectron* >(pSpine->mExecutor);
         electron->exeMove();
     }
-}; // namespace NrvMarblePlanetElectron
+};  // namespace NrvMarblePlanetElectron
 
 namespace NrvMarblePlanet {
     void MarblePlanetNrvBreakCore::execute(Spine* pSpine) const {
@@ -361,6 +356,5 @@ namespace NrvMarblePlanet {
         marble->exeScaleUpCore();
     }
 
-    void MarblePlanetNrvWait::execute(Spine* pSpine) const {
-    }
-}; // namespace NrvMarblePlanet
+    void MarblePlanetNrvWait::execute(Spine* pSpine) const {}
+};  // namespace NrvMarblePlanet

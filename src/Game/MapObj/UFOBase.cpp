@@ -23,13 +23,12 @@
 #include <cstddef>
 #include <cstdio>
 
-UFOBase::UFOBase(const char* pName)
-    : LiveActor(pName) {
+UFOBase::UFOBase(const char* pName) : LiveActor(pName) {
     mCollisionParts = nullptr;
     mLODCtrl = nullptr;
     mModel = nullptr;
     mRailMover = nullptr;
-    f32 v1 = 1.0f; // ???
+    f32 v1 = 1.0f;  // ???
     _9C.x = 0.0f;
     _9C.y = 0.0f;
     _9C.z = 1.0f;
@@ -186,13 +185,9 @@ void UFOBase::exeWait() {
     }
 }
 
-UFOSolid::UFOSolid(const char* pName)
-    : UFOBase(pName) {
-}
+UFOSolid::UFOSolid(const char* pName) : UFOBase(pName) {}
 
-UFOBreakable::UFOBreakable(const char* pName)
-    : UFOBase(pName) {
-}
+UFOBreakable::UFOBreakable(const char* pName) : UFOBase(pName) {}
 
 void UFOBreakable::initSensorType() {
     MR::addHitSensor(this, "body", ATYPE_KILLER_TARGET_MAPOBJ, 8, 100.0f, TVec3f(0.0f, 0.0f, 0.0f));
@@ -231,4 +226,4 @@ namespace NrvUFOBase {
         UFOBase* pActor = (UFOBase*)pSpine->mExecutor;
         pActor->kill();
     }
-}; // namespace NrvUFOBase
+};  // namespace NrvUFOBase

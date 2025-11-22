@@ -27,4 +27,4 @@ namespace DemoExecutorFunction {
     void pauseTimeKeepDemo(DemoExecutor*);
     void resumeTimeKeepDemo(DemoExecutor*);
     bool isPauseTimeKeepDemo(const DemoExecutor*);
-}; // namespace DemoExecutorFunction
+};  // namespace DemoExecutorFunction

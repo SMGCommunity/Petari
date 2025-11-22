@@ -1,5 +1,5 @@
-#include "Game/Camera/CameraParamChunk.hpp"
 #include "Game/Camera/CamTranslatorTripodPlanet.hpp"
+#include "Game/Camera/CameraParamChunk.hpp"
 #include "Game/Util/MathUtil.hpp"
 
 void CamTranslatorTripodPlanet::setParam(const CameraParamChunk* pChunk) {
@@ -14,7 +14,7 @@ void CamTranslatorTripodPlanet::setParam(const CameraParamChunk* pChunk) {
     }
 
     TVec2f angle = TVec2f(general->mAngleA, general->mAngleB);
-    f32    dist = general->mDist;
+    f32 dist = general->mDist;
 
     CameraTripodPlanet* camera = mCamera;
 

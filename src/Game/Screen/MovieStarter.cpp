@@ -3,10 +3,7 @@
 #include "Game/Util/EventUtil.hpp"
 #include "Game/Util/JMapUtil.hpp"
 
-MovieStarter::MovieStarter(const char* pName)
-    : LiveActor(pName),
-      mMovieType(-1) {
-}
+MovieStarter::MovieStarter(const char* pName) : LiveActor(pName), mMovieType(-1) {}
 
 void MovieStarter::init(const JMapInfoIter& rIter) {
     MR::connectToSceneLayoutMovement(this);

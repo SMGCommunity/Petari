@@ -9,13 +9,12 @@ namespace {
             val = 1;
         }
 
-        return FileRipper::loadToMainRAM(pInfo->mFileName, (u8*)pInfo->mFileEntry->mContext, true, pInfo->mFileEntry->mHeap, (FileRipper::AllocDirection)val);
+        return FileRipper::loadToMainRAM(pInfo->mFileName, (u8*)pInfo->mFileEntry->mContext, true, pInfo->mFileEntry->mHeap,
+                                         (FileRipper::AllocDirection)val);
     }
-}; // namespace
+};  // namespace
 
-FileLoaderThread::FileLoaderThread(int priority, int msgCount, JKRHeap* pHeap)
-    : OSThreadWrapper(0x8000, msgCount, priority, pHeap) {
-}
+FileLoaderThread::FileLoaderThread(int priority, int msgCount, JKRHeap* pHeap) : OSThreadWrapper(0x8000, msgCount, priority, pHeap) {}
 
 void* FileLoaderThread::run() {
     OSInitFastCast();

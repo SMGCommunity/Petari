@@ -18,14 +18,13 @@ namespace NrvRainCloud {
     NEW_NERVE(RainCloudNrvEnd, RainCloud, End);
     NEW_NERVE(RainCloudNrvSoftTouch, RainCloud, SoftTouch);
     NEW_NERVE(RainCloudNrvHardTouch, RainCloud, HardTouch);
-}; // namespace NrvRainCloud
+};  // namespace NrvRainCloud
 
 namespace {
     static s32 sThunderStep = 0x8C;
 }
 
-RainCloud::RainCloud(const char* pName)
-    : LiveActor(pName) {
+RainCloud::RainCloud(const char* pName) : LiveActor(pName) {
     mCloudCylinder = nullptr;
     mRailMover = nullptr;
     _F4 = 0;
@@ -218,7 +217,8 @@ void RainCloud::exeHardTouch() {
 void RainCloud::control() {
     _F4->update();
 
-    if (mRailMover != nullptr && !isNerve(&NrvRainCloud::RainCloudNrvEnd::sInstance) && (mRailMover->movement(), mPosition.set(mRailMover->_28), MR::isMapPartsRailMovePassedEndPointRepeat(mRailMover))) {
+    if (mRailMover != nullptr && !isNerve(&NrvRainCloud::RainCloudNrvEnd::sInstance) &&
+        (mRailMover->movement(), mPosition.set(mRailMover->_28), MR::isMapPartsRailMovePassedEndPointRepeat(mRailMover))) {
         setNerve(&NrvRainCloud::RainCloudNrvDisappear::sInstance);
     } else {
         if (MR::isShadowProjected(this, nullptr)) {
@@ -246,7 +246,7 @@ void RainCloud::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
 }
 
 void RainCloud::updateHitSensor(HitSensor* pSensor) {
-    f32    radius = pSensor->mRadius;
+    f32 radius = pSensor->mRadius;
     TVec3f v7;
     JMAVECScaleAdd(&mGravity, &mPosition, &v7, radius);
     TVec3f v6;
@@ -275,7 +275,8 @@ void RainCloud::endClipped() {
 }
 
 void RainCloud::switchEffect() {
-    bool v2 = isNerve(&NrvRainCloud::RainCloudNrvAppear::sInstance) || isNerve(&NrvRainCloud::RainCloudNrvDisappear::sInstance) || isNerve(&NrvRainCloud::RainCloudNrvEnd::sInstance);
+    bool v2 = isNerve(&NrvRainCloud::RainCloudNrvAppear::sInstance) || isNerve(&NrvRainCloud::RainCloudNrvDisappear::sInstance) ||
+              isNerve(&NrvRainCloud::RainCloudNrvEnd::sInstance);
 
     if (v2) {
         if (MR::isEffectValid(this, "Splash")) {
@@ -319,5 +320,4 @@ void RainCloud::switchEffect() {
     }
 }
 
-RainCloud::~RainCloud() {
-}
+RainCloud::~RainCloud() {}

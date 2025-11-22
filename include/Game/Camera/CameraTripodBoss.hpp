@@ -7,10 +7,10 @@ public:
     CameraTripodBoss(const char*);
     virtual ~CameraTripodBoss();
 
-    virtual CameraTargetObj*   calc();
+    virtual CameraTargetObj* calc();
     virtual CamTranslatorBase* createTranslator();
 
     void arrangeRound();
 
-    f32 upZ; // 0x8C
+    f32 upZ;  // 0x8C
 };

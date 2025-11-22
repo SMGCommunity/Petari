@@ -1,12 +1,10 @@
 #include "Game/MapObj/PrizeRing.hpp"
 
-PrizeRing::PrizeRing()
-    : ModelObj("PrizeRing", "PrizeRing", nullptr, -2, -2, -2, false) {
+PrizeRing::PrizeRing() : ModelObj("PrizeRing", "PrizeRing", nullptr, -2, -2, -2, false) {
     _90 = 800;
 }
 
-PrizeRing::~PrizeRing() {
-}
+PrizeRing::~PrizeRing() {}
 
 void PrizeRing::init(const JMapInfoIter& rIter) {
     initNerve(&NrvPrizeRing::PrizeRingStart::sInstance);
@@ -151,8 +149,7 @@ namespace NrvPrizeRing {
         PrizeRing* pActor = (PrizeRing*)pSpine->mExecutor;
         pActor->exeTimeout();
     }
-    void PrizeRingReadyToPass::execute(Spine* pSpine) const {
-    }
+    void PrizeRingReadyToPass::execute(Spine* pSpine) const {}
 
     void PrizeRingPass::execute(Spine* pSpine) const {
         PrizeRing* pActor = (PrizeRing*)pSpine->mExecutor;
@@ -163,4 +160,4 @@ namespace NrvPrizeRing {
         PrizeRing* pActor = (PrizeRing*)pSpine->mExecutor;
         pActor->exeReadyToKill();
     }
-}; // namespace NrvPrizeRing
+};  // namespace NrvPrizeRing

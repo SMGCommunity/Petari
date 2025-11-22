@@ -1,34 +1,23 @@
-#include "Game/NPC/CometEventExecutorTimeLimit.hpp"
 #include "Game/NPC/CometEventKeeper.hpp"
+#include "Game/NPC/CometEventExecutorTimeLimit.hpp"
 #include "Game/Screen/GalaxyCometScreenFilter.hpp"
 #include "Game/System/GalaxyStatusAccessor.hpp"
 
 struct GalaxyTimeLimitInfo {
     /* 0x0 */ const char* mGalaxyName;
-    /* 0x4 */ s32         mScenarioNo;
-    /* 0x8 */ u32         mTimeLimit;
+    /* 0x4 */ s32 mScenarioNo;
+    /* 0x8 */ u32 mTimeLimit;
 };
 
 namespace {
     static const GalaxyTimeLimitInfo sTimeLimitInfoTable[] = {
-        {"EggStarGalaxy", 4, 240},
-        {"StarDustGalaxy", 4, 240},
-        {"SandClockGalaxy", 4, 270},
-        {"CannonFleetGalaxy", 4, 360},
-        {"StarDustGalaxy", 5, 120},
-        {"PhantomGalaxy", 5, 60},
-        {"CosmosGardenGalaxy", 5, 150},
-        {"FactoryGalaxy", 5, 180},
-        {"ReverseKingdomGalaxy", 5, 210},
+        {"EggStarGalaxy", 4, 240},      {"StarDustGalaxy", 4, 240}, {"SandClockGalaxy", 4, 270},
+        {"CannonFleetGalaxy", 4, 360},  {"StarDustGalaxy", 5, 120}, {"PhantomGalaxy", 5, 60},
+        {"CosmosGardenGalaxy", 5, 150}, {"FactoryGalaxy", 5, 180},  {"ReverseKingdomGalaxy", 5, 210},
     };
 };
 
-CometEventKeeper::CometEventKeeper()
-    : mExecutorTimeLimit(nullptr),
-      mScreenFilter(nullptr),
-      mCometName(nullptr),
-      mCometStateIndex(0) {
-}
+CometEventKeeper::CometEventKeeper() : mExecutorTimeLimit(nullptr), mScreenFilter(nullptr), mCometName(nullptr), mCometStateIndex(0) {}
 
 void CometEventKeeper::init() {
     initCometStatus();

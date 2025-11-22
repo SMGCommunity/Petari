@@ -1,5 +1,5 @@
-#include "Game/Camera/CameraShakePatternImpl.hpp"
 #include "Game/Camera/CameraShakeTask.hpp"
+#include "Game/Camera/CameraShakePatternImpl.hpp"
 
 CameraShakeTask::CameraShakeTask(CameraShakePattern* pPattern) {
     mPattern = pPattern;

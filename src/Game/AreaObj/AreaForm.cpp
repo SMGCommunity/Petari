@@ -1,6 +1,6 @@
 #include "Game/AreaObj/AreaForm.hpp"
-#include "JSystem/JMath/JMath.hpp"
 #include "Game/Util.hpp"
+#include "JSystem/JMath/JMath.hpp"
 
 template <>
 void TRot3f::mult33(const TVec3f& rSrc, TVec3f& rDst) const {
@@ -55,7 +55,8 @@ bool AreaFormCube::isInVolume(const TVec3f& rPos) const {
     TVec3f transpose;
     pos.multTranspose(rPos, transpose);
 
-    return transpose.x >= mBounding.mMin.x && transpose.y >= mBounding.mMin.y && transpose.z >= mBounding.mMin.z && transpose.x < mBounding.mMax.x && transpose.y < mBounding.mMax.y && transpose.z < mBounding.mMax.z;
+    return transpose.x >= mBounding.mMin.x && transpose.y >= mBounding.mMin.y && transpose.z >= mBounding.mMin.z && transpose.x < mBounding.mMax.x &&
+           transpose.y < mBounding.mMax.y && transpose.z < mBounding.mMax.z;
 }
 
 void AreaFormCube::calcWorldPos(TVec3f* pPos) const {

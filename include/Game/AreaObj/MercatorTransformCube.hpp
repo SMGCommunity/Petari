@@ -11,7 +11,7 @@ public:
     virtual void init(const JMapInfoIter&);
 
     void convertTransAndRotate(TVec3f*, TPos3f*, const TVec3f&, bool) const;
-    f32  getSphereRadius() const;
+    f32 getSphereRadius() const;
     void calcUV(TVec2f*, const TVec3f&) const;
     void calcLocalBoxSize(TVec3f*) const;
 
@@ -24,4 +24,4 @@ namespace MR {
     void convertMercatorPlaneToSphereTransAndRotate(TVec3f*, TPos3f*, const TVec3f&, bool);
 
     MapPartsRailMover* createMapPartsRailMoverForMercator(LiveActor*, const JMapInfoIter&, bool);
-}; // namespace MR
+};  // namespace MR

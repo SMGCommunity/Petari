@@ -36,10 +36,10 @@ public:
     void exeRecover();
     void startTimerSound(s32, s32);
 
-    /* 0x8C */ Tamakoro*        mHost;
+    /* 0x8C */ Tamakoro* mHost;
     /* 0x90 */ TalkMessageCtrl* mTalkCtrl;
     /* 0x94 */ TalkMessageCtrl* mTalkCtrlAutomatic;
-    /* 0x98 */ TVec3f           mPadAccel;
-    /* 0xA4 */ bool             _A4;
-    /* 0xA5 */ bool             _A5;
+    /* 0x98 */ TVec3f mPadAccel;
+    /* 0xA4 */ bool _A4;
+    /* 0xA5 */ bool _A5;
 };

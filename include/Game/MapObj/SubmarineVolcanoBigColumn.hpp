@@ -18,11 +18,11 @@ public:
     void pauseOff();
     void initBreakModel(const char*);
 
-    ModelObj* mBreakModel;    // 0x8C
-    bool      mIsSmallColumn; // 0x90
+    ModelObj* mBreakModel;  // 0x8C
+    bool mIsSmallColumn;    // 0x90
 };
 
 namespace NrvSubmarineVolcanoBigColumn {
     NERVE_DECL(SubmarineVolcanoBigColumnNrvWait, SubmarineVolcanoBigColumn, SubmarineVolcanoBigColumn::exeWait);
     NERVE_DECL(SubmarineVolcanoBigColumnNrvBreak, SubmarineVolcanoBigColumn, SubmarineVolcanoBigColumn::exeBreak);
-}; // namespace NrvSubmarineVolcanoBigColumn
+};  // namespace NrvSubmarineVolcanoBigColumn

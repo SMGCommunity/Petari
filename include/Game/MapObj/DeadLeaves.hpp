@@ -13,10 +13,10 @@ public:
 
     void exeSpin();
 
-    s32 mItemType; // 0xC4
+    s32 mItemType;  // 0xC4
 };
 
 namespace NrvDeadLeaves {
     NERVE(DeadLeavesNrvWait);
     NERVE(DeadLeavesNrvSpin);
-}; // namespace NrvDeadLeaves
+};  // namespace NrvDeadLeaves

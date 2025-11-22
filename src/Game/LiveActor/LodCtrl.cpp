@@ -1,6 +1,6 @@
+#include "Game/LiveActor/LodCtrl.hpp"
 #include "Game/LiveActor/ActorLightCtrl.hpp"
 #include "Game/LiveActor/ClippingDirector.hpp"
-#include "Game/LiveActor/LodCtrl.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
 #include <cstdio>
 
@@ -29,7 +29,7 @@ namespace {
             pFunc(pCtrl->_14, arg);
         }
     }
-}; // namespace
+};  // namespace
 
 const bool def = false;
 
@@ -293,7 +293,7 @@ void LodCtrl::initLightCtrl() {
 ModelObj* LodCtrl::initLodModel(int a1, int a2, int a3, bool isLowModel) const {
     const char* res = MR::getModelResName(mActor);
     const char* type = isLowModel ? "Low" : "Middle";
-    char        buf[0x100];
+    char buf[0x100];
     snprintf(buf, sizeof(buf), "/ObjectData/%s%s.arc", res, type);
 
     if (!MR::isFileExist(buf, false)) {

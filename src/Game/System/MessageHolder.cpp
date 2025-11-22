@@ -1,6 +1,6 @@
+#include "Game/System/MessageHolder.hpp"
 #include "Game/NPC/TalkMessageInfo.hpp"
 #include "Game/System/GameSystemObjHolder.hpp"
-#include "Game/System/MessageHolder.hpp"
 #include "JSystem/JKernel/JKRArchive.hpp"
 
 #define SYSTEMMESSAGE_ARC "/Memory/SystemMessage.arc"
@@ -20,7 +20,7 @@ namespace {
         }
         return nullptr;
     }
-} // namespace
+}  // namespace
 
 bool MessageData::getMessageDirect(TalkMessageInfo* pMessageInfo, const char* pMessage) const {
     s32 messageIndex = findMessageIndex(pMessage);
@@ -113,7 +113,7 @@ MessageData::MessageData(const char* pArchiveName) {
     mFLI1Block = nullptr;
 
     JKRArchive* pArchive = nullptr;
-    JKRHeap*    pHeap = nullptr;
+    JKRHeap* pHeap = nullptr;
     MR::getMountedArchiveAndHeap(pArchiveName, &pArchive, &pHeap);
 
     u8* msgData = (u8*)pArchive->getResource("Message.bmg");

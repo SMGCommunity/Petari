@@ -12,7 +12,7 @@ namespace {
     /// @param[out] pTicks An optional pointer to initialize with the current number of ticks.
     /// @return `true` if the most recent message was sent today, `false` otherwise.
     bool isLastUpdateToday(OSTime* pTicks) {
-        OSTime         ticks;
+        OSTime ticks;
         OSCalendarTime tdSent;
         OSCalendarTime td;
 
@@ -28,7 +28,7 @@ namespace {
 
         return td.year == tdSent.year && td.mon == tdSent.mon && td.mday == tdSent.mday;
     }
-}; // namespace
+};  // namespace
 
 namespace MR {
     // calcWiiMailSize
@@ -44,7 +44,7 @@ namespace MR {
     }
 
     void updateWiiMailSentSize(u32 mailSize) {
-        u32    sentBytes = GameDataFunction::getSysConfigFileSentBytes();
+        u32 sentBytes = GameDataFunction::getSysConfigFileSentBytes();
         OSTime ticks;
 
         if (!isLastUpdateToday(&ticks)) {
@@ -57,7 +57,5 @@ namespace MR {
         GameDataFunction::setSysConfigFileSentBytes(sentBytes);
     }
 
-    const wchar_t* getMailSender(const char* pMessageId) {
-        return MR::getGameMessageDirect(pMessageId);
-    }
-}; // namespace MR
+    const wchar_t* getMailSender(const char* pMessageId) { return MR::getGameMessageDirect(pMessageId); }
+};  // namespace MR

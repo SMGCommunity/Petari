@@ -2,8 +2,7 @@
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/Util/BaseMatrixFollowTargetHolder.hpp"
 
-GeneralMapParts::GeneralMapParts(const char* pName)
-    : MapParts(pName) {
+GeneralMapParts::GeneralMapParts(const char* pName) : MapParts(pName) {
     mCameraInfo = nullptr;
     mMoveConditionType = 0;
     mSignMotionType = 0;
@@ -361,4 +360,4 @@ namespace NrvGeneralMapParts {
         GeneralMapParts* part = reinterpret_cast< GeneralMapParts* >(pSpine->mExecutor);
         part->exeWait();
     }
-}; // namespace NrvGeneralMapParts
+};  // namespace NrvGeneralMapParts

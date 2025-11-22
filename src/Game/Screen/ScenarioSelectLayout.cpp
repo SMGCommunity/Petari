@@ -1,9 +1,9 @@
+#include "Game/Screen/ScenarioSelectLayout.hpp"
 #include "Game/Camera/CameraContext.hpp"
 #include "Game/Effect/MultiEmitter.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Map/ScenarioSelectStar.hpp"
 #include "Game/Screen/BackButton.hpp"
-#include "Game/Screen/ScenarioSelectLayout.hpp"
 #include "Game/System/GalaxyStatusAccessor.hpp"
 #include "Game/Util/EffectUtil.hpp"
 #include "Game/Util/EventUtil.hpp"
@@ -16,37 +16,30 @@
 #include "Game/Util/StarPointerUtil.hpp"
 
 namespace {
-    const char* cStarPaneName[] = {
-        "Star1",
-        "Star2",
-        "Star3",
-        "Star4",
-        "Star5",
-        "Star6",
-        "Star7"};
+    const char* cStarPaneName[] = {"Star1", "Star2", "Star3", "Star4", "Star5", "Star6", "Star7"};
 
     const char* cQuestionPaneName[] = {
         "NewStar1",
         "NewStar2",
     };
-    const f32    cPointingTargetRadius = 60.0f;
-    const s32    cDecideFrame = 40;
-    const s32    cSelectedAccelStartStep = 60;
-    const s32    cSelectedAccelFrame = 150;
-    const f32    cSelectedEffectRateMin = 2.0f;
-    const f32    cSelectedEffectRateMax = 15.0f;
-    const f32    cSelectedEffectSpeedMin = 9.0f;
-    const f32    cSelectedEffectSpeedMax = 15.0f;
-    const s32    cSelectedEndAnimStartStep = 60;
-    const s32    cSelectedFadeOutStartStep = 180;
-    const s32    cSelectedFadeOutFrame = 30;
-    const s32    cSelectedFadeInFrame = 180;
-    const s32    cCancelFadeOutFrame = 90;
+    const f32 cPointingTargetRadius = 60.0f;
+    const s32 cDecideFrame = 40;
+    const s32 cSelectedAccelStartStep = 60;
+    const s32 cSelectedAccelFrame = 150;
+    const f32 cSelectedEffectRateMin = 2.0f;
+    const f32 cSelectedEffectRateMax = 15.0f;
+    const f32 cSelectedEffectSpeedMin = 9.0f;
+    const f32 cSelectedEffectSpeedMax = 15.0f;
+    const s32 cSelectedEndAnimStartStep = 60;
+    const s32 cSelectedFadeOutStartStep = 180;
+    const s32 cSelectedFadeOutFrame = 30;
+    const s32 cSelectedFadeInFrame = 180;
+    const s32 cCancelFadeOutFrame = 90;
     const TVec3f cSkyTrans = TVec3f(0.0f, 0.0f, -10000.0f);
-    const f32    cSkyScale = 10.0f;
-    const s32    cCometWarningWaitFrame = 15;
-    const s32    cCometWarningFrame = 180;
-}; // namespace
+    const f32 cSkyScale = 10.0f;
+    const s32 cCometWarningWaitFrame = 15;
+    const s32 cCometWarningFrame = 180;
+};  // namespace
 
 namespace NrvScenarioSelectLayout {
     NEW_NERVE(ScenarioSelectLayoutNrvAppearStar, ScenarioSelectLayout, AppearStar);
@@ -60,25 +53,12 @@ namespace NrvScenarioSelectLayout {
     NEW_NERVE(ScenarioSelectLayoutNrvAppearCometWarning, ScenarioSelectLayout, AppearCometWarning);
     NEW_NERVE(ScenarioSelectLayoutNrvWaitCometWarning, ScenarioSelectLayout, WaitCometWarning);
     NEW_NERVE(ScenarioSelectLayoutNrvDisappearCometWarning, ScenarioSelectLayout, DisappearCometWarning);
-}; // namespace NrvScenarioSelectLayout
+};  // namespace NrvScenarioSelectLayout
 
 ScenarioSelectLayout::ScenarioSelectLayout(EffectSystem* pEffectSystem, const CameraContext* pCameraContext)
-    : LayoutActor("シナリオ選択レイアウト", true),
-      mSelectedScenarioNo(-1),
-      _24(0),
-      _28(false),
-      mStar(nullptr),
-      mScenarioSky(nullptr),
-      mEffectSystem(pEffectSystem),
-      mCameraContext(pCameraContext),
-      mNewTextFollowPos(0.0f, 0.0f),
-      mNewGreenTextFollowPos(0.0f, 0.0f),
-      mStarTopFollowPos(0.0f, 0.0f),
-      mBackButton(nullptr),
-      mMarioPaneFollowPos(0.0f, 0.0f),
-      mMarioPaneName(nullptr),
-      _A4(0),
-      _A8(-1) {
+    : LayoutActor("シナリオ選択レイアウト", true), mSelectedScenarioNo(-1), _24(0), _28(false), mStar(nullptr), mScenarioSky(nullptr),
+      mEffectSystem(pEffectSystem), mCameraContext(pCameraContext), mNewTextFollowPos(0.0f, 0.0f), mNewGreenTextFollowPos(0.0f, 0.0f),
+      mStarTopFollowPos(0.0f, 0.0f), mBackButton(nullptr), mMarioPaneFollowPos(0.0f, 0.0f), mMarioPaneName(nullptr), _A4(0), _A8(-1) {
     mEffectHostMtx.identity();
 
     for (s32 i = 0; i < sizeof(mQuestionPane) / sizeof(*mQuestionPane); i++) {
@@ -202,7 +182,10 @@ void ScenarioSelectLayout::disappear() {
 }
 
 bool ScenarioSelectLayout::isAppearStarEnd() const {
-    return !MR::isDead(this) && !isNerve(&NrvScenarioSelectLayout::ScenarioSelectLayoutNrvAppearStar::sInstance) && !isNerve(&NrvScenarioSelectLayout::ScenarioSelectLayoutNrvAppearCometWarning::sInstance) && !isNerve(&NrvScenarioSelectLayout::ScenarioSelectLayoutNrvWaitCometWarning::sInstance) && !isNerve(&NrvScenarioSelectLayout::ScenarioSelectLayoutNrvDisappearCometWarning::sInstance);
+    return !MR::isDead(this) && !isNerve(&NrvScenarioSelectLayout::ScenarioSelectLayoutNrvAppearStar::sInstance) &&
+           !isNerve(&NrvScenarioSelectLayout::ScenarioSelectLayoutNrvAppearCometWarning::sInstance) &&
+           !isNerve(&NrvScenarioSelectLayout::ScenarioSelectLayoutNrvWaitCometWarning::sInstance) &&
+           !isNerve(&NrvScenarioSelectLayout::ScenarioSelectLayoutNrvDisappearCometWarning::sInstance);
 }
 
 bool ScenarioSelectLayout::isEndAnimStartStep() const {
@@ -210,7 +193,8 @@ bool ScenarioSelectLayout::isEndAnimStartStep() const {
 }
 
 bool ScenarioSelectLayout::isCanceled() const {
-    return isNerve(&NrvScenarioSelectLayout::ScenarioSelectLayoutNrvCancel::sInstance) || isNerve(&NrvScenarioSelectLayout::ScenarioSelectLayoutNrvCancelFadeOut::sInstance);
+    return isNerve(&NrvScenarioSelectLayout::ScenarioSelectLayoutNrvCancel::sInstance) ||
+           isNerve(&NrvScenarioSelectLayout::ScenarioSelectLayoutNrvCancelFadeOut::sInstance);
 }
 
 void ScenarioSelectLayout::control() {
@@ -224,7 +208,8 @@ void ScenarioSelectLayout::control() {
 // ScenarioSelectLayout::updateSelectedScenario
 
 void ScenarioSelectLayout::updateScenarioText() {
-    bool isEndAnimStep = isNerve(&NrvScenarioSelectLayout::ScenarioSelectLayoutNrvAfterScenarioSelected::sInstance) && MR::isGreaterEqualStep(this, cSelectedEndAnimStartStep);
+    bool isEndAnimStep = isNerve(&NrvScenarioSelectLayout::ScenarioSelectLayoutNrvAfterScenarioSelected::sInstance) &&
+                         MR::isGreaterEqualStep(this, cSelectedEndAnimStartStep);
 
     if (!MR::isHiddenPane(this, "Scenario") && (mSelectedScenarioNo <= 0 || _A8 == mSelectedScenarioNo)) {
         fadeInText();
@@ -301,7 +286,7 @@ void ScenarioSelectLayout::appearAllStar(s32 starCount, s32 a3, bool a4) {
     else {
         for (s32 i = 0; i < starCount; i++) {
             s32 v10;
-            
+            
             if (a4) {
                 v10 = starCount % 80;
             }
@@ -429,7 +414,7 @@ void ScenarioSelectLayout::exeAppearStar() {
     MR::startSystemLevelSE("SE_DM_LV_SENARIO_SE_FLY", -1, -1);
 
     if (isAppearStarEndAll()) {
-        s32  scenarioNo;
+        s32 scenarioNo;
         bool needsAppearComet;
 
         if (!MR::isScenarioDecided()) {
@@ -514,18 +499,9 @@ void ScenarioSelectLayout::exeAfterScenarioSelected() {
     updateScenarioText();
     MR::startSystemLevelSE("SE_DM_LV_SENARIO_SEL_FLY", -1, -1);
 
-    f32 rate = MR::calcNerveEaseInValue(
-        this,
-        cSelectedAccelStartStep,
-        cSelectedAccelFrame,
-        cSelectedEffectRateMin,
-        cSelectedEffectRateMax);
-    f32 directionalSpeed = MR::calcNerveEaseInValue(
-        this,
-        cSelectedAccelStartStep,
-        cSelectedAccelFrame,
-        cSelectedEffectSpeedMin,
-        cSelectedEffectSpeedMax);
+    f32 rate = MR::calcNerveEaseInValue(this, cSelectedAccelStartStep, cSelectedAccelFrame, cSelectedEffectRateMin, cSelectedEffectRateMax);
+    f32 directionalSpeed =
+        MR::calcNerveEaseInValue(this, cSelectedAccelStartStep, cSelectedAccelFrame, cSelectedEffectSpeedMin, cSelectedEffectSpeedMax);
 
     MR::setEffectRate(this, "ScenarioSelectEffect", rate);
     MR::setEffectDirectionalSpeed(this, "ScenarioSelectEffect", directionalSpeed);
@@ -576,9 +552,9 @@ void ScenarioSelectLayout::exeCancel() {
 
 void ScenarioSelectLayout::exeAppearCometWarning() {
     if (MR::isStep(this, cCometWarningWaitFrame)) {
-        int         id = MR::getEncounterGalaxyCometNameId(MR::getCurrentStageName());
+        int id = MR::getEncounterGalaxyCometNameId(MR::getCurrentStageName());
         const char* cometName = MR::getCometNameFromId(id);
-        char        cometMsg[256];
+        char cometMsg[256];
         MR::makeCometMessageID(cometMsg, sizeof(cometMsg), cometName);
         MR::setTextBoxGameMessageRecursive(this, "TextComet", "GalaxyInfo_CometAppearR");
         MR::setTextBoxArgGameMessageRecursive(this, "TextComet", cometMsg, 0);

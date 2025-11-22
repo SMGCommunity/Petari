@@ -27,7 +27,7 @@ public:
     void updateGravity();
     void processMove();
     bool isOnGround() const;
-    f32  calcMoveSpeed() const;
+    f32 calcMoveSpeed() const;
     void setFrontVec(const TVec3f&);
     bool getWallNormal(TVec3f*) const;
 
@@ -66,28 +66,26 @@ public:
     void exeInWater();
     void exeBreak();
 
-    inline f32 getSize() {
-        return _D0;
-    }
+    inline f32 getSize() { return _D0; }
 
 private:
-    f32    _8C;
-    f32    _90;
+    f32 _8C;
+    f32 _90;
     TVec3f _94;
     TPos3f _A0;
-    f32    _D0;
-    bool   _D4;
+    f32 _D0;
+    bool _D4;
     TPos3f _D8;
     TPos3f _108;
-    s32    _138;
-    bool   _13C;
-    TVec3f mSpawnPosition; // 0x140
-    bool   _14C;
+    s32 _138;
+    bool _13C;
+    TVec3f mSpawnPosition;  // 0x140
+    bool _14C;
     TVec3f _150;
-    bool   mSphericalShadow;      // 0x15C, also affects some other properties besides shadow
-    bool   mRespawnWhenOutOfView; // 0x15D
-    bool   _15E;                  // something about clipping
-    bool   mContinueRolling;      // 0x15F
+    bool mSphericalShadow;       // 0x15C, also affects some other properties besides shadow
+    bool mRespawnWhenOutOfView;  // 0x15D
+    bool _15E;                   // something about clipping
+    bool mContinueRolling;       // 0x15F
 };
 
 namespace NrvCocoNut {
@@ -97,4 +95,4 @@ namespace NrvCocoNut {
     NERVE(CocoNutNrvInWater)
     NERVE(CocoNutNrvBreak)
     NERVE(CocoNutNrvReplaceReady)
-}; // namespace NrvCocoNut
+};  // namespace NrvCocoNut

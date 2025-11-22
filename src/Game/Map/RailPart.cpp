@@ -2,9 +2,7 @@
 
 #include "JSystem/JMath/JMath.hpp"
 
-RailPart::RailPart()
-    : mRailPartLinear(0), mRailPartBezier(0) {
-}
+RailPart::RailPart() : mRailPartLinear(0), mRailPartBezier(0) {}
 
 void RailPart::init(const TVec3f& a1, const TVec3f& a2, const TVec3f& a3, const TVec3f& a4) {
     if ((!a1.epsilonEquals(a2, 0.1f)) || (a4.epsilonEquals(a3, 0.1f))) {

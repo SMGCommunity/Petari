@@ -1,5 +1,5 @@
-#include "Game/Camera/CameraTargetMtx.hpp"
 #include "Game/Demo/PrologueDirector.hpp"
+#include "Game/Camera/CameraTargetMtx.hpp"
 #include "Game/LiveActor/ActorCameraInfo.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
@@ -9,16 +9,16 @@
 namespace {
     static const char* sPictureBookDemoName = "プロローグデモ";
     static const char* sArriveDemoName = "主人公ピーチ城に到着";
-    static const s32   sPicBookStartWipeFrame = 60;
-    static const s32   sPeachLetterWait = 20;
-    static const s32   sPeachLetterStartWipeFrame = 60;
-    static const s32   sPeachLetterEndWipeFrame = 60;
-    static const s32   sArriveStartWipeFrame = 30;
-    static const s32   sArriveEndWipeFrame = 30;
-    static const s32   sGameStartWipeFrame = 30;
-    static const s32   sGameStartFrame = 15;
-    static const s32   sFallingStarStep = 130;
-}; // namespace
+    static const s32 sPicBookStartWipeFrame = 60;
+    static const s32 sPeachLetterWait = 20;
+    static const s32 sPeachLetterStartWipeFrame = 60;
+    static const s32 sPeachLetterEndWipeFrame = 60;
+    static const s32 sArriveStartWipeFrame = 30;
+    static const s32 sArriveEndWipeFrame = 30;
+    static const s32 sGameStartWipeFrame = 30;
+    static const s32 sGameStartFrame = 15;
+    static const s32 sFallingStarStep = 130;
+};  // namespace
 
 namespace {
     NEW_NERVE(PrologueDirectorNrvWait, PrologueDirector, Wait);
@@ -30,16 +30,10 @@ namespace {
     NEW_NERVE(PrologueDirectorNrvBindWait, PrologueDirector, BindWait);
     NEW_NERVE(PrologueDirectorNrvArrive, PrologueDirector, Arrive);
     NEW_NERVE(PrologueDirectorNrvGameStart, PrologueDirector, GameStart);
-}; // namespace
+};  // namespace
 
 PrologueDirector::PrologueDirector(const char* pName)
-    : LiveActor(pName),
-      mPictureBook(nullptr),
-      mLetter(nullptr),
-      mScenery(nullptr),
-      mMarioPosDummyModel(nullptr),
-      mCameraTarget(nullptr),
-      _D0(false) {
+    : LiveActor(pName), mPictureBook(nullptr), mLetter(nullptr), mScenery(nullptr), mMarioPosDummyModel(nullptr), mCameraTarget(nullptr), _D0(false) {
     _A0.identity();
 }
 
@@ -277,8 +271,7 @@ void PrologueDirector::createCameraTarget() {
     mCameraTarget->mMatrix.identity();
 }
 
-void PrologueDirector::control() {
-}
+void PrologueDirector::control() {}
 
 void PrologueDirector::pauseOff() {
     MR::requestMovementOn(mPictureBook);
@@ -287,9 +280,7 @@ void PrologueDirector::pauseOff() {
     MR::requestMovementOn(mMarioPosDummyModel);
 }
 
-PrologueHolder::PrologueHolder(const char* pName)
-    : NameObj(pName),
-      mDirector(nullptr) {}
+PrologueHolder::PrologueHolder(const char* pName) : NameObj(pName), mDirector(nullptr) {}
 
 void PrologueHolder::registerPrologueObj(PrologueDirector* pDirector) {
     mDirector = pDirector;
@@ -300,11 +291,7 @@ void PrologueHolder::start() {
 }
 
 namespace MR {
-    PrologueHolder* getPrologueHolder() {
-        return MR::getSceneObj< PrologueHolder >(SceneObj_PrologueHolder);
-    }
+    PrologueHolder* getPrologueHolder() { return MR::getSceneObj< PrologueHolder >(SceneObj_PrologueHolder); }
 
-    void startPrologue() {
-        getPrologueHolder()->start();
-    }
-}; // namespace MR
+    void startPrologue() { getPrologueHolder()->start(); }
+};  // namespace MR

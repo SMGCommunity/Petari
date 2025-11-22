@@ -7,8 +7,8 @@ public:
     CameraRailFollow(const char*);
     virtual ~CameraRailFollow();
 
-    virtual void               reset();
-    virtual CameraTargetObj*   calc();
+    virtual void reset();
+    virtual CameraTargetObj* calc();
     virtual CamTranslatorBase* createTranslator();
 
     void setParam(s32, s32, f32, f32, f32, s32);
@@ -19,5 +19,5 @@ public:
     f32 _58;
     f32 _5C;
     f32 _60;
-    u8  _64[4];
+    u8 _64[4];
 };

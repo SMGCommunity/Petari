@@ -1,5 +1,5 @@
-#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/BatteryInfo.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/System/WPad.hpp"
 #include "Game/System/WPadHolder.hpp"
 #include "Game/Util/LayoutUtil.hpp"
@@ -10,7 +10,7 @@ namespace {
     static const s32 sDisplayFrameBatteryLow = 120;
     static const s32 sLowIntervalFrame = 18000;
     static const s32 sDisplayFrameBatteryNone = 450;
-}; // namespace
+};  // namespace
 
 namespace {
     NEW_NERVE(BatteryInfoEnought, BatteryInfo, Enought);
@@ -25,13 +25,10 @@ namespace {
     NEW_NERVE(BatteryInfoNone, BatteryInfo, None);
     NEW_NERVE(BatteryInfoNoneDisappear, BatteryInfo, NoneDisappear);
     NEW_NERVE(BatteryInfoNoneHide, BatteryInfo, NoneHide);
-}; // namespace
+};  // namespace
 
 BatteryInfo::BatteryInfo(LayoutActor* pHost, const char* pPaneName, int channel)
-    : NerveExecutor("BatteryInfo"),
-      mHost(pHost),
-      mPaneName(pPaneName),
-      mChannel(channel) {
+    : NerveExecutor("BatteryInfo"), mHost(pHost), mPaneName(pPaneName), mChannel(channel) {
     initNerve(&BatteryInfoNoneHide::sInstance);
     MR::createAndAddPaneCtrl(mHost, mPaneName, 1);
     MR::hidePane(mHost, mPaneName);
@@ -195,11 +192,7 @@ bool BatteryInfo::tryChangeNerveWithBatteryLeftAlreadyAppear() {
     return false;
 }
 
-BatteryLayout::BatteryLayout()
-    : LayoutActor("BatteryLayout", true),
-      mInfo1P(nullptr),
-      mInfo2P(nullptr) {
-}
+BatteryLayout::BatteryLayout() : LayoutActor("BatteryLayout", true), mInfo1P(nullptr), mInfo2P(nullptr) {}
 
 void BatteryLayout::init(const JMapInfoIter& rIter) {
     initLayoutManager("BatteryInfo", 1);

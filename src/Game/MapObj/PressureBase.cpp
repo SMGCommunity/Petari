@@ -1,7 +1,6 @@
 #include "Game/MapObj/PressureBase.hpp"
 
-PressureMessenger::PressureMessenger(MsgSharedGroup* pGroup, const char* pName)
-    : LiveActor(pName) {
+PressureMessenger::PressureMessenger(MsgSharedGroup* pGroup, const char* pName) : LiveActor(pName) {
     mSharedGroup = pGroup;
     _90 = 0;
 }
@@ -22,8 +21,7 @@ void PressureMessenger::exeSync() {
     }
 }
 
-PressureBase::PressureBase(const char* pName)
-    : LiveActor(pName) {
+PressureBase::PressureBase(const char* pName) : LiveActor(pName) {
     mJointController = nullptr;
     mFront.x = 0.0f;
     mFront.y = 0.0f;
@@ -241,8 +239,7 @@ void PressureBase::startRelax() {
     }
 }
 
-void PressureBase::initBullet(const JMapInfoIter&) {
-}
+void PressureBase::initBullet(const JMapInfoIter&) {}
 
 bool PressureBase::shotBullet(f32) {
     return false;
@@ -295,8 +292,7 @@ namespace NrvPressureBase {
         }
     }
 
-    void PressureBaseNrvSyncWait::execute(Spine* pSpine) const {
-    }
+    void PressureBaseNrvSyncWait::execute(Spine* pSpine) const {}
 
     void PressureBaseNrvRelax::execute(Spine* pSpine) const {
         PressureBase* pressure = reinterpret_cast< PressureBase* >(pSpine->mExecutor);
@@ -315,14 +311,13 @@ namespace NrvPressureBase {
         PressureBase* pressure = reinterpret_cast< PressureBase* >(pSpine->mExecutor);
         pressure->exeBound();
     }
-}; // namespace NrvPressureBase
+};  // namespace NrvPressureBase
 
 namespace NrvPressureMessenger {
     void PressureMessengerNrvSync::execute(Spine* pSpine) const {
         PressureMessenger* mess = reinterpret_cast< PressureMessenger* >(pSpine->mExecutor);
         mess->exeSync();
     }
-}; // namespace NrvPressureMessenger
+};  // namespace NrvPressureMessenger
 
-PressureMessenger::~PressureMessenger() {
-}
+PressureMessenger::~PressureMessenger() {}

@@ -2,9 +2,7 @@
 
 #include "Game/Util/HashUtil.hpp"
 
-CollisionCode::CollisionCode()
-    : mFloorTable(0), mWallTable(0), mSoundTable(0), mCameraTable(0) {
-
+CollisionCode::CollisionCode() : mFloorTable(0), mWallTable(0), mSoundTable(0), mCameraTable(0) {
     createFloorTable();
     createWallTable();
     createSoundTable();

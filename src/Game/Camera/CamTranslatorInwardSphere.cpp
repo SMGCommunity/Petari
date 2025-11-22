@@ -1,5 +1,5 @@
-#include "Game/Camera/CameraParamChunk.hpp"
 #include "Game/Camera/CamTranslatorInwardSphere.hpp"
+#include "Game/Camera/CameraParamChunk.hpp"
 
 void CamTranslatorInwardSphere::setParam(const CameraParamChunk* pChunk) {
     CameraGeneralParam* general = pChunk->mGeneralParam;

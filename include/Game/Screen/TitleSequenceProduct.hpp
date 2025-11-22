@@ -30,11 +30,11 @@ public:
 
 private:
     /* 0x08 */ TitleSequenceProductSub::LogoLayout* mLogoLayout;
-    /* 0x0C */ SimpleLayout*                        mPressStartLayout;
-    /* 0x10 */ EncouragePal60Window*                mEncouragePal60Window;
-    /* 0x14 */ TriggerChecker*                      mAButtonChecker;
-    /* 0x18 */ TriggerChecker*                      mBButtonChecker;
-    /* 0x1C */ bool                                 mIsDisplayEncouragePal60Window;
+    /* 0x0C */ SimpleLayout* mPressStartLayout;
+    /* 0x10 */ EncouragePal60Window* mEncouragePal60Window;
+    /* 0x14 */ TriggerChecker* mAButtonChecker;
+    /* 0x18 */ TriggerChecker* mBButtonChecker;
+    /* 0x1C */ bool mIsDisplayEncouragePal60Window;
 };
 
 namespace TitleSequenceProductSub {
@@ -43,4 +43,4 @@ namespace TitleSequenceProductSub {
         /// @brief Creates a new `LogoLayout`.
         LogoLayout();
     };
-}; // namespace TitleSequenceProductSub
+};  // namespace TitleSequenceProductSub

@@ -14,44 +14,30 @@ namespace {
     bool isExistEffect(const LiveActor* pActor, const char* pEffectName) {
         return MR::isExistEffectKeeper(pActor) && MR::isRegisteredEffect(pActor, pEffectName);
     }
-}; // namespace
+};  // namespace
 
 namespace MR {
-    void requestEffectStopSceneStart() {
-        Effect::requestMovementOffAllLoopEmitters();
-    }
+    void requestEffectStopSceneStart() { Effect::requestMovementOffAllLoopEmitters(); }
 
-    void requestEffectStopSceneEnd() {
-        Effect::requestMovementOnAllEmitters();
-    }
+    void requestEffectStopSceneEnd() { Effect::requestMovementOnAllEmitters(); }
 
-    void addEffect(LiveActor* pActor, const char* pEffectName) {
-        pActor->mEffectKeeper->addEffect(pEffectName, pActor);
-    }
+    void addEffect(LiveActor* pActor, const char* pEffectName) { pActor->mEffectKeeper->addEffect(pEffectName, pActor); }
 
-    MultiEmitter* getEffect(const LiveActor* pActor, const char* pEffectName) {
-        return pActor->mEffectKeeper->getEmitter(pEffectName);
-    }
+    MultiEmitter* getEffect(const LiveActor* pActor, const char* pEffectName) { return pActor->mEffectKeeper->getEmitter(pEffectName); }
 
     MultiEmitter* getEffect(const LayoutActor* pLayoutActor, const char* pEffectName) {
         return pLayoutActor->mPaneEffectKeeper->getEmitter(pEffectName);
     }
 
-    bool isExistEffectKeeper(const LiveActor* pActor) {
-        return pActor->mEffectKeeper;
-    }
+    bool isExistEffectKeeper(const LiveActor* pActor) { return pActor->mEffectKeeper; }
 
-    bool isExistEffectKeeper(const LayoutActor* pLayoutActor) {
-        return pLayoutActor->mPaneEffectKeeper;
-    }
+    bool isExistEffectKeeper(const LayoutActor* pLayoutActor) { return pLayoutActor->mPaneEffectKeeper; }
 
-    MultiEmitter* emitEffect(LiveActor* pActor, const char* pEffectName) {
-        return pActor->mEffectKeeper->createEmitter(pEffectName);
-    }
+    MultiEmitter* emitEffect(LiveActor* pActor, const char* pEffectName) { return pActor->mEffectKeeper->createEmitter(pEffectName); }
 
     MultiEmitter* emitEffectWithScale(LiveActor* pActor, const char* pEffectName, f32 a3, s32 a4) {
         MultiEmitter* pEmitter = pActor->mEffectKeeper->createEmitter(pEffectName);
-        TVec3f        scaleVec(a3, a3, a3);
+        TVec3f scaleVec(a3, a3, a3);
         pEmitter->setGlobalScale(scaleVec, a4);
         return pEmitter;
     }
@@ -85,21 +71,13 @@ namespace MR {
         }
     }
 
-    void deleteEffect(LiveActor* pActor, const char* pEffectName) {
-        pActor->mEffectKeeper->deleteEmitter(pEffectName);
-    }
+    void deleteEffect(LiveActor* pActor, const char* pEffectName) { pActor->mEffectKeeper->deleteEmitter(pEffectName); }
 
-    void forceDeleteEffect(LiveActor* pActor, const char* pEffectName) {
-        pActor->mEffectKeeper->forceDeleteEmitter(pEffectName);
-    }
+    void forceDeleteEffect(LiveActor* pActor, const char* pEffectName) { pActor->mEffectKeeper->forceDeleteEmitter(pEffectName); }
 
-    void deleteEffectAll(LiveActor* pActor) {
-        pActor->mEffectKeeper->deleteEmitterAll();
-    }
+    void deleteEffectAll(LiveActor* pActor) { pActor->mEffectKeeper->deleteEmitterAll(); }
 
-    void forceDeleteEffectAll(LiveActor* pActor) {
-        pActor->mEffectKeeper->forceDeleteEmitterAll();
-    }
+    void forceDeleteEffectAll(LiveActor* pActor) { pActor->mEffectKeeper->forceDeleteEmitterAll(); }
 
     bool isRegisteredEffect(const LiveActor* pActor, const char* pEffectName) {
         if (pEffectName) {
@@ -117,17 +95,11 @@ namespace MR {
         }
     }
 
-    void onDrawEffect(LiveActor* pActor) {
-        pActor->mEffectKeeper->onDraw();
-    }
+    void onDrawEffect(LiveActor* pActor) { pActor->mEffectKeeper->onDraw(); }
 
-    void offDrawEffect(LiveActor* pActor) {
-        pActor->mEffectKeeper->offDraw();
-    }
+    void offDrawEffect(LiveActor* pActor) { pActor->mEffectKeeper->offDraw(); }
 
-    void pauseOffEffectAll(LiveActor* pActor) {
-        Effect::requestMovementOn(pActor->mEffectKeeper);
-    }
+    void pauseOffEffectAll(LiveActor* pActor) { Effect::requestMovementOn(pActor->mEffectKeeper); }
 
     void onEmitEffectSyncClipping(LiveActor* pActor, const char* pEffectName) {
         pActor->mEffectKeeper->getEmitter(pEffectName)->onCreateSyncClipping();
@@ -137,17 +109,13 @@ namespace MR {
         pActor->mEffectKeeper->getEmitter(pEffectName)->onForceDeleteSyncClipping();
     }
 
-    void setEffectName(LiveActor* pActor, const char* pOldName, const char* pNewName) {
-        pActor->mEffectKeeper->changeEffectName(pOldName, pNewName);
-    }
+    void setEffectName(LiveActor* pActor, const char* pOldName, const char* pNewName) { pActor->mEffectKeeper->changeEffectName(pOldName, pNewName); }
 
     void setEffectHostSRT(LiveActor* pActor, const char* pEffectName, const TVec3f* a3, const TVec3f* a4, const TVec3f* a5) {
         pActor->mEffectKeeper->getEmitter(pEffectName)->setHostSRT(a3, a4, a5);
     }
 
-    void setEffectHostMtx(LiveActor* pActor, const char* pEffectName, MtxPtr mtx) {
-        pActor->mEffectKeeper->getEmitter(pEffectName)->setHostMtx(mtx);
-    }
+    void setEffectHostMtx(LiveActor* pActor, const char* pEffectName, MtxPtr mtx) { pActor->mEffectKeeper->getEmitter(pEffectName)->setHostMtx(mtx); }
 
     void setEffectBaseScale(LiveActor* pActor, const char* pEffectName, f32 scale) {
         pActor->mEffectKeeper->getEmitter(pEffectName)->setBaseScale(scale);
@@ -157,7 +125,8 @@ namespace MR {
         pActor->mEffectKeeper->getEmitter(pEffectName)->setLocalScale(rScaleVec, -1);
     }
 
-    void setEffectColor(LiveActor* pActor, const char* pEffectName, u8 colorPrm1, u8 colorPrm2, u8 colorPrm3, u8 colorEnv1, u8 colorEnv2, u8 colorEnv3) {
+    void setEffectColor(LiveActor* pActor, const char* pEffectName, u8 colorPrm1, u8 colorPrm2, u8 colorPrm3, u8 colorEnv1, u8 colorEnv2,
+                        u8 colorEnv3) {
         pActor->mEffectKeeper->getEmitter(pEffectName)->setGlobalPrmColor(colorPrm1, colorPrm2, colorPrm3, -1);
         pActor->mEffectKeeper->getEmitter(pEffectName)->setGlobalEnvColor(colorEnv1, colorEnv2, colorEnv3, -1);
     }
@@ -204,9 +173,7 @@ namespace MR {
         pEffectKeeper->initAfterPlacementForAttributeEffect(pActor->getBaseMtx());
     }
 
-    void updateEffectFloorCode(LiveActor* pActor, const Triangle* pTriangle) {
-        pActor->mEffectKeeper->updateFloorCode(pTriangle);
-    }
+    void updateEffectFloorCode(LiveActor* pActor, const Triangle* pTriangle) { pActor->mEffectKeeper->updateFloorCode(pTriangle); }
 
     void updateEffectFloorCodeLineToMap(LiveActor* pActor, const TVec3f& a2, const TVec3f& a3) {
         Triangle tri = Triangle();
@@ -229,9 +196,9 @@ namespace MR {
 
     // Not byte-matching but does the same thing
     void initEffectSyncBck(LiveActor* pActor, const char* pEffectName, const char* const* pStrList) {
-        int                i = 0;
+        int i = 0;
         const char* const* tempStrList = pStrList;
-        const char*        str;
+        const char* str;
         while (str = tempStrList[0], tempStrList = &tempStrList[1], str) {
             i++;
         }
@@ -252,4 +219,4 @@ namespace MR {
             pActor->mEffectKeeper->changeEffectName("HitMarkNormal", pEffectName);
         }
     }
-}; // namespace MR
+};  // namespace MR

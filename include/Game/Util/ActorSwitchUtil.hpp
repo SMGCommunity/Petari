@@ -40,4 +40,4 @@ namespace MR {
     void listenStageSwitchOnB(LiveActor*, const MR::FunctorBase&);
     void listenStageSwitchOffB(LiveActor*, const MR::FunctorBase&);
     void listenStageSwitchOnOffB(LiveActor*, const MR::FunctorBase&, const MR::FunctorBase&);
-}; // namespace MR
+};  // namespace MR

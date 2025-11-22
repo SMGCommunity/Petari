@@ -5,15 +5,16 @@
 #include "nw4r/lyt/pane.h"
 #include "nw4r/lyt/resources.h"
 #include "nw4r/lyt/util.h"
-#include "revolution/mem/allocator.h"
 #include "nw4r/ut/Rect.h"
+#include "revolution/mem/allocator.h"
 
 namespace nw4r {
     namespace lyt {
         namespace {
-            bool IsIncludeAnimationGroupRef(GroupContainer* pGroupContainer, const AnimationGroupRef* const groupRefs, u16 bindGroupNum, bool bDescendingBind, Pane* pTargetPane) {
+            bool IsIncludeAnimationGroupRef(GroupContainer* pGroupContainer, const AnimationGroupRef* const groupRefs, u16 bindGroupNum,
+                                            bool bDescendingBind, Pane* pTargetPane) {
                 for (u16 grpIdx = 0; grpIdx < bindGroupNum; ++grpIdx) {
-                    Group* const  pGroup = pGroupContainer->FindGroupByName(groupRefs[grpIdx].GetName());
+                    Group* const pGroup = pGroupContainer->FindGroupByName(groupRefs[grpIdx].GetName());
                     PaneLinkList& paneList = pGroup->GetPaneList();
                     for (PaneLinkList::Iterator it = paneList.GetBeginIter(); it != paneList.GetEndIter(); ++it) {
                         if (it->mTarget == pTargetPane) {
@@ -32,13 +33,11 @@ namespace nw4r {
 
                 return false;
             }
-        }; // namespace
+        };  // namespace
 
         MEMAllocator* Layout::mspAllocator = nullptr;
 
-        Layout::Layout()
-            : mpRootPane(nullptr), mpGroupContainer(nullptr), mLayoutSize(0.0f, 0.0f) {
-        }
+        Layout::Layout() : mpRootPane(nullptr), mpGroupContainer(nullptr), mLayoutSize(0.0f, 0.0f) {}
 
         Layout::~Layout() {
             DeleteObj(mpGroupContainer);
@@ -68,8 +67,8 @@ namespace nw4r {
             resBlockSet.pResAccessor = pResAcsr;
             Pane* pParentPane = nullptr;
             Pane* pLastPane = nullptr;
-            bool  bReadRootGroup = false;
-            int   groupNestLevel = 0;
+            bool bReadRootGroup = false;
+            int groupNestLevel = 0;
 
             const void* dataPtr = static_cast< const u8* >(lytResBuf) + pFileHead->headerSize;
             for (int i = 0; i < pFileHead->dataBlocks; ++i) {
@@ -187,9 +186,7 @@ namespace nw4r {
             }
         }
 
-        void Layout::UnbindAllAnimation() {
-            UnbindAnimation(0);
-        }
+        void Layout::UnbindAllAnimation() { UnbindAnimation(0); }
 
         /*
         bool Layout::BindAnimationAuto(const AnimResource &animRes, ResourceAccessor *pResAcsr) {
@@ -243,7 +240,8 @@ namespace nw4r {
                     for (PaneLinkList::Iterator it = paneList.GetBeginIter(); it != paneList.GetEndIter(); ++it, ++animIdx) {
                         if (it->mTarget != pSrcPane) {
                             if (bindGroupNum > 0) {
-                                const bool bInclude = IsIncludeAnimationGroupRef(mpGroupContainer, animRes.GetGroupArray(), bindGroupNum, animRes.IsDescendingBind(), it->mTarget);
+                                const bool bInclude = IsIncludeAnimationGroupRef(mpGroupContainer, animRes.GetGroupArray(), bindGroupNum,
+        animRes.IsDescendingBind(), it->mTarget);
 
                                 if (!bInclude) {
                                     continue;
@@ -297,5 +295,5 @@ namespace nw4r {
         // have to do more headers to decomp these two
         // nw4r::lyt::Layout::SetTagProcessor
         // nw4r::lyt::Layout::BuildPaneObj
-    }; // namespace lyt
-};     // namespace nw4r
+    };  // namespace lyt
+};      // namespace nw4r

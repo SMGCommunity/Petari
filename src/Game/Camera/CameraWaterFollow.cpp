@@ -4,8 +4,7 @@
 #include "Game/Camera/CameraMan.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
 
-CameraWaterFollow::CameraWaterFollow(const char* pName)
-    : Camera(pName) {
+CameraWaterFollow::CameraWaterFollow(const char* pName) : Camera(pName) {
     mAxisY = 300.0f;
     mAxisX = 1200.0f;
     mDist = 0.01f;
@@ -33,8 +32,7 @@ void CameraWaterFollow::reset() {
     CameraLocalUtil::setUpVecAndWatchUpVec(this, *CameraLocalUtil::getUpVec(mCameraMan));
 }
 
-CameraWaterFollow::~CameraWaterFollow() {
-}
+CameraWaterFollow::~CameraWaterFollow() {}
 
 CamTranslatorBase* CameraWaterFollow::createTranslator() {
     return new CamTranslatorWaterFollow(this);

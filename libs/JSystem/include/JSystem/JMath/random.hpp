@@ -15,4 +15,4 @@ namespace JMath {
         u32 mSeed;
     };
 
-} // namespace JMath
+}  // namespace JMath

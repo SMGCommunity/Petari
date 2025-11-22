@@ -25,7 +25,7 @@ public:
     void setTalkMessageCtrl(const LiveActor*, TalkMessageCtrl*);
 
     inline s32 getSubPartStep(const char* pName) {
-        DemoSubPartInfo*   subpart;
+        DemoSubPartInfo* subpart;
         DemoSubPartKeeper* subpartkeeper = mSubPartKeeper;
         for (int i = 0; i < subpartkeeper->mNumSubPartInfos; i++) {
             subpart = &subpartkeeper->mSubPartInfos[i];
@@ -36,10 +36,10 @@ public:
         return 0;
     }
 
-    const char*        mSheetName;     // 0x14
-    DemoTimeKeeper*    mTimeKeeper;    // 0x18
-    DemoSubPartKeeper* mSubPartKeeper; // 0x1C
-    void*              _20;
-    void*              _24;
-    DemoActionKeeper*  mActionKeeper; // 0x28
+    const char* mSheetName;             // 0x14
+    DemoTimeKeeper* mTimeKeeper;        // 0x18
+    DemoSubPartKeeper* mSubPartKeeper;  // 0x1C
+    void* _20;
+    void* _24;
+    DemoActionKeeper* mActionKeeper;  // 0x28
 };

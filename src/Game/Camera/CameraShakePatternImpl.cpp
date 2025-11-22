@@ -1,16 +1,14 @@
 #include "Game/Camera/CameraShakePatternImpl.hpp"
-#include "Game/Util/MathUtil.hpp"
 #include "Game/AreaObj/MercatorTransformCube.hpp"
+#include "Game/Util/MathUtil.hpp"
 
-CameraShakePatternSingly::CameraShakePatternSingly(f32 a1)
-    : CameraShakePattern() {
+CameraShakePatternSingly::CameraShakePatternSingly(f32 a1) : CameraShakePattern() {
     _8 = a1;
     mDirection.x = 0.0f;
     mDirection.y = 1.0f;
 }
 
-CameraShakePatternSingly::~CameraShakePatternSingly() {
-}
+CameraShakePatternSingly::~CameraShakePatternSingly() {}
 
 bool CameraShakePatternSingly::isEnd() const {
     return _4 >= 25;
@@ -66,8 +64,7 @@ CameraShakePatternVerticalSin::CameraShakePatternVerticalSin(f32 a1, f32 a2) {
     mOffset.y = 0.0f;
 }
 
-CameraShakePatternVerticalSin::~CameraShakePatternVerticalSin() {
-}
+CameraShakePatternVerticalSin::~CameraShakePatternVerticalSin() {}
 
 bool CameraShakePatternVerticalSin::isEnd() const {
     f32 var = static_cast< f32 >(_4);

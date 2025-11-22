@@ -1,6 +1,6 @@
 #include "Game/NPC/TicoGalaxy.hpp"
-#include "Game/NPC/TicoStarRing.hpp"
 #include "Game/MapObj/StarPieceDirector.hpp"
+#include "Game/NPC/TicoStarRing.hpp"
 #include "Game/System/GameEventFlagTable.hpp"
 #include "Game/Util.hpp"
 #include "Game/Util/EventUtil.hpp"
@@ -11,8 +11,7 @@ namespace {
     static const char* sInfoMessageID = "InformationGalaxy";
 };
 
-TicoGalaxy::TicoGalaxy(const char* pName)
-    : TicoFat(pName) {
+TicoGalaxy::TicoGalaxy(const char* pName) : TicoFat(pName) {
     mGalaxyName = nullptr;
 }
 
@@ -80,5 +79,4 @@ void TicoGalaxy::appearInformation() const {
     MR::setInformationMessageReplaceString(MR::getGalaxyNameShortOnCurrentLanguage(mGalaxyName), 0);
 }
 
-TicoGalaxy::~TicoGalaxy() {
-}
+TicoGalaxy::~TicoGalaxy() {}

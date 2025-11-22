@@ -2,8 +2,7 @@
 #include "Game/Util.hpp"
 #include "Game/Util/Array.hpp"
 
-ChooChooTrain::ChooChooTrain(const char* pName)
-    : LiveActor(pName), mModelArray() {
+ChooChooTrain::ChooChooTrain(const char* pName) : LiveActor(pName), mModelArray() {
     _98.x = 0.0f;
     _98.y = 0.0f;
     _98.z = 0.0f;
@@ -97,7 +96,7 @@ void ChooChooTrain::control() {
     MR::moveTransToCurrentRailPos(this);
     TVec3f stack_74(MR::getRailDirection(this));
     MR::turnDirectionAndGravityH(this, stack_74, 0.5f, 1.0f);
-    f32    railCoord = MR::getRailCoord(this);
+    f32 railCoord = MR::getRailCoord(this);
     TVec3f stack_68;
     MR::calcFrontVec(&stack_68, this);
     TVec3f stack_5C;

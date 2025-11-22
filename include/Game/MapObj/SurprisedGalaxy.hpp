@@ -20,4 +20,4 @@ public:
 namespace NrvSurprisedGalaxy {
     NERVE(SurprisedGalaxyNrvExit);
     NERVE(SurprisedGalaxyNrvWait);
-}; // namespace NrvSurprisedGalaxy
+};  // namespace NrvSurprisedGalaxy

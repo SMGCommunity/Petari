@@ -42,9 +42,7 @@ void AlreadyDoneInfo::set(bool flag) {
     _0 = (flag ? 0 : 0x8000) | _0 & 0x7FFF;
 }
 
-AlreadyDoneFlagInGalaxy::AlreadyDoneFlagInGalaxy(int numInfos)
-    : mDoneInfos(0), mNumInfos(0), _8(0) {
-
+AlreadyDoneFlagInGalaxy::AlreadyDoneFlagInGalaxy(int numInfos) : mDoneInfos(0), mNumInfos(0), _8(0) {
     mDoneInfos = new AlreadyDoneInfo[numInfos];
     mNumInfos = numInfos;
 }
@@ -71,7 +69,7 @@ u32 AlreadyDoneFlagInGalaxy::setupFlag(const char* pName, const JMapInfoIter& rI
         infs++;
     }
 
-    u32              v10 = _8;
+    u32 v10 = _8;
     AlreadyDoneInfo* new_infs = &mDoneInfos[v10];
 
     if (infs != new_infs) {

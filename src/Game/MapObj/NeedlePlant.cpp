@@ -17,10 +17,9 @@
 namespace NrvNeedlePlant {
     NEW_NERVE(NeedlePlantNrvWait, NeedlePlant, Wait);
     NEW_NERVE(NeedlePlantNrvShake, NeedlePlant, Shake);
-}; // namespace NrvNeedlePlant
+};  // namespace NrvNeedlePlant
 
-NeedlePlant::NeedlePlant(const char* pName)
-    : MapObjActor(pName) {
+NeedlePlant::NeedlePlant(const char* pName) : MapObjActor(pName) {
     _C4 = -1;
 }
 
@@ -41,7 +40,7 @@ void NeedlePlant::init(const JMapInfoIter& rIter) {
     initEffectKeeper(1, "NeedlePlant", false);
     MR::addEffectHitNormal(this, nullptr);
     initSound(4, 0);
-    TVec3f vec3_2; //Second Vector3f
+    TVec3f vec3_2;  // Second Vector3f
     vec3_2.set(0.0f, 150.0f * mScale.x, 0.0f);
     MR::initStarPointerTarget(this, 150.0f * mScale.x, vec3_2);
     MR::getJMapInfoArg0NoInit(rIter, &_C4);

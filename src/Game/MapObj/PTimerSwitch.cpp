@@ -1,9 +1,8 @@
+#include "Game/MapObj/PTimerSwitch.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/Map/CollisionParts.hpp"
-#include "Game/MapObj/PTimerSwitch.hpp"
 
-PTimerSwitch::PTimerSwitch(const char* pName)
-    : LiveActor(pName) {
+PTimerSwitch::PTimerSwitch(const char* pName) : LiveActor(pName) {
     mSwitchCollision = nullptr;
     mConnector = nullptr;
     _94 = 0;
@@ -165,4 +164,4 @@ namespace NrvPTimerSwitch {
         PTimerSwitch* actor = reinterpret_cast< PTimerSwitch* >(pSpine->mExecutor);
         actor->exeOff();
     }
-} // namespace NrvPTimerSwitch
+}  // namespace NrvPTimerSwitch

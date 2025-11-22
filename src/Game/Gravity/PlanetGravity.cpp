@@ -22,7 +22,7 @@ void PlanetGravity::setPriority(s32 priority) {
 
 bool PlanetGravity::calcGravity(TVec3f* pDest, const TVec3f& rPosition) const {
     // Calculate raw gravity vector
-    f32    radius = 0.0f;
+    f32 radius = 0.0f;
     TVec3f gravity;
     gravity.x = 0.0f;
     gravity.y = 0.0f;
@@ -83,7 +83,7 @@ bool PlanetGravity::isInRangeDistance(f32 radius) const {
 
 bool PlanetGravity::calcGravityFromMassPosition(TVec3f* pDirection, f32* pScalar, const TVec3f& rPosition, const TVec3f& rMassPosition) const {
     TVec3f direction = rMassPosition - rPosition;
-    f32    scalar;
+    f32 scalar;
 
     MR::separateScalarAndDirection(&scalar, &direction, direction);
 

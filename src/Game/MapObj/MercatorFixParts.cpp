@@ -1,8 +1,7 @@
 #include "Game/MapObj/MercatorFixParts.hpp"
 #include "Game/AreaObj/MercatorTransformCube.hpp"
 
-MercatorFixParts::MercatorFixParts(const char* pName)
-    : LiveActor(pName) {
+MercatorFixParts::MercatorFixParts(const char* pName) : LiveActor(pName) {
     mAppearController = nullptr;
 }
 
@@ -10,8 +9,7 @@ bool MercatorFixParts::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* p
     return mAppearController->receiveMsg(msg);
 }
 
-MercatorFixParts::~MercatorFixParts() {
-}
+MercatorFixParts::~MercatorFixParts() {}
 
 void MercatorFixParts::init(const JMapInfoIter& rIter) {
     char name[0x100];

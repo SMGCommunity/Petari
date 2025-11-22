@@ -12,19 +12,11 @@ namespace NrvScenarioSelectStar {
     NEW_NERVE(ScenarioSelectStarNrvSelected, ScenarioSelectStar, Selected);
     NEW_NERVE(ScenarioSelectStarNrvSelectedMove, ScenarioSelectStar, SelectedMove);
     NEW_NERVE(ScenarioSelectStarNrvNotSelected, ScenarioSelectStar, NotSelected);
-}; // namespace NrvScenarioSelectStar
+};  // namespace NrvScenarioSelectStar
 
 ScenarioSelectStar::ScenarioSelectStar(EffectSystem* pSystem)
-    : MultiSceneActor("シナリオ選択のスター", "PowerStar", false),
-      _44(0),
-      mFrame(1),
-      _4C(0),
-      _50(false),
-      _54(0.0f),
-      _5C(gZeroVec),
-      _68(gZeroVec),
-      _74(60),
-      _78(1.0f) {
+    : MultiSceneActor("シナリオ選択のスター", "PowerStar", false), _44(0), mFrame(1), _4C(0), _50(false), _54(0.0f), _5C(gZeroVec), _68(gZeroVec),
+      _74(60), _78(1.0f) {
     initEffect(pSystem, 0, "ScenarioStar");
 }
 
@@ -61,7 +53,8 @@ void ScenarioSelectStar::kill() {
 void ScenarioSelectStar::tryPointing() {
     _50 = true;
 
-    if (isNerve(&NrvScenarioSelectStar::ScenarioSelectStarNrvNotPointing::sInstance) || isNerve(&NrvScenarioSelectStar::ScenarioSelectStarNrvEndPointing::sInstance)) {
+    if (isNerve(&NrvScenarioSelectStar::ScenarioSelectStarNrvNotPointing::sInstance) ||
+        isNerve(&NrvScenarioSelectStar::ScenarioSelectStarNrvEndPointing::sInstance)) {
         setNerve(&NrvScenarioSelectStar::ScenarioSelectStarNrvPointing::sInstance);
     }
 }
@@ -240,5 +233,4 @@ void ScenarioSelectStar::exeNotSelected() {
     }
 }
 
-ScenarioSelectStar::~ScenarioSelectStar() {
-}
+ScenarioSelectStar::~ScenarioSelectStar() {}

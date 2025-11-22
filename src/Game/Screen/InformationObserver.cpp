@@ -1,6 +1,6 @@
+#include "Game/Screen/InformationObserver.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
-#include "Game/Screen/InformationObserver.hpp"
 #include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/DemoUtil.hpp"
 #include "Game/Util/EventUtil.hpp"
@@ -12,7 +12,7 @@
 
 struct InformationObserverAttribute {
     /* 0x00 */ const char* mMessageId;
-    /* 0x04 */ bool        _4;
+    /* 0x04 */ bool _4;
     /* 0x08 */ const char* mFirstMorphBgmName;
     /* 0x0C */ const char* mBgmName;
 };
@@ -35,21 +35,15 @@ namespace {
 };
 
 namespace {
-    InformationObserver* getInformationObserver() {
-        return MR::getSceneObj< InformationObserver >(SceneObj_InformationObserver);
-    }
-}; // namespace
+    InformationObserver* getInformationObserver() { return MR::getSceneObj< InformationObserver >(SceneObj_InformationObserver); }
+};  // namespace
 
 namespace NrvInformationObserver {
     NEW_NERVE(InformationObserverNrvWait, InformationObserver, Wait);
     NEW_NERVE(InformationObserverNrvDisp, InformationObserver, Disp);
-}; // namespace NrvInformationObserver
+};  // namespace NrvInformationObserver
 
-InformationObserver::InformationObserver()
-    : LiveActor("初出監視"),
-      mType(Type_Bee),
-      _90(false),
-      mDisplayFrame(-1) {}
+InformationObserver::InformationObserver() : LiveActor("初出監視"), mType(Type_Bee), _90(false), mDisplayFrame(-1) {}
 
 void InformationObserver::init(const JMapInfoIter& rIter) {
     MR::connectToSceneLayoutMovement(this);
@@ -68,18 +62,14 @@ void InformationObserver::entry(TYPE type, LiveActor* pParam2) {
         MR::pauseTimeKeepDemo(_94);
         setNerve(&NrvInformationObserver::InformationObserverNrvDisp::sInstance);
     } else {
-        MR::requestStartDemoWithoutCinemaFrame(
-            this,
-            "初出表示",
-            &NrvInformationObserver::InformationObserverNrvDisp::sInstance,
-            &NrvInformationObserver::InformationObserverNrvWait::sInstance);
+        MR::requestStartDemoWithoutCinemaFrame(this, "初出表示", &NrvInformationObserver::InformationObserverNrvDisp::sInstance,
+                                               &NrvInformationObserver::InformationObserverNrvWait::sInstance);
     }
 
     makeActorAppeared();
 }
 
-void InformationObserver::exeWait() {
-}
+void InformationObserver::exeWait() {}
 
 void InformationObserver::exeDisp() {
     if (MR::isFirstStep(this)) {
@@ -160,43 +150,23 @@ void InformationObserver::exeDisp() {
 }
 
 namespace InformationObserverFunction {
-    void explainBee() {
-        getInformationObserver()->entry(InformationObserver::Type_Bee, nullptr);
-    }
+    void explainBee() { getInformationObserver()->entry(InformationObserver::Type_Bee, nullptr); }
 
-    void explainTeresa() {
-        getInformationObserver()->entry(InformationObserver::Type_Teresa, nullptr);
-    }
+    void explainTeresa() { getInformationObserver()->entry(InformationObserver::Type_Teresa, nullptr); }
 
-    void explainHopper() {
-        getInformationObserver()->entry(InformationObserver::Type_Hopper, nullptr);
-    }
+    void explainHopper() { getInformationObserver()->entry(InformationObserver::Type_Hopper, nullptr); }
 
-    void explainFire() {
-        getInformationObserver()->entry(InformationObserver::Type_Fire, nullptr);
-    }
+    void explainFire() { getInformationObserver()->entry(InformationObserver::Type_Fire, nullptr); }
 
-    void explainIce() {
-        getInformationObserver()->entry(InformationObserver::Type_Ice, nullptr);
-    }
+    void explainIce() { getInformationObserver()->entry(InformationObserver::Type_Ice, nullptr); }
 
-    void explainFlying() {
-        getInformationObserver()->entry(InformationObserver::Type_Flying, nullptr);
-    }
+    void explainFlying() { getInformationObserver()->entry(InformationObserver::Type_Flying, nullptr); }
 
-    void explainInvincible() {
-        getInformationObserver()->entry(InformationObserver::Type_Invincible, nullptr);
-    }
+    void explainInvincible() { getInformationObserver()->entry(InformationObserver::Type_Invincible, nullptr); }
 
-    void explainLifeUp() {
-        getInformationObserver()->entry(InformationObserver::Type_LifeUp, nullptr);
-    }
+    void explainLifeUp() { getInformationObserver()->entry(InformationObserver::Type_LifeUp, nullptr); }
 
-    void explainOneUp() {
-        getInformationObserver()->entry(InformationObserver::Type_OneUp, nullptr);
-    }
+    void explainOneUp() { getInformationObserver()->entry(InformationObserver::Type_OneUp, nullptr); }
 
-    void explainSpin(LiveActor* pParam1) {
-        getInformationObserver()->entry(InformationObserver::Type_Spin, pParam1);
-    }
-}; // namespace InformationObserverFunction
+    void explainSpin(LiveActor* pParam1) { getInformationObserver()->entry(InformationObserver::Type_Spin, pParam1); }
+};  // namespace InformationObserverFunction

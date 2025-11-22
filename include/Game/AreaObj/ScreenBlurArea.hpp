@@ -14,5 +14,5 @@ public:
     virtual bool isSyncWithPlayer() const;
 
     bool mIsPlayerSync;
-    u8   _41[3];
+    u8 _41[3];
 };

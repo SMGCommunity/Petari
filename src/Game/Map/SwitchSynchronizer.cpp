@@ -2,8 +2,7 @@
 #include "Game/Map/StageSwitch.hpp"
 #include "Game/Util/ObjUtil.hpp"
 
-SwitchSynchronizer::SwitchSynchronizer(const char* pName)
-    : NameObj(pName) {
+SwitchSynchronizer::SwitchSynchronizer(const char* pName) : NameObj(pName) {
     mSwitchCtrl = nullptr;
     _10 = 1;
 }
@@ -36,5 +35,4 @@ void SwitchSynchronizer::movement() {
     }
 }
 
-SwitchSynchronizer::~SwitchSynchronizer() {
-}
+SwitchSynchronizer::~SwitchSynchronizer() {}

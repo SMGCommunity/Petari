@@ -1,13 +1,11 @@
 #include "Game/MapObj/SpinLeverSwitch.hpp"
 
-SpinLeverSwitch::SpinLeverSwitch(const char* pName)
-    : LiveActor(pName) {
+SpinLeverSwitch::SpinLeverSwitch(const char* pName) : LiveActor(pName) {
     mConnector = nullptr;
     mConnector = new MapObjConnector(this);
 }
 
-SpinLeverSwitch::~SpinLeverSwitch() {
-}
+SpinLeverSwitch::~SpinLeverSwitch() {}
 
 void SpinLeverSwitch::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
@@ -120,6 +118,5 @@ namespace NrvSpinLeverSwitch {
         pActor->exeSwitchOn();
     }
 
-    void SpinLeverSwitchNrvEnd::execute(Spine* pSpine) const {
-    }
-}; // namespace NrvSpinLeverSwitch
+    void SpinLeverSwitchNrvEnd::execute(Spine* pSpine) const {}
+};  // namespace NrvSpinLeverSwitch

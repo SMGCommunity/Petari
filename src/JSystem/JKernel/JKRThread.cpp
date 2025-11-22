@@ -2,7 +2,7 @@
 #include "JSystem/JKernel/JKRHeap.hpp"
 
 JSUList< JKRThread > JKRThread::sThreadList = JSUList< JKRThread >(false);
-JSUList< JKRTask >   JKRThread::sTaskList = JSUList< JKRTask >();
+JSUList< JKRTask > JKRThread::sTaskList = JSUList< JKRTask >();
 
 JKRThread::TLoad::TLoad() {
     clear();

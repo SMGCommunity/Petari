@@ -42,18 +42,18 @@ public:
     void exeWaitResumeInitializeThreadIfRequestedReset();
     void exeWaitResumeInitializeThreadIfCanceledSelect();
 
-    u8                    _14;
-    u8                    _15;
-    u8                    _16;
-    u8                    _17;
-    ScenarioSelectLayout* mScenarioLayout; // 0x18
-    CinemaFrame*          mCinemaFrame;    // 0x1C
-    J3DDrawBuffer*        _20;
-    J3DDrawBuffer*        _24;
-    u8                    _28;
-    u8                    _29;
-    u8                    _2A;
-    u8                    _2B;
-    EffectSystem*         mEffectSystem;  // 0x2C
-    CameraContext*        mCameraContext; // 0x30
+    u8 _14;
+    u8 _15;
+    u8 _16;
+    u8 _17;
+    ScenarioSelectLayout* mScenarioLayout;  // 0x18
+    CinemaFrame* mCinemaFrame;              // 0x1C
+    J3DDrawBuffer* _20;
+    J3DDrawBuffer* _24;
+    u8 _28;
+    u8 _29;
+    u8 _2A;
+    u8 _2B;
+    EffectSystem* mEffectSystem;    // 0x2C
+    CameraContext* mCameraContext;  // 0x30
 };

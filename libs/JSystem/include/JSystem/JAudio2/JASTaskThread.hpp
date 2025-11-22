@@ -7,11 +7,9 @@ namespace JASThreadingModel {
     class InterruptsDisable {
     public:
         struct Lock {
-            Lock(const T&) NO_INLINE {
-                success = OSDisableInterrupts();
-            }
+            Lock(const T&) NO_INLINE { success = OSDisableInterrupts(); }
             ~Lock() NO_INLINE;
             u32 success;
         };
     };
-} // namespace JASThreadingModel
+}  // namespace JASThreadingModel

@@ -1,7 +1,6 @@
 #include "Game/MapObj/AstroOverlookObj.hpp"
 
-AstroOverlookObj::AstroOverlookObj(const char* pName)
-    : LiveActor(pName) {
+AstroOverlookObj::AstroOverlookObj(const char* pName) : LiveActor(pName) {
     _8C = 0;
     MR::connectToSceneMapObjMovement(this);
     MR::invalidateClipping(this);
@@ -20,5 +19,4 @@ void AstroOverlookObj::control() {
     }
 }
 
-AstroOverlookObj::~AstroOverlookObj() {
-}
+AstroOverlookObj::~AstroOverlookObj() {}

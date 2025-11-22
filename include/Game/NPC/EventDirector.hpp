@@ -16,23 +16,23 @@ public:
 
     virtual void init(const JMapInfoIter& rIter);
 
-    /* 0x0C */ PowerStarEventKeeper*  mPowerStarEventKeeper;
-    /* 0x10 */ StageStateKeeper*      mStageStateKeeper;
-    /* 0x14 */ PowerStarHolder*       mPowerStarHolder;
-    /* 0x18 */ CometEventKeeper*      mCometEventKeeper;
+    /* 0x0C */ PowerStarEventKeeper* mPowerStarEventKeeper;
+    /* 0x10 */ StageStateKeeper* mStageStateKeeper;
+    /* 0x14 */ PowerStarHolder* mPowerStarHolder;
+    /* 0x18 */ CometEventKeeper* mCometEventKeeper;
     /* 0x1C */ TimeAttackEventKeeper* mTimeAttackEventKeeper;
 };
 
 namespace EventFunction {
-    PowerStarEventKeeper*  getPowerStarEventKeeper();
-    StageStateKeeper*      getStageStateKeeper();
-    PowerStarHolder*       getPowerStarHolder();
-    CometEventKeeper*      getCometEventKeeper();
+    PowerStarEventKeeper* getPowerStarEventKeeper();
+    StageStateKeeper* getStageStateKeeper();
+    PowerStarHolder* getPowerStarHolder();
+    CometEventKeeper* getCometEventKeeper();
     TimeAttackEventKeeper* getTimeAttackEventKeeper();
-    bool                   isStartCometEvent(const char*);
-    void                   startCometEvent();
-    void                   endCometEvent();
-}; // namespace EventFunction
+    bool isStartCometEvent(const char*);
+    void startCometEvent();
+    void endCometEvent();
+};  // namespace EventFunction
 
 namespace MR {
     void declareEventPowerStar(const char*, s32, bool);
@@ -44,4 +44,4 @@ namespace MR {
     bool isGrandEventPowerStar(const char*, s32);
     void appearEventPowerStar(const char*, s32, const TVec3f*, bool, bool);
     bool isEndEventPowerStarAppearDemo(const char*);
-}; // namespace MR
+};  // namespace MR

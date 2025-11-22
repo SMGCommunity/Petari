@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/LiveActor/LiveActor.hpp"
 #include "Game/Gravity/GravityCreator.hpp"
+#include "Game/LiveActor/LiveActor.hpp"
 
 class GlobalGravityObj : public LiveActor {
 public:
@@ -13,10 +13,10 @@ public:
     virtual void makeActorAppeared();
     virtual void makeActorDead();
 
-    void           updateSwitch();
+    void updateSwitch();
     PlanetGravity* getGravity();
 
-    GravityCreator* mGravityCreator; // 0x8C
+    GravityCreator* mGravityCreator;  // 0x8C
 };
 
 namespace MR {
@@ -30,4 +30,4 @@ namespace MR {
     NameObj* createGlobalPointGravityObj(const char* pName);
     NameObj* createGlobalSegmentGravityObj(const char* pName);
     NameObj* createGlobalWireGravityObj(const char* pName);
-}; // namespace MR
+};  // namespace MR

@@ -9,4 +9,4 @@ namespace MR {
 
         u32 _0;
     };
-}; // namespace MR
+};  // namespace MR

@@ -28,9 +28,7 @@ void CollisionCategorizedKeeper::removeFromGlobal(CollisionParts* pParts) {
     mZoneCount--;
 }
 
-CollisionZone::CollisionZone(s32 zoneID)
-    : mZoneID(zoneID), mNumParts(0), _808(0, 0, 0), mRadius(0.0f), _818(0, 0, 0), _824(0, 0, 0) {
-}
+CollisionZone::CollisionZone(s32 zoneID) : mZoneID(zoneID), mNumParts(0), _808(0, 0, 0), mRadius(0.0f), _818(0, 0, 0), _824(0, 0, 0) {}
 
 void CollisionZone::addParts(CollisionParts* pParts) {
     s32 cnt = mNumParts;

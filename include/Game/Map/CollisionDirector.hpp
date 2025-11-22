@@ -14,8 +14,8 @@ public:
     virtual void initAfterPlacement();
     virtual void movement();
 
-    CollisionCategorizedKeeper** mKeepers; // 0xC
-    CollisionCode*               mCode;    // 0x10
+    CollisionCategorizedKeeper** mKeepers;  // 0xC
+    CollisionCode* mCode;                   // 0x10
 };
 
 namespace MR {

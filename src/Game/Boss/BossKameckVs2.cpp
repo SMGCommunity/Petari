@@ -1,9 +1,9 @@
 #include "Game/Boss/BossKameckVs2.hpp"
-#include "Game/Boss/BossKameckBattlePattarn.hpp"
-#include "Game/Boss/BossKameckBattleDemo.hpp"
-#include "Game/Boss/BossKameckStateBattle.hpp"
 #include "Game/Boss/BossKameck.hpp"
 #include "Game/Boss/BossKameckBarrier.hpp"
+#include "Game/Boss/BossKameckBattleDemo.hpp"
+#include "Game/Boss/BossKameckBattlePattarn.hpp"
+#include "Game/Boss/BossKameckStateBattle.hpp"
 
 namespace {
     s32 sBeamPatternLv1[] = {2, 1, -1};
@@ -13,7 +13,7 @@ namespace {
     BossKameckBattlePattarn sPatternLv1 = BossKameckBattlePattarn(sBeamPatternLv1, false);
     BossKameckBattlePattarn sPatternLv2 = BossKameckBattlePattarn(sBeamPatternLv2, false);
     BossKameckBattlePattarn sPatternLv3 = BossKameckBattlePattarn(sBeamPatternLv3, true);
-}; // namespace
+};  // namespace
 
 namespace NrvBossKameckVs2 {
     NEW_NERVE(BossKameckVs2NrvOpeningDemo, BossKameckVs2, OpeningDemo);
@@ -23,10 +23,9 @@ namespace NrvBossKameckVs2 {
     NEW_NERVE(BossKameckVs2NrvBattleLv3, BossKameckVs2, BattleLv3);
     NEW_NERVE(BossKameckVs2NrvBattleLv4, BossKameckVs2, BattleLv4);
     NEW_NERVE(BossKameckVs2NrvEndDemo, BossKameckVs2, EndDemo);
-}; // namespace NrvBossKameckVs2
+};  // namespace NrvBossKameckVs2
 
-BossKameckVs2::BossKameckVs2()
-    : BossKameckSequencer("ボスカメックVs2") {
+BossKameckVs2::BossKameckVs2() : BossKameckSequencer("ボスカメックVs2") {
     mStateBattle = nullptr;
     mBarrier = nullptr;
 }
@@ -137,11 +136,11 @@ void BossKameckVs2::exeEndDemo() {
 }
 
 bool BossKameckVs2::isBattle() const {
-    if (isNerve(&NrvBossKameckVs2::BossKameckVs2NrvBattleLv1::sInstance) || isNerve(&NrvBossKameckVs2::BossKameckVs2NrvBattleLv2::sInstance) || isNerve(&NrvBossKameckVs2::BossKameckVs2NrvBattleLv3::sInstance) || isNerve(&NrvBossKameckVs2::BossKameckVs2NrvBattleLv4::sInstance)) {
+    if (isNerve(&NrvBossKameckVs2::BossKameckVs2NrvBattleLv1::sInstance) || isNerve(&NrvBossKameckVs2::BossKameckVs2NrvBattleLv2::sInstance) ||
+        isNerve(&NrvBossKameckVs2::BossKameckVs2NrvBattleLv3::sInstance) || isNerve(&NrvBossKameckVs2::BossKameckVs2NrvBattleLv4::sInstance)) {
         return true;
     }
     return false;
 }
 
-BossKameckVs2::~BossKameckVs2() {
-}
+BossKameckVs2::~BossKameckVs2() {}

@@ -24,4 +24,4 @@ namespace NrvPicketSwitch {
     NERVE(PicketSwitchNrvWait);
     NERVE(PicketSwitchNrvFirstDrop);
     NERVE(PicketSwitchNrvLastDrop);
-}; // namespace NrvPicketSwitch
+};  // namespace NrvPicketSwitch

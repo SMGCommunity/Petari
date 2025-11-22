@@ -1,8 +1,7 @@
 #include "Game/Boss/BossKameckSequencer.hpp"
 #include "Game/Boss/BossKameckBattleDemo.hpp"
 
-BossKameckSequencer::BossKameckSequencer(const char* pName)
-    : NerveExecutor(pName) {
+BossKameckSequencer::BossKameckSequencer(const char* pName) : NerveExecutor(pName) {
     mBossKameck = nullptr;
     _C = 0;
     mBattleDemo = nullptr;
@@ -18,12 +17,12 @@ void BossKameckSequencer::update() {
     updateNerve();
 }
 
-/* 
+/*
  * There is no way to know what they wanted at offset 0xC in this class.
  * It is always nullptr so the sensors never react.
  * This is most likely a remenant of another class that they accidentally included (or left) here,
- * so this code is my best guess since the vtables align up. It is some sort of BossKameckAction. 
-*/
+ * so this code is my best guess since the vtables align up. It is some sort of BossKameckAction.
+ */
 void BossKameckSequencer::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (_C != nullptr) {
         _C->attackSensor(pSender, pReceiver);

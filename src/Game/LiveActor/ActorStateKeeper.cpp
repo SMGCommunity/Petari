@@ -1,11 +1,7 @@
 #include "Game/LiveActor/ActorStateKeeper.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 
-ActorStateKeeper::ActorStateKeeper(int capacity)
-    : mStatesCapacity(capacity),
-      mLength(0),
-      mStates(nullptr),
-      mCurrentState(nullptr) {
+ActorStateKeeper::ActorStateKeeper(int capacity) : mStatesCapacity(capacity), mLength(0), mStates(nullptr), mCurrentState(nullptr) {
     mStates = new State[capacity];
 
     for (s32 i = 0; i < mStatesCapacity; i++) {

@@ -4,8 +4,7 @@
 #include <JSystem/J3DGraphAnimator/J3DModelData.hpp>
 
 BtpPlayer::BtpPlayer(const ResourceHolder* pResourceHolder, J3DModelData* pModelData)
-    : MaterialAnmPlayerBase(pResourceHolder->mBtpResTable, pModelData) {
-}
+    : MaterialAnmPlayerBase(pResourceHolder->mBtpResTable, pModelData) {}
 
 void BtpPlayer::attach(J3DAnmBase* pAnmRes, J3DModelData* pModelData) {
     // TODO: Should be `static_cast` because `J3DAnmTexPattern` inherits J3DAnmBase`.

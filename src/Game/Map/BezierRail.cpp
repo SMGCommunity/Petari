@@ -28,7 +28,7 @@ namespace {
 
         MR::normalize(pOut);
     }
-}; // namespace
+};  // namespace
 
 void BezierRailPart::set(const TVec3f& a1, const TVec3f& a2, const TVec3f& a3, const TVec3f& a4) {
     TVec3f v21, v20, v19, v18, v17, v16;
@@ -114,7 +114,7 @@ f32 BezierRail::getPartLength(int idx) const {
 
 void BezierRail::calcPos(TVec3f* pOut, f32 a2) const {
     const RailPart* part;
-    f32             param;
+    f32 param;
 
     getIncludedSection(&part, &param, a2, 1);
     part->calcPos(pOut, part->getParam(param));
@@ -122,7 +122,7 @@ void BezierRail::calcPos(TVec3f* pOut, f32 a2) const {
 
 void BezierRail::calcDirection(TVec3f* pOut, f32 a2) const {
     const RailPart* part;
-    f32             param;
+    f32 param;
 
     getIncludedSection(&part, &param, a2, 1);
     calcRailDirection(pOut, part, part->getParam(param));
@@ -130,7 +130,7 @@ void BezierRail::calcDirection(TVec3f* pOut, f32 a2) const {
 
 void BezierRail::calcPosDir(TVec3f* pPos, TVec3f* pDir, f32 a3) const {
     const RailPart* part;
-    f32             param;
+    f32 param;
 
     getIncludedSection(&part, &param, a3, 1);
     f32 val = part->getParam(param);
@@ -142,7 +142,7 @@ void BezierRail::calcPosDir(TVec3f* pPos, TVec3f* pDir, f32 a3) const {
 // regalloc issues
 f32 BezierRail::getNearestRailPosCoord(const TVec3f& a1) const {
     RailPart* part = mRailParts;
-    int       idx = 0;
+    int idx = 0;
 
     f32 length = part->getTotalLength();
     f32 nearestParam = part->getNearestParam(a1, 100.0f / length);

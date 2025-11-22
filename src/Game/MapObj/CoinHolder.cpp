@@ -3,8 +3,7 @@
 #include "Game/NameObj/NameObj.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 
-CoinHolder::CoinHolder(const char* pName)
-    : DeriveActorGroup< Coin >(pName, 0x200), mHostInfoArr(nullptr), mHostInfoCount(0) {
+CoinHolder::CoinHolder(const char* pName) : DeriveActorGroup< Coin >(pName, 0x200), mHostInfoArr(nullptr), mHostInfoCount(0) {
     mHostInfoArr = new CoinHostInfo[0x200];
 }
 
@@ -100,10 +99,10 @@ namespace MR {
     }
 
     void addToCoinHolder(const NameObj* pNameObj, Coin* pCoin) {
-        //Grabs the Coin holder obj, then discards that and does it again?????
+        // Grabs the Coin holder obj, then discards that and does it again?????
         SceneObjHolder* holder = MR::getSceneObjHolder();
         holder->getObj(SceneObj_CoinHolder);
         CoinHolder* coinHolder = (CoinHolder*)MR::getSceneObjHolder()->getObj(SceneObj_CoinHolder);
         pCoin->setHostInfo(coinHolder->declare(pNameObj, 1));
     }
-}; // namespace MR
+};  // namespace MR

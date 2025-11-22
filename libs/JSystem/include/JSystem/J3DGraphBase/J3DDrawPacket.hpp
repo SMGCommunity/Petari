@@ -9,11 +9,11 @@ public:
     virtual void draw();
     virtual ~J3DDrawPacket();
 
-    u32                _C;
-    u32                mFlags; // 0x10
-    u32                _14;
-    u32                _18;
-    u32                _1C;
-    J3DDisplayListObj* mDL; // 0x20
-    u32                _24;
+    u32 _C;
+    u32 mFlags;  // 0x10
+    u32 _14;
+    u32 _18;
+    u32 _1C;
+    J3DDisplayListObj* mDL;  // 0x20
+    u32 _24;
 };

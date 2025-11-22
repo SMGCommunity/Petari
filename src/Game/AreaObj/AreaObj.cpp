@@ -1,23 +1,11 @@
-#include "Game/AreaObj/AreaForm.hpp"
 #include "Game/AreaObj/AreaObj.hpp"
+#include "Game/AreaObj/AreaForm.hpp"
 #include "Game/AreaObj/AreaObjFollower.hpp"
 #include "Game/Map/SleepControllerHolder.hpp"
 
 AreaObj::AreaObj(int type, const char* pName)
-    : NameObj(pName),
-      mType(type),
-      mIsValid(true),
-      _15(true),
-      mIsAwake(true),
-      mObjArg0(-1),
-      mObjArg1(-1),
-      mObjArg2(-1),
-      mObjArg3(-1),
-      mObjArg4(-1),
-      mObjArg5(-1),
-      mObjArg6(-1),
-      mObjArg7(-1),
-      mSwitchCtrl(nullptr) {
+    : NameObj(pName), mType(type), mIsValid(true), _15(true), mIsAwake(true), mObjArg0(-1), mObjArg1(-1), mObjArg2(-1), mObjArg3(-1), mObjArg4(-1),
+      mObjArg5(-1), mObjArg6(-1), mObjArg7(-1), mSwitchCtrl(nullptr) {
     switch (type) {
     case 0:
         mForm = new AreaFormCube(0);
@@ -106,11 +94,7 @@ TPos3f* AreaObj::getFollowMtx() const {
     return mForm->_4;
 }
 
-AreaObjMgr::AreaObjMgr(s32 count, const char* pName)
-    : NameObj(pName),
-      mArray(),
-      _18(count) {
-}
+AreaObjMgr::AreaObjMgr(s32 count, const char* pName) : NameObj(pName), mArray(), _18(count) {}
 
 void AreaObjMgr::entry(AreaObj* pAreaObj) {
     if (mArray.capacity() == 0) {

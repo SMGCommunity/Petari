@@ -1,5 +1,4 @@
 #include "Game/Demo/DemoTalkAnimCtrl.hpp"
-#include <cstdio>
 #include "Game/Demo/DemoExecutor.hpp"
 #include "Game/Demo/DemoFunction.hpp"
 #include "Game/System/NerveExecutor.hpp"
@@ -10,6 +9,7 @@
 #include "Game/Util/DemoUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
+#include <cstdio>
 
 DemoTalkAnimCtrl::DemoTalkAnimCtrl(LiveActor* pActor, const char* a3, const char* a4)
     : NerveExecutor(a3), mActor(pActor), _C(a3), _10(a4), _14(nullptr), _18(""), _1C(""), mCameraInfo(nullptr), _24(0), _28(0), _2C(0), _30(0),
@@ -110,7 +110,7 @@ bool DemoTalkAnimCtrl::updateDemo() {
     }
 
     if (ok) {
-        s32         totalsteps = MR::getDemoPartTotalStep(name);
+        s32 totalsteps = MR::getDemoPartTotalStep(name);
         BckCtrlData bck;
         _36 = MR::isDemoPartTalk(name);
         _14 = name;

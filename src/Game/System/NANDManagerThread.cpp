@@ -1,9 +1,7 @@
 #include "Game/System/NANDManagerThread.hpp"
 #include "Game/System/NANDManager.hpp"
 
-NANDManagerThread::NANDManagerThread(int priority, int msgCount, JKRHeap* pHeap)
-    : OSThreadWrapper(0x8000, msgCount, priority, pHeap) {
-}
+NANDManagerThread::NANDManagerThread(int priority, int msgCount, JKRHeap* pHeap) : OSThreadWrapper(0x8000, msgCount, priority, pHeap) {}
 
 void* NANDManagerThread::run() {
     OSInitFastCast();

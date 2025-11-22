@@ -1,8 +1,6 @@
 #include "Game/MapObj/FirePressureBulletHolder.hpp"
 
-FirePressureBulletHolder::FirePressureBulletHolder(const char* pName)
-    : NameObj(pName) {
-}
+FirePressureBulletHolder::FirePressureBulletHolder(const char* pName) : NameObj(pName) {}
 
 FirePressureBullet* FirePressureBulletHolder::callEmptyBullet() {
     for (u32 i = 0; i < 8; i++) {
@@ -14,8 +12,7 @@ FirePressureBullet* FirePressureBulletHolder::callEmptyBullet() {
     return nullptr;
 }
 
-FirePressureBulletHolder::~FirePressureBulletHolder() {
-}
+FirePressureBulletHolder::~FirePressureBulletHolder() {}
 
 void FirePressureBulletHolder::init(const JMapInfoIter& rIter) {
     for (u32 i = 0; i < 8; i++) {

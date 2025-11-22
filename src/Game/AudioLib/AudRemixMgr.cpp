@@ -19,7 +19,7 @@ void AudRemixMgr::update() {
 
 void AudRemixMgr::setRemixSeqResource(void* ptr) {
     u32* newPtr = (u32*)ptr;
-    int  groupCount = *(newPtr);
+    int groupCount = *(newPtr);
     newPtr++;
     mGroupCount = groupCount;
     newPtr += mGroupCount;

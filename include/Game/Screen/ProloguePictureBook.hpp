@@ -21,5 +21,5 @@ public:
 
 private:
     /* 0x20 */ IconAButton* mAButtonIcon;
-    /* 0x24 */ u32          mPage;
+    /* 0x24 */ u32 mPage;
 };

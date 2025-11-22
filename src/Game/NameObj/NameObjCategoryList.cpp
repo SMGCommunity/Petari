@@ -1,6 +1,7 @@
 #include "Game/NameObj/NameObjCategoryList.hpp"
 
-NameObjCategoryList::NameObjCategoryList(u32 count, const CategoryListInitialTable* pTable, NameObjMethod pMethod, bool a4, const char* /* unused */) {
+NameObjCategoryList::NameObjCategoryList(u32 count, const CategoryListInitialTable* pTable, NameObjMethod pMethod, bool a4,
+                                         const char* /* unused */) {
     NameObjMethod method;
     method = pMethod;
     mDelegator = new NameObjRealDelegator< NameObjMethod >(method);
@@ -9,7 +10,8 @@ NameObjCategoryList::NameObjCategoryList(u32 count, const CategoryListInitialTab
     initTable(count, pTable);
 }
 
-NameObjCategoryList::NameObjCategoryList(u32 count, const CategoryListInitialTable* pTable, NameObjMethodConst pMethod, bool a4, const char* /* unused */) {
+NameObjCategoryList::NameObjCategoryList(u32 count, const CategoryListInitialTable* pTable, NameObjMethodConst pMethod, bool a4,
+                                         const char* /* unused */) {
     NameObjMethodConst method;
     method = pMethod;
     mDelegatorConst = new NameObjRealDelegator< NameObjMethodConst >(method);
@@ -41,9 +43,9 @@ void NameObjCategoryList::incrementCheck(NameObj* /*unused*/, int index) {
 void NameObjCategoryList::allocateBuffer() {
     if (_D) {
         for (int i = 0; i < mCategoryInfo.size(); i++) {
-            NameObjCategoryList::CategoryInfo*             inf = &mCategoryInfo[i];
-            u32                                            size = inf->mCheck;
-            NameObj**                                      nameObjArr = new NameObj*[size];
+            NameObjCategoryList::CategoryInfo* inf = &mCategoryInfo[i];
+            u32 size = inf->mCheck;
+            NameObj** nameObjArr = new NameObj*[size];
             MR::Vector< MR::AssignableArray< NameObj* > >* arr = &mCategoryInfo[i].mNameObjArr;
             arr->mArray.mArr = nameObjArr;
             arr->mArray.mMaxSize = size;
@@ -74,8 +76,8 @@ void NameObjCategoryList::initTable(u32 count, const CategoryListInitialTable* p
 
     for (const CategoryListInitialTable* pEntry = &pTable[0]; pEntry->mIndex != -1; pEntry++) {
         if (!_D) {
-            u32                                size = pEntry->mCount;
-            NameObj**                          arr = new NameObj*[size];
+            u32 size = pEntry->mCount;
+            NameObj** arr = new NameObj*[size];
             NameObjCategoryList::CategoryInfo* inf = &mCategoryInfo[pEntry->mIndex];
             inf->mNameObjArr.mArray.mArr = arr;
             inf->mNameObjArr.mArray.mMaxSize = size;
@@ -86,11 +88,9 @@ void NameObjCategoryList::initTable(u32 count, const CategoryListInitialTable* p
     }
 }
 
-NameObjCategoryList::CategoryInfo::CategoryInfo()
-    : mNameObjArr() {}
+NameObjCategoryList::CategoryInfo::CategoryInfo() : mNameObjArr() {}
 
-NameObjCategoryList::CategoryInfo::~CategoryInfo() {
-}
+NameObjCategoryList::CategoryInfo::~CategoryInfo() {}
 
 NameObjCategoryList::~NameObjCategoryList() {
     delete mDelegator;

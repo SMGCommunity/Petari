@@ -6,8 +6,7 @@
 #include "Game/Util/LiveActorUtil.hpp"
 #include "revolution/types.h"
 
-LavaSunPlanet::LavaSunPlanet(const char* pName)
-    : LiveActor(pName) {
+LavaSunPlanet::LavaSunPlanet(const char* pName) : LiveActor(pName) {
     mRotator = nullptr;
     mObjName = nullptr;
     mLodCtrl = nullptr;
@@ -67,5 +66,4 @@ void LavaSunPlanet::init(const JMapInfoIter& rIter) {
     lodEffect->updateMtxUseBaseMtx();
 }
 
-LavaSunPlanet::~LavaSunPlanet() {
-}
+LavaSunPlanet::~LavaSunPlanet() {}

@@ -34,8 +34,7 @@ void ViewGroupCtrl::initViewGroup(ClippingActorInfoList* pList) {
     }
 }
 
-void ViewGroupCtrl::endInitViewGroupTable() {
-}
+void ViewGroupCtrl::endInitViewGroupTable() {}
 
 void ViewGroupCtrl::entryLodCtrl(LodCtrl* pCtrl, const JMapInfoIter& rIter) {
     s32 groupID = -1;

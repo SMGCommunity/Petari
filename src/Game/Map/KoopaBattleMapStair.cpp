@@ -11,15 +11,14 @@ namespace NrvKoopaBattleMapStair {
     NEW_NERVE(KoopaBattleMapStairNrvWaitFall, KoopaBattleMapStair, WaitFall);
     NEW_NERVE(KoopaBattleMapStairNrvFall, KoopaBattleMapStair, Fall);
     NEW_NERVE(KoopaBattleMapStairNrvDisappear, KoopaBattleMapStair, Disappear);
-}; // namespace NrvKoopaBattleMapStair
+};  // namespace NrvKoopaBattleMapStair
 
 struct OffsetPair {
     f32 _0;
     f32 _4;
 };
 
-KoopaBattleMapStair::KoopaBattleMapStair(const char* pName)
-    : LiveActor(pName) {
+KoopaBattleMapStair::KoopaBattleMapStair(const char* pName) : LiveActor(pName) {
     mFireTimer = 300;
     _90 = -1;
     _94 = 0;
@@ -101,21 +100,13 @@ bool KoopaBattleMapStair::isRequestAttackVs3() const {
 }
 
 namespace {
-    static OffsetPair offset_table[8] = {
-        {0.0f, -1.0f},
-        {1.0f, -1.0f},
-        {1.0f, 0.0f},
-        {1.0f, 1.0f},
-        {0.0f, 1.0f},
-        {-1.0f, 1.0f},
-        {-1.0f, 0.0f},
-        {-1.0f, -1.0f}};
+    static OffsetPair offset_table[8] = {{0.0f, -1.0f}, {1.0f, -1.0f}, {1.0f, 0.0f},  {1.0f, 1.0f},
+                                         {0.0f, 1.0f},  {-1.0f, 1.0f}, {-1.0f, 0.0f}, {-1.0f, -1.0f}};
 
     void updateNearestPos(TVec3f* pPos, f32* pTable, const TVec3f& a3, const TVec3f& a4, s32 a5, s32 a6) {
         if (a5 < 0) {
             f32 dist = PSVECDistance(&a3, &a4);
             if (dist > *pTable) {
-
             } else {
                 pPos->set(a3);
                 *pTable = dist;
@@ -124,13 +115,13 @@ namespace {
             pPos->set(a3);
         }
     }
-}; // namespace
+};  // namespace
 
 f32 KoopaBattleMapStair::calcAndSetTargetPos(TVec3f* pPos, const TVec3f& a2) {
     TVec3f v41, v40, v39;
     MR::calcActorAxis(&v39, &v40, &v41, this);
     TVec3f v38 = (v40 * 100) + mPosition;
-    f32    v20 = PSVECDistance(&v38, &a2);
+    f32 v20 = PSVECDistance(&v38, &a2);
     pPos->set< f32 >(v38);
     s32 val;
     if (mIsStairBig) {

@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/Screen/LayoutActor.hpp"
 #include "Game/Screen/CustomTagProcessor.hpp"
+#include "Game/Screen/LayoutActor.hpp"
 
 struct CustomTagArg;
 
@@ -16,8 +16,8 @@ public:
     void updateTalking();
     bool isTextAppearedAll() const;
 
-    LayoutActor*   mHostActor; // 0x0
-    const wchar_t* mMsg;       // 0x4
-    u32            _8;
-    const char*    mPaneName; // 0xC
+    LayoutActor* mHostActor;  // 0x0
+    const wchar_t* mMsg;      // 0x4
+    u32 _8;
+    const char* mPaneName;  // 0xC
 };

@@ -1,8 +1,7 @@
 #include "Game/Boss/SkeletalFishBossRailHolder.hpp"
 #include "Game/Boss/SkeletalFishBossRail.hpp"
 
-SkeletalFishBossRailHolder::SkeletalFishBossRailHolder(const char* pName)
-    : NameObj(pName) {
+SkeletalFishBossRailHolder::SkeletalFishBossRailHolder(const char* pName) : NameObj(pName) {
     mNumRails = 0;
 
     for (s32 i = 0; i < 3; i++) {
@@ -35,10 +34,7 @@ namespace MR {
         return MR::getSceneObj< SkeletalFishBossRailHolder >(SceneObj_SkeletalFishBossRailHolder);
     }
 
-    void createSkeletalFishBossRailHolder() {
-        MR::createSceneObj(SceneObj_SkeletalFishBossRailHolder);
-    }
-}; // namespace MR
+    void createSkeletalFishBossRailHolder() { MR::createSceneObj(SceneObj_SkeletalFishBossRailHolder); }
+};  // namespace MR
 
-SkeletalFishBossRailHolder::~SkeletalFishBossRailHolder() {
-}
+SkeletalFishBossRailHolder::~SkeletalFishBossRailHolder() {}

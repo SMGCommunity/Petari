@@ -9,8 +9,7 @@
 #include "JSystem/JGeometry/TVec.hpp"
 #include "revolution/mtx.h"
 
-DesertMovingLand::DesertMovingLand(const char* pName)
-    : MapObjActor(pName), _C4(gZeroVec), _D0(gZeroVec) {
+DesertMovingLand::DesertMovingLand(const char* pName) : MapObjActor(pName), _C4(gZeroVec), _D0(gZeroVec) {
     _DC = 720;
     _E0 = 720;
     _E4.identity();
@@ -30,7 +29,7 @@ void DesertMovingLand::init(const JMapInfoIter& rIter) {
     if (!MR::isValidSwitchA(this))
         setNerve(&NrvDesertMovingLand::HostTypeWaitBottom::sInstance);
 
-    MtxPtr     jointMtx = MR::getJointMtx(this, mObjectName);
+    MtxPtr jointMtx = MR::getJointMtx(this, mObjectName);
     HitSensor* pSensorMove = getSensor(0);
     MR::initCollisionParts(this, "Move", pSensorMove, jointMtx);
 
@@ -67,10 +66,10 @@ void DesertMovingLand::control() {
 }
 
 void DesertMovingLand::startDemo() {
-    MtxPtr  playerBaseMtx = MR::getPlayerDemoActor()->getBaseMtx();
+    MtxPtr playerBaseMtx = MR::getPlayerDemoActor()->getBaseMtx();
     TMtx34f stack_38;
     stack_38.set(playerBaseMtx);
-    MtxPtr  jointMtx = MR::getJointMtx(this, mObjectName);
+    MtxPtr jointMtx = MR::getJointMtx(this, mObjectName);
     TMtx34f stack_8;
     stack_8.set(jointMtx);
     stack_8.invert(stack_8);
@@ -78,7 +77,7 @@ void DesertMovingLand::startDemo() {
 }
 
 void DesertMovingLand::updateDemoPlayerPos() {
-    MtxPtr  jointMtx = MR::getJointMtx(this, mObjectName);
+    MtxPtr jointMtx = MR::getJointMtx(this, mObjectName);
     TMtx34f stack_8;
     stack_8.set(jointMtx);
     stack_8.concat(stack_8, _E4);
@@ -187,14 +186,11 @@ void DesertMovingLand::connectToScene(const MapObjActorInitInfo& rInfo) {
     MR::connectToSceneCollisionMapObj(this);
 }
 
-void DesertMovingLand::initCaseNoUseSwitchB(const MapObjActorInitInfo& rInfo) {
-}
+void DesertMovingLand::initCaseNoUseSwitchB(const MapObjActorInitInfo& rInfo) {}
 
-void DesertMovingLand::initCaseUseSwitchB(const MapObjActorInitInfo& rInfo) {
-}
+void DesertMovingLand::initCaseUseSwitchB(const MapObjActorInitInfo& rInfo) {}
 
-void DesertMovingLand::initCaseUseSwitchA(const MapObjActorInitInfo& rInfo) {
-}
+void DesertMovingLand::initCaseUseSwitchA(const MapObjActorInitInfo& rInfo) {}
 
 DesertMovingLand::~DesertMovingLand(){};
 
@@ -206,4 +202,4 @@ namespace NrvDesertMovingLand {
     HostTypeMoveDownSign(HostTypeMoveDownSign::sInstance);
     HostTypeMoveUpSign(HostTypeMoveUpSign::sInstance);
     HostTypeStop(HostTypeStop::sInstance);
-}; // namespace NrvDesertMovingLand
+};  // namespace NrvDesertMovingLand

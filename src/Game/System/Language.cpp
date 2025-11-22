@@ -1,10 +1,10 @@
+#include "Game/System/Language.hpp"
 #include "Game/NameObj/NameObj.hpp"
+#include "Game/SingletonHolder.hpp"
 #include "Game/System/GameSystem.hpp"
 #include "Game/System/GameSystemObjHolder.hpp"
-#include "Game/System/Language.hpp"
 #include "Game/Util/StringUtil.hpp"
 #include "Game/Util/SystemUtil.hpp"
-#include "Game/SingletonHolder.hpp"
 #include <revolution/sc.h>
 
 #define REGION_EU 0
@@ -116,20 +116,12 @@ namespace {
         },
     };
     const Language cLanguages[] = {
-        {LANGUAGE_JPJAPANESE, "JpJapanese"},
-        {LANGUAGE_USENGLISH, "UsEnglish"},
-        {LANGUAGE_USSPANISH, "UsSpanish"},
-        {LANGUAGE_USFRENCH, "UsFrench"},
-        {LANGUAGE_EUENGLISH, "EuEnglish"},
-        {LANGUAGE_EUSPANISH, "EuSpanish"},
-        {LANGUAGE_EUFRENCH, "EuFrench"},
-        {LANGUAGE_EUGERMAN, "EuGerman"},
-        {LANGUAGE_EUITALIAN, "EuItalian"},
-        {LANGUAGE_EUDUTCH, "EuDutch"},
-        {LANGUAGE_CNSIMPCHINESE, "CnSimpChinese"},
-        {LANGUAGE_KRKOREAN, "KrKorean"},
+        {LANGUAGE_JPJAPANESE, "JpJapanese"}, {LANGUAGE_USENGLISH, "UsEnglish"},         {LANGUAGE_USSPANISH, "UsSpanish"},
+        {LANGUAGE_USFRENCH, "UsFrench"},     {LANGUAGE_EUENGLISH, "EuEnglish"},         {LANGUAGE_EUSPANISH, "EuSpanish"},
+        {LANGUAGE_EUFRENCH, "EuFrench"},     {LANGUAGE_EUGERMAN, "EuGerman"},           {LANGUAGE_EUITALIAN, "EuItalian"},
+        {LANGUAGE_EUDUTCH, "EuDutch"},       {LANGUAGE_CNSIMPCHINESE, "CnSimpChinese"}, {LANGUAGE_KRKOREAN, "KrKorean"},
     };
-}; // namespace
+};  // namespace
 
 namespace MR {
     u32 getDecidedLanguageFromIPL() {
@@ -151,13 +143,9 @@ namespace MR {
         return cLanguageMap[4][i];
     }
 
-    u32 getLanguage() {
-        return SingletonHolder< GameSystem >::get()->mObjHolder->mLanguage;
-    }
+    u32 getLanguage() { return SingletonHolder< GameSystem >::get()->mObjHolder->mLanguage; }
 
-    u32 getLanguageFromIPL() {
-        return getLanguage() & LANGUAGE_MASK;
-    }
+    u32 getLanguageFromIPL() { return getLanguage() & LANGUAGE_MASK; }
 
     const char* getCurrentLanguagePrefix() {
         u32 id = getLanguage();
@@ -198,11 +186,7 @@ namespace MR {
         return nullptr;
     }
 
-    u32 getLanguageNum() {
-        return sizeof(cLanguages) / sizeof(*cLanguages);
-    }
+    u32 getLanguageNum() { return sizeof(cLanguages) / sizeof(*cLanguages); }
 
-    const char* getLanguagePrefixByIndex(u32 index) {
-        return cLanguages[index].mName;
-    }
-}; // namespace MR
+    const char* getLanguagePrefixByIndex(u32 index) { return cLanguages[index].mName; }
+};  // namespace MR

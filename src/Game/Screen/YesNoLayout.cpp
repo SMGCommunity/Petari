@@ -1,5 +1,5 @@
-#include "Game/Screen/YesNoController.hpp"
 #include "Game/Screen/YesNoLayout.hpp"
+#include "Game/Screen/YesNoController.hpp"
 #include "Game/Util/DemoUtil.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/ScreenUtil.hpp"
@@ -9,11 +9,7 @@ namespace NrvYesNoLayout {
     NEW_NERVE(YesNoLayoutNrvSelecting, YesNoLayout, Selecting);
 };
 
-YesNoLayout::YesNoLayout()
-    : SimpleLayout("Yes/Noレイアウト", "SelectButton", 1, 68),
-      mController(nullptr),
-      _24(false) {
-}
+YesNoLayout::YesNoLayout() : SimpleLayout("Yes/Noレイアウト", "SelectButton", 1, 68), mController(nullptr), _24(false) {}
 
 void YesNoLayout::init(const JMapInfoIter& rIter) {
     MR::createAndAddPaneCtrl(this, "Left", 1);

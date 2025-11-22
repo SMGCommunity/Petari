@@ -19,10 +19,10 @@ public:
     void exeWait();
 
 private:
-    /* 0x20 */ s32                    mPurpleCoinNum;
-    /* 0x24 */ s32                    mPurpleCoinDisplayNum;
-    /* 0x28 */ s32                    mInvalidCountUpFrame;
+    /* 0x20 */ s32 mPurpleCoinNum;
+    /* 0x24 */ s32 mPurpleCoinDisplayNum;
+    /* 0x28 */ s32 mInvalidCountUpFrame;
     /* 0x2C */ CounterLayoutAppearer* mLayoutAppearer;
-    /* 0x30 */ CountUpPaneRumbler*    mPaneRumbler;
-    /* 0x34 */ bool                   mIsValid;
+    /* 0x30 */ CountUpPaneRumbler* mPaneRumbler;
+    /* 0x34 */ bool mIsValid;
 };

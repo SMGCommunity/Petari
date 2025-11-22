@@ -13,16 +13,16 @@ public:
     virtual void activateTripodBoss();
     virtual void exeWaitOwn();
 
-    void        initSensor(const JMapInfoIter&);
-    void        exeStartDemo();
-    void        exeWait();
-    void        exeBreak();
+    void initSensor(const JMapInfoIter&);
+    void exeStartDemo();
+    void exeWait();
+    void exeBreak();
     inline void exeNonActive();
 
-    s32  _E4;
-    s32  _E8;
-    bool mHasCollision; // 0xEC
+    s32 _E4;
+    s32 _E8;
+    bool mHasCollision;  // 0xEC
     bool _ED;
-    u8   _EE;
-    bool mIsPlayingWarning; // 0xEF
+    u8 _EE;
+    bool mIsPlayingWarning;  // 0xEF
 };

@@ -58,14 +58,12 @@ namespace JGeometry {
 
         void sub(const TVec2< T >& rOther);
 
-        T length() const {
-            return JGeometry::TUtil< T >::sqrt((x * x) + (y * y));
-        }
+        T length() const { return JGeometry::TUtil< T >::sqrt((x * x) + (y * y)); }
 
-        T    squared() const;
-        T    squared(const TVec2< T >&) const;
-        T    dot(const TVec2< T >& rOther) const;
-        T    distance(const TVec2< T >& rOther) const;
+        T squared() const;
+        T squared(const TVec2< T >&) const;
+        T dot(const TVec2< T >& rOther) const;
+        T distance(const TVec2< T >& rOther) const;
         void zero();
 
         /* Operators */
@@ -114,7 +112,7 @@ namespace JGeometry {
     __attribute__((always_inline)) inline void setTVec3f(const f32* a, f32* b) {
 #ifdef __MWERKS__
         const register f32* v_a = a;
-        register f32*       v_b = b;
+        register f32* v_b = b;
 
         register f32 b_x;
         register f32 a_x;
@@ -131,15 +129,12 @@ namespace JGeometry {
 
     template <>
     struct TVec3< f32 > : public Vec {
+        inline TVec3(const Vec& vec) NO_INLINE { setTVec3f(&vec.x, &x); }
 
-        inline TVec3(const Vec& vec) NO_INLINE {
-            setTVec3f(&vec.x, &x);
-        }
-
-        //Used inlined and non-inlined?
+        // Used inlined and non-inlined?
         TVec3(const TVec3< f32 >& vec) {
             const register Vec* v_a = &vec;
-            register Vec*       v_b = this;
+            register Vec* v_b = this;
 
             register f32 b_x;
             register f32 a_x;
@@ -167,9 +162,7 @@ namespace JGeometry {
             z = xz;
         }
 
-        TVec3(f32 val) NO_INLINE {
-            z = y = x = val;
-        }
+        TVec3(f32 val) NO_INLINE { z = y = x = val; }
 
         inline TVec3() {}
 
@@ -208,9 +201,7 @@ namespace JGeometry {
             return ret;
         }
 
-        void addInLine(const TVec3& op) {
-            JMathInlineVEC::PSVECAdd(this, &op, this);
-        }
+        void addInLine(const TVec3& op) { JMathInlineVEC::PSVECAdd(this, &op, this); }
 
         TVec3 operator*(f32 scalar) const NO_INLINE {
             TVec3 ret(*this);
@@ -286,7 +277,6 @@ namespace JGeometry {
 
 #ifdef __MWERKS__
         inline void mulInternal(register const f32* vec1, register const f32* vec2, register f32* dst) {
-
             register f32 xy1, xy2, res;
             __asm {
                 psq_l xy1, 0(vec1), 0, 0
@@ -300,9 +290,7 @@ namespace JGeometry {
         void mulInternal(const f32* vec1, const f32* vec2, f32* dst);
 #endif
 
-        void mult(const Vec& src1, const Vec& src2, Vec& dest) {
-            mulInternal(&src1.x, &src2.x, &dest.x);
-        }
+        void mult(const Vec& src1, const Vec& src2, Vec& dest) { mulInternal(&src1.x, &src2.x, &dest.x); }
 
         template < typename T >
         void setAll(f32);
@@ -313,29 +301,21 @@ namespace JGeometry {
             z *= val;
         }
 
-        void sub(const TVec3< f32 >& b) NO_INLINE {
-            JMathInlineVEC::PSVECSubtract(this, &b, this);
-        }
+        void sub(const TVec3< f32 >& b) NO_INLINE { JMathInlineVEC::PSVECSubtract(this, &b, this); }
 
         void sub(const TVec3&, const TVec3&);
 
-        //Required for multiple objects to match?
-        inline void multPS(TVec3< f32 >& a, TVec3< f32 >& b) {
-            mulInternal(&b.x, &a.x, &this->x);
-        }
+        // Required for multiple objects to match?
+        inline void multPS(TVec3< f32 >& a, TVec3< f32 >& b) { mulInternal(&b.x, &a.x, &this->x); }
 
-        void setTrans(MtxPtr mtx) {
-            set((*mtx)[3], (*mtx)[7], (*mtx)[11]);
-        }
+        void setTrans(MtxPtr mtx) { set((*mtx)[3], (*mtx)[7], (*mtx)[11]); }
 
-        inline void setPS(const TVec3< f32 >& rSrc) {
-            JGeometry::setTVec3f(&rSrc.x, &x);
-        }
+        inline void setPS(const TVec3< f32 >& rSrc) { JGeometry::setTVec3f(&rSrc.x, &x); }
 
         // Point gravity doesn't match if we use setPS
         inline void setPS2(const TVec3< f32 >& rSrc) {
             const register Vec* v_a = &rSrc;
-            register Vec*       v_b = this;
+            register Vec* v_b = this;
 
             register f32 b_x;
             register f32 a_x;
@@ -351,7 +331,7 @@ namespace JGeometry {
 
         inline void setPSZeroVec() {
             const register Vec* v_a = &gZeroVec;
-            register Vec*       v_b = this;
+            register Vec* v_b = this;
 
             register f32 b_x;
             register f32 a_x;
@@ -365,15 +345,11 @@ namespace JGeometry {
             ;
         }
 
-        void add(const TVec3< f32 >& b) NO_INLINE {
-            JMathInlineVEC::PSVECAdd(this, &b, this);
-        }
+        void add(const TVec3< f32 >& b) NO_INLINE { JMathInlineVEC::PSVECAdd(this, &b, this); }
 
         void add(const TVec3&, const TVec3&);
 
-        f32 squareMag() const {
-            return JMathInlineVEC::PSVECSquareMag(this);
-        }
+        f32 squareMag() const { return JMathInlineVEC::PSVECSquareMag(this); }
 
         f32 dot(const TVec3&) const;
 
@@ -390,9 +366,7 @@ namespace JGeometry {
             return ret;
         }
 
-        inline void rejection(const TVec3& rVec, const TVec3& rNormal) {
-            JMAVECScaleAdd(&rNormal, &rVec, this, -rNormal.dot(rVec));
-        }
+        inline void rejection(const TVec3& rVec, const TVec3& rNormal) { JMAVECScaleAdd(&rNormal, &rVec, this, -rNormal.dot(rVec)); }
 
         inline void invert() {
             this->x *= -1.0f;
@@ -403,13 +377,11 @@ namespace JGeometry {
         void scale(f32 scale);
         void scale(f32, const TVec3&);
         void negate();
-        f32  squared() const;
-        f32  squared(const TVec3&) const;
+        f32 squared() const;
+        f32 squared(const TVec3&) const;
         void zero();
 
-        bool isZero() const {
-            return squareMag() <= 0.0000038146973f;
-        }
+        bool isZero() const { return squareMag() <= 0.0000038146973f; }
 
         f32 normalize(const TVec3& rSrc) {
             x = rSrc.x;
@@ -432,9 +404,7 @@ namespace JGeometry {
 
         f32 setLength(const TVec3&, f32);
 
-        f32 length() const {
-            return PSVECMag(this);
-        }
+        f32 length() const { return PSVECMag(this); }
 
         template < typename T >
         void cubic(const TVec3&, const TVec3&, const TVec3&, const TVec3&, f32);
@@ -472,7 +442,7 @@ namespace JGeometry {
 
         T x, y, z, h;
     };
-}; // namespace JGeometry
+};  // namespace JGeometry
 
 typedef JGeometry::TVec2< s16 > TVec2s;
 typedef JGeometry::TVec2< f32 > TVec2f;

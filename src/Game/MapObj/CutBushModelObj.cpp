@@ -1,8 +1,7 @@
 #include "Game/MapObj/CutBushModelObj.hpp"
 #include "Game/Util.hpp"
 
-CutBushModelObj::CutBushModelObj(const char* pName, const char* pObjName, bool useLight, MtxPtr mtx)
-    : LiveActor(pName) {
+CutBushModelObj::CutBushModelObj(const char* pName, const char* pObjName, bool useLight, MtxPtr mtx) : LiveActor(pName) {
     mMtx = mtx;
     initModelManagerWithAnm(pObjName, nullptr, false);
     MR::connectToSceneNoSilhouettedMapObjWeakLightNoMovement(this);
@@ -37,5 +36,4 @@ void CutBushModelObj::calcAndSetBaseMtx() {
     }
 }
 
-CutBushModelObj::~CutBushModelObj() {
-}
+CutBushModelObj::~CutBushModelObj() {}

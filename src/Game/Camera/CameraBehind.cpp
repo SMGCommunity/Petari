@@ -1,8 +1,7 @@
 #include "Game/Camera/CameraBehind.hpp"
 #include "Game/Camera/CamTranslatorBehind.hpp"
 
-CameraBehind::CameraBehind(const char* pName)
-    : Camera(pName) {
+CameraBehind::CameraBehind(const char* pName) : Camera(pName) {
     mAngleB = 0.5235988f;
     mAngleA = 0.0f;
     mDist = 3000.0f;
@@ -10,8 +9,7 @@ CameraBehind::CameraBehind(const char* pName)
     createVPanObj();
 }
 
-CameraBehind::~CameraBehind() {
-}
+CameraBehind::~CameraBehind() {}
 
 CamTranslatorBase* CameraBehind::createTranslator() {
     return new CamTranslatorBehind(this);

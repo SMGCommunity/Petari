@@ -1,16 +1,14 @@
 #include "Game/AreaObj/BloomArea.hpp"
 #include "Game/Util/ScreenUtil.hpp"
 
-BloomArea::BloomArea(int type, const char* pName)
-    : ImageEffectArea(IMAGE_EFFECT_TYPE_BLOOM, type, pName) {
+BloomArea::BloomArea(int type, const char* pName) : ImageEffectArea(IMAGE_EFFECT_TYPE_BLOOM, type, pName) {
     _40 = 128;
     _41 = 255;
     _44 = -1;
     _48 = -1;
 }
 
-BloomArea::~BloomArea() {
-}
+BloomArea::~BloomArea() {}
 
 void BloomArea::init(const JMapInfoIter& rIter) {
     AreaObj::init(rIter);

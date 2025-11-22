@@ -1,7 +1,7 @@
 #include "Game/System/ResourceInfo.hpp"
 #include "Game/Util.hpp"
-#include <cstring>
 #include <cstdio>
+#include <cstring>
 #include <size_t.h>
 
 ResFileInfo::ResFileInfo() {
@@ -13,9 +13,7 @@ ResFileInfo::ResFileInfo() {
     _C = 0;
 }
 
-ResTable::ResTable()
-    : mFileInfoTable(0), mCount(0) {
-}
+ResTable::ResTable() : mFileInfoTable(0), mCount(0) {}
 
 void ResTable::newFileInfoTable(u32 count) {
     mFileInfoTable = new ResFileInfo[count];

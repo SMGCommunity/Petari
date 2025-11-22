@@ -1,10 +1,10 @@
-#include "Game/Camera/Camera.hpp"
+#include "Game/Camera/CameraManEvent.hpp"
 #include "Game/Camera/CamTranslatorAnim.hpp"
+#include "Game/Camera/Camera.hpp"
 #include "Game/Camera/CameraDirector.hpp"
 #include "Game/Camera/CameraHeightArrange.hpp"
-#include "Game/Camera/CameraLocalUtil.hpp"
-#include "Game/Camera/CameraManEvent.hpp"
 #include "Game/Camera/CameraHolder.hpp"
+#include "Game/Camera/CameraLocalUtil.hpp"
 #include "Game/Camera/CameraParamChunk.hpp"
 #include "Game/Camera/CameraParamChunkHolder.hpp"
 #include "Game/Util/CameraUtil.hpp"
@@ -33,11 +33,9 @@ CameraManEvent::CameraManEvent(CameraHolder* pHolder, CameraParamChunkHolder* pC
     }
 }
 
-CameraManEvent::~CameraManEvent() {
-}
+CameraManEvent::~CameraManEvent() {}
 
-void CameraManEvent::init(const JMapInfoIter& rIter) {
-}
+void CameraManEvent::init(const JMapInfoIter& rIter) {}
 
 void CameraManEvent::calc() {
     updateChunkFIFO();
@@ -169,7 +167,7 @@ bool CameraManEvent::doesNextChunkHaveInterpolation() const {
 u32 CameraManEvent::getAnimCameraFrame(s32 zoneID, const char* pName) const {
     mHolder->getIndexOf("CAM_TYPE_ANIM");
     CameraParamChunkEvent* chunk = findChunk(zoneID, pName);
-    CamTranslatorAnim*     translator = reinterpret_cast< CamTranslatorAnim* >(mHolder->getTranslator(chunk->mCameraTypeIndex));
+    CamTranslatorAnim* translator = reinterpret_cast< CamTranslatorAnim* >(mHolder->getTranslator(chunk->mCameraTypeIndex));
 
     return translator->getAnimFrame(chunk);
 }
@@ -210,7 +208,7 @@ void CameraManEvent::updateChunkFIFO() {
             mItems[i].mFirst.mTargetArg.mTargetMtx = mtx;
 
             const LiveActor* liveActor = mItems[i].mSecond.mTargetArg.mLiveActor;
-            MarioActor*      marioActor = mItems[i].mSecond.mTargetArg.mMarioActor;
+            MarioActor* marioActor = mItems[i].mSecond.mTargetArg.mMarioActor;
 
             mItems[i].mFirst.mTargetArg.mLiveActor = liveActor;
             mItems[i].mFirst.mTargetArg.mMarioActor = marioActor;
@@ -330,7 +328,7 @@ void CameraManEvent::resetCameraIfRequested() {
     TVec3f up = TVec3f(*CameraLocalUtil::getUpVec(mCamera));
 
     TVec3f dir = watchPos - pos;
-    
+    
     f32 length = PSVECMag(reinterpret_cast<Vec *>(&dir));
 
     if (length < 300.0f) {

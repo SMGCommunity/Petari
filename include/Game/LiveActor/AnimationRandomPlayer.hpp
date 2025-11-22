@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/System/NerveExecutor.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
+#include "Game/System/NerveExecutor.hpp"
 
 class AnimationRandomPlayer : public NerveExecutor {
 public:
@@ -13,12 +13,12 @@ public:
     void exeWait();
     void exePlay();
 
-    const LiveActor* mActor; // 0x8
-    const char*      _C;
-    const char*      _10;
-    s32              _14;
-    s32              _18;
-    f32              _1C;
+    const LiveActor* mActor;  // 0x8
+    const char* _C;
+    const char* _10;
+    s32 _14;
+    s32 _18;
+    f32 _1C;
 };
 
 namespace NrvAnimationRandomPlayer {
@@ -34,4 +34,4 @@ namespace NrvAnimationRandomPlayer {
         AnimationRandomPlayer* player = reinterpret_cast< AnimationRandomPlayer* >(pSpine->mExecutor);
         player->exeWait();
     }
-}; // namespace NrvAnimationRandomPlayer
+};  // namespace NrvAnimationRandomPlayer

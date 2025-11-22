@@ -1,19 +1,19 @@
 #include "Game/System/GameSystemException.hpp"
-#include "Game/System/GameSystem.hpp"
 #include "Game/SingletonHolder.hpp"
+#include "Game/System/GameSystem.hpp"
 #include "Game/System/GameSystemObjHolder.hpp"
 #include "Game/Util/GamePadUtil.hpp"
 #include <JSystem/JUtility/JUTAssert.hpp>
+#include <JSystem/JUtility/JUTConsole.hpp>
 #include <JSystem/JUtility/JUTDirectPrint.hpp>
 #include <JSystem/JUtility/JUTException.hpp>
-#include <JSystem/JUtility/JUTConsole.hpp>
 #include <JSystem/JUtility/JUTVideo.hpp>
 
 void* GameSystemException::sMapFileUsingBuffer;
 
 namespace {
     bool isBootWPAD() {
-        bool                 ret = false;
+        bool ret = false;
         GameSystemObjHolder* objHolder = SingletonHolder< GameSystem >::get()->mObjHolder;
         if (objHolder != nullptr && objHolder->mWPadHolder != nullptr) {
             ret = true;
@@ -23,7 +23,7 @@ namespace {
     }
 
     const s32 cDispExceptionCommand[8] = {8, 4, 1, 2, 0x100, 0x10, 0, 0};
-}; // namespace
+};  // namespace
 
 void GameSystemException::init() {
     JUTDirectPrint* print = JUTDirectPrint::start();

@@ -1,5 +1,5 @@
-#include "Game/Camera/CameraParamChunk.hpp"
 #include "Game/Camera/CamTranslatorInnerCylinder.hpp"
+#include "Game/Camera/CameraParamChunk.hpp"
 #include "Game/Util/MathUtil.hpp"
 
 void CamTranslatorInnerCylinder::setParam(const CameraParamChunk* pChunk) {
@@ -16,8 +16,8 @@ void CamTranslatorInnerCylinder::setParam(const CameraParamChunk* pChunk) {
     CameraInnerCylinder* camera = mCamera;
 
     TVec2f angle = TVec2f(general->mAngleA, general->mAngleB);
-    f32    dist;
-    f32    upX;
+    f32 dist;
+    f32 upX;
 
     upX = general->mUp.x;
     dist = general->mDist;

@@ -1,11 +1,11 @@
 #include "Game/Boss/TripodBossCore.hpp"
-#include "Game/Boss/TripodBossFixPartsBase.hpp"
 #include "Game/Boss/TripodBossAccesser.hpp"
+#include "Game/Boss/TripodBossFixPartsBase.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
 #include "Game/Util/ActorSwitchUtil.hpp"
-#include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/Color.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 
 namespace NrvTripodBossCore {
@@ -14,10 +14,9 @@ namespace NrvTripodBossCore {
     NEW_NERVE(TripodBossCoreNrvDamageDemo, TripodBossCore, DamageDemo);
     NEW_NERVE(TripodBossCoreNrvWarning, TripodBossCore, Warning);
     NEW_NERVE(TripodBossCoreNrvBreak, TripodBossCore, Break);
-}; // namespace NrvTripodBossCore
+};  // namespace NrvTripodBossCore
 
-TripodBossCore::TripodBossCore(const char* pName)
-    : TripodBossFixPartsBase(pName) {
+TripodBossCore::TripodBossCore(const char* pName) : TripodBossFixPartsBase(pName) {
     mBreakModel = nullptr;
     mBloomModel = nullptr;
 }
@@ -138,8 +137,6 @@ void TripodBossCore::exeBreak() {
     }
 }
 
-void TripodBossCore::exeNonActive() {
-}
+void TripodBossCore::exeNonActive() {}
 
-TripodBossCore::~TripodBossCore() {
-}
+TripodBossCore::~TripodBossCore() {}

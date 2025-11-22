@@ -1,18 +1,18 @@
 #include "Game/System/FileRipper.hpp"
-#include "Game/Util/MemoryUtil.hpp"
 #include "Game/Util/FileUtil.hpp"
+#include "Game/Util/MemoryUtil.hpp"
 #include <JSystem/JKernel/JKRHeap.hpp>
 
 namespace {
     OSMutex sDecompMutex;
 
-    u8*          sReadBuffer;
-    u8*          sReadBufferEnd;
-    u8*          sReadBufferLimit;
-    s32          sReadDvdOffset;
-    u32          sReadDvdLeftSize;
+    u8* sReadBuffer;
+    u8* sReadBufferEnd;
+    u8* sReadBufferLimit;
+    s32 sReadDvdOffset;
+    u32 sReadDvdLeftSize;
     DVDFileInfo* sSrcFileInfo;
-} // namespace
+}  // namespace
 
 void FileRipper::setup(u32 size, JKRHeap* pHeap) {
     sReadBuffer = new (pHeap, 0x40) u8[size];
@@ -36,9 +36,9 @@ s32 FileRipper::checkCompressed(const u8* pData) {
 
 void* FileRipper::loadToMainRAM(const char* fpath, u8* dest, bool decompress, JKRHeap* pHeap, AllocDirection allocDir) {
     bool alloced = false;
-    s32  compression = 0;
-    u8*  copySrc = 0;
-    u32  decompressedSize;
+    s32 compression = 0;
+    u8* copySrc = 0;
+    u32 decompressedSize;
 
     if (!MR::isFileExist(fpath, false)) {
         OSPanic(__FILE__, 0x70, "File isn't exist.");
@@ -132,13 +132,7 @@ void* FileRipper::loadToMainRAM(const char* fpath, u8* dest, bool decompress, JK
     }
 }
 
-bool FileRipper::decompressFromDVD(
-    DVDFileInfo* fileInfo,
-    void*        dest,
-    u32          readSize,
-    u32          destSize,
-    const u8*    currentPos,
-    u32          copySize) {
+bool FileRipper::decompressFromDVD(DVDFileInfo* fileInfo, void* dest, u32 readSize, u32 destSize, const u8* currentPos, u32 copySize) {
     OSLockMutex(&sDecompMutex);
 
     sSrcFileInfo = fileInfo;

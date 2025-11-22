@@ -41,7 +41,7 @@ namespace {
             *pHeap = nullptr;
         }
     }
-}; // namespace
+};  // namespace
 
 JKRHeap* HeapMemoryWatcher::getHeapNapa(const JKRHeap* pHeap) {
     if (pHeap == mStationedHeapNapa || pHeap == mStationedHeapGDDR) {
@@ -118,8 +118,8 @@ void HeapMemoryWatcher::destroyGameHeap() {
 
 void HeapMemoryWatcher::createRootHeap() {
     JKRExpHeap* heap;
-    void*       newHi;
-    u32         arenaHi, arenaLo;
+    void* newHi;
+    u32 arenaHi, arenaLo;
 
     JKRExpHeap::createRoot(1, true);
     arenaLo = (u32)OSGetMEM2ArenaLo();
@@ -142,7 +142,7 @@ void HeapMemoryWatcher::createHeaps() {
     mAudSystemHeap = createSolidHeap(0x1E0000, JKRHeap::sRootHeap);
     mStationedHeapNapa = createExpHeap(0x900000, JKRHeap::sRootHeap, false);
     JKRHeap* gddr = HeapMemoryWatcher::sRootHeapGDDR3;
-    u32      thing = OSRoundUp32B(WPADGetWorkMemorySize()) + 208;
+    u32 thing = OSRoundUp32B(WPADGetWorkMemorySize()) + 208;
     mWPadHeap = createExpHeap(thing, gddr, false);
     mHomeButtonLayoutHeap = createExpHeap(0x80000, HeapMemoryWatcher::sRootHeapGDDR3, false);
     mStationedHeapGDDR = createExpHeap(0x1400000, HeapMemoryWatcher::sRootHeapGDDR3, false);
@@ -155,16 +155,8 @@ void HeapMemoryWatcher::createGameHeap() {
 }
 
 HeapMemoryWatcher::HeapMemoryWatcher()
-    : mStationedHeapNapa(nullptr),
-      mStationedHeapGDDR(nullptr),
-      mGameHeapNapa(nullptr),
-      mGameHeapGDDR(nullptr),
-      mFileCacheHeap(nullptr),
-      mSceneHeapNapa(nullptr),
-      mSceneHeapGDDR(nullptr),
-      mWPadHeap(nullptr),
-      mHomeButtonLayoutHeap(nullptr),
-      mAudSystemHeap(nullptr) {
+    : mStationedHeapNapa(nullptr), mStationedHeapGDDR(nullptr), mGameHeapNapa(nullptr), mGameHeapGDDR(nullptr), mFileCacheHeap(nullptr),
+      mSceneHeapNapa(nullptr), mSceneHeapGDDR(nullptr), mWPadHeap(nullptr), mHomeButtonLayoutHeap(nullptr), mAudSystemHeap(nullptr) {
     JKRHeap::setErrorHandler(HeapMemoryWatcher::memoryErrorCallback);
     createHeaps();
 }
@@ -173,5 +165,4 @@ void HeapMemoryWatcher::memoryErrorCallback(void*, u32, int) {
     OSPanic(__FILE__, 0x219, "");
 }
 
-void HeapMemoryWatcher::checkRestMemory() {
-}
+void HeapMemoryWatcher::checkRestMemory() {}

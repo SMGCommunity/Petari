@@ -28,5 +28,5 @@ public:
     void exeStarPieceReaction();
 
     ButlerStateStarPieceReaction* _15C;
-    bool                          _160;
+    bool _160;
 };

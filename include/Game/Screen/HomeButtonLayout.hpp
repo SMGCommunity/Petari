@@ -14,7 +14,7 @@ public:
     void initHomeButtonInfo();
 
 private:
-    /* 0x00 */ HBMDataInfo*       mHomeButtonInfo;
+    /* 0x00 */ HBMDataInfo* mHomeButtonInfo;
     /* 0x04 */ HBMControllerData* mControllerData;
 };
 
@@ -36,6 +36,6 @@ public:
 
 private:
     /* 0x20 */ HomeButtonMenuContext* mMenuContext;
-    /* 0x24 */ bool                   _24;
-    /* 0x25 */ bool                   _25;
+    /* 0x24 */ bool _24;
+    /* 0x25 */ bool _25;
 };

@@ -14,6 +14,6 @@ public:
     virtual void calcAndSetBaseMtx();
 
     const LiveActor* _8C;
-    MtxPtr           _90;
-    u8               _94;
+    MtxPtr _90;
+    u8 _94;
 };

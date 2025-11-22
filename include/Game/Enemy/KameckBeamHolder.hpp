@@ -1,7 +1,7 @@
 #pragma once
 
-#include <revolution.h>
 #include <JSystem/JGeometry/TVec.hpp>
+#include <revolution.h>
 
 class KameckBeamEventListener;
 class KameckBeam;
@@ -12,4 +12,4 @@ namespace MR {
     void createKameckBeamTurtleHolder();
 
     KameckBeam* startFollowKameckBeam(s32, MtxPtr, f32, const TVec3f&, KameckBeamEventListener*);
-}; // namespace MR
+};  // namespace MR

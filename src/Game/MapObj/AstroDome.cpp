@@ -1,14 +1,12 @@
 #include "Game/MapObj/AstroDome.hpp"
-#include "Game/MapObj/AstroMapObjFunction.hpp"
 #include "Game/Map/SphereSelector.hpp"
+#include "Game/MapObj/AstroMapObjFunction.hpp"
 
-AstroDome::AstroDome(const char* pName)
-    : MapObjActor(pName) {
-}
+AstroDome::AstroDome(const char* pName) : MapObjActor(pName) {}
 
 void AstroDome::init(const JMapInfoIter& rIter) {
     MapObjActorInitInfo info;
-    s32                 domeId = AstroMapObjFunction::getDomeIdFromArg0(rIter);
+    s32 domeId = AstroMapObjFunction::getDomeIdFromArg0(rIter);
     info.setupModelName(AstroMapObjFunction::getModelName("AstroDome", domeId));
     info.setupNerve(&NrvAstroDome::AstroDomeNrvWait::sInstance);
     MapObjActorUtil::setupInitInfoSimpleMapObj(&info);
@@ -77,11 +75,10 @@ bool AstroDome::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceive
     return false;
 }
 
-AstroDome::~AstroDome() {
-}
+AstroDome::~AstroDome() {}
 
 namespace NrvAstroDome {
     INIT_NERVE(AstroDomeNrvWait);
     INIT_NERVE(AstroDomeNrvDisappear);
     INIT_NERVE(AstroDomeNrvAppear);
-}; // namespace NrvAstroDome
+};  // namespace NrvAstroDome

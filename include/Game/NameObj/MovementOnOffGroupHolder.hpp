@@ -10,7 +10,7 @@ public:
     ~MovementOnOffGroupHolder();
 
     NameObjGroup* joinToGroup(const char*, NameObj*, u32);
-    void          onMovementGroup(const char*);
+    void onMovementGroup(const char*);
     NameObjGroup* createGroup(const char*, u32);
     NameObjGroup* findGroupFromName(const char*) const;
 

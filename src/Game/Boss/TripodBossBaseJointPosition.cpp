@@ -2,8 +2,7 @@
 #include "Game/Boss/TripodBossAccesser.hpp"
 #include "Game/Util/ObjUtil.hpp"
 
-TripodBossBaseJointPosition::TripodBossBaseJointPosition(const char* pName)
-    : LiveActor(pName) {
+TripodBossBaseJointPosition::TripodBossBaseJointPosition(const char* pName) : LiveActor(pName) {
     _8C = -1;
     _90.identity();
 }
@@ -33,8 +32,7 @@ void TripodBossBaseJointPosition::control() {
     }
 }
 
-TripodBossBaseJointPosition::~TripodBossBaseJointPosition() {
-}
+TripodBossBaseJointPosition::~TripodBossBaseJointPosition() {}
 
 MtxPtr TripodBossBaseJointPosition::getBaseMtx() const {
     return (MtxPtr)&_90;

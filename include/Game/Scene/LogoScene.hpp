@@ -37,7 +37,7 @@ public:
     bool tryFadeoutLayout();
 
 private:
-    /* 0x14 */ IsbnManager*  mIsbnManager;
+    /* 0x14 */ IsbnManager* mIsbnManager;
     /* 0x18 */ SimpleLayout* mStrapLayout;
-    /* 0x1C */ LogoFader*    mLogoFader;
+    /* 0x1C */ LogoFader* mLogoFader;
 };

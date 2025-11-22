@@ -1,6 +1,6 @@
+#include "Game/MapObj/BlackHole.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
-#include "Game/MapObj/BlackHole.hpp"
 #include "Game/Util.hpp"
 
 // BlackHole::BlackHole
@@ -113,7 +113,7 @@ void BlackHole::initMapToolInfo(const JMapInfoIter& rIter) {
         _A0 = PSVECMag(stack_C);
     }
 
-    f32  arg0;
+    f32 arg0;
     bool ret = MR::getJMapInfoArg0NoInit(rIter, &arg0);
 
     if (ret) {
@@ -150,9 +150,10 @@ void BlackHole::initCubeBox() {
 bool BlackHole::isInCubeBox(const TVec3f& rVec) const {
     TVec3f stack_8;
     _A8.multTranspose(rVec, stack_8);
-    bool    ret = false;
+    bool ret = false;
     TBox3f* box = _A4;
-    if (stack_8.x >= box->mMin.x && stack_8.y >= box->mMin.y && stack_8.z >= box->mMin.z && stack_8.x < box->mMax.x && stack_8.y < box->mMax.y && stack_8.z < box->mMax.z) {
+    if (stack_8.x >= box->mMin.x && stack_8.y >= box->mMin.y && stack_8.z >= box->mMin.z && stack_8.x < box->mMax.x && stack_8.y < box->mMax.y &&
+        stack_8.z < box->mMax.z) {
         ret = true;
     }
 
@@ -197,12 +198,11 @@ void BlackHole::exeDisappear() {
     }
 }
 
-BlackHole::~BlackHole() {
-}
+BlackHole::~BlackHole() {}
 
 namespace NrvBlackHole {
-    BlackHoleNrvWait      BlackHoleNrvWait::sInstance;
-    BlackHoleNrvDemo      BlackHoleNrvDemo::sInstance;
+    BlackHoleNrvWait BlackHoleNrvWait::sInstance;
+    BlackHoleNrvDemo BlackHoleNrvDemo::sInstance;
     BlackHoleNrvDisappear BlackHoleNrvDisappear::sInstance;
 
     void BlackHoleNrvDisappear::execute(Spine* pSpine) const {
@@ -220,4 +220,4 @@ namespace NrvBlackHole {
         blackHole->exeWait();
     }
 
-}; // namespace NrvBlackHole
+};  // namespace NrvBlackHole

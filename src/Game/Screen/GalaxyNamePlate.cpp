@@ -1,5 +1,5 @@
-#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/GalaxyNamePlate.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/GalaxyNamePlateDrawer.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/MessageUtil.hpp"
@@ -14,17 +14,11 @@ namespace NrvGalaxyNamePlate {
     NEW_NERVE(GalaxyNamePlateNrvAppearReady, GalaxyNamePlate, AppearReady);
     NEW_NERVE(GalaxyNamePlateNrvAppear, GalaxyNamePlate, Appear);
     NEW_NERVE(GalaxyNamePlateNrvWait, GalaxyNamePlate, Wait);
-}; // namespace NrvGalaxyNamePlate
+};  // namespace NrvGalaxyNamePlate
 
 GalaxyNamePlate::GalaxyNamePlate(const char* pGalaxyName, bool param2)
-    : LayoutActor("ギャラクシー名プレート", true),
-      mGalaxyName(pGalaxyName),
-      _24(false),
-      _25(false),
-      mShowBalloonNozzle(true),
-      mDrawerEntry(nullptr),
-      _2C(0),
-      _30(true) {
+    : LayoutActor("ギャラクシー名プレート", true), mGalaxyName(pGalaxyName), _24(false), _25(false), mShowBalloonNozzle(true), mDrawerEntry(nullptr),
+      _2C(0), _30(true) {
     initLayoutManager("GalaxyNamePlate", 3);
 
     if (param2) {

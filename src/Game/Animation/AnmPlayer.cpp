@@ -4,11 +4,7 @@
 #include <JSystem/J3DGraphAnimator/J3DModel.hpp>
 #include <JSystem/J3DGraphAnimator/J3DModelData.hpp>
 
-AnmPlayerBase::AnmPlayerBase(const ResTable* pResTable)
-    : mResTable(pResTable),
-      mAnmRes(nullptr),
-      mFrameCtrl(0) {
-}
+AnmPlayerBase::AnmPlayerBase(const ResTable* pResTable) : mResTable(pResTable), mAnmRes(nullptr), mFrameCtrl(0) {}
 
 void AnmPlayerBase::update() {
     if (mAnmRes != nullptr) {
@@ -52,9 +48,7 @@ bool AnmPlayerBase::isPlaying(const char* pAnimName) const {
 }
 
 MaterialAnmPlayerBase::MaterialAnmPlayerBase(const ResTable* pResTable, J3DModelData* pModelData)
-    : AnmPlayerBase(pResTable),
-      mModelData(pModelData) {
-}
+    : AnmPlayerBase(pResTable), mModelData(pModelData) {}
 
 void MaterialAnmPlayerBase::beginDiff() {
     if (mAnmRes != nullptr) {
@@ -69,8 +63,6 @@ void MaterialAnmPlayerBase::endDiff() {
     }
 }
 
-void AnmPlayerBase::changeAnimation(J3DAnmBase*) {
-}
+void AnmPlayerBase::changeAnimation(J3DAnmBase*) {}
 
-void AnmPlayerBase::stopAnimation() {
-}
+void AnmPlayerBase::stopAnimation() {}

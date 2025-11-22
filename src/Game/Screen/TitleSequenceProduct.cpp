@@ -1,6 +1,6 @@
+#include "Game/Screen/TitleSequenceProduct.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/EncouragePal60Window.hpp"
-#include "Game/Screen/TitleSequenceProduct.hpp"
 #include "Game/System/GameDataFunction.hpp"
 #include "Game/Util/GamePadUtil.hpp"
 #include "Game/Util/LayoutUtil.hpp"
@@ -15,12 +15,11 @@ namespace {
 };
 
 namespace TitleSequenceProductSub {
-    LogoLayout::LogoLayout()
-        : SimpleLayout("ロゴ", "TitleLogo", 2, -1) {
+    LogoLayout::LogoLayout() : SimpleLayout("ロゴ", "TitleLogo", 2, -1) {
         initEffectKeeper(1, "TitleLogo", nullptr);
         kill();
     }
-}; // namespace TitleSequenceProductSub
+};  // namespace TitleSequenceProductSub
 
 namespace {
     NEW_NERVE(TitleSequenceProductDisplayEncouragePal60Window, TitleSequenceProduct, DisplayEncouragePal60Window);
@@ -30,14 +29,10 @@ namespace {
     NEW_NERVE(TitleSequenceProductLogoDisplay, TitleSequenceProduct, LogoDisplay);
     NEW_NERVE(TitleSequenceProductDecide, TitleSequenceProduct, Decide);
     NEW_NERVE(TitleSequenceProductDead, TitleSequenceProduct, Dead);
-}; // namespace
+};  // namespace
 
 TitleSequenceProduct::TitleSequenceProduct()
-    : NerveExecutor(""),
-      mLogoLayout(nullptr),
-      mPressStartLayout(nullptr),
-      mEncouragePal60Window(nullptr),
-      mAButtonChecker(nullptr),
+    : NerveExecutor(""), mLogoLayout(nullptr), mPressStartLayout(nullptr), mEncouragePal60Window(nullptr), mAButtonChecker(nullptr),
       mBButtonChecker(nullptr) {
     if (MR::isDisplayEncouragePal60Window()) {
         initNerve(&TitleSequenceProductDisplayEncouragePal60Window::sInstance);
@@ -61,8 +56,8 @@ void TitleSequenceProduct::exeDisplayEncouragePal60Window() {
     if (MR::isFirstStep(this)) {
         OSTime timeAnnounced = GameDataFunction::getSysConfigFileTimeAnnounced();
         OSTime ticks = OSGetTime();
-        s32    day = OSTicksToSeconds(ticks) / (60 * 60 * 24);
-        s32    dayAnnounced = OSTicksToSeconds(timeAnnounced) / (60 * 60 * 24);
+        s32 day = OSTicksToSeconds(ticks) / (60 * 60 * 24);
+        s32 dayAnnounced = OSTicksToSeconds(timeAnnounced) / (60 * 60 * 24);
 
         if (timeAnnounced == 0 || ticks < timeAnnounced || dayAnnounced < day) {
             mEncouragePal60Window->appear();

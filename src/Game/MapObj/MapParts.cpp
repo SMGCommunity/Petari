@@ -1,5 +1,5 @@
-#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/MapObj/MapParts.hpp"
+#include "Game/LiveActor/HitSensor.hpp"
 #include "JSystem/JMath/JMath.hpp"
 #include "math_types.hpp"
 
@@ -7,11 +7,9 @@ namespace {
     const char* cFollowjointName = "Move";
 };
 
-MapParts::~MapParts() {
-}
+MapParts::~MapParts() {}
 
-MapParts::MapParts(const char* pName)
-    : LiveActor(pName) {
+MapParts::MapParts(const char* pName) : LiveActor(pName) {
     _8C.zero();
 }
 
@@ -56,7 +54,7 @@ void MapParts::initModelAndCollision(const JMapInfoIter& rIter) {
     sensor_offs.x = 0.0f;
     sensor_offs.y = 0.0f;
     sensor_offs.z = 0.0f;
-    u32        sensorNum = getSensorNumMax();
+    u32 sensorNum = getSensorNumMax();
     HitSensor* sensor = MR::addHitSensorMapObj(this, "body", sensorNum, 100.0f, sensor_offs);
     if (MR::isExistJoint(this, cFollowjointName)) {
         MtxPtr jointMtx = MR::getJointMtx(this, cFollowjointName);

@@ -8,9 +8,9 @@ class SkeletalFishBabyRailSetLinkNode {
 public:
     SkeletalFishBabyRailSetLinkNode();
 
-    SkeletalFishBabyRail*            _0;
-    SkeletalFishBabyRail*            _4;
-    u8                               _8;
+    SkeletalFishBabyRail* _0;
+    SkeletalFishBabyRail* _4;
+    u8 _8;
     SkeletalFishBabyRailSetLinkNode* _C;
     SkeletalFishBabyRailSetLinkNode* _10;
 };
@@ -24,12 +24,12 @@ public:
     void createChild();
     void tidy();
 
-    s32                              _0;
-    u32                              mNumNodes; // 0x4
-    u32                              _8;
-    u32                              _C;
-    SkeletalFishBabyRailGroupNode*   _10;
-    SkeletalFishBabyRailGroupNode*   _14;
+    s32 _0;
+    u32 mNumNodes;  // 0x4
+    u32 _8;
+    u32 _C;
+    SkeletalFishBabyRailGroupNode* _10;
+    SkeletalFishBabyRailGroupNode* _14;
     SkeletalFishBabyRailSetLinkNode* _18;
     SkeletalFishBabyRailSetLinkNode* _1C;
     SkeletalFishBabyRailSetLinkNode* _20;
@@ -43,13 +43,13 @@ public:
     virtual ~SkeletalFishBabyRailHolder();
     virtual void initAfterPlacement();
 
-    void                           add(SkeletalFishBabyRail*);
+    void add(SkeletalFishBabyRail*);
     SkeletalFishBabyRailGroupNode* createGroup(s32);
 
-    SkeletalFishBabyRailGroupNode* mNodes; // 0xC
+    SkeletalFishBabyRailGroupNode* mNodes;  // 0xC
 };
 
 namespace MR {
-    void                        createSkeletalFishBabyRailHolder();
+    void createSkeletalFishBabyRailHolder();
     SkeletalFishBabyRailHolder* getSkeletalFishBabyRailHolder();
-}; // namespace MR
+};  // namespace MR

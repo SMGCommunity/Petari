@@ -5,8 +5,7 @@
 #include "Game/Animation/XanimePlayer.hpp"
 #include "Game/Player/MarioAnimatorData.hpp"
 
-MarioAnimator::MarioAnimator(MarioActor* actor)
-    : MarioModule(actor) {
+MarioAnimator::MarioAnimator(MarioActor* actor) : MarioModule(actor) {
     init();
 }
 
@@ -15,7 +14,9 @@ void MarioAnimator::init() {
     if (gIsLuigi) {
         luigiAnimations = luigiAnimeSwapTable;
     }
-    mResourceTable = new XanimeResourceTable(MR::getResourceHolder(mActor), marioAnimeTable, marioAnimeAuxTable, marioAnimeOfsTable, &singleAnimeTable[0].parent, &doubleAnimeTable[0].parent, &tripleAnimeTable[0].parent, &quadAnimeTable[0].parent, luigiAnimations);
+    mResourceTable =
+        new XanimeResourceTable(MR::getResourceHolder(mActor), marioAnimeTable, marioAnimeAuxTable, marioAnimeOfsTable, &singleAnimeTable[0].parent,
+                                &doubleAnimeTable[0].parent, &tripleAnimeTable[0].parent, &quadAnimeTable[0].parent, luigiAnimations);
 
     _14 = 0;
     _15 = 0;
@@ -67,7 +68,6 @@ bool MarioAnimator::isAnimationStop() const {
 }
 
 void MarioAnimator::change(const char* name) {
-
     if (mActor->_B90) {
         return;
     }

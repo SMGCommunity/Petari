@@ -5,22 +5,19 @@
 #include "Game/Util/PlayerUtil.hpp"
 #include "Inline.hpp"
 
-DynamicCollisionObj::~DynamicCollisionObj() {
-}
+DynamicCollisionObj::~DynamicCollisionObj() {}
 
 bool AreaObj::isValid() const {
     return mIsValid && _15 && mIsAwake;
 }
 
-AreaPolygon::AreaPolygon()
-    : DynamicCollisionObj("エリアポリゴン") {
+AreaPolygon::AreaPolygon() : DynamicCollisionObj("エリアポリゴン") {
     mForm = nullptr;
     _128 = nullptr;
     _12C.zero();
 }
 
-AreaPolygon::~AreaPolygon() {
-}
+AreaPolygon::~AreaPolygon() {}
 
 /*void AreaPolygon::init(const JMapInfoIter &rIter) {
     if (MR::isValidInfo(rIter)) {
@@ -84,8 +81,7 @@ void AreaPolygon::validate() {
     MR::validateCollisionParts(mParts);
 }
 
-CollisionArea::CollisionArea(int type, const char* pName)
-    : AreaObj(type, pName) {
+CollisionArea::CollisionArea(int type, const char* pName) : AreaObj(type, pName) {
     _3C = 0;
     _40 = 0.0f;
     _44.zero();
@@ -98,8 +94,7 @@ CollisionArea::CollisionArea(int type, const char* pName)
     mIsValid = false;
 }
 
-CollisionArea::~CollisionArea() {
-}
+CollisionArea::~CollisionArea() {}
 
 void CollisionArea::init(const JMapInfoIter& rIter) {
     AreaObj::init(rIter);
@@ -161,7 +156,7 @@ void CollisionArea::movement() {
             }
         } else {
             TVec3f playerPos = *MR::getPlayerCenterPos();
-            f32    dVar4 = static_cast< f32 >(_5C);
+            f32 dVar4 = static_cast< f32 >(_5C);
 
             if (_5C == 0) {
                 dVar4 = MR::getPlayerHitRadius();

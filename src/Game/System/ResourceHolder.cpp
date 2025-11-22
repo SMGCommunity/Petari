@@ -14,4 +14,4 @@ namespace {
     const char* sBmtExt = ".bmt";
     const char* sBvaExt = ".bva";
     const char* sBanmtExt = ".banmt";
-}; // namespace
+};  // namespace

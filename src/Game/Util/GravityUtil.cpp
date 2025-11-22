@@ -1,22 +1,21 @@
-#include "Game/Gravity.hpp"
 #include "Game/Util/GravityUtil.hpp"
-#include "Game/Util/JMapInfo.hpp"
-#include "Game/Scene/SceneObjHolder.hpp"
+#include "Game/Gravity.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
+#include "Game/Scene/SceneObjHolder.hpp"
+#include "Game/Util/JMapInfo.hpp"
 #include <cstring>
 
 namespace {
-    void getJMapInfoArgPlus(const JMapInfoIter& rIter, const char* pFieldName, f32* pDest) {
-    }
+    void getJMapInfoArgPlus(const JMapInfoIter& rIter, const char* pFieldName, f32* pDest) {}
 
     void getJMapInfoArgPlus(const JMapInfoIter& rIter, const char* pFieldName, s32* pDest) {
         // Get row and column of data
-        s32             row = rIter.mIndex;
+        s32 row = rIter.mIndex;
         const JMapInfo* pInfo = rIter.mInfo;
-        s32             column = pInfo->searchItemInfo(pFieldName);
+        s32 column = pInfo->searchItemInfo(pFieldName);
 
         // Try to read value
-        s32  result;
+        s32 result;
         bool read = column < 0 ? false : pInfo->getValueFast(row, column, &result);
 
         // Set result if applicable
@@ -34,7 +33,7 @@ namespace {
 
         return pPlanetGravityManager->calcTotalGravityVector(pDest, pInfo, rPosition, gravityType, host);
     }
-} // namespace
+}  // namespace
 
 namespace MR {
     void registerGravity(PlanetGravity* pGravity) {
@@ -162,4 +161,4 @@ namespace MR {
             }
         }
     }
-} // namespace MR
+}  // namespace MR

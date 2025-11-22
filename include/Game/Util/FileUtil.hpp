@@ -2,8 +2,8 @@
 
 #include <Inline.hpp>
 
-#include "revolution.h"
 #include "JSystem/JKernel/JKRDvdRipper.hpp"
+#include "revolution.h"
 
 class JKRArchive;
 class JKRHeap;
@@ -156,4 +156,4 @@ namespace MR {
     /// @param length Buffer length.
     /// @param pFile Stage name.
     void makeScenarioArchiveFileName(char* pName, u32 length, const char* pFile);
-}; // namespace MR
+};  // namespace MR

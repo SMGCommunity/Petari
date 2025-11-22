@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/MapObj/MapObjActor.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
+#include "Game/MapObj/MapObjActor.hpp"
 
 namespace {
     TVec3f sDummyModelOffset;
@@ -30,11 +30,11 @@ public:
     void startBreakDemo();
     bool isNerveTypeEnd() const;
 
-    ModelObj*        mTicoModel; // 0xC4
-    TPos3f           _C8;
-    ActorCameraInfo* mCameraInfo; // 0xF8
-    TVec3f           _FC;
-    u8               _108;
+    ModelObj* mTicoModel;  // 0xC4
+    TPos3f _C8;
+    ActorCameraInfo* mCameraInfo;  // 0xF8
+    TVec3f _FC;
+    u8 _108;
 };
 
 namespace NrvCrystalCageMoving {
@@ -46,4 +46,4 @@ namespace NrvCrystalCageMoving {
     NERVE(CrystalCageMovingNrvDemoTicoMove);
     NERVE(CrystalCageMovingNrvDemoTicoStop);
     NERVE(CrystalCageMovingNrvDemoTicoChange);
-}; // namespace NrvCrystalCageMoving
+};  // namespace NrvCrystalCageMoving

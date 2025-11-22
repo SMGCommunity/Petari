@@ -3,18 +3,15 @@
 #include "Game/MapObj/MapObjActorInitInfo.hpp"
 #include "Game/MapObj/StageEffectDataTable.hpp"
 
-UFOKinoko::UFOKinoko(const char* pName)
-    : MapObjActor(pName) {
-}
+UFOKinoko::UFOKinoko(const char* pName) : MapObjActor(pName) {}
 
-UFOKinoko::~UFOKinoko() {
-}
+UFOKinoko::~UFOKinoko() {}
 
 void UFOKinoko::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);
     s32 argShadowType = -1;
     MR::getMapPartsArgShadowType(&argShadowType, rIter);
-    bool                hasShadow = !MR::isMapPartsShadowTypeNone(argShadowType);
+    bool hasShadow = !MR::isMapPartsShadowTypeNone(argShadowType);
     MapObjActorInitInfo info;
     info.setupHioNode("地形オブジェ");
     info.setupDefaultPos();
@@ -54,8 +51,7 @@ void UFOKinoko::initCaseUseSwitchB(const MapObjActorInitInfo&) {
     MR::listenStageSwitchOnB(this, functor);
 }
 
-void UFOKinoko::initCaseNoUseSwitchB(const MapObjActorInitInfo&) {
-}
+void UFOKinoko::initCaseNoUseSwitchB(const MapObjActorInitInfo&) {}
 
 void UFOKinoko::startMove() {
     if (mRailMover != nullptr) {
@@ -95,8 +91,7 @@ namespace NrvUFOKinoko {
     INIT_NERVE(HostTypeMove)
     INIT_NERVE(HostTypeStop)
 
-    void HostTypeWait::execute(Spine* pSpine) const {
-    }
+    void HostTypeWait::execute(Spine* pSpine) const {}
     void HostTypeMove::execute(Spine* pSpine) const {
         UFOKinoko* ufo = reinterpret_cast< UFOKinoko* >(pSpine->mExecutor);
         ufo->exeMove();
@@ -105,4 +100,4 @@ namespace NrvUFOKinoko {
         UFOKinoko* ufo = reinterpret_cast< UFOKinoko* >(pSpine->mExecutor);
         ufo->exeStop();
     }
-}; // namespace NrvUFOKinoko
+};  // namespace NrvUFOKinoko

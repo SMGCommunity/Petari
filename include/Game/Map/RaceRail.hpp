@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Game/NameObj/NameObj.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/Map/RaceManager.hpp"
+#include "Game/NameObj/NameObj.hpp"
 
 class ActorCameraInfo;
 
@@ -22,9 +22,9 @@ public:
     virtual void resetRacer(const RaceManager*);
     virtual void exitRacer();
 
-    u32              _B0;
-    u32              _B4;
-    ActorCameraInfo* mCameraInfo; // 0xB8
+    u32 _B0;
+    u32 _B4;
+    ActorCameraInfo* mCameraInfo;  // 0xB8
 };
 
 class RaceRail : public NameObj {
@@ -34,5 +34,5 @@ public:
     virtual ~RaceRail();
     virtual void init(const JMapInfoIter&);
 
-    PlayerRacer* mPlayerRacer; // 0xC
+    PlayerRacer* mPlayerRacer;  // 0xC
 };

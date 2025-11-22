@@ -6,18 +6,18 @@
 class SpkMixingBuffer;
 
 struct SpeakerInfo {
-    u8       _0;
-    u8       _1;
+    u8 _0;
+    u8 _1;
     WENCInfo _2;
-    u8       _22;
-    u8       _23;
-    u32      _24;
-    u32      _28;
-    s32      _2C;
-    s32      _30;
-    u32      _34;
-    u32      _38;
-    u32      _3C;
+    u8 _22;
+    u8 _23;
+    u32 _24;
+    u32 _28;
+    s32 _2C;
+    s32 _30;
+    u32 _34;
+    u32 _38;
+    u32 _3C;
 };
 
 class SpkSpeakerCtrl {
@@ -40,5 +40,5 @@ public:
     static void updateSpeaker(OSAlarm*, OSContext*);
     static bool isEnable(s32);
     static void extensionProcess(s32, s32);
-    static f32  getDeviceVolume(s32);
+    static f32 getDeviceVolume(s32);
 };

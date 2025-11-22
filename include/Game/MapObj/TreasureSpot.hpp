@@ -14,11 +14,11 @@ public:
     void exeSpout();
     void switchEmitGlow();
 
-    bool mIsCoinFlower; // 0xC4
+    bool mIsCoinFlower;  // 0xC4
 };
 
 namespace NrvTreasureSpot {
     NERVE(TreasureSpotNrvWait);
     NERVE(TreasureSpotNrvEnd);
     NERVE(TreasureSpotNrvSpout);
-}; // namespace NrvTreasureSpot
+};  // namespace NrvTreasureSpot

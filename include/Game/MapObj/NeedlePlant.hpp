@@ -20,5 +20,5 @@ public:
     void exeShake();
     void exeWait();
 
-    s32 _C4; // 0xC4
+    s32 _C4;  // 0xC4
 };

@@ -25,12 +25,9 @@
 namespace NrvFireBall {
     NEW_NERVE(FireBallNrvThrow, FireBall, Throw);
     NEW_NERVE(FireBallNrvReflect, FireBall, Reflect);
-}; // namespace NrvFireBall
+};  // namespace NrvFireBall
 
-FireBall::FireBall(const char* pName)
-    : LiveActor(pName),
-      _8C(nullptr),
-      _90(0.0f, 1.0f, 0.0f) {}
+FireBall::FireBall(const char* pName) : LiveActor(pName), _8C(nullptr), _90(0.0f, 1.0f, 0.0f) {}
 
 void FireBall::init(const JMapInfoIter& rIter) {
     initModelManagerWithAnm("FireBall", nullptr, false);
@@ -59,7 +56,7 @@ void FireBall::kill() {
     LiveActor::kill();
 }
 
-//FireBall::appearAndThrow(const TVec3f &, f32, f32)
+// FireBall::appearAndThrow(const TVec3f &, f32, f32)
 
 void FireBall::control() {
     Color8 color;
@@ -172,7 +169,7 @@ void FireBall::exeThrow() {
     }
 
     if (MR::isGreaterStep(this, 30) && MR::isStarPointerPointing2POnPressButton(this, "弱", true, false)) {
-        s32*   starPointerLastPointedPort = MR::getStarPointerLastPointedPort(this);
+        s32* starPointerLastPointedPort = MR::getStarPointerLastPointedPort(this);
         TVec2f pointerScreenVel = *MR::getStarPointerScreenVelocity(*starPointerLastPointedPort);
         if (30.0f < pointerScreenVel.length()) {
             calcReflectVelocity();
@@ -187,7 +184,6 @@ void FireBall::exeThrow() {
 }
 
 void FireBall::exeReflect() {
-
     if (MR::isFirstStep(this)) {
         MR::start2PAttackAssistSound();
         MR::startSound(this, "SE_EM_FIRE_BUBBLE_REFLECT", -1, -1);

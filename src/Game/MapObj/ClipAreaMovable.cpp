@@ -13,8 +13,7 @@
 #include "JSystem/JMath/JMath.hpp"
 #include "revolution/mtx.h"
 
-ClipAreaMovable::ClipAreaMovable(const char* pName)
-    : ClipArea(pName) {
+ClipAreaMovable::ClipAreaMovable(const char* pName) : ClipArea(pName) {
     mMapPartsRailMover = 0;
     mMapPartsRotator = 0;
 }
@@ -94,7 +93,7 @@ void ClipAreaMovable::updateMatrix() {
         mtx.concat(mMapPartsRotator->getRotateMtx(), mtx);
 
     register ClipAreaMovable* regThis = this;
-    register TMtx34f*         regMtx = &mtx;
+    register TMtx34f* regMtx = &mtx;
 
     mtx[0][3] = mPosition.x;
     mtx[1][3] = mPosition.y;

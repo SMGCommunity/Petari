@@ -2,8 +2,7 @@
 #include "Game/Boss/TripodBossFixParts.hpp"
 #include "Game/MapObj/MapPartsRotator.hpp"
 
-TripodBossRotateParts::TripodBossRotateParts(const char* pName)
-    : TripodBossFixParts(pName) {
+TripodBossRotateParts::TripodBossRotateParts(const char* pName) : TripodBossFixParts(pName) {
     mRotator = nullptr;
 }
 
@@ -37,8 +36,7 @@ void TripodBossRotateParts::calcTripodLocalMatrix(TPos3f* pMtx) {
     }
 }
 
-TripodBossRotateParts::~TripodBossRotateParts() {
-}
+TripodBossRotateParts::~TripodBossRotateParts() {}
 
 void TripodBossRotateParts::exeWaitOwn() {
     mRotator->movement();

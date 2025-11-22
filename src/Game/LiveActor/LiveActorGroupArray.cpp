@@ -1,11 +1,10 @@
+#include "Game/LiveActor/LiveActorGroupArray.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/LiveActor/LiveActorGroupArray.hpp"
 #include <cstdio>
 #include <cstring>
 
-MsgSharedGroup::MsgSharedGroup(const char* pName, s32 a2, const JMapInfoIter& rIter)
-    : LiveActorGroup(_28, a2) {
+MsgSharedGroup::MsgSharedGroup(const char* pName, s32 a2, const JMapInfoIter& rIter) : LiveActorGroup(_28, a2) {
     mIDInfo = 0;
     _1C = -1;
     _20 = 0;
@@ -46,13 +45,11 @@ void MsgSharedGroup::sendMsgToGroupMember(u32 msg, HitSensor* pSensor, const cha
     _24 = pName;
 }
 
-LiveActorGroupArray::LiveActorGroupArray(const char* pName)
-    : NameObj(pName) {
+LiveActorGroupArray::LiveActorGroupArray(const char* pName) : NameObj(pName) {
     mNumGroups = 0;
 }
 
-void LiveActorGroupArray::init(const JMapInfoIter& rIter) {
-}
+void LiveActorGroupArray::init(const JMapInfoIter& rIter) {}
 
 LiveActorGroup* LiveActorGroupArray::getLiveActorGroup(const LiveActor* pActor) const {
     return findGroup(pActor);

@@ -1,10 +1,9 @@
 #include "Game/MapObj/MercatorRailMoveParts.hpp"
+#include "Game/AreaObj/MercatorTransformCube.hpp"
 #include "Game/MapObj/MapPartsRailMover.hpp"
 #include "Game/MapObj/MapPartsRailRotator.hpp"
-#include "Game/AreaObj/MercatorTransformCube.hpp"
 
-MercatorRailMoveParts::MercatorRailMoveParts(const char* pName)
-    : LiveActor(pName) {
+MercatorRailMoveParts::MercatorRailMoveParts(const char* pName) : LiveActor(pName) {
     mRailMover = nullptr;
     mRailRotator = nullptr;
     mAppearController = nullptr;
@@ -134,5 +133,4 @@ void MercatorRailMoveParts::init(const JMapInfoIter& rIter) {
     updatePose();
 }
 
-MercatorRailMoveParts::~MercatorRailMoveParts() {
-}
+MercatorRailMoveParts::~MercatorRailMoveParts() {}

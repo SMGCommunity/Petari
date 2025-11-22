@@ -17,7 +17,7 @@ public:
     void initDraw(const Color8&) const;
     void drawCelling(f32, bool, f32) const;
     void drawSide(f32, bool, f32) const;
-    f32  calcRepeatedRotateCoord(f32) const;
+    f32 calcRepeatedRotateCoord(f32) const;
 
     f32 _8C;
     f32 _90;

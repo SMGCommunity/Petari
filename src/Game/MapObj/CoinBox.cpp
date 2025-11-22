@@ -1,12 +1,9 @@
-#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/MapObj/CoinBox.hpp"
+#include "Game/LiveActor/HitSensor.hpp"
 
-CoinBox::CoinBox(const char* pName)
-    : LiveActor(pName) {
-}
+CoinBox::CoinBox(const char* pName) : LiveActor(pName) {}
 
-CoinBox::~CoinBox() {
-}
+CoinBox::~CoinBox() {}
 
 void CoinBox::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
@@ -38,7 +35,7 @@ void CoinBox::exeHit() {
         MR::getRotatedAxisY(&axis_y, mRotation);
         MR::calcGravityOrZero(this);
         TVec3f stack_38;
-        f32    val = MR::vecKillElement(axis_y, mGravity, &stack_38);
+        f32 val = MR::vecKillElement(axis_y, mGravity, &stack_38);
         TVec3f stack_8 = stack_38 * 10.0f;
         TVec3f stack_2C((mGravity * val) * 30.0f);
 
@@ -67,6 +64,5 @@ namespace NrvCoinBox {
         box->exeHit();
     }
 
-    void CoinBoxNrvWait::execute(Spine* pSpine) const {
-    }
-}; // namespace NrvCoinBox
+    void CoinBoxNrvWait::execute(Spine* pSpine) const {}
+};  // namespace NrvCoinBox

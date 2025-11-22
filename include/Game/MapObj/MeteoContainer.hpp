@@ -21,4 +21,4 @@ public:
 namespace NrvMeteoContainer {
     NERVE_DECL_NULL(MeteoContainerNrvWait);
     NERVE_DECL(MeteoContainerNrvDestroy, MeteoContainer, MeteoContainer::exeDestroy);
-}; // namespace NrvMeteoContainer
+};  // namespace NrvMeteoContainer

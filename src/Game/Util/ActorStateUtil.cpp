@@ -1,13 +1,11 @@
+#include "Game/Util/ActorStateUtil.hpp"
 #include "Game/LiveActor/ActorStateBase.hpp"
 #include "Game/LiveActor/ActorStateKeeper.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/Nerve.hpp"
-#include "Game/Util/ActorStateUtil.hpp"
 
 namespace MR {
-    void initActorStateKeeper(NerveExecutor* pExecutor, s32 capacity) {
-        pExecutor->mSpine->initStateKeeper(capacity);
-    }
+    void initActorStateKeeper(NerveExecutor* pExecutor, s32 capacity) { pExecutor->mSpine->initStateKeeper(capacity); }
 
     void initActorState(NerveExecutor* pExecutor, ActorStateBaseInterface* pActorState, const Nerve* pNerve, const char* pStateName) {
         pActorState->init();
@@ -41,9 +39,7 @@ namespace MR {
         return false;
     }
 
-    bool updateActorState(NerveExecutor* pExecutor) {
-        return pExecutor->mSpine->mStateKeeper->updateCurrentState();
-    }
+    bool updateActorState(NerveExecutor* pExecutor) { return pExecutor->mSpine->mStateKeeper->updateCurrentState(); }
 
     bool updateActorState(NerveExecutor* pExecutor, ActorStateBaseInterface* pActorState) {
         if (isFirstStep(pExecutor)) {
@@ -82,4 +78,4 @@ namespace MR {
 
         return false;
     }
-}; // namespace MR
+};  // namespace MR

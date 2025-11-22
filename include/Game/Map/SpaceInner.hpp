@@ -18,4 +18,4 @@ public:
 namespace NrvSpaceInner {
     NERVE(HostTypeDisappear);
     NERVE(HostTypeAppear);
-}; // namespace NrvSpaceInner
+};  // namespace NrvSpaceInner

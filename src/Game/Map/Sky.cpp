@@ -2,11 +2,10 @@
 #include "Game/LiveActor/MirrorReflectionModel.hpp"
 #include "Game/Map/SpaceInner.hpp"
 
-NrvSky::HostTypeWait   NrvSky::HostTypeWait::sInstance;
+NrvSky::HostTypeWait NrvSky::HostTypeWait::sInstance;
 NrvSky::HostTypeChange NrvSky::HostTypeChange::sInstance;
 
-Sky::Sky(const char* pSkyName)
-    : LiveActor(pSkyName) {
+Sky::Sky(const char* pSkyName) : LiveActor(pSkyName) {
     mSpaceInner = 0;
     mReflectionModel = 0;
 }
@@ -96,13 +95,11 @@ void Sky::disappearSpaceInner() {
     }
 }
 
-ProjectionMapSky::ProjectionMapSky(const char* pSkyName)
-    : Sky(pSkyName) {
+ProjectionMapSky::ProjectionMapSky(const char* pSkyName) : Sky(pSkyName) {
     mMtxSetter = 0;
 }
 
-Sky::~Sky() {
-}
+Sky::~Sky() {}
 
 void ProjectionMapSky::calcAndSetBaseMtx() {
     LiveActor::calcAndSetBaseMtx();
@@ -135,7 +132,6 @@ namespace NrvSky {
             sky->setNerve(&NrvSky::HostTypeChange::sInstance);
         }
     }
-}; // namespace NrvSky
+};  // namespace NrvSky
 
-ProjectionMapSky::~ProjectionMapSky() {
-}
+ProjectionMapSky::~ProjectionMapSky() {}

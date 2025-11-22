@@ -32,17 +32,14 @@ template < typename T >
 class TriangleFilterDelegator : public TriangleFilterBase {
 public:
     typedef bool (T::*DelegateFilter)(const Triangle*);
-    TriangleFilterDelegator(T* parent, DelegateFilter filter)
-        : mParent(parent), mFunc(filter) {}
+    TriangleFilterDelegator(T* parent, DelegateFilter filter) : mParent(parent), mFunc(filter) {}
 
     virtual bool isInvalidTriangle(const Triangle*) const;
 
-    static inline TriangleFilterDelegator< T >* allocateDelegator(
-        T*             parent,
-        DelegateFilter filter) {
+    static inline TriangleFilterDelegator< T >* allocateDelegator(T* parent, DelegateFilter filter) {
         return new TriangleFilterDelegator< T >(parent, filter);
     }
 
-    T*             mParent; // 0x4
-    DelegateFilter mFunc;   // 0x10
+    T* mParent;            // 0x4
+    DelegateFilter mFunc;  // 0x10
 };

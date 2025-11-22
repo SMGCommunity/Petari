@@ -20,11 +20,11 @@ public:
     void exeBreakCore();
     void initCoreAndElectron();
 
-    ModelObj*              mCorePlanetModel;     // 0x8C
-    MarblePlanetElectron** mPlanetElectrons;     // 0x90
-    CollisionParts*        mWatermelonCollision; // 0x94
-    s32                    mNumElectrons;        // 0x98
-    s32                    mRemainingElectrons;  // 0x9C
+    ModelObj* mCorePlanetModel;               // 0x8C
+    MarblePlanetElectron** mPlanetElectrons;  // 0x90
+    CollisionParts* mWatermelonCollision;     // 0x94
+    s32 mNumElectrons;                        // 0x98
+    s32 mRemainingElectrons;                  // 0x9C
 };
 
 class MarblePlanetElectron : public LiveActor {
@@ -42,9 +42,9 @@ public:
     void exeAttack();
     void crashElectron(HitSensor*);
 
-    MarblePlanet*               mParentPlanet;   // 0x8C
-    MarblePlanetElectronShadow* mElectronShadow; // 0x90
-    TVec3f                      _94;
+    MarblePlanet* mParentPlanet;                  // 0x8C
+    MarblePlanetElectronShadow* mElectronShadow;  // 0x90
+    TVec3f _94;
 };
 
 class MarblePlanetElectronShadow : public LiveActor {
@@ -55,17 +55,17 @@ public:
     virtual void init(const JMapInfoIter&);
     virtual void calcAndSetBaseMtx();
 
-    MarblePlanetElectron* mParentElectron; // 0x8C
-    const TVec3f*         _90;
+    MarblePlanetElectron* mParentElectron;  // 0x8C
+    const TVec3f* _90;
 };
 
 namespace NrvMarblePlanet {
     NERVE(MarblePlanetNrvWait);
     NERVE(MarblePlanetNrvScaleUpCore);
     NERVE(MarblePlanetNrvBreakCore);
-}; // namespace NrvMarblePlanet
+};  // namespace NrvMarblePlanet
 
 namespace NrvMarblePlanetElectron {
     NERVE(MarblePlanetElectronNrvMove);
     NERVE(MarblePlanetElectronNrvAttack);
-}; // namespace NrvMarblePlanetElectron
+};  // namespace NrvMarblePlanetElectron

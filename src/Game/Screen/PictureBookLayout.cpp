@@ -1,9 +1,9 @@
+#include "Game/Screen/PictureBookLayout.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/NameObj/NameObjArchiveListCollector.hpp"
 #include "Game/Screen/ButtonPaneController.hpp"
 #include "Game/Screen/IconAButton.hpp"
 #include "Game/Screen/PictureBookCloseButton.hpp"
-#include "Game/Screen/PictureBookLayout.hpp"
 #include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/DrawUtil.hpp"
 #include "Game/Util/EventUtil.hpp"
@@ -23,29 +23,13 @@ namespace {
     const s32 cWaitNoTextFrame = 60;
     const s32 cFadeTextFrame = 30;
     // const s32 cReadedSpeedRate
-    const s32   cPageNextEndNormalSeStep = 81;
-    const s32   cPageNextEndFastSeStep = 27;
+    const s32 cPageNextEndNormalSeStep = 81;
+    const s32 cPageNextEndFastSeStep = 27;
     const char* cContentsPaneName[] = {
-        "Chapter1",
-        "Chapter2",
-        "Chapter3",
-        "Chapter4",
-        "Chapter5",
-        "Chapter6",
-        "Chapter7",
-        "Chapter8",
-        "Chapter9",
+        "Chapter1", "Chapter2", "Chapter3", "Chapter4", "Chapter5", "Chapter6", "Chapter7", "Chapter8", "Chapter9",
     };
     const char* cContentsPointingPaneName[] = {
-        "BoxButton1",
-        "BoxButton2",
-        "BoxButton3",
-        "BoxButton4",
-        "BoxButton5",
-        "BoxButton6",
-        "BoxButton7",
-        "BoxButton8",
-        "BoxButton9",
+        "BoxButton1", "BoxButton2", "BoxButton3", "BoxButton4", "BoxButton5", "BoxButton6", "BoxButton7", "BoxButton8", "BoxButton9",
     };
 
     s32 getTextureNum(s32 chapterNo) {
@@ -82,7 +66,7 @@ namespace {
 
         return 1;
     }
-}; // namespace
+};  // namespace
 
 namespace NrvPictureBookLayout {
     NEW_NERVE(PictureBookLayoutNrvOpen, PictureBookLayout, Open);
@@ -96,29 +80,13 @@ namespace NrvPictureBookLayout {
     NEW_NERVE(PictureBookLayoutNrvPageNext, PictureBookLayout, PageNext);
     NEW_NERVE(PictureBookLayoutNrvFadeOut, PictureBookLayout, FadeOut);
     NEW_NERVE(PictureBookLayoutNrvClose, PictureBookLayout, Close);
-}; // namespace NrvPictureBookLayout
+};  // namespace NrvPictureBookLayout
 
 PictureBookLayout::PictureBookLayout(s32 chapterMin, s32 chapterMax, bool isRosettaReading)
-    : LayoutActor("絵本レイアウト", true),
-      mChapterMin(chapterMin),
-      mChapterMax(chapterMax),
-      mChapterRosettaMax(chapterMax),
-      mChapterNo(1),
-      mPageNo(0),
-      mTextIndex(0),
-      mNotReadedChapterNo(-1),
-      mNotReadedPageNo(-1),
-      mNotReadedTextIndex(-1),
-      _44(nullptr),
-      _48(nullptr),
-      mTitleTexMap(nullptr),
-      mCoverFrontTexMap(nullptr),
-      mCoverBackTexMap(nullptr),
-      mNextItemDir(1),
-      mIsNextItemFast(false),
-      mIconAButton(nullptr),
-      mContentsButtonPaneController(nullptr),
-      mCloseButton(nullptr) {
+    : LayoutActor("絵本レイアウト", true), mChapterMin(chapterMin), mChapterMax(chapterMax), mChapterRosettaMax(chapterMax), mChapterNo(1),
+      mPageNo(0), mTextIndex(0), mNotReadedChapterNo(-1), mNotReadedPageNo(-1), mNotReadedTextIndex(-1), _44(nullptr), _48(nullptr),
+      mTitleTexMap(nullptr), mCoverFrontTexMap(nullptr), mCoverBackTexMap(nullptr), mNextItemDir(1), mIsNextItemFast(false), mIconAButton(nullptr),
+      mContentsButtonPaneController(nullptr), mCloseButton(nullptr) {
     if (!isRosettaReading) {
         mContentsButtonPaneController = new ButtonPaneController*[getChapterMax()];
     }
@@ -299,7 +267,7 @@ void PictureBookLayout::updateTexture() {
         MR::replacePaneTexture(this, "PicLeftPage", pTexMap, 0);
         MR::replacePaneTexture(this, "PicTurnRightPage", pTexMap, 0);
     } else {
-        s32                texMapIndex = textureNum + pageNo - 1;
+        s32 texMapIndex = textureNum + pageNo - 1;
         nw4r::lyt::TexMap* pTexMap = _48[texMapIndex % textureNum - 1];
 
         MR::replacePaneTexture(this, "PicLeftPage", pTexMap, 0);
@@ -318,7 +286,7 @@ void PictureBookLayout::updateTexture() {
         MR::replacePaneTexture(this, "PicRightPage", pTexMap, 0);
         MR::replacePaneTexture(this, "PicTurnLeftPage", pTexMap, 0);
     } else {
-        s32                texMapIndex = textureNum + pageNo - 1;
+        s32 texMapIndex = textureNum + pageNo - 1;
         nw4r::lyt::TexMap* pTexMap = _48[texMapIndex % textureNum - 1];
 
         MR::replacePaneTexture(this, "PicRightPage", pTexMap, 0);
@@ -423,7 +391,9 @@ bool PictureBookLayout::isValidCloseButton() const {
         return false;
     }
 
-    return isNerve(&NrvPictureBookLayout::PictureBookLayoutNrvOpen::sInstance) || isNerve(&NrvPictureBookLayout::PictureBookLayoutNrvContentsSelect::sInstance) || isNerve(&NrvPictureBookLayout::PictureBookLayoutNrvOpen::sInstance) || mPageNo == 0;
+    return isNerve(&NrvPictureBookLayout::PictureBookLayoutNrvOpen::sInstance) ||
+           isNerve(&NrvPictureBookLayout::PictureBookLayoutNrvContentsSelect::sInstance) ||
+           isNerve(&NrvPictureBookLayout::PictureBookLayoutNrvOpen::sInstance) || mPageNo == 0;
 }
 
 bool PictureBookLayout::isSelectedCloseButton() const {
@@ -691,7 +661,8 @@ void PictureBookLayout::exeWaitWithText() {
     if (isValidCloseButton() && mCloseButton->trySelect()) {
         setNerve(&NrvPictureBookLayout::PictureBookLayoutNrvFadeOutText::sInstance);
     } else {
-        bool isTriggerNextPage = MR::testCorePadTriggerA(WPAD_CHAN0) || MR::testCorePadTriggerRight(WPAD_CHAN0) || MR::testSubPadStickTriggerRight(WPAD_CHAN0);
+        bool isTriggerNextPage =
+            MR::testCorePadTriggerA(WPAD_CHAN0) || MR::testCorePadTriggerRight(WPAD_CHAN0) || MR::testSubPadStickTriggerRight(WPAD_CHAN0);
 
         if (isTriggerNextPage) {
             MR::startSystemSE("SE_SY_TALK_FOCUS_ITEM", -1, -1);

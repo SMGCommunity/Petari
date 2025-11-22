@@ -3,4 +3,4 @@
 namespace MR {
     bool tryRequestLoadStageResource();
     bool isLoadStageScenarioResource();
-}; // namespace MR
+};  // namespace MR

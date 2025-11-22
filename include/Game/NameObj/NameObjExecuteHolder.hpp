@@ -29,44 +29,44 @@ public:
 
 private:
     /* 0x0 */ NameObj* mExecutedObj;
-    /* 0x4 */ s8       _4;
-    /* 0x5 */ s8       _5;
-    /* 0x6 */ s8       _6;
-    /* 0x7 */ s8       _7;
-    /* 0x8 */ s8       _8;
-    /* 0x9 */ s8       _9;
-    /* 0xA */ s16      _A;
+    /* 0x4 */ s8 _4;
+    /* 0x5 */ s8 _5;
+    /* 0x6 */ s8 _6;
+    /* 0x7 */ s8 _7;
+    /* 0x8 */ s8 _8;
+    /* 0x9 */ s8 _9;
+    /* 0xA */ s16 _A;
 };
 
 class NameObjExecuteHolder : public NameObj {
 public:
     NameObjExecuteHolder(int);
 
-    void                registerActor(NameObj*, int, int, int, int);
-    void                initConnectting();
-    void                connectToScene(NameObj*);
-    void                connectToDraw(NameObj*);
-    void                disconnectToScene(NameObj*);
-    void                disconnectToDraw(NameObj*);
-    bool                isConnectToDraw(const NameObj*) const;
-    void                executeRequirementConnectMovement();
-    void                executeRequirementDisconnectMovement();
-    void                executeRequirementConnectDraw();
-    void                executeRequirementDisconnectDraw();
-    void                executeRequirementDisconnectDrawDelay();
-    void                requestMovementOn(int);
-    void                requestMovementOff(int);
+    void registerActor(NameObj*, int, int, int, int);
+    void initConnectting();
+    void connectToScene(NameObj*);
+    void connectToDraw(NameObj*);
+    void disconnectToScene(NameObj*);
+    void disconnectToDraw(NameObj*);
+    bool isConnectToDraw(const NameObj*) const;
+    void executeRequirementConnectMovement();
+    void executeRequirementDisconnectMovement();
+    void executeRequirementConnectDraw();
+    void executeRequirementDisconnectDraw();
+    void executeRequirementDisconnectDrawDelay();
+    void requestMovementOn(int);
+    void requestMovementOff(int);
     NameObjExecuteInfo* getConnectToSceneInfo(const NameObj*) const;
 
 private:
     /* 0x0C */ NameObjExecuteInfo* mExecuteArray;
-    /* 0x10 */ s32                 mExecuteArrayMaxSize;
-    /* 0x14 */ s32                 mExecuteArraySize;
-    /* 0x18 */ bool                _18;
-    /* 0x19 */ bool                _19;
-    /* 0x1A */ bool                _1A;
-    /* 0x1B */ bool                _1B;
-    /* 0x1C */ bool                _1C;
+    /* 0x10 */ s32 mExecuteArrayMaxSize;
+    /* 0x14 */ s32 mExecuteArraySize;
+    /* 0x18 */ bool _18;
+    /* 0x19 */ bool _19;
+    /* 0x1A */ bool _1A;
+    /* 0x1B */ bool _1B;
+    /* 0x1C */ bool _1C;
 };
 
 namespace MR {
@@ -85,4 +85,4 @@ namespace MR {
     void requestMovementOnWithCategory(int);
     void requestMovementOffWithCategory(int);
     void findActorLightInfo(const LiveActor*);
-}; // namespace MR
+};  // namespace MR

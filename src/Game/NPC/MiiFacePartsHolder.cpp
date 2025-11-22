@@ -1,7 +1,7 @@
+#include "Game/NPC/MiiFacePartsHolder.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/NPC/MiiDatabase.hpp"
 #include "Game/NPC/MiiFaceParts.hpp"
-#include "Game/NPC/MiiFacePartsHolder.hpp"
 #include "Game/NPC/MiiFaceRecipe.hpp"
 #include "Game/NameObj/NameObjAdaptor.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
@@ -13,11 +13,7 @@
 #include <JSystem/JKernel/JKRSolidHeap.hpp>
 
 MiiFacePartsHolder::MiiFacePartsHolder(int numParts)
-    : LiveActorGroup("Mii顔モデル保持", numParts),
-      JKRDisposer(),
-      mRFLWorkBuffer(nullptr),
-      _34(nullptr) {
-}
+    : LiveActorGroup("Mii顔モデル保持", numParts), JKRDisposer(), mRFLWorkBuffer(nullptr), _34(nullptr) {}
 
 MiiFacePartsHolder::~MiiFacePartsHolder() {
     RFLExit();
@@ -29,14 +25,13 @@ void MiiFacePartsHolder::init(const JMapInfoIter& rIter) {
     mRFLWorkBuffer = new (MR::getSceneHeapGDDR3(), 32) u8[RFLGetWorkSize(false)];
 
     JKRMemArchive* pArchive = reinterpret_cast< JKRMemArchive* >(MR::receiveArchive("/ObjectData/MiiFaceDatabase.arc"));
-    void*          pResBuffer = pArchive->getResource("/RFL_Res.dat");
-    u32            resSize = pArchive->getResSize(pResBuffer);
+    void* pResBuffer = pArchive->getResource("/RFL_Res.dat");
+    u32 resSize = pArchive->getResSize(pResBuffer);
     _38 = RFLInitResAsync(mRFLWorkBuffer, pResBuffer, resSize, false);
 
     MR::connectToScene(this, -1, 6, -1, 37);
 
-    MR::FunctorV0M< MiiFacePartsHolder*, void (MiiFacePartsHolder::*)() > initFunc(
-        this, &MiiFacePartsHolder::reinitCharModel);
+    MR::FunctorV0M< MiiFacePartsHolder*, void (MiiFacePartsHolder::*)() > initFunc(this, &MiiFacePartsHolder::reinitCharModel);
 
     MR::connectToScene(MR::createDrawAdaptor("Miiモデル再作成", initFunc), -1, -1, -1, 80);
 }
@@ -136,8 +131,7 @@ MiiFaceParts* MiiFacePartsHolder::createPartsFromReceipe(const char* pName, cons
 
     MR::getSceneObj< MiiFacePartsHolder >(SceneObj_MiiFacePartsHolder)->registerActor(pParts);
 
-    MR::FunctorV0M< NameObj*, void (NameObj::*)() > initFunc(
-        pParts, &NameObj::initWithoutIter);
+    MR::FunctorV0M< NameObj*, void (NameObj::*)() > initFunc(pParts, &NameObj::initWithoutIter);
 
     if (MR::startFunctionAsyncExecuteOnMainThread(initFunc, "initNameObjOnMainThread")) {
         MR::waitForEndFunctionAsyncExecute("initNameObjOnMainThread");
@@ -147,13 +141,7 @@ MiiFaceParts* MiiFacePartsHolder::createPartsFromReceipe(const char* pName, cons
 }
 
 MiiFaceParts* MiiFacePartsHolder::createPartsFromDefault(const char* pName, u16 miiIndex) {
-    return createPartsFromReceipe(
-        pName,
-        MiiFaceRecipe(
-            RFLDataSource_Default,
-            miiIndex,
-            RFLResolution_256,
-            RFLExpFlag_Normal | RFLExpFlag_Blink));
+    return createPartsFromReceipe(pName, MiiFaceRecipe(RFLDataSource_Default, miiIndex, RFLResolution_256, RFLExpFlag_Normal | RFLExpFlag_Blink));
 }
 
 void MiiFacePartsHolder::drawEachActor(DrawPartsFuncPtr pDrawFunc, const RFLDrawCoreSetting* pSetting) const {

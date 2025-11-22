@@ -1,5 +1,5 @@
-#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/WipeKoopa.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 #include <JSystem/J3DGraphAnimator/J3DAnimation.hpp>
 
@@ -7,20 +7,16 @@ namespace {
     NEW_NERVE(WipeKoopaNrvWait, WipeKoopa, Wait);
     NEW_NERVE(WipeKoopaNrvWipeOut, WipeKoopa, WipeOut);
     NEW_NERVE(WipeKoopaNrvClose, WipeKoopa, Close);
-}; // namespace
+};  // namespace
 
-WipeKoopa::WipeKoopa()
-    : WipeLayoutBase("クッパ"),
-      mStepNum(90) {
-}
+WipeKoopa::WipeKoopa() : WipeLayoutBase("クッパ"), mStepNum(90) {}
 
 void WipeKoopa::init(const JMapInfoIter& rIter) {
     initNerve(&WipeKoopaNrvWait::sInstance);
     initLayoutManager("WipeKoopa", 1);
 }
 
-void WipeKoopa::exeWait() {
-}
+void WipeKoopa::exeWait() {}
 
 void WipeKoopa::exeWipeOut() {
     f32 animRate;
@@ -42,8 +38,7 @@ void WipeKoopa::exeWipeOut() {
     }
 }
 
-void WipeKoopa::exeClose() {
-}
+void WipeKoopa::exeClose() {}
 
 void WipeKoopa::wipe(s32 step) {
     setNerve(&WipeKoopaNrvWipeOut::sInstance);

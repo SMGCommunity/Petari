@@ -3,8 +3,7 @@
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Screen/NoteCounter.hpp"
 
-Note::Note(const char* pName, const TVec3f& rRailDirection, NoteFairy* pParent)
-    : LiveActor(pName) {
+Note::Note(const char* pName, const TVec3f& rRailDirection, NoteFairy* pParent) : LiveActor(pName) {
     mParentFairy = pParent;
     _90.set(0.0f);
     mRailDirection.setPS(rRailDirection);
@@ -54,7 +53,7 @@ void Note::exeWait() {
 
     if (mIsCountdown) {
         setNerve(&NrvNote::NoteNrvCountDown::sInstance);
-    } 
+    }
 }
 */
 
@@ -118,8 +117,7 @@ void Note::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     }
 }
 
-NoteGroup::NoteGroup()
-    : LiveActorGroup("音符グループ", 0x100) {
+NoteGroup::NoteGroup() : LiveActorGroup("音符グループ", 0x100) {
     mRotation = 0.0f;
 }
 
@@ -135,14 +133,12 @@ void NoteGroup::movement() {
 }
 */
 
-Note::~Note() {
-}
+Note::~Note() {}
 
-NoteGroup::~NoteGroup() {
-}
+NoteGroup::~NoteGroup() {}
 
 namespace NrvNote {
     INIT_NERVE(NoteNrvWait);
     INIT_NERVE(NoteNrvCountDown);
     INIT_NERVE(NoteNrvFlyUp);
-}; // namespace NrvNote
+};  // namespace NrvNote

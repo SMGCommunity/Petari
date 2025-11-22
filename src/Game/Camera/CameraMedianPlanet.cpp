@@ -1,8 +1,7 @@
 #include "Game/Camera/CameraMedianPlanet.hpp"
 #include "Game/Camera/CamTranslatorMedianPlanet.hpp"
 
-CameraMedianPlanet::CameraMedianPlanet(const char* pName)
-    : Camera(pName) {
+CameraMedianPlanet::CameraMedianPlanet(const char* pName) : Camera(pName) {
     mString = nullptr;
     mAxisX = 1200.0f;
     mAxisY = 3000.0f;
@@ -13,8 +12,7 @@ CameraMedianPlanet::CameraMedianPlanet(const char* pName)
     mWPointX = 0.5f;
 }
 
-CameraMedianPlanet::~CameraMedianPlanet() {
-}
+CameraMedianPlanet::~CameraMedianPlanet() {}
 
 CamTranslatorBase* CameraMedianPlanet::createTranslator() {
     return new CamTranslatorMedianPlanet(this);

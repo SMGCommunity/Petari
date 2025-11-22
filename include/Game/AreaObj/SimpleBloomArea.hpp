@@ -12,7 +12,7 @@ public:
     virtual const char* getManagerName() const;
 
     u32 _40;
-    u8  _44;
-    u8  _45;
-    u8  _46[2];
+    u8 _44;
+    u8 _45;
+    u8 _46[2];
 };

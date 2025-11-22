@@ -1,7 +1,7 @@
+#include "Game/Ride/TamakoroTutorial.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Ride/Tamakoro.hpp"
-#include "Game/Ride/TamakoroTutorial.hpp"
 #include "Game/Screen/PlayerActionGuidance.hpp"
 #include "Game/Util/ActorMovementUtil.hpp"
 #include "Game/Util/EventUtil.hpp"
@@ -30,23 +30,16 @@ namespace NrvTamakoroTutorial {
     NEW_NERVE(HostTypeNrvTrampleBack, TamakoroTutorial, Trample);
     NEW_NERVE(HostTypeNrvRecoverFront, TamakoroTutorial, Recover);
     NEW_NERVE(HostTypeNrvRecoverBack, TamakoroTutorial, Recover);
-}; // namespace NrvTamakoroTutorial
+};  // namespace NrvTamakoroTutorial
 
 namespace {
-    static TVec3f    hRaiseAcc = TVec3f(0.0f, -1.0f, 0.0f);
+    static TVec3f hRaiseAcc = TVec3f(0.0f, -1.0f, 0.0f);
     static const f32 hRaiseCheckDegree = 30.0f;
     static const f32 hDistToStartTutorial = 400.0f;
-}; // namespace
+};  // namespace
 
 TamakoroTutorial::TamakoroTutorial(const char* pName)
-    : LiveActor(pName),
-      mHost(nullptr),
-      mTalkCtrl(nullptr),
-      mTalkCtrlAutomatic(nullptr),
-      mPadAccel(0.0f, 0.0f, 0.0f),
-      _A4(false),
-      _A5(false) {
-}
+    : LiveActor(pName), mHost(nullptr), mTalkCtrl(nullptr), mTalkCtrlAutomatic(nullptr), mPadAccel(0.0f, 0.0f, 0.0f), _A4(false), _A5(false) {}
 
 void TamakoroTutorial::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
@@ -67,8 +60,7 @@ void TamakoroTutorial::init(const JMapInfoIter& rIter) {
     MR::getJMapInfoArg0NoInit(rIter, &omitTutorial);
 
     if (omitTutorial == -1) {
-        mTalkCtrl = MR::createTalkCtrlDirect(
-            this, rIter, "Common_TamakoroTutorial000", TVec3f(0.0f, 0.0f, 0.0f), nullptr);
+        mTalkCtrl = MR::createTalkCtrlDirect(this, rIter, "Common_TamakoroTutorial000", TVec3f(0.0f, 0.0f, 0.0f), nullptr);
 
         initNerve(&NrvTamakoroTutorial::HostTypeNrvFirst::sInstance);
 
@@ -84,8 +76,7 @@ void TamakoroTutorial::init(const JMapInfoIter& rIter) {
         mHost->startRide();
     }
 
-    mTalkCtrlAutomatic = MR::createTalkCtrlDirectOnRootNodeAutomatic(
-        this, rIter, "Common_TamakoroTutorial007", TVec3f(0.0f, 0.0f, 0.0f), nullptr);
+    mTalkCtrlAutomatic = MR::createTalkCtrlDirectOnRootNodeAutomatic(this, rIter, "Common_TamakoroTutorial007", TVec3f(0.0f, 0.0f, 0.0f), nullptr);
 
     MR::setMessageBalloonFollowOffset(mTalkCtrl, TVec3f(0.0f, 180.0f, 0.0f));
     MR::setDistanceToTalk(mTalkCtrl, hDistToStartTutorial);
@@ -123,7 +114,8 @@ void TamakoroTutorial::exeFirst() {
         f32 distPlayerToTutorial = MR::calcDistanceToPlayer(mPosition);
         f32 distPlayerToTamakoro = MR::calcDistanceToPlayer(mHost->mPosition);
 
-        if (MR::isOnGroundPlayer() && !MR::isExecScenarioStarter() && (distPlayerToTutorial < hDistToStartTutorial || distPlayerToTamakoro < hDistToStartTutorial)) {
+        if (MR::isOnGroundPlayer() && !MR::isExecScenarioStarter() &&
+            (distPlayerToTutorial < hDistToStartTutorial || distPlayerToTamakoro < hDistToStartTutorial)) {
             setNerve(&NrvTamakoroTutorial::HostTypeNrvFirstForceTalk::sInstance);
         }
     } else {
@@ -330,7 +322,8 @@ bool TamakoroTutorial::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSe
             return true;
         }
 
-        if (isNerve(&NrvTamakoroTutorial::HostTypeNrvWait::sInstance) || isNerve(&NrvTamakoroTutorial::HostTypeNrvRecoverFront::sInstance) || isNerve(&NrvTamakoroTutorial::HostTypeNrvRecoverBack::sInstance)) {
+        if (isNerve(&NrvTamakoroTutorial::HostTypeNrvWait::sInstance) || isNerve(&NrvTamakoroTutorial::HostTypeNrvRecoverFront::sInstance) ||
+            isNerve(&NrvTamakoroTutorial::HostTypeNrvRecoverBack::sInstance)) {
             TVec3f v1 = pSender->mPosition;
             v1 -= pReceiver->mPosition;
             TVec3f v2;

@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/FlashingCtrl.hpp"
+#include "Game/LiveActor/LiveActor.hpp"
 
 class BenefitItemObj : public LiveActor {
 public:
@@ -37,64 +37,60 @@ public:
     void setFollowMtx(MtxPtr);
     void calcAndSetBaseMtxInMovement();
 
-    u32              _8C;
-    u32              _90;
-    u32              _94;
-    TVec3f           _98;
-    TVec3f           _A4;
-    s16              _B0;
-    s16              _B2;
-    s16              _B4;
-    s16              _B6;
-    s16              _B8;
-    s16              _BA;
-    TVec3f           _BC;
-    TVec3f           _C8;
-    MtxPtr           mFollowMtx; // 0xD4
-    u8               _D8;
-    u8               _D9;
-    u8               _DA;
-    u8               _DB;
-    u8               _DC;
-    u8               _DD;
-    u8               _DE;
-    u8               _DF;
-    u8               _E0;
-    u8               _E1;
-    u8               _E2;
-    u8               _E3;
-    u8               _E4;
-    u8               _E5;
-    u8               _E6;
-    u8               _E7;
-    f32              _E8;
-    f32              _EC;
-    Mtx              _F0;
-    const char*      _120;
-    FlashingCtrl*    mFlashCtrl;  // 0x124
-    ActorCameraInfo* mCameraInfo; // 0x128
-    u32              _12C;
-    u32              _130;
-    LiveActor*       mHitSensorActor; // 0x134
-    u8               _138;
-    u8               _139;
-    u16              _13A;
+    u32 _8C;
+    u32 _90;
+    u32 _94;
+    TVec3f _98;
+    TVec3f _A4;
+    s16 _B0;
+    s16 _B2;
+    s16 _B4;
+    s16 _B6;
+    s16 _B8;
+    s16 _BA;
+    TVec3f _BC;
+    TVec3f _C8;
+    MtxPtr mFollowMtx;  // 0xD4
+    u8 _D8;
+    u8 _D9;
+    u8 _DA;
+    u8 _DB;
+    u8 _DC;
+    u8 _DD;
+    u8 _DE;
+    u8 _DF;
+    u8 _E0;
+    u8 _E1;
+    u8 _E2;
+    u8 _E3;
+    u8 _E4;
+    u8 _E5;
+    u8 _E6;
+    u8 _E7;
+    f32 _E8;
+    f32 _EC;
+    Mtx _F0;
+    const char* _120;
+    FlashingCtrl* mFlashCtrl;      // 0x124
+    ActorCameraInfo* mCameraInfo;  // 0x128
+    u32 _12C;
+    u32 _130;
+    LiveActor* mHitSensorActor;  // 0x134
+    u8 _138;
+    u8 _139;
+    u16 _13A;
 };
 
 class BenefitItemOneUp : public BenefitItemObj {
 public:
-    inline BenefitItemOneUp(const char* a1, const char* a2)
-        : BenefitItemObj(a1, a2) {
-    }
+    inline BenefitItemOneUp(const char* a1, const char* a2) : BenefitItemObj(a1, a2) {}
 
-    virtual ~BenefitItemOneUp() {
-    }
+    virtual ~BenefitItemOneUp() {}
 };
 
 class ShadowClipActor : public LiveActor {
 public:
-    virtual ~ShadowClipActor() {
-    }
+    virtual ~ShadowClipActor() {}
 
     virtual void endClipped();
     virtual void control();
@@ -109,4 +105,4 @@ namespace NrvBenefitItemObj {
     NERVE(HostTypeNrvAppearGround);
     NERVE(HostTypeNrvPreEscape);
     NERVE(HostTypeNrvEscape);
-}; // namespace NrvBenefitItemObj
+};  // namespace NrvBenefitItemObj

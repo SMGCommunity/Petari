@@ -32,15 +32,14 @@ namespace NrvAstroDomeGalaxySelector {
     NEW_NERVE(AstroDomeGalaxySelectorNrvDemoDomeLecture, AstroDomeGalaxySelector, DemoDomeLecture);
     NEW_NERVE(AstroDomeGalaxySelectorNrvGalaxyMoveLecture, AstroDomeGalaxySelector, GalaxyMoveLecture);
     NEW_NERVE(AstroDomeGalaxySelectorNrvWaitStartDemo, AstroDomeGalaxySelector, WaitStartDemo);
-} // namespace NrvAstroDomeGalaxySelector
+}  // namespace NrvAstroDomeGalaxySelector
 
 namespace {
     const char* cDemoNameDomeLecture = "ドームレクチャー２";
     const char* cDemoNameJumpOut = "マリオ飛び出し";
-} // namespace
+}  // namespace
 
-AstroDomeGalaxySelector::AstroDomeGalaxySelector(const char* pName)
-    : LiveActor(pName) {
+AstroDomeGalaxySelector::AstroDomeGalaxySelector(const char* pName) : LiveActor(pName) {
     pDomeCamCtrl = 0;
     pGSBackButton = 0;
     pGSInfo = 0;
@@ -117,12 +116,14 @@ bool AstroDomeGalaxySelector::receiveOtherMsg(u32 v1, HitSensor* pSender, HitSen
 bool AstroDomeGalaxySelector::tryStartLectureDemo(const Nerve* pNerve) {
     if (isNerve(&NrvAstroDomeGalaxySelector::AstroDomeGalaxySelectorNrvGalaxySelectStart::sInstance)) {
         if (!MR::isOnGameEventFlagEndButlerDomeLecture()) {
-            MR::requestStartTimeKeepDemoWithoutCinemaFrame(this, cDemoNameDomeLecture, pNerve, &NrvAstroDomeGalaxySelector::AstroDomeGalaxySelectorNrvWaitStartDemo::sInstance, 0);
+            MR::requestStartTimeKeepDemoWithoutCinemaFrame(this, cDemoNameDomeLecture, pNerve,
+                                                           &NrvAstroDomeGalaxySelector::AstroDomeGalaxySelectorNrvWaitStartDemo::sInstance, 0);
             return true;
         }
     } else if (isNerve(&NrvAstroDomeGalaxySelector::AstroDomeGalaxySelectorNrvGalaxyConfirmStart::sInstance)) {
         if (!MR::isOnGameEventFlagEndButlerGalaxyMoveLecture()) {
-            MR::requestStartTimeKeepDemoWithoutCinemaFrame(this, cDemoNameDomeLecture, pNerve, &NrvAstroDomeGalaxySelector::AstroDomeGalaxySelectorNrvWaitStartDemo::sInstance, 0);
+            MR::requestStartTimeKeepDemoWithoutCinemaFrame(this, cDemoNameDomeLecture, pNerve,
+                                                           &NrvAstroDomeGalaxySelector::AstroDomeGalaxySelectorNrvWaitStartDemo::sInstance, 0);
             return true;
         }
     }
@@ -186,7 +187,8 @@ void AstroDomeGalaxySelector::exeGalaxyConfirmStart() {
         pGSBackButton->disappear();
     }
     showGalaxyInfo((MiniatureGalaxy*)SphereSelectorFunction::getSelectedTarget());
-    if (SphereSelectorFunction::isConfirmWait() && !tryStartLectureDemo(&NrvAstroDomeGalaxySelector::AstroDomeGalaxySelectorNrvGalaxyMoveLecture::sInstance)) {
+    if (SphereSelectorFunction::isConfirmWait() &&
+        !tryStartLectureDemo(&NrvAstroDomeGalaxySelector::AstroDomeGalaxySelectorNrvGalaxyMoveLecture::sInstance)) {
         setNerve(&NrvAstroDomeGalaxySelector::AstroDomeGalaxySelectorNrvGalaxyConfirm::sInstance);
     }
 }
@@ -199,7 +201,8 @@ void AstroDomeGalaxySelector::exeGalaxyConfirm() {
     if (pGConfirmLayout->isSelected()) {
         if (pGConfirmLayout->isSelectedYes()) {
             SphereSelectorFunction::confirmed();
-            MR::requestStartTimeKeepDemoMarioPuppetable(this, cDemoNameJumpOut, &NrvAstroDomeGalaxySelector::AstroDomeGalaxySelectorNrvDemoJumpOut::sInstance,
+            MR::requestStartTimeKeepDemoMarioPuppetable(this, cDemoNameJumpOut,
+                                                        &NrvAstroDomeGalaxySelector::AstroDomeGalaxySelectorNrvDemoJumpOut::sInstance,
                                                         &NrvAstroDomeGalaxySelector::AstroDomeGalaxySelectorNrvWaitStartDemo::sInstance, 0);
         } else {
             SphereSelectorFunction::confirmCancel(false);

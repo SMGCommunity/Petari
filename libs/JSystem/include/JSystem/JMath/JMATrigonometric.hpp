@@ -13,21 +13,17 @@ namespace std {
             b1 = B1();
         }
     };
-} // namespace std
+}  // namespace std
 
 namespace JMath {
     template < s32 Bits, typename T >
     class TSinCosTable {
     public:
-        static const u32      LEN = 1 << Bits;
+        static const u32 LEN = 1 << Bits;
         std::pair< f32, f32 > table[LEN];
 
-        f32 sinShort(s8 v) const {
-            return table[static_cast< u8 >(v) >> 3].a1;
-        }
-        f32 cosShort(s8 v) const {
-            return table[static_cast< u8 >(v) >> 3].b1;
-        }
+        f32 sinShort(s8 v) const { return table[static_cast< u8 >(v) >> 3].a1; }
+        f32 cosShort(s8 v) const { return table[static_cast< u8 >(v) >> 3].b1; }
 
         inline f32 sinLapRad(f32 v) {
             if (v < 0.0f) {
@@ -58,9 +54,7 @@ namespace JMath {
             return table[(u16)v & LEN - 1].b1;
         }
 
-        inline f32 get(f32 v) {
-            return table[(u16)v & LEN - 1].b1;
-        }
+        inline f32 get(f32 v) { return table[(u16)v & LEN - 1].b1; }
     };
 
     template < s32 Len, typename T >
@@ -86,10 +80,10 @@ namespace JMath {
         T _1000;
     };
 
-    static TSinCosTable< 14, f32 >     sSinCosTable;
-    static TAtanTable< 1024, f32 >     sAtanTable;
+    static TSinCosTable< 14, f32 > sSinCosTable;
+    static TAtanTable< 1024, f32 > sAtanTable;
     static TAsinAcosTable< 1024, f32 > sAsinAcosTable;
-}; // namespace JMath
+};  // namespace JMath
 
 inline f32 JMASSin(u16 s) {
     return JMath::sSinCosTable.sinShort(s);

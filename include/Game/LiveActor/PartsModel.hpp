@@ -22,11 +22,11 @@ public:
     void loadFixedPosition(const char*);
     void offFixedPosNormalizeScale();
 
-    LiveActor*     mHost;       // 0x8C
-    FixedPosition* mFixedPos;   // 0x90
-    MtxPtr         mMtx;        // 0x94
-    bool           mCalcOwnMtx; // 0x98
-    bool           _99;
-    bool           mIsDead; // 0x9A
-    bool           _9B;
+    LiveActor* mHost;          // 0x8C
+    FixedPosition* mFixedPos;  // 0x90
+    MtxPtr mMtx;               // 0x94
+    bool mCalcOwnMtx;          // 0x98
+    bool _99;
+    bool mIsDead;  // 0x9A
+    bool _9B;
 };

@@ -1,5 +1,5 @@
-#include "Game/Enemy/AnimScaleController.hpp"
 #include "Game/Enemy/Poihana.hpp"
+#include "Game/Enemy/AnimScaleController.hpp"
 #include "Game/Enemy/WalkerStateBindStarPointer.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
@@ -12,7 +12,7 @@
 namespace {
     const Vec sNormalBinderPos = {0.0f, 130.0f, 120.0f};
     const Vec sTrampleBinderPos = {0.0f, 150.0f, 0.0f};
-}; // namespace
+};  // namespace
 
 namespace NrvPoihana {
     NEW_NERVE_ONEND(PoihanaNrvNonActive, Poihana, NonActive, NonActive);
@@ -35,10 +35,9 @@ namespace NrvPoihana {
     NEW_NERVE(PoihanaNrvHide, Poihana, Hide);
     NEW_NERVE(PoihanaNrvAppear, Poihana, Appear);
     NEW_NERVE_ONEND(PoihanaNrvDPDSwoon, Poihana, DPDSwoon, DPDSwoon);
-}; // namespace NrvPoihana
+};  // namespace NrvPoihana
 
-Poihana::Poihana(const char* pName)
-    : LiveActor(pName) {
+Poihana::Poihana(const char* pName) : LiveActor(pName) {
     mAnimScaleCtrl = nullptr;
     mBindStarPointer = nullptr;
     mCamInfo = nullptr;
@@ -60,84 +59,84 @@ Poihana::Poihana(const char* pName)
 Poihana::~Poihana() {}
 
 /*void Poihana::init(const JMapInfoIter &rIter) {
-	MR::initDefaultPos(this, rIter);
-	MR::initActorCamera(this, rIter, &mCamInfo);
-	initModelManagerWithAnm("Poihana", nullptr, false);
+    MR::initDefaultPos(this, rIter);
+    MR::initActorCamera(this, rIter, &mCamInfo);
+    initModelManagerWithAnm("Poihana", nullptr, false);
 
-	MR::connectToSceneEnemy(this);
+    MR::connectToSceneEnemy(this);
 
-	// Initialize sensors
-	initHitSensor(2);
-	MR::addHitSensorPriorBinder(this, "binder", 8, 125.0f, sNormalBinderPos);
-	MR::addHitSensorAtJoint(this, "body", "Body", ATYPE_KILLER_TARGET_ENEMY, 8, 70.0f, TVec3f(0.0f, 0.0f, 0.0f));
+    // Initialize sensors
+    initHitSensor(2);
+    MR::addHitSensorPriorBinder(this, "binder", 8, 125.0f, sNormalBinderPos);
+    MR::addHitSensorAtJoint(this, "body", "Body", ATYPE_KILLER_TARGET_ENEMY, 8, 70.0f, TVec3f(0.0f, 0.0f, 0.0f));
 
-	// Initialize binder
-	bool useSmallBinder = false;
-	MR::getJMapInfoArg7NoInit(rIter, &useSmallBinder);
+    // Initialize binder
+    bool useSmallBinder = false;
+    MR::getJMapInfoArg7NoInit(rIter, &useSmallBinder);
 
-	if (useSmallBinder) {
-		initBinder(100.0f, 100.0f, 0);
-	}
-	else {
-		initBinder(150.0f, 150.0f, 0);
-	}
+    if (useSmallBinder) {
+        initBinder(100.0f, 100.0f, 0);
+    }
+    else {
+        initBinder(150.0f, 150.0f, 0);
+    }
 
-	mIsActive = true;
-	MR::setGroupClipping(this, rIter, 0x20);
-	initEffectKeeper(1, nullptr, false);
-	initSound(4, false);
+    mIsActive = true;
+    MR::setGroupClipping(this, rIter, 0x20);
+    initEffectKeeper(1, nullptr, false);
+    initSound(4, false);
 
-	// Initialize 2P behavior
-	MR::initStarPointerTarget(this, 150.0f, TVec3f(0.0f, 100.0f, 0.0f));
-	mAnimScaleCtrl = new AnimScaleController(nullptr);
-	mBindStarPointer = new WalkerStateBindStarPointer(this, mAnimScaleCtrl);
+    // Initialize 2P behavior
+    MR::initStarPointerTarget(this, 150.0f, TVec3f(0.0f, 100.0f, 0.0f));
+    mAnimScaleCtrl = new AnimScaleController(nullptr);
+    mBindStarPointer = new WalkerStateBindStarPointer(this, mAnimScaleCtrl);
 
-	MR::initShadowVolumeSphere(this, 80.0f);
-	MR::addToAttributeGroupSearchTurtle(this);
+    MR::initShadowVolumeSphere(this, 80.0f);
+    MR::addToAttributeGroupSearchTurtle(this);
 
-	mRespawnPos.set(mPosition);
-	mHomePos.set(mRespawnPos);
+    mRespawnPos.set(mPosition);
+    mHomePos.set(mRespawnPos);
 
-	// Calculate launch intensity, thanks to Shibbo for helping me on that one
-	s32 launchIntensity = 1000;
-	MR::getJMapInfoArg0NoInit(rIter, &launchIntensity);
-	f32 launchIntensityF = 2.0f * launchIntensity;
+    // Calculate launch intensity, thanks to Shibbo for helping me on that one
+    s32 launchIntensity = 1000;
+    MR::getJMapInfoArg0NoInit(rIter, &launchIntensity);
+    f32 launchIntensityF = 2.0f * launchIntensity;
 
-	if (launchIntensityF > 0) {
-		f32 factor;
-		f32 reciprocal = __frsqrte(launchIntensityF);
-		factor = reciprocal * launchIntensityF;
-		launchIntensityF = -(factor * reciprocal - 3.0f) * factor * 0.5f;
-	}
+    if (launchIntensityF > 0) {
+        f32 factor;
+        f32 reciprocal = __frsqrte(launchIntensityF);
+        factor = reciprocal * launchIntensityF;
+        launchIntensityF = -(factor * reciprocal - 3.0f) * factor * 0.5f;
+    }
 
-	mLaunchIntensity = -launchIntensityF;
+    mLaunchIntensity = -launchIntensityF;
 
-	// Setup color
-	//s32 color = 0;
-	//MR::getJMapInfoArg2NoInit(rIter, &color);
-	//MR::startBtpAndSetFrameAndStop(this, "ColorChange", color);
+    // Setup color
+    //s32 color = 0;
+    //MR::getJMapInfoArg2NoInit(rIter, &color);
+    //MR::startBtpAndSetFrameAndStop(this, "ColorChange", color);
 
-	// Setup behaviors
-	//MR::getJMapInfoArg1NoInit(rIter, &mActiveRange);
-	MR::getJMapInfoArg3NoInit(rIter, &mBehavior);
-	MR::getJMapInfoArg4NoInit(rIter, &mCanDrown);
+    // Setup behaviors
+    //MR::getJMapInfoArg1NoInit(rIter, &mActiveRange);
+    MR::getJMapInfoArg3NoInit(rIter, &mBehavior);
+    MR::getJMapInfoArg4NoInit(rIter, &mCanDrown);
 
-	if (mCanDrown) {
-		mWaterColumn = MR::createModelObjMapObj("エフェクト水柱", "WaterColumn", (MtxPtr)getBaseMtx());
-		mWaterColumn->mScale.setAll(2.0f);
-	}
+    if (mCanDrown) {
+        mWaterColumn = MR::createModelObjMapObj("エフェクト水柱", "WaterColumn", (MtxPtr)getBaseMtx());
+        mWaterColumn->mScale.setAll(2.0f);
+    }
 
-	MR::tryCreateMirrorActor(this, nullptr);
-	//MR::useStageSwitchAwake(this, rIter);
+    MR::tryCreateMirrorActor(this, nullptr);
+    //MR::useStageSwitchAwake(this, rIter);
 
-	if (mBehavior == POIHANA_BEHAVIOR_SLEEP) {
-		initNerve(&NrvPoihana::PoihanaNrvSleep::sInstance);
-	}
-	else {
-		initNerve(&NrvPoihana::PoihanaNrvWait::sInstance);
-	}
+    if (mBehavior == POIHANA_BEHAVIOR_SLEEP) {
+        initNerve(&NrvPoihana::PoihanaNrvSleep::sInstance);
+    }
+    else {
+        initNerve(&NrvPoihana::PoihanaNrvWait::sInstance);
+    }
 
-	makeActorAppeared();
+    makeActorAppeared();
 }*/
 
 void Poihana::initAfterPlacement() {
@@ -203,7 +202,8 @@ void Poihana::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     }
 
     if (MR::isSensorPlayer(pReceiver)) {
-        ret = isNerve(&NrvPoihana::PoihanaNrvShock::sInstance) || isNerve(&NrvPoihana::PoihanaNrvSwoonLand::sInstance) || isNerve(&NrvPoihana::PoihanaNrvSwoon::sInstance) || isNerve(&NrvPoihana::PoihanaNrvRecover::sInstance);
+        ret = isNerve(&NrvPoihana::PoihanaNrvShock::sInstance) || isNerve(&NrvPoihana::PoihanaNrvSwoonLand::sInstance) ||
+              isNerve(&NrvPoihana::PoihanaNrvSwoon::sInstance) || isNerve(&NrvPoihana::PoihanaNrvRecover::sInstance);
 
         if (ret) {
             return;
@@ -239,13 +239,15 @@ bool Poihana::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pRe
     }
 
     if (MR::isMsgPlayerTrample(msg) || MR::isMsgPlayerHipDrop(msg)) {
-        bool flag = isNerve(&NrvPoihana::PoihanaNrvShock::sInstance) || isNerve(&NrvPoihana::PoihanaNrvSwoonLand::sInstance) || isNerve(&NrvPoihana::PoihanaNrvSwoon::sInstance) || isNerve(&NrvPoihana::PoihanaNrvRecover::sInstance);
+        bool flag = isNerve(&NrvPoihana::PoihanaNrvShock::sInstance) || isNerve(&NrvPoihana::PoihanaNrvSwoonLand::sInstance) ||
+                    isNerve(&NrvPoihana::PoihanaNrvSwoon::sInstance) || isNerve(&NrvPoihana::PoihanaNrvRecover::sInstance);
 
         if (flag) {
             goto here;
         }
 
-        flag = isNerve(&NrvPoihana::PoihanaNrvSleepStart::sInstance) || isNerve(&NrvPoihana::PoihanaNrvSleep::sInstance) || isNerve(&NrvPoihana::PoihanaNrvGetUp::sInstance);
+        flag = isNerve(&NrvPoihana::PoihanaNrvSleepStart::sInstance) || isNerve(&NrvPoihana::PoihanaNrvSleep::sInstance) ||
+               isNerve(&NrvPoihana::PoihanaNrvGetUp::sInstance);
 
         if (flag) {
         here:
@@ -281,38 +283,38 @@ bool Poihana::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pRec
 }
 
 /*bool Poihana::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
-	if (MR::isMsgAutoRushBegin(msg) && MR::isSensorPlayer(pSender)) {
-		if (isNerve(&NrvPoihana::PoihanaNrvShootUpCharge::sInstance)) {
-			return false;
-		}
-		else if (MR::isOnGroundPlayer()) {
-			if (isNerve(&NrvPoihana::PoihanaNrvShootUp::sInstance)) {
-				if (getNerveStep() < 30) {
-					if (!tryToStartBind(pSender)) {
-						return false;
-					}
-				}
-			}
-			else if (isNerve(&NrvPoihana::PoihanaNrvShootUpCharge::sInstance)
-				|| !MR::isNear(pSender, pReceiver, 100.0f))
-			{
-				return false;
-			}
-			else {
-				setNerve(&NrvPoihana::PoihanaNrvShootUpCharge::sInstance);
-			}
-		}
-		else if (tryToStartBind(pSender)) {
-			setNerve(&NrvPoihana::PoihanaNrvShootUp::sInstance);
-			return true;
-		}
-	}
-	else if (MR::isMsgUpdateBaseMtx(msg) && mBindedActor != nullptr) {
-		updateBindActorMtx();
-		return true;
-	}
+    if (MR::isMsgAutoRushBegin(msg) && MR::isSensorPlayer(pSender)) {
+        if (isNerve(&NrvPoihana::PoihanaNrvShootUpCharge::sInstance)) {
+            return false;
+        }
+        else if (MR::isOnGroundPlayer()) {
+            if (isNerve(&NrvPoihana::PoihanaNrvShootUp::sInstance)) {
+                if (getNerveStep() < 30) {
+                    if (!tryToStartBind(pSender)) {
+                        return false;
+                    }
+                }
+            }
+            else if (isNerve(&NrvPoihana::PoihanaNrvShootUpCharge::sInstance)
+                || !MR::isNear(pSender, pReceiver, 100.0f))
+            {
+                return false;
+            }
+            else {
+                setNerve(&NrvPoihana::PoihanaNrvShootUpCharge::sInstance);
+            }
+        }
+        else if (tryToStartBind(pSender)) {
+            setNerve(&NrvPoihana::PoihanaNrvShootUp::sInstance);
+            return true;
+        }
+    }
+    else if (MR::isMsgUpdateBaseMtx(msg) && mBindedActor != nullptr) {
+        updateBindActorMtx();
+        return true;
+    }
 
-	return false;
+    return false;
 }*/
 
 void Poihana::exeNonActive() {
@@ -466,7 +468,7 @@ void Poihana::exeShootUpCharge() {
     }
 
     TVec3f& gravity = mGravity;
-    f32     dot = gravity.dot(mVelocity);
+    f32 dot = gravity.dot(mVelocity);
     mVelocity.scale(dot, gravity);
 
     if (MR::isBckStopped(this)) {
@@ -475,35 +477,35 @@ void Poihana::exeShootUpCharge() {
 }
 
 /*void Poihana::exeShootUp() {
-	if (MR::isFirstStep(this)) {
-		MR::startBck(this, "Throw", nullptr);
-		MR::startSound(this, "SE_EV_POIHANA_SHOOT_UP", -1, -1);
-		MR::startActorCameraNoTarget(this, mCamInfo, -1);
-	}
+    if (MR::isFirstStep(this)) {
+        MR::startBck(this, "Throw", nullptr);
+        MR::startSound(this, "SE_EV_POIHANA_SHOOT_UP", -1, -1);
+        MR::startActorCameraNoTarget(this, mCamInfo, -1);
+    }
 
-	f32 dot = mGravity.dot(mVelocity);
-	mVelocity.scale(dot, mGravity);
+    f32 dot = mGravity.dot(mVelocity);
+    mVelocity.scale(dot, mGravity);
 
-	if (MR::isStep(this, 2)) {
-		endBind();
-		MR::invalidateHitSensor(this, "binder");
-	}
+    if (MR::isStep(this, 2)) {
+        endBind();
+        MR::invalidateHitSensor(this, "binder");
+    }
 
-	if (MR::isStep(this, 30)) {
-		MR::setSensorOffset(this, "binder", sNormalBinderPos);
-		MR::setSensorRadius(this, "binder", 125.0f);
-		MR::validateHitSensor(this, "binder");
-	}
+    if (MR::isStep(this, 30)) {
+        MR::setSensorOffset(this, "binder", sNormalBinderPos);
+        MR::setSensorRadius(this, "binder", 125.0f);
+        MR::validateHitSensor(this, "binder");
+    }
 
-	if (MR::isBckStopped(this)) {
-		if (mBehavior == POIHANA_BEHAVIOR_NEW_HOME) {
-			mHomePos.set(mPosition);
-			setNerve(&NrvPoihana::PoihanaNrvWalkAround::sInstance);
-		}
-		else {
-			setNerve(&NrvPoihana::PoihanaNrvGoBack::sInstance);
-		}
-	}
+    if (MR::isBckStopped(this)) {
+        if (mBehavior == POIHANA_BEHAVIOR_NEW_HOME) {
+            mHomePos.set(mPosition);
+            setNerve(&NrvPoihana::PoihanaNrvWalkAround::sInstance);
+        }
+        else {
+            setNerve(&NrvPoihana::PoihanaNrvGoBack::sInstance);
+        }
+    }
 }*/
 
 void Poihana::endShootUp() {
@@ -651,8 +653,7 @@ void Poihana::exeDPDSwoon() {
         MR::invalidateHitSensor(this, "Binder");
     }
 
-    MR::updateActorStateAndNextNerve(this, (ActorStateBaseInterface*)mBindStarPointer,
-                                     &NrvPoihana::PoihanaNrvWait::sInstance);
+    MR::updateActorStateAndNextNerve(this, (ActorStateBaseInterface*)mBindStarPointer, &NrvPoihana::PoihanaNrvWait::sInstance);
 }
 
 void Poihana::endDPDSwoon() {
@@ -707,25 +708,25 @@ void Poihana::startBound() {
 }
 
 /*
-* This function calculates Poihana's scale for 40 frames after being trampled. This is
-* used to simulate the "vibrating" visual effect. This is not 1:1 the same as in SMG1,
-* but it looks VERY similar and appears to be even more efficient compared to SMG1's
-* unusually complicated calculations.
-*/
+ * This function calculates Poihana's scale for 40 frames after being trampled. This is
+ * used to simulate the "vibrating" visual effect. This is not 1:1 the same as in SMG1,
+ * but it looks VERY similar and appears to be even more efficient compared to SMG1's
+ * unusually complicated calculations.
+ */
 /*void Poihana::calcBound() {
-	if (mBoundTimer != -1) {
-		f32 scale = 1.0f;
+    if (mBoundTimer != -1) {
+        f32 scale = 1.0f;
 
-		if (mBoundTimer < 40) {
-			scale = 0.05f * sin(0.393f * mBoundTimer) + 1.0f;
-			mBoundTimer++;
-		}
-		else {
-			mBoundTimer = -1;
-		}
+        if (mBoundTimer < 40) {
+            scale = 0.05f * sin(0.393f * mBoundTimer) + 1.0f;
+            mBoundTimer++;
+        }
+        else {
+            mBoundTimer = -1;
+        }
 
-		mScale.setAll(scale);
-	}
+        mScale.setAll(scale);
+    }
 }*/
 
 void Poihana::contactMario(HitSensor* pSender, HitSensor* pReceiver) {
@@ -753,58 +754,58 @@ void Poihana::contactMario(HitSensor* pSender, HitSensor* pReceiver) {
 
 // Needs review
 /*void Poihana::controlVelocity() {
-	if (!mIsActive) {
-		return;
-	}
+    if (!mIsActive) {
+        return;
+    }
 
-	// Calculate front vector
-	TVec3f gravity;
-	if (MR::isBindedGround(this)) {
-		gravity.set(-*MR::getGroundNormal(this));
-	}
-	else {
-		gravity.set(mGravity);
-	}
+    // Calculate front vector
+    TVec3f gravity;
+    if (MR::isBindedGround(this)) {
+        gravity.set(-*MR::getGroundNormal(this));
+    }
+    else {
+        gravity.set(mGravity);
+    }
 
-	TVec3f frontVec(mFrontVec);
-	MR::turnVecToPlane(&mFrontVec, frontVec, gravity);
+    TVec3f frontVec(mFrontVec);
+    MR::turnVecToPlane(&mFrontVec, frontVec, gravity);
 
-	// Calculate velocity
-	if (MR::isBindedGround(this)) {
-		f32 dot = mFrontVec.dot(mVelocity) * -1.0f;
+    // Calculate velocity
+    if (MR::isBindedGround(this)) {
+        f32 dot = mFrontVec.dot(mVelocity) * -1.0f;
 
-		TVec3f addVel;
-		JMAVECScaleAdd(mFrontVec, mVelocity, addVel, dot);
-		addVel.scale(0.8f);
+        TVec3f addVel;
+        JMAVECScaleAdd(mFrontVec, mVelocity, addVel, dot);
+        addVel.scale(0.8f);
 
-		mVelocity.scale(mFrontVec.dot(mVelocity), mFrontVec);
-		mVelocity.add(addVel);
+        mVelocity.scale(mFrontVec.dot(mVelocity), mFrontVec);
+        mVelocity.add(addVel);
 
-		if (mVelocity.dot(gravity) > 0.0f) {
-			dot = gravity.dot(mVelocity) * -1.0f;
-			JMAVECScaleAdd(gravity, mVelocity, mVelocity, dot);
-		}
+        if (mVelocity.dot(gravity) > 0.0f) {
+            dot = gravity.dot(mVelocity) * -1.0f;
+            JMAVECScaleAdd(gravity, mVelocity, mVelocity, dot);
+        }
 
-		mVelocity.scale(0.95f);
-	}
+        mVelocity.scale(0.95f);
+    }
 
-	JMAVECScaleAdd(gravity, mVelocity, mVelocity, 2.0f);
+    JMAVECScaleAdd(gravity, mVelocity, mVelocity, 2.0f);
 
-	if (!isNerve(&NrvPoihana::PoihanaNrvShock::sInstance)) {
-		f32 magVel = isNerve(&NrvPoihana::PoihanaNrvChasePlayer::sInstance) ? 10.0f : 5.0f;
+    if (!isNerve(&NrvPoihana::PoihanaNrvShock::sInstance)) {
+        f32 magVel = isNerve(&NrvPoihana::PoihanaNrvChasePlayer::sInstance) ? 10.0f : 5.0f;
 
-		if (PSVECMag((Vec *)&mVelocity) > magVel) {
-			f32 squared = mVelocity.squared();
+        if (PSVECMag((Vec *)&mVelocity) > magVel) {
+            f32 squared = mVelocity.squared();
 
-			if (squared > 0.0000038146973f) {
-				mVelocity.scale(JGeometry::TUtil<f32>::inv_sqrt(squared));
-			}
-		}
+            if (squared > 0.0000038146973f) {
+                mVelocity.scale(JGeometry::TUtil<f32>::inv_sqrt(squared));
+            }
+        }
 
-		if (MR::isNearZero(mVelocity, 0.001f)) {
-			mVelocity.zero();
-		}
-	}
+        if (MR::isNearZero(mVelocity, 0.001f)) {
+            mVelocity.zero();
+        }
+    }
 }*/
 
 void Poihana::calcMyGravity() {
@@ -865,7 +866,8 @@ bool Poihana::tryDPDSwoon() {
 }
 
 bool Poihana::tryShock() {
-    bool ret = isNerve(&NrvPoihana::PoihanaNrvDrown::sInstance) || isNerve(&NrvPoihana::PoihanaNrvHide::sInstance) || isNerve(&NrvPoihana::PoihanaNrvAppear::sInstance);
+    bool ret = isNerve(&NrvPoihana::PoihanaNrvDrown::sInstance) || isNerve(&NrvPoihana::PoihanaNrvHide::sInstance) ||
+               isNerve(&NrvPoihana::PoihanaNrvAppear::sInstance);
 
     if (ret) {
         return false;
@@ -899,7 +901,9 @@ bool Poihana::tryHipDropShock() {
 }
 
 bool Poihana::isNerveTypeWalkOrWait() const {
-    return isNerve(&NrvPoihana::PoihanaNrvWait::sInstance) || isNerve(&NrvPoihana::PoihanaNrvSearch::sInstance) || isNerve(&NrvPoihana::PoihanaNrvWalkAround::sInstance) || isNerve(&NrvPoihana::PoihanaNrvChasePlayer::sInstance) || isNerve(&NrvPoihana::PoihanaNrvGoBack::sInstance);
+    return isNerve(&NrvPoihana::PoihanaNrvWait::sInstance) || isNerve(&NrvPoihana::PoihanaNrvSearch::sInstance) ||
+           isNerve(&NrvPoihana::PoihanaNrvWalkAround::sInstance) || isNerve(&NrvPoihana::PoihanaNrvChasePlayer::sInstance) ||
+           isNerve(&NrvPoihana::PoihanaNrvGoBack::sInstance);
 }
 
 bool Poihana::isNeedForBackHome() const {

@@ -1,11 +1,10 @@
 #include "Game/AreaObj/BigBubbleGoalArea.hpp"
 #include "Game/Util/CameraUtil.hpp"
-#include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/DirectDraw.hpp"
+#include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 
-BigBubbleGoalArea::BigBubbleGoalArea(int type, const char* pName)
-    : AreaObj(type, pName) {
+BigBubbleGoalArea::BigBubbleGoalArea(int type, const char* pName) : AreaObj(type, pName) {
     mTranslation.x = 0.0f;
     mTranslation.y = 0.0f;
     mTranslation.z = 0.0f;
@@ -14,8 +13,7 @@ BigBubbleGoalArea::BigBubbleGoalArea(int type, const char* pName)
     _50 = 0.0f;
 }
 
-BigBubbleGoalArea::~BigBubbleGoalArea() {
-}
+BigBubbleGoalArea::~BigBubbleGoalArea() {}
 
 void BigBubbleGoalArea::init(const JMapInfoIter& rIter) {
     AreaObj::init(rIter);

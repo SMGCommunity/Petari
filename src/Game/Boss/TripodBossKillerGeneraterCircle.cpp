@@ -4,25 +4,22 @@
 
 struct GeneratorCircleData {
     const char* mName;       // 0x00
-    const f32*  mAngleTable; // 0x04
-    s32         mNumAngles;  // 0x08
-    f32         _C;
-    f32         _10;
-    f32         _14;
-    f32         _18;
-    u32         mActiveLabel;  // 0x1C
-    bool        mHasCollision; // 0x20
+    const f32* mAngleTable;  // 0x04
+    s32 mNumAngles;          // 0x08
+    f32 _C;
+    f32 _10;
+    f32 _14;
+    f32 _18;
+    u32 mActiveLabel;    // 0x1C
+    bool mHasCollision;  // 0x20
 };
 
 namespace {
-    static f32 sUpperHorizonAngleTable[7] = {
-        42.0f, 96.0f, 140.0f, 180.0f, -140.0f, -96.0f, -42.0f};
+    static f32 sUpperHorizonAngleTable[7] = {42.0f, 96.0f, 140.0f, 180.0f, -140.0f, -96.0f, -42.0f};
 
-    static f32 sUnderHorizonAngleTable[6] = {
-        78.0f, 120.0f, 160.0f, -160.0f, -120.0f, -78.0f};
+    static f32 sUnderHorizonAngleTable[6] = {78.0f, 120.0f, 160.0f, -160.0f, -120.0f, -78.0f};
 
-    static f32 sBottomHorizonAngleTable[3] = {
-        0.0f, 120.0f, 240.0f};
+    static f32 sBottomHorizonAngleTable[3] = {0.0f, 120.0f, 240.0f};
 
     static const GeneratorCircleData sSetUpDataTable[3] = {
         {"TripodBossUpperKillerCannon", sUpperHorizonAngleTable, 7, 2150.0f, 49.0f, -29.0f, 975.0f, 1, 0x1000000},
@@ -38,13 +35,11 @@ namespace {
 
         return nullptr;
     }
-}; // namespace
+};  // namespace
 
-TripodBossKillerGeneraterCircle::~TripodBossKillerGeneraterCircle() {
-}
+TripodBossKillerGeneraterCircle::~TripodBossKillerGeneraterCircle() {}
 
-TripodBossKillerGeneraterCircle::TripodBossKillerGeneraterCircle(const char* pName)
-    : NameObj(pName) {
+TripodBossKillerGeneraterCircle::TripodBossKillerGeneraterCircle(const char* pName) : NameObj(pName) {
     mGenerators = nullptr;
     mPosition.x = 0.0f;
     mPosition.y = 0.0f;
@@ -84,7 +79,6 @@ void TripodBossKillerGeneraterCircle::init(const JMapInfoIter& rIter) {
 
 // https://decomp.me/scratch/kbnGV
 void TripodBossKillerGeneraterCircle::placementGenerater() {
-
     for (s32 i = 0; i < mNumAngles; i++) {
         TPos3f mtx;
         mtx.identity();

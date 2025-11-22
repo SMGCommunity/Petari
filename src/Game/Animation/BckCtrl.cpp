@@ -25,7 +25,8 @@ void BckCtrl::changeBckSetting(const char* pName, XanimePlayer* pPlayer) const {
     if (data) {
         bool reflectDataPtr = false;
 
-        if (data->mInterpole >= 0 || data->mPlayFrame >= 0 || data->mStartFrame >= 0 || data->mEndFrame >= 0 || data->mRepeatFrame >= 0 || data->mLoopMode != 0xFF) {
+        if (data->mInterpole >= 0 || data->mPlayFrame >= 0 || data->mStartFrame >= 0 || data->mEndFrame >= 0 || data->mRepeatFrame >= 0 ||
+            data->mLoopMode != 0xFF) {
             reflectDataPtr = true;
         }
 

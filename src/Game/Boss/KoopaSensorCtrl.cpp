@@ -1,12 +1,10 @@
-#include "Game/Boss/Koopa.hpp"
 #include "Game/Boss/KoopaSensorCtrl.hpp"
+#include "Game/Boss/Koopa.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 
-KoopaSensorCtrl::KoopaSensorCtrl(Koopa* pHost)
-    : mHost(pHost) {}
+KoopaSensorCtrl::KoopaSensorCtrl(Koopa* pHost) : mHost(pHost) {}
 
-void KoopaSensorCtrl::update(HitSensor* pSensor) {
-}
+void KoopaSensorCtrl::update(HitSensor* pSensor) {}
 
 void KoopaSensorCtrl::initSensor() {
     MR::addHitSensorAtJoint(mHost, "Body", "Spine", ATYPE_KOOPA_PUSH, 8, 150.0f, TVec3f(-70.0f, -30.0f, 0.0f));

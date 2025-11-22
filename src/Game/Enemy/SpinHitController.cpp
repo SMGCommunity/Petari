@@ -28,7 +28,7 @@ void SpinHitController::start(LiveActor* pActor, const TVec3f& a2, const TVec3f&
     MR::vecKillElement(v9, pActor->mGravity, &v9);
     MR::normalizeOrZero(&v9);
     v9 *= _10;
-    f32    val = _14;
+    f32 val = _14;
     TVec3f v8(pActor->mGravity);
     v8 *= val;
     v9 -= v8;
@@ -52,7 +52,7 @@ bool SpinHitController::execute(LiveActor* pActor) {
         }
     }
 
-    f32    val = _C;
+    f32 val = _C;
     TVec3f v12(pActor->mGravity);
     v12 *= val;
     JMathInlineVEC::PSVECAdd(&pActor->mVelocity, &v12, &pActor->mVelocity);

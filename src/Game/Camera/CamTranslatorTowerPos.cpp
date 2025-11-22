@@ -1,14 +1,14 @@
-#include "Game/Camera/CameraParamChunk.hpp"
 #include "Game/Camera/CamTranslatorTowerPos.hpp"
+#include "Game/Camera/CameraParamChunk.hpp"
 
 #ifdef NON_MATCHING
 // fmuls operand order, same as CamTranslatorTower::setParam()
 void CamTranslatorTowerPos::setParam(const CameraParamChunk* pChunk) {
-    CameraTowerPos*     camera;
+    CameraTowerPos* camera;
     CameraGeneralParam* general = pChunk->mGeneralParam;
 
-    f32    upY;
-    f32    upX;
+    f32 upY;
+    f32 upX;
     TVec2f angle;
 
     angle.x = general->mAngleB;

@@ -1,15 +1,13 @@
 #include "Game/Scene/StopSceneController.hpp"
 #include "Game/Util.hpp"
 
-StopSceneDelayRequest::StopSceneDelayRequest()
-    : NameObj("シーン硬直遅延発行") {
+StopSceneDelayRequest::StopSceneDelayRequest() : NameObj("シーン硬直遅延発行") {
     _C = 0;
     _10 = 0;
     MR::connectToScene(this, 1, -1, -1, -1);
 }
 
-StopSceneController::StopSceneController()
-    : NameObj("StopSceneController") {
+StopSceneController::StopSceneController() : NameObj("StopSceneController") {
     mDelayRequests = nullptr;
     _10 = 0;
 
@@ -54,8 +52,6 @@ bool StopSceneController::isSceneStopped() const {
     return _10 > 0;
 }
 
-StopSceneDelayRequest::~StopSceneDelayRequest() {
-}
+StopSceneDelayRequest::~StopSceneDelayRequest() {}
 
-StopSceneController::~StopSceneController() {
-}
+StopSceneController::~StopSceneController() {}

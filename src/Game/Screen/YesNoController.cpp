@@ -1,6 +1,6 @@
+#include "Game/Screen/YesNoController.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/ButtonPaneController.hpp"
-#include "Game/Screen/YesNoController.hpp"
 #include "Game/Util/EffectUtil.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/NerveUtil.hpp"
@@ -10,7 +10,7 @@ namespace {
     static const char* sDefaultCursorSE = "SE_SY_TALK_FOCUS_ITEM";
     static const char* sDefaultYesSE = "SE_SY_TALK_SELECT_YES";
     static const char* sDefaultNoSE = "SE_SY_TALK_SELECT_NO";
-}; // namespace
+};  // namespace
 
 namespace NrvYesNoController {
     NEW_NERVE(YesNoControllerNrvSelecting, YesNoController, Selecting);
@@ -18,17 +18,11 @@ namespace NrvYesNoController {
     NEW_NERVE(YesNoControllerNrvDisappear, YesNoController, Disappear);
     NEW_NERVE(YesNoControllerNrvSelected, YesNoController, Selected);
     NEW_NERVE(YesNoControllerNrvNotSelected, YesNoController, NotSelected);
-}; // namespace NrvYesNoController
+};  // namespace NrvYesNoController
 
 YesNoController::YesNoController(LayoutActor* pHost)
-    : NerveExecutor("はい／いいえ選択制御"),
-      mHost(pHost),
-      _C(false),
-      mButtonYesPaneCtrl(nullptr),
-      mButtonNoPaneCtrl(nullptr),
-      mCursorSE(nullptr),
-      mYesSE(nullptr),
-      mNoSE(nullptr) {
+    : NerveExecutor("はい／いいえ選択制御"), mHost(pHost), _C(false), mButtonYesPaneCtrl(nullptr), mButtonNoPaneCtrl(nullptr), mCursorSE(nullptr),
+      mYesSE(nullptr), mNoSE(nullptr) {
     mButtonYesPaneCtrl = new ButtonPaneController(mHost, "Right", "BoxRight", 0, true);
     mButtonYesPaneCtrl->_22 = false;
 

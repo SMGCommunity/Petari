@@ -26,16 +26,16 @@ public:
     void exeGalaxySelectStart();
     void exeGalaxyConfirmStart();
     void exeGalaxySelectCancel();
-    void exeWaitStartDemo(){}; // Yeah this is just a return I guess?
+    void exeWaitStartDemo(){};  // Yeah this is just a return I guess?
     void exeDemoDomeLecture();
     void exeGalaxyConfirm();
-    void exeGalaxyConfirmCancel(); // Auto inlined
+    void exeGalaxyConfirmCancel();  // Auto inlined
     void exeGalaxyMoveLecture();
     void exeDemoJumpOut();
 
-    AstroDomeCameraController* pDomeCamCtrl;    // _8C
-    GalaxySelectBackButton*    pGSBackButton;   // _90
-    GalaxySelectInfo*          pGSInfo;         // _94
-    GalaxyConfirmLayout*       pGConfirmLayout; // _98
-    bool                       _9C;
+    AstroDomeCameraController* pDomeCamCtrl;  // _8C
+    GalaxySelectBackButton* pGSBackButton;    // _90
+    GalaxySelectInfo* pGSInfo;                // _94
+    GalaxyConfirmLayout* pGConfirmLayout;     // _98
+    bool _9C;
 };

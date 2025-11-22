@@ -2,12 +2,11 @@
 #include "Game/Util.hpp"
 #include "Inline.hpp"
 
-NrvWatchTowerRotateStep::WatchTowerRotateStepNrvWait      NrvWatchTowerRotateStep::WatchTowerRotateStepNrvWait::sInstance;
+NrvWatchTowerRotateStep::WatchTowerRotateStepNrvWait NrvWatchTowerRotateStep::WatchTowerRotateStepNrvWait::sInstance;
 NrvWatchTowerRotateStep::WatchTowerRotateStepNrvMoveStart NrvWatchTowerRotateStep::WatchTowerRotateStepNrvMoveStart::sInstance;
-NrvWatchTowerRotateStep::WatchTowerRotateStepNrvMove      NrvWatchTowerRotateStep::WatchTowerRotateStepNrvMove::sInstance;
+NrvWatchTowerRotateStep::WatchTowerRotateStepNrvMove NrvWatchTowerRotateStep::WatchTowerRotateStepNrvMove::sInstance;
 
-WatchTowerRotateStep::WatchTowerRotateStep(const char* pName)
-    : LiveActor(pName) {
+WatchTowerRotateStep::WatchTowerRotateStep(const char* pName) : LiveActor(pName) {
     mRotDeg.x = 0.0f;
     mRotDeg.y = 0.0f;
     mRotDeg.z = 0.0f;
@@ -101,7 +100,7 @@ void WatchTowerRotateStep::exeMoveStart() {
 namespace NrvWatchTowerRotateStep {
     void WatchTowerRotateStepNrvMove::execute(Spine* pSpine) const {
         WatchTowerRotateStep* pActor = reinterpret_cast< WatchTowerRotateStep* >(pSpine->mExecutor);
-        TVec3f                frontVec;
+        TVec3f frontVec;
 
         MR::calcFrontVec(&frontVec, pActor);
         MR::rotateVecDegree(&pActor->mRotDeg, frontVec, 0.3f);
@@ -114,4 +113,4 @@ namespace NrvWatchTowerRotateStep {
     }
 
     void WatchTowerRotateStepNrvWait::execute(Spine* pSpine) const {}
-}; // namespace NrvWatchTowerRotateStep
+};  // namespace NrvWatchTowerRotateStep

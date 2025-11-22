@@ -38,16 +38,14 @@ namespace NrvLuigiNPC {
     NEW_NERVE(LuigiNPCNrvOnTreeFall, LuigiNPC, OnTreeFall);
     NEW_NERVE(LuigiNPCNrvOnTreeLand, LuigiNPC, OnTreeLand);
 
-}; // namespace NrvLuigiNPC
+};  // namespace NrvLuigiNPC
 
-LuigiNPC::LuigiNPC(const char* pName)
-    : NPCActor(pName) {
+LuigiNPC::LuigiNPC(const char* pName) : NPCActor(pName) {
     mTakeOutStar = nullptr;
     _160 = -1;
 }
 
-LuigiNPC::~LuigiNPC() {
-}
+LuigiNPC::~LuigiNPC() {}
 
 void LuigiNPC::makeArchiveList(NameObjArchiveListCollector* pArchive, const JMapInfoIter& rIter) {
     pArchive->addArchive("LuigiNPC");
@@ -98,7 +96,8 @@ bool LuigiNPC::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pR
             MR::startSound(this, "SE_SM_STAR_PIECE_HIT", -1, -1);
         }
 
-        if ((MR::isMsgPlayerSpinAttack(msg) || MR::isMsgPlayerTrample(msg) || MR::isMsgPlayerHipDrop(msg) || MR::isMsgStarPieceReflect(msg)) && (isNerve(&NrvLuigiNPC::LuigiNPCNrvOnTreeWait::sInstance) || isNerve(&NrvLuigiNPC::LuigiNPCNrvOnTreeTouch::sInstance))) {
+        if ((MR::isMsgPlayerSpinAttack(msg) || MR::isMsgPlayerTrample(msg) || MR::isMsgPlayerHipDrop(msg) || MR::isMsgStarPieceReflect(msg)) &&
+            (isNerve(&NrvLuigiNPC::LuigiNPCNrvOnTreeWait::sInstance) || isNerve(&NrvLuigiNPC::LuigiNPCNrvOnTreeTouch::sInstance))) {
             setNerve(&NrvLuigiNPC::LuigiNPCNrvOnTreeFall::sInstance);
         }
     }
@@ -180,7 +179,7 @@ void LuigiNPC::initAfterPlacement() {
     NPCActor::initAfterPlacement();
     if (_160 == 3) {
         Triangle tri;
-        TVec3f   v1, v3;
+        TVec3f v1, v3;
         MR::calcFrontVec(&v1, this);
         TVec3f vec(v1 * 500.0f);
         if (MR::getFirstPolyOnLineToMap(&v3, &tri, mPosition, vec)) {

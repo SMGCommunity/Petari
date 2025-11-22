@@ -1,11 +1,11 @@
 #include "nw4r/lyt/arcResourceAccessor.h"
-#include <revolution/arc.h>
 #include <cstdio>
 #include <extras.h>
+#include <revolution/arc.h>
 
 namespace {
     s32 FindNameResource(ARCHandle* pHandle, const char* pResName) {
-        s32    entryNum = -1;
+        s32 entryNum = -1;
         ARCDir dir;
         ARCOpenDir(pHandle, ".", &dir);
         ARCDirEntry dirEntry;
@@ -68,7 +68,7 @@ namespace {
 
         return nullptr;
     }
-}; // namespace
+};  // namespace
 
 namespace nw4r {
     namespace lyt {
@@ -82,11 +82,9 @@ namespace nw4r {
 
                 return nullptr;
             }
-        }; // namespace detail
+        };  // namespace detail
 
-        ArcResourceAccessor::ArcResourceAccessor()
-            : mArcBuf(nullptr) {
-        }
+        ArcResourceAccessor::ArcResourceAccessor() : mArcBuf(nullptr) {}
 
         bool ArcResourceAccessor::Attach(void* pArchive, const char* pRoot) {
             BOOL succcess = ARCInitHandle(pArchive, &mArcHandle);
@@ -104,11 +102,8 @@ namespace nw4r {
             return GetResourceSub(&mArcHandle, mResRootDir, type, pName, pSize);
         }
 
-        ut::Font* ArcResourceAccessor::GetFont(const char* pName) {
-            return detail::FindFont(&mFontList, pName);
-        }
+        ut::Font* ArcResourceAccessor::GetFont(const char* pName) { return detail::FindFont(&mFontList, pName); }
 
-        ArcResourceAccessor::~ArcResourceAccessor() {
-        }
-    }; // namespace lyt
-};     // namespace nw4r
+        ArcResourceAccessor::~ArcResourceAccessor() {}
+    };  // namespace lyt
+};      // namespace nw4r

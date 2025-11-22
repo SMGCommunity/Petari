@@ -19,8 +19,8 @@ private:
     /* 0x00 */ const char* mTaskName;
     /* 0x04 */ const char* mMessageID;
     /* 0x08 */ const char* mSenderID;
-    /* 0x0C */ wchar_t*    mMessage;
-    /* 0x10 */ u32         mMessageLength;
-    /* 0x14 */ bool        mIsError;
-    /* 0x18 */ u32         _18;
+    /* 0x0C */ wchar_t* mMessage;
+    /* 0x10 */ u32 mMessageLength;
+    /* 0x14 */ bool mIsError;
+    /* 0x18 */ u32 _18;
 };

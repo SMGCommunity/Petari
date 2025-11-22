@@ -1,9 +1,7 @@
-#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/MapObj/KillerGunnerSingle.hpp"
+#include "Game/LiveActor/HitSensor.hpp"
 
-KillerGunnerSingle::KillerGunnerSingle(const char* pName)
-    : LiveActor(pName) {
-}
+KillerGunnerSingle::KillerGunnerSingle(const char* pName) : LiveActor(pName) {}
 
 void KillerGunnerSingle::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
@@ -87,12 +85,11 @@ inline void KillerGunnerSingle::exeAttack() {
     }
 }
 
-KillerGunnerSingle::~KillerGunnerSingle() {
-}
+KillerGunnerSingle::~KillerGunnerSingle() {}
 
 namespace NrvKillerGunnerSingle {
     INIT_NERVE(HostTypeAttack);
     INIT_NERVE(HostTypeShoot);
     INIT_NERVE(HostTypeCharge);
     INIT_NERVE(HostTypeWait);
-}; // namespace NrvKillerGunnerSingle
+};  // namespace NrvKillerGunnerSingle

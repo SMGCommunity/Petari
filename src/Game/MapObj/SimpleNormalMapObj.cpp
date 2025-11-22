@@ -6,8 +6,7 @@
 #include "Game/Util/ObjUtil.hpp"
 #include "revolution/types.h"
 
-SimpleNormalMapObj::SimpleNormalMapObj(const char* pName)
-    : NormalMapBase(pName) {}
+SimpleNormalMapObj::SimpleNormalMapObj(const char* pName) : NormalMapBase(pName) {}
 SimpleNormalMapObj::~SimpleNormalMapObj() {}
 
 void SimpleNormalMapObj::init(const JMapInfoIter& rIter) {

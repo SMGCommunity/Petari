@@ -3,13 +3,11 @@
 #include "Game/Util/SceneUtil.hpp"
 #include "JSystem/JMath/JMath.hpp"
 
-MercatorTransformCube::MercatorTransformCube(int type, const char* pName)
-    : AreaObj(type, pName) {
+MercatorTransformCube::MercatorTransformCube(int type, const char* pName) : AreaObj(type, pName) {
     _3C.identity();
 }
 
-MercatorTransformCube::~MercatorTransformCube() {
-}
+MercatorTransformCube::~MercatorTransformCube() {}
 
 void MercatorTransformCube::init(const JMapInfoIter& rIter) {
     AreaObj::init(rIter);

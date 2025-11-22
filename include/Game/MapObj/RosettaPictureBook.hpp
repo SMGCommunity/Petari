@@ -28,6 +28,6 @@ public:
 
 private:
     /* 0x8C */ PictureBookLayout* mLayout;
-    /* 0x90 */ IconAButton*       mIconAButton;
-    /* 0x94 */ bool               mIsValidOpenIconAButton;
+    /* 0x90 */ IconAButton* mIconAButton;
+    /* 0x94 */ bool mIsValidOpenIconAButton;
 };

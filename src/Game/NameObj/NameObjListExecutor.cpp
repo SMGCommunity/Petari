@@ -124,14 +124,10 @@ void NameObjListExecutor::executeDraw(int category) {
     mDrawList->execute(category);
 }
 
-void NameObjListExecutor::initMovementList() {
-}
+void NameObjListExecutor::initMovementList() {}
 
-void NameObjListExecutor::initCalcAnimList() {
-}
+void NameObjListExecutor::initCalcAnimList() {}
 
-void NameObjListExecutor::initCalcViewAndEntryList() {
-}
+void NameObjListExecutor::initCalcViewAndEntryList() {}
 
-void NameObjListExecutor::initDrawList() {
-}
+void NameObjListExecutor::initDrawList() {}

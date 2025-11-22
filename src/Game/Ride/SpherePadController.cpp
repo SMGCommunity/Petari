@@ -16,9 +16,7 @@ void TRot3f::setRotate(const TVec3f& v1, const TVec3f& v2) {
     this->setRotateQuaternionInline(q);
 }
 
-SpherePadController::SpherePadController()
-    : SphereController() {
-}
+SpherePadController::SpherePadController() : SphereController() {}
 
 f32 SpherePadController::calcMoveVector(TVec3f* v1, const TVec3f& v2) {
     return calcDirSphereMove(v1, v2, 0);
@@ -31,8 +29,7 @@ f32 SpherePadController::calcJumpPower() const {
     return 0.0f;
 }
 
-void SpherePadController::update(const TVec3f&) {
-}
+void SpherePadController::update(const TVec3f&) {}
 
 void SpherePadController::clacXY(f32* x, f32* y) {
     *x = MR::getSubPadStickX(WPAD_CHAN0);

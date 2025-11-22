@@ -6,8 +6,7 @@ namespace {
     static const char* sReturnPosName = "合体ブロック故郷点";
 };
 
-AssemblyBlock::AssemblyBlock(const char* pName)
-    : LiveActor(pName) {
+AssemblyBlock::AssemblyBlock(const char* pName) : LiveActor(pName) {
     _11C = -1;
     mActivationRange = -1.0f;
     _124.x = 0.0f;
@@ -27,7 +26,7 @@ void AssemblyBlock::init(const JMapInfoIter& rIter) {
     TVec3f stack_30;
     TVec3f stack_24;
     TVec3f stack_18;
-    char   name[0x100];
+    char name[0x100];
 
     MR::initDefaultPos(this, rIter);
     MR::tryRegisterNamePosLinkObj(this, rIter);
@@ -233,8 +232,7 @@ bool AssemblyBlock::tryStartReturn() {
     return true;
 }
 
-AssemblyBlock::~AssemblyBlock() {
-}
+AssemblyBlock::~AssemblyBlock() {}
 
 namespace NrvAssemblyBlock {
     INIT_NERVE(AssemblyBlockNrvWait);
@@ -242,4 +240,4 @@ namespace NrvAssemblyBlock {
     INIT_NERVE(AssemblyBlockNrvAssembleWait);
     INIT_NERVE(AssemblyBlockNrvReturn);
     INIT_NERVE(AssemblyBlockNrvTimer);
-}; // namespace NrvAssemblyBlock
+};  // namespace NrvAssemblyBlock

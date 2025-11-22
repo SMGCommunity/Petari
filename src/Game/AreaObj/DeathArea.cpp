@@ -2,9 +2,7 @@
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 
-DeathArea::DeathArea(int type, const char* pName)
-    : AreaObj(type, pName) {
-}
+DeathArea::DeathArea(int type, const char* pName) : AreaObj(type, pName) {}
 
 void DeathArea::init(const JMapInfoIter& rIter) {
     AreaObj::init(rIter);
@@ -33,8 +31,7 @@ s32 DeathArea::getDeathType() const {
     return mObjArg0 != -1 ? mObjArg0 : 0;
 }
 
-DeathArea::~DeathArea() {
-}
+DeathArea::~DeathArea() {}
 
 const char* DeathArea::getManagerName() const {
     return "DeathArea";

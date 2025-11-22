@@ -208,21 +208,17 @@ namespace {
     template < typename T >
     class NameObjRealDelegator {
     public:
-        inline NameObjRealDelegator(T in_func) {
-            mNameObjFunc = in_func;
-        }
+        inline NameObjRealDelegator(T in_func) { mNameObjFunc = in_func; }
 
-        virtual void operator()(NameObj* pNameObj) {
-            (pNameObj->*mNameObjFunc)();
-        }
+        virtual void operator()(NameObj* pNameObj) { (pNameObj->*mNameObjFunc)(); }
 
-        T mNameObjFunc; // 0x4
+        T mNameObjFunc;  // 0x4
     };
-}; // namespace
+};  // namespace
 
 struct CategoryListInitialTable {
-    u32 mIndex; // 0x0
-    u32 mCount; // 0x4
+    u32 mIndex;  // 0x0
+    u32 mCount;  // 0x4
 };
 
 /// @brief Organizes NameObjs by execution category.
@@ -233,9 +229,9 @@ public:
         CategoryInfo();
         ~CategoryInfo();
 
-        MR::Vector< MR::AssignableArray< NameObj* > > mNameObjArr; // 0x0
-        MR::FunctorBase*                              _C;
-        u32                                           mCheck; // 0x10
+        MR::Vector< MR::AssignableArray< NameObj* > > mNameObjArr;  // 0x0
+        MR::FunctorBase* _C;
+        u32 mCheck;  // 0x10
     };
 
     NameObjCategoryList(u32, const CategoryListInitialTable*, NameObjMethod, bool, const char*);
@@ -250,10 +246,10 @@ public:
     void registerExecuteBeforeFunction(const MR::FunctorBase&, int);
     void initTable(u32, const CategoryListInitialTable*);
 
-    MR::AssignableArray< NameObjCategoryList::CategoryInfo > mCategoryInfo; // 0x0
+    MR::AssignableArray< NameObjCategoryList::CategoryInfo > mCategoryInfo;  // 0x0
 
     union {
-        NameObjRealDelegator< NameObjMethod >*      mDelegator;
+        NameObjRealDelegator< NameObjMethod >* mDelegator;
         NameObjRealDelegator< NameObjMethodConst >* mDelegatorConst;
     };
 

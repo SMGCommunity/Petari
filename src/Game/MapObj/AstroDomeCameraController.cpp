@@ -20,7 +20,7 @@ namespace {
     Vec cDefaultUp;
     Vec cZoomInPos;
     Vec cZoomOutPos;
-} // namespace
+}  // namespace
 
 namespace NrvAstroDomeCameraController {
     NEW_NERVE(AstroDomeCameraControllerNrvGalaxySelectStart, AstroDomeCameraController, GalaxySelectStart);
@@ -28,10 +28,9 @@ namespace NrvAstroDomeCameraController {
     NEW_NERVE(AstroDomeCameraControllerNrvGalaxyConfirmStart, AstroDomeCameraController, GalaxyConfirmStart);
     NEW_NERVE(AstroDomeCameraControllerNrvGalaxyConfirm, AstroDomeCameraController, GalaxyConfirm);
     NEW_NERVE(AstroDomeCameraControllerNrvGalaxyConfirmCancel, AstroDomeCameraController, GalaxyConfirmCancel);
-} // namespace NrvAstroDomeCameraController
+}  // namespace NrvAstroDomeCameraController
 
-AstroDomeCameraController::AstroDomeCameraController(const char* pName)
-    : LiveActor(pName), _8C(gZeroVec), _104(0.0f), _108(gZeroVec) {}
+AstroDomeCameraController::AstroDomeCameraController(const char* pName) : LiveActor(pName), _8C(gZeroVec), _104(0.0f), _108(gZeroVec) {}
 
 void AstroDomeCameraController::init(const JMapInfoIter& rIter) {
     MR::connectToSceneMapObjMovement(this);
@@ -89,11 +88,12 @@ void AstroDomeCameraController::calcZoomOutPos(TVec3f* v1) const {
 void AstroDomeCameraController::calcZoomInPos(TVec3f* v1, const TVec3f& v2) const {
     TVec3f zoomOutPos;
     calcZoomOutPos(&zoomOutPos);
-    SphereSelectorFunction::calcOffsetPos(v1, SphereSelectorFunction::getSelectedActorTrans(), cZoomInPos, SphereSelectorFunction::getSelectedActorTrans() - zoomOutPos, v2);
+    SphereSelectorFunction::calcOffsetPos(v1, SphereSelectorFunction::getSelectedActorTrans(), cZoomInPos,
+                                          SphereSelectorFunction::getSelectedActorTrans() - zoomOutPos, v2);
 }
 
 void AstroDomeCameraController::exeGalaxySelectStart() {
-    s32    STF = SphereSelectorFunction::getSelectStartFrame();
+    s32 STF = SphereSelectorFunction::getSelectStartFrame();
     TVec3f stack;
     if (MR::isFirstStep(this)) {
         calcZoomOutPos(&stack);

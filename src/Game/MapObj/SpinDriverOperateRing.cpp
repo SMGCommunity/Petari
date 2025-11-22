@@ -1,8 +1,7 @@
 #include "Game/MapObj/SpinDriverOperateRing.hpp"
 
 SpinDriverOperateRing::SpinDriverOperateRing(const char* pName)
-    : LiveActor(pName),
-      _8C(0, 0, 0), _98(0, 0, 0), _A4(0, 0, 0), mAccelerate(0, 0, 0), mDirection(0, 0, 0) {
+    : LiveActor(pName), _8C(0, 0, 0), _98(0, 0, 0), _A4(0, 0, 0), mAccelerate(0, 0, 0), mDirection(0, 0, 0) {
     _E0 = 0;
     _C8 = 0.0f;
     _CC = 0.0f;
@@ -17,8 +16,7 @@ void SpinDriverOperateRing::init(const JMapInfoIter& rIter) {
     MR::invalidateClipping(this);
 }
 
-void SpinDriverOperateRing::control() {
-}
+void SpinDriverOperateRing::control() {}
 
 void SpinDriverOperateRing::setRadiusRate(f32 rate) {
     mRadiusRate = MR::normalize(rate, 0.0f, 1.0f);
@@ -35,7 +33,6 @@ void SpinDriverOperateRing::update(const TVec3f& a1, const TVec3f& a2) {
     if (mRadiusRate <= 0.0f) {
         resetVelocityAndTrans();
     } else {
-
         updateControlPoint(a2);
         addAccelToOperatePlane(a2);
         TVec3f stack_8;
@@ -69,7 +66,7 @@ void SpinDriverOperateRing::resetVelocityAndTrans() {
 }
 
 void SpinDriverOperateRing::addAccelToOperatePlane(const TVec3f& rVec) {
-    f32    dot = -rVec.dot(_A4);
+    f32 dot = -rVec.dot(_A4);
     TVec3f scalar(rVec);
     scalar.scale(0.050000001f * dot);
     mAccelerate += scalar;
@@ -79,7 +76,7 @@ void SpinDriverOperateRing::addAccelToCenter() {
     f32 norm = MR::normalize(_DC, 0.1f, 1.0f);
 
     if (norm > 0.000099999997f) {
-        f32    scalar = ((0.5f * norm) / _D8);
+        f32 scalar = ((0.5f * norm) / _D8);
         TVec3f accel(_A4);
         accel.scale(scalar);
         mAccelerate += accel;
@@ -92,12 +89,10 @@ void SpinDriverOperateRing::attenuateVelocity() {
     mAccelerate.z *= 0.94f;
 }
 
-SpinDriverOperateRing::~SpinDriverOperateRing() {
-}
+SpinDriverOperateRing::~SpinDriverOperateRing() {}
 
 namespace NrvSpinDriverOperateRing {
     INIT_NERVE(SpinDriverOperateRingNrvWait);
 
-    void SpinDriverOperateRingNrvWait::execute(Spine*) const {
-    }
-}; // namespace NrvSpinDriverOperateRing
+    void SpinDriverOperateRingNrvWait::execute(Spine*) const {}
+};  // namespace NrvSpinDriverOperateRing

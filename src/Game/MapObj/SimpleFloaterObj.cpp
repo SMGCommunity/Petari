@@ -11,8 +11,7 @@ namespace NrvSimpleFloaterObj {
     NEW_NERVE(SimpleFloaterObjNrvWait, SimpleFloaterObj, Wait);
 };
 
-SimpleFloaterObj::SimpleFloaterObj(const char* pName)
-    : LiveActor(pName) {
+SimpleFloaterObj::SimpleFloaterObj(const char* pName) : LiveActor(pName) {
     _8C = 0;
     _90 = nullptr;
     _94.set(0.0f, 0.0f, 0.0f);

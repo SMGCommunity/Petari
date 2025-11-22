@@ -1,6 +1,6 @@
+#include "Game/Screen/CometRetryButton.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/ButtonPaneController.hpp"
-#include "Game/Screen/CometRetryButton.hpp"
 #include "Game/Screen/PlayerMissLeft.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
@@ -15,14 +15,10 @@ namespace NrvCometRetryButton {
     NEW_NERVE(HostTypeNrvDecided, CometRetryButton, Decided);
     NEW_NERVE(HostTypeNrvEndRetry, CometRetryButton, End);
     NEW_NERVE(HostTypeNrvEndGoBackAstroDome, CometRetryButton, End);
-}; // namespace NrvCometRetryButton
+};  // namespace NrvCometRetryButton
 
 CometRetryButton::CometRetryButton(const char* pName)
-    : LayoutActor(pName, true),
-      mButtonYesPaneCtrl(nullptr),
-      mButtonNoPaneCtrl(nullptr),
-      mPlayerMissLeft(nullptr) {
-}
+    : LayoutActor(pName, true), mButtonYesPaneCtrl(nullptr), mButtonNoPaneCtrl(nullptr), mPlayerMissLeft(nullptr) {}
 
 // FIXME: There are a lot of register swaps.
 void CometRetryButton::init(const JMapInfoIter& rIter) {

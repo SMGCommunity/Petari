@@ -1,9 +1,8 @@
-#include <revolution.h>
 #include "Game/MapObj/PunchingKinoko.hpp"
+#include <revolution.h>
 
 PunchingKinoko::PunchingKinoko(const char* pName)
-    : LiveActor(pName),
-      mGroundChecker(nullptr), mScaleController(nullptr), mDelegator(nullptr), _98(-1), _9C(0, 0, 0), _A8(0, 1, 0) {
+    : LiveActor(pName), mGroundChecker(nullptr), mScaleController(nullptr), mDelegator(nullptr), _98(-1), _9C(0, 0, 0), _A8(0, 1, 0) {
     mStarPointerHitCoolDown = 0;
     _B8 = true;
     mInvincibleHitCoolDown = -1;
@@ -137,19 +136,11 @@ void PunchingKinoko::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
                 MR::sendMsgPush(pReceiver, pSender);
             }
         }
-        else if (!isNerve(&NrvPunchingKinoko::PunchingKinokoNrvCrushedEnd::sInstance) || !MR::isSensorPlayer(pReceiver) || !MR::sendMsgEnemyAttackFlipWeakJump(pReceiver, pSender)) {
-            TVec3f stack_3C;
-            TVec3f stack_30;
-            f32 stack_8;
-            MR::separateScalarAndDirection(&stack_8, &stack_3C, mGroundChecker->mVelocity);
-            bool hit = false;
-            if (MR::isSensorPlayer(pReceiver)) {
-                if (isEnableHitPlayer()) {
-                    if (stack_8 >= 30.0f) {
-                        if (stack_8 >= 45.0f) {
-                            TVec3f stack_24(stack_3C);
-                            stack_24.scaleInline(70.0f);
-                            hit = MR::sendMsgEnemyAttackFlipMaximumToDir(pReceiver, pSender, stack_24);
+        else if (!isNerve(&NrvPunchingKinoko::PunchingKinokoNrvCrushedEnd::sInstance) || !MR::isSensorPlayer(pReceiver) ||
+!MR::sendMsgEnemyAttackFlipWeakJump(pReceiver, pSender)) { TVec3f stack_3C; TVec3f stack_30; f32 stack_8; MR::separateScalarAndDirection(&stack_8,
+&stack_3C, mGroundChecker->mVelocity); bool hit = false; if (MR::isSensorPlayer(pReceiver)) { if (isEnableHitPlayer()) { if (stack_8 >= 30.0f) { if
+(stack_8 >= 45.0f) { TVec3f stack_24(stack_3C); stack_24.scaleInline(70.0f); hit = MR::sendMsgEnemyAttackFlipMaximumToDir(pReceiver, pSender,
+stack_24);
                         }
                         else {
                             TVec3f stack_18(stack_3C);
@@ -377,8 +368,8 @@ void PunchingKinoko::exeWait() {
     MR::calcPositionUpOffset(&stack_38, this, 130.0f);
 
     TVec3f* groundCheckerPos = &mGroundChecker->mPosition;
-    TVec3f  stack_20;
-    TVec3f  stack_14(stack_38);
+    TVec3f stack_20;
+    TVec3f stack_14(stack_38);
     PSVECSubtract(&stack_14, groundCheckerPos, &stack_14);
 
     stack_20 = stack_14;
@@ -409,12 +400,12 @@ void PunchingKinoko::exeWait() {
 }
 
 void PunchingKinoko::exeSwing() {
-    f32    var2 = MR::calcVelocityLength(mGroundChecker);
+    f32 var2 = MR::calcVelocityLength(mGroundChecker);
     TVec3f stack_20;
     MR::calcPositionUpOffset(&stack_20, this, 130.0f);
 
     TVec3f* groundCheckerPos = &mGroundChecker->mPosition;
-    TVec3f  stack_14(stack_20);
+    TVec3f stack_14(stack_20);
     PSVECSubtract(&stack_14, groundCheckerPos, &stack_14);
 
     TVec3f stack_8(stack_14);
@@ -526,8 +517,8 @@ void PunchingKinoko::exeCrushedEnd() {
     TVec3f stack_20;
     MR::calcPositionUpOffset(&stack_20, this, 130.0f);
     TVec3f* groundCheckerPos = &mGroundChecker->mPosition;
-    TVec3f  stack_14;
-    TVec3f  stack_8(stack_20);
+    TVec3f stack_14;
+    TVec3f stack_8(stack_20);
     PSVECSubtract(&stack_8, groundCheckerPos, &stack_8);
     stack_14 = stack_8;
     stack_14.scale(0.008f);
@@ -560,7 +551,9 @@ bool PunchingKinoko::isEnableHitPlayer() const {
 }
 
 bool PunchingKinoko::isEnableEnemyAttack() const {
-    if (isNerve(&NrvPunchingKinoko::PunchingKinokoNrvSwing::sInstance) || isNerve(&NrvPunchingKinoko::PunchingKinokoNrvPunched::sInstance) || isNerve(&NrvPunchingKinoko::PunchingKinokoNrvPunchedBrake::sInstance) || isNerve(&NrvPunchingKinoko::PunchingKinokoNrvPointSnaped::sInstance)) {
+    if (isNerve(&NrvPunchingKinoko::PunchingKinokoNrvSwing::sInstance) || isNerve(&NrvPunchingKinoko::PunchingKinokoNrvPunched::sInstance) ||
+        isNerve(&NrvPunchingKinoko::PunchingKinokoNrvPunchedBrake::sInstance) ||
+        isNerve(&NrvPunchingKinoko::PunchingKinokoNrvPointSnaped::sInstance)) {
         return true;
     }
 
@@ -633,7 +626,6 @@ namespace NrvPunchingKinoko {
         PunchingKinoko* kinoko = reinterpret_cast< PunchingKinoko* >(pSpine->mExecutor);
         kinoko->exeCrushedEnd();
     };
-}; // namespace NrvPunchingKinoko
+};  // namespace NrvPunchingKinoko
 
-PunchingKinoko::~PunchingKinoko() {
-}
+PunchingKinoko::~PunchingKinoko() {}

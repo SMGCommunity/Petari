@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Game/NameObj/NameObj.hpp"
 #include "Game/Map/StageSwitch.hpp"
 #include "Game/MapObj/PurpleCoinHolder.hpp"
+#include "Game/NameObj/NameObj.hpp"
 
 class PurpleCoinStarter : public NameObj {
 public:
@@ -14,6 +14,6 @@ public:
     void setHost(PurpleCoinHolder*);
     void start();
 
-    PurpleCoinHolder* mCoinHolder; // 0xC
-    StageSwitchCtrl*  mSwitchCtrl; // 0x10
+    PurpleCoinHolder* mCoinHolder;  // 0xC
+    StageSwitchCtrl* mSwitchCtrl;   // 0x10
 };

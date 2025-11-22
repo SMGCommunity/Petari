@@ -54,18 +54,17 @@ void GreenCaterpillarBigBody::calcBodyDir(LiveActor *pActor, TVec3f *pOutDir) {
         MR::calcRailDirectionAtCoord(pOutDir, pActor, nearRailCoord);
     }
     else {
-        TVec3f railPos;  
-        MR::calcRailPosAtCoord(&railPos, pActor, coord); 
+        TVec3f railPos;
+        MR::calcRailPosAtCoord(&railPos, pActor, coord);
         TVec3f stack_8;
-        stack_8.subInline3(mPosition, railPos); 
+        stack_8.subInline3(mPosition, railPos);
         MR::normalize(&stack_8);
         MR::blendVec(pOutDir, *pOutDir, stack_8, 0.1f);
     }
 }
 */
 
-GreenCaterpillarBig::GreenCaterpillarBig(const char* pName)
-    : LiveActor(pName) {
+GreenCaterpillarBig::GreenCaterpillarBig(const char* pName) : LiveActor(pName) {
     mBodyArray = nullptr;
     mBodyArrayLength = 0;
     mCurBodyParts = 0;
@@ -213,11 +212,9 @@ void GreenCaterpillarBig::leaveApple() {
     MR::startSound(this, "SE_OJ_GRN_CATERP_OUT", -1, -1);
 }
 
-GreenCaterpillarBigBody::~GreenCaterpillarBigBody() {
-}
+GreenCaterpillarBigBody::~GreenCaterpillarBigBody() {}
 
-GreenCaterpillarBig::~GreenCaterpillarBig() {
-}
+GreenCaterpillarBig::~GreenCaterpillarBig() {}
 
 namespace NrvGreenCaterpillarBig {
     INIT_NERVE(GreenCaterpillarBigNrvHide);
@@ -254,4 +251,4 @@ namespace NrvGreenCaterpillarBig {
         GreenCaterpillarBig* caterpillar = reinterpret_cast< GreenCaterpillarBig* >(pSpine->mExecutor);
         MR::startLevelSound(caterpillar, "SE_OJ_LV_GRN_CATERP_EAT", -1, -1, -1);
     }
-}; // namespace NrvGreenCaterpillarBig
+};  // namespace NrvGreenCaterpillarBig

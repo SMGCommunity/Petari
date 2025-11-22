@@ -1,7 +1,7 @@
+#include "Game/Screen/Manual2P.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/BackButton.hpp"
 #include "Game/Screen/ButtonPaneController.hpp"
-#include "Game/Screen/Manual2P.hpp"
 #include "Game/Util/GamePadUtil.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/MessageUtil.hpp"
@@ -18,21 +18,14 @@ namespace {
     NEW_NERVE(Manual2PNrvScrollLeft, Manual2P, ScrollLeft);
     NEW_NERVE(Manual2PNrvScrollLeftAfter, Manual2P, ScrollLeftAfter);
     NEW_NERVE(Manual2PNrvDisappear, Manual2P, Disappear);
-}; // namespace
+};  // namespace
 
 Manual2P::Manual2P(const char* pName)
-    : LayoutActor(pName, true),
-      mPageIndex(0),
-      _24(0),
-      mLeftPaneCtrl(nullptr),
-      mRightPaneCtrl(nullptr),
-      _30(false),
-      _31(false),
-      mBackButton(nullptr) {
+    : LayoutActor(pName, true), mPageIndex(0), _24(0), mLeftPaneCtrl(nullptr), mRightPaneCtrl(nullptr), _30(false), _31(false), mBackButton(nullptr) {
 }
 
 void Manual2P::init(const JMapInfoIter& rIter) {
-    s32  i;
+    s32 i;
     char messageId[128];
 
     initLayoutManager("P2Manual", 2);

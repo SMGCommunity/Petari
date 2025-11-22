@@ -1,10 +1,11 @@
 #pragma once
 
+#include <revolution/nwc24.h>
 #include <revolution/types.h>
+
 
 class JKRHeap;
 class NWC24SendThread;
-enum NWC24Err;
 
 class NWC24System {
 public:
@@ -16,8 +17,8 @@ public:
     bool isSent(NWC24Err*, u32*);
 
 private:
-    /* 0x0 */ bool             _0;
-    /* 0x4 */ u8*              mWorkBuffer;
-    /* 0x8 */ u8*              mVFWorkBuffer;
+    /* 0x0 */ bool _0;
+    /* 0x4 */ u8* mWorkBuffer;
+    /* 0x8 */ u8* mVFWorkBuffer;
     /* 0xC */ NWC24SendThread* mSendThread;
 };

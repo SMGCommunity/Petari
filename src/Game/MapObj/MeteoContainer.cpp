@@ -1,9 +1,7 @@
-#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/MapObj/MeteoContainer.hpp"
+#include "Game/LiveActor/HitSensor.hpp"
 
-MeteoContainer::MeteoContainer(const char* pName)
-    : LiveActor(pName) {
-}
+MeteoContainer::MeteoContainer(const char* pName) : LiveActor(pName) {}
 
 void MeteoContainer::init(const JMapInfoIter& rIter) {
     const char* objName = nullptr;
@@ -45,8 +43,7 @@ void MeteoContainer::kill() {
     LiveActor::kill();
 }
 
-void MeteoContainer::control() {
-}
+void MeteoContainer::control() {}
 
 void MeteoContainer::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isSensorPlayer(pReceiver)) {
@@ -79,10 +76,9 @@ void MeteoContainer::exeDestroy() {
     }
 }
 
-MeteoContainer::~MeteoContainer() {
-}
+MeteoContainer::~MeteoContainer() {}
 
 namespace NrvMeteoContainer {
     INIT_NERVE(MeteoContainerNrvWait);
     INIT_NERVE(MeteoContainerNrvDestroy);
-}; // namespace NrvMeteoContainer
+};  // namespace NrvMeteoContainer

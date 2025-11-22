@@ -17,8 +17,8 @@ public:
     void exeSpout();
     void exeSpoutEnd();
 
-    TVec3f mClippingRadius; // 0x8C
-    s32    mSpoutTimer;     // 0x98
+    TVec3f mClippingRadius;  // 0x8C
+    s32 mSpoutTimer;         // 0x98
 };
 
 namespace NrvFountainBig {
@@ -27,4 +27,4 @@ namespace NrvFountainBig {
     NERVE_DECL(FountainBigNrvSignStop, FountainBig, FountainBig::exeSignStop);
     NERVE_DECL(FountainBigNrvSpout, FountainBig, FountainBig::exeSpout);
     NERVE_DECL(FountainBigNrvSpoutEnd, FountainBig, FountainBig::exeSpoutEnd);
-}; // namespace NrvFountainBig
+};  // namespace NrvFountainBig

@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/ActorCameraInfo.hpp"
+#include "Game/LiveActor/LiveActor.hpp"
 
 namespace {
     static const char* cDemoName = "カギ出現";
@@ -27,12 +27,12 @@ public:
     void exeWait();
     bool tryAvoid();
 
-    ActorCameraInfo* mCameraInfo;   // 0x8C
-    s32              mCurDemoFrame; // 0x90
+    ActorCameraInfo* mCameraInfo;  // 0x8C
+    s32 mCurDemoFrame;             // 0x90
 };
 
 namespace NrvKeySwitch {
     NERVE(KeySwitchNrvDemoStart);
     NERVE(KeySwitchNrvAppear);
     NERVE(KeySwitchNrvWait);
-}; // namespace NrvKeySwitch
+};  // namespace NrvKeySwitch

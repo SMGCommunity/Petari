@@ -1,8 +1,7 @@
 #include "Game/AreaObj/AstroChangeStageCube.hpp"
 #include "Game/Util.hpp"
 
-AstroChangeStageCube::AstroChangeStageCube(int a1, const char* pName)
-    : AreaObj(a1, pName) {
+AstroChangeStageCube::AstroChangeStageCube(int a1, const char* pName) : AreaObj(a1, pName) {
     _3C = 1;
     _44 = 0;
 }

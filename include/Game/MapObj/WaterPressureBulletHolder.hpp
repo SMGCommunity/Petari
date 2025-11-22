@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/NameObj/NameObj.hpp"
 #include "Game/MapObj/WaterPressureBullet.hpp"
+#include "Game/NameObj/NameObj.hpp"
 
 class WaterPressureBulletHolder : public NameObj {
 public:
@@ -12,5 +12,5 @@ public:
 
     WaterPressureBullet* callEmptyBullet();
 
-    WaterPressureBullet* mBullets[0x10]; // 0xC
+    WaterPressureBullet* mBullets[0x10];  // 0xC
 };

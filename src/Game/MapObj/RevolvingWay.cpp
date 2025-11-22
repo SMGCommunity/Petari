@@ -19,8 +19,7 @@ namespace NrvRevolvingWay {
 
 RevolvingWay::~RevolvingWay() {}
 
-RevolvingWay::RevolvingWay(const char* pName)
-    : LiveActor(pName), _8C(0.0f, 1.0f) {
+RevolvingWay::RevolvingWay(const char* pName) : LiveActor(pName), _8C(0.0f, 1.0f) {
     _9C.x = 0.0f;
     _9C.y = 0.0f;
     _9C.z = 0.0f;
@@ -60,7 +59,8 @@ void RevolvingWay::exeWait() {
 
 void RevolvingWay::addAccelMoment() {
     TVec3f stack_14;
-    if (MR::isStarPointerPointing(this, 0, true, "弱") && MR::testCorePadButtonB(WPAD_CHAN0) && MR::calcStarPointerStrokeRotateMoment(&stack_14, mPosition, _A8, 0)) {
+    if (MR::isStarPointerPointing(this, 0, true, "弱") && MR::testCorePadButtonB(WPAD_CHAN0) &&
+        MR::calcStarPointerStrokeRotateMoment(&stack_14, mPosition, _A8, 0)) {
         TVec3f stack_8;
         stack_8.setPS(stack_14);
         f32 temp = 0.04f;

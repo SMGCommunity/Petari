@@ -33,16 +33,12 @@ public:
     /// @brief Determines if `this` is equal to `rOther`.
     /// @param rOther A reference to the `FileSelectIconID` to compare with.
     /// @return `true` if `this` is equal to `other`, `false` otherwise.
-    bool operator==(const FileSelectIconID& rOther) const {
-        return mIsMii == rOther.mIsMii && mData == rOther.mData;
-    }
+    bool operator==(const FileSelectIconID& rOther) const { return mIsMii == rOther.mIsMii && mData == rOther.mData; }
 
     /// @brief Determines if `this` is inequal to `rOther`.
     /// @param rOther A reference to the `FileSelectIconID` to compare with.
     /// @return `true` if `this` is inequal to `other`, `false` otherwise.
-    bool operator!=(const FileSelectIconID& rOther) const {
-        return !(*this == rOther);
-    }
+    bool operator!=(const FileSelectIconID& rOther) const { return !(*this == rOther); }
 
     /// @brief Updates the value of each member variable.
     /// @param rOther The reference to the `FileSelectIconID` to copy from.

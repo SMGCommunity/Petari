@@ -23,15 +23,15 @@ public:
     void exeMove();
     void inline exeWait();
 
-    CollisionParts*    mCollisionParts; // _84
-    LodCtrl*           mLODCtrl;        // _90
-    ModelObj*          mModel;          // _94
-    MapPartsRailMover* mRailMover;      // _98
-    TVec3f             _9C;
-    f32                _A8;
-    s32                _AC;
-    bool               _B0;
-    const char*        _B4;
+    CollisionParts* mCollisionParts;  // _84
+    LodCtrl* mLODCtrl;                // _90
+    ModelObj* mModel;                 // _94
+    MapPartsRailMover* mRailMover;    // _98
+    TVec3f _9C;
+    f32 _A8;
+    s32 _AC;
+    bool _B0;
+    const char* _B4;
 };
 
 class UFOSolid : public UFOBase {
@@ -52,4 +52,4 @@ namespace NrvUFOBase {
     NERVE(UFOBaseNrvWaitForPlayerOn);
     NERVE(UFOBaseNrvMove);
     NERVE(UFOBaseNrvBreak);
-}; // namespace NrvUFOBase
+};  // namespace NrvUFOBase

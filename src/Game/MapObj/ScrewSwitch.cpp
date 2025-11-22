@@ -22,10 +22,9 @@ namespace NrvScrewSwitch {
     NEW_NERVE(ScrewSwitchNrvAdjust, ScrewSwitch, Adjust);
     NEW_NERVE(ScrewSwitchNrvScrew, ScrewSwitch, Screw);
     NEW_NERVE(ScrewSwitchNrvEnd, ScrewSwitch, End);
-} // namespace NrvScrewSwitch
+}  // namespace NrvScrewSwitch
 
-ScrewSwitch::ScrewSwitch(const char* pName)
-    : LiveActor(pName) {
+ScrewSwitch::ScrewSwitch(const char* pName) : LiveActor(pName) {
     mCollisionParts = nullptr;
     _90 = nullptr;
     mMapObjConnector = nullptr;
@@ -46,10 +45,11 @@ void ScrewSwitch::init(const JMapInfoIter& rIter) {
     TVec3f var1;
     var1.scale(-150.0f, mGravity);
     MR::addHitSensorAtJoint(this, "binder", "Screw", ATYPE_BINDER, 8, 150.0f, var1);
-    MtxPtr     jointMtx = MR::getJointMtx(this, "Screw");
+    MtxPtr jointMtx = MR::getJointMtx(this, "Screw");
     HitSensor* Sensor = getSensor("binder");
     MR::initCollisionParts(this, "ScrewCol", Sensor, jointMtx);
-    mCollisionParts = MR::createCollisionPartsFromLiveActor(this, "ScrewReceiveCol", getSensor("body"), MR::getJointMtx(this, "ScrewReceive"), (MR::CollisionScaleType)1);
+    mCollisionParts = MR::createCollisionPartsFromLiveActor(this, "ScrewReceiveCol", getSensor("body"), MR::getJointMtx(this, "ScrewReceive"),
+                                                            (MR::CollisionScaleType)1);
     MR::validateCollisionParts(mCollisionParts);
     initEffectKeeper(0, nullptr, false);
     initSound(4, false);
@@ -58,13 +58,13 @@ void ScrewSwitch::init(const JMapInfoIter& rIter) {
     makeActorAppeared();
 }
 
-//Theres an Inline at JMAVECLearp. Scratch: https://decomp.me/scratch/LUQFL
+// Theres an Inline at JMAVECLearp. Scratch: https://decomp.me/scratch/LUQFL
 void ScrewSwitch::exeAdjust() {
     if (MR::isFirstStep(this)) {
         MR::startBrk(this, "ScrewSwitchOn");
         MR::setBrkFrameAndStop(this, 0.0f);
     }
-    f32        step = getNerveStep() / 3.0f;
+    f32 step = getNerveStep() / 3.0f;
     HitSensor* sensor = getSensor("body");
     JMAVECLerp((const Vec*)_90, &sensor->mPosition, &mPosition, step);
     if (MR::isStep(this, 3)) {

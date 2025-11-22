@@ -1,3 +1,4 @@
+#include "Game/System/GameSystemSceneController.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/NameObj/NameObjHolder.hpp"
 #include "Game/Scene/IntermissionScene.hpp"
@@ -5,22 +6,19 @@
 #include "Game/Scene/ScenarioSelectScene.hpp"
 #include "Game/Scene/SceneFactory.hpp"
 #include "Game/Scene/SceneFunction.hpp"
+#include "Game/SingletonHolder.hpp"
 #include "Game/System/AudSystemWrapper.hpp"
 #include "Game/System/GameSystem.hpp"
 #include "Game/System/GameSystemFunction.hpp"
 #include "Game/System/GameSystemObjHolder.hpp"
-#include "Game/System/GameSystemSceneController.hpp"
 #include "Game/System/HeapMemoryWatcher.hpp"
 #include "Game/System/ScenarioDataParser.hpp"
 #include "Game/System/WPadHolder.hpp"
-#include "Game/SingletonHolder.hpp"
 #include <cstdio>
 
 namespace {
-    AudSystemWrapper* getAudioSystemWrapper() NO_INLINE {
-        return SingletonHolder< GameSystem >::get()->mObjHolder->mSysWrapper;
-    }
-}; // namespace
+    AudSystemWrapper* getAudioSystemWrapper() NO_INLINE { return SingletonHolder< GameSystem >::get()->mObjHolder->mSysWrapper; }
+};  // namespace
 
 namespace NrvGameSystemSceneController {
     NEW_NERVE(GameSystemSceneControllerNotInitialized, GameSystemSceneController, NotInitialized);
@@ -34,10 +32,9 @@ namespace NrvGameSystemSceneController {
     NEW_NERVE(GameSystemSceneControllerWaitDrawDoneSceneForDestroy, GameSystemSceneController, WaitDrawDoneScene);
     NEW_NERVE(GameSystemSceneControllerDestroySceneForDestroy, GameSystemSceneController, DestroyScene);
     NEW_NERVE(GameSystemSceneControllerDestroyed, GameSystemSceneController, Destroyed);
-}; // namespace NrvGameSystemSceneController
+};  // namespace NrvGameSystemSceneController
 
-SceneControlInfo::SceneControlInfo()
-    : mStartIdInfo(nullptr) {
+SceneControlInfo::SceneControlInfo() : mStartIdInfo(nullptr) {
     mScene[0] = '\0';
     mStage[0] = '\0';
     mCurrentScenarioNo = 1;
@@ -58,16 +55,8 @@ void SceneControlInfo::setStartIdInfo(const JMapIdInfo& rInfo) {
 }
 
 GameSystemSceneController::GameSystemSceneController()
-    : _98(nullptr),
-      _9C(nullptr),
-      _A0(false),
-      mScenarioParser(nullptr),
-      mObjHolder(nullptr),
-      mScene(nullptr),
-      mSceneInitializeState(State_NotInit),
-      mIntermissionScene(nullptr),
-      mPlayTimerScene(nullptr),
-      mScenarioSelectScene(nullptr) {
+    : _98(nullptr), _9C(nullptr), _A0(false), mScenarioParser(nullptr), mObjHolder(nullptr), mScene(nullptr), mSceneInitializeState(State_NotInit),
+      mIntermissionScene(nullptr), mPlayTimerScene(nullptr), mScenarioSelectScene(nullptr) {
     mObjHolder = new NameObjHolder(0x1300);
     _98 = new Spine(this, &NrvGameSystemSceneController::GameSystemSceneControllerNotInitialized::sInstance);
     mIntermissionScene = static_cast< IntermissionScene* >(MR::createScene("Intermission"));
@@ -191,7 +180,8 @@ bool GameSystemSceneController::isStopSound() const {
 
 bool GameSystemSceneController::isReadyToStartScene() const {
     // FIXME: Probably an inline of `Spine::isNerve`
-    return !(_98->getCurrentNerve() == &NrvGameSystemSceneController::GameSystemSceneControllerReadyToStartScene::sInstance) && !mScenarioSelectScene->isScenarioSelecting();
+    return !(_98->getCurrentNerve() == &NrvGameSystemSceneController::GameSystemSceneControllerReadyToStartScene::sInstance) &&
+           !mScenarioSelectScene->isScenarioSelecting();
 }
 
 bool GameSystemSceneController::isFirstUpdateSceneNerveNormal() const {
@@ -306,8 +296,7 @@ void GameSystemSceneController::exeNotInitialized() {
     }
 }
 
-void GameSystemSceneController::exeNormal() {
-}
+void GameSystemSceneController::exeNormal() {}
 
 void GameSystemSceneController::exeWaitDrawDoneScene() {
     const Nerve* pNerve;
@@ -332,15 +321,12 @@ void GameSystemSceneController::exeWaitDrawDoneScene() {
 void GameSystemSceneController::exeDestroyScene() {
     if (_98->mStep == 0) {
         mIntermissionScene->setCurrentSceneControllerState("[destroy Scene: %s]", _0.mScene);
-        MR::startFunctionAsyncExecute(
-            MR::Functor(this, &GameSystemSceneController::destroyScene),
-            17,
-            "シーン破棄");
+        MR::startFunctionAsyncExecute(MR::Functor(this, &GameSystemSceneController::destroyScene), 17, "シーン破棄");
     }
 
     if (MR::tryEndFunctionAsyncExecute("シーン破棄")) {
         const Nerve* pNerve = &NrvGameSystemSceneController::GameSystemSceneControllerChangeWaveBank::sInstance;
-        bool         isNerve = &NrvGameSystemSceneController::GameSystemSceneControllerDestroySceneForDestroy::sInstance == _98->getCurrentNerve();
+        bool isNerve = &NrvGameSystemSceneController::GameSystemSceneControllerDestroySceneForDestroy::sInstance == _98->getCurrentNerve();
 
         if (isNerve) {
             pNerve = &NrvGameSystemSceneController::GameSystemSceneControllerDestroyed::sInstance;
@@ -354,9 +340,7 @@ void GameSystemSceneController::exeChangeWaveBank() {
     if (_98->mStep == 0) {
         mIntermissionScene->setCurrentSceneControllerState("[change Wave Data]");
 
-        bool isPlayerLuigi = GameSystemFunction::isCreatedGameDataHolder()
-                                 ? MR::isPlayerLuigi()
-                                 : false;
+        bool isPlayerLuigi = GameSystemFunction::isCreatedGameDataHolder() ? MR::isPlayerLuigi() : false;
 
         getAudioSystemWrapper()->loadStageWaveData(_4C.mScene, _4C.mStage, isPlayerLuigi);
     }
@@ -369,10 +353,7 @@ void GameSystemSceneController::exeChangeWaveBank() {
 void GameSystemSceneController::exeInitializeScene() {
     if (_98->mStep == 0) {
         mIntermissionScene->setCurrentSceneControllerState("[initialize Scene: %s]", _4C.mScene);
-        MR::startFunctionAsyncExecute(
-            MR::Functor(this, &GameSystemSceneController::initializeScene),
-            17,
-            "シーン初期化");
+        MR::startFunctionAsyncExecute(MR::Functor(this, &GameSystemSceneController::initializeScene), 17, "シーン初期化");
     }
 
     if (MR::tryEndFunctionAsyncExecute("シーン初期化")) {
@@ -523,8 +504,7 @@ bool GameSystemSceneController::tryDestroyFileCacheHeap(bool param1) {
         return false;
     }
 
-    MR::removeResourceAndFileHolderIfIsEqualHeap(
-        SingletonHolder< HeapMemoryWatcher >::get()->mFileCacheHeap);
+    MR::removeResourceAndFileHolderIfIsEqualHeap(SingletonHolder< HeapMemoryWatcher >::get()->mFileCacheHeap);
 
     return true;
 }

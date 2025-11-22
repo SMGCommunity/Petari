@@ -1,10 +1,10 @@
-#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/MapObj/CrystalSwitch.hpp"
+#include "Game/LiveActor/HitSensor.hpp"
 
-/* Note -- this file was compiled super early on in the game's life, so it was compiled under -O2 where the release build is -O4,p. Keep this in mind! */
+/* Note -- this file was compiled super early on in the game's life, so it was compiled under -O2 where the release build is -O4,p. Keep this in mind!
+ */
 
-CrystalSwitch::CrystalSwitch(const char* pName)
-    : LiveActor(pName) {
+CrystalSwitch::CrystalSwitch(const char* pName) : LiveActor(pName) {
     _8C = 0;
     _90 = 300;
     mRotateSpeed = 0.0f;
@@ -125,8 +125,7 @@ void CrystalSwitch::calcRotSpeed() {
     }
 }
 
-CrystalSwitch::~CrystalSwitch() {
-}
+CrystalSwitch::~CrystalSwitch() {}
 
 namespace NrvCrystalSwitch {
     INIT_NERVE(CrystalSwitchNrvOff);
@@ -158,4 +157,4 @@ namespace NrvCrystalSwitch {
         CrystalSwitch* crystal = reinterpret_cast< CrystalSwitch* >(pSpine->mExecutor);
         crystal->exeOff();
     }
-}; // namespace NrvCrystalSwitch
+};  // namespace NrvCrystalSwitch

@@ -15,15 +15,15 @@ public:
     virtual void attackSensor(HitSensor*, HitSensor*);
     virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
 
-    void       appearAndThrow(const TVec3f&, f32, f32);
+    void appearAndThrow(const TVec3f&, f32, f32);
     HitSensor* isBindedAny() const;
-    void       setVelocityToPlayer(f32);
-    void       calcReflectVelocity();
-    bool       tryToKill();
+    void setVelocityToPlayer(f32);
+    void calcReflectVelocity();
+    bool tryToKill();
 
     void exeThrow();
     void exeReflect();
 
     LiveActor* _8C;
-    TVec3f     _90;
+    TVec3f _90;
 };

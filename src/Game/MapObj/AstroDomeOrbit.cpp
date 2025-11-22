@@ -1,29 +1,25 @@
 #include "Game/MapObj/AstroDomeOrbit.hpp"
 #include "Game/Map/SphereSelector.hpp"
 #include "Game/MapObj/MiniatureGalaxyHolder.hpp"
-#include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/Functor.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
 #include "JSystem/JGeometry/TMatrix.hpp"
 #include "revolution/gx/GXEnum.h"
 #include "revolution/gx/GXGeometry.h"
 #include "revolution/gx/GXVert.h"
 
 namespace {
-    static f32 cRotateOutermost[3] = {
-        20.0f, 45.0f, 0.0f};
+    static f32 cRotateOutermost[3] = {20.0f, 45.0f, 0.0f};
 
-    static f32 cRadius[5] = {
-        4000.0f, 6200.0f, 8100.0f, 10300.0f, 12000.0f};
+    static f32 cRadius[5] = {4000.0f, 6200.0f, 8100.0f, 10300.0f, 12000.0f};
 
-    static f32 cRadiusLastDome[4] = {
-        4000.0f, 6700.0f, 9100.0f, 11800.0f};
+    static f32 cRadiusLastDome[4] = {4000.0f, 6700.0f, 9100.0f, 11800.0f};
 
     static Color8 cColor(0x13, 0xB1, 0xFF, 0xFF);
     static Color8 cBloomColor(0, 0xB4, 0x64, 0xFF);
-}; // namespace
+};  // namespace
 
-AstroDomeOrbit::AstroDomeOrbit()
-    : LiveActor("天文ドームの軌道") {
+AstroDomeOrbit::AstroDomeOrbit() : LiveActor("天文ドームの軌道") {
     _8C = 5000.0f;
     _90 = 0.0f;
 }
@@ -56,7 +52,7 @@ void AstroDomeOrbit::drawBloom() const {
 }
 
 void AstroDomeOrbit::setup(s32 radiusIdx) {
-    s32  miniNum = MiniatureGalaxyFunction::getMiniatureGalaxyNum();
+    s32 miniNum = MiniatureGalaxyFunction::getMiniatureGalaxyNum();
     f32* domes = cRadiusLastDome;
 
     if (radiusIdx == 5) {
@@ -168,9 +164,9 @@ void AstroDomeOrbit::drawSide(f32 a2, bool a3, f32 a4) const {
     GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 0x82);
 
     for (s32 i = 0; i < 65; i++) {
-        f32    v11 = 6.2831855f * (i * 0.015625f);
-        f32    v12 = MR::sin(v11);
-        f32    v13 = MR::cos(v11);
+        f32 v11 = 6.2831855f * (i * 0.015625f);
+        f32 v12 = MR::sin(v11);
+        f32 v13 = MR::cos(v11);
         TVec3f v17;
         v17.set< f32 >(v13, 0.0f, v12);
         TVec3f v16;
@@ -196,5 +192,4 @@ f32 AstroDomeOrbit::calcRepeatedRotateCoord(f32 coord) const {
     return MR::wrapAngleTowards(0.0f, coord);
 }
 
-AstroDomeOrbit::~AstroDomeOrbit() {
-}
+AstroDomeOrbit::~AstroDomeOrbit() {}

@@ -1,8 +1,7 @@
 #include "Game/Util/ParabolicPath.hpp"
 #include "Game/Util.hpp"
 
-ParabolicPath::ParabolicPath()
-    : mPosition(0, 0, 0), mAxisY(0, 1, 0), mAxisZ(0, 0, 1) {
+ParabolicPath::ParabolicPath() : mPosition(0, 0, 0), mAxisY(0, 1, 0), mAxisZ(0, 0, 1) {
     _24 = 0.0f;
     _28 = 0.0f;
     _2C = 0.0f;

@@ -1,7 +1,7 @@
 #pragma once
 
-#include "JSystem/JGeometry.hpp"
 #include "Game/Util.hpp"
+#include "JSystem/JGeometry.hpp"
 
 class LiveActor;
 class Triangle;
@@ -45,7 +45,7 @@ namespace MR {
     s32 getSoundCodeIndex(const JMapInfoIter&);
 
     char* getWallCodeString(const Triangle*);
-}; // namespace MR
+};  // namespace MR
 
 class Collision {
 public:

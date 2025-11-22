@@ -5,8 +5,7 @@
 #include "Game/Util/JMapIdInfo.hpp"
 #include "Game/Util/JMapInfo.hpp"
 
-DemoCastSubGroup::DemoCastSubGroup(const char* pName)
-    : DemoCastGroup(pName) {
+DemoCastSubGroup::DemoCastSubGroup(const char* pName) : DemoCastGroup(pName) {
     mExecutor = nullptr;
 }
 
@@ -31,5 +30,4 @@ bool DemoCastSubGroup::tryRegisterDemoActor(LiveActor* pActor, const JMapInfoIte
     return true;
 }
 
-DemoCastSubGroup::~DemoCastSubGroup() {
-}
+DemoCastSubGroup::~DemoCastSubGroup() {}

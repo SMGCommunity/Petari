@@ -3,8 +3,8 @@
 #include "Game/Util.hpp"
 #include "JSystem/JKernel/JKRArchive.hpp"
 #include "JSystem/JKernel/JKRFileFinder.hpp"
-#include <cstring>
 #include <cstdio>
+#include <cstring>
 
 StageFileLoader::StageFileLoader(const char* pName) {
     mZoneCount = 0;
@@ -31,7 +31,7 @@ void StageFileLoader::makeStageArchiveNameList() {
 
     for (int i = 0; i < mZoneCount; i++) {
         const char* zoneName = access.getZoneName(i);
-        char        path[0x100];
+        char path[0x100];
         snprintf(path, sizeof(path), "/StageData/%s.arc", zoneName);
         u32 len = strlen(path) + 1;
         mStageFiles[i] = new char[len];
@@ -45,11 +45,11 @@ void StageFileLoader::makeStageArchiveName(char* buf, u32 len, const char* pZone
 
 void StageFileLoader::mountFilesInStageMapFile(const char* pName) {
     JKRArchive* archive = 0;
-    JKRHeap*    heap = 0;
+    JKRHeap* heap = 0;
     MR::getMountedArchiveAndHeap(pName, &archive, &heap);
-    void*       res;
+    void* res;
     const char* curName;
-    s32         fileCount = archive->countFile("/arc") - 2;
+    s32 fileCount = archive->countFile("/arc") - 2;
 
     if (fileCount > 0) {
         JKRArcFinder* firstFile = archive->getFirstFile("/arc");

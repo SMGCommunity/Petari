@@ -1,8 +1,6 @@
 #include "Game/MapObj/AstroDomeDemoAstroGalaxy.hpp"
 
-AstroDomeDemoAstroGalaxy::AstroDomeDemoAstroGalaxy(const char* pName)
-    : MapObjActor(pName) {
-}
+AstroDomeDemoAstroGalaxy::AstroDomeDemoAstroGalaxy(const char* pName) : MapObjActor(pName) {}
 
 void AstroDomeDemoAstroGalaxy::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);
@@ -24,5 +22,4 @@ void AstroDomeDemoAstroGalaxy::init(const JMapInfoIter& rIter) {
     MR::setBrkFrameAndStop(this, color);
 }
 
-AstroDomeDemoAstroGalaxy::~AstroDomeDemoAstroGalaxy() {
-}
+AstroDomeDemoAstroGalaxy::~AstroDomeDemoAstroGalaxy() {}

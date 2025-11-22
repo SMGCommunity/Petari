@@ -1,12 +1,9 @@
-#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/MapObj/PicketSwitch.hpp"
+#include "Game/LiveActor/HitSensor.hpp"
 
-PicketSwitch::PicketSwitch(const char* pName)
-    : LiveActor(pName) {
-}
+PicketSwitch::PicketSwitch(const char* pName) : LiveActor(pName) {}
 
-PicketSwitch::~PicketSwitch() {
-}
+PicketSwitch::~PicketSwitch() {}
 
 void PicketSwitch::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
@@ -85,4 +82,4 @@ namespace NrvPicketSwitch {
         PicketSwitch* pActor = (PicketSwitch*)pSpine->mExecutor;
         pActor->exeLastDrop();
     }
-}; // namespace NrvPicketSwitch
+};  // namespace NrvPicketSwitch

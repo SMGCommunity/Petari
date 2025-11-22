@@ -2,8 +2,7 @@
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/Spine.hpp"
 
-MapPartsFunction::MapPartsFunction(LiveActor* pActor, const char* pName)
-    : NameObj(pName != 0 ? pName : "マップパーツ機能") {
+MapPartsFunction::MapPartsFunction(LiveActor* pActor, const char* pName) : NameObj(pName != 0 ? pName : "マップパーツ機能") {
     mSpine = 0;
     mHost = pActor;
     _14 = 1;

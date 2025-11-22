@@ -23,6 +23,6 @@ public:
     void exeDisappear();
 
 private:
-    /* 0x20 */ bool                  mIsSelectedMario;
+    /* 0x20 */ bool mIsSelectedMario;
     /* 0x24 */ ButtonPaneController* mPaneCtrl;
 };

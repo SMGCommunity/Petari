@@ -6,22 +6,16 @@ class NameObj;
 class LiveActor;
 
 struct StageEffectSoundData {
-    const char* objectName;           // 0x0
-    const char* startSoundEffect;     // 0x4
-    const char* movingSoundEffect;    // 0x8
-    const char* stopSoundEffect;      // 0xC
-    u32         stopSoundEffectSteps; // 0x10
-    s32         soundEffectType;      // 0x14
+    const char* objectName;         // 0x0
+    const char* startSoundEffect;   // 0x4
+    const char* movingSoundEffect;  // 0x8
+    const char* stopSoundEffect;    // 0xC
+    u32 stopSoundEffectSteps;       // 0x10
+    s32 soundEffectType;            // 0x14
 };
 
 namespace {
-    enum CameraShakeType {
-        Strong = 1,
-        Normal = 2,
-        NormalWeak = 3,
-        Weak = 4,
-        VeryWeak = 5
-    };
+    enum CameraShakeType { Strong = 1, Normal = 2, NormalWeak = 3, Weak = 4, VeryWeak = 5 };
 
     static StageEffectSoundData sStageEffectSeDataTable[0x9B] = {
         {"LavaHomeVolcanoInnerFlow", 0, "SE_OJ_LV_LAVA_INCREASE_HOME", 0, 0xffffffff, 0},
@@ -184,7 +178,7 @@ namespace {
 
     void shakeCamera(CameraShakeType);
     bool isDistanceValidShake(LiveActor*, const char*);
-}; // namespace
+};  // namespace
 
 namespace MR {
     class StageEffect {
@@ -211,4 +205,4 @@ namespace MR {
         static void shakeStopCamera(LiveActor*, const char*);
         static void stopShakingCameraMoving(NameObj*, const char*);
     };
-}; // namespace MR
+};  // namespace MR

@@ -1,8 +1,7 @@
 #include "Game/MapObj/MechaKoopaPartsArm.hpp"
 #include "Game/Util.hpp"
 
-MechaKoopaPartsArm::MechaKoopaPartsArm(const char* pName)
-    : MapObjActor(pName) {
+MechaKoopaPartsArm::MechaKoopaPartsArm(const char* pName) : MapObjActor(pName) {
     mIsRightArm = false;
 }
 
@@ -105,13 +104,13 @@ void MechaKoopaPartsArm::exeBreak() {
 
 void MechaKoopaPartsArm::initCaseUseSwitchB(const MapObjActorInitInfo& rInfo) {
     if (mIsRightArm) {
-        MR::FunctorV0M< MechaKoopaPartsArm*, void (MechaKoopaPartsArm::*)() > breakFunc = MR::Functor< MechaKoopaPartsArm >(this, &MechaKoopaPartsArm::startBreak);
+        MR::FunctorV0M< MechaKoopaPartsArm*, void (MechaKoopaPartsArm::*)() > breakFunc =
+            MR::Functor< MechaKoopaPartsArm >(this, &MechaKoopaPartsArm::startBreak);
         MR::listenStageSwitchOnB(this, breakFunc);
     }
 }
 
-void MechaKoopaPartsArm::initCaseNoUseSwitchB(const MapObjActorInitInfo&) {
-}
+void MechaKoopaPartsArm::initCaseNoUseSwitchB(const MapObjActorInitInfo&) {}
 
 void MechaKoopaPartsArm::startBreak() {
     setNerve(&NrvMechaKoopaPartsArm::MechaKoopaPartsArmNrvBreakStart::sInstance);
@@ -176,7 +175,6 @@ namespace NrvMechaKoopaPartsArm {
         MechaKoopaPartsArm* arm = reinterpret_cast< MechaKoopaPartsArm* >(pSpine->mExecutor);
         arm->exeWait();
     }
-}; // namespace NrvMechaKoopaPartsArm
+};  // namespace NrvMechaKoopaPartsArm
 
-MechaKoopaPartsArm::~MechaKoopaPartsArm() {
-}
+MechaKoopaPartsArm::~MechaKoopaPartsArm() {}

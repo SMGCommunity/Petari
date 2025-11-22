@@ -1,30 +1,26 @@
+#include "Game/System/ResourceHolderManager.hpp"
+#include "Game/SingletonHolder.hpp"
 #include "Game/System/LayoutHolder.hpp"
 #include "Game/System/ResourceHolder.hpp"
-#include "Game/System/ResourceHolderManager.hpp"
 #include "Game/Util/FileUtil.hpp"
 #include "Game/Util/Functor.hpp"
 #include "Game/Util/HashUtil.hpp"
 #include "Game/Util/MemoryUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
 #include "Game/Util/SystemUtil.hpp"
-#include "Game/SingletonHolder.hpp"
 #include <revolution/gd/GDBase.h>
 
 namespace {
     class GDCurrentRestorer {
     public:
-        GDCurrentRestorer()
-            : mObj(__GDCurrentDL) {
-        }
+        GDCurrentRestorer() : mObj(__GDCurrentDL) {}
 
-        ~GDCurrentRestorer() {
-            __GDCurrentDL = mObj;
-        }
+        ~GDCurrentRestorer() { __GDCurrentDL = mObj; }
 
     private:
         /* 0x0 */ GDLObj* mObj;
     };
-}; // namespace
+};  // namespace
 
 ResourceHolderManager::ResourceHolderManager() {
     mResourceArray.clear();
@@ -88,18 +84,21 @@ void ResourceHolderManager::removeIfIsEqualHeap(JKRHeap* pHeap) {
 }
 
 void ResourceHolderManager::startCreateResourceHolderOnMainThread(const char* pParam1, CreateResourceHolderArgs* pArgs) {
-    MR::FunctorV2M< ResourceHolderManager*, FuncPtrC, const char*, CreateResourceHolderArgs* > func = MR::Functor(SingletonHolder< ResourceHolderManager >::get(), createResourceHolder, pParam1, pArgs);
+    MR::FunctorV2M< ResourceHolderManager*, FuncPtrC, const char*, CreateResourceHolderArgs* > func =
+        MR::Functor(SingletonHolder< ResourceHolderManager >::get(), createResourceHolder, pParam1, pArgs);
 
     MR::startFunctionAsyncExecuteOnMainThread(func, pParam1);
 }
 
 void ResourceHolderManager::startCreateLayoutHolderOnMainThread(const char* pParam1, CreateResourceHolderArgs* pArgs) {
-    MR::FunctorV2M< ResourceHolderManager*, FuncPtrC, const char*, CreateResourceHolderArgs* > func = MR::Functor(SingletonHolder< ResourceHolderManager >::get(), createLayoutHolder, pParam1, pArgs);
+    MR::FunctorV2M< ResourceHolderManager*, FuncPtrC, const char*, CreateResourceHolderArgs* > func =
+        MR::Functor(SingletonHolder< ResourceHolderManager >::get(), createLayoutHolder, pParam1, pArgs);
 
     MR::startFunctionAsyncExecuteOnMainThread(func, pParam1);
 }
 
-ResourceHolderManagerName2Resource* ResourceHolderManager::createAndAddInner(const char* pArcName, MakeArchiveFileNameFuncPtr pMakeArchiveFileNameFunc, FuncPtrB pParam3) {
+ResourceHolderManagerName2Resource* ResourceHolderManager::createAndAddInner(const char* pArcName,
+                                                                             MakeArchiveFileNameFuncPtr pMakeArchiveFileNameFunc, FuncPtrB pParam3) {
     ResourceHolderManagerName2Resource* pName2Resource = find(pArcName);
 
     if (pName2Resource != nullptr) {
@@ -122,7 +121,7 @@ ResourceHolderManagerName2Resource* ResourceHolderManager::createAndAddInner(con
 }
 
 ResourceHolderManagerName2Resource* ResourceHolderManager::createAndAddInnerStationed(const char* pParam1, FuncPtrC pParam2) {
-    CreateResourceHolderArgs                                                                   args = CreateResourceHolderArgs();
+    CreateResourceHolderArgs args = CreateResourceHolderArgs();
     MR::FunctorV2M< ResourceHolderManager*, FuncPtrC, const char*, CreateResourceHolderArgs* > func = MR::Functor(this, pParam2, pParam1, &args);
 
     MR::startFunctionAsyncExecuteOnMainThread(func, pParam1);
@@ -134,7 +133,7 @@ ResourceHolderManagerName2Resource* ResourceHolderManager::createAndAddInnerStat
 
 void ResourceHolderManager::createResourceHolder(const char* pParam1, CreateResourceHolderArgs* pArgs) {
     GDCurrentRestorer gdRestorer = GDCurrentRestorer();
-    JKRArchive*       pArchive;
+    JKRArchive* pArchive;
 
     MR::getMountedArchiveAndHeap(pParam1, &pArchive, &pArgs->mHeap);
     MR::CurrentHeapRestorer heapRestorer(pArgs->mHeap);
@@ -144,7 +143,7 @@ void ResourceHolderManager::createResourceHolder(const char* pParam1, CreateReso
 
 void ResourceHolderManager::createLayoutHolder(const char* pParam1, CreateResourceHolderArgs* pArgs) {
     GDCurrentRestorer gdRestorer = GDCurrentRestorer();
-    JKRArchive*       pArchive;
+    JKRArchive* pArchive;
 
     MR::getMountedArchiveAndHeap(pParam1, &pArchive, &pArgs->mHeap);
     MR::CurrentHeapRestorer heapRestorer(pArgs->mHeap);
@@ -181,10 +180,7 @@ ResourceHolderManagerName2Resource* ResourceHolderManager::find(const char* pPar
     return pIter;
 }
 
-ResourceHolderManagerName2Resource::ResourceHolderManagerName2Resource()
-    : mResourceHolder(nullptr),
-      mLayoutHolder(nullptr),
-      mHeap(nullptr) {}
+ResourceHolderManagerName2Resource::ResourceHolderManagerName2Resource() : mResourceHolder(nullptr), mLayoutHolder(nullptr), mHeap(nullptr) {}
 
 ResourceHolderManagerName2Resource& ResourceHolderManagerName2Resource::operator=(const ResourceHolderManagerName2Resource& other) {
     mResourceHolder = other.mResourceHolder;
@@ -195,7 +191,4 @@ ResourceHolderManagerName2Resource& ResourceHolderManagerName2Resource::operator
     return *this;
 }
 
-CreateResourceHolderArgs::CreateResourceHolderArgs()
-    : mResourceHolder(nullptr),
-      mLayoutHolder(nullptr),
-      mHeap(nullptr) {}
+CreateResourceHolderArgs::CreateResourceHolderArgs() : mResourceHolder(nullptr), mLayoutHolder(nullptr), mHeap(nullptr) {}

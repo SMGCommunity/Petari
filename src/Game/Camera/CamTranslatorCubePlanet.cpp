@@ -1,9 +1,9 @@
-#include "Game/Camera/CameraParamChunk.hpp"
 #include "Game/Camera/CamTranslatorCubePlanet.hpp"
+#include "Game/Camera/CameraParamChunk.hpp"
 
 void CamTranslatorCubePlanet::setParam(const CameraParamChunk* pChunk) {
     CameraGeneralParam* general = pChunk->mGeneralParam;
-    CameraCubePlanet*   camera = mCamera;
+    CameraCubePlanet* camera = mCamera;
 
     f32 dist;
     f32 angleA;

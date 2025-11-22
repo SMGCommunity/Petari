@@ -60,6 +60,5 @@ namespace NrvMapPartsBreaker {
         breaker->exeReactToTornado();
     }
 
-    void HostTypeWait::execute(Spine* pSpine) const {
-    }
-}; // namespace NrvMapPartsBreaker
+    void HostTypeWait::execute(Spine* pSpine) const {}
+};  // namespace NrvMapPartsBreaker

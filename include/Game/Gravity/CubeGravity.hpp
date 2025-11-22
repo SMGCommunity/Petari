@@ -13,7 +13,7 @@ public:
 
     /*
      * Area as in region, not area as in Area = Base * h
-     * 
+     *
      * The region is made up of 3 components: x, y, z. For each component, a value of 0 indicates
      * that the position is beyond the negative face of that component, a value of 1 indicates that
      * the position is between the two faces for that component, and a value of 2 indicates that
@@ -24,15 +24,15 @@ public:
      *
      * `calcGravityArea` returns the encoded region
      */
-    int  calcGravityArea(const TVec3f& rPosition) const;
+    int calcGravityArea(const TVec3f& rPosition) const;
     bool calcFaceGravity(const TVec3f& rPosition, s32, TVec3f* pDest, f32* pScalar) const;
     bool calcEdgeGravity(const TVec3f& rPosition, s32, TVec3f* pDest, f32* pScalar) const;
     bool calcCornerGravity(const TVec3f& rPosition, s32, TVec3f* pDest, f32* pScalar) const;
 
-    TPos3f mCube;        // 0x28
-    TPos3f mPosition;    // 0x58
-    f32    lenX;         // 0x88
-    f32    lenY;         // 0x8C
-    f32    lenZ;         // 0x90
-    u8     mActiveFaces; // 0x94
+    TPos3f mCube;      // 0x28
+    TPos3f mPosition;  // 0x58
+    f32 lenX;          // 0x88
+    f32 lenY;          // 0x8C
+    f32 lenZ;          // 0x90
+    u8 mActiveFaces;   // 0x94
 };

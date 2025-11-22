@@ -1,17 +1,13 @@
-#include "Game/System/GameDataHolder.hpp"
-#include "Game/System/ConfigDataHolder.hpp"
 #include "Game/System/UserFile.hpp"
+#include "Game/System/ConfigDataHolder.hpp"
+#include "Game/System/GameDataHolder.hpp"
 #include "Game/Util/MemoryUtil.hpp"
 #include <RVLFaceLib.h>
 
 #define USER_NAME_SIZE (RFL_NAME_LEN + 1)
 
 UserFile::UserFile()
-    : mGameDataHolder(nullptr),
-      mConfigDataHolder(nullptr),
-      mIsPlayerMario(true),
-      mIsGameDataCorrupted(false),
-      mIsConfigDataCorrupted(false),
+    : mGameDataHolder(nullptr), mConfigDataHolder(nullptr), mIsPlayerMario(true), mIsGameDataCorrupted(false), mIsConfigDataCorrupted(false),
       mUserName(nullptr) {
     mGameDataHolder = new GameDataHolder(this);
     mConfigDataHolder = new ConfigDataHolder();

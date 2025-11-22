@@ -1,8 +1,6 @@
 #include "Game/MapObj/FallingSmallRock.hpp"
 
-FallingSmallRock::FallingSmallRock(const char* pName)
-    : LiveActor(pName) {
-}
+FallingSmallRock::FallingSmallRock(const char* pName) : LiveActor(pName) {}
 
 void FallingSmallRock::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
@@ -48,10 +46,9 @@ void FallingSmallRock::exeWait() {
     }
 }
 
-FallingSmallRock::~FallingSmallRock() {
-}
+FallingSmallRock::~FallingSmallRock() {}
 
 namespace NrvFallingSmallRock {
     INIT_NERVE(HostTypeWait);
     INIT_NERVE(HostTypeMove);
-}; // namespace NrvFallingSmallRock
+};  // namespace NrvFallingSmallRock

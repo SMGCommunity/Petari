@@ -1,9 +1,10 @@
 #pragma once
 
-#include <revolution.h>
 #include "Inline.hpp"
+#include <revolution.h>
 
 class NerveExecutor;
+class Nerve;
 
 namespace MR {
     /// @brief Determines if the working nerve action's frame of execution is equal to the given frame value.
@@ -78,7 +79,8 @@ namespace MR {
     /// @return The result of linear interpolation.
     f32 calcNerveValue(const NerveExecutor* pExecutor, s32 stepMax, f32 valueStart, f32 valueEnd);
 
-    /// @brief Computes the ratio of execution frames to `stepMax` frames as the linear interpolant to the given value interval, fit along an ease-in-out sine curve.
+    /// @brief Computes the ratio of execution frames to `stepMax` frames as the linear interpolant to the given value interval, fit along an
+    /// ease-in-out sine curve.
     /// @param pExecutor The pointer to the nerve action executor.
     /// @param stepMax The number of frames to divide the working frame of execution by.
     /// @param valueStart The starting value.
@@ -86,7 +88,8 @@ namespace MR {
     /// @return The fitted result of linear interpolation.
     f32 calcNerveEaseInOutValue(const NerveExecutor* pExecutor, s32 stepMax, f32 valueStart, f32 valueEnd);
 
-    /// @brief Computes the ratio of execution frames to `stepMax` frames as the linear interpolant to the given value interval, fit along an ease-in-out sine curve.
+    /// @brief Computes the ratio of execution frames to `stepMax` frames as the linear interpolant to the given value interval, fit along an
+    /// ease-in-out sine curve.
     /// @param pExecutor The pointer to the nerve action executor.
     /// @param stepMin The minimum number of frames to clamp the working frame of execution between.
     /// @param stepMax The maximum number of frames to clamp the working frame of execution between.
@@ -95,9 +98,10 @@ namespace MR {
     /// @return The fitted result of linear interpolation.
     f32 calcNerveEaseInOutValue(const NerveExecutor* pExecutor, s32 stepMin, s32 stepMax, f32 valueStart, f32 valueEnd);
 
-    /// @brief Updates the working nerve action with the given nerve action if the working nerve action's frame of execution is equal to the given frame value.
+    /// @brief Updates the working nerve action with the given nerve action if the working nerve action's frame of execution is equal to the given
+    /// frame value.
     /// @param pExecutor The pointer to the nerve action executor.
     /// @param pNerve The pointer to the new nerve action.
     /// @param step The frame value to compare with.
     void setNerveAtStep(NerveExecutor* pExecutor, const Nerve* pNerve, s32 step);
-}; // namespace MR
+};  // namespace MR

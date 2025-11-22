@@ -28,11 +28,11 @@ public:
     void exeSelected();
     void exeNotSelected();
 
-    /* 0x08 */ LayoutActor*          mHost;
-    /* 0x0C */ bool                  _C;
+    /* 0x08 */ LayoutActor* mHost;
+    /* 0x0C */ bool _C;
     /* 0x10 */ ButtonPaneController* mButtonYesPaneCtrl;
     /* 0x14 */ ButtonPaneController* mButtonNoPaneCtrl;
-    /* 0x18 */ const char*           mCursorSE;
-    /* 0x1C */ const char*           mYesSE;
-    /* 0x20 */ const char*           mNoSE;
+    /* 0x18 */ const char* mCursorSE;
+    /* 0x1C */ const char* mYesSE;
+    /* 0x20 */ const char* mNoSE;
 };

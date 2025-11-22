@@ -7,7 +7,7 @@ class KeySwitch;
 typedef LiveActor* (*CreationFunc)(const char*);
 
 struct ExterminationEntry {
-    const char*  mChildName;
+    const char* mChildName;
     CreationFunc mCreationFunc;
 };
 
@@ -18,11 +18,8 @@ namespace {
     }
 
     // we will define the creation funcs later
-    static const ExterminationEntry sCreateTable[3] = {
-        {"ChildKuribo", nullptr},
-        {"ChildSkeletalFishBaby", nullptr},
-        {"ChildMeramera", nullptr}};
-}; // namespace
+    static const ExterminationEntry sCreateTable[3] = {{"ChildKuribo", nullptr}, {"ChildSkeletalFishBaby", nullptr}, {"ChildMeramera", nullptr}};
+};  // namespace
 
 class ExterminationChecker : public LiveActor {
 public:
@@ -47,11 +44,11 @@ public:
         return nullptr;
     }
 
-    LiveActorGroup* mGroup;        // 0x8C
-    KeySwitch*      mKeySwitch;    // 0x90
-    TVec3f          mKeySwitchPos; // 0x94
-    u8              _A0;
-    u8              _A1;
+    LiveActorGroup* mGroup;  // 0x8C
+    KeySwitch* mKeySwitch;   // 0x90
+    TVec3f mKeySwitchPos;    // 0x94
+    u8 _A0;
+    u8 _A1;
 };
 
 namespace NrvExterminationChecker {
@@ -59,9 +56,9 @@ namespace NrvExterminationChecker {
     NERVE_DECL(ExterminationCheckerNrvTryStartDemoAppear, ExterminationChecker, ExterminationChecker::exeTryStartDemoAppear);
     NERVE_DECL(ExterminationCheckerNrvAppearStar, ExterminationChecker, ExterminationChecker::exeAppearStar);
     NERVE_DECL(ExterminationCheckerNrvAppearKeySwitch, ExterminationChecker, ExterminationChecker::exeAppearKeySwitch);
-}; // namespace NrvExterminationChecker
+};  // namespace NrvExterminationChecker
 
 namespace MR {
     NameObj* createExterminationPowerStar(const char*);
     NameObj* createExterminationKeySwitch(const char*);
-}; // namespace MR
+};  // namespace MR

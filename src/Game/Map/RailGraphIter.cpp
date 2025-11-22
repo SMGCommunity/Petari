@@ -12,7 +12,7 @@ void RailGraphIter::moveNodeNext() {
     s32 selected_edge = mSelectedEdge;
     _10 = _4;
     RailGraphEdge* edge = mGraph->getEdge(selected_edge);
-    s32            next_node = edge->getNextNode(_10);
+    s32 next_node = edge->getNextNode(_10);
     _4 = next_node;
 }
 
@@ -30,7 +30,7 @@ void RailGraphIter::watchStartEdge() {
 
 void RailGraphIter::watchNextEdge() {
     RailGraphEdge* edge = mGraph->getEdge(mNextEdge);
-    s32            next_edge = edge->getNextEdge(_4);
+    s32 next_edge = edge->getNextEdge(_4);
     mNextEdge = next_edge;
 }
 
@@ -61,13 +61,13 @@ RailGraphNode* RailGraphIter::getCurrentNode() const {
 
 RailGraphNode* RailGraphIter::getNextNode() const {
     RailGraphEdge* edge = mGraph->getEdge(mSelectedEdge);
-    s32            next = edge->getNextNode(_4);
+    s32 next = edge->getNextNode(_4);
     return mGraph->getNode(next);
 }
 
 RailGraphNode* RailGraphIter::getWatchNode() const {
     RailGraphEdge* edge = mGraph->getEdge(mNextEdge);
-    s32            next_node = edge->getNextNode(_4);
+    s32 next_node = edge->getNextNode(_4);
     return mGraph->getNode(next_node);
 }
 

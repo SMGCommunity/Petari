@@ -4,7 +4,7 @@
 #include "Game/Util/ActorMovementUtil.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
 
-//Required For Float Order, should get stripped when linked.
+// Required For Float Order, should get stripped when linked.
 void unusedFunction() {
     f32 x = 0.0f;
 }

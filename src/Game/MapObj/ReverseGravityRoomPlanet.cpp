@@ -1,8 +1,6 @@
 #include "Game/MapObj/ReverseGravityRoomPlanet.hpp"
 
-ReverseGravityRoomPlanet::ReverseGravityRoomPlanet(const char* pName)
-    : MapObjActor(pName) {
-}
+ReverseGravityRoomPlanet::ReverseGravityRoomPlanet(const char* pName) : MapObjActor(pName) {}
 
 void ReverseGravityRoomPlanet::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);
@@ -56,22 +54,19 @@ namespace NrvReverseGravityRoomPlanet {
     INIT_NERVE(ReverseGravityRoomPlanetNrvUpStart);
     INIT_NERVE(ReverseGravityRoomPlanetNrvUpWait);
 
-    void ReverseGravityRoomPlanetNrvUpWait::execute(Spine* pSpine) const {
-    }
+    void ReverseGravityRoomPlanetNrvUpWait::execute(Spine* pSpine) const {}
 
     void ReverseGravityRoomPlanetNrvUpStart::execute(Spine* pSpine) const {
         ReverseGravityRoomPlanet* planet = reinterpret_cast< ReverseGravityRoomPlanet* >(pSpine->mExecutor);
         planet->exeUpStart();
     }
 
-    void ReverseGravityRoomPlanetNrvDownWait::execute(Spine* pSpine) const {
-    }
+    void ReverseGravityRoomPlanetNrvDownWait::execute(Spine* pSpine) const {}
 
     void ReverseGravityRoomPlanetNrvDownStart::execute(Spine* pSpine) const {
         ReverseGravityRoomPlanet* planet = reinterpret_cast< ReverseGravityRoomPlanet* >(pSpine->mExecutor);
         planet->exeDownStart();
     }
-}; // namespace NrvReverseGravityRoomPlanet
+};  // namespace NrvReverseGravityRoomPlanet
 
-ReverseGravityRoomPlanet::~ReverseGravityRoomPlanet() {
-}
+ReverseGravityRoomPlanet::~ReverseGravityRoomPlanet() {}

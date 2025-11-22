@@ -8,7 +8,7 @@ public:
     BigBubbleSwitchArea(int, const char*);
     virtual ~BigBubbleSwitchArea();
 
-    virtual bool        isInVolume(const TVec3f&) const;
+    virtual bool isInVolume(const TVec3f&) const;
     virtual const char* getManagerName() const;
 };
 
@@ -18,6 +18,6 @@ public:
 
     virtual ~BigBubbleCameraArea();
 
-    virtual bool        isInVolume(const TVec3f&) const;
+    virtual bool isInVolume(const TVec3f&) const;
     virtual const char* getManagerName() const;
 };

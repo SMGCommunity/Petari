@@ -1,5 +1,5 @@
-#include "Game/Map/CollisionParts.hpp"
 #include "Game/Map/HitInfo.hpp"
+#include "Game/Map/CollisionParts.hpp"
 #include "Game/Map/KCollision.hpp"
 #include "Game/Util/MathUtil.hpp"
 
@@ -22,8 +22,8 @@ void Triangle::fillData(CollisionParts* pParts, u32 index, HitSensor* pSensor) {
     mSensor = pSensor;
 
     KCollisionServer* server = pParts->mServer;
-    MtxPtr            matrix;
-    KC_PrismData*     prism = server->getPrismData(index);
+    MtxPtr matrix;
+    KC_PrismData* prism = server->getPrismData(index);
 
     mNormals[0].set< f32 >(*server->getFaceNormal(prism));
     mNormals[1].set< f32 >(*server->getEdgeNormal1(prism));
@@ -85,7 +85,7 @@ const TVec3f* Triangle::getPos(int index) const {
 
 const TVec3f* Triangle::calcAndGetNormal(int index) {
     KCollisionServer* server = mParts->mServer;
-    KC_PrismData*     prism = server->getPrismData(mIdx);
+    KC_PrismData* prism = server->getPrismData(mIdx);
 
     MtxPtr matrix = reinterpret_cast< MtxPtr >(&mParts->mBaseMatrix);
 
@@ -125,7 +125,7 @@ const TVec3f* Triangle::calcAndGetNormal(int index) {
 
 const TVec3f* Triangle::calcAndGetEdgeNormal(int index) {
     KCollisionServer* server = mParts->mServer;
-    KC_PrismData*     prism = server->getPrismData(mIdx);
+    KC_PrismData* prism = server->getPrismData(mIdx);
 
     MtxPtr matrix = reinterpret_cast< MtxPtr >(&mParts->mBaseMatrix);
 
@@ -158,7 +158,7 @@ const TVec3f* Triangle::calcAndGetEdgeNormal(int index) {
 
 const TVec3f* Triangle::calcAndGetPos(int index) {
     KCollisionServer* server = mParts->mServer;
-    KC_PrismData*     prism = server->getPrismData(mIdx);
+    KC_PrismData* prism = server->getPrismData(mIdx);
 
     TVec3f* pos = &mPos[index];
 
@@ -197,9 +197,7 @@ TPos3f* Triangle::getPrevBaseMtx() const {
     return &mParts->mPrevBaseMatrix;
 }
 
-HitInfo::HitInfo()
-    : mParentTriangle(), _60(0.0f),
-      mHitPos(0, 0, 0), _70(0, 0, 0), _7C(0, 0, 0) {
+HitInfo::HitInfo() : mParentTriangle(), _60(0.0f), mHitPos(0, 0, 0), _70(0, 0, 0), _7C(0, 0, 0) {
     _88 = 0;
 }
 

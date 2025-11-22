@@ -1,6 +1,8 @@
 #pragma once
 
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/MapPartsFunction.hpp"
+
 
 class PostureHolder;
 
@@ -22,12 +24,12 @@ public:
     void killHost();
     void exeDisappear();
 
-    s32            mSignMotionType; // 0x18
+    s32 mSignMotionType;            // 0x18
     PostureHolder* mPostureHolder;  // 0x1C
-    u8             _20;
+    u8 _20;
 };
 
 namespace NrvMapPartsAppearController {
     NERVE(HostTypeWait);
     NERVE(HostTypeDisappear);
-}; // namespace NrvMapPartsAppearController
+};  // namespace NrvMapPartsAppearController

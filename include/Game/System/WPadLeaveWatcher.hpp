@@ -15,6 +15,6 @@ public:
 
 private:
     /* 0x00 */ WPad* mPad;
-    /* 0x04 */ s32   mStep;
-    /* 0x08 */ bool  mIsSuspend;
+    /* 0x04 */ s32 mStep;
+    /* 0x08 */ bool mIsSuspend;
 };

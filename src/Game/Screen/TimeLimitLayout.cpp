@@ -1,5 +1,5 @@
-#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/TimeLimitLayout.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
@@ -7,11 +7,8 @@
 
 namespace {
     static const Timing sTimingTable[] = {
-        {18000, 100, true, true, true},
-        {10800, 100, true, true, true},
-        {3600, 100, true, true, true},
-        {1800, 100, true, true, false},
-        {600, 600, false, false, false},
+        {18000, 100, true, true, true}, {10800, 100, true, true, true},  {3600, 100, true, true, true},
+        {1800, 100, true, true, false}, {600, 600, false, false, false},
     };
 };
 
@@ -27,18 +24,11 @@ namespace NrvTimeLimitLayout {
     NEW_NERVE(TimeLimitLayoutScaleDown, TimeLimitLayout, ScaleDown);
     NEW_NERVE(TimeLimitLayoutFadeout, TimeLimitLayout, Fadeout);
     NEW_NERVE(TimeLimitLayoutTimeUpReady, TimeLimitLayout, TimeUpReady);
-}; // namespace NrvTimeLimitLayout
+};  // namespace NrvTimeLimitLayout
 
 TimeLimitLayout::TimeLimitLayout(u32 timeLimit)
-    : LayoutActor("タイムリミット", true),
-      mTime(0),
-      mTimeLimit(timeLimit),
-      mScaleCtrl(nullptr),
-      mAlphaCtrl(nullptr),
-      mCurrentTiming(nullptr),
-      mIsSuspend(false),
-      _35(false) {
-}
+    : LayoutActor("タイムリミット", true), mTime(0), mTimeLimit(timeLimit), mScaleCtrl(nullptr), mAlphaCtrl(nullptr), mCurrentTiming(nullptr),
+      mIsSuspend(false), _35(false) {}
 
 void TimeLimitLayout::init(const JMapInfoIter& rIter) {
     initLayoutManager("TimeLimit", 1);
@@ -194,8 +184,7 @@ void TimeLimitLayout::exeFadeout() {
     }
 }
 
-void TimeLimitLayout::exeTimeUpReady() {
-}
+void TimeLimitLayout::exeTimeUpReady() {}
 
 void TimeLimitLayout::control() {
     mAlphaCtrl->update();

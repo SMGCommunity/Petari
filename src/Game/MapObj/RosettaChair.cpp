@@ -1,9 +1,6 @@
 #include "Game/MapObj/RosettaChair.hpp"
 
-RosettaChair::RosettaChair(const char* pName)
-    : LiveActor(pName),
-      _8C(0.0f, 0.0f, 0.0f),
-      _98(0.0f, 0.0f, 0.0f) {
+RosettaChair::RosettaChair(const char* pName) : LiveActor(pName), _8C(0.0f, 0.0f, 0.0f), _98(0.0f, 0.0f, 0.0f) {
     _A0.identity();
 }
 

@@ -1,7 +1,6 @@
 #include "Game/MapObj/DashRing.hpp"
 
-DashRing::~DashRing() {
-}
+DashRing::~DashRing() {}
 
 void DashRing::initCommon(const JMapInfoIter& rIter, const char* pName) {
     MR::initDefaultPos(this, rIter);
@@ -81,7 +80,7 @@ void DashRing::calcAndSetBaseMtx() {
 
 void DashRing::calcAxis() {
     TVec3f stack_8(0.0f, 1.0f, 0.0f);
-    Mtx    mtx;
+    Mtx mtx;
     MR::makeMtxTR(mtx, 0.0f, 0.0f, 0.0f, mRotation.x, mRotation.y, mRotation.z);
     PSMTXMultVec(mtx, &stack_8, &stack_8);
     mAxis = stack_8;

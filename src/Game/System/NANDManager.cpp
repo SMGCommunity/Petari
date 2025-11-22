@@ -1,7 +1,7 @@
 #include "Game/System/NANDManager.hpp"
+#include "Game/SingletonHolder.hpp"
 #include "Game/System/NANDManagerThread.hpp"
 #include "Game/Util/MemoryUtil.hpp"
-#include "Game/SingletonHolder.hpp"
 #include <JSystem/JKernel/JKRExpHeap.hpp>
 #include <cstdio>
 
@@ -70,8 +70,7 @@ const char* NANDRequestInfo::setCheck(u32 fsBlock, u32 inode, u32* pAnswer) {
     return mPath;
 }
 
-NANDManager::NANDManager()
-    : mManagerThread(nullptr) {
+NANDManager::NANDManager() : mManagerThread(nullptr) {
     mManagerThread = new NANDManagerThread(13, 256, MR::getStationedHeapNapa());
 
     OSResumeThread(mManagerThread->mThread);
@@ -124,10 +123,8 @@ bool NANDResultCode::isUnknown() const {
 }
 
 namespace MR {
-    void addRequestToNANDManager(NANDRequestInfo* pRequestInfo) {
-        SingletonHolder< NANDManager >::get()->addRequest(pRequestInfo);
-    }
-}; // namespace MR
+    void addRequestToNANDManager(NANDRequestInfo* pRequestInfo) { SingletonHolder< NANDManager >::get()->addRequest(pRequestInfo); }
+};  // namespace MR
 
 const char* NANDRequestInfo::setDelete(const char* pName) {
     init();

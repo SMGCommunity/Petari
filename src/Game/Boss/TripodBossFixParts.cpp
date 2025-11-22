@@ -10,20 +10,19 @@ namespace NrvTripodBossFixParts {
     NEW_NERVE(TripodBossFixPartsNrvStartDemo, TripodBossFixParts, StartDemo);
     NEW_NERVE(TripodBossFixPartsNrvWait, TripodBossFixParts, Wait);
     NEW_NERVE(TripodBossFixPartsNrvBreak, TripodBossFixParts, Break);
-}; // namespace NrvTripodBossFixParts
+};  // namespace NrvTripodBossFixParts
 
 struct TripodBossSetting {
-    const char* mPartName; // 0x00
-    s32         mType;     // 0x04
+    const char* mPartName;  // 0x00
+    s32 mType;              // 0x04
 };
 
 namespace {
-    static TripodBossSetting sTripodBossSettingTable[5] = {
-        {"TripodBossBodyABloom", 3},
-        {"TripodBossFootBloom", 3},
-        {"TriPodBossLeg2ABloom", 3},
-        {"TripodBossEyeLight", 2},
-        {"TripodBossEyeLightBloom", 3}};
+    static TripodBossSetting sTripodBossSettingTable[5] = {{"TripodBossBodyABloom", 3},
+                                                           {"TripodBossFootBloom", 3},
+                                                           {"TriPodBossLeg2ABloom", 3},
+                                                           {"TripodBossEyeLight", 2},
+                                                           {"TripodBossEyeLightBloom", 3}};
 
     TripodBossSetting* getSetting(const char* pObjName) {
         for (u32 i = 0; i < 5; i++) {
@@ -35,10 +34,9 @@ namespace {
 
         return nullptr;
     }
-}; // namespace
+};  // namespace
 
-TripodBossFixParts::TripodBossFixParts(const char* pName)
-    : TripodBossFixPartsBase(pName) {
+TripodBossFixParts::TripodBossFixParts(const char* pName) : TripodBossFixPartsBase(pName) {
     _E4 = -1;
     _E8 = 180;
     mHasCollision = false;
@@ -53,7 +51,7 @@ void TripodBossFixParts::init(const JMapInfoIter& rIter) {
     MR::getObjectName(&objName, rIter);
     setName(objName);
     TripodBossFixPartsBase::init(rIter);
-    bool               val = false;
+    bool val = false;
     TripodBossSetting* setting = getSetting(objName);
 
     if (setting != nullptr) {
@@ -223,11 +221,8 @@ void TripodBossFixParts::exeBreak() {
     }
 }
 
-void TripodBossFixParts::exeNonActive() {
-}
+void TripodBossFixParts::exeNonActive() {}
 
-TripodBossFixParts::~TripodBossFixParts() {
-}
+TripodBossFixParts::~TripodBossFixParts() {}
 
-void TripodBossFixParts::exeWaitOwn() {
-}
+void TripodBossFixParts::exeWaitOwn() {}

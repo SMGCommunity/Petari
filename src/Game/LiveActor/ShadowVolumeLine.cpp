@@ -1,7 +1,6 @@
 #include "Game/LiveActor/ShadowVolumeLine.hpp"
 
-ShadowVolumeLine::ShadowVolumeLine()
-    : ShadowVolumeDrawer("影描画[ボリュームライン]") {
+ShadowVolumeLine::ShadowVolumeLine() : ShadowVolumeDrawer("影描画[ボリュームライン]") {
     mFromShadowController = 0;
     mToShadowController = 0;
     mFromWidth = 100.0f;
@@ -32,5 +31,4 @@ void ShadowVolumeLine::setToWidth(f32 width) {
     mToWidth = width;
 }
 
-ShadowVolumeLine::~ShadowVolumeLine() {
-}
+ShadowVolumeLine::~ShadowVolumeLine() {}

@@ -1,7 +1,7 @@
 #pragma once
 
-#include <revolution.h>
 #include <JSystem/JGeometry/TVec.hpp>
+#include <revolution.h>
 
 class Binder;
 class MultiEmitter;
@@ -32,10 +32,10 @@ public:
 
     MultiEmitter* getEmitter(const char*) const;
     MultiEmitter* createEmitter(const char*);
-    void          deleteEmitter(const char*);
-    void          forceDeleteEmitter(const char*);
-    void          deleteEmitterAll();
-    void          forceDeleteEmitterAll();
+    void deleteEmitter(const char*);
+    void forceDeleteEmitter(const char*);
+    void deleteEmitterAll();
+    void forceDeleteEmitterAll();
 
     bool isRegisteredEmitter(const char*) const;
 
@@ -46,17 +46,17 @@ public:
 
     void updateFloorCode(const Triangle*);
 
-    const char*     _0;
-    ResourceHolder* mResourceHolder; // 0x4
-    const char*     mResourceName;   // 0x8
-    u32             _C;
-    u32             _10;
-    u32             _14;
-    u32             _18;
-    u32             _1C;
-    u32             _20;
-    u32             _24;
-    u32             _28;
-    u32             _2C;
-    u8              _30;
+    const char* _0;
+    ResourceHolder* mResourceHolder;  // 0x4
+    const char* mResourceName;        // 0x8
+    u32 _C;
+    u32 _10;
+    u32 _14;
+    u32 _18;
+    u32 _1C;
+    u32 _20;
+    u32 _24;
+    u32 _28;
+    u32 _2C;
+    u8 _30;
 };

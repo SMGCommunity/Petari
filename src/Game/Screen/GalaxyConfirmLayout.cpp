@@ -1,5 +1,5 @@
-#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/GalaxyConfirmLayout.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/BackButton.hpp"
 #include "Game/Screen/ButtonPaneController.hpp"
 #include "Game/Util/GamePadUtil.hpp"
@@ -10,13 +10,9 @@ namespace NrvGalaxyConfirmLayout {
     NEW_NERVE(GalaxyConfirmLayoutNrvSelecting, GalaxyConfirmLayout, Selecting);
     NEW_NERVE(GalaxyConfirmLayoutNrvSelectedBackButton, GalaxyConfirmLayout, SelectedBackButton);
     NEW_NERVE(GalaxyConfirmLayoutNrvSelected, GalaxyConfirmLayout, Selected);
-}; // namespace NrvGalaxyConfirmLayout
+};  // namespace NrvGalaxyConfirmLayout
 
-GalaxyConfirmLayout::GalaxyConfirmLayout()
-    : LayoutActor("ギャラクシー確認レイアウト", true),
-      mPaneCtrl(nullptr),
-      mBackButton(nullptr) {
-}
+GalaxyConfirmLayout::GalaxyConfirmLayout() : LayoutActor("ギャラクシー確認レイアウト", true), mPaneCtrl(nullptr), mBackButton(nullptr) {}
 
 void GalaxyConfirmLayout::init(const JMapInfoIter& rIter) {
     initLayoutManager("GalaxySelect", 1);
@@ -37,7 +33,8 @@ void GalaxyConfirmLayout::appear() {
 }
 
 bool GalaxyConfirmLayout::isSelected() const {
-    return isNerve(&NrvGalaxyConfirmLayout::GalaxyConfirmLayoutNrvSelected::sInstance) || isNerve(&NrvGalaxyConfirmLayout::GalaxyConfirmLayoutNrvSelectedBackButton::sInstance);
+    return isNerve(&NrvGalaxyConfirmLayout::GalaxyConfirmLayoutNrvSelected::sInstance) ||
+           isNerve(&NrvGalaxyConfirmLayout::GalaxyConfirmLayoutNrvSelectedBackButton::sInstance);
 }
 
 bool GalaxyConfirmLayout::isSelectedYes() const {

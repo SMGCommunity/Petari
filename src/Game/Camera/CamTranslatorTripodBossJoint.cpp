@@ -1,12 +1,12 @@
-#include "Game/Camera/CameraParamChunk.hpp"
 #include "Game/Camera/CamTranslatorTripodBossJoint.hpp"
+#include "Game/Camera/CameraParamChunk.hpp"
 
 void CamTranslatorTripodBossJoint::setParam(const CameraParamChunk* pChunk) {
     CameraGeneralParam* general = pChunk->mGeneralParam;
 
-    s32    uVar3;
+    s32 uVar3;
     TVec2f angle;
-    f32    dist;
+    f32 dist;
 
     uVar3 = general->mNum1;
     dist = general->mDist;

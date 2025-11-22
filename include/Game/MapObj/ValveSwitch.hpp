@@ -20,10 +20,10 @@ public:
     void exeEnd();
     void updateBindActorMtx();
 
-    LiveActor*       _8C;
-    TPos3f           _90;
-    MapObjConnector* mObjConnector; // 0xC0
-    bool             _C4;
+    LiveActor* _8C;
+    TPos3f _90;
+    MapObjConnector* mObjConnector;  // 0xC0
+    bool _C4;
 };
 
 namespace NrvValveSwitch {
@@ -31,4 +31,4 @@ namespace NrvValveSwitch {
     NERVE_DECL_EXE(ValveSwitchNrvAdjust, ValveSwitch, Adjust);
     NERVE_DECL_EXE(ValveSwitchNrvValve, ValveSwitch, Valve);
     NERVE_DECL_EXE(ValveSwitchNrvEnd, ValveSwitch, End);
-}; // namespace NrvValveSwitch
+};  // namespace NrvValveSwitch

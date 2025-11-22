@@ -1,7 +1,7 @@
 #include "Game/Enemy/RingBeamer.hpp"
 #include "Game/Enemy/RingBeam.hpp"
 
-//MR function that has not been defined elsewhere yet
+// MR function that has not been defined elsewhere yet
 //
 namespace MR {
     bool enableGroupAttack(LiveActor*, f32, f32);
@@ -11,12 +11,9 @@ namespace NrvRingBeamer {
     NEW_NERVE(RingBeamerNrvWait, RingBeamer, Wait);
     NEW_NERVE(RingBeamerNrvAttack, RingBeamer, Attack);
     NEW_NERVE(RingBeamerNrvInter, RingBeamer, Inter);
-}; // namespace NrvRingBeamer
+};  // namespace NrvRingBeamer
 
-RingBeamer::RingBeamer(const char* pName)
-    : LiveActor(pName),
-      mBeams(nullptr) {
-}
+RingBeamer::RingBeamer(const char* pName) : LiveActor(pName), mBeams(nullptr) {}
 
 void RingBeamer::init(const JMapInfoIter& rIter) {
     initModelManagerWithAnm("RingBeamer", nullptr, false);
@@ -33,8 +30,7 @@ void RingBeamer::init(const JMapInfoIter& rIter) {
     makeActorAppeared();
     MR::useStageSwitchReadA(this, rIter);
     if (MR::useStageSwitchReadB(this, rIter)) {
-        MR::listenStageSwitchOffB(this,
-                                  MR::FunctorV0M< RingBeamer*, void (RingBeamer::*)(void) >(this, &RingBeamer::syncSwitchOffB));
+        MR::listenStageSwitchOffB(this, MR::FunctorV0M< RingBeamer*, void (RingBeamer::*)(void) >(this, &RingBeamer::syncSwitchOffB));
     }
     MR::joinToGroupArray(this, rIter, nullptr, 32);
     // initializes to 5 long, but only uses 3?

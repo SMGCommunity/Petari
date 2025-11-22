@@ -9,13 +9,9 @@ namespace NrvJiraira {
     NEW_NERVE(HostTypeNrvRecover, Jiraira, Recover);
     NEW_NERVE(HostTypeNrvSteppedExplode, Jiraira, Explode);
     NEW_NERVE(HostTypeNrvExplode, Jiraira, Explode);
-}; // namespace NrvJiraira
+};  // namespace NrvJiraira
 
-Jiraira::Jiraira(const char* pName)
-    : LiveActor(pName),
-      _8C(nullptr),
-      _90(500.0f) {
-}
+Jiraira::Jiraira(const char* pName) : LiveActor(pName), _8C(nullptr), _90(500.0f) {}
 
 void Jiraira::init(const JMapInfoIter& rIter) {
     if (MR::isValidInfo(rIter)) {
@@ -28,7 +24,7 @@ void Jiraira::init(const JMapInfoIter& rIter) {
     initModelManagerWithAnm("Jiraira", nullptr, false);
     MR::connectToSceneCollisionEnemy(this);
     initHitSensor(2);
-    f32    scaleY = mScale.y;
+    f32 scaleY = mScale.y;
     TVec3f offset;
     offset.x = 0.0f;
     offset.y = 30.0f;
@@ -40,7 +36,8 @@ void Jiraira::init(const JMapInfoIter& rIter) {
     offset2.z = 0.0f;
     MR::addHitSensorEnemyAttack(this, "explode", 16, (_90 * scaleY), offset2);
     MR::initCollisionPartsAutoEqualScaleOne(this, "Jiraira", getSensor("body"), MR::getJointMtx(this, "Jiraira"));
-    CollisionParts* colPart = MR::createCollisionPartsFromLiveActor(this, "Button", getSensor("body"), MR::getJointMtx(this, "Button"), (MR::CollisionScaleType)1);
+    CollisionParts* colPart =
+        MR::createCollisionPartsFromLiveActor(this, "Button", getSensor("body"), MR::getJointMtx(this, "Button"), (MR::CollisionScaleType)1);
     _8C = colPart;
     MR::validateCollisionParts(colPart);
     initSound(6, false);
@@ -141,9 +138,9 @@ void Jiraira::exeRecover() {
 #ifdef NON_MATCHING
 void Jiraira::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (pSender == getSensor("explode")) {
-        TVec3f     tes = mPosition;
+        TVec3f tes = mPosition;
         LiveActor* sensorActor;
-        TVec3f     thing;
+        TVec3f thing;
         HitSensor* sensor = 0;
         sensorActor = sensor->mHost;
         thing.subInline2(mPosition, sensorActor->mPosition);
@@ -165,7 +162,8 @@ void Jiraira::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
 #endif
 
 bool Jiraira::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (isNerve(&NrvJiraira::HostTypeNrvExplode::sInstance) || isNerve(&NrvJiraira::HostTypeNrvSteppedExplode::sInstance) || isNerve(&NrvJiraira::HostTypeNrvPreRecover::sInstance)) {
+    if (isNerve(&NrvJiraira::HostTypeNrvExplode::sInstance) || isNerve(&NrvJiraira::HostTypeNrvSteppedExplode::sInstance) ||
+        isNerve(&NrvJiraira::HostTypeNrvPreRecover::sInstance)) {
         return false;
     }
 
@@ -193,5 +191,4 @@ bool Jiraira::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pRec
     return false;
 }
 
-Jiraira::~Jiraira() {
-}
+Jiraira::~Jiraira() {}

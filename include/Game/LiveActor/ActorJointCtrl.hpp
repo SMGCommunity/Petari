@@ -25,10 +25,10 @@ public:
     void endUpdate();
     void setCallBackFunction();
 
-    LiveActor*              mActor;           // 0x0
-    DynamicJointCtrlKeeper* mJointCtrlKeeper; // 0x4
-    FaceJointCtrl*          mFaceJointCtrl;   // 0x8
-    IKJointCtrlHolder*      mJointCtrlHolder; // 0xC
-    u8                      _10;
-    u8                      _11;
+    LiveActor* mActor;                         // 0x0
+    DynamicJointCtrlKeeper* mJointCtrlKeeper;  // 0x4
+    FaceJointCtrl* mFaceJointCtrl;             // 0x8
+    IKJointCtrlHolder* mJointCtrlHolder;       // 0xC
+    u8 _10;
+    u8 _11;
 };

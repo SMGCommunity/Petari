@@ -2,12 +2,12 @@
 
 #include <revolution.h>
 
-f32  JMAAcosRadian(f32);
-f32  JMAAsinRadian(f32);
-f32  JMACosDegree(f32);
-f32  JMACosRadian(f32);
-f32  JMASinDegree(f32);
-f32  JMASinRadian(f32);
+f32 JMAAcosRadian(f32);
+f32 JMAAsinRadian(f32);
+f32 JMACosDegree(f32);
+f32 JMACosRadian(f32);
+f32 JMASinDegree(f32);
+f32 JMASinRadian(f32);
 void JMAVECLerp(const Vec*, const Vec*, Vec*, f32);
 void JMAVECScaleAdd(const Vec*, const Vec*, Vec*, f32);
 
@@ -19,7 +19,7 @@ namespace JMath {
 
     void gekko_ps_copy12(void*, const void*);
     void gekko_ps_copy16(void*, const void*);
-}; // namespace JMath
+};  // namespace JMath
 
 namespace JMathInlineVEC {
 #ifdef __MWERKS__
@@ -132,7 +132,6 @@ namespace JMathInlineVEC {
     }
 
     __attribute__((always_inline)) inline f32 PSVECSquareDistance(const register Vec* a, const register Vec* b) {
-
         register f32 dyz, dxy, sqdist;
         register f32 v0xy, v1yz, v0yz, v1xy;
 
@@ -159,10 +158,10 @@ namespace JMathInlineVEC {
     void PSVECAdd2(const Vec*, const Vec*, Vec*);
     void PSVECSubtract(const Vec*, const Vec*, Vec*);
     void PSVECSubtract2(const Vec*, const Vec*, Vec*);
-    f32  PSVECDotProduct(const Vec*, const Vec*);
-    f32  PSVECSquareMag(const Vec*);
+    f32 PSVECDotProduct(const Vec*, const Vec*);
+    f32 PSVECSquareMag(const Vec*);
     void PSVECNegate(const Vec*, Vec*);
-    f32  PSVECSquareDistance(const Vec*, const Vec*);
+    f32 PSVECSquareDistance(const Vec*, const Vec*);
     void PSVECMultiply(const Vec*, const Vec*, Vec*);
 #endif
-}; // namespace JMathInlineVEC
+};  // namespace JMathInlineVEC

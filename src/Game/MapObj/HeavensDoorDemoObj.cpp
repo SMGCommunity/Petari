@@ -3,13 +3,11 @@
 #include "Game/MapObj/StageEffectDataTable.hpp"
 #include "Game/Util/Functor.hpp"
 
-HeavensDoorDemoObj::HeavensDoorDemoObj(const char* pName)
-    : MapObjActor(pName) {
+HeavensDoorDemoObj::HeavensDoorDemoObj(const char* pName) : MapObjActor(pName) {
     _C4 = false;
 }
 
-HeavensDoorDemoObj::~HeavensDoorDemoObj() {
-}
+HeavensDoorDemoObj::~HeavensDoorDemoObj() {}
 
 void HeavensDoorDemoObj::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);
@@ -119,4 +117,4 @@ namespace NrvHeavensDoorDemoObj {
         HeavensDoorDemoObj* door = reinterpret_cast< HeavensDoorDemoObj* >(pSpine->mExecutor);
         door->exeVanish();
     }
-}; // namespace NrvHeavensDoorDemoObj
+};  // namespace NrvHeavensDoorDemoObj

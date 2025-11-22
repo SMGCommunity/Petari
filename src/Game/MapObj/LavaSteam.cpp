@@ -1,5 +1,5 @@
-#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/MapObj/LavaSteam.hpp"
+#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "JSystem/JGeometry/TUtil.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
@@ -7,8 +7,7 @@
 #include "math_types.hpp"
 #include "revolution/types.h"
 
-LavaSteam::LavaSteam(const char* pName)
-    : LiveActor(pName) {
+LavaSteam::LavaSteam(const char* pName) : LiveActor(pName) {
     f32 f = 1.0f;
     f32 g = 0.0f;
     _8C.x = g;
@@ -84,7 +83,7 @@ void LavaSteam::initAfterPlacement() {
 void LavaSteam::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     TVec3f stack_64;
     TVec3f stack_58;
-    f32    stack_2C, stack_54;
+    f32 stack_2C, stack_54;
 
     if (!isNerve(&NrvLavaSteam::HostTypeWait::sInstance) && !isNerve(&NrvLavaSteam::HostTypeWaitForSwitchOn::sInstance)) {
         if (MR::isSensorPlayerOrRide(pReceiver)) {
@@ -189,8 +188,7 @@ void LavaSteam::exeSteam() {
     }
 }
 
-LavaSteam::~LavaSteam() {
-}
+LavaSteam::~LavaSteam() {}
 namespace NrvLavaSteam {
     void HostTypeSteamEnd::execute(Spine* pSpine) const {
         LavaSteam* pActor = (LavaSteam*)pSpine->mExecutor;
@@ -203,4 +201,4 @@ namespace NrvLavaSteam {
     HostTypeWaitForSwitchOn(HostTypeWaitForSwitchOn::sInstance);
     HostTypeSteam(HostTypeSteam::sInstance);
     HostTypeSteamEnd(HostTypeSteamEnd::sInstance);
-} // namespace NrvLavaSteam
+}  // namespace NrvLavaSteam

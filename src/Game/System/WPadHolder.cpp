@@ -1,18 +1,16 @@
+#include "Game/System/WPadHolder.hpp"
+#include "Game/SingletonHolder.hpp"
 #include "Game/System/GameSystem.hpp"
 #include "Game/System/GameSystemObjHolder.hpp"
 #include "Game/System/WPad.hpp"
-#include "Game/System/WPadHolder.hpp"
 #include "Game/System/WPadPointer.hpp"
 #include "Game/Util/MemoryUtil.hpp"
-#include "Game/SingletonHolder.hpp"
 #include <revolution/kpad.h>
 #include <revolution/wpad.h>
 
 #define KPAD_STATUS_ARRAY_SIZE 120
 
-WPadReadDataInfo::WPadReadDataInfo()
-    : mStatusArray(nullptr),
-      mValidStatusCount(0) {
+WPadReadDataInfo::WPadReadDataInfo() : mStatusArray(nullptr), mValidStatusCount(0) {
     mStatusArray = new KPADStatus[KPAD_STATUS_ARRAY_SIZE];
 
     MR::zeroMemory(mStatusArray, sizeof(KPADStatus) * KPAD_STATUS_ARRAY_SIZE);
@@ -30,9 +28,7 @@ u32 WPadReadDataInfo::getValidStatusCount() const {
     return mValidStatusCount;
 }
 
-WPadHolder::WPadHolder()
-    : mReadDataInfoArray(nullptr),
-      mMode(WPAD_SENSOR_BAR_POS_TOP) {
+WPadHolder::WPadHolder() : mReadDataInfoArray(nullptr), mMode(WPAD_SENSOR_BAR_POS_TOP) {
     WPADRegisterAllocator(MR::allocFromWPadHeap, MR::freeFromWPadHeap);
     KPADInit();
 
@@ -92,7 +88,7 @@ void WPadHolder::update() {
 }
 
 void WPadHolder::initSensorBarPosition() {
-    u8  sensorBarPosition = WPADGetSensorBarPosition();
+    u8 sensorBarPosition = WPADGetSensorBarPosition();
     f32 level = 0.0f;
 
     switch (sensorBarPosition) {
@@ -133,15 +129,11 @@ void WPadHolder::setConnectCallback() {
 }
 
 namespace {
-    WPadHolder* getWPadHolder() NO_INLINE {
-        return SingletonHolder< GameSystem >::get()->mObjHolder->mWPadHolder;
-    }
-}; // namespace
+    WPadHolder* getWPadHolder() NO_INLINE { return SingletonHolder< GameSystem >::get()->mObjHolder->mWPadHolder; }
+};  // namespace
 
 namespace MR {
-    WPad* getWPad(s32 channel) {
-        return ::getWPadHolder()->getWPad(channel);
-    }
+    WPad* getWPad(s32 channel) { return ::getWPadHolder()->getWPad(channel); }
 
     void resetWPad() {
         WPadHolder* pWPadHolder;
@@ -171,4 +163,4 @@ namespace MR {
 
         WPADSetAutoSleepTime(minute);
     }
-}; // namespace MR
+};  // namespace MR

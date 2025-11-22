@@ -18,7 +18,7 @@ public:
     bool get(int) const;
     void set(int, bool);
 
-    u32 mFlags[0x4]; // 0x0
+    u32 mFlags[0x4];  // 0x0
 };
 
 class ZoneSwitch : public BitFlag128 {
@@ -32,36 +32,36 @@ public:
 
     s32 getSwitchNo() const;
 
-    JMapIdInfo* mIDInfo;   // 0x0
-    bool        mIsGlobal; // 0x4
+    JMapIdInfo* mIDInfo;  // 0x0
+    bool mIsGlobal;       // 0x4
 };
 
 class StageSwitchContainer : public NameObj {
 public:
     struct ContainerSwitch {
-        s32         mData;   // 0x0
-        ZoneSwitch* mSwitch; // 0x4
+        s32 mData;            // 0x0
+        ZoneSwitch* mSwitch;  // 0x4
     };
 
     StageSwitchContainer();
 
     virtual ~StageSwitchContainer();
 
-    void        createAndAddZone(const SwitchIdInfo&);
+    void createAndAddZone(const SwitchIdInfo&);
     ZoneSwitch* getZoneSwitch(const SwitchIdInfo&);
     ZoneSwitch* findZoneSwitchFromTable(const SwitchIdInfo&);
 
 private:
-    MR::Vector< MR::FixedArray< ContainerSwitch, 20 > > mSwitches;       // 0x0C
-    ZoneSwitch*                                         mGlobalSwitches; // 0xB0
+    MR::Vector< MR::FixedArray< ContainerSwitch, 20 > > mSwitches;  // 0x0C
+    ZoneSwitch* mGlobalSwitches;                                    // 0xB0
 };
 
 class StageSwitchFunction {
 public:
     static SwitchIdInfo* createSwitchIdInfo(const char*, const JMapInfoIter&, bool);
-    static void          onSwitchBySwitchIdInfo(const SwitchIdInfo&);
-    static void          offSwitchBySwitchIdInfo(const SwitchIdInfo&);
-    static bool          isOnSwitchBySwitchIdInfo(const SwitchIdInfo&);
+    static void onSwitchBySwitchIdInfo(const SwitchIdInfo&);
+    static void offSwitchBySwitchIdInfo(const SwitchIdInfo&);
+    static bool isOnSwitchBySwitchIdInfo(const SwitchIdInfo&);
 };
 
 class StageSwitchCtrl {
@@ -84,10 +84,10 @@ public:
     bool isOnAllSwitchAfterB(int) const;
     bool isOnAnyOneSwitchAfterB(int) const;
 
-    SwitchIdInfo* mSW_A;      // 0x0
-    SwitchIdInfo* mSW_B;      // 0x4
-    SwitchIdInfo* mSW_Appear; // 0x8
-    SwitchIdInfo* mSW_Dead;   // 0xC
+    SwitchIdInfo* mSW_A;       // 0x0
+    SwitchIdInfo* mSW_B;       // 0x4
+    SwitchIdInfo* mSW_Appear;  // 0x8
+    SwitchIdInfo* mSW_Dead;    // 0xC
 };
 
 namespace MR {

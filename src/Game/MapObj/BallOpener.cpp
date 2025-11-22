@@ -1,12 +1,10 @@
-#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/MapObj/BallOpener.hpp"
+#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/Util/GeometryBindUtil.hpp"
 
-BallOpener::~BallOpener() {
-}
+BallOpener::~BallOpener() {}
 
-BallOpener::BallOpener(const char* pName)
-    : LiveActor(pName) {
+BallOpener::BallOpener(const char* pName) : LiveActor(pName) {
     mSensor = nullptr;
     _A0.set(0, 0, 0);
     _AC.set(0, 0, 0);
@@ -36,8 +34,7 @@ void BallOpener::initAfterPlacement() {
     _8C->setDirection(_94);
 }
 
-void BallOpener::control() {
-}
+void BallOpener::control() {}
 
 // BallOpener::receiveOtherMsg
 
@@ -102,4 +99,4 @@ namespace NrvBallOpener {
     INIT_NERVE(BallOpenerNrvWait);
     INIT_NERVE(BallOpenerNrvSetCenter);
     INIT_NERVE(BallOpenerNrvOpen);
-}; // namespace NrvBallOpener
+};  // namespace NrvBallOpener

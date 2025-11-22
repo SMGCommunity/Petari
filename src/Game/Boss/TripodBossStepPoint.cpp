@@ -2,8 +2,7 @@
 #include "Game/Boss/TripodBossAccesser.hpp"
 #include "Game/Util/JMapUtil.hpp"
 
-TripodBossStepPoint::TripodBossStepPoint(const char* pName)
-    : LiveActor(pName), mStepPosition(0, 0, 0), mStepNormal(0, 1, 0), mStepFront(0, 0, 1) {
+TripodBossStepPoint::TripodBossStepPoint(const char* pName) : LiveActor(pName), mStepPosition(0, 0, 0), mStepNormal(0, 1, 0), mStepFront(0, 0, 1) {
     mLeg = 0;
     _B4 = 0;
     _B8 = -1;
@@ -46,5 +45,4 @@ void TripodBossStepPoint::setStepFront(const TVec3f& rFront) {
     MR::normalizeOrZero(&mStepFront);
 }
 
-TripodBossStepPoint::~TripodBossStepPoint() {
-}
+TripodBossStepPoint::~TripodBossStepPoint() {}

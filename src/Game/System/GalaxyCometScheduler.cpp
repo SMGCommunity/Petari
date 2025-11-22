@@ -1,9 +1,9 @@
 #include "Game/System/GalaxyCometScheduler.hpp"
 #include "Game/System/GalaxyCometState.hpp"
+#include "Game/System/GalaxyStatusAccessor.hpp"
+#include "Game/System/GameDataFunction.hpp"
 #include "Game/Util/EventUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
-#include "Game/System/GameDataFunction.hpp"
-#include "Game/System/GalaxyStatusAccessor.hpp"
 
 #define COMET_CATEGORY_NORMAL 0
 #define COMET_CATEGORY_COIN_100 1
@@ -153,31 +153,18 @@ const GalaxyCometTimePaper sCometTimeTableGrandGalaxy6[] = {
 };
 
 const GalaxyCometTimePaper* const sGalaxyCometTimerPaper[] = {
-    sCometTimeTableGrandGalaxy1,
-    sCometTimeTableGrandGalaxy2,
-    sCometTimeTableGrandGalaxy3,
-    sCometTimeTableGrandGalaxy4,
-    sCometTimeTableGrandGalaxy5,
-    sCometTimeTableGrandGalaxy6,
+    sCometTimeTableGrandGalaxy1, sCometTimeTableGrandGalaxy2, sCometTimeTableGrandGalaxy3,
+    sCometTimeTableGrandGalaxy4, sCometTimeTableGrandGalaxy5, sCometTimeTableGrandGalaxy6,
 };
 
 const GalaxyCometSerializeInfo cSerializeInfoPurpleCometAppear = {0x0007, 0};
 
 const GalaxyCometSerializeInfo cSerializeInfoFirstContact[] = {
-    {0x0001, 0},
-    {0x0000, 0},
-    {0x0000, 0},
-    {0x0000, 0},
-    {0x0000, 0},
-    {0x0000, 0},
+    {0x0001, 0}, {0x0000, 0}, {0x0000, 0}, {0x0000, 0}, {0x0000, 0}, {0x0000, 0},
 };
 
 GalaxyCometTimeTable::GalaxyCometTimeTable(const GalaxyCometTimePaper* pTimePaper)
-    : mState(nullptr),
-      mTimePaper(nullptr),
-      mTimePaperPos(0),
-      mIsReady(false),
-      mIsHide(false) {
+    : mState(nullptr), mTimePaper(nullptr), mTimePaperPos(0), mIsReady(false), mIsHide(false) {
     mState = new GalaxyCometState();
     mTimePaper = pTimePaper;
     mTimePaperPos = 0;
@@ -191,7 +178,7 @@ void GalaxyCometTimeTable::update() {
 }
 
 void GalaxyCometTimeTable::checkIsReady() {
-    s32  pos;
+    s32 pos;
     bool foundSuitableTimePaperPos = findSuitableTimePaperPos(&pos, -1);
 
     if (mIsReady != foundSuitableTimePaperPos) {
@@ -261,9 +248,9 @@ bool GalaxyCometTimeTable::findSuitableTimePaperPos(s32* pResultPos, s32 startPo
             timePaperPos = 0;
         }
 
-        s32         category = mTimePaper[timePaperPos].mCategory;
+        s32 category = mTimePaper[timePaperPos].mCategory;
         const char* galaxyName = mTimePaper[timePaperPos].mGalaxyName;
-        bool        canAppear;
+        bool canAppear;
         switch (category) {
         case COMET_CATEGORY_NORMAL:
             canAppear = MR::canAppearNormalComet(galaxyName);
@@ -297,9 +284,7 @@ void GalaxyCometTimeTable::advance() {
     updateTimePaperPos();
 }
 
-GalaxyCometScheduler::GalaxyCometScheduler()
-    : mTimeTables(),
-      mEnabled(true) {
+GalaxyCometScheduler::GalaxyCometScheduler() : mTimeTables(), mEnabled(true) {
     mTimeTables.init(6);
     for (s32 i = 0; i < mTimeTables.size(); i++) {
         mTimeTables[i] = new GalaxyCometTimeTable(sGalaxyCometTimerPaper[i]);
@@ -415,15 +400,15 @@ s32 GalaxyCometScheduler::getEncounterCometPowerStarId(const char* pGalaxyName) 
 
 const char* GalaxyCometScheduler::getEncounterCometName(const char* pGalaxyName) const {
     GalaxyStatusAccessor statusAccessor = MR::makeGalaxyStatusAccessor(pGalaxyName);
-    s32                  id = getEncounterCometPowerStarId(pGalaxyName);
+    s32 id = getEncounterCometPowerStarId(pGalaxyName);
     return statusAccessor.getCometName(id);
 }
 
 GalaxyCometTimeTable* GalaxyCometScheduler::findFromGalaxy(const char* pGalaxyName) const {
     for (s32 i = 0; i < mTimeTables.size(); i++) {
         GalaxyCometTimeTable* timeTable = mTimeTables[i];
-        s32                   pos = timeTable->mTimePaperPos;
-        const char*           name = timeTable->mTimePaper[pos].mGalaxyName;
+        s32 pos = timeTable->mTimePaperPos;
+        const char* name = timeTable->mTimePaper[pos].mGalaxyName;
 
         if (MR::isEqualString(name, pGalaxyName)) {
             return timeTable;

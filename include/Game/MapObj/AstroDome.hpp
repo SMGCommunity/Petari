@@ -21,4 +21,4 @@ namespace NrvAstroDome {
     NERVE_DECL(AstroDomeNrvWait, AstroDome, AstroDome::exeWait);
     NERVE_DECL(AstroDomeNrvDisappear, AstroDome, AstroDome::exeDisappear);
     NERVE_DECL(AstroDomeNrvAppear, AstroDome, AstroDome::exeAppear);
-}; // namespace NrvAstroDome
+};  // namespace NrvAstroDome

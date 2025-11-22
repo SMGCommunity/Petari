@@ -9,7 +9,7 @@ public:
     JASGenericMemPool();
     ~JASGenericMemPool();
 
-    void  newMemPool(u32, int);
+    void newMemPool(u32, int);
     void* alloc(u32);
 
     void free(void*, u32);
@@ -22,9 +22,7 @@ public:
 template < typename T >
 class JASMemPool : public JASGenericMemPool {
 public:
-    JASMemPool()
-        : JASGenericMemPool() {
-    }
+    JASMemPool() : JASGenericMemPool() {}
 
     ~JASMemPool();
 };
@@ -58,13 +56,9 @@ public:
     static JASMemPool_MultiThreaded< T > memPool_;
 
 #ifdef __MWERKS__
-    static void* operator new(u32 size) NO_INLINE {
-        return memPool_.alloc(size);
-    }
+    static void* operator new(u32 size) NO_INLINE { return memPool_.alloc(size); }
 #endif
-    static void operator delete(void* addr, u32 size)NO_INLINE {
-        memPool_.free(addr, size);
-    }
+    static void operator delete(void* addr, u32 size)NO_INLINE { memPool_.free(addr, size); }
 };
 
 template < typename T >

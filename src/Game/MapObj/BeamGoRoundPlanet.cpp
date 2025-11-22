@@ -5,8 +5,7 @@
 #include "Game/Util/PlayerUtil.hpp"
 #include <cstdio>
 
-BeamGoRoundBeam::BeamGoRoundBeam(MtxPtr mtx)
-    : LiveActor("ビームゴーラウンドビーム") {
+BeamGoRoundBeam::BeamGoRoundBeam(MtxPtr mtx) : LiveActor("ビームゴーラウンドビーム") {
     mModelDrawer = nullptr;
     mBloomModel = nullptr;
     mBeamJointMtx = mtx;
@@ -36,7 +35,7 @@ void BeamGoRoundBeam::draw() const {
 }
 
 void BeamGoRoundBeam::updateHitSensor(HitSensor* pSensor) {
-    f32    radius = pSensor->mRadius;
+    f32 radius = pSensor->mRadius;
     TVec3f up;
     MR::calcUpVec(&up, this);
     TVec3f v7;
@@ -58,8 +57,7 @@ namespace NrvBeamGoRoundPlanet {
     NEW_NERVE(BeamGoRoundPlanetNrvWait, BeamGoRoundPlanet, Wait);
 };
 
-BeamGoRoundPlanet::BeamGoRoundPlanet(const char* pName)
-    : MapObjActor(pName) {
+BeamGoRoundPlanet::BeamGoRoundPlanet(const char* pName) : MapObjActor(pName) {
     mBeams = nullptr;
     _C8 = nullptr;
     _CC = nullptr;
@@ -104,8 +102,6 @@ void BeamGoRoundPlanet::initBeam() {
     }
 }
 
-BeamGoRoundBeam::~BeamGoRoundBeam() {
-}
+BeamGoRoundBeam::~BeamGoRoundBeam() {}
 
-BeamGoRoundPlanet::~BeamGoRoundPlanet() {
-}
+BeamGoRoundPlanet::~BeamGoRoundPlanet() {}

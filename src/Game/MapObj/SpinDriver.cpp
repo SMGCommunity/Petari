@@ -1,14 +1,12 @@
 #include "Game/MapObj/SpinDriver.hpp"
 #include "Game/MapObj/SpinDriverUtil.hpp"
+#include "math_types.hpp"
 #include <cstdio>
 #include <cstring>
-#include "math_types.hpp"
 
 SpinDriver::SpinDriver(const char* pName)
-    : LiveActor(pName),
-      _8C(nullptr), mShootPath(nullptr), mSpinDriverCamera(nullptr), _98(0, 0, 0, 1), _A8(0, 0, 0, 1),
-      _B8(0, 0, 0), _C4(0, 0, 0), _D0(0, 0, 1), _DC(0, 0, 0), _E8(0, 1, 0), _F4(0, 0, 0), _104(0.0f), _100(40.0f), _108(0.0f), _10C(0, 0, 0) {
-
+    : LiveActor(pName), _8C(nullptr), mShootPath(nullptr), mSpinDriverCamera(nullptr), _98(0, 0, 0, 1), _A8(0, 0, 0, 1), _B8(0, 0, 0), _C4(0, 0, 0),
+      _D0(0, 0, 1), _DC(0, 0, 0), _E8(0, 1, 0), _F4(0, 0, 0), _104(0.0f), _100(40.0f), _108(0.0f), _10C(0, 0, 0) {
     _11C = 0.0f;
     _120 = -1.0f;
     _124 = 300;
@@ -431,9 +429,9 @@ void SpinDriver::exeShootStart() {
         updateBindActorMatrix((v5 + (_11C * (1.0f - v5))));
         _108 += 0.039999999f;
         MR::tryRumblePadMiddle(this, 0);
-        if (tryShoot()) { 
+        if (tryShoot()) {
             return;
-        } 
+        }
     }
 }
 */
@@ -482,7 +480,7 @@ void SpinDriver::exeShoot() {
                 MR::startBckPlayer("Fall", "SpinDriverFall");
             }
         } else {
-            f32    v3 = _100;
+            f32 v3 = _100;
             TVec3f v5(_E8);
             v5 *= v3;
             _C4 = v5;
@@ -570,7 +568,7 @@ void SpinDriver::cancelBind() {
 }
 
 void SpinDriver::updateBindPosition() {
-    f32    step = getNerveStep() / (f32)_124;
+    f32 step = getNerveStep() / (f32)_124;
     TVec3f stack_20(_B8);
     TVec3f position;
     mShootPath->calcPosition(&position, step);
@@ -702,8 +700,7 @@ bool SpinDriver::canBind(HitSensor *pSensor) const {
 }
 */
 
-SpinDriver::~SpinDriver() {
-}
+SpinDriver::~SpinDriver() {}
 
 namespace NrvSpinDriver {
     INIT_NERVE(SpinDriverNrvTryDemo);
@@ -750,6 +747,5 @@ namespace NrvSpinDriver {
         spinDriver->exeNonActive();
     }
 
-    void SpinDriverNrvTryDemo::execute(Spine* pSpine) const {
-    }
-}; // namespace NrvSpinDriver
+    void SpinDriverNrvTryDemo::execute(Spine* pSpine) const {}
+};  // namespace NrvSpinDriver

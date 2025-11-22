@@ -53,8 +53,8 @@ public:
     bool isTwistStart() const;
     bool isRotateStart() const;
 
-    /* 0x8C */ f32    mSurfSpeed;
-    /* 0x90 */ f32    mOrthoSpeed;
+    /* 0x8C */ f32 mSurfSpeed;
+    /* 0x90 */ f32 mOrthoSpeed;
     /* 0x94 */ TVec3f mOrthoVelocity;
 
     /* 0xA0 */ f32 mSteerRate;
@@ -63,35 +63,35 @@ public:
     /* 0xA8 */ TVec3f mFront;
     /* 0xB4 */ TVec3f mUp;
     /* 0xC0 */ TVec3f mSide;
-    /* 0xCC */ TVec3f mBaseUp;   // base up vector for modification
-    /* 0xD8 */ TVec3f mBaseSide; // base side vector for modification
+    /* 0xCC */ TVec3f mBaseUp;    // base up vector for modification
+    /* 0xD8 */ TVec3f mBaseSide;  // base side vector for modification
     /* 0xE4 */ TVec3f mGroundNormal;
     /* 0xF0 */ TVec3f mWarpPos;
 
     /* 0xFC */ LiveActor* mRider;
 
-    /* 0x100 */ s32       mChannel;
-    /* 0x104 */ f32       mRayTilt;
-    /* 0x108 */ bool      mInWater;
-    /* 0x109 */ u8        _109; // not used?
-    /* 0x10A */ u8        _10A; // not used?
-    /* 0x10B */ u8        _10B; // not used?
-    /* 0x10C */ s32       mAirtime;
-    /* 0x110 */ TVec3f    mWaterNormal;
+    /* 0x100 */ s32 mChannel;
+    /* 0x104 */ f32 mRayTilt;
+    /* 0x108 */ bool mInWater;
+    /* 0x109 */ u8 _109;  // not used?
+    /* 0x10A */ u8 _10A;  // not used?
+    /* 0x10B */ u8 _10B;  // not used?
+    /* 0x10C */ s32 mAirtime;
+    /* 0x110 */ TVec3f mWaterNormal;
     /* 0x11C */ WaterInfo mWaterInfo;
-    /* 0x16C */ TVec3f    mWaterShadowPos;
-    /* 0x178 */ f32       mShadowAlpha;
+    /* 0x16C */ TVec3f mWaterShadowPos;
+    /* 0x178 */ f32 mShadowAlpha;
 
-    /* 0x17C */ s32  mTwistBufferSize;
+    /* 0x17C */ s32 mTwistBufferSize;
     /* 0x180 */ f32* mTwistBuffer;
 
     /* 0x184 */ bool mInTutorialArea;
     /* 0x185 */ bool mInTutorial;
-    /* 0x186 */ u8   _186; // not used?
-    /* 0x187 */ u8   _187; // not used?
-    /* 0x188 */ s32  mLectureIdx;
+    /* 0x186 */ u8 _186;  // not used?
+    /* 0x187 */ u8 _187;  // not used?
+    /* 0x188 */ s32 mLectureIdx;
 
-    /* 0x18C */ TPos3f                  mEffectHostMtx;
-    /* 0x1BC */ ActorJointCtrl*         mActorJointCtrl;
+    /* 0x18C */ TPos3f mEffectHostMtx;
+    /* 0x1BC */ ActorJointCtrl* mActorJointCtrl;
     /* 0x1C0 */ ProjmapEffectMtxSetter* mProjmapFxMtxSetter;
 };

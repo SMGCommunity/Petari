@@ -1,8 +1,6 @@
 #include "Game/MapObj/CollisionBlocker.hpp"
 
-CollisionBlocker::CollisionBlocker(const char* pName)
-    : LiveActor(pName) {
-}
+CollisionBlocker::CollisionBlocker(const char* pName) : LiveActor(pName) {}
 
 void CollisionBlocker::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
@@ -26,7 +24,8 @@ void CollisionBlocker::init(const JMapInfoIter& rIter) {
         }
 
         if (MR::useStageSwitchReadB(this, rIter)) {
-            MR::FunctorV0M< CollisionBlocker*, void (CollisionBlocker::*)() > breakFunc = MR::Functor< CollisionBlocker >(this, &CollisionBlocker::forceBreak);
+            MR::FunctorV0M< CollisionBlocker*, void (CollisionBlocker::*)() > breakFunc =
+                MR::Functor< CollisionBlocker >(this, &CollisionBlocker::forceBreak);
             MR::listenStageSwitchOnB(this, breakFunc);
         }
     }
@@ -42,5 +41,4 @@ void CollisionBlocker::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     }
 }
 
-CollisionBlocker::~CollisionBlocker() {
-}
+CollisionBlocker::~CollisionBlocker() {}

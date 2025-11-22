@@ -10,7 +10,7 @@ class CameraTargetObj;
 namespace CameraLocalUtil {
     const char* getDummyVecRegName();
 
-    CameraDirector*  getCameraDirector();
+    CameraDirector* getCameraDirector();
     CameraTargetObj* getTarget(const CameraMan*);
     CameraTargetObj* getTarget(const Camera*);
 
@@ -74,4 +74,4 @@ namespace CameraLocalUtil {
 
     bool testCameraPadTriggerRoundLeft();
     bool testCameraPadTriggerRoundRight();
-}; // namespace CameraLocalUtil
+};  // namespace CameraLocalUtil

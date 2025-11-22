@@ -37,4 +37,4 @@ namespace MR {
     /// @brief Associates `pIcon` with the working `MiiFaceIconHolder` instance.
     /// @param pIcon The reference to the resource creator for the icon of a Mii character.
     void registerMiiFaceIcon(MiiFaceIcon* pIcon);
-}; // namespace MR
+};  // namespace MR

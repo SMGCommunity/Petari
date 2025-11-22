@@ -9,9 +9,7 @@
 namespace {
     class AstroDomeCheckerBase {
     public:
-        AstroDomeCheckerBase(int param1) {
-            snprintf(_4, sizeof(_4), "Galaxy%1d", param1);
-        }
+        AstroDomeCheckerBase(int param1) { snprintf(_4, sizeof(_4), "Galaxy%1d", param1); }
 
         void operator()(const JMapInfoIter& rIter) {
             const char* pMapPaneName = nullptr;
@@ -25,8 +23,7 @@ namespace {
             }
         }
 
-        virtual void execute(const char* pParam1) {
-        }
+        virtual void execute(const char* pParam1) {}
 
         /* 0x04 */ char _4[11];
         /* 0x0F */ bool mIsPass;
@@ -34,9 +31,7 @@ namespace {
 
     class CheckerIsExistNewGalaxy : public AstroDomeCheckerBase {
     public:
-        CheckerIsExistNewGalaxy(int param1)
-            : AstroDomeCheckerBase(param1) {
-        }
+        CheckerIsExistNewGalaxy(int param1) : AstroDomeCheckerBase(param1) {}
 
         virtual void execute(const char* pParam1) {
             if (MR::canOpenGalaxy(pParam1) && !MR::isOnGameEventFlagGalaxyOpen(pParam1)) {
@@ -47,9 +42,7 @@ namespace {
 
     class CheckerIsComplete : public AstroDomeCheckerBase {
     public:
-        CheckerIsComplete(int param1)
-            : AstroDomeCheckerBase(param1) {
-        }
+        CheckerIsComplete(int param1) : AstroDomeCheckerBase(param1) {}
 
         virtual void execute(const char* pParam1) {
             GalaxyStatusAccessor accessor = MR::makeGalaxyStatusAccessor(pParam1);
@@ -61,17 +54,10 @@ namespace {
             }
         }
     };
-}; // namespace
+};  // namespace
 
 GalaxyMapDomeIcon::GalaxyMapDomeIcon(int param1, LayoutActor* pHost, const char* pPaneName, const char* pParam4)
-    : LayoutActor(pPaneName, true),
-      _20(param1),
-      mHost(pHost),
-      mPaneName(pPaneName),
-      _2C(pParam4),
-      mNamePlate(nullptr),
-      mMode(0) {
-}
+    : LayoutActor(pPaneName, true), _20(param1), mHost(pHost), mPaneName(pPaneName), _2C(pParam4), mNamePlate(nullptr), mMode(0) {}
 
 void GalaxyMapDomeIcon::appear() {
     LayoutActor::appear();

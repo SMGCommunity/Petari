@@ -48,8 +48,8 @@ void SpinDriverShootPath::calcPosition(TVec3f* pOutPosition, f32 a2) const {
     } else {
         f32 length = mRailRider->getTotalLength();
         mRailRider->calcPosAtCoord(pOutPosition, a2 * length);
-        f32    norm = MR::normalize(a2, 0.0f, 0.5f);
-        f32    easeOut = MR::getEaseOutValue(norm, 1.0f, 0.0f, 1.0f);
+        f32 norm = MR::normalize(a2, 0.0f, 0.5f);
+        f32 easeOut = MR::getEaseOutValue(norm, 1.0f, 0.0f, 1.0f);
         TVec3f pos(mStartPosition);
         pos.x *= easeOut;
         pos.y *= easeOut;

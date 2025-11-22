@@ -1,17 +1,17 @@
-#include "Game/Camera/CameraParamChunk.hpp"
 #include "Game/Camera/CamTranslatorCharmedVecRegTower.hpp"
+#include "Game/Camera/CameraParamChunk.hpp"
 
 #ifdef NON_MATCHING
 // Register issues
 void CamTranslatorCharmedVecRegTower::setParam(const CameraParamChunk* pChunk) {
     CameraGeneralParam* general = pChunk->mGeneralParam;
 
-    TVec3f      axis;
+    TVec3f axis;
     const char* string;
-    f32         angleA;
-    f32         angleB;
-    f32         dist;
-    bool        uVar3;
+    f32 angleA;
+    f32 angleB;
+    f32 dist;
+    bool uVar3;
 
     axis.setInline(general->mAxis);
 

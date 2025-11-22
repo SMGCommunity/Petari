@@ -1,7 +1,7 @@
 #include "Game/System/FindingLuigiEventScheduler.hpp"
+#include "Game/NWC24/LuigiMailDirector.hpp"
 #include "Game/System/GalaxyMoveArgument.hpp"
 #include "Game/System/GameDataFunction.hpp"
-#include "Game/NWC24/LuigiMailDirector.hpp"
 #include "Game/System/GameEventFlagTable.hpp"
 #include "Game/System/GameSequenceFunction.hpp"
 #include "Game/Util/EventUtil.hpp"
@@ -10,7 +10,7 @@
 
 /*
 // TODO: USA version of this is very slightly different.
-// MR::isOnGameEventFlagGalaxyOpen in USA is 
+// MR::isOnGameEventFlagGalaxyOpen in USA is
 // GameDataFunction::isOnGameEventFlag in Korean version.
 // This may possibly be due to MR::isOnGameEventFlagGalaxyOpen
 // being an inline function (?)
@@ -24,10 +24,7 @@
 #define STATE_HIDING 0xff03
 #define STATE_END 0xff04
 
-FindingLuigiEventScheduler::FindingLuigiEventScheduler()
-    : mLuigiLostStageName(nullptr),
-      mLuigiLostStarID(-1),
-      mLuigiMailDirector(nullptr) {}
+FindingLuigiEventScheduler::FindingLuigiEventScheduler() : mLuigiLostStageName(nullptr), mLuigiLostStarID(-1), mLuigiMailDirector(nullptr) {}
 
 void FindingLuigiEventScheduler::initAfterResourceLoaded() {
     mLuigiMailDirector = new LuigiMailDirector();
@@ -41,7 +38,7 @@ void FindingLuigiEventScheduler::setStateHiding() {
 
 void FindingLuigiEventScheduler::getHidingGalaxyNameAndStarId(const char** pStageName, s32* pStarID) const {
     char printBuffer[25] = "SpecialStarFindingLuigi1";
-    s32  index = 1;
+    s32 index = 1;
 
     do {
         snprintf(printBuffer, 0x19, "SpecialStarFindingLuigi%1d", index);
@@ -106,13 +103,12 @@ void FindingLuigiEventScheduler::syncWithGameEventFlag() {
 }
 
 s32 FindingLuigiEventScheduler::calcPowerStarIndexLuigiHas() const {
-
     if (!GameDataFunction::isOnGameEventFlag("SpecialStarLuigiRescued")) {
         return 0;
     }
 
     char printBuffer[25] = "SpecialStarFindingLuigi1";
-    s32  index = 1;
+    s32 index = 1;
 
     do {
         snprintf(printBuffer, 0x19, "SpecialStarFindingLuigi%1d", index);
@@ -175,19 +171,16 @@ void FindingLuigiEventScheduler::update(const GalaxyMoveArgument& rMoveArg) {
 
 void FindingLuigiEventScheduler::updateOnStageResult(const char* pClearedStageName, s32 clearedStarID) {
     u32 luigiEventState = GameDataFunction::getGameEventValue("LuigiEventState");
-    if ((luigiEventState & 0xffff) == STATE_NULL &&
-        GameDataFunction::isOnGameEventFlag("SpecialStarLuigiRescued")) {
+    if ((luigiEventState & 0xffff) == STATE_NULL && GameDataFunction::isOnGameEventFlag("SpecialStarLuigiRescued")) {
         // if luigi in null state but has been rescued from Ghostly Galaxy
         // force into rescued state by default
         GameDataFunction::setGameEventValue("LuigiEventState", STATE_RESCUED);
     } else {
-
         luigiEventState = GameDataFunction::getGameEventValue("LuigiEventState");
         if ((luigiEventState & 0xffff) == STATE_RESCUED) {
             if (!GameSequenceFunction::hasPowerStarYetAtResultSequence()) {
                 // if new star collected while luigi is in rescued state
-                if (GameDataFunction::calcCurrentPowerStarNum() > 108 ||
-                    GameDataFunction::isOnGameEventFlag("LuigiTalkAfterRescued")) {
+                if (GameDataFunction::calcCurrentPowerStarNum() > 108 || GameDataFunction::isOnGameEventFlag("LuigiTalkAfterRescued")) {
                     // if number of stars safeguard passed or eventflag open
                     // of speaking to luigi in garage after rescued from ghostly galaxy
                     // force luigi to lost state
@@ -199,8 +192,7 @@ void FindingLuigiEventScheduler::updateOnStageResult(const char* pClearedStageNa
         }
 
         luigiEventState = GameDataFunction::getGameEventValue("LuigiEventState");
-        if ((luigiEventState & 0xffff) == STATE_HIDING &&
-            MR::isEqualString(mLuigiLostStageName, pClearedStageName) &&
+        if ((luigiEventState & 0xffff) == STATE_HIDING && MR::isEqualString(mLuigiLostStageName, pClearedStageName) &&
             mLuigiLostStarID == clearedStarID) {
             // if Luigi was hiding and just rescued him
             mLuigiMailDirector->found();

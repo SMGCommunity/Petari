@@ -42,7 +42,7 @@ void ItemGenerator::generate(const LiveActor* pActor) {
     }
 }
 
-//Gets Inlined :(
+// Gets Inlined :(
 bool ItemGenerator::isUseFarSE() const {
     return MR::isEqualStageName("KoopaBattleVs2Galaxy");
 }

@@ -14,8 +14,8 @@ public:
     void addRequest(HitSensor* pReceiver, u32 msg);
 
 private:
-    /* 0x0C */ HitSensor*  mSender;
+    /* 0x0C */ HitSensor* mSender;
     /* 0x10 */ HitSensor** mReceiverArray;
-    /* 0x14 */ u32*        mMsgArray;
-    /* 0x18 */ u32         mArraySize;
+    /* 0x14 */ u32* mMsgArray;
+    /* 0x18 */ u32 mArraySize;
 };

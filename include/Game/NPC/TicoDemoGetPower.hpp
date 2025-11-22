@@ -13,5 +13,5 @@ public:
     void exeWait();
     void exeDemo();
 
-    Tico* mTico; // 0x08
+    Tico* mTico;  // 0x08
 };

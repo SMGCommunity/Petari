@@ -76,8 +76,7 @@ JKRArchive::JKRArchive(long entryNum, EMountMode mountMode) {
     }
 }
 
-JKRArchive::~JKRArchive() {
-}
+JKRArchive::~JKRArchive() {}
 
 void JKRArchive::setExpandSize(SDIFileEntry* pFile, unsigned long size) {
     u32 fileIndex = static_cast< u32 >(pFile - mFiles);
@@ -124,15 +123,15 @@ JKRArchive::SDIDirEntry* JKRArchive::findResType(unsigned long a1) const {
 #ifdef NON_MATCHING
 // Register mismatch
 JKRArchive::SDIDirEntry* JKRArchive::findDirectory(const char* pName, unsigned long dirIndex) const {
-    SDIDirEntry*  dir;
+    SDIDirEntry* dir;
     SDIFileEntry* currentFile;
-    s32           i;
+    s32 i;
 
     if (pName == nullptr) {
         return &mDirs[dirIndex];
     }
 
-    CArcName    name;
+    CArcName name;
     const char* next = name.store(pName, '/');
 
     dir = &mDirs[dirIndex];
@@ -181,11 +180,11 @@ JKRArchive::SDIFileEntry* JKRArchive::findTypeResource(unsigned long a1, const c
 // Register mismatch
 JKRArchive::SDIFileEntry* JKRArchive::findFsResource(const char* pName, unsigned long dirIndex) const {
     if (pName != nullptr) {
-        SDIDirEntry*  dir;
+        SDIDirEntry* dir;
         SDIFileEntry* currentFile;
-        s32           i;
+        s32 i;
 
-        CArcName    name;
+        CArcName name;
         const char* next = name.store(pName, '/');
 
         dir = &mDirs[dirIndex];

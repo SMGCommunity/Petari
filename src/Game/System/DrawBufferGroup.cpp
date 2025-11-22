@@ -2,8 +2,7 @@
 
 #include <algorithm>
 
-DrawBufferGroup::DrawBufferGroup()
-    : _0(), _C() {
+DrawBufferGroup::DrawBufferGroup() : _0(), _C() {
     mCount = 0;
     _1C = -1;
     _20 = -1;
@@ -16,7 +15,7 @@ void DrawBufferGroup::init(s32 count) {
 
 s32 DrawBufferGroup::registerDrawBuffer(LiveActor* pActor) {
     const char* pModelName = MR::getModelResName(pActor);
-    s32         idx = findExecuterIndex(pModelName);
+    s32 idx = findExecuterIndex(pModelName);
 
     // executer does not exist
     if (idx < 0) {
@@ -37,7 +36,7 @@ s32 DrawBufferGroup::registerDrawBuffer(LiveActor* pActor) {
 
 void DrawBufferGroup::active(LiveActor* pActor, s32 a2) {
     DrawBufferExecuter* exec = _0[a2];
-    bool                isEmpty = !(exec->_8 != 0);
+    bool isEmpty = !(exec->_8 != 0);
     exec->add(pActor);
 
     if (isEmpty) {

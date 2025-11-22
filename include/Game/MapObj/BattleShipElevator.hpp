@@ -18,4 +18,4 @@ namespace NrvBattleShipElevator {
     NERVE(BattleShipElevatorNrvWait);
     NERVE(BattleShipElevatorNrvMove);
     NERVE(BattleShipElevatorNrvEnd);
-}; // namespace NrvBattleShipElevator
+};  // namespace NrvBattleShipElevator

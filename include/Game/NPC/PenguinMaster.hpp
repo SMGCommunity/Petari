@@ -11,5 +11,5 @@ public:
     virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
 
     inline void exeWait();
-    void        exeReaction();
+    void exeReaction();
 };

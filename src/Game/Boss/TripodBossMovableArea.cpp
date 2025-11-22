@@ -7,7 +7,7 @@ namespace {
     static TVec3f sTestHitPosition(0, 0, 0);
     static TVec3f sTestHitVerocity(0, 0, 0);
     static TVec3f sTestLandPosition(0, 0, 0);
-}; // namespace
+};  // namespace
 
 HitResult::HitResult() {
     _0.set< int >(0, 0, 0);
@@ -54,11 +54,11 @@ void TripodBossMovableArea::setRadius(f32 radius) {
 
 bool TripodBossMovableArea::collideSphere(HitResult* pResult, const TVec3f& a2, f32 a3, const TVec3f& a4) const {
     pResult->_C = a2 + a4;
-    f32    v10 = mRadius + a3;
+    f32 v10 = mRadius + a3;
     TVec3f v29(a2);
     v29 -= mCenter;
     TVec3f direction(a4);
-    f32    scalar;
+    f32 scalar;
     MR::separateScalarAndDirection(&scalar, &direction, direction);
     f32 v11 = v29.dot(direction);
     f32 v12 = v29.dot(v29);
@@ -106,7 +106,7 @@ bool TripodBossMovableArea::collideSphere(HitResult* pResult, const TVec3f& a2, 
 }
 
 void TripodBossMovableArea::calcNearLandingPosition(TVec3f* pPos, const TVec3f& a2) const {
-    f32    v6, v8, x, v7;
+    f32 v6, v8, x, v7;
     TVec3f v16(a2);
     v16 -= mCenter;
     MR::separateScalarAndDirection(&v8, &v16, v16);

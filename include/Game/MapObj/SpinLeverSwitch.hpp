@@ -17,11 +17,11 @@ public:
     void exeWait();
     void exeSwitchOn();
 
-    MapObjConnector* mConnector; //_8C
+    MapObjConnector* mConnector;  //_8C
 };
 
 namespace NrvSpinLeverSwitch {
     NERVE(SpinLeverSwitchNrvWait);
     NERVE(SpinLeverSwitchNrvSwitchOn);
     NERVE(SpinLeverSwitchNrvEnd);
-}; // namespace NrvSpinLeverSwitch
+};  // namespace NrvSpinLeverSwitch

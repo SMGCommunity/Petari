@@ -5,10 +5,9 @@ namespace {
     const f32 cAppearThrowFwdSpd = 5.0f;
     const f32 cAppearThrowUpSpd = 10.0f;
     const f32 cBoundUpSpd = 20.0f;
-}; // namespace
+};  // namespace
 
-BenefitItemInvincible::BenefitItemInvincible(const char* pName)
-    : BenefitItemObj(pName, "PowerupInvincible") {
+BenefitItemInvincible::BenefitItemInvincible(const char* pName) : BenefitItemObj(pName, "PowerupInvincible") {
     if (MR::isGalaxyDarkCometAppearInCurrentStage()) {
         _D8 = 1;
     }
@@ -88,8 +87,6 @@ void BenefitItemInvincible::stopEfx(const char* pEffect) {
     }
 }
 
-BenefitItemInvincible::~BenefitItemInvincible() {
-}
+BenefitItemInvincible::~BenefitItemInvincible() {}
 
-void BenefitItemInvincible::runBck(const char*) {
-}
+void BenefitItemInvincible::runBck(const char*) {}

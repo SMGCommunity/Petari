@@ -25,4 +25,4 @@ namespace NrvKillerGunnerSingle {
     NERVE_DECL(HostTypeCharge, KillerGunnerSingle, KillerGunnerSingle::exeCharge);
     NERVE_DECL(HostTypeShoot, KillerGunnerSingle, KillerGunnerSingle::exeWait);
     NERVE_DECL(HostTypeAttack, KillerGunnerSingle, KillerGunnerSingle::exeAttack);
-}; // namespace NrvKillerGunnerSingle
+};  // namespace NrvKillerGunnerSingle

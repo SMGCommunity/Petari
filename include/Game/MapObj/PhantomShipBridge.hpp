@@ -18,5 +18,5 @@ public:
     void exeWait();
 
     CollisionParts* _8C;
-    s32             mIsNutShipBridge; // 0x90
+    s32 mIsNutShipBridge;  // 0x90
 };

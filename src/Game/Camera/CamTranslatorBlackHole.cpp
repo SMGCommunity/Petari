@@ -1,5 +1,5 @@
-#include "Game/Camera/CameraParamChunk.hpp"
 #include "Game/Camera/CamTranslatorBlackHole.hpp"
+#include "Game/Camera/CameraParamChunk.hpp"
 
 void CamTranslatorBlackHole::setParam(const CameraParamChunk* pChunk) {
     CameraGeneralParam* general = pChunk->mGeneralParam;

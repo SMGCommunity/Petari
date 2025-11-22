@@ -106,4 +106,4 @@ namespace MR {
     void startLevelSoundSeVer(const LiveActor*, const char*, s32, s32, s32);
 
     void setMapSondCodeGravity(const LiveActor*, s32);
-}; // namespace MR
+};  // namespace MR

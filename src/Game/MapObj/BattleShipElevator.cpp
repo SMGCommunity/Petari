@@ -2,12 +2,9 @@
 #include "Game/Map/CollisionParts.hpp"
 #include "Game/Util/DemoUtil.hpp"
 
-BattleShipElevator::BattleShipElevator(const char* pName)
-    : MapObjActor(pName) {
-}
+BattleShipElevator::BattleShipElevator(const char* pName) : MapObjActor(pName) {}
 
-BattleShipElevator::~BattleShipElevator() {
-}
+BattleShipElevator::~BattleShipElevator() {}
 
 void BattleShipElevator::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);
@@ -47,7 +44,8 @@ bool BattleShipElevator::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor*
 
     if (MR::isMsgFloorTouch(msg)) {
         if (MR::isOnPlayer(getSensor("body"))) {
-            MR::requestStartTimeKeepDemoMarioPuppetable(this, "エレベーター上昇", &NrvBattleShipElevator::BattleShipElevatorNrvMove::sInstance, nullptr, nullptr);
+            MR::requestStartTimeKeepDemoMarioPuppetable(this, "エレベーター上昇", &NrvBattleShipElevator::BattleShipElevatorNrvMove::sInstance,
+                                                        nullptr, nullptr);
         }
     }
 
@@ -59,14 +57,12 @@ namespace NrvBattleShipElevator {
     INIT_NERVE(BattleShipElevatorNrvMove);
     INIT_NERVE(BattleShipElevatorNrvEnd);
 
-    void BattleShipElevatorNrvWait::execute(Spine* pSpine) const {
-    }
+    void BattleShipElevatorNrvWait::execute(Spine* pSpine) const {}
 
     void BattleShipElevatorNrvMove::execute(Spine* pSpine) const {
         BattleShipElevator* planet = reinterpret_cast< BattleShipElevator* >(pSpine->mExecutor);
         planet->exeMove();
     }
 
-    void BattleShipElevatorNrvEnd::execute(Spine* pSpine) const {
-    }
-}; // namespace NrvBattleShipElevator
+    void BattleShipElevatorNrvEnd::execute(Spine* pSpine) const {}
+};  // namespace NrvBattleShipElevator

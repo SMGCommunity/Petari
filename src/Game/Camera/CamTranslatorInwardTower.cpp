@@ -1,5 +1,5 @@
-#include "Game/Camera/CameraParamChunk.hpp"
 #include "Game/Camera/CamTranslatorInwardTower.hpp"
+#include "Game/Camera/CameraParamChunk.hpp"
 #include "Game/Util/MathUtil.hpp"
 
 void CamTranslatorInwardTower::setParam(const CameraParamChunk* pChunk) {
@@ -14,7 +14,7 @@ void CamTranslatorInwardTower::setParam(const CameraParamChunk* pChunk) {
     }
 
     TVec2f angle = TVec2f(general->mAngleB, general->mAngleA);
-    f32    dist = general->mDist;
+    f32 dist = general->mDist;
 
     CameraInwardTower* camera = mCamera;
 

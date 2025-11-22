@@ -1,7 +1,7 @@
+#include "Game/Util/NPCUtil.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
 #include "Game/NPC/NPCActor.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
-#include "Game/Util/NPCUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 
 namespace {
@@ -10,32 +10,28 @@ namespace {
     static s32 sStarAppearSeStepPenguinCoach = 95;
     static s32 sStarAppearSeStepTeresaRacer = 89;
     static s32 sStarAppearSeStepTrickRabbit = 22;
-}; // namespace
+};  // namespace
 
 namespace NrvTakeOutStar {
     NEW_NERVE(TakeOutStarNrvAnim, TakeOutStar, Anim);
     NEW_NERVE(TakeOutStarNrvDemo, TakeOutStar, Demo);
     NEW_NERVE(TakeOutStarNrvTerm, TakeOutStar, Term);
-}; // namespace NrvTakeOutStar
+};  // namespace NrvTakeOutStar
 
 namespace NrvFadeStarter {
     NEW_NERVE(FadeStarterNrvFade, FadeStarter, Fade);
     NEW_NERVE(FadeStarterNrvTerm, FadeStarter, Term);
-}; // namespace NrvFadeStarter
+};  // namespace NrvFadeStarter
 
 namespace NrvDemoStarter {
     NEW_NERVE(DemoStarterNrvInit, DemoStarter, Init);
     NEW_NERVE(DemoStarterNrvFade, DemoStarter, Fade);
     NEW_NERVE(DemoStarterNrvWait, DemoStarter, Wait);
     NEW_NERVE(DemoStarterNrvTerm, DemoStarter, Term);
-}; // namespace NrvDemoStarter
+};  // namespace NrvDemoStarter
 
 TakeOutStar::TakeOutStar(NPCActor* pActor, const char* pActionName, const char* pAnimName, const Nerve* pNerve)
-    : NerveExecutor("パワースター取り出しデモ実行者"),
-      mActor(pActor),
-      mNerve(pNerve),
-      mActionName(pActionName),
-      mAnimName(pAnimName) {
+    : NerveExecutor("パワースター取り出しデモ実行者"), mActor(pActor), mNerve(pNerve), mActionName(pActionName), mAnimName(pAnimName) {
     mStarModel = MR::createPowerStarDemoModel(mActor, "パワースターデモモデル", pActor->getBaseMtx());
     mStarModel->makeActorDead();
 
@@ -115,14 +111,9 @@ void TakeOutStar::exeDemo() {
     }
 }
 
-void TakeOutStar::exeTerm() {
-}
+void TakeOutStar::exeTerm() {}
 
-FadeStarter::FadeStarter(NPCActor* pActor, s32 a2)
-    : NerveExecutor("フェード開始制御"),
-      mActor(pActor),
-      _C(nullptr),
-      _10(a2) {
+FadeStarter::FadeStarter(NPCActor* pActor, s32 a2) : NerveExecutor("フェード開始制御"), mActor(pActor), _C(nullptr), _10(a2) {
     initNerve(&NrvFadeStarter::FadeStarterNrvFade::sInstance);
 }
 
@@ -161,12 +152,9 @@ void FadeStarter::exeFade() {
     setNerve(&NrvFadeStarter::FadeStarterNrvTerm::sInstance);
 }
 
-void FadeStarter::exeTerm() {
-}
+void FadeStarter::exeTerm() {}
 
-DemoStarter::DemoStarter(NPCActor* pActor)
-    : NerveExecutor("デモ開始制御"),
-      mActor(pActor) {
+DemoStarter::DemoStarter(NPCActor* pActor) : NerveExecutor("デモ開始制御"), mActor(pActor) {
     initNerve(&NrvDemoStarter::DemoStarterNrvInit::sInstance);
 }
 
@@ -182,8 +170,7 @@ void DemoStarter::start() {
     }
 }
 
-void DemoStarter::exeInit() {
-}
+void DemoStarter::exeInit() {}
 
 void DemoStarter::exeFade() {
     if (MR::isFirstStep(this)) {
@@ -209,5 +196,4 @@ void DemoStarter::exeWait() {
     }
 }
 
-void DemoStarter::exeTerm() {
-}
+void DemoStarter::exeTerm() {}

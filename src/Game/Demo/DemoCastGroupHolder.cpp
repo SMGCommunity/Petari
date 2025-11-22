@@ -1,8 +1,6 @@
 #include "Game/Demo/DemoCastGroupHolder.hpp"
 
-DemoCastGroupHolder::DemoCastGroupHolder()
-    : NameObjGroup("デモ関係者グループ保持", 0x20) {
-}
+DemoCastGroupHolder::DemoCastGroupHolder() : NameObjGroup("デモ関係者グループ保持", 0x20) {}
 
 bool DemoCastGroupHolder::tryRegisterDemoActor(LiveActor* pActor, const JMapInfoIter& rIter, const JMapIdInfo& rInfo) const {
     for (s32 i = 0; i < mObjectCount; i++) {
@@ -43,5 +41,4 @@ DemoCastGroup* DemoCastGroupHolder::findCastGroup(const char* pName) const {
     return 0;
 }
 
-DemoCastGroupHolder::~DemoCastGroupHolder() {
-}
+DemoCastGroupHolder::~DemoCastGroupHolder() {}

@@ -46,4 +46,4 @@ namespace GameSystemFunction {
     bool isPreparedFadeinSystem();
     void restartSceneController();
     bool isDisplayStrapRemineder();
-}; // namespace GameSystemFunction
+};  // namespace GameSystemFunction

@@ -7,23 +7,15 @@
 
 namespace {
     const char* cGrandStarReturnDemoTable[] = {
-        "グランドスター１帰還",
-        "グランドスター２帰還",
-        "グランドスター３帰還",
-        "グランドスター４帰還",
-        "グランドスター５帰還",
-        "グランドスター６帰還",
+        "グランドスター１帰還", "グランドスター２帰還", "グランドスター３帰還",
+        "グランドスター４帰還", "グランドスター５帰還", "グランドスター６帰還",
     };
 };
 
 namespace AstroDemoFunction {
-    int getOpenedAstroDomeNum() {
-        return MR::calcOpenedAstroDomeNum();
-    }
+    int getOpenedAstroDomeNum() { return MR::calcOpenedAstroDomeNum(); }
 
-    const char* getGrandStarReturnDemoName(int index) {
-        return cGrandStarReturnDemoTable[index];
-    }
+    const char* getGrandStarReturnDemoName(int index) { return cGrandStarReturnDemoTable[index]; }
 
     int getActiveGrandStarReturnDemoIndex() {
         for (int i = 0; i < sizeof(cGrandStarReturnDemoTable) / sizeof(*cGrandStarReturnDemoTable); i++) {
@@ -101,7 +93,7 @@ namespace AstroDemoFunction {
 
     void tryRegisterDemoForTico(LiveActor* pParam1, const JMapInfoIter& rIter) {
         if (tryRegisterSimpleCastIfAstroGalaxy(pParam1)) {
-            s32         demoCastID = MR::getDemoCastID(rIter);
+            s32 demoCastID = MR::getDemoCastID(rIter);
             const char* pDemoName = nullptr;
 
             switch (demoCastID) {
@@ -128,4 +120,4 @@ namespace AstroDemoFunction {
         AstroDemoFunction::tryRegisterDemo(pParam1, "バトラーグリーンドライバ説明", rIter);
         AstroDemoFunction::tryRegisterDemo(pParam1, "ロゼッタ最終決戦デモ", rIter);
     }
-}; // namespace AstroDemoFunction
+};  // namespace AstroDemoFunction

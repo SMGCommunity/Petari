@@ -1,7 +1,6 @@
 #include "Game/MapObj/MagicBell.hpp"
 
-MagicBell::MagicBell(const char* pName)
-    : LiveActor(pName) {
+MagicBell::MagicBell(const char* pName) : LiveActor(pName) {
     mBellSwinger = nullptr;
     mSurface1Mtx = nullptr;
     mSurface2Mtx = nullptr;
@@ -133,13 +132,8 @@ bool MagicBell::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *p
         return false;
     }
 
-    if (!isNerve(&NrvMagicBell::MagicBellNrvWait::sInstance) && (isNerve(&NrvMagicBell::MagicBellNrvRing::sInstance) && MR::isGreaterStep(this, 10))) {
-        TVec3f v15(mPosition);
-        v15.sub(*MR::getPlayerPos());
-        v15.y += 100.0f;
-        MR::normalizeOrZero(&v15);
-        TVec3f v14(v15);
-        v14.scale(-200.0f);
+    if (!isNerve(&NrvMagicBell::MagicBellNrvWait::sInstance) && (isNerve(&NrvMagicBell::MagicBellNrvRing::sInstance) && MR::isGreaterStep(this, 10)))
+{ TVec3f v15(mPosition); v15.sub(*MR::getPlayerPos()); v15.y += 100.0f; MR::normalizeOrZero(&v15); TVec3f v14(v15); v14.scale(-200.0f);
         v14.addInline2(mPosition);
         startRing(v15, v14);
         return true;
@@ -173,7 +167,7 @@ bool MagicBell::tryRing() {
 }
 
 void MagicBell::startRing(const TVec3f& a1, const TVec3f& a2) {
-    f32    v10 = PSVECMag(&mBellSwinger->mAcceleration);
+    f32 v10 = PSVECMag(&mBellSwinger->mAcceleration);
     TVec3f v13(mBellSwinger->mAcceleration);
     v13.scale(-1.0f);
     mBellSwinger->accel(v13);
@@ -186,13 +180,12 @@ void MagicBell::startRing(const TVec3f& a1, const TVec3f& a2) {
     setNerve(&NrvMagicBell::MagicBellNrvRing::sInstance);
 }
 
-MagicBell::~MagicBell() {
-}
+MagicBell::~MagicBell() {}
 
 namespace NrvMagicBell {
     INIT_NERVE(MagicBellNrvWait);
     INIT_NERVE(MagicBellNrvRing);
-}; // namespace NrvMagicBell
+};  // namespace NrvMagicBell
 
 MtxPtr MagicBell::getBaseMtx() const {
     return mSurface2Mtx;

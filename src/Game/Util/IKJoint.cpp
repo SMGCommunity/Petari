@@ -1,8 +1,7 @@
 #include "Game/Util/IKJoint.hpp"
 #include "Game/Util.hpp"
 
-IKJoint::IKJoint()
-    : mRootBoneLength(100.0f), mMiddleBoneLength(100.0f), _0(), _30(), _60() {
+IKJoint::IKJoint() : mRootBoneLength(100.0f), mMiddleBoneLength(100.0f), _0(), _30(), _60() {
     _0.identity();
     _60.identity();
     _30.identity();
@@ -85,7 +84,7 @@ void IKJoint::updateByLocalRootAndWorldTarget(const TPos3f& a1, const TVec3f& a2
 // IKJoint::updateByLocalRootAndDirection
 
 s32 IKJoint::updateByUpVector(const TVec3f& a1, const TVec3f& a2, const TVec3f& a3) {
-    f32    v9;
+    f32 v9;
     TPos3f mtx;
     TVec3f sub = a2 - a1;
     MR::separateScalarAndDirection(&v9, &sub, sub);

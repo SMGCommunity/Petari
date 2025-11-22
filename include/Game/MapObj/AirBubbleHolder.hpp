@@ -14,5 +14,5 @@ public:
 
 namespace MR {
     AirBubbleHolder* createAirBubbleHolder();
-    void             appearAirBubble(const TVec3f&, s32);
-}; // namespace MR
+    void appearAirBubble(const TVec3f&, s32);
+};  // namespace MR

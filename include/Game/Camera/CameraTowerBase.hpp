@@ -7,7 +7,7 @@ public:
     CameraTowerBase(const char*);
     virtual ~CameraTowerBase();
 
-    virtual void             reset();
+    virtual void reset();
     virtual CameraTargetObj* calc();
 
     void calcIdealPoseOfTowerBase();

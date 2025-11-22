@@ -1,5 +1,5 @@
-#include "Game/MapObj/PowerStar.hpp"
 #include "Game/Screen/GameStageClearSequence.hpp"
+#include "Game/MapObj/PowerStar.hpp"
 #include "Game/Screen/LayoutActor.hpp"
 #include "Game/Screen/SimpleLayout.hpp"
 #include "Game/Util.hpp"
@@ -11,10 +11,9 @@
 namespace NrvGameStageClearSequence {
     NEW_NERVE(GameStageClearSequencePowerStarGetDemo, GameStageClearSequence, PowerStarGetDemo);
     NEW_NERVE(GameStageClearSequenceGrandStarGetDemo, GameStageClearSequence, GrandStarGetDemo);
-}; // namespace NrvGameStageClearSequence
+};  // namespace NrvGameStageClearSequence
 
-GameStageClearSequence::GameStageClearSequence()
-    : LayoutActor("ステージクリアシーケンス", true) {
+GameStageClearSequence::GameStageClearSequence() : LayoutActor("ステージクリアシーケンス", true) {
     mEffectLayout = nullptr;
     mFollowPos.x = 0.0f;
     mFollowPos.y = 0.0f;

@@ -15,11 +15,11 @@ public:
 
     void start();
 
-    PurpleCoinStarter* mStarter; // 0x18
+    PurpleCoinStarter* mStarter;  // 0x18
 };
 
 namespace MR {
     void createPurpleCoinHolder();
     void addToPurpleCoinHolder(const NameObj*, Coin*);
     void registPurpleCoinStarter(PurpleCoinStarter*);
-}; // namespace MR
+};  // namespace MR

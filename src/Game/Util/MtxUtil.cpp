@@ -80,4 +80,4 @@ namespace MR {
         return true;
     }
     */
-}; // namespace MR
+};  // namespace MR

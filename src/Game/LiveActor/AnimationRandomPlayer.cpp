@@ -4,8 +4,7 @@
 NrvAnimationRandomPlayer::HostTypeWait NrvAnimationRandomPlayer::HostTypeWait::sInstance;
 NrvAnimationRandomPlayer::HostTypePlay NrvAnimationRandomPlayer::HostTypePlay::sInstance;
 
-AnimationRandomPlayer::AnimationRandomPlayer(const LiveActor* pActor, const char* a2, const char* a3, s32 a4, f32 a5)
-    : NerveExecutor(a2) {
+AnimationRandomPlayer::AnimationRandomPlayer(const LiveActor* pActor, const char* a2, const char* a3, s32 a4, f32 a5) : NerveExecutor(a2) {
     mActor = pActor;
     _C = a2;
     _10 = a3;
@@ -46,5 +45,4 @@ void AnimationRandomPlayer::exePlay() {
     }
 }
 
-AnimationRandomPlayer::~AnimationRandomPlayer() {
-}
+AnimationRandomPlayer::~AnimationRandomPlayer() {}

@@ -19,7 +19,7 @@ namespace NrvBigBubble {
     NEW_NERVE(BigBubbleNrvEscape, BigBubble, Escape);
     NEW_NERVE(BigBubbleNrvGoal, BigBubble, Goal);
     NEW_NERVE(BigBubbleNrvMerged, BigBubble, Merged);
-}; // namespace NrvBigBubble
+};  // namespace NrvBigBubble
 
 /*
 BigBubble::BigBubble(const char *pName) : LiveActor(pName), _8C(0), _90(0), _94(0), _98(0), _9C(0), _148(0, 0, 0, 1), _158(0, 0, 0, 1) {
@@ -276,7 +276,7 @@ void BigBubble::exeEscape() {
         updateNormalVelocity();
         TVec3f vec;
         _158.getYDir(vec);
-        
+        
     }
 }
 */

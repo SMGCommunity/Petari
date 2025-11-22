@@ -27,4 +27,4 @@ namespace NrvUFOKinoko {
     NERVE(HostTypeWait)
     NERVE(HostTypeMove)
     NERVE(HostTypeStop)
-}; // namespace NrvUFOKinoko
+};  // namespace NrvUFOKinoko

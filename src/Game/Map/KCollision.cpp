@@ -111,10 +111,8 @@ TVec3f KCollisionServer::getPos(const KC_PrismData* pPrism, int vertexIndex) con
 
         Fxyz finalPos;
 
-        calXvec(
-            reinterpret_cast< Fxyz* >(&mFile->mNorms[pPrism->mEdgeIndices[1]]),
-            reinterpret_cast< Fxyz* >(&mFile->mNorms[pPrism->mNormalIndex]),
-            &finalPos);
+        calXvec(reinterpret_cast< Fxyz* >(&mFile->mNorms[pPrism->mEdgeIndices[1]]), reinterpret_cast< Fxyz* >(&mFile->mNorms[pPrism->mNormalIndex]),
+                &finalPos);
 
         f32 sideLength = pPrism->mHeight / (finalPos.x * edge2->x + finalPos.y * edge2->y + finalPos.z * edge2->z);
 
@@ -130,10 +128,8 @@ TVec3f KCollisionServer::getPos(const KC_PrismData* pPrism, int vertexIndex) con
 
         Fxyz finalPos;
 
-        calXvec(
-            reinterpret_cast< Fxyz* >(&mFile->mNorms[pPrism->mNormalIndex]),
-            reinterpret_cast< Fxyz* >(&mFile->mNorms[pPrism->mEdgeIndices[0]]),
-            &finalPos);
+        calXvec(reinterpret_cast< Fxyz* >(&mFile->mNorms[pPrism->mNormalIndex]), reinterpret_cast< Fxyz* >(&mFile->mNorms[pPrism->mEdgeIndices[0]]),
+                &finalPos);
 
         f32 sideLength = pPrism->mHeight / (finalPos.x * edge2->x + finalPos.y * edge2->y + finalPos.z * edge2->z);
 
@@ -170,8 +166,8 @@ JMapInfoIter KCollisionServer::getAttributes(u32 index) const {
 // Register mismatch
 s32* KCollisionServer::searchBlock(s32* a1, const u32& rX, const u32& rY, const u32& rZ) const {
     KCLFile* file = mFile;
-    s32      blockWidthShift = file->mBlockWidthShift;
-    u8*      octree = reinterpret_cast< u8* >(file->mOctree);
+    s32 blockWidthShift = file->mBlockWidthShift;
+    u8* octree = reinterpret_cast< u8* >(file->mOctree);
     *a1 = blockWidthShift;
 
     s32 offset = ((rX >> blockWidthShift) | ((rZ >> blockWidthShift) << file->mBlockXYShift) | ((rY >> blockWidthShift) << file->mBlockXShift)) * 4;

@@ -38,11 +38,11 @@ public:
     void prevTutorial();
     void startTimerSound(s32, s32);
 
-    /* 0x08 */ LiveActor*       mHost;
-    /* 0x0C */ bool             mIsTutorialPass;
-    /* 0x10 */ TVec3f           mPadAccel;
+    /* 0x08 */ LiveActor* mHost;
+    /* 0x0C */ bool mIsTutorialPass;
+    /* 0x10 */ TVec3f mPadAccel;
     /* 0x1C */ TalkMessageCtrl* mTalkCtrl;
     /* 0x20 */ SurfingGuidance* mSurfingGuidance;
-    /* 0x24 */ s32              mChangeStep;
-    /* 0x28 */ s32              _28;
+    /* 0x24 */ s32 mChangeStep;
+    /* 0x28 */ s32 _28;
 };

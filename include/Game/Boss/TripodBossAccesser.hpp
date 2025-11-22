@@ -8,17 +8,17 @@ public:
 
     virtual ~TripodBossAccesser();
 
-    void                       setTriPodBoss(TripodBoss*);
-    void                       addTripodBossParts(LiveActor*);
-    void                       showTripodBossParts();
-    void                       hideTripodBossParts();
-    void                       activeTripodBossParts();
-    bool                       isTripoddBossParts(const NameObj*) const;
+    void setTriPodBoss(TripodBoss*);
+    void addTripodBossParts(LiveActor*);
+    void showTripodBossParts();
+    void hideTripodBossParts();
+    void activeTripodBossParts();
+    bool isTripoddBossParts(const NameObj*) const;
     static TripodBossAccesser* createSceneObj();
 
     TripodBoss* mBoss;         // 0xC
-    LiveActor*  mParts[0x100]; // 0x10
-    s32         mNumParts;     // 0x410
+    LiveActor* mParts[0x100];  // 0x10
+    s32 mNumParts;             // 0x410
 };
 
 namespace MR {
@@ -40,7 +40,7 @@ namespace MR {
     bool isRideMarioTripodBoss();
     bool tryDamageDemoTripodBoss();
     void requestEndDamageDemoTripodBoss();
-    u32  getTripodBossGravityHostID();
+    u32 getTripodBossGravityHostID();
     void setTripodBossJointAttachBaseMatrix(const TPos3f&, s32);
     void requestStartTripodBossStepSequence(s32);
     void addTripodBossStepPoint(TripodBossStepPoint*);
@@ -49,4 +49,4 @@ namespace MR {
     void concatTripodBossAttachJointMatrix(TPos3f*, s32);
     bool isSteppingTripodBossLegID(s32) NO_INLINE;
     bool isSteppingTripodBossJointID(s32);
-}; // namespace MR
+};  // namespace MR

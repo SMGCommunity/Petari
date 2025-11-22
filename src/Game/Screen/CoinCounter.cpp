@@ -1,5 +1,5 @@
-#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/CoinCounter.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/CountUpPaneRumbler.hpp"
 #include "Game/Screen/CounterLayoutAppearer.hpp"
 #include "Game/Screen/CounterLayoutController.hpp"
@@ -11,24 +11,18 @@
 namespace {
     const s32 cInvalidCountUpInterval = 3;
     const f32 cAstroLocationOffsetY = 40.0f;
-}; // namespace
+};  // namespace
 
 namespace NrvCoinCounter {
     NEW_NERVE(CoinCounterNrvHide, CoinCounter, Hide);
     NEW_NERVE(CoinCounterNrvAppear, CoinCounter, Appear);
     NEW_NERVE(CoinCounterNrvWait, CoinCounter, Wait);
     NEW_NERVE(CoinCounterNrvDisappear, CoinCounter, Disappear);
-}; // namespace NrvCoinCounter
+};  // namespace NrvCoinCounter
 
 CoinCounter::CoinCounter(const char* pName)
-    : LayoutActor(pName, true),
-      mCoinNum(0),
-      mCoinDisplayNum(0),
-      mInvalidCountUpFrame(0),
-      mLayoutAppearer(nullptr),
-      mPaneRumbler(nullptr),
-      mIsForceAppear(false),
-      mFollowPos(0.0f, 0.0f) {}
+    : LayoutActor(pName, true), mCoinNum(0), mCoinDisplayNum(0), mInvalidCountUpFrame(0), mLayoutAppearer(nullptr), mPaneRumbler(nullptr),
+      mIsForceAppear(false), mFollowPos(0.0f, 0.0f) {}
 
 void CoinCounter::init(const JMapInfoIter& rIter) {
     initLayoutManager("CoinCounter", 2);

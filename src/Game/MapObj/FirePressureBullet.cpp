@@ -1,7 +1,6 @@
 #include "Game/MapObj/FirePressureBullet.hpp"
 
-FirePressureBullet::FirePressureBullet(const char* pName)
-    : LiveActor(pName) {
+FirePressureBullet::FirePressureBullet(const char* pName) : LiveActor(pName) {
     _8C.x = 0.0f;
     _8C.y = 0.0f;
     _8C.z = 0.0f;
@@ -99,8 +98,7 @@ bool FirePressureBullet::isCrash() const {
     return MR::isBinded(this);
 }
 
-FirePressureBullet::~FirePressureBullet() {
-}
+FirePressureBullet::~FirePressureBullet() {}
 
 namespace NrvFirePressureBullet {
     INIT_NERVE(FirePressureBulletNrvFly);

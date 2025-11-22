@@ -1,7 +1,7 @@
 #pragma once
 
-#include "JSystem/JGeometry/TVec.hpp"
 #include "JSystem/JGeometry/TQuat.hpp"
+#include "JSystem/JGeometry/TVec.hpp"
 #include <cmath>
 
 namespace JGeometry {
@@ -9,22 +9,22 @@ namespace JGeometry {
     struct SMatrix34C {
     public:
         typedef f32 ArrType[4];
-        void        set(const ArrType*);
-        void        set(const SMatrix34C< T >& rSrc);
-        void        set(T rxx, T ryx, T rzx, T tx, T rxy, T ryy, T rzy, T ty, T rxz, T ryz, T rzz, T tz);
+        void set(const ArrType*);
+        void set(const SMatrix34C< T >& rSrc);
+        void set(T rxx, T ryx, T rzx, T tx, T rxy, T ryy, T rzy, T ty, T rxz, T ryz, T rzz, T tz);
 
         void scale(T);
 
         inline void setInline(const SMatrix34C< T >& rSrc) {
 #ifdef __MWERKS__
             register const SMatrix34C< T >* pSrc = &rSrc;
-            register SMatrix34C< T >*       pDest = this;
-            register f32                    rzztz;
-            register f32                    rxzyz;
-            register f32                    rzyty;
-            register f32                    rxyyy;
-            register f32                    rzxtx;
-            register f32                    rxxyx;
+            register SMatrix34C< T >* pDest = this;
+            register f32 rzztz;
+            register f32 rxzyz;
+            register f32 rzyty;
+            register f32 rxyyy;
+            register f32 rzxtx;
+            register f32 rxxyx;
 
             __asm {
                 psq_l     rxxyx, 0(pSrc), 0, 0
@@ -46,14 +46,14 @@ namespace JGeometry {
 
         inline void setInline(const MtxPtr rSrc) {
 #ifdef __MWERKS__
-            register const MtxPtr     pSrc = rSrc;
+            register const MtxPtr pSrc = rSrc;
             register SMatrix34C< T >* pDest = this;
-            register f32              rzztz;
-            register f32              rxzyz;
-            register f32              rzyty;
-            register f32              rxyyy;
-            register f32              rzxtx;
-            register f32              rxxyx;
+            register f32 rzztz;
+            register f32 rxzyz;
+            register f32 rzyty;
+            register f32 rxyyy;
+            register f32 rzxtx;
+            register f32 rxxyx;
 
             __asm {
                 psq_l     rxxyx, 0(pSrc), 0, 0
@@ -75,14 +75,14 @@ namespace JGeometry {
 
         inline void setInline_2(MtxPtr rSrc) {
 #ifdef __MWERKS__
-            register MtxPtr           pSrc = rSrc;
+            register MtxPtr pSrc = rSrc;
             register SMatrix34C< T >* pDest = this;
-            register f32              rzztz;
-            register f32              rxzyz;
-            register f32              rzyty;
-            register f32              rxyyy;
-            register f32              rzxtx;
-            register f32              rxxyx;
+            register f32 rzztz;
+            register f32 rxzyz;
+            register f32 rzyty;
+            register f32 rxyyy;
+            register f32 rzxtx;
+            register f32 rxxyx;
 
             __asm {
                 psq_l     rxxyx, 0(pSrc), 0, 0
@@ -102,78 +102,53 @@ namespace JGeometry {
 #endif
         }
 
-        inline Mtx* toMtx() {
-            return (Mtx*)mMtx;
-        }
+        inline Mtx* toMtx() { return (Mtx*)mMtx; }
 
-        inline const Mtx* toCMtx() const {
-            return (const Mtx*)mMtx;
-        }
+        inline const Mtx* toCMtx() const { return (const Mtx*)mMtx; }
 
-        inline MtxPtr toMtxPtr() {
-            return (MtxPtr)mMtx;
-        }
+        inline MtxPtr toMtxPtr() { return (MtxPtr)mMtx; }
 
-        operator ArrType*() {
-            return mMtx;
-        }
+        operator ArrType*() { return mMtx; }
 
-        operator const ArrType*() const {
-            return mMtx;
-        }
+        operator const ArrType*() const { return mMtx; }
 
-        f32 get(int x, int y) const {
-            return mMtx[x][y];
-        }
+        f32 get(int x, int y) const { return mMtx[x][y]; }
 
-        f32 operator()(int x, int y) const {
-            return get(x, y);
-        }
+        f32 operator()(int x, int y) const { return get(x, y); }
 
         __attribute__((always_inline)) inline f32 dot() const {
-            return (
-                (this->mMtx[1][0] * this->mMtx[1][0]) +
-                (this->mMtx[0][0] * this->mMtx[0][0]) +
-                (this->mMtx[2][0] * this->mMtx[2][0]) +
-                (this->mMtx[0][1] * this->mMtx[0][1]) +
-                (this->mMtx[1][1] * this->mMtx[1][1]) +
-                (this->mMtx[2][1] * this->mMtx[2][1]) +
-                (this->mMtx[0][2] * this->mMtx[0][2]) +
-                (this->mMtx[1][2] * this->mMtx[1][2]) +
-                (this->mMtx[2][2] * this->mMtx[2][2]));
+            return ((this->mMtx[1][0] * this->mMtx[1][0]) + (this->mMtx[0][0] * this->mMtx[0][0]) + (this->mMtx[2][0] * this->mMtx[2][0]) +
+                    (this->mMtx[0][1] * this->mMtx[0][1]) + (this->mMtx[1][1] * this->mMtx[1][1]) + (this->mMtx[2][1] * this->mMtx[2][1]) +
+                    (this->mMtx[0][2] * this->mMtx[0][2]) + (this->mMtx[1][2] * this->mMtx[1][2]) + (this->mMtx[2][2] * this->mMtx[2][2]));
         }
 
-        inline f32 dot(int x, int y) {
-            return (this->mMtx[x][y] * this->mMtx[x][y]);
-        }
+        inline f32 dot(int x, int y) { return (this->mMtx[x][y] * this->mMtx[x][y]); }
 
         inline f32 dotX() const {
-            //f32 _10 = ;
-            //f32 _20 = ;
-            //f32 _00 = ;
+            // f32 _10 = ;
+            // f32 _20 = ;
+            // f32 _00 = ;
 
             return (this->mMtx[1][0] * this->mMtx[1][0]) + (this->mMtx[0][0] * this->mMtx[0][0]) + (this->mMtx[2][0] * this->mMtx[2][0]);
         }
 
         inline f32 dotY() const {
-            //f32 _11 = ;
-            //f32 _21 = ;
-            //f32 _01 = ;
+            // f32 _11 = ;
+            // f32 _21 = ;
+            // f32 _01 = ;
 
             return (this->mMtx[1][1] * this->mMtx[1][1]) + (this->mMtx[0][1] * this->mMtx[0][1]) + (this->mMtx[2][1] * this->mMtx[2][1]);
         }
 
         inline f32 dotZ() const {
-            //f32 _12 = ;
-            //f32 _22 = ;
-            //f32 _02 = ;
+            // f32 _12 = ;
+            // f32 _22 = ;
+            // f32 _02 = ;
 
             return (this->mMtx[1][2] * this->mMtx[1][2]) + (this->mMtx[0][2] * this->mMtx[0][2]) + (this->mMtx[2][2] * this->mMtx[2][2]);
         }
 
-        inline f32 dot(int x, int y) const {
-            return (this->mMtx[x][y] * this->mMtx[x][y]);
-        }
+        inline f32 dot(int x, int y) const { return (this->mMtx[x][y] * this->mMtx[x][y]); }
 
         T mMtx[3][4];
     };
@@ -195,17 +170,11 @@ namespace JGeometry {
     public:
         void identity33();
 
-        void getXDir(TVec3f& rDest) const NO_INLINE {
-            rDest.set(this->mMtx[0][0], this->mMtx[1][0], this->mMtx[2][0]);
-        };
+        void getXDir(TVec3f& rDest) const NO_INLINE { rDest.set(this->mMtx[0][0], this->mMtx[1][0], this->mMtx[2][0]); };
 
-        void getYDir(TVec3f& rDest) const NO_INLINE {
-            rDest.set(this->mMtx[0][1], this->mMtx[1][1], this->mMtx[2][1]);
-        };
+        void getYDir(TVec3f& rDest) const NO_INLINE { rDest.set(this->mMtx[0][1], this->mMtx[1][1], this->mMtx[2][1]); };
 
-        void getZDir(TVec3f& rDest) const NO_INLINE {
-            rDest.set(this->mMtx[0][2], this->mMtx[1][2], this->mMtx[2][2]);
-        };
+        void getZDir(TVec3f& rDest) const NO_INLINE { rDest.set(this->mMtx[0][2], this->mMtx[1][2], this->mMtx[2][2]); };
 
         void getXYZDir(TVec3f& rDestX, TVec3f& rDestY, TVec3f& rDestZ) const;
         void setXDir(const TVec3f& rSrc);
@@ -305,15 +274,15 @@ namespace JGeometry {
 
         inline void someInlineMatrixFunction(f32 y, f32 p) {
             f32 HUNDERDEIGHTIETHPI = 0.017453292f;
-            f32 v9 = (HUNDERDEIGHTIETHPI * y);   // f25
-            f32 v10 = -(HUNDERDEIGHTIETHPI * p); //f24
+            f32 v9 = (HUNDERDEIGHTIETHPI * y);    // f25
+            f32 v10 = -(HUNDERDEIGHTIETHPI * p);  // f24
 
-            f32 v11 = cos(0.0f); //f28
-            f32 v12 = cos(v9);   // f27
-            f32 v13 = cos(v10);  // f26
-            f32 v14 = sin(0.0f); //f23
-            f32 v15 = sin(v9);   // f25
-            f32 v16 = sin(v10);  //f9
+            f32 v11 = cos(0.0f);  // f28
+            f32 v12 = cos(v9);    // f27
+            f32 v13 = cos(v10);   // f26
+            f32 v14 = sin(0.0f);  // f23
+            f32 v15 = sin(v9);    // f25
+            f32 v16 = sin(v10);   // f9
 
             this->mMtx[0][0] = v12 * v11;
             this->mMtx[0][1] = (v16 * v15 * v11) - (v13 * v14);
@@ -444,13 +413,9 @@ namespace JGeometry {
         void setPositionFromLookAt(const TPosition3< T >& rLookAt);
         void setQT(const TQuat4f& rSrcQuat, const TVec3f& rSrcTrans);
 
-        f32 get(int x, int y) const {
-            return this->mMtx[x][y];
-        }
+        f32 get(int x, int y) const { return this->mMtx[x][y]; }
 
-        f32 operator()(int x, int y) const {
-            return get(x, y);
-        }
+        f32 operator()(int x, int y) const { return get(x, y); }
 
         inline void getTransInline(TVec3f& rDest) const {
             f32 z = this->mMtx[2][3];
@@ -473,9 +438,9 @@ namespace JGeometry {
             this->mMtx[2][2] = a3.z;
         }
     };
-}; // namespace JGeometry
+};  // namespace JGeometry
 
-typedef JGeometry::SMatrix34C< f32 >     TSMtxf;
-typedef JGeometry::TMatrix34< TSMtxf >   TMtx34f;
+typedef JGeometry::SMatrix34C< f32 > TSMtxf;
+typedef JGeometry::TMatrix34< TSMtxf > TMtx34f;
 typedef JGeometry::TRotation3< TMtx34f > TRot3f;
 typedef JGeometry::TPosition3< TMtx34f > TPos3f;

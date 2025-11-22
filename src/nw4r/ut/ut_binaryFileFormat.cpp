@@ -25,5 +25,5 @@ namespace nw4r {
 
             return true;
         }
-    }; // namespace ut
-};     // namespace nw4r
+    };  // namespace ut
+};      // namespace nw4r

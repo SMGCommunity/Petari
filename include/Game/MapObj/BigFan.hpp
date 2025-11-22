@@ -6,7 +6,7 @@ namespace NrvBigFan {
     NERVE(BigFanNrvStop);
     NERVE(BigFanNrvStart);
     NERVE(BigFanNrvWait);
-}; // namespace NrvBigFan
+};  // namespace NrvBigFan
 
 class BigFan : public LiveActor {
 public:
@@ -31,9 +31,9 @@ public:
         return flag;
     }
 
-    ModelObj* mWindModel; // 0x8C
-    TVec3f    _90;
-    f32       mWindLength; // 0x9C
-    f32       _A0;
-    bool      mIsTeresaGalaxy; // 0xA4
+    ModelObj* mWindModel;  // 0x8C
+    TVec3f _90;
+    f32 mWindLength;  // 0x9C
+    f32 _A0;
+    bool mIsTeresaGalaxy;  // 0xA4
 };

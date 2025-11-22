@@ -10,10 +10,7 @@ namespace MR {
 
 class GamePauseSequence : public LayoutActor {
 public:
-    enum MenuType {
-        ActivePause = 0,
-        SceneInformation = 1
-    };
+    enum MenuType { ActivePause = 0, SceneInformation = 1 };
 
     GamePauseSequence();
 
@@ -27,7 +24,7 @@ public:
     void exeActivePowerStarList();
     void exeSceneInformation();
 
-    /* 0x20 */ MenuType         mMenuType;
-    /* 0x24 */ PauseMenu*       mPauseMenu;
+    /* 0x20 */ MenuType mMenuType;
+    /* 0x24 */ PauseMenu* mPauseMenu;
     /* 0x28 */ MR::FunctorBase* mWindowMenuFunc;
 };

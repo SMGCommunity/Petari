@@ -1,6 +1,6 @@
+#include "Game/Screen/GalaxySelectBackButton.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/ButtonPaneController.hpp"
-#include "Game/Screen/GalaxySelectBackButton.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 
@@ -8,11 +8,9 @@ namespace NrvGalaxySelectBackButton {
     NEW_NERVE(GalaxySelectBackButtonNrvAppear, GalaxySelectBackButton, Appear);
     NEW_NERVE(GalaxySelectBackButtonNrvDisappear, GalaxySelectBackButton, Disappear);
     NEW_NERVE(GalaxySelectBackButtonNrvDecide, GalaxySelectBackButton, Decide);
-}; // namespace NrvGalaxySelectBackButton
+};  // namespace NrvGalaxySelectBackButton
 
-GalaxySelectBackButton::GalaxySelectBackButton()
-    : LayoutActor("ギャラクシー選択戻るボタン", true) {
-}
+GalaxySelectBackButton::GalaxySelectBackButton() : LayoutActor("ギャラクシー選択戻るボタン", true) {}
 
 void GalaxySelectBackButton::init(const JMapInfoIter&) {
     initLayoutManager("BackButton", 1);

@@ -6,8 +6,8 @@ class CamTranslatorMedianPlanet : public CamTranslatorBase {
 public:
     CamTranslatorMedianPlanet(CameraMedianPlanet*);
 
-    virtual void    setParam(const CameraParamChunk*);
+    virtual void setParam(const CameraParamChunk*);
     virtual Camera* getCamera() const;
 
-    CameraMedianPlanet* mCamera; // 0x4
+    CameraMedianPlanet* mCamera;  // 0x4
 };

@@ -19,4 +19,4 @@ namespace NrvLavaBallRisingPlanetLava {
     NERVE_DECL(LavaBallRisingPlanetLavaNrvWaitBig, LavaBallRisingPlanetLava, LavaBallRisingPlanetLava::exeWait);
     NERVE_DECL(LavaBallRisingPlanetLavaNrvScaleUp, LavaBallRisingPlanetLava, LavaBallRisingPlanetLava::exeScaleUp);
     NERVE_DECL(LavaBallRisingPlanetLavaNrvScaleDown, LavaBallRisingPlanetLava, LavaBallRisingPlanetLava::exeScaleDown);
-}; // namespace NrvLavaBallRisingPlanetLava
+};  // namespace NrvLavaBallRisingPlanetLava

@@ -23,7 +23,7 @@ public:
     virtual void control();
     virtual void calcAndSetBaseMtx();
 
-    /* 0x8C */ MtxPtr          mMtx;
-    /* 0x8C */ LodCtrl*        mLodCtrl;
+    /* 0x8C */ MtxPtr mMtx;
+    /* 0x8C */ LodCtrl* mLodCtrl;
     /* 0x8C */ ActorJointCtrl* mJointCtrl;
 };

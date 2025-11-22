@@ -1,11 +1,11 @@
+#include "Game/Map/CollisionParts.hpp"
 #include "Game/Boss/BossStinkBug.hpp"
 #include "Game/Camera/CameraPolygonCodeUtil.hpp"
-#include "Game/Map/CollisionCategorizedKeeper.hpp"
-#include "Game/Map/CollisionDirector.hpp"
-#include "Game/Map/CollisionParts.hpp"
-#include "Game/Map/KCollision.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
+#include "Game/Map/CollisionCategorizedKeeper.hpp"
+#include "Game/Map/CollisionDirector.hpp"
+#include "Game/Map/KCollision.hpp"
 #include "Game/Util/SceneUtil.hpp"
 
 CollisionParts::CollisionParts() {
@@ -39,9 +39,9 @@ void CollisionParts::init(const TPos3f& a1, HitSensor* pHitSensor, const void* p
     TVec3f scale;
     mBaseMatrix.getScale(scale);
 
-    CollisionDirector*          director = MR::getCollisionDirector();
+    CollisionDirector* director = MR::getCollisionDirector();
     CollisionCategorizedKeeper* keeper = director->mKeepers[keeperIndex];
-    s32                         zoneID = MR::getCurrentPlacementZoneId();
+    s32 zoneID = MR::getCurrentPlacementZoneId();
 
     mZone = keeper->getZone(zoneID);
 
@@ -69,14 +69,16 @@ void CollisionParts::removeFromBelongZone() {
     director->mKeepers[index]->removeFromZone(this, zoneID);
 }
 
-void CollisionParts::initWithAutoEqualScale(const TPos3f& a1, HitSensor* pHitSensor, const void* pKclData, const void* pMapInfo, s32 keeperIndex, bool a6) {
+void CollisionParts::initWithAutoEqualScale(const TPos3f& a1, HitSensor* pHitSensor, const void* pKclData, const void* pMapInfo, s32 keeperIndex,
+                                            bool a6) {
     _CF = true;
     _D0 = false;
 
     init(a1, pHitSensor, pKclData, pMapInfo, keeperIndex, a6);
 }
 
-void CollisionParts::initWithNotUsingScale(const TPos3f& a1, HitSensor* pHitSensor, const void* pKclData, const void* pMapInfo, s32 keeperIndex, bool a6) {
+void CollisionParts::initWithNotUsingScale(const TPos3f& a1, HitSensor* pHitSensor, const void* pKclData, const void* pMapInfo, s32 keeperIndex,
+                                           bool a6) {
     _CF = false;
     _D0 = true;
 
@@ -196,7 +198,7 @@ f32 CollisionParts::makeEqualScale(MtxPtr matrix) {
         return scale.x;
     }
 
-    f32    uniformScale = 1.0f;
+    f32 uniformScale = 1.0f;
     TVec3f invScale;
 
     if (_D0) {
@@ -276,7 +278,7 @@ void CollisionParts::projectToPlane(TVec3f* pProjected, const TVec3f& rPos, cons
 #endif
 
 void CollisionParts::calcForceMovePower(TVec3f* a1, const TVec3f& a2) const {
-    TVec3f  tStack88 = a2;
+    TVec3f tStack88 = a2;
     TMtx34f auStack76;
     PSMTXInverse((MtxPtr)&mPrevBaseMatrix, reinterpret_cast< MtxPtr >(&auStack76));
 

@@ -12,25 +12,24 @@ s32 (*HBMGetSelectBtnNumRSO)(void);
 void (*HBMSetAdjustFlagRSO)(int);
 void (*HBMStartBlackOutRSO)(void);
 
-static RSOExportFuncTable exp_tbl[] = {
-    {"HBMCreateRSO", (u32*)&HBMCreateRSO},
-    {"HBMInitRSO", (u32*)&HBMInitRSO},
-    {"HBMCalcRSO", (u32*)&HBMCalcRSO},
-    {"HBMDrawRSO", (u32*)&HBMDrawRSO},
-    {"HBMGetSelectBtnNumRSO", (u32*)&HBMGetSelectBtnNumRSO},
-    {"HBMSetAdjustFlagRSO", (u32*)&HBMSetAdjustFlagRSO},
-    {"HBMStartBlackOutRSO", (u32*)&HBMStartBlackOutRSO}};
+static RSOExportFuncTable exp_tbl[] = {{"HBMCreateRSO", (u32*)&HBMCreateRSO},
+                                       {"HBMInitRSO", (u32*)&HBMInitRSO},
+                                       {"HBMCalcRSO", (u32*)&HBMCalcRSO},
+                                       {"HBMDrawRSO", (u32*)&HBMDrawRSO},
+                                       {"HBMGetSelectBtnNumRSO", (u32*)&HBMGetSelectBtnNumRSO},
+                                       {"HBMSetAdjustFlagRSO", (u32*)&HBMSetAdjustFlagRSO},
+                                       {"HBMStartBlackOutRSO", (u32*)&HBMStartBlackOutRSO}};
 
 typedef void (*ProloguePtr)(BOOL);
 
 void RSO::setupRsoHomeButtonMenu() {
-    u32                    i;
-    RSOObjectHeader*       rsoPtr;
-    RSOExportFuncTable*    pTbl;
+    u32 i;
+    RSOObjectHeader* rsoPtr;
+    RSOExportFuncTable* pTbl;
     const RSOObjectHeader* symbolTable = reinterpret_cast< const RSOObjectHeader* >(MR::receiveFile("/ModuleData/product.sel"));
-    int                    jumpCodeSize;
-    void*                  bss;
-    void*                  jumps;
+    int jumpCodeSize;
+    void* bss;
+    void* jumps;
 
     RSOListInit((void*)symbolTable);
     if (symbolTable != nullptr) {

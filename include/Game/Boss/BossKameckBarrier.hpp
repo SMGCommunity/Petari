@@ -12,5 +12,5 @@ public:
 
     void exeWait();
 
-    const char* mBossName; // 0x8C
+    const char* mBossName;  // 0x8C
 };

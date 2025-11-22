@@ -13,4 +13,4 @@ namespace MR {
 
     template < int T >
     OSMutex MutexHolder< T >::sMutex;
-}; // namespace MR
+};  // namespace MR

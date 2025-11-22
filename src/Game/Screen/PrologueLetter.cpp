@@ -1,6 +1,6 @@
+#include "Game/Screen/PrologueLetter.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/IconAButton.hpp"
-#include "Game/Screen/PrologueLetter.hpp"
 #include "Game/Util/GamePadUtil.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
@@ -10,11 +10,9 @@ namespace {
     NEW_NERVE(PrologueLetterNrvAppear, PrologueLetter, Appear);
     NEW_NERVE(PrologueLetterNrvWait, PrologueLetter, Wait);
     NEW_NERVE(PrologueLetterNrvDisappear, PrologueLetter, Disappear);
-}; // namespace
+};  // namespace
 
-PrologueLetter::PrologueLetter(const char* pName)
-    : LayoutActor(pName, true),
-      mAButtonIcon(nullptr) {}
+PrologueLetter::PrologueLetter(const char* pName) : LayoutActor(pName, true), mAButtonIcon(nullptr) {}
 
 void PrologueLetter::init(const JMapInfoIter& rIter) {
     initLayoutManager("PeachLetterMini", 1);

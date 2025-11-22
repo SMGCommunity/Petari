@@ -1,8 +1,7 @@
 #include "Game/Camera/CameraRailWatch.hpp"
 #include "Game/Camera/CamTranslatorRailWatch.hpp"
 
-CameraRailWatch::CameraRailWatch(const char* pName)
-    : Camera(pName) {
+CameraRailWatch::CameraRailWatch(const char* pName) : Camera(pName) {
     _4C = 0;
     _50 = 0;
     _54 = 0;
@@ -11,8 +10,7 @@ CameraRailWatch::CameraRailWatch(const char* pName)
     _60 = 0.0f;
 }
 
-CameraRailWatch::~CameraRailWatch() {
-}
+CameraRailWatch::~CameraRailWatch() {}
 
 CamTranslatorBase* CameraRailWatch::createTranslator() {
     return new CamTranslatorRailWatch(this);

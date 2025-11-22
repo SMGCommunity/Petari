@@ -16,5 +16,5 @@ public:
     void exeWait();
     void exeDisappear();
 
-    f32 mEffectFrame; // 0x8C
+    f32 mEffectFrame;  // 0x8C
 };

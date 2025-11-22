@@ -19,7 +19,8 @@ void ManholeCover::init(const JMapInfoIter& rIter) {
 }
 
 bool ManholeCover::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (!MR::isMsgPlayerHipDropFloor(msg) && !MR::isMsgPlayerUpperPunch(msg) || !isNerve(&NrvManholeCover::HostTypeWait::sInstance) && !isNerve(&NrvManholeCover::HostTypeRattle::sInstance)) {
+    if (!MR::isMsgPlayerHipDropFloor(msg) && !MR::isMsgPlayerUpperPunch(msg) ||
+        !isNerve(&NrvManholeCover::HostTypeWait::sInstance) && !isNerve(&NrvManholeCover::HostTypeRattle::sInstance)) {
         return false;
     }
 

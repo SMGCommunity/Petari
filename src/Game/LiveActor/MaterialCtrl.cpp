@@ -23,8 +23,7 @@ void MaterialCtrl::update() {
     }
 }
 
-FogCtrl::FogCtrl(J3DModelData* pModelData, bool a3)
-    : MaterialCtrl(pModelData, nullptr) {
+FogCtrl::FogCtrl(J3DModelData* pModelData, bool a3) : MaterialCtrl(pModelData, nullptr) {
     mNumMaterials = 0;
     mMaterials = nullptr;
 
@@ -68,8 +67,7 @@ void FogCtrl::update() {
 }
 #endif
 
-MatColorCtrl::MatColorCtrl(J3DModelData* pModelData, const char* pName, u32 color, const J3DGXColor* pColor)
-    : MaterialCtrl(pModelData, pName) {
+MatColorCtrl::MatColorCtrl(J3DModelData* pModelData, const char* pName, u32 color, const J3DGXColor* pColor) : MaterialCtrl(pModelData, pName) {
     mColorChoice = color;
     mColor = pColor;
 }

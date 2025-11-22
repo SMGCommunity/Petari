@@ -11,11 +11,9 @@ class BossKameckSequencer : public NerveExecutor {
 public:
     BossKameckSequencer(const char*);
 
-    inline virtual ~BossKameckSequencer() {
-    }
+    inline virtual ~BossKameckSequencer() {}
 
-    virtual void start() {
-    }
+    virtual void start() {}
 
     virtual void init(BossKameck*, const JMapInfoIter&);
     virtual void update();
@@ -25,7 +23,7 @@ public:
     virtual bool receiveMsgPush(HitSensor*, HitSensor*);
     virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
 
-    BossKameck*           mBossKameck; // 0x8
-    BossKameckAction*     _C;          // not really sure what this is.
-    BossKameckBattleDemo* mBattleDemo; // 0x10
+    BossKameck* mBossKameck;            // 0x8
+    BossKameckAction* _C;               // not really sure what this is.
+    BossKameckBattleDemo* mBattleDemo;  // 0x10
 };

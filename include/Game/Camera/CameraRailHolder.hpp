@@ -26,5 +26,5 @@ public:
     // getRider(s32, s32) const;
     // find(s32, s32) const;
 
-    ZoneRail* mRails; // 0xC
+    ZoneRail* mRails;  // 0xC
 };

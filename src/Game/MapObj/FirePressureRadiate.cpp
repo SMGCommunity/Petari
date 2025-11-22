@@ -1,7 +1,6 @@
 #include "Game/MapObj/FirePressureRadiate.hpp"
 
-FirePressureRadiate::FirePressureRadiate(const char* pName)
-    : LiveActor(pName) {
+FirePressureRadiate::FirePressureRadiate(const char* pName) : LiveActor(pName) {
     mJointController = nullptr;
     mCannonRotation = 0.0f;
     mWaitTime = 300;
@@ -212,14 +211,14 @@ void FirePressureRadiate::calcRadiateEffectMtx() {
 #ifdef NON_MATCHING
 bool FirePressureRadiate::calcJointCannon(TPos3f* pOutPos, const JointControllerInfo&) {
     TVec3f v9(0.0f, 0.0f, 1.0f);
-    f32    rotDegree = (0.017453292f * mCannonRotation);
+    f32 rotDegree = (0.017453292f * mCannonRotation);
     TPos3f v10;
     v10.mMtx[0][3] = 0.0f;
     v10.mMtx[1][3] = 0.0f;
     v10.mMtx[2][3] = 0.0f;
     TVec3f v8;
     v8.setInline(v9);
-    PSVECMag(v8); // oops ?
+    PSVECMag(v8);  // oops ?
     PSVECNormalize(v8, v8);
     f32 v5 = sin(rotDegree);
     f32 v6 = cos(rotDegree);
@@ -244,7 +243,6 @@ namespace NrvFirePressureRadiate {
     INIT_NERVE(FirePressureRadiateNrvPrepareToRadiate);
     INIT_NERVE(FirePressureRadiateNrvRadiate);
     INIT_NERVE(FirePressureRadiateNrvRadiateMargin);
-}; // namespace NrvFirePressureRadiate
+};  // namespace NrvFirePressureRadiate
 
-FirePressureRadiate::~FirePressureRadiate() {
-}
+FirePressureRadiate::~FirePressureRadiate() {}

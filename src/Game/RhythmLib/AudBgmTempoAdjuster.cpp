@@ -37,7 +37,7 @@ void AudBgmTempoAdjuster::reject() {
 
 f32 AudBgmTempoAdjuster::calcAdjustRate(f32 a1, f32 a2) {
     bool val = false;
-    f32  v4 = ((a1 - 500.0f) / (_4 * ((60.0f * AudParams::streamSampleRate) / a2)));
+    f32 v4 = ((a1 - 500.0f) / (_4 * ((60.0f * AudParams::streamSampleRate) / a2)));
 
     if (v4 < 0.0f) {
         val = true;

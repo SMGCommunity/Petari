@@ -7,12 +7,11 @@
 #include <JSystem/J3DGraphAnimator/J3DModel.hpp>
 #include <JSystem/J3DGraphBase/J3DMaterial.hpp>
 #include <JSystem/JKernel/JKRHeap.hpp>
+#include <cstring>
 #include <revolution/gx/GXEnum.h>
 #include <revolution/gx/GXGeometry.h>
-#include <cstring>
 
-NormalMapBase::NormalMapBase(const char* pName)
-    : LiveActor(pName) {
+NormalMapBase::NormalMapBase(const char* pName) : LiveActor(pName) {
     mBtkPlayer = nullptr;
     _150 = 0;
     for (u32 i = 0; i < 0x10; i++) {
@@ -51,8 +50,7 @@ void NormalMapBase::initNormalMap() {
 
 // ...
 
-void NormalMapBase::control() {
-}
+void NormalMapBase::control() {}
 
 void NormalMapBase::calcAnim() {
     LiveActor::calcAnim();
@@ -95,7 +93,7 @@ void NormalMapBase::draw() const {
         GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_POS_XYZ, GX_F32, 0);
         MtxPtr cameraViewMtx = MR::getCameraViewMtx();
         TPos3f v7;
-        Mtx    mtx;
+        Mtx mtx;
         PSMTXIdentity(mtx);
         MR::makeMtxTRS(mtx, this);
         PSMTXConcat(cameraViewMtx, mtx, mtx);
@@ -136,7 +134,7 @@ void NormalMapBase::standardDraw(J3DModel* pModel) const {
     if ((_138 & 0x10) == 0) {
         for (u16 i = 0; i < pModel->mModelData->mMaterialTable.mMaterialCount; i++) {
             J3DMaterial* mat = pModel->mModelData->getMaterial(i);
-            const char*  matName = MR::getMaterialName(pModel->mModelData, mat->mIndex);
+            const char* matName = MR::getMaterialName(pModel->mModelData, mat->mIndex);
             if (!isNormalMapMaterial(matName)) {
                 MR::simpleDraw(pModel, mat);
             }

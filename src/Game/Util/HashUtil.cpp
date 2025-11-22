@@ -2,7 +2,7 @@
 #include "Game/Util/MathUtil.hpp"
 #include <locale.h>
 
-//needed here for inlining reasons
+// needed here for inlining reasons
 inline int tolower(int c) {
     return ((c < 0) || (c >= 0x100)) ? c : (int)(_current_locale.ctype_cmpt_ptr->lower_map_ptr[c]);
 }
@@ -187,4 +187,4 @@ namespace MR {
 
         return hash;
     }
-}; // namespace MR
+};  // namespace MR

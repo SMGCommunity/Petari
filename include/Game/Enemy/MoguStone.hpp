@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/LiveActor/ModelObj.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
+#include "Game/LiveActor/ModelObj.hpp"
 #include "Game/Util/ParabolicPath.hpp"
 
 namespace {
@@ -13,13 +13,13 @@ public:
     MoguStone(const char*, const char*);
 
     virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
-    //incomplete class
+    // incomplete class
 
     TVec4f _90;
     TVec4f _A0;
     TVec3f _B0;
-    f32    _BC;
-    bool   _C0;
+    f32 _BC;
+    bool _C0;
 };
 
 class ThrowingIce : public MoguStone {
@@ -35,11 +35,11 @@ public:
 
     void emitIce(const TVec3f&, const TVec3f&, f32, const TVec3f&);
 
-    ParabolicPath* mPath; //_C4
+    ParabolicPath* mPath;  //_C4
 };
 
 namespace NrvMoguStone {
     NERVE(MoguStoneNrvTaken);
     NERVE(MoguStoneNrvThrow);
-    //incomplete
-}; // namespace NrvMoguStone
+    // incomplete
+};  // namespace NrvMoguStone

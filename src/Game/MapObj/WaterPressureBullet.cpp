@@ -1,10 +1,9 @@
+#include "Game/MapObj/WaterPressureBullet.hpp"
 #include "Game/LiveActor/ActorCameraInfo.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
-#include "Game/MapObj/WaterPressureBullet.hpp"
 #include "JSystem/JMath/JMath.hpp"
 
-WaterPressureBullet::WaterPressureBullet(const char* pName)
-    : LiveActor(pName) {
+WaterPressureBullet::WaterPressureBullet(const char* pName) : LiveActor(pName) {
     _8C.x = 0.0f;
     _8C.y = 0.0f;
     _8C.z = 0.0f;
@@ -165,7 +164,7 @@ void WaterPressureBullet::exeFly() {
 
         TVec3f* vel = &mVelocity;
         TVec3f* grav = &mGravity;
-        f32     dot = grav->dot(mVelocity);
+        f32 dot = grav->dot(mVelocity);
         JMAVECScaleAdd(grav, vel, vel, -dot);
     }
 
@@ -267,7 +266,7 @@ bool WaterPressureBullet::inviteMario(HitSensor* pSensor) {
         if (_B1) {
             TVec3f* vel = &mVelocity;
             TVec3f* grav = &mGravity;
-            f32     dot = grav->dot(mVelocity);
+            f32 dot = grav->dot(mVelocity);
             JMAVECScaleAdd(grav, vel, vel, -dot);
         } else {
             kill();
@@ -302,8 +301,7 @@ void WaterPressureBullet::updateSuffererMtx() {
     MR::setBaseTRMtx(this, pos);
 }
 
-WaterPressureBullet::~WaterPressureBullet() {
-}
+WaterPressureBullet::~WaterPressureBullet() {}
 
 namespace NrvWaterPressureBullet {
     INIT_NERVE(WaterPressureBulletNrvFly);
@@ -318,4 +316,4 @@ namespace NrvWaterPressureBullet {
         WaterPressureBullet* bullet = reinterpret_cast< WaterPressureBullet* >(pSpine->mExecutor);
         bullet->exeFly();
     }
-}; // namespace NrvWaterPressureBullet
+};  // namespace NrvWaterPressureBullet

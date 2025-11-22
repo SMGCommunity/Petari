@@ -1,9 +1,7 @@
 #include "Game/NPC/TicoAstro.hpp"
 #include "Game/Util/EventUtil.hpp"
 
-TicoAstro::TicoAstro(const char* pName)
-    : Tico(pName) {
-}
+TicoAstro::TicoAstro(const char* pName) : Tico(pName) {}
 
 void TicoAstro::init(const JMapInfoIter& rIter) {
     Tico::init(rIter);
@@ -31,5 +29,4 @@ void TicoAstro::init(const JMapInfoIter& rIter) {
     }
 }
 
-TicoAstro::~TicoAstro() {
-}
+TicoAstro::~TicoAstro() {}

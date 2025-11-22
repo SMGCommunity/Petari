@@ -5,23 +5,20 @@
 #include "Game/Camera/CameraPoseParam.hpp"
 #include "Game/Util/SceneUtil.hpp"
 
-void CamTranslatorDummy::setParam(const CameraParamChunk* pChunk) {
-}
+void CamTranslatorDummy::setParam(const CameraParamChunk* pChunk) {}
 
 Camera* CamTranslatorDummy::getCamera() const {
     return mCamera;
 }
 
-Camera::Camera(const char* pName)
-    : NameObj(pName) {
+Camera::Camera(const char* pName) : NameObj(pName) {
     mPosParam = new CameraPoseParam();
     mVPan = nullptr;
     mIsLOfsErpOff = false;
     mZoneMatrix.identity();
 }
 
-void Camera::reset() {
-}
+void Camera::reset() {}
 
 bool Camera::isInterpolationOff() const {
     return false;
@@ -43,11 +40,9 @@ bool Camera::isCorrectingErpPositionOff() const {
     return false;
 }
 
-void Camera::roundLeft() {
-}
+void Camera::roundLeft() {}
 
-void Camera::roundRight() {
-}
+void Camera::roundRight() {}
 
 bool Camera::isEnableToRoundLeft() const {
     return false;
@@ -74,7 +69,7 @@ void Camera::setZoneMtx(s32 zoneID) {
         mZoneMatrix.identity();
 
         register TMtx34f* matrix = MR::getZonePlacementMtx(zoneID);
-        register Camera*  camera = this;
+        register Camera* camera = this;
 
         __asm {
             psq_l   f0, 0x00(matrix), 0, 0

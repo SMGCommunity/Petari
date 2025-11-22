@@ -1,6 +1,6 @@
 #include "Game/MapObj/ClipAreaDropLaser.hpp"
-#include "Game/MapObj/ClipAreaDropHolder.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
+#include "Game/MapObj/ClipAreaDropHolder.hpp"
 #include "Game/Util/ActorSwitchUtil.hpp"
 #include "Game/Util/DirectDraw.hpp"
 #include "Game/Util/EffectUtil.hpp"
@@ -22,8 +22,7 @@ void sdata2() {
     f32 f3 = -1.0f;
 }
 
-ClipAreaDropLaser::ClipAreaDropLaser(const char* pName)
-    : LiveActor(pName) {
+ClipAreaDropLaser::ClipAreaDropLaser(const char* pName) : LiveActor(pName) {
     mNumPointsToDraw = 0.0f;
     mPointIndexToSkipDraw = -1;
     mDrawCount = -1;
@@ -47,8 +46,7 @@ void ClipAreaDropLaser::init(const JMapInfoIter& rIter) {
     }
     makeActorAppeared();
 }
-void ClipAreaDropLaser::control() {
-}
+void ClipAreaDropLaser::control() {}
 
 void ClipAreaDropLaser::draw() const {
     TDDraw::cameraInit3D();
@@ -121,10 +119,9 @@ void ClipAreaDropLaser::incrementDrawCount() {
     }
 }
 
-ClipAreaDropLaser::~ClipAreaDropLaser() {
-}
+ClipAreaDropLaser::~ClipAreaDropLaser() {}
 
 namespace NrvClipAreaDropLaser {
     ClipAreaDropLaserNrvWait(ClipAreaDropLaserNrvWait::sInstance);
     ClipAreaDropLaserNrvMove(ClipAreaDropLaserNrvMove::sInstance);
-} // namespace NrvClipAreaDropLaser
+}  // namespace NrvClipAreaDropLaser

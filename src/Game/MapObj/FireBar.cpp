@@ -2,14 +2,11 @@
 #include "Game/Util.hpp"
 #include "JSystem/JMath/JMath.hpp"
 
-FireBarBall::~FireBarBall() {
-}
+FireBarBall::~FireBarBall() {}
 
-FireBar::~FireBar() {
-}
+FireBar::~FireBar() {}
 
-FireBarBall::FireBarBall(LiveActor* pParent)
-    : ModelObj("ファイアバー玉", "FireBarBall", 0, 0xB, -2, -2, false) {
+FireBarBall::FireBarBall(LiveActor* pParent) : ModelObj("ファイアバー玉", "FireBarBall", 0, 0xB, -2, -2, false) {
     mFireBarParent = pParent;
 }
 
@@ -69,8 +66,7 @@ void FireBarBall::controlEmitEffect() {
     }
 }
 
-FireBar::FireBar(const char* pName)
-    : LiveActor(pName) {
+FireBar::FireBar(const char* pName) : LiveActor(pName) {
     mFireBalls = 0;
     mFireBallCount = 5;
     _94.x = 0.0f;
@@ -235,4 +231,4 @@ namespace NrvFireBar {
         FireBar* bar = reinterpret_cast< FireBar* >(pSpine->mExecutor);
         bar->exeWait();
     }
-}; // namespace NrvFireBar
+};  // namespace NrvFireBar

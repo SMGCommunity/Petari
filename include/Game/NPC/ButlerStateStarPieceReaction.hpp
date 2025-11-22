@@ -15,7 +15,7 @@ public:
 
     void exeWait();
 
-    /* 0x0C */ LiveActor*       mHost;
+    /* 0x0C */ LiveActor* mHost;
     /* 0x10 */ TalkMessageCtrl* mTalkMessage;
-    /* 0x14 */ bool             _14;
+    /* 0x14 */ bool _14;
 };

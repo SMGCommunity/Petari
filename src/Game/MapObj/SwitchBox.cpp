@@ -1,11 +1,9 @@
-#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/MapObj/SwitchBox.hpp"
+#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/Util.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
 
-SwitchBox::SwitchBox(const char* pName)
-    : LiveActor(pName) {
-}
+SwitchBox::SwitchBox(const char* pName) : LiveActor(pName) {}
 
 void SwitchBox::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
@@ -54,8 +52,7 @@ void SwitchBox::init(const JMapInfoIter& rIter) {
     appear();
 }
 
-void SwitchBox::initAfterPlacement() {
-}
+void SwitchBox::initAfterPlacement() {}
 
 void SwitchBox::exeWait() {
     if (_8c != 0) {
@@ -187,4 +184,4 @@ namespace NrvSwitchBox {
         SwitchBox* pActor = reinterpret_cast< SwitchBox* >(pSpine->mExecutor);
         pActor->exeWait();
     }
-}; // namespace NrvSwitchBox
+};  // namespace NrvSwitchBox

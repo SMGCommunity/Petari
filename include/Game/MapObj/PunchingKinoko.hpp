@@ -1,9 +1,9 @@
 #pragma once
 
+#include "Game/Enemy/AnimScaleController.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/Map/GroundChecker.hpp"
 #include "Game/Util/JointController.hpp"
-#include "Game/Enemy/AnimScaleController.hpp"
 
 class PunchingKinoko : public LiveActor {
 public:
@@ -54,15 +54,15 @@ public:
     void addVelocityKeepHeight();
 
 private:
-    GroundChecker*                           mGroundChecker;   // 0x8C
-    AnimScaleController*                     mScaleController; // 0x90
-    JointControlDelegator< PunchingKinoko >* mDelegator;       // 0x94
-    s32                                      _98;
-    TVec3f                                   _9C;
-    TVec3f                                   _A8;
-    s32                                      mStarPointerHitCoolDown; // 0xB4
-    bool                                     _B8;
-    s32                                      mInvincibleHitCoolDown; // 0xBC
+    GroundChecker* mGroundChecker;                        // 0x8C
+    AnimScaleController* mScaleController;                // 0x90
+    JointControlDelegator< PunchingKinoko >* mDelegator;  // 0x94
+    s32 _98;
+    TVec3f _9C;
+    TVec3f _A8;
+    s32 mStarPointerHitCoolDown;  // 0xB4
+    bool _B8;
+    s32 mInvincibleHitCoolDown;  // 0xBC
 };
 
 namespace NrvPunchingKinoko {
@@ -74,4 +74,4 @@ namespace NrvPunchingKinoko {
     NERVE(PunchingKinokoNrvPointSnaped);
     NERVE(PunchingKinokoNrvCrushed);
     NERVE(PunchingKinokoNrvCrushedEnd);
-}; // namespace NrvPunchingKinoko
+};  // namespace NrvPunchingKinoko

@@ -1,8 +1,8 @@
 #pragma once
 
 #include "Game/NameObj/NameObj.hpp"
-#include "Game/Scene/StageFileLoader.hpp"
 #include "Game/Scene/StageDataHolder.hpp"
+#include "Game/Scene/StageFileLoader.hpp"
 
 class SceneDataInitializer : public NameObj {
 public:
@@ -18,6 +18,6 @@ public:
     void startActorPlacement();
     void initAfterScenarioSelected();
 
-    StageFileLoader* mFileLoader; // 0xC
-    StageDataHolder* mDataHolder; // 0x10
+    StageFileLoader* mFileLoader;  // 0xC
+    StageDataHolder* mDataHolder;  // 0x10
 };

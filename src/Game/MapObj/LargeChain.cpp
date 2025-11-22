@@ -4,8 +4,7 @@ namespace {
     static f32 sPartsLength = 200.0f;
 };
 
-LargeChain::LargeChain(const char* pName)
-    : LiveActor(pName) {
+LargeChain::LargeChain(const char* pName) : LiveActor(pName) {
     _8C = nullptr;
     _90 = nullptr;
     mChainArray = nullptr;
@@ -73,8 +72,7 @@ void LargeChain::exeBreak() {
     }
 }
 
-LargeChainParts::~LargeChainParts() {
-}
+LargeChainParts::~LargeChainParts() {}
 
 void LargeChain::invalidateClippingAllChainParts() {
     for (s32 i = 0; i < (u32)mChainCount; i++) {
@@ -82,10 +80,9 @@ void LargeChain::invalidateClippingAllChainParts() {
     }
 }
 
-LargeChain::~LargeChain() {
-}
+LargeChain::~LargeChain() {}
 
 namespace NrvLargeChain {
     INIT_NERVE(LargeChainNrvWait);
     INIT_NERVE(LargeChainNrvBreak);
-}; // namespace NrvLargeChain
+};  // namespace NrvLargeChain

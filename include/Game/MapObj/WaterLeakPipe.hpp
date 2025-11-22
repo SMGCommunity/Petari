@@ -22,7 +22,7 @@ public:
 namespace NrvIceStepNoSlip {
     NERVE_DECL(IceStepNoSlipNrvAppear, IceStepNoSlip, IceStepNoSlip::exeAppear);
     NERVE_DECL(IceStepNoSlipNrvBreak, IceStepNoSlip, IceStepNoSlip::exeBreak);
-}; // namespace NrvIceStepNoSlip
+};  // namespace NrvIceStepNoSlip
 
 class WaterLeakPipe : public LiveActor {
 public:
@@ -37,14 +37,14 @@ public:
     void exeFreeze();
     void initPipeHeight();
 
-    IceStepNoSlip* mIceStep;    // 0x8C
-    f32            mPipeHeight; // 0x90
-    MtxPtr         mTopMtx;     // 0x94
-    MtxPtr         mBottomMtx;  // 0x98
-    TVec3f         _9C;
+    IceStepNoSlip* mIceStep;  // 0x8C
+    f32 mPipeHeight;          // 0x90
+    MtxPtr mTopMtx;           // 0x94
+    MtxPtr mBottomMtx;        // 0x98
+    TVec3f _9C;
 };
 
 namespace NrvWaterLeakPipe {
     NERVE_DECL(WaterLeakPipeNrvWait, WaterLeakPipe, WaterLeakPipe::exeWait);
     NERVE_DECL(WaterLeakPipeNrvFreeze, WaterLeakPipe, WaterLeakPipe::exeFreeze);
-}; // namespace NrvWaterLeakPipe
+};  // namespace NrvWaterLeakPipe

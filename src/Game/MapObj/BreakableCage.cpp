@@ -1,9 +1,8 @@
-#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/MapObj/BreakableCage.hpp"
+#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/MapObj/PowerStar.hpp"
 
-BreakableCage::BreakableCage(const char* pName)
-    : LiveActor(pName) {
+BreakableCage::BreakableCage(const char* pName) : LiveActor(pName) {
     mBreakModel = nullptr;
     mCageType = CAGE_INVALID;
     mRotationSpeed = 0.0f;
@@ -64,7 +63,7 @@ void BreakableCage::init(const JMapInfoIter &rIter) {
         MR::makeMtxTR(mMtx.toMtxPtr(), this);
     }
     else {
-        initBaseMtxForCage(); 
+        initBaseMtxForCage();
     }
 
     if (MR::tryRegisterDemoCast(this, rIter)) {
@@ -137,7 +136,7 @@ void BreakableCage::kill() {
 #ifndef NON_MATCHING
 void BreakableCage::calcAndSetBaseMtx() {
     if (mCageType == CAGE_NORMAL) {
-        f32    v2 = (0.017453292f * mRotation.y);
+        f32 v2 = (0.017453292f * mRotation.y);
         TVec3f stack_C;
         TVec3f stack_14(0.0f, 1.0f, 0.0f);
         TPos3f stack_20;
@@ -148,8 +147,8 @@ void BreakableCage::calcAndSetBaseMtx() {
         PSVECMag(&stack_C);
         PSVECNormalize(&stack_C, &stack_C);
         TPos3f stack_50;
-        f32    v3 = sin(v2);
-        f32    v4 = cos(v2);
+        f32 v3 = sin(v2);
+        f32 v4 = cos(v2);
         stack_50.mMtx[0][0] = v4 + ((1.0f - v4) * (stack_C.x * stack_C.x));
         stack_50.mMtx[1][1] = v4 + ((1.0f - v4) * (stack_C.y * stack_C.y));
         stack_50.mMtx[2][2] = v4 + ((1.0f - v4) * (stack_C.z * stack_C.z));
@@ -255,9 +254,9 @@ void BreakableCage::initBaseMtxForCage() {
 */
 
 bool BreakableCage::isTypeCage() const {
-    bool     res = true;
-    bool     v3 = true;
-    bool     v4 = true;
+    bool res = true;
+    bool v3 = true;
+    bool v4 = true;
     CageType type = mCageType;
 
     if (type && type != CAGE_LARGE) {
@@ -287,7 +286,8 @@ bool BreakableCage::isAppearPowerStar() const {
 bool BreakableCage::tryBreak() {
     if (isNerve(&NrvBreakableCage::BreakableCageNrvWait::sInstance)) {
         if (mCameraInfo != nullptr) {
-            MR::requestStartDemoWithoutCinemaFrame(this, "破壊", &NrvBreakableCage::BreakableCageNrvBreak::sInstance, &NrvBreakableCage::BreakableCageNrvWaitStartDemoBreak::sInstance);
+            MR::requestStartDemoWithoutCinemaFrame(this, "破壊", &NrvBreakableCage::BreakableCageNrvBreak::sInstance,
+                                                   &NrvBreakableCage::BreakableCageNrvWaitStartDemoBreak::sInstance);
         } else {
             setNerve(&NrvBreakableCage::BreakableCageNrvBreak::sInstance);
         }
@@ -312,8 +312,8 @@ void BreakableCage::exeWait() {
 }
 
 void BreakableCage::exeBreak() {
-    u32              v2 = 1;
-    u32              v3 = 0;
+    u32 v2 = 1;
+    u32 v3 = 0;
     ActorCameraInfo* inf;
 
     if (mDelayDeadActivate || mItemModel != nullptr || mCageType == (s32)3 || mCageType == CAGE_TRASH) {
@@ -411,8 +411,7 @@ void BreakableCage::exeBreak() {
     }
 }
 
-BreakableCage::~BreakableCage() {
-}
+BreakableCage::~BreakableCage() {}
 
 namespace NrvBreakableCage {
     INIT_NERVE(BreakableCageNrvWait);
@@ -424,11 +423,10 @@ namespace NrvBreakableCage {
         cage->exeBreak();
     }
 
-    void BreakableCageNrvWaitStartDemoBreak::execute(Spine* pSpine) const {
-    }
+    void BreakableCageNrvWaitStartDemoBreak::execute(Spine* pSpine) const {}
 
     void BreakableCageNrvWait::execute(Spine* pSpine) const {
         BreakableCage* cage = reinterpret_cast< BreakableCage* >(pSpine->mExecutor);
         cage->exeWait();
     }
-}; // namespace NrvBreakableCage
+};  // namespace NrvBreakableCage

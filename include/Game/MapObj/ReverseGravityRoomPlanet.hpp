@@ -21,4 +21,4 @@ namespace NrvReverseGravityRoomPlanet {
     NERVE(ReverseGravityRoomPlanetNrvDownWait);
     NERVE(ReverseGravityRoomPlanetNrvUpStart);
     NERVE(ReverseGravityRoomPlanetNrvUpWait);
-}; // namespace NrvReverseGravityRoomPlanet
+};  // namespace NrvReverseGravityRoomPlanet

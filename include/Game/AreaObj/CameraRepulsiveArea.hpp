@@ -4,9 +4,7 @@
 
 class CameraRepulsiveArea : public AreaObj {
 public:
-    inline CameraRepulsiveArea(int type, const char* pName)
-        : AreaObj(type, pName) {
-    }
+    inline CameraRepulsiveArea(int type, const char* pName) : AreaObj(type, pName) {}
 
     virtual ~CameraRepulsiveArea();
 
@@ -17,9 +15,7 @@ public:
 
 class CameraRepulsiveSphere : public CameraRepulsiveArea {
 public:
-    inline CameraRepulsiveSphere(const char* pName)
-        : CameraRepulsiveArea(2, pName) {
-    }
+    inline CameraRepulsiveSphere(const char* pName) : CameraRepulsiveArea(2, pName) {}
 
     virtual ~CameraRepulsiveSphere();
 
@@ -28,9 +24,7 @@ public:
 
 class CameraRepulsiveCylinder : public CameraRepulsiveArea {
 public:
-    inline CameraRepulsiveCylinder(const char* pName)
-        : CameraRepulsiveArea(3, pName) {
-    }
+    inline CameraRepulsiveCylinder(const char* pName) : CameraRepulsiveArea(3, pName) {}
 
     virtual ~CameraRepulsiveCylinder();
 

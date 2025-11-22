@@ -1,5 +1,5 @@
-#include "Game/System/WPad.hpp"
 #include "Game/System/WPadRumble.hpp"
+#include "Game/System/WPad.hpp"
 #include "Game/System/WPadRumbleData.hpp"
 #include "Game/Util/GamePadUtil.hpp"
 
@@ -40,14 +40,7 @@ void RumbleChannel::setPattern(const void* pParam1, const RumblePattern& rParam2
     _4 = param4;
 }
 
-WPadRumble::WPadRumble(WPad* pPad)
-    : mPad(pPad),
-      _8(false),
-      _C(1),
-      _B0(0),
-      _B4(0),
-      _B8(false),
-      _BC(0) {
+WPadRumble::WPadRumble(WPad* pPad) : mPad(pPad), _8(false), _C(1), _B0(0), _B4(0), _B8(false), _BC(0) {
     if (sInstanceForCallback == nullptr) {
         sInstanceForCallback = new WPadRumble*[MR::getWPadMaxCount()];
 

@@ -6,5 +6,4 @@ MiiDatabase::~MiiDatabase() {
     delete mStoreDataArray;
 }
 
-JKRFileFinder::~JKRFileFinder() {
-}
+JKRFileFinder::~JKRFileFinder() {}

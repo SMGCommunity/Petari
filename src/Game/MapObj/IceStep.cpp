@@ -1,11 +1,8 @@
 #include "Game/MapObj/IceStep.hpp"
 
-IceStep::IceStep(const char* pName)
-    : LiveActor(pName) {
-}
+IceStep::IceStep(const char* pName) : LiveActor(pName) {}
 
-IceStep::~IceStep() {
-}
+IceStep::~IceStep() {}
 
 void IceStep::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
@@ -65,20 +62,20 @@ void IceStep::setOn(u32 stepIdx, const TVec3f &rPosition, const TVec3f &rRotatio
     }
 
     TVec3f upVec;
-    MR::calcUpVec(&upVec, this); 
+    MR::calcUpVec(&upVec, this);
     TVec3f multVec(MR::multVecNoCtor(MR::multVecNoCtor(upVec, v8), 0.2f));
     mPosition = MR::addVec(multVec, rPosition);
-  
+  
     MR::startBck(this, "Start", nullptr);
     MR::startBpk(this, "Start");
-    MR::startSound(this, "SE_OJ_ICE_FLOOR_FREEZE", -1, -1); 
+    MR::startSound(this, "SE_OJ_ICE_FLOOR_FREEZE", -1, -1);
     mTimer = 0x4B0;
-    MR::invalidateClipping(this); 
-    MR::resetPosition(this); 
+    MR::invalidateClipping(this);
+    MR::resetPosition(this);
     setNerve(&NrvIceStep::IceStepNrvWait::sInstance);
     MR::validateCollisionParts(this);
     MR::showModel(this);
-    appear(); 
+    appear();
 }
 */
 
@@ -115,10 +112,9 @@ bool IceStep::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pRec
     return false;
 }
 
-void IceStep::control() {
-}
+void IceStep::control() {}
 
 namespace NrvIceStep {
     INIT_NERVE(IceStepNrvWait);
     INIT_NERVE(IceStepNrvHit);
-}; // namespace NrvIceStep
+};  // namespace NrvIceStep

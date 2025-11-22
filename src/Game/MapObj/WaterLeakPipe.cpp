@@ -1,14 +1,10 @@
 #include "Game/MapObj/WaterLeakPipe.hpp"
 
-IceStepNoSlip::~IceStepNoSlip() {
-}
+IceStepNoSlip::~IceStepNoSlip() {}
 
-WaterLeakPipe::~WaterLeakPipe() {
-}
+WaterLeakPipe::~WaterLeakPipe() {}
 
-IceStepNoSlip::IceStepNoSlip(MtxPtr mtx)
-    : ModelObj("アイス床", "IceStepNoSlip", mtx, 0x1A, -2, -2, false) {
-}
+IceStepNoSlip::IceStepNoSlip(MtxPtr mtx) : ModelObj("アイス床", "IceStepNoSlip", mtx, 0x1A, -2, -2, false) {}
 
 void IceStepNoSlip::init(const JMapInfoIter& rIter) {
     ModelObj::init(rIter);
@@ -36,10 +32,9 @@ void IceStepNoSlip::exeBreak() {
 namespace NrvIceStepNoSlip {
     INIT_NERVE(IceStepNoSlipNrvAppear);
     INIT_NERVE(IceStepNoSlipNrvBreak);
-}; // namespace NrvIceStepNoSlip
+};  // namespace NrvIceStepNoSlip
 
-WaterLeakPipe::WaterLeakPipe(const char* pName)
-    : LiveActor(pName) {
+WaterLeakPipe::WaterLeakPipe(const char* pName) : LiveActor(pName) {
     mIceStep = nullptr;
     mPipeHeight = 500.0f;
     mTopMtx = nullptr;
@@ -148,7 +143,6 @@ void WaterLeakPipe::initPipeHeight() {
 namespace NrvWaterLeakPipe {
     INIT_NERVE(WaterLeakPipeNrvWait);
     INIT_NERVE(WaterLeakPipeNrvFreeze);
-}; // namespace NrvWaterLeakPipe
+};  // namespace NrvWaterLeakPipe
 
-void WaterLeakPipe::calcAnim() {
-}
+void WaterLeakPipe::calcAnim() {}

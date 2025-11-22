@@ -29,10 +29,10 @@ public:
     void drawBlur(s32, s32, MtxPtr, u32, u32) const;
 
 private:
-    /* 0x14 */ s8          _14;
-    /* 0x18 */ f32         _18;
-    /* 0x1C */ f32         _1C;
-    /* 0x20 */ u8          _20;
+    /* 0x14 */ s8 _14;
+    /* 0x18 */ f32 _18;
+    /* 0x1C */ f32 _1C;
+    /* 0x20 */ u8 _20;
     /* 0x24 */ JUTTexture* _24;
     /* 0x28 */ JUTTexture* _28;
     /* 0x2C */ JUTTexture* _2C;
@@ -42,6 +42,6 @@ private:
     /* 0x3C */ JUTTexture* _3C;
     /* 0x40 */ JUTTexture* _40;
     /* 0x44 */ JUTTexture* _44;
-    /* 0x48 */ void*       _48;
-    /* 0x4C */ void*       _4C;
+    /* 0x48 */ void* _48;
+    /* 0x4C */ void* _4C;
 };

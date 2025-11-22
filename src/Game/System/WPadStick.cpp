@@ -1,5 +1,5 @@
-#include "Game/System/WPad.hpp"
 #include "Game/System/WPadStick.hpp"
+#include "Game/System/WPad.hpp"
 #include <JSystem/JGeometry/TUtil.hpp>
 
 #define STICK_FLAG_NONE 0x0
@@ -13,17 +13,8 @@ namespace {
 };
 
 WPadStick::WPadStick(const WPad* pPad)
-    : mPad(pPad),
-      mStick(0.0f, 0.0f),
-      mSpeed(0.0f),
-      mHold(STICK_FLAG_NONE),
-      mTrigger(STICK_FLAG_NONE),
-      mRelease(STICK_FLAG_NONE),
-      mIsTriggerUp(false),
-      mIsTriggerDown(false),
-      mIsHoldUp(false),
-      mIsHoldDown(false) {
-}
+    : mPad(pPad), mStick(0.0f, 0.0f), mSpeed(0.0f), mHold(STICK_FLAG_NONE), mTrigger(STICK_FLAG_NONE), mRelease(STICK_FLAG_NONE), mIsTriggerUp(false),
+      mIsTriggerDown(false), mIsHoldUp(false), mIsHoldDown(false) {}
 
 void WPadStick::update() {
     KPADStatus* pStatus = mPad->getKPadStatus(0);
@@ -34,8 +25,8 @@ void WPadStick::update() {
 
     TVec2f stickEx(pStatus->ex_status.fs.stick.x, pStatus->ex_status.fs.stick.y);
     TVec2f stickPrev = mStick;
-    f32    deltaX = stickEx.x - stickPrev.x;
-    f32    deltaY = stickEx.y - stickPrev.y;
+    f32 deltaX = stickEx.x - stickPrev.x;
+    f32 deltaY = stickEx.y - stickPrev.y;
     mSpeed = JGeometry::TUtil< f32 >::sqrt(deltaX * deltaX + deltaY * deltaY);
     u32 flagPrev = STICK_FLAG_NONE;
 

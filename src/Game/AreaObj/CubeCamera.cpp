@@ -2,11 +2,7 @@
 
 #include <cstring>
 
-CubeCameraArea::CubeCameraArea(int type, const char* pName)
-    : AreaObj(type, pName),
-      _3C(0),
-      mZoneID(0) {
-}
+CubeCameraArea::CubeCameraArea(int type, const char* pName) : AreaObj(type, pName), _3C(0), mZoneID(0) {}
 
 /*
 void CubeCameraArea::init(const JMapInfoIter &rIter) {
@@ -86,8 +82,7 @@ s32 CubeCameraArea::getCategoryArg() const {
     return mObjArg3;
 }
 
-CubeCameraMgr::CubeCameraMgr(s32 type, const char* pName)
-    : AreaObjMgr(type, pName) {
+CubeCameraMgr::CubeCameraMgr(s32 type, const char* pName) : AreaObjMgr(type, pName) {
     CubeCameraArea::sCubeCategory = 1;
 }
 
@@ -97,5 +92,4 @@ void CubeCameraMgr::initAfterLoad() {
 
 // CubeCameraMgr::sort
 
-CubeCameraMgr::~CubeCameraMgr() {
-}
+CubeCameraMgr::~CubeCameraMgr() {}

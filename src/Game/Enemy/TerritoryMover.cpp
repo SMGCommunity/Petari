@@ -12,7 +12,7 @@ void TerritoryMover::decideNextTargetPos(const LiveActor* pActor) {
     MR::getRandomVector(&v11, 1.0f);
     MR::normalizeOrZero(&v11);
     const TVec3f* gravPtr = &pActor->mGravity;
-    f32           dot = gravPtr->dot(v11);
+    f32 dot = gravPtr->dot(v11);
     JMAVECScaleAdd(gravPtr, &v11, &v11, -dot);
     f32 x = v11.x * _0;
     f32 y = v11.y * _0;

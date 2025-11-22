@@ -8,13 +8,9 @@ namespace {
 };
 
 Rock::Rock(f32 a1, const char* pName)
-    : LiveActor(pName),
-      mParentCreator(nullptr), mRockType(NormalRock), mBreakModel(nullptr),
-      _98(a1), _9C(0), _9D(0), _A0(gZeroVec), _AC(255.0f), _B0(0.0f),
-      _E4(gZeroVec), mCurrentRailPoint(-1), _F0(1.5f), _F8(gZeroVec),
-      _110(0), _114(0), mBarkTimer(0), _11C(0), _120(gZeroVec),
+    : LiveActor(pName), mParentCreator(nullptr), mRockType(NormalRock), mBreakModel(nullptr), _98(a1), _9C(0), _9D(0), _A0(gZeroVec), _AC(255.0f),
+      _B0(0.0f), _E4(gZeroVec), mCurrentRailPoint(-1), _F0(1.5f), _F8(gZeroVec), _110(0), _114(0), mBarkTimer(0), _11C(0), _120(gZeroVec),
       _12C(nullptr), _130(0), _134(8), _138(0.0f), mRollSoundTimer(0), _140(0) {
-
     _B4.identity();
 }
 
@@ -372,8 +368,7 @@ void Rock::appearStarPiece() {
 // Rock::exeBreak
 // Rock::exeFreeze
 
-Rock::~Rock() {
-}
+Rock::~Rock() {}
 
 namespace NrvRock {
     INIT_NERVE(RockNrvAppear);
@@ -382,4 +377,4 @@ namespace NrvRock {
     INIT_NERVE(RockNrvMoveInvalidBind);
     INIT_NERVE(RockNrvBreak);
     INIT_NERVE(RockNrvFreeze);
-}; // namespace NrvRock
+};  // namespace NrvRock

@@ -1,5 +1,5 @@
-#include "Game/Speaker/SpkSystem.hpp"
 #include "Game/System/WPad.hpp"
+#include "Game/Speaker/SpkSystem.hpp"
 #include "Game/System/WPadAcceleration.hpp"
 #include "Game/System/WPadButton.hpp"
 #include "Game/System/WPadHVSwing.hpp"
@@ -11,22 +11,9 @@
 #include "Game/System/WPadStick.hpp"
 
 WPad::WPad(s32 channel)
-    : mChannel(channel),
-      mReadInfo(nullptr),
-      mButton(nullptr),
-      mPointer(nullptr),
-      mCorePadAccel(nullptr),
-      mCorePadSwing(nullptr),
-      _18(nullptr),
-      _1C(nullptr),
-      mStick(nullptr),
-      mSubPadAccel(nullptr),
-      mSubPadSwing(nullptr),
-      mLeaveWatcher(nullptr),
-      mInfoChecker(nullptr),
-      _34(true),
-      mIsConnected(false),
-      mIsSubPadConnected(false) {
+    : mChannel(channel), mReadInfo(nullptr), mButton(nullptr), mPointer(nullptr), mCorePadAccel(nullptr), mCorePadSwing(nullptr), _18(nullptr),
+      _1C(nullptr), mStick(nullptr), mSubPadAccel(nullptr), mSubPadSwing(nullptr), mLeaveWatcher(nullptr), mInfoChecker(nullptr), _34(true),
+      mIsConnected(false), mIsSubPadConnected(false) {
     mButton = new WPadButton(this);
     mPointer = new WPadPointer(this);
     mCorePadAccel = new WPadAcceleration(this, WPAD_DEV_CORE);
@@ -88,8 +75,7 @@ s32 WPad::getBattery() const {
     return mInfoChecker->getBattery();
 }
 
-void WPad::resetPad() {
-}
+void WPad::resetPad() {}
 
 void WPad::connected() {
     mIsConnected = true;
@@ -161,7 +147,7 @@ namespace MR {
     }
 
     // getPadDataForExceptionNoInit
-}; // namespace MR
+};  // namespace MR
 
 KPADStatus* WPad::getKPadStatus(u32 index) const {
     return mReadInfo->getKPadStatus(index);

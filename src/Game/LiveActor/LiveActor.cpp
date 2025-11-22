@@ -1,3 +1,4 @@
+#include "Game/LiveActor/LiveActor.hpp"
 #include "Game/AudioLib/AudAnmSoundObject.hpp"
 #include "Game/LiveActor/ActorAnimKeeper.hpp"
 #include "Game/LiveActor/ActorLightCtrl.hpp"
@@ -6,7 +7,6 @@
 #include "Game/LiveActor/Binder.hpp"
 #include "Game/LiveActor/ClippingDirector.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
-#include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/RailRider.hpp"
 #include "Game/NameObj/NameObjExecuteHolder.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
@@ -16,32 +16,15 @@
 #include <JSystem/J3DGraphAnimator/J3DModel.hpp>
 
 LiveActor::LiveActor(const char* pName)
-    : NameObj(pName),
-      mPosition(0.0f, 0.0f, 0.0f),
-      mRotation(0.0f, 0.0f, 0.0f),
-      mScale(1.0f, 1.0f, 1.0f),
-      mVelocity(0.0f, 0.0f, 0.0f),
-      mGravity(0.0f, -1.0f, 0.0f),
-      mModelManager(nullptr),
-      mAnimKeeper(nullptr),
-      mSpine(nullptr),
-      mSensorKeeper(nullptr),
-      mBinder(nullptr),
-      mRailRider(nullptr),
-      mEffectKeeper(nullptr),
-      mSoundObject(nullptr),
-      mShadowControllerList(nullptr),
-      mCollisionParts(nullptr),
-      mStageSwitchCtrl(nullptr),
-      mStarPointerTarget(nullptr),
-      mActorLightCtrl(nullptr),
-      mCameraCtrl(nullptr) {
+    : NameObj(pName), mPosition(0.0f, 0.0f, 0.0f), mRotation(0.0f, 0.0f, 0.0f), mScale(1.0f, 1.0f, 1.0f), mVelocity(0.0f, 0.0f, 0.0f),
+      mGravity(0.0f, -1.0f, 0.0f), mModelManager(nullptr), mAnimKeeper(nullptr), mSpine(nullptr), mSensorKeeper(nullptr), mBinder(nullptr),
+      mRailRider(nullptr), mEffectKeeper(nullptr), mSoundObject(nullptr), mShadowControllerList(nullptr), mCollisionParts(nullptr),
+      mStageSwitchCtrl(nullptr), mStarPointerTarget(nullptr), mActorLightCtrl(nullptr), mCameraCtrl(nullptr) {
     MR::getAllLiveActorGroup()->registerActor(this);
     MR::getClippingDirector()->registerActor(this);
 }
 
-void LiveActor::init(const JMapInfoIter& rIter) {
-}
+void LiveActor::init(const JMapInfoIter& rIter) {}
 
 void LiveActor::appear() {
     makeActorAppeared();
@@ -407,8 +390,7 @@ void LiveActor::initActorLightCtrl() {
     mActorLightCtrl = new ActorLightCtrl(this);
 }
 
-void LiveActor::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
-}
+void LiveActor::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {}
 
 bool LiveActor::receiveMsgPush(HitSensor* pSender, HitSensor* pReceiver) {
     return false;

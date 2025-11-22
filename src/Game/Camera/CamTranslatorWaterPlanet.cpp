@@ -1,5 +1,5 @@
-#include "Game/Camera/CameraParamChunk.hpp"
 #include "Game/Camera/CamTranslatorWaterPlanet.hpp"
+#include "Game/Camera/CameraParamChunk.hpp"
 
 CamTranslatorWaterPlanet::CamTranslatorWaterPlanet(CameraWaterPlanet* pCamera) {
     mCamera = pCamera;

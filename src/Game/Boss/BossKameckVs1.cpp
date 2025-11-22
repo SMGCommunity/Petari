@@ -1,8 +1,8 @@
 #include "Game/Boss/BossKameckVs1.hpp"
+#include "Game/Boss/BossKameck.hpp"
 #include "Game/Boss/BossKameckBattleDemo.hpp"
 #include "Game/Boss/BossKameckBattlePattarn.hpp"
 #include "Game/Boss/BossKameckStateBattle.hpp"
-#include "Game/Boss/BossKameck.hpp"
 
 namespace {
     s32 sBeamPatternLv1[] = {2, 1, -1};
@@ -12,7 +12,7 @@ namespace {
     BossKameckBattlePattarn sPatternLv1 = BossKameckBattlePattarn(sBeamPatternLv1, false);
     BossKameckBattlePattarn sPatternLv2 = BossKameckBattlePattarn(sBeamPatternLv2, false);
     BossKameckBattlePattarn sPatternLv3 = BossKameckBattlePattarn(sBeamPatternLv3, false);
-}; // namespace
+};  // namespace
 
 namespace NrvBossKameckVs1 {
     NEW_NERVE(BossKameckVs1NrvOpeningDemo, BossKameckVs1, OpeningDemo);
@@ -21,10 +21,9 @@ namespace NrvBossKameckVs1 {
     NEW_NERVE(BossKameckVs1NrvPowerUpDemo, BossKameckVs1, PowerUpDemo);
     NEW_NERVE(BossKameckVs1NrvBattleLv3, BossKameckVs1, BattleLv3);
     NEW_NERVE(BossKameckVs1NrvEndDemo, BossKameckVs1, EndDemo);
-}; // namespace NrvBossKameckVs1
+};  // namespace NrvBossKameckVs1
 
-BossKameckVs1::BossKameckVs1()
-    : BossKameckSequencer("ボスカメックVs1") {
+BossKameckVs1::BossKameckVs1() : BossKameckSequencer("ボスカメックVs1") {
     mStateBattle = nullptr;
 }
 
@@ -115,12 +114,12 @@ void BossKameckVs1::exeEndDemo() {
 }
 
 bool BossKameckVs1::isBattle() const {
-    if (isNerve(&NrvBossKameckVs1::BossKameckVs1NrvBattleLv1::sInstance) || isNerve(&NrvBossKameckVs1::BossKameckVs1NrvBattleLv2::sInstance) || isNerve(&NrvBossKameckVs1::BossKameckVs1NrvBattleLv3::sInstance)) {
+    if (isNerve(&NrvBossKameckVs1::BossKameckVs1NrvBattleLv1::sInstance) || isNerve(&NrvBossKameckVs1::BossKameckVs1NrvBattleLv2::sInstance) ||
+        isNerve(&NrvBossKameckVs1::BossKameckVs1NrvBattleLv3::sInstance)) {
         return true;
     }
 
     return false;
 }
 
-BossKameckVs1::~BossKameckVs1() {
-}
+BossKameckVs1::~BossKameckVs1() {}

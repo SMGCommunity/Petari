@@ -32,24 +32,18 @@ namespace JGeometry {
         void normalize(const TQuat4< T >& rSrc);
 
         void getXDir(TVec3< T >& rDest) const {
-            rDest.template set< T >(
-                1.0f - this->y * this->y * 2.0f - this->z * this->z * 2.0f,
-                this->x * this->y * 2.0f + this->w * this->z * 2.0f,
-                this->x * this->z * 2.0f - this->w * this->y * 2.0f);
+            rDest.template set< T >(1.0f - this->y * this->y * 2.0f - this->z * this->z * 2.0f, this->x * this->y * 2.0f + this->w * this->z * 2.0f,
+                                    this->x * this->z * 2.0f - this->w * this->y * 2.0f);
         }
 
         void getYDir(TVec3< T >& rDest) const {
-            rDest.template set< T >(
-                this->x * this->y * 2.0f - this->w * this->z * 2.0f,
-                1.0f - this->x * this->x * 2.0f - this->z * this->z * 2.0f,
-                this->y * this->z * 2.0f + this->w * this->x * 2.0f);
+            rDest.template set< T >(this->x * this->y * 2.0f - this->w * this->z * 2.0f, 1.0f - this->x * this->x * 2.0f - this->z * this->z * 2.0f,
+                                    this->y * this->z * 2.0f + this->w * this->x * 2.0f);
         }
 
         void getZDir(TVec3< T >& rDest) const {
-            rDest.template set< T >(
-                this->x * this->z * 2.0f + this->w * this->y * 2.0f,
-                this->y * this->z * 2.0f - this->w * this->x * 2.0f,
-                1.0f - this->x * this->x * 2.0f - this->y * this->y * 2.0f);
+            rDest.template set< T >(this->x * this->z * 2.0f + this->w * this->y * 2.0f, this->y * this->z * 2.0f - this->w * this->x * 2.0f,
+                                    1.0f - this->x * this->x * 2.0f - this->y * this->y * 2.0f);
         }
 
         void getEuler(TVec3< T >& rDest) const;
@@ -84,6 +78,6 @@ namespace JGeometry {
 
         T w;
     };
-}; // namespace JGeometry
+};  // namespace JGeometry
 
 typedef JGeometry::TQuat4< f32 > TQuat4f;

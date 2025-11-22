@@ -12,10 +12,10 @@ namespace JGadget {
             }
             return hash;
         }
-    } // namespace
+    }  // namespace
     u32 getHashCode(const char* data) {
         TPRIsEnd_value_< char > p('\0');
         return getHashCode_(data, p);
     }
 
-} // namespace JGadget
+}  // namespace JGadget

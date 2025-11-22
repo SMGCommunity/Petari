@@ -34,16 +34,14 @@ namespace NrvButlerMap {
     NEW_NERVE(ButlerMapNrvLectureDemoShowMap, ButlerMap, LectureDemoShowMap);
     NEW_NERVE(ButlerMapNrvLectureDemoShowMapAfter, ButlerMap, LectureDemoShowMapAfter);
     NEW_NERVE(ButlerMapNrvStarPieceReaction, ButlerMap, StarPieceReaction);
-}; // namespace NrvButlerMap
+};  // namespace NrvButlerMap
 
-ButlerMap::ButlerMap(const char* pName)
-    : NPCActor(pName) {
+ButlerMap::ButlerMap(const char* pName) : NPCActor(pName) {
     _15C = nullptr;
     _160 = false;
 }
 
-ButlerMap::~ButlerMap() {
-}
+ButlerMap::~ButlerMap() {}
 
 void ButlerMap::init(const JMapInfoIter& rIter) {
     MR::getJMapInfoArg0NoInit(rIter, &_160);
@@ -69,12 +67,13 @@ void ButlerMap::init(const JMapInfoIter& rIter) {
     MR::createSceneObj(119);
     MR::tryRegisterDemoCast(this, rIter);
     MR::tryRegisterDemoCast(this, "バトラー報告", rIter);
-    TVec3f      vec;
+    TVec3f vec;
     const char* demoNameMapLecture = cDemoNameMapLecture;
     vec.setPSZeroVec();
-    TalkMessageCtrl* talkMessage = MR::createTalkCtrlDirectOnRootNodeAutomatic(this, rIter, "AstroGalaxy_ButlerMap001", vec, MR::getJointMtx(this, "Body"));
+    TalkMessageCtrl* talkMessage =
+        MR::createTalkCtrlDirectOnRootNodeAutomatic(this, rIter, "AstroGalaxy_ButlerMap001", vec, MR::getJointMtx(this, "Body"));
     if (MR::tryInitDemoSheetTalkAnim(this, rIter, demoNameMapLecture, "DemoButlerMapLecture", talkMessage)) {
-        const char*            demoNameMapLecture = cDemoNameMapLecture;
+        const char* demoNameMapLecture = cDemoNameMapLecture;
         const MR::FunctorBase& func = MR::Functor(this, &ButlerMap::startLectureDemo);
         MR::registerDemoActionFunctorDirect(this, func, demoNameMapLecture, "開始");
         MR::registerDemoActionFunctorDirect(this, MR::Functor(this, &ButlerMap::resetStatus), demoNameMapLecture, "バトラーリセット");

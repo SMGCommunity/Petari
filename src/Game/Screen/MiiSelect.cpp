@@ -1,7 +1,7 @@
+#include "Game/Screen/MiiSelect.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Map/FileSelectIconID.hpp"
 #include "Game/Screen/ButtonPaneController.hpp"
-#include "Game/Screen/MiiSelect.hpp"
 #include "Game/Screen/MiiSelectIcon.hpp"
 #include "Game/Util/BitArray.hpp"
 #include "Game/Util/GamePadUtil.hpp"
@@ -19,10 +19,9 @@ namespace {
     NEW_NERVE(MiiSelectNrvSelected, MiiSelect, Selected);
     NEW_NERVE(MiiSelectNrvDisappear, MiiSelect, Disappear);
     NEW_NERVE(MiiSelectNrvDummySelected, MiiSelect, DummySelected);
-}; // namespace
+};  // namespace
 
-MiiSelect::MiiSelect(const char* pName)
-    : LayoutActor(pName, true) {
+MiiSelect::MiiSelect(const char* pName) : LayoutActor(pName, true) {
     _28 = new MR::BitArray(5);
     _2C = 0;
     _2E = 0;
@@ -217,8 +216,7 @@ void MiiSelect::exeScrollRight() {
     }
 }
 
-void MiiSelect::exeSelected() {
-}
+void MiiSelect::exeSelected() {}
 
 void MiiSelect::exeDisappear() {
     if (MR::isFirstStep(this)) {
@@ -230,8 +228,7 @@ void MiiSelect::exeDisappear() {
     }
 }
 
-void MiiSelect::exeDummySelected() {
-}
+void MiiSelect::exeDummySelected() {}
 
 void MiiSelect::control() {
     s32 size = sizeof(_20) / sizeof(*_20);
@@ -446,9 +443,7 @@ void MiiSelect::onSelectDummy() {
 }
 
 namespace MiiSelectSub {
-    Page::Page(MiiSelect* pHost)
-        : mHost(pHost),
-          _20(true) {
+    Page::Page(MiiSelect* pHost) : mHost(pHost), _20(true) {
         for (int i = 0; i < sizeof(mIconArray) / sizeof(*mIconArray); i++) {
             mIconArray[i] = new MiiSelectIcon(-1, -1, -1, "Miiセレクト用アイコン");
         }
@@ -514,7 +509,7 @@ namespace MiiSelectSub {
             mIconArray[i]->prohibit();
         }
     }
-}; // namespace MiiSelectSub
+};  // namespace MiiSelectSub
 
 s32 MiiSelect::getIconNum() {
     return _58 + _2E + _2C;

@@ -1,8 +1,8 @@
 #pragma once
 
-#include <revolution.h>
 #include "Game/Util/Color.hpp"
 #include "JSystem/JGeometry.hpp"
+#include <revolution.h>
 
 class LiveActor;
 
@@ -12,4 +12,4 @@ namespace MR {
     void requestPointLight(const LiveActor*, TVec3f, Color8, f32, s32);
 
     void loadLightPlayer();
-}; // namespace MR
+};  // namespace MR

@@ -20,9 +20,9 @@ namespace FileSelectNumberSub {
 
     private:
         /* 0x8 */ LayoutActor* mHost;
-        /* 0xC */ Nerve*       _C;
+        /* 0xC */ Nerve* _C;
     };
-}; // namespace FileSelectNumberSub
+};  // namespace FileSelectNumberSub
 
 class FileSelectNumber : public LayoutActor {
 public:
@@ -43,7 +43,7 @@ public:
     void exeEnd();
 
 private:
-    /* 0x20 */ s32                                        mNumber;
-    /* 0x24 */ u8                                         _24[8];
+    /* 0x20 */ s32 mNumber;
+    /* 0x24 */ u8 _24[8];
     /* 0x2C */ FileSelectNumberSub::SelectAnimController* mSelectAnimCtrl;
 };

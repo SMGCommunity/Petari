@@ -12,7 +12,7 @@ public:
     virtual bool close();
     virtual bool update();
 
-    u8  _11;
+    u8 _11;
     u16 _12;
     u16 _14;
     u16 _16;

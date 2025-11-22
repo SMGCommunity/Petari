@@ -1,8 +1,7 @@
 #include "Game/Camera/CameraAnim.hpp"
 #include "Game/Camera/CamTranslatorAnim.hpp"
 
-KeyCamAnmDataAccessor::~KeyCamAnmDataAccessor() {
-}
+KeyCamAnmDataAccessor::~KeyCamAnmDataAccessor() {}
 
 void KeyCamAnmDataAccessor::set(void* pInfo, void* pValues) {
     mInfo = reinterpret_cast< CanmKeyFrameInfo* >(pInfo);
@@ -83,14 +82,14 @@ u32 KeyCamAnmDataAccessor::searchKeyFrameIndex(f32 key, u32 offset, u32 count, u
 }
 
 f32 KeyCamAnmDataAccessor::get3f(f32 key, u32 offset, u32 count) const {
-    u32  index = searchKeyFrameIndex(key, offset, count, 3);
+    u32 index = searchKeyFrameIndex(key, offset, count, 3);
     f32* values = mValues + offset + index * 3;
 
     return calcHermite(key, values[0], values[1], values[2], values[3], values[4], values[5]);
 }
 
 f32 KeyCamAnmDataAccessor::get4f(f32 key, u32 offset, u32 count) const {
-    u32  index = searchKeyFrameIndex(key, offset, count, 4);
+    u32 index = searchKeyFrameIndex(key, offset, count, 4);
     f32* values = mValues + offset + index * 4;
 
     return calcHermite(key, values[0], values[1], values[2], values[3], values[4], values[5]);
@@ -107,8 +106,7 @@ f32 KeyCamAnmDataAccessor::calcHermite(f32 key, f32 a2, f32 a3, f32 a4, f32 a5, 
 }
 #endif
 
-CamAnmDataAccessor::~CamAnmDataAccessor() {
-}
+CamAnmDataAccessor::~CamAnmDataAccessor() {}
 
 void CamAnmDataAccessor::set(void* pInfo, void* pValues) {
     mInfo = reinterpret_cast< CanmFrameInfo* >(pInfo);
@@ -166,12 +164,11 @@ f32 CamAnmDataAccessor::getFovy(f32 key) const {
     f32 diff = key - fKey;
 
     if (diff < 0.0f) {
-        
+        
     }
 }*/
 
-CameraAnim::CameraAnim(const char* pName)
-    : Camera(pName) {
+CameraAnim::CameraAnim(const char* pName) : Camera(pName) {
     _4C = 0;
     _50 = 1;
     mNrFrames = 0;
@@ -186,8 +183,7 @@ CameraAnim::CameraAnim(const char* pName)
     _7C = 0;
 }
 
-CameraAnim::~CameraAnim() {
-}
+CameraAnim::~CameraAnim() {}
 
 bool CameraAnim::isZeroFrameMoveOff() const {
     return true;
@@ -213,7 +209,7 @@ void CameraAnim::setParam(u8* pFile, f32 speed) {
 
 bool CameraAnim::isAnimEnd() const {
     bool hasEnded = true;
-    u32  nrFrames = mNrFrames;
+    u32 nrFrames = mNrFrames;
 
     if (nrFrames != 0) {
         if (!(mCurrentFrame >= nrFrames)) {

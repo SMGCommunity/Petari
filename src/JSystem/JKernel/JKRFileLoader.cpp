@@ -2,13 +2,12 @@
 #include "revolution.h"
 
 namespace {
-    OSMutex gLoaderMutex; // 0x8060CFA8
+    OSMutex gLoaderMutex;  // 0x8060CFA8
 }
 
 JSUList< JKRFileLoader > JKRFileLoader::sFileLoaderList = JSUList< JKRFileLoader >();
 
-JKRFileLoader::JKRFileLoader()
-    : JKRDisposer(), mLoaderLink(this) {
+JKRFileLoader::JKRFileLoader() : JKRDisposer(), mLoaderLink(this) {
     mLoaderName = nullptr;
     mLoaderType = 0;
     _34 = 0;

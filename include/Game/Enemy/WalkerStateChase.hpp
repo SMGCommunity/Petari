@@ -28,8 +28,8 @@ public:
     void exeEnd();
     bool isRunning() const;
 
-    LiveActor*             mParentActor; // 0xC
-    WalkerStateParam*      mStateParam;  // 0x10
+    LiveActor* mParentActor;             // 0xC
+    WalkerStateParam* mStateParam;       // 0x10
     WalkerStateChaseParam* mChaseParam;  // 0x14
-    TVec3f*                _18;
+    TVec3f* _18;
 };

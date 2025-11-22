@@ -11,7 +11,7 @@ public:
     virtual ~ShadowDrawer();
 
     ShadowController* getController() const;
-    void              setShadowController(ShadowController*);
+    void setShadowController(ShadowController*);
 
-    ShadowController* mController; // 0xC
+    ShadowController* mController;  // 0xC
 };
