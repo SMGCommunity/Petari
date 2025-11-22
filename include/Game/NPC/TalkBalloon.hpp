@@ -110,8 +110,7 @@ public:
     void update();
     bool isActiveBalloonShort();
 
-    TalkBalloonShort **mBalloonShortArray;
-
+    /* 0x00 */ TalkBalloonShort **mBalloonShortArray;
     TalkBalloonEvent *_04;
     TalkBalloonInfo *_08;
     TalkBalloonSign *_0C;
