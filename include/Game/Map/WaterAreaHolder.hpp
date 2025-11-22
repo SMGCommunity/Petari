@@ -12,16 +12,16 @@ class WaterInfo;
 
 class WaterAreaFunction {
 public:
-    static void entryOceanBowl(OceanBowl*);
-    static void entryOceanRing(OceanRing*);
-    static void entryOceanSphere(OceanSphere*);
-    static void entryWhirlPool(WhirlPool*);
-    static void entryWhirlPoolAccelerator(WhirlPoolAccelerator*);
-    static void createWaterAreaHolder();
-    static bool tryInOceanArea(const TVec3f&, WaterInfo*);
-    static bool tryInWhirlPoolAccelerator(const TVec3f&, TVec3f*);
-    static bool isCameraInWaterForCameraUtil();
-    static f32 getCameraWaterDepth();
+    static void       entryOceanBowl(OceanBowl*);
+    static void       entryOceanRing(OceanRing*);
+    static void       entryOceanSphere(OceanSphere*);
+    static void       entryWhirlPool(WhirlPool*);
+    static void       entryWhirlPoolAccelerator(WhirlPoolAccelerator*);
+    static void       createWaterAreaHolder();
+    static bool       tryInOceanArea(const TVec3f&, WaterInfo*);
+    static bool       tryInWhirlPoolAccelerator(const TVec3f&, TVec3f*);
+    static bool       isCameraInWaterForCameraUtil();
+    static f32        getCameraWaterDepth();
     static WaterInfo* getCameraWaterInfo();
-    static void pauseOffWaterArea();
+    static void       pauseOffWaterArea();
 };

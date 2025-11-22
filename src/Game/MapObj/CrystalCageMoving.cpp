@@ -2,7 +2,8 @@
 #include "Game/MapObj/CrystalCageMoving.hpp"
 #include "JSystem/JMath/JMath.hpp"
 
-CrystalCageMoving::CrystalCageMoving(const char *pName) : MapObjActor(pName) {
+CrystalCageMoving::CrystalCageMoving(const char* pName)
+    : MapObjActor(pName) {
     mTicoModel = nullptr;
     mCameraInfo = nullptr;
     _FC.x = 0.0f;
@@ -12,7 +13,7 @@ CrystalCageMoving::CrystalCageMoving(const char *pName) : MapObjActor(pName) {
     _C8.identity();
 }
 
-void CrystalCageMoving::init(const JMapInfoIter &rIter) {
+void CrystalCageMoving::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);
     MapObjActorInitInfo info;
     info.setupHioNode("地形オブジェ");
@@ -134,7 +135,7 @@ void CrystalCageMoving::control() {
     }
 }
 
-bool CrystalCageMoving::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool CrystalCageMoving::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (isNerveTypeEnd()) {
         return false;
     }
@@ -148,38 +149,35 @@ bool CrystalCageMoving::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *
     return false;
 }
 
-void CrystalCageMoving::crashMario(HitSensor *pSender, HitSensor *pReceiver) {
+void CrystalCageMoving::crashMario(HitSensor* pSender, HitSensor* pReceiver) {
     MR::tryRumblePadVeryStrong(this, 0);
     MR::shakeCameraVeryStrong();
 
     if (_108) {
         setNerve(&NrvCrystalCageMoving::CrystalCageMovingNrvBreakSmall::sInstance);
-    }
-    else {
+    } else {
         f32 sensorDist = PSVECDistance(&pReceiver->mPosition, &pSender->mPosition);
         f32 sensorObjDist = PSVECDistance(&mPosition, &pSender->mPosition);
 
         if (sensorDist < 30.0f && sensorObjDist < 450.0f) {
             setNerve(&NrvCrystalCageMoving::CrystalCageMovingNrvBreakAll::sInstance);
-        }
-        else {
+        } else {
             setNerve(&NrvCrystalCageMoving::CrystalCageMovingNrvBreakBig::sInstance);
         }
     }
 }
 
-void CrystalCageMoving::updateHitSensor(HitSensor *pSensor) {
+void CrystalCageMoving::updateHitSensor(HitSensor* pSensor) {
     if (!_108) {
         pSensor->mPosition.set<f32>(mPosition);
-    }
-    else {
-        f32 radius = pSensor->mRadius;
+    } else {
+        f32     radius = pSensor->mRadius;
         TMtx34f joint_mtx;
         joint_mtx.set(MR::getJointMtx(this, nullptr));
         TVec3f joint_pos;
-        f32 z = joint_mtx.mMtx[2][1];
-        f32 y = joint_mtx.mMtx[1][1];
-        f32 x = joint_mtx.mMtx[0][1];
+        f32    z = joint_mtx.mMtx[2][1];
+        f32    y = joint_mtx.mMtx[1][1];
+        f32    x = joint_mtx.mMtx[0][1];
         joint_pos.set<f32>(x, y, z);
         TVec3f stack_14;
         JMAVECScaleAdd(&joint_pos, &mPosition, &stack_14, (-450.0f + radius));
@@ -187,15 +185,15 @@ void CrystalCageMoving::updateHitSensor(HitSensor *pSensor) {
         JMAVECScaleAdd(&joint_pos, &mPosition, &stack_8, (450.0f - radius));
         MR::calcPerpendicFootToLineInside(&pSensor->mPosition, *MR::getPlayerPos(), stack_14, stack_8);
     }
-} 
+}
 
-void CrystalCageMoving::connectToScene(const MapObjActorInitInfo &rInfo) {
+void CrystalCageMoving::connectToScene(const MapObjActorInitInfo& rInfo) {
     if (rInfo.mConnectToScene) {
         MR::connectToSceneCrystal(this);
     }
 }
 
-void CrystalCageMoving::initDummyModel(const JMapInfoIter &rIter) {
+void CrystalCageMoving::initDummyModel(const JMapInfoIter& rIter) {
     _C8.set(MR::getJointMtx(this, 0));
     TVec3f stack_8;
     PSMTXMultVec(_C8.toMtxPtr(), &sDummyModelOffset, &stack_8);
@@ -227,12 +225,12 @@ void CrystalCageMoving::startBreakDemo() {
 bool CrystalCageMoving::isNerveTypeEnd() const {
     bool ret = false;
 
-    if (isNerve(&NrvCrystalCageMoving::CrystalCageMovingNrvBreakBig::sInstance) || 
-    isNerve(&NrvCrystalCageMoving::CrystalCageMovingNrvBreakSmall::sInstance) || 
-    isNerve(&NrvCrystalCageMoving::CrystalCageMovingNrvBreakAll::sInstance) ||
-    isNerve(&NrvCrystalCageMoving::CrystalCageMovingNrvDemoTicoMove::sInstance) ||
-    isNerve(&NrvCrystalCageMoving::CrystalCageMovingNrvDemoTicoStop::sInstance) ||
-    isNerve(&NrvCrystalCageMoving::CrystalCageMovingNrvDemoTicoChange::sInstance)) {
+    if (isNerve(&NrvCrystalCageMoving::CrystalCageMovingNrvBreakBig::sInstance) ||
+        isNerve(&NrvCrystalCageMoving::CrystalCageMovingNrvBreakSmall::sInstance) ||
+        isNerve(&NrvCrystalCageMoving::CrystalCageMovingNrvBreakAll::sInstance) ||
+        isNerve(&NrvCrystalCageMoving::CrystalCageMovingNrvDemoTicoMove::sInstance) ||
+        isNerve(&NrvCrystalCageMoving::CrystalCageMovingNrvDemoTicoStop::sInstance) ||
+        isNerve(&NrvCrystalCageMoving::CrystalCageMovingNrvDemoTicoChange::sInstance)) {
         ret = true;
     }
 
@@ -240,7 +238,6 @@ bool CrystalCageMoving::isNerveTypeEnd() const {
 }
 
 CrystalCageMoving::~CrystalCageMoving() {
-
 }
 
 namespace NrvCrystalCageMoving {
@@ -253,46 +250,44 @@ namespace NrvCrystalCageMoving {
     INIT_NERVE(CrystalCageMovingNrvDemoTicoStop);
     INIT_NERVE(CrystalCageMovingNrvDemoTicoChange);
 
-    void CrystalCageMovingNrvDemoTicoChange::execute(Spine *pSpine) const {
+    void CrystalCageMovingNrvDemoTicoChange::execute(Spine* pSpine) const {
         CrystalCageMoving* cage = reinterpret_cast<CrystalCageMoving*>(pSpine->mExecutor);
         cage->exeDemoTicoChange();
     }
 
-    void CrystalCageMovingNrvDemoTicoStop::execute(Spine *pSpine) const {
+    void CrystalCageMovingNrvDemoTicoStop::execute(Spine* pSpine) const {
         CrystalCageMoving* cage = reinterpret_cast<CrystalCageMoving*>(pSpine->mExecutor);
         cage->exeDemoTicoStop();
     }
 
-    void CrystalCageMovingNrvDemoTicoMove::execute(Spine *pSpine) const {
+    void CrystalCageMovingNrvDemoTicoMove::execute(Spine* pSpine) const {
         CrystalCageMoving* cage = reinterpret_cast<CrystalCageMoving*>(pSpine->mExecutor);
         cage->exeDemoTicoMove();
     }
 
-    void CrystalCageMovingNrvBreakAll::execute(Spine *pSpine) const {
+    void CrystalCageMovingNrvBreakAll::execute(Spine* pSpine) const {
         CrystalCageMoving* cage = reinterpret_cast<CrystalCageMoving*>(pSpine->mExecutor);
         cage->exeBreakAll();
     }
 
-    void CrystalCageMovingNrvBreakSmall::execute(Spine *pSpine) const {
+    void CrystalCageMovingNrvBreakSmall::execute(Spine* pSpine) const {
         CrystalCageMoving* cage = reinterpret_cast<CrystalCageMoving*>(pSpine->mExecutor);
         cage->exeBreakSmall();
     }
 
-    void CrystalCageMovingNrvWaitSmall::execute(Spine *) const {
-
+    void CrystalCageMovingNrvWaitSmall::execute(Spine*) const {
     }
 
-    void CrystalCageMovingNrvBreakBig::executeOnEnd(Spine *pSpine) const {
+    void CrystalCageMovingNrvBreakBig::executeOnEnd(Spine* pSpine) const {
         CrystalCageMoving* cage = reinterpret_cast<CrystalCageMoving*>(pSpine->mExecutor);
         MR::endActorCamera(cage, cage->mCameraInfo, true, -1);
     }
 
-    void CrystalCageMovingNrvBreakBig::execute(Spine *pSpine) const {
+    void CrystalCageMovingNrvBreakBig::execute(Spine* pSpine) const {
         CrystalCageMoving* cage = reinterpret_cast<CrystalCageMoving*>(pSpine->mExecutor);
         cage->exeBreakBig();
     }
 
-    void CrystalCageMovingNrvWaitBig::execute(Spine *) const {
-
+    void CrystalCageMovingNrvWaitBig::execute(Spine*) const {
     }
-};
+}; // namespace NrvCrystalCageMoving

@@ -4,17 +4,17 @@
 #include "JSystem/JMath/JMath.hpp"
 
 MirrorActor::~MirrorActor() {
-
 }
 
-MirrorActor::MirrorActor(LiveActor *pActor, const char *a2, const char *a3) : LiveActor(a2) {
+MirrorActor::MirrorActor(LiveActor* pActor, const char* a2, const char* a3)
+    : LiveActor(a2) {
     _8C = pActor;
     _A0 = false;
     initModelManagerWithAnm(a3, 0, 0);
 }
 
 #ifdef NON_MATCHING
-void MirrorActor::init(const JMapInfoIter &rIter) {
+void MirrorActor::init(const JMapInfoIter& rIter) {
     MR::connectToSceneMirrorMapObj(this);
     MR::copyJointAnimation(this, _8C);
     MR::syncMaterialAnimation(this, _8C);
@@ -38,7 +38,8 @@ void MirrorActor::init(const JMapInfoIter &rIter) {
         ps_sub f1, f2, f3
         psq_st f0, 0(ptrStack), 0, 0
         psq_st f1, 8(ptrStack), 1, 0
-    };
+    }
+    ;
 
     f32 mag = PSVECMag((const Vec*)&stack_8);
     _9C = 0.5f * mag;
@@ -48,7 +49,8 @@ void MirrorActor::init(const JMapInfoIter &rIter) {
         lfs         f1, 0x1C(r1)
         psq_st      f0, 0x90(r31), 0, 0
         stfs        f1, 0x98(r31)
-    };
+    }
+    ;
 
     makeActorAppeared();
 }
@@ -62,9 +64,8 @@ void MirrorActor::movement() {
             if (!MR::isHiddenModel(this)) {
                 MR::disconnectToDrawTemporarily(this);
             }
-        }   
-    }
-    else {
+        }
+    } else {
         if (_A0) {
             _A0 = false;
 
@@ -77,7 +78,7 @@ void MirrorActor::movement() {
     }
 }
 
-void MirrorActor::calcAnim() { 
+void MirrorActor::calcAnim() {
     MR::copyJointAnimation(this, _8C);
     MR::updateMaterial(this);
 }
@@ -89,7 +90,7 @@ void MirrorActor::calcViewAndEntry() {
 #ifdef NON_MATCHING
 // weird function call to getHostCenterPos
 bool MirrorActor::isHostInTheOtherSideOfMirror() const {
-    if (MR::isExistMirrorCamera()) { 
+    if (MR::isExistMirrorCamera()) {
         TVec3f centerPos;
         centerPos = getHostCenterPos();
         f32 dist = MR::getDistanceToMirror(centerPos);

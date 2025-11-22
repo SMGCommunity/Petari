@@ -291,8 +291,7 @@ namespace MR {
         if (getTaking(getSensorHost(pSender)) == pReceiver || getTaken(getSensorHost(pReceiver)) == pSender) {
             getSensorHost(pSender)->mSensorKeeper->mTaking = nullptr;
             getSensorHost(pReceiver)->mSensorKeeper->mTaken = nullptr;
-        }
-        else {
+        } else {
             getSensorHost(pSender)->mSensorKeeper->mTaken = nullptr;
             getSensorHost(pReceiver)->mSensorKeeper->mTaking = nullptr;
         }
@@ -421,10 +420,7 @@ namespace MR {
     }
 
     bool isSensorItem(const HitSensor* pSensor) {
-        if (pSensor->isType(ATYPE_COIN)
-            || pSensor->isType(ATYPE_COIN_RED)
-            || pSensor->isType(ATYPE_KINOKO_ONEUP))
-        {
+        if (pSensor->isType(ATYPE_COIN) || pSensor->isType(ATYPE_COIN_RED) || pSensor->isType(ATYPE_KINOKO_ONEUP)) {
             return true;
         }
 
@@ -626,13 +622,13 @@ namespace MR {
 
     bool sendMsgToBindedSensor(u32 msg, LiveActor* pActor, HitSensor* pSender) {
         HitInfo* info[32];
-        u32 size = pActor->mBinder->copyPlaneArrayAndSortingSensor(info, sizeof(info) / sizeof(*info));
+        u32      size = pActor->mBinder->copyPlaneArrayAndSortingSensor(info, sizeof(info) / sizeof(*info));
 
         if (size == 0) {
             return false;
         }
 
-        bool isSent = false;
+        bool       isSent = false;
         HitSensor* pReceiver = info[0]->mParentTriangle.mSensor;
         isSent |= pReceiver->receiveMessage(msg, pSender);
 
@@ -690,8 +686,7 @@ namespace MR {
 
         if (ratio < getSensorHost(pSender)->mGravity.dot(dir)) {
             return sendMsgToEnemyAttackTrample(pReceiver, pSender);
-        }
-        else {
+        } else {
             return sendMsgToEnemyAttackBlow(pReceiver, pSender);
         }
     }
@@ -723,8 +718,7 @@ namespace MR {
 
         if (pGroup != nullptr) {
             pGroup->sendMsgToGroupMember(msg, pSender, pName);
-        }
-        else {
+        } else {
             pActor->receiveMessage(msg, pSender, pActor->getSensor(pName));
         }
     }
@@ -785,12 +779,7 @@ namespace MR {
     }
 
     bool isMsgPlayerHitAll(u32 msg) {
-        return msg == ACTMES_PLAYER_PUNCH
-            || msg == ACTMES_PLAYER_UPPER_PUNCH
-            || msg == ACTMES_JET_TURTLE_ATTACK
-            || msg == ACTMES_FIREBALL_ATTACK
-            || msg == ACTMES_FREEZE_ATTACK
-            || msg == ACTMES_INVINCIBLE_ATTACK;
+        return msg == ACTMES_PLAYER_PUNCH || msg == ACTMES_PLAYER_UPPER_PUNCH || msg == ACTMES_JET_TURTLE_ATTACK || msg == ACTMES_FIREBALL_ATTACK || msg == ACTMES_FREEZE_ATTACK || msg == ACTMES_INVINCIBLE_ATTACK;
     }
 
     bool isMsgPlayerSpinAttack(u32 msg) {
@@ -1045,4 +1034,4 @@ namespace MR {
     HitSensor* addBodyMessageSensor(LiveActor* pActor, u32 type) {
         return addHitSensor(pActor, "body", type, 0, 0.0f, TVec3f(0.0f, 0.0f, 0.0f));
     }
-};
+}; // namespace MR

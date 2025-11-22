@@ -13,16 +13,14 @@ namespace NrvLuigiLetter {
     NEW_NERVE(HostTypeNrvAppear, LuigiLetter, Appear);
     NEW_NERVE(HostTypeNrvWait, LuigiLetter, Wait);
     NEW_NERVE(HostTypeNrvEnd, LuigiLetter, End);
-};
+}; // namespace NrvLuigiLetter
 
-LuigiLetter::LuigiLetter(bool param1, const char* pParam2) :
-    LayoutActor("ルイージの手紙", true),
-    mTexture(nullptr),
-    mAButtonIcon(nullptr),
-    _28(pParam2),
-    _2C(param1)
-{
-    
+LuigiLetter::LuigiLetter(bool param1, const char* pParam2)
+    : LayoutActor("ルイージの手紙", true),
+      mTexture(nullptr),
+      mAButtonIcon(nullptr),
+      _28(pParam2),
+      _2C(param1) {
 }
 
 void LuigiLetter::init(const JMapInfoIter& rIter) {
@@ -45,8 +43,7 @@ void LuigiLetter::init(const JMapInfoIter& rIter) {
     if (_2C) {
         MR::connectToSceneTalkLayoutNoMovement(this);
         MR::connectToSceneTalkLayoutNoMovement(mAButtonIcon);
-    }
-    else {
+    } else {
         MR::connectToSceneLayoutOnPauseMovementCalcAnim(this);
         MR::connectToSceneLayoutOnPauseNoMovement(mAButtonIcon);
     }
@@ -127,4 +124,4 @@ namespace MR {
     LuigiLetter* createLuigiLetterForMenu() {
         return new LuigiLetter(false, MR::getLuigiLetterGalaxyName());
     }
-};
+}; // namespace MR

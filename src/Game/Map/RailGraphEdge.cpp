@@ -27,7 +27,7 @@ void RailGraphEdge::clearConnectInfo() {
 
 s32 RailGraphEdge::getNextNode(s32 a1) const {
     s32 node = _4;
-    
+
     if (node == a1) {
         return _8;
     }
@@ -54,13 +54,12 @@ s32 RailGraphEdge::getNextEdge(s32 a1) const {
 void RailGraphEdge::setNextEdge(s32 a1, s32 a2) {
     if (_4 == a2) {
         _C = a1;
-    }
-    else if (_8 == a2) {
+    } else if (_8 == a2) {
         _10 = a1;
     }
 }
 
-void RailGraphEdge::setArgs(const JMapInfo *pInfo, s32 a2) {
+void RailGraphEdge::setArgs(const JMapInfo* pInfo, s32 a2) {
     pInfo->getValue<s32>(a2, "point_arg0", &mPointArg0);
     pInfo->getValue<s32>(a2, "point_arg1", &mPointArg1);
     pInfo->getValue<s32>(a2, "point_arg2", &mPointArg2);

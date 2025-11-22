@@ -5,7 +5,7 @@
 
 namespace MR {
     /// @brief A contiguous reallocatable array.
-    template<class T>
+    template <class T>
     class AssignableArray {
     public:
         typedef T Item;
@@ -88,7 +88,7 @@ namespace MR {
     };
 
     /// @brief A contiguous fixed-size array.
-    template<class T, int N>
+    template <class T, int N>
     class FixedArray {
     public:
         typedef T Item;
@@ -143,7 +143,7 @@ namespace MR {
     };
 
     /// @brief A contiguous growable array.
-    template<class T>
+    template <class T>
     class Vector {
     public:
         /// @brief Creates a new `Vector`.
@@ -153,7 +153,6 @@ namespace MR {
 
         /// @brief Destroys the `Vector`.
         ~Vector() {
-            
         }
 
         /// @brief Returns the element at the given position.
@@ -190,7 +189,7 @@ namespace MR {
 
         /// @brief Appends a copy of `rItem` to the end of the container.
         /// @param rItem The reference to the value to append.
-        void push_back(const T::Item &rItem) {
+        void push_back(const T::Item& rItem) {
             u32 index = mCount;
 
             mCount++;
@@ -248,7 +247,7 @@ namespace MR {
         /* 0x? */ s32 mCount;
     };
 
-    template<class T, int S>
+    template <class T, int S>
     class FixedRingBuffer {
     public:
         class iterator {
@@ -267,15 +266,15 @@ namespace MR {
                 }
             }
 
-            T* mHead;   // 0x0
-            T* mTail;   // 0x4
-            T* mEnd;    // 0x8
+            T* mHead; // 0x0
+            T* mTail; // 0x4
+            T* mEnd;  // 0x8
         };
 
-        void push_back(const T &);
+        void push_back(const T&);
 
         T* mBuffer[S];
 
         int _58;
     };
-};
+}; // namespace MR

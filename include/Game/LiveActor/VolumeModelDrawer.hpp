@@ -13,15 +13,14 @@ public:
 
 class VolumeModelDrawer : public NameObj {
 public:
-    VolumeModelDrawer(const char *, const char *, MtxPtr);
+    VolumeModelDrawer(const char*, const char*, MtxPtr);
 
     virtual ~VolumeModelDrawer();
     virtual void draw() const;
 
     void loadModelDrawMtx() const;
 
-
-    MtxPtr mMtx;                // 0xC
-    J3DModelData* mModelData;   // 0x10
-    _GXColor mColor;             // 0x14
+    MtxPtr        mMtx;       // 0xC
+    J3DModelData* mModelData; // 0x10
+    _GXColor      mColor;     // 0x14
 };

@@ -5,5 +5,5 @@
 
 class SkeletalFishJointCalc {
 public:
-    static void calcJoint(TPos3f *, const TPos3f *, SkeletalFishRailControl *, const JointControllerInfo &);
+    static void calcJoint(TPos3f*, const TPos3f*, SkeletalFishRailControl*, const JointControllerInfo&);
 };

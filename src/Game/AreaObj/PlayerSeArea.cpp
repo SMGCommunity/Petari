@@ -1,15 +1,14 @@
 #include "Game/AreaObj/PlayerSeArea.hpp"
 #include "Game/Util.hpp"
 
-PlayerSeArea::PlayerSeArea(int type, const char *pName) : AreaObj(type, pName) {
-
+PlayerSeArea::PlayerSeArea(int type, const char* pName)
+    : AreaObj(type, pName) {
 }
 
 PlayerSeArea::~PlayerSeArea() {
-
 }
 
-void PlayerSeArea::init(const JMapInfoIter &rIter) {
+void PlayerSeArea::init(const JMapInfoIter& rIter) {
     AreaObj::init(rIter);
     MR::connectToSceneAreaObj(this);
     _3C = mObjArg0;
@@ -25,6 +24,6 @@ void PlayerSeArea::movement() {
     }
 }
 
-const char *PlayerSeArea::getManagerName() const {
+const char* PlayerSeArea::getManagerName() const {
     return "PlayerSeArea";
 }

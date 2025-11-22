@@ -3,7 +3,8 @@
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Screen/LuigiLetter.hpp"
 
-SceneDataInitializer::SceneDataInitializer() : NameObj("SceneDataInitializer") {
+SceneDataInitializer::SceneDataInitializer()
+    : NameObj("SceneDataInitializer") {
     mFileLoader = nullptr;
     mDataHolder = nullptr;
 }
@@ -19,7 +20,7 @@ void SceneDataInitializer::startStageFileLoad() {
 
 void SceneDataInitializer::startStageFileLoadAfterScenarioSelected() {
     NameObjArchiveListCollector collector;
-    JMapInfoIter iter;
+    JMapInfoIter                iter;
     iter.mInfo = nullptr;
     iter.mIndex = -1;
 
@@ -52,5 +53,4 @@ void SceneDataInitializer::initAfterScenarioSelected() {
 }
 
 SceneDataInitializer::~SceneDataInitializer() {
-
 }

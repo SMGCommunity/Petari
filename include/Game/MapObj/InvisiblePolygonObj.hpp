@@ -4,13 +4,13 @@
 
 class InvisiblePolygonObj : public LiveActor {
 public:
-    InvisiblePolygonObj(const char *);
+    InvisiblePolygonObj(const char*);
 
-    virtual void init(const JMapInfoIter &);
+    virtual void   init(const JMapInfoIter&);
     virtual MtxPtr getBaseMtx() const;
-    
+
     void initBaseMtx();
-    void initCollision(const JMapInfoIter &);
+    void initCollision(const JMapInfoIter&);
 
     TMtx34f mMatrix;
 };

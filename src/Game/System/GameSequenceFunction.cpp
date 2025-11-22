@@ -32,7 +32,7 @@ namespace {
     NWC24Messenger* getNWC24Messenger() NO_INLINE {
         return SingletonHolder<GameSystem>::get()->mSequenceDirector->mNWC24Messenger;
     }
-};
+}; // namespace
 
 namespace GameSequenceFunction {
     void activateGalaxyCometScheduler() {
@@ -164,8 +164,7 @@ namespace GameSequenceFunction {
             return false;
         }
 
-        return MR::isEqualString(getClearedStageName(), pClearedStageName)
-            && getClearedPowerStarId() == clearedPowerStarId;
+        return MR::isEqualString(getClearedStageName(), pClearedStageName) && getClearedPowerStarId() == clearedPowerStarId;
     }
 
     bool isPowerStarGreenAtResultSequence() {
@@ -288,9 +287,7 @@ namespace GameSequenceFunction {
     }
 
     void storeSceneStartGameDataHolder() {
-        if (!GameDataFunction::isPassedStoryEvent("チコガイドデモ終了")
-            || GameDataFunction::hasGrandStar(1))
-        {
+        if (!GameDataFunction::isPassedStoryEvent("チコガイドデモ終了") || GameDataFunction::hasGrandStar(1)) {
             getSaveDataHandleSequence()->backupCurrentUserFile();
         }
     }
@@ -307,13 +304,10 @@ namespace GameSequenceFunction {
     void startGameDataSaveSequence(bool isConfirmRemind, bool isSaveAndQuitMsg) {
         getGameSequenceProgress()->getGalaxyCometScheduler()->updateStateToGameData();
 
-        if (GameDataFunction::isPassedStoryEvent("ピーチ城浮上後")
-            && !GameDataFunction::hasGrandStar(1))
-        {
+        if (GameDataFunction::isPassedStoryEvent("ピーチ城浮上後") && !GameDataFunction::hasGrandStar(1)) {
             getSaveDataHandleSequence()->startSaveBackup(isConfirmRemind, isSaveAndQuitMsg);
-        }
-        else {
+        } else {
             getSaveDataHandleSequence()->startSave(isConfirmRemind, isSaveAndQuitMsg);
         }
     }
-};
+}; // namespace GameSequenceFunction

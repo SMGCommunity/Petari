@@ -7,12 +7,12 @@
 namespace {
     struct RaceStructData {
         /* 0x00 */ const char* mName;
-        /* 0x04 */ s32 mEventBgmId;
-        /* 0x08 */ s32 mMaxTime;
+        /* 0x04 */ s32         mEventBgmId;
+        /* 0x08 */ s32         mMaxTime;
         /* 0x0C */ const char* mMessageId;
         /* 0x10 */ const char* mGalaxyName;
-        /* 0x14 */ s32 mScenarioNo;
-        /* 0x18 */ bool mIsDemoWithStarPointer;
+        /* 0x14 */ s32         mScenarioNo;
+        /* 0x18 */ bool        mIsDemoWithStarPointer;
     };
 
     static const RaceStructData sRaceStruct[] = {
@@ -20,8 +20,7 @@ namespace {
         {"テレサレース[ファントム]", 3, 120, "RaceName_TeresaPhantom", "PhantomGalaxy", 2, true},
         {"テレサレース[デスプロムナード]", 3, 120, "RaceName_TeresaDeathPromenade", "TeresaMario2DGalaxy", 1, false},
         {"サーフィン[トライアル]", 2, 0, "RaceName_SurfingTrial", "SurfingLv1Galaxy", 1, false},
-        {"サーフィン[チャレンジ]", 2, 180, "RaceName_SurfingChallenge", "SurfingLv2Galaxy", 1, false}
-    };
+        {"サーフィン[チャレンジ]", 2, 180, "RaceName_SurfingChallenge", "SurfingLv2Galaxy", 1, false}};
 
     const RaceStructData& getRaceStruceData(s32 id) {
         return sRaceStruct[id];
@@ -30,12 +29,10 @@ namespace {
     RaceManager* getRaceManager() {
         return MR::getSceneObj<RaceManager>(SceneObj_RaceManager);
     }
-};
+}; // namespace
 
-RaceManagerLayout::RaceManagerLayout(const char* pName) :
-    LayoutActor(pName, true)
-{
-    
+RaceManagerLayout::RaceManagerLayout(const char* pName)
+    : LayoutActor(pName, true) {
 }
 
 void RaceManagerLayout::init(const JMapInfoIter& rIter) {
@@ -90,12 +87,7 @@ void RaceManagerLayout::playRank(u32 rank) {
 }
 
 bool RaceManagerLayout::isAllAnimStopped() {
-    return MR::isPaneAnimStopped(this, "Go", 0)
-        && MR::isPaneAnimStopped(this, "Goal", 0)
-        && MR::isPaneAnimStopped(this, "Lose", 0)
-        && MR::isPaneAnimStopped(this, "TimeUp", 0)
-        && MR::isPaneAnimStopped(this, "ScoreTime", 0)
-        && MR::isPaneAnimStopped(this, "Rank", 0);
+    return MR::isPaneAnimStopped(this, "Go", 0) && MR::isPaneAnimStopped(this, "Goal", 0) && MR::isPaneAnimStopped(this, "Lose", 0) && MR::isPaneAnimStopped(this, "TimeUp", 0) && MR::isPaneAnimStopped(this, "ScoreTime", 0) && MR::isPaneAnimStopped(this, "Rank", 0);
 }
 
 void RaceManagerLayout::hideRecordPane() {
@@ -148,18 +140,17 @@ namespace NrvRaceManager {
     NEW_NERVE(RaceManagerNrvPstWipeOut, RaceManager, WipeOut);
     NEW_NERVE(RaceManagerNrvPstWipeWait, RaceManager, WipeWait);
     NEW_NERVE(RaceManagerNrvPstWipeIn, RaceManager, WipeIn);
-};
+}; // namespace NrvRaceManager
 
-RaceManager::RaceManager() :
-    LiveActor("レース管理"),
-    mLayout(nullptr),
-    mRacerNum(0),
-    mAudienceNum(0),
-    mRank(0),
-    mBestTime(0),
-    mTime(0),
-    mPlayerRacer(nullptr)
-{
+RaceManager::RaceManager()
+    : LiveActor("レース管理"),
+      mLayout(nullptr),
+      mRacerNum(0),
+      mAudienceNum(0),
+      mRank(0),
+      mBestTime(0),
+      mTime(0),
+      mPlayerRacer(nullptr) {
     _FC.identity();
 }
 
@@ -179,7 +170,6 @@ void RaceManager::movement() {
 }
 
 void RaceManager::exeWait() {
-    
 }
 
 void RaceManager::exePrep() {
@@ -187,8 +177,7 @@ void RaceManager::exePrep() {
 
     if (isNerve(&NrvRaceManager::RaceManagerNrvPrepWipe::sInstance)) {
         setNerve(&NrvRaceManager::RaceManagerNrvPreWipeOut::sInstance);
-    }
-    else {
+    } else {
         prepBind();
         setNerve(&NrvRaceManager::RaceManagerNrvIntro::sInstance);
     }
@@ -210,8 +199,7 @@ void RaceManager::exeWipeOut() {
     if (isNerve(&NrvRaceManager::RaceManagerNrvPreWipeOut::sInstance)) {
         prepRace();
         setNerve(&NrvRaceManager::RaceManagerNrvPreWipeWait::sInstance);
-    }
-    else {
+    } else {
         resetRace();
         setNerve(&NrvRaceManager::RaceManagerNrvPstWipeWait::sInstance);
     }
@@ -224,8 +212,7 @@ void RaceManager::exeWipeWait() {
 
     if (isNerve(&NrvRaceManager::RaceManagerNrvPreWipeWait::sInstance)) {
         setNerve(&NrvRaceManager::RaceManagerNrvPreWipeIn::sInstance);
-    }
-    else {
+    } else {
         setNerve(&NrvRaceManager::RaceManagerNrvPstWipeIn::sInstance);
     }
 }
@@ -234,8 +221,7 @@ void RaceManager::exeWipeIn() {
     if (MR::isFirstStep(this)) {
         if (isNerve(&NrvRaceManager::RaceManagerNrvPreWipeIn::sInstance)) {
             MR::startSubBGM("BGM_MINIGAME_START", false);
-        }
-        else if (!MR::isPlayerDead()) {
+        } else if (!MR::isPlayerDead()) {
             MR::startCurrentStageBGM();
         }
 
@@ -248,8 +234,7 @@ void RaceManager::exeWipeIn() {
 
     if (isNerve(&NrvRaceManager::RaceManagerNrvPreWipeIn::sInstance)) {
         setNerve(&NrvRaceManager::RaceManagerNrvIntro::sInstance);
-    }
-    else {
+    } else {
         MR::onPlayerControl(true);
         MR::endDemo(this, "レース");
         // std::for_each(&mRacer[0], &mRacer[mRacerNum], std::mem_fun(&AbstractRacer::exitRacer));
@@ -261,8 +246,7 @@ void RaceManager::exeIntro() {
     if (MR::isFirstStep(this)) {
         if (getRaceStruceData(mCurrentRace).mIsDemoWithStarPointer) {
             MR::startStarPointerModeDemoWithStarPointer(this);
-        }
-        else {
+        } else {
             MR::startStarPointerModeDemo(this);
         }
     }
@@ -319,12 +303,10 @@ void RaceManager::exeGoal() {
         if (mRank == 0) {
             MR::startSubBGM("BGM_RACE_LOSE", false);
             mLayout->playTimeUp();
-        }
-        else if (mRank == 1) {
+        } else if (mRank == 1) {
             MR::startSubBGM("BGM_RACE_WIN", false);
             mLayout->playGoal();
-        }
-        else {
+        } else {
             MR::startSubBGM("BGM_RACE_LOSE", false);
             mLayout->playLose();
         }
@@ -533,4 +515,4 @@ namespace RaceManagerFunction {
             getRaceStruceData(index).mGalaxyName,
             getRaceStruceData(index).mScenarioNo);
     }
-};
+}; // namespace RaceManagerFunction

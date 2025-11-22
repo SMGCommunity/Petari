@@ -10,14 +10,12 @@ namespace {
     NEW_NERVE(ErrorMessageWindowDisplay, ErrorMessageWindow, Display);
     NEW_NERVE(ErrorMessageWindowDisappear, ErrorMessageWindow, Disappear);
     NEW_NERVE(ErrorMessageWindowDisappearBeforeAppear, ErrorMessageWindow, DisappearBeforeAppear);
-};
+}; // namespace
 
-ErrorMessageWindow::ErrorMessageWindow() :
-    LayoutActor("エラーメッセージ表示", false),
-    mMessageId(nullptr),
-    mTexture(nullptr)
-{
-    
+ErrorMessageWindow::ErrorMessageWindow()
+    : LayoutActor("エラーメッセージ表示", false),
+      mMessageId(nullptr),
+      mTexture(nullptr) {
 }
 
 void ErrorMessageWindow::init(const JMapInfoIter& rIter) {
@@ -46,8 +44,7 @@ void ErrorMessageWindow::appearWithMessage(const char* pMessageId, MessageType m
     if (MR::isDead(this)) {
         appear();
         setNerve(&ErrorMessageWindowAppear::sInstance);
-    }
-    else {
+    } else {
         setNerve(&ErrorMessageWindowDisappearBeforeAppear::sInstance);
     }
 }
@@ -81,8 +78,7 @@ void ErrorMessageWindow::exeAppear() {
             MR::hidePane(this, "ErrorMessage");
             MR::replacePaneTexture(this, "PicDummy", mTexture, 0);
             MR::setTextBoxMessageRecursive(this, "ErrorTextHalf", pMessage);
-        }
-        else {
+        } else {
             MR::hidePane(this, "PicDummy");
             MR::hidePane(this, "ErrorTextHalf");
             MR::showPane(this, "ErrorMessage");

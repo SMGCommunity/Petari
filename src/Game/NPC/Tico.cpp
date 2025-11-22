@@ -32,7 +32,7 @@ namespace NrvTico {
     NEW_NERVE(TicoNrvGuide2, Tico, Guide2);
     NEW_NERVE(TicoNrvGuide3, Tico, Guide3);
     NEW_NERVE(TicoNrvLead0, Tico, Lead0);
-};
+}; // namespace NrvTico
 
 namespace {
     static Color8 hPointLight[6] = {
@@ -41,17 +41,16 @@ namespace {
         Color8(0, 0xFF, 0x32, 0xFF),
         Color8(0xFF, 0, 0, 0xFF),
         Color8(0x78, 0, 0xFF, 0xFF),
-        Color8(0xFF, 0x64,0x64, 0xFF)
-    };
+        Color8(0xFF, 0x64, 0x64, 0xFF)};
 };
 
-Tico::Tico(const char *pName) : NPCActor(pName), _15C(0), _160(0.0f, 0.0f, 0.0f), 
-    _16C(0.0f), mDemoGetPower(nullptr), _174(0), _178(0), _17C(255, 255, 255, 255), 
-    _180(0), mDemoStarter(this) {
-
+Tico::Tico(const char* pName)
+    : NPCActor(pName), _15C(0), _160(0.0f, 0.0f, 0.0f),
+      _16C(0.0f), mDemoGetPower(nullptr), _174(0), _178(0), _17C(255, 255, 255, 255),
+      _180(0), mDemoStarter(this) {
 }
 
-void Tico::makeArchiveList(NameObjArchiveListCollector *pCollector, const JMapInfoIter &rIter) {
+void Tico::makeArchiveList(NameObjArchiveListCollector* pCollector, const JMapInfoIter& rIter) {
     if (MR::isObjectName(rIter, "TicoBaby")) {
         pCollector->addArchive("TicoBaby");
         return;
@@ -67,7 +66,7 @@ void Tico::initBase(s32 color) {
     initBase(iter, color);
 }
 
-void Tico::initBase(const JMapInfoIter &rIter, s32 color) {
+void Tico::initBase(const JMapInfoIter& rIter, s32 color) {
     NPCActorCaps caps("Tico");
     caps.setDefault();
     caps._E = 0;
@@ -88,9 +87,9 @@ void Tico::initBase(const JMapInfoIter &rIter, s32 color) {
     setDefaults2();
     _13C = "Spin";
     _12C = 1000.0f;
-    const char *wait = "Wait";
-    const char *talk = "Talk";
-    const char *fly = "Fly";
+    const char* wait = "Wait";
+    const char* talk = "Talk";
+    const char* fly = "Fly";
     mParam._14 = wait;
     mParam._18 = wait;
     mParam._1C = talk;
@@ -105,9 +104,8 @@ void Tico::initBase(const JMapInfoIter &rIter, s32 color) {
     if (color != -1) {
         MR::startBrk(this, "ColorChange");
         MR::setBrkFrameAndStop(this, color);
-        _17C = hPointLight[color];   
-    }
-    else {
+        _17C = hPointLight[color];
+    } else {
         _17C = hPointLight[5];
     }
 
@@ -118,7 +116,7 @@ void Tico::initBase(const JMapInfoIter &rIter, s32 color) {
     _178 = MR::getJointMtx(this, "Body");
 }
 
-void Tico::initMessage(const JMapInfoIter &rIter, const char *pMsg) {
+void Tico::initMessage(const JMapInfoIter& rIter, const char* pMsg) {
     if (initTalkCtrl(rIter, pMsg, TVec3f(0.0f, 120.0f, 0.0f), nullptr)) {
         TalkMessageCtrl* ctrl = mMsgCtrl;
         MR::registerKillFunc(mMsgCtrl, TalkMessageFunc<Tico>(this, &Tico::killFunc));
@@ -129,7 +127,7 @@ void Tico::initMessage(const JMapInfoIter &rIter, const char *pMsg) {
     MR::offRootNodeAutomatic(_174);
 }
 
-void Tico::initMessage(const char *pMsg) {
+void Tico::initMessage(const char* pMsg) {
     JMapInfoIter iter(0, -1);
     if (initTalkCtrl(iter, pMsg, TVec3f(0.0f, 120.0f, 0.0f), nullptr)) {
         TalkMessageCtrl* ctrl = mMsgCtrl;
@@ -141,7 +139,7 @@ void Tico::initMessage(const char *pMsg) {
     MR::offRootNodeAutomatic(_174);
 }
 
-void Tico::init(const JMapInfoIter &rIter) {
+void Tico::init(const JMapInfoIter& rIter) {
     s32 color = 0;
     MR::getJMapInfoArg0NoInit(rIter, &color);
     s32 behavior = 0;
@@ -167,16 +165,13 @@ void Tico::init(const JMapInfoIter &rIter) {
         if (MR::isDemoCast(this, "チコガイドデモ")) {
             if (clr == -1) {
                 _15C = 5;
-            }
-            else {
+            } else {
                 _15C = 6;
             }
-        }
-        else {
+        } else {
             if (MR::isDemoCast(this, "青チコ変身")) {
                 _15C = 1;
-            }
-            else {
+            } else {
                 if (MR::isDemoCast(this, "赤いスター")) {
                     _15C = 9;
                     MR::useStageSwitchWriteA(this, rIter);
@@ -188,38 +183,37 @@ void Tico::init(const JMapInfoIter &rIter) {
     }
 
     switch (_15C) {
-        case 5:
-            mDemoGetPower = new TicoDemoGetPower(this, rIter);
-            setNerve(&NrvTico::TicoNrvSpin0::sInstance);
-            break;
-        case 1:
-            setNerve(&NrvTico::TicoNrvBlue0::sInstance);
-            break;
-        case 9:
-            if (MR::isOnGameEventFlagRosettaTalkAboutTicoInTower()) {
-                makeActorAppeared();
-                setNerve(&NrvTico::TicoNrvRed1::sInstance);
-            }
-            else {
-                setNerve(&NrvTico::TicoNrvRed0::sInstance);
-            }
-            break;
-        case 6:
-            MR::offRootNodeAutomatic(mMsgCtrl);
-            setNerve(&NrvTico::TicoNrvGuide0::sInstance);
-            break;
-        case 7:
-            setNerve(&NrvTico::TicoNrvLead0::sInstance);
-            pushNerve(&NrvTico::TicoNrvAppear::sInstance);
-            break;
-        case 3:
-            setNerve(&NrvTico::TicoNrvTalk::sInstance);
-            break;
-        case 8:
-            setNerve(&NrvTico::TicoNrvNoReaction::sInstance);
-            break;
-        default:
-            break;
+    case 5:
+        mDemoGetPower = new TicoDemoGetPower(this, rIter);
+        setNerve(&NrvTico::TicoNrvSpin0::sInstance);
+        break;
+    case 1:
+        setNerve(&NrvTico::TicoNrvBlue0::sInstance);
+        break;
+    case 9:
+        if (MR::isOnGameEventFlagRosettaTalkAboutTicoInTower()) {
+            makeActorAppeared();
+            setNerve(&NrvTico::TicoNrvRed1::sInstance);
+        } else {
+            setNerve(&NrvTico::TicoNrvRed0::sInstance);
+        }
+        break;
+    case 6:
+        MR::offRootNodeAutomatic(mMsgCtrl);
+        setNerve(&NrvTico::TicoNrvGuide0::sInstance);
+        break;
+    case 7:
+        setNerve(&NrvTico::TicoNrvLead0::sInstance);
+        pushNerve(&NrvTico::TicoNrvAppear::sInstance);
+        break;
+    case 3:
+        setNerve(&NrvTico::TicoNrvTalk::sInstance);
+        break;
+    case 8:
+        setNerve(&NrvTico::TicoNrvNoReaction::sInstance);
+        break;
+    default:
+        break;
     }
 }
 
@@ -236,8 +230,7 @@ void Tico::control() {
 
     if (isNerve(_180)) {
         NPCActor::control();
-    }
-    else {
+    } else {
         if (!MR::isTimeKeepDemoActive()) {
             MR::startLevelSound(this, "SE_SM_LV_TICO_WAIT", -1, -1, -1);
         }
@@ -253,7 +246,7 @@ void Tico::control() {
     }
 }
 
-bool Tico::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool Tico::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgStarPieceReflect(msg)) {
         return false;
     }
@@ -299,7 +292,7 @@ void Tico::exeReaction() {
         MR::startDPDHitSound();
         MR::startSound(this, "SE_SV_TICO_POINT", -1, -1);
     }
-    
+
     if (_DB) {
         MR::limitedStarPieceHitSound();
         MR::startSound(this, "SE_BM_BUTLER_ABSORB", -1, -1);
@@ -335,8 +328,7 @@ void Tico::exeNoReaction() {
         if (MR::tryTalkNearPlayerAndStartTalkAction(this)) {
             setNerve(&NrvTico::TicoNrvWait::sInstance);
         }
-    }
-    else {
+    } else {
         MR::tryStartTurnAction(this);
     }
 }
@@ -345,8 +337,7 @@ void Tico::exeWait() {
     if (!tryReaction()) {
         if (mMsgCtrl != nullptr) {
             MR::tryTalkNearPlayerAndStartTalkAction(this);
-        }
-        else {
+        } else {
             MR::tryStartTurnAction(this);
         }
     }
@@ -420,13 +411,11 @@ void Tico::exeGuide1() {
         MR::forwardNode(mMsgCtrl);
         MR::forwardNode(mMsgCtrl);
         setNerve(&NrvTico::TicoNrvGuide2::sInstance);
-    }
-    else {
+    } else {
         if (MR::countHideGroupMember(this) != 0) {
             MR::forwardNode(mMsgCtrl);
             setNerve(&NrvTico::TicoNrvGuide2::sInstance);
-        }
-        else {
+        } else {
             MR::tryTalkNearPlayerAndStartTalkAction(this);
             if (tryReaction()) {
                 return;
@@ -439,8 +428,7 @@ void Tico::exeGuide2() {
     if (MR::countShowGroupMember(this) == 0) {
         MR::forwardNode(mMsgCtrl);
         setNerve(&NrvTico::TicoNrvGuide3::sInstance);
-    }
-    else {
+    } else {
         MR::tryTalkNearPlayerAndStartTalkAction(this);
         if (tryReaction()) {
             return;
@@ -452,8 +440,7 @@ void Tico::exeGuide3() {
     if (!MR::isFirstStep(this)) {
         if (MR::tryTalkNearPlayerAtEndAndStartTalkAction(this) && MR::isExistNextNode(mMsgCtrl)) {
             MR::forwardNode(mMsgCtrl);
-        }
-        else {
+        } else {
             if (tryReaction()) {
                 return;
             }
@@ -464,8 +451,7 @@ void Tico::exeGuide3() {
 void Tico::exeLead0() {
     if (mMsgCtrl != nullptr) {
         MR::tryTalkForceAndStartMoveTalkAction(this);
-    }
-    else {
+    } else {
         MR::tryStartMoveTurnAction(this);
     }
 

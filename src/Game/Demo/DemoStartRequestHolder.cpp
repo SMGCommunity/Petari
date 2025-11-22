@@ -2,7 +2,8 @@
 
 #ifdef NON_MATCHING
 // reg scheduling issues, 0x40 / 0x9C are likely a part of FixedRingRuffer ctor
-DemoStartRequestHolder::DemoStartRequestHolder() : _40(0), _84(&_44, &_44), _9C(0), _94(&_44, &_44) {
+DemoStartRequestHolder::DemoStartRequestHolder()
+    : _40(0), _84(&_44, &_44), _9C(0), _94(&_44, &_44) {
     _9C = 0;
     _A0 = new NameObj("代理人");
 

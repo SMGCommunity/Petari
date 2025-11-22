@@ -3,20 +3,20 @@
 #include <revolution/os.h>
 #include <cstdio>
 
-OSMessageQueue JUTException::sMessageQueue = { 0 };
-JUTException* JUTException::sErrorManager;
+OSMessageQueue JUTException::sMessageQueue = {0};
+JUTException*  JUTException::sErrorManager;
 
 struct CallbackObject {
-    CallbackFunc callback;                  // 0x0
-    u16 error;                              // 0x4
-    u16 pad;                                // 0x6
-    OSContext* context;                     // 0x8
-    int param_3;                            // 0xC
-    int param_4;                            // 0x10
+    CallbackFunc callback; // 0x0
+    u16          error;    // 0x4
+    u16          pad;      // 0x6
+    OSContext*   context;  // 0x8
+    int          param_3;  // 0xC
+    int          param_4;  // 0x10
 };
 
 static CallbackObject exCallbackObject;
-static OSContext context;
+static OSContext      context;
 
 s32 JUTException::run() {
     PPCMtmsr(PPCMfmsr() & 0xFFFFF6FF);
@@ -29,11 +29,10 @@ s32 JUTException::run() {
         CallbackObject* obj = (CallbackObject*)msg;
 
         CallbackFunc hndlr = obj->callback;
-        u16 error = obj->error;
-        OSContext* ctxt = obj->context;
-        u32 param_3 = obj->param_3;
-        u32 param_4 = obj->param_4;
-
+        u16          error = obj->error;
+        OSContext*   ctxt = obj->context;
+        u32          param_3 = obj->param_3;
+        u32          param_4 = obj->param_4;
 
         if (error < 0x11) {
             mStackPointer = ctxt->gpr[1];
@@ -47,7 +46,7 @@ s32 JUTException::run() {
         }
 
         sErrorManager->mDirectPrint->changeFrameBuffer(mFrameMemory, sErrorManager->mDirectPrint->mFrameBufferWidth, sErrorManager->mDirectPrint->mFrameBufferHeight);
-    
+
         if (hndlr != nullptr) {
             hndlr(error, ctxt, param_3, param_4);
         }
@@ -60,7 +59,7 @@ s32 JUTException::run() {
     }
 }
 
-void JUTException::errorHandler(u16 err, OSContext *pContext, u32 a3, u32 a4) {
+void JUTException::errorHandler(u16 err, OSContext* pContext, u32 a3, u32 a4) {
     JUTException::msr = PPCMfmsr();
     JUTException::fpscr = pContext->fpscr;
     OSFillFPUContext(pContext);
@@ -114,13 +113,13 @@ void JUTException::panic_f_va(const char* file, int line, const char* format, va
     OSSuspendThread(current_thread);
 }
 
-void JUTException::panic_f(const char *file, int line, const char *format, ...) {
+void JUTException::panic_f(const char* file, int line, const char* format, ...) {
     va_list args;
     va_start(args, format);
     panic_f_va(file, line, format, args);
     va_end();
 }
- 
+
 // JUTException::showFloatSub
 // JUTException::showFloat
 // JUTException::searchPartialModule

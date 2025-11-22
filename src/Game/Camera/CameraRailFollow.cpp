@@ -1,7 +1,8 @@
 #include "Game/Camera/CameraRailFollow.hpp"
 #include "Game/Camera/CamTranslatorRailFollow.hpp"
 
-CameraRailFollow::CameraRailFollow(const char *pName) : Camera(pName) {
+CameraRailFollow::CameraRailFollow(const char* pName)
+    : Camera(pName) {
     _4C = 0;
     _50 = 0.0f;
     _54 = 0.0f;
@@ -11,9 +12,8 @@ CameraRailFollow::CameraRailFollow(const char *pName) : Camera(pName) {
 }
 
 CameraRailFollow::~CameraRailFollow() {
-
 }
 
-CamTranslatorBase *CameraRailFollow::createTranslator() {
+CamTranslatorBase* CameraRailFollow::createTranslator() {
     return new CamTranslatorRailFollow(this);
 }

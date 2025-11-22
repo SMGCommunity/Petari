@@ -1,7 +1,8 @@
 #include "Game/Camera/CameraFixedThere.hpp"
 #include "Game/Camera/CamTranslatorFixedThere.hpp"
 
-CameraFixedThere::CameraFixedThere(const char *pName) : Camera(pName) {
+CameraFixedThere::CameraFixedThere(const char* pName)
+    : Camera(pName) {
     _4C = 0;
     _50 = false;
     _54 = 0.0f;
@@ -14,9 +15,8 @@ CameraFixedThere::CameraFixedThere(const char *pName) : Camera(pName) {
 }
 
 CameraFixedThere::~CameraFixedThere() {
-
 }
 
-CamTranslatorBase *CameraFixedThere::createTranslator() {
+CamTranslatorBase* CameraFixedThere::createTranslator() {
     return new CamTranslatorFixedThere(this);
 }

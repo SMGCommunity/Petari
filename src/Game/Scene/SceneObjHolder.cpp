@@ -446,4 +446,4 @@ namespace MR {
 
         return MR::getSceneObjHolder()->isExist(id);
     }
-};
+}; // namespace MR

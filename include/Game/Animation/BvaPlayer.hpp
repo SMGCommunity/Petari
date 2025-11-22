@@ -10,7 +10,7 @@ class BvaPlayer : public AnmPlayerBase {
 public:
     BvaPlayer(const ResTable*, J3DModel*);
 
-    void calc();
+    void                  calc();
     J3DAnmVisibilityFull* getAnmVisibility();
 
 private:

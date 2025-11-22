@@ -9,7 +9,7 @@
 // temp
 class AudBgmMgr {
 public:
-    u8 _0[0x10];
+    u8  _0[0x10];
     u32 _10;
 };
 
@@ -18,7 +18,7 @@ class AudSceneMgr;
 class AudWrap {
 public:
     static AudBgmMgr* getBgmMgr();
-    static AudBgm* getStageBgm();
+    static AudBgm*    getStageBgm();
 
     static AudSystem* getSystem();
 
@@ -28,7 +28,7 @@ public:
 
     static void startStageBgm(u32, bool);
 
-    static AudRemixSequencer *getRemixSequencer();
-    static AudSoundObject *getRemixSeqObject();
-    static AudSoundObject *getSystemSeObject();
+    static AudRemixSequencer* getRemixSequencer();
+    static AudSoundObject*    getRemixSeqObject();
+    static AudSoundObject*    getSystemSeObject();
 };

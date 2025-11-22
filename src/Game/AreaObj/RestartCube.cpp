@@ -4,7 +4,8 @@
 #include "Game/GameAudio/AudStageBgmTable.hpp"
 #include "Game/Util.hpp"
 
-RestartCube::RestartCube(int type, const char *pName) : AreaObj(type, pName) {
+RestartCube::RestartCube(int type, const char* pName)
+    : AreaObj(type, pName) {
     mIdInfo = nullptr;
     _40 = -1;
     _44 = -1;
@@ -12,10 +13,9 @@ RestartCube::RestartCube(int type, const char *pName) : AreaObj(type, pName) {
 }
 
 RestartCube::~RestartCube() {
-
 }
 
-void RestartCube::init(const JMapInfoIter &rIter) {
+void RestartCube::init(const JMapInfoIter& rIter) {
     AreaObj::init(rIter);
     mIdInfo = new JMapIdInfo(mObjArg0, rIter);
     _40 = mObjArg1;
@@ -26,7 +26,7 @@ void RestartCube::init(const JMapInfoIter &rIter) {
 void RestartCube::updatePlayerRestartIdInfo() {
     if (mObjArg3 == -1 || MR::isOnGroundPlayer()) {
         MR::setPlayerRestartIdInfo(*mIdInfo);
-        
+
         if (!_48 && !MR::isCubeBgmChangeInvalid() && _40 >= 0) {
             changeBgm();
         }

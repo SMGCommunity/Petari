@@ -7,7 +7,8 @@
 #include "Game/Map/HitInfo.hpp"
 #include <cstdio>
 
-SkeletalFishBossBattleDirector::SkeletalFishBossBattleDirector(SkeletalFishBoss *pBoss) : NameObj("スカルシャークボス戦指揮") {
+SkeletalFishBossBattleDirector::SkeletalFishBossBattleDirector(SkeletalFishBoss* pBoss)
+    : NameObj("スカルシャークボス戦指揮") {
     mFishBoss = pBoss;
     _90 = 0;
     _D4 = 0;
@@ -58,7 +59,7 @@ void SkeletalFishBossBattleDirector::startPowerUpDemo2() {
     playGuardAnim("PowerUp2", 4);
 }
 
-void SkeletalFishBossBattleDirector::playGuardAnim(const char *pAnimName, s32 numGuards) {
+void SkeletalFishBossBattleDirector::playGuardAnim(const char* pAnimName, s32 numGuards) {
     for (s32 i = 0; i < numGuards; i++) {
         char buf[0x80];
         snprintf(buf, sizeof(buf), "%s%c", pAnimName, i + 0x41);
@@ -70,10 +71,9 @@ void SkeletalFishBossBattleDirector::playGuardAnim(const char *pAnimName, s32 nu
 }
 
 void SkeletalFishBossBattleDirector::movement() {
-
 }
 
-void SkeletalFishBossBattleDirector::tryColumnCollision(HitSensor *pSensor) {
+void SkeletalFishBossBattleDirector::tryColumnCollision(HitSensor* pSensor) {
     for (s32 i = 0; i < _90; i++) {
         CollisionParts* parts = MR::getCollisionParts(mColumns[i]);
 
@@ -131,5 +131,4 @@ void SkeletalFishBossBattleDirector::killBirdLouse() {
 }
 
 SkeletalFishBossBattleDirector::~SkeletalFishBossBattleDirector() {
-
 }

@@ -8,31 +8,34 @@
 #include <cstdio>
 
 namespace {
-    const Vec sStarPointerTargetOffset[4] = { 
-        { 0.0f, 0.0f, 150.0f, },
-        { 0.0f, 0.0f, 0.0f },
-        { 0.0f, 0.0f, 0.0f },
-        { 0.0f, 0.0f, 0.0f }
-    };
+    const Vec sStarPointerTargetOffset[4] = {
+        {
+            0.0f,
+            0.0f,
+            150.0f,
+        },
+        {0.0f, 0.0f, 0.0f},
+        {0.0f, 0.0f, 0.0f},
+        {0.0f, 0.0f, 0.0f}};
 
     const f32 sStarPointerTargetSize[4] = {
         220.0f,
         150.0f,
         120.0f,
-        120.0f
-    };
+        120.0f};
 
-    const char* sStarPointerTargetJoint[4] = { "Joint00", "Joint01", "Joint02", "Joint03" };
-};
+    const char* sStarPointerTargetJoint[4] = {"Joint00", "Joint01", "Joint02", "Joint03"};
+}; // namespace
 
 namespace {
     NEW_NERVE(SkeletalFishBabyNrvSwim, SkeletalFishBaby, Swim);
     NEW_NERVE_ONEND(SkeletalFishBabyNrvBind, SkeletalFishBaby, Bind, Bind);
     NEW_NERVE(SkeletalFishBabyNrvBreak, SkeletalFishBaby, Break);
     NEW_NERVE(SkeletalFishBabyNrvDead, SkeletalFishBaby, Dead);
-};
+}; // namespace
 
-SkeletalFishBaby::SkeletalFishBaby(const char *pName) : LiveActor(pName) {
+SkeletalFishBaby::SkeletalFishBaby(const char* pName)
+    : LiveActor(pName) {
     mJointIndicies = nullptr;
     _A0 = 20.0f;
     _A4 = 20.0f;
@@ -47,7 +50,7 @@ SkeletalFishBaby::SkeletalFishBaby(const char *pName) : LiveActor(pName) {
     _AC.identity();
 }
 
-void SkeletalFishBaby::init(const JMapInfoIter &rIter) {
+void SkeletalFishBaby::init(const JMapInfoIter& rIter) {
     MR::createAirBubbleHolder();
     MR::initDefaultPos(this, rIter);
 
@@ -74,8 +77,7 @@ void SkeletalFishBaby::init(const JMapInfoIter &rIter) {
     if (MR::useStageSwitchReadAppear(this, rIter)) {
         MR::syncStageSwitchAppear(this);
         makeActorDead();
-    }
-    else {
+    } else {
         makeActorAppeared();
     }
 
@@ -127,18 +129,17 @@ void SkeletalFishBaby::calcAnim() {
     LiveActor::calcAnim();
 }
 
-void SkeletalFishBaby::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
+void SkeletalFishBaby::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isSensorPlayerOrRide(pReceiver)) {
         if (isAttackable() && MR::sendMsgEnemyAttackStrong(pReceiver, pSender)) {
             MR::shakeCameraStrong();
-        }
-        else {
+        } else {
             MR::sendMsgPush(pReceiver, pSender);
         }
     }
 }
 
-bool SkeletalFishBaby::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool SkeletalFishBaby::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgJetTurtleAttack(msg)) {
         return damage(pSender->mPosition, true);
     }
@@ -148,23 +149,23 @@ bool SkeletalFishBaby::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSe
         return true;
     }
 
-    return false;   
-}
-
-bool SkeletalFishBaby::receiveMsgEnemyAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
     return false;
 }
 
-bool SkeletalFishBaby::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool SkeletalFishBaby::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
+    return false;
+}
+
+bool SkeletalFishBaby::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     switch (msg) {
-        case 190:
-            MR::invalidateClipping(this);
-            return true;
-        case 191:
-            MR::validateClipping(this);
-            return true;
-        default:
-            break;
+    case 190:
+        MR::invalidateClipping(this);
+        return true;
+    case 191:
+        MR::validateClipping(this);
+        return true;
+    default:
+        break;
     }
 
     return false;
@@ -226,27 +227,25 @@ void SkeletalFishBaby::exeDead() {
         MR::appearStarPiece(this, jointPos, 10, 10.0f, 40.0f, false);
         MR::startSound(this, "SE_OJ_STAR_PIECE_BURST_W_F", -1, -1);
         kill();
-    } 
+    }
 }
 
-bool SkeletalFishBaby::calcJoint(TPos3f *pJointPos, const JointControllerInfo &rInfo) {
+bool SkeletalFishBaby::calcJoint(TPos3f* pJointPos, const JointControllerInfo& rInfo) {
     if (mJointIndicies[rInfo._4->_14] == -1) {
         return false;
     }
 
     SkeletalFishJointCalc::calcJoint(pJointPos, &_AC, mRailControl, rInfo);
-    return true; 
+    return true;
 }
 
-bool SkeletalFishBaby::damage(const TVec3f &rAirBubblePos, bool shakeCameraNormal) {
-    bool isDeadOrBroke = isNerve(&::SkeletalFishBabyNrvDead::sInstance)
-        || isNerve(&::SkeletalFishBabyNrvBreak::sInstance);
+bool SkeletalFishBaby::damage(const TVec3f& rAirBubblePos, bool shakeCameraNormal) {
+    bool isDeadOrBroke = isNerve(&::SkeletalFishBabyNrvDead::sInstance) || isNerve(&::SkeletalFishBabyNrvBreak::sInstance);
 
     if (!isDeadOrBroke) {
         if (shakeCameraNormal) {
             MR::shakeCameraNormal();
-        }
-        else {
+        } else {
             MR::shakeCameraWeak();
         }
 
@@ -263,7 +262,7 @@ void SkeletalFishBaby::calcAndSetBaseMtx() {
         for (u32 i = 0; i < 4; i++) {
             mControllers[i]->registerCallBack();
         }
- 
+
         TPos3f railMtx;
         mRailControl->getMtx(&railMtx, 0.0f);
         MR::setBaseTRMtx(this, railMtx);
@@ -275,7 +274,7 @@ void SkeletalFishBaby::calcAndSetBaseMtx() {
     }
 }
 
-void SkeletalFishBaby::initRail(const JMapInfoIter &rIter) {
+void SkeletalFishBaby::initRail(const JMapInfoIter& rIter) {
     if (rIter.isValid()) {
         initRailRider(rIter);
         mRailControl->setRailActor(this, nullptr, true);
@@ -308,9 +307,7 @@ void SkeletalFishBaby::initSensor() {
 }
 
 bool SkeletalFishBaby::isAttackable() const {
-    bool isAttackable = !isNerve(&::SkeletalFishBabyNrvDead::sInstance)
-        && !isNerve(&::SkeletalFishBabyNrvBreak::sInstance)
-        && !isNerve(&::SkeletalFishBabyNrvBind::sInstance);
+    bool isAttackable = !isNerve(&::SkeletalFishBabyNrvDead::sInstance) && !isNerve(&::SkeletalFishBabyNrvBreak::sInstance) && !isNerve(&::SkeletalFishBabyNrvBind::sInstance);
 
     return isAttackable;
 }
@@ -319,12 +316,11 @@ bool SkeletalFishBaby::isStarPointerPointing() const {
     for (u32 i = 0; i < 4; i++) {
         if (MR::isStarPointerPointing2POnPressButton(mStarPieceTargets[i], "弱", true, false)) {
             return true;
-        }   
+        }
     }
 
     return false;
 }
 
 SkeletalFishBaby::~SkeletalFishBaby() {
-
 }

@@ -47,16 +47,15 @@ namespace {
         CategoryList::requestMovementOn(MR::MovementType_AudCameraWatcher);
         CategoryList::requestMovementOn(MR::MovementType_AudEffectDirector);
     }
-};
+}; // namespace
 
 namespace {
     NEW_NERVE(StopSceneStateControlNone, StopSceneStateControl, None);
     NEW_NERVE(StopSceneStateControlStopped, StopSceneStateControl, Stopped);
-};
+}; // namespace
 
-StopSceneStateControl::StopSceneStateControl() :
-    NerveExecutor("StopSceneStateControl")
-{
+StopSceneStateControl::StopSceneStateControl()
+    : NerveExecutor("StopSceneStateControl") {
     initNerve(&::StopSceneStateControlNone::sInstance);
 
     _8 = MR::MovementControlType_0;
@@ -71,19 +70,16 @@ void StopSceneStateControl::requestStopSceneFor(MR::MovementControlType param1, 
 
             setNerve(&::StopSceneStateControlStopped::sInstance);
             executeStopCategories(param1);
-        }
-        else if (isNerve(&::StopSceneStateControlStopped::sInstance)) {
+        } else if (isNerve(&::StopSceneStateControlStopped::sInstance)) {
             return;
         }
-    }
-    else if (isNerve(&::StopSceneStateControlNone::sInstance)) {
+    } else if (isNerve(&::StopSceneStateControlNone::sInstance)) {
         _8 = param1;
         _C = pParam2;
 
         setNerve(&::StopSceneStateControlStopped::sInstance);
         executeStopCategories(param1);
-    }
-    else if (!isNerve(&::StopSceneStateControlStopped::sInstance)) {
+    } else if (!isNerve(&::StopSceneStateControlStopped::sInstance)) {
         return;
     }
 }
@@ -103,8 +99,7 @@ void StopSceneStateControl::requestStopSceneOverwrite(const NameObj* pParam1) {
 
         setNerve(&::StopSceneStateControlStopped::sInstance);
         executeStopCategories(MR::MovementControlType_5);
-    }
-    else {
+    } else {
         if (isNerve(&::StopSceneStateControlNone::sInstance)) {
             return;
         }
@@ -130,8 +125,7 @@ void StopSceneStateControl::requestPlaySceneFor(MR::MovementControlType param1, 
         if (isNerve(&::StopSceneStateControlStopped::sInstance)) {
             return;
         }
-    }
-    else {
+    } else {
         if (isNerve(&::StopSceneStateControlNone::sInstance)) {
             return;
         }
@@ -183,18 +177,15 @@ void StopSceneStateControl::executeStopCategories(MR::MovementControlType param1
 }
 
 void StopSceneStateControl::exeNone() {
-    
 }
 
 void StopSceneStateControl::exeStopped() {
-    
 }
 
-SceneNameObjMovementController::SceneNameObjMovementController() :
-    NameObj("SceneNameObjMovementController"),
-    _C(false),
-    mStopSceneStateControl(nullptr)
-{
+SceneNameObjMovementController::SceneNameObjMovementController()
+    : NameObj("SceneNameObjMovementController"),
+      _C(false),
+      mStopSceneStateControl(nullptr) {
     mStopSceneStateControl = new StopSceneStateControl();
 }
 
@@ -232,4 +223,4 @@ namespace MR {
     void notifyRequestNameObjMovementOnOff() {
         getSceneNameObjMovementController()->notifyRequestNameObjMovementOnOff(true);
     }
-};
+}; // namespace MR

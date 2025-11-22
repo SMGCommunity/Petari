@@ -117,7 +117,7 @@ namespace {
     // static const _ sDoubleInterval = _;
     // static const _ sTripleInterval = _;
     static const f32 sEndLogoPosY = 220.0f;
-};
+}; // namespace
 
 namespace {
     const StaffRollParam* getStaffRollParam() {
@@ -145,17 +145,15 @@ namespace {
 
         return nullptr;
     }
-};
+}; // namespace
 
 namespace NrvStaffRollLine {
     NEW_NERVE(StaffRollLineNrvScroll, StaffRollLine, Scroll);
 };
 
-StaffRollLine::StaffRollLine(const char* pName) :
-    LayoutActor(pName, true),
-    mPosition(0.0f, 0.0f)
-{
-    
+StaffRollLine::StaffRollLine(const char* pName)
+    : LayoutActor(pName, true),
+      mPosition(0.0f, 0.0f) {
 }
 
 void StaffRollLine::init(const JMapInfoIter& rIter) {
@@ -188,11 +186,9 @@ namespace NrvStaffRollPicture {
     NEW_NERVE(StaffRollPictureNrvWork, StaffRollPicture, Work);
 };
 
-StaffRollPicture::StaffRollPicture(const char* pName) :
-    LayoutActor(pName, true),
-    mReplaceTexture(nullptr)
-{
-    
+StaffRollPicture::StaffRollPicture(const char* pName)
+    : LayoutActor(pName, true),
+      mReplaceTexture(nullptr) {
 }
 
 void StaffRollPicture::init(const JMapInfoIter& rIter) {
@@ -221,15 +217,14 @@ void StaffRollPicture::exeWork() {
 }
 
 void StaffRollPicture::initReplaceTexture() {
-    char replaceTextureName[64];
+    char        replaceTextureName[64];
     const char* pReplaceTexturePrefix;
 
     mReplaceTexture = new nw4r::lyt::TexMap*[PICTURE_TEXTURE_NUM];
 
     if (MR::isStarCompleteAllGalaxy()) {
         pReplaceTexturePrefix = cReplaceTexturePrefixComp;
-    }
-    else {
+    } else {
         pReplaceTexturePrefix = cReplaceTexturePrefixHalf;
     }
 
@@ -245,14 +240,11 @@ void StaffRollPicture::startPictureAction(s32 replaceTextureId, const char* pPan
 
         if (MR::isEqualString(pPaneName, "PictureLU")) {
             pChildPaneName = "PicLU";
-        }
-        else if (MR::isEqualString(pPaneName, "PictureLD")) {
+        } else if (MR::isEqualString(pPaneName, "PictureLD")) {
             pChildPaneName = "PicLD";
-        }
-        else if (MR::isEqualString(pPaneName, "PictureRU")) {
+        } else if (MR::isEqualString(pPaneName, "PictureRU")) {
             pChildPaneName = "PicRU";
-        }
-        else if (MR::isEqualString(pPaneName, "PictureRD")) {
+        } else if (MR::isEqualString(pPaneName, "PictureRD")) {
             pChildPaneName = "PicRD";
         }
 
@@ -293,22 +285,20 @@ namespace NrvStaffRoll {
     NEW_NERVE(StaffRollNrvPrepareSave, StaffRoll, PrepareSave);
     NEW_NERVE(StaffRollNrvSave, StaffRoll, Save);
     NEW_NERVE(StaffRollNrvEnd, StaffRoll, End);
-};
+}; // namespace NrvStaffRoll
 
-StaffRoll::StaffRoll(const char* pName) :
-    LayoutActor(pName, true),
-    mInfo(nullptr),
-    mLine(nullptr),
-    mPicture(nullptr),
-    mMsg(nullptr),
-    mMsgLineNum(0),
-    mMsgLine(0),
-    mTitleLogoPos(0.0f, 0.0f),
-    mEndLogoPos(0.0f, 0.0f),
-    _48(-1),
-    _4C(0)
-{
-    
+StaffRoll::StaffRoll(const char* pName)
+    : LayoutActor(pName, true),
+      mInfo(nullptr),
+      mLine(nullptr),
+      mPicture(nullptr),
+      mMsg(nullptr),
+      mMsgLineNum(0),
+      mMsgLine(0),
+      mTitleLogoPos(0.0f, 0.0f),
+      mEndLogoPos(0.0f, 0.0f),
+      _48(-1),
+      _4C(0) {
 }
 
 void StaffRoll::init(const JMapInfoIter& rIter) {
@@ -371,8 +361,7 @@ void StaffRoll::startInfo() {
 }
 
 bool StaffRoll::isPauseOrEnd() const {
-    return isNerve(&NrvStaffRoll::StaffRollNrvPauseForEndingMovie::sInstance)
-        || isNerve(&NrvStaffRoll::StaffRollNrvEnd::sInstance);
+    return isNerve(&NrvStaffRoll::StaffRollNrvPauseForEndingMovie::sInstance) || isNerve(&NrvStaffRoll::StaffRollNrvEnd::sInstance);
 }
 
 bool StaffRoll::isNextLineEmpty() const {
@@ -473,8 +462,7 @@ void StaffRoll::exeAllRights() {
     if (MR::isStep(this, sStepToThankYouVoice)) {
         if (MR::isPlayerLuigi()) {
             MR::startSystemSE("SE_SY_THANK_YOU_LUIGI", -1, -1);
-        }
-        else {
+        } else {
             MR::startSystemSE("SE_SY_E3_THANK_YOU", -1, -1);
         }
     }
@@ -499,24 +487,19 @@ void StaffRoll::exeInfoAppear() {
     if (MR::isFirstStep(this)) {
         if (isNerve(&NrvStaffRoll::StaffRollNrvInfoPictureBookAppear::sInstance)) {
             pMessageId = "System_Result005";
-        }
-        else if (isNerve(&NrvStaffRoll::StaffRollNrvInfoCometAppear::sInstance)) {
+        } else if (isNerve(&NrvStaffRoll::StaffRollNrvInfoCometAppear::sInstance)) {
             pMessageId = "StaffRollInfo_Comet";
-        }
-        else if (isNerve(&NrvStaffRoll::StaffRollNrvInfoLuigiAppear::sInstance)) {
+        } else if (isNerve(&NrvStaffRoll::StaffRollNrvInfoLuigiAppear::sInstance)) {
             if (MR::isPlayerLuigi()) {
                 pMessageId = "StaffRollInfo_FinalGalaxyOpen";
-            }
-            else {
+            } else {
                 pMessageId = "StaffRollInfo_Luigi";
             }
         }
 
         MR::startSubBGM("BGM_NEW_GALAXY", false);
 
-        if (isNerve(&NrvStaffRoll::StaffRollNrvInfoLuigiAppear::sInstance)
-            && !MR::isPlayerLuigi())
-        {
+        if (isNerve(&NrvStaffRoll::StaffRollNrvInfoLuigiAppear::sInstance) && !MR::isPlayerLuigi()) {
             MR::startSystemSE("SE_SY_LUIGI_MODE_APPEAR", -1, -1);
         }
 
@@ -533,11 +516,9 @@ void StaffRoll::exeInfoAppear() {
 
     if (isNerve(&NrvStaffRoll::StaffRollNrvInfoPictureBookAppear::sInstance)) {
         setNerve(&NrvStaffRoll::StaffRollNrvInfoPictureBookDisappear::sInstance);
-    }
-    else if (isNerve(&NrvStaffRoll::StaffRollNrvInfoCometAppear::sInstance)) {
+    } else if (isNerve(&NrvStaffRoll::StaffRollNrvInfoCometAppear::sInstance)) {
         setNerve(&NrvStaffRoll::StaffRollNrvInfoCometDisappear::sInstance);
-    }
-    else if (isNerve(&NrvStaffRoll::StaffRollNrvInfoLuigiAppear::sInstance)) {
+    } else if (isNerve(&NrvStaffRoll::StaffRollNrvInfoLuigiAppear::sInstance)) {
         setNerve(&NrvStaffRoll::StaffRollNrvInfoLuigiDisappear::sInstance);
     }
 }
@@ -593,7 +574,6 @@ void StaffRoll::exeSave() {
 }
 
 void StaffRoll::exeEnd() {
-    
 }
 
 void StaffRoll::movement() {
@@ -615,8 +595,7 @@ void StaffRoll::movement() {
         if (MR::isPlayingStageBgm()) {
             _4C++;
         }
-    }
-    else {
+    } else {
         _4C++;
     }
 }
@@ -653,19 +632,15 @@ void StaffRoll::draw() const {
 void StaffRoll::setNrvNextInfo() {
     if (isNerve(&NrvStaffRoll::StaffRollNrvPrepareInfo::sInstance)) {
         setNerve(&NrvStaffRoll::StaffRollNrvPauseForEndingMovie::sInstance);
-    }
-    else if (!MR::isOnGameEventFlagViewNormalEnding() && isNerve(&NrvStaffRoll::StaffRollNrvRestart::sInstance)) {
+    } else if (!MR::isOnGameEventFlagViewNormalEnding() && isNerve(&NrvStaffRoll::StaffRollNrvRestart::sInstance)) {
         setNerve(&NrvStaffRoll::StaffRollNrvInfoPictureBookAppear::sInstance);
-    }
-    else if (isNerve(&NrvStaffRoll::StaffRollNrvInfoPictureBookDisappear::sInstance)) {
+    } else if (isNerve(&NrvStaffRoll::StaffRollNrvInfoPictureBookDisappear::sInstance)) {
         MR::onGameEventFlagViewNormalEnding();
         setNerve(&NrvStaffRoll::StaffRollNrvInfoCometAppear::sInstance);
-    }
-    else if (!MR::isOnGameEventFlagViewCompleteEnding() && MR::isStarCompleteAllGalaxy()) {
+    } else if (!MR::isOnGameEventFlagViewCompleteEnding() && MR::isStarCompleteAllGalaxy()) {
         setNerve(&NrvStaffRoll::StaffRollNrvInfoLuigiAppear::sInstance);
         MR::onGameEventFlagViewCompleteEnding();
-    }
-    else {
+    } else {
         setNerve(&NrvStaffRoll::StaffRollNrvPrepareSave::sInstance);
     }
 }
@@ -687,16 +662,14 @@ bool StaffRoll::tryGenerateLine() {
 
     if (isNextLineEmpty()) {
         lineLeading = ::getStaffRollParam()->mEmptyLineLeading;
-    }
-    else {
+    } else {
         lineLeading = ::getStaffRollParam()->mLineLeading;
     }
 
     if (_48 * ::getStaffRollParam()->mScrollSpeed >= lineLeading) {
         if (mMsgLine < mMsgLineNum) {
             _48 = 0;
-        }
-        else {
+        } else {
             _48 = -1;
         }
     }
@@ -720,4 +693,4 @@ namespace MR {
     StaffRoll* getStaffRoll() {
         return MR::getSceneObj<StaffRoll>(SceneObj_StaffRoll);
     }
-};
+}; // namespace MR

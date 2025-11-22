@@ -5,12 +5,11 @@
 #include "Game/Util/Functor.hpp"
 #include "Game/Util/ObjUtil.hpp"
 
-MiiFaceIconHolder::MiiFaceIconHolder(u32 iconNum, const char* pName) :
-    NameObj(pName),
-    mIconNumMax(iconNum),
-    mIconNum(0),
-    mIcon(new MiiFaceIcon*[iconNum])
-{
+MiiFaceIconHolder::MiiFaceIconHolder(u32 iconNum, const char* pName)
+    : NameObj(pName),
+      mIconNumMax(iconNum),
+      mIconNum(0),
+      mIcon(new MiiFaceIcon*[iconNum]) {
     MR::FunctorV0M<MiiFaceIconHolder*, void (MiiFaceIconHolder::*)()> drawFunc(
         this, &MiiFaceIconHolder::drawIcons);
 
@@ -39,4 +38,4 @@ namespace MR {
         MR::createSceneObj(SceneObj_MiiFaceIconHolder);
         getMiiFaceIconHolder()->registerIcon(pIcon);
     }
-};
+}; // namespace MR

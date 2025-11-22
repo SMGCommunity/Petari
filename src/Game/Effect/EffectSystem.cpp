@@ -6,7 +6,6 @@
 #include <JSystem/JParticle/JPAEmitterManager.hpp>
 
 void EffectSystem::init(const JMapInfoIter& rIter) {
-    
 }
 
 void EffectSystem::forceDeleteEmitter(ParticleEmitter* pEmitter) const {
@@ -61,4 +60,4 @@ namespace MR {
     EffectSystem* getEffectSystem() {
         return getSceneObj<EffectSystem>(SceneObj_EffectSystem);
     }
-};
+}; // namespace MR

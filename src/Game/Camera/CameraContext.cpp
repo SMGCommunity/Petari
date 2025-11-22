@@ -1,18 +1,18 @@
 #include "Game/Camera/CameraContext.hpp"
 
-CameraContext::CameraContext() : NameObj("カメラコンテキスト") {
+CameraContext::CameraContext()
+    : NameObj("カメラコンテキスト") {
     initParams();
 }
 
 CameraContext::~CameraContext() {
-
 }
 
-const TPos3f *CameraContext::getViewMtx() const {
+const TPos3f* CameraContext::getViewMtx() const {
     return &mView;
 }
 
-const TPos3f *CameraContext::getInvViewMtx() const {
+const TPos3f* CameraContext::getInvViewMtx() const {
     return &mViewInv;
 }
 

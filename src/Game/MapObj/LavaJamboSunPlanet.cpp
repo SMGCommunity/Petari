@@ -19,9 +19,10 @@ namespace NrvLavaJamboSunPlanet {
     NEW_NERVE(HostTypeWait, LavaJamboSunPlanet, Wait);
     NEW_NERVE(HostTypePause, LavaJamboSunPlanet, Wait);
     NEW_NERVE(HostTypeMove, LavaJamboSunPlanet, Move);
-};
+}; // namespace NrvLavaJamboSunPlanet
 
-LavaJamboSunPlanet::LavaJamboSunPlanet(const char* pName) : LiveActor(pName) {
+LavaJamboSunPlanet::LavaJamboSunPlanet(const char* pName)
+    : LiveActor(pName) {
     mBloomModel = nullptr;
     mLodCtrl = nullptr;
     _94 = 0.0f;
@@ -63,7 +64,7 @@ void LavaJamboSunPlanet::exeWait() {
         setNerve(&NrvLavaJamboSunPlanet::HostTypeMove::sInstance);
         return;
     }
-    if ( isNerve(&NrvLavaJamboSunPlanet::HostTypePause::sInstance) && MR::isOnSwitchB(this)) {
+    if (isNerve(&NrvLavaJamboSunPlanet::HostTypePause::sInstance) && MR::isOnSwitchB(this)) {
         setNerve(&NrvLavaJamboSunPlanet::HostTypeMove::sInstance);
     }
 }
@@ -77,11 +78,10 @@ void LavaJamboSunPlanet::exeMove() {
     MR::getCurrentRailPointArg1NoInit(this, &v3);
     if (v3 == 1) {
         setNerve(&NrvLavaJamboSunPlanet::HostTypePause::sInstance);
-    } else if  (MR::isRailReachedGoal(this)) {
+    } else if (MR::isRailReachedGoal(this)) {
         setNerve(&NrvLavaJamboSunPlanet::HostTypeWait::sInstance);
     }
 }
 
 LavaJamboSunPlanet::~LavaJamboSunPlanet() {
-    
 }

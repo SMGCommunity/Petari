@@ -15,9 +15,8 @@ namespace {
 
         return ret;
     }
-};
+}; // namespace
 
 class CustomTagProcessor : public MessageTagSkipTagProcessor {
 public:
-
 };

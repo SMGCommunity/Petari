@@ -1,10 +1,9 @@
 #include "Game/MapObj/RosettaChair.hpp"
 
-RosettaChair::RosettaChair(const char *pName) :
-    LiveActor(pName),
-    _8C(0.0f, 0.0f, 0.0f),
-    _98(0.0f, 0.0f, 0.0f)
-{
+RosettaChair::RosettaChair(const char* pName)
+    : LiveActor(pName),
+      _8C(0.0f, 0.0f, 0.0f),
+      _98(0.0f, 0.0f, 0.0f) {
     _A0.identity();
 }
 
@@ -15,7 +14,7 @@ void RosettaChair::setDefaultPose() {
     MR::validateCollisionParts(this);
 }
 
-void RosettaChair::init(const JMapInfoIter &rIter) {
+void RosettaChair::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     initModelManagerWithAnm("RosettaChair", nullptr, false);
     MR::connectToSceneMapObj(this);

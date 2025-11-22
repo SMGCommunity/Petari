@@ -9,18 +9,18 @@ class HitSensor;
 
 class SensorHitChecker : public NameObj {
 public:
-    SensorHitChecker(const char *);
+    SensorHitChecker(const char*);
 
     virtual ~SensorHitChecker();
 
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
     virtual void movement();
 
-    void initGroup(HitSensor *);
-    void doObjColGroup(SensorGroup *, SensorGroup *) const;
-    void doObjColInSameGroup(SensorGroup *) const;
+    void initGroup(HitSensor*);
+    void doObjColGroup(SensorGroup*, SensorGroup*) const;
+    void doObjColInSameGroup(SensorGroup*) const;
 
-    void checkAttack(HitSensor *, HitSensor *) const;
+    void checkAttack(HitSensor*, HitSensor*) const;
 
     SensorGroup* mPlayerGroup;    // 0xC
     SensorGroup* mRideGroup;      // 0x10
@@ -32,17 +32,17 @@ public:
 
 class SensorGroup {
 public:
-    SensorGroup(int, const char *);
+    SensorGroup(int, const char*);
 
-    void add(HitSensor *);
-    void remove(HitSensor *);
+    void add(HitSensor*);
+    void remove(HitSensor*);
     void clear() const;
 
-    s32 mMaxSensors;      // 0x0
-    s32 mSensorCount;     // 0x4
-    HitSensor** mSensors; // 0x8
+    s32         mMaxSensors;  // 0x0
+    s32         mSensorCount; // 0x4
+    HitSensor** mSensors;     // 0x8
 };
 
 namespace MR {
-    void initHitSensorGroup(HitSensor *);
+    void initHitSensorGroup(HitSensor*);
 };

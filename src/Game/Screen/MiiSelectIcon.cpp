@@ -23,20 +23,19 @@ namespace {
     NEW_NERVE(MiiSelectIconNrvSelected, MiiSelectIcon, Selected);
     NEW_NERVE(MiiSelectIconNrvDisappear, MiiSelectIcon, Disappear);
     NEW_NERVE(MiiSelectIconNrvInvalid, MiiSelectIcon, Invalid);
-};
+}; // namespace
 
-MiiSelectIcon::MiiSelectIcon(int param1, int param2, int param3, const char* pName) :
-    LayoutActor(pName, true),
-    _20(nullptr),
-    _24(nullptr),
-    _28(nullptr),
-    mIcon(nullptr),
-    mMiiTexMap(nullptr),
-    mFellowTexMap(nullptr),
-    mIconID(new FileSelectIconID()),
-    mIsMiiDummy(false),
-    _3D(true)
-{
+MiiSelectIcon::MiiSelectIcon(int param1, int param2, int param3, const char* pName)
+    : LayoutActor(pName, true),
+      _20(nullptr),
+      _24(nullptr),
+      _28(nullptr),
+      mIcon(nullptr),
+      mMiiTexMap(nullptr),
+      mFellowTexMap(nullptr),
+      mIconID(new FileSelectIconID()),
+      mIsMiiDummy(false),
+      _3D(true) {
     initLayoutManager("MiiIcon", 1);
     MR::createAndAddPaneCtrl(this, "MarioIcon", 3);
     MR::createAndAddPaneCtrl(this, "MiiIcon", 3);
@@ -79,8 +78,7 @@ void MiiSelectIcon::appear(const FileSelectIconID& rIconID) {
         MR::hidePane(this, "MiiIcon");
         MR::showPane(this, "MarioIcon");
         setNerve(&MiiSelectIconNrvWait::sInstance);
-    }
-    else if (rIconID.isMii()) {
+    } else if (rIconID.isMii()) {
         MR::hideLayout(this);
         mIcon->setIndex(rIconID.getMiiIndex());
 
@@ -111,7 +109,7 @@ void MiiSelectIcon::appearMiiDummy() {
     }
 
     MR::showLayout(this);
-    MR::startAnim(this, "Character",0);
+    MR::startAnim(this, "Character", 0);
     MR::setAnimFrameAndStop(this, 5.0f, 0);
     MR::startPaneAnim(this, "MarioIcon", "Character", 1);
     MR::setPaneAnimFrameAndStop(this, "MarioIcon", 5.0f, 1);
@@ -127,9 +125,7 @@ void MiiSelectIcon::appearMiiDummy() {
 }
 
 void MiiSelectIcon::validate() {
-    if (isNerve(&MiiSelectIconNrvSelected::sInstance)
-        || isNerve(&MiiSelectIconNrvInvalid::sInstance))
-    {
+    if (isNerve(&MiiSelectIconNrvSelected::sInstance) || isNerve(&MiiSelectIconNrvInvalid::sInstance)) {
         _24->forceToWait();
         _28->forceToWait();
         setNerve(&MiiSelectIconNrvWait::sInstance);
@@ -213,15 +209,13 @@ void MiiSelectIcon::exeWait() {
 }
 
 void MiiSelectIcon::exeSelected() {
-    
 }
 
 void MiiSelectIcon::exeDisappear() {
     if (_20->isHidden()) {
         if (_20 == _24) {
             _28->forceToHide();
-        }
-        else {
+        } else {
             _24->forceToHide();
         }
 
@@ -230,7 +224,6 @@ void MiiSelectIcon::exeDisappear() {
 }
 
 void MiiSelectIcon::exeInvalid() {
-    
 }
 
 void MiiSelectIcon::appear() {

@@ -2,7 +2,7 @@
 #include "Game/MapObj/StageEffectDataTable.hpp"
 #include "Game/MapObj/MapPartsRotator.hpp"
 
-void RotateMoveObj::init(const JMapInfoIter &rIter) {
+void RotateMoveObj::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);
     MapObjActorInitInfo info;
     MapObjActorUtil::setupInitInfoSimpleMapObj(&info);
@@ -15,7 +15,7 @@ void RotateMoveObj::init(const JMapInfoIter &rIter) {
     initialize(rIter, info);
 
     bool v5 = true;
-    s32 condType = 0;
+    s32  condType = 0;
     MR::getMapPartsArgMoveConditionType(&condType, rIter);
 
     if (!MR::isMoveStartTypeUnconditional(condType)) {
@@ -24,7 +24,7 @@ void RotateMoveObj::init(const JMapInfoIter &rIter) {
     }
 
     if (MR::isDemoCast(this, nullptr)) {
-        MR::FunctorV0M<RotateMoveObj *, void (RotateMoveObj::*)()> setStateFunc = MR::Functor<RotateMoveObj>(this, &RotateMoveObj::setStateMove);
+        MR::FunctorV0M<RotateMoveObj*, void (RotateMoveObj::*)()> setStateFunc = MR::Functor<RotateMoveObj>(this, &RotateMoveObj::setStateMove);
 
         if (MR::tryRegisterDemoActionFunctor(this, setStateFunc, nullptr)) {
             v5 = false;
@@ -47,8 +47,7 @@ void RotateMoveObj::initCaseUseSwitchB(const MapObjActorInitInfo &rInfo) {
     MR::listenStageSwitchOnOffB(this, MR::FunctorV0M<RotateMoveObj *, void (RotateMoveObj::*)(void)>(this, &RotateMoveObj::pauseMapPartsFunctions), setFunc);
 }*/
 
-void RotateMoveObj::initCaseNoUseSwitchB(const MapObjActorInitInfo &rInfo) {
-
+void RotateMoveObj::initCaseNoUseSwitchB(const MapObjActorInitInfo& rInfo) {
 }
 
 void RotateMoveObj::setStateMove() {
@@ -67,15 +66,13 @@ void RotateMoveObj::exeMove() {
 
     if (!MapObjActorUtil::isRotatorMoving(this)) {
         setNerve(&NrvRotateMoveObj::HostTypeStop::sInstance);
-    }
-    else {
+    } else {
         if (mRotator->_14) {
             if (MR::isEqualString(mObjectName, "OceanRingRuinsGearBig") || MR::isEqualString(mObjectName, "OceanRingRuinsGearSmall")) {
                 if (mRotator->getRotateSpeed() != 0.0f) {
                     MR::StageEffect::tryStageEffectMoving(this, mObjectName);
                 }
-            }
-            else {
+            } else {
                 MR::StageEffect::tryStageEffectMoving(this, mObjectName);
             }
         }
@@ -85,8 +82,7 @@ void RotateMoveObj::exeMove() {
 void RotateMoveObj::exeStop() {
     if (MapObjActorUtil::isRotatorMoving(this)) {
         setNerve(&NrvRotateMoveObj::HostTypeMove::sInstance);
-    }
-    else if (MR::isFirstStep(this)) {
+    } else if (MR::isFirstStep(this)) {
         MR::StageEffect::tryStageEffectStop(this, mObjectName);
     }
 }
@@ -102,9 +98,7 @@ namespace NrvRotateMoveObj {
     INIT_NERVE(HostTypeWait);
     INIT_NERVE(HostTypeMove);
     INIT_NERVE(HostTypeStop);
-};
+}; // namespace NrvRotateMoveObj
 
 RotateMoveObj::~RotateMoveObj() {
-
 }
- 

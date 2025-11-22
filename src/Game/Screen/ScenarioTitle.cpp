@@ -8,12 +8,10 @@ namespace {
     NEW_NERVE(ScenarioTitleAppear, ScenarioTitle, Appear);
     NEW_NERVE(ScenarioTitleWait, ScenarioTitle, Wait);
     NEW_NERVE(ScenarioTitleEnd, ScenarioTitle, End);
-};
+}; // namespace
 
-ScenarioTitle::ScenarioTitle() :
-    LayoutActor("シナリオ名表示", true)
-{
-    
+ScenarioTitle::ScenarioTitle()
+    : LayoutActor("シナリオ名表示", true) {
 }
 
 void ScenarioTitle::init(const JMapInfoIter& rInfo) {
@@ -43,7 +41,6 @@ void ScenarioTitle::exeAppear() {
 }
 
 void ScenarioTitle::exeWait() {
-    
 }
 
 void ScenarioTitle::exeEnd() {

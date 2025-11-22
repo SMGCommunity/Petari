@@ -35,6 +35,6 @@
 	camera->mDist = dist;
 }*/
 
-Camera *CamTranslatorSlide::getCamera() const {
-	return mCamera;
+Camera* CamTranslatorSlide::getCamera() const {
+    return mCamera;
 }

@@ -6,7 +6,7 @@ class MarioActor;
 
 class MarioFaint : public MarioState {
 public:
-    MarioFaint(MarioActor *);
+    MarioFaint(MarioActor*);
 
     u8 _11[0x17];
 };

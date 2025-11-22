@@ -6,7 +6,8 @@
 #include "JSystem/JGeometry/TVec.hpp"
 #include "revolution/mtx.h"
 
-AstroEffectObj::AstroEffectObj(const char* pName) : SimpleEffectObj(pName) {
+AstroEffectObj::AstroEffectObj(const char* pName)
+    : SimpleEffectObj(pName) {
     _9C = -1;
 }
 
@@ -18,7 +19,7 @@ void AstroEffectObj::init(const JMapInfoIter& rIter) {
     makeActorAppeared();
 }
 
-bool AstroEffectObj::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool AstroEffectObj::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     return false;
 }
 
@@ -37,5 +38,4 @@ void AstroEffectObj::selectNrvWait() {
 }
 
 AstroEffectObj::~AstroEffectObj() {
-    
 }

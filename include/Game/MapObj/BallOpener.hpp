@@ -6,30 +6,30 @@ class BindCone;
 
 class BallOpener : public LiveActor {
 public:
-    BallOpener(const char *);
+    BallOpener(const char*);
 
     virtual ~BallOpener();
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
     virtual void initAfterPlacement();
     virtual void control();
-    virtual bool receiveOtherMsg(u32, HitSensor *, HitSensor *);
+    virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
 
     void exeWait();
     void exeSetCenter();
     void exeOpen();
     void bindHole();
 
-    BindCone* _8C;
-    HitSensor* mSensor;         // 0x90
-    TVec3f _94;
-    TVec3f _A0;
-    TVec3f _AC;
-    TVec3f _B8;
-    s32 _C4;
+    BindCone*  _8C;
+    HitSensor* mSensor; // 0x90
+    TVec3f     _94;
+    TVec3f     _A0;
+    TVec3f     _AC;
+    TVec3f     _B8;
+    s32        _C4;
 };
 
 namespace NrvBallOpener {
     NERVE_DECL(BallOpenerNrvWait, BallOpener, BallOpener::exeWait);
     NERVE_DECL(BallOpenerNrvSetCenter, BallOpener, BallOpener::exeSetCenter);
     NERVE_DECL(BallOpenerNrvOpen, BallOpener, BallOpener::exeOpen);
-};
+}; // namespace NrvBallOpener

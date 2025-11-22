@@ -11,14 +11,14 @@ class ClipAreaMovable : public ClipArea {
     virtual void makeActorAppeared();
     virtual void makeActorDead();
     virtual void control();
-    void initMoveFunction(const JMapInfoIter& rIter);
-    void startMoveFunction();
-    void endMoveFunction();
-    void movementMoveFunction();
-    void updateMatrix();
+    void         initMoveFunction(const JMapInfoIter& rIter);
+    void         startMoveFunction();
+    void         endMoveFunction();
+    void         movementMoveFunction();
+    void         updateMatrix();
 
     MapPartsRailMover* mMapPartsRailMover; // 0xC0
-    MapPartsRotator* mMapPartsRotator; // 0xC4
+    MapPartsRotator*   mMapPartsRotator;   // 0xC4
 };
 
 namespace MR {
@@ -27,4 +27,4 @@ namespace MR {
     ClipArea* createClipAreaBottomBox(const char* pModel);
     ClipArea* createClipAreaTopCone(const char* pModel);
     ClipArea* createClipAreaBottomCone(const char* pModel);
-}
+} // namespace MR

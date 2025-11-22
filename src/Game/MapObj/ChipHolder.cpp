@@ -5,7 +5,8 @@
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/JMapInfo.hpp"
 
-ChipHolder::ChipHolder(const char* pName, s32 chipType) : NameObj(pName) {
+ChipHolder::ChipHolder(const char* pName, s32 chipType)
+    : NameObj(pName) {
     mChipCounter = nullptr;
     mChipGroups = nullptr;
     mNumChipGroups = 0;
@@ -33,14 +34,14 @@ ChipGroup* ChipHolder::findChipGroup(s32 chipGroupType) const {
 
 ChipHolder* MR::createChipHolder(s32 chipHolderType) {
     ChipHolder* result;
-    
+
     switch (chipHolderType) {
-        case ChipHolder::Chip_Blue:
-            result = (ChipHolder*)createSceneObj(SceneObj_BlueChipHolder);
-            break;
-        case ChipHolder::Chip_Yellow:
-            result = (ChipHolder*)createSceneObj(SceneObj_YellowChipHolder);
-            break;
+    case ChipHolder::Chip_Blue:
+        result = (ChipHolder*)createSceneObj(SceneObj_BlueChipHolder);
+        break;
+    case ChipHolder::Chip_Yellow:
+        result = (ChipHolder*)createSceneObj(SceneObj_YellowChipHolder);
+        break;
     }
 
     return result;
@@ -48,14 +49,14 @@ ChipHolder* MR::createChipHolder(s32 chipHolderType) {
 
 ChipHolder* MR::getChipHolder(s32 chipType) {
     switch (chipType) {
-        case ChipHolder::Chip_Blue:
-            return (ChipHolder*) getSceneObjHolder()->getObj(SceneObj_BlueChipHolder);
-        
-        case ChipHolder::Chip_Yellow:
-            return (ChipHolder*) getSceneObjHolder()->getObj(SceneObj_YellowChipHolder);
-        
-        default:
-            return nullptr;
+    case ChipHolder::Chip_Blue:
+        return (ChipHolder*)getSceneObjHolder()->getObj(SceneObj_BlueChipHolder);
+
+    case ChipHolder::Chip_Yellow:
+        return (ChipHolder*)getSceneObjHolder()->getObj(SceneObj_YellowChipHolder);
+
+    default:
+        return nullptr;
     }
 }
 
@@ -69,7 +70,7 @@ void MR::registerChip(s32 chipHolderType, ChipBase* pChip, s32 chipGroupType) {
 
 void MR::noticeGetChip(s32 chipHolderType, ChipBase* pChip, s32 chipGroupType) {
     ChipHolder* holder = getChipHolder(chipHolderType);
-    ChipGroup* group = holder->findChipGroup(chipGroupType);
+    ChipGroup*  group = holder->findChipGroup(chipGroupType);
     group->noticeGet(pChip);
     holder->mChipCounter->setCount(group->getGotCount());
     incPlayerOxygen(8);
@@ -118,21 +119,19 @@ void MR::deactivateChipLayout() {
     }
 }
 
-
 ChipHolder::~ChipHolder() {
-
 }
 
 void ChipHolder::init(const JMapInfoIter& rIter) {
     mChipGroups = new ChipGroup*[0x40];
 
     switch (mChipType) {
-        case Chip_Blue:
-            mChipCounter = new ChipCounter("ブルーチップカウンター", mChipType);
-            break;
-        case Chip_Yellow:
-            mChipCounter = new ChipCounter("イエローチップカウンター", mChipType);
-            break;
+    case Chip_Blue:
+        mChipCounter = new ChipCounter("ブルーチップカウンター", mChipType);
+        break;
+    case Chip_Yellow:
+        mChipCounter = new ChipCounter("イエローチップカウンター", mChipType);
+        break;
     }
 
     mChipCounter->initWithoutIter();

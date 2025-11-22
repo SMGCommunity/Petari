@@ -1,10 +1,10 @@
 #include "Game/MapObj/LavaBallRisingPlanetLava.hpp"
 
-LavaBallRisingPlanetLava::LavaBallRisingPlanetLava(const char *pName) : MapObjActor(pName) {
-
+LavaBallRisingPlanetLava::LavaBallRisingPlanetLava(const char* pName)
+    : MapObjActor(pName) {
 }
 
-void LavaBallRisingPlanetLava::init(const JMapInfoIter &rIter) {
+void LavaBallRisingPlanetLava::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);
     MapObjActorInitInfo info;
     info.setupHioNode("地形オブジェ");
@@ -22,8 +22,7 @@ void LavaBallRisingPlanetLava::exeWait() {
     if (!MR::isLessStep(this, 120)) {
         if (isNerve(&NrvLavaBallRisingPlanetLava::LavaBallRisingPlanetLavaNrvWaitSmall::sInstance)) {
             setNerve(&NrvLavaBallRisingPlanetLava::LavaBallRisingPlanetLavaNrvScaleUp::sInstance);
-        }
-        else {
+        } else {
             setNerve(&NrvLavaBallRisingPlanetLava::LavaBallRisingPlanetLavaNrvScaleDown::sInstance);
         }
     }
@@ -50,7 +49,6 @@ void LavaBallRisingPlanetLava::exeScaleDown() {
 }
 
 LavaBallRisingPlanetLava::~LavaBallRisingPlanetLava() {
-
 }
 
 namespace NrvLavaBallRisingPlanetLava {
@@ -58,4 +56,4 @@ namespace NrvLavaBallRisingPlanetLava {
     INIT_NERVE(LavaBallRisingPlanetLavaNrvWaitBig);
     INIT_NERVE(LavaBallRisingPlanetLavaNrvScaleUp);
     INIT_NERVE(LavaBallRisingPlanetLavaNrvScaleDown);
-};
+}; // namespace NrvLavaBallRisingPlanetLava

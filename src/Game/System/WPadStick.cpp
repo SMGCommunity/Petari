@@ -12,19 +12,17 @@ namespace {
     static const f32 sIsOnValue = 0.2f;
 };
 
-WPadStick::WPadStick(const WPad* pPad) :
-    mPad(pPad),
-    mStick(0.0f, 0.0f),
-    mSpeed(0.0f),
-    mHold(STICK_FLAG_NONE),
-    mTrigger(STICK_FLAG_NONE),
-    mRelease(STICK_FLAG_NONE),
-    mIsTriggerUp(false),
-    mIsTriggerDown(false),
-    mIsHoldUp(false),
-    mIsHoldDown(false)
-{
-    
+WPadStick::WPadStick(const WPad* pPad)
+    : mPad(pPad),
+      mStick(0.0f, 0.0f),
+      mSpeed(0.0f),
+      mHold(STICK_FLAG_NONE),
+      mTrigger(STICK_FLAG_NONE),
+      mRelease(STICK_FLAG_NONE),
+      mIsTriggerUp(false),
+      mIsTriggerDown(false),
+      mIsHoldUp(false),
+      mIsHoldDown(false) {
 }
 
 void WPadStick::update() {
@@ -36,8 +34,8 @@ void WPadStick::update() {
 
     TVec2f stickEx(pStatus->ex_status.fs.stick.x, pStatus->ex_status.fs.stick.y);
     TVec2f stickPrev = mStick;
-    f32 deltaX = stickEx.x - stickPrev.x;
-    f32 deltaY = stickEx.y - stickPrev.y;
+    f32    deltaX = stickEx.x - stickPrev.x;
+    f32    deltaY = stickEx.y - stickPrev.y;
     mSpeed = JGeometry::TUtil<f32>::sqrt(deltaX * deltaX + deltaY * deltaY);
     u32 flagPrev = STICK_FLAG_NONE;
 
@@ -84,23 +82,19 @@ void WPadStick::update() {
         mIsTriggerDown = false;
         mIsHoldUp = false;
         mIsHoldDown = false;
-    }
-    else if (mStick.y > 0.0f) {
+    } else if (mStick.y > 0.0f) {
         if (mIsHoldUp) {
             mIsTriggerUp = false;
-        }
-        else {
+        } else {
             mIsTriggerUp = true;
         }
 
         mIsHoldUp = true;
         mIsHoldDown = false;
-    }
-    else {
+    } else {
         if (mIsHoldDown) {
             mIsTriggerDown = false;
-        }
-        else {
+        } else {
             mIsTriggerDown = true;
         }
 

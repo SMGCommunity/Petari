@@ -29,7 +29,7 @@ namespace MR {
         NewDeleteAllocator::alloc,
         NewDeleteAllocator::free,
     };
-    MEMAllocator NewDeleteAllocator::sAllocator = { &sAllocatorFunc };
+    MEMAllocator NewDeleteAllocator::sAllocator = {&sAllocatorFunc};
 
     MEMAllocator* getHomeButtonLayoutAllocator() {
         JKRHeapAllocator<0>::sHeap = SingletonHolder<HeapMemoryWatcher>::get()->mHomeButtonLayoutHeap;
@@ -42,7 +42,7 @@ namespace MR {
     }
 
     // MR::getAproposHeapForSceneArchive
-    
+
     JKRExpHeap* getStationedHeapNapa() {
         return SingletonHolder<HeapMemoryWatcher>::get()->mStationedHeapNapa;
     }
@@ -83,8 +83,7 @@ namespace MR {
     void fillMemory(void* pDst, u8 ch, u32 size) {
         if (ch == 0) {
             zeroMemory(pDst, size);
-        }
-        else {
+        } else {
             memset(pDst, ch, size);
         }
     }
@@ -99,7 +98,7 @@ namespace MR {
         sum = 0;
 
         const u16* p = static_cast<const u16*>(pPtr);
-        u32 checkSize = size / sizeof(u16);
+        u32        checkSize = size / sizeof(u16);
 
         for (int i = 0; i < checkSize; i++, p++) {
             sum += *p;
@@ -119,22 +118,22 @@ namespace MR {
         return 1;
     }
 
-    template<int N>
+    template <int N>
     void* JKRHeapAllocator<N>::alloc(MEMAllocator* pAllocator, u32 size) {
         return JKRHeapAllocator<N>::sHeap->alloc(size, 0);
     }
 
-    template<int N>
+    template <int N>
     void JKRHeapAllocator<N>::free(MEMAllocator* pAllocator, void* pPtr) {
         JKRHeapAllocator<N>::sHeap->free(pPtr);
     }
 
-    template<int N>
-    MEMAllocator JKRHeapAllocator<N>::sAllocator = { &sAllocatorFunc, nullptr, 4, 0 };
+    template <int N>
+    MEMAllocator JKRHeapAllocator<N>::sAllocator = {&sAllocatorFunc, nullptr, 4, 0};
 
-    template<int N>
+    template <int N>
     MEMAllocatorFunc JKRHeapAllocator<N>::sAllocatorFunc = {
         JKRHeapAllocator::alloc,
         JKRHeapAllocator::free,
     };
-};
+}; // namespace MR

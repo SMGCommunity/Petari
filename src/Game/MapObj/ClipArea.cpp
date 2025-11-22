@@ -18,9 +18,10 @@
 namespace {
     Color8 sShapeColor(0, 0, 0, 4);
     Color8 sDebugShapeColor(255, 0, 0, 128);
-}
+} // namespace
 
-ClipArea::ClipArea(const char * pName) : LiveActor(pName) {
+ClipArea::ClipArea(const char* pName)
+    : LiveActor(pName) {
     mShape = 0;
     mBaseMatrix.identity();
     MR::createClipAreaHolder();
@@ -29,7 +30,7 @@ ClipArea::ClipArea(const char * pName) : LiveActor(pName) {
 
 void ClipArea::init(const JMapInfoIter& rIter) {
     initBaseMatrix(rIter);
-    MR::connectToScene(this, 0. -1, -1, -1, 42);
+    MR::connectToScene(this, 0. - 1, -1, -1, 42);
 }
 
 void ClipArea::initBaseMatrix(const JMapInfoIter& rIter) {
@@ -79,9 +80,9 @@ namespace MR {
     void setClipBottomConeArea(ClipArea* mArea) {
         mArea->mShape = new ClipAreaShapeCone(1);
     }
-}
+} // namespace MR
 
-MtxPtr ClipArea::getBaseMtx() const { 
+MtxPtr ClipArea::getBaseMtx() const {
     return (MtxPtr)&mBaseMatrix;
 }
 

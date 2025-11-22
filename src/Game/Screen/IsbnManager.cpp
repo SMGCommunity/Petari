@@ -19,24 +19,21 @@ const char* IsbnManager::cOtherNumberPaneName[] = {
     "T_number_09",
 };
 
-IsbnManager::IsbnManager(MEMAllocator* pAllocator) :
-    _0(true),
-    mpAllocator(pAllocator),
-    mpLayout(nullptr),
-    mpResAccessor(nullptr),
-    mDrawInfo(),
-    _68(0),
-    _64(180),
-    _66(180),
-    mpIsbnBuffer(nullptr),
-    mpLayoutBuffer(nullptr),
-    mpResAccBuffer(nullptr)
-{
-    
+IsbnManager::IsbnManager(MEMAllocator* pAllocator)
+    : _0(true),
+      mpAllocator(pAllocator),
+      mpLayout(nullptr),
+      mpResAccessor(nullptr),
+      mDrawInfo(),
+      _68(0),
+      _64(180),
+      _66(180),
+      mpIsbnBuffer(nullptr),
+      mpLayoutBuffer(nullptr),
+      mpResAccBuffer(nullptr) {
 }
 
 IsbnManager::~IsbnManager() {
-    
 }
 
 void IsbnManager::setAdjustRate(f32 x, f32 y) {
@@ -55,8 +52,7 @@ bool IsbnManager::calc(bool param1) {
 
     if (param1 && _68 > _64) {
         result = true;
-    }
-    else if (_68 > _66) {
+    } else if (_68 > _66) {
         result = true;
     }
 

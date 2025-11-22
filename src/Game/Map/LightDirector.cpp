@@ -2,7 +2,7 @@
 #include "Game/Map/LightFunction.hpp"
 #include "Game/Util.hpp"
 
-void LightDirector::init(const JMapInfoIter &rIter) {
+void LightDirector::init(const JMapInfoIter& rIter) {
     MR::connectToSceneMapObjMovement(this);
     LightFunction::loadAllLightWhite();
     mHolder = new LightDataHolder();
@@ -21,5 +21,4 @@ void LightDirector::movement() {
 }
 
 LightDirector::~LightDirector() {
-
 }

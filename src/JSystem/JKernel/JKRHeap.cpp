@@ -20,7 +20,8 @@ u32 JKRHeap::mMemorySize;
 
 u32 JKRHeap::ARALT_AramStartAddr = 0x90000000;
 
-JKRHeap::JKRHeap(void* data, u32 size, JKRHeap* parent, bool error) : JKRDisposer(), mChildTree(this), mDisposerList() {
+JKRHeap::JKRHeap(void* data, u32 size, JKRHeap* parent, bool error)
+    : JKRDisposer(), mChildTree(this), mDisposerList() {
     OSInitMutex(&mMutex);
     mSize = size;
     mStart = (u8*)data;
@@ -29,9 +30,8 @@ JKRHeap::JKRHeap(void* data, u32 size, JKRHeap* parent, bool error) : JKRDispose
     if (parent == nullptr) {
         JKRHeap::sSystemHeap = this;
         JKRHeap::sCurrentHeap = this;
-    }
-    else {
-        parent->mChildTree.appendChild(&mChildTree); 
+    } else {
+        parent->mChildTree.appendChild(&mChildTree);
 
         if (JKRHeap::sSystemHeap == JKRHeap::sRootHeap) {
             JKRHeap::sSystemHeap = this;
@@ -50,7 +50,7 @@ JKRHeap::JKRHeap(void* data, u32 size, JKRHeap* parent, bool error) : JKRDispose
 
     _3C = byte_806B26D8;
     _3D = byte_806B70B8;
-    _69 = false; 
+    _69 = false;
 }
 
 JKRHeap::~JKRHeap() {
@@ -64,9 +64,8 @@ JKRHeap::~JKRHeap() {
         sSystemHeap = !nextRootHeap ? sRootHeap : nextRootHeap->getObject();
 }
 
-
 bool JKRHeap::initArena(char** memory, u32* size, int maxHeaps) {
-    void* ramStart, *ramEnd, *arenaStart;
+    void *ramStart, *ramEnd, *arenaStart;
 
     void* arenaLo = OSGetArenaLo();
     void* arenaHi = OSGetArenaHi();
@@ -81,7 +80,7 @@ bool JKRHeap::initArena(char** memory, u32* size, int maxHeaps) {
     OSBootInfo* code = (OSBootInfo*)OSPhysicalToCached(0);
     ramStart = (void*)(((u32)arenaStart + 31) & 0xFFFFFFE0);
     ramEnd = (void*)((u32)arenaHi & 0xFFFFFFE0);
-    
+
     JKRHeap::mCodeStart = code;
     JKRHeap::mCodeEnd = ramStart;
     JKRHeap::mUserRamStart = ramStart;
@@ -98,21 +97,21 @@ bool JKRHeap::initArena(char** memory, u32* size, int maxHeaps) {
 
 JKRHeap* JKRHeap::becomeSystemHeap() {
     JKRHeap* sys = sSystemHeap;
-    sSystemHeap = this; 
+    sSystemHeap = this;
     return sys;
 }
 
 JKRHeap* JKRHeap::becomeCurrentHeap() {
     JKRHeap* cur = sCurrentHeap;
-    sCurrentHeap = this; 
+    sCurrentHeap = this;
     return cur;
 }
 
-void JKRHeap::destroy(JKRHeap *pHeap) {
+void JKRHeap::destroy(JKRHeap* pHeap) {
     pHeap->do_destroy();
 }
 
-void* JKRHeap::alloc(u32 size, int align, JKRHeap *pHeap) {
+void* JKRHeap::alloc(u32 size, int align, JKRHeap* pHeap) {
     if (pHeap != nullptr) {
         return pHeap->alloc(size, align);
     }
@@ -128,7 +127,7 @@ void* JKRHeap::alloc(u32 size, int align) {
     return do_alloc(size, align);
 }
 
-void JKRHeap::free(void *pData, JKRHeap *pHeap) {
+void JKRHeap::free(void* pData, JKRHeap* pHeap) {
     if (!pHeap) {
         pHeap = findFromRoot(pData);
 
@@ -140,8 +139,8 @@ void JKRHeap::free(void *pData, JKRHeap *pHeap) {
     pHeap->do_free(pData);
 }
 
-void JKRHeap::free(void *pData) {
-    do_free(pData); 
+void JKRHeap::free(void* pData) {
+    do_free(pData);
 }
 
 void JKRHeap::callAllDisposer() {
@@ -158,7 +157,7 @@ void JKRHeap::freeTail() {
     do_freeTail();
 }
 
-s32 JKRHeap::resize(void *pData, u32 size) {
+s32 JKRHeap::resize(void* pData, u32 size) {
     return do_resize(pData, size);
 }
 
@@ -173,12 +172,12 @@ void* JKRHeap::getMaxFreeBlock() {
 s32 JKRHeap::getTotalFreeSize() {
     return do_getTotalFreeSize();
 }
- 
-JKRHeap* JKRHeap::findFromRoot(void *pData) {
+
+JKRHeap* JKRHeap::findFromRoot(void* pData) {
     JKRHeap* root = sRootHeap;
 
-    if (root == nullptr) { 
-        return nullptr; 
+    if (root == nullptr) {
+        return nullptr;
     }
 
     if ((void*)root->mStart <= pData && pData < (void*)root->mEnd) {
@@ -187,26 +186,26 @@ JKRHeap* JKRHeap::findFromRoot(void *pData) {
 
     return root->findAllHeap(pData);
 }
- 
+
 /* functionally equiv but not matching */
-JKRHeap* JKRHeap::find(void *pData) const {
+JKRHeap* JKRHeap::find(void* pData) const {
     if (mStart <= pData && pData < mEnd) {
         const JSUTree<JKRHeap>& tree = mChildTree;
 
         if (tree.getNumChildren() != 0) {
-            for (JSUTreeIterator<JKRHeap> iterator(mChildTree.getFirstChild()); 
-                iterator != mChildTree.getEndChild(); ++iterator) {
-                    JKRHeap* result = iterator->find(pData);
+            for (JSUTreeIterator<JKRHeap> iterator(mChildTree.getFirstChild());
+                 iterator != mChildTree.getEndChild(); ++iterator) {
+                JKRHeap* result = iterator->find(pData);
 
-                    if (result) {
-                        return result;
-                    }
+                if (result) {
+                    return result;
                 }
+            }
         }
 
         // this is to avoid returning a const JKRHeap ptr
         return const_cast<JKRHeap*>(this);
-    } 
+    }
 
     return nullptr;
 }
@@ -243,13 +242,11 @@ void JKRHeap::dispose_subroutine(u32 start, u32 end) {
 
             if (last_it == nullptr) {
                 next_it = mDisposerList.getFirst();
-            }
-            else {
+            } else {
                 next_it = last_it;
                 next_it++;
             }
-        }
-        else {
+        } else {
             last_it = it;
             next_it = it;
             next_it++;
@@ -269,7 +266,7 @@ void JKRHeap::dispose(void* begin, void* end) {
 }
 
 void JKRHeap::dispose() {
-    const JSUList<JKRDisposer>& list = mDisposerList;
+    const JSUList<JKRDisposer>&  list = mDisposerList;
     JSUListIterator<JKRDisposer> iterator;
 
     while (list.getFirst() != list.getEnd()) {
@@ -278,10 +275,10 @@ void JKRHeap::dispose() {
     }
 }
 
-void JKRHeap::copyMemory(void *pDst, void *pSrc, u32 size) {
-    u32 count = (size + 3) / 4;
+void JKRHeap::copyMemory(void* pDst, void* pSrc, u32 size) {
+    u32  count = (size + 3) / 4;
     u32* dst_32 = (u32*)pDst;
-    u32* src_32 = (u32*)pSrc; 
+    u32* src_32 = (u32*)pSrc;
 
     while (count > 0) {
         *dst_32 = *src_32;
@@ -314,7 +311,7 @@ void* operator new(u32 size, int align) {
     return JKRHeap::alloc(size, align, nullptr);
 }
 
-void* operator new(u32 size, JKRHeap *pHeap, int align) {
+void* operator new(u32 size, JKRHeap* pHeap, int align) {
     return JKRHeap::alloc(size, align, pHeap);
 }
 
@@ -326,27 +323,27 @@ void* operator new[](u32 size, int align) {
     return JKRHeap::alloc(size, align, nullptr);
 }
 
-void* operator new[](u32 size, JKRHeap *pHeap, int align) {
+void* operator new[](u32 size, JKRHeap* pHeap, int align) {
     return JKRHeap::alloc(size, align, pHeap);
 }
 
-void operator delete(void *pData) {
+void operator delete(void* pData) {
     JKRHeap::free(pData, nullptr);
 }
 
-void operator delete[](void *pData) {
+void operator delete[](void* pData) {
     JKRHeap::free(pData, nullptr);
 }
 
-void JKRHeap::state_register(TState *, u32) const {
+void JKRHeap::state_register(TState*, u32) const {
     return;
 }
 
-bool JKRHeap::state_compare(const TState &lhs, const TState &rhs) const {
+bool JKRHeap::state_compare(const TState& lhs, const TState& rhs) const {
     return lhs._4 == rhs._4;
 }
 
-void JKRHeap::state_dump(const TState &) const {
+void JKRHeap::state_dump(const TState&) const {
     return;
 }
 

@@ -1,10 +1,10 @@
 #include "Game/MapObj/SandCapsuleInsidePlanet.hpp"
 
-SandCapsuleInsidePlanet::SandCapsuleInsidePlanet(const char *pName) : MapObjActor(pName) {
-
+SandCapsuleInsidePlanet::SandCapsuleInsidePlanet(const char* pName)
+    : MapObjActor(pName) {
 }
 
-void SandCapsuleInsidePlanet::init(const JMapInfoIter &rIter) {
+void SandCapsuleInsidePlanet::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);
     MapObjActorInitInfo info;
     MapObjActorUtil::setupInitInfoPlanet(&info);
@@ -14,7 +14,7 @@ void SandCapsuleInsidePlanet::init(const JMapInfoIter &rIter) {
     MR::setBrkFrameEndAndStop(this);
 }
 
-void SandCapsuleInsidePlanet::initCaseUseSwitchA(const MapObjActorInitInfo &rInfo) {
+void SandCapsuleInsidePlanet::initCaseUseSwitchA(const MapObjActorInitInfo& rInfo) {
     void (SandCapsuleInsidePlanet::*offFunc)(void) = &SandCapsuleInsidePlanet::startOff;
     void (SandCapsuleInsidePlanet::*onFunc)(void) = &SandCapsuleInsidePlanet::startOn;
     MR::listenStageSwitchOnOffA(this, MR::Functor(this, onFunc), MR::Functor(this, offFunc));
@@ -33,5 +33,4 @@ namespace NrvSandCapsuleInsidePlanet {
 };
 
 SandCapsuleInsidePlanet::~SandCapsuleInsidePlanet() {
-
 }

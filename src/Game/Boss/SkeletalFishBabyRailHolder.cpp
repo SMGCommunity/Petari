@@ -18,7 +18,7 @@ SkeletalFishBabyRailGroupNode::SkeletalFishBabyRailGroupNode(s32 a1) {
     _24 = node;
 }
 
-void SkeletalFishBabyRailGroupNode::addChild(SkeletalFishBabyRail *pRail) {
+void SkeletalFishBabyRailGroupNode::addChild(SkeletalFishBabyRail* pRail) {
     if (MR::isLoopRail(pRail)) {
         if (_24->_10 == nullptr) {
             createChild();
@@ -27,8 +27,7 @@ void SkeletalFishBabyRailGroupNode::addChild(SkeletalFishBabyRail *pRail) {
         SkeletalFishBabyRailSetLinkNode* node = _24->_10;
         _24 = node;
         node->_4 = pRail;
-    }
-    else {
+    } else {
         if (_20->_10 == nullptr) {
             createChild();
         }
@@ -44,7 +43,7 @@ void SkeletalFishBabyRailGroupNode::tidy() {
         TVec3f endPointPos;
         MR::calcRailEndPointPos(&endPointPos, curLink->_0);
         SkeletalFishBabyRailSetLinkNode* v2 = curLink;
-        TVec3f nearestRailPos;
+        TVec3f                           nearestRailPos;
         MR::calcNearestRailPos(&nearestRailPos, curLink->_4, endPointPos);
         f32 totalDist = PSVECDistance(&endPointPos, &nearestRailPos);
 
@@ -74,7 +73,8 @@ void SkeletalFishBabyRailGroupNode::createChild() {
     mNumNodes++;
 }
 
-SkeletalFishBabyRailHolder::SkeletalFishBabyRailHolder(const char *pName) : NameObj(pName) {
+SkeletalFishBabyRailHolder::SkeletalFishBabyRailHolder(const char* pName)
+    : NameObj(pName) {
     mNodes = nullptr;
 }
 
@@ -84,13 +84,13 @@ void SkeletalFishBabyRailHolder::initAfterPlacement() {
 
     for (curNode = nodes; curNode != nullptr; curNode = curNode->_14) {
         curNode->tidy();
-    }   
+    }
 }
 
-void SkeletalFishBabyRailHolder::add(SkeletalFishBabyRail *pRail) {
+void SkeletalFishBabyRailHolder::add(SkeletalFishBabyRail* pRail) {
     SkeletalFishBabyRailGroupNode* nextNode = mNodes;
 
-    for (; nextNode != nullptr; nextNode = nextNode->_14) { 
+    for (; nextNode != nullptr; nextNode = nextNode->_14) {
         if (nextNode->_0 == pRail->_8C) {
             break;
         }
@@ -124,10 +124,9 @@ namespace MR {
     void createSkeletalFishBabyRailHolder() {
         MR::createSceneObj(SceneObj_SkeletalFishBabyRailHolder);
     }
-};
+}; // namespace MR
 
 SkeletalFishBabyRailHolder::~SkeletalFishBabyRailHolder() {
-
 }
 
 SkeletalFishBabyRailSetLinkNode::SkeletalFishBabyRailSetLinkNode() {
@@ -135,5 +134,5 @@ SkeletalFishBabyRailSetLinkNode::SkeletalFishBabyRailSetLinkNode() {
     _4 = nullptr;
     _8 = 0;
     _C = nullptr;
-    _10 = nullptr;   
+    _10 = nullptr;
 }

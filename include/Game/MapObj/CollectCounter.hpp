@@ -6,10 +6,10 @@
 
 class CollectCounter : public LayoutActor {
 public:
-    CollectCounter(const char *);
+    CollectCounter(const char*);
 
     virtual ~CollectCounter();
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
     virtual void control();
 
     void setCount(s32);
@@ -21,5 +21,5 @@ public:
 
 namespace NrvCollectCounter {
     NERVE(CollectCounterNrvHide);
-    NERVE(CollectCounterNrvShow);   
-};
+    NERVE(CollectCounterNrvShow);
+}; // namespace NrvCollectCounter

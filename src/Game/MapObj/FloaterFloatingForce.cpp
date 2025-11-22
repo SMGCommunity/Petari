@@ -3,26 +3,26 @@
 #include "math_types.hpp"
 
 FloaterFloatingForce::~FloaterFloatingForce() {
-
 }
 
-FloaterFloatingForce::FloaterFloatingForce(LiveActor *pActor, const char *pName) : MapPartsFunction(pActor, "浮力"), _18(pName), _1C(gZeroVec) {
+FloaterFloatingForce::FloaterFloatingForce(LiveActor* pActor, const char* pName)
+    : MapPartsFunction(pActor, "浮力"), _18(pName), _1C(gZeroVec) {
     _28.setPS(TVec3f(0.0f, 1.0f, 0.0f));
     mMoveCondition = 0.0f;
 }
 
-void FloaterFloatingForce::init(const JMapInfoIter &rIter) {
+void FloaterFloatingForce::init(const JMapInfoIter& rIter) {
     s32 moveType = 0;
     MR::getMapPartsArgMoveConditionType(&moveType, rIter);
     mMoveCondition = moveType;
 }
 
-void FloaterFloatingForce::start() { 
+void FloaterFloatingForce::start() {
     _1C.x = mHost->mPosition.x;
     _1C.y = mHost->mPosition.y;
     _1C.z = mHost->mPosition.z;
     TSMtxf matrix;
-    f32 x, y, z;
+    f32    x, y, z;
     matrix.setInline_2(mHost->getBaseMtx());
     x = matrix.mMtx[0][1];
     y = matrix.mMtx[1][1];

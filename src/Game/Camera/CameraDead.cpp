@@ -6,7 +6,8 @@ f32 CameraTargetObj::getRadius() const {
     return 150.0f;
 }
 
-CameraDead::CameraDead(const char *pName) : Camera(pName) {
+CameraDead::CameraDead(const char* pName)
+    : Camera(pName) {
     mDist = 0.5f;
     _54 = 0;
     _58 = 0;
@@ -14,9 +15,8 @@ CameraDead::CameraDead(const char *pName) : Camera(pName) {
 }
 
 CameraDead::~CameraDead() {
-
 }
 
-CamTranslatorBase *CameraDead::createTranslator() {
+CamTranslatorBase* CameraDead::createTranslator() {
     return new CamTranslatorDead(this);
 }

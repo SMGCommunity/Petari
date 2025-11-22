@@ -10,13 +10,12 @@ namespace NrvInformationMessage {
     NEW_NERVE(InformationMessageNrvAppear, InformationMessage, Appear);
     NEW_NERVE(InformationMessageNrvWait, InformationMessage, Wait);
     NEW_NERVE(InformationMessageNrvDisappear, InformationMessage, Disappear);
-};
+}; // namespace NrvInformationMessage
 
-InformationMessage::InformationMessage() :
-    LayoutActor("インフォメーションメッセージ", true),
-    mAButtonIcon(nullptr),
-    mIsCenter(false)
-{}
+InformationMessage::InformationMessage()
+    : LayoutActor("インフォメーションメッセージ", true),
+      mAButtonIcon(nullptr),
+      mIsCenter(false) {}
 
 void InformationMessage::init(const JMapInfoIter& rIter) {
     initLayoutManager("InformationWindow", 2);
@@ -39,8 +38,7 @@ void InformationMessage::appear() {
     if (mIsCenter) {
         MR::hidePaneRecursive(this, "InfoWindowUp");
         MR::showPaneRecursive(this, "InfoWindowCenter");
-    }
-    else {
+    } else {
         MR::showPaneRecursive(this, "InfoWindowUp");
         MR::hidePaneRecursive(this, "InfoWindowCenter");
     }

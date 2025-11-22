@@ -13,17 +13,17 @@ void* GameSystemException::sMapFileUsingBuffer;
 
 namespace {
     bool isBootWPAD() {
-        bool ret = false;
+        bool                 ret = false;
         GameSystemObjHolder* objHolder = SingletonHolder<GameSystem>::get()->mObjHolder;
         if (objHolder != nullptr && objHolder->mWPadHolder != nullptr) {
             ret = true;
         }
-        
+
         return ret;
     }
 
-    const s32 cDispExceptionCommand[8] = { 8, 4, 1, 2, 0x100, 0x10, 0, 0 };
-};
+    const s32 cDispExceptionCommand[8] = {8, 4, 1, 2, 0x100, 0x10, 0, 0};
+}; // namespace
 
 void GameSystemException::init() {
     JUTDirectPrint* print = JUTDirectPrint::start();
@@ -49,7 +49,7 @@ void GameSystemException::init() {
     GameSystemException::sMapFileUsingBuffer = new u8[0x10];
 }
 
-void GameSystemException::handleException(u16 a1, OSContext *pContext, u32 a3, u32 a4) {
+void GameSystemException::handleException(u16 a1, OSContext* pContext, u32 a3, u32 a4) {
     if (!JUTVideo::sManager) {
         JUTException::sConsole->mOutput = 2;
         JUTException::sConsole->mVisible = false;

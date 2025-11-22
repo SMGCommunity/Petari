@@ -4,11 +4,10 @@
 
 class JAISoundHandle;
 
-class JAISoundHandles
-{
+class JAISoundHandles {
 public:
-    u32 *getHandleSoundID(JAISoundID); // exact return type currently unknown
+    u32* getHandleSoundID(JAISoundID); // exact return type currently unknown
 
-    /* 0x0 */ JAISoundHandle *mHandles;
-    u32 _4;
+    /* 0x0 */ JAISoundHandle* mHandles;
+    u32                       _4;
 };

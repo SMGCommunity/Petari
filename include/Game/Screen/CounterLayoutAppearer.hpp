@@ -7,7 +7,7 @@ class LayoutActor;
 
 class CounterLayoutAppearer : public NerveExecutor {
 public:
-    CounterLayoutAppearer(LayoutActor *, const TVec2f&);
+    CounterLayoutAppearer(LayoutActor*, const TVec2f&);
 
     void update();
     void appear(const TVec2f&);
@@ -24,7 +24,7 @@ public:
 
 private:
     /* 0x08 */ LayoutActor* mLayout;
-    /* 0x0C */ TVec2f _C;
-    /* 0x14 */ TVec2f mFollowPos;
-    /* 0x1C */ TVec2f _1C;
+    /* 0x0C */ TVec2f       _C;
+    /* 0x14 */ TVec2f       mFollowPos;
+    /* 0x1C */ TVec2f       _1C;
 };

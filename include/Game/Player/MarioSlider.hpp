@@ -6,6 +6,6 @@ class MarioActor;
 
 class MarioSlider : public MarioState {
 public:
-    MarioSlider(MarioActor *);
+    MarioSlider(MarioActor*);
     u8 _11[0x33];
 };

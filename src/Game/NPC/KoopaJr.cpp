@@ -14,14 +14,15 @@ namespace NrvKoopaJr {
     NEW_NERVE(HostTypeShipBattleShipDamage, KoopaJr, ShipBattleShipDamage);
     NEW_NERVE(HostTypeShipBattleDemoTalkStart, KoopaJr, ShipBattleDemoTalkStart);
     NEW_NERVE(HostTypeShipBattleDemoTalkWait, KoopaJr, ShipBattleDemoTalkWait);
-};
+}; // namespace NrvKoopaJr
 
-KoopaJr::KoopaJr(const char *pName) : NPCActor(pName) {
+KoopaJr::KoopaJr(const char* pName)
+    : NPCActor(pName) {
     _15C = 0;
     _15D = 0;
 }
 
-void KoopaJr::init(const JMapInfoIter &rIter) {
+void KoopaJr::init(const JMapInfoIter& rIter) {
     NPCActor::init(rIter);
     initModelManagerWithAnm("KoopaJr", nullptr, false);
     NPCActorCaps caps("KoopaJr");
@@ -63,7 +64,7 @@ void KoopaJr::init(const JMapInfoIter &rIter) {
     if (mLodCtrl != nullptr) {
         mLodCtrl->setDistanceToMiddleAndLow(5000.0f, 10000.0f);
     }
-    
+
     MR::onCalcShadow(this, nullptr);
     MR::setShadowDropLength(this, nullptr, 200.0f);
     makeActorAppeared();
@@ -131,8 +132,7 @@ void KoopaJr::exeWait() {
         }
 
         setNerve(&NrvKoopaJr::HostTypeReaction::sInstance);
-    }
-    else {
+    } else {
         MR::tryStartTurnAction(this);
     }
 }
@@ -167,8 +167,7 @@ void KoopaJr::exeShipBattleAppear() {
     if (MR::isFirstStep(this)) {
         if (MR::isEqualStageName("TriLegLv1Galaxy")) {
             MR::startBck(this, "RoboAppearDemo", nullptr);
-        }
-        else {
+        } else {
             MR::startBck(this, "AppearDemo", nullptr);
         }
     }
@@ -226,5 +225,4 @@ void KoopaJr::exeShipBattleDemoTalkWait() {
 }
 
 KoopaJr::~KoopaJr() {
-    
 }

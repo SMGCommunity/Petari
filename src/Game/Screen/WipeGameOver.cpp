@@ -5,12 +5,10 @@
 namespace NrvWipeGameOver {
     NEW_NERVE(WipeGameOverWait, WipeGameOver, Wait);
     NEW_NERVE(WipeGameOverActive, WipeGameOver, Active);
-};
+}; // namespace NrvWipeGameOver
 
-WipeGameOver::WipeGameOver() :
-    WipeLayoutBase("ゲームオーバー")
-{
-    
+WipeGameOver::WipeGameOver()
+    : WipeLayoutBase("ゲームオーバー") {
 }
 
 void WipeGameOver::init(const JMapInfoIter& rIter) {
@@ -59,7 +57,6 @@ bool WipeGameOver::isWipeOut() const {
 }
 
 void WipeGameOver::exeWait() {
-    
 }
 
 void WipeGameOver::exeActive() {

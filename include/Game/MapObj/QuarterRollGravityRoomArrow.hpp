@@ -14,14 +14,14 @@ public:
     virtual void initCaseNoUseSwitchA(const MapObjActorInitInfo& rInfo);
     virtual void initCaseUseSwitchB(const MapObjActorInitInfo& rInfo);
     virtual void initCaseNoUseSwitchB(const MapObjActorInitInfo& rInfo);
-    void exeRollOnA();
-    void exeRollOffA();
-    void exeRollOnB();
-    void exeRollOffB();
-    void onRollA();
-    void offRollA();
-    void onRollB();
-    void offRollB();
+    void         exeRollOnA();
+    void         exeRollOffA();
+    void         exeRollOnB();
+    void         exeRollOffB();
+    void         onRollA();
+    void         offRollA();
+    void         onRollB();
+    void         offRollB();
 };
 
 namespace NrvQuarterRollGravityRoomArrow {
@@ -31,4 +31,4 @@ namespace NrvQuarterRollGravityRoomArrow {
     NERVE_DECL(QuarterRollGravityRoomArrowNrvRollOffA, QuarterRollGravityRoomArrow, exeRollOffA)
     NERVE_DECL(QuarterRollGravityRoomArrowNrvRollOnB, QuarterRollGravityRoomArrow, exeRollOnB)
     NERVE_DECL(QuarterRollGravityRoomArrowNrvRollOffB, QuarterRollGravityRoomArrow, exeRollOffB)
-}
+} // namespace NrvQuarterRollGravityRoomArrow

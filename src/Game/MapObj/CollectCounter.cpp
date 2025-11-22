@@ -1,12 +1,13 @@
 #include "Game/MapObj/CollectCounter.hpp"
 #include "Game/Util.hpp"
 
-CollectCounter::CollectCounter(const char *pName) : LayoutActor(pName, true) {
+CollectCounter::CollectCounter(const char* pName)
+    : LayoutActor(pName, true) {
     mFollowPosition.x = 0.0f;
     mFollowPosition.y = 0.0f;
 }
 
-void CollectCounter::init(const JMapInfoIter &rIter) {
+void CollectCounter::init(const JMapInfoIter& rIter) {
     MR::connectToSceneLayout(this);
     initLayoutManager("CollectCounter", 1);
     initNerve(&NrvCollectCounter::CollectCounterNrvHide::sInstance);
@@ -35,7 +36,7 @@ bool CollectCounter::tryEndShow() {
 }
 
 void CollectCounter::setPosition() {
-    f32 point_rad = MR::calcPointRadius2D(*MR::getPlayerCenterPos(), 75.0f);
+    f32    point_rad = MR::calcPointRadius2D(*MR::getPlayerCenterPos(), 75.0f);
     TVec2f screen_pos;
     MR::calcScreenPosition(&screen_pos, *MR::getPlayerCenterPos());
     screen_pos.y -= point_rad;
@@ -44,24 +45,22 @@ void CollectCounter::setPosition() {
 }
 
 CollectCounter::~CollectCounter() {
-
 }
 
 namespace NrvCollectCounter {
     CollectCounterNrvHide CollectCounterNrvHide::sInstance;
     CollectCounterNrvShow CollectCounterNrvShow::sInstance;
 
-    void CollectCounterNrvShow::execute(Spine *pSpine) const {
+    void CollectCounterNrvShow::execute(Spine* pSpine) const {
         CollectCounter* counter = reinterpret_cast<CollectCounter*>(pSpine->mExecutor);
-        
+
         if (MR::isFirstStep(counter)) {
             MR::startAnim(counter, "Appear", 0);
         }
- 
+
         counter->tryEndShow();
     }
 
-    void CollectCounterNrvHide::execute(Spine *pSpine) const {
-        
+    void CollectCounterNrvHide::execute(Spine* pSpine) const {
     }
-};
+}; // namespace NrvCollectCounter

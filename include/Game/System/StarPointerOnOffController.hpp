@@ -74,9 +74,9 @@ public:
     void incModeCounter(void*, s32);
     void decModeCounter(void*);
 
-    /* 0x08 */ bool _8;
+    /* 0x08 */ bool  _8;
     /* 0x0C */ void* _C[16];
-    /* 0x4C */ u32 _4C[StarPointerMode_Count];
-    /* 0xB4 */ bool _B4[StarPointerMode_Count];
-    /* 0xD0 */ s32 _D0;
+    /* 0x4C */ u32   _4C[StarPointerMode_Count];
+    /* 0xB4 */ bool  _B4[StarPointerMode_Count];
+    /* 0xD0 */ s32   _D0;
 };

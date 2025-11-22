@@ -12,14 +12,13 @@ namespace NrvBombTimerLayout {
     NEW_NERVE(BombTimerLayoutNrvWait, BombTimerLayout, Wait);
     NEW_NERVE(BombTimerLayoutNrvDanger, BombTimerLayout, Danger);
     NEW_NERVE(BombTimerLayoutNrvEnd, BombTimerLayout, End);
-};
+}; // namespace NrvBombTimerLayout
 
-BombTimerLayout::BombTimerLayout(bool param1) :
-    LayoutActor("ボムタイマーレイアウト", true),
-    mDangerTransFrame(sDangerTransFrame),
-    mFrame(0),
-    mIsSuspend(false)
-{
+BombTimerLayout::BombTimerLayout(bool param1)
+    : LayoutActor("ボムタイマーレイアウト", true),
+      mDangerTransFrame(sDangerTransFrame),
+      mFrame(0),
+      mIsSuspend(false) {
     if (param1) {
         MR::connectToSceneLayout(this);
     }

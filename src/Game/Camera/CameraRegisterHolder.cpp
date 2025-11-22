@@ -1,25 +1,26 @@
 #include "Game/Camera/CameraRegisterHolder.hpp"
 #include <cstring>
 
-const char *sDummyMatrixName = "ダミーマトリクス";
-const char *sDummyVectorName = "ダミーベクトル";
-const char *sDummyFloatName = "ダミー浮動小数";
+const char* sDummyMatrixName = "ダミーマトリクス";
+const char* sDummyVectorName = "ダミーベクトル";
+const char* sDummyFloatName = "ダミー浮動小数";
 
-CameraRegisterHolder::CameraRegisterHolder(const char *pName) : NameObj(pName) {
+CameraRegisterHolder::CameraRegisterHolder(const char* pName)
+    : NameObj(pName) {
     initMtx();
     initVec();
     initFloat();
     initDummyRegister();
 }
 
-void CameraRegisterHolder::declareMtxReg(const char *pName, MtxPtr pValue) {
+void CameraRegisterHolder::declareMtxReg(const char* pName, MtxPtr pValue) {
     mMatrices[mNrMatrices] = pValue;
     mMatrixNames[mNrMatrices] = pName;
 
     mNrMatrices++;
 }
 
-MtxPtr CameraRegisterHolder::getMtx(const char *pName) const {
+MtxPtr CameraRegisterHolder::getMtx(const char* pName) const {
     s32 index = searchName(mMatrixNames, mNrMatrices, pName);
 
     if (index < 0) {
@@ -29,13 +30,13 @@ MtxPtr CameraRegisterHolder::getMtx(const char *pName) const {
     return mMatrices[index];
 }
 
-void CameraRegisterHolder::declareVecReg(const char *pName, const TVec3f *pValue) {
+void CameraRegisterHolder::declareVecReg(const char* pName, const TVec3f* pValue) {
     mVectors[mNrVectors] = pValue;
     mVectorNames[mNrVectors] = pName;
     mNrVectors++;
 }
 
-const TVec3f *CameraRegisterHolder::getVec(const char *pName) const {
+const TVec3f* CameraRegisterHolder::getVec(const char* pName) const {
     s32 index = searchName(mVectorNames, mNrVectors, pName);
 
     if (index < 0) {
@@ -45,13 +46,13 @@ const TVec3f *CameraRegisterHolder::getVec(const char *pName) const {
     return mVectors[index];
 }
 
-void CameraRegisterHolder::declareFloatReg(const char *pName, const f32 *pValue) {
+void CameraRegisterHolder::declareFloatReg(const char* pName, const f32* pValue) {
     mFloats[mNrFloats] = pValue;
     mFloatNames[mNrFloats] = pName;
     mNrFloats++;
 }
 
-const char *CameraRegisterHolder::getDummyVecRegName() const {
+const char* CameraRegisterHolder::getDummyVecRegName() const {
     return sDummyVectorName;
 }
 
@@ -66,7 +67,7 @@ void CameraRegisterHolder::initMtx() {
 
 void CameraRegisterHolder::initVec() {
     mNrVectors = 0;
-    
+
     for (u32 i = 0; i < NR_REGISTERS; i++) {
         mVectors[i] = nullptr;
         mVectorNames[i] = nullptr;
@@ -75,7 +76,7 @@ void CameraRegisterHolder::initVec() {
 
 void CameraRegisterHolder::initFloat() {
     mNrFloats = 0;
-    
+
     for (u32 i = 0; i < NR_REGISTERS; i++) {
         mFloats[i] = nullptr;
         mFloatNames[i] = nullptr;
@@ -95,7 +96,7 @@ void CameraRegisterHolder::initDummyRegister() {
     declareFloatReg(sDummyFloatName, &mDummyFloat);
 }
 
-s32 CameraRegisterHolder::searchName(const char *const *pNames, u32 count, const char *pName) const {
+s32 CameraRegisterHolder::searchName(const char* const* pNames, u32 count, const char* pName) const {
     if (pName == nullptr) {
         return -1;
     }

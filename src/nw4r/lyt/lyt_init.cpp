@@ -12,5 +12,5 @@ namespace nw4r {
             OSRegisterVersion(NW4R_LYT_Version_);
             OSInitFastCast();
         }
-    };
-};
+    }; // namespace lyt
+};     // namespace nw4r

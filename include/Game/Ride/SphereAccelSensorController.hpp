@@ -1,23 +1,19 @@
 #pragma once
 
-
 #include "Game/Ride/SpherePadController.hpp"
 #include <JSystem/JGeometry/TVec.hpp>
-
 
 class SphereAccelSensorController : SpherePadController {
 public:
     SphereAccelSensorController();
-    
-    
-    virtual f32 calcJumpPower() const;
-    virtual f32 calcMoveVector(TVec3f*, const TVec3f&);
+
+    virtual f32  calcJumpPower() const;
+    virtual f32  calcMoveVector(TVec3f*, const TVec3f&);
     virtual bool doBrake() const;
     virtual void update(const TVec3f&);
     virtual void notifyActivate();
     virtual void notifyDeactivate();
     virtual void clacXY(f32*, f32*);
-    
 
     void getPadAcceleration(TVec3f*);
     bool testBrake() const;
@@ -34,13 +30,13 @@ public:
 
     /* 0x58 */ u32 _58;
     /* 0x5C */ u32 _5C;
-    
+
     /* 0x60 */ u32 _60;
     /* 0x64 */ u32 _64;
     /* 0x68 */ u32 _68;
     /* 0x6C */ u32 _6C;
     /* 0x70 */ u32 _70;
-    
+
     /* 0x74 */ u32 _74;
     /* 0x78 */ u32 _78;
 

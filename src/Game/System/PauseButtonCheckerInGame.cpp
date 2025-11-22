@@ -5,25 +5,21 @@ namespace {
     static const s32 sHoldCounterMax = 12;
 };
 
-PauseButtonCheckerInGame::PauseButtonCheckerInGame() :
-    mPlusHoldFrame(0),
-    mMinusHoldFrame(0)
-{
-    
+PauseButtonCheckerInGame::PauseButtonCheckerInGame()
+    : mPlusHoldFrame(0),
+      mMinusHoldFrame(0) {
 }
 
 void PauseButtonCheckerInGame::update() {
     if (MR::testCorePadButtonPlus(WPAD_CHAN0)) {
         mPlusHoldFrame++;
-    }
-    else {
+    } else {
         mPlusHoldFrame = 0;
     }
 
     if (MR::testCorePadButtonMinus(WPAD_CHAN0)) {
         mMinusHoldFrame++;
-    }
-    else {
+    } else {
         mMinusHoldFrame = 0;
     }
 }

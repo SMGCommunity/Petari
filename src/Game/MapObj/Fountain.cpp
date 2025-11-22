@@ -1,6 +1,7 @@
 #include "Game/MapObj/Fountain.hpp"
 
-Fountain::Fountain(const char *pName) : LiveActor(pName) {
+Fountain::Fountain(const char* pName)
+    : LiveActor(pName) {
     mFountainName = nullptr;
     _90.x = 0.0f;
     _90.y = 1.0f;
@@ -8,22 +9,22 @@ Fountain::Fountain(const char *pName) : LiveActor(pName) {
 }
 
 #ifdef NON_MATCHING
-void Fountain::init(const JMapInfoIter &rIter) {
+void Fountain::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     TMtx34f mtx;
     mtx.identity();
     TVec3f v30 = mRotation * 0.017453292f;
-    f32 v10 = v30.z;
-    f32 v11 = v30.y;
-    f32 v12 = v30.x;
-    f32 v13 = cos(v30.z);
-    f32 v14 = cos(v11);
-    f32 v15 = cos(v12);
-    f32 v16 = sin(v10);
-    f32 v17 = sin(v11);
-    f32 v18 = sin(v12);
-    f32 v19 = v18;
-    f32 v20 = (v18 * v14);
+    f32    v10 = v30.z;
+    f32    v11 = v30.y;
+    f32    v12 = v30.x;
+    f32    v13 = cos(v30.z);
+    f32    v14 = cos(v11);
+    f32    v15 = cos(v12);
+    f32    v16 = sin(v10);
+    f32    v17 = sin(v11);
+    f32    v18 = sin(v12);
+    f32    v19 = v18;
+    f32    v20 = (v18 * v14);
     mtx.mMtx[0][0] = v14 * v13;
     mtx.mMtx[2][1] = v18 * v14;
     mtx.mMtx[1][0] = v14 * v16;
@@ -55,8 +56,7 @@ void Fountain::init(const JMapInfoIter &rIter) {
     if (MR::useStageSwitchReadAppear(this, rIter)) {
         MR::syncStageSwitchAppear(this);
         makeActorDead();
-    }
-    else {
+    } else {
         appear();
     }
 }
@@ -67,8 +67,7 @@ void Fountain::appear() {
 
     if (MR::isValidSwitchA(this)) {
         setNerve(&NrvFountain::HostTypeWait::sInstance);
-    }
-    else {
+    } else {
         setNerve(&NrvFountain::HostTypeMove::sInstance);
     }
 }
@@ -80,7 +79,6 @@ void Fountain::startClipped() {
         MR::deleteEffectAll(this);
     }
 }
-
 
 void Fountain::endClipped() {
     LiveActor::endClipped();
@@ -112,10 +110,9 @@ void Fountain::exeMove() {
 }
 
 Fountain::~Fountain() {
-
 }
 
 namespace NrvFountain {
     INIT_NERVE(HostTypeWait);
     INIT_NERVE(HostTypeMove);
-};
+}; // namespace NrvFountain

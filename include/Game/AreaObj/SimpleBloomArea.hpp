@@ -4,15 +4,15 @@
 
 class SimpleBloomArea : public ImageEffectArea {
 public:
-    SimpleBloomArea(int, const char *);
+    SimpleBloomArea(int, const char*);
     virtual ~SimpleBloomArea();
 
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
 
-    virtual const char *getManagerName() const;
+    virtual const char* getManagerName() const;
 
     u32 _40;
-    u8 _44;
-    u8 _45;
-    u8 _46[2];
+    u8  _44;
+    u8  _45;
+    u8  _46[2];
 };

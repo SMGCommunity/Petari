@@ -18,23 +18,21 @@ namespace {
     NEW_NERVE(Manual2PNrvScrollLeft, Manual2P, ScrollLeft);
     NEW_NERVE(Manual2PNrvScrollLeftAfter, Manual2P, ScrollLeftAfter);
     NEW_NERVE(Manual2PNrvDisappear, Manual2P, Disappear);
-};
+}; // namespace
 
-Manual2P::Manual2P(const char* pName) :
-    LayoutActor(pName, true),
-    mPageIndex(0),
-    _24(0),
-    mLeftPaneCtrl(nullptr),
-    mRightPaneCtrl(nullptr),
-    _30(false),
-    _31(false),
-    mBackButton(nullptr)
-{
-    
+Manual2P::Manual2P(const char* pName)
+    : LayoutActor(pName, true),
+      mPageIndex(0),
+      _24(0),
+      mLeftPaneCtrl(nullptr),
+      mRightPaneCtrl(nullptr),
+      _30(false),
+      _31(false),
+      mBackButton(nullptr) {
 }
 
 void Manual2P::init(const JMapInfoIter& rIter) {
-    s32 i;
+    s32  i;
     char messageId[128];
 
     initLayoutManager("P2Manual", 2);
@@ -60,8 +58,7 @@ void Manual2P::init(const JMapInfoIter& rIter) {
     do {
         snprintf(messageId, sizeof(messageId), "%s%03d", "2PGuidance", i + 1);
         i++;
-    }
-    while (MR::isExistGameMessage(messageId));
+    } while (MR::isExistGameMessage(messageId));
 
     _24 = i;
 }
@@ -92,10 +89,7 @@ void Manual2P::exeAppear() {
         reflectPageIndex();
     }
 
-    if (MR::isAnimStopped(this, 0)
-        && mLeftPaneCtrl->isWait()
-        && mRightPaneCtrl->isWait())
-    {
+    if (MR::isAnimStopped(this, 0) && mLeftPaneCtrl->isWait() && mRightPaneCtrl->isWait()) {
         setNerve(&Manual2PNrvWait::sInstance);
     }
 }

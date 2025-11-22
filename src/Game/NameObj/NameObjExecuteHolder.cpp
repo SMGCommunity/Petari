@@ -1,7 +1,7 @@
 #include "Game/NameObj/NameObjExecuteHolder.hpp"
 #include "Game/NameObj/NameObjListExecutor.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
-#include "Game/System/GameSystem.hpp" 
+#include "Game/System/GameSystem.hpp"
 #include "Game/System/GameSystemSceneController.hpp"
 #include "Game/SingletonHolder.hpp"
 
@@ -9,22 +9,20 @@ namespace {
     NameObjExecuteHolder* getNameObjExecuteHolder() {
         return MR::getSceneObj<NameObjExecuteHolder>(SceneObj_NameObjExecuteHolder);
     }
-};
+}; // namespace
 
-NameObjExecuteInfo::NameObjExecuteInfo() :
-    mExecutedObj(nullptr),
-    _4(0),
-    _5(0),
-    _6(-1),
-    _7(-1),
-    _8(-1),
-    _9(-1),
-    _A(-1)
-{
-    
+NameObjExecuteInfo::NameObjExecuteInfo()
+    : mExecutedObj(nullptr),
+      _4(0),
+      _5(0),
+      _6(-1),
+      _7(-1),
+      _8(-1),
+      _9(-1),
+      _A(-1) {
 }
 
-void NameObjExecuteInfo::setConnectInfo(NameObj *pObj, int a2, int a3, int a4, int a5) {
+void NameObjExecuteInfo::setConnectInfo(NameObj* pObj, int a2, int a3, int a4, int a5) {
     _4 = 2;
     mExecutedObj = pObj;
     _5 = 2;
@@ -55,21 +53,19 @@ void NameObjExecuteInfo::initConnectting() {
     if (_4 == 1) {
         _4 = 4;
         connectToScene();
-    }
-    else {
+    } else {
         _4 = 5;
     }
 
     if (_5 == 1) {
         _5 = 4;
         connectToDraw();
-    }
-    else {
+    } else {
         _5 = 5;
     }
 }
 
-void NameObjExecuteInfo::requestConnect(u8 *pData) {
+void NameObjExecuteInfo::requestConnect(u8* pData) {
     switch (*pData) {
     case 2:
         *pData = 1;
@@ -86,7 +82,7 @@ void NameObjExecuteInfo::requestConnect(u8 *pData) {
     }
 }
 
-void NameObjExecuteInfo::requestDisconnect(u8 *pData, bool a2) {
+void NameObjExecuteInfo::requestDisconnect(u8* pData, bool a2) {
     u8 val;
 
     switch (*pData) {
@@ -186,7 +182,7 @@ void NameObjExecuteInfo::disconnectToScene() {
 
     if (_7 != -1) {
         pListExecutor->removeToCalcAnim(mExecutedObj, _7);
-    }   
+    }
 }
 
 void NameObjExecuteInfo::connectToDraw() {
@@ -215,7 +211,7 @@ void NameObjExecuteInfo::disconnectToDraw() {
     }
 }
 
-void NameObjExecuteHolder::registerActor(NameObj *pObj, int a2, int a3, int a4, int a5) {
+void NameObjExecuteHolder::registerActor(NameObj* pObj, int a2, int a3, int a4, int a5) {
     mExecuteArray[mExecuteArraySize].setConnectInfo(pObj, a2, a3, a4, a5);
     pObj->mExecutorIdx = mExecuteArraySize;
     mExecuteArraySize++;
@@ -227,7 +223,7 @@ void NameObjExecuteHolder::initConnectting() {
     }
 }
 
-void NameObjExecuteHolder::connectToScene(NameObj *pObj) {
+void NameObjExecuteHolder::connectToScene(NameObj* pObj) {
     NameObjExecuteInfo* pInfo = getConnectToSceneInfo(pObj);
 
     if (pInfo == nullptr) {
@@ -239,7 +235,7 @@ void NameObjExecuteHolder::connectToScene(NameObj *pObj) {
     _18 = true;
 }
 
-void NameObjExecuteHolder::connectToDraw(NameObj *pObj) {
+void NameObjExecuteHolder::connectToDraw(NameObj* pObj) {
     NameObjExecuteInfo* pInfo = getConnectToSceneInfo(pObj);
 
     if (pInfo == nullptr) {
@@ -251,7 +247,7 @@ void NameObjExecuteHolder::connectToDraw(NameObj *pObj) {
     _1A = true;
 }
 
-void NameObjExecuteHolder::disconnectToScene(NameObj *pObj) {
+void NameObjExecuteHolder::disconnectToScene(NameObj* pObj) {
     NameObjExecuteInfo* pInfo = getConnectToSceneInfo(pObj);
 
     if (pInfo == nullptr) {
@@ -263,7 +259,7 @@ void NameObjExecuteHolder::disconnectToScene(NameObj *pObj) {
     _19 = true;
 }
 
-void NameObjExecuteHolder::disconnectToDraw(NameObj *pObj) {
+void NameObjExecuteHolder::disconnectToDraw(NameObj* pObj) {
     NameObjExecuteInfo* pInfo = getConnectToSceneInfo(pObj);
 
     if (pInfo == nullptr) {
@@ -275,9 +271,9 @@ void NameObjExecuteHolder::disconnectToDraw(NameObj *pObj) {
     _1B = true;
 }
 
-bool NameObjExecuteHolder::isConnectToDraw(const NameObj *pObj) const {
+bool NameObjExecuteHolder::isConnectToDraw(const NameObj* pObj) const {
     NameObjExecuteInfo* pInfo = getConnectToSceneInfo(pObj);
-    bool ret = pInfo != nullptr && pInfo->_5 == 3;
+    bool                ret = pInfo != nullptr && pInfo->_5 == 3;
 
     return ret;
 }
@@ -354,7 +350,7 @@ void NameObjExecuteHolder::requestMovementOff(int idx) {
     }
 }
 
-NameObjExecuteInfo* NameObjExecuteHolder::getConnectToSceneInfo(const NameObj *pObj) const {
+NameObjExecuteInfo* NameObjExecuteHolder::getConnectToSceneInfo(const NameObj* pObj) const {
     if (pObj->mExecutorIdx >= 0) {
         return &mExecuteArray[pObj->mExecutorIdx];
     }
@@ -363,7 +359,7 @@ NameObjExecuteInfo* NameObjExecuteHolder::getConnectToSceneInfo(const NameObj *p
 }
 
 namespace MR {
-    void registerNameObjToExecuteHolder(NameObj *pObj, int a2, int a3, int a4, int a5) {
+    void registerNameObjToExecuteHolder(NameObj* pObj, int a2, int a3, int a4, int a5) {
         getNameObjExecuteHolder()->registerActor(pObj, a2, a3, a4, a5);
     }
 
@@ -371,23 +367,23 @@ namespace MR {
         getNameObjExecuteHolder()->initConnectting();
     }
 
-    void connectToSceneTemporarily(NameObj *pObj) {
+    void connectToSceneTemporarily(NameObj* pObj) {
         getNameObjExecuteHolder()->connectToScene(pObj);
     }
 
-    void disconnectToSceneTemporarily(NameObj *pObj) {
+    void disconnectToSceneTemporarily(NameObj* pObj) {
         getNameObjExecuteHolder()->disconnectToScene(pObj);
     }
 
-    void connectToDrawTemporarily(NameObj *pObj) {
+    void connectToDrawTemporarily(NameObj* pObj) {
         getNameObjExecuteHolder()->connectToDraw(pObj);
     }
 
-    void disconnectToDrawTemporarily(NameObj *pObj) {
+    void disconnectToDrawTemporarily(NameObj* pObj) {
         getNameObjExecuteHolder()->disconnectToDraw(pObj);
     }
-    
-    bool isConnectToDrawTemporarily(const NameObj *pObj) {
+
+    bool isConnectToDrawTemporarily(const NameObj* pObj) {
         return getNameObjExecuteHolder()->isConnectToDraw(pObj);
     }
 
@@ -419,21 +415,20 @@ namespace MR {
         getNameObjExecuteHolder()->requestMovementOff(category);
     }
 
-    void findActorLightInfo(const LiveActor *pActor) {
+    void findActorLightInfo(const LiveActor* pActor) {
         getNameObjExecuteHolder()->getConnectToSceneInfo(pActor)->findLightInfo();
     }
-};
+}; // namespace MR
 
-NameObjExecuteHolder::NameObjExecuteHolder(int size) :
-    NameObj("connectToScene情報保持"),
-    mExecuteArray(nullptr),
-    mExecuteArrayMaxSize(size),
-    mExecuteArraySize(0),
-    _18(false),
-    _19(false),
-    _1A(false),
-    _1B(false),
-    _1C(false)
-{
+NameObjExecuteHolder::NameObjExecuteHolder(int size)
+    : NameObj("connectToScene情報保持"),
+      mExecuteArray(nullptr),
+      mExecuteArrayMaxSize(size),
+      mExecuteArraySize(0),
+      _18(false),
+      _19(false),
+      _1A(false),
+      _1B(false),
+      _1C(false) {
     mExecuteArray = new NameObjExecuteInfo[mExecuteArrayMaxSize];
 }

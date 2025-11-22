@@ -36,18 +36,15 @@ bool StageResultSequenceChecker::isAddPictureBook() const {
 }
 
 bool StageResultSequenceChecker::isJustOpenLibraryRoom() const {
-    return mCheckListPrev.mPictureBookChapterCanRead == 0
-        && mCheckListPrev.mPictureBookChapterCanRead < mCheckListAfter.mPictureBookChapterCanRead;
+    return mCheckListPrev.mPictureBookChapterCanRead == 0 && mCheckListPrev.mPictureBookChapterCanRead < mCheckListAfter.mPictureBookChapterCanRead;
 }
 
 bool StageResultSequenceChecker::isJustGetGreenStarFirst() const {
-    return mCheckListPrev.mGreenStarNum == 0
-        && mCheckListAfter.mGreenStarNum == 1;
+    return mCheckListPrev.mGreenStarNum == 0 && mCheckListAfter.mGreenStarNum == 1;
 }
 
 bool StageResultSequenceChecker::isJustCompleteGalaxy() const {
-    return mCheckListPrev.mIsCompleteGalaxy == false
-        && mCheckListAfter.mIsCompleteGalaxy == true;
+    return mCheckListPrev.mIsCompleteGalaxy == false && mCheckListAfter.mIsCompleteGalaxy == true;
 }
 
 s32 StageResultSequenceChecker::getPrevPowerStarNum() const {
@@ -75,7 +72,7 @@ void StageResultSequenceChecker::fillCheckListIfComplete(StageResultSequenceChec
 }
 
 bool StageResultSequenceChecker::isJustOpenGalaxyWithoutChallengeGalaxy() const {
-    if (mCheckListPrev.mGalaxyNumCanOpen >=  mCheckListAfter.mGalaxyNumCanOpen) {
+    if (mCheckListPrev.mGalaxyNumCanOpen >= mCheckListAfter.mGalaxyNumCanOpen) {
         return false;
     }
 

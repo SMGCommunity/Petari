@@ -43,15 +43,13 @@ namespace {
     void appearInformationMessage(bool hasButtonLayout, bool isCenter) {
         if (isCenter) {
             MR::getGameSceneLayoutHolder()->mInformationMessage->setCenter(true);
-        }
-        else {
+        } else {
             MR::getGameSceneLayoutHolder()->mInformationMessage->setCenter(false);
         }
 
         if (hasButtonLayout) {
             MR::getGameSceneLayoutHolder()->mInformationMessage->appearWithButtonLayout();
-        }
-        else {
+        } else {
             MR::getGameSceneLayoutHolder()->mInformationMessage->appear();
         }
     }
@@ -79,7 +77,7 @@ namespace {
     MoviePlayerSimple* getMoviePlayer() {
         return MR::getSceneObj<MoviePlayerSimple>(SceneObj_MoviePlayerSimple);
     }
-};
+}; // namespace
 
 namespace MR {
     u32 getViWidth() {
@@ -89,8 +87,7 @@ namespace MR {
     f32 getSafetyVIScreenWidthRatio() {
         if (isScreen16Per9()) {
             return 0.87f;
-        }
-        else {
+        } else {
             return 0.844f;
         }
     }
@@ -187,8 +184,7 @@ namespace MR {
     }
 
     bool isWipeActive() {
-        return SceneWipeHolderFunction::getSceneWipeHolder()->isWipeIn()
-            || SceneWipeHolderFunction::getSceneWipeHolder()->isWipeOut();
+        return SceneWipeHolderFunction::getSceneWipeHolder()->isWipeIn() || SceneWipeHolderFunction::getSceneWipeHolder()->isWipeOut();
     }
 
     bool isWipeBlank() {
@@ -233,8 +229,7 @@ namespace MR {
     }
 
     bool isSystemWipeActive() {
-        return getSystemWipeHolder()->isWipeIn()
-            || getSystemWipeHolder()->isWipeOut();
+        return getSystemWipeHolder()->isWipeIn() || getSystemWipeHolder()->isWipeOut();
     }
 
     void closeSystemWipeCircleWithCaptureScreen(s32 param1) {
@@ -310,13 +305,11 @@ namespace MR {
     }
 
     bool isNormalBloomOn() {
-        return isExistSceneObj(SceneObj_BloomEffect)
-            && getNormalBloom()->isSomething();
+        return isExistSceneObj(SceneObj_BloomEffect) && getNormalBloom()->isSomething();
     }
 
     bool isNormalBloomForEachModel() {
-        return isExistSceneObj(SceneObj_BloomEffect)
-            && getNormalBloom()->isForEachModel();
+        return isExistSceneObj(SceneObj_BloomEffect) && getNormalBloom()->isForEachModel();
     }
 
     void setNormalBloomIntensity(u8 intensity) {
@@ -360,7 +353,6 @@ namespace MR {
     }
 
     void startGlobalTimer() {
-        
     }
 
     void resetGlobalTimer() {
@@ -599,4 +591,4 @@ namespace MR {
         startSystemSE("SE_SY_1UP", -1, -1);
         getGameSceneLayoutHolder()->requestOneUp(1);
     }
-};
+}; // namespace MR

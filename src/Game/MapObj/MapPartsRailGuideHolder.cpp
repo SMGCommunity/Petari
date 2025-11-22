@@ -1,15 +1,14 @@
 #include "Game/MapObj/MapPartsRailGuideHolder.hpp"
 
 MapPartsRailGuideHolder::~MapPartsRailGuideHolder() {
-    
 }
 
-MapPartsRailGuideHolder::MapPartsRailGuideHolder() : NameObj("レールガイド保持") {
+MapPartsRailGuideHolder::MapPartsRailGuideHolder()
+    : NameObj("レールガイド保持") {
     mNumRailGuides = 0;
 }
 
-void MapPartsRailGuideHolder::init(const JMapInfoIter &) {
-
+void MapPartsRailGuideHolder::init(const JMapInfoIter&) {
 }
 
 /*

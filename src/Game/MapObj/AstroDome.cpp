@@ -2,13 +2,13 @@
 #include "Game/MapObj/AstroMapObjFunction.hpp"
 #include "Game/Map/SphereSelector.hpp"
 
-AstroDome::AstroDome(const char *pName) : MapObjActor(pName) {
-
+AstroDome::AstroDome(const char* pName)
+    : MapObjActor(pName) {
 }
 
-void AstroDome::init(const JMapInfoIter &rIter) {
+void AstroDome::init(const JMapInfoIter& rIter) {
     MapObjActorInitInfo info;
-    s32 domeId = AstroMapObjFunction::getDomeIdFromArg0(rIter);
+    s32                 domeId = AstroMapObjFunction::getDomeIdFromArg0(rIter);
     info.setupModelName(AstroMapObjFunction::getModelName("AstroDome", domeId));
     info.setupNerve(&NrvAstroDome::AstroDomeNrvWait::sInstance);
     MapObjActorUtil::setupInitInfoSimpleMapObj(&info);
@@ -59,19 +59,17 @@ void AstroDome::control() {
     if (MR::isEqualString(mObjectName, "AstroDomeObservatory")) {
         if (MR::isTimeKeepDemoActive()) {
             MR::hideMaterial(this, "Z_SpotLight_v");
-        }
-        else {
+        } else {
             MR::showMaterial(this, "Z_SpotLight_v");
         }
     }
 }
 
-bool AstroDome::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool AstroDome::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (SphereSelectorFunction::isMsgSelectStart(msg)) {
         setNerve(&NrvAstroDome::AstroDomeNrvDisappear::sInstance);
         return true;
-    }
-    else if (SphereSelectorFunction::isMsgSelectEnd(msg)) {
+    } else if (SphereSelectorFunction::isMsgSelectEnd(msg)) {
         appear();
         return true;
     }
@@ -80,11 +78,10 @@ bool AstroDome::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceive
 }
 
 AstroDome::~AstroDome() {
-
 }
 
 namespace NrvAstroDome {
     INIT_NERVE(AstroDomeNrvWait);
     INIT_NERVE(AstroDomeNrvDisappear);
     INIT_NERVE(AstroDomeNrvAppear);
-};
+}; // namespace NrvAstroDome

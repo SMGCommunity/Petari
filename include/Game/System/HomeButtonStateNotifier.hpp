@@ -13,6 +13,6 @@ public:
     void notifyHomeButtonDeactive();
 
 private:
-    /* 0x00 */ bool _0;
+    /* 0x00 */ bool               _0;
     /* 0x04 */ MoviePlayerSimple* mMoviePlayer;
 };

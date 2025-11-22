@@ -17,9 +17,10 @@ namespace NrvRevolvingWay {
     NEW_NERVE(RevolvingWayNrvWait, RevolvingWay, Wait);
 };
 
-RevolvingWay::~RevolvingWay() { }
+RevolvingWay::~RevolvingWay() {}
 
-RevolvingWay::RevolvingWay(const char* pName) : LiveActor(pName), _8C(0.0f, 1.0f) {
+RevolvingWay::RevolvingWay(const char* pName)
+    : LiveActor(pName), _8C(0.0f, 1.0f) {
     _9C.x = 0.0f;
     _9C.y = 0.0f;
     _9C.z = 0.0f;
@@ -39,7 +40,7 @@ void RevolvingWay::init(const JMapInfoIter& rIter) {
     makeActorAppeared();
 }
 
-void RevolvingWay::control() { }
+void RevolvingWay::control() {}
 
 void RevolvingWay::calcAndSetBaseMtx() {
     MR::setBaseTRMtx(this, _8C);
@@ -59,14 +60,13 @@ void RevolvingWay::exeWait() {
 
 void RevolvingWay::addAccelMoment() {
     TVec3f stack_14;
-    if (MR::isStarPointerPointing(this, 0, true, "弱") && MR::testCorePadButtonB(WPAD_CHAN0)
-    && MR::calcStarPointerStrokeRotateMoment(&stack_14, mPosition, _A8, 0)) {
+    if (MR::isStarPointerPointing(this, 0, true, "弱") && MR::testCorePadButtonB(WPAD_CHAN0) && MR::calcStarPointerStrokeRotateMoment(&stack_14, mPosition, _A8, 0)) {
         TVec3f stack_8;
         stack_8.setPS(stack_14);
         f32 temp = 0.04f;
         stack_8 *= temp;
         JMathInlineVEC::PSVECAdd(&_9C, &stack_8, &_9C);
-        f32 mag = PSVECMag(&_9C); 
+        f32 mag = PSVECMag(&_9C);
         if (mag > 0.15f) {
             _9C *= (0.15f / mag);
         }

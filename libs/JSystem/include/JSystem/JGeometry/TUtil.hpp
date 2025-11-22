@@ -5,7 +5,7 @@
 static f32 flt_80630CA0[0x408];
 
 namespace JGeometry {
-    template<typename T>
+    template <typename T>
     class TUtil {
     public:
         static int epsilonEquals(T a1, T a2, T a3) {
@@ -30,8 +30,7 @@ namespace JGeometry {
         }
 
         static f32 asin(f32 val) NO_INLINE {
-            
-    
+
             if (val >= 1.0f) {
                 return 1.5707964f;
             }
@@ -54,4 +53,4 @@ namespace JGeometry {
         static T clamp(T, T, T);
         static T inv_sqrt(T);
     };
-};
+}; // namespace JGeometry

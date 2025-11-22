@@ -2,7 +2,8 @@
 #include "Game/Util.hpp"
 #include "Game/Util/Array.hpp"
 
-ChooChooTrain::ChooChooTrain(const char *pName) : LiveActor(pName), mModelArray() {
+ChooChooTrain::ChooChooTrain(const char* pName)
+    : LiveActor(pName), mModelArray() {
     _98.x = 0.0f;
     _98.y = 0.0f;
     _98.z = 0.0f;
@@ -26,7 +27,7 @@ void ChooChooTrain::endClipped() {
     }
 }
 
-void ChooChooTrain::init(const JMapInfoIter &rIter) {
+void ChooChooTrain::init(const JMapInfoIter& rIter) {
     if (MR::isValidInfo(rIter)) {
         MR::isConnectedWithRail(rIter);
     }
@@ -96,7 +97,7 @@ void ChooChooTrain::control() {
     MR::moveTransToCurrentRailPos(this);
     TVec3f stack_74(MR::getRailDirection(this));
     MR::turnDirectionAndGravityH(this, stack_74, 0.5f, 1.0f);
-    f32 railCoord = MR::getRailCoord(this);
+    f32    railCoord = MR::getRailCoord(this);
     TVec3f stack_68;
     MR::calcFrontVec(&stack_68, this);
     TVec3f stack_5C;
@@ -123,8 +124,7 @@ void ChooChooTrain::control() {
     if (mWhistleTimer < 0) {
         MR::startSound(this, "SE_OJ_TOY_SL_WHISTLE", -1, -1);
         mWhistleTimer = MR::getRandom((s32)0xB4, (s32)0x258);
-    }
-    else {
+    } else {
         mWhistleTimer--;
     }
 }

@@ -16,18 +16,16 @@ namespace {
     NEW_NERVE(SurfingGuidanceTurnRightHold, SurfingGuidance, TurnRightHold);
     NEW_NERVE(SurfingGuidanceTurnRightSuccess, SurfingGuidance, TurnRightSuccess);
     NEW_NERVE(SurfingGuidanceFadeOut, SurfingGuidance, FadeOut);
-};
+}; // namespace
 
-SurfingGuidance::SurfingGuidance() :
-    LayoutActor("サーフィンガイダンス", true),
-    _20(0),
-    _24(0.0f),
-    _2C(0)
-{
-    
+SurfingGuidance::SurfingGuidance()
+    : LayoutActor("サーフィンガイダンス", true),
+      _20(0),
+      _24(0.0f),
+      _2C(0) {
 }
 
-void SurfingGuidance::init(const JMapInfoIter &rIter) {
+void SurfingGuidance::init(const JMapInfoIter& rIter) {
     MR::connectToSceneLayout(this);
     initLayoutManager("TiltGuidance", 3);
     initNerve(&SurfingGuidanceFadeIn::sInstance);

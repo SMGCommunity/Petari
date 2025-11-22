@@ -4,19 +4,19 @@
 
 class SnowCapsulePlanet : public MapObjActor {
 public:
-    SnowCapsulePlanet(const char *);
+    SnowCapsulePlanet(const char*);
 
     virtual ~SnowCapsulePlanet();
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
 
     void exeOpen();
 
-    CollisionParts *mDoor1;
-    CollisionParts *mDoor2;
+    CollisionParts* mDoor1;
+    CollisionParts* mDoor2;
 };
 
 namespace NrvSnowCapsulePlanet {
     NERVE(SnowCapsulePlanetNrvCloseWait);
     NERVE(SnowCapsulePlanetNrvOpenWait);
     NERVE(SnowCapsulePlanetNrvOpen);
-};
+}; // namespace NrvSnowCapsulePlanet

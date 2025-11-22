@@ -1,11 +1,12 @@
 #include "Game/MapObj/TreasureSpot.hpp"
 #include "Game/Util.hpp"
 
-TreasureSpot::TreasureSpot(const char *pName) : MapObjActor(pName) {
+TreasureSpot::TreasureSpot(const char* pName)
+    : MapObjActor(pName) {
     mIsCoinFlower = false;
 }
 
-void TreasureSpot::init(const JMapInfoIter &rIter) {
+void TreasureSpot::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);
     MapObjActorInitInfo info;
     MapObjActorUtil::setupInitInfoSimpleMapObj(&info);
@@ -29,14 +30,13 @@ void TreasureSpot::exeSpout() {
         if (mIsCoinFlower) {
             MR::startBck(this, "Bloom", 0);
             MR::startSound(this, "SE_OJ_COIN_FLOWER_BLOOM", -1, -1);
-        }
-        else {
+        } else {
             setNerve(&NrvTreasureSpot::TreasureSpotNrvEnd::sInstance);
             kill();
             return;
         }
     }
-    
+
     if (mIsCoinFlower) {
         if (MR::isBckStopped(this)) {
             setNerve(&NrvTreasureSpot::TreasureSpotNrvEnd::sInstance);
@@ -50,7 +50,7 @@ void TreasureSpot::control() {
     }
 }
 
-bool TreasureSpot::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool TreasureSpot::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (isNerve(&NrvTreasureSpot::TreasureSpotNrvSpout::sInstance)) {
         return false;
     }
@@ -78,8 +78,7 @@ bool TreasureSpot::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor
 void TreasureSpot::switchEmitGlow() {
     if (!MR::isNearPlayerAnyTime(this, 2000.0f)) {
         MR::deleteEffect(this, "Glow");
-    }
-    else {
+    } else {
         if (MR::isNearPlayerAnyTime(this, 2000.0f)) {
             if (!MR::isEffectValid(this, "Glow")) {
                 MR::emitEffect(this, "Glow");
@@ -89,7 +88,6 @@ void TreasureSpot::switchEmitGlow() {
 }
 
 TreasureSpot::~TreasureSpot() {
-
 }
 
 namespace NrvTreasureSpot {
@@ -97,16 +95,14 @@ namespace NrvTreasureSpot {
     INIT_NERVE(TreasureSpotNrvEnd);
     INIT_NERVE(TreasureSpotNrvSpout);
 
-    void TreasureSpotNrvSpout::execute(Spine *pSpine) const {
+    void TreasureSpotNrvSpout::execute(Spine* pSpine) const {
         TreasureSpot* spot = reinterpret_cast<TreasureSpot*>(pSpine->mExecutor);
         spot->exeSpout();
     }
 
-    void TreasureSpotNrvEnd::execute(Spine *pSpine) const {
-
+    void TreasureSpotNrvEnd::execute(Spine* pSpine) const {
     }
 
-    void TreasureSpotNrvWait::execute(Spine *pSpine) const {
-        
+    void TreasureSpotNrvWait::execute(Spine* pSpine) const {
     }
-};
+}; // namespace NrvTreasureSpot

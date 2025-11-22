@@ -11,7 +11,7 @@ namespace MR {
         BothDirPtrLink(void*);
         ~BothDirPtrLink();
 
-        /* 0x0 */ void* mValue;
+        /* 0x0 */ void*           mValue;
         /* 0x4 */ BothDirPtrList* mList;
         /* 0x8 */ BothDirPtrLink* mPrevLink;
         /* 0xC */ BothDirPtrLink* mNextLink;
@@ -29,30 +29,28 @@ namespace MR {
 
         /* 0x0 */ BothDirPtrLink* mHead;
         /* 0x4 */ BothDirPtrLink* mTail;
-        /* 0x8 */ u32 mCount;
+        /* 0x8 */ u32             mCount;
     };
 
-    template<class T>
+    template <class T>
     class BothDirLink : public BothDirPtrLink {
     public:
-        BothDirLink(T* pValue) : BothDirPtrLink(pValue) {
-            
+        BothDirLink(T* pValue)
+            : BothDirPtrLink(pValue) {
         }
 
         ~BothDirLink() NO_INLINE {
-            
         }
     };
 
-    template<class T>
+    template <class T>
     class BothDirList : public BothDirPtrList {
     public:
-        BothDirList(bool param1) : BothDirPtrList(param1) {
-            
+        BothDirList(bool param1)
+            : BothDirPtrList(param1) {
         }
 
         ~BothDirList() {
-            
         }
     };
-};
+}; // namespace MR

@@ -7,8 +7,8 @@ public:
     AudEffectDirector();
 
     virtual ~AudEffectDirector();
-    
-    virtual void init(const JMapInfoIter &rIter);
+
+    virtual void init(const JMapInfoIter& rIter);
     virtual void movement();
 
     void setEffectType(s32, s32);

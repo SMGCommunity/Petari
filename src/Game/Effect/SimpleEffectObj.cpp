@@ -17,13 +17,13 @@
 namespace NrvSimpleEffectObj {
     NEW_NERVE(HostTypeWait, SimpleEffectObj, Wait);
     NEW_NERVE(HostTypeMove, SimpleEffectObj, Move);
-};
+}; // namespace NrvSimpleEffectObj
 
 namespace {
-   const s_effectDataTable sEffectDataTable[12] = {
+    const s_effectDataTable sEffectDataTable[12] = {
         {"IceLayerBreak", "SE_OJ_ICE_LAYER_BREAK", nullptr, 0, "最強", 7},
         {"LavaVolcanoEruption", nullptr, nullptr, 0, "最強", 0},
-        {"LavaHomeVolcanoFallingRock", nullptr, "SE_AT_LV_FALLING_ROCK", -1, nullptr,0},
+        {"LavaHomeVolcanoFallingRock", nullptr, "SE_AT_LV_FALLING_ROCK", -1, nullptr, 0},
         {"WaterLayerBreak", "SE_OJ_WATER_LAYER_BREAK", nullptr, 0, "最強", 7},
         {"DrainPipeBubbleA", nullptr, "SE_OJ_LV_PIPE_BUBBLE_A", -1, nullptr, 0},
         {"DrainPipeBubbleB", nullptr, "SE_OJ_LV_PIPE_BUBBLE_B", -1, nullptr, 0},
@@ -32,7 +32,7 @@ namespace {
         {"BattleShipExplosionRock", "SE_AT_BTLSHIP_EXPLODE_ROCK", nullptr, -1, nullptr, 0},
         {"Steam", nullptr, "SE_OJ_LV_HD_STEAM", -1, nullptr, 0},
         {"IcicleRockLight", nullptr, "SE_OJ_LV_ICICLE_ROCK_LIGHT", -1, nullptr, 0},
-        {"UFOKinokoLandingBlackSmoke", nullptr, "SE_OJ_LV_UFO_KINOKO_SMOKE",  -1, nullptr, 0},
+        {"UFOKinokoLandingBlackSmoke", nullptr, "SE_OJ_LV_UFO_KINOKO_SMOKE", -1, nullptr, 0},
     };
     const s_effectDataTable* findDataElement(const char* pString) {
         u32 i = 0;
@@ -44,11 +44,12 @@ namespace {
             }
             v2 += 1;
         }
-         return nullptr;
+        return nullptr;
     }
-};
+}; // namespace
 
-SimpleEffectObj::SimpleEffectObj(const char* pName) : LiveActor(pName) {
+SimpleEffectObj::SimpleEffectObj(const char* pName)
+    : LiveActor(pName) {
     _8C = nullptr;
 }
 
@@ -159,19 +160,18 @@ void SimpleEffectObj::exeMove() {
         return;
     }
     if (MR::isStep(this, v13)) {
-            v1 = ::findDataElement(_8C);
-            const char* v15;
-            if (v1) {
-                v15 = v1->_10;
-            } else {
-                v15 = nullptr;
-            }
-            if (v15) {
-                MR::tryRumblePad(this, v15, 0);
-            }
+        v1 = ::findDataElement(_8C);
+        const char* v15;
+        if (v1) {
+            v15 = v1->_10;
+        } else {
+            v15 = nullptr;
+        }
+        if (v15) {
+            MR::tryRumblePad(this, v15, 0);
+        }
     }
 }
 
 inline void SimpleEffectObj::exeWait() {
-    
 }

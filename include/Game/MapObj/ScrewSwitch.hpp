@@ -8,22 +8,22 @@
 
 class ScrewSwitch : public LiveActor {
 public:
-    ScrewSwitch(const char *);
+    ScrewSwitch(const char*);
 
     ~ScrewSwitch();
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
     virtual void initAfterPlacement();
     virtual void control();
     virtual void calcAndSetBaseMtx();
-    virtual bool receiveOtherMsg(u32, HitSensor *, HitSensor *);
+    virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
 
     void exeWait();
     void exeAdjust();
     void exeScrew();
-    void exeEnd();    
+    void exeEnd();
     void updateBindActorMtx();
 
-    CollisionParts* mCollisionParts;
-    LiveActor* _90;
+    CollisionParts*  mCollisionParts;
+    LiveActor*       _90;
     MapObjConnector* mMapObjConnector;
 };

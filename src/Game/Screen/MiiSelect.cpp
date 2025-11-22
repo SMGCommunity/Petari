@@ -19,11 +19,10 @@ namespace {
     NEW_NERVE(MiiSelectNrvSelected, MiiSelect, Selected);
     NEW_NERVE(MiiSelectNrvDisappear, MiiSelect, Disappear);
     NEW_NERVE(MiiSelectNrvDummySelected, MiiSelect, DummySelected);
-};
+}; // namespace
 
-MiiSelect::MiiSelect(const char* pName) :
-    LayoutActor(pName, true)
-{
+MiiSelect::MiiSelect(const char* pName)
+    : LayoutActor(pName, true) {
     _28 = new MR::BitArray(5);
     _2C = 0;
     _2E = 0;
@@ -167,8 +166,7 @@ void MiiSelect::exeWait() {
 
     if (!_20[0]->isHidden() && (MR::testCorePadTriggerLeft(WPAD_CHAN0) || MR::testSubPadStickTriggerLeft(WPAD_CHAN0))) {
         callbackLeft();
-    }
-    else if (!_20[1]->isHidden() && (MR::testCorePadTriggerRight(WPAD_CHAN0) || MR::testSubPadStickTriggerRight(WPAD_CHAN0))) {
+    } else if (!_20[1]->isHidden() && (MR::testCorePadTriggerRight(WPAD_CHAN0) || MR::testSubPadStickTriggerRight(WPAD_CHAN0))) {
         callbackRight();
     }
 }
@@ -220,7 +218,6 @@ void MiiSelect::exeScrollRight() {
 }
 
 void MiiSelect::exeSelected() {
-    
 }
 
 void MiiSelect::exeDisappear() {
@@ -234,7 +231,6 @@ void MiiSelect::exeDisappear() {
 }
 
 void MiiSelect::exeDummySelected() {
-    
 }
 
 void MiiSelect::control() {
@@ -320,14 +316,12 @@ void MiiSelect::updateButtons() {
         if (_20[1]->isHidden()) {
             _20[1]->appear();
         }
-    }
-    else {
+    } else {
         if (_1EC - 8 < 0) {
             if (!_20[0]->isHidden()) {
                 _20[0]->disappear();
             }
-        }
-        else if (_20[0]->isHidden()) {
+        } else if (_20[0]->isHidden()) {
             _20[0]->appear();
         }
 
@@ -335,8 +329,7 @@ void MiiSelect::updateButtons() {
             if (!_20[1]->isHidden()) {
                 _20[1]->disappear();
             }
-        }
-        else if (_20[1]->isHidden()) {
+        } else if (_20[1]->isHidden()) {
             _20[1]->appear();
         }
     }
@@ -350,17 +343,14 @@ void MiiSelect::collectValidMiiIndex() {
 
         RFLAdditionalInfo additionalInfo;
 
-        if (RFLGetAdditionalInfo(&additionalInfo, RFLDataSource_Official, nullptr, i)
-            != RFLErrcode_Success)
-        {
+        if (RFLGetAdditionalInfo(&additionalInfo, RFLDataSource_Official, nullptr, i) != RFLErrcode_Success) {
             continue;
         }
 
         if (additionalInfo.favorite == 1) {
             _30[_2E] = static_cast<u16>(i);
             _2E++;
-        }
-        else {
+        } else {
             _5C[_58] = static_cast<u16>(i);
             _58++;
         }
@@ -431,11 +421,9 @@ void MiiSelect::getIconID(FileSelectIconID* pIconID, s32 param2) const {
 
             v++;
         }
-    }
-    else if (param2 < _2E + _2C) {
+    } else if (param2 < _2E + _2C) {
         pIconID->setMiiIndex(_30[param2 - _2C]);
-    }
-    else {
+    } else {
         pIconID->setMiiIndex(_5C[param2 - _2E - _2C]);
     }
 }
@@ -458,10 +446,9 @@ void MiiSelect::onSelectDummy() {
 }
 
 namespace MiiSelectSub {
-    Page::Page(MiiSelect* pHost) :
-        mHost(pHost),
-        _20(true)
-    {
+    Page::Page(MiiSelect* pHost)
+        : mHost(pHost),
+          _20(true) {
         for (int i = 0; i < sizeof(mIconArray) / sizeof(*mIconArray); i++) {
             mIconArray[i] = new MiiSelectIcon(-1, -1, -1, "Miiセレクト用アイコン");
         }
@@ -527,7 +514,7 @@ namespace MiiSelectSub {
             mIconArray[i]->prohibit();
         }
     }
-};
+}; // namespace MiiSelectSub
 
 s32 MiiSelect::getIconNum() {
     return _58 + _2E + _2C;

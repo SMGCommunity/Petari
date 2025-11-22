@@ -1,7 +1,8 @@
 #include "Game/LiveActor/FlashingCtrl.hpp"
 #include "Game/Util.hpp"
 
-FlashingCtrl::FlashingCtrl(LiveActor *pActor, bool toggleDraw) : NameObj("点滅") {
+FlashingCtrl::FlashingCtrl(LiveActor* pActor, bool toggleDraw)
+    : NameObj("点滅") {
     mActor = pActor;
     mToggleDraw = toggleDraw;
     mIsEnded = true;
@@ -14,16 +15,14 @@ FlashingCtrl::FlashingCtrl(LiveActor *pActor, bool toggleDraw) : NameObj("点滅
 void FlashingCtrl::movement() {
     if (!mIsEnded) {
         s32 curTimer = mTimer;
-        mTimer = curTimer -1;
+        mTimer = curTimer - 1;
         if (curTimer - 1 <= 0 || MR::isClipped(mActor) || MR::isDead(mActor)) {
             end();
-        }
-        else if (MR::isDemoActive()) {
+        } else if (MR::isDemoActive()) {
             if (mToggleDraw && MR::isNoEntryDrawBuffer(mActor)) {
                 MR::onEntryDrawBuffer(mActor);
             }
-        }
-        else if (isNowFlashing()) {
+        } else if (isNowFlashing()) {
             updateFlashing();
         }
     }
@@ -70,12 +69,11 @@ void FlashingCtrl::updateFlashing() {
     if (mToggleDraw) {
         if (isNowOn()) {
             MR::offEntryDrawBuffer(mActor);
-        }
-        else {
+        } else {
             MR::onEntryDrawBuffer(mActor);
         }
     }
 }
 
-FlashingCtrl::~FlashingCtrl() {  
+FlashingCtrl::~FlashingCtrl() {
 }

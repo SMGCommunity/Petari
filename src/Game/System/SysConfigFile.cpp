@@ -2,9 +2,8 @@
 #include "Game/System/SysConfigFile.hpp"
 #include "Game/Util/MemoryUtil.hpp"
 
-SysConfigChunk::SysConfigChunk() :
-    mHeaderSerializer(nullptr)
-{
+SysConfigChunk::SysConfigChunk()
+    : mHeaderSerializer(nullptr) {
     initHeaderSerializer();
     initializeData();
 }
@@ -18,12 +17,12 @@ u32 SysConfigChunk::getSignature() const {
 }
 
 s32 SysConfigChunk::deserialize(const u8* pBuffer, u32 size) {
-    s32 result;
+    s32         result;
     const char* pName;
 
     BinaryDataContentAccessor accessor = BinaryDataContentAccessor(const_cast<u8*>(pBuffer));
-    u32 headerSize = accessor.getHeaderSize();
-    u8* pData = const_cast<u8*>(pBuffer) + headerSize;
+    u32                       headerSize = accessor.getHeaderSize();
+    u8*                       pData = const_cast<u8*>(pBuffer) + headerSize;
 
     pName = "mTimeAnnounced";
     mTimeAnnounced = *static_cast<OSTime*>(accessor.getPointer(pName, pData));
@@ -60,10 +59,9 @@ void SysConfigChunk::initHeaderSerializer() {
     mHeaderSerializer->flush();
 }
 
-SysConfigFile::SysConfigFile() :
-    mChunk(nullptr),
-    mChunkHolder(nullptr)
-{
+SysConfigFile::SysConfigFile()
+    : mChunk(nullptr),
+      mChunkHolder(nullptr) {
     mChunkHolder = new BinaryDataChunkHolder(0x3000, 8);
     mChunk = new SysConfigChunk();
 
@@ -105,14 +103,14 @@ void SysConfigFile::loadFromDataBinary(const u8* pBuffer, u32 size) {
 }
 
 s32 SysConfigChunk::serialize(u8* pBuffer, u32 size) const {
-    void* pSrcBuffer = mHeaderSerializer->mStream.mBuffer;
+    void*       pSrcBuffer = mHeaderSerializer->mStream.mBuffer;
     const char* pName;
 
     MR::copyMemory(pBuffer, pSrcBuffer, mHeaderSerializer->getHeaderSize());
 
-    u32 headerSize = mHeaderSerializer->getHeaderSize();
+    u32                       headerSize = mHeaderSerializer->getHeaderSize();
     BinaryDataContentAccessor accessor = BinaryDataContentAccessor(static_cast<u8*>(mHeaderSerializer->mStream.mBuffer));
-    u8* pData = pBuffer + headerSize;
+    u8*                       pData = pBuffer + headerSize;
 
     pName = "mTimeAnnounced";
     OSTime* pTimeAnnounced = static_cast<OSTime*>(accessor.getPointer(pName, pData));

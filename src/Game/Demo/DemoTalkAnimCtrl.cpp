@@ -110,7 +110,7 @@ bool DemoTalkAnimCtrl::updateDemo() {
     }
 
     if (ok) {
-        s32 totalsteps = MR::getDemoPartTotalStep(name);
+        s32         totalsteps = MR::getDemoPartTotalStep(name);
         BckCtrlData bck;
         _36 = MR::isDemoPartTalk(name);
         _14 = name;

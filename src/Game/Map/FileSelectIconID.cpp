@@ -1,9 +1,8 @@
 #include "Game/Map/FileSelectIconID.hpp"
 
-FileSelectIconID::FileSelectIconID() :
-    mIsMii(false),
-    mData(0)
-{}
+FileSelectIconID::FileSelectIconID()
+    : mIsMii(false),
+      mData(0) {}
 
 FileSelectIconID::FileSelectIconID(const FileSelectIconID& rOther) {
     mIsMii = rOther.mIsMii;

@@ -8,7 +8,7 @@ namespace {
     GameScene* getGameScene() NO_INLINE {
         return static_cast<GameScene*>(SingletonHolder<GameSystem>::get()->mSceneController->mScene);
     }
-};
+}; // namespace
 
 namespace GameSceneFunction {
     void notifyEndScenarioStarter() {
@@ -78,4 +78,4 @@ namespace GameSceneFunction {
 
         pGameScene->mDraw3D = false;
     }
-};
+}; // namespace GameSceneFunction

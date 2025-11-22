@@ -2,10 +2,9 @@
 #include "Game/Boss/Koopa.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 
-BossAccessor::BossAccessor() :
-    NameObj("ボスへのアクセス"),
-    mBoss(nullptr)
-{}
+BossAccessor::BossAccessor()
+    : NameObj("ボスへのアクセス"),
+      mBoss(nullptr) {}
 
 namespace BossAccess {
     void setBossAccessorKoopa(Koopa* pKoopa) {
@@ -21,8 +20,7 @@ namespace BossAccess {
 
         return nullptr;
     }
-};
+}; // namespace BossAccess
 
 BossAccessor::~BossAccessor() {
-    
 }

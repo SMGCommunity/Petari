@@ -182,4 +182,4 @@ namespace MR {
     T* getSceneObj(int id) {
         return static_cast<T*>(getSceneObjHolder()->getObj(id));
     }
-};
+}; // namespace MR

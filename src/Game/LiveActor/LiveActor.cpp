@@ -15,34 +15,32 @@
 #include "Game/Util/ModelUtil.hpp"
 #include <JSystem/J3DGraphAnimator/J3DModel.hpp>
 
-LiveActor::LiveActor(const char* pName) :
-    NameObj(pName),
-    mPosition(0.0f, 0.0f, 0.0f),
-    mRotation(0.0f, 0.0f, 0.0f),
-    mScale(1.0f, 1.0f, 1.0f),
-    mVelocity(0.0f, 0.0f, 0.0f),
-    mGravity(0.0f, -1.0f, 0.0f),
-    mModelManager(nullptr),
-    mAnimKeeper(nullptr),
-    mSpine(nullptr),
-    mSensorKeeper(nullptr),
-    mBinder(nullptr),
-    mRailRider(nullptr),
-    mEffectKeeper(nullptr),
-    mSoundObject(nullptr),
-    mShadowControllerList(nullptr),
-    mCollisionParts(nullptr),
-    mStageSwitchCtrl(nullptr),
-    mStarPointerTarget(nullptr),
-    mActorLightCtrl(nullptr),
-    mCameraCtrl(nullptr)
-{
+LiveActor::LiveActor(const char* pName)
+    : NameObj(pName),
+      mPosition(0.0f, 0.0f, 0.0f),
+      mRotation(0.0f, 0.0f, 0.0f),
+      mScale(1.0f, 1.0f, 1.0f),
+      mVelocity(0.0f, 0.0f, 0.0f),
+      mGravity(0.0f, -1.0f, 0.0f),
+      mModelManager(nullptr),
+      mAnimKeeper(nullptr),
+      mSpine(nullptr),
+      mSensorKeeper(nullptr),
+      mBinder(nullptr),
+      mRailRider(nullptr),
+      mEffectKeeper(nullptr),
+      mSoundObject(nullptr),
+      mShadowControllerList(nullptr),
+      mCollisionParts(nullptr),
+      mStageSwitchCtrl(nullptr),
+      mStarPointerTarget(nullptr),
+      mActorLightCtrl(nullptr),
+      mCameraCtrl(nullptr) {
     MR::getAllLiveActorGroup()->registerActor(this);
     MR::getClippingDirector()->registerActor(this);
 }
 
 void LiveActor::init(const JMapInfoIter& rIter) {
-    
 }
 
 void LiveActor::appear() {
@@ -247,8 +245,7 @@ bool LiveActor::receiveMessage(u32 msg, HitSensor* pSender, HitSensor* pReceiver
 void LiveActor::calcAndSetBaseMtx() {
     if (MR::getTaken(this)) {
         MR::setBaseTRMtx(this, MR::getTaken(this)->mHost->getTakingMtx());
-    }
-    else {
+    } else {
         TPos3f mtx;
 
         if (mRotation.x == 0.0f && mRotation.z == 0.0f) {
@@ -389,8 +386,7 @@ void LiveActor::initEffectKeeper(int a1, const char* a2, bool doSort) {
 void LiveActor::initSound(int param1, bool param2) {
     if (!param2) {
         mSoundObject = new AudAnmSoundObject(&mPosition, param1, MR::getCurrentHeap());
-    }
-    else {
+    } else {
         mSoundObject = new AudAnmSoundObject(nullptr, param1, MR::getCurrentHeap());
     }
 }
@@ -412,7 +408,6 @@ void LiveActor::initActorLightCtrl() {
 }
 
 void LiveActor::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
-    
 }
 
 bool LiveActor::receiveMsgPush(HitSensor* pSender, HitSensor* pReceiver) {

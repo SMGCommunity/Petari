@@ -4,8 +4,8 @@
 
 class Sun : public LiveActor {
 public:
-    Sun(const char *);
+    Sun(const char*);
 
     virtual ~Sun();
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
 };

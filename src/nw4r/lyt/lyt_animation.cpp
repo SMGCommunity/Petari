@@ -5,9 +5,10 @@
 
 namespace nw4r {
     namespace lyt {
-        AnimTransform::AnimTransform() : mpRes(nullptr), mFrame(0) { }
+        AnimTransform::AnimTransform()
+            : mpRes(nullptr), mFrame(0) {}
 
-        AnimTransform::~AnimTransform() { }
+        AnimTransform::~AnimTransform() {}
 
         u16 AnimTransform::GetFrameSize() const {
             return mpRes->frameSize;
@@ -17,8 +18,8 @@ namespace nw4r {
             return mpRes->loop != 0;
         }
 
-        AnimTransformBasic::AnimTransformBasic() : mpFileResAry(nullptr), mAnimLinkAry(nullptr), mAnimLinkNum(0) {
-
+        AnimTransformBasic::AnimTransformBasic()
+            : mpFileResAry(nullptr), mAnimLinkAry(nullptr), mAnimLinkNum(0) {
         }
 
         AnimTransformBasic::~AnimTransformBasic() {
@@ -26,11 +27,11 @@ namespace nw4r {
             Layout::DeletePrimArray(mpFileResAry);
         }
 
-        void AnimTransformBasic::SetResource(const res::AnimationBlock *pBlock, ResourceAccessor *pResAccessor) {
+        void AnimTransformBasic::SetResource(const res::AnimationBlock* pBlock, ResourceAccessor* pResAccessor) {
             SetResource(pBlock, pResAccessor, pBlock->animContNum);
         }
 
-        void AnimTransformBasic::SetResource(const res::AnimationBlock *pBlock, ResourceAccessor *pResAccessor, u16 animNum) {
+        void AnimTransformBasic::SetResource(const res::AnimationBlock* pBlock, ResourceAccessor* pResAccessor, u16 animNum) {
             mpRes = pBlock;
             mpFileResAry = nullptr;
 
@@ -46,7 +47,7 @@ namespace nw4r {
             }
 
             mAnimLinkAry = Layout::NewArray<AnimationLink>(animNum);
-            if (mAnimLinkAry !=  nullptr) {
+            if (mAnimLinkAry != nullptr) {
                 mAnimLinkNum = animNum;
                 memset(mAnimLinkAry, 0, pBlock->animContNum * sizeof(AnimationLink));
 
@@ -55,5 +56,5 @@ namespace nw4r {
                 }
             }
         }
-    };
-};
+    }; // namespace lyt
+};     // namespace nw4r

@@ -33,4 +33,4 @@ namespace MR {
         /// @brief The number of bits.
         /* 0x4 */ s32 mArraySize;
     };
-};
+}; // namespace MR

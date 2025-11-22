@@ -2,12 +2,10 @@
 
 #include <cstring>
 
-CubeCameraArea::CubeCameraArea(int type, const char *pName) :
-    AreaObj(type, pName),
-    _3C(0),
-    mZoneID(0)
-{
-    
+CubeCameraArea::CubeCameraArea(int type, const char* pName)
+    : AreaObj(type, pName),
+      _3C(0),
+      mZoneID(0) {
 }
 
 /*
@@ -63,8 +61,7 @@ void CubeCameraArea::movement() {
         if (isValidSwitchA() && isOnSwitchA()) {
             mIsValid = true;
         }
-    }
-    else if (isValidSwitchB() && isOnSwitchB()) {
+    } else if (isValidSwitchB() && isOnSwitchB()) {
         mIsValid = false;
     }
 }
@@ -77,7 +74,7 @@ u16 CubeCameraArea::getCameraID() const {
     return mObjArg0;
 }
 
-bool CubeCameraArea::isInVolume(const TVec3f &rVec) const {
+bool CubeCameraArea::isInVolume(const TVec3f& rVec) const {
     return (_3C & sCubeCategory) != 0 && AreaObj::isInVolume(rVec);
 }
 
@@ -89,7 +86,8 @@ s32 CubeCameraArea::getCategoryArg() const {
     return mObjArg3;
 }
 
-CubeCameraMgr::CubeCameraMgr(s32 type, const char *pName) : AreaObjMgr(type, pName) {
+CubeCameraMgr::CubeCameraMgr(s32 type, const char* pName)
+    : AreaObjMgr(type, pName) {
     CubeCameraArea::sCubeCategory = 1;
 }
 
@@ -100,5 +98,4 @@ void CubeCameraMgr::initAfterLoad() {
 // CubeCameraMgr::sort
 
 CubeCameraMgr::~CubeCameraMgr() {
-    
 }

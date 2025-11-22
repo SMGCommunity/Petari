@@ -6,12 +6,13 @@
 
 #define NR_CATEGORIZED_KEEPERS 4
 
-CollisionDirector::CollisionDirector() : NameObj("地形コリジョン") {
+CollisionDirector::CollisionDirector()
+    : NameObj("地形コリジョン") {
     mKeepers = nullptr;
     mCode = nullptr;
 
     mCode = new CollisionCode();
-    mKeepers = new CollisionCategorizedKeeper *[NR_CATEGORIZED_KEEPERS];
+    mKeepers = new CollisionCategorizedKeeper*[NR_CATEGORIZED_KEEPERS];
 
     for (s32 i = 0; i < NR_CATEGORIZED_KEEPERS; i++) {
         mKeepers[i] = new CollisionCategorizedKeeper(i);
@@ -21,15 +22,12 @@ CollisionDirector::CollisionDirector() : NameObj("地形コリジョン") {
 }
 
 CollisionDirector::~CollisionDirector() {
-
 }
 
-void CollisionDirector::init(const JMapInfoIter &rIter) {
-
+void CollisionDirector::init(const JMapInfoIter& rIter) {
 }
 
 void CollisionDirector::initAfterPlacement() {
-
 }
 
 void CollisionDirector::movement() {

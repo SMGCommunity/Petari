@@ -10,8 +10,8 @@ public:
 
     virtual ~DemoCastGroupHolder();
 
-    bool tryRegisterDemoActor(LiveActor *, const JMapInfoIter &, const JMapIdInfo &) const;
-    bool tryRegisterDemoActor(LiveActor *, const char *, const JMapInfoIter &) const;
+    bool           tryRegisterDemoActor(LiveActor*, const JMapInfoIter&, const JMapIdInfo&) const;
+    bool           tryRegisterDemoActor(LiveActor*, const char*, const JMapInfoIter&) const;
     DemoCastGroup* getCastGroup(int) const;
-    DemoCastGroup* findCastGroup(const char *) const;
+    DemoCastGroup* findCastGroup(const char*) const;
 };

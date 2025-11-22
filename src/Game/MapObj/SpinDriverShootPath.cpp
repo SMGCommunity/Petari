@@ -6,16 +6,16 @@ SpinDriverShootPath::SpinDriverShootPath() {
     mPath = nullptr;
     mStartPosition.x = 0.0f;
     mStartPosition.y = 0.0f;
-    mStartPosition.z = 0.0f; 
+    mStartPosition.z = 0.0f;
     mUsesParabolic = false;
 }
 
-void SpinDriverShootPath::init(const JMapInfoIter &rIter) {
+void SpinDriverShootPath::init(const JMapInfoIter& rIter) {
     mRailRider = new RailRider(rIter);
     mUsesParabolic = false;
 }
 
-void SpinDriverShootPath::initUsingParabolic(const JMapInfoIter &rIter, const TVec3f &rStartingPosition) {
+void SpinDriverShootPath::initUsingParabolic(const JMapInfoIter& rIter, const TVec3f& rStartingPosition) {
     mRailRider = new RailRider(rIter);
     mUsesParabolic = mRailRider->getPointNum() <= 2;
 
@@ -23,10 +23,10 @@ void SpinDriverShootPath::initUsingParabolic(const JMapInfoIter &rIter, const TV
         mPath = new ParabolicPath();
     }
 
-    setStartPosition(rStartingPosition); 
-} 
+    setStartPosition(rStartingPosition);
+}
 
-void SpinDriverShootPath::setStartPosition(const TVec3f &rStartPos) {
+void SpinDriverShootPath::setStartPosition(const TVec3f& rStartPos) {
     if (mUsesParabolic) {
         TVec3f start(mRailRider->mStartPos);
         TVec3f end(mRailRider->mEndPos);
@@ -42,15 +42,14 @@ void SpinDriverShootPath::setStartPosition(const TVec3f &rStartPos) {
     mStartPosition.setPS(startPos);
 }
 
-void SpinDriverShootPath::calcPosition(TVec3f *pOutPosition, f32 a2) const {
+void SpinDriverShootPath::calcPosition(TVec3f* pOutPosition, f32 a2) const {
     if (mUsesParabolic) {
         mPath->calcPosition(pOutPosition, a2);
-    }
-    else {
+    } else {
         f32 length = mRailRider->getTotalLength();
         mRailRider->calcPosAtCoord(pOutPosition, a2 * length);
-        f32 norm = MR::normalize(a2, 0.0f, 0.5f);
-        f32 easeOut = MR::getEaseOutValue(norm, 1.0f, 0.0f, 1.0f);
+        f32    norm = MR::normalize(a2, 0.0f, 0.5f);
+        f32    easeOut = MR::getEaseOutValue(norm, 1.0f, 0.0f, 1.0f);
         TVec3f pos(mStartPosition);
         pos.x *= easeOut;
         pos.y *= easeOut;
@@ -59,22 +58,20 @@ void SpinDriverShootPath::calcPosition(TVec3f *pOutPosition, f32 a2) const {
     }
 }
 
-void SpinDriverShootPath::calcDirection(TVec3f *pOutDirection, f32 a2, f32 a3) const {
+void SpinDriverShootPath::calcDirection(TVec3f* pOutDirection, f32 a2, f32 a3) const {
     f32 v6;
     f32 v7;
-    
+
     if (a2 < a3) {
         v6 = a3;
         v7 = 0.0f;
-    }
-    else {
+    } else {
         v6 = 1.0f;
         v7 = (1.0f - a3);
 
         if (a2 > v7) {
             v7 = v7;
-        }
-        else {
+        } else {
             v7 = a2;
             v6 = (a2 + a3);
         }

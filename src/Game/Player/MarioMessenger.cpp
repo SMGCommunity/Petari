@@ -4,10 +4,9 @@
 
 #define ARRAY_SIZE 32
 
-MarioMessenger::MarioMessenger(HitSensor* pSender) :
-    NameObj("マリオメッセンジャー"),
-    mSender(pSender)
-{
+MarioMessenger::MarioMessenger(HitSensor* pSender)
+    : NameObj("マリオメッセンジャー"),
+      mSender(pSender) {
     mReceiverArray = new HitSensor*[ARRAY_SIZE];
     mMsgArray = new u32[ARRAY_SIZE];
     mArraySize = 0;
@@ -34,5 +33,4 @@ void MarioMessenger::addRequest(HitSensor* pReceiver, u32 msg) {
 }
 
 MarioMessenger::~MarioMessenger() {
-    
 }

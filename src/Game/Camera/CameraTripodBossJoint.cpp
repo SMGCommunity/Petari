@@ -2,7 +2,8 @@
 #include "Game/Camera/CamTranslatorTripodBossJoint.hpp"
 #include "Game/Camera/CameraLocalUtil.hpp"
 
-CameraTripodBossJoint::CameraTripodBossJoint(const char *pName) : Camera(pName) {
+CameraTripodBossJoint::CameraTripodBossJoint(const char* pName)
+    : Camera(pName) {
     mAngleB = 0.0f;
     mAngleA = 0.0f;
     mDist = 3000.0f;
@@ -27,10 +28,9 @@ CameraTargetObj* CameraTripodBossJoint::calc() {
 }
 
 CameraTripodBossJoint::~CameraTripodBossJoint() {
-
 }
 
-CamTranslatorBase *CameraTripodBossJoint::createTranslator() {
+CamTranslatorBase* CameraTripodBossJoint::createTranslator() {
     return new CamTranslatorTripodBossJoint(this);
 }
 

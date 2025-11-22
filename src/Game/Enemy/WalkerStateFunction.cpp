@@ -14,8 +14,7 @@ void WalkerStateFunction::calcPassiveMovement(LiveActor* pActor, const WalkerSta
     if (!MR::isOnGround(pActor)) {
         MR::addVelocityToGravity(pActor, pParam->_0);
         MR::attenuateVelocity(pActor, pParam->_4);
-    }
-    else {
+    } else {
         MR::attenuateVelocity(pActor, pParam->_8);
     }
 }

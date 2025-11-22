@@ -2,50 +2,49 @@
 #include "Game/MapObj/Candlestand.hpp"
 
 struct Param {
-    const char* mObjName;           // 0x0
-    f32 mClippingRadius;            // 0x4
-    f32 mSensorRange;               // 0x8
-    f32 _C;
-    f32 _10;
-    f32 _14;
-    bool mCanUseSwitch;             // 0x18
+    const char* mObjName;        // 0x0
+    f32         mClippingRadius; // 0x4
+    f32         mSensorRange;    // 0x8
+    f32         _C;
+    f32         _10;
+    f32         _14;
+    bool        mCanUseSwitch; // 0x18
 };
 
 namespace {
     static Param sParams[3] = {
-        { 
-            "PhantomCandlestand", 
-            500.0f,                     // mClippingRadius
-            50.0f,                      // mSensorRange
-            220.0f,                     // 0xC
-            0.0f,                       // 0x14
-            false                       // mCanUseSwitch
+        {
+            "PhantomCandlestand",
+            500.0f, // mClippingRadius
+            50.0f,  // mSensorRange
+            220.0f, // 0xC
+            0.0f,   // 0x14
+            false   // mCanUseSwitch
         },
         {
-            "TeresaMansionCandlestand", 
-            800.0f,                     // mClippingRadius
-            70.0f,                      // mSensorRange
-            300.0f,                     // 0xC
-            220.0f,                     // 0x10
-            -5.0f,                      // 0x14
-            false                       // mCanUseSwitch
+            "TeresaMansionCandlestand",
+            800.0f, // mClippingRadius
+            70.0f,  // mSensorRange
+            300.0f, // 0xC
+            220.0f, // 0x10
+            -5.0f,  // 0x14
+            false   // mCanUseSwitch
         },
         {
-            "CandlestandIceVolcano", 
-            500.0f,                     // mClippingRadius
-            150.0f,                     // mSensorRange
-            220.0f,                     // 0xC
-            0.0f,                       // 0x10
-            0.0f,                       // 0x14
-            true                       // mCanUseSwitch
-        }
-    };
+            "CandlestandIceVolcano",
+            500.0f, // mClippingRadius
+            150.0f, // mSensorRange
+            220.0f, // 0xC
+            0.0f,   // 0x10
+            0.0f,   // 0x14
+            true    // mCanUseSwitch
+        }};
 
     Param* get(s32 idx) {
         return &sParams[idx];
     }
 
-    Param* getParam(const char *pObjName) NO_INLINE {
+    Param* getParam(const char* pObjName) NO_INLINE {
         for (s32 i = 0; i < 3; i++) {
             if (MR::isEqualString(pObjName, get(i)->mObjName)) {
                 return get(i);
@@ -54,15 +53,16 @@ namespace {
 
         return nullptr;
     }
-};
+}; // namespace
 
-Candlestand::Candlestand(const char *pName) : MapObjActor(pName) {
+Candlestand::Candlestand(const char* pName)
+    : MapObjActor(pName) {
     mItem = -1;
     mHasItemAppear = false;
     mSpinPtclCb = nullptr;
 }
 
-void Candlestand::init(const JMapInfoIter &rIter) {
+void Candlestand::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);
     MapObjActorInitInfo info;
     MapObjActorUtil::setupInitInfoSimpleMapObj(&info);
@@ -94,8 +94,7 @@ void Candlestand::init(const JMapInfoIter &rIter) {
     if (getParam(mObjectName)->mCanUseSwitch) {
         if (MR::isValidSwitchA(this)) {
             setNerve(&NrvCandlestand::HostTypeWaitFire::sInstance);
-        }
-        else {
+        } else {
             setNerve(&NrvCandlestand::HostTypeBurn::sInstance);
         }
     }
@@ -114,24 +113,20 @@ void Candlestand::makeActorAppeared() {
 void Candlestand::startClipped() {
     MapObjActor::startClipped();
 
-    if (isNerve(&NrvCandlestand::HostTypeBurn::sInstance)
-        || isNerve(&NrvCandlestand::HostTypeAttack::sInstance))
-    {
+    if (isNerve(&NrvCandlestand::HostTypeBurn::sInstance) || isNerve(&NrvCandlestand::HostTypeAttack::sInstance)) {
         deleteEffectFire();
     }
 }
 
 void Candlestand::endClipped() {
-    if (isNerve(&NrvCandlestand::HostTypeBurn::sInstance)
-        || isNerve(&NrvCandlestand::HostTypeAttack::sInstance))
-    {
+    if (isNerve(&NrvCandlestand::HostTypeBurn::sInstance) || isNerve(&NrvCandlestand::HostTypeAttack::sInstance)) {
         emitEffectFire();
     }
 
     MapObjActor::endClipped();
 }
 
-void Candlestand::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
+void Candlestand::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (!isNerve(&NrvCandlestand::HostTypeBurn::sInstance)) {
         return;
     }
@@ -150,7 +145,7 @@ void Candlestand::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
     setNerve(&NrvCandlestand::HostTypeAttack::sInstance);
 }
 
-bool Candlestand::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool Candlestand::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (!isNerve(&NrvCandlestand::HostTypeWaitFire::sInstance)) {
         return false;
     }
@@ -170,7 +165,7 @@ bool Candlestand::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor 
     return true;
 }
 
-bool Candlestand::receiveMsgEnemyAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool Candlestand::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (!isNerve(&NrvCandlestand::HostTypeWaitFire::sInstance)) {
         return false;
     }
@@ -190,15 +185,12 @@ bool Candlestand::receiveMsgEnemyAttack(u32 msg, HitSensor *pSender, HitSensor *
     return true;
 }
 
-bool Candlestand::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
-    if (MR::isInSpinStormRange(msg, pSender, pReceiver, (350.0f * mScale.x))
-        && isNerve(&NrvCandlestand::HostTypeBurn::sInstance))
-    {
+bool Candlestand::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
+    if (MR::isInSpinStormRange(msg, pSender, pReceiver, (350.0f * mScale.x)) && isNerve(&NrvCandlestand::HostTypeBurn::sInstance)) {
         if (getParam(mObjectName)->mCanUseSwitch) {
             setNerve(&NrvCandlestand::HostTypeFlicker::sInstance);
             return true;
-        }
-        else {
+        } else {
             setNerve(&NrvCandlestand::HostTypeExtinguish::sInstance);
             return true;
         }
@@ -207,13 +199,11 @@ bool Candlestand::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pRecei
     return false;
 }
 
-
 void Candlestand::emitEffectFire() {
     if (isObjectName("TeresaMansionCandlestand")) {
         MR::emitEffect(this, "Fire01");
         MR::emitEffect(this, "Fire02");
-    }
-    else {
+    } else {
         MR::emitEffect(this, "Fire");
     }
 }
@@ -222,8 +212,7 @@ void Candlestand::deleteEffectFire() {
     if (isObjectName("TeresaMansionCandlestand")) {
         MR::deleteEffect(this, "Fire01");
         MR::deleteEffect(this, "Fire02");
-    }
-    else {
+    } else {
         MR::deleteEffect(this, "Fire");
     }
 }
@@ -232,8 +221,7 @@ void Candlestand::emitEffectExtinguishFire() {
     if (isObjectName("TeresaMansionCandlestand")) {
         MR::emitEffectWithParticleCallBack(this, "Extinguish01", mSpinPtclCb);
         MR::emitEffectWithParticleCallBack(this, "Extinguish02", mSpinPtclCb);
-    }
-    else {
+    } else {
         MR::emitEffectWithParticleCallBack(this, "Extinguish", mSpinPtclCb);
     }
 }
@@ -284,8 +272,7 @@ void Candlestand::exeFlicker() {
         if (isObjectName("TeresaMansionCandlestand")) {
             MR::emitEffect(this, "Extinguish01");
             MR::emitEffect(this, "Extinguish02");
-        }
-        else {
+        } else {
             MR::emitEffect(this, "Extinguish");
         }
 
@@ -301,8 +288,7 @@ void Candlestand::exeFlicker() {
 void Candlestand::exeAttack() {
     if (MR::isStep(this, 0x1E)) {
         setNerve(&NrvCandlestand::HostTypeBurn::sInstance);
-    }
-    else {
+    } else {
         MR::startLevelSound(this, "SE_OJ_LV_PHANTOM_TOACH_BURN", -1, -1, -1);
     }
 }
@@ -312,7 +298,6 @@ void Candlestand::exeBurn() {
 }
 
 Candlestand::~Candlestand() {
-
 }
 
 namespace NrvCandlestand {
@@ -322,4 +307,4 @@ namespace NrvCandlestand {
     INIT_NERVE(HostTypeAttack);
     INIT_NERVE(HostTypeExtinguish);
     INIT_NERVE(HostTypeFlicker);
-};
+}; // namespace NrvCandlestand

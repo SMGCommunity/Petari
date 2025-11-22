@@ -5,15 +5,15 @@
 #include "Game/Camera/CameraPoseParam.hpp"
 #include "Game/Util/SceneUtil.hpp"
 
-void CamTranslatorDummy::setParam(const CameraParamChunk *pChunk) {
-
+void CamTranslatorDummy::setParam(const CameraParamChunk* pChunk) {
 }
 
-Camera *CamTranslatorDummy::getCamera() const {
+Camera* CamTranslatorDummy::getCamera() const {
     return mCamera;
 }
 
-Camera::Camera(const char *pName) : NameObj(pName) {
+Camera::Camera(const char* pName)
+    : NameObj(pName) {
     mPosParam = new CameraPoseParam();
     mVPan = nullptr;
     mIsLOfsErpOff = false;
@@ -21,7 +21,6 @@ Camera::Camera(const char *pName) : NameObj(pName) {
 }
 
 void Camera::reset() {
-    
 }
 
 bool Camera::isInterpolationOff() const {
@@ -45,11 +44,9 @@ bool Camera::isCorrectingErpPositionOff() const {
 }
 
 void Camera::roundLeft() {
-
 }
 
 void Camera::roundRight() {
-
 }
 
 bool Camera::isEnableToRoundLeft() const {
@@ -64,7 +61,7 @@ bool Camera::isEnableToReset() const {
     return false;
 }
 
-CamTranslatorBase *Camera::createTranslator() {
+CamTranslatorBase* Camera::createTranslator() {
     return new CamTranslatorDummy(this);
 }
 
@@ -73,12 +70,11 @@ CamTranslatorBase *Camera::createTranslator() {
 void Camera::setZoneMtx(s32 zoneID) {
     if (zoneID <= 0) {
         mZoneMatrix.identity();
-    }
-    else {
+    } else {
         mZoneMatrix.identity();
 
-        register TMtx34f *matrix = MR::getZonePlacementMtx(zoneID);
-        register Camera *camera = this;
+        register TMtx34f* matrix = MR::getZonePlacementMtx(zoneID);
+        register Camera*  camera = this;
 
         __asm {
             psq_l   f0, 0x00(matrix), 0, 0
@@ -93,7 +89,8 @@ void Camera::setZoneMtx(s32 zoneID) {
             psq_st  f3, 0x34(camera), 0, 0
             psq_st  f4, 0x3C(camera), 0, 0
             psq_st  f5, 0x44(camera), 0, 0
-        };
+        }
+        ;
     }
 
     if (mVPan != nullptr) {

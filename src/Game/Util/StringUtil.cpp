@@ -15,17 +15,17 @@
 
 #ifdef __cplusplus
 extern "C" {
-    int strcasecmp(const char*, const char*);
-    // extern int vswprintf(wchar_t*, size_t, const wchar_t*, va_list);
-    int wcsncpy(wchar_t*, const wchar_t*, size_t);
+int strcasecmp(const char*, const char*);
+// extern int vswprintf(wchar_t*, size_t, const wchar_t*, va_list);
+int wcsncpy(wchar_t*, const wchar_t*, size_t);
 };
 #endif
 
 namespace MR {
     struct Tag {
-        u16 _0;
-        u8 mDataSize;
-        u8 _3;
+        u16     _0;
+        u8      mDataSize;
+        u8      _3;
         wchar_t mBuffer[1];
     };
 
@@ -58,8 +58,7 @@ namespace MR {
             minute = 59;
             second = 59;
             centisecond = 99;
-        }
-        else {
+        } else {
             s32 signedFrame = frame;
 
             minute = signedFrame / FRAME_PER_MIN;
@@ -79,8 +78,7 @@ namespace MR {
         if (frame >= FRAME_PER_HOUR) {
             minute = 59;
             second = 59;
-        }
-        else {
+        } else {
             minute = frame / FRAME_PER_MIN;
             second = (frame % FRAME_PER_MIN) / FRAME_PER_SEC;
         }
@@ -262,8 +260,8 @@ namespace MR {
 
     bool isMessageEditorNextTag(const wchar_t* pStr) {
         const Tag* pTag = reinterpret_cast<const Tag*>(pStr);
-        u8 v1 = pTag->_3;
-        wchar_t v2 = pTag->mBuffer[0];
+        u8         v1 = pTag->_3;
+        wchar_t    v2 = pTag->mBuffer[0];
 
         return v1 == 1 && v2 == 1;
     }
@@ -366,4 +364,4 @@ namespace MR {
 
         sscanf(pSrc, "\t{%ff,%ff,%ff,%ff}", &pDst[0], &pDst[1], &pDst[2], &pDst[3]);
     }
-};
+}; // namespace MR

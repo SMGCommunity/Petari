@@ -36,7 +36,8 @@
 
 namespace {
     const u8 cLanguageMap[][10] = {
-        { // RMGJ
+        {
+            // RMGJ
             LANGUAGE_JPJAPANESE,
             LANGUAGE_USENGLISH,
             LANGUAGE_EUGERMAN,
@@ -48,7 +49,8 @@ namespace {
             LANGUAGE_CNSIMPCHINESE,
             LANGUAGE_KRKOREAN,
         },
-        { // RMGE
+        {
+            // RMGE
             LANGUAGE_JPJAPANESE,
             LANGUAGE_USENGLISH,
             LANGUAGE_EUGERMAN,
@@ -60,7 +62,8 @@ namespace {
             LANGUAGE_CNSIMPCHINESE,
             LANGUAGE_KRKOREAN,
         },
-        { // RMGP
+        {
+            // RMGP
             LANGUAGE_JPJAPANESE,
             LANGUAGE_EUENGLISH,
             LANGUAGE_EUGERMAN,
@@ -72,7 +75,8 @@ namespace {
             LANGUAGE_CNSIMPCHINESE,
             LANGUAGE_KRKOREAN,
         },
-        { // ???
+        {
+            // ???
             LANGUAGE_JPJAPANESE,
             LANGUAGE_USENGLISH,
             LANGUAGE_EUGERMAN,
@@ -84,7 +88,8 @@ namespace {
             LANGUAGE_CNSIMPCHINESE,
             LANGUAGE_KRKOREAN,
         },
-        { // RMGK
+        {
+            // RMGK
             LANGUAGE_JPJAPANESE,
             LANGUAGE_USENGLISH,
             LANGUAGE_EUGERMAN,
@@ -96,7 +101,8 @@ namespace {
             LANGUAGE_CNSIMPCHINESE,
             LANGUAGE_KRKOREAN,
         },
-        { // ???
+        {
+            // ???
             LANGUAGE_JPJAPANESE,
             LANGUAGE_USENGLISH,
             LANGUAGE_EUGERMAN,
@@ -123,7 +129,7 @@ namespace {
         {LANGUAGE_CNSIMPCHINESE, "CnSimpChinese"},
         {LANGUAGE_KRKOREAN, "KrKorean"},
     };
-};
+}; // namespace
 
 namespace MR {
     u32 getDecidedLanguageFromIPL() {
@@ -132,14 +138,12 @@ namespace MR {
 
         if (language < 0) {
             i = 0;
-        }
-        else {
+        } else {
             s32 size = sizeof(cLanguageMap[4]) / sizeof(*cLanguageMap[4]);
 
             if (language <= size) {
                 i = language;
-            }
-            else {
+            } else {
                 i = size;
             }
         }
@@ -201,4 +205,4 @@ namespace MR {
     const char* getLanguagePrefixByIndex(u32 index) {
         return cLanguages[index].mName;
     }
-};
+}; // namespace MR

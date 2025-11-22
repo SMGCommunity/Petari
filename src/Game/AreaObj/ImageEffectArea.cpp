@@ -1,12 +1,12 @@
 #include "Game/AreaObj/ImageEffectArea.hpp"
 
-ImageEffectArea::ImageEffectArea(EImageEffectType effectType, int type, const char *pName) :
-    AreaObj(type, pName) {
+ImageEffectArea::ImageEffectArea(EImageEffectType effectType, int type, const char* pName)
+    : AreaObj(type, pName) {
     mEffectType = effectType;
 }
 
-ImageEffectAreaMgr::ImageEffectAreaMgr(s32 type, const char *pName) : AreaObjMgr(type, pName) {
-
+ImageEffectAreaMgr::ImageEffectAreaMgr(s32 type, const char* pName)
+    : AreaObjMgr(type, pName) {
 }
 
 void ImageEffectAreaMgr::initAfterPlacement() {
@@ -16,5 +16,4 @@ void ImageEffectAreaMgr::initAfterPlacement() {
 // ImageEffectAreaMgr::sort()
 
 ImageEffectAreaMgr::~ImageEffectAreaMgr() {
-    
 }

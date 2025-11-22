@@ -6,7 +6,7 @@
 #include "JSystem/JGeometry/TMatrix.hpp"
 
 namespace {
-    void calcRailDirection(TVec3f *pOut, const RailPart *pRailPart, f32 a3) {
+    void calcRailDirection(TVec3f* pOut, const RailPart* pRailPart, f32 a3) {
         pRailPart->calcVelocity(pOut, a3);
 
         f32 v8;
@@ -14,8 +14,7 @@ namespace {
         if (MR::isNearZero(*pOut, 0.001f)) {
             if ((a3 < 0.5f)) {
                 v8 = 0.0099999998f + a3;
-            }
-            else {
+            } else {
                 v8 = a3;
                 a3 = a3 - 0.0099999998f;
             }
@@ -29,9 +28,9 @@ namespace {
 
         MR::normalize(pOut);
     }
-};
+}; // namespace
 
-void BezierRailPart::set(const TVec3f &a1, const TVec3f &a2, const TVec3f &a3, const TVec3f &a4) {
+void BezierRailPart::set(const TVec3f& a1, const TVec3f& a2, const TVec3f& a3, const TVec3f& a4) {
     TVec3f v21, v20, v19, v18, v17, v16;
 
     TVec3f v15(a2);
@@ -66,7 +65,7 @@ void BezierRailPart::set(const TVec3f &a1, const TVec3f &a2, const TVec3f &a3, c
     mLength = getLength(0.0f, 1.0f, 0xA);
 }
 
-void BezierRailPart::calcPos(TVec3f *pOut, f32 a2) const {
+void BezierRailPart::calcPos(TVec3f* pOut, f32 a2) const {
     f32 v7 = 3.0f * a2;
     f32 v10 = ((3.0f * a2) * a2);
     f32 v9 = (a2 * (a2 * a2));
@@ -85,7 +84,7 @@ void BezierRailPart::calcPos(TVec3f *pOut, f32 a2) const {
     pOut->add(v14);
 }
 
-void BezierRailPart::calcVelocity(TVec3f *pOut, f32 a2) const {
+void BezierRailPart::calcVelocity(TVec3f* pOut, f32 a2) const {
     f32 v5 = (a2 * a2);
     f32 v7 = (2.0f * a2);
 
@@ -113,25 +112,25 @@ f32 BezierRail::getPartLength(int idx) const {
     return mRailParts[idx].getTotalLength();
 }
 
-void BezierRail::calcPos(TVec3f *pOut, f32 a2) const {
+void BezierRail::calcPos(TVec3f* pOut, f32 a2) const {
     const RailPart* part;
-    f32 param;
+    f32             param;
 
     getIncludedSection(&part, &param, a2, 1);
     part->calcPos(pOut, part->getParam(param));
 }
 
-void BezierRail::calcDirection(TVec3f *pOut, f32 a2) const {
+void BezierRail::calcDirection(TVec3f* pOut, f32 a2) const {
     const RailPart* part;
-    f32 param;
+    f32             param;
 
     getIncludedSection(&part, &param, a2, 1);
     calcRailDirection(pOut, part, part->getParam(param));
 }
 
-void BezierRail::calcPosDir(TVec3f *pPos, TVec3f *pDir, f32 a3) const {
+void BezierRail::calcPosDir(TVec3f* pPos, TVec3f* pDir, f32 a3) const {
     const RailPart* part;
-    f32 param;
+    f32             param;
 
     getIncludedSection(&part, &param, a3, 1);
     f32 val = part->getParam(param);
@@ -141,10 +140,10 @@ void BezierRail::calcPosDir(TVec3f *pPos, TVec3f *pDir, f32 a3) const {
 
 #ifdef NON_MATCHING
 // regalloc issues
-f32 BezierRail::getNearestRailPosCoord(const TVec3f &a1) const {
+f32 BezierRail::getNearestRailPosCoord(const TVec3f& a1) const {
     RailPart* part = mRailParts;
-    int idx = 0;
-    
+    int       idx = 0;
+
     f32 length = part->getTotalLength();
     f32 nearestParam = part->getNearestParam(a1, 100.0f / length);
 
@@ -179,8 +178,7 @@ f32 BezierRail::getNearestRailPosCoord(const TVec3f &a1) const {
 f32 BezierRail::getRailPosCoord(int idx) const {
     if (!idx) {
         return 0.0f;
-    }
-    else {
+    } else {
         if (mIsClosed || mPointNum - 1 != idx) {
             return _10[idx - 1];
         }
@@ -189,12 +187,12 @@ f32 BezierRail::getRailPosCoord(int idx) const {
     return getTotalLength();
 }
 
-void BezierRail::calcCurrentRailCtrlPointIter(JMapInfoIter *pIter, f32 a2, bool a3) const {
+void BezierRail::calcCurrentRailCtrlPointIter(JMapInfoIter* pIter, f32 a2, bool a3) const {
     int idx = getCurrentCtrlPointIndex(a2, a3);
     calcRailCtrlPointIter(pIter, idx);
 }
 
-void BezierRail::calcRailCtrlPointIter(JMapInfoIter *pIter, int idx) const {
+void BezierRail::calcRailCtrlPointIter(JMapInfoIter* pIter, int idx) const {
     pIter->mIndex = idx;
     pIter->mInfo = _18;
 }

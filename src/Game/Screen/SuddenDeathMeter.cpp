@@ -18,22 +18,21 @@ namespace NrvSuddenDeathMeter {
     NEW_NERVE(SuddenDeathMeterNrvBreakMeter, SuddenDeathMeter, BreakMeter);
     NEW_NERVE(SuddenDeathMeterNrvZeroMeter, SuddenDeathMeter, ZeroMeter);
     NEW_NERVE(SuddenDeathMeterNrvZeroMeterBreak, SuddenDeathMeter, ZeroMeterBreak);
-}    // namespace NrvSuddenDeathMeter
+} // namespace NrvSuddenDeathMeter
 
-SuddenDeathMeter::SuddenDeathMeter(const char *a1, const char *a2) :
-    LayoutActor(a1, true),
-    mCountUpPaneRumbler(nullptr),
-    mFollowPosW(0.0f, 0.0f),
-    _2C(0.0f, 0.0f),
-    mCount(1),
-    _38(0.0f),
-    _3C(1.0f)
-{
+SuddenDeathMeter::SuddenDeathMeter(const char* a1, const char* a2)
+    : LayoutActor(a1, true),
+      mCountUpPaneRumbler(nullptr),
+      mFollowPosW(0.0f, 0.0f),
+      _2C(0.0f, 0.0f),
+      mCount(1),
+      _38(0.0f),
+      _3C(1.0f) {
     MR::connectToSceneLayout(this);
     initLayoutManager(a2, 3);
 }
 
-void SuddenDeathMeter::init(const JMapInfoIter &rIter) {
+void SuddenDeathMeter::init(const JMapInfoIter& rIter) {
     MR::createAndAddPaneCtrl(this, "HitPointMeter", 2);
     MR::createAndAddPaneCtrl(this, "HitPointNumber", 1);
     MR::createAndAddPaneCtrl(this, "Font", 2);
@@ -173,18 +172,18 @@ void SuddenDeathMeter::initCount(s32 count) {
 void SuddenDeathMeter::setCount(s32 count) {
     s32 prevCount = mCount;
     mCount = count;
-    if (count >= prevCount) return;
+    if (count >= prevCount)
+        return;
     if (count == 0) {
         setNerve(&NrvSuddenDeathMeter::SuddenDeathMeterNrvZeroMeter::sInstance);
-    }
-    else {
+    } else {
         setNerve(&NrvSuddenDeathMeter::SuddenDeathMeterNrvBreakMeter::sInstance);
     }
 }
 
 // void SuddenDeathMeter::calcMarioHeadPosition(TVec2f *pos) const;
 
-void SuddenDeathMeter::calcPowerUpMeterBasePosition(TVec2f *pos) const {
+void SuddenDeathMeter::calcPowerUpMeterBasePosition(TVec2f* pos) const {
     pos->x = MR::getPaneTransX(this, "MoveMeterW");
     pos->y = MR::getPaneTransY(this, "MoveMeterW");
 }

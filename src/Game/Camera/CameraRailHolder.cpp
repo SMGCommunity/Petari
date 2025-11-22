@@ -6,7 +6,7 @@ CameraRailHolder::ZoneRail::ZoneRail() {
     _4 = 0;
 }
 
-CameraRailHolder::RailSet &CameraRailHolder::RailSet::operator=(const RailSet &rOther) {
+CameraRailHolder::RailSet& CameraRailHolder::RailSet::operator=(const RailSet& rOther) {
     _0 = rOther._0;
     _4 = rOther._4;
     return *this;
@@ -25,5 +25,4 @@ CameraRailHolder::RailSet &CameraRailHolder::RailSet::operator=(const RailSet &r
 }*/
 
 CameraRailHolder::~CameraRailHolder() {
-    
 }

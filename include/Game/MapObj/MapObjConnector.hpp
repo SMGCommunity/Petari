@@ -4,15 +4,15 @@
 
 class MapObjConnector {
 public:
-    MapObjConnector(LiveActor *);
+    MapObjConnector(LiveActor*);
 
     void attachToUnder();
     void attachToBack();
-    void attach(const TVec3f &);
+    void attach(const TVec3f&);
     void connect();
-    void connect(LiveActor *);
+    void connect(LiveActor*);
 
-    LiveActor* mHost;   // 0x0
-    u32 _4;
-    TMtx34f _8;
+    LiveActor* mHost; // 0x0
+    u32        _4;
+    TMtx34f    _8;
 };

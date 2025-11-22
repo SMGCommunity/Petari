@@ -114,9 +114,9 @@ namespace MR {
     /// @return The fitted mapped number.
     f32 getEaseInOutValue(f32 x, f32 start, f32 end, f32 max);
 
-    f32 getScaleWithReactionValueZeroToOne(f32, f32, f32);
-    f32 getConvergeVibrationValue(f32, f32, f32, f32, f32);
-    f32 getReduceVibrationValue(f32, f32, f32, f32, f32);
+    f32  getScaleWithReactionValueZeroToOne(f32, f32, f32);
+    f32  getConvergeVibrationValue(f32, f32, f32, f32, f32);
+    f32  getReduceVibrationValue(f32, f32, f32, f32, f32);
     void makeAxisFrontUp(TVec3f*, TVec3f*, const TVec3f&, const TVec3f&);
     void makeAxisFrontSide(TVec3f*, TVec3f*, const TVec3f&, const TVec3f&);
     void makeAxisUpFront(TVec3f*, TVec3f*, const TVec3f&, const TVec3f&);
@@ -176,10 +176,10 @@ namespace MR {
 
     void clampVecAngleDeg(TVec3f*, const TVec3f&, f32);
     void clampLength(TVec3f*, const TVec3f&, f32);
-    f32 convergeRadian(f32, f32, f32);
+    f32  convergeRadian(f32, f32, f32);
     bool isInRange(f32, f32, f32);
-    f32 calcRotateY(f32, f32);
-    f32 calcRotateZ(const TVec3f&, const TVec3f&);
+    f32  calcRotateY(f32, f32);
+    f32  calcRotateZ(const TVec3f&, const TVec3f&);
 
     /// @brief Computes the distance between two points.
     /// @param[in] rPos1 A reference to the position of the first point.
@@ -252,12 +252,12 @@ namespace MR {
     /// @return The mapped number.
     f32 normalize(f32 x, f32 min, f32 max);
 
-    f32 normalizeAbs(f32, f32, f32);
+    f32  normalizeAbs(f32, f32, f32);
     bool turnVecToVecCos(TVec3f*, const TVec3f&, const TVec3f&, f32, const TVec3f&, f32);
     bool turnVecToVecCosOnPlane(TVec3f*, const TVec3f&, const TVec3f&, const TVec3f&, f32);
     bool turnVecToVecCosOnPlane(TVec3f*, const TVec3f&, const TVec3f&, f32);
-    f32 turnVecToVecRadian(TVec3f*, const TVec3f&, const TVec3f&, f32, const TVec3f&);
-    f32 turnVecToVecDegree(TVec3f*, const TVec3f&, const TVec3f&, f32, const TVec3f&);
+    f32  turnVecToVecRadian(TVec3f*, const TVec3f&, const TVec3f&, f32, const TVec3f&);
+    f32  turnVecToVecDegree(TVec3f*, const TVec3f&, const TVec3f&, f32, const TVec3f&);
     void calcMomentRollBall(TVec3f*, const TVec3f&, const TVec3f&, f32);
     bool calcReflectionVector(TVec3f*, const TVec3f&, f32, f32);
 
@@ -291,10 +291,10 @@ namespace MR {
     /// @return `true` if the elements are approximately equal to zero, `false` otherwise.
     bool isNearZero(const TVec2f& rVec, f32 tolerance);
 
-    f32 diffAngleAbs(f32, f32);
-    f32 normalizeAngleAbs(f32);
+    f32  diffAngleAbs(f32, f32);
+    f32  normalizeAngleAbs(f32);
     bool isAngleBetween(f32, f32, f32);
-    f32 blendAngle(f32, f32, f32);
+    f32  blendAngle(f32, f32, f32);
 
     /// @brief Computes clamped linear interpolation between two integers.
     /// @param start The starting integer.
@@ -312,7 +312,7 @@ namespace MR {
 
     void sortSmall(s32, f32*, s32*);
     void sortSmall(s32, u32*, s32*);
-    f32 vecKillElement(const TVec3f&, const TVec3f&, TVec3f*);
+    f32  vecKillElement(const TVec3f&, const TVec3f&, TVec3f*);
     void vecScaleAdd(const TVec3f*, const TVec3f*, f32);
     void PSvecBlend(const TVec3f*, const TVec3f*, TVec3f*, f32, f32);
     void vecBlend(const TVec3f&, const TVec3f&, TVec3f*, f32);
@@ -334,18 +334,18 @@ namespace MR {
     /// @param t The linear interpolant.
     void blendVec(Vec* pDst, const Vec& rStart, const Vec& rEnd, f32 t);
 
-    f32 turnVecToPlane(TVec3f*, const TVec3f&, const TVec3f&);
-    u32 getMinAbsElementIndex(const TVec3f&);
-    f32 getMaxElement(const TVec3f&);
-    f32 getMaxAbsElement(const TVec3f&);
-    u32 getMaxElementIndex(const TVec3f&);
-    u32 getMaxAbsElementIndex(const TVec3f&);
-    f32 diffAngleAbsFast(const TVec3f&, const TVec3f&);
-    f32 diffAngleAbs(const TVec3f&, const TVec3f&);
-    f32 diffAngleAbs(const TVec2f&, const TVec2f&);
-    f32 diffAngleSigned(const TVec3f&, const TVec3f&, const TVec3f&);
-    f32 diffAngleAbsHorizontal(const TVec3f&, const TVec3f&, const TVec3f&);
-    f32 diffAngleSignedHorizontal(const TVec3f&, const TVec3f&, const TVec3f&);
+    f32  turnVecToPlane(TVec3f*, const TVec3f&, const TVec3f&);
+    u32  getMinAbsElementIndex(const TVec3f&);
+    f32  getMaxElement(const TVec3f&);
+    f32  getMaxAbsElement(const TVec3f&);
+    u32  getMaxElementIndex(const TVec3f&);
+    u32  getMaxAbsElementIndex(const TVec3f&);
+    f32  diffAngleAbsFast(const TVec3f&, const TVec3f&);
+    f32  diffAngleAbs(const TVec3f&, const TVec3f&);
+    f32  diffAngleAbs(const TVec2f&, const TVec2f&);
+    f32  diffAngleSigned(const TVec3f&, const TVec3f&, const TVec3f&);
+    f32  diffAngleAbsHorizontal(const TVec3f&, const TVec3f&, const TVec3f&);
+    f32  diffAngleSignedHorizontal(const TVec3f&, const TVec3f&, const TVec3f&);
     bool isNearAngleRadian(const TVec3f&, const TVec3f&, f32);
     bool isNearAngleDegree(const TVec3f&, const TVec3f&, f32);
     bool isNearAngleRadianHV(const TVec3f&, const TVec3f&, const TVec3f&, f32, f32);
@@ -389,7 +389,7 @@ namespace MR {
     void getRotatedAxisY(TVec3f*, const TVec3f&);
     void getRotatedAxisZ(TVec3f*, const TVec3f&);
 
-    template<typename T>
+    template <typename T>
     T converge(T, T, T);
 
     /// @brief Computes the cosine of a number, in radians.
@@ -454,7 +454,7 @@ namespace MR {
         return a + (f32)fmod(360.0f + (b - a), 360.0f);
     }
 
-    #ifdef __MWERKS__
+#ifdef __MWERKS__
     inline f32 frsqrte(register f32 x) {
         register f32 recip;
 
@@ -464,14 +464,14 @@ namespace MR {
         }
         return recip * x;
     }
-    
+
     inline f32 fastSqrtf(register f32 x) {
         register f32 recip;
 
         if (x > 0.0f) {
-            __asm { frsqrte recip, x }
+            __asm { frsqrte recip, x}
             f32 v = recip * x;
-            recip =  -(v * recip - 3.0f);
+            recip = -(v * recip - 3.0f);
             recip = (recip * v);
             recip *= 0.5f;
             return recip;
@@ -479,16 +479,16 @@ namespace MR {
 
         return x;
     }
-    #else
+#else
     f32 frsqrte(f32);
     f32 fastSqrtf(f32);
-    #endif
+#endif
 
-    template<typename T>
+    template <typename T>
     T sqrt(T x) {
         return fastSqrtf(x);
     }
-};
+}; // namespace MR
 
 f32 PSVECKillElement(const Vec*, const Vec*, const Vec*);
 f32 JMASqrt(f32);

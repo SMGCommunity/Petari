@@ -6,12 +6,11 @@
 #include "Game/Util/ObjUtil.hpp"
 #include "revolution/types.h"
 
+SimpleNormalMapObj::SimpleNormalMapObj(const char* pName)
+    : NormalMapBase(pName) {}
+SimpleNormalMapObj::~SimpleNormalMapObj() {}
 
-SimpleNormalMapObj::SimpleNormalMapObj(const char *pName) : NormalMapBase(pName) { }
-SimpleNormalMapObj::~SimpleNormalMapObj() { }
-
-
-void SimpleNormalMapObj::init(const JMapInfoIter & rIter) {
+void SimpleNormalMapObj::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     char v6[0x100];
     MR::getMapPartsObjectNameIfExistShapeID(v6, sizeof(v6), rIter);

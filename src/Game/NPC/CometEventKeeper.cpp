@@ -5,8 +5,8 @@
 
 struct GalaxyTimeLimitInfo {
     /* 0x0 */ const char* mGalaxyName;
-    /* 0x4 */ s32 mScenarioNo;
-    /* 0x8 */ u32 mTimeLimit;
+    /* 0x4 */ s32         mScenarioNo;
+    /* 0x8 */ u32         mTimeLimit;
 };
 
 namespace {
@@ -23,13 +23,11 @@ namespace {
     };
 };
 
-CometEventKeeper::CometEventKeeper() :
-    mExecutorTimeLimit(nullptr),
-    mScreenFilter(nullptr),
-    mCometName(nullptr),
-    mCometStateIndex(0)
-{
-    
+CometEventKeeper::CometEventKeeper()
+    : mExecutorTimeLimit(nullptr),
+      mScreenFilter(nullptr),
+      mCometName(nullptr),
+      mCometStateIndex(0) {
 }
 
 void CometEventKeeper::init() {

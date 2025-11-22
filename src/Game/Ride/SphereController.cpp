@@ -1,9 +1,7 @@
 #include "Game/Ride/SphereController.hpp"
 
-SphereController::SphereController() :
-    _4(0)
-{
-    
+SphereController::SphereController()
+    : _4(0) {
 }
 
 f32 SphereController::calcMoveVector(TVec3f* pDst, const TVec3f& rSrc) {
@@ -11,7 +9,6 @@ f32 SphereController::calcMoveVector(TVec3f* pDst, const TVec3f& rSrc) {
 }
 
 void SphereController::update(const TVec3f& sSrc) {
-    
 }
 
 bool SphereController::doBrake() const {

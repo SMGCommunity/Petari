@@ -12,31 +12,30 @@
 #include "revolution/types.h"
 
 class AstroDomeGalaxySelector : public LiveActor {
-    public:
-        AstroDomeGalaxySelector(const char*);
-        virtual void init(const JMapInfoIter&);
-        virtual void appear();
-        virtual void kill();
-        virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
+public:
+    AstroDomeGalaxySelector(const char*);
+    virtual void init(const JMapInfoIter&);
+    virtual void appear();
+    virtual void kill();
+    virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
 
-        void showGalaxyInfo(const MiniatureGalaxy*);
-        bool tryStartLectureDemo(const Nerve*);
+    void showGalaxyInfo(const MiniatureGalaxy*);
+    bool tryStartLectureDemo(const Nerve*);
 
-        void exeGalaxySelect();
-        void exeGalaxySelectStart();
-        void exeGalaxyConfirmStart();
-        void exeGalaxySelectCancel();
-        void exeWaitStartDemo() {}; // Yeah this is just a return I guess?
-        void exeDemoDomeLecture();
-        void exeGalaxyConfirm();
-        void exeGalaxyConfirmCancel();  // Auto inlined
-        void exeGalaxyMoveLecture();
-        void exeDemoJumpOut();
+    void exeGalaxySelect();
+    void exeGalaxySelectStart();
+    void exeGalaxyConfirmStart();
+    void exeGalaxySelectCancel();
+    void exeWaitStartDemo(){}; // Yeah this is just a return I guess?
+    void exeDemoDomeLecture();
+    void exeGalaxyConfirm();
+    void exeGalaxyConfirmCancel(); // Auto inlined
+    void exeGalaxyMoveLecture();
+    void exeDemoJumpOut();
 
-
-        AstroDomeCameraController* pDomeCamCtrl;    // _8C
-        GalaxySelectBackButton* pGSBackButton;      // _90
-        GalaxySelectInfo* pGSInfo;                  // _94
-        GalaxyConfirmLayout* pGConfirmLayout;       // _98
-        bool _9C;
+    AstroDomeCameraController* pDomeCamCtrl;    // _8C
+    GalaxySelectBackButton*    pGSBackButton;   // _90
+    GalaxySelectInfo*          pGSInfo;         // _94
+    GalaxyConfirmLayout*       pGConfirmLayout; // _98
+    bool                       _9C;
 };

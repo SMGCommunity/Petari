@@ -85,18 +85,7 @@ namespace MR {
     }
 
     bool testPadButtonAnyWithoutHome(s32 channel) {
-        return testCorePadButtonUp(channel)
-            || testCorePadButtonDown(channel)
-            || testCorePadButtonLeft(channel)
-            || testCorePadButtonRight(channel)
-            || testCorePadButtonA(channel)
-            || testCorePadButtonB(channel)
-            || testCorePadButton1(channel)
-            || testCorePadButton2(channel)
-            || testCorePadButtonPlus(channel)
-            || testCorePadButtonMinus(channel)
-            || testSubPadButtonC(channel)
-            || testSubPadButtonZ(channel);
+        return testCorePadButtonUp(channel) || testCorePadButtonDown(channel) || testCorePadButtonLeft(channel) || testCorePadButtonRight(channel) || testCorePadButtonA(channel) || testCorePadButtonB(channel) || testCorePadButton1(channel) || testCorePadButton2(channel) || testCorePadButtonPlus(channel) || testCorePadButtonMinus(channel) || testSubPadButtonC(channel) || testSubPadButtonZ(channel);
     }
 
     bool testCorePadTriggerUp(s32 channel) {
@@ -140,16 +129,7 @@ namespace MR {
     }
 
     bool testCorePadTriggerAnyWithoutHome(s32 channel) {
-        return testCorePadTriggerUp(channel)
-            || testCorePadTriggerDown(channel)
-            || testCorePadTriggerLeft(channel)
-            || testCorePadTriggerRight(channel)
-            || testCorePadTriggerA(channel)
-            || testCorePadTriggerB(channel)
-            || testCorePadTrigger1(channel)
-            || testCorePadTrigger2(channel)
-            || testCorePadTriggerPlus(channel)
-            || testCorePadTriggerMinus(channel);
+        return testCorePadTriggerUp(channel) || testCorePadTriggerDown(channel) || testCorePadTriggerLeft(channel) || testCorePadTriggerRight(channel) || testCorePadTriggerA(channel) || testCorePadTriggerB(channel) || testCorePadTrigger1(channel) || testCorePadTrigger2(channel) || testCorePadTriggerPlus(channel) || testCorePadTriggerMinus(channel);
     }
 
     bool testCorePadTriggerHome(s32 channel) {
@@ -307,10 +287,10 @@ namespace MR {
 
         return pWPad->mButton->testButtonB();
     }
-};
+}; // namespace MR
 
 namespace WPadFunction {
     WPadRumble* getWPadRumble(s32 channel) {
         return MR::getWPad(channel)->getRumbleInstance();
     }
-};
+}; // namespace WPadFunction

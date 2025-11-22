@@ -8,17 +8,17 @@ namespace NrvTicoStarRing {
     NEW_NERVE(TicoStarRingNrvWait, TicoStarRing, Wait);
 };
 
-TicoStarRing::TicoStarRing(const char *pName) : Tico(pName) {
+TicoStarRing::TicoStarRing(const char* pName)
+    : Tico(pName) {
     mGalaxy = nullptr;
     _194 = nullptr;
     mTicoGalaxy = nullptr;
 }
 
-void TicoStarRing::init(const JMapInfoIter &rIter) {
+void TicoStarRing::init(const JMapInfoIter& rIter) {
     if (MR::isValidInfo(rIter)) {
         initBase(rIter, 2);
-    }
-    else {
+    } else {
         initBase(5);
     }
 
@@ -28,26 +28,25 @@ void TicoStarRing::init(const JMapInfoIter &rIter) {
         s32 galaxy = 0;
         MR::getJMapInfoArg0NoInit(rIter, &galaxy);
         switch (galaxy) {
-            case 0:
-                mGalaxy = "TamakoroExLv2Galaxy";
-                break;
-            case 1:
-                mGalaxy = "SurfingLv2Galaxy";
-                break;
-            case 2:
-                mGalaxy = "CubeBubbleExLv2Galaxy";
-                break;
-            case 3:
-                mGalaxy = "PeachCastleFinalGalaxy";
-                break;
+        case 0:
+            mGalaxy = "TamakoroExLv2Galaxy";
+            break;
+        case 1:
+            mGalaxy = "SurfingLv2Galaxy";
+            break;
+        case 2:
+            mGalaxy = "CubeBubbleExLv2Galaxy";
+            break;
+        case 3:
+            mGalaxy = "PeachCastleFinalGalaxy";
+            break;
         }
 
         MR::setMessageArgToCurrentGalaxyName(mMsgCtrl, mGalaxy);
         if (!MR::isAppearGalaxy(mGalaxy)) {
             makeActorDead();
         }
-    }
-    else {
+    } else {
         mGalaxy = "unknown";
     }
 
@@ -67,7 +66,7 @@ void TicoStarRing::kill() {
     }
 }
 
-void TicoStarRing::initialize(LiveActor *pGalaxy, LiveActor *a2, const char *pGalaxyName) {
+void TicoStarRing::initialize(LiveActor* pGalaxy, LiveActor* a2, const char* pGalaxyName) {
     mTicoGalaxy = pGalaxy;
     _194 = a2;
     mGalaxy = pGalaxyName;
@@ -86,5 +85,4 @@ void TicoStarRing::exeWait() {
 }
 
 TicoStarRing::~TicoStarRing() {
-    
 }

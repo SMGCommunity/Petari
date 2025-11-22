@@ -10,6 +10,6 @@ public:
     virtual ~ShadowSurfaceBox();
 
     virtual void draw() const;
-    
-    void setSize(const TVec3f &);
+
+    void setSize(const TVec3f&);
 };

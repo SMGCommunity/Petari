@@ -1,10 +1,11 @@
 #include "Game/MapObj/CapsuleCage.hpp"
 
-CapsuleCage::CapsuleCage(const char *pName) : MapObjActor(pName) {
+CapsuleCage::CapsuleCage(const char* pName)
+    : MapObjActor(pName) {
     mInfo = nullptr;
 }
 
-void CapsuleCage::init(const JMapInfoIter &rIter) {
+void CapsuleCage::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);
     MapObjActorInitInfo info;
     MapObjActorUtil::setupInitInfoSimpleMapObj(&info);
@@ -42,8 +43,7 @@ void CapsuleCage::exeOpen() {
 
         if (mInfo != nullptr) {
             setNerve(&NrvCapsuleCage::CapsuleCageNrvEndCamera::sInstance);
-        }
-        else {
+        } else {
             kill();
         }
     }
@@ -58,12 +58,12 @@ void CapsuleCage::kill() {
     MapObjActor::kill();
 }
 
-void CapsuleCage::connectToScene(const MapObjActorInitInfo &rInfo) {
+void CapsuleCage::connectToScene(const MapObjActorInitInfo& rInfo) {
     MR::connectToSceneIndirectMapObj(this);
 }
 
-void CapsuleCage::initCaseUseSwitchB(const MapObjActorInitInfo &rInfo) {
-    MR::FunctorV0M<CapsuleCage *, void (CapsuleCage::*)()> openFunc = MR::Functor_Inline<CapsuleCage>(this, &CapsuleCage::startOpen);
+void CapsuleCage::initCaseUseSwitchB(const MapObjActorInitInfo& rInfo) {
+    MR::FunctorV0M<CapsuleCage*, void (CapsuleCage::*)()> openFunc = MR::Functor_Inline<CapsuleCage>(this, &CapsuleCage::startOpen);
     MR::listenStageSwitchOnB(this, openFunc);
 }
 
@@ -72,8 +72,7 @@ void CapsuleCage::startOpen() {
 
     if (mInfo != nullptr) {
         MR::requestStartDemoWithoutCinemaFrame(this, cDemoCameraName, &NrvCapsuleCage::CapsuleCageNrvStartCamera::sInstance, nullptr);
-    }
-    else {
+    } else {
         setNerve(&NrvCapsuleCage::CapsuleCageNrvOpen::sInstance);
     }
 }
@@ -89,20 +88,16 @@ namespace NrvCapsuleCage {
     INIT_NERVE(CapsuleCageNrvStartCamera);
     INIT_NERVE(CapsuleCageNrvOpen);
     INIT_NERVE(CapsuleCageNrvEndCamera);
-};
+}; // namespace NrvCapsuleCage
 
-void CapsuleCage::initCaseNoUseSwitchB(const MapObjActorInitInfo &) {
-
+void CapsuleCage::initCaseNoUseSwitchB(const MapObjActorInitInfo&) {
 }
 
-void CapsuleCage::initCaseNoUseSwitchA(const MapObjActorInitInfo &) {
-
+void CapsuleCage::initCaseNoUseSwitchA(const MapObjActorInitInfo&) {
 }
 
-void CapsuleCage::initCaseUseSwitchA(const MapObjActorInitInfo &) {
-
+void CapsuleCage::initCaseUseSwitchA(const MapObjActorInitInfo&) {
 }
 
 CapsuleCage::~CapsuleCage() {
-
 }

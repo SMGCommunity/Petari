@@ -7,13 +7,13 @@ namespace NrvLavaShellTower {
     NEW_NERVE(HostTypeWait, LavaShellTower, Wait);
     NEW_NERVE(HostTypeDemo, LavaShellTower, Demo);
     NEW_NERVE(HostTypeDone, LavaShellTower, Done);
-};
+}; // namespace NrvLavaShellTower
 
-LavaShellTower::LavaShellTower(const char *pName) : MapObjActor(pName) {
-    
+LavaShellTower::LavaShellTower(const char* pName)
+    : MapObjActor(pName) {
 }
 
-void LavaShellTower::init(const JMapInfoIter &rIter) {
+void LavaShellTower::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);
     MapObjActorInitInfo info;
     info.setupHioNode("地形オブジェ");
@@ -28,7 +28,6 @@ void LavaShellTower::init(const JMapInfoIter &rIter) {
 }
 
 void LavaShellTower::exeWait() {
-    
 }
 
 void LavaShellTower::exeDemo() {
@@ -47,9 +46,7 @@ void LavaShellTower::exeDemo() {
 }
 
 void LavaShellTower::exeDone() {
-    
 }
 
-void LavaShellTower::initCaseUseSwitchB(const MapObjActorInitInfo &) {
-    
+void LavaShellTower::initCaseUseSwitchB(const MapObjActorInitInfo&) {
 }

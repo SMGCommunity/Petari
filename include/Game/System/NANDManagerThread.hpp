@@ -6,10 +6,10 @@ class NANDRequestInfo;
 
 class NANDManagerThread : public OSThreadWrapper {
 public:
-    NANDManagerThread(int, int, JKRHeap *);
+    NANDManagerThread(int, int, JKRHeap*);
 
     virtual void* run();
 
-    void executeWriteSequence(NANDRequestInfo *);
-    void executeReadSequence(NANDRequestInfo *);
+    void executeWriteSequence(NANDRequestInfo*);
+    void executeReadSequence(NANDRequestInfo*);
 };

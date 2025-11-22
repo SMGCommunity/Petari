@@ -5,7 +5,7 @@
 class JASOscillator {
 public:
     struct Point {
-        const Point& operator=(const Point &);
+        const Point& operator=(const Point&);
 
         s16 _0;
         s16 _2;
@@ -13,11 +13,11 @@ public:
     };
 
     struct Data {
-        u32 _0;
-        f32 _4;
+        u32          _0;
+        f32          _4;
         const Point* _8;
-        u32 _C;
-        f32 _10;
-        f32 _14;
+        u32          _C;
+        f32          _10;
+        f32          _14;
     };
 };

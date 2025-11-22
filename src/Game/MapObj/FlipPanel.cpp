@@ -5,7 +5,8 @@
 #include "Game/Util.hpp"
 #include "JSystem/JMath/JMath.hpp"
 
-FlipPanel::FlipPanel(const char *pName) : MapObjActor(pName) {
+FlipPanel::FlipPanel(const char* pName)
+    : MapObjActor(pName) {
     mDelegator = 0;
     mFlipPanelGroup = 0;
     _CC = 0;
@@ -14,7 +15,7 @@ FlipPanel::FlipPanel(const char *pName) : MapObjActor(pName) {
     mIsReverse = false;
 }
 
-void FlipPanel::init(const JMapInfoIter &rIter) {
+void FlipPanel::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);
     MapObjActorInitInfo info;
     info.setupHioNode("地形オブジェ");
@@ -34,9 +35,8 @@ void FlipPanel::init(const JMapInfoIter &rIter) {
 
     if (mIsReverse) {
         MapObjActorUtil::appearBloomModel(this);
-    }
-    else {
-        MapObjActorUtil::killBloomModel(this); 
+    } else {
+        MapObjActorUtil::killBloomModel(this);
     }
 }
 
@@ -47,12 +47,11 @@ void FlipPanel::exeFrontLand() {
         if (mIsReverse) {
             MapObjActorUtil::appearBloomModel(this);
             ModelObj* bloomModel = mBloomModel;
-            u32 frameMax = MR::getBrkFrameMax(bloomModel);
-            u32 val = sBloomSyncStep / frameMax;
-            frameMax = sBloomSyncStep - (val) * frameMax;
+            u32       frameMax = MR::getBrkFrameMax(bloomModel);
+            u32       val = sBloomSyncStep / frameMax;
+            frameMax = sBloomSyncStep - (val)*frameMax;
             MR::setBrkFrame(bloomModel, frameMax);
-        }
-        else {
+        } else {
             MapObjActorUtil::killBloomModel(this);
         }
 
@@ -76,13 +75,12 @@ void FlipPanel::exeBackLand() {
 
         if (mIsReverse) {
             MapObjActorUtil::killBloomModel(this);
-        }
-        else {
+        } else {
             MapObjActorUtil::appearBloomModel(this);
             ModelObj* bloomModel = mBloomModel;
-            u32 frameMax = MR::getBrkFrameMax(bloomModel);
-            u32 val = sBloomSyncStep / frameMax;
-            frameMax = sBloomSyncStep - (val) * frameMax;
+            u32       frameMax = MR::getBrkFrameMax(bloomModel);
+            u32       val = sBloomSyncStep / frameMax;
+            frameMax = sBloomSyncStep - (val)*frameMax;
             MR::setBrkFrame(bloomModel, frameMax);
         }
 
@@ -113,8 +111,7 @@ void FlipPanel::exeWait() {
         if (checkPlayerOnTop()) {
             if (isNerve(&NrvFlipPanel::FlipPanelNrvFront::sInstance)) {
                 setNerve(&NrvFlipPanel::FlipPanelNrvBackLand::sInstance);
-            }
-            else {
+            } else {
                 setNerve(&NrvFlipPanel::FlipPanelNrvFrontLand::sInstance);
             }
         }
@@ -140,8 +137,7 @@ void FlipPanel::appear() {
     MapObjActor::appear();
     if (mIsReverse) {
         MapObjActorUtil::appearBloomModel(this);
-    }
-    else {
+    } else {
         MapObjActorUtil::killBloomModel(this);
     }
 }
@@ -151,9 +147,9 @@ void FlipPanel::endClipped() {
 
     if (MR::getBrkCtrl(mBloomModel)) {
         ModelObj* bloomModel = mBloomModel;
-        u32 frameMax = MR::getBrkFrameMax(bloomModel);
-        u32 val = sBloomSyncStep / frameMax;
-        frameMax = sBloomSyncStep - (val) * frameMax;
+        u32       frameMax = MR::getBrkFrameMax(bloomModel);
+        u32       val = sBloomSyncStep / frameMax;
+        frameMax = sBloomSyncStep - (val)*frameMax;
         MR::setBrkFrame(bloomModel, frameMax);
     }
 }
@@ -162,11 +158,11 @@ void FlipPanel::calcAndSetBaseMtx() {
     MapObjActor::calcAndSetBaseMtx();
 
     if (_CC) {
-        mDelegator->registerCallBack(); 
+        mDelegator->registerCallBack();
     }
 }
 
-bool FlipPanel::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool FlipPanel::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (isNerve(&NrvFlipPanel::FlipPanelNrvEnd::sInstance)) {
         return false;
     }
@@ -187,7 +183,7 @@ bool FlipPanel::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceive
     return false;
 }
 
-bool FlipPanel::calcJointMove(TPos3f *pPos, const JointControllerInfo &rInfo) {
+bool FlipPanel::calcJointMove(TPos3f* pPos, const JointControllerInfo& rInfo) {
     if (!_CC) {
         return false;
     }
@@ -223,10 +219,8 @@ bool FlipPanel::checkPlayerOnTop() {
 
     TVec3f* groundNormal = MR::getPlayerGroundNormal();
 
-    bool ret = JGeometry::TUtil<f32>::epsilonEquals(upVec.x, groundNormal->x, 0.0000038146973f)
-        && JGeometry::TUtil<f32>::epsilonEquals(upVec.y, groundNormal->y, 0.0000038146973f)
-        && JGeometry::TUtil<f32>::epsilonEquals(upVec.z, groundNormal->z, 0.0000038146973f);
-    
+    bool ret = JGeometry::TUtil<f32>::epsilonEquals(upVec.x, groundNormal->x, 0.0000038146973f) && JGeometry::TUtil<f32>::epsilonEquals(upVec.y, groundNormal->y, 0.0000038146973f) && JGeometry::TUtil<f32>::epsilonEquals(upVec.z, groundNormal->z, 0.0000038146973f);
+
     if (!ret) {
         _D0 = 0;
         return false;
@@ -241,7 +235,8 @@ bool FlipPanel::checkPlayerOnTop() {
     return true;
 }
 
-FlipPanelObserver::FlipPanelObserver(const char *pName) : LiveActor(pName) {
+FlipPanelObserver::FlipPanelObserver(const char* pName)
+    : LiveActor(pName) {
     _8C = 0;
     _90 = 0;
     mDemoDelay = 0;
@@ -250,7 +245,7 @@ FlipPanelObserver::FlipPanelObserver(const char *pName) : LiveActor(pName) {
     sBloomSyncStep = 0;
 }
 
-void FlipPanelObserver::init(const JMapInfoIter &rIter) {
+void FlipPanelObserver::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     MR::connectToSceneMapObjMovement(this);
     initHitSensor(1);
@@ -264,8 +259,7 @@ void FlipPanelObserver::init(const JMapInfoIter &rIter) {
     if (mPowerStarId != -1) {
         if (!mPowerStarId) {
             MR::declarePowerStar(this);
-        }
-        else {
+        } else {
             MR::declarePowerStar(this, mPowerStarId);
         }
     }
@@ -275,19 +269,17 @@ void FlipPanelObserver::init(const JMapInfoIter &rIter) {
 
     if (MR::isEqualStageName("HeavensDoorGalaxy")) {
         _9C = 1;
-    }
-    else {
+    } else {
         _9C = 0;
     }
 
     initNerve(&NrvFlipPanelObserver::FlipPanelObserverNrvWait::sInstance);
     bool ret = MR::useStageSwitchReadAppear(this, rIter);
 
-    if (ret) { 
+    if (ret) {
         MR::syncStageSwitchAppear(this);
         makeActorDead();
-    }
-    else {
+    } else {
         makeActorAppeared();
     }
 }
@@ -300,8 +292,7 @@ void FlipPanelObserver::exeWait() {
 
     if (_90 == _8C->mObjectCount - 1 && MR::tryStartDemo(this, "FlipPanelComplete")) {
         setNerve(&NrvFlipPanelObserver::FlipPanelObserverNrvComplete::sInstance);
-    }
-    else {
+    } else {
         sBloomSyncStep++;
     }
 }
@@ -319,8 +310,7 @@ void FlipPanelObserver::exeComplete() {
         if (mPowerStarId != -1) {
             if (!mPowerStarId) {
                 MR::requestAppearPowerStar(this, mPosition);
-            }
-            else {
+            } else {
                 MR::requestAppearPowerStar(this, mPowerStarId, mPosition);
             }
         }
@@ -345,21 +335,18 @@ void FlipPanelObserver::initAfterPlacement() {
     }
 }
 
-bool FlipPanelObserver::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool FlipPanelObserver::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (msg == ACTMES_SUCCESS) {
         if (!_90) {
             if (_9C) {
                 MR::startSystemME("ME_FLIP_PANEL_INV_OFF_FIRST");
-            }
-            else {
+            } else {
                 MR::startSystemME("ME_FLIP_PANEL_ON_FIRST");
             }
-        }
-        else {
+        } else {
             if (_9C) {
                 MR::startSystemME("ME_FLIP_PANEL_INV_OFF");
-            }
-            else {
+            } else {
                 MR::startSystemME("ME_FLIP_PANEL_ON");
             }
         }
@@ -367,12 +354,10 @@ bool FlipPanelObserver::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *
         _90++;
 
         return true;
-    }
-    else if (msg == ACTMES_FAILURE) {
+    } else if (msg == ACTMES_FAILURE) {
         if (_9C) {
             MR::startSystemME("ME_FLIP_PANEL_INV_ON");
-        }
-        else {
+        } else {
             MR::startSystemME("ME_FLIP_PANEL_OFF");
         }
 
@@ -385,72 +370,70 @@ bool FlipPanelObserver::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *
 }
 
 namespace NrvFlipPanel {
-    FlipPanelNrvFrontLand FlipPanelNrvFrontLand::sInstance;
-    FlipPanelNrvBackLand FlipPanelNrvBackLand::sInstance;
-    FlipPanelNrvFront FlipPanelNrvFront::sInstance;
-    FlipPanelNrvBack FlipPanelNrvBack::sInstance;
+    FlipPanelNrvFrontLand  FlipPanelNrvFrontLand::sInstance;
+    FlipPanelNrvBackLand   FlipPanelNrvBackLand::sInstance;
+    FlipPanelNrvFront      FlipPanelNrvFront::sInstance;
+    FlipPanelNrvBack       FlipPanelNrvBack::sInstance;
     FlipPanelNrvEndPrepare FlipPanelNrvEndPrepare::sInstance;
-    FlipPanelNrvEnd FlipPanelNrvEnd::sInstance;
-};
+    FlipPanelNrvEnd        FlipPanelNrvEnd::sInstance;
+}; // namespace NrvFlipPanel
 
 namespace NrvFlipPanelObserver {
-    FlipPanelObserverNrvWait FlipPanelObserverNrvWait::sInstance;
+    FlipPanelObserverNrvWait     FlipPanelObserverNrvWait::sInstance;
     FlipPanelObserverNrvComplete FlipPanelObserverNrvComplete::sInstance;
     FlipPanelObserverNrvDemoWait FlipPanelObserverNrvDemoWait::sInstance;
-};
+}; // namespace NrvFlipPanelObserver
 
-void NrvFlipPanelObserver::FlipPanelObserverNrvDemoWait::execute(Spine *pSpine) const {
+void NrvFlipPanelObserver::FlipPanelObserverNrvDemoWait::execute(Spine* pSpine) const {
     FlipPanelObserver* obs = reinterpret_cast<FlipPanelObserver*>(pSpine->mExecutor);
     obs->exeDemoWait();
 }
 
-void NrvFlipPanelObserver::FlipPanelObserverNrvComplete::execute(Spine *pSpine) const {
+void NrvFlipPanelObserver::FlipPanelObserverNrvComplete::execute(Spine* pSpine) const {
     FlipPanelObserver* obs = reinterpret_cast<FlipPanelObserver*>(pSpine->mExecutor);
     obs->exeComplete();
 }
 
-void NrvFlipPanelObserver::FlipPanelObserverNrvWait::execute(Spine *pSpine) const {
+void NrvFlipPanelObserver::FlipPanelObserverNrvWait::execute(Spine* pSpine) const {
     FlipPanelObserver* obs = reinterpret_cast<FlipPanelObserver*>(pSpine->mExecutor);
     obs->exeWait();
 }
 
-void NrvFlipPanel::FlipPanelNrvEnd::execute(Spine *pSpine) const {
+void NrvFlipPanel::FlipPanelNrvEnd::execute(Spine* pSpine) const {
     FlipPanel* panel = reinterpret_cast<FlipPanel*>(pSpine->mExecutor);
     panel->exeEnd();
 }
 
-void NrvFlipPanel::FlipPanelNrvEndPrepare::execute(Spine *pSpine) const {
+void NrvFlipPanel::FlipPanelNrvEndPrepare::execute(Spine* pSpine) const {
     FlipPanel* panel = reinterpret_cast<FlipPanel*>(pSpine->mExecutor);
-    
+
     if (MR::isStep(panel, 0x14)) {
         panel->setNerve(&NrvFlipPanel::FlipPanelNrvEnd::sInstance);
     }
 }
 
-void NrvFlipPanel::FlipPanelNrvBack::execute(Spine *pSpine) const {
+void NrvFlipPanel::FlipPanelNrvBack::execute(Spine* pSpine) const {
     FlipPanel* panel = reinterpret_cast<FlipPanel*>(pSpine->mExecutor);
     panel->exeWait();
 }
 
-void NrvFlipPanel::FlipPanelNrvFront::execute(Spine *pSpine) const {
+void NrvFlipPanel::FlipPanelNrvFront::execute(Spine* pSpine) const {
     FlipPanel* panel = reinterpret_cast<FlipPanel*>(pSpine->mExecutor);
     panel->exeWait();
 }
 
-void NrvFlipPanel::FlipPanelNrvBackLand::execute(Spine *pSpine) const {
+void NrvFlipPanel::FlipPanelNrvBackLand::execute(Spine* pSpine) const {
     FlipPanel* panel = reinterpret_cast<FlipPanel*>(pSpine->mExecutor);
     panel->exeBackLand();
 }
 
-void NrvFlipPanel::FlipPanelNrvFrontLand::execute(Spine *pSpine) const {
+void NrvFlipPanel::FlipPanelNrvFrontLand::execute(Spine* pSpine) const {
     FlipPanel* panel = reinterpret_cast<FlipPanel*>(pSpine->mExecutor);
     panel->exeFrontLand();
 }
 
 FlipPanel::~FlipPanel() {
-
 }
 
 FlipPanelObserver::~FlipPanelObserver() {
-    
 }

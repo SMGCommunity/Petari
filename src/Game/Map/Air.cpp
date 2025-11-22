@@ -6,15 +6,16 @@
 namespace NrvAir {
     NEW_NERVE(HostTypeIn, Air, In);
     NEW_NERVE(HostTypeOut, Air, Out);
-};
+}; // namespace NrvAir
 
-Air::Air(const char *pName) : LiveActor(pName) {
+Air::Air(const char* pName)
+    : LiveActor(pName) {
     _8C = 0;
     _8D = 0;
     mDistance = 70.0f;
 }
 
-void Air::init(const JMapInfoIter &rIter) {
+void Air::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     const char* object_name = 0;
     MR::getObjectName(&object_name, rIter);
@@ -51,8 +52,7 @@ void Air::init(const JMapInfoIter &rIter) {
         if (val) {
             makeActorDead();
         }
-    }
-    else {
+    } else {
         appear();
     }
 }
@@ -67,8 +67,7 @@ void Air::appear() {
         MR::tryStartAllAnim(this, "Appear");
         MR::setAllAnimFrameAtEnd(this, "Appear");
         setNerve(&NrvAir::HostTypeIn::sInstance);
-    }
-    else {
+    } else {
         MR::tryStartAllAnim(this, "Disappear");
         MR::setAllAnimFrameAtEnd(this, "Disappear");
         MR::hideModel(this);
@@ -80,11 +79,11 @@ bool Air::isDrawing() const {
     if (!MR::isDead(this)) {
         return !MR::isHiddenModel(this);
     }
-    
+
     return false;
 }
 
-void Air::initModel(const char *pModelName) {
+void Air::initModel(const char* pModelName) {
     initModelManagerWithAnm(pModelName, 0, false);
 }
 
@@ -115,7 +114,7 @@ void Air::appearFadeIn() {
 void Air::appearFadeOut() {
     makeActorAppeared();
     MR::tryStartAllAnim(this, "Disappear");
-    setNerve(&NrvAir::HostTypeOut::sInstance);   
+    setNerve(&NrvAir::HostTypeOut::sInstance);
 }
 
 void Air::exeIn() {
@@ -152,14 +151,13 @@ void Air::exeOut() {
 }
 
 Air::~Air() {
-
 }
 
-ProjectionMapAir::ProjectionMapAir(const char *pName) : Air(pName) {
-
+ProjectionMapAir::ProjectionMapAir(const char* pName)
+    : Air(pName) {
 }
 
-void ProjectionMapAir::initModel(const char *pModelName) {
+void ProjectionMapAir::initModel(const char* pModelName) {
     initModelManagerWithAnm(pModelName, nullptr, true);
     ProjmapEffectMtxSetter* mtxSetter = MR::initDLMakerProjmapEffectMtxSetter(this);
     MR::newDifferedDLBuffer(this);
@@ -170,24 +168,26 @@ void Air::setFarClipping() {
     MR::setClippingFarMax(this);
 }
 
-AirFar100m::AirFar100m(const char *pName) : Air(pName) {
-
+AirFar100m::AirFar100m(const char* pName)
+    : Air(pName) {
 }
 
 void AirFar100m::setFarClipping() {
     MR::setClippingFar100m(this);
 }
 
-PriorDrawAir::PriorDrawAir(const char *pName) : Air(pName) {
+PriorDrawAir::PriorDrawAir(const char* pName)
+    : Air(pName) {
     MR::createSceneObj(SceneObj_PriorDrawAirHolder);
     MR::getSceneObj<PriorDrawAirHolder>(SceneObj_PriorDrawAirHolder)->add(this);
 }
 
-PriorDrawAirHolder::PriorDrawAirHolder() : NameObj("先描画大気保持") {
+PriorDrawAirHolder::PriorDrawAirHolder()
+    : NameObj("先描画大気保持") {
     mAirCount = 0;
 }
 
-void PriorDrawAirHolder::add(PriorDrawAir *pAir) {
+void PriorDrawAirHolder::add(PriorDrawAir* pAir) {
     s32 airCnt = mAirCount++;
     mAirs[airCnt] = pAir;
 }
@@ -212,20 +212,16 @@ namespace MR {
 
         return MR::getSceneObj<PriorDrawAirHolder>(SceneObj_PriorDrawAirHolder)->isExistValidDrawAir();
     }
-};
+}; // namespace MR
 
 AirFar100m::~AirFar100m() {
-
 }
 
 ProjectionMapAir::~ProjectionMapAir() {
-
 }
 
 PriorDrawAir::~PriorDrawAir() {
-
 }
 
 PriorDrawAirHolder::~PriorDrawAirHolder() {
-
 }

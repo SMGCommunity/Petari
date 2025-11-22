@@ -1,13 +1,14 @@
 #include "Game/Boss/BossKameckSequencer.hpp"
 #include "Game/Boss/BossKameckBattleDemo.hpp"
 
-BossKameckSequencer::BossKameckSequencer(const char *pName) : NerveExecutor(pName) {
+BossKameckSequencer::BossKameckSequencer(const char* pName)
+    : NerveExecutor(pName) {
     mBossKameck = nullptr;
     _C = 0;
     mBattleDemo = nullptr;
 }
 
-void BossKameckSequencer::init(BossKameck *pBoss, const JMapInfoIter &rIter) {
+void BossKameckSequencer::init(BossKameck* pBoss, const JMapInfoIter& rIter) {
     mBossKameck = pBoss;
     mBattleDemo = new BossKameckBattleDemo(pBoss, rIter);
     mBattleDemo->init();
@@ -23,13 +24,13 @@ void BossKameckSequencer::update() {
  * This is most likely a remenant of another class that they accidentally included (or left) here,
  * so this code is my best guess since the vtables align up. It is some sort of BossKameckAction. 
 */
-void BossKameckSequencer::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
+void BossKameckSequencer::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (_C != nullptr) {
         _C->attackSensor(pSender, pReceiver);
     }
 }
 
-bool BossKameckSequencer::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool BossKameckSequencer::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (_C != nullptr) {
         return _C->receiveMsgPlayerAttack(msg, pSender, pReceiver);
     }
@@ -37,7 +38,7 @@ bool BossKameckSequencer::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, Hi
     return false;
 }
 
-bool BossKameckSequencer::receiveMsgEnemyAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool BossKameckSequencer::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (_C != nullptr) {
         return _C->receiveMsgEnemyAttack(msg, pSender, pReceiver);
     }
@@ -45,7 +46,7 @@ bool BossKameckSequencer::receiveMsgEnemyAttack(u32 msg, HitSensor *pSender, Hit
     return false;
 }
 
-bool BossKameckSequencer::receiveMsgPush(HitSensor *pSender, HitSensor *pReceiver) {
+bool BossKameckSequencer::receiveMsgPush(HitSensor* pSender, HitSensor* pReceiver) {
     if (_C != nullptr) {
         return _C->receiveMsgPush(pSender, pReceiver);
     }
@@ -53,7 +54,7 @@ bool BossKameckSequencer::receiveMsgPush(HitSensor *pSender, HitSensor *pReceive
     return false;
 }
 
-bool BossKameckSequencer::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool BossKameckSequencer::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (_C != nullptr) {
         return _C->receiveOtherMsg(msg, pSender, pReceiver);
     }

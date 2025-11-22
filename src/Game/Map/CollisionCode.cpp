@@ -4,7 +4,7 @@
 
 CollisionCode::CollisionCode()
     : mFloorTable(0), mWallTable(0), mSoundTable(0), mCameraTable(0) {
-    
+
     createFloorTable();
     createWallTable();
     createSoundTable();
@@ -19,14 +19,14 @@ CodeTable::CodeTable(u32 maxNum) {
     mNames = new const char*[maxNum];
 }
 
-void CodeTable::add(const char *pName, u32 num) {
+void CodeTable::add(const char* pName, u32 num) {
     mHashCodes[mNumCodes] = MR::getHashCode(pName);
     _C[mNumCodes] = num;
     mNames[mNumCodes] = pName;
     mNumCodes++;
 }
 
-const char* CollisionCode::getFloorCodeString(const Triangle &rTriangle) {
+const char* CollisionCode::getFloorCodeString(const Triangle& rTriangle) {
     JMapInfoIter iter = rTriangle.getAttributes();
 
     u32 code = getCode(iter, mFloorTable, "Floor_code");
@@ -40,22 +40,22 @@ const char* CodeTable::getString(u32 val) {
         }
     }
 
-    return "NoIter";   
+    return "NoIter";
 }
 
-const char* CollisionCode::getWallCodeString(const Triangle &rTriangle) {
+const char* CollisionCode::getWallCodeString(const Triangle& rTriangle) {
     JMapInfoIter iter = rTriangle.getAttributes();
 
     u32 code = getCode(iter, mWallTable, "Wall_code");
     return mWallTable->getString(code);
 }
 
-const char* CollisionCode::getSoundCodeString(const Triangle &rTriangle) {
+const char* CollisionCode::getSoundCodeString(const Triangle& rTriangle) {
     JMapInfoIter iter = rTriangle.getAttributes();
     return getSoundCodeString(iter);
 }
 
-const char* CollisionCode::getSoundCodeString(const JMapInfoIter &rIter) {
+const char* CollisionCode::getSoundCodeString(const JMapInfoIter& rIter) {
     if (!rIter.isValid()) {
         return "nullptr";
     }
@@ -68,10 +68,9 @@ const char* CollisionCode::getSoundCodeString(const JMapInfoIter &rIter) {
         if (ret) {
             return mSoundTable->getString(code);
         }
-    }
-    else {
+    } else {
         const char* code = 0;
-        
+
         bool ret = rIter.getValue<const char*>("Sound_code", &code);
 
         if (ret) {
@@ -82,12 +81,12 @@ const char* CollisionCode::getSoundCodeString(const JMapInfoIter &rIter) {
     return "nullptr";
 }
 
-u32 CollisionCode::getCameraID(const Triangle &rTriangle) {
+u32 CollisionCode::getCameraID(const Triangle& rTriangle) {
     JMapInfoIter iter = rTriangle.getAttributes();
     return getCameraID(iter);
 }
 
-u32 CollisionCode::getCode(const JMapInfoIter &rIter, CodeTable *pCodeTable, const char *pName) {
+u32 CollisionCode::getCode(const JMapInfoIter& rIter, CodeTable* pCodeTable, const char* pName) {
     if (!rIter.isValid()) {
         return 0;
     }
@@ -100,8 +99,7 @@ u32 CollisionCode::getCode(const JMapInfoIter &rIter, CodeTable *pCodeTable, con
         if (ret) {
             return code;
         }
-    }
-    else {
+    } else {
         const char* code = 0;
 
         bool ret = rIter.getValue<const char*>(pName, &code);
@@ -116,7 +114,7 @@ u32 CollisionCode::getCode(const JMapInfoIter &rIter, CodeTable *pCodeTable, con
                     break;
                 }
             }
-            
+
             return ret_code;
         }
     }
@@ -206,23 +204,23 @@ void CollisionCode::createCameraTable() {
     mCameraTable->add("Through", 1);
 }
 
-u32 CollisionCode::getFloorCode(const JMapInfoIter &rIter) {
+u32 CollisionCode::getFloorCode(const JMapInfoIter& rIter) {
     return getCode(rIter, mFloorTable, "Floor_code");
 }
 
-u32 CollisionCode::getWallCode(const JMapInfoIter &rIter) {
+u32 CollisionCode::getWallCode(const JMapInfoIter& rIter) {
     return getCode(rIter, mWallTable, "Wall_code");
 }
 
-u32 CollisionCode::getSoundCode(const JMapInfoIter &rIter) {
+u32 CollisionCode::getSoundCode(const JMapInfoIter& rIter) {
     return getCode(rIter, mSoundTable, "Sound_code");
 }
 
-u32 CollisionCode::getCameraCode(const JMapInfoIter &rIter) {
+u32 CollisionCode::getCameraCode(const JMapInfoIter& rIter) {
     return getCode(rIter, mCameraTable, "Camera_through");
 }
 
-u32 CollisionCode::getCameraID(const JMapInfoIter &rIter) {
+u32 CollisionCode::getCameraID(const JMapInfoIter& rIter) {
     if (!rIter.isValid()) {
         return -1;
     }

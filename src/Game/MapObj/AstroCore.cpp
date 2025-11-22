@@ -12,15 +12,14 @@ namespace {
         480.0f,
         540.0f,
         600.0f,
-        0.0f
-    };
+        0.0f};
 };
 
-AstroCore::AstroCore(const char *pName) : MapObjActor(pName) {
-
+AstroCore::AstroCore(const char* pName)
+    : MapObjActor(pName) {
 }
 
-void AstroCore::init(const JMapInfoIter &rIter) {
+void AstroCore::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);
     MapObjActorInitInfo info;
     MapObjActorUtil::setupInitInfoSimpleMapObj(&info);
@@ -35,7 +34,7 @@ void AstroCore::init(const JMapInfoIter &rIter) {
     info.setupSound(4);
     info.setupNoAppearRiddleSE();
     initialize(rIter, info);
-    AstroDemoFunction::tryRegisterGrandStarReturnWithFunctionAndSimpleCast(this, rIter, MR::FunctorV0M<AstroCore *, void (AstroCore::*)(void)>(this, &AstroCore::startDemo));
+    AstroDemoFunction::tryRegisterGrandStarReturnWithFunctionAndSimpleCast(this, rIter, MR::FunctorV0M<AstroCore*, void (AstroCore::*)(void)>(this, &AstroCore::startDemo));
 }
 
 void AstroCore::exeGrow() {
@@ -53,7 +52,7 @@ void AstroCore::exeGrow() {
     }
 }
 
-bool AstroCore::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool AstroCore::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     return false;
 }
 
@@ -62,8 +61,8 @@ void AstroCore::startDemo() {
 }
 
 void AstroCore::startAnimGrow() {
-    s32 v3 = MR::clamp(AstroDemoFunction::getOpenedAstroDomeNum() + 1, 0, 6);
-    s32 v4 = MR::clamp(v3, 0, 6);
+    s32  v3 = MR::clamp(AstroDemoFunction::getOpenedAstroDomeNum() + 1, 0, 6);
+    s32  v4 = MR::clamp(v3, 0, 6);
     char buf[32];
     snprintf(buf, sizeof(buf), "Revival%d", v4);
     MR::startAllAnim(this, buf);
@@ -71,8 +70,8 @@ void AstroCore::startAnimGrow() {
 }
 
 void AstroCore::setStateBeforeGrow() {
-    s32 v3 = MR::clamp(AstroDemoFunction::getOpenedAstroDomeNum(), 0, 6);
-    s32 v4 = MR::clamp(v3, 0, 6);
+    s32  v3 = MR::clamp(AstroDemoFunction::getOpenedAstroDomeNum(), 0, 6);
+    s32  v4 = MR::clamp(v3, 0, 6);
     char buf[32];
     snprintf(buf, sizeof(buf), "Revival%d", v4);
     MR::startAllAnim(this, buf);
@@ -80,7 +79,7 @@ void AstroCore::setStateBeforeGrow() {
     getSensor(nullptr)->mRadius = sSensorSizeTable[v3];
 }
 
-void AstroCore::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
+void AstroCore::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isSensorPlayer(pReceiver)) {
         MR::sendMsgPush(pReceiver, pSender);
     }
@@ -89,8 +88,7 @@ void AstroCore::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
 namespace NrvAstroCore {
     INIT_NERVE(AstroCoreNrvWait);
     INIT_NERVE(AstroCoreNrvGrow);
-};
+}; // namespace NrvAstroCore
 
 AstroCore::~AstroCore() {
-
 }

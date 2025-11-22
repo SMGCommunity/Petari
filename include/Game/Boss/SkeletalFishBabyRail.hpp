@@ -6,10 +6,10 @@ class SkeletalFishBabyRailHolder;
 
 class SkeletalFishBabyRail : public LiveActor {
 public:
-    SkeletalFishBabyRail(const char *);
-    
+    SkeletalFishBabyRail(const char*);
+
     virtual ~SkeletalFishBabyRail();
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
 
     s32 _8C;
 };

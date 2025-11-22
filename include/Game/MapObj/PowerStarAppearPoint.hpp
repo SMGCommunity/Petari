@@ -4,10 +4,10 @@
 
 class PowerStarAppearPoint : public LiveActor {
 public:
-    PowerStarAppearPoint(const char *);
+    PowerStarAppearPoint(const char*);
 
     virtual ~PowerStarAppearPoint();
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
 
-    ActorCameraInfo* mCameraInfo;   // 0x8C
+    ActorCameraInfo* mCameraInfo; // 0x8C
 };

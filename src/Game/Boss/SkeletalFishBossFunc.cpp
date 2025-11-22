@@ -6,7 +6,7 @@ namespace {
     static const char* sNamePosName = "ガード出現ポイント";
 };
 
-s32 SkeletalFishBossFunc::getNearestGuardPosID(const TVec3f &rVec) {
+s32 SkeletalFishBossFunc::getNearestGuardPosID(const TVec3f& rVec) {
     f32 closest = 100000.0;
     s32 posID = -1;
 
@@ -25,7 +25,7 @@ s32 SkeletalFishBossFunc::getNearestGuardPosID(const TVec3f &rVec) {
     return posID;
 }
 
-bool SkeletalFishBossFunc::copyGuardPos(TVec3f *pOut, s32 idx) {
+bool SkeletalFishBossFunc::copyGuardPos(TVec3f* pOut, s32 idx) {
     char buf[0x80];
     snprintf(buf, sizeof(buf), "%s%d", ::sNamePosName, idx);
     return MR::tryFindNamePos(buf, pOut, nullptr);

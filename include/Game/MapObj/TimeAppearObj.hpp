@@ -4,10 +4,10 @@
 
 class TimeAppearObj : public MapObjActor {
 public:
-    TimeAppearObj(const char *);
+    TimeAppearObj(const char*);
 
     virtual ~TimeAppearObj();
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
     virtual void appear();
 
     void exeEnd();
@@ -18,4 +18,4 @@ public:
 namespace NrvTimeAppearObj {
     NERVE(TimeAppearObjNrvHide);
     NERVE(TimeAppearObjNrvEnd);
-};
+}; // namespace NrvTimeAppearObj

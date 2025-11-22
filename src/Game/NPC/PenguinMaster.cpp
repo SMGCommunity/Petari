@@ -11,18 +11,17 @@
 namespace NrvPenguinMaster {
     NEW_NERVE(PenguinMasterNrvWait, PenguinMaster, Wait);
     NEW_NERVE(PenguinMasterNrvReaction, PenguinMaster, Reaction);
-};
+}; // namespace NrvPenguinMaster
 
-PenguinMaster::PenguinMaster(const char *pName) : NPCActor(pName){
-
+PenguinMaster::PenguinMaster(const char* pName)
+    : NPCActor(pName) {
 }
 
 PenguinMaster::~PenguinMaster() {
-    
 }
 
-void PenguinMaster::init(const JMapInfoIter &rIter) {
-    f32 stack = 0.0f;
+void PenguinMaster::init(const JMapInfoIter& rIter) {
+    f32          stack = 0.0f;
     NPCActorCaps caps = "PenguinMaster";
     caps.setDefault();
     caps.mUseHitSensors = false;
@@ -45,20 +44,19 @@ void PenguinMaster::init(const JMapInfoIter &rIter) {
     mParam._0 = false;
     mParam._1 = false;
     _134 = "Trampled";
-    _13C = "Reaction";   
-    _130 = "Reaction";             
+    _13C = "Reaction";
+    _130 = "Reaction";
     _138 = "Pointing";
     if (mMsgCtrl) {
         MR::setDistanceToTalk(mMsgCtrl, 350.0f);
     }
 }
 
-bool PenguinMaster::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool PenguinMaster::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgPlayerSpinAttack(msg)) {
         _E3 = true;
         return true;
-    }
-    else {
+    } else {
         return NPCActor::receiveMsgPlayerAttack(msg, pSender, pReceiver);
     }
 }
@@ -71,7 +69,7 @@ void PenguinMaster::exeWait() {
 void PenguinMaster::exeReaction() {
     if (_D8) {
         MR::startSound(this, "SE_SV_PENGUIN_OLD_TRAMPLED", -1, -1);
-        MR::startSound(this, "SE_SM_PENGUIN_TRAMPLED", -1, -1);       
+        MR::startSound(this, "SE_SM_PENGUIN_TRAMPLED", -1, -1);
     }
 
     if (isPointingSe()) {
@@ -80,16 +78,16 @@ void PenguinMaster::exeReaction() {
     }
 
     if (_D9) {
-        MR::startSound(this, "SE_SV_PENGUIN_OLD_SPIN_HIT", -1, -1);        
+        MR::startSound(this, "SE_SV_PENGUIN_OLD_SPIN_HIT", -1, -1);
     }
 
     if (_DB) {
-        MR::startSound(this, "SE_SV_PENGUIN_OLD_STAR_PIECE", -1, -1);        
+        MR::startSound(this, "SE_SV_PENGUIN_OLD_STAR_PIECE", -1, -1);
     }
 
     if (!MR::tryStartReactionAndPopNerve(this)) {
         if (MR::tryStartReactionAndPopNerve(this)) {
-            return; 
+            return;
         }
     }
 }

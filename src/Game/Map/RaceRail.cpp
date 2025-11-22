@@ -1,21 +1,22 @@
 #include "Game/Map/RaceRail.hpp"
 #include "Game/Util.hpp"
 
-RaceRail::RaceRail(const char *pName) : NameObj(pName) {
-
+RaceRail::RaceRail(const char* pName)
+    : NameObj(pName) {
 }
 
-PlayerRacer::PlayerRacer(const char *pName) : LiveActor(pName) {
-    _B0 = 0; 
+PlayerRacer::PlayerRacer(const char* pName)
+    : LiveActor(pName) {
+    _B0 = 0;
     _B4 = 0;
-    mCameraInfo = 0; 
+    mCameraInfo = 0;
 }
 
 void PlayerRacer::appear() {
     RaceManagerFunction::startRaceImmediately();
 }
 
-void PlayerRacer::init(const JMapInfoIter &rIter) {
+void PlayerRacer::init(const JMapInfoIter& rIter) {
     MR::connectToSceneMapObjMovement(this);
     initRailRider(rIter);
     mCameraInfo = MR::createActorCameraInfo(rIter);
@@ -26,8 +27,7 @@ void PlayerRacer::init(const JMapInfoIter &rIter) {
     if (usesAppear) {
         MR::syncStageSwitchAppear(this);
         makeActorDead();
-    }
-    else {
+    } else {
         makeActorAppeared();
     }
 
@@ -45,22 +45,18 @@ bool PlayerRacer::goalRacer() {
 }
 
 void PlayerRacer::loseRacer() {
-
 }
 
 void PlayerRacer::exitRacer() {
-
 }
 
 PlayerRacer::~PlayerRacer() {
-
 }
 
 RaceRail::~RaceRail() {
-
 }
 
-void RaceRail::init(const JMapInfoIter &rIter) {
+void RaceRail::init(const JMapInfoIter& rIter) {
     mPlayerRacer = new PlayerRacer("レース判定用レール");
     mPlayerRacer->init(rIter);
     RaceManagerFunction::entryRacerPlayer(mPlayerRacer);

@@ -1,11 +1,11 @@
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/MapObj/KillerGunnerSingle.hpp"
 
-KillerGunnerSingle::KillerGunnerSingle(const char *pName) : LiveActor(pName) {
-
+KillerGunnerSingle::KillerGunnerSingle(const char* pName)
+    : LiveActor(pName) {
 }
 
-void KillerGunnerSingle::init(const JMapInfoIter &rIter) {
+void KillerGunnerSingle::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     initModelManagerWithAnm("KillerGunnerSingle", nullptr, false);
     MR::connectToSceneEnvironment(this);
@@ -26,7 +26,7 @@ void KillerGunnerSingle::init(const JMapInfoIter &rIter) {
     makeActorAppeared();
 }
 
-void KillerGunnerSingle::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
+void KillerGunnerSingle::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (isNerve(&NrvKillerGunnerSingle::HostTypeShoot::sInstance)) {
         if (MR::isSensorPlayer(pReceiver)) {
             if (MR::isNear(pSender, pReceiver, pSender->mRadius)) {
@@ -88,7 +88,6 @@ inline void KillerGunnerSingle::exeAttack() {
 }
 
 KillerGunnerSingle::~KillerGunnerSingle() {
-    
 }
 
 namespace NrvKillerGunnerSingle {
@@ -96,4 +95,4 @@ namespace NrvKillerGunnerSingle {
     INIT_NERVE(HostTypeShoot);
     INIT_NERVE(HostTypeCharge);
     INIT_NERVE(HostTypeWait);
-};
+}; // namespace NrvKillerGunnerSingle

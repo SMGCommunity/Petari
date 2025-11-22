@@ -4,12 +4,10 @@
 #include <JSystem/J3DGraphAnimator/J3DModel.hpp>
 #include <JSystem/J3DGraphAnimator/J3DModelData.hpp>
 
-AnmPlayerBase::AnmPlayerBase(const ResTable *pResTable) :
-    mResTable(pResTable),
-    mAnmRes(nullptr),
-    mFrameCtrl(0)
-{
-    
+AnmPlayerBase::AnmPlayerBase(const ResTable* pResTable)
+    : mResTable(pResTable),
+      mAnmRes(nullptr),
+      mFrameCtrl(0) {
 }
 
 void AnmPlayerBase::update() {
@@ -24,7 +22,7 @@ void AnmPlayerBase::reflectFrame() {
     }
 }
 
-void AnmPlayerBase::start(const char *pResName) {
+void AnmPlayerBase::start(const char* pResName) {
     J3DAnmBase* pAnmRes = reinterpret_cast<J3DAnmBase*>(mResTable->getRes(pResName));
 
     if (pAnmRes != mAnmRes) {
@@ -43,7 +41,7 @@ void AnmPlayerBase::stop() {
     mFrameCtrl.mSpeed = 0.0f;
 }
 
-bool AnmPlayerBase::isPlaying(const char *pAnimName) const {
+bool AnmPlayerBase::isPlaying(const char* pAnimName) const {
     if (mAnmRes != nullptr) {
         if (MR::isEqualStringCase(pAnimName, mResTable->getResName(mAnmRes))) {
             return true;
@@ -53,11 +51,9 @@ bool AnmPlayerBase::isPlaying(const char *pAnimName) const {
     return false;
 }
 
-MaterialAnmPlayerBase::MaterialAnmPlayerBase(const ResTable *pResTable, J3DModelData *pModelData) :
-    AnmPlayerBase(pResTable),
-    mModelData(pModelData)
-{
-    
+MaterialAnmPlayerBase::MaterialAnmPlayerBase(const ResTable* pResTable, J3DModelData* pModelData)
+    : AnmPlayerBase(pResTable),
+      mModelData(pModelData) {
 }
 
 void MaterialAnmPlayerBase::beginDiff() {
@@ -73,10 +69,8 @@ void MaterialAnmPlayerBase::endDiff() {
     }
 }
 
-void AnmPlayerBase::changeAnimation(J3DAnmBase *) {
-
+void AnmPlayerBase::changeAnimation(J3DAnmBase*) {
 }
 
 void AnmPlayerBase::stopAnimation() {
-
 }

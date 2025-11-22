@@ -29,7 +29,7 @@ namespace {
     void hidePaneRecursive(nw4r::lyt::Pane*);
     void initFrameCtrlReverse(J3DFrameCtrl*);
     bool getTextDrawRectRecursive(nw4r::ut::Rect*, const nw4r::lyt::Pane*, bool);
-    u32 getTextLineNumMaxRecursiveSub(const nw4r::lyt::Pane*);
+    u32  getTextLineNumMaxRecursiveSub(const nw4r::lyt::Pane*);
 
     f32 getCometColorAnimFrameFromId(s32 id) {
         switch (id) {
@@ -47,7 +47,7 @@ namespace {
             return 0.0f;
         }
     }
-};
+}; // namespace
 
 namespace MR {
     LayoutHolder* createAndAddLayoutHolder(const char* pArcName) {
@@ -309,8 +309,7 @@ namespace MR {
     bool isRegisteredEffect(const LayoutActor* pActor, const char* pParam2) {
         if (pParam2 != nullptr) {
             return pActor->mPaneEffectKeeper->getEmitter(pParam2) != nullptr;
-        }
-        else {
+        } else {
             return pActor->mPaneEffectKeeper != nullptr;
         }
     }
@@ -492,8 +491,7 @@ namespace MR {
 
         if (pPane != nullptr) {
             return ::getTextLineNumMaxRecursiveSub(pPane);
-        }
-        else {
+        } else {
             return 0;
         }
     }
@@ -530,4 +528,4 @@ namespace MR {
         startAnim(pActor, "Color", animLayer);
         setAnimFrameAndStop(pActor, ::getCometColorAnimFrameFromId(cometId), animLayer);
     }
-};
+}; // namespace MR

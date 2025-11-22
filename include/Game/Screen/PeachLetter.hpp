@@ -15,9 +15,9 @@ public:
     virtual void movement();
     virtual void appear();
 
-    void exeAppear();
-    void exeWait();
-    void exeEnd();
+    void        exeAppear();
+    void        exeWait();
+    void        exeEnd();
     static void makeArchiveList(NameObjArchiveListCollector*, const JMapInfoIter&);
 
 private:

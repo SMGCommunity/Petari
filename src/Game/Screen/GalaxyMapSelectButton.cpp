@@ -13,14 +13,12 @@ namespace {
     NEW_NERVE(GalaxyMapSelectButtonBetweenListToMapFadein, GalaxyMapSelectButton, BetweenListToMapFadein);
     NEW_NERVE(GalaxyMapSelectButtonBetweenMapToListFadeout, GalaxyMapSelectButton, BetweenMapToListFadeout);
     NEW_NERVE(GalaxyMapSelectButtonBetweenMapToListFadein, GalaxyMapSelectButton, BetweenMapToListFadein);
-};
+}; // namespace
 
-GalaxyMapSelectButton::GalaxyMapSelectButton() :
-    LayoutActor("選択用ボタン", true),
-    _20(nullptr),
-    mPaneCtrl(nullptr)
-{
-    
+GalaxyMapSelectButton::GalaxyMapSelectButton()
+    : LayoutActor("選択用ボタン", true),
+      _20(nullptr),
+      mPaneCtrl(nullptr) {
 }
 
 void GalaxyMapSelectButton::init(const JMapInfoIter& rIter) {
@@ -60,14 +58,12 @@ void GalaxyMapSelectButton::changeToStarList() {
 }
 
 void GalaxyMapSelectButton::exeHide() {
-    
 }
 
 void GalaxyMapSelectButton::exeAstroMapWait() {
     if (_20 != nullptr && _20 == &GalaxyMapSelectButtonStarListWait::sInstance) {
         setNerve(&GalaxyMapSelectButtonBetweenMapToListFadeout::sInstance);
-    }
-    else if (mPaneCtrl->trySelect()) {
+    } else if (mPaneCtrl->trySelect()) {
         MR::startSystemSE("SE_SY_GALAMAP_DECIDE", -1, -1);
     }
 }

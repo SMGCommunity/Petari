@@ -2,7 +2,8 @@
 
 #include <algorithm>
 
-DrawBufferGroup::DrawBufferGroup() : _0(), _C() {
+DrawBufferGroup::DrawBufferGroup()
+    : _0(), _C() {
     mCount = 0;
     _1C = -1;
     _20 = -1;
@@ -13,9 +14,9 @@ void DrawBufferGroup::init(s32 count) {
     _C.init(count);
 }
 
-s32 DrawBufferGroup::registerDrawBuffer(LiveActor *pActor) {
+s32 DrawBufferGroup::registerDrawBuffer(LiveActor* pActor) {
     const char* pModelName = MR::getModelResName(pActor);
-    s32 idx = findExecuterIndex(pModelName);
+    s32         idx = findExecuterIndex(pModelName);
 
     // executer does not exist
     if (idx < 0) {
@@ -34,9 +35,9 @@ s32 DrawBufferGroup::registerDrawBuffer(LiveActor *pActor) {
     return idx;
 }
 
-void DrawBufferGroup::active(LiveActor *pActor, s32 a2) {
+void DrawBufferGroup::active(LiveActor* pActor, s32 a2) {
     DrawBufferExecuter* exec = _0[a2];
-    bool isEmpty = !(exec->_8 != 0);
+    bool                isEmpty = !(exec->_8 != 0);
     exec->add(pActor);
 
     if (isEmpty) {
@@ -46,7 +47,7 @@ void DrawBufferGroup::active(LiveActor *pActor, s32 a2) {
 
 // DrawBufferGroup::deactive
 
-void DrawBufferGroup::findLightInfo(LiveActor *pActor, s32 a2) {
+void DrawBufferGroup::findLightInfo(LiveActor* pActor, s32 a2) {
     MR::initActorLightInfoLightType(pActor, _1C);
     _0[a2]->findLightInfo(pActor);
 
@@ -62,7 +63,7 @@ void DrawBufferGroup::findLightInfo(LiveActor *pActor, s32 a2) {
 }
 
 #ifdef NON_MATCHING
-// mem_fun doesn't get inlined...why? 
+// mem_fun doesn't get inlined...why?
 void DrawBufferGroup::entry() {
     for_each(_C.begin(), _C.end(), mem_fun(&DrawBufferExecuter::calcViewAndEntry));
 }
@@ -80,7 +81,7 @@ void DrawBufferGroup::setLightType(s32 type) {
     _20 = type;
 }
 
-s32 DrawBufferGroup::findExecuterIndex(const char *pName) const {
+s32 DrawBufferGroup::findExecuterIndex(const char* pName) const {
     for (u32 i = 0; i < _0.size(); i++) {
         if (MR::isEqualString(_0[i]->mName, pName)) {
             return i;

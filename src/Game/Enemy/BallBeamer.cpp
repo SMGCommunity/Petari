@@ -6,17 +6,16 @@ namespace NrvBallBeamer {
     NEW_NERVE(BallBeamerNrvWait, BallBeamer, Wait);
     NEW_NERVE(BallBeamerNrvAttack, BallBeamer, Attack);
     NEW_NERVE(BallBeamerNrvInter, BallBeamer, Inter);
-};
+}; // namespace NrvBallBeamer
 
-BallBeamer::BallBeamer(const char *pName) :
-    LiveActor(pName),
-    mBeams(nullptr),
-    _90(false)
-{
+BallBeamer::BallBeamer(const char* pName)
+    : LiveActor(pName),
+      mBeams(nullptr),
+      _90(false) {
     _98.identity();
 }
 
-void BallBeamer::makeArchiveList(NameObjArchiveListCollector *pCollector, const JMapInfoIter &rIter) {
+void BallBeamer::makeArchiveList(NameObjArchiveListCollector* pCollector, const JMapInfoIter& rIter) {
     s32 arg2 = -1;
     MR::getJMapInfoArg2NoInit(rIter, &arg2);
     pCollector->addArchive("JumpBeamerBeam");
@@ -26,7 +25,7 @@ void BallBeamer::makeArchiveList(NameObjArchiveListCollector *pCollector, const 
     }
 }
 
-void BallBeamer::init(const JMapInfoIter &rIter) {
+void BallBeamer::init(const JMapInfoIter& rIter) {
     initModelManagerWithAnm("BallBeamer", nullptr, nullptr);
     MR::initDefaultPos(this, rIter);
     mPosition.y = mPosition.y - 50.0f;
@@ -41,8 +40,8 @@ void BallBeamer::init(const JMapInfoIter &rIter) {
     makeActorAppeared();
     if (MR::useStageSwitchReadA(this, rIter)) {
 
-        MR::listenStageSwitchOnOffA(this, MR::Functor<BallBeamer>(this, &BallBeamer::syncSwitchOffA), 
-        MR::Functor<BallBeamer>(this, &BallBeamer::syncSwitchOnA));
+        MR::listenStageSwitchOnOffA(this, MR::Functor<BallBeamer>(this, &BallBeamer::syncSwitchOffA),
+                                    MR::Functor<BallBeamer>(this, &BallBeamer::syncSwitchOnA));
     }
 
     if (MR::useStageSwitchReadB(this, rIter)) {
@@ -50,30 +49,29 @@ void BallBeamer::init(const JMapInfoIter &rIter) {
     }
 
     mBeams = new RingBeam*[12];
-    for(int i = 0; i < 12; i++){
-        mBeams[i] = nullptr; 
+    for (int i = 0; i < 12; i++) {
+        mBeams[i] = nullptr;
     }
     f32 arg0 = 12.0f;
     s32 arg1 = 530;
     s32 arg2 = -1;
-    MR::getJMapInfoArg0NoInit(rIter,&arg0);
-    MR::getJMapInfoArg1NoInit(rIter,&arg1);
-    MR::getJMapInfoArg2NoInit(rIter,&arg2);
-    for(int i = 0; i < 12; i++){
-        if(arg2 == 0){
-            mBeams[i] = new RingBeam("リングビーム",this,true,true);
-        }else{
-            mBeams[i] = new RingBeam("リングビーム",this,true,false);
+    MR::getJMapInfoArg0NoInit(rIter, &arg0);
+    MR::getJMapInfoArg1NoInit(rIter, &arg1);
+    MR::getJMapInfoArg2NoInit(rIter, &arg2);
+    for (int i = 0; i < 12; i++) {
+        if (arg2 == 0) {
+            mBeams[i] = new RingBeam("リングビーム", this, true, true);
+        } else {
+            mBeams[i] = new RingBeam("リングビーム", this, true, false);
         }
         mBeams[i]->init(rIter);
         mBeams[i]->setSpeed(arg0);
         mBeams[i]->setLife(arg1);
     }
-    _98.setInline(MR::getJointMtx(this,"Head"));
+    _98.setInline(MR::getJointMtx(this, "Head"));
     MR::initCollisionParts(this, "Head", getSensor("Body"), _98.toMtxPtr());
     MR::validateCollisionParts(this);
 }
-
 
 void BallBeamer::syncSwitchOnA() {
     _90 = true;
@@ -85,15 +83,14 @@ void BallBeamer::syncSwitchOffA() {
 }
 
 void BallBeamer::syncSwitchOnB() {
-    MR::deleteEffect(this,"Charge");
-    MR::emitEffect(this,"Vanish");
+    MR::deleteEffect(this, "Charge");
+    MR::emitEffect(this, "Vanish");
     kill();
-    for(int i = 0; i < 12; i++){
-        if(mBeams[i]){
+    for (int i = 0; i < 12; i++) {
+        if (mBeams[i]) {
             mBeams[i]->kill();
         }
     }
-
 }
 
 void BallBeamer::setupAttack() {
@@ -106,13 +103,13 @@ void BallBeamer::setupAttack() {
 }
 
 bool BallBeamer::tryAttack() {
-   for(int i = 0; i < 12; i++){
-        if(MR::isDead(mBeams[i])){
+    for (int i = 0; i < 12; i++) {
+        if (MR::isDead(mBeams[i])) {
             mBeams[i]->appear();
             return true;
         }
-   }
-   return false;
+    }
+    return false;
 }
 
 void BallBeamer::exeWait() {
@@ -129,8 +126,7 @@ void BallBeamer::exeWait() {
 void BallBeamer::exeAttack() {
     if (MR::isGreaterEqualStep(this, 360)) {
         setNerve(&NrvBallBeamer::BallBeamerNrvInter::sInstance);
-    }
-    else {
+    } else {
         if (getNerveStep() % 120 >= 75 && getNerveStep() % 120 < 119) {
             MR::startLevelSound(this, "SE_EM_LV_RINGBEAM_CHARGE", -1, -1, -1);
         }
@@ -149,27 +145,25 @@ void BallBeamer::exeAttack() {
 
 void BallBeamer::exeInter() {
     if (MR::isFirstStep(this)) {
-        
     }
 
     if (MR::isGreaterEqualStep(this, 120)) {
         if (_90) {
             setNerve(&NrvBallBeamer::BallBeamerNrvAttack::sInstance);
-        }
-        else {
+        } else {
             setNerve(&NrvBallBeamer::BallBeamerNrvWait::sInstance);
         }
-    }    
+    }
 }
 
-void BallBeamer::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
+void BallBeamer::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     MR::sendMsgPush(pReceiver, pSender);
 }
 
-bool BallBeamer::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool BallBeamer::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     return false;
 }
 
-bool BallBeamer::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool BallBeamer::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     return MR::isMsgStarPieceReflect(msg);
 }

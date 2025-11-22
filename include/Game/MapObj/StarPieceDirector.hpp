@@ -7,5 +7,5 @@ class HitSensor;
 namespace MR {
     void createStarPiece();
 
-    bool giftStarPieceToTarget(HitSensor *, u32);
-};
+    bool giftStarPieceToTarget(HitSensor*, u32);
+}; // namespace MR

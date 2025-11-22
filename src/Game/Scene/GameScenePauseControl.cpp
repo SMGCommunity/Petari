@@ -10,7 +10,8 @@ namespace {
     NEW_NERVE(GameScenePauseControlNormal, GameScenePauseControl, Normal);
 };
 
-GameScenePauseControl::GameScenePauseControl(GameScene *pScene) : NerveExecutor("GameSceneポーズ制御") {
+GameScenePauseControl::GameScenePauseControl(GameScene* pScene)
+    : NerveExecutor("GameSceneポーズ制御") {
     mScene = pScene;
     mPauseChecker = nullptr;
     mPauseMenuOff = false;
@@ -19,7 +20,7 @@ GameScenePauseControl::GameScenePauseControl(GameScene *pScene) : NerveExecutor(
     mPauseChecker = new PauseButtonCheckerInGame();
 }
 
-void GameScenePauseControl::registerNervePauseMenu(const Nerve *pNerve) {
+void GameScenePauseControl::registerNervePauseMenu(const Nerve* pNerve) {
     mPauseMenuNerve = pNerve;
 }
 
@@ -47,7 +48,7 @@ bool GameScenePauseControl::tryStartPauseMenu() {
             mScene->setNerve(mPauseMenuNerve);
             return true;
         }
-    
+
         if (mPauseChecker->isPermitToPlusPause()) {
             mScene->mPauseSeq->startPause(GamePauseSequence::ActivePause);
             mScene->setNerve(mPauseMenuNerve);
@@ -59,5 +60,4 @@ bool GameScenePauseControl::tryStartPauseMenu() {
 }
 
 GameScenePauseControl::~GameScenePauseControl() {
-
 }

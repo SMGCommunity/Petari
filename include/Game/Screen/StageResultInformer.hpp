@@ -17,7 +17,7 @@ public:
     void exeIdle();
 
     /* 0x08 */ StageResultInformer* mHost;
-    /* 0x0C */ const char* mMessageId;
+    /* 0x0C */ const char*          mMessageId;
 };
 
 class StageResultInformer : public LayoutActor {
@@ -56,9 +56,9 @@ public:
 
 private:
     /* 0x20 */ DisplayInformationForResult* mInformationDisplayer;
-    /* 0x24 */ StageResultSequenceChecker* mSequenceChecker;
-    /* 0x28 */ IconAButton* mIconAButton;
-    /* 0x2C */ s32 mClearedStarPieceNum;
-    /* 0x30 */ bool _30;
-    /* 0x30 */ bool _31;
+    /* 0x24 */ StageResultSequenceChecker*  mSequenceChecker;
+    /* 0x28 */ IconAButton*                 mIconAButton;
+    /* 0x2C */ s32                          mClearedStarPieceNum;
+    /* 0x30 */ bool                         _30;
+    /* 0x30 */ bool                         _31;
 };

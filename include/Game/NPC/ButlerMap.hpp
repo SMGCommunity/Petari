@@ -7,15 +7,15 @@
 
 class ButlerMap : public NPCActor {
 public:
-    ButlerMap(const char *);
+    ButlerMap(const char*);
 
     virtual ~ButlerMap();
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
     virtual void appear();
     virtual void kill();
     virtual void control();
-    virtual bool receiveMsgPlayerAttack(u32, HitSensor *, HitSensor *);
-    virtual bool receiveOtherMsg(u32, HitSensor *, HitSensor *);
+    virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
+    virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
 
     void startLectureDemo();
     void resetStatus();
@@ -28,5 +28,5 @@ public:
     void exeStarPieceReaction();
 
     ButlerStateStarPieceReaction* _15C;
-    bool _160;
+    bool                          _160;
 };

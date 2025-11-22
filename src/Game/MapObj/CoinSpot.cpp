@@ -1,13 +1,14 @@
 #include "Game/MapObj/CoinSpot.hpp"
 
-CoinSpot::CoinSpot(const char *pName) : LiveActor(pName) {
+CoinSpot::CoinSpot(const char* pName)
+    : LiveActor(pName) {
     _8C = 8;
     _90 = 0;
     _94 = 4;
     _98 = 0;
 }
 
-void CoinSpot::init(const JMapInfoIter &rIter) {
+void CoinSpot::init(const JMapInfoIter& rIter) {
     MR::connectToSceneMapObjMovementCalcAnim(this);
     MR::initDefaultPos(this, rIter);
     s32 arg = 0;
@@ -15,8 +16,7 @@ void CoinSpot::init(const JMapInfoIter &rIter) {
 
     if (arg <= 0) {
         _8C = arg;
-    }
-    else {
+    } else {
         _8C = 8;
     }
 
@@ -65,8 +65,7 @@ void CoinSpot::exeIsInTornado() {
         }
 
         _90 = 0;
-    }
-    else {
+    } else {
         _94 = 0;
     }
 
@@ -76,25 +75,23 @@ void CoinSpot::exeIsInTornado() {
     }
 }
 
-void CoinSpot::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
-
+void CoinSpot::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
 }
 
 CoinSpot::~CoinSpot() {
-
 }
 
 namespace NrvCoinSpot {
     INIT_NERVE(CoinSpotNrvWait);
     INIT_NERVE(CoinSpotNrvIsInTornado);
 
-    void CoinSpotNrvIsInTornado::execute(Spine *pSpine) const {
+    void CoinSpotNrvIsInTornado::execute(Spine* pSpine) const {
         CoinSpot* spot = reinterpret_cast<CoinSpot*>(pSpine->mExecutor);
         spot->exeIsInTornado();
     }
-    
-    void CoinSpotNrvWait::execute(Spine *pSpine) const {
+
+    void CoinSpotNrvWait::execute(Spine* pSpine) const {
         CoinSpot* spot = reinterpret_cast<CoinSpot*>(pSpine->mExecutor);
         spot->exeWait();
     }
-};
+}; // namespace NrvCoinSpot

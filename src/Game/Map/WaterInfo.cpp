@@ -8,7 +8,7 @@ bool WaterInfo::isInWater() const {
     if (mWaterArea || mOceanBowl || mOceanRing || mOceanSphere) {
         return true;
     }
-    
+
     return false;
 }
 

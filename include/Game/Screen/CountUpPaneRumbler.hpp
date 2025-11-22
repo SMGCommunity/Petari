@@ -16,9 +16,9 @@ public:
     void start();
     void reset();
     bool isRumbling() const;
-    void connectPane(LayoutActor *, const char *);
+    void connectPane(LayoutActor*, const char*);
 
 private:
     /* 0x0 */ RumbleCalculatorCosMultLinear* mRumbleCalculator;
-    /* 0x4 */ TVec2f mPosition;
+    /* 0x4 */ TVec2f                         mPosition;
 };

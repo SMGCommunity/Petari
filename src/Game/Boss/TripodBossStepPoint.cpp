@@ -2,14 +2,15 @@
 #include "Game/Boss/TripodBossAccesser.hpp"
 #include "Game/Util/JMapUtil.hpp"
 
-TripodBossStepPoint::TripodBossStepPoint(const char *pName) : LiveActor(pName), mStepPosition(0, 0, 0), mStepNormal(0, 1, 0), mStepFront(0, 0, 1) {
+TripodBossStepPoint::TripodBossStepPoint(const char* pName)
+    : LiveActor(pName), mStepPosition(0, 0, 0), mStepNormal(0, 1, 0), mStepFront(0, 0, 1) {
     mLeg = 0;
     _B4 = 0;
     _B8 = -1;
     mWaitTime = 120;
 }
 
-void TripodBossStepPoint::init(const JMapInfoIter &rIter) {
+void TripodBossStepPoint::init(const JMapInfoIter& rIter) {
     if (MR::isValidInfo(rIter)) {
         TPos3f mtx;
         MR::getJMapInfoMatrixFromRT(rIter, &mtx);
@@ -31,20 +32,19 @@ void TripodBossStepPoint::initAfterPlacement() {
     }
 }
 
-void TripodBossStepPoint::setStepPosition(const TVec3f &rPos) {
+void TripodBossStepPoint::setStepPosition(const TVec3f& rPos) {
     mStepPosition = rPos;
 }
 
-void TripodBossStepPoint::setStepNormal(const TVec3f &rNorm) {
+void TripodBossStepPoint::setStepNormal(const TVec3f& rNorm) {
     mStepNormal = rNorm;
     MR::normalizeOrZero(&mStepNormal);
 }
 
-void TripodBossStepPoint::setStepFront(const TVec3f &rFront) {
+void TripodBossStepPoint::setStepFront(const TVec3f& rFront) {
     mStepFront = rFront;
     MR::normalizeOrZero(&mStepFront);
 }
 
 TripodBossStepPoint::~TripodBossStepPoint() {
-    
 }

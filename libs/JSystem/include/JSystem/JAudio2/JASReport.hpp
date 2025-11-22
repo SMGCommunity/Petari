@@ -1,3 +1,3 @@
 #pragma once
 
-void JASReport(const char *, ...);
+void JASReport(const char*, ...);

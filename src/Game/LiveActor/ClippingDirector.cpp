@@ -6,12 +6,11 @@
 #include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 
-ClippingDirector::ClippingDirector() :
-    NameObj("クリッピング指揮"),
-    mJudge(nullptr),
-    mActorHolder(nullptr),
-    mGroupHolder(nullptr)
-{
+ClippingDirector::ClippingDirector()
+    : NameObj("クリッピング指揮"),
+      mJudge(nullptr),
+      mActorHolder(nullptr),
+      mGroupHolder(nullptr) {
     mJudge = new ClippingJudge("クリッピング判定");
     mJudge->initWithoutIter();
 
@@ -34,15 +33,15 @@ void ClippingDirector::movement() {
     mGroupHolder->movement();
 }
 
-void ClippingDirector::registerActor(LiveActor *pActor) {
+void ClippingDirector::registerActor(LiveActor* pActor) {
     mActorHolder->registerActor(pActor);
 }
 
-void ClippingDirector::initActorSystemInfo(LiveActor *pActor, const JMapInfoIter &rIter) {
+void ClippingDirector::initActorSystemInfo(LiveActor* pActor, const JMapInfoIter& rIter) {
     mActorHolder->initSystemInfo(pActor, rIter);
 }
 
-void ClippingDirector::joinToGroupClipping(LiveActor *pActor, const JMapInfoIter &rIter, int a3) {
+void ClippingDirector::joinToGroupClipping(LiveActor* pActor, const JMapInfoIter& rIter, int a3) {
     s32 clippingID = -1;
     MR::getJMapInfoClippingGroupID(rIter, &clippingID);
 
@@ -52,7 +51,7 @@ void ClippingDirector::joinToGroupClipping(LiveActor *pActor, const JMapInfoIter
     }
 }
 
-void ClippingDirector::entryLodCtrl(LodCtrl *pLod, const JMapInfoIter &rIter) {
+void ClippingDirector::entryLodCtrl(LodCtrl* pLod, const JMapInfoIter& rIter) {
     mActorHolder->entryLodCtrl(pLod, rIter);
 }
 
@@ -61,11 +60,11 @@ namespace MR {
         return MR::getSceneObj<ClippingDirector>(SceneObj_ClippingDirector);
     }
 
-    void addToClippingTarget(LiveActor *pActor) {
+    void addToClippingTarget(LiveActor* pActor) {
         getClippingDirector()->mActorHolder->addToClippingTarget(pActor);
     }
 
-    void removeFromClippingTarget(LiveActor *pActor) {
+    void removeFromClippingTarget(LiveActor* pActor) {
         getClippingDirector()->mActorHolder->removeFromClippingTarget(pActor);
     }
-};
+}; // namespace MR

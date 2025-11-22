@@ -27,17 +27,17 @@ namespace NrvHoneyQueen {
     NEW_NERVE(HoneyQueenNrvItch, HoneyQueen, Itch);
     NEW_NERVE(HoneyQueenNrvEvent, HoneyQueen, Event);
     NEW_NERVE(HoneyQueenNrvAfter, HoneyQueen, After);
-};
+}; // namespace NrvHoneyQueen
 
-HoneyQueen::HoneyQueen(const char *pName) : NPCActor(pName){
+HoneyQueen::HoneyQueen(const char* pName)
+    : NPCActor(pName) {
     mNpcModel = nullptr;
 }
 
 HoneyQueen::~HoneyQueen() {
-    
 }
 
-void HoneyQueen::init(const JMapInfoIter &rIter) {
+void HoneyQueen::init(const JMapInfoIter& rIter) {
     NPCActorCaps caps = "HoneyQueen";
     caps.setDefault();
     caps.mWaitNerve = &NrvHoneyQueen::HoneyQueenNrvWait::sInstance;
@@ -75,8 +75,7 @@ void HoneyQueen::init(const JMapInfoIter &rIter) {
         MR::registerDemoActionFunctor(this, MR::Functor(this, &HoneyQueen::talkEntry), "謁見");
         MR::tryRegisterDemoCast(mNpcModel, rIter);
         _188 = 1;
-    }
-    else {
+    } else {
         _188 = 0;
     }
 
@@ -84,8 +83,7 @@ void HoneyQueen::init(const JMapInfoIter &rIter) {
         setNerve(&NrvHoneyQueen::HoneyQueenNrvDemo::sInstance);
         MR::listenStageSwitchOnA(this, MR::Functor(this, &HoneyQueen::switchFunc));
         MR::needStageSwitchWriteB(this, rIter);
-    }
-    else {
+    } else {
         MR::useStageSwitchWriteA(this, rIter);
     }
     mLodCtrl->setDistanceToLow(10000.0f);
@@ -107,12 +105,12 @@ void HoneyQueen::control() {
 void HoneyQueen::calcAnim() {
     LiveActor::calcAnim();
     for (s32 i = 0; i < 10; i++) {
-        CollisionParts** centerParts = &mCenterPart;        
+        CollisionParts** centerParts = &mCenterPart;
         centerParts[i]->setMtx();
     }
 }
 
-void HoneyQueen::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
+void HoneyQueen::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isSensorPlayer(pReceiver)) {
         if (MR::isSensor(pSender, "TouchJump")) {
             MR::sendMsgTouchJump(pReceiver, pSender);
@@ -120,7 +118,7 @@ void HoneyQueen::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
     }
 }
 
-bool HoneyQueen::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool HoneyQueen::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgPlayerSpinAttack(msg)) {
         return false;
     }
@@ -155,8 +153,7 @@ void HoneyQueen::exeWait() {
 
     if (MR::isTalkTalking(mMsgCtrl)) {
         MR::tryStartBckAndBtp(this, "Talk", nullptr);
-    }
-    else {
+    } else {
         MR::tryStartBckAndBtp(this, "Wait", nullptr);
     }
 }
@@ -189,7 +186,7 @@ void HoneyQueen::exeTalk() {
 
 void HoneyQueen::exeItch() {
     if (MR::isFirstStep(this)) {
-        MR::tryStartBckAndBtp(this, "EventWait", nullptr);        
+        MR::tryStartBckAndBtp(this, "EventWait", nullptr);
     }
     TVec3f vec;
     vec.set<f32>(((2.0f * (_B0.x * _B0.z)) + (2.0f * (_B0.h * _B0.y))), (2.0f * (_B0.y * _B0.z)) - (2.0f * (_B0.h * _B0.x)), (1.0f - (2.0f * (_B0.x * _B0.x))) - (2.0f * (_B0.y * _B0.y)));

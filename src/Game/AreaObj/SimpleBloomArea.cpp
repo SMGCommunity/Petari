@@ -1,8 +1,8 @@
 #include "Game/AreaObj/SimpleBloomArea.hpp"
 #include "Game/Util.hpp"
 
-SimpleBloomArea::SimpleBloomArea(int type, const char *pName) :
-    ImageEffectArea(IMAGE_EFFECT_TYPE_SIMPLE_BLOOM, type, pName) {
+SimpleBloomArea::SimpleBloomArea(int type, const char* pName)
+    : ImageEffectArea(IMAGE_EFFECT_TYPE_SIMPLE_BLOOM, type, pName) {
     _40 = 0;
     _44 = 128;
     _45 = 76;
@@ -11,7 +11,7 @@ SimpleBloomArea::SimpleBloomArea(int type, const char *pName) :
 SimpleBloomArea::~SimpleBloomArea() {
 }
 
-void SimpleBloomArea::init(const JMapInfoIter &rIter) {
+void SimpleBloomArea::init(const JMapInfoIter& rIter) {
     AreaObj::init(rIter);
     MR::createSimpleBloom();
 
@@ -28,6 +28,6 @@ void SimpleBloomArea::init(const JMapInfoIter &rIter) {
     }
 }
 
-const char *SimpleBloomArea::getManagerName() const {
+const char* SimpleBloomArea::getManagerName() const {
     return "ImageEffectArea";
 }

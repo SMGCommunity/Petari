@@ -8,14 +8,14 @@ namespace {
 };
 
 MapParts::~MapParts() {
-
 }
 
-MapParts::MapParts(const char *pName) : LiveActor(pName) {
+MapParts::MapParts(const char* pName)
+    : LiveActor(pName) {
     _8C.zero();
 }
 
-void MapParts::init(const JMapInfoIter &rIter) {
+void MapParts::init(const JMapInfoIter& rIter) {
     if (MR::isConnectedWithRail(rIter)) {
         initRailRider(rIter);
     }
@@ -45,7 +45,7 @@ void MapParts::connectToScene() {
     MR::connectToSceneMapParts(this);
 }
 
-void MapParts::initModelAndCollision(const JMapInfoIter &rIter) {
+void MapParts::initModelAndCollision(const JMapInfoIter& rIter) {
     char name[0x30];
     MR::getMapPartsObjectName(name, sizeof(name), rIter);
     initModelManagerWithAnm(name, nullptr, false);
@@ -56,14 +56,13 @@ void MapParts::initModelAndCollision(const JMapInfoIter &rIter) {
     sensor_offs.x = 0.0f;
     sensor_offs.y = 0.0f;
     sensor_offs.z = 0.0f;
-    u32 sensorNum = getSensorNumMax();
+    u32        sensorNum = getSensorNumMax();
     HitSensor* sensor = MR::addHitSensorMapObj(this, "body", sensorNum, 100.0f, sensor_offs);
     if (MR::isExistJoint(this, cFollowjointName)) {
         MtxPtr jointMtx = MR::getJointMtx(this, cFollowjointName);
         MR::initCollisionParts(this, name, sensor, jointMtx);
         MR::tryCreateCollisionAllOtherCategory(this, jointMtx, sensor, nullptr, nullptr, nullptr);
-    }
-    else {
+    } else {
         MR::initCollisionParts(this, name, sensor, nullptr);
         MR::tryCreateCollisionAllOtherCategory(this, sensor, nullptr, nullptr, nullptr);
     }
@@ -79,8 +78,7 @@ void MapParts::initModelAndCollision(const JMapInfoIter &rIter) {
         trueSensorOffset.setPS(lerpVec);
         JMathInlineVEC::PSVECSubtract(&trueSensorOffset, &mPosition, &trueSensorOffset);
         MR::setSensorOffset(this, "body", trueSensorOffset);
-    }
-    else {
+    } else {
         sensorRange = MR::getCollisionBoundingSphereRange(this);
     }
 

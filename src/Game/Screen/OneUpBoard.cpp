@@ -9,12 +9,10 @@
 namespace NrvOneUpBoard {
     NEW_NERVE(HostTypeWait, OneUpBoard, Wait);
     NEW_NERVE(HostTypeAppear, OneUpBoard, Appear);
-};
+}; // namespace NrvOneUpBoard
 
-OneUpBoard::OneUpBoard() :
-    LayoutActor("1UPボード", true)
-{
-    
+OneUpBoard::OneUpBoard()
+    : LayoutActor("1UPボード", true) {
 }
 
 void OneUpBoard::init(const JMapInfoIter& rIter) {
@@ -43,18 +41,16 @@ void OneUpBoard::calcPos() {
 
     pos.y -= 60.0f;
     pos.y = pos.y >= 160.0f
-        ? pos.y
-        : 160.0f;
+                ? pos.y
+                : 160.0f;
 
     setTrans(pos);
 }
 
 void OneUpBoard::control() {
-    
 }
 
 void OneUpBoard::exeWait() {
-    
 }
 
 void OneUpBoard::exeAppear() {

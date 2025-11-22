@@ -1,6 +1,7 @@
 #include "Game/MapObj/FirePressureBullet.hpp"
 
-FirePressureBullet::FirePressureBullet(const char *pName) : LiveActor(pName) {
+FirePressureBullet::FirePressureBullet(const char* pName)
+    : LiveActor(pName) {
     _8C.x = 0.0f;
     _8C.y = 0.0f;
     _8C.z = 0.0f;
@@ -10,7 +11,7 @@ FirePressureBullet::FirePressureBullet(const char *pName) : LiveActor(pName) {
     _A1 = false;
 }
 
-void FirePressureBullet::init(const JMapInfoIter  &rIter) {
+void FirePressureBullet::init(const JMapInfoIter& rIter) {
     initModelManagerWithAnm("FireBullet", nullptr, false);
     MR::connectToSceneMapObj(this);
     initHitSensor(1);
@@ -31,11 +32,11 @@ void FirePressureBullet::kill() {
 
 void FirePressureBullet::calcAndSetBaseMtx() {
     TPos3f mtx;
-    MR::calcMtxFromGravityAndZAxis(&mtx, this,mGravity, _8C);
+    MR::calcMtxFromGravityAndZAxis(&mtx, this, mGravity, _8C);
     MR::setBaseTRMtx(this, mtx);
 }
 
-void FirePressureBullet::shotFireBullet(LiveActor *pActor, const TPos3f &rPos, const f32 &a3, bool a4, bool a5) {
+void FirePressureBullet::shotFireBullet(LiveActor* pActor, const TPos3f& rPos, const f32& a3, bool a4, bool a5) {
     f32 v7 = rPos.mMtx[2][2];
     f32 v9 = rPos.mMtx[1][2];
     f32 v11 = rPos.mMtx[0][2];
@@ -74,20 +75,18 @@ void FirePressureBullet::exeFly() {
         MR::turnDirectionToTargetDegree(this, &_8C, *MR::getPlayerPos(), 3.0f);
         mVelocity.scale(_9C, _8C);
     }
-    
+
     if (isCrash()) {
         kill();
-    }
-    else if (MR::isStep(this, 300)) {
+    } else if (MR::isStep(this, 300)) {
         kill();
     }
 }
 
-void FirePressureBullet::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
+void FirePressureBullet::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isSensorEnemy(pReceiver) || MR::isSensorMapObj(pReceiver)) {
         kill();
-    }
-    else if (!MR::isSensorPlayer(pReceiver) && MR::sendMsgEnemyAttackFire(pReceiver, pSender)) {
+    } else if (!MR::isSensorPlayer(pReceiver) && MR::sendMsgEnemyAttackFire(pReceiver, pSender)) {
         kill();
     }
 }
@@ -101,7 +100,6 @@ bool FirePressureBullet::isCrash() const {
 }
 
 FirePressureBullet::~FirePressureBullet() {
-
 }
 
 namespace NrvFirePressureBullet {

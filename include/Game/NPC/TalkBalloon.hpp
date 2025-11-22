@@ -6,9 +6,9 @@ class TalkMessageCtrl;
 
 class TalkBalloon : public LayoutActor {
 public:
-    TalkBalloon(const char *);
+    TalkBalloon(const char*);
 
-    virtual void open(TalkMessageCtrl *);
+    virtual void open(TalkMessageCtrl*);
     virtual void close();
     virtual void updateBalloon();
     virtual void updateTalking();
@@ -18,5 +18,5 @@ public:
     virtual void skipMessage();
     virtual bool isTextAppearedAll();
 
-    TalkMessageCtrl *_20;
+    TalkMessageCtrl* _20;
 };

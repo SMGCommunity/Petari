@@ -24,7 +24,7 @@ public:
 
 class AnimScaleController : public NerveExecutor {
 public:
-    AnimScaleController(AnimScaleParam *);
+    AnimScaleController(AnimScaleParam*);
 
     virtual ~AnimScaleController();
 
@@ -35,11 +35,11 @@ public:
     void setParamTight();
     void startHitReaction();
     void startDpdHitVibration();
-    bool isHitReaction(s32) const; 
+    bool isHitReaction(s32) const;
 
     void stopAndReset();
 
     AnimScaleParam* _8;
-    TVec3f _C;
-    f32 _18;
+    TVec3f          _C;
+    f32             _18;
 };

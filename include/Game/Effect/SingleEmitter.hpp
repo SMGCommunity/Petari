@@ -16,14 +16,14 @@ public:
 
     void init(u16);
     void deleteEmitter();
-    void scanParticleEmitter(EffectSystem *);
+    void scanParticleEmitter(EffectSystem*);
     bool isOneTime() const;
     bool isValid() const;
-    void link(ParticleEmitter *);
+    void link(ParticleEmitter*);
     void unlink();
 
-    ParticleEmitter* mEmitter;  // 0x0
-    u16 _4;                     // 0x4
-    u8 mGroupId;                // 0x6
-    s8 mSpawn;                  // 0x7
+    ParticleEmitter* mEmitter; // 0x0
+    u16              _4;       // 0x4
+    u8               mGroupId; // 0x6
+    s8               mSpawn;   // 0x7
 };

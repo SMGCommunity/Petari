@@ -4,12 +4,12 @@
 
 class CamTranslatorSpiral : public CamTranslatorBase {
 public:
-	inline CamTranslatorSpiral(CameraSpiral *pCamera) {
-		mCamera = pCamera;
-	}
+    inline CamTranslatorSpiral(CameraSpiral* pCamera) {
+        mCamera = pCamera;
+    }
 
-	virtual void setParam(const CameraParamChunk *);
-	virtual Camera *getCamera() const;
+    virtual void    setParam(const CameraParamChunk*);
+    virtual Camera* getCamera() const;
 
-	CameraSpiral *mCamera;	// 0x4
+    CameraSpiral* mCamera; // 0x4
 };

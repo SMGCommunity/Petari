@@ -6,7 +6,7 @@ namespace nw4r {
     namespace lyt {
         class TexMap;
     };
-};
+}; // namespace nw4r
 
 class IconAButton;
 class NameObjArchiveListCollector;
@@ -20,21 +20,21 @@ public:
     virtual void appear();
     virtual void movement();
 
-    void exeAppear();
-    void exeWait();
-    void exeEnd();
+    void        exeAppear();
+    void        exeWait();
+    void        exeEnd();
     static void makeArchiveListForNPC(NameObjArchiveListCollector*, const JMapInfoIter&);
     static void makeArchiveListForMenu(NameObjArchiveListCollector*, const JMapInfoIter&);
     static void makeArchiveListCommon(NameObjArchiveListCollector*, const char*);
 
 private:
     /* 0x20 */ nw4r::lyt::TexMap* mTexture;
-    /* 0x24 */ IconAButton* mAButtonIcon;
-    /* 0x28 */ const char* _28;
-    /* 0x2C */ bool _2C;
+    /* 0x24 */ IconAButton*       mAButtonIcon;
+    /* 0x28 */ const char*        _28;
+    /* 0x2C */ bool               _2C;
 };
 
 namespace MR {
     LuigiLetter* createLuigiLetterForTalk();
     LuigiLetter* createLuigiLetterForMenu();
-};
+}; // namespace MR

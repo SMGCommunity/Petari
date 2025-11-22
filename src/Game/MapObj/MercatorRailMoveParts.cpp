@@ -3,7 +3,8 @@
 #include "Game/MapObj/MapPartsRailRotator.hpp"
 #include "Game/AreaObj/MercatorTransformCube.hpp"
 
-MercatorRailMoveParts::MercatorRailMoveParts(const char *pName) : LiveActor(pName) {
+MercatorRailMoveParts::MercatorRailMoveParts(const char* pName)
+    : LiveActor(pName) {
     mRailMover = nullptr;
     mRailRotator = nullptr;
     mAppearController = nullptr;
@@ -19,13 +20,13 @@ void MercatorRailMoveParts::initAfterPlacement() {
     TPos3f rotate;
     MR::convertMercatorPlaneToSphereTransAndRotate(&trans, &rotate, mLocalTrans, false);
     mPosition.set<f32>(trans);
-    
+
     if (MR::isValidSwitchB(this)) {
         mIsNotMoving = true;
     }
 }
 
-bool MercatorRailMoveParts::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool MercatorRailMoveParts::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (mAppearController->receiveMsg(msg)) {
         return true;
     }
@@ -63,8 +64,7 @@ void MercatorRailMoveParts::calcAndSetBaseMtx() {
 
     if (mRailRotator->isWorking()) {
         baseMtx.concat(mRailRotator->_5C, baseMtx);
-    }
-    else {
+    } else {
         baseMtx.set(mRotateMtx);
     }
 
@@ -87,7 +87,7 @@ void MercatorRailMoveParts::updatePose() {
     mRotateMtx.set(mtx);
 }
 
-void MercatorRailMoveParts::init(const JMapInfoIter &rIter) {
+void MercatorRailMoveParts::init(const JMapInfoIter& rIter) {
     char objName[0x100];
     MR::getMapPartsObjectName(objName, sizeof(objName), rIter);
     MR::initDefaultPosForMercator(this, rIter, false);
@@ -125,8 +125,7 @@ void MercatorRailMoveParts::init(const JMapInfoIter &rIter) {
     if (MR::useStageSwitchReadAppear(this, rIter)) {
         MR::syncStageSwitchAppear(this);
         makeActorDead();
-    }
-    else {
+    } else {
         makeActorAppeared();
     }
 
@@ -136,5 +135,4 @@ void MercatorRailMoveParts::init(const JMapInfoIter &rIter) {
 }
 
 MercatorRailMoveParts::~MercatorRailMoveParts() {
-
 }

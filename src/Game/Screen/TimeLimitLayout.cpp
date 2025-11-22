@@ -27,19 +27,17 @@ namespace NrvTimeLimitLayout {
     NEW_NERVE(TimeLimitLayoutScaleDown, TimeLimitLayout, ScaleDown);
     NEW_NERVE(TimeLimitLayoutFadeout, TimeLimitLayout, Fadeout);
     NEW_NERVE(TimeLimitLayoutTimeUpReady, TimeLimitLayout, TimeUpReady);
-};
+}; // namespace NrvTimeLimitLayout
 
-TimeLimitLayout::TimeLimitLayout(u32 timeLimit) :
-    LayoutActor("タイムリミット", true),
-    mTime(0),
-    mTimeLimit(timeLimit),
-    mScaleCtrl(nullptr),
-    mAlphaCtrl(nullptr),
-    mCurrentTiming(nullptr),
-    mIsSuspend(false),
-    _35(false)
-{
-    
+TimeLimitLayout::TimeLimitLayout(u32 timeLimit)
+    : LayoutActor("タイムリミット", true),
+      mTime(0),
+      mTimeLimit(timeLimit),
+      mScaleCtrl(nullptr),
+      mAlphaCtrl(nullptr),
+      mCurrentTiming(nullptr),
+      mIsSuspend(false),
+      _35(false) {
 }
 
 void TimeLimitLayout::init(const JMapInfoIter& rIter) {
@@ -158,8 +156,7 @@ void TimeLimitLayout::exeScaleKeep() {
     if (MR::isGreaterStep(this, mCurrentTiming->mScaleKeepFrame)) {
         if (mCurrentTiming->mIsScaleDown) {
             setNerve(&NrvTimeLimitLayout::TimeLimitLayoutScaleDown::sInstance);
-        }
-        else {
+        } else {
             setNerve(&NrvTimeLimitLayout::TimeLimitLayoutCountDown::sInstance);
         }
     }
@@ -177,8 +174,7 @@ void TimeLimitLayout::exeScaleDown() {
     if (mScaleCtrl->mFrame == mScaleCtrl->mMaxFrame) {
         if (mCurrentTiming->_A && !_35) {
             setNerve(&NrvTimeLimitLayout::TimeLimitLayoutFadeout::sInstance);
-        }
-        else {
+        } else {
             setNerve(&NrvTimeLimitLayout::TimeLimitLayoutCountDown::sInstance);
         }
     }
@@ -199,7 +195,6 @@ void TimeLimitLayout::exeFadeout() {
 }
 
 void TimeLimitLayout::exeTimeUpReady() {
-    
 }
 
 void TimeLimitLayout::control() {
@@ -227,13 +222,11 @@ bool TimeLimitLayout::updateNormal() {
         if (timeLeft % 60 == 0 && timeLeft != 0) {
             MR::startSystemSE("SE_SY_E3_TIMER_COUNT_4", -1, -1);
         }
-    }
-    else if (timeLeft <= 360) {
+    } else if (timeLeft <= 360) {
         if (timeLeft % 60 == 0) {
             MR::startSystemSE("SE_SY_E3_TIMER_COUNT_2", -1, -1);
         }
-    }
-    else if (timeLeft <= 600) {
+    } else if (timeLeft <= 600) {
         if (timeLeft % 60 == 0) {
             MR::startSystemSE("SE_SY_E3_TIMER_COUNT_1", -1, -1);
         }

@@ -6,14 +6,13 @@
 
 #define USER_NAME_SIZE (RFL_NAME_LEN + 1)
 
-UserFile::UserFile() :
-    mGameDataHolder(nullptr),
-    mConfigDataHolder(nullptr),
-    mIsPlayerMario(true),
-    mIsGameDataCorrupted(false),
-    mIsConfigDataCorrupted(false),
-    mUserName(nullptr)
-{
+UserFile::UserFile()
+    : mGameDataHolder(nullptr),
+      mConfigDataHolder(nullptr),
+      mIsPlayerMario(true),
+      mIsGameDataCorrupted(false),
+      mIsConfigDataCorrupted(false),
+      mUserName(nullptr) {
     mGameDataHolder = new GameDataHolder(this);
     mConfigDataHolder = new ConfigDataHolder();
     mUserName = new wchar_t[USER_NAME_SIZE];
@@ -50,8 +49,7 @@ bool UserFile::isLastLoadedMario() const {
 }
 
 bool UserFile::isOnCompleteEndingMarioAndLuigi() const {
-    return mConfigDataHolder->isOnCompleteEndingMario()
-        && mConfigDataHolder->isOnCompleteEndingLuigi();
+    return mConfigDataHolder->isOnCompleteEndingMario() && mConfigDataHolder->isOnCompleteEndingLuigi();
 }
 
 OSTime UserFile::getLastModified() const {
@@ -73,8 +71,7 @@ void UserFile::setLastLoadedMario(bool lastLoadedMario) {
 void UserFile::onCompleteEndingCurrentPlayer() {
     if (mIsPlayerMario) {
         mConfigDataHolder->onCompleteEndingMario();
-    }
-    else {
+    } else {
         mConfigDataHolder->onCompleteEndingLuigi();
     }
 }

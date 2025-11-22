@@ -1,8 +1,7 @@
 #include "Game/LiveActor/Binder.hpp"
 #include "Game/Map/HitInfo.hpp"
 
-HitInfo &HitInfo::operator=(const HitInfo &rOther)
-{
+HitInfo& HitInfo::operator=(const HitInfo& rOther) {
     mParentTriangle.mParts = rOther.mParentTriangle.mParts;
     mParentTriangle.mIdx = rOther.mParentTriangle.mIdx;
     mParentTriangle.mSensor = rOther.mParentTriangle.mSensor;
@@ -22,12 +21,11 @@ HitInfo &HitInfo::operator=(const HitInfo &rOther)
     return *this;
 }
 
-Binder::Binder(MtxPtr mtx, const TVec3f *v1, const TVec3f *v2, f32 a, f32 b, u32 c) : BinderParent(mtx), _10(v1), _14(v2), mRadius(a), _1C(b), mOffsetVec(0), _24(c), mPlaneNum(0), mPlaneInfos(0), mFixReactionVector(0, 0, 0), mGroundInfo(), mWallInfo(), mRoofInfo(), _C8(131076.953125f), _158(131076.953125f), _1E8(131076.953125f)
-{
+Binder::Binder(MtxPtr mtx, const TVec3f* v1, const TVec3f* v2, f32 a, f32 b, u32 c)
+    : BinderParent(mtx), _10(v1), _14(v2), mRadius(a), _1C(b), mOffsetVec(0), _24(c), mPlaneNum(0), mPlaneInfos(0), mFixReactionVector(0, 0, 0), mGroundInfo(), mWallInfo(), mRoofInfo(), _C8(131076.953125f), _158(131076.953125f), _1E8(131076.953125f) {
     if (!_24) {
         mPlaneInfos = nullptr;
-    }
-    else {
+    } else {
         mPlaneInfos = new HitInfo[_24];
     }
     clear();

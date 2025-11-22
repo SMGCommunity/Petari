@@ -7,13 +7,13 @@ namespace NrvQuakeEffectGenerator {
     NEW_NERVE(HostTypeWait, QuakeEffectGenerator, Wait);
     NEW_NERVE(HostTypeWaitInArea, QuakeEffectGenerator, WaitInArea);
     NEW_NERVE(HostTypeQuaking, QuakeEffectGenerator, Quaking);
-};
+}; // namespace NrvQuakeEffectGenerator
 
-QuakeEffectGenerator::QuakeEffectGenerator() : LiveActor("地震効果生成") {
-
+QuakeEffectGenerator::QuakeEffectGenerator()
+    : LiveActor("地震効果生成") {
 }
 
-void QuakeEffectGenerator::init(const JMapInfoIter &rIter) {
+void QuakeEffectGenerator::init(const JMapInfoIter& rIter) {
     initNerve(&NrvQuakeEffectGenerator::HostTypeWait::sInstance);
     MR::connectToSceneMapObjMovement(this);
     MR::invalidateClipping(this);
@@ -23,8 +23,7 @@ void QuakeEffectGenerator::init(const JMapInfoIter &rIter) {
 void QuakeEffectGenerator::exeWaitInArea() {
     if (!MR::isPlayerInAreaObj("QuakeEffectArea")) {
         setNerve(&NrvQuakeEffectGenerator::HostTypeWait::sInstance);
-    }
-    else {
+    } else {
         if (!MR::isFirstStep(this)) {
             if (getNerveStep() % 400 == 0) {
                 setNerve(&NrvQuakeEffectGenerator::HostTypeQuaking::sInstance);
@@ -44,8 +43,7 @@ void QuakeEffectGenerator::exeQuaking() {
         MR::stopShakingCamera(this);
         if (MR::isPlayerInAreaObj("QuakeEffectArea")) {
             setNerve(&NrvQuakeEffectGenerator::HostTypeWaitInArea::sInstance);
-        }
-        else {
+        } else {
             setNerve(&NrvQuakeEffectGenerator::HostTypeWait::sInstance);
         }
     }
@@ -58,5 +56,4 @@ void QuakeEffectGenerator::exeWait() {
 }
 
 QuakeEffectGenerator::~QuakeEffectGenerator() {
-    
 }

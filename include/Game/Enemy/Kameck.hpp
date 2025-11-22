@@ -4,7 +4,7 @@
 
 class Kameck : public LiveActor {
 public:
-    Kameck(const char *);
+    Kameck(const char*);
 
     void setBeamType(s32);
 

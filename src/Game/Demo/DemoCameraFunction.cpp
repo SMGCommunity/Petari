@@ -30,4 +30,4 @@ namespace DemoCameraFunction {
     void makeAnimCameraName(char* pName, u32 size, const DemoCameraInfo* pInfo) {
         MR::removeExtensionString(pName, size, pInfo->_C);
     }
-};
+}; // namespace DemoCameraFunction

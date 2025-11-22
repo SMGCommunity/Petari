@@ -6,19 +6,17 @@ namespace {
     ClipAreaHolder* getClipAreaHolder() {
         return MR::getSceneObj<ClipAreaHolder>(SceneObj_ClipAreaHolder);
     }
-};
+}; // namespace
 
-ClipAreaHolder::ClipAreaHolder(const char* pName) :
-    LiveActorGroup(pName, 64),
-    mIsActive(true)
-{
+ClipAreaHolder::ClipAreaHolder(const char* pName)
+    : LiveActorGroup(pName, 64),
+      mIsActive(true) {
     const MR::FunctorV0F func(*MR::setupShadowVolumeDraw);
 
     MR::registerPreDrawFunction(func, 42);
 }
 
 void ClipAreaHolder::init(const JMapInfoIter& rIter) {
-    
 }
 
 namespace MR {
@@ -49,4 +47,4 @@ namespace MR {
     void deactivateClipArea() {
         getClipAreaHolder()->mIsActive = false;
     }
-}
+} // namespace MR

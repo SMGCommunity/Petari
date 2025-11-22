@@ -10,14 +10,13 @@ namespace NrvFullnessMeter {
     NEW_NERVE(FullnessMeterNrvAppear, FullnessMeter, Appear);
     NEW_NERVE(FullnessMeterNrvWait, FullnessMeter, Wait);
     NEW_NERVE(FullnessMeterNrvEnd, FullnessMeter, End);
-};
+}; // namespace NrvFullnessMeter
 
-FullnessMeter::FullnessMeter(LiveActor *pHost, s32 a2, s32 a3) :
-    LayoutActor("満腹計", true),
-    _20(a3),
-    _24(a2),
-    mHost(pHost)
-{
+FullnessMeter::FullnessMeter(LiveActor* pHost, s32 a2, s32 a3)
+    : LayoutActor("満腹計", true),
+      _20(a3),
+      _24(a2),
+      mHost(pHost) {
     MR::connectToSceneTalkLayout(this);
     initLayoutManager("StarPieceTargetMeter", 1);
     MR::createAndAddPaneCtrl(this, "TargetMeter", 1);
@@ -28,7 +27,7 @@ FullnessMeter::FullnessMeter(LiveActor *pHost, s32 a2, s32 a3) :
     initNerve(&NrvFullnessMeter::FullnessMeterNrvAppear::sInstance);
 }
 
-void FullnessMeter::init(const JMapInfoIter &rIter) {
+void FullnessMeter::init(const JMapInfoIter& rIter) {
     MR::startPaneAnim(this, "TargetMeter", "Count", 0);
     MR::setPaneAnimFrameAndStop(this, "TargetMeter", 0.0f, 0);
 }
@@ -67,8 +66,7 @@ void FullnessMeter::requestAppear() {
 void FullnessMeter::requestDisappear() {
     if (MR::isDead(this) || isNerve(&NrvFullnessMeter::FullnessMeterNrvEnd::sInstance)) {
         return;
-    }
-    else {
+    } else {
         setNerve(&NrvFullnessMeter::FullnessMeterNrvEnd::sInstance);
         MR::hideScreen(this);
         MR::startAnim(mTargetCounter, "End", 0);
@@ -93,7 +91,6 @@ void FullnessMeter::exeAppear() {
 
 void FullnessMeter::exeWait() {
     if (MR::isFirstStep(this)) {
-        
     }
 }
 

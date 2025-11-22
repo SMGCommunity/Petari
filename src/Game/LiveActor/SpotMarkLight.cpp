@@ -1,6 +1,7 @@
 #include "Game/LiveActor/SpotMarkLight.hpp"
 
-SpotMarkLight::SpotMarkLight(LiveActor *pActor, f32 a3, f32 a4, MtxPtr mtx) : PartsModel(pActor, "マーク光柱", "SpotMarkLight", mtx, -1, false) {
+SpotMarkLight::SpotMarkLight(LiveActor* pActor, f32 a3, f32 a4, MtxPtr mtx)
+    : PartsModel(pActor, "マーク光柱", "SpotMarkLight", mtx, -1, false) {
     _9B = false;
 
     if (!mtx) {
@@ -22,8 +23,7 @@ void SpotMarkLight::control() {
                 _9B = true;
             }
         }
-    }
-    else if (_9B && MR::isBrkStopped(this)) {
+    } else if (_9B && MR::isBrkStopped(this)) {
         MR::startBrk(this, "Appear");
         _9B = false;
     }
@@ -34,5 +34,4 @@ void SpotMarkLight::calcAndSetBaseMtx() {
 }
 
 SpotMarkLight::~SpotMarkLight() {
-
 }

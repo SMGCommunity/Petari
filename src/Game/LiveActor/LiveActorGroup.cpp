@@ -2,11 +2,11 @@
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/Util.hpp"
 
-LiveActorGroup::LiveActorGroup(const char *pName, int count) : NameObjGroup(pName, count) {
-
+LiveActorGroup::LiveActorGroup(const char* pName, int count)
+    : NameObjGroup(pName, count) {
 }
 
-void LiveActorGroup::registerActor(LiveActor *pActor) {
+void LiveActorGroup::registerActor(LiveActor* pActor) {
     registerObj(pActor);
 }
 

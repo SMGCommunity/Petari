@@ -11,7 +11,7 @@ namespace {
     static const s32 sStepMove = 10;
     static const f32 sTransMinY = -100.0f;
     static const f32 sTransMaxY = 0.0f;
-};
+}; // namespace
 
 namespace NrvNoteCounter {
     NEW_NERVE(NoteCounterNrvShow, NoteCounter, Show);
@@ -19,17 +19,16 @@ namespace NrvNoteCounter {
     NEW_NERVE(NoteCounterNrvShowToHide, NoteCounter, ShowToHide);
     NEW_NERVE(NoteCounterNrvHideToShow, NoteCounter, HideToShow);
     NEW_NERVE(NoteCounterNrvHide, NoteCounter, Hide);
-};
+}; // namespace NrvNoteCounter
 
-NoteCounter::NoteCounter(const char* pName) :
-    LayoutActor(pName, true),
-    mNoteNum(0),
-    mNoteAddNum(0),
-    mNoteMissNum(0),
-    mMelodyNo(-1),
-    mRailLength(0.0f),
-    mHost(nullptr)
-{}
+NoteCounter::NoteCounter(const char* pName)
+    : LayoutActor(pName, true),
+      mNoteNum(0),
+      mNoteAddNum(0),
+      mNoteMissNum(0),
+      mMelodyNo(-1),
+      mRailLength(0.0f),
+      mHost(nullptr) {}
 
 void NoteCounter::init(const JMapInfoIter& rIter) {
     initNerve(&NrvNoteCounter::NoteCounterNrvHide::sInstance);
@@ -44,12 +43,9 @@ void NoteCounter::declareNoteNumMaxAndMelody(LiveActor* pHost, s32 noteNum, s32 
     mMelodyNo = melodyNo;
     mRailLength = railLength;
 
-    if (isNerve(&NrvNoteCounter::NoteCounterNrvHide::sInstance)
-        || isNerve(&NrvNoteCounter::NoteCounterNrvShowToHide::sInstance))
-    {
+    if (isNerve(&NrvNoteCounter::NoteCounterNrvHide::sInstance) || isNerve(&NrvNoteCounter::NoteCounterNrvShowToHide::sInstance)) {
         setNerve(&NrvNoteCounter::NoteCounterNrvHideToShow::sInstance);
-    }
-    else if (isNerve(&NrvNoteCounter::NoteCounterNrvShowWait::sInstance)) {
+    } else if (isNerve(&NrvNoteCounter::NoteCounterNrvShowWait::sInstance)) {
         setNerve(&NrvNoteCounter::NoteCounterNrvShow::sInstance);
     }
 }
@@ -57,7 +53,6 @@ void NoteCounter::declareNoteNumMaxAndMelody(LiveActor* pHost, s32 noteNum, s32 
 // NoteCounter::add
 
 void NoteCounter::exeShow() {
-    
 }
 
 void NoteCounter::exeShowWait() {
@@ -125,4 +120,4 @@ namespace MR {
         pNoteCounter->mNoteMissNum++;
         pNoteCounter->tryEndDisp();
     }
-};
+}; // namespace MR

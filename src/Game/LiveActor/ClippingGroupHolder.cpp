@@ -2,7 +2,8 @@
 #include "Game/LiveActor/ClippingActorInfo.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
 
-ClippingInfoGroup::ClippingInfoGroup(const char *pGroupName, int count) : NameObj(pGroupName) {
+ClippingInfoGroup::ClippingInfoGroup(const char* pGroupName, int count)
+    : NameObj(pGroupName) {
     _C = count;
     _10 = 0;
     _14 = 0;
@@ -15,11 +16,11 @@ ClippingInfoGroup::ClippingInfoGroup(const char *pGroupName, int count) : NameOb
     }
 }
 
-void ClippingInfoGroup::setGroupNo(const JMapInfoIter &rIter) {
+void ClippingInfoGroup::setGroupNo(const JMapInfoIter& rIter) {
     _18 = new JMapIdInfo(MR::createJMapIdInfoFromClippingGroupId(rIter));
 }
 
-void ClippingInfoGroup::registerInfo(ClippingActorInfo *pInfo) {
+void ClippingInfoGroup::registerInfo(ClippingActorInfo* pInfo) {
     _14[_10] = pInfo;
     _10++;
 }
@@ -70,8 +71,7 @@ void ClippingGroupHolder::movement() {
             if (!var) {
                 group->startClippedAll();
             }
-        }
-        else {
+        } else {
             u8 var = group->_1C;
             if (var) {
                 group->endClippedAll();
@@ -80,7 +80,7 @@ void ClippingGroupHolder::movement() {
     }
 }
 
-void ClippingGroupHolder::createAndAdd(ClippingActorInfo *pInfo, const JMapInfoIter &rIter, int count) {
+void ClippingGroupHolder::createAndAdd(ClippingActorInfo* pInfo, const JMapInfoIter& rIter, int count) {
     ClippingInfoGroup* group = findGroup(rIter);
 
     if (!group) {
@@ -90,7 +90,7 @@ void ClippingGroupHolder::createAndAdd(ClippingActorInfo *pInfo, const JMapInfoI
     group->registerInfo(pInfo);
 }
 
-ClippingInfoGroup* ClippingGroupHolder::createGroup(ClippingActorInfo *pInfo, const JMapInfoIter &rIter, int count) {
+ClippingInfoGroup* ClippingGroupHolder::createGroup(ClippingActorInfo* pInfo, const JMapInfoIter& rIter, int count) {
     ClippingInfoGroup* group = new ClippingInfoGroup(pInfo->mActor->mName, count);
     group->setGroupNo(rIter);
     mInfoGroups[mNumGroups] = group;
@@ -100,11 +100,11 @@ ClippingInfoGroup* ClippingGroupHolder::createGroup(ClippingActorInfo *pInfo, co
 
 #ifdef NON_MATCHING
 // reg usage issue, and not reloading the array to return
-ClippingInfoGroup* ClippingGroupHolder::findGroup(const JMapInfoIter &rIter) {
+ClippingInfoGroup* ClippingGroupHolder::findGroup(const JMapInfoIter& rIter) {
     JMapIdInfo info = MR::createJMapIdInfoFromClippingGroupId(rIter);
 
     for (s32 i = 0; i < mNumGroups; i++) {
-        bool isFound = false;
+        bool        isFound = false;
         JMapIdInfo* inf = mInfoGroups[i]->_18;
 
         if (*inf == info) {
@@ -117,14 +117,13 @@ ClippingInfoGroup* ClippingGroupHolder::findGroup(const JMapInfoIter &rIter) {
 #endif
 
 ClippingInfoGroup::~ClippingInfoGroup() {
-
 }
 
 ClippingGroupHolder::~ClippingGroupHolder() {
-
 }
 
-ClippingGroupHolder::ClippingGroupHolder() : NameObj("クリッピングアクター保持") {
+ClippingGroupHolder::ClippingGroupHolder()
+    : NameObj("クリッピングアクター保持") {
     mNumGroups = 0;
     mInfoGroups = 0;
     mInfoGroups = new ClippingInfoGroup*[0x40];

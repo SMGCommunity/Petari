@@ -20,7 +20,7 @@ namespace {
     Vec cDefaultUp;
     Vec cZoomInPos;
     Vec cZoomOutPos;
-}
+} // namespace
 
 namespace NrvAstroDomeCameraController {
     NEW_NERVE(AstroDomeCameraControllerNrvGalaxySelectStart, AstroDomeCameraController, GalaxySelectStart);
@@ -28,10 +28,10 @@ namespace NrvAstroDomeCameraController {
     NEW_NERVE(AstroDomeCameraControllerNrvGalaxyConfirmStart, AstroDomeCameraController, GalaxyConfirmStart);
     NEW_NERVE(AstroDomeCameraControllerNrvGalaxyConfirm, AstroDomeCameraController, GalaxyConfirm);
     NEW_NERVE(AstroDomeCameraControllerNrvGalaxyConfirmCancel, AstroDomeCameraController, GalaxyConfirmCancel);
-}
+} // namespace NrvAstroDomeCameraController
 
-AstroDomeCameraController::AstroDomeCameraController(const char* pName) : LiveActor(pName), _8C(gZeroVec), _104(0.0f) ,_108(gZeroVec) {}
-
+AstroDomeCameraController::AstroDomeCameraController(const char* pName)
+    : LiveActor(pName), _8C(gZeroVec), _104(0.0f), _108(gZeroVec) {}
 
 void AstroDomeCameraController::init(const JMapInfoIter& rIter) {
     MR::connectToSceneMapObjMovement(this);
@@ -83,17 +83,17 @@ bool AstroDomeCameraController::receiveOtherMsg(u32 v1, HitSensor* pSender, HitS
 }
 
 void AstroDomeCameraController::calcZoomOutPos(TVec3f* v1) const {
-    SphereSelectorFunction::calcOffsetPos(v1, gZeroVec, TVec3f(0.0f,0.0f, -22000.0f), _8C.negateInline(), TVec3f(0.0f, 1.0f, 0.0f));
+    SphereSelectorFunction::calcOffsetPos(v1, gZeroVec, TVec3f(0.0f, 0.0f, -22000.0f), _8C.negateInline(), TVec3f(0.0f, 1.0f, 0.0f));
 }
 
-void AstroDomeCameraController::calcZoomInPos(TVec3f* v1, const TVec3f & v2) const {
+void AstroDomeCameraController::calcZoomInPos(TVec3f* v1, const TVec3f& v2) const {
     TVec3f zoomOutPos;
     calcZoomOutPos(&zoomOutPos);
     SphereSelectorFunction::calcOffsetPos(v1, SphereSelectorFunction::getSelectedActorTrans(), cZoomInPos, SphereSelectorFunction::getSelectedActorTrans() - zoomOutPos, v2);
 }
 
 void AstroDomeCameraController::exeGalaxySelectStart() {
-    s32 STF = SphereSelectorFunction::getSelectStartFrame();
+    s32    STF = SphereSelectorFunction::getSelectStartFrame();
     TVec3f stack;
     if (MR::isFirstStep(this)) {
         calcZoomOutPos(&stack);

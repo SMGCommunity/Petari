@@ -5,7 +5,7 @@
 
 struct GalaxyNamePlateDrawerEntry {
     /* 0x0 */ LayoutActor* mHostActor;
-    /* 0x4 */ u32 mZ;
+    /* 0x4 */ u32          mZ;
 };
 
 class GalaxyNamePlateDrawer : public NameObj {
@@ -19,7 +19,7 @@ public:
     GalaxyNamePlateDrawerEntry* registerPlate(const LayoutActor*);
 
 private:
-    /* 0xC */ MR::Vector<MR::FixedArray<GalaxyNamePlateDrawerEntry*, 16> > mPlateArray;
+    /* 0xC */ MR::Vector<MR::FixedArray<GalaxyNamePlateDrawerEntry*, 16>> mPlateArray;
 };
 
 namespace MR {

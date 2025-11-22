@@ -6,10 +6,10 @@ static f32 zero = 0.0f;
 
 class ShootingStar : public LiveActor {
 public:
-    ShootingStar(const char *);
+    ShootingStar(const char*);
 
     virtual ~ShootingStar();
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
     virtual void control();
 
     void appearPreShooting();
@@ -20,13 +20,13 @@ public:
     TVec3f _8C;
     TVec3f _98;
     TVec3f _A4;
-    s32 _B0;
-    s32 _B4;
-    f32 _B8;
+    s32    _B0;
+    s32    _B4;
+    f32    _B8;
 };
 
 namespace NrvShootingStar {
     NERVE(HostTypeNrvPreShooting);
     NERVE(HostTypeNrvShooting);
     NERVE(HostTypeNrvWaitForNextShoot);
-};
+}; // namespace NrvShootingStar

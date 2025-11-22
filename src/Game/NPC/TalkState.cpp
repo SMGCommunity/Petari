@@ -12,14 +12,12 @@
 #include "Game/Util/SoundUtil.hpp"
 #include "revolution/types.h"
 
-TalkState::TalkState() :
-    _04(nullptr),
-    mBalloon(nullptr)
-{
-
+TalkState::TalkState()
+    : _04(nullptr),
+      mBalloon(nullptr) {
 }
 
-void TalkState::init(TalkMessageCtrl *pArg1, TalkBalloon *pBalloon) {
+void TalkState::init(TalkMessageCtrl* pArg1, TalkBalloon* pBalloon) {
     _04 = pArg1;
     mBalloon = pBalloon;
     mMessageID = _04->getMessageID();
@@ -33,42 +31,41 @@ void TalkState::balloonOff() const {
     MR::hideScreen(mBalloon);
 }
 
-bool TalkState::isLostMessage(const TalkMessageCtrl *pArg1) const {
+bool TalkState::isLostMessage(const TalkMessageCtrl* pArg1) const {
     if (pArg1 == nullptr) {
         return true;
     }
 
     if (pArg1 != _04) {
-        return true;  
+        return true;
     }
 
     return _04->getMessageID() != mMessageID;
 };
 
-bool TalkState::isSelfInterrupt(const TalkMessageCtrl *pArg1) const {
+bool TalkState::isSelfInterrupt(const TalkMessageCtrl* pArg1) const {
     if (pArg1 == nullptr) {
         return false;
     }
 
     if (pArg1 != _04) {
-        return false;  
+        return false;
     }
-    
+
     return _04->getMessageID() != mMessageID;
 }
 
-
-bool TalkStateShort::prep(const TalkMessageCtrl *pArg1) {
+bool TalkStateShort::prep(const TalkMessageCtrl* pArg1) {
     return !TalkState::isLostMessage(pArg1);
 }
 
-bool TalkStateShort::talk(const TalkMessageCtrl *) {
+bool TalkStateShort::talk(const TalkMessageCtrl*) {
     return false;
 }
 
 void TalkStateShort::open() {
     mBalloon->open(_04);
-    LiveActor* actor = _04->mHostActor;
+    LiveActor*       actor = _04->mHostActor;
     TalkMessageInfo* info = TalkFunction::getMessageInfo(_04);
     MR::startTalkSound(info->_6, actor);
 }
@@ -77,7 +74,6 @@ void TalkStateShort::clos() {
     mBalloon->close();
 }
 
-
 TalkStateEvent::TalkStateEvent() {
     _18 = nullptr;
     _14 = nullptr;
@@ -85,7 +81,7 @@ TalkStateEvent::TalkStateEvent() {
     _1D = true;
 }
 
-bool TalkStateEvent::prep(const TalkMessageCtrl *pArg1) {
+bool TalkStateEvent::prep(const TalkMessageCtrl* pArg1) {
     return !TalkState::isLostMessage(pArg1);
 }
 
@@ -104,7 +100,7 @@ void TalkStateEvent::open() {
     if (!MR::isTimeKeepDemoActive() || !info->isCameraNormal()) {
         _04->startCamera(-1);
     }
-    
+
     mBalloon->open(_04);
 }
 
@@ -112,7 +108,7 @@ void TalkStateEvent::clos() {
     mBalloon->close();
 }
 
-bool TalkStateEvent::talk(const TalkMessageCtrl *pArg1) {
+bool TalkStateEvent::talk(const TalkMessageCtrl* pArg1) {
     if (MR::testCorePadButtonA(0)) {
         if (_10++ > 10) {
             for (int i = 0; i < 2; i++) {
@@ -144,11 +140,11 @@ bool TalkStateEvent::talk(const TalkMessageCtrl *pArg1) {
         mPageCount++;
         return !mBalloon->turnPage();
     }
-    
+
     return false;
 }
 
-bool TalkStateEvent::term(const TalkMessageCtrl *pArg1) {
+bool TalkStateEvent::term(const TalkMessageCtrl* pArg1) {
     if (_14++ > 30) {
         _14 = 0;
         return true;
@@ -165,7 +161,7 @@ bool TalkStateNormal::test() {
     if (!_18->isEnableTalkPlayerStateNormal() || !MR::testCorePadTriggerA(0)) {
         return false;
     }
-    
+
     return TalkStateEvent::test();
 }
 
@@ -174,7 +170,7 @@ void TalkStateNormal::clos() {
     mBalloon->close();
 }
 
-bool TalkStateNormal::term(const TalkMessageCtrl *pArg1) {
+bool TalkStateNormal::term(const TalkMessageCtrl* pArg1) {
     if (pArg1 != nullptr && pArg1 != _04) {
         return true;
     }
@@ -187,7 +183,7 @@ bool TalkStateNormal::term(const TalkMessageCtrl *pArg1) {
 }
 
 // Stuck at 99% because assembly string labels don't match, even though the code *should* be correct.
-bool TalkStateNormal::prep(const TalkMessageCtrl *pArg1) {
+bool TalkStateNormal::prep(const TalkMessageCtrl* pArg1) {
     if (TalkStateNormal::isLostMessage(pArg1)) {
         _24->term();
         return false;
@@ -198,7 +194,7 @@ bool TalkStateNormal::prep(const TalkMessageCtrl *pArg1) {
     if (!_18->isEnableTalkPlayerStateNormal()) {
         _24->term();
     } else if (!MR::testCorePadTriggerA(0)) {
-        TalkMessageInfo *info = TalkFunction::getMessageInfo(_04);
+        TalkMessageInfo* info = TalkFunction::getMessageInfo(_04);
         if (!_24->isOpen()) {
             if (info->isBalloonSign()) {
                 _24->openWithRead();
@@ -216,8 +212,7 @@ bool TalkStateNormal::prep(const TalkMessageCtrl *pArg1) {
     return true;
 }
 
-
-void TalkStateCompose::init(TalkMessageCtrl *pArg1, TalkBalloon *pArg2) {
+void TalkStateCompose::init(TalkMessageCtrl* pArg1, TalkBalloon* pArg2) {
     TalkState::init(pArg1, pArg2);
     mSecondBalloon->open(pArg1);
 }
@@ -235,7 +230,7 @@ void TalkStateCompose::open() {
     mSecondBalloon->close();
 }
 
-bool TalkStateCompose::prep(const TalkMessageCtrl *pArg1) {
+bool TalkStateCompose::prep(const TalkMessageCtrl* pArg1) {
     bool unknownBool = true;
 
     if (TalkState::isLostMessage(pArg1)) {
@@ -262,8 +257,8 @@ void TalkStateHolder::pauseOff() {
     MR::requestMovementOn(_04);
 }
 
-u32 TalkStateHolder::getState(const TalkMessageCtrl *pArg1) {
-    TalkMessageInfo *info = TalkFunction::getMessageInfo(pArg1);
+u32 TalkStateHolder::getState(const TalkMessageCtrl* pArg1) {
+    TalkMessageInfo* info = TalkFunction::getMessageInfo(pArg1);
 
     if (info->isNormalTalk()) {
         return mTalkNormal;

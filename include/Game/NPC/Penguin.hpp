@@ -7,7 +7,7 @@
 
 class RemovableTurtle {
 public:
-    RemovableTurtle(LiveActor *, bool);
+    RemovableTurtle(LiveActor*, bool);
 
     bool isPullRange() const;
     bool tryRemove();
@@ -16,13 +16,13 @@ public:
 
 class Penguin : public NPCActor {
 public:
-    Penguin(const char *);
+    Penguin(const char*);
 
     virtual ~Penguin();
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
     virtual void initAfterPlacement();
-    virtual void attackSensor(HitSensor *, HitSensor *);
-    virtual bool receiveOtherMsg(u32, HitSensor *, HitSensor *);
+    virtual void attackSensor(HitSensor*, HitSensor*);
+    virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
 
     void exeReaction();
     void exeWait();

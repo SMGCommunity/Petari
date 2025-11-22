@@ -1,7 +1,8 @@
-#include "Game/LiveActor/PartsModel.hpp" 
+#include "Game/LiveActor/PartsModel.hpp"
 #include "Game/NameObj/NameObjExecuteHolder.hpp"
 
-PartsModel::PartsModel(LiveActor *pActor, const char *pName, const char *pModelName, MtxPtr mtx, int a5, bool a6) : LiveActor(pName) {
+PartsModel::PartsModel(LiveActor* pActor, const char* pName, const char* pModelName, MtxPtr mtx, int a5, bool a6)
+    : LiveActor(pName) {
     mHost = pActor;
     mFixedPos = nullptr;
     mMtx = mtx;
@@ -15,8 +16,7 @@ PartsModel::PartsModel(LiveActor *pActor, const char *pName, const char *pModelN
 
     if (mMtx) {
         mPosition.set(mMtx[0][3], mMtx[1][3], mMtx[2][3]);
-    }
-    else {
+    } else {
         mPosition.set<f32>(pActor->mPosition);
     }
 
@@ -51,7 +51,7 @@ void PartsModel::makeActorDead() {
 }
 
 // 99.9% sure the call to makeActorAppered is meant to be inlined but this matches
-void PartsModel::init(const JMapInfoIter &rIter) {
+void PartsModel::init(const JMapInfoIter& rIter) {
     initEffectKeeper(8, nullptr, false);
     initSound(8, false);
     MR::isInvalidClipping(this);
@@ -69,8 +69,7 @@ void PartsModel::movement() {
                 MR::disconnectToDrawTemporarily(this);
             }
         }
-    }
-    else {
+    } else {
         if (mIsDead) {
             mIsDead = false;
             MR::validateHitSensors(this);
@@ -102,26 +101,25 @@ void PartsModel::calcViewAndEntry() {
     }
 }
 
-void PartsModel::initFixedPosition(const TVec3f &rLocalTrans, const TVec3f &a2, const char *pJointName) {
+void PartsModel::initFixedPosition(const TVec3f& rLocalTrans, const TVec3f& a2, const char* pJointName) {
     if (pJointName) {
         mFixedPos = new FixedPosition(mHost, pJointName, rLocalTrans, a2);
-    }
-    else {
+    } else {
         mFixedPos = new FixedPosition(mHost, rLocalTrans, a2);
     }
     mMtx = (MtxPtr)&mFixedPos->_1C;
 }
 
-void PartsModel::initFixedPosition(const char *pJointName) {
+void PartsModel::initFixedPosition(const char* pJointName) {
     initFixedPosition(TVec3f(0.0f, 0.0f, 0.0f), TVec3f(0.0f, 0.0f, 0.0f), pJointName);
 }
 
-void PartsModel::initFixedPosition(MtxPtr mtx, const TVec3f &rLocalTrans, const TVec3f &a3) {
+void PartsModel::initFixedPosition(MtxPtr mtx, const TVec3f& rLocalTrans, const TVec3f& a3) {
     mFixedPos = new FixedPosition(mtx, rLocalTrans, a3);
     mMtx = (MtxPtr)&mFixedPos->_1C;
 }
 
-void PartsModel::loadFixedPosition(const char *pJointName) {
+void PartsModel::loadFixedPosition(const char* pJointName) {
     mFixedPos = new FixedPosition(mHost, pJointName, nullptr);
     mMtx = (MtxPtr)&mFixedPos->_1C;
 }
@@ -134,8 +132,7 @@ void PartsModel::calcAndSetBaseMtx() {
     if (mMtx && mCalcOwnMtx) {
         mPosition.set(mMtx[0][3], mMtx[1][3], mMtx[2][3]);
         MR::setBaseTRMtx(this, mMtx);
-    }
-    else {
+    } else {
         LiveActor::calcAndSetBaseMtx();
     }
 }

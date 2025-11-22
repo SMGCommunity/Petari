@@ -5,7 +5,7 @@
 
 // BlackHole::BlackHole
 
-void BlackHole::init(const JMapInfoIter &rIter) {
+void BlackHole::init(const JMapInfoIter& rIter) {
     initMapToolInfo(rIter);
     initModel();
     MR::connectToSceneMapObj(this);
@@ -17,8 +17,7 @@ void BlackHole::init(const JMapInfoIter &rIter) {
     f32 val = 500.0f * _9C;
     if (radius >= val) {
         radius = radius;
-    }
-    else {
+    } else {
         radius = val;
     }
 
@@ -43,8 +42,7 @@ void BlackHole::init(const JMapInfoIter &rIter) {
     if (uses) {
         MR::syncStageSwitchAppear(this);
         makeActorDead();
-    }
-    else {
+    } else {
         makeActorAppeared();
     }
 }
@@ -75,7 +73,7 @@ bool BlackHole::tryStartDemoCamera() {
     return false;
 }
 
-void BlackHole::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
+void BlackHole::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (!isNerve(&NrvBlackHole::BlackHoleNrvWait::sInstance)) {
         return;
     }
@@ -97,7 +95,7 @@ void BlackHole::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
 
 #ifdef NON_MATCHING
 // shrug
-void BlackHole::initMapToolInfo(const JMapInfoIter &rIter) {
+void BlackHole::initMapToolInfo(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     MR::useStageSwitchReadA(this, rIter);
     MR::useStageSwitchReadAppear(this, rIter);
@@ -109,23 +107,20 @@ void BlackHole::initMapToolInfo(const JMapInfoIter &rIter) {
 
     if (_A4 == 0) {
         _A0 = 500.0f * mScale.z;
-    }
-    else {
+    } else {
         TVec3f stack_C;
         stack_C.setInlineXYPS(mScale);
         _A0 = PSVECMag(stack_C);
     }
 
-    f32 arg0;
+    f32  arg0;
     bool ret = MR::getJMapInfoArg0NoInit(rIter, &arg0);
 
     if (ret) {
         _9C = arg0 / 1000.0f;
-    }
-    else if (_A4) {
+    } else if (_A4) {
         _9C = 1.0f;
-    }
-    else {
+    } else {
         _9C = mScale.x;
     }
 }
@@ -146,16 +141,16 @@ void BlackHole::initCubeBox() {
     _A8.mMtx[2][3] = mPosition.z;
     _A4 = new TBox3f();
     TVec3f stack_8(0.5f * (1000.0f * -mScale.x), 0.5f * (1000.0f * -mScale.y), 0.5f * (1000.0f * -mScale.z));
-    TVec3f stack_14(0.5f * (1000.0f * mScale.x), 0.5f * (1000.0f, mScale.z),  0.5f * (1000.0f * mScale.y));
+    TVec3f stack_14(0.5f * (1000.0f * mScale.x), 0.5f * (1000.0f, mScale.z), 0.5f * (1000.0f * mScale.y));
     _A4->mMin.set(stack_8);
     _A4->mMax.set(stack_14);
 }
 #endif
 
-bool BlackHole::isInCubeBox(const TVec3f &rVec) const {
+bool BlackHole::isInCubeBox(const TVec3f& rVec) const {
     TVec3f stack_8;
     _A8.multTranspose(rVec, stack_8);
-    bool ret = false;
+    bool    ret = false;
     TBox3f* box = _A4;
     if (stack_8.x >= box->mMin.x && stack_8.y >= box->mMin.y && stack_8.z >= box->mMin.z && stack_8.x < box->mMax.x && stack_8.y < box->mMax.y && stack_8.z < box->mMax.z) {
         ret = true;
@@ -197,33 +192,32 @@ void BlackHole::exeDisappear() {
     mScale.setAll<f32>(nerveEaseIn);
     mBlackHoleModel->mScale.setAll<f32>(0.5f * blackHoleEase);
 
-    if (MR::isStep(this, 0x5A)) { 
+    if (MR::isStep(this, 0x5A)) {
         kill();
     }
 }
 
 BlackHole::~BlackHole() {
-
 }
 
 namespace NrvBlackHole {
-    BlackHoleNrvWait BlackHoleNrvWait::sInstance;
-    BlackHoleNrvDemo BlackHoleNrvDemo::sInstance;
+    BlackHoleNrvWait      BlackHoleNrvWait::sInstance;
+    BlackHoleNrvDemo      BlackHoleNrvDemo::sInstance;
     BlackHoleNrvDisappear BlackHoleNrvDisappear::sInstance;
 
-    void BlackHoleNrvDisappear::execute(Spine *pSpine) const {
+    void BlackHoleNrvDisappear::execute(Spine* pSpine) const {
         BlackHole* blackHole = reinterpret_cast<BlackHole*>(pSpine->mExecutor);
         blackHole->exeDisappear();
     }
 
-    void BlackHoleNrvDemo::execute(Spine *pSpine) const {
+    void BlackHoleNrvDemo::execute(Spine* pSpine) const {
         BlackHole* blackHole = reinterpret_cast<BlackHole*>(pSpine->mExecutor);
         MR::startLevelSound(blackHole, "SE_OJ_LV_BLACK_HOLE", -1, -1, -1);
     }
 
-    void BlackHoleNrvWait::execute(Spine *pSpine) const {
+    void BlackHoleNrvWait::execute(Spine* pSpine) const {
         BlackHole* blackHole = reinterpret_cast<BlackHole*>(pSpine->mExecutor);
         blackHole->exeWait();
     }
 
-};
+}; // namespace NrvBlackHole

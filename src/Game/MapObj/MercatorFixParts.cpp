@@ -1,19 +1,19 @@
 #include "Game/MapObj/MercatorFixParts.hpp"
 #include "Game/AreaObj/MercatorTransformCube.hpp"
 
-MercatorFixParts::MercatorFixParts(const char *pName) : LiveActor(pName) {
+MercatorFixParts::MercatorFixParts(const char* pName)
+    : LiveActor(pName) {
     mAppearController = nullptr;
 }
 
-bool MercatorFixParts::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool MercatorFixParts::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     return mAppearController->receiveMsg(msg);
 }
 
 MercatorFixParts::~MercatorFixParts() {
- 
 }
 
-void MercatorFixParts::init(const JMapInfoIter &rIter) {
+void MercatorFixParts::init(const JMapInfoIter& rIter) {
     char name[0x100];
     MR::getMapPartsObjectName(name, sizeof(name), rIter);
     MR::initDefaultPosForMercator(this, rIter, false);
@@ -33,8 +33,7 @@ void MercatorFixParts::init(const JMapInfoIter &rIter) {
     if (MR::useStageSwitchReadAppear(this, rIter)) {
         MR::syncStageSwitchAppear(this);
         makeActorDead();
-    }
-    else {
+    } else {
         makeActorAppeared();
     }
 

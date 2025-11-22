@@ -2,12 +2,10 @@
 #include "Game/Boss/KoopaSensorCtrl.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 
-KoopaSensorCtrl::KoopaSensorCtrl(Koopa* pHost) :
-    mHost(pHost)
-{}
+KoopaSensorCtrl::KoopaSensorCtrl(Koopa* pHost)
+    : mHost(pHost) {}
 
 void KoopaSensorCtrl::update(HitSensor* pSensor) {
-    
 }
 
 void KoopaSensorCtrl::initSensor() {

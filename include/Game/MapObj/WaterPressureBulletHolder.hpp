@@ -5,12 +5,12 @@
 
 class WaterPressureBulletHolder : public NameObj {
 public:
-    WaterPressureBulletHolder(const char *);
+    WaterPressureBulletHolder(const char*);
 
     virtual ~WaterPressureBulletHolder();
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
 
     WaterPressureBullet* callEmptyBullet();
 
-    WaterPressureBullet* mBullets[0x10];    // 0xC
+    WaterPressureBullet* mBullets[0x10]; // 0xC
 };

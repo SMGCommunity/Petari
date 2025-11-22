@@ -28,31 +28,31 @@ public:
     void exeSuspended();
     void exeChangeArchivePlayer();
     bool trySuspend();
-    bool tryAsyncExecuteIfNotSuspend(const MR::FunctorBase &, const char *);
+    bool tryAsyncExecuteIfNotSuspend(const MR::FunctorBase&, const char*);
     void startToLoadStationedArchivePlayer(bool);
     void startToLoadStationedArchiveOthers();
     void createAndAddPlayerArchives(bool);
     void createAndAddOtherArchives();
 
     /* 0x8 */ PlayerHeapHolder* mHeapHolder;
-    /* 0xc */ bool _C;
+    /* 0xc */ bool              _C;
 };
 
 class ConditionUsePlayerHeap : public StationedArchiveLoader::Condition {
 public:
     ConditionUsePlayerHeap();
 
-    virtual bool isExecute(const MR::StationedFileInfo *) const;
-    virtual JKRHeap* getProperHeap(const MR::StationedFileInfo *) const;
+    virtual bool     isExecute(const MR::StationedFileInfo*) const;
+    virtual JKRHeap* getProperHeap(const MR::StationedFileInfo*) const;
 
     /* 0x4 */ JKRExpHeap* mNapaHeap;
     /* 0x8 */ JKRExpHeap* mGDDRHeap;
-    /* 0xC */ bool mIsDataMario;
+    /* 0xC */ bool        mIsDataMario;
 };
 
 class ConditionIfIsNotPlayer : public StationedArchiveLoader::Condition {
 public:
-    virtual bool isExecute(const MR::StationedFileInfo *) const;
+    virtual bool isExecute(const MR::StationedFileInfo*) const;
 };
 
 class ConditionIsEqualType : public StationedArchiveLoader::Condition {
@@ -67,7 +67,7 @@ public:
         _4 = var;
     }
 
-    virtual bool isExecute(const MR::StationedFileInfo *) const;
+    virtual bool isExecute(const MR::StationedFileInfo*) const;
 
     /* 0x4 */ s32 _4;
 };
@@ -80,10 +80,10 @@ public:
     void dispose();
     void setIsDataMario(bool) NO_INLINE;
 
-    static JKRExpHeap* createHeap(u32, JKRHeap *);
+    static JKRExpHeap* createHeap(u32, JKRHeap*);
 
     /* 0x0 */ ConditionUsePlayerHeap* mCondition;
-    /* 0x4 */ JKRExpHeap* mNapaHeap;
-    /* 0x8 */ JKRExpHeap* mGDDRHeap;
-    /* 0xC */ bool mIsDataMario;
+    /* 0x4 */ JKRExpHeap*             mNapaHeap;
+    /* 0x8 */ JKRExpHeap*             mGDDRHeap;
+    /* 0xC */ bool                    mIsDataMario;
 };

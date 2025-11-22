@@ -100,4 +100,4 @@ namespace MR {
     /// @param pNerve The pointer to the new nerve action.
     /// @param step The frame value to compare with.
     void setNerveAtStep(NerveExecutor* pExecutor, const Nerve* pNerve, s32 step);
-};
+}; // namespace MR

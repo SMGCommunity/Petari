@@ -43,7 +43,7 @@ namespace NrvGameSystem {
     NEW_NERVE(GameSystemLoadStationedArchive, GameSystem, LoadStationedArchive);
     NEW_NERVE(GameSystemWaitForReboot, GameSystem, WaitForReboot);
     NEW_NERVE(GameSystemNormal, GameSystem, Normal);
-};
+}; // namespace NrvGameSystem
 
 void main(void) {
     OSInitFastCast();
@@ -70,22 +70,20 @@ void main(void) {
     }
 }
 
-GameSystem::GameSystem() :
-    NerveExecutor("GameSystem"),
-    mFifoBase(nullptr),
-    mSequenceDirector(nullptr),
-    mErrorWatcher(nullptr),
-    mFontHolder(nullptr),
-    mFrameControl(nullptr),
-    mObjHolder(nullptr),
-    mSceneController(nullptr),
-    mStationedArchiveLoader(nullptr),
-    mHomeButtonLayout(nullptr),
-    mSystemWipeHolder(nullptr),
-    mHomeButtonStateNotifier(nullptr),
-    mIsExecuteLoadSystemArchive(false)
-{
-    
+GameSystem::GameSystem()
+    : NerveExecutor("GameSystem"),
+      mFifoBase(nullptr),
+      mSequenceDirector(nullptr),
+      mErrorWatcher(nullptr),
+      mFontHolder(nullptr),
+      mFrameControl(nullptr),
+      mObjHolder(nullptr),
+      mSceneController(nullptr),
+      mStationedArchiveLoader(nullptr),
+      mHomeButtonLayout(nullptr),
+      mSystemWipeHolder(nullptr),
+      mHomeButtonStateNotifier(nullptr),
+      mIsExecuteLoadSystemArchive(false) {
 }
 
 void GameSystem::init() {
@@ -133,9 +131,7 @@ void GameSystem::exeInitializeAudio() {
 
     updateSceneController();
 
-    if (MR::isEndFunctionAsyncExecute(INIT_AUDIO_KEY)
-        && mObjHolder->mSysWrapper->isLoadDoneWaveDataAtSystemInit())
-    {
+    if (MR::isEndFunctionAsyncExecute(INIT_AUDIO_KEY) && mObjHolder->mSysWrapper->isLoadDoneWaveDataAtSystemInit()) {
         MR::waitForEndFunctionAsyncExecute(INIT_AUDIO_KEY);
         setNerve(&NrvGameSystem::GameSystemInitializeLogoScene::sInstance);
     }
@@ -144,8 +140,7 @@ void GameSystem::exeInitializeAudio() {
 void GameSystem::exeInitializeLogoScene() {
     if (GameSystemFunction::isResetProcessing()) {
         setNerve(&NrvGameSystem::GameSystemWaitForReboot::sInstance);
-    }
-    else {
+    } else {
         if (MR::isFirstStep(this)) {
             MR::requestChangeScene("Logo");
         }
@@ -164,7 +159,6 @@ void GameSystem::exeLoadStationedArchive() {
 }
 
 void GameSystem::exeWaitForReboot() {
-    
 }
 
 void GameSystem::exeNormal() {
@@ -174,7 +168,7 @@ void GameSystem::exeNormal() {
 
 void GameSystem::initGX() {
     if (mFifoBase == nullptr) {
-        mFifoBase = new(32) u8[GX_FIFO_SIZE];
+        mFifoBase = new (32) u8[GX_FIFO_SIZE];
     }
 
     GXInit(mFifoBase, GX_FIFO_SIZE);
@@ -203,9 +197,7 @@ inline bool isSystemNormal(const GameSystem* pGameSystem) {
 }
 
 bool GameSystem::isPreparedReset() const {
-    return isSystemWaitForReboot(this)
-        || isSystemNormal(this)
-        || mStationedArchiveLoader->isPreparedReset();
+    return isSystemWaitForReboot(this) || isSystemNormal(this) || mStationedArchiveLoader->isPreparedReset();
 }
 
 void GameSystem::frameLoop() {
@@ -244,9 +236,7 @@ void GameSystem::update() {
         mErrorWatcher->movement();
     }
 
-    mDimmingWatcher->_5 = mErrorWatcher->isWarning()
-        || mHomeButtonLayout->isActive()
-        || GameSequenceFunction::isActiveSaveDataHandleSequence();
+    mDimmingWatcher->_5 = mErrorWatcher->isWarning() || mHomeButtonLayout->isActive() || GameSequenceFunction::isActiveSaveDataHandleSequence();
     mDimmingWatcher->update();
     updateNerve();
 }
@@ -254,9 +244,9 @@ void GameSystem::update() {
 void GameSystem::updateSceneController() {
     bool isSceneUpdate = true;
     bool isResetProcessing = SingletonHolder<GameSystemResetAndPowerProcess>::get()->isActive();
-    
+
     mObjHolder->updateAudioSystem();
-    
+
     if (isResetProcessing) {
         isSceneUpdate = false;
     }
@@ -269,13 +259,12 @@ void GameSystem::updateSceneController() {
         isSceneUpdate = false;
     }
 
-    mHomeButtonStateNotifier->update(mHomeButtonLayout->isActive()
-        || GameSystemFunction::isOccurredSystemWarning());
+    mHomeButtonStateNotifier->update(mHomeButtonLayout->isActive() || GameSystemFunction::isOccurredSystemWarning());
 
     if (isSceneUpdate || isResetProcessing) {
         mSequenceDirector->update();
     }
-    
+
     if (isSceneUpdate || mSceneController->isFirstUpdateSceneNerveNormal()) {
         if (mSystemWipeHolder != nullptr) {
             mSystemWipeHolder->movement();
@@ -283,7 +272,7 @@ void GameSystem::updateSceneController() {
 
         mSceneController->updateScene();
     }
-    
+
     if (isResetProcessing) {
         mSceneController->updateSceneDuringResetProcessing();
     }

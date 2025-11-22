@@ -6,6 +6,6 @@ class ModelManager;
 
 class ActorPadAndCameraCtrl {
 public:
-    static ActorPadAndCameraCtrl* tryCreate(const ModelManager *, const TVec3f *);
-    void update();
+    static ActorPadAndCameraCtrl* tryCreate(const ModelManager*, const TVec3f*);
+    void                          update();
 };

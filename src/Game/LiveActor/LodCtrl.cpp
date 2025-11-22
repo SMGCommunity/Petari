@@ -5,7 +5,7 @@
 #include <cstdio>
 
 namespace {
-    void LodFuntionCall(LodCtrl *pCtrl, void (*pFunc)(LiveActor *)) NO_INLINE {
+    void LodFuntionCall(LodCtrl* pCtrl, void (*pFunc)(LiveActor*)) NO_INLINE {
         pFunc(pCtrl->mActor);
 
         if (pCtrl->_10) {
@@ -17,8 +17,8 @@ namespace {
         }
     }
 
-    template<typename T>
-    void LodFuntionCall(LodCtrl *pCtrl, void (*pFunc)(LiveActor *, T), T arg) NO_INLINE {
+    template <typename T>
+    void LodFuntionCall(LodCtrl* pCtrl, void (*pFunc)(LiveActor*, T), T arg) NO_INLINE {
         pFunc(pCtrl->mActor, arg);
 
         if (pCtrl->_10) {
@@ -29,11 +29,11 @@ namespace {
             pFunc(pCtrl->_14, arg);
         }
     }
-};
+}; // namespace
 
 const bool def = false;
 
-LodCtrl::LodCtrl(LiveActor *pActor, const JMapInfoIter &rIter) {
+LodCtrl::LodCtrl(LiveActor* pActor, const JMapInfoIter& rIter) {
     _0 = 2000.0f;
     _4 = 3000.0f;
     _8 = pActor;
@@ -113,8 +113,7 @@ void LodCtrl::invalidate() {
 }
 
 bool LodCtrl::isShowLowModel() const {
-    return _14 != nullptr
-        && _14 == _8;
+    return _14 != nullptr && _14 == _8;
 }
 
 void LodCtrl::setDistanceToMiddle(f32 dist) {
@@ -158,8 +157,7 @@ void LodCtrl::showHighModel() {
 
         mActorLightCtrl = mActor->mActorLightCtrl;
         MR::showModel(mActor);
-    }
-    else {
+    } else {
         if (_10) {
             if (!MR::isDead(_10)) {
                 _10->makeActorDead();
@@ -170,7 +168,7 @@ void LodCtrl::showHighModel() {
             if (!MR::isDead(_14)) {
                 _14->makeActorDead();
             }
-        }   
+        }
     }
 
     _8 = mActor;
@@ -185,8 +183,7 @@ void LodCtrl::showMiddleModel() {
         mActorLightCtrl = _10->mActorLightCtrl;
         _10->makeActorAppeared();
         MR::calcAnimDirect(mActor);
-    }
-    else {
+    } else {
         if (!MR::isHiddenModel(mActor)) {
             MR::hideModelAndOnCalcAnim(mActor);
         }
@@ -210,8 +207,7 @@ void LodCtrl::showLowModel() {
         mActorLightCtrl = _14->mActorLightCtrl;
         _14->makeActorAppeared();
         MR::calcAnimDirect(mActor);
-    }
-    else {
+    } else {
         if (!MR::isHiddenModel(mActor)) {
             MR::hideModelAndOnCalcAnim(mActor);
         }
@@ -225,12 +221,12 @@ void LodCtrl::showLowModel() {
 }
 
 void LodCtrl::hideAllModel() {
-    if (!MR::isHiddenModel(mActor)) { 
+    if (!MR::isHiddenModel(mActor)) {
         MR::hideModelAndOnCalcAnim(mActor);
     }
 
     if (_10) {
-        if (!MR::isDead(_10)) { 
+        if (!MR::isDead(_10)) {
             _10->makeActorDead();
         }
     }
@@ -241,10 +237,10 @@ void LodCtrl::hideAllModel() {
         }
     }
 
-    _8 = 0; 
+    _8 = 0;
 }
 
-void LodCtrl::setViewCtrlPtr(const bool *a1, const bool *a2, const bool *a3, const bool *a4) {
+void LodCtrl::setViewCtrlPtr(const bool* a1, const bool* a2, const bool* a3, const bool* a4) {
     _1C = a1;
     _20 = a2;
     _24 = a3;
@@ -258,8 +254,7 @@ void LodCtrl::createLodModel(int a1, int a2, int a3) {
     if (_10 || _14) {
         appear();
         _18 = 1;
-    }
-    else {
+    } else {
         kill();
         _18 = 0;
     }
@@ -298,7 +293,7 @@ void LodCtrl::initLightCtrl() {
 ModelObj* LodCtrl::initLodModel(int a1, int a2, int a3, bool isLowModel) const {
     const char* res = MR::getModelResName(mActor);
     const char* type = isLowModel ? "Low" : "Middle";
-    char buf[0x100];
+    char        buf[0x100];
     snprintf(buf, sizeof(buf), "/ObjectData/%s%s.arc", res, type);
 
     if (!MR::isFileExist(buf, false)) {
@@ -315,7 +310,7 @@ ModelObj* LodCtrl::initLodModel(int a1, int a2, int a3, bool isLowModel) const {
     return obj;
 }
 
-bool LodCtrlFunction::isExistLodLowModel(const char *pName) {
+bool LodCtrlFunction::isExistLodLowModel(const char* pName) {
     char buf[0x100];
     snprintf(buf, sizeof(buf), "/ObjectData/%sLow.arc", pName);
     return MR::isFileExist(buf, false);

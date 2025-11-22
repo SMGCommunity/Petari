@@ -6,7 +6,7 @@ namespace nw4r {
     namespace lyt {
         class DrawInfo;
     };
-};
+}; // namespace nw4r
 
 class GalaxyNamePlate;
 
@@ -25,15 +25,15 @@ public:
     void calcAnimForCapture(const nw4r::lyt::DrawInfo&);
     void setModeNormal();
     void setModeNewDomeDiscover();
-    s32 calcDomeStatus() const;
+    s32  calcDomeStatus() const;
     bool isComplete() const;
     void syncStatus();
     bool hasNewGalaxy() const;
 
-    /* 0x20 */ int _20;
-    /* 0x24 */ LayoutActor* mHost;
-    /* 0x28 */ const char* mPaneName;
-    /* 0x2C */ const char* _2C;
+    /* 0x20 */ int              _20;
+    /* 0x24 */ LayoutActor*     mHost;
+    /* 0x28 */ const char*      mPaneName;
+    /* 0x2C */ const char*      _2C;
     /* 0x30 */ GalaxyNamePlate* mNamePlate;
-    /* 0x34 */ u8 mMode;
+    /* 0x34 */ u8               mMode;
 };

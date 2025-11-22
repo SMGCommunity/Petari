@@ -19,24 +19,24 @@ namespace MR {
     class NewDeleteAllocator {
     public:
         static void* alloc(MEMAllocator* pAllocator, u32 size);
-        static void free(MEMAllocator* pAllocator, void* pPtr);
+        static void  free(MEMAllocator* pAllocator, void* pPtr);
 
         static MEMAllocatorFunc sAllocatorFunc;
-        static MEMAllocator sAllocator;
+        static MEMAllocator     sAllocator;
     };
 
     MEMAllocator* getHomeButtonLayoutAllocator();
-    JKRHeap* getCurrentHeap();
-    JKRHeap* getAproposHeapForSceneArchive(f32);
-    JKRExpHeap* getStationedHeapNapa();
-    JKRExpHeap* getStationedHeapGDDR3();
+    JKRHeap*      getCurrentHeap();
+    JKRHeap*      getAproposHeapForSceneArchive(f32);
+    JKRExpHeap*   getStationedHeapNapa();
+    JKRExpHeap*   getStationedHeapGDDR3();
     JKRSolidHeap* getSceneHeapNapa();
     JKRSolidHeap* getSceneHeapGDDR3();
-    JKRHeap* getHeapNapa(const JKRHeap* pHeap);
-    JKRHeap* getHeapGDDR3(const JKRHeap* pHeap);
-    void becomeCurrentHeap(JKRHeap* pHeap);
-    bool isEqualCurrentHeap(JKRHeap* pHeap);
-    void adjustHeapSize(JKRExpHeap* pHeap, const char* pParam2);
+    JKRHeap*      getHeapNapa(const JKRHeap* pHeap);
+    JKRHeap*      getHeapGDDR3(const JKRHeap* pHeap);
+    void          becomeCurrentHeap(JKRHeap* pHeap);
+    bool          isEqualCurrentHeap(JKRHeap* pHeap);
+    void          adjustHeapSize(JKRExpHeap* pHeap, const char* pParam2);
 
     /// @brief Copies `size` bytes from `pSrc` to `pDst`.
     /// @param pDst The pointer to the memory to copy to.
@@ -62,16 +62,16 @@ namespace MR {
     u32 calcCheckSum(const void* pPtr, u32 size);
 
     void* allocFromWPadHeap(u32 size);
-    u8 freeFromWPadHeap(void* pPtr);
+    u8    freeFromWPadHeap(void* pPtr);
 
-    template<int N>
+    template <int N>
     class JKRHeapAllocator {
     public:
         static void* alloc(MEMAllocator* pAllocator, u32 size);
-        static void free(MEMAllocator* pAllocator, void* pPtr);
+        static void  free(MEMAllocator* pAllocator, void* pPtr);
 
-        static MEMAllocator sAllocator;
+        static MEMAllocator     sAllocator;
         static MEMAllocatorFunc sAllocatorFunc;
-        static JKRHeap* sHeap;
+        static JKRHeap*         sHeap;
     };
-};
+}; // namespace MR

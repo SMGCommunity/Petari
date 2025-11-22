@@ -6,12 +6,10 @@ namespace {
     NEW_NERVE(MiiConfirmIconNrvAppear, MiiConfirmIcon, Appear);
     NEW_NERVE(MiiConfirmIconNrvWait, MiiConfirmIcon, Wait);
     NEW_NERVE(MiiConfirmIconNrvDisappear, MiiConfirmIcon, Disappear);
-};
+}; // namespace
 
-MiiConfirmIcon::MiiConfirmIcon(const char* pName) :
-    LayoutActor(pName, true)
-{
-    
+MiiConfirmIcon::MiiConfirmIcon(const char* pName)
+    : LayoutActor(pName, true) {
 }
 
 void MiiConfirmIcon::init(const JMapInfoIter& rIter) {

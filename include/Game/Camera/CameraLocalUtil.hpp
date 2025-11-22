@@ -8,70 +8,70 @@ class CameraMan;
 class CameraTargetObj;
 
 namespace CameraLocalUtil {
-    const char *getDummyVecRegName();
+    const char* getDummyVecRegName();
 
-    CameraDirector *getCameraDirector();
-    CameraTargetObj *getTarget(const CameraMan *);
-    CameraTargetObj* getTarget(const Camera *);
-    
-    void calcSafePose(CameraMan *, Camera *);
+    CameraDirector*  getCameraDirector();
+    CameraTargetObj* getTarget(const CameraMan*);
+    CameraTargetObj* getTarget(const Camera*);
 
-    TVec3f *getPos(const Camera *);
-    TVec3f *getWatchPos(const Camera *);
-    TVec3f *getUpVec(const Camera *);
-    TVec3f *getWatchUpVec(const Camera *);
+    void calcSafePose(CameraMan*, Camera*);
 
-    void setPos(Camera *, const TVec3f &);
+    TVec3f* getPos(const Camera*);
+    TVec3f* getWatchPos(const Camera*);
+    TVec3f* getUpVec(const Camera*);
+    TVec3f* getWatchUpVec(const Camera*);
 
-    void setWatchPos(Camera *, const TVec3f &);
+    void setPos(Camera*, const TVec3f&);
 
-    void setWatchUpVec(Camera *, const TVec3f &);
+    void setWatchPos(Camera*, const TVec3f&);
 
-    void setUpVecAndWatchUpVec(Camera *, const TVec3f &);
+    void setWatchUpVec(Camera*, const TVec3f&);
 
-    f32 getFovy(const Camera *);
-    f32 getRoll(const Camera *);
+    void setUpVecAndWatchUpVec(Camera*, const TVec3f&);
 
-    void setFovy(Camera *, f32);
-    void setRoll(Camera *, f32);
-    
-    TVec3f *getGlobalOffset(const Camera *);
-    TVec3f *getLocalOffset(const Camera *);
+    f32 getFovy(const Camera*);
+    f32 getRoll(const Camera*);
 
-    void setGlobalOffset(Camera *, const TVec3f &);
-    void setLocalOffset(Camera *, const TVec3f &);
-    void setFrontOffset(Camera *, f32);
-    void setUpperOffset(Camera *, f32);
+    void setFovy(Camera*, f32);
+    void setRoll(Camera*, f32);
 
-    TVec3f *getPos(const CameraMan *);
-    TVec3f *getWatchPos(const CameraMan *);
+    TVec3f* getGlobalOffset(const Camera*);
+    TVec3f* getLocalOffset(const Camera*);
 
-    TVec3f* getUpVec(const CameraMan *);
+    void setGlobalOffset(Camera*, const TVec3f&);
+    void setLocalOffset(Camera*, const TVec3f&);
+    void setFrontOffset(Camera*, f32);
+    void setUpperOffset(Camera*, f32);
 
-    f32 getFovy(const CameraMan *);
+    TVec3f* getPos(const CameraMan*);
+    TVec3f* getWatchPos(const CameraMan*);
 
-    void setPos(CameraMan *, const TVec3f &);
-    void setWatchPos(CameraMan *, const TVec3f &);
-    void setUpVec(CameraMan *, const TVec3f &);
-    void setWatchUpVec(CameraMan *, const TVec3f &);
-    void setUsedTarget(const CameraMan *, CameraTargetObj *);
+    TVec3f* getUpVec(const CameraMan*);
 
-    void setUpVec(Camera *, const TVec3f &);
+    f32 getFovy(const CameraMan*);
 
-    void setFovy(CameraMan *, f32);
-    void setRoll(CameraMan *, f32);
+    void setPos(CameraMan*, const TVec3f&);
+    void setWatchPos(CameraMan*, const TVec3f&);
+    void setUpVec(CameraMan*, const TVec3f&);
+    void setWatchUpVec(CameraMan*, const TVec3f&);
+    void setUsedTarget(const CameraMan*, CameraTargetObj*);
 
-    TVec3f *getLocalOffset(CameraMan *);
+    void setUpVec(Camera*, const TVec3f&);
 
-    void setGlobalOffset(CameraMan *, const TVec3f &);
-    void setLocalOffset(CameraMan *, const TVec3f &);
-    void setFrontOffset(CameraMan *, f32);
-    void setUpperOffset(CameraMan *, f32);
+    void setFovy(CameraMan*, f32);
+    void setRoll(CameraMan*, f32);
 
-    void makeWatchPoint(TVec3f *, Camera *, CameraTargetObj *, f32);
+    TVec3f* getLocalOffset(CameraMan*);
+
+    void setGlobalOffset(CameraMan*, const TVec3f&);
+    void setLocalOffset(CameraMan*, const TVec3f&);
+    void setFrontOffset(CameraMan*, f32);
+    void setUpperOffset(CameraMan*, f32);
+
+    void makeWatchPoint(TVec3f*, Camera*, CameraTargetObj*, f32);
 
     bool tryCameraReset();
 
     bool testCameraPadTriggerRoundLeft();
     bool testCameraPadTriggerRoundRight();
-};
+}; // namespace CameraLocalUtil

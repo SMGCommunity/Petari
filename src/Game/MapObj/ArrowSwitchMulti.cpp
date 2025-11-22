@@ -3,14 +3,15 @@
 #include "Game/Map/StageSwitch.hpp"
 #include "math_types.hpp"
 
-ArrowSwitchTarget::ArrowSwitchTarget(const char *pName) : NameObj(pName) {
+ArrowSwitchTarget::ArrowSwitchTarget(const char* pName)
+    : NameObj(pName) {
     mJMapIDInfo = nullptr;
     mStageSwitchCtrl = nullptr;
     mTargetIdx = -1;
     MR::createArrowSwitchMultiHolder();
 }
 
-void ArrowSwitchTarget::init(const JMapInfoIter &rIter) {
+void ArrowSwitchTarget::init(const JMapInfoIter& rIter) {
     s32 arg;
     MR::getJMapInfoArg0WithInit(rIter, &arg);
     mJMapIDInfo = new JMapIdInfo(arg, rIter);
@@ -42,8 +43,8 @@ void ArrowSwitchTarget::offTarget() {
     }
 }
 
-
-ArrowSwitchMulti::ArrowSwitchMulti(const char *pName) : LiveActor(pName) {
+ArrowSwitchMulti::ArrowSwitchMulti(const char* pName)
+    : LiveActor(pName) {
     mIDInfo = nullptr;
     _A0 = 0.0f;
     _A4 = 0.0f;
@@ -57,11 +58,11 @@ ArrowSwitchMulti::ArrowSwitchMulti(const char *pName) : LiveActor(pName) {
     }
 }
 
-void ArrowSwitchMulti::registerTarget(ArrowSwitchTarget *pTarget) {
+void ArrowSwitchMulti::registerTarget(ArrowSwitchTarget* pTarget) {
     mTargetArray[pTarget->mTargetIdx] = pTarget;
 }
 
-void ArrowSwitchMulti::init(const JMapInfoIter &rIter) {
+void ArrowSwitchMulti::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     initModelManagerWithAnm("ArrowSwitch", nullptr, false);
     MR::connectToSceneNoSilhouettedMapObjStrongLight(this);
@@ -72,8 +73,7 @@ void ArrowSwitchMulti::init(const JMapInfoIter &rIter) {
     if (MR::isInAreaObj("PlaneModeCube", mPosition)) {
         initHitSensor(1);
         MR::addHitSensorMapObj(this, "body", 8, 100.0f, TVec3f(0.0f, 50.0f, 250.0f));
-    }
-    else {
+    } else {
         initHitSensor(2);
         MR::addHitSensorMapObj(this, "body", 8, 100.0f, TVec3f(0.0f, 50.0f, 250.0f));
         MR::addHitSensorMapObjMoveCollision(this, "collision", 8, 0.0f, TVec3f(0.0f, 0.0f, 0.0f));
@@ -87,7 +87,6 @@ void ArrowSwitchMulti::init(const JMapInfoIter &rIter) {
 }
 
 void ArrowSwitchMulti::control() {
-
 }
 
 void ArrowSwitchMulti::calcAndSetBaseMtx() {
@@ -114,15 +113,15 @@ void ArrowSwitchMulti::calcAndSetBaseMtx() {
     MR::setBaseTRMtx(this, pos);
 }
 
-bool ArrowSwitchMulti::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool ArrowSwitchMulti::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgPlayerHitAll(msg)) {
         return requestPunch(pSender, pReceiver);
-    }   
+    }
 
     return false;
 }
 
-bool ArrowSwitchMulti::requestPunch(HitSensor *pSender, HitSensor *pReceiver) {
+bool ArrowSwitchMulti::requestPunch(HitSensor* pSender, HitSensor* pReceiver) {
     if (getSensor("body") != pReceiver) {
         return false;
     }
@@ -134,8 +133,7 @@ bool ArrowSwitchMulti::requestPunch(HitSensor *pSender, HitSensor *pReceiver) {
     if (_B0) {
         _AC++;
         _A4 = 6.0f;
-    }
-    else {
+    } else {
         _AC--;
         _A4 = -6.0f;
     }
@@ -143,15 +141,14 @@ bool ArrowSwitchMulti::requestPunch(HitSensor *pSender, HitSensor *pReceiver) {
     _AC = (_AC + 4) % 4;
     MR::invalidateClipping(this);
     setNerve(&NrvArrowSwitchMulti::ArrowSwitchMultiNrvRotate::sInstance);
-    return true; 
+    return true;
 }
 
 void ArrowSwitchMulti::exeWait() {
     if (MR::isFirstStep(this)) {
         if (_AC % 2 == 1) {
             MR::startBtk(this, "On");
-        } 
-        else {
+        } else {
             MR::startBtk(this, "Off");
         }
 
@@ -162,24 +159,22 @@ void ArrowSwitchMulti::exeWait() {
 // ArrowSwitchMulti::exeRotate
 
 ArrowSwitchMulti::~ArrowSwitchMulti() {
-
 }
 
 ArrowSwitchTarget::~ArrowSwitchTarget() {
-
 }
 
 namespace NrvArrowSwitchMulti {
     INIT_NERVE(ArrowSwitchMultiNrvWait);
     INIT_NERVE(ArrowSwitchMultiNrvRotate);
 
-    void ArrowSwitchMultiNrvRotate::execute(Spine *pSpine) const {
+    void ArrowSwitchMultiNrvRotate::execute(Spine* pSpine) const {
         ArrowSwitchMulti* sw = reinterpret_cast<ArrowSwitchMulti*>(pSpine->mExecutor);
         sw->exeRotate();
     }
 
-    void ArrowSwitchMultiNrvWait::execute(Spine *pSpine) const {
+    void ArrowSwitchMultiNrvWait::execute(Spine* pSpine) const {
         ArrowSwitchMulti* sw = reinterpret_cast<ArrowSwitchMulti*>(pSpine->mExecutor);
         sw->exeWait();
     }
-};
+}; // namespace NrvArrowSwitchMulti

@@ -5,14 +5,13 @@
 #include "Game/Animation/XanimePlayer.hpp"
 #include "Game/Player/MarioAnimatorData.hpp"
 
-MarioAnimator::MarioAnimator(MarioActor *actor) : MarioModule(actor)
-{
+MarioAnimator::MarioAnimator(MarioActor* actor)
+    : MarioModule(actor) {
     init();
 }
 
-void MarioAnimator::init()
-{
-    XanimeSwapTable *luigiAnimations = nullptr;
+void MarioAnimator::init() {
+    XanimeSwapTable* luigiAnimations = nullptr;
     if (gIsLuigi) {
         luigiAnimations = luigiAnimeSwapTable;
     }
@@ -63,13 +62,11 @@ void MarioAnimator::init()
     PSMTXCopy(MR::tmpMtxRotYRad(3.14159274101f), _DC.toMtxPtr());
 }
 
-bool MarioAnimator::isAnimationStop() const
-{
+bool MarioAnimator::isAnimationStop() const {
     return mXanimePlayer->mCurrentAnimation == mXanimePlayer->mDefaultAnimation;
 }
 
-void MarioAnimator::change(const char *name)
-{
+void MarioAnimator::change(const char* name) {
 
     if (mActor->_B90) {
         return;
@@ -79,19 +76,17 @@ void MarioAnimator::change(const char *name)
         mXanimePlayer->changeAnimation(name);
     }
 
-    const char *bck = mXanimePlayer->getCurrentBckName();
+    const char* bck = mXanimePlayer->getCurrentBckName();
     if (bck) {
-        const XanimeGroupInfo *info = mXanimePlayer->mCurrentAnimation;
+        const XanimeGroupInfo* info = mXanimePlayer->mCurrentAnimation;
         if (info->_18 == 2) {
             f32 arg1 = info->_14, arg2 = info->_10;
             getPlayer()->startBas(bck, false, arg1, arg2);
-        }
-        else {
+        } else {
             getPlayer()->startBas(bck, false, 0.0f, 0.0f);
         }
         mActor->setBlink(bck);
-    }
-    else {
+    } else {
         getPlayer()->startBas(nullptr, false, 0.0f, 0.0f);
         mActor->setBlink(nullptr);
     }
@@ -100,26 +95,22 @@ void MarioAnimator::change(const char *name)
     entryCallback(name);
 }
 
-void MarioAnimator::changeUpper(const char *name)
-{
+void MarioAnimator::changeUpper(const char* name) {
     mXanimePlayerUpper->changeAnimation(name);
     _6C = true;
 }
 
-void MarioAnimator::changeDefault(const char *name)
-{
+void MarioAnimator::changeDefault(const char* name) {
     getPlayer()->startBas(nullptr, false, 0.0f, 0.0f);
 
     mXanimePlayer->setDefaultAnimation(name);
 }
 
-void MarioAnimator::changeDefaultUpper(const char *name)
-{
+void MarioAnimator::changeDefaultUpper(const char* name) {
     if (name) {
         mUpperDefaultSet = true;
         mXanimePlayerUpper->setDefaultAnimation(name);
-    }
-    else {
+    } else {
         mUpperDefaultSet = false;
     }
 }

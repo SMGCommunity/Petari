@@ -5,12 +5,12 @@
 class JKRHeap;
 
 namespace MR {
-    template<int T>
+    template <int T>
     class MutexHolder {
     public:
         static OSMutex sMutex;
     };
-    
-    template<int T>
+
+    template <int T>
     OSMutex MutexHolder<T>::sMutex;
-};
+}; // namespace MR

@@ -5,12 +5,12 @@
 
 class FirePressureBulletHolder : public NameObj {
 public:
-    FirePressureBulletHolder(const char *);
+    FirePressureBulletHolder(const char*);
 
     virtual ~FirePressureBulletHolder();
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
 
     FirePressureBullet* callEmptyBullet();
 
-    FirePressureBullet* mBullets[0x8];  // 0xC
+    FirePressureBullet* mBullets[0x8]; // 0xC
 };

@@ -12,12 +12,11 @@ namespace NrvButlerStateStarPieceReaction {
     NEW_NERVE(ButlerStateStarPieceReactionNrvWait, ButlerStateStarPieceReaction, Wait);
 };
 
-ButlerStateStarPieceReaction::ButlerStateStarPieceReaction(LiveActor *pHost, const JMapInfoIter &rIter, const char *pName) :
-    ActorStateBase<LiveActor>("バトラースターピース反応"),
-    mHost(pHost),
-    mTalkMessage(nullptr),
-    _14(false)
-{
+ButlerStateStarPieceReaction::ButlerStateStarPieceReaction(LiveActor* pHost, const JMapInfoIter& rIter, const char* pName)
+    : ActorStateBase<LiveActor>("バトラースターピース反応"),
+      mHost(pHost),
+      mTalkMessage(nullptr),
+      _14(false) {
     mTalkMessage = MR::createTalkCtrlDirectOnRootNodeAutomatic(pHost, rIter, pName, TVec3f(0.0f, 180.0f, 0.0f), nullptr);
 }
 
@@ -40,9 +39,9 @@ void ButlerStateStarPieceReaction::exeWait() {
     }
 
     if (_14) {
-        MR::tryTalkForce(mTalkMessage); 
+        MR::tryTalkForce(mTalkMessage);
     }
-    
+
     if (MR::isBckStopped(mHost)) {
         kill();
     }

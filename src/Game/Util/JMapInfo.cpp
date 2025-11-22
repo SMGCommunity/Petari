@@ -8,7 +8,6 @@ JMapInfo::JMapInfo() {
 }
 
 JMapInfo::~JMapInfo() {
-
 }
 
 bool JMapInfo::attach(const void* pData) {
@@ -40,7 +39,7 @@ s32 JMapInfo::searchItemInfo(const char* pKey) const {
             return i;
         }
     }
-    
+
     return -1;
 }
 
@@ -55,16 +54,16 @@ s32 JMapInfo::getValueType(const char* pItem) const {
 
 bool JMapInfo::getValueFast(int entryIndex, int itemIndex, const char** pValueOut) const {
     const JMapItem* item = &mData->mItems[itemIndex];
-    const char* valuePtr = getEntryAddress(mData, mData->mDataOffset, entryIndex) + item->mOffsData;
+    const char*     valuePtr = getEntryAddress(mData, mData->mDataOffset, entryIndex) + item->mOffsData;
 
     switch (item->mType) {
-        case JMAP_VALUE_TYPE_STRING_PTR:
-            const char* pStringTable = getEntryAddress(mData, mData->mDataOffset, getNumEntries());
-            *pValueOut = pStringTable + *reinterpret_cast<const u32*>(valuePtr);
-            break;
-        default:
-            *pValueOut = valuePtr;
-            break;
+    case JMAP_VALUE_TYPE_STRING_PTR:
+        const char* pStringTable = getEntryAddress(mData, mData->mDataOffset, getNumEntries());
+        *pValueOut = pStringTable + *reinterpret_cast<const u32*>(valuePtr);
+        break;
+    default:
+        *pValueOut = valuePtr;
+        break;
     }
 
     return true;
@@ -72,22 +71,22 @@ bool JMapInfo::getValueFast(int entryIndex, int itemIndex, const char** pValueOu
 
 bool JMapInfo::getValueFast(int entryIndex, int itemIndex, u32* pValueOut) const {
     const JMapItem* item = &mData->mItems[itemIndex];
-    const char* valuePtr = getEntryAddress(mData, mData->mDataOffset, entryIndex) + item->mOffsData;
+    const char*     valuePtr = getEntryAddress(mData, mData->mDataOffset, entryIndex) + item->mOffsData;
 
     u32 rawValue;
     switch (item->mType) {
-        case JMAP_VALUE_TYPE_LONG:
-        case JMAP_VALUE_TYPE_LONG_2:
-            rawValue = *reinterpret_cast<const u32*>(valuePtr);
-            break;
-        case JMAP_VALUE_TYPE_SHORT:
-            rawValue = *reinterpret_cast<const u16*>(valuePtr);
-            break;
-        case JMAP_VALUE_TYPE_BYTE:
-            rawValue = *reinterpret_cast<const u8*>(valuePtr);
-            break;
-        default:
-            return false;
+    case JMAP_VALUE_TYPE_LONG:
+    case JMAP_VALUE_TYPE_LONG_2:
+        rawValue = *reinterpret_cast<const u32*>(valuePtr);
+        break;
+    case JMAP_VALUE_TYPE_SHORT:
+        rawValue = *reinterpret_cast<const u16*>(valuePtr);
+        break;
+    case JMAP_VALUE_TYPE_BYTE:
+        rawValue = *reinterpret_cast<const u8*>(valuePtr);
+        break;
+    default:
+        return false;
     }
 
     *pValueOut = (rawValue & item->mMask) >> item->mShift;
@@ -100,28 +99,28 @@ bool JMapInfo::getValueFast(int entryIndex, int itemIndex, s32* pValueOut) const
         goto FAIL;
     }
     const char* valuePtr = getEntryAddress(mData, mData->mDataOffset, entryIndex) + item->mOffsData;
-    
+
     switch (item->mType) {
-        case JMAP_VALUE_TYPE_LONG:
-            if (item->mMask == 0xffffffff) {
-                *pValueOut = *reinterpret_cast<const s32*>(valuePtr);
-                break;
-            }
-            goto FAIL;
-        case JMAP_VALUE_TYPE_SHORT:
-            if (item->mMask == 0xffff) {
-                *pValueOut = *reinterpret_cast<const s16*>(valuePtr);
-                break;
-            }
-            goto FAIL;
-        case JMAP_VALUE_TYPE_BYTE:
-            if (item->mMask == 0xff) {
-                *pValueOut = *reinterpret_cast<const s8*>(valuePtr);
-                break;
-            }
-            goto FAIL;
-        default:
-            goto FAIL;
+    case JMAP_VALUE_TYPE_LONG:
+        if (item->mMask == 0xffffffff) {
+            *pValueOut = *reinterpret_cast<const s32*>(valuePtr);
+            break;
+        }
+        goto FAIL;
+    case JMAP_VALUE_TYPE_SHORT:
+        if (item->mMask == 0xffff) {
+            *pValueOut = *reinterpret_cast<const s16*>(valuePtr);
+            break;
+        }
+        goto FAIL;
+    case JMAP_VALUE_TYPE_BYTE:
+        if (item->mMask == 0xff) {
+            *pValueOut = *reinterpret_cast<const s8*>(valuePtr);
+            break;
+        }
+        goto FAIL;
+    default:
+        goto FAIL;
     }
     return true;
 FAIL:
@@ -129,7 +128,7 @@ FAIL:
 }
 
 JMapInfoIter MR::findJMapInfoElementNoCase(const JMapInfo* pInfo, const char* key, const char* searchValue, int startIndex) {
-    int entryIndex = startIndex;
+    int         entryIndex = startIndex;
     const char* value;
     while (entryIndex < pInfo->getNumEntries()) {
         pInfo->getValue<const char*>(entryIndex, key, &value);
@@ -152,11 +151,9 @@ JMapInfoIter JMapInfo::findElementBinary(const char* key, const char* value) con
         int comparison = strcmp(nextVal, value);
         if (comparison == 0) {
             return JMapInfoIter(this, mid);
-        }
-        else if (comparison < 0) {
+        } else if (comparison < 0) {
             low = mid + 1;
-        }
-        else {
+        } else {
             high = mid;
         }
     }

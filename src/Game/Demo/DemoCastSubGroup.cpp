@@ -5,16 +5,17 @@
 #include "Game/Util/JMapIdInfo.hpp"
 #include "Game/Util/JMapInfo.hpp"
 
-DemoCastSubGroup::DemoCastSubGroup(const char *pName) : DemoCastGroup(pName) {
+DemoCastSubGroup::DemoCastSubGroup(const char* pName)
+    : DemoCastGroup(pName) {
     mExecutor = nullptr;
 }
 
-void DemoCastSubGroup::init(const JMapInfoIter &rIter) {
+void DemoCastSubGroup::init(const JMapInfoIter& rIter) {
     DemoCastGroup::init(rIter);
     DemoFunction::getDemoCastSubGroupHolder()->registerObj(this);
 }
 
-bool DemoCastSubGroup::tryRegisterDemoActor(LiveActor *pActor, const JMapInfoIter &rIter, const JMapIdInfo &rInfo) {
+bool DemoCastSubGroup::tryRegisterDemoActor(LiveActor* pActor, const JMapInfoIter& rIter, const JMapIdInfo& rInfo) {
     if (!DemoCastGroup::tryRegisterDemoActor(pActor, rIter, rInfo)) {
         return false;
     }
@@ -31,5 +32,4 @@ bool DemoCastSubGroup::tryRegisterDemoActor(LiveActor *pActor, const JMapInfoIte
 }
 
 DemoCastSubGroup::~DemoCastSubGroup() {
-    
 }

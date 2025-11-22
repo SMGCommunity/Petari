@@ -4,10 +4,10 @@
 
 class CamTranslatorWaterFollow : public CamTranslatorBase {
 public:
-	CamTranslatorWaterFollow(CameraWaterFollow *);
+    CamTranslatorWaterFollow(CameraWaterFollow*);
 
-	virtual void setParam(const CameraParamChunk *);
-	virtual Camera *getCamera() const;
+    virtual void    setParam(const CameraParamChunk*);
+    virtual Camera* getCamera() const;
 
-	CameraWaterFollow *mCamera;	// 0x4
+    CameraWaterFollow* mCamera; // 0x4
 };

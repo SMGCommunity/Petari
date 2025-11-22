@@ -4,11 +4,11 @@
 
 class CoinBox : public LiveActor {
 public:
-    CoinBox(const char *);
+    CoinBox(const char*);
 
     virtual ~CoinBox();
-    virtual void init(const JMapInfoIter &);
-    virtual bool receiveOtherMsg(u32, HitSensor *, HitSensor *);
+    virtual void init(const JMapInfoIter&);
+    virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
 
     void exeHit();
 };
@@ -16,4 +16,4 @@ public:
 namespace NrvCoinBox {
     NERVE(CoinBoxNrvWait);
     NERVE(CoinBoxNrvHit);
-};
+}; // namespace NrvCoinBox

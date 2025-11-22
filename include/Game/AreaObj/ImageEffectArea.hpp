@@ -11,23 +11,21 @@ public:
         IMAGE_EFFECT_TYPE_DOF = 3
     };
 
-    ImageEffectArea(EImageEffectType, int, const char *);
+    ImageEffectArea(EImageEffectType, int, const char*);
 
     virtual ~ImageEffectArea() {
-
     }
-
 
     virtual bool isSyncWithPlayer() const {
         return false;
     }
 
-    s32 mEffectType;    // 0x3C
+    s32 mEffectType; // 0x3C
 };
 
 class ImageEffectAreaMgr : public AreaObjMgr {
 public:
-    ImageEffectAreaMgr(s32, const char *);
+    ImageEffectAreaMgr(s32, const char*);
 
     virtual ~ImageEffectAreaMgr();
     virtual void initAfterPlacement();

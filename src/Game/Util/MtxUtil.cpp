@@ -7,13 +7,13 @@ namespace MR {
         mtx[2][3] = z;
     }
 
-    void addTransMtx(MtxPtr mtx, const TVec3f &rVec) {
+    void addTransMtx(MtxPtr mtx, const TVec3f& rVec) {
         mtx[0][3] += rVec.x;
         mtx[1][3] += rVec.y;
         mtx[2][3] += rVec.z;
     }
 
-    void addTransMtxLocal(MtxPtr mtx, const TVec3f &rVec) {
+    void addTransMtxLocal(MtxPtr mtx, const TVec3f& rVec) {
         addTransMtxLocalX(mtx, rVec.x);
         addTransMtxLocalY(mtx, rVec.y);
         addTransMtxLocalZ(mtx, rVec.z);
@@ -37,31 +37,31 @@ namespace MR {
         mtx[2][3] = mtx[2][3] + (mtx[2][2] * z_coord);
     }
 
-    void extractMtxXDir(MtxPtr mtx, TVec3f *pOut) {
+    void extractMtxXDir(MtxPtr mtx, TVec3f* pOut) {
         pOut->x = mtx[0][0];
         pOut->y = mtx[1][0];
         pOut->z = mtx[2][0];
     }
 
-    void extractMtxYDir(MtxPtr mtx, TVec3f *pOut) {
+    void extractMtxYDir(MtxPtr mtx, TVec3f* pOut) {
         pOut->x = mtx[0][1];
         pOut->y = mtx[1][1];
         pOut->z = mtx[2][1];
     }
 
-    void extractMtxZDir(MtxPtr mtx, TVec3f *pOut) {
+    void extractMtxZDir(MtxPtr mtx, TVec3f* pOut) {
         pOut->x = mtx[0][2];
         pOut->y = mtx[1][2];
         pOut->z = mtx[2][2];
     }
 
-    void extractMtxXYZDir(MtxPtr mtx, TVec3f *pOutX, TVec3f *pOutY, TVec3f *pOutZ) {
+    void extractMtxXYZDir(MtxPtr mtx, TVec3f* pOutX, TVec3f* pOutY, TVec3f* pOutZ) {
         MR::extractMtxXDir(mtx, pOutX);
         MR::extractMtxYDir(mtx, pOutY);
         MR::extractMtxZDir(mtx, pOutZ);
     }
-    
-    void extractMtxTrans(MtxPtr mtx, TVec3f *pOut) {
+
+    void extractMtxTrans(MtxPtr mtx, TVec3f* pOut) {
         pOut->x = mtx[0][3];
         pOut->y = mtx[1][3];
         pOut->z = mtx[2][3];
@@ -80,4 +80,4 @@ namespace MR {
         return true;
     }
     */
-};
+}; // namespace MR

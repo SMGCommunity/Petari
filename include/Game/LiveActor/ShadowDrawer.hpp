@@ -6,12 +6,12 @@ class ShadowController;
 
 class ShadowDrawer : public NameObj {
 public:
-    ShadowDrawer(const char *);
+    ShadowDrawer(const char*);
 
     virtual ~ShadowDrawer();
 
     ShadowController* getController() const;
-    void setShadowController(ShadowController *);
-    
-    ShadowController* mController;  // 0xC
+    void              setShadowController(ShadowController*);
+
+    ShadowController* mController; // 0xC
 };

@@ -1,14 +1,15 @@
 #include <revolution.h>
 #include "Game/MapObj/PunchingKinoko.hpp"
 
-PunchingKinoko::PunchingKinoko(const char *pName) : LiveActor(pName),
-    mGroundChecker(nullptr), mScaleController(nullptr), mDelegator(nullptr), _98(-1), _9C(0, 0, 0), _A8(0, 1, 0) {
-        mStarPointerHitCoolDown = 0;
-        _B8 = true;
-        mInvincibleHitCoolDown = -1;
+PunchingKinoko::PunchingKinoko(const char* pName)
+    : LiveActor(pName),
+      mGroundChecker(nullptr), mScaleController(nullptr), mDelegator(nullptr), _98(-1), _9C(0, 0, 0), _A8(0, 1, 0) {
+    mStarPointerHitCoolDown = 0;
+    _B8 = true;
+    mInvincibleHitCoolDown = -1;
 }
 
-void PunchingKinoko::init(const JMapInfoIter &rIter) {
+void PunchingKinoko::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     initModelManagerWithAnm("PunchingKinoko", nullptr, false);
     MR::connectToSceneNoSilhouettedMapObj(this);
@@ -22,7 +23,7 @@ void PunchingKinoko::init(const JMapInfoIter &rIter) {
 
     mScaleController = new AnimScaleController(nullptr);
 
-    TVec3f *groundCheckerPos = &mGroundChecker->mPosition;
+    TVec3f* groundCheckerPos = &mGroundChecker->mPosition;
     MR::initStarPointerTargetAtPos(this, 70.0f, groundCheckerPos, TVec3f(0, 0, 0));
 
     initShadow();
@@ -36,7 +37,7 @@ void PunchingKinoko::init(const JMapInfoIter &rIter) {
     makeActorAppeared();
 
     if (MR::useStageSwitchReadB(this, rIter) != 0) {
-        MR::FunctorV0M<PunchingKinoko *, void (PunchingKinoko::*)()> functor = MR::Functor<PunchingKinoko>(this, &PunchingKinoko::kill);
+        MR::FunctorV0M<PunchingKinoko*, void (PunchingKinoko::*)()> functor = MR::Functor<PunchingKinoko>(this, &PunchingKinoko::kill);
         MR::listenStageSwitchOnB(this, functor);
     }
     MR::useStageSwitchSleep(this, rIter);
@@ -58,7 +59,7 @@ void PunchingKinoko::initShadow() {
     MR::addShadowVolumeLine(this, "つた", this, "体", 10.0f, this, "頭", 10.0f);
 }
 
-void PunchingKinoko::initCamera(const JMapInfoIter &rIter) {
+void PunchingKinoko::initCamera(const JMapInfoIter& rIter) {
     MR::getJMapInfoArg7WithInit(rIter, &_98);
     if (_98 != -1) {
         MR::declareCameraRegisterVec(this, _98, &_9C);
@@ -69,7 +70,7 @@ void PunchingKinoko::initJointControl() {
     mDelegator = MR::createJointDelegatorWithNullChildFunc(this, &PunchingKinoko::ballMtxCallBack, "Ball");
 }
 
-bool PunchingKinoko::ballMtxCallBack(TPos3f *a1, const JointControllerInfo &joint) {
+bool PunchingKinoko::ballMtxCallBack(TPos3f* a1, const JointControllerInfo& joint) {
     TVec3f stack_8;
     PSVECSubtract(&mGroundChecker->mPosition, &mPosition, &stack_8);
     MR::orthogonalize(a1);
@@ -83,7 +84,7 @@ bool PunchingKinoko::ballMtxCallBack(TPos3f *a1, const JointControllerInfo &join
     MR::scaleMtxToDir(&stack_14, _A8, mScaleController->_C);
     a1->concat(stack_14, *a1);
 
-    TVec3f *groundCheckerPos = &mGroundChecker->mPosition;
+    TVec3f* groundCheckerPos = &mGroundChecker->mPosition;
     a1->mMtx[0][0] = groundCheckerPos->x;
     a1->mMtx[1][1] = groundCheckerPos->y;
     a1->mMtx[2][2] = groundCheckerPos->z;
@@ -196,7 +197,7 @@ void PunchingKinoko::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
 }
 */
 
-bool PunchingKinoko::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool PunchingKinoko::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (isCrushed()) {
         return false;
     }
@@ -248,7 +249,7 @@ bool PunchingKinoko::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSens
     return false;
 }
 
-bool PunchingKinoko::receiveMsgEnemyAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool PunchingKinoko::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (isCrushed()) {
         return false;
     }
@@ -268,7 +269,7 @@ bool PunchingKinoko::receiveMsgEnemyAttack(u32 msg, HitSensor *pSender, HitSenso
     return false;
 }
 
-bool PunchingKinoko::receiveMsgPush(HitSensor *pSender, HitSensor *pReceiver) {
+bool PunchingKinoko::receiveMsgPush(HitSensor* pSender, HitSensor* pReceiver) {
     if (isCrushed()) {
         return false;
     }
@@ -282,8 +283,7 @@ bool PunchingKinoko::receiveMsgPush(HitSensor *pSender, HitSensor *pReceiver) {
     f32 fVar1 = stack_14.dot(mGroundChecker->mVelocity);
     if (fVar1 < 0.0f) {
         fVar1 = 3.0f;
-    }
-    else {
+    } else {
         fVar1 = 3.0f - fVar1;
     }
 
@@ -297,7 +297,7 @@ bool PunchingKinoko::receiveMsgPush(HitSensor *pSender, HitSensor *pReceiver) {
     return false;
 }
 
-bool PunchingKinoko::requestPunch(HitSensor *pOtherSensor, HitSensor *pMySensor) {
+bool PunchingKinoko::requestPunch(HitSensor* pOtherSensor, HitSensor* pMySensor) {
     if (isCrushed()) {
         return false;
     }
@@ -325,7 +325,7 @@ bool PunchingKinoko::requestPunch(HitSensor *pOtherSensor, HitSensor *pMySensor)
     return false;
 }
 
-bool PunchingKinoko::requestEnemyBlow(HitSensor *pOtherSensor, HitSensor *pMySensor) {
+bool PunchingKinoko::requestEnemyBlow(HitSensor* pOtherSensor, HitSensor* pMySensor) {
     if (!isEnableBlowed()) {
         return false;
     }
@@ -342,7 +342,7 @@ bool PunchingKinoko::requestEnemyBlow(HitSensor *pOtherSensor, HitSensor *pMySen
     return true;
 }
 
-bool PunchingKinoko::requestTrample(HitSensor *pOtherSensor, HitSensor *pMySensor) {
+bool PunchingKinoko::requestTrample(HitSensor* pOtherSensor, HitSensor* pMySensor) {
     if (isEnableTrample()) {
         TVec3f stack_14;
         MR::calcSensorDirectionNormalize(&stack_14, pOtherSensor, pMySensor);
@@ -376,9 +376,9 @@ void PunchingKinoko::exeWait() {
     TVec3f stack_2C;
     MR::calcPositionUpOffset(&stack_38, this, 130.0f);
 
-    TVec3f *groundCheckerPos = &mGroundChecker->mPosition;
-    TVec3f stack_20;
-    TVec3f stack_14(stack_38);
+    TVec3f* groundCheckerPos = &mGroundChecker->mPosition;
+    TVec3f  stack_20;
+    TVec3f  stack_14(stack_38);
     PSVECSubtract(&stack_14, groundCheckerPos, &stack_14);
 
     stack_20 = stack_14;
@@ -402,20 +402,19 @@ void PunchingKinoko::exeWait() {
             }
         }
         _B8 = true;
-    }
-    else {
+    } else {
         _B8 = false;
     }
     MR::vecBlend(_9C, mPosition, &_9C, 0.05f);
 }
 
 void PunchingKinoko::exeSwing() {
-    f32 var2 = MR::calcVelocityLength(mGroundChecker);
+    f32    var2 = MR::calcVelocityLength(mGroundChecker);
     TVec3f stack_20;
     MR::calcPositionUpOffset(&stack_20, this, 130.0f);
 
-    TVec3f *groundCheckerPos = &mGroundChecker->mPosition;
-    TVec3f stack_14(stack_20);
+    TVec3f* groundCheckerPos = &mGroundChecker->mPosition;
+    TVec3f  stack_14(stack_20);
     PSVECSubtract(&stack_14, groundCheckerPos, &stack_14);
 
     TVec3f stack_8(stack_14);
@@ -448,13 +447,12 @@ void PunchingKinoko::exePointSnaped() {
 
 void PunchingKinoko::exePunched() {
     if (MR::isFirstStep(this)) {
-        
     }
 
     MR::startLevelSound(this, "SE_OJ_LV_PNC_KINOKO_PUNCHED", -1, -1, -1);
     addVelocityKeepHeight();
     MR::attenuateVelocity(mGroundChecker, 0.99f);
-    HitSensor *sensor = getSensor("Head");
+    HitSensor* sensor = getSensor("Head");
     MR::sendMsgEnemyAttackToBindedSensor(mGroundChecker, sensor);
     _9C.set<f32>(mGroundChecker->mPosition);
 
@@ -469,7 +467,7 @@ void PunchingKinoko::exePunchedBrake() {
     MR::startLevelSound(this, "SE_OJ_LV_PNC_KINOKO_PUNCHED", -1, -1, -1);
     _9C.set<f32>(mGroundChecker->mPosition);
     if (!MR::isGreaterStep(this, 40)) {
-        HitSensor *sensor = getSensor("Head");
+        HitSensor* sensor = getSensor("Head");
         if (!MR::sendMsgEnemyAttackToBindedSensor(mGroundChecker, sensor)) {
             return;
         }
@@ -499,8 +497,7 @@ void PunchingKinoko::exeCrushed() {
             TVec3f stack_8(_A8);
             stack_8.scale(20.0f);
             mGroundChecker->mPosition.add(stack_8);
-        }
-        else {
+        } else {
             _A8.set<f32>(mGravity);
         }
 
@@ -518,7 +515,6 @@ void PunchingKinoko::exeCrushed() {
 
 void PunchingKinoko::exeCrushedEnd() {
     if (MR::isFirstStep(this)) {
-        
     }
 
     if (MR::isStep(this, 10)) {
@@ -529,9 +525,9 @@ void PunchingKinoko::exeCrushedEnd() {
 
     TVec3f stack_20;
     MR::calcPositionUpOffset(&stack_20, this, 130.0f);
-    TVec3f *groundCheckerPos = &mGroundChecker->mPosition;
-    TVec3f stack_14;
-    TVec3f stack_8(stack_20);
+    TVec3f* groundCheckerPos = &mGroundChecker->mPosition;
+    TVec3f  stack_14;
+    TVec3f  stack_8(stack_20);
     PSVECSubtract(&stack_8, groundCheckerPos, &stack_8);
     stack_14 = stack_8;
     stack_14.scale(0.008f);
@@ -553,8 +549,7 @@ void PunchingKinoko::addVelocityKeepHeight() {
 }
 
 bool PunchingKinoko::isEnablePunched() const {
-    if (isNerve(&NrvPunchingKinoko::PunchingKinokoNrvWait::sInstance)
-        || isNerve(&NrvPunchingKinoko::PunchingKinokoNrvSwing::sInstance)) {
+    if (isNerve(&NrvPunchingKinoko::PunchingKinokoNrvWait::sInstance) || isNerve(&NrvPunchingKinoko::PunchingKinokoNrvSwing::sInstance)) {
         return true;
     }
     return false;
@@ -565,11 +560,7 @@ bool PunchingKinoko::isEnableHitPlayer() const {
 }
 
 bool PunchingKinoko::isEnableEnemyAttack() const {
-    if (isNerve(&NrvPunchingKinoko::PunchingKinokoNrvSwing::sInstance)
-        || isNerve(&NrvPunchingKinoko::PunchingKinokoNrvPunched::sInstance)
-        || isNerve(&NrvPunchingKinoko::PunchingKinokoNrvPunchedBrake::sInstance)
-        || isNerve(&NrvPunchingKinoko::PunchingKinokoNrvPointSnaped::sInstance))
-    {
+    if (isNerve(&NrvPunchingKinoko::PunchingKinokoNrvSwing::sInstance) || isNerve(&NrvPunchingKinoko::PunchingKinokoNrvPunched::sInstance) || isNerve(&NrvPunchingKinoko::PunchingKinokoNrvPunchedBrake::sInstance) || isNerve(&NrvPunchingKinoko::PunchingKinokoNrvPointSnaped::sInstance)) {
         return true;
     }
 
@@ -577,9 +568,7 @@ bool PunchingKinoko::isEnableEnemyAttack() const {
 }
 
 bool PunchingKinoko::isEnableCrushed() const {
-    if (isNerve(&NrvPunchingKinoko::PunchingKinokoNrvWait::sInstance)
-        || isNerve(&NrvPunchingKinoko::PunchingKinokoNrvCrushedEnd::sInstance))
-    {
+    if (isNerve(&NrvPunchingKinoko::PunchingKinokoNrvWait::sInstance) || isNerve(&NrvPunchingKinoko::PunchingKinokoNrvCrushedEnd::sInstance)) {
         return true;
     }
 
@@ -587,9 +576,7 @@ bool PunchingKinoko::isEnableCrushed() const {
 }
 
 bool PunchingKinoko::isEnableTrample() const {
-    if (isNerve(&NrvPunchingKinoko::PunchingKinokoNrvCrushed::sInstance)
-        || isNerve(&NrvPunchingKinoko::PunchingKinokoNrvCrushedEnd::sInstance))
-    {
+    if (isNerve(&NrvPunchingKinoko::PunchingKinokoNrvCrushed::sInstance) || isNerve(&NrvPunchingKinoko::PunchingKinokoNrvCrushedEnd::sInstance)) {
         return false;
     }
 
@@ -614,40 +601,39 @@ namespace NrvPunchingKinoko {
     INIT_NERVE(PunchingKinokoNrvCrushed);
     INIT_NERVE(PunchingKinokoNrvCrushedEnd);
 
-    void PunchingKinokoNrvWait::execute(Spine *pSpine) const {
+    void PunchingKinokoNrvWait::execute(Spine* pSpine) const {
         PunchingKinoko* kinoko = reinterpret_cast<PunchingKinoko*>(pSpine->mExecutor);
         kinoko->exeWait();
     };
-    void PunchingKinokoNrvSwing::execute(Spine *pSpine) const {
+    void PunchingKinokoNrvSwing::execute(Spine* pSpine) const {
         PunchingKinoko* kinoko = reinterpret_cast<PunchingKinoko*>(pSpine->mExecutor);
         kinoko->exeSwing();
     };
-    void PunchingKinokoNrvPunched::execute(Spine *pSpine) const {
+    void PunchingKinokoNrvPunched::execute(Spine* pSpine) const {
         PunchingKinoko* kinoko = reinterpret_cast<PunchingKinoko*>(pSpine->mExecutor);
         kinoko->exePunched();
     };
-    void PunchingKinokoNrvPunchedBrake::execute(Spine *pSpine) const {
+    void PunchingKinokoNrvPunchedBrake::execute(Spine* pSpine) const {
         PunchingKinoko* kinoko = reinterpret_cast<PunchingKinoko*>(pSpine->mExecutor);
         kinoko->exePunchedBrake();
     };
-    void PunchingKinokoNrvHitted::execute(Spine *pSpine) const {
+    void PunchingKinokoNrvHitted::execute(Spine* pSpine) const {
         PunchingKinoko* kinoko = reinterpret_cast<PunchingKinoko*>(pSpine->mExecutor);
         kinoko->exeHitted();
     };
-    void PunchingKinokoNrvPointSnaped::execute(Spine *pSpine) const {
+    void PunchingKinokoNrvPointSnaped::execute(Spine* pSpine) const {
         PunchingKinoko* kinoko = reinterpret_cast<PunchingKinoko*>(pSpine->mExecutor);
         kinoko->exePointSnaped();
     };
-    void PunchingKinokoNrvCrushed::execute(Spine *pSpine) const {
+    void PunchingKinokoNrvCrushed::execute(Spine* pSpine) const {
         PunchingKinoko* kinoko = reinterpret_cast<PunchingKinoko*>(pSpine->mExecutor);
         kinoko->exeCrushed();
     };
-    void PunchingKinokoNrvCrushedEnd::execute(Spine *pSpine) const {
+    void PunchingKinokoNrvCrushedEnd::execute(Spine* pSpine) const {
         PunchingKinoko* kinoko = reinterpret_cast<PunchingKinoko*>(pSpine->mExecutor);
         kinoko->exeCrushedEnd();
     };
-};
+}; // namespace NrvPunchingKinoko
 
 PunchingKinoko::~PunchingKinoko() {
-
 }

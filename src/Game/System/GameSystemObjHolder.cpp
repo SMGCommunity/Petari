@@ -17,20 +17,19 @@
 #include "Game/SingletonHolder.hpp"
 #include <JSystem/JUtility/JUTVideo.hpp>
 
-GameSystemObjHolder::GameSystemObjHolder() :
-    mObjHolder(nullptr),
-    mParticleResHolder(nullptr),
-    mRenderModeObj(nullptr),
-    mCaptureScreenDir(nullptr),
-    mScreenPreserver(nullptr),
-    mSysWrapper(nullptr),
-    mWPadHolder(nullptr),
-    mAsyncExec(nullptr),
-    mMsgHolder(nullptr),
-    mStarPointerDir(nullptr),
-    mRandom(0),
-    mLanguage(MR::getDecidedLanguageFromIPL())
-{
+GameSystemObjHolder::GameSystemObjHolder()
+    : mObjHolder(nullptr),
+      mParticleResHolder(nullptr),
+      mRenderModeObj(nullptr),
+      mCaptureScreenDir(nullptr),
+      mScreenPreserver(nullptr),
+      mSysWrapper(nullptr),
+      mWPadHolder(nullptr),
+      mAsyncExec(nullptr),
+      mMsgHolder(nullptr),
+      mStarPointerDir(nullptr),
+      mRandom(0),
+      mLanguage(MR::getDecidedLanguageFromIPL()) {
     initDvd();
     initNAND();
     initNameObj();
@@ -46,7 +45,7 @@ void GameSystemObjHolder::initAfterStationedResourceLoaded() {
 
 void GameSystemObjHolder::initMessageResource() {
     JKRArchive* pArchive = nullptr;
-    JKRHeap* pHeap = nullptr;
+    JKRHeap*    pHeap = nullptr;
     MR::getMountedArchiveAndHeap("ErrorMessageArchive.arc", &pArchive, &pHeap);
 
     char systemFilePath[128];

@@ -8,22 +8,22 @@ TVec3f CollisionParts::getTrans() {
     return translation;
 }
 
-void CollisionCategorizedKeeper::addToZone(CollisionParts *pParts, s32 zone) {
+void CollisionCategorizedKeeper::addToZone(CollisionParts* pParts, s32 zone) {
     mZones[zone]->addParts(pParts);
     mZoneCount++;
 }
 
-void CollisionCategorizedKeeper::removeFromZone(CollisionParts *pParts, s32 zone) {
+void CollisionCategorizedKeeper::removeFromZone(CollisionParts* pParts, s32 zone) {
     mZones[zone]->eraseParts(pParts);
     mZoneCount--;
 }
 
-void CollisionCategorizedKeeper::addToGlobal(CollisionParts *pParts) {
+void CollisionCategorizedKeeper::addToGlobal(CollisionParts* pParts) {
     mZones[0]->addParts(pParts);
     mZoneCount++;
 }
 
-void CollisionCategorizedKeeper::removeFromGlobal(CollisionParts *pParts) {
+void CollisionCategorizedKeeper::removeFromGlobal(CollisionParts* pParts) {
     mZones[0]->eraseParts(pParts);
     mZoneCount--;
 }

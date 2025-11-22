@@ -2,7 +2,7 @@
 #include "Game/Animation/XanimeResource.hpp"
 
 void XanimePlayer::setDefaultAnimation(const char* pAnimationName) {
-    const XanimeGroupInfo *pDefaultAnimation = mResourceTable->getGroupInfo(pAnimationName);
+    const XanimeGroupInfo* pDefaultAnimation = mResourceTable->getGroupInfo(pAnimationName);
 
     if (mCurrentAnimation == mDefaultAnimation) {
         changeAnimation(pDefaultAnimation);

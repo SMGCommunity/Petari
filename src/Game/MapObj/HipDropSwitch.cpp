@@ -15,9 +15,10 @@ namespace NrvHipDropSwitch {
     NEW_NERVE(HipDropSwitchNrvOff, HipDropSwitch, Off);
     NEW_NERVE(HipDropSwitchNrvSwitchDown, HipDropSwitch, SwitchDown);
     NEW_NERVE(HipDropSwitchNrvOn, HipDropSwitch, On);
-};
+}; // namespace NrvHipDropSwitch
 
-HipDropSwitch::HipDropSwitch(const char *pName) : LiveActor(pName) {
+HipDropSwitch::HipDropSwitch(const char* pName)
+    : LiveActor(pName) {
     _8C = 0;
     mConnector = nullptr;
     _98 = nullptr;
@@ -30,7 +31,7 @@ HipDropSwitch::HipDropSwitch(const char *pName) : LiveActor(pName) {
     _9C.identity();
 }
 
-void HipDropSwitch::init(const JMapInfoIter &rIter) {
+void HipDropSwitch::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     initModelManagerWithAnm("HipDropSwitch", nullptr, false);
     MR::connectToSceneMapObjDecorationStrongLight(this);
@@ -52,8 +53,7 @@ void HipDropSwitch::init(const JMapInfoIter &rIter) {
     if (MR::useStageSwitchReadAppear(this, rIter)) {
         MR::syncStageSwitchAppear(this);
         makeActorDead();
-    }
-    else {
+    } else {
         makeActorAppeared();
     }
 }
@@ -75,20 +75,19 @@ void HipDropSwitch::calcAndSetBaseMtx() {
     mConnector->connect();
 }
 
-bool HipDropSwitch::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool HipDropSwitch::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgStarPieceAttack(msg)) {
         _CE = 1;
         return true;
-    }
-    else if (MR::isMsgPlayerHipDropFloor(msg) && _98->mHitSensor == pReceiver && !_CC) {
+    } else if (MR::isMsgPlayerHipDropFloor(msg) && _98->mHitSensor == pReceiver && !_CC) {
         _CC = 1;
         return true;
     }
-    
+
     return false;
 }
 
-bool HipDropSwitch::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool HipDropSwitch::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgFloorTouch(msg) && _98->mHitSensor == pReceiver) {
         _CE = 1;
         return _CD == 0;
@@ -166,5 +165,4 @@ void HipDropSwitch::exeOn() {
 }
 
 HipDropSwitch::~HipDropSwitch() {
-
 }

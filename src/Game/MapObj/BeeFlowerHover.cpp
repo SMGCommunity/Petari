@@ -1,7 +1,8 @@
 #include "Game/MapObj/BeeFlowerHover.hpp"
 #include "Game/LiveActor/LodCtrl.hpp"
 
-BeeFlowerHover::BeeFlowerHover(const char *pName) : LiveActor(pName) {
+BeeFlowerHover::BeeFlowerHover(const char* pName)
+    : LiveActor(pName) {
     mLodCtrlPlanet = 0;
     _BC = 50.0f;
     mRailMover = 0;
@@ -12,7 +13,7 @@ BeeFlowerHover::BeeFlowerHover(const char *pName) : LiveActor(pName) {
     _8C.identity();
 }
 
-void BeeFlowerHover::init(const JMapInfoIter &rIter) {
+void BeeFlowerHover::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     initModelManagerWithAnm("BeeFlowerHover", 0, false);
     MR::connectToSceneMapObj(this);
@@ -49,15 +50,13 @@ void BeeFlowerHover::init(const JMapInfoIter &rIter) {
 
     if (mRailMover) {
         MR::initAndSetRailClipping(&_CC, this, 100.0f, 500.0f);
-    }
-    else {
+    } else {
         MR::setClippingTypeSphereContainsModelBoundingBox(this, 100.0f);
     }
 
     if (mRailMover) {
         MR::onCalcGravity(this);
-    }
-    else {
+    } else {
         MR::calcGravity(this);
     }
 
@@ -87,9 +86,8 @@ void BeeFlowerHover::exeSoftTouchWait() {
 
     if (!MR::isPlayerElementModeBee()) {
         setNerve(&NrvBeeFlowerHover::BeeFlowerHoverNrvHardTouch::sInstance);
-    }
-    else {
-        
+    } else {
+
         if (MR::isOnPlayer(getSensor(0))) {
             setNerve(&NrvBeeFlowerHover::BeeFlowerHoverNrvWait::sInstance);
         }
@@ -124,21 +122,21 @@ void BeeFlowerHover::exeRecover() {
 
     if (MR::isGreaterEqualStep(this, 0x3C) && MR::isBckStopped(this) && !MR::isHiddenModel(this)) {
         MR::validateCollisionParts(this);
-        setNerve(&NrvBeeFlowerHover::BeeFlowerHoverNrvWait::sInstance);   
+        setNerve(&NrvBeeFlowerHover::BeeFlowerHoverNrvWait::sInstance);
     }
 }
 
 #ifdef NON_MATCHING
-void BeeFlowerHover::control() { 
+void BeeFlowerHover::control() {
     if (!isNerve(&NrvBeeFlowerHover::BeeFlowerHoverNrvRecover::sInstance)) {
         mLodCtrlPlanet->update();
-        
+
         if (mLodCtrlPlanet->isShowLowModel()) {
             return;
         }
     }
 
-    f32 v5 = _BC;
+    f32    v5 = _BC;
     TVec3f v11;
     v5 = v5 * 0.017453292f;
     v11.y = 1.0f;
@@ -158,11 +156,11 @@ void BeeFlowerHover::control() {
     f32 v7 = cos(v5);
     v12.mMtx[0][0] = v7 + ((1.0f - v7) * (v10.x * v10.x));
     v12.mMtx[1][1] = v7 + ((1.0f - v7) * (v10.y * v10.y));
-    
+
     v12.mMtx[2][2] = v7 + ((1.0f - v7) * (v10.z * v10.z));
 
-    //f32 val_3 = 
-    
+    //f32 val_3 =
+
     v12.mMtx[0][1] = (v10.y * ((1.0f - v7) * v10.x)) - (v6 * v10.z);
     v12.mMtx[1][0] = (v10.y * ((1.0f - v7) * v10.x)) + (v6 * v10.z);
     v12.mMtx[0][2] = (v10.z * ((1.0f - v7) * v10.x)) + (v6 * v10.y);
@@ -185,8 +183,7 @@ void BeeFlowerHover::calcAndSetBaseMtx() {
 
     if (mRailPosture) {
         stack_8.concat(mRailPosture->_18);
-    }
-    else {
+    } else {
         MR::makeMtxRotate(stack_8.toMtxPtr(), mRotation);
     }
 
@@ -197,7 +194,7 @@ void BeeFlowerHover::calcAndSetBaseMtx() {
     MR::setBaseTRMtx(this, stack_8);
 }
 
-bool BeeFlowerHover::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool BeeFlowerHover::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (!isNerve(&NrvBeeFlowerHover::BeeFlowerHoverNrvWait::sInstance)) {
         return false;
     }
@@ -205,8 +202,7 @@ bool BeeFlowerHover::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pRe
     if (MR::isMsgFloorTouch(msg)) {
         if (MR::isPlayerElementModeBee()) {
             setNerve(&NrvBeeFlowerHover::BeeFlowerHoverNrvSoftTouch::sInstance);
-        }
-        else {
+        } else {
             setNerve(&NrvBeeFlowerHover::BeeFlowerHoverNrvHardTouch::sInstance);
         }
 
@@ -217,7 +213,6 @@ bool BeeFlowerHover::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pRe
 }
 
 BeeFlowerHover::~BeeFlowerHover() {
-
 }
 
 namespace NrvBeeFlowerHover {
@@ -227,31 +222,31 @@ namespace NrvBeeFlowerHover {
     INIT_NERVE(BeeFlowerHoverNrvHardTouch);
     INIT_NERVE(BeeFlowerHoverNrvRecover);
 
-    void BeeFlowerHoverNrvRecover::execute(Spine *pSpine) const {
+    void BeeFlowerHoverNrvRecover::execute(Spine* pSpine) const {
         BeeFlowerHover* flower = reinterpret_cast<BeeFlowerHover*>(pSpine->mExecutor);
         flower->exeRecover();
     }
 
-    void BeeFlowerHoverNrvHardTouch::execute(Spine *pSpine) const {
+    void BeeFlowerHoverNrvHardTouch::execute(Spine* pSpine) const {
         BeeFlowerHover* flower = reinterpret_cast<BeeFlowerHover*>(pSpine->mExecutor);
         flower->exeHardTouch();
     }
 
-    void BeeFlowerHoverNrvSoftTouchWait::execute(Spine *pSpine) const {
+    void BeeFlowerHoverNrvSoftTouchWait::execute(Spine* pSpine) const {
         BeeFlowerHover* flower = reinterpret_cast<BeeFlowerHover*>(pSpine->mExecutor);
         flower->exeSoftTouchWait();
     }
 
-    void BeeFlowerHoverNrvSoftTouch::execute(Spine *pSpine) const {
+    void BeeFlowerHoverNrvSoftTouch::execute(Spine* pSpine) const {
         BeeFlowerHover* flower = reinterpret_cast<BeeFlowerHover*>(pSpine->mExecutor);
         flower->exeSoftTouch();
     }
 
-    void BeeFlowerHoverNrvWait::execute(Spine *pSpine) const {
+    void BeeFlowerHoverNrvWait::execute(Spine* pSpine) const {
         BeeFlowerHover* flower = reinterpret_cast<BeeFlowerHover*>(pSpine->mExecutor);
-        
+
         if (MR::isFirstStep(flower)) {
             MR::startBck(flower, "Wait", 0);
         }
     }
-};
+}; // namespace NrvBeeFlowerHover

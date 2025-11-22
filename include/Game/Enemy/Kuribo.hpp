@@ -15,36 +15,36 @@ class WalkerStateFindPlayer;
 
 class Kuribo : public LiveActor {
 public:
-    Kuribo(const char *);
+    Kuribo(const char*);
 
     virtual ~Kuribo();
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
     virtual void initAfterPlacement();
     virtual void makeActorAppeared();
     virtual void kill();
     virtual void makeActorDead();
     virtual void control();
     virtual void calcAndSetBaseMtx();
-    virtual void attackSensor(HitSensor *, HitSensor *);
-    virtual bool receiveMsgPush(HitSensor *, HitSensor *);
-    virtual bool receiveMsgPlayerAttack(u32, HitSensor *, HitSensor *);
-    virtual bool receiveMsgEnemyAttack(u32, HitSensor *, HitSensor *);
-    virtual bool receiveOtherMsg(u32, HitSensor *, HitSensor *);
+    virtual void attackSensor(HitSensor*, HitSensor*);
+    virtual bool receiveMsgPush(HitSensor*, HitSensor*);
+    virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
+    virtual bool receiveMsgEnemyAttack(u32, HitSensor*, HitSensor*);
+    virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
 
     void initState();
     void initSensor();
-    void initAppearState(const JMapInfoIter &);
+    void initAppearState(const JMapInfoIter&);
     bool requestDead();
-    bool requestFlatDown(HitSensor *, HitSensor *);
-    bool requestHipDropDown(HitSensor *, HitSensor *);
+    bool requestFlatDown(HitSensor*, HitSensor*);
+    bool requestHipDropDown(HitSensor*, HitSensor*);
     bool requestPressDown();
-    bool requestStagger(HitSensor *, HitSensor *);
-    bool requestBlowDown(HitSensor *, HitSensor *);
+    bool requestStagger(HitSensor*, HitSensor*);
+    bool requestBlowDown(HitSensor*, HitSensor*);
     bool requestAttackSuccess();
     void onNoGravitySupport();
-    void setUp(const TVec3f &, const TQuat4f &, const TVec3f &);
-    void appearBlowed(const TVec3f &, const TQuat4f &, const TVec3f &);
-    void appearHipDropped(const TVec3f &, const TQuat4f &);
+    void setUp(const TVec3f&, const TQuat4f&, const TVec3f&);
+    void appearBlowed(const TVec3f&, const TQuat4f&, const TVec3f&);
+    void appearHipDropped(const TVec3f&, const TQuat4f&);
     bool tryNonActive();
     bool tryActive();
     bool tryEndBlow();
@@ -78,19 +78,19 @@ public:
     bool isEnablePanch() const;
     bool isEnablePushMove() const;
 
-    AnimScaleController* mScaleController;              // 0x8C
-    ItemGenerator* mItemGenerator;                      // 0x90
-    WalkerStateWander* mStateWander;                    // 0x94
-    WalkerStateFindPlayer* mStateFindPlayer;            // 0x98
-    WalkerStateBindStarPointer* mBindStarPointer;       // 0x9C
-    WalkerStateStagger* mStateStagger;                  // 0xA0
-    WalkerStateChase* mStateChase;                      // 0xA4
-    TQuat4f _A8;
-    TVec3f _B8;
-    bool _C4;
-    u8 _C5;
+    AnimScaleController*        mScaleController; // 0x8C
+    ItemGenerator*              mItemGenerator;   // 0x90
+    WalkerStateWander*          mStateWander;     // 0x94
+    WalkerStateFindPlayer*      mStateFindPlayer; // 0x98
+    WalkerStateBindStarPointer* mBindStarPointer; // 0x9C
+    WalkerStateStagger*         mStateStagger;    // 0xA0
+    WalkerStateChase*           mStateChase;      // 0xA4
+    TQuat4f                     _A8;
+    TVec3f                      _B8;
+    bool                        _C4;
+    u8                          _C5;
 };
 
 namespace MR {
-    LiveActor* createNoItemKuriboActor(const char *);
+    LiveActor* createNoItemKuriboActor(const char*);
 };

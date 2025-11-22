@@ -11,29 +11,28 @@
 #include <cstring>
 
 static u16 VolumeTable[] =
-{
-    0,     2,     8,    18,    32,    50,    73,    99,
-    130,   164,   203,   245,   292,   343,   398,   457,
-    520,   587,   658,   733,   812,   895,   983,  1074,
-    1170,  1269,  1373,  1481,  1592,  1708,  1828,  1952,
-    2080,  2212,  2348,  2488,  2632,  2781,  2933,  3090,
-    3250,  3415,  3583,  3756,  3933,  4114,  4298,  4487,
-    4680,  4877,  5079,  5284,  5493,  5706,  5924,  6145,
-    6371,  6600,  6834,  7072,  7313,  7559,  7809,  8063,
-    8321,  8583,  8849,  9119,  9394,  9672,  9954, 10241,
-    10531, 10826, 11125, 11427, 11734, 12045, 12360, 12679,
-    13002, 13329, 13660, 13995, 14335, 14678, 15025, 15377,
-    15732, 16092, 16456, 16823, 17195, 17571, 17951, 18335,
-    18723, 19115, 19511, 19911, 20316, 20724, 21136, 21553,
-    21974, 22398, 22827, 23260, 23696, 24137, 24582, 25031,
-    25484, 25941, 26402, 26868, 27337, 27810, 28288, 28769,
-    29255, 29744, 30238, 30736, 31238, 31744, 32254, 32768
-};
+    {
+        0, 2, 8, 18, 32, 50, 73, 99,
+        130, 164, 203, 245, 292, 343, 398, 457,
+        520, 587, 658, 733, 812, 895, 983, 1074,
+        1170, 1269, 1373, 1481, 1592, 1708, 1828, 1952,
+        2080, 2212, 2348, 2488, 2632, 2781, 2933, 3090,
+        3250, 3415, 3583, 3756, 3933, 4114, 4298, 4487,
+        4680, 4877, 5079, 5284, 5493, 5706, 5924, 6145,
+        6371, 6600, 6834, 7072, 7313, 7559, 7809, 8063,
+        8321, 8583, 8849, 9119, 9394, 9672, 9954, 10241,
+        10531, 10826, 11125, 11427, 11734, 12045, 12360, 12679,
+        13002, 13329, 13660, 13995, 14335, 14678, 15025, 15377,
+        15732, 16092, 16456, 16823, 17195, 17571, 17951, 18335,
+        18723, 19115, 19511, 19911, 20316, 20724, 21136, 21553,
+        21974, 22398, 22827, 23260, 23696, 24137, 24582, 25031,
+        25484, 25941, 26402, 26868, 27337, 27810, 28288, 28769,
+        29255, 29744, 30238, 30736, 31238, 31744, 32254, 32768};
 
 static s32 WorkBuffer[16] __attribute__((aligned(32)));
 
 THPSimplePlayerStaticAudio THPSimplePlayerWrapper::mStaticAudioPlayer;
-THPSimplePlayerWrapper* THPSimplePlayerStaticAudio::mPlayer;
+THPSimplePlayerWrapper*    THPSimplePlayerStaticAudio::mPlayer;
 
 namespace NrvTHPSimplePlayerWrapper {
     NEW_NERVE(HostTypeWait, THPSimplePlayerWrapper, Wait);
@@ -42,18 +41,17 @@ namespace NrvTHPSimplePlayerWrapper {
     NEW_NERVE(HostTypeReadVideoComp, THPSimplePlayerWrapper, ReadVideoComp);
     NEW_NERVE(HostTypeReadAudioComp, THPSimplePlayerWrapper, ReadAudioComp);
     NEW_NERVE(HostTypeReadPreLoad, THPSimplePlayerWrapper, ReadPreLoad);
-};
-
-
+}; // namespace NrvTHPSimplePlayerWrapper
 
 namespace {
-    void dvdCallBackFunc(s32 a1, DVDFileInfo *pFileInfo) {
+    void dvdCallBackFunc(s32 a1, DVDFileInfo* pFileInfo) {
         THPSimplePlayerWrapper* player = (THPSimplePlayerWrapper*)pFileInfo->cb.userData;
         player->dvdCallBack(a1);
     }
-};
+}; // namespace
 
-THPSimplePlayerWrapper::THPSimplePlayerWrapper(const char *pName) : NerveExecutor(pName) {
+THPSimplePlayerWrapper::THPSimplePlayerWrapper(const char* pName)
+    : NerveExecutor(pName) {
     _8 = 0;
     _9 = 0;
     _C = 0;
@@ -84,8 +82,8 @@ THPSimplePlayerWrapper::THPSimplePlayerWrapper(const char *pName) : NerveExecuto
     mSoundBufferIndex = 0;
     _30C = 0;
     _310 = 0;
-    mSoundBuffer[0] = new(32) s32[0x230];
-    mSoundBuffer[1] = new(32) s32[0x230];
+    mSoundBuffer[0] = new (32) s32[0x230];
+    mSoundBuffer[1] = new (32) s32[0x230];
     MR::zeroMemory(mSoundBuffer[0], 0x8C0);
     MR::zeroMemory(mSoundBuffer[1], 0x8C0);
     DCFlushRange(mSoundBuffer[0], 0x8C0);
@@ -131,7 +129,7 @@ void THPSimplePlayerWrapper::quit() {
     _8 = 0;
 }
 
-bool THPSimplePlayerWrapper::open(const char *pName) {
+bool THPSimplePlayerWrapper::open(const char* pName) {
     if (!tryDvdOpen(pName)) {
         return false;
     }
@@ -147,8 +145,7 @@ bool THPSimplePlayerWrapper::close() {
                 if (mAudioState == 1) {
                     return false;
                 }
-            }
-            else {
+            } else {
                 mAudioState = 0;
             }
 
@@ -258,15 +255,15 @@ bool THPSimplePlayerWrapper::loadStop() {
             DVDCancel(&mFileInfo.cb);
             mReadProgress = 0;
         }
-    
+
         for (s32 i = 0; i < 0x14; i++) {
             mReadBuffer[i].isValid = 0;
         }
-    
-        for (s32 i = 0 ; i < 0x14; i++) {
+
+        for (s32 i = 0; i < 0x14; i++) {
             mAudioBuffer[i].validSample = 0;
         }
-    
+
         mTextureSet[0].frameNumber = -1;
         mTextureSet[1].frameNumber = -1;
         mCurOffset = mHeader.movieDataOffsets;
@@ -290,7 +287,7 @@ s32 THPSimplePlayerWrapper::decode(s32 audio) {
     bool isValid = mReadBuffer[mNextDecodeIndex].isValid == true;
     if (isValid) {
         u32* compSize = (u32*)mReadBuffer[mNextDecodeIndex].ptr + 2;
-        u8* ptr = mReadBuffer[mNextDecodeIndex].ptr + mFrameComp.numComponents * 4 + 8;
+        u8*  ptr = mReadBuffer[mNextDecodeIndex].ptr + mFrameComp.numComponents * 4 + 8;
 
         if (mAudioExist) {
             if (audio < 0 || audio >= mAudioInfo.sndNumTracks) {
@@ -300,42 +297,40 @@ s32 THPSimplePlayerWrapper::decode(s32 audio) {
             if (mAudioBuffer[mAudioDecodeIndex].validSample == 0) {
                 for (s32 i = 0; i < mFrameComp.numComponents; i++) {
                     switch (mFrameComp.frameComp[i]) {
-                        case 0:
-                            if (!videoDecode(ptr)) {
-                                return 1;
-                            }
-                            break;
-                        case 1:
-                            u32 sample = THPAudioDecode(mAudioBuffer[mAudioDecodeIndex].buffer, ptr + (*compSize) * audio, 0);
-                            s32 interrupt = OSDisableInterrupts();
-                            mAudioBuffer[mAudioDecodeIndex].validSample = sample;
-                            mAudioBuffer[mAudioDecodeIndex].curPtr = mAudioBuffer[mAudioDecodeIndex].buffer;
-                            OSRestoreInterrupts(interrupt);
-                            mAudioDecodeIndex++;
-
-                            if (mAudioDecodeIndex >= 20) {
-                                mAudioDecodeIndex = 0;
-                            }
-
-                            break;
-                    }
-
-                    ptr += *compSize;
-                    compSize++;
-                }
-            }
-            else {
-                return 3;
-            }
-        }
-        else {
-            for (s32 i = 0; i < mFrameComp.numComponents; i++) {
-                switch (mFrameComp.frameComp[i]) {
                     case 0:
                         if (!videoDecode(ptr)) {
                             return 1;
                         }
                         break;
+                    case 1:
+                        u32 sample = THPAudioDecode(mAudioBuffer[mAudioDecodeIndex].buffer, ptr + (*compSize) * audio, 0);
+                        s32 interrupt = OSDisableInterrupts();
+                        mAudioBuffer[mAudioDecodeIndex].validSample = sample;
+                        mAudioBuffer[mAudioDecodeIndex].curPtr = mAudioBuffer[mAudioDecodeIndex].buffer;
+                        OSRestoreInterrupts(interrupt);
+                        mAudioDecodeIndex++;
+
+                        if (mAudioDecodeIndex >= 20) {
+                            mAudioDecodeIndex = 0;
+                        }
+
+                        break;
+                    }
+
+                    ptr += *compSize;
+                    compSize++;
+                }
+            } else {
+                return 3;
+            }
+        } else {
+            for (s32 i = 0; i < mFrameComp.numComponents; i++) {
+                switch (mFrameComp.frameComp[i]) {
+                case 0:
+                    if (!videoDecode(ptr)) {
+                        return 1;
+                    }
+                    break;
                 }
 
                 ptr += *compSize;
@@ -352,7 +347,7 @@ s32 THPSimplePlayerWrapper::decode(s32 audio) {
     return 2;
 }
 
-s32 THPSimplePlayerWrapper::drawCurrentFrame(_GXRenderModeObj *rmode, u32 x, u32 y, u32 polyW, u32 polyH) {
+s32 THPSimplePlayerWrapper::drawCurrentFrame(_GXRenderModeObj* rmode, u32 x, u32 y, u32 polyW, u32 polyH) {
     if (mTextureSet[_310].frameNumber < 0) {
         return -1;
     }
@@ -365,7 +360,7 @@ s32 THPSimplePlayerWrapper::drawCurrentFrame(_GXRenderModeObj *rmode, u32 x, u32
     return ret;
 }
 
-bool THPSimplePlayerWrapper::getVideoInfo(THPVideoInfo *pInfo) const {
+bool THPSimplePlayerWrapper::getVideoInfo(THPVideoInfo* pInfo) const {
     if (!mOpen) {
         return false;
     }
@@ -390,14 +385,14 @@ s32 THPSimplePlayerWrapper::getTotalFrame() const {
     return 0;
 }
 
-bool THPSimplePlayerWrapper::videoDecode(u8 *pFile) {
-    if (THPVideoDecode(pFile, 
-        mTextureSet[_310].ytexture,
-        mTextureSet[_310].utexture,
-        mTextureSet[_310].vtexture,
-        mTHPWork)) {
-            return false;
-        }
+bool THPSimplePlayerWrapper::videoDecode(u8* pFile) {
+    if (THPVideoDecode(pFile,
+                       mTextureSet[_310].ytexture,
+                       mTextureSet[_310].utexture,
+                       mTextureSet[_310].vtexture,
+                       mTHPWork)) {
+        return false;
+    }
 
     mTextureSet[_310].frameNumber = mReadBuffer[mNextDecodeIndex].frameNumber;
     return true;
@@ -410,8 +405,7 @@ void THPSimplePlayerWrapper::readFrameAsync() {
                 mTotalReadFrame = 0;
                 mCurOffset = mHeader.movieDataOffsets;
                 mReadSize = mHeader.firstFrameSize;
-            }
-            else {
+            } else {
                 return;
             }
         }
@@ -442,8 +436,7 @@ void THPSimplePlayerWrapper::dvdCallBack(s32 result) {
     if (result == -1) {
         mDvdError = 1;
         return;
-    }
-    else if (result == -3) {
+    } else if (result == -3) {
         return;
     }
 
@@ -470,9 +463,9 @@ void THPSimplePlayerWrapper::readAsyncCallBack(s32 a1) {
             !isNerve(&NrvTHPSimplePlayerWrapper::HostTypeReadFrameComp::sInstance) &&
             !isNerve(&NrvTHPSimplePlayerWrapper::HostTypeReadVideoComp::sInstance) &&
             !isNerve(&NrvTHPSimplePlayerWrapper::HostTypeReadAudioComp::sInstance)) {
-                isNerve(&NrvTHPSimplePlayerWrapper::HostTypeReadPreLoad::sInstance);
+            isNerve(&NrvTHPSimplePlayerWrapper::HostTypeReadPreLoad::sInstance);
         }
-    
+
         DVDClose(&mFileInfo);
         return;
     }
@@ -517,10 +510,10 @@ void THPSimplePlayerWrapper::readAsyncCallBack(s32 a1) {
 }
 
 s32 THPSimplePlayerWrapper::getNextBuffer(u32 idx) const {
-    return ((idx) + 1  >= 0x14 ? 0 : (idx) + 1);
+    return ((idx) + 1 >= 0x14 ? 0 : (idx) + 1);
 }
 
-bool THPSimplePlayerWrapper::tryDvdOpen(const char *pFileName) {
+bool THPSimplePlayerWrapper::tryDvdOpen(const char* pFileName) {
     if (!_8) {
         return false;
     }
@@ -559,11 +552,11 @@ void THPSimplePlayerWrapper::setupParams() {
 }
 
 namespace {
-    void readAsyncCallBackFunc(s32 a1, DVDFileInfo *pInfo) {
+    void readAsyncCallBackFunc(s32 a1, DVDFileInfo* pInfo) {
         THPSimplePlayerWrapper* player = (THPSimplePlayerWrapper*)pInfo->cb.userData;
         player->readAsyncCallBack(a1);
     }
-};
+}; // namespace
 
 void THPSimplePlayerWrapper::exeReadHeader() {
     if (MR::isFirstStep(this)) {
@@ -659,12 +652,12 @@ bool THPSimplePlayerWrapper::checkComponentsInFrame(s32 comp) {
     }
 
     switch (mFrameComp.frameComp[comp]) {
-        case 0:
-            setNerve(&NrvTHPSimplePlayerWrapper::HostTypeReadVideoComp::sInstance);
-            return true;
-        case 1:
-            setNerve(&NrvTHPSimplePlayerWrapper::HostTypeReadAudioComp::sInstance);
-            return true;
+    case 0:
+        setNerve(&NrvTHPSimplePlayerWrapper::HostTypeReadVideoComp::sInstance);
+        return true;
+    case 1:
+        setNerve(&NrvTHPSimplePlayerWrapper::HostTypeReadAudioComp::sInstance);
+        return true;
     }
 
     return false;
@@ -684,8 +677,7 @@ bool THPSimplePlayerWrapper::tryFinishDvdOpen() {
 void THPSimplePlayerWrapper::initAudio() {
     if (!SCGetSoundMode()) {
         _30C = 1;
-    }
-    else {
+    } else {
         _30C = 0;
     }
 
@@ -713,14 +705,14 @@ s16* THPSimplePlayerWrapper::audioCallback(s32 sample) {
     return (s16*)mSoundBuffer[mSoundBufferIndex];
 }
 
-void THPSimplePlayerWrapper::mixAudio(s16 *pDest, u32 sample) {
-    u32 sampleNum, requestSample;
-    s32 mix;
+void THPSimplePlayerWrapper::mixAudio(s16* pDest, u32 sample) {
+    u32  sampleNum, requestSample;
+    s32  mix;
     s16 *libsrc, *thpsrc;
-    u16 attenuation;
+    u16  attenuation;
 
     if (isAudioProcessValid()) {
-        if (_2F0) {          
+        if (_2F0) {
             _2F0 = 0;
             _2F4 = 0.0f;
             _2F8 = 0.001f;
@@ -731,114 +723,106 @@ void THPSimplePlayerWrapper::mixAudio(s16 *pDest, u32 sample) {
             if (!mAudioBuffer[idx1].validSample || !mAudioBuffer[idx2].validSample) {
                 MR::zeroMemory(pDest, sample * sizeof(s16*));
                 return;
-            }  
-        }
-        else if (!mAudioBuffer[(mAudioOutputIndex + 1) % 0x14].validSample) {
+            }
+        } else if (!mAudioBuffer[(mAudioOutputIndex + 1) % 0x14].validSample) {
             MR::zeroMemory(pDest, sample * sizeof(s16*));
             return;
         }
 
         do {
-        if (mAudioBuffer[mAudioOutputIndex].validSample) {            
-            if (mAudioBuffer[mAudioOutputIndex].validSample >= sample) {
-                sampleNum = sample;
-            }
-            else {
-                sampleNum = mAudioBuffer[mAudioOutputIndex].validSample;
-            }
-
-            thpsrc = mAudioBuffer[mAudioOutputIndex].curPtr;
-
-            for (u32 i = 0; i < sampleNum; i++) {
-                if (mRampCount) {
-                    mRampCount--;
-                    mCurrentVolume += mDeltaVolume;
-                }
-                else {
-                    mCurrentVolume = mTargetVolume;
+            if (mAudioBuffer[mAudioOutputIndex].validSample) {
+                if (mAudioBuffer[mAudioOutputIndex].validSample >= sample) {
+                    sampleNum = sample;
+                } else {
+                    sampleNum = mAudioBuffer[mAudioOutputIndex].validSample;
                 }
 
-                f32 vol = mCurrentVolume;
+                thpsrc = mAudioBuffer[mAudioOutputIndex].curPtr;
 
-                if (_2FC > 0) {
-                    s32 v19 = _2FC - 1;
-                    vol = 0.0f;
-                    _2FC = v19;
-                    if (v19 < 0) {
-                        _2FC = 0;
+                for (u32 i = 0; i < sampleNum; i++) {
+                    if (mRampCount) {
+                        mRampCount--;
+                        mCurrentVolume += mDeltaVolume;
+                    } else {
+                        mCurrentVolume = mTargetVolume;
+                    }
+
+                    f32 vol = mCurrentVolume;
+
+                    if (_2FC > 0) {
+                        s32 v19 = _2FC - 1;
+                        vol = 0.0f;
+                        _2FC = v19;
+                        if (v19 < 0) {
+                            _2FC = 0;
+                        }
+                    } else if (_2F4 < 1.0f) {
+                        vol = mCurrentVolume * _2F4;
+                        f32 v20 = _2F4 + _2F8;
+                        _2F4 += _2F8;
+
+                        if (v20 >= 1.0f) {
+                            _2F4 = 1.0f;
+                            _2F8 = 0.0f;
+                        }
+                    }
+
+                    attenuation = VolumeTable[(s32)vol];
+                    mix = ((attenuation * (*thpsrc)) >> 15);
+
+                    if (mix < -32768) {
+                        mix = -32768;
+                    }
+
+                    if (mix > 32767) {
+                        mix = 32767;
+                    }
+
+                    *pDest = (s16)mix;
+                    *thpsrc = 0;
+                    pDest++;
+                    thpsrc++;
+
+                    mix = ((attenuation * (*thpsrc)) >> 15);
+
+                    if (mix < -32768) {
+                        mix = -32768;
+                    }
+                    if (mix > 32767) {
+                        mix = 32767;
+                    }
+
+                    *pDest = (s16)mix;
+                    *thpsrc = 0;
+                    pDest++;
+                    thpsrc++;
+
+                    if (_30C) {
+                        s32 diff = *(pDest - 2) + (*(pDest - 1));
+                        f32 v16 = (diff / 2);
+                        *(pDest - 1) = *(pDest - 2) = 0.70700002f * v16;
                     }
                 }
-                else  if (_2F4 < 1.0f) {
-                    vol = mCurrentVolume * _2F4;
-                    f32 v20 = _2F4 + _2F8;
-                    _2F4 += _2F8;
 
-                    if (v20 >= 1.0f) {
-                        _2F4 = 1.0f;
-                        _2F8 = 0.0f;
-                    } 
+                sample -= sampleNum;
+                mAudioBuffer[mAudioOutputIndex].validSample -= sampleNum;
+                mAudioBuffer[mAudioOutputIndex].curPtr = thpsrc;
+
+                if (mAudioBuffer[mAudioOutputIndex].validSample == 0) {
+                    mAudioOutputIndex++;
+                    if (mAudioOutputIndex >= 0x14) {
+                        mAudioOutputIndex = 0;
+                    }
                 }
-
-                attenuation = VolumeTable[(s32)vol];
-                mix = ((attenuation * (*thpsrc)) >> 15);
-
-                if (mix < -32768) {
-                    mix = -32768;
-                }
-
-                if (mix > 32767) {
-                    mix = 32767;
-                }
-
-                
-                *pDest = (s16)mix;
-                *thpsrc = 0;
-                pDest++;
-                thpsrc++;
-
-                mix = ((attenuation * (*thpsrc)) >> 15);
-
-                if (mix < -32768)
-                {
-                    mix = -32768;
-                }
-                if (mix > 32767)
-                {
-                    mix = 32767;
-                }
-
-                *pDest = (s16)mix;
-                *thpsrc = 0;
-                pDest++;
-                thpsrc++;
-
-                if (_30C) {
-                    s32 diff = *(pDest - 2) + (*(pDest - 1));
-                    f32 v16 = (diff / 2);
-                    *(pDest - 1) =  *(pDest - 2) = 0.70700002f * v16;
-                }
+                if (sample == 0)
+                    break;
+            } else {
+                MR::zeroMemory(pDest, sample * sizeof(s16*));
+                return;
             }
-
-            sample -= sampleNum;
-            mAudioBuffer[mAudioOutputIndex].validSample -= sampleNum;
-            mAudioBuffer[mAudioOutputIndex].curPtr = thpsrc;
-
-            if (mAudioBuffer[mAudioOutputIndex].validSample == 0) {
-                mAudioOutputIndex++;
-                if (mAudioOutputIndex >= 0x14) {
-                    mAudioOutputIndex = 0;
-                }
-            }
-            if (sample == 0) break;
-        }
-        else {
-            MR::zeroMemory(pDest, sample * sizeof(s16*));
-            return;   
-        }
         } while (true);
-        
-    }
-    else {
+
+    } else {
         MR::zeroMemory(pDest, sample * sizeof(s16*));
     }
 }
@@ -884,8 +868,7 @@ bool THPSimplePlayerWrapper::setVolume(s32 volume, s32 time) {
     if (time > 0) {
         mRampCount = 32 * time;
         mDeltaVolume = (mTargetVolume - mCurrentVolume) / (f32)mRampCount;
-    }
-    else {
+    } else {
         mRampCount = 0;
         mCurrentVolume = mTargetVolume;
     }
@@ -913,7 +896,5 @@ s16* THPSimplePlayerStaticAudio::audioCallback(s32 audio) {
     return player->audioCallback(audio);
 }
 
-
 THPSimplePlayerStaticAudio::THPSimplePlayerStaticAudio() {
-
 }

@@ -22,9 +22,10 @@ namespace NrvScrewSwitch {
     NEW_NERVE(ScrewSwitchNrvAdjust, ScrewSwitch, Adjust);
     NEW_NERVE(ScrewSwitchNrvScrew, ScrewSwitch, Screw);
     NEW_NERVE(ScrewSwitchNrvEnd, ScrewSwitch, End);
-}
+} // namespace NrvScrewSwitch
 
-ScrewSwitch::ScrewSwitch(const char* pName) : LiveActor(pName) {
+ScrewSwitch::ScrewSwitch(const char* pName)
+    : LiveActor(pName) {
     mCollisionParts = nullptr;
     _90 = nullptr;
     mMapObjConnector = nullptr;
@@ -45,7 +46,7 @@ void ScrewSwitch::init(const JMapInfoIter& rIter) {
     TVec3f var1;
     var1.scale(-150.0f, mGravity);
     MR::addHitSensorAtJoint(this, "binder", "Screw", ATYPE_BINDER, 8, 150.0f, var1);
-    MtxPtr jointMtx = MR::getJointMtx(this, "Screw");
+    MtxPtr     jointMtx = MR::getJointMtx(this, "Screw");
     HitSensor* Sensor = getSensor("binder");
     MR::initCollisionParts(this, "ScrewCol", Sensor, jointMtx);
     mCollisionParts = MR::createCollisionPartsFromLiveActor(this, "ScrewReceiveCol", getSensor("body"), MR::getJointMtx(this, "ScrewReceive"), (MR::CollisionScaleType)1);
@@ -63,7 +64,7 @@ void ScrewSwitch::exeAdjust() {
         MR::startBrk(this, "ScrewSwitchOn");
         MR::setBrkFrameAndStop(this, 0.0f);
     }
-    f32 step = getNerveStep() / 3.0f;
+    f32        step = getNerveStep() / 3.0f;
     HitSensor* sensor = getSensor("body");
     JMAVECLerp((const Vec*)_90, &sensor->mPosition, &mPosition, step);
     if (MR::isStep(this, 3)) {
@@ -114,7 +115,7 @@ void ScrewSwitch::control() {
     mCollisionParts->setMtx();
 }
 
-bool ScrewSwitch::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool ScrewSwitch::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgRushBegin(msg) && MR::isSensorPlayer(pSender) && MR::isOnPlayer(getSensor("binder"))) {
         _90 = pSender->mHost;
         MR::startSound(_90, "SE_PV_TWIST_START", -1, -1);
@@ -138,7 +139,7 @@ void ScrewSwitch::updateBindActorMtx() {
     pos.mMtx[0][3] = Sensor->mPosition.x;
     pos.mMtx[1][3] = Sensor->mPosition.y;
     pos.mMtx[2][3] = Sensor->mPosition.z;
-    
+
     MR::setBaseTRMtx(_90, pos);
 }
 

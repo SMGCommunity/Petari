@@ -28,13 +28,13 @@ public:
 
     /* 0x20 */ SimpleLayout* mSpinLayout;
     /* 0x24 */ SimpleLayout* mTamakoroLayout;
-    /* 0x28 */ LayoutActor* mCurrentLayout;
-    /* 0x2C */ s32 mGuidanceState;
-    /* 0x30 */ s32 mGuidancePrevState;
-    /* 0x34 */ bool _34;
-    /* 0x35 */ bool _35;
-    /* 0x36 */ bool _36;
-    /* 0x37 */ bool _37;
+    /* 0x28 */ LayoutActor*  mCurrentLayout;
+    /* 0x2C */ s32           mGuidanceState;
+    /* 0x30 */ s32           mGuidancePrevState;
+    /* 0x34 */ bool          _34;
+    /* 0x35 */ bool          _35;
+    /* 0x36 */ bool          _36;
+    /* 0x37 */ bool          _37;
 };
 
 namespace MR {

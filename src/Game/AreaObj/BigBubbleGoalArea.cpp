@@ -4,7 +4,8 @@
 #include "Game/Util/DirectDraw.hpp"
 #include "Game/Util/ObjUtil.hpp"
 
-BigBubbleGoalArea::BigBubbleGoalArea(int type, const char *pName) : AreaObj(type, pName) {
+BigBubbleGoalArea::BigBubbleGoalArea(int type, const char* pName)
+    : AreaObj(type, pName) {
     mTranslation.x = 0.0f;
     mTranslation.y = 0.0f;
     mTranslation.z = 0.0f;
@@ -14,10 +15,9 @@ BigBubbleGoalArea::BigBubbleGoalArea(int type, const char *pName) : AreaObj(type
 }
 
 BigBubbleGoalArea::~BigBubbleGoalArea() {
-
 }
 
-void BigBubbleGoalArea::init(const JMapInfoIter &rIter) {
+void BigBubbleGoalArea::init(const JMapInfoIter& rIter) {
     AreaObj::init(rIter);
     _48 = mObjArg0 <= 0 ? 1.0f : (f32)mObjArg0;
 
@@ -40,8 +40,7 @@ void BigBubbleGoalArea::movement() {
         _4C = _48;
         onSwitchA();
         mIsValid = false;
-    }
-    else if (_50 < _4C) {
+    } else if (_50 < _4C) {
         _4C = _50;
     }
 }
@@ -50,7 +49,7 @@ void BigBubbleGoalArea::draw() const {
     if (!isValidSwitchA() || isOnSwitchA()) {
         return;
     }
-    
+
     TDDraw::setup(0, 1, 0);
     GXSetZMode(GX_TRUE, GX_LEQUAL, GX_TRUE);
     GXSetCullMode(GX_CULL_BACK);
@@ -62,6 +61,6 @@ void BigBubbleGoalArea::draw() const {
     TDDraw::drawFillFan(mTranslation, MR::getCamZdir(), MR::getCamYdir() * 150.0f, 0x80FF, dVar4, 150.0f, 16);
 }
 
-const char *BigBubbleGoalArea::getManagerName() const {
+const char* BigBubbleGoalArea::getManagerName() const {
     return "BigBubbleGoalArea";
 }

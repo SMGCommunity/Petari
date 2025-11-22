@@ -2,11 +2,12 @@
 #include "Game/Boss/TripodBossFixParts.hpp"
 #include "Game/MapObj/MapPartsRailMover.hpp"
 
-TripodBossRailMoveParts::TripodBossRailMoveParts(const char *pName) : TripodBossFixParts(pName) {
+TripodBossRailMoveParts::TripodBossRailMoveParts(const char* pName)
+    : TripodBossFixParts(pName) {
     mRailMover = nullptr;
 }
 
-void TripodBossRailMoveParts::init(const JMapInfoIter &rIter) {
+void TripodBossRailMoveParts::init(const JMapInfoIter& rIter) {
     TripodBossFixParts::init(rIter);
     initRailRider(rIter);
     mRailMover = new MapPartsRailMover(this);
@@ -26,7 +27,7 @@ void TripodBossRailMoveParts::activateTripodBoss() {
     TripodBossFixParts::activateTripodBoss();
 }
 
-void TripodBossRailMoveParts::calcTripodLocalMatrix(TPos3f *pMtx) {
+void TripodBossRailMoveParts::calcTripodLocalMatrix(TPos3f* pMtx) {
     _BC.setPS(mRailMover->_28);
     TripodBossFixPartsBase::calcTripodLocalMatrix(pMtx);
 }
@@ -36,5 +37,4 @@ void TripodBossRailMoveParts::exeWaitOwn() {
 }
 
 TripodBossRailMoveParts::~TripodBossRailMoveParts() {
-    
 }

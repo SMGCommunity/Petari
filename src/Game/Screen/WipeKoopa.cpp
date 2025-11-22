@@ -7,13 +7,11 @@ namespace {
     NEW_NERVE(WipeKoopaNrvWait, WipeKoopa, Wait);
     NEW_NERVE(WipeKoopaNrvWipeOut, WipeKoopa, WipeOut);
     NEW_NERVE(WipeKoopaNrvClose, WipeKoopa, Close);
-};
+}; // namespace
 
-WipeKoopa::WipeKoopa() :
-    WipeLayoutBase("クッパ"),
-    mStepNum(90)
-{
-    
+WipeKoopa::WipeKoopa()
+    : WipeLayoutBase("クッパ"),
+      mStepNum(90) {
 }
 
 void WipeKoopa::init(const JMapInfoIter& rIter) {
@@ -22,7 +20,6 @@ void WipeKoopa::init(const JMapInfoIter& rIter) {
 }
 
 void WipeKoopa::exeWait() {
-    
 }
 
 void WipeKoopa::exeWipeOut() {
@@ -46,7 +43,6 @@ void WipeKoopa::exeWipeOut() {
 }
 
 void WipeKoopa::exeClose() {
-    
 }
 
 void WipeKoopa::wipe(s32 step) {
@@ -55,8 +51,7 @@ void WipeKoopa::wipe(s32 step) {
 
     if (step > 0) {
         mStepNum = step;
-    }
-    else {
+    } else {
         mStepNum = 90;
     }
 }

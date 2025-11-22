@@ -1,10 +1,8 @@
 #include "Game/Speaker/SpkWave.hpp"
 #include <revolution/os.h>
 
-SpkWave::SpkWave() :
-    mResource(nullptr)
-{
-    
+SpkWave::SpkWave()
+    : mResource(nullptr) {
 }
 
 void SpkWave::setResource(void* pResource) {

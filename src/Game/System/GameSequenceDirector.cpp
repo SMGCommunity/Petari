@@ -7,12 +7,11 @@
 #include "Game/Util/Functor.hpp"
 #include <JSystem/JKernel/JKRHeap.hpp>
 
-GameSequenceDirector::GameSequenceDirector() :
-    mGameDataTemporaryInGalaxy(nullptr),
-    mGameSequenceProgress(nullptr),
-    mSaveDataHandleSequence(nullptr),
-    mNWC24Messenger(nullptr)
-{
+GameSequenceDirector::GameSequenceDirector()
+    : mGameDataTemporaryInGalaxy(nullptr),
+      mGameSequenceProgress(nullptr),
+      mSaveDataHandleSequence(nullptr),
+      mNWC24Messenger(nullptr) {
     mSaveDataHandleSequence = new SaveDataHandleSequence();
     mSaveDataHandleSequence->registerFunctorOnSaveSuccess(
         MR::Functor(this, &GameSequenceDirector::executeOnSaveSuccess));

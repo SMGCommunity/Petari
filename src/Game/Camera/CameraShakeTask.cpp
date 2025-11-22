@@ -1,7 +1,7 @@
 #include "Game/Camera/CameraShakePatternImpl.hpp"
 #include "Game/Camera/CameraShakeTask.hpp"
 
-CameraShakeTask::CameraShakeTask(CameraShakePattern *pPattern) {
+CameraShakeTask::CameraShakeTask(CameraShakePattern* pPattern) {
     mPattern = pPattern;
     mHasEnded = true;
     mIsInfinite = false;
@@ -39,12 +39,11 @@ void CameraShakeTask::movement() {
     }
 }
 
-void CameraShakeTask::getOffset(TVec2f *pOffset) const {
+void CameraShakeTask::getOffset(TVec2f* pOffset) const {
     if (mHasEnded || mPattern->isEnd()) {
         pOffset->x = 0.0f;
         pOffset->y = 0.0f;
-    }
-    else {
+    } else {
         mPattern->getOffset(pOffset);
     }
 }
@@ -55,16 +54,16 @@ bool CameraShakeTask::isEnd() const {
 
 void CameraShakeTask::startCommon(u32 a1) {
     _C = a1;
-    CameraShakePattern *pattern = mPattern;
+    CameraShakePattern* pattern = mPattern;
     mHasEnded = false;
     pattern->_4 = 0;
     pattern->start();
 }
 
 void CameraShakeTask::updatePattern() {
-    CameraShakePattern *pattern = mPattern;
+    CameraShakePattern* pattern = mPattern;
 
-    pattern->_4++;    
+    pattern->_4++;
     pattern->update();
 
     if (mPattern->isEnd()) {
@@ -82,12 +81,11 @@ void CameraShakeTask::updateInterval() {
             return;
         }
 
-        CameraShakePattern *pattern = mPattern;
+        CameraShakePattern* pattern = mPattern;
 
         pattern->_4 = 0;
         pattern->start();
-    }
-    else {
+    } else {
         mHasEnded = true;
     }
 }

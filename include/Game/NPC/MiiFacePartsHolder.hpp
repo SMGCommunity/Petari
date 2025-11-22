@@ -21,18 +21,18 @@ public:
     virtual void calcAnim();
     virtual void calcViewAndEntry();
 
-    void reinitCharModel();
-    bool isInitEnd() const;
-    bool isError() const;
+    void                 reinitCharModel();
+    bool                 isInitEnd() const;
+    bool                 isError() const;
     static MiiFaceParts* createPartsFromReceipe(const char*, const MiiFaceRecipe&);
     static MiiFaceParts* createPartsFromDefault(const char*, u16);
-    void drawEachActor(DrawPartsFuncPtr, const RFLDrawCoreSetting*) const;
-    void drawExtra() const;
-    void setTevOpa() const;
-    void setTevXlu() const;
+    void                 drawEachActor(DrawPartsFuncPtr, const RFLDrawCoreSetting*) const;
+    void                 drawExtra() const;
+    void                 setTevOpa() const;
+    void                 setTevXlu() const;
 
-    /* 0x30 */ u8* mRFLWorkBuffer;
+    /* 0x30 */ u8*          mRFLWorkBuffer;
     /* 0x34 */ MiiDatabase* _34;
-    /* 0x38 */ RFLErrcode _38;
-    /* 0x3C */ s32 _3C;
+    /* 0x38 */ RFLErrcode   _38;
+    /* 0x3C */ s32          _3C;
 };

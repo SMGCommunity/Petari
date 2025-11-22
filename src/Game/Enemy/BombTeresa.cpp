@@ -49,16 +49,16 @@ namespace NrvBombTeresa {
     NEW_NERVE(BombTeresaNrvDisperse, BombTeresa, Disperse);
     NEW_NERVE(BombTeresaNrvShock, BombTeresa, Shock);
     NEW_NERVE(BombTeresaNrvReadyRestart, BombTeresa, ReadyRestart);
-}
+} // namespace NrvBombTeresa
 
-BombTeresa::BombTeresa(const char* pName) 
+BombTeresa::BombTeresa(const char* pName)
     : LiveActor(pName),
       mJointDelegator(nullptr),
       mJointDelegator2(nullptr),
       mScaleController(nullptr),
       mBindStarPointer(nullptr),
       _9C(0.0f, 0.0f, 0.0f, 1.0f),
-      _AC(0 ,0 ,1),
+      _AC(0, 0, 1),
       _B8(0, 0, 0),
       _C4(0, 0, 0),
       _D0(0, 0, 0),
@@ -69,8 +69,7 @@ BombTeresa::BombTeresa(const char* pName)
       _EC(false),
       mDisableRespawning(false),
       _EE(true),
-      _EF(false)
-{
+      _EF(false) {
 }
 
 BombTeresa::~BombTeresa() {}
@@ -109,7 +108,7 @@ void BombTeresa::initAfterPlacement() {
 }
 
 //The 2.0 needs to be 1.0
-void BombTeresa::initFromJMapParam(const JMapInfoIter & rIter) {
+void BombTeresa::initFromJMapParam(const JMapInfoIter& rIter) {
     if (MR::isValidInfo(rIter)) {
         MR::initDefaultPos(this, rIter);
         applyScale(1.0f);
@@ -132,9 +131,9 @@ void BombTeresa::initTongue() {
 void BombTeresa::initSensor() {
     f32 mScaleXTemp = mScale.x;
     initHitSensor(2);
-    MR::addHitSensorPosEye(this, "tungue", 8, (mScaleXTemp * 20.0f), &_C4, TVec3f(0.0f,0.0f,0.0f));
-    MR::addHitSensorEnemy(this, "body", 8, (mScaleXTemp * 85.0f), TVec3f(0.0f,0.0f,0.0f));
-    MR::initStarPointerTarget(this, (mScaleXTemp * 85.0f), TVec3f(0.0f,0.0f,0.0f));
+    MR::addHitSensorPosEye(this, "tungue", 8, (mScaleXTemp * 20.0f), &_C4, TVec3f(0.0f, 0.0f, 0.0f));
+    MR::addHitSensorEnemy(this, "body", 8, (mScaleXTemp * 85.0f), TVec3f(0.0f, 0.0f, 0.0f));
+    MR::initStarPointerTarget(this, (mScaleXTemp * 85.0f), TVec3f(0.0f, 0.0f, 0.0f));
 }
 
 void BombTeresa::makeActorAppeared() {
@@ -143,16 +142,14 @@ void BombTeresa::makeActorAppeared() {
     MR::onCalcGravity(this);
     MR::invalidateClipping(this);
     MR::startBrk(this, "Normal");
-    mScale.set(1.0f,1.0f,1.0f);
+    mScale.set(1.0f, 1.0f, 1.0f);
     _C4 = mPosition;
     _DC = 0.0f;
     setNerve(&NrvBombTeresa::BombTeresaNrvAppear::sInstance);
 }
 
 void BombTeresa::control() {
-    if (isNerve(&NrvBombTeresa::BombTeresaNrvWait::sInstance)
-    || isNerve(&NrvBombTeresa::BombTeresaNrvWander::sInstance)
-    || isNerve(&NrvBombTeresa::BombTeresaNrvChase::sInstance)) {
+    if (isNerve(&NrvBombTeresa::BombTeresaNrvWait::sInstance) || isNerve(&NrvBombTeresa::BombTeresaNrvWander::sInstance) || isNerve(&NrvBombTeresa::BombTeresaNrvChase::sInstance)) {
         MR::startLevelSound(this, "SE_EM_LV_BOMBTERE_MOVE", -1, -1, -1);
     }
     mScaleController->updateNerve();
@@ -166,7 +163,7 @@ void BombTeresa::control() {
 void BombTeresa::calcAndSetBaseMtx() {
     MR::setBaseTRMtx(this, _9C);
     TVec3f scale;
-    scale.z *= mScale.z; 
+    scale.z *= mScale.z;
     MR::setBaseScale(this, scale);
     mJointDelegator->registerCallBack();
     mJointDelegator2->registerCallBack();
@@ -200,7 +197,7 @@ bool BombTeresa::rootTongueMtxCallBack(TPos3f* arg0, const JointControllerInfo& 
     if (MR::normalizeOrZero(&(v12 - v11))) {
         v14.set(v13);
     }
-     MR::turnMtxToXDirRate(arg0, v14, (0.5f * _DC));
+    MR::turnMtxToXDirRate(arg0, v14, (0.5f * _DC));
     v14.x = MR::getEaseInOutValue(MR::normalize(PSVECDistance(&v11, &v12), 400.0f, 1000.0f), 1.0f, 0.5f, 1.0f);
     v14.y = 1.0f;
     MR::preScaleMtx(arg0->toMtxPtr(), v14);
@@ -224,7 +221,7 @@ bool BombTeresa::endTongueMtxCallBack(TPos3f* arg0, const JointControllerInfo& a
     }
     MR::turnMtxToXDirRate(arg0, v14, _DC);
     arg0->getXDir(v13);
-    f32 v7 = _DC;
+    f32    v7 = _DC;
     TVec3f v15(v14);
     v15 *= 0.35f;
     TVec3f v16(v15);
@@ -239,18 +236,14 @@ bool BombTeresa::endTongueMtxCallBack(TPos3f* arg0, const JointControllerInfo& a
     return true;
 }
 
-void BombTeresa::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
+void BombTeresa::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isSensorEye(pSender) && MR::isSensorPlayer(pReceiver)) {
-        if (isTouchTongue()
-            && !MR::sendArbitraryMsg(ACTMES_BOMB_TERESA_TONGUE_TOUCH, pReceiver, pSender))
-        {
+        if (isTouchTongue() && !MR::sendArbitraryMsg(ACTMES_BOMB_TERESA_TONGUE_TOUCH, pReceiver, pSender)) {
             setNerve(&NrvBombTeresa::BombTeresaNrvAttackTongueFailed::sInstance);
         }
     } else if (MR::isSensorEnemy(pSender)) {
         if (MR::isSensorPlayer(pReceiver)) {
-            if (isEnableHitExplosionToPlayer()
-                && MR::sendMsgEnemyAttackExplosion(pReceiver, pSender))
-            {
+            if (isEnableHitExplosionToPlayer() && MR::sendMsgEnemyAttackExplosion(pReceiver, pSender)) {
                 MR::zeroVelocity(this);
                 setNerve(&NrvBombTeresa::BombTeresaNrvExplosion::sInstance);
             }
@@ -268,14 +261,14 @@ void BombTeresa::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
     }
 }
 
-bool BombTeresa::receiveMsgPush(HitSensor *pSender, HitSensor *pReceiver) {
+bool BombTeresa::receiveMsgPush(HitSensor* pSender, HitSensor* pReceiver) {
     if (!MR::isSensorEnemy(pReceiver)) {
         return false;
     }
 
     if (MR::isSensorEnemy(pSender)) {
         TVec3f deltaPos = MR::getSensorPos(pReceiver) - MR::getSensorPos(pSender);
-    
+
         if (MR::normalizeOrZero(&deltaPos)) {
             MR::getRandomVector(&deltaPos, 1.0);
             MR::normalizeOrZero(&deltaPos);
@@ -292,7 +285,7 @@ bool BombTeresa::receiveMsgPush(HitSensor *pSender, HitSensor *pReceiver) {
     return false;
 }
 
-bool BombTeresa::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool BombTeresa::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgStarPieceAttack(msg) && isEnableStarPieceAttack()) {
         setNerve(&NrvBombTeresa::BombTeresaNrvDisperse::sInstance);
         return true;
@@ -310,7 +303,7 @@ bool BombTeresa::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *
     return false;
 }
 
-bool BombTeresa::receiveMsgEnemyAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool BombTeresa::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgToEnemyAttackBlow(msg) && isEnableHitExplosion()) {
         MR::zeroVelocity(this);
         setNerve(&NrvBombTeresa::BombTeresaNrvDisperse::sInstance);
@@ -336,7 +329,7 @@ bool BombTeresa::receiveMsgEnemyAttack(u32 msg, HitSensor *pSender, HitSensor *p
     return false;
 }
 
-bool BombTeresa::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool BombTeresa::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (msg == ACTMES_DISPERSE_BOMB_TERESA && isEnableDisperse()) {
         MR::zeroVelocity(this);
         setNerve(&NrvBombTeresa::BombTeresaNrvDisperse::sInstance);
@@ -355,7 +348,7 @@ bool BombTeresa::requestDrift() {
         MR::invalidateClipping(this);
         setNerve(&NrvBombTeresa::BombTeresaNrvDrift::sInstance);
         return true;
-    }   
+    }
     return false;
 }
 
@@ -368,7 +361,7 @@ bool BombTeresa::tryCheseEnd() {
 }
 
 bool BombTeresa::tryDirectTackle() {
-    if (!MR::isPlayerDamaging() && MR::isNearPlayer(this,900.0f) && MR::isFaceToPlayerHorizontalDegree(this, _AC, 30.0f)) {
+    if (!MR::isPlayerDamaging() && MR::isNearPlayer(this, 900.0f) && MR::isFaceToPlayerHorizontalDegree(this, _AC, 30.0f)) {
         setNerve(&NrvBombTeresa::BombTeresaNrvDirectTackleSign::sInstance);
         return true;
     }
@@ -463,7 +456,6 @@ void BombTeresa::exeShadowAppear() {
         MR::deleteEffect(this, "Shadow");
         setNerve(&NrvBombTeresa::BombTeresaNrvAppear::sInstance);
     }
-
 }
 
 void BombTeresa::exeBallAppear() {
@@ -484,9 +476,9 @@ void BombTeresa::exeBallAppear() {
     }
     if (MR::isLessStep(this, 160)) {
         MR::rotateQuatRollBall(&_9C, mVelocity, -mGravity, 70.0f);
-        _AC.set<f32>((2.0f * _9C.y * _9C.x) + (2.0f * _9C.y * _9C.z), 
-            (2.0f * _9C.z * _9C.x) - (2.0f * _9C.y * _9C.y), 
-            (1.0f - (2.0f * _9C.y * _9C.y) - (2.0f * _9C.z * _9C.z)));
+        _AC.set<f32>((2.0f * _9C.y * _9C.x) + (2.0f * _9C.y * _9C.z),
+                     (2.0f * _9C.z * _9C.x) - (2.0f * _9C.y * _9C.y),
+                     (1.0f - (2.0f * _9C.y * _9C.y) - (2.0f * _9C.z * _9C.z)));
     } else {
         f32 v3 = mGravity.dot(_AC);
         JMAVECScaleAdd(&mGravity, &_AC, &_AC, -v3);
@@ -538,7 +530,7 @@ void BombTeresa::exeWander() {
         v2 = 0.5f;
     }
     MR::rotateDirectionGravityDegree(this, &_AC, v2);
-    MR::addVelocityMoveToDirection(this,  _AC, 0.5f);
+    MR::addVelocityMoveToDirection(this, _AC, 0.5f);
     updateNormalVelocity();
     if (MR::isInDeath(this, TVec3f(0.0f, 0.0f, 0.0f))) {
         tryRevival();
@@ -557,7 +549,8 @@ void BombTeresa::exeChase() {
     MR::addVelocityMoveToDirection(this, _AC, (0.9f * MR::calcNerveRate(this, 60)));
     _C4 = mPosition;
     updateNormalVelocity();
-    if (!tryCheseEnd() && tryDirectTackle()) return;
+    if (!tryCheseEnd() && tryDirectTackle())
+        return;
 }
 
 void BombTeresa::exeAttackTongueFailed() {
@@ -621,11 +614,11 @@ void BombTeresa::exeDrift() {
     }
     PSVECCrossProduct(&mGravity, &_AC, &v14);
     PSVECCrossProduct(&mGravity, &(*MR::getPlayerPos() - MR::getCamPos()), &v15);
-    if ( MR::isNearZero(v14, 0.001) ) {
-    MR::makeAxisVerticalZX(&v14, mGravity);
+    if (MR::isNearZero(v14, 0.001)) {
+        MR::makeAxisVerticalZX(&v14, mGravity);
     }
-    if ( MR::isNearZero(v15, 0.001) ) {
-    MR::makeAxisVerticalZX(&v15, mGravity);
+    if (MR::isNearZero(v15, 0.001)) {
+        MR::makeAxisVerticalZX(&v15, mGravity);
     }
     MR::normalize(&v14);
     MR::normalize(&v15);
@@ -669,7 +662,8 @@ void BombTeresa::exeDrift() {
         _E0 *= 0.992f;
     }
     _E8--;
-    if (!tryExplosion() && !tryDriftRelease() && tryAbortDrift()) return;
+    if (!tryExplosion() && !tryDriftRelease() && tryAbortDrift())
+        return;
 }
 
 void BombTeresa::exeDriftRelease() {
@@ -685,7 +679,8 @@ void BombTeresa::exeDriftRelease() {
     } else {
         updateDriftReleaseVelocity();
     }
-    if (!tryExplosion() && tryDriftReleaseEnd()) return;
+    if (!tryExplosion() && tryDriftReleaseEnd())
+        return;
 }
 
 void BombTeresa::exeBindStarPointer() {
@@ -736,7 +731,7 @@ void BombTeresa::exeDisperse() {
         MR::startSound(this, "SE_EM_BOMBTERE_HIDE", -1, -1);
         MR::hideModel(this);
         _DC = 0.0f;
-        MR::zeroVelocity(this); 
+        MR::zeroVelocity(this);
     }
     _C4 = mPosition;
     if (MR::isGreaterStep(this, 40)) {
@@ -762,27 +757,14 @@ bool BombTeresa::isTouchTongue() const {
 }
 
 bool BombTeresa::isEnableDrift() const {
-    if (isNerve(&NrvBombTeresa::BombTeresaNrvBallAppear::sInstance)
-    || isNerve(&NrvBombTeresa::BombTeresaNrvShadowAppear::sInstance)
-    || isNerve(&NrvBombTeresa::BombTeresaNrvDrift::sInstance)
-    || isNerve(&NrvBombTeresa::BombTeresaNrvDriftRelease::sInstance)
-    || isNerve(&NrvBombTeresa::BombTeresaNrvExplosion::sInstance)
-    || isNerve(&NrvBombTeresa::BombTeresaNrvShock::sInstance)
-    || isNerve(&NrvBombTeresa::BombTeresaNrvDisperse::sInstance) 
-    || isNerve(&NrvBombTeresa::BombTeresaNrvReadyRestart::sInstance) ) {
+    if (isNerve(&NrvBombTeresa::BombTeresaNrvBallAppear::sInstance) || isNerve(&NrvBombTeresa::BombTeresaNrvShadowAppear::sInstance) || isNerve(&NrvBombTeresa::BombTeresaNrvDrift::sInstance) || isNerve(&NrvBombTeresa::BombTeresaNrvDriftRelease::sInstance) || isNerve(&NrvBombTeresa::BombTeresaNrvExplosion::sInstance) || isNerve(&NrvBombTeresa::BombTeresaNrvShock::sInstance) || isNerve(&NrvBombTeresa::BombTeresaNrvDisperse::sInstance) || isNerve(&NrvBombTeresa::BombTeresaNrvReadyRestart::sInstance)) {
         return false;
     }
     return true;
 }
 
 bool BombTeresa::isEnablePointBind() const {
-    if (isNerve(&NrvBombTeresa::BombTeresaNrvWait::sInstance)
-    || isNerve(&NrvBombTeresa::BombTeresaNrvWander::sInstance)
-    || isNerve(&NrvBombTeresa::BombTeresaNrvChase::sInstance)
-    || isNerve(&NrvBombTeresa::BombTeresaNrvAttackTongueFailed::sInstance)
-    || isNerve(&NrvBombTeresa::BombTeresaNrvDirectTackleSign::sInstance)
-    || isNerve(&NrvBombTeresa::BombTeresaNrvDirectTackle::sInstance)
-    || isNerve(&NrvBombTeresa::BombTeresaNrvDriftRelease::sInstance)) {
+    if (isNerve(&NrvBombTeresa::BombTeresaNrvWait::sInstance) || isNerve(&NrvBombTeresa::BombTeresaNrvWander::sInstance) || isNerve(&NrvBombTeresa::BombTeresaNrvChase::sInstance) || isNerve(&NrvBombTeresa::BombTeresaNrvAttackTongueFailed::sInstance) || isNerve(&NrvBombTeresa::BombTeresaNrvDirectTackleSign::sInstance) || isNerve(&NrvBombTeresa::BombTeresaNrvDirectTackle::sInstance) || isNerve(&NrvBombTeresa::BombTeresaNrvDriftRelease::sInstance)) {
         return true;
     }
     return false;
@@ -803,49 +785,34 @@ bool BombTeresa::isEnableHitExplosionToPlayer() const {
 }
 
 bool BombTeresa::isEnableHitExplosionToEnemy() const {
-    if (isNerve(&NrvBombTeresa::BombTeresaNrvDrift::sInstance)
-    || isNerve(&NrvBombTeresa::BombTeresaNrvDriftRelease::sInstance)) {
+    if (isNerve(&NrvBombTeresa::BombTeresaNrvDrift::sInstance) || isNerve(&NrvBombTeresa::BombTeresaNrvDriftRelease::sInstance)) {
         return true;
     }
     return false;
 }
 
 bool BombTeresa::isEnableHitExplosion() const {
-    if (isNerve(&NrvBombTeresa::BombTeresaNrvBallAppear::sInstance)
-    || isNerve(&NrvBombTeresa::BombTeresaNrvShadowAppear::sInstance)
-    || isNerve(&NrvBombTeresa::BombTeresaNrvExplosion::sInstance)
-    || isNerve(&NrvBombTeresa::BombTeresaNrvShock::sInstance)
-    || isNerve(&NrvBombTeresa::BombTeresaNrvDisperse::sInstance)
-    || isNerve(&NrvBombTeresa::BombTeresaNrvDrift::sInstance)
-    || isNerve(&NrvBombTeresa::BombTeresaNrvReadyRestart::sInstance)) {
+    if (isNerve(&NrvBombTeresa::BombTeresaNrvBallAppear::sInstance) || isNerve(&NrvBombTeresa::BombTeresaNrvShadowAppear::sInstance) || isNerve(&NrvBombTeresa::BombTeresaNrvExplosion::sInstance) || isNerve(&NrvBombTeresa::BombTeresaNrvShock::sInstance) || isNerve(&NrvBombTeresa::BombTeresaNrvDisperse::sInstance) || isNerve(&NrvBombTeresa::BombTeresaNrvDrift::sInstance) || isNerve(&NrvBombTeresa::BombTeresaNrvReadyRestart::sInstance)) {
         return false;
     }
     return true;
 }
 
 bool BombTeresa::isEnableStarPieceAttack() const {
-    if (isNerve(&NrvBombTeresa::BombTeresaNrvBallAppear::sInstance)
-    || isNerve(&NrvBombTeresa::BombTeresaNrvShadowAppear::sInstance)
-    || isNerve(&NrvBombTeresa::BombTeresaNrvExplosion::sInstance)
-    || isNerve(&NrvBombTeresa::BombTeresaNrvShock::sInstance)
-    || isNerve(&NrvBombTeresa::BombTeresaNrvDisperse::sInstance)
-    || isNerve(&NrvBombTeresa::BombTeresaNrvDrift::sInstance)
-    || isNerve(&NrvBombTeresa::BombTeresaNrvReadyRestart::sInstance)) {
+    if (isNerve(&NrvBombTeresa::BombTeresaNrvBallAppear::sInstance) || isNerve(&NrvBombTeresa::BombTeresaNrvShadowAppear::sInstance) || isNerve(&NrvBombTeresa::BombTeresaNrvExplosion::sInstance) || isNerve(&NrvBombTeresa::BombTeresaNrvShock::sInstance) || isNerve(&NrvBombTeresa::BombTeresaNrvDisperse::sInstance) || isNerve(&NrvBombTeresa::BombTeresaNrvDrift::sInstance) || isNerve(&NrvBombTeresa::BombTeresaNrvReadyRestart::sInstance)) {
         return false;
     }
     return true;
 }
 
 bool BombTeresa::isEnableShockWave() const {
-    if (isNerve(&NrvBombTeresa::BombTeresaNrvExplosion::sInstance)
-    || isNerve(&NrvBombTeresa::BombTeresaNrvShock::sInstance)
-    || isNerve(&NrvBombTeresa::BombTeresaNrvDisperse::sInstance)) {
+    if (isNerve(&NrvBombTeresa::BombTeresaNrvExplosion::sInstance) || isNerve(&NrvBombTeresa::BombTeresaNrvShock::sInstance) || isNerve(&NrvBombTeresa::BombTeresaNrvDisperse::sInstance)) {
         return false;
     }
     return true;
 }
 
-bool BombTeresa::appearNormal(const TVec3f & arg0, const TVec3f & arg1) {
+bool BombTeresa::appearNormal(const TVec3f& arg0, const TVec3f& arg1) {
     if (!MR::isDead(this)) {
         return false;
     }
@@ -859,7 +826,7 @@ bool BombTeresa::appearNormal(const TVec3f & arg0, const TVec3f & arg1) {
     return true;
 }
 
-bool BombTeresa::appearShadow(const TVec3f & arg0, const TVec3f & arg1) {
+bool BombTeresa::appearShadow(const TVec3f& arg0, const TVec3f& arg1) {
     if (!appearNormal(arg0, arg1)) {
         return false;
     }
@@ -877,9 +844,7 @@ void BombTeresa::addTeresaSpinPullVelocity(f32 arg0) {
 }
 
 bool BombTeresa::requestDisperse() {
-    if (isNerve(&NrvBombTeresa::BombTeresaNrvExplosion::sInstance)
-    || isNerve(&NrvBombTeresa::BombTeresaNrvShock::sInstance) 
-    || isNerve(&NrvBombTeresa::BombTeresaNrvDisperse::sInstance)) {
+    if (isNerve(&NrvBombTeresa::BombTeresaNrvExplosion::sInstance) || isNerve(&NrvBombTeresa::BombTeresaNrvShock::sInstance) || isNerve(&NrvBombTeresa::BombTeresaNrvDisperse::sInstance)) {
         return false;
     }
     setNerve(&NrvBombTeresa::BombTeresaNrvDisperse::sInstance);

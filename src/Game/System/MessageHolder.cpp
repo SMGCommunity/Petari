@@ -20,7 +20,7 @@ namespace {
         }
         return nullptr;
     }
-}
+} // namespace
 
 bool MessageData::getMessageDirect(TalkMessageInfo* pMessageInfo, const char* pMessage) const {
     s32 messageIndex = findMessageIndex(pMessage);
@@ -36,7 +36,7 @@ bool MessageData::getMessage(TalkMessageInfo* pMessageInfo, u16, u16 infoToolInd
     pMessageInfo->_0 = reinterpret_cast<u8*>(mDataBlock + 1) + *reinterpret_cast<u32*>(pInfoTool);
     pMessageInfo->_4 = *reinterpret_cast<u16*>(pInfoTool + 4);
     pMessageInfo->_6 = *(pInfoTool + 6);
-    pMessageInfo->mCameraType =*(pInfoTool + 7);
+    pMessageInfo->mCameraType = *(pInfoTool + 7);
     pMessageInfo->mTalkType = *(pInfoTool + 8);
     pMessageInfo->_A = *(pInfoTool + 0xa);
     pMessageInfo->_B = *(pInfoTool + 0xb);
@@ -46,7 +46,7 @@ bool MessageData::getMessage(TalkMessageInfo* pMessageInfo, u16, u16 infoToolInd
 
 TalkNode* MessageData::findNode(const char* pMessage) const {
     s32 messageIndex = findMessageIndex(pMessage);
-    
+
     for (int i = 0; i < mFlowBlock->mNodeCount; i++) {
         TalkNode* pNode = reinterpret_cast<TalkNode*>(mFlowBlock + 1) + i;
         if (pNode->mNodeType == 1 && pNode->mIndex == messageIndex) {
@@ -113,7 +113,7 @@ MessageData::MessageData(const char* pArchiveName) {
     mFLI1Block = nullptr;
 
     JKRArchive* pArchive = nullptr;
-    JKRHeap* pHeap = nullptr;
+    JKRHeap*    pHeap = nullptr;
     MR::getMountedArchiveAndHeap(pArchiveName, &pArchive, &pHeap);
 
     u8* msgData = (u8*)pArchive->getResource("Message.bmg");

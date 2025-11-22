@@ -2,11 +2,10 @@
 #include "Game/Screen/WipeLayoutBase.hpp"
 #include <cstdio>
 
-WipeHolderBase::WipeHolderBase(u32 num, const char *pName) :
-    NameObj(pName),
-    mCurrentWipeLayout(),
-    mWipeLayoutArray()
-{
+WipeHolderBase::WipeHolderBase(u32 num, const char* pName)
+    : NameObj(pName),
+      mCurrentWipeLayout(),
+      mWipeLayoutArray() {
     mWipeLayoutArray.init(num);
 }
 

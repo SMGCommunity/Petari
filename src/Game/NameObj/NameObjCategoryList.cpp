@@ -1,6 +1,6 @@
 #include "Game/NameObj/NameObjCategoryList.hpp"
 
-NameObjCategoryList::NameObjCategoryList(u32 count, const CategoryListInitialTable *pTable, NameObjMethod pMethod, bool a4, const char * /* unused */) {
+NameObjCategoryList::NameObjCategoryList(u32 count, const CategoryListInitialTable* pTable, NameObjMethod pMethod, bool a4, const char* /* unused */) {
     NameObjMethod method;
     method = pMethod;
     mDelegator = new NameObjRealDelegator<NameObjMethod>(method);
@@ -9,7 +9,7 @@ NameObjCategoryList::NameObjCategoryList(u32 count, const CategoryListInitialTab
     initTable(count, pTable);
 }
 
-NameObjCategoryList::NameObjCategoryList(u32 count, const CategoryListInitialTable *pTable, NameObjMethodConst pMethod, bool a4, const char * /* unused */) {
+NameObjCategoryList::NameObjCategoryList(u32 count, const CategoryListInitialTable* pTable, NameObjMethodConst pMethod, bool a4, const char* /* unused */) {
     NameObjMethodConst method;
     method = pMethod;
     mDelegatorConst = new NameObjRealDelegator<NameObjMethodConst>(method);
@@ -34,17 +34,17 @@ void NameObjCategoryList::execute(int idx) {
     }
 }
 
-void NameObjCategoryList::incrementCheck(NameObj */*unused*/, int index) {
+void NameObjCategoryList::incrementCheck(NameObj* /*unused*/, int index) {
     mCategoryInfo[index].mCheck++;
 }
 
 void NameObjCategoryList::allocateBuffer() {
     if (_D) {
         for (int i = 0; i < mCategoryInfo.size(); i++) {
-            NameObjCategoryList::CategoryInfo* inf = &mCategoryInfo[i];
-            u32 size = inf->mCheck;
-            NameObj** nameObjArr = new NameObj*[size];
-            MR::Vector<MR::AssignableArray<NameObj*> >* arr = &mCategoryInfo[i].mNameObjArr;
+            NameObjCategoryList::CategoryInfo*         inf = &mCategoryInfo[i];
+            u32                                        size = inf->mCheck;
+            NameObj**                                  nameObjArr = new NameObj*[size];
+            MR::Vector<MR::AssignableArray<NameObj*>>* arr = &mCategoryInfo[i].mNameObjArr;
             arr->mArray.mArr = nameObjArr;
             arr->mArray.mMaxSize = size;
         }
@@ -53,19 +53,19 @@ void NameObjCategoryList::allocateBuffer() {
     }
 }
 
-void NameObjCategoryList::add(NameObj *pObj, int idx) {
+void NameObjCategoryList::add(NameObj* pObj, int idx) {
     mCategoryInfo[idx].mNameObjArr.push_back(pObj);
 }
 
 // NameObjCategoryList::remove
 
-void NameObjCategoryList::registerExecuteBeforeFunction(const MR::FunctorBase &rFunc, int idx) {
+void NameObjCategoryList::registerExecuteBeforeFunction(const MR::FunctorBase& rFunc, int idx) {
     NameObjCategoryList::CategoryInfo* pCategoryInfo = &mCategoryInfo[idx];
 
     pCategoryInfo->_C = rFunc.clone(nullptr);
 }
 
-void NameObjCategoryList::initTable(u32 count, const CategoryListInitialTable *pTable) {
+void NameObjCategoryList::initTable(u32 count, const CategoryListInitialTable* pTable) {
     mCategoryInfo.init(count);
 
     for (CategoryInfo* pCategoryInfo = mCategoryInfo.begin(); pCategoryInfo != mCategoryInfo.end(); pCategoryInfo++) {
@@ -74,8 +74,8 @@ void NameObjCategoryList::initTable(u32 count, const CategoryListInitialTable *p
 
     for (const CategoryListInitialTable* pEntry = &pTable[0]; pEntry->mIndex != -1; pEntry++) {
         if (!_D) {
-            u32 size = pEntry->mCount;
-            NameObj** arr = new NameObj*[size];
+            u32                                size = pEntry->mCount;
+            NameObj**                          arr = new NameObj*[size];
             NameObjCategoryList::CategoryInfo* inf = &mCategoryInfo[pEntry->mIndex];
             inf->mNameObjArr.mArray.mArr = arr;
             inf->mNameObjArr.mArray.mMaxSize = size;
@@ -86,12 +86,10 @@ void NameObjCategoryList::initTable(u32 count, const CategoryListInitialTable *p
     }
 }
 
-NameObjCategoryList::CategoryInfo::CategoryInfo() :
-    mNameObjArr()
-{}
+NameObjCategoryList::CategoryInfo::CategoryInfo()
+    : mNameObjArr() {}
 
 NameObjCategoryList::CategoryInfo::~CategoryInfo() {
-    
 }
 
 NameObjCategoryList::~NameObjCategoryList() {

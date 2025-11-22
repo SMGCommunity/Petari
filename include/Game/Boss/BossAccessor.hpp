@@ -28,5 +28,5 @@ private:
 
 namespace BossAccess {
     Koopa* getBossAccessorKoopa();
-    void setBossAccessorKoopa(Koopa* pKoopa);
-};
+    void   setBossAccessorKoopa(Koopa* pKoopa);
+}; // namespace BossAccess

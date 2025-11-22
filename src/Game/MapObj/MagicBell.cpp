@@ -1,6 +1,7 @@
 #include "Game/MapObj/MagicBell.hpp"
 
-MagicBell::MagicBell(const char *pName) : LiveActor(pName) {
+MagicBell::MagicBell(const char* pName)
+    : LiveActor(pName) {
     mBellSwinger = nullptr;
     mSurface1Mtx = nullptr;
     mSurface2Mtx = nullptr;
@@ -11,7 +12,7 @@ MagicBell::MagicBell(const char *pName) : LiveActor(pName) {
     mHitMarkPosition.z = 0.0f;
 }
 
-void MagicBell::init(const JMapInfoIter &rIter) {
+void MagicBell::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     initModelManagerWithAnm("Bell", nullptr, false);
     mSurface2Mtx = MR::getJointMtx(this, "polySurface2");
@@ -38,7 +39,6 @@ void MagicBell::init(const JMapInfoIter &rIter) {
 
 void MagicBell::exeWait() {
     if (MR::isFirstStep(this)) {
-        
     }
 
     if (!tryRing()) {
@@ -121,7 +121,7 @@ void MagicBell::exeRing()
 }
 */
 
-void MagicBell::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
+void MagicBell::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isSensorPlayer(pReceiver)) {
         MR::sendMsgPush(pReceiver, pSender);
     }
@@ -149,10 +149,9 @@ bool MagicBell::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *p
 }
 */
 
-bool MagicBell::tryRing()
-{
+bool MagicBell::tryRing() {
     if (!MR::isExecScenarioStarter() && MR::isStarPointerPointing(this, 0, 0, "弱")) {
-        TVec2f *v4(MR::getStarPointerScreenVelocity(0));
+        TVec2f* v4(MR::getStarPointerScreenVelocity(0));
         if (((v4->x * v4->x) + (v4->y * v4->y)) > 64.0f) {
             TVec3f v12;
             MR::getStarPointerWorldVelocityDirection(&v12, 0);
@@ -160,8 +159,7 @@ bool MagicBell::tryRing()
                 v12.set(MR::getRandom(-1.0f, 1.0f), MR::getRandom(-1.0f, 1.0f), MR::getRandom(-1.0f, 1.0f));
                 if (MR::isNearZero(v12, 0.001f)) {
                     v12.set(1.0f, 0.0f, 0.0f);
-                }
-                else {
+                } else {
                     MR::normalize(&v12);
                 }
             }
@@ -174,9 +172,8 @@ bool MagicBell::tryRing()
     return false;
 }
 
-void MagicBell::startRing(const TVec3f &a1, const TVec3f &a2)
-{
-    f32 v10 = PSVECMag(&mBellSwinger->mAcceleration);
+void MagicBell::startRing(const TVec3f& a1, const TVec3f& a2) {
+    f32    v10 = PSVECMag(&mBellSwinger->mAcceleration);
     TVec3f v13(mBellSwinger->mAcceleration);
     v13.scale(-1.0f);
     mBellSwinger->accel(v13);
@@ -190,13 +187,12 @@ void MagicBell::startRing(const TVec3f &a1, const TVec3f &a2)
 }
 
 MagicBell::~MagicBell() {
-
 }
 
 namespace NrvMagicBell {
     INIT_NERVE(MagicBellNrvWait);
     INIT_NERVE(MagicBellNrvRing);
-};
+}; // namespace NrvMagicBell
 
 MtxPtr MagicBell::getBaseMtx() const {
     return mSurface2Mtx;

@@ -1,11 +1,12 @@
 #include "Game/MapObj/DeadLeaves.hpp"
 #include "Game/MapObj/MapObjActorInitInfo.hpp"
 
-DeadLeaves::DeadLeaves(const char *pName) : MapObjActor(pName) {
+DeadLeaves::DeadLeaves(const char* pName)
+    : MapObjActor(pName) {
     mItemType = -1;
 }
 
-void DeadLeaves::init(const JMapInfoIter &rIter) {
+void DeadLeaves::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);
     MapObjActorInitInfo info;
     MapObjActorUtil::setupInitInfoSimpleMapObj(&info);
@@ -21,8 +22,7 @@ void DeadLeaves::init(const JMapInfoIter &rIter) {
 
     if (mItemType == 0) {
         MR::declareCoin(this, 1);
-    }
-    else if (mItemType == 1) {
+    } else if (mItemType == 1) {
         MR::declareStarPiece(this, 3);
     }
 }
@@ -34,8 +34,7 @@ void DeadLeaves::exeSpin() {
 
         if (mItemType == 0) {
             MR::appearCoinPop(this, mPosition, 1);
-        }
-        else if (mItemType == 1) {
+        } else if (mItemType == 1) {
             bool appear = MR::appearStarPiece(this, mPosition, 3, 10.0f, 40.0f, false);
             if (appear) {
                 MR::startSound(this, "SE_OJ_STAR_PIECE_BURST", -1, -1);
@@ -48,7 +47,7 @@ void DeadLeaves::exeSpin() {
     }
 }
 
-bool DeadLeaves::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool DeadLeaves::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgPlayerSpinAttack(msg)) {
         setNerve(&NrvDeadLeaves::DeadLeavesNrvSpin::sInstance);
         return true;
@@ -58,19 +57,17 @@ bool DeadLeaves::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *
 }
 
 DeadLeaves::~DeadLeaves() {
-    
 }
 
 namespace NrvDeadLeaves {
     INIT_NERVE(DeadLeavesNrvWait);
     INIT_NERVE(DeadLeavesNrvSpin);
 
-    void DeadLeavesNrvSpin::execute(Spine *pSpine) const {
+    void DeadLeavesNrvSpin::execute(Spine* pSpine) const {
         DeadLeaves* leaves = reinterpret_cast<DeadLeaves*>(pSpine->mExecutor);
         leaves->exeSpin();
     }
 
-    void DeadLeavesNrvWait::execute(Spine *pSpine) const {
-
+    void DeadLeavesNrvWait::execute(Spine* pSpine) const {
     }
-};
+}; // namespace NrvDeadLeaves

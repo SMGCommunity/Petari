@@ -29,7 +29,7 @@ public:
     bool tryChangeCameraStateNerve();
 
 private:
-    /* 0x20 */ s32 mStep;
+    /* 0x20 */ s32  mStep;
     /* 0x24 */ bool mIsActive;
     /* 0x25 */ bool _25;
 };

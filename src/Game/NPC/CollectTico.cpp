@@ -12,15 +12,16 @@ namespace NrvCollectTico {
     NEW_NERVE(CollectTicoNrvCompleteDemo, CollectTico, CompleteDemo);
     NEW_NERVE(CollectTicoNrvFlash, CollectTico, Flash);
     NEW_NERVE(CollectTicoNrvAppearPowerStar, CollectTico, AppearPowerStar);
-};
+}; // namespace NrvCollectTico
 
-CollectTico::CollectTico(const char *pName) : LiveActor(pName) {
+CollectTico::CollectTico(const char* pName)
+    : LiveActor(pName) {
     mStrayTicos = nullptr;
     mTicoNum = 0;
     _A0 = 0;
 }
 
-void CollectTico::init(const JMapInfoIter &rIter) {
+void CollectTico::init(const JMapInfoIter& rIter) {
     MR::connectToSceneNpcMovement(this);
     mTicoNum = MR::getChildObjNum(rIter);
     mStrayTicos = new StrayTico*[mTicoNum];
@@ -139,9 +140,7 @@ void CollectTico::startAppearPowerStar() {
 }
 
 void CollectTico::exeTryStartDemo() {
-    
 }
 
 CollectTico::~CollectTico() {
-    
 }

@@ -4,14 +4,13 @@
 #include "Game/Util/LayoutUtil.hpp"
 #include <cstdio>
 
-GalaxyMapTicoIcon::GalaxyMapTicoIcon(int exclamationGalaxyIndex, const char* pGalaxyName, LayoutActor* pHost, const char* pPaneName) :
-    LayoutActor(pGalaxyName, true),
-    mExclamationGalaxyIndex(exclamationGalaxyIndex),
-    mGalaxyName(pGalaxyName),
-    mHost(pHost),
-    mPaneName(nullptr),
-    mMode(0)
-{
+GalaxyMapTicoIcon::GalaxyMapTicoIcon(int exclamationGalaxyIndex, const char* pGalaxyName, LayoutActor* pHost, const char* pPaneName)
+    : LayoutActor(pGalaxyName, true),
+      mExclamationGalaxyIndex(exclamationGalaxyIndex),
+      mGalaxyName(pGalaxyName),
+      mHost(pHost),
+      mPaneName(nullptr),
+      mMode(0) {
     u32 paneNameLen = strlen(pPaneName) + 1;
 
     mPaneName = new char[paneNameLen];
@@ -31,13 +30,11 @@ void GalaxyMapTicoIcon::appear() {
 }
 
 void GalaxyMapTicoIcon::syncStatus() {
-    f32 starPieceRate = static_cast<f32>(MR::getStarPieceNumGivingToTicoGalaxy(mExclamationGalaxyIndex))
-        / MR::getStarPieceNumMaxGivingToTicoGalaxy(mExclamationGalaxyIndex);
+    f32 starPieceRate = static_cast<f32>(MR::getStarPieceNumGivingToTicoGalaxy(mExclamationGalaxyIndex)) / MR::getStarPieceNumMaxGivingToTicoGalaxy(mExclamationGalaxyIndex);
 
     if (!MR::isAppearGalaxy(mGalaxyName) || 1.0f <= starPieceRate) {
         MR::hideLayout(this);
-    }
-    else {
+    } else {
         MR::startAnim(this, "TicoMeter", 2);
         MR::setAnimFrameAndStop(this, starPieceRate * MR::getAnimFrameMax(this, 2), 2);
 
@@ -45,8 +42,7 @@ void GalaxyMapTicoIcon::syncStatus() {
             MR::startAnim(this, "SelectIn", 0);
             MR::setAnimFrameAndStopAtEnd(this, 0);
             MR::startAnim(this, "Blink", 1);
-        }
-        else {
+        } else {
             MR::startAnim(this, "Wait", 0);
             MR::startAnim(this, "Blink", 1);
             MR::setAnimFrameAndStop(this, 0.0f, 1);

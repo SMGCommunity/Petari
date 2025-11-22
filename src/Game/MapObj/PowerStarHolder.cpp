@@ -1,16 +1,16 @@
 #include "Game/MapObj/PowerStarHolder.hpp"
 #include "Game/NPC/EventDirector.hpp"
 
-PowerStarHolder::PowerStarHolder(const char *pName) : NameObj(pName) {
+PowerStarHolder::PowerStarHolder(const char* pName)
+    : NameObj(pName) {
     mNumInfos = 0;
     MR::zeroMemory(mInfos, sizeof(mInfos));
 }
 
-void PowerStarHolder::init(const JMapInfoIter &) {
-
+void PowerStarHolder::init(const JMapInfoIter&) {
 }
 
-void PowerStarHolder::registerPowerStar(PowerStar *pStar, int starNum) {
+void PowerStarHolder::registerPowerStar(PowerStar* pStar, int starNum) {
     PowerStarRequestInfo* info = new PowerStarRequestInfo();
     info->mStar = pStar;
     info->mStarNum = starNum;
@@ -19,7 +19,7 @@ void PowerStarHolder::registerPowerStar(PowerStar *pStar, int starNum) {
     mNumInfos++;
 }
 
-void PowerStarHolder::requestAppearPowerStar(int starNum, const TVec3f *pPos, bool forceAppear) {
+void PowerStarHolder::requestAppearPowerStar(int starNum, const TVec3f* pPos, bool forceAppear) {
     PowerStarRequestInfo* info = findPowerStarRequestInfo(starNum);
     info->mIsAppear = true;
     PowerStar* star = info->mStar;
@@ -31,8 +31,7 @@ void PowerStarHolder::requestAppearPowerStar(int starNum, const TVec3f *pPos, bo
     if (forceAppear) {
         star->_11C = true;
         star->appear();
-    }
-    else {
+    } else {
         star->requestAppear();
     }
 }
@@ -70,10 +69,10 @@ PowerStarRequestInfo* PowerStarHolder::findPowerStarRequestInfo(int starNum) con
 }
 
 namespace MR {
-    void registerPowerStar(PowerStar *pStar, int starNum) {
+    void registerPowerStar(PowerStar* pStar, int starNum) {
         EventFunction::getPowerStarHolder()->registerPowerStar(pStar, starNum);
     }
-};
+}; // namespace MR
 
 bool PowerStarFunction::isEndPowerStarAppearDemo(int starNum) {
     return EventFunction::getPowerStarHolder()->getAppearedPowerStar(starNum)->isEndAppearDemo();
@@ -84,5 +83,4 @@ PowerStar* PowerStarFunction::findPowerStar(int starNum) {
 }
 
 PowerStarHolder::~PowerStarHolder() {
-
 }

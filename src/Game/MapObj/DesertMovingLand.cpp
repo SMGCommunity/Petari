@@ -9,7 +9,8 @@
 #include "JSystem/JGeometry/TVec.hpp"
 #include "revolution/mtx.h"
 
-DesertMovingLand::DesertMovingLand(const char* pName) : MapObjActor(pName), _C4(gZeroVec), _D0(gZeroVec) {
+DesertMovingLand::DesertMovingLand(const char* pName)
+    : MapObjActor(pName), _C4(gZeroVec), _D0(gZeroVec) {
     _DC = 720;
     _E0 = 720;
     _E4.identity();
@@ -29,7 +30,7 @@ void DesertMovingLand::init(const JMapInfoIter& rIter) {
     if (!MR::isValidSwitchA(this))
         setNerve(&NrvDesertMovingLand::HostTypeWaitBottom::sInstance);
 
-    MtxPtr jointMtx = MR::getJointMtx(this, mObjectName);
+    MtxPtr     jointMtx = MR::getJointMtx(this, mObjectName);
     HitSensor* pSensorMove = getSensor(0);
     MR::initCollisionParts(this, "Move", pSensorMove, jointMtx);
 
@@ -37,21 +38,20 @@ void DesertMovingLand::init(const JMapInfoIter& rIter) {
         MR::invalidateCollisionParts(this);
     else
         MR::validateCollisionParts(this);
-    
+
     f32 arg = 2000.0f;
     MR::getJMapInfoArg0NoInit(rIter, &arg);
     MR::getJMapInfoArg1NoInit(rIter, &_DC);
     MR::getJMapInfoArg2NoInit(rIter, &_E0);
     TVec3f stack_3C;
     MR::calcUpVec(&stack_3C, this);
-    
+
     if (MR::isValidSwitchA(this)) {
         _C4.set(mPosition);
-        _D0.set(_C4-stack_3C.scaleInline(arg));
-    }
-    else {
+        _D0.set(_C4 - stack_3C.scaleInline(arg));
+    } else {
         _D0.set(mPosition);
-        _C4.set(_D0+stack_3C.scaleInline(arg));
+        _C4.set(_D0 + stack_3C.scaleInline(arg));
     }
     MR::setBodySensorTypePress(this);
 }
@@ -67,10 +67,10 @@ void DesertMovingLand::control() {
 }
 
 void DesertMovingLand::startDemo() {
-    MtxPtr playerBaseMtx = MR::getPlayerDemoActor()->getBaseMtx();
+    MtxPtr  playerBaseMtx = MR::getPlayerDemoActor()->getBaseMtx();
     TMtx34f stack_38;
     stack_38.set(playerBaseMtx);
-    MtxPtr jointMtx = MR::getJointMtx(this, mObjectName);
+    MtxPtr  jointMtx = MR::getJointMtx(this, mObjectName);
     TMtx34f stack_8;
     stack_8.set(jointMtx);
     stack_8.invert(stack_8);
@@ -78,7 +78,7 @@ void DesertMovingLand::startDemo() {
 }
 
 void DesertMovingLand::updateDemoPlayerPos() {
-    MtxPtr jointMtx = MR::getJointMtx(this, mObjectName);
+    MtxPtr  jointMtx = MR::getJointMtx(this, mObjectName);
     TMtx34f stack_8;
     stack_8.set(jointMtx);
     stack_8.concat(stack_8, _E4);
@@ -90,8 +90,7 @@ void DesertMovingLand::exeWait() {
     if (MR::isValidSwitchA(this) && MR::isOnSwitchA(this) && isNerve(&NrvDesertMovingLand::HostTypeWaitTop::sInstance)) {
         startDemo();
         setNerve(&NrvDesertMovingLand::HostTypeMoveDownSign::sInstance);
-    }
-    else if (MR::isOnSwitchB(this) && isNerve(&NrvDesertMovingLand::HostTypeWaitBottom::sInstance)) {
+    } else if (MR::isOnSwitchB(this) && isNerve(&NrvDesertMovingLand::HostTypeWaitBottom::sInstance)) {
         startDemo();
         setNerve(&NrvDesertMovingLand::HostTypeMoveUpSign::sInstance);
     }
@@ -99,8 +98,8 @@ void DesertMovingLand::exeWait() {
 
 void DesertMovingLand::exeMoveDown() {
     if (MR::isFirstStep(this)) {
-        TVec3f stack_8(_D0-_C4);
-        stack_8.setLength(PSVECMag(&stack_8)/_DC);
+        TVec3f stack_8(_D0 - _C4);
+        stack_8.setLength(PSVECMag(&stack_8) / _DC);
         mVelocity.set(stack_8);
         MR::startAtmosphereSE("SE_OJ_DESERT_LAND_MOVE_ST", -1, -1);
     }
@@ -124,8 +123,8 @@ void DesertMovingLand::exeMoveDown() {
 
 void DesertMovingLand::exeMoveUp() {
     if (MR::isFirstStep(this)) {
-        TVec3f stack_8(_C4-_D0);
-        stack_8.setLength(PSVECMag(&stack_8)/_E0);
+        TVec3f stack_8(_C4 - _D0);
+        stack_8.setLength(PSVECMag(&stack_8) / _E0);
         mVelocity.set(stack_8);
         MR::startAtmosphereSE("SE_OJ_DESERT_LAND_MOVE_ST", -1, -1);
     }
@@ -159,8 +158,7 @@ void DesertMovingLand::exeMoveSign() {
 
         MR::shakeCameraInfinity(this, 0.15000001f, 1.2f);
     }
-    
-    
+
     MR::startLevelSound(this, "SE_OJ_LV_DESERT_LAND_SIGN", -1, -1, -1);
     MR::tryRumblePadMiddle(this, 0);
     if (MR::isBckStopped(this)) {
@@ -190,18 +188,15 @@ void DesertMovingLand::connectToScene(const MapObjActorInitInfo& rInfo) {
 }
 
 void DesertMovingLand::initCaseNoUseSwitchB(const MapObjActorInitInfo& rInfo) {
-
 }
 
 void DesertMovingLand::initCaseUseSwitchB(const MapObjActorInitInfo& rInfo) {
-
 }
 
 void DesertMovingLand::initCaseUseSwitchA(const MapObjActorInitInfo& rInfo) {
-    
 }
 
-DesertMovingLand::~DesertMovingLand() {};
+DesertMovingLand::~DesertMovingLand(){};
 
 namespace NrvDesertMovingLand {
     HostTypeWaitTop(HostTypeWaitTop::sInstance);
@@ -211,4 +206,4 @@ namespace NrvDesertMovingLand {
     HostTypeMoveDownSign(HostTypeMoveDownSign::sInstance);
     HostTypeMoveUpSign(HostTypeMoveUpSign::sInstance);
     HostTypeStop(HostTypeStop::sInstance);
-};
+}; // namespace NrvDesertMovingLand

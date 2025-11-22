@@ -17,14 +17,14 @@ MR::BothDirList<MainLoopFrameworkAlarm> MainLoopFrameworkAlarm::sList(false);
 
 GXTexObj clear_z_tobj;
 
-Mtx e_mtx = { { 1f, 0f, 0f, 0f },
-              { 0f, 1f, 0f, 0f },
-              { 0f, 0f, 1f, 0f } };
+Mtx e_mtx = {{1f, 0f, 0f, 0f},
+             {0f, 1f, 0f, 0f},
+             {0f, 0f, 1f, 0f}};
 
-u32 clearZTexData[] = { 0x00FF00FF, 0x00FF00FF, 0x00FF00FF, 0x00FF00FF,
-                        0x00FF00FF, 0x00FF00FF, 0x00FF00FF, 0x00FF00FF,
-                        0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF,
-                        0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF };
+u32 clearZTexData[] = {0x00FF00FF, 0x00FF00FF, 0x00FF00FF, 0x00FF00FF,
+                       0x00FF00FF, 0x00FF00FF, 0x00FF00FF, 0x00FF00FF,
+                       0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF,
+                       0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF};
 
 namespace {
     s32 getDisplayingXfbIndex() NO_INLINE;
@@ -34,7 +34,7 @@ namespace {
     void waitDrawDoneAndSetAlarm();
 
     void handleGXAbortAlarm(OSAlarm*, OSContext*);
-}
+} // namespace
 
 void MainLoopFramework::ctor_subroutine(bool useAlpha) {
     mClearColor = (GXColor){0, 0, 0, 0};
@@ -59,8 +59,7 @@ void MainLoopFramework::ctor_subroutine(bool useAlpha) {
         GX_TF_Z24X8,
         GX_REPEAT,
         GX_REPEAT,
-        GX_FALSE
-    );
+        GX_FALSE);
     GXInitTexObjLOD(
         &clear_z_tobj,
         GX_NEAR,
@@ -68,8 +67,7 @@ void MainLoopFramework::ctor_subroutine(bool useAlpha) {
         0f, 0f, 0f,
         GX_FALSE,
         GX_FALSE,
-        GX_ANISO_1
-    );
+        GX_ANISO_1);
     mRenderInterval = 1;
     mRenderCounter = 0;
     mDoRenderFrame = false;
@@ -84,8 +82,7 @@ MainLoopFramework::~MainLoopFramework() {
 }
 
 MainLoopFramework* MainLoopFramework::createManager(
-    const GXRenderModeObj* pRenderModeObj, void* xfb1, void* xfb2, void* xfb3, bool useAlpha
-) {
+    const GXRenderModeObj* pRenderModeObj, void* xfb1, void* xfb2, void* xfb3, bool useAlpha) {
     if (pRenderModeObj) {
         JUTVideo::sManager->setRenderMode(pRenderModeObj);
     }
@@ -119,8 +116,7 @@ void MainLoopFramework::prepareCopyDisp() {
         JUTVideo::sManager->mRenderModeObj->aa,
         JUTVideo::sManager->mRenderModeObj->sample_pattern,
         mUseVFilter,
-        JUTVideo::sManager->mRenderModeObj->vfilter
-    );
+        JUTVideo::sManager->mRenderModeObj->vfilter);
     GXSetCopyClamp((GXFBClamp)mCopyClamp);
     GXSetDispCopyGamma((GXGamma)mDispCopyGamma);
     GXSetZMode(GX_TRUE, GX_LEQUAL, GX_TRUE);
@@ -152,8 +148,7 @@ void MainLoopFramework::exchangeXfb_double() {
                 pXfbMgr->mLastDrawnXfbIndex = pXfbMgr->mDrawingXfbIndex;
                 GXDrawDone();
                 JUTVideo::dummyNoDrawWait();
-            }
-            else {
+            } else {
                 JUTVideo::drawDoneStart();
             }
             if (!_C) {
@@ -163,8 +158,7 @@ void MainLoopFramework::exchangeXfb_double() {
         s16 lastIdx = pXfbMgr->mDrawingXfbIndex;
         pXfbMgr->mLastDrawnXfbIndex = lastIdx;
         pXfbMgr->mDrawingXfbIndex = lastIdx >= 0 ? lastIdx ^ 1 : 0;
-    }
-    else {
+    } else {
         clearEfb(mClearColor);
         if (pXfbMgr->mDrawingXfbIndex < 0) {
             pXfbMgr->mDrawingXfbIndex = 0;
@@ -176,7 +170,7 @@ namespace {
     s32 getDisplayingXfbIndex() {
         return JUTXfb::getManager()->getDisplayingXfbIndex();
     }
-}
+} // namespace
 
 void MainLoopFramework::exchangeXfb_triple() {
     JUTXfb* pXfbMgr = JUTXfb::sManager;
@@ -211,12 +205,10 @@ void MainLoopFramework::preGX() {
     if (JUTVideo::sManager->mRenderModeObj->aa) {
         GXSetPixelFmt(GX_PF_RGB565_Z16, GX_ZC_LINEAR);
         GXSetDither(GX_TRUE);
-    }
-    else if (mUseAlpha) {
+    } else if (mUseAlpha) {
         GXSetPixelFmt(GX_PF_RGBA6_Z24, GX_ZC_LINEAR);
         GXSetDither(GX_TRUE);
-    }
-    else {
+    } else {
         GXSetPixelFmt(GX_PF_RGB8_Z24, GX_ZC_LINEAR);
         GXSetDither(GX_FALSE);
     }
@@ -224,11 +216,10 @@ void MainLoopFramework::preGX() {
 
 void MainLoopFramework::endGX() {
     J2DOrthoGraph ortho(
-        0f, 0f, 
-        JUTVideo::sManager->mRenderModeObj->fbWidth, 
-        JUTVideo::sManager->mRenderModeObj->efbHeight, 
-        -1f, 1f
-    );
+        0f, 0f,
+        JUTVideo::sManager->mRenderModeObj->fbWidth,
+        JUTVideo::sManager->mRenderModeObj->efbHeight,
+        -1f, 1f);
     if (JUTConsoleManager::sManager) {
         ortho.setPort();
         JUTConsoleManager::sManager->draw();
@@ -254,22 +245,21 @@ void MainLoopFramework::beginRender() {
     if (mDoRenderFrame) {
         JUTXfb* xfb = JUTXfb::sManager;
         switch (xfb->mBufferMode) {
-            case 1:
-                if (xfb->_1C != 2) {
-                    xfb->_1C = 1;
-                    clearEfb(mClearColor);
-                }
-                else {
-                    xfb->_1C = 1;
-                }
-                xfb->mDrawingXfbIndex = mSingleBufferIndex;
-                break;
-            case 2:
-                exchangeXfb_double();
-                break;
-            case 3:
-                exchangeXfb_triple();
-                break;
+        case 1:
+            if (xfb->_1C != 2) {
+                xfb->_1C = 1;
+                clearEfb(mClearColor);
+            } else {
+                xfb->_1C = 1;
+            }
+            xfb->mDrawingXfbIndex = mSingleBufferIndex;
+            break;
+        case 2:
+            exchangeXfb_double();
+            break;
+        case 3:
+            exchangeXfb_triple();
+            break;
         }
     }
 
@@ -287,14 +277,14 @@ void MainLoopFramework::endRender() {
     if (mDoRenderFrame) {
         JUTXfb* xfb = JUTXfb::sManager;
         switch (xfb->mBufferMode) {
-            case 1:
-                drawendXfb_single();
-                break;
-            case 2:
-                break;
-            case 3:
-                copyXfb_triple();
-                break;
+        case 1:
+            drawendXfb_single();
+            break;
+        case 2:
+            break;
+        case 3:
+            copyXfb_triple();
+            break;
         }
     }
     calcCombinationRatio();
@@ -304,19 +294,19 @@ void MainLoopFramework::endFrame() {
     if (mDoRenderFrame) {
         JUTXfb* xfb = JUTXfb::sManager;
         switch (xfb->mBufferMode) {
-            case 1:
-                break;
-            case 2:
-                waitDrawDoneAndSetAlarm();
-                GXFlush();
-                break;
-            case 3:
-                waitDrawDoneAndSetAlarm();
-                GXFlush();
-                break;
+        case 1:
+            break;
+        case 2:
+            waitDrawDoneAndSetAlarm();
+            GXFlush();
+            break;
+        case 3:
+            waitDrawDoneAndSetAlarm();
+            GXFlush();
+            break;
         }
     }
-    
+
     if (mDoRenderFrame) {
         static s8 lbl_806B6ED4;
         if (!lbl_806B6ED4) {
@@ -345,8 +335,8 @@ void MainLoopFramework::clearEfb(GXColor color) {
 }
 
 void MainLoopFramework::clearEfb(int param1, int param2, int param3, int param4, GXColor color) {
-    u16 fbWidth = JUTVideo::sManager->mRenderModeObj->fbWidth;
-    u16 efbHeight = JUTVideo::sManager->mRenderModeObj->efbHeight;
+    u16   fbWidth = JUTVideo::sManager->mRenderModeObj->fbWidth;
+    u16   efbHeight = JUTVideo::sManager->mRenderModeObj->efbHeight;
     Mtx44 proj;
     C_MTXOrtho(proj, 0f, efbHeight, 0f, fbWidth, 0f, 1f);
     GXSetProjection(proj, GX_ORTHOGRAPHIC);
@@ -448,7 +438,7 @@ namespace {
     void waitForTick(u32 tickDuration, u16 retraceCount) {
         if (tickDuration) {
             static s64 nextTime;
-            static s8 timeInitialized;
+            static s8  timeInitialized;
             if (!timeInitialized) {
                 nextTime = OSGetTime();
                 timeInitialized = 1;
@@ -459,10 +449,9 @@ namespace {
                 currentTime = OSGetTime();
             }
             nextTime = currentTime + tickDuration;
-        }
-        else {
+        } else {
             static u32 nextCount;
-            static s8 countInitialized;
+            static s8  countInitialized;
             if (!countInitialized) {
                 nextCount = VIGetRetraceCount();
                 countInitialized = 1;
@@ -476,13 +465,13 @@ namespace {
                 if (!OSReceiveMessage(&JUTVideo::sManager->mMessageQueue, (OSMessage*)&msg, 1)) {
                     msg = dummy;
                 }
-            } while((s32)(msg - nextCount) < 0);
+            } while ((s32)(msg - nextCount) < 0);
             nextCount = msg + count;
         }
     }
 
     void waitDrawDoneAndSetAlarm() {
-        MainLoopFrameworkAlarm alarm;
+        MainLoopFrameworkAlarm                  alarm;
         MR::BothDirLink<MainLoopFrameworkAlarm> link(&alarm);
         {
             MR::ProhibitSchedulerAndInterrupts prohibit(false);
@@ -515,4 +504,4 @@ namespace {
         GXSetDrawDone();
         DrawSyncManager::prepareReset();
     }
-}
+} // namespace

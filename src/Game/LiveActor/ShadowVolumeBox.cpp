@@ -1,6 +1,6 @@
 #include "Game/LiveActor/ShadowVolumeBox.hpp"
 
-void ShadowVolumeBox::setSize(const TVec3f &rSize) {
+void ShadowVolumeBox::setSize(const TVec3f& rSize) {
     mSize.set<f32>(rSize);
 }
 
@@ -50,5 +50,4 @@ void ShadowVolumeBox::drawShape() const {
 }
 
 ShadowVolumeBox::~ShadowVolumeBox() {
-
 }

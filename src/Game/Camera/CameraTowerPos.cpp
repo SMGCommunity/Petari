@@ -1,7 +1,8 @@
 #include "Game/Camera/CameraTowerPos.hpp"
 #include "Game/Camera/CamTranslatorTowerPos.hpp"
 
-CameraTowerPos::CameraTowerPos(const char *pName) : CameraTowerBase(pName) {
+CameraTowerPos::CameraTowerPos(const char* pName)
+    : CameraTowerBase(pName) {
     mWPoint.x = 0.0f;
     mWPoint.y = 0.0f;
     mWPoint.z = 0.0f;
@@ -18,9 +19,8 @@ CameraTowerPos::CameraTowerPos(const char *pName) : CameraTowerBase(pName) {
 }
 
 CameraTowerPos::~CameraTowerPos() {
-
 }
 
-CamTranslatorBase *CameraTowerPos::createTranslator() {
+CamTranslatorBase* CameraTowerPos::createTranslator() {
     return new CamTranslatorTowerPos(this);
 }

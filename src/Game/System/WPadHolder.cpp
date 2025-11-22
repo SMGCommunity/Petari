@@ -10,10 +10,9 @@
 
 #define KPAD_STATUS_ARRAY_SIZE 120
 
-WPadReadDataInfo::WPadReadDataInfo() :
-    mStatusArray(nullptr),
-    mValidStatusCount(0)
-{
+WPadReadDataInfo::WPadReadDataInfo()
+    : mStatusArray(nullptr),
+      mValidStatusCount(0) {
     mStatusArray = new KPADStatus[KPAD_STATUS_ARRAY_SIZE];
 
     MR::zeroMemory(mStatusArray, sizeof(KPADStatus) * KPAD_STATUS_ARRAY_SIZE);
@@ -31,10 +30,9 @@ u32 WPadReadDataInfo::getValidStatusCount() const {
     return mValidStatusCount;
 }
 
-WPadHolder::WPadHolder() :
-    mReadDataInfoArray(nullptr),
-    mMode(WPAD_SENSOR_BAR_POS_TOP)
-{
+WPadHolder::WPadHolder()
+    : mReadDataInfoArray(nullptr),
+      mMode(WPAD_SENSOR_BAR_POS_TOP) {
     WPADRegisterAllocator(MR::allocFromWPadHeap, MR::freeFromWPadHeap);
     KPADInit();
 
@@ -94,7 +92,7 @@ void WPadHolder::update() {
 }
 
 void WPadHolder::initSensorBarPosition() {
-    u8 sensorBarPosition = WPADGetSensorBarPosition();
+    u8  sensorBarPosition = WPADGetSensorBarPosition();
     f32 level = 0.0f;
 
     switch (sensorBarPosition) {
@@ -138,7 +136,7 @@ namespace {
     WPadHolder* getWPadHolder() NO_INLINE {
         return SingletonHolder<GameSystem>::get()->mObjHolder->mWPadHolder;
     }
-};
+}; // namespace
 
 namespace MR {
     WPad* getWPad(s32 channel) {
@@ -173,4 +171,4 @@ namespace MR {
 
         WPADSetAutoSleepTime(minute);
     }
-};
+}; // namespace MR

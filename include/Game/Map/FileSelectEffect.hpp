@@ -4,10 +4,10 @@
 
 class FileSelectEffect : public LiveActor {
 public:
-    FileSelectEffect(const char *);
+    FileSelectEffect(const char*);
 
     virtual ~FileSelectEffect();
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
     virtual void appear();
     virtual void calcAndSetBaseMtx();
 
@@ -16,5 +16,5 @@ public:
     void exeWait();
     void exeDisappear();
 
-    f32 mEffectFrame;       // 0x8C
+    f32 mEffectFrame; // 0x8C
 };

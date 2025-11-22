@@ -1,13 +1,13 @@
 #include "Game/NameObj/NameObjRegister.hpp"
 
-void NameObjRegister::setCurrentHolder(NameObjHolder *pHolder) {
+void NameObjRegister::setCurrentHolder(NameObjHolder* pHolder) {
     mHolder = pHolder;
 }
 
-void NameObjRegister::add(NameObj *pObj) {
+void NameObjRegister::add(NameObj* pObj) {
     mHolder->add(pObj);
 }
 
-NameObjRegister::NameObjRegister() : mHolder(0) {
-    
+NameObjRegister::NameObjRegister()
+    : mHolder(0) {
 }

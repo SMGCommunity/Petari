@@ -10,11 +10,11 @@ namespace NrvAstroMapBoard {
     NERVE_DECL_NULL(AstroMapBoardNrvWait);
 };
 
-AstroMapBoard::AstroMapBoard(const char *pName) : MapObjActor(pName) {
-
+AstroMapBoard::AstroMapBoard(const char* pName)
+    : MapObjActor(pName) {
 }
 
-void AstroMapBoard::init(const JMapInfoIter &rIter) {
+void AstroMapBoard::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);
     MapObjActorInitInfo info;
     MapObjActorUtil::setupInitInfoSimpleMapObj(&info);
@@ -29,13 +29,12 @@ void AstroMapBoard::init(const JMapInfoIter &rIter) {
 
     if (MR::isButlerMapAppear()) {
         makeActorAppeared();
-    }
-    else {
+    } else {
         makeActorDead();
     }
 }
 
-void AstroMapBoard::connectToScene(const MapObjActorInitInfo &rInfo) {
+void AstroMapBoard::connectToScene(const MapObjActorInitInfo& rInfo) {
     MR::connectToSceneIndirectMapObj(this);
 }
 
@@ -46,7 +45,6 @@ void AstroMapBoard::initAfterPlacement() {
 }
 
 AstroMapBoard::~AstroMapBoard() {
-
 }
 
 namespace NrvAstroMapBoard {

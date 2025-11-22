@@ -1,12 +1,13 @@
 #include "Game/MapObj/Banekiti.hpp"
 
-Banekiti::Banekiti(const char *pName) : LiveActor(pName) {
+Banekiti::Banekiti(const char* pName)
+    : LiveActor(pName) {
     mAnimScaleCtrl = nullptr;
     mBindStarPointer = nullptr;
     mRailMover = nullptr;
 }
 
-void Banekiti::init(const JMapInfoIter &rIter) {
+void Banekiti::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     initModelManagerWithAnm("Banekiti", nullptr, false);
     MR::connectToSceneMapObjStrongLight(this);
@@ -83,7 +84,7 @@ void Banekiti::control() {
     }
 }
 
-bool Banekiti::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool Banekiti::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgStarPieceAttack(msg)) {
         mAnimScaleCtrl->startHitReaction();
 
@@ -93,7 +94,7 @@ bool Banekiti::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pR
     return false;
 }
 
-bool Banekiti::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool Banekiti::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (!MR::isSensorPlayer(pSender)) {
         return false;
     }
@@ -106,7 +107,7 @@ bool Banekiti::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver
         setNerve(&NrvBanekiti::BanekitiNrvRepel::sInstance);
 
         return true;
-    }   
+    }
 
     return false;
 }
@@ -116,23 +117,23 @@ namespace NrvBanekiti {
     INIT_NERVE(BanekitiNrvRepel);
     INIT_NERVE(BanekitiNrvDPDSwoon);
 
-	void BanekitiNrvWait::execute(Spine *pSpine) const {
-		Banekiti *pActor = (Banekiti*)pSpine->mExecutor;
-		pActor->exeWait();
-	}    
+    void BanekitiNrvWait::execute(Spine* pSpine) const {
+        Banekiti* pActor = (Banekiti*)pSpine->mExecutor;
+        pActor->exeWait();
+    }
 
-	void BanekitiNrvRepel::execute(Spine *pSpine) const {
-		Banekiti *pActor = (Banekiti*)pSpine->mExecutor;
-		pActor->exeRepel();
-	}    
+    void BanekitiNrvRepel::execute(Spine* pSpine) const {
+        Banekiti* pActor = (Banekiti*)pSpine->mExecutor;
+        pActor->exeRepel();
+    }
 
-	void BanekitiNrvDPDSwoon::execute(Spine *pSpine) const {
-		Banekiti *pActor = (Banekiti*)pSpine->mExecutor;
-		pActor->exeDPDSwoon();
-	}
+    void BanekitiNrvDPDSwoon::execute(Spine* pSpine) const {
+        Banekiti* pActor = (Banekiti*)pSpine->mExecutor;
+        pActor->exeDPDSwoon();
+    }
 
-    void BanekitiNrvDPDSwoon::executeOnEnd(Spine *pSpine) const {
-		Banekiti *pActor = (Banekiti*)pSpine->mExecutor;
-		pActor->endDPDSwoon();
-	}        
-};
+    void BanekitiNrvDPDSwoon::executeOnEnd(Spine* pSpine) const {
+        Banekiti* pActor = (Banekiti*)pSpine->mExecutor;
+        pActor->endDPDSwoon();
+    }
+}; // namespace NrvBanekiti

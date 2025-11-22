@@ -4,7 +4,8 @@
 #include "Game/Camera/CameraLocalUtil.hpp"
 #include "Game/Boss/TripodBossAccesser.hpp"
 
-CameraCharmedTripodBoss::CameraCharmedTripodBoss(const char *pName) : Camera(pName) {
+CameraCharmedTripodBoss::CameraCharmedTripodBoss(const char* pName)
+    : Camera(pName) {
     _4C = -1;
     _50.x = 0.0f;
     _50.y = 1.0f;
@@ -25,7 +26,7 @@ void CameraCharmedTripodBoss::reset() {
 CameraTargetObj* CameraCharmedTripodBoss::calc() {
     CameraTargetObj* v2 = CameraLocalUtil::getTarget(this);
     CameraTargetObj* v3 = CameraLocalUtil::getTarget(this);
-    TVec3f v25;
+    TVec3f           v25;
     CameraLocalUtil::makeWatchPoint(&v25, this, v3, 0.0066666668f);
     TVec3f v24(_50);
     TVec3f v23(0.0f, 0.0f, 0.0f);
@@ -34,8 +35,8 @@ CameraTargetObj* CameraCharmedTripodBoss::calc() {
         MR::getTripodBossJointMatrix(&v30, _4C);
         v23.set<f32>(v30.mMtx[0][3], v30.mMtx[1][3], v30.mMtx[2][3]);
         v24.set<f32>(((v24.z * v30.mMtx[0][2]) + ((v24.x * v30.mMtx[0][0]) + (v24.y * v30.mMtx[0][1]))),
-        ((v24.z * v30.mMtx[1][2]) + ((v24.x * v30.mMtx[1][0]) + (v24.y * v30.mMtx[1][1]))),
-        ((v24.z * v30.mMtx[2][2]) + ((v24.x * v30.mMtx[2][0]) + (v24.y * v30.mMtx[2][1]))));
+                     ((v24.z * v30.mMtx[1][2]) + ((v24.x * v30.mMtx[1][0]) + (v24.y * v30.mMtx[1][1]))),
+                     ((v24.z * v30.mMtx[2][2]) + ((v24.x * v30.mMtx[2][0]) + (v24.y * v30.mMtx[2][1]))));
     }
 
     TVec3f v5(-1.0f, 0.0f, 0.0f);
@@ -47,7 +48,7 @@ CameraTargetObj* CameraCharmedTripodBoss::calc() {
     TPos3f v27;
     v27.concat(v28, v29);
     CameraTargetObj* v7 = CameraLocalUtil::getTarget(this);
-    TVec3f v22 = *v7->getPosition();
+    TVec3f           v22 = *v7->getPosition();
     if (MR::isNearZero(v22, 0.001f)) {
         return v2;
     }
@@ -71,7 +72,7 @@ CameraTargetObj* CameraCharmedTripodBoss::calc() {
         v26.mMtx[1][2] = v22.y;
         v26.mMtx[2][2] = v22.z;
         CameraTargetObj* v10 = CameraLocalUtil::getTarget(this);
-        const TVec3f* pos = v10->getPosition();
+        const TVec3f*    pos = v10->getPosition();
         v26.mMtx[0][3] = pos->x;
         v26.mMtx[1][3] = pos->y;
         v26.mMtx[2][3] = pos->z;
@@ -82,7 +83,7 @@ CameraTargetObj* CameraCharmedTripodBoss::calc() {
         v24.set<f32>(v26.mMtx[0][1], v26.mMtx[1][1], v26.mMtx[2][1]);
         TVec3f v20(_5C);
         v26.mult(v20, v20);
-        f32 z = _5C.z;
+        f32    z = _5C.z;
         TVec3f v14(v22);
         v14.x *= z;
         v14.y *= z;
@@ -98,7 +99,7 @@ CameraTargetObj* CameraCharmedTripodBoss::calc() {
     return v2;
 }
 
-void CameraCharmedTripodBoss::setParam(s32 a1, TVec3f a2, const TVec3f &a3, const TVec2f &a4) {
+void CameraCharmedTripodBoss::setParam(s32 a1, TVec3f a2, const TVec3f& a3, const TVec2f& a4) {
     _68.x = a4.x;
     _68.y = a4.y;
     _50.set<f32>(a2);
@@ -107,9 +108,8 @@ void CameraCharmedTripodBoss::setParam(s32 a1, TVec3f a2, const TVec3f &a3, cons
 }
 
 CameraCharmedTripodBoss::~CameraCharmedTripodBoss() {
-
 }
 
-CamTranslatorBase *CameraCharmedTripodBoss::createTranslator() {
+CamTranslatorBase* CameraCharmedTripodBoss::createTranslator() {
     return new CamTranslatorCharmedTripodBoss(this);
 }

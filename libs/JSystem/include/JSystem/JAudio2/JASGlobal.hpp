@@ -1,6 +1,6 @@
 #pragma once
 
-template<class T>
+template <class T>
 class JASGlobalInstance {
 public:
     JASGlobalInstance(T* inst) {

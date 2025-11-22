@@ -13,9 +13,10 @@ namespace NrvDossun {
     NEW_NERVE(DossunNrvFalling, Dossun, Falling);
     NEW_NERVE(DossunNrvOnGround, Dossun, OnGround);
     NEW_NERVE(DossunNrvRising, Dossun, Rising);
-};
+}; // namespace NrvDossun
 
-Dossun::Dossun(const char *pName) : LiveActor(pName) {
+Dossun::Dossun(const char* pName)
+    : LiveActor(pName) {
     _8C.x = 0.0f;
     _8C.y = 0.0f;
     _8C.z = 0.0f;
@@ -30,7 +31,7 @@ Dossun::Dossun(const char *pName) : LiveActor(pName) {
     mHasShadow = false;
 }
 
-void Dossun::init(const JMapInfoIter &rIter) {
+void Dossun::init(const JMapInfoIter& rIter) {
     MR::useStageSwitchReadA(this, rIter);
     MR::useStageSwitchSleep(this, rIter);
     initMapToolInfo(rIter);
@@ -38,8 +39,7 @@ void Dossun::init(const JMapInfoIter &rIter) {
     MR::startBva(this, "Wait");
     if (mHasShadow) {
         MR::connectToSceneCollisionEnemyStrongLight(this);
-    }
-    else {
+    } else {
         MR::connectToSceneCollisionEnemyNoShadowedMapObjStrongLight(this);
     }
 
@@ -63,13 +63,12 @@ void Dossun::appear() {
     mPosition.set<f32>(_8C);
     if (MR::isValidSwitchA(this)) {
         setNerve(&NrvDossun::DossunNrvReady::sInstance);
-    }
-    else {
+    } else {
         setNerve(&NrvDossun::DossunNrvUpper::sInstance);
     }
 }
 
-void Dossun::initMapToolInfo(const JMapInfoIter &rIter) {
+void Dossun::initMapToolInfo(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     MR::getJMapInfoArg0NoInit(rIter, &mMovementDist);
     MR::getJMapInfoArg1NoInit(rIter, &mRisenWaitTime);
@@ -86,8 +85,7 @@ void Dossun::initShadow() {
         calcParameters();
         if (mShadowType == 0) {
             MR::initShadowFromCSV(this, "Shadow2D");
-        }
-        else {
+        } else {
             MR::initShadowFromCSV(this, "Shadow");
             MR::excludeCalcShadowToMyCollision(this, nullptr);
         }
@@ -142,7 +140,7 @@ void Dossun::exeFallSign() {
 
         MR::startSound(this, "SE_OJ_DOSSUN_FALL_SIGN", -1, -1);
     }
-    
+
     if (MR::isBckStopped(this)) {
         setNerve(&NrvDossun::DossunNrvFalling::sInstance);
     }

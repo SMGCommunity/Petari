@@ -18,9 +18,9 @@ private:
 };
 
 namespace MR {
-    void createImageEffectSystemHolder();
+    void                     createImageEffectSystemHolder();
     ImageEffectSystemHolder* getImageEffectSystemHolder();
-    bool isExistImageEffectDirector();
-    ImageEffectDirector* getImageEffectDirector();
-    ImageEffectResource* getImageEffectResource();
-};
+    bool                     isExistImageEffectDirector();
+    ImageEffectDirector*     getImageEffectDirector();
+    ImageEffectResource*     getImageEffectResource();
+}; // namespace MR

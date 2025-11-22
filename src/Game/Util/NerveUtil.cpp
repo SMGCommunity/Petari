@@ -66,4 +66,4 @@ namespace MR {
             pExecutor->setNerve(pNerve);
         }
     }
-};
+}; // namespace MR

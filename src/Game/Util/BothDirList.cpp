@@ -1,13 +1,11 @@
 #include "Game/Util.hpp"
 
 namespace MR {
-    BothDirPtrLink::BothDirPtrLink(void *pLink) :
-        mValue(pLink),
-        mList(nullptr),
-        mPrevLink(nullptr),
-        mNextLink(nullptr)
-    {
-
+    BothDirPtrLink::BothDirPtrLink(void* pLink)
+        : mValue(pLink),
+          mList(nullptr),
+          mPrevLink(nullptr),
+          mNextLink(nullptr) {
     }
 
     BothDirPtrLink::~BothDirPtrLink() {
@@ -24,7 +22,7 @@ namespace MR {
 
     BothDirPtrList::~BothDirPtrList() {
         BothDirPtrLink* pLink = mHead;
-        u32 i = 0;
+        u32             i = 0;
         while (i < mCount) {
             pLink->mList = nullptr;
             i++;
@@ -38,7 +36,7 @@ namespace MR {
         mCount = 0;
     }
 
-    void BothDirPtrList::setFirst(BothDirPtrLink *pFirst) {
+    void BothDirPtrList::setFirst(BothDirPtrLink* pFirst) {
         pFirst->mList = this;
         pFirst->mPrevLink = nullptr;
         pFirst->mNextLink = nullptr;
@@ -55,8 +53,7 @@ namespace MR {
         if (success) {
             if (mCount == 0) {
                 setFirst(pLink);
-            }
-            else {
+            } else {
                 pLink->mList = this;
                 pLink->mPrevLink = mTail;
                 pLink->mNextLink = nullptr;
@@ -75,16 +72,13 @@ namespace MR {
             if (mCount == 1) {
                 mHead = nullptr;
                 mTail = nullptr;
-            }
-            else if (pLink == mHead) {
+            } else if (pLink == mHead) {
                 pLink->mNextLink->mPrevLink = nullptr;
                 mHead = pLink->mNextLink;
-            }
-            else if (pLink == mTail) {
+            } else if (pLink == mTail) {
                 pLink->mPrevLink->mNextLink = nullptr;
                 mTail = pLink->mPrevLink;
-            }
-            else {
+            } else {
                 pLink->mPrevLink->mNextLink = pLink->mNextLink;
                 pLink->mNextLink->mPrevLink = pLink->mPrevLink;
             }
@@ -93,4 +87,4 @@ namespace MR {
         }
         return success;
     }
-};
+}; // namespace MR

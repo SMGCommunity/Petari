@@ -10,9 +10,8 @@ public:
     virtual ~ClipAreaDropHolder();
 };
 
-
 namespace MR {
-    NameObj* createClipAreaDropHolder();
+    NameObj*      createClipAreaDropHolder();
     ClipAreaDrop* getDeadClipAreaDrop();
-    bool appearClipAreaDrop(const TVec3f &, f32);
-}
+    bool          appearClipAreaDrop(const TVec3f&, f32);
+} // namespace MR

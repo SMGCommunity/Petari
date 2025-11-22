@@ -641,7 +641,7 @@ static RumblePattern gRumblePatternTable[] = {
             WPAD_MOTOR_RUMBLE,
         },
     },
-    { },
+    {},
 };
 
 namespace RumbleData {
@@ -671,7 +671,6 @@ namespace RumbleData {
     }
 
     void checkHashCollision() {
-        
     }
 
     u32 getTableSize() {
@@ -681,4 +680,4 @@ namespace RumbleData {
     RumblePattern* getData(u16 index) {
         return &gRumblePatternTable[index];
     }
-};
+}; // namespace RumbleData

@@ -27,7 +27,7 @@ void NameObjListExecutor::init() {
     initDrawList();
 }
 
-s16 NameObjListExecutor::registerDrawBuffer(LiveActor *pActor, int a2) {
+s16 NameObjListExecutor::registerDrawBuffer(LiveActor* pActor, int a2) {
     return mBufferHolder->registerDrawBuffer(pActor, a2);
 }
 
@@ -38,57 +38,57 @@ void NameObjListExecutor::allocateDrawBufferActorList() {
     mBufferHolder->allocateActorListBuffer();
 }
 
-void NameObjListExecutor::registerPreDrawFunction(const MR::FunctorBase &rFunc, int a2) {
+void NameObjListExecutor::registerPreDrawFunction(const MR::FunctorBase& rFunc, int a2) {
     mDrawList->registerExecuteBeforeFunction(rFunc, a2);
 }
 
-void NameObjListExecutor::findLightInfo(LiveActor *pActor, int a2, int a3) const {
+void NameObjListExecutor::findLightInfo(LiveActor* pActor, int a2, int a3) const {
     mBufferHolder->findLightInfo(pActor, a2, a3);
 }
 
 // NameObjListExecutor::findLightInfo
 
-void NameObjListExecutor::incrementCheckMovement(NameObj *pObj, int category) {
+void NameObjListExecutor::incrementCheckMovement(NameObj* pObj, int category) {
     mMovementList->incrementCheck(pObj, category);
 }
 
-void NameObjListExecutor::incrementCheckCalcAnim(NameObj *pObj, int category) {
+void NameObjListExecutor::incrementCheckCalcAnim(NameObj* pObj, int category) {
     mCalcAnimList->incrementCheck(pObj, category);
 }
 
-void NameObjListExecutor::incrementCheckDraw(NameObj *pObj, int category) {
+void NameObjListExecutor::incrementCheckDraw(NameObj* pObj, int category) {
     mDrawList->incrementCheck(pObj, category);
 }
 
-void NameObjListExecutor::addToMovement(NameObj *pObj, int category) {
+void NameObjListExecutor::addToMovement(NameObj* pObj, int category) {
     mMovementList->add(pObj, category);
 }
 
-void NameObjListExecutor::addToCalcAnim(NameObj *pObj, int category) {
+void NameObjListExecutor::addToCalcAnim(NameObj* pObj, int category) {
     mCalcAnimList->add(pObj, category);
 }
 
-void NameObjListExecutor::addToDrawBuffer(LiveActor *pActor, int a2, int a3) {
+void NameObjListExecutor::addToDrawBuffer(LiveActor* pActor, int a2, int a3) {
     mBufferHolder->active(pActor, a2, a3);
 }
 
-void NameObjListExecutor::addToDraw(NameObj *pObj, int category) {
+void NameObjListExecutor::addToDraw(NameObj* pObj, int category) {
     mDrawList->add(pObj, category);
 }
 
-void NameObjListExecutor::removeToMovement(NameObj *pObj, int category) {
+void NameObjListExecutor::removeToMovement(NameObj* pObj, int category) {
     mMovementList->remove(pObj, category);
 }
 
-void NameObjListExecutor::removeToCalcAnim(NameObj *pObj, int category) {
+void NameObjListExecutor::removeToCalcAnim(NameObj* pObj, int category) {
     mCalcAnimList->remove(pObj, category);
 }
 
-void NameObjListExecutor::removeToDrawBuffer(LiveActor *pActor, int a2, int a3) {
+void NameObjListExecutor::removeToDrawBuffer(LiveActor* pActor, int a2, int a3) {
     mBufferHolder->deactive(pActor, a2, a3);
 }
 
-void NameObjListExecutor::removeToDraw(NameObj *pObj, int category) {
+void NameObjListExecutor::removeToDraw(NameObj* pObj, int category) {
     mDrawList->remove(pObj, category);
 }
 
@@ -125,17 +125,13 @@ void NameObjListExecutor::executeDraw(int category) {
 }
 
 void NameObjListExecutor::initMovementList() {
-
 }
 
 void NameObjListExecutor::initCalcAnimList() {
-
 }
 
 void NameObjListExecutor::initCalcViewAndEntryList() {
-
 }
 
 void NameObjListExecutor::initDrawList() {
-
 }

@@ -16,7 +16,7 @@ namespace {
     ScenePlayingResult* getScenePlayingResult() {
         return MR::getSceneObj<ScenePlayingResult>(SceneObj_ScenePlayingResult);
     }
-};
+}; // namespace
 
 namespace MR {
     s32 getCurrentScenarioNo() {
@@ -74,9 +74,7 @@ namespace MR {
     }
 
     bool isStageAstroLocation() {
-        return isEqualStageName("AstroGalaxy")
-            || isEqualStageName("AstroDome")
-            || isEqualStageName("LibraryRoom");
+        return isEqualStageName("AstroGalaxy") || isEqualStageName("AstroDome") || isEqualStageName("LibraryRoom");
     }
 
     bool isStageSwimAngleLimit() {
@@ -84,8 +82,7 @@ namespace MR {
     }
 
     bool isStageStarPieceFollowGroupLimit() {
-        return isEqualStageName("EggStarGalaxy")
-            && getCurrentScenarioNo() == 2;
+        return isEqualStageName("EggStarGalaxy") && getCurrentScenarioNo() == 2;
     }
 
     bool isStageFileSelect() {
@@ -93,9 +90,7 @@ namespace MR {
     }
 
     bool isStageKoopaVs() {
-        return isStageKoopaVs1()
-            || isStageKoopaVs2()
-            || isStageKoopaVs3();
+        return isStageKoopaVs1() || isStageKoopaVs2() || isStageKoopaVs3();
     }
 
     bool isStageKoopaVs1() {
@@ -123,8 +118,7 @@ namespace MR {
     }
 
     bool isStageSuddenDeathDodoryu() {
-        return isEqualStageName("CosmosGardenGalaxy")
-            && getCurrentScenarioNo() == 4;
+        return isEqualStageName("CosmosGardenGalaxy") && getCurrentScenarioNo() == 4;
     }
 
     void setInitializeStatePlacementPlayer() {
@@ -234,4 +228,4 @@ namespace MR {
     const char* getCurrentPlacementZoneName() {
         return getZoneNameFromZoneId(getCurrentPlacementZoneId());
     }
-};
+}; // namespace MR

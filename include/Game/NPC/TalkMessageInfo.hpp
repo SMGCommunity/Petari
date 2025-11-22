@@ -22,10 +22,10 @@ public:
 
     u8* _0;
     u16 _4;
-    s8 _6;
-    u8 mCameraType;
-    u8 mTalkType;
-    u8 mBalloonType;
-    s8 _A;
-    s8 _B;
+    s8  _6;
+    u8  mCameraType;
+    u8  mTalkType;
+    u8  mBalloonType;
+    s8  _A;
+    s8  _B;
 };

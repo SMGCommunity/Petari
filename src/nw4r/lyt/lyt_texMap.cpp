@@ -7,29 +7,28 @@
 
 namespace nw4r {
     namespace lyt {
-        void TexMap::Get(_GXTexObj *pTexObj) const {
+        void TexMap::Get(_GXTexObj* pTexObj) const {
             if (detail::IsCITexelFormat(GetTexelFormat())) {
                 u32 tlutName = GXGetTexObjTlut(pTexObj);
                 GXInitTexObjCI(pTexObj, mImage, mWidth, mHeight, GXCITexFmt(GetTexelFormat()), GetWrapModeS(), GetWrapModeT(), IsMipMap(), tlutName);
-            }
-            else {
+            } else {
                 GXInitTexObj(pTexObj, mImage, mWidth, mHeight, GetTexelFormat(), GetWrapModeS(), GetWrapModeT(), IsMipMap());
             }
 
             GXInitTexObjLOD(pTexObj, GetMinFilter(), GetMagFilter(), GetMinLOD(), GetMaxLOD(), GetLODBias(), IsBiasClampEnable(), IsEdgeLODEnable(), GetAnisotropy());
         }
 
-        void TexMap::Get(_GXTlutObj *pTlutObj) const {
+        void TexMap::Get(_GXTlutObj* pTlutObj) const {
             GXInitTlutObj(pTlutObj, GetPalette(), GetPaletteFormat(), GetPaletteEntryNum());
         }
 
-        void TexMap::Set(const GXTexObj &texObj) {
-            
-            void* image;
-            u16 width, height;
-            GXTexFmt format;
+        void TexMap::Set(const GXTexObj& texObj) {
+
+            void*         image;
+            u16           width, height;
+            GXTexFmt      format;
             GXTexWrapMode wrapS, wrapT;
-            GXBool mipmap;
+            GXBool        mipmap;
 
             GXGetTexObjAll(&texObj, &image, &width, &height, &format, &wrapS, &wrapT, &mipmap);
 
@@ -39,9 +38,9 @@ namespace nw4r {
             SetWrapMode(wrapS, wrapT);
             SetMipMap(mipmap);
 
-            GXTexFilter minFilter, magFilter;
-            f32 minLOD, maxLOD, lodBias;
-            GXBool biasCLampEnable, edgeLODEnable;
+            GXTexFilter  minFilter, magFilter;
+            f32          minLOD, maxLOD, lodBias;
+            GXBool       biasCLampEnable, edgeLODEnable;
             GXAnisotropy aniso;
             GXGetTexObjLODAll(&texObj, &minFilter, &magFilter, &minLOD, &maxLOD, &lodBias, &biasCLampEnable, &edgeLODEnable, &aniso);
 
@@ -53,30 +52,29 @@ namespace nw4r {
             mBits.anisotropy = aniso;
         }
 
-        void TexMap::ReplaceImage(const TPLDescriptor *pTPLDesc) {
+        void TexMap::ReplaceImage(const TPLDescriptor* pTPLDesc) {
             const TPLHeader& header = *pTPLDesc->textureHeader;
             mImage = header.data;
             SetSize(header.width, header.height);
             SetTexelFormat(GXTexFmt(header.format));
 
-            if (const TPLClutHeader *const pClut = pTPLDesc->CLUTHeader) {
+            if (const TPLClutHeader* const pClut = pTPLDesc->CLUTHeader) {
                 SetPalette(pClut->data);
                 SetPaletteFormat(pClut->format);
                 SetPaletteEntryNum(pClut->numEntries);
-            }
-            else {
+            } else {
                 SetPalette(nullptr);
                 SetPaletteFormat(GXTlutFmt(0));
                 SetPaletteEntryNum(0);
             }
         }
 
-        void TexMap::ReplaceImage(TPLPalette *p, u32 id) {
+        void TexMap::ReplaceImage(TPLPalette* p, u32 id) {
             if (reinterpret_cast<u32>(p->descriptorArray) < 0x80000000) {
                 TPLBind(p);
             }
 
             ReplaceImage(TPLGet(p, id));
         }
-    };
-};
+    }; // namespace lyt
+};     // namespace nw4r

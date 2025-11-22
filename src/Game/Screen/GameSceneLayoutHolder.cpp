@@ -14,21 +14,20 @@
 #include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 
-GameSceneLayoutHolder::GameSceneLayoutHolder() :
-    NameObj("ゲームシーンのレイアウト保持"),
-    mCameraInfo(nullptr),
-    mInformationMessage(nullptr),
-    mMarioMeter(nullptr),
-    mMarioSubMeter(nullptr),
-    mMissLayout(nullptr),
-    mNoteCounter(nullptr),
-    mYesNoLayout(nullptr),
-    mPurpleCoinCounter(nullptr),
-    _30(false),
-    _31(false),
-    mCounterLayoutCtrl(nullptr),
-    mIsActiveDefaultGameLayout(true)
-{
+GameSceneLayoutHolder::GameSceneLayoutHolder()
+    : NameObj("ゲームシーンのレイアウト保持"),
+      mCameraInfo(nullptr),
+      mInformationMessage(nullptr),
+      mMarioMeter(nullptr),
+      mMarioSubMeter(nullptr),
+      mMissLayout(nullptr),
+      mNoteCounter(nullptr),
+      mYesNoLayout(nullptr),
+      mPurpleCoinCounter(nullptr),
+      _30(false),
+      _31(false),
+      mCounterLayoutCtrl(nullptr),
+      mIsActiveDefaultGameLayout(true) {
     MR::joinToNameObjGroup(this, "IgnorePauseNameObj");
     MR::connectToSceneLayoutMovement(this);
 
@@ -183,4 +182,4 @@ namespace MR {
     GameSceneLayoutHolder* getGameSceneLayoutHolder() {
         return MR::getSceneObj<GameSceneLayoutHolder>(SceneObj_GameSceneLayoutHolder);
     }
-};
+}; // namespace MR

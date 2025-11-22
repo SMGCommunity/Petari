@@ -10,7 +10,7 @@ namespace {
         /* 0x4 */ Scene* (*mCreateFunc)();
     };
 
-    template<typename T>
+    template <typename T>
     Scene* createScene() {
         return new T();
     }
@@ -20,7 +20,7 @@ namespace {
         {"Intermission", createScene<IntermissionScene>},
         {"Logo", createScene<LogoScene>},
     };
-};
+}; // namespace
 
 namespace MR {
     Scene* createScene(const char* pName) {
@@ -42,4 +42,4 @@ namespace MR {
 
         return (*pIter->mCreateFunc)();
     }
-};
+}; // namespace MR

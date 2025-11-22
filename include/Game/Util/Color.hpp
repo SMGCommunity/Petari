@@ -5,7 +5,7 @@
 class Color8 {
 public:
     Color8() {}
-    
+
     Color8(GXColor color) {
         set(color);
     }
@@ -22,12 +22,12 @@ public:
         return mGXColor;
     }
 
-    inline const Color8& operator=(const GXColor &other) {
+    inline const Color8& operator=(const GXColor& other) {
         mGXColor = other;
         return *this;
     }
 
-    inline const Color8& operator=(const Color8 &other) {
+    inline const Color8& operator=(const Color8& other) {
         r = other.r;
         g = other.g;
         b = other.b;
@@ -56,15 +56,15 @@ public:
             u8 b;
             u8 a;
         };
-        u32 mColor;
+        u32     mColor;
         GXColor mGXColor;
     };
 };
 
 class Color10 {
 public:
-    Color10() : r(0x3FF), g(0x3FF), b(0x3FF), a(0x3FF) {
-        
+    Color10()
+        : r(0x3FF), g(0x3FF), b(0x3FF), a(0x3FF) {
     }
 
     u16 r;

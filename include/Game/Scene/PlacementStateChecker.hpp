@@ -4,11 +4,11 @@
 
 class PlacementStateChecker : public NameObj {
 public:
-    PlacementStateChecker(const char *);
+    PlacementStateChecker(const char*);
 
     void setCurrentPlacementZoneId(int);
     void clearCurrentPlacementZoneId();
-    int getCurrentPlacementZoneId() const;
+    int  getCurrentPlacementZoneId() const;
 
 private:
     /* 0xC */ int mCurrentZoneId;

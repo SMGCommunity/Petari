@@ -1,7 +1,8 @@
 #include "Game/Camera/CameraParallel.hpp"
 #include "Game/Camera/CamTranslatorParallel.hpp"
 
-CameraParallel::CameraParallel(const char *pName) : Camera(pName) {
+CameraParallel::CameraParallel(const char* pName)
+    : Camera(pName) {
     mAngleB = 0.0f;
     mAngleA = 0.0f;
     mDist = 3000.0f;
@@ -15,9 +16,8 @@ CameraParallel::CameraParallel(const char *pName) : Camera(pName) {
 }
 
 CameraParallel::~CameraParallel() {
-
 }
 
-CamTranslatorBase *CameraParallel::createTranslator() {
+CamTranslatorBase* CameraParallel::createTranslator() {
     return new CamTranslatorParallel(this);
 }

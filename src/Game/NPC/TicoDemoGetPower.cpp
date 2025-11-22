@@ -6,12 +6,11 @@
 namespace NrvTicoDemoGetPower {
     NEW_NERVE(TicoDemoGetPowerNrvWait, TicoDemoGetPower, Wait);
     NEW_NERVE(TicoDemoGetPowerNrvDemo, TicoDemoGetPower, Demo);
-};
+}; // namespace NrvTicoDemoGetPower
 
-TicoDemoGetPower::TicoDemoGetPower(Tico *pTico, const JMapInfoIter &rIter) :
-    NerveExecutor("チコゲットパワーデモ実行者"),
-    mTico(pTico)
-{
+TicoDemoGetPower::TicoDemoGetPower(Tico* pTico, const JMapInfoIter& rIter)
+    : NerveExecutor("チコゲットパワーデモ実行者"),
+      mTico(pTico) {
     initNerve(&NrvTicoDemoGetPower::TicoDemoGetPowerNrvWait::sInstance);
     DemoFunction::tryCreateDemoTalkAnimCtrlForScene(mTico, rIter, "DemoGetPower", "スピンゲット[デモ1]", 0, 0);
     MR::registerDemoActionFunctor(mTico, MR::Functor_Inline(this, &TicoDemoGetPower::startDemo), "スピンゲット[デモ1]");
@@ -25,7 +24,6 @@ void TicoDemoGetPower::startDemo() {
 }
 
 void TicoDemoGetPower::exeWait() {
-    
 }
 
 void TicoDemoGetPower::exeDemo() {

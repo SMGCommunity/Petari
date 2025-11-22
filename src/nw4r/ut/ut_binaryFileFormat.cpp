@@ -2,7 +2,7 @@
 
 namespace nw4r {
     namespace ut {
-        bool IsValidBinaryFile(const BinaryFileHeader *header, u32 signature, u16 version, u16 minBlocks) {
+        bool IsValidBinaryFile(const BinaryFileHeader* header, u32 signature, u16 version, u16 minBlocks) {
             if (header->signature != signature) {
                 return false;
             }
@@ -25,5 +25,5 @@ namespace nw4r {
 
             return true;
         }
-    };
-};
+    }; // namespace ut
+};     // namespace nw4r

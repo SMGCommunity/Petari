@@ -3,7 +3,7 @@
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/Util/HashUtil.hpp"
 
-HitSensorInfo::HitSensorInfo(const char *pName, HitSensor *pSensor, const TVec3f *a3, MtxPtr mtx, const register TVec3f &a5, bool a6) {
+HitSensorInfo::HitSensorInfo(const char* pName, HitSensor* pSensor, const TVec3f* a3, MtxPtr mtx, const register TVec3f& a5, bool a6) {
     mName = pName;
     mHashCode = MR::getHashCode(pName);
     mSensor = pSensor;
@@ -13,7 +13,6 @@ HitSensorInfo::HitSensorInfo(const char *pName, HitSensor *pSensor, const TVec3f
     _18 = a3;
     _1C = mtx;
     _20 = a6;
-
 }
 
 // HitSensorInfo::update()

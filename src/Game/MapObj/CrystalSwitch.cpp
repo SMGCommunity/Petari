@@ -3,14 +3,15 @@
 
 /* Note -- this file was compiled super early on in the game's life, so it was compiled under -O2 where the release build is -O4,p. Keep this in mind! */
 
-CrystalSwitch::CrystalSwitch(const char *pName) : LiveActor(pName) {
+CrystalSwitch::CrystalSwitch(const char* pName)
+    : LiveActor(pName) {
     _8C = 0;
     _90 = 300;
     mRotateSpeed = 0.0f;
     _98 = 0;
 }
 
-void CrystalSwitch::init(const JMapInfoIter &rIter) {
+void CrystalSwitch::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     initModelManagerWithAnm("CrystalSwitch", nullptr, false);
     MR::connectToSceneMapObj(this);
@@ -35,13 +36,13 @@ void CrystalSwitch::control() {
     _98 = 0;
 }
 
-void CrystalSwitch::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
+void CrystalSwitch::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isSensorPlayer(pReceiver)) {
         pReceiver->receiveMessage(41, pSender);
     }
 }
 
-bool CrystalSwitch::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool CrystalSwitch::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     _98 = 1;
     return true;
 }
@@ -110,8 +111,7 @@ void CrystalSwitch::calcRotSpeed() {
         if (mRotateSpeed > 10.0f) {
             mRotateSpeed = 10.0f;
         }
-    }
-    else {
+    } else {
         if (mRotateSpeed > 10.0f) {
             mRotateSpeed = 10.0f;
         }
@@ -126,7 +126,6 @@ void CrystalSwitch::calcRotSpeed() {
 }
 
 CrystalSwitch::~CrystalSwitch() {
-
 }
 
 namespace NrvCrystalSwitch {
@@ -135,9 +134,9 @@ namespace NrvCrystalSwitch {
     INIT_NERVE(CrystalSwitchNrvOn);
     INIT_NERVE(CrystalSwitchNrvSwitchUp);
 
-    void CrystalSwitchNrvSwitchUp::execute(Spine *pSpine) const {
+    void CrystalSwitchNrvSwitchUp::execute(Spine* pSpine) const {
         CrystalSwitch* crystal = reinterpret_cast<CrystalSwitch*>(pSpine->mExecutor);
-        
+
         if (MR::isFirstStep(crystal)) {
             MR::startBpk(crystal, "Off");
         }
@@ -145,18 +144,18 @@ namespace NrvCrystalSwitch {
         crystal->tryOff();
     }
 
-    void CrystalSwitchNrvOn::execute(Spine *pSpine) const {
+    void CrystalSwitchNrvOn::execute(Spine* pSpine) const {
         CrystalSwitch* crystal = reinterpret_cast<CrystalSwitch*>(pSpine->mExecutor);
         crystal->exeOn();
     }
 
-    void CrystalSwitchNrvSwitchDown::execute(Spine *pSpine) const {
+    void CrystalSwitchNrvSwitchDown::execute(Spine* pSpine) const {
         CrystalSwitch* crystal = reinterpret_cast<CrystalSwitch*>(pSpine->mExecutor);
         crystal->exeSwitchDown();
     }
 
-    void CrystalSwitchNrvOff::execute(Spine *pSpine) const {
+    void CrystalSwitchNrvOff::execute(Spine* pSpine) const {
         CrystalSwitch* crystal = reinterpret_cast<CrystalSwitch*>(pSpine->mExecutor);
         crystal->exeOff();
     }
-};
+}; // namespace NrvCrystalSwitch

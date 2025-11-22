@@ -1,10 +1,10 @@
 #include "Game/MapObj/MechaKoopaPartsHead.hpp"
 
-MechaKoopaPartsHead::MechaKoopaPartsHead(const char *pName) : MapObjActor(pName) {
-
+MechaKoopaPartsHead::MechaKoopaPartsHead(const char* pName)
+    : MapObjActor(pName) {
 }
 
-void MechaKoopaPartsHead::init(const JMapInfoIter &rIter) {
+void MechaKoopaPartsHead::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);
     MapObjActorInitInfo initInfo;
     initInfo.setupHioNode("地形オブジェ");
@@ -47,7 +47,7 @@ void MechaKoopaPartsHead::exeDemoBreak() {
         MR::emitEffect(this, "Explosion");
         MR::startSound(this, "SE_BM_MECHA_KOOPA_BREAK_FIRE_ST", -1, -1);
     }
-    
+
     if (MR::isGreaterStep(this, 300)) {
         MR::startLevelSound(this, "SE_BM_LV_MECHA_KOOPA_BREAK_FIRE", -1, -1, -1);
     }
@@ -70,7 +70,7 @@ void MechaKoopaPartsHead::exeDemoWhiteWait() {
         if (MR::isValidSwitchA(this)) {
             MR::offSwitchA(this);
         }
-        
+
         MR::setPlayerPos("爆破デモ後マリオ");
         MR::setPlayerStateWait();
     }
@@ -98,7 +98,6 @@ void MechaKoopaPartsHead::exeDemoAppearStar() {
 }
 
 MechaKoopaPartsHead::~MechaKoopaPartsHead() {
-
 }
 
 namespace NrvMechaKoopaPartsHead {
@@ -109,48 +108,43 @@ namespace NrvMechaKoopaPartsHead {
     INIT_NERVE(MechaKoopaPartsHeadNrvDemoWhiteFadeIn);
     INIT_NERVE(MechaKoopaPartsHeadNrvDemoAppearStar);
 
-    void MechaKoopaPartsHeadNrvDemoAppearStar::execute(Spine *pSpine) const {
+    void MechaKoopaPartsHeadNrvDemoAppearStar::execute(Spine* pSpine) const {
         MechaKoopaPartsHead* head = reinterpret_cast<MechaKoopaPartsHead*>(pSpine->mExecutor);
         head->exeDemoAppearStar();
     }
 
-    void MechaKoopaPartsHeadNrvDemoWhiteFadeIn::execute(Spine *pSpine) const {
+    void MechaKoopaPartsHeadNrvDemoWhiteFadeIn::execute(Spine* pSpine) const {
         MechaKoopaPartsHead* head = reinterpret_cast<MechaKoopaPartsHead*>(pSpine->mExecutor);
         head->exeDemoWhiteFadeIn();
     }
 
-    void MechaKoopaPartsHeadNrvDemoWhiteWait::execute(Spine *pSpine) const {
+    void MechaKoopaPartsHeadNrvDemoWhiteWait::execute(Spine* pSpine) const {
         MechaKoopaPartsHead* head = reinterpret_cast<MechaKoopaPartsHead*>(pSpine->mExecutor);
         head->exeDemoWhiteWait();
     }
 
-    void MechaKoopaPartsHeadNrvDemoWhiteFadeOut::execute(Spine *pSpine) const {
+    void MechaKoopaPartsHeadNrvDemoWhiteFadeOut::execute(Spine* pSpine) const {
         MechaKoopaPartsHead* head = reinterpret_cast<MechaKoopaPartsHead*>(pSpine->mExecutor);
         head->exeDemoWhiteFadeOut();
     }
 
-    void MechaKoopaPartsHeadNrvDemoBreak::execute(Spine *pSpine) const {
+    void MechaKoopaPartsHeadNrvDemoBreak::execute(Spine* pSpine) const {
         MechaKoopaPartsHead* head = reinterpret_cast<MechaKoopaPartsHead*>(pSpine->mExecutor);
         head->exeDemoBreak();
     }
 
-    void MechaKoopaPartsHeadNrvWait::execute(Spine *pSpine) const {
-
+    void MechaKoopaPartsHeadNrvWait::execute(Spine* pSpine) const {
     }
-};
+}; // namespace NrvMechaKoopaPartsHead
 
-void MechaKoopaPartsHead::initCaseNoUseSwitchB(const MapObjActorInitInfo &) {
-
+void MechaKoopaPartsHead::initCaseNoUseSwitchB(const MapObjActorInitInfo&) {
 }
 
-void MechaKoopaPartsHead::initCaseUseSwitchB(const MapObjActorInitInfo &) {
-
+void MechaKoopaPartsHead::initCaseUseSwitchB(const MapObjActorInitInfo&) {
 }
 
-void MechaKoopaPartsHead::initCaseNoUseSwitchA(const MapObjActorInitInfo &) {
-
+void MechaKoopaPartsHead::initCaseNoUseSwitchA(const MapObjActorInitInfo&) {
 }
 
-void MechaKoopaPartsHead::initCaseUseSwitchA(const MapObjActorInitInfo &) {
-
+void MechaKoopaPartsHead::initCaseUseSwitchA(const MapObjActorInitInfo&) {
 }

@@ -44,10 +44,10 @@ public:
 
 private:
     /* 0x0C */ SaveDataHandleSequence* mHost;
-    /* 0x10 */ const char* mSystemMessageId;
-    /* 0x14 */ bool _14;
-    /* 0x15 */ bool _15;
-    /* 0x18 */ u32 mAnswer;
-    /* 0x1C */ u32 mResult;
-    /* 0x20 */ SysInfoWindow* mSysInfoWindow;
+    /* 0x10 */ const char*             mSystemMessageId;
+    /* 0x14 */ bool                    _14;
+    /* 0x15 */ bool                    _15;
+    /* 0x18 */ u32                     mAnswer;
+    /* 0x1C */ u32                     mResult;
+    /* 0x20 */ SysInfoWindow*          mSysInfoWindow;
 };

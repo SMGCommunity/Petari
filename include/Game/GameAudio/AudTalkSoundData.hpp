@@ -4,11 +4,14 @@
 
 class JAISoundID {
 public:
-    JAISoundID() {
+    JAISoundID(){
 
     };
-    JAISoundID(u32 id) : mID(id) {}
-    JAISoundID(JAISoundID const& other) { mID = other.mID; }
+    JAISoundID(u32 id)
+        : mID(id) {}
+    JAISoundID(JAISoundID const& other) {
+        mID = other.mID;
+    }
 
     /* 0x0 */ u32 mID;
 };

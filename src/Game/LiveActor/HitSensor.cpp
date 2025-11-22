@@ -2,18 +2,17 @@
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/SensorHitChecker.hpp"
 
-HitSensor::HitSensor(u32 type, u16 groupSize, f32 radius, LiveActor* pHost) :
-    mType(type),
-    mPosition(0.0f, 0.0f, 0.0f),
-    mRadius(radius),
-    mSensorCount(0),
-    mGroupSize(groupSize),
-    mSensors(nullptr),
-    mSensorGroup(nullptr),
-    mValidBySystem(false),
-    mValidByHost(true),
-    mHost(pHost)
-{
+HitSensor::HitSensor(u32 type, u16 groupSize, f32 radius, LiveActor* pHost)
+    : mType(type),
+      mPosition(0.0f, 0.0f, 0.0f),
+      mRadius(radius),
+      mSensorCount(0),
+      mGroupSize(groupSize),
+      mSensors(nullptr),
+      mSensorGroup(nullptr),
+      mValidBySystem(false),
+      mValidByHost(true),
+      mHost(pHost) {
     if (mGroupSize != 0) {
         mSensors = new HitSensor*[mGroupSize];
 

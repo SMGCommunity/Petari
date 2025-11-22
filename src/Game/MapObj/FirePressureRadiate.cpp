@@ -1,6 +1,7 @@
 #include "Game/MapObj/FirePressureRadiate.hpp"
 
-FirePressureRadiate::FirePressureRadiate(const char *pName) : LiveActor(pName) {
+FirePressureRadiate::FirePressureRadiate(const char* pName)
+    : LiveActor(pName) {
     mJointController = nullptr;
     mCannonRotation = 0.0f;
     mWaitTime = 300;
@@ -13,7 +14,7 @@ FirePressureRadiate::FirePressureRadiate(const char *pName) : LiveActor(pName) {
     mRadiateMtx.identity();
 }
 
-void FirePressureRadiate::init(const JMapInfoIter &rIter) {
+void FirePressureRadiate::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     initModelManagerWithAnm("FirePressure", nullptr, false);
     MR::connectToSceneNoShadowedMapObjStrongLight(this);
@@ -42,8 +43,7 @@ void FirePressureRadiate::init(const JMapInfoIter &rIter) {
     if (MR::useStageSwitchWriteA(this, rIter)) {
         MR::listenStageSwitchOnOffA(this, MR::Functor(this, &FirePressureRadiate::startWait), MR::Functor(this, &FirePressureRadiate::startRelax));
         initNerve(&NrvFirePressureRadiate::FirePressureRadiateNrvRelax::sInstance);
-    }
-    else {
+    } else {
         initNerve(&NrvFirePressureRadiate::FirePressureRadiateNrvWait::sInstance);
     }
 
@@ -51,8 +51,7 @@ void FirePressureRadiate::init(const JMapInfoIter &rIter) {
 
     if (MR::useStageSwitchReadAppear(this, rIter)) {
         makeActorDead();
-    }
-    else {
+    } else {
         makeActorAppeared();
     }
 }
@@ -70,7 +69,7 @@ void FirePressureRadiate::initAfterPlacement() {
         }
 
         _DC = first == this;
-    } 
+    }
 }
 
 void FirePressureRadiate::calcAndSetBaseMtx() {
@@ -133,8 +132,7 @@ void FirePressureRadiate::exeRadiateMargin() {
 
         if (mGroup != nullptr) {
             setNerve(&NrvFirePressureRadiate::FirePressureRadiateNrvSyncWait::sInstance);
-        }
-        else {
+        } else {
             setNerve(&NrvFirePressureRadiate::FirePressureRadiateNrvWait::sInstance);
         }
 
@@ -156,30 +154,27 @@ void FirePressureRadiate::control() {
             f32 liner = MR::getLinerValue(_CC / 70.0f, 51.0f, _D4, 1.0f);
             _D0 = liner;
             _CC = _CC + 1;
-        }
-        else {
+        } else {
             _CC = -1;
             _D0 = _D4;
         }
     }
 }
 
-void FirePressureRadiate::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
+void FirePressureRadiate::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isSensorEnemyAttack(pSender) && MR::isSensorPlayerOrRide(pReceiver)) {
         MR::sendMsgEnemyAttackFire(pReceiver, pSender);
-    }
-    else if (MR::isSensorMapObj(pSender) && (MR::isSensorPlayer(pReceiver) || MR::isSensorEnemy(pReceiver))) {
+    } else if (MR::isSensorMapObj(pSender) && (MR::isSensorPlayer(pReceiver) || MR::isSensorEnemy(pReceiver))) {
         MR::sendMsgPush(pReceiver, pSender);
     }
 }
 
-bool FirePressureRadiate::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool FirePressureRadiate::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (msg == ACTMES_GROUP_MOVE_STOP) {
         setNerve(&NrvFirePressureRadiate::FirePressureRadiateNrvSyncWait::sInstance);
 
         return true;
-    }
-    else if (msg == ACTMES_GROUP_MOVE_START) {
+    } else if (msg == ACTMES_GROUP_MOVE_START) {
         setNerve(&NrvFirePressureRadiate::FirePressureRadiateNrvWait::sInstance);
 
         return true;
@@ -215,9 +210,9 @@ void FirePressureRadiate::calcRadiateEffectMtx() {
 }
 
 #ifdef NON_MATCHING
-bool FirePressureRadiate::calcJointCannon(TPos3f *pOutPos, const JointControllerInfo &) {
+bool FirePressureRadiate::calcJointCannon(TPos3f* pOutPos, const JointControllerInfo&) {
     TVec3f v9(0.0f, 0.0f, 1.0f);
-    f32 rotDegree = (0.017453292f * mCannonRotation);
+    f32    rotDegree = (0.017453292f * mCannonRotation);
     TPos3f v10;
     v10.mMtx[0][3] = 0.0f;
     v10.mMtx[1][3] = 0.0f;
@@ -249,8 +244,7 @@ namespace NrvFirePressureRadiate {
     INIT_NERVE(FirePressureRadiateNrvPrepareToRadiate);
     INIT_NERVE(FirePressureRadiateNrvRadiate);
     INIT_NERVE(FirePressureRadiateNrvRadiateMargin);
-};
+}; // namespace NrvFirePressureRadiate
 
-FirePressureRadiate::~ FirePressureRadiate() {
-
+FirePressureRadiate::~FirePressureRadiate() {
 }

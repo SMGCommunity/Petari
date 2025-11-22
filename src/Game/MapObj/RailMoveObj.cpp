@@ -3,12 +3,13 @@
 #include "Game/MapObj/MapPartsRailRotator.hpp"
 #include "Game/MapObj/StageEffectDataTable.hpp"
 
-RailMoveObj::RailMoveObj(const char *pName) : MapObjActor(pName) {
+RailMoveObj::RailMoveObj(const char* pName)
+    : MapObjActor(pName) {
     _C4.zero();
     _D0 = 0;
 }
 
-void RailMoveObj::init(const JMapInfoIter &rIter) {
+void RailMoveObj::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);
     MapObjActorInitInfo info;
     info.setupHioNode("地形オブジェ");
@@ -32,8 +33,7 @@ void RailMoveObj::init(const JMapInfoIter &rIter) {
         f32 radius = 0.0f;
         MR::calcModelBoundingRadius(&radius, this);
         MR::initAndSetRailClipping(&_C4, this, 100.0f, radius);
-    }
-    else {
+    } else {
         setNerve(&NrvRailMoveObj::HostTypeDone::sInstance);
     }
 
@@ -77,13 +77,12 @@ void RailMoveObj::endClipped() {
     }
 }
 
-void RailMoveObj::initCaseUseSwitchB(const MapObjActorInitInfo &rInitInfo) {
+void RailMoveObj::initCaseUseSwitchB(const MapObjActorInitInfo& rInitInfo) {
     MapObjActor::initCaseUseSwitchB(rInitInfo);
     setNerve(&NrvRailMoveObj::HostTypeWait::sInstance);
 }
 
-void RailMoveObj::initCaseNoUseSwitchB(const MapObjActorInitInfo &) {
-
+void RailMoveObj::initCaseNoUseSwitchB(const MapObjActorInitInfo&) {
 }
 
 void RailMoveObj::startMoveInner() {
@@ -125,10 +124,8 @@ bool RailMoveObj::isMoving() const {
     return MapObjActorUtil::isRailMoverWorking(this);
 }
 
-bool RailMoveObj::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
-    if (msg == ACTMES_MAPPARTS_DISAPPEAR_WITH_BLINK
-        && isNerve(&NrvRailMoveObj::HostTypeMove::sInstance))
-    {
+bool RailMoveObj::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
+    if (msg == ACTMES_MAPPARTS_DISAPPEAR_WITH_BLINK && isNerve(&NrvRailMoveObj::HostTypeMove::sInstance)) {
         kill();
 
         return true;
@@ -163,24 +160,23 @@ void RailMoveObj::exeMove() {
     if (mRailMover->isReachedEnd()) {
         if (mRailMover->isDone() && endMove()) {
             setNerve(&NrvRailMoveObj::HostTypeDone::sInstance);
-        }
-        else {
+        } else {
             doAtEndPoint();
         }
     }
 }
 
-RailMoveObjPress::RailMoveObjPress(const char *pName) : RailMoveObj(pName) {
-
+RailMoveObjPress::RailMoveObjPress(const char* pName)
+    : RailMoveObj(pName) {
 }
 
-void RailMoveObjPress::init(const JMapInfoIter &rIter) {
+void RailMoveObjPress::init(const JMapInfoIter& rIter) {
     RailMoveObj::init(rIter);
     MR::setBodySensorType(this, 0x76);
 }
 
-RailMoveObjBreakAtEnd::RailMoveObjBreakAtEnd(const char *pName) : RailMoveObj(pName) {
-
+RailMoveObjBreakAtEnd::RailMoveObjBreakAtEnd(const char* pName)
+    : RailMoveObj(pName) {
 }
 
 void RailMoveObjBreakAtEnd::doAtEndPoint() {
@@ -193,16 +189,16 @@ void RailMoveObjBreakAtEnd::doAtEndPoint() {
     kill();
 }
 
-void RailMoveIndirectObj::connectToScene(const MapObjActorInitInfo &rInfo) {
+void RailMoveIndirectObj::connectToScene(const MapObjActorInitInfo& rInfo) {
     MR::connectToSceneIndirectMapObj(this);
 }
 
-void RailMoveObjSwitchShadow::init(const JMapInfoIter &rIter) {
+void RailMoveObjSwitchShadow::init(const JMapInfoIter& rIter) {
     RailMoveObj::init(rIter);
     MR::invalidateShadow(this, 0);
 }
 
-void RailMoveObjSwitchShadow::initCaseUseSwitchA(const MapObjActorInitInfo &rInfo) {
+void RailMoveObjSwitchShadow::initCaseUseSwitchA(const MapObjActorInitInfo& rInfo) {
     void (RailMoveObjSwitchShadow::*startFunc)(void) = &RailMoveObjSwitchShadow::startOnShadow;
     MR::listenStageSwitchOnA(this, MR::Functor(this, startFunc));
 }
@@ -211,11 +207,12 @@ void RailMoveObjSwitchShadow::startOnShadow() {
     MR::validateShadow(this, 0);
 }
 
-RailDemoMoveObj::RailDemoMoveObj(const char *pName) : RailMoveObj(pName) {
+RailDemoMoveObj::RailDemoMoveObj(const char* pName)
+    : RailMoveObj(pName) {
     mDemoControl = 0;
 }
 
-void RailDemoMoveObj::init(const JMapInfoIter &rIter) {
+void RailDemoMoveObj::init(const JMapInfoIter& rIter) {
     RailMoveObj::init(rIter);
     mDemoControl = new DemoCtrlBase(this, mObjectName);
     mDemoControl->init(rIter);
@@ -266,15 +263,15 @@ bool RailDemoMoveObj::endMove() {
     return mDemoControl->isDone();
 }
 
-RailRotateMoveObj::RailRotateMoveObj(const char *pName) : RailMoveObj(pName) {
-
+RailRotateMoveObj::RailRotateMoveObj(const char* pName)
+    : RailMoveObj(pName) {
 }
 
-void RailRotateMoveObj::setupInitInfo(const JMapInfoIter &rIter, MapObjActorInitInfo *pInfo) {
+void RailRotateMoveObj::setupInitInfo(const JMapInfoIter& rIter, MapObjActorInitInfo* pInfo) {
     pInfo->setupRailRotator();
 }
 
-bool RailRotateMoveObj::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool RailRotateMoveObj::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (msg == ACTMES_MAPPARTS_START_ROTATE_AT_POINT) {
         return tryStartRotateAtPoint();
     }
@@ -291,7 +288,7 @@ bool RailRotateMoveObj::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *
     return RailMoveObj::receiveOtherMsg(msg, pSender, pReceiver);
 }
 
-void RailRotateMoveObj::initCaseUseSwitchB(const MapObjActorInitInfo &rInfo) {
+void RailRotateMoveObj::initCaseUseSwitchB(const MapObjActorInitInfo& rInfo) {
     setNerve(&NrvRailMoveObj::HostTypeWait::sInstance);
     void (RailRotateMoveObj::*pauseFunc)(void) = &MapObjActor::pauseMapPartsFunctions;
     MR::listenStageSwitchOffB(this, MR::Functor(this, pauseFunc));
@@ -313,7 +310,7 @@ bool RailRotateMoveObj::tryStartRotateAtPoint() {
 
 bool RailRotateMoveObj::tryStartRotateBetweenPoints() {
     MapPartsRailRotator* rail_rotator = mRailRotator;
-    s32 cur_point = MR::getCurrentRailPointNo(this);
+    s32                  cur_point = MR::getCurrentRailPointNo(this);
 
     if (!rail_rotator->hasRotationBetweenPoints(cur_point)) {
         return false;
@@ -322,7 +319,7 @@ bool RailRotateMoveObj::tryStartRotateBetweenPoints() {
     f32 next_time = 0.0f;
     mRailMover->calcTimeToNextRailPoint(&next_time);
     MapPartsRailRotator* uhm = mRailRotator;
-    s32 new_point = MR::getCurrentRailPointNo(this);
+    s32                  new_point = MR::getCurrentRailPointNo(this);
     uhm->rotateBetweenPoints(new_point, next_time);
     return true;
 }
@@ -333,47 +330,41 @@ namespace NrvRailMoveObj {
     INIT_NERVE(HostTypeMove);
     INIT_NERVE(HostTypeDone);
 
-    void HostTypeDone::execute(Spine *pSpine) const {
+    void HostTypeDone::execute(Spine* pSpine) const {
         RailMoveObj* obj = reinterpret_cast<RailMoveObj*>(pSpine->mExecutor);
         obj->exeWait();
     }
 
-    void HostTypeMove::execute(Spine *pSpine) const {
+    void HostTypeMove::execute(Spine* pSpine) const {
         RailMoveObj* obj = reinterpret_cast<RailMoveObj*>(pSpine->mExecutor);
         obj->exeMove();
     }
 
-    void HostTypeWaitForPlayerOn::execute(Spine *pSpine) const {
+    void HostTypeWaitForPlayerOn::execute(Spine* pSpine) const {
         RailMoveObj* obj = reinterpret_cast<RailMoveObj*>(pSpine->mExecutor);
         obj->exeWait();
     }
 
-    void HostTypeWait::execute(Spine *pSpine) const {
+    void HostTypeWait::execute(Spine* pSpine) const {
         RailMoveObj* obj = reinterpret_cast<RailMoveObj*>(pSpine->mExecutor);
         obj->exeWait();
     }
-};
+}; // namespace NrvRailMoveObj
 
 RailMoveObjPress::~RailMoveObjPress() {
-
 }
 
 RailMoveObjBreakAtEnd::~RailMoveObjBreakAtEnd() {
-
 }
 
 RailMoveIndirectObj::~RailMoveIndirectObj() {
-
 }
 
 RailMoveObjSwitchShadow::~RailMoveObjSwitchShadow() {
-
 }
 
 RailDemoMoveObj::~RailDemoMoveObj() {
-
 }
 
 RailRotateMoveObj::~RailRotateMoveObj() {
-
 }

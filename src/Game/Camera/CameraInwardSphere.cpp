@@ -1,7 +1,8 @@
 #include "Game/Camera/CameraInwardSphere.hpp"
 #include "Game/Camera/CamTranslatorInwardSphere.hpp"
 
-CameraInwardSphere::CameraInwardSphere(const char *pName) : Camera(pName) {
+CameraInwardSphere::CameraInwardSphere(const char* pName)
+    : Camera(pName) {
     mDist = 1500.0f;
     mAngleA = 500.0f;
     mAngleB = 300.0f;
@@ -14,9 +15,8 @@ CameraInwardSphere::CameraInwardSphere(const char *pName) : Camera(pName) {
 }
 
 CameraInwardSphere::~CameraInwardSphere() {
-
 }
 
-CamTranslatorBase *CameraInwardSphere::createTranslator() {
+CamTranslatorBase* CameraInwardSphere::createTranslator() {
     return new CamTranslatorInwardSphere(this);
 }

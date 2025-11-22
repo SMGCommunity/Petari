@@ -3,15 +3,13 @@
 namespace nw4r {
     namespace lyt {
         ResourceAccessor::~ResourceAccessor() {
-
         }
 
         ResourceAccessor::ResourceAccessor() {
-            
         }
 
         ut::Font* ResourceAccessor::GetFont(const char*) {
             return nullptr;
         }
-    };
-};
+    }; // namespace lyt
+};     // namespace nw4r

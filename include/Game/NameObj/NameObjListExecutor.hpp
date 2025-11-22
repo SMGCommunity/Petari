@@ -17,21 +17,21 @@ public:
     virtual void initDrawList();
 
     void init();
-    s16 registerDrawBuffer(LiveActor *, int);
+    s16  registerDrawBuffer(LiveActor*, int);
     void allocateDrawBufferActorList();
-    void registerPreDrawFunction(const MR::FunctorBase &, int);
-    void findLightInfo(LiveActor *, int, int) const;
-    void incrementCheckMovement(NameObj *, int);
-    void incrementCheckCalcAnim(NameObj *, int);
-    void incrementCheckDraw(NameObj *, int);
-    void addToMovement(NameObj *, int);
-    void addToCalcAnim(NameObj *, int);
-    void addToDrawBuffer(LiveActor *, int, int);
-    void addToDraw(NameObj *, int);
-    void removeToMovement(NameObj *, int);
-    void removeToCalcAnim(NameObj *, int);
-    void removeToDrawBuffer(LiveActor *, int, int);
-    void removeToDraw(NameObj *, int);
+    void registerPreDrawFunction(const MR::FunctorBase&, int);
+    void findLightInfo(LiveActor*, int, int) const;
+    void incrementCheckMovement(NameObj*, int);
+    void incrementCheckCalcAnim(NameObj*, int);
+    void incrementCheckDraw(NameObj*, int);
+    void addToMovement(NameObj*, int);
+    void addToCalcAnim(NameObj*, int);
+    void addToDrawBuffer(LiveActor*, int, int);
+    void addToDraw(NameObj*, int);
+    void removeToMovement(NameObj*, int);
+    void removeToCalcAnim(NameObj*, int);
+    void removeToDrawBuffer(LiveActor*, int, int);
+    void removeToDraw(NameObj*, int);
     void executeMovement(int);
     void executeCalcAnim(int);
     void entryDrawBuffer2D();
@@ -41,7 +41,7 @@ public:
     void drawXlu(int);
     void executeDraw(int);
 
-    DrawBufferHolder* mBufferHolder;    // 0x4
+    DrawBufferHolder*    mBufferHolder; // 0x4
     NameObjCategoryList* mMovementList; // 0x8
     NameObjCategoryList* mCalcAnimList; // 0xC
     NameObjCategoryList* mDrawList;     // 0x10

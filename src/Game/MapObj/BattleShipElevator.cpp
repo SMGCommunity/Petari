@@ -2,15 +2,14 @@
 #include "Game/Map/CollisionParts.hpp"
 #include "Game/Util/DemoUtil.hpp"
 
-BattleShipElevator::BattleShipElevator(const char *pName) : MapObjActor(pName) {
-
+BattleShipElevator::BattleShipElevator(const char* pName)
+    : MapObjActor(pName) {
 }
 
 BattleShipElevator::~BattleShipElevator() {
-    
 }
 
-void BattleShipElevator::init(const JMapInfoIter &rIter) {
+void BattleShipElevator::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);
     MapObjActorInitInfo info;
     info.setupHioNode("地形オブジェ");
@@ -41,7 +40,7 @@ void BattleShipElevator::control() {
     }
 }
 
-bool BattleShipElevator::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool BattleShipElevator::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (!isNerve(&NrvBattleShipElevator::BattleShipElevatorNrvWait::sInstance)) {
         return false;
     }
@@ -60,14 +59,14 @@ namespace NrvBattleShipElevator {
     INIT_NERVE(BattleShipElevatorNrvMove);
     INIT_NERVE(BattleShipElevatorNrvEnd);
 
-	void BattleShipElevatorNrvWait::execute(Spine *pSpine) const {
-	}    
+    void BattleShipElevatorNrvWait::execute(Spine* pSpine) const {
+    }
 
-	void BattleShipElevatorNrvMove::execute(Spine *pSpine) const {
+    void BattleShipElevatorNrvMove::execute(Spine* pSpine) const {
         BattleShipElevator* planet = reinterpret_cast<BattleShipElevator*>(pSpine->mExecutor);
         planet->exeMove();
-	}    
+    }
 
-	void BattleShipElevatorNrvEnd::execute(Spine *pSpine) const {
-	}        
-};
+    void BattleShipElevatorNrvEnd::execute(Spine* pSpine) const {
+    }
+}; // namespace NrvBattleShipElevator

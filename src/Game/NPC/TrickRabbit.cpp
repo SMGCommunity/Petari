@@ -50,12 +50,13 @@
 //_E0(0),
 //_E1(0),
 //mParabolicPath(new ParabolicPath) {
-//    
+//
 //}
 
-TrickRabbit::TrickRabbit(const char* pName) : LiveActor(pName),
-_8C(0.0f, 0.0f, 0.0f, 1.0f),
-_9C(0, 0, 1) {
+TrickRabbit::TrickRabbit(const char* pName)
+    : LiveActor(pName),
+      _8C(0.0f, 0.0f, 0.0f, 1.0f),
+      _9C(0, 0, 1) {
     mRabbitStateWaitStart = nullptr;
     mRabbitStateCaught = nullptr;
     mMultiEventCamera = nullptr;
@@ -88,12 +89,12 @@ void TrickRabbit::init(const JMapInfoIter& rIter) {
     MR::onEmitEffectSyncClipping(this, "Light");
     MR::onForceDeleteEffectSyncClipping(this, "Light");
     f32 f = mScale.x;
-    MR::initShadowVolumeSphere(this, f*45.0f);
+    MR::initShadowVolumeSphere(this, f * 45.0f);
     mFootPrint = TrickRabbitUtil::createRabbitFootPrint(this);
     initRoute(rIter);
     f32 zero = 0.0f;
 
-    mTalkMessageCtrl = MR::createTalkCtrlDirect(this, rIter, "TrickRabbit", TVec3f(0.0f,120.0f,0.0f), 0);
+    mTalkMessageCtrl = MR::createTalkCtrlDirect(this, rIter, "TrickRabbit", TVec3f(0.0f, 120.0f, 0.0f), 0);
     initDemoCamera(rIter);
     initState();
     initTimer();
@@ -131,7 +132,7 @@ void TrickRabbit::initSensor() {
 
 void TrickRabbit::initBind() {
     f32 f = mScale.x;
-    initBinder(f*60.0f, f*60.0f, 0);
+    initBinder(f * 60.0f, f * 60.0f, 0);
     MR::onCalcGravity(this);
 }
 
@@ -142,7 +143,7 @@ void TrickRabbit::initRoute(const JMapInfoIter& rIter) {
 
 void TrickRabbit::initDemoCamera(const JMapInfoIter& rIter) {
     ActorCameraInfo stack_8 = ActorCameraInfo(rIter);
-    
+
     if (stack_8.mCameraSetID == -1)
         return;
 
@@ -175,10 +176,9 @@ void TrickRabbit::calcAndSetBaseMtx() {
 void TrickRabbit::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isSensorPlayer(pReceiver)) {
         if (isCaughtable()) {
-            if (pSender == getSensor("Catch")) 
+            if (pSender == getSensor("Catch"))
                 requestCaught();
-        }
-        else
+        } else
             MR::sendMsgPush(pReceiver, pSender);
     }
 }
@@ -197,7 +197,7 @@ bool TrickRabbit::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor*
     if (isNerve(&NrvTrickRabbit::TrickRabbitNrvWaitStart::sInstance) || isNerve(&NrvTrickRabbit::TrickRabbitNrvGiveUp::sInstance)) {
         return mRabbitStateWaitStart->receiveMsgPlayerAttack(msg, pSender, pReceiver);
     }
-    
+
     if (MR::isMsgStarPieceAttack(msg)) {
         MR::limitedStarPieceHitSound();
         MR::startSound(this, "SE_SM_RABBIT_STAR_PIECE_HIT", -1, -1);
@@ -235,7 +235,7 @@ bool TrickRabbit::receiveMsgTrample() {
     if (isNerve(&NrvTrickRabbit::TrickRabbitNrvJump::sInstance) && MR::isGreaterStep(this, 1))
         l = 1;
 
-    if (l) 
+    if (l)
         setNerve(&NrvTrickRabbit::TrickRabbitNrvFallDown::sInstance);
     else
         setNerve(&NrvTrickRabbit::TrickRabbitNrvTumble::sInstance);
@@ -249,7 +249,7 @@ bool TrickRabbit::requestCaught() {
             MR::showModel(this);
             MR::validateShadow(this, 0);
         }
-        
+
         MR::invalidateClipping(this);
         MR::forwardNode(mTalkMessageCtrl);
         setNerve(&NrvTrickRabbit::TrickRabbitNrvCaught::sInstance);
@@ -272,12 +272,10 @@ bool TrickRabbit::tryStartDemoRunnaway() {
                 MR::hideModelAndOnCalcAnim(this);
                 MR::invalidateShadow(this, 0);
             }
-        }
-        else {
+        } else {
             setNerve(&NrvTrickRabbit::TrickRabbitNrvDemoEnd::sInstance);
         }
         return true;
-
     }
 
     return false;
@@ -298,7 +296,7 @@ bool TrickRabbit::tryRunaway() {
         ::RunnawayNodeSelector stack_8 = ::RunnawayNodeSelector();
         MR::moveNodeNearPosition(mRailGraphIter, mPosition, -1.0f, &stack_8);
 
-        TVec3f stack_C(mPosition-*MR::getPlayerPos());
+        TVec3f stack_C(mPosition - *MR::getPlayerPos());
         selectEdgeRunnaway(mRailGraphIter, stack_C, -0.30000001f);
         setNerve(&NrvTrickRabbit::TrickRabbitNrvRunaway::sInstance);
         return true;
@@ -310,9 +308,9 @@ bool TrickRabbit::tryBrakeTurn() {
     if (MR::isGreaterStep(this, 0x3C) && MR::isNearPlayer(this, 600.0f)) {
         TVec3f stack_2C;
         TVec3f stack_20;
-        TVec3f stack_14(*MR::getPlayerPos()-mPosition);
+        TVec3f stack_14(*MR::getPlayerPos() - mPosition);
         stack_2C.set(stack_14);
-        TVec3f stack_8(*MR::getNextNodePosition(mRailGraphIter)-mPosition);
+        TVec3f stack_8(*MR::getNextNodePosition(mRailGraphIter) - mPosition);
         stack_20.set(stack_8);
         MR::normalizeOrZero(&stack_2C);
         MR::normalizeOrZero(&stack_20);
@@ -333,7 +331,6 @@ bool TrickRabbit::tryBrakeTurnEnd() {
     }
     return false;
 }
-
 
 bool TrickRabbit::tryStop() {
     bool isNear = !MR::isNearPlayer(this, 1500.0f);
@@ -458,7 +455,7 @@ void TrickRabbit::exeWaitStart() {
         mRabbitStateWaitStart->setTalkActionName("StartEvent");
         mRabbitStateWaitStart->_1C = true;
     }
-    
+
     if (MR::updateActorState(this, (ActorStateBaseInterface*)mRabbitStateWaitStart) && !tryStartDemoRunnaway())
         setNerve(&NrvTrickRabbit::TrickRabbitNrvTryStartDemoRunnaway::sInstance);
 }
@@ -493,7 +490,7 @@ void TrickRabbit::exeDemoJump() {
     TVec3f stack_14(mPosition);
     doJump();
     if (tryDemoJump()) {
-        TVec3f stack_8(mPosition-stack_14);
+        TVec3f stack_8(mPosition - stack_14);
         mVelocity.set(stack_8);
     }
 }
@@ -507,7 +504,7 @@ void TrickRabbit::exeDemoEnd() {
         }
     }
     doWait();
-    if (MR::isStep(this,0x1E)) {
+    if (MR::isStep(this, 0x1E)) {
         endDemoRunnaway();
     }
 }
@@ -518,7 +515,7 @@ void TrickRabbit::exeWait() {
             MR::showModel(this);
             MR::validateShadow(this, 0);
         }
-    
+
         MR::startAction(this, "FollowMe");
     }
 
@@ -532,7 +529,7 @@ void TrickRabbit::exeRunaway() {
     doRunaway();
     if (_D0 < 125.0f) {
         MR::moveNextNode(mRailGraphIter);
-        TVec3f stack_8(mPosition-*MR::getPlayerPos());
+        TVec3f stack_8(mPosition - *MR::getPlayerPos());
         selectEdgeRunnaway(mRailGraphIter, stack_8, 0.0f);
     }
 
@@ -551,7 +548,7 @@ void TrickRabbit::exeBrakeTurn() {
 
     MR::attenuateVelocity(this, 0.93000001f);
     MR::reboundVelocityFromCollision(this, 0.0f, 0.0f, 1.0f);
-    TVec3f stack_8(*MR::getNextNodePosition(mRailGraphIter)-mPosition);
+    TVec3f stack_8(*MR::getNextNodePosition(mRailGraphIter) - mPosition);
     MR::turnVecToVecCosOnPlane(&_9C, stack_8, mGravity, -1.0f);
 
     if (tryBrakeTurnEnd())
@@ -570,14 +567,14 @@ void TrickRabbit::exeJumpStart() {
 }
 
 void TrickRabbit::exeJump() {
-    if (MR::isFirstStep(this)) 
+    if (MR::isFirstStep(this))
         setUpJumpParamFromJMap();
 
     TVec3f stack_14(mPosition);
     doJump();
 
     if (tryJumpEnd()) {
-        TVec3f stack_8(mPosition-stack_14);
+        TVec3f stack_8(mPosition - stack_14);
         mVelocity.set(stack_8);
     }
 }
@@ -589,10 +586,9 @@ void TrickRabbit::exeFallDown() {
     if (!MR::isBindedGround(this)) {
         if (!MR::isBindedGround(this))
             MR::addVelocityToGravity(this, 1.0f);
-        
+
         MR::attenuateVelocity(this, 0.85000002f);
-    }
-    else
+    } else
         MR::attenuateVelocity(this, 0.85000002f);
 
     MR::reboundVelocityFromCollision(this, 0.0f, 0.0f, 1.0f);
@@ -629,7 +625,7 @@ void TrickRabbit::exeComebackRoute() {
     doJump();
 
     if (tryJumpEnd()) {
-        TVec3f stack_8(mPosition-stack_14);
+        TVec3f stack_8(mPosition - stack_14);
         mVelocity.set(stack_8);
     }
 }
@@ -645,10 +641,8 @@ void TrickRabbit::exeTumble() {
 
         MR::attenuateVelocity(this, 0.99000001f);
         MR::reboundVelocityFromCollision(this, 0.0f, 0.0f, 1.0f);
-    }
-    else
+    } else
         MR::zeroVelocity(this);
-
 
     if (tryEndTumble())
         return;
@@ -677,25 +671,25 @@ void TrickRabbit::exeWaitPowerStarDemo() {
     if (MR::isFirstStep(this)) {
         MR::endDemo(this, "捕まり");
         MR::startAfterBossBGM();
-        TVec3f stack_14(mPosition-(mGravity*200.0f));
+        TVec3f stack_14(mPosition - (mGravity * 200.0f));
         MR::requestAppearPowerStar(this, stack_14);
         MR::startAction(this, "Wait");
         mFootPrint->clear();
     }
 
     MR::zeroVelocity(this);
-    
+
     if (!MR::isOnGround(this) && !MR::isBindedGround(this))
         MR::addVelocityToGravity(this, 1.0f);
 
     if (MR::isNearPlayer(this, 70.0f)) {
         MR::getPlayerFrontVec(&stack_20);
-        mVelocity+=stack_20;
+        mVelocity += stack_20;
     }
 
     MR::reboundVelocityFromCollision(this, 0.0f, 0.0f, 1.0f);
     MR::turnDirectionToPlayerDegreeHorizon(this, &_9C, 30.0f);
-    
+
     if (tryEndPowerStarDemo())
         MR::forwardNode(mTalkMessageCtrl);
 }
@@ -709,7 +703,7 @@ void TrickRabbit::exeGiveUp() {
 }
 
 void TrickRabbit::doWait() {
-    if (!MR::isBindedGround(this)) 
+    if (!MR::isBindedGround(this))
         MR::addVelocityToGravity(this, 1.0f);
 
     MR::attenuateVelocity(this, 0.85000002f);
@@ -722,38 +716,38 @@ void TrickRabbit::doRunaway() {
         MR::startAction(this, "Run");
 
     if (MR::checkPassBckFrame(this, 0.0f))
-       updateFootPrint();
+        updateFootPrint();
 
     if (MR::checkPassBckFrame(this, 3.0f))
         MR::startSound(this, "SE_SM_RABBIT_JUMP", -1, -1);
 
     TVec3f stack_14(*MR::getNextNodePosition(mRailGraphIter));
-    f32 arg = MR::getSelectEdgeArg1(mRailGraphIter);
-    arg=arg/100.0f;
+    f32    arg = MR::getSelectEdgeArg1(mRailGraphIter);
+    arg = arg / 100.0f;
 
     if (arg < 0.0f)
         arg = 1.0f;
 
-    if (!MR::isBindedGround(this)) 
+    if (!MR::isBindedGround(this))
         MR::addVelocityToGravity(this, 1.0f);
 
-    TVec3f stack_8(stack_14-mPosition);
-    addMovingAccel(stack_8, 2.4000001f*arg);
+    TVec3f stack_8(stack_14 - mPosition);
+    addMovingAccel(stack_8, 2.4000001f * arg);
     addKeepRouteRange(1.0f, 100.0f, 400.0f);
     MR::attenuateVelocity(this, 0.85000002f);
     MR::reboundVelocityFromCollision(this, 0.0f, 0.0f, 1.0f);
 }
 
 void TrickRabbit::doJumpStart() {
-    if (MR::isFirstStep(this)) 
+    if (MR::isFirstStep(this))
         MR::startAction(this, "JumpStart");
 
     updateFootPrint();
 
-    if (MR::isBckOneTimeAndStopped(this)) 
+    if (MR::isBckOneTimeAndStopped(this))
         MR::startAction(this, "JumpStartLoop");
 
-    TVec3f stack_8(*MR::getNextNodePosition(mRailGraphIter)-mPosition);
+    TVec3f stack_8(*MR::getNextNodePosition(mRailGraphIter) - mPosition);
     MR::turnVecToVecCosOnPlane(&_9C, stack_8, mGravity, 0.99000001f);
 
     if (!MR::isBindedGround(this))
@@ -769,12 +763,12 @@ void TrickRabbit::doJump() {
         MR::startSound(this, "SE_SM_RABBIT_JUMP", -1, -1);
         MR::offBind(this);
     }
-    MR::turnVecToVecCosOnPlane(&_9C, (*MR::getNextNodePosition(mRailGraphIter)-mPosition), mGravity, 0.89999998f);
+    MR::turnVecToVecCosOnPlane(&_9C, (*MR::getNextNodePosition(mRailGraphIter) - mPosition), mGravity, 0.89999998f);
     TVec3f stack_5C;
     mParabolicPath->calcPosition(&stack_5C, MR::calcNerveRate(this, _CC));
 
-    if (!checkDivingThicket((mPosition-(mGravity*70.0f)), stack_5C-mPosition))
-        checkDivingThicket((stack_5C-(mGravity*70.0f)), (mPosition-stack_5C));
+    if (!checkDivingThicket((mPosition - (mGravity * 70.0f)), stack_5C - mPosition))
+        checkDivingThicket((stack_5C - (mGravity * 70.0f)), (mPosition - stack_5C));
 
     mPosition.set(stack_5C);
 }
@@ -790,8 +784,8 @@ void TrickRabbit::tearDownWait() {
 
 bool TrickRabbit::checkDivingThicket(const TVec3f& rVec1, const TVec3f& rVec2) {
     Triangle stack_44 = Triangle();
-    TPos3f stack_14;
-    TVec3f stack_8;
+    TPos3f   stack_14;
+    TVec3f   stack_8;
 
     if (!MR::getFirstPolyOnLineToMap(&stack_8, &stack_44, rVec1, rVec2))
         return false;
@@ -805,14 +799,13 @@ bool TrickRabbit::checkDivingThicket(const TVec3f& rVec1, const TVec3f& rVec2) {
 bool TrickRabbit::selectEdgeStartEvent(RailGraphIter* pIter) {
     bool b = false;
     pIter->watchStartEdge();
-    while(!pIter->isWatchEndEdge()) {
+    while (!pIter->isWatchEndEdge()) {
         if (!MR::isWatchedPrevEdge(pIter) && MR::getWatchEdgeArg7(pIter) < -1) {
             pIter->selectEdge();
             b = true;
         }
-        
-        pIter->watchNextEdge();
 
+        pIter->watchNextEdge();
     };
     return b;
 }
@@ -835,16 +828,15 @@ void TrickRabbit::selectEdgeRunnaway(RailGraphIter* pIter, const TVec3f& rVec, f
             MR::calcWatchEdgeDirection(pIter, &stack_8);
             f32 dot = stack_8.dot(stack_14);
             v17 = 1;
-            
+
             if (arg != -1) {
                 if (arg != _D8)
                     v17 = 0;
             }
-            
+
             bool v18 = dot > f;
             bool isWatched = !MR::isWatchedPrevEdge(pIter);
             bool v20 = 0;
-
 
             if (!r29 || v17) {
                 if (!r29 && v17)
@@ -855,16 +847,16 @@ void TrickRabbit::selectEdgeRunnaway(RailGraphIter* pIter, const TVec3f& rVec, f
                         goto endif;
                     }
                     if (!r28 && v18) {
-                            v20 = 1;
-                        }
+                        v20 = 1;
+                    }
                 }
 
                 if (!v20) {
-                    if (r27 && !isWatched){
+                    if (r27 && !isWatched) {
                         goto endif;
                     }
                     if (!r27 && isWatched)
-                    v20 = 1;
+                        v20 = 1;
                 }
 
                 if (!v20) {
@@ -881,7 +873,7 @@ void TrickRabbit::selectEdgeRunnaway(RailGraphIter* pIter, const TVec3f& rVec, f
                 }
             }
         }
-        endif:
+    endif:
         pIter->watchNextEdge();
     }
 }
@@ -896,38 +888,37 @@ void TrickRabbit::controlRouteLevel() {
     if (!_E0)
         return;
 
-    if (_D8 ==_DC)
+    if (_D8 == _DC)
         return;
 
     if (!_D4) {
         _D8 = _DC;
         _E0 = false;
-    }
-    else {
-        _D4 -=1;
+    } else {
+        _D4 -= 1;
     }
 }
 
 void TrickRabbit::addMovingAccel(const TVec3f& rVec, f32 f) {
     TVec3f stack_20(mGravity);
-    f32 dot = stack_20.dot(rVec);
+    f32    dot = stack_20.dot(rVec);
     TVec3f stack_14;
     JMAVECScaleAdd(&stack_20, &rVec, &stack_14, -dot);
     MR::separateScalarAndDirection(&_D0, &stack_14, stack_14);
 
-    if (!MR::isNearZero(stack_14, 0.001f)) 
+    if (!MR::isNearZero(stack_14, 0.001f))
         MR::turnVecToVecCos(&_9C, _9C, stack_14, 0.98000002f, stack_20, 0.02f);
 
-    TVec3f stack_8(_9C*f);
-    mVelocity+=stack_8;
+    TVec3f stack_8(_9C * f);
+    mVelocity += stack_8;
 }
 
 void TrickRabbit::addKeepRouteRange(f32 f1, f32 f2, f32 f3) {
     TVec3f* nextNodePos = MR::getNextNodePosition(mRailGraphIter);
     TVec3f* currentNodePos = MR::getCurrentNodePosition(mRailGraphIter);
-    TVec3f stack_3C;
+    TVec3f  stack_3C;
 
-    f32 f = MR::getFootPoint(*currentNodePos,*nextNodePos, mPosition, &stack_3C);
+    f32 f = MR::getFootPoint(*currentNodePos, *nextNodePos, mPosition, &stack_3C);
     if (f < 0.0f) {
         stack_3C.set(*MR::getCurrentNodePosition(mRailGraphIter));
     }
@@ -935,15 +926,15 @@ void TrickRabbit::addKeepRouteRange(f32 f1, f32 f2, f32 f3) {
         stack_3C.set(*MR::getNextNodePosition(mRailGraphIter));
     }
 
-    TVec3f stack_30;
-    TVec3f stack_24(stack_3C-mPosition);
+    TVec3f  stack_30;
+    TVec3f  stack_24(stack_3C - mPosition);
     TVec3f* grav = &mGravity;
-    f32 dot = grav->dot(stack_24);
+    f32     dot = grav->dot(stack_24);
     JMAVECScaleAdd(grav, &stack_24, &stack_30, dot);
     f32 scalar;
     MR::separateScalarAndDirection(&scalar, &stack_30, stack_30);
     f32 norm = MR::normalize(scalar, f2, f3);
-    mVelocity+=((stack_30*norm)*f1);
+    mVelocity += ((stack_30 * norm) * f1);
 }
 
 void TrickRabbit::updateFootPrint() {
@@ -998,9 +989,8 @@ void TrickRabbit::setUpJumpParam() {
     _CC = calcDefaultJumpTime();
 }
 
-
 void TrickRabbit::setUpJumpParamFromJMap() {
-    f32 f = calcJumpHeight();
+    f32    f = calcJumpHeight();
     TVec3f stack_8(-mGravity);
     mParabolicPath->initFromUpVectorAddHeight(mPosition, *MR::getNextNodePosition(mRailGraphIter), stack_8, f);
     _CC = calcJumpTime();
@@ -1012,14 +1002,14 @@ s32 TrickRabbit::calcDefaultJumpTime() const {
     if (f <= 0)
         return 0;
     else
-        return (s32)(1/f);
+        return (s32)(1 / f);
 }
 
 s32 TrickRabbit::calcJumpStartTime() const {
     s32 arg = MR::getSelectEdgeArg1(mRailGraphIter);
     if (arg >= 0)
         return arg;
-    else 
+    else
         return 0x14;
 }
 
@@ -1034,8 +1024,7 @@ f32 TrickRabbit::calcJumpHeight() const {
     f32 arg = (f32)MR::getSelectEdgeArg3(mRailGraphIter);
     if (arg < 0.0f) {
         return 100.0f;
-    }
-    else {
+    } else {
         return arg;
     }
 }
@@ -1055,28 +1044,24 @@ void TrickRabbit::updateTime() {
 
     if (v > 0) {
         if (v <= 120) {
-            if (!(v%60)) {
+            if (!(v % 60)) {
                 MR::startSystemSE("SE_SY_E3_TIMER_COUNT_4", -1, -1);
             }
-        }
-        else if (v <= 360) {
-            if (!(v%60)){
+        } else if (v <= 360) {
+            if (!(v % 60)) {
                 MR::startSystemSE("SE_SY_E3_TIMER_COUNT_2", -1, -1);
             }
-        }
-        else if (v <= 1200) {
-            if (!(v%60)) {
+        } else if (v <= 1200) {
+            if (!(v % 60)) {
                 MR::startSystemSE("SE_SY_E3_TIMER_COUNT_1", -1, -1);
             }
         }
-
     }
     if (!_E4) {
         MR::startSoundPlayer("SE_PM_LAST_DAMAGE", -1);
         MR::forceKillPlayerByAbyss();
     }
 }
-
 
 namespace NrvTrickRabbit {
     void TrickRabbitNrvComebackRoute::executeOnEnd(Spine* pSpine) const {
@@ -1153,4 +1138,4 @@ namespace NrvTrickRabbit {
     TrickRabbitNrvCaught(TrickRabbitNrvCaught::sInstance);
     TrickRabbitNrvWaitPowerStarDemo(TrickRabbitNrvWaitPowerStarDemo::sInstance);
     TrickRabbitNrvGiveUp(TrickRabbitNrvGiveUp::sInstance);
-}
+} // namespace NrvTrickRabbit

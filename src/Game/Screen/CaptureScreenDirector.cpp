@@ -9,22 +9,20 @@
 
 namespace {
     const TimingInfo cTimingInfo[] = {
-        { "GameScreen", 32, true, 1 },
-        { "Indirect", 1, false, 0 },
-        { "Camera", 4, true, 1 },
-        { "WipeMap", 5, true, 1 },
-        { "SystemWipe", 20, false, 1 },
-        { "Unused", 16, false, 0 }
-    };
+        {"GameScreen", 32, true, 1},
+        {"Indirect", 1, false, 0},
+        {"Camera", 4, true, 1},
+        {"WipeMap", 5, true, 1},
+        {"SystemWipe", 20, false, 1},
+        {"Unused", 16, false, 0}};
 };
 
-CaptureScreenDirector::CaptureScreenDirector() :
-    NameObj("画面キャプチャ"),
-    _C(nullptr),
-    mTimingType("Indirect"),
-    mTexture(nullptr),
-    _18(false)
-{
+CaptureScreenDirector::CaptureScreenDirector()
+    : NameObj("画面キャプチャ"),
+      _C(nullptr),
+      mTimingType("Indirect"),
+      mTexture(nullptr),
+      _18(false) {
     MR::CurrentHeapRestorer heapRestorer(MR::getStationedHeapGDDR3());
 
     mTexture = new JUTTexture(
@@ -104,10 +102,9 @@ const TimingInfo* CaptureScreenDirector::findFromName(const char* pName) const {
     return nullptr;
 }
 
-CaptureScreenActor::CaptureScreenActor(u32 param1, const char* pCameraName) :
-    NameObj("画面キャプチャ"),
-    mCameraName(pCameraName)
-{
+CaptureScreenActor::CaptureScreenActor(u32 param1, const char* pCameraName)
+    : NameObj("画面キャプチャ"),
+      mCameraName(pCameraName) {
     MR::connectToScene(this, -1, -1, -1, param1);
 }
 

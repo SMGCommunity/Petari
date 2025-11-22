@@ -10,15 +10,14 @@ namespace NrvButlerExplain {
     NEW_NERVE(ButlerExplainNrvDemo, ButlerExplain, Demo);
 };
 
-ButlerExplain::ButlerExplain(const char *pName) : NPCActor(pName){
-
+ButlerExplain::ButlerExplain(const char* pName)
+    : NPCActor(pName) {
 }
 
 ButlerExplain::~ButlerExplain() {
-    
 }
 
-void ButlerExplain::init(const JMapInfoIter &rIter) {
+void ButlerExplain::init(const JMapInfoIter& rIter) {
     NPCActorCaps caps("ButlerExplain");
     caps.setDefault();
     caps.mObjectName = "Butler";
@@ -44,5 +43,4 @@ void ButlerExplain::startDemo() {
 }
 
 void ButlerExplain::exeDemo() {
-
 }

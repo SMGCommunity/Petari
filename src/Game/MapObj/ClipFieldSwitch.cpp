@@ -2,11 +2,10 @@
 #include "Game/MapObj/ClipAreaHolder.hpp"
 
 ClipFieldSwitch::~ClipFieldSwitch() {
-
 }
 
-ClipFieldSwitch::ClipFieldSwitch(const char *pName) : LiveActor(pName) {
-
+ClipFieldSwitch::ClipFieldSwitch(const char* pName)
+    : LiveActor(pName) {
 }
 
 void ClipFieldSwitch::control() {
@@ -19,8 +18,7 @@ void ClipFieldSwitch::control() {
         if (MR::isValidSwitchB(this)) {
             MR::offSwitchB(this);
         }
-    }
-    else {
+    } else {
         if (MR::isValidSwitchA(this)) {
             MR::offSwitchA(this);
         }
@@ -31,7 +29,7 @@ void ClipFieldSwitch::control() {
     }
 }
 
-void ClipFieldSwitch::init(const JMapInfoIter &rIter) {
+void ClipFieldSwitch::init(const JMapInfoIter& rIter) {
     MR::connectToSceneMapObjMovement(this);
     MR::useStageSwitchWriteA(this, rIter);
     MR::useStageSwitchWriteB(this, rIter);

@@ -16,9 +16,9 @@ public:
     bool isModeDiscoverAndIsAppear() const;
 
 private:
-    /* 0x20 */ int mExclamationGalaxyIndex;
-    /* 0x24 */ const char* mGalaxyName;
+    /* 0x20 */ int          mExclamationGalaxyIndex;
+    /* 0x24 */ const char*  mGalaxyName;
     /* 0x28 */ LayoutActor* mHost;
-    /* 0x2C */ char* mPaneName;
-    /* 0x30 */ u8 mMode;
+    /* 0x2C */ char*        mPaneName;
+    /* 0x30 */ u8           mMode;
 };

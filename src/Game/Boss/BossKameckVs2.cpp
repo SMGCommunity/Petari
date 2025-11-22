@@ -6,14 +6,14 @@
 #include "Game/Boss/BossKameckBarrier.hpp"
 
 namespace {
-    s32 sBeamPatternLv1[] = { 2, 1, -1 };
-    s32 sBeamPatternLv2[] = { 3, 1, -1 };
-    s32 sBeamPatternLv3[] = { 4, 1, 3, -1 };
+    s32 sBeamPatternLv1[] = {2, 1, -1};
+    s32 sBeamPatternLv2[] = {3, 1, -1};
+    s32 sBeamPatternLv3[] = {4, 1, 3, -1};
 
     BossKameckBattlePattarn sPatternLv1 = BossKameckBattlePattarn(sBeamPatternLv1, false);
     BossKameckBattlePattarn sPatternLv2 = BossKameckBattlePattarn(sBeamPatternLv2, false);
     BossKameckBattlePattarn sPatternLv3 = BossKameckBattlePattarn(sBeamPatternLv3, true);
-};
+}; // namespace
 
 namespace NrvBossKameckVs2 {
     NEW_NERVE(BossKameckVs2NrvOpeningDemo, BossKameckVs2, OpeningDemo);
@@ -23,14 +23,15 @@ namespace NrvBossKameckVs2 {
     NEW_NERVE(BossKameckVs2NrvBattleLv3, BossKameckVs2, BattleLv3);
     NEW_NERVE(BossKameckVs2NrvBattleLv4, BossKameckVs2, BattleLv4);
     NEW_NERVE(BossKameckVs2NrvEndDemo, BossKameckVs2, EndDemo);
-};
+}; // namespace NrvBossKameckVs2
 
-BossKameckVs2::BossKameckVs2() : BossKameckSequencer("ボスカメックVs2") {
+BossKameckVs2::BossKameckVs2()
+    : BossKameckSequencer("ボスカメックVs2") {
     mStateBattle = nullptr;
     mBarrier = nullptr;
 }
 
-void BossKameckVs2::init(BossKameck *pBoss, const JMapInfoIter &rIter) {
+void BossKameckVs2::init(BossKameck* pBoss, const JMapInfoIter& rIter) {
     BossKameckSequencer::init(pBoss, rIter);
     mStateBattle = new BossKameckStateBattle(pBoss);
     mStateBattle->init();
@@ -45,13 +46,13 @@ void BossKameckVs2::start() {
     setNerve(&NrvBossKameckVs2::BossKameckVs2NrvOpeningDemo::sInstance);
 }
 
-void BossKameckVs2::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
+void BossKameckVs2::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (isBattle()) {
         mStateBattle->attackSensor(pSender, pReceiver);
     }
 }
 
-bool BossKameckVs2::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool BossKameckVs2::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (isBattle()) {
         return mStateBattle->receiveMsgPlayerAttack(msg, pSender, pReceiver);
     }
@@ -136,15 +137,11 @@ void BossKameckVs2::exeEndDemo() {
 }
 
 bool BossKameckVs2::isBattle() const {
-    if (isNerve(&NrvBossKameckVs2::BossKameckVs2NrvBattleLv1::sInstance)
-        || isNerve(&NrvBossKameckVs2::BossKameckVs2NrvBattleLv2::sInstance)
-        || isNerve(&NrvBossKameckVs2::BossKameckVs2NrvBattleLv3::sInstance)
-        || isNerve(&NrvBossKameckVs2::BossKameckVs2NrvBattleLv4::sInstance)) {
-            return true;
-        }
+    if (isNerve(&NrvBossKameckVs2::BossKameckVs2NrvBattleLv1::sInstance) || isNerve(&NrvBossKameckVs2::BossKameckVs2NrvBattleLv2::sInstance) || isNerve(&NrvBossKameckVs2::BossKameckVs2NrvBattleLv3::sInstance) || isNerve(&NrvBossKameckVs2::BossKameckVs2NrvBattleLv4::sInstance)) {
+        return true;
+    }
     return false;
 }
 
 BossKameckVs2::~BossKameckVs2() {
-
 }

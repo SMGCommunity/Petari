@@ -23,7 +23,7 @@ namespace NrvSurfRayTutorial {
     NEW_NERVE(SurfRayTutorialNrvTutorialTurnRightUpkeep, SurfRayTutorial, TutorialTurnRightUpkeep);
     NEW_NERVE(SurfRayTutorialNrvTutorialTurnRightSuccess, SurfRayTutorial, TutorialTurnRightSuccess);
     NEW_NERVE(SurfRayTutorialNrvTutorialAllEnd, SurfRayTutorial, TutorialAllEnd);
-};
+}; // namespace NrvSurfRayTutorial
 
 namespace {
     static const s32 sStepTalk = 150;
@@ -34,17 +34,16 @@ namespace {
     // static const f32 sPadAccelTurnMinX = _;
     // static const f32 sPadAccelTurnLimitZ = _;
     // static const f32 sPadAccelTurnLimitY = _;
-};
+}; // namespace
 
-SurfRayTutorial::SurfRayTutorial(LiveActor* pHost, TalkMessageCtrl* pTalkCtrl, const JMapInfoIter& rIter) :
-    NerveExecutor("チュートリアル演出"),
-    mHost(pHost),
-    mIsTutorialPass(false),
-    mPadAccel(0.0f, 0.0f, 0.0f),
-    mTalkCtrl(pTalkCtrl),
-    mChangeStep(0),
-    _28(0)
-{
+SurfRayTutorial::SurfRayTutorial(LiveActor* pHost, TalkMessageCtrl* pTalkCtrl, const JMapInfoIter& rIter)
+    : NerveExecutor("チュートリアル演出"),
+      mHost(pHost),
+      mIsTutorialPass(false),
+      mPadAccel(0.0f, 0.0f, 0.0f),
+      mTalkCtrl(pTalkCtrl),
+      mChangeStep(0),
+      _28(0) {
     initNerve(&NrvSurfRayTutorial::SurfRayTutorialNrvTutorialAllStart::sInstance);
 
     mSurfingGuidance = new SurfingGuidance();
@@ -94,8 +93,7 @@ void SurfRayTutorial::exeTutorialStraightFailure() {
         if (mChangeStep++ == sStepToOK) {
             nextTutorial();
         }
-    }
-    else {
+    } else {
         mChangeStep = 0;
     }
 
@@ -124,8 +122,7 @@ void SurfRayTutorial::exeTutorialStraightUpkeep() {
             nextTutorial();
             return;
         }
-    }
-    else if (mChangeStep++ == sStepToOK) {
+    } else if (mChangeStep++ == sStepToOK) {
         prevTutorial();
         MR::startSystemSE("SE_SY_SURF_TUTORIAL_NG", -1, -1);
         mSurfingGuidance->levelOffReady();
@@ -169,8 +166,7 @@ void SurfRayTutorial::exeTutorialTurnLeftFailure() {
         if (mChangeStep++ == sStepToOK) {
             nextTutorial();
         }
-    }
-    else {
+    } else {
         mChangeStep = 0;
     }
 
@@ -199,8 +195,7 @@ void SurfRayTutorial::exeTutorialTurnLeftUpkeep() {
             nextTutorial();
             return;
         }
-    }
-    else if (mChangeStep++ == sStepToOK) {
+    } else if (mChangeStep++ == sStepToOK) {
         prevTutorial();
         MR::startSystemSE("SE_SY_SURF_TUTORIAL_NG", -1, -1);
         mSurfingGuidance->turnLeftReady();
@@ -244,8 +239,7 @@ void SurfRayTutorial::exeTutorialTurnRightFailure() {
         if (mChangeStep++ == sStepToOK) {
             nextTutorial();
         }
-    }
-    else {
+    } else {
         mChangeStep = 0;
     }
 
@@ -274,8 +268,7 @@ void SurfRayTutorial::exeTutorialTurnRightUpkeep() {
             nextTutorial();
             return;
         }
-    }
-    else if (mChangeStep++ == sStepToOK) {
+    } else if (mChangeStep++ == sStepToOK) {
         prevTutorial();
         MR::startSystemSE("SE_SY_SURF_TUTORIAL_NG", -1, -1);
         mSurfingGuidance->turnRightReady();
@@ -311,9 +304,7 @@ void SurfRayTutorial::exeTutorialAllEnd() {
 }
 
 bool SurfRayTutorial::isSuccessStraight() const {
-    if (__fabsf(mPadAccel.x) < sPadAccelStraightMinX
-        && __fabsf(mPadAccel.y) < sPadAccelStraightMinY)
-    {
+    if (__fabsf(mPadAccel.x) < sPadAccelStraightMinX && __fabsf(mPadAccel.y) < sPadAccelStraightMinY) {
         return true;
     }
 
@@ -355,41 +346,29 @@ void SurfRayTutorial::omitTutorial() const {
 void SurfRayTutorial::nextTutorial() {
     if (isNerve(&NrvSurfRayTutorial::SurfRayTutorialNrvTutorialAllStart::sInstance)) {
         setNerve(&NrvSurfRayTutorial::SurfRayTutorialNrvTutorialStraightStart::sInstance);
-    }
-    else if (isNerve(&NrvSurfRayTutorial::SurfRayTutorialNrvTutorialStraightStart::sInstance)) {
+    } else if (isNerve(&NrvSurfRayTutorial::SurfRayTutorialNrvTutorialStraightStart::sInstance)) {
         setNerve(&NrvSurfRayTutorial::SurfRayTutorialNrvTutorialStraightFailure::sInstance);
-    }
-    else if (isNerve(&NrvSurfRayTutorial::SurfRayTutorialNrvTutorialStraightFailure::sInstance)) {
+    } else if (isNerve(&NrvSurfRayTutorial::SurfRayTutorialNrvTutorialStraightFailure::sInstance)) {
         setNerve(&NrvSurfRayTutorial::SurfRayTutorialNrvTutorialStraightUpkeep::sInstance);
-    }
-    else if (isNerve(&NrvSurfRayTutorial::SurfRayTutorialNrvTutorialStraightUpkeep::sInstance)) {
+    } else if (isNerve(&NrvSurfRayTutorial::SurfRayTutorialNrvTutorialStraightUpkeep::sInstance)) {
         setNerve(&NrvSurfRayTutorial::SurfRayTutorialNrvTutorialStraightSuccess::sInstance);
-    }
-    else if (isNerve(&NrvSurfRayTutorial::SurfRayTutorialNrvTutorialStraightSuccess::sInstance)) {
+    } else if (isNerve(&NrvSurfRayTutorial::SurfRayTutorialNrvTutorialStraightSuccess::sInstance)) {
         setNerve(&NrvSurfRayTutorial::SurfRayTutorialNrvTutorialTurnLeftStart::sInstance);
-    }
-    else if (isNerve(&NrvSurfRayTutorial::SurfRayTutorialNrvTutorialTurnLeftStart::sInstance)) {
+    } else if (isNerve(&NrvSurfRayTutorial::SurfRayTutorialNrvTutorialTurnLeftStart::sInstance)) {
         setNerve(&NrvSurfRayTutorial::SurfRayTutorialNrvTutorialTurnLeftFailure::sInstance);
-    }
-    else if (isNerve(&NrvSurfRayTutorial::SurfRayTutorialNrvTutorialTurnLeftFailure::sInstance)) {
+    } else if (isNerve(&NrvSurfRayTutorial::SurfRayTutorialNrvTutorialTurnLeftFailure::sInstance)) {
         setNerve(&NrvSurfRayTutorial::SurfRayTutorialNrvTutorialTurnLeftUpkeep::sInstance);
-    }
-    else if (isNerve(&NrvSurfRayTutorial::SurfRayTutorialNrvTutorialTurnLeftUpkeep::sInstance)) {
+    } else if (isNerve(&NrvSurfRayTutorial::SurfRayTutorialNrvTutorialTurnLeftUpkeep::sInstance)) {
         setNerve(&NrvSurfRayTutorial::SurfRayTutorialNrvTutorialTurnLeftSuccess::sInstance);
-    }
-    else if (isNerve(&NrvSurfRayTutorial::SurfRayTutorialNrvTutorialTurnLeftSuccess::sInstance)) {
+    } else if (isNerve(&NrvSurfRayTutorial::SurfRayTutorialNrvTutorialTurnLeftSuccess::sInstance)) {
         setNerve(&NrvSurfRayTutorial::SurfRayTutorialNrvTutorialTurnRightStart::sInstance);
-    }
-    else if (isNerve(&NrvSurfRayTutorial::SurfRayTutorialNrvTutorialTurnRightStart::sInstance)) {
+    } else if (isNerve(&NrvSurfRayTutorial::SurfRayTutorialNrvTutorialTurnRightStart::sInstance)) {
         setNerve(&NrvSurfRayTutorial::SurfRayTutorialNrvTutorialTurnRightFailure::sInstance);
-    }
-    else if (isNerve(&NrvSurfRayTutorial::SurfRayTutorialNrvTutorialTurnRightFailure::sInstance)) {
+    } else if (isNerve(&NrvSurfRayTutorial::SurfRayTutorialNrvTutorialTurnRightFailure::sInstance)) {
         setNerve(&NrvSurfRayTutorial::SurfRayTutorialNrvTutorialTurnRightUpkeep::sInstance);
-    }
-    else if (isNerve(&NrvSurfRayTutorial::SurfRayTutorialNrvTutorialTurnRightUpkeep::sInstance)) {
+    } else if (isNerve(&NrvSurfRayTutorial::SurfRayTutorialNrvTutorialTurnRightUpkeep::sInstance)) {
         setNerve(&NrvSurfRayTutorial::SurfRayTutorialNrvTutorialTurnRightSuccess::sInstance);
-    }
-    else if (isNerve(&NrvSurfRayTutorial::SurfRayTutorialNrvTutorialTurnRightSuccess::sInstance)) {
+    } else if (isNerve(&NrvSurfRayTutorial::SurfRayTutorialNrvTutorialTurnRightSuccess::sInstance)) {
         setNerve(&NrvSurfRayTutorial::SurfRayTutorialNrvTutorialAllEnd::sInstance);
     }
 
@@ -399,11 +378,9 @@ void SurfRayTutorial::nextTutorial() {
 void SurfRayTutorial::prevTutorial() {
     if (isNerve(&NrvSurfRayTutorial::SurfRayTutorialNrvTutorialStraightUpkeep::sInstance)) {
         setNerve(&NrvSurfRayTutorial::SurfRayTutorialNrvTutorialStraightFailure::sInstance);
-    }
-    else if (isNerve(&NrvSurfRayTutorial::SurfRayTutorialNrvTutorialTurnLeftUpkeep::sInstance)) {
+    } else if (isNerve(&NrvSurfRayTutorial::SurfRayTutorialNrvTutorialTurnLeftUpkeep::sInstance)) {
         setNerve(&NrvSurfRayTutorial::SurfRayTutorialNrvTutorialTurnLeftFailure::sInstance);
-    }
-    else if (isNerve(&NrvSurfRayTutorial::SurfRayTutorialNrvTutorialTurnRightUpkeep::sInstance)) {
+    } else if (isNerve(&NrvSurfRayTutorial::SurfRayTutorialNrvTutorialTurnRightUpkeep::sInstance)) {
         setNerve(&NrvSurfRayTutorial::SurfRayTutorialNrvTutorialTurnRightFailure::sInstance);
     }
 

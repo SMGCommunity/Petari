@@ -13,7 +13,7 @@ void ZoneLightID::clear() {
     mLightID = -1;
 }
 
-bool ZoneLightID::isTargetArea(const LightArea *pLightArea) const {
+bool ZoneLightID::isTargetArea(const LightArea* pLightArea) const {
     if (_0 == pLightArea->mPlacedZoneID && mLightID == pLightArea->mObjArg0) {
         return false;
     }
@@ -54,7 +54,7 @@ void LightZoneDataHolder::initZoneData() {
     }
 }
 
-const char* LightZoneDataHolder::getAreaLightNameInZoneData(const ZoneLightID &zoneID) const {
+const char* LightZoneDataHolder::getAreaLightNameInZoneData(const ZoneLightID& zoneID) const {
     s32 val = zoneID._0;
 
     if (val < 0) {
@@ -71,7 +71,7 @@ const char* LightZoneDataHolder::getDefaultStageAreaLightName() const {
 
 void LightZoneInfo::init(s32 zoneID) {
     const char* zoneName = MR::getZoneNameFromZoneId(zoneID);
-    JMapInfo* parser = 0;
+    JMapInfo*   parser = 0;
     mAreaCount = LightFunction::createZoneDataParser(zoneName, &parser);
     mAreaInfo = new AreaInfo[mAreaCount];
 

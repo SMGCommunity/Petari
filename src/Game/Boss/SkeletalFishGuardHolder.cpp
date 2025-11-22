@@ -5,7 +5,8 @@
 #include "Game/Boss/SkeletalFishGuard.hpp"
 #include "Game/Boss/SkeletalFishBossRail.hpp"
 
-SkeletalFishGuardHolder::SkeletalFishGuardHolder(SkeletalFishBoss *pBoss, s32 numGuards, const char *pName) : NameObj(pName) {
+SkeletalFishGuardHolder::SkeletalFishGuardHolder(SkeletalFishBoss* pBoss, s32 numGuards, const char* pName)
+    : NameObj(pName) {
     mFishBoss = pBoss;
     mBossRail = nullptr;
     mNumGuards = numGuards;
@@ -26,11 +27,11 @@ void SkeletalFishGuardHolder::movement() {
 }
 
 void SkeletalFishGuardHolder::forceAppearAll() {
-    SkeletalFishGuard* guard;  //
+    SkeletalFishGuard*                 guard; //
     SkeletalFishBossInfo::LevelStatus* lvl;
-    s32 guardWaitLvlId;  // r28
-    s32 appearableGuard = countAppearableGuard();  // r27
-    s32 i;  // r26
+    s32                                guardWaitLvlId;                           // r28
+    s32                                appearableGuard = countAppearableGuard(); // r27
+    s32                                i;                                        // r26
 
     for (i = 0; i < mNumGuards; i++) {
         if (MR::isDead(mGuards[i])) {
@@ -60,7 +61,7 @@ void SkeletalFishGuardHolder::killAll() {
     }
 }
 
-void SkeletalFishGuardHolder::notifyAttack(SkeletalFishGuard *pGuard) {
+void SkeletalFishGuardHolder::notifyAttack(SkeletalFishGuard* pGuard) {
     for (s32 i = 0; i < mNumGuards; i++) {
         SkeletalFishGuard* guard = mGuards[i];
 
@@ -90,7 +91,7 @@ void SkeletalFishGuardHolder::checkRailChangedAndReset() {
 
 s32 SkeletalFishGuardHolder::countAppearableGuard() const {
     SkeletalFishBossInfo::LevelStatus* lvl = mFishBoss->mBossInfo->getLevelStatus(mFishBoss->_110);
-    s32 guardCount = lvl->mGuardAppearNumLevel - countGuardAlive();
+    s32                                guardCount = lvl->mGuardAppearNumLevel - countGuardAlive();
 
     if (guardCount < 0) {
         guardCount = 0;
@@ -144,10 +145,10 @@ void SkeletalFishGuardHolder::checkDistanceAndAppear(s32 numGuards) {
 */
 
 void SkeletalFishGuardHolder::appearGuard(s32 numGuards, s32 startGuard) {
-    SkeletalFishGuard* guard;
+    SkeletalFishGuard*                 guard;
     SkeletalFishBossInfo::LevelStatus* level;
-    s32 pos = mBossRail->getFillUpNamePos(startGuard);
-    s32 waitID;
+    s32                                pos = mBossRail->getFillUpNamePos(startGuard);
+    s32                                waitID;
 
     TVec3f guardPos;
     if (pos >= 0 && SkeletalFishBossFunc::copyGuardPos(&guardPos, pos)) {
@@ -170,7 +171,6 @@ void SkeletalFishGuardHolder::appearGuard(s32 numGuards, s32 startGuard) {
 }
 
 SkeletalFishGuardHolder::~SkeletalFishGuardHolder() {
-
 }
 
 void SkeletalFishGuardHolder::createAndInitGuard() {

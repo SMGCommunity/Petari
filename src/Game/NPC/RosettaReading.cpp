@@ -22,19 +22,17 @@ namespace {
     s32 getChapterNumberMax() {
         return MR::getPictureBookChapterCanRead();
     }
-};
+}; // namespace
 
 namespace NrvRosettaReading {
     NEW_NERVE(RosettaReadingNrvPictureBookBefore, RosettaReading, PictureBookBefore);
     NEW_NERVE(RosettaReadingNrvPictureBook, RosettaReading, PictureBook);
     NEW_NERVE(RosettaReadingNrvPictureBookAfter, RosettaReading, PictureBookAfter);
-};
+}; // namespace NrvRosettaReading
 
-RosettaReading::RosettaReading(const char* pName) :
-    LiveActor(pName),
-    mPictureBookLayout(nullptr)
-{
-    
+RosettaReading::RosettaReading(const char* pName)
+    : LiveActor(pName),
+      mPictureBookLayout(nullptr) {
 }
 
 void RosettaReading::init(const JMapInfoIter& rIter) {
@@ -83,10 +81,7 @@ void RosettaReading::makeArchiveList(NameObjArchiveListCollector* pCollector, co
 }
 
 void RosettaReading::exePictureBookBefore() {
-    if (MR::isDemoPartActive("朗読開始")
-        || MR::isDemoPartActive("ロゼッタ会話[開始]")
-        || MR::isDemoPartLessEqualStep("絵本デモ開始", 60))
-    {
+    if (MR::isDemoPartActive("朗読開始") || MR::isDemoPartActive("ロゼッタ会話[開始]") || MR::isDemoPartLessEqualStep("絵本デモ開始", 60)) {
         MR::startSystemLevelSE("SE_SM_LV_TICO_WAIT_LIBRARY", -1, -1);
     }
 
@@ -122,9 +117,7 @@ void RosettaReading::exePictureBook() {
 }
 
 void RosettaReading::exePictureBookAfter() {
-    if (MR::isDemoPartGreaterStep("絵本デモ終了", 30)
-        || MR::isDemoPartActive("ロゼッタ会話[終了]"))
-    {
+    if (MR::isDemoPartGreaterStep("絵本デモ終了", 30) || MR::isDemoPartActive("ロゼッタ会話[終了]")) {
         MR::startSystemLevelSE("SE_SM_LV_TICO_WAIT_LIBRARY", -1, -1);
     }
 

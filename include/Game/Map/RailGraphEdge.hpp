@@ -9,12 +9,12 @@ public:
     RailGraphEdge();
 
     void clearConnectInfo();
-    s32 getNextNode(s32) const;
-    s32 getNextEdge(s32) const;
+    s32  getNextNode(s32) const;
+    s32  getNextEdge(s32) const;
     void setNextEdge(s32, s32);
-    void setArgs(const JMapInfo *, s32);
+    void setArgs(const JMapInfo*, s32);
 
-    void operator=(const RailGraphEdge &rEdge) {
+    void operator=(const RailGraphEdge& rEdge) {
         mDistance = rEdge.mDistance;
         _4 = rEdge._4;
         _8 = rEdge._8;
@@ -30,7 +30,7 @@ public:
         mPointArg7 = rEdge.mPointArg7;
     }
 
-    f32 mDistance;  // 0x0
+    f32 mDistance; // 0x0
     s32 _4;
     s32 _8;
     s32 _C;

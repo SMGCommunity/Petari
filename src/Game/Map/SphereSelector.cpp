@@ -9,7 +9,7 @@ namespace NrvSphereSelector {
     NEW_NERVE(SphereSelectorNrvConfirmWait, SphereSelector, ConfirmWait);
     NEW_NERVE(SphereSelectorNrvConfirmCancel, SphereSelector, ConfirmCancel);
     NEW_NERVE(SphereSelectorNrvConfirmed, SphereSelector, Confirm);
-};
+}; // namespace NrvSphereSelector
 
 void SphereSelector::exeSelectStart() {
     if (MR::isFirstStep(this)) {
@@ -20,7 +20,6 @@ void SphereSelector::exeSelectStart() {
 }
 
 void SphereSelector::exeConfirmWait() {
-    
 }
 
 void SphereSelector::exeConfirm() {

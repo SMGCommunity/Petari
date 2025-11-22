@@ -13,6 +13,6 @@ public:
 };
 
 namespace MR {
-    bool isInShadeFromTheSun(const TVec3f &, f32);
+    bool isInShadeFromTheSun(const TVec3f&, f32);
     void createSunshadeMapHolder();
-};
+}; // namespace MR

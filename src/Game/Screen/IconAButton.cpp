@@ -8,18 +8,16 @@ namespace NrvIconAButton {
     NEW_NERVE(IconAButtonNrvOpen, IconAButton, Open);
     NEW_NERVE(IconAButtonNrvWait, IconAButton, Wait);
     NEW_NERVE(IconAButtonNrvTerm, IconAButton, Term);
-};
+}; // namespace NrvIconAButton
 
-IconAButton::IconAButton(bool connectToScene, bool connectToPause) :
-    LayoutActor("Aボタンアイコン", true),
-    mFollowPos(0.0f, 0.0f),
-    mFollowActor(nullptr)
-{
+IconAButton::IconAButton(bool connectToScene, bool connectToPause)
+    : LayoutActor("Aボタンアイコン", true),
+      mFollowPos(0.0f, 0.0f),
+      mFollowActor(nullptr) {
     if (connectToScene) {
         if (connectToPause) {
             MR::connectToSceneLayoutOnPause(this);
-        }
-        else {
+        } else {
             MR::connectToSceneTalkLayout(this);
         }
     }
@@ -27,7 +25,7 @@ IconAButton::IconAButton(bool connectToScene, bool connectToPause) :
     mFollowPaneName[0] = '\0';
 }
 
-void IconAButton::init(const JMapInfoIter &rIter) {
+void IconAButton::init(const JMapInfoIter& rIter) {
     initLayoutManager("IconAButton", 1);
     initNerve(&NrvIconAButton::IconAButtonNrvOpen::sInstance);
     MR::startAnim(this, "Appear", 0);
@@ -35,7 +33,7 @@ void IconAButton::init(const JMapInfoIter &rIter) {
     kill();
 }
 
-void IconAButton::setFollowActorPane(LayoutActor *pActor, const char *pName) {
+void IconAButton::setFollowActorPane(LayoutActor* pActor, const char* pName) {
     mFollowActor = pActor;
 
     snprintf(mFollowPaneName, sizeof(mFollowPaneName), "%s", pName);
@@ -86,10 +84,7 @@ void IconAButton::openWithoutMessage() {
 void IconAButton::term() {
     bool isAlive = !MR::isDead(this);
 
-    if (isAlive
-        && (isNerve(&NrvIconAButton::IconAButtonNrvWait::sInstance)
-            || isNerve(&NrvIconAButton::IconAButtonNrvOpen::sInstance)))
-    {
+    if (isAlive && (isNerve(&NrvIconAButton::IconAButtonNrvWait::sInstance) || isNerve(&NrvIconAButton::IconAButtonNrvOpen::sInstance))) {
         setNerve(&NrvIconAButton::IconAButtonNrvTerm::sInstance);
     }
 }

@@ -17,28 +17,28 @@ struct WallPart2Angle {
 
 namespace {
     static WallPart2Angle sWallPartPlacementAngleTable[8] = {
-        { 0.0f, 4 },
-        { 45.0f, 8 },
-        { 90.0f, 0xC },
-        { 135.0f, 0x10 },
-        { 180.0f, 0x14 },
-        { 225.0f, 0x18 },
-        { 270.0f, 0x1C },
-        { 315.0f, 0x20 }
-    };
+        {0.0f, 4},
+        {45.0f, 8},
+        {90.0f, 0xC},
+        {135.0f, 0x10},
+        {180.0f, 0x14},
+        {225.0f, 0x18},
+        {270.0f, 0x1C},
+        {315.0f, 0x20}};
 
     static s32 sMoveSeLength = 0x3A;
-};
+}; // namespace
 
 namespace NrvTriPodBossGuardWall {
     NEW_NERVE(TripodBossGuardWallNrvWait, TripodBossGuardWall, Wait);
     NEW_NERVE(TripodBossGuardWallNrvTryDemo, TripodBossGuardWall, TryDemo);
     NEW_NERVE(TripodBossGuardWallNrvDemo, TripodBossGuardWall, Demo);
     NEW_NERVE(TripodBossGuardWallNrvRotate, TripodBossGuardWall, Rotate);
-};
+}; // namespace NrvTriPodBossGuardWall
 
-TripodBossGuardWall::TripodBossGuardWall(const char *pName) : LiveActor(pName),
-    mCameraTargetMtx(nullptr) {
+TripodBossGuardWall::TripodBossGuardWall(const char* pName)
+    : LiveActor(pName),
+      mCameraTargetMtx(nullptr) {
     mCameraInfo = nullptr;
     _580.x = 0.0f;
     _580.y = 0.0f;
@@ -66,7 +66,7 @@ void TripodBossGuardWall::kill() {
     LiveActor::kill();
 }
 
-void TripodBossGuardWall::init(const JMapInfoIter &rIter) {
+void TripodBossGuardWall::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     MR::connectToSceneMapObjDecorationMovement(this);
     _580.setPS(mPosition);
@@ -79,7 +79,7 @@ void TripodBossGuardWall::init(const JMapInfoIter &rIter) {
     mCameraTargetMtx = new CameraTargetMtx("カメラターゲットダミー");
 
     if (MR::useStageSwitchReadAppear(this, rIter)) {
-        MR::FunctorV0M<TripodBossGuardWall *, void (TripodBossGuardWall::*)()> validateFunc = MR::Functor_Inline<TripodBossGuardWall>(this, &TripodBossGuardWall::requestStart);
+        MR::FunctorV0M<TripodBossGuardWall*, void (TripodBossGuardWall::*)()> validateFunc = MR::Functor_Inline<TripodBossGuardWall>(this, &TripodBossGuardWall::requestStart);
         MR::listenStageSwitchOnAppear(this, validateFunc);
     }
 
@@ -107,7 +107,7 @@ void TripodBossGuardWall::calcAndSetBaseMtx() {
     MR::setBaseTRMtx(this, mBaseMtx);
 }
 
-bool TripodBossGuardWall::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool TripodBossGuardWall::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (msg == ACTMES_TRIPODBOSS_STARTED) {
         for (s32 i = 0; i < 8; i++) {
             mWallParts[i].makeActorAppeared();
@@ -129,7 +129,6 @@ void TripodBossGuardWall::requestStart() {
 /* more small inlining issues */
 void TripodBossGuardWall::exeDemo() {
     if (MR::isFirstStep(this)) {
-        
     }
 
     if (MR::isStep(this, 150)) {
@@ -195,7 +194,7 @@ void TripodBossGuardWall::updateCameraTarget() {
     front.x = fromPlayer.x;
     front.y = fromPlayer.y;
     front.z = fromPlayer.z;
-    
+
     f32 z = mBaseMtx.mMtx[2][1];
     f32 y = mBaseMtx.mMtx[1][1];
     f32 x = mBaseMtx.mMtx[0][1];
@@ -208,8 +207,7 @@ void TripodBossGuardWall::updateCameraTarget() {
         f32 y = mBaseMtx.mMtx[1][2];
         f32 x = mBaseMtx.mMtx[0][2];
         front.set<f32>(x, y, z);
-    }
-    else {
+    } else {
         MR::normalize(&front);
     }
 

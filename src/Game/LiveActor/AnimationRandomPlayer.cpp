@@ -4,7 +4,8 @@
 NrvAnimationRandomPlayer::HostTypeWait NrvAnimationRandomPlayer::HostTypeWait::sInstance;
 NrvAnimationRandomPlayer::HostTypePlay NrvAnimationRandomPlayer::HostTypePlay::sInstance;
 
-AnimationRandomPlayer::AnimationRandomPlayer(const LiveActor *pActor, const char *a2, const char *a3, s32 a4, f32 a5) : NerveExecutor(a2) {
+AnimationRandomPlayer::AnimationRandomPlayer(const LiveActor* pActor, const char* a2, const char* a3, s32 a4, f32 a5)
+    : NerveExecutor(a2) {
     mActor = pActor;
     _C = a2;
     _10 = a3;
@@ -26,7 +27,7 @@ void AnimationRandomPlayer::exeWait() {
         if (_10) {
             MR::startAllAnim(mActor, _10);
         }
-    } 
+    }
 
     if (MR::isStep(this, _14)) {
         setNerve(&NrvAnimationRandomPlayer::HostTypePlay::sInstance);
@@ -46,5 +47,4 @@ void AnimationRandomPlayer::exePlay() {
 }
 
 AnimationRandomPlayer::~AnimationRandomPlayer() {
-
 }

@@ -14,5 +14,5 @@ public:
     void deactivate();
 
     /* 0x0C */ bool mIsActive;
-    /* 0x0D */ u8 _D[3];
+    /* 0x0D */ u8   _D[3];
 };

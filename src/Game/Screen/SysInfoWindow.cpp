@@ -9,8 +9,8 @@
 
 namespace {
     const MessageChangeFuncTableEntry cMessageChangeFuncTable[] = {
-        { MR::setTextBoxSystemMessageRecursive },
-        { MR::setTextBoxGameMessageRecursive },
+        {MR::setTextBoxSystemMessageRecursive},
+        {MR::setTextBoxGameMessageRecursive},
     };
 };
 
@@ -18,18 +18,17 @@ namespace NrvSysInfoWindow {
     NEW_NERVE(SysInfoWindowNrvAppear, SysInfoWindow, Appear);
     NEW_NERVE(SysInfoWindowNrvWait, SysInfoWindow, Wait);
     NEW_NERVE(SysInfoWindowNrvDisappear, SysInfoWindow, Disappear);
-};
+}; // namespace NrvSysInfoWindow
 
-SysInfoWindow::SysInfoWindow(SysInfoWindowType windowType, SysInfoExecuteType executeType) :
-    LayoutActor("システム用インフォメーションウィンドウ", true),
-    mWindowType(windowType),
-    mType(Type_Key),
-    mYesNoSelector(nullptr),
-    mIconAButton(nullptr),
-    mTextParentPaneName(nullptr),
-    mWindowParentPaneName(nullptr),
-    _38(executeType == ExecuteType_Children)
-{
+SysInfoWindow::SysInfoWindow(SysInfoWindowType windowType, SysInfoExecuteType executeType)
+    : LayoutActor("システム用インフォメーションウィンドウ", true),
+      mWindowType(windowType),
+      mType(Type_Key),
+      mYesNoSelector(nullptr),
+      mIconAButton(nullptr),
+      mTextParentPaneName(nullptr),
+      mWindowParentPaneName(nullptr),
+      _38(executeType == ExecuteType_Children) {
     switch (windowType) {
     case WindowType_Normal:
         mTextParentPaneName = "InfoWindow";
@@ -212,8 +211,7 @@ void SysInfoWindow::exeWait() {
             MR::startCSSound("CS_CLICK_CLOSE", 0, 0);
             setNerve(&NrvSysInfoWindow::SysInfoWindowNrvDisappear::sInstance);
         }
-    }
-    else if (mYesNoSelector != nullptr) {
+    } else if (mYesNoSelector != nullptr) {
         if (mYesNoSelector->isDisappearStart()) {
             setNerve(&NrvSysInfoWindow::SysInfoWindowNrvDisappear::sInstance);
         }
@@ -233,10 +231,7 @@ void SysInfoWindow::exeDisappear() {
     }
 
     if (MR::isPaneAnimStopped(this, mTextParentPaneName, 0)) {
-        if (mType == Type_Key
-            || mType == Type_Blocking
-            || mYesNoSelector != nullptr && !mYesNoSelector->_C)
-        {
+        if (mType == Type_Key || mType == Type_Blocking || mYesNoSelector != nullptr && !mYesNoSelector->_C) {
             kill();
         }
     }
@@ -292,4 +287,4 @@ namespace MR {
 
         return pWindow;
     }
-};
+}; // namespace MR

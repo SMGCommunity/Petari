@@ -12,13 +12,11 @@
 #include <JSystem/JKernel/JKRMemArchive.hpp>
 #include <JSystem/JKernel/JKRSolidHeap.hpp>
 
-MiiFacePartsHolder::MiiFacePartsHolder(int numParts) :
-    LiveActorGroup("Mii顔モデル保持", numParts),
-    JKRDisposer(),
-    mRFLWorkBuffer(nullptr),
-    _34(nullptr)
-{
-    
+MiiFacePartsHolder::MiiFacePartsHolder(int numParts)
+    : LiveActorGroup("Mii顔モデル保持", numParts),
+      JKRDisposer(),
+      mRFLWorkBuffer(nullptr),
+      _34(nullptr) {
 }
 
 MiiFacePartsHolder::~MiiFacePartsHolder() {
@@ -28,11 +26,11 @@ MiiFacePartsHolder::~MiiFacePartsHolder() {
 }
 
 void MiiFacePartsHolder::init(const JMapInfoIter& rIter) {
-    mRFLWorkBuffer = new(MR::getSceneHeapGDDR3(), 32) u8[RFLGetWorkSize(false)];
+    mRFLWorkBuffer = new (MR::getSceneHeapGDDR3(), 32) u8[RFLGetWorkSize(false)];
 
     JKRMemArchive* pArchive = reinterpret_cast<JKRMemArchive*>(MR::receiveArchive("/ObjectData/MiiFaceDatabase.arc"));
-    void* pResBuffer = pArchive->getResource("/RFL_Res.dat");
-    u32 resSize = pArchive->getResSize(pResBuffer);
+    void*          pResBuffer = pArchive->getResource("/RFL_Res.dat");
+    u32            resSize = pArchive->getResSize(pResBuffer);
     _38 = RFLInitResAsync(mRFLWorkBuffer, pResBuffer, resSize, false);
 
     MR::connectToScene(this, -1, 6, -1, 37);
@@ -130,8 +128,7 @@ bool MiiFacePartsHolder::isInitEnd() const {
 }
 
 bool MiiFacePartsHolder::isError() const {
-    return _38 != RFLErrcode_Success
-        && _38 != RFLErrcode_Busy;
+    return _38 != RFLErrcode_Success && _38 != RFLErrcode_Busy;
 }
 
 MiiFaceParts* MiiFacePartsHolder::createPartsFromReceipe(const char* pName, const MiiFaceRecipe& rRecipe) {
@@ -177,10 +174,10 @@ void MiiFacePartsHolder::drawEachActor(DrawPartsFuncPtr pDrawFunc, const RFLDraw
 
 // FIXME: Enumerated GX types might be defined incorrectly?
 void MiiFacePartsHolder::setTevOpa() const {
-    GXColorS10 color1 = { 0, 0, 0, -89 };
+    GXColorS10 color1 = {0, 0, 0, -89};
     GXSetTevColorS10(GX_TEVREG1, color1);
 
-    GXColorS10 color2 = { 0, 0, 0, 246 };
+    GXColorS10 color2 = {0, 0, 0, 246};
     GXSetTevColorS10(GX_TEVREG2, color2);
 
     GXSetTevDirect(GX_TEVSTAGE1);
@@ -201,10 +198,10 @@ void MiiFacePartsHolder::setTevOpa() const {
     GXSetChanCtrl(GX_COLOR0, GX_TRUE, GX_SRC_REG, GX_SRC_REG, GX_LIGHT3, GX_DF_CLAMP, GX_AF_NONE);
     GXSetChanCtrl(GX_ALPHA0, GX_TRUE, GX_SRC_REG, GX_SRC_REG, GX_LIGHT4, GX_DF_SIGN, GX_AF_NONE);
 
-    GXColor ambColor = { 128, 128, 128, 128 };
+    GXColor ambColor = {128, 128, 128, 128};
     GXSetChanAmbColor(GX_COLOR0A0, ambColor);
 
-    GXColor matColor = { 165, 165, 165, 255 };
+    GXColor matColor = {165, 165, 165, 255};
     GXSetChanMatColor(GX_COLOR0A0, matColor);
 
     GXSetZMode(GX_TRUE, GX_EQUAL, GX_TRUE);
@@ -212,10 +209,10 @@ void MiiFacePartsHolder::setTevOpa() const {
 
 // FIXME: Enumerated GX types might be defined incorrectly?
 void MiiFacePartsHolder::setTevXlu() const {
-    GXColorS10 color1 = { 0, 0, 0, -89 };
+    GXColorS10 color1 = {0, 0, 0, -89};
     GXSetTevColorS10(GX_TEVREG1, color1);
 
-    GXColorS10 color2 = { 0, 0, 0, 246 };
+    GXColorS10 color2 = {0, 0, 0, 246};
     GXSetTevColorS10(GX_TEVREG2, color2);
 
     GXSetTevDirect(GX_TEVSTAGE1);
@@ -234,10 +231,10 @@ void MiiFacePartsHolder::setTevXlu() const {
     GXSetNumChans(1);
     GXSetChanCtrl(GX_COLOR0, GX_TRUE, GX_SRC_REG, GX_SRC_REG, GX_LIGHT3, GX_DF_CLAMP, GX_AF_NONE);
 
-    GXColor ambColor = { 128, 128, 128, 128 };
+    GXColor ambColor = {128, 128, 128, 128};
     GXSetChanAmbColor(GX_COLOR0A0, ambColor);
 
-    GXColor matColor = { 165, 165, 165, 255 };
+    GXColor matColor = {165, 165, 165, 255};
     GXSetChanMatColor(GX_COLOR0A0, matColor);
 
     GXSetZMode(GX_TRUE, GX_EQUAL, GX_TRUE);

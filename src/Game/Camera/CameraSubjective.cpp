@@ -1,6 +1,7 @@
 #include "Game/Camera/CameraSubjective.hpp"
 
-CameraSubjective::CameraSubjective(const char *pName) : Camera(pName) {
+CameraSubjective::CameraSubjective(const char* pName)
+    : Camera(pName) {
     _4C = 0.0f;
     _50 = 0.0f;
     _54 = 0.0f;
@@ -9,9 +10,8 @@ CameraSubjective::CameraSubjective(const char *pName) : Camera(pName) {
 }
 
 CameraSubjective::~CameraSubjective() {
-
 }
 
-CamTranslatorBase *CameraSubjective::createTranslator() {
+CamTranslatorBase* CameraSubjective::createTranslator() {
     return new CamTranslatorDummy(this);
 }

@@ -5,17 +5,18 @@
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 
-TransparentWall::TransparentWall(const char* pName) : InvisiblePolygonObj(pName) {}
+TransparentWall::TransparentWall(const char* pName)
+    : InvisiblePolygonObj(pName) {}
 
 TransparentWall::~TransparentWall() {}
 
-void TransparentWall::init(const JMapInfoIter &rIfter) {
+void TransparentWall::init(const JMapInfoIter& rIfter) {
     InvisiblePolygonObj::init(rIfter);
     MR::getJMapInfoArg4WithInit(rIfter, &_BC);
     makeActorAppeared();
     _C0 = false;
     MR::invalidateCollisionParts(this);
-    HitSensor* sensor = getSensor("body"); 
+    HitSensor* sensor = getSensor("body");
     sensor->setType(87);
 }
 
@@ -55,7 +56,7 @@ void TransparentWall::control() {
         if ((_BC & 2048)) {
             r29 = MR::isPlayerTeresaDisappear();
         }
-        
+
         if (r29) {
             MR::invalidateCollisionParts(this);
             _C0 = false;

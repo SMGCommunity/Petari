@@ -4,10 +4,8 @@
 
 class SceneNameObjListExecutor : public NameObjListExecutor {
 public:
-    SceneNameObjListExecutor() :
-        NameObjListExecutor()
-    {
-        
+    SceneNameObjListExecutor()
+        : NameObjListExecutor() {
     }
 
     virtual void initMovementList();

@@ -2,11 +2,12 @@
 #include "Game/Map/OceanRingDrawer.hpp"
 #include "Game/Map/OceanRing.hpp"
 
-OceanRingBloomDrawer::OceanRingBloomDrawer(OceanRing *pRing) : NameObj("オーシャンリング[ブルーム描画]") {
+OceanRingBloomDrawer::OceanRingBloomDrawer(OceanRing* pRing)
+    : NameObj("オーシャンリング[ブルーム描画]") {
     mRing = pRing;
 }
 
-void OceanRingBloomDrawer::init(const JMapInfoIter &rIter) {
+void OceanRingBloomDrawer::init(const JMapInfoIter& rIter) {
     MR::connectToScene(this, -1, -1, -1, 0x21);
 }
 
@@ -19,5 +20,4 @@ void OceanRingBloomDrawer::draw() const {
 }
 
 OceanRingBloomDrawer::~OceanRingBloomDrawer() {
-
 }

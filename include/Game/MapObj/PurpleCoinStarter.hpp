@@ -6,14 +6,14 @@
 
 class PurpleCoinStarter : public NameObj {
 public:
-    PurpleCoinStarter(const char *);
+    PurpleCoinStarter(const char*);
 
     virtual ~PurpleCoinStarter();
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
 
-    void setHost(PurpleCoinHolder *);
+    void setHost(PurpleCoinHolder*);
     void start();
 
-    PurpleCoinHolder* mCoinHolder;  // 0xC
-    StageSwitchCtrl* mSwitchCtrl;   // 0x10
+    PurpleCoinHolder* mCoinHolder; // 0xC
+    StageSwitchCtrl*  mSwitchCtrl; // 0x10
 };

@@ -20,19 +20,19 @@ namespace MR {
     GameSystemObjHolder* getGameSystemObjHolder() {
         return SingletonHolder<GameSystem>::get()->mObjHolder;
     }
-};
+}; // namespace MR
 
 namespace {
     FunctionAsyncExecutor* getFunctionAsyncExecutor() NO_INLINE {
         return MR::getGameSystemObjHolder()->mAsyncExec;
     }
-};
+}; // namespace
 
 namespace {
     NameObjHolder* getSceneNameObjHolder() NO_INLINE {
         return SingletonHolder<GameSystem>::get()->mSceneController->mObjHolder;
     }
-};
+}; // namespace
 
 namespace MR {
     nw4r::ut::Font* getFontOnCurrentLanguage() {
@@ -69,7 +69,6 @@ namespace MR {
 
     void waitEndChangeArchivePlayer() {
         while (!GameSystemFunction::isEndChangeArchivePlayer()) {
-            
         }
     }
 
@@ -172,4 +171,4 @@ namespace MR {
     bool isDisplayEncouragePal60Window() {
         return VIGetTvFormat() == 1;
     }
-};
+}; // namespace MR

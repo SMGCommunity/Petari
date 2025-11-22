@@ -1,17 +1,16 @@
 #include "Game/MapObj/SurprisedGalaxy.hpp"
 #include <cstring>
 
-SurprisedGalaxy::SurprisedGalaxy(const char *pName) : LiveActor(pName) {
-
+SurprisedGalaxy::SurprisedGalaxy(const char* pName)
+    : LiveActor(pName) {
 }
 
-void SurprisedGalaxy::init(const JMapInfoIter &rIter) {
+void SurprisedGalaxy::init(const JMapInfoIter& rIter) {
     const char* name;
     MR::getObjectName(&name, rIter);
     if (!strcmp(name, "SurprisedGalaxy")) {
         mGalaxyName = "SurfingLv1Galaxy";
-    }
-    else {
+    } else {
         mGalaxyName = &name[strlen("Surp")];
     }
     MR::initDefaultPos(this, rIter);
@@ -29,20 +28,17 @@ void SurprisedGalaxy::init(const JMapInfoIter &rIter) {
     if (MR::useStageSwitchReadAppear(this, rIter)) {
         makeActorDead();
         MR::syncStageSwitchAppear(this);
-    }
-    else {
+    } else {
         makeActorAppeared();
         if (MR::isGalaxyAppearGreenDriver(mGalaxyName)) {
             if (!MR::isOnGameEventFlagGreenDriver()) {
                 makeActorDead();
             }
-        }
-        else if (!MR::isOnGameEventFlagViewCompleteEndingMarioAndLuigi()) {
+        } else if (!MR::isOnGameEventFlagViewCompleteEndingMarioAndLuigi()) {
             makeActorDead();
         }
     }
 }
-
 
 void SurprisedGalaxy::appear() {
     LiveActor::appear();
@@ -52,7 +48,7 @@ void SurprisedGalaxy::kill() {
     LiveActor::kill();
 }
 
-void SurprisedGalaxy::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
+void SurprisedGalaxy::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isSensorPlayerOrRide(pReceiver)) {
         if (!isNerve(&NrvSurprisedGalaxy::SurprisedGalaxyNrvExit::sInstance)) {
             setNerve(&NrvSurprisedGalaxy::SurprisedGalaxyNrvExit::sInstance);
@@ -77,15 +73,15 @@ void SurprisedGalaxy::exeExit() {
     }
 }
 
-bool SurprisedGalaxy::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool SurprisedGalaxy::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     switch (msg) {
-        case 152:
-            if (isNerve(&NrvSurprisedGalaxy::SurprisedGalaxyNrvWait::sInstance)) {
-                setNerve(&NrvSurprisedGalaxy::SurprisedGalaxyNrvExit::sInstance);
-            }
-            return false;
-        default:
-            break;
+    case 152:
+        if (isNerve(&NrvSurprisedGalaxy::SurprisedGalaxyNrvWait::sInstance)) {
+            setNerve(&NrvSurprisedGalaxy::SurprisedGalaxyNrvExit::sInstance);
+        }
+        return false;
+    default:
+        break;
     }
     return false;
 }
@@ -94,11 +90,11 @@ namespace NrvSurprisedGalaxy {
     INIT_NERVE(SurprisedGalaxyNrvExit);
     INIT_NERVE(SurprisedGalaxyNrvWait);
 
-	void SurprisedGalaxyNrvExit::execute(Spine *pSpine) const {
-		SurprisedGalaxy *pActor = (SurprisedGalaxy*)pSpine->mExecutor;
-		pActor->exeExit();
-	}    
+    void SurprisedGalaxyNrvExit::execute(Spine* pSpine) const {
+        SurprisedGalaxy* pActor = (SurprisedGalaxy*)pSpine->mExecutor;
+        pActor->exeExit();
+    }
 
-	void SurprisedGalaxyNrvWait::execute(Spine *pSpine) const {
-	}    
-};
+    void SurprisedGalaxyNrvWait::execute(Spine* pSpine) const {
+    }
+}; // namespace NrvSurprisedGalaxy

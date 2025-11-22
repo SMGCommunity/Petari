@@ -1,6 +1,7 @@
 #include "JSystem/JKernel/JKRDvdArchive.hpp"
 
-JKRDvdArchive::JKRDvdArchive(long entryNum, EMountDirection mountDir) : JKRArchive(entryNum, MOUNT_MODE_DVD) {
+JKRDvdArchive::JKRDvdArchive(long entryNum, EMountDirection mountDir)
+    : JKRArchive(entryNum, MOUNT_MODE_DVD) {
     mMountDir = mountDir;
 
     if (!open(entryNum)) {

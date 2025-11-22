@@ -2,17 +2,16 @@
 #include "Game/Camera/CameraManSubjective.hpp"
 #include "Game/Camera/CameraSubjective.hpp"
 
-CameraManSubjective::CameraManSubjective(const char *pName) : CameraMan(pName) {
+CameraManSubjective::CameraManSubjective(const char* pName)
+    : CameraMan(pName) {
     mCamera = new CameraSubjective("主観カメラ");
     mCamera->mCameraMan = this;
 }
 
 CameraManSubjective::~CameraManSubjective() {
-
 }
 
-void CameraManSubjective::init(const JMapInfoIter &rIter) {
-
+void CameraManSubjective::init(const JMapInfoIter& rIter) {
 }
 
 void CameraManSubjective::calc() {
@@ -25,5 +24,4 @@ void CameraManSubjective::notifyActivate() {
 }
 
 void CameraManSubjective::notifyDeactivate() {
-    
 }

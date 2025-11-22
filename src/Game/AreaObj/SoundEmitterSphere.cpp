@@ -3,17 +3,17 @@
 #include "Game/Util.hpp"
 
 namespace {
-    const char *gSoundNameTable[6] = {
+    const char* gSoundNameTable[6] = {
         "SE_AT_LV_MAGMA_AMBIENT",
         "SE_OJ_LV_FLOATING_SAND",
         "SE_AT_LV_WIND_DESERT",
         "SE_AT_LV_MAGMA_WIND_VOLCANO",
         "SE_AT_LV_KOOPA_FLOAT_SAND",
-        "SE_AT_LV_WIND_RABBIT_MAZE"
-    };
+        "SE_AT_LV_WIND_RABBIT_MAZE"};
 }
 
-SoundEmitterSphere::SoundEmitterSphere(int type, const char *pName) : AreaObj(type, pName) {
+SoundEmitterSphere::SoundEmitterSphere(int type, const char* pName)
+    : AreaObj(type, pName) {
     mSoundObj = nullptr;
     _40.x = 0.0f;
     _40.y = 0.0f;
@@ -23,10 +23,9 @@ SoundEmitterSphere::SoundEmitterSphere(int type, const char *pName) : AreaObj(ty
 }
 
 SoundEmitterSphere::~SoundEmitterSphere() {
-
 }
 
-void SoundEmitterSphere::init(const JMapInfoIter &rIter) {
+void SoundEmitterSphere::init(const JMapInfoIter& rIter) {
     AreaObj::init(rIter);
     mSoundName = gSoundNameTable[mObjArg0];
     mSoundIndex = mObjArg0;
@@ -37,5 +36,4 @@ void SoundEmitterSphere::init(const JMapInfoIter &rIter) {
 }
 
 void SoundEmitterSphere::movement() {
-
 }

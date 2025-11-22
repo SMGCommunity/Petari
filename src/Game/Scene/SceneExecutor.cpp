@@ -163,7 +163,7 @@ void SceneFunction::executeDrawBufferListNormalOpaBeforeVolumeShadow() {
 
 void SceneFunction::executeDrawBufferListNormalOpaBeforeSilhouette() {
     CategoryList::drawOpa(MR::DrawBufferType_NoShadowedMapObj);
-    CategoryList::drawOpa(MR::DrawBufferType_NoShadowedMapObjStrongLight); 
+    CategoryList::drawOpa(MR::DrawBufferType_NoShadowedMapObjStrongLight);
 }
 
 void SceneFunction::executeDrawBufferListNormalOpa() {
@@ -245,9 +245,8 @@ void SceneFunction::executeDrawListXlu() {
     MR::reinitGX();
     CategoryList::execute(MR::DrawType_VolumeModel);
     CategoryList::execute(MR::DrawType_0x30);
-    if ( !MR::isDrawSpinDriverPathAtOpa() )
-    {
-      CategoryList::execute(MR::DrawType_SpinDriverPathDrawer);
+    if (!MR::isDrawSpinDriverPathAtOpa()) {
+        CategoryList::execute(MR::DrawType_SpinDriverPathDrawer);
     }
     CategoryList::execute(MR::DrawType_ClipAreaDropLaser);
     CategoryList::execute(MR::DrawType_SpiderThread);

@@ -1,7 +1,8 @@
 #include "Game/Camera/CameraCubePlanet.hpp"
 #include "Game/Camera/CamTranslatorCubePlanet.hpp"
 
-CameraCubePlanet::CameraCubePlanet(const char *pName) : Camera(pName) {
+CameraCubePlanet::CameraCubePlanet(const char* pName)
+    : Camera(pName) {
     mDist = 3000.0f;
     mAngleA = 0.5235988f;
     mAngleB = 0.35f;
@@ -11,9 +12,8 @@ CameraCubePlanet::CameraCubePlanet(const char *pName) : Camera(pName) {
 }
 
 CameraCubePlanet::~CameraCubePlanet() {
-
 }
 
-CamTranslatorBase *CameraCubePlanet::createTranslator() {
+CamTranslatorBase* CameraCubePlanet::createTranslator() {
     return new CamTranslatorCubePlanet(this);
 }

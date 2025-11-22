@@ -30,11 +30,11 @@ void ShadowSurfaceDrawInit::initDraw() {
 }
 #endif
 
-ShadowSurfaceDrawer::ShadowSurfaceDrawer(const char *pName) : ShadowDrawer(pName) {
+ShadowSurfaceDrawer::ShadowSurfaceDrawer(const char* pName)
+    : ShadowDrawer(pName) {
     MR::createSceneObj(SceneObj_ShadowSurfaceDrawInit);
     MR::connectToScene(this, -1, -1, -1, 0x26);
 }
 
 ShadowSurfaceDrawInit::~ShadowSurfaceDrawInit() {
-
 }

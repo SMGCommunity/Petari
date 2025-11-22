@@ -1,6 +1,7 @@
 #include "Game/MapObj/CoinReplica.hpp"
 
-CoinReplica::CoinReplica(const char *pName) : NameObj(pName) {
+CoinReplica::CoinReplica(const char* pName)
+    : NameObj(pName) {
     mCoin = nullptr;
 }
 
@@ -28,7 +29,7 @@ void CoinReplica::removeCoin() {
     }
 }
 
-void CoinReplica::init(const JMapInfoIter &rIter) {
+void CoinReplica::init(const JMapInfoIter& rIter) {
     mCoin = reinterpret_cast<Coin*>(MR::createCoin(this, "コイン(レプリカ用)"));
     MR::initDefaultPos(mCoin, rIter);
     mCoin->initWithoutIter();
@@ -44,8 +45,7 @@ void CoinReplica::init(const JMapInfoIter &rIter) {
                 void (CoinReplica::*d)(void) = &CoinReplica::deactiveCoin;
                 void (CoinReplica::*a)(void) = &CoinReplica::activeCoin;
                 MR::listenNameObjStageSwitchOnOffA(this, switchCtrl, MR::Functor(this, d), MR::Functor(this, a));
-            }
-            else {
+            } else {
                 void (CoinReplica::*d)(void) = &CoinReplica::deactiveCoin;
                 void (CoinReplica::*a)(void) = &CoinReplica::activeCoinWithGravity;
                 MR::listenNameObjStageSwitchOnOffA(this, switchCtrl, MR::Functor(this, d), MR::Functor(this, a));
@@ -60,5 +60,4 @@ void CoinReplica::init(const JMapInfoIter &rIter) {
 }
 
 CoinReplica::~CoinReplica() {
-
 }

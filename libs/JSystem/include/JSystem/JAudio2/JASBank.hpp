@@ -2,5 +2,4 @@
 
 class JASBank {
 public:
-    
 };

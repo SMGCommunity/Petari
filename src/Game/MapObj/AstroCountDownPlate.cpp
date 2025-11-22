@@ -7,15 +7,16 @@ namespace {
     const char* cMaterialName10 = "StarNumber01_v_x(2)";
     const char* cLastBattleDemoName = "ロゼッタ最終決戦デモ";
     const char* cStartCountDownDemoName = "ロゼッタカウントダウン開始デモ";
-};
+}; // namespace
 
-AstroCountDownPlate::AstroCountDownPlate(const char *pName) : LiveActor(pName) {
+AstroCountDownPlate::AstroCountDownPlate(const char* pName)
+    : LiveActor(pName) {
     _8C.mInfo = j3dDefaultTexMtxInfo;
     _120.mInfo = j3dDefaultTexMtxInfo;
     _1B4 = 0;
 }
 
-void AstroCountDownPlate::init(const JMapInfoIter &rIter) {
+void AstroCountDownPlate::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     initModelManagerWithAnm("AstroCountDownPlate", nullptr, true);
     initTextureAtNumLeftStar();
@@ -24,14 +25,14 @@ void AstroCountDownPlate::init(const JMapInfoIter &rIter) {
     initEffectKeeper(0, nullptr, false);
     initSound(2, false);
     MR::invalidateClipping(this);
-    
+
     if (MR::tryRegisterDemoCast(this, cStartCountDownDemoName, rIter)) {
-        MR::FunctorV0M<AstroCountDownPlate *, void (AstroCountDownPlate::*)()> startDemoFunc = MR::Functor<AstroCountDownPlate>(this, &AstroCountDownPlate::startDemoStartCountDown);
+        MR::FunctorV0M<AstroCountDownPlate*, void (AstroCountDownPlate::*)()> startDemoFunc = MR::Functor<AstroCountDownPlate>(this, &AstroCountDownPlate::startDemoStartCountDown);
         MR::tryRegisterDemoActionFunctorDirect(this, startDemoFunc, cStartCountDownDemoName, nullptr);
     }
 
     if (MR::tryRegisterDemoCast(this, cLastBattleDemoName, rIter)) {
-        MR::FunctorV0M<AstroCountDownPlate *, void (AstroCountDownPlate::*)()> lastBattleFunc = MR::Functor<AstroCountDownPlate>(this, &AstroCountDownPlate::startDemoLastBattle);
+        MR::FunctorV0M<AstroCountDownPlate*, void (AstroCountDownPlate::*)()> lastBattleFunc = MR::Functor<AstroCountDownPlate>(this, &AstroCountDownPlate::startDemoLastBattle);
         MR::tryRegisterDemoActionFunctorDirect(this, lastBattleFunc, cLastBattleDemoName, nullptr);
     }
 
@@ -106,8 +107,7 @@ void AstroCountDownPlate::setNumLeftStar() {
 void AstroCountDownPlate::selectNrvWait() {
     if (AstroMapObjFunction::isAlreadyRevival("AstroCountDownPlate", -1)) {
         setNerve(&NrvAstroCountDownPlate::AstroCountDownPlateNrvAlive::sInstance);
-    }
-    else {
+    } else {
         setNerve(&NrvAstroCountDownPlate::AstroCountDownPlateNrvDead::sInstance);
     }
 
@@ -118,14 +118,12 @@ void AstroCountDownPlate::setupStateWait() {
     if (isNerve(&NrvAstroCountDownPlate::AstroCountDownPlateNrvDead::sInstance)) {
         MR::hideMaterial(this, cMaterialName01);
         MR::hideMaterial(this, cMaterialName10);
-    }
-    else {
+    } else {
         MR::showMaterial(this, cMaterialName01);
         MR::showMaterial(this, cMaterialName10);
         if (!MR::isOnGameEventFlagViewNormalEnding()) {
             MR::startBrk(this, "Red");
-        }
-        else {
+        } else {
             MR::startBrk(this, "Green");
         }
     }
@@ -144,8 +142,7 @@ namespace NrvAstroCountDownPlate {
     INIT_NERVE(AstroCountDownPlateNrvAlive);
     INIT_NERVE(AstroCountDownPlateNrvRevival);
     INIT_NERVE(AstroCountDownPlateNrvCountToZero);
-};
+}; // namespace NrvAstroCountDownPlate
 
 AstroCountDownPlate::~AstroCountDownPlate() {
-
 }

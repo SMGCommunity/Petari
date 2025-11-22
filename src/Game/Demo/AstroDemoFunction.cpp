@@ -101,7 +101,7 @@ namespace AstroDemoFunction {
 
     void tryRegisterDemoForTico(LiveActor* pParam1, const JMapInfoIter& rIter) {
         if (tryRegisterSimpleCastIfAstroGalaxy(pParam1)) {
-            s32 demoCastID = MR::getDemoCastID(rIter);
+            s32         demoCastID = MR::getDemoCastID(rIter);
             const char* pDemoName = nullptr;
 
             switch (demoCastID) {
@@ -128,4 +128,4 @@ namespace AstroDemoFunction {
         AstroDemoFunction::tryRegisterDemo(pParam1, "バトラーグリーンドライバ説明", rIter);
         AstroDemoFunction::tryRegisterDemo(pParam1, "ロゼッタ最終決戦デモ", rIter);
     }
-};
+}; // namespace AstroDemoFunction

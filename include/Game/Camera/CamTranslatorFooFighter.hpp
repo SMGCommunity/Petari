@@ -4,10 +4,10 @@
 
 class CamTranslatorFooFighter : public CamTranslatorBase {
 public:
-	CamTranslatorFooFighter(CameraFooFighter *);
+    CamTranslatorFooFighter(CameraFooFighter*);
 
-	virtual void setParam(const CameraParamChunk *);
-	virtual Camera *getCamera() const;
+    virtual void    setParam(const CameraParamChunk*);
+    virtual Camera* getCamera() const;
 
-	CameraFooFighter *mCamera;	// 0x4
+    CameraFooFighter* mCamera; // 0x4
 };

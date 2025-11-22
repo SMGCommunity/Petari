@@ -4,9 +4,8 @@
 
 class SimpleNormalMapObj : public NormalMapBase {
 public:
-    SimpleNormalMapObj(const char *);
+    SimpleNormalMapObj(const char*);
     virtual ~SimpleNormalMapObj();
 
-    virtual void init(const JMapInfoIter &);
-    
+    virtual void init(const JMapInfoIter&);
 };

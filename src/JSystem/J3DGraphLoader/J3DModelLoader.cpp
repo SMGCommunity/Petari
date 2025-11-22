@@ -10,7 +10,7 @@ J3DModelLoader::J3DModelLoader() {
     mEnvelopeSize = 0;
 }
 
-J3DModelData* J3DModelLoaderDataBase::load(const void *data, u32 flags) {
+J3DModelData* J3DModelLoaderDataBase::load(const void* data, u32 flags) {
     if (data == nullptr) {
         return nullptr;
     }

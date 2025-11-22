@@ -13,7 +13,7 @@
 namespace {
     static const s32 sFadeinoutFrame = 30;
     static const s32 sResetWaitFrame = 15;
-};
+}; // namespace
 
 namespace NrvGameSystemResetAndPowerProcess {
     NEW_NERVE(GameSystemResetAndPowerProcessPolling, GameSystemResetAndPowerProcess, Polling);
@@ -22,7 +22,7 @@ namespace NrvGameSystemResetAndPowerProcess {
     NEW_NERVE(GameSystemResetAndPowerProcessReset, GameSystemResetAndPowerProcess, Reset);
     NEW_NERVE(GameSystemResetAndPowerProcessWaitPrepareFadein, GameSystemResetAndPowerProcess, WaitPrepareFadein);
     NEW_NERVE(GameSystemResetAndPowerProcessFadein, GameSystemResetAndPowerProcess, Fadein);
-};
+}; // namespace NrvGameSystemResetAndPowerProcess
 
 void GameSystemResetAndPowerProcess::init(const JMapInfoIter& rIter) {
     initNerve(&NrvGameSystemResetAndPowerProcess::GameSystemResetAndPowerProcessPolling::sInstance);
@@ -75,20 +75,16 @@ void GameSystemResetAndPowerProcess::notifyCheckDiskResult(bool param1) {
 void GameSystemResetAndPowerProcess::exePolling() {
     if (tryAcceptPowerOff()) {
         setNerve(&NrvGameSystemResetAndPowerProcess::GameSystemResetAndPowerProcessWaitResetPermitted::sInstance);
-    }
-    else if (mResetTriggerChecker->getOnTrigger()) {
+    } else if (mResetTriggerChecker->getOnTrigger()) {
         setNerve(&NrvGameSystemResetAndPowerProcess::GameSystemResetAndPowerProcessWaitResetPermitted::sInstance);
     }
 }
 
 void GameSystemResetAndPowerProcess::exeWaitResetPermitted() {
-    if (GameSystemFunction::isPermitToResetAudioSystem()
-        && GameSystemFunction::isPermitToResetSaveDataHandleSequence())
-    {
+    if (GameSystemFunction::isPermitToResetAudioSystem() && GameSystemFunction::isPermitToResetSaveDataHandleSequence()) {
         if (_5E) {
             mFadeinValueControl->setZero();
-        }
-        else {
+        } else {
             mFadeinValueControl->setDirToZero();
         }
 
@@ -172,8 +168,7 @@ void GameSystemResetAndPowerProcess::exeFadein() {
         GameSystemFunction::restartControllerLeaveWatcher();
         GameSystemFunction::restartSceneController();
         setNerve(&NrvGameSystemResetAndPowerProcess::GameSystemResetAndPowerProcessWaitResetPermitted::sInstance);
-    }
-    else {
+    } else {
         if (MR::isFirstStep(this)) {
             mFadeinValueControl->setDirToOneResetFrame();
         }
@@ -225,10 +220,7 @@ bool GameSystemResetAndPowerProcess::tryAcceptPowerOff() {
 }
 
 bool GameSystemResetAndPowerProcess::isResetAcceptAudio() const {
-    if (mResetOperation != 0
-        && MR::isGreaterStep(this, 2)
-        && GameSystemFunction::isDoneResetAudioSystem())
-    {
+    if (mResetOperation != 0 && MR::isGreaterStep(this, 2) && GameSystemFunction::isDoneResetAudioSystem()) {
         return true;
     }
 
@@ -248,15 +240,14 @@ void GameSystemResetAndPowerProcess::handleCheckDiskAsync(s32 result, DVDCommand
     SingletonHolder<GameSystemResetAndPowerProcess>::get()->notifyCheckDiskResult(result != 0);
 }
 
-GameSystemResetAndPowerProcess::GameSystemResetAndPowerProcess() :
-    LayoutActor("リセット・電源", false),
-    mResetTriggerChecker(nullptr),
-    mFadeinValueControl(nullptr),
-    mResetOperation(1),
-    _5C(true),
-    mIsValidPowerOff(false),
-    _5E(false)
-{
+GameSystemResetAndPowerProcess::GameSystemResetAndPowerProcess()
+    : LayoutActor("リセット・電源", false),
+      mResetTriggerChecker(nullptr),
+      mFadeinValueControl(nullptr),
+      mResetOperation(1),
+      _5C(true),
+      mIsValidPowerOff(false),
+      _5E(false) {
     mResetTriggerChecker = new TriggerChecker();
 
     mFadeinValueControl = new ValueControl(sFadeinoutFrame);

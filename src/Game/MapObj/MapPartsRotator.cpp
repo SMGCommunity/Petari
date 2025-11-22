@@ -4,7 +4,8 @@
 
 #ifdef NON_MATCHING
 // floating reg order on the inlined matrix set, but oh well
-MapPartsRotator::MapPartsRotator(LiveActor *pActor) : MapPartsFunction(pActor, "自身回転") {
+MapPartsRotator::MapPartsRotator(LiveActor* pActor)
+    : MapPartsFunction(pActor, "自身回転") {
     _18 = 0.0f;
     mRotateAngle = 0.0f;
     mRotateStopTime = 0;
@@ -24,7 +25,7 @@ MapPartsRotator::MapPartsRotator(LiveActor *pActor) : MapPartsFunction(pActor, "
 }
 #endif
 
-void MapPartsRotator::init(const JMapInfoIter &rIter) {
+void MapPartsRotator::init(const JMapInfoIter& rIter) {
     MR::getMapPartsArgRotateAngle(&mRotateAngle, rIter);
     MR::getMapPartsArgRotateAxis(&mRotateAxis, rIter);
     MR::getMapPartsArgRotateAccelType(&mRotateAccelType, rIter);
@@ -32,22 +33,20 @@ void MapPartsRotator::init(const JMapInfoIter &rIter) {
     MR::getMapPartsArgRotateStopTime(&mRotateStopTime, rIter);
     MR::getMapPartsArgRotateType(&mRotateType, rIter);
     MR::getMapPartsArgSignMotionType(&mSignMotionType, rIter);
-    
+
     if (MR::isNearZero(_18, 0.001f)) {
         initNerve(&NrvMapPartsRotator::HostTypeNeverMove::sInstance);
-    }
-    else {
+    } else {
         initNerve(&NrvMapPartsRotator::HostTypeWait::sInstance);
     }
 
     bool cond = 0.0f < _18;
-    f32 angle;
+    f32  angle;
 
     if (cond) {
         angle = mRotateAngle;
-    }
-    else {
-        angle = -mRotateAngle;   
+    } else {
+        angle = -mRotateAngle;
     }
 
     mTargetAngle = angle;
@@ -97,20 +96,18 @@ void MapPartsRotator::restartAtEnd() {
 
         if (MR::hasMapPartsMoveStartSignMotion(mSignMotionType)) {
             setNerve(&NrvMapPartsRotator::HostTypeRotateStart::sInstance);
-        }
-        else {
+        } else {
             setNerve(&NrvMapPartsRotator::HostTypeRotate::sInstance);
         }
     }
 }
 
-void MapPartsRotator::initRotateSpeed(const JMapInfoIter &rIter) {
+void MapPartsRotator::initRotateSpeed(const JMapInfoIter& rIter) {
     if (mRotateAccelType == 2) {
         s32 rotate_time = 0;
         MR::getMapPartsArgRotateTime(&rotate_time, rIter);
         _18 = mRotateAngle / rotate_time;
-    }
-    else {
+    } else {
         MR::getMapPartsArgRotateSpeed(&mRotateSpeed, rIter);
         _18 *= 0.0099999998f;
     }
@@ -120,66 +117,63 @@ void MapPartsRotator::initRotateSpeed(const JMapInfoIter &rIter) {
     }
 }
 
-void MapPartsRotator::calcRotateAxisDir(AxisType type, TVec3f *pDir) const {
+void MapPartsRotator::calcRotateAxisDir(AxisType type, TVec3f* pDir) const {
     f32 x, y, z;
     switch (type) {
-        case 0:
-            z = _40.mMtx[2][0];
-            y = _40.mMtx[1][0];
-            x = _40.mMtx[0][0];
-            pDir->set(x, y, z);
-            break;
-        case 1:
-            z = _40.mMtx[2][1];
-            y = _40.mMtx[1][1];
-            x  = _40.mMtx[0][1];
-            pDir->set(x, y, z);
-            break;
-        case 2:
-            z = _40.mMtx[2][2];
-            y = _40.mMtx[1][2];
-            x = _40.mMtx[0][2];
-            pDir->set(x, y, z);
-            break;
+    case 0:
+        z = _40.mMtx[2][0];
+        y = _40.mMtx[1][0];
+        x = _40.mMtx[0][0];
+        pDir->set(x, y, z);
+        break;
+    case 1:
+        z = _40.mMtx[2][1];
+        y = _40.mMtx[1][1];
+        x = _40.mMtx[0][1];
+        pDir->set(x, y, z);
+        break;
+    case 2:
+        z = _40.mMtx[2][2];
+        y = _40.mMtx[1][2];
+        x = _40.mMtx[0][2];
+        pDir->set(x, y, z);
+        break;
     }
 }
 
 MapPartsRotator::~MapPartsRotator() {
-
 }
 
 namespace NrvMapPartsRotator {
-    HostTypeNeverMove HostTypeNeverMove::sInstance;
-    HostTypeWait HostTypeWait::sInstance;
+    HostTypeNeverMove   HostTypeNeverMove::sInstance;
+    HostTypeWait        HostTypeWait::sInstance;
     HostTypeRotateStart HostTypeRotateStart::sInstance;
-    HostTypeRotate HostTypeRotate::sInstance;
-    HostTypeStopAtEnd HostTypeStopAtEnd::sInstance;
+    HostTypeRotate      HostTypeRotate::sInstance;
+    HostTypeStopAtEnd   HostTypeStopAtEnd::sInstance;
 
-    void HostTypeStopAtEnd::execute(Spine *pSpine) const {
+    void HostTypeStopAtEnd::execute(Spine* pSpine) const {
         MapPartsRotator* rotator = reinterpret_cast<MapPartsRotator*>(pSpine->mExecutor);
         if (rotator->isStep(rotator->mRotateStopTime)) {
             rotator->restartAtEnd();
         }
     }
 
-    void HostTypeRotate::execute(Spine *pSpine) const {
+    void HostTypeRotate::execute(Spine* pSpine) const {
         MapPartsRotator* rotator = reinterpret_cast<MapPartsRotator*>(pSpine->mExecutor);
         rotator->exeRotate();
     }
 
-    void HostTypeRotateStart::execute(Spine *pSpine) const {
+    void HostTypeRotateStart::execute(Spine* pSpine) const {
         MapPartsRotator* rotator = reinterpret_cast<MapPartsRotator*>(pSpine->mExecutor);
         rotator->exeRotateStart();
     }
 
-    void HostTypeWait::execute(Spine *pSpine) const {
-        
+    void HostTypeWait::execute(Spine* pSpine) const {
     }
 
-    void HostTypeNeverMove::execute(Spine *pSpine) const {
-
+    void HostTypeNeverMove::execute(Spine* pSpine) const {
     }
-};
+}; // namespace NrvMapPartsRotator
 
 bool MapPartsRotator::isOnReverse() const {
     return mIsOnReverse;

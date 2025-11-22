@@ -19,7 +19,7 @@ namespace NrvBigBubble {
     NEW_NERVE(BigBubbleNrvEscape, BigBubble, Escape);
     NEW_NERVE(BigBubbleNrvGoal, BigBubble, Goal);
     NEW_NERVE(BigBubbleNrvMerged, BigBubble, Merged);
-};
+}; // namespace NrvBigBubble
 
 /*
 BigBubble::BigBubble(const char *pName) : LiveActor(pName), _8C(0), _90(0), _94(0), _98(0), _9C(0), _148(0, 0, 0, 1), _158(0, 0, 0, 1) {
@@ -85,18 +85,18 @@ void BigBubble::setActionType(s32 v1) {
     case 0: {
         _231 = false;
         _232 = true;
-        }
+    }
     default: {
         return;
-        }
+    }
     case 1: {
         _231 = false;
         _232 = false;
-        }
+    }
     }
 }
 
-void BigBubble::setHost(LiveActor *mActor) { 
+void BigBubble::setHost(LiveActor* mActor) {
     this->_94 = mActor;
 }
 
@@ -194,8 +194,7 @@ void BigBubble::exeWait() {
     addCoriolisAccel();
     if (_22C) {
         MR::zeroVelocity(this);
-    }
-    else {
+    } else {
         updateNormalVelocity();
     }
     if (tryAutoBreak()) {
@@ -248,7 +247,7 @@ bool BigBubble::isBindMario() const {
     return _98;
 }
 
-bool BigBubble::isDraw() const { 
+bool BigBubble::isDraw() const {
     return (!_22E && !_230 && !MR::isDead(this));
 }
 
@@ -306,6 +305,6 @@ void BigBubble::exeAppear() {
 
 BigBubble::~BigBubble() {}
 
-MtxPtr BigBubble::getBaseMtx() const { 
+MtxPtr BigBubble::getBaseMtx() const {
     return (MtxPtr)&_118;
 }

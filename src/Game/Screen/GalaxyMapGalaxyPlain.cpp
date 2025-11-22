@@ -13,25 +13,23 @@
 
 #ifdef __cplusplus
 extern "C" {
-    extern int swprintf(wchar_t*, size_t, const wchar_t*, ...);
+extern int swprintf(wchar_t*, size_t, const wchar_t*, ...);
 };
 #endif
 
-GalaxyMapGalaxyPlain::GalaxyMapGalaxyPlain(const LayoutActor* pHost) :
-    LayoutActor("Galaxy情報簡易表示", true),
-    mHost(pHost),
-    mPaneName(nullptr),
-    mNamePlate(nullptr),
-    mGalaxyName(nullptr),
-    _30(false)
-{
-    
+GalaxyMapGalaxyPlain::GalaxyMapGalaxyPlain(const LayoutActor* pHost)
+    : LayoutActor("Galaxy情報簡易表示", true),
+      mHost(pHost),
+      mPaneName(nullptr),
+      mNamePlate(nullptr),
+      mGalaxyName(nullptr),
+      _30(false) {
 }
 
 void GalaxyMapGalaxyPlain::show(const char* pGalaxyName, const char* pPaneName) {
-    wchar_t* pDstGalaxyName;
+    wchar_t*       pDstGalaxyName;
     const wchar_t* pShortGalaxyName;
-    wchar_t* pFontTagIter;
+    wchar_t*       pFontTagIter;
 
     appear();
 
@@ -40,16 +38,13 @@ void GalaxyMapGalaxyPlain::show(const char* pGalaxyName, const char* pPaneName) 
 
     if (!MR::isOnGameEventFlagGalaxyOpen(pGalaxyName)) {
         swprintf(pDstGalaxyName, GALAXY_NAME_BUFFER_SIZE, L"?");
-    }
-    else {
+    } else {
         pShortGalaxyName = MR::getGalaxyNameShortOnCurrentLanguage(pGalaxyName);
-        pFontTagIter = pDstGalaxyName
-            + swprintf(pDstGalaxyName, GALAXY_NAME_BUFFER_SIZE, L"%ls ", pShortGalaxyName);
+        pFontTagIter = pDstGalaxyName + swprintf(pDstGalaxyName, GALAXY_NAME_BUFFER_SIZE, L"%ls ", pShortGalaxyName);
 
         if (MR::isStarComplete(pGalaxyName)) {
             MR::addPictureFontTag(pFontTagIter, 80);
-        }
-        else {
+        } else {
             pFontTagIter = MR::addPictureFontTag(pFontTagIter, 55);
             pFontTagIter = MR::addPictureFontTag(pFontTagIter, 64);
 
@@ -67,7 +62,7 @@ void GalaxyMapGalaxyPlain::init(const JMapInfoIter& rIter) {
     mNamePlate->initWithoutIter();
     mNamePlate->setShowBalloonNozzle(false);
 
-    mGalaxyName = new(MR::getSceneHeapGDDR3(), 0) wchar_t[GALAXY_NAME_BUFFER_SIZE];
+    mGalaxyName = new (MR::getSceneHeapGDDR3(), 0) wchar_t[GALAXY_NAME_BUFFER_SIZE];
 }
 
 void GalaxyMapGalaxyPlain::appear() {

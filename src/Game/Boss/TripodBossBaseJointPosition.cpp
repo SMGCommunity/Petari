@@ -2,12 +2,13 @@
 #include "Game/Boss/TripodBossAccesser.hpp"
 #include "Game/Util/ObjUtil.hpp"
 
-TripodBossBaseJointPosition::TripodBossBaseJointPosition(const char *pName) : LiveActor(pName) {
+TripodBossBaseJointPosition::TripodBossBaseJointPosition(const char* pName)
+    : LiveActor(pName) {
     _8C = -1;
     _90.identity();
 }
 
-void TripodBossBaseJointPosition::init(const JMapInfoIter &rIter) {
+void TripodBossBaseJointPosition::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     MR::connectToSceneCollisionEnemyMovement(this);
     MR::getJMapInfoArg0NoInit(rIter, &_8C);
@@ -33,7 +34,6 @@ void TripodBossBaseJointPosition::control() {
 }
 
 TripodBossBaseJointPosition::~TripodBossBaseJointPosition() {
-
 }
 
 MtxPtr TripodBossBaseJointPosition::getBaseMtx() const {

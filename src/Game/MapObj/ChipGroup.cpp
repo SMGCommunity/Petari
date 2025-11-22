@@ -5,7 +5,7 @@
 // ChipGroup::updateUIRange
 // ChipGroup::movement
 
-void ChipGroup::registerChip(ChipBase *pChip) {
+void ChipGroup::registerChip(ChipBase* pChip) {
     if (_6C) {
         pChip->makeActorDead();
     }
@@ -38,16 +38,15 @@ bool ChipGroup::isComplete() const {
     return true;
 }
 
-BlueChipGroup::BlueChipGroup(const char *pName) : ChipGroup(pName, 0) {
-
+BlueChipGroup::BlueChipGroup(const char* pName)
+    : ChipGroup(pName, 0) {
 }
 
 ChipGroup::~ChipGroup() {
-
 }
 
-YellowChipGroup::YellowChipGroup(const char *pName) : ChipGroup(pName, 1) {
-
+YellowChipGroup::YellowChipGroup(const char* pName)
+    : ChipGroup(pName, 1) {
 }
 
 // ChipGroup::init
@@ -55,9 +54,7 @@ YellowChipGroup::YellowChipGroup(const char *pName) : ChipGroup(pName, 1) {
 // ChipGroup::receiveAppearRequest
 
 BlueChipGroup::~BlueChipGroup() {
-
 }
 
 YellowChipGroup::~YellowChipGroup() {
-
 }

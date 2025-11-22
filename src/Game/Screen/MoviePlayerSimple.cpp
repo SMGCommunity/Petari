@@ -15,10 +15,10 @@
 #include <revolution/gx/GXEnum.h>
 
 namespace {
-    static const s16 sCinemaFrameHeightTop = 44;
-    static const s16 sCinemaFrameHeightBottom = 412;
-    static const GXColor sCinemaFrameColor = { 0, 0, 0, 255 };
-};
+    static const s16     sCinemaFrameHeightTop = 44;
+    static const s16     sCinemaFrameHeightBottom = 412;
+    static const GXColor sCinemaFrameColor = {0, 0, 0, 255};
+}; // namespace
 
 namespace {
     NEW_NERVE(MoviePlayerSimpleOff, MoviePlayerSimple, SimpleOff);
@@ -26,16 +26,15 @@ namespace {
     NEW_NERVE(MoviePlayerSimplePreload, MoviePlayerSimple, Preload);
     NEW_NERVE(MoviePlayerSimplePlaying, MoviePlayerSimple, Playing);
     NEW_NERVE(MoviePlayerSimpleSuspend, MoviePlayerSimple, SimpleSuspend);
-};
+}; // namespace
 
-MoviePlayerSimple::MoviePlayerSimple() :
-    LayoutActor("ムービープレイヤー", true),
-    JKRDisposer(),
-    mMovie(nullptr),
-    mPlayerWrapper(nullptr),
-    _44(false),
-    _45(false)
-{
+MoviePlayerSimple::MoviePlayerSimple()
+    : LayoutActor("ムービープレイヤー", true),
+      JKRDisposer(),
+      mMovie(nullptr),
+      mPlayerWrapper(nullptr),
+      _44(false),
+      _45(false) {
     mMovie = new Movie();
     mMovie->mMovieName = "";
     mMovie->mBuffer = nullptr;
@@ -54,7 +53,7 @@ MoviePlayerSimple::~MoviePlayerSimple() {
     JKRHeap::destroy(mHeap);
 }
 
-void MoviePlayerSimple::init(const JMapInfoIter &rIter) {
+void MoviePlayerSimple::init(const JMapInfoIter& rIter) {
     MR::connectToSceneMovie(this);
 
     mPlayerWrapper = new THPSimplePlayerWrapper("THPシンプルプレイヤーのラッパ");
@@ -75,16 +74,14 @@ void MoviePlayerSimple::draw() const {
         fillColor.a = 255;
 
         MR::fillScreen(fillColor);
-    }
-    else {
+    } else {
         drawCinemaFrame();
 
         u32 frameBufferWidth;
 
         if (MR::isScreen16Per9()) {
             frameBufferWidth = MR::getFrameBufferWidth();
-        }
-        else {
+        } else {
             frameBufferWidth = 832;
         }
 
@@ -96,7 +93,7 @@ void MoviePlayerSimple::draw() const {
     }
 }
 
-void MoviePlayerSimple::startMovie(const char *pMovieName, bool a2) {
+void MoviePlayerSimple::startMovie(const char* pMovieName, bool a2) {
     if (!MR::isFileExist(pMovieName, false)) {
         OSPanic(__FILE__, 0xDB, "Moive File NOT found.");
     }
@@ -122,10 +119,7 @@ bool MoviePlayerSimple::isMovieActive() const {
         return false;
     }
 
-    return isNerve(&MoviePlayerSimpleOpen::sInstance) 
-        || isNerve(&MoviePlayerSimplePreload::sInstance)
-        || isNerve(&MoviePlayerSimplePlaying::sInstance)
-        || isNerve(&MoviePlayerSimpleSuspend::sInstance);
+    return isNerve(&MoviePlayerSimpleOpen::sInstance) || isNerve(&MoviePlayerSimplePreload::sInstance) || isNerve(&MoviePlayerSimplePlaying::sInstance) || isNerve(&MoviePlayerSimpleSuspend::sInstance);
 }
 
 bool MoviePlayerSimple::isMoviePlaying() const {
@@ -153,8 +147,7 @@ void MoviePlayerSimple::setFrameRateDefault() {
 
     if (MR::isNearZero(frameRate - 59.94f, 0.001f)) {
         mMovie->mFrameRateDefault = 1;
-    }
-    else if (MR::isNearZero(frameRate - 29.97f, 0.001f)) {
+    } else if (MR::isNearZero(frameRate - 29.97f, 0.001f)) {
         mMovie->mFrameRateDefault = 2;
     }
 }
@@ -168,7 +161,6 @@ void MoviePlayerSimple::setUnpauseHomeButtonFlag() {
 }
 
 void MoviePlayerSimple::exeSimpleOff() {
-    
 }
 
 void MoviePlayerSimple::exeOpen() {
@@ -181,7 +173,7 @@ void MoviePlayerSimple::exeOpen() {
         mMovie->_20 = 0;
         mMovie->_19 = false;
         setFrameRateDefault();
-        mMovie->mBuffer = new(mHeap, 32) u8[mPlayerWrapper->calcNeedMemory()];
+        mMovie->mBuffer = new (mHeap, 32) u8[mPlayerWrapper->calcNeedMemory()];
         mPlayerWrapper->setBuffer(mMovie->mBuffer);
         mPlayerWrapper->preLoad(_44 != false);
         setNerve(&MoviePlayerSimplePreload::sInstance);
@@ -234,7 +226,6 @@ void MoviePlayerSimple::exePlaying() {
 }
 
 void MoviePlayerSimple::exeSimpleSuspend() {
-    
 }
 
 void MoviePlayerSimple::control() {
@@ -273,11 +264,11 @@ u32 MoviePlayerSimple::calcNeedMemoryForMovieWorks() {
 void MoviePlayerSimple::drawCinemaFrame() const {
     MR::fillScreenSetup(sCinemaFrameColor);
 
-    s16 width = MR::getFrameBufferWidth();
+    s16    width = MR::getFrameBufferWidth();
     TBox2s top(0, 0, width, sCinemaFrameHeightTop);
     MR::fillScreenArea(top._0, top._8);
 
-    s16 height = MR::getFrameBufferHeight();
+    s16    height = MR::getFrameBufferHeight();
     TBox2s bottom(0, sCinemaFrameHeightBottom, width, height);
     MR::fillScreenArea(bottom._0, bottom._8);
 }

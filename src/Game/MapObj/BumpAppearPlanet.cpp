@@ -7,14 +7,15 @@ namespace NrvBumpAppearPlanet {
     NEW_NERVE(BumpAppearPlanetNrvWait, BumpAppearPlanet, Wait);
     NEW_NERVE(BumpAppearPlanetNrvBumpOut, BumpAppearPlanet, BumpOut);
     NEW_NERVE(BumpAppearPlanetNrvBumpIn, BumpAppearPlanet, BumpIn);
-};
+}; // namespace NrvBumpAppearPlanet
 
-BumpAppearPlanet::BumpAppearPlanet(const char *pName) : MapObjActor(pName) {
+BumpAppearPlanet::BumpAppearPlanet(const char* pName)
+    : MapObjActor(pName) {
     _C4 = nullptr;
     _C8 = nullptr;
 }
 
-void BumpAppearPlanet::init(const JMapInfoIter &rIter) {
+void BumpAppearPlanet::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);
     MapObjActorInitInfo info;
     MapObjActorUtil::setupInitInfoPlanet(&info);
@@ -74,5 +75,4 @@ void BumpAppearPlanet::startBumpIn() {
 }
 
 BumpAppearPlanet::~BumpAppearPlanet() {
-    
 }

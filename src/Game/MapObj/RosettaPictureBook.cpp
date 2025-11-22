@@ -15,7 +15,7 @@
 namespace {
     const s32 hFadeOutFrame = 60;
     const s32 hFadeInFrame = 60;
-};
+}; // namespace
 
 namespace NrvRosettaPictureBook {
     NEW_NERVE(HostTypeNrvWait, RosettaPictureBook, Wait);
@@ -23,15 +23,13 @@ namespace NrvRosettaPictureBook {
     NEW_NERVE(HostTypeNrvFadeOut, RosettaPictureBook, FadeOut);
     NEW_NERVE(HostTypeNrvReading, RosettaPictureBook, Reading);
     NEW_NERVE(HostTypeNrvFadeIn, RosettaPictureBook, FadeIn);
-};
+}; // namespace NrvRosettaPictureBook
 
-RosettaPictureBook::RosettaPictureBook(const char* pName) :
-    LiveActor(pName),
-    mLayout(nullptr),
-    mIconAButton(nullptr),
-    mIsValidOpenIconAButton(false)
-{
-    
+RosettaPictureBook::RosettaPictureBook(const char* pName)
+    : LiveActor(pName),
+      mLayout(nullptr),
+      mIconAButton(nullptr),
+      mIsValidOpenIconAButton(false) {
 }
 
 void RosettaPictureBook::init(const JMapInfoIter& rIter) {
@@ -84,8 +82,7 @@ void RosettaPictureBook::exeWait() {
             MR::startSystemSE("SE_SY_TALK_BUTTON_APPEAR", -1, -1);
             mIconAButton->openWithRead();
         }
-    }
-    else if (mIconAButton->isOpen()) {
+    } else if (mIconAButton->isOpen()) {
         mIconAButton->term();
     }
 
@@ -109,7 +106,6 @@ void RosettaPictureBook::exeWait() {
 }
 
 void RosettaPictureBook::exeDemoWait() {
-    
 }
 
 void RosettaPictureBook::exeFadeOut() {

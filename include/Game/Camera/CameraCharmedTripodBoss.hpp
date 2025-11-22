@@ -4,16 +4,16 @@
 
 class CameraCharmedTripodBoss : public Camera {
 public:
-    CameraCharmedTripodBoss(const char *);
+    CameraCharmedTripodBoss(const char*);
     virtual ~CameraCharmedTripodBoss();
 
-    virtual void reset();
-    virtual CameraTargetObj *calc();
-    virtual CamTranslatorBase *createTranslator();
+    virtual void               reset();
+    virtual CameraTargetObj*   calc();
+    virtual CamTranslatorBase* createTranslator();
 
-    void setParam(s32, TVec3f, const TVec3f &, const TVec2f &);
+    void setParam(s32, TVec3f, const TVec3f&, const TVec2f&);
 
-    s32 _4C;
+    s32    _4C;
     TVec3f _50;
     TVec3f _5C;
     TVec2f _68;

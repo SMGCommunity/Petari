@@ -1,19 +1,16 @@
 #include "Game/MapObj/WaterLeakPipe.hpp"
- 
-IceStepNoSlip::~IceStepNoSlip() {
 
+IceStepNoSlip::~IceStepNoSlip() {
 }
 
 WaterLeakPipe::~WaterLeakPipe() {
-
 }
 
-
-IceStepNoSlip::IceStepNoSlip(MtxPtr mtx) : ModelObj("アイス床", "IceStepNoSlip", mtx, 0x1A, -2, -2, false) {
-
+IceStepNoSlip::IceStepNoSlip(MtxPtr mtx)
+    : ModelObj("アイス床", "IceStepNoSlip", mtx, 0x1A, -2, -2, false) {
 }
 
-void IceStepNoSlip::init(const JMapInfoIter &rIter) {
+void IceStepNoSlip::init(const JMapInfoIter& rIter) {
     ModelObj::init(rIter);
     initHitSensor(1);
     MR::addBodyMessageSensorMapObj(this);
@@ -39,9 +36,10 @@ void IceStepNoSlip::exeBreak() {
 namespace NrvIceStepNoSlip {
     INIT_NERVE(IceStepNoSlipNrvAppear);
     INIT_NERVE(IceStepNoSlipNrvBreak);
-};
+}; // namespace NrvIceStepNoSlip
 
-WaterLeakPipe::WaterLeakPipe(const char *pName) : LiveActor(pName) {
+WaterLeakPipe::WaterLeakPipe(const char* pName)
+    : LiveActor(pName) {
     mIceStep = nullptr;
     mPipeHeight = 500.0f;
     mTopMtx = nullptr;
@@ -51,7 +49,7 @@ WaterLeakPipe::WaterLeakPipe(const char *pName) : LiveActor(pName) {
     _9C.z = 0.0f;
 }
 
-void WaterLeakPipe::init(const JMapInfoIter &rIter) {
+void WaterLeakPipe::init(const JMapInfoIter& rIter) {
     TVec3f upVec, offs;
     MR::initDefaultPos(this, rIter);
     initModelManagerWithAnm("WaterLeakPipe", nullptr, false);
@@ -81,7 +79,7 @@ void WaterLeakPipe::exeWait() {
     if (MR::isFirstStep(this)) {
         MR::emitEffect(this, "Splash");
     }
-    
+
     MR::startLevelSound(this, "SE_OJ_LV_WATER_LEAK", -1, -1, -1);
 }
 
@@ -91,11 +89,9 @@ void WaterLeakPipe::exeFreeze() {
         mIceStep->appear();
         MR::startSound(this, "SE_OJ_ICE_FLOOR_FREEZE", -1, -1);
         MR::invalidateClipping(this);
-    }
-    else if (MR::isOnPlayer(mIceStep) && MR::isPlayerElementModeIce()) {
+    } else if (MR::isOnPlayer(mIceStep) && MR::isPlayerElementModeIce()) {
         setNerve(&NrvWaterLeakPipe::WaterLeakPipeNrvFreeze::sInstance);
-    }
-    else if (MR::isStep(this, 15)) {
+    } else if (MR::isStep(this, 15)) {
         mIceStep->setNerve(&NrvIceStepNoSlip::IceStepNoSlipNrvBreak::sInstance);
         MR::startSound(this, "SE_OJ_ICE_FLOOR_MELT", -1, -1);
         MR::validateClipping(this);
@@ -152,8 +148,7 @@ void WaterLeakPipe::initPipeHeight() {
 namespace NrvWaterLeakPipe {
     INIT_NERVE(WaterLeakPipeNrvWait);
     INIT_NERVE(WaterLeakPipeNrvFreeze);
-};
+}; // namespace NrvWaterLeakPipe
 
 void WaterLeakPipe::calcAnim() {
-
 }

@@ -24,8 +24,7 @@ SpkSoundVolume::SpkSoundVolume() {
 void SpkSoundVolume::setRelease(s32 release) {
     if (release > 0) {
         _4 = 1.0f / release;
-    }
-    else {
+    } else {
         _4 = 1.0f;
     }
 
@@ -37,8 +36,7 @@ void SpkSoundVolume::setFadeOut(s32 fadeOut) {
 
     if (fadeOut > 0) {
         _C = 1.0f / fadeOut;
-    }
-    else {
+    } else {
         _C = 1.0f;
     }
 
@@ -46,8 +44,8 @@ void SpkSoundVolume::setFadeOut(s32 fadeOut) {
     OSRestoreInterrupts(status);
 }
 
-SpkSound::SpkSound() : JSUPtrLink(this), mSoundHandle(nullptr), _14(-1), _18(0), _1C(0), _20(0), _24(100), _28(0), _2C(0), _30(-1), _34(-1), _38(0), _3C(-1) {
-    
+SpkSound::SpkSound()
+    : JSUPtrLink(this), mSoundHandle(nullptr), _14(-1), _18(0), _1C(0), _20(0), _24(100), _28(0), _2C(0), _30(-1), _34(-1), _38(0), _3C(-1) {
 }
 
 #ifdef NON_MATCHING
@@ -68,13 +66,12 @@ void SpkSound::stop(s32 a1) {
 
     if (fade) {
         mVolume.setFadeOut(fade);
-    }
-    else {
+    } else {
         mVolume.setRelease(_28);
     }
 }
 
-void SpkSound::attachHandle(SpkSoundHandle *pHandle) {
+void SpkSound::attachHandle(SpkSoundHandle* pHandle) {
     if (mSoundHandle) {
         releaseHandle();
     }
@@ -106,13 +103,14 @@ bool SpkSound::start(s32 a1, s32 a2) {
 
 void SpkSound::unlock() {
     if (_38 != 1) {
-        return; 
+        return;
     }
 
     _38 = 2;
 }
 
-SpkSoundHolder::SpkSoundHolder() : JASGlobalInstance(this) {
+SpkSoundHolder::SpkSoundHolder()
+    : JASGlobalInstance(this) {
     _44 = 0xA;
     _40 = 1.0f;
 
@@ -126,4 +124,4 @@ bool SpkSoundHolder::update(s32 a1) {
     bool ret = updateEachSound(a1);
     OSRestoreInterrupts(status);
     return ret;
-} 
+}

@@ -18,8 +18,8 @@ public:
     void setCenterPos(const TVec3f&);
     void startAnim(const char*);
     bool getMarioCenterPos(TVec3f*);
-    f32 calcRadius() const;
-    f32 calcMaxRadius() const;
+    f32  calcRadius() const;
+    f32  calcMaxRadius() const;
     void updatePlayerPos();
     void exeWipeClose();
     void exeWipeIn();
@@ -28,8 +28,8 @@ public:
 
 private:
     /* 0x20 */ TVec2f _20;
-    /* 0x28 */ s32 mStepNum;
-    /* 0x2C */ f32 _2C;
-    /* 0x30 */ f32 _30;
-    /* 0x24 */ bool _34;
+    /* 0x28 */ s32    mStepNum;
+    /* 0x2C */ f32    _2C;
+    /* 0x30 */ f32    _30;
+    /* 0x24 */ bool   _34;
 };

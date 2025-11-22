@@ -22,8 +22,8 @@ void sdata2() {
     f32 f3 = -1.0f;
 }
 
-
-ClipAreaDropLaser::ClipAreaDropLaser(const char* pName) : LiveActor(pName) {
+ClipAreaDropLaser::ClipAreaDropLaser(const char* pName)
+    : LiveActor(pName) {
     mNumPointsToDraw = 0.0f;
     mPointIndexToSkipDraw = -1;
     mDrawCount = -1;
@@ -48,7 +48,6 @@ void ClipAreaDropLaser::init(const JMapInfoIter& rIter) {
     makeActorAppeared();
 }
 void ClipAreaDropLaser::control() {
-
 }
 
 void ClipAreaDropLaser::draw() const {
@@ -58,9 +57,9 @@ void ClipAreaDropLaser::draw() const {
     GXSetZMode(GX_TRUE, GX_LEQUAL, GX_FALSE);
 
     for (int r29 = 1; r29 < mNumPointsToDraw; r29++) {
-        int u1 = mDrawCount-(r29-1);
-        int u2 = mDrawCount-r29;
-        
+        int u1 = mDrawCount - (r29 - 1);
+        int u2 = mDrawCount - r29;
+
         if (u1 < 0)
             u1 += 0x40;
         if (u2 < 0)
@@ -92,7 +91,7 @@ void ClipAreaDropLaser::exeMove() {
     incrementDrawCount();
     if (MR::isRailReachedGoal(this)) {
         mPointIndexToSkipDraw = mDrawCount;
-        railPoint = MR::getRailPointNum(this)-1;
+        railPoint = MR::getRailPointNum(this) - 1;
         MR::moveCoordAndTransToRailStartPoint(this);
     }
     mPoints[mDrawCount].set(mPosition);
@@ -122,12 +121,10 @@ void ClipAreaDropLaser::incrementDrawCount() {
     }
 }
 
-
 ClipAreaDropLaser::~ClipAreaDropLaser() {
-
 }
 
 namespace NrvClipAreaDropLaser {
     ClipAreaDropLaserNrvWait(ClipAreaDropLaserNrvWait::sInstance);
     ClipAreaDropLaserNrvMove(ClipAreaDropLaserNrvMove::sInstance);
-}
+} // namespace NrvClipAreaDropLaser

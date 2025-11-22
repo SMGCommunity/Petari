@@ -3,10 +3,8 @@
 #include <JSystem/J3DGraphAnimator/J3DMaterialAttach.hpp>
 #include <JSystem/J3DGraphAnimator/J3DModelData.hpp>
 
-BpkPlayer::BpkPlayer(const ResourceHolder* pResourceHolder, J3DModelData* pModelData) :
-    MaterialAnmPlayerBase(pResourceHolder->mBpkResTable, pModelData)
-{
-    
+BpkPlayer::BpkPlayer(const ResourceHolder* pResourceHolder, J3DModelData* pModelData)
+    : MaterialAnmPlayerBase(pResourceHolder->mBpkResTable, pModelData) {
 }
 
 void BpkPlayer::attach(J3DAnmBase* pAnmRes, J3DModelData* pModelData) {

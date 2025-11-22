@@ -2,7 +2,8 @@
 #include "Game/Camera/CamTranslatorMedianTower.hpp"
 #include "Game/Camera/CameraLocalUtil.hpp"
 
-CameraMedianTower::CameraMedianTower(const char *pName) : Camera(pName) {
+CameraMedianTower::CameraMedianTower(const char* pName)
+    : Camera(pName) {
     mString = nullptr;
     mWPoint.x = 0.0f;
     mWPoint.y = 0.0f;
@@ -29,9 +30,8 @@ void CameraMedianTower::reset() {
 }
 
 CameraMedianTower::~CameraMedianTower() {
-
 }
 
-CamTranslatorBase *CameraMedianTower::createTranslator() {
+CamTranslatorBase* CameraMedianTower::createTranslator() {
     return new CamTranslatorMedianTower(this);
 }

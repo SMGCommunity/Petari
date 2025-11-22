@@ -1,7 +1,6 @@
 #include "Game/Player/Mario.hpp"
 
-void Mario::clear2DStick()
-{
+void Mario::clear2DStick() {
     _60E = 0;
     _60F = 0;
     _610 = 0;

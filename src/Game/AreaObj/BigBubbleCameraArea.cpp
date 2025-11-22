@@ -1,35 +1,33 @@
 #include "Game/AreaObj/BigBubbleCameraArea.hpp"
 #include "Game/MapObj/BigBubbleHolder.hpp"
 
-BigBubbleSwitchArea::BigBubbleSwitchArea(int type, const char *pName) : SwitchArea(type, pName) {
-
+BigBubbleSwitchArea::BigBubbleSwitchArea(int type, const char* pName)
+    : SwitchArea(type, pName) {
 }
 
 BigBubbleSwitchArea::~BigBubbleSwitchArea() {
-
 }
 
-bool BigBubbleSwitchArea::isInVolume(const TVec3f &rPos) const {
+bool BigBubbleSwitchArea::isInVolume(const TVec3f& rPos) const {
     if (MR::isPlayerBindedBigBubble()) {
         return AreaObj::isInVolume(rPos);
     }
 
     return false;
-} 
+}
 
-const char *BigBubbleSwitchArea::getManagerName() const {
+const char* BigBubbleSwitchArea::getManagerName() const {
     return "SwitchArea";
 }
 
-BigBubbleCameraArea::BigBubbleCameraArea(int a1, const char *pName) : CubeCameraArea(a1, pName) {
-
+BigBubbleCameraArea::BigBubbleCameraArea(int a1, const char* pName)
+    : CubeCameraArea(a1, pName) {
 }
 
 BigBubbleCameraArea::~BigBubbleCameraArea() {
-
 }
 
-bool BigBubbleCameraArea::isInVolume(const TVec3f &rVec) const {
+bool BigBubbleCameraArea::isInVolume(const TVec3f& rVec) const {
     if (MR::isPlayerBindedBigBubble()) {
         return CubeCameraArea::isInVolume(rVec);
     }

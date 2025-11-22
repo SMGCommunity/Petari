@@ -1,7 +1,8 @@
 #include "Game/MapObj/CutBushModelObj.hpp"
 #include "Game/Util.hpp"
 
-CutBushModelObj::CutBushModelObj(const char *pName, const char *pObjName, bool useLight, MtxPtr mtx) : LiveActor(pName) {
+CutBushModelObj::CutBushModelObj(const char* pName, const char* pObjName, bool useLight, MtxPtr mtx)
+    : LiveActor(pName) {
     mMtx = mtx;
     initModelManagerWithAnm(pObjName, nullptr, false);
     MR::connectToSceneNoSilhouettedMapObjWeakLightNoMovement(this);
@@ -17,7 +18,7 @@ CutBushModelObj::CutBushModelObj(const char *pName, const char *pObjName, bool u
     }
 }
 
-void CutBushModelObj::init(const JMapInfoIter &rIter) {
+void CutBushModelObj::init(const JMapInfoIter& rIter) {
     makeActorAppeared();
 }
 
@@ -31,12 +32,10 @@ void CutBushModelObj::calcAndSetBaseMtx() {
     if (mMtx) {
         mPosition.set(mMtx[0][3], mMtx[1][3], mMtx[2][3]);
         MR::setBaseTRMtx(this, mMtx);
-    }
-    else {
+    } else {
         LiveActor::calcAndSetBaseMtx();
     }
 }
 
 CutBushModelObj::~CutBushModelObj() {
-    
 }

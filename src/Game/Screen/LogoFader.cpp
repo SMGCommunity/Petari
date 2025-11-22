@@ -11,14 +11,13 @@ namespace {
     NEW_NERVE(LogoFaderNrvDisplay, LogoFader, Display);
     NEW_NERVE(LogoFaderNrvFadeIn, LogoFader, FadeIn);
     NEW_NERVE(LogoFaderNrvFadeOut, LogoFader, FadeOut);
-};
+}; // namespace
 
-LogoFader::LogoFader(const char* pName) :
-    LayoutActor(pName, true),
-    _20(true),
-    mMaxStep(30),
-    mRate(0.0f)
-{
+LogoFader::LogoFader(const char* pName)
+    : LayoutActor(pName, true),
+      _20(true),
+      mMaxStep(30),
+      mRate(0.0f) {
     initNerve(&LogoFaderNrvDisplay::sInstance);
     kill();
 }
@@ -90,6 +89,5 @@ void LogoFader::startFadeOut() {
 }
 
 bool LogoFader::isFadeEnd() const {
-    return isNerve(&LogoFaderNrvDisplay::sInstance)
-        || isNerve(&LogoFaderNrvBlank::sInstance);
+    return isNerve(&LogoFaderNrvDisplay::sInstance) || isNerve(&LogoFaderNrvBlank::sInstance);
 }

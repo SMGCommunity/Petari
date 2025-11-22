@@ -19,7 +19,7 @@ ResourceHolder* LightFunction::loadLightArchive() {
 // LightFunction::createLightDataParser
 // LightFunction::createZoneDataParser
 
-void LightFunction::getAreaLightLightData(JMapInfo *pInfo, int idx, AreaLightInfo *pLightInfo) {
+void LightFunction::getAreaLightLightData(JMapInfo* pInfo, int idx, AreaLightInfo* pLightInfo) {
     MR::getCsvDataStr(&pLightInfo->mAreaLightName, pInfo, "AreaLightName", idx);
     MR::getCsvDataS32(&pLightInfo->mInterpolate, pInfo, "Interpolate", idx);
     getDataActorLightInfo(pInfo, idx, &pLightInfo->mPlayerLight, "Player");

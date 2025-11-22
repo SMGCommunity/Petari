@@ -7,7 +7,6 @@
 #include <JSystem/JKernel/JKRExpHeap.hpp>
 
 StationedArchiveLoader::Condition::~Condition() {
-    
 }
 
 JKRHeap* StationedArchiveLoader::Condition::getProperHeap(const MR::StationedFileInfo* pInfo) const {
@@ -74,7 +73,7 @@ void StationedArchiveLoader::createAndAddResourcesFromTable(const Condition& rCo
 }
 
 void StationedArchiveLoader::loadScenarioData(JKRHeap* pHeap) {
-    DVDDir dir;
+    DVDDir      dir;
     DVDDirEntry dirEntry;
 
     DVDOpenDir("/StageData", &dir);

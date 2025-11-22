@@ -2,15 +2,16 @@
 #include "Game/LiveActor/ClippingDirector.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 
-AllLiveActorGroup::AllLiveActorGroup() : LiveActorGroup("AllLiveActorGroup", 0xA00) {
+AllLiveActorGroup::AllLiveActorGroup()
+    : LiveActorGroup("AllLiveActorGroup", 0xA00) {
     _18 = 0;
 }
 
-void AllLiveActorGroup::initActorSystemInfo(const JMapInfoIter &rIter) {
+void AllLiveActorGroup::initActorSystemInfo(const JMapInfoIter& rIter) {
     if (mObjectCount <= 0) {
         return;
     }
-    
+
     s32 cnt = _18;
 
     if (cnt == mObjectCount) {
@@ -36,7 +37,7 @@ namespace MR {
         pAllLiveActorGroup->_18 = pAllLiveActorGroup->mObjectCount;
     }
 
-    void initLiveActorSystemInfo(const JMapInfoIter &rIter) {
+    void initLiveActorSystemInfo(const JMapInfoIter& rIter) {
         AllLiveActorGroup* pAllLiveActorGroup = getAllLiveActorGroup();
 
         pAllLiveActorGroup->initActorSystemInfo(rIter);
@@ -47,8 +48,7 @@ namespace MR {
 
         MR::getClippingDirector()->endInitActorSystemInfo();
     }
-};
+}; // namespace MR
 
 AllLiveActorGroup::~AllLiveActorGroup() {
-
 }

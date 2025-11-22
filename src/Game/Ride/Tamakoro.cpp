@@ -25,7 +25,6 @@
 #include "revolution/mtx.h"
 #include "revolution/wpad.h"
 
-
 namespace NrvTamakoro {
     NEW_NERVE(TamakoroNrvStandByTutorial, Tamakoro, StandByTutorial);
     NEW_NERVE(TamakoroNrvStandByBind, Tamakoro, StandByBind);
@@ -47,38 +46,37 @@ namespace NrvTamakoro {
     NEW_NERVE(TamakoroNrvRideRailFast, Tamakoro, RideRailFast);
     NEW_NERVE(TamakoroNrvRideRailFastEnd, Tamakoro, RideRailFastEnd);
     NEW_NERVE(TamakoroNrvBindEnd, Tamakoro, BindEnd);
-}
+} // namespace NrvTamakoro
 
-Tamakoro::Tamakoro(const char* pName) :
-    LiveActor(pName),
-    mAccelSensorCtrl(nullptr),
-    mTutorial(nullptr),
-    mJointCtrl(nullptr),
-    mBaseQuat(0, 0, 0, 1),
-    mRotateQuat(0, 0, 0, 1),
-    mRingUp(0, 1, 0),
-    mKickVel(0, 0, 0),
-    mMarioBindRequestPos(0, 0, 0),
-    mMarioRotateUp(0, 1, 0),
-    mMarioPos(0, 0, 0),
-    mMoment(0, 0, 0),
-    mMarioRotateFront(0, 0, 1),
-    mDirectionToMario(0, 0, 0),
-    mMoveVec(0, 0, 0),
-    mAirTime(0),
-    mMoveSpeed(0.0f),
-    mMarioRotateYAngle(0.0f),
-    mMarioOffset(0.0f),
-    mMarioOffsetVelocity(0.0f),
-    mBgmCtrl(nullptr),
-    mControlDisabled(false),
-    mHasTutorial(false)
-{
+Tamakoro::Tamakoro(const char* pName)
+    : LiveActor(pName),
+      mAccelSensorCtrl(nullptr),
+      mTutorial(nullptr),
+      mJointCtrl(nullptr),
+      mBaseQuat(0, 0, 0, 1),
+      mRotateQuat(0, 0, 0, 1),
+      mRingUp(0, 1, 0),
+      mKickVel(0, 0, 0),
+      mMarioBindRequestPos(0, 0, 0),
+      mMarioRotateUp(0, 1, 0),
+      mMarioPos(0, 0, 0),
+      mMoment(0, 0, 0),
+      mMarioRotateFront(0, 0, 1),
+      mDirectionToMario(0, 0, 0),
+      mMoveVec(0, 0, 0),
+      mAirTime(0),
+      mMoveSpeed(0.0f),
+      mMarioRotateYAngle(0.0f),
+      mMarioOffset(0.0f),
+      mMarioOffsetVelocity(0.0f),
+      mBgmCtrl(nullptr),
+      mControlDisabled(false),
+      mHasTutorial(false) {
     mAccelSensorCtrl = new SphereAccelSensorController();
     mBgmCtrl = new AudTamakoroBgmCtrl();
 }
 
-void Tamakoro::init(const JMapInfoIter &rIter) {
+void Tamakoro::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     initModelManagerWithAnm("Tamakoro", 0, false);
     MR::connectToScene(this, 0x29, 7, 0x1a, -1);
@@ -91,13 +89,13 @@ void Tamakoro::init(const JMapInfoIter &rIter) {
     MR::onCalcGravity(this);
     initBinder(150.0f, 0.0f, 16);
     initNerve(&NrvTamakoro::TamakoroNrvStandByBind::sInstance);
-    
+
     MR::declarePowerStar(this);
     bool hasPowerStar = MR::hasPowerStarInCurrentStageWithDeclarer(mName, -1);
     MR::startBva(this, "Tamakoro");
     MR::setBvaFrameAndStop(this, (s32)hasPowerStar);
     MR::useStageSwitchWriteA(this, rIter);
-    
+
     if (mHasTutorial) {
         setNerve(&NrvTamakoro::TamakoroNrvStandByTutorial::sInstance);
         mTutorial = new TamakoroTutorial("タマコロチュートリアル");
@@ -124,8 +122,7 @@ bool Tamakoro::ringMtxCallBack(TPos3f* pMtx, const JointControllerInfo& pJointCt
 
     if (MR::isNearZero(mMoveVec, 0.001f) || MR::isSameDirection(mMoveVec, mRingUp, 0.01f)) {
         MR::makeMtxUpNoSupport(pMtx, mRingUp);
-    }
-    else {
+    } else {
         MR::makeMtxUpFront(pMtx, mRingUp, mMoveVec);
     }
 
@@ -160,7 +157,7 @@ void Tamakoro::updateBindActorMatrix() {
             JMAVECScaleAdd(&mGravity, &mMarioPos, &mMarioPos, -mMarioOffset);
         }
     }
-    
+
     // quaternion rotation
     TPos3f mtx;
     mtx.setRotateQuaternionInline(mRotateQuat);
@@ -178,7 +175,7 @@ void Tamakoro::updateRingUpVec() {
         MR::normalizeOrZero(&v1);
         MR::turnVecToVecDegree(&up, up, v1, 45.0f, TVec3f(0, 1, 0));
     }
-    
+
     MR::turnVecToVecDegree(&mRingUp, mRingUp, up, 4.0f, TVec3f(0, 1, 0));
 }
 
@@ -213,19 +210,17 @@ void Tamakoro::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
         bool set;
         if (pReceiver->isType(0x7A)) {
             set = pReceiver->receiveMessage(0xAD, pSender);
-        }
-        else {
+        } else {
             set = false;
         }
         if (set) {
             setNerve(&NrvTamakoro::TamakoroNrvDashRail::sInstance);
             return;
         }
-        
+
         if (pReceiver->isType(0x79)) {
             set = pReceiver->receiveMessage(0xAD, pSender);
-        }
-        else {
+        } else {
             set = false;
         }
         if (set) {
@@ -235,8 +230,7 @@ void Tamakoro::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
 
         if (pReceiver->isType(0x7B)) {
             set = pReceiver->receiveMessage(0xAD, pSender);
-        }
-        else {
+        } else {
             set = false;
         }
         if (set) {
@@ -320,12 +314,12 @@ bool Tamakoro::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver
     if (msg == 0xB3 && requestEndBind()) {
         return true;
     }
-    
+
     return false;
 }
 
 bool Tamakoro::requestBind(HitSensor* pSensor) {
-    if (!isNerve(&NrvTamakoro::TamakoroNrvStandByBind::sInstance)) { 
+    if (!isNerve(&NrvTamakoro::TamakoroNrvStandByBind::sInstance)) {
         return false;
     }
 
@@ -358,19 +352,17 @@ bool Tamakoro::requestBind(HitSensor* pSensor) {
     MR::zeroVelocity(this);
     MR::invalidateHitSensor(this, "Bind");
 
-    
     TVec3f vel(*MR::getPlayerVelocity());
     MR::normalizeOrZero(&vel);
     f32 cosBetweenVelAndToThis = -vThisToSensor.dot(vel);
-    
+
     if (cosBetweenVelAndToThis > MR::cosDegree(40.0f) && cosVerticalAngle > MR::cosDegree(35.0f)) {
         // if angle between vel and "to this" < 40 degrees and vertical angle to sensor < 35 degrees
         setNerve(&NrvTamakoro::TamakoroNrvBindStartLand::sInstance);
-    }
-    else {
+    } else {
         setNerve(&NrvTamakoro::TamakoroNrvBindStart::sInstance);
-        
-        TVec3f v3;      // vec order shenanigans... not used
+
+        TVec3f v3; // vec order shenanigans... not used
         TVec3f vPlayerToThis;
         vPlayerToThis = mPosition - mMarioPos;
 
@@ -381,8 +373,7 @@ bool Tamakoro::requestBind(HitSensor* pSensor) {
             f32 dot = vPlayerToThis.dot(mMarioRotateFront);
             if (dot > 0.0f) {
                 mMarioRotateFront.set(vPlayerToThis);
-            }
-            else {
+            } else {
                 mMarioRotateFront.set(-vPlayerToThis);
             }
         }
@@ -396,7 +387,7 @@ bool Tamakoro::requestBind(HitSensor* pSensor) {
 
 bool Tamakoro::requestEndBind() {
     if (!isNerve(&NrvTamakoro::TamakoroNrvBindEnd::sInstance) && !isNerve(&NrvTamakoro::TamakoroNrvStandByBind::sInstance)) {
-        MR::startBckPlayer("SwingRopeSpin", (const char *)0);
+        MR::startBckPlayer("SwingRopeSpin", (const char*)0);
         MR::endBindAndPlayerForceJump(this, mMarioRotateFront.multiplyOperatorInline(-5.0f).addOperatorInLine(mGravity.multiplyOperatorInline(-35.0f)), 0);
         MR::hideModel(this);
         MR::invalidateHitSensors(this);
@@ -420,10 +411,9 @@ bool Tamakoro::requestTutorialEnd() {
         MR::zeroVelocity(this);
 
         if (MR::isEqualStageName("HellProminenceGalaxy")) {
-            MR::startStageBGM("BGM_TAMAKORO_2",false);
-        }
-        else {
-            MR::startStageBGM("BGM_TAMAKORO",false);
+            MR::startStageBGM("BGM_TAMAKORO_2", false);
+        } else {
+            MR::startStageBGM("BGM_TAMAKORO", false);
         }
 
         mBgmCtrl->init();
@@ -481,7 +471,7 @@ bool Tamakoro::tryLand() {
         setNerve(&NrvTamakoro::TamakoroNrvLand::sInstance);
         return true;
     }
-    
+
     if (MR::isGreaterStep(this, 2) && MR::isBindedGround(this)) {
         mMarioOffsetVelocity = -f1;
         setNerve(&NrvTamakoro::TamakoroNrvWait::sInstance);
@@ -493,14 +483,13 @@ bool Tamakoro::tryLand() {
 
 void Tamakoro::reactionCollision() {
     f32 hitPower;
-    
+
     f32 wallHitPower = MR::calcHitPowerToWall(this);
     f32 groundHitPower = MR::calcHitPowerToGround(this);
-    
+
     if (wallHitPower >= groundHitPower) {
         hitPower = wallHitPower;
-    }
-    else {
+    } else {
         hitPower = groundHitPower;
     }
 
@@ -520,40 +509,36 @@ void Tamakoro::reactionCollision() {
     if (hitPower > 60.0f) {
         MR::tryRumblePadStrong(this, WPAD_CHAN0);
         MR::shakeCameraStrong();
-    }
-    else if (hitPower > 25.0f) {
+    } else if (hitPower > 25.0f) {
         MR::tryRumblePadMiddle(this, WPAD_CHAN0);
         MR::shakeCameraNormalWeak();
-    } 
-    else if (hitPower > 5.0f) {
+    } else if (hitPower > 5.0f) {
         MR::tryRumblePadWeak(this, WPAD_CHAN0);
         MR::shakeCameraWeak();
-    } 
+    }
 }
 
 inline void Tamakoro::exeStandByTutorial() {
-    TVec3f vel(mVelocity);  // unused! woo!
+    TVec3f vel(mVelocity); // unused! woo!
     MR::reboundVelocityFromCollision(this, 0.0f, 0.0f, 1.0f);
     MR::addVelocityToGravity(this, 2.0f);
     f32 attenuation;
     if (MR::isBindedGround(this)) {
         attenuation = 0.95f;
-    }
-    else {
+    } else {
         attenuation = 0.995f;
     }
     MR::attenuateVelocity(this, attenuation);
 }
 
 inline void Tamakoro::exeStandByBind() {
-    TVec3f vel(mVelocity);  // unused! woo!
+    TVec3f vel(mVelocity); // unused! woo!
     MR::reboundVelocityFromCollision(this, 0.0f, 0.0f, 1.0f);
     MR::addVelocityToGravity(this, 2.0f);
     f32 attenuation;
     if (MR::isBindedGround(this)) {
         attenuation = 0.95f;
-    }
-    else {
+    } else {
         attenuation = 0.995f;
     }
     MR::attenuateVelocity(this, attenuation);
@@ -561,7 +546,7 @@ inline void Tamakoro::exeStandByBind() {
 
 void Tamakoro::exeBindStart() {
     if (MR::isFirstStep(this)) {
-        MR::startBckPlayer("SlideStomachRecover", (const char *)0);
+        MR::startBckPlayer("SlideStomachRecover", (const char*)0);
         MR::tryRumblePadWeak(this, WPAD_CHAN0);
         mDirectionToMario.set(-mGravity);
         if (MR::normalizeOrZero(&mMarioRotateFront)) {
@@ -572,7 +557,7 @@ void Tamakoro::exeBindStart() {
 
     // smoothly transition arc from bind request position
     // to top of the ball using the nerve rate as time
-    f32 time = MR::calcNerveRate(this, 40);
+    f32    time = MR::calcNerveRate(this, 40);
     TVec3f expectMario;
     JMAVECScaleAdd(&mDirectionToMario, &mPosition, &expectMario, 150.0f);
     TVec3f horizontalVec;
@@ -580,9 +565,9 @@ void Tamakoro::exeBindStart() {
     time = (time * 2.0f) - 1.0f;
     TVec3f upVec;
     upVec.set(mGravity.multiplyOperatorInline(-(time * time * -150.0f + 150.0f)));
-    
+
     MR::blendQuatUpFront(&mRotateQuat, -mGravity, mMarioRotateFront, 0.1f, 0.1f);
-    
+
     mMarioPos.set(horizontalVec.addOperatorInLine(upVec));
 
     if (MR::isGreaterStep(this, 40)) {
@@ -594,19 +579,18 @@ void Tamakoro::exeBindStartLand() {
     if (MR::isFirstStep(this)) {
         if (!isNeedTutorial()) {
             if (MR::isEqualStageName("HellProminenceGalaxy")) {
-                MR::startStageBGM("BGM_TAMAKORO_2",false);
-            }
-            else {
-                MR::startStageBGM("BGM_TAMAKORO",false);
+                MR::startStageBGM("BGM_TAMAKORO_2", false);
+            } else {
+                MR::startStageBGM("BGM_TAMAKORO", false);
             }
 
             mBgmCtrl->init();
         }
-        MR::startBckPlayer("Land","BallLand");
+        MR::startBckPlayer("Land", "BallLand");
         MR::tryRumblePadMiddle(this, WPAD_CHAN0);
 
         mDirectionToMario.set(mMarioPos - mPosition);
-        if (MR::normalizeOrZero(&mDirectionToMario)){
+        if (MR::normalizeOrZero(&mDirectionToMario)) {
             mDirectionToMario.set(-mGravity);
         }
         JMAVECScaleAdd(&mDirectionToMario, &mPosition, &mMarioPos, 150.0f);
@@ -615,7 +599,7 @@ void Tamakoro::exeBindStartLand() {
         if (MR::normalizeOrZero(&mMarioRotateUp)) {
             mMarioRotateUp.set(-mGravity);
         }
-        
+
         MR::emitEffectHit(this, mMarioPos, mMarioPos - mPosition, "TamakoroLand");
         MR::startSoundPlayer("SE_PV_CATCH", -1);
         MR::startSound(this, "SE_SM_RIDE_START", -1, -1);
@@ -631,13 +615,11 @@ void Tamakoro::exeBindStartLand() {
         if (isNeedTutorial()) {
             mTutorial->requestStart();
             setNerve(&NrvTamakoro::TamakoroNrvTutorial::sInstance);
-        }
-        else {
+        } else {
             mTutorial->requestEnd();
             setNerve(&NrvTamakoro::TamakoroNrvWait::sInstance);
         }
     }
-    
 }
 
 void Tamakoro::exeTutorial() {
@@ -671,21 +653,20 @@ void Tamakoro::exeWait() {
     reactionCollision();
     addVelocityOperate();
 
-    TVec3f vel(mVelocity);  // unused! woo!
+    TVec3f vel(mVelocity); // unused! woo!
     MR::reboundVelocityFromCollision(this, 0.0f, 0.0f, 1.0f);
     MR::addVelocityToGravity(this, 2.0f);
     f32 attenuation;
     if (MR::isBindedGround(this)) {
         attenuation = 0.99f;
-    }
-    else {
+    } else {
         attenuation = 0.995f;
     }
     MR::attenuateVelocity(this, attenuation);
     updateMoveBckBlend(PSVECMag(&mMoment) * 150.0f);
     updateMarioPose(3.0f);
     updateMarioOffset();
-    
+
     if (tryJump() || tryFall()) {
         return;
     }
@@ -699,17 +680,16 @@ void Tamakoro::exeFall() {
     mMarioOffset = MR::clamp(mMarioOffset, 0.0f, 150.0f);
 
     reactionCollision();
-    
+
     if (!tryLand()) {
         addVelocityOperate();
-        TVec3f vel(mVelocity);  // unused! woo!
+        TVec3f vel(mVelocity); // unused! woo!
         MR::reboundVelocityFromCollision(this, 0.0f, 0.0f, 1.0f);
         MR::addVelocityToGravity(this, 2.0f);
         f32 attenuation;
         if (MR::isBindedGround(this)) {
             attenuation = 0.99f;
-        }
-        else {
+        } else {
             attenuation = 0.995f;
         }
         MR::attenuateVelocity(this, attenuation);
@@ -736,39 +716,36 @@ void Tamakoro::exeJump() {
     }
 
     addVelocityOperate();
-    TVec3f vel(mVelocity);  // unused! woo!
+    TVec3f vel(mVelocity); // unused! woo!
     MR::reboundVelocityFromCollision(this, 0.0f, 0.0f, 1.0f);
     MR::addVelocityToGravity(this, 2.0f);
     f32 attenuation;
     if (MR::isBindedGround(this)) {
         attenuation = 0.99f;
-    }
-    else {
+    } else {
         attenuation = 0.995f;
     }
     MR::attenuateVelocity(this, attenuation);
     updateMarioPose(3.0f);
-    
 }
 
 void Tamakoro::exeBumpWall() {
     if (MR::isFirstStep(this)) {
-        MR::startBckPlayer("BallHit", (const char *)0);
+        MR::startBckPlayer("BallHit", (const char*)0);
         MR::tryRumblePadMiddle(this, WPAD_CHAN0);
         MR::shakeCameraNormalWeak();
-    } 
+    }
 
     reactionCollision();
 
     addVelocityOperate();
-    TVec3f vel(mVelocity);  // unused! woo!
+    TVec3f vel(mVelocity); // unused! woo!
     MR::reboundVelocityFromCollision(this, 0.0f, 0.0f, 1.0f);
     MR::addVelocityToGravity(this, 2.0f);
     f32 attenuation;
     if (MR::isBindedGround(this)) {
         attenuation = 0.99f;
-    }
-    else {
+    } else {
         attenuation = 0.995f;
     }
     MR::attenuateVelocity(this, attenuation);
@@ -783,23 +760,22 @@ void Tamakoro::exeBumpWall() {
 
 void Tamakoro::exeLand() {
     if (MR::isFirstStep(this)) {
-        MR::startBckPlayer("Land", (const char *)0);
+        MR::startBckPlayer("Land", (const char*)0);
         MR::tryRumblePadMiddle(this, WPAD_CHAN0);
         MR::shakeCameraNormalWeak();
         MR::startSound(this, "SE_SM_IRONSPH_LAND", -1, -1);
-    } 
+    }
 
     reactionCollision();
 
     addVelocityOperate();
-    TVec3f vel(mVelocity);  // unused! woo!
+    TVec3f vel(mVelocity); // unused! woo!
     MR::reboundVelocityFromCollision(this, 0.0f, 0.0f, 1.0f);
     MR::addVelocityToGravity(this, 2.0f);
     f32 attenuation;
     if (MR::isBindedGround(this)) {
-        attenuation = 0.88f;        // ??
-    }
-    else {
+        attenuation = 0.88f; // ??
+    } else {
         attenuation = 0.995f;
     }
     MR::attenuateVelocity(this, attenuation);
@@ -846,7 +822,7 @@ void Tamakoro::exeJumpHoleLaunch() {
 
     mMarioOffset += 3.0f;
     mMarioOffset = MR::clamp(mMarioOffset, 0.0f, 150.0f);
-  
+
     updateMarioPose(3.0f);
 }
 
@@ -891,19 +867,17 @@ void Tamakoro::exeDashRailEnd() {
         return;
     }
 
-    TVec3f vel(mVelocity);  // unused! woo!
+    TVec3f vel(mVelocity); // unused! woo!
     MR::reboundVelocityFromCollision(this, 0.0f, 0.0f, 1.0f);
     MR::addVelocityToGravity(this, 2.0f);
     f32 attenuation;
     if (MR::isBindedGround(this)) {
         attenuation = 0.99f;
-    }
-    else {
+    } else {
         attenuation = 0.995f;
     }
     MR::attenuateVelocity(this, attenuation);
     updateMarioPose(10.0f);
-    
 }
 
 void Tamakoro::exeRideRail() {
@@ -921,7 +895,7 @@ void Tamakoro::exeRideRail() {
 
 void Tamakoro::exeRideRailFastStart() {
     if (MR::isFirstStep(this)) {
-        MR::startBckPlayer("BallRollStart", (const char *)0);
+        MR::startBckPlayer("BallRollStart", (const char*)0);
         MR::setBckRatePlayer(1.5);
     }
     updateRideRail();
@@ -933,12 +907,12 @@ void Tamakoro::exeRideRailFastStart() {
 
 void Tamakoro::exeRideRailFast() {
     if (MR::isFirstStep(this)) {
-        MR::startBckPlayer("BallRoll", (const char *)0);
+        MR::startBckPlayer("BallRoll", (const char*)0);
         MR::setBckRatePlayer(1.5);
     }
     mControlDisabled = true;
     f32 mag = updateRideRail();
-    
+
     MR::setBckRatePlayer(PSVECMag(&mVelocity) / 60.0f);
 
     if (mag < 30.0f) {
@@ -948,7 +922,7 @@ void Tamakoro::exeRideRailFast() {
 
 void Tamakoro::exeRideRailFastEnd() {
     if (MR::isFirstStep(this)) {
-        MR::startBckPlayer("BallRollEnd", (const char *)0);
+        MR::startBckPlayer("BallRollEnd", (const char*)0);
         MR::setBckRatePlayer(1.5);
     }
     updateRideRail();
@@ -983,27 +957,25 @@ void Tamakoro::addVelocityOperate() {
     mMoveSpeed = mAccelSensorCtrl->calcMoveVector(&mMoveVec, mGravity);
 
     TVec3f* vel = &mVelocity; // this needs to be like this to match...
-    f32 scale;
+    f32     scale;
     if (MR::isBindedGround(this)) {
         scale = 0.4f;
-    }
-    else {
+    } else {
         scale = 0.2f;
     }
-    
+
     JMAVECScaleAdd(&mMoveVec, vel, &mVelocity, mMoveSpeed * scale);
 }
 
 f32 Tamakoro::updateRideRail() {
     mMoveVec.set(mVelocity);
 
-    if (MR::normalizeOrZero(&mMoveVec)){
+    if (MR::normalizeOrZero(&mMoveVec)) {
         mMoveSpeed = 0.5f;
-    }
-    else {
+    } else {
         mMoveSpeed = 0.0f;
     }
-    
+
     f32 mag = PSVECMag(&mMoment) * 150.0f;
 
     updateMarioPose(15.0f);
@@ -1014,22 +986,20 @@ f32 Tamakoro::updateRideRail() {
 
 void Tamakoro::updateMoment() {
     if (isGroundMomentBall()) {
-        TVec3f moment;
+        TVec3f        moment;
         const TVec3f* up;
         //TVec3f tmpVec;
         if (MR::isBindedGround(this)) {
             up = MR::getGroundNormal(this);
-        }
-        else {
+        } else {
             TVec3f tmpVec(-mGravity);
             up = &tmpVec;
         }
-        
+
         MR::calcMomentRollBall(&moment, mVelocity, *up, 150.0f);
         MR::vecBlend(mMoment, moment, &mMoment, 0.25f);
         startRotateLevelSound();
-    }
-    else {
+    } else {
         mMoment.mult(0.98f);
     }
 }
@@ -1037,27 +1007,25 @@ void Tamakoro::updateMoment() {
 void Tamakoro::updateAirTime() {
     if (MR::isBindedGround(this)) {
         mAirTime = 0;
-    }
-    else {
+    } else {
         mAirTime++;
     }
 }
 
 void Tamakoro::updateMarioPose(f32 pDegree) {
     TVec3f v1;
-    
+
     // these *need* to be pointers to match...
     TVec3f* vel = &mVelocity;
     TVec3f* grav = &mGravity;
-    f32 dot = grav->dot(*vel);
+    f32     dot = grav->dot(*vel);
     JMAVECScaleAdd(grav, vel, &v1, -dot); // v1.rejection(vel, grav);
 
     if (MR::isNearZero(v1, 0.001f)) {
         if (mMoveSpeed > 0.001f) {
             MR::turnDirectionDegree(this, &mMarioRotateFront, mMoveVec, pDegree * mMoveSpeed);
         }
-    }
-    else {
+    } else {
         MR::turnDirectionDegree(this, &mMarioRotateFront, v1, pDegree);
     }
 
@@ -1071,8 +1039,7 @@ void Tamakoro::updateMarioPose(f32 pDegree) {
         f32 sign;
         if (mMoveVec.dot(xDir) >= 0.0f) {
             sign = 1.0f;
-        }
-        else {
+        } else {
             sign = -1.0f;
         }
         dot = sign * dot;
@@ -1080,7 +1047,6 @@ void Tamakoro::updateMarioPose(f32 pDegree) {
     }
     mMarioRotateYAngle *= 0.9f;
 
-    
     TVec3f up;
     up.set(-mGravity);
     mMarioRotateUp.set(-mGravity);
@@ -1100,14 +1066,13 @@ void Tamakoro::updateMarioPose(f32 pDegree) {
     MR::blendQuatUpFront(&mRotateQuat, mMarioRotateUp, mMarioRotateFront, 0.1f, 0.25f);
 
     f32 rotY = mMarioRotateYAngle;
-    MR::setPlayerUpperRotateY(0.017453292f * rotY);  // sin(1.0f)
+    MR::setPlayerUpperRotateY(0.017453292f * rotY); // sin(1.0f)
 }
-
 
 void Tamakoro::updateMarioOffset() {
     f32 decay = (mMarioOffsetVelocity - 1.0f);
     decay *= 0.99f;
-    
+
     mMarioOffsetVelocity = decay;
     mMarioOffset += decay;
     mMarioOffset = MR::clamp(mMarioOffset, 0.0f, 150.0f);
@@ -1117,36 +1082,32 @@ void Tamakoro::updateMoveBckBlend(f32 pSpeed) {
     f32 w0 = 0.0f;
     f32 w1 = 0.0f;
     f32 w2 = 0.0f;
-    f32 w3 = 0.0f; 
+    f32 w3 = 0.0f;
     f32 rate = 0.0f;
     f32 limit1 = 0.25f;
     f32 limit2 = 6.0f;
     f32 limit3 = 18.0f;
-    
-    
+
     if (pSpeed < limit1) {
         w1 = MR::normalize(pSpeed, 0.0f, 0.25f);
         w0 = 1.0f - w1;
         rate = MR::getLinerValue(w1, 1.0f, 1.0f, 1.0f);
-    }
-    else if (pSpeed < limit2) {
+    } else if (pSpeed < limit2) {
         w2 = MR::normalize(pSpeed, 0.25, 6.0f);
         w1 = 1.0f - w2;
         rate = MR::getLinerValue(w2, 1.0f, 2.0f, 1.0f);
-    }
-    else if (pSpeed < limit3) {
+    } else if (pSpeed < limit3) {
         w3 = MR::normalize(pSpeed, 6.0f, 18.0f);
         w2 = 1.0f - w3;
         rate = MR::getLinerValue(w3, 2.0f, 3.0f, 1.0f);
-    }
-    else {
+    } else {
         w3 = 1.0f;
         rate = (pSpeed / 18.0f) * 3.0f;
         if (rate > 4.0f) {
             rate = 4.0f;
         }
     }
-    
+
     MR::setBckBlendWeight(w0, w1, w2, w3);
     MR::setBckRatePlayer(rate);
 }
@@ -1162,32 +1123,21 @@ void Tamakoro::updateSquatBckBlend(f32 pSpeed) {
 }
 
 bool Tamakoro::isEnablePushPlayer() const {
-    if (isNerve(&NrvTamakoro::TamakoroNrvStandByTutorial::sInstance) 
-     || isNerve(&NrvTamakoro::TamakoroNrvStandByBind::sInstance)) {
+    if (isNerve(&NrvTamakoro::TamakoroNrvStandByTutorial::sInstance) || isNerve(&NrvTamakoro::TamakoroNrvStandByBind::sInstance)) {
         return true;
     }
     return false;
 }
 
 bool Tamakoro::isEnableEnemyAttack() const {
-    if (isNerve(&NrvTamakoro::TamakoroNrvWait::sInstance)
-     || isNerve(&NrvTamakoro::TamakoroNrvFall::sInstance)
-     || isNerve(&NrvTamakoro::TamakoroNrvJump::sInstance)
-     || isNerve(&NrvTamakoro::TamakoroNrvBumpWall::sInstance)
-     || isNerve(&NrvTamakoro::TamakoroNrvDashRailEnd::sInstance)
-     || isNerve(&NrvTamakoro::TamakoroNrvLand::sInstance)) {
+    if (isNerve(&NrvTamakoro::TamakoroNrvWait::sInstance) || isNerve(&NrvTamakoro::TamakoroNrvFall::sInstance) || isNerve(&NrvTamakoro::TamakoroNrvJump::sInstance) || isNerve(&NrvTamakoro::TamakoroNrvBumpWall::sInstance) || isNerve(&NrvTamakoro::TamakoroNrvDashRailEnd::sInstance) || isNerve(&NrvTamakoro::TamakoroNrvLand::sInstance)) {
         return true;
     }
     return false;
 }
 
 bool Tamakoro::isEnableBallBind() const {
-    if (isNerve(&NrvTamakoro::TamakoroNrvWait::sInstance)
-     || isNerve(&NrvTamakoro::TamakoroNrvFall::sInstance)
-     || isNerve(&NrvTamakoro::TamakoroNrvJump::sInstance)
-     || isNerve(&NrvTamakoro::TamakoroNrvBumpWall::sInstance)
-     || isNerve(&NrvTamakoro::TamakoroNrvDashRailEnd::sInstance)
-     || isNerve(&NrvTamakoro::TamakoroNrvLand::sInstance)) {
+    if (isNerve(&NrvTamakoro::TamakoroNrvWait::sInstance) || isNerve(&NrvTamakoro::TamakoroNrvFall::sInstance) || isNerve(&NrvTamakoro::TamakoroNrvJump::sInstance) || isNerve(&NrvTamakoro::TamakoroNrvBumpWall::sInstance) || isNerve(&NrvTamakoro::TamakoroNrvDashRailEnd::sInstance) || isNerve(&NrvTamakoro::TamakoroNrvLand::sInstance)) {
         return true;
     }
     return false;
@@ -1198,27 +1148,21 @@ bool Tamakoro::isEnebleHitCollisionMessage() const {
 }
 
 bool Tamakoro::isUseMarioOffset() const {
-    if (isNerve(&NrvTamakoro::TamakoroNrvBindStart::sInstance) 
-     || isNerve(&NrvTamakoro::TamakoroNrvBindStartLand::sInstance)) {
+    if (isNerve(&NrvTamakoro::TamakoroNrvBindStart::sInstance) || isNerve(&NrvTamakoro::TamakoroNrvBindStartLand::sInstance)) {
         return false;
     }
     return true;
 }
 
 bool Tamakoro::isGroundMomentBall() const {
-    if (MR::isBindedGround(this) || isRideRail()
-     || isNerve(&NrvTamakoro::TamakoroNrvDashRail::sInstance)
-     || isNerve(&NrvTamakoro::TamakoroNrvJumpHole::sInstance)) {
+    if (MR::isBindedGround(this) || isRideRail() || isNerve(&NrvTamakoro::TamakoroNrvDashRail::sInstance) || isNerve(&NrvTamakoro::TamakoroNrvJumpHole::sInstance)) {
         return true;
     }
     return false;
 }
 
 bool Tamakoro::isRideRail() const {
-    if (isNerve(&NrvTamakoro::TamakoroNrvRideRail::sInstance)
-     || isNerve(&NrvTamakoro::TamakoroNrvRideRailFastStart::sInstance)
-     || isNerve(&NrvTamakoro::TamakoroNrvRideRailFast::sInstance)
-     || isNerve(&NrvTamakoro::TamakoroNrvRideRailFastEnd::sInstance)) {
+    if (isNerve(&NrvTamakoro::TamakoroNrvRideRail::sInstance) || isNerve(&NrvTamakoro::TamakoroNrvRideRailFastStart::sInstance) || isNerve(&NrvTamakoro::TamakoroNrvRideRailFast::sInstance) || isNerve(&NrvTamakoro::TamakoroNrvRideRailFastEnd::sInstance)) {
         return true;
     }
     return false;
@@ -1237,12 +1181,11 @@ void Tamakoro::startRotateLevelSound() {
     if (mag <= 0.001f) {
         return;
     }
-    
+
     s32 lvl = ((mag * 10000.0f) / TWO_PI);
     if (isNerve(&NrvTamakoro::TamakoroNrvRideRail::sInstance)) {
         MR::startLevelSound(this, "SE_SM_LV_IRONSPH_ROLL_RAIL", lvl, -1, -1);
-    }
-    else {
+    } else {
         MR::startLevelSound(this, "SE_SM_LV_IRONSPH_ROLL1", lvl, -1, -1);
     }
 }
@@ -1253,4 +1196,4 @@ namespace MR {
         tamakoro->setTutorial();
         return tamakoro;
     }
-};
+}; // namespace MR

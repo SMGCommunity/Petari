@@ -1,9 +1,8 @@
 #include "Game/Util/TriggerChecker.hpp"
 
-TriggerChecker::TriggerChecker() :
-    mPrevLevel(false),
-    mCurrLevel(false)
-{}
+TriggerChecker::TriggerChecker()
+    : mPrevLevel(false),
+      mCurrLevel(false) {}
 
 void TriggerChecker::update(bool input) {
     mPrevLevel = mCurrLevel;

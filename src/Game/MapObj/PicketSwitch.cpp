@@ -1,15 +1,14 @@
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/MapObj/PicketSwitch.hpp"
 
-PicketSwitch::PicketSwitch(const char *pName) : LiveActor(pName) {
-
+PicketSwitch::PicketSwitch(const char* pName)
+    : LiveActor(pName) {
 }
 
 PicketSwitch::~PicketSwitch() {
-
 }
 
-void PicketSwitch::init(const JMapInfoIter &rIter) {
+void PicketSwitch::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     MR::needStageSwitchWriteA(this, rIter);
     const char* pName;
@@ -30,7 +29,7 @@ void PicketSwitch::exeFirstDrop() {
         MR::startBck(this, "First", nullptr);
         MR::tryRumblePadStrong(this, 0);
         MR::startSound(this, "SE_OJ_PICKET_SWITCH_DROP", -1, -1);
-    } 
+    }
 }
 
 void PicketSwitch::exeLastDrop() {
@@ -48,13 +47,13 @@ void PicketSwitch::exeLastDrop() {
     }
 }
 
-bool PicketSwitch::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool PicketSwitch::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgPlayerHipDropFloor(msg)) {
         if (pReceiver->isType(79)) {
             if (isNerve(&NrvPicketSwitch::PicketSwitchNrvWait::sInstance)) {
                 setNerve(&NrvPicketSwitch::PicketSwitchNrvLastDrop::sInstance);
                 return true;
-            }  
+            }
             if ((isNerve(&NrvPicketSwitch::PicketSwitchNrvFirstDrop::sInstance))) {
                 if (MR::isBckStopped(this)) {
                     setNerve(&NrvPicketSwitch::PicketSwitchNrvLastDrop::sInstance);
@@ -72,18 +71,18 @@ namespace NrvPicketSwitch {
     INIT_NERVE(PicketSwitchNrvFirstDrop);
     INIT_NERVE(PicketSwitchNrvLastDrop);
 
-	void PicketSwitchNrvWait::execute(Spine *pSpine) const {
-		PicketSwitch *pActor = (PicketSwitch*)pSpine->mExecutor;
-		pActor->exeWait();
-	}    
+    void PicketSwitchNrvWait::execute(Spine* pSpine) const {
+        PicketSwitch* pActor = (PicketSwitch*)pSpine->mExecutor;
+        pActor->exeWait();
+    }
 
-	void PicketSwitchNrvFirstDrop::execute(Spine *pSpine) const {
-		PicketSwitch *pActor = (PicketSwitch*)pSpine->mExecutor;
-		pActor->exeFirstDrop();
-	}    
+    void PicketSwitchNrvFirstDrop::execute(Spine* pSpine) const {
+        PicketSwitch* pActor = (PicketSwitch*)pSpine->mExecutor;
+        pActor->exeFirstDrop();
+    }
 
-	void PicketSwitchNrvLastDrop::execute(Spine *pSpine) const {
-        PicketSwitch *pActor = (PicketSwitch*)pSpine->mExecutor;
-		pActor->exeLastDrop();
-	}        
-};
+    void PicketSwitchNrvLastDrop::execute(Spine* pSpine) const {
+        PicketSwitch* pActor = (PicketSwitch*)pSpine->mExecutor;
+        pActor->exeLastDrop();
+    }
+}; // namespace NrvPicketSwitch

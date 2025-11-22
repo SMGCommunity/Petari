@@ -11,11 +11,12 @@ namespace {
     static const char* sInfoMessageID = "InformationGalaxy";
 };
 
-TicoGalaxy::TicoGalaxy(const char *pName) : TicoFat(pName) {
+TicoGalaxy::TicoGalaxy(const char* pName)
+    : TicoFat(pName) {
     mGalaxyName = nullptr;
 }
 
-void TicoGalaxy::init(const JMapInfoIter &rIter) {
+void TicoGalaxy::init(const JMapInfoIter& rIter) {
     TicoFat::init(rIter);
     _1F0 = 2;
     if (MR::isOnTicoGalaxyAlreadyTalk(_1EC)) {
@@ -35,7 +36,7 @@ void TicoGalaxy::initAfterPlacement() {
 void TicoGalaxy::shootStarPiece() {
     s32 v5 = 5;
     if (_1E0 <= 5) {
-        v5 = _1E0; 
+        v5 = _1E0;
     }
 
     if (MR::giftStarPieceToTarget(getSensor("Mouth"), v5)) {
@@ -53,7 +54,7 @@ bool TicoGalaxy::enableAppear() {
     return MR::isAppearGalaxy(mGalaxyName);
 }
 
-void TicoGalaxy::initStarPieceSaveData(const JMapInfoIter &rIter) {
+void TicoGalaxy::initStarPieceSaveData(const JMapInfoIter& rIter) {
     MR::getJMapInfoArg7WithInit(rIter, &_1EC);
     mGalaxyName = GameEventFlagTable::getExclamationGalaxyNameFromIndex(_1EC);
     _1E4 = GameEventFlagTable::getStarPieceNumToOpenExclamationGalaxy(mGalaxyName);
@@ -69,8 +70,7 @@ void TicoGalaxy::disappear(bool a1) {
     if (a1) {
         MR::onGameEventFlagGalaxyOpen(mGalaxyName);
         MR::callAppearAllGroupMember(this);
-    }
-    else {
+    } else {
         mStarRing->appear();
     }
 }
@@ -81,5 +81,4 @@ void TicoGalaxy::appearInformation() const {
 }
 
 TicoGalaxy::~TicoGalaxy() {
-    
 }

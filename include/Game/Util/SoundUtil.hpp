@@ -11,11 +11,11 @@ namespace MR {
     void startCurrentStageBGM();
     void startBossBGM(s32);
 
-    void startStageBGM(const char *, bool);
-    void startStageBGMFromStageName(const char *, const char * , s32);
+    void startStageBGM(const char*, bool);
+    void startStageBGMFromStageName(const char*, const char*, s32);
 
-    void startAtmosphereSE(const char *, s32, s32);
-    void startAtmosphereLevelSE(const char *, s32, s32);
+    void startAtmosphereSE(const char*, s32, s32);
+    void startAtmosphereLevelSE(const char*, s32, s32);
 
     void stopStageBGM(u32);
     void unlockStageBGM();
@@ -29,29 +29,29 @@ namespace MR {
 
     void stopSubBGM(u32);
 
-    void startSound(const LiveActor *, const char *, s32, s32);
+    void startSound(const LiveActor*, const char*, s32, s32);
 
     void actorSoundMovement(LiveActor*);
 
-    void startSystemSE(const char *, s32, s32);
-    void stopSystemSE(const char *, u32);
-    void startSpinHitSound(const LiveActor *);
-    void startBlowHitSound(const LiveActor *);
-    void startSystemME(const char *);
-    void startSound(const LiveActor *, const char *, s32, s32);
-    void startSoundObject(AudSoundObject *, const char *);
+    void startSystemSE(const char*, s32, s32);
+    void stopSystemSE(const char*, u32);
+    void startSpinHitSound(const LiveActor*);
+    void startBlowHitSound(const LiveActor*);
+    void startSystemME(const char*);
+    void startSound(const LiveActor*, const char*, s32, s32);
+    void startSoundObject(AudSoundObject*, const char*);
 
-    void startLevelSound(const LiveActor *, const char *, s32, s32, s32);
-    void startLevelSound(const LiveActor *, JAISoundID, s32, s32, s32);
-    void releaseSoundHandle(const LiveActor *, const char *);
+    void startLevelSound(const LiveActor*, const char*, s32, s32, s32);
+    void startLevelSound(const LiveActor*, JAISoundID, s32, s32, s32);
+    void releaseSoundHandle(const LiveActor*, const char*);
 
     void setAudioEffectType(s32, s32);
 
     bool isPlayingStageBgm();
     bool isPlayingStageBgmID(u32);
-    bool isPlayingStageBgmName(const char *);
+    bool isPlayingStageBgmName(const char*);
     bool isStopOrFadeoutStageBgmID(u32);
-    bool isStopOrFadeoutBgmName(const char *);
+    bool isStopOrFadeoutBgmName(const char*);
     bool isPreparedStageBgm();
 
     void setStageBGMState(s32, u32);
@@ -63,7 +63,7 @@ namespace MR {
     void startEventBGM(s32);
     void startAfterBossBGM();
 
-    void startCSSound(const char *, const char *, s32);
+    void startCSSound(const char*, const char*, s32);
 
     bool hasME();
 
@@ -71,13 +71,13 @@ namespace MR {
     void start2PJumpAssistSound();
 
     void startDPDHitSound();
-    void startDPDFreezeLevelSound(const LiveActor *);
+    void startDPDFreezeLevelSound(const LiveActor*);
 
     void moveVolumeStageBGMForNoteFairy(f32, u32);
 
     s32 getRemixMelodyNoteNum(s32);
 
-    void startSystemLevelSE(const char *, s32, s32);
+    void startSystemLevelSE(const char*, s32, s32);
 
     void submitSE();
 
@@ -90,20 +90,20 @@ namespace MR {
 
     void setSoundVolumeSetting(s32, u32);
 
-    void startSubBGM(const char *, bool);
+    void startSubBGM(const char*, bool);
 
-    void stopSound(const LiveActor *, const char *, u32);
-    void startSoundObjectLevel(AudSoundObject *, const char *, s32);
+    void stopSound(const LiveActor*, const char*, u32);
+    void startSoundObjectLevel(AudSoundObject*, const char*, s32);
 
     void limitedStarPieceHitSound();
 
     void submitLevelSE();
     void permitLevelSE();
 
-    void setSeVersion(const LiveActor *, u32);
+    void setSeVersion(const LiveActor*, u32);
 
-    void startSoundSeVer(const LiveActor *, const char *, s32, s32);
-    void startLevelSoundSeVer(const LiveActor *, const char *, s32, s32, s32);
+    void startSoundSeVer(const LiveActor*, const char*, s32, s32);
+    void startLevelSoundSeVer(const LiveActor*, const char*, s32, s32, s32);
 
-    void setMapSondCodeGravity(const LiveActor *, s32);
-};
+    void setMapSondCodeGravity(const LiveActor*, s32);
+}; // namespace MR

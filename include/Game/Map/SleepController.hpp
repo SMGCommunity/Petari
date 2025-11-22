@@ -11,7 +11,7 @@ public:
     void initSync();
     void update();
 
-    SwitchIdInfo* _0;
+    SwitchIdInfo*        _0;
     SwitchEventListener* _4;
-    bool _8;
+    bool                 _8;
 };

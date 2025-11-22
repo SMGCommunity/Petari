@@ -3,7 +3,8 @@
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Screen/NoteCounter.hpp"
 
-NoteFairy::NoteFairy(const char *pName) : LiveActor(pName) {
+NoteFairy::NoteFairy(const char* pName)
+    : LiveActor(pName) {
     _8C.x = 0.0f;
     _8C.y = 0.0f;
     _8C.z = 0.0f;
@@ -30,7 +31,7 @@ NoteFairy::NoteFairy(const char *pName) : LiveActor(pName) {
     mCameraInfo = nullptr;
 }
 
-void NoteFairy::init(const JMapInfoIter &rIter) {
+void NoteFairy::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     s32 noteNum = -1;
     MR::getJMapInfoArg0WithInit(rIter, &noteNum);
@@ -40,11 +41,20 @@ void NoteFairy::init(const JMapInfoIter &rIter) {
     MR::getJMapInfoArg3WithInit(rIter, &mAppearanceType);
 
     switch (mAppearanceType) {
-        case -1: break;
-        case 1: break;
-        case 3: _CC = 1; break;
-        case 5: _CD = 1; break;
-        case 6: _CD = 1; _D0 = 1; break;
+    case -1:
+        break;
+    case 1:
+        break;
+    case 3:
+        _CC = 1;
+        break;
+    case 5:
+        _CD = 1;
+        break;
+    case 6:
+        _CD = 1;
+        _D0 = 1;
+        break;
     }
 
     MR::getJMapInfoArg4WithInit(rIter, &mSong);
@@ -53,9 +63,8 @@ void NoteFairy::init(const JMapInfoIter &rIter) {
     MR::getJMapInfoArg6WithInit(rIter, &arg6);
 
     if (arg6 > 0) {
-        _CF = false;   
-    }
-    else {
+        _CF = false;
+    } else {
         _CF = true;
     }
 
@@ -67,11 +76,9 @@ void NoteFairy::init(const JMapInfoIter &rIter) {
 
         if (powerStarType == 2) {
             mPowerStarSpawnType = 1;
-        }
-        else if (powerStarType == 3) {
+        } else if (powerStarType == 3) {
             mPowerStarSpawnType = 2;
-        }
-        else {
+        } else {
             mPowerStarSpawnType = 0;
         }
     }
@@ -92,38 +99,32 @@ void NoteFairy::init(const JMapInfoIter &rIter) {
     if (noteNum > 0) {
         if (mSong < 0) {
             mMelodyNoteNum = noteNum;
-        }
-        else {
+        } else {
             mMelodyNoteNum = MR::getRemixMelodyNoteNum(mSong);
         }
 
         mNoteCoord = MR::getRailTotalLength(this) / mMelodyNoteNum;
-    }
-    else {
+    } else {
         if (noteNum == -2) {
 
             s32 pointNum = MR::getRailPointNum(this);
             if (mSong < 0) {
                 mMelodyNoteNum = pointNum;
-            }
-            else {
+            } else {
                 mMelodyNoteNum = MR::getRemixMelodyNoteNum(mSong);
             }
 
             if (railArg < 0) {
                 mNoteCoord = 200.0f;
-            }
-            else {
+            } else {
                 mNoteCoord = railArg;
             }
 
             _D1 = true;
-        }
-        else {
-            if (mSong < 0) { 
+        } else {
+            if (mSong < 0) {
                 mMelodyNoteNum = MR::getRailTotalLength(this) / mNoteCoord;
-            }
-            else {
+            } else {
                 mMelodyNoteNum = MR::getRemixMelodyNoteNum(mSong);
                 mNoteCoord = MR::getRailTotalLength(this) / mMelodyNoteNum;
             }
@@ -137,8 +138,7 @@ void NoteFairy::init(const JMapInfoIter &rIter) {
 
         if (_D1) {
             MR::calcRailPointPos(&stack_24, this, i);
-        }
-        else {
+        } else {
             stack_24.set<f32>(MR::getRailPos(this));
             MR::moveCoord(this, mNoteCoord);
         }
@@ -171,8 +171,7 @@ void NoteFairy::init(const JMapInfoIter &rIter) {
 void NoteFairy::control() {
     if (!isNerve(&NrvNoteFairy::NoteFairyNrvHide::sInstance) && MR::isValidSwitchB(this) && !MR::isOnSwitchB(this)) {
         kill();
-    }
-    else if (MR::isPowerStarGetDemoActive()) {
+    } else if (MR::isPowerStarGetDemoActive()) {
         kill();
     }
 }
@@ -209,17 +208,17 @@ void NoteFairy::exeHide() {
             MR::moveVolumeStageBGMForNoteFairy(0.0f, 30);
         }
 
-        switch(mAppearanceType) {
-            case 1:
-            case 2:
-            case 3:
-                setNerve(&NrvNoteFairy::NoteFairyNrvStartAppearDemo::sInstance);
-                return;
-            case 4:
-            case 5:
-            case 6:
-                setNerve(&NrvNoteFairy::NoteFairyNrvRailMoveStart::sInstance);
-                return;
+        switch (mAppearanceType) {
+        case 1:
+        case 2:
+        case 3:
+            setNerve(&NrvNoteFairy::NoteFairyNrvStartAppearDemo::sInstance);
+            return;
+        case 4:
+        case 5:
+        case 6:
+            setNerve(&NrvNoteFairy::NoteFairyNrvRailMoveStart::sInstance);
+            return;
         }
 
         setNerve(&NrvNoteFairy::NoteFairyNrvAppearNote::sInstance);
@@ -252,8 +251,7 @@ void NoteFairy::exeRailMoveStart() {
 
     if (_CD) {
         setNerve(&NrvNoteFairy::NoteFairyNrvAppearNoteBloom::sInstance);
-    }
-    else if (MR::isStep(this, 0)) {
+    } else if (MR::isStep(this, 0)) {
         enterDemoAppear(&NrvNoteFairy::NoteFairyNrvAppearNoteBloom::sInstance, false);
     }
 }
@@ -348,12 +346,10 @@ void NoteFairy::exeEndWait() {
     s32 timeLeft = mTimeLimit - getNerveStep();
     if (timeLeft <= 170) {
         MR::startSystemLevelSE("SE_RS_LV_NOTE_TIMER_FAST", 0, -1);
-    }
-    else {
+    } else {
         if (timeLeft <= mTimeLimit / 2) {
             MR::startSystemLevelSE("SE_RS_LV_NOTE_TIMER_MIDDLE", 30, -1);
-        }
-        else {
+        } else {
             MR::startSystemLevelSE("SE_RS_LV_NOTE_TIMER_SLOW", 85, -1);
         }
     }
@@ -380,28 +376,27 @@ void NoteFairy::exeSuccess() {
         }
 
         switch (mPowerStarSpawnType) {
-            case 1:
-                MR::requestAppearPowerStar(this, mLastGotNote->mPosition);
-                break;
-            case 2:
-                MR::requestAppearPowerStar(this, mLastGotNote->mPosition);
-                break;
-            case 0:
-                MR::requestAppearPowerStar(this, _8C);
-                break;
+        case 1:
+            MR::requestAppearPowerStar(this, mLastGotNote->mPosition);
+            break;
+        case 2:
+            MR::requestAppearPowerStar(this, mLastGotNote->mPosition);
+            break;
+        case 0:
+            MR::requestAppearPowerStar(this, _8C);
+            break;
         }
 
         setNerve(&NrvNoteFairy::NoteFairyNrvEndWait::sInstance);
     }
 }
 
-void NoteFairy::enterDemoAppear(const Nerve *pNerve, bool hasNoFrame) {
+void NoteFairy::enterDemoAppear(const Nerve* pNerve, bool hasNoFrame) {
     MR::startActorCameraTargetSelf(this, mCameraInfo, -1);
 
     if (hasNoFrame) {
         MR::requestStartDemo(this, "出現", pNerve, nullptr);
-    }
-    else {
+    } else {
         MR::requestStartDemoWithoutCinemaFrame(this, "出現", pNerve, nullptr);
     }
 
@@ -419,7 +414,7 @@ bool NoteFairy::isDeadAllNotes() {
     return true;
 }
 
-void NoteFairy::setLastGotNote(Note *pNote) {
+void NoteFairy::setLastGotNote(Note* pNote) {
     mLastGotNote = pNote;
 }
 
@@ -431,22 +426,21 @@ f32 NoteFairy::getNoteCoord(s32 val) {
     return val * mNoteCoord;
 }
 
-bool NoteFairy::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool NoteFairy::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (msg == ACTMES_SUCCESS) {
         killAllNotes();
 
         switch (mCompletionJingle) {
-            case -1:
-                break;
-            case 0:
-                MR::startSound(this, "SE_SY_TOTAL_COMPLETE", -1, -1);
-                break;
+        case -1:
+            break;
+        case 0:
+            MR::startSound(this, "SE_SY_TOTAL_COMPLETE", -1, -1);
+            break;
         }
 
         if (mHasDemo) {
             setNerve(&NrvNoteFairy::NoteFairyNrvSuccessDemo::sInstance);
-        }
-        else {
+        } else {
             setNerve(&NrvNoteFairy::NoteFairyNrvSuccess::sInstance);
         }
 
@@ -457,7 +451,6 @@ bool NoteFairy::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceive
 }
 
 NoteFairy::~NoteFairy() {
-
 }
 
 namespace NrvNoteFairy {
@@ -470,4 +463,4 @@ namespace NrvNoteFairy {
     INIT_NERVE(NoteFairyNrvEndWait);
     INIT_NERVE(NoteFairyNrvSuccessDemo);
     INIT_NERVE(NoteFairyNrvSuccess);
-};
+}; // namespace NrvNoteFairy

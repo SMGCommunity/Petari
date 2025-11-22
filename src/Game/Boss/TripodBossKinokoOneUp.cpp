@@ -7,16 +7,17 @@
 namespace NrvTripodBossKinokoOneUp {
     NEW_NERVE(TripodBossKinokoOneUpNrvActive, TripodBossKinokoOneUp, Active);
     NEW_NERVE(TripodBossKinokoOneUpNrvEnd, TripodBossKinokoOneUp, End);
-}
+} // namespace NrvTripodBossKinokoOneUp
 
-TripodBossKinokoOneUp::TripodBossKinokoOneUp(const char *pName) : LiveActor(pName) {
+TripodBossKinokoOneUp::TripodBossKinokoOneUp(const char* pName)
+    : LiveActor(pName) {
     mOneUp = nullptr;
     _F0 = -1;
     _8C.identity();
     _BC.identity();
 }
 
-void TripodBossKinokoOneUp::init(const JMapInfoIter &rIter) {
+void TripodBossKinokoOneUp::init(const JMapInfoIter& rIter) {
     MR::getJMapInfoMatrixFromRT(rIter, &_8C);
     MR::connectToSceneMapObjDecorationMovement(this);
     MR::invalidateClipping(this);
@@ -31,7 +32,6 @@ void TripodBossKinokoOneUp::init(const JMapInfoIter &rIter) {
 }
 
 void TripodBossKinokoOneUp::control() {
-
 }
 
 void TripodBossKinokoOneUp::exeActive() {
@@ -52,11 +52,9 @@ void TripodBossKinokoOneUp::exeActive() {
 }
 
 TripodBossKinokoOneUp::~TripodBossKinokoOneUp() {
-
 }
 
 void TripodBossKinokoOneUp::exeEnd() {
-
 }
 
 MtxPtr TripodBossKinokoOneUp::getBaseMtx() const {

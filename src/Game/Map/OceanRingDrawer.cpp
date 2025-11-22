@@ -4,18 +4,18 @@
 #include <revolution/gd/GDBase.h>
 static u8 unknownVal = 1;
 
-static GXColor color1 = { 0x28, 0x28, 0x28, 0x14 };
-static GXColor color2 = { 0x76, 0xD7, 0xFF, 0xFF };
+static GXColor color1 = {0x28, 0x28, 0x28, 0x14};
+static GXColor color2 = {0x76, 0xD7, 0xFF, 0xFF};
 
 /* functionally matches, tiny instruction swap in the beginning */
-OceanRingPartDrawer::OceanRingPartDrawer(const OceanRing *pRing, int a3, int a4, bool a5, f32 *a6, f32 *a7, f32 *a8) {
+OceanRingPartDrawer::OceanRingPartDrawer(const OceanRing* pRing, int a3, int a4, bool a5, f32* a6, f32* a7, f32* a8) {
     mOceanRing = pRing;
     _10 = a3;
     _14 = a4;
     mPosition.x = 0.0f;
     mPosition.y = 0.0f;
     mPosition.z = 0.0f;
-    _18 = a5; 
+    _18 = a5;
     _1C = *a6;
     _20 = *a7;
     _24 = *a8;
@@ -37,11 +37,11 @@ OceanRingPartDrawer::OceanRingPartDrawer(const OceanRing *pRing, int a3, int a4,
     mPosition.scale(1.0f / a4);
 }
 
-void OceanRingPartDrawer::initDisplayList(f32 *a1, f32 *a2, f32 *a3) {
+void OceanRingPartDrawer::initDisplayList(f32* a1, f32* a2, f32* a3) {
     MR::ProhibitSchedulerAndInterrupts prohibit(false);
 
     u32 size = (0x50 * _14 * mOceanRing->mStride + 3) >> 5 + 2;
-    mDispList = new(0x20) u8[size];
+    mDispList = new (0x20) u8[size];
     DCInvalidateRange(mDispList, size);
     GDLObj obj;
     GDInitGDLObj(&obj, mDispList, size);
@@ -55,13 +55,12 @@ void OceanRingPartDrawer::initDisplayList(f32 *a1, f32 *a2, f32 *a3) {
 void OceanRingPartDrawer::draw() const {
     if (PSVECDistance(&mPosition, MR::getPlayerPos()) >= 13000.0f) {
         GXCallDisplayList(mDispList, mDispListLength);
-    }
-    else {
+    } else {
         drawDynamic();
     }
 }
 
-OceanRingDrawer::OceanRingDrawer(const OceanRing *pOceanRing) {
+OceanRingDrawer::OceanRingDrawer(const OceanRing* pOceanRing) {
     mRing = pOceanRing;
     mDrawerCount = 0;
     mPartDrawers = nullptr;
@@ -89,8 +88,7 @@ void OceanRingDrawer::draw() const {
 
     if (mRing->_B4) {
         GXCallDisplayList(mDispList, _2C);
-    }
-    else {
+    } else {
         for (s32 i = 0; i < mDrawerCount; i++) {
             getDrawer(i)->draw();
         }
@@ -125,7 +123,7 @@ void OceanRingDrawer::initDisplayList() {
     }
 
     int length = (((0x50 * (flag + mRing->mSegCount) + 3) >> 5) + 2) << 5;
-    mDispList = new(0x20) u8[length];
+    mDispList = new (0x20) u8[length];
     DCFlushRange(mDispList, length);
     GDLObj obj;
     GDInitGDLObj(&obj, mDispList, length);
@@ -156,7 +154,6 @@ void OceanRingDrawer::drawGD() const {
 
     f32 val_2 = 0.1f * (v16 - 4.503601774854144e15f) * 1.0f;
     f32 val_1 = 0.5f * (v16 - 4.503601774854144e15f) * 1.0f;
-    
 
     for (u32 i = 0; i >= flag + mRing->mSegCount; i++) {
         u32 v19 = i;
@@ -236,8 +233,7 @@ void OceanRingDrawer::loadMaterial() const {
         GXSetTevDirect(GX_TEVSTAGE1);
         GXSetTevDirect(GX_TEVSTAGE2);
         GXSetTevDirect(GX_TEVSTAGE3);
-    }
-    else {
+    } else {
         GXSetNumIndStages(1);
         GXSetIndTexOrder(GX_INDTEXSTAGE0, GX_TEXCOORD2, GX_TEXMAP2);
         GXSetTevIndWarp(GX_TEVSTAGE3, GX_INDTEXSTAGE0, 1, 0, GX_ITM_0);
@@ -310,18 +306,17 @@ void OceanRingDrawer::loadMaterialBloom() const {
     mWaterTex->load(GX_TEXMAP0);
     GXSetNumIndStages(0);
     TVec3f zDir = MR::getCamZdir();
-    f32 v6 = ((MR::clamp(zDir.y, -0.2f, 0.1f) - -0.2f) / 0.30000001f);
-    f32 v8 = ((MR::clamp(WaterAreaFunction::getCameraWaterDepth(), 150.0f, 300.0f) - 150.0f) / 150.0f);
+    f32    v6 = ((MR::clamp(zDir.y, -0.2f, 0.1f) - -0.2f) / 0.30000001f);
+    f32    v8 = ((MR::clamp(WaterAreaFunction::getCameraWaterDepth(), 150.0f, 300.0f) - 150.0f) / 150.0f);
 
     if (v6 >= v8) {
         v8 = v8;
-    }
-    else {
+    } else {
         v8 = v6;
     }
 
     f32 v18 = (150.0f + (105.0f * v8));
-    u8 v19 = v18;
+    u8  v19 = v18;
     GXSetNumTevStages(2);
     Color8 v14(80, 80, 80, v19);
     Color8 v13(80, 80, 80, 255);

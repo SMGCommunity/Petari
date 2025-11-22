@@ -5,7 +5,7 @@
 #include <revolution/gx/GXRegs.h>
 
 const JUTTexture* mShadowTex;
-TVec3f mShadowVec;
+TVec3f            mShadowVec;
 
 namespace {
     GXTexObj clear_z_tobj;
@@ -56,4 +56,4 @@ namespace MR {
     void deactivateGameSceneDraw3D() {
         GameSceneFunction::deactivateDraw3D();
     }
-};
+}; // namespace MR

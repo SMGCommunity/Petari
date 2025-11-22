@@ -7,18 +7,18 @@ namespace {
     const char* sDemoPartNameFadeOut = "フェードアウト";
     const char* sDemoPartNameWhite = "白画面";
     const char* sDemoPartNameFadeIn = "フェードイン";
-};
+}; // namespace
 
 class MechaKoopaPartsHead : public MapObjActor {
 public:
-    MechaKoopaPartsHead(const char *);
+    MechaKoopaPartsHead(const char*);
 
     virtual ~MechaKoopaPartsHead();
-    virtual void init(const JMapInfoIter &);
-    virtual void initCaseUseSwitchA(const MapObjActorInitInfo &);
-    virtual void initCaseNoUseSwitchA(const MapObjActorInitInfo &);
-    virtual void initCaseUseSwitchB(const MapObjActorInitInfo &);
-    virtual void initCaseNoUseSwitchB(const MapObjActorInitInfo &);
+    virtual void init(const JMapInfoIter&);
+    virtual void initCaseUseSwitchA(const MapObjActorInitInfo&);
+    virtual void initCaseNoUseSwitchA(const MapObjActorInitInfo&);
+    virtual void initCaseUseSwitchB(const MapObjActorInitInfo&);
+    virtual void initCaseNoUseSwitchB(const MapObjActorInitInfo&);
 
     void exeDemoBreak();
     void exeDemoWhiteFadeOut();
@@ -34,4 +34,4 @@ namespace NrvMechaKoopaPartsHead {
     NERVE(MechaKoopaPartsHeadNrvDemoWhiteWait);
     NERVE(MechaKoopaPartsHeadNrvDemoWhiteFadeIn);
     NERVE(MechaKoopaPartsHeadNrvDemoAppearStar);
-};
+}; // namespace NrvMechaKoopaPartsHead

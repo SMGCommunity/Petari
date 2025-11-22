@@ -28,7 +28,7 @@ namespace NrvScenarioSelectScene {
     NEW_NERVE(ScenarioSelectSceneNrvWaitDisappearLayout, ScenarioSelectScene, WaitDisappearLayout);
     NEW_NERVE(ScenarioSelectSceneNrvWaitResumeInitializeThreadIfRequestedReset, ScenarioSelectScene, WaitResumeInitializeThreadIfRequestedReset);
     NEW_NERVE(ScenarioSelectSceneNrvWaitResumeInitializeThreadIfCanceledSelect, ScenarioSelectScene, WaitResumeInitializeThreadIfCanceledSelect);
-};
+}; // namespace NrvScenarioSelectScene
 
 namespace {
     J3DDrawBuffer* createDrawBuffer() {
@@ -44,23 +44,20 @@ namespace {
             return true;
         }
 
-        
         return false;
     }
-};
+}; // namespace
 
-ScenarioSelectScene::ScenarioSelectScene() :
-    Scene("シナリオ選択シーン"),
-    _14(0),
-    _15(0),
-    _16(0),
-    mScenarioLayout(nullptr),
-    mCinemaFrame(nullptr),
-    _28(0),
-    mEffectSystem(nullptr),
-    mCameraContext(nullptr)
-{
-    
+ScenarioSelectScene::ScenarioSelectScene()
+    : Scene("シナリオ選択シーン"),
+      _14(0),
+      _15(0),
+      _16(0),
+      mScenarioLayout(nullptr),
+      mCinemaFrame(nullptr),
+      _28(0),
+      mEffectSystem(nullptr),
+      mCameraContext(nullptr) {
 }
 
 void ScenarioSelectScene::init() {
@@ -155,7 +152,7 @@ bool ScenarioSelectScene::isExecForeground() const {
     bool ret = false;
     if (_14 && !isNerve(&NrvScenarioSelectScene::ScenarioSelectSceneNrvDeactive::sInstance)) {
         if (_15 == 0) {
-        ret = true;
+            ret = true;
         }
     }
 
@@ -177,16 +174,16 @@ void ScenarioSelectScene::setupCameraMtx() const {
 bool ScenarioSelectScene::trySetCurrentScenarioNo() const {
     if (mScenarioLayout->_28) {
         if (!MR::isScenarioDecided()) {
-            s32 scenarioNo = mScenarioLayout->getSelectedScenarioNo();
-            s32 placedNo = scenarioNo;
+            s32                  scenarioNo = mScenarioLayout->getSelectedScenarioNo();
+            s32                  placedNo = scenarioNo;
             GalaxyStatusAccessor accessor = MR::makeCurrentGalaxyStatusAccessor();
             if (accessor.isHiddenStar(scenarioNo)) {
                 placedNo = MR::getPlacedHiddenStarScenarioNo(MR::getCurrentStageName(), scenarioNo);
             }
-    
+
             MR::setCurrentScenarioNo(placedNo, scenarioNo);
         }
-    
+
         return true;
     }
 
@@ -224,18 +221,15 @@ void ScenarioSelectScene::exeDeactive() {
 }
 
 void ScenarioSelectScene::exeInvalidScenarioSelect() {
-    
 }
 
 void ScenarioSelectScene::exeStartScenarioSelect() {
     if (MR::isFirstStep(this)) {
-        bool isSpecificStage = MR::isStageKoopaVs3()
-            || MR::isEqualStageName("HeavensDoorGalaxy");
+        bool isSpecificStage = MR::isStageKoopaVs3() || MR::isEqualStageName("HeavensDoorGalaxy");
 
         if (isSpecificStage) {
             MR::openSystemWipeFade(-1);
-        }
-        else {
+        } else {
             MR::openSystemWipeWhiteFade(-1);
         }
 
@@ -263,8 +257,7 @@ void ScenarioSelectScene::exeWaitScenarioSelect() {
     if (trySetCurrentScenarioNo()) {
         MR::endStarPointerMode(this);
         setNerve(&NrvScenarioSelectScene::ScenarioSelectSceneNrvWaitResumeInitializeThread::sInstance);
-    }
-    else if (mScenarioLayout->isCanceled()) {
+    } else if (mScenarioLayout->isCanceled()) {
         MR::endStarPointerMode(this);
         setNerve(&NrvScenarioSelectScene::ScenarioSelectSceneNrvWaitResumeInitializeThreadIfCanceledSelect::sInstance);
     }
@@ -285,8 +278,7 @@ void ScenarioSelectScene::exeWaitInitializeEnd() {
         if (MR::isDead(mScenarioLayout)) {
             MR::Effect::forceDeleteAllEmitters(mEffectSystem);
             setNerve(&NrvScenarioSelectScene::ScenarioSelectSceneNrvDeactive::sInstance);
-        }
-        else if (mScenarioLayout->isReadyToDisappear()) {
+        } else if (mScenarioLayout->isReadyToDisappear()) {
             setNerve(&NrvScenarioSelectScene::ScenarioSelectSceneNrvWaitDisappearLayout::sInstance);
         }
     }
@@ -329,5 +321,4 @@ void ScenarioSelectScene::exeWaitResumeInitializeThreadIfCanceledSelect() {
 }
 
 ScenarioSelectScene::~ScenarioSelectScene() {
-
 }

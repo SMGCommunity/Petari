@@ -16,23 +16,22 @@
 namespace {
     const s32 cJudgeNotMovingFrame = 60;
     const s32 cShowWaitFrame = 240;
-};
+}; // namespace
 
 namespace NrvCounterLayoutController {
     NEW_NERVE(CounterLayoutControllerNrvPlayerMoving, CounterLayoutController, PlayerMoving);
     NEW_NERVE(CounterLayoutControllerNrvPlayerNotMoving, CounterLayoutController, PlayerNotMoving);
-};
+}; // namespace NrvCounterLayoutController
 
-CounterLayoutController::CounterLayoutController() :
-    LayoutActor("カウンタ系レイアウト制御", true),
-    mPlayerNotMovingFrame(0),
-    _24(false),
-    mCoinCounter(nullptr),
-    mStarPieceCounter(nullptr),
-    mPlayerLeft(nullptr),
-    mStarCounter(nullptr),
-    mHPMeter(nullptr)
-{}
+CounterLayoutController::CounterLayoutController()
+    : LayoutActor("カウンタ系レイアウト制御", true),
+      mPlayerNotMovingFrame(0),
+      _24(false),
+      mCoinCounter(nullptr),
+      mStarPieceCounter(nullptr),
+      mPlayerLeft(nullptr),
+      mStarCounter(nullptr),
+      mHPMeter(nullptr) {}
 
 void CounterLayoutController::init(const JMapInfoIter& rIter) {
     MR::connectToSceneLayout(this);
@@ -53,8 +52,7 @@ void CounterLayoutController::init(const JMapInfoIter& rIter) {
 void CounterLayoutController::appear() {
     if (_24) {
         mStarPieceCounter->appear();
-    }
-    else {
+    } else {
         appearAllCounterWithoutStar();
     }
 
@@ -125,26 +123,15 @@ bool CounterLayoutController::isHiddenOrWaitAllLayout() const {
 */
 
 bool CounterLayoutController::isPlayerMoving() const {
-    if (!MR::isPlayerElementModeHopper()
-        && !MR::isPlayerElementModeTeresa()
-        && !MR::isPlayerSwimming()
-        && !MR::isOnGroundPlayer())
-    {
+    if (!MR::isPlayerElementModeHopper() && !MR::isPlayerElementModeTeresa() && !MR::isPlayerSwimming() && !MR::isOnGroundPlayer()) {
         return true;
     }
 
-    if (!MR::isNearZero(MR::getSubPadStickX(WPAD_CHAN0), 0.001f)
-        || !MR::isNearZero(MR::getSubPadStickY(WPAD_CHAN0), 0.001f)
-        || MR::testPadButtonAnyWithoutHome(WPAD_CHAN0)
-        || MR::isCorePadSwing(WPAD_CHAN0)
-        || MR::isSubPadSwing(WPAD_CHAN0))
-    {
+    if (!MR::isNearZero(MR::getSubPadStickX(WPAD_CHAN0), 0.001f) || !MR::isNearZero(MR::getSubPadStickY(WPAD_CHAN0), 0.001f) || MR::testPadButtonAnyWithoutHome(WPAD_CHAN0) || MR::isCorePadSwing(WPAD_CHAN0) || MR::isSubPadSwing(WPAD_CHAN0)) {
         return true;
     }
 
-    if (isNerve(&NrvCounterLayoutController::CounterLayoutControllerNrvPlayerMoving::sInstance)
-        && !isHiddenOrWaitAllLayout())
-    {
+    if (isNerve(&NrvCounterLayoutController::CounterLayoutControllerNrvPlayerMoving::sInstance) && !isHiddenOrWaitAllLayout()) {
         return true;
     }
 
@@ -190,15 +177,13 @@ void CounterLayoutController::exePlayerMoving() {
 
     if (tryEndTicoEatStarPiece()) {
         setNerve(&NrvCounterLayoutController::CounterLayoutControllerNrvPlayerMoving::sInstance);
-    }
-    else if (!isPlayerMoving()) {
+    } else if (!isPlayerMoving()) {
         mPlayerNotMovingFrame++;
 
         if (mPlayerNotMovingFrame > cJudgeNotMovingFrame) {
             setNerve(&NrvCounterLayoutController::CounterLayoutControllerNrvPlayerNotMoving::sInstance);
         }
-    }
-    else {
+    } else {
         mPlayerNotMovingFrame = 0;
     }
 }
@@ -212,8 +197,7 @@ void CounterLayoutController::exePlayerNotMoving() {
 
     if (tryEndTicoEatStarPiece()) {
         setNerve(&NrvCounterLayoutController::CounterLayoutControllerNrvPlayerNotMoving::sInstance);
-    }
-    else if (isPlayerMoving() && isWaitToDisappearCounter(this)) {
+    } else if (isPlayerMoving() && isWaitToDisappearCounter(this)) {
         hideAllLayout();
         setNerve(&NrvCounterLayoutController::CounterLayoutControllerNrvPlayerMoving::sInstance);
     }

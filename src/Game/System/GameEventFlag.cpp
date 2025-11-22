@@ -1,7 +1,6 @@
 #include "Game/System/GameEventFlag.hpp"
 
-
-GameEventFlagAccessor::GameEventFlagAccessor(const GameEventFlag *flag) {
+GameEventFlagAccessor::GameEventFlagAccessor(const GameEventFlag* flag) {
     mFlag = flag;
 }
 

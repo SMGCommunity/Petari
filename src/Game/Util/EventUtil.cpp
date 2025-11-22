@@ -20,7 +20,7 @@ namespace {
     ScenePlayingResult* getScenePlayingResult() {
         return MR::getSceneObj<ScenePlayingResult>(SceneObj_ScenePlayingResult);
     }
-};
+}; // namespace
 
 namespace MR {
     s32 getPlayerLeft() {
@@ -73,8 +73,7 @@ namespace MR {
     void addStarPiece(int num) {
         if (MR::isStageAstroLocation()) {
             GameDataFunction::addStockedStarPiece(num);
-        }
-        else {
+        } else {
             getScenePlayingResult()->incStarPiece(num);
         }
     }
@@ -266,7 +265,7 @@ namespace MR {
     bool isUFOKinokoUnderConstruction() {
         return !GameDataFunction::isOnGameEventFlag("EventKinopioExplorerOrganize");
     }
-    
+
     bool isButlerMapAppear() {
         return GameDataFunction::hasGrandStar(2);
     }
@@ -382,10 +381,9 @@ namespace MR {
 
         if (GameSequenceFunction::hasStageResultSequence()) {
             openedAstroDomeNum = GameDataFunction::calcGrandStarNum(GameDataFunction::getSceneStartGameDataHolder());
-        }
-        else {
+        } else {
             openedAstroDomeNum = GameDataFunction::calcGrandStarNum(GameDataFunction::getCurrentGameDataHolder());
-        }            
+        }
 
         if (GameDataFunction::hasGrandStar(7)) {
             openedAstroDomeNum -= 1;
@@ -444,8 +442,8 @@ namespace MR {
 
     s32 registerStorageSpinDriverPathDrawRange(const NameObj* pParam1, const JMapInfoIter& rIter, int param3, f32* pParam4) {
         const char* pStageName = MR::getCurrentStageName();
-        int scenarioNo = MR::getCurrentScenarioNo();
-        int zoneId = MR::getPlacedZoneId(rIter);
+        int         scenarioNo = MR::getCurrentScenarioNo();
+        int         zoneId = MR::getPlacedZoneId(rIter);
 
         if (param3 <= 0) {
             return -1;
@@ -456,7 +454,7 @@ namespace MR {
 
     void updateStorageSpinDriverPathDrawRange(int param1, f32 param2) {
         const char* pStageName = MR::getCurrentStageName();
-        s32 scenarioNo = MR::getCurrentScenarioNo();
+        s32         scenarioNo = MR::getCurrentScenarioNo();
 
         GameDataFunction::updateStorageSpinDriverPathDrawRange(pStageName, scenarioNo, param1, param2);
     }
@@ -517,16 +515,16 @@ namespace MR {
 
     bool canAppearNormalComet(const char* pGalaxyName) {
         GalaxyStatusAccessor accessor = MR::makeGalaxyStatusAccessor(pGalaxyName);
-        bool isOnComet = GameDataFunction::isOnGameEventFlagNormalComet(pGalaxyName);
-        bool hasPowerStar = GameDataFunction::hasPowerStar(pGalaxyName, accessor.getNormalCometScenarioNo());
+        bool                 isOnComet = GameDataFunction::isOnGameEventFlagNormalComet(pGalaxyName);
+        bool                 hasPowerStar = GameDataFunction::hasPowerStar(pGalaxyName, accessor.getNormalCometScenarioNo());
 
         return isOnComet && !hasPowerStar;
     }
 
     bool canAppearCoin100Comet(const char* pGalaxyName) {
         GalaxyStatusAccessor accessor = MR::makeGalaxyStatusAccessor(pGalaxyName);
-        bool isOnComet = GameDataFunction::isOnGameEventFlagCoin100Comet(pGalaxyName);
-        bool hasPowerStar = GameDataFunction::hasPowerStar(pGalaxyName, accessor.getCoin100CometScenarioNo());
+        bool                 isOnComet = GameDataFunction::isOnGameEventFlagCoin100Comet(pGalaxyName);
+        bool                 hasPowerStar = GameDataFunction::hasPowerStar(pGalaxyName, accessor.getCoin100CometScenarioNo());
 
         return isOnComet && !hasPowerStar;
     }
@@ -583,8 +581,8 @@ namespace MR {
     bool isStarComplete(const char* pGalaxyName) {
         GalaxyStatusAccessor aAccessor = MR::makeGalaxyStatusAccessor(pGalaxyName);
         GalaxyStatusAccessor bAccessor = MR::makeGalaxyStatusAccessor(pGalaxyName);
-        s32 powerStarNumOwned = bAccessor.getPowerStarNumOwned();
-        s32 powerStarNum = aAccessor.getPowerStarNum();
+        s32                  powerStarNumOwned = bAccessor.getPowerStarNumOwned();
+        s32                  powerStarNum = aAccessor.getPowerStarNum();
 
         return powerStarNumOwned == powerStarNum;
     }
@@ -612,7 +610,7 @@ namespace MR {
 
     s32 getCoinBestScore(const char* pGalaxyName) {
         GalaxyStatusAccessor accessor = MR::makeGalaxyStatusAccessor(pGalaxyName);
-        s32 coinBestScore = 0;
+        s32                  coinBestScore = 0;
 
         for (s32 i = 1; i <= accessor.getPowerStarNum(); i++) {
             if (!MR::isPlacedCoin(pGalaxyName, i)) {
@@ -631,7 +629,7 @@ namespace MR {
 
     bool isPlacedCoin(const char* pGalaxyName, s32 scenarioNo) {
         GalaxyStatusAccessor accessor = MR::makeGalaxyStatusAccessor(pGalaxyName);
-        const char* pCometName = accessor.getCometName(scenarioNo);
+        const char*          pCometName = accessor.getCometName(scenarioNo);
 
         return pCometName == nullptr || !MR::isEqualString(pCometName, "Dark");
     }
@@ -661,9 +659,8 @@ namespace MR {
     }
 
     bool isOnLuigiHiding() {
-        s32 scenarioNo = MR::getCurrentSelectedScenarioNo();
-        bool v1 = scenarioNo != -1
-            && GameDataConst::isPowerStarLuigiHas(MR::getCurrentStageName(), scenarioNo);
+        s32  scenarioNo = MR::getCurrentSelectedScenarioNo();
+        bool v1 = scenarioNo != -1 && GameDataConst::isPowerStarLuigiHas(MR::getCurrentStageName(), scenarioNo);
 
         if (v1) {
             return true;
@@ -677,15 +674,14 @@ namespace MR {
             return false;
         }
 
-        s32 scenarioNo = MR::getCurrentSelectedScenarioNo();
-        bool v1 = scenarioNo != -1
-            && GameDataConst::isPowerStarLuigiHas(MR::getCurrentStageName(), scenarioNo);
+        s32  scenarioNo = MR::getCurrentSelectedScenarioNo();
+        bool v1 = scenarioNo != -1 && GameDataConst::isPowerStarLuigiHas(MR::getCurrentStageName(), scenarioNo);
 
         if (v1) {
             return true;
         }
 
-        s32 starId = 0;
+        s32         starId = 0;
         const char* pHidingGalaxyName = nullptr;
 
         GameSequenceFunction::getLuigiHidingGalaxyNameAndStarId(&pHidingGalaxyName, &starId);
@@ -698,8 +694,7 @@ namespace MR {
 
         if (isLuigiDisappearFromAstroGalaxy) {
             return MR::isOnLuigiHiding();
-        }
-        else {
+        } else {
             return isLuigiDisappearFromAstroGalaxy;
         }
     }
@@ -709,8 +704,7 @@ namespace MR {
 
         if (isLuigiDisappearFromAstroGalaxy) {
             return !MR::isOnLuigiHiding();
-        }
-        else {
+        } else {
             return isLuigiDisappearFromAstroGalaxy;
         }
     }
@@ -730,7 +724,7 @@ namespace MR {
 
     // FIXME: Improper stack accesses.
     const char* getLuigiLetterGalaxyNameForNPC() {
-        s32 starId;
+        s32         starId;
         const char* pGalaxyName;
 
         if (GameSequenceFunction::isLuigiDisappearFromAstroGalaxy() || MR::isOnLuigiHiding()) {
@@ -899,21 +893,17 @@ namespace MR {
 
     s32 getPowerStarLeftToDisplayCountDownPlate() {
         s32 powerStarNumTarget = MR::isOnGameEventFlagGalaxyOpen("ViewNormalEnding")
-            ? GameDataFunction::getPowerStarNumMax() - 1
-            : GameDataConst::getPowerStarNumToOpenGalaxy("KoopaBattleVs3Galaxy");
+                                     ? GameDataFunction::getPowerStarNumMax() - 1
+                                     : GameDataConst::getPowerStarNumToOpenGalaxy("KoopaBattleVs3Galaxy");
         s32 powerStarLeft = powerStarNumTarget - GameDataFunction::calcCurrentPowerStarNum();
 
         if (powerStarLeft < 0) {
             powerStarLeft = 0;
-        }
-        else if (powerStarLeft > powerStarNumTarget) {
+        } else if (powerStarLeft > powerStarNumTarget) {
             powerStarLeft = powerStarNumTarget;
         }
 
-        if (GameDataFunction::isEqualJustPowerStarNum(powerStarNumTarget)
-            || GameDataFunction::isOnJustGameEventFlag("SpecialStarGrand5")
-            && powerStarLeft == 0)
-        {
+        if (GameDataFunction::isEqualJustPowerStarNum(powerStarNumTarget) || GameDataFunction::isOnJustGameEventFlag("SpecialStarGrand5") && powerStarLeft == 0) {
             powerStarLeft += 1;
         }
 
@@ -945,8 +935,7 @@ namespace MR {
 
         GameEventFlagAccessor accessor = GameEventFlagTable::makeAccessor(key);
 
-        return MR::isOnGameEventFlagGalaxyOpen(accessor.getGalaxyName())
-            && !MR::isOnGameEventFlagGalaxyOpen(key);
+        return MR::isOnGameEventFlagGalaxyOpen(accessor.getGalaxyName()) && !MR::isOnGameEventFlagGalaxyOpen(key);
     }
 
     bool isGalaxyRedCometAppearInCurrentStage() {
@@ -991,4 +980,4 @@ namespace MR {
     void onMsgLedPattern() {
         GameDataFunction::setGameEventValue("MsgLedPattern", 1);
     }
-};
+}; // namespace MR

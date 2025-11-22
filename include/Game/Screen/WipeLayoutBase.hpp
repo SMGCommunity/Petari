@@ -4,9 +4,8 @@
 
 class WipeLayoutBase : public LayoutActor {
 public:
-    WipeLayoutBase(const char* pName) :
-        LayoutActor(pName, true)
-    {}
+    WipeLayoutBase(const char* pName)
+        : LayoutActor(pName, true) {}
 
     virtual void wipe(s32) = 0;
     virtual void forceClose() = 0;

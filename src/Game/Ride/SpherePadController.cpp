@@ -7,8 +7,7 @@
 #include "JSystem/JGeometry/TUtil.hpp"
 #include "revolution/wpad.h"
 
-
-template<>
+template <>
 void TRot3f::setRotate(const TVec3f& v1, const TVec3f& v2) {
     // warning, does not match because of the quaternion rotation inline
     // though logic is correct.
@@ -17,10 +16,8 @@ void TRot3f::setRotate(const TVec3f& v1, const TVec3f& v2) {
     this->setRotateQuaternionInline(q);
 }
 
-SpherePadController::SpherePadController() :
-    SphereController()
-{
-
+SpherePadController::SpherePadController()
+    : SphereController() {
 }
 
 f32 SpherePadController::calcMoveVector(TVec3f* v1, const TVec3f& v2) {
@@ -35,7 +32,6 @@ f32 SpherePadController::calcJumpPower() const {
 }
 
 void SpherePadController::update(const TVec3f&) {
-
 }
 
 void SpherePadController::clacXY(f32* x, f32* y) {
@@ -78,16 +74,14 @@ f32 SpherePadController::calcDirSphereMove(TVec3f* v1, const TVec3f& v2, u32 u1)
             rotMtx.mult33(dirX);
             rotMtx.mult33(dirY);
             v1->set(-dirX * x - dirY * y);
-        }
-        else {
+        } else {
             rotMtx.setRotate(dirY, -v2);
             rotMtx.mult33(dirX);
             rotMtx.mult33(dirZ);
             v1->set(dirX * x - dirZ * y);
         }
         MR::separateScalarAndDirection(&mag, v1, *v1);
-    }
-    else {
+    } else {
         v1->z = 0.0f;
         v1->y = 0.0f;
         v1->x = 0.0f;
@@ -96,6 +90,6 @@ f32 SpherePadController::calcDirSphereMove(TVec3f* v1, const TVec3f& v2, u32 u1)
     if (mag > 1.0f) {
         mag = 1.0f;
     }
-    
+
     return mag;
 }

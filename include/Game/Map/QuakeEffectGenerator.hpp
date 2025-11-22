@@ -7,7 +7,7 @@ public:
     QuakeEffectGenerator();
 
     virtual ~QuakeEffectGenerator();
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
 
     void exeWaitInArea();
     void exeQuaking();

@@ -16,15 +16,13 @@ namespace {
     NEW_NERVE(GamePauseSequenceActivePauseMenu, GamePauseSequence, ActivePauseMenu);
     NEW_NERVE(GamePauseSequenceActivePowerStarList, GamePauseSequence, ActivePowerStarList);
     NEW_NERVE(GamePauseSequenceSceneInformation, GamePauseSequence, SceneInformation);
-};
+}; // namespace
 
-GamePauseSequence::GamePauseSequence() :
-    LayoutActor("ポーズ画面管理", true),
-    mMenuType(ActivePause),
-    mPauseMenu(nullptr),
-    mWindowMenuFunc(nullptr)
-{
-    
+GamePauseSequence::GamePauseSequence()
+    : LayoutActor("ポーズ画面管理", true),
+      mMenuType(ActivePause),
+      mPauseMenu(nullptr),
+      mWindowMenuFunc(nullptr) {
 }
 
 void GamePauseSequence::init(const JMapInfoIter& rIter) {
@@ -36,7 +34,7 @@ void GamePauseSequence::init(const JMapInfoIter& rIter) {
     initNerve(&GamePauseSequenceDeactive::sInstance);
 }
 
-void GamePauseSequence::initWindowMenu(const MR::FunctorBase &rFunc) {
+void GamePauseSequence::initWindowMenu(const MR::FunctorBase& rFunc) {
     mWindowMenuFunc = rFunc.clone(nullptr);
 }
 
@@ -68,7 +66,6 @@ void GamePauseSequence::deactivate() {
 }
 
 void GamePauseSequence::exeDeactive() {
-    
 }
 
 void GamePauseSequence::exeActivePauseMenu() {
@@ -79,7 +76,6 @@ void GamePauseSequence::exeActivePauseMenu() {
 
 void GamePauseSequence::exeActivePowerStarList() {
     if (MR::isFirstStep(this)) {
-        
     }
 
     if (!MR::isActiveGalaxyMapLayout()) {
@@ -88,5 +84,4 @@ void GamePauseSequence::exeActivePowerStarList() {
 }
 
 void GamePauseSequence::exeSceneInformation() {
-    
 }

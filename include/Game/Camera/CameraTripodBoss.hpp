@@ -4,13 +4,13 @@
 
 class CameraTripodBoss : public CameraTower {
 public:
-    CameraTripodBoss(const char *);
+    CameraTripodBoss(const char*);
     virtual ~CameraTripodBoss();
 
-    virtual CameraTargetObj *calc();
-    virtual CamTranslatorBase *createTranslator();
+    virtual CameraTargetObj*   calc();
+    virtual CamTranslatorBase* createTranslator();
 
     void arrangeRound();
 
-    f32 upZ;    // 0x8C
+    f32 upZ; // 0x8C
 };

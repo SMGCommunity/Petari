@@ -4,13 +4,13 @@
 
 class SurprisedGalaxy : public LiveActor {
 public:
-    SurprisedGalaxy(const char *);
+    SurprisedGalaxy(const char*);
 
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
     virtual void appear();
     virtual void kill();
-    virtual void attackSensor(HitSensor *pSender, HitSensor *pReceiver);
-    virtual bool receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver);
+    virtual void attackSensor(HitSensor* pSender, HitSensor* pReceiver);
+    virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
 
     void exeExit();
 
@@ -20,4 +20,4 @@ public:
 namespace NrvSurprisedGalaxy {
     NERVE(SurprisedGalaxyNrvExit);
     NERVE(SurprisedGalaxyNrvWait);
-};
+}; // namespace NrvSurprisedGalaxy

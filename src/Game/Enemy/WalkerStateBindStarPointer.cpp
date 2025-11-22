@@ -5,13 +5,12 @@ namespace NrvWalkerStateBindStarPointer {
     NEW_NERVE(WalkerStateBindStarPointerNrvBind, WalkerStateBindStarPointer, Bind);
 };
 
-WalkerStateBindStarPointer::WalkerStateBindStarPointer(LiveActor *pActor, AnimScaleController *pController) :
-    ActorStateBase("歩行型スターポインタ拘束"),
-    mHostActor(pActor),
-    mScaleController(pController),
-    mUpdateCounter(0),
-    mHasEffect(false)
-{
+WalkerStateBindStarPointer::WalkerStateBindStarPointer(LiveActor* pActor, AnimScaleController* pController)
+    : ActorStateBase("歩行型スターポインタ拘束"),
+      mHostActor(pActor),
+      mScaleController(pController),
+      mUpdateCounter(0),
+      mHasEffect(false) {
     initNerve(&NrvWalkerStateBindStarPointer::WalkerStateBindStarPointerNrvBind::sInstance);
 
     if (!MR::isRegisteredEffect(pActor, "Touch")) {
@@ -61,8 +60,7 @@ void WalkerStateBindStarPointer::exeBind() {
     MR::zeroVelocity(mHostActor);
     if (MR::isStarPointerPointing2POnPressButton(mHostActor, "弱", true, false)) {
         mUpdateCounter = 0;
-    }
-    else {
+    } else {
         mUpdateCounter++;
     }
 
@@ -72,5 +70,4 @@ void WalkerStateBindStarPointer::exeBind() {
 }
 
 WalkerStateBindStarPointer::~WalkerStateBindStarPointer() {
-
 }

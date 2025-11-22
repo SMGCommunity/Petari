@@ -1,11 +1,12 @@
 #include "Game/MapObj/PressureBase.hpp"
 
-PressureMessenger::PressureMessenger(MsgSharedGroup *pGroup, const char *pName) : LiveActor(pName) {
+PressureMessenger::PressureMessenger(MsgSharedGroup* pGroup, const char* pName)
+    : LiveActor(pName) {
     mSharedGroup = pGroup;
     _90 = 0;
 }
 
-void PressureMessenger::init(const JMapInfoIter &rIter) {
+void PressureMessenger::init(const JMapInfoIter& rIter) {
     MR::connectToSceneMapObjMovement(this);
     initHitSensor(1);
     MR::addBodyMessageSensorMapObj(this);
@@ -21,7 +22,8 @@ void PressureMessenger::exeSync() {
     }
 }
 
-PressureBase::PressureBase(const char *pName) : LiveActor(pName) {
+PressureBase::PressureBase(const char* pName)
+    : LiveActor(pName) {
     mJointController = nullptr;
     mFront.x = 0.0f;
     mFront.y = 0.0f;
@@ -37,7 +39,7 @@ PressureBase::PressureBase(const char *pName) : LiveActor(pName) {
     _BC = 0;
 }
 
-void PressureBase::init(const JMapInfoIter &rIter) {
+void PressureBase::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     const char* objName;
     MR::getObjectName(&objName, rIter);
@@ -60,7 +62,7 @@ void PressureBase::init(const JMapInfoIter &rIter) {
     //_B0 = ((frame ^ mWaitTime >> 1) - (frame ^ mWaitTime) < 0;
     initBullet(rIter);
     MR::getJMapInfoArg2NoInit(rIter, &mBallSpeed);
-    MR::getJMapInfoArg3NoInit(rIter, &mShotType); 
+    MR::getJMapInfoArg3NoInit(rIter, &mShotType);
     MR::calcGravity(this);
     MR::setGroupClipping(this, rIter, 32);
     mGroup = MR::joinToGroupArray(this, rIter, "プレッシャー軍団", 0x20);
@@ -72,27 +74,24 @@ void PressureBase::init(const JMapInfoIter &rIter) {
             mMessenger = new PressureMessenger(mGroup, "プレッシャー同期メッセンジャー");
             mMessenger->initWithoutIter();
         }
-
     }
 
     MR::tryRegisterDemoCast(this, rIter);
     MR::useStageSwitchSleep(this, rIter);
-    
+
     if (MR::useStageSwitchReadA(this, rIter)) {
         void (PressureBase::*relaxFunc)(void) = &PressureBase::startRelax;
         void (PressureBase::*waitFunc)(void) = &PressureBase::startWait;
         MR::listenStageSwitchOnOffA(this, MR::Functor(this, relaxFunc), MR::Functor(this, waitFunc));
         initNerve(&NrvPressureBase::PressureBaseNrvRelax::sInstance);
-    }
-    else {
+    } else {
         initNerve(&NrvPressureBase::PressureBaseNrvFirstWait::sInstance);
     }
 
     if (MR::useStageSwitchReadAppear(this, rIter)) {
         MR::syncStageSwitchAppear(this);
         makeActorDead();
-    }
-    else {
+    } else {
         makeActorAppeared();
     }
 }
@@ -131,8 +130,7 @@ void PressureBase::exeBound() {
     if (MR::isFirstStep(this)) {
         if (isNerve(&NrvPressureBase::PressureBaseNrvRelaxStart::sInstance)) {
             MR::startBck(this, "SwitchOff", nullptr);
-        }
-        else {
+        } else {
             MR::startBck(this, "SwitchOn", nullptr);
         }
     }
@@ -143,16 +141,14 @@ void PressureBase::exeBound() {
 
     if (isNerve(&NrvPressureBase::PressureBaseNrvRelaxStart::sInstance)) {
         _9C = mNozzleRotation + scale;
-    }
-    else {
+    } else {
         _9C = -45.0f - scale;
     }
 
     if (MR::isStep(this, 0x14)) {
         if (isNerve(&NrvPressureBase::PressureBaseNrvRelaxStart::sInstance)) {
             setNerve(&NrvPressureBase::PressureBaseNrvRelax::sInstance);
-        }
-        else {
+        } else {
             setNerve(&NrvPressureBase::PressureBaseNrvWait::sInstance);
         }
     }
@@ -161,8 +157,7 @@ void PressureBase::exeBound() {
 void PressureBase::exeWait() {
     if (mWaitTime == MR::getBckFrameMax(this, "ShotStart") + getNerveStep()) {
         setNerve(&NrvPressureBase::PressureBaseNrvPrepareToShot::sInstance);
-    }
-    else if (MR::isStep(this, mWaitTime)) {
+    } else if (MR::isStep(this, mWaitTime)) {
         setNerve(&NrvPressureBase::PressureBaseNrvShot::sInstance);
     }
 }
@@ -181,8 +176,7 @@ void PressureBase::exeShot() {
     if (MR::isFirstStep(this)) {
         if (_B0) {
             MR::startBck(this, "ShortShot", nullptr);
-        }
-        else {
+        } else {
             MR::startBck(this, "Shot", nullptr);
         }
     }
@@ -191,8 +185,7 @@ void PressureBase::exeShot() {
         if (MR::isStep(this, 0x36)) {
             shotBullet(mBallSpeed);
         }
-    }
-    else {
+    } else {
         if (MR::isStep(this, 0x10)) {
             shotBullet(mBallSpeed);
         }
@@ -201,27 +194,25 @@ void PressureBase::exeShot() {
     if (MR::isBckStopped(this)) {
         if (mGroup != nullptr) {
             setNerve(&NrvPressureBase::PressureBaseNrvSyncWait::sInstance);
-        }
-        else {
+        } else {
             setNerve(&NrvPressureBase::PressureBaseNrvWait::sInstance);
         }
     }
 }
 
-void PressureBase::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
+void PressureBase::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isSensorPlayer(pReceiver) || MR::isSensorEnemy(pReceiver)) {
         MR::sendMsgPush(pReceiver, pSender);
     }
 }
 
-bool PressureBase::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool PressureBase::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     return MR::isMsgStarPieceReflect(msg);
 }
 
-bool PressureBase::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool PressureBase::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (msg == ACTMES_GROUP_MOVE_START) {
-        bool v5 = isNerve(&NrvPressureBase::PressureBaseNrvRelaxStart::sInstance)
-            || isNerve(&NrvPressureBase::PressureBaseNrvRelax::sInstance);
+        bool v5 = isNerve(&NrvPressureBase::PressureBaseNrvRelaxStart::sInstance) || isNerve(&NrvPressureBase::PressureBaseNrvRelax::sInstance);
 
         if (v5) {
             return false;
@@ -242,8 +233,7 @@ void PressureBase::startWait() {
 }
 
 void PressureBase::startRelax() {
-    bool isRelax = isNerve(&NrvPressureBase::PressureBaseNrvRelaxStart::sInstance)
-        || isNerve(&NrvPressureBase::PressureBaseNrvRelax::sInstance);
+    bool isRelax = isNerve(&NrvPressureBase::PressureBaseNrvRelaxStart::sInstance) || isNerve(&NrvPressureBase::PressureBaseNrvRelax::sInstance);
 
     if (!isRelax) {
         MR::startSound(this, "SE_OJ_W_PRESS_HEAD_OFF", -1, -1);
@@ -251,8 +241,7 @@ void PressureBase::startRelax() {
     }
 }
 
-void PressureBase::initBullet(const JMapInfoIter &) {
-
+void PressureBase::initBullet(const JMapInfoIter&) {
 }
 
 bool PressureBase::shotBullet(f32) {
@@ -283,22 +272,22 @@ namespace NrvPressureBase {
     INIT_NERVE(PressureBaseNrvPrepareToShot);
     INIT_NERVE(PressureBaseNrvShot);
 
-    void PressureBaseNrvShot::execute(Spine *pSpine) const {
+    void PressureBaseNrvShot::execute(Spine* pSpine) const {
         PressureBase* pressure = reinterpret_cast<PressureBase*>(pSpine->mExecutor);
         pressure->exeShot();
     }
 
-    void PressureBaseNrvPrepareToShot::execute(Spine *pSpine) const {
+    void PressureBaseNrvPrepareToShot::execute(Spine* pSpine) const {
         PressureBase* pressure = reinterpret_cast<PressureBase*>(pSpine->mExecutor);
         pressure->exePrepareToShot();
     }
 
-    void PressureBaseNrvWait::execute(Spine *pSpine) const {
+    void PressureBaseNrvWait::execute(Spine* pSpine) const {
         PressureBase* pressure = reinterpret_cast<PressureBase*>(pSpine->mExecutor);
         pressure->exeWait();
     }
 
-    void PressureBaseNrvFirstWait::execute(Spine *pSpine) const {
+    void PressureBaseNrvFirstWait::execute(Spine* pSpine) const {
         PressureBase* pressure = reinterpret_cast<PressureBase*>(pSpine->mExecutor);
 
         if (MR::isStep(pressure, pressure->mWaitTime)) {
@@ -306,11 +295,10 @@ namespace NrvPressureBase {
         }
     }
 
-    void PressureBaseNrvSyncWait::execute(Spine *pSpine) const {
-
+    void PressureBaseNrvSyncWait::execute(Spine* pSpine) const {
     }
 
-    void PressureBaseNrvRelax::execute(Spine *pSpine) const {
+    void PressureBaseNrvRelax::execute(Spine* pSpine) const {
         PressureBase* pressure = reinterpret_cast<PressureBase*>(pSpine->mExecutor);
 
         if (MR::isFirstStep(pressure)) {
@@ -318,24 +306,23 @@ namespace NrvPressureBase {
         }
     }
 
-    void PressureBaseNrvWaitStart::execute(Spine *pSpine) const {
+    void PressureBaseNrvWaitStart::execute(Spine* pSpine) const {
         PressureBase* pressure = reinterpret_cast<PressureBase*>(pSpine->mExecutor);
         pressure->exeBound();
     }
 
-    void PressureBaseNrvRelaxStart::execute(Spine *pSpine) const {
+    void PressureBaseNrvRelaxStart::execute(Spine* pSpine) const {
         PressureBase* pressure = reinterpret_cast<PressureBase*>(pSpine->mExecutor);
         pressure->exeBound();
     }
-};
+}; // namespace NrvPressureBase
 
 namespace NrvPressureMessenger {
-    void PressureMessengerNrvSync::execute(Spine *pSpine) const {
+    void PressureMessengerNrvSync::execute(Spine* pSpine) const {
         PressureMessenger* mess = reinterpret_cast<PressureMessenger*>(pSpine->mExecutor);
         mess->exeSync();
     }
-};
+}; // namespace NrvPressureMessenger
 
 PressureMessenger::~PressureMessenger() {
-
 }

@@ -4,14 +4,14 @@
 
 class CameraTalk : public Camera {
 public:
-    CameraTalk(const char *);
+    CameraTalk(const char*);
     virtual ~CameraTalk();
 
-    virtual void reset();
-    virtual CameraTargetObj *calc();
-    virtual CamTranslatorBase *createTranslator();
+    virtual void               reset();
+    virtual CameraTargetObj*   calc();
+    virtual CamTranslatorBase* createTranslator();
 
-    void setParam(const TVec3f &, const TVec3f &, f32, f32);
+    void setParam(const TVec3f&, const TVec3f&, f32, f32);
 
     f32 _4C;
     f32 _50;
@@ -21,6 +21,6 @@ public:
     f32 _60;
     f32 _64;
     f32 _68;
-    u8 _6C;
-    u8 _6D[3];
+    u8  _6C;
+    u8  _6D[3];
 };

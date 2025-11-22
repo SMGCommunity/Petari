@@ -11,12 +11,12 @@ NWC24SendThread::NWC24SendThread(s32 priority, JKRHeap* pHeap) {
         pHeap = MR::getCurrentHeap();
     }
 
-    mMessage = new(pHeap, 0) OSMessage[mMessageMax];
+    mMessage = new (pHeap, 0) OSMessage[mMessageMax];
 
     initMsgSendStatus();
     OSInitMessageQueue(&mMessageQueue, &mMessage, mMessageMax);
 
-    u8* pStackBase = new(pHeap, 0) u8[STACK_SIZE];
+    u8* pStackBase = new (pHeap, 0) u8[STACK_SIZE];
 
     OSCreateThread(
         this,
@@ -32,14 +32,13 @@ NWC24SendThread::NWC24SendThread(s32 priority, JKRHeap* pHeap) {
 bool NWC24SendThread::requestSend(
     const u16* pText,
     const u16* pAltName,
-    const u8* pLetter,
-    u32 letterSize,
-    const u8* pPicture,
-    u32 pictureSize,
-    u16 tag,
-    bool isMsgLedPattern,
-    u8 delayHours)
-{
+    const u8*  pLetter,
+    u32        letterSize,
+    const u8*  pPicture,
+    u32        pictureSize,
+    u16        tag,
+    bool       isMsgLedPattern,
+    u8         delayHours) {
     BOOL status = OSDisableInterrupts();
 
     if (mMessageQueue.usedCount >= mMessageQueue.msgCount) {
@@ -77,8 +76,7 @@ bool NWC24SendThread::isDone(NWC24Err* pErr, u32* pSize) {
         OSRestoreInterrupts(status);
 
         return true;
-    }
-    else {
+    } else {
         *pErr = NWC24_OK;
 
         OSRestoreInterrupts(status);
@@ -201,15 +199,13 @@ bool NWC24SendThread::checkTotalSize(MsgSendStatus* pMsgSendStatus) {
 
     if (pMsgSendStatus->mLetter == nullptr) {
         letterSize = 0;
-    }
-    else {
+    } else {
         letterSize = pMsgSendStatus->mLetterSize;
     }
 
     if (pMsgSendStatus->mPicture == nullptr) {
         pictureSize = 0;
-    }
-    else {
+    } else {
         pictureSize = pMsgSendStatus->mPictureSize;
     }
 

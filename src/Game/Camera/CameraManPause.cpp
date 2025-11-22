@@ -2,11 +2,12 @@
 #include "Game/Camera/CameraManPause.hpp"
 #include "Game/Camera/CameraTargetObj.hpp"
 
-TMtx34f *CameraTargetObj::getMapBaseMtx() const {
+TMtx34f* CameraTargetObj::getMapBaseMtx() const {
     return nullptr;
 }
 
-CameraManPause::CameraManPause(const char *pName) : CameraMan(pName) {
+CameraManPause::CameraManPause(const char* pName)
+    : CameraMan(pName) {
     _48 = 6000.0f;
     _4C = 0.0f;
     _50 = 0.0f;
@@ -19,12 +20,9 @@ CameraManPause::CameraManPause(const char *pName) : CameraMan(pName) {
 }
 
 CameraManPause::~CameraManPause() {
-
 }
 
-    
-void CameraManPause::init(const JMapInfoIter &rIter) {
-
+void CameraManPause::init(const JMapInfoIter& rIter) {
 }
 
 /*void CameraManPause::calc() {
@@ -46,7 +44,6 @@ void CameraManPause::init(const JMapInfoIter &rIter) {
 }*/
 
 void CameraManPause::notifyDeactivate() {
-
 }
 
 bool CameraManPause::isCollisionOff() const {

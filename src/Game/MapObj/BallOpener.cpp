@@ -3,10 +3,10 @@
 #include "Game/Util/GeometryBindUtil.hpp"
 
 BallOpener::~BallOpener() {
-    
 }
 
-BallOpener::BallOpener(const char *pName) : LiveActor(pName) {
+BallOpener::BallOpener(const char* pName)
+    : LiveActor(pName) {
     mSensor = nullptr;
     _A0.set(0, 0, 0);
     _AC.set(0, 0, 0);
@@ -15,7 +15,7 @@ BallOpener::BallOpener(const char *pName) : LiveActor(pName) {
     _8C = new BindCone(mPosition, TVec3f(0.0f, 1.0f, 0.0f), 400.0f, 200.0f);
 }
 
-void BallOpener::init(const JMapInfoIter &rIter) {
+void BallOpener::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     initModelManagerWithAnm("BallOpener", nullptr, false);
     MR::connectToSceneMapObj(this);
@@ -37,7 +37,6 @@ void BallOpener::initAfterPlacement() {
 }
 
 void BallOpener::control() {
-
 }
 
 // BallOpener::receiveOtherMsg
@@ -63,9 +62,8 @@ void BallOpener::exeSetCenter() {
 
     if (_B8.squared() < 0.000099999997f) {
         _C4++;
-    }
-    else { 
-        _C4 = 0; 
+    } else {
+        _C4 = 0;
     }
 
     if (_C4 == 1) {
@@ -104,4 +102,4 @@ namespace NrvBallOpener {
     INIT_NERVE(BallOpenerNrvWait);
     INIT_NERVE(BallOpenerNrvSetCenter);
     INIT_NERVE(BallOpenerNrvOpen);
-};
+}; // namespace NrvBallOpener

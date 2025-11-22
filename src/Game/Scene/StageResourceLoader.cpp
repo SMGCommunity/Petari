@@ -8,4 +8,4 @@ namespace MR {
     bool isLoadStageScenarioResource() {
         return true;
     }
-};
+}; // namespace MR

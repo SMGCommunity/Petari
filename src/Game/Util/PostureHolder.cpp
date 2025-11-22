@@ -1,11 +1,10 @@
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/Util/PostureHolder.hpp"
 
-PostureHolder::PostureHolder(const LiveActor* pActor) :
-    mScale(pActor->mScale),
-    mRotation(pActor->mRotation),
-    mPosition(pActor->mPosition)
-{}
+PostureHolder::PostureHolder(const LiveActor* pActor)
+    : mScale(pActor->mScale),
+      mRotation(pActor->mRotation),
+      mPosition(pActor->mPosition) {}
 
 void PostureHolder::store(const LiveActor* pActor) {
     mScale.set(pActor->mScale);

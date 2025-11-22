@@ -7,5 +7,4 @@ J3DDrawMtxData::J3DDrawMtxData() {
 }
 
 J3DDrawMtxData::~J3DDrawMtxData() {
-    
 }

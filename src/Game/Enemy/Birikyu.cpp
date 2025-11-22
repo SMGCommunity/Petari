@@ -9,24 +9,22 @@ namespace NrvBirikyu {
     NEW_NERVE(HostTypeAttackWait, Birikyu, AttackWait);
     NEW_NERVE(HostTypeWaitAtEdge, Birikyu, WaitAtEdge);
     NEW_NERVE(HostTypeStopPointing, Birikyu, StopPointing);
-};
+}; // namespace NrvBirikyu
 
-Birikyu::Birikyu(const char *pName) :
-    LiveActor(pName),
-    _8C(nullptr),
-    _90(gZeroVec),
-    _9C(gZeroVec),
-    _A8(false),
-    _A9(false),
-    _AC(0.0f, 1.0f, 0.0f),
-    _B8(0.0f, 0.0f, 1.0f),
-    _C4(0.0f),
-    _C8(10.0f)
-{
-    
+Birikyu::Birikyu(const char* pName)
+    : LiveActor(pName),
+      _8C(nullptr),
+      _90(gZeroVec),
+      _9C(gZeroVec),
+      _A8(false),
+      _A9(false),
+      _AC(0.0f, 1.0f, 0.0f),
+      _B8(0.0f, 0.0f, 1.0f),
+      _C4(0.0f),
+      _C8(10.0f) {
 }
 
-void Birikyu::init(const JMapInfoIter &rIter) {
+void Birikyu::init(const JMapInfoIter& rIter) {
     MR::getObjectName(&_8C, rIter);
     initModelManagerWithAnm(_8C, nullptr, false);
     MR::connectToSceneEnemy(this);
@@ -47,8 +45,7 @@ void Birikyu::init(const JMapInfoIter &rIter) {
 
     if (_A9) {
         initNerve(&NrvBirikyu::HostTypeMove::sInstance);
-    }
-    else {
+    } else {
         initNerve(&NrvBirikyu::HostTypeMoveCircle::sInstance);
     }
 
@@ -58,8 +55,7 @@ void Birikyu::init(const JMapInfoIter &rIter) {
 void Birikyu::initAfterPlacement() {
     if (_A9) {
         MR::moveCoordAndTransToNearestRailPos(this);
-    }
-    else {
+    } else {
         _9C.set<f32>(mPosition);
         TPos3f matrix;
         matrix.identity();
@@ -68,7 +64,7 @@ void Birikyu::initAfterPlacement() {
         f32 y1 = matrix.mMtx[1][1];
         f32 x1 = matrix.mMtx[0][1];
         _AC.set(x1, y1, z1);
-        MR::normalize(&_AC);        
+        MR::normalize(&_AC);
         f32 z2 = matrix.mMtx[2][2];
         f32 y2 = matrix.mMtx[1][2];
         f32 x2 = matrix.mMtx[0][2];
@@ -76,7 +72,7 @@ void Birikyu::initAfterPlacement() {
         MR::normalize(&_B8);
         TVec3f add(_9C * 400.0f);
         TVec3f vec(_9C + add);
-        mPosition.set<f32>(vec);        
+        mPosition.set<f32>(vec);
     }
 }
 
@@ -89,30 +85,28 @@ f32 Birikyu::getHitRadius() const {
     return 120.0f;
 }
 
-char *Birikyu::getCenterJointName() const {
+char* Birikyu::getCenterJointName() const {
     return "Root";
 }
 
-void Birikyu::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
+void Birikyu::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isSensorPlayerOrRide(pReceiver) || MR::isSensorEnemy(pReceiver)) {
         if (MR::sendMsgEnemyAttackElectric(pReceiver, pSender)) {
             MR::sendMsgToGroupMember(ACTMES_GROUP_MOVE_STOP, this, getSensor("body"), "body");
             setNerve(&NrvBirikyu::HostTypeAttack::sInstance);
-        }
-        else {
+        } else {
             MR::sendMsgPush(pReceiver, pSender);
         }
     }
 }
 
-bool Birikyu::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool Birikyu::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     return MR::isMsgStarPieceReflect(msg);
 }
 
-bool Birikyu::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool Birikyu::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (msg == ACTMES_GROUP_MOVE_STOP) {
-        bool bool4 = isNerve(&NrvBirikyu::HostTypeMove::sInstance)
-            || isNerve(&NrvBirikyu::HostTypeMoveCircle::sInstance);
+        bool bool4 = isNerve(&NrvBirikyu::HostTypeMove::sInstance) || isNerve(&NrvBirikyu::HostTypeMoveCircle::sInstance);
 
         if (bool4) {
             setNerve(&NrvBirikyu::HostTypeAttackWait::sInstance);
@@ -122,15 +116,14 @@ bool Birikyu::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver)
     }
 
     if (msg == ACTMES_GROUP_MOVE_START) {
-        bool bool5 = isNerve(&NrvBirikyu::HostTypeMove::sInstance)
-            || isNerve(&NrvBirikyu::HostTypeMoveCircle::sInstance);
+        bool bool5 = isNerve(&NrvBirikyu::HostTypeMove::sInstance) || isNerve(&NrvBirikyu::HostTypeMoveCircle::sInstance);
 
         if (!bool5) {
             goMove();
 
             return true;
         }
-    }    
+    }
 
     return false;
 }
@@ -145,14 +138,14 @@ void Birikyu::endClipped() {
     MR::emitEffect(this, _8C);
 }
 
-void Birikyu::initFromJmpArgs(const JMapInfoIter &rIter) {
+void Birikyu::initFromJmpArgs(const JMapInfoIter& rIter) {
     MR::getJMapInfoArg0NoInit(rIter, &_C8);
     s32 num = -1;
     MR::getJMapInfoArg2NoInit(rIter, &num);
     _A8 = num == true;
 }
 
-void Birikyu::initRail(const JMapInfoIter &rIter) {
+void Birikyu::initRail(const JMapInfoIter& rIter) {
     bool result = MR::isConnectedWithRail(rIter);
     _A9 = result;
     if (_A9) {
@@ -191,8 +184,7 @@ bool Birikyu::tryStopPointing() {
 void Birikyu::goMove() {
     if (_A9) {
         setNerve(&NrvBirikyu::HostTypeMove::sInstance);
-    }
-    else {
+    } else {
         setNerve(&NrvBirikyu::HostTypeMoveCircle::sInstance);
     }
 }
@@ -208,9 +200,8 @@ void Birikyu::exeMove() {
 
             if (arg > 0) {
                 setNerve(&NrvBirikyu::HostTypeWaitAtEdge::sInstance);
-            }
-            else {
-                MR::emitEffect(this, "Clash");                
+            } else {
+                MR::emitEffect(this, "Clash");
             }
         }
 
@@ -253,7 +244,7 @@ void Birikyu::exeAttack() {
         mVelocity.x = 0.0f;
         MR::emitEffect(this, "Hit");
     }
-    
+
     MR::startLevelSound(this, "SE_OJ_LV_BIRIKYU_MOVE", -1, -1, -1);
 
     if (MR::isStep(this, 90)) {
@@ -263,7 +254,6 @@ void Birikyu::exeAttack() {
 }
 
 void Birikyu::exeAttackWait() {
-    
 }
 
 void Birikyu::exeStopPointing() {
@@ -275,7 +265,7 @@ void Birikyu::exeStopPointing() {
     }
 
     MR::startDPDFreezeLevelSound(this);
-    
+
     if (!MR::isStarPointerPointing2POnPressButton(this, "Hit", true, false)) {
         if (MR::isRegisteredEffect(this, "Touch")) {
             MR::deleteEffect(this, "Touch");
@@ -286,11 +276,12 @@ void Birikyu::exeStopPointing() {
     }
 }
 
-BirikyuWithFace::BirikyuWithFace(const char *pName) : Birikyu(pName) {
+BirikyuWithFace::BirikyuWithFace(const char* pName)
+    : Birikyu(pName) {
     _CC = false;
 }
 
-void BirikyuWithFace::init(const JMapInfoIter &rIter) {
+void BirikyuWithFace::init(const JMapInfoIter& rIter) {
     Birikyu::init(rIter);
     s32 num = -1;
     MR::getJMapInfoArg1NoInit(rIter, &num);
@@ -298,7 +289,7 @@ void BirikyuWithFace::init(const JMapInfoIter &rIter) {
 }
 
 void BirikyuWithFace::calcAndSetBaseMtx() {
-    TPos3f vec3;    
+    TPos3f vec3;
     vec3.identity();
     if (_A9) {
         TVec3f vec(MR::getRailDirection(this));
@@ -311,12 +302,10 @@ void BirikyuWithFace::calcAndSetBaseMtx() {
         TVec3f vec2(_AC);
         if (MR::isSameDirection(vec2, vec, 0.0099999998f)) {
             MR::makeMtxSideFront(&vec3, vec, _B8);
-        }
-        else {
+        } else {
             MR::makeMtxSideUp(&vec3, vec, vec2);
         }
-    }
-    else {
+    } else {
         vec3.makeRotate(_AC, _C4);
     }
     vec3.mMtx[0][3] = mPosition.x;
@@ -329,6 +318,6 @@ f32 BirikyuWithFace::getHitRadius() const {
     return 50.0f;
 }
 
-char *BirikyuWithFace::getCenterJointName() const {
+char* BirikyuWithFace::getCenterJointName() const {
     return "Center";
 }

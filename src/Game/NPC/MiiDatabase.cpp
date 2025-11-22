@@ -7,5 +7,4 @@ MiiDatabase::~MiiDatabase() {
 }
 
 JKRFileFinder::~JKRFileFinder() {
-    
 }

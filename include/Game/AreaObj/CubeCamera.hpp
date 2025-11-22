@@ -11,20 +11,19 @@ public:
         CATEGORY_UNKNOWN_3 = 3,
         CATEGORY_UNKNOWN_4 = 4
     };
-    
-    CubeCameraArea(int, const char *);
+
+    CubeCameraArea(int, const char*);
 
     virtual ~CubeCameraArea() {
-
     }
 
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
     virtual void movement();
-    virtual bool isInVolume(const TVec3f &) const;
-    virtual s32 getCategoryArg() const;
+    virtual bool isInVolume(const TVec3f&) const;
+    virtual s32  getCategoryArg() const;
 
     bool isValidCameraID() const;
-    u16 getCameraID() const;
+    u16  getCameraID() const;
 
     static void setCurrentCategory(s32);
 
@@ -36,7 +35,7 @@ public:
 
 class CubeCameraMgr : public AreaObjMgr {
 public:
-    CubeCameraMgr(s32, const char *);
+    CubeCameraMgr(s32, const char*);
 
     virtual ~CubeCameraMgr();
 

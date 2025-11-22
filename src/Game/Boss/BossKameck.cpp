@@ -8,9 +8,10 @@
 #include "Game/Enemy/KameckBeamHolder.hpp"
 #include "Game/LiveActor/ActorJointCtrl.hpp"
 
-BossKameck::BossKameck(const char *pName, const char *pType) : LiveActor(pName),
-    _8C(pType), _90(0.0f, 1.0f), _A0(0, 0, 1), mSequencer(nullptr), mKameckHolder(nullptr), mJointCtrl(nullptr),
-    mActorList(nullptr), mBeamListener(nullptr), mMoveRail(nullptr), _C4(0), _C8(0, 0, 0), _D4(-1) {
+BossKameck::BossKameck(const char* pName, const char* pType)
+    : LiveActor(pName),
+      _8C(pType), _90(0.0f, 1.0f), _A0(0, 0, 1), mSequencer(nullptr), mKameckHolder(nullptr), mJointCtrl(nullptr),
+      mActorList(nullptr), mBeamListener(nullptr), mMoveRail(nullptr), _C4(0), _C8(0, 0, 0), _D4(-1) {
 
     mBeamListener = new BossKameckBeamEventListener(this);
     mActorList = new ActiveActorList(8);
@@ -94,13 +95,13 @@ void BossKameck::calcAndSetBaseMtx() {
     mJointCtrl->setCallBackFunction();
 }
 
-void BossKameck::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
+void BossKameck::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (mSequencer != nullptr) {
         mSequencer->attackSensor(pSender, pReceiver);
     }
 }
 
-bool BossKameck::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool BossKameck::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (mSequencer != nullptr) {
         return mSequencer->receiveMsgPlayerAttack(msg, pSender, pReceiver);
     }
@@ -174,7 +175,7 @@ void BossKameck::updatePose() {
 }
 */
 
-void BossKameck::init(const JMapInfoIter &rIter) {
+void BossKameck::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     initModelManagerWithAnm(_8C, nullptr, false);
     MR::connectToSceneEnemy(this);
@@ -211,9 +212,9 @@ void BossKameck::init(const JMapInfoIter &rIter) {
     makeActorDead();
 }
 
-void BossKameck::initKameckHolder(const JMapInfoIter &rIter) {
-    s32 childNum = MR::getChildObjNum(rIter);
-    s32 kameckChildNum = 0;
+void BossKameck::initKameckHolder(const JMapInfoIter& rIter) {
+    s32         childNum = MR::getChildObjNum(rIter);
+    s32         kameckChildNum = 0;
     const char* objName;
 
     for (s32 i = 0; i < childNum; i++) {
@@ -241,7 +242,7 @@ void BossKameck::initKameckHolder(const JMapInfoIter &rIter) {
     }
 }
 
-void BossKameck::initMoveRail(const JMapInfoIter &rIter) {
+void BossKameck::initMoveRail(const JMapInfoIter& rIter) {
     s32 childNum = MR::getChildObjNum(rIter);
     _C4 = 0;
     const char* objName;
@@ -266,7 +267,7 @@ void BossKameck::initMoveRail(const JMapInfoIter &rIter) {
                 MR::initChildObj(mMoveRail[curRails], rIter, j);
                 curRails++;
             }
-        } 
+        }
     }
 }
 
@@ -290,32 +291,30 @@ void BossKameck::hitBeam(s32 beamType) {
     }
 
     switch (beamType) {
-        case 1:
-            MR::startSound(this, "SE_BV_KAMECK_ATK_SUCCESS", -1, -1);
-            break;
-        case 2:
-        case 3:
-        case 4:
-            MR::startSound(this, "SE_BV_KAMECK_ATK_SUCCESS", -1, -1);
-            break;
+    case 1:
+        MR::startSound(this, "SE_BV_KAMECK_ATK_SUCCESS", -1, -1);
+        break;
+    case 2:
+    case 3:
+    case 4:
+        MR::startSound(this, "SE_BV_KAMECK_ATK_SUCCESS", -1, -1);
+        break;
     }
 }
 
-
 namespace MR {
-    NameObj* createBossKameck1(const char *pName) {
+    NameObj* createBossKameck1(const char* pName) {
         BossKameck* boss = new BossKameck(pName, "BossKameck");
         boss->mSequencer = new BossKameckVs1();
         return boss;
     }
 
-    NameObj* createBossKameck2(const char *pName) {
+    NameObj* createBossKameck2(const char* pName) {
         BossKameck* boss = new BossKameck(pName, "BossKameck");
         boss->mSequencer = new BossKameckVs2();
         return boss;
     }
-};
+}; // namespace MR
 
 BossKameck::~BossKameck() {
-
-} 
+}

@@ -4,7 +4,7 @@
 
 class GroundChecker : public LiveActor {
 public:
-    GroundChecker(const char *, f32, f32);
+    GroundChecker(const char*, f32, f32);
 
     virtual ~GroundChecker();
 

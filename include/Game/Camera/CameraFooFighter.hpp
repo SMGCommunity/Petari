@@ -4,12 +4,12 @@
 
 class CameraFooFighter : public Camera {
 public:
-    CameraFooFighter(const char *);
+    CameraFooFighter(const char*);
     virtual ~CameraFooFighter();
 
-    virtual void reset();
-    virtual CameraTargetObj *calc();
-    virtual CamTranslatorBase *createTranslator();
+    virtual void               reset();
+    virtual CameraTargetObj*   calc();
+    virtual CamTranslatorBase* createTranslator();
 
     f32 mAxisY; // 0x4C
     f32 mAxisX; // 0x50

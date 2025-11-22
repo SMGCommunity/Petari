@@ -1,7 +1,8 @@
 #include "Game/MapObj/CollapsePlane.hpp"
 #include "Game/Enemy/AnimScaleController.hpp"
 
-CollapsePlane::CollapsePlane(const char *pName) : MapObjActor(pName) {
+CollapsePlane::CollapsePlane(const char* pName)
+    : MapObjActor(pName) {
     mScaleController = nullptr;
     mStarPointerBind = nullptr;
     mJointController = nullptr;
@@ -9,7 +10,7 @@ CollapsePlane::CollapsePlane(const char *pName) : MapObjActor(pName) {
     mTimer = 140;
 }
 
-void CollapsePlane::init(const JMapInfoIter &rIter) {
+void CollapsePlane::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);
     MapObjActorInitInfo info;
     info.setupHioNode("地形オブジェ");
@@ -54,8 +55,7 @@ void CollapsePlane::exeCollapse() {
         MR::startSound(this, "SE_OJ_COLLAPSE_PLANE_VANISH", -1, -1);
         _D0 = -1;
         setNerve(&NrvCollapsePlane::CollapsePlaneNrvEnd::sInstance);
-    }
-    else {
+    } else {
         _D0 += 1;
     }
 }
@@ -68,8 +68,7 @@ void CollapsePlane::exeDPDStop() {
     if (MR::updateActorState(this, mStarPointerBind)) {
         if (_D0 != -1) {
             setNerve(&NrvCollapsePlane::CollapsePlaneNrvCollapse::sInstance);
-        }
-        else {
+        } else {
             setNerve(&NrvCollapsePlane::CollapsePlaneNrvWait::sInstance);
         }
     }
@@ -94,8 +93,8 @@ void CollapsePlane::control() {
     tryDPDStop();
 }
 
-bool CollapsePlane::calcJointPlane(TPos3f *pPos, const JointControllerInfo &) {
-    f32 new_scale = (1.0f - ((0.69999999f * _D0)) / mTimer);
+bool CollapsePlane::calcJointPlane(TPos3f* pPos, const JointControllerInfo&) {
+    f32     new_scale = (1.0f - ((0.69999999f * _D0)) / mTimer);
     TMtx34f mtx;
     mtx.identity();
     MR::preScaleMtx(mtx.toMtxPtr(), new_scale, 1.0f, new_scale);
@@ -128,8 +127,7 @@ namespace NrvCollapsePlane {
     INIT_NERVE(CollapsePlaneNrvCollapse);
     INIT_NERVE(CollapsePlaneNrvDPDStop);
     INIT_NERVE(CollapsePlaneNrvEnd);
-};
+}; // namespace NrvCollapsePlane
 
 CollapsePlane::~CollapsePlane() {
-
 }

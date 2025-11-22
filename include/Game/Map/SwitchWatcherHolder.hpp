@@ -14,17 +14,17 @@ public:
 
     virtual void movement();
 
-    void joinSwitchEventListenerA(const StageSwitchCtrl*, SwitchEventListener*);
-    void joinSwitchEventListenerB(const StageSwitchCtrl*, SwitchEventListener*);
-    void joinSwitchEventListenerAppear(const StageSwitchCtrl*, SwitchEventListener*);
+    void           joinSwitchEventListenerA(const StageSwitchCtrl*, SwitchEventListener*);
+    void           joinSwitchEventListenerB(const StageSwitchCtrl*, SwitchEventListener*);
+    void           joinSwitchEventListenerAppear(const StageSwitchCtrl*, SwitchEventListener*);
     SwitchWatcher* findSwitchWatcher(const StageSwitchCtrl*);
-    void joinSwitchEventListener(const StageSwitchCtrl*, u32, SwitchEventListener*);
-    void addSwitchWatcher(SwitchWatcher*);
+    void           joinSwitchEventListener(const StageSwitchCtrl*, u32, SwitchEventListener*);
+    void           addSwitchWatcher(SwitchWatcher*);
 
-    /* 0x0C */ MR::Vector<MR::FixedArray<SwitchWatcher*, 256> > mSwitchWatcher;
+    /* 0x0C */ MR::Vector<MR::FixedArray<SwitchWatcher*, 256>> mSwitchWatcher;
 };
 
 namespace MR {
     SwitchWatcherHolder* getSwitchWatcherHolder();
-    void requestMovementOnSwitchWatcher();
-};
+    void                 requestMovementOnSwitchWatcher();
+}; // namespace MR

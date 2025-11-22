@@ -11,26 +11,23 @@
 namespace {
     const char* cLostMessageID = "KinopioEmergencyLetter_000";
     const char* cFoundMessageID = "KinopioEmergencyLetter_001";
-};
+}; // namespace
 
-LuigiMailDirector::LuigiMailDirector() :
-    mLostMessageLength(0),
-    mLostMessage(nullptr),
-    mFoundMessageLength(0),
-    mFoundMessage(nullptr),
-    mLostMessageNum(0),
-    mFoundMessageNum(0)
-{}
+LuigiMailDirector::LuigiMailDirector()
+    : mLostMessageLength(0),
+      mLostMessage(nullptr),
+      mFoundMessageLength(0),
+      mFoundMessage(nullptr),
+      mLostMessageNum(0),
+      mFoundMessageNum(0) {}
 
 void LuigiMailDirector::initAfterResourceLoaded() {
-    u32 lostMessageLength = MR::getStringLengthWithMessageTag(MR::getGameMessageDirect(cLostMessageID))
-        + FileSelectFunc::getMiiNameBufferSize();
+    u32 lostMessageLength = MR::getStringLengthWithMessageTag(MR::getGameMessageDirect(cLostMessageID)) + FileSelectFunc::getMiiNameBufferSize();
 
     mLostMessageLength = lostMessageLength;
     mLostMessage = new wchar_t[lostMessageLength];
 
-    u32 foundMessageLength = MR::getStringLengthWithMessageTag(MR::getGameMessageDirect(cFoundMessageID))
-        + FileSelectFunc::getMiiNameBufferSize();
+    u32 foundMessageLength = MR::getStringLengthWithMessageTag(MR::getGameMessageDirect(cFoundMessageID)) + FileSelectFunc::getMiiNameBufferSize();
 
     mFoundMessageLength = foundMessageLength;
     mFoundMessage = new wchar_t[foundMessageLength];
@@ -108,8 +105,7 @@ void LuigiMailDirector::sendMail(u8 delayHours) {
 
     if (mLostMessageNum != 0) {
         sendMailObj.setMessageDirect(mLostMessage);
-    }
-    else if (mFoundMessageNum != 0) {
+    } else if (mFoundMessageNum != 0) {
         sendMailObj.setMessageDirect(mFoundMessage);
     }
 
@@ -155,23 +151,21 @@ void LuigiMailDirector::writeSendSize() {
     prepareMessage();
 
     const u16* pMailSender = reinterpret_cast<const u16*>(MR::getMailSender("WiiMessageFromKinopio"));
-    u32 mailSize = 0;
-    s32 lostMessageNum = mLostMessageNum;
-    s32 foundMessageNum = mFoundMessageNum;
+    u32        mailSize = 0;
+    s32        lostMessageNum = mLostMessageNum;
+    s32        foundMessageNum = mFoundMessageNum;
 
     if (lostMessageNum != 0 || foundMessageNum != 0) {
         if (lostMessageNum != 0) {
             mailSize = MR::calcWiiMailSize(pMailSender, reinterpret_cast<u16*>(mLostMessage), 0, 0);
-        }
-        else if (foundMessageNum != 0) {
+        } else if (foundMessageNum != 0) {
             mailSize = MR::calcWiiMailSize(pMailSender, reinterpret_cast<u16*>(mFoundMessage), 0, 0);
         }
     }
 
     if (MR::checkWiiMailLimit(mailSize)) {
         MR::updateWiiMailSentSize(mailSize);
-    }
-    else {
+    } else {
         mLostMessageNum = 0;
         mFoundMessageNum = 0;
     }
@@ -205,11 +199,9 @@ u8 LuigiMailDirector::calcDelayHours() const {
     // FIXME: Missing addi and clrlwi instructions within return statements.
     if (td.hour >= 1 && td.hour < 13) {
         return 13 - td.hour;
-    }
-    else if (td.hour < 1) {
+    } else if (td.hour < 1) {
         return 1 - td.hour;
-    }
-    else {
+    } else {
         return 25 - td.hour;
     }
 }

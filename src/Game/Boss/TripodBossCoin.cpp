@@ -6,18 +6,17 @@ namespace NrvTripodBossCoin {
     NEW_NERVE(TripodBossCoinNrvNonActive, TripodBossCoin, NonActive);
     NEW_NERVE(TripodBossCoinNrvActive, TripodBossCoin, Active);
     NEW_NERVE(TripodBossCoinNrvEnd, TripodBossCoin, End);
-};
+}; // namespace NrvTripodBossCoin
 
-TripodBossCoin::TripodBossCoin(const char *pName) :
-    NameObj(pName),
-    mCoin(nullptr),
-    mSpine(nullptr),
-    _44(-1)
-{
+TripodBossCoin::TripodBossCoin(const char* pName)
+    : NameObj(pName),
+      mCoin(nullptr),
+      mSpine(nullptr),
+      _44(-1) {
     _14.identity();
 }
 
-void TripodBossCoin::init(const JMapInfoIter &rIter) {
+void TripodBossCoin::init(const JMapInfoIter& rIter) {
     MR::getJMapInfoMatrixFromRT(rIter, &_14);
     MR::connectToSceneMapObjDecorationMovement(this);
     MR::getJMapInfoArg0NoInit(rIter, &_44);
@@ -32,7 +31,7 @@ void TripodBossCoin::movement() {
 }
 
 void TripodBossCoin::exeNonActive() {
-    if (MR::isStartedTripodBoss()&& !MR::isStartDemoTripodBoss()) {
+    if (MR::isStartedTripodBoss() && !MR::isStartDemoTripodBoss()) {
         mSpine->setNerve(&NrvTripodBossCoin::TripodBossCoinNrvActive::sInstance);
     }
 }
@@ -42,9 +41,9 @@ void TripodBossCoin::exeActive() {
     pos.setInline(_14);
     MR::concatTripodBossAttachJointMatrix(&pos, _44);
     TVec3f coinPos;
-    f32 z = pos.mMtx[2][3];
-    f32 y = pos.mMtx[1][3];
-    f32 x = pos.mMtx[0][3];
+    f32    z = pos.mMtx[2][3];
+    f32    y = pos.mMtx[1][3];
+    f32    x = pos.mMtx[0][3];
     coinPos.set<f32>(x, y, z);
     TVec3f* newPos = &mCoin->mPosition;
     newPos->x = coinPos.x;
@@ -62,5 +61,4 @@ void TripodBossCoin::exeActive() {
 }
 
 void TripodBossCoin::exeEnd() {
-    
 }

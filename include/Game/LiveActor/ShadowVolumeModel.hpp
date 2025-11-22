@@ -6,12 +6,12 @@ class J3DModelData;
 
 class ShadowVolumeModel : public ShadowVolumeDrawer {
 public:
-    ShadowVolumeModel(const char *);
+    ShadowVolumeModel(const char*);
 
     inline virtual ~ShadowVolumeModel();
     virtual void drawShape() const;
 
-    void initVolumeModel(const char *);
+    void initVolumeModel(const char*);
 
-    J3DModelData* mModelData;   // 0x1C
+    J3DModelData* mModelData; // 0x1C
 };

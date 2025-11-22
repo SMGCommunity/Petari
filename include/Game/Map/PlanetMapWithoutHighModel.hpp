@@ -5,9 +5,9 @@
 
 class PlanetMapWithoutHighModel : public MapObjActor {
 public:
-    PlanetMapWithoutHighModel(const char *);
+    PlanetMapWithoutHighModel(const char*);
 
     virtual ~PlanetMapWithoutHighModel();
-    virtual void init(const JMapInfoIter &);
-    virtual void connectToScene(const MapObjActorInitInfo &);
+    virtual void init(const JMapInfoIter&);
+    virtual void connectToScene(const MapObjActorInitInfo&);
 };

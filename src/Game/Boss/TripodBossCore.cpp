@@ -14,14 +14,15 @@ namespace NrvTripodBossCore {
     NEW_NERVE(TripodBossCoreNrvDamageDemo, TripodBossCore, DamageDemo);
     NEW_NERVE(TripodBossCoreNrvWarning, TripodBossCore, Warning);
     NEW_NERVE(TripodBossCoreNrvBreak, TripodBossCore, Break);
-};
+}; // namespace NrvTripodBossCore
 
-TripodBossCore::TripodBossCore(const char *pName) : TripodBossFixPartsBase(pName) {
+TripodBossCore::TripodBossCore(const char* pName)
+    : TripodBossFixPartsBase(pName) {
     mBreakModel = nullptr;
     mBloomModel = nullptr;
 }
 
-void TripodBossCore::init(const JMapInfoIter &rIter) {
+void TripodBossCore::init(const JMapInfoIter& rIter) {
     TripodBossFixPartsBase::init(rIter);
     initModelManagerWithAnm("TripodBossCore", nullptr, false);
     MR::connectToScene(this, 0x23, 0xB, 0x1F, -1);
@@ -57,7 +58,7 @@ void TripodBossCore::kill() {
     mBreakModel->kill();
 }
 
-bool TripodBossCore::receiveMsgEnemyAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool TripodBossCore::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (!isNerve(&NrvTripodBossCore::TripodBossCoreNrvBreak::sInstance)) {
         setNerve(&NrvTripodBossCore::TripodBossCoreNrvBreak::sInstance);
         return true;
@@ -82,7 +83,7 @@ void TripodBossCore::exeWait() {
     }
 
     updateTripodMatrix();
-    GXColor g = { 0x96, 0x96, 0x96, 0xFF};
+    GXColor g = {0x96, 0x96, 0x96, 0xFF};
     MR::requestPointLight(this, mPosition, Color8(g), 1.0f, -1);
     if (MR::isDamageDemoTripodBoss()) {
         setNerve(&NrvTripodBossCore::TripodBossCoreNrvDamageDemo::sInstance);
@@ -95,7 +96,7 @@ void TripodBossCore::exeDamageDemo() {
         MR::tryStartAllAnim(mBloomModel, "2ndDemo");
     }
 
-    GXColor g = { 0xFF, 0x96, 0x96, 0xFF};
+    GXColor g = {0xFF, 0x96, 0x96, 0xFF};
     MR::requestPointLight(this, mPosition, Color8(g), 1.0f, -1);
     if (MR::isDamageDemoTripodBoss()) {
         setNerve(&NrvTripodBossCore::TripodBossCoreNrvWarning::sInstance);
@@ -104,7 +105,7 @@ void TripodBossCore::exeDamageDemo() {
 
 void TripodBossCore::exeWarning() {
     updateTripodMatrix();
-    GXColor g = { 0xFF, 0x96, 0x96, 0xFF};
+    GXColor g = {0xFF, 0x96, 0x96, 0xFF};
     MR::requestPointLight(this, mPosition, Color8(g), 1.0f, -1);
 }
 
@@ -124,7 +125,7 @@ void TripodBossCore::exeBreak() {
         if (MR::isValidSwitchDead(this)) {
             MR::onSwitchDead(this);
         }
-    }    
+    }
 
     if (MR::isStep(this, 2)) {
         MR::stopScene(16);
@@ -138,9 +139,7 @@ void TripodBossCore::exeBreak() {
 }
 
 void TripodBossCore::exeNonActive() {
-    
 }
 
 TripodBossCore::~TripodBossCore() {
-    
 }

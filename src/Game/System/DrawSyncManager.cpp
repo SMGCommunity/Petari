@@ -47,7 +47,6 @@ u32 Fifo::getLoopIdx(u32 idx) {
 u32 Fifo::getCount() {
     if (mLoopIdx <= _C) {
         return _C - mLoopIdx;
-        
     }
 
     return _C + mCount + 1 - mLoopIdx;

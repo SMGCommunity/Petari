@@ -22,7 +22,7 @@ public:
     void exeDisappear();
 
 private:
-    /* 0x20 */ s32 mPowerStarNum;
+    /* 0x20 */ s32                    mPowerStarNum;
     /* 0x24 */ CounterLayoutAppearer* mLayoutAppearer;
-    /* 0x28 */ CountUpPaneRumbler* mPaneRumbler;
+    /* 0x28 */ CountUpPaneRumbler*    mPaneRumbler;
 };

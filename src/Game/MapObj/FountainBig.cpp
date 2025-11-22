@@ -1,7 +1,8 @@
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/MapObj/FountainBig.hpp"
 
-FountainBig::FountainBig(const char *pName) : LiveActor(pName) {
+FountainBig::FountainBig(const char* pName)
+    : LiveActor(pName) {
     mClippingRadius.x = 0.0f;
     mClippingRadius.y = 0.0f;
     mClippingRadius.z = 0.0f;
@@ -9,10 +10,9 @@ FountainBig::FountainBig(const char *pName) : LiveActor(pName) {
 }
 
 FountainBig::~FountainBig() {
-
 }
 
-void FountainBig::init(const JMapInfoIter &rIter) {
+void FountainBig::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     initModelManagerWithAnm("FountainBig", nullptr, false);
     MR::connectToSceneMapObj(this);
@@ -74,8 +74,7 @@ void FountainBig::exeSpout() {
         if (spoutTimer >= 60 && MR::isOnGroundPlayer()) {
             mSpoutTimer = -1;
             MR::validateHitSensors(this);
-        }
-        else {
+        } else {
             mSpoutTimer++;
         }
     }
@@ -106,8 +105,8 @@ void FountainBig::exeSpoutEnd() {
     }
 }
 
-void FountainBig::updateHitSensor(HitSensor *pSensor) {
-    f32 pSensorY = pSensor->mRadius;
+void FountainBig::updateHitSensor(HitSensor* pSensor) {
+    f32    pSensorY = pSensor->mRadius;
     TVec3f vec1, vec2, vec3;
     MR::calcUpVec(&vec1, this);
     JMAVECScaleAdd(&vec1, &mPosition, &vec2, pSensorY);
@@ -115,22 +114,20 @@ void FountainBig::updateHitSensor(HitSensor *pSensor) {
     MR::calcPerpendicFootToLineInside(&pSensor->mPosition, *MR::getPlayerPos(), vec2, vec3);
 }
 
-void FountainBig::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
+void FountainBig::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isSensorPlayer(pReceiver)) {
         if (MR::isPlayerElementModeBee()) {
             bool check = false;
             if (MR::isOnGroundPlayer()) {
                 check = MR::sendMsgEnemyAttackFlipWeak(pReceiver, pSender);
-            }
-            else {
+            } else {
                 check = MR::sendMsgEnemyAttackFlip(pReceiver, pSender);
             }
             if (check) {
                 mSpoutTimer = 0;
-                MR::invalidateHitSensors(this); 
+                MR::invalidateHitSensors(this);
             }
-        }
-        else {
+        } else {
             MR::tryRumblePadWeak(this, 0);
             MR::sendArbitraryMsg(ACTMES_FOUNTAINJUMP, pReceiver, pSender);
         }
@@ -143,4 +140,4 @@ namespace NrvFountainBig {
     INIT_NERVE(FountainBigNrvSignStop);
     INIT_NERVE(FountainBigNrvSpout);
     INIT_NERVE(FountainBigNrvSpoutEnd);
-};
+}; // namespace NrvFountainBig

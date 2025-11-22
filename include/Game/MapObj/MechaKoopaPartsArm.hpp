@@ -4,12 +4,12 @@
 
 class MechaKoopaPartsArm : public MapObjActor {
 public:
-    MechaKoopaPartsArm(const char *);
+    MechaKoopaPartsArm(const char*);
 
     virtual ~MechaKoopaPartsArm();
-    virtual void init(const JMapInfoIter &);
-    virtual void initCaseUseSwitchB(const MapObjActorInitInfo &);
-    virtual void initCaseNoUseSwitchB(const MapObjActorInitInfo &);
+    virtual void init(const JMapInfoIter&);
+    virtual void initCaseUseSwitchB(const MapObjActorInitInfo&);
+    virtual void initCaseNoUseSwitchB(const MapObjActorInitInfo&);
 
     void exeWait();
     void exeMoveStart();
@@ -18,7 +18,7 @@ public:
     void exeBreak();
     void startBreak();
 
-    bool mIsRightArm;   // 0xC4
+    bool mIsRightArm; // 0xC4
 };
 
 namespace NrvMechaKoopaPartsArm {
@@ -30,4 +30,4 @@ namespace NrvMechaKoopaPartsArm {
     NERVE(MechaKoopaPartsArmNrvMoveRear);
     NERVE(MechaKoopaPartsArmNrvBreakStart);
     NERVE(MechaKoopaPartsArmNrvBreak);
-};
+}; // namespace NrvMechaKoopaPartsArm

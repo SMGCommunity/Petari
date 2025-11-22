@@ -19,7 +19,7 @@ void AudBgmTempoAdjuster::init() {
     _25 = false;
 }
 
-void AudBgmTempoAdjuster::setStream(JAIStream *pStream) {
+void AudBgmTempoAdjuster::setStream(JAIStream* pStream) {
     BOOL inter = OSDisableInterrupts();
     init();
     mStream = pStream;
@@ -37,7 +37,7 @@ void AudBgmTempoAdjuster::reject() {
 
 f32 AudBgmTempoAdjuster::calcAdjustRate(f32 a1, f32 a2) {
     bool val = false;
-    f32 v4 = ((a1 - 500.0f) / (_4 * ((60.0f * AudParams::streamSampleRate) / a2)));
+    f32  v4 = ((a1 - 500.0f) / (_4 * ((60.0f * AudParams::streamSampleRate) / a2)));
 
     if (v4 < 0.0f) {
         val = true;

@@ -2,10 +2,11 @@
 #include "Game/Util.hpp"
 
 NrvSeaGull::SeaGullNrvHoverFront NrvSeaGull::SeaGullNrvHoverFront::sInstance;
-NrvSeaGull::SeaGullNrvHoverLeft NrvSeaGull::SeaGullNrvHoverLeft::sInstance;
+NrvSeaGull::SeaGullNrvHoverLeft  NrvSeaGull::SeaGullNrvHoverLeft::sInstance;
 NrvSeaGull::SeaGullNrvHoverRight NrvSeaGull::SeaGullNrvHoverRight::sInstance;
 
-SeaGull::SeaGull(SeaGullGroup *pGroup) : LiveActor("カモメ") {
+SeaGull::SeaGull(SeaGullGroup* pGroup)
+    : LiveActor("カモメ") {
     mSeaGullGroup = pGroup;
     _90 = 0;
     _94 = false;
@@ -31,7 +32,7 @@ SeaGull::SeaGull(SeaGullGroup *pGroup) : LiveActor("カモメ") {
 }
 
 #ifdef NON_MATCHING
-void SeaGull::init(const JMapInfoIter &rIter) {
+void SeaGull::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     MR::calcActorAxis(&_C4, &_B8, &_AC, this);
     MR::calcActorAxisY(&_A0, this);
@@ -48,13 +49,13 @@ void SeaGull::init(const JMapInfoIter &rIter) {
     u8 a = MR::isHalfProbability();
     _94 = a;
     _9C = mSeaGullGroup->updatePosInfo(&_90, a);
- 
+
     TVec3f stack_14(_C4);
-    TVec3f stack_8(_AC); 
-    f32 scale = MR::getRandom(-1.0f, 1.0f);
+    TVec3f stack_8(_AC);
+    f32    scale = MR::getRandom(-1.0f, 1.0f);
     stack_14.scale(scale);
     scale = MR::getRandom(-1.0f, 1.0f);
-    stack_8.scale(scale); 
+    stack_8.scale(scale);
     _AC.set(stack_14);
     _AC.add(stack_8);
 
@@ -62,8 +63,7 @@ void SeaGull::init(const JMapInfoIter &rIter) {
         _AC.x = 0.0f;
         _AC.y = 0.0f;
         _AC.z = 1.0f;
-    }
-    else {
+    } else {
         MR::normalize(&_AC);
     }
 
@@ -84,8 +84,7 @@ void SeaGull::exeHoverFront() {
 
     if (_D0 >= 0) {
         _D0 = _D0 - 1;
-    }
-    else {
+    } else {
         TVec3f stack_8(*_9C);
         stack_8.sub(mPosition);
         f32 dist = PSVECDistance((const Vec*)&mPosition, (const Vec*)_9C);
@@ -95,8 +94,7 @@ void SeaGull::exeHoverFront() {
 
             if (prod > 0.0f) {
                 setNerve(&NrvSeaGull::SeaGullNrvHoverLeft::sInstance);
-            }
-            else {
+            } else {
                 setNerve(&NrvSeaGull::SeaGullNrvHoverRight::sInstance);
             }
         }
@@ -151,14 +149,13 @@ void SeaGull::control() {
 
     if (_98 <= 0) {
         _9C = mSeaGullGroup->updatePosInfo(&_90, _94);
-        _98 = 0xB4; 
-    } 
+        _98 = 0xB4;
+    }
 
     if (_E0 <= 0) {
         MR::startSound(this, "SE_OJ_SEAGULL_CHIRP", -1, -1);
         _E0 = MR::getRandom((s32)0x3C, (s32)0x1E0);
-    }
-    else {
+    } else {
         _E0--;
     }
 
@@ -166,8 +163,7 @@ void SeaGull::control() {
         if (!MR::isHiddenModel(this)) {
             MR::hideModel(this);
         }
-    }
-    else {
+    } else {
         if (MR::isHiddenModel(this)) {
             MR::showModel(this);
         }
@@ -192,18 +188,18 @@ void SeaGull::calcAndSetBaseMtx() {
     MR::setBaseTRMtx(this, mtx);
 }
 
-SeaGullGroup::SeaGullGroup(const char *pName) : LiveActor(pName) {
+SeaGullGroup::SeaGullGroup(const char* pName)
+    : LiveActor(pName) {
     _8C = 0;
     _90 = 0;
 }
 
-TVec3f* SeaGullGroup::updatePosInfo(s32 *a1, bool a2) const {
+TVec3f* SeaGullGroup::updatePosInfo(s32* a1, bool a2) const {
     if (a2) {
         if (--*a1 <= 0) {
             *a1 = _8C - 1;
         }
-    }
-    else {
+    } else {
         s32 val = _8C;
         s32 next = *a1 + 1;
         *a1 = next;
@@ -217,26 +213,24 @@ TVec3f* SeaGullGroup::updatePosInfo(s32 *a1, bool a2) const {
 }
 
 SeaGull::~SeaGull() {
-
 }
 
 SeaGullGroup::~SeaGullGroup() {
-
 }
 
 namespace NrvSeaGull {
-    void SeaGullNrvHoverRight::execute(Spine *pSpine) const {
+    void SeaGullNrvHoverRight::execute(Spine* pSpine) const {
         SeaGull* gull = reinterpret_cast<SeaGull*>(pSpine->mExecutor);
         gull->exeHoverRight();
     }
 
-    void SeaGullNrvHoverLeft::execute(Spine *pSpine) const {
+    void SeaGullNrvHoverLeft::execute(Spine* pSpine) const {
         SeaGull* gull = reinterpret_cast<SeaGull*>(pSpine->mExecutor);
         gull->exeHoverLeft();
-    } 
+    }
 
-    void SeaGullNrvHoverFront::execute(Spine *pSpine) const {
+    void SeaGullNrvHoverFront::execute(Spine* pSpine) const {
         SeaGull* gull = reinterpret_cast<SeaGull*>(pSpine->mExecutor);
         gull->exeHoverFront();
-    } 
-};
+    }
+}; // namespace NrvSeaGull

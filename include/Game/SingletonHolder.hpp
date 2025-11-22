@@ -1,6 +1,6 @@
 #pragma once
 
-template<typename T>
+template <typename T>
 class SingletonHolder {
 public:
     static void init() {
@@ -17,10 +17,10 @@ private:
     static T* sInstance;
 };
 
-template<typename T>
+template <typename T>
 T* SingletonHolder<T>::sInstance;
 
-template<typename T>
+template <typename T>
 class AudSingletonHolder {
 public:
     static void init() {
@@ -37,5 +37,5 @@ private:
     static T* sInstance;
 };
 
-template<typename T>
+template <typename T>
 T* AudSingletonHolder<T>::sInstance;

@@ -1,10 +1,10 @@
 #include "Game/MapObj/ItemAppearStone.hpp"
 
-ItemAppearStone::ItemAppearStone(const char *pName) : LiveActor(pName) {
-
+ItemAppearStone::ItemAppearStone(const char* pName)
+    : LiveActor(pName) {
 }
 
-void ItemAppearStone::init(const JMapInfoIter &rIter) {
+void ItemAppearStone::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     const char* model_name = 0;
     MR::getObjectName(&model_name, rIter);
@@ -27,7 +27,6 @@ void ItemAppearStone::kill() {
 }
 
 void ItemAppearStone::calcAndSetBaseMtx() {
-
 }
 
 void ItemAppearStone::exeWait() {
@@ -40,14 +39,13 @@ void ItemAppearStone::exeWait() {
 }
 
 ItemAppearStone::~ItemAppearStone() {
-
 }
 
 namespace NrvItemAppearStone {
     INIT_NERVE(HostTypeWait);
 
-    void HostTypeWait::execute(Spine *pSpine) const {
+    void HostTypeWait::execute(Spine* pSpine) const {
         ItemAppearStone* stone = reinterpret_cast<ItemAppearStone*>(pSpine->mExecutor);
         stone->exeWait();
     }
-};
+}; // namespace NrvItemAppearStone

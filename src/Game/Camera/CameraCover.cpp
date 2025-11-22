@@ -7,7 +7,8 @@ namespace {
     const f32 sAngleThreshold = (JGeometry::TUtil<f32>::PI() * 60.0f) / 180.0f;
 };
 
-CameraCover::CameraCover(const char *pName) : NameObj(pName) {
+CameraCover::CameraCover(const char* pName)
+    : NameObj(pName) {
     _3C = 0;
     _40 = 0;
     _41 = false;
@@ -53,10 +54,10 @@ void CameraCover::cover(u32 a1) {
 
 bool CameraCover::isCameraHopping() const {
     if (_40) {
-       return false; 
+        return false;
     }
 
-    return _41; 
+    return _41;
 }
 
 void CameraCover::copyCamera() {
@@ -64,5 +65,4 @@ void CameraCover::copyCamera() {
 }
 
 CameraCover::~CameraCover() {
-
 }

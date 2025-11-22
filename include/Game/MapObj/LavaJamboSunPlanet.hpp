@@ -10,7 +10,7 @@ public:
     LavaJamboSunPlanet(const char*);
 
     virtual ~LavaJamboSunPlanet();
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
     virtual void initAfterPlacement();
     virtual void control();
 
@@ -18,7 +18,7 @@ public:
     void exeMove();
 
     PartsModel* mBloomModel;
-    LodCtrl* mLodCtrl;
-    f32 _94;
-    TVec3f _98;
+    LodCtrl*    mLodCtrl;
+    f32         _94;
+    TVec3f      _98;
 };

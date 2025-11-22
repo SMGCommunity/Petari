@@ -1,10 +1,9 @@
 #include "Game/LiveActor/ModelObj.hpp"
 #include "Game/Util.hpp"
 
-ModelObj::ModelObj(const char *pName, const char *pModelName, MtxPtr mtxPtr, int a4, int a5, int a6, bool a7) :
-    LiveActor(pName),
-    mMtx(mtxPtr)
-{
+ModelObj::ModelObj(const char* pName, const char* pModelName, MtxPtr mtxPtr, int a4, int a5, int a6, bool a7)
+    : LiveActor(pName),
+      mMtx(mtxPtr) {
     if (a4 < -1) {
         a4 = 0x8;
     }
@@ -27,7 +26,7 @@ ModelObj::ModelObj(const char *pName, const char *pModelName, MtxPtr mtxPtr, int
     }
 }
 
-void ModelObj::init(const JMapInfoIter &) {
+void ModelObj::init(const JMapInfoIter&) {
     makeActorAppeared();
 }
 
@@ -35,13 +34,12 @@ void ModelObj::calcAndSetBaseMtx() {
     if (mMtx) {
         mPosition.set<f32>(mMtx[0][3], mMtx[1][3], mMtx[2][3]);
         MR::setBaseTRMtx(this, mMtx);
-    }
-    else {
+    } else {
         LiveActor::calcAndSetBaseMtx();
     }
 }
 
-void ModelObjNpc::init(const JMapInfoIter &rIter) {
+void ModelObjNpc::init(const JMapInfoIter& rIter) {
     mLodCtrl = MR::createLodCtrlNPC(this, rIter);
     mJointCtrl = new ActorJointCtrl(this);
     makeActorAppeared();
@@ -56,8 +54,7 @@ void ModelObjNpc::calcAndSetBaseMtx() {
     if (mMtx) {
         mPosition.set<f32>(mMtx[0][3], mMtx[1][3], mMtx[2][3]);
         MR::setBaseTRMtx(this, mMtx);
-    }
-    else {
+    } else {
         LiveActor::calcAndSetBaseMtx();
     }
 
@@ -65,15 +62,13 @@ void ModelObjNpc::calcAndSetBaseMtx() {
 }
 
 ModelObjNpc::~ModelObjNpc() {
-
 }
 
-ModelObjNpc::ModelObjNpc(const char *pName, const char *a2, MtxPtr mtx) :
-    LiveActor(pName),
-    mMtx(mtx),
-    mLodCtrl(nullptr),
-    mJointCtrl(nullptr)
-{
+ModelObjNpc::ModelObjNpc(const char* pName, const char* a2, MtxPtr mtx)
+    : LiveActor(pName),
+      mMtx(mtx),
+      mLodCtrl(nullptr),
+      mJointCtrl(nullptr) {
     if (mMtx != nullptr) {
         mPosition.set<f32>(mMtx[0][3], mMtx[1][3], mMtx[2][3]);
     }

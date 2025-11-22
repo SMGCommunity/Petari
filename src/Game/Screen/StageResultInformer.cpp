@@ -20,13 +20,13 @@
 namespace MR {
     extern void startAstroMapLayoutForNewGalaxyDiscover();
     extern void startAstroMapLayoutForNewTicoGalaxyDiscover();
-};
+}; // namespace MR
 
 namespace {
     static const s32 sWaitBeforeCountUpPowerStar = 85;
     static const s32 sWaitAppearInformationWindow = 15;
     static const s32 sWaitDisplayStarPieceCount = 45;
-};
+}; // namespace
 
 namespace {
     NEW_NERVE(StageResultInformerAppearGetPowerStar, StageResultInformer, AppearGetPowerStar);
@@ -51,12 +51,11 @@ namespace {
     NEW_NERVE(DisplayInformationForResultDisplay, DisplayInformationForResult, Display);
     NEW_NERVE(DisplayInformationForResultDisappear, DisplayInformationForResult, Disappear);
     NEW_NERVE(DisplayInformationForResultIdle, DisplayInformationForResult, Idle);
-};
+}; // namespace
 
-DisplayInformationForResult::DisplayInformationForResult(StageResultInformer* pHost) :
-    NerveExecutor("DisplayInformationForResult"),
-    mHost(pHost)
-{
+DisplayInformationForResult::DisplayInformationForResult(StageResultInformer* pHost)
+    : NerveExecutor("DisplayInformationForResult"),
+      mHost(pHost) {
     initNerve(&::DisplayInformationForResultIdle::sInstance);
 }
 
@@ -64,8 +63,7 @@ void DisplayInformationForResult::exeAppear() {
     if (MR::isFirstStep(this)) {
         if (MR::isEqualString(mMessageId, "System_Result009")) {
             MR::startSubBGM("BGM_GALAXY_COMPLETE", false);
-        }
-        else {
+        } else {
             MR::startSubBGM("BGM_NEW_GALAXY", false);
         }
 
@@ -94,17 +92,15 @@ void DisplayInformationForResult::exeDisappear() {
 }
 
 void DisplayInformationForResult::exeIdle() {
-    
 }
 
-StageResultInformer::StageResultInformer() :
-    LayoutActor("リザルト通知", true),
-    mInformationDisplayer(nullptr),
-    mSequenceChecker(nullptr),
-    mIconAButton(nullptr),
-    _30(false),
-    _31(false)
-{
+StageResultInformer::StageResultInformer()
+    : LayoutActor("リザルト通知", true),
+      mInformationDisplayer(nullptr),
+      mSequenceChecker(nullptr),
+      mIconAButton(nullptr),
+      _30(false),
+      _31(false) {
     mInformationDisplayer = new DisplayInformationForResult(this);
     mSequenceChecker = new StageResultSequenceChecker();
 }
@@ -269,8 +265,7 @@ void StageResultInformer::exeDisplayGetStarPiece() {
 
         if (mClearedStarPieceNum == 0) {
             MR::startSystemSE("SE_SY_STAR_PIECE_SUM_UP", -1, -1);
-        }
-        else if (mClearedStarPieceNum == 0) {
+        } else if (mClearedStarPieceNum == 0) {
             MR::startSystemSE("SE_SY_STAR_PIECE_SUM_UP_END", -1, -1);
         }
     }
@@ -293,8 +288,7 @@ void StageResultInformer::exeDisplayGetStarPiece() {
 
         if (hasStarPiece) {
             setNerve(&::StageResultInformerDisappearGetStarPiece::sInstance);
-        }
-        else {
+        } else {
             setNerve(&::StageResultInformerWaitBeforeDisappearGetStarPiece::sInstance);
         }
     }
@@ -337,8 +331,7 @@ void StageResultInformer::exeShowNewGalaxyDiscover() {
 void StageResultInformer::exeShowGalaxyMap() {
     if (MR::isFirstStep(this)) {
         MR::startAstroMapLayoutForNewGalaxyDiscover();
-    }
-    else {
+    } else {
         decideNextNerve();
     }
 }
@@ -371,8 +364,7 @@ void StageResultInformer::exeShowTicoGalaxyAppear() {
 void StageResultInformer::exeShowAstroMapForTico() {
     if (MR::isFirstStep(this)) {
         MR::startAstroMapLayoutForNewTicoGalaxyDiscover();
-    }
-    else {
+    } else {
         decideNextNerve();
     }
 }
@@ -430,8 +422,7 @@ bool StageResultInformer::tryShowAndKeyWaitInformationWindow(const char* pMessag
     if (!isNotIdle) {
         if (pNerve != nullptr) {
             setNerve(pNerve);
-        }
-        else {
+        } else {
             decideNextNerve();
         }
 
@@ -444,14 +435,12 @@ bool StageResultInformer::tryShowAndKeyWaitInformationWindow(const char* pMessag
 void StageResultInformer::setCounterPaneShowHide(
     bool isShowTotalStarPane,
     bool isShowBestScorePane,
-    bool isShowTotalPiecePane)
-{
+    bool isShowTotalPiecePane) {
     const char* pPaneName = "TotalStar";
 
     if (isShowTotalStarPane) {
         MR::showPane(this, pPaneName);
-    }
-    else {
+    } else {
         MR::hidePane(this, pPaneName);
     }
 
@@ -459,8 +448,7 @@ void StageResultInformer::setCounterPaneShowHide(
 
     if (isShowBestScorePane) {
         MR::showPane(this, pPaneName);
-    }
-    else {
+    } else {
         MR::hidePane(this, pPaneName);
     }
 
@@ -468,8 +456,7 @@ void StageResultInformer::setCounterPaneShowHide(
 
     if (isShowTotalPiecePane) {
         MR::showPane(this, pPaneName);
-    }
-    else {
+    } else {
         MR::hidePane(this, pPaneName);
     }
 }

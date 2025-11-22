@@ -57,7 +57,7 @@ public:
         MovieType_EndingB,
     };
 
-    MoviePlayingSequence(const char *, s32);
+    MoviePlayingSequence(const char*, s32);
 
     virtual void appear();
     virtual void kill();
@@ -75,9 +75,9 @@ public:
     void exeEndWait();
 
 private:
-    /* 0x20 */ const MoviePlayingInfo* mInfo;
-    /* 0x24 */ MR::Vector<MR::AssignableArray<MovieSubtitles*> > mSubtitles;
-    /* 0x30 */ DemoPadRumbler* mPadRumbler;
+    /* 0x20 */ const MoviePlayingInfo*                          mInfo;
+    /* 0x24 */ MR::Vector<MR::AssignableArray<MovieSubtitles*>> mSubtitles;
+    /* 0x30 */ DemoPadRumbler*                                  mPadRumbler;
 };
 
 class MoviePlayingSequenceHolder : public NameObj {
@@ -87,7 +87,7 @@ public:
     MoviePlayingSequenceHolder(const char* pName);
 
     MoviePlayingSequence* getSequence(int) const;
-    s32 getSequenceNum() const;
+    s32                   getSequenceNum() const;
 
 private:
     /* 0x0C */ MR::AssignableArray<MoviePlayingSequence*> mSequence;
@@ -104,4 +104,4 @@ namespace MR {
     bool isEndMovieEndingA();
     bool isEndMovieEndingB();
     bool isMoviePlayingOnSequence();
-};
+}; // namespace MR

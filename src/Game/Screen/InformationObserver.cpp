@@ -12,7 +12,7 @@
 
 struct InformationObserverAttribute {
     /* 0x00 */ const char* mMessageId;
-    /* 0x04 */ bool _4;
+    /* 0x04 */ bool        _4;
     /* 0x08 */ const char* mFirstMorphBgmName;
     /* 0x0C */ const char* mBgmName;
 };
@@ -38,19 +38,18 @@ namespace {
     InformationObserver* getInformationObserver() {
         return MR::getSceneObj<InformationObserver>(SceneObj_InformationObserver);
     }
-};
+}; // namespace
 
 namespace NrvInformationObserver {
     NEW_NERVE(InformationObserverNrvWait, InformationObserver, Wait);
     NEW_NERVE(InformationObserverNrvDisp, InformationObserver, Disp);
-};
+}; // namespace NrvInformationObserver
 
-InformationObserver::InformationObserver() :
-    LiveActor("初出監視"),
-    mType(Type_Bee),
-    _90(false),
-    mDisplayFrame(-1)
-{}
+InformationObserver::InformationObserver()
+    : LiveActor("初出監視"),
+      mType(Type_Bee),
+      _90(false),
+      mDisplayFrame(-1) {}
 
 void InformationObserver::init(const JMapInfoIter& rIter) {
     MR::connectToSceneLayoutMovement(this);
@@ -68,8 +67,7 @@ void InformationObserver::entry(TYPE type, LiveActor* pParam2) {
     if (_90) {
         MR::pauseTimeKeepDemo(_94);
         setNerve(&NrvInformationObserver::InformationObserverNrvDisp::sInstance);
-    }
-    else {
+    } else {
         MR::requestStartDemoWithoutCinemaFrame(
             this,
             "初出表示",
@@ -81,15 +79,13 @@ void InformationObserver::entry(TYPE type, LiveActor* pParam2) {
 }
 
 void InformationObserver::exeWait() {
-    
 }
 
 void InformationObserver::exeDisp() {
     if (MR::isFirstStep(this)) {
         if (mType == Type_LifeUp && MR::isPlayerLuigi()) {
             MR::appearInformationMessage(MR::getLayoutMessageDirect("InformationObserverLifeUpLuigi"), true);
-        }
-        else {
+        } else {
             MR::appearInformationMessage(MR::getLayoutMessageDirect(sAttr[mType].mMessageId), true);
         }
 
@@ -111,8 +107,7 @@ void InformationObserver::exeDisp() {
 
     if (_90) {
         MR::resumeTimeKeepDemo(_94);
-    }
-    else {
+    } else {
         MR::endDemo(this, "初出表示");
     }
 
@@ -120,8 +115,7 @@ void InformationObserver::exeDisp() {
         if (mType == Type_Flying) {
             MR::stopSubBGM(5);
             MR::startStageBGM(sAttr[mType].mBgmName, false);
-        }
-        else {
+        } else {
             MR::startSubBGM(sAttr[mType].mBgmName, false);
         }
     }
@@ -205,4 +199,4 @@ namespace InformationObserverFunction {
     void explainSpin(LiveActor* pParam1) {
         getInformationObserver()->entry(InformationObserver::Type_Spin, pParam1);
     }
-};
+}; // namespace InformationObserverFunction

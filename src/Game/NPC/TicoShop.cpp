@@ -7,7 +7,8 @@ namespace NrvTicoShop {
     NEW_NERVE(TicoShopNrvDemo, TicoShop, Demo);
 };
 
-TicoShop::TicoShop(const char *pName) : TicoComet(pName) {
+TicoShop::TicoShop(const char* pName)
+    : TicoComet(pName) {
     mOneUp = nullptr;
     mLifeUp = nullptr;
     mChoseOneUp = false;
@@ -26,7 +27,7 @@ void TicoShop::kill() {
     NPCActor::kill();
 }
 
-void TicoShop::init(const JMapInfoIter &rIter) {
+void TicoShop::init(const JMapInfoIter& rIter) {
     NPCActorCaps caps("TicoShop");
     NPCActorItem item("TicoShop");
     item._4 = "";
@@ -129,5 +130,4 @@ void TicoShop::exeDemo() {
 }
 
 TicoShop::~TicoShop() {
-    
 }

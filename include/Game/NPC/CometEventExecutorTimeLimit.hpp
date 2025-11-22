@@ -15,7 +15,7 @@ public:
     virtual void kill();
 
     void exeStartEvent();
-    u32 getTimeLimit() const;
+    u32  getTimeLimit() const;
 
 private:
     /// @brief The pointer to the actor instance for the timer.

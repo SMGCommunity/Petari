@@ -4,11 +4,11 @@
 
 class ReverseGravityRoomPlanet : public MapObjActor {
 public:
-    ReverseGravityRoomPlanet(const char *);
+    ReverseGravityRoomPlanet(const char*);
 
     virtual ~ReverseGravityRoomPlanet();
-    virtual void init(const JMapInfoIter &);
-    virtual void initCaseUseSwitchA(const MapObjActorInitInfo &);
+    virtual void init(const JMapInfoIter&);
+    virtual void initCaseUseSwitchA(const MapObjActorInitInfo&);
 
     void exeDownStart();
     void exeUpStart();
@@ -21,4 +21,4 @@ namespace NrvReverseGravityRoomPlanet {
     NERVE(ReverseGravityRoomPlanetNrvDownWait);
     NERVE(ReverseGravityRoomPlanetNrvUpStart);
     NERVE(ReverseGravityRoomPlanetNrvUpWait);
-};
+}; // namespace NrvReverseGravityRoomPlanet

@@ -5,6 +5,6 @@
 class IceMerameraKing;
 
 class Meramera : public LiveActor {
-    public:
-        Meramera(const char *);
-};    
+public:
+    Meramera(const char*);
+};

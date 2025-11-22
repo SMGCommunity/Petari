@@ -19,7 +19,7 @@ public:
 
 class WalkerStateChase : public ActorStateBase<LiveActor> {
 public:
-    WalkerStateChase(LiveActor *, TVec3f *, WalkerStateParam *, WalkerStateChaseParam *);
+    WalkerStateChase(LiveActor*, TVec3f*, WalkerStateParam*, WalkerStateChaseParam*);
 
     virtual ~WalkerStateChase();
     virtual void appear();
@@ -28,8 +28,8 @@ public:
     void exeEnd();
     bool isRunning() const;
 
-    LiveActor* mParentActor;                // 0xC
-    WalkerStateParam* mStateParam;          // 0x10
-    WalkerStateChaseParam* mChaseParam;     // 0x14
-    TVec3f* _18;
+    LiveActor*             mParentActor; // 0xC
+    WalkerStateParam*      mStateParam;  // 0x10
+    WalkerStateChaseParam* mChaseParam;  // 0x14
+    TVec3f*                _18;
 };

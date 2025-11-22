@@ -5,11 +5,12 @@ namespace {
     const f32 cAppearThrowFwdSpd = 5.0f;
     const f32 cAppearThrowUpSpd = 10.0f;
     const f32 cBoundUpSpd = 20.0f;
-};
+}; // namespace
 
-BenefitItemInvincible::BenefitItemInvincible(const char *pName) : BenefitItemObj(pName, "PowerupInvincible") {
+BenefitItemInvincible::BenefitItemInvincible(const char* pName)
+    : BenefitItemObj(pName, "PowerupInvincible") {
     if (MR::isGalaxyDarkCometAppearInCurrentStage()) {
-        _D8 = 1;   
+        _D8 = 1;
     }
 }
 
@@ -20,7 +21,7 @@ void BenefitItemInvincible::exeCatch() {
     kill();
 }
 
-void BenefitItemInvincible::init(const JMapInfoIter &rIter) {
+void BenefitItemInvincible::init(const JMapInfoIter& rIter) {
     BenefitItemObj::init(rIter);
 
     if (!_D8) {
@@ -69,7 +70,7 @@ void BenefitItemInvincible::appearThrowUp() {
 // BenefitItemInvincible::initEscape
 // BenefitItemInvincible::doEscape
 
-void BenefitItemInvincible::runEfx(const char *pEffect) {
+void BenefitItemInvincible::runEfx(const char* pEffect) {
     char str[0x40];
     if (!strcmp(pEffect, "Glow")) {
         strcpy(str, pEffect);
@@ -78,7 +79,7 @@ void BenefitItemInvincible::runEfx(const char *pEffect) {
     }
 }
 
-void BenefitItemInvincible::stopEfx(const char *pEffect) {
+void BenefitItemInvincible::stopEfx(const char* pEffect) {
     char str[0x40];
     if (!strcmp(pEffect, "Glow")) {
         strcpy(str, pEffect);
@@ -88,9 +89,7 @@ void BenefitItemInvincible::stopEfx(const char *pEffect) {
 }
 
 BenefitItemInvincible::~BenefitItemInvincible() {
-
 }
 
-void BenefitItemInvincible::runBck(const char *) {
-
+void BenefitItemInvincible::runBck(const char*) {
 }

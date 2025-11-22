@@ -7,8 +7,8 @@ public:
     /// @brief Creates a new `SphereController`.
     SphereController();
 
-    virtual f32 calcMoveVector(TVec3f*, const TVec3f&);
-    virtual f32 calcJumpPower() const;
+    virtual f32  calcMoveVector(TVec3f*, const TVec3f&);
+    virtual f32  calcJumpPower() const;
     virtual bool doBrake() const;
     virtual void update(const TVec3f&);
     virtual void notifyActivate();

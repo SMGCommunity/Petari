@@ -36,7 +36,7 @@ bool MarioModule::isStatusActiveID(u32 id) const {
     return mActor->mMario->isStatusActive(id);
 }
 
-bool MarioModule::isStatusActiveS(MarioState *pState) const {
+bool MarioModule::isStatusActiveS(MarioState* pState) const {
     return mActor->mMario->isStatusActive(pState->mStatusId);
 }
 
@@ -68,7 +68,7 @@ bool MarioModule::isPlayerModeFoo() const {
     return mActor->mPlayerMode == 7;
 }
 
-void MarioModule::changeAnimation(const char *pAnim1, const char *pAnim2) {
+void MarioModule::changeAnimation(const char* pAnim1, const char* pAnim2) {
     if (!mActor->_B90) {
         if (pAnim2) {
             mActor->mMarioAnim->changeDefault(pAnim2);
@@ -79,22 +79,20 @@ void MarioModule::changeAnimation(const char *pAnim1, const char *pAnim2) {
     }
 }
 
-void MarioModule::stopAnimation(const char *pAnim1, const char *pAnim2) {
+void MarioModule::stopAnimation(const char* pAnim1, const char* pAnim2) {
     if (!mActor->_B90) {
         if (pAnim2) {
             mActor->mMarioAnim->changeDefault(pAnim2);
         }
         if (pAnim1) {
             mActor->mMarioAnim->mXanimePlayer->stopAnimation(pAnim1);
-        }
-        else {
+        } else {
             mActor->mMarioAnim->mXanimePlayer->stopAnimation();
         }
-
     }
 }
 
-bool MarioModule::isDefaultAnimationRun(const char *pAnim) const {
+bool MarioModule::isDefaultAnimationRun(const char* pAnim) const {
     return mActor->mMarioAnim->isDefaultAnimationRun(pAnim);
 }
 
@@ -102,12 +100,11 @@ void MarioModule::changeAnimationInterpoleFrame(u32 a1) {
     return mActor->mMarioAnim->mXanimePlayer->changeInterpoleFrame(a1);
 }
 
-bool MarioModule::isAnimationRun(const char *pAnimName) const {
+bool MarioModule::isAnimationRun(const char* pAnimName) const {
     if (!pAnimName) {
         XanimePlayer* pXanimePlayer = mActor->mMarioAnim->mXanimePlayer;
         return pXanimePlayer->mCurrentAnimation != pXanimePlayer->mDefaultAnimation;
-    }
-    else {
+    } else {
         bool run = mActor->mMarioAnim->mXanimePlayer->isRun(pAnimName);
         if (mActor->mMarioAnim->_6C) {
             run |= mActor->mMarioAnim->mXanimePlayerUpper->isRun(pAnimName);
@@ -116,34 +113,33 @@ bool MarioModule::isAnimationRun(const char *pAnimName) const {
     }
 }
 
-bool MarioModule::isAnimationTerminate(const char *pAnim) const {
+bool MarioModule::isAnimationTerminate(const char* pAnim) const {
     if (pAnim) {
         return mActor->mMarioAnim->mXanimePlayer->isTerminate(pAnim);
     }
     return mActor->mMarioAnim->mXanimePlayer->isTerminate();
 }
 
-bool MarioModule::isAnimationTerminateUpper(const char *pAnim) const {
+bool MarioModule::isAnimationTerminateUpper(const char* pAnim) const {
     if (pAnim) {
         return mActor->mMarioAnim->mXanimePlayerUpper->isTerminate(pAnim);
     }
     return mActor->mMarioAnim->mXanimePlayerUpper->isTerminate();
 }
 
-const char* MarioModule::getAnimationStringPointer(const char *pAnim) const {
+const char* MarioModule::getAnimationStringPointer(const char* pAnim) const {
     return mActor->mMarioAnim->mXanimePlayer->getNameStringPointer(pAnim);
 }
 
 const char* MarioModule::getCurrentBckName() const {
     if (mActor->mMarioAnim->mXanimePlayer->isAnimationRunSimple()) {
         return mActor->mMarioAnim->mXanimePlayer->getCurrentBckName();
-    }
-    else {
+    } else {
         return mActor->mMarioAnim->mCurrBck;
     }
 }
 
-void MarioModule::changeAnimationUpper(const char *pAnim1, const char *pAnim2) {
+void MarioModule::changeAnimationUpper(const char* pAnim1, const char* pAnim2) {
     if (!mActor->_B90) {
         mActor->mMarioAnim->changeDefaultUpper(pAnim2);
         if (pAnim1) {
@@ -152,7 +148,7 @@ void MarioModule::changeAnimationUpper(const char *pAnim1, const char *pAnim2) {
     }
 }
 
-void MarioModule::changeAnimationUpperWeak(const char *pAnim1, const char *pAnim2) {
+void MarioModule::changeAnimationUpperWeak(const char* pAnim1, const char* pAnim2) {
     if (!mActor->mMarioAnim->_6C && !mActor->_B90) {
         mActor->mMarioAnim->changeDefaultUpper(pAnim2);
         if (pAnim1) {
@@ -161,7 +157,7 @@ void MarioModule::changeAnimationUpperWeak(const char *pAnim1, const char *pAnim
     }
 }
 
-void MarioModule::stopAnimationUpper(const char *pAnim1, const char *pAnim2) {
+void MarioModule::stopAnimationUpper(const char* pAnim1, const char* pAnim2) {
     if (!mActor->_B90) {
         mActor->mMarioAnim->changeDefaultUpper(pAnim2);
         mActor->mMarioAnim->stopUpper(pAnim1);
@@ -177,15 +173,15 @@ f32 MarioModule::getAnimationFrame() const {
 }
 
 // regswap
-void MarioModule::changeAnimation(const char *pAnim, u32 index) {
+void MarioModule::changeAnimation(const char* pAnim, u32 index) {
     if (!mActor->_B90) {
-        changeAnimation(pAnim, (char*) nullptr);
+        changeAnimation(pAnim, (char*)nullptr);
         mActor->mMario->_A6C[index] = 1;
     }
 }
 
 // regswap again (see above)
-bool MarioModule::isAnimationRun(const char *pAnim, u32 index) {
+bool MarioModule::isAnimationRun(const char* pAnim, u32 index) {
     if (mActor->mMario->_A6C[index] == 0) {
         return false;
     }
@@ -200,9 +196,9 @@ bool MarioModule::isAnimationRun(const char *pAnim, u32 index) {
 }
 
 // regwap again
-void MarioModule::stopAnimation(const char *pAnim, u32 index) {
+void MarioModule::stopAnimation(const char* pAnim, u32 index) {
     if (!mActor->_B90 && mActor->mMario->_A6C[index]) {
-        stopAnimation(pAnim, (char*) nullptr);
+        stopAnimation(pAnim, (char*)nullptr);
         mActor->mMario->_A6C[index] = 0;
     }
 }
@@ -211,8 +207,7 @@ void MarioModule::setJointGlobalMtx(u16 a1, MtxPtr mtx) {
     XjointTransform* pTransform = mActor->mMarioAnim->mXanimePlayer->mCore->mTransformList;
     if (pTransform == 0) {
         pTransform = 0;
-    }
-    else {
+    } else {
         pTransform += a1;
     }
     pTransform->_64 = mtx;
@@ -235,7 +230,7 @@ TVec3f& MarioModule::getWorldPadDir() const {
 }
 
 // regswap
-bool MarioModule::calcWorldPadDir(TVec3f *pDest, f32 a2, f32 a3, bool a4) {
+bool MarioModule::calcWorldPadDir(TVec3f* pDest, f32 a2, f32 a3, bool a4) {
     pDest->zero();
     if (MR::isNearZero(a2, 0.001f) && MR::isNearZero(a3, 0.001f)) {
         return false;
@@ -244,22 +239,17 @@ bool MarioModule::calcWorldPadDir(TVec3f *pDest, f32 a2, f32 a3, bool a4) {
         if (__fabsf(a3) > mActor->mConst->getTable()->mStickMarginYstart) {
             if (__fabsf(a2) < mActor->mConst->getTable()->mStickMarginX) {
                 a2 = 0.0f;
-            }
-            else if (a2 > 0.0f) {
+            } else if (a2 > 0.0f) {
                 a2 = (a2 - mActor->mConst->getTable()->mStickMarginX) / (1.0f - mActor->mConst->getTable()->mStickMarginX);
-            }
-            else {
+            } else {
                 a2 = (a2 + mActor->mConst->getTable()->mStickMarginX) / (1.0f - mActor->mConst->getTable()->mStickMarginX);
             }
-        }
-        else if (__fabsf(a2) > mActor->mConst->getTable()->mStickMarginXstart) {
+        } else if (__fabsf(a2) > mActor->mConst->getTable()->mStickMarginXstart) {
             if (__fabsf(a3) < mActor->mConst->getTable()->mStickMarginY) {
                 a3 = 0.0f;
-            }
-            else if (a3 > 0.0f) {
+            } else if (a3 > 0.0f) {
                 a3 = (a3 - mActor->mConst->getTable()->mStickMarginY) / (1.0f - mActor->mConst->getTable()->mStickMarginY);
-            }
-            else {
+            } else {
                 a3 = (a3 + mActor->mConst->getTable()->mStickMarginY) / (1.0f - mActor->mConst->getTable()->mStickMarginY);
             }
         }
@@ -268,7 +258,7 @@ bool MarioModule::calcWorldPadDir(TVec3f *pDest, f32 a2, f32 a3, bool a4) {
     return true;
 }
 
-void MarioModule::addVelocity(const TVec3f &rAdd) {
+void MarioModule::addVelocity(const TVec3f& rAdd) {
     mActor->mMario->mVelocity += rAdd;
 }
 
@@ -277,7 +267,7 @@ void MarioModule::addVelocity(const TVec3f &rAdd) {
     MR::vecScaleAdd(&mActor->mMario->_160, &rAdd, scale);
 } */
 
-void MarioModule::addVelocityAfter(const TVec3f &rAdd) {
+void MarioModule::addVelocityAfter(const TVec3f& rAdd) {
     mActor->mMario->mVelocityAfter += rAdd;
 }
 
@@ -289,23 +279,21 @@ TVec3f& MarioModule::getVelocity() const {
     return mActor->mMario->mVelocity;
 }
 
-void MarioModule::addTrans(const TVec3f &rShift, const char *pName) {
+void MarioModule::addTrans(const TVec3f& rShift, const char* pName) {
     mActor->mMario->addTrans(rShift, pName);
 }
-
 
 // regswap
 void MarioModule::cutGravityElementFromJumpVec(bool a1) {
     if (a1) {
         MR::vecKillElement(mActor->mMario->mJumpVec, mActor->_240, &mActor->mMario->mJumpVec);
-    }
-    else {
+    } else {
         TVec3f* pJumpVec = &mActor->mMario->mJumpVec;
         MR::vecKillElement(*pJumpVec, mActor->getGravityVec(), pJumpVec);
     }
 }
 
-void MarioModule::cutVecElementFromJumpVec(const TVec3f &rCut) {
+void MarioModule::cutVecElementFromJumpVec(const TVec3f& rCut) {
     MR::vecKillElement(mActor->mMario->mJumpVec, rCut, &mActor->mMario->mJumpVec);
 }
 
@@ -313,69 +301,69 @@ TVec3f& MarioModule::getJumpVec() const {
     return mActor->mMario->mJumpVec;
 }
 
-void MarioModule::setJumpVec(const TVec3f &rVec) {
+void MarioModule::setJumpVec(const TVec3f& rVec) {
     mActor->mMario->mJumpVec.setPS2(rVec);
 }
 
-void MarioModule::playEffect(const char *pEffectName) {
+void MarioModule::playEffect(const char* pEffectName) {
     mActor->playEffect(pEffectName);
 }
 
-void MarioModule::playEffectTarns(const char *pEffectName, const TVec3f &rTrans) {
+void MarioModule::playEffectTarns(const char* pEffectName, const TVec3f& rTrans) {
     mActor->playEffectTrans(pEffectName, rTrans);
 }
 
-void MarioModule::playEffectRT(const char *pEffectName, const TVec3f &a2, const TVec3f &a3) {
+void MarioModule::playEffectRT(const char* pEffectName, const TVec3f& a2, const TVec3f& a3) {
     mActor->playEffectRT(pEffectName, a2, a3);
 }
 
-void MarioModule::playEffectRTZ(const char *pEffectName, const TVec3f &a2, const TVec3f &a3) {
+void MarioModule::playEffectRTZ(const char* pEffectName, const TVec3f& a2, const TVec3f& a3) {
     mActor->playEffectRTZ(pEffectName, a2, a3);
 }
 
-void MarioModule::playEffectRTW(const char *pEffectName, const TVec3f &a2, const TVec3f &a3) {
+void MarioModule::playEffectRTW(const char* pEffectName, const TVec3f& a2, const TVec3f& a3) {
     mActor->playEffectRTW(pEffectName, a2, a3);
 }
 
-void MarioModule::playEffectSRT(const char *pEffectName, float a2, const TVec3f &a3, const TVec3f &a4) {
+void MarioModule::playEffectSRT(const char* pEffectName, float a2, const TVec3f& a3, const TVec3f& a4) {
     mActor->playEffectSRT(pEffectName, a2, a3, a4);
 }
 
-void MarioModule::stopEffect(const char *pEffectName) {
+void MarioModule::stopEffect(const char* pEffectName) {
     mActor->stopEffect(pEffectName);
 }
 
-void MarioModule::stopEffectForce(const char *pEffectName) {
+void MarioModule::stopEffectForce(const char* pEffectName) {
     mActor->stopEffectForce(pEffectName);
 }
 
-bool MarioModule::playSound(const char *pSoundName, s32 a2) {
+bool MarioModule::playSound(const char* pSoundName, s32 a2) {
     return mActor->mMario->playSoundJ(pSoundName, a2);
 }
 
-void MarioModule::stopSound(const char *pSoundName, u32 a2) {
+void MarioModule::stopSound(const char* pSoundName, u32 a2) {
     mActor->mMario->stopSoundJ(pSoundName, a2);
 }
 
 void MarioModule::startCamVib(u32 strength) {
     switch (strength) {
-        case 1:
-            MR::shakeCameraWeak();
-            return;
-        case 2:
-            MR::shakeCameraWeak();
-            return;
-        case 0:
-            MR::shakeCameraNormal();
-            return;
-        case 3:
-            MR::shakeCameraNormalStrong();
-            return;
-        case 4:
-            MR::shakeCameraStrong();
-            return;
-        default:
-            return;
+    case 1:
+        MR::shakeCameraWeak();
+        return;
+    case 2:
+        MR::shakeCameraWeak();
+        return;
+    case 0:
+        MR::shakeCameraNormal();
+        return;
+    case 3:
+        MR::shakeCameraNormalStrong();
+        return;
+    case 4:
+        MR::shakeCameraStrong();
+        return;
+    default:
+        return;
     }
 }
 
@@ -397,24 +385,24 @@ TVec3f& MarioModule::getCamDirZ() const {
 
 void MarioModule::startPadVib(u32 strength) {
     switch (strength) {
-        case 1:
-            MR::tryRumblePadVeryWeak(mActor, 0);
-            return;
-        case 0:
-            MR::tryRumblePadWeak(mActor, 0);
-            return;
-        case 2:
-            MR::tryRumblePadMiddle(mActor, 0);
-            return;
-        case 3:
-            MR::tryRumblePadStrong(mActor, 0);
-            return;
-        default:
-            return;
+    case 1:
+        MR::tryRumblePadVeryWeak(mActor, 0);
+        return;
+    case 0:
+        MR::tryRumblePadWeak(mActor, 0);
+        return;
+    case 2:
+        MR::tryRumblePadMiddle(mActor, 0);
+        return;
+    case 3:
+        MR::tryRumblePadStrong(mActor, 0);
+        return;
+    default:
+        return;
     }
 }
 
-void MarioModule::startPadVib(const char *a1) {
+void MarioModule::startPadVib(const char* a1) {
     MR::tryRumblePad(mActor, a1, 0);
 }
 
@@ -492,21 +480,21 @@ bool MarioModule::isOnSlipGround() const {
 }
 
 bool MarioModule::isSlipFloorCode(s32 a1) const {
-    switch(a1) {
-        case 2:
-            return true;
-        case 3:
-        case 0xd:
-        case 0x14:
-        case 0x15:
-        case 0x16:
-        case 0x1e:
-            return false;
+    switch (a1) {
+    case 2:
+        return true;
+    case 3:
+    case 0xd:
+    case 0x14:
+    case 0x15:
+    case 0x16:
+    case 0x1e:
+        return false;
     }
     return true;
 }
 
-bool MarioModule::isSlipPolygon(const Triangle *pTri) const {
+bool MarioModule::isSlipPolygon(const Triangle* pTri) const {
     if (!pTri->isValid()) {
         return false;
     }
@@ -534,7 +522,7 @@ u32 MarioModule::getFloorCode() const {
     return mActor->mMario->_95C->getCode(mActor->mMario->mGroundPolygon);
 }
 
-f32 MarioModule::calcPolygonAngleD(const Triangle *pTri) const {
+f32 MarioModule::calcPolygonAngleD(const Triangle* pTri) const {
     if (pTri->isValid() == false) {
         return 0.0f;
     }
@@ -544,12 +532,12 @@ f32 MarioModule::calcPolygonAngleD(const Triangle *pTri) const {
     return calcAngleD(*pTri->getNormal(0));
 }
 
-f32 MarioModule::calcAngleD(const TVec3f &rVec) const {
+f32 MarioModule::calcAngleD(const TVec3f& rVec) const {
     float f31 = (MR::acosEx(-mActor->mMario->getAirGravityVec().dot(rVec)) / 3.14159f) * 180.0f;
     if (MR::isNearZero(f31, 1.0f)) {
         f31 = 0.0f;
     }
-    if (MR::isNearZero(f31-90.0f, 1.0f)) {
+    if (MR::isNearZero(f31 - 90.0f, 1.0f)) {
         f31 = 90.0f;
     }
     return f31;
@@ -559,7 +547,7 @@ Triangle* MarioModule::getTmpPolygon() const {
     return mActor->mMario->mTmpPolygon;
 }
 
-bool MarioModule::sendPunch(HitSensor *pSensor, bool a2) {
+bool MarioModule::sendPunch(HitSensor* pSensor, bool a2) {
     if (!pSensor) {
         return false;
     }
@@ -570,11 +558,10 @@ bool MarioModule::sendPunch(HitSensor *pSensor, bool a2) {
     return ret;
 }
 
-HitSensor* MarioModule::getSensor(const Triangle *pTri) const {
+HitSensor* MarioModule::getSensor(const Triangle* pTri) const {
     if (pTri->isValid() == false) {
         return nullptr;
-    }
-    else {
+    } else {
         return pTri->mSensor;
     }
 }
@@ -590,16 +577,16 @@ bool MarioModule::isInputDisable() const {
     if (mActor->mMario->isStatusActive(12)) {
         return true;
     }
-    if (isAnimationRun("ハード着地")) {     // "Hard landing"
+    if (isAnimationRun("ハード着地")) { // "Hard landing"
         return true;
     }
-    if (isAnimationRun("中ダメージ着地")) {     
+    if (isAnimationRun("中ダメージ着地")) {
         return true;
     }
-    if (isAnimationRun("中後ダメージ着地")) {     
+    if (isAnimationRun("中後ダメージ着地")) {
         return true;
     }
-    if (isAnimationRun("ステージインB")) {     
+    if (isAnimationRun("ステージインB")) {
         return true;
     }
     return mActor->_3C0;

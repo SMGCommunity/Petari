@@ -202,7 +202,7 @@ namespace MR {
         DrawType_CameraCover = 0x51,
         DrawType_0x52 = 0x52,
     };
-};  // namespace MR
+}; // namespace MR
 
 class Scene;
 

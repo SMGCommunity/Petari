@@ -4,7 +4,7 @@
 #include <cstdio>
 
 void TalkMessageHistory::entry(u16 msgID) {
-   mHistory[mCount++] = msgID;
+    mHistory[mCount++] = msgID;
 }
 
 bool TalkMessageHistory::search(u16 msgID) const {
@@ -17,7 +17,8 @@ bool TalkMessageHistory::search(u16 msgID) const {
     return false;
 }
 
-TalkNodeCtrl::TalkNodeCtrl() : _0(0), mCurrentNodeIdx(-1), mMessageInfo() {
+TalkNodeCtrl::TalkNodeCtrl()
+    : _0(0), mCurrentNodeIdx(-1), mMessageInfo() {
     mHistory.mCount = 0;
     _38 = nullptr;
     mCurrentNode = nullptr;
@@ -51,12 +52,11 @@ void TalkNodeCtrl::forwardFlowNode() {
     }
 
     if (node->mNodeType == 1) {
-        u16 idx = node->mNextIdx;
+        u16          idx = node->mNextIdx;
         MessageData* msg = MessageSystem::getSceneMessageData();
         mCurrentNode = msg->getNode(idx);
-    }
-    else if (node->mNodeType == 3) {
-        u16 idx = node->mIndex;
+    } else if (node->mNodeType == 3) {
+        u16          idx = node->mIndex;
         MessageData* msg = MessageSystem::getSceneMessageData();
         mCurrentNode = msg->getBranchNode(idx);
     }
@@ -84,7 +84,7 @@ bool TalkNodeCtrl::isCurrentNodeEvent() const {
 
 TalkNode* TalkNodeCtrl::getNextNode() const {
     TalkNode* node = mCurrentNode;
-    u16 idx;
+    u16       idx;
 
     if (node == nullptr) {
         return nullptr;
@@ -95,8 +95,7 @@ TalkNode* TalkNodeCtrl::getNextNode() const {
         if (idx != 0xFFFF) {
             return MessageSystem::getSceneMessageData()->getNode(idx);
         }
-    }
-    else if (node->mNodeType == 3) {
+    } else if (node->mNodeType == 3) {
         idx = node->mIndex;
         MessageData* msg = MessageSystem::getSceneMessageData();
 
@@ -112,7 +111,7 @@ TalkNode* TalkNodeCtrl::getNextNode() const {
 
 TalkNode* TalkNodeCtrl::getNextNodeBranch() const {
     TalkNode* node = getNextNode();
-    
+
     if (node == nullptr) {
         return nullptr;
     }
@@ -146,7 +145,7 @@ TalkNode* TalkNodeCtrl::getCurrentNodeEvent() const {
 
 TalkNode* TalkNodeCtrl::getNextNodeEvent() const {
     TalkNode* node = getNextNode();
-    
+
     if (node == nullptr) {
         return nullptr;
     }
@@ -155,15 +154,14 @@ TalkNode* TalkNodeCtrl::getNextNodeEvent() const {
 }
 
 void TalkNodeCtrl::updateMessage() {
-    u16 idx;
-    u8 groupID;
+    u16       idx;
+    u8        groupID;
     TalkNode* cur = mCurrentNode;
 
     if (cur != nullptr) {
         if (cur->mNodeType != 1) {
             mMessageInfo._0 = 0;
-        } 
-        else {
+        } else {
             idx = cur->mIndex;
             groupID = cur->mGroupID;
             MessageData* msg = MessageSystem::getSceneMessageData();
@@ -174,8 +172,7 @@ void TalkNodeCtrl::updateMessage() {
 
             if (nextBranchNode != nullptr) {
                 mNodeData = nextBranchNode->mIndex;
-            }
-            else {
+            } else {
                 mNodeData = -1;
             }
         }
@@ -214,12 +211,11 @@ void TalkNodeCtrl::forwardCurrentBranchNode(bool storeCurrent) {
     TalkNode* cur = mCurrentNode;
 
     if (storeCurrent) {
-        u16 group = cur->mNextGroup;
+        u16          group = cur->mNextGroup;
         MessageData* msg = MessageSystem::getSceneMessageData();
         mCurrentNode = msg->getBranchNode(group);
-    }
-    else {
-        u16 group = cur->mNextGroup;
+    } else {
+        u16          group = cur->mNextGroup;
         MessageData* msg = MessageSystem::getSceneMessageData();
         mCurrentNode = msg->getBranchNode(group + 1);
     }
@@ -229,9 +225,9 @@ void TalkNodeCtrl::forwardCurrentBranchNode(bool storeCurrent) {
 
 #ifdef NON_MATCHING
 // refuses to load the msgID before the getCurrentPlacementZoneName() call
-void TalkNodeCtrl::createFlowNode(TalkMessageCtrl *pMsgCtrl, const JMapInfoIter &rIter, const char *pName, ActorCameraInfo **pCameraInf) {
+void TalkNodeCtrl::createFlowNode(TalkMessageCtrl* pMsgCtrl, const JMapInfoIter& rIter, const char* pName, ActorCameraInfo** pCameraInf) {
     char buf[0x100];
-    s32 msgID = MR::getMessageID(rIter);
+    s32  msgID = MR::getMessageID(rIter);
     snprintf(buf, sizeof(buf), "%s_%s%03d", MR::getCurrentPlacementZoneName(), pName, msgID);
     createFlowNodeDirect(pMsgCtrl, rIter, buf, pCameraInf);
 }

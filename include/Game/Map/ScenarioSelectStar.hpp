@@ -4,10 +4,10 @@
 
 class ScenarioSelectStar : public MultiSceneActor {
 public:
-    ScenarioSelectStar(EffectSystem *);
+    ScenarioSelectStar(EffectSystem*);
 
     virtual ~ScenarioSelectStar();
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
     virtual void calcViewAndEntry();
     virtual void appear();
     virtual void kill();
@@ -17,7 +17,7 @@ public:
     void select();
     void notSelect();
     bool isAppearEnd() const;
-    void setup(s32, int, const TVec3f &, s32);
+    void setup(s32, int, const TVec3f&, s32);
     bool tryEndPointing();
     void updatePos();
     void exeAppear();
@@ -28,14 +28,14 @@ public:
     void exeSelectedMove();
     void exeNotSelected();
 
-    int _44;
-    s32 mFrame;             // 0x48
-    s32 _4C;
-    bool _50;
-    f32 _54;
-    s32 _58;
+    int    _44;
+    s32    mFrame; // 0x48
+    s32    _4C;
+    bool   _50;
+    f32    _54;
+    s32    _58;
     TVec3f _5C;
     TVec3f _68;
-    int _74;
-    f32 _78;
+    int    _74;
+    f32    _78;
 };

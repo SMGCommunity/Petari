@@ -10,33 +10,32 @@ namespace {
     static s32 sStarAppearSeStepPenguinCoach = 95;
     static s32 sStarAppearSeStepTeresaRacer = 89;
     static s32 sStarAppearSeStepTrickRabbit = 22;
-};
+}; // namespace
 
 namespace NrvTakeOutStar {
     NEW_NERVE(TakeOutStarNrvAnim, TakeOutStar, Anim);
     NEW_NERVE(TakeOutStarNrvDemo, TakeOutStar, Demo);
     NEW_NERVE(TakeOutStarNrvTerm, TakeOutStar, Term);
-};
+}; // namespace NrvTakeOutStar
 
 namespace NrvFadeStarter {
     NEW_NERVE(FadeStarterNrvFade, FadeStarter, Fade);
     NEW_NERVE(FadeStarterNrvTerm, FadeStarter, Term);
-};
+}; // namespace NrvFadeStarter
 
 namespace NrvDemoStarter {
     NEW_NERVE(DemoStarterNrvInit, DemoStarter, Init);
     NEW_NERVE(DemoStarterNrvFade, DemoStarter, Fade);
     NEW_NERVE(DemoStarterNrvWait, DemoStarter, Wait);
     NEW_NERVE(DemoStarterNrvTerm, DemoStarter, Term);
-};
+}; // namespace NrvDemoStarter
 
-TakeOutStar::TakeOutStar(NPCActor *pActor, const char *pActionName, const char *pAnimName, const Nerve *pNerve) :
-    NerveExecutor("パワースター取り出しデモ実行者"),
-    mActor(pActor),
-    mNerve(pNerve),
-    mActionName(pActionName),
-    mAnimName(pAnimName)
-{
+TakeOutStar::TakeOutStar(NPCActor* pActor, const char* pActionName, const char* pAnimName, const Nerve* pNerve)
+    : NerveExecutor("パワースター取り出しデモ実行者"),
+      mActor(pActor),
+      mNerve(pNerve),
+      mActionName(pActionName),
+      mAnimName(pAnimName) {
     mStarModel = MR::createPowerStarDemoModel(mActor, "パワースターデモモデル", pActor->getBaseMtx());
     mStarModel->makeActorDead();
 
@@ -54,8 +53,7 @@ bool TakeOutStar::takeOut() {
 }
 
 bool TakeOutStar::isFirstStep() {
-    return isNerve(&NrvTakeOutStar::TakeOutStarNrvAnim::sInstance)
-        && MR::isFirstStep(this);
+    return isNerve(&NrvTakeOutStar::TakeOutStarNrvAnim::sInstance) && MR::isFirstStep(this);
 }
 
 bool TakeOutStar::isLastStep() {
@@ -66,8 +64,7 @@ void TakeOutStar::exeAnim() {
     if (MR::isFirstStep(this)) {
         if (mNerve != nullptr) {
             mActor->pushNerve(mNerve);
-        }
-        else {
+        } else {
             mActor->tryPushNullNerve();
         }
 
@@ -82,22 +79,18 @@ void TakeOutStar::exeAnim() {
 
     if (MR::isEqualString(mAnimName, "TakeOutStarCaretaker")) {
         step = sStarAppearSeStepCaretaker;
-    }
-    else if (MR::isEqualString(mAnimName, "TakeOutStarTeresaRacer")) {
+    } else if (MR::isEqualString(mAnimName, "TakeOutStarTeresaRacer")) {
         step = sStarAppearSeStepTeresaRacer;
-    }
-    else if (MR::isEqualString(mAnimName, "TakeOutStarPenguinCoach")) {
+    } else if (MR::isEqualString(mAnimName, "TakeOutStarPenguinCoach")) {
         step = sStarAppearSeStepPenguinCoach;
-    }
-    else if (MR::isEqualString(mAnimName, "TakeOutStarTrickRabbit")) {
+    } else if (MR::isEqualString(mAnimName, "TakeOutStarTrickRabbit")) {
         step = sStarAppearSeStepTrickRabbit;
     }
 
     if (MR::isGreaterStep(this, step)) {
         if (MR::isInWater(mStarModel, TVec3f(0.0f, 0.0f, 0.0f))) {
             MR::startLevelSound(mStarModel, "SE_OJ_LV_POW_STAR_EXIST_W", -1, -1, -1);
-        }
-        else {
+        } else {
             MR::startLevelSound(mStarModel, "SE_OJ_LV_POW_STAR_EXIST", -1, -1, -1);
         }
     }
@@ -123,15 +116,13 @@ void TakeOutStar::exeDemo() {
 }
 
 void TakeOutStar::exeTerm() {
-    
 }
 
-FadeStarter::FadeStarter(NPCActor *pActor, s32 a2) :
-    NerveExecutor("フェード開始制御"),
-    mActor(pActor),
-    _C(nullptr),
-    _10(a2)
-{
+FadeStarter::FadeStarter(NPCActor* pActor, s32 a2)
+    : NerveExecutor("フェード開始制御"),
+      mActor(pActor),
+      _C(nullptr),
+      _10(a2) {
     initNerve(&NrvFadeStarter::FadeStarterNrvFade::sInstance);
 }
 
@@ -171,13 +162,11 @@ void FadeStarter::exeFade() {
 }
 
 void FadeStarter::exeTerm() {
-    
 }
 
-DemoStarter::DemoStarter(NPCActor *pActor) :
-    NerveExecutor("デモ開始制御"),
-    mActor(pActor)
-{
+DemoStarter::DemoStarter(NPCActor* pActor)
+    : NerveExecutor("デモ開始制御"),
+      mActor(pActor) {
     initNerve(&NrvDemoStarter::DemoStarterNrvInit::sInstance);
 }
 
@@ -194,7 +183,6 @@ void DemoStarter::start() {
 }
 
 void DemoStarter::exeInit() {
-    
 }
 
 void DemoStarter::exeFade() {
@@ -222,5 +210,4 @@ void DemoStarter::exeWait() {
 }
 
 void DemoStarter::exeTerm() {
-
 }

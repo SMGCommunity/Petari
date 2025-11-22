@@ -4,5 +4,5 @@
 
 class MultiEmitterCallBackBase : public JPAEmitterCallBack {
     virtual ~MultiEmitterCallBackBase();
-    virtual void init(JPABaseEmitter *);
+    virtual void init(JPABaseEmitter*);
 };

@@ -6,7 +6,7 @@ class MarioActor;
 
 class MarioRecovery : public MarioState {
 public:
-    MarioRecovery(MarioActor *);
+    MarioRecovery(MarioActor*);
 
     u8 _11[0x7B];
 };

@@ -6,15 +6,13 @@
 #include "Game/NPC/TimeAttackEventKeeper.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 
-EventDirector::EventDirector() :
-    NameObj("イベント指揮"),
-    mPowerStarEventKeeper(nullptr),
-    mStageStateKeeper(nullptr),
-    mPowerStarHolder(nullptr),
-    mCometEventKeeper(nullptr),
-    mTimeAttackEventKeeper(nullptr)
-{
-    
+EventDirector::EventDirector()
+    : NameObj("イベント指揮"),
+      mPowerStarEventKeeper(nullptr),
+      mStageStateKeeper(nullptr),
+      mPowerStarHolder(nullptr),
+      mCometEventKeeper(nullptr),
+      mTimeAttackEventKeeper(nullptr) {
 }
 
 void EventDirector::init(const JMapInfoIter& rIter) {
@@ -62,7 +60,7 @@ namespace EventFunction {
         getCometEventKeeper()->endCometEvent();
         getTimeAttackEventKeeper()->endEvent();
     }
-};
+}; // namespace EventFunction
 
 namespace MR {
     void declareEventPowerStar(const char* pParam1, s32 param2, bool param3) {
@@ -104,4 +102,4 @@ namespace MR {
 
         return PowerStarFunction::isEndPowerStarAppearDemo(starId);
     }
-};
+}; // namespace MR

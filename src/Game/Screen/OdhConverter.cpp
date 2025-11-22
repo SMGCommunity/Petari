@@ -22,35 +22,32 @@ namespace {
     OdhConverter* getConverter() {
         return MR::getSceneObj<OdhConverter>(SceneObj_OdhConverter);
     }
-};
+}; // namespace
 
-OdhConverter::OdhConverter() :
-    LayoutActor("ODH-jpeg変換", true),
-    mCaptureWidth(cCaptureWidth),
-    mCaptureHeight(cCaptureHeight),
-    mLimitSize(cLimitSize),
-    mIsRequestedCapture(false),
-    mImage(nullptr),
-    mCaptureImage(nullptr)
-{
-    
+OdhConverter::OdhConverter()
+    : LayoutActor("ODH-jpeg変換", true),
+      mCaptureWidth(cCaptureWidth),
+      mCaptureHeight(cCaptureHeight),
+      mLimitSize(cLimitSize),
+      mIsRequestedCapture(false),
+      mImage(nullptr),
+      mCaptureImage(nullptr) {
 }
 
 void OdhConverter::init(const JMapInfoIter& rIter) {
     MR::connectToScene(this, -1, -1, -1, 62);
     MR::CurrentHeapRestorer heapRestorer(MR::getSceneHeapGDDR3());
 
-    mImage = new(32) u8[mLimitSize];
-    mCaptureImage = new(32) u8[mCaptureWidth * mCaptureHeight * 3];
+    mImage = new (32) u8[mLimitSize];
+    mCaptureImage = new (32) u8[mCaptureWidth * mCaptureHeight * 3];
 }
 
 void OdhConverter::draw() const {
-    
 }
 
 void OdhConverter::convert() {
     const GXRenderModeObj* pRenderModeObj;
-    u8* pScreenTexImage;
+    u8*                    pScreenTexImage;
 
     pScreenTexImage = MR::getScreenTexImage();
     pRenderModeObj = JUTVideo::sManager->mRenderModeObj;
@@ -89,10 +86,10 @@ namespace MR {
 
     void setPortCaptureOdhImage() {
         Mtx44 mtx;
-        f32 bottom;
-        f32 right;
-        f32 top;
-        f32 left;
+        f32   bottom;
+        f32   right;
+        f32   top;
+        f32   left;
 
         top = getFrameBufferHeight() * 0.5f - cCaptureOffsetX;
         left = -getFrameBufferWidth() * 0.5f + cCaptureOffsetY;
@@ -126,4 +123,4 @@ namespace MR {
 
         return pDrawAdaptor;
     }
-};
+}; // namespace MR

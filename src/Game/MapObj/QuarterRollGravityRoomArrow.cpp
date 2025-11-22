@@ -6,8 +6,8 @@
 #include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 
-QuarterRollGravityRoomArrow::QuarterRollGravityRoomArrow(const char* pName) : MapObjActor(pName) {
-    
+QuarterRollGravityRoomArrow::QuarterRollGravityRoomArrow(const char* pName)
+    : MapObjActor(pName) {
 }
 
 void QuarterRollGravityRoomArrow::init(const JMapInfoIter& rIter) {
@@ -17,7 +17,6 @@ void QuarterRollGravityRoomArrow::init(const JMapInfoIter& rIter) {
     info.setupNerve(&NrvQuarterRollGravityRoomArrow::QuarterRollGravityRoomArrowNrvWait::sInstance);
     initialize(rIter, info);
 }
-
 
 void QuarterRollGravityRoomArrow::exeRollOnA() {
     if (MR::isFirstStep(this)) {
@@ -41,7 +40,7 @@ void QuarterRollGravityRoomArrow::exeRollOnB() {
 }
 
 void QuarterRollGravityRoomArrow::exeRollOffB() {
-    if (MR::isFirstStep(this)) 
+    if (MR::isFirstStep(this))
         MR::startBck(this, "RollGravityBReverse", 0);
     if (MR::isBckStopped(this))
         setNerve(&NrvQuarterRollGravityRoomArrow::QuarterRollGravityRoomArrowNrvWait::sInstance);
@@ -82,4 +81,4 @@ namespace NrvQuarterRollGravityRoomArrow {
     QuarterRollGravityRoomArrowNrvRollOffA(QuarterRollGravityRoomArrowNrvRollOffA::sInstance);
     QuarterRollGravityRoomArrowNrvRollOnB(QuarterRollGravityRoomArrowNrvRollOnB::sInstance);
     QuarterRollGravityRoomArrowNrvRollOffB(QuarterRollGravityRoomArrowNrvRollOffB::sInstance);
-}
+} // namespace NrvQuarterRollGravityRoomArrow

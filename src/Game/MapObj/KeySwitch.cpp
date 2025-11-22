@@ -2,15 +2,15 @@
 #include "JSystem/JMath/JMath.hpp"
 
 KeySwitch::~KeySwitch() {
-
 }
 
-KeySwitch::KeySwitch(const char *pName) : LiveActor(pName) {
+KeySwitch::KeySwitch(const char* pName)
+    : LiveActor(pName) {
     mCameraInfo = 0;
     mCurDemoFrame = -1;
 }
 
-void KeySwitch::init(const JMapInfoIter &rIter) {
+void KeySwitch::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     initModelManagerWithAnm("KeySwitch", 0, false);
     MR::connectToSceneMapObjDecoration(this);
@@ -43,27 +43,25 @@ void KeySwitch::init(const JMapInfoIter &rIter) {
 
     if (usesSwitch || !MR::isValidInfo(rIter)) {
         initNerve(&NrvKeySwitch::KeySwitchNrvDemoStart::sInstance);
-        
-    }
-    else {
+
+    } else {
         initNerve(&NrvKeySwitch::KeySwitchNrvWait::sInstance);
     }
 
     if (usesSwitch || !MR::isValidInfo(rIter)) {
         makeActorDead();
-    }
-    else {
+    } else {
         makeActorAppeared();
     }
 }
 
-void KeySwitch::initKeySwitchByOwner(const JMapInfoIter &rIter) {
+void KeySwitch::initKeySwitchByOwner(const JMapInfoIter& rIter) {
     initWithoutIter();
     MR::needStageSwitchWriteA(this, rIter);
     MR::initActorCamera(this, rIter, &mCameraInfo);
 }
 
-void KeySwitch::appearKeySwitch(const TVec3f &rVec) {
+void KeySwitch::appearKeySwitch(const TVec3f& rVec) {
     MR::resetPosition(this, rVec);
     MR::onCalcGravity(this);
     MR::invalidateClipping(this);
@@ -161,18 +159,17 @@ void KeySwitch::control() {
             MR::endDemo(this, cDemoName);
             mCameraInfo = 0;
             mCurDemoFrame = -1;
-        }
-        else {
+        } else {
             mCurDemoFrame = mCurDemoFrame + 1;
         }
     }
 }
 
-bool KeySwitch::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool KeySwitch::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     return MR::isMsgStarPieceReflect(msg);
 }
 
-bool KeySwitch::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool KeySwitch::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgStarPieceReflect(msg)) {
         return true;
     }
@@ -233,18 +230,18 @@ namespace NrvKeySwitch {
     INIT_NERVE(KeySwitchNrvAppear);
     INIT_NERVE(KeySwitchNrvWait);
 
-    void KeySwitchNrvWait::execute(Spine *pSpine) const {
+    void KeySwitchNrvWait::execute(Spine* pSpine) const {
         KeySwitch* key = reinterpret_cast<KeySwitch*>(pSpine->mExecutor);
         key->exeWait();
     }
 
-    void KeySwitchNrvAppear::execute(Spine *pSpine) const {
+    void KeySwitchNrvAppear::execute(Spine* pSpine) const {
         KeySwitch* key = reinterpret_cast<KeySwitch*>(pSpine->mExecutor);
         key->exeAppear();
     }
 
-    void KeySwitchNrvDemoStart::execute(Spine *pSpine) const {
+    void KeySwitchNrvDemoStart::execute(Spine* pSpine) const {
         KeySwitch* key = reinterpret_cast<KeySwitch*>(pSpine->mExecutor);
         key->exeDemoStart();
     }
-};
+}; // namespace NrvKeySwitch

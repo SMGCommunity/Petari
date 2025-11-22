@@ -1,7 +1,8 @@
 #include "Game/LiveActor/MirrorReflectionModel.hpp"
 #include "Game/NameObj/NameObjExecuteHolder.hpp"
 
-MirrorReflectionModel::MirrorReflectionModel(const LiveActor *pActor, const char *pName, const char *pInternalName, MtxPtr mtx) : LiveActor(pName) {
+MirrorReflectionModel::MirrorReflectionModel(const LiveActor* pActor, const char* pName, const char* pInternalName, MtxPtr mtx)
+    : LiveActor(pName) {
     _8C = pActor;
     _90 = mtx;
     _94 = 0;
@@ -10,8 +11,7 @@ MirrorReflectionModel::MirrorReflectionModel(const LiveActor *pActor, const char
         TPos3f pos;
         pos.set(mtx);
         pos.getTrans(mPosition);
-    }
-    else {
+    } else {
         mPosition.set<f32>(pActor->mPosition);
     }
 
@@ -21,7 +21,7 @@ MirrorReflectionModel::MirrorReflectionModel(const LiveActor *pActor, const char
     MR::connectToSceneMirrorMapObjDecoration(this);
 }
 
-void MirrorReflectionModel::init(const JMapInfoIter &rIter) {
+void MirrorReflectionModel::init(const JMapInfoIter& rIter) {
     MR::invalidateClipping(this);
     MR::registerDemoSimpleCastAll(this);
     makeActorAppeared();
@@ -37,8 +37,7 @@ void MirrorReflectionModel::movement() {
                 MR::disconnectToDrawTemporarily(this);
             }
         }
-    }
-    else {
+    } else {
         if (_94) {
             _94 = 0;
             if (!MR::isHiddenModel(this)) {
@@ -71,8 +70,7 @@ void MirrorReflectionModel::calcViewAndEntry() {
 void MirrorReflectionModel::calcAndSetBaseMtx() {
     if (!_90) {
         LiveActor::calcAndSetBaseMtx();
-    }
-    else {
+    } else {
         TPos3f pos;
         pos.set(_90);
         pos.getTrans(mPosition);
@@ -81,5 +79,4 @@ void MirrorReflectionModel::calcAndSetBaseMtx() {
 }
 
 MirrorReflectionModel::~MirrorReflectionModel() {
-
 }

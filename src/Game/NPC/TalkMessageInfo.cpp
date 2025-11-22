@@ -1,15 +1,13 @@
 #include "Game/NPC/TalkMessageInfo.hpp"
 
-TalkMessageInfo::TalkMessageInfo() :
-    _0(0),
-    _4(0),
-    _6(0),
-    mCameraType(2),
-    mTalkType(0),
-    _A(-1),
-    _B(-1)
-{
-    
+TalkMessageInfo::TalkMessageInfo()
+    : _0(0),
+      _4(0),
+      _6(0),
+      mCameraType(2),
+      mTalkType(0),
+      _A(-1),
+      _B(-1) {
 }
 
 bool TalkMessageInfo::isNormalTalk() const {

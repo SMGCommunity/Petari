@@ -8,7 +8,7 @@ class GameStageClearSequence : public LayoutActor {
 public:
     GameStageClearSequence();
 
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
 
     void startPowerStarGetDemo();
     void startGrandStarGetDemo();
@@ -16,6 +16,6 @@ public:
     void exePowerStarGetDemo();
     void exeGrandStarGetDemo();
 
-    SimpleEffectLayout* mEffectLayout;      // 0x20
-    TVec2f mFollowPos;                      // 0x24
+    SimpleEffectLayout* mEffectLayout; // 0x20
+    TVec2f              mFollowPos;    // 0x24
 };

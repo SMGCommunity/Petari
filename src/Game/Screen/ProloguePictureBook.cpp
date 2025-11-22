@@ -16,13 +16,12 @@ namespace NrvProloguePictureBook {
     NEW_NERVE(ProloguePictureBookPlaying, ProloguePictureBook, Playing);
     NEW_NERVE(ProloguePictureBookKeyWait, ProloguePictureBook, KeyWait);
     NEW_NERVE(ProloguePictureBookEnd, ProloguePictureBook, End);
-};
+}; // namespace NrvProloguePictureBook
 
-ProloguePictureBook::ProloguePictureBook() :
-    LayoutActor("プロローグの絵本", true),
-    mAButtonIcon(nullptr),
-    mPage(0)
-{}
+ProloguePictureBook::ProloguePictureBook()
+    : LayoutActor("プロローグの絵本", true),
+      mAButtonIcon(nullptr),
+      mPage(0) {}
 
 void ProloguePictureBook::init(const JMapInfoIter& rIter) {
     MR::connectToSceneLayout(this);
@@ -59,8 +58,7 @@ void ProloguePictureBook::exePlaying() {
 
     if (MR::isAnimStopped(this, 0)) {
         setNerve(&NrvProloguePictureBook::ProloguePictureBookEnd::sInstance);
-    }
-    else {
+    } else {
         int index = mPage + 1;
 
         if (sBookPageInfo[index] < 0) {
@@ -99,7 +97,6 @@ void ProloguePictureBook::exeKeyWait() {
 }
 
 void ProloguePictureBook::exeEnd() {
-    
 }
 
 bool ProloguePictureBook::isEnd() const {

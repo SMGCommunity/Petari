@@ -4,8 +4,7 @@
 #include "Game/Player/ModelHolder.hpp"
 #include "Game/Player/TornadoMario.hpp"
 
-void MarioActor::drawMarioModel() const
-{
+void MarioActor::drawMarioModel() const {
     if (isAllHidden()) {
         return;
     }
@@ -35,7 +34,7 @@ void MarioActor::drawMarioModel() const
     drawSphereMask();
     bool res = drawDarkMask();
 
-    J3DModelX *model = mModels[mCurrModel];
+    J3DModelX* model = mModels[mCurrModel];
 
     if (res) {
         model->mFlags._10 = true;
@@ -54,12 +53,10 @@ void MarioActor::drawMarioModel() const
             MR::showJoint(model, "HandR0");
             MR::showJoint(model, "HandL0");
             MR::showJoint(model, "Face0");
-        }
-        else {
+        } else {
             if (mCurrModel == 4) {
                 model->setDynamicDL(nullptr, 0);
-            }
-            else {
+            } else {
                 model->setDynamicDL(mDL[mCurrDL], mDLSize);
             }
         }
@@ -82,7 +79,7 @@ void MarioActor::drawMarioModel() const
     drawHand();
 
     if (!MR::isHiddenModel(_A5C)) {
-        J3DModelX *cool = (J3DModelX *)MR::getJ3DModel(_A5C);
+        J3DModelX* cool = (J3DModelX*)MR::getJ3DModel(_A5C);
         cool->setDynamicDL(mDL[mCurrDL], mDLSize);
         cool->directDraw(nullptr);
     }

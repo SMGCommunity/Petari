@@ -1,22 +1,21 @@
 #include "Game/MapObj/LargeChainParts.hpp"
 
-LargeChainParts::LargeChainParts(const char *pName) : LiveActor(pName) {
-    
+LargeChainParts::LargeChainParts(const char* pName)
+    : LiveActor(pName) {
 }
 
 void LargeChainParts::breakChainParts() {
     kill();
 }
 
-void LargeChainParts::initChainParts(TVec3f *pPos, TVec3f *pRot, TVec3f *pScale, bool isFixedPoint) {
+void LargeChainParts::initChainParts(TVec3f* pPos, TVec3f* pRot, TVec3f* pScale, bool isFixedPoint) {
     mPosition.set<f32>(*pPos);
     mRotation.set<f32>(*pRot);
     mScale.set<f32>(*pScale);
 
     if (isFixedPoint) {
         initModelManagerWithAnm("LargeChainFixPoint", nullptr, false);
-    }
-    else {
+    } else {
         initModelManagerWithAnm("LargeChain", nullptr, false);
     }
 
@@ -25,8 +24,7 @@ void LargeChainParts::initChainParts(TVec3f *pPos, TVec3f *pRot, TVec3f *pScale,
     MR::addBodyMessageSensorMapObj(this);
     if (isFixedPoint) {
         MR::initCollisionParts(this, "LargeChainFixPoint", getSensor("body"), nullptr);
-    }
-    else {
+    } else {
         MR::initCollisionParts(this, "LargeChain", getSensor("body"), nullptr);
     }
 

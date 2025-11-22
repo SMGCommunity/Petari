@@ -27,11 +27,11 @@ public:
     bool checkSelectedBackButton();
 
 private:
-    /* 0x20 */ s32 mPageIndex;
-    /* 0x24 */ s32 _24;
+    /* 0x20 */ s32                   mPageIndex;
+    /* 0x24 */ s32                   _24;
     /* 0x28 */ ButtonPaneController* mLeftPaneCtrl;
     /* 0x2C */ ButtonPaneController* mRightPaneCtrl;
-    /* 0x30 */ bool _30;
-    /* 0x31 */ bool _31;
-    /* 0x34 */ BackButton* mBackButton;
+    /* 0x30 */ bool                  _30;
+    /* 0x31 */ bool                  _31;
+    /* 0x34 */ BackButton*           mBackButton;
 };

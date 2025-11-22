@@ -9,12 +9,12 @@ public:
     MarioHolder();
     ~MarioHolder();
 
-    void setMarioActor(MarioActor *actor);
-    MarioActor *getMarioActor() const;
+    void        setMarioActor(MarioActor* actor);
+    MarioActor* getMarioActor() const;
 
-    MarioActor *mActor;
+    MarioActor* mActor;
 };
 
 namespace MR {
-    MarioHolder *getMarioHolder();
+    MarioHolder* getMarioHolder();
 };

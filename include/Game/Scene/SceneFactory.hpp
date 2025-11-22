@@ -3,5 +3,5 @@
 class Scene;
 
 namespace MR {
-    Scene* createScene(const char *);
+    Scene* createScene(const char*);
 };

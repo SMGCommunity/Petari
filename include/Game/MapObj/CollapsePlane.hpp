@@ -6,24 +6,24 @@
 
 class CollapsePlane : public MapObjActor {
 public:
-    CollapsePlane(const char *);
+    CollapsePlane(const char*);
 
     virtual ~CollapsePlane();
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
     virtual void control();
     virtual void calcAndSetBaseMtx();
 
     void exeWait();
     void exeCollapse();
     void exeDPDStop();
-    bool calcJointPlane(TPos3f *, const JointControllerInfo &);
+    bool calcJointPlane(TPos3f*, const JointControllerInfo&);
     bool tryDPDStop();
 
-    AnimScaleController* mScaleController;          // 0xC4
-    WalkerStateBindStarPointer* mStarPointerBind;   // 0xC8
-    JointController* mJointController;              // 0xCC
-    s32 _D0;
-    s32 mTimer;                                     // 0xD4
+    AnimScaleController*        mScaleController; // 0xC4
+    WalkerStateBindStarPointer* mStarPointerBind; // 0xC8
+    JointController*            mJointController; // 0xCC
+    s32                         _D0;
+    s32                         mTimer; // 0xD4
 };
 
 namespace NrvCollapsePlane {
@@ -31,4 +31,4 @@ namespace NrvCollapsePlane {
     NERVE_DECL(CollapsePlaneNrvCollapse, CollapsePlane, CollapsePlane::exeCollapse);
     NERVE_DECL(CollapsePlaneNrvDPDStop, CollapsePlane, CollapsePlane::exeDPDStop);
     NERVE_DECL_NULL(CollapsePlaneNrvEnd);
-};
+}; // namespace NrvCollapsePlane

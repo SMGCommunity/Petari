@@ -6,9 +6,8 @@
 #include "Game/Screen/WipeRing.hpp"
 #include "Game/Util/ObjUtil.hpp"
 
-SceneWipeHolder::SceneWipeHolder() :
-    WipeHolderBase(8, "シーンワイプ保持")
-{
+SceneWipeHolder::SceneWipeHolder()
+    : WipeHolderBase(8, "シーンワイプ保持") {
     WipeLayoutBase* pWipeLayout;
 
     pWipeLayout = new WipeRing(1, "円ワイプ");
@@ -59,4 +58,4 @@ namespace SceneWipeHolderFunction {
     void forceCloseWipe(const char* pWipeName) {
         getSceneWipeHolder()->forceClose(pWipeName);
     }
-};
+}; // namespace SceneWipeHolderFunction

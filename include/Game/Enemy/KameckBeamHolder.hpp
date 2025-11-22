@@ -11,5 +11,5 @@ namespace MR {
     void createKameckFireBallHolder();
     void createKameckBeamTurtleHolder();
 
-    KameckBeam* startFollowKameckBeam(s32, MtxPtr, f32, const TVec3f &, KameckBeamEventListener *);
-};
+    KameckBeam* startFollowKameckBeam(s32, MtxPtr, f32, const TVec3f&, KameckBeamEventListener*);
+}; // namespace MR

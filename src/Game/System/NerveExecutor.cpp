@@ -1,9 +1,8 @@
 #include "Game/LiveActor/Spine.hpp"
 #include "Game/System/NerveExecutor.hpp"
 
-NerveExecutor::NerveExecutor(const char* pName) :
-    mSpine(nullptr)
-{}
+NerveExecutor::NerveExecutor(const char* pName)
+    : mSpine(nullptr) {}
 
 NerveExecutor::~NerveExecutor() {
     delete mSpine;

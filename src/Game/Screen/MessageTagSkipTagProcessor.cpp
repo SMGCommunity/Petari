@@ -1,23 +1,21 @@
 #include "Game/Screen/MessageTagSkipTagProcessor.hpp"
 
-MessageTagSkipTagProcessor::MessageTagSkipTagProcessor() : nw4r::ut::TagProcessorBase<wchar_t>() {
-
+MessageTagSkipTagProcessor::MessageTagSkipTagProcessor()
+    : nw4r::ut::TagProcessorBase<wchar_t>() {
 }
 
-nw4r::ut::TagProcessorBase<wchar_t>::Operation MessageTagSkipTagProcessor::CalcRect(nw4r::ut::Rect *pRect, u16 code, ContextType *pPrintContext) {
+nw4r::ut::TagProcessorBase<wchar_t>::Operation MessageTagSkipTagProcessor::CalcRect(nw4r::ut::Rect* pRect, u16 code, ContextType* pPrintContext) {
     if (code != 0x1A) {
         return nw4r::ut::TagProcessorBase<wchar_t>::CalcRect(pRect, code, pPrintContext);
-    }
-    else {
+    } else {
         return skipTag(pRect, pPrintContext, false);
     }
 }
 
-nw4r::ut::TagProcessorBase<wchar_t>::Operation MessageTagSkipTagProcessor::Process(u16 code, ContextType *pPrintContext) {
+nw4r::ut::TagProcessorBase<wchar_t>::Operation MessageTagSkipTagProcessor::Process(u16 code, ContextType* pPrintContext) {
     if (code != 0x1A) {
         return nw4r::ut::TagProcessorBase<wchar_t>::Process(code, pPrintContext);
-    }
-    else {
+    } else {
         return skipTag(nullptr, pPrintContext, false);
     }
 }

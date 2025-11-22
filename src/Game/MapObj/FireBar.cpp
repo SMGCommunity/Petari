@@ -3,18 +3,17 @@
 #include "JSystem/JMath/JMath.hpp"
 
 FireBarBall::~FireBarBall() {
-
 }
 
 FireBar::~FireBar() {
-
 }
 
-FireBarBall::FireBarBall(LiveActor *pParent) : ModelObj("ファイアバー玉", "FireBarBall", 0, 0xB, -2, -2, false) {
+FireBarBall::FireBarBall(LiveActor* pParent)
+    : ModelObj("ファイアバー玉", "FireBarBall", 0, 0xB, -2, -2, false) {
     mFireBarParent = pParent;
-} 
+}
 
-void FireBarBall::init(const JMapInfoIter &rIter) {
+void FireBarBall::init(const JMapInfoIter& rIter) {
     f32 shadowDropDist = 100.0f;
     MR::getJMapInfoArg6NoInit(rIter, &shadowDropDist);
 
@@ -65,13 +64,13 @@ void FireBarBall::endClipped() {
 void FireBarBall::controlEmitEffect() {
     if (MR::isNearPlayerAnyTime(this, 5000.0f)) {
         MR::emitEffect(this, "FireBarBall");
-    }
-    else {
+    } else {
         MR::deleteEffect(this, "FireBarBall");
     }
 }
 
-FireBar::FireBar(const char *pName) : LiveActor(pName) {
+FireBar::FireBar(const char* pName)
+    : LiveActor(pName) {
     mFireBalls = 0;
     mFireBallCount = 5;
     _94.x = 0.0f;
@@ -82,7 +81,7 @@ FireBar::FireBar(const char *pName) : LiveActor(pName) {
     mStickDistance = 140.0f;
 }
 
-void FireBar::init(const JMapInfoIter &rIter) {
+void FireBar::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     initModelManagerWithAnm("FireBarCore", 0, false);
     MR::connectToSceneMapObj(this);
@@ -165,7 +164,7 @@ void FireBar::makeActorDead() {
     LiveActor::makeActorDead();
 }
 
-void FireBar::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
+void FireBar::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isSensorPlayerOrRide(pReceiver) && MR::isSensorEnemyAttack(pSender)) {
         MR::sendMsgEnemyAttackFire(pReceiver, pSender);
     }
@@ -175,7 +174,7 @@ void FireBar::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
 
 #ifdef NON_MATCHING
 // meh
-void FireBar::initFireBarBall(const JMapInfoIter &rIter) {
+void FireBar::initFireBarBall(const JMapInfoIter& rIter) {
     mFireBalls = new FireBarBall*[mFireBallCount];
     s32 totalNum = mFireBallCount;
     totalNum /= mStickCount;
@@ -221,8 +220,7 @@ void FireBar::fixFireBarBall() {
             MR::normalize(scaled, &norm);
             JMAVECScaleAdd((const Vec*)&norm, (const Vec*)&mPosition, (Vec*)&final_pos, mStickDistance);
             JMAVECScaleAdd((const Vec*)&up_vec, (const Vec*)&final_pos, (Vec*)&final_pos, 50.0f);
-        }
-        else {
+        } else {
             JMathInlineVEC::PSVECAdd((const Vec*)&final_pos, (const Vec*)&scaled, (Vec*)&final_pos);
         }
 
@@ -233,8 +231,8 @@ void FireBar::fixFireBarBall() {
 namespace NrvFireBar {
     FireBarNrvWait FireBarNrvWait::sInstance;
 
-    void FireBarNrvWait::execute(Spine *pSpine) const {
+    void FireBarNrvWait::execute(Spine* pSpine) const {
         FireBar* bar = reinterpret_cast<FireBar*>(pSpine->mExecutor);
         bar->exeWait();
     }
-};
+}; // namespace NrvFireBar

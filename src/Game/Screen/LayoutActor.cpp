@@ -4,14 +4,12 @@
 #include "Game/Screen/PaneEffectKeeper.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 
-LayoutActor::LayoutActor(const char *pName, bool) :
-    NameObj(pName),
-    mManager(nullptr),
-    mSpine(nullptr),
-    mPaneEffectKeeper(nullptr),
-    mStarPointerTargetKeeper(nullptr)
-{
-    
+LayoutActor::LayoutActor(const char* pName, bool)
+    : NameObj(pName),
+      mManager(nullptr),
+      mSpine(nullptr),
+      mPaneEffectKeeper(nullptr),
+      mStarPointerTargetKeeper(nullptr) {
 }
 
 void LayoutActor::movement() {
@@ -58,11 +56,11 @@ void LayoutActor::kill() {
     mFlag.mIsDead = true;
 }
 
-void LayoutActor::setNerve(const Nerve *pNerve) const {
+void LayoutActor::setNerve(const Nerve* pNerve) const {
     mSpine->setNerve(pNerve);
 }
 
-bool LayoutActor::isNerve(const Nerve *pNerve) const {
+bool LayoutActor::isNerve(const Nerve* pNerve) const {
     return mSpine->getCurrentNerve() == pNerve;
 }
 
@@ -90,19 +88,19 @@ LayoutManager* LayoutActor::getLayoutManager() const {
 // LayoutActor::createPaneMtxRef
 // LayoutActor::getPaneMtxRef
 
-void LayoutActor::initLayoutManager(const char *pName, u32 a2) {
+void LayoutActor::initLayoutManager(const char* pName, u32 a2) {
     mManager = new LayoutManager(pName, true, a2, 0x100);
 }
 
-void LayoutActor::initLayoutManagerNoConvertFilename(const char *pName, u32 a2) {
+void LayoutActor::initLayoutManagerNoConvertFilename(const char* pName, u32 a2) {
     mManager = new LayoutManager(pName, false, a2, 0x100);
 }
 
-void LayoutActor::initLayoutManagerWithTextBoxBufferLength(const char *pName, u32 textBoxBufferLength, u32 a3) {
+void LayoutActor::initLayoutManagerWithTextBoxBufferLength(const char* pName, u32 textBoxBufferLength, u32 a3) {
     mManager = new LayoutManager(pName, false, a3, textBoxBufferLength);
 }
 
-void LayoutActor::initNerve(const Nerve *pNerve) {
+void LayoutActor::initNerve(const Nerve* pNerve) {
     mSpine = new Spine(this, pNerve);
 }
 

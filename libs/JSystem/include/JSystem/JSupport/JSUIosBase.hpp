@@ -20,7 +20,6 @@ public:
     };
 
     virtual ~JSUIosBase() {
-
     }
 
     void setState(EIoState);

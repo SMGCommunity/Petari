@@ -26,8 +26,8 @@ public:
     void exeDisappear();
 
 private:
-    /* 0x20 */ s32 mPlayerLeft;
+    /* 0x20 */ s32                    mPlayerLeft;
     /* 0x24 */ CounterLayoutAppearer* mLayoutAppearer;
-    /* 0x28 */ CountUpPaneRumbler* mPaneRumbler;
-    /* 0x2C */ bool mIsForceAppear;
+    /* 0x28 */ CountUpPaneRumbler*    mPaneRumbler;
+    /* 0x2C */ bool                   mIsForceAppear;
 };

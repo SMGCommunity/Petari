@@ -23,31 +23,30 @@ namespace {
         "Star4",
         "Star5",
         "Star6",
-        "Star7"
-    };
+        "Star7"};
 
     const char* cQuestionPaneName[] = {
         "NewStar1",
         "NewStar2",
     };
-    const f32 cPointingTargetRadius = 60.0f;
-    const s32 cDecideFrame = 40;
-    const s32 cSelectedAccelStartStep = 60;
-    const s32 cSelectedAccelFrame = 150;
-    const f32 cSelectedEffectRateMin = 2.0f;
-    const f32 cSelectedEffectRateMax = 15.0f;
-    const f32 cSelectedEffectSpeedMin = 9.0f;
-    const f32 cSelectedEffectSpeedMax = 15.0f;
-    const s32 cSelectedEndAnimStartStep = 60;
-    const s32 cSelectedFadeOutStartStep = 180;
-    const s32 cSelectedFadeOutFrame = 30;
-    const s32 cSelectedFadeInFrame = 180;
-    const s32 cCancelFadeOutFrame = 90;
+    const f32    cPointingTargetRadius = 60.0f;
+    const s32    cDecideFrame = 40;
+    const s32    cSelectedAccelStartStep = 60;
+    const s32    cSelectedAccelFrame = 150;
+    const f32    cSelectedEffectRateMin = 2.0f;
+    const f32    cSelectedEffectRateMax = 15.0f;
+    const f32    cSelectedEffectSpeedMin = 9.0f;
+    const f32    cSelectedEffectSpeedMax = 15.0f;
+    const s32    cSelectedEndAnimStartStep = 60;
+    const s32    cSelectedFadeOutStartStep = 180;
+    const s32    cSelectedFadeOutFrame = 30;
+    const s32    cSelectedFadeInFrame = 180;
+    const s32    cCancelFadeOutFrame = 90;
     const TVec3f cSkyTrans = TVec3f(0.0f, 0.0f, -10000.0f);
-    const f32 cSkyScale = 10.0f;
-    const s32 cCometWarningWaitFrame = 15;
-    const s32 cCometWarningFrame = 180;
-};
+    const f32    cSkyScale = 10.0f;
+    const s32    cCometWarningWaitFrame = 15;
+    const s32    cCometWarningFrame = 180;
+}; // namespace
 
 namespace NrvScenarioSelectLayout {
     NEW_NERVE(ScenarioSelectLayoutNrvAppearStar, ScenarioSelectLayout, AppearStar);
@@ -61,26 +60,25 @@ namespace NrvScenarioSelectLayout {
     NEW_NERVE(ScenarioSelectLayoutNrvAppearCometWarning, ScenarioSelectLayout, AppearCometWarning);
     NEW_NERVE(ScenarioSelectLayoutNrvWaitCometWarning, ScenarioSelectLayout, WaitCometWarning);
     NEW_NERVE(ScenarioSelectLayoutNrvDisappearCometWarning, ScenarioSelectLayout, DisappearCometWarning);
-};
+}; // namespace NrvScenarioSelectLayout
 
-ScenarioSelectLayout::ScenarioSelectLayout(EffectSystem *pEffectSystem, const CameraContext *pCameraContext) :
-    LayoutActor("シナリオ選択レイアウト", true),
-    mSelectedScenarioNo(-1),
-    _24(0),
-    _28(false),
-    mStar(nullptr),
-    mScenarioSky(nullptr),
-    mEffectSystem(pEffectSystem),
-    mCameraContext(pCameraContext),
-    mNewTextFollowPos(0.0f, 0.0f),
-    mNewGreenTextFollowPos(0.0f, 0.0f),
-    mStarTopFollowPos(0.0f, 0.0f),
-    mBackButton(nullptr),
-    mMarioPaneFollowPos(0.0f, 0.0f),
-    mMarioPaneName(nullptr),
-    _A4(0),
-    _A8(-1)
-{
+ScenarioSelectLayout::ScenarioSelectLayout(EffectSystem* pEffectSystem, const CameraContext* pCameraContext)
+    : LayoutActor("シナリオ選択レイアウト", true),
+      mSelectedScenarioNo(-1),
+      _24(0),
+      _28(false),
+      mStar(nullptr),
+      mScenarioSky(nullptr),
+      mEffectSystem(pEffectSystem),
+      mCameraContext(pCameraContext),
+      mNewTextFollowPos(0.0f, 0.0f),
+      mNewGreenTextFollowPos(0.0f, 0.0f),
+      mStarTopFollowPos(0.0f, 0.0f),
+      mBackButton(nullptr),
+      mMarioPaneFollowPos(0.0f, 0.0f),
+      mMarioPaneName(nullptr),
+      _A4(0),
+      _A8(-1) {
     mEffectHostMtx.identity();
 
     for (s32 i = 0; i < sizeof(mQuestionPane) / sizeof(*mQuestionPane); i++) {
@@ -88,7 +86,7 @@ ScenarioSelectLayout::ScenarioSelectLayout(EffectSystem *pEffectSystem, const Ca
     }
 }
 
-void ScenarioSelectLayout::init(const JMapInfoIter &rIter) {
+void ScenarioSelectLayout::init(const JMapInfoIter& rIter) {
     initLayoutManager("ScenarioSelect", 1);
     MR::createAndAddPaneCtrl(this, "ScenarioSelect", 1);
     MR::createAndAddPaneCtrl(this, "ScenarioFrame", 1);
@@ -204,21 +202,15 @@ void ScenarioSelectLayout::disappear() {
 }
 
 bool ScenarioSelectLayout::isAppearStarEnd() const {
-    return !MR::isDead(this)
-        && !isNerve(&NrvScenarioSelectLayout::ScenarioSelectLayoutNrvAppearStar::sInstance)
-        && !isNerve(&NrvScenarioSelectLayout::ScenarioSelectLayoutNrvAppearCometWarning::sInstance)
-        && !isNerve(&NrvScenarioSelectLayout::ScenarioSelectLayoutNrvWaitCometWarning::sInstance)
-        && !isNerve(&NrvScenarioSelectLayout::ScenarioSelectLayoutNrvDisappearCometWarning::sInstance);
+    return !MR::isDead(this) && !isNerve(&NrvScenarioSelectLayout::ScenarioSelectLayoutNrvAppearStar::sInstance) && !isNerve(&NrvScenarioSelectLayout::ScenarioSelectLayoutNrvAppearCometWarning::sInstance) && !isNerve(&NrvScenarioSelectLayout::ScenarioSelectLayoutNrvWaitCometWarning::sInstance) && !isNerve(&NrvScenarioSelectLayout::ScenarioSelectLayoutNrvDisappearCometWarning::sInstance);
 }
 
 bool ScenarioSelectLayout::isEndAnimStartStep() const {
-    return isNerve(&NrvScenarioSelectLayout::ScenarioSelectLayoutNrvAfterScenarioSelected::sInstance)
-        && MR::isStep(this, cSelectedEndAnimStartStep);
+    return isNerve(&NrvScenarioSelectLayout::ScenarioSelectLayoutNrvAfterScenarioSelected::sInstance) && MR::isStep(this, cSelectedEndAnimStartStep);
 }
 
 bool ScenarioSelectLayout::isCanceled() const {
-    return isNerve(&NrvScenarioSelectLayout::ScenarioSelectLayoutNrvCancel::sInstance)
-        || isNerve(&NrvScenarioSelectLayout::ScenarioSelectLayoutNrvCancelFadeOut::sInstance);
+    return isNerve(&NrvScenarioSelectLayout::ScenarioSelectLayoutNrvCancel::sInstance) || isNerve(&NrvScenarioSelectLayout::ScenarioSelectLayoutNrvCancelFadeOut::sInstance);
 }
 
 void ScenarioSelectLayout::control() {
@@ -232,19 +224,16 @@ void ScenarioSelectLayout::control() {
 // ScenarioSelectLayout::updateSelectedScenario
 
 void ScenarioSelectLayout::updateScenarioText() {
-    bool isEndAnimStep = isNerve(&NrvScenarioSelectLayout::ScenarioSelectLayoutNrvAfterScenarioSelected::sInstance)
-        && MR::isGreaterEqualStep(this, cSelectedEndAnimStartStep);
+    bool isEndAnimStep = isNerve(&NrvScenarioSelectLayout::ScenarioSelectLayoutNrvAfterScenarioSelected::sInstance) && MR::isGreaterEqualStep(this, cSelectedEndAnimStartStep);
 
     if (!MR::isHiddenPane(this, "Scenario") && (mSelectedScenarioNo <= 0 || _A8 == mSelectedScenarioNo)) {
         fadeInText();
-    }
-    else if (!isEndAnimStep && mSelectedScenarioNo > 0) {
+    } else if (!isEndAnimStep && mSelectedScenarioNo > 0) {
         if (_A4 == 0) {
             if (MR::isPaneAnimStopped(this, "Scenario", 0) && mSelectedScenarioNo <= 0) {
                 fadeOutText();
             }
-        }
-        else if (MR::isPaneAnimStopped(this, "Scenario", 0)) {
+        } else if (MR::isPaneAnimStopped(this, "Scenario", 0)) {
             MR::hidePaneRecursive(this, "Scenario");
         }
     }
@@ -393,13 +382,12 @@ void ScenarioSelectLayout::setPlayerLeft() {
 
     if (MR::getPlayerLeft() < 10) {
         mMarioPaneName = "MarioPosition10";
-    }
-    else {
+    } else {
         mMarioPaneName = "MarioPosition01";
     }
 }
 
-void ScenarioSelectLayout::startAnimAllNewPane(const char *pAnimName) {
+void ScenarioSelectLayout::startAnimAllNewPane(const char* pAnimName) {
     MR::startPaneAnim(this, "New", pAnimName, 0);
     MR::startPaneAnim(this, "NewStarGreen", pAnimName, 0);
 
@@ -421,7 +409,7 @@ void ScenarioSelectLayout::exeDisappearCometWarning() {
     MR::startPaneAnimAtFirstStep(this, "CometAppear", "CometEnd", 0);
     MR::setNerveAtPaneAnimStopped(this, "CometAppear", &NrvScenarioSelectLayout::ScenarioSelectLayoutNrvAppear::sInstance, 0);
 }
- 
+
 void ScenarioSelectLayout::exeCancelFadeOut() {
     kill();
 }
@@ -441,13 +429,12 @@ void ScenarioSelectLayout::exeAppearStar() {
     MR::startSystemLevelSE("SE_DM_LV_SENARIO_SE_FLY", -1, -1);
 
     if (isAppearStarEndAll()) {
-        s32 scenarioNo;
+        s32  scenarioNo;
         bool needsAppearComet;
 
         if (!MR::isScenarioDecided()) {
             needsAppearComet = false;
-        }
-        else {
+        } else {
             scenarioNo = MR::getCurrentScenarioNo();
             needsAppearComet = false;
             GalaxyStatusAccessor galaxyAccessor = MR::makeCurrentGalaxyStatusAccessor();
@@ -461,8 +448,7 @@ void ScenarioSelectLayout::exeAppearStar() {
 
         if (needsAppearComet) {
             setNerve(&NrvScenarioSelectLayout::ScenarioSelectLayoutNrvAppearCometWarning::sInstance);
-        }
-        else {
+        } else {
             setNerve(&NrvScenarioSelectLayout::ScenarioSelectLayoutNrvAppear::sInstance);
         }
     }
@@ -510,8 +496,7 @@ void ScenarioSelectLayout::exeDecide() {
 
             if (mStar[i] == getSelectedStar()) {
                 mStar[i]->select();
-            }
-            else {
+            } else {
                 mStar[i]->notSelect();
             }
         }
@@ -521,7 +506,7 @@ void ScenarioSelectLayout::exeDecide() {
 
     updateScenarioText();
     MR::startSystemLevelSE("SE_DM_LV_SENARIO_SEL_FLY", -1, -1);
-    MR::setNerveAtStep(this,  &NrvScenarioSelectLayout::ScenarioSelectLayoutNrvAfterScenarioSelected::sInstance, cDecideFrame);
+    MR::setNerveAtStep(this, &NrvScenarioSelectLayout::ScenarioSelectLayoutNrvAfterScenarioSelected::sInstance, cDecideFrame);
 }
 
 void ScenarioSelectLayout::exeAfterScenarioSelected() {
@@ -555,7 +540,7 @@ void ScenarioSelectLayout::exeDisappear() {
     if (MR::isFirstStep(this)) {
         MR::hideLayout(this);
         MR::getEffect(this, "ScenarioSelectEffect")->forceDelete(mEffectSystem);
-    
+
         for (s32 i = 0; i < 7; i++) {
             ScenarioSelectStar* star = mStar[i];
 
@@ -591,9 +576,9 @@ void ScenarioSelectLayout::exeCancel() {
 
 void ScenarioSelectLayout::exeAppearCometWarning() {
     if (MR::isStep(this, cCometWarningWaitFrame)) {
-        int id = MR::getEncounterGalaxyCometNameId(MR::getCurrentStageName());
+        int         id = MR::getEncounterGalaxyCometNameId(MR::getCurrentStageName());
         const char* cometName = MR::getCometNameFromId(id);
-        char cometMsg[256];
+        char        cometMsg[256];
         MR::makeCometMessageID(cometMsg, sizeof(cometMsg), cometName);
         MR::setTextBoxGameMessageRecursive(this, "TextComet", "GalaxyInfo_CometAppearR");
         MR::setTextBoxArgGameMessageRecursive(this, "TextComet", cometMsg, 0);

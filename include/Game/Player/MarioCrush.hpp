@@ -6,6 +6,6 @@ class MarioActor;
 
 class MarioCrush : public MarioState {
 public:
-    MarioCrush(MarioActor *);
+    MarioCrush(MarioActor*);
     u8 _11[7];
 };

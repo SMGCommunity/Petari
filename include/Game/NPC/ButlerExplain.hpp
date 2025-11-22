@@ -5,15 +5,15 @@
 
 class ButlerExplain : public NPCActor {
 public:
-    ButlerExplain(const char *);
+    ButlerExplain(const char*);
 
     virtual ~ButlerExplain();
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
     virtual void control();
 
-    void startDemo();
+    void        startDemo();
     inline void exeDemo();
 
-    bool _D8;
+    bool             _D8;
     TalkMessageCtrl* mTalk;
 };

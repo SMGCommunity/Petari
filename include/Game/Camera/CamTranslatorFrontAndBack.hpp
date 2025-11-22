@@ -4,12 +4,12 @@
 
 class CamTranslatorFrontAndBack : public CamTranslatorBase {
 public:
-	CamTranslatorFrontAndBack(CameraFrontAndBack *pCamera) {
-		mCamera = pCamera;
-	}
+    CamTranslatorFrontAndBack(CameraFrontAndBack* pCamera) {
+        mCamera = pCamera;
+    }
 
-	virtual void setParam(const CameraParamChunk *);
-	virtual Camera *getCamera() const;
+    virtual void    setParam(const CameraParamChunk*);
+    virtual Camera* getCamera() const;
 
-	CameraFrontAndBack *mCamera;	// 0x4
+    CameraFrontAndBack* mCamera; // 0x4
 };

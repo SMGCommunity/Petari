@@ -1,7 +1,8 @@
 #include "Game/Camera/CameraTrundle.hpp"
 #include "Game/Camera/CamTranslatorTrundle.hpp"
 
-CameraTrundle::CameraTrundle(const char *pName) : Camera(pName) {
+CameraTrundle::CameraTrundle(const char* pName)
+    : Camera(pName) {
     mWPoint.x = 0.0f;
     mWPoint.y = 0.0f;
     mWPoint.z = 0.0f;
@@ -15,9 +16,8 @@ CameraTrundle::CameraTrundle(const char *pName) : Camera(pName) {
 }
 
 CameraTrundle::~CameraTrundle() {
-
 }
 
-CamTranslatorBase *CameraTrundle::createTranslator() {
+CamTranslatorBase* CameraTrundle::createTranslator() {
     return new CamTranslatorTrundle(this);
 }

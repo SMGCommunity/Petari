@@ -4,12 +4,12 @@
 
 class TreasureSpot : public MapObjActor {
 public:
-    TreasureSpot(const char *);
+    TreasureSpot(const char*);
 
     virtual ~TreasureSpot();
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
     virtual void control();
-    virtual bool receiveMsgPlayerAttack(u32, HitSensor *, HitSensor *);
+    virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
 
     void exeSpout();
     void switchEmitGlow();
@@ -21,4 +21,4 @@ namespace NrvTreasureSpot {
     NERVE(TreasureSpotNrvWait);
     NERVE(TreasureSpotNrvEnd);
     NERVE(TreasureSpotNrvSpout);
-};
+}; // namespace NrvTreasureSpot

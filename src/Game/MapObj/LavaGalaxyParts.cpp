@@ -1,10 +1,10 @@
 #include "Game/MapObj/LavaGalaxyParts.hpp"
 
 LavaGalaxyParts::~LavaGalaxyParts() {
-
 }
 
-LavaGalaxyParts::LavaGalaxyParts(const char *pName) : LiveActor(pName) {
+LavaGalaxyParts::LavaGalaxyParts(const char* pName)
+    : LiveActor(pName) {
     mLodCtrl = nullptr;
     mMtxSetter = nullptr;
 }
@@ -13,7 +13,7 @@ void LavaGalaxyParts::initAfterPlacement() {
     if (mMtxSetter != nullptr) {
         TVec3f upper;
         MR::calcMapGroundUpper(&upper, this);
-        f32 dist = PSVECDistance(&mPosition, &upper);
+        f32    dist = PSVECDistance(&mPosition, &upper);
         TVec3f neg = mPosition - upper;
         if (neg.dot(mGravity) < 0.0f) {
             dist *= -1.0f;
@@ -23,7 +23,7 @@ void LavaGalaxyParts::initAfterPlacement() {
         localOffs.z = 0.0f;
         localOffs.x = 0.0f;
         localOffs.y = dist;
-        
+
         TVec3f bruh;
         bruh.x = localOffs.x;
         bruh.y = localOffs.y;

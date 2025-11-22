@@ -8,15 +8,14 @@ namespace {
     static int sActorNumMax = 2560;
 };
 
-ClippingActorHolder::ClippingActorHolder() :
-    NameObj("クリッピングアクター保持"),
-    _C(0),
-    _10(nullptr),
-    _14(nullptr),
-    _18(nullptr),
-    _1C(nullptr),
-    mViewGroupCtrl(nullptr)
-{
+ClippingActorHolder::ClippingActorHolder()
+    : NameObj("クリッピングアクター保持"),
+      _C(0),
+      _10(nullptr),
+      _14(nullptr),
+      _18(nullptr),
+      _1C(nullptr),
+      mViewGroupCtrl(nullptr) {
     _10 = new ClippingActorInfoList(sActorNumMax);
     _14 = new ClippingActorInfoList(sActorNumMax);
     _18 = new ClippingActorInfoList(sActorNumMax);
@@ -32,13 +31,13 @@ void ClippingActorHolder::movement() {
     }
 }
 
-void ClippingActorHolder::registerActor(LiveActor *pActor) {
+void ClippingActorHolder::registerActor(LiveActor* pActor) {
     ClippingActorInfo* inf = new ClippingActorInfo(pActor);
     _18->add(inf);
     _C++;
 }
 
-void ClippingActorHolder::initSystemInfo(LiveActor *pActor, const JMapInfoIter &rIter) {
+void ClippingActorHolder::initSystemInfo(LiveActor* pActor, const JMapInfoIter& rIter) {
     s32 viewGroupID = -1;
 
     if (MR::getJMapInfoViewGroupID(rIter, &viewGroupID)) {
@@ -55,39 +54,35 @@ void ClippingActorHolder::initViewGroupTable() {
     mViewGroupCtrl->endInitViewGroupTable();
 }
 
-void ClippingActorHolder::entryLodCtrl(LodCtrl *pLod, const JMapInfoIter &rIter) {
+void ClippingActorHolder::entryLodCtrl(LodCtrl* pLod, const JMapInfoIter& rIter) {
     mViewGroupCtrl->entryLodCtrl(pLod, rIter);
 }
 
-void ClippingActorHolder::validateClipping(LiveActor *pActor) {
+void ClippingActorHolder::validateClipping(LiveActor* pActor) {
     pActor->mFlag.mIsInvalidClipping = false;
     ClippingActorInfo* inf = _14->remove(pActor);
 
     if (MR::isDead(pActor)) {
         _18->add(inf);
-    }
-    else {
+    } else {
         if (inf->isGroupClipping()) {
             _1C->add(inf);
-        }
-        else {
+        } else {
             _10->add(inf);
-        }  
+        }
     }
 }
 
-void ClippingActorHolder::invalidateClipping(LiveActor *pActor) {
+void ClippingActorHolder::invalidateClipping(LiveActor* pActor) {
     pActor->mFlag.mIsInvalidClipping = true;
     ClippingActorInfo* inf;
 
     if (MR::isDead(pActor)) {
         inf = _18->remove(pActor);
-    }
-    else {
+    } else {
         if (_10->isInList(pActor)) {
             inf = _10->remove(pActor);
-        }
-        else {
+        } else {
             inf = _1C->remove(pActor);
         }
     }
@@ -98,13 +93,13 @@ void ClippingActorHolder::invalidateClipping(LiveActor *pActor) {
     }
 }
 
-void ClippingActorHolder::setTypeToSphere(LiveActor *pActor, f32 range, const TVec3f *a3) {
+void ClippingActorHolder::setTypeToSphere(LiveActor* pActor, f32 range, const TVec3f* a3) {
     find(pActor)->setTypeToSphere(range, a3);
 }
 
 #ifdef NON_MATCHING
 // cast issues
-void ClippingActorHolder::setFarClipLevel(LiveActor *pActor, s32 level) {
+void ClippingActorHolder::setFarClipLevel(LiveActor* pActor, s32 level) {
     find(pActor)->mFarClipLevel = level;
 }
 #endif

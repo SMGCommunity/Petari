@@ -7,12 +7,14 @@
 #include "Game/Util/ObjUtil.hpp"
 #include <cstdio>
 
-VolumeModelDrawInit::VolumeModelDrawInit() : NameObj("ボリュームモデル描画初期化") {
+VolumeModelDrawInit::VolumeModelDrawInit()
+    : NameObj("ボリュームモデル描画初期化") {
     MR::FunctorV0F func(*MR::setupShadowVolumeDraw);
     MR::registerPreDrawFunction(func, 0x1C);
 }
 
-VolumeModelDrawer::VolumeModelDrawer(const char *pName, const char *pFileName, MtxPtr mtx) : NameObj(pName) {
+VolumeModelDrawer::VolumeModelDrawer(const char* pName, const char* pFileName, MtxPtr mtx)
+    : NameObj(pName) {
     mMtx = 0;
     mModelData = 0;
     mColor.r = 0xFF;
@@ -65,9 +67,7 @@ void VolumeModelDrawer::loadModelDrawMtx() const {
 }
 
 VolumeModelDrawer::~VolumeModelDrawer() {
-
 }
 
 VolumeModelDrawInit::~VolumeModelDrawInit() {
-    
 }

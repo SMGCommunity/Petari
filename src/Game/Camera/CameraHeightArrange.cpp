@@ -11,7 +11,8 @@ bool CameraTargetObj::isFastRise() const {
     return false;
 }
 
-CameraHeightArrange::CameraHeightArrange(Camera *pCamera) : NameObj("CameraHeightArrange") {
+CameraHeightArrange::CameraHeightArrange(Camera* pCamera)
+    : NameObj("CameraHeightArrange") {
     mCamera = pCamera;
     _10 = 0;
     _11 = 0;
@@ -23,7 +24,7 @@ CameraHeightArrange::CameraHeightArrange(Camera *pCamera) : NameObj("CameraHeigh
     _30 = 0.0f;
     _34 = 0.0f;
     _38 = 0.0f;
-    _3C = 0.0f;                           
+    _3C = 0.0f;
     _40 = 0;
     _44 = 0;
     _4C = 0;
@@ -86,7 +87,7 @@ void CameraHeightArrange::chase() {
     if (fVar1 > 1.0f) {
         fVar1 = 1.0f;
     }
-    
+
     if (fVar1 > 0.5f) {
         _5C = 0;
     }
@@ -96,12 +97,11 @@ void CameraHeightArrange::chase() {
 
 void CameraHeightArrange::updateHeightAndOffset() {
     TVec3f globalAxis = *getGlobalAxis();
-    f32 fVar1;
+    f32    fVar1;
 
     if (mVPanUse != 0) {
         fVar1 = 0.05f;
-    }
-    else {
+    } else {
         fVar1 = 1.0f;
     }
 
@@ -115,12 +115,12 @@ void CameraHeightArrange::updateHeightAndOffset() {
 
 #ifdef NON_MATCHING
 // Float operation order
-TVec3f *CameraHeightArrange::getGlobalAxis() {
+TVec3f* CameraHeightArrange::getGlobalAxis() {
     if (_60 != 0) {
         _60 = 0;
-        
+
         mGlobalAxis.set(mVPanAxis);
-        TMtx34f &matrix = mCamera->mZoneMatrix;
+        TMtx34f& matrix = mCamera->mZoneMatrix;
 
         f32 axisX = mGlobalAxis.x;
         f32 axisY = mGlobalAxis.y;
@@ -129,8 +129,7 @@ TVec3f *CameraHeightArrange::getGlobalAxis() {
         mGlobalAxis.set(
             axisZ * matrix.mMtx[0][2] + axisX * matrix.mMtx[0][0] + axisY * matrix.mMtx[0][1],
             axisZ * matrix.mMtx[1][2] + axisX * matrix.mMtx[1][0] + axisY * matrix.mMtx[1][1],
-            axisZ * matrix.mMtx[2][2] + axisX * matrix.mMtx[2][0] + axisY * matrix.mMtx[2][1]
-        );
+            axisZ * matrix.mMtx[2][2] + axisX * matrix.mMtx[2][0] + axisY * matrix.mMtx[2][1]);
     }
 
     return &mGlobalAxis;

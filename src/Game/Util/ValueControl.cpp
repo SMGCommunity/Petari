@@ -1,10 +1,9 @@
 #include "Game/Util/ValueControl.hpp"
 
-ValueControl::ValueControl(int maxFrame) :
-    mFrame(0),
-    mMaxFrame(maxFrame),
-    mDirection(Direction_Forward)
-{}
+ValueControl::ValueControl(int maxFrame)
+    : mFrame(0),
+      mMaxFrame(maxFrame),
+      mDirection(Direction_Forward) {}
 
 void ValueControl::setDirToOne() {
     mDirection = Direction_Forward;
@@ -60,8 +59,7 @@ s32 ValueControl::getDirection() const {
 void ValueControl::resetFrame() {
     if (mDirection > 0) {
         mFrame = 0;
-    }
-    else {
+    } else {
         mFrame = mMaxFrame;
     }
 }

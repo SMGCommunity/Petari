@@ -3,13 +3,14 @@
 #include "Game/Util/MapPartsUtil.hpp"
 #include "Game/Util/PostureHolder.hpp"
 
-MapPartsAppearController::MapPartsAppearController(LiveActor *pActor) : MapPartsFunction(pActor, "出現制御") {
+MapPartsAppearController::MapPartsAppearController(LiveActor* pActor)
+    : MapPartsFunction(pActor, "出現制御") {
     mSignMotionType = 0;
     mPostureHolder = nullptr;
     _20 = 0;
 }
 
-void MapPartsAppearController::init(const JMapInfoIter &rIter) {
+void MapPartsAppearController::init(const JMapInfoIter& rIter) {
     MapPartsFunction::initNerve(&NrvMapPartsAppearController::HostTypeWait::sInstance);
     initSwitchMessenger(rIter);
     MR::getMapPartsArgSignMotionType(&mSignMotionType, rIter);
@@ -28,7 +29,7 @@ void MapPartsAppearController::storeCurrentPosture() {
     mPostureHolder->store(mHost);
 }
 
-void MapPartsAppearController::initSwitchMessenger(const JMapInfoIter &rIter) {
+void MapPartsAppearController::initSwitchMessenger(const JMapInfoIter& rIter) {
     if (MR::isExistStageSwitchAppear(rIter)) {
         void (MapPartsAppearController::*k)(void) = &MapPartsAppearController::startKill;
         void (MapPartsAppearController::*s)(void) = &MapPartsAppearController::startAppear;
@@ -78,8 +79,7 @@ void MapPartsAppearController::startKill() {
             if (isNerve(&NrvMapPartsAppearController::HostTypeWait::sInstance)) {
                 if (MR::hasMapPartsVanishSignMotion(mSignMotionType)) {
                     setNerve(&NrvMapPartsAppearController::HostTypeDisappear::sInstance);
-                }
-                else {
+                } else {
                     killHost();
                 }
             }
@@ -92,7 +92,7 @@ void MapPartsAppearController::appearHost() {
         mHost->appear();
         mPostureHolder->store(mHost);
     }
-    
+
     if (MR::isHiddenModel(mHost)) {
         MR::showModel(mHost);
     }
@@ -111,8 +111,7 @@ void MapPartsAppearController::exeDisappear() {
         LiveActor* host = mHost;
         if (MR::isHiddenModel(host)) {
             MR::showModel(host);
-        }
-        else {
+        } else {
             MR::hideModel(host);
         }
     }
@@ -128,16 +127,14 @@ namespace NrvMapPartsAppearController {
     INIT_NERVE(HostTypeWait);
     INIT_NERVE(HostTypeDisappear);
 
-    void HostTypeDisappear::execute(Spine *pSpine) const {
+    void HostTypeDisappear::execute(Spine* pSpine) const {
         MapPartsAppearController* ctrl = reinterpret_cast<MapPartsAppearController*>(pSpine->mExecutor);
         ctrl->exeDisappear();
     }
 
-    void HostTypeWait::execute(Spine *pSpine) const {
-        
+    void HostTypeWait::execute(Spine* pSpine) const {
     }
-};
+}; // namespace NrvMapPartsAppearController
 
 MapPartsAppearController::~MapPartsAppearController() {
-
 }

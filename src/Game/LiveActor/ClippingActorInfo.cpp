@@ -3,7 +3,7 @@
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/Util.hpp"
 
-ClippingActorInfo::ClippingActorInfo(LiveActor *pActor) {
+ClippingActorInfo::ClippingActorInfo(LiveActor* pActor) {
     mActor = pActor;
     _4 = 0;
     _8 = 0.0f;
@@ -19,8 +19,7 @@ void ClippingActorInfo::judgeClipping() {
         if (!MR::isClipped(mActor)) {
             mActor->startClipped();
         }
-    }
-    else {
+    } else {
         if (MR::isClipped(mActor)) {
             mActor->endClipped();
         }
@@ -44,24 +43,23 @@ bool ClippingActorInfo::isGroupClipping() const {
     return mInfo;
 }
 
-void ClippingActorInfo::setTypeToSphere(f32 a1, const TVec3f *a2) {
+void ClippingActorInfo::setTypeToSphere(f32 a1, const TVec3f* a2) {
     _8 = a1;
     if (!a2) {
         _4 = &mActor->mPosition;
-    }
-    else {
+    } else {
         _4 = a2;
     }
 }
 
 #ifdef NON_MATCHING
-void ClippingActorInfo::setGroupClippingNo(const JMapInfoIter &rIter) {
+void ClippingActorInfo::setGroupClippingNo(const JMapInfoIter& rIter) {
     JMapIdInfo* id_info = new JMapIdInfo();
     *id_info = MR::createJMapIdInfoFromClippingGroupId(rIter);
-    mInfo = id_info; 
+    mInfo = id_info;
 }
 #endif
- 
+
 ClippingActorInfoList::ClippingActorInfoList(int a1) {
     _0 = a1;
     _4 = 0;
@@ -74,12 +72,12 @@ ClippingActorInfoList::ClippingActorInfoList(int a1) {
     }
 }
 
-void ClippingActorInfoList::add(ClippingActorInfo *pInfo) {
+void ClippingActorInfoList::add(ClippingActorInfo* pInfo) {
     mClippingActorList[_4] = pInfo;
     _4++;
 }
 
-ClippingActorInfo* ClippingActorInfoList::find(const LiveActor *pActor, s32 *pIndex) const {
+ClippingActorInfo* ClippingActorInfoList::find(const LiveActor* pActor, s32* pIndex) const {
     for (s32 i = 0; i < _4; i++) {
         ClippingActorInfo* inf = mClippingActorList[i];
 
@@ -97,7 +95,7 @@ ClippingActorInfo* ClippingActorInfoList::find(const LiveActor *pActor, s32 *pIn
 
 // ClippingActorInfoList::findOrNone
 
-bool ClippingActorInfoList::isInList(const LiveActor *pActor) const {
+bool ClippingActorInfoList::isInList(const LiveActor* pActor) const {
     for (s32 i = 0; i < _4; i++) {
         ClippingActorInfo* inf = mClippingActorList[i];
         if (inf->mActor == pActor) {

@@ -2,7 +2,8 @@
 #include "Game/MapObj/KeySwitch.hpp"
 #include "Game/LiveActor/LiveActorGroup.hpp"
 
-ExterminationChecker::ExterminationChecker(const char *pName) : LiveActor(pName) {
+ExterminationChecker::ExterminationChecker(const char* pName)
+    : LiveActor(pName) {
     mGroup = nullptr;
     mKeySwitch = nullptr;
     mKeySwitchPos.x = 0.0f;
@@ -12,13 +13,13 @@ ExterminationChecker::ExterminationChecker(const char *pName) : LiveActor(pName)
     _A1 = 0;
 }
 
-void ExterminationChecker::init(const JMapInfoIter &rIter) {
+void ExterminationChecker::init(const JMapInfoIter& rIter) {
     MR::connectToSceneMapObjMovement(this);
     s32 objNum = MR::getChildObjNum(rIter);
-    mGroup = new LiveActorGroup("アクター管理", objNum); 
+    mGroup = new LiveActorGroup("アクター管理", objNum);
 
     for (s32 i = 0; i < objNum; i++) {
-        const char* objName = nullptr; 
+        const char* objName = nullptr;
         MR::getChildObjName(&objName, rIter, i);
         LiveActor* actor = findEntry(objName)(MR::getJapaneseObjectName(objName));
         MR::initChildObj(actor, rIter, i);
@@ -42,14 +43,12 @@ void ExterminationChecker::init(const JMapInfoIter &rIter) {
     if (MR::useStageSwitchReadAppear(this, rIter)) {
         MR::syncStageSwitchAppear(this);
         makeActorDead();
-    }
-    else {
+    } else {
         makeActorAppeared();
     }
 }
 
 void ExterminationChecker::control() {
-
 }
 
 void ExterminationChecker::exeWatching() {
@@ -103,23 +102,22 @@ void ExterminationChecker::exeAppearKeySwitch() {
 }
 
 namespace MR {
-    NameObj* createExterminationPowerStar(const char *pName) {
+    NameObj* createExterminationPowerStar(const char* pName) {
         ExterminationChecker* checker = new ExterminationChecker(pName);
         checker->_A0 = 1;
         checker->_A1 = 0;
         return checker;
     }
-    
-    NameObj* createExterminationKeySwitch(const char *pName) {
+
+    NameObj* createExterminationKeySwitch(const char* pName) {
         ExterminationChecker* checker = new ExterminationChecker(pName);
         checker->_A0 = 0;
         checker->_A1 = 1;
         return checker;
     }
-};
+}; // namespace MR
 
 ExterminationChecker::~ExterminationChecker() {
-
 }
 
 namespace NrvExterminationChecker {
@@ -127,4 +125,4 @@ namespace NrvExterminationChecker {
     INIT_NERVE(ExterminationCheckerNrvTryStartDemoAppear);
     INIT_NERVE(ExterminationCheckerNrvAppearStar);
     INIT_NERVE(ExterminationCheckerNrvAppearKeySwitch);
-};
+}; // namespace NrvExterminationChecker

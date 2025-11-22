@@ -4,12 +4,12 @@
 
 class BumpAppearPlanet : public MapObjActor {
 public:
-    BumpAppearPlanet(const char *);
+    BumpAppearPlanet(const char*);
 
     virtual ~BumpAppearPlanet();
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
     virtual void control();
-    virtual void initCaseUseSwitchA(const MapObjActorInitInfo &);
+    virtual void initCaseUseSwitchA(const MapObjActorInitInfo&);
 
     void exeWait();
     void exeBumpOut();

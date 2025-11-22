@@ -8,23 +8,21 @@
 #include <JSystem/J3DGraphAnimator/J3DModel.hpp>
 #include <JSystem/J3DGraphAnimator/J3DAnimation.hpp>
 
-MultiSceneActor::MultiSceneActor(const char* pName, const char* pModelName, bool param3) :
-    NameObj(pName),
-    mTranslation(0.0f, 0.0f, 0.0f),
-    mRotation(0.0f, 0.0f, 0.0f),
-    mScale(1.0f, 1.0f, 1.0f),
-    _30(true),
-    mModelManager(nullptr),
-    mEffectSystem(nullptr),
-    mEffectKeeper(nullptr),
-    mSpine(nullptr)
-{
+MultiSceneActor::MultiSceneActor(const char* pName, const char* pModelName, bool param3)
+    : NameObj(pName),
+      mTranslation(0.0f, 0.0f, 0.0f),
+      mRotation(0.0f, 0.0f, 0.0f),
+      mScale(1.0f, 1.0f, 1.0f),
+      _30(true),
+      mModelManager(nullptr),
+      mEffectSystem(nullptr),
+      mEffectKeeper(nullptr),
+      mSpine(nullptr) {
     mModelManager = new ModelManager();
     mModelManager->init(pModelName, nullptr, param3);
 }
 
 void MultiSceneActor::init(const JMapInfoIter& rIter) {
-    
 }
 
 void MultiSceneActor::movement() {
@@ -226,8 +224,7 @@ namespace MultiScene {
     MtxPtr getJointMtx(const MultiSceneActor* pActor, const char* pParam2) {
         return MR::getJointMtx(pActor->getModelManager()->getJ3DModel(), (const char*)pParam2);
     }
-};
+}; // namespace MultiScene
 
 void MultiSceneActor::control() {
-    
 }

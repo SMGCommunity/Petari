@@ -66,12 +66,12 @@ private:
 };
 
 namespace MR {
-    void createOdhConverter();
-    void requestCaptureOdhImage();
-    bool isRequestedCaptureOdhImage();
-    void captureOdhImage();
-    void setPortCaptureOdhImage();
-    const u8* getOdhImage();
-    u32 getOdhImageSize();
+    void            createOdhConverter();
+    void            requestCaptureOdhImage();
+    bool            isRequestedCaptureOdhImage();
+    void            captureOdhImage();
+    void            setPortCaptureOdhImage();
+    const u8*       getOdhImage();
+    u32             getOdhImageSize();
     NameObjAdaptor* createAdaptorAndConnectToWiiMessageBoard(const char*, const FunctorBase&);
-};
+}; // namespace MR

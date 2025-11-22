@@ -11,7 +11,7 @@ namespace {
     SceneDataInitializer* getSceneDataInitializer() {
         return MR::getSceneObj<SceneDataInitializer>(SceneObj_SceneDataInitializer);
     }
-};
+}; // namespace
 
 void SceneFunction::startStageFileLoad() {
     MR::createSceneObj(SceneObj_SceneDataInitializer);
@@ -133,5 +133,4 @@ void CategoryList::requestMovementOff(MR::MovementType type) {
 }
 
 void SceneFunction::createHioBasicNode(Scene*) {
-    
 }

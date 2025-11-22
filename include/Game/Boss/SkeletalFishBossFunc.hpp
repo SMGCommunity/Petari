@@ -5,6 +5,6 @@
 
 class SkeletalFishBossFunc {
 public:
-    static s32 getNearestGuardPosID(const TVec3f &);
-    static bool copyGuardPos(TVec3f *, s32);
+    static s32  getNearestGuardPosID(const TVec3f&);
+    static bool copyGuardPos(TVec3f*, s32);
 };

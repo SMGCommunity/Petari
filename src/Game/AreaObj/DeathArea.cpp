@@ -2,13 +2,11 @@
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 
-DeathArea::DeathArea(int type, const char *pName) :
-    AreaObj(type, pName)
-{
-    
+DeathArea::DeathArea(int type, const char* pName)
+    : AreaObj(type, pName) {
 }
 
-void DeathArea::init(const JMapInfoIter &rIter) {
+void DeathArea::init(const JMapInfoIter& rIter) {
     AreaObj::init(rIter);
     MR::connectToSceneAreaObj(this);
 }
@@ -23,7 +21,7 @@ void DeathArea::movement() {
     }
 }
 
-bool DeathArea::isInVolume(const TVec3f &rVec) const {
+bool DeathArea::isInVolume(const TVec3f& rVec) const {
     if (isValidSwitchA() && !isOnSwitchA()) {
         return false;
     }
@@ -36,7 +34,6 @@ s32 DeathArea::getDeathType() const {
 }
 
 DeathArea::~DeathArea() {
-    
 }
 
 const char* DeathArea::getManagerName() const {

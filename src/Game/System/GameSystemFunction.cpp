@@ -37,7 +37,7 @@ namespace {
     SaveDataHandleSequence* getSaveDataHandleSequence() NO_INLINE {
         return SingletonHolder<GameSystem>::get()->mSequenceDirector->mSaveDataHandleSequence;
     }
-};
+}; // namespace
 
 namespace GameSystemFunction {
     void loadAudioStaticWaveData() {
@@ -270,8 +270,7 @@ namespace GameSystemFunction {
     }
 
     bool isPreparedFadeinSystem() {
-        return SingletonHolder<GameSystem>::get()->isPreparedReset()
-            && SingletonHolder<GameSystem>::get()->mSceneController->isPreparedReset();
+        return SingletonHolder<GameSystem>::get()->isPreparedReset() && SingletonHolder<GameSystem>::get()->mSceneController->isPreparedReset();
     }
 
     void restartSceneController() {
@@ -279,8 +278,6 @@ namespace GameSystemFunction {
     }
 
     bool isDisplayStrapRemineder() {
-        return MR::isEqualSceneName("Logo")
-            && getLogoScene() != nullptr
-            && getLogoScene()->isDisplayStrapRemineder();
+        return MR::isEqualSceneName("Logo") && getLogoScene() != nullptr && getLogoScene()->isDisplayStrapRemineder();
     }
-};
+}; // namespace GameSystemFunction

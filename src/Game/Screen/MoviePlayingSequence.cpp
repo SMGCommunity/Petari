@@ -172,15 +172,14 @@ namespace {
         }
     }
 
-    const char* getMovieName(const MoviePlayingInfo *pInfo) NO_INLINE {
+    const char* getMovieName(const MoviePlayingInfo* pInfo) NO_INLINE {
         if (MR::isPlayerLuigi() && pInfo->mMovieNameLuigi != nullptr) {
             return pInfo->mMovieNameLuigi;
-        }
-        else {
+        } else {
             return pInfo->mMovieName;
         }
     }
-};
+}; // namespace
 
 namespace NrvMoviePlayingSequence {
     NEW_NERVE(HostTypeWait, MoviePlayingSequence, Wait);
@@ -189,7 +188,7 @@ namespace NrvMoviePlayingSequence {
     NEW_NERVE(HostTypePlay, MoviePlayingSequence, Play);
     NEW_NERVE(HostTypeCloseWipeOnPlaying, MoviePlayingSequence, CloseWipeOnPlaying);
     NEW_NERVE(HostTypeEndWait, MoviePlayingSequence, EndWait);
-};
+}; // namespace NrvMoviePlayingSequence
 
 const char* MoviePlayingSequence::getMovieName(MoviePlayingSequence::MovieType type) {
     if (type == MovieType_PrologueA) {
@@ -220,10 +219,9 @@ const char* MoviePlayingSequence::getMovieName(MoviePlayingSequence::MovieType t
 }
 
 // https://decomp.me/scratch/O5orZ
-MoviePlayingSequence::MoviePlayingSequence(const char *pName, s32 movieType) :
-    LayoutActor(pName, true),
-    mSubtitles()
-{
+MoviePlayingSequence::MoviePlayingSequence(const char* pName, s32 movieType)
+    : LayoutActor(pName, true),
+      mSubtitles() {
     mInfo = &sInfoTable[movieType];
     mPadRumbler = new DemoPadRumbler(getMovieName(MovieType(movieType)));
 
@@ -239,7 +237,7 @@ MoviePlayingSequence::MoviePlayingSequence(const char *pName, s32 movieType) :
         for (s32 i = 0; i < subtitleNum; i++) {
             if (MovieSubtitlesUtil::isExistSubtitles(mInfo->mMovieName, i)) {
                 const MoviePlayingInfo* pInfo = mInfo;
-                MovieSubtitles* pSubtitles = new MovieSubtitles(MovieSubtitlesUtil::getSubtitlesMessageId(pInfo->mMovieName, i), MovieSubtitlesUtil::getSubtitlesAppearTime(pInfo->mMovieName, i));
+                MovieSubtitles*         pSubtitles = new MovieSubtitles(MovieSubtitlesUtil::getSubtitlesMessageId(pInfo->mMovieName, i), MovieSubtitlesUtil::getSubtitlesAppearTime(pInfo->mMovieName, i));
 
                 mSubtitles.push_back(pSubtitles);
             }
@@ -259,7 +257,6 @@ void MoviePlayingSequence::kill() {
 }
 
 void MoviePlayingSequence::exeWait() {
-    
 }
 
 void MoviePlayingSequence::exePlayWait() {
@@ -273,8 +270,7 @@ void MoviePlayingSequence::exePlayWait() {
 
         if (mInfo->mOpenWipeType == WipeType_SystemWipeWhiteFade) {
             val = false;
-        }
-        else {
+        } else {
             val = mInfo->mOpenWipeType != WipeType_WipeWhiteFade;
         }
 
@@ -298,8 +294,7 @@ void MoviePlayingSequence::exePlayStart() {
     if (MR::isFirstStep(this)) {
         MR::startMoviePlayer(::getMovieName(mInfo));
         MR::tryFrameToScreenCinemaFrame();
-    }
-    else if (MR::isMoviePlayerPlaying()) {
+    } else if (MR::isMoviePlayerPlaying()) {
         MR::setMovieVolume(0.0f, 0);
         setNerve(&NrvMoviePlayingSequence::HostTypePlay::sInstance);
     }
@@ -353,14 +348,13 @@ bool MoviePlayingSequence::tryEnd() {
         }
 
         return false;
-    }
-    else {
+    } else {
         s32 closeWipeFrame = MR::getMovieTotalFrame() - mInfo->mCloseWipeTime;
 
         if (closeWipeFrame <= MR::getMovieCurrentFrame()) {
             setNerve(&NrvMoviePlayingSequence::HostTypeCloseWipeOnPlaying::sInstance);
 
-            return true;            
+            return true;
         }
 
         return false;
@@ -410,12 +404,10 @@ void MoviePlayingSequence::exeEndWait() {
         if (MR::isEqualStringCase(pInfo->mMovieName, "/MovieData/FinalBattle.thp")) {
             MR::requestStartScenarioSelect(pInfo->mStageName);
             noWipe = true;
-        }
-        else if (pInfo->mStageName != nullptr) {
+        } else if (pInfo->mStageName != nullptr) {
             MR::requestChangeStageInGameMoving(pInfo->mStageName, 1);
             noWipe = true;
-        }
-        else {
+        } else {
             noWipe = false;
         }
 
@@ -449,9 +441,10 @@ namespace {
     MoviePlayingSequence* getMoviePlayingSequence(int idx) {
         return getMoviePlayingSequenceHolder()->getSequence(idx);
     }
-};
+}; // namespace
 
-MoviePlayingSequenceHolder::MoviePlayingSequenceHolder(const char *pName) : NameObj(pName) {
+MoviePlayingSequenceHolder::MoviePlayingSequenceHolder(const char* pName)
+    : NameObj(pName) {
     s32 diff;
 
     mSequence.init(7);
@@ -462,8 +455,7 @@ MoviePlayingSequenceHolder::MoviePlayingSequenceHolder(const char *pName) : Name
 
         if (pMovieName == nullptr) {
             *pSequence = nullptr;
-        }
-        else {
+        } else {
             *pSequence = new MoviePlayingSequence(pMovieName, diff);
         }
     }
@@ -535,4 +527,4 @@ namespace MR {
 
         return false;
     }
-};
+}; // namespace MR

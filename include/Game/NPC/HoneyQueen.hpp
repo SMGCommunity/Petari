@@ -8,29 +8,29 @@
 
 class HoneyQueen : public NPCActor {
 public:
-    HoneyQueen(const char *);
+    HoneyQueen(const char*);
 
     virtual ~HoneyQueen();
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
     virtual void calcAnim();
     virtual void control();
-    virtual void attackSensor(HitSensor *, HitSensor *);
-    virtual bool receiveMsgPlayerAttack(u32, HitSensor *, HitSensor *);
+    virtual void attackSensor(HitSensor*, HitSensor*);
+    virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
 
-    void fadeOut();
-    void fadeIn();
-    void talkEntry();
-    void switchFunc();
-    void exeWait();
+    void        fadeOut();
+    void        fadeIn();
+    void        talkEntry();
+    void        switchFunc();
+    void        exeWait();
     inline void exeReady();
     inline void exeDemo();
     inline void exeFade();
-    void exeTalk();
-    void exeItch();
-    void exeEvent();
+    void        exeTalk();
+    void        exeItch();
+    void        exeEvent();
     inline void exeAfter();
 
-    ModelObj* mNpcModel;
+    ModelObj*       mNpcModel;
     CollisionParts* mCenterPart;
     CollisionParts* mCenterFurPart;
     CollisionParts* mFacePart;
@@ -41,5 +41,5 @@ public:
     CollisionParts* mRArm02Part;
     CollisionParts* mRFoot01Part;
     CollisionParts* mTactilePart;
-    s32 _188;
+    s32             _188;
 };

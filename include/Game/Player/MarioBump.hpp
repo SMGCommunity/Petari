@@ -6,7 +6,7 @@ class MarioActor;
 
 class MarioBump : public MarioState {
 public:
-    MarioBump(MarioActor *);
+    MarioBump(MarioActor*);
 
     u8 _11[0x13];
 };

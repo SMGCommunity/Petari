@@ -28,20 +28,21 @@
 #include "JSystem/JGeometry/TQuat.hpp"
 #include "revolution/mtx.h"
 
-EyeBeamer::EyeBeamer(const char* pName) : LiveActor(pName),
-    mRailMover(nullptr),
-    mBeamMdl(nullptr), 
-    mBeamBloom(nullptr), 
-    mBeamVolumeDrawer(nullptr), 
-    _CC(0, 0, 0, 1), 
-    _DC(0, 0, 0, 1),
-    _EC(0, 0, 0),
-    _F8(0, 0, 0),
-    _104(0, 0, 0),
-    _140(0, 0, 0),
-    _15C(2000.0f),
-    _160(-1.0f),
-    mIsInMercatorCube(false) {
+EyeBeamer::EyeBeamer(const char* pName)
+    : LiveActor(pName),
+      mRailMover(nullptr),
+      mBeamMdl(nullptr),
+      mBeamBloom(nullptr),
+      mBeamVolumeDrawer(nullptr),
+      _CC(0, 0, 0, 1),
+      _DC(0, 0, 0, 1),
+      _EC(0, 0, 0),
+      _F8(0, 0, 0),
+      _104(0, 0, 0),
+      _140(0, 0, 0),
+      _15C(2000.0f),
+      _160(-1.0f),
+      mIsInMercatorCube(false) {
     mWaterSurfaceMtx.identity();
     _9C.identity();
 }
@@ -60,7 +61,7 @@ void EyeBeamer::init(const JMapInfoIter& rIter) {
     MR::getJMapInfoArg1NoInit(rIter, &_160);
     initHitSensor(2);
     MR::addHitSensorMapObj(this, "body", 8, 0.0f, TVec3f(0.0f, 0.0f, 0.0f));
-    MR::addHitSensorEye(this, "beam", 8, 140.0f+(0.5f*_15C), TVec3f(0.0f, 0.5f*(-_15C), 0.0f));
+    MR::addHitSensorEye(this, "beam", 8, 140.0f + (0.5f * _15C), TVec3f(0.0f, 0.5f * (-_15C), 0.0f));
     initSound(4, 0);
     MR::initCollisionParts(this, "EyeBeamer", getSensor("body"), 0);
     initRailMoveFunction(rIter);
@@ -88,14 +89,14 @@ void EyeBeamer::initStartNerve(const JMapInfoIter& rIter) {
     MR::getJMapInfoArg2WithInit(rIter, &arg);
 
     switch (arg) {
-        case -1:
-            initNerve(&NrvEyeBeamer::EyeBeamerNrvWait::sInstance);
+    case -1:
+        initNerve(&NrvEyeBeamer::EyeBeamerNrvWait::sInstance);
         break;
-        case 0:
-            initNerve(&NrvEyeBeamer::EyeBeamerNrvPatrol::sInstance);
+    case 0:
+        initNerve(&NrvEyeBeamer::EyeBeamerNrvPatrol::sInstance);
         break;
-        default:
-            initNerve(&NrvEyeBeamer::EyeBeamerNrvWait::sInstance);
+    default:
+        initNerve(&NrvEyeBeamer::EyeBeamerNrvWait::sInstance);
         break;
     }
 }
@@ -121,17 +122,16 @@ void EyeBeamer::initAfterPlacement() {
     MR::calcUpVec(&stack_80, this);
     stack_80.negate();
     TVec3f stack_74;
-    stack_74.set(mPosition-(stack_80*300.0f));
+    stack_74.set(mPosition - (stack_80 * 300.0f));
     TVec3f stack_68;
-    f32 dist;
-    if (MR::getFirstPolyOnLineToMapExceptActor(&stack_68, 0, stack_74, stack_80*(300.0f+_15C), this)) {
+    f32    dist;
+    if (MR::getFirstPolyOnLineToMapExceptActor(&stack_68, 0, stack_74, stack_80 * (300.0f + _15C), this)) {
         dist = PSVECDistance(&stack_68, &mPosition);
-        _140.set((stack_68+mPosition)*0.5);
-        dist = 300.0f+0.5f*dist;
-    }
-    else {
-        _140.set(mPosition+((stack_80*_15C)*0.5f));
-        dist = 300.0f+(0.5f*_15C);
+        _140.set((stack_68 + mPosition) * 0.5);
+        dist = 300.0f + 0.5f * dist;
+    } else {
+        _140.set(mPosition + ((stack_80 * _15C) * 0.5f));
+        dist = 300.0f + (0.5f * _15C);
     }
 
     MR::setClippingTypeSphere(this, dist, &_140);
@@ -156,8 +156,7 @@ void EyeBeamer::updatePoseAndTrans() {
         stack_8.identity();
         MR::convertMercatorPlaneToSphereTransAndRotate(&mPosition, &stack_8, _EC, true);
         stack_38.concat(stack_8, stack_38);
-    }
-    else {
+    } else {
         mPosition.set(_EC);
     }
     stack_38.setTrans(mPosition);
@@ -171,12 +170,12 @@ void EyeBeamer::updateWaterSurfaceMtx() {
 
     mWaterSurfaceMtx.setQuat(_DC);
     TVec3f stack_38;
-    f32 f3 = mWaterSurfaceMtx[2][1];
-    f32 f2 = mWaterSurfaceMtx[1][1];
-    f32 f1 = mWaterSurfaceMtx[0][1];
+    f32    f3 = mWaterSurfaceMtx[2][1];
+    f32    f2 = mWaterSurfaceMtx[1][1];
+    f32    f1 = mWaterSurfaceMtx[0][1];
     stack_38.set<f32>(f1, f2, f3);
     TVec3f stack_2C;
-    TVec3f stack_20(_EC-(stack_38*(_160+(stack_38).dot(_EC - _104))));
+    TVec3f stack_20(_EC - (stack_38 * (_160 + (stack_38).dot(_EC - _104))));
     stack_2C.set(stack_20);
 
     if (mIsInMercatorCube) {
@@ -215,11 +214,11 @@ void EyeBeamer::calcAnim() {
     MtxPtr mtx = MR::getJointMtx(this, "Beam");
     _9C.setInline(mtx);
     f32 one = 1.0f;
-    f32 temp = _15C/2000.0f;
+    f32 temp = _15C / 2000.0f;
     MR::preScaleMtx(_9C, TVec3f(one, temp, one));
 }
 
-void EyeBeamer::calcAndSetBaseMtx() {};
+void EyeBeamer::calcAndSetBaseMtx(){};
 
 void EyeBeamer::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (isOnBeam() && MR::isSensorPlayer(pReceiver) && isInBeamRange(*MR::getPlayerPos())) {
@@ -254,17 +253,17 @@ void EyeBeamer::exeDemoTurn() {
     if (MR::isFirstStep(this))
         MR::startSound(this, "SE_OJ_EYE_BEAMER_TURN", -1, -1);
 
-    f32 rate = MR::calcDemoPartStepRate("アイビーマー回転");
-    f32 easeIn = MR::getEaseInOutValue(rate, 0.0f, 1.0f, 1.0f);
+    f32     rate = MR::calcDemoPartStepRate("アイビーマー回転");
+    f32     easeIn = MR::getEaseInOutValue(rate, 0.0f, 1.0f, 1.0f);
     TQuat4f stack_30;
-    TVec3f stack_24;
+    TVec3f  stack_24;
     _CC.getXDir(stack_24);
-    stack_30.setRotate(stack_24, PI*easeIn);
+    stack_30.setRotate(stack_24, PI * easeIn);
     PSQUATMultiply((Quaternion*)&stack_30, (Quaternion*)&_CC, (Quaternion*)&_DC);
-    
+
     if (MR::isDemoPartLastStep("アイビーマー回転")) {
         TQuat4f stack_14;
-        TVec3f stack_8;
+        TVec3f  stack_8;
         _CC.getXDir(stack_8);
         stack_14.setRotate(stack_8, PI);
         PSQUATMultiply((Quaternion*)&stack_14, (Quaternion*)&_CC, (Quaternion*)&_DC);
@@ -284,13 +283,13 @@ void EyeBeamer::exeTurn() {
     if (MR::isFirstStep(this)) {
         MR::startSound(this, "SE_OJ_EYE_BEAMER_TURN", -1, -1);
     }
-    f32 easeInOut = MR::calcNerveEaseInOutRate(this, 0x12C);
+    f32     easeInOut = MR::calcNerveEaseInOutRate(this, 0x12C);
     TQuat4f stack_14;
-    TVec3f stack_8;
+    TVec3f  stack_8;
     _CC.getXDir(stack_8);
-    stack_14.setRotate(stack_8, PI*easeInOut);
+    stack_14.setRotate(stack_8, PI * easeInOut);
     PSQUATMultiply((Quaternion*)&stack_14, (Quaternion*)&_CC, (Quaternion*)&_DC);
-    
+
     if (tryGotoPatrol())
         return;
 }
@@ -306,7 +305,7 @@ void EyeBeamer::exeGotoPatrol() {
 void EyeBeamer::exePatrol() {
     if (MR::isFirstStep(this)) {
         MR::validateClipping(this);
-        TVec3f stack_48;
+        TVec3f  stack_48;
         TQuat4f stack_38;
         _CC.getXDir(stack_48);
         stack_38.setRotate(stack_48, PI);
@@ -317,8 +316,8 @@ void EyeBeamer::exePatrol() {
     TVec3f stack_2C;
     MR::calcUpVec(&stack_2C, this);
     stack_2C.negate();
-    _140.set(mPosition+((stack_2C*_15C)*0.5));
-    MR::setClippingTypeSphere(this, 300.0f+(0.5f*_15C), &_140);
+    _140.set(mPosition + ((stack_2C * _15C) * 0.5));
+    MR::setClippingTypeSphere(this, 300.0f + (0.5f * _15C), &_140);
     mRailMover->movement();
     _EC.set(mRailMover->_28);
 }
@@ -328,17 +327,17 @@ bool EyeBeamer::isInBeamRange(const TVec3f& rVec) const {
     MR::calcUpVec(&stack_44, this);
     stack_44.negate();
     TVec3f stack_38;
-    f32 f3 = _9C[2][3];
-    f32 f2 = _9C[1][3];
-    f32 f1 = _9C[0][3];
+    f32    f3 = _9C[2][3];
+    f32    f2 = _9C[1][3];
+    f32    f1 = _9C[0][3];
     stack_38.set<f32>(f1, f2, f3);
-    f32 dot = stack_44.dot(rVec-stack_38);
+    f32 dot = stack_44.dot(rVec - stack_38);
 
     if (dot < 0.0f || _15C < dot)
         return false;
     else {
         TVec3f stack_2C;
-        stack_2C.set(stack_38+(stack_44*dot));
+        stack_2C.set(stack_38 + (stack_44 * dot));
         f32 dist = PSVECDistance(&stack_2C, &rVec);
 
         if (dist < 140.0f)
@@ -355,14 +354,12 @@ bool EyeBeamer::isOnBeam() const {
     return false;
 }
 
-
-
-EyeBeamer::~EyeBeamer() {};
+EyeBeamer::~EyeBeamer(){};
 
 namespace NrvEyeBeamer {
     void EyeBeamerNrvDemoWait::execute(Spine* pSpine) const {
         EyeBeamer* pEyeBeamer = (EyeBeamer*)pSpine->mExecutor;
-        if (MR::isDemoLastStep()) 
+        if (MR::isDemoLastStep())
             pEyeBeamer->setNerve(&NrvEyeBeamer::EyeBeamerNrvPatrol::sInstance);
     }
     EyeBeamerNrvDemoStartWait(EyeBeamerNrvDemoStartWait::sInstance);
@@ -373,4 +370,4 @@ namespace NrvEyeBeamer {
     EyeBeamerNrvTurn(EyeBeamerNrvTurn::sInstance);
     EyeBeamerNrvGotoPatrol(EyeBeamerNrvGotoPatrol::sInstance);
     EyeBeamerNrvPatrol(EyeBeamerNrvPatrol::sInstance);
-};
+}; // namespace NrvEyeBeamer

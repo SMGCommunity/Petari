@@ -1,11 +1,12 @@
 #include "Game/Map/TimerSwitch.hpp"
 
-TimerSwitch::TimerSwitch(const char *pName) : LiveActor(pName) {
+TimerSwitch::TimerSwitch(const char* pName)
+    : LiveActor(pName) {
     mTimerLength = -1;
     mCurrentTime = -1;
 }
 
-void TimerSwitch::init(const JMapInfoIter &rIter) {
+void TimerSwitch::init(const JMapInfoIter& rIter) {
     MR::connectToSceneMapObjMovement(this);
     MR::getJMapInfoArg0NoInit(rIter, &mTimerLength);
     MR::needStageSwitchWriteA(this, rIter);
@@ -31,5 +32,4 @@ void TimerSwitch::control() {
 }
 
 TimerSwitch::~TimerSwitch() {
-
 }

@@ -11,8 +11,8 @@ public:
     virtual ~ShadowSurfaceOval();
 
     virtual void draw() const;
-    
-    void setSize(const TVec3f &);
+
+    void setSize(const TVec3f&);
     void setColor(Color8);
     void setAlpha(u8);
 };

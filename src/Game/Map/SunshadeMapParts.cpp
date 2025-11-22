@@ -3,7 +3,8 @@
 #include "Game/MapObj/GeneralMapParts.hpp"
 #include "Game/Map/SunshadeMapHolder.hpp"
 
-SunshadeMapParts::SunshadeMapParts(const char *pName) : GeneralMapParts(pName) {
+SunshadeMapParts::SunshadeMapParts(const char* pName)
+    : GeneralMapParts(pName) {
     mCollision = nullptr;
 }
 
@@ -16,16 +17,15 @@ void SunshadeMapParts::calcAnim() {
 }
 
 namespace MR {
-    SunshadeMapParts* createSunshadeMapParts(const char *pName) {
+    SunshadeMapParts* createSunshadeMapParts(const char* pName) {
         return new SunshadeMapParts(pName);
     }
-};
+}; // namespace MR
 
 SunshadeMapParts::~SunshadeMapParts() {
-
 }
 
-void SunshadeMapParts::init(const JMapInfoIter &rIter) {
+void SunshadeMapParts::init(const JMapInfoIter& rIter) {
     GeneralMapParts::init(rIter);
     MR::createSunshadeMapHolder();
     mCollision = MR::tryCreateCollisionSunshade(this, getSensor("body"));

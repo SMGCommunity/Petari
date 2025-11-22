@@ -17,9 +17,9 @@ public:
 
     GamePauseSequence();
 
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
 
-    void initWindowMenu(const MR::FunctorBase &);
+    void initWindowMenu(const MR::FunctorBase&);
     void startPause(MenuType);
     void deactivate();
     void exeDeactive();
@@ -27,7 +27,7 @@ public:
     void exeActivePowerStarList();
     void exeSceneInformation();
 
-    /* 0x20 */ MenuType mMenuType;
-    /* 0x24 */ PauseMenu* mPauseMenu;
+    /* 0x20 */ MenuType         mMenuType;
+    /* 0x24 */ PauseMenu*       mPauseMenu;
     /* 0x28 */ MR::FunctorBase* mWindowMenuFunc;
 };

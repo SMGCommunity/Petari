@@ -4,12 +4,12 @@
 
 class AstroCore : public MapObjActor {
 public:
-    AstroCore(const char *);
+    AstroCore(const char*);
 
     virtual ~AstroCore();
-    virtual void init(const JMapInfoIter &);
-    virtual void attackSensor(HitSensor *, HitSensor *);
-    virtual bool receiveOtherMsg(u32, HitSensor *, HitSensor *);
+    virtual void init(const JMapInfoIter&);
+    virtual void attackSensor(HitSensor*, HitSensor*);
+    virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
 
     void exeGrow();
 
@@ -27,4 +27,4 @@ public:
 namespace NrvAstroCore {
     NERVE_DECL(AstroCoreNrvWait, AstroCore, AstroCore::exeWait);
     NERVE_DECL(AstroCoreNrvGrow, AstroCore, AstroCore::exeGrow);
-};
+}; // namespace NrvAstroCore

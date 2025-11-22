@@ -6,11 +6,11 @@
 class AreaObj;
 class AreaObjMgr;
 
-typedef AreaObjMgr* (*ManagerCreatorFuncPtr)(s32, const char *);
+typedef AreaObjMgr* (*ManagerCreatorFuncPtr)(s32, const char*);
 
 struct Name2CreateManagerFunc {
-    /* 0x0 */ const char* mName;
-    /* 0x4 */ s32 _4;
+    /* 0x0 */ const char*           mName;
+    /* 0x4 */ s32                   _4;
     /* 0x8 */ ManagerCreatorFuncPtr mCreateFunc;
 };
 
@@ -27,12 +27,12 @@ public:
     /// @param rIter The reference to an iterator over a `JMapInfo`.
     virtual void init(const JMapInfoIter& rIter);
 
-    AreaObjMgr* getManager(const char *) const;
-    AreaObj* getAreaObj(const char *, const TVec3f &) const;
+    AreaObjMgr* getManager(const char*) const;
+    AreaObj*    getAreaObj(const char*, const TVec3f&) const;
 
 private:
     /* 0x00C */ AreaObjMgr* mManagerArray[0x50];
-    /* 0x14C */ u32 mNumManagers;
+    /* 0x14C */ u32         mNumManagers;
 };
 
 namespace MR {

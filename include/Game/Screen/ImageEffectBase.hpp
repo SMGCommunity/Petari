@@ -22,5 +22,5 @@ public:
 private:
     /* 0x0C */ bool _C;
     /* 0x0D */ bool _D;
-    /* 0x10 */ f32 _10;
+    /* 0x10 */ f32  _10;
 };

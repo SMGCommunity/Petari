@@ -1,10 +1,11 @@
 #include "Game/MapObj/SnowplowSwitch.hpp"
 
-SnowplowSwitch::SnowplowSwitch(const char *pName) : LiveActor(pName) {
+SnowplowSwitch::SnowplowSwitch(const char* pName)
+    : LiveActor(pName) {
     _8C = 0;
 }
 
-bool SnowplowSwitch::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool SnowplowSwitch::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (msg == ACTMES_ASK_HIDDEN_BY_SNOW) {
         return _8C == 0;
     }
@@ -21,10 +22,9 @@ bool SnowplowSwitch::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pRe
 }
 
 SnowplowSwitch::~SnowplowSwitch() {
-
 }
 
-void SnowplowSwitch::init(const JMapInfoIter &rIter) {
+void SnowplowSwitch::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     MR::connectToSceneMapObjMovement(this);
     MR::invalidateClipping(this);
@@ -35,8 +35,7 @@ void SnowplowSwitch::init(const JMapInfoIter &rIter) {
     if (MR::useStageSwitchReadAppear(this, rIter)) {
         MR::syncStageSwitchAppear(this);
         makeActorDead();
-    }
-    else {
+    } else {
         makeActorAppeared();
     }
 }

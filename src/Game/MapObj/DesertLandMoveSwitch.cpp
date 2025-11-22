@@ -21,7 +21,8 @@
 #include "revolution/mtx.h"
 #include "revolution/types.h"
 
-DesertLandMoveSwitch::DesertLandMoveSwitch(const char* pName) : LiveActor(pName) {
+DesertLandMoveSwitch::DesertLandMoveSwitch(const char* pName)
+    : LiveActor(pName) {
     mCollisionParts = 0;
     mSpringValue = new SpringValue();
     mMapObjConnector = new MapObjConnector(this);
@@ -42,8 +43,7 @@ void DesertLandMoveSwitch::init(const JMapInfoIter& rIter) {
     MR::connectToSceneMapObj(this);
     if (stack_C == -1) {
         initNerve(&NrvDesertLandMoveSwitch::HostTypeWait::sInstance);
-    }
-    else {
+    } else {
         MR::startBck(this, "On", 0);
         MR::setAllAnimFrameAtEnd(this, "End");
         initNerve(&NrvDesertLandMoveSwitch::HostTypeOn::sInstance);
@@ -70,9 +70,9 @@ void DesertLandMoveSwitch::calcAnim() {
     f32 val = mSpringValue->_4;
     if (!MR::isNearZero(val, 0.001f)) {
         TVec3f stack_20;
-        f32 f3 = mtx2[2][3];
-        f32 f2 = mtx2[1][3];
-        f32 f1 = mtx2[0][3];
+        f32    f3 = mtx2[2][3];
+        f32    f2 = mtx2[1][3];
+        f32    f1 = mtx2[0][3];
         stack_20.set<f32>(f1, f2, f3);
         TVec3f stack_14, stack_8;
         MR::calcUpVec(&stack_14, this);
@@ -172,15 +172,14 @@ void DesertLandMoveSwitch::updateTimerSE() {
             if (lf <= s) {
                 if (step2 == s) {
                     return MR::startSystemSE("SE_SY_TIMER_A_0", -1, -1);
-                }
-                else {
-                    if (!(lf%60)) {
-                        if (lf<s-600) 
+                } else {
+                    if (!(lf % 60)) {
+                        if (lf < s - 600)
                             MR::startSystemSE("SE_SY_TIMER_A_2", -1, -1);
-                        else if (lf < s-120) 
+                        else if (lf < s - 120)
                             MR::startSystemSE("SE_SY_TIMER_A_1", -1, -1);
-                        else if (lf < s) 
-                            MR::startSystemSE("SE_SY_TIMER_A_QUASI_0", -1, -1);                     
+                        else if (lf < s)
+                            MR::startSystemSE("SE_SY_TIMER_A_QUASI_0", -1, -1);
                     }
                 }
             }
@@ -212,21 +211,20 @@ void DesertLandMoveSwitch::exeSwitchDown() {
 
     if (MR::isStep(this, 6))
         MR::startBck(this, "On", 0);
-    
+
     if (tryOn())
         return;
 }
 
 void DesertLandMoveSwitch::exeOn() {
-    if (MR::isFirstStep(this)) 
+    if (MR::isFirstStep(this))
         MR::onSwitchA(this);
     tryConnect();
     if (_9C > 0) {
         updateTimerSE();
         if (MR::isStep(this, _9C))
             setNerve(&NrvDesertLandMoveSwitch::HostTypeReturn::sInstance);
-    }
-    else if (!MR::isOnSwitchA(this))
+    } else if (!MR::isOnSwitchA(this))
         setNerve(&NrvDesertLandMoveSwitch::HostTypeReturn::sInstance);
 }
 
@@ -248,14 +246,13 @@ void DesertLandMoveSwitch::exeReturn() {
     else if (MR::isBckStopped(this)) {
         setNerve(&NrvDesertLandMoveSwitch::HostTypeWait::sInstance);
     }
-
 }
 namespace NrvDesertLandMoveSwitch {
     HostTypeWait(HostTypeWait::sInstance);
     HostTypeSwitchDown(HostTypeSwitchDown::sInstance);
     HostTypeOn(HostTypeOn::sInstance);
     HostTypeReturn(HostTypeReturn::sInstance);
-};
+}; // namespace NrvDesertLandMoveSwitch
 
 void SpringValue::reset() {
     _4 = _0;

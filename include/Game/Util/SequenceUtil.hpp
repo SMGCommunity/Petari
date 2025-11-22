@@ -28,4 +28,4 @@ namespace MR {
     void executeOnWelcomeAndRetry();
     void requestGoToAstroGalaxy(s32);
     void requestGoToAstroDomeFromAstroGalaxy(s32, s32);
-};
+}; // namespace MR

@@ -6,21 +6,20 @@
 #include "Inline.hpp"
 
 DynamicCollisionObj::~DynamicCollisionObj() {
-
 }
 
 bool AreaObj::isValid() const {
     return mIsValid && _15 && mIsAwake;
 }
 
-AreaPolygon::AreaPolygon() : DynamicCollisionObj("エリアポリゴン") {
+AreaPolygon::AreaPolygon()
+    : DynamicCollisionObj("エリアポリゴン") {
     mForm = nullptr;
     _128 = nullptr;
     _12C.zero();
 }
 
 AreaPolygon::~AreaPolygon() {
-
 }
 
 /*void AreaPolygon::init(const JMapInfoIter &rIter) {
@@ -63,7 +62,7 @@ AreaPolygon::~AreaPolygon() {
     makeActorAppeared();
 }*/
 
-void AreaPolygon::setMtx(MtxPtr matrix, const TVec3f &a2, f32 a3) {
+void AreaPolygon::setMtx(MtxPtr matrix, const TVec3f& a2, f32 a3) {
     _128 = matrix;
     _12C = a2;
     _138 = a3;
@@ -85,7 +84,8 @@ void AreaPolygon::validate() {
     MR::validateCollisionParts(mParts);
 }
 
-CollisionArea::CollisionArea(int type, const char *pName) : AreaObj(type, pName) {
+CollisionArea::CollisionArea(int type, const char* pName)
+    : AreaObj(type, pName) {
     _3C = 0;
     _40 = 0.0f;
     _44.zero();
@@ -99,10 +99,9 @@ CollisionArea::CollisionArea(int type, const char *pName) : AreaObj(type, pName)
 }
 
 CollisionArea::~CollisionArea() {
-
 }
 
-void CollisionArea::init(const JMapInfoIter &rIter) {
+void CollisionArea::init(const JMapInfoIter& rIter) {
     AreaObj::init(rIter);
     MR::connectToSceneAreaObj(this);
 
@@ -122,8 +121,7 @@ void CollisionArea::init(const JMapInfoIter &rIter) {
 
     if (_60 == 0) {
         mPolygon = nullptr;
-    }
-    else {
+    } else {
         mPolygon = new AreaPolygon();
         mPolygon->mForm = mForm;
         mPolygon->init(rIter);
@@ -146,8 +144,7 @@ void CollisionArea::movement() {
 
             mIsValid = false;
         }
-    }
-    else {
+    } else {
         if (!mIsValid) {
             if (mPolygon != nullptr) {
                 MR::validateCollisionParts(mPolygon->mParts);
@@ -162,10 +159,9 @@ void CollisionArea::movement() {
             if (mPolygon != nullptr) {
                 MR::invalidateCollisionParts(mPolygon->mParts);
             }
-        }
-        else {
+        } else {
             TVec3f playerPos = *MR::getPlayerCenterPos();
-            f32 dVar4 = static_cast<f32>(_5C);
+            f32    dVar4 = static_cast<f32>(_5C);
 
             if (_5C == 0) {
                 dVar4 = MR::getPlayerHitRadius();
@@ -186,15 +182,13 @@ void CollisionArea::movement() {
                         MR::validateCollisionParts(mPolygon->mParts);
                     }
                 }
-            }
-            else if (!_58 && _50 == -1) {
+            } else if (!_58 && _50 == -1) {
                 TVec3f tStack84;
 
                 if (_3C == 0) {
                     tStack84 = tStack72;
                     tStack84.setLength(dVar4 + _40);
-                }
-                else {
+                } else {
                     TVec3f tStack96;
                     TVec3f tStack108 = playerPos;
                     tStack108.sub(tStack60);

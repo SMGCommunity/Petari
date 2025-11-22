@@ -7,12 +7,12 @@ class FollowCollisionArea;
 
 class SignBoard : public NPCActor {
 public:
-    SignBoard(const char *);
+    SignBoard(const char*);
 
     virtual ~SignBoard();
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
     virtual void control();
-    virtual void attackSensor(HitSensor *, HitSensor *);
+    virtual void attackSensor(HitSensor*, HitSensor*);
 
     void exeWait();
 

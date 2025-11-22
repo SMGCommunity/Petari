@@ -7,17 +7,15 @@
 #include "Game/Util/MessageUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
 
-ReceiverTagMail::ReceiverTagMail(const char* pTaskName, const char* pMessageID, const char* pSenderID) :
-    mMessage(nullptr),
-    mMessageLength(0),
-    mIsError(false),
-    _18(1)
-{
+ReceiverTagMail::ReceiverTagMail(const char* pTaskName, const char* pMessageID, const char* pSenderID)
+    : mMessage(nullptr),
+      mMessageLength(0),
+      mIsError(false),
+      _18(1) {
     mTaskName = pTaskName;
     mMessageID = pMessageID;
     mSenderID = pSenderID;
-    mMessageLength = MR::getStringLengthWithMessageTag(MR::getGameMessageDirect(mMessageID))
-        + FileSelectFunc::getMiiNameBufferSize();
+    mMessageLength = MR::getStringLengthWithMessageTag(MR::getGameMessageDirect(mMessageID)) + FileSelectFunc::getMiiNameBufferSize();
     mMessage = new wchar_t[mMessageLength];
 
     MR::zeroMemory(mMessage, mMessageLength * sizeof(wchar_t));

@@ -6,11 +6,11 @@ class SubMeterLayout;
 
 class MarioSubMeter : public NameObj {
 public:
-    MarioSubMeter(const char *pName);
+    MarioSubMeter(const char* pName);
 
     virtual ~MarioSubMeter();
 
-    virtual void init(const JMapInfoIter &rIter);
+    virtual void init(const JMapInfoIter& rIter);
 
     void setBeeLifeRatio(f32);
     void setWaterLifeRatio(f32);
@@ -20,7 +20,7 @@ public:
     void activate();
     void deactivate();
 
-    SubMeterLayout* mFlyMeter;     // 0xC
-    SubMeterLayout* mAirMeter;     // 0x10
-    SubMeterLayout* mActiveMeter;  // 0x14
+    SubMeterLayout* mFlyMeter;    // 0xC
+    SubMeterLayout* mAirMeter;    // 0x10
+    SubMeterLayout* mActiveMeter; // 0x14
 };

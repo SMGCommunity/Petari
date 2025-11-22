@@ -7,9 +7,9 @@
 
 namespace {
     static Color8 sTevColor0(0xE0E0E0FF);
-    Color8 sTevColor1(0xFF000000);
-    TVec3f sEnvMatTrans(1.0f, 1.0f, 1.5f);
-};
+    Color8        sTevColor1(0xFF000000);
+    TVec3f        sEnvMatTrans(1.0f, 1.0f, 1.5f);
+}; // namespace
 
 class BigBubbleDrawer {
 public:
@@ -22,7 +22,7 @@ public:
     void setUpPixelFormat() const;
     void setUpMaterial() const;
 
-    JUTTexture* mBubbleTexture;     // 0x0
-    JUTTexture* mRainbowTexture;    // 0x4
-    f32 _8;
+    JUTTexture* mBubbleTexture;  // 0x0
+    JUTTexture* mRainbowTexture; // 0x4
+    f32         _8;
 };

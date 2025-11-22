@@ -16,14 +16,13 @@ namespace {
     const s32 cBackSequenceFadeFrame = 90;
 
     bool isInvalidBackAstroDome() {
-        return !MR::isOnGameEventFlagUseAstroDome()
-            || (MR::isStageAstroLocation() && !MR::isEqualStageName("HeavensDoorGalaxy"));
+        return !MR::isOnGameEventFlagUseAstroDome() || (MR::isStageAstroLocation() && !MR::isEqualStageName("HeavensDoorGalaxy"));
     }
 
     bool isStageHideScenarioTitle() {
         return MR::isStageBeginPrologueEvent() || MR::isStageAstroLocation();
     }
-};
+}; // namespace
 
 namespace NrvPauseMenu {
     NEW_NERVE(PauseMenuNrvSelecting, PauseMenu, Selecting);
@@ -32,22 +31,20 @@ namespace NrvPauseMenu {
     NEW_NERVE(PauseMenuNrvConfirm, PauseMenu, Confirm);
     NEW_NERVE(PauseMenuNrvGameDataSave, PauseMenu, GameDataSave);
     NEW_NERVE(PauseMenuNrvLuigiLetter, PauseMenu, LuigiLetter);
-};
+}; // namespace NrvPauseMenu
 
-PauseMenu::PauseMenu() :
-    LayoutActor("ポーズメニュー", true),
-    _20(nullptr),
-    _24(nullptr),
-    _28(0.0f, 50.0f),
-    _30(nullptr),
-    mLuigiLetter(nullptr),
-    _38(nullptr),
-    mStageTitleOffset(0.0f, 39.0f),
-    mCoinNumPos(0.0f, 0.0f),
-    mStarPieceNumPos(0.0f, 0.0f),
-    _54(true)
-{
-    
+PauseMenu::PauseMenu()
+    : LayoutActor("ポーズメニュー", true),
+      _20(nullptr),
+      _24(nullptr),
+      _28(0.0f, 50.0f),
+      _30(nullptr),
+      mLuigiLetter(nullptr),
+      _38(nullptr),
+      mStageTitleOffset(0.0f, 39.0f),
+      mCoinNumPos(0.0f, 0.0f),
+      mStarPieceNumPos(0.0f, 0.0f),
+      _54(true) {
 }
 
 void PauseMenu::init(const JMapInfoIter& rIter) {
@@ -84,15 +81,13 @@ void PauseMenu::init(const JMapInfoIter& rIter) {
 
     if (MR::isEqualStageName("AstroDome")) {
         MR::setTextBoxMessageRecursive(this, "ShaStageTitle", MR::getCurrentScenarioNameOnCurrentLanguage());
-    }
-    else {
+    } else {
         MR::setTextBoxMessageRecursive(this, "ShaStageTitle", MR::getCurrentGalaxyNameOnCurrentLanguage());
     }
 
     if (isStageHideScenarioTitle()) {
         MR::hidePaneRecursive(this, "ScenarioTitle");
-    }
-    else {
+    } else {
         MR::setTextBoxMessageRecursive(this, "ScenarioTitle", MR::getCurrentScenarioNameOnCurrentLanguage());
     }
 
@@ -108,8 +103,7 @@ void PauseMenu::init(const JMapInfoIter& rIter) {
 
         _38 = new ButtonPaneController(this, "LetterButton", "BoxButton3", 0, true);
         _38->_22 = false;
-    }
-    else {
+    } else {
         MR::hidePaneRecursive(this, "LetterButton");
     }
 
@@ -158,18 +152,15 @@ void PauseMenu::appear() {
 
     if (coinNum >= 100) {
         pCoinPanePos = "CPosition3";
-    }
-    else if (coinNum >= 10) {
+    } else if (coinNum >= 10) {
         pCoinPanePos = "CPosition2";
     }
 
     if (starPieceNum >= 1000) {
         pPiecePanePos = "PPosition4";
-    }
-    else if (starPieceNum >= 100) {
+    } else if (starPieceNum >= 100) {
         pPiecePanePos = "PPosition3";
-    }
-    else if (starPieceNum >= 10) {
+    } else if (starPieceNum >= 10) {
         pPiecePanePos = "PPosition2";
     }
 
@@ -198,8 +189,7 @@ void PauseMenu::control() {
 
     if (_24 != nullptr) {
         _24->update();
-    }
-    else {
+    } else {
         _28.x = 0.0f;
         _28.y = 50.0f;
     }
@@ -222,11 +212,7 @@ void PauseMenu::startPaneAnimWithoutButton(const char* pAnimName) {
 }
 
 bool PauseMenu::isPaneAnimStoppedWithoutButton() const {
-    return MR::isPaneAnimStopped(this, "BG", 0)
-        && MR::isPaneAnimStopped(this, "PicStagebase", 0)
-        && MR::isPaneAnimStopped(this, "PicStagebase1", 0)
-        && MR::isPaneAnimStopped(this, "Stars", 0)
-        && MR::isPaneAnimStopped(this, "Counter", 0);
+    return MR::isPaneAnimStopped(this, "BG", 0) && MR::isPaneAnimStopped(this, "PicStagebase", 0) && MR::isPaneAnimStopped(this, "PicStagebase1", 0) && MR::isPaneAnimStopped(this, "Stars", 0) && MR::isPaneAnimStopped(this, "Counter", 0);
 }
 
 void PauseMenu::forceToWaitAllButton() {
@@ -274,8 +260,8 @@ void PauseMenu::exeDisappear() {
 void PauseMenu::exeConfirm() {
     if (MR::isFirstStep(this)) {
         const char* pMessageId = isInvalidBackAstroDome()
-            ? "PauseMenu_ConfirmEndGame"
-            : "PauseMenu_ConfirmBackAstroDome";
+                                     ? "PauseMenu_ConfirmEndGame"
+                                     : "PauseMenu_ConfirmBackAstroDome";
 
         _30->appear(pMessageId, SysInfoWindow::Type_YesNo, SysInfoWindow::TextPos_Center, SysInfoWindow::MessageType_System);
     }
@@ -286,12 +272,10 @@ void PauseMenu::exeConfirm() {
 
             if (isInvalidBackAstroDome()) {
                 MR::requestChangeSceneTitle();
-            }
-            else {
+            } else {
                 MR::requestChangeStageGoBackAstroDome();
             }
-        }
-        else {
+        } else {
             forceToWaitAllButton();
             setNerve(&NrvPauseMenu::PauseMenuNrvSelecting::sInstance);
         }
@@ -309,8 +293,7 @@ void PauseMenu::exeGameDataSave() {
 
     if (GameSequenceFunction::isSuccessSaveDataHandleSequence()) {
         setNerve(&NrvPauseMenu::PauseMenuNrvConfirm::sInstance);
-    }
-    else {
+    } else {
         forceToWaitAllButton();
         setNerve(&NrvPauseMenu::PauseMenuNrvSelecting::sInstance);
     }

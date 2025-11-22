@@ -10,7 +10,7 @@ BigBubbleDrawer::BigBubbleDrawer() {
 
 void BigBubbleDrawer::setUpDraw() const {
     setUpMaterial();
-} 
+}
 
 void BigBubbleDrawer::setUpVertexFormat() const {
     GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_F32, 0);
@@ -22,7 +22,7 @@ void BigBubbleDrawer::setUpVertexFormat() const {
     GXSetVtxDesc(GX_VA_TEX0, GX_DIRECT);
 }
 
-void BigBubbleDrawer::setUpTexture() const { 
+void BigBubbleDrawer::setUpTexture() const {
     GXSetNumTexGens(2);
     GXSetTexCoordGen2(GX_TEXCOORD0, GX_TG_MTX2x4, GX_TG_TEX0, 0x1E, 0, 0x7D);
     GXSetTexCoordGen2(GX_TEXCOORD1, GX_TG_MTX3x4, GX_TG_NRM, 0x21, 0, 0x7D);
@@ -41,7 +41,7 @@ void BigBubbleDrawer::setUpTexture() const {
     mBubbleTexture->load(GX_TEXMAP1);
 }
 
-void BigBubbleDrawer::setUpTevStage() const { 
+void BigBubbleDrawer::setUpTevStage() const {
     GXSetNumTevStages(3);
     GXSetTevColor(GX_TEVREG0, (GXColor&)sTevColor0);
     GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD0, GX_TEXMAP0, GX_COLOR_NULL);
@@ -71,10 +71,10 @@ void BigBubbleDrawer::setUpPixelFormat() const {
     GXSetZMode(1, GX_LEQUAL, 0);
     GXSetZCompLoc(0);
     GXSetCullMode(GX_CULL_BACK);
-    GXSetClipMode(GX_CLIP_ENABLE); 
+    GXSetClipMode(GX_CLIP_ENABLE);
 }
 
-void BigBubbleDrawer::setUpMaterial() const { 
+void BigBubbleDrawer::setUpMaterial() const {
     setUpVertexFormat();
     GXSetNumChans(1);
     GXSetChanCtrl(GX_COLOR0A0, 0, GX_SRC_REG, GX_SRC_REG, 0, GX_DF_NONE, GX_AF_NONE);

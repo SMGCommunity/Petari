@@ -13,7 +13,7 @@ public:
     }
 
     virtual s32 skip(s32);
-    virtual u32 readData(void *, s32) = 0;
+    virtual u32 readData(void*, s32) = 0;
     virtual s32 getLength() const = 0;
     virtual s32 getPosition() const = 0;
     virtual s32 seekPos(s32, JSUStreamSeekFrom) = 0;

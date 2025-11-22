@@ -7,12 +7,10 @@ namespace {
     NEW_NERVE(MissLayoutNrvWait, MissLayout, Wait);
     NEW_NERVE(MissLayoutNrvActive, MissLayout, Active);
     NEW_NERVE(MissLayoutNrvEnd, MissLayout, End);
-};
+}; // namespace
 
-MissLayout::MissLayout() :
-    LayoutActor("ミス!", true)
-{
-    
+MissLayout::MissLayout()
+    : LayoutActor("ミス!", true) {
 }
 
 void MissLayout::init(const JMapInfoIter& rIter) {
@@ -43,7 +41,6 @@ void MissLayout::start() {
 }
 
 void MissLayout::exeWait() {
-    
 }
 
 void MissLayout::exeActive() {
@@ -62,5 +59,4 @@ void MissLayout::exeActive() {
 }
 
 void MissLayout::exeEnd() {
-    
 }

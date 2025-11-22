@@ -1,13 +1,11 @@
 #include "Game/NameObj/NameObjAdaptor.hpp"
 
-NameObjAdaptor::NameObjAdaptor(const char *pName) :
-    NameObj(pName),
-    mMovementFunc(nullptr),
-    mCalcAnimFunc(nullptr),
-    mCalcViewFunc(nullptr),
-    mDrawAnimFunc(nullptr)
-{
-    
+NameObjAdaptor::NameObjAdaptor(const char* pName)
+    : NameObj(pName),
+      mMovementFunc(nullptr),
+      mCalcAnimFunc(nullptr),
+      mCalcViewFunc(nullptr),
+      mDrawAnimFunc(nullptr) {
 }
 
 NameObjAdaptor::~NameObjAdaptor() {
@@ -41,14 +39,14 @@ void NameObjAdaptor::draw() const {
     }
 }
 
-void NameObjAdaptor::connectToMovement(const MR::FunctorBase &rFunctor) {
+void NameObjAdaptor::connectToMovement(const MR::FunctorBase& rFunctor) {
     mMovementFunc = rFunctor.clone(nullptr);
 }
 
-void NameObjAdaptor::connectToCalcAnim(const MR::FunctorBase &rFunctor) {
+void NameObjAdaptor::connectToCalcAnim(const MR::FunctorBase& rFunctor) {
     mCalcAnimFunc = rFunctor.clone(nullptr);
 }
 
-void NameObjAdaptor::connectToDraw(const MR::FunctorBase &rFunctor) {
+void NameObjAdaptor::connectToDraw(const MR::FunctorBase& rFunctor) {
     mDrawAnimFunc = rFunctor.clone(nullptr);
 }

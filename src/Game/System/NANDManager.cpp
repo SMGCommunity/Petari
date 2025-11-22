@@ -24,7 +24,7 @@ bool NANDRequestInfo::isDone() const {
     return _40 == 0;
 }
 
-const char* NANDRequestInfo::setMove(const char *pPath, const char *pDestDir) {
+const char* NANDRequestInfo::setMove(const char* pPath, const char* pDestDir) {
     init();
 
     mType = 0;
@@ -34,7 +34,7 @@ const char* NANDRequestInfo::setMove(const char *pPath, const char *pDestDir) {
     return mPath;
 }
 
-const char* NANDRequestInfo::setWriteSeq(const char *pName, const void *pBuf, u32 fsBlock, u8 permission, u8 attr) {
+const char* NANDRequestInfo::setWriteSeq(const char* pName, const void* pBuf, u32 fsBlock, u8 permission, u8 attr) {
     init();
 
     mWriteBuf = pBuf;
@@ -47,7 +47,7 @@ const char* NANDRequestInfo::setWriteSeq(const char *pName, const void *pBuf, u3
     return mPath;
 }
 
-const char* NANDRequestInfo::setReadSeq(const char *pName, void *pBuf, u32 fsBlock, u32 *pLength) {
+const char* NANDRequestInfo::setReadSeq(const char* pName, void* pBuf, u32 fsBlock, u32* pLength) {
     init();
 
     mReadBuf = pBuf;
@@ -59,7 +59,7 @@ const char* NANDRequestInfo::setReadSeq(const char *pName, void *pBuf, u32 fsBlo
     return mPath;
 }
 
-const char* NANDRequestInfo::setCheck(u32 fsBlock, u32 inode, u32 *pAnswer) {
+const char* NANDRequestInfo::setCheck(u32 fsBlock, u32 inode, u32* pAnswer) {
     init();
 
     mFsBlock = fsBlock;
@@ -70,16 +70,15 @@ const char* NANDRequestInfo::setCheck(u32 fsBlock, u32 inode, u32 *pAnswer) {
     return mPath;
 }
 
-NANDManager::NANDManager() :
-    mManagerThread(nullptr)
-{
+NANDManager::NANDManager()
+    : mManagerThread(nullptr) {
     mManagerThread = new NANDManagerThread(13, 256, MR::getStationedHeapNapa());
 
     OSResumeThread(mManagerThread->mThread);
     OSInitMutex(&mMutex);
 }
 
-bool NANDManager::addRequest(NANDRequestInfo *pRequestInfo) {
+bool NANDManager::addRequest(NANDRequestInfo* pRequestInfo) {
     OSLockMutex(&mMutex);
     pRequestInfo->_40 = 1;
     bool ret = OSSendMessage(&mManagerThread->mQueue, pRequestInfo, OS_MESSAGE_NOBLOCK);
@@ -97,8 +96,7 @@ bool NANDResultCode::isSuccess() const {
 }
 
 bool NANDResultCode::isSaveDataCorrupted() const {
-    return getCode() == NAND_RESULT_ECC_CRIT
-        || getCode() == NAND_RESULT_AUTHENTICATION;
+    return getCode() == NAND_RESULT_ECC_CRIT || getCode() == NAND_RESULT_AUTHENTICATION;
 }
 
 bool NANDResultCode::isNANDCorrupted() const {
@@ -118,8 +116,7 @@ bool NANDResultCode::isNoExistFile() const {
 }
 
 bool NANDResultCode::isBusyOrAllocFailed() const {
-    return getCode() == NAND_RESULT_BUSY
-        || getCode() == NAND_RESULT_ALLOC_FAILED;
+    return getCode() == NAND_RESULT_BUSY || getCode() == NAND_RESULT_ALLOC_FAILED;
 }
 
 bool NANDResultCode::isUnknown() const {
@@ -127,12 +124,12 @@ bool NANDResultCode::isUnknown() const {
 }
 
 namespace MR {
-    void addRequestToNANDManager(NANDRequestInfo *pRequestInfo) {
+    void addRequestToNANDManager(NANDRequestInfo* pRequestInfo) {
         SingletonHolder<NANDManager>::get()->addRequest(pRequestInfo);
     }
-};
+}; // namespace MR
 
-const char* NANDRequestInfo::setDelete(const char *pName) {
+const char* NANDRequestInfo::setDelete(const char* pName) {
     init();
     mType = 1;
     snprintf(mPath, sizeof(mPath), "%s", pName);

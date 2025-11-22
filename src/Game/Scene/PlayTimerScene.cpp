@@ -15,15 +15,14 @@ namespace NrvPlayTimerScene {
     NEW_NERVE(PlayTimerSceneNormal, PlayTimerScene, Normal);
     NEW_NERVE(PlayTimerSceneTimeUp, PlayTimerScene, TimeUp);
     NEW_NERVE(PlayTimerSceneFadeoutAfterTimeUp, PlayTimerScene, FadeoutAfterTimeUp);
-};
+}; // namespace NrvPlayTimerScene
 
-PlayTimerScene::PlayTimerScene() :
-    Scene("PlayTimerScene"),
-    mTimeLimitLayout(nullptr),
-    mTimeUpLayout(nullptr),
-    mTimeUpWaitFrame(sTimeUpWaitFrame),
-    _20(nullptr)
-{
+PlayTimerScene::PlayTimerScene()
+    : Scene("PlayTimerScene"),
+      mTimeLimitLayout(nullptr),
+      mTimeUpLayout(nullptr),
+      mTimeUpWaitFrame(sTimeUpWaitFrame),
+      _20(nullptr) {
     initNerve(&NrvPlayTimerScene::PlayTimerSceneNormal::sInstance);
 
     _20 = new ValueControl(30);
@@ -76,7 +75,7 @@ void PlayTimerScene::update() {
 void PlayTimerScene::draw() const {
     J2DOrthoGraphSimple graph;
     graph.setPort();
-    u8 color = MR::lerp(0, 255, _20->getValue());
+    u8               color = MR::lerp(0, 255, _20->getValue());
     JUtility::TColor v1;
     v1.r = color;
     v1.g = color;
@@ -84,8 +83,8 @@ void PlayTimerScene::draw() const {
     v1.a = color;
     graph.setColor(v1, v1, v1, v1);
 
-    f32 height = JUTVideo::sManager->mRenderModeObj->efbHeight;
-    f32 width = MR::getScreenWidth();
+    f32    height = JUTVideo::sManager->mRenderModeObj->efbHeight;
+    f32    width = MR::getScreenWidth();
     TBox2f box(0.0f, 0.0f, 0.0f + height, 0.0f + width);
     graph.fillBox(box);
 }

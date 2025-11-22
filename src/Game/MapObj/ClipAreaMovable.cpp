@@ -13,7 +13,8 @@
 #include "JSystem/JMath/JMath.hpp"
 #include "revolution/mtx.h"
 
-ClipAreaMovable::ClipAreaMovable(const char* pName) : ClipArea(pName) {
+ClipAreaMovable::ClipAreaMovable(const char* pName)
+    : ClipArea(pName) {
     mMapPartsRailMover = 0;
     mMapPartsRotator = 0;
 }
@@ -23,7 +24,7 @@ void ClipAreaMovable::init(const JMapInfoIter& rIter) {
     MR::connectToScene(this, 0x1C, -1, -1, 0x2A);
     MR::setGroupClipping(this, rIter, 0x40);
     f32 f = MR::getMaxAbsElement(mScale);
-    MR::setClippingTypeSphere(this, f*1400.0f);
+    MR::setClippingTypeSphere(this, f * 1400.0f);
     initMoveFunction(rIter);
     initHitSensor(1);
     TVec3f stack_8 = TVec3f(0.0f, 0.0f, 0.0f);
@@ -93,7 +94,7 @@ void ClipAreaMovable::updateMatrix() {
         mtx.concat(mMapPartsRotator->getRotateMtx(), mtx);
 
     register ClipAreaMovable* regThis = this;
-    register TMtx34f* regMtx = &mtx;
+    register TMtx34f*         regMtx = &mtx;
 
     mtx[0][3] = mPosition.x;
     mtx[1][3] = mPosition.y;

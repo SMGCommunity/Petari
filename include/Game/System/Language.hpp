@@ -40,4 +40,4 @@ namespace MR {
     /// @param index The position in the lookup table.
     /// @return The pointer to the null-terminated label.
     const char* getLanguagePrefixByIndex(u32 index);
-};
+}; // namespace MR

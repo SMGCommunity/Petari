@@ -5,7 +5,8 @@
 #include <cstdio>
 #include <va_list.h>
 
-IntermissionScene::IntermissionScene() : Scene("IntermissionScene") {
+IntermissionScene::IntermissionScene()
+    : Scene("IntermissionScene") {
     _54 = 0;
     mState[0] = 0;
 }
@@ -30,13 +31,13 @@ void IntermissionScene::draw() const {
     v4.a = 255;
     graph.setColor(v1, v1, v1, v4);
 
-    f32 height = JUTVideo::sManager->mRenderModeObj->efbHeight;
-    f32 width = MR::getScreenWidth();
+    f32    height = JUTVideo::sManager->mRenderModeObj->efbHeight;
+    f32    width = MR::getScreenWidth();
     TBox2f box(0.0f, 0.0f, 0.0f + height, 0.0f + width);
     graph.fillBox(box);
 }
 
-void IntermissionScene::setCurrentSceneControllerState(const char *pState, ...) {
+void IntermissionScene::setCurrentSceneControllerState(const char* pState, ...) {
     va_list list;
     va_start(list, pState);
     vsnprintf(mState, sizeof(mState), pState, list);

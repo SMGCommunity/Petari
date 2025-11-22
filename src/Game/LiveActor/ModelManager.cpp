@@ -12,19 +12,17 @@
 #include "Game/Util/MutexHolder.hpp"
 #include <JSystem/J3DGraphAnimator/J3DModel.hpp>
 
-ModelManager::ModelManager() :
-    mBtkPlayer(nullptr),
-    mBrkPlayer(nullptr),
-    mBtpPlayer(nullptr),
-    mBpkPlayer(nullptr),
-    mBvaPlayer(nullptr),
-    mXanimeResourceTable(nullptr),
-    mXanimePlayer(nullptr),
-    mModel(nullptr),
-    mModelResourceHolder(nullptr),
-    mDisplayListMaker(nullptr)
-{
-    
+ModelManager::ModelManager()
+    : mBtkPlayer(nullptr),
+      mBrkPlayer(nullptr),
+      mBtpPlayer(nullptr),
+      mBpkPlayer(nullptr),
+      mBvaPlayer(nullptr),
+      mXanimeResourceTable(nullptr),
+      mXanimePlayer(nullptr),
+      mModel(nullptr),
+      mModelResourceHolder(nullptr),
+      mDisplayListMaker(nullptr) {
 }
 
 void ModelManager::update() {
@@ -76,8 +74,7 @@ void ModelManager::newDifferedDLBuffer() {
 void ModelManager::updateDL(bool isDiffDL) {
     OSLockMutex(&MR::MutexHolder<0>::sMutex);
 
-    bool isUpdateDL = mDisplayListMaker != nullptr
-        && mDisplayListMaker->isValidDiff();
+    bool isUpdateDL = mDisplayListMaker != nullptr && mDisplayListMaker->isValidDiff();
 
     if (isUpdateDL) {
         mDisplayListMaker->update();
@@ -329,7 +326,7 @@ const char* ModelManager::getPlayingBckName() const {
 
 void ModelManager::initMaterialAnm() {
     ResourceHolder* pResourceHolder = getResourceHolder();
-    J3DModelData* pModelData = getJ3DModelData();
+    J3DModelData*   pModelData = getJ3DModelData();
 
     if (pResourceHolder->mMaterialBuf == nullptr) {
         pResourceHolder->newMaterialAnmBuffer(pModelData);
