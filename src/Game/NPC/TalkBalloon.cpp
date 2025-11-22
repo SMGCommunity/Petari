@@ -308,7 +308,6 @@ void TalkBalloonEvent::exeClose() {
 }
 
 
-
 TalkBalloonSign::TalkBalloonSign(const char *pArg) :
     TalkBalloonEvent(pArg)
 {
