@@ -448,7 +448,7 @@ void TalkBalloonHolder::pauseOff() {
     MR::requestMovementOn(_18);
 }
 
-TalkBalloon *TalkBalloonHolder::getBalloon(const TalkMessageCtrl *pArg) {
+TalkBalloon* TalkBalloonHolder::getBalloon(const TalkMessageCtrl *pArg) {
     TalkBalloon *balloon;
     const TalkMessageInfo *info = TalkFunction::getMessageInfo(pArg);
 

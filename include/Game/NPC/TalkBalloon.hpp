@@ -105,7 +105,7 @@ public:
 
     void pauseOff();
     void skipMessage();
-    TalkBalloon *getBalloon(const TalkMessageCtrl *);
+    TalkBalloon* getBalloon(const TalkMessageCtrl *);
     void balloonOff();
     void update();
     bool isActiveBalloonShort();
