@@ -21,15 +21,6 @@ namespace NrvSurfRay {
     NEW_NERVE(SurfRayNrvReady, SurfRay, Ready);
 };
 
-void unusedStrippedMatchsdata2() {
-    // this is not a real function, this is just to match .sdata2 data order
-    f32 _f00 = 1.0f;
-    f32 _f01 = 0.0f;
-    f32 _f02 = 0.5f;
-    f32 _f03 = 3.0f;
-    f32 _f04 = -1.0f;
-}
-
 inline f32 min(f32 a, f32 b) {
     if (a >= b) {
         return b;
@@ -232,7 +223,7 @@ void SurfRay::exeRideJump() {
         MR::startSound(mRider,"SE_PV_JUMP_S",-1,-1);
     }
 
-    if (updateRide() && mVelocity.dot(mGravity) > 0.0f) {
+    if (!updateRide() && mVelocity.dot(mGravity) > 0.0f) {
         setNerve(&NrvSurfRay::SurfRayNrvRideFall::sInstance);
     }
 }
@@ -244,7 +235,7 @@ void SurfRay::exeRideJumpHigh() {
         MR::startSound(mRider,"SE_PV_JUMP_JOY",-1,-1);
     }
 
-    if (updateRide() && mVelocity.dot(mGravity) > 0.0f) {
+    if (!updateRide() && mVelocity.dot(mGravity) > 0.0f) {
         setNerve(&NrvSurfRay::SurfRayNrvRideFall::sInstance);
     }
 }
@@ -255,7 +246,7 @@ void SurfRay::exeRideFall() {
         MR::startBck(this, "Fall", 0);
     }
 
-    if (updateRide() && mVelocity.dot(mGravity) > 0.0f && mInWater) {
+    if (!updateRide() && mVelocity.dot(mGravity) > 0.0f && mInWater) {
         setNerve(&NrvSurfRay::SurfRayNrvRideLand::sInstance);
         MR::startSound(this,"SE_SM_SURF_RAY_LANDW",-1,-1);
     }
@@ -267,7 +258,7 @@ void SurfRay::exeRideLand() {
         MR::startBck(this, "Land", 0);
     }
 
-    if (updateRide() && !tryJumpOrFall() && MR::isBckStopped(this)) {
+    if (!updateRide() && !tryJumpOrFall() && MR::isBckStopped(this)) {
         setNerve(&NrvSurfRay::SurfRayNrvRideFree::sInstance);
     }
 }
@@ -402,8 +393,8 @@ void SurfRay::control() {
     mVelocity.set(mFront);
     mVelocity.scale(mSurfSpeed);
     mVelocity.add(mOrthoVelocity);
-    // this causes a single nonmatch in the order of a mr r3,r31 instruction 
-    MR::setBtkRate(this, min(mSurfSpeed * 0.4f + 1.0f, 4.0f));
+    f32 rate = min(mSurfSpeed * 0.4f + 1.0f, 4.0f);
+    MR::setBtkRate(this, rate);
     mActorJointCtrl->update();
 }
 
@@ -702,34 +693,29 @@ void SurfRay::updateToWater() {
                 MR::startSound(this, "SE_SM_SURF_RAY_JUMPIN0", lvl, -1);
             
             }
-
-            mInWater = true;
-            mAirtime = 0;
-
-            if (PSVECMag(&mOrthoVelocity) > 5.0f) {
-                MR::tryRumblePadWeak(this, mChannel);
-            }
-
-            MR::getWaterAreaInfo(&mWaterInfo, mPosition, mGravity, false);
-            mWaterNormal.set(mWaterInfo.mSurfaceNormal);
-            f32 innerProd = mGravity.dot(mVelocity);
-            if (innerProd > 0.0f && mWaterInfo._4 < innerProd) {
-                TVec3f v2(mGravity);
-                TVec3f v2a(mGravity);
-                v2a.scale(innerProd);
-                TVec3f v2b(v2a);
-                v2b.scale(1.5f);
-                mVelocity.sub(v2b);
-            }
-            else {
-                f32 f0 = mWaterInfo.mCamWaterDepth + mWaterInfo.mWaveHeight;
-                TVec3f v1(mGravity);
-                v1.scale(f0);
-                TVec3f v1a(v1);
-                v1a.scale(0.01f);
-                mVelocity.sub(v1a);
-            }
         }
+
+        mInWater = true;
+        mAirtime = 0;
+
+        if (PSVECMag(&mVelocity) > 5.0f) {
+            MR::tryRumblePadWeak(this, mChannel);
+        }
+
+        MR::getWaterAreaInfo(&mWaterInfo, mPosition, mGravity, false);
+        mWaterNormal.set(mWaterInfo.mSurfaceNormal);
+        f32 innerProd = mGravity.dot(mVelocity);
+        if (innerProd > 0.0f && mWaterInfo._4 < innerProd) {
+            TVec3f v2(mGravity);
+            mVelocity.sub(mGravity.scaleInline(innerProd).scaleInline(1.5f));
+        }
+        else {
+            f32 camWaterDepth = mWaterInfo.mCamWaterDepth;
+            f32 waveHeight = mWaterInfo.mWaveHeight;
+            f32 f0 = camWaterDepth + waveHeight;
+            mVelocity.sub(mGravity.scaleInline(f0).scaleInline(0.01f));
+        }
+        
     }
     else {
         if (mInWater) {
@@ -741,7 +727,8 @@ void SurfRay::updateToWater() {
     }
 
     WaterInfo waterInfo;
-    if (MR::getWaterAreaObj(&waterInfo, addFromPos(mGravity, 20.0f))) {
+    TVec3f v(mPosition.addOperatorInLine(mGravity.scaleInline(20.0f)));
+    if (MR::getWaterAreaObj(&waterInfo, v)) {
         mShadowAlpha -= 10.0f;
     }
     else if (calcWaterShadowPos(&mWaterShadowPos, mPosition, mGravity)) {
@@ -751,7 +738,7 @@ void SurfRay::updateToWater() {
         mShadowAlpha -= 10.0f;
     }
     mShadowAlpha = MR::clamp(mShadowAlpha, 0.0f, 64.0f);
-    MR::setShadowSurfaceOvalAlpha(this, 0, mShadowAlpha);
+    MR::setShadowSurfaceOvalAlpha(this, 0, (u8)mShadowAlpha & 0xff);
 }
 
 void SurfRay::updateAccel(){
@@ -916,7 +903,8 @@ void SurfRay::updateSound() {
         MR::startLevelSound(this, "SE_SM_SURF_RAY_MOVE_WIND", lvl * 1000.0f, -1, -1);
     }
     
-    if (mInWater && (__fabsf(mRotation.z) / 70.0f) > 0.45f) {
+    f32 normalizeZ = __fabsf(mRotation.z) / 70.0f;
+    if (mInWater && normalizeZ > 0.45f) {
         lvl = MR::getLinerValueFromMinMax(mSurfSpeed, 0.0f, 25.0f, 100.0f, 1000.0f);
         MR::startLevelSound(this, "SE_SM_LV_SURF_RAY_CURVE", lvl, -1, -1);
     }
@@ -936,39 +924,41 @@ void SurfRay::updateRiderMtx() {
 }
 
 bool SurfRay::tryInWater() {
-    // nonmatching, improper stack access order
-    
-    if (MR::getWaterAreaObj(&mWaterInfo, mPosition) != nullptr) {
+    if (MR::getWaterAreaObj(&mWaterInfo, mPosition)) {
         return true;
     }
 
-    if (MR::getWaterAreaObj(&mWaterInfo, addFromPos(mFront, 100.0f)) != nullptr) {
+    TVec3f v1(mFront.scaleInline(100.0f).addOperatorInLine(mPosition));
+    if (MR::getWaterAreaObj(&mWaterInfo, v1)) {
         return true;
     }
     
-    if (MR::getWaterAreaObj(&mWaterInfo, addFromPos(mUp, 150.0f)) != nullptr) {
+    TVec3f v2(mUp.scaleInline(150.0f).addOperatorInLine(mPosition));
+    if (MR::getWaterAreaObj(&mWaterInfo, v2)) {
         return true;
     }
 
     TVec3f v3(mFront);
     MR::rotateVecDegree(&v3, -mGravity, -90.0f);
-    if (MR::getWaterAreaObj(&mWaterInfo, addFromPos(v3, 150.0f)) != nullptr) {
+    TVec3f v3a(v3.scaleInline(150.0f).addOperatorInLine(mPosition));
+    if (MR::getWaterAreaObj(&mWaterInfo, v3a)) {
         return true;
     }
 
     TVec3f v4(mFront);
     MR::rotateVecDegree(&v4, -mGravity, 90.0f);
-    if (MR::getWaterAreaObj(&mWaterInfo, addFromPos(v4, 150.0f)) != nullptr) {
+    TVec3f v4a(v4.scaleInline(150.0f).addOperatorInLine(mPosition));
+    if (MR::getWaterAreaObj(&mWaterInfo, v4a)) {
         return true;
     }
 
-    if (MR::getWaterAreaObj(&mWaterInfo, addFromPos(mSide, 150.0f)) != nullptr) {
+    TVec3f v5(mSide.scaleInline(150.0f).addOperatorInLine(mPosition));
+    if (MR::getWaterAreaObj(&mWaterInfo, v5)) {
         return true;
     }
 
-    // non matching at "else" condition here
-    // impoproper register access between r3 and r4 here
-    if (MR::getWaterAreaObj(&mWaterInfo, addFromPos(-mSide, 150.0f)) != nullptr) {
+    TVec3f v6((-mSide).scaleInline(150.0f).addOperatorInLine(mPosition));
+    if (MR::getWaterAreaObj(&mWaterInfo, v6)) {
         return true;
     }
 

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "JSystem/JGeometry/TVec.hpp"
+#include <cmath>
 
 namespace JGeometry {
     template<typename T>
@@ -31,13 +32,28 @@ namespace JGeometry {
         void normalize(const TQuat4<T> &rSrc);
 
         void getXDir(TVec3<T> &rDest) const {
-            f32 _y = this->y;
-            f32 _z = this->z;
-            rDest.template set<T>((1.0f - (2.0f *(_y*_y)))-(2.0f*_z*_z), (2.0f*((this->x)*_y)+(2.0f*(this->w)*_z)), ((2.0f*(this->x)*_z)-(2.0f*(this->w)*_y)));
-        };
+            rDest.template set<T>(
+                1.0f - this->y * this->y * 2.0f - this->z * this->z * 2.0f,
+                this->x * this->y * 2.0f + this->w * this->z * 2.0f,
+                this->x * this->z * 2.0f - this->w * this->y * 2.0f
+            );
+        }
 
-        void getYDir(TVec3<T> &rDest) const;
-        void getZDir(TVec3<T> &rDest) const;
+        void getYDir(TVec3<T> &rDest) const {
+            rDest.template set<T>(
+                this->x * this->y * 2.0f - this->w * this->z * 2.0f,
+                1.0f - this->x * this->x * 2.0f - this->z * this->z * 2.0f,
+                this->y * this->z * 2.0f + this->w * this->x * 2.0f
+            );
+        }
+        
+        void getZDir(TVec3<T> &rDest) const {
+            rDest.template set<T>(
+                this->x * this->z * 2.0f + this->w * this->y * 2.0f,
+                this->y * this->z * 2.0f - this->w * this->x * 2.0f,
+                1.0f - this->x * this->x * 2.0f - this->y * this->y * 2.0f
+            );
+        }
 
         void getEuler(TVec3<T> &rDest) const;
         void setEuler(T _x, T _y, T _z);
@@ -45,7 +61,13 @@ namespace JGeometry {
 
         void setRotate(const TVec3<T> &, const TVec3<T> &, T);
         void setRotate(const TVec3<T> &, const TVec3<T> &);
-        void setRotate(const TVec3<T> &, f32);
+
+        void setRotate(const TVec3<T> & pVec, f32 pAngle) {
+            f32 halfAngle = pAngle * 0.5f;
+            scale(sin(halfAngle), pVec);
+            this->w = cos(halfAngle);
+        }
+        
         void rotate(TVec3f &rDest) const;
 
         void slerp(const TQuat4<T> &a1, const TQuat4<T> &a2, T a3) {

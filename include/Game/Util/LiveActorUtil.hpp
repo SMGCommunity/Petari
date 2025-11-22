@@ -157,6 +157,23 @@ namespace MR {
     const TVec3f* getWallNormal(const LiveActor*);
     const TVec3f* getRoofNormal(const LiveActor*);
     const TVec3f* getBindedNormal(const LiveActor*);
+    const TVec3f* getBindedHitPos(const LiveActor*);
+    const TVec3f* getGroundHitPos(const LiveActor*);
+    const TVec3f* getWallHitPos(const LiveActor*);
+    const TVec3f* getRoofHitPos(const LiveActor*);
+    const TVec3f* getGroundHitPos(const LiveActor*);
+    const TVec3f* getWallHitPos(const LiveActor*);
+    const TVec3f* getRoofHitPos(const LiveActor*);
+    void calcWallNormalHorizontal(TVec3f*, const LiveActor*);
+    f32 calcHitPowerToGround(const LiveActor*);
+    f32 calcHitPowerToWall(const LiveActor*);
+    int getBindedPlaneNum(const LiveActor*);
+    const TVec3f* getBindedPlaneNormal(const LiveActor*, int);
+    HitSensor* getBindedPlaneSensor(const LiveActor*, int);
+    TVec3f* getBindedFixReactionVector(const LiveActor*);
+    void setBinderOffsetVec(LiveActor*, const TVec3f*, bool);
+    void setBinderRadius(LiveActor*, f32);
+    f32 getBinderRadius(const LiveActor*);
 
     void initFur(LiveActor *);
     void initFurPlanet(LiveActor *);

@@ -1256,7 +1256,7 @@ void Mario::initAfterConst() {
                     _160 += stack_14;
                 }
                 else {
-                    int s28 = mActor->mBinder->_28;
+                    int s28 = mActor->mBinder->mPlaneNum;
                     if (s28 != 0) {
                         float f28 = 0.0f;
                         int index = 0;

@@ -20,6 +20,8 @@ namespace MR {
     void stopStageBGM(u32);
     void unlockStageBGM();
 
+    void startLastStageBGM();
+
     void moveVolumeStageBGM(f32, u32);
     void moveVolumeStageBGMForNoteFairy(f32, u32);
     void moveVolumeSubBGM(f32, u32);

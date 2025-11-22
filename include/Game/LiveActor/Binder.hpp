@@ -29,18 +29,18 @@ public:
 
     const TVec3f *_10;
     const TVec3f *_14;
-    f32 _18;
+    f32 mRadius;                // 0x18
     f32 _1C;
-    int _20;
+    const TVec3f* mOffsetVec;   // 0x20
     u32 _24;
-    int _28;
-    HitInfo *_2C;
-    TVec3f _30;
-    HitInfo mGroundInfo;     // 0x3c
+    int mPlaneNum;              // 0x28
+    HitInfo *mPlaneInfos;       // 0x2C
+    TVec3f mFixReactionVector;  // 0x30
+    HitInfo mGroundInfo;        // 0x3c
     f32 _C8;
-    HitInfo mWallInfo;       // 0xcc
+    HitInfo mWallInfo;          // 0xcc
     f32 _158;
-    HitInfo mRoofInfo;       // 0x15c
+    HitInfo mRoofInfo;          // 0x15c
     f32 _1E8;
 
     struct {
