@@ -332,17 +332,17 @@ namespace NrvArrowSwitch {
     INIT_NERVE(ArrowSwitchNrvLock);
 
     void ArrowSwitchNrvLock::execute(Spine* pSpine) const {
-        ArrowSwitch* sw = reinterpret_cast<ArrowSwitch*>(pSpine->mExecutor);
+        ArrowSwitch* sw = reinterpret_cast< ArrowSwitch* >(pSpine->mExecutor);
         sw->exeLock();
     }
 
     void ArrowSwitchNrvRotate::execute(Spine* pSpine) const {
-        ArrowSwitch* sw = reinterpret_cast<ArrowSwitch*>(pSpine->mExecutor);
+        ArrowSwitch* sw = reinterpret_cast< ArrowSwitch* >(pSpine->mExecutor);
         sw->exeRotate();
     }
 
     void ArrowSwitchNrvWait::execute(Spine* pSpine) const {
-        ArrowSwitch* sw = reinterpret_cast<ArrowSwitch*>(pSpine->mExecutor);
+        ArrowSwitch* sw = reinterpret_cast< ArrowSwitch* >(pSpine->mExecutor);
         sw->exeWait();
     }
 }; // namespace NrvArrowSwitch

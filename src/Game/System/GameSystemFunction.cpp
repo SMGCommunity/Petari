@@ -21,7 +21,7 @@
 
 namespace {
     LogoScene* getLogoScene() {
-        LogoScene* pLogoScene = static_cast<LogoScene*>(SingletonHolder<GameSystem>::get()->mSceneController->mScene);
+        LogoScene* pLogoScene = static_cast< LogoScene* >(SingletonHolder< GameSystem >::get()->mSceneController->mScene);
 
         if (pLogoScene == nullptr) {
             return nullptr;
@@ -31,11 +31,11 @@ namespace {
     }
 
     AudSystemWrapper* getAudSystemWrapper() NO_INLINE {
-        return SingletonHolder<GameSystem>::get()->mObjHolder->mSysWrapper;
+        return SingletonHolder< GameSystem >::get()->mObjHolder->mSysWrapper;
     }
 
     SaveDataHandleSequence* getSaveDataHandleSequence() NO_INLINE {
-        return SingletonHolder<GameSystem>::get()->mSequenceDirector->mSaveDataHandleSequence;
+        return SingletonHolder< GameSystem >::get()->mSequenceDirector->mSaveDataHandleSequence;
     }
 }; // namespace
 
@@ -49,78 +49,78 @@ namespace GameSystemFunction {
     }
 
     void initAfterStationedResourceLoaded() {
-        SingletonHolder<GameSystem>::get()->initAfterStationedResourceLoaded();
+        SingletonHolder< GameSystem >::get()->initAfterStationedResourceLoaded();
     }
 
     void setSceneNameObjHolderToNameObjRegister() {
-        SingletonHolder<NameObjRegister>::get()->setCurrentHolder(
-            SingletonHolder<GameSystem>::get()->mSceneController->mObjHolder);
+        SingletonHolder< NameObjRegister >::get()->setCurrentHolder(
+            SingletonHolder< GameSystem >::get()->mSceneController->mObjHolder);
     }
 
     bool isCreatedGameDataHolder() {
-        return SingletonHolder<GameSystem>::get()->mSequenceDirector->isInitializedGameDataHolder();
+        return SingletonHolder< GameSystem >::get()->mSequenceDirector->isInitializedGameDataHolder();
     }
 
     bool isCreatedSystemWipe() {
-        return SingletonHolder<GameSystem>::get()->mSystemWipeHolder != nullptr;
+        return SingletonHolder< GameSystem >::get()->mSystemWipeHolder != nullptr;
     }
 
     bool isDoneLoadSystemArchive() {
-        return SingletonHolder<GameSystem>::get()->isDoneLoadSystemArchive();
+        return SingletonHolder< GameSystem >::get()->isDoneLoadSystemArchive();
     }
 
     bool tryToLoadSystemArchive() {
-        bool isExecuteLoadSystemArchive = SingletonHolder<GameSystem>::get()->isExecuteLoadSystemArchive();
+        bool isExecuteLoadSystemArchive = SingletonHolder< GameSystem >::get()->isExecuteLoadSystemArchive();
 
         if (!isExecuteLoadSystemArchive) {
-            SingletonHolder<GameSystem>::get()->startToLoadSystemArchive();
+            SingletonHolder< GameSystem >::get()->startToLoadSystemArchive();
         }
 
         return !isExecuteLoadSystemArchive;
     }
 
     void requestChangeArchivePlayer(bool isPlayerMario) {
-        SingletonHolder<GameSystem>::get()->mStationedArchiveLoader->requestChangeArchivePlayer(isPlayerMario);
+        SingletonHolder< GameSystem >::get()->mStationedArchiveLoader->requestChangeArchivePlayer(isPlayerMario);
     }
 
     bool isEndChangeArchivePlayer() {
-        return SingletonHolder<GameSystem>::get()->mStationedArchiveLoader->isDone();
+        return SingletonHolder< GameSystem >::get()->mStationedArchiveLoader->isDone();
     }
 
     void activateScreenPreserver() {
-        SingletonHolder<GameSystem>::get()->mObjHolder->mScreenPreserver->activate();
+        SingletonHolder< GameSystem >::get()->mObjHolder->mScreenPreserver->activate();
     }
 
     void deactivateScreenPreserver() {
-        SingletonHolder<GameSystem>::get()->mObjHolder->mScreenPreserver->deactivate();
+        SingletonHolder< GameSystem >::get()->mObjHolder->mScreenPreserver->deactivate();
     }
 
     bool isOccurredSystemWarning() {
-        return SingletonHolder<GameSystem>::get()->mErrorWatcher->isWarning();
+        return SingletonHolder< GameSystem >::get()->mErrorWatcher->isWarning();
     }
 
     bool isResetProcessing() {
-        return SingletonHolder<GameSystemResetAndPowerProcess>::get()->isActive();
+        return SingletonHolder< GameSystemResetAndPowerProcess >::get()->isActive();
     }
 
     void setResetOperationApplicationReset() {
-        SingletonHolder<GameSystemResetAndPowerProcess>::get()->setResetOperationApplicationReset();
+        SingletonHolder< GameSystemResetAndPowerProcess >::get()->setResetOperationApplicationReset();
     }
 
     void setResetOperationReturnToMenu() {
-        SingletonHolder<GameSystemResetAndPowerProcess>::get()->setResetOperationReturnToMenu();
+        SingletonHolder< GameSystemResetAndPowerProcess >::get()->setResetOperationReturnToMenu();
     }
 
     void requestResetGameSystem(bool param1) {
-        SingletonHolder<GameSystemResetAndPowerProcess>::get()->requestReset(param1);
+        SingletonHolder< GameSystemResetAndPowerProcess >::get()->requestReset(param1);
     }
 
     void requestGoWiiMenu(bool param1) {
-        SingletonHolder<GameSystemResetAndPowerProcess>::get()->requestGoWiiMenu(param1);
+        SingletonHolder< GameSystemResetAndPowerProcess >::get()->requestGoWiiMenu(param1);
     }
 
     void forceToDeactivateHomeButtonLayout() {
-        HomeButtonLayout* pHomeButtonLayout = SingletonHolder<GameSystem>::get()->mHomeButtonLayout;
+        HomeButtonLayout* pHomeButtonLayout = SingletonHolder< GameSystem >::get()->mHomeButtonLayout;
 
         if (pHomeButtonLayout != nullptr) {
             pHomeButtonLayout->forceToDeactive();
@@ -128,7 +128,7 @@ namespace GameSystemFunction {
     }
 
     void resetCurrentScenarioNo() {
-        SingletonHolder<GameSystem>::get()->mSceneController->resetCurrentScenarioNo();
+        SingletonHolder< GameSystem >::get()->mSceneController->resetCurrentScenarioNo();
     }
 
     bool isPermitToResetSaveDataHandleSequence() {
@@ -213,9 +213,9 @@ namespace GameSystemFunction {
     }
 
     bool setPermissionToCheckWiiRemoteConnectAndScreenDimming(bool permission) {
-        bool permissionPrev = SingletonHolder<GameSystem>::get()->mErrorWatcher->setPermissionUpdateWiiRemoteStatus(permission);
+        bool permissionPrev = SingletonHolder< GameSystem >::get()->mErrorWatcher->setPermissionUpdateWiiRemoteStatus(permission);
 
-        SingletonHolder<GameSystem>::get()->mDimmingWatcher->_4 = permission;
+        SingletonHolder< GameSystem >::get()->mDimmingWatcher->_4 = permission;
 
         return permissionPrev;
     }
@@ -265,16 +265,16 @@ namespace GameSystemFunction {
     }
 
     void prepareResetSystem() {
-        SingletonHolder<GameSystem>::get()->prepareReset();
-        SingletonHolder<GameSystem>::get()->mSceneController->prepareReset();
+        SingletonHolder< GameSystem >::get()->prepareReset();
+        SingletonHolder< GameSystem >::get()->mSceneController->prepareReset();
     }
 
     bool isPreparedFadeinSystem() {
-        return SingletonHolder<GameSystem>::get()->isPreparedReset() && SingletonHolder<GameSystem>::get()->mSceneController->isPreparedReset();
+        return SingletonHolder< GameSystem >::get()->isPreparedReset() && SingletonHolder< GameSystem >::get()->mSceneController->isPreparedReset();
     }
 
     void restartSceneController() {
-        SingletonHolder<GameSystem>::get()->mSceneController->restartGameAfterResetting();
+        SingletonHolder< GameSystem >::get()->mSceneController->restartGameAfterResetting();
     }
 
     bool isDisplayStrapRemineder() {

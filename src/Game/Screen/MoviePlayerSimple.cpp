@@ -47,7 +47,7 @@ MoviePlayerSimple::MoviePlayerSimple()
 }
 
 MoviePlayerSimple::~MoviePlayerSimple() {
-    SingletonHolder<GameSystem>::get()->mHomeButtonStateNotifier->unregisterMoviePlayerSimple(this);
+    SingletonHolder< GameSystem >::get()->mHomeButtonStateNotifier->unregisterMoviePlayerSimple(this);
     mPlayerWrapper->quit();
     delete mPlayerWrapper;
     JKRHeap::destroy(mHeap);
@@ -105,7 +105,7 @@ void MoviePlayerSimple::startMovie(const char* pMovieName, bool a2) {
     play(a2);
     appear();
     MR::requestMovementOn(this);
-    SingletonHolder<GameSystem>::get()->mHomeButtonStateNotifier->registerMoviePlayerSimple(this);
+    SingletonHolder< GameSystem >::get()->mHomeButtonStateNotifier->registerMoviePlayerSimple(this);
 }
 
 void MoviePlayerSimple::stopMovie() {

@@ -152,19 +152,19 @@ namespace NrvMapPartsRotator {
     HostTypeStopAtEnd   HostTypeStopAtEnd::sInstance;
 
     void HostTypeStopAtEnd::execute(Spine* pSpine) const {
-        MapPartsRotator* rotator = reinterpret_cast<MapPartsRotator*>(pSpine->mExecutor);
+        MapPartsRotator* rotator = reinterpret_cast< MapPartsRotator* >(pSpine->mExecutor);
         if (rotator->isStep(rotator->mRotateStopTime)) {
             rotator->restartAtEnd();
         }
     }
 
     void HostTypeRotate::execute(Spine* pSpine) const {
-        MapPartsRotator* rotator = reinterpret_cast<MapPartsRotator*>(pSpine->mExecutor);
+        MapPartsRotator* rotator = reinterpret_cast< MapPartsRotator* >(pSpine->mExecutor);
         rotator->exeRotate();
     }
 
     void HostTypeRotateStart::execute(Spine* pSpine) const {
-        MapPartsRotator* rotator = reinterpret_cast<MapPartsRotator*>(pSpine->mExecutor);
+        MapPartsRotator* rotator = reinterpret_cast< MapPartsRotator* >(pSpine->mExecutor);
         rotator->exeRotateStart();
     }
 

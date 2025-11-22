@@ -258,7 +258,7 @@ void MiiSelectIcon::createFaceImageObj() {
 
     // TODO: Requires the corresponding header-defined TexMap constructor.
     // mFellowTexMap = new nw4r::lyt::TexMap(texObj);
-    mMiiTexMap = MR::createLytTexMap(reinterpret_cast<ResTIMG*>(mIcon->mImageBuffer));
+    mMiiTexMap = MR::createLytTexMap(reinterpret_cast< ResTIMG* >(mIcon->mImageBuffer));
     pTexMap = mMiiTexMap;
 
     MR::replacePaneTexture(this, "ShaMii", pTexMap, 0);

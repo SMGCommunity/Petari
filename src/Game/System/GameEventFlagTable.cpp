@@ -298,7 +298,7 @@ namespace GameEventFlagTable {
     }
 
     const GameEventFlag* findFlag(const char* flagName) {
-        return SingletonHolder<GameEventFlagTableInstance>::get()->findFlag(flagName);
+        return SingletonHolder< GameEventFlagTableInstance >::get()->findFlag(flagName);
     }
 
     const char* getEventFlagNameSpecialPowerStar(const char* galaxyName, s32 starId) {

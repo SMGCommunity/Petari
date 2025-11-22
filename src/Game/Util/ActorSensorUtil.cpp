@@ -460,7 +460,7 @@ namespace MR {
     }
 
     HitSensor* getMessageSensor() {
-        return getSceneObj<MessageSensorHolder>(SceneObj_MessageSensorHolder)->getSensor(nullptr);
+        return getSceneObj< MessageSensorHolder >(SceneObj_MessageSensorHolder)->getSensor(nullptr);
     }
 
     bool sendArbitraryMsg(u32 msg, HitSensor* pReceiver, HitSensor* pSender) {
@@ -714,7 +714,7 @@ namespace MR {
     }
 
     void sendMsgToGroupMember(u32 msg, LiveActor* pActor, HitSensor* pSender, const char* pName) {
-        MsgSharedGroup* pGroup = static_cast<MsgSharedGroup*>(getGroupFromArray(pActor));
+        MsgSharedGroup* pGroup = static_cast< MsgSharedGroup* >(getGroupFromArray(pActor));
 
         if (pGroup != nullptr) {
             pGroup->sendMsgToGroupMember(msg, pSender, pName);

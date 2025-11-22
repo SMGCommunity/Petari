@@ -36,7 +36,7 @@ namespace {
 
 namespace {
     InformationObserver* getInformationObserver() {
-        return MR::getSceneObj<InformationObserver>(SceneObj_InformationObserver);
+        return MR::getSceneObj< InformationObserver >(SceneObj_InformationObserver);
     }
 }; // namespace
 

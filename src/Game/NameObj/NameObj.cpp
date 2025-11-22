@@ -11,7 +11,7 @@ NameObj::NameObj(const char* pName)
     : mName(pName),
       mFlag(0),
       mExecutorIdx(-1) {
-    SingletonHolder<NameObjRegister>::get()->add(this);
+    SingletonHolder< NameObjRegister >::get()->add(this);
 }
 
 NameObj::~NameObj() {

@@ -84,7 +84,7 @@ void AstroDomeOrbit::calcGalaxyPos(TVec3f* pPos) const {
     f32 v4 = ((6.2831855f * calcRepeatedRotateCoord(_90) / 360.0f));
     f32 v5 = MR::sin(v4);
     f32 v6 = MR::cos(v4);
-    pPos->set<f32>(v6, 0.0f, v5);
+    pPos->set< f32 >(v6, 0.0f, v5);
     pPos->x *= _8C;
     pPos->y *= _8C;
     pPos->z *= _8C;
@@ -119,7 +119,7 @@ void AstroDomeOrbit::initDraw(const Color8& rColor) const {
 
 void AstroDomeOrbit::drawCelling(f32 a2, bool a3, f32 a4) const {
     TVec3f v16;
-    v16.set<f32>(SphereSelectorFunction::getHandleTrans());
+    v16.set< f32 >(SphereSelectorFunction::getHandleTrans());
 
     if (a3) {
         v16.y += (0.5f * a4);
@@ -135,7 +135,7 @@ void AstroDomeOrbit::drawCelling(f32 a2, bool a3, f32 a4) const {
         f32 v12 = MR::cos(v10);
 
         TVec3f v15;
-        v15.set<f32>(v12, 0.0f, v11);
+        v15.set< f32 >(v12, 0.0f, v11);
         TVec3f v14;
         v14.scale(_8C - (0.5f * a2), v15);
         JMathInlineVEC::PSVECAdd(&v14, &v16, &v14);
@@ -155,7 +155,7 @@ void AstroDomeOrbit::drawCelling(f32 a2, bool a3, f32 a4) const {
 
 void AstroDomeOrbit::drawSide(f32 a2, bool a3, f32 a4) const {
     TVec3f v18;
-    v18.set<f32>(SphereSelectorFunction::getHandleTrans());
+    v18.set< f32 >(SphereSelectorFunction::getHandleTrans());
     v18.y += 0.5f * a4;
 
     f32 v9;
@@ -172,12 +172,12 @@ void AstroDomeOrbit::drawSide(f32 a2, bool a3, f32 a4) const {
         f32    v12 = MR::sin(v11);
         f32    v13 = MR::cos(v11);
         TVec3f v17;
-        v17.set<f32>(v13, 0.0f, v12);
+        v17.set< f32 >(v13, 0.0f, v12);
         TVec3f v16;
         v16.scale(v9, v17);
         JMathInlineVEC::PSVECAdd(&v16, &v18, &v16);
         TVec3f v15;
-        v15.set<f32>(v16);
+        v15.set< f32 >(v16);
 
         f32 v14 = (v15.y - a4);
         v15.y -= a4;

@@ -35,8 +35,8 @@ bool GalaxyCometState::isHide() const {
 
 void GalaxyCometState::forceToNext() {
     Nerve* pNerve = isLand()
-                        ? static_cast<Nerve*>(&GalaxyCometStateHide::sInstance)
-                        : static_cast<Nerve*>(&GalaxyCometStateLand::sInstance);
+                        ? static_cast< Nerve* >(&GalaxyCometStateHide::sInstance)
+                        : static_cast< Nerve* >(&GalaxyCometStateLand::sInstance);
 
     setNerve(pNerve);
 }

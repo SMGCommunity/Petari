@@ -35,7 +35,7 @@ void SpinDriver::init(const JMapInfoIter& rIter) {
         gravityVector.set(0.0f, -1.0f, 0.0f);
     }
 
-    mGravity.set<f32>(gravityVector);
+    mGravity.set< f32 >(gravityVector);
     initHitSensor(1);
     TVec3f sensorOffs;
     sensorOffs.x = 0.0f;
@@ -716,37 +716,37 @@ namespace NrvSpinDriver {
     INIT_NERVE(SpinDriverNrvCoolDown);
 
     void SpinDriverNrvCoolDown::execute(Spine* pSpine) const {
-        SpinDriver* spinDriver = reinterpret_cast<SpinDriver*>(pSpine->mExecutor);
+        SpinDriver* spinDriver = reinterpret_cast< SpinDriver* >(pSpine->mExecutor);
         spinDriver->exeCoolDown();
     }
 
     void SpinDriverNrvShoot::execute(Spine* pSpine) const {
-        SpinDriver* spinDriver = reinterpret_cast<SpinDriver*>(pSpine->mExecutor);
+        SpinDriver* spinDriver = reinterpret_cast< SpinDriver* >(pSpine->mExecutor);
         spinDriver->exeShoot();
     }
 
     void SpinDriverNrvShootStart::execute(Spine* pSpine) const {
-        SpinDriver* spinDriver = reinterpret_cast<SpinDriver*>(pSpine->mExecutor);
+        SpinDriver* spinDriver = reinterpret_cast< SpinDriver* >(pSpine->mExecutor);
         spinDriver->exeShootStart();
     }
 
     void SpinDriverNrvCapture::execute(Spine* pSpine) const {
-        SpinDriver* spinDriver = reinterpret_cast<SpinDriver*>(pSpine->mExecutor);
+        SpinDriver* spinDriver = reinterpret_cast< SpinDriver* >(pSpine->mExecutor);
         spinDriver->exeCapture();
     }
 
     void SpinDriverNrvWait::execute(Spine* pSpine) const {
-        SpinDriver* spinDriver = reinterpret_cast<SpinDriver*>(pSpine->mExecutor);
+        SpinDriver* spinDriver = reinterpret_cast< SpinDriver* >(pSpine->mExecutor);
         spinDriver->exeWait();
     }
 
     void SpinDriverNrvAppear::execute(Spine* pSpine) const {
-        SpinDriver* spinDriver = reinterpret_cast<SpinDriver*>(pSpine->mExecutor);
+        SpinDriver* spinDriver = reinterpret_cast< SpinDriver* >(pSpine->mExecutor);
         spinDriver->exeAppear();
     }
 
     void SpinDriverNrvNonActive::execute(Spine* pSpine) const {
-        SpinDriver* spinDriver = reinterpret_cast<SpinDriver*>(pSpine->mExecutor);
+        SpinDriver* spinDriver = reinterpret_cast< SpinDriver* >(pSpine->mExecutor);
         spinDriver->exeNonActive();
     }
 

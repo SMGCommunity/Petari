@@ -49,7 +49,7 @@ void ValueControl::setOne() {
 }
 
 f32 ValueControl::getValue() const {
-    return static_cast<f32>(mFrame) / mMaxFrame;
+    return static_cast< f32 >(mFrame) / mMaxFrame;
 }
 
 s32 ValueControl::getDirection() const {

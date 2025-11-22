@@ -223,27 +223,27 @@ namespace NrvBeeFlowerHover {
     INIT_NERVE(BeeFlowerHoverNrvRecover);
 
     void BeeFlowerHoverNrvRecover::execute(Spine* pSpine) const {
-        BeeFlowerHover* flower = reinterpret_cast<BeeFlowerHover*>(pSpine->mExecutor);
+        BeeFlowerHover* flower = reinterpret_cast< BeeFlowerHover* >(pSpine->mExecutor);
         flower->exeRecover();
     }
 
     void BeeFlowerHoverNrvHardTouch::execute(Spine* pSpine) const {
-        BeeFlowerHover* flower = reinterpret_cast<BeeFlowerHover*>(pSpine->mExecutor);
+        BeeFlowerHover* flower = reinterpret_cast< BeeFlowerHover* >(pSpine->mExecutor);
         flower->exeHardTouch();
     }
 
     void BeeFlowerHoverNrvSoftTouchWait::execute(Spine* pSpine) const {
-        BeeFlowerHover* flower = reinterpret_cast<BeeFlowerHover*>(pSpine->mExecutor);
+        BeeFlowerHover* flower = reinterpret_cast< BeeFlowerHover* >(pSpine->mExecutor);
         flower->exeSoftTouchWait();
     }
 
     void BeeFlowerHoverNrvSoftTouch::execute(Spine* pSpine) const {
-        BeeFlowerHover* flower = reinterpret_cast<BeeFlowerHover*>(pSpine->mExecutor);
+        BeeFlowerHover* flower = reinterpret_cast< BeeFlowerHover* >(pSpine->mExecutor);
         flower->exeSoftTouch();
     }
 
     void BeeFlowerHoverNrvWait::execute(Spine* pSpine) const {
-        BeeFlowerHover* flower = reinterpret_cast<BeeFlowerHover*>(pSpine->mExecutor);
+        BeeFlowerHover* flower = reinterpret_cast< BeeFlowerHover* >(pSpine->mExecutor);
 
         if (MR::isFirstStep(flower)) {
             MR::startBck(flower, "Wait", 0);

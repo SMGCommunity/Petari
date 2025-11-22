@@ -78,7 +78,7 @@ s32 JKRMemArchive::getExpandedResSize(const void* pResource) const {
         return getResSize(pResource);
     }
 
-    return JKRDecompExpandSize(reinterpret_cast<u8*>(const_cast<void*>(pResource)));
+    return JKRDecompExpandSize(reinterpret_cast< u8* >(const_cast< void* >(pResource)));
 }
 
 void* JKRMemArchive::fetchResource(SDIFileEntry* pFile, unsigned long* pSize) {
@@ -116,7 +116,7 @@ void* JKRMemArchive::fetchResource(void* pData, unsigned long dataSize, SDIFileE
         size = fetchResource_subroutine(
             mFileDataStart + pFile->mDataOffset,
             size,
-            reinterpret_cast<u8*>(pData),
+            reinterpret_cast< u8* >(pData),
             dataSize,
             compression);
     }
@@ -145,11 +145,11 @@ void JKRMemArchive::fixedInit(long entryNum) {
 }
 
 bool JKRMemArchive::mountFixed(void* a1, JKRMemBreakFlag breakFlag) {
-    if (check_mount_already(reinterpret_cast<s32>(a1)) != nullptr) {
+    if (check_mount_already(reinterpret_cast< s32 >(a1)) != nullptr) {
         return false;
     }
 
-    fixedInit(reinterpret_cast<s32>(a1));
+    fixedInit(reinterpret_cast< s32 >(a1));
 
     if (!open(a1, 0xFFFF, breakFlag)) {
         return false;
@@ -192,10 +192,10 @@ bool JKRMemArchive::open(long entryNum, EMountDirection mountDir) {
             mHeap,
             JKRDvdRipper::ALLOC_DIRECTION_1,
             0,
-            reinterpret_cast<int*>(&_5C),
+            reinterpret_cast< int* >(&_5C),
             &size);
 
-        mHeader = reinterpret_cast<RarcHeader*>(pData);
+        mHeader = reinterpret_cast< RarcHeader* >(pData);
 
         if (pData != nullptr) {
             DCInvalidateRange(pData, size);
@@ -211,10 +211,10 @@ bool JKRMemArchive::open(long entryNum, EMountDirection mountDir) {
             mHeap,
             JKRDvdRipper::ALLOC_DIRECTION_2,
             0,
-            reinterpret_cast<int*>(&_5C),
+            reinterpret_cast< int* >(&_5C),
             &size);
 
-        mHeader = reinterpret_cast<RarcHeader*>(pData);
+        mHeader = reinterpret_cast< RarcHeader* >(pData);
 
         if (pData != nullptr) {
             DCInvalidateRange(pData, size);
@@ -224,12 +224,12 @@ bool JKRMemArchive::open(long entryNum, EMountDirection mountDir) {
     if (mHeader == nullptr) {
         mMountMode = MOUNT_MODE_0;
     } else {
-        mInfoBlock = reinterpret_cast<RarcInfoBlock*>(reinterpret_cast<u8*>(mHeader) + mHeader->mHeaderSize);
+        mInfoBlock = reinterpret_cast< RarcInfoBlock* >(reinterpret_cast< u8* >(mHeader) + mHeader->mHeaderSize);
         ;
-        mDirs = reinterpret_cast<SDIDirEntry*>(reinterpret_cast<u8*>(mInfoBlock) + mInfoBlock->mDirOffset);
-        mFiles = reinterpret_cast<SDIFileEntry*>(reinterpret_cast<u8*>(mInfoBlock) + mInfoBlock->mFileOffset);
-        mStringTable = reinterpret_cast<char*>(reinterpret_cast<u8*>(mInfoBlock) + mInfoBlock->mStringTableOffset);
-        mFileDataStart = reinterpret_cast<u8*>(mHeader) + mHeader->mFileDataOffset + mHeader->mHeaderSize;
+        mDirs = reinterpret_cast< SDIDirEntry* >(reinterpret_cast< u8* >(mInfoBlock) + mInfoBlock->mDirOffset);
+        mFiles = reinterpret_cast< SDIFileEntry* >(reinterpret_cast< u8* >(mInfoBlock) + mInfoBlock->mFileOffset);
+        mStringTable = reinterpret_cast< char* >(reinterpret_cast< u8* >(mInfoBlock) + mInfoBlock->mStringTableOffset);
+        mFileDataStart = reinterpret_cast< u8* >(mHeader) + mHeader->mFileDataOffset + mHeader->mHeaderSize;
         _6C = true;
     }
 
@@ -240,13 +240,13 @@ bool JKRMemArchive::open(long entryNum, EMountDirection mountDir) {
 #ifdef NON_MATCHING
 // add r5, r4, r5 instead of add r5, r5, r4
 bool JKRMemArchive::open(void* pData, unsigned long a2, JKRMemBreakFlag breakFlag) {
-    mHeader = reinterpret_cast<RarcHeader*>(pData);
-    mInfoBlock = reinterpret_cast<RarcInfoBlock*>(reinterpret_cast<u8*>(mHeader) + mHeader->mHeaderSize);
+    mHeader = reinterpret_cast< RarcHeader* >(pData);
+    mInfoBlock = reinterpret_cast< RarcInfoBlock* >(reinterpret_cast< u8* >(mHeader) + mHeader->mHeaderSize);
     ;
-    mDirs = reinterpret_cast<SDIDirEntry*>(reinterpret_cast<u8*>(mInfoBlock) + mInfoBlock->mDirOffset);
-    mFiles = reinterpret_cast<SDIFileEntry*>(reinterpret_cast<u8*>(mInfoBlock) + mInfoBlock->mFileOffset);
-    mStringTable = reinterpret_cast<char*>(reinterpret_cast<u8*>(mInfoBlock) + mInfoBlock->mStringTableOffset);
-    mFileDataStart = reinterpret_cast<u8*>(mHeader) + mHeader->mFileDataOffset + mHeader->mHeaderSize;
+    mDirs = reinterpret_cast< SDIDirEntry* >(reinterpret_cast< u8* >(mInfoBlock) + mInfoBlock->mDirOffset);
+    mFiles = reinterpret_cast< SDIFileEntry* >(reinterpret_cast< u8* >(mInfoBlock) + mInfoBlock->mFileOffset);
+    mStringTable = reinterpret_cast< char* >(reinterpret_cast< u8* >(mInfoBlock) + mInfoBlock->mStringTableOffset);
+    mFileDataStart = reinterpret_cast< u8* >(mHeader) + mHeader->mFileDataOffset + mHeader->mHeaderSize;
     _6C = breakFlag == JKR_MEM_BREAK_FLAG_1;
     mHeap = JKRHeap::findFromRoot(pData);
     _5C = 0;

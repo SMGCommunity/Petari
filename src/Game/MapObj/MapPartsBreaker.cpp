@@ -51,12 +51,12 @@ namespace NrvMapPartsBreaker {
     INIT_NERVE(HostTypeBreak);
 
     void HostTypeBreak::execute(Spine* pSpine) const {
-        MapPartsBreaker* breaker = reinterpret_cast<MapPartsBreaker*>(pSpine->mExecutor);
+        MapPartsBreaker* breaker = reinterpret_cast< MapPartsBreaker* >(pSpine->mExecutor);
         breaker->exeBreak();
     }
 
     void HostTypeReactToTornado::execute(Spine* pSpine) const {
-        MapPartsBreaker* breaker = reinterpret_cast<MapPartsBreaker*>(pSpine->mExecutor);
+        MapPartsBreaker* breaker = reinterpret_cast< MapPartsBreaker* >(pSpine->mExecutor);
         breaker->exeReactToTornado();
     }
 

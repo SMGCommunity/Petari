@@ -36,9 +36,9 @@ namespace nw4r {
             mpFileResAry = nullptr;
 
             if (pBlock->fileNum > 0) {
-                mpFileResAry = Layout::NewArray<void*>(pBlock->fileNum);
+                mpFileResAry = Layout::NewArray< void* >(pBlock->fileNum);
                 if (mpFileResAry != nullptr) {
-                    const u32* fileNameOffs = detail::ConvertOffsToPtr<u32>(mpRes, sizeof(*mpRes));
+                    const u32* fileNameOffs = detail::ConvertOffsToPtr< u32 >(mpRes, sizeof(*mpRes));
                     for (int i = 0; i < mpRes->fileNum; i++) {
                         const char* const name = detail::GetStrTableStr(fileNameOffs, i);
                         mpFileResAry[i] = pResAccessor->GetResource('timg', name, 0);
@@ -46,7 +46,7 @@ namespace nw4r {
                 }
             }
 
-            mAnimLinkAry = Layout::NewArray<AnimationLink>(animNum);
+            mAnimLinkAry = Layout::NewArray< AnimationLink >(animNum);
             if (mAnimLinkAry != nullptr) {
                 mAnimLinkNum = animNum;
                 memset(mAnimLinkAry, 0, pBlock->animContNum * sizeof(AnimationLink));

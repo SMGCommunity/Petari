@@ -220,17 +220,17 @@ SeaGullGroup::~SeaGullGroup() {
 
 namespace NrvSeaGull {
     void SeaGullNrvHoverRight::execute(Spine* pSpine) const {
-        SeaGull* gull = reinterpret_cast<SeaGull*>(pSpine->mExecutor);
+        SeaGull* gull = reinterpret_cast< SeaGull* >(pSpine->mExecutor);
         gull->exeHoverRight();
     }
 
     void SeaGullNrvHoverLeft::execute(Spine* pSpine) const {
-        SeaGull* gull = reinterpret_cast<SeaGull*>(pSpine->mExecutor);
+        SeaGull* gull = reinterpret_cast< SeaGull* >(pSpine->mExecutor);
         gull->exeHoverLeft();
     }
 
     void SeaGullNrvHoverFront::execute(Spine* pSpine) const {
-        SeaGull* gull = reinterpret_cast<SeaGull*>(pSpine->mExecutor);
+        SeaGull* gull = reinterpret_cast< SeaGull* >(pSpine->mExecutor);
         gull->exeHoverFront();
     }
 }; // namespace NrvSeaGull

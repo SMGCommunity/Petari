@@ -18,7 +18,7 @@ const char* JKRArchive::CArcName::store(const char* pName) {
         }
     }
 
-    mLength = static_cast<u16>(length);
+    mLength = static_cast< u16 >(length);
     mName[length] = 0;
 
     return &mLength[length];
@@ -41,7 +41,7 @@ const char* JKRArchive::CArcName::store(const char* pName, char stopChar) {
         }
     }
 
-    mLength = static_cast<u16>(length);
+    mLength = static_cast< u16 >(length);
     mName[length] = 0;
 
     if (*pName == 0) {
@@ -80,7 +80,7 @@ JKRArchive::~JKRArchive() {
 }
 
 void JKRArchive::setExpandSize(SDIFileEntry* pFile, unsigned long size) {
-    u32 fileIndex = static_cast<u32>(pFile - mFiles);
+    u32 fileIndex = static_cast< u32 >(pFile - mFiles);
 
     if (mExpandSizes == nullptr || fileIndex >= mInfoBlock->mNrFiles) {
         return;
@@ -90,7 +90,7 @@ void JKRArchive::setExpandSize(SDIFileEntry* pFile, unsigned long size) {
 }
 
 u32 JKRArchive::getExpandSize(SDIFileEntry* pFile) const {
-    u32 fileIndex = static_cast<u32>(pFile - mFiles);
+    u32 fileIndex = static_cast< u32 >(pFile - mFiles);
 
     if (mExpandSizes == nullptr || fileIndex >= mInfoBlock->mNrFiles) {
         return 0;

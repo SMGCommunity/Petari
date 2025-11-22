@@ -12,7 +12,7 @@ struct ExterminationEntry {
 };
 
 namespace {
-    template <typename T>
+    template < typename T >
     LiveActor* createLiveActor(const char* pName) {
         return new T(pName);
     }

@@ -51,11 +51,11 @@ namespace {
 
 namespace MR {
     LayoutHolder* createAndAddLayoutHolder(const char* pArcName) {
-        return SingletonHolder<ResourceHolderManager>::get()->createAndAddLayoutHolder(pArcName, nullptr);
+        return SingletonHolder< ResourceHolderManager >::get()->createAndAddLayoutHolder(pArcName, nullptr);
     }
 
     LayoutHolder* createAndAddLayoutHolderRawData(const char* pArcPath) {
-        return SingletonHolder<ResourceHolderManager>::get()->createAndAddLayoutHolderRawData(pArcPath);
+        return SingletonHolder< ResourceHolderManager >::get()->createAndAddLayoutHolderRawData(pArcPath);
     }
 
     void createAndAddPaneCtrl(LayoutActor* pActor, const char* pPaneName, u32 animLayerNum) {
@@ -361,7 +361,7 @@ namespace MR {
     }
 
     f32 calcNerveRate(const LayoutActor* pActor, s32 stepMax) {
-        return stepMax <= 0 ? 1.0f : clamp(static_cast<f32>(pActor->getNerveStep()) / stepMax, 0.0f, 1.0f);
+        return stepMax <= 0 ? 1.0f : clamp(static_cast< f32 >(pActor->getNerveStep()) / stepMax, 0.0f, 1.0f);
     }
 
     f32 calcNerveRate(const LayoutActor* pActor, s32 stepMin, s32 stepMax) {

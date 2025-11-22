@@ -22,8 +22,8 @@ public:
     void              resetCalcCount();
     void              requestCalc();
 
-    MR::Vector<MR::AssignableArray<ShadowController*>> mShadowList; // 0x0
-    LiveActor*                                         mHost;       // 0xC
+    MR::Vector< MR::AssignableArray< ShadowController* > > mShadowList; // 0x0
+    LiveActor*                                             mHost;       // 0xC
 };
 
 class ShadowControllerHolder : public NameObj {
@@ -36,10 +36,10 @@ public:
 
     void updateController();
 
-    MR::Vector<MR::AssignableArray<ShadowController*>> _C;
-    MR::Vector<MR::AssignableArray<ShadowController*>> _18;
-    bool                                               _24;
-    f32                                                mFarClip; // 0x28
+    MR::Vector< MR::AssignableArray< ShadowController* > > _C;
+    MR::Vector< MR::AssignableArray< ShadowController* > > _18;
+    bool                                                   _24;
+    f32                                                    mFarClip; // 0x28
 };
 
 class ShadowController {
@@ -98,7 +98,7 @@ public:
     void updateProjection();
 
     inline void appendToHolder() {
-        MR::getSceneObj<ShadowControllerHolder>(SceneObj_ShadowControllerHolder)->_18.push_back(this);
+        MR::getSceneObj< ShadowControllerHolder >(SceneObj_ShadowControllerHolder)->_18.push_back(this);
     }
 
     LiveActor*                mActor;                // 0x0

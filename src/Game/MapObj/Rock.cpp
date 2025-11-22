@@ -83,8 +83,8 @@ void Rock::appear() {
     _F0 = 1.5f;
     mCurrentRailPoint = -1;
     _130 = 0;
-    mPosition.set<f32>(_A0);
-    _F8.set<f32>(_A0);
+    mPosition.set< f32 >(_A0);
+    _F8.set< f32 >(_A0);
     mRotation.zero();
 
     if (!MR::isZeroGravity(this)) {
@@ -163,14 +163,14 @@ void Rock::initModel() {
         initModelManagerWithAnm("Rock", nullptr, false);
         mBreakModel = MR::createModelObjMapObjStrongLight("ゴロゴロ岩壊れモデル", "RockBreak", nullptr);
         mBreakModel->initWithoutIter();
-        mBreakModel->mScale.set<f32>(mScale);
+        mBreakModel->mScale.set< f32 >(mScale);
         mBreakModel->makeActorDead();
         break;
     case WanwanRolling:
         initModelManagerWithAnm("WanwanRolling", nullptr, false);
         mBreakModel = MR::createModelObjMapObjStrongLight("ワンワン壊れモデル", "WanwanRollingBreak", nullptr);
         mBreakModel->initWithoutIter();
-        mBreakModel->mScale.set<f32>(mScale);
+        mBreakModel->mScale.set< f32 >(mScale);
         mBreakModel->makeActorDead();
         break;
     case WanwanRollingMini:
@@ -180,7 +180,7 @@ void Rock::initModel() {
         initModelManagerWithAnm("WanwanRolling", nullptr, false);
         mBreakModel = MR::createModelObjMapObjStrongLight("ゴールドワンワン壊れモデル", "WanwanRollingGoldBreak", nullptr);
         mBreakModel->initWithoutIter();
-        mBreakModel->mScale.set<f32>(mScale);
+        mBreakModel->mScale.set< f32 >(mScale);
         mBreakModel->makeActorDead();
         break;
     }
@@ -317,7 +317,7 @@ void Rock::startSoundWanwanVoice() {
 bool Rock::tryFreeze(const Nerve* pNerve) {
     if (MR::isStarPointerPointing2POnPressButton(this, "", true, false)) {
         _11C = 0;
-        _120.set<f32>(mPosition);
+        _120.set< f32 >(mPosition);
         _12C = pNerve;
         setNerve(&NrvRock::RockNrvFreeze::sInstance);
         return true;

@@ -205,7 +205,7 @@
 #define CATEGORY_DRAW_MAX_VALUE 0x53
 
 namespace {
-    template <typename T>
+    template < typename T >
     class NameObjRealDelegator {
     public:
         inline NameObjRealDelegator(T in_func) {
@@ -233,9 +233,9 @@ public:
         CategoryInfo();
         ~CategoryInfo();
 
-        MR::Vector<MR::AssignableArray<NameObj*>> mNameObjArr; // 0x0
-        MR::FunctorBase*                          _C;
-        u32                                       mCheck; // 0x10
+        MR::Vector< MR::AssignableArray< NameObj* > > mNameObjArr; // 0x0
+        MR::FunctorBase*                              _C;
+        u32                                           mCheck; // 0x10
     };
 
     NameObjCategoryList(u32, const CategoryListInitialTable*, NameObjMethod, bool, const char*);
@@ -250,11 +250,11 @@ public:
     void registerExecuteBeforeFunction(const MR::FunctorBase&, int);
     void initTable(u32, const CategoryListInitialTable*);
 
-    MR::AssignableArray<NameObjCategoryList::CategoryInfo> mCategoryInfo; // 0x0
+    MR::AssignableArray< NameObjCategoryList::CategoryInfo > mCategoryInfo; // 0x0
 
     union {
-        NameObjRealDelegator<NameObjMethod>*      mDelegator;
-        NameObjRealDelegator<NameObjMethodConst>* mDelegatorConst;
+        NameObjRealDelegator< NameObjMethod >*      mDelegator;
+        NameObjRealDelegator< NameObjMethodConst >* mDelegatorConst;
     };
 
     u8 _C;

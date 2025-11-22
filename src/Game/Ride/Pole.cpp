@@ -47,7 +47,7 @@ Pole::Pole(const char* pName)
 
 void Pole::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
-    _8C.set<f32>(mPosition);
+    _8C.set< f32 >(mPosition);
     f32 fNum = 100.0f * mScale.y;
     mScale.x = 1.0f;
     _A4 = fNum;
@@ -123,7 +123,7 @@ void Pole::init(const JMapInfoIter& rIter) {
         if (MR::isEqualString(name, "TreeCube")) {
             _A4 = 800.0f;
         }
-        _98.set<f32>(_D8);
+        _98.set< f32 >(_D8);
         _98.scale(_A4);
         _98.add(_8C);
         if (!_AA) {
@@ -145,7 +145,7 @@ void Pole::init(const JMapInfoIter& rIter) {
     initSound(4, false);
     MR::initActorCamera(this, rIter, &mInfo);
     initNerve(&NrvPole::PoleNrvFree::sInstance);
-    _C0.set<f32>(_D8);
+    _C0.set< f32 >(_D8);
     f32 var1 = _A4;
     _C0.scale(var1 / 2);
     _C0.add(_8C);
@@ -525,7 +525,7 @@ bool Pole::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
                     v22.sub(*MR::getPlayerPos());
                     MR::vecKillElement(v22, _D8, &v22);
                     if (MR::isNearZero(v22, 0.001f)) {
-                        v22.set<f32>(_E4);
+                        v22.set< f32 >(_E4);
                     } else {
                         MR::normalize(&v22);
                     }
@@ -534,7 +534,7 @@ bool Pole::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
                     if (!MR::isNearZero(v22, 0.001f)) {
                         MR::normalize(&v22);
                     } else {
-                        v22.set<f32>(_E4);
+                        v22.set< f32 >(_E4);
                     }
                     mActor = pSender->mHost;
                     mRotation.y = MR::calcRotateY(v22.x, v22.z);
@@ -711,7 +711,7 @@ bool Pole::isEnableTurn() const {
 }
 
 void Pole::updateBindTrans() {
-    mPosition.set<f32>(_D8);
+    mPosition.set< f32 >(_D8);
     mPosition.scale(_B0);
     mPosition.add(_8C);
 }
@@ -731,7 +731,7 @@ void Pole::updateTopPos(f32 num) {
         fNum = num + number;
     }
 
-    _98.set<f32>(_D8);
+    _98.set< f32 >(_D8);
     _98.scale(fNum);
     _98.add(_8C);
     MR::setMtxAxisXYZ(_120, _CC, _D8, _E4);

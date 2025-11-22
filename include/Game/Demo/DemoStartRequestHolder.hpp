@@ -27,12 +27,12 @@ class DemoStartRequestHolder {
 public:
     DemoStartRequestHolder();
 
-    DemoStartInfo*                                          mStartInfos[0x10]; // 0x0
-    u32                                                     _40;
-    const DemoStartInfo*                                    _44;
-    u8                                                      _48[0x84 - 0x48];
-    MR::FixedRingBuffer<const DemoStartInfo*, 16>::iterator _84;
-    MR::FixedRingBuffer<const DemoStartInfo*, 16>::iterator _94;
-    u32                                                     _9C;
-    NameObj*                                                _A0;
+    DemoStartInfo*                                            mStartInfos[0x10]; // 0x0
+    u32                                                       _40;
+    const DemoStartInfo*                                      _44;
+    u8                                                        _48[0x84 - 0x48];
+    MR::FixedRingBuffer< const DemoStartInfo*, 16 >::iterator _84;
+    MR::FixedRingBuffer< const DemoStartInfo*, 16 >::iterator _94;
+    u32                                                       _9C;
+    NameObj*                                                  _A0;
 };

@@ -112,12 +112,12 @@ void ScenarioSelectScene::calcViewAndEntry() {
     bool res = isExecForeground() && _28 == 0;
 
     if (res) {
-        OSLockMutex(&MR::MutexHolder<0>::sMutex);
+        OSLockMutex(&MR::MutexHolder< 0 >::sMutex);
         setupCameraMtx();
         j3dSys._48 = _20;
         j3dSys._4C = _24;
         mScenarioLayout->calcViewAndEntryStarModel();
-        OSUnlockMutex(&MR::MutexHolder<0>::sMutex);
+        OSUnlockMutex(&MR::MutexHolder< 0 >::sMutex);
     }
 }
 
@@ -125,7 +125,7 @@ void ScenarioSelectScene::draw() const {
     bool res = isExecForeground() && _28 == 0;
 
     if (res) {
-        OSLockMutex(&MR::MutexHolder<0>::sMutex);
+        OSLockMutex(&MR::MutexHolder< 0 >::sMutex);
         setupCameraMtx();
         j3dSys.drawInit();
         j3dSys._50 = 3;
@@ -134,7 +134,7 @@ void ScenarioSelectScene::draw() const {
         j3dSys._50 = 4;
         _24->draw();
         _24->frameInit();
-        OSUnlockMutex(&MR::MutexHolder<0>::sMutex);
+        OSUnlockMutex(&MR::MutexHolder< 0 >::sMutex);
         MR::Effect::drawEffect3D(mEffectSystem, *mCameraContext->getViewMtx());
         mScenarioLayout->draw();
         MR::Effect::drawEffect2D(mEffectSystem);

@@ -126,7 +126,7 @@ void LavaSteam::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
                 f32 _64dot8 = stack_64.dot(stack_8);
                 f32 ff1 = sq2 * sq1;
                 f32 ff2 = _64dot8 / sq2;
-                f32 squ3 = JGeometry::TUtil<f32>::sqrt((ff1 - (_64dot8 * _64dot8)) / sq2);
+                f32 squ3 = JGeometry::TUtil< f32 >::sqrt((ff1 - (_64dot8 * _64dot8)) / sq2);
 
                 if (0.0f <= ff2 && ff2 <= 1.0f && squ3 < (10.0f + f31) && MR::sendMsgEnemyAttackFire(pReceiver, pSender))
                     return;
@@ -164,7 +164,7 @@ void LavaSteam::exeWait() {
 
     if (MR::isGreaterStep(this, 82)) {
         f32 c = 90 - getNerveStep();
-        _98.setAll<f32>(MR::getEaseInValue(c *= 0.125f, 0.001, 1.0, 1.0));
+        _98.setAll< f32 >(MR::getEaseInValue(c *= 0.125f, 0.001, 1.0, 1.0));
     }
 
     if (MR::isStep(this, 90))

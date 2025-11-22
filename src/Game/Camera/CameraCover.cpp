@@ -4,7 +4,7 @@
 #include "Game/Util.hpp"
 
 namespace {
-    const f32 sAngleThreshold = (JGeometry::TUtil<f32>::PI() * 60.0f) / 180.0f;
+    const f32 sAngleThreshold = (JGeometry::TUtil< f32 >::PI() * 60.0f) / 180.0f;
 };
 
 CameraCover::CameraCover(const char* pName)

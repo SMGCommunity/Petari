@@ -33,7 +33,7 @@ s32 JKRDecomp::run() {
     JKRDecompCommand* commandPtr;
 
     while (true) {
-        OSReceiveMessage(&gMessageQueue, reinterpret_cast<OSMessage*>(&commandPtr), OS_MESSAGE_BLOCK);
+        OSReceiveMessage(&gMessageQueue, reinterpret_cast< OSMessage* >(&commandPtr), OS_MESSAGE_BLOCK);
 
         JKRDecompCommand& command = *commandPtr;
 
@@ -52,14 +52,14 @@ s32 JKRDecomp::run() {
         }
 
         if (command._14 != nullptr) {
-            command._14(reinterpret_cast<u32>(&command));
+            command._14(reinterpret_cast< u32 >(&command));
             continue;
         }
 
         if (command._1C != nullptr) {
-            OSSendMessage(command._1C, reinterpret_cast<OSMessage>(1), OS_MESSAGE_NOBLOCK);
+            OSSendMessage(command._1C, reinterpret_cast< OSMessage >(1), OS_MESSAGE_NOBLOCK);
         } else {
-            OSSendMessage(&command.mMessageQueue, reinterpret_cast<OSMessage>(1), OS_MESSAGE_NOBLOCK);
+            OSSendMessage(&command.mMessageQueue, reinterpret_cast< OSMessage >(1), OS_MESSAGE_NOBLOCK);
         }
     }
 }

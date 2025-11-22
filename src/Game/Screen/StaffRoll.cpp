@@ -691,6 +691,6 @@ StaffRollLine* StaffRoll::getDeadLineLayout() const {
 
 namespace MR {
     StaffRoll* getStaffRoll() {
-        return MR::getSceneObj<StaffRoll>(SceneObj_StaffRoll);
+        return MR::getSceneObj< StaffRoll >(SceneObj_StaffRoll);
     }
 }; // namespace MR

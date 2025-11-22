@@ -23,27 +23,27 @@
 namespace {
     void executeStopCategoriesDemoCommon() {
         MR::suspendAllSceneNameObj();
-        MR::getSceneObj<NameObjGroup>(SceneObj_NameObjGroup)->pauseOffAll();
+        MR::getSceneObj< NameObjGroup >(SceneObj_NameObjGroup)->pauseOffAll();
         MR::notifyRequestNameObjMovementOnOff();
         MR::requestEffectStopSceneStart();
         CategoryList::requestMovementOn(MR::MovementType_UNK_0x14);
         CategoryList::requestMovementOn(MR::MovementType_ShadowControllerHolder);
         CategoryList::requestMovementOn(MR::MovementType_LayoutOnPause);
         MR::pauseOffTalkDirector();
-        MR::requestMovementOn(MR::getSceneObj<NameObj>(SceneObj_SensorHitChecker));
-        MR::requestMovementOn(MR::getSceneObj<NameObj>(SceneObj_CameraContext));
-        MR::requestMovementOn(MR::getSceneObj<NameObj>(SceneObj_ClippingDirector));
-        MR::requestMovementOn(MR::getSceneObj<NameObj>(SceneObj_LightDirector));
+        MR::requestMovementOn(MR::getSceneObj< NameObj >(SceneObj_SensorHitChecker));
+        MR::requestMovementOn(MR::getSceneObj< NameObj >(SceneObj_CameraContext));
+        MR::requestMovementOn(MR::getSceneObj< NameObj >(SceneObj_ClippingDirector));
+        MR::requestMovementOn(MR::getSceneObj< NameObj >(SceneObj_LightDirector));
         WaterAreaFunction::pauseOffWaterArea();
 
         if (MR::isExistSceneObj(SceneObj_CollisionDirector)) {
-            MR::requestMovementOn(MR::getSceneObj<CollisionDirector>(SceneObj_CollisionDirector));
+            MR::requestMovementOn(MR::getSceneObj< CollisionDirector >(SceneObj_CollisionDirector));
         }
 
         CategoryList::requestMovementOn(MR::MovementType_DemoDirector);
-        MR::requestMovementOn(MR::getSceneObj<NameObj>(SceneObj_CinemaFrame));
-        MR::requestMovementOn(MR::getSceneObj<NameObj>(SceneObj_InformationObserver));
-        MR::requestMovementOn(MR::getSceneObj<NameObj>(SceneObj_SleepControllerHolder));
+        MR::requestMovementOn(MR::getSceneObj< NameObj >(SceneObj_CinemaFrame));
+        MR::requestMovementOn(MR::getSceneObj< NameObj >(SceneObj_InformationObserver));
+        MR::requestMovementOn(MR::getSceneObj< NameObj >(SceneObj_SleepControllerHolder));
         CategoryList::requestMovementOn(MR::MovementType_AudCameraWatcher);
         CategoryList::requestMovementOn(MR::MovementType_AudEffectDirector);
     }
@@ -171,7 +171,7 @@ void StopSceneStateControl::executeStopCategories(MR::MovementControlType param1
         break;
     case MR::MovementControlType_5:
         ::executeStopCategoriesDemoCommon();
-        MR::requestMovementOn(MR::getSceneObj<CameraDirector>(SceneObj_CameraDirector));
+        MR::requestMovementOn(MR::getSceneObj< CameraDirector >(SceneObj_CameraDirector));
         break;
     }
 }
@@ -217,7 +217,7 @@ void SceneNameObjMovementController::notifyRequestNameObjMovementOnOff(bool para
 
 namespace MR {
     SceneNameObjMovementController* getSceneNameObjMovementController() {
-        return getSceneObj<SceneNameObjMovementController>(SceneObj_SceneNameObjMovementController);
+        return getSceneObj< SceneNameObjMovementController >(SceneObj_SceneNameObjMovementController);
     }
 
     void notifyRequestNameObjMovementOnOff() {

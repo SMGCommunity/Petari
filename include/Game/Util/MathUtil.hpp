@@ -389,7 +389,7 @@ namespace MR {
     void getRotatedAxisY(TVec3f*, const TVec3f&);
     void getRotatedAxisZ(TVec3f*, const TVec3f&);
 
-    template <typename T>
+    template < typename T >
     T converge(T, T, T);
 
     /// @brief Computes the cosine of a number, in radians.
@@ -484,7 +484,7 @@ namespace MR {
     f32 fastSqrtf(f32);
 #endif
 
-    template <typename T>
+    template < typename T >
     T sqrt(T x) {
         return fastSqrtf(x);
     }

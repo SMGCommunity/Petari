@@ -83,7 +83,7 @@ void SpinDriverShootPath::calcDirection(TVec3f* pOutDirection, f32 a2, f32 a3) c
     calcPosition(&stack_14, v6);
     TVec3f stack_8(stack_14);
     JMathInlineVEC::PSVECSubtract(&stack_8, &stack_14, &stack_8);
-    pOutDirection->set<f32>(stack_8);
+    pOutDirection->set< f32 >(stack_8);
     MR::normalize(pOutDirection);
 }
 

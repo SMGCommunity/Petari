@@ -92,9 +92,9 @@ namespace MR {
     void        getRailPointPos2(const JMapInfoIter& rIter, TVec3f*);
     bool        isLoopRailPathIter(const JMapInfoIter& rIter);
 
-    template <typename T>
+    template < typename T >
     inline bool getValue(const JMapInfoIter& rIter, const char* pName, T* pOut) {
-        return rIter.getValue<T>(pName, pOut);
+        return rIter.getValue< T >(pName, pOut);
     }
 
     inline s32 getMessageID(const JMapInfoIter& rIter) {

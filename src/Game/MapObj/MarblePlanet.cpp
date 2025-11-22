@@ -71,7 +71,7 @@ void MarblePlanet::exeScaleUpCore() {
 
     f32 nerveRate = MR::calcNerveRate(this, 0x1E);
     f32 scale = MR::getScaleWithReactionValueZeroToOne(nerveRate, 0.5f, -0.5f);
-    mCorePlanetModel->mScale.setAll<f32>(MR::getLinerValue(scale, 1.3f, 1.0f, 1.0f));
+    mCorePlanetModel->mScale.setAll< f32 >(MR::getLinerValue(scale, 1.3f, 1.0f, 1.0f));
 
     if (MR::isStep(this, 0x1E)) {
         setNerve(&NrvMarblePlanet::MarblePlanetNrvWait::sInstance);
@@ -162,7 +162,7 @@ void MarblePlanet::initCoreAndElectron() {
             TVec3f position;
             JMAVECScaleAdd(&front, pos, &position, 1000.0f);
             TVec3f rotation;
-            rotation.setAll<f32>((360.0f * i) / mNumElectrons);
+            rotation.setAll< f32 >((360.0f * i) / mNumElectrons);
             mPlanetElectrons[i] = new MarblePlanetElectron(this, position, rotation, "ビー玉惑星電子");
             mPlanetElectrons[i]->initWithoutIter();
         }
@@ -171,13 +171,13 @@ void MarblePlanet::initCoreAndElectron() {
 
 MarblePlanetElectron::MarblePlanetElectron(LiveActor* pPlanet, const TVec3f& rPosition, const TVec3f& rRotation, const char* pName)
     : LiveActor(pName) {
-    mParentPlanet = static_cast<MarblePlanet*>(pPlanet);
+    mParentPlanet = static_cast< MarblePlanet* >(pPlanet);
     mElectronShadow = 0;
     _94.x = 0.0f;
     _94.y = 0.0f;
     _94.z = 1.0f;
-    mPosition.set<f32>(rPosition);
-    mRotation.set<f32>(rRotation);
+    mPosition.set< f32 >(rPosition);
+    mRotation.set< f32 >(rRotation);
 }
 
 void MarblePlanetElectron::init(const JMapInfoIter& rIter) {
@@ -297,7 +297,7 @@ void MarblePlanetElectron::crashElectron(HitSensor *pSensor) {
 
 MarblePlanetElectronShadow::MarblePlanetElectronShadow(LiveActor* pElectronPtr, const TVec3f& rVec, const char* pName)
     : LiveActor(pName) {
-    mParentElectron = static_cast<MarblePlanetElectron*>(pElectronPtr);
+    mParentElectron = static_cast< MarblePlanetElectron* >(pElectronPtr);
     _90 = &rVec;
 }
 
@@ -340,24 +340,24 @@ namespace NrvMarblePlanetElectron {
     INIT_NERVE(MarblePlanetElectronNrvAttack);
 
     void MarblePlanetElectronNrvAttack::execute(Spine* pSpine) const {
-        MarblePlanetElectron* electron = reinterpret_cast<MarblePlanetElectron*>(pSpine->mExecutor);
+        MarblePlanetElectron* electron = reinterpret_cast< MarblePlanetElectron* >(pSpine->mExecutor);
         electron->exeAttack();
     }
 
     void MarblePlanetElectronNrvMove::execute(Spine* pSpine) const {
-        MarblePlanetElectron* electron = reinterpret_cast<MarblePlanetElectron*>(pSpine->mExecutor);
+        MarblePlanetElectron* electron = reinterpret_cast< MarblePlanetElectron* >(pSpine->mExecutor);
         electron->exeMove();
     }
 }; // namespace NrvMarblePlanetElectron
 
 namespace NrvMarblePlanet {
     void MarblePlanetNrvBreakCore::execute(Spine* pSpine) const {
-        MarblePlanet* marble = reinterpret_cast<MarblePlanet*>(pSpine->mExecutor);
+        MarblePlanet* marble = reinterpret_cast< MarblePlanet* >(pSpine->mExecutor);
         marble->exeBreakCore();
     }
 
     void MarblePlanetNrvScaleUpCore::execute(Spine* pSpine) const {
-        MarblePlanet* marble = reinterpret_cast<MarblePlanet*>(pSpine->mExecutor);
+        MarblePlanet* marble = reinterpret_cast< MarblePlanet* >(pSpine->mExecutor);
         marble->exeScaleUpCore();
     }
 

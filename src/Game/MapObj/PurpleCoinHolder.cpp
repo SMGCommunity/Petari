@@ -5,7 +5,7 @@
 #include "Game/Util.hpp"
 
 PurpleCoinHolder::PurpleCoinHolder()
-    : DeriveActorGroup<Coin>("パープルコイン管理", 0x100) {
+    : DeriveActorGroup< Coin >("パープルコイン管理", 0x100) {
     mStarter = nullptr;
     MR::declarePowerStarCoin100();
     MR::createPurpleCoinCounter();
@@ -27,11 +27,11 @@ namespace MR {
     }
 
     void addToPurpleCoinHolder(const NameObj* pObj, Coin* pCoin) {
-        MR::getSceneObj<PurpleCoinHolder>(SceneObj_PurpleCoinHolder)->registerActor(pCoin);
+        MR::getSceneObj< PurpleCoinHolder >(SceneObj_PurpleCoinHolder)->registerActor(pCoin);
     }
 
     void registPurpleCoinStarter(PurpleCoinStarter* pStarter) {
-        PurpleCoinHolder* holder = MR::getSceneObj<PurpleCoinHolder>(SceneObj_PurpleCoinHolder);
+        PurpleCoinHolder* holder = MR::getSceneObj< PurpleCoinHolder >(SceneObj_PurpleCoinHolder);
         holder->mStarter = pStarter;
         pStarter->setHost(holder);
     }

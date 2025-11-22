@@ -131,7 +131,7 @@ namespace MR {
     }
 
     wchar_t* addPictureFontTag(wchar_t* pDst, int tag) {
-        Tag* pTag = reinterpret_cast<Tag*>(pDst);
+        Tag* pTag = reinterpret_cast< Tag* >(pDst);
 
         pTag->_0 = 26;
         pTag->mDataSize = sizeof(Tag);
@@ -160,7 +160,7 @@ namespace MR {
         va_list args;
         va_start(args, pFmt);
 
-        Tag* pTag = reinterpret_cast<Tag*>(pDst);
+        Tag* pTag = reinterpret_cast< Tag* >(pDst);
 
         int num = vswprintf(pTag->mBuffer, 256, pFmt, args);
 
@@ -194,7 +194,7 @@ namespace MR {
         u32 i;
 
         for (i = 0; i < num - 1; pDst++, pSrc++, i++) {
-            const char* p = reinterpret_cast<const char*>(pSrc);
+            const char* p = reinterpret_cast< const char* >(pSrc);
 
             if (p[0] != '\0') {
                 break;
@@ -259,7 +259,7 @@ namespace MR {
     }
 
     bool isMessageEditorNextTag(const wchar_t* pStr) {
-        const Tag* pTag = reinterpret_cast<const Tag*>(pStr);
+        const Tag* pTag = reinterpret_cast< const Tag* >(pStr);
         u8         v1 = pTag->_3;
         wchar_t    v2 = pTag->mBuffer[0];
 
@@ -275,7 +275,7 @@ namespace MR {
                     break;
                 }
 
-                u16 dataSize = reinterpret_cast<const Tag*>(pMessage)->mDataSize;
+                u16 dataSize = reinterpret_cast< const Tag* >(pMessage)->mDataSize;
 
                 // FIXME: r3-r4 used instead of r30-r31, and slwi used instead of clrrwi.
                 pMessage = (pMessage + dataSize) - 1;

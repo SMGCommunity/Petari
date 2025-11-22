@@ -63,7 +63,7 @@ const char* CollisionCode::getSoundCodeString(const JMapInfoIter& rIter) {
     if (rIter.mInfo->getValueType("Sound_code") == 0) {
         u32 code = 0;
 
-        bool ret = rIter.getValue<u32>("Sound_code", &code);
+        bool ret = rIter.getValue< u32 >("Sound_code", &code);
 
         if (ret) {
             return mSoundTable->getString(code);
@@ -71,7 +71,7 @@ const char* CollisionCode::getSoundCodeString(const JMapInfoIter& rIter) {
     } else {
         const char* code = 0;
 
-        bool ret = rIter.getValue<const char*>("Sound_code", &code);
+        bool ret = rIter.getValue< const char* >("Sound_code", &code);
 
         if (ret) {
             return code;
@@ -94,7 +94,7 @@ u32 CollisionCode::getCode(const JMapInfoIter& rIter, CodeTable* pCodeTable, con
     if (rIter.mInfo->getValueType(pName) == 0) {
         u32 code = 0;
 
-        bool ret = rIter.getValue<u32>(pName, &code);
+        bool ret = rIter.getValue< u32 >(pName, &code);
 
         if (ret) {
             return code;
@@ -102,7 +102,7 @@ u32 CollisionCode::getCode(const JMapInfoIter& rIter, CodeTable* pCodeTable, con
     } else {
         const char* code = 0;
 
-        bool ret = rIter.getValue<const char*>(pName, &code);
+        bool ret = rIter.getValue< const char* >(pName, &code);
 
         if (ret) {
             u32 ret_code = 0;
@@ -226,7 +226,7 @@ u32 CollisionCode::getCameraID(const JMapInfoIter& rIter) {
     }
 
     u32 id = -1;
-    rIter.getValue<u32>("camera_id", &id);
+    rIter.getValue< u32 >("camera_id", &id);
 
     return id;
 }

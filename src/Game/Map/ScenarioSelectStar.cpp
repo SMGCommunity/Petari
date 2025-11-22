@@ -83,7 +83,7 @@ bool ScenarioSelectStar::isAppearEnd() const {
 void ScenarioSelectStar::setup(s32 a1, int a2, const TVec3f& a3, s32 a4) {
     _44 = a2;
     mFrame = a1;
-    _5C.set<f32>(a3);
+    _5C.set< f32 >(a3);
     _4C = a4;
 
     mRotation.set(0.0f, 0.0f, (150.0f * a4));
@@ -163,7 +163,7 @@ void ScenarioSelectStar::exePointing() {
         f32 rate = MultiScene::calcNerveRate(this, 20);
         f32 scale = MR::getScaleWithReactionValueZeroToOne(rate, 1.5f, -0.25f);
         f32 linerVal = MR::getLinerValue(scale, 0.9f, 1.5f, 1.0f);
-        mScale.setAll<f32>(linerVal);
+        mScale.setAll< f32 >(linerVal);
     } else {
         mScale.x = 1.5f;
         mScale.y = 1.5f;
@@ -187,7 +187,7 @@ void ScenarioSelectStar::exeSelected() {
     if (MultiScene::isFirstStep(this)) {
         MultiScene::emitEffect(this, "Select");
         MR::tryRumblePadMiddle(this, 0);
-        _68.set<f32>(mTranslation);
+        _68.set< f32 >(mTranslation);
         _54 = 3.0f;
         _78 = mScale.x;
     }

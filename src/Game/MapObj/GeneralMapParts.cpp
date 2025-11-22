@@ -340,17 +340,17 @@ namespace NrvGeneralMapParts {
     INIT_NERVE(HostTypeMove);
 
     void HostTypeMove::execute(Spine* pSpine) const {
-        GeneralMapParts* part = reinterpret_cast<GeneralMapParts*>(pSpine->mExecutor);
+        GeneralMapParts* part = reinterpret_cast< GeneralMapParts* >(pSpine->mExecutor);
         part->exeWait();
     }
 
     void HostTypeMoveStart::execute(Spine* pSpine) const {
-        GeneralMapParts* part = reinterpret_cast<GeneralMapParts*>(pSpine->mExecutor);
+        GeneralMapParts* part = reinterpret_cast< GeneralMapParts* >(pSpine->mExecutor);
         part->exeMoveStart();
     }
 
     void HostTypeWaitForPlayerOn::execute(Spine* pSpine) const {
-        GeneralMapParts* part = reinterpret_cast<GeneralMapParts*>(pSpine->mExecutor);
+        GeneralMapParts* part = reinterpret_cast< GeneralMapParts* >(pSpine->mExecutor);
         if (MR::isOnPlayer(MR::getBodySensor(part))) {
             part->broadcastMsgToAllFunctions(0xCA);
             part->startMove();
@@ -358,7 +358,7 @@ namespace NrvGeneralMapParts {
     }
 
     void HostTypeWait::execute(Spine* pSpine) const {
-        GeneralMapParts* part = reinterpret_cast<GeneralMapParts*>(pSpine->mExecutor);
+        GeneralMapParts* part = reinterpret_cast< GeneralMapParts* >(pSpine->mExecutor);
         part->exeWait();
     }
 }; // namespace NrvGeneralMapParts

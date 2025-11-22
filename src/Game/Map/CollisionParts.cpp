@@ -27,11 +27,11 @@ CollisionParts::CollisionParts() {
     mPrevBaseMatrix.identity();
     mBaseMatrix.identity();
     mMatrix.identity();
-    PSMTXInverse(reinterpret_cast<MtxPtr>(&mBaseMatrix), reinterpret_cast<MtxPtr>(&mInvBaseMatrix));
+    PSMTXInverse(reinterpret_cast< MtxPtr >(&mBaseMatrix), reinterpret_cast< MtxPtr >(&mInvBaseMatrix));
 }
 
 void CollisionParts::init(const TPos3f& a1, HitSensor* pHitSensor, const void* pKclData, const void* pMapInfo, s32 keeperIndex, bool a6) {
-    mServer->init(const_cast<void*>(pKclData), pMapInfo);
+    mServer->init(const_cast< void* >(pKclData), pMapInfo);
     mHitSensor = pHitSensor;
 
     resetAllMtx(a1);
@@ -107,7 +107,7 @@ void CollisionParts::resetAllMtx() {
     if (reset) {
         TPos3f matrix;
         JMath::gekko_ps_copy12(&matrix, _0);
-        makeEqualScale(reinterpret_cast<MtxPtr>(&matrix));
+        makeEqualScale(reinterpret_cast< MtxPtr >(&matrix));
 
         resetAllMtxPrivate(matrix);
     }
@@ -116,7 +116,7 @@ void CollisionParts::resetAllMtx() {
 void CollisionParts::forceResetAllMtxAndSetUpdateMtxOneTime() {
     TPos3f matrix;
     JMath::gekko_ps_copy12(&matrix, _0);
-    makeEqualScale(reinterpret_cast<MtxPtr>(&matrix));
+    makeEqualScale(reinterpret_cast< MtxPtr >(&matrix));
     resetAllMtxPrivate(matrix);
 
     _CE = true;
@@ -126,7 +126,7 @@ void CollisionParts::resetAllMtxPrivate(const TPos3f& a1) {
     JMath::gekko_ps_copy12(&mPrevBaseMatrix, &a1);
     JMath::gekko_ps_copy12(&mBaseMatrix, &a1);
     JMath::gekko_ps_copy12(&mMatrix, &a1);
-    PSMTXInverse(reinterpret_cast<MtxPtr>(&mBaseMatrix), reinterpret_cast<MtxPtr>(&mInvBaseMatrix));
+    PSMTXInverse(reinterpret_cast< MtxPtr >(&mBaseMatrix), reinterpret_cast< MtxPtr >(&mInvBaseMatrix));
 }
 
 void CollisionParts::setMtx(const TPos3f& matrix) {
@@ -145,11 +145,11 @@ void CollisionParts::updateMtx() {
     }
 
     if (!bVar1) {
-        if (MR::isSameMtx(reinterpret_cast<MtxPtr>(&mMatrix), reinterpret_cast<MtxPtr>(&mBaseMatrix))) {
+        if (MR::isSameMtx(reinterpret_cast< MtxPtr >(&mMatrix), reinterpret_cast< MtxPtr >(&mBaseMatrix))) {
             _D4++;
         }
     } else {
-        if (MR::isSameMtx(reinterpret_cast<MtxPtr>(&mMatrix), reinterpret_cast<MtxPtr>(&mBaseMatrix))) {
+        if (MR::isSameMtx(reinterpret_cast< MtxPtr >(&mMatrix), reinterpret_cast< MtxPtr >(&mBaseMatrix))) {
             _D4++;
         } else {
             if (_CE) {
@@ -158,7 +158,7 @@ void CollisionParts::updateMtx() {
                 _D4 = 0;
             }
 
-            f32 dVar4 = makeEqualScale(reinterpret_cast<MtxPtr>(&mMatrix));
+            f32 dVar4 = makeEqualScale(reinterpret_cast< MtxPtr >(&mMatrix));
             _E8 = dVar4;
             f32 var = dVar4 - _DC;
             _EC = dVar4;
@@ -174,7 +174,7 @@ void CollisionParts::updateMtx() {
         if (_D4 < 2) {
             JMath::gekko_ps_copy12(&mPrevBaseMatrix, &mBaseMatrix);
             JMath::gekko_ps_copy12(&mBaseMatrix, &mMatrix);
-            PSMTXInverse(reinterpret_cast<MtxPtr>(&mBaseMatrix), reinterpret_cast<MtxPtr>(&mInvBaseMatrix));
+            PSMTXInverse(reinterpret_cast< MtxPtr >(&mBaseMatrix), reinterpret_cast< MtxPtr >(&mInvBaseMatrix));
         }
     }
 }
@@ -182,7 +182,7 @@ void CollisionParts::updateMtx() {
 #ifdef NON_MATCHING
 // Issues with assignments of scaleDiff
 f32 CollisionParts::makeEqualScale(MtxPtr matrix) {
-    TPos3f& mtx = *reinterpret_cast<TPos3f*>(matrix);
+    TPos3f& mtx = *reinterpret_cast< TPos3f* >(matrix);
 
     TVec3f scale;
     mtx.getScale(scale);
@@ -226,7 +226,7 @@ f32 CollisionParts::makeEqualScale(MtxPtr matrix) {
 void CollisionParts::updateBoundingSphereRange() {
     TMtx34f matrix;
     JMath::gekko_ps_copy12(&matrix, _0);
-    f32 scale = makeEqualScale(reinterpret_cast<MtxPtr>(&matrix));
+    f32 scale = makeEqualScale(reinterpret_cast< MtxPtr >(&matrix));
     updateBoundingSphereRangePrivate(scale);
 }
 
@@ -278,7 +278,7 @@ void CollisionParts::projectToPlane(TVec3f* pProjected, const TVec3f& rPos, cons
 void CollisionParts::calcForceMovePower(TVec3f* a1, const TVec3f& a2) const {
     TVec3f  tStack88 = a2;
     TMtx34f auStack76;
-    PSMTXInverse((MtxPtr)&mPrevBaseMatrix, reinterpret_cast<MtxPtr>(&auStack76));
+    PSMTXInverse((MtxPtr)&mPrevBaseMatrix, reinterpret_cast< MtxPtr >(&auStack76));
 
     auStack76.mult(tStack88, tStack88);
     mBaseMatrix.mult(tStack88, tStack88);

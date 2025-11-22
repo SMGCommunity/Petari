@@ -10,15 +10,15 @@ namespace {
         /* 0x4 */ Scene* (*mCreateFunc)();
     };
 
-    template <typename T>
+    template < typename T >
     Scene* createScene() {
         return new T();
     }
 
     const Name2CreateFunc cCreateTable[] = {
-        {"Game", createScene<GameScene>},
-        {"Intermission", createScene<IntermissionScene>},
-        {"Logo", createScene<LogoScene>},
+        {"Game", createScene< GameScene >},
+        {"Intermission", createScene< IntermissionScene >},
+        {"Logo", createScene< LogoScene >},
     };
 }; // namespace
 

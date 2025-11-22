@@ -21,7 +21,7 @@ namespace {
     static const s32 sRetryMax = 10;
 
     NWC24Messenger* getNWC24Messenger() NO_INLINE {
-        return SingletonHolder<GameSystem>::get()->mSequenceDirector->mNWC24Messenger;
+        return SingletonHolder< GameSystem >::get()->mSequenceDirector->mNWC24Messenger;
     }
 }; // namespace
 
@@ -615,8 +615,8 @@ namespace NWC24MessengerSub {
 
     bool SendState::send() {
         if (!mHost->mSystem->send(
-                reinterpret_cast<const u16*>(mTask->mMessage),
-                reinterpret_cast<const u16*>(mTask->mAltName),
+                reinterpret_cast< const u16* >(mTask->mMessage),
+                reinterpret_cast< const u16* >(mTask->mAltName),
                 nullptr,
                 0,
                 mTask->mPicture,

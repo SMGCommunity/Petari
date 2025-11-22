@@ -6,7 +6,7 @@
 #include "JSystem/JAudio2/JASGlobal.hpp"
 #include "JSystem/JAudio2/JASHeapCtrl.hpp"
 
-class SpkSystem : JASGlobalInstance<SpkSystem> {
+class SpkSystem : JASGlobalInstance< SpkSystem > {
 public:
     SpkSystem(JKRHeap*);
 

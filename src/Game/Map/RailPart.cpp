@@ -30,7 +30,7 @@ void RailPart::calcPos(TVec3f* pOut, f32 a2) const {
 
 void RailPart::calcVelocity(TVec3f* pOut, f32 a2) const {
     if (mRailPartLinear) {
-        pOut->set<f32>(mRailPartLinear->_C);
+        pOut->set< f32 >(mRailPartLinear->_C);
     } else {
         mRailPartBezier->calcVelocity(pOut, a2);
     }

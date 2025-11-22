@@ -58,10 +58,10 @@ void FirePressureRadiate::init(const JMapInfoIter& rIter) {
 
 void FirePressureRadiate::initAfterPlacement() {
     if (mGroup != nullptr) {
-        FirePressureRadiate* first = reinterpret_cast<FirePressureRadiate*>(MR::getGroupFromArray(this)->getActor(0));
+        FirePressureRadiate* first = reinterpret_cast< FirePressureRadiate* >(MR::getGroupFromArray(this)->getActor(0));
 
         for (u16 i = 1; i < MR::getGroupFromArray(this)->getObjectCount(); i++) {
-            FirePressureRadiate* cur = reinterpret_cast<FirePressureRadiate*>(MR::getGroupFromArray(this)->getActor(i));
+            FirePressureRadiate* cur = reinterpret_cast< FirePressureRadiate* >(MR::getGroupFromArray(this)->getActor(i));
 
             if (first->mWaitTime <= cur->mWaitTime) {
                 first = cur;

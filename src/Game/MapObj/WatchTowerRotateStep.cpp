@@ -100,7 +100,7 @@ void WatchTowerRotateStep::exeMoveStart() {
 
 namespace NrvWatchTowerRotateStep {
     void WatchTowerRotateStepNrvMove::execute(Spine* pSpine) const {
-        WatchTowerRotateStep* pActor = reinterpret_cast<WatchTowerRotateStep*>(pSpine->mExecutor);
+        WatchTowerRotateStep* pActor = reinterpret_cast< WatchTowerRotateStep* >(pSpine->mExecutor);
         TVec3f                frontVec;
 
         MR::calcFrontVec(&frontVec, pActor);
@@ -110,7 +110,7 @@ namespace NrvWatchTowerRotateStep {
     }
 
     void WatchTowerRotateStepNrvMoveStart::execute(Spine* pSpine) const {
-        reinterpret_cast<WatchTowerRotateStep*>(pSpine->mExecutor)->exeMoveStart();
+        reinterpret_cast< WatchTowerRotateStep* >(pSpine->mExecutor)->exeMoveStart();
     }
 
     void WatchTowerRotateStepNrvWait::execute(Spine* pSpine) const {}

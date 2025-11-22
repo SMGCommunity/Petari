@@ -35,7 +35,7 @@ void TripodBossBreakMovement::start(const TPos3f& a1, s32 a2) {
     f32 v13 = MR::getRandom(-1.0f, 1.0f);
     f32 v14 = MR::getRandom(-1.0f, 1.0f);
     f32 v15 = MR::getRandom(-1.0f, 1.0f);
-    _CC.set<f32>(v15, v14, v13);
+    _CC.set< f32 >(v15, v14, v13);
     MR::normalizeOrZero(&_CC);
     f32 v16 = MR::getRandom(0.0099999998f, 0.039999999f);
     _CC *= v16;
@@ -51,7 +51,7 @@ void TripodBossBreakMovement::start(const TPos3f& a1, s32 a2) {
     f32    v18 = MR::getRandom(-1.0f, 1.0f);
     f32    v19 = MR::getRandom(-1.0f, 1.0f);
     TVec3f v25;
-    v25.set<f32>(v19, v18, v17);
+    v25.set< f32 >(v19, v18, v17);
     f32    val = _F0;
     TVec3f v24(v25);
     v24 *= val;

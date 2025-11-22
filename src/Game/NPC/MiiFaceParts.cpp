@@ -30,7 +30,7 @@ void MiiFaceParts::init(const JMapInfoIter& rIter) {
 void MiiFaceParts::calcAnim() {
     if (_CC != nullptr) {
         _CC->calc();
-        mPosition.set<f32>(_C8[0][3], _C8[1][3], _C8[2][3]);
+        mPosition.set< f32 >(_C8[0][3], _C8[1][3], _C8[2][3]);
         PSMTXCopy(_C8, _98);
     } else {
         MR::makeMtxTR(_98, mPosition, mRotation);

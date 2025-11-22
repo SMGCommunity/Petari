@@ -56,7 +56,7 @@ namespace NrvSimpleTimerObj {
     INIT_NERVE(SimpleTimerObjNrvTimer);
 
     void SimpleTimerObjNrvTimer::execute(Spine* pSpine) const {
-        SimpleTimerObj* timer_obj = reinterpret_cast<SimpleTimerObj*>(pSpine->mExecutor);
+        SimpleTimerObj* timer_obj = reinterpret_cast< SimpleTimerObj* >(pSpine->mExecutor);
         timer_obj->exeTimer();
     }
 }; // namespace NrvSimpleTimerObj

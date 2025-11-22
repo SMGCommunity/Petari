@@ -81,21 +81,21 @@ public:
     inline bool isOutOfRange(f32 dist) {
         return !MR::isNearPlayer(this, dist);
     }
-    /*0x8C*/ JointControlDelegator<BombTeresa>* mJointDelegator;
-    /*0x90*/ JointControlDelegator<BombTeresa>* mJointDelegator2;
-    /*0x94*/ AnimScaleController*               mScaleController;
-    /*0x98*/ WalkerStateBindStarPointer*        mBindStarPointer;
-    TQuat4f                                     _9C;
-    TVec3f                                      _AC;
-    TVec3f                                      _B8;
-    TVec3f                                      _C4;
-    TVec3f                                      _D0;
-    f32                                         _DC;
-    f32                                         _E0;
-    f32                                         _E4;
-    s32                                         _E8;
-    bool                                        _EC;
-    /*0xED*/ bool                               mDisableRespawning;
-    bool                                        _EE;
-    bool                                        _EF;
+    /*0x8C*/ JointControlDelegator< BombTeresa >* mJointDelegator;
+    /*0x90*/ JointControlDelegator< BombTeresa >* mJointDelegator2;
+    /*0x94*/ AnimScaleController*                 mScaleController;
+    /*0x98*/ WalkerStateBindStarPointer*          mBindStarPointer;
+    TQuat4f                                       _9C;
+    TVec3f                                        _AC;
+    TVec3f                                        _B8;
+    TVec3f                                        _C4;
+    TVec3f                                        _D0;
+    f32                                           _DC;
+    f32                                           _E0;
+    f32                                           _E4;
+    s32                                           _E8;
+    bool                                          _EC;
+    /*0xED*/ bool                                 mDisableRespawning;
+    bool                                          _EE;
+    bool                                          _EF;
 };

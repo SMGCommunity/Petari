@@ -13,53 +13,53 @@ namespace {
         {
             nullptr,
             "AssemblyBlock",
-            createNameObj<AssemblyBlock>,
+            createNameObj< AssemblyBlock >,
         },
         {
             nullptr,
             "ClipFieldMapParts",
-            createNameObj<ClipFieldMapParts>,
+            createNameObj< ClipFieldMapParts >,
         },
         {nullptr, "FlexibleSphere", /* createNameObj<FlexibleSphere>, */},
         {
             nullptr,
             "MercatorFixParts",
-            createNameObj<MercatorFixParts>,
+            createNameObj< MercatorFixParts >,
         },
         {
             nullptr,
             "MercatorRailMoveParts",
-            createNameObj<MercatorRailMoveParts>,
+            createNameObj< MercatorRailMoveParts >,
         },
         {
             nullptr,
             "MercatorRotateParts",
-            createNameObj<MercatorRotateParts>,
+            createNameObj< MercatorRotateParts >,
         },
         {
             nullptr,
             "TripodBossFixParts",
-            createNameObj<TripodBossFixParts>,
+            createNameObj< TripodBossFixParts >,
         },
         {
             nullptr,
             "TripodBossRailMoveParts",
-            createNameObj<TripodBossRailMoveParts>,
+            createNameObj< TripodBossRailMoveParts >,
         },
         {
             nullptr,
             "TripodBossRotateParts",
-            createNameObj<TripodBossRotateParts>,
+            createNameObj< TripodBossRotateParts >,
         },
         {
             nullptr,
             "TripodBossRotateParts",
-            createNameObj<TripodBossRotateParts>,
+            createNameObj< TripodBossRotateParts >,
         },
         {
             nullptr,
             "SimpleNormalMapObj",
-            createNameObj<SimpleNormalMapObj>,
+            createNameObj< SimpleNormalMapObj >,
         },
         {nullptr, "SunshadeMapParts", /* MR::createSunshadeMapParts, */},
     };

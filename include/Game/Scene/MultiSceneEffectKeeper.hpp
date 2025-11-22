@@ -22,6 +22,6 @@ public:
     MultiEmitter* find(const char*) const;
     void          registerEmitter(MultiEmitter*, const char*);
 
-    /* 0x00 */ MR::Vector<MR::AssignableArray<MultiEmitter*>> mEmitter;
-    /* 0x0C */ const char*                                    mResName;
+    /* 0x00 */ MR::Vector< MR::AssignableArray< MultiEmitter* > > mEmitter;
+    /* 0x0C */ const char*                                        mResName;
 };

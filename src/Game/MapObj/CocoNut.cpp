@@ -110,7 +110,7 @@ void CocoNut::startClipped() {
         }
     } else if (mRespawnWhenOutOfView) {
         statusToHide();
-        mPosition.set<f32>(mSpawnPosition);
+        mPosition.set< f32 >(mSpawnPosition);
         setNerve(&NrvCocoNut::CocoNutNrvReplaceReady::sInstance);
     }
     LiveActor::startClipped();
@@ -156,7 +156,7 @@ bool CocoNut::isPossibleToHit(const TVec3f& a1, const TVec3f& a2, const TVec3f& 
             return false;
         }
     } else {
-        stack_20.set<f32>(stack_14);
+        stack_20.set< f32 >(stack_14);
     }
     return stack_2C.dot(stack_20) < 0.0f;
 }
@@ -239,7 +239,7 @@ void CocoNut::updateGravity() {
     TVec3f stack_8;
 
     f32 f31 = _13C ? 0.4f : 1.0f;
-    stack_8.set<f32>(mGravity);
+    stack_8.set< f32 >(mGravity);
     f32 f0 = _90 + f31;
 
     f32 f2 = f0 >= 25.0f ? 25.0f : f0;
@@ -350,7 +350,7 @@ void CocoNut::setFrontVec(const TVec3f& a1) {
     TVec3f stack_8(mGravity);
     if (!MR::normalizeOrZero(a1, &stack_14)) {
         if (MR::isSameDirection(a1, stack_8, 0.01f)) {
-            _94.set<f32>(stack_14);
+            _94.set< f32 >(stack_14);
         } else {
             MR::vecKillElement(stack_14, stack_8, &_94);
             MR::normalize(&_94);
@@ -359,7 +359,7 @@ void CocoNut::setFrontVec(const TVec3f& a1) {
 }
 
 bool CocoNut::tryHit(HitSensor* pOtherSensor, HitSensor* pMySensor) {
-    CocoNut* nut = reinterpret_cast<CocoNut*>(pMySensor->mHost);
+    CocoNut* nut = reinterpret_cast< CocoNut* >(pMySensor->mHost);
     if (!isNerve(&NrvCocoNut::CocoNutNrvMove::sInstance)) {
         return false;
     }
@@ -581,12 +581,12 @@ bool CocoNut::isOnGround() const {
 
 bool CocoNut::getWallNormal(TVec3f* arg0) const {
     if (MR::isBindedWall(this)) {
-        arg0->set<f32>(*MR::getWallNormal(this));
+        arg0->set< f32 >(*MR::getWallNormal(this));
         return true;
     }
 
     if (0.0f < _90 && (MR::isOnGround(this)) && !isOnGround()) {
-        arg0->set<f32>(*MR::getGroundNormal(this));
+        arg0->set< f32 >(*MR::getGroundNormal(this));
         return true;
     }
 
@@ -800,7 +800,7 @@ void CocoNut::initMapToolInfo(const JMapInfoIter& rIter) {
     MR::getJMapInfoArg1NoInit(rIter, &mRespawnWhenOutOfView);
     MR::getJMapInfoArg2NoInit(rIter, &mContinueRolling);
     _D0 = 55.0f * mScale.x;
-    mSpawnPosition.set<f32>(mPosition);
+    mSpawnPosition.set< f32 >(mPosition);
 }
 
 void CocoNut::statusToHide() {
@@ -905,7 +905,7 @@ void CocoNut::exeInWater() {
         MR::releaseSoundHandle(this, "SE_OJ_FALL_IN_WATER_M");
     }
     if (!MR::isEffectValid(this, "WaterColumn")) {
-        mPosition.set<f32>(mSpawnPosition);
+        mPosition.set< f32 >(mSpawnPosition);
         setNerve(&NrvCocoNut::CocoNutNrvReplaceReady::sInstance);
     }
 }
@@ -919,7 +919,7 @@ void CocoNut::exeBreak() {
         MR::emitEffect(this, getBreakEffectName());
     }
     if (!MR::isEffectValid(this, getBreakEffectName())) {
-        mPosition.set<f32>(mSpawnPosition);
+        mPosition.set< f32 >(mSpawnPosition);
         setNerve(&NrvCocoNut::CocoNutNrvReplaceReady::sInstance);
     }
 }
@@ -933,29 +933,29 @@ namespace NrvCocoNut {
     INIT_NERVE(CocoNutNrvReplaceReady)
 
     void CocoNutNrvReplaceReady::execute(Spine* pSpine) const {
-        CocoNut* nut = reinterpret_cast<CocoNut*>(pSpine->mExecutor);
+        CocoNut* nut = reinterpret_cast< CocoNut* >(pSpine->mExecutor);
         if (MR::isFirstStep(nut)) {
             MR::validateClipping(nut);
         }
     }
     void CocoNutNrvBreak::execute(Spine* pSpine) const {
-        CocoNut* nut = reinterpret_cast<CocoNut*>(pSpine->mExecutor);
+        CocoNut* nut = reinterpret_cast< CocoNut* >(pSpine->mExecutor);
         nut->exeBreak();
     }
     void CocoNutNrvInWater::execute(Spine* pSpine) const {
-        CocoNut* nut = reinterpret_cast<CocoNut*>(pSpine->mExecutor);
+        CocoNut* nut = reinterpret_cast< CocoNut* >(pSpine->mExecutor);
         nut->exeInWater();
     }
     void CocoNutNrvMove::execute(Spine* pSpine) const {
-        CocoNut* nut = reinterpret_cast<CocoNut*>(pSpine->mExecutor);
+        CocoNut* nut = reinterpret_cast< CocoNut* >(pSpine->mExecutor);
         nut->exeMove();
     }
     void CocoNutNrvWaitOnBind::execute(Spine* pSpine) const {
-        CocoNut* nut = reinterpret_cast<CocoNut*>(pSpine->mExecutor);
+        CocoNut* nut = reinterpret_cast< CocoNut* >(pSpine->mExecutor);
         nut->exeWaitOnBind();
     }
     void CocoNutNrvWait::execute(Spine* pSpine) const {
-        CocoNut* nut = reinterpret_cast<CocoNut*>(pSpine->mExecutor);
+        CocoNut* nut = reinterpret_cast< CocoNut* >(pSpine->mExecutor);
         nut->exeWait();
     }
 } // namespace NrvCocoNut

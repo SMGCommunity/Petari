@@ -70,7 +70,7 @@ void MiiFaceIcon::createImageBuffer() {
 
     height = mHeight;
     width = mWidth;
-    pImageBuffer = reinterpret_cast<ResTIMG*>(mImageBuffer);
+    pImageBuffer = reinterpret_cast< ResTIMG* >(mImageBuffer);
 
     pImageBuffer->mFormat = GX_TF_RGB5A3;
     pImageBuffer->mWidth = width;

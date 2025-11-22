@@ -13,7 +13,7 @@
 
 MainLoopFramework* MainLoopFramework::sManager;
 
-MR::BothDirList<MainLoopFrameworkAlarm> MainLoopFrameworkAlarm::sList(false);
+MR::BothDirList< MainLoopFrameworkAlarm > MainLoopFrameworkAlarm::sList(false);
 
 GXTexObj clear_z_tobj;
 
@@ -471,8 +471,8 @@ namespace {
     }
 
     void waitDrawDoneAndSetAlarm() {
-        MainLoopFrameworkAlarm                  alarm;
-        MR::BothDirLink<MainLoopFrameworkAlarm> link(&alarm);
+        MainLoopFrameworkAlarm                    alarm;
+        MR::BothDirLink< MainLoopFrameworkAlarm > link(&alarm);
         {
             MR::ProhibitSchedulerAndInterrupts prohibit(false);
             OSCreateAlarm(&alarm);

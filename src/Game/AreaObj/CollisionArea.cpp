@@ -161,7 +161,7 @@ void CollisionArea::movement() {
             }
         } else {
             TVec3f playerPos = *MR::getPlayerCenterPos();
-            f32    dVar4 = static_cast<f32>(_5C);
+            f32    dVar4 = static_cast< f32 >(_5C);
 
             if (_5C == 0) {
                 dVar4 = MR::getPlayerHitRadius();

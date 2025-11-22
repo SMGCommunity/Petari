@@ -266,7 +266,7 @@ namespace MR {
         if (isExistSceneObj(0x19) == false) {
             return false;
         } else {
-            return getSceneObj<TalkDirector>(SceneObj_TalkDirector)->isSystemTalking();
+            return getSceneObj< TalkDirector >(SceneObj_TalkDirector)->isSystemTalking();
         }
     }
 
@@ -274,7 +274,7 @@ namespace MR {
         if (isExistSceneObj(0x19) == false) {
             return false;
         } else {
-            return getSceneObj<TalkDirector>(SceneObj_TalkDirector)->isNormalTalking();
+            return getSceneObj< TalkDirector >(SceneObj_TalkDirector)->isNormalTalking();
         }
     }
 
@@ -282,7 +282,7 @@ namespace MR {
         if (isExistSceneObj(0x19) == false) {
             return false;
         } else {
-            return getSceneObj<TalkDirector>(SceneObj_TalkDirector)->getTalkingActor();
+            return getSceneObj< TalkDirector >(SceneObj_TalkDirector)->getTalkingActor();
         }
     }
 

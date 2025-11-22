@@ -194,7 +194,7 @@ namespace MultiScene {
     }
 
     f32 calcNerveRate(const MultiSceneActor* pActor, s32 stepMax) {
-        return stepMax <= 0 ? 1.0f : MR::clamp(static_cast<f32>(pActor->getNerveStep()) / stepMax, 0.0f, 1.0f);
+        return stepMax <= 0 ? 1.0f : MR::clamp(static_cast< f32 >(pActor->getNerveStep()) / stepMax, 0.0f, 1.0f);
     }
 
     f32 calcNerveRate(const MultiSceneActor* pActor, s32 stepMin, s32 stepMax) {

@@ -3,7 +3,7 @@
 #include "Game/MapObj/ArrowSwitchMulti.hpp"
 #include "Game/LiveActor/LiveActorGroup.hpp"
 
-class ArrowSwitchMultiHolder : public DeriveActorGroup<ArrowSwitchMulti> {
+class ArrowSwitchMultiHolder : public DeriveActorGroup< ArrowSwitchMulti > {
 public:
     ArrowSwitchMultiHolder();
 

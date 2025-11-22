@@ -28,68 +28,68 @@ namespace JGeometry {
     static void subInternal(const f32* vec1, const f32* vec2, f32* dst);
 #endif
 
-    template <typename T>
+    template < typename T >
     struct TVec2 {
     public:
         /* Constructors */
         inline TVec2() {}
 
-        template <typename A>
+        template < typename A >
         TVec2(A _x, A _y) {
             x = _x;
             y = _y;
         }
 
         // inline
-        inline TVec2(const TVec2<T>& rSrc) {
+        inline TVec2(const TVec2< T >& rSrc) {
             x = rSrc.x;
             y = rSrc.y;
         }
 
         /* General operations */
-        template <typename A>
-        void set(const JGeometry::TVec2<A>& rSrc);
+        template < typename A >
+        void set(const JGeometry::TVec2< A >& rSrc);
 
-        template <typename A>
+        template < typename A >
         void set(A _x, A _y);
 
-        void setMin(const TVec2<T>&);
-        void setMax(const TVec2<T>&);
+        void setMin(const TVec2< T >&);
+        void setMax(const TVec2< T >&);
 
-        void sub(const TVec2<T>& rOther);
+        void sub(const TVec2< T >& rOther);
 
         T length() const {
-            return JGeometry::TUtil<T>::sqrt((x * x) + (y * y));
+            return JGeometry::TUtil< T >::sqrt((x * x) + (y * y));
         }
 
         T    squared() const;
-        T    squared(const TVec2<T>&) const;
-        T    dot(const TVec2<T>& rOther) const;
-        T    distance(const TVec2<T>& rOther) const;
+        T    squared(const TVec2< T >&) const;
+        T    dot(const TVec2< T >& rOther) const;
+        T    distance(const TVec2< T >& rOther) const;
         void zero();
 
         /* Operators */
-        TVec2<T>& operator=(const TVec2<T>& rSrc);
-        TVec2<T>& operator+(const TVec2<T>& rOther) const;
-        TVec2<T>& operator-(const TVec2<T>& rOther) const;
-        TVec2<T>& operator*(f32 scale) const;
+        TVec2< T >& operator=(const TVec2< T >& rSrc);
+        TVec2< T >& operator+(const TVec2< T >& rOther) const;
+        TVec2< T >& operator-(const TVec2< T >& rOther) const;
+        TVec2< T >& operator*(f32 scale) const;
 
         T x, y;
     };
 
-    template <typename T>
+    template < typename T >
     struct TVec3 {
         T x;
         T y;
         T z;
 
-        TVec3<T>(T _x, T _y, T _z) {
+        TVec3< T >(T _x, T _y, T _z) {
             x = _x;
             y = _y;
             z = _z;
         }
 
-        TVec3<T>(int x, int y, int Z);
+        TVec3< T >(int x, int y, int Z);
 
         inline TVec3(T val) {
             x = val;
@@ -103,7 +103,7 @@ namespace JGeometry {
             z = z_;
         }
 
-        template <typename J>
+        template < typename J >
         TVec3(J _x, J _y, J _z) {
             x = _x;
             y = _y;
@@ -130,14 +130,14 @@ namespace JGeometry {
     }
 
     template <>
-    struct TVec3<f32> : public Vec {
+    struct TVec3< f32 > : public Vec {
 
         inline TVec3(const Vec& vec) NO_INLINE {
             setTVec3f(&vec.x, &x);
         }
 
         //Used inlined and non-inlined?
-        TVec3(const TVec3<f32>& vec) {
+        TVec3(const TVec3< f32 >& vec) {
             const register Vec* v_a = &vec;
             register Vec*       v_b = this;
 
@@ -154,7 +154,7 @@ namespace JGeometry {
         }
 
         // Can't be NO_INLINE (gets inlined in DiskGravity::DiskGravity())
-        template <typename T>
+        template < typename T >
         TVec3(T _x, T _y, T _z) {
             x = _x;
             y = _y;
@@ -255,21 +255,21 @@ namespace JGeometry {
             return ret;
         }
 
-        template <typename T>
-        void set(const TVec3<T>& rVec) {
+        template < typename T >
+        void set(const TVec3< T >& rVec) {
             x = rVec.x;
             y = rVec.y;
             z = rVec.z;
         }
 
-        template <typename T>
+        template < typename T >
         void set(T _x, T _y, T _z) NO_INLINE {
             x = _x;
             y = _y;
             z = _z;
         }
 
-        template <typename T>
+        template < typename T >
         void set(int x, int y, int z);
 
         void set(f32 x_, f32 y_, f32 z_) {
@@ -304,7 +304,7 @@ namespace JGeometry {
             mulInternal(&src1.x, &src2.x, &dest.x);
         }
 
-        template <typename T>
+        template < typename T >
         void setAll(f32);
 
         inline void mult(f32 val) {
@@ -313,14 +313,14 @@ namespace JGeometry {
             z *= val;
         }
 
-        void sub(const TVec3<f32>& b) NO_INLINE {
+        void sub(const TVec3< f32 >& b) NO_INLINE {
             JMathInlineVEC::PSVECSubtract(this, &b, this);
         }
 
         void sub(const TVec3&, const TVec3&);
 
         //Required for multiple objects to match?
-        inline void multPS(TVec3<f32>& a, TVec3<f32>& b) {
+        inline void multPS(TVec3< f32 >& a, TVec3< f32 >& b) {
             mulInternal(&b.x, &a.x, &this->x);
         }
 
@@ -328,12 +328,12 @@ namespace JGeometry {
             set((*mtx)[3], (*mtx)[7], (*mtx)[11]);
         }
 
-        inline void setPS(const TVec3<f32>& rSrc) {
+        inline void setPS(const TVec3< f32 >& rSrc) {
             JGeometry::setTVec3f(&rSrc.x, &x);
         }
 
         // Point gravity doesn't match if we use setPS
-        inline void setPS2(const TVec3<f32>& rSrc) {
+        inline void setPS2(const TVec3< f32 >& rSrc) {
             const register Vec* v_a = &rSrc;
             register Vec*       v_b = this;
 
@@ -365,7 +365,7 @@ namespace JGeometry {
             ;
         }
 
-        void add(const TVec3<f32>& b) NO_INLINE {
+        void add(const TVec3< f32 >& b) NO_INLINE {
             JMathInlineVEC::PSVECAdd(this, &b, this);
         }
 
@@ -377,11 +377,11 @@ namespace JGeometry {
 
         f32 dot(const TVec3&) const;
 
-        bool epsilonEquals(const TVec3<f32>& a1, f32 a2) const {
+        bool epsilonEquals(const TVec3< f32 >& a1, f32 a2) const {
             bool ret = false;
-            if (JGeometry::TUtil<f32>::epsilonEquals(x, a1.x, a2)) {
-                if (JGeometry::TUtil<f32>::epsilonEquals(y, a1.y, a2)) {
-                    if (JGeometry::TUtil<f32>::epsilonEquals(z, a1.z, a2)) {
+            if (JGeometry::TUtil< f32 >::epsilonEquals(x, a1.x, a2)) {
+                if (JGeometry::TUtil< f32 >::epsilonEquals(y, a1.y, a2)) {
+                    if (JGeometry::TUtil< f32 >::epsilonEquals(z, a1.z, a2)) {
                         ret = true;
                     }
                 }
@@ -425,7 +425,7 @@ namespace JGeometry {
             if (oldlength <= 0.0000038146973f) {
                 return 0.0f;
             }
-            f32 lengthinv = JGeometry::TUtil<f32>::inv_sqrt(oldlength);
+            f32 lengthinv = JGeometry::TUtil< f32 >::inv_sqrt(oldlength);
             scale(lengthinv * newlength);
             return lengthinv * oldlength;
         };
@@ -436,19 +436,19 @@ namespace JGeometry {
             return PSVECMag(this);
         }
 
-        template <typename T>
+        template < typename T >
         void cubic(const TVec3&, const TVec3&, const TVec3&, const TVec3&, f32);
 
         f32 angle(const TVec3&) const;
     };
 
-    template <typename T>
+    template < typename T >
     struct TVec4 {
     public:
         /* Constructors */
         inline TVec4() {}
 
-        template <typename A>
+        template < typename A >
         TVec4(A _x, A _y, A _z, A _h) {
             x = _x;
             y = _y;
@@ -457,10 +457,10 @@ namespace JGeometry {
         }
 
         /* General operations */
-        template <typename A>
-        void set(const JGeometry::TVec4<A>&);
+        template < typename A >
+        void set(const JGeometry::TVec4< A >&);
 
-        template <typename A>
+        template < typename A >
         void set(A _x, A _y, A _z, A _h) {
             x = _x;
             y = _y;
@@ -474,8 +474,8 @@ namespace JGeometry {
     };
 }; // namespace JGeometry
 
-typedef JGeometry::TVec2<s16> TVec2s;
-typedef JGeometry::TVec2<f32> TVec2f;
-typedef JGeometry::TVec3<f32> TVec3f;
-typedef JGeometry::TVec3<s16> TVec3s;
-typedef JGeometry::TVec4<f32> TVec4f;
+typedef JGeometry::TVec2< s16 > TVec2s;
+typedef JGeometry::TVec2< f32 > TVec2f;
+typedef JGeometry::TVec3< f32 > TVec3f;
+typedef JGeometry::TVec3< s16 > TVec3s;
+typedef JGeometry::TVec4< f32 > TVec4f;

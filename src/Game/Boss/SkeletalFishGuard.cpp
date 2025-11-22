@@ -89,8 +89,8 @@ void SkeletalFishGuard::exeAppear() {
         _C8 = 0.0f;
         TVec3f v27;
         JGeometry::negateInternal((f32*)&mGravity, (f32*)&v27);
-        _D0.set<f32>(v27);
-        _10C.set<f32>(mPosition);
+        _D0.set< f32 >(v27);
+        _10C.set< f32 >(mPosition);
         _DC.set(MR::getRandom(-1.0f, 1.0f), MR::getRandom(-1.0f, 1.0f), MR::getRandom(-1.0f, 1.0f));
     }
 
@@ -113,7 +113,7 @@ void SkeletalFishGuard::exeAppear() {
         f32    scaled = v7 / (f32)max;
         TVec3f temp_vec = TVec3f(0.0f, 1.0f, 0.0f) * 0.0f * (f32)max;
         TVec3f temp_vec2 = v30 * 10.0f * (f32)max;
-        mPosition.cubic<f32>(_10C, temp_vec, temp_vec2, v31, scaled);
+        mPosition.cubic< f32 >(_10C, temp_vec, temp_vec2, v31, scaled);
     } else {
         f32    v9 = (getNerveStep() - 0x63);
         s32    max = 0xC9;
@@ -121,7 +121,7 @@ void SkeletalFishGuard::exeAppear() {
         f32    v11 = MR::getRailCoordSpeed(mFishBoss->getCurrentBossRail());
         TVec3f temp_vec = v30 * 10.0f * (f32)max;
         TVec3f temp_vec2 = _100 * v11 * (f32)max;
-        mPosition.cubic<f32>(v31, temp_vec, temp_vec2, _F4, scaled);
+        mPosition.cubic< f32 >(v31, temp_vec, temp_vec2, _F4, scaled);
     }
 
     TVec3f v28 = mPosition - v29;
@@ -168,7 +168,7 @@ void SkeletalFishGuard::exeApart() {
         MR::normalize(&v14);
         f32 sqr = v14.squared();
         if (sqr > 0.0000038146973f) {
-            f32 inv = JGeometry::TUtil<f32>::inv_sqrt(sqr);
+            f32 inv = JGeometry::TUtil< f32 >::inv_sqrt(sqr);
             v14.scale(inv * 0.30000001f);
         }
 
@@ -438,9 +438,9 @@ void SkeletalFishGuard::initSensor() {
 
 void SkeletalFishGuard::calcTransAndFront() {
     calcTarget(&_E8, &_F4, &_100, 0);
-    _D0.set<f32>(_100);
+    _D0.set< f32 >(_100);
     JMathInlineVEC::PSVECSubtract(&_F4, &mPosition, &_A4);
-    mPosition.set<f32>(_F4);
+    mPosition.set< f32 >(_F4);
 }
 
 void SkeletalFishGuard::rotateHorizontal(const TVec3f& a2, f32 scalar) {

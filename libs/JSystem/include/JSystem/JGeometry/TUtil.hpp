@@ -5,7 +5,7 @@
 static f32 flt_80630CA0[0x408];
 
 namespace JGeometry {
-    template <typename T>
+    template < typename T >
     class TUtil {
     public:
         static int epsilonEquals(T a1, T a2, T a3) {

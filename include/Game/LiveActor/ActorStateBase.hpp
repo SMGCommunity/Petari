@@ -30,7 +30,7 @@ public:
     /* 0x8 */ bool mIsDead;
 };
 
-template <typename T>
+template < typename T >
 class ActorStateBase : public ActorStateBaseInterface {
 public:
     ActorStateBase(const char* pName)

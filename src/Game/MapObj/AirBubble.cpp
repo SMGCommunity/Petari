@@ -51,8 +51,8 @@ void AirBubble::control() {
 }
 
 void AirBubble::appearMove(const TVec3f& a1, s32 a2) {
-    _8C.set<f32>(a1);
-    mPosition.set<f32>(a1);
+    _8C.set< f32 >(a1);
+    mPosition.set< f32 >(a1);
     appear();
     MR::showModel(this);
     setNerve(&NrvAirBubble::AirBubbleNrvMove::sInstance);
@@ -135,7 +135,7 @@ namespace NrvAirBubble {
     INIT_NERVE(AirBubbleNrvKillWait);
 
     void AirBubbleNrvKillWait::execute(Spine* pSpine) const {
-        AirBubble* bubble = reinterpret_cast<AirBubble*>(pSpine->mExecutor);
+        AirBubble* bubble = reinterpret_cast< AirBubble* >(pSpine->mExecutor);
 
         if (MR::isGreaterStep(bubble, 90)) {
             bubble->kill();
@@ -143,17 +143,17 @@ namespace NrvAirBubble {
     }
 
     void AirBubbleNrvBreak::execute(Spine* pSpine) const {
-        AirBubble* bubble = reinterpret_cast<AirBubble*>(pSpine->mExecutor);
+        AirBubble* bubble = reinterpret_cast< AirBubble* >(pSpine->mExecutor);
         bubble->exeBreak();
     }
 
     void AirBubbleNrvMove::execute(Spine* pSpine) const {
-        AirBubble* bubble = reinterpret_cast<AirBubble*>(pSpine->mExecutor);
+        AirBubble* bubble = reinterpret_cast< AirBubble* >(pSpine->mExecutor);
         bubble->exeMove();
     }
 
     void AirBubbleNrvWait::execute(Spine* pSpine) const {
-        AirBubble* bubble = reinterpret_cast<AirBubble*>(pSpine->mExecutor);
+        AirBubble* bubble = reinterpret_cast< AirBubble* >(pSpine->mExecutor);
         bubble->exeWait();
     }
 }; // namespace NrvAirBubble

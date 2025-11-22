@@ -44,20 +44,20 @@ public:
     bool isShotTypeOnGravity() const;
     bool isShotTypeFollow() const;
 
-    JointControlDelegator<PressureBase>* mJointController; // 0x8C
-    TVec3f                               mFront;           // 0x90
-    f32                                  _9C;
-    f32                                  mNozzleRotation; // 0xA0
-    s32                                  mWaitTime;       // 0xA4
-    f32                                  mBallSpeed;      // 0xA8
-    s32                                  mShotType;       // 0xAC
-    u8                                   _B0;
-    u8                                   _B1;
-    u8                                   _B2;
-    u8                                   _B3;
-    PressureMessenger*                   mMessenger; // 0xB4
-    MsgSharedGroup*                      mGroup;     // 0xB8
-    s8                                   _BC;
+    JointControlDelegator< PressureBase >* mJointController; // 0x8C
+    TVec3f                                 mFront;           // 0x90
+    f32                                    _9C;
+    f32                                    mNozzleRotation; // 0xA0
+    s32                                    mWaitTime;       // 0xA4
+    f32                                    mBallSpeed;      // 0xA8
+    s32                                    mShotType;       // 0xAC
+    u8                                     _B0;
+    u8                                     _B1;
+    u8                                     _B2;
+    u8                                     _B3;
+    PressureMessenger*                     mMessenger; // 0xB4
+    MsgSharedGroup*                        mGroup;     // 0xB8
+    s8                                     _BC;
 };
 
 namespace NrvPressureMessenger {

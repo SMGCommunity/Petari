@@ -85,7 +85,7 @@ void CameraRegisterHolder::initFloat() {
 
 void CameraRegisterHolder::initDummyRegister() {
     mDummyMatrix.identity();
-    declareMtxReg(sDummyMatrixName, reinterpret_cast<MtxPtr>(&mDummyMatrix));
+    declareMtxReg(sDummyMatrixName, reinterpret_cast< MtxPtr >(&mDummyMatrix));
 
     mDummyVector.z = 0.0f;
     mDummyVector.y = 0.0f;

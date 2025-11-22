@@ -60,12 +60,12 @@ void RailGraphEdge::setNextEdge(s32 a1, s32 a2) {
 }
 
 void RailGraphEdge::setArgs(const JMapInfo* pInfo, s32 a2) {
-    pInfo->getValue<s32>(a2, "point_arg0", &mPointArg0);
-    pInfo->getValue<s32>(a2, "point_arg1", &mPointArg1);
-    pInfo->getValue<s32>(a2, "point_arg2", &mPointArg2);
-    pInfo->getValue<s32>(a2, "point_arg3", &mPointArg3);
-    pInfo->getValue<s32>(a2, "point_arg4", &mPointArg4);
-    pInfo->getValue<s32>(a2, "point_arg5", &mPointArg5);
-    pInfo->getValue<s32>(a2, "point_arg6", &mPointArg6);
-    pInfo->getValue<s32>(a2, "point_arg7", &mPointArg7);
+    pInfo->getValue< s32 >(a2, "point_arg0", &mPointArg0);
+    pInfo->getValue< s32 >(a2, "point_arg1", &mPointArg1);
+    pInfo->getValue< s32 >(a2, "point_arg2", &mPointArg2);
+    pInfo->getValue< s32 >(a2, "point_arg3", &mPointArg3);
+    pInfo->getValue< s32 >(a2, "point_arg4", &mPointArg4);
+    pInfo->getValue< s32 >(a2, "point_arg5", &mPointArg5);
+    pInfo->getValue< s32 >(a2, "point_arg6", &mPointArg6);
+    pInfo->getValue< s32 >(a2, "point_arg7", &mPointArg7);
 }

@@ -85,7 +85,7 @@ void BossKameck::control() {
     }
 
     mActorList->removeDeadActor();
-    _C8.set<f32>(mVelocity);
+    _C8.set< f32 >(mVelocity);
     mJointCtrl->update();
 }
 
@@ -126,12 +126,12 @@ void BossKameck::setPose(MtxPtr mtx) {
     f32 z = pos.mMtx[2][3];
     f32 y = pos.mMtx[1][3];
     f32 x = pos.mMtx[0][3];
-    mPosition.set<f32>(x, y, z);
+    mPosition.set< f32 >(x, y, z);
 
     f32 v1 = (2.0f * (_90.x * _90.z)) + (2.0f * (_90.w * _90.y));
     f32 v2 = (2.0f * (_90.y * _90.z)) - (2.0f * (_90.w * _90.x));
     f32 v3 = (1.0f - (2.0f * (_90.x * _90.x))) - (2.0f * (_90.y * _90.y));
-    _A0.set<f32>(v1, v2, v3);
+    _A0.set< f32 >(v1, v2, v3);
 }
 
 void BossKameck::killAllBeam() {
@@ -208,7 +208,7 @@ void BossKameck::init(const JMapInfoIter& rIter) {
     MR::startBrk(this, "Star");
     MR::setBrkFrameAndStop(this, hasPowerStar);
     MR::needStageSwitchReadA(this, rIter);
-    MR::listenStageSwitchOnA(this, MR::FunctorV0M<BossKameck*, void (BossKameck::*)(void)>(this, &BossKameck::startSequence));
+    MR::listenStageSwitchOnA(this, MR::FunctorV0M< BossKameck*, void (BossKameck::*)(void) >(this, &BossKameck::startSequence));
     makeActorDead();
 }
 

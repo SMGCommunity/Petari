@@ -179,12 +179,12 @@ namespace NrvSwitchBox {
     INIT_NERVE(SwitchBoxNrvHit);
 
     void SwitchBoxNrvHit::execute(Spine* pSpine) const {
-        SwitchBox* pActor = reinterpret_cast<SwitchBox*>(pSpine->mExecutor);
+        SwitchBox* pActor = reinterpret_cast< SwitchBox* >(pSpine->mExecutor);
         pActor->exeHit();
     }
 
     void SwitchBoxNrvWait::execute(Spine* pSpine) const {
-        SwitchBox* pActor = reinterpret_cast<SwitchBox*>(pSpine->mExecutor);
+        SwitchBox* pActor = reinterpret_cast< SwitchBox* >(pSpine->mExecutor);
         pActor->exeWait();
     }
 }; // namespace NrvSwitchBox

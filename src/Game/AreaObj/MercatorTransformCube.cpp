@@ -23,7 +23,7 @@ f32 MercatorTransformCube::getSphereRadius() const {
         return 3000.0f;
     }
 
-    return static_cast<f32>(mObjArg0);
+    return static_cast< f32 >(mObjArg0);
 }
 
 void MercatorTransformCube::calcUV(TVec2f* uv, const TVec3f& a2) const {
@@ -44,8 +44,8 @@ void MercatorTransformCube::calcLocalBoxSize(TVec3f* pPos) const {
     TVec3f max;
     TVec3f min;
 
-    min.set<f32>(box->mMin);
-    max.set<f32>(box->mMax);
+    min.set< f32 >(box->mMin);
+    max.set< f32 >(box->mMax);
 
-    JMathInlineVEC::PSVECSubtract(reinterpret_cast<Vec*>(&max), reinterpret_cast<Vec*>(&min), reinterpret_cast<Vec*>(pPos));
+    JMathInlineVEC::PSVECSubtract(reinterpret_cast< Vec* >(&max), reinterpret_cast< Vec* >(&min), reinterpret_cast< Vec* >(pPos));
 }

@@ -109,27 +109,27 @@ namespace NrvMechaKoopaPartsHead {
     INIT_NERVE(MechaKoopaPartsHeadNrvDemoAppearStar);
 
     void MechaKoopaPartsHeadNrvDemoAppearStar::execute(Spine* pSpine) const {
-        MechaKoopaPartsHead* head = reinterpret_cast<MechaKoopaPartsHead*>(pSpine->mExecutor);
+        MechaKoopaPartsHead* head = reinterpret_cast< MechaKoopaPartsHead* >(pSpine->mExecutor);
         head->exeDemoAppearStar();
     }
 
     void MechaKoopaPartsHeadNrvDemoWhiteFadeIn::execute(Spine* pSpine) const {
-        MechaKoopaPartsHead* head = reinterpret_cast<MechaKoopaPartsHead*>(pSpine->mExecutor);
+        MechaKoopaPartsHead* head = reinterpret_cast< MechaKoopaPartsHead* >(pSpine->mExecutor);
         head->exeDemoWhiteFadeIn();
     }
 
     void MechaKoopaPartsHeadNrvDemoWhiteWait::execute(Spine* pSpine) const {
-        MechaKoopaPartsHead* head = reinterpret_cast<MechaKoopaPartsHead*>(pSpine->mExecutor);
+        MechaKoopaPartsHead* head = reinterpret_cast< MechaKoopaPartsHead* >(pSpine->mExecutor);
         head->exeDemoWhiteWait();
     }
 
     void MechaKoopaPartsHeadNrvDemoWhiteFadeOut::execute(Spine* pSpine) const {
-        MechaKoopaPartsHead* head = reinterpret_cast<MechaKoopaPartsHead*>(pSpine->mExecutor);
+        MechaKoopaPartsHead* head = reinterpret_cast< MechaKoopaPartsHead* >(pSpine->mExecutor);
         head->exeDemoWhiteFadeOut();
     }
 
     void MechaKoopaPartsHeadNrvDemoBreak::execute(Spine* pSpine) const {
-        MechaKoopaPartsHead* head = reinterpret_cast<MechaKoopaPartsHead*>(pSpine->mExecutor);
+        MechaKoopaPartsHead* head = reinterpret_cast< MechaKoopaPartsHead* >(pSpine->mExecutor);
         head->exeDemoBreak();
     }
 

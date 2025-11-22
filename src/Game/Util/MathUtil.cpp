@@ -35,22 +35,22 @@ namespace MR {
         if (__fabsf(x) < 0.98f) {
             return JMAAcosRadian(x);
         } else if (x < 0.0f) {
-            u32 index = static_cast<u32>((-x - 0.98f) * 255.0f * 50.0f);
+            u32 index = static_cast< u32 >((-x - 0.98f) * 255.0f * 50.0f);
             f32 acos = gAcosTable[index];
 
             return PI - acos;
         } else {
-            u32 index = static_cast<u32>((x - 0.98f) * 255.0f * 50.0f);
+            u32 index = static_cast< u32 >((x - 0.98f) * 255.0f * 50.0f);
 
             return gAcosTable[index];
         }
     }
 
     f32 getRandom() {
-        u32 rand = SingletonHolder<GameSystem>::get()->mObjHolder->mRandom.rand();
+        u32 rand = SingletonHolder< GameSystem >::get()->mObjHolder->mRandom.rand();
         u32 value = (rand >> 9) | 0x3F800000;
 
-        return reinterpret_cast<f32&>(value) - 1.0f;
+        return reinterpret_cast< f32& >(value) - 1.0f;
     }
 
     f32 getRandom(f32 min, f32 max) {
@@ -58,7 +58,7 @@ namespace MR {
     }
 
     s32 getRandom(s32 min, s32 max) {
-        return getRandom(static_cast<f32>(min), static_cast<f32>(max));
+        return getRandom(static_cast< f32 >(min), static_cast< f32 >(max));
     }
 
     f32 getRandomDegree() {
@@ -66,7 +66,7 @@ namespace MR {
     }
 
     void calcRandomVec(TVec3f* pDst, f32 min, f32 max) {
-        pDst->set<f32>(getRandom(min, max), getRandom(min, max), getRandom(min, max));
+        pDst->set< f32 >(getRandom(min, max), getRandom(min, max), getRandom(min, max));
     }
 
     bool isHalfProbability() {
@@ -82,7 +82,7 @@ namespace MR {
     }
 
     void getRandomVector(TVec3f* pDst, f32 range) {
-        pDst->set<f32>(getRandom(-range, range), getRandom(-range, range), getRandom(-range, range));
+        pDst->set< f32 >(getRandom(-range, range), getRandom(-range, range), getRandom(-range, range));
     }
 
 #ifdef NON_MATCHING
@@ -124,7 +124,7 @@ namespace MR {
     }
 
     f32 getLinerValueFromMinMax(f32 x, f32 min, f32 max, f32 start, f32 end) {
-        return getInterpolateValue((JGeometry::TUtil<f32>::clamp(x, min, max) - min) / (max - min), start, end);
+        return getInterpolateValue((JGeometry::TUtil< f32 >::clamp(x, min, max) - min) / (max - min), start, end);
     }
 
     // FIXME: Source registers swapped in multiplication by pi.
@@ -211,7 +211,7 @@ namespace MR {
             return false;
         } else {
             normalize(v2, pParam1);
-            *pParam2 = JGeometry::TUtil<f32>::clamp(v1.dot(rParam4), -1.0f, 1.0f);
+            *pParam2 = JGeometry::TUtil< f32 >::clamp(v1.dot(rParam4), -1.0f, 1.0f);
 
             return true;
         }
@@ -296,12 +296,12 @@ namespace MR {
             if (length <= 0.0000038146973f) {
                 pDst->zero();
             } else {
-                f32 invSqrt = JGeometry::TUtil<f32>::inv_sqrt(sqr);
+                f32 invSqrt = JGeometry::TUtil< f32 >::inv_sqrt(sqr);
 
                 pDst->scale(invSqrt * length, rSrc);
             }
         } else {
-            pDst->set<f32>(rSrc);
+            pDst->set< f32 >(rSrc);
         }
     }
 
@@ -336,7 +336,7 @@ namespace MR {
         f32 xDelta = rPos1.x - rPos2.x;
         f32 yDelta = rPos1.y - rPos2.y;
 
-        return JGeometry::TUtil<f32>::sqrt(xDelta * xDelta + yDelta * yDelta);
+        return JGeometry::TUtil< f32 >::sqrt(xDelta * xDelta + yDelta * yDelta);
     }
 
     // rotateVecDegree
@@ -401,7 +401,7 @@ namespace MR {
             return 1.0f;
         }
 
-        return (JGeometry::TUtil<f32>::clamp(x, min, max) - min) / range;
+        return (JGeometry::TUtil< f32 >::clamp(x, min, max) - min) / range;
     }
 
     f32 normalizeAbs(f32 x, f32 min, f32 max) {
@@ -565,7 +565,7 @@ namespace MR {
 #endif
 
     u8 lerp(u8 start, u8 end, f32 t) {
-        return JGeometry::TUtil<f32>::clamp(start + (end - start) * t, 0.0f, 255.0f);
+        return JGeometry::TUtil< f32 >::clamp(start + (end - start) * t, 0.0f, 255.0f);
     }
 
     GXColor lerp(GXColor start, GXColor end, f32 t) {
@@ -767,8 +767,8 @@ namespace MR {
     }
 
     f32 diffAngleAbs(const TVec2f& rParam1, const TVec2f& rParam2) {
-        f32 length1 = JGeometry::TUtil<f32>::sqrt(rParam1.dot(rParam1)); // TODO: Should probably be `TVec2f::length`
-        f32 length2 = JGeometry::TUtil<f32>::sqrt(rParam2.dot(rParam2)); // TODO: Should probably be `TVec2f::length`
+        f32 length1 = JGeometry::TUtil< f32 >::sqrt(rParam1.dot(rParam1)); // TODO: Should probably be `TVec2f::length`
+        f32 length2 = JGeometry::TUtil< f32 >::sqrt(rParam2.dot(rParam2)); // TODO: Should probably be `TVec2f::length`
         f32 x = rParam1.dot(rParam2) / (length1 * length2);
 
         if (x >= 1.0f) {

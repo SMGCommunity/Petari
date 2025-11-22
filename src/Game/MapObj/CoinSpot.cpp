@@ -86,12 +86,12 @@ namespace NrvCoinSpot {
     INIT_NERVE(CoinSpotNrvIsInTornado);
 
     void CoinSpotNrvIsInTornado::execute(Spine* pSpine) const {
-        CoinSpot* spot = reinterpret_cast<CoinSpot*>(pSpine->mExecutor);
+        CoinSpot* spot = reinterpret_cast< CoinSpot* >(pSpine->mExecutor);
         spot->exeIsInTornado();
     }
 
     void CoinSpotNrvWait::execute(Spine* pSpine) const {
-        CoinSpot* spot = reinterpret_cast<CoinSpot*>(pSpine->mExecutor);
+        CoinSpot* spot = reinterpret_cast< CoinSpot* >(pSpine->mExecutor);
         spot->exeWait();
     }
 }; // namespace NrvCoinSpot

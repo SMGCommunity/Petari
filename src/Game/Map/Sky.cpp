@@ -121,7 +121,7 @@ void ProjectionMapSky::initModel(const char* pName) {
 
 namespace NrvSky {
     void HostTypeChange::execute(Spine* pSpine) const {
-        Sky* sky = reinterpret_cast<Sky*>(pSpine->mExecutor);
+        Sky* sky = reinterpret_cast< Sky* >(pSpine->mExecutor);
 
         if (MR::isFirstStep(sky)) {
             MR::startAllAnim(sky, cChangeAnimName);
@@ -129,7 +129,7 @@ namespace NrvSky {
     }
 
     void HostTypeWait::execute(Spine* pSpine) const {
-        Sky* sky = reinterpret_cast<Sky*>(pSpine->mExecutor);
+        Sky* sky = reinterpret_cast< Sky* >(pSpine->mExecutor);
 
         if (MR::isValidSwitchA(sky) && MR::isOnSwitchA(sky)) {
             sky->setNerve(&NrvSky::HostTypeChange::sInstance);

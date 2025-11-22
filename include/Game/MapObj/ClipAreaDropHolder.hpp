@@ -4,7 +4,7 @@
 #include "Game/MapObj/ClipAreaDrop.hpp"
 #include "Game/NameObj/NameObj.hpp"
 
-class ClipAreaDropHolder : public DeriveActorGroup<ClipAreaDrop> {
+class ClipAreaDropHolder : public DeriveActorGroup< ClipAreaDrop > {
 public:
     ClipAreaDropHolder();
     virtual ~ClipAreaDropHolder();

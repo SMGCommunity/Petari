@@ -6,7 +6,7 @@ class Coin;
 class NameObj;
 class PurpleCoinStarter;
 
-class PurpleCoinHolder : public DeriveActorGroup<Coin> {
+class PurpleCoinHolder : public DeriveActorGroup< Coin > {
 public:
     PurpleCoinHolder();
 

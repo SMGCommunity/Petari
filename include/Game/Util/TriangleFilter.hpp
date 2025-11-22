@@ -28,7 +28,7 @@ namespace MR {
     TriangleFilterFunc* createTriangleFilterFunc(TriangleFunc);
 };
 
-template <typename T>
+template < typename T >
 class TriangleFilterDelegator : public TriangleFilterBase {
 public:
     typedef bool (T::*DelegateFilter)(const Triangle*);
@@ -37,10 +37,10 @@ public:
 
     virtual bool isInvalidTriangle(const Triangle*) const;
 
-    static inline TriangleFilterDelegator<T>* allocateDelegator(
+    static inline TriangleFilterDelegator< T >* allocateDelegator(
         T*             parent,
         DelegateFilter filter) {
-        return new TriangleFilterDelegator<T>(parent, filter);
+        return new TriangleFilterDelegator< T >(parent, filter);
     }
 
     T*             mParent; // 0x4

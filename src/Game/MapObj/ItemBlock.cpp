@@ -9,22 +9,22 @@ namespace NrvItemBlock {
     INIT_NERVE(ItemBlockNrvAppearItemSplash);
 
     void ItemBlockNrvAppearItemSplash::execute(Spine* pSpine) const {
-        ItemBlock* block = reinterpret_cast<ItemBlock*>(pSpine->mExecutor);
+        ItemBlock* block = reinterpret_cast< ItemBlock* >(pSpine->mExecutor);
         block->exeAppearItemSplash();
     }
 
     void ItemBlockNrvAppearItem::execute(Spine* pSpine) const {
-        ItemBlock* block = reinterpret_cast<ItemBlock*>(pSpine->mExecutor);
+        ItemBlock* block = reinterpret_cast< ItemBlock* >(pSpine->mExecutor);
         block->exeAppearItem();
     }
 
     void ItemBlockNrvWait::execute(Spine* pSpine) const {
-        ItemBlock* block = reinterpret_cast<ItemBlock*>(pSpine->mExecutor);
+        ItemBlock* block = reinterpret_cast< ItemBlock* >(pSpine->mExecutor);
         block->exeWait();
     }
 
     void ItemBlockNrvStandby::execute(Spine* pSpine) const {
-        ItemBlock* block = reinterpret_cast<ItemBlock*>(pSpine->mExecutor);
+        ItemBlock* block = reinterpret_cast< ItemBlock* >(pSpine->mExecutor);
         if (MR::isFirstStep(block)) {
             MR::startBck(block, "Wait", nullptr);
         }

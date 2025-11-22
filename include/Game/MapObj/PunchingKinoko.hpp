@@ -54,15 +54,15 @@ public:
     void addVelocityKeepHeight();
 
 private:
-    GroundChecker*                         mGroundChecker;   // 0x8C
-    AnimScaleController*                   mScaleController; // 0x90
-    JointControlDelegator<PunchingKinoko>* mDelegator;       // 0x94
-    s32                                    _98;
-    TVec3f                                 _9C;
-    TVec3f                                 _A8;
-    s32                                    mStarPointerHitCoolDown; // 0xB4
-    bool                                   _B8;
-    s32                                    mInvincibleHitCoolDown; // 0xBC
+    GroundChecker*                           mGroundChecker;   // 0x8C
+    AnimScaleController*                     mScaleController; // 0x90
+    JointControlDelegator< PunchingKinoko >* mDelegator;       // 0x94
+    s32                                      _98;
+    TVec3f                                   _9C;
+    TVec3f                                   _A8;
+    s32                                      mStarPointerHitCoolDown; // 0xB4
+    bool                                     _B8;
+    s32                                      mInvincibleHitCoolDown; // 0xBC
 };
 
 namespace NrvPunchingKinoko {

@@ -26,16 +26,16 @@ public:
 
     static void* getGlbResource(const char*, JKRFileLoader*);
     static void  initializeVolumeList();
-    void         prependVolumeList(JSULink<JKRFileLoader>*);
-    void         removeVolumeList(JSULink<JKRFileLoader>*);
+    void         prependVolumeList(JSULink< JKRFileLoader >*);
+    void         removeVolumeList(JSULink< JKRFileLoader >*);
 
-    static JSUList<JKRFileLoader> sFileLoaderList;    // 0x8060CF9C
-    static JKRFileLoader*         gCurrentFileLoader; // 0x806B7140;
+    static JSUList< JKRFileLoader > sFileLoaderList;    // 0x8060CF9C
+    static JKRFileLoader*           gCurrentFileLoader; // 0x806B7140;
 
-    JSULink<JKRFileLoader> mLoaderLink; // 0x18
-    char*                  mLoaderName; // 0x28
-    u32                    mLoaderType; // 0x2C
-    bool                   mIsMounted;  // 0x30
-    u8                     _31[3];
-    u32                    _34;
+    JSULink< JKRFileLoader > mLoaderLink; // 0x18
+    char*                    mLoaderName; // 0x28
+    u32                      mLoaderType; // 0x2C
+    bool                     mIsMounted;  // 0x30
+    u8                       _31[3];
+    u32                      _34;
 };

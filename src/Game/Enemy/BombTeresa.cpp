@@ -122,9 +122,9 @@ void BombTeresa::initFromJMapParam(const JMapInfoIter& rIter) {
 }
 
 void BombTeresa::initTongue() {
-    mJointDelegator = new JointControlDelegator<BombTeresa>(this, &BombTeresa::rootTongueMtxCallBack, &BombTeresa::rootTongueMtxCallBack);
+    mJointDelegator = new JointControlDelegator< BombTeresa >(this, &BombTeresa::rootTongueMtxCallBack, &BombTeresa::rootTongueMtxCallBack);
     MR::setJointControllerParam(mJointDelegator, this, "Tongue1");
-    mJointDelegator2 = new JointControlDelegator<BombTeresa>(this, &BombTeresa::endTongueMtxCallBack, &BombTeresa::rootTongueMtxCallBack);
+    mJointDelegator2 = new JointControlDelegator< BombTeresa >(this, &BombTeresa::endTongueMtxCallBack, &BombTeresa::rootTongueMtxCallBack);
     MR::setJointControllerParam(mJointDelegator, this, "Tongue2");
 }
 
@@ -315,7 +315,7 @@ bool BombTeresa::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* p
         MR::calcSensorDirectionNormalize(&uVar1, pSender, pReceiver);
         TVec3f v16(uVar1);
         v16.mult(20.0f);
-        mVelocity.set<f32>(v16);
+        mVelocity.set< f32 >(v16);
         setNerve(&NrvBombTeresa::BombTeresaNrvShock::sInstance);
         return false;
     }
@@ -476,9 +476,9 @@ void BombTeresa::exeBallAppear() {
     }
     if (MR::isLessStep(this, 160)) {
         MR::rotateQuatRollBall(&_9C, mVelocity, -mGravity, 70.0f);
-        _AC.set<f32>((2.0f * _9C.y * _9C.x) + (2.0f * _9C.y * _9C.z),
-                     (2.0f * _9C.z * _9C.x) - (2.0f * _9C.y * _9C.y),
-                     (1.0f - (2.0f * _9C.y * _9C.y) - (2.0f * _9C.z * _9C.z)));
+        _AC.set< f32 >((2.0f * _9C.y * _9C.x) + (2.0f * _9C.y * _9C.z),
+                       (2.0f * _9C.z * _9C.x) - (2.0f * _9C.y * _9C.y),
+                       (1.0f - (2.0f * _9C.y * _9C.y) - (2.0f * _9C.z * _9C.z)));
     } else {
         f32 v3 = mGravity.dot(_AC);
         JMAVECScaleAdd(&mGravity, &_AC, &_AC, -v3);
@@ -630,7 +630,7 @@ void BombTeresa::exeDrift() {
     TVec3f v13;
     v16.getTrans(v13);
     TVec3f v12;
-    v12.set<f32>(*v16[1], *v16[5], *v16[9]); //Wrong.
+    v12.set< f32 >(*v16[1], *v16[5], *v16[9]); //Wrong.
     if (!MR::normalizeOrZero(&v12)) {
         JMAVECScaleAdd(&v12, &v13, &v13, 20.0f);
     }

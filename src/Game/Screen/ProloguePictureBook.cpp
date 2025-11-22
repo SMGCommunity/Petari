@@ -67,7 +67,7 @@ void ProloguePictureBook::exePlaying() {
 
         MR::testSystemPadTriggerDecide();
 
-        if (sBookPageInfo[index] > static_cast<s32>(pAnimCtrl->mCurrentFrame)) {
+        if (sBookPageInfo[index] > static_cast< s32 >(pAnimCtrl->mCurrentFrame)) {
             return;
         }
 

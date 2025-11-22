@@ -12,7 +12,7 @@
 #include "JSystem/JAudio2/JASHeapCtrl.hpp"
 #include <mem.h>
 
-template <typename T>
+template < typename T >
 class JASGlobalInstance {
 public:
     static T* sInstance;
@@ -32,7 +32,7 @@ public:
 class JASSoundParams;
 class JASChannel;
 
-template <typename T>
+template < typename T >
 class JASPtrTable {
 public:
     JASPtrTable(T** ptrTable, u32 len) NO_INLINE {
@@ -50,8 +50,8 @@ public:
     u32 mLen;      // 0x4
 };
 
-template <typename T, u32 LEN>
-class JASPtrArray : public JASPtrTable<T> {
+template < typename T, u32 LEN >
+class JASPtrArray : public JASPtrTable< T > {
 public:
     JASPtrArray() NO_INLINE : JASPtrTable(mPtrArray, LEN) {}
     T* mPtrArray[LEN]; // 0x8
@@ -64,7 +64,7 @@ public:
     virtual JASBank* getBank(u32) const = 0;
 };
 
-template <u32 LEN>
+template < u32 LEN >
 class JASBankTable : public JASBankList {
 public:
     JASBankTable() NO_INLINE : JASBankList(), mBanks() {
@@ -74,7 +74,7 @@ public:
         return mBanks.get(idx);
     }
 
-    JASPtrArray<JASBank, LEN> mBanks;
+    JASPtrArray< JASBank, LEN > mBanks;
 };
 
 class JASChannelParams {
@@ -94,21 +94,21 @@ public:
 };
 
 class JASDefaultBankTable
-    : public JASBankTable<0x100>,
-      public JASGlobalInstance<JASDefaultBankTable> {
+    : public JASBankTable< 0x100 >,
+      public JASGlobalInstance< JASDefaultBankTable > {
 public:
     JASDefaultBankTable();
     ~JASDefaultBankTable();
 };
 
-class JASTrack : public JASSeqCtrl, public JASPoolAllocObject_MultiThreaded<JASTrack> {
+class JASTrack : public JASSeqCtrl, public JASPoolAllocObject_MultiThreaded< JASTrack > {
 public:
     static const JASOscillator::Data sEnvOsc;
     static const JASOscillator::Data sPitchEnvOsc;
 
     static JASDefaultBankTable sDefaultBankTable;
 
-    struct TChannelMgr : public JASPoolAllocObject_MultiThreaded<TChannelMgr> {
+    struct TChannelMgr : public JASPoolAllocObject_MultiThreaded< TChannelMgr > {
         TChannelMgr(JASTrack*);
         void init();
         void releaseAll();

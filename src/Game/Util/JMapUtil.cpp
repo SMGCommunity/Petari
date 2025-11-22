@@ -7,7 +7,7 @@
 namespace {
     bool getJMapInfoRailArg(const JMapInfoIter& rIter, const char* pName, s32* pOut) NO_INLINE {
         s32  val;
-        bool hasValue = rIter.getValue<s32>(pName, &val);
+        bool hasValue = rIter.getValue< s32 >(pName, &val);
 
         if (!hasValue) {
             return false;
@@ -23,7 +23,7 @@ namespace {
 
     bool getJMapInfoArgNoInit(const JMapInfoIter& rIter, const char* pName, s32* pOut) NO_INLINE {
         s32  val;
-        bool hasValue = rIter.getValue<s32>(pName, &val);
+        bool hasValue = rIter.getValue< s32 >(pName, &val);
 
         if (!hasValue) {
             return false;
@@ -51,7 +51,7 @@ namespace {
 
     bool getJMapInfoArgNoInit(const JMapInfoIter& rIter, const char* pName, bool* pOut) NO_INLINE {
         s32  val;
-        bool hasValue = rIter.getValue<s32>(pName, &val);
+        bool hasValue = rIter.getValue< s32 >(pName, &val);
 
         if (!hasValue) {
             return false;
@@ -309,13 +309,13 @@ namespace MR {
 
     s32 getDemoGroupID(const JMapInfoIter& rIter) {
         s32 groupID = -1;
-        rIter.getValue<s32>("DemoGroupId", &groupID);
+        rIter.getValue< s32 >("DemoGroupId", &groupID);
         return groupID;
     }
 
     s32 getDemoGroupLinkID(const JMapInfoIter& rIter) {
         s32 linkID = -1;
-        rIter.getValue<s32>("l_id", &linkID);
+        rIter.getValue< s32 >("l_id", &linkID);
         return linkID;
     }
 
@@ -332,11 +332,11 @@ namespace MR {
             return false;
         }
 
-        if (rIter.getValue<const char*>("type", pName)) {
+        if (rIter.getValue< const char* >("type", pName)) {
             return true;
         }
 
-        return rIter.getValue<const char*>("name", pName);
+        return rIter.getValue< const char* >("name", pName);
     }
 
     bool isExistJMapArg(const JMapInfoIter& rIter) {
@@ -345,59 +345,59 @@ namespace MR {
         }
 
         s32 val;
-        return rIter.getValue<s32>("Obj_arg0", &val);
+        return rIter.getValue< s32 >("Obj_arg0", &val);
     }
 
     bool getJMapInfoShapeIdWithInit(const JMapInfoIter& rIter, s32* pShapeID) {
-        return rIter.getValue<s32>("ShapeModelNo", pShapeID);
+        return rIter.getValue< s32 >("ShapeModelNo", pShapeID);
     }
 
     bool getJMapInfoTransLocal(const JMapInfoIter& rIter, TVec3f* pOut) {
-        if (!MR::getValue<f32>(rIter, "pos_x", &pOut->x)) {
+        if (!MR::getValue< f32 >(rIter, "pos_x", &pOut->x)) {
             return false;
-        } else if (!MR::getValue<f32>(rIter, "pos_y", &pOut->y)) {
+        } else if (!MR::getValue< f32 >(rIter, "pos_y", &pOut->y)) {
             return false;
         }
 
-        return MR::getValue<f32>(rIter, "pos_z", &pOut->z);
+        return MR::getValue< f32 >(rIter, "pos_z", &pOut->z);
     }
 
     bool getJMapInfoRotateLocal(const JMapInfoIter& rIter, TVec3f* pOut) {
-        if (!MR::getValue<f32>(rIter, "dir_x", &pOut->x)) {
+        if (!MR::getValue< f32 >(rIter, "dir_x", &pOut->x)) {
             return false;
-        } else if (!MR::getValue<f32>(rIter, "dir_y", &pOut->y)) {
+        } else if (!MR::getValue< f32 >(rIter, "dir_y", &pOut->y)) {
             return false;
         }
 
-        return MR::getValue<f32>(rIter, "dir_z", &pOut->z);
+        return MR::getValue< f32 >(rIter, "dir_z", &pOut->z);
     }
 
     bool getJMapInfoScale(const JMapInfoIter& rIter, TVec3f* pOut) {
-        if (!MR::getValue<f32>(rIter, "scale_x", &pOut->x)) {
+        if (!MR::getValue< f32 >(rIter, "scale_x", &pOut->x)) {
             return false;
-        } else if (!MR::getValue<f32>(rIter, "scale_y", &pOut->y)) {
+        } else if (!MR::getValue< f32 >(rIter, "scale_y", &pOut->y)) {
             return false;
         }
 
-        return MR::getValue<f32>(rIter, "scale_z", &pOut->z);
+        return MR::getValue< f32 >(rIter, "scale_z", &pOut->z);
     }
 
     bool getJMapInfoV3f(const JMapInfoIter& rIter, const char* pName, TVec3f* pOut) {
         char str[0x20];
         sprintf(str, "%sX", pName);
 
-        if (!MR::getValue<f32>(rIter, str, &pOut->x)) {
+        if (!MR::getValue< f32 >(rIter, str, &pOut->x)) {
             return false;
         }
 
         sprintf(str, "%sY", pName);
 
-        if (!MR::getValue<f32>(rIter, str, &pOut->y)) {
+        if (!MR::getValue< f32 >(rIter, str, &pOut->y)) {
             return false;
         }
 
         sprintf(str, "%sZ", pName);
-        return MR::getValue<f32>(rIter, str, &pOut->z);
+        return MR::getValue< f32 >(rIter, str, &pOut->z);
     }
 
     bool getJMapInfoArg1WithInit(const JMapInfoIter& rIter, s32* pOut) {
@@ -449,7 +449,7 @@ namespace MR {
     }
 
     bool getJMapInfoLinkID(const JMapInfoIter& rIter, s32* pOut) {
-        return rIter.getValue<s32>("l_id", pOut);
+        return rIter.getValue< s32 >("l_id", pOut);
     }
 
     bool isConnectedWithRail(const JMapInfoIter& rIter) {
@@ -543,36 +543,36 @@ namespace MR {
 
     s32 getDemoCastID(const JMapInfoIter& rIter) {
         s32 id = -1;
-        rIter.getValue<s32>("CastId", &id);
+        rIter.getValue< s32 >("CastId", &id);
         return id;
     }
 
     const char* getDemoName(const JMapInfoIter& rIter) {
         const char* name = nullptr;
-        rIter.getValue<const char*>("DemoName", &name);
+        rIter.getValue< const char* >("DemoName", &name);
         return name;
     }
 
     const char* getDemoSheetName(const JMapInfoIter& rIter) {
         const char* name = nullptr;
-        rIter.getValue<const char*>("TimeSheetName", &name);
+        rIter.getValue< const char* >("TimeSheetName", &name);
         return name;
     }
 
     bool getNextLinkRailID(const JMapInfoIter& rIter, s32* pOut) {
-        return rIter.getValue<s32>("Path_ID", pOut);
+        return rIter.getValue< s32 >("Path_ID", pOut);
     }
 
     bool isEqualRailUsage(const JMapInfoIter& rIter, const char* pUsage) {
         const char* str = nullptr;
-        rIter.getValue<const char*>("usage", &str);
+        rIter.getValue< const char* >("usage", &str);
         return isEqualStringCase(str, pUsage);
     }
 
     void getRailPointPos0(const JMapInfoIter& rIter, TVec3f* pOut) {
-        rIter.getValue<f32>("pnt0_x", &pOut->x);
-        rIter.getValue<f32>("pnt0_y", &pOut->y);
-        rIter.getValue<f32>("pnt0_z", &pOut->z);
+        rIter.getValue< f32 >("pnt0_x", &pOut->x);
+        rIter.getValue< f32 >("pnt0_y", &pOut->y);
+        rIter.getValue< f32 >("pnt0_z", &pOut->z);
 
         if (isPlacementLocalStage()) {
             getZonePlacementMtx(rIter)->mult(*pOut, *pOut);
@@ -580,9 +580,9 @@ namespace MR {
     }
 
     void getRailPointPos1(const JMapInfoIter& rIter, TVec3f* pOut) {
-        rIter.getValue<f32>("pnt1_x", &pOut->x);
-        rIter.getValue<f32>("pnt1_y", &pOut->y);
-        rIter.getValue<f32>("pnt1_z", &pOut->z);
+        rIter.getValue< f32 >("pnt1_x", &pOut->x);
+        rIter.getValue< f32 >("pnt1_y", &pOut->y);
+        rIter.getValue< f32 >("pnt1_z", &pOut->z);
 
         if (isPlacementLocalStage()) {
             getZonePlacementMtx(rIter)->mult(*pOut, *pOut);
@@ -590,9 +590,9 @@ namespace MR {
     }
 
     void getRailPointPos2(const JMapInfoIter& rIter, TVec3f* pOut) {
-        rIter.getValue<f32>("pnt2_x", &pOut->x);
-        rIter.getValue<f32>("pnt2_y", &pOut->y);
-        rIter.getValue<f32>("pnt2_z", &pOut->z);
+        rIter.getValue< f32 >("pnt2_x", &pOut->x);
+        rIter.getValue< f32 >("pnt2_y", &pOut->y);
+        rIter.getValue< f32 >("pnt2_z", &pOut->z);
 
         if (isPlacementLocalStage()) {
             getZonePlacementMtx(rIter)->mult(*pOut, *pOut);
@@ -601,7 +601,7 @@ namespace MR {
 
     bool isLoopRailPathIter(const JMapInfoIter& rIter) {
         const char* status = "";
-        rIter.getValue<const char*>("closed", &status);
+        rIter.getValue< const char* >("closed", &status);
         return isEqualString(status, "CLOSE");
     }
 }; // namespace MR

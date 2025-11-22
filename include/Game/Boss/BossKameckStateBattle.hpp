@@ -10,7 +10,7 @@ class KameckBeamEventListener;
 class HitSensor;
 class KameckBeam;
 
-class BossKameckStateBattle : public ActorStateBase<BossKameck> {
+class BossKameckStateBattle : public ActorStateBase< BossKameck > {
 public:
     BossKameckStateBattle(BossKameck*);
 

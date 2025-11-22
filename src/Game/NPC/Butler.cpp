@@ -207,7 +207,7 @@ void Butler::startDemoStarPiece1() {
 void Butler::startDemoStarPiece2() {
     MR::setSensorRadius(this, "Body", 50.0f);
     MR::offSwitchB(this);
-    static_cast<StarPieceGroup*>(MR::getPairedGroupMember(this))->forceKillStarPieceAll(false);
+    static_cast< StarPieceGroup* >(MR::getPairedGroupMember(this))->forceKillStarPieceAll(false);
     MR::getPairedGroupMember(this)->kill();
 
     _160 = false;
@@ -404,7 +404,7 @@ void Butler::tryReplaceStarPieceIfExecLecture() {
         return;
     }
 
-    if (static_cast<StarPieceGroup*>(MR::getPairedGroupMember(this))->isExistAnyStarPiece()) {
+    if (static_cast< StarPieceGroup* >(MR::getPairedGroupMember(this))->isExistAnyStarPiece()) {
         return;
     }
 
@@ -414,7 +414,7 @@ void Butler::tryReplaceStarPieceIfExecLecture() {
         return;
     }
 
-    static_cast<StarPieceGroup*>(MR::getPairedGroupMember(this))->forceReplaceStarPieceAll();
+    static_cast< StarPieceGroup* >(MR::getPairedGroupMember(this))->forceReplaceStarPieceAll();
 
     MR::startSystemSE("SE_SY_LECT_STAR_PIECE_APR", -1, -1);
 

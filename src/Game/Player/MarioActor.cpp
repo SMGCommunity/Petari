@@ -292,7 +292,7 @@ void MarioActor::init2(const TVec3f& a, const TVec3f& b, s32 initialAnimation) {
     mBinder->_1EC._0 = false;
     MR::setBinderOffsetVec(this, &_2C4, false);
 
-    mBinder->setTriangleFilter(TriangleFilterDelegator<MarioActor>::allocateDelegator(this, &MarioActor::binderFilter));
+    mBinder->setTriangleFilter(TriangleFilterDelegator< MarioActor >::allocateDelegator(this, &MarioActor::binderFilter));
 
     mBinder->_1EC._3 = true;
     initEffect();

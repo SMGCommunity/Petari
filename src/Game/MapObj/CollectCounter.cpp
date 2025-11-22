@@ -52,7 +52,7 @@ namespace NrvCollectCounter {
     CollectCounterNrvShow CollectCounterNrvShow::sInstance;
 
     void CollectCounterNrvShow::execute(Spine* pSpine) const {
-        CollectCounter* counter = reinterpret_cast<CollectCounter*>(pSpine->mExecutor);
+        CollectCounter* counter = reinterpret_cast< CollectCounter* >(pSpine->mExecutor);
 
         if (MR::isFirstStep(counter)) {
             MR::startAnim(counter, "Appear", 0);

@@ -60,7 +60,7 @@ namespace NrvReverseGravityRoomPlanet {
     }
 
     void ReverseGravityRoomPlanetNrvUpStart::execute(Spine* pSpine) const {
-        ReverseGravityRoomPlanet* planet = reinterpret_cast<ReverseGravityRoomPlanet*>(pSpine->mExecutor);
+        ReverseGravityRoomPlanet* planet = reinterpret_cast< ReverseGravityRoomPlanet* >(pSpine->mExecutor);
         planet->exeUpStart();
     }
 
@@ -68,7 +68,7 @@ namespace NrvReverseGravityRoomPlanet {
     }
 
     void ReverseGravityRoomPlanetNrvDownStart::execute(Spine* pSpine) const {
-        ReverseGravityRoomPlanet* planet = reinterpret_cast<ReverseGravityRoomPlanet*>(pSpine->mExecutor);
+        ReverseGravityRoomPlanet* planet = reinterpret_cast< ReverseGravityRoomPlanet* >(pSpine->mExecutor);
         planet->exeDownStart();
     }
 }; // namespace NrvReverseGravityRoomPlanet

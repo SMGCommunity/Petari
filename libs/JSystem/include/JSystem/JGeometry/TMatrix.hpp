@@ -5,26 +5,26 @@
 #include <cmath>
 
 namespace JGeometry {
-    template <typename T>
+    template < typename T >
     struct SMatrix34C {
     public:
         typedef f32 ArrType[4];
         void        set(const ArrType*);
-        void        set(const SMatrix34C<T>& rSrc);
+        void        set(const SMatrix34C< T >& rSrc);
         void        set(T rxx, T ryx, T rzx, T tx, T rxy, T ryy, T rzy, T ty, T rxz, T ryz, T rzz, T tz);
 
         void scale(T);
 
-        inline void setInline(const SMatrix34C<T>& rSrc) {
+        inline void setInline(const SMatrix34C< T >& rSrc) {
 #ifdef __MWERKS__
-            register const SMatrix34C<T>* pSrc = &rSrc;
-            register SMatrix34C<T>*       pDest = this;
-            register f32                  rzztz;
-            register f32                  rxzyz;
-            register f32                  rzyty;
-            register f32                  rxyyy;
-            register f32                  rzxtx;
-            register f32                  rxxyx;
+            register const SMatrix34C< T >* pSrc = &rSrc;
+            register SMatrix34C< T >*       pDest = this;
+            register f32                    rzztz;
+            register f32                    rxzyz;
+            register f32                    rzyty;
+            register f32                    rxyyy;
+            register f32                    rzxtx;
+            register f32                    rxxyx;
 
             __asm {
                 psq_l     rxxyx, 0(pSrc), 0, 0
@@ -46,14 +46,14 @@ namespace JGeometry {
 
         inline void setInline(const MtxPtr rSrc) {
 #ifdef __MWERKS__
-            register const MtxPtr   pSrc = rSrc;
-            register SMatrix34C<T>* pDest = this;
-            register f32            rzztz;
-            register f32            rxzyz;
-            register f32            rzyty;
-            register f32            rxyyy;
-            register f32            rzxtx;
-            register f32            rxxyx;
+            register const MtxPtr     pSrc = rSrc;
+            register SMatrix34C< T >* pDest = this;
+            register f32              rzztz;
+            register f32              rxzyz;
+            register f32              rzyty;
+            register f32              rxyyy;
+            register f32              rzxtx;
+            register f32              rxxyx;
 
             __asm {
                 psq_l     rxxyx, 0(pSrc), 0, 0
@@ -75,14 +75,14 @@ namespace JGeometry {
 
         inline void setInline_2(MtxPtr rSrc) {
 #ifdef __MWERKS__
-            register MtxPtr         pSrc = rSrc;
-            register SMatrix34C<T>* pDest = this;
-            register f32            rzztz;
-            register f32            rxzyz;
-            register f32            rzyty;
-            register f32            rxyyy;
-            register f32            rzxtx;
-            register f32            rxxyx;
+            register MtxPtr           pSrc = rSrc;
+            register SMatrix34C< T >* pDest = this;
+            register f32              rzztz;
+            register f32              rxzyz;
+            register f32              rzyty;
+            register f32              rxyyy;
+            register f32              rzxtx;
+            register f32              rxxyx;
 
             __asm {
                 psq_l     rxxyx, 0(pSrc), 0, 0
@@ -178,19 +178,19 @@ namespace JGeometry {
         T mMtx[3][4];
     };
 
-    template <typename T>
+    template < typename T >
     struct TMatrix34 : public T {
     public:
         void identity();
         void concat(const T& rSrcA, const T& rSrcB);
         void concat(const T& rSrc);
-        void invert(const TMatrix34<T>& rDest);
+        void invert(const TMatrix34< T >& rDest);
 
         void mult(const TVec3f& rSrc, TVec3f& rDest) const;
 
         void multTranspose(const TVec3f& a1, const TVec3f& a2) const;
     };
-    template <class T>
+    template < class T >
     struct TRotation3 : public T {
     public:
         void identity33();
@@ -236,21 +236,21 @@ namespace JGeometry {
             f32 z = this->mMtx[2][0];
             f32 y = this->mMtx[1][0];
             f32 x = this->mMtx[0][0];
-            rDest.set<f32>(x, y, z);
+            rDest.set< f32 >(x, y, z);
         }
 
         inline void getYDirInline(TVec3f& rDest) const {
             f32 z = this->mMtx[2][1];
             f32 y = this->mMtx[1][1];
             f32 x = this->mMtx[0][1];
-            rDest.set<f32>(x, y, z);
+            rDest.set< f32 >(x, y, z);
         }
 
         inline void getZDirInline(TVec3f& rDest) const {
             f32 z = this->mMtx[2][2];
             f32 y = this->mMtx[1][2];
             f32 x = this->mMtx[0][2];
-            rDest.set<f32>(x, y, z);
+            rDest.set< f32 >(x, y, z);
         }
 
         inline void zeroTrans() {
@@ -427,12 +427,12 @@ namespace JGeometry {
             vx = rSrc.x;
             vy = rSrc.y;
             x = (vx * a11 + vy * a12);
-            rDst.set<f32>(rSrc.z * a13 + (vx * a11 + vy * a12), rSrc.z * a23 + (vx * a21 + vy * a22), rSrc.z * a33 + (rSrc.x * a31 + rSrc.y * a32));
+            rDst.set< f32 >(rSrc.z * a13 + (vx * a11 + vy * a12), rSrc.z * a23 + (vx * a21 + vy * a22), rSrc.z * a33 + (rSrc.x * a31 + rSrc.y * a32));
         }
     };
 
-    template <class T>
-    struct TPosition3 : public TRotation3<T> {
+    template < class T >
+    struct TPosition3 : public TRotation3< T > {
     public:
         void getTrans(TVec3f& rDest) const;
         void setTrans(const TVec3f& rSrc);
@@ -441,7 +441,7 @@ namespace JGeometry {
 
         void makeRotate(const TVec3f&, f32);
         void makeQuat(const TQuat4f& rSrc);
-        void setPositionFromLookAt(const TPosition3<T>& rLookAt);
+        void setPositionFromLookAt(const TPosition3< T >& rLookAt);
         void setQT(const TQuat4f& rSrcQuat, const TVec3f& rSrcTrans);
 
         f32 get(int x, int y) const {
@@ -456,7 +456,7 @@ namespace JGeometry {
             f32 z = this->mMtx[2][3];
             f32 y = this->mMtx[1][3];
             f32 x = this->mMtx[0][3];
-            rDest.set<f32>(x, y, z);
+            rDest.set< f32 >(x, y, z);
         }
 
         inline void setVec(const TVec3f& a1, const TVec3f& a2, const TVec3f& a3) {
@@ -475,7 +475,7 @@ namespace JGeometry {
     };
 }; // namespace JGeometry
 
-typedef JGeometry::SMatrix34C<f32>     TSMtxf;
-typedef JGeometry::TMatrix34<TSMtxf>   TMtx34f;
-typedef JGeometry::TRotation3<TMtx34f> TRot3f;
-typedef JGeometry::TPosition3<TMtx34f> TPos3f;
+typedef JGeometry::SMatrix34C< f32 >     TSMtxf;
+typedef JGeometry::TMatrix34< TSMtxf >   TMtx34f;
+typedef JGeometry::TRotation3< TMtx34f > TRot3f;
+typedef JGeometry::TPosition3< TMtx34f > TPos3f;

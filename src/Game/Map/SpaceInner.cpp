@@ -50,7 +50,7 @@ SpaceInner::~SpaceInner() {
 
 namespace NrvSpaceInner {
     void HostTypeDisappear::execute(Spine* pSpine) const {
-        SpaceInner* actor = reinterpret_cast<SpaceInner*>(pSpine->mExecutor);
+        SpaceInner* actor = reinterpret_cast< SpaceInner* >(pSpine->mExecutor);
         if (MR::isBrkStopped(actor)) {
             actor->kill();
         }

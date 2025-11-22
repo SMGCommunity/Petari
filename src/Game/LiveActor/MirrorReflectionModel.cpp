@@ -12,11 +12,11 @@ MirrorReflectionModel::MirrorReflectionModel(const LiveActor* pActor, const char
         pos.set(mtx);
         pos.getTrans(mPosition);
     } else {
-        mPosition.set<f32>(pActor->mPosition);
+        mPosition.set< f32 >(pActor->mPosition);
     }
 
-    mRotation.set<f32>(_8C->mRotation);
-    mScale.set<f32>(_8C->mScale);
+    mRotation.set< f32 >(_8C->mRotation);
+    mScale.set< f32 >(_8C->mScale);
     initModelManagerWithAnm(pInternalName, nullptr, false);
     MR::connectToSceneMirrorMapObjDecoration(this);
 }

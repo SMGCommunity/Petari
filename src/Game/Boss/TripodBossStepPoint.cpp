@@ -14,9 +14,9 @@ void TripodBossStepPoint::init(const JMapInfoIter& rIter) {
     if (MR::isValidInfo(rIter)) {
         TPos3f mtx;
         MR::getJMapInfoMatrixFromRT(rIter, &mtx);
-        mStepPosition.set<f32>(mtx(0, 3), mtx(1, 3), mtx(2, 3));
-        mStepNormal.set<f32>(mtx(0, 1), mtx(1, 1), mtx(2, 1));
-        mStepFront.set<f32>(mtx(0, 2), mtx(1, 2), mtx(2, 2));
+        mStepPosition.set< f32 >(mtx(0, 3), mtx(1, 3), mtx(2, 3));
+        mStepNormal.set< f32 >(mtx(0, 1), mtx(1, 1), mtx(2, 1));
+        mStepFront.set< f32 >(mtx(0, 2), mtx(1, 2), mtx(2, 2));
         MR::getJMapInfoArg0NoInit(rIter, &_B4);
         MR::getJMapInfoArg1NoInit(rIter, &mLeg);
         MR::getJMapInfoArg2NoInit(rIter, &mWaitTime);

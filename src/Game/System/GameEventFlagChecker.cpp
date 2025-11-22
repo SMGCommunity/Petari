@@ -6,7 +6,7 @@
 GameEventFlagChecker::GameEventFlagChecker(GameDataHolder* holder) {
     mDataHolder = holder;
     mFlagStorage = nullptr;
-    SingletonHolder<GameEventFlagTableInstance>::init();
+    SingletonHolder< GameEventFlagTableInstance >::init();
     mFlagStorage = new GameEventFlagStorage();
 }
 

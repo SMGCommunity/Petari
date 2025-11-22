@@ -188,7 +188,7 @@ void MapObjActor::control() {
         mRailMover->movement();
 
         if (mRailMover->isWorking()) {
-            mPosition.set<f32>(mRailMover->_28);
+            mPosition.set< f32 >(mRailMover->_28);
             mRailMover->tryResetPositionRepeat();
         }
     }
@@ -596,12 +596,12 @@ namespace NrvMapObjActor {
     }
 
     void HostTypeMove::execute(Spine* pSpine) const {
-        MapObjActor* actor = reinterpret_cast<MapObjActor*>(pSpine->mExecutor);
+        MapObjActor* actor = reinterpret_cast< MapObjActor* >(pSpine->mExecutor);
         actor->exeMove();
     }
 
     void HostTypeWait::execute(Spine* pSpine) const {
-        MapObjActor* actor = reinterpret_cast<MapObjActor*>(pSpine->mExecutor);
+        MapObjActor* actor = reinterpret_cast< MapObjActor* >(pSpine->mExecutor);
         actor->exeWait();
     }
 }; // namespace NrvMapObjActor

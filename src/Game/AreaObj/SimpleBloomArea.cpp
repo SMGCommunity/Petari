@@ -16,15 +16,15 @@ void SimpleBloomArea::init(const JMapInfoIter& rIter) {
     MR::createSimpleBloom();
 
     if (mObjArg0 >= 0) {
-        _40 = static_cast<u8>(mObjArg0);
+        _40 = static_cast< u8 >(mObjArg0);
     }
 
     if (mObjArg1 >= 0) {
-        _44 = static_cast<u8>(mObjArg1);
+        _44 = static_cast< u8 >(mObjArg1);
     }
 
     if (mObjArg2 >= 0) {
-        _45 = static_cast<u8>(mObjArg2);
+        _45 = static_cast< u8 >(mObjArg2);
     }
 }
 

@@ -26,12 +26,12 @@ namespace NrvAnimationRandomPlayer {
     NERVE(HostTypePlay);
 
     void HostTypePlay::execute(Spine* pSpine) const {
-        AnimationRandomPlayer* player = reinterpret_cast<AnimationRandomPlayer*>(pSpine->mExecutor);
+        AnimationRandomPlayer* player = reinterpret_cast< AnimationRandomPlayer* >(pSpine->mExecutor);
         player->exePlay();
     }
 
     void HostTypeWait::execute(Spine* pSpine) const {
-        AnimationRandomPlayer* player = reinterpret_cast<AnimationRandomPlayer*>(pSpine->mExecutor);
+        AnimationRandomPlayer* player = reinterpret_cast< AnimationRandomPlayer* >(pSpine->mExecutor);
         player->exeWait();
     }
 }; // namespace NrvAnimationRandomPlayer

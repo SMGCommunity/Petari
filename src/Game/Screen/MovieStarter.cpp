@@ -13,7 +13,7 @@ void MovieStarter::init(const JMapInfoIter& rIter) {
     MR::invalidateClipping(this);
 
     if (MR::useStageSwitchReadAppear(this, rIter)) {
-        MR::FunctorV0M<MovieStarter*, void (MovieStarter::*)()> appearFunc = MR::Functor_Inline<MovieStarter>(this, &MovieStarter::appear);
+        MR::FunctorV0M< MovieStarter*, void (MovieStarter::*)() > appearFunc = MR::Functor_Inline< MovieStarter >(this, &MovieStarter::appear);
         MR::listenStageSwitchOnAppear(this, appearFunc);
     }
 

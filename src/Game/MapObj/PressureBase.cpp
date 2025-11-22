@@ -53,7 +53,7 @@ void PressureBase::init(const JMapInfoIter& rIter) {
     initSound(6, false);
     MR::initShadowVolumeSphere(this, 75.0f);
     MR::invalidateShadow(this, nullptr);
-    mJointController = MR::createJointDelegatorWithNullChildFunc<PressureBase>(this, &PressureBase::calcJointCannonV, "Cannon1");
+    mJointController = MR::createJointDelegatorWithNullChildFunc< PressureBase >(this, &PressureBase::calcJointCannonV, "Cannon1");
     MR::initJointTransform(this);
     MR::getJMapInfoArg0NoInit(rIter, &mNozzleRotation);
     MR::getJMapInfoArg1NoInit(rIter, &mWaitTime);
@@ -273,22 +273,22 @@ namespace NrvPressureBase {
     INIT_NERVE(PressureBaseNrvShot);
 
     void PressureBaseNrvShot::execute(Spine* pSpine) const {
-        PressureBase* pressure = reinterpret_cast<PressureBase*>(pSpine->mExecutor);
+        PressureBase* pressure = reinterpret_cast< PressureBase* >(pSpine->mExecutor);
         pressure->exeShot();
     }
 
     void PressureBaseNrvPrepareToShot::execute(Spine* pSpine) const {
-        PressureBase* pressure = reinterpret_cast<PressureBase*>(pSpine->mExecutor);
+        PressureBase* pressure = reinterpret_cast< PressureBase* >(pSpine->mExecutor);
         pressure->exePrepareToShot();
     }
 
     void PressureBaseNrvWait::execute(Spine* pSpine) const {
-        PressureBase* pressure = reinterpret_cast<PressureBase*>(pSpine->mExecutor);
+        PressureBase* pressure = reinterpret_cast< PressureBase* >(pSpine->mExecutor);
         pressure->exeWait();
     }
 
     void PressureBaseNrvFirstWait::execute(Spine* pSpine) const {
-        PressureBase* pressure = reinterpret_cast<PressureBase*>(pSpine->mExecutor);
+        PressureBase* pressure = reinterpret_cast< PressureBase* >(pSpine->mExecutor);
 
         if (MR::isStep(pressure, pressure->mWaitTime)) {
             pressure->setNerve(&NrvPressureBase::PressureBaseNrvPrepareToShot::sInstance);
@@ -299,7 +299,7 @@ namespace NrvPressureBase {
     }
 
     void PressureBaseNrvRelax::execute(Spine* pSpine) const {
-        PressureBase* pressure = reinterpret_cast<PressureBase*>(pSpine->mExecutor);
+        PressureBase* pressure = reinterpret_cast< PressureBase* >(pSpine->mExecutor);
 
         if (MR::isFirstStep(pressure)) {
             pressure->_9C = -45.0f;
@@ -307,19 +307,19 @@ namespace NrvPressureBase {
     }
 
     void PressureBaseNrvWaitStart::execute(Spine* pSpine) const {
-        PressureBase* pressure = reinterpret_cast<PressureBase*>(pSpine->mExecutor);
+        PressureBase* pressure = reinterpret_cast< PressureBase* >(pSpine->mExecutor);
         pressure->exeBound();
     }
 
     void PressureBaseNrvRelaxStart::execute(Spine* pSpine) const {
-        PressureBase* pressure = reinterpret_cast<PressureBase*>(pSpine->mExecutor);
+        PressureBase* pressure = reinterpret_cast< PressureBase* >(pSpine->mExecutor);
         pressure->exeBound();
     }
 }; // namespace NrvPressureBase
 
 namespace NrvPressureMessenger {
     void PressureMessengerNrvSync::execute(Spine* pSpine) const {
-        PressureMessenger* mess = reinterpret_cast<PressureMessenger*>(pSpine->mExecutor);
+        PressureMessenger* mess = reinterpret_cast< PressureMessenger* >(pSpine->mExecutor);
         mess->exeSync();
     }
 }; // namespace NrvPressureMessenger

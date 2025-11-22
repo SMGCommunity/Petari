@@ -64,7 +64,7 @@ namespace NrvDeadLeaves {
     INIT_NERVE(DeadLeavesNrvSpin);
 
     void DeadLeavesNrvSpin::execute(Spine* pSpine) const {
-        DeadLeaves* leaves = reinterpret_cast<DeadLeaves*>(pSpine->mExecutor);
+        DeadLeaves* leaves = reinterpret_cast< DeadLeaves* >(pSpine->mExecutor);
         leaves->exeSpin();
     }
 

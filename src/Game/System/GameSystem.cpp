@@ -50,20 +50,20 @@ void main(void) {
     DVDInit();
     VIInit();
     HeapMemoryWatcher::createRootHeap();
-    OSInitMutex(&MR::MutexHolder<0>::sMutex);
-    OSInitMutex(&MR::MutexHolder<1>::sMutex);
-    OSInitMutex(&MR::MutexHolder<2>::sMutex);
+    OSInitMutex(&MR::MutexHolder< 0 >::sMutex);
+    OSInitMutex(&MR::MutexHolder< 1 >::sMutex);
+    OSInitMutex(&MR::MutexHolder< 2 >::sMutex);
     nw4r::lyt::LytInit();
     MR::setLayoutDefaultAllocator();
-    SingletonHolder<HeapMemoryWatcher>::init();
-    SingletonHolder<HeapMemoryWatcher>::get()->setCurrentHeapToStationedHeap();
+    SingletonHolder< HeapMemoryWatcher >::init();
+    SingletonHolder< HeapMemoryWatcher >::get()->setCurrentHeapToStationedHeap();
     FileRipper::setup(0x20000, MR::getStationedHeapNapa());
     GameSystemException::init();
     MR::initAcosTable();
-    SingletonHolder<GameSystem>::init();
-    SingletonHolder<GameSystem>::get()->init();
+    SingletonHolder< GameSystem >::init();
+    SingletonHolder< GameSystem >::get()->init();
 
-    GameSystem* pGameSystem = SingletonHolder<GameSystem>::get();
+    GameSystem* pGameSystem = SingletonHolder< GameSystem >::get();
 
     while (true) {
         pGameSystem->frameLoop();
@@ -99,8 +99,8 @@ void GameSystem::init() {
     mObjHolder->init();
     mErrorWatcher = new GameSystemErrorWatcher();
     mFrameControl = new GameSystemFrameControl();
-    SingletonHolder<GameSystemResetAndPowerProcess>::init();
-    SingletonHolder<GameSystemResetAndPowerProcess>::get()->initWithoutIter();
+    SingletonHolder< GameSystemResetAndPowerProcess >::init();
+    SingletonHolder< GameSystemResetAndPowerProcess >::get()->initWithoutIter();
     mStationedArchiveLoader = new GameSystemStationedArchiveLoader();
     mHomeButtonLayout = new HomeButtonLayout();
     mHomeButtonStateNotifier = new HomeButtonStateNotifier();
@@ -119,8 +119,8 @@ bool GameSystem::isDoneLoadSystemArchive() const {
 void GameSystem::startToLoadSystemArchive() {
     mIsExecuteLoadSystemArchive = true;
 
-    SingletonHolder<HeapMemoryWatcher>::get()->setCurrentHeapToStationedHeap();
-    SingletonHolder<NameObjRegister>::get()->setCurrentHolder(mObjHolder->mObjHolder);
+    SingletonHolder< HeapMemoryWatcher >::get()->setCurrentHeapToStationedHeap();
+    SingletonHolder< NameObjRegister >::get()->setCurrentHolder(mObjHolder->mObjHolder);
     setNerve(&NrvGameSystem::GameSystemLoadStationedArchive::sInstance);
 }
 
@@ -223,11 +223,11 @@ void GameSystem::draw() {
 
     mErrorWatcher->draw();
     mHomeButtonLayout->draw();
-    SingletonHolder<GameSystemResetAndPowerProcess>::get()->draw();
+    SingletonHolder< GameSystemResetAndPowerProcess >::get()->draw();
 }
 
 void GameSystem::update() {
-    SingletonHolder<GameSystemResetAndPowerProcess>::get()->movement();
+    SingletonHolder< GameSystemResetAndPowerProcess >::get()->movement();
     mSceneController->checkRequestAndChangeScene();
     mObjHolder->update();
     mHomeButtonLayout->movement();
@@ -243,7 +243,7 @@ void GameSystem::update() {
 
 void GameSystem::updateSceneController() {
     bool isSceneUpdate = true;
-    bool isResetProcessing = SingletonHolder<GameSystemResetAndPowerProcess>::get()->isActive();
+    bool isResetProcessing = SingletonHolder< GameSystemResetAndPowerProcess >::get()->isActive();
 
     mObjHolder->updateAudioSystem();
 

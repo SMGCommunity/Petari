@@ -16,7 +16,7 @@ Note::Note(const char* pName, const TVec3f& rRailDirection, NoteFairy* pParent)
 
 void Note::init(const JMapInfoIter& rIter) {
     MR::createSceneObj(SceneObj_NoteGroup);
-    _90.set<f32>(mPosition);
+    _90.set< f32 >(mPosition);
     initModelManagerWithAnm("Note", nullptr, false);
     MR::connectToSceneNoSilhouettedMapObjStrongLight(this);
     initHitSensor(1);
@@ -87,7 +87,7 @@ void Note::exeFlyUp() {
 */
 
 void Note::control() {
-    mRotation.y = MR::getSceneObj<NoteGroup>(SceneObj_NoteGroup)->mRotation;
+    mRotation.y = MR::getSceneObj< NoteGroup >(SceneObj_NoteGroup)->mRotation;
 }
 
 /*

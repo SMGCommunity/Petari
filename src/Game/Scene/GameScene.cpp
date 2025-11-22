@@ -26,7 +26,7 @@
 
 namespace {
     CometRetryButton* getCometRetryButton() {
-        return MR::getSceneObj<CometRetryButton>(SceneObj_CometRetryButton);
+        return MR::getSceneObj< CometRetryButton >(SceneObj_CometRetryButton);
     }
 }; // namespace
 
@@ -320,7 +320,7 @@ void GameScene::initSequences() {
     mPauseCtrl = new GameScenePauseControl(this);
     mPauseCtrl->registerNervePauseMenu(&NrvGameScene::GameScenePauseMenu::sInstance);
 
-    MR::FunctorV0M<GameScenePauseControl*, void (GameScenePauseControl::*)()> func = MR::Functor_Inline<GameScenePauseControl>(mPauseCtrl, &GameScenePauseControl::requestPauseMenuOff);
+    MR::FunctorV0M< GameScenePauseControl*, void (GameScenePauseControl::*)() > func = MR::Functor_Inline< GameScenePauseControl >(mPauseCtrl, &GameScenePauseControl::requestPauseMenuOff);
     mPauseSeq->initWindowMenu(func);
 }
 

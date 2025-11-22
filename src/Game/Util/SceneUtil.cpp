@@ -14,37 +14,37 @@
 
 namespace {
     ScenePlayingResult* getScenePlayingResult() {
-        return MR::getSceneObj<ScenePlayingResult>(SceneObj_ScenePlayingResult);
+        return MR::getSceneObj< ScenePlayingResult >(SceneObj_ScenePlayingResult);
     }
 }; // namespace
 
 namespace MR {
     s32 getCurrentScenarioNo() {
-        return SingletonHolder<GameSystem>::get()->mSceneController->getCurrentScenarioNo();
+        return SingletonHolder< GameSystem >::get()->mSceneController->getCurrentScenarioNo();
     }
 
     s32 getCurrentSelectedScenarioNo() {
-        return SingletonHolder<GameSystem>::get()->mSceneController->getCurrentSelectedScenarioNo();
+        return SingletonHolder< GameSystem >::get()->mSceneController->getCurrentSelectedScenarioNo();
     }
 
     void setCurrentScenarioNo(s32 current, s32 currentSelected) {
-        return SingletonHolder<GameSystem>::get()->mSceneController->setCurrentScenarioNo(current, currentSelected);
+        return SingletonHolder< GameSystem >::get()->mSceneController->setCurrentScenarioNo(current, currentSelected);
     }
 
     bool isScenarioDecided() {
-        return SingletonHolder<GameSystem>::get()->mSceneController->isScenarioDecided();
+        return SingletonHolder< GameSystem >::get()->mSceneController->isScenarioDecided();
     }
 
     const char* getCurrentStageName() {
-        return SingletonHolder<GameSystem>::get()->mSceneController->_0.mStage;
+        return SingletonHolder< GameSystem >::get()->mSceneController->_0.mStage;
     }
 
     bool isEqualSceneName(const char* pSceneName) {
-        return isEqualStringCase(SingletonHolder<GameSystem>::get()->mSceneController->_0.mScene, pSceneName);
+        return isEqualStringCase(SingletonHolder< GameSystem >::get()->mSceneController->_0.mScene, pSceneName);
     }
 
     bool isEqualStageName(const char* pStageName) {
-        const char* pStage = SingletonHolder<GameSystem>::get()->mSceneController->_0.mStage;
+        const char* pStage = SingletonHolder< GameSystem >::get()->mSceneController->_0.mStage;
 
         if (pStage == nullptr) {
             return false;
@@ -122,23 +122,23 @@ namespace MR {
     }
 
     void setInitializeStatePlacementPlayer() {
-        SingletonHolder<GameSystem>::get()->mSceneController->setSceneInitializeState(State_PlacementPlayer);
+        SingletonHolder< GameSystem >::get()->mSceneController->setSceneInitializeState(State_PlacementPlayer);
     }
 
     void setInitializeStatePlacementHighPriority() {
-        SingletonHolder<GameSystem>::get()->mSceneController->setSceneInitializeState(State_PlacementHighPrio);
+        SingletonHolder< GameSystem >::get()->mSceneController->setSceneInitializeState(State_PlacementHighPrio);
     }
 
     void setInitializeStatePlacement() {
-        SingletonHolder<GameSystem>::get()->mSceneController->setSceneInitializeState(State_Placement);
+        SingletonHolder< GameSystem >::get()->mSceneController->setSceneInitializeState(State_Placement);
     }
 
     void setInitializeStateAfterPlacement() {
-        SingletonHolder<GameSystem>::get()->mSceneController->setSceneInitializeState(State_AfterPlacement);
+        SingletonHolder< GameSystem >::get()->mSceneController->setSceneInitializeState(State_AfterPlacement);
     }
 
     bool isInitializeStateEnd() {
-        return SingletonHolder<GameSystem>::get()->mSceneController->isSceneInitializeState(State_End);
+        return SingletonHolder< GameSystem >::get()->mSceneController->isSceneInitializeState(State_End);
     }
 
     // isInitializeStatePlacementSomething

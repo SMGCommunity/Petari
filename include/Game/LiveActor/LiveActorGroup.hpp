@@ -19,7 +19,7 @@ public:
     void       killAll();
 };
 
-template <typename T>
+template < typename T >
 class DeriveActorGroup : public LiveActorGroup {
 public:
     inline DeriveActorGroup(const char* pName, int maxCount)
@@ -28,7 +28,7 @@ public:
 
     T* getDeadMember() const NO_INLINE {
         if (getDeadActor()) {
-            return reinterpret_cast<T*>(getDeadActor());
+            return reinterpret_cast< T* >(getDeadActor());
         }
 
         return nullptr;

@@ -118,7 +118,7 @@ SkeletalFishBabyRailGroupNode* SkeletalFishBabyRailHolder::createGroup(s32 a1) {
 
 namespace MR {
     SkeletalFishBabyRailHolder* getSkeletalFishBabyRailHolder() {
-        return MR::getSceneObj<SkeletalFishBabyRailHolder>(SceneObj_SkeletalFishBabyRailHolder);
+        return MR::getSceneObj< SkeletalFishBabyRailHolder >(SceneObj_SkeletalFishBabyRailHolder);
     }
 
     void createSkeletalFishBabyRailHolder() {

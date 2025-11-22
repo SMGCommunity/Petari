@@ -62,7 +62,7 @@ void AreaFormCube::calcWorldPos(TVec3f* pPos) const {
     if (_4 != nullptr) {
         _4->mult(mTranslation, *pPos);
     } else {
-        pPos->set<f32>(mTranslation);
+        pPos->set< f32 >(mTranslation);
     }
 }
 
@@ -175,7 +175,7 @@ void AreaFormSphere::calcUpVec(TVec3f* pOut) const {
         _4->mult33(mUp, *pOut);
         MR::normalize(pOut);
     } else {
-        pOut->set<f32>(mUp);
+        pOut->set< f32 >(mUp);
     }
 }
 
@@ -183,7 +183,7 @@ void AreaFormSphere::calcPos(TVec3f* pOut) const {
     if (_4 != nullptr) {
         _4->mult(mTranslation, *pOut);
     } else {
-        pOut->set<f32>(mTranslation);
+        pOut->set< f32 >(mTranslation);
     }
 }
 
@@ -209,7 +209,7 @@ void AreaFormBowl::init(const JMapInfoIter& rIter) {
     MR::getJMapInfoTrans(rIter, &mTranslation);
 
     f32 scale_x;
-    rIter.getValue<f32>("scale_x", &scale_x);
+    rIter.getValue< f32 >("scale_x", &scale_x);
     _20 = scale_x;
     _20 *= 500.0f;
 
@@ -257,7 +257,7 @@ void AreaFormCylinder::calcPos(TVec3f* pPos) const {
     if (_4) {
         _4->mult(mTranslation, *pPos);
     } else {
-        pPos->set<f32>(mTranslation);
+        pPos->set< f32 >(mTranslation);
     }
 }
 
@@ -275,7 +275,7 @@ void AreaFormCylinder::calcUpVec(TVec3f* pUpVec) const {
         _4->mult33(mRotation, *pUpVec);
         MR::normalize(pUpVec);
     } else {
-        pUpVec->set<f32>(mRotation);
+        pUpVec->set< f32 >(mRotation);
     }
 }
 
@@ -321,7 +321,7 @@ void AreaFormSphere::init(const JMapInfoIter& rIter) {
     MR::getJMapInfoTrans(rIter, &mTranslation);
 
     f32 scale_x;
-    rIter.getValue<f32>("scale_x", &scale_x);
+    rIter.getValue< f32 >("scale_x", &scale_x);
 
     _14 = scale_x;
     _14 *= 500.0f;
@@ -345,12 +345,12 @@ void AreaFormCylinder::init(const JMapInfoIter& rIter) {
     calcDir(rotate);
 
     f32 temp;
-    rIter.getValue<f32>("scale_x", &temp);
+    rIter.getValue< f32 >("scale_x", &temp);
 
     _20 = temp;
     _20 *= 500.0f;
 
-    rIter.getValue<f32>("scale_y", &temp);
+    rIter.getValue< f32 >("scale_y", &temp);
     _24 = temp;
     _24 *= 500.0f;
 }

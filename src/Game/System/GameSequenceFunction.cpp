@@ -18,19 +18,19 @@
 
 namespace {
     GameSequenceProgress* getGameSequenceProgress() NO_INLINE {
-        return SingletonHolder<GameSystem>::get()->mSequenceDirector->mGameSequenceProgress;
+        return SingletonHolder< GameSystem >::get()->mSequenceDirector->mGameSequenceProgress;
     }
 
     SaveDataHandleSequence* getSaveDataHandleSequence() NO_INLINE {
-        return SingletonHolder<GameSystem>::get()->mSequenceDirector->mSaveDataHandleSequence;
+        return SingletonHolder< GameSystem >::get()->mSequenceDirector->mSaveDataHandleSequence;
     }
 
     GameDataTemporaryInGalaxy* getGameDataTemporaryInGalaxy() {
-        return SingletonHolder<GameSystem>::get()->mSequenceDirector->mGameDataTemporaryInGalaxy;
+        return SingletonHolder< GameSystem >::get()->mSequenceDirector->mGameDataTemporaryInGalaxy;
     }
 
     NWC24Messenger* getNWC24Messenger() NO_INLINE {
-        return SingletonHolder<GameSystem>::get()->mSequenceDirector->mNWC24Messenger;
+        return SingletonHolder< GameSystem >::get()->mSequenceDirector->mNWC24Messenger;
     }
 }; // namespace
 
@@ -102,11 +102,11 @@ namespace GameSequenceFunction {
     }
 
     bool isReadyToStartScene() {
-        return SingletonHolder<GameSystem>::get()->mSceneController->isReadyToStartScene();
+        return SingletonHolder< GameSystem >::get()->mSceneController->isReadyToStartScene();
     }
 
     void startScene() {
-        SingletonHolder<GameSystem>::get()->mSceneController->startScene();
+        SingletonHolder< GameSystem >::get()->mSceneController->startScene();
     }
 
     void notifyToGameSequenceProgressToEndScene() {

@@ -22,8 +22,8 @@ void CamTranslatorInnerCylinder::setParam(const CameraParamChunk* pChunk) {
     upX = general->mUp.x;
     dist = general->mDist;
 
-    camera->mWPoint.set<f32>(general->mWPoint);
-    camera->mAxis.set<f32>(axis);
+    camera->mWPoint.set< f32 >(general->mWPoint);
+    camera->mAxis.set< f32 >(axis);
     camera->mAngleA = angle.x;
     camera->mAngleB = angle.y;
     camera->mDist = dist;

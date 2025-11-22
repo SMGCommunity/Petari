@@ -180,6 +180,6 @@ void GameSceneLayoutHolder::invalidateStatusLayout() {
 
 namespace MR {
     GameSceneLayoutHolder* getGameSceneLayoutHolder() {
-        return MR::getSceneObj<GameSceneLayoutHolder>(SceneObj_GameSceneLayoutHolder);
+        return MR::getSceneObj< GameSceneLayoutHolder >(SceneObj_GameSceneLayoutHolder);
     }
 }; // namespace MR

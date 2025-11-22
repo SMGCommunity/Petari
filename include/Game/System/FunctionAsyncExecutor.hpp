@@ -61,9 +61,9 @@ public:
     FunctionAsyncExecInfo*       createAndAddExecInfo(const MR::FunctorBase&, int, const char*);
     FunctionAsyncExecutorThread* getSuspendThread();
 
-    /* 0x000 */ FunctionAsyncExecutorThread*                            mThreads[2];
-    /* 0x008 */ FunctionAsyncExecutorOnMainThread*                      mMainThreadExec;
-    /* 0x00C */ MR::Vector<MR::FixedArray<FunctionAsyncExecInfo*, 256>> mHolders;
-    /* 0x410 */ JKRUnitHeap*                                            _410;
-    /* 0x414 */ JKRExpHeap*                                             _414;
+    /* 0x000 */ FunctionAsyncExecutorThread*                                mThreads[2];
+    /* 0x008 */ FunctionAsyncExecutorOnMainThread*                          mMainThreadExec;
+    /* 0x00C */ MR::Vector< MR::FixedArray< FunctionAsyncExecInfo*, 256 > > mHolders;
+    /* 0x410 */ JKRUnitHeap*                                                _410;
+    /* 0x414 */ JKRExpHeap*                                                 _414;
 };

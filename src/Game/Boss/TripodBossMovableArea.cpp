@@ -10,7 +10,7 @@ namespace {
 }; // namespace
 
 HitResult::HitResult() {
-    _0.set<int>(0, 0, 0);
+    _0.set< int >(0, 0, 0);
     _C.x = 0.0f;
     _C.y = 0.0f;
     _C.z = 0.0f;
@@ -74,7 +74,7 @@ bool TripodBossMovableArea::collideSphere(HitResult* pResult, const TVec3f& a2, 
         return false;
     }
 
-    f32 v15 = (-v11 - MR::sqrt<f32>(v14));
+    f32 v15 = (-v11 - MR::sqrt< f32 >(v14));
     if (v15 > scalar) {
         return false;
     }
@@ -90,7 +90,7 @@ bool TripodBossMovableArea::collideSphere(HitResult* pResult, const TVec3f& a2, 
     MR::separateScalarAndDirection(&v17, &v27, v27);
     if (v17 < v10) {
         if (MR::isNearZero(v17, 0.001f)) {
-            v27.set<int>(0, 1, 0);
+            v27.set< int >(0, 1, 0);
         }
 
         pResult->_0 = mCenter + (v27 * v10);
@@ -117,7 +117,7 @@ void TripodBossMovableArea::calcNearLandingPosition(TVec3f* pPos, const TVec3f& 
 
     x = mBaseAxis.dot(v16);
     if (MR::isInRange(x, _2C, _30)) {
-        pPos->set<f32>(mCenter + (v16 * mRadius));
+        pPos->set< f32 >(mCenter + (v16 * mRadius));
     } else {
         if (x < _2C) {
             x = _2C;
@@ -137,9 +137,9 @@ void TripodBossMovableArea::calcNearLandingPosition(TVec3f* pPos, const TVec3f& 
         }
 
         MR::normalizeOrZero(&v15);
-        v7 = MR::sqrt<f32>((1.0f - (x * x)));
+        v7 = MR::sqrt< f32 >((1.0f - (x * x)));
         TVec3f sp48((mBaseAxis * x) + (v15 * v7));
-        pPos->set<f32>(sp48 * mRadius);
+        pPos->set< f32 >(sp48 * mRadius);
     }
 }
 
@@ -151,7 +151,7 @@ void TripodBossMovableArea::calcLandingNormal(TVec3f* pNorm, const TVec3f& a2) c
         norm = mBaseAxis;
     }
 
-    pNorm->set<f32>(norm);
+    pNorm->set< f32 >(norm);
 }
 
 void TripodBossMovableArea::calcLandingFront(TVec3f* pFront, const TVec3f& a2) const {
@@ -173,5 +173,5 @@ void TripodBossMovableArea::calcLandingFront(TVec3f* pFront, const TVec3f& a2) c
         MR::normalizeOrZero(&v10);
     }
 
-    pFront->set<f32>(v10);
+    pFront->set< f32 >(v10);
 }

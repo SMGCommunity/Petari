@@ -8,13 +8,13 @@
 namespace MR {
     CurrentHeapRestorer::CurrentHeapRestorer(JKRHeap* pHeap) {
         _0 = JKRHeap::sCurrentHeap;
-        OSLockMutex(&MR::MutexHolder<1>::sMutex);
+        OSLockMutex(&MR::MutexHolder< 1 >::sMutex);
         MR::becomeCurrentHeap(pHeap);
     }
 
     CurrentHeapRestorer::~CurrentHeapRestorer() {
         MR::becomeCurrentHeap(_0);
-        OSUnlockMutex(&MR::MutexHolder<1>::sMutex);
+        OSUnlockMutex(&MR::MutexHolder< 1 >::sMutex);
     }
 
     void* NewDeleteAllocator::alloc(MEMAllocator* pAllocator, u32 size) {
@@ -22,7 +22,7 @@ namespace MR {
     }
 
     void NewDeleteAllocator::free(MEMAllocator* pAllocator, void* pPtr) {
-        delete static_cast<u8*>(pPtr);
+        delete static_cast< u8* >(pPtr);
     }
 
     MEMAllocatorFunc NewDeleteAllocator::sAllocatorFunc = {
@@ -32,9 +32,9 @@ namespace MR {
     MEMAllocator NewDeleteAllocator::sAllocator = {&sAllocatorFunc};
 
     MEMAllocator* getHomeButtonLayoutAllocator() {
-        JKRHeapAllocator<0>::sHeap = SingletonHolder<HeapMemoryWatcher>::get()->mHomeButtonLayoutHeap;
+        JKRHeapAllocator< 0 >::sHeap = SingletonHolder< HeapMemoryWatcher >::get()->mHomeButtonLayoutHeap;
 
-        return &JKRHeapAllocator<0>::sAllocator;
+        return &JKRHeapAllocator< 0 >::sAllocator;
     }
 
     JKRHeap* getCurrentHeap() {
@@ -44,33 +44,33 @@ namespace MR {
     // MR::getAproposHeapForSceneArchive
 
     JKRExpHeap* getStationedHeapNapa() {
-        return SingletonHolder<HeapMemoryWatcher>::get()->mStationedHeapNapa;
+        return SingletonHolder< HeapMemoryWatcher >::get()->mStationedHeapNapa;
     }
 
     JKRExpHeap* getStationedHeapGDDR3() {
-        return SingletonHolder<HeapMemoryWatcher>::get()->mStationedHeapGDDR;
+        return SingletonHolder< HeapMemoryWatcher >::get()->mStationedHeapGDDR;
     }
 
     JKRSolidHeap* getSceneHeapNapa() {
-        return SingletonHolder<HeapMemoryWatcher>::get()->mSceneHeapNapa;
+        return SingletonHolder< HeapMemoryWatcher >::get()->mSceneHeapNapa;
     }
 
     JKRSolidHeap* getSceneHeapGDDR3() {
-        return SingletonHolder<HeapMemoryWatcher>::get()->mSceneHeapGDDR;
+        return SingletonHolder< HeapMemoryWatcher >::get()->mSceneHeapGDDR;
     }
 
     JKRHeap* getHeapNapa(const JKRHeap* pHeap) {
-        return SingletonHolder<HeapMemoryWatcher>::get()->getHeapNapa(pHeap);
+        return SingletonHolder< HeapMemoryWatcher >::get()->getHeapNapa(pHeap);
     }
 
     JKRHeap* getHeapGDDR3(const JKRHeap* pHeap) {
-        return SingletonHolder<HeapMemoryWatcher>::get()->getHeapGDDR3(pHeap);
+        return SingletonHolder< HeapMemoryWatcher >::get()->getHeapGDDR3(pHeap);
     }
 
     void becomeCurrentHeap(JKRHeap* pHeap) {
-        OSLockMutex(&MR::MutexHolder<1>::sMutex);
+        OSLockMutex(&MR::MutexHolder< 1 >::sMutex);
         pHeap->becomeCurrentHeap();
-        OSUnlockMutex(&MR::MutexHolder<1>::sMutex);
+        OSUnlockMutex(&MR::MutexHolder< 1 >::sMutex);
     }
 
     bool isEqualCurrentHeap(JKRHeap* pHeap) {
@@ -97,7 +97,7 @@ namespace MR {
         invSum = 0;
         sum = 0;
 
-        const u16* p = static_cast<const u16*>(pPtr);
+        const u16* p = static_cast< const u16* >(pPtr);
         u32        checkSize = size / sizeof(u16);
 
         for (int i = 0; i < checkSize; i++, p++) {
@@ -109,30 +109,30 @@ namespace MR {
     }
 
     void* allocFromWPadHeap(u32 size) {
-        return SingletonHolder<HeapMemoryWatcher>::get()->mWPadHeap->alloc(size, 0);
+        return SingletonHolder< HeapMemoryWatcher >::get()->mWPadHeap->alloc(size, 0);
     }
 
     u8 freeFromWPadHeap(void* pPtr) {
-        SingletonHolder<HeapMemoryWatcher>::get()->mWPadHeap->free(pPtr);
+        SingletonHolder< HeapMemoryWatcher >::get()->mWPadHeap->free(pPtr);
 
         return 1;
     }
 
-    template <int N>
-    void* JKRHeapAllocator<N>::alloc(MEMAllocator* pAllocator, u32 size) {
-        return JKRHeapAllocator<N>::sHeap->alloc(size, 0);
+    template < int N >
+    void* JKRHeapAllocator< N >::alloc(MEMAllocator* pAllocator, u32 size) {
+        return JKRHeapAllocator< N >::sHeap->alloc(size, 0);
     }
 
-    template <int N>
-    void JKRHeapAllocator<N>::free(MEMAllocator* pAllocator, void* pPtr) {
-        JKRHeapAllocator<N>::sHeap->free(pPtr);
+    template < int N >
+    void JKRHeapAllocator< N >::free(MEMAllocator* pAllocator, void* pPtr) {
+        JKRHeapAllocator< N >::sHeap->free(pPtr);
     }
 
-    template <int N>
-    MEMAllocator JKRHeapAllocator<N>::sAllocator = {&sAllocatorFunc, nullptr, 4, 0};
+    template < int N >
+    MEMAllocator JKRHeapAllocator< N >::sAllocator = {&sAllocatorFunc, nullptr, 4, 0};
 
-    template <int N>
-    MEMAllocatorFunc JKRHeapAllocator<N>::sAllocatorFunc = {
+    template < int N >
+    MEMAllocatorFunc JKRHeapAllocator< N >::sAllocatorFunc = {
         JKRHeapAllocator::alloc,
         JKRHeapAllocator::free,
     };

@@ -18,7 +18,7 @@ namespace NrvWalkerStateChase {
 }; // namespace NrvWalkerStateChase
 
 WalkerStateChase::WalkerStateChase(LiveActor* pActor, TVec3f* pVec, WalkerStateParam* pParam, WalkerStateChaseParam* pChaseParam)
-    : ActorStateBase<LiveActor>("クリボー追いかけ状態") {
+    : ActorStateBase< LiveActor >("クリボー追いかけ状態") {
     mParentActor = pActor;
     mStateParam = pParam;
     mChaseParam = pChaseParam;

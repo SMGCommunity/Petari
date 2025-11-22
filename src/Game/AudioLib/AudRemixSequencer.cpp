@@ -87,7 +87,7 @@ bool AudRmxSeqNoteOnTimer::update(f32 f1) {
 JAISoundID AudRmxSeqNoteOnTimer::getFreeSeID() {
 
     for (u32 i = 0; i < 0x10; i++) {
-        JAISoundID id = AudSingletonHolder<AudSoundNameConverter>::get()->getSoundID(cRemixNoteTrackSeId[i]);
+        JAISoundID id = AudSingletonHolder< AudSoundNameConverter >::get()->getSoundID(cRemixNoteTrackSeId[i]);
         u32*       handleID = AudWrap::getRemixSeqObject()->getHandleSoundID(id);
         if (handleID == nullptr) {
             return id;

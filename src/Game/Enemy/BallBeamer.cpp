@@ -40,12 +40,12 @@ void BallBeamer::init(const JMapInfoIter& rIter) {
     makeActorAppeared();
     if (MR::useStageSwitchReadA(this, rIter)) {
 
-        MR::listenStageSwitchOnOffA(this, MR::Functor<BallBeamer>(this, &BallBeamer::syncSwitchOffA),
-                                    MR::Functor<BallBeamer>(this, &BallBeamer::syncSwitchOnA));
+        MR::listenStageSwitchOnOffA(this, MR::Functor< BallBeamer >(this, &BallBeamer::syncSwitchOffA),
+                                    MR::Functor< BallBeamer >(this, &BallBeamer::syncSwitchOnA));
     }
 
     if (MR::useStageSwitchReadB(this, rIter)) {
-        MR::listenStageSwitchOnB(this, MR::Functor<BallBeamer>(this, &BallBeamer::syncSwitchOnB));
+        MR::listenStageSwitchOnB(this, MR::Functor< BallBeamer >(this, &BallBeamer::syncSwitchOnB));
     }
 
     mBeams = new RingBeam*[12];

@@ -21,9 +21,9 @@ public:
     void setLightType(s32);
     s32  findExecuterIndex(const char*) const;
 
-    MR::Vector<MR::AssignableArray<DrawBufferExecuter*>> _0;
-    MR::Vector<MR::AssignableArray<DrawBufferExecuter*>> _C;
-    s32                                                  mCount; // 0x18
-    s32                                                  _1C;    // 0x1C
-    s32                                                  _20;    // 0x20
+    MR::Vector< MR::AssignableArray< DrawBufferExecuter* > > _0;
+    MR::Vector< MR::AssignableArray< DrawBufferExecuter* > > _C;
+    s32                                                      mCount; // 0x18
+    s32                                                      _1C;    // 0x1C
+    s32                                                      _20;    // 0x20
 };

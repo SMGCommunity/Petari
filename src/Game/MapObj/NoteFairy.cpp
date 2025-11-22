@@ -83,7 +83,7 @@ void NoteFairy::init(const JMapInfoIter& rIter) {
         }
     }
 
-    _8C.set<f32>(mPosition);
+    _8C.set< f32 >(mPosition);
     mTimeLimit *= 60;
     mHasDemo = MR::tryRegisterDemoCast(this, rIter);
     initRailRider(rIter);
@@ -139,12 +139,12 @@ void NoteFairy::init(const JMapInfoIter& rIter) {
         if (_D1) {
             MR::calcRailPointPos(&stack_24, this, i);
         } else {
-            stack_24.set<f32>(MR::getRailPos(this));
+            stack_24.set< f32 >(MR::getRailPos(this));
             MR::moveCoord(this, mNoteCoord);
         }
 
         mNoteArray[i] = new Note("音符", MR::getRailDirection(this), this);
-        mNoteArray[i]->mPosition.set<f32>(stack_24);
+        mNoteArray[i]->mPosition.set< f32 >(stack_24);
         mNoteArray[i]->initWithoutIter();
         mNoteArray[i]->mCounter = mTimeLimit;
     }
@@ -276,7 +276,7 @@ void NoteFairy::exeDemoAppear() {
     }
 
     MR::startLevelSound(this, "SE_OJ_LV_FLOWER_FAIRY_MOVE", -1, -1, -1);
-    mRotation.y = MR::getSceneObj<NoteGroup>(SceneObj_NoteGroup)->mRotation;
+    mRotation.y = MR::getSceneObj< NoteGroup >(SceneObj_NoteGroup)->mRotation;
 
     if (MR::isStep(this, 130)) {
         setNerve(&NrvNoteFairy::NoteFairyNrvAppearNoteBloom::sInstance);
@@ -296,7 +296,7 @@ void NoteFairy::exeAppearNoteBloom() {
 
     MR::startLevelSound(this, "SE_OJ_LV_FLOWER_FAIRY_MOVE", -1, -1, -1);
     MR::moveCoordAndFollowTrans(this, mAppearanceSpeed);
-    mRotation.y = MR::getSceneObj<NoteGroup>(SceneObj_NoteGroup)->mRotation;
+    mRotation.y = MR::getSceneObj< NoteGroup >(SceneObj_NoteGroup)->mRotation;
 
     while (_B0 >= mMelodyNoteNum && MR::getRailCoord(this) >= getNoteCoord(_B0)) {
         mNoteArray[_B0]->appear();
@@ -400,7 +400,7 @@ void NoteFairy::enterDemoAppear(const Nerve* pNerve, bool hasNoFrame) {
         MR::requestStartDemoWithoutCinemaFrame(this, "出現", pNerve, nullptr);
     }
 
-    MR::requestMovementOn(MR::getSceneObj<NoteGroup>(SceneObj_NoteGroup));
+    MR::requestMovementOn(MR::getSceneObj< NoteGroup >(SceneObj_NoteGroup));
     MR::requestMovementOn(this);
 }
 

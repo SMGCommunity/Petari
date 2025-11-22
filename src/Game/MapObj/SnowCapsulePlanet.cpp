@@ -53,7 +53,7 @@ namespace NrvSnowCapsulePlanet {
     }
 
     void SnowCapsulePlanetNrvOpen::execute(Spine* pSpine) const {
-        SnowCapsulePlanet* planet = reinterpret_cast<SnowCapsulePlanet*>(pSpine->mExecutor);
+        SnowCapsulePlanet* planet = reinterpret_cast< SnowCapsulePlanet* >(pSpine->mExecutor);
         planet->exeOpen();
     }
 }; // namespace NrvSnowCapsulePlanet

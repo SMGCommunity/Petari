@@ -29,7 +29,7 @@ namespace nw4r {
             void TexCoordAry::Free() {
                 if (mData != nullptr) {
                     const u32 coordNum = mCap;
-                    Layout::DeleteArray<math::VEC2>(&mData[0][0], 4 * coordNum);
+                    Layout::DeleteArray< math::VEC2 >(&mData[0][0], 4 * coordNum);
                     mData = nullptr;
                     mCap = 0;
                     mNum = 0;
@@ -40,8 +40,8 @@ namespace nw4r {
                 if (mCap < num) {
                     Free();
                     const u32         coordNum = num;
-                    math::VEC2* const ary = Layout::NewArray<math::VEC2>(4 * coordNum);
-                    mData = reinterpret_cast<TexCoordQuad>(ary);
+                    math::VEC2* const ary = Layout::NewArray< math::VEC2 >(4 * coordNum);
+                    mData = reinterpret_cast< TexCoordQuad >(ary);
                     if (mData != nullptr) {
                         mCap = num;
                     }
@@ -63,7 +63,7 @@ namespace nw4r {
 
             void TexCoordAry::Copy(const void* pResTex, u8 texCoordNum) {
                 mNum = ut::Max(mNum, texCoordNum);
-                const math::VEC2(*src)[4] = reinterpret_cast<ConstTexCoordQuad>(pResTex);
+                const math::VEC2(*src)[4] = reinterpret_cast< ConstTexCoordQuad >(pResTex);
                 for (int j = 0; j < texCoordNum; j++) {
                     for (int i = 0; i < 4; i++) {
                         mData[j][i] = src[j][i];

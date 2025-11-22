@@ -112,7 +112,7 @@ void TripodBoss::init(const JMapInfoIter& rIter) {
     initNerve(&NrvTripodBoss::TripodBossNrvNonActive::sInstance);
     MR::invalidateClipping(this);
     MR::needStageSwitchReadA(this, rIter);
-    MR::FunctorV0M<TripodBoss*, void (TripodBoss::*)()> demoFunc = MR::Functor_Inline<TripodBoss>(this, &TripodBoss::requestOpeningDemo);
+    MR::FunctorV0M< TripodBoss*, void (TripodBoss::*)() > demoFunc = MR::Functor_Inline< TripodBoss >(this, &TripodBoss::requestOpeningDemo);
     MR::listenStageSwitchOnA(this, demoFunc);
     MR::useStageSwitchReadB(this, rIter);
     MR::useStageSwitchWriteDead(this, rIter);
@@ -222,7 +222,7 @@ void TripodBoss::initMovableArea(const TPos3f& rPos) {
     TVec3f yDir;
     rPos.getYDir(yDir);
     TVec3f front;
-    front.set<f32>(rPos.get(0, 2), rPos.get(1, 2), rPos.get(2, 2));
+    front.set< f32 >(rPos.get(0, 2), rPos.get(1, 2), rPos.get(2, 2));
     mMovableArea->setBaseAxis(yDir);
     mMovableArea->setFrontVector(front);
 }
@@ -858,7 +858,7 @@ void TripodBoss::calcLegUpVector(TVec3f* pUp, const TVec3f& a2) {
     f32     v7 = axis->dot(v8);
     JMAVECScaleAdd(axis, &v8, &v8, -v7);
     MR::normalizeOrZero(&v8);
-    pUp->set<f32>(v8);
+    pUp->set< f32 >(v8);
 }
 
 void TripodBoss::calcDemoMovement() {
@@ -874,9 +874,9 @@ void TripodBoss::calcDemoMovement() {
         TVec3f v7;
         v8.getTrans(v7);
         TVec3f v6;
-        v6.x = JGeometry::TUtil<f32>::sqrt(v8.dotX());
-        v6.y = JGeometry::TUtil<f32>::sqrt(v8.dotY());
-        v6.z = JGeometry::TUtil<f32>::sqrt(v8.dotZ());
+        v6.x = JGeometry::TUtil< f32 >::sqrt(v8.dotX());
+        v6.y = JGeometry::TUtil< f32 >::sqrt(v8.dotY());
+        v6.z = JGeometry::TUtil< f32 >::sqrt(v8.dotZ());
         mLegs[i]->setForceEndPoint(v7);
         mLegs[i]->setDemoEffectTiming(v6.x > 1.5f);
     }
@@ -903,10 +903,10 @@ void TripodBoss::addAccelToWeightPosition() {
     TBox3f v21;
     TVec3f v18, v19, v20;
     TBox3f v22;
-    v22.mMin.set<f32>(_5C8);
-    v22.mMax.set<f32>(_5C8);
-    v21.mMin.set<f32>(_5C8);
-    v21.mMax.set<f32>(_5C8);
+    v22.mMin.set< f32 >(_5C8);
+    v22.mMax.set< f32 >(_5C8);
+    v21.mMin.set< f32 >(_5C8);
+    v21.mMax.set< f32 >(_5C8);
 
     for (u32 i = 0; i < 3; i++) {
         if (mLegs[i]->canWeighting()) {
@@ -952,8 +952,8 @@ void TripodBoss::addAccelToWeightPosition() {
 
 void TripodBoss::calcClippingSphere() {
     TBox3f v4;
-    v4.mMin.set<f32>(_5D4);
-    v4.mMax.set<f32>(_5D4);
+    v4.mMin.set< f32 >(_5D4);
+    v4.mMax.set< f32 >(_5D4);
 
     for (u32 i = 0; i < 3; i++) {
         v4.extend(mLegs[i]->mForceEndPoint);
@@ -1137,18 +1137,18 @@ s32 TripodBoss::getPartIDFromBoneID(s32 boneID) {
 
 void TripodBossBone::setAttachBaseMatrix(const TPos3f& rPos) {
     _0.invert(rPos);
-    JGeometry::TUtil<f32>::sqrt(_0.dot());
+    JGeometry::TUtil< f32 >::sqrt(_0.dot());
 
     if (_0) {
-        f32 v3 = JGeometry::TUtil<f32>::inv_sqrt((_0.mMtx[1][0] * _0.mMtx[1][0]) + (_0.mMtx[0][0] * _0.mMtx[0][0]) + (_0.mMtx[2][0] * _0.mMtx[2][0]));
+        f32 v3 = JGeometry::TUtil< f32 >::inv_sqrt((_0.mMtx[1][0] * _0.mMtx[1][0]) + (_0.mMtx[0][0] * _0.mMtx[0][0]) + (_0.mMtx[2][0] * _0.mMtx[2][0]));
         _0.mMtx[0][0] = v3 * _0.mMtx[0][0];
         _0.mMtx[1][0] = v3 * _0.mMtx[1][0];
         _0.mMtx[2][0] = v3 * _0.mMtx[2][0];
-        f32 v8 = JGeometry::TUtil<f32>::inv_sqrt((_0.mMtx[2][1] * _0.mMtx[2][1]) + ((_0.mMtx[1][1] * _0.mMtx[1][1]) + (_0.mMtx[0][1] * _0.mMtx[0][1])));
+        f32 v8 = JGeometry::TUtil< f32 >::inv_sqrt((_0.mMtx[2][1] * _0.mMtx[2][1]) + ((_0.mMtx[1][1] * _0.mMtx[1][1]) + (_0.mMtx[0][1] * _0.mMtx[0][1])));
         _0.mMtx[0][1] = v8 * _0.mMtx[0][1];
         _0.mMtx[1][1] = v8 * _0.mMtx[1][1];
         _0.mMtx[2][1] = v8 * _0.mMtx[2][1];
-        f32 v13 = JGeometry::TUtil<f32>::inv_sqrt((_0.mMtx[0][2] * _0.mMtx[0][2]) + ((_0.mMtx[1][2] * _0.mMtx[1][2]) + (_0.mMtx[2][2] * _0.mMtx[2][2])));
+        f32 v13 = JGeometry::TUtil< f32 >::inv_sqrt((_0.mMtx[0][2] * _0.mMtx[0][2]) + ((_0.mMtx[1][2] * _0.mMtx[1][2]) + (_0.mMtx[2][2] * _0.mMtx[2][2])));
         _0.mMtx[0][2] = v13 * _0.mMtx[0][2];
         _0.mMtx[1][2] = v13 * _0.mMtx[1][2];
         _0.mMtx[2][2] = v13 * _0.mMtx[2][2];

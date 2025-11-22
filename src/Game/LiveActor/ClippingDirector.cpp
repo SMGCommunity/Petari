@@ -57,7 +57,7 @@ void ClippingDirector::entryLodCtrl(LodCtrl* pLod, const JMapInfoIter& rIter) {
 
 namespace MR {
     ClippingDirector* getClippingDirector() {
-        return MR::getSceneObj<ClippingDirector>(SceneObj_ClippingDirector);
+        return MR::getSceneObj< ClippingDirector >(SceneObj_ClippingDirector);
     }
 
     void addToClippingTarget(LiveActor* pActor) {

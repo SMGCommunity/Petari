@@ -33,11 +33,11 @@
 
 namespace {
     CaptureScreenDirector* getCaptureScreenDirector() NO_INLINE {
-        return SingletonHolder<GameSystem>::get()->mObjHolder->mCaptureScreenDir;
+        return SingletonHolder< GameSystem >::get()->mObjHolder->mCaptureScreenDir;
     }
 
     PlayTimerScene* getPlayTimerScene() NO_INLINE {
-        return SingletonHolder<GameSystem>::get()->mSceneController->mPlayTimerScene;
+        return SingletonHolder< GameSystem >::get()->mSceneController->mPlayTimerScene;
     }
 
     void appearInformationMessage(bool hasButtonLayout, bool isCenter) {
@@ -63,25 +63,25 @@ namespace {
     }
 
     SystemWipeHolder* getSystemWipeHolder() {
-        return SingletonHolder<GameSystem>::get()->mSystemWipeHolder;
+        return SingletonHolder< GameSystem >::get()->mSystemWipeHolder;
     }
 
     BloomEffect* getNormalBloom() {
-        return MR::getSceneObj<BloomEffect>(SceneObj_BloomEffect);
+        return MR::getSceneObj< BloomEffect >(SceneObj_BloomEffect);
     }
 
     CinemaFrame* getCinemaFrame() {
-        return MR::getSceneObj<CinemaFrame>(SceneObj_CinemaFrame);
+        return MR::getSceneObj< CinemaFrame >(SceneObj_CinemaFrame);
     }
 
     MoviePlayerSimple* getMoviePlayer() {
-        return MR::getSceneObj<MoviePlayerSimple>(SceneObj_MoviePlayerSimple);
+        return MR::getSceneObj< MoviePlayerSimple >(SceneObj_MoviePlayerSimple);
     }
 }; // namespace
 
 namespace MR {
     u32 getViWidth() {
-        return SingletonHolder<GameSystem>::get()->mObjHolder->getRenderModeObj()->viWidth;
+        return SingletonHolder< GameSystem >::get()->mObjHolder->getRenderModeObj()->viWidth;
     }
 
     f32 getSafetyVIScreenWidthRatio() {
@@ -98,11 +98,11 @@ namespace MR {
 
     // FIXME: Source register swap in division instruction.
     s32 getSafetyFrameWidth() {
-        s32 viWidthMax = static_cast<u16>(RenderModeObj::getViWidthMax());
+        s32 viWidthMax = static_cast< u16 >(RenderModeObj::getViWidthMax());
         f32 safetyFrameWidthRatio = viWidthMax * getSafetyVIScreenWidthRatio();
         s32 screenWidth = getScreenWidth();
         s32 viWidth = getViWidth();
-        f32 viWidthRatio = static_cast<f32>(viWidth) / screenWidth;
+        f32 viWidthRatio = static_cast< f32 >(viWidth) / screenWidth;
 
         return safetyFrameWidthRatio * viWidthRatio + 0.5f;
     }
@@ -256,15 +256,15 @@ namespace MR {
         }
 
         if (isExistSceneObj(SceneObj_BloomEffectSimple)) {
-            requestMovementOn(getSceneObj<BloomEffectSimple>(SceneObj_BloomEffectSimple));
+            requestMovementOn(getSceneObj< BloomEffectSimple >(SceneObj_BloomEffectSimple));
         }
 
         if (isExistSceneObj(SceneObj_ScreenBlurEffect)) {
-            requestMovementOn(getSceneObj<ScreenBlurEffect>(SceneObj_ScreenBlurEffect));
+            requestMovementOn(getSceneObj< ScreenBlurEffect >(SceneObj_ScreenBlurEffect));
         }
 
         if (isExistSceneObj(SceneObj_DepthOfFieldBlur)) {
-            requestMovementOn(getSceneObj<DepthOfFieldBlur>(SceneObj_DepthOfFieldBlur));
+            requestMovementOn(getSceneObj< DepthOfFieldBlur >(SceneObj_DepthOfFieldBlur));
         }
     }
 
@@ -349,7 +349,7 @@ namespace MR {
     }
 
     void startCenterScreenBlur(s32 param1, f32 param2, u8 param3, s32 param4, s32 param5) {
-        getSceneObj<CenterScreenBlur>(SceneObj_CenterScreenBlur)->start(param1, param2, param3, param4, param5);
+        getSceneObj< CenterScreenBlur >(SceneObj_CenterScreenBlur)->start(param1, param2, param3, param4, param5);
     }
 
     void startGlobalTimer() {
@@ -405,7 +405,7 @@ namespace MR {
             return;
         }
 
-        getSceneObj<LensFlareDirector>(SceneObj_LensFlareDirector)->pauseOff();
+        getSceneObj< LensFlareDirector >(SceneObj_LensFlareDirector)->pauseOff();
     }
 
     void tryScreenToFrameCinemaFrame() {

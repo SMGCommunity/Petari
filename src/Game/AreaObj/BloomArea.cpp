@@ -17,11 +17,11 @@ void BloomArea::init(const JMapInfoIter& rIter) {
     MR::createNormalBloom();
 
     if (mObjArg0 >= 0) {
-        _41 = static_cast<u8>(mObjArg0);
+        _41 = static_cast< u8 >(mObjArg0);
     }
 
     if (mObjArg1 >= 0) {
-        _40 = static_cast<u8>(mObjArg1);
+        _40 = static_cast< u8 >(mObjArg1);
     }
 
     if (mObjArg2 >= 0) {

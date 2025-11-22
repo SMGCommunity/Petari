@@ -20,9 +20,9 @@ void CoinGroup::init(const JMapInfoIter& rIter) {
 
     for (u32 i = 0; i < mCoinCount; i++) {
         if (mIsPurpleCoinGroup) {
-            mCoinArray[i] = reinterpret_cast<Coin*>(MR::createPurpleCoin(this, getCoinName()));
+            mCoinArray[i] = reinterpret_cast< Coin* >(MR::createPurpleCoin(this, getCoinName()));
         } else {
-            mCoinArray[i] = reinterpret_cast<Coin*>(MR::createCoin(this, getCoinName()));
+            mCoinArray[i] = reinterpret_cast< Coin* >(MR::createCoin(this, getCoinName()));
         }
 
         mCoinArray[i]->setShadowAndPoseModeFromJMapIter(rIter);
@@ -43,7 +43,7 @@ void CoinGroup::init(const JMapInfoIter& rIter) {
     placementCoin();
 
     if (MR::tryRegisterDemoCast(this, rIter)) {
-        MR::FunctorV0M<CoinGroup*, void (CoinGroup::*)()> demoFunc = MR::Functor<CoinGroup>(this, &CoinGroup::appearCoinAll);
+        MR::FunctorV0M< CoinGroup*, void (CoinGroup::*)() > demoFunc = MR::Functor< CoinGroup >(this, &CoinGroup::appearCoinAll);
         MR::registerDemoActionFunctor(this, demoFunc, "コイン出現");
     } else if (MR::useStageSwitchReadAppear(this, rIter)) {
         MR::connectToSceneMapObjMovement(this);
@@ -60,7 +60,7 @@ void CoinGroup::init(const JMapInfoIter& rIter) {
     }
 
     if (MR::useStageSwitchReadB(this, rIter)) {
-        MR::FunctorV0M<CoinGroup*, void (CoinGroup::*)()> killFunc = MR::Functor<CoinGroup>(this, &CoinGroup::killCoinAll);
+        MR::FunctorV0M< CoinGroup*, void (CoinGroup::*)() > killFunc = MR::Functor< CoinGroup >(this, &CoinGroup::killCoinAll);
         MR::listenStageSwitchOnB(this, killFunc);
     }
 
@@ -145,12 +145,12 @@ namespace NrvCoinGroup {
     INIT_NERVE(CoinGroupNrvKill);
 
     void CoinGroupNrvKill::execute(Spine* pSpine) const {
-        CoinGroup* coin = reinterpret_cast<CoinGroup*>(pSpine->mExecutor);
+        CoinGroup* coin = reinterpret_cast< CoinGroup* >(pSpine->mExecutor);
         coin->kill();
     }
 
     void CoinGroupNrvDemoAppear::execute(Spine* pSpine) const {
-        CoinGroup* coin = reinterpret_cast<CoinGroup*>(pSpine->mExecutor);
+        CoinGroup* coin = reinterpret_cast< CoinGroup* >(pSpine->mExecutor);
         coin->exeDemoAppear();
     }
 
@@ -158,7 +158,7 @@ namespace NrvCoinGroup {
     }
 
     void CoinGroupNrvAppear::execute(Spine* pSpine) const {
-        CoinGroup* coin = reinterpret_cast<CoinGroup*>(pSpine->mExecutor);
+        CoinGroup* coin = reinterpret_cast< CoinGroup* >(pSpine->mExecutor);
         coin->exeAppear();
     }
 }; // namespace NrvCoinGroup

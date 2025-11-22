@@ -15,7 +15,7 @@ public:
     f32 _8;
 };
 
-class WalkerStateFindPlayer : public ActorStateBase<LiveActor> {
+class WalkerStateFindPlayer : public ActorStateBase< LiveActor > {
 public:
     WalkerStateFindPlayer(LiveActor*, TVec3f*, WalkerStateParam*, WalkerStateFindPlayerParam*);
 

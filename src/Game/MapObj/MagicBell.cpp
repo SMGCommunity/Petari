@@ -180,7 +180,7 @@ void MagicBell::startRing(const TVec3f& a1, const TVec3f& a2) {
     TVec3f v12(a1);
     v12.scale(5.0f + v10);
     mBellSwinger->accel(v12);
-    mHitMarkPosition.set<f32>(a2);
+    mHitMarkPosition.set< f32 >(a2);
     MR::emitEffect(this, "StarWandHitMark");
     MR::emitEffect(this, "Ring");
     setNerve(&NrvMagicBell::MagicBellNrvRing::sInstance);

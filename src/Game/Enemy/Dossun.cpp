@@ -60,7 +60,7 @@ void Dossun::appear() {
     LiveActor::appear();
     getSensor("body")->invalidate();
     calcParameters();
-    mPosition.set<f32>(_8C);
+    mPosition.set< f32 >(_8C);
     if (MR::isValidSwitchA(this)) {
         setNerve(&NrvDossun::DossunNrvReady::sInstance);
     } else {
@@ -77,7 +77,7 @@ void Dossun::initMapToolInfo(const JMapInfoIter& rIter) {
     MR::getJMapInfoArg3NoInit(rIter, &shadowType);
     mHasShadow = shadowType != -1;
     MR::setGroupClipping(this, rIter, 16);
-    _98.set<f32>(mPosition);
+    _98.set< f32 >(mPosition);
 }
 
 void Dossun::initShadow() {
@@ -120,7 +120,7 @@ void Dossun::exeReady() {
 
 void Dossun::exeUpper() {
     if (MR::isFirstStep(this)) {
-        mPosition.set<f32>(_8C);
+        mPosition.set< f32 >(_8C);
     }
 
     if (MR::isStep(this, getUpperFrame())) {
@@ -157,7 +157,7 @@ void Dossun::exeFalling() {
 
 void Dossun::exeOnGround() {
     if (MR::isFirstStep(this)) {
-        mPosition.set<f32>(_98);
+        mPosition.set< f32 >(_98);
         MR::startRumbleWithShakeCameraNormalWeak(this, "中", "弱", 2000.0f, 3500.0f);
         MR::startSound(this, "SE_OJ_DOSSUN_LAND", -1, -1);
         MR::emitEffect(this, "Land");

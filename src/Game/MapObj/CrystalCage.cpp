@@ -20,7 +20,7 @@ void CrystalCage::init(const JMapInfoIter& rIter) {
     MR::calcGravity(this);
     initModel(obj_name);
     MR::connectToSceneCrystal(this);
-    _E8.set<f32>(mPosition);
+    _E8.set< f32 >(mPosition);
     initHitSensor(1);
     MR::addHitSensorPosMapObj(this, "body", 8, (130.0f * mScale.x), &_E8, TVec3f(0.0f, 0.0f, 0.0f));
 
@@ -224,7 +224,7 @@ bool CrystalCage::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* 
 
 void CrystalCage::initMapToolInfo(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
-    _DC.set<f32>(mPosition);
+    _DC.set< f32 >(mPosition);
 
     if (MR::isEqualObjectName(rIter, "CrystalCageS")) {
         mCrystalCageType = 0;
@@ -240,7 +240,7 @@ void CrystalCage::initMapToolInfo(const JMapInfoIter& rIter) {
         MR::useStageSwitchWriteDead(this, rIter);
 
         if (MR::useStageSwitchReadA(this, rIter)) {
-            MR::FunctorV0M<CrystalCage*, void (CrystalCage::*)()> forceFunc = MR::Functor_Inline<CrystalCage>(this, &CrystalCage::forceBreak);
+            MR::FunctorV0M< CrystalCage*, void (CrystalCage::*)() > forceFunc = MR::Functor_Inline< CrystalCage >(this, &CrystalCage::forceBreak);
             MR::listenStageSwitchOnA(this, forceFunc);
         }
 
@@ -300,7 +300,7 @@ void CrystalCage::exeWait() {
             v9.scale(mRumbleCalc->_C.y, _D0);
             JMathInlineVEC::PSVECAdd(&_DC, &v9, &mPosition);
         } else {
-            mPosition.set<f32>(_DC);
+            mPosition.set< f32 >(_DC);
         }
     }
 
@@ -323,7 +323,7 @@ void CrystalCage::exeBreak() {
             MR::hideModel(this);
         } else {
             MR::setBvaFrameAndStop(this, mCrystalCageType == 2 ? 2.0f : 1.0f);
-            mPosition.set<f32>(_F8);
+            mPosition.set< f32 >(_F8);
         }
 
         if (mHasBinding) {
@@ -397,17 +397,17 @@ namespace NrvCrystalCage {
     INIT_NERVE(CrystalCageNrvBreakAfter);
 
     void CrystalCageNrvBreakAfter::execute(Spine* pSpine) const {
-        CrystalCage* cage = reinterpret_cast<CrystalCage*>(pSpine->mExecutor);
+        CrystalCage* cage = reinterpret_cast< CrystalCage* >(pSpine->mExecutor);
         cage->exeBreakAfter();
     }
 
     void CrystalCageNrvBreak::execute(Spine* pSpine) const {
-        CrystalCage* cage = reinterpret_cast<CrystalCage*>(pSpine->mExecutor);
+        CrystalCage* cage = reinterpret_cast< CrystalCage* >(pSpine->mExecutor);
         cage->exeBreak();
     }
 
     void CrystalCageNrvWait::execute(Spine* pSpine) const {
-        CrystalCage* cage = reinterpret_cast<CrystalCage*>(pSpine->mExecutor);
+        CrystalCage* cage = reinterpret_cast< CrystalCage* >(pSpine->mExecutor);
         cage->exeWait();
     }
 }; // namespace NrvCrystalCage

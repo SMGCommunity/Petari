@@ -5,7 +5,7 @@
 
 namespace MR {
     /// @brief A contiguous reallocatable array.
-    template <class T>
+    template < class T >
     class AssignableArray {
     public:
         typedef T Item;
@@ -88,7 +88,7 @@ namespace MR {
     };
 
     /// @brief A contiguous fixed-size array.
-    template <class T, int N>
+    template < class T, int N >
     class FixedArray {
     public:
         typedef T Item;
@@ -143,7 +143,7 @@ namespace MR {
     };
 
     /// @brief A contiguous growable array.
-    template <class T>
+    template < class T >
     class Vector {
     public:
         /// @brief Creates a new `Vector`.
@@ -247,7 +247,7 @@ namespace MR {
         /* 0x? */ s32 mCount;
     };
 
-    template <class T, int S>
+    template < class T, int S >
     class FixedRingBuffer {
     public:
         class iterator {

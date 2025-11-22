@@ -18,7 +18,7 @@
 
 namespace MR {
     GameSystemObjHolder* getGameSystemObjHolder() {
-        return SingletonHolder<GameSystem>::get()->mObjHolder;
+        return SingletonHolder< GameSystem >::get()->mObjHolder;
     }
 }; // namespace MR
 
@@ -30,33 +30,33 @@ namespace {
 
 namespace {
     NameObjHolder* getSceneNameObjHolder() NO_INLINE {
-        return SingletonHolder<GameSystem>::get()->mSceneController->mObjHolder;
+        return SingletonHolder< GameSystem >::get()->mSceneController->mObjHolder;
     }
 }; // namespace
 
 namespace MR {
     nw4r::ut::Font* getFontOnCurrentLanguage() {
-        return SingletonHolder<GameSystem>::get()->mFontHolder->getMessageFont();
+        return SingletonHolder< GameSystem >::get()->mFontHolder->getMessageFont();
     }
 
     nw4r::ut::Font* getPictureFontNW4R() {
         // TODO: Explicit cast should be removed or adjusted when nw4r::ut::ResFont is properly declared.
-        return reinterpret_cast<nw4r::ut::Font*>(SingletonHolder<GameSystem>::get()->mFontHolder->mPictureFont);
+        return reinterpret_cast< nw4r::ut::Font* >(SingletonHolder< GameSystem >::get()->mFontHolder->mPictureFont);
     }
 
     nw4r::ut::Font* getMenuFontNW4R() {
         // TODO: Explicit cast should be removed or adjusted when nw4r::ut::ResFont is properly declared.
-        return reinterpret_cast<nw4r::ut::Font*>(SingletonHolder<GameSystem>::get()->mFontHolder->mMenuFont);
+        return reinterpret_cast< nw4r::ut::Font* >(SingletonHolder< GameSystem >::get()->mFontHolder->mMenuFont);
     }
 
     nw4r::ut::Font* getNumberFontNW4R() {
         // TODO: Explicit cast should be removed or adjusted when nw4r::ut::ResFont is properly declared.
-        return reinterpret_cast<nw4r::ut::Font*>(SingletonHolder<GameSystem>::get()->mFontHolder->mNumberFont);
+        return reinterpret_cast< nw4r::ut::Font* >(SingletonHolder< GameSystem >::get()->mFontHolder->mNumberFont);
     }
 
     nw4r::ut::Font* getCinemaFontNW4R() {
         // TODO: Explicit cast should be removed or adjusted when nw4r::ut::ResFont is properly declared.
-        return reinterpret_cast<nw4r::ut::Font*>(SingletonHolder<GameSystem>::get()->mFontHolder->mCinemaFont);
+        return reinterpret_cast< nw4r::ut::Font* >(SingletonHolder< GameSystem >::get()->mFontHolder->mCinemaFont);
     }
 
     ParticleResourceHolder* getParticleResourceHolder() {

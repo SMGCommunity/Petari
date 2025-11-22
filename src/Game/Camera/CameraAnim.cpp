@@ -5,8 +5,8 @@ KeyCamAnmDataAccessor::~KeyCamAnmDataAccessor() {
 }
 
 void KeyCamAnmDataAccessor::set(void* pInfo, void* pValues) {
-    mInfo = reinterpret_cast<CanmKeyFrameInfo*>(pInfo);
-    mValues = reinterpret_cast<f32*>(pValues);
+    mInfo = reinterpret_cast< CanmKeyFrameInfo* >(pInfo);
+    mValues = reinterpret_cast< f32* >(pValues);
 }
 
 void KeyCamAnmDataAccessor::getPos(TVec3f* pPos, f32 key) const {
@@ -111,8 +111,8 @@ CamAnmDataAccessor::~CamAnmDataAccessor() {
 }
 
 void CamAnmDataAccessor::set(void* pInfo, void* pValues) {
-    mInfo = reinterpret_cast<CanmFrameInfo*>(pInfo);
-    mValues = reinterpret_cast<f32*>(pValues);
+    mInfo = reinterpret_cast< CanmFrameInfo* >(pInfo);
+    mValues = reinterpret_cast< f32* >(pValues);
 }
 
 void CamAnmDataAccessor::getPos(TVec3f* pPos, f32 key) const {
@@ -229,7 +229,7 @@ u32 CameraAnim::getAnimFrame(u8* pFile) {
         return 0;
     }
 
-    CanmFileHeader* pHeader = reinterpret_cast<CanmFileHeader*>(pFile);
+    CanmFileHeader* pHeader = reinterpret_cast< CanmFileHeader* >(pFile);
 
     if (pHeader->mMagic[0] != 'A' || pHeader->mMagic[1] != 'N' || pHeader->mMagic[2] != 'D' || pHeader->mMagic[3] != 'O') {
         return 0;
@@ -248,7 +248,7 @@ u32 CameraAnim::getAnimFrame(u8* pFile) {
 }
 
 bool CameraAnim::loadBin(u8* pFile) {
-    CanmFileHeader* pHeader = reinterpret_cast<CanmFileHeader*>(pFile);
+    CanmFileHeader* pHeader = reinterpret_cast< CanmFileHeader* >(pFile);
 
     if (pHeader->mMagic[0] != 'A' || pHeader->mMagic[1] != 'N' || pHeader->mMagic[2] != 'D' || pHeader->mMagic[3] != 'O') {
         return false;
@@ -268,14 +268,14 @@ bool CameraAnim::loadBin(u8* pFile) {
         return false;
     }
 
-    u8* pEntry = reinterpret_cast<u8*>(pFile + sizeof(CanmFileHeader));
+    u8* pEntry = reinterpret_cast< u8* >(pFile + sizeof(CanmFileHeader));
     _4C = pHeader->_C;
     _50 = pHeader->_10;
     mNrFrames = pHeader->mNrFrames;
 
     u32 valueOffset = pHeader->mValueOffset;
 
-    mNrValues = *(reinterpret_cast<u32*>(&pEntry[valueOffset])) / sizeof(f32);
+    mNrValues = *(reinterpret_cast< u32* >(&pEntry[valueOffset])) / sizeof(f32);
 
     mFileDataAccessor->set(pEntry, pEntry + valueOffset + 4);
 

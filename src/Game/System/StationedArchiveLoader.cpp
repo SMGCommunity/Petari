@@ -61,10 +61,10 @@ void StationedArchiveLoader::createAndAddResourcesFromTable(const Condition& rCo
         case 2:
         case 3:
         case 4:
-            SingletonHolder<ResourceHolderManager>::get()->createAndAddStationed(pInfo->mArchive);
+            SingletonHolder< ResourceHolderManager >::get()->createAndAddStationed(pInfo->mArchive);
             break;
         case 5:
-            SingletonHolder<ResourceHolderManager>::get()->createAndAddLayoutHolderStationed(pInfo->mArchive);
+            SingletonHolder< ResourceHolderManager >::get()->createAndAddLayoutHolderStationed(pInfo->mArchive);
             break;
         default:
             break;

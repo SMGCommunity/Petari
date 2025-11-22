@@ -70,7 +70,7 @@ namespace nw4r {
         }
 
         void TexMap::ReplaceImage(TPLPalette* p, u32 id) {
-            if (reinterpret_cast<u32>(p->descriptorArray) < 0x80000000) {
+            if (reinterpret_cast< u32 >(p->descriptorArray) < 0x80000000) {
                 TPLBind(p);
             }
 

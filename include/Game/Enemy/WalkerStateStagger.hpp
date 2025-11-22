@@ -25,7 +25,7 @@ public:
     f32 _2C;
 };
 
-class WalkerStateStagger : public ActorStateBase<LiveActor> {
+class WalkerStateStagger : public ActorStateBase< LiveActor > {
 public:
     WalkerStateStagger(LiveActor*, TVec3f*, WalkerStateParam*, WalkerStateStaggerParam*);
 

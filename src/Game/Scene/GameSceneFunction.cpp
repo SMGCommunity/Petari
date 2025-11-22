@@ -6,7 +6,7 @@
 
 namespace {
     GameScene* getGameScene() NO_INLINE {
-        return static_cast<GameScene*>(SingletonHolder<GameSystem>::get()->mSceneController->mScene);
+        return static_cast< GameScene* >(SingletonHolder< GameSystem >::get()->mSceneController->mScene);
     }
 }; // namespace
 
@@ -60,11 +60,11 @@ namespace GameSceneFunction {
     }
 
     void loadScenarioWaveData() {
-        SingletonHolder<GameSystem>::get()->mSceneController->loadScenarioWaveData();
+        SingletonHolder< GameSystem >::get()->mSceneController->loadScenarioWaveData();
     }
 
     bool isLoadDoneScenarioWaveData() {
-        return SingletonHolder<GameSystem>::get()->mSceneController->isLoadDoneScenarioWaveData();
+        return SingletonHolder< GameSystem >::get()->mSceneController->isLoadDoneScenarioWaveData();
     }
 
     void activateDraw3D() {

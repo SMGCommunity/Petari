@@ -150,16 +150,16 @@ void LuigiMailDirector::writeSendSize() {
 void LuigiMailDirector::writeSendSize() {
     prepareMessage();
 
-    const u16* pMailSender = reinterpret_cast<const u16*>(MR::getMailSender("WiiMessageFromKinopio"));
+    const u16* pMailSender = reinterpret_cast< const u16* >(MR::getMailSender("WiiMessageFromKinopio"));
     u32        mailSize = 0;
     s32        lostMessageNum = mLostMessageNum;
     s32        foundMessageNum = mFoundMessageNum;
 
     if (lostMessageNum != 0 || foundMessageNum != 0) {
         if (lostMessageNum != 0) {
-            mailSize = MR::calcWiiMailSize(pMailSender, reinterpret_cast<u16*>(mLostMessage), 0, 0);
+            mailSize = MR::calcWiiMailSize(pMailSender, reinterpret_cast< u16* >(mLostMessage), 0, 0);
         } else if (foundMessageNum != 0) {
-            mailSize = MR::calcWiiMailSize(pMailSender, reinterpret_cast<u16*>(mFoundMessage), 0, 0);
+            mailSize = MR::calcWiiMailSize(pMailSender, reinterpret_cast< u16* >(mFoundMessage), 0, 0);
         }
     }
 

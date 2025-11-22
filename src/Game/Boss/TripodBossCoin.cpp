@@ -20,7 +20,7 @@ void TripodBossCoin::init(const JMapInfoIter& rIter) {
     MR::getJMapInfoMatrixFromRT(rIter, &_14);
     MR::connectToSceneMapObjDecorationMovement(this);
     MR::getJMapInfoArg0NoInit(rIter, &_44);
-    mCoin = static_cast<Coin*>(MR::createCoin(this, "コイン(三脚ボス用)"));
+    mCoin = static_cast< Coin* >(MR::createCoin(this, "コイン(三脚ボス用)"));
     mCoin->initWithoutIter();
     mSpine = new Spine(this, &NrvTripodBossCoin::TripodBossCoinNrvNonActive::sInstance);
     MR::addTripodBossPartsMovement(this);
@@ -44,7 +44,7 @@ void TripodBossCoin::exeActive() {
     f32    z = pos.mMtx[2][3];
     f32    y = pos.mMtx[1][3];
     f32    x = pos.mMtx[0][3];
-    coinPos.set<f32>(x, y, z);
+    coinPos.set< f32 >(x, y, z);
     TVec3f* newPos = &mCoin->mPosition;
     newPos->x = coinPos.x;
     newPos->y = coinPos.y;

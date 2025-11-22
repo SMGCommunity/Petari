@@ -34,5 +34,5 @@ public:
     FileHolderFileEntry** removeFile(const char*);
     FileHolderFileEntry*  findEntry(const char*) const;
 
-    MR::Vector<MR::AssignableArray<FileHolderFileEntry*>> mArray; // 0x0
+    MR::Vector< MR::AssignableArray< FileHolderFileEntry* > > mArray; // 0x0
 };

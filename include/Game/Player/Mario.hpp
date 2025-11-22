@@ -607,157 +607,157 @@ public:
     u32 _34;
     // NOT FAKE
 
-    f32                             _38;
-    f32                             _3C;
-    TVec3f                          _40;
-    TVec3f                          _4C;
-    TVec3f                          _58;
-    TMtx34f                         _64;
-    TMtx34f                         _94;
-    TMtx34f                         _C4;
-    TMtx34f                         _F4;
-    f32                             _124;
-    f32                             _128;
-    u32                             _12C;
-    TVec3f                          mPosition; // 0x130
-    TVec3f                          _13C;
-    TVec3f                          _148;
-    TVec3f                          _154;
-    TVec3f                          mVelocity; // 0x160
-    TVec3f                          _16C;
-    TVec3f                          mVelocityAfter; // 0x178
-    TVec3f                          _184;
-    TVec3f                          _190;
-    TVec3f                          _19C;
-    TVec3f                          _1A8;
-    TVec3f                          _1B4;
-    TVec3f                          mStickPos;      // 0x1C0
-    TVec3f                          mWorldPadDir;   // 0x1CC
-    TVec3f                          mAirGravityVec; // 0x1D8
-    TVec3f                          _1E4;
-    TVec3f                          mHeadVec; // 0x1F0
-    TVec3f                          _1FC;
-    TVec3f                          mFrontVec; // 0x208
-    TVec3f                          _214;
-    TVec3f                          _220;
-    TVec3f                          _22C;
-    TVec3f                          _238;
-    TVec3f                          _244;
-    TVec3f                          _250;
-    TVec3f                          _25C;
-    TVec3f                          _268;
-    u8                              _274;
-    f32                             _278;
-    f32                             _27C;
-    f32                             _280;
-    TVec3f                          _284;
-    TVec3f                          _290;
-    TVec3f                          _29C;
-    TVec3f                          _2A8;
-    f32                             _2B4;
-    TVec3f                          _2B8;
-    TVec3f                          _2C4;
-    f32                             _2D0;
-    TVec3f                          mJumpVec; // 0x2D4
-    TVec3f                          _2E0;
-    TVec3f                          _2EC;
-    TVec3f                          _2F8;
-    TVec3f                          _304;
-    TVec3f                          mSideVec;   // 0x310
-    TVec3f                          mShadowPos; // 0x31C
-    TVec3f                          _328;
-    TVec3f                          _334;
-    f32                             _340;
-    TVec3f                          _344; // left/right?
-    TVec3f                          _350;
-    TVec3f                          _35C;
-    TVec3f                          _368;
-    TVec3f                          _374;
-    TVec3f                          _380;
-    TVec3f                          _38C;
-    TVec3f                          _398;
-    TVec3f                          _3A4;
-    TVec3f                          _3B0;
-    u16                             _3BC;
-    u16                             _3BE;
-    u16                             _3C0;
-    u16                             _3C2;
-    u16                             _3C4;
-    u16                             _3C6;
-    u16                             _3C8;
-    u16                             _3CA;
-    u16                             _3CC;
-    u16                             _3CE; // a timer
-    u16                             _3D0;
-    u16                             _3D2;
-    u16                             _3D4;
-    TVec3f                          _3D8;
-    TVec3f                          _3E4;
-    f32                             _3F0;
-    f32                             _3F4;
-    u16                             _3F8;
-    u16                             _3FA;
-    u16                             _3FC;
-    u16                             _3FE;
-    u16                             _400;
-    u16                             _402;
-    u16                             _404;
-    u16                             _406;
-    u16                             _408;
-    u16                             _40A;
-    u16                             _40C;
-    u16                             _40E;
-    u16                             _410;
-    u16                             _412;
-    u16                             _414;             // a timer
-    u16                             mMorphResetTimer; // 0x416
-    u16                             _418;
-    u16                             _41A;
-    u16                             _41C;
-    u16                             _41E;
-    u16                             _420;
-    u16                             _422;
-    u16                             _424;
-    u16                             _426;
-    u16                             _428;
-    u16                             _42A;
-    u16                             _42C;
-    u32                             _430;
-    u16                             _434; // a timer
-    u16                             _436;
-    u16                             _438;
-    u16                             _43A;
-    TVec3f                          _43C; // front?
-    TVec3f                          _448;
-    f32                             _454;
-    TriangleFilterDelegator<Mario>* _458;
-    Triangle*                       _45C;
-    Triangle*                       _460;
-    Triangle*                       mGroundPolygon; // 0x464
-    Triangle*                       _468;
-    Triangle*                       _46C;
-    Triangle*                       _470;
-    Triangle*                       _474;
-    Triangle*                       mTmpPolygon; // 0x478
-    Triangle*                       _47C;
-    Triangle*                       _480;
-    Triangle*                       _484;
-    f32                             _488;
-    TVec3f                          mGroundPos; // 0x48C
-    TVec3f                          _498;
-    TVec3f                          _4A4;
-    TVec3f                          _4B0;
-    TVec3f                          _4BC;
-    Triangle*                       _4C8;
-    Triangle*                       mFrontWallTriangle; // 0x4CC
-    Triangle*                       mBackWallTriangle;  // 0x4D0
-    Triangle*                       mSideWallTriangle;  // 0x4D4
-    Triangle*                       _4D8;
-    Triangle*                       _4DC;
-    f32                             _4E0;
-    f32                             _4E4;
-    TVec3f                          _4E8;
-    TVec3f                          _4F4;
+    f32                               _38;
+    f32                               _3C;
+    TVec3f                            _40;
+    TVec3f                            _4C;
+    TVec3f                            _58;
+    TMtx34f                           _64;
+    TMtx34f                           _94;
+    TMtx34f                           _C4;
+    TMtx34f                           _F4;
+    f32                               _124;
+    f32                               _128;
+    u32                               _12C;
+    TVec3f                            mPosition; // 0x130
+    TVec3f                            _13C;
+    TVec3f                            _148;
+    TVec3f                            _154;
+    TVec3f                            mVelocity; // 0x160
+    TVec3f                            _16C;
+    TVec3f                            mVelocityAfter; // 0x178
+    TVec3f                            _184;
+    TVec3f                            _190;
+    TVec3f                            _19C;
+    TVec3f                            _1A8;
+    TVec3f                            _1B4;
+    TVec3f                            mStickPos;      // 0x1C0
+    TVec3f                            mWorldPadDir;   // 0x1CC
+    TVec3f                            mAirGravityVec; // 0x1D8
+    TVec3f                            _1E4;
+    TVec3f                            mHeadVec; // 0x1F0
+    TVec3f                            _1FC;
+    TVec3f                            mFrontVec; // 0x208
+    TVec3f                            _214;
+    TVec3f                            _220;
+    TVec3f                            _22C;
+    TVec3f                            _238;
+    TVec3f                            _244;
+    TVec3f                            _250;
+    TVec3f                            _25C;
+    TVec3f                            _268;
+    u8                                _274;
+    f32                               _278;
+    f32                               _27C;
+    f32                               _280;
+    TVec3f                            _284;
+    TVec3f                            _290;
+    TVec3f                            _29C;
+    TVec3f                            _2A8;
+    f32                               _2B4;
+    TVec3f                            _2B8;
+    TVec3f                            _2C4;
+    f32                               _2D0;
+    TVec3f                            mJumpVec; // 0x2D4
+    TVec3f                            _2E0;
+    TVec3f                            _2EC;
+    TVec3f                            _2F8;
+    TVec3f                            _304;
+    TVec3f                            mSideVec;   // 0x310
+    TVec3f                            mShadowPos; // 0x31C
+    TVec3f                            _328;
+    TVec3f                            _334;
+    f32                               _340;
+    TVec3f                            _344; // left/right?
+    TVec3f                            _350;
+    TVec3f                            _35C;
+    TVec3f                            _368;
+    TVec3f                            _374;
+    TVec3f                            _380;
+    TVec3f                            _38C;
+    TVec3f                            _398;
+    TVec3f                            _3A4;
+    TVec3f                            _3B0;
+    u16                               _3BC;
+    u16                               _3BE;
+    u16                               _3C0;
+    u16                               _3C2;
+    u16                               _3C4;
+    u16                               _3C6;
+    u16                               _3C8;
+    u16                               _3CA;
+    u16                               _3CC;
+    u16                               _3CE; // a timer
+    u16                               _3D0;
+    u16                               _3D2;
+    u16                               _3D4;
+    TVec3f                            _3D8;
+    TVec3f                            _3E4;
+    f32                               _3F0;
+    f32                               _3F4;
+    u16                               _3F8;
+    u16                               _3FA;
+    u16                               _3FC;
+    u16                               _3FE;
+    u16                               _400;
+    u16                               _402;
+    u16                               _404;
+    u16                               _406;
+    u16                               _408;
+    u16                               _40A;
+    u16                               _40C;
+    u16                               _40E;
+    u16                               _410;
+    u16                               _412;
+    u16                               _414;             // a timer
+    u16                               mMorphResetTimer; // 0x416
+    u16                               _418;
+    u16                               _41A;
+    u16                               _41C;
+    u16                               _41E;
+    u16                               _420;
+    u16                               _422;
+    u16                               _424;
+    u16                               _426;
+    u16                               _428;
+    u16                               _42A;
+    u16                               _42C;
+    u32                               _430;
+    u16                               _434; // a timer
+    u16                               _436;
+    u16                               _438;
+    u16                               _43A;
+    TVec3f                            _43C; // front?
+    TVec3f                            _448;
+    f32                               _454;
+    TriangleFilterDelegator< Mario >* _458;
+    Triangle*                         _45C;
+    Triangle*                         _460;
+    Triangle*                         mGroundPolygon; // 0x464
+    Triangle*                         _468;
+    Triangle*                         _46C;
+    Triangle*                         _470;
+    Triangle*                         _474;
+    Triangle*                         mTmpPolygon; // 0x478
+    Triangle*                         _47C;
+    Triangle*                         _480;
+    Triangle*                         _484;
+    f32                               _488;
+    TVec3f                            mGroundPos; // 0x48C
+    TVec3f                            _498;
+    TVec3f                            _4A4;
+    TVec3f                            _4B0;
+    TVec3f                            _4BC;
+    Triangle*                         _4C8;
+    Triangle*                         mFrontWallTriangle; // 0x4CC
+    Triangle*                         mBackWallTriangle;  // 0x4D0
+    Triangle*                         mSideWallTriangle;  // 0x4D4
+    Triangle*                         _4D8;
+    Triangle*                         _4DC;
+    f32                               _4E0;
+    f32                               _4E4;
+    TVec3f                            _4E8;
+    TVec3f                            _4F4;
 
     // FAKE
     TVec3f _500;

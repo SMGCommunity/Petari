@@ -20,7 +20,7 @@ namespace {
     const u32 cTexPosY = 0;
 
     OdhConverter* getConverter() {
-        return MR::getSceneObj<OdhConverter>(SceneObj_OdhConverter);
+        return MR::getSceneObj< OdhConverter >(SceneObj_OdhConverter);
     }
 }; // namespace
 

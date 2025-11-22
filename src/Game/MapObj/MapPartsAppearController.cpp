@@ -128,7 +128,7 @@ namespace NrvMapPartsAppearController {
     INIT_NERVE(HostTypeDisappear);
 
     void HostTypeDisappear::execute(Spine* pSpine) const {
-        MapPartsAppearController* ctrl = reinterpret_cast<MapPartsAppearController*>(pSpine->mExecutor);
+        MapPartsAppearController* ctrl = reinterpret_cast< MapPartsAppearController* >(pSpine->mExecutor);
         ctrl->exeDisappear();
     }
 

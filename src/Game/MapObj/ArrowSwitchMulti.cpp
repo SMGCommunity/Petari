@@ -169,12 +169,12 @@ namespace NrvArrowSwitchMulti {
     INIT_NERVE(ArrowSwitchMultiNrvRotate);
 
     void ArrowSwitchMultiNrvRotate::execute(Spine* pSpine) const {
-        ArrowSwitchMulti* sw = reinterpret_cast<ArrowSwitchMulti*>(pSpine->mExecutor);
+        ArrowSwitchMulti* sw = reinterpret_cast< ArrowSwitchMulti* >(pSpine->mExecutor);
         sw->exeRotate();
     }
 
     void ArrowSwitchMultiNrvWait::execute(Spine* pSpine) const {
-        ArrowSwitchMulti* sw = reinterpret_cast<ArrowSwitchMulti*>(pSpine->mExecutor);
+        ArrowSwitchMulti* sw = reinterpret_cast< ArrowSwitchMulti* >(pSpine->mExecutor);
         sw->exeWait();
     }
 }; // namespace NrvArrowSwitchMulti

@@ -14,7 +14,7 @@ BeamGoRoundBeam::BeamGoRoundBeam(MtxPtr mtx)
 
 void BeamGoRoundBeam::init(const JMapInfoIter& rIter) {
     initModelManagerWithAnm("BeamGoRoundBeam", nullptr, false);
-    mPosition.set<f32>(mBeamJointMtx[0][3], mBeamJointMtx[1][3], mBeamJointMtx[2][3]);
+    mPosition.set< f32 >(mBeamJointMtx[0][3], mBeamJointMtx[1][3], mBeamJointMtx[2][3]);
     MR::connectToScene(this, 0x22, 0x5, 0x19, 0x1C);
     initHitSensor(1);
     MR::addHitSensorCallbackEnemyAttack(this, "beam", 4, 100.0f);
@@ -27,7 +27,7 @@ void BeamGoRoundBeam::init(const JMapInfoIter& rIter) {
 }
 
 void BeamGoRoundBeam::calcAndSetBaseMtx() {
-    mPosition.set<f32>(mBeamJointMtx[0][3], mBeamJointMtx[1][3], mBeamJointMtx[2][3]);
+    mPosition.set< f32 >(mBeamJointMtx[0][3], mBeamJointMtx[1][3], mBeamJointMtx[2][3]);
     MR::setBaseTRMtx(this, mBeamJointMtx);
 }
 

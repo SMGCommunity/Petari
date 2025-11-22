@@ -160,8 +160,8 @@ bool BlackHole::isInCubeBox(const TVec3f& rVec) const {
 }
 
 void BlackHole::updateModelScale(f32 a1, f32 a2) {
-    mScale.setAll<f32>(a1);
-    mBlackHoleModel->mScale.setAll<f32>(0.5f * a2);
+    mScale.setAll< f32 >(a1);
+    mBlackHoleModel->mScale.setAll< f32 >(0.5f * a2);
 }
 
 void BlackHole::exeWait() {
@@ -189,8 +189,8 @@ void BlackHole::exeDisappear() {
 
     f32 nerveEaseIn = MR::calcNerveEaseInValue(this, 0x5A, _9C, 0.0f);
     f32 blackHoleEase = MR::calcNerveEaseInValue(this, 0x1E, 0x5A, _9C, 0.0f);
-    mScale.setAll<f32>(nerveEaseIn);
-    mBlackHoleModel->mScale.setAll<f32>(0.5f * blackHoleEase);
+    mScale.setAll< f32 >(nerveEaseIn);
+    mBlackHoleModel->mScale.setAll< f32 >(0.5f * blackHoleEase);
 
     if (MR::isStep(this, 0x5A)) {
         kill();
@@ -206,17 +206,17 @@ namespace NrvBlackHole {
     BlackHoleNrvDisappear BlackHoleNrvDisappear::sInstance;
 
     void BlackHoleNrvDisappear::execute(Spine* pSpine) const {
-        BlackHole* blackHole = reinterpret_cast<BlackHole*>(pSpine->mExecutor);
+        BlackHole* blackHole = reinterpret_cast< BlackHole* >(pSpine->mExecutor);
         blackHole->exeDisappear();
     }
 
     void BlackHoleNrvDemo::execute(Spine* pSpine) const {
-        BlackHole* blackHole = reinterpret_cast<BlackHole*>(pSpine->mExecutor);
+        BlackHole* blackHole = reinterpret_cast< BlackHole* >(pSpine->mExecutor);
         MR::startLevelSound(blackHole, "SE_OJ_LV_BLACK_HOLE", -1, -1, -1);
     }
 
     void BlackHoleNrvWait::execute(Spine* pSpine) const {
-        BlackHole* blackHole = reinterpret_cast<BlackHole*>(pSpine->mExecutor);
+        BlackHole* blackHole = reinterpret_cast< BlackHole* >(pSpine->mExecutor);
         blackHole->exeWait();
     }
 

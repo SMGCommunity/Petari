@@ -55,7 +55,7 @@ namespace nw4r {
         }
 
         bool Layout::Build(const void* lytResBuf, ResourceAccessor* pResAcsr) {
-            const res::BinaryFileHeader* const pFileHead = static_cast<const res::BinaryFileHeader*>(lytResBuf);
+            const res::BinaryFileHeader* const pFileHead = static_cast< const res::BinaryFileHeader* >(lytResBuf);
             if (!detail::TestFileHeader(*pFileHead, 'RLYT')) {
                 return false;
             }
@@ -71,23 +71,23 @@ namespace nw4r {
             bool  bReadRootGroup = false;
             int   groupNestLevel = 0;
 
-            const void* dataPtr = static_cast<const u8*>(lytResBuf) + pFileHead->headerSize;
+            const void* dataPtr = static_cast< const u8* >(lytResBuf) + pFileHead->headerSize;
             for (int i = 0; i < pFileHead->dataBlocks; ++i) {
-                const res::DataBlockHeader* pDataBlockHead = static_cast<const res::DataBlockHeader*>(dataPtr);
+                const res::DataBlockHeader* pDataBlockHead = static_cast< const res::DataBlockHeader* >(dataPtr);
                 switch (detail::GetSignatureInt(pDataBlockHead->kind)) {
                 case 'lyt1': {
-                    const res::Layout* pResLyt = static_cast<const res::Layout*>(dataPtr);
+                    const res::Layout* pResLyt = static_cast< const res::Layout* >(dataPtr);
                     mLayoutSize = pResLyt->layoutSize;
                     break;
                 }
                 case 'txl1':
-                    resBlockSet.pTextureList = static_cast<const res::TextureList*>(dataPtr);
+                    resBlockSet.pTextureList = static_cast< const res::TextureList* >(dataPtr);
                     break;
                 case 'fnl1':
-                    resBlockSet.pFontList = static_cast<const res::FontList*>(dataPtr);
+                    resBlockSet.pFontList = static_cast< const res::FontList* >(dataPtr);
                     break;
                 case 'mat1':
-                    resBlockSet.pMaterialList = static_cast<const res::MaterialList*>(dataPtr);
+                    resBlockSet.pMaterialList = static_cast< const res::MaterialList* >(dataPtr);
                     break;
 
                 case 'pan1':
@@ -111,7 +111,7 @@ namespace nw4r {
                 } break;
 
                 case 'usd1':
-                    pLastPane->SetExtUserDataList(reinterpret_cast<const res::ExtUserDataList*>(pDataBlockHead));
+                    pLastPane->SetExtUserDataList(reinterpret_cast< const res::ExtUserDataList* >(pDataBlockHead));
                     break;
                 case 'pas1':
                     pParentPane = pLastPane;
@@ -123,10 +123,10 @@ namespace nw4r {
                 case 'grp1': {
                     if (!bReadRootGroup) {
                         bReadRootGroup = true;
-                        mpGroupContainer = NewObj<GroupContainer>();
+                        mpGroupContainer = NewObj< GroupContainer >();
                     } else {
                         if (mpGroupContainer != nullptr && groupNestLevel == 1) {
-                            if (Group* pGroup = NewObj<Group>(reinterpret_cast<const res::Group*>(pDataBlockHead), mpRootPane)) {
+                            if (Group* pGroup = NewObj< Group >(reinterpret_cast< const res::Group* >(pDataBlockHead), mpRootPane)) {
                                 mpGroupContainer->AppendGroup(pGroup);
                             }
                         }
@@ -143,14 +143,14 @@ namespace nw4r {
                     break;
                 }
 
-                dataPtr = static_cast<const u8*>(dataPtr) + pDataBlockHead->size;
+                dataPtr = static_cast< const u8* >(dataPtr) + pDataBlockHead->size;
             }
 
             return true;
         }
 
         AnimTransform* Layout::CreateAnimTransform() {
-            AnimTransformBasic* const pAnimTrans = NewObj<AnimTransformBasic>();
+            AnimTransformBasic* const pAnimTrans = NewObj< AnimTransformBasic >();
             if (pAnimTrans != nullptr) {
                 mAnimTransList.PushBack(pAnimTrans);
             }

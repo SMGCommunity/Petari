@@ -21,7 +21,7 @@ const char* DepthOfFieldArea::getManagerName() const {
 
 f32 DepthOfFieldArea::getIntensity() const {
     if (mObjArg1 > -1) {
-        return static_cast<f32>(mObjArg1) / 255.0f;
+        return static_cast< f32 >(mObjArg1) / 255.0f;
     }
 
     return 1.0f;

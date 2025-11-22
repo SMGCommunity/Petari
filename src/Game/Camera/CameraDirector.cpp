@@ -38,13 +38,13 @@ namespace {
 } // namespace
 
 void CameraPoseParam::copyFrom(const CameraPoseParam& rOther) {
-    _0.set<f32>(rOther._0);
-    mWatchPos.set<f32>(rOther.mWatchPos);
-    _18.set<f32>(rOther._18);
-    _24.set<f32>(rOther._24);
+    _0.set< f32 >(rOther._0);
+    mWatchPos.set< f32 >(rOther.mWatchPos);
+    _18.set< f32 >(rOther._18);
+    _24.set< f32 >(rOther._24);
     _30 = rOther._30;
-    _34.set<f32>(rOther._34);
-    _40.set<f32>(rOther._40);
+    _34.set< f32 >(rOther._34);
+    _40.set< f32 >(rOther._40);
     _4C = rOther._4C;
     _50 = rOther._50;
     _54 = rOther._54;
@@ -279,7 +279,7 @@ void CameraDirector::createViewMtx() {
 
     CameraMan* man = getCurrentCameraMan();
     f32        fovy = CameraLocalUtil::getFovy(man);
-    mViewInterpolator->updateCameraMtx(reinterpret_cast<MtxPtr>(&view), rWatchPos, target, fovy);
+    mViewInterpolator->updateCameraMtx(reinterpret_cast< MtxPtr >(&view), rWatchPos, target, fovy);
 }
 
 void CameraDirector::checkStartCondition() {
@@ -341,7 +341,7 @@ CameraParamChunkEvent* CameraDirector::getEventParameter(s32 zoneID, const char*
     CameraParamChunkID_Tmp chunkID = CameraParamChunkID_Tmp();
     chunkID.createEventID(zoneID, pName);
 
-    return reinterpret_cast<CameraParamChunkEvent*>(mChunkHolder->getChunk(chunkID));
+    return reinterpret_cast< CameraParamChunkEvent* >(mChunkHolder->getChunk(chunkID));
 }
 
 void CameraDirector::requestToResetCameraMan() {
@@ -518,8 +518,8 @@ void CameraDirector::startTalkCamera(const TVec3f& rPosition, const TVec3f& rUp,
     CameraParamChunk* chunk = mChunkHolder->getChunk(chunkID);
 
     if (chunk != nullptr) {
-        chunk->mGeneralParam->mWPoint.set<f32>(rPosition);
-        chunk->mGeneralParam->mUp.set<f32>(rUp);
+        chunk->mGeneralParam->mWPoint.set< f32 >(rPosition);
+        chunk->mGeneralParam->mUp.set< f32 >(rUp);
 
         CameraGeneralParam* generalParam = chunk->mGeneralParam;
         generalParam->mAxis.x = axisX;

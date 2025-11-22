@@ -55,8 +55,8 @@ public:
     virtual void initAfterPlacement();
     virtual void movement();
 
-    MR::Vector<MR::AssignableArray<BaseMatrixFollower*>>     mFollowers; // 0xC
-    MR::Vector<MR::AssignableArray<BaseMatrixFollowTarget*>> mTargets;   // 0x18
+    MR::Vector< MR::AssignableArray< BaseMatrixFollower* > >     mFollowers; // 0xC
+    MR::Vector< MR::AssignableArray< BaseMatrixFollowTarget* > > mTargets;   // 0x18
 };
 
 namespace MR {

@@ -53,7 +53,7 @@ void SimpleClipPartsObj::initCaseNoUseSwitchA(const MapObjActorInitInfo& Ifter) 
 void SimpleClipPartsObj::initCaseUseSwitchB(const MapObjActorInitInfo& Ifter) {
     void (MapObjActor::*start)(void) = &MapObjActor::startMapPartsFunctions;
     void (MapObjActor::*end)(void) = &MapObjActor::endMapPartsFunctions;
-    MR::listenStageSwitchOnOffB(this, MR::Functor<MapObjActor>(this, start), MR::Functor<MapObjActor>(this, end));
+    MR::listenStageSwitchOnOffB(this, MR::Functor< MapObjActor >(this, start), MR::Functor< MapObjActor >(this, end));
     setStateWait();
 }
 

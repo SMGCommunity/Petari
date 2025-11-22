@@ -19,6 +19,6 @@ MarioActor* MarioHolder::getMarioActor() const {
 
 namespace MR {
     MarioHolder* getMarioHolder() {
-        return MR::getSceneObj<MarioHolder>(SceneObj_MarioHolder);
+        return MR::getSceneObj< MarioHolder >(SceneObj_MarioHolder);
     }
 } // namespace MR

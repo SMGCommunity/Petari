@@ -96,7 +96,7 @@ namespace NrvTreasureSpot {
     INIT_NERVE(TreasureSpotNrvSpout);
 
     void TreasureSpotNrvSpout::execute(Spine* pSpine) const {
-        TreasureSpot* spot = reinterpret_cast<TreasureSpot*>(pSpine->mExecutor);
+        TreasureSpot* spot = reinterpret_cast< TreasureSpot* >(pSpine->mExecutor);
         spot->exeSpout();
     }
 

@@ -154,17 +154,17 @@ namespace NrvBigFan {
     INIT_NERVE(BigFanNrvWait);
 
     void BigFanNrvWait::execute(Spine* pSpine) const {
-        BigFan* fan = reinterpret_cast<BigFan*>(pSpine->mExecutor);
+        BigFan* fan = reinterpret_cast< BigFan* >(pSpine->mExecutor);
         fan->exeWait();
     }
 
     void BigFanNrvStart::execute(Spine* pSpine) const {
-        BigFan* fan = reinterpret_cast<BigFan*>(pSpine->mExecutor);
+        BigFan* fan = reinterpret_cast< BigFan* >(pSpine->mExecutor);
         fan->exeStart();
     }
 
     void BigFanNrvStop::execute(Spine* pSpine) const {
-        BigFan* fan = reinterpret_cast<BigFan*>(pSpine->mExecutor);
+        BigFan* fan = reinterpret_cast< BigFan* >(pSpine->mExecutor);
 
         if (MR::isFirstStep(fan)) {
             MR::startAction(fan, "Appear");

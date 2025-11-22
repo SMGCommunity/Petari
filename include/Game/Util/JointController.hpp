@@ -37,7 +37,7 @@ public:
     J3DJoint* mJoint; // 0x8
 };
 
-template <typename T>
+template < typename T >
 class JointControlDelegator : public JointController {
 public:
     typedef bool (T::*func)(TPos3f*, const JointControllerInfo&);
@@ -83,16 +83,16 @@ public:
 namespace MR {
     void setJointControllerParam(JointController*, const LiveActor*, const char*);
 
-    template <class T>
-    JointControlDelegator<T>* createJointDelegatorWithNullChildFunc(T* pHost, bool (T::*calcFunc)(TPos3f*, const JointControllerInfo&), const char* pName) {
-        JointControlDelegator<T>* delegator = new JointControlDelegator<T>(pHost, calcFunc, 0);
+    template < class T >
+    JointControlDelegator< T >* createJointDelegatorWithNullChildFunc(T* pHost, bool (T::*calcFunc)(TPos3f*, const JointControllerInfo&), const char* pName) {
+        JointControlDelegator< T >* delegator = new JointControlDelegator< T >(pHost, calcFunc, 0);
         setJointControllerParam(delegator, pHost, pName);
         return delegator;
     }
 
-    template <class T>
-    JointControlDelegator<T>* createJointDelegatorWithNullMtxFunc(T* pHost, bool (T::*calcFunc)(TPos3f*, const JointControllerInfo&), const char* pName) {
-        JointControlDelegator<T>* delegator = new JointControlDelegator<T>(calcFunc, pHost, 0);
+    template < class T >
+    JointControlDelegator< T >* createJointDelegatorWithNullMtxFunc(T* pHost, bool (T::*calcFunc)(TPos3f*, const JointControllerInfo&), const char* pName) {
+        JointControlDelegator< T >* delegator = new JointControlDelegator< T >(calcFunc, pHost, 0);
         setJointControllerParam(delegator, pHost, pName);
         return delegator;
     }

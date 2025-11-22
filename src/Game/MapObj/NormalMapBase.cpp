@@ -57,9 +57,9 @@ void NormalMapBase::control() {
 void NormalMapBase::calcAnim() {
     LiveActor::calcAnim();
     updateBtkMtx();
-    OSLockMutex(&MR::MutexHolder<0>::sMutex);
+    OSLockMutex(&MR::MutexHolder< 0 >::sMutex);
     MR::getJ3DModel(this)->viewCalc();
-    OSUnlockMutex(&MR::MutexHolder<0>::sMutex);
+    OSUnlockMutex(&MR::MutexHolder< 0 >::sMutex);
 }
 
 // ...

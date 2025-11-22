@@ -16,7 +16,7 @@ namespace {
 
 namespace MR {
     PlayerActionGuidance* getPlayerActionGuidance() {
-        return MR::getSceneObj<PlayerActionGuidance>(SceneObj_PlayerActionGuidance);
+        return MR::getSceneObj< PlayerActionGuidance >(SceneObj_PlayerActionGuidance);
     }
 }; // namespace MR
 

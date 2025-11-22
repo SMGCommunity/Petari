@@ -48,7 +48,7 @@ void TripodBossGuardWallPart::kill() {
 }
 
 void TripodBossGuardWallPart::control() {
-    mPosition.set<f32>(mHostMtx->get(0, 3), mHostMtx->get(1, 3), mHostMtx->get(2, 3));
+    mPosition.set< f32 >(mHostMtx->get(0, 3), mHostMtx->get(1, 3), mHostMtx->get(2, 3));
 }
 
 void TripodBossGuardWallPart::calcAndSetBaseMtx() {

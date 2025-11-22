@@ -43,7 +43,7 @@ namespace JGadget {
     }
 
     void TNodeLinkList::Remove(TLinkListNode* node) {
-        remove_if(TPRIsEqual_pointer_<TLinkListNode>(node));
+        remove_if(TPRIsEqual_pointer_< TLinkListNode >(node));
     }
 
     void TNodeLinkList::Initialize_() {

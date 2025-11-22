@@ -21,7 +21,7 @@ namespace NrvBossKameckStateBattle {
 }; // namespace NrvBossKameckStateBattle
 
 BossKameckStateBattle::BossKameckStateBattle(BossKameck* pBoss)
-    : mBossKameck(pBoss), ActorStateBase<BossKameck>("ボスカメック戦闘状態") {
+    : mBossKameck(pBoss), ActorStateBase< BossKameck >("ボスカメック戦闘状態") {
     mMoveRail = nullptr;
     mBattlePattarn = nullptr;
     mBeam = nullptr;

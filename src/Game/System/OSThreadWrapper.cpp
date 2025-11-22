@@ -48,7 +48,7 @@ void OSThreadWrapper::initHeapSpecified(JKRHeap* pHeap, u32 stackSize, int prior
 }
 
 void* OSThreadWrapper::start(void* pArg) {
-    return static_cast<OSThreadWrapper*>(pArg)->run();
+    return static_cast< OSThreadWrapper* >(pArg)->run();
 }
 
 void* OSThreadWrapper::run() {

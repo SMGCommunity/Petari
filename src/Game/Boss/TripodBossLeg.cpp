@@ -136,7 +136,7 @@ void TripodBossLeg::setWait() {
 }
 
 void TripodBossLeg::setForceEndPoint(const TVec3f& rPoint) {
-    mForceEndPoint.set<f32>(rPoint);
+    mForceEndPoint.set< f32 >(rPoint);
 }
 
 void TripodBossLeg::setDemoEffectTiming(bool timg) {
@@ -703,9 +703,9 @@ void TripodBossLeg::updateAnkleShadowMatrix() {
     mMoveArea->calcLandingNormal(&landingNormal, landingPosition);
 
     MR::setShadowDropDirection(this, nullptr, -landingNormal);
-    v9.set<f32>(mEndJointMtx.get(0, 0), mEndJointMtx.get(1, 0), mEndJointMtx.get(2, 0));
-    v8.set<f32>(mEndJointMtx.get(0, 1), mEndJointMtx.get(1, 1), mEndJointMtx.get(2, 1));
-    v7.set<f32>(mEndJointMtx.get(0, 2), mEndJointMtx.get(1, 2), mEndJointMtx.get(2, 2));
+    v9.set< f32 >(mEndJointMtx.get(0, 0), mEndJointMtx.get(1, 0), mEndJointMtx.get(2, 0));
+    v8.set< f32 >(mEndJointMtx.get(0, 1), mEndJointMtx.get(1, 1), mEndJointMtx.get(2, 1));
+    v7.set< f32 >(mEndJointMtx.get(0, 2), mEndJointMtx.get(1, 2), mEndJointMtx.get(2, 2));
     _1C0.setVec(-v7, -v9, v8);
 
     TVec3f v2(landingNormal);
@@ -724,7 +724,7 @@ namespace MR {
         f32    z = v17.mMtx[2][0];
         f32    y = v17.mMtx[1][0];
         f32    x = v17.mMtx[0][0];
-        v16.set<f32>(x, y, z);
+        v16.set< f32 >(x, y, z);
         f32 v10 = MR::sqrt((v16.x * v16.x) + (v16.z * v16.z));
 
         if (MR::isNearZero(v10, 0.000001f)) {

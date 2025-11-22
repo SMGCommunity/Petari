@@ -22,7 +22,7 @@ ModelObj::ModelObj(const char* pName, const char* pModelName, MtxPtr mtxPtr, int
     initEffectKeeper(8, nullptr, false);
 
     if (mMtx) {
-        mPosition.set<f32>(mMtx[0][3], mMtx[1][3], mMtx[2][3]);
+        mPosition.set< f32 >(mMtx[0][3], mMtx[1][3], mMtx[2][3]);
     }
 }
 
@@ -32,7 +32,7 @@ void ModelObj::init(const JMapInfoIter&) {
 
 void ModelObj::calcAndSetBaseMtx() {
     if (mMtx) {
-        mPosition.set<f32>(mMtx[0][3], mMtx[1][3], mMtx[2][3]);
+        mPosition.set< f32 >(mMtx[0][3], mMtx[1][3], mMtx[2][3]);
         MR::setBaseTRMtx(this, mMtx);
     } else {
         LiveActor::calcAndSetBaseMtx();
@@ -52,7 +52,7 @@ void ModelObjNpc::control() {
 
 void ModelObjNpc::calcAndSetBaseMtx() {
     if (mMtx) {
-        mPosition.set<f32>(mMtx[0][3], mMtx[1][3], mMtx[2][3]);
+        mPosition.set< f32 >(mMtx[0][3], mMtx[1][3], mMtx[2][3]);
         MR::setBaseTRMtx(this, mMtx);
     } else {
         LiveActor::calcAndSetBaseMtx();
@@ -70,7 +70,7 @@ ModelObjNpc::ModelObjNpc(const char* pName, const char* a2, MtxPtr mtx)
       mLodCtrl(nullptr),
       mJointCtrl(nullptr) {
     if (mMtx != nullptr) {
-        mPosition.set<f32>(mMtx[0][3], mMtx[1][3], mMtx[2][3]);
+        mPosition.set< f32 >(mMtx[0][3], mMtx[1][3], mMtx[2][3]);
     }
 
     initModelManagerWithAnm(a2, nullptr, false);

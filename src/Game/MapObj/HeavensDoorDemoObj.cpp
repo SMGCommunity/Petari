@@ -106,17 +106,17 @@ namespace NrvHeavensDoorDemoObj {
     INIT_NERVE(HeavensDoorDemoObjNrvVanish);
 
     void HeavensDoorDemoObjNrvAppear::execute(Spine* pSpine) const {
-        HeavensDoorDemoObj* door = reinterpret_cast<HeavensDoorDemoObj*>(pSpine->mExecutor);
+        HeavensDoorDemoObj* door = reinterpret_cast< HeavensDoorDemoObj* >(pSpine->mExecutor);
         door->exeAppear();
     }
 
     void HeavensDoorDemoObjNrvWait::execute(Spine* pSpine) const {
-        HeavensDoorDemoObj* door = reinterpret_cast<HeavensDoorDemoObj*>(pSpine->mExecutor);
+        HeavensDoorDemoObj* door = reinterpret_cast< HeavensDoorDemoObj* >(pSpine->mExecutor);
         door->exeWait();
     }
 
     void HeavensDoorDemoObjNrvVanish::execute(Spine* pSpine) const {
-        HeavensDoorDemoObj* door = reinterpret_cast<HeavensDoorDemoObj*>(pSpine->mExecutor);
+        HeavensDoorDemoObj* door = reinterpret_cast< HeavensDoorDemoObj* >(pSpine->mExecutor);
         door->exeVanish();
     }
 }; // namespace NrvHeavensDoorDemoObj

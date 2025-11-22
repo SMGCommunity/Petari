@@ -226,8 +226,8 @@ void GameSystemStationedArchiveLoader::exeLoadStationedArchiveOthers() {
 
 void GameSystemStationedArchiveLoader::exeInitializeGameData() {
     GameSystemFunction::initAfterStationedResourceLoaded();
-    SingletonHolder<HeapMemoryWatcher>::get()->setCurrentHeapToGameHeap();
-    SingletonHolder<HeapMemoryWatcher>::get()->adjustStationedHeaps();
+    SingletonHolder< HeapMemoryWatcher >::get()->setCurrentHeapToGameHeap();
+    SingletonHolder< HeapMemoryWatcher >::get()->adjustStationedHeaps();
     GameSystemFunction::setSceneNameObjHolderToNameObjRegister();
     MR::clearFileLoaderRequestFileInfo(false);
     setNerve(&::GameSystemStationedArchiveLoaderEnd::sInstance);
@@ -291,10 +291,10 @@ void GameSystemStationedArchiveLoader::createAndAddPlayerArchives(bool isDataMar
 
     if (isDataMario) {
         pMarioAnimeHolder->newMaterialAnmBuffer(
-            static_cast<J3DModelData*>(MR::createAndAddResourceHolder("Mario.arc")->mModelResTable->getRes("mario")));
+            static_cast< J3DModelData* >(MR::createAndAddResourceHolder("Mario.arc")->mModelResTable->getRes("mario")));
     } else {
         pMarioAnimeHolder->newMaterialAnmBuffer(
-            static_cast<J3DModelData*>(MR::createAndAddResourceHolder("Luigi.arc")->mModelResTable->getRes("luigi")));
+            static_cast< J3DModelData* >(MR::createAndAddResourceHolder("Luigi.arc")->mModelResTable->getRes("luigi")));
     }
 }
 

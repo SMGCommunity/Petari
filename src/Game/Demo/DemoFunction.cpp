@@ -24,7 +24,7 @@ namespace {
 
 namespace DemoFunction {
     DemoDirector* getDemoDirector() {
-        return MR::getSceneObj<DemoDirector>(SceneObj_DemoDirector);
+        return MR::getSceneObj< DemoDirector >(SceneObj_DemoDirector);
     }
 
     DemoCastGroupHolder* getDemoCastSubGroupHolder() {
@@ -88,13 +88,13 @@ namespace DemoFunction {
         if (group == nullptr) {
             return nullptr;
         }
-        return reinterpret_cast<DemoExecutor*>(group);
+        return reinterpret_cast< DemoExecutor* >(group);
     }
 
     DemoExecutor* findDemoExecutor(const LiveActor* pActor) {
         DemoExecutor* executor;
         for (s32 i = 0; i < getDemoDirector()->_18->mObjectCount; i++) {
-            executor = reinterpret_cast<DemoExecutor*>(getDemoDirector()->_18->getCastGroup(i));
+            executor = reinterpret_cast< DemoExecutor* >(getDemoDirector()->_18->getCastGroup(i));
             if (DemoExecutorFunction::isRegisteredDemoCast(executor, pActor)) {
                 return executor;
             }
@@ -105,7 +105,7 @@ namespace DemoFunction {
     DemoExecutor* findDemoExecutorActive(const LiveActor* pActor) {
         DemoExecutor* executor;
         for (s32 i = 0; i < getDemoDirector()->_18->mObjectCount; i++) {
-            executor = reinterpret_cast<DemoExecutor*>(getDemoDirector()->_18->getCastGroup(i));
+            executor = reinterpret_cast< DemoExecutor* >(getDemoDirector()->_18->getCastGroup(i));
             if (DemoExecutorFunction::isRegisteredDemoCast(executor, pActor) && MR::isDemoActive(executor->mName)) {
                 return executor;
             }

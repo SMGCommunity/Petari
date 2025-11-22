@@ -66,9 +66,9 @@ void FireMarioBall::kill() {
 }
 
 void FireMarioBall::appearAndThrow(const TVec3f& v1, const TVec3f& v2) {
-    mPosition.set<f32>(v1);
-    mVelocity.set<f32>(v2 * cThrowSpeed);
-    mRotation.set<f32>(0.0f, 57.295776f * JMath::sAtanTable.atan2_(mVelocity.x, mVelocity.z), 0.0f);
+    mPosition.set< f32 >(v1);
+    mVelocity.set< f32 >(v2 * cThrowSpeed);
+    mRotation.set< f32 >(0.0f, 57.295776f * JMath::sAtanTable.atan2_(mVelocity.x, mVelocity.z), 0.0f);
     MR::tryRumblePadWeak(this, 0);
     appear();
 }

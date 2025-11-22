@@ -7,7 +7,7 @@ class CoinHostInfo;
 #include "Game/LiveActor/LiveActorGroup.hpp"
 #include <JSystem/JGeometry/TVec.hpp>
 
-class CoinHolder : public DeriveActorGroup<Coin> {
+class CoinHolder : public DeriveActorGroup< Coin > {
 public:
     CoinHolder(const char*);
 

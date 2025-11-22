@@ -14,7 +14,7 @@ void* GameSystemException::sMapFileUsingBuffer;
 namespace {
     bool isBootWPAD() {
         bool                 ret = false;
-        GameSystemObjHolder* objHolder = SingletonHolder<GameSystem>::get()->mObjHolder;
+        GameSystemObjHolder* objHolder = SingletonHolder< GameSystem >::get()->mObjHolder;
         if (objHolder != nullptr && objHolder->mWPadHolder != nullptr) {
             ret = true;
         }

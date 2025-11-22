@@ -53,8 +53,8 @@ void AreaObj::init(const JMapInfoIter& rIter) {
     mSwitchCtrl = MR::createStageSwitchCtrl(this, rIter);
 
     if (mSwitchCtrl->isValidSwitchAppear()) {
-        MR::FunctorV0M<AreaObj*, void (AreaObj::*)()> validateFunc = MR::Functor<AreaObj>(this, &AreaObj::validate);
-        MR::FunctorV0M<AreaObj*, void (AreaObj::*)()> invalidateFunc = MR::Functor<AreaObj>(this, &AreaObj::invalidate);
+        MR::FunctorV0M< AreaObj*, void (AreaObj::*)() > validateFunc = MR::Functor< AreaObj >(this, &AreaObj::validate);
+        MR::FunctorV0M< AreaObj*, void (AreaObj::*)() > invalidateFunc = MR::Functor< AreaObj >(this, &AreaObj::invalidate);
         MR::listenNameObjStageSwitchOnOffAppear(this, mSwitchCtrl, validateFunc, invalidateFunc);
         mIsValid = false;
     }
@@ -99,7 +99,7 @@ bool AreaObj::isValidSwitchB() const {
 }
 
 void AreaObj::setFollowMtx(const TPos3f* pMtx) {
-    mForm->_4 = const_cast<TPos3f*>(pMtx);
+    mForm->_4 = const_cast< TPos3f* >(pMtx);
 }
 
 TPos3f* AreaObj::getFollowMtx() const {

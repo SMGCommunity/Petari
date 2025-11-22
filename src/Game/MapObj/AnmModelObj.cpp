@@ -25,7 +25,7 @@ void AnmModelObj::init(const JMapInfoIter& rIter) {
     if (MR::isExistJoint(this, cFollowjointName)) {
         MR::copyJointPos(this, cFollowjointName, &mJointPos);
     } else {
-        mJointPos.set<f32>(mPosition);
+        mJointPos.set< f32 >(mPosition);
     }
 
     f32 boundRadius;
@@ -75,7 +75,7 @@ void AnmModelObj::exeMove() {
     if (MR::isExistJoint(this, cFollowjointName)) {
         MR::copyJointPos(this, cFollowjointName, &mJointPos);
     } else {
-        mJointPos.set<f32>(mPosition);
+        mJointPos.set< f32 >(mPosition);
     }
 
     if (isDone()) {

@@ -125,7 +125,7 @@ bool OceanRing::calcWaterInfo(const TVec3f& a1, const TVec3f& a2, WaterInfo* pIn
     f32    v9 = (mWidthMax * calcCurrentWidthRate(nearestPos));
     TVec3f streamVec;
     calcStreamVec(a1, nearestPos, &streamVec);
-    pInfo->mStreamVec.set<f32>(streamVec);
+    pInfo->mStreamVec.set< f32 >(streamVec);
     pInfo->mWaveHeight = calcWaveHeight(a1, nearestPos, &pInfo->mSurfaceNormal);
     TVec3f v21(a1);
     v21.sub(v24);
@@ -141,12 +141,12 @@ bool OceanRing::calcWaterInfo(const TVec3f& a1, const TVec3f& a2, WaterInfo* pIn
     pInfo->_4 = v12 + v10;
     TVec3f v20(a2);
     MR::calcGravityVector(this, a1, &v20, nullptr, 0);
-    pInfo->mSurfaceNormal.set<f32>(-v20);
+    pInfo->mSurfaceNormal.set< f32 >(-v20);
     TVec3f v14(a2);
     v14.scale(v10);
     TVec3f v15(a1);
     v15.add(v14);
-    pInfo->mSurfacePos.set<f32>(v15);
+    pInfo->mSurfacePos.set< f32 >(v15);
     TVec3f v19(a1);
     v19.sub(v24);
 
@@ -155,13 +155,13 @@ bool OceanRing::calcWaterInfo(const TVec3f& a1, const TVec3f& a2, WaterInfo* pIn
         TVec3f v18(a2);
         v18.scale(v9);
         v18.add(v24);
-        pInfo->mEdgePos.set<f32>(v18);
+        pInfo->mEdgePos.set< f32 >(v18);
     } else {
         MR::normalize(&v19);
         v19.scale(v9);
         v19.add(v24);
         pInfo->mEdgeDistance = PSVECDistance(&v19, &a1);
-        pInfo->mEdgePos.set<f32>(v19);
+        pInfo->mEdgePos.set< f32 >(v19);
     }
 
     return true;
@@ -194,7 +194,7 @@ f32 OceanRing::calcNearestPos(const TVec3f& a1, TVec3f* a2, TVec3f* a3, TVec3f* 
     f32 v18 = 0.0f;
     s32 v33;
     if (v12 <= 0 || v12 >= mSegCount - 1) {
-        a2->set<f32>(point->mOrigPos);
+        a2->set< f32 >(point->mOrigPos);
         v33 = v12;
     } else {
         WaterPoint* v20 = mWaterPoints[0xF * v12 - 8];
@@ -280,7 +280,7 @@ f32 OceanRing::calcWaveHeight(const TVec3f& a1, f32 a2, TVec3f* a3) const {
     PSVECCrossProduct(&v31, &v32, a3);
 
     if (MR::isNearZero(*a3, 0.001f)) {
-        a3->set<f32>(-v42);
+        a3->set< f32 >(-v42);
     } else {
         MR::normalize(a3);
     }
@@ -295,7 +295,7 @@ void OceanRing::calcStreamVec(const TVec3f& a1, f32 a2, TVec3f* pStreamVec) cons
     TVec3f near(mNearestPos);
     near.sub(a1);
     if (PSVECMag(&near) < v8) {
-        pStreamVec->set<f32>(mNearestDir);
+        pStreamVec->set< f32 >(mNearestDir);
         pStreamVec->scale(v9);
     }
 }
@@ -518,8 +518,8 @@ void OceanRing::calcClippingBox() {
     TVec3f v9(v1);
     mClippingBox.mMin.sub(v9);
     mClippingBox.mMax.add(v9);
-    mBox.mMin.set<f32>(mClippingBox.mMin);
-    mBox.mMax.set<f32>(mClippingBox.mMax);
+    mBox.mMin.set< f32 >(mClippingBox.mMin);
+    mBox.mMax.set< f32 >(mClippingBox.mMax);
     TVec3f v8(5000.0f);
     mBox.mMin.sub(v8);
     mBox.mMax.add(v8);

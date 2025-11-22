@@ -6,7 +6,7 @@
 
 class TalkMessageCtrl;
 
-class ButlerStateStarPieceReaction : public ActorStateBase<LiveActor> {
+class ButlerStateStarPieceReaction : public ActorStateBase< LiveActor > {
 public:
     ButlerStateStarPieceReaction(LiveActor*, const JMapInfoIter&, const char*);
 

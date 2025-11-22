@@ -23,7 +23,7 @@ void AnmPlayerBase::reflectFrame() {
 }
 
 void AnmPlayerBase::start(const char* pResName) {
-    J3DAnmBase* pAnmRes = reinterpret_cast<J3DAnmBase*>(mResTable->getRes(pResName));
+    J3DAnmBase* pAnmRes = reinterpret_cast< J3DAnmBase* >(mResTable->getRes(pResName));
 
     if (pAnmRes != mAnmRes) {
         changeAnimation(pAnmRes);

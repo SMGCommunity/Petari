@@ -28,16 +28,16 @@ void CameraShakePatternSingly::start() {
 #ifdef NON_MATCHING
 // Stack issue, fmuls operations order
 void CameraShakePatternSingly::update() {
-    s32 uStack44 = 25 - static_cast<s32>(_4);
+    s32 uStack44 = 25 - static_cast< s32 >(_4);
 
     if (uStack44 < 0) {
         uStack44 = 0;
     }
 
-    f32 dVar2 = MR::sin((12.566371f * static_cast<f32>(uStack44)) / 25.0f);
+    f32 dVar2 = MR::sin((12.566371f * static_cast< f32 >(uStack44)) / 25.0f);
     f32 dVar3 = _8 * dVar2;
 
-    f32 dVar2_2 = MR::sin((1.5707964f * static_cast<f32>(uStack44)) / 25.0f);
+    f32 dVar2_2 = MR::sin((1.5707964f * static_cast< f32 >(uStack44)) / 25.0f);
 
     dVar3 *= dVar2_2;
 
@@ -70,7 +70,7 @@ CameraShakePatternVerticalSin::~CameraShakePatternVerticalSin() {
 }
 
 bool CameraShakePatternVerticalSin::isEnd() const {
-    f32 var = static_cast<f32>(_4);
+    f32 var = static_cast< f32 >(_4);
 
     return _C <= var;
 }
@@ -89,7 +89,7 @@ void CameraShakePatternVerticalSin::update() {
         mOffset.y = 0.0f;
         mOffset.x = 0.0f;
     } else {
-        f32 dVar2 = MR::sin((6.2831855f * static_cast<f32>(_4)) / _C);
+        f32 dVar2 = MR::sin((6.2831855f * static_cast< f32 >(_4)) / _C);
 
         f32 nVar2 = -dVar2;
         f32 var = _8 * nVar2;

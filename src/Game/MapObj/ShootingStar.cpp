@@ -38,7 +38,7 @@ void ShootingStar::init(const JMapInfoIter& rIter) {
     MR::initShadowVolumeSphere(this, 30.0f);
 
     if (MR::useStageSwitchReadAppear(this, rIter)) {
-        MR::listenStageSwitchOnOffAppear(this, MR::FunctorV0M<LiveActor*, void (LiveActor::*)(void)>(this, &LiveActor::kill), MR::FunctorV0M<ShootingStar*, void (ShootingStar::*)(void)>(this, &ShootingStar::appearPreShooting));
+        MR::listenStageSwitchOnOffAppear(this, MR::FunctorV0M< LiveActor*, void (LiveActor::*)(void) >(this, &LiveActor::kill), MR::FunctorV0M< ShootingStar*, void (ShootingStar::*)(void) >(this, &ShootingStar::appearPreShooting));
         makeActorDead();
     } else {
         makeActorAppeared();
@@ -112,17 +112,17 @@ namespace NrvShootingStar {
     INIT_NERVE(HostTypeNrvWaitForNextShoot);
 
     void HostTypeNrvWaitForNextShoot::execute(Spine* pSpine) const {
-        ShootingStar* star = reinterpret_cast<ShootingStar*>(pSpine->mExecutor);
+        ShootingStar* star = reinterpret_cast< ShootingStar* >(pSpine->mExecutor);
         star->exeWaitForNextShoot();
     }
 
     void HostTypeNrvShooting::execute(Spine* pSpine) const {
-        ShootingStar* star = reinterpret_cast<ShootingStar*>(pSpine->mExecutor);
+        ShootingStar* star = reinterpret_cast< ShootingStar* >(pSpine->mExecutor);
         star->exeShooting();
     }
 
     void HostTypeNrvPreShooting::execute(Spine* pSpine) const {
-        ShootingStar* star = reinterpret_cast<ShootingStar*>(pSpine->mExecutor);
+        ShootingStar* star = reinterpret_cast< ShootingStar* >(pSpine->mExecutor);
         star->exePreShooting();
     }
 }; // namespace NrvShootingStar

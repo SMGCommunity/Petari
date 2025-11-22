@@ -99,22 +99,22 @@ namespace NrvFloaterFloatingForceTypeNormal {
     INIT_NERVE(HostTypeMoveOnPlayer);
 
     void HostTypeMoveOnPlayer::execute(Spine* pSpine) const {
-        FloaterFloatingForceTypeNormal* floater = reinterpret_cast<FloaterFloatingForceTypeNormal*>(pSpine->mExecutor);
+        FloaterFloatingForceTypeNormal* floater = reinterpret_cast< FloaterFloatingForceTypeNormal* >(pSpine->mExecutor);
         floater->exeMove();
     }
 
     void HostTypeMoveOffPlayer::execute(Spine* pSpine) const {
-        FloaterFloatingForceTypeNormal* floater = reinterpret_cast<FloaterFloatingForceTypeNormal*>(pSpine->mExecutor);
+        FloaterFloatingForceTypeNormal* floater = reinterpret_cast< FloaterFloatingForceTypeNormal* >(pSpine->mExecutor);
         floater->exeMove();
     }
 
     void HostTypeMoveFirst::execute(Spine* pSpine) const {
-        FloaterFloatingForceTypeNormal* floater = reinterpret_cast<FloaterFloatingForceTypeNormal*>(pSpine->mExecutor);
+        FloaterFloatingForceTypeNormal* floater = reinterpret_cast< FloaterFloatingForceTypeNormal* >(pSpine->mExecutor);
         floater->exeMoveFirst();
     }
 
     void HostTypeWait::execute(Spine* pSpine) const {
-        FloaterFloatingForceTypeNormal* floater = reinterpret_cast<FloaterFloatingForceTypeNormal*>(pSpine->mExecutor);
+        FloaterFloatingForceTypeNormal* floater = reinterpret_cast< FloaterFloatingForceTypeNormal* >(pSpine->mExecutor);
 
         if (floater->isFirstStep()) {
             floater->_40 = 0.0f;

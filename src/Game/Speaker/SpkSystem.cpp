@@ -32,7 +32,7 @@ void SpkSystem::startSound(s32 a1, s32 a2, SpkSoundHandle* pHandle) {
 }
 
 void SpkSystem::newSoundMemPool(s32 a1) {
-    JASPoolAllocObject<SpkSound>::memPool_.newMemPool(0x60, a1);
+    JASPoolAllocObject< SpkSound >::memPool_.newMemPool(0x60, a1);
 }
 
 void SpkSystem::connect(s32 chan) {

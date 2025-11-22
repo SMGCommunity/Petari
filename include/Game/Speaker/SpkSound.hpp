@@ -59,7 +59,7 @@ public:
     SpkSoundVolume  mVolume; // 0x40
 };
 
-class SpkSoundHolder : JASGlobalInstance<SpkSoundHolder> {
+class SpkSoundHolder : JASGlobalInstance< SpkSoundHolder > {
 public:
     SpkSoundHolder();
 
@@ -70,8 +70,8 @@ public:
 
     void framework();
 
-    JSUList<SpkSound> mSoundList[4]; // 0x0
-    f32               _30[4];
-    f32               _40;
-    u32               _44;
+    JSUList< SpkSound > mSoundList[4]; // 0x0
+    f32                 _30[4];
+    f32                 _40;
+    u32                 _44;
 };

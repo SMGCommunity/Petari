@@ -55,12 +55,12 @@ void BigFanFunction::calcWindInfo(TVec3f* a1, const TVec3f& a2, f32* a3) {
             *a3 = 0.0f;
         }
     } else {
-        MR::getSceneObj<BigFanHolder>(SceneObj_BigFanHolder)->calcWindInfo(a1, a2, a3);
+        MR::getSceneObj< BigFanHolder >(SceneObj_BigFanHolder)->calcWindInfo(a1, a2, a3);
     }
 }
 
 void BigFanFunction::registerBigFan(BigFan* pFan) {
-    MR::getSceneObj<BigFanHolder>(SceneObj_BigFanHolder)->registerActor(pFan);
+    MR::getSceneObj< BigFanHolder >(SceneObj_BigFanHolder)->registerActor(pFan);
 }
 
 BigFanHolder::~BigFanHolder() {

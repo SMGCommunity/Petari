@@ -46,12 +46,12 @@ namespace NrvTimeAppearObj {
     INIT_NERVE(TimeAppearObjNrvEnd);
 
     void TimeAppearObjNrvEnd::execute(Spine* pSpine) const {
-        TimeAppearObj* obj = reinterpret_cast<TimeAppearObj*>(pSpine->mExecutor);
+        TimeAppearObj* obj = reinterpret_cast< TimeAppearObj* >(pSpine->mExecutor);
         obj->exeEnd();
     }
 
     void TimeAppearObjNrvHide::execute(Spine* pSpine) const {
-        TimeAppearObj* obj = reinterpret_cast<TimeAppearObj*>(pSpine->mExecutor);
+        TimeAppearObj* obj = reinterpret_cast< TimeAppearObj* >(pSpine->mExecutor);
         if (MR::isStep(obj, obj->mTimer)) {
             obj->setNerve(&NrvTimeAppearObj::TimeAppearObjNrvEnd::sInstance);
         }

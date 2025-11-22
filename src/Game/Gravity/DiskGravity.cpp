@@ -32,7 +32,7 @@ void DiskGravity::setLocalDirection(const TVec3f& rLocalDir) {
 }
 
 void DiskGravity::setSideDirection(const TVec3f& rSideDir) {
-    mSideDirection.set<f32>(rSideDir);
+    mSideDirection.set< f32 >(rSideDir);
     updateLocalParam();
 }
 
@@ -82,7 +82,7 @@ bool DiskGravity::calcOwnGravityVector(TVec3f* pDest, f32* pDistance, const TVec
         }
 
         TVec3f closestEdgePoint;
-        closestEdgePoint.set<f32>(dirOnDiskPlane * mWorldRadius);
+        closestEdgePoint.set< f32 >(dirOnDiskPlane * mWorldRadius);
         JMathInlineVEC::PSVECAdd(&closestEdgePoint, &mWorldPosition, &closestEdgePoint);
 
         gravity = closestEdgePoint - rPosition;

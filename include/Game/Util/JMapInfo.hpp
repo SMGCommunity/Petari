@@ -30,18 +30,18 @@ struct JMapData {
     const JMapItem mItems[];    // 0x10
 };
 
-template <typename T>
+template < typename T >
 inline bool compareValues(const T a, const T b) {
     return a == b;
 }
 
 template <>
-inline bool compareValues<const char*>(const char* a, const char* b) {
+inline bool compareValues< const char* >(const char* a, const char* b) {
     return strcmp(a, b) == 0;
 }
 
 inline const char* getEntryAddress(const JMapData* pData, s32 dataOffset, int entryIndex) {
-    return reinterpret_cast<const char*>(pData) + dataOffset + entryIndex * pData->mEntrySize;
+    return reinterpret_cast< const char* >(pData) + dataOffset + entryIndex * pData->mEntrySize;
 }
 
 class JMapInfo {
@@ -82,12 +82,12 @@ public:
     bool        getValueFast(int entryIndex, int itemIndex, f32* pValueOut) const {
         const JMapItem* pItem = &mData->mItems[itemIndex];
         const char*     pValue = getEntryAddress(mData, mData->mDataOffset, entryIndex) + pItem->mOffsData;
-        *pValueOut = *reinterpret_cast<const f32*>(pValue);
+        *pValueOut = *reinterpret_cast< const f32* >(pValue);
         return true;
     }
     JMapInfoIter findElementBinary(const char*, const char*) const;
 
-    template <typename T>
+    template < typename T >
     const bool getValue(int entryIndex, const char* pKey, T* pValueOut) const NO_INLINE {
         s32 itemIndex = searchItemInfo(pKey);
         if (itemIndex < 0) {
@@ -96,13 +96,13 @@ public:
         return getValueFast(entryIndex, itemIndex, pValueOut);
     }
 
-    template <typename T>
+    template < typename T >
     JMapInfoIter findElement(const char* pKey, T searchValue, int startIndex) const NO_INLINE {
         int entryIndex = startIndex;
         T   value;
         while (entryIndex < getNumEntries()) {
-            getValue<T>(entryIndex, pKey, &value);
-            if (compareValues<T>(value, searchValue)) {
+            getValue< T >(entryIndex, pKey, &value);
+            if (compareValues< T >(value, searchValue)) {
                 return JMapInfoIter(this, entryIndex);
             }
             entryIndex++;
@@ -146,7 +146,7 @@ public:
         return mInfo && mIndex >= 0 && mIndex < mInfo->getNumEntries();
     }
 
-    template <typename T>
+    template < typename T >
     bool getValue(const char* pKey, T* pValueOut) const {
         const JMapInfo* info = mInfo;
         s32             entryIndex = mIndex;

@@ -31,7 +31,7 @@ void CrystalCageMoving::init(const JMapInfoIter& rIter) {
     vec.z = 0.0f;
     info.setupHitSensorParam(4, 350.0f, vec);
     initialize(rIter, info);
-    _FC.set<f32>(mPosition);
+    _FC.set< f32 >(mPosition);
     initDummyModel(rIter);
     MR::initActorCamera(this, rIter, &mCameraInfo);
     MR::startBck(this, "Wait", nullptr);
@@ -169,7 +169,7 @@ void CrystalCageMoving::crashMario(HitSensor* pSender, HitSensor* pReceiver) {
 
 void CrystalCageMoving::updateHitSensor(HitSensor* pSensor) {
     if (!_108) {
-        pSensor->mPosition.set<f32>(mPosition);
+        pSensor->mPosition.set< f32 >(mPosition);
     } else {
         f32     radius = pSensor->mRadius;
         TMtx34f joint_mtx;
@@ -178,7 +178,7 @@ void CrystalCageMoving::updateHitSensor(HitSensor* pSensor) {
         f32    z = joint_mtx.mMtx[2][1];
         f32    y = joint_mtx.mMtx[1][1];
         f32    x = joint_mtx.mMtx[0][1];
-        joint_pos.set<f32>(x, y, z);
+        joint_pos.set< f32 >(x, y, z);
         TVec3f stack_14;
         JMAVECScaleAdd(&joint_pos, &mPosition, &stack_14, (-450.0f + radius));
         TVec3f stack_8;
@@ -251,27 +251,27 @@ namespace NrvCrystalCageMoving {
     INIT_NERVE(CrystalCageMovingNrvDemoTicoChange);
 
     void CrystalCageMovingNrvDemoTicoChange::execute(Spine* pSpine) const {
-        CrystalCageMoving* cage = reinterpret_cast<CrystalCageMoving*>(pSpine->mExecutor);
+        CrystalCageMoving* cage = reinterpret_cast< CrystalCageMoving* >(pSpine->mExecutor);
         cage->exeDemoTicoChange();
     }
 
     void CrystalCageMovingNrvDemoTicoStop::execute(Spine* pSpine) const {
-        CrystalCageMoving* cage = reinterpret_cast<CrystalCageMoving*>(pSpine->mExecutor);
+        CrystalCageMoving* cage = reinterpret_cast< CrystalCageMoving* >(pSpine->mExecutor);
         cage->exeDemoTicoStop();
     }
 
     void CrystalCageMovingNrvDemoTicoMove::execute(Spine* pSpine) const {
-        CrystalCageMoving* cage = reinterpret_cast<CrystalCageMoving*>(pSpine->mExecutor);
+        CrystalCageMoving* cage = reinterpret_cast< CrystalCageMoving* >(pSpine->mExecutor);
         cage->exeDemoTicoMove();
     }
 
     void CrystalCageMovingNrvBreakAll::execute(Spine* pSpine) const {
-        CrystalCageMoving* cage = reinterpret_cast<CrystalCageMoving*>(pSpine->mExecutor);
+        CrystalCageMoving* cage = reinterpret_cast< CrystalCageMoving* >(pSpine->mExecutor);
         cage->exeBreakAll();
     }
 
     void CrystalCageMovingNrvBreakSmall::execute(Spine* pSpine) const {
-        CrystalCageMoving* cage = reinterpret_cast<CrystalCageMoving*>(pSpine->mExecutor);
+        CrystalCageMoving* cage = reinterpret_cast< CrystalCageMoving* >(pSpine->mExecutor);
         cage->exeBreakSmall();
     }
 
@@ -279,12 +279,12 @@ namespace NrvCrystalCageMoving {
     }
 
     void CrystalCageMovingNrvBreakBig::executeOnEnd(Spine* pSpine) const {
-        CrystalCageMoving* cage = reinterpret_cast<CrystalCageMoving*>(pSpine->mExecutor);
+        CrystalCageMoving* cage = reinterpret_cast< CrystalCageMoving* >(pSpine->mExecutor);
         MR::endActorCamera(cage, cage->mCameraInfo, true, -1);
     }
 
     void CrystalCageMovingNrvBreakBig::execute(Spine* pSpine) const {
-        CrystalCageMoving* cage = reinterpret_cast<CrystalCageMoving*>(pSpine->mExecutor);
+        CrystalCageMoving* cage = reinterpret_cast< CrystalCageMoving* >(pSpine->mExecutor);
         cage->exeBreakBig();
     }
 

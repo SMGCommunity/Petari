@@ -41,7 +41,7 @@ void SimpleMapObjNoSilhouetted::connectToScene(const MapObjActorInitInfo& rInfo)
 }
 
 void SimpleTextureSwitchChangeObj::initCaseUseSwitchA(const MapObjActorInitInfo& rInfo) {
-    MR::FunctorV0M<SimpleTextureSwitchChangeObj*, void (SimpleTextureSwitchChangeObj::*)()> func = MR::Functor<SimpleTextureSwitchChangeObj>(this, &SimpleTextureSwitchChangeObj::changeTexture);
+    MR::FunctorV0M< SimpleTextureSwitchChangeObj*, void (SimpleTextureSwitchChangeObj::*)() > func = MR::Functor< SimpleTextureSwitchChangeObj >(this, &SimpleTextureSwitchChangeObj::changeTexture);
     MR::listenStageSwitchOnA(this, func);
 }
 

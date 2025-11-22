@@ -53,7 +53,7 @@ SpkSound::~SpkSound() {
     releaseHandle();
 
     if (this) {
-        JASPoolAllocObject<SpkSound>::memPool_.free(this, 0x60);
+        JASPoolAllocObject< SpkSound >::memPool_.free(this, 0x60);
     }
 }
 #endif

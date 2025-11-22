@@ -17,7 +17,7 @@ typedef NameObj* (*CreatorFuncPtr)(const char*);
 typedef void (*ArchiveFuncPtr)(NameObjArchiveListCollector*, const JMapInfoIter&);
 
 namespace {
-    template <typename T>
+    template < typename T >
     NameObj* createNameObj(const char* pName) {
         return new T(pName);
     }

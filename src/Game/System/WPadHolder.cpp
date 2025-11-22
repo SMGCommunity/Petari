@@ -134,7 +134,7 @@ void WPadHolder::setConnectCallback() {
 
 namespace {
     WPadHolder* getWPadHolder() NO_INLINE {
-        return SingletonHolder<GameSystem>::get()->mObjHolder->mWPadHolder;
+        return SingletonHolder< GameSystem >::get()->mObjHolder->mWPadHolder;
     }
 }; // namespace
 

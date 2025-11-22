@@ -82,7 +82,7 @@ void DesertMovingLand::updateDemoPlayerPos() {
     TMtx34f stack_8;
     stack_8.set(jointMtx);
     stack_8.concat(stack_8, _E4);
-    MR::getPlayerDemoActor()->mPosition.set<f32>(stack_8[2][3], stack_8[1][3], stack_8[0][3]);
+    MR::getPlayerDemoActor()->mPosition.set< f32 >(stack_8[2][3], stack_8[1][3], stack_8[0][3]);
     MR::setPlayerBaseMtx(stack_8);
 }
 

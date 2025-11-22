@@ -12,7 +12,7 @@ void* NANDManagerThread::run() {
         OSMessage msg;
         OSReceiveMessage(&mQueue, &msg, OS_MESSAGE_BLOCK);
 
-        NANDRequestInfo* pRequestInfo = static_cast<NANDRequestInfo*>(msg);
+        NANDRequestInfo* pRequestInfo = static_cast< NANDRequestInfo* >(msg);
         pRequestInfo->_40 = 2;
 
         switch (pRequestInfo->mType) {

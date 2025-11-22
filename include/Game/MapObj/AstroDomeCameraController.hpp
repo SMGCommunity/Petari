@@ -12,9 +12,9 @@ public:
 
         void reset(const TVec3f&);
         void set(TVec3f vec) {
-            _0.set<f32>(vec);
-            _C.set<f32>(vec);
-            _18.set<f32>(vec);
+            _0.set< f32 >(vec);
+            _C.set< f32 >(vec);
+            _18.set< f32 >(vec);
         }
 
         TVec3f _0;

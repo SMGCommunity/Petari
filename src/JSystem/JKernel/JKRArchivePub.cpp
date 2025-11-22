@@ -26,7 +26,7 @@ bool JKRArchive::becomeCurrent(const char* pName) {
 
     if (validDir) {
         JKRFileLoader::gCurrentFileLoader = this;
-        sCurrentDirIndex = static_cast<u32>(dir - mDirs);
+        sCurrentDirIndex = static_cast< u32 >(dir - mDirs);
     }
 
     return validDir;
@@ -191,7 +191,7 @@ JKRArcFinder* JKRArchive::getFirstFile(const char* pName) const {
 
     if (dir != nullptr) {
         // Bad to cast to non-const
-        return new (JKRHeap::sGameHeap, 0) JKRArcFinder(const_cast<JKRArchive*>(this), dir->mFirstFileIndex, dir->mNrFiles);
+        return new (JKRHeap::sGameHeap, 0) JKRArcFinder(const_cast< JKRArchive* >(this), dir->mFirstFileIndex, dir->mNrFiles);
     }
 
     return nullptr;
@@ -201,7 +201,7 @@ JKRArchive* JKRArchive::check_mount_already(long entryNum) {
     JSUPtrLink* current = JKRFileLoader::sFileLoaderList.mHead;
 
     while (current != nullptr) {
-        JKRArchive* archive = reinterpret_cast<JKRArchive*>(current->mData);
+        JKRArchive* archive = reinterpret_cast< JKRArchive* >(current->mData);
 
         if (archive->mLoaderType == RARC_MAGIC && archive->mEntryNum == entryNum) {
             archive->_34++;
@@ -222,7 +222,7 @@ JKRArchive* JKRArchive::check_mount_already(long entryNum, JKRHeap* pHeap) {
     JSUPtrLink* current = JKRFileLoader::sFileLoaderList.mHead;
 
     while (current != nullptr) {
-        JKRArchive* archive = reinterpret_cast<JKRArchive*>(current->mData);
+        JKRArchive* archive = reinterpret_cast< JKRArchive* >(current->mData);
 
         if (archive->mLoaderType == RARC_MAGIC && archive->mEntryNum == entryNum && archive->mHeap == pHeap) {
             archive->_34++;

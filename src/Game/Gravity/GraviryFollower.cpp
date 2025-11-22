@@ -13,7 +13,7 @@ void GraviryFollower::setGravityFollowHost(const NameObj* pHost) {
 }
 
 void GraviryFollower::update() {
-    GlobalGravityObj* pFollowTarget = static_cast<GlobalGravityObj*>(getFollowTargetActor());
+    GlobalGravityObj* pFollowTarget = static_cast< GlobalGravityObj* >(getFollowTargetActor());
 
     if (MR::isDead(pFollowTarget) || MR::isClipped(pFollowTarget) || !isValid()) {
         mGravity->mValidFollower = false;

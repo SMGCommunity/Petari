@@ -69,7 +69,7 @@ SkeletalFishBossInfo::GuardStatus::GuardStatus() {
 void SkeletalFishBossInfo::loadLevelStatus(const JMapInfoIter& rIter) {
     s32 levelNum;
 
-    if (rIter.getValue<s32>(::sParamNameLevelNum, &levelNum)) {
+    if (rIter.getValue< s32 >(::sParamNameLevelNum, &levelNum)) {
         if (levelNum > mLevelNum) {
             levelNum = mLevelNum;
         }
@@ -77,15 +77,15 @@ void SkeletalFishBossInfo::loadLevelStatus(const JMapInfoIter& rIter) {
         for (s32 i = 0; i < levelNum; i++) {
             char nameBuf[0x80];
             snprintf(nameBuf, sizeof(nameBuf), "%s%d", ::sParamNameEnergy, i);
-            rIter.getValue<s32>(nameBuf, &getLevelStatus(i)->mEnergyLevel);
+            rIter.getValue< s32 >(nameBuf, &getLevelStatus(i)->mEnergyLevel);
             snprintf(nameBuf, sizeof(nameBuf), "%s%d", ::sParamNameSpeed, i);
-            rIter.getValue<f32>(nameBuf, &getLevelStatus(i)->mSpeedLevel);
+            rIter.getValue< f32 >(nameBuf, &getLevelStatus(i)->mSpeedLevel);
             snprintf(nameBuf, sizeof(nameBuf), "%s%d", ::sParamNameRailID, i);
-            rIter.getValue<s32>(nameBuf, &getLevelStatus(i)->mRailIDLevel);
+            rIter.getValue< s32 >(nameBuf, &getLevelStatus(i)->mRailIDLevel);
             snprintf(nameBuf, sizeof(nameBuf), "%s%d", ::sParamNameGuardOffset, i);
-            rIter.getValue<f32>(nameBuf, &getLevelStatus(i)->mGuardOffsLevel);
+            rIter.getValue< f32 >(nameBuf, &getLevelStatus(i)->mGuardOffsLevel);
             snprintf(nameBuf, sizeof(nameBuf), "%s%d", ::sParamNameGuardAppearNum, i);
-            rIter.getValue<s32>(nameBuf, &getLevelStatus(i)->mGuardAppearNumLevel);
+            rIter.getValue< s32 >(nameBuf, &getLevelStatus(i)->mGuardAppearNumLevel);
             loadGuardStatus(rIter, i, mLevelStatusArray[i].mGuardAppearNumLevel);
         }
     }
@@ -99,7 +99,7 @@ void SkeletalFishBossInfo::loadGuardStatus(const JMapInfoIter& rIter, s32 levelI
         snprintf(buf, sizeof(buf), "%s%d%s%d", ::sParamNameGuardPos, levelIdx, ::sParamNameGuard, i);
         MR::getJMapInfoV3f(rIter, buf, &status->getGuardStatus(i)->mGuardPosLevel);
         snprintf(buf, sizeof(buf), "%s%d%s%d", ::sParamNameGuardWait, levelIdx, ::sParamNameGuard, i);
-        rIter.getValue<s32>(buf, &status->getGuardStatus(i)->mGuardWaitLevelID);
+        rIter.getValue< s32 >(buf, &status->getGuardStatus(i)->mGuardWaitLevelID);
     }
 }
 

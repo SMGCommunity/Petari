@@ -233,11 +233,11 @@ void GameSystemResetAndPowerProcess::control() {
 }
 
 void GameSystemResetAndPowerProcess::handleOSPowerCallback() {
-    SingletonHolder<GameSystemResetAndPowerProcess>::get()->mIsValidPowerOff = true;
+    SingletonHolder< GameSystemResetAndPowerProcess >::get()->mIsValidPowerOff = true;
 }
 
 void GameSystemResetAndPowerProcess::handleCheckDiskAsync(s32 result, DVDCommandBlock* pBlock) {
-    SingletonHolder<GameSystemResetAndPowerProcess>::get()->notifyCheckDiskResult(result != 0);
+    SingletonHolder< GameSystemResetAndPowerProcess >::get()->notifyCheckDiskResult(result != 0);
 }
 
 GameSystemResetAndPowerProcess::GameSystemResetAndPowerProcess()

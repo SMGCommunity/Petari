@@ -56,7 +56,7 @@ void Birikyu::initAfterPlacement() {
     if (_A9) {
         MR::moveCoordAndTransToNearestRailPos(this);
     } else {
-        _9C.set<f32>(mPosition);
+        _9C.set< f32 >(mPosition);
         TPos3f matrix;
         matrix.identity();
         MR::makeMtxRotate(matrix.toMtxPtr(), mRotation);
@@ -72,7 +72,7 @@ void Birikyu::initAfterPlacement() {
         MR::normalize(&_B8);
         TVec3f add(_9C * 400.0f);
         TVec3f vec(_9C + add);
-        mPosition.set<f32>(vec);
+        mPosition.set< f32 >(vec);
     }
 }
 

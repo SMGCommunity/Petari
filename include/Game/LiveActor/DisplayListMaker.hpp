@@ -50,10 +50,10 @@ public:
     void                         checkTexture();
     bool                         isExistDiffMaterial(const J3DModelData*);
 
-    /* 0x00 */ MR::Vector<MR::AssignableArray<MaterialCtrl*>> mMaterialCtrl;
-    /* 0x0C */ u32                                            mPrgFlag;
-    /* 0x10 */ u32                                            mCurFlag;
-    /* 0x14 */ J3DModel*                                      mModel;
-    /* 0x18 */ FogCtrl*                                       mFogCtrl;
-    /* 0x1C */ ResourceHolder*                                mResHolder;
+    /* 0x00 */ MR::Vector< MR::AssignableArray< MaterialCtrl* > > mMaterialCtrl;
+    /* 0x0C */ u32                                                mPrgFlag;
+    /* 0x10 */ u32                                                mCurFlag;
+    /* 0x14 */ J3DModel*                                          mModel;
+    /* 0x18 */ FogCtrl*                                           mFogCtrl;
+    /* 0x1C */ ResourceHolder*                                    mResHolder;
 };

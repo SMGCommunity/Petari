@@ -47,10 +47,10 @@ public:
     void                                               setNextStageToAstroGalaxyOrDome(GalaxyMoveArgument*);
     void                                               setNextStageToAstroDome(GalaxyMoveArgument*);
     bool                                               isExecuteDemoLuigiMissing(const GalaxyMoveArgument*) const;
-    void                                               getOptionalDemoForClearGalaxy(MR::Vector<MR::FixedArray<const StorySequenceExecutorType::DemoSequenceInfo*, 8>>*, const GalaxyMoveArgument*) const;
+    void                                               getOptionalDemoForClearGalaxy(MR::Vector< MR::FixedArray< const StorySequenceExecutorType::DemoSequenceInfo*, 8 > >*, const GalaxyMoveArgument*) const;
     bool                                               isEqualStageStopCometScheduler(const char*);
     void                                               prepareDemoSequence(const StorySequenceExecutorType::DemoSequenceInfo*);
-    void                                               prepareDemoSequence(const MR::Vector<MR::FixedArray<const StorySequenceExecutorType::DemoSequenceInfo*, 8>>&);
+    void                                               prepareDemoSequence(const MR::Vector< MR::FixedArray< const StorySequenceExecutorType::DemoSequenceInfo*, 8 > >&);
     void                                               prepareDemoSequenceButlerFortressDiscover(const GalaxyMoveArgument*, const DemoFortressDiscoverCheckList&);
     bool                                               tryStartDemo(const char*);
     bool                                               tryStartSave();
@@ -63,12 +63,12 @@ public:
     void                                               setBeforeStageScenario(const GalaxyMoveArgument&, bool);
     s32                                                calcAproposScenarioNoOnAstroGalaxy() const;
 
-    /* 0x08 */ s32                                                                               _8;
-    /* 0x0C */ NameObj*                                                                          _C;
-    /* 0x10 */ NameObj*                                                                          _10;
-    /* 0x14 */ char                                                                              _14[48];
-    /* 0x44 */ s32                                                                               _44;
-    /* 0x48 */ MR::Vector<MR::FixedArray<const StorySequenceExecutorType::DemoSequenceInfo*, 8>> _48;
-    /* 0x6C */ MR::Vector<MR::FixedArray<StorySequenceExecutorType::DemoSequenceInfo, 8>>        _6C;
-    /* 0xB0 */ bool                                                                              _B0;
+    /* 0x08 */ s32                                                                                   _8;
+    /* 0x0C */ NameObj*                                                                              _C;
+    /* 0x10 */ NameObj*                                                                              _10;
+    /* 0x14 */ char                                                                                  _14[48];
+    /* 0x44 */ s32                                                                                   _44;
+    /* 0x48 */ MR::Vector< MR::FixedArray< const StorySequenceExecutorType::DemoSequenceInfo*, 8 > > _48;
+    /* 0x6C */ MR::Vector< MR::FixedArray< StorySequenceExecutorType::DemoSequenceInfo, 8 > >        _6C;
+    /* 0xB0 */ bool                                                                                  _B0;
 };

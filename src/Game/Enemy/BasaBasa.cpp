@@ -262,7 +262,7 @@ void BasaBasa::exeAttackStart() {
     if (MR::isNearZero(v3, 0.001f)) {
         TVec3f gravityNeg;
         JGeometry::negateInternal(&mGravity.x, &gravityNeg.x);
-        v3.set<f32>(gravityNeg);
+        v3.set< f32 >(gravityNeg);
     }
 
     JMAVECScaleAdd(&v3, &mVelocity, &mVelocity, 0.2f);
@@ -357,7 +357,7 @@ void BasaBasa::exeHitBack() {
         if (MR::isNearZero(v3, 0.001f)) {
             TVec3f v2;
             JGeometry::negateInternal(&mGravity.x, &v2.x);
-            v3.set<f32>(v2);
+            v3.set< f32 >(v2);
         }
         JMAVECScaleAdd(&v3, &mVelocity, &mVelocity, 15.0f);
     }
@@ -477,7 +477,7 @@ void BasaBasa::initAfterPlacement() {
         initNerve(&NrvBasaBasa::BasaBasaNrvAirWait::sInstance);
     }
 
-    _CC.set<f32>(mPosition);
+    _CC.set< f32 >(mPosition);
     MR::calcFrontVec(&_D8, this);
 }
 
@@ -693,7 +693,7 @@ bool BasaBasa::tryClippingAndResetPos() {
             return false;
         } else {
             MR::resetPosition(this, _CC);
-            _9C.set<f32>(_D8);
+            _9C.set< f32 >(_D8);
             mVelocity.zero();
             _E8 = 0;
             if (_EC != 0) {
@@ -775,7 +775,7 @@ void BasaBasa::controlVelocity() {
             TVec3f* velocityPtr = &mVelocity;
             f32     sqr = JMathInlineVEC::PSVECSquareMag(velocityPtr);
             if (sqr <= 0.0000038146973f) {
-                velocityPtr->scale(v6 * JGeometry::TUtil<f32>::inv_sqrt(sqr));
+                velocityPtr->scale(v6 * JGeometry::TUtil< f32 >::inv_sqrt(sqr));
             }
         } else {
             if (MR::isNearZero(mVelocity, 0.001f)) {
@@ -800,7 +800,7 @@ void BasaBasa::tuneHeight() {
             return;
         } else {
             TVec3f v4;
-            v4.set<f32>(v5);
+            v4.set< f32 >(v5);
             MR::normalize(&v4);
             JMAVECScaleAdd(&v4, &mVelocity, &mVelocity, 2.0f);
         }

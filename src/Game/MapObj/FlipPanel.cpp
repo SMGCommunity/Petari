@@ -219,7 +219,7 @@ bool FlipPanel::checkPlayerOnTop() {
 
     TVec3f* groundNormal = MR::getPlayerGroundNormal();
 
-    bool ret = JGeometry::TUtil<f32>::epsilonEquals(upVec.x, groundNormal->x, 0.0000038146973f) && JGeometry::TUtil<f32>::epsilonEquals(upVec.y, groundNormal->y, 0.0000038146973f) && JGeometry::TUtil<f32>::epsilonEquals(upVec.z, groundNormal->z, 0.0000038146973f);
+    bool ret = JGeometry::TUtil< f32 >::epsilonEquals(upVec.x, groundNormal->x, 0.0000038146973f) && JGeometry::TUtil< f32 >::epsilonEquals(upVec.y, groundNormal->y, 0.0000038146973f) && JGeometry::TUtil< f32 >::epsilonEquals(upVec.z, groundNormal->z, 0.0000038146973f);
 
     if (!ret) {
         _D0 = 0;
@@ -385,27 +385,27 @@ namespace NrvFlipPanelObserver {
 }; // namespace NrvFlipPanelObserver
 
 void NrvFlipPanelObserver::FlipPanelObserverNrvDemoWait::execute(Spine* pSpine) const {
-    FlipPanelObserver* obs = reinterpret_cast<FlipPanelObserver*>(pSpine->mExecutor);
+    FlipPanelObserver* obs = reinterpret_cast< FlipPanelObserver* >(pSpine->mExecutor);
     obs->exeDemoWait();
 }
 
 void NrvFlipPanelObserver::FlipPanelObserverNrvComplete::execute(Spine* pSpine) const {
-    FlipPanelObserver* obs = reinterpret_cast<FlipPanelObserver*>(pSpine->mExecutor);
+    FlipPanelObserver* obs = reinterpret_cast< FlipPanelObserver* >(pSpine->mExecutor);
     obs->exeComplete();
 }
 
 void NrvFlipPanelObserver::FlipPanelObserverNrvWait::execute(Spine* pSpine) const {
-    FlipPanelObserver* obs = reinterpret_cast<FlipPanelObserver*>(pSpine->mExecutor);
+    FlipPanelObserver* obs = reinterpret_cast< FlipPanelObserver* >(pSpine->mExecutor);
     obs->exeWait();
 }
 
 void NrvFlipPanel::FlipPanelNrvEnd::execute(Spine* pSpine) const {
-    FlipPanel* panel = reinterpret_cast<FlipPanel*>(pSpine->mExecutor);
+    FlipPanel* panel = reinterpret_cast< FlipPanel* >(pSpine->mExecutor);
     panel->exeEnd();
 }
 
 void NrvFlipPanel::FlipPanelNrvEndPrepare::execute(Spine* pSpine) const {
-    FlipPanel* panel = reinterpret_cast<FlipPanel*>(pSpine->mExecutor);
+    FlipPanel* panel = reinterpret_cast< FlipPanel* >(pSpine->mExecutor);
 
     if (MR::isStep(panel, 0x14)) {
         panel->setNerve(&NrvFlipPanel::FlipPanelNrvEnd::sInstance);
@@ -413,22 +413,22 @@ void NrvFlipPanel::FlipPanelNrvEndPrepare::execute(Spine* pSpine) const {
 }
 
 void NrvFlipPanel::FlipPanelNrvBack::execute(Spine* pSpine) const {
-    FlipPanel* panel = reinterpret_cast<FlipPanel*>(pSpine->mExecutor);
+    FlipPanel* panel = reinterpret_cast< FlipPanel* >(pSpine->mExecutor);
     panel->exeWait();
 }
 
 void NrvFlipPanel::FlipPanelNrvFront::execute(Spine* pSpine) const {
-    FlipPanel* panel = reinterpret_cast<FlipPanel*>(pSpine->mExecutor);
+    FlipPanel* panel = reinterpret_cast< FlipPanel* >(pSpine->mExecutor);
     panel->exeWait();
 }
 
 void NrvFlipPanel::FlipPanelNrvBackLand::execute(Spine* pSpine) const {
-    FlipPanel* panel = reinterpret_cast<FlipPanel*>(pSpine->mExecutor);
+    FlipPanel* panel = reinterpret_cast< FlipPanel* >(pSpine->mExecutor);
     panel->exeBackLand();
 }
 
 void NrvFlipPanel::FlipPanelNrvFrontLand::execute(Spine* pSpine) const {
-    FlipPanel* panel = reinterpret_cast<FlipPanel*>(pSpine->mExecutor);
+    FlipPanel* panel = reinterpret_cast< FlipPanel* >(pSpine->mExecutor);
     panel->exeFrontLand();
 }
 

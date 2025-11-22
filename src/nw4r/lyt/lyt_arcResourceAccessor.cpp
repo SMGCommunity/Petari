@@ -31,8 +31,8 @@ namespace {
 
     void* GetResourceSub(ARCHandle* pHandle, const char* pRoot, nw4r::lyt::ResType resType, const char* pName, u32* pSize) {
         s32 entryNum = -1;
-        if (-1 != ARCConvertPathToEntrynum(pHandle, const_cast<char*>(pRoot))) {
-            if (ARCChangeDir(pHandle, const_cast<char*>(pRoot))) {
+        if (-1 != ARCConvertPathToEntrynum(pHandle, const_cast< char* >(pRoot))) {
+            if (ARCChangeDir(pHandle, const_cast< char* >(pRoot))) {
                 if (resType == 0) {
                     entryNum = FindNameResource(pHandle, pName);
                 } else {
@@ -45,7 +45,7 @@ namespace {
 
                     if (-1 != ARCConvertPathToEntrynum(pHandle, resTypeStr)) {
                         if (ARCChangeDir(pHandle, resTypeStr)) {
-                            entryNum = ARCConvertPathToEntrynum(pHandle, const_cast<char*>(pName));
+                            entryNum = ARCConvertPathToEntrynum(pHandle, const_cast< char* >(pName));
                             ARCChangeDir(pHandle, "..");
                         }
                     }

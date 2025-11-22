@@ -34,7 +34,7 @@ namespace {
 
 namespace MR {
     void connectToScene(LiveActor* pActor, int a2, int a3, int a4, int a5) {
-        MR::registerNameObjToExecuteHolder(reinterpret_cast<NameObj*>(pActor), a2, a3, a4, a5);
+        MR::registerNameObjToExecuteHolder(reinterpret_cast< NameObj* >(pActor), a2, a3, a4, a5);
     }
 
     void connectToScene(NameObj* pObj, int a2, int a3, int a4, int a5) {
@@ -44,23 +44,23 @@ namespace MR {
     }
 
     void connectToSceneCollisionMapObj(LiveActor* pActor) {
-        MR::registerNameObjToExecuteHolder(reinterpret_cast<NameObj*>(pActor), 0x1E, 2, 8, -1);
+        MR::registerNameObjToExecuteHolder(reinterpret_cast< NameObj* >(pActor), 0x1E, 2, 8, -1);
     }
 
     void connectToSceneCollisionMapObjMovementCalcAnim(LiveActor* pActor) {
-        MR::registerNameObjToExecuteHolder(reinterpret_cast<NameObj*>(pActor), 0x1E, 2, -1, -1);
+        MR::registerNameObjToExecuteHolder(reinterpret_cast< NameObj* >(pActor), 0x1E, 2, -1, -1);
     }
 
     void connectToSceneCollisionMapObjWeakLight(LiveActor* pActor) {
-        MR::registerNameObjToExecuteHolder(reinterpret_cast<NameObj*>(pActor), 0x1E, 2, 9, -1);
+        MR::registerNameObjToExecuteHolder(reinterpret_cast< NameObj* >(pActor), 0x1E, 2, 9, -1);
     }
 
     void connectToSceneCollisionMapObjStrongLight(LiveActor* pActor) {
-        MR::registerNameObjToExecuteHolder(reinterpret_cast<NameObj*>(pActor), 0x1E, 2, 0xA, -1);
+        MR::registerNameObjToExecuteHolder(reinterpret_cast< NameObj* >(pActor), 0x1E, 2, 0xA, -1);
     }
 
     void connectToSceneCollisionEnemy(LiveActor* pActor) {
-        MR::registerNameObjToExecuteHolder(reinterpret_cast<NameObj*>(pActor), 0x1F, 3, 0x12, -1);
+        MR::registerNameObjToExecuteHolder(reinterpret_cast< NameObj* >(pActor), 0x1F, 3, 0x12, -1);
     }
 
     void connectToSceneCollisionEnemyMovement(NameObj* pObj) {
@@ -70,27 +70,27 @@ namespace MR {
     }
 
     void connectToSceneCollisionEnemyStrongLight(LiveActor* pActor) {
-        MR::registerNameObjToExecuteHolder(reinterpret_cast<NameObj*>(pActor), 0x1F, 3, 0xA, -1);
+        MR::registerNameObjToExecuteHolder(reinterpret_cast< NameObj* >(pActor), 0x1F, 3, 0xA, -1);
     }
 
     void connectToSceneCollisionEnemyNoShadowedMapObjStrongLight(LiveActor* pActor) {
-        MR::registerNameObjToExecuteHolder(reinterpret_cast<NameObj*>(pActor), 0x1F, 3, 0xC, -1);
+        MR::registerNameObjToExecuteHolder(reinterpret_cast< NameObj* >(pActor), 0x1F, 3, 0xC, -1);
     }
 
     void connectToSceneNpc(LiveActor* pActor) {
-        MR::registerNameObjToExecuteHolder(reinterpret_cast<NameObj*>(pActor), 0x28, 6, 0x10, -1);
+        MR::registerNameObjToExecuteHolder(reinterpret_cast< NameObj* >(pActor), 0x28, 6, 0x10, -1);
     }
 
     void connectToSceneNpcMovement(LiveActor* pActor) {
-        MR::registerNameObjToExecuteHolder(reinterpret_cast<NameObj*>(pActor), 0x28, -1, -1, -1);
+        MR::registerNameObjToExecuteHolder(reinterpret_cast< NameObj* >(pActor), 0x28, -1, -1, -1);
     }
 
     void connectToSceneRide(LiveActor* pActor) {
-        MR::registerNameObjToExecuteHolder(reinterpret_cast<NameObj*>(pActor), 0x29, 7, 0x11, -1);
+        MR::registerNameObjToExecuteHolder(reinterpret_cast< NameObj* >(pActor), 0x29, 7, 0x11, -1);
     }
 
     void connectToSceneEnemy(LiveActor* pActor) {
-        MR::registerNameObjToExecuteHolder(reinterpret_cast<NameObj*>(pActor), 0x2A, 8, 0x12, -1);
+        MR::registerNameObjToExecuteHolder(reinterpret_cast< NameObj* >(pActor), 0x2A, 8, 0x12, -1);
     }
 
     void connectToSceneEnemyMovement(NameObj* pObj) {
@@ -100,7 +100,7 @@ namespace MR {
     }
 
     void connectToSceneMapObj(LiveActor* pActor) {
-        MR::registerNameObjToExecuteHolder(reinterpret_cast<NameObj*>(pActor), 0x22, 5, 8, -1);
+        MR::registerNameObjToExecuteHolder(reinterpret_cast< NameObj* >(pActor), 0x22, 5, 8, -1);
     }
 
     void connectToSceneMapObjMovement(NameObj* pObj) {
@@ -116,23 +116,23 @@ namespace MR {
     }
 
     void connectToSceneMapObjNoMovement(LiveActor* pActor) {
-        MR::registerNameObjToExecuteHolder(reinterpret_cast<NameObj*>(pActor), -1, 5, 8, -1);
+        MR::registerNameObjToExecuteHolder(reinterpret_cast< NameObj* >(pActor), -1, 5, 8, -1);
     }
 
     void connectToSceneMapObjNoCalcAnim(LiveActor* pActor) {
-        MR::registerNameObjToExecuteHolder(reinterpret_cast<NameObj*>(pActor), 0x22, -1, 8, -1);
+        MR::registerNameObjToExecuteHolder(reinterpret_cast< NameObj* >(pActor), 0x22, -1, 8, -1);
     }
 
     void connectToSceneMapObjNoCalcAnimStrongLight(LiveActor* pActor) {
-        MR::registerNameObjToExecuteHolder(reinterpret_cast<NameObj*>(pActor), 0x22, -1, 0xA, -1);
+        MR::registerNameObjToExecuteHolder(reinterpret_cast< NameObj* >(pActor), 0x22, -1, 0xA, -1);
     }
 
     void connectToSceneMapObjDecoration(LiveActor* pActor) {
-        MR::registerNameObjToExecuteHolder(reinterpret_cast<NameObj*>(pActor), 0x23, 0xB, 8, -1);
+        MR::registerNameObjToExecuteHolder(reinterpret_cast< NameObj* >(pActor), 0x23, 0xB, 8, -1);
     }
 
     void connectToSceneMapObjDecorationStrongLight(LiveActor* pActor) {
-        MR::registerNameObjToExecuteHolder(reinterpret_cast<NameObj*>(pActor), 0x23, 0xB, 0xA, -1);
+        MR::registerNameObjToExecuteHolder(reinterpret_cast< NameObj* >(pActor), 0x23, 0xB, 0xA, -1);
     }
 
     void connectToSceneMapObjDecorationMovement(NameObj* pObj) {
@@ -142,35 +142,35 @@ namespace MR {
     }
 
     void connectToSceneMapObjStrongLight(LiveActor* pActor) {
-        MR::registerNameObjToExecuteHolder(reinterpret_cast<NameObj*>(pActor), 0x22, 5, 0xA, -1);
+        MR::registerNameObjToExecuteHolder(reinterpret_cast< NameObj* >(pActor), 0x22, 5, 0xA, -1);
     }
 
     void connectToSceneMapParts(LiveActor* pActor) {
-        MR::registerNameObjToExecuteHolder(reinterpret_cast<NameObj*>(pActor), 0x1C, 0, 8, -1);
+        MR::registerNameObjToExecuteHolder(reinterpret_cast< NameObj* >(pActor), 0x1C, 0, 8, -1);
     }
 
     void connectToScenePlanet(LiveActor* pActor) {
         if (MR::isExistIndirectTexture(pActor)) {
-            MR::registerNameObjToExecuteHolder(reinterpret_cast<NameObj*>(pActor), 0x1D, 1, 0x1D, -1);
+            MR::registerNameObjToExecuteHolder(reinterpret_cast< NameObj* >(pActor), 0x1D, 1, 0x1D, -1);
         } else {
-            MR::registerNameObjToExecuteHolder(reinterpret_cast<NameObj*>(pActor), 0x1D, 1, 4, -1);
+            MR::registerNameObjToExecuteHolder(reinterpret_cast< NameObj* >(pActor), 0x1D, 1, 4, -1);
         }
     }
 
     void connectToSceneEnvironment(LiveActor* pActor) {
-        MR::registerNameObjToExecuteHolder(reinterpret_cast<NameObj*>(pActor), 0x21, 4, 6, -1);
+        MR::registerNameObjToExecuteHolder(reinterpret_cast< NameObj* >(pActor), 0x21, 4, 6, -1);
     }
 
     void connectToSceneEnvironmentStrongLight(LiveActor* pActor) {
-        MR::registerNameObjToExecuteHolder(reinterpret_cast<NameObj*>(pActor), 0x21, 4, 7, -1);
+        MR::registerNameObjToExecuteHolder(reinterpret_cast< NameObj* >(pActor), 0x21, 4, 7, -1);
     }
 
     void connectToClippedMapParts(LiveActor* pActor) {
-        MR::registerNameObjToExecuteHolder(reinterpret_cast<NameObj*>(pActor), 0x1C, 0, 0, -1);
+        MR::registerNameObjToExecuteHolder(reinterpret_cast< NameObj* >(pActor), 0x1C, 0, 0, -1);
     }
 
     void connectToSceneEnemyDecoration(LiveActor* pActor) {
-        MR::registerNameObjToExecuteHolder(reinterpret_cast<NameObj*>(pActor), 0x2B, 0xB, 0x13, -1);
+        MR::registerNameObjToExecuteHolder(reinterpret_cast< NameObj* >(pActor), 0x2B, 0xB, 0x13, -1);
     }
 
     void connectToSceneEnemyDecorationMovement(NameObj* pObj) {
@@ -186,27 +186,27 @@ namespace MR {
     }
 
     void connectToSceneItem(LiveActor* pActor) {
-        MR::registerNameObjToExecuteHolder(reinterpret_cast<NameObj*>(pActor), 0x2C, 0x10, 0xD, -1);
+        MR::registerNameObjToExecuteHolder(reinterpret_cast< NameObj* >(pActor), 0x2C, 0x10, 0xD, -1);
     }
 
     void connectToSceneItemStrongLight(LiveActor* pActor) {
-        MR::registerNameObjToExecuteHolder(reinterpret_cast<NameObj*>(pActor), 0x2C, 0x10, 0xF, -1);
+        MR::registerNameObjToExecuteHolder(reinterpret_cast< NameObj* >(pActor), 0x2C, 0x10, 0xF, -1);
     }
 
     void connectToSceneIndirectEnemy(LiveActor* pActor) {
-        MR::registerNameObjToExecuteHolder(reinterpret_cast<NameObj*>(pActor), 0x2A, 8, 0x1C, -1);
+        MR::registerNameObjToExecuteHolder(reinterpret_cast< NameObj* >(pActor), 0x2A, 8, 0x1C, -1);
     }
 
     void connectToSceneIndirectNpc(LiveActor* pActor) {
-        MR::registerNameObjToExecuteHolder(reinterpret_cast<NameObj*>(pActor), 0x28, 6, 0x1B, -1);
+        MR::registerNameObjToExecuteHolder(reinterpret_cast< NameObj* >(pActor), 0x28, 6, 0x1B, -1);
     }
 
     void connectToSceneIndirectMapObj(LiveActor* pActor) {
-        MR::registerNameObjToExecuteHolder(reinterpret_cast<NameObj*>(pActor), 0x22, 5, 0x19, -1);
+        MR::registerNameObjToExecuteHolder(reinterpret_cast< NameObj* >(pActor), 0x22, 5, 0x19, -1);
     }
 
     void connectToSceneIndirectMapObjStrongLight(LiveActor* pActor) {
-        MR::registerNameObjToExecuteHolder(reinterpret_cast<NameObj*>(pActor), 0x22, 5, 0x1A, -1);
+        MR::registerNameObjToExecuteHolder(reinterpret_cast< NameObj* >(pActor), 0x22, 5, 0x1A, -1);
     }
 
     void connectToSceneScreenEffectMovement(NameObj* pObj) {
@@ -375,7 +375,7 @@ namespace MR {
     }
 
     NameObjGroup* joinToNameObjGroup(NameObj* pObj, const char* pGroupName) {
-        NameObjGroup* pObjGroup = static_cast<NameObjGroup*>(NameObjFinder::find(pGroupName));
+        NameObjGroup* pObjGroup = static_cast< NameObjGroup* >(NameObjFinder::find(pGroupName));
 
         pObjGroup->registerObj(pObj);
 
@@ -383,17 +383,17 @@ namespace MR {
     }
 
     NameObjGroup* joinToMovementOnOffGroup(const char* pName, NameObj* pObj, u32 a3) {
-        MovementOnOffGroupHolder* pGroupHolder = MR::getSceneObj<MovementOnOffGroupHolder>(SceneObj_MovementOnOffGroupHolder);
+        MovementOnOffGroupHolder* pGroupHolder = MR::getSceneObj< MovementOnOffGroupHolder >(SceneObj_MovementOnOffGroupHolder);
 
         return pGroupHolder->joinToGroup(pName, pObj, a3);
     }
 
     void onMovementOnOffGroup(const char* pGroupName) {
-        MR::getSceneObj<MovementOnOffGroupHolder>(SceneObj_MovementOnOffGroupHolder)->onMovementGroup(pGroupName);
+        MR::getSceneObj< MovementOnOffGroupHolder >(SceneObj_MovementOnOffGroupHolder)->onMovementGroup(pGroupName);
     }
 
     void registerPreDrawFunction(const MR::FunctorBase& rFunc, int a2) {
-        SingletonHolder<GameSystem>::get()->mSceneController->getNameObjListExecutor()->registerPreDrawFunction(rFunc, a2);
+        SingletonHolder< GameSystem >::get()->mSceneController->getNameObjListExecutor()->registerPreDrawFunction(rFunc, a2);
     }
 
     NameObjAdaptor* createAdaptorAndConnectToDrawBloomModel(const char* pName, const MR::FunctorBase& rFunctor) {
@@ -406,7 +406,7 @@ namespace MR {
     }
 
     ResourceHolder* createAndAddResourceHolder(const char* pResource) {
-        return SingletonHolder<ResourceHolderManager>::get()->createAndAdd(pResource, nullptr);
+        return SingletonHolder< ResourceHolderManager >::get()->createAndAdd(pResource, nullptr);
     }
 
     void* loadResourceFromArc(const char* pArchive, const char* pFile) {
@@ -420,7 +420,7 @@ namespace MR {
     }
 
     const ResTIMG* loadTexFromArc(const char* pArchive, const char* pFile) {
-        return static_cast<const ResTIMG*>(loadResourceFromArc(pArchive, pFile));
+        return static_cast< const ResTIMG* >(loadResourceFromArc(pArchive, pFile));
     }
 
     const ResTIMG* loadTexFromArc(const char* pArchive) {
@@ -438,7 +438,7 @@ namespace MR {
     }
 
     JMapInfo* createCsvParser(const char* pArchive, const char* pFormat, ...) {
-        ResourceHolder* holder = SingletonHolder<ResourceHolderManager>::get()->createAndAdd(pArchive, nullptr);
+        ResourceHolder* holder = SingletonHolder< ResourceHolderManager >::get()->createAndAdd(pArchive, nullptr);
         return MR::createCsvParser(holder, pFormat);
     }
 
@@ -468,12 +468,12 @@ namespace MR {
     }
 
     void getCsvDataS32(s32* pOut, const JMapInfo* pMapInfo, const char* pKey, s32 idx) {
-        pMapInfo->getValue<s32>(idx, pKey, pOut);
+        pMapInfo->getValue< s32 >(idx, pKey, pOut);
     }
 
     void getCsvDataU8(u8* pOut, const JMapInfo* pMapInfo, const char* pKey, s32 idx) {
         s32 val = 0;
-        pMapInfo->getValue<s32>(idx, pKey, &val);
+        pMapInfo->getValue< s32 >(idx, pKey, &val);
         *pOut = val;
     }
 
@@ -482,7 +482,7 @@ namespace MR {
         int v7 = pMapInfo->searchItemInfo(pKey);
 
         if (v7 >= 0) {
-            *pOut = *((f32*)(pMapInfo->mData->mNumEntries + pMapInfo->mData->mDataOffset + idx * (pMapInfo->mData->mEntrySize + static_cast<const JMapItem*>(&pMapInfo->mData->mItems)[v7].mOffsData)));
+            *pOut = *((f32*)(pMapInfo->mData->mNumEntries + pMapInfo->mData->mDataOffset + idx * (pMapInfo->mData->mEntrySize + static_cast< const JMapItem* >(&pMapInfo->mData->mItems)[v7].mOffsData)));
         }
     }
 #endif

@@ -40,7 +40,7 @@ void TripodBossKinokoOneUp::exeActive() {
     f32 z = _BC.mMtx[2][3];
     f32 y = _BC.mMtx[1][3];
     f32 x = _BC.mMtx[0][3];
-    mPosition.set<f32>(x, y, z);
+    mPosition.set< f32 >(x, y, z);
     if (MR::isFirstStep(this)) {
         mOneUp->makeActorAppeared();
     }

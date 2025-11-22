@@ -4,7 +4,7 @@
 #include <revolution.h>
 
 namespace std {
-    template <typename A1, typename B1>
+    template < typename A1, typename B1 >
     struct pair {
         A1 a1;
         B1 b1;
@@ -16,17 +16,17 @@ namespace std {
 } // namespace std
 
 namespace JMath {
-    template <s32 Bits, typename T>
+    template < s32 Bits, typename T >
     class TSinCosTable {
     public:
-        static const u32    LEN = 1 << Bits;
-        std::pair<f32, f32> table[LEN];
+        static const u32      LEN = 1 << Bits;
+        std::pair< f32, f32 > table[LEN];
 
         f32 sinShort(s8 v) const {
-            return table[static_cast<u8>(v) >> 3].a1;
+            return table[static_cast< u8 >(v) >> 3].a1;
         }
         f32 cosShort(s8 v) const {
-            return table[static_cast<u8>(v) >> 3].b1;
+            return table[static_cast< u8 >(v) >> 3].b1;
         }
 
         inline f32 sinLapRad(f32 v) {
@@ -63,7 +63,7 @@ namespace JMath {
         }
     };
 
-    template <s32 Len, typename T>
+    template < s32 Len, typename T >
     class TAtanTable {
     public:
         TAtanTable();
@@ -75,7 +75,7 @@ namespace JMath {
         T _1000;
     };
 
-    template <s32 Len, typename T>
+    template < s32 Len, typename T >
     class TAsinAcosTable {
     public:
         TAsinAcosTable();
@@ -86,9 +86,9 @@ namespace JMath {
         T _1000;
     };
 
-    static TSinCosTable<14, f32>     sSinCosTable;
-    static TAtanTable<1024, f32>     sAtanTable;
-    static TAsinAcosTable<1024, f32> sAsinAcosTable;
+    static TSinCosTable< 14, f32 >     sSinCosTable;
+    static TAtanTable< 1024, f32 >     sAtanTable;
+    static TAsinAcosTable< 1024, f32 > sAsinAcosTable;
 }; // namespace JMath
 
 inline f32 JMASSin(u16 s) {

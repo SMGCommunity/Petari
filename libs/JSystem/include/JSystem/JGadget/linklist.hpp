@@ -7,7 +7,7 @@
 
 #include "Inline.hpp"
 
-#define JGADGET_LINK_LIST(type, node) JGadget::TLinkList<type, -offsetof(type, node)>
+#define JGADGET_LINK_LIST(type, node) JGadget::TLinkList< type, -offsetof(type, node) >
 
 namespace std {
 
@@ -20,7 +20,7 @@ namespace std {
         typename T,
         typename Distance = s32,
         typename Pointer = T*,
-        typename Reference = T&>
+        typename Reference = T& >
     class iterator {
     public:
         typedef Category  iterator_category;
@@ -42,11 +42,11 @@ namespace JGadget {
         typename T,
         typename Distance = s32,
         typename Pointer = T*,
-        typename Reference = T&>
-    class TIterator : std::iterator<Category, T, Distance, Pointer, Reference> {
+        typename Reference = T& >
+    class TIterator : std::iterator< Category, T, Distance, Pointer, Reference > {
     public:
         const TIterator& operator=(const TIterator& rOther) NO_INLINE {
-            std::iterator<Category, T, Distance, Pointer, Reference>::operator=(rOther);
+            std::iterator< Category, T, Distance, Pointer, Reference >::operator=(rOther);
             return *this;
         }
     };
@@ -93,7 +93,7 @@ namespace JGadget {
             Initialize_();
         }
 
-        template <typename T>
+        template < typename T >
         inline void Remove_if(T p, TNodeLinkList& removed) {
             TLinkListNode *curr, *end, *removedEnd;
             removedEnd = &removed.mEnd;
@@ -112,7 +112,7 @@ namespace JGadget {
             }
         }
 
-        template <typename T>
+        template < typename T >
         inline void remove_if(T p) {
             TNodeLinkList CALL_INLINE_FUNC_NO_ARG(removed);
             Remove_if(p, removed);
@@ -122,10 +122,10 @@ namespace JGadget {
         TLinkListNode mEnd;
     };
 
-    template <typename T, int NODE_OFFSET>
+    template < typename T, int NODE_OFFSET >
     class TLinkList : public TNodeLinkList {
     public:
-        struct iterator : public TIterator<std::bidirectional_iterator_tag, T>,
+        struct iterator : public TIterator< std::bidirectional_iterator_tag, T >,
                           public TNodeLinkList::iterator {
             iterator() NO_INLINE : TNodeLinkList::iterator() {}
 
@@ -138,7 +138,7 @@ namespace JGadget {
                 : CALL_INLINE_FUNC(TNodeLinkList::iterator, rOther.curr) {}
 
             const iterator& operator=(const iterator& rOther) NO_INLINE {
-                TIterator<std::bidirectional_iterator_tag, T>::operator=(rOther);
+                TIterator< std::bidirectional_iterator_tag, T >::operator=(rOther);
                 curr = rOther.curr;
                 return *this;
             }
@@ -149,7 +149,7 @@ namespace JGadget {
             }
 
             T* operator->() const NO_INLINE {
-                return TLinkList<T, NODE_OFFSET>::Element_toValue(
+                return TLinkList< T, NODE_OFFSET >::Element_toValue(
                     TNodeLinkList::iterator::operator->());
             }
 

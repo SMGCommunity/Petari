@@ -73,7 +73,7 @@ void DesertLandMoveSwitch::calcAnim() {
         f32    f3 = mtx2[2][3];
         f32    f2 = mtx2[1][3];
         f32    f1 = mtx2[0][3];
-        stack_20.set<f32>(f1, f2, f3);
+        stack_20.set< f32 >(f1, f2, f3);
         TVec3f stack_14, stack_8;
         MR::calcUpVec(&stack_14, this);
         stack_8.setPS(stack_14);

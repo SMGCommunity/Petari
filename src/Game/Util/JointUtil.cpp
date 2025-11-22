@@ -54,7 +54,7 @@ namespace MR {
 
     void copyJointPos(J3DModel* pModel, const char* pName, TVec3f* pPos) {
         MtxPtr jointMtx = MR::getJointMtx(pModel, pName);
-        pPos->set<f32>(jointMtx[0][3], jointMtx[1][3], jointMtx[2][3]);
+        pPos->set< f32 >(jointMtx[0][3], jointMtx[1][3], jointMtx[2][3]);
     }
 
     void copyJointPos(const LiveActor* pActor, const char* pName, TVec3f* pPos) {
@@ -63,7 +63,7 @@ namespace MR {
 
     void copyJointPos(J3DModel* pModel, int idx, TVec3f* pPos) {
         MtxPtr jointMtx = pModel->mMtxBuffer->mpAnmMtx[idx];
-        pPos->set<f32>(jointMtx[0][3], jointMtx[1][3], jointMtx[2][3]);
+        pPos->set< f32 >(jointMtx[0][3], jointMtx[1][3], jointMtx[2][3]);
     }
 
     void copyJointPos(const LiveActor* pActor, int idx, TVec3f* pPos) {
@@ -73,9 +73,9 @@ namespace MR {
     void copyJointScale(const LiveActor* pActor, const char* pName, TVec3f* pScale) {
         TMtx34f mtx;
         mtx.set(MR::getJointMtx(pActor, pName));
-        pScale->x = JGeometry::TUtil<f32>::sqrt(mtx(2, 0) * mtx(2, 0) + (mtx(0, 0) * mtx(0, 0) + mtx(1, 0) * mtx(1, 0)));
-        pScale->y = JGeometry::TUtil<f32>::sqrt(mtx(2, 1) * mtx(2, 1) + (mtx(0, 1) * mtx(0, 1) + mtx(1, 1) * mtx(1, 1)));
-        pScale->z = JGeometry::TUtil<f32>::sqrt(mtx(2, 2) * mtx(2, 2) + (mtx(0, 2) * mtx(0, 2) + mtx(1, 2) * mtx(1, 2)));
+        pScale->x = JGeometry::TUtil< f32 >::sqrt(mtx(2, 0) * mtx(2, 0) + (mtx(0, 0) * mtx(0, 0) + mtx(1, 0) * mtx(1, 0)));
+        pScale->y = JGeometry::TUtil< f32 >::sqrt(mtx(2, 1) * mtx(2, 1) + (mtx(0, 1) * mtx(0, 1) + mtx(1, 1) * mtx(1, 1)));
+        pScale->z = JGeometry::TUtil< f32 >::sqrt(mtx(2, 2) * mtx(2, 2) + (mtx(0, 2) * mtx(0, 2) + mtx(1, 2) * mtx(1, 2)));
     }
 
     void hideJoint(J3DJoint* pJoint) {

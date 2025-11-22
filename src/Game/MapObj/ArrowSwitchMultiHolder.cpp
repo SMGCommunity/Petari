@@ -7,7 +7,7 @@ ArrowSwitchMultiHolder::ArrowSwitchMultiHolder()
 
 ArrowSwitchMulti* ArrowSwitchMultiHolder::findSwitch(const JMapIdInfo* pInfo) {
     for (s32 i = 0; i < mObjectCount; i++) {
-        ArrowSwitchMulti* sw = reinterpret_cast<ArrowSwitchMulti*>(getActor(i));
+        ArrowSwitchMulti* sw = reinterpret_cast< ArrowSwitchMulti* >(getActor(i));
         JMapIdInfo*       inf = sw->mIDInfo;
 
         bool isSame = false;
@@ -29,10 +29,10 @@ namespace MR {
     }
 
     void registerArrowSwitchMulti(ArrowSwitchMulti* pSwitch) {
-        MR::getSceneObj<ArrowSwitchMultiHolder>(SceneObj_ArrowSwitchMultiHolder)->registerActor(pSwitch);
+        MR::getSceneObj< ArrowSwitchMultiHolder >(SceneObj_ArrowSwitchMultiHolder)->registerActor(pSwitch);
     }
 
     void registerArrowSwitchTarget(ArrowSwitchTarget* pTarget) {
-        MR::getSceneObj<ArrowSwitchMultiHolder>(SceneObj_ArrowSwitchMultiHolder)->findSwitch(pTarget->mJMapIDInfo)->registerTarget(pTarget);
+        MR::getSceneObj< ArrowSwitchMultiHolder >(SceneObj_ArrowSwitchMultiHolder)->findSwitch(pTarget->mJMapIDInfo)->registerTarget(pTarget);
     }
 }; // namespace MR

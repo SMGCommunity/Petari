@@ -224,7 +224,7 @@ void FireBar::fixFireBarBall() {
             JMathInlineVEC::PSVECAdd((const Vec*)&final_pos, (const Vec*)&scaled, (Vec*)&final_pos);
         }
 
-        mFireBalls[i]->mPosition.set<f32>(scaled);
+        mFireBalls[i]->mPosition.set< f32 >(scaled);
     }
 }
 
@@ -232,7 +232,7 @@ namespace NrvFireBar {
     FireBarNrvWait FireBarNrvWait::sInstance;
 
     void FireBarNrvWait::execute(Spine* pSpine) const {
-        FireBar* bar = reinterpret_cast<FireBar*>(pSpine->mExecutor);
+        FireBar* bar = reinterpret_cast< FireBar* >(pSpine->mExecutor);
         bar->exeWait();
     }
 }; // namespace NrvFireBar

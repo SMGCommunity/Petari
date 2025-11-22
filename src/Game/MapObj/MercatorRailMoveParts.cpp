@@ -19,7 +19,7 @@ void MercatorRailMoveParts::initAfterPlacement() {
     TVec3f trans;
     TPos3f rotate;
     MR::convertMercatorPlaneToSphereTransAndRotate(&trans, &rotate, mLocalTrans, false);
-    mPosition.set<f32>(trans);
+    mPosition.set< f32 >(trans);
 
     if (MR::isValidSwitchB(this)) {
         mIsNotMoving = true;
@@ -52,7 +52,7 @@ void MercatorRailMoveParts::control() {
     TVec3f trans;
     TPos3f rotate;
     MR::convertMercatorPlaneToSphereTransAndRotate(&trans, &rotate, mRailMover->_28, false);
-    mPosition.set<f32>(trans);
+    mPosition.set< f32 >(trans);
 }
 
 void MercatorRailMoveParts::calcAndSetBaseMtx() {
@@ -108,7 +108,7 @@ void MercatorRailMoveParts::init(const JMapInfoIter& rIter) {
     if (MR::useStageSwitchReadB(this, rIter)) {
         void (MercatorRailMoveParts::*e)(void) = &MercatorRailMoveParts::startMove;
         void (MercatorRailMoveParts::*s)(void) = &MercatorRailMoveParts::endMove;
-        MR::listenStageSwitchOnOffB(this, MR::Functor<MercatorRailMoveParts>(this, e), MR::Functor<MercatorRailMoveParts>(this, s));
+        MR::listenStageSwitchOnOffB(this, MR::Functor< MercatorRailMoveParts >(this, e), MR::Functor< MercatorRailMoveParts >(this, s));
     }
 
     initRailRider(rIter);

@@ -61,7 +61,7 @@ bool KCollisionServer::outCheck(const TVec3f* pPosA, const TVec3f* pPosB, V3u* p
 }
 
 void KCollisionServer::objectSpaceToLocalSpace(V3u* pPoint, const TVec3f& rPos) const {
-    pPoint->x = static_cast<s32>(rPos.x - mFile->mMin.x);
-    pPoint->y = static_cast<s32>(rPos.y - mFile->mMin.y);
-    pPoint->z = static_cast<s32>(rPos.z - mFile->mMin.z);
+    pPoint->x = static_cast< s32 >(rPos.x - mFile->mMin.x);
+    pPoint->y = static_cast< s32 >(rPos.y - mFile->mMin.y);
+    pPoint->z = static_cast< s32 >(rPos.z - mFile->mMin.z);
 }

@@ -111,20 +111,20 @@ public:
         return (void*)mEnd;
     }
 
-    OSMutex              mMutex; // 0x18
-    u8*                  mStart; // 0x30
-    u8*                  mEnd;   // 0x34
-    u32                  mSize;  // 0x38
-    u8                   _3C;
-    u8                   _3D;
-    u8                   _3E;
-    u8                   _3F;
-    JSUTree<JKRHeap>     mChildTree;    // 0x40
-    JSUList<JKRDisposer> mDisposerList; // 0x5C
-    bool                 mErrorFlag;    // 0x68
-    u8                   _69;
-    u8                   _6A;
-    u8                   _6B;
+    OSMutex                mMutex; // 0x18
+    u8*                    mStart; // 0x30
+    u8*                    mEnd;   // 0x34
+    u32                    mSize;  // 0x38
+    u8                     _3C;
+    u8                     _3D;
+    u8                     _3E;
+    u8                     _3F;
+    JSUTree< JKRHeap >     mChildTree;    // 0x40
+    JSUList< JKRDisposer > mDisposerList; // 0x5C
+    bool                   mErrorFlag;    // 0x68
+    u8                     _69;
+    u8                     _6A;
+    u8                     _6B;
 };
 
 #ifdef __MWERKS__

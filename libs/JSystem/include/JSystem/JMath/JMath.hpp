@@ -14,7 +14,7 @@ void JMAVECScaleAdd(const Vec*, const Vec*, Vec*, f32);
 namespace JMath {
     f32 fastReciprocal(f32);
 
-    template <typename T>
+    template < typename T >
     f32 fastSqrt(T);
 
     void gekko_ps_copy12(void*, const void*);

@@ -52,8 +52,8 @@ public:
     ZoneSwitch* findZoneSwitchFromTable(const SwitchIdInfo&);
 
 private:
-    MR::Vector<MR::FixedArray<ContainerSwitch, 20>> mSwitches;       // 0x0C
-    ZoneSwitch*                                     mGlobalSwitches; // 0xB0
+    MR::Vector< MR::FixedArray< ContainerSwitch, 20 > > mSwitches;       // 0x0C
+    ZoneSwitch*                                         mGlobalSwitches; // 0xB0
 };
 
 class StageSwitchFunction {

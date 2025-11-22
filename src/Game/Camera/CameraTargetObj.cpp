@@ -38,14 +38,14 @@ void CameraTargetActor::movement() {
         MR::calcSideVec(&mSide, mActor);
     } else {
         TRot3f matrix;
-        MR::makeMtxRotate(reinterpret_cast<MtxPtr>(&matrix), mActor->mRotation.x, mActor->mRotation.y, mActor->mRotation.z);
+        MR::makeMtxRotate(reinterpret_cast< MtxPtr >(&matrix), mActor->mRotation.x, mActor->mRotation.y, mActor->mRotation.z);
 
         matrix.getYDir(mUp);
         matrix.getZDir(mFront);
         matrix.getXDir(mSide);
     }
 
-    CubeCameraArea* area = reinterpret_cast<CubeCameraArea*>(MR::getAreaObj("CubeCamera", mActor->mPosition));
+    CubeCameraArea* area = reinterpret_cast< CubeCameraArea* >(MR::getAreaObj("CubeCamera", mActor->mPosition));
 
     if (area == nullptr) {
         mCameraArea = nullptr;

@@ -66,7 +66,7 @@ bool CameraParamChunkID::equals(s32 zoneID, const char* pName) const {
 }
 
 void CameraParamChunkID::createCubeID(s32 zoneID, u16 id) {
-    mZoneID = static_cast<s8>(zoneID);
+    mZoneID = static_cast< s8 >(zoneID);
 
     const u32 formatSize = 7;
     char*     buffer = getBuffer(formatSize);
@@ -76,7 +76,7 @@ void CameraParamChunkID::createCubeID(s32 zoneID, u16 id) {
 }
 
 void CameraParamChunkID::createGroupID(s32 zoneID, const char* a2, u32 a3, u32 a4) {
-    mZoneID = static_cast<s8>(zoneID);
+    mZoneID = static_cast< s8 >(zoneID);
 
     char buffer[0x100];
     snprintf(buffer, sizeof(buffer), "g:%s:%d:%d", a2, a3, a4);
@@ -89,7 +89,7 @@ void CameraParamChunkID::createGroupID(s32 zoneID, const char* a2, u32 a3, u32 a
 }
 
 void CameraParamChunkID::createOtherID(s32 zoneID, const char* a2) {
-    mZoneID = static_cast<s8>(zoneID);
+    mZoneID = static_cast< s8 >(zoneID);
 
     char buffer[0x100];
     snprintf(buffer, sizeof(buffer), "o:%s", a2);
@@ -102,7 +102,7 @@ void CameraParamChunkID::createOtherID(s32 zoneID, const char* a2) {
 }
 
 void CameraParamChunkID::createEventID(s32 zoneID, const char* a2) {
-    mZoneID = static_cast<s8>(zoneID);
+    mZoneID = static_cast< s8 >(zoneID);
 
     char buffer[0x100];
     snprintf(buffer, sizeof(buffer), "e:%s", a2);
@@ -115,7 +115,7 @@ void CameraParamChunkID::createEventID(s32 zoneID, const char* a2) {
 }
 
 void CameraParamChunkID::createStartID(s32 zoneID, u16 id) {
-    mZoneID = static_cast<s8>(zoneID);
+    mZoneID = static_cast< s8 >(zoneID);
 
     char buffer[0x100];
     snprintf(buffer, sizeof(buffer), "s:%04x", id);

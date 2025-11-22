@@ -3,7 +3,7 @@
 #include <revolution/os.h>
 
 namespace JASThreadingModel {
-    template <typename T>
+    template < typename T >
     class InterruptsDisable {
     public:
         struct Lock {

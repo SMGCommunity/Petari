@@ -45,7 +45,7 @@ namespace NrvItemAppearStone {
     INIT_NERVE(HostTypeWait);
 
     void HostTypeWait::execute(Spine* pSpine) const {
-        ItemAppearStone* stone = reinterpret_cast<ItemAppearStone*>(pSpine->mExecutor);
+        ItemAppearStone* stone = reinterpret_cast< ItemAppearStone* >(pSpine->mExecutor);
         stone->exeWait();
     }
 }; // namespace NrvItemAppearStone

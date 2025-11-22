@@ -13,7 +13,7 @@ void HazeCube::init(const JMapInfoIter& rIter) {
     AreaObj::init(rIter);
 
     if (mObjArg0 >= 0) {
-        _3C = static_cast<f32>(mObjArg0);
+        _3C = static_cast< f32 >(mObjArg0);
     }
 
     MR::createSceneObj(SceneObj_HeatHazeDirector);

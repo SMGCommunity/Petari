@@ -517,7 +517,7 @@ namespace MR {
     }
 
     f32 calcNerveRate(const LiveActor* pActor, s32 stepMax) {
-        return stepMax <= 0 ? 1.0f : clamp(static_cast<f32>(pActor->getNerveStep()) / stepMax, 0.0f, 1.0f);
+        return stepMax <= 0 ? 1.0f : clamp(static_cast< f32 >(pActor->getNerveStep()) / stepMax, 0.0f, 1.0f);
     }
 
     f32 calcNerveRate(const LiveActor* pActor, s32 stepMin, s32 stepMax) {

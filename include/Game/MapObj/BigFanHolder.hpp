@@ -5,7 +5,7 @@
 
 class BigFan;
 
-class BigFanHolder : public DeriveActorGroup<BigFan> {
+class BigFanHolder : public DeriveActorGroup< BigFan > {
 public:
     BigFanHolder();
 

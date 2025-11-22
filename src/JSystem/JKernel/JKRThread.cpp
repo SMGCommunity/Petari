@@ -1,8 +1,8 @@
 #include "JSystem/JKernel/JKRThread.hpp"
 #include "JSystem/JKernel/JKRHeap.hpp"
 
-JSUList<JKRThread> JKRThread::sThreadList = JSUList<JKRThread>(false);
-JSUList<JKRTask>   JKRThread::sTaskList = JSUList<JKRTask>();
+JSUList< JKRThread > JKRThread::sThreadList = JSUList< JKRThread >(false);
+JSUList< JKRTask >   JKRThread::sTaskList = JSUList< JKRTask >();
 
 JKRThread::TLoad::TLoad() {
     clear();
@@ -35,7 +35,7 @@ JKRThread::~JKRThread() {
 
 void JKRThread::setCommon_mesgQueue(JKRHeap* pHeap, int msgCount) {
     mMsgCount = msgCount;
-    mMessage = reinterpret_cast<OSMessage*>(JKRHeap::alloc(mMsgCount * 4, 0, pHeap));
+    mMessage = reinterpret_cast< OSMessage* >(JKRHeap::alloc(mMsgCount * 4, 0, pHeap));
     OSInitMessageQueue(&mQueue, mMessage, mMsgCount);
     sThreadList.append(&mDisposerList);
     _74 = 0;
@@ -60,7 +60,7 @@ s32 JKRThread::start(void* pData) {
 
 JKRThread* JKRThread::searchThread(OSThread* pThread) {
     for (JSUPtrLink* i = sThreadList.mHead; i; i = i->mNext) {
-        JKRThread* thread = reinterpret_cast<JKRThread*>(i->mData);
+        JKRThread* thread = reinterpret_cast< JKRThread* >(i->mData);
 
         if (thread->mThread == pThread) {
             return thread;

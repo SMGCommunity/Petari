@@ -76,11 +76,11 @@ DemoActionKeeper::DemoActionKeeper(const DemoExecutor* pExector) {
     for (s32 i = 0; i < mNumInfos; i++) {
         mInfoArray[i] = new DemoActionInfo();
         DemoActionInfo* info = mInfoArray[i];
-        jmap->getValue<const char*>(i, "PartName", &info->mPartName);
-        jmap->getValue<const char*>(i, "CastName", &info->mCastName);
-        jmap->getValue<s32>(i, "CastID", &info->mCastID);
-        jmap->getValue<s32>(i, "ActionType", &info->mActionType);
-        jmap->getValue<const char*>(i, "PosName", &info->mPosName);
-        jmap->getValue<const char*>(i, "AnimName", &info->mAnimName);
+        jmap->getValue< const char* >(i, "PartName", &info->mPartName);
+        jmap->getValue< const char* >(i, "CastName", &info->mCastName);
+        jmap->getValue< s32 >(i, "CastID", &info->mCastID);
+        jmap->getValue< s32 >(i, "ActionType", &info->mActionType);
+        jmap->getValue< const char* >(i, "PosName", &info->mPosName);
+        jmap->getValue< const char* >(i, "AnimName", &info->mAnimName);
     }
 }

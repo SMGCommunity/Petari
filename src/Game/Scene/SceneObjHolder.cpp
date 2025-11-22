@@ -430,11 +430,11 @@ namespace MR {
     }
 
     SceneObjHolder* getSceneObjHolder() {
-        return SingletonHolder<GameSystem>::get()->mSceneController->getSceneObjHolder();
+        return SingletonHolder< GameSystem >::get()->mSceneController->getSceneObjHolder();
     }
 
     bool isExistSceneObj(int id) {
-        GameSystemSceneController* pSceneController = SingletonHolder<GameSystem>::get()->mSceneController;
+        GameSystemSceneController* pSceneController = SingletonHolder< GameSystem >::get()->mSceneController;
 
         if (pSceneController == nullptr) {
             return false;

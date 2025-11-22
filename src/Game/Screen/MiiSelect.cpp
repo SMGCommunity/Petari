@@ -348,10 +348,10 @@ void MiiSelect::collectValidMiiIndex() {
         }
 
         if (additionalInfo.favorite == 1) {
-            _30[_2E] = static_cast<u16>(i);
+            _30[_2E] = static_cast< u16 >(i);
             _2E++;
         } else {
-            _5C[_58] = static_cast<u16>(i);
+            _5C[_58] = static_cast< u16 >(i);
             _58++;
         }
     }
@@ -415,7 +415,7 @@ void MiiSelect::getIconID(FileSelectIconID* pIconID, s32 param2) const {
             }
 
             if (v == param2) {
-                pIconID->setFellowID(static_cast<FileSelectIconID::EFellowID>(i));
+                pIconID->setFellowID(static_cast< FileSelectIconID::EFellowID >(i));
                 break;
             }
 

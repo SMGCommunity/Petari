@@ -14,7 +14,7 @@ void PunchingKinoko::init(const JMapInfoIter& rIter) {
     initModelManagerWithAnm("PunchingKinoko", nullptr, false);
     MR::connectToSceneNoSilhouettedMapObj(this);
     MR::calcGravity(this);
-    _9C.set<f32>(mPosition);
+    _9C.set< f32 >(mPosition);
 
     mGroundChecker = new GroundChecker("頭コリジョン", 70.0f, 0.0f);
     MR::calcPositionUpOffset(&mGroundChecker->mPosition, this, 130.0f);
@@ -37,7 +37,7 @@ void PunchingKinoko::init(const JMapInfoIter& rIter) {
     makeActorAppeared();
 
     if (MR::useStageSwitchReadB(this, rIter) != 0) {
-        MR::FunctorV0M<PunchingKinoko*, void (PunchingKinoko::*)()> functor = MR::Functor<PunchingKinoko>(this, &PunchingKinoko::kill);
+        MR::FunctorV0M< PunchingKinoko*, void (PunchingKinoko::*)() > functor = MR::Functor< PunchingKinoko >(this, &PunchingKinoko::kill);
         MR::listenStageSwitchOnB(this, functor);
     }
     MR::useStageSwitchSleep(this, rIter);
@@ -454,7 +454,7 @@ void PunchingKinoko::exePunched() {
     MR::attenuateVelocity(mGroundChecker, 0.99f);
     HitSensor* sensor = getSensor("Head");
     MR::sendMsgEnemyAttackToBindedSensor(mGroundChecker, sensor);
-    _9C.set<f32>(mGroundChecker->mPosition);
+    _9C.set< f32 >(mGroundChecker->mPosition);
 
     if (MR::isGreaterStep(this, 5)) {
         setNerve(&NrvPunchingKinoko::PunchingKinokoNrvPunchedBrake::sInstance);
@@ -465,7 +465,7 @@ void PunchingKinoko::exePunchedBrake() {
     addVelocityKeepHeight();
     MR::attenuateVelocity(mGroundChecker, 0.9f);
     MR::startLevelSound(this, "SE_OJ_LV_PNC_KINOKO_PUNCHED", -1, -1, -1);
-    _9C.set<f32>(mGroundChecker->mPosition);
+    _9C.set< f32 >(mGroundChecker->mPosition);
     if (!MR::isGreaterStep(this, 40)) {
         HitSensor* sensor = getSensor("Head");
         if (!MR::sendMsgEnemyAttackToBindedSensor(mGroundChecker, sensor)) {
@@ -498,7 +498,7 @@ void PunchingKinoko::exeCrushed() {
             stack_8.scale(20.0f);
             mGroundChecker->mPosition.add(stack_8);
         } else {
-            _A8.set<f32>(mGravity);
+            _A8.set< f32 >(mGravity);
         }
 
         MR::offBind(mGroundChecker);
@@ -602,35 +602,35 @@ namespace NrvPunchingKinoko {
     INIT_NERVE(PunchingKinokoNrvCrushedEnd);
 
     void PunchingKinokoNrvWait::execute(Spine* pSpine) const {
-        PunchingKinoko* kinoko = reinterpret_cast<PunchingKinoko*>(pSpine->mExecutor);
+        PunchingKinoko* kinoko = reinterpret_cast< PunchingKinoko* >(pSpine->mExecutor);
         kinoko->exeWait();
     };
     void PunchingKinokoNrvSwing::execute(Spine* pSpine) const {
-        PunchingKinoko* kinoko = reinterpret_cast<PunchingKinoko*>(pSpine->mExecutor);
+        PunchingKinoko* kinoko = reinterpret_cast< PunchingKinoko* >(pSpine->mExecutor);
         kinoko->exeSwing();
     };
     void PunchingKinokoNrvPunched::execute(Spine* pSpine) const {
-        PunchingKinoko* kinoko = reinterpret_cast<PunchingKinoko*>(pSpine->mExecutor);
+        PunchingKinoko* kinoko = reinterpret_cast< PunchingKinoko* >(pSpine->mExecutor);
         kinoko->exePunched();
     };
     void PunchingKinokoNrvPunchedBrake::execute(Spine* pSpine) const {
-        PunchingKinoko* kinoko = reinterpret_cast<PunchingKinoko*>(pSpine->mExecutor);
+        PunchingKinoko* kinoko = reinterpret_cast< PunchingKinoko* >(pSpine->mExecutor);
         kinoko->exePunchedBrake();
     };
     void PunchingKinokoNrvHitted::execute(Spine* pSpine) const {
-        PunchingKinoko* kinoko = reinterpret_cast<PunchingKinoko*>(pSpine->mExecutor);
+        PunchingKinoko* kinoko = reinterpret_cast< PunchingKinoko* >(pSpine->mExecutor);
         kinoko->exeHitted();
     };
     void PunchingKinokoNrvPointSnaped::execute(Spine* pSpine) const {
-        PunchingKinoko* kinoko = reinterpret_cast<PunchingKinoko*>(pSpine->mExecutor);
+        PunchingKinoko* kinoko = reinterpret_cast< PunchingKinoko* >(pSpine->mExecutor);
         kinoko->exePointSnaped();
     };
     void PunchingKinokoNrvCrushed::execute(Spine* pSpine) const {
-        PunchingKinoko* kinoko = reinterpret_cast<PunchingKinoko*>(pSpine->mExecutor);
+        PunchingKinoko* kinoko = reinterpret_cast< PunchingKinoko* >(pSpine->mExecutor);
         kinoko->exeCrushed();
     };
     void PunchingKinokoNrvCrushedEnd::execute(Spine* pSpine) const {
-        PunchingKinoko* kinoko = reinterpret_cast<PunchingKinoko*>(pSpine->mExecutor);
+        PunchingKinoko* kinoko = reinterpret_cast< PunchingKinoko* >(pSpine->mExecutor);
         kinoko->exeCrushedEnd();
     };
 }; // namespace NrvPunchingKinoko

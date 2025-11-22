@@ -63,7 +63,7 @@ namespace NrvBattleShipElevator {
     }
 
     void BattleShipElevatorNrvMove::execute(Spine* pSpine) const {
-        BattleShipElevator* planet = reinterpret_cast<BattleShipElevator*>(pSpine->mExecutor);
+        BattleShipElevator* planet = reinterpret_cast< BattleShipElevator* >(pSpine->mExecutor);
         planet->exeMove();
     }
 

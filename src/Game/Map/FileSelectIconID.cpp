@@ -37,5 +37,5 @@ bool FileSelectIconID::isFellow() const {
 }
 
 FileSelectIconID::EFellowID FileSelectIconID::getFellowID() const {
-    return static_cast<EFellowID>(mData);
+    return static_cast< EFellowID >(mData);
 }

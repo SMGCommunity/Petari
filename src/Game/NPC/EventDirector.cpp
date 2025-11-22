@@ -28,23 +28,23 @@ void EventDirector::init(const JMapInfoIter& rIter) {
 
 namespace EventFunction {
     PowerStarEventKeeper* getPowerStarEventKeeper() {
-        return MR::getSceneObj<EventDirector>(SceneObj_EventDirector)->mPowerStarEventKeeper;
+        return MR::getSceneObj< EventDirector >(SceneObj_EventDirector)->mPowerStarEventKeeper;
     }
 
     StageStateKeeper* getStageStateKeeper() {
-        return MR::getSceneObj<EventDirector>(SceneObj_EventDirector)->mStageStateKeeper;
+        return MR::getSceneObj< EventDirector >(SceneObj_EventDirector)->mStageStateKeeper;
     }
 
     PowerStarHolder* getPowerStarHolder() {
-        return MR::getSceneObj<EventDirector>(SceneObj_EventDirector)->mPowerStarHolder;
+        return MR::getSceneObj< EventDirector >(SceneObj_EventDirector)->mPowerStarHolder;
     }
 
     CometEventKeeper* getCometEventKeeper() {
-        return MR::getSceneObj<EventDirector>(SceneObj_EventDirector)->mCometEventKeeper;
+        return MR::getSceneObj< EventDirector >(SceneObj_EventDirector)->mCometEventKeeper;
     }
 
     TimeAttackEventKeeper* getTimeAttackEventKeeper() {
-        return MR::getSceneObj<EventDirector>(SceneObj_EventDirector)->mTimeAttackEventKeeper;
+        return MR::getSceneObj< EventDirector >(SceneObj_EventDirector)->mTimeAttackEventKeeper;
     }
 
     bool isStartCometEvent(const char* pParam1) {

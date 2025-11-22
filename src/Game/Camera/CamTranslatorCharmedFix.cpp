@@ -16,9 +16,9 @@ void CamTranslatorCharmedFix::setParam(const CameraParamChunk* pChunk) {
 
     CameraCharmedFix* camera = mCamera;
 
-    camera->mAxis.set<f32>(general->mAxis);
-    camera->mUp.set<f32>(up);
-    camera->mWPoint.set<f32>(general->mWPoint);
+    camera->mAxis.set< f32 >(general->mAxis);
+    camera->mUp.set< f32 >(up);
+    camera->mWPoint.set< f32 >(general->mWPoint);
 }
 
 Camera* CamTranslatorCharmedFix::getCamera() const {

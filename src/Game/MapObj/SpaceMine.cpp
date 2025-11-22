@@ -168,12 +168,12 @@ SpaceMine::~SpaceMine() {
 
 namespace NrvSpaceMine {
     void HostTypeAppear::execute(Spine* pSpine) const {
-        SpaceMine* mine = reinterpret_cast<SpaceMine*>(pSpine->mExecutor);
+        SpaceMine* mine = reinterpret_cast< SpaceMine* >(pSpine->mExecutor);
         mine->exeAppear();
     }
 
     void HostTypeWait::execute(Spine* pSpine) const {
-        SpaceMine* mine = reinterpret_cast<SpaceMine*>(pSpine->mExecutor);
+        SpaceMine* mine = reinterpret_cast< SpaceMine* >(pSpine->mExecutor);
         mine->exeWait();
     }
 

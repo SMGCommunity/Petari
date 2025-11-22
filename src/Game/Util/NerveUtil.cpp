@@ -36,7 +36,7 @@ namespace MR {
     }
 
     f32 calcNerveRate(const NerveExecutor* pExecutor, s32 stepMax) {
-        return stepMax <= 0 ? 1.0f : clamp(static_cast<f32>(pExecutor->getNerveStep()) / stepMax, 0.0f, 1.0f);
+        return stepMax <= 0 ? 1.0f : clamp(static_cast< f32 >(pExecutor->getNerveStep()) / stepMax, 0.0f, 1.0f);
     }
 
     f32 calcNerveEaseInRate(const NerveExecutor* pExecutor, s32 stepMax) {

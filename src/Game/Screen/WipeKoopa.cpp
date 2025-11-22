@@ -29,7 +29,7 @@ void WipeKoopa::exeWipeOut() {
         MR::startAnim(this, "out", 0);
 
         if (mStepNum > 0) {
-            animRate = static_cast<f32>(MR::getAnimCtrl(this, 0)->mEndFrame) / mStepNum;
+            animRate = static_cast< f32 >(MR::getAnimCtrl(this, 0)->mEndFrame) / mStepNum;
 
             MR::setAnimRate(this, animRate, 0);
         }

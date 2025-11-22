@@ -3,7 +3,7 @@
 NameObjCategoryList::NameObjCategoryList(u32 count, const CategoryListInitialTable* pTable, NameObjMethod pMethod, bool a4, const char* /* unused */) {
     NameObjMethod method;
     method = pMethod;
-    mDelegator = new NameObjRealDelegator<NameObjMethod>(method);
+    mDelegator = new NameObjRealDelegator< NameObjMethod >(method);
     _D = a4;
     _C = 0;
     initTable(count, pTable);
@@ -12,7 +12,7 @@ NameObjCategoryList::NameObjCategoryList(u32 count, const CategoryListInitialTab
 NameObjCategoryList::NameObjCategoryList(u32 count, const CategoryListInitialTable* pTable, NameObjMethodConst pMethod, bool a4, const char* /* unused */) {
     NameObjMethodConst method;
     method = pMethod;
-    mDelegatorConst = new NameObjRealDelegator<NameObjMethodConst>(method);
+    mDelegatorConst = new NameObjRealDelegator< NameObjMethodConst >(method);
     _D = a4;
     _C = 0;
     initTable(count, pTable);
@@ -41,10 +41,10 @@ void NameObjCategoryList::incrementCheck(NameObj* /*unused*/, int index) {
 void NameObjCategoryList::allocateBuffer() {
     if (_D) {
         for (int i = 0; i < mCategoryInfo.size(); i++) {
-            NameObjCategoryList::CategoryInfo*         inf = &mCategoryInfo[i];
-            u32                                        size = inf->mCheck;
-            NameObj**                                  nameObjArr = new NameObj*[size];
-            MR::Vector<MR::AssignableArray<NameObj*>>* arr = &mCategoryInfo[i].mNameObjArr;
+            NameObjCategoryList::CategoryInfo*             inf = &mCategoryInfo[i];
+            u32                                            size = inf->mCheck;
+            NameObj**                                      nameObjArr = new NameObj*[size];
+            MR::Vector< MR::AssignableArray< NameObj* > >* arr = &mCategoryInfo[i].mNameObjArr;
             arr->mArray.mArr = nameObjArr;
             arr->mArray.mMaxSize = size;
         }

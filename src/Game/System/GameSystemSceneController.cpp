@@ -18,7 +18,7 @@
 
 namespace {
     AudSystemWrapper* getAudioSystemWrapper() NO_INLINE {
-        return SingletonHolder<GameSystem>::get()->mObjHolder->mSysWrapper;
+        return SingletonHolder< GameSystem >::get()->mObjHolder->mSysWrapper;
     }
 }; // namespace
 
@@ -70,7 +70,7 @@ GameSystemSceneController::GameSystemSceneController()
       mScenarioSelectScene(nullptr) {
     mObjHolder = new NameObjHolder(0x1300);
     _98 = new Spine(this, &NrvGameSystemSceneController::GameSystemSceneControllerNotInitialized::sInstance);
-    mIntermissionScene = static_cast<IntermissionScene*>(MR::createScene("Intermission"));
+    mIntermissionScene = static_cast< IntermissionScene* >(MR::createScene("Intermission"));
     mPlayTimerScene = new PlayTimerScene();
     mScenarioSelectScene = new ScenarioSelectScene();
 }
@@ -109,12 +109,12 @@ void GameSystemSceneController::checkRequestAndChangeScene() {
 void GameSystemSceneController::initializeScene() {
     mSceneInitializeState = State_Init;
 
-    if (SingletonHolder<HeapMemoryWatcher>::get()->mFileCacheHeap == nullptr || !isSameAtNextSceneAndStage()) {
-        SingletonHolder<HeapMemoryWatcher>::get()->createFileCacheHeapOnGameHeap(0x1040400);
+    if (SingletonHolder< HeapMemoryWatcher >::get()->mFileCacheHeap == nullptr || !isSameAtNextSceneAndStage()) {
+        SingletonHolder< HeapMemoryWatcher >::get()->createFileCacheHeapOnGameHeap(0x1040400);
     }
 
-    SingletonHolder<HeapMemoryWatcher>::get()->createSceneHeapOnGameHeap();
-    SingletonHolder<HeapMemoryWatcher>::get()->setCurrentHeapToSceneHeap();
+    SingletonHolder< HeapMemoryWatcher >::get()->createSceneHeapOnGameHeap();
+    SingletonHolder< HeapMemoryWatcher >::get()->setCurrentHeapToSceneHeap();
     updateSceneControlInfo();
     MR::setRandomSeedFromStageName();
 
@@ -131,7 +131,7 @@ void GameSystemSceneController::initializeScene() {
 
     SceneFunction::allocateDrawBufferActorList();
     MR::clearFileLoaderRequestFileInfo(_A0);
-    SingletonHolder<HeapMemoryWatcher>::get()->checkRestMemory();
+    SingletonHolder< HeapMemoryWatcher >::get()->checkRestMemory();
 }
 
 void GameSystemSceneController::destroyScene() {
@@ -151,9 +151,9 @@ void GameSystemSceneController::destroyScene() {
     MR::removeResourceAndFileHolderIfIsEqualHeap(MR::getSceneHeapNapa());
 
     if (tryDestroyFileCacheHeap(false)) {
-        SingletonHolder<HeapMemoryWatcher>::get()->destroyGameHeap();
+        SingletonHolder< HeapMemoryWatcher >::get()->destroyGameHeap();
     } else {
-        SingletonHolder<HeapMemoryWatcher>::get()->destroySceneHeap();
+        SingletonHolder< HeapMemoryWatcher >::get()->destroySceneHeap();
     }
 }
 
@@ -410,7 +410,7 @@ void GameSystemSceneController::prepareReset() {
 
 void GameSystemSceneController::restartGameAfterResetting() {
     tryDestroyFileCacheHeap(true);
-    SingletonHolder<HeapMemoryWatcher>::get()->destroyGameHeap();
+    SingletonHolder< HeapMemoryWatcher >::get()->destroyGameHeap();
 
     _A0 = false;
 }
@@ -519,12 +519,12 @@ const Nerve* GameSystemSceneController::getNextNerveOnResetProcessing() const {
 }
 
 bool GameSystemSceneController::tryDestroyFileCacheHeap(bool param1) {
-    if (!param1 && SingletonHolder<HeapMemoryWatcher>::get()->mFileCacheHeap != nullptr && isSameAtNextSceneAndStage()) {
+    if (!param1 && SingletonHolder< HeapMemoryWatcher >::get()->mFileCacheHeap != nullptr && isSameAtNextSceneAndStage()) {
         return false;
     }
 
     MR::removeResourceAndFileHolderIfIsEqualHeap(
-        SingletonHolder<HeapMemoryWatcher>::get()->mFileCacheHeap);
+        SingletonHolder< HeapMemoryWatcher >::get()->mFileCacheHeap);
 
     return true;
 }

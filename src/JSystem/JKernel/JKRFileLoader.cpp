@@ -5,7 +5,7 @@ namespace {
     OSMutex gLoaderMutex; // 0x8060CFA8
 }
 
-JSUList<JKRFileLoader> JKRFileLoader::sFileLoaderList = JSUList<JKRFileLoader>();
+JSUList< JKRFileLoader > JKRFileLoader::sFileLoaderList = JSUList< JKRFileLoader >();
 
 JKRFileLoader::JKRFileLoader()
     : JKRDisposer(), mLoaderLink(this) {
@@ -41,7 +41,7 @@ void* JKRFileLoader::getGlbResource(const char* pName, JKRFileLoader* pLoader) {
         JSUPtrLink* current = sFileLoaderList.mHead;
 
         while (current != nullptr) {
-            resource = reinterpret_cast<JKRFileLoader*>(current->mData)->getResource(0, pName);
+            resource = reinterpret_cast< JKRFileLoader* >(current->mData)->getResource(0, pName);
 
             if (resource != nullptr) {
                 break;
@@ -58,7 +58,7 @@ void JKRFileLoader::initializeVolumeList() {
     OSInitMutex(&gLoaderMutex);
 }
 
-void JKRFileLoader::prependVolumeList(JSULink<JKRFileLoader>* pLoader) {
+void JKRFileLoader::prependVolumeList(JSULink< JKRFileLoader >* pLoader) {
     OSLockMutex(&gLoaderMutex);
 
     sFileLoaderList.prepend(pLoader);
@@ -66,7 +66,7 @@ void JKRFileLoader::prependVolumeList(JSULink<JKRFileLoader>* pLoader) {
     OSUnlockMutex(&gLoaderMutex);
 }
 
-void JKRFileLoader::removeVolumeList(JSULink<JKRFileLoader>* pLoader) {
+void JKRFileLoader::removeVolumeList(JSULink< JKRFileLoader >* pLoader) {
     OSLockMutex(&gLoaderMutex);
 
     sFileLoaderList.remove(pLoader);

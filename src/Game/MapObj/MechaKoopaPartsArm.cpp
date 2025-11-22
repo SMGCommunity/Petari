@@ -105,7 +105,7 @@ void MechaKoopaPartsArm::exeBreak() {
 
 void MechaKoopaPartsArm::initCaseUseSwitchB(const MapObjActorInitInfo& rInfo) {
     if (mIsRightArm) {
-        MR::FunctorV0M<MechaKoopaPartsArm*, void (MechaKoopaPartsArm::*)()> breakFunc = MR::Functor<MechaKoopaPartsArm>(this, &MechaKoopaPartsArm::startBreak);
+        MR::FunctorV0M< MechaKoopaPartsArm*, void (MechaKoopaPartsArm::*)() > breakFunc = MR::Functor< MechaKoopaPartsArm >(this, &MechaKoopaPartsArm::startBreak);
         MR::listenStageSwitchOnB(this, breakFunc);
     }
 }
@@ -128,52 +128,52 @@ namespace NrvMechaKoopaPartsArm {
     INIT_NERVE(MechaKoopaPartsArmNrvBreak);
 
     void MechaKoopaPartsArmNrvBreak::execute(Spine* pSpine) const {
-        MechaKoopaPartsArm* arm = reinterpret_cast<MechaKoopaPartsArm*>(pSpine->mExecutor);
+        MechaKoopaPartsArm* arm = reinterpret_cast< MechaKoopaPartsArm* >(pSpine->mExecutor);
         arm->exeBreak();
     }
 
     void MechaKoopaPartsArmNrvBreakStart::execute(Spine* pSpine) const {
-        MechaKoopaPartsArm* arm = reinterpret_cast<MechaKoopaPartsArm*>(pSpine->mExecutor);
+        MechaKoopaPartsArm* arm = reinterpret_cast< MechaKoopaPartsArm* >(pSpine->mExecutor);
         arm->exeBreakStart();
     }
 
     void MechaKoopaPartsArmNrvMoveRear::execute(Spine* pSpine) const {
-        MechaKoopaPartsArm* arm = reinterpret_cast<MechaKoopaPartsArm*>(pSpine->mExecutor);
+        MechaKoopaPartsArm* arm = reinterpret_cast< MechaKoopaPartsArm* >(pSpine->mExecutor);
         arm->exeMove();
     }
 
     void MechaKoopaPartsArmNrvMoveFront::execute(Spine* pSpine) const {
-        MechaKoopaPartsArm* arm = reinterpret_cast<MechaKoopaPartsArm*>(pSpine->mExecutor);
+        MechaKoopaPartsArm* arm = reinterpret_cast< MechaKoopaPartsArm* >(pSpine->mExecutor);
         arm->exeMove();
     }
 
     void MechaKoopaPartsArmNrvMoveStartRear::executeOnEnd(Spine* pSpine) const {
-        MechaKoopaPartsArm* arm = reinterpret_cast<MechaKoopaPartsArm*>(pSpine->mExecutor);
+        MechaKoopaPartsArm* arm = reinterpret_cast< MechaKoopaPartsArm* >(pSpine->mExecutor);
         MapObjActorUtil::resumeAllMapPartsFunctions(arm);
     }
 
     void MechaKoopaPartsArmNrvMoveStartRear::execute(Spine* pSpine) const {
-        MechaKoopaPartsArm* arm = reinterpret_cast<MechaKoopaPartsArm*>(pSpine->mExecutor);
+        MechaKoopaPartsArm* arm = reinterpret_cast< MechaKoopaPartsArm* >(pSpine->mExecutor);
         arm->exeMoveStart();
     }
 
     void MechaKoopaPartsArmNrvMoveStartFront::executeOnEnd(Spine* pSpine) const {
-        MechaKoopaPartsArm* arm = reinterpret_cast<MechaKoopaPartsArm*>(pSpine->mExecutor);
+        MechaKoopaPartsArm* arm = reinterpret_cast< MechaKoopaPartsArm* >(pSpine->mExecutor);
         MapObjActorUtil::resumeAllMapPartsFunctions(arm);
     }
 
     void MechaKoopaPartsArmNrvMoveStartFront::execute(Spine* pSpine) const {
-        MechaKoopaPartsArm* arm = reinterpret_cast<MechaKoopaPartsArm*>(pSpine->mExecutor);
+        MechaKoopaPartsArm* arm = reinterpret_cast< MechaKoopaPartsArm* >(pSpine->mExecutor);
         arm->exeMoveStart();
     }
 
     void MechaKoopaPartsArmNrvWaitRear::execute(Spine* pSpine) const {
-        MechaKoopaPartsArm* arm = reinterpret_cast<MechaKoopaPartsArm*>(pSpine->mExecutor);
+        MechaKoopaPartsArm* arm = reinterpret_cast< MechaKoopaPartsArm* >(pSpine->mExecutor);
         arm->exeWait();
     }
 
     void MechaKoopaPartsArmNrvWaitFront::execute(Spine* pSpine) const {
-        MechaKoopaPartsArm* arm = reinterpret_cast<MechaKoopaPartsArm*>(pSpine->mExecutor);
+        MechaKoopaPartsArm* arm = reinterpret_cast< MechaKoopaPartsArm* >(pSpine->mExecutor);
         arm->exeWait();
     }
 }; // namespace NrvMechaKoopaPartsArm

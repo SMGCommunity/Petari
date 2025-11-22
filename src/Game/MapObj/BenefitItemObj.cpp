@@ -12,7 +12,7 @@ namespace {
     const f32  cAppearThrowUpSpd2 = 15.0f;
     const f32  cGravity = 0.5f;
     const f32  cReflectWallX = 0.30000001f;
-    static f32 cSpdRotateY = JGeometry::TUtil<f32>::PI() / 60.0f;
+    static f32 cSpdRotateY = JGeometry::TUtil< f32 >::PI() / 60.0f;
 }; // namespace
 
 void ShadowClipActor::endClipped() {
@@ -195,7 +195,7 @@ void BenefitItemObj::init(const JMapInfoIter& rIter) {
             MR::useStageSwitchWriteDead(this, rIter);
 
             if (MR::useStageSwitchReadAppear(this, rIter)) {
-                MR::FunctorV0M<BenefitItemObj*, void (BenefitItemObj::*)()> appearFunc = MR::Functor<BenefitItemObj>(this, &BenefitItemObj::appear);
+                MR::FunctorV0M< BenefitItemObj*, void (BenefitItemObj::*)() > appearFunc = MR::Functor< BenefitItemObj >(this, &BenefitItemObj::appear);
                 MR::listenStageSwitchOnAppear(this, appearFunc);
                 _E1 = 1;
             }
@@ -226,7 +226,7 @@ void BenefitItemObj::init(const JMapInfoIter& rIter) {
 
         TVec3f rotate_axis_y;
         MR::getRotatedAxisY(&rotate_axis_y, mRotation);
-        _A4.set<f32>(rotate_axis_y);
+        _A4.set< f32 >(rotate_axis_y);
 
         if (_DC) {
             MR::initShadowVolumeCylinder(this, 50.0f);
@@ -488,7 +488,7 @@ void BenefitItemObj::exeCatch() {
     mVelocity.x = 0.0f;
     mVelocity.y = 0.0f;
     mVelocity.z = 0.0f;
-    mPosition.set<f32>(mHitSensorActor->mPosition);
+    mPosition.set< f32 >(mHitSensorActor->mPosition);
 }
 
 bool BenefitItemObj::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {

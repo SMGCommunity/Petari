@@ -34,20 +34,20 @@ public:
 
     static JKRThread* searchThread(OSThread*);
 
-    JSULink<JKRThread> mDisposerList; // 0x18
-    JKRHeap*           _28;
-    OSThread*          mThread;   // 0x2C
-    OSMessageQueue     mQueue;    // 0x30
-    OSMessage*         mMessage;  // 0x50
-    s32                mMsgCount; // 0x54
-    void*              _58;
-    void*              _5C;
-    JKRThread::TLoad   _60;
-    u32                _74;
-    void*              _78;
+    JSULink< JKRThread > mDisposerList; // 0x18
+    JKRHeap*             _28;
+    OSThread*            mThread;   // 0x2C
+    OSMessageQueue       mQueue;    // 0x30
+    OSMessage*           mMessage;  // 0x50
+    s32                  mMsgCount; // 0x54
+    void*                _58;
+    void*                _5C;
+    JKRThread::TLoad     _60;
+    u32                  _74;
+    void*                _78;
 
-    static JSUList<JKRThread> sThreadList;
-    static JSUList<JKRTask>   sTaskList;
+    static JSUList< JKRThread > sThreadList;
+    static JSUList< JKRTask >   sTaskList;
 };
 
 class JKRThreadSwitch {

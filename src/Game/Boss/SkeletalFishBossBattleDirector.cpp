@@ -33,7 +33,7 @@ void SkeletalFishBossBattleDirector::initiate() {
 
     for (s32 i = 0; i < grp->mObjectCount; i++) {
         if (!strcmp(grp->getActor(i)->mName, "海底火山巨大石柱") || (!strcmp(grp->getActor(i)->mName, "海底火山石柱（小）"))) {
-            mColumns[_90] = static_cast<SubmarineVolcanoBigColumn*>(grp->getActor(i));
+            mColumns[_90] = static_cast< SubmarineVolcanoBigColumn* >(grp->getActor(i));
             _90++;
         }
 

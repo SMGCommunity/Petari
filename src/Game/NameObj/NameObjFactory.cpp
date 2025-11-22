@@ -1,27 +1,27 @@
 #include "Game/NameObj/NameObjFactory.hpp"
 
 namespace {
-    template <typename T>
+    template < typename T >
     NameObj* createCenterOriginCube(const char* pName) {
         return new T(0, pName);
     }
 
-    template <typename T>
+    template < typename T >
     NameObj* createBaseOriginCube(const char* pName) {
         return new T(1, pName);
     }
 
-    template <typename T>
+    template < typename T >
     NameObj* createSphere(const char* pName) {
         return new T(2, pName);
     }
 
-    template <typename T>
+    template < typename T >
     NameObj* createBaseOriginCylinder(const char* pName) {
         return new T(3, pName);
     }
 
-    template <typename T>
+    template < typename T >
     NameObj* createBowl(const char* pName) {
         return new T(4, pName);
     }
@@ -54,22 +54,22 @@ namespace {
         },
         {
             "CubeCameraBox",
-            createCenterOriginCube<CubeCameraArea>,
+            createCenterOriginCube< CubeCameraArea >,
             nullptr,
         },
         {
             "CubeCameraCylinder",
-            createBaseOriginCylinder<CubeCameraArea>,
+            createBaseOriginCylinder< CubeCameraArea >,
             nullptr,
         },
         {
             "CubeCameraSphere",
-            createSphere<CubeCameraArea>,
+            createSphere< CubeCameraArea >,
             nullptr,
         },
         {
             "CubeCameraBowl",
-            createBowl<CubeCameraArea>,
+            createBowl< CubeCameraArea >,
             nullptr,
         },
         {
@@ -84,17 +84,17 @@ namespace {
         },
         {
             "DeathCube",
-            createBaseOriginCube<DeathArea>,
+            createBaseOriginCube< DeathArea >,
             nullptr,
         },
         {
             "DeathSphere",
-            createSphere<DeathArea>,
+            createSphere< DeathArea >,
             nullptr,
         },
         {
             "DeathCylinder",
-            createBaseOriginCylinder<DeathArea>,
+            createBaseOriginCylinder< DeathArea >,
             nullptr,
         },
         {
@@ -109,27 +109,27 @@ namespace {
         },
         {
             "RestartCube",
-            createBaseOriginCube<RestartCube>,
+            createBaseOriginCube< RestartCube >,
             nullptr,
         },
         {
             "WarpCube",
-            createBaseOriginCube<WarpCube>,
+            createBaseOriginCube< WarpCube >,
             nullptr,
         },
         {
             "TripodBossStepStartArea",
-            createSphere<TripodBossStepStartArea>,
+            createSphere< TripodBossStepStartArea >,
             nullptr,
         },
         {
             "ChangeBgmCube",
-            createBaseOriginCube<ChangeBgmCube>,
+            createBaseOriginCube< ChangeBgmCube >,
             nullptr,
         },
         {
             "BgmProhibitArea",
-            createSphere<BgmProhibitArea>,
+            createSphere< BgmProhibitArea >,
             nullptr,
         },
         {
@@ -184,17 +184,17 @@ namespace {
         },
         {
             "BloomCube",
-            createCenterOriginCube<BloomArea>,
+            createCenterOriginCube< BloomArea >,
             nullptr,
         },
         {
             "BloomSphere",
-            createSphere<BloomArea>,
+            createSphere< BloomArea >,
             nullptr,
         },
         {
             "BloomCylinder",
-            createBaseOriginCylinder<BloomArea>,
+            createBaseOriginCylinder< BloomArea >,
             nullptr,
         },
         {
@@ -229,17 +229,17 @@ namespace {
         },
         {
             "DepthOfFieldCube",
-            createCenterOriginCube<DepthOfFieldArea>,
+            createCenterOriginCube< DepthOfFieldArea >,
             nullptr,
         },
         {
             "DepthOfFieldSphere",
-            createSphere<DepthOfFieldArea>,
+            createSphere< DepthOfFieldArea >,
             nullptr,
         },
         {
             "DepthOfFieldCylinder",
-            createBaseOriginCylinder<DepthOfFieldArea>,
+            createBaseOriginCylinder< DepthOfFieldArea >,
             nullptr,
         },
         {
@@ -269,12 +269,12 @@ namespace {
         },
         {
             "LightCtrlCube",
-            createBaseOriginCube<LightArea>,
+            createBaseOriginCube< LightArea >,
             nullptr,
         },
         {
             "LightCtrlCylinder",
-            createBaseOriginCylinder<LightArea>,
+            createBaseOriginCylinder< LightArea >,
             nullptr,
         },
         {
@@ -299,27 +299,27 @@ namespace {
         },
         {
             "HazeCube",
-            createBaseOriginCube<HazeCube>,
+            createBaseOriginCube< HazeCube >,
             nullptr,
         },
         {
             "LensFlareArea",
-            createBaseOriginCube<AreaObj>,
+            createBaseOriginCube< AreaObj >,
             nullptr,
         },
         {
             "CameraRepulsiveSphere",
-            createNameObj<CameraRepulsiveSphere>,
+            createNameObj< CameraRepulsiveSphere >,
             nullptr,
         },
         {
             "CameraRepulsiveCylinder",
-            createNameObj<CameraRepulsiveCylinder>,
+            createNameObj< CameraRepulsiveCylinder >,
             nullptr,
         },
         {
             "SunLightAreaBox",
-            createBaseOriginCube<SunLightArea>,
+            createBaseOriginCube< SunLightArea >,
             nullptr,
         },
         {
@@ -329,32 +329,32 @@ namespace {
         },
         {
             "BigBubbleGoalAreaBox",
-            createBaseOriginCube<BigBubbleGoalArea>,
+            createBaseOriginCube< BigBubbleGoalArea >,
             nullptr,
         },
         {
             "BigBubbleGoalAreaCylinder",
-            createBaseOriginCylinder<BigBubbleGoalArea>,
+            createBaseOriginCylinder< BigBubbleGoalArea >,
             nullptr,
         },
         {
             "BigBubbleGoalAreaSphere",
-            createSphere<BigBubbleGoalArea>,
+            createSphere< BigBubbleGoalArea >,
             nullptr,
         },
         {
             "BigBubbleCameraBox",
-            createBaseOriginCube<BigBubbleCameraArea>,
+            createBaseOriginCube< BigBubbleCameraArea >,
             nullptr,
         },
         {
             "BigBubbleCameraCylinder",
-            createBaseOriginCylinder<BigBubbleCameraArea>,
+            createBaseOriginCylinder< BigBubbleCameraArea >,
             nullptr,
         },
         {
             "BigBubbleCameraSphere",
-            createSphere<BigBubbleCameraArea>,
+            createSphere< BigBubbleCameraArea >,
             nullptr,
         },
         {
@@ -379,17 +379,17 @@ namespace {
         },
         {
             "AudioEffectCube",
-            createBaseOriginCube<AudioEffectArea>,
+            createBaseOriginCube< AudioEffectArea >,
             nullptr,
         },
         {
             "AudioEffectSphere",
-            createSphere<AudioEffectArea>,
+            createSphere< AudioEffectArea >,
             nullptr,
         },
         {
             "AudioEffectCylinder",
-            createBaseOriginCylinder<AudioEffectArea>,
+            createBaseOriginCylinder< AudioEffectArea >,
             nullptr,
         },
         {
@@ -414,7 +414,7 @@ namespace {
         },
         {
             "AstroChangeStageCube",
-            createBaseOriginCube<AstroChangeStageCube>,
+            createBaseOriginCube< AstroChangeStageCube >,
             nullptr,
         },
         {
@@ -429,37 +429,37 @@ namespace {
         },
         {
             "MessageAreaCube",
-            createBaseOriginCube<MessageArea>,
+            createBaseOriginCube< MessageArea >,
             nullptr,
         },
         {
             "MessageAreaCylinder",
-            createBaseOriginCylinder<MessageArea>,
+            createBaseOriginCylinder< MessageArea >,
             nullptr,
         },
         {
             "SmokeEffectColorAreaCube",
-            createBaseOriginCube<AreaObj>,
+            createBaseOriginCube< AreaObj >,
             nullptr,
         },
         {
             "BeeWallShortDistAreaCube",
-            createBaseOriginCube<AreaObj>,
+            createBaseOriginCube< AreaObj >,
             nullptr,
         },
         {
             "ExtraWallCheckArea",
-            createBaseOriginCube<AreaObj>,
+            createBaseOriginCube< AreaObj >,
             nullptr,
         },
         {
             "ExtraWallCheckCylinder",
-            createBaseOriginCylinder<AreaObj>,
+            createBaseOriginCylinder< AreaObj >,
             nullptr,
         },
         {
             "MirrorAreaCube",
-            createBaseOriginCube<AreaObj>,
+            createBaseOriginCube< AreaObj >,
             nullptr,
         },
         {
@@ -479,17 +479,17 @@ namespace {
         },
         {
             "HeavySteeringCube",
-            createBaseOriginCube<AreaObj>,
+            createBaseOriginCube< AreaObj >,
             nullptr,
         },
         {
             "NonSleepCube",
-            createBaseOriginCube<AreaObj>,
+            createBaseOriginCube< AreaObj >,
             nullptr,
         },
         {
             "AreaMoveSphere",
-            createSphere<AreaObj>,
+            createSphere< AreaObj >,
             nullptr,
         },
         {
@@ -519,7 +519,7 @@ namespace {
         },
         {
             "CollisionArea",
-            createCenterOriginCube<CollisionArea>,
+            createCenterOriginCube< CollisionArea >,
             nullptr,
         },
         {
@@ -569,7 +569,7 @@ namespace {
         },
         {
             "CollectTico",
-            createNameObj<CollectTico>,
+            createNameObj< CollectTico >,
             "StrayTico",
         },
         {
@@ -619,7 +619,7 @@ namespace {
         },
         {
             "Peach",
-            createNameObj<Peach>,
+            createNameObj< Peach >,
             "Peach",
         },
         {
@@ -659,7 +659,7 @@ namespace {
         },
         {
             "SignBoard",
-            createNameObj<SignBoard>,
+            createNameObj< SignBoard >,
             "SignBoard",
         },
         {
@@ -669,32 +669,32 @@ namespace {
         },
         {
             "Tico",
-            createNameObj<Tico>,
+            createNameObj< Tico >,
             nullptr,
         },
         {
             "TicoComet",
-            createNameObj<TicoComet>,
+            createNameObj< TicoComet >,
             "TicoComet",
         },
         {
             "TicoShop",
-            createNameObj<TicoShop>,
+            createNameObj< TicoShop >,
             "TicoShop",
         },
         {
             "TicoStarRing",
-            createNameObj<TicoStarRing>,
+            createNameObj< TicoStarRing >,
             "Tico",
         },
         {
             "TicoAstro",
-            createNameObj<TicoAstro>,
+            createNameObj< TicoAstro >,
             nullptr,
         },
         {
             "TicoBaby",
-            createNameObj<Tico>,
+            createNameObj< Tico >,
             nullptr,
         },
         {
@@ -704,27 +704,27 @@ namespace {
         },
         {
             "TicoFat",
-            createNameObj<TicoFat>,
+            createNameObj< TicoFat >,
             "TicoFat",
         },
         {
             "TicoGalaxy",
-            createNameObj<TicoGalaxy>,
+            createNameObj< TicoGalaxy >,
             "TicoFat",
         },
         {
             "TicoRail",
-            createNameObj<TicoRail>,
+            createNameObj< TicoRail >,
             "Tico",
         },
         {
             "TicoReading",
-            createNameObj<TicoReading>,
+            createNameObj< TicoReading >,
             "Tico",
         },
         {
             "TicoDomeLecture",
-            createNameObj<TicoDomeLecture>,
+            createNameObj< TicoDomeLecture >,
             "Tico",
         },
         {
@@ -734,12 +734,12 @@ namespace {
         },
         {
             "RosettaReading",
-            createNameObj<RosettaReading>,
+            createNameObj< RosettaReading >,
             "RosettaReading",
         },
         {
             "RosettaPictureBook",
-            createNameObj<RosettaPictureBook>,
+            createNameObj< RosettaPictureBook >,
             "RosettaPictureBook",
         },
         {
@@ -769,17 +769,17 @@ namespace {
         },
         {
             "Butler",
-            createNameObj<Butler>,
+            createNameObj< Butler >,
             "Butler",
         },
         {
             "ButlerMap",
-            createNameObj<ButlerMap>,
+            createNameObj< ButlerMap >,
             "Butler",
         },
         {
             "ButlerExplain",
-            createNameObj<ButlerExplain>,
+            createNameObj< ButlerExplain >,
             "Butler",
         },
         {
@@ -834,22 +834,22 @@ namespace {
         },
         {
             "Pole",
-            createNameObj<Pole>,
+            createNameObj< Pole >,
             "Pole",
         },
         {
             "PoleNoModel",
-            createNameObj<Pole>,
+            createNameObj< Pole >,
             "Pole",
         },
         {
             "PoleSquare",
-            createNameObj<Pole>,
+            createNameObj< Pole >,
             "PoleSquare",
         },
         {
             "PoleSquareNoModel",
-            createNameObj<Pole>,
+            createNameObj< Pole >,
             "PoleSquare",
         },
         {
@@ -874,7 +874,7 @@ namespace {
         },
         {
             "TreeCube",
-            createNameObj<Pole>,
+            createNameObj< Pole >,
             "TreeCube",
         },
         {
@@ -889,7 +889,7 @@ namespace {
         },
         {
             "CoinBox",
-            createNameObj<CoinBox>,
+            createNameObj< CoinBox >,
             nullptr,
         },
         {
@@ -899,7 +899,7 @@ namespace {
         },
         {
             "SwitchBox",
-            createNameObj<SwitchBox>,
+            createNameObj< SwitchBox >,
             "SwitchBox",
         },
         {
@@ -954,7 +954,7 @@ namespace {
         },
         {
             "SpinDriver",
-            createNameObj<SpinDriver>,
+            createNameObj< SpinDriver >,
             "SpinDriver",
         },
         {
@@ -974,7 +974,7 @@ namespace {
         },
         {
             "Kuribo",
-            createNameObj<Kuribo>,
+            createNameObj< Kuribo >,
             "Kuribo",
         },
         {
@@ -1099,7 +1099,7 @@ namespace {
         },
         {
             "RingBeamer",
-            createNameObj<RingBeamer>,
+            createNameObj< RingBeamer >,
             "RingBeamer",
         },
         {
@@ -1134,7 +1134,7 @@ namespace {
         },
         {
             "Dossun",
-            createNameObj<Dossun>,
+            createNameObj< Dossun >,
             "Dossun",
         },
         {
@@ -1259,7 +1259,7 @@ namespace {
         },
         {
             "PackunPetit",
-            createNameObj<PackunPetit>,
+            createNameObj< PackunPetit >,
             "PackunPetit",
         },
         {
@@ -1379,22 +1379,22 @@ namespace {
         },
         {
             "SkeletalFishBoss",
-            createNameObj<SkeletalFishBoss>,
+            createNameObj< SkeletalFishBoss >,
             "SkeletalFishBoss",
         },
         {
             "SkeletalFishBaby",
-            createNameObj<SkeletalFishBaby>,
+            createNameObj< SkeletalFishBaby >,
             "SnakeFish",
         },
         {
             "SkeletalFishBabyRail",
-            createNameObj<SkeletalFishBabyRail>,
+            createNameObj< SkeletalFishBabyRail >,
             nullptr,
         },
         {
             "SkeletalFishBossRail",
-            createNameObj<SkeletalFishBossRail>,
+            createNameObj< SkeletalFishBossRail >,
             nullptr,
         },
         {
@@ -1434,167 +1434,167 @@ namespace {
         },
         {
             "TripodBossBaseJointPosition",
-            createNameObj<TripodBossBaseJointPosition>,
+            createNameObj< TripodBossBaseJointPosition >,
             nullptr,
         },
         {
             "TripodBossKillerGenerater",
-            createNameObj<TripodBossKillerGenerater>,
+            createNameObj< TripodBossKillerGenerater >,
             "TripodBossKillerCannon",
         },
         {
             "TripodBossStepPoint",
-            createNameObj<TripodBossStepPoint>,
+            createNameObj< TripodBossStepPoint >,
             nullptr,
         },
         {
             "TripodBossCore",
-            createNameObj<TripodBossCore>,
+            createNameObj< TripodBossCore >,
             "TripodBossCore",
         },
         {
             "TripodBossCoin",
-            createNameObj<TripodBossCoin>,
+            createNameObj< TripodBossCoin >,
             nullptr,
         },
         {
             "TripodBossKinokoOneUp",
-            createNameObj<TripodBossKinokoOneUp>,
+            createNameObj< TripodBossKinokoOneUp >,
             "KinokoOneUp",
         },
         {
             "TripodBossShell",
-            createNameObj<TripodBossShell>,
+            createNameObj< TripodBossShell >,
             "TripodBossShell",
         },
         {
             "TripodBossGuardWall",
-            createNameObj<TripodBossGuardWall>,
+            createNameObj< TripodBossGuardWall >,
             "TripodBossGuardWall",
         },
         {
             "TriPodBossBodyA",
-            createNameObj<TripodBossFixParts>,
+            createNameObj< TripodBossFixParts >,
             "TriPodBossBodyA",
         },
         {
             "TripodBossBodyABloom",
-            createNameObj<TripodBossFixParts>,
+            createNameObj< TripodBossFixParts >,
             "TripodBossBodyABloom",
         },
         {
             "TriPodBossLeg1A",
-            createNameObj<TripodBossFixParts>,
+            createNameObj< TripodBossFixParts >,
             "TriPodBossLeg1A",
         },
         {
             "TriPodBossLeg1B",
-            createNameObj<TripodBossFixParts>,
+            createNameObj< TripodBossFixParts >,
             "TriPodBossLeg1B",
         },
         {
             "TriPodBossLeg1C",
-            createNameObj<TripodBossFixParts>,
+            createNameObj< TripodBossFixParts >,
             "TriPodBossLeg1C",
         },
         {
             "TriPodBossLeg2A",
-            createNameObj<TripodBossFixParts>,
+            createNameObj< TripodBossFixParts >,
             "TriPodBossLeg2A",
         },
         {
             "TriPodBossLeg2ABloom",
-            createNameObj<TripodBossFixParts>,
+            createNameObj< TripodBossFixParts >,
             "TriPodBossLeg2ABloom",
         },
         {
             "TriPodBossLeg3A",
-            createNameObj<TripodBossFixParts>,
+            createNameObj< TripodBossFixParts >,
             "TriPodBossLeg3A",
         },
         {
             "TriPodBossLeg3B",
-            createNameObj<TripodBossFixParts>,
+            createNameObj< TripodBossFixParts >,
             "TriPodBossLeg3B",
         },
         {
             "TriPodBossLeg3C",
-            createNameObj<TripodBossFixParts>,
+            createNameObj< TripodBossFixParts >,
             "TriPodBossLeg3C",
         },
         {
             "TripodBossFoot",
-            createNameObj<TripodBossFixParts>,
+            createNameObj< TripodBossFixParts >,
             "TripodBossFoot",
         },
         {
             "TripodBossFootBloom",
-            createNameObj<TripodBossFixParts>,
+            createNameObj< TripodBossFixParts >,
             "TripodBossFootBloom",
         },
         {
             "TriPodBossLegBottom",
-            createNameObj<TripodBossFixParts>,
+            createNameObj< TripodBossFixParts >,
             "TriPodBossLegBottom",
         },
         {
             "TripodBossEyeLight",
-            createNameObj<TripodBossFixParts>,
+            createNameObj< TripodBossFixParts >,
             "TripodBossEyeLight",
         },
         {
             "TripodBossEyeLightBloom",
-            createNameObj<TripodBossFixParts>,
+            createNameObj< TripodBossFixParts >,
             "TripodBossEyeLightBloom",
         },
         {
             "TriPodBossGearA",
-            createNameObj<TripodBossRotateParts>,
+            createNameObj< TripodBossRotateParts >,
             "TriPodBossGearA",
         },
         {
             "TriPodBossGearB",
-            createNameObj<TripodBossRotateParts>,
+            createNameObj< TripodBossRotateParts >,
             "TriPodBossGearB",
         },
         {
             "TriPodBossGearC",
-            createNameObj<TripodBossRotateParts>,
+            createNameObj< TripodBossRotateParts >,
             "TriPodBossGearC",
         },
         {
             "TriPodBossGearSmallA",
-            createNameObj<TripodBossRotateParts>,
+            createNameObj< TripodBossRotateParts >,
             "TriPodBossGearSmallA",
         },
         {
             "TriPodBossGearSmallB",
-            createNameObj<TripodBossRotateParts>,
+            createNameObj< TripodBossRotateParts >,
             "TriPodBossGearSmallB",
         },
         {
             "TriPodBossGearSmallC",
-            createNameObj<TripodBossRotateParts>,
+            createNameObj< TripodBossRotateParts >,
             "TriPodBossGearSmallC",
         },
         {
             "TriPodBossGearBody",
-            createNameObj<TripodBossRotateParts>,
+            createNameObj< TripodBossRotateParts >,
             "TriPodBossGearBody",
         },
         {
             "TripodBossUpperKillerCannon",
-            createNameObj<TripodBossKillerGeneraterCircle>,
+            createNameObj< TripodBossKillerGeneraterCircle >,
             "TripodBossKillerCannon",
         },
         {
             "TripodBossUnderKillerCannon",
-            createNameObj<TripodBossKillerGeneraterCircle>,
+            createNameObj< TripodBossKillerGeneraterCircle >,
             "TripodBossKillerCannon",
         },
         {
             "TripodBossBottomKillerCannon",
-            createNameObj<TripodBossKillerGeneraterCircle>,
+            createNameObj< TripodBossKillerGeneraterCircle >,
             "TripodBossKillerCannon",
         },
         {
@@ -1609,27 +1609,27 @@ namespace {
         },
         {
             "SpiderMapBlock",
-            createNameObj<SpiderMapBlock>,
+            createNameObj< SpiderMapBlock >,
             "SpiderMapBlock",
         },
         {
             "ArrowSwitch",
-            createNameObj<ArrowSwitch>,
+            createNameObj< ArrowSwitch >,
             "ArrowSwitch",
         },
         {
             "ArrowSwitchMulti",
-            createNameObj<ArrowSwitchMulti>,
+            createNameObj< ArrowSwitchMulti >,
             "ArrowSwitch",
         },
         {
             "ArrowSwitchTarget",
-            createNameObj<ArrowSwitchTarget>,
+            createNameObj< ArrowSwitchTarget >,
             nullptr,
         },
         {
             "AstroOverlookObj",
-            createNameObj<AstroOverlookObj>,
+            createNameObj< AstroOverlookObj >,
             nullptr,
         },
         {
@@ -1639,12 +1639,12 @@ namespace {
         },
         {
             "BigFan",
-            createNameObj<BigFan>,
+            createNameObj< BigFan >,
             "BigFan",
         },
         {
             "BigFanNoLeg",
-            createNameObj<BigFan>,
+            createNameObj< BigFan >,
             "BigFanNoLeg",
         },
         {
@@ -1669,7 +1669,7 @@ namespace {
         },
         {
             "BallOpener",
-            createNameObj<BallOpener>,
+            createNameObj< BallOpener >,
             "BallOpener",
         },
         {
@@ -1694,7 +1694,7 @@ namespace {
         },
         {
             "BallRail",
-            createNameObj<BallRail>,
+            createNameObj< BallRail >,
             nullptr,
         },
         {
@@ -1709,12 +1709,12 @@ namespace {
         },
         {
             "MeteoContainer",
-            createNameObj<MeteoContainer>,
+            createNameObj< MeteoContainer >,
             "MeteoContainer",
         },
         {
             "MagicBell",
-            createNameObj<MagicBell>,
+            createNameObj< MagicBell >,
             "Bell",
         },
         {
@@ -1759,27 +1759,27 @@ namespace {
         },
         {
             "TimerCoinBlock",
-            createNameObj<ItemBlock>,
+            createNameObj< ItemBlock >,
             "CoinBlock",
         },
         {
             "SplashCoinBlock",
-            createNameObj<ItemBlock>,
+            createNameObj< ItemBlock >,
             "CoinBlock",
         },
         {
             "TimerPieceBlock",
-            createNameObj<ItemBlock>,
+            createNameObj< ItemBlock >,
             "CoinBlock",
         },
         {
             "SplashPieceBlock",
-            createNameObj<ItemBlock>,
+            createNameObj< ItemBlock >,
             "CoinBlock",
         },
         {
             "ItemBlockSwitch",
-            createNameObj<ItemBlock>,
+            createNameObj< ItemBlock >,
             "CoinBlock",
         },
         {
@@ -1804,12 +1804,12 @@ namespace {
         },
         {
             "ShootingStar",
-            createNameObj<ShootingStar>,
+            createNameObj< ShootingStar >,
             "ShootingStar",
         },
         {
             "FlameGun",
-            createNameObj<FlameGun>,
+            createNameObj< FlameGun >,
             "FlameGun",
         },
         {
@@ -1819,22 +1819,22 @@ namespace {
         },
         {
             "BenefitItemLifeUp",
-            createNameObj<BenefitItemLifeUp>,
+            createNameObj< BenefitItemLifeUp >,
             "KinokoLifeUp",
         },
         {
             "BenefitItemInvincible",
-            createNameObj<BenefitItemInvincible>,
+            createNameObj< BenefitItemInvincible >,
             "PowerupInvincible",
         },
         {
             "CoinSpot",
-            createNameObj<CoinSpot>,
+            createNameObj< CoinSpot >,
             nullptr,
         },
         {
             "CollisionBlocker",
-            createNameObj<CollisionBlocker>,
+            createNameObj< CollisionBlocker >,
             nullptr,
         },
         {
@@ -1844,7 +1844,7 @@ namespace {
         },
         {
             "PunchingKinoko",
-            createNameObj<PunchingKinoko>,
+            createNameObj< PunchingKinoko >,
             "PunchingKinoko",
         },
         {
@@ -1859,17 +1859,17 @@ namespace {
         },
         {
             "NoteFairy",
-            createNameObj<NoteFairy>,
+            createNameObj< NoteFairy >,
             nullptr,
         },
         {
             "EarthenPipe",
-            createNameObj<EarthenPipe>,
+            createNameObj< EarthenPipe >,
             "EarthenPipe",
         },
         {
             "EarthenPipeInWater",
-            createNameObj<EarthenPipe>,
+            createNameObj< EarthenPipe >,
             "EarthenPipe",
         },
         {
@@ -1899,27 +1899,27 @@ namespace {
         },
         {
             "BreakableCage",
-            createNameObj<BreakableCage>,
+            createNameObj< BreakableCage >,
             "BreakableCage",
         },
         {
             "BreakableCageRotate",
-            createNameObj<BreakableCage>,
+            createNameObj< BreakableCage >,
             "BreakableCage",
         },
         {
             "BreakableCageL",
-            createNameObj<BreakableCage>,
+            createNameObj< BreakableCage >,
             "BreakableCageL",
         },
         {
             "BreakableFixation",
-            createNameObj<BreakableCage>,
+            createNameObj< BreakableCage >,
             "BreakableFixation",
         },
         {
             "BreakableTrash",
-            createNameObj<BreakableCage>,
+            createNameObj< BreakableCage >,
             "BreakableTrash",
         },
         {
@@ -1954,82 +1954,82 @@ namespace {
         },
         {
             "AsteroidA",
-            createNameObj<SimpleEnvironmentObj>,
+            createNameObj< SimpleEnvironmentObj >,
             "AsteroidA",
         },
         {
             "AsteroidB",
-            createNameObj<SimpleEnvironmentObj>,
+            createNameObj< SimpleEnvironmentObj >,
             "AsteroidB",
         },
         {
             "AsteroidC",
-            createNameObj<SimpleEnvironmentObj>,
+            createNameObj< SimpleEnvironmentObj >,
             "AsteroidC",
         },
         {
             "AsteroidD",
-            createNameObj<SimpleEnvironmentObj>,
+            createNameObj< SimpleEnvironmentObj >,
             "AsteroidD",
         },
         {
             "SpaceStickA",
-            createNameObj<SimpleEnvironmentObj>,
+            createNameObj< SimpleEnvironmentObj >,
             "SpaceStickA",
         },
         {
             "SpaceStickB",
-            createNameObj<SimpleEnvironmentObj>,
+            createNameObj< SimpleEnvironmentObj >,
             "SpaceStickB",
         },
         {
             "BlackHole",
-            createNameObj<BlackHole>,
+            createNameObj< BlackHole >,
             "BlackHole",
         },
         {
             "BlackHoleCube",
-            createNameObj<BlackHole>,
+            createNameObj< BlackHole >,
             "BlackHole",
         },
         {
             "KillerGunnerSingle",
-            createNameObj<KillerGunnerSingle>,
+            createNameObj< KillerGunnerSingle >,
             "KillerGunnerSingle",
         },
         {
             "KillerGunnerDouble",
-            createNameObj<SimpleEnvironmentObj>,
+            createNameObj< SimpleEnvironmentObj >,
             "KillerGunnerDouble",
         },
         {
             "KillerGunnerTriple",
-            createNameObj<SimpleEnvironmentObj>,
+            createNameObj< SimpleEnvironmentObj >,
             "KillerGunnerTriple",
         },
         {
             "PowerStar",
-            createNameObj<PowerStar>,
+            createNameObj< PowerStar >,
             "PowerStar",
         },
         {
             "GrandStar",
-            createNameObj<PowerStar>,
+            createNameObj< PowerStar >,
             "GrandStar",
         },
         {
             "PowerStarAppearPoint",
-            createNameObj<PowerStarAppearPoint>,
+            createNameObj< PowerStarAppearPoint >,
             nullptr,
         },
         {
             "CocoNut",
-            createNameObj<CocoNut>,
+            createNameObj< CocoNut >,
             nullptr,
         },
         {
             "CoconutTree",
-            createNameObj<CoconutTree>,
+            createNameObj< CoconutTree >,
             "CoconutTree",
         },
         {
@@ -2039,12 +2039,12 @@ namespace {
         },
         {
             "CollapsePlane",
-            createNameObj<CollapsePlane>,
+            createNameObj< CollapsePlane >,
             "CollapsePlane",
         },
         {
             "WoodBox",
-            createNameObj<WoodBox>,
+            createNameObj< WoodBox >,
             "WoodBox",
         },
         {
@@ -2064,7 +2064,7 @@ namespace {
         },
         {
             "SpaceMine",
-            createNameObj<SpaceMine>,
+            createNameObj< SpaceMine >,
             "SpaceMine",
         },
         {
@@ -2099,12 +2099,12 @@ namespace {
         },
         {
             "AirBubble",
-            createNameObj<AirBubble>,
+            createNameObj< AirBubble >,
             "AirBubble",
         },
         {
             "AirBubbleGenerator",
-            createNameObj<AirBubbleGenerator>,
+            createNameObj< AirBubbleGenerator >,
             "AirBubbleGenerator",
         },
         {
@@ -2149,12 +2149,12 @@ namespace {
         },
         {
             "LavaObstacleRockShell",
-            createNameObj<HipDropMoveObj>,
+            createNameObj< HipDropMoveObj >,
             "LavaObstacleRockShell",
         },
         {
             "LavaObstacleRockHomeA",
-            createNameObj<HipDropDemoMoveObj>,
+            createNameObj< HipDropDemoMoveObj >,
             "LavaObstacleRockHomeA",
         },
         {
@@ -2199,17 +2199,17 @@ namespace {
         },
         {
             "LavaHomeVolcanoInnerFlow",
-            createNameObj<RailMoveObj>,
+            createNameObj< RailMoveObj >,
             "LavaHomeVolcanoInnerFlow",
         },
         {
             "LavaRotatePlanetStartStep",
-            createNameObj<RailMoveObj>,
+            createNameObj< RailMoveObj >,
             "LavaRotatePlanetStartStep",
         },
         {
             "LavaBreakBridge",
-            createNameObj<AnmModelGroundOnMove>,
+            createNameObj< AnmModelGroundOnMove >,
             "LavaBreakBridge",
         },
         {
@@ -2219,17 +2219,17 @@ namespace {
         },
         {
             "LavaBreakRockB",
-            createNameObj<AnmModelGroundOnMove>,
+            createNameObj< AnmModelGroundOnMove >,
             "LavaBreakRockB",
         },
         {
             "LavaBreakRockC",
-            createNameObj<AnmModelGroundOnMove>,
+            createNameObj< AnmModelGroundOnMove >,
             "LavaBreakRockC",
         },
         {
             "LavaBreakRockD",
-            createNameObj<AnmModelGroundOnMove>,
+            createNameObj< AnmModelGroundOnMove >,
             "LavaBreakRockD",
         },
         {
@@ -2239,17 +2239,17 @@ namespace {
         },
         {
             "LavaShellTower",
-            createNameObj<LavaShellTower>,
+            createNameObj< LavaShellTower >,
             "LavaShellTower",
         },
         {
             "LavaFallDownColumnA",
-            createNameObj<AnmModelSwitchMove>,
+            createNameObj< AnmModelSwitchMove >,
             "LavaFallDownColumnA",
         },
         {
             "LavaFallDownColumnB",
-            createNameObj<AnmModelSwitchMove>,
+            createNameObj< AnmModelSwitchMove >,
             "LavaFallDownColumnB",
         },
         {
@@ -2294,37 +2294,37 @@ namespace {
         },
         {
             "LavaSpaceStickA",
-            createNameObj<SimpleEnvironmentObj>,
+            createNameObj< SimpleEnvironmentObj >,
             "LavaSpaceStickA",
         },
         {
             "LavaSpaceStickB",
-            createNameObj<SimpleEnvironmentObj>,
+            createNameObj< SimpleEnvironmentObj >,
             "LavaSpaceStickB",
         },
         {
             "LavaBlackUFO",
-            createNameObj<SimpleEnvironmentObj>,
+            createNameObj< SimpleEnvironmentObj >,
             "LavaBlackUFO",
         },
         {
             "CrystalCageS",
-            createNameObj<CrystalCage>,
+            createNameObj< CrystalCage >,
             "CrystalCageS",
         },
         {
             "CrystalCageM",
-            createNameObj<CrystalCage>,
+            createNameObj< CrystalCage >,
             "CrystalCageM",
         },
         {
             "CrystalCageL",
-            createNameObj<CrystalCage>,
+            createNameObj< CrystalCage >,
             "CrystalCageL",
         },
         {
             "CrystalCageMoving",
-            createNameObj<CrystalCageMoving>,
+            createNameObj< CrystalCageMoving >,
             "CrystalCageMoving",
         },
         {
@@ -2339,22 +2339,22 @@ namespace {
         },
         {
             "SeaBottomBigDoorA",
-            createNameObj<RailDemoMoveObj>,
+            createNameObj< RailDemoMoveObj >,
             "SeaBottomBigDoorA",
         },
         {
             "SeaBottomBigDoorB",
-            createNameObj<RailDemoMoveObj>,
+            createNameObj< RailDemoMoveObj >,
             "SeaBottomBigDoorB",
         },
         {
             "SeaBottomBigDoorC",
-            createNameObj<RailDemoMoveObj>,
+            createNameObj< RailDemoMoveObj >,
             "SeaBottomBigDoorC",
         },
         {
             "FloaterLandPartsFrame",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "FloaterLandPartsFrame",
         },
         {
@@ -2364,7 +2364,7 @@ namespace {
         },
         {
             "DashRing",
-            createNameObj<DashRing>,
+            createNameObj< DashRing >,
             "DashRing",
         },
         {
@@ -2439,7 +2439,7 @@ namespace {
         },
         {
             "FirePressure",
-            createNameObj<FirePressure>,
+            createNameObj< FirePressure >,
             "FirePressure",
         },
         {
@@ -2454,12 +2454,12 @@ namespace {
         },
         {
             "FirePressureRadiate",
-            createNameObj<FirePressureRadiate>,
+            createNameObj< FirePressureRadiate >,
             "FirePressure",
         },
         {
             "TemplateStageGeometry",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "TemplateStageGeometry",
         },
         {
@@ -2469,7 +2469,7 @@ namespace {
         },
         {
             "BeeFlowerHover",
-            createNameObj<BeeFlowerHover>,
+            createNameObj< BeeFlowerHover >,
             "BeeFlowerHover",
         },
         {
@@ -2479,12 +2479,12 @@ namespace {
         },
         {
             "WaterfallCaveNoBreakCover",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "WaterfallCaveNoBreakCover",
         },
         {
             "PalmIsland",
-            createNameObj<PalmIsland>,
+            createNameObj< PalmIsland >,
             "PalmIsland",
         },
         {
@@ -2549,7 +2549,7 @@ namespace {
         },
         {
             "SeaBottomTriplePropellerStand",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "SeaBottomTriplePropellerStand",
         },
         {
@@ -2559,27 +2559,27 @@ namespace {
         },
         {
             "OceanFloaterTowerRotateStepA",
-            createNameObj<RotateMoveObj>,
+            createNameObj< RotateMoveObj >,
             "OceanFloaterTowerRotateStepA",
         },
         {
             "OceanFloaterTowerRotateStepB",
-            createNameObj<RotateMoveObj>,
+            createNameObj< RotateMoveObj >,
             "OceanFloaterTowerRotateStepB",
         },
         {
             "OceanFloaterTowerRotateStepC",
-            createNameObj<RotateMoveObj>,
+            createNameObj< RotateMoveObj >,
             "OceanFloaterTowerRotateStepC",
         },
         {
             "OceanFloaterTowerRotateStepD",
-            createNameObj<RotateMoveObj>,
+            createNameObj< RotateMoveObj >,
             "OceanFloaterTowerRotateStepD",
         },
         {
             "LargeChain",
-            createNameObj<LargeChain>,
+            createNameObj< LargeChain >,
             "LargeChain",
         },
         {
@@ -2604,22 +2604,22 @@ namespace {
         },
         {
             "FlipPanel",
-            createNameObj<FlipPanel>,
+            createNameObj< FlipPanel >,
             "FlipPanel",
         },
         {
             "FlipPanelObserver",
-            createNameObj<FlipPanelObserver>,
+            createNameObj< FlipPanelObserver >,
             nullptr,
         },
         {
             "FlipPanelReverse",
-            createNameObj<FlipPanel>,
+            createNameObj< FlipPanel >,
             "FlipPanelReverse",
         },
         {
             "FlipPanelFrame",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "FlipPanelFrame",
         },
         {
@@ -2634,12 +2634,12 @@ namespace {
         },
         {
             "SpaceMineRailA",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "SpaceMineRailA",
         },
         {
             "SpaceMineRail5m",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "SpaceMineRail5m",
         },
         {
@@ -2654,7 +2654,7 @@ namespace {
         },
         {
             "SandUpDownKillerGunnerBase",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "SandUpDownKillerGunnerBase",
         },
         {
@@ -2669,17 +2669,17 @@ namespace {
         },
         {
             "CaretakerGarbage",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "CaretakerGarbage",
         },
         {
             "GlassBottleTall",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "GlassBottleTall",
         },
         {
             "HopperBeltConveyerRotatePartsA",
-            createNameObj<RotateMoveObj>,
+            createNameObj< RotateMoveObj >,
             "HopperBeltConveyerRotatePartsA",
         },
         {
@@ -2689,7 +2689,7 @@ namespace {
         },
         {
             "ChooChooTrain",
-            createNameObj<ChooChooTrain>,
+            createNameObj< ChooChooTrain >,
             "ChooChooTrain",
         },
         {
@@ -2714,7 +2714,7 @@ namespace {
         },
         {
             "DangerSignBoard",
-            createNameObj<SimpleMapObjPush>,
+            createNameObj< SimpleMapObjPush >,
             "DangerSignBoard",
         },
         {
@@ -2724,42 +2724,42 @@ namespace {
         },
         {
             "MirrorModelTest",
-            createNameObj<SimpleMirrorReflectionObj>,
+            createNameObj< SimpleMirrorReflectionObj >,
             "MirrorModelTest",
         },
         {
             "MirrorModelPeachCastle",
-            createNameObj<SimpleMirrorReflectionObj>,
+            createNameObj< SimpleMirrorReflectionObj >,
             "MirrorModelPeachCastle",
         },
         {
             "MirrorModelTwinFallLake",
-            createNameObj<SimpleMirrorReflectionObj>,
+            createNameObj< SimpleMirrorReflectionObj >,
             "MirrorModelTwinFallLake",
         },
         {
             "MirrorReflectionTest",
-            createNameObj<SimpleMirrorObj>,
+            createNameObj< SimpleMirrorObj >,
             "MirrorReflectionTest",
         },
         {
             "MirrorReflectionPeachCastle",
-            createNameObj<SimpleMirrorObj>,
+            createNameObj< SimpleMirrorObj >,
             "MirrorReflectionPeachCastle",
         },
         {
             "MirrorReflectionTwinFallLake",
-            createNameObj<SimpleMirrorObj>,
+            createNameObj< SimpleMirrorObj >,
             "MirrorReflectionTwinFallLake",
         },
         {
             "PhantomFirewood",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "PhantomFirewood",
         },
         {
             "ArrowBoard",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "ArrowBoard",
         },
         {
@@ -2769,12 +2769,12 @@ namespace {
         },
         {
             "SpaceDustWoodA",
-            createNameObj<SimpleEnvironmentObj>,
+            createNameObj< SimpleEnvironmentObj >,
             "SpaceDustWoodA",
         },
         {
             "SpaceDustWoodB",
-            createNameObj<SimpleEnvironmentObj>,
+            createNameObj< SimpleEnvironmentObj >,
             "SpaceDustWoodB",
         },
         {
@@ -2794,12 +2794,12 @@ namespace {
         },
         {
             "HipDropRock",
-            createNameObj<HipDropRock>,
+            createNameObj< HipDropRock >,
             "HipDropRock",
         },
         {
             "DropOfWaterCore",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "DropOfWaterCore",
         },
         {
@@ -2809,12 +2809,12 @@ namespace {
         },
         {
             "ForestAppearStepA",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "ForestAppearStepA",
         },
         {
             "ForestObstacleWoodA",
-            createNameObj<HipDropDemoMoveObj>,
+            createNameObj< HipDropDemoMoveObj >,
             "ForestObstacleWoodA",
         },
         {
@@ -2829,7 +2829,7 @@ namespace {
         },
         {
             "AstroDomeComet",
-            createNameObj<AstroDomeComet>,
+            createNameObj< AstroDomeComet >,
             "AstroDomeComet",
         },
         {
@@ -2844,7 +2844,7 @@ namespace {
         },
         {
             "ForestWoodCover",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "ForestWoodCover",
         },
         {
@@ -2854,12 +2854,12 @@ namespace {
         },
         {
             "StarDustStepA",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "StarDustStepA",
         },
         {
             "StarDustStepB",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "StarDustStepB",
         },
         {
@@ -2874,37 +2874,37 @@ namespace {
         },
         {
             "StarDustRollingStepA",
-            createNameObj<RotateMoveObj>,
+            createNameObj< RotateMoveObj >,
             "StarDustRollingStepA",
         },
         {
             "AsteroidMoveA",
-            createNameObj<RailMoveObj>,
+            createNameObj< RailMoveObj >,
             "AsteroidMoveA",
         },
         {
             "StarPieceCluster",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "StarPieceCluster",
         },
         {
             "SpaceSeparatorA",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "SpaceSeparatorA",
         },
         {
             "SpaceSeparatorB",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "SpaceSeparatorB",
         },
         {
             "ForestNarrowStepA",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "ForestNarrowStepA",
         },
         {
             "ForestHomeGate",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "ForestHomeGate",
         },
         {
@@ -2914,7 +2914,7 @@ namespace {
         },
         {
             "WeatherVane",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "WeatherVane",
         },
         {
@@ -2924,37 +2924,37 @@ namespace {
         },
         {
             "PowerStarKeeperA",
-            createNameObj<RotateMoveObj>,
+            createNameObj< RotateMoveObj >,
             "PowerStarKeeperA",
         },
         {
             "PowerStarKeeperB",
-            createNameObj<RotateMoveObj>,
+            createNameObj< RotateMoveObj >,
             "PowerStarKeeperB",
         },
         {
             "PowerStarKeeperC",
-            createNameObj<RotateMoveObj>,
+            createNameObj< RotateMoveObj >,
             "PowerStarKeeperC",
         },
         {
             "ForestPoihanaFenceA",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "ForestPoihanaFenceA",
         },
         {
             "ForestPoihanaFenceB",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "ForestPoihanaFenceB",
         },
         {
             "TeresaMansionBridgeA",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "TeresaMansionBridgeA",
         },
         {
             "TeresaMansionBridgeB",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "TeresaMansionBridgeB",
         },
         {
@@ -2979,7 +2979,7 @@ namespace {
         },
         {
             "WaterBazookaTowerMoveStepA",
-            createNameObj<RotateMoveObj>,
+            createNameObj< RotateMoveObj >,
             "WaterBazookaTowerMoveStepA",
         },
         {
@@ -3009,12 +3009,12 @@ namespace {
         },
         {
             "ForestHomeBridge",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "ForestHomeBridge",
         },
         {
             "ForestBarricadeRockA",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "ForestBarricadeRockA",
         },
         {
@@ -3044,7 +3044,7 @@ namespace {
         },
         {
             "RollingOvalPlanetParts",
-            createNameObj<RotateMoveObj>,
+            createNameObj< RotateMoveObj >,
             "RollingOvalPlanetParts",
         },
         {
@@ -3084,17 +3084,17 @@ namespace {
         },
         {
             "FireBar",
-            createNameObj<FireBar>,
+            createNameObj< FireBar >,
             "FireBarCore",
         },
         {
             "BattleShipMovePartsA",
-            createNameObj<RotateMoveObj>,
+            createNameObj< RotateMoveObj >,
             "BattleShipMovePartsA",
         },
         {
             "BattleShipMovePartsB",
-            createNameObj<RotateMoveObj>,
+            createNameObj< RotateMoveObj >,
             "BattleShipMovePartsB",
         },
         {
@@ -3104,27 +3104,27 @@ namespace {
         },
         {
             "BattleShipElevatorCover",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "BattleShipElevatorCover",
         },
         {
             "TeresaRaceSpaceStickA",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "TeresaRaceSpaceStickA",
         },
         {
             "TeresaRaceSpaceStickB",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "TeresaRaceSpaceStickB",
         },
         {
             "TeresaRaceSpaceStickC",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "TeresaRaceSpaceStickC",
         },
         {
             "TeresaRacePartsA",
-            createNameObj<RotateMoveObj>,
+            createNameObj< RotateMoveObj >,
             "TeresaRacePartsA",
         },
         {
@@ -3149,62 +3149,62 @@ namespace {
         },
         {
             "PeachCastleTownAfterAttack",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "PeachCastleTownAfterAttack",
         },
         {
             "PeachCastleTownBeforeAttack",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "PeachCastleTownBeforeAttack",
         },
         {
             "PeachCastleTownGate",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "PeachCastleTownGate",
         },
         {
             "PhantomDecoratePartsA",
-            createNameObj<SimpleEnvironmentObj>,
+            createNameObj< SimpleEnvironmentObj >,
             "PhantomDecoratePartsA",
         },
         {
             "PhantomDecoratePartsB",
-            createNameObj<SimpleEnvironmentObj>,
+            createNameObj< SimpleEnvironmentObj >,
             "PhantomDecoratePartsB",
         },
         {
             "PhantomDecoratePartsHole",
-            createNameObj<SimpleEnvironmentObj>,
+            createNameObj< SimpleEnvironmentObj >,
             "PhantomDecoratePartsHole",
         },
         {
             "CocoonStepA",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "CocoonStepA",
         },
         {
             "CocoonStepB",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "CocoonStepB",
         },
         {
             "SpaceCannonLauncher",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "SpaceCannonLauncher",
         },
         {
             "TrapBaseA",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "TrapBaseA",
         },
         {
             "SweetsDecoratePartsSpoon",
-            createNameObj<RotateMoveObj>,
+            createNameObj< RotateMoveObj >,
             "SweetsDecoratePartsSpoon",
         },
         {
             "SweetsDecoratePartsFork",
-            createNameObj<RotateMoveObj>,
+            createNameObj< RotateMoveObj >,
             "SweetsDecoratePartsFork",
         },
         {
@@ -3239,12 +3239,12 @@ namespace {
         },
         {
             "SandStreamMoveStepsA",
-            createNameObj<RotateMoveObj>,
+            createNameObj< RotateMoveObj >,
             "SandStreamMoveStepsA",
         },
         {
             "SandStreamMoveStepsB",
-            createNameObj<RotateMoveObj>,
+            createNameObj< RotateMoveObj >,
             "SandStreamMoveStepsB",
         },
         {
@@ -3264,12 +3264,12 @@ namespace {
         },
         {
             "ColorPencil",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "ColorPencil",
         },
         {
             "TeresaRacePartsBallA",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "TeresaRacePartsBallA",
         },
         {
@@ -3284,12 +3284,12 @@ namespace {
         },
         {
             "RayGunPlanetPartsGear",
-            createNameObj<RotateMoveObj>,
+            createNameObj< RotateMoveObj >,
             "RayGunPlanetPartsGear",
         },
         {
             "BreakDownFixStepA",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "BreakDownFixStepA",
         },
         {
@@ -3304,7 +3304,7 @@ namespace {
         },
         {
             "ToyFactoryDecoratePartsGearA",
-            createNameObj<RotateMoveObj>,
+            createNameObj< RotateMoveObj >,
             "ToyFactoryDecoratePartsGearA",
         },
         {
@@ -3314,17 +3314,17 @@ namespace {
         },
         {
             "MiniMechaKoopaPartsGear",
-            createNameObj<RotateMoveObj>,
+            createNameObj< RotateMoveObj >,
             "MiniMechaKoopaPartsGear",
         },
         {
             "MiniMechaKoopaPartsCage",
-            createNameObj<RotateMoveObj>,
+            createNameObj< RotateMoveObj >,
             "MiniMechaKoopaPartsCage",
         },
         {
             "AsteroidBlockRotateStepA",
-            createNameObj<RotateMoveObj>,
+            createNameObj< RotateMoveObj >,
             "AsteroidBlockRotateStepA",
         },
         {
@@ -3349,67 +3349,67 @@ namespace {
         },
         {
             "DeathSandLandPartsA",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "DeathSandLandPartsA",
         },
         {
             "DeathSandLandPartsB",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "DeathSandLandPartsB",
         },
         {
             "DeathSandLandPlatformStepA",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "DeathSandLandPlatformStepA",
         },
         {
             "DeathSandEnvironmentSapotenA",
-            createNameObj<SimpleEnvironmentObj>,
+            createNameObj< SimpleEnvironmentObj >,
             "DeathSandEnvironmentSapotenA",
         },
         {
             "DeathSandEnvironmentSapotenB",
-            createNameObj<SimpleEnvironmentObj>,
+            createNameObj< SimpleEnvironmentObj >,
             "DeathSandEnvironmentSapotenB",
         },
         {
             "DeathSandEnvironmentRock",
-            createNameObj<SimpleEnvironmentObj>,
+            createNameObj< SimpleEnvironmentObj >,
             "DeathSandEnvironmentRock",
         },
         {
             "DeathSandEnvironmentPyramid",
-            createNameObj<SimpleEnvironmentObj>,
+            createNameObj< SimpleEnvironmentObj >,
             "DeathSandEnvironmentPyramid",
         },
         {
             "UFOSandObstacleA",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "UFOSandObstacleA",
         },
         {
             "UFOSandObstacleB",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "UFOSandObstacleB",
         },
         {
             "UFOSandObstacleC",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "UFOSandObstacleC",
         },
         {
             "SweetDecoratePartsOrange",
-            createNameObj<SimpleEnvironmentObj>,
+            createNameObj< SimpleEnvironmentObj >,
             "SweetDecoratePartsOrange",
         },
         {
             "CapsuleCage",
-            createNameObj<CapsuleCage>,
+            createNameObj< CapsuleCage >,
             "CapsuleCage",
         },
         {
             "KameckShipLv1",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "KameckShipLv1",
         },
         {
@@ -3419,12 +3419,12 @@ namespace {
         },
         {
             "StrongBlock",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "StrongBlock",
         },
         {
             "ChoConveyorChocoA",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "ChoConveyorChocoA",
         },
         {
@@ -3439,12 +3439,12 @@ namespace {
         },
         {
             "ForestHomePartsTree",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "ForestHomePartsTree",
         },
         {
             "ForestHomePartsTreeTower",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "ForestHomePartsTreeTower",
         },
         {
@@ -3464,7 +3464,7 @@ namespace {
         },
         {
             "PoltaBattlePlanetPartsA",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "PoltaBattlePlanetPartsA",
         },
         {
@@ -3479,7 +3479,7 @@ namespace {
         },
         {
             "ReverseKingdomTreeA",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "ReverseKingdomTreeA",
         },
         {
@@ -3489,37 +3489,37 @@ namespace {
         },
         {
             "WindMillPropeller",
-            createNameObj<RotateMoveObj>,
+            createNameObj< RotateMoveObj >,
             "WindMillPropeller",
         },
         {
             "WindMillPropellerMini",
-            createNameObj<RotateMoveObj>,
+            createNameObj< RotateMoveObj >,
             "WindMillPropellerMini",
         },
         {
             "LavaRotateStepsRotatePartsA",
-            createNameObj<RotateMoveObj>,
+            createNameObj< RotateMoveObj >,
             "LavaRotateStepsRotatePartsA",
         },
         {
             "LavaRotateStepsRotatePartsB",
-            createNameObj<RotateMoveObj>,
+            createNameObj< RotateMoveObj >,
             "LavaRotateStepsRotatePartsB",
         },
         {
             "LavaRotateStepsRotatePartsC",
-            createNameObj<RotateMoveObj>,
+            createNameObj< RotateMoveObj >,
             "LavaRotateStepsRotatePartsC",
         },
         {
             "LavaRotateStepsRotatePartsD",
-            createNameObj<RotateMoveObj>,
+            createNameObj< RotateMoveObj >,
             "LavaRotateStepsRotatePartsD",
         },
         {
             "QuickSand2DMovePartsA",
-            createNameObj<RotateMoveObj>,
+            createNameObj< RotateMoveObj >,
             "QuickSand2DMovePartsA",
         },
         {
@@ -3529,12 +3529,12 @@ namespace {
         },
         {
             "HugeBattleShipPlanetEntrance",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "HugeBattleShipPlanetEntrance",
         },
         {
             "MysteryGravityRoomBridgeA",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "MysteryGravityRoomBridgeA",
         },
         {
@@ -3554,12 +3554,12 @@ namespace {
         },
         {
             "DeathPromenadeRotateCircleL",
-            createNameObj<RotateMoveObj>,
+            createNameObj< RotateMoveObj >,
             "DeathPromenadeRotateCircleL",
         },
         {
             "DeathPromenadeRotateCircleS",
-            createNameObj<RotateMoveObj>,
+            createNameObj< RotateMoveObj >,
             "DeathPromenadeRotateCircleS",
         },
         {
@@ -3574,17 +3574,17 @@ namespace {
         },
         {
             "DarkHopperPlanetPartsA",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "DarkHopperPlanetPartsA",
         },
         {
             "DarkHopperPlanetPartsC",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "DarkHopperPlanetPartsC",
         },
         {
             "DarkHopperPlanetPartsD",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "DarkHopperPlanetPartsD",
         },
         {
@@ -3594,162 +3594,162 @@ namespace {
         },
         {
             "MiniMechaKoopaPartsFan",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "MiniMechaKoopaPartsFan",
         },
         {
             "RockRoadCircleA",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "RockRoadCircleA",
         },
         {
             "AssemblyBlockPartsA",
-            createNameObj<AssemblyBlock>,
+            createNameObj< AssemblyBlock >,
             "AssemblyBlockPartsA",
         },
         {
             "AssemblyBlockPartsB",
-            createNameObj<AssemblyBlock>,
+            createNameObj< AssemblyBlock >,
             "AssemblyBlockPartsB",
         },
         {
             "AssemblyBlockPartsC",
-            createNameObj<AssemblyBlock>,
+            createNameObj< AssemblyBlock >,
             "AssemblyBlockPartsC",
         },
         {
             "AssemblyBlockPartsD",
-            createNameObj<AssemblyBlock>,
+            createNameObj< AssemblyBlock >,
             "AssemblyBlockPartsD",
         },
         {
             "AssemblyBlockPartsE",
-            createNameObj<AssemblyBlock>,
+            createNameObj< AssemblyBlock >,
             "AssemblyBlockPartsE",
         },
         {
             "AssemblyBlockPartsIceB",
-            createNameObj<AssemblyBlock>,
+            createNameObj< AssemblyBlock >,
             "AssemblyBlockPartsIceB",
         },
         {
             "AssemblyBlockPartsIceC",
-            createNameObj<AssemblyBlock>,
+            createNameObj< AssemblyBlock >,
             "AssemblyBlockPartsIceC",
         },
         {
             "AssemblyBlockPartsIceD",
-            createNameObj<AssemblyBlock>,
+            createNameObj< AssemblyBlock >,
             "AssemblyBlockPartsIceD",
         },
         {
             "AssemblyBlockPartsIceE",
-            createNameObj<AssemblyBlock>,
+            createNameObj< AssemblyBlock >,
             "AssemblyBlockPartsIceE",
         },
         {
             "AssemblyBlockPartsTimerA",
-            createNameObj<AssemblyBlock>,
+            createNameObj< AssemblyBlock >,
             "AssemblyBlockPartsTimerA",
         },
         {
             "HellBallGuidePartsA",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "HellBallGuidePartsA",
         },
         {
             "HellBallRotatePartsA",
-            createNameObj<RotateMoveObj>,
+            createNameObj< RotateMoveObj >,
             "HellBallRotatePartsA",
         },
         {
             "HellBallRotatePartsB",
-            createNameObj<RotateMoveObj>,
+            createNameObj< RotateMoveObj >,
             "HellBallRotatePartsB",
         },
         {
             "HellBallRotatePartsC",
-            createNameObj<RotateMoveObj>,
+            createNameObj< RotateMoveObj >,
             "HellBallRotatePartsC",
         },
         {
             "HellBallRotatePartsD",
-            createNameObj<RotateMoveObj>,
+            createNameObj< RotateMoveObj >,
             "HellBallRotatePartsD",
         },
         {
             "HellBallRotatePartsE",
-            createNameObj<RotateMoveObj>,
+            createNameObj< RotateMoveObj >,
             "HellBallRotatePartsE",
         },
         {
             "HellBallRotatePartsF",
-            createNameObj<RotateMoveObj>,
+            createNameObj< RotateMoveObj >,
             "HellBallRotatePartsF",
         },
         {
             "HellBallRotatePartsG",
-            createNameObj<RotateMoveObj>,
+            createNameObj< RotateMoveObj >,
             "HellBallRotatePartsG",
         },
         {
             "IceSlipRoad",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "IceSlipRoad",
         },
         {
             "CandyLiftA",
-            createNameObj<RotateMoveObj>,
+            createNameObj< RotateMoveObj >,
             "CandyLiftA",
         },
         {
             "CandyLiftB",
-            createNameObj<RotateMoveObj>,
+            createNameObj< RotateMoveObj >,
             "CandyLiftB",
         },
         {
             "SurfingRaceTutorialParts",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "SurfingRaceTutorialParts",
         },
         {
             "SurfingRaceMainGate",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "SurfingRaceMainGate",
         },
         {
             "SurfingRaceSubGate",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "SurfingRaceSubGate",
         },
         {
             "SurfingRaceStep",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "SurfingRaceStep",
         },
         {
             "SurfingRaceSignBoard",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "SurfingRaceSignBoard",
         },
         {
             "SurfingRaceVictoryStand",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "SurfingRaceVictoryStand",
         },
         {
             "HeavensDoorFlowerA",
-            createNameObj<SimpleMapObjNoSilhouetted>,
+            createNameObj< SimpleMapObjNoSilhouetted >,
             "HeavensDoorFlowerA",
         },
         {
             "HeavensDoorHouseDoor",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "HeavensDoorHouseDoor",
         },
         {
             "HeavensDoorAppearStepAAfter",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "HeavensDoorAppearStepAAfter",
         },
         {
@@ -3759,12 +3759,12 @@ namespace {
         },
         {
             "HeavensDoorMiddleRotatePartsA",
-            createNameObj<RotateMoveObj>,
+            createNameObj< RotateMoveObj >,
             "HeavensDoorMiddleRotatePartsA",
         },
         {
             "HeavensDoorMiddleRotatePartsB",
-            createNameObj<RotateMoveObj>,
+            createNameObj< RotateMoveObj >,
             "HeavensDoorMiddleRotatePartsB",
         },
         {
@@ -3779,27 +3779,27 @@ namespace {
         },
         {
             "HeavensDoorInsideRotatePartsA",
-            createNameObj<RotateMoveObj>,
+            createNameObj< RotateMoveObj >,
             "HeavensDoorInsideRotatePartsA",
         },
         {
             "HeavensDoorInsideRotatePartsB",
-            createNameObj<RotateMoveObj>,
+            createNameObj< RotateMoveObj >,
             "HeavensDoorInsideRotatePartsB",
         },
         {
             "HeavensDoorInsideRotatePartsC",
-            createNameObj<RotateMoveObj>,
+            createNameObj< RotateMoveObj >,
             "HeavensDoorInsideRotatePartsC",
         },
         {
             "MechaKoopaPartsHead",
-            createNameObj<MechaKoopaPartsHead>,
+            createNameObj< MechaKoopaPartsHead >,
             "MechaKoopaPartsHead",
         },
         {
             "MechaKoopaPartsCollar",
-            createNameObj<RotateMoveObj>,
+            createNameObj< RotateMoveObj >,
             "MechaKoopaPartsCollar",
         },
         {
@@ -3809,12 +3809,12 @@ namespace {
         },
         {
             "MechaKoopaPartsArmRight",
-            createNameObj<MechaKoopaPartsArm>,
+            createNameObj< MechaKoopaPartsArm >,
             "MechaKoopaPartsArmRight",
         },
         {
             "MechaKoopaPartsArmLeft",
-            createNameObj<MechaKoopaPartsArm>,
+            createNameObj< MechaKoopaPartsArm >,
             "MechaKoopaPartsArmLeft",
         },
         {
@@ -3829,7 +3829,7 @@ namespace {
         },
         {
             "MechaKoopaPartsRollerA",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "MechaKoopaPartsRollerA",
         },
         {
@@ -3839,27 +3839,27 @@ namespace {
         },
         {
             "MechaKoopaPartsWreckA",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "MechaKoopaPartsWreckA",
         },
         {
             "CannonFortressBreakStepA",
-            createNameObj<CannonFortressBreakStep>,
+            createNameObj< CannonFortressBreakStep >,
             "CannonFortressBreakStepA",
         },
         {
             "CannonFortressRotateBreakStepA",
-            createNameObj<CannonFortressBreakStep>,
+            createNameObj< CannonFortressBreakStep >,
             "CannonFortressRotateBreakStepA",
         },
         {
             "CannonFortressRotateBreakStepB",
-            createNameObj<CannonFortressBreakStep>,
+            createNameObj< CannonFortressBreakStep >,
             "CannonFortressRotateBreakStepB",
         },
         {
             "CannonFortressRotateBreakStepC",
-            createNameObj<CannonFortressBreakStep>,
+            createNameObj< CannonFortressBreakStep >,
             "CannonFortressRotateBreakStepC",
         },
         {
@@ -3974,7 +3974,7 @@ namespace {
         },
         {
             "IceLavaIslandSnowStepA",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "IceLavaIslandSnowStepA",
         },
         {
@@ -4019,7 +4019,7 @@ namespace {
         },
         {
             "HoleBeltConveyerPartsG",
-            createNameObj<RotateMoveObj>,
+            createNameObj< RotateMoveObj >,
             "HoleBeltConveyerPartsG",
         },
         {
@@ -4029,12 +4029,12 @@ namespace {
         },
         {
             "ChallengeBallAccelCylinderA",
-            createNameObj<RotateMoveObj>,
+            createNameObj< RotateMoveObj >,
             "ChallengeBallAccelCylinderA",
         },
         {
             "ChallengeBallGearA",
-            createNameObj<RotateMoveObj>,
+            createNameObj< RotateMoveObj >,
             "ChallengeBallGearA",
         },
         {
@@ -4049,12 +4049,12 @@ namespace {
         },
         {
             "ChallengeBallRotateBridgeA",
-            createNameObj<RotateMoveObj>,
+            createNameObj< RotateMoveObj >,
             "ChallengeBallRotateBridgeA",
         },
         {
             "ChallengeBallVanishingRoadA",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "ChallengeBallVanishingRoadA",
         },
         {
@@ -4064,12 +4064,12 @@ namespace {
         },
         {
             "TrialBubbleRotateWallA",
-            createNameObj<RotateMoveObj>,
+            createNameObj< RotateMoveObj >,
             "TrialBubbleRotateWallA",
         },
         {
             "TrialBubbleRevolvingPartsA",
-            createNameObj<RotateMoveObj>,
+            createNameObj< RotateMoveObj >,
             "TrialBubbleRevolvingPartsA",
         },
         {
@@ -4079,27 +4079,27 @@ namespace {
         },
         {
             "CubeBubbleExHomeStep",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "CubeBubbleExHomeStep",
         },
         {
             "CubeBubbleExStartStep",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "CubeBubbleExStartStep",
         },
         {
             "CubeBubbleExRotateWallS",
-            createNameObj<RotateMoveObj>,
+            createNameObj< RotateMoveObj >,
             "CubeBubbleExRotateWallS",
         },
         {
             "CubeBubbleExRotateWallL",
-            createNameObj<RotateMoveObj>,
+            createNameObj< RotateMoveObj >,
             "CubeBubbleExRotateWallL",
         },
         {
             "CubeBubbleExPartsA",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "CubeBubbleExPartsA",
         },
         {
@@ -4139,7 +4139,7 @@ namespace {
         },
         {
             "UFOKinokoLanding",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "UFOKinokoLanding",
         },
         {
@@ -4149,27 +4149,27 @@ namespace {
         },
         {
             "KoopaShipA",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "KoopaShipA",
         },
         {
             "KoopaShipB",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "KoopaShipB",
         },
         {
             "KoopaShipC",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "KoopaShipC",
         },
         {
             "KoopaShipD",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "KoopaShipD",
         },
         {
             "KoopaShipE",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "KoopaShipE",
         },
         {
@@ -4184,17 +4184,17 @@ namespace {
         },
         {
             "KoopaJrSmallShipAGuidePoint",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "KoopaJrSmallShipAGuidePoint",
         },
         {
             "KoopaJrKillerShipA",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "KoopaJrKillerShipA",
         },
         {
             "KoopaJrNormalShipA",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "KoopaJrNormalShipA",
         },
         {
@@ -4204,17 +4204,17 @@ namespace {
         },
         {
             "WaterRoadCaveStepB",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "WaterRoadCaveStepB",
         },
         {
             "WaterRoadCaveRotateGround",
-            createNameObj<RotateMoveObj>,
+            createNameObj< RotateMoveObj >,
             "WaterRoadCaveRotateGround",
         },
         {
             "SubmarineVolcanoInside",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "SubmarineVolcanoInside",
         },
         {
@@ -4229,12 +4229,12 @@ namespace {
         },
         {
             "OnimasuPlanetPartsGoal",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "OnimasuPlanetPartsGoal",
         },
         {
             "OnimasuPlanetObstaclePartsA",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "OnimasuPlanetObstaclePartsA",
         },
         {
@@ -4244,12 +4244,12 @@ namespace {
         },
         {
             "OnimasuPlanetRotatePartsA",
-            createNameObj<RotateMoveObj>,
+            createNameObj< RotateMoveObj >,
             "OnimasuPlanetRotatePartsA",
         },
         {
             "OnimasuPlanetRotatePartsB",
-            createNameObj<RotateMoveObj>,
+            createNameObj< RotateMoveObj >,
             "OnimasuPlanetRotatePartsB",
         },
         {
@@ -4269,7 +4269,7 @@ namespace {
         },
         {
             "PhantomShipBridge",
-            createNameObj<PhantomShipBridge>,
+            createNameObj< PhantomShipBridge >,
             "PhantomShipBridge",
         },
         {
@@ -4279,7 +4279,7 @@ namespace {
         },
         {
             "TakoBarrelB",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "TakoBarrelB",
         },
         {
@@ -4304,12 +4304,12 @@ namespace {
         },
         {
             "KoopaBattleMapStair",
-            createNameObj<KoopaBattleMapStair>,
+            createNameObj< KoopaBattleMapStair >,
             "KoopaBattleMapStair",
         },
         {
             "KoopaBattleMapPlate",
-            createNameObj<KoopaBattleMapPlate>,
+            createNameObj< KoopaBattleMapPlate >,
             "KoopaPlate",
         },
         {
@@ -4319,12 +4319,12 @@ namespace {
         },
         {
             "KoopaBattleMapStairBig",
-            createNameObj<KoopaBattleMapStair>,
+            createNameObj< KoopaBattleMapStair >,
             "KoopaBattleMapStairBig",
         },
         {
             "KoopaBattleMapStairTurn",
-            createNameObj<KoopaBattleMapStair>,
+            createNameObj< KoopaBattleMapStair >,
             "KoopaBattleMapStairTurn",
         },
         {
@@ -4334,7 +4334,7 @@ namespace {
         },
         {
             "KoopaVS1PartsSpiralRoad",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "KoopaVS1PartsSpiralRoad",
         },
         {
@@ -4359,47 +4359,47 @@ namespace {
         },
         {
             "KoopaVS1PartsReverseGRoad",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "KoopaVS1PartsReverseGRoad",
         },
         {
             "KoopaVS1PartsStairRoad",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "KoopaVS1PartsStairRoad",
         },
         {
             "KoopaVS1PartsBattleStage",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "KoopaVS1PartsBattleStage",
         },
         {
             "KoopaVS2PartsReverseGRoadA",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "KoopaVS2PartsReverseGRoadA",
         },
         {
             "KoopaVS2PartsReverseGRoadB",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "KoopaVS2PartsReverseGRoadB",
         },
         {
             "KoopaVS2PartsStartRestStep",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "KoopaVS2PartsStartRestStep",
         },
         {
             "KoopaVS2PartsRestStepA",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "KoopaVS2PartsRestStepA",
         },
         {
             "KoopaVS2PartsRestStepB",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "KoopaVS2PartsRestStepB",
         },
         {
             "KoopaVS2PartsRestStepC",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "KoopaVS2PartsRestStepC",
         },
         {
@@ -4409,57 +4409,57 @@ namespace {
         },
         {
             "KoopaVS2PartsRestStepD",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "KoopaVS2PartsRestStepD",
         },
         {
             "KoopaVS2PartsRestStepE",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "KoopaVS2PartsRestStepE",
         },
         {
             "KoopaVS2PartsRestStepF",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "KoopaVS2PartsRestStepF",
         },
         {
             "KoopaVS2PartsRestStepG",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "KoopaVS2PartsRestStepG",
         },
         {
             "KoopaVS2PartsDarkMatterA",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "KoopaVS2PartsDarkMatterA",
         },
         {
             "KoopaVS2PartsDarkMatterB",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "KoopaVS2PartsDarkMatterB",
         },
         {
             "KoopaVS2PartsDarkMatterC",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "KoopaVS2PartsDarkMatterC",
         },
         {
             "KoopaVS2PartsDarkMatterD",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "KoopaVS2PartsDarkMatterD",
         },
         {
             "KoopaVS2PartsDarkMatterE",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "KoopaVS2PartsDarkMatterE",
         },
         {
             "KoopaVS2PartsStartMoveStepA",
-            createNameObj<RotateMoveObj>,
+            createNameObj< RotateMoveObj >,
             "KoopaVS2PartsStartMoveStepA",
         },
         {
             "KoopaVS2PartsStartMoveStepB",
-            createNameObj<RotateMoveObj>,
+            createNameObj< RotateMoveObj >,
             "KoopaVS2PartsStartMoveStepB",
         },
         {
@@ -4469,7 +4469,7 @@ namespace {
         },
         {
             "KoopaVS2PartsRollingStep",
-            createNameObj<RotateMoveObj>,
+            createNameObj< RotateMoveObj >,
             "KoopaVS2PartsRollingStep",
         },
         {
@@ -4539,112 +4539,112 @@ namespace {
         },
         {
             "KoopaVS2PartsStairBig",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "KoopaVS2PartsStairBig",
         },
         {
             "KoopaVS2Parts2DRailGuideA",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "KoopaVS2Parts2DRailGuideA",
         },
         {
             "KoopaVS3RotateStepA",
-            createNameObj<RotateMoveObj>,
+            createNameObj< RotateMoveObj >,
             "KoopaVS3RotateStepA",
         },
         {
             "KoopaVS3RotateStepB",
-            createNameObj<RotateMoveObj>,
+            createNameObj< RotateMoveObj >,
             "KoopaVS3RotateStepB",
         },
         {
             "KoopaVS3RotateStepD",
-            createNameObj<RotateMoveObj>,
+            createNameObj< RotateMoveObj >,
             "KoopaVS3RotateStepD",
         },
         {
             "KoopaVS3RotateStepsA",
-            createNameObj<RotateMoveObj>,
+            createNameObj< RotateMoveObj >,
             "KoopaVS3RotateStepsA",
         },
         {
             "KoopaVS3Parts2DWallA",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "KoopaVS3Parts2DWallA",
         },
         {
             "TreasureBoxCrackedEmpty",
-            createNameObj<TreasureBoxCracked>,
+            createNameObj< TreasureBoxCracked >,
             "TreasureBoxCracked",
         },
         {
             "TreasureBoxCrackedCoin",
-            createNameObj<TreasureBoxCracked>,
+            createNameObj< TreasureBoxCracked >,
             "TreasureBoxCracked",
         },
         {
             "TreasureBoxCrackedYellowChip",
-            createNameObj<TreasureBoxCracked>,
+            createNameObj< TreasureBoxCracked >,
             "TreasureBoxCracked",
         },
         {
             "TreasureBoxCrackedBlueChip",
-            createNameObj<TreasureBoxCracked>,
+            createNameObj< TreasureBoxCracked >,
             "TreasureBoxCracked",
         },
         {
             "TreasureBoxCrackedKinokoOneUp",
-            createNameObj<TreasureBoxCracked>,
+            createNameObj< TreasureBoxCracked >,
             "TreasureBoxCracked",
         },
         {
             "TreasureBoxCrackedKinokoLifeUp",
-            createNameObj<TreasureBoxCracked>,
+            createNameObj< TreasureBoxCracked >,
             "TreasureBoxCracked",
         },
         {
             "TreasureBoxCrackedAirBubble",
-            createNameObj<TreasureBoxCracked>,
+            createNameObj< TreasureBoxCracked >,
             "TreasureBoxCracked",
         },
         {
             "TreasureBoxCrackedPowerStar",
-            createNameObj<TreasureBoxCracked>,
+            createNameObj< TreasureBoxCracked >,
             "TreasureBoxCracked",
         },
         {
             "TreasureBoxEmpty",
-            createNameObj<TreasureBoxCracked>,
+            createNameObj< TreasureBoxCracked >,
             "TreasureBox",
         },
         {
             "TreasureBoxCoin",
-            createNameObj<TreasureBoxCracked>,
+            createNameObj< TreasureBoxCracked >,
             "TreasureBox",
         },
         {
             "TreasureBoxYellowChip",
-            createNameObj<TreasureBoxCracked>,
+            createNameObj< TreasureBoxCracked >,
             "TreasureBox",
         },
         {
             "TreasureBoxBlueChip",
-            createNameObj<TreasureBoxCracked>,
+            createNameObj< TreasureBoxCracked >,
             "TreasureBox",
         },
         {
             "TreasureBoxKinokoOneUp",
-            createNameObj<TreasureBoxCracked>,
+            createNameObj< TreasureBoxCracked >,
             "TreasureBox",
         },
         {
             "TreasureBoxKinokoLifeUp",
-            createNameObj<TreasureBoxCracked>,
+            createNameObj< TreasureBoxCracked >,
             "TreasureBox",
         },
         {
             "TreasureBoxGoldEmpty",
-            createNameObj<TreasureBoxCracked>,
+            createNameObj< TreasureBoxCracked >,
             "TreasureBoxGold",
         },
         {
@@ -4654,37 +4654,37 @@ namespace {
         },
         {
             "OceanRingRuinsGearSmall",
-            createNameObj<RotateMoveObj>,
+            createNameObj< RotateMoveObj >,
             "OceanRingRuinsGearSmall",
         },
         {
             "OceanRingRuinsGearBig",
-            createNameObj<RotateMoveObj>,
+            createNameObj< RotateMoveObj >,
             "OceanRingRuinsGearBig",
         },
         {
             "OceanRingRuinsColumn",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "OceanRingRuinsColumn",
         },
         {
             "OceanRingRuinsBase",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "OceanRingRuinsBase",
         },
         {
             "KameckShip",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "KameckShip",
         },
         {
             "BeachParasol",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "BeachParasol",
         },
         {
             "BeachChair",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "BeachChair",
         },
         {
@@ -4714,27 +4714,27 @@ namespace {
         },
         {
             "PhantomCaveStepA",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "PhantomCaveStepA",
         },
         {
             "GhostShipCaveClosedRockA",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "GhostShipCaveClosedRockA",
         },
         {
             "GhostShipBrokenHead",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "GhostShipBrokenHead",
         },
         {
             "CannonUnderConstructionA",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "CannonUnderConstructionA",
         },
         {
             "CannonUnderConstructionB",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "CannonUnderConstructionB",
         },
         {
@@ -4749,102 +4749,102 @@ namespace {
         },
         {
             "AstroCore",
-            createNameObj<AstroCore>,
+            createNameObj< AstroCore >,
             "AstroCore",
         },
         {
             "AstroCountDownPlate",
-            createNameObj<AstroCountDownPlate>,
+            createNameObj< AstroCountDownPlate >,
             "AstroCountDownPlate",
         },
         {
             "AstroDome",
-            createNameObj<AstroDome>,
+            createNameObj< AstroDome >,
             nullptr,
         },
         {
             "AstroDomeEntrance",
-            createNameObj<AstroMapObj>,
+            createNameObj< AstroMapObj >,
             nullptr,
         },
         {
             "AstroStarPlate",
-            createNameObj<AstroMapObj>,
+            createNameObj< AstroMapObj >,
             nullptr,
         },
         {
             "AstroBaseA",
-            createNameObj<AstroMapObj>,
+            createNameObj< AstroMapObj >,
             "AstroBaseA",
         },
         {
             "AstroBaseB",
-            createNameObj<AstroMapObj>,
+            createNameObj< AstroMapObj >,
             "AstroBaseB",
         },
         {
             "AstroBaseC",
-            createNameObj<AstroMapObj>,
+            createNameObj< AstroMapObj >,
             "AstroBaseC",
         },
         {
             "AstroBaseKitchen",
-            createNameObj<AstroMapObj>,
+            createNameObj< AstroMapObj >,
             "AstroBaseKitchen",
         },
         {
             "AstroBaseCenterA",
-            createNameObj<AstroMapObj>,
+            createNameObj< AstroMapObj >,
             "AstroBaseCenterA",
         },
         {
             "AstroBaseCenterB",
-            createNameObj<AstroMapObj>,
+            createNameObj< AstroMapObj >,
             "AstroBaseCenterB",
         },
         {
             "AstroBaseCenterTop",
-            createNameObj<AstroMapObj>,
+            createNameObj< AstroMapObj >,
             "AstroBaseCenterTop",
         },
         {
             "AstroRotateStepA",
-            createNameObj<AstroMapObj>,
+            createNameObj< AstroMapObj >,
             "AstroRotateStepA",
         },
         {
             "AstroRotateStepB",
-            createNameObj<AstroMapObj>,
+            createNameObj< AstroMapObj >,
             "AstroRotateStepB",
         },
         {
             "AstroDecoratePartsA",
-            createNameObj<AstroMapObj>,
+            createNameObj< AstroMapObj >,
             "AstroDecoratePartsA",
         },
         {
             "AstroDecoratePartsGearA",
-            createNameObj<AstroMapObj>,
+            createNameObj< AstroMapObj >,
             "AstroDecoratePartsGearA",
         },
         {
             "AstroChildRoom",
-            createNameObj<AstroMapObj>,
+            createNameObj< AstroMapObj >,
             "AstroChildRoom",
         },
         {
             "AstroParking",
-            createNameObj<AstroMapObj>,
+            createNameObj< AstroMapObj >,
             "AstroParking",
         },
         {
             "AstroLibrary",
-            createNameObj<AstroMapObj>,
+            createNameObj< AstroMapObj >,
             "AstroLibrary",
         },
         {
             "AstroRoomLibrary",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "AstroRoomLibrary",
         },
         {
@@ -4874,7 +4874,7 @@ namespace {
         },
         {
             "UFOKinokoLandingAstro",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "UFOKinokoLandingAstro",
         },
         {
@@ -4884,147 +4884,147 @@ namespace {
         },
         {
             "WhiteRoom",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
             "WhiteRoom",
         },
         {
             "VROrbit",
-            createNameObj<ProjectionMapSky>,
+            createNameObj< ProjectionMapSky >,
             "VROrbit",
         },
         {
             "VRDarkSpace",
-            createNameObj<ProjectionMapSky>,
+            createNameObj< ProjectionMapSky >,
             "VRDarkSpace",
         },
         {
             "VRSandwichSun",
-            createNameObj<ProjectionMapSky>,
+            createNameObj< ProjectionMapSky >,
             "VRSandwichSun",
         },
         {
             "SummerSky",
-            createNameObj<Sky>,
+            createNameObj< Sky >,
             "SummerSky",
         },
         {
             "GalaxySky",
-            createNameObj<Sky>,
+            createNameObj< Sky >,
             "GalaxySky",
         },
         {
             "MilkyWaySky",
-            createNameObj<Sky>,
+            createNameObj< Sky >,
             "MilkyWaySky",
         },
         {
             "HalfGalaxySky",
-            createNameObj<ProjectionMapSky>,
+            createNameObj< ProjectionMapSky >,
             "HalfGalaxySky",
         },
         {
             "GreenPlanetOrbitSky",
-            createNameObj<ProjectionMapSky>,
+            createNameObj< ProjectionMapSky >,
             "GreenPlanetOrbitSky",
         },
         {
             "PhantomSky",
-            createNameObj<Sky>,
+            createNameObj< Sky >,
             "PhantomSky",
         },
         {
             "KoopaVS1Sky",
-            createNameObj<Sky>,
+            createNameObj< Sky >,
             "KoopaVS1Sky",
         },
         {
             "KoopaVS2Sky",
-            createNameObj<Sky>,
+            createNameObj< Sky >,
             "KoopaVS2Sky",
         },
         {
             "FamicomMarioSky",
-            createNameObj<Sky>,
+            createNameObj< Sky >,
             "FamicomMarioSky",
         },
         {
             "DesertSky",
-            createNameObj<Sky>,
+            createNameObj< Sky >,
             "DesertSky",
         },
         {
             "ChildRoomSky",
-            createNameObj<Sky>,
+            createNameObj< Sky >,
             "ChildRoomSky",
         },
         {
             "AuroraSky",
-            createNameObj<Sky>,
+            createNameObj< Sky >,
             "AuroraSky",
         },
         {
             "CloudSky",
-            createNameObj<ProjectionMapSky>,
+            createNameObj< ProjectionMapSky >,
             "CloudSky",
         },
         {
             "RockPlanetOrbitSky",
-            createNameObj<ProjectionMapSky>,
+            createNameObj< ProjectionMapSky >,
             "RockPlanetOrbitSky",
         },
         {
             "StarrySky",
-            createNameObj<Sky>,
+            createNameObj< Sky >,
             "StarrySky",
         },
         {
             "AstroDomeSkyA",
-            createNameObj<Sky>,
+            createNameObj< Sky >,
             "AstroDomeSkyA",
         },
         {
             "HomeAir",
-            createNameObj<Air>,
+            createNameObj< Air >,
             "HomeAir",
         },
         {
             "SphereAir",
-            createNameObj<PriorDrawAir>,
+            createNameObj< PriorDrawAir >,
             "SphereAir",
         },
         {
             "SunsetAir",
-            createNameObj<ProjectionMapAir>,
+            createNameObj< ProjectionMapAir >,
             "SunsetAir",
         },
         {
             "FineAir",
-            createNameObj<ProjectionMapAir>,
+            createNameObj< ProjectionMapAir >,
             "FineAir",
         },
         {
             "DimensionAir",
-            createNameObj<AirFar100m>,
+            createNameObj< AirFar100m >,
             "DimensionAir",
         },
         {
             "DarknessRoomAir",
-            createNameObj<Air>,
+            createNameObj< Air >,
             "DarknessRoomAir",
         },
         {
             "TwilightAir",
-            createNameObj<Air>,
+            createNameObj< Air >,
             "TwilightAir",
         },
         {
             "ZoneHalo",
-            createNameObj<Halo>,
+            createNameObj< Halo >,
             "ZoneHalo",
         },
         {
             "PowerStarHalo",
-            createNameObj<PowerStarHalo>,
+            createNameObj< PowerStarHalo >,
             "PowerStarHalo",
         },
         {
@@ -5059,12 +5059,12 @@ namespace {
         },
         {
             "PurpleCoinStarter",
-            createNameObj<PurpleCoinStarter>,
+            createNameObj< PurpleCoinStarter >,
             nullptr,
         },
         {
             "CoinReplica",
-            createNameObj<CoinReplica>,
+            createNameObj< CoinReplica >,
             nullptr,
         },
         {
@@ -5074,22 +5074,22 @@ namespace {
         },
         {
             "BlueChip",
-            createNameObj<BlueChip>,
+            createNameObj< BlueChip >,
             "BlueChip",
         },
         {
             "YellowChip",
-            createNameObj<YellowChip>,
+            createNameObj< YellowChip >,
             "YellowChip",
         },
         {
             "BlueChipGroup",
-            createNameObj<BlueChipGroup>,
+            createNameObj< BlueChipGroup >,
             nullptr,
         },
         {
             "YellowChipGroup",
-            createNameObj<YellowChipGroup>,
+            createNameObj< YellowChipGroup >,
             nullptr,
         },
         {
@@ -5234,7 +5234,7 @@ namespace {
         },
         {
             "SeaGullGroup",
-            createNameObj<SeaGullGroup>,
+            createNameObj< SeaGullGroup >,
             "SeaGull",
         },
         {
@@ -5254,12 +5254,12 @@ namespace {
         },
         {
             "CrystalSwitch",
-            createNameObj<CrystalSwitch>,
+            createNameObj< CrystalSwitch >,
             "CrystalSwitch",
         },
         {
             "HipDropSwitch",
-            createNameObj<HipDropSwitch>,
+            createNameObj< HipDropSwitch >,
             "HipDropSwitch",
         },
         {
@@ -5304,7 +5304,7 @@ namespace {
         },
         {
             "KeySwitch",
-            createNameObj<KeySwitch>,
+            createNameObj< KeySwitch >,
             "KeySwitch",
         },
         {
@@ -5379,12 +5379,12 @@ namespace {
         },
         {
             "Fountain",
-            createNameObj<Fountain>,
+            createNameObj< Fountain >,
             nullptr,
         },
         {
             "FountainBig",
-            createNameObj<FountainBig>,
+            createNameObj< FountainBig >,
             "FountainBig",
         },
         {
@@ -5869,7 +5869,7 @@ namespace {
         },
         {
             "ClipFieldSwitch",
-            createNameObj<ClipFieldSwitch>,
+            createNameObj< ClipFieldSwitch >,
             nullptr,
         },
         {
@@ -5899,7 +5899,7 @@ namespace {
         },
         {
             "TimerSwitch",
-            createNameObj<TimerSwitch>,
+            createNameObj< TimerSwitch >,
             nullptr,
         },
         {

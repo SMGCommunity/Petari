@@ -41,7 +41,7 @@ void* FunctionAsyncExecutorThread::run() {
         OSMessage msg;
         OSReceiveMessage(&mQueue, &msg, OS_MESSAGE_BLOCK);
 
-        FunctionAsyncExecInfo* info = reinterpret_cast<FunctionAsyncExecInfo*>(msg);
+        FunctionAsyncExecInfo* info = reinterpret_cast< FunctionAsyncExecInfo* >(msg);
         mName = info->mName;
         mIsSuspended = true;
         info->execute();
@@ -63,7 +63,7 @@ void FunctionAsyncExecutorOnMainThread::update() {
     if (OSReceiveMessage(&mQueue, &msg, OS_MESSAGE_NOBLOCK)) {
         _0 = true;
 
-        info = static_cast<FunctionAsyncExecInfo*>(msg);
+        info = static_cast< FunctionAsyncExecInfo* >(msg);
         info->mPriority = OSGetThreadPriority(OSGetCurrentThread());
         info->execute();
 
@@ -116,7 +116,7 @@ bool FunctionAsyncExecutor::startOnMainThread(const MR::FunctorBase& rFunc, cons
 }
 
 void FunctionAsyncExecutor::waitForEnd(const char* pName) {
-    OSLockMutex(&MR::MutexHolder<2>::sMutex);
+    OSLockMutex(&MR::MutexHolder< 2 >::sMutex);
     FunctionAsyncExecInfo**       cur = mHolders.begin();
     FunctionAsyncExecInfo* const* lst = mHolders.end();
 
@@ -125,9 +125,9 @@ void FunctionAsyncExecutor::waitForEnd(const char* pName) {
     }
 
     FunctionAsyncExecInfo* info = *cur;
-    OSUnlockMutex(&MR::MutexHolder<2>::sMutex);
+    OSUnlockMutex(&MR::MutexHolder< 2 >::sMutex);
     OSReceiveMessage(&info->mQueue, &info->mMessage, OS_MESSAGE_BLOCK);
-    OSLockMutex(&MR::MutexHolder<2>::sMutex);
+    OSLockMutex(&MR::MutexHolder< 2 >::sMutex);
     cur = mHolders.begin();
     lst = mHolders.end();
 
@@ -143,13 +143,13 @@ void FunctionAsyncExecutor::waitForEnd(const char* pName) {
     }
 
     mHolders.mCount--;
-    OSUnlockMutex(&MR::MutexHolder<2>::sMutex);
+    OSUnlockMutex(&MR::MutexHolder< 2 >::sMutex);
     delete info;
 }
 
 /* this matches but on a different compiler version */
 bool FunctionAsyncExecutor::isEnd(const char* pName) const {
-    OSLockMutex(&MR::MutexHolder<2>::sMutex);
+    OSLockMutex(&MR::MutexHolder< 2 >::sMutex);
     FunctionAsyncExecInfo* const* cur = mHolders.begin();
     FunctionAsyncExecInfo* const* lst = mHolders.end();
 
@@ -158,7 +158,7 @@ bool FunctionAsyncExecutor::isEnd(const char* pName) const {
     }
 
     FunctionAsyncExecInfo* info = *cur;
-    OSUnlockMutex(&MR::MutexHolder<2>::sMutex);
+    OSUnlockMutex(&MR::MutexHolder< 2 >::sMutex);
     return info->mIsEnd;
 }
 
@@ -180,9 +180,9 @@ FunctionAsyncExecInfo* FunctionAsyncExecutor::createAndAddExecInfo(const MR::Fun
     MR::FunctorBase*       func = rFunc.clone(_414);
     FunctionAsyncExecInfo* info = new (_410, 0) FunctionAsyncExecInfo(func, priority, pName);
 
-    OSLockMutex(&MR::MutexHolder<2>::sMutex);
+    OSLockMutex(&MR::MutexHolder< 2 >::sMutex);
     mHolders.push_back(info);
-    OSUnlockMutex(&MR::MutexHolder<2>::sMutex);
+    OSUnlockMutex(&MR::MutexHolder< 2 >::sMutex);
     return info;
 }
 

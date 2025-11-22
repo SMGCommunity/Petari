@@ -700,7 +700,7 @@ void SkeletalFishBoss::initSwitch(const JMapInfoIter& rIter) {
     if (MR::useStageSwitchReadAppear(this, rIter)) {
         MR::syncStageSwitchAppear(this);
     } else if (MR::useStageSwitchReadA(this, rIter)) {
-        MR::listenStageSwitchOnA(this, MR::FunctorV0M<SkeletalFishBoss*, void (SkeletalFishBoss::*)(void)>(this, &SkeletalFishBoss::appear));
+        MR::listenStageSwitchOnA(this, MR::FunctorV0M< SkeletalFishBoss*, void (SkeletalFishBoss::*)(void) >(this, &SkeletalFishBoss::appear));
     }
 }
 
@@ -902,7 +902,7 @@ void SkeletalFishBoss::playDamageBrk() {
 }
 
 void SkeletalFishBoss::startAppearDemo() {
-    MR::requestMovementOn(MR::getSceneObj<SensorHitChecker>(SceneObj_SensorHitChecker));
+    MR::requestMovementOn(MR::getSceneObj< SensorHitChecker >(SceneObj_SensorHitChecker));
     Mtx namePosMtx;
     if (MR::tryFindNamePos("マリオ再セット位置1", namePosMtx)) {
         MR::setPlayerBaseMtx(namePosMtx);
@@ -943,7 +943,7 @@ void SkeletalFishBoss::endAppearDemo() {
 }
 
 void SkeletalFishBoss::startPowerUpDemo() {
-    MR::requestMovementOn(MR::getSceneObj<SensorHitChecker>(SceneObj_SensorHitChecker));
+    MR::requestMovementOn(MR::getSceneObj< SensorHitChecker >(SceneObj_SensorHitChecker));
     MR::overlayWithPreviousScreen(2);
     MR::hidePlayer();
 

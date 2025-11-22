@@ -17,11 +17,11 @@ PartsModel::PartsModel(LiveActor* pActor, const char* pName, const char* pModelN
     if (mMtx) {
         mPosition.set(mMtx[0][3], mMtx[1][3], mMtx[2][3]);
     } else {
-        mPosition.set<f32>(pActor->mPosition);
+        mPosition.set< f32 >(pActor->mPosition);
     }
 
-    mRotation.set<f32>(pActor->mRotation);
-    mScale.set<f32>(pActor->mScale);
+    mRotation.set< f32 >(pActor->mRotation);
+    mScale.set< f32 >(pActor->mScale);
 
     initModelManagerWithAnm(pModelName, nullptr, a6);
 

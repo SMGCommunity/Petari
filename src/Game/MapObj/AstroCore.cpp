@@ -34,7 +34,7 @@ void AstroCore::init(const JMapInfoIter& rIter) {
     info.setupSound(4);
     info.setupNoAppearRiddleSE();
     initialize(rIter, info);
-    AstroDemoFunction::tryRegisterGrandStarReturnWithFunctionAndSimpleCast(this, rIter, MR::FunctorV0M<AstroCore*, void (AstroCore::*)(void)>(this, &AstroCore::startDemo));
+    AstroDemoFunction::tryRegisterGrandStarReturnWithFunctionAndSimpleCast(this, rIter, MR::FunctorV0M< AstroCore*, void (AstroCore::*)(void) >(this, &AstroCore::startDemo));
 }
 
 void AstroCore::exeGrow() {

@@ -3,7 +3,7 @@
 
 bool ScenarioData::getValueString(const char* pKey, s32 a2, const char** pOut) const {
     ScenarioDataIter inf = getScenarioDataIter(a2);
-    bool             ret = inf._0->getValue<const char*>(inf.mCur, pKey, pOut);
+    bool             ret = inf._0->getValue< const char* >(inf.mCur, pKey, pOut);
 
     if (ret) {
         if (MR::isEqualString(*pOut, "")) {
@@ -16,7 +16,7 @@ bool ScenarioData::getValueString(const char* pKey, s32 a2, const char** pOut) c
 
 const char* ScenarioData::getZoneName(s32 zoneID) const {
     const char* zoneName = 0;
-    mZoneList->getValue<const char*>(zoneID, "ZoneName", &zoneName);
+    mZoneList->getValue< const char* >(zoneID, "ZoneName", &zoneName);
     return zoneName;
 }
 
@@ -31,7 +31,7 @@ s32 ScenarioData::getZoneNum() const {
 s32 ScenarioData::getZoneId(const char* pZoneName) const {
     for (s32 i = 0; i < getZoneNum(); i++) {
         const char* zoneName = 0;
-        mZoneList->getValue<const char*>(i, "ZoneName", &zoneName);
+        mZoneList->getValue< const char* >(i, "ZoneName", &zoneName);
 
         if (MR::isEqualStringCase(zoneName, pZoneName)) {
             return i;

@@ -17,7 +17,7 @@ public:
     u32 _10;
 };
 
-class WalkerStateChase : public ActorStateBase<LiveActor> {
+class WalkerStateChase : public ActorStateBase< LiveActor > {
 public:
     WalkerStateChase(LiveActor*, TVec3f*, WalkerStateParam*, WalkerStateChaseParam*);
 

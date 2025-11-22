@@ -10,7 +10,7 @@ namespace NrvWalkerStateBlowDamage {
 } // namespace NrvWalkerStateBlowDamage
 
 WalkerStateBlowDamage::WalkerStateBlowDamage(LiveActor* pActor, TVec3f* pVec, WalkerStateBlowDamageParam* pBlowDamageParam)
-    : ActorStateBase<LiveActor>("吹き飛びダメージ状態") {
+    : ActorStateBase< LiveActor >("吹き飛びダメージ状態") {
     initNerve(&NrvWalkerStateBlowDamage::WalkerStateBlowDamageNrvBlow::sInstance);
 }
 WalkerStateBlowDamage::~WalkerStateBlowDamage() {}

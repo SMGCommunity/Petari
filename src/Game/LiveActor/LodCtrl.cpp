@@ -17,7 +17,7 @@ namespace {
         }
     }
 
-    template <typename T>
+    template < typename T >
     void LodFuntionCall(LodCtrl* pCtrl, void (*pFunc)(LiveActor*, T), T arg) NO_INLINE {
         pFunc(pCtrl->mActor, arg);
 
@@ -138,11 +138,11 @@ void LodCtrl::setDistanceToMiddleAndLow(f32 mid_dist, f32 low_dist) {
 }
 
 void LodCtrl::setClippingTypeSphereContainsModelBoundingBox(f32 bounds) {
-    LodFuntionCall<f32>(this, MR::setClippingTypeSphereContainsModelBoundingBox, bounds);
+    LodFuntionCall< f32 >(this, MR::setClippingTypeSphereContainsModelBoundingBox, bounds);
 }
 
 void LodCtrl::setFarClipping(f32 clip) {
-    LodFuntionCall<f32>(this, MR::setClippingFar, clip);
+    LodFuntionCall< f32 >(this, MR::setClippingFar, clip);
 }
 
 void LodCtrl::invalidateClipping() {

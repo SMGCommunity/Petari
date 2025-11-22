@@ -152,17 +152,17 @@ namespace NrvPTimerSwitch {
     INIT_NERVE(PTimerSwitchNrvOff);
 
     void PTimerSwitchNrvOn::execute(Spine* pSpine) const {
-        PTimerSwitch* actor = reinterpret_cast<PTimerSwitch*>(pSpine->mExecutor);
+        PTimerSwitch* actor = reinterpret_cast< PTimerSwitch* >(pSpine->mExecutor);
         actor->exeOn();
     }
 
     void PTimerSwitchNrvSwitchDown::execute(Spine* pSpine) const {
-        PTimerSwitch* actor = reinterpret_cast<PTimerSwitch*>(pSpine->mExecutor);
+        PTimerSwitch* actor = reinterpret_cast< PTimerSwitch* >(pSpine->mExecutor);
         actor->exeSwitchDown();
     }
 
     void PTimerSwitchNrvOff::execute(Spine* pSpine) const {
-        PTimerSwitch* actor = reinterpret_cast<PTimerSwitch*>(pSpine->mExecutor);
+        PTimerSwitch* actor = reinterpret_cast< PTimerSwitch* >(pSpine->mExecutor);
         actor->exeOff();
     }
 } // namespace NrvPTimerSwitch

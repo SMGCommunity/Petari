@@ -8,9 +8,9 @@ s32 GameDataConst::getPowerStarNumToOpenGalaxy(const char* pGalaxy) {
     JMapInfo info;
     info.attach(&GalaxyIDBCSV);
     JMapInfoIter element;
-    element = info.findElement<const char*>("name", pGalaxy, 0);
+    element = info.findElement< const char* >("name", pGalaxy, 0);
     u32 powerStarNum = 0;
-    element.getValue<u32>("PowerStarNum", &powerStarNum);
+    element.getValue< u32 >("PowerStarNum", &powerStarNum);
     return powerStarNum;
 }
 
@@ -52,8 +52,8 @@ u32 GameDataConst::getIncludedGrandGalaxyId(const char* pGalaxy) {
     JMapInfo info;
     info.attach(&GalaxyIDBCSV);
     JMapInfoIter element;
-    element = info.findElement<const char*>("name", pGalaxy, 0);
+    element = info.findElement< const char* >("name", pGalaxy, 0);
     u32 grandGalaxyNo = 0;
-    element.getValue<u32>("GrandGalaxyNo", &grandGalaxyNo);
+    element.getValue< u32 >("GrandGalaxyNo", &grandGalaxyNo);
     return grandGalaxyNo;
 }

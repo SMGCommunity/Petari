@@ -179,7 +179,7 @@ Mario::Mario(MarioActor* actor)
     _24 = 0;
     _28 = 0;
 
-    _458 = TriangleFilterDelegator<Mario>::allocateDelegator(this, &Mario::isIgnoreTriangle);
+    _458 = TriangleFilterDelegator< Mario >::allocateDelegator(this, &Mario::isIgnoreTriangle);
 
     _45C = new Triangle();
     _460 = new Triangle();

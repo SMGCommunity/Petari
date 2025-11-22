@@ -161,17 +161,17 @@ PowerStarHalo::~PowerStarHalo() {
 
 /* todo -- ordering of these functions is wrong */
 void NrvPowerStarHalo::HostTypeWaitScenarioOpeningEnd::execute(Spine* pSpine) const {
-    PowerStarHalo* halo = reinterpret_cast<PowerStarHalo*>(pSpine->mExecutor);
+    PowerStarHalo* halo = reinterpret_cast< PowerStarHalo* >(pSpine->mExecutor);
     halo->exeWaitScenarioOpeningEnd();
 }
 
 void NrvHalo::HostTypeDisappear::execute(Spine* pSpine) const {
-    Halo* halo = reinterpret_cast<Halo*>(pSpine->mExecutor);
+    Halo* halo = reinterpret_cast< Halo* >(pSpine->mExecutor);
     halo->exeDisappear();
 }
 
 void NrvHalo::HostTypeAppear::execute(Spine* pSpine) const {
-    Halo* halo = reinterpret_cast<Halo*>(pSpine->mExecutor);
+    Halo* halo = reinterpret_cast< Halo* >(pSpine->mExecutor);
     if (halo->isDistanceDisappear()) {
         MR::startAllAnim(halo, "Disappear");
         halo->setNerve(&NrvHalo::HostTypeDisappear::sInstance);

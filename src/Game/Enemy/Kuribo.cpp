@@ -89,7 +89,7 @@ void Kuribo::init(const JMapInfoIter& rIter) {
         MR::offCalcGravity(this);
         TVec3f v8;
         MR::getUpVecFromQuat(&v8, _A8);
-        mGravity.set<f32>(v8);
+        mGravity.set< f32 >(v8);
     }
 
     mScaleController = new AnimScaleController(nullptr);
@@ -431,8 +431,8 @@ void Kuribo::onNoGravitySupport() {
 }
 
 void Kuribo::setUp(const TVec3f& a1, const TQuat4f& a2, const TVec3f& a3) {
-    mPosition.set<f32>(a1);
-    mVelocity.set<f32>(a3);
+    mPosition.set< f32 >(a1);
+    mVelocity.set< f32 >(a3);
     _A8.x = a2.x;
     _A8.y = a2.y;
     _A8.z = a2.z;

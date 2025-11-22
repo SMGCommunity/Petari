@@ -63,7 +63,7 @@ namespace NrvCoinBox {
     INIT_NERVE(CoinBoxNrvHit);
 
     void CoinBoxNrvHit::execute(Spine* pSpine) const {
-        CoinBox* box = reinterpret_cast<CoinBox*>(pSpine->mExecutor);
+        CoinBox* box = reinterpret_cast< CoinBox* >(pSpine->mExecutor);
         box->exeHit();
     }
 

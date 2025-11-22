@@ -5,7 +5,7 @@
 namespace nw4r {
     namespace lyt {
         void Group::AppendPane(Pane* pPane) {
-            if (detail::PaneLink* pPaneLink = Layout::NewObj<detail::PaneLink>()) {
+            if (detail::PaneLink* pPaneLink = Layout::NewObj< detail::PaneLink >()) {
                 pPaneLink->mTarget = pPane;
                 mPaneLinkList.PushBack(pPaneLink);
             }
@@ -20,7 +20,7 @@ namespace nw4r {
             strncpy(mName, pResGroup->name, sizeof(mName) - 1);
             mName[sizeof(mName) - 1] = '\0';
 
-            const char* const paneNameBase = detail::ConvertOffsToPtr<char>(pResGroup, sizeof(res::Group));
+            const char* const paneNameBase = detail::ConvertOffsToPtr< char >(pResGroup, sizeof(res::Group));
 
             for (int i = 0; i < pResGroup->paneNum; ++i) {
                 if (Pane* pFindPane = pRootPane->FindPaneByName(paneNameBase + i * 16, true)) {

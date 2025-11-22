@@ -46,7 +46,7 @@ void AstroDomeCameraController::init(const JMapInfoIter& rIter) {
 void AstroDomeCameraController::appear() {
     LiveActor::appear();
     TVec3f pCamPos = MR::getCamPos();
-    _8C.set<f32>(pCamPos);
+    _8C.set< f32 >(pCamPos);
     _98.reset(_8C);
     _BC.reset(_108);
     _E0.set(cDefaultUp);
@@ -97,10 +97,10 @@ void AstroDomeCameraController::exeGalaxySelectStart() {
     TVec3f stack;
     if (MR::isFirstStep(this)) {
         calcZoomOutPos(&stack);
-        _98._0.set<f32>(_98._18);
-        _98._C.set<f32>(stack);
-        _BC._0.set<f32>(_BC._18);
-        _BC._C.set<f32>(_108);
+        _98._0.set< f32 >(_98._18);
+        _98._C.set< f32 >(stack);
+        _BC._0.set< f32 >(_BC._18);
+        _BC._C.set< f32 >(_108);
     }
     _104 = MR::getEaseInOutValue(MR::calcNerveRate(this, STF), 0.0, 1.0, 1.0);
     MR::setNerveAtStep(this, &NrvAstroDomeCameraController::AstroDomeCameraControllerNrvGalaxySelect::sInstance, STF);

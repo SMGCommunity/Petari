@@ -39,7 +39,7 @@ void UFOKinoko::init(const JMapInfoIter& rIter) {
     initialize(rIter, info);
     MapObjActorUtil::startRotator(this);
     if (MR::isDemoCast(this, nullptr)) {
-        MR::FunctorV0M<UFOKinoko*, void (UFOKinoko::*)()> functor = MR::Functor<UFOKinoko>(this, &UFOKinoko::startMove);
+        MR::FunctorV0M< UFOKinoko*, void (UFOKinoko::*)() > functor = MR::Functor< UFOKinoko >(this, &UFOKinoko::startMove);
         MR::tryRegisterDemoActionFunctor(this, functor, "ＵＦＯキノコ登場");
     }
 }
@@ -50,7 +50,7 @@ void UFOKinoko::control() {
 }
 
 void UFOKinoko::initCaseUseSwitchB(const MapObjActorInitInfo&) {
-    MR::FunctorV0M<UFOKinoko*, void (UFOKinoko::*)()> functor = MR::Functor<UFOKinoko>(this, &UFOKinoko::startMove);
+    MR::FunctorV0M< UFOKinoko*, void (UFOKinoko::*)() > functor = MR::Functor< UFOKinoko >(this, &UFOKinoko::startMove);
     MR::listenStageSwitchOnB(this, functor);
 }
 
@@ -98,11 +98,11 @@ namespace NrvUFOKinoko {
     void HostTypeWait::execute(Spine* pSpine) const {
     }
     void HostTypeMove::execute(Spine* pSpine) const {
-        UFOKinoko* ufo = reinterpret_cast<UFOKinoko*>(pSpine->mExecutor);
+        UFOKinoko* ufo = reinterpret_cast< UFOKinoko* >(pSpine->mExecutor);
         ufo->exeMove();
     }
     void HostTypeStop::execute(Spine* pSpine) const {
-        UFOKinoko* ufo = reinterpret_cast<UFOKinoko*>(pSpine->mExecutor);
+        UFOKinoko* ufo = reinterpret_cast< UFOKinoko* >(pSpine->mExecutor);
         ufo->exeStop();
     }
 }; // namespace NrvUFOKinoko

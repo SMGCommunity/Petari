@@ -44,59 +44,59 @@ public:
     void       exeNext();
     void       exeTerm();
 
-    MR::AssignableArray<TalkMessageCtrl*> mMsgControls;   // 0x20
-    TalkPeekZ*                            mPeekZ;         // 0x2C
-    TalkBalloonHolder*                    mBalloonHolder; // 0x30
-    TalkStateHolder*                      mStateHolder;   // 0x34
-    TalkMessageCtrl*                      mMsgCtrl;       // 0x38
-    u32                                   _3C;
-    u32                                   _40;
-    bool                                  _44;
-    bool                                  _45;
-    bool                                  _46;
-    bool                                  _47;
-    TalkState*                            mTalkState; // 0x48
-    bool                                  _4C;
-    bool                                  _4D;
-    bool                                  _4E;
-    bool                                  mIsInvalidClipping; // 0x4F
-    bool                                  _50;
-    u32                                   mDemoType; // 0x54
-    bool                                  _58;
-    bool                                  _59;
-    bool                                  _5A;
-    bool                                  _5B;
-    TalkMessageInfo                       mMessageInfo;                         // 0x5C
-    ActorCameraInfo*                      mCameraInfo;                          // 0x68
-    LiveActor*                            mHostActor;                           // 0x6C
-    bool                                  mIsKinopioExplorerRescued;            // 0x70
-    bool                                  mIsKinopioExplorerOrganize;           // 0x71
-    bool                                  mIsKinopioExplorerTalkGetGrandStar2;  // 0x72
-    bool                                  mIsKinopioExplorerTrickComet;         // 0x73
-    bool                                  mIsKinopioExplorerTalkGetGrandStar3;  // 0x74
-    bool                                  mIsKinopioExplorerStartMessenger;     // 0x75
-    bool                                  mIsKinopioExplorerTalkGetGrandStar4;  // 0x76
-    bool                                  mIsKinopioExplorerTalkGetGrandStar5;  // 0x77
-    bool                                  mIsKinopioExplorerTalkGetGrandStar6;  // 0x78
-    bool                                  mIsKinopioExplorerTalkGoFinalBattle;  // 0x79
-    bool                                  mIsEndLuigiHideAndSeek;               // 0x7A
-    bool                                  mIsKinopioExplorerCompleteTrickComet; // 0x7B
-    bool                                  _7C;
-    bool                                  _7D;
-    bool                                  mHasOneGreenStar;     // 0x7E
-    bool                                  mHasTwoGreenStars;    // 0x7F
-    bool                                  mHasThreeGreenStars;  // 0x80
-    bool                                  mIsUnlockedRedDriver; // 0x81
-    bool                                  _82;
-    bool                                  mIsActiveLuigiHideAndSeek;          // 0x83
-    bool                                  mIsGalaxyPurpleCometLaunch;         // 0x84
-    bool                                  misRosettaTalkTorchLecture;         // 0x85
-    bool                                  mIsRosettaTalkTrickComet;           // 0x86
-    bool                                  mIsRosettaTalkKoopa;                // 0x87
-    bool                                  mIsRosettaTalkCountDownStart;       // 0x88
-    bool                                  mIsRosettaTalkAstroDemoRecover;     // 0x89
-    bool                                  mIsRosettaTalkTorchProgress;        // 0x8A
-    bool                                  mIsOnGameEventFlagViewNormalEnding; // 0x8B
+    MR::AssignableArray< TalkMessageCtrl* > mMsgControls;   // 0x20
+    TalkPeekZ*                              mPeekZ;         // 0x2C
+    TalkBalloonHolder*                      mBalloonHolder; // 0x30
+    TalkStateHolder*                        mStateHolder;   // 0x34
+    TalkMessageCtrl*                        mMsgCtrl;       // 0x38
+    u32                                     _3C;
+    u32                                     _40;
+    bool                                    _44;
+    bool                                    _45;
+    bool                                    _46;
+    bool                                    _47;
+    TalkState*                              mTalkState; // 0x48
+    bool                                    _4C;
+    bool                                    _4D;
+    bool                                    _4E;
+    bool                                    mIsInvalidClipping; // 0x4F
+    bool                                    _50;
+    u32                                     mDemoType; // 0x54
+    bool                                    _58;
+    bool                                    _59;
+    bool                                    _5A;
+    bool                                    _5B;
+    TalkMessageInfo                         mMessageInfo;                         // 0x5C
+    ActorCameraInfo*                        mCameraInfo;                          // 0x68
+    LiveActor*                              mHostActor;                           // 0x6C
+    bool                                    mIsKinopioExplorerRescued;            // 0x70
+    bool                                    mIsKinopioExplorerOrganize;           // 0x71
+    bool                                    mIsKinopioExplorerTalkGetGrandStar2;  // 0x72
+    bool                                    mIsKinopioExplorerTrickComet;         // 0x73
+    bool                                    mIsKinopioExplorerTalkGetGrandStar3;  // 0x74
+    bool                                    mIsKinopioExplorerStartMessenger;     // 0x75
+    bool                                    mIsKinopioExplorerTalkGetGrandStar4;  // 0x76
+    bool                                    mIsKinopioExplorerTalkGetGrandStar5;  // 0x77
+    bool                                    mIsKinopioExplorerTalkGetGrandStar6;  // 0x78
+    bool                                    mIsKinopioExplorerTalkGoFinalBattle;  // 0x79
+    bool                                    mIsEndLuigiHideAndSeek;               // 0x7A
+    bool                                    mIsKinopioExplorerCompleteTrickComet; // 0x7B
+    bool                                    _7C;
+    bool                                    _7D;
+    bool                                    mHasOneGreenStar;     // 0x7E
+    bool                                    mHasTwoGreenStars;    // 0x7F
+    bool                                    mHasThreeGreenStars;  // 0x80
+    bool                                    mIsUnlockedRedDriver; // 0x81
+    bool                                    _82;
+    bool                                    mIsActiveLuigiHideAndSeek;          // 0x83
+    bool                                    mIsGalaxyPurpleCometLaunch;         // 0x84
+    bool                                    misRosettaTalkTorchLecture;         // 0x85
+    bool                                    mIsRosettaTalkTrickComet;           // 0x86
+    bool                                    mIsRosettaTalkKoopa;                // 0x87
+    bool                                    mIsRosettaTalkCountDownStart;       // 0x88
+    bool                                    mIsRosettaTalkAstroDemoRecover;     // 0x89
+    bool                                    mIsRosettaTalkTorchProgress;        // 0x8A
+    bool                                    mIsOnGameEventFlagViewNormalEnding; // 0x8B
 };
 
 namespace MR {

@@ -5,7 +5,7 @@
 
 class AnimScaleController;
 
-class WalkerStateBindStarPointer : public ActorStateBase<LiveActor> {
+class WalkerStateBindStarPointer : public ActorStateBase< LiveActor > {
 public:
     WalkerStateBindStarPointer(LiveActor*, AnimScaleController*);
 

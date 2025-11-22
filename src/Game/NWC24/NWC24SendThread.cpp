@@ -88,7 +88,7 @@ bool NWC24SendThread::isDone(NWC24Err* pErr, u32* pSize) {
 void* NWC24SendThread::threadProc(void*) {
     while (true) {
         MsgSendStatus* pMsgSendStatus = nullptr;
-        OSReceiveMessage(&mMessageQueue, reinterpret_cast<void**>(&pMsgSendStatus), OS_MESSAGE_BLOCK);
+        OSReceiveMessage(&mMessageQueue, reinterpret_cast< void** >(&pMsgSendStatus), OS_MESSAGE_BLOCK);
 
         pMsgSendStatus->mSentErr = sendMessage(pMsgSendStatus, &pMsgSendStatus->mSentSize);
         pMsgSendStatus->_18 = true;

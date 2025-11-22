@@ -27,12 +27,12 @@ void AstroCountDownPlate::init(const JMapInfoIter& rIter) {
     MR::invalidateClipping(this);
 
     if (MR::tryRegisterDemoCast(this, cStartCountDownDemoName, rIter)) {
-        MR::FunctorV0M<AstroCountDownPlate*, void (AstroCountDownPlate::*)()> startDemoFunc = MR::Functor<AstroCountDownPlate>(this, &AstroCountDownPlate::startDemoStartCountDown);
+        MR::FunctorV0M< AstroCountDownPlate*, void (AstroCountDownPlate::*)() > startDemoFunc = MR::Functor< AstroCountDownPlate >(this, &AstroCountDownPlate::startDemoStartCountDown);
         MR::tryRegisterDemoActionFunctorDirect(this, startDemoFunc, cStartCountDownDemoName, nullptr);
     }
 
     if (MR::tryRegisterDemoCast(this, cLastBattleDemoName, rIter)) {
-        MR::FunctorV0M<AstroCountDownPlate*, void (AstroCountDownPlate::*)()> lastBattleFunc = MR::Functor<AstroCountDownPlate>(this, &AstroCountDownPlate::startDemoLastBattle);
+        MR::FunctorV0M< AstroCountDownPlate*, void (AstroCountDownPlate::*)() > lastBattleFunc = MR::Functor< AstroCountDownPlate >(this, &AstroCountDownPlate::startDemoLastBattle);
         MR::tryRegisterDemoActionFunctorDirect(this, lastBattleFunc, cLastBattleDemoName, nullptr);
     }
 

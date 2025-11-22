@@ -18,3 +18,5 @@ SpacesInParentheses: false
 SpacesInAngles: false
 AlignConsecutiveDeclarations: true
 AlignTrailingComments: true
+Standard: Cpp03
+SpacesInAngles: true

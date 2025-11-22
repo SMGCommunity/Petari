@@ -135,7 +135,7 @@ namespace NrvCrystalSwitch {
     INIT_NERVE(CrystalSwitchNrvSwitchUp);
 
     void CrystalSwitchNrvSwitchUp::execute(Spine* pSpine) const {
-        CrystalSwitch* crystal = reinterpret_cast<CrystalSwitch*>(pSpine->mExecutor);
+        CrystalSwitch* crystal = reinterpret_cast< CrystalSwitch* >(pSpine->mExecutor);
 
         if (MR::isFirstStep(crystal)) {
             MR::startBpk(crystal, "Off");
@@ -145,17 +145,17 @@ namespace NrvCrystalSwitch {
     }
 
     void CrystalSwitchNrvOn::execute(Spine* pSpine) const {
-        CrystalSwitch* crystal = reinterpret_cast<CrystalSwitch*>(pSpine->mExecutor);
+        CrystalSwitch* crystal = reinterpret_cast< CrystalSwitch* >(pSpine->mExecutor);
         crystal->exeOn();
     }
 
     void CrystalSwitchNrvSwitchDown::execute(Spine* pSpine) const {
-        CrystalSwitch* crystal = reinterpret_cast<CrystalSwitch*>(pSpine->mExecutor);
+        CrystalSwitch* crystal = reinterpret_cast< CrystalSwitch* >(pSpine->mExecutor);
         crystal->exeSwitchDown();
     }
 
     void CrystalSwitchNrvOff::execute(Spine* pSpine) const {
-        CrystalSwitch* crystal = reinterpret_cast<CrystalSwitch*>(pSpine->mExecutor);
+        CrystalSwitch* crystal = reinterpret_cast< CrystalSwitch* >(pSpine->mExecutor);
         crystal->exeOff();
     }
 }; // namespace NrvCrystalSwitch

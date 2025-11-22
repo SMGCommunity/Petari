@@ -310,12 +310,12 @@ namespace NrvWaterPressureBullet {
     INIT_NERVE(WaterPressureBulletNrvSpinKill);
 
     void WaterPressureBulletNrvSpinKill::execute(Spine* pSpine) const {
-        WaterPressureBullet* bullet = reinterpret_cast<WaterPressureBullet*>(pSpine->mExecutor);
+        WaterPressureBullet* bullet = reinterpret_cast< WaterPressureBullet* >(pSpine->mExecutor);
         bullet->exeSpinKill();
     }
 
     void WaterPressureBulletNrvFly::execute(Spine* pSpine) const {
-        WaterPressureBullet* bullet = reinterpret_cast<WaterPressureBullet*>(pSpine->mExecutor);
+        WaterPressureBullet* bullet = reinterpret_cast< WaterPressureBullet* >(pSpine->mExecutor);
         bullet->exeFly();
     }
 }; // namespace NrvWaterPressureBullet

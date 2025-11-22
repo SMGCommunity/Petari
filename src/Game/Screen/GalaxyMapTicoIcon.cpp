@@ -30,7 +30,7 @@ void GalaxyMapTicoIcon::appear() {
 }
 
 void GalaxyMapTicoIcon::syncStatus() {
-    f32 starPieceRate = static_cast<f32>(MR::getStarPieceNumGivingToTicoGalaxy(mExclamationGalaxyIndex)) / MR::getStarPieceNumMaxGivingToTicoGalaxy(mExclamationGalaxyIndex);
+    f32 starPieceRate = static_cast< f32 >(MR::getStarPieceNumGivingToTicoGalaxy(mExclamationGalaxyIndex)) / MR::getStarPieceNumMaxGivingToTicoGalaxy(mExclamationGalaxyIndex);
 
     if (!MR::isAppearGalaxy(mGalaxyName) || 1.0f <= starPieceRate) {
         MR::hideLayout(this);

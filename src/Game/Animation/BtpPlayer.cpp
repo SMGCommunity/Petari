@@ -9,10 +9,10 @@ BtpPlayer::BtpPlayer(const ResourceHolder* pResourceHolder, J3DModelData* pModel
 
 void BtpPlayer::attach(J3DAnmBase* pAnmRes, J3DModelData* pModelData) {
     // TODO: Should be `static_cast` because `J3DAnmTexPattern` inherits J3DAnmBase`.
-    pModelData->mMaterialTable.entryTexNoAnimator(reinterpret_cast<J3DAnmTexPattern*>(pAnmRes));
+    pModelData->mMaterialTable.entryTexNoAnimator(reinterpret_cast< J3DAnmTexPattern* >(pAnmRes));
 }
 
 void BtpPlayer::detach(J3DAnmBase* pAnmRes, J3DModelData* pModelData) {
     // TODO: Should be `static_cast` because `J3DAnmTexPattern` inherits J3DAnmBase`.
-    pModelData->mMaterialTable.removeTexNoAnimator(reinterpret_cast<J3DAnmTexPattern*>(pAnmRes));
+    pModelData->mMaterialTable.removeTexNoAnimator(reinterpret_cast< J3DAnmTexPattern* >(pAnmRes));
 }

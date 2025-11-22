@@ -79,7 +79,7 @@ void TripodBossGuardWall::init(const JMapInfoIter& rIter) {
     mCameraTargetMtx = new CameraTargetMtx("カメラターゲットダミー");
 
     if (MR::useStageSwitchReadAppear(this, rIter)) {
-        MR::FunctorV0M<TripodBossGuardWall*, void (TripodBossGuardWall::*)()> validateFunc = MR::Functor_Inline<TripodBossGuardWall>(this, &TripodBossGuardWall::requestStart);
+        MR::FunctorV0M< TripodBossGuardWall*, void (TripodBossGuardWall::*)() > validateFunc = MR::Functor_Inline< TripodBossGuardWall >(this, &TripodBossGuardWall::requestStart);
         MR::listenStageSwitchOnAppear(this, validateFunc);
     }
 
@@ -184,7 +184,7 @@ void TripodBossGuardWall::updateMatrix() {
     f32 z = mBaseMtx.mMtx[2][3];
     f32 y = mBaseMtx.mMtx[1][3];
     f32 x = mBaseMtx.mMtx[0][3];
-    mPosition.set<f32>(x, y, z);
+    mPosition.set< f32 >(x, y, z);
 }
 
 void TripodBossGuardWall::updateCameraTarget() {
@@ -198,7 +198,7 @@ void TripodBossGuardWall::updateCameraTarget() {
     f32 z = mBaseMtx.mMtx[2][1];
     f32 y = mBaseMtx.mMtx[1][1];
     f32 x = mBaseMtx.mMtx[0][1];
-    up.set<f32>(x, y, z);
+    up.set< f32 >(x, y, z);
     f32 v9 = up.dot(front);
     JMAVECScaleAdd(&up, &front, &front, -v9);
 
@@ -206,7 +206,7 @@ void TripodBossGuardWall::updateCameraTarget() {
         f32 z = mBaseMtx.mMtx[2][2];
         f32 y = mBaseMtx.mMtx[1][2];
         f32 x = mBaseMtx.mMtx[0][2];
-        front.set<f32>(x, y, z);
+        front.set< f32 >(x, y, z);
     } else {
         MR::normalize(&front);
     }

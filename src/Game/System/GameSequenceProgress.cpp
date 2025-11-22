@@ -150,7 +150,7 @@ void GameSequenceProgress::requestChangeScene(const char* pParam1) {
 
     updateGameDataBeforeChangeScene();
 
-    pSceneController = SingletonHolder<GameSystem>::get()->mSceneController;
+    pSceneController = SingletonHolder< GameSystem >::get()->mSceneController;
     pSceneController->_4C.setScene(pParam1);
     pSceneController->requestChangeScene();
 

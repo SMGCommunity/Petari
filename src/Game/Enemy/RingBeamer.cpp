@@ -34,7 +34,7 @@ void RingBeamer::init(const JMapInfoIter& rIter) {
     MR::useStageSwitchReadA(this, rIter);
     if (MR::useStageSwitchReadB(this, rIter)) {
         MR::listenStageSwitchOffB(this,
-                                  MR::FunctorV0M<RingBeamer*, void (RingBeamer::*)(void)>(this, &RingBeamer::syncSwitchOffB));
+                                  MR::FunctorV0M< RingBeamer*, void (RingBeamer::*)(void) >(this, &RingBeamer::syncSwitchOffB));
     }
     MR::joinToGroupArray(this, rIter, nullptr, 32);
     // initializes to 5 long, but only uses 3?

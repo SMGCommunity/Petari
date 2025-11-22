@@ -331,22 +331,22 @@ namespace NrvRailMoveObj {
     INIT_NERVE(HostTypeDone);
 
     void HostTypeDone::execute(Spine* pSpine) const {
-        RailMoveObj* obj = reinterpret_cast<RailMoveObj*>(pSpine->mExecutor);
+        RailMoveObj* obj = reinterpret_cast< RailMoveObj* >(pSpine->mExecutor);
         obj->exeWait();
     }
 
     void HostTypeMove::execute(Spine* pSpine) const {
-        RailMoveObj* obj = reinterpret_cast<RailMoveObj*>(pSpine->mExecutor);
+        RailMoveObj* obj = reinterpret_cast< RailMoveObj* >(pSpine->mExecutor);
         obj->exeMove();
     }
 
     void HostTypeWaitForPlayerOn::execute(Spine* pSpine) const {
-        RailMoveObj* obj = reinterpret_cast<RailMoveObj*>(pSpine->mExecutor);
+        RailMoveObj* obj = reinterpret_cast< RailMoveObj* >(pSpine->mExecutor);
         obj->exeWait();
     }
 
     void HostTypeWait::execute(Spine* pSpine) const {
-        RailMoveObj* obj = reinterpret_cast<RailMoveObj*>(pSpine->mExecutor);
+        RailMoveObj* obj = reinterpret_cast< RailMoveObj* >(pSpine->mExecutor);
         obj->exeWait();
     }
 }; // namespace NrvRailMoveObj

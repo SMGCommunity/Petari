@@ -18,7 +18,7 @@ namespace MR {
             return false;
         }
 
-        SunshadeMapHolder* holder = MR::getSceneObj<SunshadeMapHolder>(SceneObj_SunshadeMapHolder);
+        SunshadeMapHolder* holder = MR::getSceneObj< SunshadeMapHolder >(SceneObj_SunshadeMapHolder);
         TVec3f             pos;
         pos.setPS(holder->_C);
         return Collision::checkStrikeLineToSunshade(rPos, pos * a2, 0, nullptr, nullptr) != false;

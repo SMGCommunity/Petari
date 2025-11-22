@@ -231,17 +231,17 @@ namespace NrvKeySwitch {
     INIT_NERVE(KeySwitchNrvWait);
 
     void KeySwitchNrvWait::execute(Spine* pSpine) const {
-        KeySwitch* key = reinterpret_cast<KeySwitch*>(pSpine->mExecutor);
+        KeySwitch* key = reinterpret_cast< KeySwitch* >(pSpine->mExecutor);
         key->exeWait();
     }
 
     void KeySwitchNrvAppear::execute(Spine* pSpine) const {
-        KeySwitch* key = reinterpret_cast<KeySwitch*>(pSpine->mExecutor);
+        KeySwitch* key = reinterpret_cast< KeySwitch* >(pSpine->mExecutor);
         key->exeAppear();
     }
 
     void KeySwitchNrvDemoStart::execute(Spine* pSpine) const {
-        KeySwitch* key = reinterpret_cast<KeySwitch*>(pSpine->mExecutor);
+        KeySwitch* key = reinterpret_cast< KeySwitch* >(pSpine->mExecutor);
         key->exeDemoStart();
     }
 }; // namespace NrvKeySwitch

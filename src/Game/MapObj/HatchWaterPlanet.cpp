@@ -69,12 +69,12 @@ namespace NrvHatchWaterPlanet {
     INIT_NERVE(HatchWaterPlanetNrvWaitAfterOpen);
 
     void HatchWaterPlanetNrvWaitAfterOpen::execute(Spine* pSpine) const {
-        HatchWaterPlanet* planet = reinterpret_cast<HatchWaterPlanet*>(pSpine->mExecutor);
+        HatchWaterPlanet* planet = reinterpret_cast< HatchWaterPlanet* >(pSpine->mExecutor);
         planet->exeWaitAfterOpen();
     }
 
     void HatchWaterPlanetNrvOpen::execute(Spine* pSpine) const {
-        HatchWaterPlanet* planet = reinterpret_cast<HatchWaterPlanet*>(pSpine->mExecutor);
+        HatchWaterPlanet* planet = reinterpret_cast< HatchWaterPlanet* >(pSpine->mExecutor);
         planet->exeOpen();
     }
 

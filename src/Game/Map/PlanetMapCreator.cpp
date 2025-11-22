@@ -13,7 +13,7 @@ namespace {
         {"ChoConveyorPlanetB", /* createNameObj<RailPlanetMap>, */},
         {
             "ChoConveyorPlanetD",
-            createNameObj<RotateMoveObj>,
+            createNameObj< RotateMoveObj >,
         },
         {"DinoPackunBattlePlanet", /* createNameObj<FurPlanetMap>, */},
         {"DarkHopperPlanetA", /* createNameObj<SimpleClipPartsObj>, */},
@@ -25,16 +25,16 @@ namespace {
         {"FlagDiscPlanetC", /* createNameObj<PlanetMapFarClippable>, */},
         {
             "FlagDiscPlanetD",
-            createNameObj<RotateMoveObj>,
+            createNameObj< RotateMoveObj >,
         },
         {"FlagDiscPlanetE", /* createNameObj<PlanetMapFarClippable>, */},
         {
             "HatchWaterPlanet",
-            createNameObj<HatchWaterPlanet>,
+            createNameObj< HatchWaterPlanet >,
         },
         {
             "HeavensDoorInsidePlanet",
-            createNameObj<SimpleMapObj>,
+            createNameObj< SimpleMapObj >,
         },
         {"HoneyQueenPlanet", /* createNameObj<FurPlanetMap>, */},
         {"LavaJamboSunPlanet", /* createNameObj<LavaJamboSunPlanet>, */},
@@ -42,7 +42,7 @@ namespace {
         {"LavaDomedPlanet", /* createNameObj<LavaSunPlanet>, */},
         {
             "MarblePlanet",
-            createNameObj<MarblePlanet>,
+            createNameObj< MarblePlanet >,
         },
         {"PeachCastleGardenPlanet", /* createNameObj<PeachCastleGardenPlanet>, */},
         {"SandCapsuleInsidePlanet", /* createNameObj<SandCapsuleInsidePlanet>, */},
@@ -58,14 +58,14 @@ namespace {
         {"Quicksand2DPlanet", /* createNameObj<RailPlanetMap>, */},
         {
             "ReverseGravityRoomPlanet",
-            createNameObj<ReverseGravityRoomPlanet>,
+            createNameObj< ReverseGravityRoomPlanet >,
         },
         {"SandStreamHighTowerPlanet", /* createNameObj<RailPlanetMap>, */},
         {"SandStreamJointPlanetA", /* createNameObj<RailPlanetMap>, */},
         {"SandStreamJointPlanetB", /* createNameObj<RailPlanetMap>, */},
         {
             "StarDustStartPlanet",
-            createNameObj<RotateMoveObj>,
+            createNameObj< RotateMoveObj >,
         },
         {"WormEatenPlanet", /* createNameObj<WormEatenPlanet>, */},
     };
@@ -295,21 +295,21 @@ bool PlanetMapCreator::isScenarioForceLow(const PlanetMapData* pData) const {
 }
 
 void PlanetMapCreatorFunction::makeArchiveList(NameObjArchiveListCollector* pArchiveList, const JMapInfoIter& rIter, const char* pName) {
-    MR::getSceneObj<PlanetMapCreator>(SceneObj_PlanetMapCreator)->makeArchiveListPlanet(pArchiveList, rIter, pName);
+    MR::getSceneObj< PlanetMapCreator >(SceneObj_PlanetMapCreator)->makeArchiveListPlanet(pArchiveList, rIter, pName);
 }
 
 // PlanetMapCreatorFunction::getPlanetMapCreator
 
 bool PlanetMapCreatorFunction::isLoadArchiveAfterScenarioSelected(const char* pArchive) {
-    bool isExistTableData = MR::getSceneObj<PlanetMapCreator>(SceneObj_PlanetMapCreator)->getTableData(pArchive);
+    bool isExistTableData = MR::getSceneObj< PlanetMapCreator >(SceneObj_PlanetMapCreator)->getTableData(pArchive);
 
     if (!isExistTableData) {
         return false;
     }
 
-    return isDataForceLow(MR::getSceneObj<PlanetMapCreator>(SceneObj_PlanetMapCreator)->getTableData(pArchive));
+    return isDataForceLow(MR::getSceneObj< PlanetMapCreator >(SceneObj_PlanetMapCreator)->getTableData(pArchive));
 }
 
 bool PlanetMapCreatorFunction::isRegisteredObj(const char* pArchive) {
-    return MR::getSceneObj<PlanetMapCreator>(SceneObj_PlanetMapCreator)->getTableData(pArchive);
+    return MR::getSceneObj< PlanetMapCreator >(SceneObj_PlanetMapCreator)->getTableData(pArchive);
 }

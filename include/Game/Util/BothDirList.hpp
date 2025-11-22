@@ -32,7 +32,7 @@ namespace MR {
         /* 0x8 */ u32             mCount;
     };
 
-    template <class T>
+    template < class T >
     class BothDirLink : public BothDirPtrLink {
     public:
         BothDirLink(T* pValue)
@@ -43,7 +43,7 @@ namespace MR {
         }
     };
 
-    template <class T>
+    template < class T >
     class BothDirList : public BothDirPtrList {
     public:
         BothDirList(bool param1)

@@ -224,7 +224,7 @@ namespace MR {
     }
 
     void calcVecToTargetPosH(TVec3f* pToTargetHVec, const LiveActor* pActor, const TVec3f& a3, const TVec3f* a4) {
-        pToTargetHVec->set<f32>(a3);
+        pToTargetHVec->set< f32 >(a3);
 
         TVec3f* vec = pToTargetHVec;
         JMathInlineVEC::PSVECSubtract((Vec*)vec, (Vec*)&pActor->mPosition, (Vec*)vec);
@@ -552,7 +552,7 @@ namespace MR {
         } else {
             q1.setRotate(yDir, -pActor->mGravity);
         }
-        PSQUATMultiply(reinterpret_cast<const Quaternion*>(&q1), reinterpret_cast<const Quaternion*>(&pQuatSrc), reinterpret_cast<Quaternion*>(pQuatDest));
+        PSQUATMultiply(reinterpret_cast< const Quaternion* >(&q1), reinterpret_cast< const Quaternion* >(&pQuatSrc), reinterpret_cast< Quaternion* >(pQuatDest));
         pQuatDest->normalize();
     }
 
@@ -581,7 +581,7 @@ namespace MR {
     }
 
     void resetPosition(LiveActor* pActor, const TVec3f& rPosition) {
-        pActor->mPosition.set<f32>(rPosition);
+        pActor->mPosition.set< f32 >(rPosition);
 
         MR::resetPosition(pActor);
     }
@@ -591,21 +591,21 @@ namespace MR {
         TVec3f rot(0.0f, 0.0f, 0.0f);
         MR::findNamePos(a2, &pos, &rot);
 
-        pActor->mPosition.set<f32>(pos);
-        pActor->mRotation.set<f32>(rot);
+        pActor->mPosition.set< f32 >(pos);
+        pActor->mRotation.set< f32 >(rot);
 
         MR::resetPosition(pActor);
     }
 
     void calcVelocityMoveToDirectionHorizon(TVec3f* a1, const LiveActor* pActor, const TVec3f& a3, f32 a4) {
-        TVec3f* pGravity = const_cast<TVec3f*>(&pActor->mGravity);
+        TVec3f* pGravity = const_cast< TVec3f* >(&pActor->mGravity);
         a1->rejection(a3, *pGravity);
         normalizeOrZero(a1);
         a1->scale(a4);
     }
 
     void calcVelocityMoveToDirectionHorizon(TVec3f* a1, const LiveActor* pActor, const TVec3f& a3, f32 a4, f32 a5, f32 a6, f32 a7) {
-        TVec3f* pGravity = const_cast<TVec3f*>(&pActor->mGravity);
+        TVec3f* pGravity = const_cast< TVec3f* >(&pActor->mGravity);
         a1->rejection(a3, *pGravity);
         float stack_8;
         separateScalarAndDirection(&stack_8, a1, *a1);

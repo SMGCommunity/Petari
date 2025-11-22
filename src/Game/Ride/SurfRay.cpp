@@ -522,7 +522,7 @@ bool SurfRay::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver)
 void SurfRay::resetAllInfo() {
     TRot3f rotMtx;
     rotMtx.identity();
-    MR::makeMtxRotate(reinterpret_cast<MtxPtr>(&rotMtx), mRotation);
+    MR::makeMtxRotate(reinterpret_cast< MtxPtr >(&rotMtx), mRotation);
 
     rotMtx.getXDirInline(mSide);
     rotMtx.getYDirInline(mUp);

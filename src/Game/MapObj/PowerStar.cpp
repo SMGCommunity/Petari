@@ -150,7 +150,7 @@ void PowerStar::appear() {
 }
 
 void PowerStar::makeActorAppeared() {
-    _AC.set<f32>(mPosition);
+    _AC.set< f32 >(mPosition);
     initPosture();
     LiveActor::makeActorAppeared();
 }
@@ -174,10 +174,10 @@ void PowerStar::setDemoAppearPos(const TVec3f& rVec) {
 
     if (isGroupExist) {
         mCameraActor = getNearestAppearPoint(rVec);
-        mAppearPosition.set<f32>(mCameraActor->mPosition);
+        mAppearPosition.set< f32 >(mCameraActor->mPosition);
     }
 
-    mPosition.set<f32>(rVec);
+    mPosition.set< f32 >(rVec);
 }
 
 bool PowerStar::isEndAppearDemo() const {
@@ -365,8 +365,8 @@ void PowerStar::initMapToolInfo(const JMapInfoIter& rIter) {
     MR::getJMapInfoArg1NoInit(rIter, &_125);
     MR::getJMapInfoArg2NoInit(rIter, &_126);
     MR::getJMapInfoArg4NoInit(rIter, &_127);
-    mAppearPosition.set<f32>(mPosition);
-    _A0.set<f32>(mPosition);
+    mAppearPosition.set< f32 >(mPosition);
+    _A0.set< f32 >(mPosition);
     MR::registerPowerStar(this, mPowerStarId);
     MR::joinToGroupArray(this, rIter, "パワースター出現ポイントグループ", 0x10);
 
@@ -515,7 +515,7 @@ PowerStarAppearPoint* PowerStar::getNearestAppearPoint(const TVec3f& rPos) const
             f32 dist = PSVECDistance(&rPos, &pActor->mPosition);
 
             if (dist < minDist) {
-                pNearestAppearPoint = static_cast<PowerStarAppearPoint*>(pActor);
+                pNearestAppearPoint = static_cast< PowerStarAppearPoint* >(pActor);
                 minDist = dist;
             }
         }

@@ -144,7 +144,7 @@ void BreakableCage::calcAndSetBaseMtx() {
         stack_20.mMtx[0][3] = 0.0f;
         stack_20.mMtx[1][3] = 0.0f;
         stack_20.mMtx[2][3] = 0.0f;
-        stack_C.set<f32>(stack_14);
+        stack_C.set< f32 >(stack_14);
         PSVECMag(&stack_C);
         PSVECNormalize(&stack_C, &stack_C);
         TPos3f stack_50;
@@ -218,7 +218,7 @@ void BreakableCage::initModel(const char* pName, const JMapInfoIter& rIter) {
         ModelObj* obj = MR::createModelObjMapObjStrongLight("壊れる籠壊れモデル", "BreakableCageBreak", mMtx.toMtxPtr());
         mBreakModel = obj;
         obj->initWithoutIter();
-        mBreakModel->mScale.set<f32>(mScale);
+        mBreakModel->mScale.set< f32 >(mScale);
         MR::invalidateClipping(mBreakModel);
         MR::registerDemoSimpleCastAll(mBreakModel);
         mBreakModel->makeActorDead();
@@ -420,7 +420,7 @@ namespace NrvBreakableCage {
     INIT_NERVE(BreakableCageNrvBreak);
 
     void BreakableCageNrvBreak::execute(Spine* pSpine) const {
-        BreakableCage* cage = reinterpret_cast<BreakableCage*>(pSpine->mExecutor);
+        BreakableCage* cage = reinterpret_cast< BreakableCage* >(pSpine->mExecutor);
         cage->exeBreak();
     }
 
@@ -428,7 +428,7 @@ namespace NrvBreakableCage {
     }
 
     void BreakableCageNrvWait::execute(Spine* pSpine) const {
-        BreakableCage* cage = reinterpret_cast<BreakableCage*>(pSpine->mExecutor);
+        BreakableCage* cage = reinterpret_cast< BreakableCage* >(pSpine->mExecutor);
         cage->exeWait();
     }
 }; // namespace NrvBreakableCage

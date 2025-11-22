@@ -8,8 +8,8 @@ RosettaChair::RosettaChair(const char* pName)
 }
 
 void RosettaChair::setDefaultPose() {
-    mPosition.set<f32>(_8C);
-    mRotation.set<f32>(_98);
+    mPosition.set< f32 >(_8C);
+    mRotation.set< f32 >(_98);
     MR::startBck(this, "RosettaChair", nullptr);
     MR::validateCollisionParts(this);
 }
@@ -35,8 +35,8 @@ void RosettaChair::init(const JMapInfoIter& rIter) {
     MR::tryRegisterDemoCast(this, rIter);
     MR::registerDemoActionFunctor(this, MR::Functor(this, &RosettaChair::startDemo), "朗読開始");
     MR::registerDemoActionFunctor(this, MR::Functor(this, &RosettaChair::setDefaultPose), "キャスト入れ換え");
-    _8C.set<f32>(mPosition);
-    _98.set<f32>(mRotation);
+    _8C.set< f32 >(mPosition);
+    _98.set< f32 >(mRotation);
     MR::startBck(this, "RosettaChair", nullptr);
     makeActorAppeared();
 }

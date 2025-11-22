@@ -75,7 +75,7 @@ bool ShadowVolumeDrawer::isDraw() const {
 void ShadowVolumeDrawer::draw() const {
     if (isDraw()) {
         loadModelDrawMtx();
-        GXColor shapeColor = reinterpret_cast<GXColor&>(sShapeColor);
+        GXColor shapeColor = reinterpret_cast< GXColor& >(sShapeColor);
         GXSetTevColor(GX_TEVREG0, shapeColor);
         GXSetColorUpdate(0);
         GXSetDstAlpha(0, 0);

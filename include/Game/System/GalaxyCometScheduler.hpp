@@ -133,6 +133,6 @@ public:
     s32 getStateValueIncluded(const char*);
 
 private:
-    /* 0x0 */ MR::AssignableArray<GalaxyCometTimeTable*> mTimeTables;
-    /* 0x8 */ bool                                       mEnabled;
+    /* 0x0 */ MR::AssignableArray< GalaxyCometTimeTable* > mTimeTables;
+    /* 0x8 */ bool                                         mEnabled;
 };

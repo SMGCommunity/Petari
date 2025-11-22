@@ -24,7 +24,7 @@ void RotateMoveObj::init(const JMapInfoIter& rIter) {
     }
 
     if (MR::isDemoCast(this, nullptr)) {
-        MR::FunctorV0M<RotateMoveObj*, void (RotateMoveObj::*)()> setStateFunc = MR::Functor<RotateMoveObj>(this, &RotateMoveObj::setStateMove);
+        MR::FunctorV0M< RotateMoveObj*, void (RotateMoveObj::*)() > setStateFunc = MR::Functor< RotateMoveObj >(this, &RotateMoveObj::setStateMove);
 
         if (MR::tryRegisterDemoActionFunctor(this, setStateFunc, nullptr)) {
             v5 = false;

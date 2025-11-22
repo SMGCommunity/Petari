@@ -180,7 +180,7 @@ void NPCActor::setInitPose() {
     _B0.y = _A0.y;
     _B0.z = _A0.z;
     _B0.h = _A0.w;
-    _C0.set<f32>(mPosition);
+    _C0.set< f32 >(mPosition);
 }
 
 void NPCActor::init(const JMapInfoIter& rIter) {
