@@ -13,7 +13,7 @@ public:
 
     virtual void init(const JMapInfoIter&);
     virtual void kill();
-    
+
     virtual void open(TalkMessageCtrl*);
     virtual void close();
     virtual void updateBalloon();
@@ -122,4 +122,4 @@ public:
 namespace MR {
     void recoverSoundVolumeSetting(unsigned long);
     bool isCameraInterpolatingNearlyEnd();
-}
+}  // namespace MR
