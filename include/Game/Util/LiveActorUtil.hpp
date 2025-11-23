@@ -324,6 +324,7 @@ namespace MR {
     CollisionParts* createCollisionPartsFromLiveActor(LiveActor*, const char*, HitSensor*, CollisionScaleType);
     CollisionParts* createCollisionPartsFromLiveActor(LiveActor*, const char*, HitSensor*, MtxPtr, CollisionScaleType);
 
+    CollisionParts* tryCreateCollisionMoveLimit(LiveActor*, HitSensor*);
     CollisionParts* tryCreateCollisionMoveLimit(LiveActor*, MtxPtr, HitSensor*);
 
     bool isBinded(const LiveActor*);
