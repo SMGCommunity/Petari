@@ -1,9 +1,9 @@
 #pragma once
 
+#include "Game/Map/RailPart.hpp"
 #include "Game/Util.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
-
-class RailPart;
+#include "revolution/mtx.h"
 
 namespace {
     void calcRailDirection(TVec3f*, const RailPart*, f32);
@@ -17,16 +17,23 @@ public:
     void calcPos(TVec3f*, f32) const;
     void calcVelocity(TVec3f*, f32) const;
 
-    f32 getLength(f32, f32, int);
+    f32 getLength(f32, f32, int) const;
     f32 getParam(f32) const;
 
     f32 getNearestParam(const TVec3f&, f32) const;
 
-    TVec3f _0;
-    TVec3f _C;
-    TVec3f _18;
-    TVec3f _24;
-    f32 mLength;  // 0x30
+    inline f32 getMagVelocity(f32 t) const {
+        TVec3f v;
+        calcVelocity(&v, t);
+        return PSVECMag(&v);
+    }
+
+    // 0th to 3rd degree control vectors for bezier control
+    /* 0x00 */ TVec3f mStart;
+    /* 0x0C */ TVec3f mCtrlDegree1;  // "velocity"
+    /* 0x18 */ TVec3f mCtrlDegree2;  // "acceleration"
+    /* 0x24 */ TVec3f mCtrlDegree3;  // "jerk"
+    /* 0x30 */ f32 mLength;
 };
 
 class BezierRail {
@@ -41,20 +48,20 @@ public:
     f32 getNearestRailPosCoord(const TVec3f&) const;
     f32 getRailPosCoord(int) const;
     void calcCurrentRailCtrlPointIter(JMapInfoIter*, f32, bool) const;
-    void calcRailCtrlPointIter(JMapInfoIter*, int) const;
+    void calcRailCtrlPointIter(JMapInfoIter*, int) const NO_INLINE;
     void getIncludedSection(const RailPart**, f32*, f32, int) const;
     int getCurrentCtrlPointIndex(f32, bool) const;
 
     f32 getTotalLength() const;
 
-    bool mIsClosed;  // 0x0
-    u8 _1;
-    u8 _2;
-    u8 _3;
-    u32 mPointNum;  // 0x4
-    u32 _8;
-    RailPart* mRailParts;  // 0xC
-    f32* _10;
-    JMapInfoIter* mIter;  // 0x14
-    JMapInfo* _18;
+    inline RailPart* getRailPart(s32 idx) const { return &mRailParts[idx]; }
+
+    /* 0x00 */ bool mIsClosed;
+    /* 0x01 */ u8 _1, _2, _3;
+    /* 0x04 */ s32 mPointNum;
+    /* 0x08 */ s32 mNumRailParts;
+    /* 0x0C */ RailPart* mRailParts;  // this is a direct array of RailParts, not a single RailPart
+    /* 0x10 */ f32* mPointCoords;
+    /* 0x14 */ JMapInfoIter* mIter;
+    /* 0x18 */ const JMapInfo* mInfo;
 };

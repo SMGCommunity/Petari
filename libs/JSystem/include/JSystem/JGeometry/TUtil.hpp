@@ -47,7 +47,18 @@ namespace JGeometry {
 
         static f32 PI() NO_INLINE { return 3.1415927f; }
 
-        static T clamp(T, T, T);
-        static T inv_sqrt(T);
+        static T clamp(T val, T min, T max) NO_INLINE {
+            if (val < min) {
+                return min;
+            }
+
+            if (val > max) {
+                return max;
+            }
+
+            return val;
+        }
+
+        static T inv_sqrt(T val);
     };
 };  // namespace JGeometry
