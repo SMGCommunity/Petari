@@ -131,7 +131,7 @@ void BezierRailPart::calcVelocity(TVec3f* pOut, f32 t) const {
 f32 BezierRailPart::getLength(f32 t1, f32 t2, int k) const {
     f32 len1, len2;
 
-    f32 m3 = (1.0f / 2.0f) * (getMagVelocity(t1) + getMagVelocity(t2));
+    f32 m3 = (1.0f / 2.0f) * (getVelocityLength(t1) + getVelocityLength(t2));
 
     f32 tDiff = (t2 - t1);
     f32 temp = (1.0f / (k * 2.0));
@@ -147,14 +147,14 @@ f32 BezierRailPart::getLength(f32 t1, f32 t2, int k) const {
         f32 tA = t1 + delta * idxA;
         f32 tB = t1 + delta * idxB;
 
-        len1 += getMagVelocity(tA);
+        len1 += getVelocityLength(tA);
 
         if (seg != k) {
-            len2 += getMagVelocity(tB);
+            len2 += getVelocityLength(tB);
         }
     }
 
-    f32 len = floor(1024.0f * (f32)((1.0 / 3.0) * delta * ((len1 * 4.0f) + (m3 + (len2 * 2.0f)))));
+    f32 len = floor(1024.0f * static_cast< f32 >((1.0 / 3.0) * delta * ((len1 * 4.0f) + (m3 + (len2 * 2.0f)))));
     f32 rescale = 1.0f / 1024.0f;
     len *= rescale;
     return len;
@@ -170,7 +170,7 @@ f32 BezierRailPart::getParam(f32 t) const {
 
     f32 length = railLength;
     for (s32 count = 0; count < 5; count++) {
-        f32 mag = getMagVelocity(param);
+        f32 mag = getVelocityLength(param);
         param = JGeometry::TUtil< f32 >::clamp(param + (t - length) / mag, 0.0f, 1.0f);
         length = getLength(0.0f, param, 10);
 
@@ -290,10 +290,10 @@ f32 BezierRail::getNearestRailPosCoord(const TVec3f& rPos) const {
 f32 BezierRail::getRailPosCoord(int idx) const {
     if (!idx) {
         return 0.0f;
-    } else {
-        if (mIsClosed || idx != mPointNum - 1) {
-            return mPointCoords[idx - 1];
-        }
+    }
+
+    if (mIsClosed || idx != mPointNum - 1) {
+        return mPointCoords[idx - 1];
     }
 
     return getTotalLength();

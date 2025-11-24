@@ -21,10 +21,10 @@ public:
 
     f32 getNearestParam(const TVec3f&, f32) const;
 
-    inline f32 getMagVelocity(f32 t) const {
+    inline f32 getVelocityLength(f32 t) const {
         TVec3f v;
         calcVelocity(&v, t);
-        return PSVECMag(&v);
+        return v.length();
     }
 
     // 0th to 3rd degree control vectors for bezier control
