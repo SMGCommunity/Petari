@@ -11,7 +11,4 @@ public:
     virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
 
     /* 0x8C */ bool mSnowDiscovered;
-
-    // Fill word alignment. Not used.
-    /* 0x8D */ u8 _8D[3];
 };
