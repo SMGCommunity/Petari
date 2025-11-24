@@ -300,8 +300,6 @@ void TalkBalloonSign::init(const JMapInfoIter& rIter) {
 
 TalkBalloonInfo::TalkBalloonInfo(const char* pArg) : TalkBalloon(pArg) {}
 
-TalkBalloonInfo::~TalkBalloonInfo() {}
-
 void TalkBalloonInfo::open(TalkMessageCtrl* pArg) {
     TalkMessageInfo* info = TalkFunction::getMessageInfo(pArg);
     MR::appearInformationMessage((const wchar_t*)info->_0, true);

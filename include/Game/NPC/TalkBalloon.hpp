@@ -82,7 +82,6 @@ public:
 class TalkBalloonInfo : public TalkBalloon {
 public:
     TalkBalloonInfo(const char*);
-    ~TalkBalloonInfo();
 
     virtual void open(TalkMessageCtrl*);
     virtual void close();
