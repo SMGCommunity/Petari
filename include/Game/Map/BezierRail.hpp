@@ -57,7 +57,6 @@ public:
     inline RailPart* getRailPart(s32 idx) const { return &mRailParts[idx]; }
 
     /* 0x00 */ bool mIsClosed;
-    /* 0x01 */ u8 _1, _2, _3;
     /* 0x04 */ s32 mPointNum;
     /* 0x08 */ s32 mNumRailParts;
     /* 0x0C */ RailPart* mRailParts;  // this is a direct array of RailParts, not a single RailPart
