@@ -3,7 +3,6 @@
 #include "Game/Map/RailPart.hpp"
 #include "Game/Util.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
-#include "revolution/mtx.h"
 
 namespace {
     void calcRailDirection(TVec3f*, const RailPart*, f32);
