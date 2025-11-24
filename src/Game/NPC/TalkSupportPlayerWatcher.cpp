@@ -53,5 +53,5 @@ bool TalkSupportPlayerWatcher::isEnableTalkPlayerStateNormal() const {
 }
 
 bool TalkSupportPlayerWatcher::isEnableTalkPlayerSpeed() const {
-    return PSVECMag(MR::getPlayerVelocity()) < 4.0f;
+    return MR::getPlayerVelocity()->length() < 4.0f;
 }
