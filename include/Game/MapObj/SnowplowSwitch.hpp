@@ -10,5 +10,5 @@ public:
     virtual void init(const JMapInfoIter&);
     virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
 
-    u8 _8C;
+    /* 0x8C */ bool mSnowDiscovered;
 };
