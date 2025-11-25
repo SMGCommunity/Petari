@@ -18,6 +18,12 @@ public:
 
     LayoutActor* mHostActor;  // 0x0
     const wchar_t* mMsg;      // 0x4
-    u32 _8;
+    s32 _8;
     const char* mPaneName;  // 0xC
 };
+
+namespace MR {
+    void nextStepTagProcessorRecursive(LayoutActor*, const char*);
+    bool isEndStepTagProcessorRecursive(const LayoutActor*, const char*, bool);
+    void initTagProcessorRecursive(LayoutActor*, const char*, long);
+}  // namespace MR
