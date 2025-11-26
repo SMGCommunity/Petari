@@ -22,7 +22,7 @@ public:
         const wchar_t* mCharArg;
     };
 
-    s32 _4;
+    s32 _4;  // 0: uses mIntArg, 1: uses mCharArg
 };
 
 class TalkMessageCtrl : public NameObj {
