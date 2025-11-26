@@ -720,7 +720,7 @@ void IceMerameraKing::addVelocityToInitPos() {
     if (0.0f < mGravity.dot(v12)) {
         MR::vecKillElement(v12, mGravity, &v12);
     }
-    f32 squared = JMathInlineVEC::PSVECSquareMag(&v12);
+    f32 squared = v12.squared();
     f32 half = 0.5f;
 
     if (squared <= 0.0000038146973f) {

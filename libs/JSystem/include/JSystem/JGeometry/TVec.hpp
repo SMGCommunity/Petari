@@ -349,8 +349,6 @@ namespace JGeometry {
 
         void add(const TVec3&, const TVec3&);
 
-        f32 squareMag() const { return JMathInlineVEC::PSVECSquareMag(this); }
-
         f32 dot(const TVec3&) const;
 
         bool epsilonEquals(const TVec3< f32 >& a1, f32 a2) const {
@@ -377,11 +375,40 @@ namespace JGeometry {
         void scale(f32 scale);
         void scale(f32, const TVec3&);
         void negate();
-        f32 squared() const;
-        f32 squared(const TVec3&) const;
+
+        f32 squared() const { return JMathInlineVEC::PSVECSquareMag(this); };
+
+        // this theoretically should just forward JMathInlineVEC::PSVECSquareDistance,
+        // however using the exact same asm causes mismatches. Keeping it here instead
+        // keeps the exact matches, and even allows for more use cases that match.
+        f32 squared(const TVec3& rB) const {
+            const register Vec* b = &rB;
+            const register Vec* a = this;
+
+            register f32 sqdist, dxy, dyz;
+            register f32 v1xy, v0xy, v1yz, v0yz;
+
+            asm
+            {
+                psq_l    v0yz, 4(a), 0, 0 
+                psq_l    v1yz, 4(b), 0, 0
+                ps_sub   dyz, v0yz, v1yz
+            
+                psq_l    v0xy, 0(a), 0, 0
+                psq_l    v1xy, 0(b), 0, 0
+                ps_sub   dxy, v0xy, v1xy
+                ps_mul   dyz, dyz, dyz
+            
+                ps_madd  sqdist, dxy, dxy, dyz
+                ps_sum0  sqdist, sqdist, dyz, dyz
+            }
+
+            return sqdist;
+        };
+
         void zero();
 
-        bool isZero() const { return squareMag() <= 0.0000038146973f; }
+        bool isZero() const { return squared() <= 0.0000038146973f; }
 
         f32 normalize(const TVec3& rSrc) {
             x = rSrc.x;
@@ -393,7 +420,7 @@ namespace JGeometry {
         }
 
         f32 setLength(f32 newlength) {
-            f32 oldlength = squareMag();
+            f32 oldlength = squared();
             if (oldlength <= 0.0000038146973f) {
                 return 0.0f;
             }

@@ -77,7 +77,7 @@ f32 LinearRailPart::getNearestParam(const register TVec3f& rPos, f32 t) const {
     TVec3f v = rPos;
     v -= mStart;
 
-    f32 proj = v.dot(mCtrlDegree1) / mCtrlDegree1.squareMag();
+    f32 proj = v.dot(mCtrlDegree1) / mCtrlDegree1.squared();
 
     if (proj < 0.0f) {
         return 0.0f;

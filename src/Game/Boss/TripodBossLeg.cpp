@@ -360,7 +360,7 @@ void TripodBossLeg::exeMoveToLandingPos() {
     updatePose();
     updateAnkleSlerpToBasePose();
 
-    if (JMathInlineVEC::PSVECSquareDistance(&mForceEndPoint, &_240) < 90000.0f) {
+    if (mForceEndPoint.squared(_240) < 90000.0f) {
         setNerve(&NrvTripodBossLeg::TripodBossLegNrvStampSign::sInstance);
     }
 }
