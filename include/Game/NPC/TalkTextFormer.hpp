@@ -24,5 +24,5 @@ public:
 namespace MR {
     void nextStepTagProcessorRecursive(LayoutActor*, const char*);
     bool isEndStepTagProcessorRecursive(const LayoutActor*, const char*, bool);
-    void initTagProcessorRecursive(LayoutActor*, const char*, long);
+    void initTagProcessorRecursive(LayoutActor*, const char*, s32);
 }  // namespace MR

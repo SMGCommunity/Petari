@@ -7,7 +7,7 @@ TalkTextFormer::TalkTextFormer(LayoutActor* actor, const char* paneName) : mHost
 
 bool TalkTextFormer::nextPage() {
     const wchar_t* message = MR::getNextMessagePage(mMsg);
-    if (message) {
+    if (message != nullptr) {
         mMsg = message;
         formMessage(message, _8);
         return true;
@@ -17,7 +17,7 @@ bool TalkTextFormer::nextPage() {
 }
 
 bool TalkTextFormer::hasNextPage() const {
-    if (mMsg) {
+    if (mMsg != nullptr) {
         return MR::getNextMessagePage(mMsg) != nullptr;
     }
 
@@ -37,15 +37,16 @@ bool TalkTextFormer::isTextAppearedAll() const {
 }
 
 void TalkTextFormer::setArg(const CustomTagArg& tag, s32 arg2) {
-    if (tag._4 == 0) {
+    if (tag.mArgType == CustomTagArg::Type_Int) {
         MR::setTextBoxArgNumberRecursive(mHostActor, mPaneName, tag.mIntArg, arg2);
-    } else if (tag._4 == 1) {
+    } else if (tag.mArgType == CustomTagArg::Type_Char) {
         MR::setTextBoxArgStringRecursive(mHostActor, mPaneName, tag.mCharArg, arg2);
     }
+
     MR::initTagProcessorRecursive(mHostActor, mPaneName, _8);
 }
 
-void TalkTextFormer::formMessage(const wchar_t* message, long arg2) {
+void TalkTextFormer::formMessage(const wchar_t* message, s32 arg2) {
     mMsg = message;
     _8 = arg2;
 

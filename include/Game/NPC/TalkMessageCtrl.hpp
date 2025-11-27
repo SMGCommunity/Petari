@@ -9,12 +9,14 @@ class TalkMessageInfo;
 
 class CustomTagArg {
 public:
-    inline CustomTagArg(int a1, u32 a2) : mIntArg(a1), _4(a2) {}
-    inline CustomTagArg(const wchar_t* a1, u32 a2) : mCharArg(a1), _4(a2) {}
+    enum TagType { Type_Int = 0, Type_Char = 1 };
+
+    inline CustomTagArg(int a1, TagType a2) : mIntArg(a1), mArgType(a2) {}
+    inline CustomTagArg(const wchar_t* a1, TagType a2) : mCharArg(a1), mArgType(a2) {}
 
     inline void operator=(const CustomTagArg& rhs) {
         mCharArg = rhs.mCharArg;
-        _4 = rhs._4;
+        mArgType = rhs.mArgType;
     }
 
     union {
@@ -22,7 +24,7 @@ public:
         const wchar_t* mCharArg;
     };
 
-    s32 _4;  // 0: uses mIntArg, 1: uses mCharArg
+    /* 0x4 */ TagType mArgType;
 };
 
 class TalkMessageCtrl : public NameObj {
