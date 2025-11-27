@@ -104,7 +104,7 @@ void LavaSteam::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
                 TVec3f stack_20;
                 stack_20.set(pReceiver->mPosition);
 
-                f32 dist = JMathInlineVEC::PSVECSquareDistance((Vec*)&stack_48, (Vec*)&stack_20);
+                f32 dist = stack_48.squared(stack_20);
                 f32 s = (stack_54 + f31);
                 stack_2C = f31;
 

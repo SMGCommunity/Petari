@@ -758,7 +758,7 @@ void BasaBasa::controlVelocity() {
 
         if (PSVECMag(&mVelocity) > v6) {
             TVec3f* velocityPtr = &mVelocity;
-            f32 sqr = JMathInlineVEC::PSVECSquareMag(velocityPtr);
+            f32 sqr = velocityPtr->squared();
             if (sqr <= 0.0000038146973f) {
                 velocityPtr->scale(v6 * JGeometry::TUtil< f32 >::inv_sqrt(sqr));
             }

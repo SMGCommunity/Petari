@@ -194,7 +194,7 @@ f32 BezierRailPart::getNearestParam(const TVec3f& rPos, f32 delta) const {
     for (f32 t = 0.0f; t <= 1.0f; t += delta) {
         TVec3f pos;
         calcPos(&pos, t);
-        f32 mag = JMathInlineVEC::PSVECSquareDistance(&pos, &rPos);
+        f32 mag = pos.squared(rPos);
         if (mag < nearestMag) {
             nearestParam = t;
             nearestMag = mag;

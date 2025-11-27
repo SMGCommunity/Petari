@@ -23,7 +23,7 @@ bool WireGravity::calcOwnGravityVector(TVec3f* pDest, f32* pScalar, const TVec3f
         TVec3f positionProjectedOntoWire;
         MR::calcPerpendicFootToLineInside(&positionProjectedOntoWire, rPos, mPoints[i], mPoints[i + 1]);
 
-        f32 squareDistance = JMathInlineVEC::PSVECSquareDistance(&rPos, &positionProjectedOntoWire);
+        f32 squareDistance = rPos.squared(positionProjectedOntoWire);
         if (squareDistance < distance || distance < 0.0f) {
             pointOfAttraction = positionProjectedOntoWire;
             distance = squareDistance;
