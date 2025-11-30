@@ -425,3 +425,7 @@ bool LiveActor::receiveMsgApart(HitSensor* pSender, HitSensor* pReceiver) {
 bool LiveActor::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     return false;
 }
+
+void LiveActor::addToSoundObjHolder() {
+    mSoundObject->addToSoundObjHolder();
+}
