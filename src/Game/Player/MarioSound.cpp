@@ -1719,6 +1719,6 @@ u32 Mario::initSoundTable(SoundList* list, u32 globalTablePosition) {
     return i;
 }
 
-void Mario::setSeVersion(unsigned long version) {
-    MR::setSeVersion((LiveActor*)this->mActor, version);
+void Mario::setSeVersion(u32 version) {
+    MR::setSeVersion((LiveActor*)mActor, version);
 }

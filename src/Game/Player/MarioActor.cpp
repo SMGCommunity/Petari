@@ -1652,11 +1652,11 @@ XanimeResourceTable* MarioActor::getResourceTable() const {
     return mMarioAnim->mResourceTable;
 }
 
-void MarioActor::setPunchHitTimer(unsigned char pPunchHit) {
+void MarioActor::setPunchHitTimer(u8 punchHitTime) {
     if (_944 == 0) {
         _945 = 0;
         _974 = 0;
     }
 
-    _944 = pPunchHit;
+    _944 = punchHitTime;
 }
