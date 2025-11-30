@@ -28,10 +28,7 @@ from tools.project import (
 
 # Game versions
 DEFAULT_VERSION = 0
-VERSIONS = [
-    "RMGK01",  # 0
-    "RMGK02" # 1
-]
+VERSIONS = ["RMGK01", "RMGK02"]  # 0  # 1
 
 parser = argparse.ArgumentParser()
 parser.add_argument(
@@ -198,7 +195,7 @@ cflags_base = [
     "-enc SJIS",
     "-i include",
     f"-i build/{config.version}/include",
-    f"-DVERSION={version_num}"
+    f"-DVERSION={version_num}",
 ]
 
 cflags_game = [
@@ -256,7 +253,7 @@ cflags_jsys = [
     "-i libs/RVL_SDK/include",
     "-i libs/MSL_C/include",
     f"-i build/{config.version}/include",
-    f"-DVERSION={version_num}"
+    f"-DVERSION={version_num}",
 ]
 
 cflags_trk = [
@@ -282,7 +279,7 @@ cflags_trk = [
     "-i libs/RVL_SDK/include",
     "-i libs/MSL_C/include",
     f"-i build/{config.version}/include",
-    f"-DVERSION={version_num}"
+    f"-DVERSION={version_num}",
 ]
 
 cflags_nw = [
@@ -342,10 +339,7 @@ cflags_sdk = [
     f"-DVERSION={version_num}",
 ]
 
-cflags_sdk_exi = [
-    "-O3" if flag == "-O4,p" else flag
-    for flag in cflags_sdk
-]
+cflags_sdk_exi = ["-O3" if flag == "-O4,p" else flag for flag in cflags_sdk]
 
 cflags_rfl = [
     "-nodefaults",
@@ -417,13 +411,14 @@ cflags_runtime = [
     "-common off",
     "-inline auto",
     "-i libs/Runtime/include",
-    "-i libs/MSL_C/include"
+    "-i libs/MSL_C/include",
 ]
 
 cflags_megaleg = cflags_game[:]
 cflags_megaleg = ["-O4,p" if opt == "-O4,s" else opt for opt in cflags_megaleg]
 
 config.linker_version = "GC/3.0a5"
+
 
 def GameLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
     return {
@@ -433,6 +428,7 @@ def GameLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
         "progress_category": "game",
         "objects": objects,
     }
+
 
 def NWLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
     return {
@@ -453,6 +449,7 @@ def SDKLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
         "objects": objects,
     }
 
+
 def RFLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
     return {
         "lib": lib_name,
@@ -461,6 +458,7 @@ def RFLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
         "progress_category": "rfl",
         "objects": objects,
     }
+
 
 def MSLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
     return {
@@ -471,6 +469,7 @@ def MSLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
         "objects": objects,
     }
 
+
 def TRKLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
     return {
         "lib": lib_name,
@@ -479,6 +478,7 @@ def TRKLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
         "progress_category": "trk",
         "objects": objects,
     }
+
 
 def JSysLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
     return {
@@ -489,9 +489,12 @@ def JSysLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
         "objects": objects,
     }
 
-Matching = True                   # Object matches and should be linked
-NonMatching = False               # Object does not match and should not be linked
-Equivalent = config.non_matching  # Object should be linked when configured with --non-matching
+
+Matching = True  # Object matches and should be linked
+NonMatching = False  # Object does not match and should not be linked
+Equivalent = (
+    config.non_matching
+)  # Object should be linked when configured with --non-matching
 
 config.warn_missing_config = True
 config.warn_missing_source = False
@@ -510,10 +513,9 @@ config.libs = [
             Object(Matching, "Runtime/runtime.c"),
             Object(NonMatching, "Runtime/__init_cpp_exceptions.cpp"),
             Object(NonMatching, "Runtime/Gecko_ExceptionPPC.cpp"),
-            Object(Matching, "Runtime/GCN_mem_alloc.c")
+            Object(Matching, "Runtime/GCN_mem_alloc.c"),
         ],
     },
-
     NWLib(
         "libnw4r_ut",
         [
@@ -526,26 +528,23 @@ config.libs = [
             Object(NonMatching, "nw4r/ut/ut_ResFontBase.cpp"),
             Object(NonMatching, "nw4r/ut/ut_ResFont.cpp"),
             Object(NonMatching, "nw4r/ut/ut_CharWriter.cpp"),
-            Object(NonMatching, "nw4r/ut/ut_TextWriterBase.cpp")
-        ]
+            Object(NonMatching, "nw4r/ut/ut_TextWriterBase.cpp"),
+        ],
     ),
-
     NWLib(
         "libnw4r_db",
         [
             Object(NonMatching, "nw4r/db/db_console.cpp"),
-            Object(NonMatching, "nw4r/db/db_assert.cpp")
-        ]
+            Object(NonMatching, "nw4r/db/db_assert.cpp"),
+        ],
     ),
-
     NWLib(
         "libnw4r_math",
         [
             Object(NonMatching, "nw4r/math/math_triangular.cpp"),
-            Object(NonMatching, "nw4r/math/math_types.cpp")
-        ]
+            Object(NonMatching, "nw4r/math/math_types.cpp"),
+        ],
     ),
-
     NWLib(
         "libnw4r_lyt",
         [
@@ -563,10 +562,9 @@ config.libs = [
             Object(NonMatching, "nw4r/lyt/lyt_animation.cpp"),
             Object(Matching, "nw4r/lyt/lyt_resourceAccessor.cpp"),
             Object(Matching, "nw4r/lyt/lyt_arcResourceAccessor.cpp"),
-            Object(Matching, "nw4r/lyt/lyt_common.cpp")
+            Object(Matching, "nw4r/lyt/lyt_common.cpp"),
         ],
     ),
-
     GameLib(
         "Animation",
         [
@@ -584,7 +582,6 @@ config.libs = [
             Object(NonMatching, "Game/Animation/XanimeResource.cpp"),
         ],
     ),
-
     GameLib(
         "AreaObj",
         [
@@ -624,10 +621,9 @@ config.libs = [
             Object(Matching, "Game/AreaObj/SunLightArea.cpp"),
             Object(Matching, "Game/AreaObj/SwitchArea.cpp"),
             Object(NonMatching, "Game/AreaObj/WarpCube.cpp"),
-            Object(Matching, "Game/AreaObj/WaterArea.cpp")
+            Object(Matching, "Game/AreaObj/WaterArea.cpp"),
         ],
     ),
-
     GameLib(
         "AudioLib",
         [
@@ -663,10 +659,9 @@ config.libs = [
             Object(NonMatching, "Game/AudioLib/AudTrackController.cpp"),
             Object(NonMatching, "Game/AudioLib/AudUtil.cpp"),
             Object(NonMatching, "Game/AudioLib/OverwriteJAudio.cpp"),
-            Object(NonMatching, "Game/AudioLib/CSSoundNameConverter.cpp")
+            Object(NonMatching, "Game/AudioLib/CSSoundNameConverter.cpp"),
         ],
     ),
-
     GameLib(
         "Boss",
         [
@@ -838,11 +833,9 @@ config.libs = [
             Object(NonMatching, "Game/Boss/TripodBossShell.cpp"),
             Object(NonMatching, "Game/Boss/TripodBossStepPoint.cpp"),
             Object(Matching, "Game/Boss/TripodBossStepSequence.cpp"),
-            Object(Matching, "Game/Boss/TripodBossStepStartArea.cpp")
+            Object(Matching, "Game/Boss/TripodBossStepStartArea.cpp"),
         ],
     ),
-
-
     GameLib(
         "Camera",
         [
@@ -972,10 +965,9 @@ config.libs = [
             Object(NonMatching, "Game/Camera/CameraWonderPlanet.cpp"),
             Object(NonMatching, "Game/Camera/DotCamParams.cpp"),
             Object(NonMatching, "Game/Camera/GameCameraCreator.cpp"),
-            Object(NonMatching, "Game/Camera/OnlyCamera.cpp")
+            Object(NonMatching, "Game/Camera/OnlyCamera.cpp"),
         ],
     ),
-
     GameLib(
         "Demo",
         [
@@ -1009,10 +1001,9 @@ config.libs = [
             Object(NonMatching, "Game/Demo/PrologueDirector.cpp"),
             Object(NonMatching, "Game/Demo/ReturnDemoRailMove.cpp"),
             Object(NonMatching, "Game/Demo/ScenarioStarter.cpp"),
-            Object(NonMatching, "Game/Demo/StarReturnDemoStarter.cpp")
+            Object(NonMatching, "Game/Demo/StarReturnDemoStarter.cpp"),
         ],
     ),
-
     GameLib(
         "Effect",
         [
@@ -1037,10 +1028,9 @@ config.libs = [
             Object(Matching, "Game/Effect/SingleEmitter.cpp"),
             Object(NonMatching, "Game/Effect/SpinPullParticleCallBack.cpp"),
             Object(NonMatching, "Game/Effect/SyncBckEffectChecker.cpp"),
-            Object(NonMatching, "Game/Effect/SyncBckEffectInfo.cpp")
+            Object(NonMatching, "Game/Effect/SyncBckEffectInfo.cpp"),
         ],
     ),
-
     GameLib(
         "Enemy",
         [
@@ -1153,10 +1143,9 @@ config.libs = [
             Object(NonMatching, "Game/Enemy/WalkerStateStagger.cpp"),
             Object(NonMatching, "Game/Enemy/WalkerStateWander.cpp"),
             Object(NonMatching, "Game/Enemy/WaterBazooka.cpp"),
-            Object(NonMatching, "Game/Enemy/WaterBazookaCapsule.cpp")
+            Object(NonMatching, "Game/Enemy/WaterBazookaCapsule.cpp"),
         ],
     ),
-
     GameLib(
         "GameAudio",
         [
@@ -1167,10 +1156,9 @@ config.libs = [
             Object(Matching, "Game/GameAudio/AudEffectDirector.cpp"),
             Object(NonMatching, "Game/GameAudio/AudBgmConductor.cpp"),
             Object(NonMatching, "Game/GameAudio/AudStageBgmTable.cpp"),
-            Object(NonMatching, "Game/GameAudio/AudTamakoroBgmCtrl.cpp")
+            Object(NonMatching, "Game/GameAudio/AudTamakoroBgmCtrl.cpp"),
         ],
     ),
-
     GameLib(
         "Gravity",
         [
@@ -1187,10 +1175,9 @@ config.libs = [
             Object(Matching, "Game/Gravity/PlanetGravityManager.cpp"),
             Object(Matching, "Game/Gravity/PointGravity.cpp"),
             Object(Matching, "Game/Gravity/SegmentGravity.cpp"),
-            Object(Matching, "Game/Gravity/WireGravity.cpp")
+            Object(Matching, "Game/Gravity/WireGravity.cpp"),
         ],
     ),
-
     GameLib(
         "LiveActor",
         [
@@ -1254,10 +1241,9 @@ config.libs = [
             Object(Matching, "Game/LiveActor/Spine.cpp"),
             Object(Matching, "Game/LiveActor/SpotMarkLight.cpp"),
             Object(NonMatching, "Game/LiveActor/ViewGroupCtrl.cpp"),
-            Object(Matching, "Game/LiveActor/VolumeModelDrawer.cpp")
+            Object(Matching, "Game/LiveActor/VolumeModelDrawer.cpp"),
         ],
     ),
-
     GameLib(
         "Map",
         [
@@ -1342,10 +1328,9 @@ config.libs = [
             Object(NonMatching, "Game/Map/WaterPlant.cpp"),
             Object(NonMatching, "Game/Map/WaterPoint.cpp"),
             Object(NonMatching, "Game/Map/WaterRoad.cpp"),
-            Object(NonMatching, "Game/Map/WhirlPoolAccelerator.cpp")
+            Object(NonMatching, "Game/Map/WhirlPoolAccelerator.cpp"),
         ],
     ),
-
     GameLib(
         "MapObj",
         [
@@ -1629,7 +1614,7 @@ config.libs = [
             Object(NonMatching, "Game/MapObj/TreasureBoxCracked.cpp"),
             Object(Matching, "Game/MapObj/TreasureSpot.cpp"),
             Object(NonMatching, "Game/MapObj/Tsukidashikun.cpp"),
-            Object(NonMatching, "Game/MapObj/TypicalDoor.cpp"),
+            Object(Matching, "Game/MapObj/TypicalDoor.cpp"),
             Object(Matching, "Game/MapObj/UFOBase.cpp"),
             Object(Matching, "Game/MapObj/UFOKinoko.cpp"),
             Object(NonMatching, "Game/MapObj/ValveSwitch.cpp"),
@@ -1665,10 +1650,9 @@ config.libs = [
             Object(NonMatching, "Game/MapObj/MapPartsRailRotator.cpp"),
             Object(NonMatching, "Game/MapObj/MapPartsRotator.cpp"),
             Object(NonMatching, "Game/MapObj/MapPartsSeesaw1AxisRotator.cpp"),
-            Object(NonMatching, "Game/MapObj/MapPartsSeesaw2AxisRotator.cpp")
+            Object(NonMatching, "Game/MapObj/MapPartsSeesaw2AxisRotator.cpp"),
         ],
     ),
-
     GameLib(
         "NPC",
         [
@@ -1749,10 +1733,9 @@ config.libs = [
             Object(NonMatching, "Game/NPC/TalkState.cpp"),
             Object(NonMatching, "Game/NPC/TalkSupportPlayerWatcher.cpp"),
             Object(NonMatching, "Game/NPC/TalkTextFormer.cpp"),
-            Object(Matching, "Game/NPC/TimeAttackEventKeeper.cpp")
+            Object(Matching, "Game/NPC/TimeAttackEventKeeper.cpp"),
         ],
     ),
-
     GameLib(
         "NWC24",
         [
@@ -1762,10 +1745,9 @@ config.libs = [
             Object(NonMatching, "Game/NWC24/NWC24System.cpp"),
             Object(Matching, "Game/NWC24/UTF16Util.cpp"),
             Object(Matching, "Game/NWC24/LuigiMailDirector.cpp"),
-            Object(Matching, "Game/NWC24/ReceiverTagMail.cpp")
+            Object(Matching, "Game/NWC24/ReceiverTagMail.cpp"),
         ],
     ),
-
     GameLib(
         "NameObj",
         [
@@ -1781,10 +1763,9 @@ config.libs = [
             Object(Matching, "Game/NameObj/NameObjGroup.cpp"),
             Object(NonMatching, "Game/NameObj/NameObjHolder.cpp"),
             Object(NonMatching, "Game/NameObj/NameObjListExecutor.cpp"),
-            Object(Matching, "Game/NameObj/NameObjRegister.cpp")
+            Object(Matching, "Game/NameObj/NameObjRegister.cpp"),
         ],
     ),
-
     GameLib(
         "Player",
         [
@@ -1894,10 +1875,9 @@ config.libs = [
             Object(NonMatching, "Game/Player/PlayerEventDown.cpp"),
             Object(NonMatching, "Game/Player/PlayerEventFireDown.cpp"),
             Object(NonMatching, "Game/Player/PlayerEventRaceDown.cpp"),
-            Object(NonMatching, "Game/Player/PlayerEventGhostRaceDown.cpp")
+            Object(NonMatching, "Game/Player/PlayerEventGhostRaceDown.cpp"),
         ],
     ),
-
     GameLib(
         "RhythmLib",
         [
@@ -1915,10 +1895,9 @@ config.libs = [
             Object(NonMatching, "Game/RhythmLib/AudMeObject.cpp"),
             Object(NonMatching, "Game/RhythmLib/AudChordInfo.cpp"),
             Object(NonMatching, "Game/RhythmLib/AudRhythmHolder.cpp"),
-            Object(NonMatching, "Game/RhythmLib/AudRhythmWrap.cpp")
+            Object(NonMatching, "Game/RhythmLib/AudRhythmWrap.cpp"),
         ],
     ),
-
     GameLib(
         "Ride",
         [
@@ -1946,7 +1925,6 @@ config.libs = [
             Object(NonMatching, "Game/Ride/Trapeze.cpp"),
         ],
     ),
-
     GameLib(
         "Scene",
         [
@@ -1974,10 +1952,9 @@ config.libs = [
             Object(NonMatching, "Game/Scene/StageDataHolder.cpp"),
             Object(Matching, "Game/Scene/StageFileLoader.cpp"),
             Object(Matching, "Game/Scene/StageResourceLoader.cpp"),
-            Object(NonMatching, "Game/Scene/StopSceneController.cpp")
+            Object(NonMatching, "Game/Scene/StopSceneController.cpp"),
         ],
     ),
-
     GameLib(
         "Screen",
         [
@@ -2117,10 +2094,9 @@ config.libs = [
             Object(NonMatching, "Game/Screen/WipeKoopa.cpp"),
             Object(NonMatching, "Game/Screen/WipeRing.cpp"),
             Object(Matching, "Game/Screen/YesNoController.cpp"),
-            Object(Matching, "Game/Screen/YesNoLayout.cpp")
+            Object(Matching, "Game/Screen/YesNoLayout.cpp"),
         ],
     ),
-
     GameLib(
         "Speaker",
         [
@@ -2130,10 +2106,9 @@ config.libs = [
             Object(Matching, "Game/Speaker/SpkWave.cpp"),
             Object(NonMatching, "Game/Speaker/SpkTable.cpp"),
             Object(Matching, "Game/Speaker/SpkData.cpp"),
-            Object(NonMatching, "Game/Speaker/SpkSound.cpp")
+            Object(NonMatching, "Game/Speaker/SpkSound.cpp"),
         ],
     ),
-
     GameLib(
         "System",
         [
@@ -2232,10 +2207,9 @@ config.libs = [
             Object(NonMatching, "Game/System/StarPieceAlmsStorage.cpp"),
             Object(NonMatching, "Game/System/StorySequenceExecutor.cpp"),
             Object(Matching, "Game/System/SysConfigFile.cpp"),
-            Object(NonMatching, "Game/System/UserFile.cpp")
+            Object(NonMatching, "Game/System/UserFile.cpp"),
         ],
     ),
-
     GameLib(
         "Util",
         [
@@ -2313,57 +2287,30 @@ config.libs = [
             Object(Matching, "Game/Util/SpringValue.cpp"),
             Object(NonMatching, "Game/Util/TriangleFilter.cpp"),
             Object(Matching, "Game/Util/TriggerChecker.cpp"),
-            Object(Matching, "Game/Util/ValueControl.cpp")
+            Object(Matching, "Game/Util/ValueControl.cpp"),
         ],
     ),
-
-    SDKLib(
-        "ai",
-        [
-            Object(Matching, "RVL_SDK/ai/ai.c")
-        ]
-    ),
-
-    SDKLib(
-        "aralt",
-        [
-            Object(NonMatching, "RVL_SDK/aralt/aralt.c")
-        ]
-    ),
-
-    SDKLib(
-        "arc",
-        [
-            Object(Matching, "RVL_SDK/arc/arc.c")
-        ]
-    ),
-
+    SDKLib("ai", [Object(Matching, "RVL_SDK/ai/ai.c")]),
+    SDKLib("aralt", [Object(NonMatching, "RVL_SDK/aralt/aralt.c")]),
+    SDKLib("arc", [Object(Matching, "RVL_SDK/arc/arc.c")]),
     SDKLib(
         "ax",
         [
             Object(NonMatching, "RVL_SDK/ax/AXAlloc.c"),
             Object(NonMatching, "RVL_SDK/ax/AXAux.c"),
             Object(NonMatching, "RVL_SDK/ax/AXCL.c"),
-            Object(NonMatching, "RVL_SDK/ax/AXVPB.c")
-        ]
+            Object(NonMatching, "RVL_SDK/ax/AXVPB.c"),
+        ],
     ),
-
     SDKLib(
         "axfx",
         [
             Object(NonMatching, "RVL_SDK/axfx/AXFXReverbHi.c"),
             Object(NonMatching, "RVL_SDK/axfx/AXFXReverbHiExp.c"),
-            Object(NonMatching, "RVL_SDK/axfx/AXFXHooks.c")
-        ]
+            Object(NonMatching, "RVL_SDK/axfx/AXFXHooks.c"),
+        ],
     ),
-
-    SDKLib(
-        "base",
-        [
-            Object(Matching, "RVL_SDK/base/PPCArch.c")
-        ]
-    ),
-
+    SDKLib("base", [Object(Matching, "RVL_SDK/base/PPCArch.c")]),
     SDKLib(
         "bte",
         [
@@ -2434,26 +2381,18 @@ config.libs = [
             Object(NonMatching, "RVL_SDK/bte/sdp_discovery.c"),
             Object(NonMatching, "RVL_SDK/bte/sdp_main.c"),
             Object(NonMatching, "RVL_SDK/bte/sdp_server.c"),
-            Object(NonMatching, "RVL_SDK/bte/sdp_utils.c")
-        ]
+            Object(NonMatching, "RVL_SDK/bte/sdp_utils.c"),
+        ],
     ),
-
-    SDKLib(
-        "db",
-        [
-            Object(Matching, "RVL_SDK/db/db.c")
-        ]
-    ),
-
+    SDKLib("db", [Object(Matching, "RVL_SDK/db/db.c")]),
     SDKLib(
         "dsp",
         [
             Object(Matching, "RVL_SDK/dsp/dsp.c"),
             Object(Matching, "RVL_SDK/dsp/dsp_debug.c"),
-            Object(Matching, "RVL_SDK/dsp/dsp_task.c")
-        ]
+            Object(Matching, "RVL_SDK/dsp/dsp_task.c"),
+        ],
     ),
-
     SDKLib(
         "dvd",
         [
@@ -2464,40 +2403,20 @@ config.libs = [
             Object(Matching, "RVL_SDK/dvd/dvdidutils.c"),
             Object(NonMatching, "RVL_SDK/dvd/dvdFatal.c"),
             Object(NonMatching, "RVL_SDK/dvd/dvdDeviceError.c"),
-            Object(NonMatching, "RVL_SDK/dvd/dvd_broadway.c")
-        ]
+            Object(NonMatching, "RVL_SDK/dvd/dvd_broadway.c"),
+        ],
     ),
-
-    SDKLib(
-        "esp",
-        [
-            Object(Matching, "RVL_SDK/esp/esp.c")
-        ]
-    ),
-
-    SDKLib(
-        "euart",
-        [
-            Object(Matching, "RVL_SDK/euart/euart.c")
-        ]
-    ),
-
+    SDKLib("esp", [Object(Matching, "RVL_SDK/esp/esp.c")]),
+    SDKLib("euart", [Object(Matching, "RVL_SDK/euart/euart.c")]),
     SDKLib(
         "exi",
         [
             Object(Matching, "RVL_SDK/exi/EXIBios.c", cflags=cflags_sdk_exi),
             Object(Matching, "RVL_SDK/exi/EXIUart.c"),
-            Object(Matching, "RVL_SDK/exi/EXICommon.c")
-        ]
+            Object(Matching, "RVL_SDK/exi/EXICommon.c"),
+        ],
     ),
-
-    SDKLib(
-        "fs",
-        [
-            Object(Matching, "RVL_SDK/fs/fs.c")
-        ]
-    ),
-
+    SDKLib("fs", [Object(Matching, "RVL_SDK/fs/fs.c")]),
     SDKLib(
         "gd",
         [
@@ -2508,10 +2427,9 @@ config.libs = [
             Object(NonMatching, "RVL_SDK/gd/GDPixel.c"),
             Object(NonMatching, "RVL_SDK/gd/GDTev.c"),
             Object(NonMatching, "RVL_SDK/gd/GDTexture.c"),
-            Object(NonMatching, "RVL_SDK/gd/GDTransform.c")
-        ]
+            Object(NonMatching, "RVL_SDK/gd/GDTransform.c"),
+        ],
     ),
-
     SDKLib(
         "gx",
         [
@@ -2528,27 +2446,19 @@ config.libs = [
             Object(NonMatching, "RVL_SDK/gx/GXPixel.c"),
             Object(NonMatching, "RVL_SDK/gx/GXDisplayList.c"),
             Object(NonMatching, "RVL_SDK/gx/GXTransform.c"),
-            Object(Matching, "RVL_SDK/gx/GXPerf.c")
-        ]
+            Object(Matching, "RVL_SDK/gx/GXPerf.c"),
+        ],
     ),
-
     SDKLib(
         "ipc",
         [
             Object(Matching, "RVL_SDK/ipc/ipcMain.c"),
             Object(Matching, "RVL_SDK/ipc/ipcclt.c"),
             Object(Matching, "RVL_SDK/ipc/memory.c"),
-            Object(Matching, "RVL_SDK/ipc/ipcProfile.c")
-        ]
+            Object(Matching, "RVL_SDK/ipc/ipcProfile.c"),
+        ],
     ),
-
-    SDKLib(
-        "kpad",
-        [
-            Object(NonMatching, "RVL_SDK/kpad/KPAD.c")
-        ]
-    ),
-
+    SDKLib("kpad", [Object(NonMatching, "RVL_SDK/kpad/KPAD.c")]),
     SDKLib(
         "mem",
         [
@@ -2556,9 +2466,8 @@ config.libs = [
             Object(NonMatching, "RVL_SDK/mem/mem_expHeap.c"),
             Object(NonMatching, "RVL_SDK/mem/mem_allocator.c"),
             Object(NonMatching, "RVL_SDK/mem/mem_list.c"),
-        ]
+        ],
     ),
-
     SDKLib(
         "mtx",
         [
@@ -2566,10 +2475,9 @@ config.libs = [
             Object(NonMatching, "RVL_SDK/mtx/mtxvec.c"),
             Object(NonMatching, "RVL_SDK/mtx/mtx44.c"),
             Object(NonMatching, "RVL_SDK/mtx/vec.c"),
-            Object(NonMatching, "RVL_SDK/mtx/quat.c")
-        ]
+            Object(NonMatching, "RVL_SDK/mtx/quat.c"),
+        ],
     ),
-
     SDKLib(
         "nand",
         [
@@ -2579,19 +2487,17 @@ config.libs = [
             Object(Matching, "RVL_SDK/nand/NANDSecret.c"),
             Object(NonMatching, "RVL_SDK/nand/NANDCheck.c"),
             Object(NonMatching, "RVL_SDK/nand/NANDLogging.c"),
-        ]
+        ],
     ),
-
     SDKLib(
         "net",
         [
             Object(NonMatching, "RVL_SDK/net/nettime.c"),
             Object(NonMatching, "RVL_SDK/net/NETVersion.c"),
             Object(NonMatching, "RVL_SDK/net/netmemcpy.c"),
-            Object(NonMatching, "RVL_SDK/net/netmemset.c")
-        ]
+            Object(NonMatching, "RVL_SDK/net/netmemset.c"),
+        ],
     ),
-
     SDKLib(
         "nwc24",
         [
@@ -2613,10 +2519,9 @@ config.libs = [
             Object(NonMatching, "RVL_SDK/nwc24/NWC24Time.c"),
             Object(NonMatching, "RVL_SDK/nwc24/NWC24Ipc.c"),
             Object(NonMatching, "RVL_SDK/nwc24/NWC24Download.c"),
-            Object(NonMatching, "RVL_SDK/nwc24/NWC24System.c")
-        ]
+            Object(NonMatching, "RVL_SDK/nwc24/NWC24System.c"),
+        ],
     ),
-
     SDKLib(
         "os",
         [
@@ -2653,63 +2558,35 @@ config.libs = [
             Object(Matching, "RVL_SDK/os/OSLaunch.c"),
             Object(NonMatching, "RVL_SDK/os/init/__start.c"),
             Object(Matching, "RVL_SDK/os/init/__ppc_eabi_init.cpp"),
-            Object(Matching, "RVL_SDK/os/__ppc_eabi_init.c")
-        ]
+            Object(Matching, "RVL_SDK/os/__ppc_eabi_init.c"),
+        ],
     ),
-
-    SDKLib(
-        "pad",
-        [
-            Object(Matching, "RVL_SDK/pad/Pad.c")
-        ]
-    ),
-
-    SDKLib(
-        "rso",
-        [
-            Object(NonMatching, "RVL_SDK/rso/RSOLink.c")
-        ]
-    ),
-
+    SDKLib("pad", [Object(Matching, "RVL_SDK/pad/Pad.c")]),
+    SDKLib("rso", [Object(NonMatching, "RVL_SDK/rso/RSOLink.c")]),
     SDKLib(
         "sc",
         [
             Object(NonMatching, "RVL_SDK/sc/scsystem.c"),
             Object(NonMatching, "RVL_SDK/sc/scapi.c"),
             Object(Matching, "RVL_SDK/sc/scapi_prdinfo.c"),
-        ]
+        ],
     ),
-
     SDKLib(
         "si",
         [
             Object(NonMatching, "RVL_SDK/si/SIBios.c"),
-            Object(NonMatching, "RVL_SDK/si/SISamplingRate.c")
-        ]
+            Object(NonMatching, "RVL_SDK/si/SISamplingRate.c"),
+        ],
     ),
-
     SDKLib(
         "thp",
         [
             Object(Matching, "RVL_SDK/thp/THPDec.c"),
-            Object(Matching, "RVL_SDK/thp/THPAudio.c")
-        ]
+            Object(Matching, "RVL_SDK/thp/THPAudio.c"),
+        ],
     ),
-
-    SDKLib(
-        "tpl",
-        [
-            Object(Matching, "RVL_SDK/tpl/TPL.c")
-        ]
-    ),
-
-    SDKLib(
-        "usb",
-        [
-            Object(Matching, "RVL_SDK/usb/usb.c")
-        ]
-    ),
-
+    SDKLib("tpl", [Object(Matching, "RVL_SDK/tpl/TPL.c")]),
+    SDKLib("usb", [Object(Matching, "RVL_SDK/usb/usb.c")]),
     SDKLib(
         "vf",
         [
@@ -2761,53 +2638,39 @@ config.libs = [
             Object(NonMatching, "RVL_SDK/vf/d_time.c"),
             Object(NonMatching, "RVL_SDK/vf/d_common.c"),
             Object(NonMatching, "RVL_SDK/vf/nand_drv.c"),
-            Object(NonMatching, "RVL_SDK/vf/sd_drv.c")
-        ]
+            Object(NonMatching, "RVL_SDK/vf/sd_drv.c"),
+        ],
     ),
-
     SDKLib(
         "vi",
         [
             Object(NonMatching, "RVL_SDK/vi/vi.c"),
             Object(Matching, "RVL_SDK/vi/i2c.c"),
-            Object(NonMatching, "RVL_SDK/vi/vi3in1.c")
-        ]
+            Object(NonMatching, "RVL_SDK/vi/vi3in1.c"),
+        ],
     ),
-
-    SDKLib(
-        "wenc",
-        [
-            Object(NonMatching, "RVL_SDK/wenc/wenc.c")
-        ]
-    ),
-
+    SDKLib("wenc", [Object(NonMatching, "RVL_SDK/wenc/wenc.c")]),
     SDKLib(
         "wpad",
         [
             Object(NonMatching, "RVL_SDK/wpad/WPAD.c"),
             Object(NonMatching, "RVL_SDK/wpad/WPADHIDParser.c"),
             Object(NonMatching, "RVL_SDK/wpad/WPADEncrypt.c"),
-            Object(NonMatching, "RVL_SDK/wpad/debug_msg.c")
-        ]
+            Object(NonMatching, "RVL_SDK/wpad/debug_msg.c"),
+        ],
     ),
-
     SDKLib(
         "wud",
         [
             Object(NonMatching, "RVL_SDK/wud/WUD.c"),
             Object(Matching, "RVL_SDK/wud/WUDHidHost.c"),
-            Object(Matching, "RVL_SDK/wud/debug_msg.c")
-        ]
+            Object(Matching, "RVL_SDK/wud/debug_msg.c"),
+        ],
     ),
-
     SDKLib(
         "NDEV",
-        [
-            Object(NonMatching, "NDEV/DebuggerDriver.c"),
-            Object(NonMatching, "NDEV/exi2.c")
-        ]
+        [Object(Matching, "NDEV/DebuggerDriver.c"), Object(Matching, "NDEV/exi2.c")],
     ),
-
     RFLib(
         "RVLFaceLib",
         [
@@ -2823,10 +2686,9 @@ config.libs = [
             Object(Matching, "RVLFaceLib/RFL_MiddleDatabase.c"),
             Object(Matching, "RVLFaceLib/RFL_DefaultDatabase.c"),
             Object(Matching, "RVLFaceLib/RFL_DataUtility.c"),
-            Object(NonMatching, "RVLFaceLib/RFL_Format.c")
-        ]
+            Object(NonMatching, "RVLFaceLib/RFL_Format.c"),
+        ],
     ),
-
     MSLib(
         "MSL_C",
         [
@@ -2861,39 +2723,83 @@ config.libs = [
             Object(Matching, "MSL_C/abort_exit_ppc_eabi.c"),
             Object(Matching, "MSL_C/math_sun.c"),
             Object(Matching, "MSL_C/extras.c"),
-            Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/e_acos.c"),
-            Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/e_asin.c"),
-            Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/e_atan2.c"),
-            Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/e_fmod.c"),
-            Object(NonMatching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/e_log.c"),
-            Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/e_log10.c"),
-            Object(NonMatching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/e_pow.c"),
-            Object(NonMatching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/e_rem_pio2.c"),
+            Object(
+                Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/e_acos.c"
+            ),
+            Object(
+                Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/e_asin.c"
+            ),
+            Object(
+                Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/e_atan2.c"
+            ),
+            Object(
+                Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/e_fmod.c"
+            ),
+            Object(
+                NonMatching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/e_log.c"
+            ),
+            Object(
+                Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/e_log10.c"
+            ),
+            Object(
+                NonMatching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/e_pow.c"
+            ),
+            Object(
+                NonMatching,
+                "MSL_C/MSL_Common_Embedded/Math/Double_precision/e_rem_pio2.c",
+            ),
             Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/k_cos.c"),
-            Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/k_rem_pio2.c"),
+            Object(
+                Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/k_rem_pio2.c"
+            ),
             Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/k_sin.c"),
             Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/k_tan.c"),
-            Object(NonMatching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/s_atan.c"),
-            Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/s_ceil.c"),
-            Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/s_copysign.c"),
+            Object(
+                NonMatching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/s_atan.c"
+            ),
+            Object(
+                Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/s_ceil.c"
+            ),
+            Object(
+                Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/s_copysign.c"
+            ),
             Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/s_cos.c"),
-            Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/s_floor.c"),
-            Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/s_frexp.c"),
-            Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/s_ldexp.c"),
+            Object(
+                Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/s_floor.c"
+            ),
+            Object(
+                Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/s_frexp.c"
+            ),
+            Object(
+                Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/s_ldexp.c"
+            ),
             Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/s_sin.c"),
             Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/s_tan.c"),
-            Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/w_acos.c"),
-            Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/w_asin.c"),
-            Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/w_atan2.c"),
-            Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/w_fmod.c"),
-            Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/w_log10.c"),
+            Object(
+                Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/w_acos.c"
+            ),
+            Object(
+                Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/w_asin.c"
+            ),
+            Object(
+                Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/w_atan2.c"
+            ),
+            Object(
+                Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/w_fmod.c"
+            ),
+            Object(
+                Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/w_log10.c"
+            ),
             Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/w_pow.c"),
-            Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/e_sqrt.c"),
+            Object(
+                Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/e_sqrt.c"
+            ),
             Object(NonMatching, "MSL_C/PPC_EABI/SRC/math_ppc.c"),
-            Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/w_sqrt.c")
-        ]
+            Object(
+                Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/w_sqrt.c"
+            ),
+        ],
     ),
-
     TRKLib(
         "MetroTRK",
         [
@@ -2902,31 +2808,76 @@ config.libs = [
             Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Portable/nubinit.c"),
             Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Portable/msg.c"),
             Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Portable/msgbuf.c"),
-            Object(NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Portable/serpoll.c", extra_cflags=["-sdata 8"]),
-            Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/usr_put.c"),
+            Object(
+                NonMatching,
+                "MetroTRK/debugger/embedded/MetroTRK/Portable/serpoll.c",
+                extra_cflags=["-sdata 8"],
+            ),
+            Object(
+                Matching, "MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/usr_put.c"
+            ),
             Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Portable/dispatch.c"),
-            Object(NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Portable/msghndlr.c"),
-            Object(NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Portable/support.c"),
-            Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Portable/mutex_TRK.c"),
+            Object(
+                NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Portable/msghndlr.c"
+            ),
+            Object(
+                NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Portable/support.c"
+            ),
+            Object(
+                Matching, "MetroTRK/debugger/embedded/MetroTRK/Portable/mutex_TRK.c"
+            ),
             Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Portable/notify.c"),
-            Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Processor/ppc/Generic/flush_cache.c"),
-            Object(NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Portable/mem_TRK.c"),
-            Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Portable/string_TRK.c"),
-            Object(NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Processor/ppc/Generic/targimpl.c"),
-            Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Processor/ppc/Generic/mpc_7xx_603e.c"),
+            Object(
+                Matching,
+                "MetroTRK/debugger/embedded/MetroTRK/Processor/ppc/Generic/flush_cache.c",
+            ),
+            Object(
+                NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Portable/mem_TRK.c"
+            ),
+            Object(
+                Matching, "MetroTRK/debugger/embedded/MetroTRK/Portable/string_TRK.c"
+            ),
+            Object(
+                NonMatching,
+                "MetroTRK/debugger/embedded/MetroTRK/Processor/ppc/Generic/targimpl.c",
+            ),
+            Object(
+                Matching,
+                "MetroTRK/debugger/embedded/MetroTRK/Processor/ppc/Generic/mpc_7xx_603e.c",
+            ),
             Object(NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Export/mslsupp.c"),
-            Object(NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/dolphin_trk.c"),
+            Object(
+                NonMatching,
+                "MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/dolphin_trk.c",
+            ),
             Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Portable/main_TRK.c"),
-            Object(NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/dolphin_trk_glue.c"),
-            Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/targcont.c"),
-            Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/target_options.c"),
-            Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/UDP_Stubs.c"),
-            Object(NonMatching, "MetroTRK/gamedev/cust_connection/cc/exi2/GCN/EXI2_GDEV_GCN/main.c"),
-            Object(Matching, "MetroTRK/gamedev/cust_connection/utils/common/CircleBuffer.c"),
-            Object(NonMatching, "MetroTRK/gamedev/cust_connection/utils/gc/MWCriticalSection_gc.c")
-        ]
+            Object(
+                NonMatching,
+                "MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/dolphin_trk_glue.c",
+            ),
+            Object(
+                Matching, "MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/targcont.c"
+            ),
+            Object(
+                Matching,
+                "MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/target_options.c",
+            ),
+            Object(
+                Matching, "MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/UDP_Stubs.c"
+            ),
+            Object(
+                NonMatching,
+                "MetroTRK/gamedev/cust_connection/cc/exi2/GCN/EXI2_GDEV_GCN/main.c",
+            ),
+            Object(
+                Matching, "MetroTRK/gamedev/cust_connection/utils/common/CircleBuffer.c"
+            ),
+            Object(
+                NonMatching,
+                "MetroTRK/gamedev/cust_connection/utils/gc/MWCriticalSection_gc.c",
+            ),
+        ],
     ),
-
     JSysLib(
         "J2DGraph",
         [
@@ -2936,11 +2887,9 @@ config.libs = [
             Object(NonMatching, "JSystem/J2DGraph/J2DPane.cpp"),
             Object(NonMatching, "JSystem/J2DGraph/J2DScreen.cpp"),
             Object(NonMatching, "JSystem/J2DGraph/J2DPicture.cpp"),
-            Object(NonMatching, "JSystem/J2DGraph/J2DManage.cpp")
-
-        ]
+            Object(NonMatching, "JSystem/J2DGraph/J2DManage.cpp"),
+        ],
     ),
-
     JSysLib(
         "J3DGraphAnimator",
         [
@@ -2954,10 +2903,9 @@ config.libs = [
             Object(NonMatching, "JSystem/J3DGraphAnimator/J3DSkinDeform.cpp"),
             Object(NonMatching, "JSystem/J3DGraphAnimator/J3DCluster.cpp"),
             Object(NonMatching, "JSystem/J3DGraphAnimator/J3DJoint.cpp"),
-            Object(NonMatching, "JSystem/J3DGraphAnimator/J3DMaterialAttach.cpp")
-        ]
+            Object(NonMatching, "JSystem/J3DGraphAnimator/J3DMaterialAttach.cpp"),
+        ],
     ),
-
     JSysLib(
         "J3DGraphBase",
         [
@@ -2973,10 +2921,9 @@ config.libs = [
             Object(NonMatching, "JSystem/J3DGraphBase/J3DMatBlock.cpp"),
             Object(NonMatching, "JSystem/J3DGraphBase/J3DTevs.cpp"),
             Object(NonMatching, "JSystem/J3DGraphBase/J3DDrawBuffer.cpp"),
-            Object(NonMatching, "JSystem/J3DGraphBase/J3DStruct.cpp")
-        ]
+            Object(NonMatching, "JSystem/J3DGraphBase/J3DStruct.cpp"),
+        ],
     ),
-
     JSysLib(
         "J3DGraphLoader",
         [
@@ -2986,10 +2933,9 @@ config.libs = [
             Object(NonMatching, "JSystem/J3DGraphLoader/J3DModelLoaderCalcSize.cpp"),
             Object(NonMatching, "JSystem/J3DGraphLoader/J3DJointFactory.cpp"),
             Object(NonMatching, "JSystem/J3DGraphLoader/J3DShapeFactory.cpp"),
-            Object(NonMatching, "JSystem/J3DGraphLoader/J3DAnmLoader.cpp")
-        ]
+            Object(NonMatching, "JSystem/J3DGraphLoader/J3DAnmLoader.cpp"),
+        ],
     ),
-
     JSysLib(
         "JAudio2",
         [
@@ -3064,18 +3010,16 @@ config.libs = [
             Object(NonMatching, "JSystem/JAudio2/JAUSoundObject.cpp"),
             Object(NonMatching, "JSystem/JAudio2/JAUSoundTable.cpp"),
             Object(NonMatching, "JSystem/JAudio2/JAUStdSoundInfo.cpp"),
-            Object(NonMatching, "JSystem/JAudio2/JAUStreamFileTable.cpp")
-        ]
+            Object(NonMatching, "JSystem/JAudio2/JAUStreamFileTable.cpp"),
+        ],
     ),
-
     JSysLib(
         "JGadget",
         [
             Object(NonMatching, "JSystem/JGadget/hashcode.cpp"),
-            Object(NonMatching, "JSystem/JGadget/linklist.cpp")
-        ]
+            Object(NonMatching, "JSystem/JGadget/linklist.cpp"),
+        ],
     ),
-
     JSysLib(
         "JKernel",
         [
@@ -3101,19 +3045,17 @@ config.libs = [
             Object(NonMatching, "JSystem/JKernel/JKRDvdFile.cpp"),
             Object(NonMatching, "JSystem/JKernel/JKRDvdRipper.cpp"),
             Object(NonMatching, "JSystem/JKernel/JKRDvdAramRipper.cpp"),
-            Object(NonMatching, "JSystem/JKernel/JKRDecomp.cpp")
-        ]
+            Object(NonMatching, "JSystem/JKernel/JKRDecomp.cpp"),
+        ],
     ),
-
     JSysLib(
         "JMath",
         [
             Object(NonMatching, "JSystem/JMath/JMath.cpp"),
             Object(NonMatching, "JSystem/JMath/random.cpp"),
-            Object(NonMatching, "JSystem/JMath/JMATrigonometric.cpp")
-        ]
+            Object(NonMatching, "JSystem/JMath/JMATrigonometric.cpp"),
+        ],
     ),
-
     JSysLib(
         "JParticle",
         [
@@ -3131,10 +3073,9 @@ config.libs = [
             Object(NonMatching, "JSystem/JParticle/JPAEmitterManager.cpp"),
             Object(NonMatching, "JSystem/JParticle/JPAEmitter.cpp"),
             Object(NonMatching, "JSystem/JParticle/JPAParticle.cpp"),
-            Object(NonMatching, "JSystem/JParticle/JPAMath.cpp")
-        ]
+            Object(NonMatching, "JSystem/JParticle/JPAMath.cpp"),
+        ],
     ),
-
     JSysLib(
         "JSupport",
         [
@@ -3142,10 +3083,9 @@ config.libs = [
             Object(NonMatching, "JSystem/JSupport/JSUInputStream.cpp"),
             Object(NonMatching, "JSystem/JSupport/JSUOutputStream.cpp"),
             Object(NonMatching, "JSystem/JSupport/JSUMemoryStream.cpp"),
-            Object(NonMatching, "JSystem/JSupport/JSUFileStream.cpp")
-        ]
+            Object(NonMatching, "JSystem/JSupport/JSUFileStream.cpp"),
+        ],
     ),
-
     JSysLib(
         "JUtility",
         [
@@ -3159,9 +3099,9 @@ config.libs = [
             Object(NonMatching, "JSystem/JUtility/JUTVideo.cpp"),
             Object(NonMatching, "JSystem/JUtility/JUTXfb.cpp"),
             Object(NonMatching, "JSystem/JUtility/JUTConsole.cpp"),
-            Object(NonMatching, "JSystem/JUtility/JUTDbPrint.cpp")
-        ]
-    )
+            Object(NonMatching, "JSystem/JUtility/JUTDbPrint.cpp"),
+        ],
+    ),
 ]
 
 config.progress_categories = [
@@ -3171,7 +3111,7 @@ config.progress_categories = [
     ProgressCategory("nw4r", "NW4R"),
     ProgressCategory("rfl", "RVLFaceLib"),
     ProgressCategory("msl", "MSL_C"),
-    ProgressCategory("trk", "MetroTRK")
+    ProgressCategory("trk", "MetroTRK"),
 ]
 config.progress_each_module = args.verbose
 
