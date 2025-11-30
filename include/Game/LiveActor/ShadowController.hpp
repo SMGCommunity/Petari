@@ -31,8 +31,8 @@ public:
     ShadowControllerHolder();
 
     virtual ~ShadowControllerHolder();
-    virtual void initAfterPlacement();
-    virtual void movement();
+    virtual void initAfterPlacement() override;
+    virtual void movement() override;
 
     void updateController();
 

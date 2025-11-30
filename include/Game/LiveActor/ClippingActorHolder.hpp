@@ -14,7 +14,7 @@ public:
     ClippingActorHolder();
 
     virtual ~ClippingActorHolder();
-    virtual void movement();
+    virtual void movement() override;
 
     void registerActor(LiveActor*);
     void initSystemInfo(LiveActor*, const JMapInfoIter&);

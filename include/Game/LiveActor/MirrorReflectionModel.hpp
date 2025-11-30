@@ -7,11 +7,11 @@ public:
     MirrorReflectionModel(const LiveActor*, const char*, const char*, MtxPtr);
 
     virtual ~MirrorReflectionModel();
-    virtual void init(const JMapInfoIter&);
-    virtual void movement();
-    virtual void calcAnim();
-    virtual void calcViewAndEntry();
-    virtual void calcAndSetBaseMtx();
+    virtual void init(const JMapInfoIter&) override;
+    virtual void movement() override;
+    virtual void calcAnim() override;
+    virtual void calcViewAndEntry() override;
+    virtual void calcAndSetBaseMtx() override;
 
     const LiveActor* _8C;
     MtxPtr _90;
