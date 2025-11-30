@@ -197,6 +197,8 @@ namespace MR {
 
         static bool isExistStageEffectData(const char*);
 
+        static bool isExistStageEffectSeData(const char*);
+
         static void rumblePadMoving(LiveActor*, const char*);
         static void rumblePadStart(LiveActor*, const char*);
         static void rumblePadStop(LiveActor*, const char*);
