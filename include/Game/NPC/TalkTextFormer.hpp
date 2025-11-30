@@ -1,6 +1,5 @@
 #pragma once
 
-#include "Game/Screen/CustomTagProcessor.hpp"
 #include "Game/Screen/LayoutActor.hpp"
 
 struct CustomTagArg;
@@ -16,8 +15,14 @@ public:
     void updateTalking();
     bool isTextAppearedAll() const;
 
-    LayoutActor* mHostActor;  // 0x0
-    const wchar_t* mMsg;      // 0x4
-    u32 _8;
-    const char* mPaneName;  // 0xC
+    /* 0x0 */ LayoutActor* mHostActor;
+    /* 0x4 */ const wchar_t* mMsg;
+    s32 _8;
+    /* 0xC */ const char* mPaneName;
 };
+
+namespace MR {
+    void nextStepTagProcessorRecursive(LayoutActor*, const char*);
+    bool isEndStepTagProcessorRecursive(const LayoutActor*, const char*, bool);
+    void initTagProcessorRecursive(LayoutActor*, const char*, s32);
+}  // namespace MR
