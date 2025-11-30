@@ -16,3 +16,9 @@ void Mario::clear2DStick() {
     _670.zero();
     _67C.zero();
 }
+
+void Mario::beforeJumping2D() {
+    _628 = _660;
+}
+
+void Mario::afterLanding2D() {}

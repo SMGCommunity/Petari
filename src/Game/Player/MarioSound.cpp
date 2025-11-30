@@ -1,4 +1,5 @@
 #include "Game/Player/Mario.hpp"
+#include "Game/Player/MarioActor.hpp"
 #include <cstring>
 
 struct SoundList {
@@ -1717,4 +1718,8 @@ u32 Mario::initSoundTable(SoundList* list, u32 globalTablePosition) {
         i++;
     }
     return i;
+}
+
+void Mario::setSeVersion(u32 version) {
+    MR::setSeVersion(mActor, version);
 }

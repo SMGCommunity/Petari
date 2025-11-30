@@ -201,6 +201,7 @@ public:
     bool trySpinPunch();
     void shootFireBall();
     void doFreezeAttack();
+    void initBlink();
     void setBlink(const char*);
     void resetSensorCount();
     void getStickValue(f32*, f32*);
