@@ -2953,22 +2953,22 @@ namespace {
         },
         {
             "DarknessRoomDoorA",
-            nullptr,
+            createNameObj< DarknessRoomDoor >,
             "DarknessRoomDoorA",
         },
         {
             "TeresaMansionDoorA",
-            nullptr,
+            createNameObj< TypicalDoor >,
             "TeresaMansionDoorA",
         },
         {
             "TeresaMansionDoorB",
-            nullptr,
+            createNameObj< TypicalDoor >,
             "TeresaMansionDoorB",
         },
         {
             "TeresaMansionEntranceDoor",
-            nullptr,
+            createNameObj< TypicalDoorOpen >,
             "TeresaMansionEntranceDoor",
         },
         {
@@ -3128,17 +3128,17 @@ namespace {
         },
         {
             "NeedlePlant",
-            nullptr,
+            createNameObj< NeedlePlant >,
             "NeedlePlant",
         },
         {
             "NeedlePlantFly",
-            nullptr,
+            createNameObj< NeedlePlant >,
             "NeedlePlantFly",
         },
         {
             "BeeWallClimbPartsA",
-            nullptr,
+            createNameObj< RailMoveObj >,
             "BeeWallClimbPartsA",
         },
         {
@@ -4128,7 +4128,7 @@ namespace {
         },
         {
             "UFOKinoko",
-            nullptr,
+            createNameObj< UFOKinoko >,
             "UFOKinoko",
         },
         {
@@ -4738,7 +4738,7 @@ namespace {
         },
         {
             "AstroMapBoard",
-            nullptr,
+            createNameObj< AstroMapBoard >,
             "AstroMapBoard",
         },
         {
@@ -5273,7 +5273,7 @@ namespace {
         },
         {
             "ScrewSwitch",
-            nullptr,
+            createNameObj< ScrewSwitch >,
             "ScrewSwitch",
         },
         {

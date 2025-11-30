@@ -9,7 +9,7 @@ public:
 
     virtual ~ShadowVolumeBox();
 
-    virtual void draw() const;
+    virtual void draw() const override;
     virtual void loadModelDrawMtx() const;
     virtual void drawShape() const;
 

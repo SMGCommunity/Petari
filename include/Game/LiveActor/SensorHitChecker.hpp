@@ -13,8 +13,8 @@ public:
 
     virtual ~SensorHitChecker();
 
-    virtual void init(const JMapInfoIter&);
-    virtual void movement();
+    virtual void init(const JMapInfoIter&) override;
+    virtual void movement() override;
 
     void initGroup(HitSensor*);
     void doObjColGroup(SensorGroup*, SensorGroup*) const;

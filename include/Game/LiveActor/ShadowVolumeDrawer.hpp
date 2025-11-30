@@ -17,9 +17,9 @@ public:
 
     virtual ~ShadowVolumeDrawer();
 
-    virtual void draw() const;
-    virtual void loadModelDrawMtx() const;
-    virtual void drawShape() const;
+    virtual void draw() const override;
+    virtual void loadModelDrawMtx() const override;
+    virtual void drawShape() const override;
     virtual bool isDraw() const;
 
     void setStartDrawShepeOffset(f32);

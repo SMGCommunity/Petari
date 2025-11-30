@@ -8,7 +8,7 @@ public:
 
     virtual ~ShadowSurfaceCircle();
 
-    virtual void draw() const;
+    virtual void draw() const override;
 
     void setRadius(f32);
 

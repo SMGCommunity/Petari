@@ -11,8 +11,8 @@ public:
 
     virtual ~MsgSharedGroup();
 
-    virtual void init(const JMapInfoIter&);
-    virtual void movement();
+    virtual void init(const JMapInfoIter&) override;
+    virtual void movement() override;
 
     void sendMsgToGroupMember(u32, HitSensor*, const char*);
 

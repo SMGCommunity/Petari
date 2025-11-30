@@ -202,6 +202,7 @@
 #include "Game/MapObj/TransparentWall.hpp"
 #include "Game/MapObj/TreasureBoxCracked.hpp"
 #include "Game/MapObj/TreasureSpot.hpp"
+#include "Game/MapObj/TypicalDoor.hpp"
 #include "Game/MapObj/UFOBase.hpp"
 #include "Game/MapObj/UFOKinoko.hpp"
 #include "Game/MapObj/ValveSwitch.hpp"
