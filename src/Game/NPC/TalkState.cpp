@@ -242,7 +242,7 @@ void TalkStateNormal::updateButton() {
 
     // Outer TVec2f is 0x18 but shouldn't exist?
     // Inner TVec2f is 0x08 but should be 0x18
-    TVec2f v11(TVec2f(0.0f, -1.0f) * (60.0f * f2));
+    TVec2f v11(TVec2f(up.x, up.y) * (60.0f * f2));
     playerScreenPos.x += v11.x;
     playerScreenPos.y += v11.y;
 
