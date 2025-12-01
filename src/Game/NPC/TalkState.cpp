@@ -8,8 +8,11 @@
 #include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/DemoUtil.hpp"
 #include "Game/Util/GamePadUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
+#include "JSystem/JGeometry/TVec.hpp"
 #include "revolution/types.h"
 
 TalkState::TalkState() : _04(nullptr), mBalloon(nullptr) {}
@@ -207,6 +210,43 @@ bool TalkStateNormal::prep(const TalkMessageCtrl* pArg1) {
     }
 
     return true;
+}
+
+void TalkStateNormal::updateButton() {
+    TVec3f camZ(MR::getCamZdir());                   // 0x78
+    TVec3f camY(MR::getCamYdir());                   // 0x6c
+    TVec3f up;                                       // 0x60
+    TVec3f centerPlayer(*MR::getPlayerCenterPos());  // 0x54
+    MR::getPlayerUpVec(&up);
+
+    f32 f1 = __fabs(camZ.dot(up));
+    f32 f2 = camY.dot(up);
+    f1 = f1 * f1;
+
+    TVec3f up_but_bigger(up);  // 0x48 but should be 0x3c
+    up_but_bigger.x *= 1000.0f;
+    up_but_bigger.y *= 1000.0f;
+    up_but_bigger.z *= 1000.0f;
+
+    MR::calcNormalizedScreenPosition(&up, up_but_bigger + centerPlayer);  // Second arg is 0x3c, but should be 0x48
+    MR::calcNormalizedScreenPosition(&centerPlayer, centerPlayer);
+    MR::normalize(up - centerPlayer, &up);  // First arg is 0x30
+    TVec2f playerScreenPos;                 // 0x28
+    MR::calcScreenPosition(&playerScreenPos, *MR::getPlayerCenterPos());
+
+    // Outer TVec2f is 0x20 but shouldn't exist?
+    // Inner TVec2f is 0x10 but should be 0x20
+    TVec2f v10(TVec2f(0.0f, -1.0f) * (40.0f * f1));
+    playerScreenPos.x += v10.x;
+    playerScreenPos.y += v10.y;
+
+    // Outer TVec2f is 0x18 but shouldn't exist?
+    // Inner TVec2f is 0x08 but should be 0x18
+    TVec2f v11(TVec2f(0.0f, -1.0f) * (60.0f * f2));
+    playerScreenPos.x += v11.x;
+    playerScreenPos.y += v11.y;
+
+    _24->setTrans(playerScreenPos);
 }
 
 void TalkStateCompose::init(TalkMessageCtrl* pArg1, TalkBalloon* pArg2) {
