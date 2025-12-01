@@ -527,7 +527,7 @@ public:
     // padding
     u16 _B74;
     // padding
-    u32 _B78;
+    void* mEyeRes;  // 0xB78
     u32 _B7C;
     u32 _B80;
     u32 _B84;

@@ -1320,7 +1320,7 @@ config.libs = [
             Object(NonMatching, "Game/Map/SunshadeMapHolder.cpp"),
             Object(Matching, "Game/Map/SunshadeMapParts.cpp"),
             Object(Matching, "Game/Map/SwitchSynchronizer.cpp"),
-            Object(NonMatching, "Game/Map/SwitchWatcher.cpp"),
+            Object(Matching, "Game/Map/SwitchWatcher.cpp"),
             Object(NonMatching, "Game/Map/SwitchWatcherHolder.cpp"),
             Object(Matching, "Game/Map/TimerSwitch.cpp"),
             Object(NonMatching, "Game/Map/WaterAreaHolder.cpp"),
