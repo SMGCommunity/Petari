@@ -70,12 +70,12 @@ void Tsukidashikun::exeSign() {
     TVec3f railStart = MR::getRailPointPosStart(this);
     TVec3f* playerPos = MR::getPlayerPos();
     f32 f1 = MR::calcPerpendicFootToLineInside(playerPos, railEnd, railStart, mPosition);
-    if (MR::isNearPlayer(mPosition, 700.0)) {
+    if (MR::isNearPlayer(mPosition, f1)) {
         MR::tryRumblePadWeak(this, 0);
     }
-    MR::startLevelSound(this, "", -1, -1, -1);
+    MR::startLevelSound(this, "SE_OJ_LV_TSUKIDASHI_VIB", -1, -1, -1);
     if (MR::isStep(this, 0)) {
-        MR::setBckFrameAndStop(this, 0);
+        MR::setBckFrameAndStop(this, 0.0f);
         if (isNerve(&NrvTsukidashikun::TsukidashikunNrvSignForward::sInstance)) {
             setNerve(&NrvTsukidashikun::TsukidashikunNrvMoveForward::sInstance);
         }
@@ -87,12 +87,12 @@ void Tsukidashikun::exeSign() {
 
 void Tsukidashikun::exeMove() {
     if (MR::isFirstStep(this)) {
-        MR::startSound(this, "", -1, -1);
+        MR::startSound(this, "SE_OJ_TSUKIDASHI_START", -1, -1);
     }
     MR::moveCoordAndFollowTrans(this, _C4);
-    MR::startLevelSound(this, "", -1, -1, -1);
+    MR::startLevelSound(this, "SE_OJ_LV_TSUKIDASHI_MOVE", -1, -1, -1);
     if (MR::isRailReachedGoal(this)) {
-        MR::startLevelSound(this, "", -1, -1, -1);
+        MR::startLevelSound(this, "SE_OJ_TSUKIDASHI_STOP", -1, -1, -1);
         MR::reverseRailDirection(this);
         if (isNerve(&NrvTsukidashikun::TsukidashikunNrvMoveForward::sInstance)) {
             setNerve(&NrvTsukidashikun::TsukidashikunNrvWaitForward::sInstance);
@@ -107,8 +107,7 @@ void Tsukidashikun::connectToScene(const MapObjActorInitInfo& rInfo) {
 }
 
 void Tsukidashikun::initCaseUseSwitchB(const MapObjActorInitInfo& rInfo) {
-    MR::listenStageSwitchOnB(this, MR::FunctorV0M<Tsukidashikun *, 
-        void (Tsukidashikun::*)(void)>(this, &Tsukidashikun::kill));
+    MR::listenStageSwitchOnB(this, MR::Functor_Inline(this, &Tsukidashikun::startMove));
 }
 
 void Tsukidashikun::initCaseNoUseSwitchB(const MapObjActorInitInfo& rInfo) {
@@ -120,43 +119,7 @@ void Tsukidashikun::startMove() {
 }
 
 namespace NrvTsukidashikun {
-    INIT_NERVE(TsukidashikunNrvMoveForward);
-    INIT_NERVE(TsukidashikunNrvMoveBack);
-    INIT_NERVE(TsukidashikunNrvSignForward);
-    INIT_NERVE(TsukidashikunNrvSignBack);
-    INIT_NERVE(TsukidashikunNrvWaitForward);
-    INIT_NERVE(TsukidashikunNrvWaitBack);
     INIT_NERVE(TsukidashikunNrvRelax);
-
-    void TsukidashikunNrvMoveForward::execute(Spine* pSpine) const {
-        Tsukidashikun* pActor = (Tsukidashikun*)pSpine->mExecutor;
-        pActor->exeMove();
-    }
-
-    void TsukidashikunNrvMoveBack::execute(Spine* pSpine) const {
-        Tsukidashikun* pActor = (Tsukidashikun*)pSpine->mExecutor;
-        pActor->exeMove();
-    }
-
-    void TsukidashikunNrvSignForward::execute(Spine* pSpine) const {
-        Tsukidashikun* pActor = (Tsukidashikun*)pSpine->mExecutor;
-        pActor->exeSign();
-    }
-
-    void TsukidashikunNrvSignBack::execute(Spine* pSpine) const {
-        Tsukidashikun* pActor = (Tsukidashikun*)pSpine->mExecutor;
-        pActor->exeSign();
-    }
-
-    void TsukidashikunNrvWaitForward::execute(Spine* pSpine) const {
-        Tsukidashikun* pActor = (Tsukidashikun*)pSpine->mExecutor;
-        pActor->exeWait();
-    }
-
-    void TsukidashikunNrvWaitBack::execute(Spine* pSpine) const {
-        Tsukidashikun* pActor = (Tsukidashikun*)pSpine->mExecutor;
-        pActor->exeWait();
-    }
 
     void TsukidashikunNrvRelax::execute(Spine* pSpine) const {
         Tsukidashikun* pActor = (Tsukidashikun*)pSpine->mExecutor;
@@ -165,5 +128,3 @@ namespace NrvTsukidashikun {
         }
     }
 }
-
-Tsukidashikun::~Tsukidashikun() {}

@@ -1,12 +1,12 @@
 #pragma once
 
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/MapObjActor.hpp"
 
 class Tsukidashikun : public MapObjActor {
 public:
     Tsukidashikun(const char*);
 
-    virtual ~Tsukidashikun();
     virtual void init(const JMapInfoIter&);
 
     void exeWait();
@@ -17,16 +17,16 @@ public:
     void initCaseNoUseSwitchB(const MapObjActorInitInfo&);
     void startMove();
 
-    f32 _C4;         // 0xC4
-    s32 mTimer;         // 0xC8
+    /* 0xC4 */ f32 _C4;
+    /* 0xC8 */ s32 mTimer;
 };
 
 namespace NrvTsukidashikun {
-    NERVE(TsukidashikunNrvMoveForward);
-    NERVE(TsukidashikunNrvMoveBack);
-    NERVE(TsukidashikunNrvSignForward);
-    NERVE(TsukidashikunNrvSignBack);
-    NERVE(TsukidashikunNrvWaitForward);
-    NERVE(TsukidashikunNrvWaitBack);
+    NEW_NERVE(TsukidashikunNrvMoveForward, Tsukidashikun, Move);
+    NEW_NERVE(TsukidashikunNrvMoveBack, Tsukidashikun, Move);
+    NEW_NERVE(TsukidashikunNrvSignForward, Tsukidashikun, Sign);
+    NEW_NERVE(TsukidashikunNrvSignBack, Tsukidashikun, Sign);
+    NEW_NERVE(TsukidashikunNrvWaitForward, Tsukidashikun, Wait);
+    NEW_NERVE(TsukidashikunNrvWaitBack, Tsukidashikun, Wait);
     NERVE(TsukidashikunNrvRelax);
 }; // namespace NrvTsukidashikun
