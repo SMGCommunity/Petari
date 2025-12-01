@@ -1,17 +1,18 @@
 #pragma once
 
+#include "Game/Map/SwitchWatcher.hpp"
 #include "Game/NameObj/NameObj.hpp"
 #include "Game/Util/Array.hpp"
 
 class StageSwitchCtrl;
 class SwitchEventListener;
-class SwitchWatcher;
 
 class SwitchWatcherHolder : public NameObj {
 public:
     /// @brief Creates a new `SwitchWatcherHolder`.
     SwitchWatcherHolder();
 
+    virtual ~SwitchWatcherHolder();
     virtual void movement();
 
     void joinSwitchEventListenerA(const StageSwitchCtrl*, SwitchEventListener*);
@@ -21,7 +22,8 @@ public:
     void joinSwitchEventListener(const StageSwitchCtrl*, u32, SwitchEventListener*);
     void addSwitchWatcher(SwitchWatcher*);
 
-    /* 0x0C */ MR::Vector< MR::FixedArray< SwitchWatcher*, 256 > > mSwitchWatcher;
+    MR::FixedArray< SwitchWatcher*, 256 > mWatchers;  // _C
+    s32 mWatcherCount;                                // _40C
 };
 
 namespace MR {

@@ -76,6 +76,15 @@ namespace MR {
     class FixedArray {
     public:
         typedef T Item;
+        template < class X >
+        struct RemovePtr {
+            typedef X Type;
+        };
+        template < class X >
+        struct RemovePtr< X* > {
+            typedef X Type;
+        };
+        typedef RemovePtr< T >::Type Base;
 
         /// @brief Returns the element at the given position.
         /// @param idx The position of the element.
@@ -106,6 +115,12 @@ namespace MR {
         /// @brief Returns an iterator past the last element.
         /// @return The pointer past the last element.
         const T* end() const { return &mArr[N]; }
+
+        void callAllFunc(void (Base::*func)()) {
+            for (T* it = begin(); it != end(); ++it) {
+                ((*it)->*func)();
+            }
+        }
 
     private:
         /// @brief The array of elements.
