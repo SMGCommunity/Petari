@@ -286,6 +286,32 @@ bool TalkStateCompose::prep(const TalkMessageCtrl* pArg1) {
     return unknownBool;
 }
 
+TalkStateHolder::TalkStateHolder() : _00(new TalkSupportPlayerWatcher()) {
+    _04 = new IconAButton(true, false);
+    _04->initWithoutIter();
+
+    _1C = new TalkBalloonShort("会話吹き出し[合成会話]");
+    _1C->initWithoutIter();
+    _1C->initInterval();
+    _1C->kill();
+
+    mTalkShort = new TalkStateShort();
+
+    mTalkNormal = new TalkStateNormal();
+    mTalkNormal->_24 = _04;
+    mTalkNormal->_18 = _00;
+
+    mTalkCompose = new TalkStateCompose();
+    mTalkCompose->_24 = _04;
+    mTalkCompose->_18 = _00;
+    mTalkCompose->mSecondBalloon = _1C;
+
+    mTalkEvent = new TalkStateEvent();
+    mTalkEvent->_18 = _00;
+
+    mTalk = new TalkState();
+}
+
 void TalkStateHolder::update() {
     _00->update();
 }
@@ -294,7 +320,7 @@ void TalkStateHolder::pauseOff() {
     MR::requestMovementOn(_04);
 }
 
-u32 TalkStateHolder::getState(const TalkMessageCtrl* pArg1) {
+TalkState* TalkStateHolder::getState(const TalkMessageCtrl* pArg1) {
     TalkMessageInfo* info = TalkFunction::getMessageInfo(pArg1);
 
     if (info->isNormalTalk()) {
@@ -313,5 +339,5 @@ u32 TalkStateHolder::getState(const TalkMessageCtrl* pArg1) {
         return mTalkCompose;
     }
 
-    return mTalkUnknown;
+    return mTalk;
 }
