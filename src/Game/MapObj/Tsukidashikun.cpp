@@ -1,6 +1,5 @@
 #include "Game/MapObj/Tsukidashikun.hpp"
 #include "Game/LiveActor/Nerve.hpp"
-#include "Game/LiveActor/Spine.hpp"
 #include "Game/MapObj/MapObjActor.hpp"
 #include "Game/MapObj/MapObjActorInitInfo.hpp"
 #include "Game/Util/ActorMovementUtil.hpp"
@@ -15,10 +14,17 @@
 #include "Game/Util/SoundUtil.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
 
-Tsukidashikun::Tsukidashikun(const char* pName) : MapObjActor(pName) {
-    _C4 = 10.0;
-    mTimer = 120;
-}
+namespace NrvTsukidashikun {
+    NEW_NERVE(TsukidashikunNrvRelax, Tsukidashikun, Relax);
+    NEW_NERVE(TsukidashikunNrvWaitBack, Tsukidashikun, Wait);
+    NEW_NERVE(TsukidashikunNrvWaitForward, Tsukidashikun, Wait);
+    NEW_NERVE(TsukidashikunNrvSignBack, Tsukidashikun, Sign);
+    NEW_NERVE(TsukidashikunNrvSignForward, Tsukidashikun, Sign);
+    NEW_NERVE(TsukidashikunNrvMoveBack, Tsukidashikun, Move);
+    NEW_NERVE(TsukidashikunNrvMoveForward, Tsukidashikun, Move);
+}; // namespace NrvTsukidashikun
+
+Tsukidashikun::Tsukidashikun(const char* pName) : MapObjActor(pName), _C4(10.0f), mTimer(120) {}
 
 void Tsukidashikun::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);
@@ -33,7 +39,7 @@ void Tsukidashikun::init(const JMapInfoIter& rIter) {
     initialize(rIter, info);
     MR::initLightCtrl(this);
     MR::getJMapInfoArg0NoInit(rIter, &_C4);
-    MR::getJMapInfoArg0NoInit(rIter, &mTimer);
+    MR::getJMapInfoArg1NoInit(rIter, &mTimer);
     MR::moveCoordToNearestPos(this, mPosition);
 }
 
@@ -41,45 +47,40 @@ void Tsukidashikun::exeWait() {
     if (MR::isFirstStep(this)) {
         if (isNerve(&NrvTsukidashikun::TsukidashikunNrvWaitBack::sInstance)) {
             MR::startBva(this, "BWait");
-        }
-        else {
-            MR::startBva(this, "BSkip");
+        } else {
+            MR::startBva(this, "FWait");
         }
     }
     if (MR::isGreaterEqualStep(this, mTimer)) {
         if (isNerve(&NrvTsukidashikun::TsukidashikunNrvWaitBack::sInstance)) {
             setNerve(&NrvTsukidashikun::TsukidashikunNrvSignForward::sInstance);
-        }
-        else {
+        } else {
             setNerve(&NrvTsukidashikun::TsukidashikunNrvSignBack::sInstance);
         }
-    }    
+    }
 }
 
 void Tsukidashikun::exeSign() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "BSign", nullptr);
+        MR::startBck(this, "BWait", nullptr);
         if (isNerve(&NrvTsukidashikun::TsukidashikunNrvSignForward::sInstance)) {
+            MR::startBva(this, "FSign");
+        } else {
             MR::startBva(this, "BSign");
         }
-        else {
-            MR::startBva(this, "BWait");
-        }
     }
-    TVec3f railEnd = MR::getRailPointPosEnd(this);
-    TVec3f railStart = MR::getRailPointPosStart(this);
-    TVec3f* playerPos = MR::getPlayerPos();
-    f32 f1 = MR::calcPerpendicFootToLineInside(playerPos, railEnd, railStart, mPosition);
-    if (MR::isNearPlayer(mPosition, f1)) {
+
+    TVec3f pos;
+    MR::calcPerpendicFootToLineInside(&pos, *MR::getPlayerPos(), MR::getRailPointPosStart(this), MR::getRailPointPosEnd(this));
+    if (MR::isNearPlayer(pos, 700.0f)) {
         MR::tryRumblePadWeak(this, 0);
     }
     MR::startLevelSound(this, "SE_OJ_LV_TSUKIDASHI_VIB", -1, -1, -1);
-    if (MR::isStep(this, 0)) {
+    if (MR::isStep(this, 60)) {
         MR::setBckFrameAndStop(this, 0.0f);
         if (isNerve(&NrvTsukidashikun::TsukidashikunNrvSignForward::sInstance)) {
             setNerve(&NrvTsukidashikun::TsukidashikunNrvMoveForward::sInstance);
-        }
-        else {
+        } else {
             setNerve(&NrvTsukidashikun::TsukidashikunNrvMoveBack::sInstance);
         }
     }
@@ -102,6 +103,12 @@ void Tsukidashikun::exeMove() {
     }
 }
 
+void Tsukidashikun::exeRelax() {
+    if (MR::isFirstStep(this)) {
+        MR::startBva(this, "BWait");
+    }
+}
+
 void Tsukidashikun::connectToScene(const MapObjActorInitInfo& rInfo) {
     MR::connectToSceneCollisionMapObjStrongLight(this);
 }
@@ -116,15 +123,4 @@ void Tsukidashikun::initCaseNoUseSwitchB(const MapObjActorInitInfo& rInfo) {
 
 void Tsukidashikun::startMove() {
     setNerve(&NrvTsukidashikun::TsukidashikunNrvWaitBack::sInstance);
-}
-
-namespace NrvTsukidashikun {
-    INIT_NERVE(TsukidashikunNrvRelax);
-
-    void TsukidashikunNrvRelax::execute(Spine* pSpine) const {
-        Tsukidashikun* pActor = (Tsukidashikun*)pSpine->mExecutor;
-        if (MR::isFirstStep(pActor)) {
-            MR::startBva(pActor, "BSign");
-        }
-    }
 }
