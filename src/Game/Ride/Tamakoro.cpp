@@ -1180,7 +1180,7 @@ void Tamakoro::startRotateLevelSound() {
 }
 
 namespace MR {
-    Tamakoro* createTamakoroWithTutorial(const char* pName) {
+    NameObj* createTamakoroWithTutorial(const char* pName) {
         Tamakoro* tamakoro = new Tamakoro(pName);
         tamakoro->setTutorial();
         return tamakoro;

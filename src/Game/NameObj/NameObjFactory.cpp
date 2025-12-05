@@ -738,12 +738,12 @@ namespace {
         },
         {
             "LuigiNPC",
-            nullptr,
+            createNameObj< LuigiNPC >,
             nullptr,
         },
         {
             "LuigiEvent",
-            nullptr,
+            createNameObj< LuigiNPC >,
             nullptr,
         },
         {
@@ -753,7 +753,7 @@ namespace {
         },
         {
             "NPCSupportRail",
-            nullptr,
+            createNameObj< NPCSupportRail >,
             nullptr,
         },
         {
@@ -803,12 +803,12 @@ namespace {
         },
         {
             "Tamakoro",
-            nullptr,
+            createNameObj< Tamakoro >,
             "Tamakoro",
         },
         {
             "TamakoroWithTutorial",
-            nullptr,
+            MR::createTamakoroWithTutorial,
             "Tamakoro",
         },
         {
@@ -823,7 +823,7 @@ namespace {
         },
         {
             "Plant",
-            nullptr,
+            createNameObj< Plant >,
             "Plant",
         },
         {
@@ -848,7 +848,7 @@ namespace {
         },
         {
             "SurfRay",
-            nullptr,
+            nullptr,  // createNameObj< SurfRay >,
             "SurfRay",
         },
         {

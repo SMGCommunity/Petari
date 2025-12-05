@@ -105,5 +105,5 @@ private:
 };
 
 namespace MR {
-    Tamakoro* createTamakoroWithTutorial(const char*);
+    NameObj* createTamakoroWithTutorial(const char*);
 };

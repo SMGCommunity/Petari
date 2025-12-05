@@ -5192,7 +5192,7 @@ Game/MapObj/PlantGroup.cpp:
 
 Game/MapObj/PlantPoint.cpp:
 	.text       start:0x8020E394 end:0x8020E4D4
-	.data       start:0x8059B728 end:0x8059B790
+	.data       start:0x8059B728 end:0x8059B738
 	.sdata2     start:0x806BDA28 end:0x806BDA38
 
 Game/MapObj/PlantRailInfo.cpp:
@@ -5203,7 +5203,7 @@ Game/MapObj/PomponPlant.cpp:
 	.text       start:0x8020E8A0 end:0x8020EE70
 	.ctors      start:0x8052EE08 end:0x8052EE0C
 	.rodata     start:0x805335C8 end:0x80533600
-	.data       start:0x8059B790 end:0x8059BA90
+	.data       start:0x8059B738 end:0x8059BA90
 	.sbss       start:0x806B5590 end:0x806B55A0
 	.sdata2     start:0x806BDA40 end:0x806BDA58
 
