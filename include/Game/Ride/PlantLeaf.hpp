@@ -3,9 +3,6 @@
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/Util/JMapInfo.hpp"
 
-#include "JSystem/JGeometry/TMatrix.hpp"
-#include "revolution/mtx.h"
-
 class J3DShape;
 class J3DShapeDraw;
 

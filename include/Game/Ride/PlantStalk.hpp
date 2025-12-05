@@ -1,10 +1,10 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
-#include "JSystem/JUtility/JUTTexture.hpp"
 
 class PlantPoint;
 class PlantRailInfo;
+class JUTTexture;
 
 class PlantStalk : public LiveActor {
 public:
@@ -32,7 +32,7 @@ public:
     /* 0xA8 */ s32 mGrownPlantPoints;
 };
 
-class PlantStalkDrawInit : NameObj {
+class PlantStalkDrawInit : public NameObj {
 public:
     PlantStalkDrawInit(const char*);
 

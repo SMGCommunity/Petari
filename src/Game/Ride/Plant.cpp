@@ -20,12 +20,12 @@
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/RailUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
-#include "JSystem/J3DGraphBase/J3DShapeDraw.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
-#include "revolution/gx/GXTransform.h"
-#include "revolution/mtx.h"
-#include "revolution/types.h"
-#include "revolution/wpad.h"
+#include <JSystem/J3DGraphBase/J3DShapeDraw.hpp>
+#include <JSystem/JGeometry/TVec.hpp>
+#include <revolution/gx/GXTransform.h>
+#include <revolution/mtx.h>
+#include <revolution/types.h>
+#include <revolution/wpad.h>
 
 namespace {
     static const f32 hSin1 = 0.017453292f;  // sin(1.0f);

@@ -1,7 +1,7 @@
 #include "Game/MapObj/PlantPoint.hpp"
 #include "Game/Util/MathUtil.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
-#include "revolution/mtx.h"
+#include <JSystem/JGeometry/TVec.hpp>
+#include <revolution/mtx.h>
 
 PlantPoint::PlantPoint(const TVec3f& pPosition, const TVec3f& pUp, f32 thickness)
     // this constructor is patterned a bit weird... this only matches if mPosition

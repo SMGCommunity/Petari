@@ -2,11 +2,11 @@
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/ModelUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
-#include "JSystem/J3DGraphAnimator/J3DModelData.hpp"
-#include "JSystem/J3DGraphBase/J3DMaterial.hpp"
-#include "JSystem/J3DGraphBase/J3DShape.hpp"
-#include "JSystem/J3DGraphBase/J3DSys.hpp"
-#include "JSystem/JGeometry/TMatrix.hpp"
+#include <JSystem/J3DGraphAnimator/J3DModelData.hpp>
+#include <JSystem/J3DGraphBase/J3DMaterial.hpp>
+#include <JSystem/J3DGraphBase/J3DShape.hpp>
+#include <JSystem/J3DGraphBase/J3DSys.hpp>
+#include <JSystem/JGeometry/TMatrix.hpp>
 
 PlantLeaf::PlantLeaf(f32 leafCoord, const TVec3f& pPosition, const TVec3f& pGrowDirection, f32 leafSize)
     : LiveActor("葉（伸び植物）"), mSpringVel(0.0f), mSpringAccel(0.0f), mLeafCoord(leafCoord), mLeafSize(leafSize), mFront(1.0f, 0.0f, 0.0f),
