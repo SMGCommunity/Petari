@@ -44,6 +44,12 @@ public:
     /// @param param2 TODO.
     JUTTexture(const ResTIMG* pTIMG, u8 param2);
 
+    inline JUTTexture(const ResTIMG* pTIMG) {
+        mEmbPalette = nullptr;
+        storeTIMG(pTIMG, (u8)0);
+        mFlag &= 2;
+    }
+
     /// @brief Destroys the `JUTTexture`.
     ~JUTTexture();
 
