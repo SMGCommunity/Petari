@@ -102,6 +102,7 @@ namespace MR {
     void calcRailEndPointPos(TVec3f*, const LiveActor*);
     void calcNearestRailDirection(TVec3f*, const LiveActor*, const TVec3f&);
     void calcNearestRailPos(TVec3f*, const LiveActor*, const TVec3f&);
+    void calcNearestRailPosAndDirection(TVec3f*, TVec3f*, const LiveActor*, const TVec3f&);
 
     void calcMovingDirectionAlongRail(LiveActor*, TVec3f*, const TVec3f&, float, bool, bool*);
     void calcMovingDirectionAlongRailH(LiveActor*, TVec3f*, const TVec3f&, float, bool*);
