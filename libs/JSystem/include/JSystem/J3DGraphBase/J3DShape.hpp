@@ -28,6 +28,8 @@ public:
     virtual void simpleDrawCache() const;
 
     void initialize();
+    void loadPreDrawSetting() const;
+    void loadVtxArray() const;
 
     J3DMaterial* mMaterial;        // 0x04
     u16 mIndex;                    // 0x08

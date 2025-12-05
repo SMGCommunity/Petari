@@ -150,6 +150,12 @@ namespace JGeometry {
 
         inline f32 dot(int x, int y) const { return (this->mMtx[x][y] * this->mMtx[x][y]); }
 
+        void setTrans(const TVec3f& v) NO_INLINE {
+            this->mMtx[0][3] = v.x;
+            this->mMtx[1][3] = v.y;
+            this->mMtx[2][3] = v.z;
+        }
+
         T mMtx[3][4];
     };
 
@@ -164,6 +170,8 @@ namespace JGeometry {
         void mult(const TVec3f& rSrc, TVec3f& rDest) const;
 
         void multTranspose(const TVec3f& a1, const TVec3f& a2) const;
+
+        void scale(f32);
     };
     template < class T >
     struct TRotation3 : public T {
@@ -183,7 +191,7 @@ namespace JGeometry {
         void setYDir(f32 x, f32 y, f32 z);
         void setZDir(const TVec3f& rSrc);
         void setZDir(f32 x, f32 y, f32 z);
-        void setXYZDir(const TVec3f& rSrcX, const TVec3f& rSrcY, const TVec3f& rSrcZ);
+        void setXYZDir(const TVec3f& rSrcX, const TVec3f& rSrcY, const TVec3f& rSrcZ) NO_INLINE { setXYZDirInline(rSrcX, rSrcY, rSrcZ); }
 
         void getEuler(TVec3f& rDest) const;
         void getEulerXYZ(TVec3f& rDest) const;
@@ -220,6 +228,18 @@ namespace JGeometry {
             f32 y = this->mMtx[1][2];
             f32 x = this->mMtx[0][2];
             rDest.set< f32 >(x, y, z);
+        }
+
+        inline void setXYZDirInline(const TVec3f& rSrcX, const TVec3f& rSrcY, const TVec3f& rSrcZ) {
+            this->mMtx[0][0] = rSrcX.x;
+            this->mMtx[1][0] = rSrcX.y;
+            this->mMtx[2][0] = rSrcX.z;
+            this->mMtx[0][1] = rSrcY.x;
+            this->mMtx[1][1] = rSrcY.y;
+            this->mMtx[2][1] = rSrcY.z;
+            this->mMtx[0][2] = rSrcZ.x;
+            this->mMtx[1][2] = rSrcZ.y;
+            this->mMtx[2][2] = rSrcZ.z;
         }
 
         inline void zeroTrans() {

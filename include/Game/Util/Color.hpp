@@ -14,6 +14,8 @@ public:
 
     inline operator GXColor() const { return mGXColor; }
 
+    inline operator u32() const { return mColor; }
+
     inline const Color8& operator=(const GXColor& other) {
         mGXColor = other;
         return *this;

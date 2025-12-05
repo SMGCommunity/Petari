@@ -18,10 +18,12 @@ namespace MR {
     void calcRailDirectionAtCoord(TVec3f*, const LiveActor*, f32);
 
     void calcRailPointPos(TVec3f*, const LiveActor*, int);
+    void calcRailStartPointPos(TVec3f*, const LiveActor*);
     f32 getRailCoord(const LiveActor*);
     f32 getRailPointCoord(const LiveActor*, int);
 
     bool isRailReachedGoal(const LiveActor*);
+    bool isRailReachedNearGoal(const LiveActor*, f32);
 
     void initAndSetRailClipping(TVec3f*, LiveActor*, f32, f32);
 
@@ -29,8 +31,32 @@ namespace MR {
 
     s32 moveCoordAndCheckPassPointNo(LiveActor*, f32);
     void moveCoordAndTransToNearestRailPos(LiveActor*);
+    void moveCoordAndTransToNearestRailPos(LiveActor*, const TVec3f&);
     void moveCoordAndTransToRailPoint(LiveActor*, s32);
     void moveTransToCurrentRailPos(LiveActor*);
+
+    void reverseRailDirection(LiveActor*);
+
+    void setRailCoord(LiveActor*, f32);
+    void setRailCoordSpeed(LiveActor*, f32);
+    void accelerateRailCoordSpeed(LiveActor*, f32);
+
+    void calcDistanceToCurrentAndNextRailPoint(const LiveActor*, f32*, f32*);
+
+    void moveCoord(LiveActor*, f32);
+
+    void moveTransToOtherActorRailPos(LiveActor*, const LiveActor*);
+
+    const TVec3f& getRailPos(const LiveActor*);
+    const TVec3f& getRailDirection(const LiveActor*);
+
+    const TVec3f& getRailPointPosStart(const LiveActor*);
+
+    void moveCoordToStartPos(LiveActor*);
+    void moveCoordAndTransToRailStartPoint(LiveActor*);
+
+    bool getJMapInfoRailArg0NoInit(const LiveActor*, s32*);
+    bool getRailPointArg0NoInit(const LiveActor*, s32, f32*);
 
     void reverseRailDirection(LiveActor*);
 
@@ -61,6 +87,9 @@ namespace MR {
     bool getRailArg1WithInit(const RailRider*, s32*);
 
     bool getRailArg3NoInit(const LiveActor*, s32*);
+    void setRailDirectionToStart(LiveActor*);
+    void setRailDirectionToEnd(LiveActor*);
+    void setRailDirectionCloseToNearestPos(LiveActor*, const TVec3f&);
 
     f64 calcNearestRailCoord(const LiveActor*, const TVec3f&);
 
