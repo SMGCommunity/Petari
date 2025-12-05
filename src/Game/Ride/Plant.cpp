@@ -51,7 +51,7 @@ namespace NrvPlant {
 Plant::Plant(const char* pName)
     : LiveActor(pName), mSeedPartsModel(nullptr), mStalk(nullptr), mTopPartsModel(nullptr), mNumLeaves(0), mLeaves(nullptr), mShapeDraw(nullptr),
       mRider(nullptr), mRailCoord(0.0f), mSide(0.0f, 1.0f, 0.0f), mFront(0.0f, 0.0f, 1.0f), mRideVelocity(0.0f), mAccelTimer(0), mLaunchSpeed(30.0f),
-      mLaunchAngle(0.0f), mClippingCenter(0.0f, 0.0f, 0.0f), mCameraInfo(nullptr), mPlayAppearDemo(false), mGrabbedTop(false) {
+      mLaunchNormal(0.0f), mClippingCenter(0.0f, 0.0f, 0.0f), mCameraInfo(nullptr), mPlayAppearDemo(false), mGrabbedTop(false) {
     mSeedMtx.identity();
     mTopMtx.identity();
 }
@@ -65,7 +65,7 @@ void Plant::init(const JMapInfoIter& pMapInfoIter) {
     MR::connectToScene(this, 0x29, 7, -1, 5);
 
     MR::getJMapInfoArg0NoInit(pMapInfoIter, &mLaunchSpeed);
-    MR::getJMapInfoArg1NoInit(pMapInfoIter, &mLaunchAngle);
+    MR::getJMapInfoArg1NoInit(pMapInfoIter, &mLaunchNormal);
     MR::getJMapInfoArg2NoInit(pMapInfoIter, &mPlayAppearDemo);
 
     initSound(8, false);
@@ -652,7 +652,7 @@ bool Plant::tryReachGoal() {
     TVec3f endUp(mStalk->mPlantPoints[0]->mUp);
     endUp.scale(mLaunchSpeed);
 
-    f32 launchVel = -mLaunchAngle;
+    f32 launchVel = -mLaunchNormal;
     TVec3f up(mGravity);
     up.scale(launchVel);
     endUp.add(up);

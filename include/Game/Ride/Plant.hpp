@@ -13,6 +13,7 @@ public:
     Plant(const char*);
 
     virtual void init(const JMapInfoIter&);
+    virtual void draw() const;
     virtual void appear();
     virtual void updateHitSensor(HitSensor* pSensor);
     virtual void attackSensor(HitSensor* pSender, HitSensor* pReceiver);
@@ -51,8 +52,6 @@ public:
     bool tryReachGoal();
     bool tryAccelHangUp();
 
-    void draw() const;
-
     /* 0x8C */ PartsModel* mSeedPartsModel;
     /* 0x90 */ TPos3f mSeedMtx;
     /* 0xC0 */ PlantStalk* mStalk;
@@ -73,9 +72,7 @@ public:
     /* 0x128 */ s32 mAccelTimer;
 
     /* 0x12C */ f32 mLaunchSpeed;
-    /// @note this is not actually an angle, but to be consistent with
-    // Galaxy Object Database naming convention it will be referred to as an angle.
-    /* 0x130 */ f32 mLaunchAngle;
+    /* 0x130 */ f32 mLaunchNormal;
     /* 0x134 */ TVec3f mClippingCenter;
 
     /* 0x140 */ ActorCameraInfo* mCameraInfo;

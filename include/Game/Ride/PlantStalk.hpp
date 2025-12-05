@@ -11,11 +11,11 @@ public:
     PlantStalk();
 
     virtual void init(const JMapInfoIter&);
+    virtual void draw() const;
     virtual void startClipped();
     virtual void endClipped();
     virtual void drawGrowUp() const;
 
-    void draw() const;
     bool updateGrowUp();
     void calcPosAndAxisY(TVec3f*, TVec3f*, f32) const;
 
