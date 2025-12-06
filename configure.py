@@ -1499,7 +1499,7 @@ config.libs = [
             Object(NonMatching, "Game/MapObj/MeteorStrike.cpp"),
             Object(NonMatching, "Game/MapObj/MeteorStrikeLauncher.cpp"),
             Object(NonMatching, "Game/MapObj/MiniatureGalaxy.cpp"),
-            Object(NonMatching, "Game/MapObj/MiniatureGalaxyHolder.cpp"),
+            Object(Matching, "Game/MapObj/MiniatureGalaxyHolder.cpp"),
             Object(NonMatching, "Game/MapObj/MorphItemObjNeo.cpp"),
             Object(NonMatching, "Game/MapObj/NeedlePlant.cpp"),
             Object(NonMatching, "Game/MapObj/NormalMapBase.cpp"),
