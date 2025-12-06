@@ -4,11 +4,11 @@
 
 class CameraTowerBase : public Camera {
 public:
-    CameraTowerBase(const char *);
+    CameraTowerBase(const char*);
     virtual ~CameraTowerBase();
 
     virtual void reset();
-    virtual CameraTargetObj *calc();
+    virtual CameraTargetObj* calc();
 
     void calcIdealPoseOfTowerBase();
     void resetBegin();

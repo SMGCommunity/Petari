@@ -4,11 +4,11 @@
 #include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 
-NormalMapTestObj::NormalMapTestObj(const char* pName) : NormalMapBase(pName) { }
-NormalMapTestObj::~NormalMapTestObj() { }
+NormalMapTestObj::NormalMapTestObj(const char* pName) : NormalMapBase(pName) {}
+NormalMapTestObj::~NormalMapTestObj() {}
 
-void NormalMapTestObj::init(const JMapInfoIter &rIfter) {
-    MR::initDefaultPos(this,rIfter);
+void NormalMapTestObj::init(const JMapInfoIter& rIfter) {
+    MR::initDefaultPos(this, rIfter);
     NormalMapBase::setup("NormalMapTestObj");
     initHitSensor(1);
     MR::addBodyMessageSensorMapObj(this);

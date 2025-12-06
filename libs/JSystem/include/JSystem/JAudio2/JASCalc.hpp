@@ -4,5 +4,5 @@
 
 class JASCalc {
 public:
-    static void bzero(void *, u32);
+    static void bzero(void*, u32);
 };

@@ -17,9 +17,9 @@ struct SomeData {
 
 class MarioEffect : public MarioModule, public MultiEmitterCallBackBase {
 public:
-    MarioEffect(MarioActor *);
+    MarioEffect(MarioActor*);
 
-    virtual void execute(JPABaseEmitter *);
+    virtual void execute(JPABaseEmitter*);
 
     // We can infer from the multiple inheritance that this destructor was declared after execute
     // and that the virtual destructor in JPAEmitterCallBack comes first

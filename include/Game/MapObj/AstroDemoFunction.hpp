@@ -1,7 +1,7 @@
 #pragma once
 
-#include <revolution.h>
 #include "Game/Util.hpp"
+#include <revolution.h>
 
 class LiveActor;
 
@@ -10,7 +10,7 @@ public:
     static s32 getOpenedAstroDomeNum();
     static const char* getGrandStarReturnDemoName(int);
 
-    static bool tryRegisterDemo(LiveActor *, const char *, const JMapInfoIter &);
-    static bool tryRegisterGrandStarReturnAndSimpleCast(LiveActor *, const JMapInfoIter &);
-    static bool tryRegisterGrandStarReturnWithFunctionAndSimpleCast(LiveActor *, const JMapInfoIter &, const MR::FunctorBase &);
+    static bool tryRegisterDemo(LiveActor*, const char*, const JMapInfoIter&);
+    static bool tryRegisterGrandStarReturnAndSimpleCast(LiveActor*, const JMapInfoIter&);
+    static bool tryRegisterGrandStarReturnWithFunctionAndSimpleCast(LiveActor*, const JMapInfoIter&, const MR::FunctorBase&);
 };

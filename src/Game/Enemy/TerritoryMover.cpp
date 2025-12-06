@@ -7,7 +7,7 @@ TerritoryMover::TerritoryMover(f32 a1) {
 }
 
 /* not even close but will look at it later */
-void TerritoryMover::decideNextTargetPos(const LiveActor *pActor) {
+void TerritoryMover::decideNextTargetPos(const LiveActor* pActor) {
     TVec3f v11;
     MR::getRandomVector(&v11, 1.0f);
     MR::normalizeOrZero(&v11);

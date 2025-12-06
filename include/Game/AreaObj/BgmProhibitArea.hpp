@@ -10,20 +10,17 @@ struct BgmMuteSet {
 };
 
 namespace {
-    static BgmMuteSet sBgmMuteSet[2] = {
-        { "OceanPhantomCaveGalaxy", 7, 1 },
-        { "SoundMapCodeTest", 7, 1 }
-    };
+    static BgmMuteSet sBgmMuteSet[2] = {{"OceanPhantomCaveGalaxy", 7, 1}, {"SoundMapCodeTest", 7, 1}};
 
-    BgmMuteSet* findDataElement(const char *);
-};
+    BgmMuteSet* findDataElement(const char*);
+};  // namespace
 
 class BgmProhibitArea : public AreaObj {
 public:
-    BgmProhibitArea(int, const char *);
+    BgmProhibitArea(int, const char*);
 
     virtual ~BgmProhibitArea();
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
     virtual void movement();
     virtual const char* getManagerName() const;
 

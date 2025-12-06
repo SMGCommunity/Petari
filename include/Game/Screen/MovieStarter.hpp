@@ -4,12 +4,15 @@
 
 class MovieStarter : public LiveActor {
 public:
-    MovieStarter(const char *);
+    /// @brief Creates a new `MovieStarter`.
+    /// @param pName A pointer to the null-terminated name of the object.
+    MovieStarter(const char* pName);
 
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter& rIter);
     virtual void appear();
     virtual void kill();
     virtual void control();
 
-    /* 0x8C */ s32 mMovieIdx;
+private:
+    /* 0x8C */ s32 mMovieType;
 };

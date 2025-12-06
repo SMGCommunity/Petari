@@ -4,14 +4,13 @@
 #include "Game/Boss/BossKameckVs1.hpp"
 #include "Game/Boss/BossKameckVs2.hpp"
 #include "Game/Enemy/Kameck.hpp"
-#include "Game/Enemy/KameckHolder.hpp"
 #include "Game/Enemy/KameckBeamHolder.hpp"
+#include "Game/Enemy/KameckHolder.hpp"
 #include "Game/LiveActor/ActorJointCtrl.hpp"
 
-BossKameck::BossKameck(const char *pName, const char *pType) : LiveActor(pName),
-    _8C(pType), _90(0.0f, 1.0f), _A0(0, 0, 1), mSequencer(nullptr), mKameckHolder(nullptr), mJointCtrl(nullptr),
-    mActorList(nullptr), mBeamListener(nullptr), mMoveRail(nullptr), _C4(0), _C8(0, 0, 0), _D4(-1) {
-
+BossKameck::BossKameck(const char* pName, const char* pType)
+    : LiveActor(pName), _8C(pType), _90(0.0f, 1.0f), _A0(0, 0, 1), mSequencer(nullptr), mKameckHolder(nullptr), mJointCtrl(nullptr),
+      mActorList(nullptr), mBeamListener(nullptr), mMoveRail(nullptr), _C4(0), _C8(0, 0, 0), _D4(-1) {
     mBeamListener = new BossKameckBeamEventListener(this);
     mActorList = new ActiveActorList(8);
 }
@@ -84,7 +83,7 @@ void BossKameck::control() {
     }
 
     mActorList->removeDeadActor();
-    _C8.set<f32>(mVelocity);
+    _C8.set< f32 >(mVelocity);
     mJointCtrl->update();
 }
 
@@ -94,13 +93,13 @@ void BossKameck::calcAndSetBaseMtx() {
     mJointCtrl->setCallBackFunction();
 }
 
-void BossKameck::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
+void BossKameck::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (mSequencer != nullptr) {
         mSequencer->attackSensor(pSender, pReceiver);
     }
 }
 
-bool BossKameck::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool BossKameck::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (mSequencer != nullptr) {
         return mSequencer->receiveMsgPlayerAttack(msg, pSender, pReceiver);
     }
@@ -125,12 +124,12 @@ void BossKameck::setPose(MtxPtr mtx) {
     f32 z = pos.mMtx[2][3];
     f32 y = pos.mMtx[1][3];
     f32 x = pos.mMtx[0][3];
-    mPosition.set<f32>(x, y, z);
+    mPosition.set< f32 >(x, y, z);
 
     f32 v1 = (2.0f * (_90.x * _90.z)) + (2.0f * (_90.w * _90.y));
     f32 v2 = (2.0f * (_90.y * _90.z)) - (2.0f * (_90.w * _90.x));
     f32 v3 = (1.0f - (2.0f * (_90.x * _90.x))) - (2.0f * (_90.y * _90.y));
-    _A0.set<f32>(v1, v2, v3);
+    _A0.set< f32 >(v1, v2, v3);
 }
 
 void BossKameck::killAllBeam() {
@@ -158,7 +157,7 @@ void BossKameck::updatePose() {
         f32 v4 = MR::normalize(mag, 0.0f, 3.0f);
         TVec3f v13(v18);
 
-        
+        
         ptr->scaleInline((4.0f * v4) / mag);
         ptr->addInline(v13);
 
@@ -174,7 +173,7 @@ void BossKameck::updatePose() {
 }
 */
 
-void BossKameck::init(const JMapInfoIter &rIter) {
+void BossKameck::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     initModelManagerWithAnm(_8C, nullptr, false);
     MR::connectToSceneEnemy(this);
@@ -207,11 +206,11 @@ void BossKameck::init(const JMapInfoIter &rIter) {
     MR::startBrk(this, "Star");
     MR::setBrkFrameAndStop(this, hasPowerStar);
     MR::needStageSwitchReadA(this, rIter);
-    MR::listenStageSwitchOnA(this, MR::FunctorV0M<BossKameck*, void (BossKameck::*)(void)>(this, &BossKameck::startSequence));
+    MR::listenStageSwitchOnA(this, MR::FunctorV0M< BossKameck*, void (BossKameck::*)(void) >(this, &BossKameck::startSequence));
     makeActorDead();
 }
 
-void BossKameck::initKameckHolder(const JMapInfoIter &rIter) {
+void BossKameck::initKameckHolder(const JMapInfoIter& rIter) {
     s32 childNum = MR::getChildObjNum(rIter);
     s32 kameckChildNum = 0;
     const char* objName;
@@ -241,7 +240,7 @@ void BossKameck::initKameckHolder(const JMapInfoIter &rIter) {
     }
 }
 
-void BossKameck::initMoveRail(const JMapInfoIter &rIter) {
+void BossKameck::initMoveRail(const JMapInfoIter& rIter) {
     s32 childNum = MR::getChildObjNum(rIter);
     _C4 = 0;
     const char* objName;
@@ -266,7 +265,7 @@ void BossKameck::initMoveRail(const JMapInfoIter &rIter) {
                 MR::initChildObj(mMoveRail[curRails], rIter, j);
                 curRails++;
             }
-        } 
+        }
     }
 }
 
@@ -290,32 +289,29 @@ void BossKameck::hitBeam(s32 beamType) {
     }
 
     switch (beamType) {
-        case 1:
-            MR::startSound(this, "SE_BV_KAMECK_ATK_SUCCESS", -1, -1);
-            break;
-        case 2:
-        case 3:
-        case 4:
-            MR::startSound(this, "SE_BV_KAMECK_ATK_SUCCESS", -1, -1);
-            break;
+    case 1:
+        MR::startSound(this, "SE_BV_KAMECK_ATK_SUCCESS", -1, -1);
+        break;
+    case 2:
+    case 3:
+    case 4:
+        MR::startSound(this, "SE_BV_KAMECK_ATK_SUCCESS", -1, -1);
+        break;
     }
 }
 
-
 namespace MR {
-    NameObj* createBossKameck1(const char *pName) {
+    NameObj* createBossKameck1(const char* pName) {
         BossKameck* boss = new BossKameck(pName, "BossKameck");
         boss->mSequencer = new BossKameckVs1();
         return boss;
     }
 
-    NameObj* createBossKameck2(const char *pName) {
+    NameObj* createBossKameck2(const char* pName) {
         BossKameck* boss = new BossKameck(pName, "BossKameck");
         boss->mSequencer = new BossKameckVs2();
         return boss;
     }
-};
+};  // namespace MR
 
-BossKameck::~BossKameck() {
-
-} 
+BossKameck::~BossKameck() {}

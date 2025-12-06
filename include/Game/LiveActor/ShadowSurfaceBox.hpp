@@ -9,7 +9,7 @@ public:
 
     virtual ~ShadowSurfaceBox();
 
-    virtual void draw() const;
-    
-    void setSize(const TVec3f &);
+    virtual void draw() const override;
+
+    void setSize(const TVec3f&);
 };

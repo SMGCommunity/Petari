@@ -1,12 +1,12 @@
 #include "Game/MapObj/SimpleTimerObj.hpp"
 
-SimpleTimerObj::SimpleTimerObj(const char *pName) : MapObjActor(pName) {
+SimpleTimerObj::SimpleTimerObj(const char* pName) : MapObjActor(pName) {
     mFlashingCtrl = 0;
     mTimer = 600;
     mTimeLeft = 0;
 }
 
-void SimpleTimerObj::init(const JMapInfoIter &rIter) {
+void SimpleTimerObj::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);
     MapObjActorInitInfo info;
     MapObjActorUtil::setupInitInfoSimpleMapObj(&info);
@@ -43,21 +43,18 @@ void SimpleTimerObj::control() {
 
     if (mTimeLeft == 120) {
         mFlashingCtrl->start(120);
-    }
-    else if (mTimeLeft != 0) {
+    } else if (mTimeLeft != 0) {
         kill();
     }
 }
 
-SimpleTimerObj::~SimpleTimerObj() {
-
-}
+SimpleTimerObj::~SimpleTimerObj() {}
 
 namespace NrvSimpleTimerObj {
     INIT_NERVE(SimpleTimerObjNrvTimer);
 
-    void SimpleTimerObjNrvTimer::execute(Spine *pSpine) const {
-        SimpleTimerObj* timer_obj = reinterpret_cast<SimpleTimerObj*>(pSpine->mExecutor);
+    void SimpleTimerObjNrvTimer::execute(Spine* pSpine) const {
+        SimpleTimerObj* timer_obj = reinterpret_cast< SimpleTimerObj* >(pSpine->mExecutor);
         timer_obj->exeTimer();
     }
-};
+};  // namespace NrvSimpleTimerObj

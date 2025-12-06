@@ -22,7 +22,7 @@ XjointInfo::XjointInfo() {
     _50.zero();
 }
 
-void XanimeCore::shareJointTransform(const XanimeCore *pOther) {
+void XanimeCore::shareJointTransform(const XanimeCore* pOther) {
     mTransformList = pOther->mTransformList;
 }
 
@@ -58,7 +58,7 @@ XanimeCore::XanimeCore(u32 trackCount, u32 jointCount, u8 a3) {
     initMember(trackCount);
 }
 
-XanimeCore::XanimeCore(u32 trackCount, XanimeCore *pOtherCore) {
+XanimeCore::XanimeCore(u32 trackCount, XanimeCore* pOtherCore) {
     mTrackCount = trackCount;
     mJointCount = pOtherCore->mJointCount;
     _4 = pOtherCore->_4;
@@ -78,9 +78,7 @@ void XanimeCore::setWeight(u8 idx, f32 weight) {
     mTrackList[idx].mWeight = weight;
 }
 
-XanimeCore::~XanimeCore() {
-
-}
+XanimeCore::~XanimeCore() {}
 
 XtransformInfo::XtransformInfo() {
     _0.zero();

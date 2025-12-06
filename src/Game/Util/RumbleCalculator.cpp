@@ -27,6 +27,4 @@ void RumbleCalculator::reset() {
     _C.zero();
 }
 
-RumbleCalculatorCosMultLinear::RumbleCalculatorCosMultLinear(f32 a2, f32 a3, f32 a4, u32 a5) : RumbleCalculator(a2, a3, a4, a5) {
-    
-}
+RumbleCalculatorCosMultLinear::RumbleCalculatorCosMultLinear(f32 a2, f32 a3, f32 a4, u32 a5) : RumbleCalculator(a2, a3, a4, a5) {}

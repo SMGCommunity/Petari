@@ -21,7 +21,7 @@ namespace NrvAstroMapObj {
     NEW_NERVE(AstroMapObjNrvAliveAfterDemo, AstroMapObj, Wait);
     NEW_NERVE(AstroMapObjNrvRevival, AstroMapObj, Revival);
     NEW_NERVE(AstroMapObjNrvOpen, AstroMapObj, Open);
-}
+}  // namespace NrvAstroMapObj
 
 namespace {
     s32 sAstroPathAppearStep = 90;
@@ -36,7 +36,7 @@ AstroMapObj::AstroMapObj(const char* pName) : MapObjActor(pName) {
     _D8 = -1;
 }
 
-void AstroMapObj::init(const JMapInfoIter& rIter) {     // Pain
+void AstroMapObj::init(const JMapInfoIter& rIter) {  // Pain
     MR::getObjectName(&_CC, rIter);
     MapObjActorInitInfo mapObjInitInfo = MapObjActorInitInfo();
     _D8 = AstroMapObjFunction::getDomeIdFromArg0(rIter);
@@ -60,8 +60,8 @@ void AstroMapObj::init(const JMapInfoIter& rIter) {     // Pain
     // If somebody wants to finish this part then go ahead. It matches, but not sure what the Functors are pointing to.
 
     /* if (MR::isDemoCast(this, 0)) {
-        MR::FunctorV0M<AstroMapObj*, void (AstroMapObj::*)()> demoFunctor = MR::Functor<AstroMapObj>(this, &AstroMapObj::startDemo); // Probably it's not startDemo
-        MR::registerDemoActionFunctor(this, demoFunctor, 0);
+        MR::FunctorV0M<AstroMapObj*, void (AstroMapObj::*)()> demoFunctor = MR::Functor<AstroMapObj>(this, &AstroMapObj::startDemo); // Probably it's
+    not startDemo MR::registerDemoActionFunctor(this, demoFunctor, 0);
     }
     MR::FunctorV0M<AstroMapObj*, void (AstroMapObj::*)()> otherFunct = MR::Functor<AstroMapObj>(this, &AstroMapObj::control);   // Same
     AstroMapObjFunction::tryRegisterMultiDemoAndFunction(_CC, this, rIter, otherFunct);
@@ -114,14 +114,13 @@ void AstroMapObj::setStateDoorOpenOrClose() {
                 MR::setAllAnimFrameAtEnd(this, "Open");
                 MR::validateCollisionParts(_D4);
                 MR::invalidateCollisionParts(_D0);
-            }
-            else {
+            } else {
                 if (!LiveActor::isNerve(&NrvAstroMapObj::AstroMapObjNrvDead::sInstance)) {
                     MR::tryStartAllAnim(this, "Open");
                     MR::setAllAnimFrameAndStop(this, "Open", 0.0f);
                 }
-                    MR::invalidateCollisionParts(_D4);
-                    MR::validateCollisionParts(_D0);
+                MR::invalidateCollisionParts(_D4);
+                MR::validateCollisionParts(_D0);
             }
         }
     }
@@ -130,8 +129,7 @@ void AstroMapObj::setStateDoorOpenOrClose() {
 void AstroMapObj::selectNrvWait() {
     if (AstroMapObjFunction::isAlreadyRevival(_CC, _D8)) {
         setNerve(&NrvAstroMapObj::AstroMapObjNrvAlive::sInstance);
-    }
-    else {
+    } else {
         setNerve(&NrvAstroMapObj::AstroMapObjNrvDead::sInstance);
     }
 }
@@ -140,16 +138,15 @@ void AstroMapObj::exeWait() {
     if (MR::isFirstStep(this)) {
         if (LiveActor::isNerve(&NrvAstroMapObj::AstroMapObjNrvDead::sInstance)) {
             setStateDead();
-        }
-        else if (LiveActor::isNerve(&NrvAstroMapObj::AstroMapObjNrvAlive::sInstance)) {
+        } else if (LiveActor::isNerve(&NrvAstroMapObj::AstroMapObjNrvAlive::sInstance)) {
             setStateAlive();
         }
     }
-    if (AstroMapObj::isPlayMachineSE() && (isNerve(&NrvAstroMapObj::AstroMapObjNrvAlive::sInstance) || isNerve(&NrvAstroMapObj::AstroMapObjNrvAliveAfterDemo::sInstance))) {
+    if (AstroMapObj::isPlayMachineSE() &&
+        (isNerve(&NrvAstroMapObj::AstroMapObjNrvAlive::sInstance) || isNerve(&NrvAstroMapObj::AstroMapObjNrvAliveAfterDemo::sInstance))) {
         if (MR::isEqualString(_CC, "AstroRotateStepA")) {
             MR::startLevelSound(this, "SE_OJ_LV_ASTRO_ENGINE_1", -1, -1, -1);
-        }
-        else if (MR::isEqualString(_CC, "AstroRotateStepB")) {
+        } else if (MR::isEqualString(_CC, "AstroRotateStepB")) {
             MR::startLevelSound(this, "SE_OJ_LV_ASTRO_ENGINE_2", -1, -1, -1);
         }
     }
@@ -174,21 +171,17 @@ void AstroMapObj::exeRevival() {
         tryStartAllAnimAndEffect("Revival");
         if (MR::isEqualString(_CC, "AstroStarPlate")) {
             MR::startSound(this, "SE_OJ_ASTRO_PLATE_REVIVAL", -1, -1);
-        }
-        else if (MR::isEqualString(mObjectName, "AstroRotateStepA")) {
+        } else if (MR::isEqualString(mObjectName, "AstroRotateStepA")) {
             MR::startSound(this, "SE_OJ_ASTRO_STEP_REVIVAL", -1, -1);
-        }
-        else if (MR::isEqualString(mObjectName, "AstroRotateStepB")) {
+        } else if (MR::isEqualString(mObjectName, "AstroRotateStepB")) {
             MR::startSound(this, "SE_OJ_ASTRO_STEP_REVIVAL", -1, -1);
         }
     }
     if (MR::isEqualString(_CC, "AstroRotateStepA")) {
         MR::startLevelSound(this, "SE_OJ_LV_ASTRO_ENGINE_1", -1, -1, -1);
-    }
-    else if (MR::isEqualString(_CC, "AstroRotateStepB")) {
+    } else if (MR::isEqualString(_CC, "AstroRotateStepB")) {
         MR::startLevelSound(this, "SE_OJ_LV_ASTRO_ENGINE_2", -1, -1, -1);
-    }
-    else if (MR::isEqualString(_CC, "AstroStarPlate") && MR::isGreaterStep(this, sAstroPathAppearStep)) {
+    } else if (MR::isEqualString(_CC, "AstroStarPlate") && MR::isGreaterStep(this, sAstroPathAppearStep)) {
         MR::startAtmosphereLevelSE("SE_AT_LV_ASTRO_PATH_APPEAR", -1, -1);
     }
     if (AstroMapObj::isEndRevival()) {
@@ -205,8 +198,7 @@ void AstroMapObj::startDemo() {
         if (AstroMapObjFunction::isEnableRevival(_CC, _D8)) {
             setNerve(&NrvAstroMapObj::AstroMapObjNrvRevival::sInstance);
         }
-    }
-    else if (AstroMapObjFunction::isEnableOpen(_CC, _D8)) {
+    } else if (AstroMapObjFunction::isEnableOpen(_CC, _D8)) {
         setNerve(&NrvAstroMapObj::AstroMapObjNrvOpen::sInstance);
     }
 }
@@ -268,6 +260,4 @@ void AstroSimpleObj::control() {
     }
 }
 
-AstroSimpleObj::~AstroSimpleObj() {
-
-}
+AstroSimpleObj::~AstroSimpleObj() {}

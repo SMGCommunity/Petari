@@ -1,20 +1,20 @@
 #include "Game/MapObj/PhantomShipBridge.hpp"
-#include "Game/Map/CollisionParts.hpp"
 #include "Game/Animation/BckCtrl.hpp"
+#include "Game/Map/CollisionParts.hpp"
 #include "Game/Util/ObjUtil.hpp"
 
 namespace NrvPhantomShipBridge {
     NEW_NERVE(HostTypeWait, PhantomShipBridge, Wait);
     NEW_NERVE(HostTypeMoveA, PhantomShipBridge, MoveA);
     NEW_NERVE(HostTypeMoveB, PhantomShipBridge, MoveB);
-};
+};  // namespace NrvPhantomShipBridge
 
-PhantomShipBridge::PhantomShipBridge(const char *pName) : LiveActor(pName) {
+PhantomShipBridge::PhantomShipBridge(const char* pName) : LiveActor(pName) {
     _8C = nullptr;
     mIsNutShipBridge = 0;
 }
 
-void PhantomShipBridge::init(const JMapInfoIter &rIter) {
+void PhantomShipBridge::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     const char* objName;
     MR::getObjectName(&objName, rIter);
@@ -39,11 +39,10 @@ void PhantomShipBridge::init(const JMapInfoIter &rIter) {
     if (MR::useStageSwitchReadB(this, rIter)) {
         MR::listenStageSwitchOnB(this, MR::Functor_Inline(this, &PhantomShipBridge::startMoveB));
     }
-    
+
     if (MR::useStageSwitchReadA(this, rIter)) {
         MR::listenStageSwitchOnA(this, MR::Functor_Inline(this, &PhantomShipBridge::startMoveA));
-    }
-    else {
+    } else {
         setStateMoveA();
     }
 }
@@ -81,8 +80,7 @@ void PhantomShipBridge::exeMoveA() {
     if (MR::isLessStep(this, 55)) {
         if (mIsNutShipBridge == 1) {
             MR::startLevelSound(this, "SE_OJ_LV_NUT_SHIP_BRIDGE_MV", -1, -1, -1);
-        }
-        else {
+        } else {
             MR::startLevelSound(this, "SE_OJ_LV_FALL_BRIDGE_FALL", -1, -1, -1);
         }
     }
@@ -90,8 +88,7 @@ void PhantomShipBridge::exeMoveA() {
     if (MR::isStep(this, 55)) {
         if (mIsNutShipBridge == 1) {
             MR::startSound(this, "SE_OJ_NUT_SHIP_BRIDGE_ED", -1, -1);
-        }
-        else {
+        } else {
             MR::startSound(this, "SE_OJ_FALL_BRIDGE_LAND", -1, -1);
         }
 
@@ -103,8 +100,7 @@ void PhantomShipBridge::exeMoveB() {
     if (MR::isFirstStep(this)) {
         if (mIsNutShipBridge == 1) {
             MR::startSound(this, "SE_OJ_NUT_SHIP_BRIDGE_ST", -1, -1);
-        }
-        else {
+        } else {
             MR::startSound(this, "SE_OJ_PTM_SHIP_BRIDGE_FALL", -1, -1);
         }
 
@@ -114,8 +110,7 @@ void PhantomShipBridge::exeMoveB() {
     if (MR::isLessStep(this, 55)) {
         if (mIsNutShipBridge == 1) {
             MR::startLevelSound(this, "SE_OJ_LV_NUT_SHIP_BRIDGE_MV", -1, -1, -1);
-        }
-        else {
+        } else {
             MR::startLevelSound(this, "SE_OJ_LV_FALL_BRIDGE_FALL", -1, -1, -1);
         }
     }
@@ -123,8 +118,7 @@ void PhantomShipBridge::exeMoveB() {
     if (MR::isStep(this, 55)) {
         if (mIsNutShipBridge == 1) {
             MR::startSound(this, "SE_OJ_NUT_SHIP_BRIDGE_ED", -1, -1);
-        }
-        else {
+        } else {
             MR::startSound(this, "SE_OJ_FALL_BRIDGE_LAND", -1, -1);
         }
 
@@ -132,10 +126,6 @@ void PhantomShipBridge::exeMoveB() {
     }
 }
 
-void PhantomShipBridge::exeWait() {
+void PhantomShipBridge::exeWait() {}
 
-}
-
-PhantomShipBridge::~PhantomShipBridge() {
-    
-}
+PhantomShipBridge::~PhantomShipBridge() {}

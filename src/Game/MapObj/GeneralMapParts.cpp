@@ -2,7 +2,7 @@
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/Util/BaseMatrixFollowTargetHolder.hpp"
 
-GeneralMapParts::GeneralMapParts(const char *pName) : MapParts(pName) {
+GeneralMapParts::GeneralMapParts(const char* pName) : MapParts(pName) {
     mCameraInfo = nullptr;
     mMoveConditionType = 0;
     mSignMotionType = 0;
@@ -18,7 +18,7 @@ GeneralMapParts::GeneralMapParts(const char *pName) : MapParts(pName) {
     _E5 = 0;
 }
 
-void GeneralMapParts::init(const JMapInfoIter &rIter) {
+void GeneralMapParts::init(const JMapInfoIter& rIter) {
     MapParts::init(rIter);
     MR::getMapPartsArgShadowType(&mShadowType, rIter);
     MR::initMapPartsShadow(this, rIter);
@@ -30,7 +30,7 @@ void GeneralMapParts::init(const JMapInfoIter &rIter) {
     initSensorType(rIter);
     initGravity(rIter);
     MR::useStageSwitchWriteDead(this, rIter);
-    
+
     if (MR::useStageSwitchReadB(this, rIter)) {
         void (GeneralMapParts::*switchOff)(void) = &GeneralMapParts::receiveMsgSwitchBOff;
         void (GeneralMapParts::*switchOn)(void) = &GeneralMapParts::receiveMsgSwitchBOn;
@@ -40,8 +40,7 @@ void GeneralMapParts::init(const JMapInfoIter &rIter) {
     if (MR::useStageSwitchReadAppear(this, rIter)) {
         MR::syncStageSwitchAppear(this);
         makeActorDead();
-    }
-    else {
+    } else {
         appear();
     }
 
@@ -69,18 +68,16 @@ void GeneralMapParts::appear() {
 
     if (MR::isValidSwitchB(this)) {
         setNerve(&NrvGeneralMapParts::HostTypeWait::sInstance);
-    }
-    else if (!MR::isMoveStartTypeUnconditional(mMoveConditionType)) {
+    } else if (!MR::isMoveStartTypeUnconditional(mMoveConditionType)) {
         setNerve(&NrvGeneralMapParts::HostTypeWaitForPlayerOn::sInstance);
-    }
-    else {
+    } else {
         startMove();
     }
 }
 
 // GeneralMapParts::kill
 
-bool GeneralMapParts::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool GeneralMapParts::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (mAppearController->receiveMsg(msg)) {
         return true;
     }
@@ -152,8 +149,7 @@ void GeneralMapParts::calcAndSetBaseMtx() {
 
     if (!(v5 || v3 || v7)) {
         LiveActor::calcAndSetBaseMtx();
-    }
-    else {
+    } else {
         TPos3f mtx;
         mtx.identity();
 
@@ -176,12 +172,12 @@ void GeneralMapParts::calcAndSetBaseMtx() {
     }
 }
 
-void GeneralMapParts::initMapPartsFunction(const JMapInfoIter &rIter) {
+void GeneralMapParts::initMapPartsFunction(const JMapInfoIter& rIter) {
     mAppearController = new MapPartsAppearController(this);
     mAppearController->init(rIter);
     mFunctionArray.push_back(mAppearController);
     f32 rotate_speed = 0.0f;
-    MR::getMapPartsArgRotateSpeed(&rotate_speed, rIter); 
+    MR::getMapPartsArgRotateSpeed(&rotate_speed, rIter);
     bool hasRotateSpeed = 0.0f != rotate_speed;
 
     if (hasRotateSpeed) {
@@ -205,26 +201,23 @@ void GeneralMapParts::initMapPartsFunction(const JMapInfoIter &rIter) {
     }
 }
 
-void GeneralMapParts::initSensorType(const JMapInfoIter &rIter) {
+void GeneralMapParts::initSensorType(const JMapInfoIter& rIter) {
     if (MR::isMapPartsPressOn(rIter)) {
         MR::setBodySensorTypePress(this);
-    }
-    else if (!isFixed()) {
+    } else if (!isFixed()) {
         MR::setBodySensorTypeMoveCollision(this);
-    }
-    else {
+    } else {
         MR::setBodySensorTypeMapObj(this);
     }
 }
 
-void GeneralMapParts::initGravity(const JMapInfoIter &rIter) {
+void GeneralMapParts::initGravity(const JMapInfoIter& rIter) {
     MR::addBaseMatrixFollowTarget(this, rIter, nullptr, nullptr);
 
     if (!MR::isMapPartsShadowTypeNone(mShadowType)) {
         if (isFixed()) {
             MR::calcGravity(this);
-        }
-        else {
+        } else {
             MR::onCalcGravity(this);
         }
     }
@@ -273,8 +266,7 @@ bool GeneralMapParts::isFixed() const {
 void GeneralMapParts::startMove() {
     if (!MR::hasMapPartsMoveStartSignMotion(mSignMotionType)) {
         setNerve(&NrvGeneralMapParts::HostTypeMoveStart::sInstance);
-    }
-    else {
+    } else {
         if (mRailPosture) {
             mRailPosture->start();
         }
@@ -325,8 +317,7 @@ void GeneralMapParts::exeMoveStart() {
         }
 
         setNerve(&NrvGeneralMapParts::HostTypeWaitForPlayerOn::sInstance);
-    }
-    else {
+    } else {
         if (MR::isStep(this, MapParts::getMoveStartSignalTime())) {
             if (mRailMover) {
                 mRailMover->start();
@@ -347,26 +338,26 @@ namespace NrvGeneralMapParts {
     INIT_NERVE(HostTypeMoveStart);
     INIT_NERVE(HostTypeMove);
 
-    void HostTypeMove::execute(Spine *pSpine) const {
-        GeneralMapParts* part = reinterpret_cast<GeneralMapParts*>(pSpine->mExecutor);
+    void HostTypeMove::execute(Spine* pSpine) const {
+        GeneralMapParts* part = reinterpret_cast< GeneralMapParts* >(pSpine->mExecutor);
         part->exeWait();
     }
 
-    void HostTypeMoveStart::execute(Spine *pSpine) const {
-        GeneralMapParts* part = reinterpret_cast<GeneralMapParts*>(pSpine->mExecutor);
+    void HostTypeMoveStart::execute(Spine* pSpine) const {
+        GeneralMapParts* part = reinterpret_cast< GeneralMapParts* >(pSpine->mExecutor);
         part->exeMoveStart();
     }
 
-    void HostTypeWaitForPlayerOn::execute(Spine *pSpine) const {
-        GeneralMapParts* part = reinterpret_cast<GeneralMapParts*>(pSpine->mExecutor);
+    void HostTypeWaitForPlayerOn::execute(Spine* pSpine) const {
+        GeneralMapParts* part = reinterpret_cast< GeneralMapParts* >(pSpine->mExecutor);
         if (MR::isOnPlayer(MR::getBodySensor(part))) {
             part->broadcastMsgToAllFunctions(0xCA);
-            part->startMove();   
+            part->startMove();
         }
     }
 
-    void HostTypeWait::execute(Spine *pSpine) const {
-        GeneralMapParts* part = reinterpret_cast<GeneralMapParts*>(pSpine->mExecutor);
+    void HostTypeWait::execute(Spine* pSpine) const {
+        GeneralMapParts* part = reinterpret_cast< GeneralMapParts* >(pSpine->mExecutor);
         part->exeWait();
     }
-};
+};  // namespace NrvGeneralMapParts

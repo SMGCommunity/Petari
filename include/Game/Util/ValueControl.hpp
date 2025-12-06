@@ -68,7 +68,5 @@ private:
     /// @brief Determines if the given direction of progression suggests approaching `0.0`.
     /// @param direction The sign of the direction of progression to test.
     /// @return `true` if the direction suggests approaching `0.0`, `false` otherwise.
-    static bool isDirToZero(s32 direction) {
-        return (u32)(-direction & ~direction) >> 31 == 0;
-    }
+    static bool isDirToZero(s32 direction) { return (u32)(-direction & ~direction) >> 31 == 0; }
 };

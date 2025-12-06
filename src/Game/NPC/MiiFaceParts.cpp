@@ -6,25 +6,17 @@
 #include <JSystem/J3DGraphBase/J3DSys.hpp>
 #include <RVLFaceLib.h>
 
-MiiFaceParts::MiiFaceParts(const char* pName, const MiiFaceRecipe& rRecipe) :
-    LiveActor(pName),
-    mCharModel(nullptr),
-    _90(nullptr),
-    mRecipe(nullptr),
-    _CC(nullptr),
-    _D0(false)
-{
+MiiFaceParts::MiiFaceParts(const char* pName, const MiiFaceRecipe& rRecipe)
+    : LiveActor(pName), mCharModel(nullptr), _90(nullptr), mRecipe(nullptr), _CC(nullptr), _D0(false) {
     mRecipe = new MiiFaceRecipe(rRecipe);
 
     MR::createSceneObj(SceneObj_MiiFacePartsHolder);
 }
 
-MiiFaceParts::~MiiFaceParts() {
-    
-}
+MiiFaceParts::~MiiFaceParts() {}
 
 void MiiFaceParts::init(const JMapInfoIter& rIter) {
-    _90 = new(32) u8[mRecipe->getModelBufferSize()];
+    _90 = new (32) u8[mRecipe->getModelBufferSize()];
     mCharModel = new RFLCharModel;
     _D1 = true;
 }
@@ -32,10 +24,9 @@ void MiiFaceParts::init(const JMapInfoIter& rIter) {
 void MiiFaceParts::calcAnim() {
     if (_CC != nullptr) {
         _CC->calc();
-        mPosition.set<f32>(_C8[0][3], _C8[1][3], _C8[2][3]);
+        mPosition.set< f32 >(_C8[0][3], _C8[1][3], _C8[2][3]);
         PSMTXCopy(_C8, _98);
-    }
-    else {
+    } else {
         MR::makeMtxTR(_98, mPosition, mRotation);
     }
     MR::preScaleMtx(_98, mScale);
@@ -59,8 +50,7 @@ void MiiFaceParts::drawOpa(const RFLDrawCoreSetting* pSetting) const {
 
     if (pSetting != nullptr) {
         RFLDrawOpaCore(mCharModel, pSetting);
-    }
-    else {
+    } else {
         RFLDrawOpa(mCharModel);
     }
 }
@@ -72,8 +62,7 @@ void MiiFaceParts::drawXlu(const RFLDrawCoreSetting* pSetting) const {
 
     if (pSetting != nullptr) {
         RFLDrawXluCore(mCharModel, pSetting);
-    }
-    else {
+    } else {
         RFLDrawXlu(mCharModel);
     }
 }

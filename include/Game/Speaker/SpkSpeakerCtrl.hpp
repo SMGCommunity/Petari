@@ -2,9 +2,8 @@
 
 #include <revolution.h>
 #include <revolution/wenc.h>
-#include "Game/AudioLib/AudSpeakerWrap.hpp"
-#include "Game/Speaker/SpkMixingBuffer.hpp"
-#include "Game/Speaker/SpkSound.hpp"
+
+class SpkMixingBuffer;
 
 struct SpeakerInfo {
     u8 _0;
@@ -23,7 +22,7 @@ struct SpeakerInfo {
 
 class SpkSpeakerCtrl {
 public:
-    static void setMixingBuffer(SpkMixingBuffer *);
+    static void setMixingBuffer(SpkMixingBuffer*);
     static void setup();
     static void connect(s32);
     static void disconnect(s32);
@@ -38,22 +37,8 @@ public:
     static void reconnectProcess(s32);
     static void initReconnect(s32);
     static void continuousUsingProcess(s32);
-    static void updateSpeaker(OSAlarm *, OSContext *);
+    static void updateSpeaker(OSAlarm*, OSContext*);
     static bool isEnable(s32);
     static void extensionProcess(s32, s32);
     static f32 getDeviceVolume(s32);
-
-    static void initInfoDefaults(s32 idx) {
-        
-    }
-
-    static inline SpeakerInfo& getSpeakerInfo(s32 idx) {
-        return sSpeakerInfo[idx];
-    }
-
-    static SpeakerInfo sSpeakerInfo[4];
-
-    static SpkMixingBuffer* sMixingBuffer;
-
-    static SpkSoundHandle sAdjustSoundHandle[4];
 };

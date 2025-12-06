@@ -1,6 +1,6 @@
+#include "Game/System/MessageHolder.hpp"
 #include "Game/NPC/TalkMessageInfo.hpp"
 #include "Game/System/GameSystemObjHolder.hpp"
-#include "Game/System/MessageHolder.hpp"
 #include "JSystem/JKernel/JKRArchive.hpp"
 
 #define SYSTEMMESSAGE_ARC "/Memory/SystemMessage.arc"
@@ -8,19 +8,19 @@
 
 namespace {
     u8* getBlock(u32 magic, u8* pData) {
-        u32 numBlocks = *reinterpret_cast<u32*>(pData + 0xc);
+        u32 numBlocks = *reinterpret_cast< u32* >(pData + 0xc);
         pData += 0x20;
         for (u32 i = 0; i < numBlocks; i++) {
-            u32 blockMagic = *reinterpret_cast<u32*>(pData);
+            u32 blockMagic = *reinterpret_cast< u32* >(pData);
             if (blockMagic == magic) {
                 return pData;
             }
-            u32 blockSize = *reinterpret_cast<u32*>(pData + 4);
+            u32 blockSize = *reinterpret_cast< u32* >(pData + 4);
             pData += blockSize;
         }
         return nullptr;
     }
-}
+}  // namespace
 
 bool MessageData::getMessageDirect(TalkMessageInfo* pMessageInfo, const char* pMessage) const {
     s32 messageIndex = findMessageIndex(pMessage);
@@ -33,10 +33,10 @@ bool MessageData::getMessageDirect(TalkMessageInfo* pMessageInfo, const char* pM
 
 bool MessageData::getMessage(TalkMessageInfo* pMessageInfo, u16, u16 infoToolIndex) const {
     u8* pInfoTool = getMessageInfoTool(infoToolIndex);
-    pMessageInfo->_0 = reinterpret_cast<u8*>(mDataBlock + 1) + *reinterpret_cast<u32*>(pInfoTool);
-    pMessageInfo->_4 = *reinterpret_cast<u16*>(pInfoTool + 4);
+    pMessageInfo->_0 = reinterpret_cast< u8* >(mDataBlock + 1) + *reinterpret_cast< u32* >(pInfoTool);
+    pMessageInfo->_4 = *reinterpret_cast< u16* >(pInfoTool + 4);
     pMessageInfo->_6 = *(pInfoTool + 6);
-    pMessageInfo->mCameraType =*(pInfoTool + 7);
+    pMessageInfo->mCameraType = *(pInfoTool + 7);
     pMessageInfo->mTalkType = *(pInfoTool + 8);
     pMessageInfo->_A = *(pInfoTool + 0xa);
     pMessageInfo->_B = *(pInfoTool + 0xb);
@@ -46,9 +46,9 @@ bool MessageData::getMessage(TalkMessageInfo* pMessageInfo, u16, u16 infoToolInd
 
 TalkNode* MessageData::findNode(const char* pMessage) const {
     s32 messageIndex = findMessageIndex(pMessage);
-    
+
     for (int i = 0; i < mFlowBlock->mNodeCount; i++) {
-        TalkNode* pNode = reinterpret_cast<TalkNode*>(mFlowBlock + 1) + i;
+        TalkNode* pNode = reinterpret_cast< TalkNode* >(mFlowBlock + 1) + i;
         if (pNode->mNodeType == 1 && pNode->mIndex == messageIndex) {
             return pNode;
         }
@@ -57,11 +57,11 @@ TalkNode* MessageData::findNode(const char* pMessage) const {
 }
 
 TalkNode* MessageData::getNode(u32 index) const {
-    return reinterpret_cast<TalkNode*>(mFlowBlock + 1) + index;
+    return reinterpret_cast< TalkNode* >(mFlowBlock + 1) + index;
 }
 
 TalkNode* MessageData::getBranchNode(u32 index) const {
-    return reinterpret_cast<TalkNode*>(mFlowBlock + 1) + _14[index];
+    return reinterpret_cast< TalkNode* >(mFlowBlock + 1) + _14[index];
 }
 
 bool MessageData::isValidBranchNode(u32 index) const {
@@ -69,7 +69,7 @@ bool MessageData::isValidBranchNode(u32 index) const {
 }
 
 u8* MessageData::getMessageInfoTool(int index) const {
-    return reinterpret_cast<u8*>(mInfoBlock + 1) + mInfoBlock->mItemSize * index;
+    return reinterpret_cast< u8* >(mInfoBlock + 1) + mInfoBlock->mItemSize * index;
 }
 
 MessageHolder::MessageHolder() {
@@ -126,8 +126,8 @@ MessageData::MessageData(const char* pArchiveName) {
     mDataBlock = (MessageDataBlock*)getBlock('DAT1', msgData);
     mFlowBlock = (MessageFlowBlock*)getBlock('FLW1', msgData);
     if (mFlowBlock) {
-        _14 = reinterpret_cast<u16*>(reinterpret_cast<TalkNode*>(mFlowBlock + 1) + mFlowBlock->mNodeCount);
-        _18 = reinterpret_cast<u8*>(_14 + mFlowBlock->_A);
+        _14 = reinterpret_cast< u16* >(reinterpret_cast< TalkNode* >(mFlowBlock + 1) + mFlowBlock->mNodeCount);
+        _18 = reinterpret_cast< u8* >(_14 + mFlowBlock->_A);
     }
     mFLI1Block = (MessageFLI1Block*)getBlock('FLI1', msgData);
 }

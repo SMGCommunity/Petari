@@ -5,13 +5,13 @@
 
 class CameraDead : public Camera {
 public:
-    CameraDead(const char *);
-    virtual  ~CameraDead();
+    CameraDead(const char*);
+    virtual ~CameraDead();
 
     virtual void reset();
-    virtual CameraTargetObj *calc();
+    virtual CameraTargetObj* calc();
     virtual bool isInterpolationOff() const;
-    virtual CamTranslatorBase *createTranslator();
+    virtual CamTranslatorBase* createTranslator();
 
     u8 _4C[4];
     f32 mDist;  // 0x50

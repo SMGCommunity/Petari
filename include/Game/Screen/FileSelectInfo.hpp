@@ -6,7 +6,7 @@
 namespace FileSelectInfoSub {
     class SlideState;
     class CharaState;
-};
+};  // namespace FileSelectInfoSub
 
 class FileSelectInfo : public LayoutActor {
 public:
@@ -77,4 +77,4 @@ namespace FileSelectInfoSub {
     private:
         /* 0x8 */ FileSelectInfo* mHost;
     };
-};
+};  // namespace FileSelectInfoSub

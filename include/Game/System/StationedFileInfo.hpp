@@ -10,4 +10,4 @@ namespace MR {
     };
 
     const StationedFileInfo* getStationedFileInfoTable();
-};
+};  // namespace MR

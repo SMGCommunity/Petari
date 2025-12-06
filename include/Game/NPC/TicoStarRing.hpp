@@ -4,16 +4,16 @@
 
 class TicoStarRing : public Tico {
 public:
-    TicoStarRing(const char *);
+    TicoStarRing(const char*);
 
     virtual ~TicoStarRing();
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
     virtual void kill();
 
-    void initialize(LiveActor *, LiveActor *, const char *);
+    void initialize(LiveActor*, LiveActor*, const char*);
     void exeWait();
 
-    const char* mGalaxy;            // 0x190
+    const char* mGalaxy;  // 0x190
     LiveActor* _194;
-    LiveActor* mTicoGalaxy;         // 0x198
+    LiveActor* mTicoGalaxy;  // 0x198
 };

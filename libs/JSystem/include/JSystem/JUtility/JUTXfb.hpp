@@ -9,13 +9,9 @@ public:
         return nullptr;
     }
 
-    s16 getDisplayingXfbIndex() const NO_INLINE {
-        return mDisplayingXfbIndex;
-    }
+    s16 getDisplayingXfbIndex() const NO_INLINE { return mDisplayingXfbIndex; }
 
-    static JUTXfb* getManager() NO_INLINE {
-        return sManager;
-    }
+    static JUTXfb* getManager() NO_INLINE { return sManager; }
 
     static JUTXfb* createManager(void*, void*, void*);
     static void destroyManager();

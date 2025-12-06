@@ -1,5 +1,5 @@
-#include "Game/Demo/DemoCameraKeeper.hpp"
 #include "Game/Demo/DemoCameraFunction.hpp"
+#include "Game/Demo/DemoCameraKeeper.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
@@ -27,7 +27,5 @@ namespace DemoCameraFunction {
         return false;
     }
 
-    void makeAnimCameraName(char* pName, u32 size, const DemoCameraInfo* pInfo) {
-        MR::removeExtensionString(pName, size, pInfo->_C);
-    }
-};
+    void makeAnimCameraName(char* pName, u32 size, const DemoCameraInfo* pInfo) { MR::removeExtensionString(pName, size, pInfo->_C); }
+};  // namespace DemoCameraFunction

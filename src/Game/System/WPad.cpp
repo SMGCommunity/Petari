@@ -1,5 +1,5 @@
-#include "Game/Speaker/SpkSystem.hpp"
 #include "Game/System/WPad.hpp"
+#include "Game/Speaker/SpkSystem.hpp"
 #include "Game/System/WPadAcceleration.hpp"
 #include "Game/System/WPadButton.hpp"
 #include "Game/System/WPadHVSwing.hpp"
@@ -10,24 +10,10 @@
 #include "Game/System/WPadRumble.hpp"
 #include "Game/System/WPadStick.hpp"
 
-WPad::WPad(s32 channel) :
-    mChannel(channel),
-    mReadInfo(nullptr),
-    mButton(nullptr),
-    mPointer(nullptr),
-    mCorePadAccel(nullptr),
-    mCorePadSwing(nullptr),
-    _18(nullptr),
-    _1C(nullptr),
-    mStick(nullptr),
-    mSubPadAccel(nullptr),
-    mSubPadSwing(nullptr),
-    mLeaveWatcher(nullptr),
-    mInfoChecker(nullptr),
-    _34(true),
-    mIsConnected(false),
-    mIsSubPadConnected(false)
-{
+WPad::WPad(s32 channel)
+    : mChannel(channel), mReadInfo(nullptr), mButton(nullptr), mPointer(nullptr), mCorePadAccel(nullptr), mCorePadSwing(nullptr), _18(nullptr),
+      _1C(nullptr), mStick(nullptr), mSubPadAccel(nullptr), mSubPadSwing(nullptr), mLeaveWatcher(nullptr), mInfoChecker(nullptr), _34(true),
+      mIsConnected(false), mIsSubPadConnected(false) {
     mButton = new WPadButton(this);
     mPointer = new WPadPointer(this);
     mCorePadAccel = new WPadAcceleration(this, WPAD_DEV_CORE);
@@ -89,9 +75,7 @@ s32 WPad::getBattery() const {
     return mInfoChecker->getBattery();
 }
 
-void WPad::resetPad() {
-    
-}
+void WPad::resetPad() {}
 
 void WPad::connected() {
     mIsConnected = true;
@@ -159,13 +143,11 @@ void WPad::getInfoCallback(s32 chan, s32 result) {
 
 namespace MR {
     bool isDeviceFreeStyle(const KPADStatus* pStatus) {
-        return pStatus != nullptr
-            && pStatus->wpad_err == WPAD_ERR_NONE
-            && pStatus->dev_type == WPAD_DEV_FREESTYLE;
+        return pStatus != nullptr && pStatus->wpad_err == WPAD_ERR_NONE && pStatus->dev_type == WPAD_DEV_FREESTYLE;
     }
 
     // getPadDataForExceptionNoInit
-};
+};  // namespace MR
 
 KPADStatus* WPad::getKPadStatus(u32 index) const {
     return mReadInfo->getKPadStatus(index);
@@ -195,8 +177,7 @@ bool WPad::getAcceleration(TVec3f* pAccel, u32 deviceType) const {
 
     if (deviceType == WPAD_DEV_CORE) {
         pAcceleration = mCorePadAccel;
-    }
-    else {
+    } else {
         pAcceleration = mSubPadAccel;
     }
 
@@ -208,8 +189,7 @@ bool WPad::getPastAcceleration(TVec3f* pAccel, s32 param2, u32 deviceType) const
 
     if (deviceType == WPAD_DEV_CORE) {
         pAcceleration = mCorePadAccel;
-    }
-    else {
+    } else {
         pAcceleration = mSubPadAccel;
     }
 

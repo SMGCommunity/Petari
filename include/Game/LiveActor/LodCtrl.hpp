@@ -1,14 +1,15 @@
 #pragma once
 
+#include "Game/Util/JMapInfo.hpp"
 #include <revolution/types.h>
 
 class ActorLightCtrl;
 class LiveActor;
 class ModelObj;
 
-class LodCtrl { 
+class LodCtrl {
 public:
-    LodCtrl(LiveActor *, const JMapInfoIter &);
+    LodCtrl(LiveActor*, const JMapInfoIter&);
 
     void offSyncShadowHost();
     void appear();
@@ -29,7 +30,7 @@ public:
     void showMiddleModel();
     void showLowModel();
     void hideAllModel();
-    void setViewCtrlPtr(const bool *, const bool *, const bool *, const bool *);
+    void setViewCtrlPtr(const bool*, const bool*, const bool*, const bool*);
     void createLodModel(int, int, int);
     void syncMaterialAnimation();
     void syncJointAnimation();
@@ -39,7 +40,7 @@ public:
     f32 _0;
     f32 _4;
     LiveActor* _8;
-    LiveActor* mActor;                  // 0xC
+    LiveActor* mActor;  // 0xC
     ModelObj* _10;
     ModelObj* _14;
     u8 _18;
@@ -50,10 +51,10 @@ public:
     const bool* _20;
     const bool* _24;
     const bool* _28;
-    s16 mViewGroupID;                   // 0x2C
-    ActorLightCtrl* mActorLightCtrl;    // 0x30
+    s16 mViewGroupID;                 // 0x2C
+    ActorLightCtrl* mActorLightCtrl;  // 0x30
 };
 
 class LodCtrlFunction {
-    static bool isExistLodLowModel(const char *);
+    static bool isExistLodLowModel(const char*);
 };

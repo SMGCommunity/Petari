@@ -1,5 +1,5 @@
-#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/CinemaFrame.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include <JSystem/J3DGraphAnimator/J3DAnimation.hpp>
@@ -12,11 +12,9 @@ namespace NrvCinemaFrame {
     NEW_NERVE(CinemaFrameNrvFrameToBlank, CinemaFrame, FrameToBlank);
     NEW_NERVE(CinemaFrameNrvBlankToFrame, CinemaFrame, BlankToFrame);
     NEW_NERVE(CinemaFrameNrvFrameToScreen, CinemaFrame, FrameToScreen);
-};
+};  // namespace NrvCinemaFrame
 
-CinemaFrame::CinemaFrame(bool param1) :
-    LayoutActor("シネマフレーム", true)
-{
+CinemaFrame::CinemaFrame(bool param1) : LayoutActor("シネマフレーム", true) {
     if (param1) {
         MR::connectToScene(this, 14, 13, -1, 69);
     }
@@ -40,9 +38,8 @@ void CinemaFrame::tryScreenToFrame() {
         appear();
     }
 
-    result = isNerve(&NrvCinemaFrame::CinemaFrameNrvFrame::sInstance)
-        || isNerve(&NrvCinemaFrame::CinemaFrameNrvScreenToFrame::sInstance)
-        || isNerve(&NrvCinemaFrame::CinemaFrameNrvBlankToFrame::sInstance);
+    result = isNerve(&NrvCinemaFrame::CinemaFrameNrvFrame::sInstance) || isNerve(&NrvCinemaFrame::CinemaFrameNrvScreenToFrame::sInstance) ||
+             isNerve(&NrvCinemaFrame::CinemaFrameNrvBlankToFrame::sInstance);
 
     if (!result) {
         setNerve(&NrvCinemaFrame::CinemaFrameNrvScreenToFrame::sInstance);
@@ -56,8 +53,7 @@ void CinemaFrame::tryFrameToBlank() {
         appear();
     }
 
-    result = isNerve(&NrvCinemaFrame::CinemaFrameNrvBlank::sInstance)
-        || isNerve(&NrvCinemaFrame::CinemaFrameNrvFrameToBlank::sInstance);
+    result = isNerve(&NrvCinemaFrame::CinemaFrameNrvBlank::sInstance) || isNerve(&NrvCinemaFrame::CinemaFrameNrvFrameToBlank::sInstance);
 
     if (!result) {
         setNerve(&NrvCinemaFrame::CinemaFrameNrvFrameToBlank::sInstance);
@@ -71,9 +67,8 @@ void CinemaFrame::tryBlankToFrame() {
         appear();
     }
 
-    result = isNerve(&NrvCinemaFrame::CinemaFrameNrvFrame::sInstance)
-        || isNerve(&NrvCinemaFrame::CinemaFrameNrvScreenToFrame::sInstance)
-        || isNerve(&NrvCinemaFrame::CinemaFrameNrvBlankToFrame::sInstance);
+    result = isNerve(&NrvCinemaFrame::CinemaFrameNrvFrame::sInstance) || isNerve(&NrvCinemaFrame::CinemaFrameNrvScreenToFrame::sInstance) ||
+             isNerve(&NrvCinemaFrame::CinemaFrameNrvBlankToFrame::sInstance);
 
     if (!result) {
         setNerve(&NrvCinemaFrame::CinemaFrameNrvBlankToFrame::sInstance);
@@ -87,8 +82,7 @@ void CinemaFrame::tryFrameToScreen() {
         appear();
     }
 
-    result = isNerve(&NrvCinemaFrame::CinemaFrameNrvScreen::sInstance)
-        || isNerve(&NrvCinemaFrame::CinemaFrameNrvFrameToScreen::sInstance);
+    result = isNerve(&NrvCinemaFrame::CinemaFrameNrvScreen::sInstance) || isNerve(&NrvCinemaFrame::CinemaFrameNrvFrameToScreen::sInstance);
 
     if (!result) {
         setNerve(&NrvCinemaFrame::CinemaFrameNrvFrameToScreen::sInstance);
@@ -120,9 +114,8 @@ void CinemaFrame::forceToBlank() {
 }
 
 bool CinemaFrame::isStop() const {
-    return isNerve(&NrvCinemaFrame::CinemaFrameNrvScreen::sInstance)
-        || isNerve(&NrvCinemaFrame::CinemaFrameNrvFrame::sInstance)
-        || isNerve(&NrvCinemaFrame::CinemaFrameNrvBlank::sInstance);
+    return isNerve(&NrvCinemaFrame::CinemaFrameNrvScreen::sInstance) || isNerve(&NrvCinemaFrame::CinemaFrameNrvFrame::sInstance) ||
+           isNerve(&NrvCinemaFrame::CinemaFrameNrvBlank::sInstance);
 }
 
 void CinemaFrame::exeScreen() {

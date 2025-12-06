@@ -15,7 +15,7 @@ struct UniqueEntry {
     const char* _4;
 };
 
-typedef NameObj* (*CreatorFuncPtr)(const char *);
+typedef NameObj* (*CreatorFuncPtr)(const char*);
 
 struct PlanetEntry {
     /* 0x0 */ const char* mName;
@@ -24,25 +24,25 @@ struct PlanetEntry {
 
 class PlanetMapCreator : public NameObj {
 public:
-    PlanetMapCreator(const char *);
+    PlanetMapCreator(const char*);
 
     CreatorFuncPtr getCreateFunc(const char*);
-    void makeArchiveListPlanet(NameObjArchiveListCollector *, const JMapInfoIter &, const char *);
-    void createPlanetMapDataTable(JMapInfo *);
-    void addTableData(const JMapInfo *, s32);
-    PlanetMapData* getTableData(const char *) const;
-    bool isScenarioForceLow(const PlanetMapData *) const;
+    void makeArchiveListPlanet(NameObjArchiveListCollector*, const JMapInfoIter&, const char*);
+    void createPlanetMapDataTable(JMapInfo*);
+    void addTableData(const JMapInfo*, s32);
+    PlanetMapData* getTableData(const char*) const;
+    bool isScenarioForceLow(const PlanetMapData*) const;
 
-    PlanetMapData** mPlanetMapData; // 0xC
-    s32 mTableCount;                // 0x10
+    PlanetMapData** mPlanetMapData;  // 0xC
+    s32 mTableCount;                 // 0x10
 };
 
 class PlanetMapCreatorFunction {
 public:
-    static void makeArchiveList(NameObjArchiveListCollector *, const JMapInfoIter &, const char *);
+    static void makeArchiveList(NameObjArchiveListCollector*, const JMapInfoIter&, const char*);
 
-    static bool isLoadArchiveAfterScenarioSelected(const char *);
-    static bool isRegisteredObj(const char *);
+    static bool isLoadArchiveAfterScenarioSelected(const char*);
+    static bool isRegisteredObj(const char*);
 
-    static CreatorFuncPtr getPlanetMapCreator(const char *);
+    static CreatorFuncPtr getPlanetMapCreator(const char*);
 };

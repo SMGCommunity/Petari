@@ -1,34 +1,34 @@
 #pragma once
 
-#include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/FlashingCtrl.hpp"
+#include "Game/LiveActor/LiveActor.hpp"
 
 class BenefitItemObj : public LiveActor {
 public:
-    BenefitItemObj(const char *, const char *);
+    BenefitItemObj(const char*, const char*);
 
     virtual ~BenefitItemObj();
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
     virtual void initAfterPlacement();
     virtual void appear();
     virtual void makeActorAppeared();
     virtual void control();
     virtual void calcAndSetBaseMtx();
-    virtual bool receiveMsgPlayerAttack(u32, HitSensor *, HitSensor *);
-    virtual bool receiveOtherMsg(u32, HitSensor *, HitSensor *);
+    virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
+    virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
     virtual void appearGround();
     virtual void appearThrowUp();
     virtual void appearThrowUpQuestionBox();
     virtual void initModelAndEfx();
     virtual void exeCatch();
-    virtual void runBck(const char *);
-    virtual void runEfx(const char *);
-    virtual void stopEfx(const char *);
+    virtual void runBck(const char*);
+    virtual void runEfx(const char*);
+    virtual void stopEfx(const char*);
     virtual void doRotateY();
     virtual void initEscape();
     virtual void doEscape();
 
-    void shoot(const TVec3f &, const TVec3f &, bool);
+    void shoot(const TVec3f&, const TVec3f&, bool);
     void exeShoot();
     void exeWait();
     void exeAppearGround();
@@ -50,7 +50,7 @@ public:
     s16 _BA;
     TVec3f _BC;
     TVec3f _C8;
-    MtxPtr mFollowMtx;              // 0xD4
+    MtxPtr mFollowMtx;  // 0xD4
     u8 _D8;
     u8 _D9;
     u8 _DA;
@@ -71,11 +71,11 @@ public:
     f32 _EC;
     Mtx _F0;
     const char* _120;
-    FlashingCtrl* mFlashCtrl;       // 0x124
-    ActorCameraInfo* mCameraInfo;   // 0x128
+    FlashingCtrl* mFlashCtrl;      // 0x124
+    ActorCameraInfo* mCameraInfo;  // 0x128
     u32 _12C;
     u32 _130;
-    LiveActor* mHitSensorActor;     // 0x134
+    LiveActor* mHitSensorActor;  // 0x134
     u8 _138;
     u8 _139;
     u16 _13A;
@@ -83,20 +83,14 @@ public:
 
 class BenefitItemOneUp : public BenefitItemObj {
 public:
-    inline BenefitItemOneUp(const char *a1, const char *a2) : BenefitItemObj(a1, a2) {
+    inline BenefitItemOneUp(const char* a1, const char* a2) : BenefitItemObj(a1, a2) {}
 
-    }
-
-    virtual ~BenefitItemOneUp() {
-        
-    }
+    virtual ~BenefitItemOneUp() {}
 };
 
 class ShadowClipActor : public LiveActor {
 public:
-    virtual ~ShadowClipActor() {
-
-    }
+    virtual ~ShadowClipActor() {}
 
     virtual void endClipped();
     virtual void control();
@@ -111,4 +105,4 @@ namespace NrvBenefitItemObj {
     NERVE(HostTypeNrvAppearGround);
     NERVE(HostTypeNrvPreEscape);
     NERVE(HostTypeNrvEscape);
-};
+};  // namespace NrvBenefitItemObj

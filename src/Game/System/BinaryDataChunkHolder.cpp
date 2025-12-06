@@ -1,6 +1,6 @@
 #include "Game/System/BinaryDataChunkHolder.hpp"
 
-void BinaryDataChunkHolder::addChunk(BinaryDataChunkBase *pChunk) {
+void BinaryDataChunkHolder::addChunk(BinaryDataChunkBase* pChunk) {
     s32 numChunks = mNumChunks;
     mNumChunks = numChunks + 1;
     mChunks[numChunks] = pChunk;

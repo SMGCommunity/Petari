@@ -1,23 +1,14 @@
 #pragma once
 
 #include "Game/System/BinaryDataChunkHolder.hpp"
-#include "Game/System/ConfigDataMii.hpp"
-#include "Game/System/ConfigDataMisc.hpp"
 
-class ConfigDataCreateChunk : public BinaryDataChunkBase {
-public:
-    ConfigDataCreateChunk();
-
-    virtual u32 makeHeaderHashCode() const;
-    virtual u32 getSignature() const;
-    virtual s32 serialize(u8 *, u32) const;
-    virtual s32 deserialize(const u8 *, u32);
-    virtual void initializeData();
-
-    bool mData;    // 0x4
-};
+class ConfigDataCreateChunk;
+class ConfigDataMii;
+class ConfigDataMisc;
 
 class ConfigDataHolder {
+    friend class UserFile;
+
 public:
     ConfigDataHolder();
 
@@ -31,16 +22,33 @@ public:
     bool isOnCompleteEndingLuigi();
     void updateLastModified();
     OSTime getLastModified() const;
-    void setMiiOrIconId(const void *, const u32 *);
-    bool getMiiId(void *) const;
-    bool getIconId(u32 *) const;
+    void setMiiOrIconId(const void*, const u32*);
+    bool getMiiId(void*) const;
+    bool getIconId(u32*) const;
     void resetAllData();
-    s32 makeFileBinary(u8 *, u32);
-    bool loadFromFileBinary(const char *, const u8 *, u32);
+    s32 makeFileBinary(u8*, u32);
+    bool loadFromFileBinary(const char*, const u8*, u32);
 
-    BinaryDataChunkHolder* mChunkHolder;    // 0x0
-    ConfigDataCreateChunk* mCreateChunk;    // 0x4
-    ConfigDataMii* mMiiCreateChunk;         // 0x8
-    ConfigDataMisc* mMiscCreateChunk;       // 0xC
-    char mName[0x10];                       // 0x10
+private:
+    /* 0x00 */ BinaryDataChunkHolder* mChunkHolder;
+    /* 0x04 */ ConfigDataCreateChunk* mCreateChunk;
+    /* 0x08 */ ConfigDataMii* mMii;
+    /* 0x0C */ ConfigDataMisc* mMisc;
+    /* 0x10 */ char mName[16];
+};
+
+class ConfigDataCreateChunk : public BinaryDataChunkBase {
+    friend class ConfigDataHolder;
+
+public:
+    ConfigDataCreateChunk();
+
+    virtual u32 makeHeaderHashCode() const;
+    virtual u32 getSignature() const;
+    virtual s32 serialize(u8*, u32) const;
+    virtual s32 deserialize(const u8*, u32);
+    virtual void initializeData();
+
+private:
+    /* 0x04 */ bool mIsCreated;
 };

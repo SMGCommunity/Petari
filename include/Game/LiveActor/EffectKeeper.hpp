@@ -1,7 +1,7 @@
 #pragma once
 
-#include <revolution.h>
 #include <JSystem/JGeometry/TVec.hpp>
+#include <revolution.h>
 
 class Binder;
 class MultiEmitter;
@@ -11,18 +11,18 @@ class LiveActor;
 
 class EffectKeeper {
 public:
-    EffectKeeper(const char *, ResourceHolder *, int, const char *);
+    EffectKeeper(const char*, ResourceHolder*, int, const char*);
 
-    void init(LiveActor *);
+    void init(LiveActor*);
     void initAfterPlacementForAttributeEffect(MtxPtr);
     void setBinder(const Binder*);
-    void addEffect(const char *, LiveActor *);
-    void registerEffect(const char *, const TVec3f *, const TVec3f *, const TVec3f *, const char *);
-    void registerEffect(const char *, MtxPtr, const char *, const char *);
-    void registerEffect(const char *, MtxPtr, const TVec3f *, const char *, const char *);
-    void registerEffectWithoutSRT(const char *, const char *);
+    void addEffect(const char*, LiveActor*);
+    void registerEffect(const char*, const TVec3f*, const TVec3f*, const TVec3f*, const char*);
+    void registerEffect(const char*, MtxPtr, const char*, const char*);
+    void registerEffect(const char*, MtxPtr, const TVec3f*, const char*, const char*);
+    void registerEffectWithoutSRT(const char*, const char*);
 
-    void changeEffectName(const char *, const char *);
+    void changeEffectName(const char*, const char*);
 
     void enableSort();
     void playEmitterOffClipped();
@@ -30,25 +30,25 @@ public:
 
     void clear();
 
-    MultiEmitter* getEmitter(const char *) const;
-    MultiEmitter* createEmitter(const char *);
-    void deleteEmitter(const char *);
-    void forceDeleteEmitter(const char *);
+    MultiEmitter* getEmitter(const char*) const;
+    MultiEmitter* createEmitter(const char*);
+    void deleteEmitter(const char*);
+    void forceDeleteEmitter(const char*);
     void deleteEmitterAll();
     void forceDeleteEmitterAll();
 
-    bool isRegisteredEmitter(const char *) const;
+    bool isRegisteredEmitter(const char*) const;
 
     void update();
 
     void onDraw();
     void offDraw();
 
-    void updateFloorCode(const Triangle *);
+    void updateFloorCode(const Triangle*);
 
     const char* _0;
-    ResourceHolder* mResourceHolder;    // 0x4
-    const char* mResourceName;          // 0x8
+    ResourceHolder* mResourceHolder;  // 0x4
+    const char* mResourceName;        // 0x8
     u32 _C;
     u32 _10;
     u32 _14;

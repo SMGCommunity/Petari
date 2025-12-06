@@ -28,7 +28,7 @@ public:
 
     static void startStageBgm(u32, bool);
 
-    static AudRemixSequencer *getRemixSequencer();
-    static AudSoundObject *getRemixSeqObject();
-    static AudSoundObject *getSystemSeObject();
+    static AudRemixSequencer* getRemixSequencer();
+    static AudSoundObject* getRemixSeqObject();
+    static AudSoundObject* getSystemSeObject();
 };

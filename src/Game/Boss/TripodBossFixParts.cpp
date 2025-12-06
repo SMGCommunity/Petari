@@ -10,23 +10,21 @@ namespace NrvTripodBossFixParts {
     NEW_NERVE(TripodBossFixPartsNrvStartDemo, TripodBossFixParts, StartDemo);
     NEW_NERVE(TripodBossFixPartsNrvWait, TripodBossFixParts, Wait);
     NEW_NERVE(TripodBossFixPartsNrvBreak, TripodBossFixParts, Break);
-};
+};  // namespace NrvTripodBossFixParts
 
 struct TripodBossSetting {
-    const char* mPartName;          // 0x00
-    s32 mType;                      // 0x04
+    const char* mPartName;  // 0x00
+    s32 mType;              // 0x04
 };
 
 namespace {
-    static TripodBossSetting sTripodBossSettingTable[5] = {
-        { "TripodBossBodyABloom", 3  },
-        { "TripodBossFootBloom", 3  },
-        { "TriPodBossLeg2ABloom", 3  },
-        { "TripodBossEyeLight", 2  },
-        { "TripodBossEyeLightBloom", 3  }
-    };
+    static TripodBossSetting sTripodBossSettingTable[5] = {{"TripodBossBodyABloom", 3},
+                                                           {"TripodBossFootBloom", 3},
+                                                           {"TriPodBossLeg2ABloom", 3},
+                                                           {"TripodBossEyeLight", 2},
+                                                           {"TripodBossEyeLightBloom", 3}};
 
-    TripodBossSetting* getSetting(const char *pObjName) {
+    TripodBossSetting* getSetting(const char* pObjName) {
         for (u32 i = 0; i < 5; i++) {
             const char* partName = sTripodBossSettingTable[i].mPartName;
             if (MR::isEqualString(pObjName, partName)) {
@@ -36,9 +34,9 @@ namespace {
 
         return nullptr;
     }
-};
+};  // namespace
 
-TripodBossFixParts::TripodBossFixParts(const char *pName) : TripodBossFixPartsBase(pName) {
+TripodBossFixParts::TripodBossFixParts(const char* pName) : TripodBossFixPartsBase(pName) {
     _E4 = -1;
     _E8 = 180;
     mHasCollision = false;
@@ -48,7 +46,7 @@ TripodBossFixParts::TripodBossFixParts(const char *pName) : TripodBossFixPartsBa
 }
 
 // https://decomp.me/scratch/UtuYP
-void TripodBossFixParts::init(const JMapInfoIter &rIter) {
+void TripodBossFixParts::init(const JMapInfoIter& rIter) {
     const char* objName;
     MR::getObjectName(&objName, rIter);
     setName(objName);
@@ -67,8 +65,7 @@ void TripodBossFixParts::init(const JMapInfoIter &rIter) {
 
     if (val) {
         MR::connectToScene(this, 0x23, 0xB, 0x1E, -1);
-    }
-    else {
+    } else {
         MR::connectToScene(this, 0x23, 0xB, 0x1F, -1);
     }
 
@@ -78,8 +75,7 @@ void TripodBossFixParts::init(const JMapInfoIter &rIter) {
         clip.y = 1000.0f;
         clip.z = 0.0f;
         setClippingSphere(clip, 3750.0f);
-    }
-    else {
+    } else {
         initClippingSphere();
     }
 
@@ -108,39 +104,38 @@ void TripodBossFixParts::init(const JMapInfoIter &rIter) {
     makeActorDead();
 }
 
-void TripodBossFixParts::initSensor(const JMapInfoIter &rIter) {
+void TripodBossFixParts::initSensor(const JMapInfoIter& rIter) {
     initHitSensor(1);
     if (MR::isMapPartsPressOn(rIter)) {
         MR::addBodyMessageSensorMapObjPress(this);
-    }
-    else {
+    } else {
         MR::addBodyMessageSensorMapObj(this);
     }
 }
 
 void TripodBossFixParts::kill() {
     switch (_E4) {
-        case 0:
-            MR::emitEffect(this, "ExplosionS");
-            MR::startSound(this, "SE_BM_TRIPOD_KILL_S", -1, -1);
-            break;
-        case 1:
-            MR::emitEffect(this, "ExplosionM");
-            MR::startSound(this, "SE_BM_TRIPOD_KILL_M", -1, -1);
-            MR::tryRumblePadVeryWeak(this, 0);
-            break;
-        case 2:
-            MR::emitEffect(this, "ExplosionM");
-            MR::startSound(this, "SE_BM_TRIPOD_KILL_M", -1, -1);
-            MR::shakeCameraVeryWeak();
-            MR::tryRumblePadMiddle(this, 0);
-            break;
-        case 3:
-            MR::emitEffect(this, "ExplosionL");
-            MR::startSound(this, "SE_BM_TRIPOD_KILL_L", -1, -1);
-            MR::shakeCameraStrong();
-            MR::tryRumblePadVeryStrong(this, 0);
-            break;
+    case 0:
+        MR::emitEffect(this, "ExplosionS");
+        MR::startSound(this, "SE_BM_TRIPOD_KILL_S", -1, -1);
+        break;
+    case 1:
+        MR::emitEffect(this, "ExplosionM");
+        MR::startSound(this, "SE_BM_TRIPOD_KILL_M", -1, -1);
+        MR::tryRumblePadVeryWeak(this, 0);
+        break;
+    case 2:
+        MR::emitEffect(this, "ExplosionM");
+        MR::startSound(this, "SE_BM_TRIPOD_KILL_M", -1, -1);
+        MR::shakeCameraVeryWeak();
+        MR::tryRumblePadMiddle(this, 0);
+        break;
+    case 3:
+        MR::emitEffect(this, "ExplosionL");
+        MR::startSound(this, "SE_BM_TRIPOD_KILL_L", -1, -1);
+        MR::shakeCameraStrong();
+        MR::tryRumblePadVeryStrong(this, 0);
+        break;
     }
 
     LiveActor::kill();
@@ -158,8 +153,7 @@ void TripodBossFixParts::activateTripodBoss() {
 
         if (MR::isExistAnim(this, "StartDemo")) {
             setNerve(&NrvTripodBossFixParts::TripodBossFixPartsNrvStartDemo::sInstance);
-        }
-        else {
+        } else {
             setNerve(&NrvTripodBossFixParts::TripodBossFixPartsNrvWait::sInstance);
         }
     }
@@ -207,8 +201,7 @@ void TripodBossFixParts::exeWait() {
     if (MR::isEndBreakDownDemoTripodBoss()) {
         if (_ED) {
             setNerve(&NrvTripodBossFixParts::TripodBossFixPartsNrvBreak::sInstance);
-        }
-        else {
+        } else {
             kill();
         }
     }
@@ -228,14 +221,8 @@ void TripodBossFixParts::exeBreak() {
     }
 }
 
-void TripodBossFixParts::exeNonActive() {
-    
-}
+void TripodBossFixParts::exeNonActive() {}
 
-TripodBossFixParts::~TripodBossFixParts() {
+TripodBossFixParts::~TripodBossFixParts() {}
 
-}
-
-void TripodBossFixParts::exeWaitOwn() {
-    
-}
+void TripodBossFixParts::exeWaitOwn() {}

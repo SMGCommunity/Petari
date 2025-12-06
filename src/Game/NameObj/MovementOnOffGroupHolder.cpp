@@ -2,12 +2,9 @@
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
 
-MovementOnOffGroupHolder::MovementOnOffGroupHolder(const char *pName) :
-    NameObj(pName),
-    mGroups()
-{}
+MovementOnOffGroupHolder::MovementOnOffGroupHolder(const char* pName) : NameObj(pName), mGroups() {}
 
-NameObjGroup* MovementOnOffGroupHolder::joinToGroup(const char *pName, NameObj *pobj, u32 a3) {
+NameObjGroup* MovementOnOffGroupHolder::joinToGroup(const char* pName, NameObj* pobj, u32 a3) {
     NameObjGroup* pGroup = findGroupFromName(pName);
 
     if (pGroup == nullptr) {
@@ -19,7 +16,7 @@ NameObjGroup* MovementOnOffGroupHolder::joinToGroup(const char *pName, NameObj *
     return pGroup;
 }
 
-void MovementOnOffGroupHolder::onMovementGroup(const char *pGroupName) {
+void MovementOnOffGroupHolder::onMovementGroup(const char* pGroupName) {
     NameObjGroup* pGroup = findGroupFromName(pGroupName);
 
     for (int i = 0; i < pGroup->mObjectCount; i++) {
@@ -27,7 +24,7 @@ void MovementOnOffGroupHolder::onMovementGroup(const char *pGroupName) {
     }
 }
 
-NameObjGroup* MovementOnOffGroupHolder::createGroup(const char *pGroupName, u32 count) {
+NameObjGroup* MovementOnOffGroupHolder::createGroup(const char* pGroupName, u32 count) {
     NameObjGroup* pGroup = new NameObjGroup(pGroupName, count);
     pGroup->initWithoutIter();
 
@@ -36,7 +33,7 @@ NameObjGroup* MovementOnOffGroupHolder::createGroup(const char *pGroupName, u32 
     return pGroup;
 }
 
-NameObjGroup* MovementOnOffGroupHolder::findGroupFromName(const char *pName) const {
+NameObjGroup* MovementOnOffGroupHolder::findGroupFromName(const char* pName) const {
     for (u32 i = 0; i < mGroups.size(); i++) {
         if (MR::isEqualString(mGroups[i]->mName, pName)) {
             return mGroups[i];
@@ -46,6 +43,4 @@ NameObjGroup* MovementOnOffGroupHolder::findGroupFromName(const char *pName) con
     return nullptr;
 }
 
-MovementOnOffGroupHolder::~MovementOnOffGroupHolder() {
-    
-}
+MovementOnOffGroupHolder::~MovementOnOffGroupHolder() {}

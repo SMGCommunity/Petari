@@ -9,8 +9,8 @@ public:
     virtual void update();
     virtual void draw() const;
 
-    void setCurrentSceneControllerState(const char *, ...);
+    void setCurrentSceneControllerState(const char*, ...);
 
-    char mState[0x40];          // 0x14
+    char mState[0x40];  // 0x14
     u32 _54;
 };

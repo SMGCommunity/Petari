@@ -20,15 +20,15 @@ public:
 
 class MapPartsFloatingForce : public MapPartsFunction {
 public:
-    MapPartsFloatingForce(LiveActor *);
+    MapPartsFloatingForce(LiveActor*);
 
     virtual ~MapPartsFloatingForce();
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
     virtual void start();
 
-    void setObjectName(const char *);
-    void initForNormalMotion(const JMapInfoIter &);
-    void initForSpringMotion(const JMapInfoIter &);
+    void setObjectName(const char*);
+    void initForNormalMotion(const JMapInfoIter&);
+    void initForSpringMotion(const JMapInfoIter&);
     void updateVelocity();
     void updateVelocitySpring();
     bool tryOn();
@@ -38,12 +38,12 @@ public:
     void exeMoveSpring();
     void exeMoveReturn();
 
-    SpringStep* mSpringStep;    // 0x18
-    const char* mObjectName;    // 0x1C
+    SpringStep* mSpringStep;  // 0x18
+    const char* mObjectName;  // 0x1C
     f32 _20;
-    f32 mRotateAngle;           // 0x24
-    f32 mRotateSpeed;           // 0x28
-    s32 mRotateAccelType;       // 0x2C
+    f32 mRotateAngle;      // 0x24
+    f32 mRotateSpeed;      // 0x28
+    s32 mRotateAccelType;  // 0x2C
     TVec3f _30;
     f32 _3C;
     f32 _40;
@@ -59,4 +59,4 @@ namespace NrvMapPartsFloatingForce {
     NERVE(HostTypeMove);
     NERVE(HostTypeMoveSpring);
     NERVE(HostTypeMoveReturn);
-};
+};  // namespace NrvMapPartsFloatingForce

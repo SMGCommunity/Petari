@@ -1,5 +1,5 @@
-#include "Game/NameObj/NameObj.hpp"
 #include "Game/NameObj/NameObjHolder.hpp"
+#include "Game/NameObj/NameObj.hpp"
 #include "Game/Util/ObjUtil.hpp"
 
 NameObjHolder::NameObjHolder(int num) {

@@ -5,7 +5,7 @@
 #include "Game/Util.hpp"
 #include "JSystem/JMath/JMath.hpp"
 
-Coin::Coin(const char *pName) : LiveActor(pName) {
+Coin::Coin(const char* pName) : LiveActor(pName) {
     mHostInfo = nullptr;
     mFlashCtrl = nullptr;
     mAirBubble = nullptr;
@@ -24,7 +24,7 @@ Coin::Coin(const char *pName) : LiveActor(pName) {
     mIsNeedBubble = false;
 }
 
-void Coin::init(const JMapInfoIter &rIter) {
+void Coin::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     initModelManagerWithAnm(mIsPurpleCoin ? "PurpleCoin" : "Coin", nullptr, false);
     MR::connectToSceneItemStrongLight(this);
@@ -43,7 +43,7 @@ void Coin::init(const JMapInfoIter &rIter) {
     if (_BA) {
         TVec3f axis;
         MR::calcActorAxisY(&axis, this);
-        mGravity.set<f32>(-axis);
+        mGravity.set< f32 >(-axis);
     }
 
     initShadow(rIter);
@@ -64,17 +64,15 @@ void Coin::init(const JMapInfoIter &rIter) {
         if (MR::useStageSwitchReadAppear(this, rIter)) {
             MR::syncStageSwitchAppear(this);
             makeActorDead();
-        }
-        else {
+        } else {
             appearFixInit();
         }
 
         if (MR::useStageSwitchReadB(this, rIter)) {
-            MR::FunctorV0M<Coin *, void (Coin::*)()> deadFunc = MR::Functor<Coin>(this, &Coin::makeActorDead);
+            MR::FunctorV0M< Coin*, void (Coin::*)() > deadFunc = MR::Functor< Coin >(this, &Coin::makeActorDead);
             MR::listenStageSwitchOnB(this, deadFunc);
         }
-    }
-    else {
+    } else {
         makeActorDead();
     }
 
@@ -85,7 +83,7 @@ void Coin::initAfterPlacement() {
     MR::setClippingRangeIncludeShadow(this, &mClippingRange, 150.0f);
 }
 
-void Coin::initShadow(const JMapInfoIter &rIter) {
+void Coin::initShadow(const JMapInfoIter& rIter) {
     f32 arg_5 = -1.0f;
     s32 arg_6 = -1;
 
@@ -95,15 +93,15 @@ void Coin::initShadow(const JMapInfoIter &rIter) {
     }
 
     switch (arg_6) {
-        case 0:
-            MR::initShadowSurfaceCircle(this, 50.0f);
-            break;
-        case 1:
-            MR::initShadowVolumeCylinder(this, 50.0f);
-            break;
-        default:
-            MR::initShadowVolumeSphere(this, 50.0f);
-            break;
+    case 0:
+        MR::initShadowSurfaceCircle(this, 50.0f);
+        break;
+    case 1:
+        MR::initShadowVolumeCylinder(this, 50.0f);
+        break;
+    default:
+        MR::initShadowVolumeSphere(this, 50.0f);
+        break;
     }
 
     MR::setShadowDropPositionPtr(this, nullptr, &mDropPosition);
@@ -113,7 +111,7 @@ void Coin::initShadow(const JMapInfoIter &rIter) {
     }
 }
 
-void Coin::setShadowAndPoseModeFromJMapIter(const JMapInfoIter &rIter) {
+void Coin::setShadowAndPoseModeFromJMapIter(const JMapInfoIter& rIter) {
     bool arg_3 = false;
     MR::getJMapInfoArg3WithInit(rIter, &arg_3);
     _B9 = arg_3;
@@ -132,15 +130,13 @@ void Coin::makeActorAppeared() {
 
     if (!mIsPurpleCoin && MR::isGalaxyDarkCometAppearInCurrentStage()) {
         LiveActor::makeActorDead();
-    }
-    else {
+    } else {
         LiveActor::makeActorAppeared();
 
         if (mIsNeedBubble) {
             mAirBubble->makeActorAppeared();
             MR::setSensorRadius(this, "coin", 150.0f);
-        }
-        else {
+        } else {
             MR::setSensorRadius(this, "coin", 55.0f);
         }
 
@@ -165,26 +161,23 @@ void Coin::makeActorDead() {
 
 void Coin::calcAndSetBaseMtx() {
     TVec3f another_vec;
-    another_vec.set<f32>(MR::isNearZero(mGravity, 0.001f) ? TVec3f(0.0f, 1.0f, 0.0f) : -mGravity);
+    another_vec.set< f32 >(MR::isNearZero(mGravity, 0.001f) ? TVec3f(0.0f, 1.0f, 0.0f) : -mGravity);
     JMAVECScaleAdd(&another_vec, &mPosition, &mDropPosition, 70.0f);
 
     TPos3f pos;
 
     if (_BA) {
         MR::makeMtxTR(pos.toMtxPtr(), this);
-    }
-    else {
+    } else {
         MR::makeMtxUpNoSupportPos(&pos, another_vec, mPosition);
     }
 
     if (isNerve(&NrvCoin::CoinNrvSpinDrained::sInstance)) {
         pos.concat(pos, MR::getCoinHiSpeedRotateYMatrix());
-    }
-    else {
+    } else {
         if (mIsInWater) {
             pos.concat(pos, MR::getCoinInWaterRotateYMatrix());
-        }
-        else {
+        } else {
             pos.concat(pos, MR::getCoinRotateYMatrix());
         }
     }
@@ -192,36 +185,29 @@ void Coin::calcAndSetBaseMtx() {
     MR::setBaseTRMtx(this, pos);
 }
 
-bool Coin::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool Coin::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     bool result;
-    
+
     if (MR::isMsgItemGet(msg)) {
         noticeGetCoin();
         MR::emitEffect(this, "CoinGet");
         mFlashCtrl->end();
         kill();
         result = true;
-    }
-    else if (MR::isMsgItemPull(msg)) {
+    } else if (MR::isMsgItemPull(msg)) {
         result = requestSpinDrain();
-    }
-    else if (MR::isMsgItemShow(msg)) {
+    } else if (MR::isMsgItemShow(msg)) {
         result = requestShow();
-    }
-    else if (MR::isMsgItemHide(msg)) {
+    } else if (MR::isMsgItemHide(msg)) {
         result = requestHide();
-    }
-    else if (MR::isMsgItemStartMove(msg)) {
+    } else if (MR::isMsgItemStartMove(msg)) {
         result = requestStartControl();
-    }
-    else if (MR::isMsgItemEndMove(msg)) {
+    } else if (MR::isMsgItemEndMove(msg)) {
         result = requestEndControl();
-    }
-    else if (MR::isMsgInhaleBlackHole(msg)) {
+    } else if (MR::isMsgInhaleBlackHole(msg)) {
         kill();
         result = true;
-    }
-    else {
+    } else {
         result = false;
     }
 
@@ -256,7 +242,7 @@ void Coin::exeFixTimer() {
     }
 }
 
-void Coin::exeMove() { 
+void Coin::exeMove() {
     if (MR::isFirstStep(this)) {
         mFlashCtrl->start(_B0);
         MR::onCalcShadow(this, nullptr);
@@ -271,12 +257,10 @@ void Coin::exeMove() {
         MR::emitEffect(this, "LavaFall");
         MR::startSound(this, "SE_OJ_FALL_IN_MAGMA_S", -1, -1);
         kill();
-    }
-    else {
+    } else {
         if (MR::isInDeath(this, TVec3f(0.0f, 0.0f, 0.0f))) {
             kill();
-        }
-        else {
+        } else {
             MR::calcGravityOrZero(this);
 
             if (MR::isPressedRoofAndGround(this)) {
@@ -380,23 +364,22 @@ void Coin::appearFixTimer(s32 a1, s32 a2) {
     setNerve(&NrvCoin::CoinNrvFixTimer::sInstance);
 }
 
-void Coin::appearMove(const TVec3f &a1, const TVec3f &a2, s32 a3, s32 a4) {
-    mPosition.set<f32>(a1);
+void Coin::appearMove(const TVec3f& a1, const TVec3f& a2, s32 a3, s32 a4) {
+    mPosition.set< f32 >(a1);
     makeActorAppeared();
     MR::invalidateClipping(this);
     MR::invalidateHitSensors(this);
     MR::onBind(this);
     MR::onCalcShadow(this, nullptr);
-    mVelocity.set<f32>(a2);
+    mVelocity.set< f32 >(a2);
 
     TVec3f stack_14;
     if (MR::normalizeOrZero(a2, &stack_14)) {
         mGravity.x = 0.0f;
         mGravity.y = -1.0f;
         mGravity.z = 0.0f;
-    }
-    else {
-        mGravity.set<f32>(-stack_14);
+    } else {
+        mGravity.set< f32 >(-stack_14);
     }
 
     MR::calcGravityOrZero(this);
@@ -405,23 +388,22 @@ void Coin::appearMove(const TVec3f &a1, const TVec3f &a2, s32 a3, s32 a4) {
     setNerve(&NrvCoin::CoinNrvMove::sInstance);
 }
 
-void Coin::appearHop(const TVec3f &a1, const TVec3f &a2) {
+void Coin::appearHop(const TVec3f& a1, const TVec3f& a2) {
     if (MR::isNearZero(a2, 0.001f)) {
         mGravity.x = 0.0f;
         mGravity.y = -1.0f;
         mGravity.z = 0.0f;
-    }
-    else {
+    } else {
         MR::normalize(-a2, &mGravity);
     }
 
-    mPosition.set<f32>(a1);
+    mPosition.set< f32 >(a1);
     makeActorAppeared();
     MR::invalidateClipping(this);
     MR::invalidateHitSensors(this);
     MR::offBind(this);
     MR::invalidateShadow(this, nullptr);
-    mVelocity.set<f32>(a2 * 30.0f);
+    mVelocity.set< f32 >(a2 * 30.0f);
     mCannotTime = 0;
     setNerve(&NrvCoin::CoinNrvHop::sInstance);
 }
@@ -442,7 +424,7 @@ bool Coin::requestActiveWithGravity() {
         MR::validateHitSensors(this);
         MR::onBind(this);
         MR::calcGravityOrZero(this);
-        mVelocity.set<f32>(-mGravity * 30.0f);
+        mVelocity.set< f32 >(-mGravity * 30.0f);
         setNerve(&NrvCoin::CoinNrvMove::sInstance);
         return true;
     }
@@ -464,7 +446,7 @@ bool Coin::requestStartControl() {
     if (MR::isDead(this)) {
         return false;
     }
-    
+
     if (!isNerve(&NrvCoin::CoinNrvFix::sInstance) && !isNerve(&NrvCoin::CoinNrvFixHide::sInstance)) {
         return false;
     }
@@ -545,8 +527,7 @@ void Coin::noticeGetCoin() {
     if (mIsPurpleCoin) {
         MR::incPurpleCoin();
         MR::startSystemSE("SE_SY_PURPLE_COIN", -1, -1);
-    }
-    else {
+    } else {
         MR::incCoin(1);
         MR::startSystemSE("SE_SY_COIN", -1, -1);
         mHostInfo->_C++;
@@ -556,13 +537,12 @@ void Coin::noticeGetCoin() {
 void Coin::setLife(s32 life) {
     if (life < 0) {
         _B0 = 0x258;
-    }
-    else {
+    } else {
         _B0 = life;
     }
 }
 
-void Coin::setHostInfo(CoinHostInfo *pInfo) {
+void Coin::setHostInfo(CoinHostInfo* pInfo) {
     mHostInfo = pInfo;
 }
 
@@ -570,8 +550,7 @@ void Coin::setCalcShadowMode() {
     if (_B9) {
         MR::onCalcShadow(this, nullptr);
         MR::onCalcShadowDropPrivateGravity(this, nullptr);
-    }
-    else {
+    } else {
         MR::onCalcShadowOneTime(this, nullptr);
         MR::onCalcShadowDropPrivateGravityOneTime(this, nullptr);
     }
@@ -580,8 +559,7 @@ void Coin::setCalcShadowMode() {
 void Coin::setCannotTime(s32 time) {
     if (time < 0) {
         mCannotTime = 0x1E;
-    }
-    else {
+    } else {
         mCannotTime = time;
     }
 }
@@ -620,21 +598,19 @@ void Coin::calcRebouond() {
 
 void Coin::attenuateVelocity() {
     f32 velocity;
-    
+
     if (mIsInWater) {
         velocity = 0.80000001f;
-    }
-    else if (MR::isOnGround(this)) {
+    } else if (MR::isOnGround(this)) {
         velocity = 0.89999998f;
-    }
-    else {
+    } else {
         velocity = 0.995f;
     }
 
     MR::attenuateVelocity(this, velocity);
 }
 
-bool Coin::isNeedBubble(const JMapInfoIter &rIter) {
+bool Coin::isNeedBubble(const JMapInfoIter& rIter) {
     if (!MR::isValidInfo(rIter)) {
         return false;
     }
@@ -644,14 +620,14 @@ bool Coin::isNeedBubble(const JMapInfoIter &rIter) {
     return arg;
 }
 
-void Coin::makeArchiveList(NameObjArchiveListCollector *pList, const JMapInfoIter &rIter) {
+void Coin::makeArchiveList(NameObjArchiveListCollector* pList, const JMapInfoIter& rIter) {
     if (Coin::isNeedBubble(rIter)) {
         pList->addArchive("AirBubble");
     }
 }
 
 namespace MR {
-    NameObj* createDirectSetCoin(const char *pName) {
+    NameObj* createDirectSetCoin(const char* pName) {
         Coin* coin = new Coin(pName);
         MR::createCoinHolder();
         MR::createCoinRotater();
@@ -659,7 +635,7 @@ namespace MR {
         return coin;
     }
 
-    NameObj* createCoin(const NameObj *pObj, const char *pName) {
+    NameObj* createCoin(const NameObj* pObj, const char* pName) {
         Coin* coin = new Coin(pName);
         MR::createCoinHolder();
         MR::createCoinRotater();
@@ -667,7 +643,7 @@ namespace MR {
         return coin;
     }
 
-    NameObj* createDirectSetPurpleCoin(const char *pName) {
+    NameObj* createDirectSetPurpleCoin(const char* pName) {
         Coin* coin = new Coin(pName);
         coin->mIsPurpleCoin = true;
         MR::createPurpleCoinHolder();
@@ -676,7 +652,7 @@ namespace MR {
         return coin;
     }
 
-    NameObj* createPurpleCoin(const NameObj *pObj, const char *pName) {
+    NameObj* createPurpleCoin(const NameObj* pObj, const char* pName) {
         Coin* coin = new Coin(pName);
         coin->mIsPurpleCoin = true;
         MR::createPurpleCoinHolder();
@@ -684,7 +660,7 @@ namespace MR {
         MR::addToPurpleCoinHolder(pObj, coin);
         return coin;
     }
-};
+};  // namespace MR
 
 namespace NrvCoin {
     INIT_NERVE(CoinNrvNonActive);
@@ -696,46 +672,42 @@ namespace NrvCoin {
     INIT_NERVE(CoinNrvMove);
     INIT_NERVE(CoinNrvHop);
 
-    void CoinNrvHop::execute(Spine *pSpine) const {
-        Coin* coin = reinterpret_cast<Coin*>(pSpine->mExecutor);
+    void CoinNrvHop::execute(Spine* pSpine) const {
+        Coin* coin = reinterpret_cast< Coin* >(pSpine->mExecutor);
         coin->exeHop();
     }
 
-    void CoinNrvMove::execute(Spine *pSpine) const {
-        Coin* coin = reinterpret_cast<Coin*>(pSpine->mExecutor);
+    void CoinNrvMove::execute(Spine* pSpine) const {
+        Coin* coin = reinterpret_cast< Coin* >(pSpine->mExecutor);
         coin->exeMove();
     }
 
-    void CoinNrvSpinDrained::execute(Spine *pSpine) const {
-        Coin* coin = reinterpret_cast<Coin*>(pSpine->mExecutor);
+    void CoinNrvSpinDrained::execute(Spine* pSpine) const {
+        Coin* coin = reinterpret_cast< Coin* >(pSpine->mExecutor);
         coin->exeSpinDrained();
     }
 
-    void CoinNrvControled::execute(Spine *pSpine) const {
-        Coin* coin = reinterpret_cast<Coin*>(pSpine->mExecutor);
+    void CoinNrvControled::execute(Spine* pSpine) const {
+        Coin* coin = reinterpret_cast< Coin* >(pSpine->mExecutor);
         coin->exeControled();
     }
 
-    void CoinNrvFixTimer::execute(Spine *pSpine) const {
-        Coin* coin = reinterpret_cast<Coin*>(pSpine->mExecutor);
+    void CoinNrvFixTimer::execute(Spine* pSpine) const {
+        Coin* coin = reinterpret_cast< Coin* >(pSpine->mExecutor);
         coin->exeFixTimer();
     }
 
-    void CoinNrvFixHide::execute(Spine *pSpine) const {
+    void CoinNrvFixHide::execute(Spine* pSpine) const {}
 
-    }
-
-    void CoinNrvFix::execute(Spine *pSpine) const {
-        Coin* coin = reinterpret_cast<Coin*>(pSpine->mExecutor);
+    void CoinNrvFix::execute(Spine* pSpine) const {
+        Coin* coin = reinterpret_cast< Coin* >(pSpine->mExecutor);
         coin->exeFix();
     }
 
-    void CoinNrvNonActive::execute(Spine *pSpine) const {
-        Coin* coin = reinterpret_cast<Coin*>(pSpine->mExecutor);
+    void CoinNrvNonActive::execute(Spine* pSpine) const {
+        Coin* coin = reinterpret_cast< Coin* >(pSpine->mExecutor);
         coin->exeNonActive();
     }
-};
+};  // namespace NrvCoin
 
-Coin::~Coin() {
-
-}
+Coin::~Coin() {}

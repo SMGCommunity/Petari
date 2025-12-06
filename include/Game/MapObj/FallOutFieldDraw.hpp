@@ -4,10 +4,10 @@
 
 class FallOutFieldDraw : public NameObj {
 public:
-    FallOutFieldDraw(const char *);
+    FallOutFieldDraw(const char*);
 
     virtual ~FallOutFieldDraw();
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
     virtual void draw() const;
 
     void setUpFillScreen() const;

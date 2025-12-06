@@ -4,8 +4,8 @@
 
 class AstroDomeDemoAstroGalaxy : public MapObjActor {
 public:
-    AstroDomeDemoAstroGalaxy(const char *);
-    
+    AstroDomeDemoAstroGalaxy(const char*);
+
     virtual ~AstroDomeDemoAstroGalaxy();
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
 };

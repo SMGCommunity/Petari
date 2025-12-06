@@ -4,10 +4,10 @@
 
 class CamTranslatorFollow : public CamTranslatorBase {
 public:
-	CamTranslatorFollow(CameraFollow *);
+    CamTranslatorFollow(CameraFollow*);
 
-	virtual void setParam(const CameraParamChunk *);
-	virtual Camera *getCamera() const;
+    virtual void setParam(const CameraParamChunk*);
+    virtual Camera* getCamera() const;
 
-	CameraFollow *mCamera;	// 0x4
+    CameraFollow* mCamera;  // 0x4
 };

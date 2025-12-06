@@ -10,9 +10,9 @@ class ScenarioSelectStar;
 
 class ScenarioSelectLayout : public LayoutActor {
 public:
-    ScenarioSelectLayout(EffectSystem *, const CameraContext *);
+    ScenarioSelectLayout(EffectSystem*, const CameraContext*);
 
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
     virtual void movement();
     virtual void draw() const;
     virtual void calcAnim();
@@ -33,14 +33,14 @@ public:
     void fadeOutText();
     bool trySelect();
     ScenarioSelectStar* getSelectedStar() const;
-    void calcWorldPositionFromScreenPos(TVec3f *, const TVec2f &, f32);
-    s32 calcDisplayScenarioNum(s32 *, s32 *) const;
+    void calcWorldPositionFromScreenPos(TVec3f*, const TVec2f&, f32);
+    s32 calcDisplayScenarioNum(s32*, s32*) const;
     void appearAllStar(s32, s32, bool);
     void appearStar(s32, s32, int);
     bool isAppearStarEndAll() const;
     bool tryCancel();
     void setPlayerLeft();
-    void startAnimAllNewPane(const char *);
+    void startAnimAllNewPane(const char*);
     void setAnimRateAllNewPane(f32);
 
     void exeAppearStar();

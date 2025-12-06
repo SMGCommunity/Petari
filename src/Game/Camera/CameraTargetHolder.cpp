@@ -8,28 +8,26 @@ CameraTargetHolder::CameraTargetHolder() {
     mTargetPlayer = new CameraTargetPlayer("マリオ注目");
 }
 
-CameraTargetHolder::~CameraTargetHolder() {
-
-}
+CameraTargetHolder::~CameraTargetHolder() {}
 
 void CameraTargetHolder::movement() {
     mTargetActor->movement();
 }
 
-CameraTargetObj *CameraTargetHolder::get() {
+CameraTargetObj* CameraTargetHolder::get() {
     return mTarget;
 }
 
-void CameraTargetHolder::set(CameraTargetObj *pTarget) {
+void CameraTargetHolder::set(CameraTargetObj* pTarget) {
     mTarget = pTarget;
 }
 
-void CameraTargetHolder::set(const LiveActor *pActor) {
+void CameraTargetHolder::set(const LiveActor* pActor) {
     mTargetActor->mActor = pActor;
     mTarget = mTargetActor;
 }
 
-void CameraTargetHolder::set(const MarioActor *pActor) {
+void CameraTargetHolder::set(const MarioActor* pActor) {
     mTargetPlayer->mActor = pActor;
     mTarget = mTargetPlayer;
 }
@@ -39,8 +37,8 @@ bool CameraTargetHolder::isOnGround() const {
 }
 
 bool CameraTargetHolder::isMoving() const {
-    const TVec3f *lastMove = mTarget->getLastMove();
-    f32 length = PSVECMag(reinterpret_cast<const Vec *>(lastMove));
+    const TVec3f* lastMove = mTarget->getLastMove();
+    f32 length = PSVECMag(reinterpret_cast< const Vec* >(lastMove));
 
     return length > 1.0f;
 }

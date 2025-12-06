@@ -4,6 +4,6 @@
 
 class QuakeEffectArea : public AreaObj {
 public:
-    QuakeEffectArea(int, const char *);
+    QuakeEffectArea(int, const char*);
     virtual ~QuakeEffectArea();
 };

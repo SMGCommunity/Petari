@@ -10,7 +10,7 @@ StopSceneDelayRequest::StopSceneDelayRequest() : NameObj("シーン硬直遅延�
 StopSceneController::StopSceneController() : NameObj("StopSceneController") {
     mDelayRequests = nullptr;
     _10 = 0;
-    
+
     mDelayRequests = new NameObjGroup("シーン硬直遅延発行者の管理", 16);
 
     for (s32 i = 0; i < 16; i++) {
@@ -34,8 +34,7 @@ void StopSceneController::requestStopScene(s32 a1) {
         }
 
         _10 = a1;
-    }
-    else {
+    } else {
         _10 = a1;
     }
 }
@@ -53,10 +52,6 @@ bool StopSceneController::isSceneStopped() const {
     return _10 > 0;
 }
 
-StopSceneDelayRequest::~StopSceneDelayRequest() {
+StopSceneDelayRequest::~StopSceneDelayRequest() {}
 
-}
-
-StopSceneController::~StopSceneController() {
-
-}
+StopSceneController::~StopSceneController() {}

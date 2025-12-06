@@ -153,61 +153,43 @@ struct J3DTextureBlock : public J3DModelBlock {
 class J3DModelLoader {
 public:
     J3DModelLoader();
-    
-    virtual J3DModelData* load(const void *, u32);
-    virtual J3DMaterialTable* loadMaterialTable(const void *);
-    virtual J3DModelData* loadBinaryDisplayList(const void *, u32);
-    virtual u32 calcLoadSize(const void *, u32);
-    virtual u32 calcLoadMaterialTableSize(const void *);
+
+    virtual J3DModelData* load(const void*, u32);
+    virtual J3DMaterialTable* loadMaterialTable(const void*);
+    virtual J3DModelData* loadBinaryDisplayList(const void*, u32);
+    virtual u32 calcLoadSize(const void*, u32);
+    virtual u32 calcLoadMaterialTableSize(const void*);
     virtual u32 calcLoadBinaryDisplayListSize(void const*, u32);
-    virtual u16 countMaterialNum(void const *);
+    virtual u16 countMaterialNum(void const*);
     virtual void setupBBoardInfo();
-    virtual ~J3DModelLoader() {
+    virtual ~J3DModelLoader() {}
+    virtual void readMaterial(J3DMaterialBlock const*, u32) {}
 
-    }
-    virtual void readMaterial(J3DMaterialBlock const*, u32) {
+    virtual void readMaterial_v21(J3DMaterialBlock_v21 const*, u32) {}
 
-    }
-    
-    virtual void readMaterial_v21(J3DMaterialBlock_v21 const*, u32) {
+    virtual void readMaterialTable(J3DMaterialBlock const*, u32) {}
 
-    }
+    virtual void readMaterialTable_v21(J3DMaterialBlock_v21 const*, u32) {}
 
-    virtual void readMaterialTable(J3DMaterialBlock const*, u32) {
+    virtual u32 calcSizeMaterial(J3DMaterialBlock const*, u32) { return false; }
 
-    }
+    virtual u32 calcSizeMaterialTable(J3DMaterialBlock const*, u32) { return false; }
 
-    virtual void readMaterialTable_v21(J3DMaterialBlock_v21 const*, u32) {
-
-    }
-
-    virtual u32 calcSizeMaterial(J3DMaterialBlock const*, u32) { 
-        return false; 
-    }
-
-    virtual u32 calcSizeMaterialTable(J3DMaterialBlock const*, u32) { 
-        return false; 
-    }
-
-    J3DModelData* mpModelData;                      // 0x04
-    J3DMaterialTable* mpMaterialTable;              // 0x08
-    const J3DShapeBlock* mpShapeBlock;              // 0x0C
-    const J3DMaterialBlock* mpMaterialBlock;        // 0x10
-    J3DModelHierarchy* mpModelHierarchy;            // 0x14
+    J3DModelData* mpModelData;                // 0x04
+    J3DMaterialTable* mpMaterialTable;        // 0x08
+    const J3DShapeBlock* mpShapeBlock;        // 0x0C
+    const J3DMaterialBlock* mpMaterialBlock;  // 0x10
+    J3DModelHierarchy* mpModelHierarchy;      // 0x14
     u8 _18;
     u8 _19;
-    u16 mEnvelopeSize;                              // 0x1A
+    u16 mEnvelopeSize;  // 0x1A
 };
 
 class J3DModelLoader_v21 : public J3DModelLoader {
 public:
-    inline J3DModelLoader_v21() {
+    inline J3DModelLoader_v21() {}
 
-    }
-
-    ~J3DModelLoader_v21() {
-
-    }
+    ~J3DModelLoader_v21() {}
 
     void readMaterial_v21(J3DMaterialBlock_v21 const*, u32);
     void readMaterialTable_v21(J3DMaterialBlock_v21 const*, u32);
@@ -215,9 +197,7 @@ public:
 
 class J3DModelLoader_v26 : public J3DModelLoader {
 public:
-    ~J3DModelLoader_v26() {
-        
-    }
+    ~J3DModelLoader_v26() {}
 
     void readMaterial(J3DMaterialBlock const*, u32);
     void readMaterialTable(J3DMaterialBlock const*, u32);
@@ -227,5 +207,5 @@ public:
 
 class J3DModelLoaderDataBase {
 public:
-    static J3DModelData* load(void const *, u32);
+    static J3DModelData* load(void const*, u32);
 };

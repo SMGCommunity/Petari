@@ -1,8 +1,8 @@
+#include "Game/Screen/StarPieceCounter.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/CountUpPaneRumbler.hpp"
 #include "Game/Screen/CounterLayoutAppearer.hpp"
 #include "Game/Screen/CounterLayoutController.hpp"
-#include "Game/Screen/StarPieceCounter.hpp"
 #include "Game/Util/EventUtil.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
@@ -18,28 +18,18 @@ namespace {
     const f32 cBaseOffsetEatTicoY = -120.0f;
     const f32 cBaseOffsetTicoFatY = -94.0f;
     const s32 cHideFrameMinTicoEat = 20;
-};
+};  // namespace
 
 namespace NrvStarPieceCounter {
     NEW_NERVE(StarPieceCounterNrvHide, StarPieceCounter, Hide);
     NEW_NERVE(StarPieceCounterNrvAppear, StarPieceCounter, Appear);
     NEW_NERVE(StarPieceCounterNrvWait, StarPieceCounter, Wait);
     NEW_NERVE(StarPieceCounterNrvDisappear, StarPieceCounter, Disappear);
-};
+};  // namespace NrvStarPieceCounter
 
-StarPieceCounter::StarPieceCounter(const char* pName) :
-    LayoutActor(pName, true),
-    mStarPieceNum(0),
-    mStarPieceDisplayNum(0),
-    mInvalidCountUpFrame(0),
-    mLayoutAppearer(nullptr),
-    mPaneRumbler(nullptr),
-    mFollowPos(0.0f, 0.0f),
-    _3C(0),
-    mMode(0)
-{
-    
-}
+StarPieceCounter::StarPieceCounter(const char* pName)
+    : LayoutActor(pName, true), mStarPieceNum(0), mStarPieceDisplayNum(0), mInvalidCountUpFrame(0), mLayoutAppearer(nullptr), mPaneRumbler(nullptr),
+      mFollowPos(0.0f, 0.0f), _3C(0), mMode(0) {}
 
 void StarPieceCounter::init(const JMapInfoIter& rIter) {
     initLayoutManager("StarPieceCounter", 3);
@@ -144,27 +134,21 @@ void StarPieceCounter::updateCounter() {
     if (isDispCenter()) {
         if (mStarPieceDisplayNum >= 1000) {
             pPaneName = "TPosition1000";
-        }
-        else if (mStarPieceDisplayNum >= 100) {
+        } else if (mStarPieceDisplayNum >= 100) {
             pPaneName = "TPosition0100";
-        }
-        else if (mStarPieceDisplayNum >= 10) {
+        } else if (mStarPieceDisplayNum >= 10) {
             pPaneName = "TPosition0010";
-        }
-        else {
+        } else {
             pPaneName = "TPosition0001";
         }
 
         MR::setTextBoxNumberRecursive(this, "TCounter", mStarPieceDisplayNum);
-    }
-    else {
+    } else {
         if (mStarPieceDisplayNum >= 100) {
             pPaneName = "Position100";
-        }
-        else if (mStarPieceDisplayNum >= 10) {
+        } else if (mStarPieceDisplayNum >= 10) {
             pPaneName = "Position010";
-        }
-        else {
+        } else {
             pPaneName = "Position001";
         }
 
@@ -181,26 +165,20 @@ void StarPieceCounter::updateCounterValue() {
 
     if (mInvalidCountUpFrame > 0) {
         mInvalidCountUpFrame--;
-    }
-    else if (mStarPieceDisplayNum != mStarPieceNum) {
+    } else if (mStarPieceDisplayNum != mStarPieceNum) {
         if (isNerve(&NrvStarPieceCounter::StarPieceCounterNrvWait::sInstance)) {
             if (mStarPieceDisplayNum < mStarPieceNum) {
                 mStarPieceDisplayNum++;
 
                 MR::startAnim(this, "Flash", 0);
-                MR::emitEffect(this, MR::isStageAstroLocation()
-                    ? "TStarPieceCounterLight"
-                    : "StarPieceCounterLight");
-            }
-            else if (mMode == 1) {
+                MR::emitEffect(this, MR::isStageAstroLocation() ? "TStarPieceCounterLight" : "StarPieceCounterLight");
+            } else if (mMode == 1) {
                 if (mStarPieceDisplayNum - mStarPieceNum > 10) {
                     mStarPieceDisplayNum -= cDecCounterValueFast;
-                }
-                else {
+                } else {
                     mStarPieceDisplayNum = mStarPieceNum;
                 }
-            }
-            else {
+            } else {
                 mStarPieceDisplayNum--;
             }
 
@@ -212,8 +190,7 @@ void StarPieceCounter::updateCounterValue() {
         if (!isNerve(&NrvStarPieceCounter::StarPieceCounterNrvAppear::sInstance)) {
             if (!isNerve(&NrvStarPieceCounter::StarPieceCounterNrvWait::sInstance)) {
                 setNerve(&NrvStarPieceCounter::StarPieceCounterNrvAppear::sInstance);
-            }
-            else {
+            } else {
                 setNerve(&NrvStarPieceCounter::StarPieceCounterNrvWait::sInstance);
             }
         }
@@ -225,8 +202,7 @@ bool StarPieceCounter::isValidAppearSituation() const {
         return !MR::isExistStarPointerGuidanceFrame1P();
     }
 
-    return MR::isStarPointerInScreenAnyPort(0)
-        && !CounterLayoutController::isInvalidSystemStateShowCounter();
+    return MR::isStarPointerInScreenAnyPort(0) && !CounterLayoutController::isInvalidSystemStateShowCounter();
 }
 
 bool StarPieceCounter::isDispCenter() const {
@@ -234,9 +210,8 @@ bool StarPieceCounter::isDispCenter() const {
 }
 
 bool StarPieceCounter::tryChangeModeTicoEat(int mode) {
-    if (isNerve(&NrvStarPieceCounter::StarPieceCounterNrvAppear::sInstance)
-        || isNerve(&NrvStarPieceCounter::StarPieceCounterNrvDisappear::sInstance))
-    {
+    if (isNerve(&NrvStarPieceCounter::StarPieceCounterNrvAppear::sInstance) ||
+        isNerve(&NrvStarPieceCounter::StarPieceCounterNrvDisappear::sInstance)) {
         return false;
     }
 
@@ -264,9 +239,7 @@ void StarPieceCounter::exeHide() {
         MR::hideLayout(this);
     }
 
-    s32 step = mMode != 0
-        ? cHideFrameMinTicoEat
-        : cHideFrameMin;
+    s32 step = mMode != 0 ? cHideFrameMinTicoEat : cHideFrameMin;
 
     if (MR::isGreaterStep(this, step) && isValidAppearSituation()) {
         setNerve(&NrvStarPieceCounter::StarPieceCounterNrvAppear::sInstance);
@@ -286,13 +259,11 @@ void StarPieceCounter::exeAppear() {
             if (MR::isStageAstroLocation()) {
                 MR::showPaneRecursive(this, "PicTStarPiece");
                 MR::hidePaneRecursive(this, "PicNStarPiece");
-            }
-            else {
+            } else {
                 MR::showPaneRecursive(this, "PicNStarPiece");
                 MR::hidePaneRecursive(this, "PicTStarPiece");
             }
-        }
-        else {
+        } else {
             MR::showPaneRecursive(this, "StarPieceCounter");
             MR::hidePaneRecursive(this, "TSPieceCounter");
             mLayoutAppearer->setAppearOffset(TVec2f(cAppearOffsetRightX, 0.0f));
@@ -302,8 +273,7 @@ void StarPieceCounter::exeAppear() {
 
         if (mMode != 0) {
             y = cBaseOffsetTicoFatY;
-        }
-        else if (_3C == 2) {
+        } else if (_3C == 2) {
             y = cBaseOffsetEatTicoY;
         }
 

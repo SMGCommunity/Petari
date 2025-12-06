@@ -1,15 +1,15 @@
-#pragma once 
+#pragma once
 
 #include "Game/MapObj/MapObjActor.hpp"
 #include "Game/Util.hpp"
 
 class DeadLeaves : public MapObjActor {
 public:
-    DeadLeaves(const char *);
+    DeadLeaves(const char*);
 
     virtual ~DeadLeaves();
-    virtual void init(const JMapInfoIter &);
-    virtual bool receiveMsgPlayerAttack(u32, HitSensor *, HitSensor *);
+    virtual void init(const JMapInfoIter&);
+    virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
 
     void exeSpin();
 
@@ -19,4 +19,4 @@ public:
 namespace NrvDeadLeaves {
     NERVE(DeadLeavesNrvWait);
     NERVE(DeadLeavesNrvSpin);
-};
+};  // namespace NrvDeadLeaves

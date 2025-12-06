@@ -1,5 +1,5 @@
-#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/MapObj/BenefitItemObj.hpp"
+#include "Game/LiveActor/HitSensor.hpp"
 #include "JSystem/JGeometry/TUtil.hpp"
 
 s16 def = 600;
@@ -12,13 +12,13 @@ namespace {
     const f32 cAppearThrowUpSpd2 = 15.0f;
     const f32 cGravity = 0.5f;
     const f32 cReflectWallX = 0.30000001f;
-    static f32 cSpdRotateY = JGeometry::TUtil<f32>::PI() / 60.0f;
-};
+    static f32 cSpdRotateY = JGeometry::TUtil< f32 >::PI() / 60.0f;
+};  // namespace
 
 void ShadowClipActor::endClipped() {
     LiveActor::endClipped();
     if (MR::isClipped(_8C)) {
-        _8C->endClipped(); 
+        _8C->endClipped();
     }
 }
 
@@ -28,7 +28,7 @@ void ShadowClipActor::control() {
     }
 }
 
-BenefitItemObj::BenefitItemObj(const char *pName, const char *pPowerUp) : LiveActor(pName) {
+BenefitItemObj::BenefitItemObj(const char* pName, const char* pPowerUp) : LiveActor(pName) {
     _138 = 0;
     _D8 = 0;
     _E2 = 0;
@@ -57,7 +57,7 @@ void BenefitItemObj::initModelAndEfx() {
     MR::addHitSensor(this, "body", ATYPE_KINOKO_ONEUP, 4, 50.0f, TVec3f(0.0f, 50.0f, 0.0f));
 }
 
-void BenefitItemObj::init(const JMapInfoIter &rIter) {
+void BenefitItemObj::init(const JMapInfoIter& rIter) {
     LiveActor::init(rIter);
     if (MR::isValidInfo(rIter)) {
         MR::initDefaultPos(this, rIter);
@@ -110,31 +110,30 @@ void BenefitItemObj::init(const JMapInfoIter &rIter) {
         MR::getJMapInfoArg5NoInit(rIter, &arg5);
         MR::getJMapInfoArg6NoInit(rIter, &arg6);
         MR::getJMapInfoArg7NoInit(rIter, &arg7);
-    }
-    else {
+    } else {
         _E1 = 1;
         _DF = 0;
         _DA = 0;
         _D9 = 0;
     }
 
-    switch(arg0) {
-        case -1:
-        case 0:
-            _DF = 0;
-            break;
+    switch (arg0) {
+    case -1:
+    case 0:
+        _DF = 0;
+        break;
     }
 
-    switch(arg1 & 0xF) {
-        case 1:
-            _D9 = 1;
-            break;
-        case 2:
-            _D9 = 2;
-            break;
-        case 3:
-            _D9 = 3;
-            break;
+    switch (arg1 & 0xF) {
+    case 1:
+        _D9 = 1;
+        break;
+    case 2:
+        _D9 = 2;
+        break;
+    case 3:
+        _D9 = 3;
+        break;
     }
 
     if (arg1 != -1 && (arg1 & 0x80) != 0) {
@@ -142,15 +141,15 @@ void BenefitItemObj::init(const JMapInfoIter &rIter) {
     }
 
     switch (arg2) {
-        case 1:
-            _DA = 1;
-            break;
-        case 2:
-            _DA = 2;
-            break;
-        case 3:
-            _DA = 3;
-            break;
+    case 1:
+        _DA = 1;
+        break;
+    case 2:
+        _DA = 2;
+        break;
+    case 3:
+        _DA = 3;
+        break;
     }
 
     bool setClipType = false;
@@ -160,21 +159,21 @@ void BenefitItemObj::init(const JMapInfoIter &rIter) {
 
     _DC = 0;
 
-    switch(arg4) {
-        case -1:
-            _DC = 1;
-            break;
-        case 1:
-            _DC = 2;
-            break;
-        case 2:
-            _DC = 3;
-            break;
-        case 3:
-            _DC = 4;
-            break;
+    switch (arg4) {
+    case -1:
+        _DC = 1;
+        break;
+    case 1:
+        _DC = 2;
+        break;
+    case 2:
+        _DC = 3;
+        break;
+    case 3:
+        _DC = 4;
+        break;
     }
-    
+
     if (arg5 == 1 && MR::isValidInfo(rIter)) {
         MR::initActorCamera(this, rIter, &mCameraInfo);
         _E4 = 1;
@@ -195,7 +194,8 @@ void BenefitItemObj::init(const JMapInfoIter &rIter) {
             MR::useStageSwitchWriteDead(this, rIter);
 
             if (MR::useStageSwitchReadAppear(this, rIter)) {
-                MR::FunctorV0M<BenefitItemObj *, void (BenefitItemObj::*)()> appearFunc = MR::Functor<BenefitItemObj>(this, &BenefitItemObj::appear);
+                MR::FunctorV0M< BenefitItemObj*, void (BenefitItemObj::*)() > appearFunc =
+                    MR::Functor< BenefitItemObj >(this, &BenefitItemObj::appear);
                 MR::listenStageSwitchOnAppear(this, appearFunc);
                 _E1 = 1;
             }
@@ -205,21 +205,17 @@ void BenefitItemObj::init(const JMapInfoIter &rIter) {
     if (_D8) {
         _DF = 0;
         makeActorDead();
-    }
-    else {
+    } else {
         if (_DF) {
             makeActorAppeared();
             if (_E1) {
                 MR::invalidateHitSensors(this);
-            }
-            else {
+            } else {
                 runEfx("Glow");
             }
-        }
-        else if (_E1) {
+        } else if (_E1) {
             makeActorDead();
-        }
-        else {
+        } else {
             makeActorAppeared();
             runEfx("Glow");
         }
@@ -230,7 +226,7 @@ void BenefitItemObj::init(const JMapInfoIter &rIter) {
 
         TVec3f rotate_axis_y;
         MR::getRotatedAxisY(&rotate_axis_y, mRotation);
-        _A4.set<f32>(rotate_axis_y);
+        _A4.set< f32 >(rotate_axis_y);
 
         if (_DC) {
             MR::initShadowVolumeCylinder(this, 50.0f);
@@ -245,16 +241,13 @@ void BenefitItemObj::init(const JMapInfoIter &rIter) {
                 if ((_DC & 0x2) != 0) {
                     MR::onCalcShadowDropPrivateGravity(this, nullptr);
                     MR::onCalcShadow(this, nullptr);
-                }
-                else {
+                } else {
                     MR::onCalcShadowDropPrivateGravityOneTime(this, nullptr);
                     MR::onCalcShadowOneTime(this, nullptr);
                 }
-            }
-            else if ((_DC & 0x2) != 0) {
+            } else if ((_DC & 0x2) != 0) {
                 MR::onCalcShadow(this, nullptr);
-            }
-            else {
+            } else {
                 MR::onCalcShadowOneTime(this, nullptr);
             }
 
@@ -281,22 +274,22 @@ void BenefitItemObj::appear() {
     _E1 = 0;
     _DF = 1;
 
-    switch(_D9) {
-        case 0:
-            if (_DA) {
-                setNerve(&NrvBenefitItemObj::HostTypeNrvPreEscape::sInstance);
-            }
-            MR::validateHitSensors(this);
-            break;
-        case 1:
-            appearGround();
-            break;
-        case 2:
-            appearThrowUp();
-            break;
-        case 3:
-            appearThrowUpQuestionBox();
-            break;
+    switch (_D9) {
+    case 0:
+        if (_DA) {
+            setNerve(&NrvBenefitItemObj::HostTypeNrvPreEscape::sInstance);
+        }
+        MR::validateHitSensors(this);
+        break;
+    case 1:
+        appearGround();
+        break;
+    case 2:
+        appearThrowUp();
+        break;
+    case 3:
+        appearThrowUpQuestionBox();
+        break;
     }
 
     LiveActor::calcAndSetBaseMtx();
@@ -340,18 +333,17 @@ void BenefitItemObj::appearThrowUp() {
         f32 speed = cAppearThrowUpSpd2;
         mVelocity = MR::createVecAndScale(rotated_axis, speed);
     }
-    
+    
     MR::invalidateClipping(this);
 }
 */
 
-void BenefitItemObj::shoot(const TVec3f &a2, const TVec3f &a3, bool a4) {
+void BenefitItemObj::shoot(const TVec3f& a2, const TVec3f& a3, bool a4) {
     mPosition = a2;
-    
+
     if (_D9) {
         _D9 = 2;
-    }
-    else {
+    } else {
         _D9 = 3;
     }
 
@@ -434,12 +426,10 @@ void BenefitItemObj::exeWait() {
 }
 #endif
 
-
 void BenefitItemObj::doRotateY() {
     if (isNerve(&NrvBenefitItemObj::HostTypeNrvAppearGround::sInstance)) {
         _EC = 0.0f;
-    }
-    else {
+    } else {
         _EC = (f32)fmod((6.2831855f + ((_EC + cSpdRotateY) - zero)), 6.283185482025146) + zero;
     }
 }
@@ -474,7 +464,7 @@ void BenefitItemObj::exeShoot() {
         }
 
         if (MR::isBindedWall(this)) {
-            v4 = MR::vecKillElement(v9, *MR::getWallNormal(this), &v9); 
+            v4 = MR::vecKillElement(v9, *MR::getWallNormal(this), &v9);
             reflect = cReflectWallX;
             v9 -= MR::createVecAndScale(MR::createVecAndScale(*MR::getWallNormal(this), v4), reflect);
         }
@@ -498,14 +488,14 @@ void BenefitItemObj::exeCatch() {
     mVelocity.x = 0.0f;
     mVelocity.y = 0.0f;
     mVelocity.z = 0.0f;
-    mPosition.set<f32>(mHitSensorActor->mPosition);
+    mPosition.set< f32 >(mHitSensorActor->mPosition);
 }
 
-bool BenefitItemObj::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool BenefitItemObj::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     return MR::isMsgStarPieceReflect(msg);
 }
 
-bool BenefitItemObj::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool BenefitItemObj::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isDead(this)) {
         return false;
     }
@@ -535,11 +525,8 @@ bool BenefitItemObj::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pRe
             return false;
         }
 
-        if (isNerve(&NrvBenefitItemObj::HostTypeNrvWait::sInstance) 
-            || isNerve(&NrvBenefitItemObj::HostTypeNrvShoot::sInstance) 
-            || isNerve(&NrvBenefitItemObj::HostTypeNrvAppearGround::sInstance) 
-            || isNerve(&NrvBenefitItemObj::HostTypeNrvEscape::sInstance))
-        {
+        if (isNerve(&NrvBenefitItemObj::HostTypeNrvWait::sInstance) || isNerve(&NrvBenefitItemObj::HostTypeNrvShoot::sInstance) ||
+            isNerve(&NrvBenefitItemObj::HostTypeNrvAppearGround::sInstance) || isNerve(&NrvBenefitItemObj::HostTypeNrvEscape::sInstance)) {
             mHitSensorActor = pSender->mHost;
             setNerve(&NrvBenefitItemObj::HostTypeNrvCatch::sInstance);
             MR::tryRumblePadWeak(this, 0);
@@ -566,8 +553,7 @@ void BenefitItemObj::exeAppearGround() {
         if (MR::isBckStopped(this)) {
             if (_DA) {
                 setNerve(&NrvBenefitItemObj::HostTypeNrvPreEscape::sInstance);
-            }
-            else {
+            } else {
                 setNerve(&NrvBenefitItemObj::HostTypeNrvWait::sInstance);
             }
 
@@ -627,13 +613,13 @@ void BenefitItemObj::doEscape() {
                 _BC.y *= 0.0099999998f;
                 _BC.z *= 0.0099999998f;
             }
-        } 
+        }
 
         if (PSVECMag(&_BC) > 7.0f) {
             _BC.setLength(7.0f);
         }
 
-        if (_E5) { 
+        if (_E5) {
             _E5 = 0;
             runBck("Land");
         }
@@ -641,18 +627,18 @@ void BenefitItemObj::doEscape() {
         _C8 = MR::createVecAndScale(mGravity, 5.0f);
         runEfx("Move");
     }
-    else { 
+    else {
         _E5 = 1;
         _BC.x *= 0.94999999f;
         _BC.y *= 0.94999999f;
         _BC.z *= 0.94999999f;
-        _C8 += MR::createVecAndScale(mGravity, 1.0f); 
+        _C8 += MR::createVecAndScale(mGravity, 1.0f);
 
         if (PSVECMag(&_C8) > 20.0f) {
             _C8.setLength(20.0f);
         }
 
-        stopEfx("Move"); 
+        stopEfx("Move");
     }
 
     if (MR::isBindedWall(this) && !_E5) {
@@ -660,8 +646,8 @@ void BenefitItemObj::doEscape() {
             f32 scalar = MR::vecKillElement(_BC, *MR::getWallNormal(this), &_BC);
             _BC += -*MR::getWallNormal(this) % scalar;
             _C8 += -mGravity % 20.0f;
-            _E5 = 1; 
-        } 
+            _E5 = 1;
+        }
     }
 }*/
 
@@ -669,7 +655,7 @@ void BenefitItemObj::exeEscape() {
     if (MR::isFirstStep(this)) {
         MR::invalidateClipping(this);
         MR::onBind(this);
-        initEscape(); 
+        initEscape();
     }
 
     doEscape();
@@ -698,12 +684,10 @@ void BenefitItemObj::exeEscape() {
         if (_B0 == 0x3C) {
             _B2 = 4;
             _B4 = 2;
-        }
-        else if (_B0 == 0x78) {
+        } else if (_B0 == 0x78) {
             _B2 = 8;
             _B4 = 3;
-        }
-        else if (_B0 == 0xB4) {
+        } else if (_B0 == 0xB4) {
             _B2 = 12;
             _B4 = 4;
             _B6 = 12;
@@ -733,16 +717,13 @@ void BenefitItemObj::exeEscape() {
     if (_DC && (_DC & 0x2) == 0) {
         if ((_DC & 0x1) != 0) {
             MR::onCalcShadowOneTime(this, nullptr);
-        }
-        else {
+        } else {
             MR::onCalcShadowDropPrivateGravityOneTime(this, nullptr);
         }
     }
 }
 
-void BenefitItemObj::calcAndSetBaseMtx() {
-
-}
+void BenefitItemObj::calcAndSetBaseMtx() {}
 
 void BenefitItemObj::calcAndSetBaseMtxInMovement() {
     if (isNerve(&NrvBenefitItemObj::HostTypeNrvWait::sInstance)) {
@@ -755,12 +736,10 @@ void BenefitItemObj::calcAndSetBaseMtxInMovement() {
 
         MtxPtr mtx = MR::tmpMtxRotYRad(_EC);
         PSMTXConcat(_F0, mtx, getBaseMtx());
-    }
-    else {
+    } else {
         if (MR::isBindedGround(this)) {
             _A4 = *MR::getGroundNormal(this);
-        }
-        else if (MR::isBindedWall(this)) {
+        } else if (MR::isBindedWall(this)) {
             _A4 = *MR::getWallNormal(this);
         }
 
@@ -774,8 +753,7 @@ void BenefitItemObj::calcAndSetBaseMtxInMovement() {
         if (!MR::isNearZero(stack_8, 0.001f)) {
             if (MR::isSameDirection(_A4, stack_8, 0.0099999998f)) {
                 MR::setMtxTrans(getBaseMtx(), mPosition);
-            }
-            else {
+            } else {
                 TPos3f pos;
                 MR::makeMtxUpFrontPos(&pos, _A4, stack_8, mPosition);
                 MR::blendMtx(_F0, pos.toMtxPtr(), 0.2f, _F0);
@@ -792,14 +770,14 @@ void BenefitItemObj::setFollowMtx(MtxPtr mtx) {
     MR::extractMtxTrans(mtx, &mPosition);
 }
 
-void BenefitItemObj::runBck(const char *pBckName) {
+void BenefitItemObj::runBck(const char* pBckName) {
     MR::startBck(this, pBckName, nullptr);
 }
 
-void BenefitItemObj::runEfx(const char *pEfxName) {
+void BenefitItemObj::runEfx(const char* pEfxName) {
     MR::emitEffect(this, pEfxName);
 }
 
-void BenefitItemObj::stopEfx(const char *pEfxName) {
+void BenefitItemObj::stopEfx(const char* pEfxName) {
     MR::deleteEffect(this, pEfxName);
 }

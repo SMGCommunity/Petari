@@ -11,5 +11,5 @@ public:
 
 private:
     /* 0x0 */ u8* _0;
-    /* 0x4 */ MR::AssignableArray<RFLStoreData*>* mStoreDataArray;
+    /* 0x4 */ MR::AssignableArray< RFLStoreData* >* mStoreDataArray;
 };

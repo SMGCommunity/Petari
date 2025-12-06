@@ -22,7 +22,7 @@ namespace FileSelectNumberSub {
         /* 0x8 */ LayoutActor* mHost;
         /* 0xC */ Nerve* _C;
     };
-};
+};  // namespace FileSelectNumberSub
 
 class FileSelectNumber : public LayoutActor {
 public:

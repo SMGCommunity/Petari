@@ -4,11 +4,9 @@
 
 class NPCActorItem {
 public:
-    inline NPCActorItem() {
-        
-    }
+    inline NPCActorItem() {}
 
-    NPCActorItem(const char *pName) NO_INLINE {
+    NPCActorItem(const char* pName) NO_INLINE {
         mActor = pName;
         _4 = "";
         _8 = "";
@@ -16,9 +14,9 @@ public:
         _10 = "";
     }
 
-    const char* mActor;             // 0x00
+    const char* mActor;  // 0x00
     const char* _4;
     const char* _8;
-    const char* mArchive;           // 0x0C
+    const char* mArchive;  // 0x0C
     const char* _10;
 };

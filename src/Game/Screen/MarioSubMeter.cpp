@@ -1,8 +1,7 @@
 #include "Game/Screen/MarioSubMeter.hpp"
 #include "Game/Screen/SubMeterLayout.hpp"
 
-MarioSubMeter::MarioSubMeter(const char *pName) : NameObj(pName)
-{
+MarioSubMeter::MarioSubMeter(const char* pName) : NameObj(pName) {
     mFlyMeter = nullptr;
     mAirMeter = nullptr;
     mActiveMeter = nullptr;
@@ -56,11 +55,9 @@ void MarioSubMeter::deactivate() {
     mAirMeter->requestDeactivate();
 }
 
-MarioSubMeter::~MarioSubMeter() {
+MarioSubMeter::~MarioSubMeter() {}
 
-}
-
-void MarioSubMeter::init(const JMapInfoIter &rIter) {
+void MarioSubMeter::init(const JMapInfoIter& rIter) {
     mFlyMeter = new SubMeterLayout("ハチメーター", "FlyMeter");
     mFlyMeter->initWithoutIter();
 

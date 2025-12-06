@@ -14,4 +14,3 @@ void J3DCurrentMtx::setCurrentTexMtx(u8 a1, u8 a2, u8 a3, u8 a4, u8 a5, u8 a6, u
     _4 = (a8 << 18) | (a7 << 12) & 0xFF000 | a5 & 0xFFF00FFF | (a6 << 6) & 0x3FC0;
 }
 #endif
-

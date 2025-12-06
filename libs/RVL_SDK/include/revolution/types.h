@@ -30,13 +30,19 @@ typedef int BOOL;
 #ifdef __cplusplus
 #define NULL 0
 #else
-#define NULL ((void *)0)
+#define NULL ((void*)0)
 #endif
 #endif
 
 #ifndef nullptr
 #ifdef __cplusplus
 #define nullptr 0
+#endif
+#endif
+
+#ifndef override
+#ifdef __cplusplus
+#define override
 #endif
 #endif
 
@@ -52,8 +58,7 @@ typedef int BOOL;
 #define FALSE 0
 #endif
 
-#define ROUND_UP(x, align) (((x) + (align)-1) & (-(align)))
-#define ROUND_UP_PTR(x, align)                                                 \
-  ((void *)((((u32)(x)) + (align)-1) & (~((align)-1))))
+#define ROUND_UP(x, align) (((x) + (align) - 1) & (-(align)))
+#define ROUND_UP_PTR(x, align) ((void*)((((u32)(x)) + (align) - 1) & (~((align) - 1))))
 
-#endif // TYPES_H
+#endif  // TYPES_H

@@ -1,16 +1,10 @@
 #include "Game/Gravity.hpp"
 #include "Game/Util.hpp"
-#include "JSystem/JMath.hpp"
 #include "Inline.hpp"
+#include "JSystem/JMath.hpp"
 
-
-ParallelGravity::ParallelGravity() :
-    PlanetGravity(),
-    mPlanePosition(0, 0, 0),
-    mPlaneUpVec(0.0f, 1.0f, 0.0f),
-    mWorldPlanePosition(0, 0, 0),
-    mWorldPlaneUpVec(0.0f, 1.0f, 0.0f)
-{
+ParallelGravity::ParallelGravity()
+    : PlanetGravity(), mPlanePosition(0, 0, 0), mPlaneUpVec(0.0f, 1.0f, 0.0f), mWorldPlanePosition(0, 0, 0), mWorldPlaneUpVec(0.0f, 1.0f, 0.0f) {
     mCylinderHeight = 1000.0f;
     mCylinderRadius = 500.0f;
     mBaseDistance = 2000.0f;
@@ -20,7 +14,7 @@ ParallelGravity::ParallelGravity() :
     mWorldMtx.identity();
 }
 
-bool ParallelGravity::calcOwnGravityVector(TVec3f *pDest, f32 *pScalar, const TVec3f &rPosition) const {
+bool ParallelGravity::calcOwnGravityVector(TVec3f* pDest, f32* pScalar, const TVec3f& rPosition) const {
     if (!isInRange(rPosition, pScalar)) {
         return false;
     }
@@ -32,7 +26,7 @@ bool ParallelGravity::calcOwnGravityVector(TVec3f *pDest, f32 *pScalar, const TV
     return true;
 }
 
-void ParallelGravity::updateMtx(const TPos3f &rMtx) {
+void ParallelGravity::updateMtx(const TPos3f& rMtx) {
     rMtx.mult33Inline(mPlaneUpVec, mWorldPlaneUpVec);
     rMtx.mult(mPlanePosition, mWorldPlanePosition);
     MR::normalizeOrZero(&mWorldPlaneUpVec);
@@ -50,17 +44,17 @@ void ParallelGravity::updateMtx(const TPos3f &rMtx) {
     }
 }
 
-void ParallelGravity::setPlane(const TVec3f &rPlaneUp, const TVec3f &rPlanePos) {
+void ParallelGravity::setPlane(const TVec3f& rPlaneUp, const TVec3f& rPlanePos) {
     // Up vector
     mPlaneUpVec.set(rPlaneUp);
-    PSVECMag(&mPlaneUpVec); // unused result
+    PSVECMag(&mPlaneUpVec);  // unused result
     PSVECNormalize(&mPlaneUpVec, &mPlaneUpVec);
 
     // Position
     mPlanePosition = rPlanePos;
 }
 
-void ParallelGravity::setRangeBox(const TPos3f &rMtx) {
+void ParallelGravity::setRangeBox(const TPos3f& rMtx) {
     mLocalMtx = rMtx;
     updateIdentityMtx();
 }
@@ -77,8 +71,7 @@ void ParallelGravity::setRangeType(RANGE_TYPE rangeType) {
 void ParallelGravity::setBaseDistance(f32 val) {
     if (val < 0.0f) {
         mBaseDistance = 2000.0f;
-    }
-    else {
+    } else {
         mBaseDistance = val;
     }
 }
@@ -87,22 +80,21 @@ void ParallelGravity::setDistanceCalcType(DISTANCE_CALC_TYPE distanceCalcType) {
     mDistanceCalcType = distanceCalcType;
 }
 
-bool ParallelGravity::isInSphereRange(const TVec3f &rPosition, f32 *pScalar) const {
+bool ParallelGravity::isInSphereRange(const TVec3f& rPosition, f32* pScalar) const {
     if (pScalar) {
         *pScalar = mBaseDistance;
     }
 
     if (mRange < 0.0f) {
         return true;
-    }
-    else {
+    } else {
         TVec3f dirToCenter(mWorldPlanePosition - rPosition);
         f32 range = mRange;
         return dirToCenter.squared() < range * range;
     }
 }
 
-bool ParallelGravity::isInBoxRange(const TVec3f &rPosition, f32 *pScalar) const {
+bool ParallelGravity::isInBoxRange(const TVec3f& rPosition, f32* pScalar) const {
     // Get direction to center
     TVec3f translation;
     mWorldMtx.getTransInline(translation);
@@ -157,13 +149,13 @@ bool ParallelGravity::isInBoxRange(const TVec3f &rPosition, f32 *pScalar) const 
     return true;
 }
 
-bool ParallelGravity::isInCylinderRange(const TVec3f &rPosition, f32 *pScalar) const {
+bool ParallelGravity::isInCylinderRange(const TVec3f& rPosition, f32* pScalar) const {
     f32 height = mWorldPlaneUpVec.dot(rPosition - mWorldPlanePosition);
 
     if (height < 0.0f || mCylinderHeight < height) {
         return false;
     }
-    
+
     TVec3f positionOnWorldPlane;
 
     // Check radius range
@@ -174,15 +166,14 @@ bool ParallelGravity::isInCylinderRange(const TVec3f &rPosition, f32 *pScalar) c
     if (radius > mCylinderRadius) {
         return false;
     }
-    
+
     // Set speed
     *pScalar = mBaseDistance + radius;
 
     return true;
 }
 
-
-bool ParallelGravity::isInRange(const TVec3f &rPosition, f32 *pScalar) const {
+bool ParallelGravity::isInRange(const TVec3f& rPosition, f32* pScalar) const {
     switch (mRangeType) {
     case RangeType_Sphere:
         return isInSphereRange(rPosition, pScalar);

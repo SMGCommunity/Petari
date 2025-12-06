@@ -4,10 +4,10 @@
 
 class TicoDomeLecture : public LiveActor {
 public:
-    TicoDomeLecture(const char *);
+    TicoDomeLecture(const char*);
 
     virtual ~TicoDomeLecture();
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
     virtual void appear();
 
     void exeWait();

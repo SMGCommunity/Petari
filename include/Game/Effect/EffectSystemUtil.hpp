@@ -52,5 +52,5 @@ namespace MR {
         bool isExistInResource(u16*, const char*, s32);
         const char* getEffectAttributeName(s32);
         AutoEffectInfo* createAutoEffect(const char*, const char*);
-    };
-};
+    };  // namespace Effect
+};      // namespace MR

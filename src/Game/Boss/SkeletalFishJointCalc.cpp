@@ -1,6 +1,7 @@
 #include "Game/Boss/SkeletalFishJointCalc.hpp"
 
-void SkeletalFishJointCalc::calcJoint(TPos3f *pOutMtx, const TPos3f *pInMtx, SkeletalFishRailControl *pRailCtrl, const JointControllerInfo &rJointInfo) {
+void SkeletalFishJointCalc::calcJoint(TPos3f* pOutMtx, const TPos3f* pInMtx, SkeletalFishRailControl* pRailCtrl,
+                                      const JointControllerInfo& rJointInfo) {
     pOutMtx->concat(*pInMtx, *pOutMtx);
     TVec3f pos;
     f32 z = pOutMtx->mMtx[2][3];

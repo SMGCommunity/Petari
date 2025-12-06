@@ -4,10 +4,10 @@
 
 class KoopaJr : public NPCActor {
 public:
-    KoopaJr(const char *);
+    KoopaJr(const char*);
 
     virtual ~KoopaJr();
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
     virtual void kill();
     virtual void control();
     virtual void calcAndSetBaseMtx();

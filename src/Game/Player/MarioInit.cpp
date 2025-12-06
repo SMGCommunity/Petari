@@ -1,7 +1,6 @@
 #include "Game/Player/Mario.hpp"
 
-void Mario::initMember()
-{
+void Mario::initMember() {
     _40.zero();
     _4C.zero();
     PSMTXIdentity(_F4.toMtxPtr());

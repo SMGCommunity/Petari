@@ -29,6 +29,8 @@ namespace MR {
     bool isStageStarPieceFollowGroupLimit();
     bool isStageFileSelect();
     bool isStageKoopaVs();
+    bool isStageKoopaVs1();
+    bool isStageKoopaVs2();
     bool isStageKoopaVs3();
     bool isStageEpilogueDemo();
     bool isBeginScenarioStarter();
@@ -80,4 +82,4 @@ namespace MR {
     void clearCurrentPlacementZoneId();
     s32 getCurrentPlacementZoneId();
     const char* getCurrentPlacementZoneName();
-};
+};  // namespace MR

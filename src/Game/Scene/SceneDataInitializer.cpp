@@ -1,5 +1,5 @@
-#include "Game/NameObj/NameObjArchiveListCollector.hpp"
 #include "Game/Scene/SceneDataInitializer.hpp"
+#include "Game/NameObj/NameObjArchiveListCollector.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Screen/LuigiLetter.hpp"
 
@@ -32,7 +32,7 @@ void SceneDataInitializer::startStageFileLoadAfterScenarioSelected() {
 
 void SceneDataInitializer::waitDoneStageFileLoad() {
     mFileLoader->waitLoadedStageFile();
-    mDataHolder = reinterpret_cast<StageDataHolder*>(MR::createSceneObj(SceneObj_StageDataHolder));
+    mDataHolder = reinterpret_cast< StageDataHolder* >(MR::createSceneObj(SceneObj_StageDataHolder));
 }
 
 void SceneDataInitializer::startActorFileLoadCommon() {
@@ -51,6 +51,4 @@ void SceneDataInitializer::initAfterScenarioSelected() {
     mDataHolder->initAfterScenarioSelected();
 }
 
-SceneDataInitializer::~SceneDataInitializer() {
-
-}
+SceneDataInitializer::~SceneDataInitializer() {}

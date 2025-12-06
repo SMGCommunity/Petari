@@ -2,14 +2,14 @@
 #include "Game/Boss/SkeletalFishBossFunc.hpp"
 #include "Game/Boss/SkeletalFishBossRailHolder.hpp"
 
-SkeletalFishBossRail::SkeletalFishBossRail(const char *pName) : LiveActor(pName) {
+SkeletalFishBossRail::SkeletalFishBossRail(const char* pName) : LiveActor(pName) {
     _8C = -1;
     mFillUpFlags = nullptr;
     mNamePosIDs = nullptr;
     _98 = 0.0f;
 }
 
-void SkeletalFishBossRail::init(const JMapInfoIter &rIter) {
+void SkeletalFishBossRail::init(const JMapInfoIter& rIter) {
     MR::createSkeletalFishBossRailHolder();
     initRailRider(rIter);
     MR::getJMapInfoArg0WithInit(rIter, &_8C);
@@ -40,8 +40,7 @@ void SkeletalFishBossRail::createFillUpFlag() {
 
         if (pointArg == -1) {
             mFillUpFlags[i] = false;
-        }
-        else {
+        } else {
             mFillUpFlags[i] = true;
         }
     }
@@ -63,6 +62,4 @@ void SkeletalFishBossRail::linkFillUpNamePosID() {
     }
 }
 
-SkeletalFishBossRail::~SkeletalFishBossRail() {
-
-}
+SkeletalFishBossRail::~SkeletalFishBossRail() {}

@@ -5,6 +5,6 @@
 namespace JUtility {
     struct TColor : public GXColor {
     public:
-        TColor() { }
+        TColor() {}
     };
-};
+};  // namespace JUtility

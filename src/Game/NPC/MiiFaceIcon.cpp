@@ -5,29 +5,16 @@
 #include <JSystem/JKernel/JKRHeap.hpp>
 #include <JSystem/JUtility/JUTTexture.hpp>
 
-MiiFaceIcon::MiiFaceIcon(u16 width, u16 height, const MiiFaceRecipe& rRecipe, const char* pName) :
-    NameObj(pName),
-    mIndex(0),
-    mIsFavoriteColorBG(false),
-    mWidth(width),
-    mHeight(height),
-    mRecipe(new MiiFaceRecipe(rRecipe)),
-    mImageBuffer(nullptr),
-    mIsCreated(false),
-    mMakeIconResult(RFLErrcode_Unknown),
-    mIsRequestMakeIcon(false)
-{
+MiiFaceIcon::MiiFaceIcon(u16 width, u16 height, const MiiFaceRecipe& rRecipe, const char* pName)
+    : NameObj(pName), mIndex(0), mIsFavoriteColorBG(false), mWidth(width), mHeight(height), mRecipe(new MiiFaceRecipe(rRecipe)),
+      mImageBuffer(nullptr), mIsCreated(false), mMakeIconResult(RFLErrcode_Unknown), mIsRequestMakeIcon(false) {
     createImageBuffer();
     MR::registerMiiFaceIcon(this);
 }
 
-void MiiFaceIcon::init(const JMapInfoIter& rIter) {
-    
-}
+void MiiFaceIcon::init(const JMapInfoIter& rIter) {}
 
-void MiiFaceIcon::movement() {
-    
-}
+void MiiFaceIcon::movement() {}
 
 // FIXME: Stack accesses are ordered incorrectly.
 void MiiFaceIcon::drawIcon() {
@@ -37,8 +24,7 @@ void MiiFaceIcon::drawIcon() {
 
     if (mIsFavoriteColorBG) {
         mMakeIconResult = mRecipe->makeIconWithFavoriteColor(mImageBuffer, mWidth, mHeight);
-    }
-    else {
+    } else {
         GXColor bgColor;
         bgColor.r = 0;
         bgColor.g = 0;
@@ -69,12 +55,12 @@ void MiiFaceIcon::createImageBuffer() {
     u16 height;
     u32 imageBufferSize = mWidth * mHeight * 2 + sizeof(ResTIMG);
 
-    mImageBuffer = new(sizeof(ResTIMG)) u8[imageBufferSize];
+    mImageBuffer = new (sizeof(ResTIMG)) u8[imageBufferSize];
     MR::zeroMemory(mImageBuffer, imageBufferSize);
 
     height = mHeight;
     width = mWidth;
-    pImageBuffer = reinterpret_cast<ResTIMG*>(mImageBuffer);
+    pImageBuffer = reinterpret_cast< ResTIMG* >(mImageBuffer);
 
     pImageBuffer->mFormat = GX_TF_RGB5A3;
     pImageBuffer->mWidth = width;

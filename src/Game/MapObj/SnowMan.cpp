@@ -19,7 +19,7 @@ namespace NrvSnowMan {
     NEW_NERVE(SnowManNrvMeltBody, SnowMan, MeltBody);
     NEW_NERVE(SnowManNrvDownHead, SnowMan, DownHead);
     NEW_NERVE(SnowManNrvDownBody, SnowMan, DownBody);
-}
+}  // namespace NrvSnowMan
 
 SnowMan::SnowMan(const char* pName) : LiveActor(pName) {
     mHeadCollisionParts = nullptr;
@@ -30,15 +30,17 @@ SnowMan::SnowMan(const char* pName) : LiveActor(pName) {
 
 SnowMan::~SnowMan() {}
 
-void SnowMan::init(const JMapInfoIter &rIfter) {
-    MR::initDefaultPos(this,rIfter);
+void SnowMan::init(const JMapInfoIter& rIfter) {
+    MR::initDefaultPos(this, rIfter);
     initModelManagerWithAnm("SnowMan", nullptr, false);
     MR::connectToSceneMapObjStrongLight(this);
     initHitSensor(2);
     MR::addMessageSensorMapObj(this, "head");
     MR::addMessageSensorMapObj(this, "body");
-    mHeadCollisionParts =  MR::createCollisionPartsFromLiveActor(this, "HeadCol", getSensor("head"), MR::getJointMtx(this, "Head"), (MR::CollisionScaleType)1);
-    mBodyCollisionParts = MR::createCollisionPartsFromLiveActor(this, "BodyCol", getSensor("body"), MR::getJointMtx(this, "Body"), (MR::CollisionScaleType)1);
+    mHeadCollisionParts =
+        MR::createCollisionPartsFromLiveActor(this, "HeadCol", getSensor("head"), MR::getJointMtx(this, "Head"), (MR::CollisionScaleType)1);
+    mBodyCollisionParts =
+        MR::createCollisionPartsFromLiveActor(this, "BodyCol", getSensor("body"), MR::getJointMtx(this, "Body"), (MR::CollisionScaleType)1);
     MR::validateCollisionParts(mHeadCollisionParts);
     MR::validateCollisionParts(mBodyCollisionParts);
     mAnimScaleParam = new AnimScaleParam();
@@ -48,7 +50,7 @@ void SnowMan::init(const JMapInfoIter &rIfter) {
     mAnimScaleParam->_28 = 0.80000001f;
     mAnimScaleCtrl = new AnimScaleController(mAnimScaleParam);
     initEffectKeeper(0, nullptr, false);
-    initSound(4,false);
+    initSound(4, false);
     MR::useStageSwitchWriteA(this, rIfter);
     MR::useStageSwitchWriteB(this, rIfter);
     MR::useStageSwitchWriteDead(this, rIfter);
@@ -59,8 +61,8 @@ void SnowMan::init(const JMapInfoIter &rIfter) {
 void SnowMan::control() {
     if (mHeadCollisionParts->_CC) {
         mHeadCollisionParts->setMtx();
-    } 
-    
+    }
+
     if (mBodyCollisionParts->_CC) {
         mBodyCollisionParts->setMtx();
     }
@@ -68,13 +70,13 @@ void SnowMan::control() {
 }
 
 void SnowMan::kill() {
-    if (MR::isValidSwitchDead(this)){
+    if (MR::isValidSwitchDead(this)) {
         MR::onSwitchDead(this);
     }
     LiveActor::kill();
 }
 
-bool SnowMan::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool SnowMan::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgFireBallAttack(msg)) {
         if (pReceiver == getSensor("head")) {
             damageHead();
@@ -188,7 +190,7 @@ void SnowMan::exeDownBody() {
             MR::onSwitchB(this);
         }
     }
-    
+
     if (MR::isBckStopped(this)) {
         kill();
     }

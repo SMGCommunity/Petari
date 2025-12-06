@@ -1,7 +1,7 @@
 #pragma once
 
-#include <revolution.h>
 #include <JSystem/JGeometry.hpp>
+#include <revolution.h>
 
 class DpdInfo {
 public:
@@ -11,14 +11,14 @@ public:
     u8 _8;
     u8 _9;
     u32 _C;
-    f32 mViewDistZ;     // 0x10
+    f32 mViewDistZ;  // 0x10
 };
 
 class StarPointerController {
 public:
     StarPointerController();
 
-    s32 mPort;          // 0x0
+    s32 mPort;  // 0x0
     DpdInfo _4;
     DpdInfo _18;
     TVec2f _2C;

@@ -23,4 +23,4 @@ namespace MR {
     bool isExistImageEffectDirector();
     ImageEffectDirector* getImageEffectDirector();
     ImageEffectResource* getImageEffectResource();
-};
+};  // namespace MR

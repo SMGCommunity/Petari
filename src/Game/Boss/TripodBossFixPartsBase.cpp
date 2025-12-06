@@ -6,7 +6,7 @@
 #include "Game/Util/ObjUtil.hpp"
 #include <JSystem/JMath.hpp>
 
-TripodBossFixPartsBase::TripodBossFixPartsBase(const char *pName) : LiveActor(pName) {
+TripodBossFixPartsBase::TripodBossFixPartsBase(const char* pName) : LiveActor(pName) {
     _BC.x = 0.0f;
     _BC.y = 0.0f;
     _BC.z = 0.0f;
@@ -21,7 +21,7 @@ TripodBossFixPartsBase::TripodBossFixPartsBase(const char *pName) : LiveActor(pN
     _8C.identity();
 }
 
-void TripodBossFixPartsBase::init(const JMapInfoIter &rIter) {
+void TripodBossFixPartsBase::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     _BC = mPosition;
     MR::getJMapInfoArg0NoInit(rIter, &_CC);
@@ -48,7 +48,7 @@ void TripodBossFixPartsBase::initClippingSphere() {
     mClippingDistance = PSVECDistance(&_D0, &box.mMin);
 }
 
-void TripodBossFixPartsBase::setClippingSphere(const TVec3f &a1, f32 dist) {
+void TripodBossFixPartsBase::setClippingSphere(const TVec3f& a1, f32 dist) {
     _D0 = a1;
     mClippingDistance = dist;
 }
@@ -64,7 +64,7 @@ void TripodBossFixPartsBase::calcAndSetBaseMtx() {
     MR::setBaseTRMtx(this, _8C);
 }
 
-bool TripodBossFixPartsBase::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool TripodBossFixPartsBase::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (msg == ACTMES_TRIPODBOSS_STARTED) {
         activateTripodBoss();
 
@@ -74,13 +74,11 @@ bool TripodBossFixPartsBase::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSen
     return false;
 }
 
-void TripodBossFixPartsBase::calcTripodLocalMatrix(TPos3f *pPos) {
+void TripodBossFixPartsBase::calcTripodLocalMatrix(TPos3f* pPos) {
     MR::makeMtxTR(*pPos, _BC, mRotation);
 }
 
-void TripodBossFixPartsBase::activateTripodBoss() {
-
-}
+void TripodBossFixPartsBase::activateTripodBoss() {}
 
 void TripodBossFixPartsBase::startBreakMovement() {
     TPos3f mtx;
@@ -105,8 +103,7 @@ void TripodBossFixPartsBase::updateTripodMatrix() {
         _8C.mult(_D0, mul);
         if (MR::isJudgedToClipFrustum(mul, mClippingDistance)) {
             MR::hideModelAndOnCalcAnim(this);
-        }
-        else {
+        } else {
             MR::showModel(this);
         }
     }

@@ -15,9 +15,7 @@ public:
     virtual bool isWipeIn() const;
     virtual bool isWipeOut() const;
 
-    virtual s32 getWipeType() const {
-        return 2;
-    }
+    virtual s32 getWipeType() const { return 2; }
 
     void exeWait();
     void exeWipeOut();

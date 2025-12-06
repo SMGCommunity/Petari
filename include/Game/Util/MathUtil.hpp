@@ -122,7 +122,7 @@ namespace MR {
     void makeAxisUpFront(TVec3f*, TVec3f*, const TVec3f&, const TVec3f&);
     void makeAxisUpSide(TVec3f*, TVec3f*, const TVec3f&, const TVec3f&);
 
-    /* 
+    /*
      * Generate an orthogonal vector to the second argument, starting by projecting the z-vector
      * into the plane orthogonal to the second argument. If the z-vector is parallel to the second
      * argument, the x-vector is instead projected into the orthognal plane. Regardless, the
@@ -389,7 +389,7 @@ namespace MR {
     void getRotatedAxisY(TVec3f*, const TVec3f&);
     void getRotatedAxisZ(TVec3f*, const TVec3f&);
 
-    template<typename T>
+    template < typename T >
     T converge(T, T, T);
 
     /// @brief Computes the cosine of a number, in radians.
@@ -450,11 +450,9 @@ namespace MR {
 
     void clampBoth(f32*, f32, f32);
 
-    inline f32 wrapAngleTowards(f32 a, f32 b) {
-        return a + (f32)fmod(360.0f + (b - a), 360.0f);
-    }
+    inline f32 wrapAngleTowards(f32 a, f32 b) { return a + (f32)fmod(360.0f + (b - a), 360.0f); }
 
-    #ifdef __MWERKS__
+#ifdef __MWERKS__
     inline f32 frsqrte(register f32 x) {
         register f32 recip;
 
@@ -464,14 +462,14 @@ namespace MR {
         }
         return recip * x;
     }
-    
+
     inline f32 fastSqrtf(register f32 x) {
         register f32 recip;
 
         if (x > 0.0f) {
-            __asm { frsqrte recip, x }
+            __asm { frsqrte recip, x}
             f32 v = recip * x;
-            recip =  -(v * recip - 3.0f);
+            recip = -(v * recip - 3.0f);
             recip = (recip * v);
             recip *= 0.5f;
             return recip;
@@ -479,16 +477,16 @@ namespace MR {
 
         return x;
     }
-    #else
+#else
     f32 frsqrte(f32);
     f32 fastSqrtf(f32);
-    #endif
+#endif
 
-    template<typename T>
+    template < typename T >
     T sqrt(T x) {
         return fastSqrtf(x);
     }
-};
+};  // namespace MR
 
 f32 PSVECKillElement(const Vec*, const Vec*, const Vec*);
 f32 JMASqrt(f32);

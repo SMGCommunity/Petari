@@ -15,4 +15,4 @@ namespace RumbleData {
     void checkHashCollision();
     u32 getTableSize();
     RumblePattern* getData(u16);
-};
+};  // namespace RumbleData

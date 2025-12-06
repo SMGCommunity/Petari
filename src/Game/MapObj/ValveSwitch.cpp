@@ -1,16 +1,16 @@
-#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/MapObj/ValveSwitch.hpp"
+#include "Game/LiveActor/HitSensor.hpp"
 
-ValveSwitch::ValveSwitch(const char *pName) : LiveActor(pName) {
+ValveSwitch::ValveSwitch(const char* pName) : LiveActor(pName) {
     _8C = nullptr;
     mObjConnector = nullptr;
     _C4 = false;
-    
+
     mObjConnector = new MapObjConnector(this);
     _90.identity();
 }
 
-void ValveSwitch::init(const JMapInfoIter &rIter) {
+void ValveSwitch::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     MR::needStageSwitchWriteA(this, rIter);
     initModelManagerWithAnm("ValveSwitch", nullptr, false);
@@ -51,8 +51,7 @@ void ValveSwitch::exeWait() {
 
         if (_C4) {
             MR::startBck(this, "ValveSwitchReverseOn", nullptr);
-        }
-        else {
+        } else {
             MR::startBck(this, "ValveSwitchOn", nullptr);
         }
 
@@ -79,8 +78,7 @@ void ValveSwitch::exeValve() {
     if (MR::isFirstStep(this)) {
         if (_C4) {
             MR::startBck(this, "ValveSwitchReverseOn", nullptr);
-        }
-        else {
+        } else {
             MR::startBck(this, "ValveSwitchOn", nullptr);
         }
 
@@ -131,8 +129,6 @@ namespace NrvValveSwitch {
     INIT_NERVE(ValveSwitchNrvAdjust);
     INIT_NERVE(ValveSwitchNrvValve);
     INIT_NERVE(ValveSwitchNrvEnd);
-};
+};  // namespace NrvValveSwitch
 
-ValveSwitch::~ValveSwitch() {
-    
-}
+ValveSwitch::~ValveSwitch() {}

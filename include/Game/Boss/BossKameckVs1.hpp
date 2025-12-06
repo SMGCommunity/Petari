@@ -10,9 +10,9 @@ public:
 
     virtual ~BossKameckVs1();
     virtual void start();
-    virtual void init(BossKameck *, const JMapInfoIter &);
-    virtual void attackSensor(HitSensor *, HitSensor *);
-    virtual bool receiveMsgPlayerAttack(u32, HitSensor *, HitSensor *);
+    virtual void init(BossKameck*, const JMapInfoIter&);
+    virtual void attackSensor(HitSensor*, HitSensor*);
+    virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
 
     void exeOpeningDemo();
     void exeBattleLv1();
@@ -22,5 +22,5 @@ public:
     void exeEndDemo();
     bool isBattle() const;
 
-    BossKameckStateBattle* mStateBattle;            // 0x14
+    BossKameckStateBattle* mStateBattle;  // 0x14
 };

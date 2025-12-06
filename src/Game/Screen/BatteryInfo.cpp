@@ -1,5 +1,5 @@
-#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/BatteryInfo.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/System/WPad.hpp"
 #include "Game/System/WPadHolder.hpp"
 #include "Game/Util/LayoutUtil.hpp"
@@ -10,7 +10,7 @@ namespace {
     static const s32 sDisplayFrameBatteryLow = 120;
     static const s32 sLowIntervalFrame = 18000;
     static const s32 sDisplayFrameBatteryNone = 450;
-};
+};  // namespace
 
 namespace {
     NEW_NERVE(BatteryInfoEnought, BatteryInfo, Enought);
@@ -25,14 +25,10 @@ namespace {
     NEW_NERVE(BatteryInfoNone, BatteryInfo, None);
     NEW_NERVE(BatteryInfoNoneDisappear, BatteryInfo, NoneDisappear);
     NEW_NERVE(BatteryInfoNoneHide, BatteryInfo, NoneHide);
-};
+};  // namespace
 
-BatteryInfo::BatteryInfo(LayoutActor* pHost, const char* pPaneName, int channel) :
-    NerveExecutor("BatteryInfo"),
-    mHost(pHost),
-    mPaneName(pPaneName),
-    mChannel(channel)
-{
+BatteryInfo::BatteryInfo(LayoutActor* pHost, const char* pPaneName, int channel)
+    : NerveExecutor("BatteryInfo"), mHost(pHost), mPaneName(pPaneName), mChannel(channel) {
     initNerve(&BatteryInfoNoneHide::sInstance);
     MR::createAndAddPaneCtrl(mHost, mPaneName, 1);
     MR::hidePane(mHost, mPaneName);
@@ -45,11 +41,9 @@ void BatteryInfo::exeEnought() {
 
     if (MR::getWPad(mChannel)->getBattery() == -1) {
         setNerve(&BatteryInfoNoneHide::sInstance);
-    }
-    else if (MR::getWPad(mChannel)->getBattery() == 0) {
+    } else if (MR::getWPad(mChannel)->getBattery() == 0) {
         setNerve(&BatteryInfoCriticalAppear::sInstance);
-    }
-    else if (MR::getWPad(mChannel)->getBattery() == 1) {
+    } else if (MR::getWPad(mChannel)->getBattery() == 1) {
         setNerve(&BatteryInfoLowAppear::sInstance);
     }
 }
@@ -87,18 +81,14 @@ void BatteryInfo::exeLowHide() {
     if (MR::getWPad(mChannel)->getBattery() == -1) {
         if (mChannel == WPAD_CHAN1) {
             setNerve(&BatteryInfoNoneAppear::sInstance);
-        }
-        else {
+        } else {
             setNerve(&BatteryInfoNoneHide::sInstance);
         }
-    }
-    else if (MR::getWPad(mChannel)->getBattery() == 0) {
+    } else if (MR::getWPad(mChannel)->getBattery() == 0) {
         setNerve(&BatteryInfoCriticalAppear::sInstance);
-    }
-    else if (MR::getWPad(mChannel)->getBattery() > 1) {
+    } else if (MR::getWPad(mChannel)->getBattery() > 1) {
         setNerve(&BatteryInfoEnought::sInstance);
-    }
-    else if (MR::isGreaterStep(this, sLowIntervalFrame)) {
+    } else if (MR::isGreaterStep(this, sLowIntervalFrame)) {
         setNerve(&BatteryInfoLowAppear::sInstance);
     }
 }
@@ -178,8 +168,7 @@ bool BatteryInfo::tryChangeNerveWithBatteryLeftAlreadyAppear() {
     case -1:
         if (mChannel == WPAD_CHAN1) {
             pNerve = &BatteryInfoNoneAppear::sInstance;
-        }
-        else {
+        } else {
             pNerve = &BatteryInfoDisappear::sInstance;
         }
         break;
@@ -203,13 +192,7 @@ bool BatteryInfo::tryChangeNerveWithBatteryLeftAlreadyAppear() {
     return false;
 }
 
-BatteryLayout::BatteryLayout() :
-    LayoutActor("BatteryLayout", true),
-    mInfo1P(nullptr),
-    mInfo2P(nullptr)
-{
-    
-}
+BatteryLayout::BatteryLayout() : LayoutActor("BatteryLayout", true), mInfo1P(nullptr), mInfo2P(nullptr) {}
 
 void BatteryLayout::init(const JMapInfoIter& rIter) {
     initLayoutManager("BatteryInfo", 1);

@@ -27,4 +27,4 @@ namespace MR {
     void activateClipArea();
     void deactivateClipArea();
     void setBinderExceptSensorType(LiveActor*, const TVec3f*, f32);
-};
+};  // namespace MR

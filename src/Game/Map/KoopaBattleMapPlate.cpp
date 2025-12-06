@@ -6,9 +6,7 @@
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 
-KoopaBattleMapPlate::KoopaBattleMapPlate(const char* pName) :
-    LiveActor(pName)
-{
+KoopaBattleMapPlate::KoopaBattleMapPlate(const char* pName) : LiveActor(pName) {
     _8C.identity();
 }
 
@@ -16,9 +14,7 @@ void KoopaBattleMapPlate::calcAndSetBaseMtx() {
     MR::setBaseTRMtx(this, _8C);
 }
 
-KoopaBattleMapPlate::~KoopaBattleMapPlate() {
-    
-}
+KoopaBattleMapPlate::~KoopaBattleMapPlate() {}
 
 void KoopaBattleMapPlate::init(const JMapInfoIter& rIter) {
     TVec3f v1;
@@ -41,7 +37,7 @@ void KoopaBattleMapPlate::init(const JMapInfoIter& rIter) {
     makeActorAppeared();
 }
 
-bool KoopaBattleMapPlate::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool KoopaBattleMapPlate::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (msg != ACTMES_KOOPA_HIP_DROP_ATTACK) {
         return false;
     }

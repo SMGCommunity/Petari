@@ -11,8 +11,8 @@
 // int someFunction(int SomeArg)
 // inline int INLINE_FUNC_DECL(someFunction, int someArg);
 // CALL_INLINE_FUNC(someFunction, 0);
-#define INLINE_FUNC_DECL(name, ...) name(void *****, __VA_ARGS__)
-#define INLINE_FUNC_DECL_NO_ARG(name) name(void *****)
+#define INLINE_FUNC_DECL(name, ...) name(void*****, __VA_ARGS__)
+#define INLINE_FUNC_DECL_NO_ARG(name) name(void*****)
 
-#define CALL_INLINE_FUNC(name, ...) name((void *****)0, __VA_ARGS__)
-#define CALL_INLINE_FUNC_NO_ARG(name) name((void *****)0)
+#define CALL_INLINE_FUNC(name, ...) name((void*****)0, __VA_ARGS__)
+#define CALL_INLINE_FUNC_NO_ARG(name) name((void*****)0)

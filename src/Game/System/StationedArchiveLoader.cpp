@@ -1,14 +1,12 @@
-#include "Game/System/ResourceHolderManager.hpp"
 #include "Game/System/StationedArchiveLoader.hpp"
+#include "Game/SingletonHolder.hpp"
+#include "Game/System/ResourceHolderManager.hpp"
 #include "Game/System/StationedFileInfo.hpp"
 #include "Game/Util/FileUtil.hpp"
 #include "Game/Util/MemoryUtil.hpp"
-#include "Game/SingletonHolder.hpp"
 #include <JSystem/JKernel/JKRExpHeap.hpp>
 
-StationedArchiveLoader::Condition::~Condition() {
-    
-}
+StationedArchiveLoader::Condition::~Condition() {}
 
 JKRHeap* StationedArchiveLoader::Condition::getProperHeap(const MR::StationedFileInfo* pInfo) const {
     return nullptr;
@@ -62,10 +60,10 @@ void StationedArchiveLoader::createAndAddResourcesFromTable(const Condition& rCo
         case 2:
         case 3:
         case 4:
-            SingletonHolder<ResourceHolderManager>::get()->createAndAddStationed(pInfo->mArchive);
+            SingletonHolder< ResourceHolderManager >::get()->createAndAddStationed(pInfo->mArchive);
             break;
         case 5:
-            SingletonHolder<ResourceHolderManager>::get()->createAndAddLayoutHolderStationed(pInfo->mArchive);
+            SingletonHolder< ResourceHolderManager >::get()->createAndAddLayoutHolderStationed(pInfo->mArchive);
             break;
         default:
             break;

@@ -8,7 +8,7 @@ class TripodBossStepSequence {
 public:
     TripodBossStepSequence();
 
-    void addStepPoint(TripodBossStepPoint *);
+    void addStepPoint(TripodBossStepPoint*);
     s32 getCurrentLeg() const;
     s32 getCurrentWaitTime() const;
     TripodBossStepPoint* getCurrentStepPoint();
@@ -16,8 +16,8 @@ public:
     bool isEmpty() const;
     void reset();
 
-    TripodBossStepPoint* mStepPoints[0x20];         // 0x00
-    s32 mCurrentPoint;                              // 0x80
-    s32 mPointNum;                                  // 0x84
+    TripodBossStepPoint* mStepPoints[0x20];  // 0x00
+    s32 mCurrentPoint;                       // 0x80
+    s32 mPointNum;                           // 0x84
     u8 _88;
 };

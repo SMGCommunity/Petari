@@ -1,27 +1,22 @@
 #include "Game/Enemy/RingBeamer.hpp"
 #include "Game/Enemy/RingBeam.hpp"
 
-//MR function that has not been defined elsewhere yet
+// MR function that has not been defined elsewhere yet
 //
-namespace MR{
-    bool enableGroupAttack(LiveActor *, f32, f32);
+namespace MR {
+    bool enableGroupAttack(LiveActor*, f32, f32);
 };
 
 namespace NrvRingBeamer {
     NEW_NERVE(RingBeamerNrvWait, RingBeamer, Wait);
     NEW_NERVE(RingBeamerNrvAttack, RingBeamer, Attack);
     NEW_NERVE(RingBeamerNrvInter, RingBeamer, Inter);
-};
+};  // namespace NrvRingBeamer
 
-RingBeamer::RingBeamer(const char *pName) :
-    LiveActor(pName),
-    mBeams(nullptr)
-{
-    
-}
+RingBeamer::RingBeamer(const char* pName) : LiveActor(pName), mBeams(nullptr) {}
 
-void RingBeamer::init(const JMapInfoIter &rIter){
-    initModelManagerWithAnm("RingBeamer",nullptr,false);
+void RingBeamer::init(const JMapInfoIter& rIter) {
+    initModelManagerWithAnm("RingBeamer", nullptr, false);
     MR::initDefaultPos(this, rIter);
     MR::connectToSceneEnemy(this);
     MR::initLightCtrl(this);
@@ -34,22 +29,21 @@ void RingBeamer::init(const JMapInfoIter &rIter){
     initNerve(&NrvRingBeamer::RingBeamerNrvWait::sInstance);
     makeActorAppeared();
     MR::useStageSwitchReadA(this, rIter);
-    if(MR::useStageSwitchReadB(this, rIter)){
-        MR::listenStageSwitchOffB(this,
-            MR::FunctorV0M<RingBeamer*, void (RingBeamer::*)(void)>(this, &RingBeamer::syncSwitchOffB));
+    if (MR::useStageSwitchReadB(this, rIter)) {
+        MR::listenStageSwitchOffB(this, MR::FunctorV0M< RingBeamer*, void (RingBeamer::*)(void) >(this, &RingBeamer::syncSwitchOffB));
     }
     MR::joinToGroupArray(this, rIter, nullptr, 32);
     // initializes to 5 long, but only uses 3?
     mBeams = new RingBeam*[5];
-    for(int i = 0; i < 5; i++){
+    for (int i = 0; i < 5; i++) {
         mBeams[i] = nullptr;
     }
     f32 arg0 = 20.0f;
     s32 arg1 = 100;
-    MR::getJMapInfoArg0NoInit(rIter,&arg0);
-    MR::getJMapInfoArg1NoInit(rIter,&arg1);
-    for(int i = 0; i < 3; i++){
-        mBeams[i] = new RingBeam("リングビーム",this,false,false);
+    MR::getJMapInfoArg0NoInit(rIter, &arg0);
+    MR::getJMapInfoArg1NoInit(rIter, &arg1);
+    for (int i = 0; i < 3; i++) {
+        mBeams[i] = new RingBeam("リングビーム", this, false, false);
         mBeams[i]->init(rIter);
         mBeams[i]->setSpeed(arg0);
         mBeams[i]->setLife(arg1);
@@ -59,7 +53,7 @@ void RingBeamer::init(const JMapInfoIter &rIter){
     MR::calcAnimDirect(this);
 }
 
-void RingBeamer::syncSwitchOffB(){
+void RingBeamer::syncSwitchOffB() {
     setNerve(&NrvRingBeamer::RingBeamerNrvInter::sInstance);
 
     for (int i = 0; i < 3; i++) {
@@ -67,7 +61,7 @@ void RingBeamer::syncSwitchOffB(){
     }
 }
 
-void RingBeamer::exeWait(){
+void RingBeamer::exeWait() {
     if (MR::isFirstStep(this)) {
         MR::validateClipping(this);
     }
@@ -77,8 +71,8 @@ void RingBeamer::exeWait(){
     }
 }
 
-void RingBeamer::exeAttack(){
-    if (MR::isFirstStep(this)){
+void RingBeamer::exeAttack() {
+    if (MR::isFirstStep(this)) {
         MR::startBck(this, "Open", nullptr);
     }
 
@@ -91,17 +85,16 @@ void RingBeamer::exeAttack(){
         MR::startLevelSound(this, "SE_EM_LV_RINGBEAM_CHARGE", -1, -1, -1);
     }
 
-    if (getNerveStep() % 80 == 0){
+    if (getNerveStep() % 80 == 0) {
         MR::emitEffect(this, "Charge");
     }
 
-    if (getNerveStep() % 80 == 79){
+    if (getNerveStep() % 80 == 79) {
         MR::deleteEffect(this, "Charge");
 
         if (!MR::enableGroupAttack(this, 3200.0f, 500.0f)) {
             MR::sendMsgToGroupMember(ACTMES_GROUP_HIDE, this, getSensor("Body"), "Body");
-        }
-        else if (mBeams[getNerveStep() / 80]) {
+        } else if (mBeams[getNerveStep() / 80]) {
             mBeams[getNerveStep() / 80]->appear();
         }
     }
@@ -109,7 +102,6 @@ void RingBeamer::exeAttack(){
 
 void RingBeamer::exeInter() {
     if (MR::isFirstStep(this)) {
-
     }
 
     if (MR::isGreaterEqualStep(this, 80)) {
@@ -123,16 +115,15 @@ void RingBeamer::exeInter() {
     }
 }
 
-void RingBeamer::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
+void RingBeamer::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isSensorPlayerOrRide(pReceiver) && MR::isSensorEnemyAttack(pSender)) {
-        MR::sendMsgEnemyAttackStrong(pReceiver,pSender);
-    }
-    else {
-        MR::sendMsgPush(pReceiver,pSender);
+        MR::sendMsgEnemyAttackStrong(pReceiver, pSender);
+    } else {
+        MR::sendMsgPush(pReceiver, pSender);
     }
 }
 
-bool RingBeamer::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool RingBeamer::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (msg == ACTMES_GROUP_ATTACK) {
         MR::invalidateClipping(this);
         setNerve(&NrvRingBeamer::RingBeamerNrvAttack::sInstance);
@@ -149,7 +140,7 @@ bool RingBeamer::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiv
     return false;
 }
 
-bool RingBeamer::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool RingBeamer::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgJetTurtleAttack(msg)) {
         return true;
     }

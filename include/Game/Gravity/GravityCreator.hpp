@@ -13,131 +13,131 @@
 
 class GravityCreator {
 public:
-	GravityCreator();
+    GravityCreator();
 
-	virtual PlanetGravity* getGravity() = 0;
-	virtual PlanetGravity* createInstance() = 0;
-	virtual void settingFromSRT(const TVec3f &rTrans, const TVec3f &rRotate, const TVec3f &rScale) {}
-	virtual void settingFromJMapArgs(s32 arg0, s32 arg1, s32 arg2) {}
-	virtual void settingFromJMapOtherParam(const JMapInfoIter &rIter) {}
+    virtual PlanetGravity* getGravity() = 0;
+    virtual PlanetGravity* createInstance() = 0;
+    virtual void settingFromSRT(const TVec3f& rTrans, const TVec3f& rRotate, const TVec3f& rScale) {}
+    virtual void settingFromJMapArgs(s32 arg0, s32 arg1, s32 arg2) {}
+    virtual void settingFromJMapOtherParam(const JMapInfoIter& rIter) {}
 
-	PlanetGravity* createFromJMap(const JMapInfoIter &rIter);
+    PlanetGravity* createFromJMap(const JMapInfoIter& rIter);
 };
 
 class CubeGravityCreator : public GravityCreator {
 public:
-	inline CubeGravityCreator() : GravityCreator(), mGravityInstance(nullptr) {}
+    inline CubeGravityCreator() : GravityCreator(), mGravityInstance(nullptr) {}
 
-	virtual PlanetGravity* getGravity();
-	virtual PlanetGravity* createInstance();
-	virtual void settingFromSRT(const TVec3f &rTrans, const TVec3f &rRotate, const TVec3f &rScale);
-	virtual void settingFromJMapArgs(s32 arg0, s32 arg1, s32 arg2);
+    virtual PlanetGravity* getGravity();
+    virtual PlanetGravity* createInstance();
+    virtual void settingFromSRT(const TVec3f& rTrans, const TVec3f& rRotate, const TVec3f& rScale);
+    virtual void settingFromJMapArgs(s32 arg0, s32 arg1, s32 arg2);
 
-	CubeGravity* mGravityInstance; // 0x4
+    CubeGravity* mGravityInstance;  // 0x4
 };
 
 class DiskGravityCreator : public GravityCreator {
 public:
-	inline DiskGravityCreator() : GravityCreator(), mGravityInstance(nullptr) {}
+    inline DiskGravityCreator() : GravityCreator(), mGravityInstance(nullptr) {}
 
-	virtual PlanetGravity* getGravity();
-	virtual PlanetGravity* createInstance();
-	virtual void settingFromSRT(const TVec3f &rTrans, const TVec3f &rRotate, const TVec3f &rScale);
-	virtual void settingFromJMapArgs(s32 arg0, s32 arg1, s32 arg2);
+    virtual PlanetGravity* getGravity();
+    virtual PlanetGravity* createInstance();
+    virtual void settingFromSRT(const TVec3f& rTrans, const TVec3f& rRotate, const TVec3f& rScale);
+    virtual void settingFromJMapArgs(s32 arg0, s32 arg1, s32 arg2);
 
-	DiskGravity* mGravityInstance; // 0x4
+    DiskGravity* mGravityInstance;  // 0x4
 };
 
 class DiskTorusGravityCreator : public GravityCreator {
 public:
-	inline DiskTorusGravityCreator() : GravityCreator(), mGravityInstance(nullptr) {}
+    inline DiskTorusGravityCreator() : GravityCreator(), mGravityInstance(nullptr) {}
 
-	virtual PlanetGravity* getGravity();
-	virtual PlanetGravity* createInstance();
-	virtual void settingFromSRT(const TVec3f &rTrans, const TVec3f &rRotate, const TVec3f &rScale);
-	virtual void settingFromJMapArgs(s32 arg0, s32 arg1, s32 arg2);
+    virtual PlanetGravity* getGravity();
+    virtual PlanetGravity* createInstance();
+    virtual void settingFromSRT(const TVec3f& rTrans, const TVec3f& rRotate, const TVec3f& rScale);
+    virtual void settingFromJMapArgs(s32 arg0, s32 arg1, s32 arg2);
 
-	DiskTorusGravity* mGravityInstance; // 0x4
+    DiskTorusGravity* mGravityInstance;  // 0x4
 };
 
 class ConeGravityCreator : public GravityCreator {
 public:
-	inline ConeGravityCreator() : GravityCreator(), mGravityInstance(nullptr) {}
+    inline ConeGravityCreator() : GravityCreator(), mGravityInstance(nullptr) {}
 
-	virtual PlanetGravity* getGravity();
-	virtual PlanetGravity* createInstance();
-	virtual void settingFromSRT(const TVec3f &rTrans, const TVec3f &rRotate, const TVec3f &rScale);
-	virtual void settingFromJMapArgs(s32 arg0, s32 arg1, s32 arg2);
+    virtual PlanetGravity* getGravity();
+    virtual PlanetGravity* createInstance();
+    virtual void settingFromSRT(const TVec3f& rTrans, const TVec3f& rRotate, const TVec3f& rScale);
+    virtual void settingFromJMapArgs(s32 arg0, s32 arg1, s32 arg2);
 
-	ConeGravity* mGravityInstance; // 0x4
+    ConeGravity* mGravityInstance;  // 0x4
 };
 
 class PlaneGravityCreator : public GravityCreator {
 public:
-	inline PlaneGravityCreator() : GravityCreator(), mGravityInstance(nullptr) {}
+    inline PlaneGravityCreator() : GravityCreator(), mGravityInstance(nullptr) {}
 
-	virtual PlanetGravity* getGravity();
-	virtual PlanetGravity* createInstance();
-	virtual void settingFromSRT(const TVec3f &rTrans, const TVec3f &rRotate, const TVec3f &rScale);
+    virtual PlanetGravity* getGravity();
+    virtual PlanetGravity* createInstance();
+    virtual void settingFromSRT(const TVec3f& rTrans, const TVec3f& rRotate, const TVec3f& rScale);
 
-	ParallelGravity* mGravityInstance; // 0x4
+    ParallelGravity* mGravityInstance;  // 0x4
 };
 
 class PlaneInBoxGravityCreator : public GravityCreator {
 public:
-	inline PlaneInBoxGravityCreator() : GravityCreator(), mGravityInstance(nullptr) {}
+    inline PlaneInBoxGravityCreator() : GravityCreator(), mGravityInstance(nullptr) {}
 
-	virtual PlanetGravity* getGravity();
-	virtual PlanetGravity* createInstance();
-	virtual void settingFromSRT(const TVec3f &rTrans, const TVec3f &rRotate, const TVec3f &rScale);
-	virtual void settingFromJMapArgs(s32 arg0, s32 arg1, s32 arg2);
+    virtual PlanetGravity* getGravity();
+    virtual PlanetGravity* createInstance();
+    virtual void settingFromSRT(const TVec3f& rTrans, const TVec3f& rRotate, const TVec3f& rScale);
+    virtual void settingFromJMapArgs(s32 arg0, s32 arg1, s32 arg2);
 
-	ParallelGravity* mGravityInstance; // 0x4
+    ParallelGravity* mGravityInstance;  // 0x4
 };
 
 class PlaneInCylinderGravityCreator : public GravityCreator {
 public:
-	inline PlaneInCylinderGravityCreator() : GravityCreator(), mGravityInstance(nullptr) {}
+    inline PlaneInCylinderGravityCreator() : GravityCreator(), mGravityInstance(nullptr) {}
 
-	virtual PlanetGravity* getGravity();
-	virtual PlanetGravity* createInstance();
-	virtual void settingFromSRT(const TVec3f &rTrans, const TVec3f &rRotate, const TVec3f &rScale);
-	virtual void settingFromJMapArgs(s32 arg0, s32 arg1, s32 arg2);
+    virtual PlanetGravity* getGravity();
+    virtual PlanetGravity* createInstance();
+    virtual void settingFromSRT(const TVec3f& rTrans, const TVec3f& rRotate, const TVec3f& rScale);
+    virtual void settingFromJMapArgs(s32 arg0, s32 arg1, s32 arg2);
 
-	ParallelGravity* mGravityInstance; // 0x4
+    ParallelGravity* mGravityInstance;  // 0x4
 };
 
 class PointGravityCreator : public GravityCreator {
 public:
-	inline PointGravityCreator() : GravityCreator(), mGravityInstance(nullptr) {}
+    inline PointGravityCreator() : GravityCreator(), mGravityInstance(nullptr) {}
 
-	virtual PlanetGravity* getGravity();
-	virtual PlanetGravity* createInstance();
-	virtual void settingFromSRT(const TVec3f &rTrans, const TVec3f &rRotate, const TVec3f &rScale);
+    virtual PlanetGravity* getGravity();
+    virtual PlanetGravity* createInstance();
+    virtual void settingFromSRT(const TVec3f& rTrans, const TVec3f& rRotate, const TVec3f& rScale);
 
-	PointGravity* mGravityInstance; // 0x4
+    PointGravity* mGravityInstance;  // 0x4
 };
 
 class SegmentGravityCreator : public GravityCreator {
 public:
-	inline SegmentGravityCreator() : GravityCreator(), mGravityInstance(nullptr) {}
+    inline SegmentGravityCreator() : GravityCreator(), mGravityInstance(nullptr) {}
 
-	virtual PlanetGravity* getGravity();
-	virtual PlanetGravity* createInstance();
-	virtual void settingFromSRT(const TVec3f &rTrans, const TVec3f &rRotate, const TVec3f &rScale);
-	virtual void settingFromJMapArgs(s32 arg0, s32 arg1, s32 arg2);
+    virtual PlanetGravity* getGravity();
+    virtual PlanetGravity* createInstance();
+    virtual void settingFromSRT(const TVec3f& rTrans, const TVec3f& rRotate, const TVec3f& rScale);
+    virtual void settingFromJMapArgs(s32 arg0, s32 arg1, s32 arg2);
 
-	SegmentGravity* mGravityInstance; // 0x4
+    SegmentGravity* mGravityInstance;  // 0x4
 };
 
 class WireGravityCreator : public GravityCreator {
 public:
-	inline WireGravityCreator() : GravityCreator(), mRailRider(nullptr), mGravityInstance(nullptr) {}
+    inline WireGravityCreator() : GravityCreator(), mRailRider(nullptr), mGravityInstance(nullptr) {}
 
-	virtual PlanetGravity* getGravity();
-	virtual PlanetGravity* createInstance();
-	virtual void settingFromJMapOtherParam(const JMapInfoIter &rIter);
+    virtual PlanetGravity* getGravity();
+    virtual PlanetGravity* createInstance();
+    virtual void settingFromJMapOtherParam(const JMapInfoIter& rIter);
 
-	RailRider* mRailRider;         // 0x4
-	WireGravity* mGravityInstance; // 0x8
+    RailRider* mRailRider;          // 0x4
+    WireGravity* mGravityInstance;  // 0x8
 };

@@ -1,7 +1,7 @@
+#include "Game/Scene/GameSceneScenarioOpeningCameraState.hpp"
 #include "Game/AudioLib/AudSystem.hpp"
 #include "Game/AudioLib/AudWrap.hpp"
 #include "Game/LiveActor/Nerve.hpp"
-#include "Game/Scene/GameSceneScenarioOpeningCameraState.hpp"
 #include "Game/Screen/ScenarioTitle.hpp"
 #include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/EventUtil.hpp"
@@ -17,11 +17,9 @@
 namespace {
     NEW_NERVE(GameSceneScenarioOpeningCameraStateWait, GameSceneScenarioOpeningCameraState, Wait);
     NEW_NERVE(GameSceneScenarioOpeningCameraStatePlay, GameSceneScenarioOpeningCameraState, Play);
-};
+};  // namespace
 
-GameSceneScenarioOpeningCameraState::GameSceneScenarioOpeningCameraState() :
-    NerveExecutor("シナリオ開始カメラ再生")
-{
+GameSceneScenarioOpeningCameraState::GameSceneScenarioOpeningCameraState() : NerveExecutor("シナリオ開始カメラ再生") {
     mBaseMtx.identity();
     initNerve(&GameSceneScenarioOpeningCameraStatePlay::sInstance);
     mScenarioTitle = new ScenarioTitle();
@@ -64,9 +62,7 @@ void GameSceneScenarioOpeningCameraState::end() {
     MR::setPlayerBaseMtx(mBaseMtx);
 }
 
-void GameSceneScenarioOpeningCameraState::exeWait() {
-    
-}
+void GameSceneScenarioOpeningCameraState::exeWait() {}
 
 void GameSceneScenarioOpeningCameraState::exePlay() {
     if (MR::isFirstStep(this)) {
@@ -79,8 +75,7 @@ void GameSceneScenarioOpeningCameraState::exePlay() {
         end();
         MR::forceToBlankCinemaFrame();
         setNerve(&GameSceneScenarioOpeningCameraStateWait::sInstance);
-    }
-    else {
+    } else {
         if (MR::isStep(this, MR::getStartAnimCameraFrame() - 60)) {
             MR::tryFrameToBlankCinemaFrame();
             mScenarioTitle->end();
@@ -102,5 +97,5 @@ bool GameSceneScenarioOpeningCameraState::trySkipTrigger() const {
         return false;
     }
 
-    return !MR::isAlreadyVisitedCurrentStageAndScenario() ? false : MR::testSystemPadTriggerDecide(); 
+    return !MR::isAlreadyVisitedCurrentStageAndScenario() ? false : MR::testSystemPadTriggerDecide();
 }

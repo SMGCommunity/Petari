@@ -4,12 +4,12 @@
 
 class BenefitItemLifeUp : public BenefitItemObj {
 public:
-    BenefitItemLifeUp(const char *);
+    BenefitItemLifeUp(const char*);
 
     virtual ~BenefitItemLifeUp();
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
     virtual void initModelAndEfx();
     virtual void exeCatch();
-    virtual void runEfx(const char *);
-    virtual void stopEfx(const char *);
+    virtual void runEfx(const char*);
+    virtual void stopEfx(const char*);
 };

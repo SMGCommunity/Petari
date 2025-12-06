@@ -1,6 +1,6 @@
+#include "Game/Screen/FileSelectButton.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/ButtonPaneController.hpp"
-#include "Game/Screen/FileSelectButton.hpp"
 #include "Game/Screen/GalaxyMapGalaxyPlain.hpp"
 #include "Game/Util/Functor.hpp"
 #include "Game/Util/LayoutUtil.hpp"
@@ -12,11 +12,9 @@ namespace {
     NEW_NERVE(FileSelectButtonNrvSelect, FileSelectButton, Select);
     NEW_NERVE(FileSelectButtonNrvWait, FileSelectButton, Wait);
     NEW_NERVE(FileSelectButtonNrvDisappear, FileSelectButton, Disappear);
-};
+};  // namespace
 
-FileSelectButton::FileSelectButton(const char* pName) :
-    LayoutActor(pName, true)
-{
+FileSelectButton::FileSelectButton(const char* pName) : LayoutActor(pName, true) {
     for (int i = 0; i < sizeof(mButtonCtrl) / sizeof(*mButtonCtrl); i++) {
         mButtonCtrl[i] = nullptr;
         mCallbackFunctor[i] = nullptr;
@@ -58,13 +56,9 @@ void FileSelectButton::disappear() {
     setNerve(&FileSelectButtonNrvDisappear::sInstance);
 }
 
-void FileSelectButton::setCallbackFunctor(
-    const MR::FunctorBase& rStartFunctor,
-    const MR::FunctorBase& rCopyFunctor,
-    const MR::FunctorBase& rMiiFunctor,
-    const MR::FunctorBase& rDeleteFunctor,
-    const MR::FunctorBase& rManualFunctor)
-{
+void FileSelectButton::setCallbackFunctor(const MR::FunctorBase& rStartFunctor, const MR::FunctorBase& rCopyFunctor,
+                                          const MR::FunctorBase& rMiiFunctor, const MR::FunctorBase& rDeleteFunctor,
+                                          const MR::FunctorBase& rManualFunctor) {
     mCallbackFunctor[0] = rStartFunctor.clone(nullptr);
     mCallbackFunctor[1] = rCopyFunctor.clone(nullptr);
     mCallbackFunctor[2] = rMiiFunctor.clone(nullptr);
@@ -95,9 +89,7 @@ void FileSelectButton::exeSelect() {
     }
 }
 
-void FileSelectButton::exeWait() {
-    
-}
+void FileSelectButton::exeWait() {}
 
 void FileSelectButton::exeDisappear() {
     int size = sizeof(mButtonCtrl) / sizeof(*mButtonCtrl);

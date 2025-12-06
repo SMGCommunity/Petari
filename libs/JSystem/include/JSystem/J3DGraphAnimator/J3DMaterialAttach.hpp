@@ -26,12 +26,10 @@ public:
     s32 entryTexMtxAnimator(J3DAnmTextureSRTKey*);
     s32 entryTevRegAnimator(J3DAnmTevRegKey*);
 
-    inline u16 getMaterialCount() {
-        return mMaterialCount;
-    }
+    inline u16 getMaterialCount() { return mMaterialCount; }
 
     u16 mMaterialCount;             // 0x4
-    u16 mUniqueMaterialCount;       // 0x6 
+    u16 mUniqueMaterialCount;       // 0x6
     J3DMaterial** mMaterials;       // 0x8
     JUTNameTab* mNameTable;         // 0xC
     J3DMaterial* mUniqueMaterials;  // 0x10

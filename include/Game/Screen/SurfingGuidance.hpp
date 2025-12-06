@@ -6,7 +6,7 @@ class SurfingGuidance : public LayoutActor {
 public:
     SurfingGuidance();
 
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
 
     void activate();
     void levelOffReady();

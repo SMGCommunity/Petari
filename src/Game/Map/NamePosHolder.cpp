@@ -16,16 +16,10 @@ NamePosHolder::NamePosHolder() : NameObj("位置テーブル保持") {
     }
 }
 
-NamePosInfo::NamePosInfo() {
-
-}
+NamePosInfo::NamePosInfo() {}
 
 namespace MR {
-    NamePosHolder* getNamePosHolder() {
-        return MR::getSceneObj<NamePosHolder>(SceneObj_NamePosHolder);
-    }
-};
+    NamePosHolder* getNamePosHolder() { return MR::getSceneObj< NamePosHolder >(SceneObj_NamePosHolder); }
+};  // namespace MR
 
-NamePosHolder::~NamePosHolder() {
-
-}
+NamePosHolder::~NamePosHolder() {}

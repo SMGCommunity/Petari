@@ -3,25 +3,24 @@
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
 
-
 namespace NrvPrizeRing {
     NERVE(PrizeRingStart);
     NERVE(PrizeRingLoop);
     NERVE(PrizeRingTimeout);
     NERVE(PrizeRingReadyToPass);
     NERVE(PrizeRingPass);
-    NERVE(PrizeRingReadyToKill);    
-};
+    NERVE(PrizeRingReadyToKill);
+};  // namespace NrvPrizeRing
 
 class PrizeRing : public ModelObj {
 public:
     PrizeRing();
 
     virtual ~PrizeRing();
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
     virtual void appear();
     virtual void kill();
-    virtual void attackSensor(HitSensor *pSender, HitSensor *pReceiver);
+    virtual void attackSensor(HitSensor* pSender, HitSensor* pReceiver);
 
     void setLife(int);
     void setNumber(int);
@@ -38,7 +37,7 @@ public:
     }
     void exePass();
     bool isPassed() const;
-    void playSound() const;            
+    void playSound() const;
     bool isOnTriggerTimeoutFlash() const;
 
     int _90;

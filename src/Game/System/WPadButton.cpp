@@ -1,15 +1,8 @@
-#include "Game/System/WPad.hpp"
 #include "Game/System/WPadButton.hpp"
+#include "Game/System/WPad.hpp"
 
-WPadButton::WPadButton(const WPad* pPad) :
-    mPad(pPad),
-    mHold(0),
-    mTrigger(0),
-    mRelease(0),
-    mRepeat(0),
-    mDelaySec(1.0f / 2.4f),
-    mPulseSec(1.0f / 6.0f)
-{
+WPadButton::WPadButton(const WPad* pPad)
+    : mPad(pPad), mHold(0), mTrigger(0), mRelease(0), mRepeat(0), mDelaySec(1.0f / 2.4f), mPulseSec(1.0f / 6.0f) {
     KPADSetBtnRepeat(mPad->mChannel, mDelaySec, mPulseSec);
 }
 
@@ -22,8 +15,7 @@ void WPadButton::update() {
 
     if (mHold != 0) {
         mTrigger = pStatus->trig & ~mHold & KPAD_BUTTON_MASK;
-    }
-    else {
+    } else {
         mTrigger = pStatus->trig;
     }
 

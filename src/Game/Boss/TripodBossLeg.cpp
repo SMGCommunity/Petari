@@ -1,6 +1,6 @@
 #include "Game/Boss/TripodBossLeg.hpp"
-#include "Game/Boss/TripodBoss.hpp"
 #include "Game/AudioLib/AudAnmSoundObject.hpp"
+#include "Game/Boss/TripodBoss.hpp"
 #include "Game/Boss/TripodBossMovableArea.hpp"
 #include "Game/Boss/TripodBossStepPoint.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
@@ -24,15 +24,13 @@ namespace NrvTripodBossLeg {
     NEW_NERVE(TripodBossLegNrvDamageVibration, TripodBossLeg, DamageVibration);
     NEW_NERVE(TripodBossLegNrvDamage, TripodBossLeg, Damage);
     NEW_NERVE(TripodBossLegNrvBreak, TripodBossLeg, Break);
-};
+};  // namespace NrvTripodBossLeg
 
-TripodBossLeg::~TripodBossLeg() {
+TripodBossLeg::~TripodBossLeg() {}
 
-}
-
-TripodBossLeg::TripodBossLeg(const char *pName) : LiveActor(pName), mBoss(nullptr), mMoveArea(nullptr), _94(0), _98(0), mJoint(new IKJoint()),
-    _1F0(0, 0, 0, 1), _200(0, 0, 0, 1), _210(0, 0, 0), _21C(0, 0, 0), mForceEndPoint(0, 0, 0), _234(0, 0, 0), _240(0, 0, 0) {
-
+TripodBossLeg::TripodBossLeg(const char* pName)
+    : LiveActor(pName), mBoss(nullptr), mMoveArea(nullptr), _94(0), _98(0), mJoint(new IKJoint()), _1F0(0, 0, 0, 1), _200(0, 0, 0, 1), _210(0, 0, 0),
+      _21C(0, 0, 0), mForceEndPoint(0, 0, 0), _234(0, 0, 0), _240(0, 0, 0) {
     _254 = 0;
     _24C = 1;
     _250 = 0.0f;
@@ -47,7 +45,7 @@ TripodBossLeg::TripodBossLeg(const char *pName) : LiveActor(pName), mBoss(nullpt
     mAnkleLocalXZMtx.identity();
 }
 
-void TripodBossLeg::init(const JMapInfoIter &rIter) {
+void TripodBossLeg::init(const JMapInfoIter& rIter) {
     initNerve(&NrvTripodBossLeg::TripodBossLegNrvHold::sInstance);
     MR::invalidateClipping(this);
     initHitSensor(1);
@@ -60,7 +58,7 @@ void TripodBossLeg::init(const JMapInfoIter &rIter) {
     makeActorAppeared();
 }
 
-void TripodBossLeg::initShadow(const char *pName) {
+void TripodBossLeg::initShadow(const char* pName) {
     MR::initShadowVolumeFlatModel(this, pName, _1C0);
     MR::setShadowDropLength(this, nullptr, 2000.0f);
 }
@@ -83,7 +81,7 @@ void TripodBossLeg::control() {
     _260->process();
 }
 
-void TripodBossLeg::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
+void TripodBossLeg::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (pReceiver->receiveMessage(0xA9, pSender)) {
         _254 = 1;
     }
@@ -93,15 +91,15 @@ void TripodBossLeg::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
     }
 }
 
-void TripodBossLeg::setBody(TripodBoss *pBoss) {
+void TripodBossLeg::setBody(TripodBoss* pBoss) {
     mBoss = pBoss;
 }
 
-void TripodBossLeg::setMovableArea(TripodBossMovableArea *pArea) {
+void TripodBossLeg::setMovableArea(TripodBossMovableArea* pArea) {
     mMoveArea = pArea;
 }
 
-void TripodBossLeg::setIKParam(f32 rootLength, f32 middleLength, const TVec3f &a3, const TVec3f &a4, const TVec3f &a5) {
+void TripodBossLeg::setIKParam(f32 rootLength, f32 middleLength, const TVec3f& a3, const TVec3f& a4, const TVec3f& a5) {
     mJoint->setRootBoneLength(rootLength);
     mJoint->setMiddleBoneLength(middleLength);
     mJoint->setFirstPose(a4, a5);
@@ -124,7 +122,7 @@ void TripodBossLeg::setIKParam(f32 rootLength, f32 middleLength, const TVec3f &a
     _A0.setTrans(_210);
 }
 
-void TripodBossLeg::setStepTarget(TripodBossStepPoint *pPoint) {
+void TripodBossLeg::setStepTarget(TripodBossStepPoint* pPoint) {
     _94 = pPoint;
     _98 = pPoint;
     mForceEndPoint = pPoint->mStepPosition;
@@ -135,20 +133,18 @@ void TripodBossLeg::setWait() {
     setNerve(&NrvTripodBossLeg::TripodBossLegNrvHold::sInstance);
 }
 
-void TripodBossLeg::setForceEndPoint(const TVec3f &rPoint) {
-    mForceEndPoint.set<f32>(rPoint);
+void TripodBossLeg::setForceEndPoint(const TVec3f& rPoint) {
+    mForceEndPoint.set< f32 >(rPoint);
 }
 
 void TripodBossLeg::setDemoEffectTiming(bool timg) {
     if (timg) {
         if (mDemoTiming == 0) {
             mDemoTiming = 1;
-        }
-        else {
+        } else {
             mDemoTiming = 2;
         }
-    }
-    else {
+    } else {
         mDemoTiming = 0;
     }
 }
@@ -181,7 +177,7 @@ const TPos3f& TripodBossLeg::getAnkleLocalXZMatrix() const {
     return mAnkleLocalXZMtx;
 }
 
-void TripodBossLeg::requestStepTarget(TripodBossStepPoint *pPoint) {
+void TripodBossLeg::requestStepTarget(TripodBossStepPoint* pPoint) {
     bool v4 = false;
     if (isNerve(&NrvTripodBossLeg::TripodBossLegNrvDamage::sInstance) || isNerve(&NrvTripodBossLeg::TripodBossLegNrvBreak::sInstance)) {
         v4 = true;
@@ -192,8 +188,7 @@ void TripodBossLeg::requestStepTarget(TripodBossStepPoint *pPoint) {
         _98 = pPoint;
         if (isNerve(&NrvTripodBossLeg::TripodBossLegNrvHold::sInstance)) {
             setNerve(&NrvTripodBossLeg::TripodBossLegNrvUp::sInstance);
-        }
-        else {
+        } else {
             setNerve(&NrvTripodBossLeg::TripodBossLegNrvMoveToLandingPos::sInstance);
         }
     }
@@ -215,7 +210,7 @@ void TripodBossLeg::requestStartDemo() {
 }
 
 void TripodBossLeg::requestEndDemo() {
-    _24C= 0;
+    _24C = 0;
     setNerve(&NrvTripodBossLeg::TripodBossLegNrvHold::sInstance);
 }
 
@@ -235,7 +230,8 @@ bool TripodBossLeg::isDamage() const {
 
 bool TripodBossLeg::isStop() const {
     bool ret = false;
-    if (isNerve(&NrvTripodBossLeg::TripodBossLegNrvHold::sInstance) || isNerve(&NrvTripodBossLeg::TripodBossLegNrvDemo::sInstance) || isNerve(&NrvTripodBossLeg::TripodBossLegNrvDamage::sInstance) || isNerve(&NrvTripodBossLeg::TripodBossLegNrvBreak::sInstance)) {
+    if (isNerve(&NrvTripodBossLeg::TripodBossLegNrvHold::sInstance) || isNerve(&NrvTripodBossLeg::TripodBossLegNrvDemo::sInstance) ||
+        isNerve(&NrvTripodBossLeg::TripodBossLegNrvDamage::sInstance) || isNerve(&NrvTripodBossLeg::TripodBossLegNrvBreak::sInstance)) {
         ret = true;
     }
     return ret;
@@ -267,7 +263,8 @@ bool TripodBossLeg::canCancelStep() const {
 
 bool TripodBossLeg::canWeighting() const {
     bool ret = false;
-    if (isNerve(&NrvTripodBossLeg::TripodBossLegNrvHold::sInstance) || isNerve(&NrvTripodBossLeg::TripodBossLegNrvLanding::sInstance) || isNerve(&NrvTripodBossLeg::TripodBossLegNrvLeaveOut::sInstance) && MR::isLessStep(this, 60)) {
+    if (isNerve(&NrvTripodBossLeg::TripodBossLegNrvHold::sInstance) || isNerve(&NrvTripodBossLeg::TripodBossLegNrvLanding::sInstance) ||
+        isNerve(&NrvTripodBossLeg::TripodBossLegNrvLeaveOut::sInstance) && MR::isLessStep(this, 60)) {
         ret = true;
     }
     return ret;
@@ -321,12 +318,10 @@ void TripodBossLeg::exeLeaveOut() {
     if (MR::isLessStep(this, 60)) {
         _234.zero();
         updatePose();
-    }
-    else if (calcLegHeight(_98) < 1000.0f) {
+    } else if (calcLegHeight(_98) < 1000.0f) {
         addAccelUpLeg(_98, 0.80000001f);
         updateAnkleUp(calcLegHeight(_98));
-    }
-    else {
+    } else {
         addToTargetPower(_240, 1.0f);
         addIKLimitPower();
         mForceEndPoint += _234;
@@ -365,7 +360,7 @@ void TripodBossLeg::exeMoveToLandingPos() {
     updatePose();
     updateAnkleSlerpToBasePose();
 
-    if (JMathInlineVEC::PSVECSquareDistance(&mForceEndPoint, &_240) < 90000.0f) {
+    if (mForceEndPoint.squared(_240) < 90000.0f) {
         setNerve(&NrvTripodBossLeg::TripodBossLegNrvStampSign::sInstance);
     }
 }
@@ -444,12 +439,10 @@ void TripodBossLeg::exeLanding() {
         f32 dist = PSVECDistance(&mForceEndPoint, MR::getPlayerPos());
         if (dist < 2000.0f) {
             MR::shakeCameraStrong();
-        }
-        else {
+        } else {
             if (dist < 3500.0f) {
                 MR::shakeCameraNormal();
-            }
-            else {
+            } else {
                 MR::shakeCameraWeak();
             }
         }
@@ -459,15 +452,13 @@ void TripodBossLeg::exeLanding() {
         _234.zero();
         if (_254) {
             setNerve(&NrvTripodBossLeg::TripodBossLegNrvDamageVibration::sInstance);
-        }
-        else {
+        } else {
             setNerve(&NrvTripodBossLeg::TripodBossLegNrvHold::sInstance);
         }
 
         updateIKPose();
         updateAnkleLanding();
-    }
-    else {
+    } else {
         mJoint->getEndJointPosition(&mForceEndPoint);
         updateAnkleLanding();
     }
@@ -515,7 +506,7 @@ void TripodBossLeg::exeHold() {
     updateIKPose();
 }
 
-void TripodBossLeg::addToTargetPower(const TVec3f &a1, f32 a2) {
+void TripodBossLeg::addToTargetPower(const TVec3f& a1, f32 a2) {
     TVec3f v11(a1);
     v11 -= mForceEndPoint;
     f32 v7;
@@ -552,8 +543,7 @@ void TripodBossLeg::addIKLimitPower() {
         v12 = -v12;
         v5 = 0.5f;
         v6 = 0.0f;
-    }
-    else {
+    } else {
         v5 = 0.89999998f;
         v6 = 5.0f;
     }
@@ -568,7 +558,7 @@ void TripodBossLeg::addIKLimitPower() {
     }
 }
 
-void TripodBossLeg::addAccelUpLeg(TripodBossStepPoint *pPoint, f32 a3) {
+void TripodBossLeg::addAccelUpLeg(TripodBossStepPoint* pPoint, f32 a3) {
     TVec3f v8(pPoint->mStepNormal);
     TVec3f v7(v8);
     v7 *= a3;
@@ -581,10 +571,10 @@ void TripodBossLeg::addAccelUpLeg(TripodBossStepPoint *pPoint, f32 a3) {
     updatePose();
 }
 
-f32 TripodBossLeg::calcLegHeight(TripodBossStepPoint *pPoint) const {
-   TVec3f v4(mForceEndPoint);
-   v4 -= pPoint->mStepPosition;
-   return v4.dot(pPoint->mStepNormal); 
+f32 TripodBossLeg::calcLegHeight(TripodBossStepPoint* pPoint) const {
+    TVec3f v4(mForceEndPoint);
+    v4 -= pPoint->mStepPosition;
+    return v4.dot(pPoint->mStepNormal);
 }
 
 void TripodBossLeg::updatePose() {
@@ -593,25 +583,24 @@ void TripodBossLeg::updatePose() {
         updateIKPose();
     }
 
-    mJoint->getEndJointPosition(&mForceEndPoint);    
+    mJoint->getEndJointPosition(&mForceEndPoint);
 }
 
 void TripodBossLeg::updateIKPose() {
     TPos3f bodyMtx;
     mBoss->getBodyMatrix(&bodyMtx);
     switch (_24C) {
-        case 0:
-        {
-            TVec3f v4;
-            bodyMtx.mult(_210, v4);
-            TVec3f legUp;
-            mBoss->calcLegUpVector(&legUp, mForceEndPoint);
-            mJoint->updateByUpVector(v4, mForceEndPoint, legUp);
-            break;
-        }
-        case 1:
-            mJoint->updateByLocalRootAndWorldTarget(bodyMtx, _210, mForceEndPoint);
-            break;
+    case 0: {
+        TVec3f v4;
+        bodyMtx.mult(_210, v4);
+        TVec3f legUp;
+        mBoss->calcLegUpVector(&legUp, mForceEndPoint);
+        mJoint->updateByUpVector(v4, mForceEndPoint, legUp);
+        break;
+    }
+    case 1:
+        mJoint->updateByLocalRootAndWorldTarget(bodyMtx, _210, mForceEndPoint);
+        break;
     }
 
     separateLocalAxisRootJoint(bodyMtx);
@@ -639,7 +628,7 @@ bool TripodBossLeg::bindEndPosition() {
     return false;
 }
 
-void TripodBossLeg::separateLocalAxisRootJoint(const TPos3f &rPos) {
+void TripodBossLeg::separateLocalAxisRootJoint(const TPos3f& rPos) {
     TPos3f v5;
     v5.set(rPos);
     v5.setTrans(0.0f, 0.0f, 0.0f);
@@ -662,13 +651,13 @@ void TripodBossLeg::updateAnkleUp(f32 angle) {
     TQuat4f quat;
     TVec3f landingNormal;
     TVec3f landingFront;
-    
+
     mMoveArea->calcLandingNormal(&landingNormal, mForceEndPoint);
     mMoveArea->calcLandingFront(&landingFront, mForceEndPoint);
-    
+
     v9.identity();
     MR::makeMtxSideUp(&v9, -landingNormal, landingFront);
-    
+
     v9.getQuat(quat);
     f32 v4 = MR::clamp((angle / 1000.0f), 0.0f, 1.0f);
     quat.slerp(_1F0, (1.0f - (v4 * (v4 * v4))));
@@ -709,14 +698,14 @@ void TripodBossLeg::updateAnkleShadowMatrix() {
     TVec3f v7, v8, v9;
     TVec3f landingPosition;
     TVec3f landingNormal;
-    
+
     mMoveArea->calcNearLandingPosition(&landingPosition, mForceEndPoint);
     mMoveArea->calcLandingNormal(&landingNormal, landingPosition);
 
     MR::setShadowDropDirection(this, nullptr, -landingNormal);
-    v9.set<f32>(mEndJointMtx.get(0, 0), mEndJointMtx.get(1, 0), mEndJointMtx.get(2, 0));
-    v8.set<f32>(mEndJointMtx.get(0, 1), mEndJointMtx.get(1, 1), mEndJointMtx.get(2, 1));
-    v7.set<f32>(mEndJointMtx.get(0, 2), mEndJointMtx.get(1, 2), mEndJointMtx.get(2, 2));
+    v9.set< f32 >(mEndJointMtx.get(0, 0), mEndJointMtx.get(1, 0), mEndJointMtx.get(2, 0));
+    v8.set< f32 >(mEndJointMtx.get(0, 1), mEndJointMtx.get(1, 1), mEndJointMtx.get(2, 1));
+    v7.set< f32 >(mEndJointMtx.get(0, 2), mEndJointMtx.get(1, 2), mEndJointMtx.get(2, 2));
     _1C0.setVec(-v7, -v9, v8);
 
     TVec3f v2(landingNormal);
@@ -727,7 +716,7 @@ void TripodBossLeg::updateAnkleShadowMatrix() {
 }
 
 namespace MR {
-    void separateMatrixRotateYZX(TPos3f *a1, TPos3f *a2, const TPos3f &a3, const TPos3f &a4) {
+    void separateMatrixRotateYZX(TPos3f* a1, TPos3f* a2, const TPos3f& a3, const TPos3f& a4) {
         TPos3f v17;
         v17.invert(a3);
         v17.concat(v17, a4);
@@ -735,32 +724,29 @@ namespace MR {
         f32 z = v17.mMtx[2][0];
         f32 y = v17.mMtx[1][0];
         f32 x = v17.mMtx[0][0];
-        v16.set<f32>(x, y, z);
+        v16.set< f32 >(x, y, z);
         f32 v10 = MR::sqrt((v16.x * v16.x) + (v16.z * v16.z));
 
         if (MR::isNearZero(v10, 0.000001f)) {
             if (v16.y >= 0.0f) {
                 a1->setXDir(0.0f, 1.0f, 0.0f);
                 a1->setYDir(-1.0f, 0.0f, 0.0f);
-                
-            }
-            else {
+
+            } else {
                 a1->setXDir(0.0f, -1.0f, 0.0f);
                 a1->setYDir(1.0f, 0.0f, 0.0f);
             }
 
-            
             a1->setZDir(0.0f, 0.0f, 1.0f);
             a1->concat(a3, *a1);
             a2->set(*a1);
-        }
-        else {
+        } else {
             f32 v11 = v16.length();
             f32 v12 = (v10 / v11);
             f32 v14 = (v16.y / v11);
             f32 v15 = (v16.x / v10);
             f32 v13 = (v16.z / v10);
-        
+
             a1->setXDir(v15, 0.0f, v13);
             a1->setYDir(0.0f, 1.0f, 0.0f);
             a1->setZDir(-v13, 0.0f, v15);
@@ -773,4 +759,4 @@ namespace MR {
             a2->concat(*a1, *a2);
         }
     }
-};
+};  // namespace MR

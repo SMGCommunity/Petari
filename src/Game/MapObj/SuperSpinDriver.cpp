@@ -23,8 +23,7 @@ bool SuperSpinDriver::tryForceCancel() {
 }
 
 bool SuperSpinDriver::tryShootStart() {
-    bool isSwingOrPointed = MR::isPadSwing(WPAD_CHAN0)
-        || MR::isPlayerPointedBy2POnTriggerButton();
+    bool isSwingOrPointed = MR::isPadSwing(WPAD_CHAN0) || MR::isPlayerPointedBy2POnTriggerButton();
 
     if (isSwingOrPointed) {
         MR::deleteEffect(this, "SuperSpinDriverLight");
@@ -76,9 +75,9 @@ void SuperSpinDriver::requestAppear() {
     MR::invalidateClipping(this);
 
     if (mSpinDriverCamera->isUseAppearCamera(this)) {
-        MR::requestStartDemo(this, "出現", &NrvSuperSpinDriver::SuperSpinDriverNrvAppear::sInstance, &NrvSuperSpinDriver::SuperSpinDriverNrvTryDemo::sInstance);
-    }
-    else {
+        MR::requestStartDemo(this, "出現", &NrvSuperSpinDriver::SuperSpinDriverNrvAppear::sInstance,
+                             &NrvSuperSpinDriver::SuperSpinDriverNrvTryDemo::sInstance);
+    } else {
         setNerve(&NrvSuperSpinDriver::SuperSpinDriverNrvAppear::sInstance);
     }
 }
@@ -87,9 +86,9 @@ void SuperSpinDriver::requestEmptyAppear() {
     MR::invalidateClipping(this);
 
     if (mSpinDriverCamera->isUseAppearCamera(this)) {
-        MR::requestStartDemo(this, "出現", &NrvSuperSpinDriver::SuperSpinDriverNrvEmptyAppear::sInstance, &NrvSuperSpinDriver::SuperSpinDriverNrvTryDemo::sInstance);
-    }
-    else {
+        MR::requestStartDemo(this, "出現", &NrvSuperSpinDriver::SuperSpinDriverNrvEmptyAppear::sInstance,
+                             &NrvSuperSpinDriver::SuperSpinDriverNrvTryDemo::sInstance);
+    } else {
         setNerve(&NrvSuperSpinDriver::SuperSpinDriverNrvEmptyAppear::sInstance);
     }
 }
@@ -97,8 +96,7 @@ void SuperSpinDriver::requestEmptyAppear() {
 void SuperSpinDriver::requestActive() {
     if (isNerve(&NrvSuperSpinDriver::SuperSpinDriverNrvNonActive::sInstance)) {
         requestAppear();
-    }
-    else if (isNerve(&NrvSuperSpinDriver::SuperSpinDriverNrvEmptyNonActive::sInstance)) {
+    } else if (isNerve(&NrvSuperSpinDriver::SuperSpinDriverNrvEmptyNonActive::sInstance)) {
         requestEmptyAppear();
     }
 }
@@ -218,9 +216,8 @@ void SuperSpinDriver::exeWait() {
             MR::emitEffect(this, "SuperSpinDriverLight");
             MR::startCSSound("CS_SPIN_BIND", nullptr, 0);
         }
-        
-    }
-    else {
+
+    } else {
         MR::deleteEffect(this, "SuperSpinDriverLight");
     }
 
@@ -230,8 +227,7 @@ void SuperSpinDriver::exeWait() {
 void SuperSpinDriver::exeCapture() {
     if (tryForceCancel()) {
         MR::deleteEffect(this, "SuperSpinDriverLight");
-    }
-    else {
+    } else {
         if (MR::isFirstStep(this)) {
             MR::emitEffect(this, "SuperSpinDriverLight");
             MR::startBckPlayer("SpinDriverWait", "SuperSpinDriverCapture");
@@ -368,7 +364,6 @@ bool SuperSpinDriver::isRightToUse() const {
 void SuperSpinDriver::exeCoolDown() {
     // BUG, is supposed to be a conditional to call tryEndCoolDown
     if (MR::isFirstStep(this)) {
-        
     }
 
     if (!tryEndCoolDown()) {
@@ -382,18 +377,12 @@ void SuperSpinDriver::exeShootOnEnd() {
 }
 
 namespace MR {
-    NameObj* createSuperSpinDriverYellow(const char *pName) {
-        return new SuperSpinDriver(pName, 0);
-    }
+    NameObj* createSuperSpinDriverYellow(const char* pName) { return new SuperSpinDriver(pName, 0); }
 
-    NameObj* createSuperSpinDriverGreen(const char *pName) {
-        return new SuperSpinDriver(pName, 1);
-    }
+    NameObj* createSuperSpinDriverGreen(const char* pName) { return new SuperSpinDriver(pName, 1); }
 
-    NameObj* createSuperSpinDriverPink(const char *pName) {
-        return new SuperSpinDriver(pName, 2);
-    }
-};
+    NameObj* createSuperSpinDriverPink(const char* pName) { return new SuperSpinDriver(pName, 2); }
+};  // namespace MR
 
 namespace NrvSuperSpinDriver {
     INIT_NERVE(SuperSpinDriverNrvTryDemo);
@@ -407,4 +396,4 @@ namespace NrvSuperSpinDriver {
     INIT_NERVE(SuperSpinDriverNrvShootStart);
     INIT_NERVE(SuperSpinDriverNrvShoot);
     INIT_NERVE(SuperSpinDriverNrvCoolDown);
-};
+};  // namespace NrvSuperSpinDriver

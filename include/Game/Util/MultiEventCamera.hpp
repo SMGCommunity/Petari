@@ -8,11 +8,11 @@ public:
     MultiEventCamera();
 
     bool isEnd() const;
-    void setUp(const char *, const ActorCameraInfo *, s32);
+    void setUp(const char*, const ActorCameraInfo*, s32);
     void setEndCameraTypeSoon();
     void setEndCameraTypeAtLanding();
     void start(s32);
-    void start(const CameraTargetArg &, s32);
+    void start(const CameraTargetArg&, s32);
     void update();
     void nextForce();
     void endForce();
@@ -23,14 +23,14 @@ public:
     void declareEventCamera(s32);
     void startCamera();
     void endCamera();
-    void changeTarget(const CameraTargetArg &);
+    void changeTarget(const CameraTargetArg&);
 
-    const char* mName;              // 0x0
-    s32 mCameraCount;               // 0x4
+    const char* mName;  // 0x0
+    s32 mCameraCount;   // 0x4
     s32 _8;
     u32 _C;
     u32 _10;
-    u32 mCameraType;                // 0x14
-    ActorCameraInfo* mCameraInfo;   // 0x18
-    CameraTargetArg mTarget;        // 0x1C
+    u32 mCameraType;               // 0x14
+    ActorCameraInfo* mCameraInfo;  // 0x18
+    CameraTargetArg mTarget;       // 0x1C
 };

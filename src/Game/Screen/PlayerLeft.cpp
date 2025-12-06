@@ -1,8 +1,8 @@
+#include "Game/Screen/PlayerLeft.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/CountUpPaneRumbler.hpp"
 #include "Game/Screen/CounterLayoutAppearer.hpp"
 #include "Game/Screen/CounterLayoutController.hpp"
-#include "Game/Screen/PlayerLeft.hpp"
 #include "Game/Util/EventUtil.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
@@ -12,15 +12,10 @@ namespace NrvPlayerLeft {
     NEW_NERVE(PlayerLeftNrvAppear, PlayerLeft, Appear);
     NEW_NERVE(PlayerLeftNrvWait, PlayerLeft, Wait);
     NEW_NERVE(PlayerLeftNrvDisappear, PlayerLeft, Disappear);
-};
+};  // namespace NrvPlayerLeft
 
-PlayerLeft::PlayerLeft(const char* pName) :
-    LayoutActor(pName, true),
-    mPlayerLeft(0),
-    mLayoutAppearer(nullptr),
-    mPaneRumbler(nullptr),
-    mIsForceAppear(false)
-{}
+PlayerLeft::PlayerLeft(const char* pName)
+    : LayoutActor(pName, true), mPlayerLeft(0), mLayoutAppearer(nullptr), mPaneRumbler(nullptr), mIsForceAppear(false) {}
 
 void PlayerLeft::init(const JMapInfoIter& rIter) {
     initLayoutManager("PlayerLeft", 3);
@@ -121,8 +116,7 @@ void PlayerLeft::exeWait() {
 
     if (isValidAppearSituation()) {
         setNerve(&NrvPlayerLeft::PlayerLeftNrvWait::sInstance);
-    }
-    else if (!mIsForceAppear && CounterLayoutController::isWaitToDisappearCounter(this)) {
+    } else if (!mIsForceAppear && CounterLayoutController::isWaitToDisappearCounter(this)) {
         setNerve(&NrvPlayerLeft::PlayerLeftNrvDisappear::sInstance);
     }
 }

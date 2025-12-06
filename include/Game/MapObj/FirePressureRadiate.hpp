@@ -6,16 +6,16 @@
 
 class FirePressureRadiate : public LiveActor {
 public:
-    FirePressureRadiate(const char *);
+    FirePressureRadiate(const char*);
 
     virtual ~FirePressureRadiate();
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
     virtual void initAfterPlacement();
     virtual void control();
     virtual void calcAndSetBaseMtx();
-    virtual void updateHitSensor(HitSensor *);
-    virtual void attackSensor(HitSensor *, HitSensor *);
-    virtual bool receiveOtherMsg(u32, HitSensor *, HitSensor *);
+    virtual void updateHitSensor(HitSensor*);
+    virtual void attackSensor(HitSensor*, HitSensor*);
+    virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
 
     void exeRadiateMargin();
     void exeRadiate();
@@ -26,17 +26,17 @@ public:
     void startWait();
     void startRelax();
     void calcRadiateEffectMtx();
-    bool calcJointCannon(TPos3f *, const JointControllerInfo &);
+    bool calcJointCannon(TPos3f*, const JointControllerInfo&);
 
-    JointController* mJointController;      // 0x8C
-    TMtx34f mRadiateMtx;                    // 0x90
-    f32 mCannonRotation;                    // 0x94
-    s32 mWaitTime;                          // 0x98
-    s32 mShootTime;                         // 0x9C
+    JointController* mJointController;  // 0x8C
+    TMtx34f mRadiateMtx;                // 0x90
+    f32 mCannonRotation;                // 0x94
+    s32 mWaitTime;                      // 0x98
+    s32 mShootTime;                     // 0x9C
     s32 _CC;
     f32 _D0;
     f32 _D4;
-    MsgSharedGroup* mGroup;                 // 0xD8
+    MsgSharedGroup* mGroup;  // 0xD8
     bool _DC;
 };
 
@@ -47,4 +47,4 @@ namespace NrvFirePressureRadiate {
     NERVE_DECL(FirePressureRadiateNrvPrepareToRadiate, FirePressureRadiate, FirePressureRadiate::exePrepareToRadiate);
     NERVE_DECL(FirePressureRadiateNrvRadiate, FirePressureRadiate, FirePressureRadiate::exeRadiate);
     NERVE_DECL(FirePressureRadiateNrvRadiateMargin, FirePressureRadiate, FirePressureRadiate::exeRadiateMargin);
-};
+};  // namespace NrvFirePressureRadiate

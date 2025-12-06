@@ -1,18 +1,18 @@
 #include "Game/MapObj/SubmarineVolcanoBigColumn.hpp"
-#include "Game/MapObj/AirBubbleHolder.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
+#include "Game/MapObj/AirBubbleHolder.hpp"
 #include <cstdio>
 
 namespace {
     static f32 sShakeDistance = 800.0f;
 };
 
-SubmarineVolcanoBigColumn::SubmarineVolcanoBigColumn(const char *pName) : LiveActor(pName) {
+SubmarineVolcanoBigColumn::SubmarineVolcanoBigColumn(const char* pName) : LiveActor(pName) {
     mBreakModel = nullptr;
     mIsSmallColumn = false;
 }
 
-void SubmarineVolcanoBigColumn::init(const JMapInfoIter &rIter) {
+void SubmarineVolcanoBigColumn::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     const char* objName;
     MR::getObjectName(&objName, rIter);
@@ -74,8 +74,7 @@ void SubmarineVolcanoBigColumn::exeBreak() {
 
         if (mIsSmallColumn) {
             MR::startSound(this, "SE_OJ_SMN_VOLC_COL_S_BREAK", -1, -1);
-        }
-        else {
+        } else {
             MR::startSound(this, "SE_OJ_SMN_VOLC_COL_L_BREAK", -1, -1);
         }
     }
@@ -90,7 +89,7 @@ void SubmarineVolcanoBigColumn::pauseOff() {
     MR::requestMovementOn(mBreakModel);
 }
 
-bool SubmarineVolcanoBigColumn::receiveMsgEnemyAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool SubmarineVolcanoBigColumn::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (isNerve(&NrvSubmarineVolcanoBigColumn::SubmarineVolcanoBigColumnNrvWait::sInstance)) {
         setNerve(&NrvSubmarineVolcanoBigColumn::SubmarineVolcanoBigColumnNrvBreak::sInstance);
         return true;
@@ -99,7 +98,7 @@ bool SubmarineVolcanoBigColumn::receiveMsgEnemyAttack(u32 msg, HitSensor *pSende
     return false;
 }
 
-void SubmarineVolcanoBigColumn::initBreakModel(const char *pModelName) {
+void SubmarineVolcanoBigColumn::initBreakModel(const char* pModelName) {
     char buf[256];
     snprintf(buf, sizeof(buf), "%sBreak", pModelName);
     mBreakModel = MR::createModelObjMapObj("海底火山石柱壊れモデル", buf, getBaseMtx());
@@ -107,11 +106,9 @@ void SubmarineVolcanoBigColumn::initBreakModel(const char *pModelName) {
     mBreakModel->makeActorDead();
 }
 
-SubmarineVolcanoBigColumn::~SubmarineVolcanoBigColumn() {
-
-}
+SubmarineVolcanoBigColumn::~SubmarineVolcanoBigColumn() {}
 
 namespace NrvSubmarineVolcanoBigColumn {
     INIT_NERVE(SubmarineVolcanoBigColumnNrvWait);
     INIT_NERVE(SubmarineVolcanoBigColumnNrvBreak);
-};
+};  // namespace NrvSubmarineVolcanoBigColumn

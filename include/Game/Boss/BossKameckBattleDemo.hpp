@@ -11,21 +11,21 @@ public:
     BossKameckDemoPosition();
 
     virtual ~BossKameckDemoPosition();
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
 
-    ActorCameraInfo* mCameraInfo;           // 0x8C
+    ActorCameraInfo* mCameraInfo;  // 0x8C
 };
 
 class BossKameckBattleDemo : public BossKameckAction {
 public:
-    BossKameckBattleDemo(BossKameck *, const JMapInfoIter &);
+    BossKameckBattleDemo(BossKameck*, const JMapInfoIter&);
 
     virtual ~BossKameckBattleDemo();
     virtual void init();
     virtual void appear();
     virtual void kill();
 
-    void startTryDemo(const char *, const Nerve *);
+    void startTryDemo(const char*, const Nerve*);
     void exeTryStartDemo();
     void startDemoAppearVs1();
     void startDemoAppearVs2();
@@ -43,7 +43,7 @@ public:
     void exeDownVs2();
     void updateCastPose();
 
-    BossKameckDemoPosition* mDemoPos;           // 0x10
-    const Nerve* mDemoNerve;                    // 0x14
-    const char* mCurDemoName;                   // 0x18
+    BossKameckDemoPosition* mDemoPos;  // 0x10
+    const Nerve* mDemoNerve;           // 0x14
+    const char* mCurDemoName;          // 0x18
 };

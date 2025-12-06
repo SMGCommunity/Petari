@@ -16,26 +16,25 @@ void ItemGenerator::setTypeNone() {
 
 void ItemGenerator::setTypeCoin(s32 arg0) {
     mNumType = arg0;
-    mType = TYPE_COIN; 
+    mType = TYPE_COIN;
 }
 
 void ItemGenerator::setTypeStarPeace(s32 arg0) {
     mNumType = arg0;
-    mType = TYPE_STARPIECE; 
+    mType = TYPE_STARPIECE;
 }
 
 void ItemGenerator::generate(const LiveActor* pActor) {
     if (mNumType > 0) {
         switch (mType) {
-            case 1:
+        case 1:
             MR::appearCoinPopToDirection(pActor, pActor->mPosition, -pActor->mGravity, mNumType);
             break;
-            case 2:
-            MR::appearStarPieceToDirection(pActor, pActor->mPosition,  -pActor->mGravity, mNumType, 10.0f, 40.0f, false);
+        case 2:
+            MR::appearStarPieceToDirection(pActor, pActor->mPosition, -pActor->mGravity, mNumType, 10.0f, 40.0f, false);
             if (ItemGenerator::isUseFarSE()) {
                 MR::startSound(pActor, "SE_OJ_STAR_PIECE_BURST_F", -1, -1);
-            }
-            else {
+            } else {
                 MR::startSound(pActor, "SE_OJ_STAR_PIECE_BURST", -1, -1);
             }
             break;
@@ -43,7 +42,7 @@ void ItemGenerator::generate(const LiveActor* pActor) {
     }
 }
 
-//Gets Inlined :(
+// Gets Inlined :(
 bool ItemGenerator::isUseFarSE() const {
     return MR::isEqualStageName("KoopaBattleVs2Galaxy");
 }

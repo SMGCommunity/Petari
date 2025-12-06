@@ -1,6 +1,6 @@
+#include "Game/Screen/YesNoController.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/ButtonPaneController.hpp"
-#include "Game/Screen/YesNoController.hpp"
 #include "Game/Util/EffectUtil.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/NerveUtil.hpp"
@@ -10,7 +10,7 @@ namespace {
     static const char* sDefaultCursorSE = "SE_SY_TALK_FOCUS_ITEM";
     static const char* sDefaultYesSE = "SE_SY_TALK_SELECT_YES";
     static const char* sDefaultNoSE = "SE_SY_TALK_SELECT_NO";
-};
+};  // namespace
 
 namespace NrvYesNoController {
     NEW_NERVE(YesNoControllerNrvSelecting, YesNoController, Selecting);
@@ -18,18 +18,11 @@ namespace NrvYesNoController {
     NEW_NERVE(YesNoControllerNrvDisappear, YesNoController, Disappear);
     NEW_NERVE(YesNoControllerNrvSelected, YesNoController, Selected);
     NEW_NERVE(YesNoControllerNrvNotSelected, YesNoController, NotSelected);
-};
+};  // namespace NrvYesNoController
 
-YesNoController::YesNoController(LayoutActor* pHost) :
-    NerveExecutor("はい／いいえ選択制御"),
-    mHost(pHost),
-    _C(false),
-    mButtonYesPaneCtrl(nullptr),
-    mButtonNoPaneCtrl(nullptr),
-    mCursorSE(nullptr),
-    mYesSE(nullptr),
-    mNoSE(nullptr)
-{
+YesNoController::YesNoController(LayoutActor* pHost)
+    : NerveExecutor("はい／いいえ選択制御"), mHost(pHost), _C(false), mButtonYesPaneCtrl(nullptr), mButtonNoPaneCtrl(nullptr), mCursorSE(nullptr),
+      mYesSE(nullptr), mNoSE(nullptr) {
     mButtonYesPaneCtrl = new ButtonPaneController(mHost, "Right", "BoxRight", 0, true);
     mButtonYesPaneCtrl->_22 = false;
 
@@ -113,8 +106,7 @@ void YesNoController::exeSelecting() {
     if (mButtonYesPaneCtrl->isPointingTrigger()) {
         if (mCursorSE != nullptr) {
             MR::startSystemSE(mCursorSE, -1, -1);
-        }
-        else {
+        } else {
             MR::startSystemSE(sDefaultCursorSE, -1, -1);
         }
 
@@ -125,8 +117,7 @@ void YesNoController::exeSelecting() {
     if (mButtonNoPaneCtrl->isPointingTrigger()) {
         if (mCursorSE != nullptr) {
             MR::startSystemSE(mCursorSE, -1, -1);
-        }
-        else {
+        } else {
             MR::startSystemSE(sDefaultCursorSE, -1, -1);
         }
 
@@ -159,24 +150,19 @@ void YesNoController::exeDecided() {
         if (isSelectedYes) {
             if (mYesSE != nullptr) {
                 MR::startSystemSE(mYesSE, -1, -1);
-            }
-            else {
+            } else {
                 MR::startSystemSE(sDefaultYesSE, -1, -1);
             }
-        }
-        else {
+        } else {
             if (mNoSE != nullptr) {
                 MR::startSystemSE(mNoSE, -1, -1);
-            }
-            else {
+            } else {
                 MR::startSystemSE(sDefaultNoSE, -1, -1);
             }
         }
     }
 
-    if ((isSelectedYes && mButtonYesPaneCtrl->isDecidedWait())
-        || (!isSelectedYes && mButtonNoPaneCtrl->isDecidedWait()))
-    {
+    if ((isSelectedYes && mButtonYesPaneCtrl->isDecidedWait()) || (!isSelectedYes && mButtonNoPaneCtrl->isDecidedWait())) {
         setNerve(&NrvYesNoController::YesNoControllerNrvDisappear::sInstance);
     }
 }
@@ -190,8 +176,7 @@ void YesNoController::exeDisappear() {
     if (mButtonYesPaneCtrl->isHidden() && mButtonNoPaneCtrl->isHidden()) {
         if (mButtonYesPaneCtrl->mIsSelected || mButtonNoPaneCtrl->mIsSelected) {
             setNerve(&NrvYesNoController::YesNoControllerNrvSelected::sInstance);
-        }
-        else {
+        } else {
             setNerve(&NrvYesNoController::YesNoControllerNrvNotSelected::sInstance);
         }
     }

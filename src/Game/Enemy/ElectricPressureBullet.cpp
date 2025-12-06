@@ -14,16 +14,9 @@ namespace NrvElectricPressureBullet {
     NEW_NERVE(ElectricPressureBulletNrvFly, ElectricPressureBullet, Fly);
 };
 
-ElectricPressureBullet::ElectricPressureBullet(const char *pName) :
-    LiveActor(pName),
-    _8C(0.0f, 0.0f, 0.0f),
-    _98(nullptr),
-    _9C(0.0f)
-{
-    
-}
+ElectricPressureBullet::ElectricPressureBullet(const char* pName) : LiveActor(pName), _8C(0.0f, 0.0f, 0.0f), _98(nullptr), _9C(0.0f) {}
 
-void ElectricPressureBullet::init(const JMapInfoIter &rIter) {
+void ElectricPressureBullet::init(const JMapInfoIter& rIter) {
     initModelManagerWithAnm("ElectricBullet", nullptr, false);
     MR::connectToSceneEnemy(this);
     initHitSensor(1);
@@ -43,12 +36,12 @@ void ElectricPressureBullet::kill() {
     LiveActor::kill();
 }
 
-void ElectricPressureBullet::shotElectricBullet(LiveActor *actor, const TPos3f &pos, const f32 &value) {
+void ElectricPressureBullet::shotElectricBullet(LiveActor* actor, const TPos3f& pos, const f32& value) {
     _98 = actor;
     _9C = value;
-    _8C.set<f32>(pos.get(0, 2), pos.get(1, 2), pos.get(2, 2));
+    _8C.set< f32 >(pos.get(0, 2), pos.get(1, 2), pos.get(2, 2));
     mVelocity.scale(_9C, _8C);
-    mPosition.set<f32>(pos.get(0, 3), pos.get(1, 3), pos.get(2, 3));
+    mPosition.set< f32 >(pos.get(0, 3), pos.get(1, 3), pos.get(2, 3));
     mRotation.z = 0.0f;
     mRotation.y = 0.0f;
     mRotation.x = 0.0f;
@@ -70,9 +63,9 @@ void ElectricPressureBullet::exeFly() {
     MR::startLevelSound(this, "SE_EM_LV_ELECBUBLLET_FLY", -1, -1, -1);
     if (MR::isGreaterEqualStep(this, 10)) {
         if (MR::isLessStep(this, 150)) {
-            s32 v2 = getNerveStep();   
+            s32 v2 = getNerveStep();
             if (!(v2 % 5)) {
-                TVec3f *v1 = MR::getPlayerCenterPos();
+                TVec3f* v1 = MR::getPlayerCenterPos();
                 TVec3f v3;
                 JMathInlineVEC::PSVECSubtract2(v1, &mPosition, &v3);
                 MR::normalize(&v3);
@@ -80,23 +73,22 @@ void ElectricPressureBullet::exeFly() {
                 mVelocity.scale(_9C, _8C);
             }
         }
-    }     
-    
+    }
+
     if (MR::isBinded(this)) {
         kill();
-    }
-    else if (MR::isStep(this, 360)) {
+    } else if (MR::isStep(this, 360)) {
         kill();
     }
 }
 
 void ElectricPressureBullet::control() {
-    if (MR::isStarPointerPointing2POnTriggerButton(this,"弱", true, false)) {
+    if (MR::isStarPointerPointing2POnTriggerButton(this, "弱", true, false)) {
         kill();
     }
 }
 
-void ElectricPressureBullet::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
+void ElectricPressureBullet::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isSensorPlayer(pReceiver) && MR::sendMsgEnemyAttackElectric(pReceiver, pSender)) {
         kill();
     }

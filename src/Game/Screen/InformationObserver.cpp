@@ -1,6 +1,6 @@
+#include "Game/Screen/InformationObserver.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
-#include "Game/Screen/InformationObserver.hpp"
 #include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/DemoUtil.hpp"
 #include "Game/Util/EventUtil.hpp"
@@ -25,8 +25,8 @@ static InformationObserverAttribute sAttr[] = {
     {"InformationObserverIce", true, "BGM_FIRST_MORPH_A", "BGM_ICE_B"},
     {"InformationObserverFlying", true, "BGM_FIRST_MORPH_A", "BGM_FLYING_B"},
     {"InformationObserverInvincible", true, "BGM_FIRST_MORPH_A", "BGM_MUTEKI_B"},
-    {"InformationObserverLifeUpMario", false, nullptr, nullptr},
-    {"InformationObserverOneUp", false, nullptr, nullptr},
+    {"InformationObserverLifeUpMario", true, nullptr, nullptr},
+    {"InformationObserverOneUp", true, nullptr, nullptr},
     {"InformationObserverSpin", false, nullptr, nullptr},
 };
 
@@ -35,22 +35,15 @@ namespace {
 };
 
 namespace {
-    InformationObserver* getInformationObserver() {
-        return MR::getSceneObj<InformationObserver>(SceneObj_InformationObserver);
-    }
-};
+    InformationObserver* getInformationObserver() { return MR::getSceneObj< InformationObserver >(SceneObj_InformationObserver); }
+};  // namespace
 
 namespace NrvInformationObserver {
     NEW_NERVE(InformationObserverNrvWait, InformationObserver, Wait);
     NEW_NERVE(InformationObserverNrvDisp, InformationObserver, Disp);
-};
+};  // namespace NrvInformationObserver
 
-InformationObserver::InformationObserver() :
-    LiveActor("初出監視"),
-    mType(Type_Bee),
-    _90(false),
-    mDisplayFrame(-1)
-{}
+InformationObserver::InformationObserver() : LiveActor("初出監視"), mType(Type_Bee), _90(false), mDisplayFrame(-1) {}
 
 void InformationObserver::init(const JMapInfoIter& rIter) {
     MR::connectToSceneLayoutMovement(this);
@@ -68,28 +61,21 @@ void InformationObserver::entry(TYPE type, LiveActor* pParam2) {
     if (_90) {
         MR::pauseTimeKeepDemo(_94);
         setNerve(&NrvInformationObserver::InformationObserverNrvDisp::sInstance);
-    }
-    else {
-        MR::requestStartDemoWithoutCinemaFrame(
-            this,
-            "初出表示",
-            &NrvInformationObserver::InformationObserverNrvDisp::sInstance,
-            &NrvInformationObserver::InformationObserverNrvWait::sInstance);
+    } else {
+        MR::requestStartDemoWithoutCinemaFrame(this, "初出表示", &NrvInformationObserver::InformationObserverNrvDisp::sInstance,
+                                               &NrvInformationObserver::InformationObserverNrvWait::sInstance);
     }
 
     makeActorAppeared();
 }
 
-void InformationObserver::exeWait() {
-    
-}
+void InformationObserver::exeWait() {}
 
 void InformationObserver::exeDisp() {
     if (MR::isFirstStep(this)) {
         if (mType == Type_LifeUp && MR::isPlayerLuigi()) {
             MR::appearInformationMessage(MR::getLayoutMessageDirect("InformationObserverLifeUpLuigi"), true);
-        }
-        else {
+        } else {
             MR::appearInformationMessage(MR::getLayoutMessageDirect(sAttr[mType].mMessageId), true);
         }
 
@@ -111,8 +97,7 @@ void InformationObserver::exeDisp() {
 
     if (_90) {
         MR::resumeTimeKeepDemo(_94);
-    }
-    else {
+    } else {
         MR::endDemo(this, "初出表示");
     }
 
@@ -120,8 +105,7 @@ void InformationObserver::exeDisp() {
         if (mType == Type_Flying) {
             MR::stopSubBGM(5);
             MR::startStageBGM(sAttr[mType].mBgmName, false);
-        }
-        else {
+        } else {
             MR::startSubBGM(sAttr[mType].mBgmName, false);
         }
     }
@@ -166,43 +150,23 @@ void InformationObserver::exeDisp() {
 }
 
 namespace InformationObserverFunction {
-    void explainBee() {
-        getInformationObserver()->entry(InformationObserver::Type_Bee, nullptr);
-    }
+    void explainBee() { getInformationObserver()->entry(InformationObserver::Type_Bee, nullptr); }
 
-    void explainTeresa() {
-        getInformationObserver()->entry(InformationObserver::Type_Teresa, nullptr);
-    }
+    void explainTeresa() { getInformationObserver()->entry(InformationObserver::Type_Teresa, nullptr); }
 
-    void explainHopper() {
-        getInformationObserver()->entry(InformationObserver::Type_Hopper, nullptr);
-    }
+    void explainHopper() { getInformationObserver()->entry(InformationObserver::Type_Hopper, nullptr); }
 
-    void explainFire() {
-        getInformationObserver()->entry(InformationObserver::Type_Fire, nullptr);
-    }
+    void explainFire() { getInformationObserver()->entry(InformationObserver::Type_Fire, nullptr); }
 
-    void explainIce() {
-        getInformationObserver()->entry(InformationObserver::Type_Ice, nullptr);
-    }
+    void explainIce() { getInformationObserver()->entry(InformationObserver::Type_Ice, nullptr); }
 
-    void explainFlying() {
-        getInformationObserver()->entry(InformationObserver::Type_Flying, nullptr);
-    }
+    void explainFlying() { getInformationObserver()->entry(InformationObserver::Type_Flying, nullptr); }
 
-    void explainInvincible() {
-        getInformationObserver()->entry(InformationObserver::Type_Invincible, nullptr);
-    }
+    void explainInvincible() { getInformationObserver()->entry(InformationObserver::Type_Invincible, nullptr); }
 
-    void explainLifeUp() {
-        getInformationObserver()->entry(InformationObserver::Type_LifeUp, nullptr);
-    }
+    void explainLifeUp() { getInformationObserver()->entry(InformationObserver::Type_LifeUp, nullptr); }
 
-    void explainOneUp() {
-        getInformationObserver()->entry(InformationObserver::Type_OneUp, nullptr);
-    }
+    void explainOneUp() { getInformationObserver()->entry(InformationObserver::Type_OneUp, nullptr); }
 
-    void explainSpin(LiveActor* pParam1) {
-        getInformationObserver()->entry(InformationObserver::Type_Spin, pParam1);
-    }
-};
+    void explainSpin(LiveActor* pParam1) { getInformationObserver()->entry(InformationObserver::Type_Spin, pParam1); }
+};  // namespace InformationObserverFunction

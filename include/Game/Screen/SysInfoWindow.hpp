@@ -2,7 +2,7 @@
 
 #include "Game/Screen/LayoutActor.hpp"
 
-typedef void (MessageChangeFunc)(LayoutActor*, const char*, const char*);
+typedef void(MessageChangeFunc)(LayoutActor*, const char*, const char*);
 
 class IconAButton;
 class YesNoController;
@@ -12,7 +12,7 @@ struct MessageChangeFuncTableEntry {
 };
 
 class SysInfoWindow : public LayoutActor {
-    public:
+public:
     enum SysInfoWindowType {
         WindowType_Normal,
         WindowType_Mini,
@@ -59,7 +59,7 @@ class SysInfoWindow : public LayoutActor {
     void exeAppear();
     void exeWait();
     void exeDisappear();
-    void setYesNoSelectorSE(const char*,const char*,const char*);
+    void setYesNoSelectorSE(const char*, const char*, const char*);
     void resetYesNoSelectorSE();
     void setTextBoxArgNumber(s32, s32);
     void setTextBoxArgString(const wchar_t*, s32);
@@ -77,4 +77,4 @@ namespace MR {
     SysInfoWindow* createSysInfoWindow();
     SysInfoWindow* createSysInfoWindowExecuteWithChildren();
     SysInfoWindow* createSysInfoWindowMiniExecuteWithChildren();
-};
+};  // namespace MR

@@ -1,7 +1,6 @@
 #include "Game/Animation/XanimeResource.hpp"
 
-void XanimeGroupInfo::init()
-{
+void XanimeGroupInfo::init() {
     _4 = 0.f;
     mParent.animationName = "not-initialized";
     _8 = 0;

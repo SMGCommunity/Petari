@@ -8,7 +8,7 @@ class CamKarikariEffector {
 public:
     CamKarikariEffector();
 
-    void update(CameraMan *);
+    void update(CameraMan*);
 
     u32 _0;
 };

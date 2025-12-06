@@ -6,7 +6,7 @@ namespace nw4r {
     namespace lyt {
         class TexMap;
     };
-};
+};  // namespace nw4r
 
 class IconAButton;
 class NameObjArchiveListCollector;
@@ -37,4 +37,4 @@ private:
 namespace MR {
     LuigiLetter* createLuigiLetterForTalk();
     LuigiLetter* createLuigiLetterForMenu();
-};
+};  // namespace MR

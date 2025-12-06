@@ -1,7 +1,7 @@
 #include "Game/Camera/CameraDPD.hpp"
 #include "Game/Camera/CamTranslatorDPD.hpp"
 
-CameraDPD::CameraDPD(const char *pName) : Camera(pName) {
+CameraDPD::CameraDPD(const char* pName) : Camera(pName) {
     _4C = 0.0f;
     _50 = 0.0f;
     _54 = 0.0f;
@@ -21,10 +21,8 @@ CameraDPD::CameraDPD(const char *pName) : Camera(pName) {
     _60.identity();
 }
 
-CameraDPD::~CameraDPD() {
+CameraDPD::~CameraDPD() {}
 
-}
-
-CamTranslatorBase *CameraDPD::createTranslator() {
+CamTranslatorBase* CameraDPD::createTranslator() {
     return new CamTranslatorDPD(this);
 }

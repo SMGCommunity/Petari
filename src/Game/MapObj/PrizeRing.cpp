@@ -4,18 +4,16 @@ PrizeRing::PrizeRing() : ModelObj("PrizeRing", "PrizeRing", nullptr, -2, -2, -2,
     _90 = 800;
 }
 
-PrizeRing::~PrizeRing() {
-    
-}
+PrizeRing::~PrizeRing() {}
 
-void PrizeRing::init(const JMapInfoIter &rIter) {
+void PrizeRing::init(const JMapInfoIter& rIter) {
     initNerve(&NrvPrizeRing::PrizeRingStart::sInstance);
     initHitSensor(1);
     TVec3f vec;
-    vec.x = 0.0f; 
-    vec.y = 0.0f; 
-    vec.z = 0.0f; 
-    MR::addHitSensorMapObjSimple(this, "body", 4, 300.0f, vec); 
+    vec.x = 0.0f;
+    vec.y = 0.0f;
+    vec.z = 0.0f;
+    MR::addHitSensorMapObjSimple(this, "body", 4, 300.0f, vec);
     makeActorDead();
 }
 
@@ -47,8 +45,7 @@ void PrizeRing::setNervePass() {
 bool PrizeRing::isReadyToPass() const {
     if (MR::isDead(this)) {
         return false;
-    }
-    else {
+    } else {
         return isNerve(&NrvPrizeRing::PrizeRingReadyToPass::sInstance);
     }
 }
@@ -56,8 +53,7 @@ bool PrizeRing::isReadyToPass() const {
 bool PrizeRing::isReadyToKill() const {
     if (MR::isDead(this)) {
         return false;
-    }
-    else {
+    } else {
         return isNerve(&NrvPrizeRing::PrizeRingReadyToKill::sInstance);
     }
 }
@@ -105,7 +101,7 @@ void PrizeRing::exePass() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "End", nullptr);
         MR::startBrk(this, "End");
-        MR::tryRumblePadMiddle(this, 0);        
+        MR::tryRumblePadMiddle(this, 0);
         PrizeRing::playSound();
     }
 
@@ -123,12 +119,12 @@ bool PrizeRing::isPassed() const {
 }
 */
 
-void PrizeRing::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
+void PrizeRing::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isSensorPlayer(pReceiver)) {
         if (!PrizeRing::isPassed()) {
             setNerve(&NrvPrizeRing::PrizeRingReadyToPass::sInstance);
         }
-    } 
+    }
 }
 
 namespace NrvPrizeRing {
@@ -137,33 +133,31 @@ namespace NrvPrizeRing {
     INIT_NERVE(PrizeRingTimeout);
     INIT_NERVE(PrizeRingReadyToPass);
     INIT_NERVE(PrizeRingPass);
-    INIT_NERVE(PrizeRingReadyToKill);    
+    INIT_NERVE(PrizeRingReadyToKill);
 
-	void PrizeRingStart::execute(Spine *pSpine) const {
-		PrizeRing *pActor = (PrizeRing*)pSpine->mExecutor;
-		pActor->exeStart();
-	}
+    void PrizeRingStart::execute(Spine* pSpine) const {
+        PrizeRing* pActor = (PrizeRing*)pSpine->mExecutor;
+        pActor->exeStart();
+    }
 
-	void PrizeRingLoop::execute(Spine *pSpine) const {
-		PrizeRing *pActor = (PrizeRing*)pSpine->mExecutor;
-		pActor->exeLoop();
-	}    
+    void PrizeRingLoop::execute(Spine* pSpine) const {
+        PrizeRing* pActor = (PrizeRing*)pSpine->mExecutor;
+        pActor->exeLoop();
+    }
 
-	void PrizeRingTimeout::execute(Spine *pSpine) const {
-		PrizeRing *pActor = (PrizeRing*)pSpine->mExecutor;
-		pActor->exeTimeout();
-	}                
-	void PrizeRingReadyToPass::execute(Spine *pSpine) const {
-	}
+    void PrizeRingTimeout::execute(Spine* pSpine) const {
+        PrizeRing* pActor = (PrizeRing*)pSpine->mExecutor;
+        pActor->exeTimeout();
+    }
+    void PrizeRingReadyToPass::execute(Spine* pSpine) const {}
 
-	void PrizeRingPass::execute(Spine *pSpine) const {
-		PrizeRing *pActor = (PrizeRing*)pSpine->mExecutor;
-		pActor->exePass();
-	}    
+    void PrizeRingPass::execute(Spine* pSpine) const {
+        PrizeRing* pActor = (PrizeRing*)pSpine->mExecutor;
+        pActor->exePass();
+    }
 
-	void PrizeRingReadyToKill::execute(Spine *pSpine) const {
-		PrizeRing *pActor = (PrizeRing*)pSpine->mExecutor;
-		pActor->exeReadyToKill();
-	}            
-};
-
+    void PrizeRingReadyToKill::execute(Spine* pSpine) const {
+        PrizeRing* pActor = (PrizeRing*)pSpine->mExecutor;
+        pActor->exeReadyToKill();
+    }
+};  // namespace NrvPrizeRing

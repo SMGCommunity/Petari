@@ -1,17 +1,15 @@
+#include "Game/Scene/SceneFunction.hpp"
 #include "Game/Effect/EffectSystem.hpp"
 #include "Game/NameObj/NameObjExecuteHolder.hpp"
 #include "Game/NameObj/NameObjListExecutor.hpp"
 #include "Game/Scene/SceneDataInitializer.hpp"
-#include "Game/Scene/SceneFunction.hpp"
+#include "Game/SingletonHolder.hpp"
 #include "Game/System/GameSystem.hpp"
 #include "Game/System/GameSystemSceneController.hpp"
-#include "Game/SingletonHolder.hpp"
 
 namespace {
-    SceneDataInitializer* getSceneDataInitializer() {
-        return MR::getSceneObj<SceneDataInitializer>(SceneObj_SceneDataInitializer);
-    }
-};
+    SceneDataInitializer* getSceneDataInitializer() { return MR::getSceneObj< SceneDataInitializer >(SceneObj_SceneDataInitializer); }
+};  // namespace
 
 void SceneFunction::startStageFileLoad() {
     MR::createSceneObj(SceneObj_SceneDataInitializer);
@@ -70,56 +68,56 @@ void SceneFunction::initEffectSystem(u32 a1, u32 a2) {
 }
 
 void SceneFunction::allocateDrawBufferActorList() {
-    NameObjListExecutor* pListExecutor = SingletonHolder<GameSystem>::get()->mSceneController->getNameObjListExecutor();
+    NameObjListExecutor* pListExecutor = SingletonHolder< GameSystem >::get()->mSceneController->getNameObjListExecutor();
 
     pListExecutor->allocateDrawBufferActorList();
     MR::initConnectting();
 }
 
 void CategoryList::execute(MR::MovementType type) {
-    NameObjListExecutor* pListExecutor = SingletonHolder<GameSystem>::get()->mSceneController->getNameObjListExecutor();
+    NameObjListExecutor* pListExecutor = SingletonHolder< GameSystem >::get()->mSceneController->getNameObjListExecutor();
 
     pListExecutor->executeMovement(type);
 }
 
 void CategoryList::execute(MR::CalcAnimType type) {
-    NameObjListExecutor* pListExecutor = SingletonHolder<GameSystem>::get()->mSceneController->getNameObjListExecutor();
+    NameObjListExecutor* pListExecutor = SingletonHolder< GameSystem >::get()->mSceneController->getNameObjListExecutor();
 
     pListExecutor->executeCalcAnim(type);
 }
 
 void CategoryList::execute(MR::DrawType type) {
-    NameObjListExecutor* pListExecutor = SingletonHolder<GameSystem>::get()->mSceneController->getNameObjListExecutor();
+    NameObjListExecutor* pListExecutor = SingletonHolder< GameSystem >::get()->mSceneController->getNameObjListExecutor();
 
     pListExecutor->executeDraw(type);
 }
 
 void CategoryList::entryDrawBuffer2D() {
-    NameObjListExecutor* pListExecutor = SingletonHolder<GameSystem>::get()->mSceneController->getNameObjListExecutor();
+    NameObjListExecutor* pListExecutor = SingletonHolder< GameSystem >::get()->mSceneController->getNameObjListExecutor();
 
     pListExecutor->entryDrawBuffer2D();
 }
 
 void CategoryList::entryDrawBuffer3D() {
-    NameObjListExecutor* pListExecutor = SingletonHolder<GameSystem>::get()->mSceneController->getNameObjListExecutor();
+    NameObjListExecutor* pListExecutor = SingletonHolder< GameSystem >::get()->mSceneController->getNameObjListExecutor();
 
     pListExecutor->entryDrawBuffer3D();
 }
 
 void CategoryList::entryDrawBufferMirror() {
-    NameObjListExecutor* pListExecutor = SingletonHolder<GameSystem>::get()->mSceneController->getNameObjListExecutor();
+    NameObjListExecutor* pListExecutor = SingletonHolder< GameSystem >::get()->mSceneController->getNameObjListExecutor();
 
     pListExecutor->entryDrawBufferMirror();
 }
 
 void CategoryList::drawOpa(MR::DrawBufferType type) {
-    NameObjListExecutor* pListExecutor = SingletonHolder<GameSystem>::get()->mSceneController->getNameObjListExecutor();
+    NameObjListExecutor* pListExecutor = SingletonHolder< GameSystem >::get()->mSceneController->getNameObjListExecutor();
 
     pListExecutor->drawOpa(type);
 }
 
 void CategoryList::drawXlu(MR::DrawBufferType type) {
-    NameObjListExecutor* pListExecutor = SingletonHolder<GameSystem>::get()->mSceneController->getNameObjListExecutor();
+    NameObjListExecutor* pListExecutor = SingletonHolder< GameSystem >::get()->mSceneController->getNameObjListExecutor();
 
     pListExecutor->drawXlu(type);
 }
@@ -132,6 +130,4 @@ void CategoryList::requestMovementOff(MR::MovementType type) {
     MR::requestMovementOffWithCategory(type);
 }
 
-void SceneFunction::createHioBasicNode(Scene*) {
-    
-}
+void SceneFunction::createHioBasicNode(Scene*) {}

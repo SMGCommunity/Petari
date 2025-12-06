@@ -1,9 +1,9 @@
+#include "Game/MapObj/MarblePlanet.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
-#include "Game/MapObj/MarblePlanet.hpp"
 #include "JSystem/JMath.hpp"
 
-MarblePlanet::MarblePlanet(const char *pName) : LiveActor(pName) {
+MarblePlanet::MarblePlanet(const char* pName) : LiveActor(pName) {
     mCorePlanetModel = 0;
     mPlanetElectrons = 0;
     mWatermelonCollision = 0;
@@ -11,7 +11,7 @@ MarblePlanet::MarblePlanet(const char *pName) : LiveActor(pName) {
     mRemainingElectrons = 3;
 }
 
-void MarblePlanet::init(const JMapInfoIter &rIter) {
+void MarblePlanet::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     initModelManagerWithAnm("MarblePlanet", 0, false);
     MR::connectToScenePlanet(this);
@@ -38,41 +38,40 @@ void MarblePlanet::exeScaleUpCore() {
         MR::shakeCameraNormal();
         mRemainingElectrons = mRemainingElectrons - 1;
         switch (mRemainingElectrons) {
-            case 0:
-                MR::emitEffect(this, "Break");
-                MR::startSound(this, "SE_OJ_MARBLE_HIT_CORE_3", -1, -1);
-                MR::startSystemSE("SE_SY_MARBLE_HIT_CORE_3", -1, -1);
-                break;
-            case 1:
-                MR::emitEffect(this, "Smoke6f");
-                MR::startSound(this, "SE_OJ_MARBLE_HIT_CORE_2", -1, -1);
-                MR::startSystemSE("SE_SY_MARBLE_HIT_CORE_2", -1, -1);
-                break;
-            case 2:
-            default:
-                MR::emitEffect(this, "Smoke3f");
-                MR::startSound(this, "SE_OJ_MARBLE_HIT_CORE_1", -1, -1);
-                MR::startSystemSE("SE_SY_MARBLE_HIT_CORE_1", -1, -1);
-                break;
+        case 0:
+            MR::emitEffect(this, "Break");
+            MR::startSound(this, "SE_OJ_MARBLE_HIT_CORE_3", -1, -1);
+            MR::startSystemSE("SE_SY_MARBLE_HIT_CORE_3", -1, -1);
+            break;
+        case 1:
+            MR::emitEffect(this, "Smoke6f");
+            MR::startSound(this, "SE_OJ_MARBLE_HIT_CORE_2", -1, -1);
+            MR::startSystemSE("SE_SY_MARBLE_HIT_CORE_2", -1, -1);
+            break;
+        case 2:
+        default:
+            MR::emitEffect(this, "Smoke3f");
+            MR::startSound(this, "SE_OJ_MARBLE_HIT_CORE_1", -1, -1);
+            MR::startSystemSE("SE_SY_MARBLE_HIT_CORE_1", -1, -1);
+            break;
         }
 
         if (mRemainingElectrons <= 0) {
             setNerve(&NrvMarblePlanet::MarblePlanetNrvBreakCore::sInstance);
             return;
-        }
-        else {
+        } else {
             s32 electronCount = mNumElectrons;
             f32 frameMax = MR::getBckFrameMax(mCorePlanetModel);
             f32 frame = ((electronCount - mRemainingElectrons) * frameMax) / electronCount;
             MR::setBckFrameAndStop(mCorePlanetModel, frame);
             MR::setBtkFrameAndStop(mCorePlanetModel, frame);
-        } 
+        }
     }
 
     f32 nerveRate = MR::calcNerveRate(this, 0x1E);
     f32 scale = MR::getScaleWithReactionValueZeroToOne(nerveRate, 0.5f, -0.5f);
-    mCorePlanetModel->mScale.setAll<f32>(MR::getLinerValue(scale, 1.3f, 1.0f, 1.0f));
-    
+    mCorePlanetModel->mScale.setAll< f32 >(MR::getLinerValue(scale, 1.3f, 1.0f, 1.0f));
+
     if (MR::isStep(this, 0x1E)) {
         setNerve(&NrvMarblePlanet::MarblePlanetNrvWait::sInstance);
     }
@@ -122,7 +121,7 @@ void MarblePlanet::kill() {
     LiveActor::kill();
 }
 
-bool MarblePlanet::receiveMsgEnemyAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool MarblePlanet::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (isNerve(&NrvMarblePlanet::MarblePlanetNrvScaleUpCore::sInstance)) {
         return false;
     }
@@ -146,40 +145,41 @@ void MarblePlanet::initCoreAndElectron() {
 
     TVec3f front;
     MR::calcFrontVec(&front, this);
-    
+
     TVec3f* pos;
     int i = 0;
 
     if (mNumElectrons > 0) {
         pos = &mPosition;
         for (; i < mNumElectrons; i++) {
-                if (i != 0) {
-                    TVec3f up;
-                    MR::calcUpVec(&up, this);
-                    MR::rotateVecDegree(&front, up, (360.0f / mNumElectrons));
-                }
-
-                TVec3f position;
-                JMAVECScaleAdd(&front, pos, &position, 1000.0f);
-                TVec3f rotation;
-                rotation.setAll<f32>((360.0f * i) / mNumElectrons);
-                mPlanetElectrons[i] = new MarblePlanetElectron(this, position, rotation, "ビー玉惑星電子");
-                mPlanetElectrons[i]->initWithoutIter();
+            if (i != 0) {
+                TVec3f up;
+                MR::calcUpVec(&up, this);
+                MR::rotateVecDegree(&front, up, (360.0f / mNumElectrons));
             }
+
+            TVec3f position;
+            JMAVECScaleAdd(&front, pos, &position, 1000.0f);
+            TVec3f rotation;
+            rotation.setAll< f32 >((360.0f * i) / mNumElectrons);
+            mPlanetElectrons[i] = new MarblePlanetElectron(this, position, rotation, "ビー玉惑星電子");
+            mPlanetElectrons[i]->initWithoutIter();
+        }
     }
 }
 
-MarblePlanetElectron::MarblePlanetElectron(LiveActor *pPlanet, const TVec3f &rPosition, const TVec3f &rRotation, const char *pName) : LiveActor(pName) {
-    mParentPlanet = static_cast<MarblePlanet*>(pPlanet);
+MarblePlanetElectron::MarblePlanetElectron(LiveActor* pPlanet, const TVec3f& rPosition, const TVec3f& rRotation, const char* pName)
+    : LiveActor(pName) {
+    mParentPlanet = static_cast< MarblePlanet* >(pPlanet);
     mElectronShadow = 0;
     _94.x = 0.0f;
     _94.y = 0.0f;
     _94.z = 1.0f;
-    mPosition.set<f32>(rPosition);
-    mRotation.set<f32>(rRotation);
+    mPosition.set< f32 >(rPosition);
+    mRotation.set< f32 >(rRotation);
 }
 
-void MarblePlanetElectron::init(const JMapInfoIter &rIter) {
+void MarblePlanetElectron::init(const JMapInfoIter& rIter) {
     initModelManagerWithAnm("MarblePlanetElectron", 0, false);
     MR::connectToScenePlanet(this);
     initHitSensor(1);
@@ -234,13 +234,12 @@ void MarblePlanetElectron::control() {
     }
 }
 
-void MarblePlanetElectron::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
+void MarblePlanetElectron::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isSensorEnemy(pReceiver)) {
         if (MR::sendMsgEnemyAttack(pReceiver, pSender)) {
             mElectronShadow->kill();
             kill();
-        }
-        else {
+        } else {
             bool isNear = !MR::isNear(this, pReceiver->mHost->mPosition, 440.0f);
 
             if (!isNear) {
@@ -258,7 +257,7 @@ void MarblePlanetElectron::attackSensor(HitSensor *pSender, HitSensor *pReceiver
     }
 }
 
-bool MarblePlanetElectron::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool MarblePlanetElectron::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (isNerve(&NrvMarblePlanetElectron::MarblePlanetElectronNrvAttack::sInstance)) {
         return false;
     }
@@ -271,7 +270,7 @@ bool MarblePlanetElectron::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, H
     return false;
 }
 
-bool MarblePlanetElectron::receiveMsgPush(HitSensor *pSender, HitSensor *pReceiver) {
+bool MarblePlanetElectron::receiveMsgPush(HitSensor* pSender, HitSensor* pReceiver) {
     if (!MR::isSensorEnemy(pSender)) {
         return false;
     }
@@ -295,12 +294,12 @@ void MarblePlanetElectron::crashElectron(HitSensor *pSensor) {
 }
 */
 
-MarblePlanetElectronShadow::MarblePlanetElectronShadow(LiveActor *pElectronPtr, const TVec3f &rVec, const char *pName) : LiveActor(pName) {
-    mParentElectron = static_cast<MarblePlanetElectron*>(pElectronPtr);
+MarblePlanetElectronShadow::MarblePlanetElectronShadow(LiveActor* pElectronPtr, const TVec3f& rVec, const char* pName) : LiveActor(pName) {
+    mParentElectron = static_cast< MarblePlanetElectron* >(pElectronPtr);
     _90 = &rVec;
 }
 
-void MarblePlanetElectronShadow::init(const JMapInfoIter &rIter) {
+void MarblePlanetElectronShadow::init(const JMapInfoIter& rIter) {
     initModelManagerWithAnm("MarblePlanetElectronShadow", 0, false);
     MR::connectToScenePlanet(this);
     MR::invalidateClipping(this);
@@ -319,51 +318,43 @@ void MarblePlanetElectronShadow::calcAndSetBaseMtx() {
 }
 */
 
-MarblePlanet::~MarblePlanet() {
+MarblePlanet::~MarblePlanet() {}
 
-}
+MarblePlanetElectron::~MarblePlanetElectron() {}
 
-MarblePlanetElectron::~MarblePlanetElectron() {
-
-}
-
-MarblePlanetElectronShadow::~MarblePlanetElectronShadow() {
-
-}
+MarblePlanetElectronShadow::~MarblePlanetElectronShadow() {}
 
 namespace NrvMarblePlanet {
     INIT_NERVE(MarblePlanetNrvWait);
     INIT_NERVE(MarblePlanetNrvScaleUpCore);
     INIT_NERVE(MarblePlanetNrvBreakCore);
-};
+};  // namespace NrvMarblePlanet
 
 namespace NrvMarblePlanetElectron {
     INIT_NERVE(MarblePlanetElectronNrvMove);
     INIT_NERVE(MarblePlanetElectronNrvAttack);
 
-    void MarblePlanetElectronNrvAttack::execute(Spine *pSpine) const {
-        MarblePlanetElectron* electron = reinterpret_cast<MarblePlanetElectron*>(pSpine->mExecutor);
+    void MarblePlanetElectronNrvAttack::execute(Spine* pSpine) const {
+        MarblePlanetElectron* electron = reinterpret_cast< MarblePlanetElectron* >(pSpine->mExecutor);
         electron->exeAttack();
     }
 
-    void MarblePlanetElectronNrvMove::execute(Spine *pSpine) const {
-        MarblePlanetElectron* electron = reinterpret_cast<MarblePlanetElectron*>(pSpine->mExecutor);
+    void MarblePlanetElectronNrvMove::execute(Spine* pSpine) const {
+        MarblePlanetElectron* electron = reinterpret_cast< MarblePlanetElectron* >(pSpine->mExecutor);
         electron->exeMove();
     }
-};
+};  // namespace NrvMarblePlanetElectron
 
 namespace NrvMarblePlanet {
-    void MarblePlanetNrvBreakCore::execute(Spine *pSpine) const {
-        MarblePlanet* marble = reinterpret_cast<MarblePlanet*>(pSpine->mExecutor);
+    void MarblePlanetNrvBreakCore::execute(Spine* pSpine) const {
+        MarblePlanet* marble = reinterpret_cast< MarblePlanet* >(pSpine->mExecutor);
         marble->exeBreakCore();
     }
 
-    void MarblePlanetNrvScaleUpCore::execute(Spine *pSpine) const {
-        MarblePlanet* marble = reinterpret_cast<MarblePlanet*>(pSpine->mExecutor);
+    void MarblePlanetNrvScaleUpCore::execute(Spine* pSpine) const {
+        MarblePlanet* marble = reinterpret_cast< MarblePlanet* >(pSpine->mExecutor);
         marble->exeScaleUpCore();
     }
 
-    void MarblePlanetNrvWait::execute(Spine *pSpine) const {
-
-    }
-};
+    void MarblePlanetNrvWait::execute(Spine* pSpine) const {}
+};  // namespace NrvMarblePlanet

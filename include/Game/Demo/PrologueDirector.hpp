@@ -62,4 +62,4 @@ private:
 namespace MR {
     PrologueHolder* getPrologueHolder();
     void startPrologue();
-};
+};  // namespace MR

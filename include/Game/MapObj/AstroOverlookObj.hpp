@@ -4,7 +4,7 @@
 
 class AstroOverlookObj : public LiveActor {
 public:
-    AstroOverlookObj(const char *);
+    AstroOverlookObj(const char*);
 
     virtual ~AstroOverlookObj();
     virtual void control();

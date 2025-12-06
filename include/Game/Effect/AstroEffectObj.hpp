@@ -5,9 +5,9 @@
 class AstroEffectObj : public SimpleEffectObj {
 public:
     AstroEffectObj(const char*);
-    
+
     virtual ~AstroEffectObj();
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
     virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
     virtual void setStateMove();
 

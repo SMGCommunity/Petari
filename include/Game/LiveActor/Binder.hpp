@@ -5,8 +5,7 @@
 
 class BinderParent {
 public:
-    inline BinderParent(MtxPtr mtx)
-    {
+    inline BinderParent(MtxPtr mtx) {
         _C = mtx;
         _0 = 0;
         _4 = 0;
@@ -21,26 +20,26 @@ public:
 
 class Binder : BinderParent {
 public:
-    Binder(MtxPtr, const TVec3f *, const TVec3f *, f32, f32, u32);
+    Binder(MtxPtr, const TVec3f*, const TVec3f*, f32, f32, u32);
     void clear();
-    void setTriangleFilter(TriangleFilterBase *);
-    const Triangle *getPlane(int) const;
-    u32 copyPlaneArrayAndSortingSensor(HitInfo **, u32);
+    void setTriangleFilter(TriangleFilterBase*);
+    const Triangle* getPlane(int) const;
+    u32 copyPlaneArrayAndSortingSensor(HitInfo**, u32);
 
-    const TVec3f *_10;
-    const TVec3f *_14;
-    f32 _18;
+    const TVec3f* _10;
+    const TVec3f* _14;
+    f32 mRadius;  // 0x18
     f32 _1C;
-    int _20;
+    const TVec3f* mOffsetVec;  // 0x20
     u32 _24;
-    int _28;
-    HitInfo *_2C;
-    TVec3f _30;
-    HitInfo mGroundInfo;     // 0x3c
+    int mPlaneNum;              // 0x28
+    HitInfo* mPlaneInfos;       // 0x2C
+    TVec3f mFixReactionVector;  // 0x30
+    HitInfo mGroundInfo;        // 0x3c
     f32 _C8;
-    HitInfo mWallInfo;       // 0xcc
+    HitInfo mWallInfo;  // 0xcc
     f32 _158;
-    HitInfo mRoofInfo;       // 0x15c
+    HitInfo mRoofInfo;  // 0x15c
     f32 _1E8;
 
     struct {

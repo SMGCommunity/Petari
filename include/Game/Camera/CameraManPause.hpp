@@ -5,13 +5,13 @@
 
 class CameraManPause : public CameraMan {
 public:
-    CameraManPause(const char *);
+    CameraManPause(const char*);
     virtual ~CameraManPause();
-    
-    virtual void init(const JMapInfoIter &);
-    
-    virtual void calc(); // TODO
-    virtual void notifyActivate(); // TODO
+
+    virtual void init(const JMapInfoIter&);
+
+    virtual void calc();            // TODO
+    virtual void notifyActivate();  // TODO
     virtual void notifyDeactivate();
     virtual bool isCollisionOff() const;
     virtual bool isZeroFrameMoveOff() const;

@@ -45,11 +45,11 @@ please join our **[Discord]** server.
 - A **Disassembler** / **IDA Pro** / **Ghidra**
 
     *You can also use a decompiler, it can make some things easier*
-    
-- **CodeWarrior** 
-    
+
+- **CodeWarrior**
+
     *We specifically use version `3.0a3`*
-    
+
 - **Python**
 
     *Version `3.7+`*
@@ -64,10 +64,10 @@ please join our **[Discord]** server.
 - **C** / **C++**
 
     *However **C++** is recommended*
-    
+
 - **PowerPC Assembly**
 
-- **PowerPC** ➝ **C** / **C++** reverse engineering instructions 
+- **PowerPC** ➝ **C** / **C++** reverse engineering instructions
 
 <br>
 
@@ -88,11 +88,10 @@ please join our **[Discord]** server.
 
 <br>
 
-- Lines should not exceed `100` characters, <br>
-  these can be split into multiple lines.
-  
+- `clang-format` will do a lot of the work for you. Just be sure that it is enabled to run on save.
+
 - Use `nullptr` instead of `0` when assigning / comparing a pointer in C++ code, use `NULL` in C.
-  
+
   *Only use `0` when assigning or comparing a value.*
 
 <br>
@@ -108,7 +107,7 @@ please join our **[Discord]** server.
     ```c++
     #pragma once
     ```
-    
+
 
 <br>
 
@@ -131,14 +130,13 @@ please join our **[Discord]** server.
     ```
 
     If there is a function that does not have this implemented (ie in headers before the new documentation revamp), please take the time to help reimplement them to document this repository better!
-    Note that the documentation website only updates every 15 minutes, so wait up to the nearest 15 minutes after your pull request has been merged. However, you can preview your changes before merging by running `doxygen`.
 
 - At the top of every header place:
 
     ```c++
     #pragma once
     ```
-    
+
 
 <br>
 
@@ -151,13 +149,13 @@ please join our **[Discord]** server.
     ```c++
     #include <...>
     ```
-    
+
 - For game header includes use:
 
     ```c++
     #include "..."
     ```
-    
+
     *These includes must be relative to the `include` folder.*
 
 <br>
@@ -173,16 +171,16 @@ please join our **[Discord]** server.
 
 - Arguments for functions must be prefixed with:
 
-    - `p` for pointers 
+    - `p` for pointers
 
     - `r` for passed-by-reference
-    
+
 - Static variables with:
 
     - No known symbol must be prefixed with `s`
 
     - Global scope must be prefixed with `g`
-    
+
 - Functions with no symbols must use **camelCase**.
 
     *Such as **inlined** functions.*
@@ -194,32 +192,31 @@ please join our **[Discord]** server.
 <br>
 
 - When referencing a class member, do **not** use <br>
-  `this ->`, unless it is required for compilation.
+  `this->`, unless it is required for compilation.
 
-- Functions for classes must be put in the following order: 
-    
+- Functions for classes must be put in the following order:
+
     - Constructor
-    
+
     - Destructor
-    
+
     - Operators
-    
+
     - Virtual Functions
-    
+
     - Member Functions
-    
+
     *If the virtual functions are not in the order that* <br>
     *they are in the **vtable**, then the rule above can be* <br>
     *ignored as these functions must be placed in order.*
-    
+
 
 <br>
 
 ### Nonmatching Code
 
-If your code does **NOT** match, use the <br>
-`NON_MATCHING` macro, and explain in a <br>
-comment why it does not match. Be sure to also include a decomp.me scratch in a comment as well.
+If your code does **NOT** match, explain in a comment why it does not match.<br>
+Be sure to also include a decomp.me scratch in a comment as well.
 
 <br>
 

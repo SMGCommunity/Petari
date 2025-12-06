@@ -1,22 +1,22 @@
 #pragma once
 
-#include "Game/LiveActor/LiveActor.hpp"
 #include "Game/Gravity/GravityCreator.hpp"
+#include "Game/LiveActor/LiveActor.hpp"
 
 class MarioLauncherAttractor : public LiveActor {
-	MarioLauncherAttractor(const char *pName);
+    MarioLauncherAttractor(const char* pName);
 
-	virtual ~MarioLauncherAttractor() {}
-	virtual void init(const JMapInfoIter &rIter);
+    virtual ~MarioLauncherAttractor() {}
+    virtual void init(const JMapInfoIter& rIter);
 
-	PointGravityCreator* mGravityCreator; // 0x8C
+    PointGravityCreator* mGravityCreator;  // 0x8C
 };
 
 namespace NrvMarioLauncherAttractor {
-	class MarioLauncherAttractorNrvWait : public Nerve {
-	public:
-		virtual void execute(Spine *pSpine) const;
+    class MarioLauncherAttractorNrvWait : public Nerve {
+    public:
+        virtual void execute(Spine* pSpine) const;
 
-		static MarioLauncherAttractorNrvWait sInstance;
-	};
-};
+        static MarioLauncherAttractorNrvWait sInstance;
+    };
+};  // namespace NrvMarioLauncherAttractor

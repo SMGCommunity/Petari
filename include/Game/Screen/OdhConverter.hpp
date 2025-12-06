@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Game/NameObj/NameObjAdaptor.hpp"
 #include "Game/Screen/LayoutActor.hpp"
 
 namespace MR {
@@ -24,21 +25,13 @@ public:
         mIsRequestedCapture = false;
     }
 
-    void requestCapture() {
-        mIsRequestedCapture = true;
-    }
+    void requestCapture() { mIsRequestedCapture = true; }
 
-    bool isRequestedCapture() const {
-        return mIsRequestedCapture;
-    }
+    bool isRequestedCapture() const { return mIsRequestedCapture; }
 
-    u8* getImage() const {
-        return mImage;
-    }
+    u8* getImage() const { return mImage; }
 
-    u32 getImageSize() const {
-        return mImageSize;
-    }
+    u32 getImageSize() const { return mImageSize; }
 
     void convert();
 
@@ -74,4 +67,4 @@ namespace MR {
     const u8* getOdhImage();
     u32 getOdhImageSize();
     NameObjAdaptor* createAdaptorAndConnectToWiiMessageBoard(const char*, const FunctorBase&);
-};
+};  // namespace MR

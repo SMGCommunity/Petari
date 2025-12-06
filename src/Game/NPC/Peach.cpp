@@ -4,11 +4,9 @@ namespace NrvPeach {
     NEW_NERVE(PeachNrvWait, Peach, Wait);
 };
 
-Peach::Peach(const char *pName) : NPCActor(pName) {
-    
-}
+Peach::Peach(const char* pName) : NPCActor(pName) {}
 
-void Peach::init(const JMapInfoIter &rIter) {
+void Peach::init(const JMapInfoIter& rIter) {
     NPCActorCaps caps("Peach");
     caps.setDefault();
     caps.mWaitNerve = &NrvPeach::PeachNrvWait::sInstance;
@@ -25,6 +23,4 @@ void Peach::exeWait() {
     }
 }
 
-Peach::~Peach() {
-    
-}
+Peach::~Peach() {}

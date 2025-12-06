@@ -12,7 +12,7 @@ namespace ImageEffectStateImpl {
     class StateDepthOfField;
     class StateNull;
     class StateScreenBlur;
-};
+};  // namespace ImageEffectStateImpl
 
 class ImageEffectDirector : public NameObj {
 public:

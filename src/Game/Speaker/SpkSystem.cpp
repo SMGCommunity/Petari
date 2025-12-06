@@ -1,7 +1,7 @@
 #include "Game/Speaker/SpkSystem.hpp"
 #include "Game/Speaker/SpkSpeakerCtrl.hpp"
 
-SpkSystem::SpkSystem(JKRHeap *pHeap) : JASGlobalInstance(this) {
+SpkSystem::SpkSystem(JKRHeap* pHeap) : JASGlobalInstance(this) {
     mData = nullptr;
 
     if (!pHeap) {
@@ -9,14 +9,14 @@ SpkSystem::SpkSystem(JKRHeap *pHeap) : JASGlobalInstance(this) {
     }
 
     mHeap = pHeap;
-    mMixBuffer = new(pHeap, 0) SpkMixingBuffer(pHeap);
-    mSoundHolder = new(pHeap, 0) SpkSoundHolder();
+    mMixBuffer = new (pHeap, 0) SpkMixingBuffer(pHeap);
+    mSoundHolder = new (pHeap, 0) SpkSoundHolder();
     SpkSpeakerCtrl::setup();
     SpkSpeakerCtrl::setMixingBuffer(mMixBuffer);
 }
 
-void SpkSystem::setResource(JKRArchive *pArchive, u16 a2, u16 a3) {
-    mData = new(mHeap, 0) SpkData(pArchive);
+void SpkSystem::setResource(JKRArchive* pArchive, u16 a2, u16 a3) {
+    mData = new (mHeap, 0) SpkData(pArchive);
     mData->loadTable(a2);
     mData->loadWave(a3);
 }
@@ -26,12 +26,12 @@ void SpkSystem::framework() {
     mSoundHolder->framework();
 }
 
-void SpkSystem::startSound(s32 a1, s32 a2, SpkSoundHandle *pHandle) {
+void SpkSystem::startSound(s32 a1, s32 a2, SpkSoundHandle* pHandle) {
     mSoundHolder->startSound(a1, a2, pHandle);
 }
 
 void SpkSystem::newSoundMemPool(s32 a1) {
-    JASPoolAllocObject<SpkSystem>::memPool_.newMemPool(0x60, a1);
+    JASPoolAllocObject< SpkSound >::memPool_.newMemPool(0x60, a1);
 }
 
 void SpkSystem::connect(s32 chan) {
@@ -47,8 +47,7 @@ void SpkSystem::reconnect(s32 chan) {
         for (int i = 0; i < 4; i++) {
             SpkSpeakerCtrl::reconnect(i);
         }
-    }
-    else {
+    } else {
         SpkSpeakerCtrl::reconnect(chan);
     }
 }

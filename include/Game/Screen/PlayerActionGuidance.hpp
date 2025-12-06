@@ -26,7 +26,6 @@ public:
     void hideAllLayout();
     bool isInVolumePlayer(const char*, bool) const;
 
-private:
     /* 0x20 */ SimpleLayout* mSpinLayout;
     /* 0x24 */ SimpleLayout* mTamakoroLayout;
     /* 0x28 */ LayoutActor* mCurrentLayout;

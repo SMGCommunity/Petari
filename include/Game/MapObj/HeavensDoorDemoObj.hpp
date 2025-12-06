@@ -4,13 +4,13 @@
 
 class HeavensDoorDemoObj : public MapObjActor {
 public:
-    HeavensDoorDemoObj(const char *);
+    HeavensDoorDemoObj(const char*);
 
     virtual ~HeavensDoorDemoObj();
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
     virtual void kill();
     virtual void control();
-    virtual void connectToScene(const MapObjActorInitInfo &);
+    virtual void connectToScene(const MapObjActorInitInfo&);
 
     void exeAppear();
     void exeVanish();
@@ -28,4 +28,4 @@ namespace NrvHeavensDoorDemoObj {
     NERVE(HeavensDoorDemoObjNrvAppear);
     NERVE(HeavensDoorDemoObjNrvWait);
     NERVE(HeavensDoorDemoObjNrvVanish);
-};
+};  // namespace NrvHeavensDoorDemoObj

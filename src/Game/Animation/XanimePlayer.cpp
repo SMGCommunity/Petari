@@ -1,21 +1,24 @@
 #include "Game/Animation/XanimePlayer.hpp"
+#include "Game/Animation/XanimeResource.hpp"
 
-void XanimePlayer::setDefaultAnimation(const char *name)
-{
-    const XanimeGroupInfo *defaultAnimation = mResourceTable->getGroupInfo(name);
+void XanimePlayer::setDefaultAnimation(const char* pAnimationName) {
+    const XanimeGroupInfo* pDefaultAnimation = mResourceTable->getGroupInfo(pAnimationName);
+
     if (mCurrentAnimation == mDefaultAnimation) {
-        changeAnimation(defaultAnimation);
+        changeAnimation(pDefaultAnimation);
     }
-    mDefaultAnimation = defaultAnimation;
+
+    mDefaultAnimation = pDefaultAnimation;
     _7D = true;
 }
 
-void XanimePlayer::changeCurrentAnimation(const XanimeGroupInfo *animation)
-{
-    if (mCurrentAnimation == animation) {
+void XanimePlayer::changeCurrentAnimation(const XanimeGroupInfo* pAnimation) {
+    if (mCurrentAnimation == pAnimation) {
         return;
     }
+
     mPrevAnimation = mCurrentAnimation;
-    mCurrentAnimation = animation;
+    mCurrentAnimation = pAnimation;
+
     updateAfterMovement();
 }

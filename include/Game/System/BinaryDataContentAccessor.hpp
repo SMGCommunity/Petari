@@ -1,29 +1,26 @@
 #pragma once
 
-#include <revolution/types.h>
-
-struct SomeStruct {
-    u32 _0;
-    u32 _4;
-};
+#include <JSystem/JSupport/JSUMemoryOutputStream.hpp>
 
 class BinaryDataContentHeaderSerializer {
 public:
-    BinaryDataContentHeaderSerializer(u8 *, u32);
+    BinaryDataContentHeaderSerializer(u8*, u32);
 
-    void addAttribute(const char *, u32);
+    void addAttribute(const char*, u32);
     void flush();
     u32 getHeaderSize() const;
     u32 getDataSize() const;
 
-    u8 _0[0x1C];
+    /* 0x00 */ JSUMemoryOutputStream mStream;
+    /* 0x14 */ u32 mAttributeNum;
+    /* 0x18 */ u32 mDataSize;
 };
 
 class BinaryDataContentAccessor {
 public:
-    BinaryDataContentAccessor(u8 *);
+    BinaryDataContentAccessor(u8*);
 
     u32 getHeaderSize() const;
     u32 getDataSize() const;
-    SomeStruct* getPointer(const char *, u8 *) const;
+    void* getPointer(const char*, u8*) const;
 };

@@ -1,5 +1,5 @@
-#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Scene/LogoScene.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Scene/SceneFunction.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Screen/IsbnManager.hpp"
@@ -39,14 +39,9 @@ namespace {
     NEW_NERVE(LogoSceneMountGameData, LogoScene, MountGameData);
     NEW_NERVE(LogoSceneWaitReadDoneSystemArchive, LogoScene, WaitReadDoneSystemArchive);
     NEW_NERVE(LogoSceneDeactive, LogoScene, Deactive);
-};
+};  // namespace
 
-LogoScene::LogoScene() :
-    Scene("LogoScene"),
-    mIsbnManager(nullptr),
-    mStrapLayout(nullptr),
-    mLogoFader(nullptr)
-{
+LogoScene::LogoScene() : Scene("LogoScene"), mIsbnManager(nullptr), mStrapLayout(nullptr), mLogoFader(nullptr) {
     MainLoopFramework::sManager->mUseVFilter = false;
     MainLoopFramework::sManager->mUseAlpha = false;
 }
@@ -60,8 +55,7 @@ LogoScene::~LogoScene() {
 void LogoScene::init() {
     if (MR::isEqualString(MR::getCurrentRegionPrefix(), "Cn")) {
         initNerve(&LogoSceneCensorshipFadein::sInstance);
-    }
-    else {
+    } else {
         initNerve(&LogoSceneStrapFadein::sInstance);
     }
 
@@ -96,9 +90,8 @@ void LogoScene::draw() const {
     MR::clearZBuffer();
     MR::drawInitFor2DModel();
 
-    bool isCensorship = isNerve(&LogoSceneCensorshipFadein::sInstance)
-        || isNerve(&LogoSceneCensorshipDisplay::sInstance)
-        || isNerve(&LogoSceneCensorshipFadeout::sInstance);
+    bool isCensorship = isNerve(&LogoSceneCensorshipFadein::sInstance) || isNerve(&LogoSceneCensorshipDisplay::sInstance) ||
+                        isNerve(&LogoSceneCensorshipFadeout::sInstance);
 
     if (isCensorship) {
         MR::setupDrawForNW4RLayout(1.0f, true);
@@ -115,14 +108,10 @@ void LogoScene::draw() const {
 }
 
 bool LogoScene::isDisplayStrapRemineder() const {
-    return isNerve(&LogoSceneDeactive::sInstance)
-        || isNerve(&LogoSceneCensorshipFadein::sInstance)
-        || isNerve(&LogoSceneCensorshipDisplay::sInstance)
-        || isNerve(&LogoSceneCensorshipFadeout::sInstance)
-        || isNerve(&LogoSceneStrapFadein::sInstance)
-        || isNerve(&LogoSceneStrapDisplay::sInstance)
-        || isNerve(&LogoSceneStrapFadeout::sInstance)
-        || isNerve(&LogoSceneWaitReadDoneSystemArchive::sInstance);
+    return isNerve(&LogoSceneDeactive::sInstance) || isNerve(&LogoSceneCensorshipFadein::sInstance) ||
+           isNerve(&LogoSceneCensorshipDisplay::sInstance) || isNerve(&LogoSceneCensorshipFadeout::sInstance) ||
+           isNerve(&LogoSceneStrapFadein::sInstance) || isNerve(&LogoSceneStrapDisplay::sInstance) || isNerve(&LogoSceneStrapFadeout::sInstance) ||
+           isNerve(&LogoSceneWaitReadDoneSystemArchive::sInstance);
 }
 
 void LogoScene::exeCensorshipFadein() {
@@ -179,10 +168,8 @@ void LogoScene::exeStrapDisplay() {
         MR::setAnimRate(mStrapLayout, 0.0f, 0);
     }
 
-    if (MR::isGreaterStep(this, STRAP_DISPLAY_MIN_FRAME)
-        && (MR::testCorePadTriggerAnyWithoutHome(WPAD_CHAN0)
-            || MR::isGreaterEqualStep(this, STRAP_DISPLAY_MAX_FRAME)))
-    {
+    if (MR::isGreaterStep(this, STRAP_DISPLAY_MIN_FRAME) &&
+        (MR::testCorePadTriggerAnyWithoutHome(WPAD_CHAN0) || MR::isGreaterEqualStep(this, STRAP_DISPLAY_MAX_FRAME))) {
         setNerve(&LogoSceneStrapFadeout::sInstance);
     }
 }
@@ -231,13 +218,9 @@ void LogoScene::initLayout() {
         return;
     }
 
-    mIsbnManager = IsbnManager::create(
-        MR::loadToMainRAM(
-            "CnSimpChinese/LayoutData/ISBNLayoutData.arc",
-            nullptr,
-            nullptr,
-            JKRDvdRipper::ALLOC_DIRECTION_1),
-        &MR::NewDeleteAllocator::sAllocator);
+    mIsbnManager =
+        IsbnManager::create(MR::loadToMainRAM("CnSimpChinese/LayoutData/ISBNLayoutData.arc", nullptr, nullptr, JKRDvdRipper::ALLOC_DIRECTION_1),
+                            &MR::NewDeleteAllocator::sAllocator);
     mIsbnManager->setNumber(pIsbnNumber, pRegistNumber, pOtherNumber);
 
     if (MR::isScreen16Per9()) {

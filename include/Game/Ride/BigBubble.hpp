@@ -22,11 +22,11 @@ public:
     virtual void control();
     virtual void calcAnim();
     virtual void draw() const;
-    virtual void attackSensor(HitSensor *, HitSensor *);
-    virtual bool receiveMsgPlayerAttack(u32, HitSensor *, HitSensor *);
-    virtual bool receiveMsgEnemyAttack(u32, HitSensor *, HitSensor *);
-    virtual bool receiveMsgPush(HitSensor *, HitSensor *);
-    virtual bool receiveOtherMsg(u32, HitSensor *, HitSensor *);
+    virtual void attackSensor(HitSensor*, HitSensor*);
+    virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
+    virtual bool receiveMsgEnemyAttack(u32, HitSensor*, HitSensor*);
+    virtual bool receiveMsgPush(HitSensor*, HitSensor*);
+    virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
     virtual MtxPtr getBaseMtx() const;
     virtual ~BigBubble();
 
@@ -67,10 +67,10 @@ public:
     u32 _90;
     LiveActor* _94;
     u32 _98;
-    LiveActor* _9C; // Hmm...
+    LiveActor* _9C;  // Hmm...
     u8 _A0[24];
     TMtx34f _B8;
-    u8 _E8[48]; // TMtx34f or TPos3f ?
+    u8 _E8[48];  // TMtx34f or TPos3f ?
     TPos3f _118;
     TQuat4f _148;
     TQuat4f _158;

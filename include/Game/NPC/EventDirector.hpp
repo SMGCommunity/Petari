@@ -32,7 +32,7 @@ namespace EventFunction {
     bool isStartCometEvent(const char*);
     void startCometEvent();
     void endCometEvent();
-};
+};  // namespace EventFunction
 
 namespace MR {
     void declareEventPowerStar(const char*, s32, bool);
@@ -44,4 +44,4 @@ namespace MR {
     bool isGrandEventPowerStar(const char*, s32);
     void appearEventPowerStar(const char*, s32, const TVec3f*, bool, bool);
     bool isEndEventPowerStarAppearDemo(const char*);
-};
+};  // namespace MR

@@ -8,39 +8,38 @@
 class THPSimplePlayerWrapper;
 
 class THPSimplePlayerStaticAudio {
-    public:
-        THPSimplePlayerStaticAudio();
-    
-        static s16* audioCallback(s32);
-        static THPSimplePlayerWrapper* mPlayer;
-    };
-    
+public:
+    THPSimplePlayerStaticAudio();
+
+    static s16* audioCallback(s32);
+    static THPSimplePlayerWrapper* mPlayer;
+};
 
 class THPSimplePlayerWrapper : public NerveExecutor {
 public:
-    THPSimplePlayerWrapper(const char *);
+    THPSimplePlayerWrapper(const char*);
 
     bool init(s32);
     void quit();
-    bool open(const char *);
+    bool open(const char*);
     bool close();
     s32 getUseTextureCount() const;
     u32 calcNeedMemory();
-    bool setBuffer(u8 *);
+    bool setBuffer(u8*);
     bool preLoad(s32);
     bool loadStop();
     s32 decode(s32);
-    s32 drawCurrentFrame(_GXRenderModeObj *, u32, u32, u32, u32);
-    bool getVideoInfo(THPVideoInfo *) const;
+    s32 drawCurrentFrame(_GXRenderModeObj*, u32, u32, u32, u32);
+    bool getVideoInfo(THPVideoInfo*) const;
     f32 getFrameRate() const;
     s32 getTotalFrame() const;
-    bool videoDecode(u8 *);
+    bool videoDecode(u8*);
     void readFrameAsync();
     void checkPrefetch();
     void dvdCallBack(s32);
     void readAsyncCallBack(s32);
     s32 getNextBuffer(u32) const NO_INLINE;
-    bool tryDvdOpen(const char *);
+    bool tryDvdOpen(const char*);
     void setupParams();
     void exeReadHeader();
     void exeReadFrameComp();
@@ -57,18 +56,16 @@ public:
     void initAudio();
     bool isAudioProcessValid();
     s16* audioCallback(s32);
-    void mixAudio(s16 *, u32);
+    void mixAudio(s16*, u32);
     void resetAudioParams();
     bool setVolume(s32, s32);
     bool isPreLoading() const;
     void setUnpauseFrameFlag();
 
-    void exeWait() {
-        
-    }
+    void exeWait() {}
 
     static THPSimplePlayerStaticAudio mStaticAudioPlayer;
-    
+
     u8 _8;
     u8 _9;
     u32 _C;
@@ -104,8 +101,8 @@ public:
     f32 _2F4;
     f32 _2F8;
     s32 _2FC;
-    s32* mSoundBuffer[2];               // 0x300
-    u32 mSoundBufferIndex;              // 0x308
+    s32* mSoundBuffer[2];   // 0x300
+    u32 mSoundBufferIndex;  // 0x308
     u8 _30C;
     u8 _30D;
     u8 _30E;

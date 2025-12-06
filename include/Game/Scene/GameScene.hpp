@@ -59,10 +59,10 @@ public:
     inline bool isPlayMovie() const;
 
     u32 _14;
-    GameSceneScenarioOpeningCameraState* mScenarioCamera;       // 0x18
-    GameScenePauseControl* mPauseCtrl;                          // 0x1C
-    GamePauseSequence* mPauseSeq;                               // 0x20
-    GameStageClearSequence* mStageClearSeq;                     // 0x24
-    bool mDraw3D;                                               // 0x28
+    GameSceneScenarioOpeningCameraState* mScenarioCamera;  // 0x18
+    GameScenePauseControl* mPauseCtrl;                     // 0x1C
+    GamePauseSequence* mPauseSeq;                          // 0x20
+    GameStageClearSequence* mStageClearSeq;                // 0x24
+    bool mDraw3D;                                          // 0x28
     u8 _29;
 };

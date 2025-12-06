@@ -14,7 +14,7 @@ ViewGroupCtrl::ViewGroupCtrl() {
     }
 }
 
-void ViewGroupCtrl::initActorInfo(ClippingActorInfo *pInfo, s32 groupID) {
+void ViewGroupCtrl::initActorInfo(ClippingActorInfo* pInfo, s32 groupID) {
     pInfo->_12 = groupID;
 
     if (groupID >= mMaxViewGroupId) {
@@ -22,7 +22,7 @@ void ViewGroupCtrl::initActorInfo(ClippingActorInfo *pInfo, s32 groupID) {
     }
 }
 
-void ViewGroupCtrl::initViewGroup(ClippingActorInfoList *pList) {
+void ViewGroupCtrl::initViewGroup(ClippingActorInfoList* pList) {
     for (s32 i = 0; i < pList->_4; i++) {
         s32 id = pList->mClippingActorList[i]->_12;
 
@@ -34,11 +34,9 @@ void ViewGroupCtrl::initViewGroup(ClippingActorInfoList *pList) {
     }
 }
 
-void ViewGroupCtrl::endInitViewGroupTable() {
+void ViewGroupCtrl::endInitViewGroupTable() {}
 
-}
-
-void ViewGroupCtrl::entryLodCtrl(LodCtrl *pCtrl, const JMapInfoIter &rIter) {
+void ViewGroupCtrl::entryLodCtrl(LodCtrl* pCtrl, const JMapInfoIter& rIter) {
     s32 groupID = -1;
     if (MR::getJMapInfoViewGroupID(rIter, &groupID)) {
         pCtrl->mViewGroupID = groupID;

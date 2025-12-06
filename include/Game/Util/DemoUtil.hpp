@@ -94,4 +94,4 @@ namespace MR {
     LiveActor* getTalkingActor();
     bool isDemoPartTalk(const char*);
     void startTalkingSequence(NameObj*);
-};
+};  // namespace MR

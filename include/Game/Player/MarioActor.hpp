@@ -20,35 +20,36 @@ class J3DModelX;
 class TornadoMario;
 class ModelHolder;
 
-bool gIsLuigi;    // (cc68 - 10000)(r13)
+bool gIsLuigi;  // (cc68 - 10000)(r13)
 
 class MarioActor : public LiveActor {
 public:
-    MarioActor(const char *);
+    MarioActor(const char*);
 
     ~MarioActor();
 
-    virtual const TVec3f &getLastMove() const;
-    virtual void getLastMove(TVec3f *) const;
-    virtual void getFrontVec(TVec3f *) const;
+    virtual const TVec3f& getLastMove() const;
+    virtual void getLastMove(TVec3f*) const;
+    virtual void getFrontVec(TVec3f*) const;
 
-    void init(const JMapInfoIter &);
-    void init2(const TVec3f &, const TVec3f &, s32);
+    void init(const JMapInfoIter&);
+    void init2(const TVec3f&, const TVec3f&, s32);
     void initAfterPlacement();
     void initAfterOpeningDemo();
-    void calcBaseFrontVec(const TVec3f &);
-    void playSound(const char *, s32);
-    void changeAnimation(const char *, const char *);
-    void changeAnimationNonStop(const char *);
-    void changeAnimationUpper(const char *);
-    void stopAnimation(const char *);
-    bool isAnimationRun(const char *) const;
-    void changeNullAnimation(const char *, s8);
+    void calcBaseFrontVec(const TVec3f&);
+    void playSound(const char*, s32);
+    void changeAnimation(const char*, const char*);
+    void changeAnimationNonStop(const char*);
+    void changeAnimationUpper(const char*);
+    const char* changeMorphString(const char*) const;
+    void stopAnimation(const char*);
+    bool isAnimationRun(const char*) const;
+    void changeNullAnimation(const char*, s8);
     void clearNullAnimation(s8);
-    void changeSpecialModeAnimation(const char *);
+    void changeSpecialModeAnimation(const char*);
     bool isStopNullAnimation() const;
     void changeGameOverAnimation();
-    XjointTransform *getJointCtrl(const char *) const;
+    XjointTransform* getJointCtrl(const char*) const;
     void updateRotationInfo();
     void exeWait();
     void movement();
@@ -78,15 +79,15 @@ public:
     bool doStun();
     void scaleMtx(MtxPtr);
     void updateBaseScaleMtx();
-    void getRealMtx(MtxPtr, const char *) const NO_INLINE;
-    void getRealPos(const char *, TVec3f *) const;
-    void getGlobalJointMtx(const char *);
+    void getRealMtx(MtxPtr, const char*) const NO_INLINE;
+    void getRealPos(const char*, TVec3f*) const;
+    void getGlobalJointMtx(const char*);
     void calcAnimInMovement();
     void forceSetBaseMtx(MtxPtr);
     void calcAnim();
     void calcAndSetBaseMtx();
     void setBlendMtxTimer(u16);
-    void getGroundPos(TVec3f *dst) const;
+    void getGroundPos(TVec3f* dst) const;
     TVec3f* getShadowPos() const;
 
     bool isTurning() const;
@@ -118,7 +119,7 @@ public:
     void forceGameOverSink();
 
     void updateCameraInfo();
-    bool binderFilter(const Triangle *);
+    bool binderFilter(const Triangle*);
 
     void setPunchHitTimer(u8);
     void initEffect();
@@ -146,14 +147,14 @@ public:
     void resetPadSwing();
     void initActionMatrix();
 
-    TVec3f &getGravityVec() const;
-    TVec3f &getGravityVector() const;
+    TVec3f& getGravityVec() const;
+    TVec3f& getGravityVector() const;
     void updateGravityVec(bool, bool);
-    void changeTeresaAnimation(const char *, s32);
+    void changeTeresaAnimation(const char*, s32);
 
-    void playEffect(const char *);
-    void playEffectTrans(const char *, const TVec3f &);
-    void stopEffect(const char *);
+    void playEffect(const char*);
+    void playEffectTrans(const char*, const TVec3f&);
+    void stopEffect(const char*);
 
     void updateActionTrigger();
     void updateControllerSwing();
@@ -177,61 +178,63 @@ public:
     bool tryThrow();
     bool tryStandardRush();
     void checkPriorRushTarget();
-    u8 selectAction(const char *) const;
-    void changeMorphString(const char*) const;
+    u8 selectAction(const char*) const;
     bool tryRushInRush();
     void bodyClap();
-    bool selectWaterInOut(const char *) const;
-    bool selectWaterInOutRush(const HitSensor *) const;
-    void playEffectRT(const char *, const TVec3f &, const TVec3f &);
-    void playEffectRTZ(const char *, const TVec3f &, const TVec3f &);
-    void playEffectRTW(const char *, const TVec3f &, const TVec3f &);
-    void playEffectSRT(const char *, f32, const TVec3f &, const TVec3f &);
-    void emitEffectWaterColumn(const TVec3f &, const TVec3f &);
-    bool selectRecoverFlyMeter(const HitSensor *) const;
-    void endRush(const RushEndInfo *);
+    bool selectWaterInOut(const char*) const;
+    bool selectWaterInOutRush(const HitSensor*) const;
+    void playEffectRT(const char*, const TVec3f&, const TVec3f&);
+    void playEffectRTZ(const char*, const TVec3f&, const TVec3f&);
+    void playEffectRTW(const char*, const TVec3f&, const TVec3f&);
+    void playEffectSRT(const char*, f32, const TVec3f&, const TVec3f&);
+    void emitEffectWaterColumn(const TVec3f&, const TVec3f&);
+    bool selectRecoverFlyMeter(const HitSensor*) const;
+    void endRush(const RushEndInfo*);
     void stopSpinTicoEffect(bool);
-    void stopEffectForce(const char *);
+    void stopEffectForce(const char*);
     bool isRequestRush() const;
     bool isRequestSpinJump2P() const;
     bool tryReleaseBombTeresa();
-    void initBlackHoleOut(); // void ?
+    void initBlackHoleOut();  // void ?
     void exeGameOverBlackHole2();
     bool isEnableSpinPunch();
     bool trySpinPunch();
     void shootFireBall();
     void doFreezeAttack();
-    void setBlink(const char *);
+    void initBlink();
+    void setBlink(const char*);
     void resetSensorCount();
-    void getStickValue(f32 *, f32 *);
+    void getStickValue(f32*, f32*);
     bool checkButtonType(u16, bool) const;
-    bool sendPunch(HitSensor *, bool);
-    void reactionPunch(HitSensor *);
+    bool sendPunch(HitSensor*, bool);
+    void reactionPunch(HitSensor*);
     void tryCoinPullInRush();
+
+    void damageDropThrowMemoSensor();
 
     void setPlayerMode(u16, bool);
 
-    bool isActionOk(const char *) const;
+    bool isActionOk(const char*) const;
 
     bool isInZeroGravitySpot() const;
 
     void forceKill(u32);
 
-    void sendMsgUpperPunch(HitSensor *);
+    void sendMsgUpperPunch(HitSensor*);
 
-    void entryWallWalkMode(const TVec3f &, const TVec3f &);
+    void entryWallWalkMode(const TVec3f&, const TVec3f&);
 
-    const HitSensor &getCarrySensor() const;
+    const HitSensor& getCarrySensor() const;
 
-    const MarioConst &getConst() const { return *mConst; }
+    const MarioConst& getConst() const { return *mConst; }
 
     inline u32 getHealth() const { return mHealth; }
 
-    inline const Mario::MovementStates &getMovementStates() const { return mMario->mMovementStates; }
+    inline const Mario::MovementStates& getMovementStates() const { return mMario->mMovementStates; }
 
-    inline const Mario::DrawStates &getDrawStates() const { return mMario->mDrawStates; }
+    inline const Mario::DrawStates& getDrawStates() const { return mMario->mDrawStates; }
 
-    inline const Mario::DrawStates &getPrevDrawStates() const { return mMario->mPrevDrawStates; }
+    inline const Mario::DrawStates& getPrevDrawStates() const { return mMario->mPrevDrawStates; }
 
     struct FBO {
         u32 _0;
@@ -239,11 +242,11 @@ public:
     };
 
     u8 _8C;
-    DLchanger *mDLchanger;    // 0x90
+    DLchanger* mDLchanger;  // 0x90
     u32 _94[0x40];
-    u8 *mDL[2];     // 0x194
-    u32 mDLSize;    // 0x19C
-    u8 mCurrDL;     // 0x1A0
+    u8* mDL[2];   // 0x194
+    u32 mDLSize;  // 0x19C
+    u8 mCurrDL;   // 0x1A0
     u8 _1A1;
     f32 _1A4;
     u16 _1A8;
@@ -253,7 +256,7 @@ public:
     u8 _1B4;
     bool _1B5;
     u32 _1B8;
-    MarioMessenger *_1BC;
+    MarioMessenger* _1BC;
     bool _1C0;
     bool _1C1;
     bool _1C2;
@@ -265,8 +268,8 @@ public:
     u8 _1D0;
     u8 _1D1;
     f32 _1D4;
-    FBO *_1D8;
-    FBO *_1DC;
+    FBO* _1D8;
+    FBO* _1DC;
     bool _1E0;
     u8 _1E1;
     u8 _1E2;
@@ -282,17 +285,17 @@ public:
     u8 _210;
     u8 _211;
     // padding
-    CollisionShadow *_214;
+    CollisionShadow* _214;
     u32 _218;
     u32 _21C;
     u32 _220;
     u32 _224;
     u32 _228;
     u32 _22C;
-    Mario *mMario;                // 0x230
-    MarioAnimator *mMarioAnim;    // 0x234
-    MarioEffect *mMarioEffect;    // 0x238
-    MarioConst *mConst;           // 0x23C
+    Mario* mMario;              // 0x230
+    MarioAnimator* mMarioAnim;  // 0x234
+    MarioEffect* mMarioEffect;  // 0x238
+    MarioConst* mConst;         // 0x23C
     TVec3f _240;
     TVec3f _24C;
     TVec3f _258;
@@ -323,15 +326,15 @@ public:
     TVec3f _348;
     TVec3f _354;
     TVec3f _360;
-    GravityInfo *_36C;
+    GravityInfo* _36C;
     u8 _370;
     // padding
     f32 _374;
     u16 _378;
     // padding
     u32 _37C;
-    u32 mHealth;    // 0x380
-    u32 mWaterLife; // 0x384
+    u32 mHealth;     // 0x380
+    u32 mWaterLife;  // 0x384
     u32 _388;
     u16 _38C;
     u32 _390;
@@ -354,14 +357,14 @@ public:
     TVec3f _3C4;
     u16 _3D0;
     u16 _3D2;
-    u16 mPlayerMode;          // 0x3D4
+    u16 mPlayerMode;  // 0x3D4
     u16 _3D6;
     u16 _3D8;
     u16 _3DA;
     u16 _3DC;
     u8 _3DE;
     u8 _3DF;
-    u32 mMaxHealth;    // 0x3E0
+    u32 mMaxHealth;  // 0x3E0
     bool _3E4;
     bool _3E5;
     bool _3E6;
@@ -385,8 +388,8 @@ public:
     TVec3f _484;
     f32 _490;
     u32 _494;
-    FixedPosition *_498;
-    FixedPosition *_49C;
+    FixedPosition* _498;
+    FixedPosition* _49C;
     u32 _4A0;
     u32 _4A4;
     u32 _4A8;
@@ -407,7 +410,7 @@ public:
     u8 _7E2;
     u32 _7E4[0x40];
     u8 _8E4[0x40];
-    HitSensor *_924;
+    HitSensor* _924;
     u32 _928;
     u32 _92C;
     u32 _930;
@@ -429,13 +432,13 @@ public:
     f32 _984;
     u8 _988;
     u8 _989;
-    TornadoMario *mTornadoMario;    // 0x98C
+    TornadoMario* mTornadoMario;  // 0x98C
     u8 _990;
     u32 _994;
     u32 _998;
     u32 _99C;
     u32 _9A0;
-    MarioParts *_9A4;
+    MarioParts* _9A4;
     f32 _9A8;
     f32 _9AC;
     f32 _9B0;
@@ -453,14 +456,14 @@ public:
     u32 _9E8;
     u32 _9EC;
     bool _9F0;
-    bool mAlphaEnable;    // 0x9F1
+    bool mAlphaEnable;  // 0x9F1
     u16 _9F2;
     TVec3f _9F4;
     u32 _A00;
     u32 _A04;
     u8 _A08;
     u8 _A09;
-    u8 mCurrModel;    // 0xA0A
+    u8 mCurrModel;  // 0xA0A
     u8 _A0B;
     u8 _A0C;
     u32 _A10;
@@ -469,7 +472,7 @@ public:
     u8 _A24;
     u8 _A25;
     // padding
-    J3DModelX *mModels[6];    // 0xA28
+    J3DModelX* mModels[6];  // 0xA28
     u32 _A40;
     u32 _A44;
     u32 _A48;
@@ -480,7 +483,7 @@ public:
     u8 _A59;
     u8 _A5A;
     u8 _A5B;
-    ModelHolder *_A5C;
+    ModelHolder* _A5C;
     bool _A60;
     bool _A61;
     bool _A62;
@@ -508,7 +511,7 @@ public:
     f32 _B3C;
     f32 _B40;
     u32 _B44;
-    FootPrint *_B48;
+    FootPrint* _B48;
     u32 _B4C;
     u16 _B50;
     // padding
@@ -525,13 +528,13 @@ public:
     // padding
     u16 _B74;
     // padding
-    u32 _B78;
+    void* mEyeRes;  // 0xB78
     u32 _B7C;
     u32 _B80;
     u32 _B84;
     u16 _B88;
-    MarioNullBck *mNullAnimation;    // 0xB8C
-    bool _B90;  // animations
+    MarioNullBck* mNullAnimation;  // 0xB8C
+    bool _B90;                     // animations
     bool _B91;
     s8 _B92;
     // padding
@@ -550,7 +553,7 @@ public:
     u16 _BC4;
     TMtx34f _BC8;
     TMtx34f _BF8;
-    void *_C28;
+    void* _C28;
     TMtx34f _C2C;
     TMtx34f _C5C;
     TMtx34f _C8C;
@@ -564,7 +567,7 @@ public:
     TMtx34f _E0C;
     TMtx34f _E3C;
     TMtx34f _E6C;
-    u16 mBlendMtxTimer;            // 0xE9C
+    u16 mBlendMtxTimer;  // 0xE9C
     f32 _EA0;
     bool _EA4;
     bool _EA5;
@@ -572,9 +575,9 @@ public:
     TMtx34f _EA8;
     TVec3f _ED8;
     u32 _EE4;
-    bool mSuperKinokoCollected;    // 0xEE8
-    bool mPowerupCollected;        // 0xEE9
-    bool mTransforming;            // 0xEEA
+    bool mSuperKinokoCollected;  // 0xEE8
+    bool mPowerupCollected;      // 0xEE9
+    bool mTransforming;          // 0xEEA
     bool _EEB;
     bool _EEC;
     bool _EED;
@@ -611,27 +614,27 @@ public:
     u8 _F38;
     // padding
     union {
-        JAIAudible *_F3C;
-        TVec3f *_F3C_vec;
+        JAIAudible* _F3C;
+        TVec3f* _F3C_vec;
     };
     u16 _F40;
     u16 _F42;
     bool _F44;
     // padding
     u32 _F48;
-    BlackHole *_F4C;
-    TVec3f _F50;
-    TVec3f _F5C;
-    TVec3f _F68;
+    BlackHole* mBlackHole;
+    TVec3f mBlackHolePosition;
+    TVec3f mBlackHoleRotateAxis;
+    TVec3f mPosRelativeToBlackHole;
     u8 _F74;
     // padding
-    TVec3f mCamPos;              // 0xF78
-    TVec3f mCamDirX;             // 0xF84
-    TVec3f mCamDirY;             // 0xF90
-    TVec3f mCamDirZ;             // 0xF9C
+    TVec3f mCamPos;   // 0xF78
+    TVec3f mCamDirX;  // 0xF84
+    TVec3f mCamDirY;  // 0xF90
+    TVec3f mCamDirZ;  // 0xF9C
     TVec3f _FA8;
-    const Nerve *_FB4;
-    u16 _FB8; // a timer
+    const Nerve* _FB4;
+    u16 _FB8;  // a timer
     u32 _FBC;
     u32 _FC0;
     u32 _FC4;
@@ -650,4 +653,4 @@ namespace NrvMarioActor {
     NERVE(MarioActorNrvGameOverSink);
     NERVE(MarioActorNrvTimeWait);
     NERVE(MarioActorNrvNoRush);
-}    // namespace NrvMarioActor
+}  // namespace NrvMarioActor

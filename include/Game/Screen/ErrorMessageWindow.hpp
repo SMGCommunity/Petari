@@ -6,7 +6,7 @@ namespace nw4r {
     namespace lyt {
         class TexMap;
     };
-};
+};  // namespace nw4r
 
 class ErrorMessageWindow : public LayoutActor {
 public:

@@ -4,11 +4,9 @@
 NrvSpaceInner::HostTypeAppear NrvSpaceInner::HostTypeAppear::sInstance;
 NrvSpaceInner::HostTypeDisappear NrvSpaceInner::HostTypeDisappear::sInstance;
 
-SpaceInner::SpaceInner(const char *pName) : LiveActor(pName) {
+SpaceInner::SpaceInner(const char* pName) : LiveActor(pName) {}
 
-}
-
-void SpaceInner::init(const JMapInfoIter &rIter) {
+void SpaceInner::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     initModelManagerWithAnm("SpaceInner", 0, false);
     MR::connectToSceneSky(this);
@@ -45,19 +43,15 @@ bool SpaceInner::isAppeared() const {
     return false;
 }
 
-SpaceInner::~SpaceInner() {
-
-}
+SpaceInner::~SpaceInner() {}
 
 namespace NrvSpaceInner {
-    void HostTypeDisappear::execute(Spine *pSpine) const {
-        SpaceInner* actor = reinterpret_cast<SpaceInner*>(pSpine->mExecutor);
+    void HostTypeDisappear::execute(Spine* pSpine) const {
+        SpaceInner* actor = reinterpret_cast< SpaceInner* >(pSpine->mExecutor);
         if (MR::isBrkStopped(actor)) {
             actor->kill();
         }
     }
 
-    void HostTypeAppear::execute(Spine *pSpine) const {
-
-    }
-};
+    void HostTypeAppear::execute(Spine* pSpine) const {}
+};  // namespace NrvSpaceInner

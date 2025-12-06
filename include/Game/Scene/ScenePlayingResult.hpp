@@ -28,7 +28,7 @@ public:
     /// @brief Returns the number of Star Bits.
     /// @return The number of Star Bits.
     s32 getStarPieceNum() const;
-    
+
     /// @brief The number of coins.
     /* 0x0C */ s32 mCoinNum;
 

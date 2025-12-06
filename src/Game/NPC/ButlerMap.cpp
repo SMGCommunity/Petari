@@ -34,18 +34,16 @@ namespace NrvButlerMap {
     NEW_NERVE(ButlerMapNrvLectureDemoShowMap, ButlerMap, LectureDemoShowMap);
     NEW_NERVE(ButlerMapNrvLectureDemoShowMapAfter, ButlerMap, LectureDemoShowMapAfter);
     NEW_NERVE(ButlerMapNrvStarPieceReaction, ButlerMap, StarPieceReaction);
-};
+};  // namespace NrvButlerMap
 
-ButlerMap::ButlerMap(const char *pName) : NPCActor(pName){
+ButlerMap::ButlerMap(const char* pName) : NPCActor(pName) {
     _15C = nullptr;
     _160 = false;
 }
 
-ButlerMap::~ButlerMap() {
-    
-}
+ButlerMap::~ButlerMap() {}
 
-void ButlerMap::init(const JMapInfoIter &rIter) {
+void ButlerMap::init(const JMapInfoIter& rIter) {
     MR::getJMapInfoArg0NoInit(rIter, &_160);
     NPCActorCaps caps("ButlerMap");
     caps.mObjectName = "Butler";
@@ -58,24 +56,25 @@ void ButlerMap::init(const JMapInfoIter &rIter) {
     caps.mUseShadow = true;
     caps._38 = false;
     NPCActor::initialize(rIter, caps);
-    setDefaults2();    
-    _13C = "Spin";            
-    const char *wait = "Wait";
-    const char *talk = "Talk";
+    setDefaults2();
+    _13C = "Spin";
+    const char* wait = "Wait";
+    const char* talk = "Talk";
     mParam._14 = wait;
     mParam._18 = wait;
     mParam._1C = talk;
-    mParam._20 = talk;      
+    mParam._20 = talk;
     MR::createSceneObj(119);
     MR::tryRegisterDemoCast(this, rIter);
     MR::tryRegisterDemoCast(this, "バトラー報告", rIter);
     TVec3f vec;
-    const char* demoNameMapLecture = cDemoNameMapLecture;    
+    const char* demoNameMapLecture = cDemoNameMapLecture;
     vec.setPSZeroVec();
-    TalkMessageCtrl *talkMessage = MR::createTalkCtrlDirectOnRootNodeAutomatic(this, rIter, "AstroGalaxy_ButlerMap001", vec, MR::getJointMtx(this, "Body"));
+    TalkMessageCtrl* talkMessage =
+        MR::createTalkCtrlDirectOnRootNodeAutomatic(this, rIter, "AstroGalaxy_ButlerMap001", vec, MR::getJointMtx(this, "Body"));
     if (MR::tryInitDemoSheetTalkAnim(this, rIter, demoNameMapLecture, "DemoButlerMapLecture", talkMessage)) {
-        const char *demoNameMapLecture = cDemoNameMapLecture;
-        const MR::FunctorBase& func = MR::Functor(this, &ButlerMap::startLectureDemo);        
+        const char* demoNameMapLecture = cDemoNameMapLecture;
+        const MR::FunctorBase& func = MR::Functor(this, &ButlerMap::startLectureDemo);
         MR::registerDemoActionFunctorDirect(this, func, demoNameMapLecture, "開始");
         MR::registerDemoActionFunctorDirect(this, MR::Functor(this, &ButlerMap::resetStatus), demoNameMapLecture, "バトラーリセット");
     }
@@ -85,13 +84,12 @@ void ButlerMap::init(const JMapInfoIter &rIter) {
     if (_160) {
         SphereSelectorFunction::registerTarget(this);
     }
-    
+
     _15C = new ButlerStateStarPieceReaction(this, rIter, "AstroGalaxy_Butler000");
     _15C->init();
     if (MR::isButlerMapAppear()) {
         makeActorAppeared();
-    }
-    else {
+    } else {
         makeActorDead();
     }
 }
@@ -127,7 +125,7 @@ void ButlerMap::control() {
         MR::startSound(this, "SE_SM_NPC_TRAMPLED", -1, -1);
         MR::startSound(this, "SE_SV_BUTLER_TRAMPLED", -1, -1);
     }
-    
+
     if (NPCActor::isPointingSe()) {
         MR::startDPDHitSound();
         MR::startSound(this, "SE_SV_BUTLER_POINT", -1, -1);
@@ -135,7 +133,7 @@ void ButlerMap::control() {
     NPCActor::control();
 }
 
-bool ButlerMap::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool ButlerMap::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgLockOnStarPieceShoot(msg)) {
         return true;
     }
@@ -149,17 +147,15 @@ bool ButlerMap::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *p
             setNerve(&NrvButlerMap::ButlerMapNrvStarPieceReaction::sInstance);
         }
         return true;
-    }
-    else {
+    } else {
         return NPCActor::receiveMsgPlayerAttack(msg, pSender, pReceiver);
     }
 }
 
-bool ButlerMap::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool ButlerMap::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (SphereSelectorFunction::trySyncKillMsgSelectStart(this, msg)) {
         return true;
-    }
-    else {
+    } else {
         return MR::isMsgHitmarkEmit(msg);
     }
 }
@@ -175,12 +171,10 @@ void ButlerMap::exeShowGalaxyMap() {
     if (MR::isFirstStep(this)) {
         if (_160) {
             MR::startGalaxyMapLayout();
-        }
-        else {
+        } else {
             MR::startAstroMapLayout();
         }
-    }
-    else {
+    } else {
         forceNerveToWait();
     }
 }
@@ -189,8 +183,7 @@ void ButlerMap::exeLectureDemoShowMap() {
     if (MR::isFirstStep(this)) {
         MR::startAstroMapLayoutForNewDomeDiscover();
         MR::forceOpenWipeFade();
-    }
-    else {
+    } else {
         setNerve(&NrvButlerMap::ButlerMapNrvLectureDemoShowMapAfter::sInstance);
     }
 }
@@ -210,7 +203,7 @@ void ButlerMap::exeStarPieceReaction() {
     if (MR::isFirstStep(this)) {
         _15C->appear();
     }
-    
+
     if (_15C->update()) {
         forceNerveToWait();
     }

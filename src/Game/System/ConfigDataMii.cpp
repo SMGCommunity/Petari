@@ -1,36 +1,23 @@
 #include "Game/System/ConfigDataMii.hpp"
-#include "Game/Util.hpp"
-#include "JSystem/JSupport/JSUMemoryInputStream.hpp"
-#include "JSystem/JSupport/JSUMemoryOutputStream.hpp"
+#include "Game/Util/MemoryUtil.hpp"
+#include <JSystem/JSupport/JSUMemoryInputStream.hpp>
+#include <JSystem/JSupport/JSUMemoryOutputStream.hpp>
+#include <RFL_Types.h>
 
-ConfigDataMii::ConfigDataMii() {
-    _4 = 0;
-    mIconID = 1;
-    mBuffer = 0;
-    mBuffer = new u8[0x8];
+#define FLAG_UNK1 0x1
+#define FLAG_UNK2 0x2
+
+#define ICON_ID_MII 0
+#define ICON_ID_MARIO 1
+#define ICON_ID_LUIGI 2
+#define ICON_ID_YOSHI 3
+#define ICON_ID_KINOPIO 4
+#define ICON_ID_PEACH 5
+
+ConfigDataMii::ConfigDataMii() : mFlag(0), mIconId(ICON_ID_MARIO), mMiiId(nullptr) {
+    mMiiId = new u8[sizeof(RFLCreateID)];
+
     initializeData();
-}
-
-void ConfigDataMii::setMiiOrIconId(const void *pData, const u32 *a2) {
-    if (pData) {
-        MR::copyMemory(mBuffer, pData, 8);
-        _4 |= 0x2;
-        mIconID = 0;
-    }
-    else {
-        MR::fillMemory(mBuffer, 0, 8);
-        mIconID = *a2;
-    }
-}
-
-bool ConfigDataMii::getIconId(u32 *pIconId) const {
-    *pIconId = mIconID;
-    return mIconID != 0;
-}
-
-bool ConfigDataMii::getMiiId(void *pData) const {
-    MR::copyMemory(pData, mBuffer, 8);
-    return !mIconID;
 }
 
 u32 ConfigDataMii::makeHeaderHashCode() const {
@@ -38,41 +25,73 @@ u32 ConfigDataMii::makeHeaderHashCode() const {
 }
 
 u32 ConfigDataMii::getSignature() const {
-    return 0x4D494920;
+    return 'MII ';
 }
 
-s32 ConfigDataMii::serialize(u8 *pData, u32 len) const {
-    JSUMemoryOutputStream stream = JSUMemoryOutputStream(pData, len);
-    u8 stack_9 = _4;
-    stream.write(&stack_9, 1);
-    stream.write(mBuffer, 8);
-    u8 stack_8 = mIconID;
-    stream.write(&stack_8, 1);
+s32 ConfigDataMii::serialize(u8* pBuffer, u32 size) const {
+    JSUMemoryOutputStream stream = JSUMemoryOutputStream(pBuffer, size);
+
+    u8 flag = mFlag;
+    stream.write(&flag, sizeof(mFlag));
+
+    stream.write(mMiiId, sizeof(RFLCreateID));
+
+    u8 iconId = mIconId;
+    stream.write(&iconId, sizeof(mIconId));
+
     return stream.mPosition;
 }
 
-s32 ConfigDataMii::deserialize(const u8 *pData, u32 len) {
+s32 ConfigDataMii::deserialize(const u8* pBuffer, u32 size) {
     initializeData();
-    JSUMemoryInputStream stream = JSUMemoryInputStream(pData, len);
-    u8 stack_8;
-    stream.read(&stack_8, 1);
-    _4 = stack_8;
-    stream.read(mBuffer, 8);
 
-    if (!stream.getAvailable()) {
-        if (_4 & 0x1) {
-            mIconID = 0;
+    JSUMemoryInputStream stream = JSUMemoryInputStream(pBuffer, size);
+
+    u8 flag;
+    stream.read(&flag, sizeof(mFlag));
+    mFlag = flag;
+
+    stream.read(mMiiId, sizeof(RFLCreateID));
+
+    if (stream.getAvailable() == 0) {
+        if ((mFlag & FLAG_UNK1) != 0) {
+            mIconId = ICON_ID_MII;
         }
-    }
-    else {
-        stream.read(&mIconID, 1);
+    } else {
+        stream.read(&mIconId, sizeof(mIconId));
     }
 
     return 0;
 }
 
 void ConfigDataMii::initializeData() {
-    _4 = 0;
-    mIconID = 1;
-    MR::zeroMemory(mBuffer, 8);
+    mFlag = 0;
+    mIconId = ICON_ID_MARIO;
+
+    MR::zeroMemory(mMiiId, sizeof(RFLCreateID));
+}
+
+void ConfigDataMii::setMiiOrIconId(const void* pMiiId, const u32* pIconId) {
+    if (pMiiId != nullptr) {
+        MR::copyMemory(mMiiId, pMiiId, sizeof(RFLCreateID));
+
+        mFlag |= FLAG_UNK2;
+        mIconId = ICON_ID_MII;
+    } else {
+        MR::fillMemory(mMiiId, 0, sizeof(RFLCreateID));
+
+        mIconId = *pIconId;
+    }
+}
+
+bool ConfigDataMii::getIconId(u32* pIconId) const {
+    *pIconId = mIconId;
+
+    return mIconId != ICON_ID_MII;
+}
+
+bool ConfigDataMii::getMiiId(void* pMiiId) const {
+    MR::copyMemory(pMiiId, mMiiId, sizeof(RFLCreateID));
+
+    return mIconId == ICON_ID_MII;
 }

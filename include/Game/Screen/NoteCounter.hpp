@@ -44,4 +44,4 @@ namespace MR {
     void declareNoteNumMaxAndMelodyToCounter(LiveActor* pHost, s32 noteNum, s32 melodyNo, f32 railLength);
     void addNoteToCounter();
     void failureNoteCollection();
-};
+};  // namespace MR

@@ -23,4 +23,4 @@ namespace NrvLavaSteam {
     NERVE_DECL(HostTypeSteam, LavaSteam, LavaSteam::exeSteam);
     NERVE_DECL(HostTypeWait, LavaSteam, LavaSteam::exeWait);
     NERVE_DECL_NULL(HostTypeWaitForSwitchOn);
-};
+};  // namespace NrvLavaSteam

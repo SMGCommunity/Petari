@@ -36,7 +36,7 @@ void PowerStarEventKeeper::initStarInfoTable() {
 
 // PowerStarEventKeeper::declareStar
 
-bool PowerStarEventKeeper::isGreen(const char *pName, s32 starNum) const {
+bool PowerStarEventKeeper::isGreen(const char* pName, s32 starNum) const {
     if (starNum < 0) {
         starNum = findStarID(pName);
     }
@@ -48,7 +48,7 @@ bool PowerStarEventKeeper::isGreen(const char *pName, s32 starNum) const {
     return MR::isPowerStarGreenInCurrentStage(starNum);
 }
 
-bool PowerStarEventKeeper::isRed(const char *pName, s32 starNum) const {
+bool PowerStarEventKeeper::isRed(const char* pName, s32 starNum) const {
     if (starNum < 0) {
         starNum = findStarID(pName);
     }
@@ -60,7 +60,7 @@ bool PowerStarEventKeeper::isRed(const char *pName, s32 starNum) const {
     return MR::isPowerStarRedInCurrentStage(starNum);
 }
 
-bool PowerStarEventKeeper::isGrand(const char *pName, s32 starNum) const {
+bool PowerStarEventKeeper::isGrand(const char* pName, s32 starNum) const {
     if (starNum < 0) {
         starNum = findStarID(pName);
     }
@@ -77,7 +77,7 @@ bool PowerStarEventKeeper::isGrand(const char *pName, s32 starNum) const {
 // PowerStarEventKeeper::isExistPowerStarAtScenario
 // PowerStarEventKeeper::isCorrectStarIdWithBBS
 
-bool PowerStarEventKeeper::isSuccess(const char *pName, s32 starNum) const {
+bool PowerStarEventKeeper::isSuccess(const char* pName, s32 starNum) const {
     if (starNum < 0) {
         starNum = findStarID(pName);
     }

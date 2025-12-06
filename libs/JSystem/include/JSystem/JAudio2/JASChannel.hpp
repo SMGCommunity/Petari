@@ -1,8 +1,8 @@
 #pragma once
 
-#include <revolution.h>
-#include "JSystem/JAudio2/JASOscillator.hpp"
 #include "JSystem/JAudio2/JASLfo.hpp"
+#include "JSystem/JAudio2/JASOscillator.hpp"
+#include <revolution.h>
 
 class JASChannel {
 public:
@@ -10,10 +10,10 @@ public:
     void setVelocity(u32) NO_INLINE;
     void setUpdateTimer(u32) NO_INLINE;
     void setKeySweepTarget(s32, u32) NO_INLINE;
-    void setOscInit(u32, const JASOscillator::Data *) NO_INLINE;
+    void setOscInit(u32, const JASOscillator::Data*) NO_INLINE;
     void setVibrate(f32, f32) NO_INLINE;
     void setTremolo(f32, f32) NO_INLINE;
-    void setParams(const JASChannelParams &) NO_INLINE;
+    void setParams(const JASChannelParams&) NO_INLINE;
     void release(u16) NO_INLINE;
     void free() NO_INLINE;
     void setPauseFlag(bool) NO_INLINE;

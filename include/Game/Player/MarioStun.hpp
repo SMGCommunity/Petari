@@ -6,7 +6,7 @@ class MarioActor;
 
 class MarioStun : public MarioState {
 public:
-    MarioStun(MarioActor *);
+    MarioStun(MarioActor*);
 
     virtual bool start();
     virtual bool close();

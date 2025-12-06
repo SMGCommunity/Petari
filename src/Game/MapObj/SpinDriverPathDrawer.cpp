@@ -2,10 +2,9 @@
 #include "Game/Scene/SceneObjHolder.hpp"
 #include <revolution/gx/GXVert.h>
 
-
-SpinDriverPathDrawInit::SpinDriverPathDrawInit() : NameObj("スピンドライバーレール描画初期化"),
-    mOrangeTexture(nullptr), mGreenTexture(nullptr), mPinkTexture(nullptr), mMaskTexture(nullptr), mIsPathAtOpa(false) {
-    
+SpinDriverPathDrawInit::SpinDriverPathDrawInit()
+    : NameObj("スピンドライバーレール描画初期化"), mOrangeTexture(nullptr), mGreenTexture(nullptr), mPinkTexture(nullptr), mMaskTexture(nullptr),
+      mIsPathAtOpa(false) {
     void (SpinDriverPathDrawInit::*drawFunc)(void) = &SpinDriverPathDrawInit::initDraw;
     MR::registerPreDrawFunction(MR::Functor(this, drawFunc), 18);
     mOrangeTexture = new JUTTexture(MR::loadTexFromArc("SpinDriverPath.arc", "NormalColor.bti"), 0);
@@ -14,7 +13,7 @@ SpinDriverPathDrawInit::SpinDriverPathDrawInit() : NameObj("スピンドライ�
     mMaskTexture = new JUTTexture(MR::loadTexFromArc("SpinDriverPath.arc", "Mask.bti"), 0);
 }
 
-SpinDriverPathDrawer::SpinDriverPathDrawer(SpinDriverShootPath *pShootPath) : LiveActor("パス描画") {
+SpinDriverPathDrawer::SpinDriverPathDrawer(SpinDriverShootPath* pShootPath) : LiveActor("パス描画") {
     mShootPath = pShootPath;
     _90 = 0;
     _94 = 0;
@@ -61,7 +60,7 @@ void SpinDriverPathDrawInit::initDraw() {
     GXSetCullMode(GX_CULL_NONE);
     GXSetClipMode(GX_CLIP_ENABLE);
     Color8 color = Color8(0);
-    GXSetFog(GX_FOG_NONE, 0.0f, 0.0f, 0.0f, 0.0f, (GXColor&)color); 
+    GXSetFog(GX_FOG_NONE, 0.0f, 0.0f, 0.0f, 0.0f, (GXColor&)color);
     GXSetFogRangeAdj(GX_FALSE, 0, nullptr);
     mMaskTexture->load(GX_TEXMAP1);
 }
@@ -69,35 +68,29 @@ void SpinDriverPathDrawInit::initDraw() {
 
 namespace MR {
     void setSpinDriverPathColorNormal() {
-        MR::getSceneObj<SpinDriverPathDrawInit>(SceneObj_SpinDriverPathDrawInit)->mOrangeTexture->load(GX_TEXMAP0);
+        MR::getSceneObj< SpinDriverPathDrawInit >(SceneObj_SpinDriverPathDrawInit)->mOrangeTexture->load(GX_TEXMAP0);
     }
 
     void setSpinDriverPathColorGreen() {
-        MR::getSceneObj<SpinDriverPathDrawInit>(SceneObj_SpinDriverPathDrawInit)->mGreenTexture->load(GX_TEXMAP0);
+        MR::getSceneObj< SpinDriverPathDrawInit >(SceneObj_SpinDriverPathDrawInit)->mGreenTexture->load(GX_TEXMAP0);
     }
-    
-    void setSpinDriverPathColorPink() {
-        MR::getSceneObj<SpinDriverPathDrawInit>(SceneObj_SpinDriverPathDrawInit)->mPinkTexture->load(GX_TEXMAP0);
-    }
+
+    void setSpinDriverPathColorPink() { MR::getSceneObj< SpinDriverPathDrawInit >(SceneObj_SpinDriverPathDrawInit)->mPinkTexture->load(GX_TEXMAP0); }
 
     bool isDrawSpinDriverPathAtOpa() {
         if (!MR::isExistSceneObj(SceneObj_SpinDriverPathDrawInit)) {
             return false;
         }
 
-        return MR::getSceneObj<SpinDriverPathDrawInit>(SceneObj_SpinDriverPathDrawInit)->mIsPathAtOpa;
+        return MR::getSceneObj< SpinDriverPathDrawInit >(SceneObj_SpinDriverPathDrawInit)->mIsPathAtOpa;
     }
 
-    void onDrawSpinDriverPathAtOpa() {
-        MR::getSceneObj<SpinDriverPathDrawInit>(SceneObj_SpinDriverPathDrawInit)->mIsPathAtOpa = true;
-    }
+    void onDrawSpinDriverPathAtOpa() { MR::getSceneObj< SpinDriverPathDrawInit >(SceneObj_SpinDriverPathDrawInit)->mIsPathAtOpa = true; }
 
-    void offDrawSpinDriverPathAtOpa() {
-        MR::getSceneObj<SpinDriverPathDrawInit>(SceneObj_SpinDriverPathDrawInit)->mIsPathAtOpa = false;
-    }
-};
+    void offDrawSpinDriverPathAtOpa() { MR::getSceneObj< SpinDriverPathDrawInit >(SceneObj_SpinDriverPathDrawInit)->mIsPathAtOpa = false; }
+};  // namespace MR
 
-void SpinDriverPathDrawer::init(const JMapInfoIter &rIter) {
+void SpinDriverPathDrawer::init(const JMapInfoIter& rIter) {
     MR::connectToScene(this, -1, -1, -1, 0x12);
     initPositionList(75.0f, 20.0f);
     initClipping();
@@ -122,15 +115,14 @@ void SpinDriverPathDrawer::initPathEnd() {
 
     if (arg >= 0) {
         _B8 = arg / 1000.0f;
-    }
-    else {
+    } else {
         _B8 = 0.0f;
     }
 }
 
 f32 SpinDriverPathDrawer::calcDrawCode() const {
     if (_B8 <= 0.0f) {
-       return _AC;
+        return _AC;
     }
 
     f32 val = 1.0f - _B8;
@@ -140,7 +132,7 @@ f32 SpinDriverPathDrawer::calcDrawCode() const {
 
 f32 SpinDriverPathDrawer::calcDrawBaseCode() const {
     if (_B8 <= 0.0f) {
-       return _B0;
+        return _B0;
     }
 
     f32 val = _B0;
@@ -174,8 +166,7 @@ void SpinDriverPathDrawer::setColorPink() {
 void SpinDriverPathDrawer::setMaskLength(f32 mask) {
     if (mask < 1.0f) {
         mMaskLength = 1.0f;
-    }
-    else {
+    } else {
         mMaskLength = mask;
     }
 }
@@ -183,15 +174,14 @@ void SpinDriverPathDrawer::setMaskLength(f32 mask) {
 void SpinDriverPathDrawer::setFadeScale(f32 fade) {
     if (fade < 0.001f) {
         mFadeScale = 0.001f;
-    }
-    else {
+    } else {
         mFadeScale = fade;
     }
 }
 
 // SpinDriverPathDrawer::draw
 
-void SpinDriverPathDrawer::sendPoint(const TVec3f &a1, f32 a2, f32 a3) {
+void SpinDriverPathDrawer::sendPoint(const TVec3f& a1, f32 a2, f32 a3) {
     GXWGFifo.f32 = a1.x;
     GXWGFifo.f32 = a1.y;
     GXWGFifo.f32 = a1.z;
@@ -199,10 +189,6 @@ void SpinDriverPathDrawer::sendPoint(const TVec3f &a1, f32 a2, f32 a3) {
     GXWGFifo.f32 = a3;
 }
 
-SpinDriverPathDrawer::~SpinDriverPathDrawer() {
+SpinDriverPathDrawer::~SpinDriverPathDrawer() {}
 
-}
-
-SpinDriverPathDrawInit::~SpinDriverPathDrawInit() {
-
-}
+SpinDriverPathDrawInit::~SpinDriverPathDrawInit() {}

@@ -2,12 +2,12 @@
 #include "Game/Boss/SkeletalFishBoss.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/LiveActorGroup.hpp"
-#include "Game/MapObj/SubmarineVolcanoBigColumn.hpp"
 #include "Game/Map/CollisionParts.hpp"
 #include "Game/Map/HitInfo.hpp"
+#include "Game/MapObj/SubmarineVolcanoBigColumn.hpp"
 #include <cstdio>
 
-SkeletalFishBossBattleDirector::SkeletalFishBossBattleDirector(SkeletalFishBoss *pBoss) : NameObj("スカルシャークボス戦指揮") {
+SkeletalFishBossBattleDirector::SkeletalFishBossBattleDirector(SkeletalFishBoss* pBoss) : NameObj("スカルシャークボス戦指揮") {
     mFishBoss = pBoss;
     _90 = 0;
     _D4 = 0;
@@ -32,7 +32,7 @@ void SkeletalFishBossBattleDirector::initiate() {
 
     for (s32 i = 0; i < grp->mObjectCount; i++) {
         if (!strcmp(grp->getActor(i)->mName, "海底火山巨大石柱") || (!strcmp(grp->getActor(i)->mName, "海底火山石柱（小）"))) {
-            mColumns[_90] = static_cast<SubmarineVolcanoBigColumn*>(grp->getActor(i));
+            mColumns[_90] = static_cast< SubmarineVolcanoBigColumn* >(grp->getActor(i));
             _90++;
         }
 
@@ -58,7 +58,7 @@ void SkeletalFishBossBattleDirector::startPowerUpDemo2() {
     playGuardAnim("PowerUp2", 4);
 }
 
-void SkeletalFishBossBattleDirector::playGuardAnim(const char *pAnimName, s32 numGuards) {
+void SkeletalFishBossBattleDirector::playGuardAnim(const char* pAnimName, s32 numGuards) {
     for (s32 i = 0; i < numGuards; i++) {
         char buf[0x80];
         snprintf(buf, sizeof(buf), "%s%c", pAnimName, i + 0x41);
@@ -69,11 +69,9 @@ void SkeletalFishBossBattleDirector::playGuardAnim(const char *pAnimName, s32 nu
     }
 }
 
-void SkeletalFishBossBattleDirector::movement() {
+void SkeletalFishBossBattleDirector::movement() {}
 
-}
-
-void SkeletalFishBossBattleDirector::tryColumnCollision(HitSensor *pSensor) {
+void SkeletalFishBossBattleDirector::tryColumnCollision(HitSensor* pSensor) {
     for (s32 i = 0; i < _90; i++) {
         CollisionParts* parts = MR::getCollisionParts(mColumns[i]);
 
@@ -130,6 +128,4 @@ void SkeletalFishBossBattleDirector::killBirdLouse() {
     }
 }
 
-SkeletalFishBossBattleDirector::~SkeletalFishBossBattleDirector() {
-
-}
+SkeletalFishBossBattleDirector::~SkeletalFishBossBattleDirector() {}

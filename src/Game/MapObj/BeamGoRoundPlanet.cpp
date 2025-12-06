@@ -11,9 +11,9 @@ BeamGoRoundBeam::BeamGoRoundBeam(MtxPtr mtx) : LiveActor("ビームゴーラウ�
     mBeamJointMtx = mtx;
 }
 
-void BeamGoRoundBeam::init(const JMapInfoIter &rIter) {
+void BeamGoRoundBeam::init(const JMapInfoIter& rIter) {
     initModelManagerWithAnm("BeamGoRoundBeam", nullptr, false);
-    mPosition.set<f32>(mBeamJointMtx[0][3], mBeamJointMtx[1][3], mBeamJointMtx[2][3]);
+    mPosition.set< f32 >(mBeamJointMtx[0][3], mBeamJointMtx[1][3], mBeamJointMtx[2][3]);
     MR::connectToScene(this, 0x22, 0x5, 0x19, 0x1C);
     initHitSensor(1);
     MR::addHitSensorCallbackEnemyAttack(this, "beam", 4, 100.0f);
@@ -26,7 +26,7 @@ void BeamGoRoundBeam::init(const JMapInfoIter &rIter) {
 }
 
 void BeamGoRoundBeam::calcAndSetBaseMtx() {
-    mPosition.set<f32>(mBeamJointMtx[0][3], mBeamJointMtx[1][3], mBeamJointMtx[2][3]);
+    mPosition.set< f32 >(mBeamJointMtx[0][3], mBeamJointMtx[1][3], mBeamJointMtx[2][3]);
     MR::setBaseTRMtx(this, mBeamJointMtx);
 }
 
@@ -34,7 +34,7 @@ void BeamGoRoundBeam::draw() const {
     mModelDrawer->draw();
 }
 
-void BeamGoRoundBeam::updateHitSensor(HitSensor *pSensor) {
+void BeamGoRoundBeam::updateHitSensor(HitSensor* pSensor) {
     f32 radius = pSensor->mRadius;
     TVec3f up;
     MR::calcUpVec(&up, this);
@@ -45,7 +45,7 @@ void BeamGoRoundBeam::updateHitSensor(HitSensor *pSensor) {
     MR::calcPerpendicFootToLineInside(&pSensor->mPosition, *MR::getPlayerPos(), v7, v6);
 }
 
-void BeamGoRoundBeam::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
+void BeamGoRoundBeam::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isSensorPlayer(pReceiver)) {
         if (MR::isSensorEnemyAttack(pSender)) {
             MR::sendMsgEnemyAttackElectric(pReceiver, pSender);
@@ -57,13 +57,13 @@ namespace NrvBeamGoRoundPlanet {
     NEW_NERVE(BeamGoRoundPlanetNrvWait, BeamGoRoundPlanet, Wait);
 };
 
-BeamGoRoundPlanet::BeamGoRoundPlanet(const char *pName) : MapObjActor(pName) {
+BeamGoRoundPlanet::BeamGoRoundPlanet(const char* pName) : MapObjActor(pName) {
     mBeams = nullptr;
     _C8 = nullptr;
     _CC = nullptr;
 }
 
-void BeamGoRoundPlanet::init(const JMapInfoIter &rIter) {
+void BeamGoRoundPlanet::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);
     MapObjActorInitInfo info;
     info.setupHioNode("");
@@ -87,7 +87,7 @@ void BeamGoRoundPlanet::exeWait() {
     MR::startLevelSound(this, "SE_OJ_LV_BEAM_GO_ROUND", -1, -1, -1);
 }
 
-void BeamGoRoundPlanet::connectToScene(const MapObjActorInitInfo &) {
+void BeamGoRoundPlanet::connectToScene(const MapObjActorInitInfo&) {
     MR::connectToScenePlanet(this);
 }
 
@@ -102,10 +102,6 @@ void BeamGoRoundPlanet::initBeam() {
     }
 }
 
-BeamGoRoundBeam::~BeamGoRoundBeam() {
+BeamGoRoundBeam::~BeamGoRoundBeam() {}
 
-}
-
-BeamGoRoundPlanet::~BeamGoRoundPlanet() {
-    
-}
+BeamGoRoundPlanet::~BeamGoRoundPlanet() {}

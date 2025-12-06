@@ -7,13 +7,11 @@ namespace NrvCannonFortressBreakStep {
     NEW_NERVE(CannonFortressBreakStepNrvFallStart, CannonFortressBreakStep, FallStart);
     NEW_NERVE(CannonFortressBreakStepNrvFall, CannonFortressBreakStep, Fall);
     NEW_NERVE(CannonFortressBreakStepNrvBreak, CannonFortressBreakStep, Break);
-};
+};  // namespace NrvCannonFortressBreakStep
 
-CannonFortressBreakStep::CannonFortressBreakStep(const char *pName) : MapObjActor(pName) {
-    
-}
+CannonFortressBreakStep::CannonFortressBreakStep(const char* pName) : MapObjActor(pName) {}
 
-void CannonFortressBreakStep::init(const JMapInfoIter &rIter) {
+void CannonFortressBreakStep::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);
     MapObjActorInitInfo info;
     info.setupHioNode("地形オブジェ");
@@ -52,7 +50,6 @@ void CannonFortressBreakStep::exeFall() {
     }
 }
 
-
 void CannonFortressBreakStep::exeBreak() {
     if (MR::isFirstStep(this)) {
         MR::startSound(this, "SE_OJ_CNFORT_BKSTEP_FALL_ED", -1, -1);
@@ -65,14 +62,10 @@ void CannonFortressBreakStep::startFall() {
     setNerve(&NrvCannonFortressBreakStep::CannonFortressBreakStepNrvFallStart::sInstance);
 }
 
-void CannonFortressBreakStep::initCaseUseSwitchB(const MapObjActorInitInfo &rInfo) {
+void CannonFortressBreakStep::initCaseUseSwitchB(const MapObjActorInitInfo& rInfo) {
     MR::listenStageSwitchOnB(this, MR::Functor_Inline(this, &CannonFortressBreakStep::startFall));
 }
 
-void CannonFortressBreakStep::initCaseNoUseSwitchB(const MapObjActorInitInfo &) {
+void CannonFortressBreakStep::initCaseNoUseSwitchB(const MapObjActorInitInfo&) {}
 
-}
-
-CannonFortressBreakStep::~CannonFortressBreakStep() {
-    
-}
+CannonFortressBreakStep::~CannonFortressBreakStep() {}

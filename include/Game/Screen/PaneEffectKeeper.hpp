@@ -5,5 +5,5 @@ class MultiEmitter;
 class PaneEffectKeeper {
 public:
     void clear();
-    MultiEmitter* getEmitter(const char *) const;
+    MultiEmitter* getEmitter(const char*) const;
 };

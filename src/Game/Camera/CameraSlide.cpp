@@ -1,7 +1,7 @@
 #include "Game/Camera/CameraSlide.hpp"
 #include "Game/Camera/CamTranslatorSlide.hpp"
 
-CameraSlide::CameraSlide(const char *pName) : Camera(pName) {
+CameraSlide::CameraSlide(const char* pName) : Camera(pName) {
     mAxis.x = 1.0f;
     mAxis.y = 0.0f;
     mAxis.z = 0.0f;
@@ -15,10 +15,8 @@ CameraSlide::CameraSlide(const char *pName) : Camera(pName) {
     mDist = 1000.0f;
 }
 
-CameraSlide::~CameraSlide() {
+CameraSlide::~CameraSlide() {}
 
-}
-
-CamTranslatorBase *CameraSlide::createTranslator() {
+CamTranslatorBase* CameraSlide::createTranslator() {
     return new CamTranslatorSlide(this);
 }

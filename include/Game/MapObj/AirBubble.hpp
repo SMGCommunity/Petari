@@ -4,18 +4,18 @@
 
 class AirBubble : public LiveActor {
 public:
-    AirBubble(const char *);
+    AirBubble(const char*);
 
     virtual ~AirBubble();
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
     virtual void initAfterPlacement();
     virtual void appear();
     virtual void kill();
     virtual void control();
-    virtual bool receiveMsgPush(HitSensor *, HitSensor *);
-    virtual bool receiveOtherMsg(u32, HitSensor *, HitSensor *);
+    virtual bool receiveMsgPush(HitSensor*, HitSensor*);
+    virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
 
-    void appearMove(const TVec3f &, s32);
+    void appearMove(const TVec3f&, s32);
     void exeWait();
     void exeMove();
     void exeBreak();
@@ -39,4 +39,4 @@ namespace NrvAirBubble {
     NERVE(AirBubbleNrvMove);
     NERVE(AirBubbleNrvBreak);
     NERVE(AirBubbleNrvKillWait);
-};
+};  // namespace NrvAirBubble

@@ -44,4 +44,4 @@ namespace InformationObserverFunction {
     void explainLifeUp();
     void explainOneUp();
     void explainSpin(LiveActor*);
-};
+};  // namespace InformationObserverFunction

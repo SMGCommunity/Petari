@@ -1,8 +1,7 @@
 #include "Game/Player/MarioEffect.hpp"
 
-MarioEffect::MarioEffect(MarioActor *actor) : MarioModule(actor), _1C(0xFFFFFFFF), _20(0xFFFFFFFF)
-{
-    SomeData *i = _54;
+MarioEffect::MarioEffect(MarioActor* actor) : MarioModule(actor), _1C(0xFFFFFFFF), _20(0xFFFFFFFF) {
+    SomeData* i = _54;
     // SomeData *end = _54 + 0x100;
     do {
         PSMTXIdentity(i->_4.toMtxPtr());

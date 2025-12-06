@@ -5,13 +5,14 @@
 #include "nw4r/lyt/pane.h"
 #include "nw4r/lyt/resources.h"
 #include "nw4r/lyt/util.h"
-#include "revolution/mem/allocator.h"
 #include "nw4r/ut/Rect.h"
+#include "revolution/mem/allocator.h"
 
 namespace nw4r {
     namespace lyt {
         namespace {
-            bool IsIncludeAnimationGroupRef(GroupContainer *pGroupContainer, const AnimationGroupRef *const groupRefs, u16 bindGroupNum, bool bDescendingBind, Pane *pTargetPane) {
+            bool IsIncludeAnimationGroupRef(GroupContainer* pGroupContainer, const AnimationGroupRef* const groupRefs, u16 bindGroupNum,
+                                            bool bDescendingBind, Pane* pTargetPane) {
                 for (u16 grpIdx = 0; grpIdx < bindGroupNum; ++grpIdx) {
                     Group* const pGroup = pGroupContainer->FindGroupByName(groupRefs[grpIdx].GetName());
                     PaneLinkList& paneList = pGroup->GetPaneList();
@@ -32,13 +33,11 @@ namespace nw4r {
 
                 return false;
             }
-        };
+        };  // namespace
 
         MEMAllocator* Layout::mspAllocator = nullptr;
 
-        Layout::Layout() : mpRootPane(nullptr), mpGroupContainer(nullptr), mLayoutSize(0.0f, 0.0f) {
-
-        }
+        Layout::Layout() : mpRootPane(nullptr), mpGroupContainer(nullptr), mLayoutSize(0.0f, 0.0f) {}
 
         Layout::~Layout() {
             DeleteObj(mpGroupContainer);
@@ -54,8 +53,8 @@ namespace nw4r {
             }
         }
 
-        bool Layout::Build(const void *lytResBuf, ResourceAccessor *pResAcsr) {
-            const res::BinaryFileHeader *const pFileHead = static_cast<const res::BinaryFileHeader*>(lytResBuf);
+        bool Layout::Build(const void* lytResBuf, ResourceAccessor* pResAcsr) {
+            const res::BinaryFileHeader* const pFileHead = static_cast< const res::BinaryFileHeader* >(lytResBuf);
             if (!detail::TestFileHeader(*pFileHead, 'RLYT')) {
                 return false;
             }
@@ -64,109 +63,104 @@ namespace nw4r {
                 return false;
             }
 
-            ResBlockSet resBlockSet = { 0 };
+            ResBlockSet resBlockSet = {0};
             resBlockSet.pResAccessor = pResAcsr;
             Pane* pParentPane = nullptr;
             Pane* pLastPane = nullptr;
             bool bReadRootGroup = false;
             int groupNestLevel = 0;
 
-            const void* dataPtr = static_cast<const u8*>(lytResBuf) + pFileHead->headerSize;
+            const void* dataPtr = static_cast< const u8* >(lytResBuf) + pFileHead->headerSize;
             for (int i = 0; i < pFileHead->dataBlocks; ++i) {
-                const res::DataBlockHeader* pDataBlockHead = static_cast<const res::DataBlockHeader*>(dataPtr);
+                const res::DataBlockHeader* pDataBlockHead = static_cast< const res::DataBlockHeader* >(dataPtr);
                 switch (detail::GetSignatureInt(pDataBlockHead->kind)) {
-                    case 'lyt1':
-                    {
-                        const res::Layout* pResLyt = static_cast<const res::Layout*>(dataPtr);
-                        mLayoutSize = pResLyt->layoutSize;
-                        break;
+                case 'lyt1': {
+                    const res::Layout* pResLyt = static_cast< const res::Layout* >(dataPtr);
+                    mLayoutSize = pResLyt->layoutSize;
+                    break;
+                }
+                case 'txl1':
+                    resBlockSet.pTextureList = static_cast< const res::TextureList* >(dataPtr);
+                    break;
+                case 'fnl1':
+                    resBlockSet.pFontList = static_cast< const res::FontList* >(dataPtr);
+                    break;
+                case 'mat1':
+                    resBlockSet.pMaterialList = static_cast< const res::MaterialList* >(dataPtr);
+                    break;
+
+                case 'pan1':
+                case 'pic1':
+                case 'txt1':
+                case 'wnd1':
+                case 'bnd1': {
+                    Pane* pPane = BuildPaneObj(detail::GetSignatureInt(pDataBlockHead->kind), dataPtr, resBlockSet);
+
+                    if (pPane != nullptr) {
+                        if (mpRootPane == nullptr) {
+                            mpRootPane = pPane;
+                        }
+
+                        if (pParentPane != nullptr) {
+                            pParentPane->AppendChild(pPane);
+                        }
+
+                        pLastPane = pPane;
                     }
-                    case 'txl1':
-                        resBlockSet.pTextureList = static_cast<const res::TextureList*>(dataPtr);
-                        break;
-                    case 'fnl1':
-                        resBlockSet.pFontList = static_cast<const res::FontList*>(dataPtr);
-                        break;
-                    case 'mat1':
-                        resBlockSet.pMaterialList = static_cast<const res::MaterialList*>(dataPtr);
-                        break;
+                } break;
 
-                    case 'pan1':
-                    case 'pic1':
-                    case 'txt1':
-                    case 'wnd1':
-                    case 'bnd1':
-                    {
-                        Pane* pPane = BuildPaneObj(detail::GetSignatureInt(pDataBlockHead->kind), dataPtr, resBlockSet);
-
-                        if (pPane != nullptr) {
-                            if (mpRootPane == nullptr) {
-                                mpRootPane = pPane;
+                case 'usd1':
+                    pLastPane->SetExtUserDataList(reinterpret_cast< const res::ExtUserDataList* >(pDataBlockHead));
+                    break;
+                case 'pas1':
+                    pParentPane = pLastPane;
+                    break;
+                case 'pae1':
+                    pLastPane = pParentPane;
+                    pParentPane = pLastPane->GetParent();
+                    break;
+                case 'grp1': {
+                    if (!bReadRootGroup) {
+                        bReadRootGroup = true;
+                        mpGroupContainer = NewObj< GroupContainer >();
+                    } else {
+                        if (mpGroupContainer != nullptr && groupNestLevel == 1) {
+                            if (Group* pGroup = NewObj< Group >(reinterpret_cast< const res::Group* >(pDataBlockHead), mpRootPane)) {
+                                mpGroupContainer->AppendGroup(pGroup);
                             }
-
-                            if (pParentPane != nullptr) {
-                                pParentPane->AppendChild(pPane);
-                            }
-
-                            pLastPane = pPane;
                         }
                     }
                     break;
-
-                    case 'usd1':
-                        pLastPane->SetExtUserDataList(reinterpret_cast<const res::ExtUserDataList*>(pDataBlockHead));
-                        break;
-                    case 'pas1':
-                        pParentPane = pLastPane;
-                        break;
-                    case 'pae1':
-                        pLastPane = pParentPane;
-                        pParentPane = pLastPane->GetParent();
-                        break;
-                    case 'grp1':
-                        {
-                            if (!bReadRootGroup) {
-                                bReadRootGroup = true;
-                                mpGroupContainer = NewObj<GroupContainer>();
-                            }
-                            else {
-                                if (mpGroupContainer != nullptr && groupNestLevel == 1) {
-                                    if (Group* pGroup = NewObj<Group>(reinterpret_cast<const res::Group*>(pDataBlockHead), mpRootPane)) {
-                                        mpGroupContainer->AppendGroup(pGroup);
-                                    }
-                                }
-                            }
-                            break;
-                        }
-                    case 'grs1':
-                        groupNestLevel++;
-                        break;
-                    case 'gre1':
-                        groupNestLevel--;
-                        break;
-                    default:
-                        break;
+                }
+                case 'grs1':
+                    groupNestLevel++;
+                    break;
+                case 'gre1':
+                    groupNestLevel--;
+                    break;
+                default:
+                    break;
                 }
 
-                dataPtr = static_cast<const u8*>(dataPtr) + pDataBlockHead->size;
+                dataPtr = static_cast< const u8* >(dataPtr) + pDataBlockHead->size;
             }
 
             return true;
         }
 
         AnimTransform* Layout::CreateAnimTransform() {
-            AnimTransformBasic *const pAnimTrans = NewObj<AnimTransformBasic>();
+            AnimTransformBasic* const pAnimTrans = NewObj< AnimTransformBasic >();
             if (pAnimTrans != nullptr) {
                 mAnimTransList.PushBack(pAnimTrans);
             }
             return pAnimTrans;
         }
 
-        AnimTransform* Layout::CreateAnimTransform(const void *animResBuf, ResourceAccessor *pResAcsr) {
+        AnimTransform* Layout::CreateAnimTransform(const void* animResBuf, ResourceAccessor* pResAcsr) {
             return CreateAnimTransform(AnimResource(animResBuf), pResAcsr);
         }
 
-        AnimTransform* Layout::CreateAnimTransform(const AnimResource &animRes, ResourceAccessor *pResAcsr) {
+        AnimTransform* Layout::CreateAnimTransform(const AnimResource& animRes, ResourceAccessor* pResAcsr) {
             const res::AnimationBlock* const pAnimBlock = animRes.GetResourceBlock();
 
             if (pAnimBlock == nullptr) {
@@ -180,21 +174,19 @@ namespace nw4r {
             return pAnimTrans;
         }
 
-        void Layout::BindAnimation(AnimTransform *pAnimTrans) {
+        void Layout::BindAnimation(AnimTransform* pAnimTrans) {
             if (mpRootPane != nullptr) {
                 mpRootPane->BindAnimation(pAnimTrans, true);
             }
         }
 
-        void Layout::UnbindAnimation(AnimTransform *pAnimTrans) {
+        void Layout::UnbindAnimation(AnimTransform* pAnimTrans) {
             if (mpRootPane != nullptr) {
                 mpRootPane->UnbindAnimation(pAnimTrans, true);
             }
         }
 
-        void Layout::UnbindAllAnimation() {
-            UnbindAnimation(0);
-        }
+        void Layout::UnbindAllAnimation() { UnbindAnimation(0); }
 
         /*
         bool Layout::BindAnimationAuto(const AnimResource &animRes, ResourceAccessor *pResAcsr) {
@@ -248,7 +240,8 @@ namespace nw4r {
                     for (PaneLinkList::Iterator it = paneList.GetBeginIter(); it != paneList.GetEndIter(); ++it, ++animIdx) {
                         if (it->mTarget != pSrcPane) {
                             if (bindGroupNum > 0) {
-                                const bool bInclude = IsIncludeAnimationGroupRef(mpGroupContainer, animRes.GetGroupArray(), bindGroupNum, animRes.IsDescendingBind(), it->mTarget);
+                                const bool bInclude = IsIncludeAnimationGroupRef(mpGroupContainer, animRes.GetGroupArray(), bindGroupNum,
+        animRes.IsDescendingBind(), it->mTarget);
 
                                 if (!bInclude) {
                                     continue;
@@ -265,13 +258,13 @@ namespace nw4r {
         }
         */
 
-        void Layout::SetAnimationEnable(AnimTransform *pAnimTrans, bool bEnable) {
+        void Layout::SetAnimationEnable(AnimTransform* pAnimTrans, bool bEnable) {
             if (mpRootPane != nullptr) {
                 mpRootPane->SetAnimationEnable(pAnimTrans, bEnable, true);
             }
         }
 
-        void Layout::CalculateMtx(const DrawInfo &rInfo) {
+        void Layout::CalculateMtx(const DrawInfo& rInfo) {
             if (mpRootPane == nullptr) {
                 return;
             }
@@ -279,7 +272,7 @@ namespace nw4r {
             mpRootPane->CalculateMtx(rInfo);
         }
 
-        void Layout::Draw(const DrawInfo &rInfo) {
+        void Layout::Draw(const DrawInfo& rInfo) {
             if (mpRootPane == nullptr) {
                 return;
             }
@@ -296,11 +289,11 @@ namespace nw4r {
         }
 
         const ut::Rect Layout::GetLayoutRect() const {
-            return ut::Rect(- mLayoutSize.width / 2, mLayoutSize.height / 2, mLayoutSize.width / 2, - mLayoutSize.height / 2);
+            return ut::Rect(-mLayoutSize.width / 2, mLayoutSize.height / 2, mLayoutSize.width / 2, -mLayoutSize.height / 2);
         }
 
         // have to do more headers to decomp these two
         // nw4r::lyt::Layout::SetTagProcessor
         // nw4r::lyt::Layout::BuildPaneObj
-    };
-};
+    };  // namespace lyt
+};      // namespace nw4r

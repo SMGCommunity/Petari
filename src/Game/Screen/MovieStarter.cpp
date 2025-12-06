@@ -3,32 +3,27 @@
 #include "Game/Util/EventUtil.hpp"
 #include "Game/Util/JMapUtil.hpp"
 
-MovieStarter::MovieStarter(const char *pName) :
-    LiveActor(pName),
-    mMovieIdx(-1)
-{
-    
-}
+MovieStarter::MovieStarter(const char* pName) : LiveActor(pName), mMovieType(-1) {}
 
-void MovieStarter::init(const JMapInfoIter &rIter) {
+void MovieStarter::init(const JMapInfoIter& rIter) {
     MR::connectToSceneLayoutMovement(this);
     MR::invalidateClipping(this);
 
     if (MR::useStageSwitchReadAppear(this, rIter)) {
-        MR::FunctorV0M<MovieStarter *, void (MovieStarter::*)()> appearFunc = MR::Functor_Inline<MovieStarter>(this, &MovieStarter::appear);
+        MR::FunctorV0M< MovieStarter*, void (MovieStarter::*)() > appearFunc = MR::Functor_Inline< MovieStarter >(this, &MovieStarter::appear);
         MR::listenStageSwitchOnAppear(this, appearFunc);
     }
 
     MR::useStageSwitchWriteDead(this, rIter);
     MR::createMoviePlayingSequence();
-    MR::getJMapInfoArg0WithInit(rIter, &mMovieIdx);
+    MR::getJMapInfoArg0WithInit(rIter, &mMovieType);
     makeActorDead();
 }
 
 void MovieStarter::appear() {
     LiveActor::appear();
 
-    if (mMovieIdx == 0) {
+    if (mMovieType == 0) {
         if (MR::isOnGameEventFlagPlayMoviePrologueA()) {
             kill();
             return;
@@ -37,11 +32,11 @@ void MovieStarter::appear() {
         MR::onGameEventFlagPlayMoviePrologueA();
     }
 
-    if (mMovieIdx == 1) {
+    if (mMovieType == 1) {
         MR::onGameEventFlagPlayMoviePrologueB();
     }
 
-    MR::startMovie(mMovieIdx);
+    MR::startMovie(mMovieType);
 }
 
 void MovieStarter::kill() {
@@ -53,7 +48,7 @@ void MovieStarter::kill() {
 }
 
 void MovieStarter::control() {
-    if (MR::isEndMovie(mMovieIdx)) {
+    if (MR::isEndMovie(mMovieType)) {
         kill();
     }
 }

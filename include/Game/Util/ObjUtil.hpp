@@ -197,4 +197,4 @@ namespace MR {
     void findLinkNamePos(const NameObj*, const char*, MtxPtr);
     bool tryFindLinkNamePos(const NameObj*, const char*, MtxPtr);
     bool tryFindLinkNamePos(const NameObj*, const char*, TVec3f*, TVec3f*);
-};
+};  // namespace MR

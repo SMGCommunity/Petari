@@ -1,8 +1,8 @@
+#include "Game/System/StageResultSequenceChecker.hpp"
 #include "Game/System/GalaxyStatusAccessor.hpp"
 #include "Game/System/GameDataFunction.hpp"
 #include "Game/System/GameDataHolder.hpp"
 #include "Game/System/GameEventFlagTable.hpp"
-#include "Game/System/StageResultSequenceChecker.hpp"
 
 void StageResultSequenceCheckList::init() {
     mTicoGalaxyNum = 0;
@@ -36,18 +36,15 @@ bool StageResultSequenceChecker::isAddPictureBook() const {
 }
 
 bool StageResultSequenceChecker::isJustOpenLibraryRoom() const {
-    return mCheckListPrev.mPictureBookChapterCanRead == 0
-        && mCheckListPrev.mPictureBookChapterCanRead < mCheckListAfter.mPictureBookChapterCanRead;
+    return mCheckListPrev.mPictureBookChapterCanRead == 0 && mCheckListPrev.mPictureBookChapterCanRead < mCheckListAfter.mPictureBookChapterCanRead;
 }
 
 bool StageResultSequenceChecker::isJustGetGreenStarFirst() const {
-    return mCheckListPrev.mGreenStarNum == 0
-        && mCheckListAfter.mGreenStarNum == 1;
+    return mCheckListPrev.mGreenStarNum == 0 && mCheckListAfter.mGreenStarNum == 1;
 }
 
 bool StageResultSequenceChecker::isJustCompleteGalaxy() const {
-    return mCheckListPrev.mIsCompleteGalaxy == false
-        && mCheckListAfter.mIsCompleteGalaxy == true;
+    return mCheckListPrev.mIsCompleteGalaxy == false && mCheckListAfter.mIsCompleteGalaxy == true;
 }
 
 s32 StageResultSequenceChecker::getPrevPowerStarNum() const {
@@ -67,7 +64,8 @@ void StageResultSequenceChecker::fillCheckList(StageResultSequenceCheckList* pCh
     pCheckList->mGreenStarNum = GameDataFunction::calcGreenStarNum(pGameDataHolder);
 }
 
-void StageResultSequenceChecker::fillCheckListIfComplete(StageResultSequenceCheckList* pCheckList, const GameDataHolder* pGameDataHolder, const char* pGalaxyName) {
+void StageResultSequenceChecker::fillCheckListIfComplete(StageResultSequenceCheckList* pCheckList, const GameDataHolder* pGameDataHolder,
+                                                         const char* pGalaxyName) {
     s32 powerStarNum = MR::makeGalaxyStatusAccessor(pGalaxyName).getPowerStarNum();
     s32 powerStarNumOwned = pGameDataHolder->getPowerStarNumOwned(pGalaxyName);
 
@@ -75,7 +73,7 @@ void StageResultSequenceChecker::fillCheckListIfComplete(StageResultSequenceChec
 }
 
 bool StageResultSequenceChecker::isJustOpenGalaxyWithoutChallengeGalaxy() const {
-    if (mCheckListPrev.mGalaxyNumCanOpen >=  mCheckListAfter.mGalaxyNumCanOpen) {
+    if (mCheckListPrev.mGalaxyNumCanOpen >= mCheckListAfter.mGalaxyNumCanOpen) {
         return false;
     }
 

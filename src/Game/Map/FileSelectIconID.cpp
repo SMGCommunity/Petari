@@ -1,9 +1,6 @@
 #include "Game/Map/FileSelectIconID.hpp"
 
-FileSelectIconID::FileSelectIconID() :
-    mIsMii(false),
-    mData(0)
-{}
+FileSelectIconID::FileSelectIconID() : mIsMii(false), mData(0) {}
 
 FileSelectIconID::FileSelectIconID(const FileSelectIconID& rOther) {
     mIsMii = rOther.mIsMii;
@@ -38,5 +35,5 @@ bool FileSelectIconID::isFellow() const {
 }
 
 FileSelectIconID::EFellowID FileSelectIconID::getFellowID() const {
-    return static_cast<EFellowID>(mData);
+    return static_cast< EFellowID >(mData);
 }

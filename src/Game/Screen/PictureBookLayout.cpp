@@ -1,9 +1,9 @@
+#include "Game/Screen/PictureBookLayout.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/NameObj/NameObjArchiveListCollector.hpp"
 #include "Game/Screen/ButtonPaneController.hpp"
 #include "Game/Screen/IconAButton.hpp"
 #include "Game/Screen/PictureBookCloseButton.hpp"
-#include "Game/Screen/PictureBookLayout.hpp"
 #include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/DrawUtil.hpp"
 #include "Game/Util/EventUtil.hpp"
@@ -26,26 +26,10 @@ namespace {
     const s32 cPageNextEndNormalSeStep = 81;
     const s32 cPageNextEndFastSeStep = 27;
     const char* cContentsPaneName[] = {
-        "Chapter1",
-        "Chapter2",
-        "Chapter3",
-        "Chapter4",
-        "Chapter5",
-        "Chapter6",
-        "Chapter7",
-        "Chapter8",
-        "Chapter9",
+        "Chapter1", "Chapter2", "Chapter3", "Chapter4", "Chapter5", "Chapter6", "Chapter7", "Chapter8", "Chapter9",
     };
     const char* cContentsPointingPaneName[] = {
-        "BoxButton1",
-        "BoxButton2",
-        "BoxButton3",
-        "BoxButton4",
-        "BoxButton5",
-        "BoxButton6",
-        "BoxButton7",
-        "BoxButton8",
-        "BoxButton9",
+        "BoxButton1", "BoxButton2", "BoxButton3", "BoxButton4", "BoxButton5", "BoxButton6", "BoxButton7", "BoxButton8", "BoxButton9",
     };
 
     s32 getTextureNum(s32 chapterNo) {
@@ -82,7 +66,7 @@ namespace {
 
         return 1;
     }
-};
+};  // namespace
 
 namespace NrvPictureBookLayout {
     NEW_NERVE(PictureBookLayoutNrvOpen, PictureBookLayout, Open);
@@ -96,30 +80,13 @@ namespace NrvPictureBookLayout {
     NEW_NERVE(PictureBookLayoutNrvPageNext, PictureBookLayout, PageNext);
     NEW_NERVE(PictureBookLayoutNrvFadeOut, PictureBookLayout, FadeOut);
     NEW_NERVE(PictureBookLayoutNrvClose, PictureBookLayout, Close);
-};
+};  // namespace NrvPictureBookLayout
 
-PictureBookLayout::PictureBookLayout(s32 chapterMin, s32 chapterMax, bool isRosettaReading) :
-    LayoutActor("絵本レイアウト", true),
-    mChapterMin(chapterMin),
-    mChapterMax(chapterMax),
-    mChapterRosettaMax(chapterMax),
-    mChapterNo(1),
-    mPageNo(0),
-    mTextIndex(0),
-    mNotReadedChapterNo(-1),
-    mNotReadedPageNo(-1),
-    mNotReadedTextIndex(-1),
-    _44(nullptr),
-    _48(nullptr),
-    mTitleTexMap(nullptr),
-    mCoverFrontTexMap(nullptr),
-    mCoverBackTexMap(nullptr),
-    mNextItemDir(1),
-    mIsNextItemFast(false),
-    mIconAButton(nullptr),
-    mContentsButtonPaneController(nullptr),
-    mCloseButton(nullptr)
-{
+PictureBookLayout::PictureBookLayout(s32 chapterMin, s32 chapterMax, bool isRosettaReading)
+    : LayoutActor("絵本レイアウト", true), mChapterMin(chapterMin), mChapterMax(chapterMax), mChapterRosettaMax(chapterMax), mChapterNo(1),
+      mPageNo(0), mTextIndex(0), mNotReadedChapterNo(-1), mNotReadedPageNo(-1), mNotReadedTextIndex(-1), _44(nullptr), _48(nullptr),
+      mTitleTexMap(nullptr), mCoverFrontTexMap(nullptr), mCoverBackTexMap(nullptr), mNextItemDir(1), mIsNextItemFast(false), mIconAButton(nullptr),
+      mContentsButtonPaneController(nullptr), mCloseButton(nullptr) {
     if (!isRosettaReading) {
         mContentsButtonPaneController = new ButtonPaneController*[getChapterMax()];
     }
@@ -157,8 +124,7 @@ void PictureBookLayout::appear() {
 
     if (mContentsButtonPaneController == nullptr) {
         MR::hidePaneRecursive(this, "Contents");
-    }
-    else {
+    } else {
         hideContents();
     }
 
@@ -166,8 +132,7 @@ void PictureBookLayout::appear() {
 
     if (mContentsButtonPaneController == nullptr) {
         setNerve(&NrvPictureBookLayout::PictureBookLayoutNrvFadeIn::sInstance);
-    }
-    else {
+    } else {
         setNerve(&NrvPictureBookLayout::PictureBookLayoutNrvOpen::sInstance);
     }
 
@@ -271,8 +236,7 @@ bool PictureBookLayout::updateText() {
         MR::setTextBoxGameMessageRecursive(this, "Title", messageId);
 
         return true;
-    }
-    else {
+    } else {
         char messageId[64];
 
         snprintf(messageId, sizeof(messageId), "PictureBookChapter%d_Page%d_%03d", mChapterNo, mPageNo, mTextIndex);
@@ -293,8 +257,7 @@ void PictureBookLayout::updateTexture() {
 
     if (mNextItemDir > 0) {
         pageNo = mPageNo - 1;
-    }
-    else {
+    } else {
         pageNo = mPageNo;
     }
 
@@ -303,8 +266,7 @@ void PictureBookLayout::updateTexture() {
 
         MR::replacePaneTexture(this, "PicLeftPage", pTexMap, 0);
         MR::replacePaneTexture(this, "PicTurnRightPage", pTexMap, 0);
-    }
-    else {
+    } else {
         s32 texMapIndex = textureNum + pageNo - 1;
         nw4r::lyt::TexMap* pTexMap = _48[texMapIndex % textureNum - 1];
 
@@ -314,8 +276,7 @@ void PictureBookLayout::updateTexture() {
 
     if (mNextItemDir > 0) {
         pageNo = mPageNo + 1;
-    }
-    else {
+    } else {
         pageNo = mPageNo;
     }
 
@@ -324,8 +285,7 @@ void PictureBookLayout::updateTexture() {
 
         MR::replacePaneTexture(this, "PicRightPage", pTexMap, 0);
         MR::replacePaneTexture(this, "PicTurnLeftPage", pTexMap, 0);
-    }
-    else {
+    } else {
         s32 texMapIndex = textureNum + pageNo - 1;
         nw4r::lyt::TexMap* pTexMap = _48[texMapIndex % textureNum - 1];
 
@@ -358,8 +318,7 @@ bool PictureBookLayout::pageNext() {
     if (mPageNo != 0) {
         if (mNextItemDir > 0) {
             mTextIndex = 0;
-        }
-        else {
+        } else {
             mTextIndex = getCurrentMaxTextIndex();
         }
     }
@@ -377,8 +336,7 @@ bool PictureBookLayout::chapterNext() {
     if (mNextItemDir > 0) {
         mPageNo = 0;
         mTextIndex = 0;
-    }
-    else {
+    } else {
         mPageNo = getPageNum(mChapterNo);
         mTextIndex = getCurrentMaxTextIndex();
     }
@@ -405,16 +363,13 @@ s32 PictureBookLayout::getReadSpeed() const {
 
     if (b) {
         return 3;
-    }
-    else {
+    } else {
         return 1;
     }
 }
 
 bool PictureBookLayout::isBookEndCurrentText() const {
-    return mChapterNo == 9
-        && mPageNo == getPageNum(9)
-        && mTextIndex == getCurrentMaxTextIndex();
+    return mChapterNo == 9 && mPageNo == getPageNum(9) && mTextIndex == getCurrentMaxTextIndex();
 }
 
 void PictureBookLayout::setTextAlpha(f32 alpha) {
@@ -436,10 +391,9 @@ bool PictureBookLayout::isValidCloseButton() const {
         return false;
     }
 
-    return isNerve(&NrvPictureBookLayout::PictureBookLayoutNrvOpen::sInstance)
-        || isNerve(&NrvPictureBookLayout::PictureBookLayoutNrvContentsSelect::sInstance)
-        || isNerve(&NrvPictureBookLayout::PictureBookLayoutNrvOpen::sInstance)
-        || mPageNo == 0;
+    return isNerve(&NrvPictureBookLayout::PictureBookLayoutNrvOpen::sInstance) ||
+           isNerve(&NrvPictureBookLayout::PictureBookLayoutNrvContentsSelect::sInstance) ||
+           isNerve(&NrvPictureBookLayout::PictureBookLayoutNrvOpen::sInstance) || mPageNo == 0;
 }
 
 bool PictureBookLayout::isSelectedCloseButton() const {
@@ -526,8 +480,7 @@ void PictureBookLayout::exeContentsSelect() {
 
     if (mCloseButton->trySelect()) {
         setNerve(&NrvPictureBookLayout::PictureBookLayoutNrvContentsFadeOut::sInstance);
-    }
-    else {
+    } else {
         for (s32 i = 0; i < mChapterMax; i++) {
             if (mContentsButtonPaneController[i]->isPointingTrigger()) {
                 MR::startSystemSE("SE_SY_PICBOOK_CONTENTS_CUR", -1, -1);
@@ -565,8 +518,7 @@ void PictureBookLayout::exeContentsFadeOut() {
                 setNerve(&NrvPictureBookLayout::PictureBookLayoutNrvClose::sInstance);
             }
         }
-    }
-    else {
+    } else {
         if (MR::isStep(this, stepMax)) {
             MR::closeWipeFade(cFadeFrame);
         }
@@ -591,8 +543,7 @@ void PictureBookLayout::exeFadeIn() {
 
         if (mNextItemDir > 0) {
             alpha = 0.0f;
-        }
-        else {
+        } else {
             alpha = 1.0f;
         }
 
@@ -604,8 +555,7 @@ void PictureBookLayout::exeFadeIn() {
 
         if (mNextItemDir > 0) {
             animFrame = MR::getAnimFrameMax(this, (u32)0);
-        }
-        else {
+        } else {
             animFrame = 0.0f;
         }
 
@@ -636,16 +586,14 @@ void PictureBookLayout::exeFadeInText() {
             if (mContentsButtonPaneController != nullptr) {
                 mCloseButton->appear();
             }
-        }
-        else {
+        } else {
             MR::showPaneRecursive(this, "Text");
             MR::showPaneRecursive(this, "PicToneDown");
             MR::startPaneAnim(this, "Text", "TextColor", 0);
 
             if (isReadedCurrentText()) {
                 MR::setPaneAnimFrameAndStop(this, "Text", 1.0f, 0);
-            }
-            else {
+            } else {
                 MR::setPaneAnimFrameAndStop(this, "Text", 0.0f, 0);
             }
         }
@@ -666,21 +614,18 @@ void PictureBookLayout::exeFadeInText() {
             if (mPageNo == 8) {
                 if (mTextIndex >= 1) {
                     MR::stopStageBGM(120);
-                }
-                else if (MR::isStopOrFadeoutBgmName("STM_PROLOGUE_01_B")) {
+                } else if (MR::isStopOrFadeoutBgmName("STM_PROLOGUE_01_B")) {
                     MR::startStageBGM("STM_PROLOGUE_01_B", false);
                 }
             }
-        }
-        else if (MR::isStopOrFadeoutBgmName("STM_PROLOGUE_01")) {
+        } else if (MR::isStopOrFadeoutBgmName("STM_PROLOGUE_01")) {
             MR::startStageBGM("STM_PROLOGUE_01", 0);
         }
 
         if (isBookEndCurrentText()) {
             MR::setTextBoxHorizontalPositionCenterRecursive(this, "Text");
             MR::setTextBoxVerticalPositionCenterRecursive(this, "Text");
-        }
-        else {
+        } else {
             MR::setTextBoxHorizontalPositionLeftRecursive(this, "Text");
             MR::setTextBoxVerticalPositionTopRecursive(this, "Text");
         }
@@ -715,11 +660,9 @@ void PictureBookLayout::exeWaitWithText() {
 
     if (isValidCloseButton() && mCloseButton->trySelect()) {
         setNerve(&NrvPictureBookLayout::PictureBookLayoutNrvFadeOutText::sInstance);
-    }
-    else {
-        bool isTriggerNextPage = MR::testCorePadTriggerA(WPAD_CHAN0)
-            || MR::testCorePadTriggerRight(WPAD_CHAN0)
-            || MR::testSubPadStickTriggerRight(WPAD_CHAN0);
+    } else {
+        bool isTriggerNextPage =
+            MR::testCorePadTriggerA(WPAD_CHAN0) || MR::testCorePadTriggerRight(WPAD_CHAN0) || MR::testSubPadStickTriggerRight(WPAD_CHAN0);
 
         if (isTriggerNextPage) {
             MR::startSystemSE("SE_SY_TALK_FOCUS_ITEM", -1, -1);
@@ -737,10 +680,8 @@ void PictureBookLayout::exeWaitWithText() {
             mNextItemDir = 1;
 
             setNerve(&NrvPictureBookLayout::PictureBookLayoutNrvFadeOutText::sInstance);
-        }
-        else {
-            bool isTriggerPrevPage = MR::testCorePadTriggerLeft(WPAD_CHAN0)
-                || MR::testSubPadStickTriggerLeft(WPAD_CHAN0);
+        } else {
+            bool isTriggerPrevPage = MR::testCorePadTriggerLeft(WPAD_CHAN0) || MR::testSubPadStickTriggerLeft(WPAD_CHAN0);
 
             if (isTriggerPrevPage) {
                 if (mChapterMin < mChapterNo || mPageNo > 0 || mTextIndex > 0) {
@@ -781,25 +722,20 @@ void PictureBookLayout::exeFadeOutText() {
         if (MR::isGreaterStep(this, step) && MR::isDead(mCloseButton)) {
             setNerve(&NrvPictureBookLayout::PictureBookLayoutNrvClose::sInstance);
         }
-    }
-    else if (MR::isStep(this, step)) {
+    } else if (MR::isStep(this, step)) {
         if (textNext()) {
             setNerve(&NrvPictureBookLayout::PictureBookLayoutNrvFadeInText::sInstance);
-        }
-        else if (pageNext()) {
+        } else if (pageNext()) {
             setNerve(&NrvPictureBookLayout::PictureBookLayoutNrvPageNext::sInstance);
-        }
-        else if (chapterNext()) {
+        } else if (chapterNext()) {
             if (MR::isPlayingStageBgmName("STM_PROLOGUE_01_B")) {
                 MR::stopStageBGM(120);
             }
 
             setNerve(&NrvPictureBookLayout::PictureBookLayoutNrvFadeOut::sInstance);
-        }
-        else if (mContentsButtonPaneController == nullptr) {
+        } else if (mContentsButtonPaneController == nullptr) {
             setNerve(&NrvPictureBookLayout::PictureBookLayoutNrvFadeOut::sInstance);
-        }
-        else {
+        } else {
             setNerve(&NrvPictureBookLayout::PictureBookLayoutNrvClose::sInstance);
         }
     }
@@ -814,15 +750,13 @@ void PictureBookLayout::exePageNext() {
 
         if (mNextItemDir > 0) {
             MR::startAnim(this, "PageNext", 0);
-        }
-        else {
+        } else {
             MR::startAnimReverseOneTime(this, "PageNext", 0);
         }
 
         if (mIsNextItemFast) {
             MR::startSystemSE("SE_SY_PICTUREBOOK_NEXT_F_ST", -1, -1);
-        }
-        else {
+        } else {
             MR::startSystemSE("SE_SY_PICTUREBOOK_NEXT_ST", -1, -1);
         }
 
@@ -833,8 +767,7 @@ void PictureBookLayout::exePageNext() {
         if (MR::isStep(this, cPageNextEndFastSeStep)) {
             MR::startSystemSE("SE_SY_PICTUREBOOK_NEXT_F_ED", -1, -1);
         }
-    }
-    else if (MR::isStep(this, cPageNextEndNormalSeStep)) {
+    } else if (MR::isStep(this, cPageNextEndNormalSeStep)) {
         MR::startSystemSE("SE_SY_PICTUREBOOK_NEXT_ED", -1, -1);
     }
 
@@ -856,8 +789,7 @@ void PictureBookLayout::exeFadeOut() {
 
     if (mChapterMax >= mChapterNo) {
         setNerve(&NrvPictureBookLayout::PictureBookLayoutNrvFadeIn::sInstance);
-    }
-    else {
+    } else {
         kill();
     }
 }
@@ -876,8 +808,7 @@ void PictureBookLayout::exeClose() {
 
             MR::replacePaneTexture(this, "PicLeftPage", pTexMap, 0);
             MR::replacePaneTexture(this, "PicTurnRightPage", pTexMap, 0);
-        }
-        else {
+        } else {
             pTexMap = _48[mPageNo - 2];
 
             MR::replacePaneTexture(this, "PicLeftPage", pTexMap, 0);

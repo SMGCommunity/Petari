@@ -6,14 +6,14 @@ NrvWatchTowerRotateStep::WatchTowerRotateStepNrvWait NrvWatchTowerRotateStep::Wa
 NrvWatchTowerRotateStep::WatchTowerRotateStepNrvMoveStart NrvWatchTowerRotateStep::WatchTowerRotateStepNrvMoveStart::sInstance;
 NrvWatchTowerRotateStep::WatchTowerRotateStepNrvMove NrvWatchTowerRotateStep::WatchTowerRotateStepNrvMove::sInstance;
 
-WatchTowerRotateStep::WatchTowerRotateStep(const char *pName) : LiveActor(pName) {
+WatchTowerRotateStep::WatchTowerRotateStep(const char* pName) : LiveActor(pName) {
     mRotDeg.x = 0.0f;
     mRotDeg.y = 0.0f;
     mRotDeg.z = 0.0f;
     mLifts = nullptr;
 }
 
-void WatchTowerRotateStep::init(const JMapInfoIter &rIter) {
+void WatchTowerRotateStep::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     initModelManagerWithAnm("WatchTowerRotateStep", nullptr, false);
     MR::connectToSceneMapObj(this);
@@ -22,9 +22,9 @@ void WatchTowerRotateStep::init(const JMapInfoIter &rIter) {
     MR::addBodyMessageSensorMapObj(this);
     MR::initCollisionParts(this, "WatchTowerRotateStep", getSensor(nullptr), nullptr);
     initEffectKeeper(0, nullptr, false);
-    initSound(4, false); 
+    initSound(4, false);
     MR::setClippingTypeSphereContainsModelBoundingBox(this, 1500.0f);
-    
+
     bool demoCast = MR::tryRegisterDemoCast(this, rIter);
 
     if (demoCast) {
@@ -36,8 +36,7 @@ void WatchTowerRotateStep::init(const JMapInfoIter &rIter) {
 
     if (demoCast) {
         initNerve(&NrvWatchTowerRotateStep::WatchTowerRotateStepNrvWait::sInstance);
-    }
-    else {
+    } else {
         initNerve(&NrvWatchTowerRotateStep::WatchTowerRotateStepNrvMove::sInstance);
     }
 
@@ -99,8 +98,8 @@ void WatchTowerRotateStep::exeMoveStart() {
 }
 
 namespace NrvWatchTowerRotateStep {
-    void WatchTowerRotateStepNrvMove::execute(Spine *pSpine) const {
-        WatchTowerRotateStep* pActor = reinterpret_cast<WatchTowerRotateStep*>(pSpine->mExecutor);
+    void WatchTowerRotateStepNrvMove::execute(Spine* pSpine) const {
+        WatchTowerRotateStep* pActor = reinterpret_cast< WatchTowerRotateStep* >(pSpine->mExecutor);
         TVec3f frontVec;
 
         MR::calcFrontVec(&frontVec, pActor);
@@ -109,9 +108,9 @@ namespace NrvWatchTowerRotateStep {
         MR::startLevelSound(pActor, "SE_OJ_LV_WATCH_TOWER_ROTATE", -1, -1, -1);
     }
 
-    void WatchTowerRotateStepNrvMoveStart::execute(Spine *pSpine) const {
-        reinterpret_cast<WatchTowerRotateStep*>(pSpine->mExecutor)->exeMoveStart();
+    void WatchTowerRotateStepNrvMoveStart::execute(Spine* pSpine) const {
+        reinterpret_cast< WatchTowerRotateStep* >(pSpine->mExecutor)->exeMoveStart();
     }
 
-    void WatchTowerRotateStepNrvWait::execute(Spine *pSpine) const {}
-};
+    void WatchTowerRotateStepNrvWait::execute(Spine* pSpine) const {}
+};  // namespace NrvWatchTowerRotateStep

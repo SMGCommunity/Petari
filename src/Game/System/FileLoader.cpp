@@ -18,7 +18,7 @@ FileLoader::FileLoader() {
     mRequestedFileCount = 0;
 }
 
-void FileLoader::requestLoadToMainRAM(const char *pName, u8 *pData, JKRHeap* pHeap, JKRDvdRipper::EAllocDirection direction, bool jam) {
+void FileLoader::requestLoadToMainRAM(const char* pName, u8* pData, JKRHeap* pHeap, JKRDvdRipper::EAllocDirection direction, bool jam) {
     if (isNeedToLoad(pName)) {
         if (pHeap == nullptr) {
             pHeap = MR::getCurrentHeap();
@@ -31,14 +31,13 @@ void FileLoader::requestLoadToMainRAM(const char *pName, u8 *pData, JKRHeap* pHe
 
         if (jam) {
             OSJamMessage(&mLoaderThread->mQueue, info, OS_MESSAGE_NOBLOCK);
-        }
-        else {
+        } else {
             OSSendMessage(&mLoaderThread->mQueue, info, OS_MESSAGE_NOBLOCK);
         }
     }
 }
 
-void FileLoader::requestMountArchive(const char *pName, JKRHeap* pHeap, bool jam) {
+void FileLoader::requestMountArchive(const char* pName, JKRHeap* pHeap, bool jam) {
     if (isNeedToLoad(pName)) {
         if (pHeap == nullptr) {
             pHeap = MR::getCurrentHeap();
@@ -51,22 +50,21 @@ void FileLoader::requestMountArchive(const char *pName, JKRHeap* pHeap, bool jam
 
         if (jam) {
             OSJamMessage(&mLoaderThread->mQueue, info, OS_MESSAGE_NOBLOCK);
-        }
-        else {
+        } else {
             OSSendMessage(&mLoaderThread->mQueue, info, OS_MESSAGE_NOBLOCK);
         }
     }
 }
 
-bool FileLoader::isLoaded(const char *pName) const {
+bool FileLoader::isLoaded(const char* pName) const {
     return mFileHolder->isExist(pName);
 }
 
-bool FileLoader::isMountedArchive(const char *pName) const {
+bool FileLoader::isMountedArchive(const char* pName) const {
     return mArchiveHolder->getArchive(pName) != nullptr;
 }
 
-void* FileLoader::receiveFile(const char *pName) {
+void* FileLoader::receiveFile(const char* pName) {
     const RequestFileInfo* info = getRequestFileInfoConst(pName);
     if (info != nullptr) {
         info->mFileEntry->waitReadDone();
@@ -75,7 +73,7 @@ void* FileLoader::receiveFile(const char *pName) {
     return mFileHolder->getContext(pName);
 }
 
-JKRMemArchive* FileLoader::receiveArchive(const char *pName) {
+JKRMemArchive* FileLoader::receiveArchive(const char* pName) {
     const RequestFileInfo* info = getRequestFileInfoConst(pName);
     if (info != nullptr) {
         info->mFileEntry->waitReadDone();
@@ -112,8 +110,11 @@ void FileLoader::removeFile(const char* pName) {
 }
 
 bool FileLoader::isNeedToLoad(const char* pName) const {
-    const RequestFileInfo* info = getRequestFileInfoConst(pName);
-    return (info == nullptr) ? false : mFileHolder->isExist(pName) == false;
+    if (getRequestFileInfoConst(pName) != nullptr) {
+        return false;
+    }
+
+    return !isLoaded(pName);
 }
 
 const RequestFileInfo* FileLoader::getRequestFileInfoConst(const char* pName) const {

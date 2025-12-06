@@ -1,13 +1,12 @@
 #include "Game/MapObj/SpinDriver.hpp"
 #include "Game/MapObj/SpinDriverUtil.hpp"
+#include "math_types.hpp"
 #include <cstdio>
 #include <cstring>
-#include "math_types.hpp"
 
-SpinDriver::SpinDriver(const char *pName) : LiveActor(pName),
-    _8C(nullptr), mShootPath(nullptr), mSpinDriverCamera(nullptr), _98(0, 0, 0, 1), _A8(0, 0, 0, 1), 
-    _B8(0, 0, 0), _C4(0, 0, 0), _D0(0, 0, 1), _DC(0, 0, 0), _E8(0, 1, 0), _F4(0, 0, 0), _104(0.0f), _100(40.0f), _108(0.0f), _10C(0, 0, 0) {
-    
+SpinDriver::SpinDriver(const char* pName)
+    : LiveActor(pName), _8C(nullptr), mShootPath(nullptr), mSpinDriverCamera(nullptr), _98(0, 0, 0, 1), _A8(0, 0, 0, 1), _B8(0, 0, 0), _C4(0, 0, 0),
+      _D0(0, 0, 1), _DC(0, 0, 0), _E8(0, 1, 0), _F4(0, 0, 0), _104(0.0f), _100(40.0f), _108(0.0f), _10C(0, 0, 0) {
     _11C = 0.0f;
     _120 = -1.0f;
     _124 = 300;
@@ -22,7 +21,7 @@ SpinDriver::SpinDriver(const char *pName) : LiveActor(pName),
     _142 = 0;
 }
 
-void SpinDriver::init(const JMapInfoIter &rIter) {
+void SpinDriver::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     initModelManagerWithAnm("SpinDriver", nullptr, false);
     MR::connectToSceneNoSilhouettedMapObjStrongLight(this);
@@ -34,7 +33,7 @@ void SpinDriver::init(const JMapInfoIter &rIter) {
         gravityVector.set(0.0f, -1.0f, 0.0f);
     }
 
-    mGravity.set<f32>(gravityVector);
+    mGravity.set< f32 >(gravityVector);
     initHitSensor(1);
     TVec3f sensorOffs;
     sensorOffs.x = 0.0f;
@@ -48,14 +47,13 @@ void SpinDriver::init(const JMapInfoIter &rIter) {
     MR::initShadowVolumeFlatModel(this, "SpinDriverShadow", MR::getJointMtx(this, "SpinDriver"));
     initParamFromJMapInfo(rIter);
     MR::setClippingFar200m(this);
-    
+
     if (MR::useStageSwitchReadAppear(this, rIter)) {
         MR::syncStageSwitchAppear(this);
         makeActorDead();
         mSpinDriverCamera->initAppearCamera(rIter, this);
-        
-    }
-    else {
+
+    } else {
         makeActorAppeared();
     }
 
@@ -66,11 +64,10 @@ void SpinDriver::initAfterPlacement() {
     SpinDriverUtil::setShadowAndClipping(this, &_10C, _120, 300.0f, &_118);
 }
 
-void SpinDriver::initParamFromJMapInfo(const JMapInfoIter &rIter) {
+void SpinDriver::initParamFromJMapInfo(const JMapInfoIter& rIter) {
     if (!mShootPath) {
         MR::getJMapInfoArg0NoInit(rIter, &_100);
-    }
-    else {
+    } else {
         MR::getJMapInfoArg0NoInit(rIter, &_124);
     }
 
@@ -83,19 +80,18 @@ void SpinDriver::initParamFromJMapInfo(const JMapInfoIter &rIter) {
 
     s32 arg4 = 0;
     if (MR::getJMapInfoArg4NoInit(rIter, &arg4)) {
-        _142 = !(arg4 - 1); 
+        _142 = !(arg4 - 1);
     }
 }
 
-void SpinDriver::initShootPath(const JMapInfoIter &rIter) {
+void SpinDriver::initShootPath(const JMapInfoIter& rIter) {
     if (MR::isConnectedWithRail(rIter)) {
         mShootPath = new SpinDriverShootPath();
         _134 = 0.0f;
         MR::getJMapInfoArg5NoInit(rIter, &_134);
         mShootPath->initUsingParabolic(rIter, mPosition);
         mShootPath->calcInitPose(&_E8, &_D0, &_DC, _134);
-    }
-    else {
+    } else {
         Mtx mtx;
         MR::makeMtxRotate(mtx, mRotation);
         f32 z = mtx[2][0];
@@ -113,7 +109,7 @@ void SpinDriver::initShootPath(const JMapInfoIter &rIter) {
     }
 }
 
-void SpinDriver::initEventCamera(const JMapInfoIter &rIter) {
+void SpinDriver::initEventCamera(const JMapInfoIter& rIter) {
     mSpinDriverCamera = new SpinDriverCamera();
     mSpinDriverCamera->init(rIter, this);
     MR::isConnectedWithRail(rIter);
@@ -124,8 +120,7 @@ void SpinDriver::appear() {
     MR::invalidateClipping(this);
     if (mSpinDriverCamera->isUseAppearCamera(this)) {
         MR::requestStartDemo(this, "出現", &NrvSpinDriver::SpinDriverNrvAppear::sInstance, &NrvSpinDriver::SpinDriverNrvTryDemo::sInstance);
-    }
-    else {
+    } else {
         setNerve(&NrvSpinDriver::SpinDriverNrvAppear::sInstance);
     }
 }
@@ -187,7 +182,7 @@ void SpinDriver::calcAndSetBaseMtx() {
     MR::setBaseTRMtx(this, position);
 }
 
-bool SpinDriver::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool SpinDriver::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (msg == ACTMES_IS_RUSH_TAKEOVER) {
         _13C = 60;
 
@@ -234,8 +229,7 @@ bool SpinDriver::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiv
 }
 
 bool SpinDriver::tryStartShoot() {
-    bool isSwingOrPointed = MR::isPadSwing(WPAD_CHAN0)
-        || MR::isPlayerPointedBy2POnTriggerButton();
+    bool isSwingOrPointed = MR::isPadSwing(WPAD_CHAN0) || MR::isPlayerPointedBy2POnTriggerButton();
 
     if (isSwingOrPointed) {
         MR::startSound(_8C, "SE_PM_SPIN_ATTACK", -1, -1);
@@ -305,7 +299,7 @@ bool SpinDriver::trySwitchOff() {
         kill();
         return true;
     }
-    
+
     return false;
 }
 
@@ -316,8 +310,7 @@ void SpinDriver::exeNonActive() {
         MR::startBpk(this, "Wait");
     }
 
-    bool isSwingOrPointed = MR::isPadSwing(WPAD_CHAN0)
-        || MR::isPlayerPointedBy2POnTriggerButton();
+    bool isSwingOrPointed = MR::isPadSwing(WPAD_CHAN0) || MR::isPlayerPointedBy2POnTriggerButton();
 
     if (isSwingOrPointed) {
         f32 v3 = _108;
@@ -358,8 +351,7 @@ void SpinDriver::exeWait() {
         MR::startBpk(this, "Wait");
     }
 
-    bool isSwingOrPointed = MR::isPadSwing(WPAD_CHAN0)
-        || MR::isPlayerPointedBy2POnTriggerButton();
+    bool isSwingOrPointed = MR::isPadSwing(WPAD_CHAN0) || MR::isPlayerPointedBy2POnTriggerButton();
 
     if (isSwingOrPointed) {
         _108 += 0.050000001f;
@@ -372,8 +364,7 @@ void SpinDriver::exeWait() {
             MR::emitEffect(this, "SpinDriverLight");
             MR::startCSSound("CS_SPIN_BIND", nullptr, 0);
         }
-    }
-    else {
+    } else {
         MR::deleteEffect(this, "SpinDriverLight");
     }
 
@@ -385,8 +376,7 @@ void SpinDriver::exeWait() {
 void SpinDriver::exeCapture() {
     if (tryForceCancel()) {
         MR::deleteEffect(this, "SpinDriverLight");
-    }
-    else {
+    } else {
         if (MR::isFirstStep(this)) {
             MR::startBckPlayer("SpinDriverWait", "SpinDriverCapture");
             MR::startBck(this, "Active", nullptr);
@@ -439,9 +429,9 @@ void SpinDriver::exeShootStart() {
         updateBindActorMatrix((v5 + (_11C * (1.0f - v5))));
         _108 += 0.039999999f;
         MR::tryRumblePadMiddle(this, 0);
-        if (tryShoot()) { 
+        if (tryShoot()) {
             return;
-        } 
+        }
     }
 }
 */
@@ -453,8 +443,7 @@ void SpinDriver::exeShoot() {
 
             if (MR::hasME()) {
                 MR::startSystemME("ME_MAGIC");
-            }
-            else {
+            } else {
                 MR::startSystemSE("SE_SY_S_SPIN_DRV_ME_ALT", -1, -1);
             }
 
@@ -469,7 +458,7 @@ void SpinDriver::exeShoot() {
             MR::shakeCameraNormal();
             MR::tryRumblePadVeryStrong(this, 0);
         }
-        
+
         if (mShootPath) {
             updateBindPosition();
             updateCamera();
@@ -490,8 +479,7 @@ void SpinDriver::exeShoot() {
             if (MR::isStep(this, _130)) {
                 MR::startBckPlayer("Fall", "SpinDriverFall");
             }
-        }
-        else {
+        } else {
             f32 v3 = _100;
             TVec3f v5(_E8);
             v5 *= v3;
@@ -689,7 +677,7 @@ void SpinDriver::endCamera() {
 
 bool SpinDriver::canStartBind() const {
     return isNerve(&NrvSpinDriver::SpinDriverNrvWait::sInstance);
-} 
+}
 
 /*
 bool SpinDriver::canBind(HitSensor *pSensor) const {
@@ -712,9 +700,7 @@ bool SpinDriver::canBind(HitSensor *pSensor) const {
 }
 */
 
-SpinDriver::~SpinDriver() {
-
-}
+SpinDriver::~SpinDriver() {}
 
 namespace NrvSpinDriver {
     INIT_NERVE(SpinDriverNrvTryDemo);
@@ -726,42 +712,40 @@ namespace NrvSpinDriver {
     INIT_NERVE(SpinDriverNrvShoot);
     INIT_NERVE(SpinDriverNrvCoolDown);
 
-    void SpinDriverNrvCoolDown::execute(Spine *pSpine) const {
-        SpinDriver* spinDriver = reinterpret_cast<SpinDriver*>(pSpine->mExecutor);
+    void SpinDriverNrvCoolDown::execute(Spine* pSpine) const {
+        SpinDriver* spinDriver = reinterpret_cast< SpinDriver* >(pSpine->mExecutor);
         spinDriver->exeCoolDown();
     }
 
-    void SpinDriverNrvShoot::execute(Spine *pSpine) const {
-        SpinDriver* spinDriver = reinterpret_cast<SpinDriver*>(pSpine->mExecutor);
+    void SpinDriverNrvShoot::execute(Spine* pSpine) const {
+        SpinDriver* spinDriver = reinterpret_cast< SpinDriver* >(pSpine->mExecutor);
         spinDriver->exeShoot();
     }
 
-    void SpinDriverNrvShootStart::execute(Spine *pSpine) const {
-        SpinDriver* spinDriver = reinterpret_cast<SpinDriver*>(pSpine->mExecutor);
+    void SpinDriverNrvShootStart::execute(Spine* pSpine) const {
+        SpinDriver* spinDriver = reinterpret_cast< SpinDriver* >(pSpine->mExecutor);
         spinDriver->exeShootStart();
     }
 
-    void SpinDriverNrvCapture::execute(Spine *pSpine) const {
-        SpinDriver* spinDriver = reinterpret_cast<SpinDriver*>(pSpine->mExecutor);
+    void SpinDriverNrvCapture::execute(Spine* pSpine) const {
+        SpinDriver* spinDriver = reinterpret_cast< SpinDriver* >(pSpine->mExecutor);
         spinDriver->exeCapture();
     }
 
-    void SpinDriverNrvWait::execute(Spine *pSpine) const {
-        SpinDriver* spinDriver = reinterpret_cast<SpinDriver*>(pSpine->mExecutor);
+    void SpinDriverNrvWait::execute(Spine* pSpine) const {
+        SpinDriver* spinDriver = reinterpret_cast< SpinDriver* >(pSpine->mExecutor);
         spinDriver->exeWait();
     }
 
-    void SpinDriverNrvAppear::execute(Spine *pSpine) const {
-        SpinDriver* spinDriver = reinterpret_cast<SpinDriver*>(pSpine->mExecutor);
+    void SpinDriverNrvAppear::execute(Spine* pSpine) const {
+        SpinDriver* spinDriver = reinterpret_cast< SpinDriver* >(pSpine->mExecutor);
         spinDriver->exeAppear();
     }
 
-    void SpinDriverNrvNonActive::execute(Spine *pSpine) const {
-        SpinDriver* spinDriver = reinterpret_cast<SpinDriver*>(pSpine->mExecutor);
+    void SpinDriverNrvNonActive::execute(Spine* pSpine) const {
+        SpinDriver* spinDriver = reinterpret_cast< SpinDriver* >(pSpine->mExecutor);
         spinDriver->exeNonActive();
     }
 
-    void SpinDriverNrvTryDemo::execute(Spine *pSpine) const {
-
-    }
-};
+    void SpinDriverNrvTryDemo::execute(Spine* pSpine) const {}
+};  // namespace NrvSpinDriver

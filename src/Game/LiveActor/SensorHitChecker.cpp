@@ -2,30 +2,24 @@
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Util.hpp"
 
-void SensorHitChecker::init(const JMapInfoIter &rIter) {
+void SensorHitChecker::init(const JMapInfoIter& rIter) {
     MR::connectToScene(this, 5, -1, -1, -1);
 }
 
-void SensorHitChecker::initGroup(HitSensor *pSensor) {
+void SensorHitChecker::initGroup(HitSensor* pSensor) {
     if (MR::isSensorPlayer(pSensor)) {
         pSensor->mSensorGroup = mPlayerGroup;
-    }
-    else if (MR::isSensorRide(pSensor)) {
+    } else if (MR::isSensorRide(pSensor)) {
         pSensor->mSensorGroup = mRideGroup;
-    }
-    else if (pSensor->isType(0x7F)) {
+    } else if (pSensor->isType(0x7F)) {
         pSensor->mSensorGroup = mEyeGroup;
-    }
-    else if (pSensor->isType(0x4A) || pSensor->isType(0x4C) 
-            || pSensor->isType(0x15) || pSensor->isType(0x47) 
-            || pSensor->isType(0x1F) || MR::isSensorRush(pSensor) || MR::isSensorAutoRush(pSensor)) {
+    } else if (pSensor->isType(0x4A) || pSensor->isType(0x4C) || pSensor->isType(0x15) || pSensor->isType(0x47) || pSensor->isType(0x1F) ||
+               MR::isSensorRush(pSensor) || MR::isSensorAutoRush(pSensor)) {
         pSensor->mSensorGroup = mSimpleGroup;
-    }
-    else {
+    } else {
         if (MR::isSensorMapObj(pSensor)) {
             pSensor->mSensorGroup = mMapObjGroup;
-        }
-        else {
+        } else {
             pSensor->mSensorGroup = mCharacterGroup;
         }
     }
@@ -54,8 +48,8 @@ void SensorHitChecker::movement() {
     doObjColInSameGroup(mCharacterGroup);
 }
 
-#ifdef NON_MATCHING // Wrong registers
-void SensorHitChecker::doObjColGroup(SensorGroup *pGroup1, SensorGroup *pGroup2) const {
+#ifdef NON_MATCHING  // Wrong registers
+void SensorHitChecker::doObjColGroup(SensorGroup* pGroup1, SensorGroup* pGroup2) const {
     s32 group1SensorCount = pGroup1->mSensorCount;
     for (s32 i = 0; i < group1SensorCount; i++) {
         HitSensor* curGroup1Sensor = pGroup1->mSensors[i];
@@ -82,10 +76,10 @@ void SensorHitChecker::doObjColGroup(SensorGroup *pGroup1, SensorGroup *pGroup2)
         }
     }
 }
-#endif 
+#endif
 
-#ifdef NON_MATCHING // Same register issue
-void SensorHitChecker::doObjColInSameGroup(SensorGroup *pSensorGroup) const {
+#ifdef NON_MATCHING  // Same register issue
+void SensorHitChecker::doObjColInSameGroup(SensorGroup* pSensorGroup) const {
     s32 sensorGroupCount = pSensorGroup->mSensorCount;
     for (s32 i = 0; i < sensorGroupCount; i++) {
         HitSensor* pFirstSensor = pSensorGroup->mSensors[i];
@@ -113,8 +107,8 @@ void SensorHitChecker::doObjColInSameGroup(SensorGroup *pSensorGroup) const {
 }
 #endif
 
-#ifdef NON_MATCHING // Wrong registers
-void SensorHitChecker::checkAttack(HitSensor *pSensor1, HitSensor *pSensor2) const {
+#ifdef NON_MATCHING  // Wrong registers
+void SensorHitChecker::checkAttack(HitSensor* pSensor1, HitSensor* pSensor2) const {
     if (pSensor1->mHost != pSensor2->mHost) {
         f32 xPos = pSensor1->mPosition.x - pSensor2->mPosition.x;
         f32 yPos = pSensor1->mPosition.y - pSensor2->mPosition.y;
@@ -132,17 +126,15 @@ void SensorHitChecker::checkAttack(HitSensor *pSensor1, HitSensor *pSensor2) con
         }
     }
 }
-#endif 
+#endif
 
 namespace MR {
-    void initHitSensorGroup(HitSensor *pSensor) {
-        MR::getSceneObj<SensorHitChecker>(SceneObj_SensorHitChecker)->initGroup(pSensor);
-    }
-};
+    void initHitSensorGroup(HitSensor* pSensor) { MR::getSceneObj< SensorHitChecker >(SceneObj_SensorHitChecker)->initGroup(pSensor); }
+};  // namespace MR
 
 SensorHitChecker::~SensorHitChecker() {}
 
-SensorHitChecker::SensorHitChecker(const char *pName) : NameObj(pName) {
+SensorHitChecker::SensorHitChecker(const char* pName) : NameObj(pName) {
     mPlayerGroup = nullptr;
     mRideGroup = nullptr;
     mEyeGroup = nullptr;
@@ -158,7 +150,7 @@ SensorHitChecker::SensorHitChecker(const char *pName) : NameObj(pName) {
     mCharacterGroup = new SensorGroup(0x400, "Character");
 }
 
-SensorGroup::SensorGroup(int maxSensors, const char *a2) {
+SensorGroup::SensorGroup(int maxSensors, const char* a2) {
     mMaxSensors = maxSensors;
     mSensorCount = 0;
     mSensors = nullptr;
@@ -169,16 +161,16 @@ SensorGroup::SensorGroup(int maxSensors, const char *a2) {
     }
 }
 
-void SensorGroup::add(HitSensor *pSensor) {
+void SensorGroup::add(HitSensor* pSensor) {
     mSensors[mSensorCount] = pSensor;
     mSensorCount++;
     pSensor->mSensorGroup = this;
 }
 
-void SensorGroup::remove(HitSensor *pSensor) {
+void SensorGroup::remove(HitSensor* pSensor) {
     for (s32 i = 0; i < mSensorCount; i++) {
         if (mSensors[i] == pSensor) {
-            u32 count = mSensorCount -1;
+            u32 count = mSensorCount - 1;
             mSensors[i] = mSensors[count];
             mSensorCount--;
             break;

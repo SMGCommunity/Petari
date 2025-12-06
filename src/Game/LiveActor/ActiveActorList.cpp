@@ -13,7 +13,7 @@ bool ActiveActorList::isFull() const {
     return mCurCount >= mMaxCount;
 }
 
-void ActiveActorList::addActor(LiveActor *pActor) {
+void ActiveActorList::addActor(LiveActor* pActor) {
     if (!hasTooMany()) {
         mActorList[mCurCount] = pActor;
         mCurCount++;
@@ -30,8 +30,7 @@ void ActiveActorList::removeDeadActor() {
             s32 newCount = mCurCount - 1;
             mActorList[newCount] = 0;
             mCurCount--;
-        }
-        else {
+        } else {
             ++cur;
             ++idx;
         }

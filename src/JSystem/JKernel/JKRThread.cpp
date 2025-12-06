@@ -1,8 +1,8 @@
 #include "JSystem/JKernel/JKRThread.hpp"
 #include "JSystem/JKernel/JKRHeap.hpp"
 
-JSUList<JKRThread> JKRThread::sThreadList = JSUList<JKRThread>(false);
-JSUList<JKRTask> JKRThread::sTaskList = JSUList<JKRTask>();
+JSUList< JKRThread > JKRThread::sThreadList = JSUList< JKRThread >(false);
+JSUList< JKRTask > JKRThread::sTaskList = JSUList< JKRTask >();
 
 JKRThread::TLoad::TLoad() {
     clear();
@@ -19,7 +19,7 @@ void JKRThread::TLoad::clear() {
 
 JKRThread::~JKRThread() {
     sThreadList.remove(&mDisposerList);
-    
+
     if (_28) {
         if (!OSIsThreadTerminated(mThread)) {
             OSDetachThread(mThread);
@@ -33,9 +33,9 @@ JKRThread::~JKRThread() {
     JKRHeap::free(mMessage, 0);
 }
 
-void JKRThread::setCommon_mesgQueue(JKRHeap *pHeap, int msgCount) {
+void JKRThread::setCommon_mesgQueue(JKRHeap* pHeap, int msgCount) {
     mMsgCount = msgCount;
-    mMessage = reinterpret_cast<OSMessage*>(JKRHeap::alloc(mMsgCount * 4, 0, pHeap));
+    mMessage = reinterpret_cast< OSMessage* >(JKRHeap::alloc(mMsgCount * 4, 0, pHeap));
     OSInitMessageQueue(&mQueue, mMessage, mMsgCount);
     sThreadList.append(&mDisposerList);
     _74 = 0;
@@ -54,13 +54,13 @@ void JKRThread::setCommon_heapSpecified(JKRHeap *pHeap, u32 a2, int a3) {
 }
 */
 
-s32 JKRThread::start(void *pData) {
+s32 JKRThread::start(void* pData) {
     return run();
 }
 
-JKRThread* JKRThread::searchThread(OSThread *pThread) {
+JKRThread* JKRThread::searchThread(OSThread* pThread) {
     for (JSUPtrLink* i = sThreadList.mHead; i; i = i->mNext) {
-        JKRThread* thread = reinterpret_cast<JKRThread*>(i->mData);
+        JKRThread* thread = reinterpret_cast< JKRThread* >(i->mData);
 
         if (thread->mThread == pThread) {
             return thread;
@@ -71,7 +71,7 @@ JKRThread* JKRThread::searchThread(OSThread *pThread) {
 }
 
 #ifdef NON_MATCHING
-JKRThread* JKRThreadSwitch::enter(JKRThread *pThread, int a2) {
+JKRThread* JKRThreadSwitch::enter(JKRThread* pThread, int a2) {
     JKRThread* thread = pThread;
 
     if (!pThread) {

@@ -25,4 +25,4 @@ namespace MR {
     s32 getDummyDisplayModelId(const JMapInfoIter&, s32);
     s32 getDummyDisplayModelId(const LiveActor*);
     void makeArchiveListDummyDisplayModel(NameObjArchiveListCollector*, const JMapInfoIter&);
-};
+};  // namespace MR

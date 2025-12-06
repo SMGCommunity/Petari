@@ -4,8 +4,8 @@
 #include "Game/LiveActor/ModelObj.hpp"
 #include "Game/MapObj/SpinDriverCamera.hpp"
 #include "Game/MapObj/SpinDriverOperateRing.hpp"
-#include "Game/MapObj/SpinDriverShootPath.hpp"
 #include "Game/MapObj/SpinDriverPathDrawer.hpp"
+#include "Game/MapObj/SpinDriverShootPath.hpp"
 
 namespace {
     static f32 sCanBindTime = 90.0f;
@@ -13,10 +13,10 @@ namespace {
 
 class SuperSpinDriver : public LiveActor {
 public:
-    SuperSpinDriver(const char *, s32);
+    SuperSpinDriver(const char*, s32);
 
     virtual ~SuperSpinDriver();
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
     virtual void initAfterPlacement();
     virtual void appear();
     virtual void makeActorAppeared();
@@ -24,21 +24,21 @@ public:
     virtual void endClipped();
     virtual void control();
     virtual void calcAndSetBaseMtx();
-    virtual void attackSensor(HitSensor *, HitSensor *);
-    virtual bool receiveOtherMsg(u32, HitSensor *, HitSensor *);
+    virtual void attackSensor(HitSensor*, HitSensor*);
+    virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
 
-    void initParamFromJMapInfo(const JMapInfoIter &);
+    void initParamFromJMapInfo(const JMapInfoIter&);
     void initGravityAxis();
     void initSensor();
     void initEmptyModel();
-    void initEventCamera(const JMapInfoIter &);
-    void initShootPath(const JMapInfoIter &);
-    void initShootPathDraw(const JMapInfoIter &);
+    void initEventCamera(const JMapInfoIter&);
+    void initShootPath(const JMapInfoIter&);
+    void initShootPathDraw(const JMapInfoIter&);
     void initColor();
     void initOperateRing();
-    void initAppearState(const JMapInfoIter &);
-    bool canBind(HitSensor *, HitSensor *) const;
-    bool tryBind(HitSensor *, HitSensor *) const;
+    void initAppearState(const JMapInfoIter&);
+    bool canBind(HitSensor*, HitSensor*) const;
+    bool tryBind(HitSensor*, HitSensor*) const;
     bool tryEndCapture();
     bool tryForceCancel();
     bool tryShootStart();
@@ -69,7 +69,7 @@ public:
     void endBind();
     void updateBindActorMatrix();
     void updateBindActorPoseToShoot(f32);
-    void turnBindHead(const TVec3f &, f32);
+    void turnBindHead(const TVec3f&, f32);
     void moveBindPosToCenter();
     void startPathDraw();
     void endPathDraw();
@@ -84,11 +84,11 @@ public:
     bool isRightToUse() const;
 
     LiveActor* _8C;
-    SpinDriverShootPath* mShootPath;        // 0x90
-    SpinDriverCamera* mSpinDriverCamera;    // 0x94
-    SpinDriverOperateRing* mOperateRing;    // 0x98
-    SpinDriverPathDrawer* mPathDrawer;      // 0x9C
-    ModelObj* mEmptyModel;                  // 0xA0
+    SpinDriverShootPath* mShootPath;      // 0x90
+    SpinDriverCamera* mSpinDriverCamera;  // 0x94
+    SpinDriverOperateRing* mOperateRing;  // 0x98
+    SpinDriverPathDrawer* mPathDrawer;    // 0x9C
+    ModelObj* mEmptyModel;                // 0xA0
     TQuat4f _A4;
     TQuat4f _B4;
     TVec3f _C4;
@@ -116,7 +116,7 @@ public:
     f32 _164;
     u32 _168;
     u32 _16C;
-    s32 mColor;                             // 0x170
+    s32 mColor;  // 0x170
     u8 _174;
     u8 _175;
     u8 _176;
@@ -129,10 +129,10 @@ public:
 };
 
 namespace MR {
-    NameObj* createSuperSpinDriverYellow(const char *);
-    NameObj* createSuperSpinDriverGreen(const char *);
-    NameObj* createSuperSpinDriverPink(const char *);
-};
+    NameObj* createSuperSpinDriverYellow(const char*);
+    NameObj* createSuperSpinDriverGreen(const char*);
+    NameObj* createSuperSpinDriverPink(const char*);
+};  // namespace MR
 
 namespace NrvSuperSpinDriver {
     NERVE_DECL_NULL(SuperSpinDriverNrvTryDemo);
@@ -146,4 +146,4 @@ namespace NrvSuperSpinDriver {
     NERVE_DECL(SuperSpinDriverNrvShootStart, SuperSpinDriver, SuperSpinDriver::exeShootStart);
     NERVE_DECL_ONEND(SuperSpinDriverNrvShoot, SuperSpinDriver, SuperSpinDriver::exeShoot, SuperSpinDriver::exeShootOnEnd);
     NERVE_DECL(SuperSpinDriverNrvCoolDown, SuperSpinDriver, SuperSpinDriver::exeCoolDown);
-};
+};  // namespace NrvSuperSpinDriver

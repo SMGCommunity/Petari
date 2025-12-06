@@ -2,22 +2,19 @@
 #include "Game/System/FileRipper.hpp"
 
 namespace {
-    void* loadFileUsingRipper(RequestFileInfo *pInfo) {
+    void* loadFileUsingRipper(RequestFileInfo* pInfo) {
         s32 val = 0;
 
         if (pInfo->mRequestType != 1) {
             val = 1;
         }
 
-        return FileRipper::loadToMainRAM(pInfo->mFileName, (u8*)pInfo->mFileEntry->mContext, true, pInfo->mFileEntry->mHeap, (FileRipper::AllocDirection)val);
+        return FileRipper::loadToMainRAM(pInfo->mFileName, (u8*)pInfo->mFileEntry->mContext, true, pInfo->mFileEntry->mHeap,
+                                         (FileRipper::AllocDirection)val);
     }
-};
+};  // namespace
 
-FileLoaderThread::FileLoaderThread(int priority, int msgCount, JKRHeap *pHeap) :
-    OSThreadWrapper(0x8000, msgCount, priority, pHeap)
-{
-    
-}
+FileLoaderThread::FileLoaderThread(int priority, int msgCount, JKRHeap* pHeap) : OSThreadWrapper(0x8000, msgCount, priority, pHeap) {}
 
 void* FileLoaderThread::run() {
     OSInitFastCast();
@@ -39,7 +36,7 @@ void* FileLoaderThread::run() {
 }
 
 /* this function matches in other compiler versions */
-void FileLoaderThread::loadToMainRAM(RequestFileInfo *pInfo) {
+void FileLoaderThread::loadToMainRAM(RequestFileInfo* pInfo) {
     pInfo->_88 = 1;
     void* data = ::loadFileUsingRipper(pInfo);
     pInfo->mFileEntry->setContext(data, pInfo->mFileEntry->mHeap);
@@ -47,7 +44,7 @@ void FileLoaderThread::loadToMainRAM(RequestFileInfo *pInfo) {
 }
 
 /* same with this one */
-void FileLoaderThread::mountArchiveAndStartCreateResource(RequestFileInfo *pInfo) {
+void FileLoaderThread::mountArchiveAndStartCreateResource(RequestFileInfo* pInfo) {
     pInfo->_88 = 1;
     void* data = ::loadFileUsingRipper(pInfo);
     MR::createAndAddArchive(data, pInfo->mFileEntry->mHeap, pInfo->mFileName);

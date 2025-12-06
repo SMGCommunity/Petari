@@ -4,12 +4,12 @@
 
 class CameraRailFollow : public Camera {
 public:
-    CameraRailFollow(const char *);
+    CameraRailFollow(const char*);
     virtual ~CameraRailFollow();
 
     virtual void reset();
-    virtual CameraTargetObj *calc();
-    virtual CamTranslatorBase *createTranslator();
+    virtual CameraTargetObj* calc();
+    virtual CamTranslatorBase* createTranslator();
 
     void setParam(s32, s32, f32, f32, f32, s32);
 

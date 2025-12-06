@@ -1,6 +1,6 @@
 #include "Game/Util/BaseMatrixFollowTargetHolder.hpp"
 
-BaseMatrixFollower::BaseMatrixFollower(NameObj *pObj, const JMapInfoIter &rIter) {
+BaseMatrixFollower::BaseMatrixFollower(NameObj* pObj, const JMapInfoIter& rIter) {
     mFollowerObj = pObj;
     mLinkInfo = 0;
     mFollowTarget = 0;
@@ -34,7 +34,7 @@ bool BaseMatrixFollower::isValid() const {
     return mFollowTarget->isValid(mFollowID);
 }
 
-BaseMatrixFollowTarget::BaseMatrixFollowTarget(const JMapLinkInfo *pInfo) {
+BaseMatrixFollowTarget::BaseMatrixFollowTarget(const JMapLinkInfo* pInfo) {
     mLinkInfo = pInfo;
     _30 = 0;
     mActor = 0;
@@ -42,7 +42,7 @@ BaseMatrixFollowTarget::BaseMatrixFollowTarget(const JMapLinkInfo *pInfo) {
     _0.identity();
 }
 
-void BaseMatrixFollowTarget::set(LiveActor *pActor, const TPos3f &a2, const TPos3f *a3, BaseMatrixFollowValidater *pValidator) {
+void BaseMatrixFollowTarget::set(LiveActor* pActor, const TPos3f& a2, const TPos3f* a3, BaseMatrixFollowValidater* pValidator) {
     mValidater = pValidator;
     mActor = pActor;
     _0.set(a2);
@@ -70,6 +70,4 @@ bool BaseMatrixFollowTarget::isValid(s32 followId) const {
     return true;
 }
 
-BaseMatrixFollowTargetHolder::~BaseMatrixFollowTargetHolder() {
-
-}
+BaseMatrixFollowTargetHolder::~BaseMatrixFollowTargetHolder() {}

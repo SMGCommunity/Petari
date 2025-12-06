@@ -1,6 +1,6 @@
 #include "Game/MapObj/SimpleMapObj.hpp"
 
-void SimpleMapObj::init(const JMapInfoIter &rIter) {
+void SimpleMapObj::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);
     MapObjActorInitInfo info;
     MapObjActorUtil::setupInitInfoSimpleMapObj(&info);
@@ -11,49 +11,48 @@ void SimpleMapObj::init(const JMapInfoIter &rIter) {
     initialize(rIter, info);
 }
 
-void SimpleEnvironmentObj::connectToScene(const MapObjActorInitInfo &rInfo) {
+void SimpleEnvironmentObj::connectToScene(const MapObjActorInitInfo& rInfo) {
     if (rInfo.mConnectToScene) {
         if (rInfo._5C == 1) {
             MR::connectToSceneEnvironmentStrongLight(this);
             return;
-        }
-        else if (rInfo._5C != 1) {
+        } else if (rInfo._5C != 1) {
             MR::connectToSceneEnvironment(this);
             return;
         }
     }
 }
 
-void SimpleMapObjFarMax::init(const JMapInfoIter &rIter) {
+void SimpleMapObjFarMax::init(const JMapInfoIter& rIter) {
     SimpleMapObj::init(rIter);
     MR::setClippingFarMax(this);
 }
 
-void SimpleMapObjNoSilhouetted::connectToScene(const MapObjActorInitInfo &rInfo) {
+void SimpleMapObjNoSilhouetted::connectToScene(const MapObjActorInitInfo& rInfo) {
     if (rInfo.mConnectToScene) {
         if (rInfo._5C == 1) {
             MR::connectToSceneNoSilhouettedMapObjStrongLight(this);
             return;
-        }
-        else if (rInfo._5C != 1) {
+        } else if (rInfo._5C != 1) {
             MR::connectToSceneNoSilhouettedMapObj(this);
             return;
         }
     }
 }
 
-void SimpleTextureSwitchChangeObj::initCaseUseSwitchA(const MapObjActorInitInfo &rInfo) {
-    MR::FunctorV0M<SimpleTextureSwitchChangeObj *, void (SimpleTextureSwitchChangeObj::*)()> func = MR::Functor<SimpleTextureSwitchChangeObj>(this, &SimpleTextureSwitchChangeObj::changeTexture);
+void SimpleTextureSwitchChangeObj::initCaseUseSwitchA(const MapObjActorInitInfo& rInfo) {
+    MR::FunctorV0M< SimpleTextureSwitchChangeObj*, void (SimpleTextureSwitchChangeObj::*)() > func =
+        MR::Functor< SimpleTextureSwitchChangeObj >(this, &SimpleTextureSwitchChangeObj::changeTexture);
     MR::listenStageSwitchOnA(this, func);
 }
 
-void GlaringLight::connectToScene(const MapObjActorInitInfo &rInfo) {
+void GlaringLight::connectToScene(const MapObjActorInitInfo& rInfo) {
     if (rInfo.mConnectToScene) {
         MR::connectToScene(this, 0x22, 5, 0x22, -1);
     }
 }
 
-SimpleMirrorObj::SimpleMirrorObj(const char *pName, const char *a2, MtxPtr mtx) : MapObjActor(pName) {
+SimpleMirrorObj::SimpleMirrorObj(const char* pName, const char* a2, MtxPtr mtx) : MapObjActor(pName) {
     mMtx = mtx;
     MR::createMirrorCamera();
 }
@@ -61,30 +60,29 @@ SimpleMirrorObj::SimpleMirrorObj(const char *pName, const char *a2, MtxPtr mtx) 
 void SimpleMirrorObj::calcAndSetBaseMtx() {
     if (!mMtx) {
         MapObjActor::calcAndSetBaseMtx();
-    }
-    else {
+    } else {
         TPos3f reflectionPos;
         reflectionPos.set(mMtx);
         MR::setMirrorReflectionInfoFromMtxYUp(reflectionPos);
         f32 z = reflectionPos.mMtx[2][3];
         f32 y = reflectionPos.mMtx[1][3];
-        f32 x = reflectionPos.mMtx[0][3]; 
+        f32 x = reflectionPos.mMtx[0][3];
         mPosition.set(x, y, z);
         MR::setBaseTRMtx(this, mMtx);
     }
 }
 
-void SimpleMirrorReflectionObj::init(const JMapInfoIter &rIter) {
+void SimpleMirrorReflectionObj::init(const JMapInfoIter& rIter) {
     SimpleMapObj::init(rIter);
     MR::invalidateClipping(this);
 }
 
-void SimpleMirrorReflectionObj::connectToScene(const MapObjActorInitInfo &rInfo) {
+void SimpleMirrorReflectionObj::connectToScene(const MapObjActorInitInfo& rInfo) {
     MR::connectToSceneMirrorMapObjNoMovement(this);
 }
 
 namespace {
-    const SoundEffectDataEntry* getSeParam(const char *pName) {
+    const SoundEffectDataEntry* getSeParam(const char* pName) {
         for (u32 i = 0; i < 8; i++) {
             if (MR::isEqualString(pName, sSeDataTable[i].objectName)) {
                 return &sSeDataTable[i];
@@ -93,13 +91,13 @@ namespace {
 
         return nullptr;
     }
-};
+};  // namespace
 
-SimpleSeesawObj::SimpleSeesawObj(const char *pName) : MapObjActor(pName) {
+SimpleSeesawObj::SimpleSeesawObj(const char* pName) : MapObjActor(pName) {
     _C4.identity();
 }
 
-void SimpleSeesawObj::init(const JMapInfoIter &rIter) {
+void SimpleSeesawObj::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);
     MapObjActorInitInfo info;
     MapObjActorUtil::setupInitInfoSimpleMapObj(&info);
@@ -114,13 +112,13 @@ void SimpleSeesawObj::control() {
     MapObjActor::control();
 }
 
-void SimpleMapObjPush::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
+void SimpleMapObjPush::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isSensorPlayer(pReceiver)) {
         MR::sendMsgPush(pReceiver, pSender);
     }
 }
 
-void UFOKinokoUnderConstruction::init(const JMapInfoIter &rIter) {
+void UFOKinokoUnderConstruction::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);
     MapObjActorInitInfo info;
     info.setupFarClipping(-1.0f);
@@ -130,11 +128,9 @@ void UFOKinokoUnderConstruction::init(const JMapInfoIter &rIter) {
     MapObjActorUtil::setupInitInfoShadowLengthArg2(&info, rIter);
 
     if (MR::isEqualString("UFOKinokoUnderConstruction", mObjectName)) {
-
         if (MR::isUFOKinokoUnderConstruction()) {
             info.mModelName = "UFOKinokoUnderConstruction";
-        }
-        else {
+        } else {
             info.mModelName = "UFOKinokoLandingAstro";
         }
     }
@@ -146,21 +142,20 @@ void UFOKinokoUnderConstruction::init(const JMapInfoIter &rIter) {
 }
 
 namespace MR {
-    void makeArchiveListUFOKinokoUnderConstruction(NameObjArchiveListCollector *pArchiveList, const JMapInfoIter &rIter) {
+    void makeArchiveListUFOKinokoUnderConstruction(NameObjArchiveListCollector* pArchiveList, const JMapInfoIter& rIter) {
         const char* archive;
 
         if (MR::isUFOKinokoBeforeConstruction()) {
             archive = "UFOKinokoUnderConstruction";
-        }
-        else {
+        } else {
             archive = "UFOKinokoLandingAstro";
         }
 
         pArchiveList->addArchive(archive);
     }
-};
+};  // namespace MR
 
-void SimpleEnvironmentObj::init(const JMapInfoIter &rIter) {
+void SimpleEnvironmentObj::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);
     MapObjActorInitInfo info;
     MapObjActorUtil::setupInitInfoSimpleMapObj(&info);
@@ -173,15 +168,14 @@ void SimpleTextureSwitchChangeObj::changeTexture() {
     MR::setBtkFrameAndStop(this, getChangedTextureNo());
 }
 
-void SimpleMirrorObj::init(const JMapInfoIter &rIter) {
+void SimpleMirrorObj::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);
     MapObjActorInitInfo info;
     bool hasMtx = false;
 
     if (!mMtx) {
         MapObjActorUtil::setupInitInfoSimpleMapObj(&info);
-    }
-    else {
+    } else {
         info.setupHioNode("地形オブジェ");
         info.setupConnectToScene();
         info.setupEffect(nullptr);
@@ -200,38 +194,20 @@ s32 SimpleTextureSwitchChangeObj::getChangedTextureNo() const {
     return 1;
 }
 
-SimpleEnvironmentObj::~SimpleEnvironmentObj() {
+SimpleEnvironmentObj::~SimpleEnvironmentObj() {}
 
-}
+SimpleMapObjNoSilhouetted::~SimpleMapObjNoSilhouetted() {}
 
-SimpleMapObjNoSilhouetted::~SimpleMapObjNoSilhouetted() {
+SimpleTextureSwitchChangeObj::~SimpleTextureSwitchChangeObj() {}
 
-}
+GlaringLight::~GlaringLight() {}
 
-SimpleTextureSwitchChangeObj::~SimpleTextureSwitchChangeObj() {
+SimpleMirrorObj::~SimpleMirrorObj() {}
 
-}
+SimpleMirrorReflectionObj::~SimpleMirrorReflectionObj() {}
 
-GlaringLight::~GlaringLight() {
+SimpleSeesawObj::~SimpleSeesawObj() {}
 
-}
+SimpleMapObjPush::~SimpleMapObjPush() {}
 
-SimpleMirrorObj::~SimpleMirrorObj() {
-
-}
-
-SimpleMirrorReflectionObj::~SimpleMirrorReflectionObj() {
-
-}
-
-SimpleSeesawObj::~SimpleSeesawObj() {
-
-}
-
-SimpleMapObjPush::~SimpleMapObjPush() {
-
-}
-
-UFOKinokoUnderConstruction::~UFOKinokoUnderConstruction() {
-
-}
+UFOKinokoUnderConstruction::~UFOKinokoUnderConstruction() {}

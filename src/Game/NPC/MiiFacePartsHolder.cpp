@@ -1,7 +1,7 @@
+#include "Game/NPC/MiiFacePartsHolder.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/NPC/MiiDatabase.hpp"
 #include "Game/NPC/MiiFaceParts.hpp"
-#include "Game/NPC/MiiFacePartsHolder.hpp"
 #include "Game/NPC/MiiFaceRecipe.hpp"
 #include "Game/NameObj/NameObjAdaptor.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
@@ -12,14 +12,8 @@
 #include <JSystem/JKernel/JKRMemArchive.hpp>
 #include <JSystem/JKernel/JKRSolidHeap.hpp>
 
-MiiFacePartsHolder::MiiFacePartsHolder(int numParts) :
-    LiveActorGroup("Mii顔モデル保持", numParts),
-    JKRDisposer(),
-    mRFLWorkBuffer(nullptr),
-    _34(nullptr)
-{
-    
-}
+MiiFacePartsHolder::MiiFacePartsHolder(int numParts)
+    : LiveActorGroup("Mii顔モデル保持", numParts), JKRDisposer(), mRFLWorkBuffer(nullptr), _34(nullptr) {}
 
 MiiFacePartsHolder::~MiiFacePartsHolder() {
     RFLExit();
@@ -28,17 +22,16 @@ MiiFacePartsHolder::~MiiFacePartsHolder() {
 }
 
 void MiiFacePartsHolder::init(const JMapInfoIter& rIter) {
-    mRFLWorkBuffer = new(MR::getSceneHeapGDDR3(), 32) u8[RFLGetWorkSize(false)];
+    mRFLWorkBuffer = new (MR::getSceneHeapGDDR3(), 32) u8[RFLGetWorkSize(false)];
 
-    JKRMemArchive* pArchive = reinterpret_cast<JKRMemArchive*>(MR::receiveArchive("/ObjectData/MiiFaceDatabase.arc"));
+    JKRMemArchive* pArchive = reinterpret_cast< JKRMemArchive* >(MR::receiveArchive("/ObjectData/MiiFaceDatabase.arc"));
     void* pResBuffer = pArchive->getResource("/RFL_Res.dat");
     u32 resSize = pArchive->getResSize(pResBuffer);
     _38 = RFLInitResAsync(mRFLWorkBuffer, pResBuffer, resSize, false);
 
     MR::connectToScene(this, -1, 6, -1, 37);
 
-    MR::FunctorV0M<MiiFacePartsHolder*, void (MiiFacePartsHolder::*)()> initFunc(
-        this, &MiiFacePartsHolder::reinitCharModel);
+    MR::FunctorV0M< MiiFacePartsHolder*, void (MiiFacePartsHolder::*)() > initFunc(this, &MiiFacePartsHolder::reinitCharModel);
 
     MR::connectToScene(MR::createDrawAdaptor("Miiモデル再作成", initFunc), -1, -1, -1, 80);
 }
@@ -102,7 +95,7 @@ void MiiFacePartsHolder::reinitCharModel() {
 
     if (_38 == RFLErrcode_Success) {
         for (int i = 0; i < getObjectCount(); i++) {
-            pParts = static_cast<MiiFaceParts*>(getActor(i));
+            pParts = static_cast< MiiFaceParts* >(getActor(i));
 
             if (pParts->_D0 || pParts->_D1) {
                 pParts->initFaceModel();
@@ -119,7 +112,7 @@ bool MiiFacePartsHolder::isInitEnd() const {
     }
 
     for (int i = 0; i < getObjectCount(); i++) {
-        pParts = static_cast<MiiFaceParts*>(getActor(i));
+        pParts = static_cast< MiiFaceParts* >(getActor(i));
 
         if (pParts->_D1) {
             return false;
@@ -130,17 +123,15 @@ bool MiiFacePartsHolder::isInitEnd() const {
 }
 
 bool MiiFacePartsHolder::isError() const {
-    return _38 != RFLErrcode_Success
-        && _38 != RFLErrcode_Busy;
+    return _38 != RFLErrcode_Success && _38 != RFLErrcode_Busy;
 }
 
 MiiFaceParts* MiiFacePartsHolder::createPartsFromReceipe(const char* pName, const MiiFaceRecipe& rRecipe) {
     MiiFaceParts* pParts = new MiiFaceParts(pName, rRecipe);
 
-    MR::getSceneObj<MiiFacePartsHolder>(SceneObj_MiiFacePartsHolder)->registerActor(pParts);
+    MR::getSceneObj< MiiFacePartsHolder >(SceneObj_MiiFacePartsHolder)->registerActor(pParts);
 
-    MR::FunctorV0M<NameObj*, void (NameObj::*)()> initFunc(
-        pParts, &NameObj::initWithoutIter);
+    MR::FunctorV0M< NameObj*, void (NameObj::*)() > initFunc(pParts, &NameObj::initWithoutIter);
 
     if (MR::startFunctionAsyncExecuteOnMainThread(initFunc, "initNameObjOnMainThread")) {
         MR::waitForEndFunctionAsyncExecute("initNameObjOnMainThread");
@@ -150,20 +141,14 @@ MiiFaceParts* MiiFacePartsHolder::createPartsFromReceipe(const char* pName, cons
 }
 
 MiiFaceParts* MiiFacePartsHolder::createPartsFromDefault(const char* pName, u16 miiIndex) {
-    return createPartsFromReceipe(
-        pName,
-        MiiFaceRecipe(
-            RFLDataSource_Default,
-            miiIndex,
-            RFLResolution_256,
-            RFLExpFlag_Normal | RFLExpFlag_Blink));
+    return createPartsFromReceipe(pName, MiiFaceRecipe(RFLDataSource_Default, miiIndex, RFLResolution_256, RFLExpFlag_Normal | RFLExpFlag_Blink));
 }
 
 void MiiFacePartsHolder::drawEachActor(DrawPartsFuncPtr pDrawFunc, const RFLDrawCoreSetting* pSetting) const {
     MiiFaceParts* pParts;
 
     for (int i = 0; i < getObjectCount(); i++) {
-        pParts = static_cast<MiiFaceParts*>(getActor(i));
+        pParts = static_cast< MiiFaceParts* >(getActor(i));
 
         if (MR::isDead(pParts)) {
             continue;
@@ -177,10 +162,10 @@ void MiiFacePartsHolder::drawEachActor(DrawPartsFuncPtr pDrawFunc, const RFLDraw
 
 // FIXME: Enumerated GX types might be defined incorrectly?
 void MiiFacePartsHolder::setTevOpa() const {
-    GXColorS10 color1 = { 0, 0, 0, -89 };
+    GXColorS10 color1 = {0, 0, 0, -89};
     GXSetTevColorS10(GX_TEVREG1, color1);
 
-    GXColorS10 color2 = { 0, 0, 0, 246 };
+    GXColorS10 color2 = {0, 0, 0, 246};
     GXSetTevColorS10(GX_TEVREG2, color2);
 
     GXSetTevDirect(GX_TEVSTAGE1);
@@ -201,10 +186,10 @@ void MiiFacePartsHolder::setTevOpa() const {
     GXSetChanCtrl(GX_COLOR0, GX_TRUE, GX_SRC_REG, GX_SRC_REG, GX_LIGHT3, GX_DF_CLAMP, GX_AF_NONE);
     GXSetChanCtrl(GX_ALPHA0, GX_TRUE, GX_SRC_REG, GX_SRC_REG, GX_LIGHT4, GX_DF_SIGN, GX_AF_NONE);
 
-    GXColor ambColor = { 128, 128, 128, 128 };
+    GXColor ambColor = {128, 128, 128, 128};
     GXSetChanAmbColor(GX_COLOR0A0, ambColor);
 
-    GXColor matColor = { 165, 165, 165, 255 };
+    GXColor matColor = {165, 165, 165, 255};
     GXSetChanMatColor(GX_COLOR0A0, matColor);
 
     GXSetZMode(GX_TRUE, GX_EQUAL, GX_TRUE);
@@ -212,10 +197,10 @@ void MiiFacePartsHolder::setTevOpa() const {
 
 // FIXME: Enumerated GX types might be defined incorrectly?
 void MiiFacePartsHolder::setTevXlu() const {
-    GXColorS10 color1 = { 0, 0, 0, -89 };
+    GXColorS10 color1 = {0, 0, 0, -89};
     GXSetTevColorS10(GX_TEVREG1, color1);
 
-    GXColorS10 color2 = { 0, 0, 0, 246 };
+    GXColorS10 color2 = {0, 0, 0, 246};
     GXSetTevColorS10(GX_TEVREG2, color2);
 
     GXSetTevDirect(GX_TEVSTAGE1);
@@ -234,10 +219,10 @@ void MiiFacePartsHolder::setTevXlu() const {
     GXSetNumChans(1);
     GXSetChanCtrl(GX_COLOR0, GX_TRUE, GX_SRC_REG, GX_SRC_REG, GX_LIGHT3, GX_DF_CLAMP, GX_AF_NONE);
 
-    GXColor ambColor = { 128, 128, 128, 128 };
+    GXColor ambColor = {128, 128, 128, 128};
     GXSetChanAmbColor(GX_COLOR0A0, ambColor);
 
-    GXColor matColor = { 165, 165, 165, 255 };
+    GXColor matColor = {165, 165, 165, 255};
     GXSetChanMatColor(GX_COLOR0A0, matColor);
 
     GXSetZMode(GX_TRUE, GX_EQUAL, GX_TRUE);

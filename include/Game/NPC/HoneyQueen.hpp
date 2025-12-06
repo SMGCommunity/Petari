@@ -8,14 +8,14 @@
 
 class HoneyQueen : public NPCActor {
 public:
-    HoneyQueen(const char *);
+    HoneyQueen(const char*);
 
     virtual ~HoneyQueen();
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
     virtual void calcAnim();
     virtual void control();
-    virtual void attackSensor(HitSensor *, HitSensor *);
-    virtual bool receiveMsgPlayerAttack(u32, HitSensor *, HitSensor *);
+    virtual void attackSensor(HitSensor*, HitSensor*);
+    virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
 
     void fadeOut();
     void fadeIn();

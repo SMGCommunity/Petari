@@ -4,5 +4,5 @@
 
 class SpinDriverUtil {
 public:
-    static void setShadowAndClipping(LiveActor *, TVec3f *, f32, f32, f32 *);
+    static void setShadowAndClipping(LiveActor*, TVec3f*, f32, f32, f32*);
 };

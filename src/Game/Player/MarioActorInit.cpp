@@ -1,7 +1,6 @@
 #include "Game/Player/MarioActor.hpp"
 
-void MarioActor::initMember()
-{
+void MarioActor::initMember() {
     _8C = 0;
     mDLchanger = nullptr;
     for (int i = 0; i < 0x40; i++) {
@@ -298,7 +297,7 @@ void MarioActor::initMember()
     _B70 = 0;
     _B72 = 0;
     _B74 = 0;
-    _B78 = 0;
+    mEyeRes = nullptr;
     _B7C = 0;
     _B80 = 0;
     _B84 = 0;
@@ -379,10 +378,10 @@ void MarioActor::initMember()
     _F42 = 0;
     _F44 = 0;
     _F48 = 0;
-    _F4C = 0;
-    _F50.zero();
-    _F5C.zero();
-    _F68.zero();
+    mBlackHole = nullptr;
+    mBlackHolePosition.zero();
+    mBlackHoleRotateAxis.zero();
+    mPosRelativeToBlackHole.zero();
     _F74 = 0;
     mCamPos.zero();
     mCamDirX.zero();

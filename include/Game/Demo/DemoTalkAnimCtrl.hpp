@@ -7,29 +7,29 @@
 
 class DemoTalkAnimCtrl : NerveExecutor {
 public:
-    DemoTalkAnimCtrl(LiveActor *, const char *, const char *);
+    DemoTalkAnimCtrl(LiveActor*, const char*, const char*);
     virtual ~DemoTalkAnimCtrl();
 
-    void initForScene(const char *, const char *, const JMapInfoIter &);
+    void initForScene(const char*, const char*, const JMapInfoIter&);
     void updateCamera();
-    void createBckCtrlData(BckCtrlData *, s32) const;
-    void initForActor(const char *);
+    void createBckCtrlData(BckCtrlData*, s32) const;
+    void initForActor(const char*);
     void startDemo();
     bool updateDemo();
     void startAnim();
     void startCamera();
-    void updateAnim(const BckCtrlData &);
+    void updateAnim(const BckCtrlData&);
     void updatePause();
     void endCamera();
-    void setupStartDemoPart(const char *);
+    void setupStartDemoPart(const char*);
 
-    LiveActor *mActor;               // 0x8
-    const char *_C;
-    const char *_10;
-    const char *_14;
-    const char *_18;
-    const char *_1C;
-    ActorCameraInfo *mCameraInfo;    // 0x20
+    LiveActor* mActor;  // 0x8
+    const char* _C;
+    const char* _10;
+    const char* _14;
+    const char* _18;
+    const char* _1C;
+    ActorCameraInfo* mCameraInfo;  // 0x20
     s32 _24;
     s32 _28;
     s32 _2C;
@@ -44,9 +44,9 @@ public:
     bool _48;
     bool mHaveCamera;
     bool _4A;
-    bool mHaveBtk;                   // 0x4B
-    bool mHaveBpk;                   // 0x4C
-    bool mHaveBtp;                   // 0x4D
-    bool mHaveBrk;                   // 0x4E
-    bool mHaveBva;                   // 0x4F
+    bool mHaveBtk;  // 0x4B
+    bool mHaveBpk;  // 0x4C
+    bool mHaveBtp;  // 0x4D
+    bool mHaveBrk;  // 0x4E
+    bool mHaveBva;  // 0x4F
 };

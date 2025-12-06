@@ -1,9 +1,9 @@
 #include "Game/MapObj/MercatorRailMoveParts.hpp"
+#include "Game/AreaObj/MercatorTransformCube.hpp"
 #include "Game/MapObj/MapPartsRailMover.hpp"
 #include "Game/MapObj/MapPartsRailRotator.hpp"
-#include "Game/AreaObj/MercatorTransformCube.hpp"
 
-MercatorRailMoveParts::MercatorRailMoveParts(const char *pName) : LiveActor(pName) {
+MercatorRailMoveParts::MercatorRailMoveParts(const char* pName) : LiveActor(pName) {
     mRailMover = nullptr;
     mRailRotator = nullptr;
     mAppearController = nullptr;
@@ -18,14 +18,14 @@ void MercatorRailMoveParts::initAfterPlacement() {
     TVec3f trans;
     TPos3f rotate;
     MR::convertMercatorPlaneToSphereTransAndRotate(&trans, &rotate, mLocalTrans, false);
-    mPosition.set<f32>(trans);
-    
+    mPosition.set< f32 >(trans);
+
     if (MR::isValidSwitchB(this)) {
         mIsNotMoving = true;
     }
 }
 
-bool MercatorRailMoveParts::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool MercatorRailMoveParts::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (mAppearController->receiveMsg(msg)) {
         return true;
     }
@@ -51,7 +51,7 @@ void MercatorRailMoveParts::control() {
     TVec3f trans;
     TPos3f rotate;
     MR::convertMercatorPlaneToSphereTransAndRotate(&trans, &rotate, mRailMover->_28, false);
-    mPosition.set<f32>(trans);
+    mPosition.set< f32 >(trans);
 }
 
 void MercatorRailMoveParts::calcAndSetBaseMtx() {
@@ -63,8 +63,7 @@ void MercatorRailMoveParts::calcAndSetBaseMtx() {
 
     if (mRailRotator->isWorking()) {
         baseMtx.concat(mRailRotator->_5C, baseMtx);
-    }
-    else {
+    } else {
         baseMtx.set(mRotateMtx);
     }
 
@@ -87,7 +86,7 @@ void MercatorRailMoveParts::updatePose() {
     mRotateMtx.set(mtx);
 }
 
-void MercatorRailMoveParts::init(const JMapInfoIter &rIter) {
+void MercatorRailMoveParts::init(const JMapInfoIter& rIter) {
     char objName[0x100];
     MR::getMapPartsObjectName(objName, sizeof(objName), rIter);
     MR::initDefaultPosForMercator(this, rIter, false);
@@ -108,7 +107,7 @@ void MercatorRailMoveParts::init(const JMapInfoIter &rIter) {
     if (MR::useStageSwitchReadB(this, rIter)) {
         void (MercatorRailMoveParts::*e)(void) = &MercatorRailMoveParts::startMove;
         void (MercatorRailMoveParts::*s)(void) = &MercatorRailMoveParts::endMove;
-        MR::listenStageSwitchOnOffB(this, MR::Functor<MercatorRailMoveParts>(this, e), MR::Functor<MercatorRailMoveParts>(this, s));
+        MR::listenStageSwitchOnOffB(this, MR::Functor< MercatorRailMoveParts >(this, e), MR::Functor< MercatorRailMoveParts >(this, s));
     }
 
     initRailRider(rIter);
@@ -125,8 +124,7 @@ void MercatorRailMoveParts::init(const JMapInfoIter &rIter) {
     if (MR::useStageSwitchReadAppear(this, rIter)) {
         MR::syncStageSwitchAppear(this);
         makeActorDead();
-    }
-    else {
+    } else {
         makeActorAppeared();
     }
 
@@ -135,6 +133,4 @@ void MercatorRailMoveParts::init(const JMapInfoIter &rIter) {
     updatePose();
 }
 
-MercatorRailMoveParts::~MercatorRailMoveParts() {
-
-}
+MercatorRailMoveParts::~MercatorRailMoveParts() {}

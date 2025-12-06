@@ -15,11 +15,11 @@ SpiderMapBlock::SpiderMapBlock(const char* pName) : LiveActor(pName) {
 }
 
 bool SpiderMapBlock::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-   if (MR::isMsgPlayerHipDropFloor(msg)) {
+    if (MR::isMsgPlayerHipDropFloor(msg)) {
         kill();
-        return true;        
-   }
-   return false;
+        return true;
+    }
+    return false;
 }
 
 bool SpiderMapBlock::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
@@ -27,9 +27,7 @@ bool SpiderMapBlock::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSenso
     return true;
 }
 
-SpiderMapBlock::~SpiderMapBlock() {
-    
-}
+SpiderMapBlock::~SpiderMapBlock() {}
 
 void SpiderMapBlock::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
@@ -48,7 +46,7 @@ void SpiderMapBlock::init(const JMapInfoIter& rIter) {
 void SpiderMapBlock::kill() {
     MR::startSound(this, "SE_OJ_ROCK_BREAK", -1, -1);
     MR::emitEffect(this, "Break");
-    MtxPtr baseMtx = getBaseMtx();    
+    MtxPtr baseMtx = getBaseMtx();
     TVec3f v4(baseMtx[0][1], baseMtx[1][1], 0.0f);
     MR::normalizeOrZero(&v4);
     v4.x *= 35.0f;

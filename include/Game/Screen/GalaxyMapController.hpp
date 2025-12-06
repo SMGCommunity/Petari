@@ -12,4 +12,4 @@ namespace MR {
     void startAstroMapLayoutForChallengeGalaxyDiscover();
     bool isActiveGalaxyMapLayout();
     const ResTIMG* getGalaxyMapResTIMG();
-};
+};  // namespace MR

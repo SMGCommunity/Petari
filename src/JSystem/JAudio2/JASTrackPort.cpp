@@ -1,7 +1,7 @@
 #include "JSystem/JAudio2/JASTrackPort.hpp"
 
 void JASTrackPort::init() {
-    for(u32 i = 0; i < 0x10; i++) {
+    for (u32 i = 0; i < 0x10; i++) {
         mPorts[i] = 0;
     }
     mImport = 0;

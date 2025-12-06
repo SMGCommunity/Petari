@@ -4,35 +4,31 @@
 #include "math_types.hpp"
 
 namespace {
-    const Vec cWeakSensorOffset = { 0.0f, 0.0f, -150.0f };
+    const Vec cWeakSensorOffset = {0.0f, 0.0f, -150.0f};
 };
 
-Rock::Rock(f32 a1, const char *pName) : LiveActor(pName),
-    mParentCreator(nullptr), mRockType(NormalRock), mBreakModel(nullptr), 
-    _98(a1), _9C(0), _9D(0), _A0(gZeroVec), _AC(255.0f), _B0(0.0f), 
-    _E4(gZeroVec), mCurrentRailPoint(-1), _F0(1.5f), _F8(gZeroVec), 
-     _110(0), _114(0), mBarkTimer(0), _11C(0), _120(gZeroVec),
-    _12C(nullptr), _130(0), _134(8), _138(0.0f), mRollSoundTimer(0), _140(0)
-     {
-    
+Rock::Rock(f32 a1, const char* pName)
+    : LiveActor(pName), mParentCreator(nullptr), mRockType(NormalRock), mBreakModel(nullptr), _98(a1), _9C(0), _9D(0), _A0(gZeroVec), _AC(255.0f),
+      _B0(0.0f), _E4(gZeroVec), mCurrentRailPoint(-1), _F0(1.5f), _F8(gZeroVec), _110(0), _114(0), mBarkTimer(0), _11C(0), _120(gZeroVec),
+      _12C(nullptr), _130(0), _134(8), _138(0.0f), mRollSoundTimer(0), _140(0) {
     _B4.identity();
 }
 
-void Rock::init(const JMapInfoIter &rIter) {
+void Rock::init(const JMapInfoIter& rIter) {
     mRockType = Rock::getType(rIter);
 
     if (mRockType != NormalRock) {
         switch (mRockType) {
-            case WanwanRolling:
-                setName("ワンワン");
-                break;
-            case WanwanRollingMini:
-                setName("ミニワンワン");
-                break;
-            case WanwanRollingGold:
-                setName("ゴールドワンワン");
-                MR::declarePowerStar(this);
-                break;
+        case WanwanRolling:
+            setName("ワンワン");
+            break;
+        case WanwanRollingMini:
+            setName("ミニワンワン");
+            break;
+        case WanwanRollingGold:
+            setName("ゴールドワンワン");
+            MR::declarePowerStar(this);
+            break;
         }
 
         _134 = 45;
@@ -56,20 +52,17 @@ void Rock::init(const JMapInfoIter &rIter) {
 
         if (mRockType == WanwanRollingMini) {
             radius = 0.30000001f;
-        }
-        else {
+        } else {
             radius = mScale.x;
         }
 
         MR::initShadowVolumeCylinder(this, 225.0f * radius);
         MR::setShadowDropLength(this, nullptr, shadowDrop);
-    }
-    else {
+    } else {
         f32 radius;
         if (mRockType == WanwanRollingMini) {
             radius = 0.30000001f;
-        }
-        else {
+        } else {
             radius = mScale.x;
         }
 
@@ -86,8 +79,8 @@ void Rock::appear() {
     _F0 = 1.5f;
     mCurrentRailPoint = -1;
     _130 = 0;
-    mPosition.set<f32>(_A0);
-    _F8.set<f32>(_A0);
+    mPosition.set< f32 >(_A0);
+    _F8.set< f32 >(_A0);
     mRotation.zero();
 
     if (!MR::isZeroGravity(this)) {
@@ -103,9 +96,8 @@ void Rock::appear() {
 
     if (mRockType == NormalRock) {
         setBtkForEnvironmentMap(this, "Size");
-        
-    }
-    else if (mRockType == WanwanRolling) {
+
+    } else if (mRockType == WanwanRolling) {
         setBtkForEnvironmentMap(this, "WanwanRolling");
     }
 
@@ -113,8 +105,7 @@ void Rock::appear() {
     if (!MR::isLoopRail(this)) {
         MR::offBind(this);
         setNerve(&NrvRock::RockNrvAppear::sInstance);
-    }
-    else {
+    } else {
         MR::onBind(this);
         setNerve(&NrvRock::RockNrvMove::sInstance);
     }
@@ -135,7 +126,7 @@ s32 Rock::getAppearFrame() {
     return 0x55;
 }
 
-Rock::Type Rock::getType(const JMapInfoIter &rIter) {
+Rock::Type Rock::getType(const JMapInfoIter& rIter) {
     if (MR::isEqualObjectName(rIter, "WanwanRolling")) {
         return WanwanRolling;
     }
@@ -164,30 +155,30 @@ s32 Rock::getAppearStarPieceNum(Type type) {
 
 void Rock::initModel() {
     switch (mRockType) {
-        case NormalRock:
-            initModelManagerWithAnm("Rock", nullptr, false);
-            mBreakModel = MR::createModelObjMapObjStrongLight("ゴロゴロ岩壊れモデル", "RockBreak", nullptr);
-            mBreakModel->initWithoutIter();
-            mBreakModel->mScale.set<f32>(mScale);
-            mBreakModel->makeActorDead();
-            break;
-        case WanwanRolling:
-            initModelManagerWithAnm("WanwanRolling", nullptr, false);
-            mBreakModel = MR::createModelObjMapObjStrongLight("ワンワン壊れモデル", "WanwanRollingBreak", nullptr);
-            mBreakModel->initWithoutIter();
-            mBreakModel->mScale.set<f32>(mScale);
-            mBreakModel->makeActorDead();
-            break;
-        case WanwanRollingMini:
-            initModelManagerWithAnm("WanwanRollingMini", nullptr, false);
-            break;
-        case WanwanRollingGold:
-            initModelManagerWithAnm("WanwanRolling", nullptr, false);
-            mBreakModel = MR::createModelObjMapObjStrongLight("ゴールドワンワン壊れモデル", "WanwanRollingGoldBreak", nullptr);
-            mBreakModel->initWithoutIter();
-            mBreakModel->mScale.set<f32>(mScale);
-            mBreakModel->makeActorDead();
-            break;
+    case NormalRock:
+        initModelManagerWithAnm("Rock", nullptr, false);
+        mBreakModel = MR::createModelObjMapObjStrongLight("ゴロゴロ岩壊れモデル", "RockBreak", nullptr);
+        mBreakModel->initWithoutIter();
+        mBreakModel->mScale.set< f32 >(mScale);
+        mBreakModel->makeActorDead();
+        break;
+    case WanwanRolling:
+        initModelManagerWithAnm("WanwanRolling", nullptr, false);
+        mBreakModel = MR::createModelObjMapObjStrongLight("ワンワン壊れモデル", "WanwanRollingBreak", nullptr);
+        mBreakModel->initWithoutIter();
+        mBreakModel->mScale.set< f32 >(mScale);
+        mBreakModel->makeActorDead();
+        break;
+    case WanwanRollingMini:
+        initModelManagerWithAnm("WanwanRollingMini", nullptr, false);
+        break;
+    case WanwanRollingGold:
+        initModelManagerWithAnm("WanwanRolling", nullptr, false);
+        mBreakModel = MR::createModelObjMapObjStrongLight("ゴールドワンワン壊れモデル", "WanwanRollingGoldBreak", nullptr);
+        mBreakModel->initWithoutIter();
+        mBreakModel->mScale.set< f32 >(mScale);
+        mBreakModel->makeActorDead();
+        break;
     }
 
     if (mBreakModel != nullptr) {
@@ -201,8 +192,7 @@ void Rock::initSensor() {
     if (mRockType != NormalRock) {
         initHitSensor(1);
         v2 = 43;
-    }
-    else {
+    } else {
         initHitSensor(2);
         v2 = 42;
     }
@@ -210,8 +200,7 @@ void Rock::initSensor() {
     f32 v3;
     if (mRockType == WanwanRollingMini) {
         v3 = 0.30000001f;
-    } 
-    else {
+    } else {
         v3 = mScale.x;
     }
 
@@ -229,8 +218,7 @@ void Rock::initSensor() {
 void Rock::initEffect() {
     if (mRockType == WanwanRollingMini) {
         initEffectKeeper(0, "WanwanRolling", false);
-    }
-    else {
+    } else {
         initEffectKeeper(0, nullptr, false);
     }
 
@@ -261,7 +249,6 @@ bool Rock::move(f32 coord) {
             _F0 = 0.2f;
         }
 
-        
         MR::getCurrentRailPointArg1WithInit(this, &pntArg);
 
         if (pntArg >= 0) {
@@ -280,8 +267,7 @@ bool Rock::isInClippingRange() const {
 
     if (mRockType == WanwanRollingMini) {
         v2 = 0.30000001f;
-    }
-    else {
+    } else {
         v2 = mScale.x;
     }
 
@@ -293,15 +279,14 @@ bool Rock::isInClippingRange() const {
 
     if (mRockType == WanwanRollingMini) {
         v4 = 0.30000001f;
-    }
-    else {
+    } else {
         v4 = mScale.x;
     }
 
     if (MR::isJudgedToNearClip(mPosition, (400.0f * v4))) {
         return true;
     }
-    
+
     return false;
 }
 
@@ -311,15 +296,13 @@ void Rock::startSoundWanwanVoice() {
             if (MR::calcDistanceToPlayer(this) <= 600.0f) {
                 if (mRockType == WanwanRollingMini) {
                     MR::startSound(this, "SE_EV_WANWANROLLMINI_WANWAN", -1, -1);
-                }
-                else {
+                } else {
                     MR::startSound(this, "SE_EV_WANWANROLL_WANWAN", -1, -1);
                 }
 
                 mBarkTimer = 0;
             }
-        }
-        else {
+        } else {
             mBarkTimer++;
         }
     }
@@ -327,10 +310,10 @@ void Rock::startSoundWanwanVoice() {
 
 // Rock::startRollLevelSound
 
-bool Rock::tryFreeze(const Nerve *pNerve) {
+bool Rock::tryFreeze(const Nerve* pNerve) {
     if (MR::isStarPointerPointing2POnPressButton(this, "", true, false)) {
         _11C = 0;
-        _120.set<f32>(mPosition);
+        _120.set< f32 >(mPosition);
         _12C = pNerve;
         setNerve(&NrvRock::RockNrvFreeze::sInstance);
         return true;
@@ -347,8 +330,7 @@ void Rock::rumblePadAndCamera() {
 
     if (dist < 1000.0f) {
         MR::shakeCameraNormal();
-    }
-    else if (dist < 2000.0f) {
+    } else if (dist < 2000.0f) {
         MR::shakeCameraWeak();
     }
 }
@@ -357,7 +339,7 @@ void Rock::setNerveBreak(bool a1) {
     if (a1 && mRockType <= 1u) {
         appearStarPiece();
     }
- 
+
     setNerve(&NrvRock::RockNrvBreak::sInstance);
 }
 
@@ -386,9 +368,7 @@ void Rock::appearStarPiece() {
 // Rock::exeBreak
 // Rock::exeFreeze
 
-Rock::~Rock() {
-
-}
+Rock::~Rock() {}
 
 namespace NrvRock {
     INIT_NERVE(RockNrvAppear);
@@ -397,4 +377,4 @@ namespace NrvRock {
     INIT_NERVE(RockNrvMoveInvalidBind);
     INIT_NERVE(RockNrvBreak);
     INIT_NERVE(RockNrvFreeze);
-};
+};  // namespace NrvRock

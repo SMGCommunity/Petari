@@ -6,13 +6,11 @@ bool Mario::checkWaterDamage() {
         mMovementStates._1B = 0;
         mSwim->addDamage(_7C4);
         return true;
-    }
-    else if (mMovementStates._27) {
+    } else if (mMovementStates._27) {
         mMovementStates._27 = 0;
         mSwim->addFaint(_7C4);
         return true;
-    }
-    else {
+    } else {
         return false;
     }
 }

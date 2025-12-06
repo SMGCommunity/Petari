@@ -7,15 +7,15 @@ DemoSimpleCastHolder::DemoSimpleCastHolder(s32 liveActorCount, s32 layoutActorCo
     mNameObjs.init(nameObjCount);
 }
 
-void DemoSimpleCastHolder::registerActor(LiveActor *pActor) {
+void DemoSimpleCastHolder::registerActor(LiveActor* pActor) {
     mLiveActors.push_back(pActor);
 }
 
-void DemoSimpleCastHolder::registerActor(LayoutActor *pActor) {
+void DemoSimpleCastHolder::registerActor(LayoutActor* pActor) {
     mLayoutActors.push_back(pActor);
 }
 
-void DemoSimpleCastHolder::registerNameObj(NameObj *pNameObj) {
+void DemoSimpleCastHolder::registerNameObj(NameObj* pNameObj) {
     mNameObjs.push_back(pNameObj);
 }
 

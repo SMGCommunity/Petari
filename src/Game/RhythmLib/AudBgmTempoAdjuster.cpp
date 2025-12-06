@@ -19,7 +19,7 @@ void AudBgmTempoAdjuster::init() {
     _25 = false;
 }
 
-void AudBgmTempoAdjuster::setStream(JAIStream *pStream) {
+void AudBgmTempoAdjuster::setStream(JAIStream* pStream) {
     BOOL inter = OSDisableInterrupts();
     init();
     mStream = pStream;

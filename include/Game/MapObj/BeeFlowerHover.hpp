@@ -6,13 +6,13 @@
 
 class BeeFlowerHover : public LiveActor {
 public:
-    BeeFlowerHover(const char *);
+    BeeFlowerHover(const char*);
 
     virtual ~BeeFlowerHover();
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
     virtual void control();
     virtual void calcAndSetBaseMtx();
-    virtual bool receiveOtherMsg(u32, HitSensor *, HitSensor *);
+    virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
 
     void exeSoftTouch();
     void exeSoftTouchWait();
@@ -33,4 +33,4 @@ namespace NrvBeeFlowerHover {
     NERVE(BeeFlowerHoverNrvSoftTouchWait);
     NERVE(BeeFlowerHoverNrvHardTouch);
     NERVE(BeeFlowerHoverNrvRecover);
-};
+};  // namespace NrvBeeFlowerHover

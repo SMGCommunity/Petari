@@ -1,5 +1,5 @@
-#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/GalaxyNamePlate.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/GalaxyNamePlateDrawer.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/MessageUtil.hpp"
@@ -14,18 +14,11 @@ namespace NrvGalaxyNamePlate {
     NEW_NERVE(GalaxyNamePlateNrvAppearReady, GalaxyNamePlate, AppearReady);
     NEW_NERVE(GalaxyNamePlateNrvAppear, GalaxyNamePlate, Appear);
     NEW_NERVE(GalaxyNamePlateNrvWait, GalaxyNamePlate, Wait);
-};
+};  // namespace NrvGalaxyNamePlate
 
-GalaxyNamePlate::GalaxyNamePlate(const char* pGalaxyName, bool param2) :
-    LayoutActor("ギャラクシー名プレート", true),
-    mGalaxyName(pGalaxyName),
-    _24(false),
-    _25(false),
-    mShowBalloonNozzle(true),
-    mDrawerEntry(nullptr),
-    _2C(0),
-    _30(true)
-{
+GalaxyNamePlate::GalaxyNamePlate(const char* pGalaxyName, bool param2)
+    : LayoutActor("ギャラクシー名プレート", true), mGalaxyName(pGalaxyName), _24(false), _25(false), mShowBalloonNozzle(true), mDrawerEntry(nullptr),
+      _2C(0), _30(true) {
     initLayoutManager("GalaxyNamePlate", 3);
 
     if (param2) {
@@ -59,7 +52,7 @@ void GalaxyNamePlate::showOpen(bool a1) {
     show(MR::getGalaxyNameShortOnCurrentLanguage(mGalaxyName), 2, true, a1);
 }
 
-void GalaxyNamePlate::show(const wchar_t *pName, bool a2) {
+void GalaxyNamePlate::show(const wchar_t* pName, bool a2) {
     show(pName, 2, a2, true);
 }
 
@@ -78,8 +71,7 @@ void GalaxyNamePlate::exeAppearReady() {
 
     if (!_24) {
         kill();
-    }
-    else {
+    } else {
         MR::setNerveAtStep(this, &NrvGalaxyNamePlate::GalaxyNamePlateNrvAppear::sInstance, cAppearReadyFrame);
     }
 }
@@ -92,8 +84,7 @@ void GalaxyNamePlate::exeAppear() {
 
     if (!_24) {
         kill();
-    }
-    else {
+    } else {
         MR::setNerveAtAnimStopped(this, &NrvGalaxyNamePlate::GalaxyNamePlateNrvWait::sInstance, 0);
     }
 }

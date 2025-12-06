@@ -19,7 +19,7 @@ public:
     GalaxyNamePlateDrawerEntry* registerPlate(const LayoutActor*);
 
 private:
-    /* 0xC */ MR::Vector<MR::FixedArray<GalaxyNamePlateDrawerEntry*, 16> > mPlateArray;
+    /* 0xC */ MR::Vector< MR::FixedArray< GalaxyNamePlateDrawerEntry*, 16 > > mPlateArray;
 };
 
 namespace MR {

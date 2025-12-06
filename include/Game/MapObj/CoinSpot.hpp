@@ -4,11 +4,11 @@
 
 class CoinSpot : public LiveActor {
 public:
-    CoinSpot(const char *);
+    CoinSpot(const char*);
 
     virtual ~CoinSpot();
-    virtual void init(const JMapInfoIter &);
-    virtual void attackSensor(HitSensor *, HitSensor *);
+    virtual void init(const JMapInfoIter&);
+    virtual void attackSensor(HitSensor*, HitSensor*);
 
     void initSensor();
     void exeWait();
@@ -23,4 +23,4 @@ public:
 namespace NrvCoinSpot {
     NERVE(CoinSpotNrvWait);
     NERVE(CoinSpotNrvIsInTornado);
-};
+};  // namespace NrvCoinSpot

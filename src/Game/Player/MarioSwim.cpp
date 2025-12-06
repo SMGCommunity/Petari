@@ -8,11 +8,15 @@
 #include "Game/Util/SceneUtil.hpp"
 
 namespace {
-    f32 cFrontAcc[40] = {-0.2f, -0.2f, -0.2f, -0.1f, -0.1f, -0.1f, -0.1f, -0.1f, -0.0f, -0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.2f, 0.2f, 0.2f, 0.3f, 0.3f, 0.4f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.4f, 0.4f, 0.3f, 0.3f, 0.2f, 0.2f, 0.1f, 0.1f, 0.1f, 0.1f, 0.1f, 0.0f};
+    f32 cFrontAcc[40] = {-0.2f, -0.2f, -0.2f, -0.1f, -0.1f, -0.1f, -0.1f, -0.1f, -0.0f, -0.0f, 0.0f, 0.0f, 0.0f, 0.0f,
+                         0.0f,  0.0f,  0.0f,  0.2f,  0.2f,  0.2f,  0.3f,  0.3f,  0.4f,  0.5f,  0.5f, 0.5f, 0.5f, 0.5f,
+                         0.4f,  0.4f,  0.3f,  0.3f,  0.2f,  0.2f,  0.1f,  0.1f,  0.1f,  0.1f,  0.1f, 0.0f};
 
-    f32 cFrontAccSpin[30] = {0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 8.0f, 6.0f, 4.0f, 2.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, -1.0f, -1.0f, -1.0f, -1.0f, -1.0f, -1.0f, -1.0f, -1.0f, -1.0f, -1.0f};
+    f32 cFrontAccSpin[30] = {0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 8.0f,  6.0f,  4.0f,  2.0f,  1.0f,  0.0f,  0.0f,  0.0f,  0.0f,  0.0f,
+                             0.0f, 0.0f, 0.0f, 0.0f, 0.0f, -1.0f, -1.0f, -1.0f, -1.0f, -1.0f, -1.0f, -1.0f, -1.0f, -1.0f, -1.0f};
 
-    f32 cFrontAccSpinSurface[20] = {0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 8.0f, 6.0f, 4.0f, 2.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f};
+    f32 cFrontAccSpinSurface[20] = {0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 8.0f, 6.0f, 4.0f, 2.0f, 1.0f,
+                                    0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f};
 
     f32 cWeightTable[16] = {
         1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f,
@@ -30,18 +34,16 @@ namespace {
     // In const mem region?
     const f32 cTurnMotionSpeed = 5.0f;
 
-}    // namespace
+}  // namespace
 
-bool Mario::isSwimming() const
-{
+bool Mario::isSwimming() const {
     if (isStatusActive(6)) {
         return true;
     }
     return isStatusActive(24);
 }
 
-bool Mario::forceStartSwimAndShoot(const TVec3f &v)
-{
+bool Mario::forceStartSwimAndShoot(const TVec3f& v) {
     WaterInfo waterInfo;
     if (!MR::getWaterAreaObj(&waterInfo, mActor->mPosition)) {
         return false;
@@ -51,8 +53,7 @@ bool Mario::forceStartSwimAndShoot(const TVec3f &v)
     return true;
 }
 
-bool Mario::forceExitSwim()
-{
+bool Mario::forceExitSwim() {
     if (!isStatusActive(6)) {
         return false;
     }
@@ -61,8 +62,7 @@ bool Mario::forceExitSwim()
     return true;
 }
 
-void MarioSwim::setDamage(const TVec3f &v, u16 damage)
-{
+void MarioSwim::setDamage(const TVec3f& v, u16 damage) {
     _A0 = v;
     _AE = damage;
     _4C = 0.0f;
@@ -117,18 +117,15 @@ bool Mario::checkStartSwim()
 }
 */
 
-void Mario::startSwim()
-{
+void Mario::startSwim() {
     if (!isStatusActive(6)) {
         if (getPlayer()->isDamaging()) {
             mSwim->_9D = 4;
             playSound("水落下突入", -1);
-        }
-        else if (getPlayer()->getMovementStates().jumping) {
+        } else if (getPlayer()->getMovementStates().jumping) {
             mSwim->_9D = 1;
             playSound("水落下突入", -1);
-        }
-        else {
+        } else {
             mSwim->_9D = 0;
             playSound("水歩行突入", -1);
         }
@@ -148,8 +145,7 @@ void Mario::startSwim()
     }
 }
 
-MarioSwim::MarioSwim(MarioActor *actor) : MarioState(actor, 6), _F4()
-{
+MarioSwim::MarioSwim(MarioActor* actor) : MarioState(actor, 6), _F4() {
     _18 = 0;
     _19 = 0;
     _1A = 0;
@@ -238,13 +234,11 @@ MarioSwim::MarioSwim(MarioActor *actor) : MarioState(actor, 6), _F4()
     _14 = new MarineSnow();
 }
 
-void MarioSwim::init()
-{
+void MarioSwim::init() {
     _EA = mActor->getConst().getTable()->mOxygenMax;
 }
 
-inline f32 getSpecialNumber()
-{
+inline f32 getSpecialNumber() {
     return 1.74532938004f;
 }
 
@@ -471,29 +465,24 @@ bool MarioSwim::start()
 }
 */
 
-static inline f32 getTwoPi()
-{
+static inline f32 getTwoPi() {
     return 6.28318548203f;
 }
 
-static inline f32 funConversions1(u32 a, u16 tmp)
-{
+static inline f32 funConversions1(u32 a, u16 tmp) {
     return a * getTwoPi() / tmp;
 }
 
-static inline f32 funVecTime(const MarioSwim &self)
-{
+static inline f32 funVecTime(const MarioSwim& self) {
     return self.getTrans().y - self._19C;
 }
 
-static inline f32 funCalcTime()
-{
-    f32 tmp = 0.0f;    // This line is included only to fix a register allocation mismatch
+static inline f32 funCalcTime() {
+    f32 tmp = 0.0f;  // This line is included only to fix a register allocation mismatch
     return 40.0f;
 }
 
-f32 MarioSwim::getSurface() const
-{
+f32 MarioSwim::getSurface() const {
     f32 fr1f = funVecTime(*this);
     f32 fr1e = funCalcTime();
     f32 fr1d = 0.00999999977648f;
@@ -508,19 +497,16 @@ f32 MarioSwim::getSurface() const
     return fr1f + fr1d * (fr1e * (MR::sin(ftmp + funConversions1(_24, tmp)) - 1.0f));
 }
 
-inline f32 procAngle(f32 l, f32 r)
-{
+inline f32 procAngle(f32 l, f32 r) {
     return l * (1.0f - r);
 }
 
 // possibly related to other calculations that take similar form? (eg getSwimValue)
-inline f32 calculate(f32 stick)
-{
+inline f32 calculate(f32 stick) {
     return cLimitAngleSink + (cLimitAngleWait - cLimitAngleSink) * stick;
 }
 
-static inline TVec3f createAndScale(f32 scalar, const TVec3f &v)
-{
+static inline TVec3f createAndScale(f32 scalar, const TVec3f& v) {
     TVec3f ret(v);
     ret.scale(scalar);
     return ret;
@@ -558,10 +544,8 @@ bool MarioSwim::update()
             _144 = 1;
         }
     }
-    if (getPlayer()->mDrawStates._F && _19C > 0.963775992393f && MR::diffAngleAbsHorizontal(-getPlayer380(), getWorldPadDir(), getPlayer()->getAirGravityVec()) < 0.196349546313f) {
-        if (calcAngleD(getPlayer380()) >= 30.0f) {
-            _9E = 5;
-            return false;
+    if (getPlayer()->mDrawStates._F && _19C > 0.963775992393f && MR::diffAngleAbsHorizontal(-getPlayer380(), getWorldPadDir(),
+getPlayer()->getAirGravityVec()) < 0.196349546313f) { if (calcAngleD(getPlayer380()) >= 30.0f) { _9E = 5; return false;
         }
         else {
             _9E = 1;
@@ -1025,10 +1009,9 @@ bool MarioSwim::update()
             if (followMtx) {
                 TVec3f stack_F8;
                 MR::extractMtxTrans(followMtx->toMtxPtr(), &stack_F8);
-                bool cond = JGeometry::TUtil<f32>::epsilonEquals(stack_F8.x, _154.x, 0.000003814697265625f) && JGeometry::TUtil<f32>::epsilonEquals(stack_F8.y, _154.y, 0.000003814697265625f) && JGeometry::TUtil<f32>::epsilonEquals(stack_F8.z, _154.z, 0.000003814697265625f);
-                if (!cond) {
-                    if (PSVECMag((stack_F8 - _154)) < 10.0f) {
-                        addVelocity(stack_F8 - _154);
+                bool cond = JGeometry::TUtil<f32>::epsilonEquals(stack_F8.x, _154.x, 0.000003814697265625f) &&
+JGeometry::TUtil<f32>::epsilonEquals(stack_F8.y, _154.y, 0.000003814697265625f) && JGeometry::TUtil<f32>::epsilonEquals(stack_F8.z, _154.z,
+0.000003814697265625f); if (!cond) { if (PSVECMag((stack_F8 - _154)) < 10.0f) { addVelocity(stack_F8 - _154);
                     }
                     _154 = stack_F8;
                 }
@@ -1108,8 +1091,7 @@ bool MarioSwim::update()
  * compiler does not cull these variables
  *
  */
-void dummyFunction()
-{
+void dummyFunction() {
     cFrontAcc[0] = 1.0f;
     cFrontAccSpin[0] = 1.0f;
     cFrontAccSpinSurface[0] = 1.0f;

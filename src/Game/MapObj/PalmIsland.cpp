@@ -14,9 +14,9 @@
 namespace NrvPalmIsland {
     NEW_NERVE(PalmIslandNrvWait, PalmIsland, Wait);
     NEW_NERVE(PalmIslandNrvFloat, PalmIsland, Float);
-}; 
+};  // namespace NrvPalmIsland
 
-PalmIsland::PalmIsland(const char *pName) : LiveActor(pName) {
+PalmIsland::PalmIsland(const char* pName) : LiveActor(pName) {
     _8C = 0;
     _90.x = 0.0f;
     _90.y = 0.0f;
@@ -26,7 +26,7 @@ PalmIsland::PalmIsland(const char *pName) : LiveActor(pName) {
 
 PalmIsland::~PalmIsland() {}
 
-void PalmIsland::init(const JMapInfoIter &rIter) {
+void PalmIsland::init(const JMapInfoIter& rIter) {
     HitSensor* sensor;
     MR::initDefaultPos(this, rIter);
     initModelManagerWithAnm("PalmIsland", nullptr, false);

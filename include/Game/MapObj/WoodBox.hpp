@@ -6,19 +6,19 @@ class BenefitItemObj;
 
 class WoodBox : public LiveActor {
 public:
-    WoodBox(const char *);
+    WoodBox(const char*);
 
     virtual ~WoodBox();
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
     virtual void calcViewAndEntry();
     virtual void kill();
     virtual void control();
-    virtual bool receiveMsgPlayerAttack(u32, HitSensor *, HitSensor *);
-    virtual bool receiveMsgEnemyAttack(u32, HitSensor *, HitSensor *);
-    virtual bool receiveOtherMsg(u32, HitSensor *, HitSensor *);
+    virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
+    virtual bool receiveMsgEnemyAttack(u32, HitSensor*, HitSensor*);
+    virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
 
     void exeHit();
-    void doHit(HitSensor *, HitSensor *);
+    void doHit(HitSensor*, HitSensor*);
 
     u16 _8C;
     u16 _8E;

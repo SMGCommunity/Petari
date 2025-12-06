@@ -1,29 +1,28 @@
+#include "Game/Camera/CameraManGame.hpp"
 #include "Game/AreaObj/CubeCamera.hpp"
 #include "Game/Boss/SkeletalFishGuard.hpp"
-#include "Game/Camera/Camera.hpp"
+#include "Game/Camera/CamHeliEffector.hpp"
+#include "Game/Camera/CamKarikariEffector.hpp"
 #include "Game/Camera/Camera.hpp"
 #include "Game/Camera/CameraDirector.hpp"
 #include "Game/Camera/CameraHeightArrange.hpp"
 #include "Game/Camera/CameraHolder.hpp"
 #include "Game/Camera/CameraLocalUtil.hpp"
-#include "Game/Camera/CameraManGame.hpp"
 #include "Game/Camera/CameraParamChunk.hpp"
 #include "Game/Camera/CameraParamChunkHolder.hpp"
 #include "Game/Camera/CameraTargetObj.hpp"
-#include "Game/Camera/CamKarikariEffector.hpp"
-#include "Game/Camera/CamHeliEffector.hpp"
 #include "Game/MapObj/GCapture.hpp"
 #include <cstring>
 
 namespace {
-    const char *gDefaultCameraName = "デフォルトカメラ";
-    const char *gDefaultWaterCameraName = "デフォルト水中カメラ";
-    const char *gDefaultWaterSurfaceCameraName = "デフォルト水面カメラ";
-    const char *gDefaultFooFighterCameraName = "デフォルトフーファイターカメラ";
-    const char *gDefaultStartAnimCameraName = "スタートアニメカメラ";
-}
+    const char* gDefaultCameraName = "デフォルトカメラ";
+    const char* gDefaultWaterCameraName = "デフォルト水中カメラ";
+    const char* gDefaultWaterSurfaceCameraName = "デフォルト水面カメラ";
+    const char* gDefaultFooFighterCameraName = "デフォルトフーファイターカメラ";
+    const char* gDefaultStartAnimCameraName = "スタートアニメカメラ";
+}  // namespace
 
-const char *CameraParamChunk::getClassName() const {
+const char* CameraParamChunk::getClassName() const {
     return "Base";
 }
 
@@ -39,15 +38,15 @@ bool CameraTargetObj::isFooFighterMode() const {
     return false;
 }
 
-CubeCameraArea *CameraTargetObj::getCubeCameraArea() const {
+CubeCameraArea* CameraTargetObj::getCubeCameraArea() const {
     return nullptr;
 }
 
-Triangle *CameraTargetObj::getGroundTriangle() const {
+Triangle* CameraTargetObj::getGroundTriangle() const {
     return nullptr;
 }
 
-CameraManGame::CameraManGame(CameraHolder *pHolder, CameraParamChunkHolder *pChunkHolder, const char *pName) : CameraMan(pName) {
+CameraManGame::CameraManGame(CameraHolder* pHolder, CameraParamChunkHolder* pChunkHolder, const char* pName) : CameraMan(pName) {
     mHolder = pHolder;
     mChunkHolder = pChunkHolder;
     _58 = 0;
@@ -63,18 +62,14 @@ CameraManGame::CameraManGame(CameraHolder *pHolder, CameraParamChunkHolder *pChu
     CameraLocalUtil::setWatchPos(this, TVec3f(0.0f, 0.0f, 300.0f));
 }
 
-CameraManGame::~CameraManGame() {
+CameraManGame::~CameraManGame() {}
 
-}
-
-void CameraManGame::init(const JMapInfoIter &rIter) {
-
-}
+void CameraManGame::init(const JMapInfoIter& rIter) {}
 
 void CameraManGame::calc() {
     selectCameraChunk();
     checkReset();
-    CameraTargetObj *target = mCamera->calc();
+    CameraTargetObj* target = mCamera->calc();
     CameraLocalUtil::setUsedTarget(this, target);
     setSafePose();
     mKarikari->update(this);
@@ -85,9 +80,7 @@ void CameraManGame::notifyActivate() {
     _58 = 1;
 }
 
-void CameraManGame::notifyDeactivate() {
-
-}
+void CameraManGame::notifyDeactivate() {}
 
 bool CameraManGame::isInterpolationOff() const {
     if (mCamera != nullptr && mCamera->isInterpolationOff()) {
@@ -192,12 +185,12 @@ void CameraManGame::zoomIn() {
     CameraParamChunkID_Tmp chunkID = CameraParamChunkID_Tmp();
     chunkID.createOtherID(0, "ズームカメラ");
 
-    CameraParamChunk *chunk = mChunkHolder->getChunk(chunkID);
+    CameraParamChunk* chunk = mChunkHolder->getChunk(chunkID);
 
-    TVec3f *pos = CameraLocalUtil::getPos(this);
-    TVec3f *watchPos = CameraLocalUtil::getWatchPos(this);
+    TVec3f* pos = CameraLocalUtil::getPos(this);
+    TVec3f* watchPos = CameraLocalUtil::getWatchPos(this);
 
-    f32 distance = PSVECDistance(reinterpret_cast<Vec *>(watchPos), reinterpret_cast<Vec *>(pos));
+    f32 distance = PSVECDistance(reinterpret_cast< Vec* >(watchPos), reinterpret_cast< Vec* >(pos));
     f32 dVar3 = JMAAsinRadian(100.0f / distance);
     f32 var2 = 1.5f;
     f32 var1 = dVar3 * var2;
@@ -214,34 +207,33 @@ void CameraManGame::selectCameraChunk() {
         checkStateShift();
 
         switch (mTypeState) {
-            case 0:
-                updateNormal();
-                break;
-            case 1:
-                updateSwim();
-                break;
-            case 2:
-                updateWaterSurface();
-                break;
-            case 3:
-                updateGCapture();
-                break;
-            case 4:
-                updateFooFighter();
-                break;
-            case 5:
-                break;
+        case 0:
+            updateNormal();
+            break;
+        case 1:
+            updateSwim();
+            break;
+        case 2:
+            updateWaterSurface();
+            break;
+        case 3:
+            updateGCapture();
+            break;
+        case 4:
+            updateFooFighter();
+            break;
+        case 5:
+            break;
         }
     }
 }
 
-void CameraManGame::setChunk(const CameraParamChunkID &rChunk) {
-    CameraParamChunk *chunk = mChunkHolder->getChunk(rChunk);
+void CameraManGame::setChunk(const CameraParamChunkID& rChunk) {
+    CameraParamChunk* chunk = mChunkHolder->getChunk(rChunk);
 
     if (chunk == nullptr) {
         setNullCamera();
-    }
-    else {
+    } else {
         chunk = tryToReplaceChunkToDefault(chunk);
         requestResetIfNecessary(chunk);
         replaceCurrentChunkAndCamera(chunk);
@@ -255,7 +247,7 @@ void CameraManGame::setNullCamera() {
     mChunk = nullptr;
     s32 index = mHolder->getIndexOfDefault();
     mCamera = mHolder->getCameraInner(index);
-    
+
     f32 fovy = mDirector->getDefaultFovy();
     CameraLocalUtil::setFovy(this, fovy);
     CameraLocalUtil::setRoll(this, 0.0f);
@@ -271,18 +263,18 @@ void CameraManGame::setNullCamera() {
 }
 #endif
 
-CameraParamChunk *CameraManGame::tryToReplaceChunkToDefault(CameraParamChunk *pChunk) {
+CameraParamChunk* CameraManGame::tryToReplaceChunkToDefault(CameraParamChunk* pChunk) {
     if (strcmp(pChunk->getClassName(), "Game") != 0) {
         return pChunk;
     }
-    
-    CameraParamChunkGame *gameChunk = reinterpret_cast<CameraParamChunkGame *>(pChunk);
+
+    CameraParamChunkGame* gameChunk = reinterpret_cast< CameraParamChunkGame* >(pChunk);
 
     if (gameChunk->mThru != 1) {
         return pChunk;
     }
 
-    static const char *name = "デフォルトカメラ";
+    static const char* name = "デフォルトカメラ";
 
     CameraParamChunkID_Tmp chunkID = CameraParamChunkID_Tmp();
     chunkID.createOtherID(0, name);
@@ -290,24 +282,22 @@ CameraParamChunk *CameraManGame::tryToReplaceChunkToDefault(CameraParamChunk *pC
     return mChunkHolder->getChunk(chunkID);
 }
 
-void CameraManGame::requestResetIfNecessary(CameraParamChunk *pChunk) {
+void CameraManGame::requestResetIfNecessary(CameraParamChunk* pChunk) {
     if (isNecessaryToReset(pChunk)) {
         _58 = 1;
 
         if (isZoomCamera()) {
             mDirector->setInterpolation(mChunk->mExParam.mCamInt);
-        }
-        else if (isCurrentChunkEnableEndInterp()) {
-            CameraParamChunkGame *gameChunk = reinterpret_cast<CameraParamChunkGame *>(mChunk);
+        } else if (isCurrentChunkEnableEndInterp()) {
+            CameraParamChunkGame* gameChunk = reinterpret_cast< CameraParamChunkGame* >(mChunk);
             mDirector->setInterpolation(gameChunk->mCamEndInt);
-        }
-        else {
+        } else {
             mDirector->setInterpolation(pChunk->mExParam.mCamInt);
         }
     }
 }
 
-bool CameraManGame::isNecessaryToReset(CameraParamChunk *pChunk) const {
+bool CameraManGame::isNecessaryToReset(CameraParamChunk* pChunk) const {
     if (mChunk == pChunk) {
         return false;
     }
@@ -329,7 +319,6 @@ bool CameraManGame::isNecessaryToReset(CameraParamChunk *pChunk) const {
     return false;
 }
 
-
 bool CameraManGame::isCurrentChunkEnableEndInterp() const {
     bool is;
 
@@ -337,21 +326,20 @@ bool CameraManGame::isCurrentChunkEnableEndInterp() const {
         is = false;
 
         if (strcmp(mChunk->getClassName(), "Game") == 0) {
-            CameraParamChunkGame *gameChunk = reinterpret_cast<CameraParamChunkGame *>(mChunk);
+            CameraParamChunkGame* gameChunk = reinterpret_cast< CameraParamChunkGame* >(mChunk);
 
             if (gameChunk->mEnableEndErpFrame != 0) {
                 is = true;
             }
         }
-    }
-    else {
+    } else {
         is = false;
     }
 
     return is;
 }
 
-void CameraManGame::replaceCurrentChunkAndCamera(CameraParamChunk *pChunk) {
+void CameraManGame::replaceCurrentChunkAndCamera(CameraParamChunk* pChunk) {
     mCamera = mHolder->getCameraInner(pChunk->mCameraTypeIndex);
     mChunk = pChunk;
 }
@@ -359,37 +347,35 @@ void CameraManGame::replaceCurrentChunkAndCamera(CameraParamChunk *pChunk) {
 #ifdef NON_MATCHING
 // Register mismatch, r0 used
 void CameraManGame::applyParameter() {
-    CamTranslatorBase *translator = mHolder->getTranslator(mChunk->mCameraTypeIndex);
+    CamTranslatorBase* translator = mHolder->getTranslator(mChunk->mCameraTypeIndex);
     translator->setParam(mChunk);
-    Camera *camera = translator->getCamera();
+    Camera* camera = translator->getCamera();
 
     camera->setZoneMtx(mChunk->getZoneID());
 
     CameraLocalUtil::setGlobalOffset(mCamera, mChunk->mExParam.mWOffset);
 
-    TVec3f *localOffset = CameraLocalUtil::getLocalOffset(this);
+    TVec3f* localOffset = CameraLocalUtil::getLocalOffset(this);
     CameraLocalUtil::setLocalOffset(mCamera, *localOffset);
     CameraLocalUtil::setFrontOffset(mCamera, mChunk->mExParam.mLOffset);
     CameraLocalUtil::setUpperOffset(mCamera, mChunk->mExParam.mLOffsetV);
 
     if (mChunk->isOnUseFovy()) {
         CameraLocalUtil::setFovy(mCamera, mChunk->mExParam.mFovy);
-    }
-    else {
+    } else {
         CameraLocalUtil::setFovy(mCamera, mDirector->getDefaultFovy());
     }
 
     if (mChunk->isLOfsErpOff()) {
         camera->_18 = 1;
-    }
-    else {
+    } else {
         camera->_18 = 0;
     }
 
     CameraLocalUtil::setRoll(mCamera, mChunk->mExParam.mRoll);
 
     if (camera->mVPan != nullptr) {
-        CameraHeightArrange *vPan = camera->mVPan;
+        CameraHeightArrange* vPan = camera->mVPan;
         vPan->resetParameter();
 
         vPan->mUpper = mChunk->mExParam.mUpper;
@@ -406,7 +392,7 @@ void CameraManGame::applyParameter() {
         mChunk->getVPanAxis(&axis);
 
         vPan->mVPanAxis.set(axis);
-        
+
         vPan->_60 = 1;
     }
 }
@@ -416,7 +402,7 @@ void CameraManGame::checkReset() {
     if (_58 == 0 || mChunk == nullptr || mCamera == nullptr) {
         return;
     }
-    
+
     mCamera->mCameraMan = this;
     mCamera->reset();
     _58 = 0;
@@ -438,13 +424,13 @@ void CameraManGame::setSafePose() {
     CameraLocalUtil::setUpVec(this, up);
     CameraLocalUtil::setWatchPos(this, watchPos);
 
-    TVec3f *watchUp = CameraLocalUtil::getWatchUpVec(mCamera);
+    TVec3f* watchUp = CameraLocalUtil::getWatchUpVec(mCamera);
     CameraLocalUtil::setWatchUpVec(this, *watchUp);
 
-    TVec3f *globalOffset = CameraLocalUtil::getGlobalOffset(mCamera);
+    TVec3f* globalOffset = CameraLocalUtil::getGlobalOffset(mCamera);
     CameraLocalUtil::setGlobalOffset(this, *globalOffset);
 
-    TVec3f *localOffset = CameraLocalUtil::getLocalOffset(mCamera);
+    TVec3f* localOffset = CameraLocalUtil::getLocalOffset(mCamera);
     CameraLocalUtil::setLocalOffset(this, *localOffset);
 
     f32 fovy = CameraLocalUtil::getFovy(mCamera);
@@ -456,23 +442,22 @@ void CameraManGame::setSafePose() {
 
 #ifdef NON_MATCHING
 // Stack issues
-void CameraManGame::keepAwayWatchPos(TVec3f *watchPos, const TVec3f &pos) {
+void CameraManGame::keepAwayWatchPos(TVec3f* watchPos, const TVec3f& pos) {
     TVec3f dir = *watchPos - pos;
-    f32 length = PSVECMag(reinterpret_cast<Vec *>(&dir));
+    f32 length = PSVECMag(reinterpret_cast< Vec* >(&dir));
 
     if (length < 300.0f) {
         if (length < 1.0f) {
-            TVec3f *currentPos = CameraLocalUtil::getPos(this);
-            TVec3f *currentWatchPos = CameraLocalUtil::getWatchPos(this);
-            
+            TVec3f* currentPos = CameraLocalUtil::getPos(this);
+            TVec3f* currentWatchPos = CameraLocalUtil::getWatchPos(this);
+
             TVec3f newWatchPos1 = pos + *currentWatchPos;
             TVec3f newWatchPos2 = newWatchPos1 - *currentPos;
 
             watchPos->set(newWatchPos2);
-        }
-        else {
-            f32 length2 = PSVECMag(reinterpret_cast<Vec *>(&dir));
-            PSVECNormalize(reinterpret_cast<Vec *>(&dir), reinterpret_cast<Vec *>(&dir));
+        } else {
+            f32 length2 = PSVECMag(reinterpret_cast< Vec* >(&dir));
+            PSVECNormalize(reinterpret_cast< Vec* >(&dir), reinterpret_cast< Vec* >(&dir));
 
             TVec3f dirCopy = TVec3f(dir);
             dirCopy.x *= 300.0f;
@@ -494,12 +479,12 @@ void CameraManGame::createDefaultCamera() {
 void CameraManGame::createDefaultWaterCamera() {
     CameraParamChunkID_Tmp chunkID = CameraParamChunkID_Tmp();
     chunkID.createOtherID(0, gDefaultWaterCameraName);
-    CameraParamChunk *chunk = mChunkHolder->createChunk(chunkID, nullptr);
+    CameraParamChunk* chunk = mChunkHolder->createChunk(chunkID, nullptr);
 
     chunk->setCameraType("CAM_TYPE_WATER_FOLLOW", mHolder);
 
     TVec3f wOffset = TVec3f(0.0f, 170.0f, 0.0f);
-    chunk->mExParam.mWOffset.set<f32>(wOffset);
+    chunk->mExParam.mWOffset.set< f32 >(wOffset);
     chunk->mExParam.mLOffset = 100.0f;
     chunk->mExParam.mFovy = 45.0f;
     chunk->mExParam.mCamInt = 120;
@@ -511,12 +496,12 @@ void CameraManGame::createDefaultWaterCamera() {
 void CameraManGame::createDefaultWaterSurfaceCamera() {
     CameraParamChunkID_Tmp chunkID = CameraParamChunkID_Tmp();
     chunkID.createOtherID(0, gDefaultWaterSurfaceCameraName);
-    CameraParamChunk *chunk = mChunkHolder->createChunk(chunkID, nullptr);
+    CameraParamChunk* chunk = mChunkHolder->createChunk(chunkID, nullptr);
 
     chunk->setCameraType("CAM_TYPE_FOLLOW", mHolder);
 
     TVec3f wOffset = TVec3f(0.0f, 170.0f, 0.0f);
-    chunk->mExParam.mWOffset.set<f32>(wOffset);
+    chunk->mExParam.mWOffset.set< f32 >(wOffset);
     chunk->mExParam.mLOffset = 100.0f;
     chunk->mExParam.mFovy = 45.0f;
     chunk->mExParam.mCamInt = 120;
@@ -531,12 +516,12 @@ void CameraManGame::createDefaultWaterSurfaceCamera() {
 void CameraManGame::createDefaultFooFighterCamera() {
     CameraParamChunkID_Tmp chunkID = CameraParamChunkID_Tmp();
     chunkID.createOtherID(0, gDefaultFooFighterCameraName);
-    CameraParamChunk *chunk = mChunkHolder->createChunk(chunkID, nullptr);
+    CameraParamChunk* chunk = mChunkHolder->createChunk(chunkID, nullptr);
 
     chunk->setCameraType("CAM_TYPE_FOO_FIGHTER", mHolder);
 
     TVec3f wOffset = TVec3f(0.0f, 170.0f, 0.0f);
-    chunk->mExParam.mWOffset.set<f32>(wOffset);
+    chunk->mExParam.mWOffset.set< f32 >(wOffset);
     chunk->mExParam.mLOffset = 100.0f;
     chunk->mExParam.mFovy = 45.0f;
     chunk->mExParam.mCamInt = 120;
@@ -546,19 +531,19 @@ void CameraManGame::createDefaultFooFighterCamera() {
 }
 
 void CameraManGame::createStartAnimCamera() {
-    void *data;
+    void* data;
     s32 size;
     MR::getCurrentScenarioStartAnimCameraData(&data, &size);
 
     if (size >= 0) {
         CameraParamChunkID_Tmp chunkID = CameraParamChunkID_Tmp();
         chunkID.createOtherID(0, gDefaultStartAnimCameraName);
-        CameraParamChunk *chunk = mChunkHolder->createChunk(chunkID, nullptr);
+        CameraParamChunk* chunk = mChunkHolder->createChunk(chunkID, nullptr);
 
-        CameraDirector *director = CameraLocalUtil::getCameraDirector();
+        CameraDirector* director = CameraLocalUtil::getCameraDirector();
         chunk->setCameraType("CAM_TYPE_ANIM", director->mHolder);
 
-        chunk->mGeneralParam->mNum1 = reinterpret_cast<s32>(data);
+        chunk->mGeneralParam->mNum1 = reinterpret_cast< s32 >(data);
         chunk->_64 = true;
     }
 }
@@ -566,13 +551,13 @@ void CameraManGame::createStartAnimCamera() {
 void CameraManGame::createZoomCamera() {
     CameraParamChunkID_Tmp chunkID = CameraParamChunkID_Tmp();
     chunkID.createOtherID(0, "ズームカメラ");
-    CameraParamChunk *chunk = mChunkHolder->createChunk(chunkID, nullptr);
+    CameraParamChunk* chunk = mChunkHolder->createChunk(chunkID, nullptr);
 
-    CameraDirector *director = CameraLocalUtil::getCameraDirector();
+    CameraDirector* director = CameraLocalUtil::getCameraDirector();
     chunk->setCameraType("CAM_TYPE_EYEPOS_FIX_THERE", director->mHolder);
 
     TVec3f wOffset = TVec3f(0.0f, 0.0f, 0.0f);
-    chunk->mExParam.mWOffset.set<f32>(wOffset);
+    chunk->mExParam.mWOffset.set< f32 >(wOffset);
     chunk->mExParam.mLOffset = 0.0f;
     chunk->mExParam.mLOffsetV = 100.0f;
 
@@ -603,15 +588,14 @@ bool CameraManGame::tryShiftToGCapture() {
 }
 
 bool CameraManGame::tryShiftToSwimOrWaterSurface() {
-    CameraTargetObj *target = CameraLocalUtil::getTarget(this);
+    CameraTargetObj* target = CameraLocalUtil::getTarget(this);
 
     if (target->isWaterMode()) {
-        CameraTargetObj *target2 = CameraLocalUtil::getTarget(this);
+        CameraTargetObj* target2 = CameraLocalUtil::getTarget(this);
 
         if (target2->isOnWaterSurface()) {
             mTypeState = 2;
-        }
-        else {
+        } else {
             mTypeState = 1;
         }
 
@@ -622,7 +606,7 @@ bool CameraManGame::tryShiftToSwimOrWaterSurface() {
 }
 
 bool CameraManGame::tryShiftToFooFighter() {
-    CameraTargetObj *target = CameraLocalUtil::getTarget(this);
+    CameraTargetObj* target = CameraLocalUtil::getTarget(this);
 
     if (target->isFooFighterMode()) {
         mTypeState = 4;
@@ -660,19 +644,18 @@ void CameraManGame::updateWaterSurface() {
 
 void CameraManGame::updateGCapture() {
     CubeCameraArea::setCurrentCategory(CubeCameraArea::CATEGORY_UNKNOWN_3);
-    CameraTargetObj *target = CameraLocalUtil::getTarget(this);
-    const TVec3f *position = target->getPosition();
+    CameraTargetObj* target = CameraLocalUtil::getTarget(this);
+    const TVec3f* position = target->getPosition();
 
-    CubeCameraArea *area = reinterpret_cast<CubeCameraArea *>(MR::getAreaObj("CubeCamera", *position));
+    CubeCameraArea* area = reinterpret_cast< CubeCameraArea* >(MR::getAreaObj("CubeCamera", *position));
 
     if (area != nullptr) {
         CameraParamChunkID_Tmp chunkID = CameraParamChunkID_Tmp();
-        chunkID.createCubeID(area->mZoneID, static_cast<u16>(area->mObjArg0));
+        chunkID.createCubeID(area->mZoneID, static_cast< u16 >(area->mObjArg0));
 
         setChunk(chunkID);
         CubeCameraArea::setCurrentCategory(CubeCameraArea::CATEGORY_UNKNOWN_0);
-    }
-    else {
+    } else {
         updateNormal();
     }
 }
@@ -687,13 +670,13 @@ void CameraManGame::updateFooFighter() {
 }
 
 bool CameraManGame::setCubeChunk(CubeCameraArea::ECategory category) {
-    CubeCameraArea::setCurrentCategory(static_cast<s32>(category));
-    CameraTargetObj *target = CameraLocalUtil::getTarget(this);
-    CubeCameraArea *area = target->getCubeCameraArea();
+    CubeCameraArea::setCurrentCategory(static_cast< s32 >(category));
+    CameraTargetObj* target = CameraLocalUtil::getTarget(this);
+    CubeCameraArea* area = target->getCubeCameraArea();
 
     if (area != nullptr) {
         CameraParamChunkID_Tmp chunkID = CameraParamChunkID_Tmp();
-        chunkID.createCubeID(area->mZoneID, static_cast<u16>(area->mObjArg0));
+        chunkID.createCubeID(area->mZoneID, static_cast< u16 >(area->mObjArg0));
 
         setChunk(chunkID);
         return true;
@@ -708,7 +691,7 @@ bool CameraManGame::tryStartPosCamera() {
     }
 
     CameraParamChunkID_Tmp chunkID = CameraParamChunkID_Tmp();
-    u16 startCameraID = static_cast<u16>(MR::getCurrentStartCameraId());
+    u16 startCameraID = static_cast< u16 >(MR::getCurrentStartCameraId());
     s32 startZoneID = MR::getCurrentStartZoneId();
 
     chunkID.createStartID(startZoneID, startCameraID);
@@ -730,7 +713,7 @@ bool CameraManGame::tryStartPosCamera() {
         _70--;
     }
 
-    return true;   
+    return true;
 }
 
 bool CameraManGame::tryZoomCamera() {
@@ -750,7 +733,7 @@ bool CameraManGame::isZoomCamera() const {
     CameraParamChunkID_Tmp chunkID = CameraParamChunkID_Tmp();
     chunkID.createOtherID(0, "ズームカメラ");
 
-    CameraParamChunk *chunk = mChunkHolder->getChunk(chunkID);
+    CameraParamChunk* chunk = mChunkHolder->getChunk(chunkID);
 
     return mChunk == chunk;
 }

@@ -5,10 +5,10 @@
 
 class MapPartsRailRotator : public MapPartsFunction {
 public:
-    MapPartsRailRotator(LiveActor *);
+    MapPartsRailRotator(LiveActor*);
 
     virtual ~MapPartsRailRotator();
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
     virtual bool isWorking() const;
     virtual void start();
     virtual void end();
@@ -22,7 +22,7 @@ public:
     void updateInfo(s32);
     bool isReachedTargetAngle() const;
 
-    void initWithRotateMtx(const JMapInfoIter &, MtxPtr);
+    void initWithRotateMtx(const JMapInfoIter&, MtxPtr);
 
     void exeRotate();
 

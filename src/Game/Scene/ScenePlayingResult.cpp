@@ -19,7 +19,7 @@ namespace {
             MR::requestOneUp();
         }
     }
-};
+};  // namespace
 
 void ScenePlayingResult::incCoin(int num) {
     s32 prevNum = mCoinNum;
@@ -67,14 +67,6 @@ s32 ScenePlayingResult::getStarPieceNum() const {
     return GameDataFunction::getStarPieceNum();
 }
 
-ScenePlayingResult::~ScenePlayingResult() {
-    
-}
+ScenePlayingResult::~ScenePlayingResult() {}
 
-ScenePlayingResult::ScenePlayingResult() :
-    NameObj("プレイ結果保持"),
-    mCoinNum(0),
-    mPurpleCoinNum(0)
-{
-    
-}
+ScenePlayingResult::ScenePlayingResult() : NameObj("プレイ結果保持"), mCoinNum(0), mPurpleCoinNum(0) {}

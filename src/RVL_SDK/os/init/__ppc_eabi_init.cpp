@@ -1,5 +1,6 @@
 #include "revolution/base/PPCArch.h"
 
+// clang-format off
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -51,3 +52,4 @@ loop:
 #ifdef __cplusplus
 }
 #endif
+// clang-format on

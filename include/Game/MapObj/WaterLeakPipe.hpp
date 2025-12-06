@@ -7,7 +7,7 @@ public:
     IceStepNoSlip(MtxPtr);
 
     virtual ~IceStepNoSlip();
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
     virtual void appear();
 
     inline void exeAppear() {
@@ -22,29 +22,29 @@ public:
 namespace NrvIceStepNoSlip {
     NERVE_DECL(IceStepNoSlipNrvAppear, IceStepNoSlip, IceStepNoSlip::exeAppear);
     NERVE_DECL(IceStepNoSlipNrvBreak, IceStepNoSlip, IceStepNoSlip::exeBreak);
-};
+};  // namespace NrvIceStepNoSlip
 
 class WaterLeakPipe : public LiveActor {
 public:
-    WaterLeakPipe(const char *);
+    WaterLeakPipe(const char*);
 
     virtual ~WaterLeakPipe();
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
     virtual void calcAnim();
-    virtual bool receiveMsgPlayerAttack(u32, HitSensor *, HitSensor *);
+    virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
 
     void exeWait();
     void exeFreeze();
     void initPipeHeight();
 
-    IceStepNoSlip* mIceStep;        // 0x8C
-    f32 mPipeHeight;                // 0x90
-    MtxPtr mTopMtx;                 // 0x94
-    MtxPtr mBottomMtx;              // 0x98
+    IceStepNoSlip* mIceStep;  // 0x8C
+    f32 mPipeHeight;          // 0x90
+    MtxPtr mTopMtx;           // 0x94
+    MtxPtr mBottomMtx;        // 0x98
     TVec3f _9C;
 };
 
 namespace NrvWaterLeakPipe {
     NERVE_DECL(WaterLeakPipeNrvWait, WaterLeakPipe, WaterLeakPipe::exeWait);
     NERVE_DECL(WaterLeakPipeNrvFreeze, WaterLeakPipe, WaterLeakPipe::exeFreeze);
-};
+};  // namespace NrvWaterLeakPipe

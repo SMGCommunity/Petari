@@ -1,12 +1,12 @@
 #include "Game/Camera/CameraFollow.hpp"
-#include "Game/Camera/CameraTargetObj.hpp"
 #include "Game/Camera/CamTranslatorFollow.hpp"
+#include "Game/Camera/CameraTargetObj.hpp"
 
 bool CameraTargetObj::isJumping() const {
     return false;
 }
 
-CameraFollow::CameraFollow(const char *pName) : Camera(pName) {
+CameraFollow::CameraFollow(const char* pName) : Camera(pName) {
     _4C = 1200.0f;
     _50 = 300.0f;
     _54 = 0.17453294f;
@@ -28,10 +28,8 @@ CameraFollow::CameraFollow(const char *pName) : Camera(pName) {
     createVPanObj();
 }
 
-CameraFollow::~CameraFollow() {
+CameraFollow::~CameraFollow() {}
 
-}
-
-CamTranslatorBase *CameraFollow::createTranslator() {
+CamTranslatorBase* CameraFollow::createTranslator() {
     return new CamTranslatorFollow(this);
 }

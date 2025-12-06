@@ -14,28 +14,22 @@
 
 
 namespace {
-    static f32 cRotateOutermost[3] = {
-        20.0f, 45.0f, 0.0f
-    };
+    static f32 cRotateOutermost[3] = {20.0f, 45.0f, 0.0f};
 
-    static f32 cRadius[5] = {
-        4000.0f, 6200.0f, 8100.0f, 10300.0f, 12000.0f
-    };
+    static f32 cRadius[5] = {4000.0f, 6200.0f, 8100.0f, 10300.0f, 12000.0f};
 
-    static f32 cRadiusLastDome[4] = {
-        4000.0f, 6700.0f, 9100.0f, 11800.0f
-    };
+    static f32 cRadiusLastDome[4] = {4000.0f, 6700.0f, 9100.0f, 11800.0f};
 
     static Color8 cColor(0x13, 0xB1, 0xFF, 0xFF);
     static Color8 cBloomColor(0, 0xB4, 0x64, 0xFF);
-};
+};  // namespace
 
 AstroDomeOrbit::AstroDomeOrbit() : LiveActor("天文ドームの軌道") {
     _8C = 5000.0f;
     _90 = 0.0f;
 }
 
-void AstroDomeOrbit::init(const JMapInfoIter &rIter) {
+void AstroDomeOrbit::init(const JMapInfoIter& rIter) {
     MR::connectToScene(this, -1, -1, -1, 0x1F);
     MR::invalidateClipping(this);
     MR::createAdaptorAndConnectToDrawBloomModel("天文ドーム軌道ブルーム描画", MR::Functor_Inline(this, &AstroDomeOrbit::drawBloom));
@@ -78,7 +72,7 @@ void AstroDomeOrbit::setup(s32 radiusIdx) {
         f32 z = cRotateOutermost[0];
         f32 y = cRotateOutermost[1];
         f32 x = cRotateOutermost[2];
-        
+
         mRotation.set(z, y, x);
     }
 }
@@ -87,11 +81,11 @@ void AstroDomeOrbit::moveCoord() {
     _90 = calcRepeatedRotateCoord(-0.050000001f + _90);
 }
 
-void AstroDomeOrbit::calcGalaxyPos(TVec3f *pPos) const {
+void AstroDomeOrbit::calcGalaxyPos(TVec3f* pPos) const {
     f32 v4 = ((6.2831855f * calcRepeatedRotateCoord(_90) / 360.0f));
     f32 v5 = MR::sin(v4);
     f32 v6 = MR::cos(v4);
-    pPos->set<f32>(v6, 0.0f, v5);
+    pPos->set< f32 >(v6, 0.0f, v5);
     pPos->x *= _8C;
     pPos->y *= _8C;
     pPos->z *= _8C;
@@ -101,7 +95,7 @@ void AstroDomeOrbit::calcGalaxyPos(TVec3f *pPos) const {
     rotateMtx.mult(*pPos, *pPos);
 }
 
-void AstroDomeOrbit::initDraw(const Color8 &rColor) const {
+void AstroDomeOrbit::initDraw(const Color8& rColor) const {
     GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_F32, 0);
     GXClearVtxDesc();
     GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
@@ -126,12 +120,11 @@ void AstroDomeOrbit::initDraw(const Color8 &rColor) const {
 
 void AstroDomeOrbit::drawCelling(f32 a2, bool a3, f32 a4) const {
     TVec3f v16;
-    v16.set<f32>(SphereSelectorFunction::getHandleTrans());
+    v16.set< f32 >(SphereSelectorFunction::getHandleTrans());
 
     if (a3) {
         v16.y += (0.5f * a4);
-    }
-    else {
+    } else {
         v16.y -= (0.5f * a4);
     }
 
@@ -143,7 +136,7 @@ void AstroDomeOrbit::drawCelling(f32 a2, bool a3, f32 a4) const {
         f32 v12 = MR::cos(v10);
 
         TVec3f v15;
-        v15.set<f32>(v12, 0.0f, v11);
+        v15.set< f32 >(v12, 0.0f, v11);
         TVec3f v14;
         v14.scale(_8C - (0.5f * a2), v15);
         JMathInlineVEC::PSVECAdd(&v14, &v16, &v14);
@@ -154,8 +147,7 @@ void AstroDomeOrbit::drawCelling(f32 a2, bool a3, f32 a4) const {
         if (a3) {
             GXPosition3f32(v14.x, v14.y, v14.z);
             GXPosition3f32(v13.x, v13.y, v13.z);
-        }
-        else {
+        } else {
             GXPosition3f32(v13.x, v13.y, v13.z);
             GXPosition3f32(v14.x, v14.y, v14.z);
         }
@@ -164,14 +156,13 @@ void AstroDomeOrbit::drawCelling(f32 a2, bool a3, f32 a4) const {
 
 void AstroDomeOrbit::drawSide(f32 a2, bool a3, f32 a4) const {
     TVec3f v18;
-    v18.set<f32>(SphereSelectorFunction::getHandleTrans());
+    v18.set< f32 >(SphereSelectorFunction::getHandleTrans());
     v18.y += 0.5f * a4;
 
     f32 v9;
     if (a3) {
         v9 = _8C + (0.5f * a2);
-    }
-    else {
+    } else {
         v9 = _8C - (0.5f * a2);
     }
 
@@ -182,12 +173,12 @@ void AstroDomeOrbit::drawSide(f32 a2, bool a3, f32 a4) const {
         f32 v12 = MR::sin(v11);
         f32 v13 = MR::cos(v11);
         TVec3f v17;
-        v17.set<f32>(v13, 0.0f, v12);
+        v17.set< f32 >(v13, 0.0f, v12);
         TVec3f v16;
         v16.scale(v9, v17);
         JMathInlineVEC::PSVECAdd(&v16, &v18, &v16);
         TVec3f v15;
-        v15.set<f32>(v16);
+        v15.set< f32 >(v16);
 
         f32 v14 = (v15.y - a4);
         v15.y -= a4;
@@ -195,8 +186,7 @@ void AstroDomeOrbit::drawSide(f32 a2, bool a3, f32 a4) const {
         if (a3) {
             GXPosition3f32(v16.x, v16.y, v16.z);
             GXPosition3f32(v15.x, v15.y, v15.z);
-        }
-        else {
+        } else {
             GXPosition3f32(v15.x, v14, v15.z);
             GXPosition3f32(v16.x, v16.y, v16.z);
         }
@@ -207,6 +197,4 @@ f32 AstroDomeOrbit::calcRepeatedRotateCoord(f32 coord) const {
     return MR::wrapAngleTowards(0.0f, coord);
 }
 
-AstroDomeOrbit::~AstroDomeOrbit() {
-    
-}
+AstroDomeOrbit::~AstroDomeOrbit() {}

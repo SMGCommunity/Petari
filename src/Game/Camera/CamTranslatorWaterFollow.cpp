@@ -1,28 +1,28 @@
-#include "Game/Camera/CameraParamChunk.hpp"
 #include "Game/Camera/CamTranslatorWaterFollow.hpp"
+#include "Game/Camera/CameraParamChunk.hpp"
 
-CamTranslatorWaterFollow::CamTranslatorWaterFollow(CameraWaterFollow *pCamera) {
-	mCamera = pCamera;
+CamTranslatorWaterFollow::CamTranslatorWaterFollow(CameraWaterFollow* pCamera) {
+    mCamera = pCamera;
 }
 
-void CamTranslatorWaterFollow::setParam(const CameraParamChunk *pChunk) {
-	CameraGeneralParam *general = pChunk->mGeneralParam;
+void CamTranslatorWaterFollow::setParam(const CameraParamChunk* pChunk) {
+    CameraGeneralParam* general = pChunk->mGeneralParam;
 
-	f32 axisY;
-	f32 axisX;
-	f32 dist;
+    f32 axisY;
+    f32 axisX;
+    f32 dist;
 
-	dist = general->mDist;
-	axisX = general->mAxis.x;
-	axisY = general->mAxis.y;
+    dist = general->mDist;
+    axisX = general->mAxis.x;
+    axisY = general->mAxis.y;
 
-	CameraWaterFollow *camera = mCamera;
+    CameraWaterFollow* camera = mCamera;
 
-	camera->mAxisY = axisY;
-	camera->mAxisX = axisX;
-	camera->mDist = dist;
+    camera->mAxisY = axisY;
+    camera->mAxisX = axisX;
+    camera->mDist = dist;
 }
 
-Camera *CamTranslatorWaterFollow::getCamera() const {
-	return mCamera;
+Camera* CamTranslatorWaterFollow::getCamera() const {
+    return mCamera;
 }

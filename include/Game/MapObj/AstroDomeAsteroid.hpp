@@ -4,14 +4,14 @@
 
 class AstroDomeAsteroid : public LiveActor {
 public:
-    AstroDomeAsteroid(const char *);
+    AstroDomeAsteroid(const char*);
 
     virtual ~AstroDomeAsteroid();
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
     virtual void appear();
     virtual void control();
     virtual void calcAndSetBaseMtx();
-    virtual bool receiveOtherMsg(u32, HitSensor *, HitSensor *);
+    virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
 
     inline void exeWait() {
         if (MR::isFirstStep(this)) {
@@ -21,7 +21,7 @@ public:
         MR::setBckRate(this, 1.0f);
     }
 
-    TPos3f mRotationMtx;        // 0x8C
+    TPos3f mRotationMtx;  // 0x8C
 };
 
 namespace NrvAstroDomeAsteroid {

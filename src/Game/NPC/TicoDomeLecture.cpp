@@ -8,21 +8,19 @@ namespace NrvTicoDomeLecture {
     NEW_NERVE(TicoDomeLectureNrvWait, TicoDomeLecture, Wait);
     NEW_NERVE(TicoDomeLectureNrvMove, TicoDomeLecture, Move);
     NEW_NERVE(TicoDomeLectureNrvMetamorphosis, TicoDomeLecture, Metamorphosis);
-};
+};  // namespace NrvTicoDomeLecture
 
 namespace {
-    const static Vec cMoveEndPos = { 0.0f, -70.0f, 0.0f };
-    const static Vec cMoveEndRotate = { 30.0f, 130.0f, 0.0f };
-}
+    const static Vec cMoveEndPos = {0.0f, -70.0f, 0.0f};
+    const static Vec cMoveEndRotate = {30.0f, 130.0f, 0.0f};
+}  // namespace
 
-TicoDomeLecture::TicoDomeLecture(const char *pName) : LiveActor(pName), _8C(gZeroVec), _98(gZeroVec) {
+TicoDomeLecture::TicoDomeLecture(const char* pName) : LiveActor(pName), _8C(gZeroVec), _98(gZeroVec) {}
 
-}
-
-void TicoDomeLecture::init(const JMapInfoIter &rIter) {
+void TicoDomeLecture::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
-    _8C.set<f32>(mPosition);
-    _98.set<f32>(mRotation);
+    _8C.set< f32 >(mPosition);
+    _98.set< f32 >(mRotation);
     initModelManagerWithAnm("Tico", nullptr, false);
     MR::connectToSceneNpc(this);
     MR::initLightCtrl(this);
@@ -38,8 +36,8 @@ void TicoDomeLecture::init(const JMapInfoIter &rIter) {
 }
 
 void TicoDomeLecture::appear() {
-    mPosition.set<f32>(_8C);
-    mRotation.set<f32>(_98);
+    mPosition.set< f32 >(_8C);
+    mRotation.set< f32 >(_98);
     MR::offSwitchDead(this);
     LiveActor::appear();
     setNerve(&NrvTicoDomeLecture::TicoDomeLectureNrvWait::sInstance);
@@ -62,7 +60,7 @@ void TicoDomeLecture::exeMove() {
     MR::startLevelSound(this, "SE_SM_LV_TICO_WAIT", -1, -1, -1);
     MR::startLevelSound(this, "SE_SM_LV_TICO_FLY_DEMO", -1, -1, -1);
     if (MR::isDemoPartActive(demoName)) {
-        f32 easeOut = MR::calcNerveEaseOutRate(this, MR::getDemoPartTotalStep(demoName) -1);
+        f32 easeOut = MR::calcNerveEaseOutRate(this, MR::getDemoPartTotalStep(demoName) - 1);
         TVec3f v5(cMoveEndPos);
         JMAVECLerp(&_8C, &v5, &mPosition, easeOut);
         TVec3f v4(cMoveEndRotate);
@@ -85,6 +83,4 @@ void TicoDomeLecture::exeMetamorphosis() {
     }
 }
 
-TicoDomeLecture::~TicoDomeLecture() {
-    
-}
+TicoDomeLecture::~TicoDomeLecture() {}

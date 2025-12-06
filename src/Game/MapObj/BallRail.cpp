@@ -1,8 +1,8 @@
-#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/MapObj/BallRail.hpp"
+#include "Game/LiveActor/HitSensor.hpp"
 #include <JSystem/JMath/JMath.hpp>
 
-BallRail::BallRail(const char *pName) : LiveActor(pName) {
+BallRail::BallRail(const char* pName) : LiveActor(pName) {
     mRailPoints = nullptr;
     _90 = nullptr;
     mNumPoints = 0;
@@ -11,11 +11,11 @@ BallRail::BallRail(const char *pName) : LiveActor(pName) {
     _AC = 100.0f;
 }
 
-void BallRail::init(const JMapInfoIter &rIter) {
+void BallRail::init(const JMapInfoIter& rIter) {
     if (MR::getJMapInfoArg0NoInit(rIter, &mAcceleration)) {
         mAcceleration /= 1000.0f;
     }
-    
+
     if (MR::getJMapInfoArg1NoInit(rIter, &mDeceleration)) {
         mDeceleration /= 1000.0f;
     }
@@ -37,14 +37,10 @@ void BallRail::init(const JMapInfoIter &rIter) {
     appear();
 }
 
-void BallRail::control() {
+void BallRail::control() {}
 
-}
-
-bool BallRail::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
-    if (msg == ACTMES_SPHERE_PLAYER_BINDED
-        && isNerve(&NrvBallRail::BallRailNrvWait::sInstance))
-    {
+bool BallRail::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
+    if (msg == ACTMES_SPHERE_PLAYER_BINDED && isNerve(&NrvBallRail::BallRailNrvWait::sInstance)) {
         TVec3f v9(pSender->mHost->mVelocity);
         TVec3f v8 = pSender->mPosition - pReceiver->mPosition;
 
@@ -58,8 +54,7 @@ bool BallRail::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver
             MR::zeroVelocity(pSender->mHost);
 
             return false;
-        }
-        else {
+        } else {
             _90 = pSender;
 
             return true;
@@ -197,17 +192,13 @@ void BallRail::exeNoBind() {
     }
 }
 
-BallRailPoint::BallRailPoint() : _0(0, 0, 0), _C(1, 0, 0), _18(0, 1, 0), _24(0, 0, 1) {
+BallRailPoint::BallRailPoint() : _0(0, 0, 0), _C(1, 0, 0), _18(0, 1, 0), _24(0, 0, 1) {}
 
-}
-
-BallRail::~BallRail() {
-
-}
+BallRail::~BallRail() {}
 
 namespace NrvBallRail {
     INIT_NERVE(BallRailNrvWait);
     INIT_NERVE(BallRailNrvSetUp);
     INIT_NERVE(BallRailNrvRun);
     INIT_NERVE(BallRailNrvNoBind);
-};
+};  // namespace NrvBallRail

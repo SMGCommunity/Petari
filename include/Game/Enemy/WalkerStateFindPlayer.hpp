@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/System/NerveExecutor.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
+#include "Game/System/NerveExecutor.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
 
 class WalkerStateParam;
@@ -15,9 +15,9 @@ public:
     f32 _8;
 };
 
-class WalkerStateFindPlayer : public ActorStateBase<LiveActor> {
+class WalkerStateFindPlayer : public ActorStateBase< LiveActor > {
 public:
-    WalkerStateFindPlayer(LiveActor *, TVec3f * , WalkerStateParam *, WalkerStateFindPlayerParam *);
+    WalkerStateFindPlayer(LiveActor*, TVec3f*, WalkerStateParam*, WalkerStateFindPlayerParam*);
 
     virtual ~WalkerStateFindPlayer();
     virtual void appear();
@@ -30,8 +30,8 @@ public:
     bool isFindJumpBegin() const;
     bool isLandStart() const;
 
-    LiveActor* mParent;                                 // 0x0C
+    LiveActor* mParent;  // 0x0C
     TVec3f* _10;
-    WalkerStateParam* mStateParam;                      // 0x14
-    WalkerStateFindPlayerParam* mFindPlayerParam;       // 0x18
+    WalkerStateParam* mStateParam;                 // 0x14
+    WalkerStateFindPlayerParam* mFindPlayerParam;  // 0x18
 };

@@ -83,4 +83,4 @@ namespace GameDataFunction {
     void addStockedStarPiece(int);
     bool isPowerStarLeftInCometOnly();
     s32 calcGreenStarNum(const GameDataHolder*);
-};
+};  // namespace GameDataFunction

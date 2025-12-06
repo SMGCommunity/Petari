@@ -1,13 +1,13 @@
 #include "Game/MapObj/FlameGun.hpp"
 
-FlameGun::FlameGun(const char *pName) : LiveActor(pName) {
+FlameGun::FlameGun(const char* pName) : LiveActor(pName) {
     _8C.x = 0.0f;
     _8C.y = -1.0f;
     _8C.z = 0.0f;
     mState = -1;
 }
 
-void FlameGun::init(const JMapInfoIter &rIter) {
+void FlameGun::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     MR::setGroupClipping(this, rIter, 32);
     s32 arg = 0;
@@ -16,18 +16,17 @@ void FlameGun::init(const JMapInfoIter &rIter) {
 
     if (MR::useStageSwitchReadA(this, rIter)) {
         initNerve(&NrvFlameGun::HostTypeNrvSwitchWait::sInstance);
-    }
-    else {
+    } else {
         switch (mState) {
-            case 0:
-                initNerve(&NrvFlameGun::HostTypeNrvSwitchWait::sInstance);
-                break;
-            case 1:
-                initNerve(&NrvFlameGun::HostTypeNrvRotate::sInstance);
-                break;
-            case 2:
-                initNerve(&NrvFlameGun::HostTypeNrvRadiateOnly::sInstance);
-                break;
+        case 0:
+            initNerve(&NrvFlameGun::HostTypeNrvSwitchWait::sInstance);
+            break;
+        case 1:
+            initNerve(&NrvFlameGun::HostTypeNrvRotate::sInstance);
+            break;
+        case 2:
+            initNerve(&NrvFlameGun::HostTypeNrvRadiateOnly::sInstance);
+            break;
         }
     }
 
@@ -72,15 +71,15 @@ void FlameGun::exeSwitchWait() {
 
     if (MR::isValidSwitchA(this) && MR::isOnSwitchA(this)) {
         switch (mState) {
-            case 0:
-                setNerve(&NrvFlameGun::HostTypeNrvPreRadiate::sInstance);
-                break;
-            case 1:
-                setNerve(&NrvFlameGun::HostTypeNrvRotate::sInstance);
-                break;
-            case 2:
-                setNerve(&NrvFlameGun::HostTypeNrvRadiateOnly::sInstance);
-                break;
+        case 0:
+            setNerve(&NrvFlameGun::HostTypeNrvPreRadiate::sInstance);
+            break;
+        case 1:
+            setNerve(&NrvFlameGun::HostTypeNrvRotate::sInstance);
+            break;
+        case 2:
+            setNerve(&NrvFlameGun::HostTypeNrvRadiateOnly::sInstance);
+            break;
         }
     }
 }
@@ -147,15 +146,13 @@ void FlameGun::exeRadiateOnly() {
 
 // FlameGun::updateHitSensor
 
-void FlameGun::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
+void FlameGun::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (!MR::sendMsgEnemyAttackFire(pReceiver, pSender)) {
         MR::sendMsgPush(pReceiver, pSender);
     }
 }
 
-FlameGun::~FlameGun() {
-
-}
+FlameGun::~FlameGun() {}
 
 namespace NrvFlameGun {
     INIT_NERVE(HostTypeNrvSwitchWait);
@@ -164,4 +161,4 @@ namespace NrvFlameGun {
     INIT_NERVE(HostTypeNrvRadiate);
     INIT_NERVE(HostTypeNrvRotate);
     INIT_NERVE(HostTypeNrvRadiateOnly);
-};
+};  // namespace NrvFlameGun

@@ -2,9 +2,9 @@
 
 #include "Game/Enemy/AnimScaleController.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
-#include "Game/NPC/NPCActor.hpp"
 #include "Game/MapObj/BenefitItemLifeUp.hpp"
 #include "Game/MapObj/BenefitItemObj.hpp"
+#include "Game/NPC/NPCActor.hpp"
 #include "Game/NameObj/NameObjArchiveListCollector.hpp"
 #include "JSystem/JGeometry/TMatrix.hpp"
 
@@ -13,27 +13,27 @@ class SpinDriverShootPath;
 
 class TicoFat : public NPCActor {
 public:
-    TicoFat(const char *);
+    TicoFat(const char*);
 
     virtual ~TicoFat();
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
     virtual void initAfterPlacement();
     virtual void kill();
     virtual void control();
     virtual void calcAndSetBaseMtx();
-    virtual bool receiveMsgPlayerAttack(u32, HitSensor *, HitSensor *);
+    virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
     virtual void shootStarPiece();
     virtual void receiveStarPiece(s32);
     virtual void startEat();
     virtual bool enableAppear();
-    virtual void initStarPieceSaveData(const JMapInfoIter &);
+    virtual void initStarPieceSaveData(const JMapInfoIter&);
     virtual void addStarPieceSaveData(s32);
     virtual void disappear(bool);
     virtual void appearInformation() const;
 
-    static void makeArchiveList(NameObjArchiveListCollector *, const JMapInfoIter &);
+    static void makeArchiveList(NameObjArchiveListCollector*, const JMapInfoIter&);
 
-    const char* getActionName(const char *);
+    const char* getActionName(const char*);
     void setCameraParam();
     bool eventFunc(u32);
     f32 calcScale();
@@ -63,13 +63,13 @@ public:
     void exeInfo();
     void exeAfter();
 
-    ActorCameraInfo* mCameraInfo;               // 0x15C
-    BenefitItemObj* mItem;                      // 0x160
-    FullnessMeter* mMeter;                      // 0x164
-    SpinDriverShootPath* mShootPath;            // 0x168
+    ActorCameraInfo* mCameraInfo;     // 0x15C
+    BenefitItemObj* mItem;            // 0x160
+    FullnessMeter* mMeter;            // 0x164
+    SpinDriverShootPath* mShootPath;  // 0x168
     TalkMessageCtrl* _16C;
     u8 _170;
-    bool mStartEat;                             // 0x171
+    bool mStartEat;  // 0x171
     u8 _172;
     u8 _173;
     s32 _174;
@@ -79,7 +79,7 @@ public:
     s32 _1DC;
     s32 _1E0;
     s32 _1E4;
-    s32 mCurrentFed;                            // 0x1E8
+    s32 mCurrentFed;  // 0x1E8
     s32 _1EC;
     u32 _1F0;
     s32 _1F4;

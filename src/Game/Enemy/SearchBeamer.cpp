@@ -1,6 +1,6 @@
 #include "Game/Enemy/SearchBeamer.hpp"
-#include "Game/Enemy/WalkerStateBindStarPointer.hpp"
 #include "Game/Enemy/AnimScaleController.hpp"
+#include "Game/Enemy/WalkerStateBindStarPointer.hpp"
 
 namespace NrvSearchBeamer {
     NEW_NERVE(SearchBeamerNrvNonActive, SearchBeamer, NonActive);
@@ -17,7 +17,7 @@ namespace NrvSearchBeamer {
     NEW_NERVE(SearchBeamerNrvStopForPlayerOff, SearchBeamer, StopForPlayerOff);
     NEW_NERVE(SearchBeamerNrvRecover, SearchBeamer, Recover);
     NEW_NERVE_ONEND(SearchBeamerNrvDPDSwoon, SearchBeamer, DPDSwoon, DPDSwoon);
-};
+};  // namespace NrvSearchBeamer
 
 void SearchBeamer::endDPDSwoon() {
     mBindStarPointer->kill();

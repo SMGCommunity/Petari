@@ -1,17 +1,22 @@
 #pragma once
 
+#include "Game/System/GameEventFlagStorage.hpp"
 #include "Game/System/GameEventFlagTable.hpp"
-#include "Game/System/GameDataHolder.h"
+
+#include "Game/System/GameDataHolder.hpp"
 
 class GameEventFlagChecker {
 public:
-    bool canOn(const char *) const;
-    bool isOn(const char *) const;
-    bool tryOn(const char *);
+    GameEventFlagChecker(GameDataHolder*);
+    bool canOn(const char*) const;
+    bool isOn(const char*) const;
+    bool tryOn(const char*);
     void reset();
+    GameEventFlagStorage* getChunk();
+    bool isOnGalaxy(const char*) const;
+    bool isOnGalaxyDepended(const char*) const;
+    bool isOnComet(const GameEventFlag*) const;
 
-    bool isOnGalaxy(const char *) const;
-
-    GameDataHolder* mDataHolder;    // 0x0
-    u32* _4;
+    GameDataHolder* mDataHolder;         // 0x0
+    GameEventFlagStorage* mFlagStorage;  // 0x4
 };

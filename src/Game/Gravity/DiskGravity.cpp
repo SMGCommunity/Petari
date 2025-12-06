@@ -4,16 +4,9 @@
 #include <JSystem/JMath/JMATrigonometric.hpp>
 #include <math_types.hpp>
 
-DiskGravity::DiskGravity() :
-    PlanetGravity(),
-    mLocalPosition(0.0f, 50.0f, 0.0f),
-    mWorldPosition(0.0f, 50.0f, 0.0f),
-    mLocalNormal(0, 1, 0),
-    mWorldNormal(0, 1, 0),
-    mSideDirection(1, 0, 0),
-    mOppositeSideVecOrtho(1, 0, 0),
-    mWorldOppositeSideVecOrtho(1, 0, 0)
-{
+DiskGravity::DiskGravity()
+    : PlanetGravity(), mLocalPosition(0.0f, 50.0f, 0.0f), mWorldPosition(0.0f, 50.0f, 0.0f), mLocalNormal(0, 1, 0), mWorldNormal(0, 1, 0),
+      mSideDirection(1, 0, 0), mOppositeSideVecOrtho(1, 0, 0), mWorldOppositeSideVecOrtho(1, 0, 0) {
     mLocalRadius = 2500.0f;
     mWorldRadius = 2500.0f;
     mValidDegree = 360.0f;
@@ -22,18 +15,18 @@ DiskGravity::DiskGravity() :
     mEnableEdgeGravity = true;
 }
 
-void DiskGravity::setLocalPosition(const TVec3f &rLocalPos) {
+void DiskGravity::setLocalPosition(const TVec3f& rLocalPos) {
     mLocalPosition = rLocalPos;
 }
 
-void DiskGravity::setLocalDirection(const TVec3f &rLocalDir) {
+void DiskGravity::setLocalDirection(const TVec3f& rLocalDir) {
     mLocalNormal.set(rLocalDir);
     MR::normalizeOrZero(&mLocalNormal);
     updateLocalParam();
 }
 
-void DiskGravity::setSideDirection(const TVec3f &rSideDir) {
-    mSideDirection.set<f32>(rSideDir);
+void DiskGravity::setSideDirection(const TVec3f& rSideDir) {
+    mSideDirection.set< f32 >(rSideDir);
     updateLocalParam();
 }
 
@@ -54,8 +47,7 @@ void DiskGravity::setEnableEdgeGravity(bool val) {
     mEnableEdgeGravity = val;
 }
 
-bool DiskGravity::calcOwnGravityVector(TVec3f *pDest, f32 *pDistance, const TVec3f &rPosition) const {
-    
+bool DiskGravity::calcOwnGravityVector(TVec3f* pDest, f32* pDistance, const TVec3f& rPosition) const {
     TVec3f relativePos;
     relativePos = rPosition - mWorldPosition;
 
@@ -77,14 +69,13 @@ bool DiskGravity::calcOwnGravityVector(TVec3f *pDest, f32 *pDistance, const TVec
     if (distanceToCentralAxis <= mWorldRadius) {
         gravity = centralAxisY >= 0.0f ? mWorldNormal.negateInline() : mWorldNormal;
         distance = __fabsf(centralAxisY);
-    }
-    else {
+    } else {
         if (!mEnableEdgeGravity) {
             return false;
         }
-        
+
         TVec3f closestEdgePoint;
-        closestEdgePoint.set<f32>(dirOnDiskPlane * mWorldRadius);
+        closestEdgePoint.set< f32 >(dirOnDiskPlane * mWorldRadius);
         JMathInlineVEC::PSVECAdd(&closestEdgePoint, &mWorldPosition, &closestEdgePoint);
 
         gravity = closestEdgePoint - rPosition;
@@ -106,24 +97,23 @@ bool DiskGravity::calcOwnGravityVector(TVec3f *pDest, f32 *pDistance, const TVec
     return true;
 }
 
-
 void DiskGravity::updateLocalParam() {
     TRot3f rot;
 
     // Both of these variables are present because the codegen indicates they should be.
     // In the final game, however, they have no behavioral effect and are not given any memory.
     bool artifact = false;
-    bool &rArtifact = artifact;
+    bool& rArtifact = artifact;
 
     mValidCos = JMath::sSinCosTable.cosLap(0.5f * mValidDegree);
-    if(MR::isNearZero(mLocalNormal, 0.00100000005f)) {
+    if (MR::isNearZero(mLocalNormal, 0.00100000005f)) {
         rArtifact = true;
         mOppositeSideVecOrtho.zero();
         return;
     }
     JMAVECScaleAdd(&mLocalNormal, &mSideDirection, &mOppositeSideVecOrtho, -mLocalNormal.dot(mSideDirection));
     MR::normalizeOrZero(&mOppositeSideVecOrtho);
-    if(MR::isNearZero(mOppositeSideVecOrtho, 0.00100000005f)) {
+    if (MR::isNearZero(mOppositeSideVecOrtho, 0.00100000005f)) {
         mOppositeSideVecOrtho.zero();
         return;
     }
@@ -131,12 +121,12 @@ void DiskGravity::updateLocalParam() {
     rot.identity();
     rot.setRotateInline(mLocalNormal, 0.5f * mValidDegree * (PI / 180));
     rArtifact = false;
-    if(!artifact) {
+    if (!artifact) {
         rot.mult(mOppositeSideVecOrtho, mOppositeSideVecOrtho);
     }
 }
 
-void DiskGravity::updateMtx(const TPos3f &rMtx) {
+void DiskGravity::updateMtx(const TPos3f& rMtx) {
     rMtx.mult(mLocalPosition, mWorldPosition);
     rMtx.mult33(mLocalNormal, mWorldNormal);
     rMtx.mult33(mOppositeSideVecOrtho, mWorldOppositeSideVecOrtho);

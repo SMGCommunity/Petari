@@ -21,7 +21,7 @@ namespace {
     Vec cDefaultUp;
     Vec cZoomInPos;
     Vec cZoomOutPos;
-}
+}  // namespace
 
 namespace NrvAstroDomeCameraController {
     NEW_NERVE(AstroDomeCameraControllerNrvGalaxySelectStart, AstroDomeCameraController, GalaxySelectStart);
@@ -29,10 +29,9 @@ namespace NrvAstroDomeCameraController {
     NEW_NERVE(AstroDomeCameraControllerNrvGalaxyConfirmStart, AstroDomeCameraController, GalaxyConfirmStart);
     NEW_NERVE(AstroDomeCameraControllerNrvGalaxyConfirm, AstroDomeCameraController, GalaxyConfirm);
     NEW_NERVE(AstroDomeCameraControllerNrvGalaxyConfirmCancel, AstroDomeCameraController, GalaxyConfirmCancel);
-}
+}  // namespace NrvAstroDomeCameraController
 
-AstroDomeCameraController::AstroDomeCameraController(const char* pName) : LiveActor(pName), _8C(gZeroVec), _104(0.0f) ,_108(gZeroVec) {}
-
+AstroDomeCameraController::AstroDomeCameraController(const char* pName) : LiveActor(pName), _8C(gZeroVec), _104(0.0f), _108(gZeroVec) {}
 
 void AstroDomeCameraController::init(const JMapInfoIter& rIter) {
     MR::connectToSceneMapObjMovement(this);
@@ -47,7 +46,7 @@ void AstroDomeCameraController::init(const JMapInfoIter& rIter) {
 void AstroDomeCameraController::appear() {
     LiveActor::appear();
     TVec3f pCamPos = MR::getCamPos();
-    _8C.set<f32>(pCamPos);
+    _8C.set< f32 >(pCamPos);
     _98.reset(_8C);
     _BC.reset(_108);
     _E0.reset(cDefaultUp);
@@ -84,7 +83,7 @@ bool AstroDomeCameraController::receiveOtherMsg(u32 v1, HitSensor* pSender, HitS
 }
 
 void AstroDomeCameraController::calcZoomOutPos(TVec3f* v1) const {
-    SphereSelectorFunction::calcOffsetPos(v1, gZeroVec, TVec3f(0.0f,0.0f, -22000.0f), _8C.negateInline(), TVec3f(0.0f, 1.0f, 0.0f));
+    SphereSelectorFunction::calcOffsetPos(v1, gZeroVec, TVec3f(0.0f, 0.0f, -22000.0f), _8C.negateInline(), TVec3f(0.0f, 1.0f, 0.0f));
 }
 
 void AstroDomeCameraController::calcZoomInPos(TVec3f *v1, const TVec3f &v2) const {
@@ -117,10 +116,10 @@ void AstroDomeCameraController::exeGalaxySelectStart() {
     TVec3f stack;
     if (MR::isFirstStep(this)) {
         calcZoomOutPos(&stack);
-        _98._0.set<f32>(_98._18);
-        _98._C.set<f32>(stack);
-        _BC._0.set<f32>(_BC._18);
-        _BC._C.set<f32>(_108);
+        _98._0.set< f32 >(_98._18);
+        _98._C.set< f32 >(stack);
+        _BC._0.set< f32 >(_BC._18);
+        _BC._C.set< f32 >(_108);
     }
     _104 = MR::getEaseInOutValue(MR::calcNerveRate(this, STF), 0.0, 1.0, 1.0);
     MR::setNerveAtStep(this, &NrvAstroDomeCameraController::AstroDomeCameraControllerNrvGalaxySelect::sInstance, STF);

@@ -1,7 +1,7 @@
 #include "Game/MapObj/MercatorRotateParts.hpp"
 #include "Game/AreaObj/MercatorTransformCube.hpp"
 
-MercatorRotateParts::MercatorRotateParts(const char *pName) : LiveActor(pName) {
+MercatorRotateParts::MercatorRotateParts(const char* pName) : LiveActor(pName) {
     mRotator = nullptr;
     mAppearController = nullptr;
 }
@@ -16,13 +16,13 @@ void MercatorRotateParts::initAfterPlacement() {
     mAppearController->storeCurrentPosture();
 }
 
-bool MercatorRotateParts::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool MercatorRotateParts::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     return mAppearController->receiveMsg(msg);
 }
 
 void MercatorRotateParts::control() {
     mRotator->movement();
-} 
+}
 
 void MercatorRotateParts::calcAndSetBaseMtx() {
     TVec3f trans;
@@ -40,7 +40,7 @@ void MercatorRotateParts::calcAndSetBaseMtx() {
     MR::setBaseTRMtx(this, baseMtx);
 }
 
-void MercatorRotateParts::init(const JMapInfoIter &rIter) {
+void MercatorRotateParts::init(const JMapInfoIter& rIter) {
     char objName[0x100];
     MR::getMapPartsObjectName(objName, sizeof(objName), rIter);
     MR::initDefaultPos(this, rIter);
@@ -61,14 +61,11 @@ void MercatorRotateParts::init(const JMapInfoIter &rIter) {
     if (MR::useStageSwitchReadAppear(this, rIter)) {
         MR::syncStageSwitchAppear(this);
         makeActorDead();
-    }
-    else {
+    } else {
         makeActorAppeared();
     }
 
     MR::initMapPartsClipping(this, rIter, nullptr, false);
 }
 
-MercatorRotateParts::~MercatorRotateParts() {
-
-}
+MercatorRotateParts::~MercatorRotateParts() {}

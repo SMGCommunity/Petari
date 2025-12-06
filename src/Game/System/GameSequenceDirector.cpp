@@ -1,23 +1,17 @@
+#include "Game/System/GameSequenceDirector.hpp"
 #include "Game/NWC24/NWC24Messenger.hpp"
 #include "Game/System/FindingLuigiEventScheduler.hpp"
 #include "Game/System/GameDataTemporaryInGalaxy.hpp"
-#include "Game/System/GameSequenceDirector.hpp"
 #include "Game/System/GameSequenceProgress.hpp"
 #include "Game/System/SaveDataHandleSequence.hpp"
 #include "Game/Util/Functor.hpp"
 #include <JSystem/JKernel/JKRHeap.hpp>
 
-GameSequenceDirector::GameSequenceDirector() :
-    mGameDataTemporaryInGalaxy(nullptr),
-    mGameSequenceProgress(nullptr),
-    mSaveDataHandleSequence(nullptr),
-    mNWC24Messenger(nullptr)
-{
+GameSequenceDirector::GameSequenceDirector()
+    : mGameDataTemporaryInGalaxy(nullptr), mGameSequenceProgress(nullptr), mSaveDataHandleSequence(nullptr), mNWC24Messenger(nullptr) {
     mSaveDataHandleSequence = new SaveDataHandleSequence();
-    mSaveDataHandleSequence->registerFunctorOnSaveSuccess(
-        MR::Functor(this, &GameSequenceDirector::executeOnSaveSuccess));
-    mSaveDataHandleSequence->registerFunctorJustBeforeSave(
-        MR::Functor(this, &GameSequenceDirector::executeJustBeforeSave));
+    mSaveDataHandleSequence->registerFunctorOnSaveSuccess(MR::Functor(this, &GameSequenceDirector::executeOnSaveSuccess));
+    mSaveDataHandleSequence->registerFunctorJustBeforeSave(MR::Functor(this, &GameSequenceDirector::executeJustBeforeSave));
 
     mGameSequenceProgress = new GameSequenceProgress();
     mGameDataTemporaryInGalaxy = new GameDataTemporaryInGalaxy();

@@ -1,16 +1,13 @@
-#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/MapObj/ClipFieldMapParts.hpp"
+#include "Game/LiveActor/HitSensor.hpp"
 
-ClipFieldMapParts::ClipFieldMapParts(const char *pName) : GeneralMapParts(pName) {
-
-}
+ClipFieldMapParts::ClipFieldMapParts(const char* pName) : GeneralMapParts(pName) {}
 
 void ClipFieldMapParts::control() {
     if (MR::isValidSwitchA(this)) {
         if (MR::isOnSwitchA(this)) {
             MR::validateCollisionParts(this);
-        }
-        else {
+        } else {
             MR::invalidateCollisionParts(this);
         }
     }
@@ -22,11 +19,9 @@ void ClipFieldMapParts::connectToScene() {
     MR::connectToClippedMapParts(this);
 }
 
-ClipFieldMapParts::~ClipFieldMapParts() {
+ClipFieldMapParts::~ClipFieldMapParts() {}
 
-}
-
-void ClipFieldMapParts::init(const JMapInfoIter &rIter) {
+void ClipFieldMapParts::init(const JMapInfoIter& rIter) {
     GeneralMapParts::init(rIter);
     MR::needStageSwitchReadA(this, rIter);
     getSensor("body")->setType(0x49);

@@ -54,4 +54,4 @@ namespace MR {
     void updateEffectFloorCodeLineToMap(LiveActor*, f32, f32);
     void initEffectSyncBck(LiveActor*, const char*, const char* const*);
     void addEffectHitNormal(LiveActor*, const char*);
-};
+};  // namespace MR

@@ -4,7 +4,7 @@
 
 class MarioState : public MarioModule {
 public:
-    MarioState(MarioActor *, u32);
+    MarioState(MarioActor*, u32);
 
     virtual void init();
     virtual bool proc(u32);
@@ -14,13 +14,13 @@ public:
     virtual bool notice();
     virtual bool keep();
     virtual bool postureCtrl(MtxPtr);
-    virtual void hitWall(const TVec3f &, HitSensor *);
-    virtual void hitPoly(u8, const TVec3f &, HitSensor *);
-    virtual bool passRing(const HitSensor *);
+    virtual void hitWall(const TVec3f&, HitSensor*);
+    virtual void hitPoly(u8, const TVec3f&, HitSensor*);
+    virtual bool passRing(const HitSensor*);
     virtual f32 getBlurOffset() const;
     virtual void draw3D() const;
 
     u32 _8;
-    u32 mStatusId;          // 0xC
+    u32 mStatusId;  // 0xC
     u8 _10;
 };

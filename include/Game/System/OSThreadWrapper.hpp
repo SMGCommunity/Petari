@@ -6,14 +6,14 @@ class JKRHeap;
 
 class OSThreadWrapper {
 public:
-    OSThreadWrapper(u32, int, int, JKRHeap *);
+    OSThreadWrapper(u32, int, int, JKRHeap*);
 
     virtual ~OSThreadWrapper();
     virtual void* run();
 
-    void initMessageQueue(JKRHeap *, int);
-    void initHeapSpecified(JKRHeap *, u32, int);
-    static void* start(void *);
+    void initMessageQueue(JKRHeap*, int);
+    void initHeapSpecified(JKRHeap*, u32, int);
+    static void* start(void*);
 
     /* 0x00 */ JKRHeap* mHeap;
     /* 0x04 */ OSThread* mThread;

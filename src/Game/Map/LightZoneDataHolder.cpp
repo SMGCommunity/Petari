@@ -1,5 +1,5 @@
-#include "Game/AreaObj/LightArea.hpp"
 #include "Game/Map/LightZoneDataHolder.hpp"
+#include "Game/AreaObj/LightArea.hpp"
 #include "Game/Map/LightFunction.hpp"
 #include "Game/Util.hpp"
 
@@ -13,7 +13,7 @@ void ZoneLightID::clear() {
     mLightID = -1;
 }
 
-bool ZoneLightID::isTargetArea(const LightArea *pLightArea) const {
+bool ZoneLightID::isTargetArea(const LightArea* pLightArea) const {
     if (_0 == pLightArea->mPlacedZoneID && mLightID == pLightArea->mObjArg0) {
         return false;
     }
@@ -54,7 +54,7 @@ void LightZoneDataHolder::initZoneData() {
     }
 }
 
-const char* LightZoneDataHolder::getAreaLightNameInZoneData(const ZoneLightID &zoneID) const {
+const char* LightZoneDataHolder::getAreaLightNameInZoneData(const ZoneLightID& zoneID) const {
     s32 val = zoneID._0;
 
     if (val < 0) {

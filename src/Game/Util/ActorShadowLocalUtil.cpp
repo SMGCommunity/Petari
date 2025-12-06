@@ -1,20 +1,14 @@
-#include "Game/Util.hpp"
 #include "Game/Util/ActorShadowLocalUtil.hpp"
+#include "Game/Util.hpp"
 
 namespace ActorShadow {
-    u32 getShadowControllerCount(const LiveActor *pActor) {
-        return pActor->mShadowControllerList->getControllerCount();
-    }
+    u32 getShadowControllerCount(const LiveActor* pActor) { return pActor->mShadowControllerList->getControllerCount(); }
 
-    ShadowController* getShadowController(const LiveActor *pActor, u32 a2) {
-        return pActor->mShadowControllerList->getController(a2);
-    }
+    ShadowController* getShadowController(const LiveActor* pActor, u32 a2) { return pActor->mShadowControllerList->getController(a2); }
 
-    ShadowController* getShadowController(const LiveActor *pActor, const char *pName) {
-        return pActor->mShadowControllerList->getController(pName);
-    }
+    ShadowController* getShadowController(const LiveActor* pActor, const char* pName) { return pActor->mShadowControllerList->getController(pName); }
 
-    ShadowController* createShadowControllerVolumeParam(LiveActor *pActor, const char *pName) {
+    ShadowController* createShadowControllerVolumeParam(LiveActor* pActor, const char* pName) {
         ShadowController* pController = new ShadowController(pActor, pName);
         pController->setDropPosPtr(&pActor->mPosition);
         pController->setDropDirPtr(&pActor->mGravity);
@@ -24,7 +18,7 @@ namespace ActorShadow {
         return pController;
     }
 
-    ShadowController* createShadowControllerSuefaceParam(LiveActor *pActor, const char *pName) {
+    ShadowController* createShadowControllerSuefaceParam(LiveActor* pActor, const char* pName) {
         ShadowController* pController = new ShadowController(pActor, pName);
         pController->setDropPosPtr(&pActor->mPosition);
         pController->setDropDirPtr(&pActor->mGravity);
@@ -34,23 +28,23 @@ namespace ActorShadow {
         return pController;
     }
 
-    ShadowDrawer* getShadowSurfaceOval(const LiveActor *pActor, const char *pName) {
+    ShadowDrawer* getShadowSurfaceOval(const LiveActor* pActor, const char* pName) {
         return pActor->mShadowControllerList->getController(pName)->getShadowDrawer();
     }
 
-    ShadowDrawer* getShadowVolumeSphere(const LiveActor *pActor, const char *pName) {
+    ShadowDrawer* getShadowVolumeSphere(const LiveActor* pActor, const char* pName) {
         return pActor->mShadowControllerList->getController(pName)->getShadowDrawer();
     }
 
-    ShadowDrawer* getShadowVolumeCylinder(const LiveActor *pActor, const char *pName) {
+    ShadowDrawer* getShadowVolumeCylinder(const LiveActor* pActor, const char* pName) {
         return pActor->mShadowControllerList->getController(pName)->getShadowDrawer();
     }
 
-    ShadowDrawer* getShadowVolumeBox(const LiveActor *pActor, const char *pName) {
+    ShadowDrawer* getShadowVolumeBox(const LiveActor* pActor, const char* pName) {
         return pActor->mShadowControllerList->getController(pName)->getShadowDrawer();
     }
 
-    ShadowDrawer* getShadowVolumeDrawer(const LiveActor *pActor, const char *pName) {
+    ShadowDrawer* getShadowVolumeDrawer(const LiveActor* pActor, const char* pName) {
         return pActor->mShadowControllerList->getController(pName)->getShadowDrawer();
     }
 
@@ -64,7 +58,7 @@ namespace ActorShadow {
         else {
             pController->offFollowHostScale();
         }
-    } 
+    }
 
     void setUpShadowControlIsSyncShowFromCSV(ShadowController *pController, const JMapInfoIter &rIter) {
         bool stack_8(true);
@@ -77,7 +71,7 @@ namespace ActorShadow {
         }
     } */
 
-    void setUpShadowControlFromCSV(ShadowController *pController, LiveActor *pActor, const JMapInfoIter &rIter) {
+    void setUpShadowControlFromCSV(ShadowController* pController, LiveActor* pActor, const JMapInfoIter& rIter) {
         float dropLength(1000.0f);
         rIter.getValue("DropLength", &dropLength);
         pController->setDropLength(dropLength);
@@ -103,7 +97,7 @@ namespace ActorShadow {
         pActor->mShadowControllerList->addController(pController);
         return pController;
     } */
-    
+
     // Minor mismatch: register swap
     /* ShadowSurfaceCircle* createShadowSurfaceCircleFromCSV(LiveActor *pActor, const JMapInfoIter &rIter) {
         ShadowController* pController = createShadowControlFromCSV(pActor, rIter);
@@ -115,4 +109,4 @@ namespace ActorShadow {
         pSurfaceCircle->setRadius(radius);
         return pSurfaceCircle;
     } */
-};
+};  // namespace ActorShadow

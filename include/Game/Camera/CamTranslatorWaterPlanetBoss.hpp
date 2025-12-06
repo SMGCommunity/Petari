@@ -4,10 +4,10 @@
 
 class CamTranslatorWaterPlanetBoss : public CamTranslatorBase {
 public:
-	CamTranslatorWaterPlanetBoss(CameraWaterPlanetBoss *);
+    CamTranslatorWaterPlanetBoss(CameraWaterPlanetBoss*);
 
-	virtual void setParam(const CameraParamChunk *);
-	virtual Camera *getCamera() const;
+    virtual void setParam(const CameraParamChunk*);
+    virtual Camera* getCamera() const;
 
-	CameraWaterPlanetBoss *mCamera;	// 0x4
+    CameraWaterPlanetBoss* mCamera;  // 0x4
 };

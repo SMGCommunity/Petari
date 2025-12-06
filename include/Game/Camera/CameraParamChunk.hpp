@@ -11,7 +11,7 @@ class CameraGeneralParam {
 public:
     CameraGeneralParam();
 
-    CameraGeneralParam &operator=(const CameraGeneralParam &);
+    CameraGeneralParam& operator=(const CameraGeneralParam&);
 
     f32 mDist;                  // 0x0
     TVec3f mAxis;               // 0x4
@@ -52,12 +52,12 @@ public:
         TVec3f mVPanAxis;   // 0x48
     };
 
-    CameraParamChunk(CameraHolder *, const CameraParamChunkID &);
+    CameraParamChunk(CameraHolder*, const CameraParamChunkID&);
 
-    virtual void copy(const CameraParamChunk *);
-    virtual void load(DotCamReader *, CameraHolder *);
+    virtual void copy(const CameraParamChunk*);
+    virtual void load(DotCamReader*, CameraHolder*);
     virtual void initiate();
-    virtual const char *getClassName() const;
+    virtual const char* getClassName() const;
 
     s32 getZoneID() const;
     bool isOnNoReset() const;
@@ -66,52 +66,52 @@ public:
     bool isAntiBlurOff() const;
     bool isCollisionOff() const;
     bool isSubjectiveCameraOff() const;
-    void getVPanAxis(TVec3f *) const;
+    void getVPanAxis(TVec3f*) const;
 
-    void setCameraType(const char *, const CameraHolder *);
+    void setCameraType(const char*, const CameraHolder*);
     void setUseFovy(bool);
     void setLOfsErpOff(bool);
     void setCollisionOff(bool);
 
-    void arrangeCamTypeName(u32, const char **);
+    void arrangeCamTypeName(u32, const char**);
 
-    CameraParamChunkID *mParamChunkID;  // 0x4
+    CameraParamChunkID* mParamChunkID;  // 0x4
     u8 mCameraTypeIndex;                // 0x8
     u8 _9[3];
     ExParam mExParam;                   // 0xC
-    CameraGeneralParam *mGeneralParam;  // 0x60
+    CameraGeneralParam* mGeneralParam;  // 0x60
     bool _64;
 };
 
 class CameraParamChunkGame : public CameraParamChunk {
 public:
-    CameraParamChunkGame(CameraHolder *, const CameraParamChunkID &);
-    
-    virtual void copy(const CameraParamChunk *);
-    virtual void load(DotCamReader *, CameraHolder *);
+    CameraParamChunkGame(CameraHolder*, const CameraParamChunkID&);
+
+    virtual void copy(const CameraParamChunk*);
+    virtual void load(DotCamReader*, CameraHolder*);
     virtual void initiate();
-    virtual const char *getClassName() const;
+    virtual const char* getClassName() const;
 
     u8 mThru;               // 0x65
     u8 mEnableEndErpFrame;  // 0x66
     u8 _67;
-    u32 mCamEndInt;         // 0x68
+    u32 mCamEndInt;  // 0x68
 };
 
 class CameraParamChunkEvent : public CameraParamChunk {
 public:
-    CameraParamChunkEvent(CameraHolder *, const CameraParamChunkID &);
+    CameraParamChunkEvent(CameraHolder*, const CameraParamChunkID&);
 
-    virtual void copy(const CameraParamChunk *);
-    virtual void load(DotCamReader *, CameraHolder *);
+    virtual void copy(const CameraParamChunk*);
+    virtual void load(DotCamReader*, CameraHolder*);
     virtual void initiate();
-    virtual const char *getClassName() const;
+    virtual const char* getClassName() const;
 
-    u8 mEnableErpFrame;     // 0x65
+    u8 mEnableErpFrame;  // 0x65
     u8 _66[2];
     u32 mEvFrame;           // 0x68
     u8 mEnableEndErpFrame;  // 0x6C
     u8 _6D[3];
-    u32 mCamEndInt;         // 0x70
-    u32 mEvPriority;        // 0x74
+    u32 mCamEndInt;   // 0x70
+    u32 mEvPriority;  // 0x74
 };

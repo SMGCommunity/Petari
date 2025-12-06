@@ -7,10 +7,7 @@
 class JPAEmitterManager;
 class JPAResource;
 
-enum JPAEmitterFlag {
-    JPA_EMITTER_PAUSE_FLAG =    1 << 1,
-    JPA_EMITTER_INIT_FLAG =     1 << 6
-};
+enum JPAEmitterFlag { JPA_EMITTER_PAUSE_FLAG = 1 << 1, JPA_EMITTER_INIT_FLAG = 1 << 6 };
 
 class JPABaseEmitter {
 public:
@@ -48,13 +45,13 @@ public:
     /* 0x0BC */ GXColor mGlobalEnvColor;
     /* 0x0C0 */ void* _C0;
     /* 0x0C4 */ u32 _C4;
-    /* 0x0C8 */ void* _C8; // Part of JPAList<JPABaseParticle>
-    /* 0x0CC */ void* _CC; // Part of JPAList<JPABaseParticle>
-    /* 0x0D0 */ u32 _D0; // Part of JPAList<JPABaseParticle>
-    /* 0x0D4 */ void* _D4; // Part of JPAList<JPABaseParticle>
-    /* 0x0D8 */ void* _D8; // Part of JPAList<JPABaseParticle>
-    /* 0x0DC */ u32 _DC; // Part of JPAList<JPABaseParticle>
-    /* 0x0E0 */ void* _E0; // JPAList<JPABaseParticle>*
+    /* 0x0C8 */ void* _C8;  // Part of JPAList<JPABaseParticle>
+    /* 0x0CC */ void* _CC;  // Part of JPAList<JPABaseParticle>
+    /* 0x0D0 */ u32 _D0;    // Part of JPAList<JPABaseParticle>
+    /* 0x0D4 */ void* _D4;  // Part of JPAList<JPABaseParticle>
+    /* 0x0D8 */ void* _D8;  // Part of JPAList<JPABaseParticle>
+    /* 0x0DC */ u32 _DC;    // Part of JPAList<JPABaseParticle>
+    /* 0x0E0 */ void* _E0;  // JPAList<JPABaseParticle>*
     /* 0x0E4 */ JPAEmitterManager* mManager;
     /* 0x0E8 */ JPAResource* mResource;
     /* 0x0EC */ void* _EC;

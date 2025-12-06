@@ -23,19 +23,17 @@ namespace NrvPenguinStudent {
     NEW_NERVE(PenguinStudentNrvSwim, PenguinStudent, Swim);
     NEW_NERVE(PenguinStudentNrvLead, PenguinStudent, Lead);
     NEW_NERVE(PenguinStudentNrvSlow, PenguinStudent, Slow);
-};
+};  // namespace NrvPenguinStudent
 
-PenguinStudent::PenguinStudent(const char *pName) : NPCActor(pName){
+PenguinStudent::PenguinStudent(const char* pName) : NPCActor(pName) {
     mRemovableTurtle = nullptr;
     mActor = nullptr;
     _15C = -1;
 }
 
-PenguinStudent::~PenguinStudent() {
-    
-}
+PenguinStudent::~PenguinStudent() {}
 
-void PenguinStudent::init(const JMapInfoIter &rIter) {
+void PenguinStudent::init(const JMapInfoIter& rIter) {
     MR::initDefaultPosAndQuat(this, rIter);
     MR::getJMapInfoArg0NoInit(rIter, &_15C);
     initModelManagerWithAnm("Penguin", nullptr, false);
@@ -55,7 +53,7 @@ void PenguinStudent::init(const JMapInfoIter &rIter) {
     if (MR::isConnectedWithRail(rIter)) {
         initRailRider(rIter);
         MR::moveCoordToNearestPos(this, mPosition);
-        mPosition.set<f32>(MR::getRailPos(this));
+        mPosition.set< f32 >(MR::getRailPos(this));
     }
 
     MR::joinToGroupArray(this, rIter, nullptr, 32);
@@ -64,8 +62,7 @@ void PenguinStudent::init(const JMapInfoIter &rIter) {
     if (_15C == -1) {
         mRemovableTurtle = new RemovableTurtle(this, true);
         setNerve(&NrvPenguinStudent::PenguinStudentNrvSlow::sInstance);
-    }
-    else {
+    } else {
         s32 arg1 = 10;
         MR::getJMapInfoArg1NoInit(rIter, &arg1);
         _168 = 100.0f * arg1;
@@ -81,7 +78,7 @@ void PenguinStudent::init(const JMapInfoIter &rIter) {
     MR::onCalcShadow(this, nullptr);
     if (mMsgCtrl) {
         MR::registerBranchFunc(mMsgCtrl, TalkMessageFunc_Inline(this, &PenguinStudent::branchFunc));
-    } 
+    }
     makeActorAppeared();
 }
 
@@ -102,12 +99,10 @@ bool PenguinStudent::branchFunc(u32 msg) {
 }
 
 bool PenguinStudent::tryReleaseTurtle() {
-    if (_15C == -1 
-        && isNerve(&NrvPenguinStudent::PenguinStudentNrvLead::sInstance)
-        && mRemovableTurtle->isPullRange()
-        && mRemovableTurtle->tryRemove()) {       
-            setNerve(&NrvPenguinStudent::PenguinStudentNrvSlow::sInstance);           
-            return true; 
+    if (_15C == -1 && isNerve(&NrvPenguinStudent::PenguinStudentNrvLead::sInstance) && mRemovableTurtle->isPullRange() &&
+        mRemovableTurtle->tryRemove()) {
+        setNerve(&NrvPenguinStudent::PenguinStudentNrvSlow::sInstance);
+        return true;
     }
     return false;
 }
@@ -115,7 +110,7 @@ bool PenguinStudent::tryReleaseTurtle() {
 void PenguinStudent::exeSwim() {
     if (MR::isFirstStep(this)) {
         MR::tryStartAction(this, "Swim");
-        MR::setBckFrameAtRandom(this);        
+        MR::setBckFrameAtRandom(this);
     }
     f32 speed = ((200.0f * MR::getRailCoordSpeed(mActor)) / 7.0f);
     MR::setRailCoord(this, MR::getRailCoord(mActor) - _168);
@@ -129,7 +124,7 @@ void PenguinStudent::exeSwim() {
     v14.x *= speed;
     v14.y *= speed;
     v14.z *= speed;
-    mPosition.set<f32>(mPosition + v14);
+    mPosition.set< f32 >(mPosition + v14);
     if (mMsgCtrl) {
         MR::tryTalkNearPlayer(mMsgCtrl);
     }
@@ -152,7 +147,7 @@ void PenguinStudent::exeSlow() {
     if (MR::isFirstStep(this)) {
         _11C = "Swim";
         _120 = "Swim";
-        _10C = 5.0f;        
+        _10C = 5.0f;
     }
 
     MR::tryStartMoveTalkAction(this);
@@ -167,7 +162,7 @@ void PenguinStudent::exeSlow() {
     }
 }
 
-void PenguinStudent::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
+void PenguinStudent::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isSensorPlayer(pReceiver)) {
         tryReleaseTurtle();
     }
@@ -175,7 +170,7 @@ void PenguinStudent::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
     NPCActor::attackSensor(pSender, pReceiver);
 }
 
-bool PenguinStudent::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool PenguinStudent::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgSpinStormRange(msg) && tryReleaseTurtle()) {
         return true;
     }

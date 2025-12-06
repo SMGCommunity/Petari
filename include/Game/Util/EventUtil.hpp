@@ -186,4 +186,4 @@ namespace MR {
     bool isOnGameEventFlagAstroGalaxyBgmBright();
     bool isOnMessageAlreadyRead(s8);
     void onMsgLedPattern();
-};
+};  // namespace MR

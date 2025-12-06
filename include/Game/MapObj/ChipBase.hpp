@@ -9,29 +9,27 @@ class PartsModel;
 
 class ChipBase : public LiveActor {
 public:
-    ChipBase(const char *, s32, const char *);
+    ChipBase(const char*, s32, const char*);
 
-    virtual ~ChipBase() {
+    virtual ~ChipBase() {}
 
-    }
-
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
     virtual void initAfterPlacement();
     virtual void makeActorAppeared();
     virtual void makeActorDead();
     virtual void control();
-    virtual bool receiveOtherMsg(u32, HitSensor *, HitSensor *);
+    virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
 
-    void initModel(const JMapInfoIter &);
+    void initModel(const JMapInfoIter&);
     void initSensor();
-    void initShadow(const JMapInfoIter &);
-    void initJMapParam(const JMapInfoIter &);
+    void initShadow(const JMapInfoIter&);
+    void initJMapParam(const JMapInfoIter&);
     void deactive();
     void setGroupID(s32);
-    void setHost(LiveActor *);
+    void setHost(LiveActor*);
     void appearWait();
     void appearFlashing(s32);
-    bool requestGet(HitSensor *, HitSensor *);
+    bool requestGet(HitSensor*, HitSensor*);
     bool requestShow();
     bool requestHide();
     bool requestStartControl();
@@ -43,8 +41,8 @@ public:
     void exeHide();
     void exeGot();
     bool isGettable() const;
-    static bool isNeedBubble(const JMapInfoIter &);
-    static void makeArchiveList(NameObjArchiveListCollector *, const JMapInfoIter &);
+    static bool isNeedBubble(const JMapInfoIter&);
+    static void makeArchiveList(NameObjArchiveListCollector*, const JMapInfoIter&);
 
     FlashingCtrl* mFlashingCtrl;    // 0x8C
     MapPartsRailMover* mRailMover;  // 0x90

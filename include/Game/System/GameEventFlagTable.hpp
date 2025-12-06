@@ -11,7 +11,7 @@ public:
     const GameEventFlag* getFlag() const;
     bool isValid() const;
 
-    u32 mIter;  // 0x0
+    s32 mIter;  // 0x0
 };
 
 class GameEventFlagTableInstance {
@@ -19,10 +19,14 @@ public:
     GameEventFlagTableInstance();
 
     void initSortTable();
-    const GameEventFlag* findFlag(const char *);
+    const GameEventFlag* findFlag(const char*);
 
-    u32 _0;
-    u32 _4;
+    struct Key {
+        u16 mHashCode;
+        const GameEventFlag* mFlag;
+    };
+    Key* mSortTable;
+    s32 mLength;
 };
 
 namespace GameEventFlagTable {
@@ -36,11 +40,11 @@ namespace GameEventFlagTable {
     s32 calcExclamationGalaxyNum();
     const char* getExclamationGalaxyNameFromIndex(int);
     bool isExist(const char*);
-    s32 getIndex(const GameEventFlag*);
+    int getIndex(const GameEventFlag*);
     bool isDependedAnother(const char*, const char*);
-    s32 getIndexFromHashCode(u16);
+    int getIndexFromHashCode(u16);
     s32 calcSpecialPowerStarNum(const char*);
     s32 getStarPieceNumToOpenExclamationGalaxy(const char*);
     s32 calcGreenPowerStarNum();
-    u32 getGalaxyDependedFlags(const char**, int, const char*);
-};
+    s32 getGalaxyDependedFlags(const char**, int, const char*);
+};  // namespace GameEventFlagTable

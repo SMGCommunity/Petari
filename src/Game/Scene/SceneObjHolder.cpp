@@ -111,7 +111,7 @@
 #include "Game/Screen/SceneWipeHolder.hpp"
 #include "Game/Screen/ScreenAlphaCapture.hpp"
 #include "Game/Screen/ScreenBlurEffect.hpp"
-// #include "Game/Screen/StaffRoll.hpp"
+#include "Game/Screen/StaffRoll.hpp"
 #include "Game/System/GameSystem.hpp"
 #include "Game/System/GameSystemSceneController.hpp"
 #include "Game/Util/BaseMatrixFollowTargetHolder.hpp"
@@ -418,24 +418,19 @@ NameObj* SceneObjHolder::newEachObj(int id) {
     case SceneObj_PrologueHolder:
         return new PrologueHolder("プロローグ保持");
     case SceneObj_StaffRoll:
-        // return new StaffRoll("スタッフロール");
-        return nullptr;
+        return new StaffRoll("スタッフロール");
     default:
         return nullptr;
     }
 }
 
 namespace MR {
-    NameObj* createSceneObj(int id) {
-        return getSceneObjHolder()->create(id);
-    }
+    NameObj* createSceneObj(int id) { return getSceneObjHolder()->create(id); }
 
-    SceneObjHolder* getSceneObjHolder() {
-        return SingletonHolder<GameSystem>::get()->mSceneController->getSceneObjHolder();
-    }
+    SceneObjHolder* getSceneObjHolder() { return SingletonHolder< GameSystem >::get()->mSceneController->getSceneObjHolder(); }
 
     bool isExistSceneObj(int id) {
-        GameSystemSceneController* pSceneController = SingletonHolder<GameSystem>::get()->mSceneController;
+        GameSystemSceneController* pSceneController = SingletonHolder< GameSystem >::get()->mSceneController;
 
         if (pSceneController == nullptr) {
             return false;
@@ -447,4 +442,4 @@ namespace MR {
 
         return MR::getSceneObjHolder()->isExist(id);
     }
-};
+};  // namespace MR

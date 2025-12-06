@@ -6,6 +6,6 @@ class MarioActor;
 
 class MarioAbyssDamage : public MarioState {
 public:
-    MarioAbyssDamage(MarioActor *);
+    MarioAbyssDamage(MarioActor*);
     u8 _11[0x13];
 };

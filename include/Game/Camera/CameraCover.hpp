@@ -6,7 +6,7 @@
 
 class CameraCover : public NameObj {
 public:
-    CameraCover(const char *);
+    CameraCover(const char*);
 
     virtual ~CameraCover();
     virtual void movement();
@@ -16,9 +16,7 @@ public:
     bool isCameraHopping() const;
     void copyCamera();
 
-    inline s32 getThing() {
-        return _3C;
-    }
+    inline s32 getThing() { return _3C; }
 
     TMtx34f _C;
     volatile s32 _3C;
@@ -26,5 +24,5 @@ public:
     bool _41;
     u8 _42[2];
     u32 _44;
-    CaptureScreenActor* mActor;     // 0x48
+    CaptureScreenActor* mActor;  // 0x48
 };

@@ -4,23 +4,21 @@
 
 namespace nw4r {
     namespace lyt {
-        void Group::AppendPane(Pane *pPane) {
-            if (detail::PaneLink* pPaneLink = Layout::NewObj<detail::PaneLink>()) {
+        void Group::AppendPane(Pane* pPane) {
+            if (detail::PaneLink* pPaneLink = Layout::NewObj< detail::PaneLink >()) {
                 pPaneLink->mTarget = pPane;
                 mPaneLinkList.PushBack(pPaneLink);
             }
         }
 
-        void Group::Init() {
-            mbUserAllocated = false;
-        }
+        void Group::Init() { mbUserAllocated = false; }
 
-        Group::Group(const res::Group *pResGroup, Pane *pRootPane) {
+        Group::Group(const res::Group* pResGroup, Pane* pRootPane) {
             Init();
             strncpy(mName, pResGroup->name, sizeof(mName) - 1);
             mName[sizeof(mName) - 1] = '\0';
 
-            const char *const paneNameBase = detail::ConvertOffsToPtr<char>(pResGroup, sizeof(res::Group));
+            const char* const paneNameBase = detail::ConvertOffsToPtr< char >(pResGroup, sizeof(res::Group));
 
             for (int i = 0; i < pResGroup->paneNum; ++i) {
                 if (Pane* pFindPane = pRootPane->FindPaneByName(paneNameBase + i * 16, true)) {
@@ -47,11 +45,9 @@ namespace nw4r {
             }
         }
 
-        void GroupContainer::AppendGroup(Group *pGroup) {
-            mGroupList.PushBack(pGroup);
-        }
+        void GroupContainer::AppendGroup(Group* pGroup) { mGroupList.PushBack(pGroup); }
 
-        Group* GroupContainer::FindGroupByName(const char *findName) {
+        Group* GroupContainer::FindGroupByName(const char* findName) {
             for (GroupList::Iterator it = mGroupList.GetBeginIter(); it != mGroupList.GetEndIter(); ++it) {
                 if (detail::EqualsResName(it->GetName(), findName)) {
                     return &(*it);
@@ -60,5 +56,5 @@ namespace nw4r {
 
             return nullptr;
         }
-    };
-};
+    };  // namespace lyt
+};      // namespace nw4r

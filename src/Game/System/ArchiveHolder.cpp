@@ -2,15 +2,15 @@
 #include "Game/Util.hpp"
 #include <cstring>
 
-ArchiveHolderArchiveEntry::ArchiveHolderArchiveEntry(void *pData, JKRHeap *pHeap, const char *pName) {
+ArchiveHolderArchiveEntry::ArchiveHolderArchiveEntry(void* pData, JKRHeap* pHeap, const char* pName) {
     mHeap = pHeap;
     mArchive = nullptr;
     mArchiveName = nullptr;
-    JKRMemArchive* archive = new(pHeap, 0) JKRMemArchive();
+    JKRMemArchive* archive = new (pHeap, 0) JKRMemArchive();
     archive->mountFixed(pData, JKR_MEM_BREAK_FLAG_0);
     mArchive = archive;
     s32 len = strlen(pName) + 1;
-    char* name = new(pHeap, 0) char[len];
+    char* name = new (pHeap, 0) char[len];
     mArchiveName = name;
     MR::copyString(mArchiveName, pName, len);
 }
@@ -29,8 +29,8 @@ ArchiveHolder::ArchiveHolder() {
     OSInitMutex(&mMutex);
 }
 
-ArchiveHolderArchiveEntry* ArchiveHolder::createAndAdd(void *pData, JKRHeap *pHeap, const char *pName) {
-    ArchiveHolderArchiveEntry* entry = new(pHeap, 0) ArchiveHolderArchiveEntry(pData, pHeap, pName);
+ArchiveHolderArchiveEntry* ArchiveHolder::createAndAdd(void* pData, JKRHeap* pHeap, const char* pName) {
+    ArchiveHolderArchiveEntry* entry = new (pHeap, 0) ArchiveHolderArchiveEntry(pData, pHeap, pName);
     OSMutex* mutex = &mMutex;
     OSLockMutex(mutex);
     s32 num = mCurEntryNum;
@@ -40,12 +40,12 @@ ArchiveHolderArchiveEntry* ArchiveHolder::createAndAdd(void *pData, JKRHeap *pHe
     return entry;
 }
 
-JKRMemArchive* ArchiveHolder::getArchive(const char *pName) const {
+JKRMemArchive* ArchiveHolder::getArchive(const char* pName) const {
     ArchiveHolderArchiveEntry* entry = findEntry(pName);
     return (entry != nullptr) ? entry->mArchive : nullptr;
 }
 
-void ArchiveHolder::getArchiveAndHeap(const char *pName, JKRArchive** pArchive, JKRHeap** pHeap) const {
+void ArchiveHolder::getArchiveAndHeap(const char* pName, JKRArchive** pArchive, JKRHeap** pHeap) const {
     ArchiveHolderArchiveEntry* entry = findEntry(pName);
 
     if (entry != nullptr) {
@@ -56,7 +56,7 @@ void ArchiveHolder::getArchiveAndHeap(const char *pName, JKRArchive** pArchive, 
 
 // void ArchiveHolder::removeIfIsEqualHeap(JKRHeap *pHeap)
 
-ArchiveHolderArchiveEntry* ArchiveHolder::findEntry(const char *pName) const {
+ArchiveHolderArchiveEntry* ArchiveHolder::findEntry(const char* pName) const {
     for (ArchiveHolderArchiveEntry** i = first(); i != last(); i++) {
         if (MR::isEqualStringCase((*i)->mArchiveName, pName)) {
             return *i;

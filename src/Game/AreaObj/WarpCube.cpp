@@ -10,18 +10,16 @@
 #include <cstdio>
 #include <cstring>
 
-WarpCube::~WarpCube() { 
-
-}
+WarpCube::~WarpCube() {}
 
 // WarpCubeMgr::getPairCube
 
-void WarpCubeMgr::setInvalidateTimer(AreaObj *pObj, u16 a2) {
-    reinterpret_cast<WarpCube*>(pObj)->_48 = a2;
-    reinterpret_cast<WarpCube*>(pObj)->mIsValid = false;
+void WarpCubeMgr::setInvalidateTimer(AreaObj* pObj, u16 a2) {
+    reinterpret_cast< WarpCube* >(pObj)->_48 = a2;
+    reinterpret_cast< WarpCube* >(pObj)->mIsValid = false;
 }
 
-void WarpCubeMgr::startEventCamera(const AreaObj *pAreaObj) {
+void WarpCubeMgr::startEventCamera(const AreaObj* pAreaObj) {
     WarpCube* cube = (WarpCube*)pAreaObj;
     MR::startEventCameraNoTarget(cube->mCameraInfo, cube->mEventName, -1);
     mWarpCube = cube;
@@ -89,7 +87,7 @@ void WarpCube::draw() const {
 }
 */
 
-void WarpCube::init(const JMapInfoIter &rIter) {
+void WarpCube::init(const JMapInfoIter& rIter) {
     AreaObj::init(rIter);
 
     s32 groupID = -1;

@@ -6,11 +6,11 @@ JointController::JointController() {
     mJoint = 0;
 }
 
-bool JointController::calcJointMatrix(TPos3f *, const JointControllerInfo &) {
+bool JointController::calcJointMatrix(TPos3f*, const JointControllerInfo&) {
     return 0;
 }
 
-bool JointController::calcJointMatrixAfterChild(TPos3f *, const JointControllerInfo &) {
+bool JointController::calcJointMatrixAfterChild(TPos3f*, const JointControllerInfo&) {
     return 0;
 }
 

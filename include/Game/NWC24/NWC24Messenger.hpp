@@ -76,7 +76,7 @@ namespace NWC24MessengerSub {
         /* 0x14 */ SysInfoWindow* mMiniWindow;
         /* 0x18 */ const Nerve* _18;
     };
-};
+};  // namespace NWC24MessengerSub
 
 class NWC24Messenger : public NameObj {
 public:
@@ -139,4 +139,4 @@ namespace MR {
     void termMail(const char*);
     bool isMailSent(const char*);
     bool isMailErrorHappened(const char*);
-};
+};  // namespace MR

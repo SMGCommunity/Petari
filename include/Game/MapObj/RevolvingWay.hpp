@@ -6,10 +6,10 @@
 
 class RevolvingWay : public LiveActor {
 public:
-    RevolvingWay(const char *);
+    RevolvingWay(const char*);
 
     virtual ~RevolvingWay();
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
     virtual void control();
     virtual void calcAndSetBaseMtx();
 

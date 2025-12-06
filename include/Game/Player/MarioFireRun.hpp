@@ -6,6 +6,6 @@ class MarioActor;
 
 class MarioFireRun : public MarioState {
 public:
-    MarioFireRun(MarioActor *);
+    MarioFireRun(MarioActor*);
     u8 _11[11];
 };

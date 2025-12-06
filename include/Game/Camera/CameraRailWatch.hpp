@@ -4,12 +4,12 @@
 
 class CameraRailWatch : public Camera {
 public:
-    CameraRailWatch(const char *);
+    CameraRailWatch(const char*);
     virtual ~CameraRailWatch();
 
     virtual void reset();
-    virtual CameraTargetObj *calc();
-    virtual CamTranslatorBase *createTranslator();
+    virtual CameraTargetObj* calc();
+    virtual CamTranslatorBase* createTranslator();
 
     void setParam(s32, s32, s32, f32, f32, f32);
 

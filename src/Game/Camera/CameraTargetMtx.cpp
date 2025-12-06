@@ -1,10 +1,8 @@
-#include "Game/AreaObj/CubeCamera.hpp"
 #include "Game/Camera/CameraTargetMtx.hpp"
+#include "Game/AreaObj/CubeCamera.hpp"
 #include "Game/Util/GravityUtil.hpp"
 
-void CameraTargetObj::init(const JMapInfoIter &rIter) {
-
-}
+void CameraTargetObj::init(const JMapInfoIter& rIter) {}
 
 bool CameraTargetObj::isTurning() const {
     return false;
@@ -22,7 +20,7 @@ u32 CameraTargetObj::getSpecialMode() const {
     return 0;
 }
 
-GravityInfo *CameraTargetObj::getGravityInfo() const {
+GravityInfo* CameraTargetObj::getGravityInfo() const {
     return nullptr;
 }
 
@@ -42,11 +40,9 @@ bool CameraTargetObj::isDebugMode() const {
     return false;
 }
 
-void CameraTargetObj::resetStatus() {
-    
-}
+void CameraTargetObj::resetStatus() {}
 
-CameraTargetMtx::CameraTargetMtx(const char *pName) : CameraTargetObj(pName) {
+CameraTargetMtx::CameraTargetMtx(const char* pName) : CameraTargetObj(pName) {
     mPosition.x = 0.0f;
     mPosition.y = 0.0f;
     mPosition.z = 0.0f;
@@ -70,9 +66,7 @@ CameraTargetMtx::CameraTargetMtx(const char *pName) : CameraTargetObj(pName) {
     mMatrix.identity();
 }
 
-CameraTargetMtx::~CameraTargetMtx() {
-
-}
+CameraTargetMtx::~CameraTargetMtx() {}
 
 #ifdef NON_MATCHING
 // Wrong instruction order for the first 4 TVec3f.set(), register mismatch
@@ -89,11 +83,10 @@ void CameraTargetMtx::movement() {
         mLastMove.z = 0.0f;
         mLastMove.y = 0.0f;
         mLastMove.x = 0.0f;
-    }
-    else {
-        register TVec3f &rPos = position;
-        register TVec3f &thisPos = mPosition;
-        register TVec3f &thisLastMove = mLastMove;
+    } else {
+        register TVec3f& rPos = position;
+        register TVec3f& thisPos = mPosition;
+        register TVec3f& thisLastMove = mLastMove;
 
         __asm {
             psq_l   f0, 0(rPos), 0, 0
@@ -111,48 +104,47 @@ void CameraTargetMtx::movement() {
     mPosition.y = position.y;
     mPosition.z = position.z;
 
-    AreaObj *area = MR::getAreaObj("CubeCamera", mPosition);
+    AreaObj* area = MR::getAreaObj("CubeCamera", mPosition);
 
     if (area == nullptr) {
         mCameraArea = nullptr;
-    }
-    else {
-        mCameraArea = reinterpret_cast<CubeCameraArea *>(area);
+    } else {
+        mCameraArea = reinterpret_cast< CubeCameraArea* >(area);
     }
 
     MR::calcGravityVectorOrZero(this, mPosition, &mGravityVector, nullptr, 0);
 }
 #endif
 
-const TVec3f *CameraTargetMtx::getPosition() const {
+const TVec3f* CameraTargetMtx::getPosition() const {
     return &mPosition;
 }
 
-const TVec3f *CameraTargetMtx::getUpVec() const {
+const TVec3f* CameraTargetMtx::getUpVec() const {
     return &mUp;
 }
 
-const TVec3f *CameraTargetMtx::getFrontVec() const {
+const TVec3f* CameraTargetMtx::getFrontVec() const {
     return &mFront;
 }
 
-const TVec3f *CameraTargetMtx::getSideVec() const {
+const TVec3f* CameraTargetMtx::getSideVec() const {
     return &mSide;
 }
 
-const TVec3f *CameraTargetMtx::getLastMove() const {
+const TVec3f* CameraTargetMtx::getLastMove() const {
     return &mLastMove;
 }
 
-const TVec3f *CameraTargetMtx::getGroundPos() const {
+const TVec3f* CameraTargetMtx::getGroundPos() const {
     return &mPosition;
 }
 
-const TVec3f *CameraTargetMtx::getGravityVector() const {
+const TVec3f* CameraTargetMtx::getGravityVector() const {
     return &mGravityVector;
 }
 
-CubeCameraArea *CameraTargetMtx::getCubeCameraArea() const {
+CubeCameraArea* CameraTargetMtx::getCubeCameraArea() const {
     return mCameraArea;
 }
 

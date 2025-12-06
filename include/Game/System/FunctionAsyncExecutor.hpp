@@ -8,15 +8,13 @@ class JKRUnitHeap;
 
 class FunctionAsyncExecInfo {
 public:
-    FunctionAsyncExecInfo(MR::FunctorBase *, int, const char *);
+    FunctionAsyncExecInfo(MR::FunctorBase*, int, const char*);
 
     ~FunctionAsyncExecInfo();
 
     void execute();
-    
-    bool isSame(const char *pStr) {
-        return MR::strcasecmp(mName, pStr) == 0;
-    }
+
+    bool isSame(const char* pStr) { return MR::strcasecmp(mName, pStr) == 0; }
 
     /* 0x00 */ MR::FunctorBase* mFunc;
     /* 0x04 */ int mPriority;
@@ -28,7 +26,7 @@ public:
 
 class FunctionAsyncExecutorThread : public OSThreadWrapper {
 public:
-    FunctionAsyncExecutorThread(JKRHeap *);
+    FunctionAsyncExecutorThread(JKRHeap*);
 
     virtual void* run();
 
@@ -38,7 +36,7 @@ public:
 
 class FunctionAsyncExecutorOnMainThread {
 public:
-    FunctionAsyncExecutorOnMainThread(OSThread *);
+    FunctionAsyncExecutorOnMainThread(OSThread*);
 
     void update();
 
@@ -53,17 +51,17 @@ public:
     FunctionAsyncExecutor();
 
     void update();
-    void start(const MR::FunctorBase &, int, const char *);
-    bool startOnMainThread(const MR::FunctorBase &, const char *);
-    void waitForEnd(const char *);
-    bool isEnd(const char *) const;
-    OSThread* getOSThread(const char *);
-    FunctionAsyncExecInfo* createAndAddExecInfo(const MR::FunctorBase &, int, const char *);
+    void start(const MR::FunctorBase&, int, const char*);
+    bool startOnMainThread(const MR::FunctorBase&, const char*);
+    void waitForEnd(const char*);
+    bool isEnd(const char*) const;
+    OSThread* getOSThread(const char*);
+    FunctionAsyncExecInfo* createAndAddExecInfo(const MR::FunctorBase&, int, const char*);
     FunctionAsyncExecutorThread* getSuspendThread();
 
     /* 0x000 */ FunctionAsyncExecutorThread* mThreads[2];
     /* 0x008 */ FunctionAsyncExecutorOnMainThread* mMainThreadExec;
-    /* 0x00C */ MR::Vector<MR::FixedArray<FunctionAsyncExecInfo*, 256> > mHolders;
+    /* 0x00C */ MR::Vector< MR::FixedArray< FunctionAsyncExecInfo*, 256 > > mHolders;
     /* 0x410 */ JKRUnitHeap* _410;
     /* 0x414 */ JKRExpHeap* _414;
 };

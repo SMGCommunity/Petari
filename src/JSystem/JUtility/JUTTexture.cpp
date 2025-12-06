@@ -21,7 +21,7 @@ JUTTexture::JUTTexture(int width, int height, GXTexFmt format) {
     mFlag = mFlag & 2 | 1;
     u32 bufSize = GXGetTexBufferSize(width, height, format, GX_FALSE, 1);
 
-    ResTIMG* texBuf = reinterpret_cast<ResTIMG*>(new(sizeof(ResTIMG)) u8[bufSize + sizeof(ResTIMG)]);
+    ResTIMG* texBuf = reinterpret_cast< ResTIMG* >(new (sizeof(ResTIMG)) u8[bufSize + sizeof(ResTIMG)]);
     _3C = texBuf;
     texBuf->mFormat = format;
     texBuf->mTransparency = 0;
@@ -47,7 +47,7 @@ JUTTexture::JUTTexture(int width, int height, GXTexFmt format) {
     mEmbPalette = nullptr;
 
     // cast to u8 solves ambiguity
-    storeTIMG(texBuf, static_cast<u8>(0));
+    storeTIMG(texBuf, static_cast< u8 >(0));
     DCFlushRange(mImage, bufSize);
 }
 
@@ -67,9 +67,8 @@ void JUTTexture::storeTIMG(const ResTIMG* pTIMG, JUTPalette* pPalette) {
     GXTlut tlut;
 
     if (pPalette != nullptr) {
-        tlut = static_cast<GXTlut>(pPalette->mName);
-    }
-    else {
+        tlut = static_cast< GXTlut >(pPalette->mName);
+    } else {
         tlut = GX_TLUT0;
     }
 
@@ -85,22 +84,20 @@ void JUTTexture::attachPalette(JUTPalette* pPalette) {
 
     if (pPalette == nullptr && mEmbPalette != nullptr) {
         mPalette = mEmbPalette;
-    }
-    else {
+    } else {
         mPalette = pPalette;
     }
 
-    initTexObj(static_cast<GXTlut>(mPalette->mName));
+    initTexObj(static_cast< GXTlut >(mPalette->mName));
 }
 
 void JUTTexture::init() {
     if (mTIMG->mPaletteNum == 0) {
         initTexObj();
-    }
-    else if (mEmbPalette != nullptr) {
+    } else if (mEmbPalette != nullptr) {
         mPalette = mEmbPalette;
 
-        initTexObj(static_cast<GXTlut>(mPalette->mName));
+        initTexObj(static_cast< GXTlut >(mPalette->mName));
     }
 }
 
@@ -146,8 +143,7 @@ void JUTTexture::capture(int width, int height, GXTexFmt format, bool mipmap, GX
     if (mFlag & 0x1) {
         if (mipmap) {
             GXSetTexCopySrc(width, height, mTIMG->mWidth * 2, mTIMG->mHeight * 2);
-        }
-        else {
+        } else {
             GXSetTexCopySrc(width, height, mTIMG->mWidth, mTIMG->mHeight);
         }
 

@@ -2,7 +2,7 @@
 #include "Game/AudioLib/AudWrap.hpp"
 #include "Game/GameAudio/AudStageBgmTable.hpp"
 
-EarthenPipe::EarthenPipe(const char *pName) : LiveActor(pName) {
+EarthenPipe::EarthenPipe(const char* pName) : LiveActor(pName) {
     _8C.x = 0.0f;
     _8C.y = 0.0f;
     _8C.z = 0.0f;
@@ -31,9 +31,9 @@ EarthenPipe::EarthenPipe(const char *pName) : LiveActor(pName) {
     _BC.identity();
 }
 
-void EarthenPipe::init(const JMapInfoIter &rIter) {
+void EarthenPipe::init(const JMapInfoIter& rIter) {
     MR::createSceneObj(SceneObj_EarthenPipeMediator);
-    MR::getSceneObj<EarthenPipeMediator>(SceneObj_EarthenPipeMediator)->entry(this, rIter);
+    MR::getSceneObj< EarthenPipeMediator >(SceneObj_EarthenPipeMediator)->entry(this, rIter);
     MR::initDefaultPos(this, rIter);
     MR::getJMapInfoArg0NoInit(rIter, &mHorizExitForce);
     MR::getJMapInfoArg1NoInit(rIter, &mVertExitForce);
@@ -44,12 +44,12 @@ void EarthenPipe::init(const JMapInfoIter &rIter) {
     s32 arg7 = 0;
     MR::getJMapInfoArg7NoInit(rIter, &arg7);
     bool isWaterPipe = false;
-    
+
     if (MR::isObjectName(rIter, "EarthenPipeInWater")) {
         isWaterPipe = true;
     }
 
-    _8C.set<f32>(mPosition);
+    _8C.set< f32 >(mPosition);
     MR::calcGravity(this);
     initModelManagerWithAnm("EarthenPipe", nullptr, false);
     mTopJointMtx = MR::getJointMtx(this, "Top");
@@ -66,16 +66,15 @@ void EarthenPipe::init(const JMapInfoIter &rIter) {
         f32 z = v25.mMtx[2][1];
         f32 y = v25.mMtx[1][1];
         f32 x = v25.mMtx[0][1];
-        _98.set<f32>(x, y, z);
-    }
-    else {
-        _98.set<f32>(mGravity);
+        _98.set< f32 >(x, y, z);
+    } else {
+        _98.set< f32 >(mGravity);
         f32 _x = _98.x;
         f32 mult = -1.0f;
         f32 x = _x * mult;
         f32 y = _98.y * mult;
         f32 z = _98.z * mult;
-        
+
         _98.x = x;
         _98.y = y;
         _98.z = z;
@@ -99,8 +98,7 @@ void EarthenPipe::init(const JMapInfoIter &rIter) {
 
     if (isWaterPipe) {
         initHitSensor(3);
-    }
-    else {
+    } else {
         initHitSensor(1);
     }
 
@@ -113,8 +111,7 @@ void EarthenPipe::init(const JMapInfoIter &rIter) {
 
     if (mPipeMode == 3) {
         MR::initCollisionParts(this, "EarthenPipeS", getSensor("binder"), mTopJointMtx);
-    }
-    else {
+    } else {
         MR::initCollisionParts(this, "EarthenPipe", getSensor("binder"), mTopJointMtx);
     }
 
@@ -143,8 +140,7 @@ void EarthenPipe::init(const JMapInfoIter &rIter) {
         MR::tryStartAllAnim(mPipeStreamModel, "EarthenPipeStream");
         mPipeStreamModel->appear();
         _19C = 1;
-    }
-    else {
+    } else {
         _19C = 0;
     }
 
@@ -155,8 +151,7 @@ void EarthenPipe::init(const JMapInfoIter &rIter) {
         if (mPipeStreamModel != nullptr) {
             MR::registerDemoSimpleCastAll(mPipeStreamModel);
         }
-    }
-    else if (MR::isEqualStageName("HeavensDoorGalaxy")) {
+    } else if (MR::isEqualStageName("HeavensDoorGalaxy")) {
         MR::registerDemoSimpleCastAll(this);
     }
 
@@ -188,17 +183,15 @@ bool EarthenPipe::tryHideDown() {
     if (!mPipeMode || (mPipeMode - 3) <= 1u) {
         setNerve(&NrvEarthenPipe::EarthenPipeNrvInvalid::sInstance);
         return false;
-    }
-    else {
+    } else {
         if (mPipeMode == 2) {
             mPipeMode = 0;
             setNerve(&NrvEarthenPipe::EarthenPipeNrvInvalid::sInstance);
             return false;
-        }
-        else {
+        } else {
             setNerve(&NrvEarthenPipe::EarthenPipeNrvWaitToHideDown::sInstance);
             return true;
-        }     
+        }
     }
 }
 
@@ -207,8 +200,7 @@ bool EarthenPipe::isNerveShowUp() const {
 
     if (isNerve(&NrvEarthenPipe::EarthenPipeNrvShowUp::sInstance) || isNerve(&NrvEarthenPipe::EarthenPipeNrvShowUp::sInstance)) {
         ret = true;
-    }
-    else {
+    } else {
         ret = false;
     }
 
@@ -226,8 +218,7 @@ void EarthenPipe::exeWait() {
                     _19C = 1;
                 }
             }
-        }
-        else if (MR::isValidHitSensor(this, "binder")) {
+        } else if (MR::isValidHitSensor(this, "binder")) {
             MR::invalidateHitSensors(this);
             if (mPipeStreamModel != nullptr) {
                 mPipeStreamModel->kill();
@@ -262,8 +253,7 @@ void EarthenPipe::exePlayerIn() {
         JMath::gekko_ps_copy12(&_F0, _B0->getBaseMtx());
         if (_B0->tryShowUp()) {
             setNerve(&NrvEarthenPipe::EarthenPipeNrvTargetPipeShowUp::sInstance);
-        }
-        else {
+        } else {
             setNerve(&NrvEarthenPipe::EarthenPipeNrvPlayerOut::sInstance);
         }
     }
@@ -317,18 +307,16 @@ void EarthenPipe::exePlayerOut() {
     }
 }
 
-inline bool isNear(const LiveActor *actor) {
+inline bool isNear(const LiveActor* actor) {
     return !(MR::isNearPlayer(actor, 100.0f));
 }
 
 void EarthenPipe::exeInvalid() {
     bool near;
-    if (MR::isGreaterStep(this, 0x1E) && MR::isOnGroundPlayer() 
-        || mPipeMode == 4 && isNear(this)
-        || MR::isPlayerSwimming() && isNear(this)) {
-            MR::validateClipping(this);
-            MR::validateHitSensors(this);
-            setNerve(&NrvEarthenPipe::EarthenPipeNrvWait::sInstance);
+    if (MR::isGreaterStep(this, 0x1E) && MR::isOnGroundPlayer() || mPipeMode == 4 && isNear(this) || MR::isPlayerSwimming() && isNear(this)) {
+        MR::validateClipping(this);
+        MR::validateHitSensors(this);
+        setNerve(&NrvEarthenPipe::EarthenPipeNrvWait::sInstance);
     }
 }
 
@@ -383,7 +371,7 @@ void EarthenPipe::control() {
 // bool EarthenPipe::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver)
 
 void EarthenPipe::calcTrans(f32 a1) {
-    mPosition.set<f32>(_98);
+    mPosition.set< f32 >(_98);
     mPosition.scale(a1 * _A4);
     mPosition.add(_8C);
 
@@ -400,7 +388,7 @@ void EarthenPipe::processBgmPlayerIn() {
     s32 idx = _B0->mMusicChangeIdx;
     if (idx >= 0) {
         u32 bgmId = AudStageBgmTable::getBgmId(MR::getCurrentStageName(), idx);
-        if (bgmId != -1 ) {
+        if (bgmId != -1) {
             s32 cur = AudWrap::getBgmMgr()->_10;
             if (cur != bgmId) {
                 MR::stopStageBGM(60);
@@ -440,9 +428,9 @@ void EarthenPipe::processBgmPlayerOut() {
                     if (bgm != nullptr) {
                         bgm->changeTrackMuteState(bgmState, 0);
                     }
-                } 
+                }
             }
-        }    
+        }
     }
 }
 
@@ -458,13 +446,13 @@ EarthenPipeMediator::EarthenPipeMediator() : NameObj("土管仲介者") {
     }
 }
 
-void EarthenPipeMediator::entry(EarthenPipe *pPipe, const JMapInfoIter &rIter) {
+void EarthenPipeMediator::entry(EarthenPipe* pPipe, const JMapInfoIter& rIter) {
     s32 pipeID = -1;
     MR::getJMapInfoArg3NoInit(rIter, &pipeID);
 
     for (s32 i = 0; i < mNumEntries; i++) {
         EarthenPipeMediator::Entry* entry = &mPipeEntries[i];
-        
+
         if (pipeID == entry->mPipeID) {
             entry->_4 = pPipe;
             entry->_0->_B0 = pPipe;
@@ -479,13 +467,9 @@ void EarthenPipeMediator::entry(EarthenPipe *pPipe, const JMapInfoIter &rIter) {
     mNumEntries++;
 }
 
-EarthenPipe::~EarthenPipe() {
+EarthenPipe::~EarthenPipe() {}
 
-}
-
-EarthenPipeMediator::~EarthenPipeMediator() {
-
-}
+EarthenPipeMediator::~EarthenPipeMediator() {}
 
 namespace NrvEarthenPipe {
     INIT_NERVE(EarthenPipeNrvHideDown);
@@ -500,8 +484,7 @@ namespace NrvEarthenPipe {
     INIT_NERVE(EarthenPipeNrvPlayerIn);
     INIT_NERVE(EarthenPipeNrvReady);
     INIT_NERVE(EarthenPipeNrvWait);
-};
-
+};  // namespace NrvEarthenPipe
 
 void EarthenPipe::exeWaitToHideDown() {
     if (MR::isStep(this, 0x28)) {
@@ -519,6 +502,4 @@ MtxPtr EarthenPipe::getBaseMtx() const {
     return mTopJointMtx;
 }
 
-void EarthenPipe::calcAnim() {
-
-}
+void EarthenPipe::calcAnim() {}

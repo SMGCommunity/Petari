@@ -1,14 +1,14 @@
 #include <NMWException.h>
 
 typedef struct ProcessInfo {
-	__eti_init_info* exception_info;
-	char* TOC;
-	int active;
+    __eti_init_info* exception_info;
+    char* TOC;
+    int active;
 } ProcessInfo;
 
 static ProcessInfo fragmentinfo[1];
 
-int __register_fragment(struct __eti_init_info *pInfo, char *pTOC) {
+int __register_fragment(struct __eti_init_info* pInfo, char* pTOC) {
     ProcessInfo* info;
     int i;
 
@@ -20,7 +20,6 @@ int __register_fragment(struct __eti_init_info *pInfo, char *pTOC) {
             return i;
         }
     }
-    
 
     return -1;
 }

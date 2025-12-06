@@ -1,7 +1,7 @@
+#include "Game/Screen/PurpleCoinCounter.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/CountUpPaneRumbler.hpp"
 #include "Game/Screen/CounterLayoutAppearer.hpp"
-#include "Game/Screen/PurpleCoinCounter.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/SceneUtil.hpp"
@@ -13,19 +13,11 @@ namespace {
 namespace NrvPurpleCoinCounter {
     NEW_NERVE(PurpleCoinCounterNrvAppear, PurpleCoinCounter, Appear);
     NEW_NERVE(PurpleCoinCounterNrvWait, PurpleCoinCounter, Wait);
-};
+};  // namespace NrvPurpleCoinCounter
 
-PurpleCoinCounter::PurpleCoinCounter(const char* pName) :
-    LayoutActor(pName, true),
-    mPurpleCoinNum(0),
-    mPurpleCoinDisplayNum(0),
-    mInvalidCountUpFrame(0),
-    mLayoutAppearer(nullptr),
-    mPaneRumbler(nullptr),
-    mIsValid(false)
-{
-    
-}
+PurpleCoinCounter::PurpleCoinCounter(const char* pName)
+    : LayoutActor(pName, true), mPurpleCoinNum(0), mPurpleCoinDisplayNum(0), mInvalidCountUpFrame(0), mLayoutAppearer(nullptr), mPaneRumbler(nullptr),
+      mIsValid(false) {}
 
 void PurpleCoinCounter::init(const JMapInfoIter& rIter) {
     initLayoutManager("PurpleCoinCounter", 2);
@@ -76,8 +68,7 @@ void PurpleCoinCounter::updateCounter() {
 
     if (mInvalidCountUpFrame > 0) {
         mInvalidCountUpFrame--;
-    }
-    else if (mPurpleCoinDisplayNum < mPurpleCoinNum) {
+    } else if (mPurpleCoinDisplayNum < mPurpleCoinNum) {
         if (isNerve(&NrvPurpleCoinCounter::PurpleCoinCounterNrvWait::sInstance)) {
             mInvalidCountUpFrame = cInvalidCountUpInterval;
             mPurpleCoinDisplayNum++;
@@ -90,8 +81,7 @@ void PurpleCoinCounter::updateCounter() {
         if (!isNerve(&NrvPurpleCoinCounter::PurpleCoinCounterNrvAppear::sInstance)) {
             if (!isNerve(&NrvPurpleCoinCounter::PurpleCoinCounterNrvWait::sInstance)) {
                 setNerve(&NrvPurpleCoinCounter::PurpleCoinCounterNrvAppear::sInstance);
-            }
-            else {
+            } else {
                 setNerve(&NrvPurpleCoinCounter::PurpleCoinCounterNrvWait::sInstance);
             }
         }
@@ -112,6 +102,4 @@ void PurpleCoinCounter::exeAppear() {
     }
 }
 
-void PurpleCoinCounter::exeWait() {
-
-}
+void PurpleCoinCounter::exeWait() {}

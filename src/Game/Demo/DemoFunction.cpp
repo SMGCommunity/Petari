@@ -1,6 +1,4 @@
 #include "Game/Demo/DemoFunction.hpp"
-#include <cstdio>
-#include <cstring>
 #include "Game/Demo/DemoCastGroup.hpp"
 #include "Game/Demo/DemoCastGroupHolder.hpp"
 #include "Game/Demo/DemoDirector.hpp"
@@ -8,7 +6,8 @@
 #include "Game/Demo/DemoSubPartKeeper.hpp"
 #include "Game/Demo/DemoTimeKeeper.hpp"
 #include "Game/Effect/EffectSystemUtil.hpp"
-
+#include <cstdio>
+#include <cstring>
 
 namespace {
     DemoTimeKeeper* getCurrentTimeKeeper() NO_INLINE { return DemoFunction::getDemoDirector()->mExecutor->mTimeKeeper; }
@@ -20,9 +19,7 @@ namespace {
 };  // namespace
 
 namespace DemoFunction {
-    DemoDirector* getDemoDirector() {
-        return MR::getSceneObj<DemoDirector>(SceneObj_DemoDirector);
-    }
+    DemoDirector* getDemoDirector() { return MR::getSceneObj< DemoDirector >(SceneObj_DemoDirector); }
 
     DemoCastGroupHolder* getDemoCastSubGroupHolder() { return getDemoDirector()->_1C; }
 
@@ -75,13 +72,13 @@ namespace DemoFunction {
         if (group == nullptr) {
             return nullptr;
         }
-        return reinterpret_cast<DemoExecutor*>(group);
+        return reinterpret_cast< DemoExecutor* >(group);
     }
 
     DemoExecutor* findDemoExecutor(const LiveActor* pActor) {
         DemoExecutor* executor;
         for (s32 i = 0; i < getDemoDirector()->_18->mObjectCount; i++) {
-            executor = reinterpret_cast<DemoExecutor*>(getDemoDirector()->_18->getCastGroup(i));
+            executor = reinterpret_cast< DemoExecutor* >(getDemoDirector()->_18->getCastGroup(i));
             if (DemoExecutorFunction::isRegisteredDemoCast(executor, pActor)) {
                 return executor;
             }
@@ -92,7 +89,7 @@ namespace DemoFunction {
     DemoExecutor* findDemoExecutorActive(const LiveActor* pActor) {
         DemoExecutor* executor;
         for (s32 i = 0; i < getDemoDirector()->_18->mObjectCount; i++) {
-            executor = reinterpret_cast<DemoExecutor*>(getDemoDirector()->_18->getCastGroup(i));
+            executor = reinterpret_cast< DemoExecutor* >(getDemoDirector()->_18->getCastGroup(i));
             if (DemoExecutorFunction::isRegisteredDemoCast(executor, pActor) && MR::isDemoActive(executor->mName)) {
                 return executor;
             }

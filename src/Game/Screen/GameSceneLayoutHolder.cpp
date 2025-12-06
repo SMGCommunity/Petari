@@ -1,8 +1,8 @@
+#include "Game/Screen/GameSceneLayoutHolder.hpp"
 #include "Game/MapObj/ChipHolder.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Screen/CameraInfo.hpp"
 #include "Game/Screen/CounterLayoutController.hpp"
-#include "Game/Screen/GameSceneLayoutHolder.hpp"
 #include "Game/Screen/InformationMessage.hpp"
 #include "Game/Screen/MarioMeter.hpp"
 #include "Game/Screen/MarioSubMeter.hpp"
@@ -14,21 +14,10 @@
 #include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 
-GameSceneLayoutHolder::GameSceneLayoutHolder() :
-    NameObj("ゲームシーンのレイアウト保持"),
-    mCameraInfo(nullptr),
-    mInformationMessage(nullptr),
-    mMarioMeter(nullptr),
-    mMarioSubMeter(nullptr),
-    mMissLayout(nullptr),
-    mNoteCounter(nullptr),
-    mYesNoLayout(nullptr),
-    mPurpleCoinCounter(nullptr),
-    _30(false),
-    _31(false),
-    mCounterLayoutCtrl(nullptr),
-    mIsActiveDefaultGameLayout(true)
-{
+GameSceneLayoutHolder::GameSceneLayoutHolder()
+    : NameObj("ゲームシーンのレイアウト保持"), mCameraInfo(nullptr), mInformationMessage(nullptr), mMarioMeter(nullptr), mMarioSubMeter(nullptr),
+      mMissLayout(nullptr), mNoteCounter(nullptr), mYesNoLayout(nullptr), mPurpleCoinCounter(nullptr), _30(false), _31(false),
+      mCounterLayoutCtrl(nullptr), mIsActiveDefaultGameLayout(true) {
     MR::joinToNameObjGroup(this, "IgnorePauseNameObj");
     MR::connectToSceneLayoutMovement(this);
 
@@ -180,7 +169,5 @@ void GameSceneLayoutHolder::invalidateStatusLayout() {
 }
 
 namespace MR {
-    GameSceneLayoutHolder* getGameSceneLayoutHolder() {
-        return MR::getSceneObj<GameSceneLayoutHolder>(SceneObj_GameSceneLayoutHolder);
-    }
-};
+    GameSceneLayoutHolder* getGameSceneLayoutHolder() { return MR::getSceneObj< GameSceneLayoutHolder >(SceneObj_GameSceneLayoutHolder); }
+};  // namespace MR

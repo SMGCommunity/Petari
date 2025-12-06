@@ -1,7 +1,7 @@
 #include "Game/Camera/CameraTripodPlanet.hpp"
 #include "Game/Camera/CamTranslatorTripodPlanet.hpp"
 
-CameraTripodPlanet::CameraTripodPlanet(const char *pName) : Camera(pName) {
+CameraTripodPlanet::CameraTripodPlanet(const char* pName) : Camera(pName) {
     mAxis.x = 0.0f;
     mAxis.y = 1.0f;
     mAxis.z = 0.0f;
@@ -13,10 +13,8 @@ CameraTripodPlanet::CameraTripodPlanet(const char *pName) : Camera(pName) {
     mDist = 1000.0f;
 }
 
-CameraTripodPlanet::~CameraTripodPlanet() {
+CameraTripodPlanet::~CameraTripodPlanet() {}
 
-}
-
-CamTranslatorBase *CameraTripodPlanet::createTranslator() {
+CamTranslatorBase* CameraTripodPlanet::createTranslator() {
     return new CamTranslatorTripodPlanet(this);
 }

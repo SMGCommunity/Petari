@@ -3,11 +3,11 @@
 #include "Game/Util.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 
-TripodBossStepStartArea::TripodBossStepStartArea(int a1, const char *pName) : AreaObj(a1, pName) {
+TripodBossStepStartArea::TripodBossStepStartArea(int a1, const char* pName) : AreaObj(a1, pName) {
     _3C = -1;
 }
 
-void TripodBossStepStartArea::init(const JMapInfoIter &rIter) {
+void TripodBossStepStartArea::init(const JMapInfoIter& rIter) {
     AreaObj::init(rIter);
     MR::connectToSceneAreaObj(this);
     _3C = mObjArg0;
@@ -19,9 +19,7 @@ void TripodBossStepStartArea::movement() {
     }
 }
 
-TripodBossStepStartArea::~TripodBossStepStartArea() {
-    
-}
+TripodBossStepStartArea::~TripodBossStepStartArea() {}
 
 const char* TripodBossStepStartArea::getManagerName() const {
     return "TripodBossStepStart";

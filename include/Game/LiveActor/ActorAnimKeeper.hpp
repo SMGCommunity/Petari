@@ -12,13 +12,13 @@ struct ActorAnimDataInfo {
 
 class ActorAnimKeeper {
 public:
-    ActorAnimKeeper(LiveActor *);
+    ActorAnimKeeper(LiveActor*);
 
-    void start(const char *);
+    void start(const char*);
     void update();
-    bool isPlaying(const char *) const;
+    bool isPlaying(const char*) const;
 
-    static ActorAnimKeeper* tryCreate(LiveActor *);
+    static ActorAnimKeeper* tryCreate(LiveActor*);
 
     LiveActor* mActor;  // 0x0
     u32 _4;

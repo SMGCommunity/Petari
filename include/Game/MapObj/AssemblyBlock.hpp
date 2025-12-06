@@ -4,10 +4,10 @@
 
 class AssemblyBlock : public LiveActor {
 public:
-    AssemblyBlock(const char *);
+    AssemblyBlock(const char*);
 
     virtual ~AssemblyBlock();
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
     virtual void calcAndSetBaseMtx();
 
     void exeWait();
@@ -22,11 +22,11 @@ public:
     TPos3f _BC;
     TPos3f _EC;
     s32 _11C;
-    f32 mActivationRange;       // 0x120
+    f32 mActivationRange;  // 0x120
     TVec3f _124;
     f32 _130;
-    s32 mActivationTime;        // 0x134
-    PartsModel* mBloomModel;    // 0x138
+    s32 mActivationTime;      // 0x134
+    PartsModel* mBloomModel;  // 0x138
     bool _13C;
 };
 
@@ -36,4 +36,4 @@ namespace NrvAssemblyBlock {
     NERVE_DECL(AssemblyBlockNrvAssembleWait, AssemblyBlock, AssemblyBlock::exeAssembleWait);
     NERVE_DECL(AssemblyBlockNrvReturn, AssemblyBlock, AssemblyBlock::exeReturn);
     NERVE_DECL(AssemblyBlockNrvTimer, AssemblyBlock, AssemblyBlock::exeTimer);
-};
+};  // namespace NrvAssemblyBlock

@@ -1,17 +1,15 @@
-#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/MapObj/HipDropMoveObj.hpp"
+#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/MapObj/StageEffectDataTable.hpp"
 #include "Game/Util.hpp"
 
-HipDropDemoMoveObj::~HipDropDemoMoveObj() {
-    
-}
+HipDropDemoMoveObj::~HipDropDemoMoveObj() {}
 
-HipDropMoveObj::HipDropMoveObj(const char *pName) : LiveActor(pName) {
+HipDropMoveObj::HipDropMoveObj(const char* pName) : LiveActor(pName) {
     mObjectName = 0;
 }
 
-void HipDropMoveObj::init(const JMapInfoIter &rIter) {
+void HipDropMoveObj::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     MR::getObjectName(&mObjectName, rIter);
     initModelManagerWithAnm(mObjectName, 0, false);
@@ -34,12 +32,11 @@ void HipDropMoveObj::init(const JMapInfoIter &rIter) {
     makeActorAppeared();
 }
 
-bool HipDropMoveObj::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool HipDropMoveObj::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgPlayerHipDropFloor(msg)) {
         if (!isNerve(&NrvHipDropMoveObj::HostTypeWait::sInstance)) {
             return false;
-        }
-        else {
+        } else {
             f32 radius = pReceiver->mRadius;
             f32 dist = MR::calcDistanceToPlayer(pReceiver->mPosition);
             if (radius < dist) {
@@ -81,8 +78,7 @@ void HipDropMoveObj::exeMove() {
             if (MR::isLessStep(this, steps)) {
                 MR::startLevelSound(this, movingSe, -1, -1, -1);
             }
-        }
-        else {
+        } else {
             MR::startLevelSound(this, movingSe, -1, -1, -1);
         }
     }
@@ -121,16 +117,14 @@ void HipDropMoveObj::exeMove() {
 
         moveEnd();
         setNerve(&NrvHipDropMoveObj::HostTypeDone::sInstance);
-    }    
+    }
 }
 
-HipDropDemoMoveObj::HipDropDemoMoveObj(const char *pName) : HipDropMoveObj(pName) {
+HipDropDemoMoveObj::HipDropDemoMoveObj(const char* pName) : HipDropMoveObj(pName) {
     mMtx.identity();
 }
 
-HipDropMoveObj::~HipDropMoveObj() {
-
-}
+HipDropMoveObj::~HipDropMoveObj() {}
 
 void HipDropDemoMoveObj::moveStart() {
     MR::startBckPlayer("Wait", (char*)nullptr);
@@ -155,7 +149,7 @@ void HipDropDemoMoveObj::moving() {
         f32 z = stack_8.mMtx[2][3];
         f32 y = stack_8.mMtx[1][3];
         f32 x = stack_8.mMtx[0][3];
-        demoActor->mPosition.set<f32>(x, y, z);
+        demoActor->mPosition.set< f32 >(x, y, z);
         MR::setPlayerBaseMtx((MtxPtr)&stack_8);
     }
 }
@@ -165,28 +159,18 @@ namespace NrvHipDropMoveObj {
     HostTypeMove HostTypeMove::sInstance;
     HostTypeDone HostTypeDone::sInstance;
 
-    void HostTypeDone::execute(Spine* pSpine) const {
+    void HostTypeDone::execute(Spine* pSpine) const {}
 
-    }
-
-    void HostTypeMove::execute(Spine *pSpine) const {
-        HipDropMoveObj* obj = reinterpret_cast<HipDropMoveObj*>(pSpine->mExecutor);
+    void HostTypeMove::execute(Spine* pSpine) const {
+        HipDropMoveObj* obj = reinterpret_cast< HipDropMoveObj* >(pSpine->mExecutor);
         obj->exeMove();
     }
 
-    void HostTypeWait::execute(Spine* pSpine) const {
+    void HostTypeWait::execute(Spine* pSpine) const {}
+};  // namespace NrvHipDropMoveObj
 
-    }
-};
+void HipDropMoveObj::moveStart() {}
 
-void HipDropMoveObj::moveStart() {
+void HipDropMoveObj::moving() {}
 
-}
-
-void HipDropMoveObj::moving() {
-
-}
-
-void HipDropMoveObj::moveEnd() {
-
-}
+void HipDropMoveObj::moveEnd() {}

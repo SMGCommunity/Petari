@@ -1,6 +1,6 @@
+#include "Game/Screen/PictureBookCloseButton.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/ButtonPaneController.hpp"
-#include "Game/Screen/PictureBookCloseButton.hpp"
 #include "Game/Util/GamePadUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
@@ -9,13 +9,10 @@ namespace NrvPictureBookCloseButton {
     NEW_NERVE(PictureBookCloseButtonNrvSelect, PictureBookCloseButton, Select);
     NEW_NERVE(PictureBookCloseButtonNrvSelected, PictureBookCloseButton, Selected);
     NEW_NERVE(PictureBookCloseButtonNrvNotSelected, PictureBookCloseButton, NotSelected);
-};
+};  // namespace NrvPictureBookCloseButton
 
-PictureBookCloseButton::PictureBookCloseButton(bool canCloseWithPad) :
-    LayoutActor("絵本閉じるボタン", true),
-    mPaneCtrl(nullptr),
-    mCanCloseWithPad(canCloseWithPad)
-{}
+PictureBookCloseButton::PictureBookCloseButton(bool canCloseWithPad)
+    : LayoutActor("絵本閉じるボタン", true), mPaneCtrl(nullptr), mCanCloseWithPad(canCloseWithPad) {}
 
 void PictureBookCloseButton::init(const JMapInfoIter& rIter) {
     initLayoutManager("BackButton", 1);
@@ -71,9 +68,7 @@ void PictureBookCloseButton::control() {
     }
 }
 
-void PictureBookCloseButton::exeSelect() {
-    
-}
+void PictureBookCloseButton::exeSelect() {}
 
 void PictureBookCloseButton::exeSelected() {
     if (mPaneCtrl->isHidden()) {

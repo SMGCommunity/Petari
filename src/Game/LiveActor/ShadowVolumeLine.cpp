@@ -15,11 +15,11 @@ void ShadowVolumeLine::loadModelDrawMtx() const {
     GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_F32, 0);
 }
 
-void ShadowVolumeLine::setFromShadowController(const ShadowController *pController) {
+void ShadowVolumeLine::setFromShadowController(const ShadowController* pController) {
     mFromShadowController = pController;
 }
 
-void ShadowVolumeLine::setToShadowController(const ShadowController *pController) {
+void ShadowVolumeLine::setToShadowController(const ShadowController* pController) {
     mToShadowController = pController;
 }
 
@@ -31,6 +31,4 @@ void ShadowVolumeLine::setToWidth(f32 width) {
     mToWidth = width;
 }
 
-ShadowVolumeLine::~ShadowVolumeLine() {
-
-}
+ShadowVolumeLine::~ShadowVolumeLine() {}

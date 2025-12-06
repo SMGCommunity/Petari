@@ -9,47 +9,47 @@
 
 class UFOBase : public LiveActor {
 public:
-    UFOBase(const char *);
+    UFOBase(const char*);
 
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
     virtual void kill();
     virtual void makeActorDead();
     virtual void control();
     virtual void calcAndSetBaseMtx();
     virtual void initSensorType();
-    
-    void initSubModel(const JMapInfoIter &, const char *) NO_INLINE;
+
+    void initSubModel(const JMapInfoIter&, const char*) NO_INLINE;
     void exeWaitForPlayerOn();
     void exeMove();
     void inline exeWait();
 
-    CollisionParts* mCollisionParts; // _84
-    LodCtrl* mLODCtrl; // _90
-    ModelObj* mModel; // _94
-    MapPartsRailMover* mRailMover; // _98
+    CollisionParts* mCollisionParts;  // _84
+    LodCtrl* mLODCtrl;                // _90
+    ModelObj* mModel;                 // _94
+    MapPartsRailMover* mRailMover;    // _98
     TVec3f _9C;
     f32 _A8;
     s32 _AC;
     bool _B0;
     const char* _B4;
-}; 
+};
 
 class UFOSolid : public UFOBase {
 public:
-    UFOSolid(const char *);
+    UFOSolid(const char*);
 };
 
 class UFOBreakable : public UFOBase {
 public:
-    UFOBreakable(const char *);
+    UFOBreakable(const char*);
 
     virtual void initSensorType();
-    virtual bool receiveMsgEnemyAttack(u32, HitSensor *, HitSensor *);
+    virtual bool receiveMsgEnemyAttack(u32, HitSensor*, HitSensor*);
 };
 
 namespace NrvUFOBase {
-    NERVE(UFOBaseNrvWait);   
-    NERVE(UFOBaseNrvWaitForPlayerOn);   
-    NERVE(UFOBaseNrvMove);   
-    NERVE(UFOBaseNrvBreak);   
-};
+    NERVE(UFOBaseNrvWait);
+    NERVE(UFOBaseNrvWaitForPlayerOn);
+    NERVE(UFOBaseNrvMove);
+    NERVE(UFOBaseNrvBreak);
+};  // namespace NrvUFOBase

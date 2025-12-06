@@ -6,6 +6,6 @@ class MarioActor;
 
 class MarioDarkDamage : public MarioState {
 public:
-    MarioDarkDamage(MarioActor *);
+    MarioDarkDamage(MarioActor*);
     u8 _11[7];
 };

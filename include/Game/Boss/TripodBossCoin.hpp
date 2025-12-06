@@ -8,9 +8,9 @@ class Spine;
 
 class TripodBossCoin : public NameObj {
 public:
-    TripodBossCoin(const char *);
+    TripodBossCoin(const char*);
 
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
     virtual void movement();
 
     void exeNonActive();

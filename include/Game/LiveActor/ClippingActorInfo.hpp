@@ -8,13 +8,13 @@ class LiveActor;
 
 class ClippingActorInfo {
 public:
-    ClippingActorInfo(LiveActor *);
+    ClippingActorInfo(LiveActor*);
 
     void judgeClipping();
     bool isJudgedToClip() const;
     bool isGroupClipping() const;
-    void setTypeToSphere(f32, const TVec3f *);
-    void setGroupClippingNo(const JMapInfoIter &);
+    void setTypeToSphere(f32, const TVec3f*);
+    void setGroupClippingNo(const JMapInfoIter&);
 
     LiveActor* mActor;  // 0x0
     const TVec3f* _4;
@@ -29,12 +29,12 @@ class ClippingActorInfoList {
 public:
     ClippingActorInfoList(int);
 
-    void add(ClippingActorInfo *);
-    ClippingActorInfo* find(const LiveActor *, s32 *) const;
-    ClippingActorInfo* findOrNone(const LiveActor *) const;
-    bool isInList(const LiveActor *) const;
+    void add(ClippingActorInfo*);
+    ClippingActorInfo* find(const LiveActor*, s32*) const;
+    ClippingActorInfo* findOrNone(const LiveActor*) const;
+    bool isInList(const LiveActor*) const;
 
-    ClippingActorInfo* remove(LiveActor *);
+    ClippingActorInfo* remove(LiveActor*);
 
     int _0;
     s32 _4;

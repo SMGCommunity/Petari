@@ -16,27 +16,24 @@ JointCtrlRate::JointCtrlRate() {
 void JointCtrlRate::update() {
     u32 temp;
     if (_8 < 0) {
-       if (_C >= 0) {
+        if (_C >= 0) {
             temp = _4;
             _4 = temp - 1;
 
-           if (temp - 1 >= 0) {
-               _0 = ((f32)(_4 - 1) / (f32)(_4 - 1));
-           }
-           else {
-               _C = -1;
-               _0 = 0.0f;
-           }
-       }
-    }
-    else {
+            if (temp - 1 >= 0) {
+                _0 = ((f32)(_4 - 1) / (f32)(_4 - 1));
+            } else {
+                _C = -1;
+                _0 = 0.0f;
+            }
+        }
+    } else {
         temp = _4;
         _4 = temp - 1;
 
         if ((temp - 1) >= 0) {
             _0 = ((f32)(_8 - (temp - 1) / _8));
-        }
-        else {
+        } else {
             _8 = -1;
             _0 = 1.0f;
         }
@@ -78,11 +75,11 @@ void DynamicJointCtrlKeeper::setCallBackFunction() {
     }
 }
 
-void DynamicJointCtrlKeeper::startCtrl(const char *pName, s32 a2) {
+void DynamicJointCtrlKeeper::startCtrl(const char* pName, s32 a2) {
     findJointCtrl(pName)->mControlRate->startCtrl(a2);
 }
 
-void DynamicJointCtrlKeeper::endCtrl(const char *pName, s32 a2) {
+void DynamicJointCtrlKeeper::endCtrl(const char* pName, s32 a2) {
     findJointCtrl(pName)->mControlRate->endCtrl(a2);
 }
 
@@ -92,7 +89,7 @@ void DynamicJointCtrlKeeper::reset() {
     }
 }
 
-DynamicJointCtrl* DynamicJointCtrlKeeper::findJointCtrl(const char *pName) {
+DynamicJointCtrl* DynamicJointCtrlKeeper::findJointCtrl(const char* pName) {
     for (s32 i = 0; i < _4; i++) {
         if (MR::isEqualString(mControls[i]->mName, pName)) {
             return mControls[i];

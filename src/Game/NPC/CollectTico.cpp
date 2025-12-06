@@ -12,15 +12,15 @@ namespace NrvCollectTico {
     NEW_NERVE(CollectTicoNrvCompleteDemo, CollectTico, CompleteDemo);
     NEW_NERVE(CollectTicoNrvFlash, CollectTico, Flash);
     NEW_NERVE(CollectTicoNrvAppearPowerStar, CollectTico, AppearPowerStar);
-};
+};  // namespace NrvCollectTico
 
-CollectTico::CollectTico(const char *pName) : LiveActor(pName) {
+CollectTico::CollectTico(const char* pName) : LiveActor(pName) {
     mStrayTicos = nullptr;
     mTicoNum = 0;
     _A0 = 0;
 }
 
-void CollectTico::init(const JMapInfoIter &rIter) {
+void CollectTico::init(const JMapInfoIter& rIter) {
     MR::connectToSceneNpcMovement(this);
     mTicoNum = MR::getChildObjNum(rIter);
     mStrayTicos = new StrayTico*[mTicoNum];
@@ -53,19 +53,20 @@ void CollectTico::exeWait() {
     }
 
     if (needsDemo && !MR::isPlayerDead()) {
-        MR::requestStartDemo(this, "チコ集めコンプリート", &NrvCollectTico::CollectTicoNrvCompleteDemo::sInstance, &NrvCollectTico::CollectTicoNrvTryStartDemo::sInstance);
+        MR::requestStartDemo(this, "チコ集めコンプリート", &NrvCollectTico::CollectTicoNrvCompleteDemo::sInstance,
+                             &NrvCollectTico::CollectTicoNrvTryStartDemo::sInstance);
     }
 }
 
 void CollectTico::exeCompleteDemo() {
     if (MR::isFirstStep(this)) {
-        mPosition.set<f32>(*MR::getPlayerPos());
+        mPosition.set< f32 >(*MR::getPlayerPos());
         MR::calcGravity(this);
 
         TVec3f v13;
         JMathInlineVEC::PSVECNegate(&mGravity, &v13);
         JMAVECScaleAdd(&v13, &mPosition, &_94, 300.0f);
-        mPosition.set<f32>(_94);
+        mPosition.set< f32 >(_94);
 
         for (s32 i = 0; i < mTicoNum; i++) {
             MR::requestMovementOn(mStrayTicos[i]);
@@ -138,10 +139,6 @@ void CollectTico::startAppearPowerStar() {
     setNerve(&NrvCollectTico::CollectTicoNrvAppearPowerStar::sInstance);
 }
 
-void CollectTico::exeTryStartDemo() {
-    
-}
+void CollectTico::exeTryStartDemo() {}
 
-CollectTico::~CollectTico() {
-    
-}
+CollectTico::~CollectTico() {}

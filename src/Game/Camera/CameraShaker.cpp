@@ -3,31 +3,17 @@
 #include "Game/Camera/CameraShakeTask.hpp"
 #include "Game/Util/CameraUtil.hpp"
 
-f32 sVerticalTaskTable[7] = {
-    0.08f,
-    0.2f,
-    0.5f,
-    1.0f,
-    3.0f,
-    6.0f,
-    9.0f
-};
+f32 sVerticalTaskTable[7] = {0.08f, 0.2f, 0.5f, 1.0f, 3.0f, 6.0f, 9.0f};
 
-f32 sHorizontalTable[3] = {
-    0.3f,
-    1.0f,
-    3.0f
-};
+f32 sHorizontalTable[3] = {0.3f, 1.0f, 3.0f};
 
-CameraShaker::CameraShaker(const char *pName) : NameObj(pName) {
+CameraShaker::CameraShaker(const char* pName) : NameObj(pName) {
     createSinglyVerticalTask();
     createSinglyHorizontalTask();
     createInfinityTask();
 }
 
-CameraShaker::~CameraShaker() {
-
-}
+CameraShaker::~CameraShaker() {}
 
 void CameraShaker::movement() {
     updateSinglyVerticalTask();
@@ -42,7 +28,7 @@ void CameraShaker::shakeVertical(ESinglyVerticalPower power) {
     }
 }
 
-void CameraShaker::shakeInfinity(NameObj *pNameObj, f32 a2, f32 a3) {
+void CameraShaker::shakeInfinity(NameObj* pNameObj, f32 a2, f32 a3) {
     for (u32 i = 0; i < NR_INFINITY_TASKS; i++) {
         if (mInfinityTasks[i]->isEnd()) {
             startInfinity(i, a2, a3);
@@ -52,7 +38,7 @@ void CameraShaker::shakeInfinity(NameObj *pNameObj, f32 a2, f32 a3) {
     }
 }
 
-void CameraShaker::stopShakingInfinity(NameObj *pNameObj) {
+void CameraShaker::stopShakingInfinity(NameObj* pNameObj) {
     for (u32 i = 0; i < NR_INFINITY_TASKS; i++) {
         if (mInfinityNameObjs[i] == pNameObj) {
             mInfinityTasks[i]->endForce();
@@ -64,8 +50,8 @@ void CameraShaker::stopShakingInfinity(NameObj *pNameObj) {
 
 void CameraShaker::createSinglyVerticalTask() {
     for (u32 i = 0; i < NR_VERTICAL_TASKS; i++) {
-        CameraShakePatternSingly *singly = new CameraShakePatternSingly(sVerticalTaskTable[i]);
-        CameraShakeTask *task = new CameraShakeTask(singly);
+        CameraShakePatternSingly* singly = new CameraShakePatternSingly(sVerticalTaskTable[i]);
+        CameraShakeTask* task = new CameraShakeTask(singly);
 
         mVerticalTasks[i] = task;
     }
@@ -80,7 +66,7 @@ void CameraShaker::createSinglyHorizontalTask() {
 
     // Should be i < NR_HORIZONTAL_TASKS
     for (u32 i = 0; i < NR_VERTICAL_TASKS; i++) {
-        CameraShakePatternSingly *singly = new CameraShakePatternSingly(sHorizontalTable[i]);
+        CameraShakePatternSingly* singly = new CameraShakePatternSingly(sHorizontalTable[i]);
 
         TVec2f dir;
         dir.x = 1.0f;
@@ -88,7 +74,7 @@ void CameraShaker::createSinglyHorizontalTask() {
 
         singly->setDirection(dir);
 
-        CameraShakeTask *task = new CameraShakeTask(singly);
+        CameraShakeTask* task = new CameraShakeTask(singly);
 
         mHorizontalTasks[i] = task;
     }
@@ -96,8 +82,8 @@ void CameraShaker::createSinglyHorizontalTask() {
 
 void CameraShaker::createInfinityTask() {
     for (u32 i = 0; i < NR_INFINITY_TASKS; i++) {
-        CameraShakePatternVerticalSin *sin = new CameraShakePatternVerticalSin(1.0f, 15.0f);
-        CameraShakeTask *task = new CameraShakeTask(sin);
+        CameraShakePatternVerticalSin* sin = new CameraShakePatternVerticalSin(1.0f, 15.0f);
+        CameraShakeTask* task = new CameraShakeTask(sin);
 
         mInfinityTasks[i] = task;
         mInfinityNameObjs[i] = nullptr;
@@ -107,19 +93,19 @@ void CameraShaker::createInfinityTask() {
 void CameraShaker::updateSinglyVerticalTask() {
     for (u32 i = 0; i < NR_VERTICAL_TASKS; i++) {
         mVerticalTasks[i]->movement();
-    }    
+    }
 }
 
 void CameraShaker::updateSinglyHorizontalTask() {
     for (u32 i = 0; i < NR_HORIZONTAL_TASKS; i++) {
         mHorizontalTasks[i]->movement();
-    }    
+    }
 }
 
 void CameraShaker::updateInfinityTask() {
     for (u32 i = 0; i < NR_INFINITY_TASKS; i++) {
         mInfinityTasks[i]->movement();
-    }    
+    }
 }
 
 void CameraShaker::setOffset() {
@@ -132,7 +118,7 @@ void CameraShaker::setOffset() {
     MR::setShakeOffset(offset.x, offset.y);
 }
 
-void CameraShaker::addSinglyVerticalTaskOffset(TVec2f *pOffset) {
+void CameraShaker::addSinglyVerticalTaskOffset(TVec2f* pOffset) {
     for (u32 i = 0; i < NR_VERTICAL_TASKS; i++) {
         if (!mVerticalTasks[i]->isEnd()) {
             TVec2f offset;
@@ -144,7 +130,7 @@ void CameraShaker::addSinglyVerticalTaskOffset(TVec2f *pOffset) {
     }
 }
 
-void CameraShaker::addSinglyHorizontalTaskOffset(TVec2f *pOffset) {
+void CameraShaker::addSinglyHorizontalTaskOffset(TVec2f* pOffset) {
     for (u32 i = 0; i < NR_HORIZONTAL_TASKS; i++) {
         if (!mHorizontalTasks[i]->isEnd()) {
             TVec2f offset;
@@ -156,7 +142,7 @@ void CameraShaker::addSinglyHorizontalTaskOffset(TVec2f *pOffset) {
     }
 }
 
-void CameraShaker::addInfinityTaskOffset(TVec2f *pOffset) {
+void CameraShaker::addInfinityTaskOffset(TVec2f* pOffset) {
     for (u32 i = 0; i < NR_INFINITY_TASKS; i++) {
         if (!mInfinityTasks[i]->isEnd()) {
             TVec2f offset;
@@ -169,7 +155,7 @@ void CameraShaker::addInfinityTaskOffset(TVec2f *pOffset) {
 }
 
 void CameraShaker::startInfinity(u32 index, f32 a2, f32 a3) {
-    CameraShakePatternVerticalSin *sin = reinterpret_cast<CameraShakePatternVerticalSin *>(mInfinityTasks[index]->mPattern);
+    CameraShakePatternVerticalSin* sin = reinterpret_cast< CameraShakePatternVerticalSin* >(mInfinityTasks[index]->mPattern);
 
     sin->_8 = a2;
     sin->_C = a3;

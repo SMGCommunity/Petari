@@ -1,11 +1,9 @@
 #include "Game/MapObj/TimeAppearObj.hpp"
 #include "Game/Util.hpp"
 
-TimeAppearObj::TimeAppearObj(const char *pName) : MapObjActor(pName), mTimer(0x1E) {
+TimeAppearObj::TimeAppearObj(const char* pName) : MapObjActor(pName), mTimer(0x1E) {}
 
-}
-
-void TimeAppearObj::init(const JMapInfoIter &rIter) {
+void TimeAppearObj::init(const JMapInfoIter& rIter) {
     MapObjActorInitInfo info;
     info.setupModelName("KoopaBattleMapStairTurn");
     info.setupSound(4);
@@ -38,23 +36,21 @@ void TimeAppearObj::appear() {
     setNerve(&NrvTimeAppearObj::TimeAppearObjNrvHide::sInstance);
 }
 
-TimeAppearObj::~TimeAppearObj() {
-
-}
+TimeAppearObj::~TimeAppearObj() {}
 
 namespace NrvTimeAppearObj {
     INIT_NERVE(TimeAppearObjNrvHide);
     INIT_NERVE(TimeAppearObjNrvEnd);
 
-    void TimeAppearObjNrvEnd::execute(Spine *pSpine) const {
-        TimeAppearObj* obj = reinterpret_cast<TimeAppearObj*>(pSpine->mExecutor);
+    void TimeAppearObjNrvEnd::execute(Spine* pSpine) const {
+        TimeAppearObj* obj = reinterpret_cast< TimeAppearObj* >(pSpine->mExecutor);
         obj->exeEnd();
     }
 
-    void TimeAppearObjNrvHide::execute(Spine *pSpine) const {
-        TimeAppearObj* obj = reinterpret_cast<TimeAppearObj*>(pSpine->mExecutor);
+    void TimeAppearObjNrvHide::execute(Spine* pSpine) const {
+        TimeAppearObj* obj = reinterpret_cast< TimeAppearObj* >(pSpine->mExecutor);
         if (MR::isStep(obj, obj->mTimer)) {
             obj->setNerve(&NrvTimeAppearObj::TimeAppearObjNrvEnd::sInstance);
         }
     }
-};
+};  // namespace NrvTimeAppearObj

@@ -9,16 +9,10 @@ namespace NrvChipCounter {
 namespace {
     static s32 sChipPainCount = 0x5;
 
-    static const char* sChipPainName[5] = {
-        "Chip1",
-        "Chip2",
-        "Chip3",
-        "Chip4",
-        "Chip5"
-    };
-};
+    static const char* sChipPainName[5] = {"Chip1", "Chip2", "Chip3", "Chip4", "Chip5"};
+};  // namespace
 
-ChipCounter::ChipCounter(const char *pName, s32 type) : LayoutActor(pName, true) {
+ChipCounter::ChipCounter(const char* pName, s32 type) : LayoutActor(pName, true) {
     mCollectCounter = 0;
     mCount = 0;
     mType = type;
@@ -26,16 +20,16 @@ ChipCounter::ChipCounter(const char *pName, s32 type) : LayoutActor(pName, true)
     _30 = 1.0f;
 }
 
-void ChipCounter::init(const JMapInfoIter &rIter) {
+void ChipCounter::init(const JMapInfoIter& rIter) {
     MR::connectToSceneLayout(this);
 
-    switch(mType) {
-        case 0:
-            initLayoutManager("BlueChipCounter", 2);
-            break;
-        case 1:
-            initLayoutManager("YellowChipCounter", 2);
-            break;
+    switch (mType) {
+    case 0:
+        initLayoutManager("BlueChipCounter", 2);
+        break;
+    case 1:
+        initLayoutManager("YellowChipCounter", 2);
+        break;
     }
 
     initNerve(&NrvChipCounter::ChipCounterNrvHide::sInstance);
@@ -59,8 +53,7 @@ void ChipCounter::control() {
         if (_30 < 0.0f) {
             _30 = 0.0f;
         }
-    }
-    else {
+    } else {
         _30 += 0.050000001f;
 
         if (_30 > 1.0f) {
@@ -88,8 +81,7 @@ void ChipCounter::setCount(s32 count) {
             }
 
             MR::startPaneAnim(this, sChipPainName[i], "ChipGet", 0);
-        }
-        else {
+        } else {
             MR::setPaneAnimFrameAndStop(this, sChipPainName[i], 0.0f, 0);
         }
     }

@@ -18,9 +18,9 @@ namespace NrvTripodBossKillerGenerater {
     NEW_NERVE(TripodBossKillerGeneraterNrvBreak, TripodBossKillerGenerater, Break);
     NEW_NERVE(TripodBossKillerGeneraterNrvStop, TripodBossKillerGenerater, Stop);
     NEW_NERVE(TripodBossKillerGeneraterNrvRestart, TripodBossKillerGenerater, Restart);
-};
+};  // namespace NrvTripodBossKillerGenerater
 
-TripodBossKillerGenerater::TripodBossKillerGenerater(const char *pName) : TripodBossFixPartsBase(pName) {
+TripodBossKillerGenerater::TripodBossKillerGenerater(const char* pName) : TripodBossFixPartsBase(pName) {
     mKiller = nullptr;
     _118 = 2000.0f;
     mActiveLabel = false;
@@ -29,7 +29,7 @@ TripodBossKillerGenerater::TripodBossKillerGenerater(const char *pName) : Tripod
     _E4.identity();
 }
 
-void TripodBossKillerGenerater::init(const JMapInfoIter &rIter) {
+void TripodBossKillerGenerater::init(const JMapInfoIter& rIter) {
     TripodBossFixPartsBase::init(rIter);
     MR::makeMtxTR(_E4, this);
     initModelManagerWithAnm("TripodBossKillerCannon", nullptr, false);
@@ -44,7 +44,7 @@ void TripodBossKillerGenerater::init(const JMapInfoIter &rIter) {
     if (arg == 0) {
         mKiller->_15C = 1;
     }
-    
+
     if (mHasCollision) {
         initHitSensor(1);
         MR::addHitSensor(this, "body", ATYPE_TRIPODBOSS_KILLER_GENERATER, 0, 0.0f, TVec3f(0.0f, 0.0f, 0.0f));
@@ -58,8 +58,7 @@ void TripodBossKillerGenerater::init(const JMapInfoIter &rIter) {
     if (mActiveLabel > 0) {
         MR::startBck(this, "Shoot", nullptr);
         MR::setBckFrameAndStop(this, 0.0f);
-    }
-    else {
+    } else {
         MR::startBck(this, "2ndDemo", nullptr);
         MR::setBckFrameAndStop(this, 0.0f);
     }
@@ -76,7 +75,7 @@ void TripodBossKillerGenerater::kill() {
     MR::emitEffect(this, "ExplosionM");
 }
 
-bool TripodBossKillerGenerater::receiveMsgEnemyAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool TripodBossKillerGenerater::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgExplosionAttack(msg)) {
         return requestBreak();
     }
@@ -84,7 +83,7 @@ bool TripodBossKillerGenerater::receiveMsgEnemyAttack(u32 msg, HitSensor *pSende
     return false;
 }
 
-void TripodBossKillerGenerater::calcTripodLocalMatrix(TPos3f *pPos) {
+void TripodBossKillerGenerater::calcTripodLocalMatrix(TPos3f* pPos) {
     pPos->set(_E4);
 }
 
@@ -95,8 +94,7 @@ void TripodBossKillerGenerater::activateTripodBoss() {
         if (mHasCollision) {
             MR::invalidateCollisionParts(this);
         }
-    }
-    else {
+    } else {
         setNerve(&NrvTripodBossKillerGenerater::TripodBossKillerGeneraterNrvReady::sInstance);
         if (mHasCollision) {
             MR::validateCollisionParts(this);
@@ -107,7 +105,7 @@ void TripodBossKillerGenerater::activateTripodBoss() {
     _E1 = 1;
 }
 
-void TripodBossKillerGenerater::setLocalMatrix(const TPos3f &pMtx) {
+void TripodBossKillerGenerater::setLocalMatrix(const TPos3f& pMtx) {
     _E4.set(pMtx);
 }
 
@@ -189,26 +187,24 @@ bool TripodBossKillerGenerater::tryAbort() {
 
         setNerve(&NrvTripodBossKillerGenerater::TripodBossKillerGeneraterNrvReady::sInstance);
         return true;
-    }
-    else {
+    } else {
         return false;
     }
 }
 
 bool TripodBossKillerGenerater::requestBreak() {
-    if (isNerve(&NrvTripodBossKillerGenerater::TripodBossKillerGeneraterNrvReady::sInstance) 
-        || isNerve(&NrvTripodBossKillerGenerater::TripodBossKillerGeneraterNrvShootSetting::sInstance)
-        || isNerve(&NrvTripodBossKillerGenerater::TripodBossKillerGeneraterNrvShoot::sInstance)
-        || isNerve(&NrvTripodBossKillerGenerater::TripodBossKillerGeneraterNrvCoolDown::sInstance)) {
-        
+    if (isNerve(&NrvTripodBossKillerGenerater::TripodBossKillerGeneraterNrvReady::sInstance) ||
+        isNerve(&NrvTripodBossKillerGenerater::TripodBossKillerGeneraterNrvShootSetting::sInstance) ||
+        isNerve(&NrvTripodBossKillerGenerater::TripodBossKillerGeneraterNrvShoot::sInstance) ||
+        isNerve(&NrvTripodBossKillerGenerater::TripodBossKillerGeneraterNrvCoolDown::sInstance)) {
         if (isNerve(&NrvTripodBossKillerGenerater::TripodBossKillerGeneraterNrvShootSetting::sInstance) && !MR::isDead(mKiller)) {
             mKiller->kill();
         }
-    
+
         if (mHasCollision) {
             MR::invalidateCollisionParts(this);
         }
-    
+
         MR::startBck(this, "2ndDemo", nullptr);
         MR::setBckFrameAndStop(this, 0.0f);
         setNerve(&NrvTripodBossKillerGenerater::TripodBossKillerGeneraterNrvStop::sInstance);
@@ -253,8 +249,8 @@ void TripodBossKillerGenerater::exeShootSetting() {
     TVec3f trans;
     _8C.getTrans(trans);
     HomingKiller* killer = mKiller;
-    killer->_B8.set<f32>(trans);
-    killer->_C4.set<f32>(front);
+    killer->_B8.set< f32 >(trans);
+    killer->_C4.set< f32 >(front);
     if (!tryBreak() && !tryAbort() && !tryShoot()) {
         return;
     }
@@ -336,10 +332,6 @@ void TripodBossKillerGenerater::exeHide() {
     updateTripodMatrix();
 }
 
-void TripodBossKillerGenerater::exeNonActive() {
-    
-}
+void TripodBossKillerGenerater::exeNonActive() {}
 
-TripodBossKillerGenerater::~TripodBossKillerGenerater() {
-    
-}
+TripodBossKillerGenerater::~TripodBossKillerGenerater() {}

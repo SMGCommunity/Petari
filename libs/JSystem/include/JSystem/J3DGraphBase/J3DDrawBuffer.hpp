@@ -16,8 +16,8 @@ public:
 
     void draw() const;
 
-    void* mBuffer;          // 0x00
-    u32 mBufferSize;        // 0x04
+    void* mBuffer;    // 0x00
+    u32 mBufferSize;  // 0x04
     u32 _8;
     u32 _C;
     f32 _10;

@@ -27,5 +27,5 @@ public:
 
 private:
     /* 0x0C */ WipeLayoutBase* mCurrentWipeLayout;
-    /* 0x10 */ MR::Vector<MR::AssignableArray<WipeLayoutBase*> > mWipeLayoutArray;
+    /* 0x10 */ MR::Vector< MR::AssignableArray< WipeLayoutBase* > > mWipeLayoutArray;
 };

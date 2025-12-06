@@ -6,19 +6,19 @@ class GalaxyNamePlateDrawerEntry;
 
 class GalaxyNamePlate : public LayoutActor {
 public:
-    GalaxyNamePlate(const char *, bool);
+    GalaxyNamePlate(const char*, bool);
 
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
     virtual void kill();
     virtual void control();
 
     void showUnknown(bool);
     void showNew(bool);
     void showOpen(bool);
-    void show(const wchar_t *, bool);
-    void setPos3D(const TVec3f &);
+    void show(const wchar_t*, bool);
+    void setPos3D(const TVec3f&);
     void setShowBalloonNozzle(bool);
-    void show(const wchar_t *, s32, bool, bool);
+    void show(const wchar_t*, s32, bool, bool);
 
     void exeAppearReady();
     void exeAppear();

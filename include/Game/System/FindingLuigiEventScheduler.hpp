@@ -10,7 +10,7 @@ public:
 
     void initAfterResourceLoaded();
     void setStateHiding();
-    void getHidingGalaxyNameAndStarId(const char **, s32 *) const;
+    void getHidingGalaxyNameAndStarId(const char**, s32*) const;
     bool isActive() const;
     bool isDisappear() const;
     bool isHiding() const;
@@ -23,7 +23,7 @@ public:
     bool isState(u32) const;
     void setStateReturnAstroGalaxy(int);
     void update(const GalaxyMoveArgument&);
-    void updateOnStageResult(const char *, s32);
+    void updateOnStageResult(const char*, s32);
 
     /* 0x00 */ const char* mLuigiLostStageName;
     /* 0x04 */ s32 mLuigiLostStarID;

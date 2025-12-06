@@ -1,12 +1,12 @@
 #include "Game/MapObj/MapObjActor.hpp"
-#include "Game/MapObj/MapPartsRotator.hpp"
-#include "Game/MapObj/MapPartsRailMover.hpp"
-#include "Game/MapObj/MapPartsRailGuideDrawer.hpp"
-#include "Game/MapObj/MapPartsRailPosture.hpp"
-#include "Game/MapObj/MapPartsRailRotator.hpp"
+#include "Game/LiveActor/LodCtrl.hpp"
 #include "Game/LiveActor/MaterialCtrl.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
-#include "Game/LiveActor/LodCtrl.hpp"
+#include "Game/MapObj/MapPartsRailGuideDrawer.hpp"
+#include "Game/MapObj/MapPartsRailMover.hpp"
+#include "Game/MapObj/MapPartsRailPosture.hpp"
+#include "Game/MapObj/MapPartsRailRotator.hpp"
+#include "Game/MapObj/MapPartsRotator.hpp"
 #include "Game/MapObj/StageEffectDataTable.hpp"
 #include "Game/Util.hpp"
 
@@ -26,9 +26,9 @@ namespace {
     const char* cFollowJointName = "Move";
     const char* cEffectNameBreak = "Break";
     const char* cBckNameBreak = "Break";
-};
+};  // namespace
 
-MapObjActor::MapObjActor(const char *pName) : LiveActor(pName) {
+MapObjActor::MapObjActor(const char* pName) : LiveActor(pName) {
     mObjectName = 0;
     mPlanetLodCtrl = 0;
     mBloomModel = 0;
@@ -47,7 +47,7 @@ MapObjActor::MapObjActor(const char *pName) : LiveActor(pName) {
     mDoneNrv = &NrvMapObjActor::HostTypeDone::sInstance;
 }
 
-MapObjActor::MapObjActor(const char *pName, const char *pObjName) : LiveActor(pName) {
+MapObjActor::MapObjActor(const char* pName, const char* pObjName) : LiveActor(pName) {
     mObjectName = pObjName;
     mPlanetLodCtrl = 0;
     mBloomModel = 0;
@@ -65,7 +65,7 @@ MapObjActor::MapObjActor(const char *pName, const char *pObjName) : LiveActor(pN
     mDoneNrv = &NrvMapObjActor::HostTypeDone::sInstance;
 }
 
-void MapObjActor::init(const JMapInfoIter &rIter) {
+void MapObjActor::init(const JMapInfoIter& rIter) {
     if (mObjectName) {
         return;
     }
@@ -90,7 +90,7 @@ void MapObjActor::appear() {
 
     if (mBloomModel) {
         mBloomModel->appear();
-    }    
+    }
 
     if (MR::isExistEffectKeeper(this)) {
         const char* appearEffectName = cEffectNameAppear;
@@ -128,49 +128,43 @@ void MapObjActor::kill() {
     LiveActor::kill();
 }
 
-bool MapObjActor::isObjectName(const char *pName) const {
+bool MapObjActor::isObjectName(const char* pName) const {
     return MR::isEqualString(pName, mObjectName);
 }
 
-void MapObjActor::connectToScene(const MapObjActorInitInfo &rInfo) {
+void MapObjActor::connectToScene(const MapObjActorInitInfo& rInfo) {
     if (rInfo.mConnectToScene) {
         if (MR::isExistCollisionResource(this, mObjectName)) {
             s32 type = rInfo._5C;
 
             if (type == 1) {
                 MR::connectToSceneCollisionMapObjStrongLight(this);
-            }
-            else if (type == 2) {
+            } else if (type == 2) {
                 MR::connectToSceneCollisionMapObjWeakLight(this);
-            }
-            else {
+            } else {
                 MR::connectToSceneCollisionMapObj(this);
             }
-        }
-        else if (rInfo._5C == 1) {
+        } else if (rInfo._5C == 1) {
             MR::connectToSceneMapObjStrongLight(this);
-        }
-        else {
+        } else {
             MR::connectToSceneMapObj(this);
         }
     }
 }
 
-void MapObjActor::initCaseUseSwitchA(const MapObjActorInitInfo &) {
+void MapObjActor::initCaseUseSwitchA(const MapObjActorInitInfo&) {
     setNerve(mWaitNrv);
 }
 
-void MapObjActor::initCaseNoUseSwitchA(const MapObjActorInitInfo &) {
+void MapObjActor::initCaseNoUseSwitchA(const MapObjActorInitInfo&) {}
 
-}
-
-void MapObjActor::initCaseUseSwitchB(const MapObjActorInitInfo &rInfo) {
+void MapObjActor::initCaseUseSwitchB(const MapObjActorInitInfo& rInfo) {
     void (MapObjActor::*end)(void) = &MapObjActor::endMapPartsFunctions;
     void (MapObjActor::*start)(void) = &MapObjActor::startMapPartsFunctions;
     MR::listenStageSwitchOnOffB(this, MR::Functor(this, end), MR::Functor(this, start));
 }
 
-void MapObjActor::initCaseNoUseSwitchB(const MapObjActorInitInfo &rInfo) {
+void MapObjActor::initCaseNoUseSwitchB(const MapObjActorInitInfo& rInfo) {
     MapObjActorUtil::startAllMapPartsFunctions(this);
 }
 
@@ -191,7 +185,7 @@ void MapObjActor::control() {
         mRailMover->movement();
 
         if (mRailMover->isWorking()) {
-            mPosition.set<f32>(mRailMover->_28);
+            mPosition.set< f32 >(mRailMover->_28);
             mRailMover->tryResetPositionRepeat();
         }
     }
@@ -264,8 +258,7 @@ void MapObjActor::calcAndSetBaseMtx() {
 
     if (!v3) {
         LiveActor::calcAndSetBaseMtx();
-    }
-    else {
+    } else {
         TPos3f mtx;
         mtx.identity();
 
@@ -298,13 +291,12 @@ void MapObjActor::endClipped() {
     tryDeleteWaitEffect();
 }
 
-bool MapObjActor::tryCreateBreakModel(const MapObjActorInitInfo &rInfo) {
+bool MapObjActor::tryCreateBreakModel(const MapObjActorInitInfo& rInfo) {
     char buf[0x100];
 
     if (rInfo._80) {
         snprintf(buf, sizeof(buf), "%s", rInfo._80);
-    }
-    else {
+    } else {
         snprintf(buf, sizeof(buf), "%sBreak", mObjectName);
     }
 
@@ -315,8 +307,7 @@ bool MapObjActor::tryCreateBreakModel(const MapObjActorInitInfo &rInfo) {
     if (MR::isEqualString(mObjectName, "SandUpDownTowerBreakableWallB")) {
         MtxPtr baseMtx = getBaseMtx();
         mModelObj = MR::createModelObjMapObj("壊れモデル", buf, baseMtx);
-    }
-    else {
+    } else {
         MtxPtr baseMtx = getBaseMtx();
         mModelObj = MR::createModelObjMapObjStrongLight("壊れモデル", buf, baseMtx);
     }
@@ -411,8 +402,8 @@ void MapObjActor::exeMove() {
     if (MR::isFirstStep(this)) {
         const char* moveName = cBckNameMove;
         if (MR::isExistBck(this, moveName)) {
-             MR::startBck(this, moveName, 0);
-        }   
+            MR::startBck(this, moveName, 0);
+        }
     }
 
     if (MR::isExistBck(this, cBckNameMove) && MR::isBckStopped(this)) {
@@ -420,7 +411,7 @@ void MapObjActor::exeMove() {
     }
 }
 
-void MapObjActorUtil::startAllMapPartsFunctions(const MapObjActor *pActor) {
+void MapObjActorUtil::startAllMapPartsFunctions(const MapObjActor* pActor) {
     if (pActor->mRotator) {
         pActor->mRotator->start();
     }
@@ -442,7 +433,7 @@ void MapObjActorUtil::startAllMapPartsFunctions(const MapObjActor *pActor) {
     }
 }
 
-void MapObjActorUtil::endAllMapPartsFunctions(const MapObjActor *pActor) {
+void MapObjActorUtil::endAllMapPartsFunctions(const MapObjActor* pActor) {
     if (pActor->mRotator) {
         pActor->mRotator->end();
     }
@@ -460,7 +451,7 @@ void MapObjActorUtil::endAllMapPartsFunctions(const MapObjActor *pActor) {
     }
 }
 
-void MapObjActorUtil::pauseAllMapPartsFunctions(const MapObjActor *pActor) {
+void MapObjActorUtil::pauseAllMapPartsFunctions(const MapObjActor* pActor) {
     if (pActor->mRotator) {
         pActor->mRotator->_14 = 0;
     }
@@ -474,7 +465,7 @@ void MapObjActorUtil::pauseAllMapPartsFunctions(const MapObjActor *pActor) {
     }
 }
 
-void MapObjActorUtil::resumeAllMapPartsFunctions(const MapObjActor *pActor) {
+void MapObjActorUtil::resumeAllMapPartsFunctions(const MapObjActor* pActor) {
     if (pActor->mRotator) {
         pActor->mRotator->_14 = 1;
     }
@@ -488,53 +479,53 @@ void MapObjActorUtil::resumeAllMapPartsFunctions(const MapObjActor *pActor) {
     }
 }
 
-bool MapObjActorUtil::isRotatorMoving(const MapObjActor *pActor) {
+bool MapObjActorUtil::isRotatorMoving(const MapObjActor* pActor) {
     return pActor->mRotator->isMoving();
 }
 
-bool MapObjActorUtil::isRailMoverWorking(const MapObjActor *pActor) {
+bool MapObjActorUtil::isRailMoverWorking(const MapObjActor* pActor) {
     return pActor->mRailMover->isWorking();
 }
 
-bool MapObjActorUtil::isRailMoverReachedEnd(const MapObjActor *pActor) {
+bool MapObjActorUtil::isRailMoverReachedEnd(const MapObjActor* pActor) {
     return pActor->mRailMover->isReachedEnd();
 }
 
-f32 MapObjActorUtil::getSeesaw1AxisAngularSpeed(const MapObjActor *pActor) {
+f32 MapObjActorUtil::getSeesaw1AxisAngularSpeed(const MapObjActor* pActor) {
     return pActor->mRotator->_40.mMtx[2][2];
 }
 
-void MapObjActorUtil::forceRotateSeesaw1Axis(const MapObjActor *pActor, f32 a2) {
+void MapObjActorUtil::forceRotateSeesaw1Axis(const MapObjActor* pActor, f32 a2) {
     pActor->mRotator->_40.mMtx[2][3] = a2;
 }
 
-void MapObjActorUtil::startRotator(const MapObjActor *pActor) {
+void MapObjActorUtil::startRotator(const MapObjActor* pActor) {
     pActor->mRotator->start();
 }
 
-void MapObjActorUtil::startRailMover(const MapObjActor *pActor) {
+void MapObjActorUtil::startRailMover(const MapObjActor* pActor) {
     pActor->mRailMover->start();
 }
 
-void MapObjActorUtil::endRotator(const MapObjActor *pActor) {
+void MapObjActorUtil::endRotator(const MapObjActor* pActor) {
     pActor->mRotator->end();
 }
 
-void MapObjActorUtil::pauseRotator(const MapObjActor *pActor) {
+void MapObjActorUtil::pauseRotator(const MapObjActor* pActor) {
     pActor->mRotator->_14 = 0;
 }
 
-void MapObjActorUtil::resetRailMoverToInitPos(const MapObjActor *pActor) {
+void MapObjActorUtil::resetRailMoverToInitPos(const MapObjActor* pActor) {
     pActor->mRailMover->resetToInitPos();
 }
 
-void MapObjActorUtil::startBreak(MapObjActor *pActor) {
+void MapObjActorUtil::startBreak(MapObjActor* pActor) {
     if (!MapObjActorUtil::tryStartBreak(pActor)) {
         pActor->kill();
     }
 }
 
-bool MapObjActorUtil::tryStartBreak(MapObjActor *pActor) {
+bool MapObjActorUtil::tryStartBreak(MapObjActor* pActor) {
     const char* stopSe = MR::StageEffect::getStopSe(pActor->mObjectName);
     if (stopSe) {
         MR::startSound(pActor, stopSe, -1, -1);
@@ -548,21 +539,19 @@ bool MapObjActorUtil::tryStartBreak(MapObjActor *pActor) {
     ModelObj* modelObj = pActor->mModelObj;
     if (modelObj) {
         pActor->mModelObj->appear();
-        const char* breakName = (const char *)cBckNameBreak;
+        const char* breakName = (const char*)cBckNameBreak;
         MR::startAllAnim(modelObj, breakName);
 
         if (MR::isExistBva(pActor, breakName)) {
             MR::startBva(pActor, breakName);
             MR::setBvaFrameAndStop(pActor, 1.0f);
-        }
-        else {
+        } else {
             MR::hideModel(pActor);
         }
 
         MR::invalidateClipping(modelObj);
         return true;
-    }
-    else {
+    } else {
         const char* breakName = cBckNameBreak;
         if (MR::isExistBck(pActor, breakName)) {
             MR::startAllAnim(pActor, breakName);
@@ -574,7 +563,7 @@ bool MapObjActorUtil::tryStartBreak(MapObjActor *pActor) {
     return false;
 }
 
-bool MapObjActorUtil::isBreakStopped(const MapObjActor *pActor) {
+bool MapObjActorUtil::isBreakStopped(const MapObjActor* pActor) {
     const LiveActor* actor = pActor->mModelObj;
 
     if (!pActor->mModelObj && MR::isExistBck(pActor, cBckNameBreak)) {
@@ -588,11 +577,11 @@ bool MapObjActorUtil::isBreakStopped(const MapObjActor *pActor) {
     return MR::isBckOneTimeAndStopped(actor);
 }
 
-void MapObjActorUtil::killBloomModel(MapObjActor *pActor) {
+void MapObjActorUtil::killBloomModel(MapObjActor* pActor) {
     pActor->mBloomModel->kill();
 }
 
-void MapObjActorUtil::appearBloomModel(MapObjActor *pActor) {
+void MapObjActorUtil::appearBloomModel(MapObjActor* pActor) {
     pActor->mBloomModel->appear();
     char buf[0x100];
     snprintf(buf, sizeof(buf), "%sBloom", pActor->mObjectName);
@@ -600,17 +589,15 @@ void MapObjActorUtil::appearBloomModel(MapObjActor *pActor) {
 }
 
 namespace NrvMapObjActor {
-    void HostTypeDone::execute(Spine *pSpine) const {
+    void HostTypeDone::execute(Spine* pSpine) const {}
 
-    }
-
-    void HostTypeMove::execute(Spine *pSpine) const {
-        MapObjActor* actor = reinterpret_cast<MapObjActor*>(pSpine->mExecutor);
+    void HostTypeMove::execute(Spine* pSpine) const {
+        MapObjActor* actor = reinterpret_cast< MapObjActor* >(pSpine->mExecutor);
         actor->exeMove();
     }
 
-    void HostTypeWait::execute(Spine *pSpine) const {
-        MapObjActor* actor = reinterpret_cast<MapObjActor*>(pSpine->mExecutor);
+    void HostTypeWait::execute(Spine* pSpine) const {
+        MapObjActor* actor = reinterpret_cast< MapObjActor* >(pSpine->mExecutor);
         actor->exeWait();
     }
-};
+};  // namespace NrvMapObjActor

@@ -4,14 +4,14 @@
 
 class BossKameckMoveRail : public LiveActor {
 public:
-    BossKameckMoveRail(const char *);
+    BossKameckMoveRail(const char*);
 
     virtual ~BossKameckMoveRail();
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
 
     inline s32 getIdx(s32) const;
 
-    void calcMovePosition(TVec3f *, s32) const;
+    void calcMovePosition(TVec3f*, s32) const;
     s32 calcRandomIndex(s32) const;
     s32 calcRandomStoppableIndex(s32) const;
 
