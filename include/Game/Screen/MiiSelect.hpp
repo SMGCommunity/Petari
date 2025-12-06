@@ -19,7 +19,6 @@ namespace MiiSelectSub {
 };
 
 class ButtonPaneController;
-class FileSelectIconID;
 class MiiSelectIcon;
 
 class MiiSelect : public LayoutActor {
@@ -40,7 +39,7 @@ public:
     bool isAppearing() const;
     bool isSelected();
     bool isDummySelected();
-    void getSelectedID(FileSelectIconID*);
+    void getSelectedID(FileSelectIconID *);
     nw4r::lyt::TexMap* getSelectedMiiTexMap();
     void admitIcon();
     void prohibitIcon(const FileSelectIconID&);
