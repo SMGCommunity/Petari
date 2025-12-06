@@ -55,6 +55,8 @@ bool TalkState::isSelfInterrupt(const TalkMessageCtrl* pArg1) const {
     return _04->getMessageID() != mMessageID;
 }
 
+TalkStateShort::TalkStateShort() : TalkState() {}
+
 bool TalkStateShort::prep(const TalkMessageCtrl* pArg1) {
     return !TalkState::isLostMessage(pArg1);
 }
@@ -157,6 +159,8 @@ u32 TalkStateEvent::getPageCount() const {
     return mPageCount;
 }
 
+TalkStateNormal::TalkStateNormal() : TalkStateEvent() {}
+
 bool TalkStateNormal::test() {
     if (!_18->isEnableTalkPlayerStateNormal() || !MR::testCorePadTriggerA(0)) {
         return false;
@@ -224,9 +228,7 @@ void TalkStateNormal::updateButton() {
     f1 = f1 * f1;
 
     TVec3f up_but_bigger(up);  // 0x48 but should be 0x3c
-    up_but_bigger.x *= 1000.0f;
-    up_but_bigger.y *= 1000.0f;
-    up_but_bigger.z *= 1000.0f;
+    up_but_bigger.mult(1000.0f);
 
     MR::calcNormalizedScreenPosition(&up, up_but_bigger + centerPlayer);  // Second arg is 0x3c, but should be 0x48
     MR::calcNormalizedScreenPosition(&centerPlayer, centerPlayer);
@@ -248,6 +250,8 @@ void TalkStateNormal::updateButton() {
 
     _24->setTrans(playerScreenPos);
 }
+
+TalkStateCompose::TalkStateCompose() : TalkStateNormal() {}
 
 void TalkStateCompose::init(TalkMessageCtrl* pArg1, TalkBalloon* pArg2) {
     TalkState::init(pArg1, pArg2);
