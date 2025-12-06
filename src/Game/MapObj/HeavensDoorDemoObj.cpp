@@ -3,15 +3,13 @@
 #include "Game/MapObj/StageEffectDataTable.hpp"
 #include "Game/Util/Functor.hpp"
 
-HeavensDoorDemoObj::HeavensDoorDemoObj(const char *pName) : MapObjActor(pName) {
+HeavensDoorDemoObj::HeavensDoorDemoObj(const char* pName) : MapObjActor(pName) {
     _C4 = false;
 }
 
-HeavensDoorDemoObj::~HeavensDoorDemoObj() {
-    
-}
+HeavensDoorDemoObj::~HeavensDoorDemoObj() {}
 
-void HeavensDoorDemoObj::init(const JMapInfoIter &rIter) {
+void HeavensDoorDemoObj::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);
     MapObjActorInitInfo info;
     MapObjActorUtil::setupInitInfoSimpleMapObj(&info);
@@ -20,8 +18,7 @@ void HeavensDoorDemoObj::init(const JMapInfoIter &rIter) {
     }
     if (MapObjActor::isObjectName("HeavensDoorAppearStepA")) {
         info.setupNerve(&NrvHeavensDoorDemoObj::HeavensDoorDemoObjNrvAppear::sInstance);
-    }
-    else {
+    } else {
         info.setupNerve(&NrvHeavensDoorDemoObj::HeavensDoorDemoObjNrvWait::sInstance);
     }
     MapObjActorUtil::setupInitInfoTypical(&info, mObjectName);
@@ -35,7 +32,7 @@ void HeavensDoorDemoObj::init(const JMapInfoIter &rIter) {
             MR::tryRegisterDemoActionFunctor(this, MR::Functor_Inline(this, &HeavensDoorDemoObj::startInsideCageDemo), "消滅");
         }
     }
-}    
+}
 
 void HeavensDoorDemoObj::exeAppear() {
     if (MR::isFirstStep(this)) {
@@ -88,11 +85,10 @@ void HeavensDoorDemoObj::control() {
     }
 }
 
-void HeavensDoorDemoObj::connectToScene(const MapObjActorInitInfo &info) {
+void HeavensDoorDemoObj::connectToScene(const MapObjActorInitInfo& info) {
     if (MapObjActor::isObjectName("HeavensDoorInsideCage")) {
         MR::connectToSceneIndirectMapObj(this);
-    }
-    else {
+    } else {
         MapObjActor::connectToScene(info);
     }
 }
@@ -107,18 +103,18 @@ namespace NrvHeavensDoorDemoObj {
     INIT_NERVE(HeavensDoorDemoObjNrvWait);
     INIT_NERVE(HeavensDoorDemoObjNrvVanish);
 
-	void HeavensDoorDemoObjNrvAppear::execute(Spine *pSpine) const {
-        HeavensDoorDemoObj* door = reinterpret_cast<HeavensDoorDemoObj*>(pSpine->mExecutor);
+    void HeavensDoorDemoObjNrvAppear::execute(Spine* pSpine) const {
+        HeavensDoorDemoObj* door = reinterpret_cast< HeavensDoorDemoObj* >(pSpine->mExecutor);
         door->exeAppear();
-	}        
+    }
 
-	void HeavensDoorDemoObjNrvWait::execute(Spine *pSpine) const {
-        HeavensDoorDemoObj* door = reinterpret_cast<HeavensDoorDemoObj*>(pSpine->mExecutor);
+    void HeavensDoorDemoObjNrvWait::execute(Spine* pSpine) const {
+        HeavensDoorDemoObj* door = reinterpret_cast< HeavensDoorDemoObj* >(pSpine->mExecutor);
         door->exeWait();
-	}    
+    }
 
-	void HeavensDoorDemoObjNrvVanish::execute(Spine *pSpine) const {
-        HeavensDoorDemoObj* door = reinterpret_cast<HeavensDoorDemoObj*>(pSpine->mExecutor);
+    void HeavensDoorDemoObjNrvVanish::execute(Spine* pSpine) const {
+        HeavensDoorDemoObj* door = reinterpret_cast< HeavensDoorDemoObj* >(pSpine->mExecutor);
         door->exeVanish();
-	}    
-};
+    }
+};  // namespace NrvHeavensDoorDemoObj

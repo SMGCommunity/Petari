@@ -1,3 +1,4 @@
+#include "Game/Scene/GameScene.hpp"
 #include "Game/AudioLib/AudSceneMgr.hpp"
 #include "Game/AudioLib/AudWrap.hpp"
 #include "Game/LiveActor/AllLiveActorGroup.hpp"
@@ -7,7 +8,6 @@
 #include "Game/NPC/EventDirector.hpp"
 #include "Game/NPC/NPCFunction.hpp"
 #include "Game/NPC/TalkDirector.hpp"
-#include "Game/Scene/GameScene.hpp"
 #include "Game/Scene/GameSceneFunction.hpp"
 #include "Game/Scene/GameScenePauseControl.hpp"
 #include "Game/Scene/GameSceneScenarioOpeningCameraState.hpp"
@@ -25,10 +25,8 @@
 #include <JSystem/J3DGraphBase/J3DSys.hpp>
 
 namespace {
-    CometRetryButton* getCometRetryButton() {
-        return MR::getSceneObj<CometRetryButton>(SceneObj_CometRetryButton);
-    }
-};
+    CometRetryButton* getCometRetryButton() { return MR::getSceneObj< CometRetryButton >(SceneObj_CometRetryButton); }
+};  // namespace
 
 namespace NrvGameScene {
     NEW_NERVE(GameSceneScenarioOpeningCamera, GameScene, ScenarioOpeningCamera);
@@ -44,20 +42,10 @@ namespace NrvGameScene {
     NEW_NERVE(GameSceneTimeUp, GameScene, TimeUp);
     NEW_NERVE(GameSceneGalaxyMap, GameScene, GalaxyMap);
     NEW_NERVE(GameSceneStaffRoll, GameScene, StaffRoll);
-};
+};  // namespace NrvGameScene
 
-GameScene::GameScene() :
-    Scene("GameScene"),
-    _14(0),
-    mScenarioCamera(nullptr),
-    mPauseCtrl(nullptr),
-    mPauseSeq(nullptr),
-    mStageClearSeq(nullptr),
-    mDraw3D(true),
-    _29(1)
-{
-    
-}
+GameScene::GameScene()
+    : Scene("GameScene"), _14(0), mScenarioCamera(nullptr), mPauseCtrl(nullptr), mPauseSeq(nullptr), mStageClearSeq(nullptr), mDraw3D(true), _29(1) {}
 
 GameScene::~GameScene() {
     MR::destroySceneMessage();
@@ -105,8 +93,7 @@ void GameScene::init() {
 
     if (!MR::isScenarioDecided()) {
         MR::receiveAllRequestedFile();
-    }
-    else {
+    } else {
         SceneFunction::initAfterScenarioSelected();
         NPCFunction::createNPCData();
         SceneFunction::startActorFileLoadScenario();
@@ -149,11 +136,9 @@ void GameScene::start() {
 
     if (MR::isGlobalTimerEnd()) {
         MR::forceCloseWipeCircle();
-    }
-    else if (!MR::hasRetryGalaxySequence()) {
+    } else if (!MR::hasRetryGalaxySequence()) {
         startStagePlayFirst();
-    }
-    else {
+    } else {
         startStagePlayRetry();
     }
 }
@@ -162,9 +147,7 @@ void GameScene::update() {
     mPauseCtrl->updateNerve();
     updateNerve();
 
-    bool isTimeUp = MR::isGlobalTimerEnd()
-        && !isNerve(&NrvGameScene::GameSceneTimeUp::sInstance)
-        && MR::isGreaterEqualStep(this, 2);
+    bool isTimeUp = MR::isGlobalTimerEnd() && !isNerve(&NrvGameScene::GameSceneTimeUp::sInstance) && MR::isGreaterEqualStep(this, 2);
 
     if (isTimeUp) {
         setNerve(&NrvGameScene::GameSceneTimeUp::sInstance);
@@ -186,8 +169,7 @@ void GameScene::draw() const {
 void GameScene::calcAnim() {
     if (isPlayMovie()) {
         SceneFunction::executeCalcAnimListOnPlayingMovie();
-    }
-    else {
+    } else {
         SceneFunction::executeCalcAnimList();
     }
 
@@ -219,8 +201,7 @@ void GameScene::requestEndGameOverDemo() {
 void GameScene::requestEndMissDemo() {
     if (MR::isExistSceneObj(SceneObj_CometRetryButton)) {
         setNerve(&NrvGameScene::GameSceneCometRetryAfterMiss::sInstance);
-    }
-    else {
+    } else {
         MR::requestChangeStageAfterMiss();
     }
 }
@@ -246,8 +227,7 @@ bool GameScene::isExecScenarioStarter() const {
 }
 
 bool GameScene::isExecStageClearDemo() const {
-    return isNerve(&NrvGameScene::GameScenePowerStarGet::sInstance)
-        || isNerve(&NrvGameScene::GameSceneGrandStarGet::sInstance);
+    return isNerve(&NrvGameScene::GameScenePowerStarGet::sInstance) || isNerve(&NrvGameScene::GameSceneGrandStarGet::sInstance);
 }
 
 void GameScene::exeScenarioOpeningCamera() {
@@ -263,15 +243,15 @@ void GameScene::exeScenarioOpeningCamera() {
             MR::stopStageBGM(0);
             MR::startStageBGMFromStageName("Game", MR::getCurrentStageName(), MR::getCurrentScenarioNo());
             setNerve(&NrvGameScene::GameSceneAction::sInstance);
-        }
-        else {
+        } else {
             setNerve(&NrvGameScene::GameSceneScenarioStarter::sInstance);
         }
     }
 }
 
 void GameScene::exeCometRetryAfterMiss() {
-    CometRetryButton* pCometRetryButton = getCometRetryButton();;
+    CometRetryButton* pCometRetryButton = getCometRetryButton();
+    ;
 
     if (MR::isFirstStep(this)) {
         getCometRetryButton()->appear();
@@ -299,8 +279,7 @@ void GameScene::exePlayMovie() {
         setNerve(&NrvGameScene::GameSceneAction::sInstance);
         SceneFunction::movementStopSceneController();
         SceneFunction::executeMovementList();
-    }
-    else {
+    } else {
         SceneFunction::executeMovementListOnPlayingMovie();
     }
 }
@@ -313,8 +292,7 @@ void GameScene::exeGalaxyMap() {
     if (!MR::isActiveGalaxyMapLayout()) {
         MR::endStarPointerMode(this);
         setNerve(&NrvGameScene::GameSceneAction::sInstance);
-    }
-    else {
+    } else {
         CategoryList::execute(MR::MovementType_LayoutOnPause);
     }
 }
@@ -332,21 +310,19 @@ void GameScene::initSequences() {
     mPauseCtrl = new GameScenePauseControl(this);
     mPauseCtrl->registerNervePauseMenu(&NrvGameScene::GameScenePauseMenu::sInstance);
 
-    MR::FunctorV0M<GameScenePauseControl *, void (GameScenePauseControl::*)()> func = MR::Functor_Inline<GameScenePauseControl>(mPauseCtrl, &GameScenePauseControl::requestPauseMenuOff);
+    MR::FunctorV0M< GameScenePauseControl*, void (GameScenePauseControl::*)() > func =
+        MR::Functor_Inline< GameScenePauseControl >(mPauseCtrl, &GameScenePauseControl::requestPauseMenuOff);
     mPauseSeq->initWindowMenu(func);
 }
 
 void GameScene::initEffect() {
     if (MR::isEqualStageName("CosmosGardenGalaxy")) {
         SceneFunction::initEffectSystem(5120, 384);
-    }
-    else if (MR::isEqualStageName("KoopaBattleVs1Galaxy")) {
+    } else if (MR::isEqualStageName("KoopaBattleVs1Galaxy")) {
         SceneFunction::initEffectSystem(6144, 512);
-    }
-    else if (MR::isEqualStageName("AstroGalaxy")) {
+    } else if (MR::isEqualStageName("AstroGalaxy")) {
         SceneFunction::initEffectSystem(3072, 512);
-    }
-    else {
+    } else {
         SceneFunction::initEffectSystem(3072, 256);
     }
 }
@@ -362,16 +338,14 @@ void GameScene::drawMirror() const {
         CategoryList::drawXlu(MR::DrawBufferType_MirrorMapObj);
         CategoryList::execute(MR::DrawType_CaptureScreenIndirect);
         MR::clearZBuffer();
-        GXColor c = { 0, 0, -1, 0 };
+        GXColor c = {0, 0, -1, 0};
         MR::fillScreen(c);
     }
 }
 
 // inline
 bool GameScene::isPlayMovie() const {
-    return MR::isActiveMoviePlayer()
-        || MR::isMoviePlayingOnSequence()
-        || isNerve(&NrvGameScene::GameScenePlayMovie::sInstance);
+    return MR::isActiveMoviePlayer() || MR::isMoviePlayingOnSequence() || isNerve(&NrvGameScene::GameScenePlayMovie::sInstance);
 }
 
 void GameScene::draw3D() const {
@@ -437,8 +411,7 @@ void GameScene::draw3D() const {
 void GameScene::draw2D() const {
     if (isPlayMovie()) {
         SceneFunction::executeDrawList2DMovie();
-    }
-    else {
+    } else {
         SceneFunction::executeDrawList2DNormal();
     }
 
@@ -475,23 +448,18 @@ void GameScene::startStagePlayFirst() {
             MR::stopStageBGM(0);
             MR::startStageBGMFromStageName("Game", MR::getCurrentStageName(), MR::getCurrentScenarioNo());
         }
-    }
-    else if (MR::isBeginScenarioStarter()) {
+    } else if (MR::isBeginScenarioStarter()) {
         MR::forceToBlankCinemaFrame();
         MR::forceOpenWipeFade();
         setNerve(&NrvGameScene::GameSceneScenarioStarter::sInstance);
-    }
-    else {
+    } else {
         if (MR::isStageBeginFadeWipe()) {
             MR::openWipeFade(180);
-        }
-        else if (MR::isStageBeginTitleWipe()) {
+        } else if (MR::isStageBeginTitleWipe()) {
             MR::openWipeFade(30);
-        }
-        else if (MR::isStageBeginWithoutWipe()) {
+        } else if (MR::isStageBeginWithoutWipe()) {
             MR::forceOpenWipeFade();
-        }
-        else {
+        } else {
             MR::openWipeCircle(-1);
         }
 
@@ -509,12 +477,10 @@ void GameScene::startStagePlayRetry() {
     if (MR::isEqualStageName("SurfingLv1Galaxy") && MR::getPlayerRestartIdInfo()->_0 == 1) {
         MR::stopSubBGM(0);
         MR::stopStageBGM(0);
-    }
-    else if (MR::isEqualStageName("SurfingLv2Galaxy") && MR::getPlayerRestartIdInfo()->_0 == 1) {
+    } else if (MR::isEqualStageName("SurfingLv2Galaxy") && MR::getPlayerRestartIdInfo()->_0 == 1) {
         MR::stopSubBGM(0);
         MR::stopStageBGM(0);
-    }
-    else {
+    } else {
         MR::stopSubBGM(0);
         MR::stopStageBGM(0);
         MR::startStageBGMFromStageName("Game", MR::getCurrentStageName(), MR::getCurrentScenarioNo());
@@ -525,13 +491,8 @@ void GameScene::startStagePlayRetry() {
 }
 
 bool GameScene::isPermitToPauseMenu() const {
-    return !MR::isStageDisablePauseMenu()
-        && isNerve(&NrvGameScene::GameSceneAction::sInstance)
-        && !MR::isDemoActive()
-        && !MR::isWipeActive()
-        && !MR::isWipeBlank()
-        && !MR::isPlayerDead()
-        && !MR::isPlayerDamaging();
+    return !MR::isStageDisablePauseMenu() && isNerve(&NrvGameScene::GameSceneAction::sInstance) && !MR::isDemoActive() && !MR::isWipeActive() &&
+           !MR::isWipeBlank() && !MR::isPlayerDead() && !MR::isPlayerDamaging();
 }
 
 void GameScene::requestShowGalaxyMap() {
@@ -558,8 +519,7 @@ void GameScene::stageClear() {
     if (MR::isFirstStep(this)) {
         if (isNerve(&NrvGameScene::GameScenePowerStarGet::sInstance)) {
             mStageClearSeq->startPowerStarGetDemo();
-        }
-        else if (isNerve(&NrvGameScene::GameSceneGrandStarGet::sInstance)) {
+        } else if (isNerve(&NrvGameScene::GameSceneGrandStarGet::sInstance)) {
             mStageClearSeq->startGrandStarGetDemo();
         }
     }
@@ -597,7 +557,6 @@ void GameScene::exePowerStarGet() {
 
 void GameScene::exePauseMenu() {
     if (MR::isFirstStep(this)) {
-        
     }
 
     mPauseSeq->movement();

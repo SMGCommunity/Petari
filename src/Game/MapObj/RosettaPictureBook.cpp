@@ -15,7 +15,7 @@
 namespace {
     const s32 hFadeOutFrame = 60;
     const s32 hFadeInFrame = 60;
-};
+};  // namespace
 
 namespace NrvRosettaPictureBook {
     NEW_NERVE(HostTypeNrvWait, RosettaPictureBook, Wait);
@@ -23,16 +23,10 @@ namespace NrvRosettaPictureBook {
     NEW_NERVE(HostTypeNrvFadeOut, RosettaPictureBook, FadeOut);
     NEW_NERVE(HostTypeNrvReading, RosettaPictureBook, Reading);
     NEW_NERVE(HostTypeNrvFadeIn, RosettaPictureBook, FadeIn);
-};
+};  // namespace NrvRosettaPictureBook
 
-RosettaPictureBook::RosettaPictureBook(const char* pName) :
-    LiveActor(pName),
-    mLayout(nullptr),
-    mIconAButton(nullptr),
-    mIsValidOpenIconAButton(false)
-{
-    
-}
+RosettaPictureBook::RosettaPictureBook(const char* pName)
+    : LiveActor(pName), mLayout(nullptr), mIconAButton(nullptr), mIsValidOpenIconAButton(false) {}
 
 void RosettaPictureBook::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
@@ -84,8 +78,7 @@ void RosettaPictureBook::exeWait() {
             MR::startSystemSE("SE_SY_TALK_BUTTON_APPEAR", -1, -1);
             mIconAButton->openWithRead();
         }
-    }
-    else if (mIconAButton->isOpen()) {
+    } else if (mIconAButton->isOpen()) {
         mIconAButton->term();
     }
 
@@ -101,16 +94,11 @@ void RosettaPictureBook::exeWait() {
         return;
     }
 
-    MR::requestStartDemoMarioPuppetableWithoutCinemaFrame(
-        this,
-        "ロゼッタ絵本デモ",
-        &NrvRosettaPictureBook::HostTypeNrvFadeOut::sInstance,
-        &NrvRosettaPictureBook::HostTypeNrvDemoWait::sInstance);
+    MR::requestStartDemoMarioPuppetableWithoutCinemaFrame(this, "ロゼッタ絵本デモ", &NrvRosettaPictureBook::HostTypeNrvFadeOut::sInstance,
+                                                          &NrvRosettaPictureBook::HostTypeNrvDemoWait::sInstance);
 }
 
-void RosettaPictureBook::exeDemoWait() {
-    
-}
+void RosettaPictureBook::exeDemoWait() {}
 
 void RosettaPictureBook::exeFadeOut() {
     if (MR::isFirstStep(this)) {

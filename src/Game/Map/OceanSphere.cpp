@@ -5,10 +5,10 @@ inline f32 yy(f32 y) {
     return y * y;
 }
 
-template<>
-void TRot3f::setRotate(const TVec3f &axis, f32 angle) {
+template <>
+void TRot3f::setRotate(const TVec3f& axis, f32 angle) {
     TVec3f v;
-    v.set<f32>(axis);
+    v.set< f32 >(axis);
     PSVECMag(&v);
     PSVECNormalize(&v, &v);
     f32 angley = sin(angle), anglex = cos(angle);

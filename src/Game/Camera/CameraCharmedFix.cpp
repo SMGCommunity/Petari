@@ -1,7 +1,7 @@
 #include "Game/Camera/CameraCharmedFix.hpp"
 #include "Game/Camera/CamTranslatorCharmedFix.hpp"
 
-CameraCharmedFix::CameraCharmedFix(const char *pName) : Camera(pName) {
+CameraCharmedFix::CameraCharmedFix(const char* pName) : Camera(pName) {
     mAxis.x = 0.0f;
     mAxis.y = 0.0f;
     mAxis.z = 0.0f;
@@ -13,10 +13,8 @@ CameraCharmedFix::CameraCharmedFix(const char *pName) : Camera(pName) {
     mWPoint.z = 1000.0f;
 }
 
-CameraCharmedFix::~CameraCharmedFix() {
+CameraCharmedFix::~CameraCharmedFix() {}
 
-}
-
-CamTranslatorBase *CameraCharmedFix::createTranslator() {
+CamTranslatorBase* CameraCharmedFix::createTranslator() {
     return new CamTranslatorCharmedFix(this);
 }

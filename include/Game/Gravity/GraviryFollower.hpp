@@ -7,14 +7,14 @@ class GlobalGravityObj;
 
 class GraviryFollower : public BaseMatrixFollower {
 public:
-	GraviryFollower(GlobalGravityObj *pGravityObj, const JMapInfoIter &rIter);
+    GraviryFollower(GlobalGravityObj* pGravityObj, const JMapInfoIter& rIter);
 
-	virtual void setGravityFollowHost(const NameObj *pHost);
-	virtual void update();
+    virtual void setGravityFollowHost(const NameObj* pHost);
+    virtual void update();
 
-	PlanetGravity* mGravity; // 0x14
+    PlanetGravity* mGravity;  // 0x14
 };
 
 namespace MR {
-	bool addBaseMatrixFollowerGravity(GlobalGravityObj *pGravityObj, const JMapInfoIter &rIter);
+    bool addBaseMatrixFollowerGravity(GlobalGravityObj* pGravityObj, const JMapInfoIter& rIter);
 };

@@ -7,7 +7,7 @@ class WPad;
 
 class WPadStick {
 public:
-    WPadStick(const WPad *);
+    WPadStick(const WPad*);
 
     void update();
     bool isChanged() const;

@@ -5,19 +5,19 @@
 
 class BigBubbleSwitchArea : public SwitchArea {
 public:
-    BigBubbleSwitchArea(int, const char *);
+    BigBubbleSwitchArea(int, const char*);
     virtual ~BigBubbleSwitchArea();
 
-    virtual bool isInVolume(const TVec3f &) const;
-    virtual const char *getManagerName() const;
+    virtual bool isInVolume(const TVec3f&) const;
+    virtual const char* getManagerName() const;
 };
 
 class BigBubbleCameraArea : public CubeCameraArea {
 public:
-    BigBubbleCameraArea(int, const char *);
+    BigBubbleCameraArea(int, const char*);
 
     virtual ~BigBubbleCameraArea();
 
-    virtual bool isInVolume(const TVec3f &) const;
+    virtual bool isInVolume(const TVec3f&) const;
     virtual const char* getManagerName() const;
 };

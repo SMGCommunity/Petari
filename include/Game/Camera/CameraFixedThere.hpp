@@ -4,19 +4,19 @@
 
 class CameraFixedThere : public Camera {
 public:
-    CameraFixedThere(const char *);
+    CameraFixedThere(const char*);
     virtual ~CameraFixedThere();
 
     virtual void reset();
-    virtual CameraTargetObj *calc();
+    virtual CameraTargetObj* calc();
     virtual bool isCorrectingErpPositionOff() const;
-    virtual CamTranslatorBase *createTranslator();
+    virtual CamTranslatorBase* createTranslator();
 
     void copyStatusFromPrevCamera();
-    void calcEyeDir(TVec3f *);
+    void calcEyeDir(TVec3f*);
     void makeAxisAndRoll();
-    void updateUpVec(const TVec3f &);
-    void updateNormalUpVec(const TVec3f &);
+    void updateUpVec(const TVec3f&);
+    void updateNormalUpVec(const TVec3f&);
 
     u32 _4C;
     bool _50;

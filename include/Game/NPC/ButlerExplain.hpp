@@ -5,10 +5,10 @@
 
 class ButlerExplain : public NPCActor {
 public:
-    ButlerExplain(const char *);
+    ButlerExplain(const char*);
 
     virtual ~ButlerExplain();
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
     virtual void control();
 
     void startDemo();

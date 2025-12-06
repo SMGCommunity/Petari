@@ -1,8 +1,8 @@
 #pragma once
 
 #include "Game/LiveActor/HitSensor.hpp"
-#include "Game/System/NerveExecutor.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
+#include "Game/System/NerveExecutor.hpp"
 
 class WalkerStateParam;
 class WalkerStateStaggerParam;
@@ -25,14 +25,14 @@ public:
     f32 _2C;
 };
 
-class WalkerStateStagger : public ActorStateBase<LiveActor> {
+class WalkerStateStagger : public ActorStateBase< LiveActor > {
 public:
-    WalkerStateStagger(LiveActor *, TVec3f *, WalkerStateParam *, WalkerStateStaggerParam *);
+    WalkerStateStagger(LiveActor*, TVec3f*, WalkerStateParam*, WalkerStateStaggerParam*);
 
     virtual ~WalkerStateStagger();
     virtual void appear();
 
-    void setPunchDirection(HitSensor *, HitSensor *);
+    void setPunchDirection(HitSensor*, HitSensor*);
     void exeStagger();
     void exeStaggerEnd();
     void reboundWall();
@@ -42,10 +42,10 @@ public:
     bool isSwooning(s32) const;
     bool isSpinning(s32, s32) const;
     bool isRecoverStart() const;
-    
-    LiveActor* mParent;                         // 0x0C
-    WalkerStateParam* mStateParam;              // 0x10
-    WalkerStateStaggerParam* mStaggerParam;     // 0x14
+
+    LiveActor* mParent;                      // 0x0C
+    WalkerStateParam* mStateParam;           // 0x10
+    WalkerStateStaggerParam* mStaggerParam;  // 0x14
     TVec3f _18;
     TVec3f* _24;
 };

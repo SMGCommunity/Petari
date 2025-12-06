@@ -3,7 +3,7 @@
 #include <revolution.h>
 
 enum JUTTransparency {
-    
+
 };
 
 struct ResTLUT {

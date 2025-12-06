@@ -10,16 +10,13 @@ namespace MR {
 
 class GamePauseSequence : public LayoutActor {
 public:
-    enum MenuType {
-        ActivePause = 0,
-        SceneInformation = 1
-    };
+    enum MenuType { ActivePause = 0, SceneInformation = 1 };
 
     GamePauseSequence();
 
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
 
-    void initWindowMenu(const MR::FunctorBase &);
+    void initWindowMenu(const MR::FunctorBase&);
     void startPause(MenuType);
     void deactivate();
     void exeDeactive();

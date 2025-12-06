@@ -7,10 +7,10 @@ namespace {
     static TVec3f sTestHitPosition(0, 0, 0);
     static TVec3f sTestHitVerocity(0, 0, 0);
     static TVec3f sTestLandPosition(0, 0, 0);
-};
+};  // namespace
 
 HitResult::HitResult() {
-    _0.set<int>(0, 0, 0);
+    _0.set< int >(0, 0, 0);
     _C.x = 0.0f;
     _C.y = 0.0f;
     _C.z = 0.0f;
@@ -34,16 +34,16 @@ TripodBossMovableArea::TripodBossMovableArea() {
     _30 = 1.0f;
 }
 
-void TripodBossMovableArea::setCenter(const TVec3f &rCenter) {
+void TripodBossMovableArea::setCenter(const TVec3f& rCenter) {
     mCenter = rCenter;
 }
 
-void TripodBossMovableArea::setBaseAxis(const TVec3f &rAxis) {
+void TripodBossMovableArea::setBaseAxis(const TVec3f& rAxis) {
     mBaseAxis = rAxis;
     MR::normalizeOrZero(&mBaseAxis);
 }
 
-void TripodBossMovableArea::setFrontVector(const TVec3f &rFront) {
+void TripodBossMovableArea::setFrontVector(const TVec3f& rFront) {
     mFront = rFront;
     MR::normalizeOrZero(&mBaseAxis);
 }
@@ -52,8 +52,8 @@ void TripodBossMovableArea::setRadius(f32 radius) {
     mRadius = radius;
 }
 
-bool TripodBossMovableArea::collideSphere(HitResult *pResult, const TVec3f &a2, f32 a3, const TVec3f &a4) const {
-    pResult->_C =  a2 + a4;
+bool TripodBossMovableArea::collideSphere(HitResult* pResult, const TVec3f& a2, f32 a3, const TVec3f& a4) const {
+    pResult->_C = a2 + a4;
     f32 v10 = mRadius + a3;
     TVec3f v29(a2);
     v29 -= mCenter;
@@ -69,12 +69,12 @@ bool TripodBossMovableArea::collideSphere(HitResult *pResult, const TVec3f &a2, 
         return false;
     }
 
-    f32 v14  = ((v11 * v11) - val);
+    f32 v14 = ((v11 * v11) - val);
     if (v14 < 0.0f) {
         return false;
     }
 
-    f32 v15 = (-v11 - MR::sqrt<f32>(v14));
+    f32 v15 = (-v11 - MR::sqrt< f32 >(v14));
     if (v15 > scalar) {
         return false;
     }
@@ -90,7 +90,7 @@ bool TripodBossMovableArea::collideSphere(HitResult *pResult, const TVec3f &a2, 
     MR::separateScalarAndDirection(&v17, &v27, v27);
     if (v17 < v10) {
         if (MR::isNearZero(v17, 0.001f)) {
-            v27.set<int>(0, 1, 0);
+            v27.set< int >(0, 1, 0);
         }
 
         pResult->_0 = mCenter + (v27 * v10);
@@ -105,7 +105,7 @@ bool TripodBossMovableArea::collideSphere(HitResult *pResult, const TVec3f &a2, 
     return true;
 }
 
-void TripodBossMovableArea::calcNearLandingPosition(TVec3f *pPos, const TVec3f &a2) const {
+void TripodBossMovableArea::calcNearLandingPosition(TVec3f* pPos, const TVec3f& a2) const {
     f32 v6, v8, x, v7;
     TVec3f v16(a2);
     v16 -= mCenter;
@@ -117,13 +117,11 @@ void TripodBossMovableArea::calcNearLandingPosition(TVec3f *pPos, const TVec3f &
 
     x = mBaseAxis.dot(v16);
     if (MR::isInRange(x, _2C, _30)) {
-        pPos->set<f32>(mCenter + (v16 * mRadius));
-    }
-    else {
+        pPos->set< f32 >(mCenter + (v16 * mRadius));
+    } else {
         if (x < _2C) {
             x = _2C;
-        }
-        else {
+        } else {
             if (x > _30) {
                 x = _30;
             }
@@ -139,13 +137,13 @@ void TripodBossMovableArea::calcNearLandingPosition(TVec3f *pPos, const TVec3f &
         }
 
         MR::normalizeOrZero(&v15);
-        v7 = MR::sqrt<f32>((1.0f - (x * x)));
+        v7 = MR::sqrt< f32 >((1.0f - (x * x)));
         TVec3f sp48((mBaseAxis * x) + (v15 * v7));
-        pPos->set<f32>(sp48 * mRadius);
+        pPos->set< f32 >(sp48 * mRadius);
     }
 }
 
-void TripodBossMovableArea::calcLandingNormal(TVec3f *pNorm, const TVec3f &a2) const {
+void TripodBossMovableArea::calcLandingNormal(TVec3f* pNorm, const TVec3f& a2) const {
     TVec3f norm(a2);
     norm -= mCenter;
     MR::normalizeOrZero(&norm);
@@ -153,10 +151,10 @@ void TripodBossMovableArea::calcLandingNormal(TVec3f *pNorm, const TVec3f &a2) c
         norm = mBaseAxis;
     }
 
-    pNorm->set<f32>(norm);
+    pNorm->set< f32 >(norm);
 }
 
-void TripodBossMovableArea::calcLandingFront(TVec3f *pFront, const TVec3f &a2) const {
+void TripodBossMovableArea::calcLandingFront(TVec3f* pFront, const TVec3f& a2) const {
     TVec3f v11(a2);
     v11 -= mCenter;
     MR::normalizeOrZero(&v11);
@@ -175,5 +173,5 @@ void TripodBossMovableArea::calcLandingFront(TVec3f *pFront, const TVec3f &a2) c
         MR::normalizeOrZero(&v10);
     }
 
-    pFront->set<f32>(v10);
+    pFront->set< f32 >(v10);
 }

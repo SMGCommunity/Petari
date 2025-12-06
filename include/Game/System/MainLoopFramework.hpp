@@ -9,9 +9,9 @@ typedef void (*PreRenderCallback)();
 
 class MainLoopFrameworkAlarm : public OSAlarm {
 public:
-    u32 _dummy; // helps with waitDrawDoneAndSetAlarm stack frame size
-    
-    static MR::BothDirList<MainLoopFrameworkAlarm> sList;
+    u32 _dummy;  // helps with waitDrawDoneAndSetAlarm stack frame size
+
+    static MR::BothDirList< MainLoopFrameworkAlarm > sList;
 };
 
 class MainLoopFramework {

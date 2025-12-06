@@ -1,4 +1,6 @@
+#include "Game/Util/SystemUtil.hpp"
 #include "Game/NameObj/NameObjHolder.hpp"
+#include "Game/SingletonHolder.hpp"
 #include "Game/System/AudSystemWrapper.hpp"
 #include "Game/System/FunctionAsyncExecutor.hpp"
 #include "Game/System/GameDataFunction.hpp"
@@ -10,84 +12,61 @@
 #include "Game/System/MessageHolder.hpp"
 #include "Game/Util/HashUtil.hpp"
 #include "Game/Util/MemoryUtil.hpp"
-#include "Game/Util/ScreenUtil.hpp"
 #include "Game/Util/SceneUtil.hpp"
-#include "Game/Util/SystemUtil.hpp"
-#include "Game/SingletonHolder.hpp"
+#include "Game/Util/ScreenUtil.hpp"
 #include <nw4r/lyt/layout.h>
 
 namespace MR {
-    GameSystemObjHolder* getGameSystemObjHolder() {
-        return SingletonHolder<GameSystem>::get()->mObjHolder;
-    }
-};
+    GameSystemObjHolder* getGameSystemObjHolder() { return SingletonHolder< GameSystem >::get()->mObjHolder; }
+};  // namespace MR
 
 namespace {
-    FunctionAsyncExecutor* getFunctionAsyncExecutor() NO_INLINE {
-        return MR::getGameSystemObjHolder()->mAsyncExec;
-    }
-};
+    FunctionAsyncExecutor* getFunctionAsyncExecutor() NO_INLINE { return MR::getGameSystemObjHolder()->mAsyncExec; }
+};  // namespace
 
 namespace {
-    NameObjHolder* getSceneNameObjHolder() NO_INLINE {
-        return SingletonHolder<GameSystem>::get()->mSceneController->mObjHolder;
-    }
-};
+    NameObjHolder* getSceneNameObjHolder() NO_INLINE { return SingletonHolder< GameSystem >::get()->mSceneController->mObjHolder; }
+};  // namespace
 
 namespace MR {
-    nw4r::ut::Font* getFontOnCurrentLanguage() {
-        return SingletonHolder<GameSystem>::get()->mFontHolder->getMessageFont();
-    }
+    nw4r::ut::Font* getFontOnCurrentLanguage() { return SingletonHolder< GameSystem >::get()->mFontHolder->getMessageFont(); }
 
     nw4r::ut::Font* getPictureFontNW4R() {
         // TODO: Explicit cast should be removed or adjusted when nw4r::ut::ResFont is properly declared.
-        return reinterpret_cast<nw4r::ut::Font*>(SingletonHolder<GameSystem>::get()->mFontHolder->mPictureFont);
+        return reinterpret_cast< nw4r::ut::Font* >(SingletonHolder< GameSystem >::get()->mFontHolder->mPictureFont);
     }
 
     nw4r::ut::Font* getMenuFontNW4R() {
         // TODO: Explicit cast should be removed or adjusted when nw4r::ut::ResFont is properly declared.
-        return reinterpret_cast<nw4r::ut::Font*>(SingletonHolder<GameSystem>::get()->mFontHolder->mMenuFont);
+        return reinterpret_cast< nw4r::ut::Font* >(SingletonHolder< GameSystem >::get()->mFontHolder->mMenuFont);
     }
 
     nw4r::ut::Font* getNumberFontNW4R() {
         // TODO: Explicit cast should be removed or adjusted when nw4r::ut::ResFont is properly declared.
-        return reinterpret_cast<nw4r::ut::Font*>(SingletonHolder<GameSystem>::get()->mFontHolder->mNumberFont);
+        return reinterpret_cast< nw4r::ut::Font* >(SingletonHolder< GameSystem >::get()->mFontHolder->mNumberFont);
     }
 
     nw4r::ut::Font* getCinemaFontNW4R() {
         // TODO: Explicit cast should be removed or adjusted when nw4r::ut::ResFont is properly declared.
-        return reinterpret_cast<nw4r::ut::Font*>(SingletonHolder<GameSystem>::get()->mFontHolder->mCinemaFont);
+        return reinterpret_cast< nw4r::ut::Font* >(SingletonHolder< GameSystem >::get()->mFontHolder->mCinemaFont);
     }
 
-    ParticleResourceHolder* getParticleResourceHolder() {
-        return getGameSystemObjHolder()->mParticleResHolder;
-    }
+    ParticleResourceHolder* getParticleResourceHolder() { return getGameSystemObjHolder()->mParticleResHolder; }
 
-    void requestChangeArchivePlayer(bool isPlayerMario) {
-        GameSystemFunction::requestChangeArchivePlayer(isPlayerMario);
-    }
+    void requestChangeArchivePlayer(bool isPlayerMario) { GameSystemFunction::requestChangeArchivePlayer(isPlayerMario); }
 
     void waitEndChangeArchivePlayer() {
         while (!GameSystemFunction::isEndChangeArchivePlayer()) {
-            
         }
     }
 
-    void callMethodAllSceneNameObj(NameObjMethod pMethod) {
-        getSceneNameObjHolder()->callMethodAllObj(pMethod);
-    }
+    void callMethodAllSceneNameObj(NameObjMethod pMethod) { getSceneNameObjHolder()->callMethodAllObj(pMethod); }
 
-    void suspendAllSceneNameObj() {
-        getSceneNameObjHolder()->suspendAllObj();
-    }
+    void suspendAllSceneNameObj() { getSceneNameObjHolder()->suspendAllObj(); }
 
-    void resumeAllSceneNameObj() {
-        getSceneNameObjHolder()->resumeAllObj();
-    }
+    void resumeAllSceneNameObj() { getSceneNameObjHolder()->resumeAllObj(); }
 
-    void syncWithFlagsAllSceneNameObj() {
-        getSceneNameObjHolder()->syncWithFlags();
-    }
+    void syncWithFlagsAllSceneNameObj() { getSceneNameObjHolder()->syncWithFlags(); }
 
     void setRandomSeedFromStageName() {
         u32 seed = getHashCode(getCurrentStageName());
@@ -95,9 +74,7 @@ namespace MR {
         getGameSystemObjHolder()->mRandom.mSeed = seed;
     }
 
-    void clearFileLoaderRequestFileInfo(bool param1) {
-        getGameSystemObjHolder()->clearRequestFileInfo(param1);
-    }
+    void clearFileLoaderRequestFileInfo(bool param1) { getGameSystemObjHolder()->clearRequestFileInfo(param1); }
 
     void startFunctionAsyncExecute(const MR::FunctorBase& rFunc, int threadPriority, const char* pThreadName) {
         getFunctionAsyncExecutor()->start(rFunc, threadPriority, pThreadName);
@@ -107,13 +84,9 @@ namespace MR {
         return getFunctionAsyncExecutor()->startOnMainThread(rFunc, pThreadName);
     }
 
-    void waitForEndFunctionAsyncExecute(const char* pThreadName) {
-        getFunctionAsyncExecutor()->waitForEnd(pThreadName);
-    }
+    void waitForEndFunctionAsyncExecute(const char* pThreadName) { getFunctionAsyncExecutor()->waitForEnd(pThreadName); }
 
-    bool isEndFunctionAsyncExecute(const char* pThreadName) {
-        return getFunctionAsyncExecutor()->isEnd(pThreadName);
-    }
+    bool isEndFunctionAsyncExecute(const char* pThreadName) { return getFunctionAsyncExecutor()->isEnd(pThreadName); }
 
     bool tryEndFunctionAsyncExecute(const char* pThreadName) {
         if (isEndFunctionAsyncExecute(pThreadName)) {
@@ -125,9 +98,7 @@ namespace MR {
         return false;
     }
 
-    void suspendAsyncExecuteThread(const char* pThreadName) {
-        OSSuspendThread(getFunctionAsyncExecutor()->getOSThread(pThreadName));
-    }
+    void suspendAsyncExecuteThread(const char* pThreadName) { OSSuspendThread(getFunctionAsyncExecutor()->getOSThread(pThreadName)); }
 
     void resumeAsyncExecuteThread(const char* pThreadName) {
         OSThread* pThread = getFunctionAsyncExecutor()->getOSThread(pThreadName);
@@ -147,13 +118,9 @@ namespace MR {
 
     // isScreen16Per9
 
-    void initSceneMessage() {
-        getGameSystemObjHolder()->mMsgHolder->initSceneData();
-    }
+    void initSceneMessage() { getGameSystemObjHolder()->mMsgHolder->initSceneData(); }
 
-    void destroySceneMessage() {
-        getGameSystemObjHolder()->mMsgHolder->destroySceneData();
-    }
+    void destroySceneMessage() { getGameSystemObjHolder()->mMsgHolder->destroySceneData(); }
 
     void resetSystemAndGameStatus() {
         GameDataFunction::resetAllGameData();
@@ -161,15 +128,9 @@ namespace MR {
         resetGlobalTimer();
     }
 
-    void stopAllSound(u32 param1) {
-        getGameSystemObjHolder()->mSysWrapper->stopAllSound(param1);
-    }
+    void stopAllSound(u32 param1) { getGameSystemObjHolder()->mSysWrapper->stopAllSound(param1); }
 
-    void setLayoutDefaultAllocator() {
-        nw4r::lyt::Layout::mspAllocator = &MR::NewDeleteAllocator::sAllocator;
-    }
+    void setLayoutDefaultAllocator() { nw4r::lyt::Layout::mspAllocator = &MR::NewDeleteAllocator::sAllocator; }
 
-    bool isDisplayEncouragePal60Window() {
-        return VIGetTvFormat() == 1;
-    }
-};
+    bool isDisplayEncouragePal60Window() { return VIGetTvFormat() == 1; }
+};  // namespace MR

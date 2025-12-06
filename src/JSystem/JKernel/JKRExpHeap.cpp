@@ -20,7 +20,7 @@ JKRExpHeap* JKRExpHeap::createRoot(int heapNum, bool a2) {
         JKRHeap::initArena(&stack_C, &arenaSize, heapNum);
         char* area = stack_C + 0x90;
         u32 size = arenaSize - 0x90;
-        heap = new(stack_C)JKRExpHeap(area, size, nullptr, a2);
+        heap = new (stack_C) JKRExpHeap(area, size, nullptr, a2);
         JKRHeap::sRootHeap = heap;
     }
 
@@ -36,7 +36,7 @@ JKRExpHeap* JKRExpHeap::create(u32 size, JKRHeap* pParent, bool errorFlag) {
     if (size == 0xFFFFFFFF) {
         size = pParent->getMaxAllocatableSize(0x10);
     }
- 
+
     u32 alignedSize = ALIGN_PREV(size, 0x10);
     u32 heapSize = ALIGN_NEXT(sizeof(JKRExpHeap), 0x10);
 
@@ -50,7 +50,7 @@ JKRExpHeap* JKRExpHeap::create(u32 size, JKRHeap* pParent, bool errorFlag) {
         return nullptr;
     }
 
-    JKRExpHeap* heap = new(mem)JKRExpHeap(data, alignedSize - heapSize, pParent, errorFlag);
+    JKRExpHeap* heap = new (mem) JKRExpHeap(data, alignedSize - heapSize, pParent, errorFlag);
 
     if (heap == nullptr) {
         JKRHeap::free(mem, nullptr);
@@ -70,8 +70,7 @@ JKRExpHeap* JKRExpHeap::create(void* ptr, u32 size, JKRHeap* pParent, bool error
         if (parent == nullptr) {
             return nullptr;
         }
-    }
-    else {
+    } else {
         parent = pParent;
     }
 
@@ -85,7 +84,7 @@ JKRExpHeap* JKRExpHeap::create(void* ptr, u32 size, JKRHeap* pParent, bool error
     void* data = (u8*)ptr + heapSize;
     u32 alignSize = ALIGN_PREV((u32)ptr + size - (u32)data, 0x10);
     if (ptr != nullptr) {
-        heap = new(ptr)JKRExpHeap(data, alignSize, parent, errorFlag);
+        heap = new (ptr) JKRExpHeap(data, alignSize, parent, errorFlag);
     }
 
     heap->mAllocMode = 1;
@@ -102,8 +101,7 @@ void JKRExpHeap::do_destroy() {
             this->~JKRExpHeap();
             JKRHeap::free(this, heap);
         }
-    }
-    else {
+    } else {
         this->~JKRExpHeap();
     }
 }
@@ -119,16 +117,13 @@ void* JKRExpHeap::do_alloc(u32 size, int align) {
     if (align >= 0) {
         if (align <= 4) {
             ptr = allocFromHead(size);
-        }
-        else {
+        } else {
             ptr = allocFromHead(size, align);
         }
-    }
-    else {
+    } else {
         if (-align <= 4) {
             ptr = allocFromTail(size);
-        }
-        else {
+        } else {
             ptr = allocFromTail(size, -align);
         }
     }
@@ -150,11 +145,7 @@ void* JKRExpHeap::do_alloc(u32 size, int align) {
 // JKRExpheap::allocFromHead
 // JKRExpHeap::allocFromTail
 
-
-
-JKRExpHeap::JKRExpHeap(void* data, u32 size, JKRHeap* parent, bool error)
-    : JKRHeap(data, size, parent, error) {
-
+JKRExpHeap::JKRExpHeap(void* data, u32 size, JKRHeap* parent, bool error) : JKRHeap(data, size, parent, error) {
     CMemBlock* block = (CMemBlock*)data;
 
     _6A = 0;
@@ -203,8 +194,7 @@ JKRExpHeap::CMemBlock* JKRExpHeap::CMemBlock::allocBack(u32 size, u8 group_1, u8
         mGroupId = group_1;
         mFlags = align_1;
         mSize -= size + sizeof(CMemBlock);
-    }
-    else {
+    } else {
         mGroupId = group_2;
         mFlags = 0x80;
     }

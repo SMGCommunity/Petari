@@ -1,11 +1,9 @@
-#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/MapObj/MeteoContainer.hpp"
+#include "Game/LiveActor/HitSensor.hpp"
 
-MeteoContainer::MeteoContainer(const char *pName) : LiveActor(pName) {
+MeteoContainer::MeteoContainer(const char* pName) : LiveActor(pName) {}
 
-}
-
-void MeteoContainer::init(const JMapInfoIter &rIter) {
+void MeteoContainer::init(const JMapInfoIter& rIter) {
     const char* objName = nullptr;
 
     if (!MR::getObjectName(&objName, rIter)) {
@@ -45,24 +43,20 @@ void MeteoContainer::kill() {
     LiveActor::kill();
 }
 
-void MeteoContainer::control() {
+void MeteoContainer::control() {}
 
-}
-
-void MeteoContainer::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
+void MeteoContainer::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isSensorPlayer(pReceiver)) {
         pReceiver->receiveMessage(41, pSender);
     }
 }
 
-bool MeteoContainer::receiveMsgPush(HitSensor *pSender, HitSensor *pReceiver) {
+bool MeteoContainer::receiveMsgPush(HitSensor* pSender, HitSensor* pReceiver) {
     return MR::isSensorPlayer(pSender);
 }
 
-bool MeteoContainer::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
-    if (msg == ACTMES_TORNADO_ATTACK
-        && isNerve(&NrvMeteoContainer::MeteoContainerNrvWait::sInstance))
-    {
+bool MeteoContainer::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
+    if (msg == ACTMES_TORNADO_ATTACK && isNerve(&NrvMeteoContainer::MeteoContainerNrvWait::sInstance)) {
         setNerve(&NrvMeteoContainer::MeteoContainerNrvDestroy::sInstance);
 
         return true;
@@ -82,12 +76,9 @@ void MeteoContainer::exeDestroy() {
     }
 }
 
-
-MeteoContainer::~MeteoContainer() {
-
-}
+MeteoContainer::~MeteoContainer() {}
 
 namespace NrvMeteoContainer {
     INIT_NERVE(MeteoContainerNrvWait);
     INIT_NERVE(MeteoContainerNrvDestroy);
-};
+};  // namespace NrvMeteoContainer

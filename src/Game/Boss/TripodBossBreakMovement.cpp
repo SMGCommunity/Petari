@@ -7,12 +7,9 @@ namespace NrvTripodBossBreakMovement {
     NEW_NERVE(TripodBossBreakMovementNrvWait, TripodBossBreakMovement, Wait);
     NEW_NERVE(TripodBossBreakMovementNrvStartBreak, TripodBossBreakMovement, StartBreak);
     NEW_NERVE(TripodBossBreakMovementNrvBreak, TripodBossBreakMovement, Break);
-};
+};  // namespace NrvTripodBossBreakMovement
 
-TripodBossBreakMovement::TripodBossBreakMovement(const char *pName) : 
-    LiveActor(pName), mSpring(nullptr), _CC(0, 0, 0), _D8(0, 0, 0),
-    _E4(0, 1, 0) {
-
+TripodBossBreakMovement::TripodBossBreakMovement(const char* pName) : LiveActor(pName), mSpring(nullptr), _CC(0, 0, 0), _D8(0, 0, 0), _E4(0, 1, 0) {
     _F0 = 0.30000001f;
     _F4 = 0.0f;
     _F8 = 0.89999998f;
@@ -26,7 +23,7 @@ TripodBossBreakMovement::TripodBossBreakMovement(const char *pName) :
     setBreakDownLevel(1);
 }
 
-void TripodBossBreakMovement::start(const TPos3f &a1, s32 a2) {
+void TripodBossBreakMovement::start(const TPos3f& a1, s32 a2) {
     _8C.setInline(a1);
     _8C.getTrans(_C0);
     _CC.z = 0.0f;
@@ -35,7 +32,7 @@ void TripodBossBreakMovement::start(const TPos3f &a1, s32 a2) {
     f32 v13 = MR::getRandom(-1.0f, 1.0f);
     f32 v14 = MR::getRandom(-1.0f, 1.0f);
     f32 v15 = MR::getRandom(-1.0f, 1.0f);
-    _CC.set<f32>(v15, v14, v13);
+    _CC.set< f32 >(v15, v14, v13);
     MR::normalizeOrZero(&_CC);
     f32 v16 = MR::getRandom(0.0099999998f, 0.039999999f);
     _CC *= v16;
@@ -51,7 +48,7 @@ void TripodBossBreakMovement::start(const TPos3f &a1, s32 a2) {
     f32 v18 = MR::getRandom(-1.0f, 1.0f);
     f32 v19 = MR::getRandom(-1.0f, 1.0f);
     TVec3f v25;
-    v25.set<f32>(v19, v18, v17);
+    v25.set< f32 >(v19, v18, v17);
     f32 val = _F0;
     TVec3f v24(v25);
     v24 *= val;
@@ -75,16 +72,15 @@ void TripodBossBreakMovement::setBreakDownLevel(s32 level) {
     }
 
     switch (level) {
-        case 0:
-        case 1:
-        case 2:
-            _F4 = MR::getRandom(50.0f, 90.0f);
-            break;
-        case 3:
-            _F4 = 50.0f;
-            _F0 = 0.0f;
-            break;
-        
+    case 0:
+    case 1:
+    case 2:
+        _F4 = MR::getRandom(50.0f, 90.0f);
+        break;
+    case 3:
+        _F4 = 50.0f;
+        _F0 = 0.0f;
+        break;
     }
 }
 
@@ -125,6 +121,4 @@ void TripodBossBreakMovement::exeBreak() {
     _D8 *= _F8;
 }
 
-TripodBossBreakMovement::~TripodBossBreakMovement() {
-    
-}
+TripodBossBreakMovement::~TripodBossBreakMovement() {}

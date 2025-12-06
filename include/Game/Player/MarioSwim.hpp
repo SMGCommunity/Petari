@@ -10,7 +10,7 @@ class MarineSnow;
 
 class MarioSwim : public MarioState {
 public:
-    MarioSwim(MarioActor *);
+    MarioSwim(MarioActor*);
 
     virtual void init();
     virtual bool proc(u32);
@@ -20,9 +20,9 @@ public:
     virtual bool notice();
     virtual bool keep();
     virtual bool postureCtrl(MtxPtr);
-    virtual void hitWall(const TVec3f &, HitSensor *);
-    virtual void hitPoly(u8, const TVec3f &, HitSensor *);
-    virtual bool passRing(const HitSensor *);
+    virtual void hitWall(const TVec3f&, HitSensor*);
+    virtual void hitPoly(u8, const TVec3f&, HitSensor*);
+    virtual bool passRing(const HitSensor*);
     virtual f32 getBlurOffset() const;
     virtual void draw3D() const;
 
@@ -41,15 +41,15 @@ public:
     void updateTilt();
     void jet();
     void pushedByWaterWall();
-    void setDamage(const TVec3f &, u16);
+    void setDamage(const TVec3f&, u16);
     void updateUnderwater();
     void startJet(u32);
-    void addDamage(const TVec3f &);
-    void addFaint(const TVec3f &);
+    void addDamage(const TVec3f&);
+    void addFaint(const TVec3f&);
 
     f32 getSurface() const;
 
-    virtual TVec3f &getGravityVec() const;
+    virtual TVec3f& getGravityVec() const;
 
     static inline f32 getWorthlessNumber() { return 0.523598790169f; }
 
@@ -63,12 +63,10 @@ public:
 
      */
 
-    inline void funReferenceTime(bool &worthlesser)
-    {
+    inline void funReferenceTime(bool& worthlesser) {
         if (_5C > 1.57079637051f) {
             worthlesser = true;
-        }
-        else {
+        } else {
             if (_3C > 0x1E) {
                 _1E = 1;
             }
@@ -94,7 +92,7 @@ public:
 
     inline bool check7Aand7C() const { return _7A || _7C; }
 
-    MarineSnow *_14;
+    MarineSnow* _14;
     u8 _18;
     u8 _19;
     u8 _1A;

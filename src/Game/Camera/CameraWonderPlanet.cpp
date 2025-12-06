@@ -1,7 +1,7 @@
 #include "Game/Camera/CameraWonderPlanet.hpp"
 #include "Game/Camera/CamTranslatorWonderPlanet.hpp"
 
-CameraWonderPlanet::CameraWonderPlanet(const char *pName) : Camera(pName) {
+CameraWonderPlanet::CameraWonderPlanet(const char* pName) : Camera(pName) {
     mAxisX = 500.0f;
     mAxisY = 2000.0f;
     mAngleA = 0.7853982f;
@@ -9,10 +9,8 @@ CameraWonderPlanet::CameraWonderPlanet(const char *pName) : Camera(pName) {
     _5C = 0;
 }
 
-CameraWonderPlanet::~CameraWonderPlanet() {
+CameraWonderPlanet::~CameraWonderPlanet() {}
 
-}
-
-CamTranslatorBase *CameraWonderPlanet::createTranslator() {
+CamTranslatorBase* CameraWonderPlanet::createTranslator() {
     return new CamTranslatorWonderPlanet(this);
 }

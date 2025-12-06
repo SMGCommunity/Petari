@@ -1,17 +1,17 @@
 #pragma once
 
-#include "Game/NameObj/NameObj.hpp"
 #include "Game/Map/StageSwitch.hpp"
 #include "Game/MapObj/PurpleCoinHolder.hpp"
+#include "Game/NameObj/NameObj.hpp"
 
 class PurpleCoinStarter : public NameObj {
 public:
-    PurpleCoinStarter(const char *);
+    PurpleCoinStarter(const char*);
 
     virtual ~PurpleCoinStarter();
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
 
-    void setHost(PurpleCoinHolder *);
+    void setHost(PurpleCoinHolder*);
     void start();
 
     PurpleCoinHolder* mCoinHolder;  // 0xC

@@ -4,12 +4,12 @@
 
 class Air : public LiveActor {
 public:
-    Air(const char *);
+    Air(const char*);
 
     virtual ~Air();
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
     virtual void appear();
-    virtual void initModel(const char *);
+    virtual void initModel(const char*);
     virtual void setFarClipping();
 
     bool isDrawing() const;
@@ -26,15 +26,15 @@ public:
 
 class ProjectionMapAir : public Air {
 public:
-    ProjectionMapAir(const char *);
+    ProjectionMapAir(const char*);
 
     virtual ~ProjectionMapAir();
-    virtual void initModel(const char *);
+    virtual void initModel(const char*);
 };
 
 class AirFar100m : public Air {
 public:
-    AirFar100m(const char *);
+    AirFar100m(const char*);
 
     virtual ~AirFar100m();
     virtual void setFarClipping();
@@ -42,7 +42,7 @@ public:
 
 class PriorDrawAir : public Air {
 public:
-    PriorDrawAir(const char *);
+    PriorDrawAir(const char*);
 
     virtual ~PriorDrawAir();
 };
@@ -53,11 +53,11 @@ public:
 
     virtual ~PriorDrawAirHolder();
 
-    void add(PriorDrawAir *);
+    void add(PriorDrawAir*);
     bool isExistValidDrawAir() const;
 
-    PriorDrawAir* mAirs[8];     // 0xC
-    s32 mAirCount;              // 0x2C
+    PriorDrawAir* mAirs[8];  // 0xC
+    s32 mAirCount;           // 0x2C
 };
 
 namespace MR {

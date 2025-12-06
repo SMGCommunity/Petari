@@ -16,69 +16,127 @@
 
 namespace {
     static const PlanetEntry sUniquePlanetCreateFuncTable[] = {
-        { "BeamGoRoundPlanet", /* createNameObj<BeamGoRoundPlanet>, */ },
-        { "BumpAppearPlanet", /* createNameObj<BumpAppearPlanet>, */ },
-        { "ChoConveyorPlanetB", /* createNameObj<RailPlanetMap>, */ },
-        { "ChoConveyorPlanetD", createNameObj<RotateMoveObj>, },
-        { "DinoPackunBattlePlanet", /* createNameObj<FurPlanetMap>, */ },
-        { "DarkHopperPlanetA", /* createNameObj<SimpleClipPartsObj>, */ },
-        { "DarkHopperPlanetB", /* createNameObj<SimpleClipPartsObj>, */ },
-        { "DarkHopperPlanetC", /* createNameObj<SimpleClipPartsObj>, */ },
-        { "DarkHopperPlanetD", /* createNameObj<SimpleClipPartsObj>, */ },
-        { "DarknessRoomPlanet", /* createNameObj<SimpleClipPartsObj>, */ },
-        { "FlagDiscPlanetB", /* createNameObj<PlanetMapFarClippable>, */ },
-        { "FlagDiscPlanetC", /* createNameObj<PlanetMapFarClippable>, */ },
-        { "FlagDiscPlanetD", createNameObj<RotateMoveObj>, },
-        { "FlagDiscPlanetE", /* createNameObj<PlanetMapFarClippable>, */ },
-        { "HatchWaterPlanet", createNameObj<HatchWaterPlanet>, },
-        { "HeavensDoorInsidePlanet", createNameObj<SimpleMapObj>, },
-        { "HoneyQueenPlanet", /* createNameObj<FurPlanetMap>, */ },
-        { "LavaJamboSunPlanet", /* createNameObj<LavaJamboSunPlanet>, */ },
-        { "LavaRotatePlanet", /* createNameObj<LavaSunPlanet>, */ },
-        { "LavaDomedPlanet", /* createNameObj<LavaSunPlanet>, */ },
-        { "MarblePlanet", createNameObj<MarblePlanet>, },
-        { "PeachCastleGardenPlanet", /* createNameObj<PeachCastleGardenPlanet>, */ },
-        { "SandCapsuleInsidePlanet", /* createNameObj<SandCapsuleInsidePlanet>, */ },
-        { "ScaleDownRelayPlanet", /* createNameObj<FlexibleSphere>, */ },
-        { "SnowCapsulePlanet", /* createNameObj<SnowCapsulePlanet>, */ },
-        { "TeresaRoomPlanet", /* createNameObj<PlanetMapAnimLow>, */ },
-        { "TridentPlanet", /* createNameObj<AstroSimpleObj>, */ },
-        { "QuestionBoxPlanetA", /* createNameObj<QuestionBoxGalleryObj>, */ },
-        { "QuestionBoxPlanetB", /* createNameObj<QuestionBoxGalleryObj>, */ },
-        { "QuestionBoxPlanetC", /* createNameObj<QuestionBoxGalleryObj>, */ },
-        { "QuestionBoxPlanetD", /* createNameObj<QuestionBoxGalleryObj>, */ },
-        { "QuestionBoxPlanetE", /* createNameObj<QuestionBoxGalleryObj>, */ },
-        { "Quicksand2DPlanet", /* createNameObj<RailPlanetMap>, */ },
-        { "ReverseGravityRoomPlanet", createNameObj<ReverseGravityRoomPlanet>, },
-        { "SandStreamHighTowerPlanet", /* createNameObj<RailPlanetMap>, */ },
-        { "SandStreamJointPlanetA", /* createNameObj<RailPlanetMap>, */ },
-        { "SandStreamJointPlanetB", /* createNameObj<RailPlanetMap>, */ },
-        { "StarDustStartPlanet", createNameObj<RotateMoveObj>, },
-        { "WormEatenPlanet", /* createNameObj<WormEatenPlanet>, */ },
+        {"BeamGoRoundPlanet", /* createNameObj<BeamGoRoundPlanet>, */},
+        {"BumpAppearPlanet", /* createNameObj<BumpAppearPlanet>, */},
+        {"ChoConveyorPlanetB", /* createNameObj<RailPlanetMap>, */},
+        {
+            "ChoConveyorPlanetD",
+            createNameObj< RotateMoveObj >,
+        },
+        {"DinoPackunBattlePlanet", /* createNameObj<FurPlanetMap>, */},
+        {"DarkHopperPlanetA", /* createNameObj<SimpleClipPartsObj>, */},
+        {"DarkHopperPlanetB", /* createNameObj<SimpleClipPartsObj>, */},
+        {"DarkHopperPlanetC", /* createNameObj<SimpleClipPartsObj>, */},
+        {"DarkHopperPlanetD", /* createNameObj<SimpleClipPartsObj>, */},
+        {"DarknessRoomPlanet", /* createNameObj<SimpleClipPartsObj>, */},
+        {"FlagDiscPlanetB", /* createNameObj<PlanetMapFarClippable>, */},
+        {"FlagDiscPlanetC", /* createNameObj<PlanetMapFarClippable>, */},
+        {
+            "FlagDiscPlanetD",
+            createNameObj< RotateMoveObj >,
+        },
+        {"FlagDiscPlanetE", /* createNameObj<PlanetMapFarClippable>, */},
+        {
+            "HatchWaterPlanet",
+            createNameObj< HatchWaterPlanet >,
+        },
+        {
+            "HeavensDoorInsidePlanet",
+            createNameObj< SimpleMapObj >,
+        },
+        {"HoneyQueenPlanet", /* createNameObj<FurPlanetMap>, */},
+        {"LavaJamboSunPlanet", /* createNameObj<LavaJamboSunPlanet>, */},
+        {"LavaRotatePlanet", /* createNameObj<LavaSunPlanet>, */},
+        {"LavaDomedPlanet", /* createNameObj<LavaSunPlanet>, */},
+        {
+            "MarblePlanet",
+            createNameObj< MarblePlanet >,
+        },
+        {"PeachCastleGardenPlanet", /* createNameObj<PeachCastleGardenPlanet>, */},
+        {"SandCapsuleInsidePlanet", /* createNameObj<SandCapsuleInsidePlanet>, */},
+        {"ScaleDownRelayPlanet", /* createNameObj<FlexibleSphere>, */},
+        {"SnowCapsulePlanet", /* createNameObj<SnowCapsulePlanet>, */},
+        {"TeresaRoomPlanet", /* createNameObj<PlanetMapAnimLow>, */},
+        {"TridentPlanet", /* createNameObj<AstroSimpleObj>, */},
+        {"QuestionBoxPlanetA", /* createNameObj<QuestionBoxGalleryObj>, */},
+        {"QuestionBoxPlanetB", /* createNameObj<QuestionBoxGalleryObj>, */},
+        {"QuestionBoxPlanetC", /* createNameObj<QuestionBoxGalleryObj>, */},
+        {"QuestionBoxPlanetD", /* createNameObj<QuestionBoxGalleryObj>, */},
+        {"QuestionBoxPlanetE", /* createNameObj<QuestionBoxGalleryObj>, */},
+        {"Quicksand2DPlanet", /* createNameObj<RailPlanetMap>, */},
+        {
+            "ReverseGravityRoomPlanet",
+            createNameObj< ReverseGravityRoomPlanet >,
+        },
+        {"SandStreamHighTowerPlanet", /* createNameObj<RailPlanetMap>, */},
+        {"SandStreamJointPlanetA", /* createNameObj<RailPlanetMap>, */},
+        {"SandStreamJointPlanetB", /* createNameObj<RailPlanetMap>, */},
+        {
+            "StarDustStartPlanet",
+            createNameObj< RotateMoveObj >,
+        },
+        {"WormEatenPlanet", /* createNameObj<WormEatenPlanet>, */},
     };
     static const UniqueEntry sUniquePlanetUniqueArchiveName[] = {
-        { "BeamGoRoundPlanet", "BeamGoRoundBeam", },
-        { "BeamGoRoundPlanet", "BeamGoRoundBeamVolume", },
-        { "BeamGoRoundPlanet", "BeamGoRoundBeamBloom", },
-        { "MarblePlanet", "MarblePlanetCore", },
-        { "MarblePlanet", "MarblePlanetElectron", },
-        { "MarblePlanet", "MarblePlanetElectronShadow", },
-        { "OceanRingPlanet", "OceanRingPlanetLowInWater", },
-        { "WormEatenPlanet", "GreenCaterpillarBigFace", },
-        { "WormEatenPlanet", "GreenCaterpillarBigFaceLow", },
-        { "WormEatenPlanet", "GreenCaterpillarBigBody", },
-        { "WormEatenPlanet", "GreenCaterpillarBigBodyLow", },
-        { "WormEatenPlanet", "WormEatenHill", },
-        { "WormEatenPlanet", "WormEatenPlanetLow", },
+        {
+            "BeamGoRoundPlanet",
+            "BeamGoRoundBeam",
+        },
+        {
+            "BeamGoRoundPlanet",
+            "BeamGoRoundBeamVolume",
+        },
+        {
+            "BeamGoRoundPlanet",
+            "BeamGoRoundBeamBloom",
+        },
+        {
+            "MarblePlanet",
+            "MarblePlanetCore",
+        },
+        {
+            "MarblePlanet",
+            "MarblePlanetElectron",
+        },
+        {
+            "MarblePlanet",
+            "MarblePlanetElectronShadow",
+        },
+        {
+            "OceanRingPlanet",
+            "OceanRingPlanetLowInWater",
+        },
+        {
+            "WormEatenPlanet",
+            "GreenCaterpillarBigFace",
+        },
+        {
+            "WormEatenPlanet",
+            "GreenCaterpillarBigFaceLow",
+        },
+        {
+            "WormEatenPlanet",
+            "GreenCaterpillarBigBody",
+        },
+        {
+            "WormEatenPlanet",
+            "GreenCaterpillarBigBodyLow",
+        },
+        {
+            "WormEatenPlanet",
+            "WormEatenHill",
+        },
+        {
+            "WormEatenPlanet",
+            "WormEatenPlanetLow",
+        },
     };
     static const char* sArcName = "PlanetMapDataTable.arc";
     static const char* sFileName = "PlanetMapDataTable.bcsv";
 
-    void makeSubModelName(const char **, const JMapInfo *, s32, const char *, const char *) {
+    void makeSubModelName(const char**, const JMapInfo*, s32, const char*, const char*) {}
 
-    }
-
-    static bool isDataForceLow(const PlanetMapData *pMapData) {
+    static bool isDataForceLow(const PlanetMapData* pMapData) {
         for (int i = 0; i < 8; i++) {
             if (!MR::isEqualString(pMapData->mForceScenarioData[i], "Low")) {
                 return true;
@@ -87,13 +145,10 @@ namespace {
 
         return false;
     }
-};
+};  // namespace
 
 // FIXME: Scheduling issues
-PlanetMapCreator::PlanetMapCreator(const char *pName) :
-    NameObj(pName),
-    mPlanetMapData(nullptr)
-{
+PlanetMapCreator::PlanetMapCreator(const char* pName) : NameObj(pName), mPlanetMapData(nullptr) {
     JMapInfo* pIter = MR::createCsvParser(sArcName, sFileName);
 
     mTableCount = MR::getCsvDataElementNum(pIter);
@@ -103,7 +158,7 @@ PlanetMapCreator::PlanetMapCreator(const char *pName) :
 
 CreatorFuncPtr PlanetMapCreator::getCreateFunc(const char* pParam1) {
     if (isScenarioForceLow(getTableData(pParam1))) {
-        return nullptr; // createNameObj<PlanetMapWithoutHighModel>
+        return nullptr;  // createNameObj<PlanetMapWithoutHighModel>
     }
 
     const PlanetEntry* pEntry = nullptr;
@@ -120,20 +175,19 @@ CreatorFuncPtr PlanetMapCreator::getCreateFunc(const char* pParam1) {
         return pEntry->mCreateFunc;
     }
 
-    return nullptr; // createNameObj<PlanetMap>
+    return nullptr;  // createNameObj<PlanetMap>
 }
 
 #ifdef NON_MATCHING
 // regalloc issues
-void PlanetMapCreator::makeArchiveListPlanet(NameObjArchiveListCollector *pArchiveList, const JMapInfoIter &rIter, const char *pName) {
+void PlanetMapCreator::makeArchiveListPlanet(NameObjArchiveListCollector* pArchiveList, const JMapInfoIter& rIter, const char* pName) {
     PlanetMapData* pTableData = getTableData(pName);
 
     bool isForceLow = isScenarioForceLow(pTableData);
 
     if (isForceLow) {
         pArchiveList->addArchive(pTableData->mData[0]);
-    }
-    else {
+    } else {
         const char* planetName = pTableData->mPlanetName;
 
         pArchiveList->addArchive(planetName);
@@ -179,7 +233,7 @@ void PlanetMapCreator::makeArchiveListPlanet(NameObjArchiveListCollector *pArchi
 }
 #endif
 
-void PlanetMapCreator::createPlanetMapDataTable(JMapInfo *pInfo) {
+void PlanetMapCreator::createPlanetMapDataTable(JMapInfo* pInfo) {
     for (int i = 0; i < mTableCount; i++) {
         mPlanetMapData[i] = new PlanetMapData();
 
@@ -187,7 +241,7 @@ void PlanetMapCreator::createPlanetMapDataTable(JMapInfo *pInfo) {
     }
 }
 
-void PlanetMapCreator::addTableData(const JMapInfo *pInfo, s32 idx) {
+void PlanetMapCreator::addTableData(const JMapInfo* pInfo, s32 idx) {
     PlanetMapData* curData = mPlanetMapData[idx];
     MR::getCsvDataStr(&curData->mPlanetName, pInfo, "PlanetName", idx);
     makeSubModelName(&curData->mData[0], pInfo, idx, "LowFlag", "Low");
@@ -212,7 +266,7 @@ void PlanetMapCreator::addTableData(const JMapInfo *pInfo, s32 idx) {
     }
 }
 
-PlanetMapData* PlanetMapCreator::getTableData(const char *pName) const {
+PlanetMapData* PlanetMapCreator::getTableData(const char* pName) const {
     for (int i = 0; i < mTableCount; i++) {
         if (MR::isEqualString(pName, mPlanetMapData[i]->mPlanetName)) {
             return mPlanetMapData[i];
@@ -222,7 +276,7 @@ PlanetMapData* PlanetMapCreator::getTableData(const char *pName) const {
     return nullptr;
 }
 
-bool PlanetMapCreator::isScenarioForceLow(const PlanetMapData *pData) const {
+bool PlanetMapCreator::isScenarioForceLow(const PlanetMapData* pData) const {
     bool isForce = isDataForceLow(pData);
 
     if (!isForce) {
@@ -245,22 +299,22 @@ bool PlanetMapCreator::isScenarioForceLow(const PlanetMapData *pData) const {
     return false;
 }
 
-void PlanetMapCreatorFunction::makeArchiveList(NameObjArchiveListCollector *pArchiveList, const JMapInfoIter &rIter, const char *pName) {
-    MR::getSceneObj<PlanetMapCreator>(SceneObj_PlanetMapCreator)->makeArchiveListPlanet(pArchiveList, rIter, pName);
+void PlanetMapCreatorFunction::makeArchiveList(NameObjArchiveListCollector* pArchiveList, const JMapInfoIter& rIter, const char* pName) {
+    MR::getSceneObj< PlanetMapCreator >(SceneObj_PlanetMapCreator)->makeArchiveListPlanet(pArchiveList, rIter, pName);
 }
 
 // PlanetMapCreatorFunction::getPlanetMapCreator
 
-bool PlanetMapCreatorFunction::isLoadArchiveAfterScenarioSelected(const char *pArchive) {
-    bool isExistTableData = MR::getSceneObj<PlanetMapCreator>(SceneObj_PlanetMapCreator)->getTableData(pArchive);
+bool PlanetMapCreatorFunction::isLoadArchiveAfterScenarioSelected(const char* pArchive) {
+    bool isExistTableData = MR::getSceneObj< PlanetMapCreator >(SceneObj_PlanetMapCreator)->getTableData(pArchive);
 
     if (!isExistTableData) {
         return false;
     }
 
-    return isDataForceLow(MR::getSceneObj<PlanetMapCreator>(SceneObj_PlanetMapCreator)->getTableData(pArchive));
+    return isDataForceLow(MR::getSceneObj< PlanetMapCreator >(SceneObj_PlanetMapCreator)->getTableData(pArchive));
 }
 
-bool PlanetMapCreatorFunction::isRegisteredObj(const char *pArchive) {
-    return MR::getSceneObj<PlanetMapCreator>(SceneObj_PlanetMapCreator)->getTableData(pArchive);
+bool PlanetMapCreatorFunction::isRegisteredObj(const char* pArchive) {
+    return MR::getSceneObj< PlanetMapCreator >(SceneObj_PlanetMapCreator)->getTableData(pArchive);
 }

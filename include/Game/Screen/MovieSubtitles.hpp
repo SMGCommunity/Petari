@@ -6,7 +6,7 @@ class TalkTextFormer;
 
 class MovieSubtitles : public LayoutActor {
 public:
-    MovieSubtitles(const char *, s32);
+    MovieSubtitles(const char*, s32);
 
     virtual void appear();
 

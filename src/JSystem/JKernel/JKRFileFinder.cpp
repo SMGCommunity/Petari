@@ -1,12 +1,12 @@
-#include "JSystem/JKernel/JKRArchive.hpp"
 #include "JSystem/JKernel/JKRFileFinder.hpp"
+#include "JSystem/JKernel/JKRArchive.hpp"
 
 JKRFileFinder::JKRFileFinder() {
     mHasMoreFiles = false;
     mFileIsFolder = false;
 }
 
-JKRArcFinder::JKRArcFinder(JKRArchive *pArchive, long firstFileIndex, long nrFiles) {
+JKRArcFinder::JKRArcFinder(JKRArchive* pArchive, long firstFileIndex, long nrFiles) {
     mArchive = pArchive;
     mHasMoreFiles = nrFiles > 0;
     mFirstIndex = firstFileIndex;
@@ -18,9 +18,7 @@ JKRArcFinder::JKRArcFinder(JKRArchive *pArchive, long firstFileIndex, long nrFil
 
 #ifdef NON_MATCHING
 // Looks identical to base destructor, does not call ~JKRFileFinder()
-JKRArcFinder::~JKRArcFinder() {
-
-}
+JKRArcFinder::~JKRArcFinder() {}
 #endif
 
 bool JKRArcFinder::findNextFile() {

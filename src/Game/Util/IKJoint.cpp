@@ -15,7 +15,7 @@ void IKJoint::setMiddleBoneLength(f32 boneLength) {
     mMiddleBoneLength = boneLength;
 }
 
-void IKJoint::setFirstPose(const TVec3f &a1, const TVec3f &a2) {
+void IKJoint::setFirstPose(const TVec3f& a1, const TVec3f& a2) {
     MR::makeMtxSideUp(&_0, a1, a2);
 }
 
@@ -24,15 +24,12 @@ s32 IKJoint::checkReachIKTarget(f32 a1, f32 a2, f32 a3) {
 
     if (a1 > (a2 + a3)) {
         res = 2;
-    }
-    else {
+    } else {
         if (a1 < __fabs(a2 - a3)) {
             res = 1;
-        }
-        else {
+        } else {
             return res;
         }
-        
     }
 
     return res;
@@ -76,7 +73,7 @@ f32 IKJoint::calcIKRootAngleCosign(f32 a1, f32 a2, f32 a3) {
 
 // IKJoint::update
 
-void IKJoint::updateByLocalRootAndWorldTarget(const TPos3f &a1, const TVec3f &a2, const TVec3f &a3) {
+void IKJoint::updateByLocalRootAndWorldTarget(const TPos3f& a1, const TVec3f& a2, const TVec3f& a3) {
     TPos3f mtx = a1;
     mtx.invert(a1);
     TVec3f stack_14;
@@ -86,7 +83,7 @@ void IKJoint::updateByLocalRootAndWorldTarget(const TPos3f &a1, const TVec3f &a2
 
 // IKJoint::updateByLocalRootAndDirection
 
-s32 IKJoint::updateByUpVector(const TVec3f &a1, const TVec3f &a2, const TVec3f &a3) {
+s32 IKJoint::updateByUpVector(const TVec3f& a1, const TVec3f& a2, const TVec3f& a3) {
     f32 v9;
     TPos3f mtx;
     TVec3f sub = a2 - a1;
@@ -98,11 +95,11 @@ s32 IKJoint::updateByUpVector(const TVec3f &a1, const TVec3f &a2, const TVec3f &
     return v7;
 }
 
-void IKJoint::getRootJointPosition(TVec3f *pPos) const {
+void IKJoint::getRootJointPosition(TVec3f* pPos) const {
     _30.getTrans(*pPos);
 }
 
-void IKJoint::getEndJointPosition(TVec3f *pPos) const {
+void IKJoint::getEndJointPosition(TVec3f* pPos) const {
     TVec3f xDir;
     _60.getXDir(xDir);
     _60.getTrans(*pPos);

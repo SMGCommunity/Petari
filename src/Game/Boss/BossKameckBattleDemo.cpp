@@ -5,7 +5,7 @@ BossKameckDemoPosition::BossKameckDemoPosition() : LiveActor("キャスト位") 
     makeActorDead();
 }
 
-void BossKameckDemoPosition::init(const JMapInfoIter &rIter) {
+void BossKameckDemoPosition::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     initModelManagerWithAnm("BossKameckBattleDemo", nullptr, false);
 
@@ -31,9 +31,9 @@ namespace NrvBossKamecBattleDemo {
     NEW_NERVE(BossKameckBattleDemoNrvAppearVs2, BossKameckBattleDemo, AppearVs2);
     NEW_NERVE(BossKameckBattleDemoNrvPowerUpVs2, BossKameckBattleDemo, PowerUpVs2);
     NEW_NERVE(BossKameckBattleDemoNrvDownVs2, BossKameckBattleDemo, DownVs2);
-};
+};  // namespace NrvBossKamecBattleDemo
 
-BossKameckBattleDemo::BossKameckBattleDemo(BossKameck *pBoss, const JMapInfoIter &rIter) : BossKameckAction("ボスカメック戦デモ", pBoss) {
+BossKameckBattleDemo::BossKameckBattleDemo(BossKameck* pBoss, const JMapInfoIter& rIter) : BossKameckAction("ボスカメック戦デモ", pBoss) {
     mDemoPos = nullptr;
     mCurDemoName = nullptr;
     mDemoNerve = nullptr;
@@ -55,14 +55,13 @@ void BossKameckBattleDemo::kill() {
     mDemoPos->kill();
 }
 
-void BossKameckBattleDemo::startTryDemo(const char *pName, const Nerve *pNerve) {
+void BossKameckBattleDemo::startTryDemo(const char* pName, const Nerve* pNerve) {
     appear();
 
     if (MR::tryStartDemoMarioPuppetable(mBossKameck, pName)) {
         MR::overlayWithPreviousScreen(2);
         setNerve(pNerve);
-    }
-    else {
+    } else {
         mDemoNerve = pNerve;
         mCurDemoName = pName;
         setNerve(&NrvBossKamecBattleDemo::BossKameckBattleDemoNrvTryStartDemo::sInstance);
@@ -365,10 +364,6 @@ void BossKameckBattleDemo::updateCastPose() {
     boss->setPose(MR::getJointMtx(mDemoPos, "KameckPosition"));
 }
 
-BossKameckBattleDemo::~BossKameckBattleDemo() {
+BossKameckBattleDemo::~BossKameckBattleDemo() {}
 
-}
-
-BossKameckDemoPosition::~BossKameckDemoPosition() {
-
-}
+BossKameckDemoPosition::~BossKameckDemoPosition() {}

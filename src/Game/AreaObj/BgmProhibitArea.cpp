@@ -1,11 +1,9 @@
 #include "Game/AreaObj/BgmProhibitArea.hpp"
 
-BgmProhibitArea::~BgmProhibitArea() {
-
-}
+BgmProhibitArea::~BgmProhibitArea() {}
 
 namespace {
-    BgmMuteSet* findDataElement(const char *pName) {
+    BgmMuteSet* findDataElement(const char* pName) {
         for (u32 i = 0; i < 2; i++) {
             BgmMuteSet* ret = &sBgmMuteSet[i];
 
@@ -16,9 +14,9 @@ namespace {
 
         return 0;
     }
-};
+};  // namespace
 
-BgmProhibitArea::BgmProhibitArea(int a1, const char *pName) : AreaObj(a1, pName) {
+BgmProhibitArea::BgmProhibitArea(int a1, const char* pName) : AreaObj(a1, pName) {
     _3C = 0;
     _3D = 0;
     _40.x = 0.0f;
@@ -26,7 +24,7 @@ BgmProhibitArea::BgmProhibitArea(int a1, const char *pName) : AreaObj(a1, pName)
     _40.z = 0.0f;
 }
 
-void BgmProhibitArea::init(const JMapInfoIter &rIter) {
+void BgmProhibitArea::init(const JMapInfoIter& rIter) {
     AreaObj::init(rIter);
     MR::connectToSceneAreaObj(this);
 }
@@ -36,7 +34,7 @@ void BgmProhibitArea::movement() {
         TVec3f stack_8;
         stack_8.setPS(*MR::getPlayerPos());
         f32 dist = PSVECDistance(&stack_8, &_40);
-        
+
         if (isInVolume(*MR::getPlayerPos())) {
             _3D = 0;
 
@@ -46,16 +44,14 @@ void BgmProhibitArea::movement() {
                 if (v10 >= 0) {
                     if (dist >= 10000.0f) {
                         MR::setStageBGMState(v10, 0);
-                    }
-                    else {
+                    } else {
                         MR::setStageBGMState(v10, 120);
                     }
                 }
 
                 _3C = 1;
             }
-        }
-        else {
+        } else {
             _3C = 0;
             if (!_3D && MR::isPlayingStageBgm()) {
                 BgmMuteSet* set = findDataElement(MR::getCurrentStageName());

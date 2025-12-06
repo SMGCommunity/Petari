@@ -3,8 +3,7 @@
 #include "Game/NameObj/NameObjExecuteHolder.hpp"
 #include "Game/Util.hpp"
 
-ActorLightCtrl::ActorLightCtrl(const LiveActor *pActor) 
-    : mActor(pActor), _4(-1), _8(0), _C(0), mAreaLightInf(0), mLightID() {
+ActorLightCtrl::ActorLightCtrl(const LiveActor* pActor) : mActor(pActor), _4(-1), _8(0), _C(0), mAreaLightInf(0), mLightID() {
     _1C = 0;
     mInterpolate = -1;
     _54 = -1;
@@ -36,14 +35,13 @@ void ActorLightCtrl::loadLight() const {
     if (mAreaLightInf) {
         if (_1C) {
             LightFunction::loadActorLightInfo(&mLightInfo);
-        }
-        else {
+        } else {
             LightFunction::loadActorLightInfo(getTargetActorLight(mAreaLightInf));
         }
     }
 }
 
-bool ActorLightCtrl::isSameLight(const ActorLightCtrl *pLight) const {
+bool ActorLightCtrl::isSameLight(const ActorLightCtrl* pLight) const {
     if (_1C) {
         return false;
     }
@@ -63,7 +61,7 @@ void ActorLightCtrl::initActorLightInfo() {
     if (_C) {
         return;
     }
-    
+
     MR::findActorLightInfo(mActor);
     return;
 }
@@ -76,21 +74,18 @@ void ActorLightCtrl::resetCurrentLightInfo() {
     _54 = 0;
 }
 
-const ActorLightInfo* ActorLightCtrl::getTargetActorLight(const AreaLightInfo *pInfo) const {
+const ActorLightInfo* ActorLightCtrl::getTargetActorLight(const AreaLightInfo* pInfo) const {
     s32 type = _4;
 
     if (type == 0) {
         return &pInfo->mPlayerLight;
-    }
-    else if (type == 1) {
+    } else if (type == 1) {
         return &pInfo->mStrongLight;
-    }
-    else if (type == 2) {
+    } else if (type == 2) {
         return &pInfo->mWeakLight;
-    }
-    else if (type == 3) {
+    } else if (type == 3) {
         return &pInfo->mPlanetLight;
     }
-    
+
     return 0;
 }

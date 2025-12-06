@@ -23,5 +23,5 @@ public:
 
     /* 0x0 */ JPABaseEmitter* mEmitter;
     /* 0x4 */ bool mPaused;
-    /* 0x5 */ bool mStopped; // Not sure if it is stopped, but good chance it is.
+    /* 0x5 */ bool mStopped;  // Not sure if it is stopped, but good chance it is.
 };

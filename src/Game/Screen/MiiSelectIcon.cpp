@@ -1,9 +1,9 @@
+#include "Game/Screen/MiiSelectIcon.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Map/FileSelectIconID.hpp"
 #include "Game/NPC/MiiFaceIcon.hpp"
 #include "Game/NPC/MiiFaceRecipe.hpp"
 #include "Game/Screen/ButtonPaneController.hpp"
-#include "Game/Screen/MiiSelectIcon.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
@@ -11,11 +11,7 @@
 
 namespace {
     static const f32 sCharacterTexFrame[] = {
-        0.0f,
-        4.0f,
-        3.0f,
-        2.0f,
-        1.0f,
+        0.0f, 4.0f, 3.0f, 2.0f, 1.0f,
     };
 
     NEW_NERVE(MiiSelectIconNrvCreate, MiiSelectIcon, Create);
@@ -23,20 +19,11 @@ namespace {
     NEW_NERVE(MiiSelectIconNrvSelected, MiiSelectIcon, Selected);
     NEW_NERVE(MiiSelectIconNrvDisappear, MiiSelectIcon, Disappear);
     NEW_NERVE(MiiSelectIconNrvInvalid, MiiSelectIcon, Invalid);
-};
+};  // namespace
 
-MiiSelectIcon::MiiSelectIcon(int param1, int param2, int param3, const char* pName) :
-    LayoutActor(pName, true),
-    _20(nullptr),
-    _24(nullptr),
-    _28(nullptr),
-    mIcon(nullptr),
-    mMiiTexMap(nullptr),
-    mFellowTexMap(nullptr),
-    mIconID(new FileSelectIconID()),
-    mIsMiiDummy(false),
-    _3D(true)
-{
+MiiSelectIcon::MiiSelectIcon(int param1, int param2, int param3, const char* pName)
+    : LayoutActor(pName, true), _20(nullptr), _24(nullptr), _28(nullptr), mIcon(nullptr), mMiiTexMap(nullptr), mFellowTexMap(nullptr),
+      mIconID(new FileSelectIconID()), mIsMiiDummy(false), _3D(true) {
     initLayoutManager("MiiIcon", 1);
     MR::createAndAddPaneCtrl(this, "MarioIcon", 3);
     MR::createAndAddPaneCtrl(this, "MiiIcon", 3);
@@ -79,8 +66,7 @@ void MiiSelectIcon::appear(const FileSelectIconID& rIconID) {
         MR::hidePane(this, "MiiIcon");
         MR::showPane(this, "MarioIcon");
         setNerve(&MiiSelectIconNrvWait::sInstance);
-    }
-    else if (rIconID.isMii()) {
+    } else if (rIconID.isMii()) {
         MR::hideLayout(this);
         mIcon->setIndex(rIconID.getMiiIndex());
 
@@ -111,7 +97,7 @@ void MiiSelectIcon::appearMiiDummy() {
     }
 
     MR::showLayout(this);
-    MR::startAnim(this, "Character",0);
+    MR::startAnim(this, "Character", 0);
     MR::setAnimFrameAndStop(this, 5.0f, 0);
     MR::startPaneAnim(this, "MarioIcon", "Character", 1);
     MR::setPaneAnimFrameAndStop(this, "MarioIcon", 5.0f, 1);
@@ -127,9 +113,7 @@ void MiiSelectIcon::appearMiiDummy() {
 }
 
 void MiiSelectIcon::validate() {
-    if (isNerve(&MiiSelectIconNrvSelected::sInstance)
-        || isNerve(&MiiSelectIconNrvInvalid::sInstance))
-    {
+    if (isNerve(&MiiSelectIconNrvSelected::sInstance) || isNerve(&MiiSelectIconNrvInvalid::sInstance)) {
         _24->forceToWait();
         _28->forceToWait();
         setNerve(&MiiSelectIconNrvWait::sInstance);
@@ -212,16 +196,13 @@ void MiiSelectIcon::exeWait() {
     }
 }
 
-void MiiSelectIcon::exeSelected() {
-    
-}
+void MiiSelectIcon::exeSelected() {}
 
 void MiiSelectIcon::exeDisappear() {
     if (_20->isHidden()) {
         if (_20 == _24) {
             _28->forceToHide();
-        }
-        else {
+        } else {
             _24->forceToHide();
         }
 
@@ -229,9 +210,7 @@ void MiiSelectIcon::exeDisappear() {
     }
 }
 
-void MiiSelectIcon::exeInvalid() {
-    
-}
+void MiiSelectIcon::exeInvalid() {}
 
 void MiiSelectIcon::appear() {
     LayoutActor::appear();
@@ -253,11 +232,8 @@ void MiiSelectIcon::createButton() {
 void MiiSelectIcon::createFaceImageObj() {
     nw4r::lyt::TexMap* pTexMap;
 
-    mIcon = new MiiFaceIcon(
-        128,
-        128,
-        MiiFaceRecipe(RFLDataSource_Official, 0, RFLResolution_256, RFLExpFlag_Normal | RFLExpFlag_Blink),
-        "Miiアイコン");
+    mIcon =
+        new MiiFaceIcon(128, 128, MiiFaceRecipe(RFLDataSource_Official, 0, RFLResolution_256, RFLExpFlag_Normal | RFLExpFlag_Blink), "Miiアイコン");
     mIcon->initWithoutIter();
 
     GXTexObj texObj;
@@ -265,7 +241,7 @@ void MiiSelectIcon::createFaceImageObj() {
 
     // TODO: Requires the corresponding header-defined TexMap constructor.
     // mFellowTexMap = new nw4r::lyt::TexMap(texObj);
-    mMiiTexMap = MR::createLytTexMap(reinterpret_cast<ResTIMG*>(mIcon->mImageBuffer));
+    mMiiTexMap = MR::createLytTexMap(reinterpret_cast< ResTIMG* >(mIcon->mImageBuffer));
     pTexMap = mMiiTexMap;
 
     MR::replacePaneTexture(this, "ShaMii", pTexMap, 0);

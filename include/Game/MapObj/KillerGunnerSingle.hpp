@@ -8,11 +8,11 @@ namespace {
 
 class KillerGunnerSingle : public LiveActor {
 public:
-    KillerGunnerSingle(const char *);
+    KillerGunnerSingle(const char*);
 
     virtual ~KillerGunnerSingle();
-    virtual void init(const JMapInfoIter &);
-    virtual void attackSensor(HitSensor *, HitSensor *);
+    virtual void init(const JMapInfoIter&);
+    virtual void attackSensor(HitSensor*, HitSensor*);
 
     void exeWait();
     void exeCharge();
@@ -25,4 +25,4 @@ namespace NrvKillerGunnerSingle {
     NERVE_DECL(HostTypeCharge, KillerGunnerSingle, KillerGunnerSingle::exeCharge);
     NERVE_DECL(HostTypeShoot, KillerGunnerSingle, KillerGunnerSingle::exeWait);
     NERVE_DECL(HostTypeAttack, KillerGunnerSingle, KillerGunnerSingle::exeAttack);
-};
+};  // namespace NrvKillerGunnerSingle

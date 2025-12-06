@@ -13,9 +13,9 @@ namespace NrvDossun {
     NEW_NERVE(DossunNrvFalling, Dossun, Falling);
     NEW_NERVE(DossunNrvOnGround, Dossun, OnGround);
     NEW_NERVE(DossunNrvRising, Dossun, Rising);
-};
+};  // namespace NrvDossun
 
-Dossun::Dossun(const char *pName) : LiveActor(pName) {
+Dossun::Dossun(const char* pName) : LiveActor(pName) {
     _8C.x = 0.0f;
     _8C.y = 0.0f;
     _8C.z = 0.0f;
@@ -30,7 +30,7 @@ Dossun::Dossun(const char *pName) : LiveActor(pName) {
     mHasShadow = false;
 }
 
-void Dossun::init(const JMapInfoIter &rIter) {
+void Dossun::init(const JMapInfoIter& rIter) {
     MR::useStageSwitchReadA(this, rIter);
     MR::useStageSwitchSleep(this, rIter);
     initMapToolInfo(rIter);
@@ -38,8 +38,7 @@ void Dossun::init(const JMapInfoIter &rIter) {
     MR::startBva(this, "Wait");
     if (mHasShadow) {
         MR::connectToSceneCollisionEnemyStrongLight(this);
-    }
-    else {
+    } else {
         MR::connectToSceneCollisionEnemyNoShadowedMapObjStrongLight(this);
     }
 
@@ -60,16 +59,15 @@ void Dossun::appear() {
     LiveActor::appear();
     getSensor("body")->invalidate();
     calcParameters();
-    mPosition.set<f32>(_8C);
+    mPosition.set< f32 >(_8C);
     if (MR::isValidSwitchA(this)) {
         setNerve(&NrvDossun::DossunNrvReady::sInstance);
-    }
-    else {
+    } else {
         setNerve(&NrvDossun::DossunNrvUpper::sInstance);
     }
 }
 
-void Dossun::initMapToolInfo(const JMapInfoIter &rIter) {
+void Dossun::initMapToolInfo(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     MR::getJMapInfoArg0NoInit(rIter, &mMovementDist);
     MR::getJMapInfoArg1NoInit(rIter, &mRisenWaitTime);
@@ -78,7 +76,7 @@ void Dossun::initMapToolInfo(const JMapInfoIter &rIter) {
     MR::getJMapInfoArg3NoInit(rIter, &shadowType);
     mHasShadow = shadowType != -1;
     MR::setGroupClipping(this, rIter, 16);
-    _98.set<f32>(mPosition);
+    _98.set< f32 >(mPosition);
 }
 
 void Dossun::initShadow() {
@@ -86,8 +84,7 @@ void Dossun::initShadow() {
         calcParameters();
         if (mShadowType == 0) {
             MR::initShadowFromCSV(this, "Shadow2D");
-        }
-        else {
+        } else {
             MR::initShadowFromCSV(this, "Shadow");
             MR::excludeCalcShadowToMyCollision(this, nullptr);
         }
@@ -96,7 +93,7 @@ void Dossun::initShadow() {
 
 /*
 void Dossun::calcParameters() {
-    
+    
 }
 */
 
@@ -122,7 +119,7 @@ void Dossun::exeReady() {
 
 void Dossun::exeUpper() {
     if (MR::isFirstStep(this)) {
-        mPosition.set<f32>(_8C);
+        mPosition.set< f32 >(_8C);
     }
 
     if (MR::isStep(this, getUpperFrame())) {
@@ -142,7 +139,7 @@ void Dossun::exeFallSign() {
 
         MR::startSound(this, "SE_OJ_DOSSUN_FALL_SIGN", -1, -1);
     }
-    
+
     if (MR::isBckStopped(this)) {
         setNerve(&NrvDossun::DossunNrvFalling::sInstance);
     }
@@ -159,7 +156,7 @@ void Dossun::exeFalling() {
 
 void Dossun::exeOnGround() {
     if (MR::isFirstStep(this)) {
-        mPosition.set<f32>(_98);
+        mPosition.set< f32 >(_98);
         MR::startRumbleWithShakeCameraNormalWeak(this, "中", "弱", 2000.0f, 3500.0f);
         MR::startSound(this, "SE_OJ_DOSSUN_LAND", -1, -1);
         MR::emitEffect(this, "Land");

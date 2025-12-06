@@ -5,7 +5,7 @@
 class SaveDataHandleSequence;
 class SysInfoWindow;
 
-class NANDErrorSequence : public ActorStateBase<SaveDataHandleSequence> {
+class NANDErrorSequence : public ActorStateBase< SaveDataHandleSequence > {
 public:
     NANDErrorSequence(SaveDataHandleSequence*, SysInfoWindow*, SysInfoWindow*);
 

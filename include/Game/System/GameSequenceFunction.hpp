@@ -65,4 +65,4 @@ namespace GameSequenceFunction {
     void storeSceneStartGameDataHolder();
     void updateGameDataAndSequenceAfterStageResultSequence();
     void startGameDataSaveSequence(bool, bool);
-};
+};  // namespace GameSequenceFunction

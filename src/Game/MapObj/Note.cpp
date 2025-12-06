@@ -3,7 +3,7 @@
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Screen/NoteCounter.hpp"
 
-Note::Note(const char *pName, const TVec3f &rRailDirection, NoteFairy *pParent) : LiveActor(pName) {
+Note::Note(const char* pName, const TVec3f& rRailDirection, NoteFairy* pParent) : LiveActor(pName) {
     mParentFairy = pParent;
     _90.set(0.0f);
     mRailDirection.setPS(rRailDirection);
@@ -13,9 +13,9 @@ Note::Note(const char *pName, const TVec3f &rRailDirection, NoteFairy *pParent) 
     mFlashCtrl = nullptr;
 }
 
-void Note::init(const JMapInfoIter &rIter) {
+void Note::init(const JMapInfoIter& rIter) {
     MR::createSceneObj(SceneObj_NoteGroup);
-    _90.set<f32>(mPosition);
+    _90.set< f32 >(mPosition);
     initModelManagerWithAnm("Note", nullptr, false);
     MR::connectToSceneNoSilhouettedMapObjStrongLight(this);
     initHitSensor(1);
@@ -53,7 +53,7 @@ void Note::exeWait() {
 
     if (mIsCountdown) {
         setNerve(&NrvNote::NoteNrvCountDown::sInstance);
-    } 
+    }
 }
 */
 
@@ -86,7 +86,7 @@ void Note::exeFlyUp() {
 */
 
 void Note::control() {
-    mRotation.y = MR::getSceneObj<NoteGroup>(SceneObj_NoteGroup)->mRotation;
+    mRotation.y = MR::getSceneObj< NoteGroup >(SceneObj_NoteGroup)->mRotation;
 }
 
 /*
@@ -106,7 +106,7 @@ void Note::calcAndSetBaseMtx() {
 }
 */
 
-void Note::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
+void Note::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isSensorPlayerOrRide(pReceiver)) {
         if (!isNerve(&NrvNote::NoteNrvFlyUp::sInstance)) {
             MR::emitEffect(this, "Get");
@@ -121,7 +121,7 @@ NoteGroup::NoteGroup() : LiveActorGroup("音符グループ", 0x100) {
     mRotation = 0.0f;
 }
 
-void NoteGroup::init(const JMapInfoIter &rIter) {
+void NoteGroup::init(const JMapInfoIter& rIter) {
     MR::connectToSceneMapObjMovement(this);
 }
 
@@ -133,16 +133,12 @@ void NoteGroup::movement() {
 }
 */
 
-Note::~Note() {
+Note::~Note() {}
 
-}
-
-NoteGroup::~NoteGroup() {
-
-}
+NoteGroup::~NoteGroup() {}
 
 namespace NrvNote {
     INIT_NERVE(NoteNrvWait);
     INIT_NERVE(NoteNrvCountDown);
     INIT_NERVE(NoteNrvFlyUp);
-};
+};  // namespace NrvNote

@@ -1,7 +1,7 @@
 #include "Game/Boss/BossKameckStateBattle.hpp"
+#include "Game/Boss/BossKameck.hpp"
 #include "Game/Boss/BossKameckBattlePattarn.hpp"
 #include "Game/Boss/BossKameckMoveRail.hpp"
-#include "Game/Boss/BossKameck.hpp"
 #include "Game/Enemy/KameckBeam.hpp"
 #include "Game/Enemy/KameckBeamHolder.hpp"
 
@@ -18,9 +18,9 @@ namespace NrvBossKameckStateBattle {
     NEW_NERVE(BossKameckStateBattleNrvDamage, BossKameckStateBattle, Damage);
     NEW_NERVE(BossKameckStateBattleNrvRecover, BossKameckStateBattle, Recover);
     NEW_NERVE(BossKameckStateBattleNrvGuard, BossKameckStateBattle, Guard);
-};
+};  // namespace NrvBossKameckStateBattle
 
-BossKameckStateBattle::BossKameckStateBattle(BossKameck *pBoss) : mBossKameck(pBoss), ActorStateBase<BossKameck>("ボスカメック戦闘状態") {
+BossKameckStateBattle::BossKameckStateBattle(BossKameck* pBoss) : mBossKameck(pBoss), ActorStateBase< BossKameck >("ボスカメック戦闘状態") {
     mMoveRail = nullptr;
     mBattlePattarn = nullptr;
     mBeam = nullptr;
@@ -33,7 +33,7 @@ BossKameckStateBattle::BossKameckStateBattle(BossKameck *pBoss) : mBossKameck(pB
     _3C = 0;
     _3D = 0;
 }
- 
+
 void BossKameckStateBattle::init() {
     initNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvWait::sInstance);
 }
@@ -44,22 +44,21 @@ void BossKameckStateBattle::appear() {
     MR::onCalcGravity(mBossKameck);
 }
 
-void BossKameckStateBattle::setMoveRail(BossKameckMoveRail *pMoveRail) {
+void BossKameckStateBattle::setMoveRail(BossKameckMoveRail* pMoveRail) {
     mMoveRail = pMoveRail;
 }
 
-void BossKameckStateBattle::setBattlePattarn(BossKameckBattlePattarn *pPattarn) {
+void BossKameckStateBattle::setBattlePattarn(BossKameckBattlePattarn* pPattarn) {
     mBattlePattarn = pPattarn;
 }
 
-void BossKameckStateBattle::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
+void BossKameckStateBattle::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (isEnableGuard() && MR::isSensorPlayer(pReceiver)) {
         if (isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvGuard::sInstance)) {
             if (MR::sendMsgEnemyAttackFlipRot(pReceiver, pSender)) {
                 return;
             }
-        }
-        else if (MR::isSensorEnemyAttack(pSender)) {
+        } else if (MR::isSensorEnemyAttack(pSender)) {
             if (!MR::sendMsgEnemyAttack(pReceiver, pSender)) {
                 MR::sendMsgPush(pReceiver, pSender);
             }
@@ -67,7 +66,7 @@ void BossKameckStateBattle::attackSensor(HitSensor *pSender, HitSensor *pReceive
     }
 }
 
-bool BossKameckStateBattle::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool BossKameckStateBattle::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgStarPieceReflect(msg)) {
         return true;
     }
@@ -83,7 +82,7 @@ bool BossKameckStateBattle::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, 
     return false;
 }
 
-bool BossKameckStateBattle::requestDamage(HitSensor *pSender, HitSensor *pReceiver) {
+bool BossKameckStateBattle::requestDamage(HitSensor* pSender, HitSensor* pReceiver) {
     if (isEnableDamage()) {
         if (mBeam != nullptr) {
             mBeam->kill();
@@ -99,7 +98,7 @@ bool BossKameckStateBattle::requestDamage(HitSensor *pSender, HitSensor *pReceiv
     return false;
 }
 
-bool BossKameckStateBattle::requestGuard(HitSensor *pSender, HitSensor *pReceiver) {
+bool BossKameckStateBattle::requestGuard(HitSensor* pSender, HitSensor* pReceiver) {
     if (isEnableGuard()) {
         if (mBeam != nullptr) {
             mBeam->kill();
@@ -121,8 +120,7 @@ bool BossKameckStateBattle::tryAttackWait() {
     if (MR::isGreaterStep(this, 120) && MR::isNear(mBossKameck, _20, 100.0f)) {
         if (tryChargeBram()) {
             setNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvAttackWait::sInstance);
-        }
-        else {
+        } else {
             startMove();
         }
 
@@ -144,7 +142,7 @@ bool BossKameckStateBattle::trySummonKameck() {
     if (mBossKameck->getLivingKameckNum() == 0) {
         _38 = 0;
         return true;
-    } 
+    }
 
     return false;
 }
@@ -164,8 +162,7 @@ bool BossKameckStateBattle::tryChargeBram() {
 
         if (mBossKameck->getLivingKameckNum() == 0) {
             _38++;
-        }
-        else {
+        } else {
             _38 = 0;
         }
 
@@ -178,8 +175,7 @@ bool BossKameckStateBattle::tryChargeBram() {
 void BossKameckStateBattle::startMove() {
     if (_3D) {
         setNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvHideMoveStart::sInstance);
-    }
-    else {
+    } else {
         setNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvMove::sInstance);
     }
 }
@@ -253,8 +249,7 @@ void BossKameckStateBattle::exeHideMove() {
 
     if (_3C) {
         v2 = 20.0f;
-    }
-    else {
+    } else {
         v2 = 15.0f;
     }
 
@@ -268,14 +263,12 @@ void BossKameckStateBattle::exeHideMove() {
         s32 v4 = _34;
         if (v4 <= v3) {
             setNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvHideMoveEnd::sInstance);
-        }
-        else {
-            _34 = v3 + 1; 
+        } else {
+            _34 = v3 + 1;
 
             if (v4 == v3 + 1) {
                 selectStoppablePosition();
-            }
-            else {
+            } else {
                 selectPosition();
             }
         }
@@ -296,11 +289,9 @@ void BossKameckStateBattle::exeHideMoveEnd() {
     if (MR::isActionEnd(mBossKameck)) {
         if (trySummonKameck()) {
             setNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvSummonKameckWait::sInstance);
-        }
-        else if (tryChargeBram()) {
+        } else if (tryChargeBram()) {
             setNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvAttackWait::sInstance);
-        }
-        else {
+        } else {
             startMove();
         }
     }
@@ -364,7 +355,7 @@ void BossKameckStateBattle::exeAttack() {
     }
 
     MR::attenuateVelocity(mBossKameck, 0.95999998f);
-    
+
     if (MR::isGreaterStep(this, 30)) {
         setNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvWait::sInstance);
     }
@@ -379,8 +370,7 @@ void BossKameckStateBattle::exeDamage() {
             MR::startAction(mBossKameck, "Down");
             MR::startSound(mBossKameck, "SE_BV_KAMECK_LAST_DAMAGE", -1, -1);
             MR::startSound(mBossKameck, "SE_BM_KAMECK_LAST_DAMAGE", -1, -1);
-        }
-        else {
+        } else {
             MR::startAction(mBossKameck, "Damage");
             MR::startSound(mBossKameck, "SE_BV_KAMECK_DAMAGE", -1, -1);
             MR::startSound(mBossKameck, "SE_BM_KAMECK_DAMAGE", -1, -1);
@@ -439,14 +429,14 @@ void BossKameckStateBattle::selectPosition() {
 bool BossKameckStateBattle::isEnableDamage() const {
     bool ret = false;
 
-    if (isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvWait::sInstance)
-    || isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvMove::sInstance)
-    || isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvHideMoveStart::sInstance)
-    || isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvHideMoveEnd::sInstance)
-    || isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvSummonKameckWait::sInstance)
-    || isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvSummonKameck::sInstance)
-    || isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvAttackWait::sInstance)
-    || isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvAttack::sInstance)) {
+    if (isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvWait::sInstance) ||
+        isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvMove::sInstance) ||
+        isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvHideMoveStart::sInstance) ||
+        isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvHideMoveEnd::sInstance) ||
+        isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvSummonKameckWait::sInstance) ||
+        isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvSummonKameck::sInstance) ||
+        isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvAttackWait::sInstance) ||
+        isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvAttack::sInstance)) {
         return true;
     }
 
@@ -456,20 +446,18 @@ bool BossKameckStateBattle::isEnableDamage() const {
 bool BossKameckStateBattle::isEnableGuard() const {
     bool ret = false;
 
-    if (isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvWait::sInstance)
-    || isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvMove::sInstance)
-    || isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvHideMoveStart::sInstance)
-    || isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvHideMoveEnd::sInstance)
-    || isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvSummonKameckWait::sInstance)
-    || isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvSummonKameck::sInstance)
-    || isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvAttackWait::sInstance)
-    || isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvAttack::sInstance)) {
+    if (isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvWait::sInstance) ||
+        isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvMove::sInstance) ||
+        isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvHideMoveStart::sInstance) ||
+        isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvHideMoveEnd::sInstance) ||
+        isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvSummonKameckWait::sInstance) ||
+        isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvSummonKameck::sInstance) ||
+        isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvAttackWait::sInstance) ||
+        isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvAttack::sInstance)) {
         return true;
     }
 
     return ret;
 }
 
-BossKameckStateBattle::~BossKameckStateBattle() {
-
-}
+BossKameckStateBattle::~BossKameckStateBattle() {}

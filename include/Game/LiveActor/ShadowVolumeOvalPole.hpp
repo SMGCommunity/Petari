@@ -9,7 +9,7 @@ public:
     virtual ~ShadowVolumeOvalPole();
     virtual void loadModelDrawMtx() const;
 
-    void setSize(const TVec3f &);
+    void setSize(const TVec3f&);
 
-    TVec3f mSize;   // 0x20
+    TVec3f mSize;  // 0x20
 };

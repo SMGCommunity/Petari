@@ -1,21 +1,21 @@
 #pragma once
 
-#include "Game/MapObj/MapObjActor.hpp"
 #include "Game/Effect/SpinPullParticleCallBack.hpp"
+#include "Game/MapObj/MapObjActor.hpp"
 
 class Candlestand : public MapObjActor {
 public:
-    Candlestand(const char *);
+    Candlestand(const char*);
 
     virtual ~Candlestand();
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
     virtual void makeActorAppeared();
     virtual void startClipped();
     virtual void endClipped();
-    virtual void attackSensor(HitSensor *, HitSensor *);
-    virtual bool receiveMsgPlayerAttack(u32, HitSensor *, HitSensor *);
-    virtual bool receiveMsgEnemyAttack(u32, HitSensor *, HitSensor *);
-    virtual bool receiveOtherMsg(u32, HitSensor *, HitSensor *);
+    virtual void attackSensor(HitSensor*, HitSensor*);
+    virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
+    virtual bool receiveMsgEnemyAttack(u32, HitSensor*, HitSensor*);
+    virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
 
     void emitEffectFire();
     void deleteEffectFire();
@@ -27,9 +27,9 @@ public:
     inline void exeAttack();
     inline void exeBurn();
 
-    s32 mItem;                                      // 0xC4
-    bool mHasItemAppear;                            // 0xC8
-    SpinPullParticleCallBack* mSpinPtclCb;          // 0xCC
+    s32 mItem;                              // 0xC4
+    bool mHasItemAppear;                    // 0xC8
+    SpinPullParticleCallBack* mSpinPtclCb;  // 0xCC
 };
 
 namespace NrvCandlestand {
@@ -39,4 +39,4 @@ namespace NrvCandlestand {
     NERVE_DECL(HostTypeAttack, Candlestand, Candlestand::exeAttack);
     NERVE_DECL(HostTypeExtinguish, Candlestand, Candlestand::exeExtinguish);
     NERVE_DECL(HostTypeFlicker, Candlestand, Candlestand::exeFlicker);
-};
+};  // namespace NrvCandlestand

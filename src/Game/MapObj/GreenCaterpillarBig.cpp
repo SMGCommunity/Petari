@@ -1,15 +1,15 @@
 #include "Game/MapObj/GreenCaterpillarBig.hpp"
 
-GreenCaterpillarBigBody::GreenCaterpillarBigBody(LiveActor *pCaterpillar, MtxPtr mtx) :
-    ModelObj("オオムイムイ体", "GreenCaterpillarBigBody", mtx, -2, -2, -2, false) {
-        mCaterpillar = pCaterpillar;
-        mFrontVec.x = 0.0f;
-        mFrontVec.y = 0.0f;
-        mFrontVec.z = 1.0f;
-        mPlanetLOD = nullptr;
-    }
+GreenCaterpillarBigBody::GreenCaterpillarBigBody(LiveActor* pCaterpillar, MtxPtr mtx)
+    : ModelObj("オオムイムイ体", "GreenCaterpillarBigBody", mtx, -2, -2, -2, false) {
+    mCaterpillar = pCaterpillar;
+    mFrontVec.x = 0.0f;
+    mFrontVec.y = 0.0f;
+    mFrontVec.z = 1.0f;
+    mPlanetLOD = nullptr;
+}
 
-void GreenCaterpillarBigBody::init(const JMapInfoIter &rIter) {
+void GreenCaterpillarBigBody::init(const JMapInfoIter& rIter) {
     MR::invalidateClipping(this);
     mPlanetLOD = MR::createLodCtrlPlanet(this, rIter, -1.0f, -1);
     mPlanetLOD->validate();
@@ -18,7 +18,7 @@ void GreenCaterpillarBigBody::init(const JMapInfoIter &rIter) {
     makeActorDead();
 }
 
-void GreenCaterpillarBigBody::setPosAndDirection(LiveActor *pActor) {
+void GreenCaterpillarBigBody::setPosAndDirection(LiveActor* pActor) {
     TVec3f jointPos;
     MR::copyJointPos(mCaterpillar, "FollowPoint", &jointPos);
     mPosition.setPS(jointPos);
@@ -36,14 +36,13 @@ void GreenCaterpillarBigBody::control() {
 void GreenCaterpillarBigBody::calcAndSetBaseMtx() {
     if (MR::isNearZero(mFrontVec, 0.001f)) {
         LiveActor::calcAndSetBaseMtx();
-    }
-    else {
+    } else {
         MtxPtr jointMtx = MR::getJointMtx(mCaterpillar, "FollowPoint");
         TVec3f pos;
-        pos.set<f32>(jointMtx[0][1], jointMtx[1][1], jointMtx[2][1]);
+        pos.set< f32 >(jointMtx[0][1], jointMtx[1][1], jointMtx[2][1]);
         TPos3f frontUpPos;
         MR::makeMtxFrontUpPos(&frontUpPos, mFrontVec, pos, mPosition);
-        MR::setBaseTRMtx(this, frontUpPos);  
+        MR::setBaseTRMtx(this, frontUpPos);
     }
 }
 
@@ -55,17 +54,17 @@ void GreenCaterpillarBigBody::calcBodyDir(LiveActor *pActor, TVec3f *pOutDir) {
         MR::calcRailDirectionAtCoord(pOutDir, pActor, nearRailCoord);
     }
     else {
-        TVec3f railPos;  
-        MR::calcRailPosAtCoord(&railPos, pActor, coord); 
+        TVec3f railPos;
+        MR::calcRailPosAtCoord(&railPos, pActor, coord);
         TVec3f stack_8;
-        stack_8.subInline3(mPosition, railPos); 
+        stack_8.subInline3(mPosition, railPos);
         MR::normalize(&stack_8);
         MR::blendVec(pOutDir, *pOutDir, stack_8, 0.1f);
     }
 }
 */
 
-GreenCaterpillarBig::GreenCaterpillarBig(const char *pName) : LiveActor(pName) {
+GreenCaterpillarBig::GreenCaterpillarBig(const char* pName) : LiveActor(pName) {
     mBodyArray = nullptr;
     mBodyArrayLength = 0;
     mCurBodyParts = 0;
@@ -75,7 +74,7 @@ GreenCaterpillarBig::GreenCaterpillarBig(const char *pName) : LiveActor(pName) {
     mPlanetLOD = nullptr;
 }
 
-void GreenCaterpillarBig::init(const JMapInfoIter &rIter) {
+void GreenCaterpillarBig::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     initModelManagerWithAnm("GreenCaterpillarBigFace", nullptr, false);
     MR::connectToSceneMapObj(this);
@@ -111,8 +110,7 @@ void GreenCaterpillarBig::exeWriggle() {
 
     if (MR::isRailReachedGoal(this)) {
         setNerve(&NrvGreenCaterpillarBig::GreenCaterpillarBigNrvEndAdjust::sInstance);
-    }
-    else {
+    } else {
         _9C = 0;
         _9D = 0;
 
@@ -128,18 +126,16 @@ void GreenCaterpillarBig::exeWriggle() {
                 MR::tryRumblePadStrong(this, 0);
                 MR::shakeCameraNormal();
                 MR::startSound(this, "SE_OJ_GRN_CATERP_IN", -1, -1);
-            }
-            else if (point_arg == 1.0f) {
+            } else if (point_arg == 1.0f) {
                 setNerve(&NrvGreenCaterpillarBig::GreenCaterpillarBigNrvRest::sInstance);
-            }
-            else if (point_arg == 2.0f) {
+            } else if (point_arg == 2.0f) {
                 leaveApple();
             }
         }
     }
 }
 
-void GreenCaterpillarBig::initBodyParts(const JMapInfoIter &rIter) {
+void GreenCaterpillarBig::initBodyParts(const JMapInfoIter& rIter) {
     s32 count = MR::getRailTotalLength(this) / 300.0f;
     mBodyArrayLength = count;
     mBodyArray = new GreenCaterpillarBigBody*[count];
@@ -149,7 +145,7 @@ void GreenCaterpillarBig::initBodyParts(const JMapInfoIter &rIter) {
         MtxPtr jointMtx = MR::getJointMtx(caterpillar, "FollowPoint");
         mBodyArray[i] = new GreenCaterpillarBigBody(caterpillar, jointMtx);
         mBodyArray[i]->init(rIter);
-        caterpillar = reinterpret_cast<GreenCaterpillarBig*>(mBodyArray[i]);
+        caterpillar = reinterpret_cast< GreenCaterpillarBig* >(mBodyArray[i]);
     }
 }
 
@@ -216,13 +212,9 @@ void GreenCaterpillarBig::leaveApple() {
     MR::startSound(this, "SE_OJ_GRN_CATERP_OUT", -1, -1);
 }
 
-GreenCaterpillarBigBody::~GreenCaterpillarBigBody() {
+GreenCaterpillarBigBody::~GreenCaterpillarBigBody() {}
 
-}
-
-GreenCaterpillarBig::~GreenCaterpillarBig() {
-
-}
+GreenCaterpillarBig::~GreenCaterpillarBig() {}
 
 namespace NrvGreenCaterpillarBig {
     INIT_NERVE(GreenCaterpillarBigNrvHide);
@@ -231,32 +223,32 @@ namespace NrvGreenCaterpillarBig {
     INIT_NERVE(GreenCaterpillarBigNrvEndAdjust);
     INIT_NERVE(GreenCaterpillarBigNrvEnd);
 
-    void GreenCaterpillarBigNrvEnd::execute(Spine *pSpine) const {
-        GreenCaterpillarBig* caterpillar = reinterpret_cast<GreenCaterpillarBig*>(pSpine->mExecutor);
+    void GreenCaterpillarBigNrvEnd::execute(Spine* pSpine) const {
+        GreenCaterpillarBig* caterpillar = reinterpret_cast< GreenCaterpillarBig* >(pSpine->mExecutor);
         if (MR::isFirstStep(caterpillar)) {
             MR::startBck(caterpillar, "Wait", nullptr);
         }
     }
 
-    void GreenCaterpillarBigNrvEndAdjust::execute(Spine *pSpine) const {
-        GreenCaterpillarBig* caterpillar = reinterpret_cast<GreenCaterpillarBig*>(pSpine->mExecutor);
+    void GreenCaterpillarBigNrvEndAdjust::execute(Spine* pSpine) const {
+        GreenCaterpillarBig* caterpillar = reinterpret_cast< GreenCaterpillarBig* >(pSpine->mExecutor);
         if (MR::isStep(caterpillar, 0x78)) {
             caterpillar->setNerve(&NrvGreenCaterpillarBig::GreenCaterpillarBigNrvEnd::sInstance);
         }
     }
 
-    void GreenCaterpillarBigNrvRest::execute(Spine *pSpine) const {
-        GreenCaterpillarBig* caterpillar = reinterpret_cast<GreenCaterpillarBig*>(pSpine->mExecutor);
+    void GreenCaterpillarBigNrvRest::execute(Spine* pSpine) const {
+        GreenCaterpillarBig* caterpillar = reinterpret_cast< GreenCaterpillarBig* >(pSpine->mExecutor);
         MR::startLevelSound(caterpillar, "SE_OJ_LV_GRN_CATERP_EAT", -1, -1, -1);
     }
 
-    void GreenCaterpillarBigNrvWriggle::execute(Spine *pSpine) const {
-        GreenCaterpillarBig* caterpillar = reinterpret_cast<GreenCaterpillarBig*>(pSpine->mExecutor);
+    void GreenCaterpillarBigNrvWriggle::execute(Spine* pSpine) const {
+        GreenCaterpillarBig* caterpillar = reinterpret_cast< GreenCaterpillarBig* >(pSpine->mExecutor);
         caterpillar->exeWriggle();
     }
 
-    void GreenCaterpillarBigNrvHide::execute(Spine *pSpine) const {
-        GreenCaterpillarBig* caterpillar = reinterpret_cast<GreenCaterpillarBig*>(pSpine->mExecutor);
+    void GreenCaterpillarBigNrvHide::execute(Spine* pSpine) const {
+        GreenCaterpillarBig* caterpillar = reinterpret_cast< GreenCaterpillarBig* >(pSpine->mExecutor);
         MR::startLevelSound(caterpillar, "SE_OJ_LV_GRN_CATERP_EAT", -1, -1, -1);
     }
-};
+};  // namespace NrvGreenCaterpillarBig

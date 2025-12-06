@@ -1,6 +1,6 @@
+#include "Game/Screen/ProloguePictureBook.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/IconAButton.hpp"
-#include "Game/Screen/ProloguePictureBook.hpp"
 #include "Game/Util/GamePadUtil.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
@@ -16,13 +16,9 @@ namespace NrvProloguePictureBook {
     NEW_NERVE(ProloguePictureBookPlaying, ProloguePictureBook, Playing);
     NEW_NERVE(ProloguePictureBookKeyWait, ProloguePictureBook, KeyWait);
     NEW_NERVE(ProloguePictureBookEnd, ProloguePictureBook, End);
-};
+};  // namespace NrvProloguePictureBook
 
-ProloguePictureBook::ProloguePictureBook() :
-    LayoutActor("プロローグの絵本", true),
-    mAButtonIcon(nullptr),
-    mPage(0)
-{}
+ProloguePictureBook::ProloguePictureBook() : LayoutActor("プロローグの絵本", true), mAButtonIcon(nullptr), mPage(0) {}
 
 void ProloguePictureBook::init(const JMapInfoIter& rIter) {
     MR::connectToSceneLayout(this);
@@ -59,8 +55,7 @@ void ProloguePictureBook::exePlaying() {
 
     if (MR::isAnimStopped(this, 0)) {
         setNerve(&NrvProloguePictureBook::ProloguePictureBookEnd::sInstance);
-    }
-    else {
+    } else {
         int index = mPage + 1;
 
         if (sBookPageInfo[index] < 0) {
@@ -69,7 +64,7 @@ void ProloguePictureBook::exePlaying() {
 
         MR::testSystemPadTriggerDecide();
 
-        if (sBookPageInfo[index] > static_cast<s32>(pAnimCtrl->mCurrentFrame)) {
+        if (sBookPageInfo[index] > static_cast< s32 >(pAnimCtrl->mCurrentFrame)) {
             return;
         }
 
@@ -98,9 +93,7 @@ void ProloguePictureBook::exeKeyWait() {
     }
 }
 
-void ProloguePictureBook::exeEnd() {
-    
-}
+void ProloguePictureBook::exeEnd() {}
 
 bool ProloguePictureBook::isEnd() const {
     return isNerve(&NrvProloguePictureBook::ProloguePictureBookEnd::sInstance);

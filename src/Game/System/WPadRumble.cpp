@@ -1,5 +1,5 @@
-#include "Game/System/WPad.hpp"
 #include "Game/System/WPadRumble.hpp"
+#include "Game/System/WPad.hpp"
 #include "Game/System/WPadRumbleData.hpp"
 #include "Game/Util/GamePadUtil.hpp"
 
@@ -23,12 +23,10 @@ void RumbleChannel::update() {
         if (_4 == true) {
             _E = _0->mPattern[0];
             _C = 1;
-        }
-        else {
+        } else {
             clear();
         }
-    }
-    else {
+    } else {
         _E = _0->mPattern[0];
         _C++;
     }
@@ -42,15 +40,7 @@ void RumbleChannel::setPattern(const void* pParam1, const RumblePattern& rParam2
     _4 = param4;
 }
 
-WPadRumble::WPadRumble(WPad* pPad) :
-    mPad(pPad),
-    _8(false),
-    _C(1),
-    _B0(0),
-    _B4(0),
-    _B8(false),
-    _BC(0)
-{
+WPadRumble::WPadRumble(WPad* pPad) : mPad(pPad), _8(false), _C(1), _B0(0), _B4(0), _B8(false), _BC(0) {
     if (sInstanceForCallback == nullptr) {
         sInstanceForCallback = new WPadRumble*[MR::getWPadMaxCount()];
 
@@ -108,8 +98,7 @@ void WPadRumble::update() {
         _BC--;
 
         stop();
-    }
-    else {
+    } else {
         WPadRumble* pRumble = getRumbleInstance();
 
         if (pRumble != nullptr) {
@@ -136,16 +125,14 @@ void WPadRumble::updateRumble() {
         }
 
         pause();
-    }
-    else {
+    } else {
         if (b) {
             if (!_8) {
                 _8 = true;
 
                 WPADControlMotor(mPad->mChannel, WPAD_MOTOR_RUMBLE);
             }
-        }
-        else if (_8) {
+        } else if (_8) {
             _8 = false;
 
             pause();
@@ -153,14 +140,12 @@ void WPadRumble::updateRumble() {
 
         if (b) {
             _B0 = 5;
-        }
-        else {
+        } else {
             s32 temp = _B0 - 1;
 
             if (temp < -9) {
                 temp = -9;
-            }
-            else {
+            } else {
                 if (temp <= 5) {
                     temp = _B0;
                 }

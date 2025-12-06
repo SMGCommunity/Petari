@@ -9,7 +9,7 @@ void MapPartsRailGuideDrawer::end() {
     hide();
 }
 
-void MapPartsRailGuideDrawer::initGuidePoints(const JMapInfoIter &rIter) {
+void MapPartsRailGuideDrawer::initGuidePoints(const JMapInfoIter& rIter) {
     s32 shadowType = 0;
     MR::getMapPartsArgShadowType(&shadowType, rIter);
     bool hasShadow = MR::hasMapPartsShadow(shadowType);
@@ -36,6 +36,4 @@ void MapPartsRailGuideDrawer::initGuidePoints(const JMapInfoIter &rIter) {
     }
 }
 
-MapPartsRailGuideDrawer::~MapPartsRailGuideDrawer() {
-
-}
+MapPartsRailGuideDrawer::~MapPartsRailGuideDrawer() {}

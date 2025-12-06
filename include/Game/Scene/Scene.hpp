@@ -1,12 +1,12 @@
 #pragma once
 
-#include "Game/System/NerveExecutor.hpp"
 #include "Game/Scene/SceneNameObjListExecutor.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
+#include "Game/System/NerveExecutor.hpp"
 
 class Scene : public NerveExecutor {
 public:
-    Scene(const char *);
+    Scene(const char*);
 
     virtual ~Scene();
     virtual void init();
@@ -18,7 +18,7 @@ public:
     void initNameObjListExecutor();
     void initSceneObjHolder();
 
-    SceneNameObjListExecutor* mListExecutor;    // 0x8
+    SceneNameObjListExecutor* mListExecutor;  // 0x8
     u32 _C;
-    SceneObjHolder* mSceneObjHolder;            // 0x10
+    SceneObjHolder* mSceneObjHolder;  // 0x10
 };

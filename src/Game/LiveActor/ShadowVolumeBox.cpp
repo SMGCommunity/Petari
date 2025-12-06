@@ -1,7 +1,7 @@
 #include "Game/LiveActor/ShadowVolumeBox.hpp"
 
-void ShadowVolumeBox::setSize(const TVec3f &rSize) {
-    mSize.set<f32>(rSize);
+void ShadowVolumeBox::setSize(const TVec3f& rSize) {
+    mSize.set< f32 >(rSize);
 }
 
 void ShadowVolumeBox::loadModelDrawMtx() const {
@@ -49,6 +49,4 @@ void ShadowVolumeBox::drawShape() const {
     TDDraw::sendPoint(_34);
 }
 
-ShadowVolumeBox::~ShadowVolumeBox() {
-
-}
+ShadowVolumeBox::~ShadowVolumeBox() {}

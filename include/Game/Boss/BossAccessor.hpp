@@ -14,13 +14,9 @@ public:
     /// @brief Destroys the `BossAccessor`.
     virtual ~BossAccessor();
 
-    LiveActor* getBoss() const {
-        return mBoss;
-    }
+    LiveActor* getBoss() const { return mBoss; }
 
-    void setBoss(LiveActor* pBoss) {
-        mBoss = pBoss;
-    }
+    void setBoss(LiveActor* pBoss) { mBoss = pBoss; }
 
 private:
     /* 0x0 */ LiveActor* mBoss;
@@ -29,4 +25,4 @@ private:
 namespace BossAccess {
     Koopa* getBossAccessorKoopa();
     void setBossAccessorKoopa(Koopa* pKoopa);
-};
+};  // namespace BossAccess

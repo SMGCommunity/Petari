@@ -8,15 +8,15 @@ class CameraPoseParam;
 
 class OnlyCamera : public NameObj {
 public:
-    OnlyCamera(const char *);
+    OnlyCamera(const char*);
     virtual ~OnlyCamera();
 
-    void calcPose(CameraMan *);
-    //calcStartPose(CameraMan *);
-    //calcSafePose(CameraMan *);
-    //moveToIdealPosition(TVec3f *);
+    void calcPose(CameraMan*);
+    // calcStartPose(CameraMan *);
+    // calcSafePose(CameraMan *);
+    // moveToIdealPosition(TVec3f *);
 
-    CameraPoseParam *mPoseParam;    // 0xC
+    CameraPoseParam* mPoseParam;  // 0xC
     bool _10;
     bool _11;
     u8 _12[2];

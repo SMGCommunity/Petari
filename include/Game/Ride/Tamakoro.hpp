@@ -37,6 +37,8 @@ public:
     bool tryBumpWall();
     bool tryLand();
     void reactionCollision();
+    void exeStandByTutorial();
+    void exeStandByBind();
     void exeBindStart();
     void exeBindStartLand();
     void exeTutorial();
@@ -48,6 +50,7 @@ public:
     void exeJumpHole();
     void exeJumpHoleSetUp();
     void exeJumpHoleLaunch();
+    void endJumpHoleLaunch();
     void exeDashRail();
     void exeDashRailEnd();
     void exeRideRail();
@@ -63,42 +66,44 @@ public:
     void updateMarioOffset();
     void updateMoveBckBlend(f32);
     void updateSquatBckBlend(f32);
-    bool isEnablePushPlayer() const;
-    bool isEnableEnemyAttack() const;
-    bool isEnableBallBind() const;
-    bool isEnebleHitCollisionMessage() const;
-    bool isUseMarioOffset() const;
-    bool isGroundMomentBall() const;
-    bool isRideRail() const;
-    bool isNeedTutorial() const;
+    bool isEnablePushPlayer() const NO_INLINE;
+    bool isEnableEnemyAttack() const NO_INLINE;
+    bool isEnableBallBind() const NO_INLINE;
+    bool isEnebleHitCollisionMessage() const NO_INLINE;
+    bool isUseMarioOffset() const NO_INLINE;
+    bool isGroundMomentBall() const NO_INLINE;
+    bool isRideRail() const NO_INLINE;
+    bool isNeedTutorial() const NO_INLINE;
     void startRotateLevelSound();
 
+    inline void setTutorial() { mHasTutorial = true; }
+
 private:
-    /* 0x08C */ SphereAccelSensorController* _8C;
+    /* 0x08C */ SphereAccelSensorController* mAccelSensorCtrl;
     /* 0x090 */ TamakoroTutorial* mTutorial;
-    /* 0x094 */ JointController* _94;
-    /* 0x098 */ TQuat4f _98;
-    /* 0x0A8 */ TQuat4f _A8;
-    /* 0x0B8 */ TVec3f _B8;
+    /* 0x094 */ JointController* mJointCtrl;
+    /* 0x098 */ TQuat4f mBaseQuat;
+    /* 0x0A8 */ TQuat4f mRotateQuat;
+    /* 0x0B8 */ TVec3f mRingUp;
     /* 0x0C4 */ u8 _C4[0xC];
-    /* 0x0D0 */ TVec3f _D0;
-    /* 0x0DC */ TVec3f _DC;
-    /* 0x0E8 */ TVec3f _E8;
-    /* 0x0F4 */ TVec3f _F4;
-    /* 0x100 */ TVec3f _100;
-    /* 0x10C */ TVec3f _10C;
-    /* 0x118 */ TVec3f _118;
-    /* 0x124 */ TVec3f _124;
-    /* 0x130 */ f32 _130;
-    /* 0x134 */ f32 _134;
-    /* 0x138 */ f32 _138;
-    /* 0x13C */ f32 _13C;
-    /* 0x140 */ u32 _140;
-    /* 0x144 */ AudTamakoroBgmCtrl* _144;
-    /* 0x148 */ bool _148;
-    /* 0x149 */ bool _149;
+    /* 0x0D0 */ TVec3f mKickVel;
+    /* 0x0DC */ TVec3f mMarioBindRequestPos;
+    /* 0x0E8 */ TVec3f mMarioRotateUp;
+    /* 0x0F4 */ TVec3f mMarioPos;
+    /* 0x100 */ TVec3f mMoment;
+    /* 0x10C */ TVec3f mMarioRotateFront;
+    /* 0x118 */ TVec3f mDirectionToMario;
+    /* 0x124 */ TVec3f mMoveVec;
+    /* 0x130 */ f32 mMoveSpeed;
+    /* 0x134 */ f32 mMarioRotateYAngle;
+    /* 0x138 */ f32 mMarioOffset;
+    /* 0x13C */ f32 mMarioOffsetVelocity;
+    /* 0x140 */ s32 mAirTime;
+    /* 0x144 */ AudTamakoroBgmCtrl* mBgmCtrl;
+    /* 0x148 */ bool mControlDisabled;
+    /* 0x149 */ bool mHasTutorial;
 };
 
 namespace MR {
-    void createTamakoroWithTutorial(const char*);
+    NameObj* createTamakoroWithTutorial(const char*);
 };

@@ -43,4 +43,4 @@ namespace TitleSequenceProductSub {
         /// @brief Creates a new `LogoLayout`.
         LogoLayout();
     };
-};
+};  // namespace TitleSequenceProductSub

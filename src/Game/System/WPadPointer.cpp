@@ -18,7 +18,7 @@ WPadPointer::WPadPointer(const WPad* pPad) {
     _38 = 0;
     _3C = 0;
     mEnablePastCount = 0;
-    _44 = 0; 
+    _44 = 0;
     _45 = 0;
     mPointingPosArray = new TVec2f[0x78];
     mHorizonArray = new TVec2f[0x78];
@@ -31,7 +31,7 @@ void WPadPointer::reset() {
     for (s32 i = 0; i < _C; i++) {
         TVec2f* cur = &mPointingPosArray[i];
         cur->x = 0.0f;
-        cur->y = 0.0f; 
+        cur->y = 0.0f;
         cur = &mHorizonArray[i];
         cur->x = 0.0f;
         cur->y = 0.0f;
@@ -42,13 +42,12 @@ void WPadPointer::reset() {
     _38 = 0;
     mEnablePastCount = 0;
     _2C = 0;
-    mIsPointInScreen = false; 
+    mIsPointInScreen = false;
     _45 = 0;
     KPADSetPosParam(mPad->mChannel, mPosPlayRadius, mPosSensitivity);
     KPADSetHoriParam(mPad->mChannel, mHoriPlayRadius, mHoriSensitivity);
     KPADSetDistParam(mPad->mChannel, mDistPlayRadius, mDistSensitivity);
 }
-
 
 void WPadPointer::setSensorBarLevel(f32 lvl) {
     KPADSetSensorHeight(mPad->mChannel, lvl);
@@ -86,12 +85,10 @@ void WPadPointer::setSensorBarLevel(f32 lvl) {
     }
 }*/
 
-
 void WPadPointer::getPointingPos(TVec2f* pOut) const {
     if (mIsPointInScreen != 0) {
         pOut->set(mPointingPosArray[mEnablePastCount - 1]);
-    }
-    else {
+    } else {
         pOut->x = 0.0f;
         pOut->y = 0.0f;
     }
@@ -100,8 +97,7 @@ void WPadPointer::getPointingPos(TVec2f* pOut) const {
 void WPadPointer::getHorizonVec(TVec2f* pOut) const {
     if (mIsPointInScreen != 0) {
         pOut->set(mHorizonArray[mEnablePastCount - 1]);
-    }
-    else {
+    } else {
         pOut->x = 0.0f;
         pOut->y = 0.0f;
     }

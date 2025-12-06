@@ -15,16 +15,16 @@ class ViewGroupCtrl {
 public:
     ViewGroupCtrl();
 
-    void initActorInfo(ClippingActorInfo *, s32);
-    void initViewGroup(ClippingActorInfoList *);
+    void initActorInfo(ClippingActorInfo*, s32);
+    void initViewGroup(ClippingActorInfoList*);
     void endInitViewGroupTable();
-    void entryLodCtrl(LodCtrl *, const JMapInfoIter &);
+    void entryLodCtrl(LodCtrl*, const JMapInfoIter&);
     void update();
     void startInitViewGroupTable();
 
-    AreaObjMgr* mViewCubeMgr;               // 0x0
-    s32 mMaxViewGroupId;                    // 0x4
-    ViewGroupCtrlDataEntry* mViewGroupData; // 0x8
-    u32 mViewCtrlCount;                     // 0xC
-    LodCtrl** mLodCtrls;                    // 0x10
+    AreaObjMgr* mViewCubeMgr;                // 0x0
+    s32 mMaxViewGroupId;                     // 0x4
+    ViewGroupCtrlDataEntry* mViewGroupData;  // 0x8
+    u32 mViewCtrlCount;                      // 0xC
+    LodCtrl** mLodCtrls;                     // 0x10
 };

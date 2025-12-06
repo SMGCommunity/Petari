@@ -7,7 +7,7 @@ ParabolicPath::ParabolicPath() : mPosition(0, 0, 0), mAxisY(0, 1, 0), mAxisZ(0, 
     _2C = 0.0f;
 }
 
-void ParabolicPath::initFromUpVectorAddHeight(const TVec3f &a1, const TVec3f &a2, const TVec3f &a3, f32 a4) {
+void ParabolicPath::initFromUpVectorAddHeight(const TVec3f& a1, const TVec3f& a2, const TVec3f& a3, f32 a4) {
     f32 dot = a3.dot(a2 - a1);
 
     if (dot < 0.0f) {
@@ -29,15 +29,14 @@ void ParabolicPath::calcPosition(TVec3f *pOutPosition, f32 a2) const {
 }
 */
 
-void ParabolicPath::calcDirection(TVec3f *pOutDirection, f32 a2, f32 a3) const {
+void ParabolicPath::calcDirection(TVec3f* pOutDirection, f32 a2, f32 a3) const {
     f32 f0;
     f32 f31;
 
     if (a2 < a3) {
         f31 = a3;
         f0 = 0.0f;
-    }
-    else {
+    } else {
         f0 = 1.0f;
         f31 = 1.0f - a3;
 
@@ -51,7 +50,7 @@ void ParabolicPath::calcDirection(TVec3f *pOutDirection, f32 a2, f32 a3) const {
     calcPosition(&stack_20, f0);
     TVec3f stack_14;
     calcPosition(&stack_14, f31);
-    pOutDirection->set<f32>(stack_14 - stack_20);
+    pOutDirection->set< f32 >(stack_14 - stack_20);
     MR::normalizeOrZero(pOutDirection);
 }
 

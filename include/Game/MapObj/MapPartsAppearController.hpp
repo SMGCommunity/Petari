@@ -1,21 +1,23 @@
 #pragma once
 
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/MapPartsFunction.hpp"
+
 
 class PostureHolder;
 
 class MapPartsAppearController : public MapPartsFunction {
 public:
-    MapPartsAppearController(LiveActor *);
+    MapPartsAppearController(LiveActor*);
 
     virtual ~MapPartsAppearController();
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
     virtual void start();
     virtual void end();
     virtual bool receiveMsg(u32);
 
     void storeCurrentPosture();
-    void initSwitchMessenger(const JMapInfoIter &);
+    void initSwitchMessenger(const JMapInfoIter&);
     void startAppear();
     void startKill();
     void appearHost();
@@ -30,4 +32,4 @@ public:
 namespace NrvMapPartsAppearController {
     NERVE(HostTypeWait);
     NERVE(HostTypeDisappear);
-};
+};  // namespace NrvMapPartsAppearController

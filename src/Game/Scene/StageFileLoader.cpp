@@ -3,10 +3,10 @@
 #include "Game/Util.hpp"
 #include "JSystem/JKernel/JKRArchive.hpp"
 #include "JSystem/JKernel/JKRFileFinder.hpp"
-#include <cstring>
 #include <cstdio>
+#include <cstring>
 
-StageFileLoader::StageFileLoader(const char *pName) {
+StageFileLoader::StageFileLoader(const char* pName) {
     mZoneCount = 0;
     makeStageArchiveNameList();
 }
@@ -39,11 +39,11 @@ void StageFileLoader::makeStageArchiveNameList() {
     }
 }
 
-void StageFileLoader::makeStageArchiveName(char *buf, u32 len, const char *pZoneName) {
+void StageFileLoader::makeStageArchiveName(char* buf, u32 len, const char* pZoneName) {
     snprintf(buf, len, "/StageData/%s.arc", pZoneName);
 }
 
-void StageFileLoader::mountFilesInStageMapFile(const char *pName) {
+void StageFileLoader::mountFilesInStageMapFile(const char* pName) {
     JKRArchive* archive = 0;
     JKRHeap* heap = 0;
     MR::getMountedArchiveAndHeap(pName, &archive, &heap);

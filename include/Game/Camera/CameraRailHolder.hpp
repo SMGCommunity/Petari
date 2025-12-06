@@ -14,18 +14,17 @@ public:
 
     class RailSet {
     public:
-
-        RailSet &operator=(const RailSet &);
+        RailSet& operator=(const RailSet&);
 
         u32 _0;
         u32 _4;
     };
 
-    CameraRailHolder(const char *);
+    CameraRailHolder(const char*);
     ~CameraRailHolder();
 
     // getRider(s32, s32) const;
     // find(s32, s32) const;
 
-    ZoneRail *mRails;   // 0xC
+    ZoneRail* mRails;  // 0xC
 };

@@ -118,4 +118,4 @@ namespace MR {
     void startGameOverWipe();
     void startDownWipe();
     void requestOneUp();
-};
+};  // namespace MR

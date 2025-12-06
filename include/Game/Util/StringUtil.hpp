@@ -187,4 +187,4 @@ namespace MR {
     /// @param pSubStr The pointer to the null-terminated character substring to search for.
     /// @param pDst The output pointer for the parsed values.
     void scanf32x4(const char* pSrc, const char* pSubStr, f32* pDst);
-};
+};  // namespace MR

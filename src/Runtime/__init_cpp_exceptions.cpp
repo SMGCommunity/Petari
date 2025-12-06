@@ -1,5 +1,5 @@
-#include <__ppc_eabi_linker.h>
 #include <NMWException.h>
+#include <__ppc_eabi_linker.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -16,7 +16,7 @@ static int fragmentID = -2;
 
 void __init_cpp_exceptions(void) {
     if (fragmentID == -2) {
-        register char *temp;
+        register char* temp;
         asm {
             mr temp,r2
         }
@@ -32,5 +32,4 @@ void __fini_cpp_exceptions(void) {
     }
 }
 
-__declspec(section ".ctors")
-extern void * const __init_cpp_exceptions_reference = __init_cpp_exceptions;
+__declspec(section ".ctors") extern void* const __init_cpp_exceptions_reference = __init_cpp_exceptions;

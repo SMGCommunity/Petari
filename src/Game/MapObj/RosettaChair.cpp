@@ -1,21 +1,17 @@
 #include "Game/MapObj/RosettaChair.hpp"
 
-RosettaChair::RosettaChair(const char *pName) :
-    LiveActor(pName),
-    _8C(0.0f, 0.0f, 0.0f),
-    _98(0.0f, 0.0f, 0.0f)
-{
+RosettaChair::RosettaChair(const char* pName) : LiveActor(pName), _8C(0.0f, 0.0f, 0.0f), _98(0.0f, 0.0f, 0.0f) {
     _A0.identity();
 }
 
 void RosettaChair::setDefaultPose() {
-    mPosition.set<f32>(_8C);
-    mRotation.set<f32>(_98);
+    mPosition.set< f32 >(_8C);
+    mRotation.set< f32 >(_98);
     MR::startBck(this, "RosettaChair", nullptr);
     MR::validateCollisionParts(this);
 }
 
-void RosettaChair::init(const JMapInfoIter &rIter) {
+void RosettaChair::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     initModelManagerWithAnm("RosettaChair", nullptr, false);
     MR::connectToSceneMapObj(this);
@@ -36,8 +32,8 @@ void RosettaChair::init(const JMapInfoIter &rIter) {
     MR::tryRegisterDemoCast(this, rIter);
     MR::registerDemoActionFunctor(this, MR::Functor(this, &RosettaChair::startDemo), "朗読開始");
     MR::registerDemoActionFunctor(this, MR::Functor(this, &RosettaChair::setDefaultPose), "キャスト入れ換え");
-    _8C.set<f32>(mPosition);
-    _98.set<f32>(mRotation);
+    _8C.set< f32 >(mPosition);
+    _98.set< f32 >(mRotation);
     MR::startBck(this, "RosettaChair", nullptr);
     makeActorAppeared();
 }

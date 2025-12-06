@@ -1,11 +1,11 @@
 #include "Game/Demo/DemoCastGroup.hpp"
 
-DemoCastGroup::DemoCastGroup(const char *pName) : NameObj(pName) {
+DemoCastGroup::DemoCastGroup(const char* pName) : NameObj(pName) {
     mInfo = 0;
     mGroup = 0;
 }
 
-bool DemoCastGroup::tryRegisterDemoActor(LiveActor *pActor, const JMapInfoIter &rIter, const JMapIdInfo &rInfo) {
+bool DemoCastGroup::tryRegisterDemoActor(LiveActor* pActor, const JMapInfoIter& rIter, const JMapIdInfo& rInfo) {
     bool isNotSame = !(*mInfo == rInfo);
 
     if (isNotSame) {
@@ -16,7 +16,7 @@ bool DemoCastGroup::tryRegisterDemoActor(LiveActor *pActor, const JMapInfoIter &
     return true;
 }
 
-bool DemoCastGroup::tryRegisterDemoActor(LiveActor *pActor, const char *pName, const JMapInfoIter &rIter) {
+bool DemoCastGroup::tryRegisterDemoActor(LiveActor* pActor, const char* pName, const JMapInfoIter& rIter) {
     if (!MR::isEqualString(mName, pName)) {
         return false;
     }
@@ -25,11 +25,11 @@ bool DemoCastGroup::tryRegisterDemoActor(LiveActor *pActor, const char *pName, c
     return true;
 }
 
-void DemoCastGroup::registerDemoActor(LiveActor *pActor, const JMapInfoIter & /* unused */) {
+void DemoCastGroup::registerDemoActor(LiveActor* pActor, const JMapInfoIter& /* unused */) {
     mGroup->registerActor(pActor);
 }
 
-void DemoCastGroup::init(const JMapInfoIter &rIter) {
+void DemoCastGroup::init(const JMapInfoIter& rIter) {
     setName(MR::getDemoName(rIter));
     mGroup = new LiveActorGroup("関連者保持", 0xC0);
     mGroup->initWithoutIter();

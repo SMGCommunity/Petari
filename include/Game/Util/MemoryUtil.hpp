@@ -64,7 +64,7 @@ namespace MR {
     void* allocFromWPadHeap(u32 size);
     u8 freeFromWPadHeap(void* pPtr);
 
-    template<int N>
+    template < int N >
     class JKRHeapAllocator {
     public:
         static void* alloc(MEMAllocator* pAllocator, u32 size);
@@ -74,4 +74,4 @@ namespace MR {
         static MEMAllocatorFunc sAllocatorFunc;
         static JKRHeap* sHeap;
     };
-};
+};  // namespace MR

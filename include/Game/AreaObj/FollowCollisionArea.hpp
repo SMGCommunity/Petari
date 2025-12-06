@@ -7,7 +7,7 @@ class AreaPolygon;
 
 class FollowCollisionArea : public NameObj {
 public:
-    FollowCollisionArea(const TVec3f &, MtxPtr, f32);
+    FollowCollisionArea(const TVec3f&, MtxPtr, f32);
 
     virtual ~FollowCollisionArea();
     virtual void movement();

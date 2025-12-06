@@ -5,11 +5,11 @@
 
 class TicoEat : public Tico {
 public:
-    TicoEat(const char *);
+    TicoEat(const char*);
 
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
     virtual void control();
-    virtual bool receiveMsgPlayerAttack(u32, HitSensor *, HitSensor *);
+    virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
     virtual void startReactionSound();
 
     void initStarPiece(s32);
@@ -24,14 +24,14 @@ public:
 
     u32 _190;
     s32 _194;
-    s32 _198;    
+    s32 _198;
 };
 
 class TicoComet : public TicoEat {
 public:
-    TicoComet(const char *);
+    TicoComet(const char*);
 
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
     virtual void startReactionSound();
 
     bool branchFunc(u32);

@@ -1,13 +1,8 @@
 #include "Game/Screen/WipeFade.hpp"
-#include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/DrawUtil.hpp"
+#include "Game/Util/LayoutUtil.hpp"
 
-WipeFade::WipeFade(const char* pName, const Color8& rFillColor) :
-    WipeLayoutBase(pName),
-    mIsWipeIn(false),
-    mStepNum(30),
-    mStep(30)
-{
+WipeFade::WipeFade(const char* pName, const Color8& rFillColor) : WipeLayoutBase(pName), mIsWipeIn(false), mStepNum(30), mStep(30) {
     mFillColor = rFillColor;
 }
 

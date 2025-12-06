@@ -8,30 +8,30 @@ class SpaceInner;
 
 class Sky : public LiveActor {
 public:
-    Sky(const char *);
+    Sky(const char*);
 
     virtual ~Sky();
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
     virtual void calcAnim();
     virtual void control();
-    virtual void initModel(const char *);
+    virtual void initModel(const char*);
 
     void disappearSpaceInner();
     void appearSpaceInner();
 
-    SpaceInner* mSpaceInner;                    // 0x8C
-    MirrorReflectionModel* mReflectionModel;    // 0x90
+    SpaceInner* mSpaceInner;                  // 0x8C
+    MirrorReflectionModel* mReflectionModel;  // 0x90
 };
 
 class ProjectionMapSky : public Sky {
 public:
-    ProjectionMapSky(const char *);
+    ProjectionMapSky(const char*);
 
     virtual ~ProjectionMapSky();
     virtual void calcAndSetBaseMtx();
-    virtual void initModel(const char *);
+    virtual void initModel(const char*);
 
-    ProjmapEffectMtxSetter* mMtxSetter;     // 0x94
+    ProjmapEffectMtxSetter* mMtxSetter;  // 0x94
 };
 
 namespace NrvSky {
@@ -39,4 +39,4 @@ namespace NrvSky {
 
     NERVE(HostTypeWait);
     NERVE(HostTypeChange);
-};
+};  // namespace NrvSky

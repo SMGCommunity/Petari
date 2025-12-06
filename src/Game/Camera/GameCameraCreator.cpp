@@ -1,11 +1,11 @@
+#include "Game/Camera/GameCameraCreator.hpp"
 #include "Game/Camera/CameraDirector.hpp"
 #include "Game/Camera/CameraParamChunkHolder.hpp"
-#include "Game/Camera/GameCameraCreator.hpp"
 #include "Game/Util/AreaObjUtil.hpp"
 #include <cstring>
 #include <mem.h>
 
-GameCameraCreator::GameCameraCreator(CameraParamChunkHolder *pChunkHolder) {
+GameCameraCreator::GameCameraCreator(CameraParamChunkHolder* pChunkHolder) {
     mChunkHolder = pChunkHolder;
     _4 = nullptr;
     _8 = -1;
@@ -13,7 +13,7 @@ GameCameraCreator::GameCameraCreator(CameraParamChunkHolder *pChunkHolder) {
     memset(&mCodes[0], 0, sizeof(mCodes));
 }
 
-void GameCameraCreator::initCameraCodeCollection(const char *a1, s32 a2) {
+void GameCameraCreator::initCameraCodeCollection(const char* a1, s32 a2) {
     _4 = a1;
     _8 = a2;
 }

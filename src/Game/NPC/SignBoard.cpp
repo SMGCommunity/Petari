@@ -8,11 +8,9 @@ namespace NrvSignBoard {
     NEW_NERVE(SignBoardNrvWait, SignBoard, Wait);
 };
 
-SignBoard::SignBoard(const char *pName) : NPCActor(pName) {
+SignBoard::SignBoard(const char* pName) : NPCActor(pName) {}
 
-}
-
-void SignBoard::init(const JMapInfoIter &rIter) {
+void SignBoard::init(const JMapInfoIter& rIter) {
     NPCActorCaps caps("Signboard");
     caps.setDefault();
     caps.mWaitNerve = &NrvSignBoard::SignBoardNrvWait::sInstance;
@@ -32,11 +30,9 @@ void SignBoard::init(const JMapInfoIter &rIter) {
     MR::offCalcShadow(this, nullptr);
 }
 
-void SignBoard::control() {
+void SignBoard::control() {}
 
-}
-
-void SignBoard::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
+void SignBoard::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isSensorEnemy(pReceiver)) {
         MR::sendMsgPush(pReceiver, pSender);
     }
@@ -46,6 +42,4 @@ void SignBoard::exeWait() {
     MR::tryTalkNearPlayer(mMsgCtrl);
 }
 
-SignBoard::~SignBoard() {
-    
-}
+SignBoard::~SignBoard() {}

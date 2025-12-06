@@ -1,9 +1,9 @@
 #include "Game/MapObj/BigFan.hpp"
-#include "Game/MapObj/BigFanHolder.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
+#include "Game/MapObj/BigFanHolder.hpp"
 #include "JSystem/JMath/JMath.hpp"
 
-BigFan::BigFan(const char *pName) : LiveActor(pName) {
+BigFan::BigFan(const char* pName) : LiveActor(pName) {
     mWindModel = 0;
     _90.x = 0.0f;
     _90.y = 0.0f;
@@ -15,7 +15,7 @@ BigFan::BigFan(const char *pName) : LiveActor(pName) {
     BigFanFunction::registerBigFan(this);
 }
 
-void BigFan::init(const JMapInfoIter &rIter) {
+void BigFan::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     const char* object_name;
     MR::getObjectName(&object_name, rIter);
@@ -39,8 +39,7 @@ void BigFan::init(const JMapInfoIter &rIter) {
 
     if (MR::isEqualStageName("TeresaMario2DGalaxy")) {
         mIsTeresaGalaxy = true;
-    }
-    else {
+    } else {
         mIsTeresaGalaxy = false;
     }
 
@@ -66,7 +65,7 @@ void BigFan::initWindModel() {
 }
 
 /*
-void BigFan::calcWindInfo(TVec3f *pWindInfo, const TVec3f &a2) {    
+void BigFan::calcWindInfo(TVec3f *pWindInfo, const TVec3f &a2) {
     if (MR::isDead(this) || isStartOrWait()) {
         pWindInfo->zero();
     }
@@ -75,7 +74,7 @@ void BigFan::calcWindInfo(TVec3f *pWindInfo, const TVec3f &a2) {
             pWindInfo->zero();
             return;
         }
-        
+        
         TVec3f front_vec;
         MR::calcFrontVec(&front_vec, this);
         MR::normalize(&front_vec);
@@ -108,9 +107,7 @@ void BigFan::calcWindInfo(TVec3f *pWindInfo, const TVec3f &a2) {
 }
 */
 
-void BigFan::control() {
-
-}
+void BigFan::control() {}
 
 void BigFan::start() {
     if (isNerve(&NrvBigFan::BigFanNrvStop::sInstance)) {
@@ -126,8 +123,7 @@ void BigFan::exeStart() {
 
         if (mIsTeresaGalaxy) {
             MR::startSound(this, "SE_OJ_BIG_FAN_START_FAR", -1, -1);
-        }
-        else {
+        } else {
             MR::startSound(this, "SE_OJ_BIG_FAN_START", -1, -1);
         }
     }
@@ -145,8 +141,7 @@ void BigFan::exeWait() {
 
     if (mIsTeresaGalaxy) {
         MR::startLevelSound(this, "SE_OJ_LV_BIG_FAN_FAR", -1, -1, -1);
-    }
-    else {
+    } else {
         MR::startLevelSound(this, "SE_OJ_LV_BIG_FAN", -1, -1, -1);
     }
 }
@@ -156,26 +151,24 @@ namespace NrvBigFan {
     INIT_NERVE(BigFanNrvStart);
     INIT_NERVE(BigFanNrvWait);
 
-    void BigFanNrvWait::execute(Spine *pSpine) const { 
-        BigFan* fan = reinterpret_cast<BigFan*>(pSpine->mExecutor);
+    void BigFanNrvWait::execute(Spine* pSpine) const {
+        BigFan* fan = reinterpret_cast< BigFan* >(pSpine->mExecutor);
         fan->exeWait();
     }
 
-    void BigFanNrvStart::execute(Spine *pSpine) const { 
-        BigFan* fan = reinterpret_cast<BigFan*>(pSpine->mExecutor);
+    void BigFanNrvStart::execute(Spine* pSpine) const {
+        BigFan* fan = reinterpret_cast< BigFan* >(pSpine->mExecutor);
         fan->exeStart();
     }
 
-    void BigFanNrvStop::execute(Spine *pSpine) const { 
-        BigFan* fan = reinterpret_cast<BigFan*>(pSpine->mExecutor);
-        
+    void BigFanNrvStop::execute(Spine* pSpine) const {
+        BigFan* fan = reinterpret_cast< BigFan* >(pSpine->mExecutor);
+
         if (MR::isFirstStep(fan)) {
             MR::startAction(fan, "Appear");
             MR::stopBck(fan);
         }
     }
-};
+};  // namespace NrvBigFan
 
-BigFan::~BigFan() {
-    
-}
+BigFan::~BigFan() {}

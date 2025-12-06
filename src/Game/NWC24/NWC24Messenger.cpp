@@ -1,8 +1,9 @@
+#include "Game/NWC24/NWC24Messenger.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/NWC24/NWC24Function.hpp"
-#include "Game/NWC24/NWC24Messenger.hpp"
 #include "Game/NWC24/NWC24System.hpp"
 #include "Game/Screen/SysInfoWindow.hpp"
+#include "Game/SingletonHolder.hpp"
 #include "Game/System/GameSequenceDirector.hpp"
 #include "Game/System/GameSequenceFunction.hpp"
 #include "Game/System/GameSystem.hpp"
@@ -10,7 +11,6 @@
 #include "Game/Util/MemoryUtil.hpp"
 #include "Game/Util/NerveUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
-#include "Game/SingletonHolder.hpp"
 #include <JSystem/JKernel/JKRExpHeap.hpp>
 
 #define BACKGROUND_TASK_NUM 16
@@ -20,14 +20,10 @@ extern "C" int swprintf(wchar_t*, size_t, const wchar_t*, ...);
 namespace {
     static const s32 sRetryMax = 10;
 
-    NWC24Messenger* getNWC24Messenger() NO_INLINE {
-        return SingletonHolder<GameSystem>::get()->mSequenceDirector->mNWC24Messenger;
-    }
-};
+    NWC24Messenger* getNWC24Messenger() NO_INLINE { return SingletonHolder< GameSystem >::get()->mSequenceDirector->mNWC24Messenger; }
+};  // namespace
 
-NWC24Messenger::NWC24Messenger(const char* pName) :
-    NameObj(pName)
-{
+NWC24Messenger::NWC24Messenger(const char* pName) : NameObj(pName) {
     mForegroundTask = new NWC24MessengerSub::SendTask();
     mBackgroundTaskArray = new NWC24MessengerSub::SendTask[BACKGROUND_TASK_NUM];
     mSendState = new NWC24MessengerSub::SendState(this);
@@ -51,17 +47,8 @@ void NWC24Messenger::draw() const {
     mSendState->draw();
 }
 
-void NWC24Messenger::send(
-    const char* pTaskName,
-    const wchar_t* pMessage,
-    const wchar_t* pAltName,
-    const u8* pPicture,
-    u32 pictureSize,
-    bool isBG,
-    bool isMsgLedPattern,
-    u16 tag,
-    u8 delayHours)
-{
+void NWC24Messenger::send(const char* pTaskName, const wchar_t* pMessage, const wchar_t* pAltName, const u8* pPicture, u32 pictureSize, bool isBG,
+                          bool isMsgLedPattern, u16 tag, u8 delayHours) {
     if (_1C) {
         return;
     }
@@ -78,8 +65,7 @@ void NWC24Messenger::send(
         }
 
         pTask = &mBackgroundTaskArray[i];
-    }
-    else {
+    } else {
         pTask = mForegroundTask;
     }
 
@@ -164,16 +150,12 @@ void NWC24Messenger::reset() {
 }
 
 NWC24MessengerSub::SendTask* NWC24Messenger::findTask(const char* pTaskName) const {
-    if (MR::isEqualString(mForegroundTask->mTaskName, pTaskName)
-        && mForegroundTask->_0)
-    {
+    if (MR::isEqualString(mForegroundTask->mTaskName, pTaskName) && mForegroundTask->_0) {
         return mForegroundTask;
     }
 
     for (int i = 0; i < BACKGROUND_TASK_NUM; i++) {
-        if (MR::isEqualString(mBackgroundTaskArray[i].mTaskName, pTaskName)
-            && mBackgroundTaskArray[i]._0)
-        {
+        if (MR::isEqualString(mBackgroundTaskArray[i].mTaskName, pTaskName) && mBackgroundTaskArray[i]._0) {
             return &mBackgroundTaskArray[i];
         }
     }
@@ -186,8 +168,7 @@ NWC24MessengerSub::SendTask* NWC24Messenger::selectTask() const {
 
     if (mForegroundTask->_0 && !mForegroundTask->_2) {
         pTask = mForegroundTask;
-    }
-    else {
+    } else {
         for (int i = 0; i < BACKGROUND_TASK_NUM; i++) {
             if (!mBackgroundTaskArray[i]._0) {
                 continue;
@@ -228,16 +209,10 @@ namespace NWC24MessengerSub {
         NEW_NERVE(SendStateNrvCloseErrorFG, SendState, CloseErrorFG);
         NEW_NERVE(SendStateNrvSendFullErrorFG, SendState, SendFullErrorFG);
         NEW_NERVE(SendStateNrvWaitCloseSysInfoMini, SendState, WaitCloseSysInfoMini);
-    };
+    };  // namespace
 
-    SendState::SendState(NWC24Messenger* pHost) :
-        NerveExecutor("送信状態"),
-        mHost(pHost),
-        mTask(nullptr),
-        mWindow(nullptr),
-        mMiniWindow(nullptr),
-        _18(nullptr)
-    {
+    SendState::SendState(NWC24Messenger* pHost)
+        : NerveExecutor("送信状態"), mHost(pHost), mTask(nullptr), mWindow(nullptr), mMiniWindow(nullptr), _18(nullptr) {
         initNerve(&SendStateNrvWait::sInstance);
     }
 
@@ -311,8 +286,7 @@ namespace NWC24MessengerSub {
             }
 
             setNerve(&SendStateNrvOpenFG::sInstance);
-        }
-        else {
+        } else {
             setNerve(&SendStateNrvOpenBG::sInstance);
         }
     }
@@ -331,17 +305,14 @@ namespace NWC24MessengerSub {
                 if (mTask->mRetryNo >= sRetryMax) {
                     mHost->clearBackgroundTask();
                     setNerve(&SendStateNrvWait::sInstance);
-                }
-                else {
+                } else {
                     setNerve(&SendStateNrvRetry::sInstance);
                 }
-            }
-            else {
+            } else {
                 mHost->clearBackgroundTask();
                 setNerve(&SendStateNrvWait::sInstance);
             }
-        }
-        else {
+        } else {
             setNerve(&SendStateNrvRunBG::sInstance);
         }
     }
@@ -360,19 +331,16 @@ namespace NWC24MessengerSub {
         if (mTask->mErr != NWC24_OK) {
             mHost->clearBackgroundTask();
             setNerve(&SendStateNrvWait::sInstance);
-        }
-        else {
+        } else {
             doneTask();
 
             if (selectTask() != nullptr) {
                 if (!mTask->mIsBG) {
                     setNerve(&SendStateNrvRunFG::sInstance);
-                }
-                else {
+                } else {
                     setNerve(&SendStateNrvRunBG::sInstance);
                 }
-            }
-            else {
+            } else {
                 setNerve(&SendStateNrvCloseBG::sInstance);
             }
         }
@@ -391,16 +359,13 @@ namespace NWC24MessengerSub {
 
                 if (mTask->mRetryNo >= sRetryMax) {
                     setNerveAfterSysInfoWindowMiniDisappear(&SendStateNrvRetryErrorFG::sInstance);
-                }
-                else {
+                } else {
                     setNerve(&SendStateNrvRetry::sInstance);
                 }
-            }
-            else {
+            } else {
                 setNerveAfterSysInfoWindowMiniDisappear(&SendStateNrvOpenErrorFG::sInstance);
             }
-        }
-        else {
+        } else {
             setNerve(&SendStateNrvRunFG::sInstance);
         }
     }
@@ -418,8 +383,7 @@ namespace NWC24MessengerSub {
 
         if (hasFatalErrorOccured()) {
             setNerveAfterSysInfoWindowMiniDisappear(&SendStateNrvSendFatalErrorFG::sInstance);
-        }
-        else {
+        } else {
             setNerve(&SendStateNrvCloseFG::sInstance);
         }
     }
@@ -427,11 +391,9 @@ namespace NWC24MessengerSub {
     void SendState::exeCloseFG() {
         if (!closeSystem()) {
             setNerveAfterSysInfoWindowMiniDisappear(&SendStateNrvCloseErrorFG::sInstance);
-        }
-        else if (mTask->mErr != NWC24_OK) {
+        } else if (mTask->mErr != NWC24_OK) {
             setNerveAfterSysInfoWindowMiniDisappear(&SendStateNrvSendFullErrorFG::sInstance);
-        }
-        else {
+        } else {
             setNerveAfterSysInfoWindowMiniDisappear(&SendStateNrvUpdateLimitFG::sInstance);
         }
     }
@@ -625,30 +587,17 @@ namespace NWC24MessengerSub {
         return mTask != nullptr;
     }
 
-    bool SendState::openSystem() {
-        return mHost->mSystem->open(&mTask->mErr, &mTask->mErrCode);
-    }
+    bool SendState::openSystem() { return mHost->mSystem->open(&mTask->mErr, &mTask->mErrCode); }
 
     bool SendState::isRestorableError() const {
         NWC24Err err = mTask->mErr;
 
-        return err == NWC24_ERR_MUTEX
-            || err == NWC24_ERR_BUSY
-            || err == NWC24_ERR_INPROGRESS;
+        return err == NWC24_ERR_MUTEX || err == NWC24_ERR_BUSY || err == NWC24_ERR_INPROGRESS;
     }
 
     bool SendState::send() {
-        if (!mHost->mSystem->send(
-            reinterpret_cast<const u16*>(mTask->mMessage),
-            reinterpret_cast<const u16*>(mTask->mAltName),
-            nullptr,
-            0,
-            mTask->mPicture,
-            mTask->mPictureSize,
-            mTask->mTag,
-            mTask->mIsMsgLedPattern,
-            mTask->mDelayHours))
-        {
+        if (!mHost->mSystem->send(reinterpret_cast< const u16* >(mTask->mMessage), reinterpret_cast< const u16* >(mTask->mAltName), nullptr, 0,
+                                  mTask->mPicture, mTask->mPictureSize, mTask->mTag, mTask->mIsMsgLedPattern, mTask->mDelayHours)) {
             setNerve(&SendStateNrvRetry::sInstance);
 
             return false;
@@ -657,9 +606,7 @@ namespace NWC24MessengerSub {
         return true;
     }
 
-    bool SendState::checkFinish() {
-        return mHost->mSystem->isSent(&mTask->mErr, &mTask->mSentSize);
-    }
+    bool SendState::checkFinish() { return mHost->mSystem->isSent(&mTask->mErr, &mTask->mSentSize); }
 
     bool SendState::closeSystem() {
         NWC24Err err;
@@ -673,10 +620,7 @@ namespace NWC24MessengerSub {
         return true;
     }
 
-    bool SendState::hasFatalErrorOccured() const {
-        return mTask->mErr != NWC24_OK
-            && mTask->mErr != NWC24_ERR_FULL;
-    }
+    bool SendState::hasFatalErrorOccured() const { return mTask->mErr != NWC24_OK && mTask->mErr != NWC24_ERR_FULL; }
 
     void SendState::doneTask() {
         mTask->_2 = true;
@@ -714,92 +658,47 @@ namespace NWC24MessengerSub {
     void SendState::setNerveAfterSysInfoWindowMiniDisappear(const Nerve* pNerve) {
         if (isEndSysInfoMini()) {
             setNerve(pNerve);
-        }
-        else {
+        } else {
             _18 = pNerve;
 
             setNerve(&SendStateNrvWaitCloseSysInfoMini::sInstance);
         }
     }
 
-    SendTask::SendTask() :
-        _0(false),
-        mIsBG(false),
-        _2(false),
-        mIsMsgLedPattern(false),
-        mRetryNo(0),
-        mErr(NWC24_OK),
-        mErrCode(0),
-        mSentSize(0),
-        mTaskName(nullptr),
-        mMessage(nullptr),
-        mAltName(nullptr)
-    {
-        
-    }
-};
+    SendTask::SendTask()
+        : _0(false), mIsBG(false), _2(false), mIsMsgLedPattern(false), mRetryNo(0), mErr(NWC24_OK), mErrCode(0), mSentSize(0), mTaskName(nullptr),
+          mMessage(nullptr), mAltName(nullptr) {}
+};  // namespace NWC24MessengerSub
 
 namespace MR {
-    SendMailObj::SendMailObj(const char* pTaskName) :
-        mTaskName(pTaskName),
-        mMessage(nullptr),
-        mSenderID(nullptr),
-        mImage(nullptr),
-        mImageSize(0),
-        mIsBG(true),
-        mIsLed(true),
-        mTag(0),
-        mDelay(0)
-    {
-        
+    SendMailObj::SendMailObj(const char* pTaskName)
+        : mTaskName(pTaskName), mMessage(nullptr), mSenderID(nullptr), mImage(nullptr), mImageSize(0), mIsBG(true), mIsLed(true), mTag(0), mDelay(0) {
     }
 
-    void SendMailObj::setMessageDirect(const wchar_t* pMessage) {
-        mMessage = pMessage;
-    }
+    void SendMailObj::setMessageDirect(const wchar_t* pMessage) { mMessage = pMessage; }
 
-    void SendMailObj::setSenderID(const char* pMessageId) {
-        mSenderID = getMailSender(pMessageId);
-    }
+    void SendMailObj::setSenderID(const char* pMessageId) { mSenderID = getMailSender(pMessageId); }
 
     void SendMailObj::setImage(const u8* pImage, u32 imageSize) {
         mImage = pImage;
         mImageSize = imageSize;
     }
 
-    void SendMailObj::setBGEnable() {
-        mIsBG = true;
-    }
+    void SendMailObj::setBGEnable() { mIsBG = true; }
 
-    void SendMailObj::setBGDisable() {
-        mIsBG = false;
-    }
+    void SendMailObj::setBGDisable() { mIsBG = false; }
 
-    void SendMailObj::setLedOff() {
-        mIsLed = false;
-    }
+    void SendMailObj::setLedOff() { mIsLed = false; }
 
-    void SendMailObj::setTag(u16 tag) {
-        mTag = tag;
-    }
+    void SendMailObj::setTag(u16 tag) { mTag = tag; }
 
-    void SendMailObj::setDelay(u8 delay) {
-        mDelay = delay;
-    }
+    void SendMailObj::setDelay(u8 delay) { mDelay = delay; }
 
-    void SendMailObj::send() {
-        getNWC24Messenger()->send(mTaskName, mMessage, mSenderID, mImage, mImageSize, mIsBG, mIsLed, mTag, mDelay);
-    }
+    void SendMailObj::send() { getNWC24Messenger()->send(mTaskName, mMessage, mSenderID, mImage, mImageSize, mIsBG, mIsLed, mTag, mDelay); }
 
-    void termMail(const char* pTaskName) {
-        getNWC24Messenger()->term(pTaskName);
-    }
+    void termMail(const char* pTaskName) { getNWC24Messenger()->term(pTaskName); }
 
-    bool isMailSent(const char* pTaskName) {
-        return getNWC24Messenger()->isSent(pTaskName);
-    }
+    bool isMailSent(const char* pTaskName) { return getNWC24Messenger()->isSent(pTaskName); }
 
-    bool isMailErrorHappened(const char* pTaskName) {
-        return getNWC24Messenger()->isError(pTaskName);
-    }
-};
+    bool isMailErrorHappened(const char* pTaskName) { return getNWC24Messenger()->isError(pTaskName); }
+};  // namespace MR

@@ -17,4 +17,4 @@ namespace GameSceneFunction {
     bool isLoadDoneScenarioWaveData();
     void activateDraw3D();
     void deactivateDraw3D();
-};
+};  // namespace GameSceneFunction

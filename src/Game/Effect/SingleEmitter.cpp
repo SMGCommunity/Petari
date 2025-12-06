@@ -1,6 +1,6 @@
+#include "Game/Effect/SingleEmitter.hpp"
 #include "Game/Effect/EffectSystem.hpp"
 #include "Game/Effect/EffectSystemUtil.hpp"
-#include "Game/Effect/SingleEmitter.hpp"
 
 SingleEmitter::SingleEmitter() {
     mEmitter = nullptr;
@@ -19,7 +19,7 @@ void SingleEmitter::deleteEmitter() {
     }
 }
 
-void SingleEmitter::scanParticleEmitter(EffectSystem *pSystem) {
+void SingleEmitter::scanParticleEmitter(EffectSystem* pSystem) {
     ParticleEmitter* emitter;
     if (mSpawn == SINGLE_EMITTER_UNDEF_SPAWN) {
         emitter = pSystem->createEmitter(_4, mGroupId, 0);
@@ -44,7 +44,7 @@ bool SingleEmitter::isValid() const {
     }
 }
 
-void SingleEmitter::link(ParticleEmitter *pEmitter) {
+void SingleEmitter::link(ParticleEmitter* pEmitter) {
     mEmitter = pEmitter;
     MR::Effect::setLinkSingleEmitter(pEmitter, this);
 }

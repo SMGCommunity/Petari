@@ -1,10 +1,8 @@
 #include "Game/MapObj/FallingSmallRock.hpp"
 
-FallingSmallRock::FallingSmallRock(const char *pName) : LiveActor(pName) {
+FallingSmallRock::FallingSmallRock(const char* pName) : LiveActor(pName) {}
 
-}
-
-void FallingSmallRock::init(const JMapInfoIter &rIter) {
+void FallingSmallRock::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     initSound(4, false);
     initBinder(10.0f, 800.0f, 0);
@@ -36,7 +34,7 @@ void FallingSmallRock::exeMove() {
     }
 
     MR::startLevelSound(this, "SE_AT_LV_FALLING_ROCK", -1, -1, -1);
-    
+
     if (MR::isBinded(this)) {
         makeActorDead();
     }
@@ -48,11 +46,9 @@ void FallingSmallRock::exeWait() {
     }
 }
 
-FallingSmallRock::~FallingSmallRock() {
-
-}
+FallingSmallRock::~FallingSmallRock() {}
 
 namespace NrvFallingSmallRock {
     INIT_NERVE(HostTypeWait);
     INIT_NERVE(HostTypeMove);
-};
+};  // namespace NrvFallingSmallRock

@@ -3,15 +3,11 @@
 #include "Game/MapObj/MapObjActorInitInfo.hpp"
 #include "Game/MapObj/StageEffectDataTable.hpp"
 
-UFOKinoko::UFOKinoko(const char *pName) : MapObjActor(pName) {
+UFOKinoko::UFOKinoko(const char* pName) : MapObjActor(pName) {}
 
-}
+UFOKinoko::~UFOKinoko() {}
 
-UFOKinoko::~UFOKinoko() {
-
-}
-
-void UFOKinoko::init(const JMapInfoIter &rIter) {
+void UFOKinoko::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);
     s32 argShadowType = -1;
     MR::getMapPartsArgShadowType(&argShadowType, rIter);
@@ -40,7 +36,7 @@ void UFOKinoko::init(const JMapInfoIter &rIter) {
     initialize(rIter, info);
     MapObjActorUtil::startRotator(this);
     if (MR::isDemoCast(this, nullptr)) {
-        MR::FunctorV0M<UFOKinoko *, void (UFOKinoko::*)()> functor = MR::Functor<UFOKinoko>(this, &UFOKinoko::startMove);
+        MR::FunctorV0M< UFOKinoko*, void (UFOKinoko::*)() > functor = MR::Functor< UFOKinoko >(this, &UFOKinoko::startMove);
         MR::tryRegisterDemoActionFunctor(this, functor, "ＵＦＯキノコ登場");
     }
 }
@@ -50,14 +46,12 @@ void UFOKinoko::control() {
     MR::StageEffect::tryStageEffectMoving(this, mObjectName);
 }
 
-void UFOKinoko::initCaseUseSwitchB(const MapObjActorInitInfo &) {
-    MR::FunctorV0M<UFOKinoko *, void (UFOKinoko::*)()> functor = MR::Functor<UFOKinoko>(this, &UFOKinoko::startMove);
+void UFOKinoko::initCaseUseSwitchB(const MapObjActorInitInfo&) {
+    MR::FunctorV0M< UFOKinoko*, void (UFOKinoko::*)() > functor = MR::Functor< UFOKinoko >(this, &UFOKinoko::startMove);
     MR::listenStageSwitchOnB(this, functor);
 }
 
-void UFOKinoko::initCaseNoUseSwitchB(const MapObjActorInitInfo &) {
-
-}
+void UFOKinoko::initCaseNoUseSwitchB(const MapObjActorInitInfo&) {}
 
 void UFOKinoko::startMove() {
     if (mRailMover != nullptr) {
@@ -66,7 +60,7 @@ void UFOKinoko::startMove() {
     setNerve(&NrvUFOKinoko::HostTypeMove::sInstance);
 }
 
-void UFOKinoko::makeArchiveList(NameObjArchiveListCollector *pArchiveList, const JMapInfoIter &rIter) {
+void UFOKinoko::makeArchiveList(NameObjArchiveListCollector* pArchiveList, const JMapInfoIter& rIter) {
     bool arg7 = false;
     MR::getJMapInfoArg7NoInit(rIter, &arg7);
     if (arg7) {
@@ -97,15 +91,13 @@ namespace NrvUFOKinoko {
     INIT_NERVE(HostTypeMove)
     INIT_NERVE(HostTypeStop)
 
-    void HostTypeWait::execute(Spine *pSpine) const {
-
-    }
-    void HostTypeMove::execute(Spine *pSpine) const {
-        UFOKinoko* ufo = reinterpret_cast<UFOKinoko*>(pSpine->mExecutor);
+    void HostTypeWait::execute(Spine* pSpine) const {}
+    void HostTypeMove::execute(Spine* pSpine) const {
+        UFOKinoko* ufo = reinterpret_cast< UFOKinoko* >(pSpine->mExecutor);
         ufo->exeMove();
     }
-    void HostTypeStop::execute(Spine *pSpine) const {
-        UFOKinoko* ufo = reinterpret_cast<UFOKinoko*>(pSpine->mExecutor);
+    void HostTypeStop::execute(Spine* pSpine) const {
+        UFOKinoko* ufo = reinterpret_cast< UFOKinoko* >(pSpine->mExecutor);
         ufo->exeStop();
     }
-};
+};  // namespace NrvUFOKinoko

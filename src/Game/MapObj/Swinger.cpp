@@ -1,18 +1,16 @@
 #include "Game/MapObj/Swinger.hpp"
 #include "Game/Util/MathUtil.hpp"
 
-Swinger::Swinger(const TVec3f *a1, MtxPtr a2, f32 a3, f32 a4, f32 a5, const TVec3f *a6)
-    : _0(a1), _4(0), _8(0.0f), mAcceleration(0.0f), _20(0.0f, -1.0f, 0.0f), _2C(a3), _30(a4), _34(a5), _38(a6),
-      _3C((*a2)[0], (*a2)[4], (*a2)[8]), _48((*a2)[1], (*a2)[5], (*a2)[9]), _54((*a2)[2], (*a2)[6], (*a2)[10])
-{
+Swinger::Swinger(const TVec3f* a1, MtxPtr a2, f32 a3, f32 a4, f32 a5, const TVec3f* a6)
+    : _0(a1), _4(0), _8(0.0f), mAcceleration(0.0f), _20(0.0f, -1.0f, 0.0f), _2C(a3), _30(a4), _34(a5), _38(a6), _3C((*a2)[0], (*a2)[4], (*a2)[8]),
+      _48((*a2)[1], (*a2)[5], (*a2)[9]), _54((*a2)[2], (*a2)[6], (*a2)[10]) {
     _8.set(_0->x, (_0->y - _2C), _0->z);
     _60.identity();
     _60.setInline(a2);
     _60.setTrans(*_0);
 }
 
-void Swinger::accel(const TVec3f& a1)
-{
+void Swinger::accel(const TVec3f& a1) {
     mAcceleration.add(a1);
 }
 
@@ -61,16 +59,15 @@ void Swinger::update()
 }
 */
 
-void Swinger::updateSwingMtx(const TVec3f &a1)
-{
-    _48.set<f32>(_20);
+void Swinger::updateSwingMtx(const TVec3f& a1) {
+    _48.set< f32 >(_20);
     _48.x *= -1.0f;
     _48.y *= -1.0f;
     _48.z *= -1.0f;
     TVec3f v14(_3C);
     PSVECCrossProduct(&_48, &_54, &_3C);
     if (MR::isNearZero(_3C, 0.001f)) {
-        _3C.set<f32>(v14);
+        _3C.set< f32 >(v14);
     }
     MR::normalize(&_3C);
     PSVECCrossProduct(&_3C, &_48, &_54);

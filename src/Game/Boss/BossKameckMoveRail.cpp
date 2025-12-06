@@ -1,11 +1,11 @@
 #include "Game/Boss/BossKameckMoveRail.hpp"
 
-BossKameckMoveRail::BossKameckMoveRail(const char *pName) : LiveActor(pName) {
+BossKameckMoveRail::BossKameckMoveRail(const char* pName) : LiveActor(pName) {
     _8C = 0;
     _90 = 0;
 }
 
-void BossKameckMoveRail::init(const JMapInfoIter &rIter) {
+void BossKameckMoveRail::init(const JMapInfoIter& rIter) {
     MR::getJMapInfoArg0WithInit(rIter, &_8C);
     initRailRider(rIter);
     makeActorDead();
@@ -21,7 +21,7 @@ void BossKameckMoveRail::init(const JMapInfoIter &rIter) {
     }
 }
 
-void BossKameckMoveRail::calcMovePosition(TVec3f *pPos, s32 idx) const {
+void BossKameckMoveRail::calcMovePosition(TVec3f* pPos, s32 idx) const {
     MR::calcRailPointPos(pPos, this, idx);
 }
 
@@ -75,6 +75,4 @@ s32 BossKameckMoveRail::calcRandomStoppableIndex(s32 idx) const {
     return 0;
 }
 
-BossKameckMoveRail::~BossKameckMoveRail() {
-
-}
+BossKameckMoveRail::~BossKameckMoveRail() {}

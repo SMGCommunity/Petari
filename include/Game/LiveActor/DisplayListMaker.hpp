@@ -32,14 +32,14 @@ public:
     TexMtxCtrl* addTexMtxCtrl(const char*);
     ProjmapEffectMtxSetter* addProjmapEffectMtxSetter();
     MirrorReflectionMtxSetter* addMirrorReflectionMtxSetter();
-    void onCurFlagBpk(const J3DAnmBase *);
-    void offCurFlagBpk(const J3DAnmBase *);
-    void onCurFlagBtp(const J3DAnmBase *);
-    void offCurFlagBtp(const J3DAnmBase *);
-    void onCurFlagBtk(const J3DAnmBase *);
-    void offCurFlagBtk(const J3DAnmBase *);
-    void onCurFlagBrk(const J3DAnmBase *);
-    void offCurFlagBrk(const J3DAnmBase *);
+    void onCurFlagBpk(const J3DAnmBase*);
+    void offCurFlagBpk(const J3DAnmBase*);
+    void onCurFlagBtp(const J3DAnmBase*);
+    void offCurFlagBtp(const J3DAnmBase*);
+    void onCurFlagBtk(const J3DAnmBase*);
+    void offCurFlagBtk(const J3DAnmBase*);
+    void onCurFlagBrk(const J3DAnmBase*);
+    void offCurFlagBrk(const J3DAnmBase*);
     void push(MaterialCtrl*);
     void onBothFlag(u16, u32);
     void onBothFlagAll(u32);
@@ -50,7 +50,7 @@ public:
     void checkTexture();
     bool isExistDiffMaterial(const J3DModelData*);
 
-    /* 0x00 */ MR::Vector<MR::AssignableArray<MaterialCtrl*> > mMaterialCtrl;
+    /* 0x00 */ MR::Vector< MR::AssignableArray< MaterialCtrl* > > mMaterialCtrl;
     /* 0x0C */ u32 mPrgFlag;
     /* 0x10 */ u32 mCurFlag;
     /* 0x14 */ J3DModel* mModel;

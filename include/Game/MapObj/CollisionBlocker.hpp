@@ -4,11 +4,11 @@
 
 class CollisionBlocker : public LiveActor {
 public:
-    CollisionBlocker(const char *);
+    CollisionBlocker(const char*);
 
     virtual ~CollisionBlocker();
-    virtual void init(const JMapInfoIter &);
-    virtual void attackSensor(HitSensor *, HitSensor *);
+    virtual void init(const JMapInfoIter&);
+    virtual void attackSensor(HitSensor*, HitSensor*);
 
     void forceBreak();
 };

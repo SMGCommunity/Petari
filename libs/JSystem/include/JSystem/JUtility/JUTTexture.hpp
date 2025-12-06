@@ -44,13 +44,19 @@ public:
     /// @param param2 TODO.
     JUTTexture(const ResTIMG* pTIMG, u8 param2);
 
+    inline JUTTexture(const ResTIMG* pTIMG) {
+        mEmbPalette = nullptr;
+        storeTIMG(pTIMG, (u8)0);
+        mFlag &= 2;
+    }
+
     /// @brief Destroys the `JUTTexture`.
     ~JUTTexture();
 
-    void storeTIMG(const ResTIMG *, u8);
-    void storeTIMG(const ResTIMG *, JUTPalette *);
-    void storeTIMG(const ResTIMG *, JUTPalette *, GXTlut);
-    void attachPalette(JUTPalette *);
+    void storeTIMG(const ResTIMG*, u8);
+    void storeTIMG(const ResTIMG*, JUTPalette*);
+    void storeTIMG(const ResTIMG*, JUTPalette*, GXTlut);
+    void attachPalette(JUTPalette*);
     void init();
     void initTexObj();
     void initTexObj(_GXTlut);

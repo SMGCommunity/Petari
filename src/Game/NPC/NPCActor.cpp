@@ -2,7 +2,7 @@
 #include "Game/NPC/NPCActorItem.hpp"
 #include "Game/Util.hpp"
 
-NPCActorCaps::NPCActorCaps(const char *pName) {
+NPCActorCaps::NPCActorCaps(const char* pName) {
     _0 = pName;
     _C = 0;
     _D = 0;
@@ -81,7 +81,7 @@ void NPCActorCaps::setIndirect() {
 }
 
 #ifdef NON_MATCHING
-NPCActor::NPCActor(const char *pName) : LiveActor(pName) {
+NPCActor::NPCActor(const char* pName) : LiveActor(pName) {
     _8C = 0;
     _90 = 0;
     _94 = 0;
@@ -139,7 +139,7 @@ NPCActor::NPCActor(const char *pName) : LiveActor(pName) {
 }
 #endif
 
-void NPCActor::makeArchiveList(NameObjArchiveListCollector *pCollector, const JMapInfoIter &rIter) {
+void NPCActor::makeArchiveList(NameObjArchiveListCollector* pCollector, const JMapInfoIter& rIter) {
     const char* name;
     MR::getObjectName(&name, rIter);
     NPCActorItem item(name);
@@ -153,7 +153,7 @@ void NPCActor::makeArchiveList(NameObjArchiveListCollector *pCollector, const JM
     }
 }
 
-void NPCActor::addArchive(NameObjArchiveListCollector *pCollector, const NPCActorItem &rItem) {
+void NPCActor::addArchive(NameObjArchiveListCollector* pCollector, const NPCActorItem& rItem) {
     if (!MR::isNullOrEmptyString(rItem.mActor) && MR::isNPCItemFileExist(rItem.mActor)) {
         pCollector->addArchive(rItem.mActor);
     }
@@ -163,7 +163,7 @@ void NPCActor::addArchive(NameObjArchiveListCollector *pCollector, const NPCActo
     }
 }
 
-void NPCActor::makeArchiveListDefault(NameObjArchiveListCollector *pCollector, const JMapInfoIter &rIter) {
+void NPCActor::makeArchiveListDefault(NameObjArchiveListCollector* pCollector, const JMapInfoIter& rIter) {
     const char* name;
     MR::getObjectName(&name, rIter);
     NPCActorItem item(name);
@@ -179,10 +179,10 @@ void NPCActor::setInitPose() {
     _B0.y = _A0.y;
     _B0.z = _A0.z;
     _B0.h = _A0.w;
-    _C0.set<f32>(mPosition);
+    _C0.set< f32 >(mPosition);
 }
 
-void NPCActor::init(const JMapInfoIter &rIter) {
+void NPCActor::init(const JMapInfoIter& rIter) {
     LiveActor::init(rIter);
 }
 

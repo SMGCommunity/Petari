@@ -1,11 +1,11 @@
 #include "Game/MapObj/AstroDomeAsteroid.hpp"
 #include "Game/Map/SphereSelector.hpp"
 
-AstroDomeAsteroid::AstroDomeAsteroid(const char *pName) : LiveActor(pName) {
+AstroDomeAsteroid::AstroDomeAsteroid(const char* pName) : LiveActor(pName) {
     mRotationMtx.identity();
 }
 
-void AstroDomeAsteroid::init(const JMapInfoIter &rIter) {
+void AstroDomeAsteroid::init(const JMapInfoIter& rIter) {
     initModelManagerWithAnm("AstroDomeAsteroid", nullptr, false);
     MR::connectToSceneMapObj(this);
     MR::invalidateClipping(this);
@@ -35,13 +35,11 @@ void AstroDomeAsteroid::calcAndSetBaseMtx() {
     MR::setBaseTRMtx(this, other);
 }
 
-bool AstroDomeAsteroid::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool AstroDomeAsteroid::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     return SphereSelectorFunction::trySyncAppearMsgSelectStart(this, msg);
 }
 
-AstroDomeAsteroid::~AstroDomeAsteroid() {
-
-}
+AstroDomeAsteroid::~AstroDomeAsteroid() {}
 
 namespace NrvAstroDomeAsteroid {
     INIT_NERVE(AstroDomeAsteroidNrvWait);

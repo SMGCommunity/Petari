@@ -1,13 +1,11 @@
 #include "Game/Player/MarioNullBck.hpp"
 #include "Game/Util/MtxUtil.hpp"
 
-MarioNullBck::MarioNullBck(const char *pName) : LiveActor(pName) {
-}
+MarioNullBck::MarioNullBck(const char* pName) : LiveActor(pName) {}
 
-MarioNullBck::~MarioNullBck(){
-}
+MarioNullBck::~MarioNullBck() {}
 
-void MarioNullBck::init(const JMapInfoIter &rIter) {
+void MarioNullBck::init(const JMapInfoIter& rIter) {
     initModelManagerWithAnm("MarioDummyItem", nullptr, false);
     MR::startBck(this, "PickUpBall", nullptr);
     makeActorDead();
@@ -18,11 +16,11 @@ void MarioNullBck::appear() {
     LiveActor::appear();
 }
 
-void MarioNullBck::getLastPos(TVec3f *pDest) {
+void MarioNullBck::getLastPos(TVec3f* pDest) {
     MR::copyJointPos(this, "DummyItem", pDest);
 }
 
-bool MarioNullBck::getFramePos(f32 a1, TVec3f *a2, TVec3f *a3) {
+bool MarioNullBck::getFramePos(f32 a1, TVec3f* a2, TVec3f* a3) {
     bool ret = false;
     if (MR::isDead(this)) {
         return true;

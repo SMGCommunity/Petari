@@ -5,10 +5,10 @@
 
 class AstroCountDownPlate : public LiveActor {
 public:
-    AstroCountDownPlate(const char *);
+    AstroCountDownPlate(const char*);
 
     virtual ~AstroCountDownPlate();
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
 
     void exeWait();
     void exeRevival();
@@ -30,4 +30,4 @@ namespace NrvAstroCountDownPlate {
     NERVE_DECL(AstroCountDownPlateNrvAlive, AstroCountDownPlate, AstroCountDownPlate::exeWait);
     NERVE_DECL(AstroCountDownPlateNrvRevival, AstroCountDownPlate, AstroCountDownPlate::exeRevival);
     NERVE_DECL(AstroCountDownPlateNrvCountToZero, AstroCountDownPlate, AstroCountDownPlate::exeCountToZero);
-};
+};  // namespace NrvAstroCountDownPlate

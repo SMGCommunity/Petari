@@ -1,10 +1,10 @@
+#include "Game/LiveActor/LiveActorGroupArray.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/LiveActor/LiveActorGroupArray.hpp"
 #include <cstdio>
 #include <cstring>
 
-MsgSharedGroup::MsgSharedGroup(const char *pName, s32 a2, const JMapInfoIter &rIter) : LiveActorGroup(_28, a2) {
+MsgSharedGroup::MsgSharedGroup(const char* pName, s32 a2, const JMapInfoIter& rIter) : LiveActorGroup(_28, a2) {
     mIDInfo = 0;
     _1C = -1;
     _20 = 0;
@@ -21,7 +21,7 @@ MsgSharedGroup::MsgSharedGroup(const char *pName, s32 a2, const JMapInfoIter &rI
     mIDInfo = inf;
 }
 
-void MsgSharedGroup::init(const JMapInfoIter &rIter) {
+void MsgSharedGroup::init(const JMapInfoIter& rIter) {
     MR::connectToScene(this, 6, -1, -1, -1);
 }
 
@@ -39,25 +39,23 @@ void MsgSharedGroup::movement() {
     }
 }
 
-void MsgSharedGroup::sendMsgToGroupMember(u32 msg, HitSensor *pSensor, const char *pName) {
+void MsgSharedGroup::sendMsgToGroupMember(u32 msg, HitSensor* pSensor, const char* pName) {
     _1C = msg;
     _20 = pSensor;
     _24 = pName;
 }
 
-LiveActorGroupArray::LiveActorGroupArray(const char *pName) : NameObj(pName) {
+LiveActorGroupArray::LiveActorGroupArray(const char* pName) : NameObj(pName) {
     mNumGroups = 0;
 }
 
-void LiveActorGroupArray::init(const JMapInfoIter &rIter) {
+void LiveActorGroupArray::init(const JMapInfoIter& rIter) {}
 
-}
-
-LiveActorGroup* LiveActorGroupArray::getLiveActorGroup(const LiveActor *pActor) const {
+LiveActorGroup* LiveActorGroupArray::getLiveActorGroup(const LiveActor* pActor) const {
     return findGroup(pActor);
 }
 
-MsgSharedGroup* LiveActorGroupArray::createGroup(const JMapInfoIter &rIter, const char *pName, s32 msg) {
+MsgSharedGroup* LiveActorGroupArray::createGroup(const JMapInfoIter& rIter, const char* pName, s32 msg) {
     MsgSharedGroup* group = new MsgSharedGroup(pName, msg, rIter);
     group->initWithoutIter();
     s32 cnt = mNumGroups;
@@ -66,7 +64,7 @@ MsgSharedGroup* LiveActorGroupArray::createGroup(const JMapInfoIter &rIter, cons
     return group;
 }
 
-LiveActorGroup* LiveActorGroupArray::entry(LiveActor *pActor, const JMapInfoIter &rIter, const char *pName, s32 a4) {
+LiveActorGroup* LiveActorGroupArray::entry(LiveActor* pActor, const JMapInfoIter& rIter, const char* pName, s32 a4) {
     s32 groupID = -1;
     MR::getJMapInfoGroupID(rIter, &groupID);
 

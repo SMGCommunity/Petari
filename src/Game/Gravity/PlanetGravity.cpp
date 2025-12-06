@@ -20,7 +20,7 @@ void PlanetGravity::setPriority(s32 priority) {
     mPriority = priority;
 }
 
-bool PlanetGravity::calcGravity(TVec3f *pDest, const TVec3f &rPosition) const {
+bool PlanetGravity::calcGravity(TVec3f* pDest, const TVec3f& rPosition) const {
     // Calculate raw gravity vector
     f32 radius = 0.0f;
     TVec3f gravity;
@@ -59,14 +59,12 @@ bool PlanetGravity::calcGravity(TVec3f *pDest, const TVec3f &rPosition) const {
     return true;
 }
 
-
 bool PlanetGravity::isInRangeSquare(f32 radius) const {
     f32 range = mRange;
 
     if (range < 0.0f) {
         return true;
-    }
-    else {
+    } else {
         f32 distance = range + mDistant;
         return radius < distance * distance;
     }
@@ -77,14 +75,13 @@ bool PlanetGravity::isInRangeDistance(f32 radius) const {
 
     if (range < 0.0f) {
         return true;
-    }
-    else {
+    } else {
         f32 distance = range + mDistant;
         return radius < distance;
     }
 }
 
-bool PlanetGravity::calcGravityFromMassPosition(TVec3f *pDirection, f32 *pScalar, const TVec3f &rPosition, const TVec3f &rMassPosition) const {
+bool PlanetGravity::calcGravityFromMassPosition(TVec3f* pDirection, f32* pScalar, const TVec3f& rPosition, const TVec3f& rMassPosition) const {
     TVec3f direction = rMassPosition - rPosition;
     f32 scalar;
 
@@ -102,7 +99,6 @@ bool PlanetGravity::calcGravityFromMassPosition(TVec3f *pDirection, f32 *pScalar
 
     return true;
 }
-
 
 void PlanetGravity::updateIdentityMtx() {
     TPos3f mtx;

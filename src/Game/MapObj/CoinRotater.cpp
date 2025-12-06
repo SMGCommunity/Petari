@@ -4,7 +4,7 @@
 #include "Game/Util/MtxUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 
-CoinRotater::CoinRotater(const char *pName) : NameObj(pName) {
+CoinRotater::CoinRotater(const char* pName) : NameObj(pName) {
     _C = 0.0f;
     _10 = 0.0f;
     _14 = 0.0f;
@@ -38,23 +38,13 @@ void CoinRotater::movement() {
 */
 
 namespace MR {
-    void createCoinRotater() {
-        MR::createSceneObj(SceneObj_CoinRotater);
-    }
+    void createCoinRotater() { MR::createSceneObj(SceneObj_CoinRotater); }
 
-    TMtx34f& getCoinRotateYMatrix() {
-        return MR::getSceneObj<CoinRotater>(SceneObj_CoinRotater)->mRotateYMtx;
-    }
+    TMtx34f& getCoinRotateYMatrix() { return MR::getSceneObj< CoinRotater >(SceneObj_CoinRotater)->mRotateYMtx; }
 
-    TMtx34f& getCoinHiSpeedRotateYMatrix() {
-        return MR::getSceneObj<CoinRotater>(SceneObj_CoinRotater)->mHiSpeedRotateYMtx;
-    }
+    TMtx34f& getCoinHiSpeedRotateYMatrix() { return MR::getSceneObj< CoinRotater >(SceneObj_CoinRotater)->mHiSpeedRotateYMtx; }
 
-    TMtx34f& getCoinInWaterRotateYMatrix() {
-        return MR::getSceneObj<CoinRotater>(SceneObj_CoinRotater)->mWaterRotateMtx;
-    }
-};
+    TMtx34f& getCoinInWaterRotateYMatrix() { return MR::getSceneObj< CoinRotater >(SceneObj_CoinRotater)->mWaterRotateMtx; }
+};  // namespace MR
 
-CoinRotater::~CoinRotater() {
-
-}
+CoinRotater::~CoinRotater() {}

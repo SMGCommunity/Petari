@@ -3,15 +3,13 @@
 #include "Game/GameAudio/AudStageBgmTable.hpp"
 #include "Game/Util/ObjUtil.hpp"
 
-ChangeBgmCube::ChangeBgmCube(int a1, const char *pName) : AreaObj(a1, pName) {
+ChangeBgmCube::ChangeBgmCube(int a1, const char* pName) : AreaObj(a1, pName) {
     _3C = 0;
 }
 
-ChangeBgmCube::~ChangeBgmCube() {
+ChangeBgmCube::~ChangeBgmCube() {}
 
-}
-
-void ChangeBgmCube::init(const JMapInfoIter &rIter) {
+void ChangeBgmCube::init(const JMapInfoIter& rIter) {
     AreaObj::init(rIter);
     MR::connectToSceneAreaObj(this);
 }
@@ -76,7 +74,7 @@ void ChangeBgmCube::movement() {
     if (!_3C) {
         return;
     }
-     
+     
     switch(mObjArg0) {
         case 1:
             if (mObjArg3 != 1) {

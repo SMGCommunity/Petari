@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Game/Ride/BigBubble.hpp"
+#include "Game/Ride/Plant.hpp"
 #include "Game/Ride/Pole.hpp"
 #include "Game/Ride/SphereController.hpp"
 #include "Game/Ride/SurfRay.hpp"

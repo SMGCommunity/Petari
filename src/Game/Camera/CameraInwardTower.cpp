@@ -1,7 +1,7 @@
 #include "Game/Camera/CameraInwardTower.hpp"
 #include "Game/Camera/CamTranslatorInwardTower.hpp"
 
-CameraInwardTower::CameraInwardTower(const char *pName) : Camera(pName) {
+CameraInwardTower::CameraInwardTower(const char* pName) : Camera(pName) {
     mWPoint.x = 0.0f;
     mWPoint.y = 0.0f;
     mWPoint.z = 0.0f;
@@ -20,10 +20,8 @@ CameraInwardTower::CameraInwardTower(const char *pName) : Camera(pName) {
     createVPanObj();
 }
 
-CameraInwardTower::~CameraInwardTower() {
+CameraInwardTower::~CameraInwardTower() {}
 
-}
-
-CamTranslatorBase *CameraInwardTower::createTranslator() {
+CamTranslatorBase* CameraInwardTower::createTranslator() {
     return new CamTranslatorInwardTower(this);
 }

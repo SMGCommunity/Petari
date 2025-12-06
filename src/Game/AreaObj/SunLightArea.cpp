@@ -1,13 +1,9 @@
 #include "Game/AreaObj/SunLightArea.hpp"
 
-SunLightArea::SunLightArea(int type, const char *pName) : AreaObj(type, pName) {
+SunLightArea::SunLightArea(int type, const char* pName) : AreaObj(type, pName) {}
 
-}
+SunLightArea::~SunLightArea() {}
 
-SunLightArea::~SunLightArea() {
-
-}
-
-const char *SunLightArea::getManagerName() const {
-	return "SunLightArea";
+const char* SunLightArea::getManagerName() const {
+    return "SunLightArea";
 }

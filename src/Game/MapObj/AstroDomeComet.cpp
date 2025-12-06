@@ -8,23 +8,21 @@
 #include "Game/Util/ObjUtil.hpp"
 
 namespace {
-    static const char* cCometBrkName[5] = {
-        "Red", "Blue", "White", "Yellow", "Purple"
-    };
+    static const char* cCometBrkName[5] = {"Red", "Blue", "White", "Yellow", "Purple"};
 };
 
 namespace NrvAstroDomeComet {
     NEW_NERVE(AstroDomeCometNrvSelect, AstroDomeComet, Select);
     NEW_NERVE(AstroDomeCometNrvConfirm, AstroDomeComet, Confirm);
-};
+};  // namespace NrvAstroDomeComet
 
-AstroDomeComet::AstroDomeComet(const char *pName) : LiveActor(pName) {
+AstroDomeComet::AstroDomeComet(const char* pName) : LiveActor(pName) {
     mBloomModel = nullptr;
     mMiniGalaxy = nullptr;
     mPointingActors = nullptr;
 }
 
-void AstroDomeComet::init(const JMapInfoIter &rIter) {
+void AstroDomeComet::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     initModelManagerWithAnm("AstroDomeComet", nullptr, false);
     initSubModel();
@@ -95,7 +93,7 @@ void AstroDomeComet::calcAndSetBaseMtx() {
     LiveActor::calcAndSetBaseMtx();
 }
 
-bool AstroDomeComet::receiveOtherMsg(u32 msg, HitSensor *, HitSensor *) {
+bool AstroDomeComet::receiveOtherMsg(u32 msg, HitSensor*, HitSensor*) {
     if (SphereSelectorFunction::trySyncAppearMsgSelectStart(this, msg)) {
         return true;
     }
@@ -105,8 +103,7 @@ bool AstroDomeComet::receiveOtherMsg(u32 msg, HitSensor *, HitSensor *) {
             setNerve(&NrvAstroDomeComet::AstroDomeCometNrvConfirm::sInstance);
             return true;
         }
-    }
-    else if (SphereSelectorFunction::isMsgConfirmCancel(msg)) {
+    } else if (SphereSelectorFunction::isMsgConfirmCancel(msg)) {
         setNerve(&NrvAstroDomeComet::AstroDomeCometNrvSelect::sInstance);
         return true;
     }
@@ -148,6 +145,4 @@ void AstroDomeComet::exeConfirm() {
     }
 }
 
-AstroDomeComet::~AstroDomeComet() {
-
-}
+AstroDomeComet::~AstroDomeComet() {}

@@ -2,13 +2,13 @@
 #include "JSystem/JSupport/JSUMemoryOutputStream.hpp"
 #include <cstring>
 
-void JSUMemoryInputStream::setBuffer(const void *pBuffer, s32 length) {
+void JSUMemoryInputStream::setBuffer(const void* pBuffer, s32 length) {
     mBuffer = pBuffer;
     mLength = length;
     mPosition = 0;
 }
 
-u32 JSUMemoryInputStream::readData(void *pDest, s32 length) {
+u32 JSUMemoryInputStream::readData(void* pDest, s32 length) {
     if (mPosition + length > mLength) {
         length = mLength - mPosition;
     }
@@ -22,15 +22,15 @@ u32 JSUMemoryInputStream::readData(void *pDest, s32 length) {
 s32 JSUMemoryInputStream::seekPos(s32 offset, JSUStreamSeekFrom whence) {
     s32 oldPosition = mPosition;
     switch (whence) {
-        case SEEK_FROM_START:
-            mPosition = offset;
-            break;
-        case SEEK_FROM_END:
-            mPosition = mLength - offset;
-            break;
-        case SEEK_FROM_POSITION:
-            mPosition += offset;
-            break;
+    case SEEK_FROM_START:
+        mPosition = offset;
+        break;
+    case SEEK_FROM_END:
+        mPosition = mLength - offset;
+        break;
+    case SEEK_FROM_POSITION:
+        mPosition += offset;
+        break;
     }
     if (mPosition < 0) {
         mPosition = 0;
@@ -41,13 +41,13 @@ s32 JSUMemoryInputStream::seekPos(s32 offset, JSUStreamSeekFrom whence) {
     return mPosition - oldPosition;
 }
 
-void JSUMemoryOutputStream::setBuffer(void *pBuffer, s32 length) {
+void JSUMemoryOutputStream::setBuffer(void* pBuffer, s32 length) {
     mBuffer = pBuffer;
     mLength = length;
     mPosition = 0;
 }
 
-s32 JSUMemoryOutputStream::writeData(const void *pSrc, s32 length) {
+s32 JSUMemoryOutputStream::writeData(const void* pSrc, s32 length) {
     if (mPosition + length > mLength) {
         length = mLength - mPosition;
     }
@@ -61,15 +61,15 @@ s32 JSUMemoryOutputStream::writeData(const void *pSrc, s32 length) {
 s32 JSUMemoryOutputStream::seekPos(s32 offset, JSUStreamSeekFrom whence) {
     s32 oldPosition = mPosition;
     switch (whence) {
-        case SEEK_FROM_START:
-            mPosition = offset;
-            break;
-        case SEEK_FROM_END:
-            mPosition = mLength - offset;
-            break;
-        case SEEK_FROM_POSITION:
-            mPosition += offset;
-            break;
+    case SEEK_FROM_START:
+        mPosition = offset;
+        break;
+    case SEEK_FROM_END:
+        mPosition = mLength - offset;
+        break;
+    case SEEK_FROM_POSITION:
+        mPosition += offset;
+        break;
     }
     if (mPosition < 0) {
         mPosition = 0;

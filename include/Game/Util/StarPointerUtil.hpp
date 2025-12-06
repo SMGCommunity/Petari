@@ -19,7 +19,7 @@ namespace {
     bool checkPointingTarget(StarPointerTargetInfo*, const TVec3f&, const TVec2f&, f32, f32);
     bool checkPointingWithoutCheckZ(StarPointerTargetInfo*, const TVec3f&, const TVec2f&, f32, f32);
     bool isStarPointerPointingCore(StarPointerTargetInfo*, const LiveActor*, s32, StarPointerFunc1, StarPointerFunc2, bool, bool, bool);
-};
+};  // namespace
 
 namespace MR {
     void initStarPointerGameScene();
@@ -123,4 +123,4 @@ namespace MR {
     bool requestFileSelectGuidance();
     bool requestFileSelectCopyGuidance();
     bool requestStarPieceLectureGuidance();
-};
+};  // namespace MR

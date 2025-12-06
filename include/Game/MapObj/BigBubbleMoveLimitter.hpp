@@ -5,13 +5,13 @@
 
 class BigBubbleMoveLimitter : public NameObj {
 public:
-    BigBubbleMoveLimitter(const char *, s32);
+    BigBubbleMoveLimitter(const char*, s32);
 
     virtual ~BigBubbleMoveLimitter();
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
 
-    BigBubbleMoveLimitter* limitPosition(TVec3f *, f32) const;
-    BigBubbleMoveLimitter* limitVelocity(TVec3f *, const TVec3f &, f32);
+    BigBubbleMoveLimitter* limitPosition(TVec3f*, f32) const;
+    BigBubbleMoveLimitter* limitVelocity(TVec3f*, const TVec3f&, f32);
 
     s32 _C;
     TVec3f _10;

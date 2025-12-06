@@ -2,14 +2,11 @@
 #include <JSystem/JSupport/JSUMemoryInputStream.hpp>
 #include <JSystem/JSupport/JSUMemoryOutputStream.hpp>
 
-#define FLAG_LAST_LOADED_MARIO      0x1
-#define FLAG_COMPLETE_ENDING_MARIO  0x2
-#define FLAG_COMPLETE_ENDING_LUIGI  0x4
+#define FLAG_LAST_LOADED_MARIO 0x1
+#define FLAG_COMPLETE_ENDING_MARIO 0x2
+#define FLAG_COMPLETE_ENDING_LUIGI 0x4
 
-ConfigDataMisc::ConfigDataMisc() :
-    mFlag(FLAG_LAST_LOADED_MARIO),
-    mLastModified(0)
-{
+ConfigDataMisc::ConfigDataMisc() : mFlag(FLAG_LAST_LOADED_MARIO), mLastModified(0) {
     initializeData();
 }
 
@@ -44,8 +41,7 @@ s32 ConfigDataMisc::deserialize(const u8* pBuffer, u32 size) {
 
     if (stream.getAvailable() == 0) {
         mLastModified = 0;
-    }
-    else {
+    } else {
         OSTime lastModified;
         stream.read(&lastModified, sizeof(lastModified));
         mLastModified = lastModified;
@@ -66,8 +62,7 @@ bool ConfigDataMisc::isLastLoadedMario() const {
 void ConfigDataMisc::setLastLoadedMario(bool lastLoadedMario) {
     if (lastLoadedMario) {
         mFlag |= FLAG_LAST_LOADED_MARIO;
-    }
-    else {
+    } else {
         mFlag &= ~FLAG_LAST_LOADED_MARIO;
     }
 }

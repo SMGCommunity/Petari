@@ -1,16 +1,16 @@
+#include "Game/Util/LayoutUtil.hpp"
 #include "Game/Effect/MultiEmitter.hpp"
 #include "Game/Screen/IconAButton.hpp"
 #include "Game/Screen/LayoutManager.hpp"
 #include "Game/Screen/LayoutPaneCtrl.hpp"
 #include "Game/Screen/PaneEffectKeeper.hpp"
 #include "Game/Screen/SimpleLayout.hpp"
+#include "Game/SingletonHolder.hpp"
 #include "Game/System/ResourceHolderManager.hpp"
 #include "Game/Util/EffectUtil.hpp"
-#include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/MessageUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
-#include "Game/SingletonHolder.hpp"
 #include <JSystem/J3DGraphAnimator/J3DAnimation.hpp>
 #include <nw4r/lyt/layout.h>
 
@@ -47,15 +47,15 @@ namespace {
             return 0.0f;
         }
     }
-};
+};  // namespace
 
 namespace MR {
     LayoutHolder* createAndAddLayoutHolder(const char* pArcName) {
-        return SingletonHolder<ResourceHolderManager>::get()->createAndAddLayoutHolder(pArcName, nullptr);
+        return SingletonHolder< ResourceHolderManager >::get()->createAndAddLayoutHolder(pArcName, nullptr);
     }
 
     LayoutHolder* createAndAddLayoutHolderRawData(const char* pArcPath) {
-        return SingletonHolder<ResourceHolderManager>::get()->createAndAddLayoutHolderRawData(pArcPath);
+        return SingletonHolder< ResourceHolderManager >::get()->createAndAddLayoutHolderRawData(pArcPath);
     }
 
     void createAndAddPaneCtrl(LayoutActor* pActor, const char* pPaneName, u32 animLayerNum) {
@@ -66,9 +66,7 @@ namespace MR {
         pActor->getLayoutManager()->createAndAddGroupCtrl(pGroupName, animLayerNum);
     }
 
-    bool isExistPaneCtrl(LayoutActor* pActor, const char* pPaneName) {
-        return pActor->getLayoutManager()->isExistPaneCtrl(pPaneName);
-    }
+    bool isExistPaneCtrl(LayoutActor* pActor, const char* pPaneName) { return pActor->getLayoutManager()->isExistPaneCtrl(pPaneName); }
 
     void setTextBoxGameMessageRecursive(LayoutActor* pActor, const char* pPaneName, const char* pMessageId) {
         setTextBoxMessageRecursive(pActor, pPaneName, getGameMessageDirect(pMessageId));
@@ -147,13 +145,9 @@ namespace MR {
         executeTextBoxRecursive(pActor, pPaneName, TextBoxRecursiveSetFont(pFont));
     }
 
-    void showPaneRecursive(LayoutActor* pActor, const char* pPaneName) {
-        ::showPaneRecursive(getPane(pActor, pPaneName));
-    }
+    void showPaneRecursive(LayoutActor* pActor, const char* pPaneName) { ::showPaneRecursive(getPane(pActor, pPaneName)); }
 
-    void hidePaneRecursive(LayoutActor* pActor, const char* pPaneName) {
-        ::hidePaneRecursive(getPane(pActor, pPaneName));
-    }
+    void hidePaneRecursive(LayoutActor* pActor, const char* pPaneName) { ::hidePaneRecursive(getPane(pActor, pPaneName)); }
 
     void showScreen(LayoutActor* pActor) {
         LayoutManager* pLayoutManager = pActor->getLayoutManager();
@@ -175,9 +169,7 @@ namespace MR {
         pActor->getLayoutManager()->getPaneCtrl(pPaneName)->mFollowType = 0;
     }
 
-    void setFollowTypeAdd(const LayoutActor* pActor, const char* pPaneName) {
-        pActor->getLayoutManager()->getPaneCtrl(pPaneName)->mFollowType = 1;
-    }
+    void setFollowTypeAdd(const LayoutActor* pActor, const char* pPaneName) { pActor->getLayoutManager()->getPaneCtrl(pPaneName)->mFollowType = 1; }
 
     void startAnimAtFirstStep(LayoutActor* pActor, const char* pAnimName, u32 animLayer) {
         if (isFirstStep(pActor)) {
@@ -242,25 +234,19 @@ namespace MR {
         setPaneAnimFrameAndStop(pActor, pPaneName, getPaneAnimCtrl(pActor, pPaneName, animLayer)->mEndFrame, animLayer);
     }
 
-    void setAnimFrame(LayoutActor* pActor, f32 animFrame, u32 animLayer) {
-        getAnimCtrl(pActor, animLayer)->mCurrentFrame = animFrame;
-    }
+    void setAnimFrame(LayoutActor* pActor, f32 animFrame, u32 animLayer) { getAnimCtrl(pActor, animLayer)->mCurrentFrame = animFrame; }
 
     void setPaneAnimFrame(LayoutActor* pActor, const char* pPaneName, f32 animFrame, u32 animLayer) {
         getPaneAnimCtrl(pActor, pPaneName, animLayer)->mCurrentFrame = animFrame;
     }
 
-    void setAnimRate(LayoutActor* pActor, f32 animRate, u32 param3) {
-        getAnimCtrl(pActor, param3)->mSpeed = animRate;
-    }
+    void setAnimRate(LayoutActor* pActor, f32 animRate, u32 param3) { getAnimCtrl(pActor, param3)->mSpeed = animRate; }
 
     void setPaneAnimRate(LayoutActor* pActor, const char* pPaneName, f32 animRate, u32 animLayer) {
         getPaneAnimCtrl(pActor, pPaneName, animLayer)->mSpeed = animRate;
     }
 
-    void stopAnim(LayoutActor* pActor, u32 animLayer) {
-        pActor->getLayoutManager()->getPaneCtrl(nullptr)->stop(animLayer);
-    }
+    void stopAnim(LayoutActor* pActor, u32 animLayer) { pActor->getLayoutManager()->getPaneCtrl(nullptr)->stop(animLayer); }
 
     void stopPaneAnim(LayoutActor* pActor, const char* pPaneName, u32 animLayer) {
         pActor->getLayoutManager()->getPaneCtrl(pPaneName)->stop(animLayer);
@@ -274,17 +260,13 @@ namespace MR {
         return pActor->getLayoutManager()->getPaneCtrl(pPaneName)->isAnimStopped(animLayer);
     }
 
-    f32 getAnimFrame(const LayoutActor* pActor, u32 param2) {
-        return getAnimCtrl(pActor, param2)->mCurrentFrame;
-    }
+    f32 getAnimFrame(const LayoutActor* pActor, u32 param2) { return getAnimCtrl(pActor, param2)->mCurrentFrame; }
 
     f32 getPaneAnimFrame(const LayoutActor* pActor, const char* pPaneName, u32 animLayer) {
         return getPaneAnimCtrl(pActor, pPaneName, animLayer)->mCurrentFrame;
     }
 
-    s16 getAnimFrameMax(const LayoutActor* pActor, u32 param2) {
-        return getAnimCtrl(pActor, param2)->mEndFrame;
-    }
+    s16 getAnimFrameMax(const LayoutActor* pActor, u32 param2) { return getAnimCtrl(pActor, param2)->mEndFrame; }
 
     s16 getPaneAnimFrameMax(const LayoutActor* pActor, const char* pPaneName, u32 animLayer) {
         return getPaneAnimCtrl(pActor, pPaneName, animLayer)->mEndFrame;
@@ -302,15 +284,12 @@ namespace MR {
         return pActor->getLayoutManager()->getPaneCtrl(pPaneName)->getFrameCtrl(animLayer);
     }
 
-    void setEffectHostMtx(LayoutActor* pActor, const char* pParam2, MtxPtr pHostMtx) {
-        getEffect(pActor, pParam2)->setHostMtx(pHostMtx);
-    }
+    void setEffectHostMtx(LayoutActor* pActor, const char* pParam2, MtxPtr pHostMtx) { getEffect(pActor, pParam2)->setHostMtx(pHostMtx); }
 
     bool isRegisteredEffect(const LayoutActor* pActor, const char* pParam2) {
         if (pParam2 != nullptr) {
             return pActor->mPaneEffectKeeper->getEmitter(pParam2) != nullptr;
-        }
-        else {
+        } else {
             return pActor->mPaneEffectKeeper != nullptr;
         }
     }
@@ -329,13 +308,9 @@ namespace MR {
         }
     }
 
-    bool isStep(const LayoutActor* pActor, s32 step) {
-        return pActor->getNerveStep() == step;
-    }
+    bool isStep(const LayoutActor* pActor, s32 step) { return pActor->getNerveStep() == step; }
 
-    bool isFirstStep(const LayoutActor* pActor) {
-        return isStep(pActor, 0);
-    }
+    bool isFirstStep(const LayoutActor* pActor) { return isStep(pActor, 0); }
 
     bool isLessStep(const LayoutActor* pActor, s32 step) {
         if (!isNewNerve(pActor) && pActor->getNerveStep() < step) {
@@ -345,33 +320,23 @@ namespace MR {
         return false;
     }
 
-    bool isGreaterStep(const LayoutActor* pActor, s32 step) {
-        return pActor->getNerveStep() > step;
-    }
+    bool isGreaterStep(const LayoutActor* pActor, s32 step) { return pActor->getNerveStep() > step; }
 
-    bool isGreaterEqualStep(const LayoutActor* pActor, s32 step) {
-        return pActor->getNerveStep() >= step;
-    }
+    bool isGreaterEqualStep(const LayoutActor* pActor, s32 step) { return pActor->getNerveStep() >= step; }
 
-    bool isIntervalStep(const LayoutActor* pActor, s32 step) {
-        return pActor->getNerveStep() % step == 0;
-    }
+    bool isIntervalStep(const LayoutActor* pActor, s32 step) { return pActor->getNerveStep() % step == 0; }
 
-    bool isNewNerve(const LayoutActor* pActor) {
-        return pActor->getNerveStep() < 0;
-    }
+    bool isNewNerve(const LayoutActor* pActor) { return pActor->getNerveStep() < 0; }
 
     f32 calcNerveRate(const LayoutActor* pActor, s32 stepMax) {
-        return stepMax <= 0 ? 1.0f : clamp(static_cast<f32>(pActor->getNerveStep()) / stepMax, 0.0f, 1.0f);
+        return stepMax <= 0 ? 1.0f : clamp(static_cast< f32 >(pActor->getNerveStep()) / stepMax, 0.0f, 1.0f);
     }
 
     f32 calcNerveRate(const LayoutActor* pActor, s32 stepMin, s32 stepMax) {
         return clamp(normalize(pActor->getNerveStep(), stepMin, stepMax), 0.0f, 1.0f);
     }
 
-    f32 calcNerveEaseInRate(const LayoutActor* pActor, s32 stepMax) {
-        return getEaseInValue(calcNerveRate(pActor, stepMax), 0.0f, 1.0f, 1.0f);
-    }
+    f32 calcNerveEaseInRate(const LayoutActor* pActor, s32 stepMax) { return getEaseInValue(calcNerveRate(pActor, stepMax), 0.0f, 1.0f, 1.0f); }
 
     f32 calcNerveEaseInValue(const LayoutActor* pActor, s32 stepMin, s32 stepMax, f32 valueMin, f32 valueMax) {
         return getEaseInValue(calcNerveRate(pActor, stepMin, stepMax), valueMin, valueMax, 1.0f);
@@ -401,13 +366,9 @@ namespace MR {
         }
     }
 
-    bool isDead(const LayoutActor* pActor) {
-        return pActor->mFlag.mIsDead;
-    }
+    bool isDead(const LayoutActor* pActor) { return pActor->mFlag.mIsDead; }
 
-    bool isHiddenLayout(const LayoutActor* pActor) {
-        return pActor->mFlag.mIsHidden;
-    }
+    bool isHiddenLayout(const LayoutActor* pActor) { return pActor->mFlag.mIsHidden; }
 
     void showLayout(LayoutActor* pActor) {
         pActor->mFlag.mIsHidden = false;
@@ -419,25 +380,15 @@ namespace MR {
         pActor->mFlag.mIsOffCalcAnim = true;
     }
 
-    bool isStopAnimFrame(const LayoutActor* pActor) {
-        return pActor->mFlag.mIsStopAnimFrame;
-    }
+    bool isStopAnimFrame(const LayoutActor* pActor) { return pActor->mFlag.mIsStopAnimFrame; }
 
-    void stopAnimFrame(LayoutActor* pActor) {
-        pActor->mFlag.mIsStopAnimFrame = true;
-    }
+    void stopAnimFrame(LayoutActor* pActor) { pActor->mFlag.mIsStopAnimFrame = true; }
 
-    void releaseAnimFrame(LayoutActor* pActor) {
-        pActor->mFlag.mIsStopAnimFrame = false;
-    }
+    void releaseAnimFrame(LayoutActor* pActor) { pActor->mFlag.mIsStopAnimFrame = false; }
 
-    void onCalcAnim(LayoutActor* pActor) {
-        pActor->mFlag.mIsOffCalcAnim = false;
-    }
+    void onCalcAnim(LayoutActor* pActor) { pActor->mFlag.mIsOffCalcAnim = false; }
 
-    void offCalcAnim(LayoutActor* pActor) {
-        pActor->mFlag.mIsOffCalcAnim = true;
-    }
+    void offCalcAnim(LayoutActor* pActor) { pActor->mFlag.mIsOffCalcAnim = true; }
 
     bool isExecuteCalcAnimLayout(const LayoutActor* pActor) {
         if (pActor->mFlag.mIsDead) {
@@ -479,21 +430,16 @@ namespace MR {
         return pSimpleLayout;
     }
 
-    nw4r::lyt::Pane* getPane(const LayoutActor* pActor, const char* pPaneName) {
-        return pActor->getLayoutManager()->getPane(pPaneName);
-    }
+    nw4r::lyt::Pane* getPane(const LayoutActor* pActor, const char* pPaneName) { return pActor->getLayoutManager()->getPane(pPaneName); }
 
-    nw4r::lyt::Pane* getRootPane(const LayoutActor* pActor) {
-        return pActor->getLayoutManager()->getPane(nullptr);
-    }
+    nw4r::lyt::Pane* getRootPane(const LayoutActor* pActor) { return pActor->getLayoutManager()->getPane(nullptr); }
 
     u32 getTextLineNumMaxRecursive(const LayoutActor* pActor, const char* pPaneName) {
         nw4r::lyt::Pane* pPane = getPane(pActor, pPaneName);
 
         if (pPane != nullptr) {
             return ::getTextLineNumMaxRecursiveSub(pPane);
-        }
-        else {
+        } else {
             return 0;
         }
     }
@@ -513,9 +459,7 @@ namespace MR {
         setTextBoxFormatRecursive(pActor, pPaneName, L"%d", number);
     }
 
-    void clearTextBoxMessageRecursive(LayoutActor* pActor, const char* pPaneName) {
-        setTextBoxMessageRecursive(pActor, pPaneName, L"");
-    }
+    void clearTextBoxMessageRecursive(LayoutActor* pActor, const char* pPaneName) { setTextBoxMessageRecursive(pActor, pPaneName, L""); }
 
     IconAButton* createAndSetupIconAButton(LayoutActor* pActor, bool param2, bool param3) {
         IconAButton* pIconAButton = new IconAButton(param2, param3);
@@ -530,4 +474,4 @@ namespace MR {
         startAnim(pActor, "Color", animLayer);
         setAnimFrameAndStop(pActor, ::getCometColorAnimFrameFromId(cometId), animLayer);
     }
-};
+};  // namespace MR

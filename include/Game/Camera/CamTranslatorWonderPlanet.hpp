@@ -4,10 +4,10 @@
 
 class CamTranslatorWonderPlanet : public CamTranslatorBase {
 public:
-	CamTranslatorWonderPlanet(CameraWonderPlanet *);
+    CamTranslatorWonderPlanet(CameraWonderPlanet*);
 
-    virtual void setParam(const CameraParamChunk *);
-    virtual Camera *getCamera() const;
+    virtual void setParam(const CameraParamChunk*);
+    virtual Camera* getCamera() const;
 
-    CameraWonderPlanet *mCamera;    // 0x4
+    CameraWonderPlanet* mCamera;  // 0x4
 };

@@ -8,7 +8,7 @@ class CamHeliEffector {
 public:
     CamHeliEffector();
 
-    void update(CameraMan *);
+    void update(CameraMan*);
 
     u32 _0;
     f32 _4;

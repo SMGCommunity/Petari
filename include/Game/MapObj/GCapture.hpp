@@ -10,17 +10,17 @@ class GCaptureTargetable;
 
 class GCapture : public LiveActor {
 public:
-    GCapture(const char *);
+    GCapture(const char*);
 
     virtual ~GCapture();
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
     virtual void draw() const;
     virtual void control();
-    virtual void attackSensor(HitSensor *, HitSensor *);
-    virtual bool receiveMsgEnemyAttack(u32, HitSensor *, HitSensor *);
-    virtual bool receiveOtherMsg(u32, HitSensor *, HitSensor *);
+    virtual void attackSensor(HitSensor*, HitSensor*);
+    virtual bool receiveMsgEnemyAttack(u32, HitSensor*, HitSensor*);
+    virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
 
-    bool requestBind(HitSensor *);
+    bool requestBind(HitSensor*);
     bool requestCancelBind();
     bool requestDamageCancel(u32);
     void reset();
@@ -50,12 +50,12 @@ public:
     void upTractPower();
     void downTractPower();
     void fillGapBindTrans();
-    void updateRibbon(const TVec3f &, s32);
-    void updateRibbonPointEffectMatrix(const TVec3f &);
+    void updateRibbon(const TVec3f&, s32);
+    void updateRibbonPointEffectMatrix(const TVec3f&);
     void addRotateAccelPointing();
     bool tryAddVelocityReflectJumpCollision();
-    bool requestTarget(GCaptureTargetable *);
-    bool isRequestedTarget(GCaptureTargetable *);
+    bool requestTarget(GCaptureTargetable*);
+    bool isRequestedTarget(GCaptureTargetable*);
     void decideTractTarget();
     void releaseTractTarget();
     void updateCameraTargetMatrix();
@@ -69,12 +69,12 @@ public:
     TVec3f _F0;
     TVec3f _FC;
     u32 _108;
-    GCaptureTargetable* mTarget;            // 0x10C
+    GCaptureTargetable* mTarget;  // 0x10C
     u32 _110;
-    GCaptureRibbon* mCaptureRibbon;         // 0x114
-    CameraTargetMtx* mTargetMtx;            // 0x118
-    SpringValue* mSpringValue;              // 0x11C
-    f32 mTractPower;                        // 0x120
+    GCaptureRibbon* mCaptureRibbon;  // 0x114
+    CameraTargetMtx* mTargetMtx;     // 0x118
+    SpringValue* mSpringValue;       // 0x11C
+    f32 mTractPower;                 // 0x120
     f32 _124;
     f32 _128;
     u32 _122C;
@@ -82,16 +82,15 @@ public:
     u32 _134;
     u8 _138;
     u8 _139;
-
 };
 
 namespace MR {
     void createGCapture();
     void resetGCapture();
-    bool requestGCaptureTarget(GCaptureTargetable *);
-    void unrequestGCaptureTarget(GCaptureTargetable *);
-    bool isRequestedGCaptureTarget(GCaptureTargetable *);
+    bool requestGCaptureTarget(GCaptureTargetable*);
+    void unrequestGCaptureTarget(GCaptureTargetable*);
+    bool isRequestedGCaptureTarget(GCaptureTargetable*);
     void noticeInTouchableRange();
     bool isOnTractTrigger();
     bool isPlayerGCaptured();
-};
+};  // namespace MR

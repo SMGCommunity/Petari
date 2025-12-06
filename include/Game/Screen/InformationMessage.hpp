@@ -20,9 +20,7 @@ public:
     void exeWait();
     void exeDisappear();
 
-    void setCenter(bool isCenter) {
-        mIsCenter = isCenter;
-    }
+    void setCenter(bool isCenter) { mIsCenter = isCenter; }
 
 private:
     /* 0x20 */ IconAButton* mAButtonIcon;

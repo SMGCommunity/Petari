@@ -42,4 +42,4 @@ namespace MR {
     void setWPadHolderModeGame();
     void getHBMKPadData(HBMKPadData*, s32);
     void setAutoSleepTimeWiiRemote(bool);
-};
+};  // namespace MR

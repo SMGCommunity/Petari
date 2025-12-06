@@ -8,7 +8,7 @@ SunshadeMapHolder::SunshadeMapHolder() : NameObj("日よけコリジョン管理
 }
 
 namespace MR {
-    bool isInShadeFromTheSun(const TVec3f &rPos, f32 a2) {
+    bool isInShadeFromTheSun(const TVec3f& rPos, f32 a2) {
         if (!MR::isInAreaObj("SunLightArea", rPos)) {
             return true;
         }
@@ -17,17 +17,13 @@ namespace MR {
             return false;
         }
 
-        SunshadeMapHolder* holder = MR::getSceneObj<SunshadeMapHolder>(SceneObj_SunshadeMapHolder);
+        SunshadeMapHolder* holder = MR::getSceneObj< SunshadeMapHolder >(SceneObj_SunshadeMapHolder);
         TVec3f pos;
         pos.setPS(holder->_C);
         return Collision::checkStrikeLineToSunshade(rPos, pos * a2, 0, nullptr, nullptr) != false;
     }
 
-    void createSunshadeMapHolder() {
-        MR::createSceneObj(SceneObj_SunshadeMapHolder);
-    }
-};
+    void createSunshadeMapHolder() { MR::createSceneObj(SceneObj_SunshadeMapHolder); }
+};  // namespace MR
 
-SunshadeMapHolder::~SunshadeMapHolder() {
-    
-}
+SunshadeMapHolder::~SunshadeMapHolder() {}

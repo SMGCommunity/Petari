@@ -10,29 +10,28 @@ class XanimePlayer;
 
 class MarioAnimator : public MarioModule {
 public:
-    MarioAnimator(MarioActor *);
+    MarioAnimator(MarioActor*);
 
     void init();
     void update();
 
     void setHoming();
     bool isAnimationStop() const;
-    bool isDefaultAnimationRun(const char *) const;
+    bool isDefaultAnimationRun(const char*) const;
     void setSpeed(f32);
-    void forceSetBlendWeight(const f32 *);
+    void forceSetBlendWeight(const f32*);
     void waterToGround();
     void initCallbackTable();
-    void change(const char *);
-    void changeDefault(const char *);
-    void changeUpper(const char *);
-    void changeDefaultUpper(const char *);
-    void stopUpper(const char *);
+    void change(const char*);
+    void changeDefault(const char*);
+    void changeUpper(const char*);
+    void changeDefaultUpper(const char*);
+    void stopUpper(const char*);
     void setUpperRotateY(f32);
-    void entryCallback(const char *);
+    void entryCallback(const char*);
     f32 getFrame() const;
 
-    inline void f1(const char *name)
-    {
+    inline void f1(const char* name) {
         getPlayer()->startBas(nullptr, false, 0.0f, 0.0f);
 
         mXanimePlayer->setDefaultAnimation(name);
@@ -40,9 +39,9 @@ public:
 
     inline bool isTeresaClear() const { return !isPlayerModeTeresa(); }
 
-    XanimeResourceTable *mResourceTable;    // 0x8
-    XanimePlayer *mXanimePlayer;            // 0xC
-    XanimePlayer *mXanimePlayerUpper;       // 0x10
+    XanimeResourceTable* mResourceTable;  // 0x8
+    XanimePlayer* mXanimePlayer;          // 0xC
+    XanimePlayer* mXanimePlayerUpper;     // 0x10
     u8 _14;
     u8 _15;
     u8 _16;
@@ -63,9 +62,9 @@ public:
     TMtx34f _DC;
     u8 _10C;
     u8 _10D;
-    bool mUpperDefaultSet;    // 0x10E
+    bool mUpperDefaultSet;  // 0x10E
     f32 _110;
-    const char *mCurrBck;    // 0x114
+    const char* mCurrBck;  // 0x114
     f32 _118;
 
     u8 _11C[8];

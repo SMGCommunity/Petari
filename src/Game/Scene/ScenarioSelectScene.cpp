@@ -1,8 +1,8 @@
+#include "Game/Scene/ScenarioSelectScene.hpp"
 #include "Game/Camera/CameraContext.hpp"
 #include "Game/Effect/EffectSystem.hpp"
 #include "Game/Effect/EffectSystemUtil.hpp"
 #include "Game/LiveActor/Nerve.hpp"
-#include "Game/Scene/ScenarioSelectScene.hpp"
 #include "Game/Screen/CinemaFrame.hpp"
 #include "Game/Screen/ScenarioSelectLayout.hpp"
 #include "Game/System/GalaxyStatusAccessor.hpp"
@@ -28,7 +28,7 @@ namespace NrvScenarioSelectScene {
     NEW_NERVE(ScenarioSelectSceneNrvWaitDisappearLayout, ScenarioSelectScene, WaitDisappearLayout);
     NEW_NERVE(ScenarioSelectSceneNrvWaitResumeInitializeThreadIfRequestedReset, ScenarioSelectScene, WaitResumeInitializeThreadIfRequestedReset);
     NEW_NERVE(ScenarioSelectSceneNrvWaitResumeInitializeThreadIfCanceledSelect, ScenarioSelectScene, WaitResumeInitializeThreadIfCanceledSelect);
-};
+};  // namespace NrvScenarioSelectScene
 
 namespace {
     J3DDrawBuffer* createDrawBuffer() {
@@ -44,24 +44,13 @@ namespace {
             return true;
         }
 
-        
         return false;
     }
-};
+};  // namespace
 
-ScenarioSelectScene::ScenarioSelectScene() :
-    Scene("シナリオ選択シーン"),
-    _14(0),
-    _15(0),
-    _16(0),
-    mScenarioLayout(nullptr),
-    mCinemaFrame(nullptr),
-    _28(0),
-    mEffectSystem(nullptr),
-    mCameraContext(nullptr)
-{
-    
-}
+ScenarioSelectScene::ScenarioSelectScene()
+    : Scene("シナリオ選択シーン"), _14(0), _15(0), _16(0), mScenarioLayout(nullptr), mCinemaFrame(nullptr), _28(0), mEffectSystem(nullptr),
+      mCameraContext(nullptr) {}
 
 void ScenarioSelectScene::init() {
     _20 = createDrawBuffer();
@@ -115,12 +104,12 @@ void ScenarioSelectScene::calcViewAndEntry() {
     bool res = isExecForeground() && _28 == 0;
 
     if (res) {
-        OSLockMutex(&MR::MutexHolder<0>::sMutex);
+        OSLockMutex(&MR::MutexHolder< 0 >::sMutex);
         setupCameraMtx();
         j3dSys._48 = _20;
         j3dSys._4C = _24;
         mScenarioLayout->calcViewAndEntryStarModel();
-        OSUnlockMutex(&MR::MutexHolder<0>::sMutex);
+        OSUnlockMutex(&MR::MutexHolder< 0 >::sMutex);
     }
 }
 
@@ -128,7 +117,7 @@ void ScenarioSelectScene::draw() const {
     bool res = isExecForeground() && _28 == 0;
 
     if (res) {
-        OSLockMutex(&MR::MutexHolder<0>::sMutex);
+        OSLockMutex(&MR::MutexHolder< 0 >::sMutex);
         setupCameraMtx();
         j3dSys.drawInit();
         j3dSys._50 = 3;
@@ -137,7 +126,7 @@ void ScenarioSelectScene::draw() const {
         j3dSys._50 = 4;
         _24->draw();
         _24->frameInit();
-        OSUnlockMutex(&MR::MutexHolder<0>::sMutex);
+        OSUnlockMutex(&MR::MutexHolder< 0 >::sMutex);
         MR::Effect::drawEffect3D(mEffectSystem, *mCameraContext->getViewMtx());
         mScenarioLayout->draw();
         MR::Effect::drawEffect2D(mEffectSystem);
@@ -155,7 +144,7 @@ bool ScenarioSelectScene::isExecForeground() const {
     bool ret = false;
     if (_14 && !isNerve(&NrvScenarioSelectScene::ScenarioSelectSceneNrvDeactive::sInstance)) {
         if (_15 == 0) {
-        ret = true;
+            ret = true;
         }
     }
 
@@ -183,10 +172,10 @@ bool ScenarioSelectScene::trySetCurrentScenarioNo() const {
             if (accessor.isHiddenStar(scenarioNo)) {
                 placedNo = MR::getPlacedHiddenStarScenarioNo(MR::getCurrentStageName(), scenarioNo);
             }
-    
+
             MR::setCurrentScenarioNo(placedNo, scenarioNo);
         }
-    
+
         return true;
     }
 
@@ -223,19 +212,15 @@ void ScenarioSelectScene::exeDeactive() {
     }
 }
 
-void ScenarioSelectScene::exeInvalidScenarioSelect() {
-    
-}
+void ScenarioSelectScene::exeInvalidScenarioSelect() {}
 
 void ScenarioSelectScene::exeStartScenarioSelect() {
     if (MR::isFirstStep(this)) {
-        bool isSpecificStage = MR::isStageKoopaVs3()
-            || MR::isEqualStageName("HeavensDoorGalaxy");
+        bool isSpecificStage = MR::isStageKoopaVs3() || MR::isEqualStageName("HeavensDoorGalaxy");
 
         if (isSpecificStage) {
             MR::openSystemWipeFade(-1);
-        }
-        else {
+        } else {
             MR::openSystemWipeWhiteFade(-1);
         }
 
@@ -263,8 +248,7 @@ void ScenarioSelectScene::exeWaitScenarioSelect() {
     if (trySetCurrentScenarioNo()) {
         MR::endStarPointerMode(this);
         setNerve(&NrvScenarioSelectScene::ScenarioSelectSceneNrvWaitResumeInitializeThread::sInstance);
-    }
-    else if (mScenarioLayout->isCanceled()) {
+    } else if (mScenarioLayout->isCanceled()) {
         MR::endStarPointerMode(this);
         setNerve(&NrvScenarioSelectScene::ScenarioSelectSceneNrvWaitResumeInitializeThreadIfCanceledSelect::sInstance);
     }
@@ -285,8 +269,7 @@ void ScenarioSelectScene::exeWaitInitializeEnd() {
         if (MR::isDead(mScenarioLayout)) {
             MR::Effect::forceDeleteAllEmitters(mEffectSystem);
             setNerve(&NrvScenarioSelectScene::ScenarioSelectSceneNrvDeactive::sInstance);
-        }
-        else if (mScenarioLayout->isReadyToDisappear()) {
+        } else if (mScenarioLayout->isReadyToDisappear()) {
             setNerve(&NrvScenarioSelectScene::ScenarioSelectSceneNrvWaitDisappearLayout::sInstance);
         }
     }
@@ -328,6 +311,4 @@ void ScenarioSelectScene::exeWaitResumeInitializeThreadIfCanceledSelect() {
     }
 }
 
-ScenarioSelectScene::~ScenarioSelectScene() {
-
-}
+ScenarioSelectScene::~ScenarioSelectScene() {}

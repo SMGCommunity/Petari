@@ -6,7 +6,7 @@ namespace {
     static const char* sReturnPosName = "合体ブロック故郷点";
 };
 
-AssemblyBlock::AssemblyBlock(const char *pName) : LiveActor(pName) {
+AssemblyBlock::AssemblyBlock(const char* pName) : LiveActor(pName) {
     _11C = -1;
     mActivationRange = -1.0f;
     _124.x = 0.0f;
@@ -21,7 +21,7 @@ AssemblyBlock::AssemblyBlock(const char *pName) : LiveActor(pName) {
     _EC.identity();
 }
 
-void AssemblyBlock::init(const JMapInfoIter &rIter) {
+void AssemblyBlock::init(const JMapInfoIter& rIter) {
     TVec3f stack_3C;
     TVec3f stack_30;
     TVec3f stack_24;
@@ -44,8 +44,7 @@ void AssemblyBlock::init(const JMapInfoIter &rIter) {
 
     if (MR::isEqualString(name, "AssemblyBlockPartsTimerA")) {
         _13C = true;
-    }
-    else {
+    } else {
         _13C = false;
     }
 
@@ -55,8 +54,7 @@ void AssemblyBlock::init(const JMapInfoIter &rIter) {
 
     if (MR::isEqualSubString(name, "PartsIce")) {
         MR::connectToSceneIndirectMapObj(this);
-    }
-    else {
+    } else {
         MR::connectToSceneMapObj(this);
     }
 
@@ -83,15 +81,13 @@ void AssemblyBlock::init(const JMapInfoIter &rIter) {
     MR::getJMapInfoArg7NoInit(rIter, &_11C);
     if (MR::getRandom((s32)0, (s32)2)) {
         _130 = 0.0f;
-    }
-    else {
+    } else {
         _130 = -0.1f;
     }
 
     if (_11C == -1) {
         initEffectKeeper(0, "AssemblyBlock", false);
-    }
-    else {
+    } else {
         initEffectKeeper(0, nullptr, false);
     }
 
@@ -119,8 +115,7 @@ void AssemblyBlock::exeAssemble() {
 
         if (_13C) {
             MR::startSound(this, "SE_OJ_ASSEMBLE_BLOCK_ST_F_", -1, -1);
-        }
-        else {
+        } else {
             MR::startSound(this, "SE_OJ_ASSEMBLE_BLOCK_START", -1, -1);
         }
 
@@ -133,8 +128,7 @@ void AssemblyBlock::exeAssemble() {
     if (MR::isStep(this, 10)) {
         if (_13C) {
             MR::startSound(this, "SE_OJ_ASSEMBLE_BLOCK_ED_F", -1, -1);
-        }
-        else {
+        } else {
             MR::startSound(this, "SE_OJ_ASSEMBLE_BLOCK_END", -1, -1);
         }
 
@@ -155,8 +149,7 @@ void AssemblyBlock::exeAssembleWait() {
 
     if (!_11C) {
         setNerve(&NrvAssemblyBlock::AssemblyBlockNrvTimer::sInstance);
-    }
-    else {
+    } else {
         tryStartReturn();
     }
 }
@@ -168,8 +161,7 @@ void AssemblyBlock::exeReturn() {
 
         if (_13C) {
             MR::startSound(this, "SE_OJ_ASSEMBLE_BLOCK_RET_F", -1, -1);
-        }
-        else {
+        } else {
             MR::startSound(this, "SE_OJ_ASSEMBLE_BLOCK_RETURN", -1, -1);
         }
 
@@ -192,8 +184,7 @@ void AssemblyBlock::exeTimer() {
     if (MR::isStep(this, mActivationTime)) {
         if (_13C) {
             MR::startSound(this, "SE_OJ_ASSEMBLE_BLOCK_VAN_F", -1, -1);
-        }
-        else {
+        } else {
             MR::startSound(this, "SE_OJ_ASSEMBLE_BLOCK_VANISH", -1, -1);
         }
 
@@ -241,9 +232,7 @@ bool AssemblyBlock::tryStartReturn() {
     return true;
 }
 
-AssemblyBlock::~AssemblyBlock() {
-
-}
+AssemblyBlock::~AssemblyBlock() {}
 
 namespace NrvAssemblyBlock {
     INIT_NERVE(AssemblyBlockNrvWait);
@@ -251,4 +240,4 @@ namespace NrvAssemblyBlock {
     INIT_NERVE(AssemblyBlockNrvAssembleWait);
     INIT_NERVE(AssemblyBlockNrvReturn);
     INIT_NERVE(AssemblyBlockNrvTimer);
-};
+};  // namespace NrvAssemblyBlock

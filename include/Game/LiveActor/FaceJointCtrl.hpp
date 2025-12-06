@@ -8,7 +8,7 @@ class LiveActor;
 
 class FaceJointCtrl {
 public:
-    FaceJointCtrl(LiveActor *);
+    FaceJointCtrl(LiveActor*);
 
     void init();
     void startCtrl(s32);
@@ -16,7 +16,7 @@ public:
     void update();
     void setCallBackFunction();
 
-    LiveActor* mHostActor;              // 0x0
+    LiveActor* mHostActor;  // 0x0
     f32 _4;
     f32 _8;
     f32 _C;

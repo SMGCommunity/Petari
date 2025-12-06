@@ -12,11 +12,7 @@ struct AudEffectData {
 
 namespace {
     const AudEffectData cAudEffectDataList[5] = {
-        {0.0f, 0x7F, 1.0f, 0x5A},
-        {1.0f, 0x7F, 1.0f, 0x5A},
-        {0.0f, 0x0A, 1.0f, 0x5A},
-        {1.0f, 0x7F, 0.0f, 0x5A},
-        {0.80000001f, 0x7F, 1.0f, 0x5A},
+        {0.0f, 0x7F, 1.0f, 0x5A}, {1.0f, 0x7F, 1.0f, 0x5A}, {0.0f, 0x0A, 1.0f, 0x5A}, {1.0f, 0x7F, 0.0f, 0x5A}, {0.80000001f, 0x7F, 1.0f, 0x5A},
     };
 }
 
@@ -26,11 +22,9 @@ AudEffectDirector::AudEffectDirector() : NameObj("オーディオエフェクト
     _14 = 0;
 }
 
-AudEffectDirector::~AudEffectDirector() {
-    
-}
+AudEffectDirector::~AudEffectDirector() {}
 
-void AudEffectDirector::init(const JMapInfoIter &rIter) {
+void AudEffectDirector::init(const JMapInfoIter& rIter) {
     MR::connectToScene(this, 24, -1, -1, -1);
 }
 
@@ -47,7 +41,7 @@ void AudEffectDirector::movement() {
 void AudEffectDirector::setEffectType(s32 a1, s32 a2) {
     if (a2 < 0)
         a2 = 0;
-    
+
     if (a2 > 0x7f)
         a2 = 0x7f;
 
@@ -55,27 +49,32 @@ void AudEffectDirector::setEffectType(s32 a1, s32 a2) {
         _C = a1;
         _14 = a2;
     }
-} 
+}
 
 void AudEffectDirector::setAudioEffectParam(s32 a1) {
-    AudEffector *pAudEffector = AudWrap::getSystem()->getAudEffector();
+    AudEffector* pAudEffector = AudWrap::getSystem()->getAudEffector();
 
     pAudEffector->setFxSend(::cAudEffectDataList[a1].fxSend);
     pAudEffector->setCutoff(::cAudEffectDataList[a1].cutoff);
 
-    if (!MR::isStageStateScenarioOpeningCamera()) 
+    if (!MR::isStageStateScenarioOpeningCamera())
         MR::moveVolumeStageBGM(::cAudEffectDataList[a1].volume, ::cAudEffectDataList[a1]._C);
 
     switch (a1) {
-        case 1: return pAudEffector->setSpecialFx(1);
-        case 3: return pAudEffector->setSpecialFx(2);
-        default: return pAudEffector->setSpecialFx(0);
+    case 1:
+        return pAudEffector->setSpecialFx(1);
+    case 3:
+        return pAudEffector->setSpecialFx(2);
+    default:
+        return pAudEffector->setSpecialFx(0);
     }
 }
 
 void AudEffectDirector::playEffectSound(s32 a1) {
     switch (a1) {
-        case 3: return MR::startAtmosphereLevelSE("SE_AT_LV_WATERFALL_CAVE", -1, -1);
-        case 4: return MR::startAtmosphereLevelSE("SE_AT_LV_PHNCV_TERESA_ROOM", -1, -1);
+    case 3:
+        return MR::startAtmosphereLevelSE("SE_AT_LV_WATERFALL_CAVE", -1, -1);
+    case 4:
+        return MR::startAtmosphereLevelSE("SE_AT_LV_PHNCV_TERESA_ROOM", -1, -1);
     }
 }

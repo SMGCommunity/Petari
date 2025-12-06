@@ -1,15 +1,15 @@
 #pragma once
 
-#include <revolution.h>
 #include "JSystem/J3DGraphAnimator/J3DModelData.hpp"
 #include "JSystem/J3DGraphAnimator/J3DMtxCalc.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
+#include <revolution.h>
 
 class XtransformInfo {
 public:
     XtransformInfo();
 
-    XtransformInfo& operator=(const XtransformInfo &);
+    XtransformInfo& operator=(const XtransformInfo&);
 
     TVec3f _0;
     TVec3f _C;
@@ -71,7 +71,7 @@ public:
     void init();
 
     u32 _0;
-    f32 mWeight;    // 0x4
+    f32 mWeight;  // 0x4
     f32 _8;
     u8 _C;
 };
@@ -79,31 +79,31 @@ public:
 class XanimeCore : public J3DMtxCalc {
 public:
     XanimeCore(u32, u32, u8);
-    XanimeCore(u32, XanimeCore *);
+    XanimeCore(u32, XanimeCore*);
 
     virtual ~XanimeCore();
     virtual void setWeight(u8, f32);
-    virtual void init(const Vec &, const Mtx &);
+    virtual void init(const Vec&, const Mtx&);
     virtual void calc();
 
-    void shareJointTransform(const XanimeCore *);
+    void shareJointTransform(const XanimeCore*);
     void doFreeze();
-    void setBck(u32, J3DAnmTransform *);
+    void setBck(u32, J3DAnmTransform*);
 
-    void enableJointTransform(J3DModelData *);
+    void enableJointTransform(J3DModelData*);
 
     void initMember(u32);
 
     XjointTransform* getJointTransform(u32);
 
     u8 _4;
-    u8 mTrackCount;                     // 0x5
+    u8 mTrackCount;  // 0x5
     u8 _6;
-    u32 mJointCount;                    // 0x8
+    u32 mJointCount;  // 0x8
     u16 _C;
-    XjointInfo* mJointList;             // 0x10
-    XjointTransform* mTransformList;    // 0x14  // this is an array
-    XanimeTrack* mTrackList;            // 0x18
+    XjointInfo* mJointList;           // 0x10
+    XjointTransform* mTransformList;  // 0x14  // this is an array
+    XanimeTrack* mTrackList;          // 0x18
     f32 _1C;
     f32 _20;
     f32 _24;

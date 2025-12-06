@@ -22,7 +22,7 @@ void PlacementInfoOrdered::requestFileLoad() {
 
         if (getCreator(*id)) {
             if (id->_4 == -1) {
-                
+                
             }
         }
     }

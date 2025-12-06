@@ -20,4 +20,4 @@ namespace MR {
     const wchar_t* getScenarioNameOnCurrentLanguage(const char*, s32);
     void getLayoutMessageID(char*, const char*, const char*);
     void makeCometMessageID(char*, u32, const char*);
-};
+};  // namespace MR

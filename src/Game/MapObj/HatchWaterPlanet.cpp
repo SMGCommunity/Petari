@@ -2,12 +2,12 @@
 #include "Game/LiveActor/LodCtrl.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
 
-HatchWaterPlanet::HatchWaterPlanet(const char *pName) : LiveActor(pName) {
+HatchWaterPlanet::HatchWaterPlanet(const char* pName) : LiveActor(pName) {
     mPlanetLODCtrl = nullptr;
     mCollisionParts = nullptr;
 }
 
-void HatchWaterPlanet::init(const JMapInfoIter &rIter) {
+void HatchWaterPlanet::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     initModelManagerWithAnm("HatchWaterPlanet", nullptr, false);
     MR::connectToScenePlanet(this);
@@ -59,26 +59,22 @@ void HatchWaterPlanet::exeWaitAfterOpen() {
     }
 }
 
-HatchWaterPlanet::~HatchWaterPlanet() {
-
-}
+HatchWaterPlanet::~HatchWaterPlanet() {}
 
 namespace NrvHatchWaterPlanet {
     INIT_NERVE(HatchWaterPlanetNrvWait);
     INIT_NERVE(HatchWaterPlanetNrvOpen);
     INIT_NERVE(HatchWaterPlanetNrvWaitAfterOpen);
 
-    void HatchWaterPlanetNrvWaitAfterOpen::execute(Spine *pSpine) const {
-        HatchWaterPlanet* planet = reinterpret_cast<HatchWaterPlanet*>(pSpine->mExecutor);
+    void HatchWaterPlanetNrvWaitAfterOpen::execute(Spine* pSpine) const {
+        HatchWaterPlanet* planet = reinterpret_cast< HatchWaterPlanet* >(pSpine->mExecutor);
         planet->exeWaitAfterOpen();
     }
 
-    void HatchWaterPlanetNrvOpen::execute(Spine *pSpine) const {
-        HatchWaterPlanet* planet = reinterpret_cast<HatchWaterPlanet*>(pSpine->mExecutor);
+    void HatchWaterPlanetNrvOpen::execute(Spine* pSpine) const {
+        HatchWaterPlanet* planet = reinterpret_cast< HatchWaterPlanet* >(pSpine->mExecutor);
         planet->exeOpen();
     }
 
-    void HatchWaterPlanetNrvWait::execute(Spine *pSpine) const {
-
-    }
-};
+    void HatchWaterPlanetNrvWait::execute(Spine* pSpine) const {}
+};  // namespace NrvHatchWaterPlanet

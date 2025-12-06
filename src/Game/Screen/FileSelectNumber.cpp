@@ -1,5 +1,5 @@
-#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/FileSelectNumber.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/NerveUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
@@ -9,15 +9,9 @@ namespace {
     NEW_NERVE(FileSelectNumberNrvAppear, FileSelectNumber, Appear);
     NEW_NERVE(FileSelectNumberNrvWait, FileSelectNumber, Wait);
     NEW_NERVE(FileSelectNumberNrvEnd, FileSelectNumber, End);
-};
+};  // namespace
 
-FileSelectNumber::FileSelectNumber(const char* pName) :
-    LayoutActor(pName, true),
-    mNumber(-1),
-    mSelectAnimCtrl(nullptr)
-{
-    
-}
+FileSelectNumber::FileSelectNumber(const char* pName) : LayoutActor(pName, true), mNumber(-1), mSelectAnimCtrl(nullptr) {}
 
 void FileSelectNumber::init(const JMapInfoIter& rIter) {
     initLayoutManager("FileNumber", 2);
@@ -36,8 +30,7 @@ void FileSelectNumber::appear() {
         MR::startAnim(this, "Appear", 0);
         setNerve(&FileSelectNumberNrvAppear::sInstance);
         mSelectAnimCtrl->appear();
-    }
-    else if (isNerve(&FileSelectNumberNrvEnd::sInstance)) {
+    } else if (isNerve(&FileSelectNumberNrvEnd::sInstance)) {
         animFrame = MR::getAnimFrame(this, 0);
 
         MR::startAnim(this, "Appear", 0);
@@ -62,8 +55,7 @@ void FileSelectNumber::disappear() {
 
         MR::setAnimFrame(this, pAnimCtrl->mEndFrame - animFrame, 0);
         setNerve(&FileSelectNumberNrvEnd::sInstance);
-    }
-    else if (isNerve(&FileSelectNumberNrvWait::sInstance)) {
+    } else if (isNerve(&FileSelectNumberNrvWait::sInstance)) {
         MR::startAnim(this, "End", 0);
         setNerve(&FileSelectNumberNrvEnd::sInstance);
     }
@@ -89,7 +81,6 @@ void FileSelectNumber::control() {
 
 void FileSelectNumber::exeAppear() {
     if (MR::isFirstStep(this)) {
-        
     }
 
     if (MR::isAnimStopped(this, 0)) {
@@ -97,13 +88,10 @@ void FileSelectNumber::exeAppear() {
     }
 }
 
-void FileSelectNumber::exeWait() {
-    
-}
+void FileSelectNumber::exeWait() {}
 
 void FileSelectNumber::exeEnd() {
     if (MR::isFirstStep(this)) {
-        
     }
 
     if (MR::isAnimStopped(this, 0)) {
@@ -117,10 +105,7 @@ namespace FileSelectNumberSub {
     NEW_NERVE(SelectAnimControllerNrvSelectOutStart, SelectAnimController, SelectOutStart);
     NEW_NERVE(SelectAnimControllerNrvSelectOut, SelectAnimController, SelectOut);
 
-    SelectAnimController::SelectAnimController(LayoutActor* pHost) :
-        NerveExecutor("セレクトアニメ制御"),
-        mHost(pHost)
-    {
+    SelectAnimController::SelectAnimController(LayoutActor* pHost) : NerveExecutor("セレクトアニメ制御"), mHost(pHost) {
         initNerve(&SelectAnimControllerNrvSelectOut::sInstance);
     }
 
@@ -140,8 +125,7 @@ namespace FileSelectNumberSub {
             setNerve(&SelectAnimControllerNrvSelectInStart::sInstance);
 
             _C = nullptr;
-        }
-        else if (isNerve(&SelectAnimControllerNrvSelectOutStart::sInstance)) {
+        } else if (isNerve(&SelectAnimControllerNrvSelectOutStart::sInstance)) {
             _C = &SelectAnimControllerNrvSelectIn::sInstance;
         }
     }
@@ -151,8 +135,7 @@ namespace FileSelectNumberSub {
             setNerve(&SelectAnimControllerNrvSelectOutStart::sInstance);
 
             _C = nullptr;
-        }
-        else if (isNerve(&SelectAnimControllerNrvSelectInStart::sInstance)) {
+        } else if (isNerve(&SelectAnimControllerNrvSelectInStart::sInstance)) {
             _C = &SelectAnimControllerNrvSelectOut::sInstance;
         }
     }
@@ -165,8 +148,7 @@ namespace FileSelectNumberSub {
         if (MR::isAnimStopped(mHost, 0)) {
             if (_C == &SelectAnimControllerNrvSelectOut::sInstance) {
                 setNerve(&SelectAnimControllerNrvSelectOutStart::sInstance);
-            }
-            else {
+            } else {
                 setNerve(&SelectAnimControllerNrvSelectIn::sInstance);
             }
 
@@ -174,9 +156,7 @@ namespace FileSelectNumberSub {
         }
     }
 
-    void SelectAnimController::exeSelectIn() {
-        
-    }
+    void SelectAnimController::exeSelectIn() {}
 
     void SelectAnimController::exeSelectOutStart() {
         if (MR::isFirstStep(this)) {
@@ -186,8 +166,7 @@ namespace FileSelectNumberSub {
         if (MR::isAnimStopped(mHost, 0)) {
             if (_C == &SelectAnimControllerNrvSelectIn::sInstance) {
                 setNerve(&SelectAnimControllerNrvSelectInStart::sInstance);
-            }
-            else {
+            } else {
                 setNerve(&SelectAnimControllerNrvSelectOut::sInstance);
             }
 
@@ -195,7 +174,5 @@ namespace FileSelectNumberSub {
         }
     }
 
-    void SelectAnimController::exeSelectOut() {
-        
-    }
-};
+    void SelectAnimController::exeSelectOut() {}
+};  // namespace FileSelectNumberSub

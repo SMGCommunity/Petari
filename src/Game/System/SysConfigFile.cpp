@@ -1,10 +1,8 @@
-#include "Game/System/BinaryDataContentAccessor.hpp"
 #include "Game/System/SysConfigFile.hpp"
+#include "Game/System/BinaryDataContentAccessor.hpp"
 #include "Game/Util/MemoryUtil.hpp"
 
-SysConfigChunk::SysConfigChunk() :
-    mHeaderSerializer(nullptr)
-{
+SysConfigChunk::SysConfigChunk() : mHeaderSerializer(nullptr) {
     initHeaderSerializer();
     initializeData();
 }
@@ -21,18 +19,18 @@ s32 SysConfigChunk::deserialize(const u8* pBuffer, u32 size) {
     s32 result;
     const char* pName;
 
-    BinaryDataContentAccessor accessor = BinaryDataContentAccessor(const_cast<u8*>(pBuffer));
+    BinaryDataContentAccessor accessor = BinaryDataContentAccessor(const_cast< u8* >(pBuffer));
     u32 headerSize = accessor.getHeaderSize();
-    u8* pData = const_cast<u8*>(pBuffer) + headerSize;
+    u8* pData = const_cast< u8* >(pBuffer) + headerSize;
 
     pName = "mTimeAnnounced";
-    mTimeAnnounced = *static_cast<OSTime*>(accessor.getPointer(pName, pData));
+    mTimeAnnounced = *static_cast< OSTime* >(accessor.getPointer(pName, pData));
 
     pName = "mTimeSent";
-    mTimeSent = *static_cast<OSTime*>(accessor.getPointer(pName, pData));
+    mTimeSent = *static_cast< OSTime* >(accessor.getPointer(pName, pData));
 
     pName = "mSentBytes";
-    mSentBytes = *static_cast<u32*>(accessor.getPointer(pName, pData));
+    mSentBytes = *static_cast< u32* >(accessor.getPointer(pName, pData));
 
     s32 newSize = headerSize + mHeaderSerializer->getDataSize();
 
@@ -60,10 +58,7 @@ void SysConfigChunk::initHeaderSerializer() {
     mHeaderSerializer->flush();
 }
 
-SysConfigFile::SysConfigFile() :
-    mChunk(nullptr),
-    mChunkHolder(nullptr)
-{
+SysConfigFile::SysConfigFile() : mChunk(nullptr), mChunkHolder(nullptr) {
     mChunkHolder = new BinaryDataChunkHolder(0x3000, 8);
     mChunk = new SysConfigChunk();
 
@@ -111,17 +106,17 @@ s32 SysConfigChunk::serialize(u8* pBuffer, u32 size) const {
     MR::copyMemory(pBuffer, pSrcBuffer, mHeaderSerializer->getHeaderSize());
 
     u32 headerSize = mHeaderSerializer->getHeaderSize();
-    BinaryDataContentAccessor accessor = BinaryDataContentAccessor(static_cast<u8*>(mHeaderSerializer->mStream.mBuffer));
+    BinaryDataContentAccessor accessor = BinaryDataContentAccessor(static_cast< u8* >(mHeaderSerializer->mStream.mBuffer));
     u8* pData = pBuffer + headerSize;
 
     pName = "mTimeAnnounced";
-    OSTime* pTimeAnnounced = static_cast<OSTime*>(accessor.getPointer(pName, pData));
+    OSTime* pTimeAnnounced = static_cast< OSTime* >(accessor.getPointer(pName, pData));
 
     pName = "mTimeSent";
-    OSTime* pTimeSent = static_cast<OSTime*>(accessor.getPointer(pName, pData));
+    OSTime* pTimeSent = static_cast< OSTime* >(accessor.getPointer(pName, pData));
 
     pName = "mSentBytes";
-    u32* pSentBytes = static_cast<u32*>(accessor.getPointer(pName, pData));
+    u32* pSentBytes = static_cast< u32* >(accessor.getPointer(pName, pData));
 
     *pTimeAnnounced = mTimeAnnounced;
     *pTimeSent = mTimeSent;

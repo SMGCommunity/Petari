@@ -4,15 +4,15 @@
 namespace {
     static f32 sScreenOffsetX = 60.0f;
     static f32 sScreenOffsetY = -70.0f;
-};
+};  // namespace
 
-SubMeterLayout::SubMeterLayout(const char *pName, const char *pLayoutName) : LayoutActor(pName, true) {
+SubMeterLayout::SubMeterLayout(const char* pName, const char* pLayoutName) : LayoutActor(pName, true) {
     MR::connectToSceneLayout(this);
     initLayoutManager(pLayoutName, 1);
     MR::createAndAddPaneCtrl(this, "Count", 1);
 }
 
-void SubMeterLayout::init(const JMapInfoIter &rIter) {
+void SubMeterLayout::init(const JMapInfoIter& rIter) {
     MR::startPaneAnim(this, "Count", "Count", 0);
     MR::setPaneAnimFrameAndStop(this, "Count", 0.0f, 0);
     appear();
@@ -52,38 +52,37 @@ void SubMeterLayout::requestFrameOut() {
 }
 
 void SubMeterLayout::control() {
-    switch(_20) {
-        case 0:
-            break;
-        case 1:
-            if (MR::isAnimStopped(this, 0)) {
-                MR::startAnim(this, "Wait", 0);
-                _26 = 0;
-                _20 += 1;
-            }
-            break;
-        case 2:
-            if (_22 < 0x40) {
-                MR::startAnim(this, "Danger", 0);
-                _20 = 3;
-            }
-            break;
-        case 3:
-            if (_22 > 0x40) {
-                MR::startAnim(this, "Wait", 0);
-                MR::setAnimRate(this, 1.0f, 0);
-                _20 = 2;
-            }
-            else {
-                MR::setAnimRate(this, ((0x40 - _22) * 1.0f / 32.0f) + 1.0f, 0); 
-            }
-            break;
-        case 4:
-            if (MR::isAnimStopped(this, 0)) {
-                MR::hideLayout(this);
-                _20 = 0;
-            }
-            break;
+    switch (_20) {
+    case 0:
+        break;
+    case 1:
+        if (MR::isAnimStopped(this, 0)) {
+            MR::startAnim(this, "Wait", 0);
+            _26 = 0;
+            _20 += 1;
+        }
+        break;
+    case 2:
+        if (_22 < 0x40) {
+            MR::startAnim(this, "Danger", 0);
+            _20 = 3;
+        }
+        break;
+    case 3:
+        if (_22 > 0x40) {
+            MR::startAnim(this, "Wait", 0);
+            MR::setAnimRate(this, 1.0f, 0);
+            _20 = 2;
+        } else {
+            MR::setAnimRate(this, ((0x40 - _22) * 1.0f / 32.0f) + 1.0f, 0);
+        }
+        break;
+    case 4:
+        if (MR::isAnimStopped(this, 0)) {
+            MR::hideLayout(this);
+            _20 = 0;
+        }
+        break;
     }
 
     bool flag = true;
@@ -92,20 +91,18 @@ void SubMeterLayout::control() {
         if (!MR::isPlayerOnWaterSurface()) {
             flag = false;
         }
-    }
-    else if (!MR::isOnGroundPlayer()) {
+    } else if (!MR::isOnGroundPlayer()) {
         flag = false;
     }
 
     if (flag) {
-        if (((_20 + 0xFE) & 0xFF) <= 1u && _22 == 0x80) { 
+        if (((_20 + 0xFE) & 0xFF) <= 1u && _22 == 0x80) {
             if (++_26 == 60) {
                 MR::startAnim(this, "End", 0);
                 _20 = 5;
             }
         }
-    }
-    else if (_20 == 5) {
+    } else if (_20 == 5) {
         _20 = 1;
         _26 = 0;
         MR::startAnim(this, "Appear", 0);

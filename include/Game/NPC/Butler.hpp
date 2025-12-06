@@ -9,18 +9,18 @@
 
 class Butler : public NPCActor {
 public:
-    Butler(const char *);
+    Butler(const char*);
 
     virtual ~Butler();
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
     virtual void appear();
     virtual void kill();
     virtual void control();
-    virtual bool receiveMsgPlayerAttack(u32, HitSensor *, HitSensor *);
-    virtual bool receiveOtherMsg(u32, HitSensor *, HitSensor *);
+    virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
+    virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
 
     void killIfBatlerMapAppear();
-    void startDemoButlerReport(const char *);
+    void startDemoButlerReport(const char*);
     void startDemoDomeLecture1();
     void startDemoDomeLecture2();
     void startDemoStarPiece1();
@@ -28,10 +28,10 @@ public:
     void tryStartShowGalaxyMap();
     void resetStatus();
     bool messageBranchFunc(u32);
-    void initTalkCtrlArray(const JMapInfoIter &);
-    void initForAstroDome(const JMapInfoIter &);
-    void initForAstroGalaxy(const JMapInfoIter &);
-    TalkMessageCtrl* createTalkCtrl(const JMapInfoIter &, const char *) NO_INLINE;
+    void initTalkCtrlArray(const JMapInfoIter&);
+    void initForAstroDome(const JMapInfoIter&);
+    void initForAstroGalaxy(const JMapInfoIter&);
+    TalkMessageCtrl* createTalkCtrl(const JMapInfoIter&, const char*) NO_INLINE;
     void forceNerveToWait();
     void tryReplaceStarPieceIfExecLecture();
     bool tryStartStarPieceReaction();
@@ -42,11 +42,11 @@ public:
     void exeDemoShowGalaxyMap();
     inline void exeDemoWait();
 
-    TalkMessageCtrl** mTalkMessage; //15C
+    TalkMessageCtrl** mTalkMessage;  // 15C
     bool _160;
     s32 _164;
     s32 _168;
-    ButlerStateStarPieceReaction* mButlerState; //16C
+    ButlerStateStarPieceReaction* mButlerState;  // 16C
     bool _170;
     bool _171;
 };

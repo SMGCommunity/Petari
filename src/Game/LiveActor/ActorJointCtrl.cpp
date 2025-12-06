@@ -4,7 +4,7 @@
 #include "Game/LiveActor/IKJointCtrl.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
 
-ActorJointCtrl::ActorJointCtrl(LiveActor *pActor) {
+ActorJointCtrl::ActorJointCtrl(LiveActor* pActor) {
     mActor = pActor;
     mJointCtrlKeeper = 0;
     mFaceJointCtrl = 0;
@@ -22,10 +22,10 @@ ActorJointCtrl::ActorJointCtrl(LiveActor *pActor) {
     }
 }
 
-void ActorJointCtrl::startDynamicCtrl(const char *pName, s32 val) {
+void ActorJointCtrl::startDynamicCtrl(const char* pName, s32 val) {
     mJointCtrlKeeper->startCtrl(pName, val);
 }
-void ActorJointCtrl::endDynamicCtrl(const char *pName, s32 val) {
+void ActorJointCtrl::endDynamicCtrl(const char* pName, s32 val) {
     mJointCtrlKeeper->endCtrl(pName, val);
 }
 
@@ -41,11 +41,11 @@ void ActorJointCtrl::endFaceCtrl(s32 val) {
     mFaceJointCtrl->endCtrl(val);
 }
 
-void ActorJointCtrl::setIKEndPosition(const char *pName, const TVec3f &a2, f32 a3) {
+void ActorJointCtrl::setIKEndPosition(const char* pName, const TVec3f& a2, f32 a3) {
     mJointCtrlHolder->setEndPosition(pName, a2, a3);
 }
 
-void ActorJointCtrl::setIKEndDirection(const char *pName, const TVec3f &a2, f32 a3) {
+void ActorJointCtrl::setIKEndDirection(const char* pName, const TVec3f& a2, f32 a3) {
     mJointCtrlHolder->setEndDirection(pName, a2, a3);
 }
 

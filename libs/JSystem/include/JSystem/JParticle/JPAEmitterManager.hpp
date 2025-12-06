@@ -24,9 +24,9 @@ public:
 
     /* 0x00 */ void* _0;
     /* 0x04 */ JSUPtrList _4;
-    /* 0x10 */ void* _10; // Part of JPAList<T>
-    /* 0x14 */ void* _14; // Part of JPAList<T>
-    /* 0x18 */ u32 _18; // Part of JPAList<T>
+    /* 0x10 */ void* _10;  // Part of JPAList<T>
+    /* 0x14 */ void* _14;  // Part of JPAList<T>
+    /* 0x18 */ u32 _18;    // Part of JPAList<T>
     /* 0x1C */ void* _1C;
     /* 0x20 */ JPABaseEmitter* _20;
     /* 0x24 */ u32 _24;

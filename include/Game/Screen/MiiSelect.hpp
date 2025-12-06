@@ -3,11 +3,12 @@
 #include "Game/Map/FileSelectIconID.hpp"
 #include "Game/Screen/LayoutActor.hpp"
 
+
 namespace nw4r {
     namespace lyt {
         class TexMap;
     };
-};
+};  // namespace nw4r
 
 namespace MR {
     class BitArray;
@@ -107,4 +108,4 @@ namespace MiiSelectSub {
         /* 0x24 */ MiiSelect* mHost;
         /* 0x28 */ s32 _28;
     };
-};
+};  // namespace MiiSelectSub

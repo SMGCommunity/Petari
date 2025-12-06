@@ -58,4 +58,4 @@ public:
 namespace MR {
     bool isDeviceFreeStyle(const KPADStatus*);
     void getPadDataForExceptionNoInit(u32, u32*, u32*);
-};
+};  // namespace MR

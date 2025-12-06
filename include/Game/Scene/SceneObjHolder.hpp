@@ -178,8 +178,8 @@ namespace MR {
     /// @brief Returns the requested global scene object.
     /// @param id The index of the object.
     /// @return The pointer to the object.
-    template <class T>
+    template < class T >
     T* getSceneObj(int id) {
-        return static_cast<T*>(getSceneObjHolder()->getObj(id));
+        return static_cast< T* >(getSceneObjHolder()->getObj(id));
     }
-};
+};  // namespace MR

@@ -32,27 +32,19 @@ namespace MR {
         /* 0x8 */ u32 mCount;
     };
 
-    template<class T>
+    template < class T >
     class BothDirLink : public BothDirPtrLink {
     public:
-        BothDirLink(T* pValue) : BothDirPtrLink(pValue) {
-            
-        }
+        BothDirLink(T* pValue) : BothDirPtrLink(pValue) {}
 
-        ~BothDirLink() NO_INLINE {
-            
-        }
+        ~BothDirLink() NO_INLINE {}
     };
 
-    template<class T>
+    template < class T >
     class BothDirList : public BothDirPtrList {
     public:
-        BothDirList(bool param1) : BothDirPtrList(param1) {
-            
-        }
+        BothDirList(bool param1) : BothDirPtrList(param1) {}
 
-        ~BothDirList() {
-            
-        }
+        ~BothDirList() {}
     };
-};
+};  // namespace MR

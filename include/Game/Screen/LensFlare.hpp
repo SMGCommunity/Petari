@@ -82,7 +82,7 @@ private:
     /* 0x10 */ LensFlareRing* mRing;
     /* 0x14 */ LensFlareGlow* mGlow;
     /* 0x18 */ LensFlareLine* mLine;
-    /* 0x1C */ MR::Vector<MR::FixedArray<BrightObjBase*, 16> > mBrightObjArray;
+    /* 0x1C */ MR::Vector< MR::FixedArray< BrightObjBase*, 16 > > mBrightObjArray;
     /* 0x60 */ TVec2f _60;
     /* 0x68 */ f32 _68;
     /* 0x6C */ TVec2f _6C;
@@ -97,4 +97,4 @@ namespace MR {
     void addBrightObj(BrightObjBase* pBrightObj);
     void setLensFlareDrawSyncToken();
     u16 getLensFlareDrawSyncTokenIndex();
-};
+};  // namespace MR

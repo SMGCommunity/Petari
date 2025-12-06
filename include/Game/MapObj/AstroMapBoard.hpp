@@ -4,10 +4,10 @@
 
 class AstroMapBoard : public MapObjActor {
 public:
-    AstroMapBoard(const char *);
+    AstroMapBoard(const char*);
 
     virtual ~AstroMapBoard();
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
     virtual void initAfterPlacement();
-    virtual void connectToScene(const MapObjActorInitInfo &);
+    virtual void connectToScene(const MapObjActorInitInfo&);
 };

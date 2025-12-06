@@ -1,85 +1,91 @@
 #include "Game/Map/RailPart.hpp"
-
+#include "Game/Map/BezierRail.hpp"
 #include "JSystem/JMath/JMath.hpp"
 
-RailPart::RailPart()
-    : mRailPartLinear(0), mRailPartBezier(0) {
-}
+RailPart::RailPart() : mRailPartLinear(nullptr), mRailPartBezier(nullptr) {}
 
-void RailPart::init(const TVec3f &a1, const TVec3f &a2, const TVec3f &a3, const TVec3f &a4) {
-    if ((!a1.epsilonEquals(a2, 0.1f)) || (a4.epsilonEquals(a3, 0.1f))) {
+void RailPart::init(const TVec3f& rPoint1, const TVec3f& rPoint1Ctrl, const TVec3f& rPoint2Ctrl, const TVec3f& rPoint2) {
+    if ((rPoint1.epsilonEquals(rPoint1Ctrl, 0.1f)) && (rPoint2.epsilonEquals(rPoint2Ctrl, 0.1f))) {
         mRailPartLinear = new LinearRailPart();
-        mRailPartLinear->set(a1, a4);       
-    }
-    else {
-        initForBezier(a1, a2, a3, a4);
+        mRailPartLinear->set(rPoint1, rPoint2);
+    } else {
+        initForBezier(rPoint1, rPoint1Ctrl, rPoint2Ctrl, rPoint2);
     }
 }
 
-void RailPart::initForBezier(const TVec3f &a1, const TVec3f &a2, const TVec3f &a3, const TVec3f &a4) {
+void RailPart::initForBezier(const TVec3f& rPoint1, const TVec3f& rPoint1Ctrl, const TVec3f& rPoint2Ctrl, const TVec3f& rPoint2) {
     mRailPartBezier = new BezierRailPart();
-    mRailPartBezier->set(a1, a2, a3, a4);
+    mRailPartBezier->set(rPoint1, rPoint1Ctrl, rPoint2Ctrl, rPoint2);
 }
 
-void RailPart::calcPos(TVec3f *pOut, f32 a2) const {
+void RailPart::calcPos(TVec3f* pOut, f32 t) const {
     if (mRailPartLinear) {
-        JMAVECScaleAdd(&mRailPartLinear->_C, &mRailPartLinear->_0, pOut, a2);
-    }
-    else {
-        mRailPartBezier->calcPos(pOut, a2);
-    }
-}
-
-void RailPart::calcVelocity(TVec3f *pOut, f32 a2) const {
-    if (mRailPartLinear) {
-        pOut->set<f32>(mRailPartLinear->_C);
-    }
-    else {
-        mRailPartBezier->calcVelocity(pOut, a2);
+        JMAVECScaleAdd(&mRailPartLinear->mCtrlDegree1, &mRailPartLinear->mStart, pOut, t);
+    } else {
+        mRailPartBezier->calcPos(pOut, t);
     }
 }
 
-f32 RailPart::getLength(f32 a1, f32 a2, int a3) const {
+void RailPart::calcVelocity(TVec3f* pOut, f32 t) const {
     if (mRailPartLinear) {
-        return (mRailPartLinear->_18 * (a2 - a1));
+        pOut->set< f32 >(mRailPartLinear->mCtrlDegree1);
+    } else {
+        mRailPartBezier->calcVelocity(pOut, t);
+    }
+}
+
+f32 RailPart::getLength(f32 t1, f32 t2, int k) const {
+    if (mRailPartLinear) {
+        return (mRailPartLinear->mLength * (t2 - t1));
     }
 
-    return mRailPartBezier->getLength(a1, a2, a3);
+    return mRailPartBezier->getLength(t1, t2, k);
 }
 
 f32 RailPart::getTotalLength() const {
     if (mRailPartLinear) {
-        return mRailPartLinear->_18;
+        return mRailPartLinear->mLength;
     }
 
     return mRailPartBezier->mLength;
 }
 
-f32 RailPart::getParam(f32 a1) const {
+f32 RailPart::getParam(f32 t) const {
     if (mRailPartLinear) {
-        return (a1 / mRailPartLinear->_18);
+        return (t / mRailPartLinear->mLength);
     }
 
-    return mRailPartBezier->getParam(a1);
+    return mRailPartBezier->getParam(t);
 }
 
-f32 RailPart::getNearestParam(const TVec3f &rPos, f32 a2) const {
+f32 RailPart::getNearestParam(const TVec3f& rPos, f32 t) const {
     if (mRailPartLinear) {
-        return mRailPartLinear->getNearestParam(rPos, a2);
+        return mRailPartLinear->getNearestParam(rPos, t);
     }
 
-    return mRailPartBezier->getNearestParam(rPos, a2);
+    return mRailPartBezier->getNearestParam(rPos, t);
 }
 
-void LinearRailPart::set(const TVec3f &a1, const TVec3f &a2) {
-    _0 = a1;
-    _C = a2;
-    _C -= a1;
-    _18 = C_VECMag((const Vec *)&_C);
+void LinearRailPart::set(const TVec3f& rPoint1, const TVec3f& rPoint2) {
+    mStart = rPoint1;
+    mCtrlDegree1 = rPoint2;
+    mCtrlDegree1 -= rPoint1;
+    mLength = C_VECMag(&mCtrlDegree1);
 }
 
-/*
-f32 LinearRailPart::getNearestParam(const register TVec3f &a1, f32 a2) const {
+f32 LinearRailPart::getNearestParam(const register TVec3f& rPos, f32 t) const {
+    TVec3f v = rPos;
+    v -= mStart;
 
+    f32 proj = v.dot(mCtrlDegree1) / mCtrlDegree1.squared();
+
+    if (proj < 0.0f) {
+        return 0.0f;
+    }
+
+    if (proj > 1.0f) {
+        return 1.0f;
+    }
+
+    return proj;
 }
-*/

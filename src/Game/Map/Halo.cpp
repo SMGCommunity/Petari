@@ -1,11 +1,11 @@
 #include "Game/Map/Halo.hpp"
 
-Halo::Halo(const char *pName) : MapObjActor(pName) {
+Halo::Halo(const char* pName) : MapObjActor(pName) {
     mDistance = 70.0f;
 }
 
 /*
-void Halo::init(const JMapInfoIter &rIter) { 
+void Halo::init(const JMapInfoIter &rIter) {
     MapObjActor::init(rIter);
     MapObjActorInitInfo info;
     info.setupHioNode("環境");
@@ -34,13 +34,12 @@ void Halo::appear() {
         if (MR::isExistBpk(this, anim)) {
             J3DFrameCtrl* ctrl = MR::getBpkCtrl(this);
             MR::setBpkFrame(this, ctrl->mEndFrame);
-        
         }
         if (MR::isExistBtp(this, anim)) {
             J3DFrameCtrl* ctrl = MR::getBtpCtrl(this);
             MR::setBpkFrame(this, ctrl->mEndFrame);
         }
-        
+
         if (MR::isExistBrk(this, anim)) {
             J3DFrameCtrl* ctrl = MR::getBrkCtrl(this);
             MR::setBrkFrame(this, ctrl->mEndFrame);
@@ -48,8 +47,7 @@ void Halo::appear() {
 
         MR::hideModel(this);
         setNerve(&NrvHalo::HostTypeDisappear::sInstance);
-    }
-    else {
+    } else {
         MR::startAllAnim(this, "Appear");
         setNerve(&NrvHalo::HostTypeAppear::sInstance);
     }
@@ -59,7 +57,7 @@ f32 Halo::getDistance() const {
     return MR::calcDistanceToPlayer(this);
 }
 
-void Halo::connectToScene(const MapObjActorInitInfo &rIter) {
+void Halo::connectToScene(const MapObjActorInitInfo& rIter) {
     MR::connectToSceneAir(this);
 }
 
@@ -69,9 +67,8 @@ bool Halo::isDistanceAppear() const {
     f32 d = mDistance * 100.0f;
     if (d < v1) {
         return v1 < getDistance();
-    }
-    else {
-        return getDistance() < v1;   
+    } else {
+        return getDistance() < v1;
     }
 }
 
@@ -96,17 +93,13 @@ void Halo::exeDisappear() {
 
         if (MR::isExistBtk(this, anim) && MR::isBtkStopped(this)) {
             flag = true;
-        }
-        else if (MR::isExistBpk(this, anim) && MR::isBpkStopped(this)) {
+        } else if (MR::isExistBpk(this, anim) && MR::isBpkStopped(this)) {
             flag = true;
-        }
-        else if (MR::isExistBtp(this, anim) && MR::isBtpStopped(this)) {
+        } else if (MR::isExistBtp(this, anim) && MR::isBtpStopped(this)) {
             flag = true;
-        }
-        else if (MR::isExistBrk(this, anim) && MR::isBrkStopped(this)) {
+        } else if (MR::isExistBrk(this, anim) && MR::isBrkStopped(this)) {
             flag = true;
-        }
-        else {
+        } else {
             flag = false;
         }
 
@@ -122,15 +115,13 @@ void Halo::exeDisappear() {
     }
 }
 
-PowerStarHalo::PowerStarHalo(const char *pName) : Halo(pName) {
+PowerStarHalo::PowerStarHalo(const char* pName) : Halo(pName) {
     _C8 = -1;
 }
 
-Halo::~Halo() {
+Halo::~Halo() {}
 
-}
-
-void PowerStarHalo::init(const JMapInfoIter &rIter) {
+void PowerStarHalo::init(const JMapInfoIter& rIter) {
     Halo::init(rIter);
     MR::getJMapInfoArg1NoInit(rIter, &_C8);
     if (_C8 == -1) {
@@ -141,8 +132,7 @@ void PowerStarHalo::init(const JMapInfoIter &rIter) {
 void PowerStarHalo::appear() {
     if (isNerve(&NrvPowerStarHalo::HostTypeWaitScenarioOpeningEnd::sInstance)) {
         makeActorAppeared();
-    }
-    else {
+    } else {
         Halo::appear();
     }
 }
@@ -163,23 +153,21 @@ void PowerStarHalo::exeWaitScenarioOpeningEnd() {
     }
 }
 
-PowerStarHalo::~PowerStarHalo() {
+PowerStarHalo::~PowerStarHalo() {}
 
-}
-
-/* todo -- ordering of these functions is wrong */ 
-void NrvPowerStarHalo::HostTypeWaitScenarioOpeningEnd::execute(Spine *pSpine) const {
-    PowerStarHalo* halo = reinterpret_cast<PowerStarHalo*>(pSpine->mExecutor);
+/* todo -- ordering of these functions is wrong */
+void NrvPowerStarHalo::HostTypeWaitScenarioOpeningEnd::execute(Spine* pSpine) const {
+    PowerStarHalo* halo = reinterpret_cast< PowerStarHalo* >(pSpine->mExecutor);
     halo->exeWaitScenarioOpeningEnd();
 }
 
-void NrvHalo::HostTypeDisappear::execute(Spine *pSpine) const {
-    Halo* halo = reinterpret_cast<Halo*>(pSpine->mExecutor);
+void NrvHalo::HostTypeDisappear::execute(Spine* pSpine) const {
+    Halo* halo = reinterpret_cast< Halo* >(pSpine->mExecutor);
     halo->exeDisappear();
 }
 
-void NrvHalo::HostTypeAppear::execute(Spine *pSpine) const {
-    Halo* halo = reinterpret_cast<Halo*>(pSpine->mExecutor);
+void NrvHalo::HostTypeAppear::execute(Spine* pSpine) const {
+    Halo* halo = reinterpret_cast< Halo* >(pSpine->mExecutor);
     if (halo->isDistanceDisappear()) {
         MR::startAllAnim(halo, "Disappear");
         halo->setNerve(&NrvHalo::HostTypeDisappear::sInstance);

@@ -6,7 +6,7 @@ class WPad;
 
 class WPadInfoChecker {
 public:
-    WPadInfoChecker(WPad *);
+    WPadInfoChecker(WPad*);
 
     s32 getBattery() const;
     void successGetInfo();

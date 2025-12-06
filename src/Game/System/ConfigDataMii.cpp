@@ -14,11 +14,7 @@
 #define ICON_ID_KINOPIO 4
 #define ICON_ID_PEACH 5
 
-ConfigDataMii::ConfigDataMii() :
-    mFlag(0),
-    mIconId(ICON_ID_MARIO),
-    mMiiId(nullptr)
-{
+ConfigDataMii::ConfigDataMii() : mFlag(0), mIconId(ICON_ID_MARIO), mMiiId(nullptr) {
     mMiiId = new u8[sizeof(RFLCreateID)];
 
     initializeData();
@@ -61,8 +57,7 @@ s32 ConfigDataMii::deserialize(const u8* pBuffer, u32 size) {
         if ((mFlag & FLAG_UNK1) != 0) {
             mIconId = ICON_ID_MII;
         }
-    }
-    else {
+    } else {
         stream.read(&mIconId, sizeof(mIconId));
     }
 
@@ -82,8 +77,7 @@ void ConfigDataMii::setMiiOrIconId(const void* pMiiId, const u32* pIconId) {
 
         mFlag |= FLAG_UNK2;
         mIconId = ICON_ID_MII;
-    }
-    else {
+    } else {
         MR::fillMemory(mMiiId, 0, sizeof(RFLCreateID));
 
         mIconId = *pIconId;

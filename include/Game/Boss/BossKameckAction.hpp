@@ -5,16 +5,16 @@
 
 class BossKameck;
 
-class BossKameckAction : public ActorStateBase<BossKameck> {
+class BossKameckAction : public ActorStateBase< BossKameck > {
 public:
-    BossKameckAction(const char *, BossKameck *);
+    BossKameckAction(const char*, BossKameck*);
 
     virtual ~BossKameckAction();
-    virtual void attackSensor(HitSensor *, HitSensor *);
-    virtual bool receiveMsgPlayerAttack(u32, HitSensor *, HitSensor *);
-    virtual bool receiveMsgEnemyAttack(u32, HitSensor *, HitSensor *);
-    virtual bool receiveMsgPush(HitSensor *, HitSensor *);
-    virtual bool receiveOtherMsg(u32, HitSensor *, HitSensor *);
+    virtual void attackSensor(HitSensor*, HitSensor*);
+    virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
+    virtual bool receiveMsgEnemyAttack(u32, HitSensor*, HitSensor*);
+    virtual bool receiveMsgPush(HitSensor*, HitSensor*);
+    virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
 
-    BossKameck* mBossKameck;            // 0xC
+    BossKameck* mBossKameck;  // 0xC
 };

@@ -10,13 +10,13 @@ public:
     virtual void loadModelDrawMtx() const;
     virtual void drawShape() const;
 
-    void setFromShadowController(const ShadowController *);
-    void setToShadowController(const ShadowController *);
+    void setFromShadowController(const ShadowController*);
+    void setToShadowController(const ShadowController*);
     void setFromWidth(f32);
     void setToWidth(f32);
 
-    const ShadowController* mFromShadowController;    // 0x1C
-    const ShadowController* mToShadowController;      // 0x20
-    f32 mFromWidth;                             // 0x24
-    f32 mToWidth;                               // 0x28
+    const ShadowController* mFromShadowController;  // 0x1C
+    const ShadowController* mToShadowController;    // 0x20
+    f32 mFromWidth;                                 // 0x24
+    f32 mToWidth;                                   // 0x28
 };

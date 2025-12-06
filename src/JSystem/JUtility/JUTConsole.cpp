@@ -3,13 +3,13 @@
 
 void JUTConsoleManager::drawDirect(bool a1) const {
     if (mDirectConsole != nullptr) {
-        if (a1) { 
+        if (a1) {
             BOOL en = OSEnableInterrupts();
             u32 startRetraceCount = VIGetRetraceCount();
             u32 curRetraceCount = startRetraceCount;
             do {
                 curRetraceCount = VIGetRetraceCount();
-            } while(startRetraceCount == curRetraceCount);
+            } while (startRetraceCount == curRetraceCount);
 
             OSRestoreInterrupts(en);
         }
@@ -18,7 +18,7 @@ void JUTConsoleManager::drawDirect(bool a1) const {
     }
 }
 
-void JUTConsoleManager::setDirectConsole(JUTConsole *pConsole) {
+void JUTConsoleManager::setDirectConsole(JUTConsole* pConsole) {
     if (mDirectConsole != nullptr) {
         appendConsole(mDirectConsole);
     }

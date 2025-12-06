@@ -2,11 +2,7 @@
 #include "Game/Util/EventUtil.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 
-GalaxyMapMarioIcon::GalaxyMapMarioIcon(LayoutActor* pParam1, const char* pParam2) :
-    LayoutActor("マリオ", true),
-    _20(pParam1),
-    _24(pParam2)
-{}
+GalaxyMapMarioIcon::GalaxyMapMarioIcon(LayoutActor* pParam1, const char* pParam2) : LayoutActor("マリオ", true), _20(pParam1), _24(pParam2) {}
 
 void GalaxyMapMarioIcon::init(const JMapInfoIter& rIter) {
     f32 animFrame;
@@ -17,8 +13,7 @@ void GalaxyMapMarioIcon::init(const JMapInfoIter& rIter) {
 
     if (MR::isPlayerLuigi()) {
         animFrame = 1.0f;
-    }
-    else {
+    } else {
         animFrame = 0.0f;
     }
 

@@ -11,21 +11,22 @@ namespace NrvTripodBossGuardWallPart {
     NEW_NERVE(TripodBossGuardWallPartNrvActive, TripodBossGuardWallPart, Active);
     NEW_NERVE(TripodBossGuardWallPartNrvBreak, TripodBossGuardWallPart, Break);
     NEW_NERVE(TripodBossGuardWallPartNrvRepair, TripodBossGuardWallPart, Repair);
-};
+};  // namespace NrvTripodBossGuardWallPart
 
-TripodBossGuardWallPart::TripodBossGuardWallPart(const char *pName) : LiveActor(pName) {
+TripodBossGuardWallPart::TripodBossGuardWallPart(const char* pName) : LiveActor(pName) {
     mHostMtx = nullptr;
     mPlacementAngle = 0.0f;
     mStartTiming = 0;
 }
 
-void TripodBossGuardWallPart::init(const JMapInfoIter &rIter) {
+void TripodBossGuardWallPart::init(const JMapInfoIter& rIter) {
     initModelManagerWithAnm("TripodBossGuardWall", nullptr, false);
     MR::connectToScene(this, 0x23, 0xB, 0x1F, -1);
     initHitSensor(2);
     TVec3f sensorOffs;
     sensorOffs.z = sensorOffs.y = sensorOffs.x = 0.0f;
-    MR::initCollisionParts(this, "TripodBossGuardWall", MR::addHitSensor(this, "collision", ATYPE_TRIPODBOSS_GUARD_WALL, 0, 1000.0f, sensorOffs), nullptr);
+    MR::initCollisionParts(this, "TripodBossGuardWall", MR::addHitSensor(this, "collision", ATYPE_TRIPODBOSS_GUARD_WALL, 0, 1000.0f, sensorOffs),
+                           nullptr);
     initSound(4, false);
     initEffectKeeper(0, "TripodBoss", false);
     MR::invalidateClipping(this);
@@ -47,7 +48,7 @@ void TripodBossGuardWallPart::kill() {
 }
 
 void TripodBossGuardWallPart::control() {
-    mPosition.set<f32>(mHostMtx->get(0, 3), mHostMtx->get(1, 3), mHostMtx->get(2, 3));
+    mPosition.set< f32 >(mHostMtx->get(0, 3), mHostMtx->get(1, 3), mHostMtx->get(2, 3));
 }
 
 void TripodBossGuardWallPart::calcAndSetBaseMtx() {
@@ -58,10 +59,8 @@ void TripodBossGuardWallPart::calcAndSetBaseMtx() {
     MR::setBaseTRMtx(this, mtx);
 }
 
-bool TripodBossGuardWallPart::receiveMsgEnemyAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
-    if (MR::isSensorType(pReceiver, ATYPE_TRIPODBOSS_GUARD_WALL)
-        && MR::isMsgExplosionAttack(msg))
-    {
+bool TripodBossGuardWallPart::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
+    if (MR::isSensorType(pReceiver, ATYPE_TRIPODBOSS_GUARD_WALL) && MR::isMsgExplosionAttack(msg)) {
         return requestBreak();
     }
 
@@ -118,9 +117,7 @@ void TripodBossGuardWallPart::exeRepair() {
     }
 }
 
-void TripodBossGuardWallPart::exeActive() {
-
-}
+void TripodBossGuardWallPart::exeActive() {}
 
 void TripodBossGuardWallPart::exeDemo() {
     if (MR::isGreaterStep(this, mStartTiming)) {
@@ -128,11 +125,9 @@ void TripodBossGuardWallPart::exeDemo() {
     }
 }
 
-void TripodBossGuardWallPart::exeNonActive() {
+void TripodBossGuardWallPart::exeNonActive() {}
 
-}
-
-void TripodBossGuardWallPart::setHostMatrix(const TPos3f *pPos) {
+void TripodBossGuardWallPart::setHostMatrix(const TPos3f* pPos) {
     mHostMtx = pPos;
 }
 

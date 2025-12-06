@@ -4,11 +4,11 @@
 
 class MapPartsRailGuidePoint : public LiveActor {
 public:
-    MapPartsRailGuidePoint(const LiveActor *, const char *, f32, bool);
-    MapPartsRailGuidePoint(const LiveActor *, const char *, int, bool);
+    MapPartsRailGuidePoint(const LiveActor*, const char*, f32, bool);
+    MapPartsRailGuidePoint(const LiveActor*, const char*, int, bool);
 
     virtual ~MapPartsRailGuidePoint();
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
 
     f32 _8C;
     bool _90;

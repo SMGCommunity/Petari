@@ -1,5 +1,7 @@
+#include "Game/MapObj/LavaJamboSunPlanet.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
+#include "Game/LiveActor/LodCtrl.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/ActorSwitchUtil.hpp"
@@ -12,14 +14,12 @@
 #include "Game/Util/SoundUtil.hpp"
 #include "math_types.hpp"
 #include "revolution/types.h"
-#include "Game/LiveActor/LodCtrl.hpp"
-#include "Game/MapObj/LavaJamboSunPlanet.hpp"
 
 namespace NrvLavaJamboSunPlanet {
     NEW_NERVE(HostTypeWait, LavaJamboSunPlanet, Wait);
     NEW_NERVE(HostTypePause, LavaJamboSunPlanet, Wait);
     NEW_NERVE(HostTypeMove, LavaJamboSunPlanet, Move);
-};
+};  // namespace NrvLavaJamboSunPlanet
 
 LavaJamboSunPlanet::LavaJamboSunPlanet(const char* pName) : LiveActor(pName) {
     mBloomModel = nullptr;
@@ -63,7 +63,7 @@ void LavaJamboSunPlanet::exeWait() {
         setNerve(&NrvLavaJamboSunPlanet::HostTypeMove::sInstance);
         return;
     }
-    if ( isNerve(&NrvLavaJamboSunPlanet::HostTypePause::sInstance) && MR::isOnSwitchB(this)) {
+    if (isNerve(&NrvLavaJamboSunPlanet::HostTypePause::sInstance) && MR::isOnSwitchB(this)) {
         setNerve(&NrvLavaJamboSunPlanet::HostTypeMove::sInstance);
     }
 }
@@ -77,11 +77,9 @@ void LavaJamboSunPlanet::exeMove() {
     MR::getCurrentRailPointArg1NoInit(this, &v3);
     if (v3 == 1) {
         setNerve(&NrvLavaJamboSunPlanet::HostTypePause::sInstance);
-    } else if  (MR::isRailReachedGoal(this)) {
+    } else if (MR::isRailReachedGoal(this)) {
         setNerve(&NrvLavaJamboSunPlanet::HostTypeWait::sInstance);
     }
 }
 
-LavaJamboSunPlanet::~LavaJamboSunPlanet() {
-    
-}
+LavaJamboSunPlanet::~LavaJamboSunPlanet() {}

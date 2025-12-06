@@ -6,7 +6,7 @@ class MarioActor;
 
 class MarioWall : public MarioState {
 public:
-    MarioWall(MarioActor *);
+    MarioWall(MarioActor*);
     u32 _14;
     u32 _18;
     u8 _1C;

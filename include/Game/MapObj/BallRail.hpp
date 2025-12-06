@@ -14,12 +14,12 @@ public:
 
 class BallRail : public LiveActor {
 public:
-    BallRail(const char *);
+    BallRail(const char*);
 
     virtual ~BallRail();
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
     virtual void control();
-    virtual bool receiveOtherMsg(u32, HitSensor *, HitSensor *);
+    virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
 
     void initRailPoints();
     void exeWait();
@@ -27,12 +27,12 @@ public:
     void exeRun();
     inline void exeNoBind();
 
-    BallRailPoint* mRailPoints; // 0x8C
+    BallRailPoint* mRailPoints;  // 0x8C
     HitSensor* _90;
     TVec3f _94;
-    s32 mNumPoints;             // 0xA0
-    f32 mAcceleration;          // 0xA4
-    f32 mDeceleration;          // 0xA8
+    s32 mNumPoints;     // 0xA0
+    f32 mAcceleration;  // 0xA4
+    f32 mDeceleration;  // 0xA8
     f32 _AC;
 };
 
@@ -41,4 +41,4 @@ namespace NrvBallRail {
     NERVE_DECL(BallRailNrvSetUp, BallRail, BallRail::exeSetUp);
     NERVE_DECL(BallRailNrvRun, BallRail, BallRail::exeRun);
     NERVE_DECL(BallRailNrvNoBind, BallRail, BallRail::exeNoBind);
-};
+};  // namespace NrvBallRail

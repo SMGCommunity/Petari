@@ -1,5 +1,5 @@
-#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/CameraInfo.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/GamePadUtil.hpp"
 #include "Game/Util/LayoutUtil.hpp"
@@ -15,13 +15,9 @@ namespace NrvCameraInfo {
     NEW_NERVE(CameraInfoNrvNormal, CameraInfo, Normal);
     NEW_NERVE(CameraInfoNrvFirstPerson, CameraInfo, FirstPerson);
     NEW_NERVE(CameraInfoNrvEnd, CameraInfo, End);
-};
+};  // namespace NrvCameraInfo
 
-CameraInfo::CameraInfo(const char* pName) :
-    LayoutActor(pName, true),
-    mStep(-1),
-    mIsActive(true)
-{}
+CameraInfo::CameraInfo(const char* pName) : LayoutActor(pName, true), mStep(-1), mIsActive(true) {}
 
 void CameraInfo::init(const JMapInfoIter& rIter) {
     initLayoutManager("CameraInfo", 2);
@@ -106,22 +102,19 @@ void CameraInfo::exeNormal() {
 
     if (MR::isPossibleToShiftToFirstPersonCamera()) {
         MR::showPane(this, "LineU");
-    }
-    else {
+    } else {
         MR::hidePane(this, "LineU");
     }
 
     if (MR::isCameraPossibleToRoundLeft()) {
         MR::showPane(this, "LineL");
-    }
-    else {
+    } else {
         MR::hidePane(this, "LineL");
     }
 
     if (MR::isCameraPossibleToRoundRight()) {
         MR::showPane(this, "LineR");
-    }
-    else {
+    } else {
         MR::hidePane(this, "LineR");
     }
 
@@ -159,8 +152,7 @@ void CameraInfo::updateCameraNG() {
             MR::showPane(this, "Forbid");
             MR::startPaneAnim(this, "Forbid", "Forbid", 0);
         }
-    }
-    else if (MR::isPaneAnimStopped(this, "Forbid", 0)) {
+    } else if (MR::isPaneAnimStopped(this, "Forbid", 0)) {
         MR::hidePane(this, "Forbid");
     }
 }
@@ -197,10 +189,8 @@ bool CameraInfo::tryShow() {
         return false;
     }
 
-    bool isTriggerAnyDir = MR::testCorePadTriggerUp(WPAD_CHAN0)
-        || MR::testCorePadTriggerDown(WPAD_CHAN0)
-        || MR::testCorePadTriggerLeft(WPAD_CHAN0)
-        || MR::testCorePadTriggerRight(WPAD_CHAN0);
+    bool isTriggerAnyDir = MR::testCorePadTriggerUp(WPAD_CHAN0) || MR::testCorePadTriggerDown(WPAD_CHAN0) || MR::testCorePadTriggerLeft(WPAD_CHAN0) ||
+                           MR::testCorePadTriggerRight(WPAD_CHAN0);
 
     if (!isTriggerAnyDir) {
         return false;
@@ -224,10 +214,8 @@ bool CameraInfo::tryHide() {
         return false;
     }
 
-    bool isTriggerAnyDir = MR::testCorePadTriggerUp(WPAD_CHAN0)
-        || MR::testCorePadTriggerDown(WPAD_CHAN0)
-        || MR::testCorePadTriggerLeft(WPAD_CHAN0)
-        || MR::testCorePadTriggerRight(WPAD_CHAN0);
+    bool isTriggerAnyDir = MR::testCorePadTriggerUp(WPAD_CHAN0) || MR::testCorePadTriggerDown(WPAD_CHAN0) || MR::testCorePadTriggerLeft(WPAD_CHAN0) ||
+                           MR::testCorePadTriggerRight(WPAD_CHAN0);
 
     if (isTriggerAnyDir || getNerveStep() == 0) {
         mStep = 0;
@@ -253,8 +241,7 @@ bool CameraInfo::tryChangeCameraStateNerve() {
         }
 
         return false;
-    }
-    else if (!isNerve(&NrvCameraInfo::CameraInfoNrvNormal::sInstance)) {
+    } else if (!isNerve(&NrvCameraInfo::CameraInfoNrvNormal::sInstance)) {
         setNerve(&NrvCameraInfo::CameraInfoNrvNormal::sInstance);
 
         return true;

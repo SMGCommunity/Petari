@@ -13,8 +13,8 @@
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
-#include "revolution/types.h"
 #include "JSystem/JMath/JMATrigonometric.hpp"
+#include "revolution/types.h"
 
 namespace {
     f32 cSensorRadius = 80.0f;
@@ -23,14 +23,14 @@ namespace {
     f32 cForceKillDistance = 3000.0f;
     f32 cBoundReduction = 0.9f;
     f32 cGravityAcc = 2.0f;
-}
+}  // namespace
 
 namespace NrvFireMarioBall {
     NEW_NERVE(FireMarioBallNrvThrow, FireMarioBall, Throw);
 }
 
 FireMarioBall::~FireMarioBall() {}
- 
+
 FireMarioBall::FireMarioBall(const char* pName) : LiveActor(pName) {
     _8C = 0;
 }
@@ -64,15 +64,15 @@ void FireMarioBall::kill() {
     LiveActor::kill();
 }
 
-void FireMarioBall::appearAndThrow(const TVec3f& v1 , const TVec3f& v2) {
-    mPosition.set<f32>(v1);
-    mVelocity.set<f32>(v2 * cThrowSpeed);
-    mRotation.set<f32>(0.0f, 57.295776f * JMath::sAtanTable.atan2_(mVelocity.x, mVelocity.z), 0.0f);
+void FireMarioBall::appearAndThrow(const TVec3f& v1, const TVec3f& v2) {
+    mPosition.set< f32 >(v1);
+    mVelocity.set< f32 >(v2 * cThrowSpeed);
+    mRotation.set< f32 >(0.0f, 57.295776f * JMath::sAtanTable.atan2_(mVelocity.x, mVelocity.z), 0.0f);
     MR::tryRumblePadWeak(this, 0);
     appear();
 }
 
-void FireMarioBall::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
+void FireMarioBall::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (!MR::isSensorPlayer(pReceiver)) {
         attackFire(pReceiver);
     }
@@ -97,14 +97,11 @@ void FireMarioBall::initSensor() {
 HitSensor* FireMarioBall::isBindedAny() const {
     if (MR::isBindedGround(this)) {
         return MR::getGroundSensor(this);
-    }
-    else if (MR::isBindedWall(this)) {
+    } else if (MR::isBindedWall(this)) {
         return MR::getWallSensor(this);
-    }
-    else if (MR::isBindedRoof(this)) {
+    } else if (MR::isBindedRoof(this)) {
         return MR::getRoofSensor(this);
-    }
-    else 
+    } else
         return nullptr;
 }
 
@@ -121,12 +118,10 @@ bool FireMarioBall::tryToKill() {
                 kill();
                 return true;
             }
-        }
-        else {
+        } else {
             _90 = 3;
-        } 
-    }
-    else {
+        }
+    } else {
         _90 = 0;
     }
     if (!MR::isNearPlayer(this, cForceKillDistance)) {
@@ -153,13 +148,11 @@ void FireMarioBall::exeThrow() {
         const TVec3f* v1 = MR::getGroundNormal(this);
         mVelocity += -*v1 * MR::vecKillElement(mVelocity, *v1, &mVelocity) * cBoundReduction;
 
-    }
-    else if (MR::isBindedRoof(this)) {
+    } else if (MR::isBindedRoof(this)) {
         MR::startSound(this, "SE_OJ_MARIO_FIRE_BALL_BOUND", -1, -1);
         const TVec3f* v2 = MR::getRoofNormal(this);
         mVelocity += -*v2 * MR::vecKillElement(mVelocity, *v2, &mVelocity) * cBoundReduction;
-    }
-    else {
+    } else {
         TVec3f grav;
         MR::calcGravityVector(this, &grav, nullptr, 0);
         mVelocity += grav * cGravityAcc;

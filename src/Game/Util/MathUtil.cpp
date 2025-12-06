@@ -1,8 +1,8 @@
+#include "Game/Util/MathUtil.hpp"
+#include "Game/SingletonHolder.hpp"
 #include "Game/System/GameSystem.hpp"
 #include "Game/System/GameSystemObjHolder.hpp"
-#include "Game/Util/MathUtil.hpp"
 #include "Game/Util/MtxUtil.hpp"
-#include "Game/SingletonHolder.hpp"
 #include <JSystem/JGeometry/TUtil.hpp>
 #include <JSystem/JMath/JMATrigonometric.hpp>
 #include <JSystem/JMath/JMath.hpp>
@@ -13,7 +13,7 @@ namespace {
     static f32* gAcosTable;
     const f32 cMinDegree = 0.0f;
     const f32 cMaxDegree = 360.0f;
-};
+};  // namespace
 
 namespace MR {
     void initAcosTable() {
@@ -34,63 +34,48 @@ namespace MR {
     f32 acosEx(f32 x) {
         if (__fabsf(x) < 0.98f) {
             return JMAAcosRadian(x);
-        }
-        else if (x < 0.0f) {
-            u32 index = static_cast<u32>((-x - 0.98f) * 255.0f * 50.0f);
+        } else if (x < 0.0f) {
+            u32 index = static_cast< u32 >((-x - 0.98f) * 255.0f * 50.0f);
             f32 acos = gAcosTable[index];
 
             return PI - acos;
-        }
-        else {
-            u32 index = static_cast<u32>((x - 0.98f) * 255.0f * 50.0f);
+        } else {
+            u32 index = static_cast< u32 >((x - 0.98f) * 255.0f * 50.0f);
 
             return gAcosTable[index];
         }
     }
 
     f32 getRandom() {
-        u32 rand = SingletonHolder<GameSystem>::get()->mObjHolder->mRandom.rand();
+        u32 rand = SingletonHolder< GameSystem >::get()->mObjHolder->mRandom.rand();
         u32 value = (rand >> 9) | 0x3F800000;
 
-        return reinterpret_cast<f32&>(value) - 1.0f;
+        return reinterpret_cast< f32& >(value) - 1.0f;
     }
 
-    f32 getRandom(f32 min, f32 max) {
-        return min + (max - min) * getRandom();
-    }
+    f32 getRandom(f32 min, f32 max) { return min + (max - min) * getRandom(); }
 
-    s32 getRandom(s32 min, s32 max) {
-        return getRandom(static_cast<f32>(min), static_cast<f32>(max));
-    }
+    s32 getRandom(s32 min, s32 max) { return getRandom(static_cast< f32 >(min), static_cast< f32 >(max)); }
 
-    f32 getRandomDegree() {
-        return getRandom(cMinDegree, cMaxDegree);
-    }
+    f32 getRandomDegree() { return getRandom(cMinDegree, cMaxDegree); }
 
-    void calcRandomVec(TVec3f* pDst, f32 min, f32 max) {
-        pDst->set<f32>(getRandom(min, max), getRandom(min, max), getRandom(min, max));
-    }
+    void calcRandomVec(TVec3f* pDst, f32 min, f32 max) { pDst->set< f32 >(getRandom(min, max), getRandom(min, max), getRandom(min, max)); }
 
-    bool isHalfProbability() {
-        return getRandom() < 0.5f;
-    }
+    bool isHalfProbability() { return getRandom() < 0.5f; }
 
     f32 getSignHalfProbability() {
         if (isHalfProbability()) {
             return -1.0f;
-        }
-        else {
+        } else {
             return 1.0f;
         }
     }
 
-    void getRandomVector(TVec3f* pDst, f32 range) {
-        pDst->set<f32>(getRandom(-range, range), getRandom(-range, range), getRandom(-range, range));
-    }
+    void getRandomVector(TVec3f* pDst, f32 range) { pDst->set< f32 >(getRandom(-range, range), getRandom(-range, range), getRandom(-range, range)); }
 
-    #ifdef NON_MATCHING
+#ifdef NON_MATCHING
     // stack places randVec and otherVec wrongly
-    void addRandomVector(TVec3f *pOut, const TVec3f &rOtherVec, f32 a3) {
+    void addRandomVector(TVec3f* pOut, const TVec3f& rOtherVec, f32 a3) {
         f32 x = getRandom(-range, range);
         f32 y = getRandom(-range, range);
         f32 z = getRandom(-range, range);
@@ -104,7 +89,7 @@ namespace MR {
         otherVec.add(randVec);
         pOut->set(otherVec);
     }
-    #endif
+#endif
 
     void turnRandomVector(TVec3f* pDst, const TVec3f& rSrc, f32 range) {
         f32 srcLength = rSrc.length();
@@ -113,33 +98,24 @@ namespace MR {
 
         if (isNearZero(rSrc, 0.001f)) {
             pDst->set(rSrc);
-        }
-        else {
+        } else {
             pDst->setLength(srcLength);
         }
     }
 
-    f32 getInterpolateValue(f32 t, f32 start, f32 end) {
-        return start + (end - start) * t;
-    }
+    f32 getInterpolateValue(f32 t, f32 start, f32 end) { return start + (end - start) * t; }
 
-    f32 getLinerValue(f32 x, f32 start, f32 end, f32 max) {
-        return getInterpolateValue(x / max, start, end);
-    }
+    f32 getLinerValue(f32 x, f32 start, f32 end, f32 max) { return getInterpolateValue(x / max, start, end); }
 
     f32 getLinerValueFromMinMax(f32 x, f32 min, f32 max, f32 start, f32 end) {
-        return getInterpolateValue((JGeometry::TUtil<f32>::clamp(x, min, max) - min) / (max - min), start, end);
+        return getInterpolateValue((JGeometry::TUtil< f32 >::clamp(x, min, max) - min) / (max - min), start, end);
     }
 
     // FIXME: Source registers swapped in multiplication by pi.
-    f32 getEaseInValue(f32 x, f32 start, f32 end, f32 max) {
-        return getInterpolateValue(1.0f - JMACosRadian(((x / max) * PI) / 2.0f), start, end);
-    }
+    f32 getEaseInValue(f32 x, f32 start, f32 end, f32 max) { return getInterpolateValue(1.0f - JMACosRadian(((x / max) * PI) / 2.0f), start, end); }
 
     // FIXME: Source registers swapped in multiplication by pi.
-    f32 getEaseOutValue(f32 x, f32 start, f32 end, f32 max) {
-        return getInterpolateValue(JMASinRadian(((x / max) * PI) / 2.0f), start, end);
-    }
+    f32 getEaseOutValue(f32 x, f32 start, f32 end, f32 max) { return getInterpolateValue(JMASinRadian(((x / max) * PI) / 2.0f), start, end); }
 
     // FIXME: Source registers swapped in multiplication by pi, and the instruction is swapped.
     f32 getEaseInOutValue(f32 x, f32 start, f32 end, f32 max) {
@@ -200,8 +176,7 @@ namespace MR {
         if (isOppositeDirection(rParam3, rParam4, 0.01f)) {
             turnRandomVector(&v1, rParam3, 0.01f);
             normalize(&v1);
-        }
-        else {
+        } else {
             v1.set(rParam3);
         }
 
@@ -214,10 +189,9 @@ namespace MR {
             *pParam2 = 1.0f;
 
             return false;
-        }
-        else {
+        } else {
             normalize(v2, pParam1);
-            *pParam2 = JGeometry::TUtil<f32>::clamp(v1.dot(rParam4), -1.0f, 1.0f);
+            *pParam2 = JGeometry::TUtil< f32 >::clamp(v1.dot(rParam4), -1.0f, 1.0f);
 
             return true;
         }
@@ -231,9 +205,7 @@ namespace MR {
     // calcReboundVelocity
     // calcParabolicFunctionParam
 
-    void makeQuatRotateRadian(TQuat4f* pParam1, const TVec3f& rParam2) {
-        pParam1->setEuler(rParam2.x, rParam2.y, rParam2.z);
-    }
+    void makeQuatRotateRadian(TQuat4f* pParam1, const TVec3f& rParam2) { pParam1->setEuler(rParam2.x, rParam2.y, rParam2.z); }
 
     // FIXME: Floating-point registers are allocated incorrectly.
     void makeQuatRotateDegree(TQuat4f* pParam1, const TVec3f& rParam2) {
@@ -301,15 +273,13 @@ namespace MR {
 
             if (length <= 0.0000038146973f) {
                 pDst->zero();
-            }
-            else {
-                f32 invSqrt = JGeometry::TUtil<f32>::inv_sqrt(sqr);
+            } else {
+                f32 invSqrt = JGeometry::TUtil< f32 >::inv_sqrt(sqr);
 
                 pDst->scale(invSqrt * length, rSrc);
             }
-        }
-        else {
-            pDst->set<f32>(rSrc);
+        } else {
+            pDst->set< f32 >(rSrc);
         }
     }
 
@@ -319,16 +289,13 @@ namespace MR {
         if (a2 > a3) {
             if (a1 < a3) {
                 return false;
-            }
-            else {
+            } else {
                 return !(a1 > a2);
             }
-        }
-        else {
+        } else {
             if (a1 < a2) {
                 return false;
-            }
-            else {
+            } else {
                 return !(a1 > a3);
             }
         }
@@ -347,7 +314,7 @@ namespace MR {
         f32 xDelta = rPos1.x - rPos2.x;
         f32 yDelta = rPos1.y - rPos2.y;
 
-        return JGeometry::TUtil<f32>::sqrt(xDelta * xDelta + yDelta * yDelta);
+        return JGeometry::TUtil< f32 >::sqrt(xDelta * xDelta + yDelta * yDelta);
     }
 
     // rotateVecDegree
@@ -359,9 +326,7 @@ namespace MR {
     // calcLocalVec
     // normalize
 
-    void normalize(TVec3f* pVec) {
-        PSVECNormalize(pVec, pVec);
-    }
+    void normalize(TVec3f* pVec) { PSVECNormalize(pVec, pVec); }
 
     // normalize
     // normalize
@@ -396,8 +361,7 @@ namespace MR {
 
         if (isNearZero(rVec, 0.001f)) {
             pDir->zero();
-        }
-        else {
+        } else {
             normalize(rVec, pDir);
         }
     }
@@ -406,23 +370,19 @@ namespace MR {
         f32 range = max - min;
 
         if (!isNearZero(range, 0.001f)) {
-            
-        }
-        else if (x < min) {
+        } else if (x < min) {
             return 0.0f;
-        }
-        else {
+        } else {
             return 1.0f;
         }
 
-        return (JGeometry::TUtil<f32>::clamp(x, min, max) - min) / range;
+        return (JGeometry::TUtil< f32 >::clamp(x, min, max) - min) / range;
     }
 
     f32 normalizeAbs(f32 x, f32 min, f32 max) {
         if (x >= 0.0f) {
             return normalize(x, min, max);
-        }
-        else {
+        } else {
             return -normalize(-x, min, max);
         }
     }
@@ -533,11 +493,9 @@ namespace MR {
         while (true) {
             if (angle < 0.0f) {
                 angle += TWO_PI;
-            }
-            else if (angle > TWO_PI) {
+            } else if (angle > TWO_PI) {
                 angle -= TWO_PI;
-            }
-            else {
+            } else {
                 return angle;
             }
         }
@@ -563,7 +521,7 @@ namespace MR {
         return res;
     }
 
-    #ifdef NON_MATCHING
+#ifdef NON_MATCHING
     // register use is wrong, and mull is in wrong order for isAngleBetween
     f32 blendAngle(f32 a1, f32 a2, f32 a3) {
         f32 a1_n = normalizeAngleAbs(a1);
@@ -572,19 +530,16 @@ namespace MR {
         if (!isAngleBetween(0.5f * (a1_n + a2_n), a1_n, a2_n)) {
             if (a1_n < a2_n) {
                 a2_n += TWO_PI;
-            }
-            else {
+            } else {
                 a1_n += TWO_PI;
             }
         }
 
         return normalizeAngleAbs(((1.0f - a3) * a1_n) + (a3 * a2_n));
     }
-    #endif
+#endif
 
-    u8 lerp(u8 start, u8 end, f32 t) {
-        return JGeometry::TUtil<f32>::clamp(start + (end - start) * t, 0.0f, 255.0f);
-    }
+    u8 lerp(u8 start, u8 end, f32 t) { return JGeometry::TUtil< f32 >::clamp(start + (end - start) * t, 0.0f, 255.0f); }
 
     GXColor lerp(GXColor start, GXColor end, f32 t) {
         u8 a = lerp(start.a, end.a, t);
@@ -592,23 +547,23 @@ namespace MR {
         u8 g = lerp(start.g, end.b, t);
         u8 r = lerp(start.r, end.r, t);
 
-        GXColor color = { r, g, b, a };
+        GXColor color = {r, g, b, a};
 
         return color;
     }
 
-    //This function implements the selection sort sorting algorithm
+    // This function implements the selection sort sorting algorithm
     // on an array of f32 where sortArray is the array to be sorted
     // and indexArray holds the indices the elements had in the original array
-    void sortSmall(s32 length, f32 *sortArray, s32 *indexArray){
-        for(int i = 0; i < length; i++){
+    void sortSmall(s32 length, f32* sortArray, s32* indexArray) {
+        for (int i = 0; i < length; i++) {
             indexArray[i] = i;
         }
-        for(int index = 0; index < length; index++){
+        for (int index = 0; index < length; index++) {
             f32 element = sortArray[index];
             int indexOfSmallestElement = index;
-            for(int i = index+1; i < length; i++){
-                if(element > sortArray[i]){
+            for (int i = index + 1; i < length; i++) {
+                if (element > sortArray[i]) {
                     element = sortArray[i];
                     indexOfSmallestElement = i;
                 }
@@ -622,18 +577,18 @@ namespace MR {
         }
     };
 
-    //This function implements the selection sort sorting algorithm
+    // This function implements the selection sort sorting algorithm
     // on an array of u32 where sortArray is the array to be sorted
     // and indexArray holds the indices the elements had in the original array
-    void sortSmall(s32 length, u32 *sortArray, s32 *indexArray){
-        for(int i = 0; i < length; i++){
+    void sortSmall(s32 length, u32* sortArray, s32* indexArray) {
+        for (int i = 0; i < length; i++) {
             indexArray[i] = i;
         }
-        for(int index = 0; index < length; index++){
+        for (int index = 0; index < length; index++) {
             u32 element = sortArray[index];
             int indexOfSmallestElement = index;
-            for(int i = index+1; i < length; i++){
-                if(element > sortArray[i]){
+            for (int i = index + 1; i < length; i++) {
+                if (element > sortArray[i]) {
                     element = sortArray[i];
                     indexOfSmallestElement = i;
                 }
@@ -647,7 +602,7 @@ namespace MR {
         }
     };
 
-    f32 vecKillElement(const TVec3f &a1, const TVec3f &a2, TVec3f *a3) {
+    f32 vecKillElement(const TVec3f& a1, const TVec3f& a2, TVec3f* a3) {
         if (isNearZero(a2, 0.001f)) {
             *a3 = a1;
 
@@ -657,8 +612,8 @@ namespace MR {
         return PSVECKillElement(&a1, &a2, a3);
     }
 
-    void vecScaleAdd(const register TVec3f *a1, const register TVec3f *a2, register f32 a3) {
-        #ifdef __MWERKS__
+    void vecScaleAdd(const register TVec3f* a1, const register TVec3f* a2, register f32 a3) {
+#ifdef __MWERKS__
         __asm {
             psq_l f0, 0(a1), 0, 0
             psq_l f3, 0(a2), 0, 0
@@ -669,11 +624,11 @@ namespace MR {
             psq_st f0, 0(a1), 0, 0
             psq_st f2, 8(a1), 1, 0
         }
-        #endif
+#endif
     }
 
-    void PSvecBlend(const register TVec3f *a1, const register TVec3f *a2, register TVec3f *a3, register f32 a4, register f32 a5) {
-        #ifdef __MWERKS__
+    void PSvecBlend(const register TVec3f* a1, const register TVec3f* a2, register TVec3f* a3, register f32 a4, register f32 a5) {
+#ifdef __MWERKS__
         __asm {
             psq_l     f0, 0(a1), 0, 0
             psq_l     f3, 8(a1), 1, 0
@@ -686,12 +641,10 @@ namespace MR {
             psq_st    f4, 0(a3), 0, 0
             psq_st    f3, 8(a3), 1, 0
         }
-        #endif
+#endif
     }
 
-    void vecBlend(const TVec3f &a1, const TVec3f &a2, TVec3f *a3, f32 a4) {
-        PSvecBlend(&a1, &a2, a3, 1.0f - a4, a4);
-    }
+    void vecBlend(const TVec3f& a1, const TVec3f& a2, TVec3f* a3, f32 a4) { PSvecBlend(&a1, &a2, a3, 1.0f - a4, a4); }
 
     // vecBlendNormal
     // vecBlendSphere
@@ -712,7 +665,7 @@ namespace MR {
 
     // turnVecToPlane
 
-    u32 getMinAbsElementIndex(const TVec3f &rVec) {
+    u32 getMinAbsElementIndex(const TVec3f& rVec) {
         f64 abs_x = __fabs(rVec.x);
         f64 abs_y = __fabs(rVec.y);
         f64 abs_z = __fabs(rVec.z);
@@ -728,17 +681,17 @@ namespace MR {
         return 2;
     }
 
-    f32 getMaxElement(const TVec3f &rVec) {
+    f32 getMaxElement(const TVec3f& rVec) {
         f32* vec_arr = (f32*)(&rVec);
         return vec_arr[getMaxElementIndex(rVec)];
     }
 
-    f32 getMaxAbsElement(const TVec3f &rVec) {
+    f32 getMaxAbsElement(const TVec3f& rVec) {
         f32* vec_arr = (f32*)(&rVec);
         return vec_arr[getMaxAbsElementIndex(rVec)];
     }
 
-    u32 getMaxElementIndex(const TVec3f &rVec) {
+    u32 getMaxElementIndex(const TVec3f& rVec) {
         if (rVec.x > rVec.y && rVec.x > rVec.z) {
             return 0;
         }
@@ -750,7 +703,7 @@ namespace MR {
         return 2;
     }
 
-    u32 getMaxAbsElementIndex(const TVec3f &rVec) {
+    u32 getMaxAbsElementIndex(const TVec3f& rVec) {
         f64 abs_x = __fabs(rVec.x);
         f64 abs_y = __fabs(rVec.y);
         f64 abs_z = __fabs(rVec.z);
@@ -766,9 +719,7 @@ namespace MR {
         return 2;
     }
 
-    f32 diffAngleAbsFast(const TVec3f& rParam1, const TVec3f& rParam2) {
-        return JMAAcosRadian(rParam1.dot(rParam2));
-    }
+    f32 diffAngleAbsFast(const TVec3f& rParam1, const TVec3f& rParam2) { return JMAAcosRadian(rParam1.dot(rParam2)); }
 
     f32 diffAngleAbs(const TVec3f& rParam1, const TVec3f& rParam2) {
         f32 length1 = rParam1.length();
@@ -777,27 +728,23 @@ namespace MR {
 
         if (x >= 1.0f) {
             return 0.0f;
-        }
-        else if (x <= -1.0f) {
+        } else if (x <= -1.0f) {
             return PI;
-        }
-        else {
+        } else {
             return acosEx(x);
         }
     }
 
     f32 diffAngleAbs(const TVec2f& rParam1, const TVec2f& rParam2) {
-        f32 length1 = JGeometry::TUtil<f32>::sqrt(rParam1.dot(rParam1)); // TODO: Should probably be `TVec2f::length`
-        f32 length2 = JGeometry::TUtil<f32>::sqrt(rParam2.dot(rParam2)); // TODO: Should probably be `TVec2f::length`
+        f32 length1 = JGeometry::TUtil< f32 >::sqrt(rParam1.dot(rParam1));  // TODO: Should probably be `TVec2f::length`
+        f32 length2 = JGeometry::TUtil< f32 >::sqrt(rParam2.dot(rParam2));  // TODO: Should probably be `TVec2f::length`
         f32 x = rParam1.dot(rParam2) / (length1 * length2);
 
         if (x >= 1.0f) {
             return 0.0f;
-        }
-        else if (x <= -1.0f) {
+        } else if (x <= -1.0f) {
             return PI;
-        }
-        else {
+        } else {
             return acosEx(x);
         }
     }
@@ -810,8 +757,7 @@ namespace MR {
 
         if (v.dot(rParam2) >= 0.0f) {
             return angleDiff;
-        }
-        else {
+        } else {
             return -angleDiff;
         }
     }
@@ -898,17 +844,12 @@ namespace MR {
 
     // createBoundingBox
 
-    bool isNormalize(const TVec3f& rVec, f32 tolerance) {
-        return __fabsf(1.0f - rVec.length()) <= tolerance;
-    }
+    bool isNormalize(const TVec3f& rVec, f32 tolerance) { return __fabsf(1.0f - rVec.length()) <= tolerance; }
 
     // setNan
 
     bool isNan(const TVec3f& rVec) {
-        if (__fpclassifyf(rVec.x) == 1
-            || __fpclassifyf(rVec.y) == 1
-            || __fpclassifyf(rVec.z) == 1)
-        {
+        if (__fpclassifyf(rVec.x) == 1 || __fpclassifyf(rVec.y) == 1 || __fpclassifyf(rVec.z) == 1) {
             return true;
         }
 
@@ -917,9 +858,7 @@ namespace MR {
 
     // getFootPoint
 
-    f32 mod(f32 x, f32 y) {
-        return fmod(x, y);
-    }
+    f32 mod(f32 x, f32 y) { return fmod(x, y); }
 
     void floatToFixed16(TVec3s* pDst, const TVec3f& pSrc, u8 q) {
         f32 scale = 1 << q;
@@ -939,4 +878,4 @@ namespace MR {
 
     // getRotatedAxisY
     // getRotatedAxisZ
-};
+};  // namespace MR

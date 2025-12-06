@@ -27,11 +27,11 @@ public:
     /// @brief Destroys the `MoviePlayerSimple`.
     virtual ~MoviePlayerSimple();
 
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
     virtual void draw() const;
     virtual void control();
 
-    void startMovie(const char *, bool);
+    void startMovie(const char*, bool);
     void stopMovie();
     bool isMovieActive() const;
     bool isMoviePlaying() const;

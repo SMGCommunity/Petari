@@ -4,15 +4,15 @@
 
 class AnmModelObj : public MapObjActor {
 public:
-    AnmModelObj(const char *);
+    AnmModelObj(const char*);
 
     virtual ~AnmModelObj();
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
     virtual void control();
-    virtual void initCaseUseSwitchA(const MapObjActorInitInfo &);
-    virtual void initCaseNoUseSwitchA(const MapObjActorInitInfo &);
-    virtual void initCaseUseSwitchB(const MapObjActorInitInfo &);
-    virtual void initCaseNoUseSwitchB(const MapObjActorInitInfo &);
+    virtual void initCaseUseSwitchA(const MapObjActorInitInfo&);
+    virtual void initCaseNoUseSwitchA(const MapObjActorInitInfo&);
+    virtual void initCaseUseSwitchB(const MapObjActorInitInfo&);
+    virtual void initCaseNoUseSwitchB(const MapObjActorInitInfo&);
     virtual bool isOnStartAnmTrigger() const = 0;
     virtual bool isDone() const;
     virtual bool isKilledAtMoveDone() const;
@@ -25,24 +25,24 @@ public:
     void exeMove();
     void exeDone();
 
-    TVec3f mJointPos;         // 0xC4
+    TVec3f mJointPos;  // 0xC4
 };
 
 class AnmModelSwitchMove : public AnmModelObj {
 public:
-    AnmModelSwitchMove(const char *);
+    AnmModelSwitchMove(const char*);
 
     virtual ~AnmModelSwitchMove();
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
     virtual bool isOnStartAnmTrigger() const;
 };
 
 class AnmModelGroundOnMove : public AnmModelObj {
 public:
-    AnmModelGroundOnMove(const char *);
+    AnmModelGroundOnMove(const char*);
 
     virtual ~AnmModelGroundOnMove();
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
     virtual void control();
     virtual bool isOnStartAnmTrigger() const;
     virtual bool isKilledAtMoveDone() const;
@@ -50,12 +50,12 @@ public:
 
 class AnmModelBindMove : public AnmModelObj {
 public:
-    AnmModelBindMove(const char *);
+    AnmModelBindMove(const char*);
 
     virtual ~AnmModelBindMove();
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
     virtual void control();
-    virtual bool receiveOtherMsg(u32, HitSensor *, HitSensor *);
+    virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
     virtual bool isOnStartAnmTrigger() const;
     virtual bool isKilledAtMoveDone() const;
     virtual bool isRepeat() const;
@@ -63,19 +63,19 @@ public:
 
 class AnmModelSwitchMoveEventCamera : public AnmModelSwitchMove {
 public:
-    AnmModelSwitchMoveEventCamera(const char *);
+    AnmModelSwitchMoveEventCamera(const char*);
 
     virtual ~AnmModelSwitchMoveEventCamera();
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
     virtual bool isDone() const;
     virtual void startInner();
     virtual void stopInner();
 
-    ActorCameraInfo* mCameraInfo;       // 0xD0
+    ActorCameraInfo* mCameraInfo;  // 0xD0
 };
 
 namespace NrvAnmModelObj {
     NERVE_DECL(HostTypeWait, AnmModelObj, AnmModelObj::exeWait);
     NERVE_DECL(HostTypeMove, AnmModelObj, AnmModelObj::exeMove);
     NERVE_DECL(HostTypeDone, AnmModelObj, AnmModelObj::exeDone);
-};
+};  // namespace NrvAnmModelObj

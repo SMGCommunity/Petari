@@ -32,7 +32,7 @@ public:
     void pushBreakPoint();
 
     void drawSyncCallback(u16);
-    
+
     static DrawSyncManager* sInstance;
 
     u8 _0[0x28];
@@ -40,7 +40,7 @@ public:
     OSMessageQueue mQueue;  // 0x340
     u32 _360;
     u32 _364;
-    Fifo* mFifo;            // 0x368
+    Fifo* mFifo;  // 0x368
     u16 _36C;
     u16 _36E;
     u16 _370;

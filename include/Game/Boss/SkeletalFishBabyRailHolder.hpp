@@ -19,13 +19,13 @@ class SkeletalFishBabyRailGroupNode {
 public:
     SkeletalFishBabyRailGroupNode(s32);
 
-    void addChild(SkeletalFishBabyRail *);
+    void addChild(SkeletalFishBabyRail*);
 
     void createChild();
     void tidy();
 
     s32 _0;
-    u32 mNumNodes;                              // 0x4
+    u32 mNumNodes;  // 0x4
     u32 _8;
     u32 _C;
     SkeletalFishBabyRailGroupNode* _10;
@@ -38,18 +38,18 @@ public:
 
 class SkeletalFishBabyRailHolder : public NameObj {
 public:
-    SkeletalFishBabyRailHolder(const char *);
+    SkeletalFishBabyRailHolder(const char*);
 
     virtual ~SkeletalFishBabyRailHolder();
     virtual void initAfterPlacement();
 
-    void add(SkeletalFishBabyRail *);
+    void add(SkeletalFishBabyRail*);
     SkeletalFishBabyRailGroupNode* createGroup(s32);
 
-    SkeletalFishBabyRailGroupNode* mNodes;      // 0xC
+    SkeletalFishBabyRailGroupNode* mNodes;  // 0xC
 };
 
 namespace MR {
     void createSkeletalFishBabyRailHolder();
     SkeletalFishBabyRailHolder* getSkeletalFishBabyRailHolder();
-};
+};  // namespace MR

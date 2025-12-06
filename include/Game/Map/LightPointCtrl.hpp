@@ -4,7 +4,7 @@
 
 class PointLightInfo {
 public:
-    void operator=(const PointLightInfo &);
+    void operator=(const PointLightInfo&);
 
     u32 _0;
     u32 _4;
@@ -21,10 +21,10 @@ public:
 class LightPointCtrl {
 public:
     LightPointCtrl();
-    
+
     void loadPointLight();
     void update();
-    void clearPointLight(PointLightInfo *);
+    void clearPointLight(PointLightInfo*);
 
     bool tryBlendStart();
 
@@ -37,5 +37,5 @@ public:
     u32 _10;
     PointLightInfo* _14;
     PointLightInfo* _18;
-    PointLightInfo* _1C;  
+    PointLightInfo* _1C;
 };

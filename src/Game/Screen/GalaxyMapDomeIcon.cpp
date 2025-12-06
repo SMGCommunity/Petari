@@ -9,9 +9,7 @@
 namespace {
     class AstroDomeCheckerBase {
     public:
-        AstroDomeCheckerBase(int param1) {
-            snprintf(_4, sizeof(_4), "Galaxy%1d", param1);
-        }
+        AstroDomeCheckerBase(int param1) { snprintf(_4, sizeof(_4), "Galaxy%1d", param1); }
 
         void operator()(const JMapInfoIter& rIter) {
             const char* pMapPaneName = nullptr;
@@ -20,17 +18,12 @@ namespace {
             rIter.getValue("MapPaneName", &pMapPaneName);
             rIter.getValue("name", &pName);
 
-            if (pMapPaneName != nullptr
-                && pName != nullptr
-                && strstr(pMapPaneName, _4) != nullptr)
-            {
+            if (pMapPaneName != nullptr && pName != nullptr && strstr(pMapPaneName, _4) != nullptr) {
                 execute(pName);
             }
         }
 
-        virtual void execute(const char* pParam1) {
-            
-        }
+        virtual void execute(const char* pParam1) {}
 
         /* 0x04 */ char _4[11];
         /* 0x0F */ bool mIsPass;
@@ -38,16 +31,10 @@ namespace {
 
     class CheckerIsExistNewGalaxy : public AstroDomeCheckerBase {
     public:
-        CheckerIsExistNewGalaxy(int param1) :
-            AstroDomeCheckerBase(param1)
-        {
-            
-        }
+        CheckerIsExistNewGalaxy(int param1) : AstroDomeCheckerBase(param1) {}
 
         virtual void execute(const char* pParam1) {
-            if (MR::canOpenGalaxy(pParam1)
-                && !MR::isOnGameEventFlagGalaxyOpen(pParam1))
-            {
+            if (MR::canOpenGalaxy(pParam1) && !MR::isOnGameEventFlagGalaxyOpen(pParam1)) {
                 mIsPass = true;
             }
         }
@@ -55,11 +42,7 @@ namespace {
 
     class CheckerIsComplete : public AstroDomeCheckerBase {
     public:
-        CheckerIsComplete(int param1) :
-            AstroDomeCheckerBase(param1)
-        {
-            
-        }
+        CheckerIsComplete(int param1) : AstroDomeCheckerBase(param1) {}
 
         virtual void execute(const char* pParam1) {
             GalaxyStatusAccessor accessor = MR::makeGalaxyStatusAccessor(pParam1);
@@ -71,19 +54,10 @@ namespace {
             }
         }
     };
-};
+};  // namespace
 
-GalaxyMapDomeIcon::GalaxyMapDomeIcon(int param1, LayoutActor* pHost, const char* pPaneName, const char* pParam4) :
-    LayoutActor(pPaneName, true),
-    _20(param1),
-    mHost(pHost),
-    mPaneName(pPaneName),
-    _2C(pParam4),
-    mNamePlate(nullptr),
-    mMode(0)
-{
-    
-}
+GalaxyMapDomeIcon::GalaxyMapDomeIcon(int param1, LayoutActor* pHost, const char* pPaneName, const char* pParam4)
+    : LayoutActor(pPaneName, true), _20(param1), mHost(pHost), mPaneName(pPaneName), _2C(pParam4), mNamePlate(nullptr), mMode(0) {}
 
 void GalaxyMapDomeIcon::appear() {
     LayoutActor::appear();
@@ -133,14 +107,11 @@ void GalaxyMapDomeIcon::draw() const {
 s32 GalaxyMapDomeIcon::calcDomeStatus() const {
     if (isComplete()) {
         return 3;
-    }
-    else if (hasNewGalaxy()) {
+    } else if (hasNewGalaxy()) {
         return 1;
-    }
-    else if (MR::hasGrandStar(_20)) {
+    } else if (MR::hasGrandStar(_20)) {
         return 2;
-    }
-    else {
+    } else {
         return 0;
     }
 }
@@ -174,8 +145,7 @@ void GalaxyMapDomeIcon::init(const JMapInfoIter& rIter) {
 void GalaxyMapDomeIcon::control() {
     if (MR::isHiddenPane(mHost, _2C)) {
         MR::hideLayout(mNamePlate);
-    }
-    else {
+    } else {
         MR::showLayout(mNamePlate);
         mNamePlate->show(MR::getScenarioNameOnCurrentLanguage("AstroDome", _20), false);
     }
@@ -187,8 +157,7 @@ void GalaxyMapDomeIcon::syncStatus() {
     if (domeStatus == 0) {
         MR::hideLayout(this);
         MR::hidePane(mHost, _2C);
-    }
-    else {
+    } else {
         MR::showLayout(this);
         MR::showPane(mHost, _2C);
     }
@@ -202,8 +171,7 @@ void GalaxyMapDomeIcon::syncStatus() {
         MR::startAnim(this, "SelectIn", 1);
         MR::setAnimFrameAndStopAtEnd(this, 1);
         MR::startAnim(this, "Blink", 0);
-    }
-    else {
+    } else {
         MR::startAnim(this, "Wait", 1);
     }
 }

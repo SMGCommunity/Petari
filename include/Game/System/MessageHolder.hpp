@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/Util.hpp"
 #include "Game/NPC/TalkNodeCtrl.hpp"
+#include "Game/Util.hpp"
 
 class TalkNode;
 class TalkMessageInfo;
@@ -45,14 +45,14 @@ public:
     u8* getMessageInfoTool(int) const;
     s32 findMessageIndex(const char*) const;
 
-    JMapInfo* mIDTable;     // 0x0
-    MessageInfoBlock* mInfoBlock;       // 0x4
-    MessageDataBlock* mDataBlock;       // 0x8
+    JMapInfo* mIDTable;            // 0x0
+    MessageInfoBlock* mInfoBlock;  // 0x4
+    MessageDataBlock* mDataBlock;  // 0x8
     u32 _C;
-    MessageFlowBlock* mFlowBlock;       // 0x10
+    MessageFlowBlock* mFlowBlock;  // 0x10
     u16* _14;
     u8* _18;
-    MessageFLI1Block* mFLI1Block;       // 0x1C
+    MessageFLI1Block* mFLI1Block;  // 0x1C
 };
 
 class MessageHolder {
@@ -64,32 +64,25 @@ public:
     void initSystemData();
     void initGameData();
 
-    MessageData* mSystemMessage;        // 0x0
-    MessageData* mGameMessage;          // 0x4
-    MessageData* mSceneData;            // 0x8
+    MessageData* mSystemMessage;  // 0x0
+    MessageData* mGameMessage;    // 0x4
+    MessageData* mSceneData;      // 0x8
 };
 
 class MessageSystem {
 public:
+    class Node {};
 
-    class Node {
-
-    };
-
-    struct FlowNodeBranch {
-
-    };
+    struct FlowNodeBranch {};
 
     struct FlowNodeEvent {
-        u8 mFlowType;       // 0x0
-        u8 mEventType;      // 0x1
-        u16 mBranchID;      // 0x2
-        u32 mArg;           // 0x4
+        u8 mFlowType;   // 0x0
+        u8 mEventType;  // 0x1
+        u16 mBranchID;  // 0x2
+        u32 mArg;       // 0x4
     };
 
-    static inline TalkNode* getCurrentBranchNodeFromSceneMsg(u32 idx) {
-        return getSceneMessageData()->getBranchNode(idx);
-    }
+    static inline TalkNode* getCurrentBranchNodeFromSceneMsg(u32 idx) { return getSceneMessageData()->getBranchNode(idx); }
 
     static void getSystemMessageDirect(TalkMessageInfo*, const char*);
     static void getGameMessageDirect(TalkMessageInfo*, const char*);

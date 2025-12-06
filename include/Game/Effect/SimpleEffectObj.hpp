@@ -8,28 +8,22 @@ class SimpleEffectObj : public LiveActor {
 public:
     SimpleEffectObj(const char*);
 
-    virtual ~SimpleEffectObj() { };
-    virtual void init(const JMapInfoIter &);
+    virtual ~SimpleEffectObj(){};
+    virtual void init(const JMapInfoIter&);
     virtual void startClipped();
     virtual void endClipped();
-    
-    virtual f32 getClippingRadius() const {
-        return 500.0f;
-    };
 
-    virtual f32 getFarClipDistance() const {
-        return 50.0f;
-    };
+    virtual f32 getClippingRadius() const { return 500.0f; };
+
+    virtual f32 getFarClipDistance() const { return 50.0f; };
 
     virtual TVec3f* getClippingCenterOffset() const {
         TVec3f vec;
-        vec.set(0.0f,0.0f,0.0f);
+        vec.set(0.0f, 0.0f, 0.0f);
         return &vec;
     };
 
-    virtual bool isSyncClipping() const {
-        return false;
-    };
+    virtual bool isSyncClipping() const { return false; };
 
     virtual void setStateWait();
     virtual void setStateMove();

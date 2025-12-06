@@ -1,8 +1,8 @@
 #pragma once
 
-#include <revolution.h>
-#include "JSystem/J3DGraphBase/J3DVertex.hpp"
 #include "JSystem/J3DGraphBase/J3DMatPacket.hpp"
+#include "JSystem/J3DGraphBase/J3DVertex.hpp"
+#include <revolution.h>
 
 class J3DModelData;
 class J3DMtxBuffer;
@@ -18,9 +18,9 @@ public:
     virtual void viewCalc();
     virtual ~J3DModel();
 
-    void setBaseScale(const Vec &);
+    void setBaseScale(const Vec&);
 
-    J3DModelData* mModelData;       // 0x4
+    J3DModelData* mModelData;  // 0x4
     u32 _8;
     u32 _C;
     u32 _10;

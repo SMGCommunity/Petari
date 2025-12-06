@@ -1,6 +1,6 @@
+#include "Game/Screen/GalaxyMapSelectButton.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/ButtonPaneController.hpp"
-#include "Game/Screen/GalaxyMapSelectButton.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 
@@ -13,15 +13,9 @@ namespace {
     NEW_NERVE(GalaxyMapSelectButtonBetweenListToMapFadein, GalaxyMapSelectButton, BetweenListToMapFadein);
     NEW_NERVE(GalaxyMapSelectButtonBetweenMapToListFadeout, GalaxyMapSelectButton, BetweenMapToListFadeout);
     NEW_NERVE(GalaxyMapSelectButtonBetweenMapToListFadein, GalaxyMapSelectButton, BetweenMapToListFadein);
-};
+};  // namespace
 
-GalaxyMapSelectButton::GalaxyMapSelectButton() :
-    LayoutActor("選択用ボタン", true),
-    _20(nullptr),
-    mPaneCtrl(nullptr)
-{
-    
-}
+GalaxyMapSelectButton::GalaxyMapSelectButton() : LayoutActor("選択用ボタン", true), _20(nullptr), mPaneCtrl(nullptr) {}
 
 void GalaxyMapSelectButton::init(const JMapInfoIter& rIter) {
     initLayoutManager("MapButton", 1);
@@ -59,15 +53,12 @@ void GalaxyMapSelectButton::changeToStarList() {
     _20 = &GalaxyMapSelectButtonStarListWait::sInstance;
 }
 
-void GalaxyMapSelectButton::exeHide() {
-    
-}
+void GalaxyMapSelectButton::exeHide() {}
 
 void GalaxyMapSelectButton::exeAstroMapWait() {
     if (_20 != nullptr && _20 == &GalaxyMapSelectButtonStarListWait::sInstance) {
         setNerve(&GalaxyMapSelectButtonBetweenMapToListFadeout::sInstance);
-    }
-    else if (mPaneCtrl->trySelect()) {
+    } else if (mPaneCtrl->trySelect()) {
         MR::startSystemSE("SE_SY_GALAMAP_DECIDE", -1, -1);
     }
 }

@@ -6,10 +6,10 @@ static f32 zero = 0.0f;
 
 class ShootingStar : public LiveActor {
 public:
-    ShootingStar(const char *);
+    ShootingStar(const char*);
 
     virtual ~ShootingStar();
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
     virtual void control();
 
     void appearPreShooting();
@@ -29,4 +29,4 @@ namespace NrvShootingStar {
     NERVE(HostTypeNrvPreShooting);
     NERVE(HostTypeNrvShooting);
     NERVE(HostTypeNrvWaitForNextShoot);
-};
+};  // namespace NrvShootingStar

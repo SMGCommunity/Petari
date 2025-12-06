@@ -4,17 +4,17 @@
 
 class CameraWaterFollow : public Camera {
 public:
-    CameraWaterFollow(const char *);
+    CameraWaterFollow(const char*);
     virtual ~CameraWaterFollow();
 
     virtual void reset();
-    virtual CameraTargetObj *calc();
+    virtual CameraTargetObj* calc();
     virtual bool isEnableToReset() const;
-    virtual CamTranslatorBase *createTranslator();
+    virtual CamTranslatorBase* createTranslator();
 
-    f32 mAxisY; // 0x4C
-    f32 mAxisX; // 0x50
-    f32 mDist;  // 0x54
+    f32 mAxisY;  // 0x4C
+    f32 mAxisX;  // 0x50
+    f32 mDist;   // 0x54
     f32 _58;
     u32 _5C;
     f32 _60;

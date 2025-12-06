@@ -6,13 +6,13 @@
 #include "JSystem/JAudio2/JASGlobal.hpp"
 #include "JSystem/JAudio2/JASHeapCtrl.hpp"
 
-class SpkSystem : JASGlobalInstance<SpkSystem> {
+class SpkSystem : JASGlobalInstance< SpkSystem > {
 public:
-    SpkSystem(JKRHeap *);
+    SpkSystem(JKRHeap*);
 
-    void setResource(JKRArchive *, u16, u16);
+    void setResource(JKRArchive*, u16, u16);
     void framework();
-    void startSound(s32, s32, SpkSoundHandle *);
+    void startSound(s32, s32, SpkSoundHandle*);
     static void newSoundMemPool(s32);
     static void connect(s32);
     static void disconnect(s32);
@@ -20,8 +20,8 @@ public:
     static void extensionProcess(s32, s32);
     static f32 getDeviceVolume(s32);
 
-    JKRHeap* mHeap;                 // 0x0
-    SpkData* mData;                 // 0x4
-    SpkMixingBuffer* mMixBuffer;    // 0x8
-    SpkSoundHolder* mSoundHolder;   // 0xC
+    JKRHeap* mHeap;                // 0x0
+    SpkData* mData;                // 0x4
+    SpkMixingBuffer* mMixBuffer;   // 0x8
+    SpkSoundHolder* mSoundHolder;  // 0xC
 };

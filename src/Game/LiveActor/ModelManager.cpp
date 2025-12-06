@@ -1,3 +1,4 @@
+#include "Game/LiveActor/ModelManager.hpp"
 #include "Game/Animation/BckCtrl.hpp"
 #include "Game/Animation/BpkPlayer.hpp"
 #include "Game/Animation/BrkPlayer.hpp"
@@ -7,25 +8,13 @@
 #include "Game/Animation/XanimePlayer.hpp"
 #include "Game/Animation/XanimeResource.hpp"
 #include "Game/LiveActor/DisplayListMaker.hpp"
-#include "Game/LiveActor/ModelManager.hpp"
 #include "Game/System/ResourceHolder.hpp"
 #include "Game/Util/MutexHolder.hpp"
 #include <JSystem/J3DGraphAnimator/J3DModel.hpp>
 
-ModelManager::ModelManager() :
-    mBtkPlayer(nullptr),
-    mBrkPlayer(nullptr),
-    mBtpPlayer(nullptr),
-    mBpkPlayer(nullptr),
-    mBvaPlayer(nullptr),
-    mXanimeResourceTable(nullptr),
-    mXanimePlayer(nullptr),
-    mModel(nullptr),
-    mModelResourceHolder(nullptr),
-    mDisplayListMaker(nullptr)
-{
-    
-}
+ModelManager::ModelManager()
+    : mBtkPlayer(nullptr), mBrkPlayer(nullptr), mBtpPlayer(nullptr), mBpkPlayer(nullptr), mBvaPlayer(nullptr), mXanimeResourceTable(nullptr),
+      mXanimePlayer(nullptr), mModel(nullptr), mModelResourceHolder(nullptr), mDisplayListMaker(nullptr) {}
 
 void ModelManager::update() {
     XanimePlayer* pXanimePlayer = mXanimePlayer;
@@ -74,10 +63,9 @@ void ModelManager::newDifferedDLBuffer() {
 }
 
 void ModelManager::updateDL(bool isDiffDL) {
-    OSLockMutex(&MR::MutexHolder<0>::sMutex);
+    OSLockMutex(&MR::MutexHolder< 0 >::sMutex);
 
-    bool isUpdateDL = mDisplayListMaker != nullptr
-        && mDisplayListMaker->isValidDiff();
+    bool isUpdateDL = mDisplayListMaker != nullptr && mDisplayListMaker->isValidDiff();
 
     if (isUpdateDL) {
         mDisplayListMaker->update();
@@ -123,7 +111,7 @@ void ModelManager::updateDL(bool isDiffDL) {
         }
     }
 
-    OSUnlockMutex(&MR::MutexHolder<0>::sMutex);
+    OSUnlockMutex(&MR::MutexHolder< 0 >::sMutex);
 }
 
 void ModelManager::startBck(const char* pBckName, const char* pActorAnimName) {
@@ -369,9 +357,9 @@ void ModelManager::calc() {
         mBvaPlayer->calc();
     }
 
-    OSLockMutex(&MR::MutexHolder<0>::sMutex);
+    OSLockMutex(&MR::MutexHolder< 0 >::sMutex);
     getJ3DModel()->calc();
-    OSUnlockMutex(&MR::MutexHolder<0>::sMutex);
+    OSUnlockMutex(&MR::MutexHolder< 0 >::sMutex);
 
     if (mXanimePlayer != nullptr) {
         mXanimePlayer->clearAnm(0);

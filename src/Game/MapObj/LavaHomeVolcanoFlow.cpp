@@ -1,5 +1,5 @@
-#include "Game/LiveActor/LiveActor.hpp"
 #include "Game/MapObj/LavaHomeVolcanoFlow.hpp"
+#include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util/ActorSwitchUtil.hpp"
 #include "Game/Util/EffectUtil.hpp"
@@ -13,9 +13,9 @@ namespace NrvLavaHomeVolcanoFlow {
     NEW_NERVE(HostTypeWait, LavaHomeVolcanoFlow, Wait);
     NEW_NERVE(HostTypeMove, LavaHomeVolcanoFlow, Move);
     NEW_NERVE(HostTypeDone, LavaHomeVolcanoFlow, Wait);
-};
+};  // namespace NrvLavaHomeVolcanoFlow
 
-LavaHomeVolcanoFlow::LavaHomeVolcanoFlow(const char* pName) : LiveActor(pName) { } 
+LavaHomeVolcanoFlow::LavaHomeVolcanoFlow(const char* pName) : LiveActor(pName) {}
 
 void LavaHomeVolcanoFlow::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
@@ -32,18 +32,16 @@ void LavaHomeVolcanoFlow::init(const JMapInfoIter& rIter) {
 
 void LavaHomeVolcanoFlow::startClipped() {
     LiveActor::startClipped();
-    if (isNerve(&NrvLavaHomeVolcanoFlow::HostTypeMove::sInstance) 
-    || isNerve(&NrvLavaHomeVolcanoFlow::HostTypeDone::sInstance)) {
+    if (isNerve(&NrvLavaHomeVolcanoFlow::HostTypeMove::sInstance) || isNerve(&NrvLavaHomeVolcanoFlow::HostTypeDone::sInstance)) {
         MR::deleteEffect(this, "Loop");
     }
 }
 
 void LavaHomeVolcanoFlow::endClipped() {
     LiveActor::endClipped();
-    if (isNerve(&NrvLavaHomeVolcanoFlow::HostTypeMove::sInstance) 
-    || isNerve(&NrvLavaHomeVolcanoFlow::HostTypeDone::sInstance)) {
+    if (isNerve(&NrvLavaHomeVolcanoFlow::HostTypeMove::sInstance) || isNerve(&NrvLavaHomeVolcanoFlow::HostTypeDone::sInstance)) {
         MR::emitEffect(this, "Loop");
-    }   
+    }
 }
 
 void LavaHomeVolcanoFlow::exeWait() {
@@ -60,7 +58,7 @@ void LavaHomeVolcanoFlow::exeMove() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "LavaHomeVolcanoFlow", nullptr);
     }
-    MR::startLevelSound(this,  "SE_OJ_LV_VOLCANO_EXPL_SIGN", -1, -1, -1);
+    MR::startLevelSound(this, "SE_OJ_LV_VOLCANO_EXPL_SIGN", -1, -1, -1);
     if (MR::isStep(this, 60)) {
         MR::emitEffect(this, "Active");
         MR::emitEffect(this, "Loop");
@@ -70,4 +68,4 @@ void LavaHomeVolcanoFlow::exeMove() {
     }
 }
 
-LavaHomeVolcanoFlow::~LavaHomeVolcanoFlow() { }
+LavaHomeVolcanoFlow::~LavaHomeVolcanoFlow() {}

@@ -6,7 +6,7 @@ class MarioActor;
 
 class MarioWait : public MarioState {
 public:
-    MarioWait(MarioActor *);
+    MarioWait(MarioActor*);
 
     u8 _11[7];
 };

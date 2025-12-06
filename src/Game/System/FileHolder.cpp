@@ -1,6 +1,6 @@
 #include "Game/System/FileHolder.hpp"
 
-FileHolderFileEntry::FileHolderFileEntry(const char *pName, JKRHeap *pHeap, void *pData) {
+FileHolderFileEntry::FileHolderFileEntry(const char* pName, JKRHeap* pHeap, void* pData) {
     mEntryNum = DVDConvertPathToEntrynum(pName);
     mContext = 0;
     mHeap = pHeap;
@@ -17,7 +17,7 @@ FileHolderFileEntry::FileHolderFileEntry(const char *pName, JKRHeap *pHeap, void
 
 FileHolderFileEntry::~FileHolderFileEntry() {
     if (mContextSet) {
-        if (mContext) { 
+        if (mContext) {
             delete (u8*)mContext;
         }
     }
@@ -31,7 +31,7 @@ void FileHolderFileEntry::waitReadDone() {
     }
 }
 
-void FileHolderFileEntry::setContext(void *pData, JKRHeap *pHeap) {
+void FileHolderFileEntry::setContext(void* pData, JKRHeap* pHeap) {
     mContext = pData;
     mHeap = pHeap;
 
@@ -43,30 +43,29 @@ FileHolder::FileHolder() {
     mArray.init(0x180);
 }
 
-FileHolderFileEntry* FileHolder::add(const char *pName, JKRHeap *pHeap, void *pData) {
-    FileHolderFileEntry* pEntry = new(pHeap, 0) FileHolderFileEntry(pName, pHeap, pData);
+FileHolderFileEntry* FileHolder::add(const char* pName, JKRHeap* pHeap, void* pData) {
+    FileHolderFileEntry* pEntry = new (pHeap, 0) FileHolderFileEntry(pName, pHeap, pData);
 
     mArray.push_back(pEntry);
 
     return pEntry;
 }
 
-bool FileHolder::isExist(const char *pFile) const {
+bool FileHolder::isExist(const char* pFile) const {
     return findEntry(pFile);
 }
 
-void* FileHolder::getContext(const char *pFile) const {
+void* FileHolder::getContext(const char* pFile) const {
     return findEntry(pFile)->mContext;
 }
 
 // FileHolder::removeIfIsEqualHeap
 
-FileHolderFileEntry** FileHolder::removeFile(const char *pFile) {
+FileHolderFileEntry** FileHolder::removeFile(const char* pFile) {
     FileHolderFileEntry** p;
     FileHolderFileEntry* pEntry = findEntry(pFile);
 
     for (p = mArray.begin(); p != mArray.end() && *p != pEntry; p++) {
-        
     }
 
     delete *p;
@@ -74,7 +73,7 @@ FileHolderFileEntry** FileHolder::removeFile(const char *pFile) {
     return mArray.erase(p);
 }
 
-FileHolderFileEntry* FileHolder::findEntry(const char *pFile) const {
+FileHolderFileEntry* FileHolder::findEntry(const char* pFile) const {
     s32 entryNum = DVDConvertPathToEntrynum(pFile);
 
     for (FileHolderFileEntry* const* pEntry = mArray.begin(); pEntry != mArray.end(); pEntry++) {

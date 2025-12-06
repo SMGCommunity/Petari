@@ -5,11 +5,11 @@ namespace {
     const f32 cAppearThrowFwdSpd = 5.0f;
     const f32 cAppearThrowUpSpd = 10.0f;
     const f32 cBoundUpSpd = 20.0f;
-};
+};  // namespace
 
-BenefitItemInvincible::BenefitItemInvincible(const char *pName) : BenefitItemObj(pName, "PowerupInvincible") {
+BenefitItemInvincible::BenefitItemInvincible(const char* pName) : BenefitItemObj(pName, "PowerupInvincible") {
     if (MR::isGalaxyDarkCometAppearInCurrentStage()) {
-        _D8 = 1;   
+        _D8 = 1;
     }
 }
 
@@ -20,7 +20,7 @@ void BenefitItemInvincible::exeCatch() {
     kill();
 }
 
-void BenefitItemInvincible::init(const JMapInfoIter &rIter) {
+void BenefitItemInvincible::init(const JMapInfoIter& rIter) {
     BenefitItemObj::init(rIter);
 
     if (!_D8) {
@@ -31,10 +31,10 @@ void BenefitItemInvincible::init(const JMapInfoIter &rIter) {
         _13A = 0;
         TVec3f axis_z;
         MR::getRotatedAxisZ(&axis_z, mRotation);
-        _148.set<f32>(axis_z);
+        _148.set< f32 >(axis_z);
         TVec3f axis_y;
         MR::getRotatedAxisY(&axis_y, mRotation);
-        _13C.set<f32>(axis_y);
+        _13C.set< f32 >(axis_y);
     }
 }
 
@@ -69,7 +69,7 @@ void BenefitItemInvincible::appearThrowUp() {
 // BenefitItemInvincible::initEscape
 // BenefitItemInvincible::doEscape
 
-void BenefitItemInvincible::runEfx(const char *pEffect) {
+void BenefitItemInvincible::runEfx(const char* pEffect) {
     char str[0x40];
     if (!strcmp(pEffect, "Glow")) {
         strcpy(str, pEffect);
@@ -78,7 +78,7 @@ void BenefitItemInvincible::runEfx(const char *pEffect) {
     }
 }
 
-void BenefitItemInvincible::stopEfx(const char *pEffect) {
+void BenefitItemInvincible::stopEfx(const char* pEffect) {
     char str[0x40];
     if (!strcmp(pEffect, "Glow")) {
         strcpy(str, pEffect);
@@ -87,10 +87,6 @@ void BenefitItemInvincible::stopEfx(const char *pEffect) {
     }
 }
 
-BenefitItemInvincible::~BenefitItemInvincible() {
+BenefitItemInvincible::~BenefitItemInvincible() {}
 
-}
-
-void BenefitItemInvincible::runBck(const char *) {
-
-}
+void BenefitItemInvincible::runBck(const char*) {}

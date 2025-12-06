@@ -36,7 +36,7 @@ void IntermissionScene::draw() const {
     graph.fillBox(box);
 }
 
-void IntermissionScene::setCurrentSceneControllerState(const char *pState, ...) {
+void IntermissionScene::setCurrentSceneControllerState(const char* pState, ...) {
     va_list list;
     va_start(list, pState);
     vsnprintf(mState, sizeof(mState), pState, list);

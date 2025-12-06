@@ -1,12 +1,12 @@
 #include "Game/MapObj/ArrowSwitch.hpp"
-#include <cmath>
 #include "math_types.hpp"
+#include <cmath>
 
 namespace {
-    const f32 sRotYTargetList[4] = { 0.0f, 90.0f, 180.0f, -90.0f };
+    const f32 sRotYTargetList[4] = {0.0f, 90.0f, 180.0f, -90.0f};
 };
 
-ArrowSwitch::ArrowSwitch(const char *pName) : LiveActor(pName) {
+ArrowSwitch::ArrowSwitch(const char* pName) : LiveActor(pName) {
     _8C = 0.0f;
     mRotationIdx = 0;
     _94 = 0.0f;
@@ -25,7 +25,7 @@ void ArrowSwitch::init(const JMapInfoIter &rIter) {
     mScale.z = 1.0f;
     initModelManagerWithAnm("ArrowSwitch", nullptr, false);
     MR::connectToSceneNoShadowedMapObjStrongLight(this);
-    TVec3f up_vec; 
+    TVec3f up_vec;
     MR::calcUpVec(&up_vec, this);
     TVec3f neg_up_vec;
     neg_up_vec.negateInlineAndStore(up_vec, mGravity);
@@ -53,7 +53,7 @@ void ArrowSwitch::init(const JMapInfoIter &rIter) {
     if (arg >= 0) {
         MR::setShadowDropLength(this, nullptr, arg);
     }
-    
+    
     MR::needStageSwitchWriteA(this, rIter);
 
     if (!_9C) {
@@ -66,9 +66,7 @@ void ArrowSwitch::init(const JMapInfoIter &rIter) {
 }
 */
 
-void ArrowSwitch::control() {
-
-}
+void ArrowSwitch::control() {}
 
 void ArrowSwitch::calcAndSetBaseMtx() {
     LiveActor::calcAndSetBaseMtx();
@@ -94,25 +92,25 @@ void ArrowSwitch::calcAndSetBaseMtx() {
     MR::setBaseTRMtx(this, pos);
 }
 
-void ArrowSwitch::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
+void ArrowSwitch::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isSensorPlayer(pReceiver)) {
         MR::sendMsgPush(pReceiver, pSender);
     }
 }
 
-bool ArrowSwitch::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool ArrowSwitch::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgPlayerHitAll(msg)) {
         return requestPunch(pSender, pReceiver);
-    }   
+    }
 
     return false;
 }
 
-bool ArrowSwitch::receiveMsgPush(HitSensor *pSender, HitSensor *pReceiver) {
+bool ArrowSwitch::receiveMsgPush(HitSensor* pSender, HitSensor* pReceiver) {
     return false;
 }
 
-bool ArrowSwitch::requestPunch(HitSensor *pSender, HitSensor *pReceiver) {
+bool ArrowSwitch::requestPunch(HitSensor* pSender, HitSensor* pReceiver) {
     if (getSensor("body") != pReceiver) {
         return false;
     }
@@ -128,17 +126,14 @@ bool ArrowSwitch::requestPunch(HitSensor *pSender, HitSensor *pReceiver) {
 
     if (isPlusLimit()) {
         _9D = 0;
-    }
-    else if (isMinusLimit()) {
+    } else if (isMinusLimit()) {
         _9D = 1;
-    }
-    else {
+    } else {
         f32 dot = side.dot(direction);
 
         if (dot > 0.0f) {
             _9D = 1;
-        }
-        else {
+        } else {
             _9D = 0;
         }
     }
@@ -150,35 +145,35 @@ bool ArrowSwitch::requestPunch(HitSensor *pSender, HitSensor *pReceiver) {
     _9F = 1;
     MR::invalidateClipping(this);
     setNerve(&NrvArrowSwitch::ArrowSwitchNrvRotate::sInstance);
-    return true; 
+    return true;
 }
 
 void ArrowSwitch::listenOnSwitch() {
     if (mRotationIdx == 0) {
-        switch(_98) {
-            case 2:
-            case -1:
-                _9D = 1;
-                _94 = 6.0f;
-                mRotationIdx = 2;
-                break;
-            case 3:
-                _9D = 0;
-                _94 = 6.0f;
-                mRotationIdx = 2;
-                break;
-            case 0:
-                _9D = 1;
-                _94 = -6.0f;
-                mRotationIdx = 1;
-                break;
-            case 1:
-                _9D = 0;
-                _94 = -6.0f;
-                mRotationIdx = 3;
-                break;
-            default:
-                return;
+        switch (_98) {
+        case 2:
+        case -1:
+            _9D = 1;
+            _94 = 6.0f;
+            mRotationIdx = 2;
+            break;
+        case 3:
+            _9D = 0;
+            _94 = 6.0f;
+            mRotationIdx = 2;
+            break;
+        case 0:
+            _9D = 1;
+            _94 = -6.0f;
+            mRotationIdx = 1;
+            break;
+        case 1:
+            _9D = 0;
+            _94 = -6.0f;
+            mRotationIdx = 3;
+            break;
+        default:
+            return;
         }
 
         MR::invalidateClipping(this);
@@ -190,20 +185,20 @@ void ArrowSwitch::listenOffSwitch() {
     if (mRotationIdx != 0) {
         mRotationIdx = 0;
 
-        switch(_98) {
-            case 2:
-            case 0:
-            case -1:
-                _9D = 0;
-                _94 = -6.0f;
-                break;
-            case 1:
-            case 3:
-                _9D = 1;
-                _94 = 6.0f;
-                break;
-            default:
-                return;
+        switch (_98) {
+        case 2:
+        case 0:
+        case -1:
+            _9D = 0;
+            _94 = -6.0f;
+            break;
+        case 1:
+        case 3:
+            _9D = 1;
+            _94 = 6.0f;
+            break;
+        default:
+            return;
         }
 
         MR::invalidateClipping(this);
@@ -215,8 +210,7 @@ void ArrowSwitch::exeWait() {
     if (MR::isFirstStep(this)) {
         if (mRotationIdx != 0) {
             MR::startBtk(this, "On");
-        }
-        else {
+        } else {
             MR::startBtk(this, "Off");
         }
 
@@ -255,8 +249,7 @@ void ArrowSwitch::exeRotate() {
         if (MR::isValidSwitchA(this) && _9F) {
             if (mRotationIdx != 0) {
                 MR::onSwitchA(this);
-            }
-            else {
+            } else {
                 MR::offSwitchA(this);
             }
 
@@ -267,8 +260,7 @@ void ArrowSwitch::exeRotate() {
         _9F = 0;
         if (_9C) {
             setNerve(&NrvArrowSwitch::ArrowSwitchNrvLock::sInstance);
-        }
-        else {
+        } else {
             setNerve(&NrvArrowSwitch::ArrowSwitchNrvWait::sInstance);
         }
     }
@@ -279,8 +271,7 @@ void ArrowSwitch::exeLock() {
     if (MR::isFirstStep(this)) {
         if (mRotationIdx == 0) {
             MR::startBtk(this, "Off");
-        }
-        else {
+        } else {
             MR::startBtk(this, "On");
         }
 
@@ -291,31 +282,31 @@ void ArrowSwitch::exeLock() {
 
 bool ArrowSwitch::isPlusLimit() const {
     switch (_98) {
-        case 2:
-            return mRotationIdx == 2;
-        case 0:
-            return mRotationIdx == 1;
-        case 1:
-            return mRotationIdx == 0;
-        case 3:
-            return mRotationIdx == 0;
-        default:
-            return false;
+    case 2:
+        return mRotationIdx == 2;
+    case 0:
+        return mRotationIdx == 1;
+    case 1:
+        return mRotationIdx == 0;
+    case 3:
+        return mRotationIdx == 0;
+    default:
+        return false;
     }
 }
 
 bool ArrowSwitch::isMinusLimit() const {
     switch (_98) {
-        case 2:
-            return mRotationIdx == 0;
-        case 0:
-            return mRotationIdx == 0;
-        case 1:
-            return mRotationIdx == 3;
-        case 3:
-            return mRotationIdx == 2;
-        default:
-            return false;
+    case 2:
+        return mRotationIdx == 0;
+    case 0:
+        return mRotationIdx == 0;
+    case 1:
+        return mRotationIdx == 3;
+    case 3:
+        return mRotationIdx == 2;
+    default:
+        return false;
     }
 }
 
@@ -338,22 +329,20 @@ namespace NrvArrowSwitch {
     INIT_NERVE(ArrowSwitchNrvRotate);
     INIT_NERVE(ArrowSwitchNrvLock);
 
-    void ArrowSwitchNrvLock::execute(Spine *pSpine) const {
-        ArrowSwitch* sw = reinterpret_cast<ArrowSwitch*>(pSpine->mExecutor);
+    void ArrowSwitchNrvLock::execute(Spine* pSpine) const {
+        ArrowSwitch* sw = reinterpret_cast< ArrowSwitch* >(pSpine->mExecutor);
         sw->exeLock();
     }
 
-    void ArrowSwitchNrvRotate::execute(Spine *pSpine) const {
-        ArrowSwitch* sw = reinterpret_cast<ArrowSwitch*>(pSpine->mExecutor);
+    void ArrowSwitchNrvRotate::execute(Spine* pSpine) const {
+        ArrowSwitch* sw = reinterpret_cast< ArrowSwitch* >(pSpine->mExecutor);
         sw->exeRotate();
     }
 
-    void ArrowSwitchNrvWait::execute(Spine *pSpine) const {
-        ArrowSwitch* sw = reinterpret_cast<ArrowSwitch*>(pSpine->mExecutor);
+    void ArrowSwitchNrvWait::execute(Spine* pSpine) const {
+        ArrowSwitch* sw = reinterpret_cast< ArrowSwitch* >(pSpine->mExecutor);
         sw->exeWait();
     }
-};
+};  // namespace NrvArrowSwitch
 
-ArrowSwitch::~ArrowSwitch() {
-
-}
+ArrowSwitch::~ArrowSwitch() {}

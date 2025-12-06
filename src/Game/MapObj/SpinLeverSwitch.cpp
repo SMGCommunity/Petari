@@ -1,15 +1,13 @@
 #include "Game/MapObj/SpinLeverSwitch.hpp"
 
-SpinLeverSwitch::SpinLeverSwitch(const char *pName) : LiveActor(pName) {
+SpinLeverSwitch::SpinLeverSwitch(const char* pName) : LiveActor(pName) {
     mConnector = nullptr;
     mConnector = new MapObjConnector(this);
-}   
-
-SpinLeverSwitch::~SpinLeverSwitch(){
-
 }
 
-void SpinLeverSwitch::init(const JMapInfoIter &rIter) {
+SpinLeverSwitch::~SpinLeverSwitch() {}
+
+void SpinLeverSwitch::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     initModelManagerWithAnm("SpinLeverSwitch", nullptr, false);
     MR::connectToSceneMapObj(this);
@@ -23,8 +21,7 @@ void SpinLeverSwitch::init(const JMapInfoIter &rIter) {
     MR::setGroupClipping(this, rIter, 16);
     if (returnedValue) {
         initNerve(&NrvSpinLeverSwitch::SpinLeverSwitchNrvWait::sInstance);
-    }
-    else {
+    } else {
         MR::startBck(this, "On", 0);
         MR::setBckFrameAndStop(this, MR::getBckFrameMax(this));
         MR::startBrk(this, "On");
@@ -43,17 +40,17 @@ void SpinLeverSwitch::calcAndSetBaseMtx() {
     mConnector->connect();
 }
 
-void SpinLeverSwitch::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
-    if (MR::isSensorPlayer(pReceiver)){
+void SpinLeverSwitch::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
+    if (MR::isSensorPlayer(pReceiver)) {
         if (pSender == (getSensor("spin"))) {
             if (MR::sendMsgPush(pReceiver, pSender)) {
                 return;
             }
-        }  
+        }
     }
 }
 
-bool SpinLeverSwitch::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool SpinLeverSwitch::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (!isNerve(&NrvSpinLeverSwitch::SpinLeverSwitchNrvWait::sInstance)) {
         return false;
     }
@@ -85,8 +82,7 @@ void SpinLeverSwitch::exeSwitchOn() {
         MR::startBrk(this, "On");
         if (MR::isInWater(this, TVec3f(0.0f, 0.0f, 0.0f))) {
             MR::startSound(this, "SE_OJ_SPIN_LEVER_SW_HIT_W", -1, -1);
-        }
-        else {
+        } else {
             MR::startSound(this, "SE_OJ_SPIN_LEVER_SW_HIT", -1, -1);
         }
         MR::tryRumblePadStrong(this, 0);
@@ -95,10 +91,9 @@ void SpinLeverSwitch::exeSwitchOn() {
     if (MR::isStep(this, 8)) {
         if (MR::isInWater(this, TVec3f(0.0f, 0.0f, 0.0f))) {
             MR::startSound(this, "SE_OJ_SPIN_LEVER_SW_ON_W", -1, -1);
-        }
-        else {
+        } else {
             MR::startSound(this, "SE_OJ_SPIN_LEVER_SW_ON", -1, -1);
-        }        
+        }
     }
     if (MR::isStep(this, 15)) {
         MR::onSwitchA(this);
@@ -113,16 +108,15 @@ namespace NrvSpinLeverSwitch {
     INIT_NERVE(SpinLeverSwitchNrvSwitchOn);
     INIT_NERVE(SpinLeverSwitchNrvEnd);
 
-	void SpinLeverSwitchNrvWait::execute(Spine *pSpine) const {
-		SpinLeverSwitch *pActor = (SpinLeverSwitch*)pSpine->mExecutor;
-		pActor->exeWait();
-	}    
+    void SpinLeverSwitchNrvWait::execute(Spine* pSpine) const {
+        SpinLeverSwitch* pActor = (SpinLeverSwitch*)pSpine->mExecutor;
+        pActor->exeWait();
+    }
 
-	void SpinLeverSwitchNrvSwitchOn::execute(Spine *pSpine) const {
-		SpinLeverSwitch *pActor = (SpinLeverSwitch*)pSpine->mExecutor;
-		pActor->exeSwitchOn();
-	}    
+    void SpinLeverSwitchNrvSwitchOn::execute(Spine* pSpine) const {
+        SpinLeverSwitch* pActor = (SpinLeverSwitch*)pSpine->mExecutor;
+        pActor->exeSwitchOn();
+    }
 
-	void SpinLeverSwitchNrvEnd::execute(Spine *pSpine) const {
-	}        
-};
+    void SpinLeverSwitchNrvEnd::execute(Spine* pSpine) const {}
+};  // namespace NrvSpinLeverSwitch

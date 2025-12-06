@@ -5,12 +5,12 @@
 
 class CannonFortressBreakStep : public MapObjActor {
 public:
-    CannonFortressBreakStep(const char *);
+    CannonFortressBreakStep(const char*);
 
     virtual ~CannonFortressBreakStep();
-    virtual void init(const JMapInfoIter &);
-    virtual void initCaseUseSwitchB(const MapObjActorInitInfo &);
-    virtual void initCaseNoUseSwitchB(const MapObjActorInitInfo &);
+    virtual void init(const JMapInfoIter&);
+    virtual void initCaseUseSwitchB(const MapObjActorInitInfo&);
+    virtual void initCaseNoUseSwitchB(const MapObjActorInitInfo&);
 
     void exeWait();
     void exeFall();

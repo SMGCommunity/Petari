@@ -2,9 +2,9 @@
 #include "Game/Util/MathUtil.hpp"
 #include <locale.h>
 
-//needed here for inlining reasons
+// needed here for inlining reasons
 inline int tolower(int c) {
-    return ((c < 0) || (c >= 0x100)) ? c : (int) (_current_locale.ctype_cmpt_ptr->lower_map_ptr[c]);
+    return ((c < 0) || (c >= 0x100)) ? c : (int)(_current_locale.ctype_cmpt_ptr->lower_map_ptr[c]);
 }
 
 HashSortTable::HashSortTable(u32 cnt) {
@@ -17,13 +17,12 @@ HashSortTable::HashSortTable(u32 cnt) {
     mHasBeenSorted = false;
 }
 
-bool HashSortTable::add(const char *pName, u32 a2, bool isValidSkip) {
+bool HashSortTable::add(const char* pName, u32 a2, bool isValidSkip) {
     u32 hash = MR::getHashCode(pName);
 
     if (isValidSkip) {
         return addOrSkip(hash, a2);
-    }
-    else {
+    } else {
         return add(hash, a2);
     }
 }
@@ -38,9 +37,9 @@ bool HashSortTable::add(u32 a1, u32 a2) {
 
 bool HashSortTable::addOrSkip(u32 a1, u32 a2) {
     for (u32 i = 0; i < mCurrentLength; i++) {
-       if (a1 == mHashCodes[i]) {
-           return false;
-       }
+        if (a1 == mHashCodes[i]) {
+            return false;
+        }
     }
 
     mHashCodes[mCurrentLength] = a1;
@@ -76,8 +75,7 @@ void HashSortTable::sort() {
         if (upperByte > counter) {
             _C[counter] = 0xFFFF;
             _10[counter] = 0;
-        }
-        else if (upperByte == counter) {
+        } else if (upperByte == counter) {
             _C[counter] = counter2;
             counter2++;
             u32 counter3 = 1;
@@ -110,7 +108,7 @@ void HashSortTable::sort() {
     mHasBeenSorted = true;
 }
 
-bool HashSortTable::search(u32 a1, u32 *a2) {
+bool HashSortTable::search(u32 a1, u32* a2) {
     u8 upperByte = a1 >> 24;
 
     if (a2 != nullptr) {
@@ -144,19 +142,19 @@ bool HashSortTable::search(u32 a1, u32 *a2) {
     return false;
 }
 
-bool HashSortTable::search(const char *a1, u32 *a2) {
+bool HashSortTable::search(const char* a1, u32* a2) {
     u32 hash = MR::getHashCode(a1);
 
     return search(hash, a2);
 }
 
-bool HashSortTable::search(const char *a1, const char *a2, u32 *a3) {
+bool HashSortTable::search(const char* a1, const char* a2, u32* a3) {
     u32 hash = MR::getHashCode(a1) + MR::getHashCode(a2);
 
     return search(hash, a3);
 }
 
-void HashSortTable::swap(const char *a1, const char *a2) {
+void HashSortTable::swap(const char* a1, const char* a2) {
     u32 hash = MR::getHashCode(a1);
 
     for (int i = 0; i < mCurrentLength; i++) {
@@ -170,7 +168,7 @@ void HashSortTable::swap(const char *a1, const char *a2) {
 }
 
 namespace MR {
-    u32 getHashCode(const char *pStr) {
+    u32 getHashCode(const char* pStr) {
         u32 hash;
 
         for (hash = 0; *pStr != '\0'; pStr++) {
@@ -180,7 +178,7 @@ namespace MR {
         return hash;
     }
 
-    u32 getHashCodeLower(const char *pStr) {
+    u32 getHashCodeLower(const char* pStr) {
         u32 hash;
 
         for (hash = 0; *pStr != '\0'; pStr++) {
@@ -189,4 +187,4 @@ namespace MR {
 
         return hash;
     }
-};
+};  // namespace MR

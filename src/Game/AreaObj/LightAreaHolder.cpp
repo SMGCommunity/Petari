@@ -1,31 +1,28 @@
 #include "Game/AreaObj/LightAreaHolder.hpp"
-#include "Game/Map/LightZoneDataHolder.hpp"
 #include "Game/Map/LightFunction.hpp"
+#include "Game/Map/LightZoneDataHolder.hpp"
 
-LightAreaHolder::LightAreaHolder(s32 type, const char *pName) : AreaObjMgr(type, pName) {
+LightAreaHolder::LightAreaHolder(s32 type, const char* pName) : AreaObjMgr(type, pName) {
     LightFunction::registerLightAreaHolder(this);
 }
 
 #ifdef NON_MATCHING
 // for some reason the register movement for isTargetArea are wrong
-bool LightAreaHolder::tryFindLightID(const TVec3f &rArea, ZoneLightID *pLightID) const {
-    const LightArea* lightArea = reinterpret_cast<LightArea*>(find_in(rArea));
+bool LightAreaHolder::tryFindLightID(const TVec3f& rArea, ZoneLightID* pLightID) const {
+    const LightArea* lightArea = reinterpret_cast< LightArea* >(find_in(rArea));
 
     if (!lightArea) {
         if (pLightID->isOutOfArea()) {
             pLightID->clear();
             return false;
-        }
-        else {
+        } else {
             pLightID->clear();
             return true;
         }
-    }
-    else {
+    } else {
         if (pLightID->isTargetArea(lightArea)) {
             return false;
-        }
-        else {
+        } else {
             pLightID->_0 = lightArea->mPlacedZoneID;
             pLightID->mLightID = lightArea->mObjArg0;
             return true;
@@ -38,6 +35,4 @@ void LightAreaHolder::initAfterPlacement() {
     sort();
 }
 
-LightAreaHolder::~LightAreaHolder() {
-
-}
+LightAreaHolder::~LightAreaHolder() {}

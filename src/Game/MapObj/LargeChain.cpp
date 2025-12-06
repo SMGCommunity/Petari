@@ -4,14 +4,14 @@ namespace {
     static f32 sPartsLength = 200.0f;
 };
 
-LargeChain::LargeChain(const char *pName) : LiveActor(pName) {
+LargeChain::LargeChain(const char* pName) : LiveActor(pName) {
     _8C = nullptr;
     _90 = nullptr;
     mChainArray = nullptr;
     mChainCount = 1;
 }
 
-void LargeChain::init(const JMapInfoIter &rIter) {
+void LargeChain::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     s32 chainLen;
     MR::getJMapInfoArg0NoInit(rIter, &chainLen);
@@ -56,12 +56,11 @@ void LargeChain::exeBreak() {
 
     if (!(getNerveStep() % 5)) {
         s32 step = getNerveStep() / 5;
-        
+
         if (step == 0) {
-             _8C->breakChainParts();
-        }
-        else { 
-           if (step == mChainCount - 1) {
+            _8C->breakChainParts();
+        } else {
+            if (step == mChainCount - 1) {
                 _90->breakChainParts();
             }
         }
@@ -73,9 +72,7 @@ void LargeChain::exeBreak() {
     }
 }
 
-LargeChainParts::~LargeChainParts() {
-
-}
+LargeChainParts::~LargeChainParts() {}
 
 void LargeChain::invalidateClippingAllChainParts() {
     for (s32 i = 0; i < (u32)mChainCount; i++) {
@@ -83,11 +80,9 @@ void LargeChain::invalidateClippingAllChainParts() {
     }
 }
 
-LargeChain::~LargeChain() {
-
-}
+LargeChain::~LargeChain() {}
 
 namespace NrvLargeChain {
     INIT_NERVE(LargeChainNrvWait);
     INIT_NERVE(LargeChainNrvBreak);
-};
+};  // namespace NrvLargeChain

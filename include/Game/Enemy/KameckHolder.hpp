@@ -4,7 +4,7 @@
 
 class Kameck;
 
-class KameckHolder : public DeriveActorGroup<Kameck> {
+class KameckHolder : public DeriveActorGroup< Kameck > {
 public:
     KameckHolder(s32);
 

@@ -4,7 +4,7 @@
 
 class SpotMarkLight : public PartsModel {
 public:
-    SpotMarkLight(LiveActor *, f32, f32, MtxPtr);
+    SpotMarkLight(LiveActor*, f32, f32, MtxPtr);
 
     virtual ~SpotMarkLight();
     virtual void control();

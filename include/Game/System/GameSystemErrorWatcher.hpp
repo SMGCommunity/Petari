@@ -7,7 +7,7 @@ namespace nw4r {
     namespace lyt {
         class TexMap;
     };
-};
+};  // namespace nw4r
 
 class BatteryLayout;
 class TriggerChecker;

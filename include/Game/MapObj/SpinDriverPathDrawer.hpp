@@ -12,19 +12,19 @@ public:
 
     void initDraw();
 
-    JUTTexture* mOrangeTexture; // 0xC
-    JUTTexture* mGreenTexture;  // 0x10
-    JUTTexture* mPinkTexture;   // 0x14
-    JUTTexture* mMaskTexture;   // 0x18
-    bool mIsPathAtOpa;          // 0x1C
+    JUTTexture* mOrangeTexture;  // 0xC
+    JUTTexture* mGreenTexture;   // 0x10
+    JUTTexture* mPinkTexture;    // 0x14
+    JUTTexture* mMaskTexture;    // 0x18
+    bool mIsPathAtOpa;           // 0x1C
 };
 
 class SpinDriverPathDrawer : public LiveActor {
 public:
-    SpinDriverPathDrawer(SpinDriverShootPath *);
+    SpinDriverPathDrawer(SpinDriverShootPath*);
 
     virtual ~SpinDriverPathDrawer();
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
     virtual void draw() const;
 
     s32 calcPositionCount(f32, f32) const;
@@ -39,22 +39,22 @@ public:
     void setColorPink();
     void setMaskLength(f32);
     void setFadeScale(f32);
-    void sendPoint(const TVec3f &, f32, f32);
+    void sendPoint(const TVec3f&, f32, f32);
 
-    SpinDriverShootPath* mShootPath;    // 0x8C
+    SpinDriverShootPath* mShootPath;  // 0x8C
     TVec3f* _90;
     TVec3f* _94;
     TVec3f* _98;
     void* _9C;
-    s32 mPositionCount;                 // 0xA0
+    s32 mPositionCount;  // 0xA0
     u32 _A4;
     u32 _A8;
     f32 _AC;
     f32 _B0;
-    s32 mColor;                         // 0xB4
+    s32 mColor;  // 0xB4
     f32 _B8;
-    f32 mFadeScale;                     // 0xBC
-    f32 mMaskLength;                    // 0xC0
+    f32 mFadeScale;   // 0xBC
+    f32 mMaskLength;  // 0xC0
 };
 
 namespace MR {
@@ -64,4 +64,4 @@ namespace MR {
     bool isDrawSpinDriverPathAtOpa();
     void onDrawSpinDriverPathAtOpa();
     void offDrawSpinDriverPathAtOpa();
-};
+};  // namespace MR

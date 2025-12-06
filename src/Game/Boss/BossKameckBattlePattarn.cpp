@@ -1,6 +1,6 @@
 #include "Game/Boss/BossKameckBattlePattarn.hpp"
 
-BossKameckBattlePattarn::BossKameckBattlePattarn(s32 *a1, bool a2) {
+BossKameckBattlePattarn::BossKameckBattlePattarn(s32* a1, bool a2) {
     _10 = a2;
     _0 = nullptr;
     _4 = 0;
@@ -9,7 +9,7 @@ BossKameckBattlePattarn::BossKameckBattlePattarn(s32 *a1, bool a2) {
     initPattarn(a1);
 }
 
-void BossKameckBattlePattarn::initPattarn(s32 *a1) {
+void BossKameckBattlePattarn::initPattarn(s32* a1) {
     _0 = a1;
     u32 v2 = 0;
 

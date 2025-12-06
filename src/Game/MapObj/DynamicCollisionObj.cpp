@@ -1,8 +1,8 @@
+#include "Game/MapObj/DynamicCollisionObj.hpp"
 #include "Game/Map/CollisionParts.hpp"
 #include "Game/Map/KCollision.hpp"
-#include "Game/MapObj/DynamicCollisionObj.hpp"
 
-DynamicCollisionObj::DynamicCollisionObj(const char *pName) : LiveActor(pName) {
+DynamicCollisionObj::DynamicCollisionObj(const char* pName) : LiveActor(pName) {
     _A4 = 0;
     _9C = 0;
     _11C = 0;
@@ -10,7 +10,7 @@ DynamicCollisionObj::DynamicCollisionObj(const char *pName) : LiveActor(pName) {
     _AC = 0;
 }
 
-void DynamicCollisionObj::init(const JMapInfoIter &rIter) {
+void DynamicCollisionObj::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     MR::connectToScene(this, 42, 8, -1, 25);
 

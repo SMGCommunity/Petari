@@ -1,6 +1,6 @@
 #include "Game/MapObj/Fountain.hpp"
 
-Fountain::Fountain(const char *pName) : LiveActor(pName) {
+Fountain::Fountain(const char* pName) : LiveActor(pName) {
     mFountainName = nullptr;
     _90.x = 0.0f;
     _90.y = 1.0f;
@@ -8,7 +8,7 @@ Fountain::Fountain(const char *pName) : LiveActor(pName) {
 }
 
 #ifdef NON_MATCHING
-void Fountain::init(const JMapInfoIter &rIter) {
+void Fountain::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     TMtx34f mtx;
     mtx.identity();
@@ -55,8 +55,7 @@ void Fountain::init(const JMapInfoIter &rIter) {
     if (MR::useStageSwitchReadAppear(this, rIter)) {
         MR::syncStageSwitchAppear(this);
         makeActorDead();
-    }
-    else {
+    } else {
         appear();
     }
 }
@@ -67,8 +66,7 @@ void Fountain::appear() {
 
     if (MR::isValidSwitchA(this)) {
         setNerve(&NrvFountain::HostTypeWait::sInstance);
-    }
-    else {
+    } else {
         setNerve(&NrvFountain::HostTypeMove::sInstance);
     }
 }
@@ -80,7 +78,6 @@ void Fountain::startClipped() {
         MR::deleteEffectAll(this);
     }
 }
-
 
 void Fountain::endClipped() {
     LiveActor::endClipped();
@@ -111,11 +108,9 @@ void Fountain::exeMove() {
     MR::startLevelSound(this, "SE_OJ_LV_FOUNTAIN", -1, -1, -1);
 }
 
-Fountain::~Fountain() {
-
-}
+Fountain::~Fountain() {}
 
 namespace NrvFountain {
     INIT_NERVE(HostTypeWait);
     INIT_NERVE(HostTypeMove);
-};
+};  // namespace NrvFountain

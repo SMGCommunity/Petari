@@ -10,7 +10,7 @@ struct GalaxyCometSerializeInfo {
 };
 
 struct GalaxyCometTimePaper {
-    /* 0x0 */ const char *mGalaxyName;
+    /* 0x0 */ const char* mGalaxyName;
     /* 0x4 */ s32 mCategory;
 };
 
@@ -18,7 +18,7 @@ class GalaxyCometTimeTable {
 public:
     /// @brief Initializes the table with the supplied time paper sequence.
     /// @param pTimePaper Pointer to the time paper entries.
-    GalaxyCometTimeTable(const GalaxyCometTimePaper *);
+    GalaxyCometTimeTable(const GalaxyCometTimePaper*);
 
     /// @brief Ticks the comet state and updates the cursor when ready.
     void update();
@@ -28,11 +28,11 @@ public:
 
     /// @brief Packs the current cursor and timing state into the provided game data struct.
     /// @param pInfo Output structure that receives the serialized state.
-    void serializeStateToGameData(GalaxyCometSerializeInfo *);
+    void serializeStateToGameData(GalaxyCometSerializeInfo*);
 
     /// @brief Restores the cursor and timing state from serialized game data.
     /// @param pInfo Input structure that supplies the serialized state.
-    void deserializeStateFromGameData(const GalaxyCometSerializeInfo *);
+    void deserializeStateFromGameData(const GalaxyCometSerializeInfo*);
 
     /// @brief Reports whether the current comet entry is active in orbit.
     /// @return `true` when the current entry is landed, otherwise `false`.
@@ -41,7 +41,7 @@ public:
     /// @brief Checks if the given galaxy exists anywhere in this time paper.
     /// @param galaxyName Galaxy name to test.
     /// @return `true` if the galaxy is present, `false` otherwise.
-    bool isIncluded(const char *) const;
+    bool isIncluded(const char*) const;
 
     /// @brief Returns the category for the current time paper entry.
     /// @return Active entry category identifier.
@@ -54,7 +54,7 @@ public:
     /// @param pResultPos Output pointer that receives the viable position.
     /// @param startPos Cursor index to begin searching from.
     /// @return `true` if a suitable position was found, `false` otherwise.
-    bool findSuitableTimePaperPos(s32 *, s32) const;
+    bool findSuitableTimePaperPos(s32*, s32) const;
 
     /// @brief Counts the populated entries within the time paper.
     /// @return Number of entries (excluding null terminator).
@@ -63,8 +63,8 @@ public:
     /// @brief Forces the current state forward and reapplies cursor adjustment.
     void advance();
 
-    /* 0x0 */ GalaxyCometState *mState;
-    /* 0x4 */ const GalaxyCometTimePaper *mTimePaper;
+    /* 0x0 */ GalaxyCometState* mState;
+    /* 0x4 */ const GalaxyCometTimePaper* mTimePaper;
     /* 0x8 */ s32 mTimePaperPos;
     /* 0xC */ bool mIsReady;
     /* 0xD */ bool mIsHide;
@@ -106,22 +106,22 @@ public:
     /// @brief Checks if the named galaxy currently hosts an active comet.
     /// @param pGalaxyName Galaxy name to test.
     /// @return `true` if the comet is active in orbit in that galaxy, otherwise `false`.
-    bool isCometLand(const char *) const;
+    bool isCometLand(const char*) const;
 
     /// @brief Resolves the power star ID tied to the active comet category.
     /// @param pGalaxyName Galaxy name used to locate the relevant table.
     /// @return Power star ID for the active comet, or `0` if unavailable.
-    s32 getEncounterCometPowerStarId(const char *) const;
+    s32 getEncounterCometPowerStarId(const char*) const;
 
     /// @brief Returns the localized name for the active comet in the given galaxy.
     /// @param pGalaxyName Galaxy name that hosts the comet.
     /// @return Localized comet name string.
-    const char *getEncounterCometName(const char *) const;
+    const char* getEncounterCometName(const char*) const;
 
     /// @brief Finds the time table whose current entry targets the named galaxy.
     /// @param pGalaxyName Galaxy name to locate among current entries.
     /// @return Matching time table pointer, or `nullptr` when not found.
-    GalaxyCometTimeTable *findFromGalaxy(const char *) const;
+    GalaxyCometTimeTable* findFromGalaxy(const char*) const;
 
     /// @brief Tests whether no time table reports an active comet.
     /// @return `true` if every table is currently hidden, otherwise `false`.
@@ -130,9 +130,9 @@ public:
     /// @brief Returns the packed state value for the named galaxy when present.
     /// @param pGalaxyName Galaxy name to query within each time table.
     /// @return Packed state value, or `-1` when the galaxy is absent.
-    s32 getStateValueIncluded(const char *);
+    s32 getStateValueIncluded(const char*);
 
 private:
-    /* 0x0 */ MR::AssignableArray<GalaxyCometTimeTable *> mTimeTables;
+    /* 0x0 */ MR::AssignableArray< GalaxyCometTimeTable* > mTimeTables;
     /* 0x8 */ bool mEnabled;
 };

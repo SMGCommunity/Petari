@@ -20,4 +20,4 @@ namespace AstroDemoFunction {
     bool tryRegisterSimpleCastIfAstroGalaxy(LiveActor*);
     void tryRegisterDemoForTico(LiveActor*, const JMapInfoIter&);
     void tryRegisterDemoForLuigiAndKinopio(LiveActor*, const JMapInfoIter&);
-};
+};  // namespace AstroDemoFunction

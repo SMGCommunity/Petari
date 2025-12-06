@@ -12,4 +12,183 @@ inline Function for_each(InputIterator first, InputIterator last, Function f) {
     return f;
 }
 
+namespace std{
+    // mostly yoinked from OGWS decomp
+    template <typename TIt, typename TCompare>
+    inline TIt min_element(TIt first, TIt last, TCompare compare) {
+    TIt it = first;
+
+    if (first != last) {
+        for (++first; first != last; ++first) {
+            if (compare(first, it)) {
+                it = first;
+            }
+        }
+    }
+
+    return it;
+}
+
+    template <typename T> inline void swap(T& a, T& b) {
+        T tmp = a;
+        a = b;
+        b = tmp;
+    }
+
+template <typename TCompare, typename TIt>
+inline void __selection_sort(TIt first, TIt last, TCompare compare) {
+    if (first != last) {
+        TIt j = last;
+        for (--j; first != j; ++first) {
+            TIt i = min_element<TIt, TCompare&>(first, last, compare);
+
+            if (i != first) {
+                swap(*i, *first);
+            }
+        }
+    }
+}
+
+template <typename TCompare, typename TIt>
+void __sort132(TIt a1, TIt a2, TIt a3, TCompare compare) {
+    bool b1 = !compare(a3, a1);
+    bool b2 = !compare(a2, a3);
+
+    if (!b1 || !b2) {
+        if (!b1 && !b2) {
+            swap(*a1, *a2);
+            return;
+        }
+
+        if (compare(a2, a1)) {
+            swap(*a1, *a2);
+        }
+
+        if (b1) {
+            swap(*a2, *a3);
+            return;
+        }
+
+        swap(*a1, *a3);
+    }
+}
+
+template <typename TIt, typename TCompare>
+void sort(TIt first, TIt last, TCompare compare) {
+    static const int SHUFFLE_MIN = -4;
+    static const int SHUFFLE_MAX = 5;
+    static const int SELECTION_SORT_MIN = 20;
+
+    while (true) {
+        long len = static_cast<long>(last - first);
+        if (len <= 1) {
+            return;
+        }
+
+        if (len <= SELECTION_SORT_MIN) {
+            __selection_sort<TCompare&, TIt>(first, last, compare);
+            return;
+        }
+
+        static int shuffle = -4;
+        TIt m = first +
+                (len / static_cast<long>(sizeof(TIt)) + shuffle % SHUFFLE_MAX);
+
+        if (++shuffle >= SHUFFLE_MAX) {
+            shuffle = SHUFFLE_MIN;
+        }
+
+        TIt i1 = first + (len * static_cast<long>(sizeof(TIt) - 1) /
+                              static_cast<long>(sizeof(TIt)) +
+                          shuffle % SHUFFLE_MAX);
+
+        if (++shuffle >= SHUFFLE_MAX) {
+            shuffle = SHUFFLE_MIN;
+        }
+
+        TIt j = last - 1;
+        __sort132<TCompare&, TIt>(m, i1, j, compare);
+
+        m = first;
+        i1 = j;
+        while (compare(m, j)) {
+            m++;
+        }
+
+        do {
+
+            if (m == --i1) {
+                break;
+            }
+        } while (!compare(i1, j));
+
+        if (m < i1) {
+            swap(*m, *i1);
+            m++;
+
+            while (true) {
+                while (compare(m, j)) {
+                    m++;
+                }
+
+                while (!compare(--i1, j)) {
+                    ;
+                }
+
+                if (m < i1) {
+                    swap(*m, *i1);
+                    m++;
+                } else {
+                    break;
+                }
+            }
+        }
+
+        if (m == first) {
+            swap(*m, *j);
+            m++;
+
+            i1 = last;
+            if (!compare(first, --i1)) {
+                while (m != last && !compare(first, m)) {
+                    m++;
+                }
+
+                if (m < i1) {
+                    swap(*m, *i1);
+                }
+            }
+
+            if (m < i1) {
+                while (true) {
+                    while (!compare(first, m)) {
+                        m++;
+                    }
+
+                    while (compare(first, --i1)) {
+                        ;
+                    }
+
+                    if (m < i1) {
+                        swap(*m, *i1);
+                        m++;
+                    } else {
+                        break;
+                    }
+                }
+            }
+
+            first = m;
+        } else if (m - first < last - m) {
+            sort<TIt, TCompare&>(first, m, compare);
+            first = m;
+        } else {
+            sort<TIt, TCompare&>(m, last, compare);
+            last = m;
+        }
+    }
+}
+
+} 
+
 #endif // ALGORITHM_H

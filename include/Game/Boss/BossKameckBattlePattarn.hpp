@@ -4,9 +4,9 @@
 
 class BossKameckBattlePattarn {
 public:
-    BossKameckBattlePattarn(s32 *, bool);
+    BossKameckBattlePattarn(s32*, bool);
 
-    void initPattarn(s32 *);
+    void initPattarn(s32*);
     s32 goNextPattarn();
 
     s32* _0;

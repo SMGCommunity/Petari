@@ -11,8 +11,8 @@ class HeapMemoryWatcher {
 public:
     HeapMemoryWatcher();
 
-    JKRHeap* getHeapNapa(const JKRHeap *);
-    JKRHeap* getHeapGDDR3(const JKRHeap *);
+    JKRHeap* getHeapNapa(const JKRHeap*);
+    JKRHeap* getHeapGDDR3(const JKRHeap*);
     void createFileCacheHeapOnGameHeap(u32);
     void createSceneHeapOnGameHeap();
     void adjustStationedHeaps();
@@ -24,7 +24,7 @@ public:
     static void createRootHeap();
     void createHeaps();
     void createGameHeap();
-    static void memoryErrorCallback(void *, u32, int);
+    static void memoryErrorCallback(void*, u32, int);
     void checkRestMemory();
 
     JKRExpHeap* mStationedHeapNapa;     // 0x0

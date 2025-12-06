@@ -5,11 +5,11 @@ SwitchEventFunctorListener::SwitchEventFunctorListener() {
     mOffFunctor = nullptr;
 }
 
-void SwitchEventFunctorListener::setOnFunctor(const MR::FunctorBase &rFunctor) {
+void SwitchEventFunctorListener::setOnFunctor(const MR::FunctorBase& rFunctor) {
     mOnFunctor = rFunctor.clone(nullptr);
 }
 
-void SwitchEventFunctorListener::setOffFunctor(const MR::FunctorBase &rFunctor) {
+void SwitchEventFunctorListener::setOffFunctor(const MR::FunctorBase& rFunctor) {
     mOffFunctor = rFunctor.clone(nullptr);
 }
 

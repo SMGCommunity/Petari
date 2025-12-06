@@ -3,19 +3,15 @@
 #include "Game/MapObj/MapObjActorInitInfo.hpp"
 #include "cstdio"
 
-PlanetMapWithoutHighModel::PlanetMapWithoutHighModel(const char *pName) : MapObjActor(pName) {
-    
-}
+PlanetMapWithoutHighModel::PlanetMapWithoutHighModel(const char* pName) : MapObjActor(pName) {}
 
-void PlanetMapWithoutHighModel::connectToScene(const MapObjActorInitInfo &) {
+void PlanetMapWithoutHighModel::connectToScene(const MapObjActorInitInfo&) {
     MR::connectToScenePlanet(this);
 }
 
-PlanetMapWithoutHighModel::~PlanetMapWithoutHighModel() {
+PlanetMapWithoutHighModel::~PlanetMapWithoutHighModel() {}
 
-}
-
-void PlanetMapWithoutHighModel::init(const JMapInfoIter &rIter) {
+void PlanetMapWithoutHighModel::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);
     MapObjActorInitInfo info;
     info.setupHioNode("◆◆ハイモデル無しの惑星◆◆");

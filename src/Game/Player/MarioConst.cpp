@@ -493,8 +493,7 @@ static MarioConstTable gMarioConstDefault = {
     /* mLookMaxAngleVP */ 0.5f,
     /* mLookMaxAngleVM */ 0.1f,
     /* mLookShoulderMoveMax */ 8.0f,
-    /* mRushInBlendTimer */ 4
-};
+    /* mRushInBlendTimer */ 4};
 
 static MarioConstTable gMarioConstDefault2 = {
     /* mJumpHeight */ {22.0f, 26.0f, 34.71f, 24.0f, 32.0f, 15.0f, 32.0f, 22.0f, 1.0f},
@@ -989,8 +988,7 @@ static MarioConstTable gMarioConstDefault2 = {
     /* mLookMaxAngleVP */ 0.5f,
     /* mLookMaxAngleVM */ 0.1f,
     /* mLookShoulderMoveMax */ 8.0f,
-    /* mRushInBlendTimer */ 4
-};
+    /* mRushInBlendTimer */ 4};
 
 MarioConst::MarioConst() {
     mTable[0] = &gMarioConstDefault;

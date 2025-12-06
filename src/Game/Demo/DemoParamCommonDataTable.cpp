@@ -3,19 +3,19 @@
 
 namespace {
     struct Param {
-        const char *mParamName;         // 0x0
-        f32 mCameraShakeIntensity;    // 0x4
-        f32 mCameraShakeSpeed;        // 0x8
-        const char *pRumbleName;        // 0xC
+        const char* mParamName;     // 0x0
+        f32 mCameraShakeIntensity;  // 0x4
+        f32 mCameraShakeSpeed;      // 0x8
+        const char* pRumbleName;    // 0xC
     };
 
     const Param sDataTable[3] = {
-        { "SeaBottomBigDoorA", 0.1f, 2.2f, "中" },
-        { "SeaBottomBigDoorB", 0.1f, 2.2f, "中" },
-        { "SeaBottomBigDoorC", 0.1f, 2.2f, "中" },
+        {"SeaBottomBigDoorA", 0.1f, 2.2f, "中"},
+        {"SeaBottomBigDoorB", 0.1f, 2.2f, "中"},
+        {"SeaBottomBigDoorC", 0.1f, 2.2f, "中"},
     };
 
-    const Param *getParam(const char *pParamName) {
+    const Param* getParam(const char* pParamName) {
         for (u32 i = 0; i < 3; i++) {
             if (MR::isEqualString(pParamName, sDataTable[i].mParamName)) {
                 return &sDataTable[i];
@@ -23,27 +23,15 @@ namespace {
         }
         return &sDataTable[0];
     }
-}
+}  // namespace
 
 namespace MR {
     namespace Demo {
-        f32 getCameraShakeIntensity(const char *pParamName) {
-            return getParam(pParamName)->mCameraShakeIntensity;
-        }
-        f32 getCameraShakeSpeed(const char *pParamName) {
-            return getParam(pParamName)->mCameraShakeSpeed;
-        }
-        const char* getPadRumble(const char *pParamName) {
-            return getParam(pParamName)->pRumbleName;
-        }
-        bool isExistCameraShaking(const char *pParamName) {
-            return getParam(pParamName)->mCameraShakeIntensity > 0.0f;
-        }
-        bool isExistPadRumble(const char *pParamName) {
-            return getParam(pParamName)->pRumbleName != nullptr;
-        }
-        const char* getStartEffect(const char *pParamName) {
-            return "Open";
-        }
-    }
-}
+        f32 getCameraShakeIntensity(const char* pParamName) { return getParam(pParamName)->mCameraShakeIntensity; }
+        f32 getCameraShakeSpeed(const char* pParamName) { return getParam(pParamName)->mCameraShakeSpeed; }
+        const char* getPadRumble(const char* pParamName) { return getParam(pParamName)->pRumbleName; }
+        bool isExistCameraShaking(const char* pParamName) { return getParam(pParamName)->mCameraShakeIntensity > 0.0f; }
+        bool isExistPadRumble(const char* pParamName) { return getParam(pParamName)->pRumbleName != nullptr; }
+        const char* getStartEffect(const char* pParamName) { return "Open"; }
+    }  // namespace Demo
+}  // namespace MR

@@ -7,7 +7,7 @@ class WalkerStateParam;
 
 class WalkerStateFunction {
 public:
-    static bool isInSightPlayer(const LiveActor *, const TVec3f &, const WalkerStateParam *);
+    static bool isInSightPlayer(const LiveActor*, const TVec3f&, const WalkerStateParam*);
 
-    static void calcPassiveMovement(LiveActor *, const WalkerStateParam *);
+    static void calcPassiveMovement(LiveActor*, const WalkerStateParam*);
 };

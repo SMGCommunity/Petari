@@ -1,11 +1,11 @@
+#include "Game/Map/CollisionParts.hpp"
 #include "Game/Boss/BossStinkBug.hpp"
 #include "Game/Camera/CameraPolygonCodeUtil.hpp"
-#include "Game/Map/CollisionCategorizedKeeper.hpp"
-#include "Game/Map/CollisionDirector.hpp"
-#include "Game/Map/CollisionParts.hpp"
-#include "Game/Map/KCollision.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
+#include "Game/Map/CollisionCategorizedKeeper.hpp"
+#include "Game/Map/CollisionDirector.hpp"
+#include "Game/Map/KCollision.hpp"
 #include "Game/Util/SceneUtil.hpp"
 
 CollisionParts::CollisionParts() {
@@ -27,11 +27,11 @@ CollisionParts::CollisionParts() {
     mPrevBaseMatrix.identity();
     mBaseMatrix.identity();
     mMatrix.identity();
-    PSMTXInverse(reinterpret_cast<MtxPtr>(&mBaseMatrix), reinterpret_cast<MtxPtr>(&mInvBaseMatrix));
+    PSMTXInverse(reinterpret_cast< MtxPtr >(&mBaseMatrix), reinterpret_cast< MtxPtr >(&mInvBaseMatrix));
 }
 
-void CollisionParts::init(const TPos3f &a1, HitSensor *pHitSensor, const void *pKclData, const void *pMapInfo, s32 keeperIndex, bool a6) {
-    mServer->init(const_cast<void *>(pKclData), pMapInfo);
+void CollisionParts::init(const TPos3f& a1, HitSensor* pHitSensor, const void* pKclData, const void* pMapInfo, s32 keeperIndex, bool a6) {
+    mServer->init(const_cast< void* >(pKclData), pMapInfo);
     mHitSensor = pHitSensor;
 
     resetAllMtx(a1);
@@ -39,8 +39,8 @@ void CollisionParts::init(const TPos3f &a1, HitSensor *pHitSensor, const void *p
     TVec3f scale;
     mBaseMatrix.getScale(scale);
 
-    CollisionDirector *director = MR::getCollisionDirector();
-    CollisionCategorizedKeeper *keeper = director->mKeepers[keeperIndex];
+    CollisionDirector* director = MR::getCollisionDirector();
+    CollisionCategorizedKeeper* keeper = director->mKeepers[keeperIndex];
     s32 zoneID = MR::getCurrentPlacementZoneId();
 
     mZone = keeper->getZone(zoneID);
@@ -57,7 +57,7 @@ void CollisionParts::addToBelongZone() {
     s32 index = mKeeperIndex;
     s32 zoneID = mZone->mZoneID;
 
-    CollisionDirector *director = MR::getCollisionDirector();
+    CollisionDirector* director = MR::getCollisionDirector();
     director->mKeepers[index]->addToZone(this, zoneID);
 }
 
@@ -65,25 +65,27 @@ void CollisionParts::removeFromBelongZone() {
     s32 index = mKeeperIndex;
     s32 zoneID = mZone->mZoneID;
 
-    CollisionDirector *director = MR::getCollisionDirector();
+    CollisionDirector* director = MR::getCollisionDirector();
     director->mKeepers[index]->removeFromZone(this, zoneID);
 }
 
-void CollisionParts::initWithAutoEqualScale(const TPos3f &a1, HitSensor *pHitSensor, const void *pKclData, const void *pMapInfo, s32 keeperIndex, bool a6) {
+void CollisionParts::initWithAutoEqualScale(const TPos3f& a1, HitSensor* pHitSensor, const void* pKclData, const void* pMapInfo, s32 keeperIndex,
+                                            bool a6) {
     _CF = true;
     _D0 = false;
 
     init(a1, pHitSensor, pKclData, pMapInfo, keeperIndex, a6);
 }
 
-void CollisionParts::initWithNotUsingScale(const TPos3f &a1, HitSensor *pHitSensor, const void *pKclData, const void *pMapInfo, s32 keeperIndex, bool a6) {
+void CollisionParts::initWithNotUsingScale(const TPos3f& a1, HitSensor* pHitSensor, const void* pKclData, const void* pMapInfo, s32 keeperIndex,
+                                           bool a6) {
     _CF = false;
     _D0 = true;
 
     init(a1, pHitSensor, pKclData, pMapInfo, keeperIndex, a6);
 }
 
-void CollisionParts::resetAllMtx(const TPos3f &a1) {
+void CollisionParts::resetAllMtx(const TPos3f& a1) {
     bool reset = false;
 
     if (_CD || _CE) {
@@ -107,7 +109,7 @@ void CollisionParts::resetAllMtx() {
     if (reset) {
         TPos3f matrix;
         JMath::gekko_ps_copy12(&matrix, _0);
-        makeEqualScale(reinterpret_cast<MtxPtr>(&matrix));
+        makeEqualScale(reinterpret_cast< MtxPtr >(&matrix));
 
         resetAllMtxPrivate(matrix);
     }
@@ -116,20 +118,20 @@ void CollisionParts::resetAllMtx() {
 void CollisionParts::forceResetAllMtxAndSetUpdateMtxOneTime() {
     TPos3f matrix;
     JMath::gekko_ps_copy12(&matrix, _0);
-    makeEqualScale(reinterpret_cast<MtxPtr>(&matrix));
+    makeEqualScale(reinterpret_cast< MtxPtr >(&matrix));
     resetAllMtxPrivate(matrix);
 
     _CE = true;
 }
 
-void CollisionParts::resetAllMtxPrivate(const TPos3f &a1) {
+void CollisionParts::resetAllMtxPrivate(const TPos3f& a1) {
     JMath::gekko_ps_copy12(&mPrevBaseMatrix, &a1);
     JMath::gekko_ps_copy12(&mBaseMatrix, &a1);
     JMath::gekko_ps_copy12(&mMatrix, &a1);
-    PSMTXInverse(reinterpret_cast<MtxPtr>(&mBaseMatrix), reinterpret_cast<MtxPtr>(&mInvBaseMatrix));
+    PSMTXInverse(reinterpret_cast< MtxPtr >(&mBaseMatrix), reinterpret_cast< MtxPtr >(&mInvBaseMatrix));
 }
 
-void CollisionParts::setMtx(const TPos3f &matrix) {
+void CollisionParts::setMtx(const TPos3f& matrix) {
     JMath::gekko_ps_copy12(&mMatrix, &matrix);
 }
 
@@ -145,23 +147,20 @@ void CollisionParts::updateMtx() {
     }
 
     if (!bVar1) {
-        if (MR::isSameMtx(reinterpret_cast<MtxPtr>(&mMatrix), reinterpret_cast<MtxPtr>(&mBaseMatrix))) {
+        if (MR::isSameMtx(reinterpret_cast< MtxPtr >(&mMatrix), reinterpret_cast< MtxPtr >(&mBaseMatrix))) {
             _D4++;
         }
-    }
-    else {
-        if (MR::isSameMtx(reinterpret_cast<MtxPtr>(&mMatrix), reinterpret_cast<MtxPtr>(&mBaseMatrix))) {
+    } else {
+        if (MR::isSameMtx(reinterpret_cast< MtxPtr >(&mMatrix), reinterpret_cast< MtxPtr >(&mBaseMatrix))) {
             _D4++;
-        }
-        else {
+        } else {
             if (_CE) {
                 _D4 = 1;
-            }
-            else {
+            } else {
                 _D4 = 0;
             }
 
-            f32 dVar4 = makeEqualScale(reinterpret_cast<MtxPtr>(&mMatrix));
+            f32 dVar4 = makeEqualScale(reinterpret_cast< MtxPtr >(&mMatrix));
             _E8 = dVar4;
             f32 var = dVar4 - _DC;
             _EC = dVar4;
@@ -177,7 +176,7 @@ void CollisionParts::updateMtx() {
         if (_D4 < 2) {
             JMath::gekko_ps_copy12(&mPrevBaseMatrix, &mBaseMatrix);
             JMath::gekko_ps_copy12(&mBaseMatrix, &mMatrix);
-            PSMTXInverse(reinterpret_cast<MtxPtr>(&mBaseMatrix), reinterpret_cast<MtxPtr>(&mInvBaseMatrix));
+            PSMTXInverse(reinterpret_cast< MtxPtr >(&mBaseMatrix), reinterpret_cast< MtxPtr >(&mInvBaseMatrix));
         }
     }
 }
@@ -185,7 +184,7 @@ void CollisionParts::updateMtx() {
 #ifdef NON_MATCHING
 // Issues with assignments of scaleDiff
 f32 CollisionParts::makeEqualScale(MtxPtr matrix) {
-    TPos3f &mtx = *reinterpret_cast<TPos3f *>(matrix);
+    TPos3f& mtx = *reinterpret_cast< TPos3f* >(matrix);
 
     TVec3f scale;
     mtx.getScale(scale);
@@ -205,8 +204,7 @@ f32 CollisionParts::makeEqualScale(MtxPtr matrix) {
     if (_D0) {
         invScale.set(uniformScale / scale.x, uniformScale / scale.y, uniformScale / scale.z);
         uniformScale = 1.0f;
-    }
-    else if (_CF) {
+    } else if (_CF) {
         uniformScale = (scale.x + scale.y + scale.z) / 3.0f;
         invScale.set(uniformScale / scale.x, uniformScale / scale.y, uniformScale / scale.z);
     }
@@ -230,7 +228,7 @@ f32 CollisionParts::makeEqualScale(MtxPtr matrix) {
 void CollisionParts::updateBoundingSphereRange() {
     TMtx34f matrix;
     JMath::gekko_ps_copy12(&matrix, _0);
-    f32 scale = makeEqualScale(reinterpret_cast<MtxPtr>(&matrix));
+    f32 scale = makeEqualScale(reinterpret_cast< MtxPtr >(&matrix));
     updateBoundingSphereRangePrivate(scale);
 }
 
@@ -244,12 +242,12 @@ void CollisionParts::updateBoundingSphereRangePrivate(f32 scale) {
     _D8 = scale * mServer->mMaxVertexDistance;
 }
 
-const char *CollisionParts::getHostName() const {
+const char* CollisionParts::getHostName() const {
     if (mHitSensor == nullptr) {
         return nullptr;
     }
 
-    LiveActor *actor = mHitSensor->mHost;
+    LiveActor* actor = mHitSensor->mHost;
 
     if (actor == nullptr) {
         return nullptr;
@@ -264,7 +262,7 @@ s32 CollisionParts::getPlacementZoneID() const {
 
 #ifdef NON_MATCHING
 // Instruction order
-void CollisionParts::projectToPlane(TVec3f *pProjected, const TVec3f &rPos, const TVec3f &rOrigin, const TVec3f &rNormal) {
+void CollisionParts::projectToPlane(TVec3f* pProjected, const TVec3f& rPos, const TVec3f& rOrigin, const TVec3f& rNormal) {
     TVec3f projected = rPos;
 
     TVec3f relative = rPos;
@@ -279,10 +277,10 @@ void CollisionParts::projectToPlane(TVec3f *pProjected, const TVec3f &rPos, cons
 }
 #endif
 
-void CollisionParts::calcForceMovePower(TVec3f *a1, const TVec3f &a2) const {
+void CollisionParts::calcForceMovePower(TVec3f* a1, const TVec3f& a2) const {
     TVec3f tStack88 = a2;
     TMtx34f auStack76;
-    PSMTXInverse((MtxPtr)&mPrevBaseMatrix, reinterpret_cast<MtxPtr>(&auStack76));
+    PSMTXInverse((MtxPtr)&mPrevBaseMatrix, reinterpret_cast< MtxPtr >(&auStack76));
 
     auStack76.mult(tStack88, tStack88);
     mBaseMatrix.mult(tStack88, tStack88);

@@ -10,13 +10,10 @@ namespace NrvMovieSubtitles {
     NEW_NERVE(HostTypeWait, MovieSubtitles, Wait);
     NEW_NERVE(HostTypeTalk, MovieSubtitles, Talk);
     NEW_NERVE(HostTypeTalkWait, MovieSubtitles, TalkWait);
-};
+};  // namespace NrvMovieSubtitles
 
-MovieSubtitles::MovieSubtitles(const char *pMessageId, s32 appearTime) :
-    LayoutActor("ムービーの字幕", true),
-    mFormerText(nullptr),
-    mAppearTime(appearTime)
-{
+MovieSubtitles::MovieSubtitles(const char* pMessageId, s32 appearTime)
+    : LayoutActor("ムービーの字幕", true), mFormerText(nullptr), mAppearTime(appearTime) {
     MR::connectToScene(this, 19, 15, -1, 64);
     initLayoutManager("CinemaSuper", 1);
 
@@ -32,9 +29,7 @@ void MovieSubtitles::appear() {
     setNerve(&NrvMovieSubtitles::HostTypeTalk::sInstance);
 }
 
-void MovieSubtitles::exeWait() {
-    
-}
+void MovieSubtitles::exeWait() {}
 
 void MovieSubtitles::exeTalk() {
     mFormerText->updateTalking();
@@ -51,8 +46,7 @@ void MovieSubtitles::exeTalkWait() {
         if (mFormerText->hasNextPage()) {
             mFormerText->nextPage();
             setNerve(&NrvMovieSubtitles::HostTypeTalk::sInstance);
-        }
-        else {
+        } else {
             kill();
         }
     }

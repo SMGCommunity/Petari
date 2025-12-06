@@ -5,29 +5,28 @@ namespace {
     static const char* sDefaultPlayDataName = "_default";
 };
 
-void BckCtrl::overWrite(const BckCtrlData &rNew) {
+void BckCtrl::overWrite(const BckCtrlData& rNew) {
     if (MR::isEqualStringCase(rNew._0, sDefaultPlayDataName)) {
         mDefaultCtrlData = rNew;
-    }
-    else {
+    } else {
         BckCtrlData* data = find(rNew._0);
 
         if (data) {
             *data = rNew;
-        }
-        else {
-           add(rNew);
+        } else {
+            add(rNew);
         }
     }
 }
 
-void BckCtrl::changeBckSetting(const char *pName, XanimePlayer *pPlayer) const {
+void BckCtrl::changeBckSetting(const char* pName, XanimePlayer* pPlayer) const {
     BckCtrlData* data = find(pName);
 
     if (data) {
         bool reflectDataPtr = false;
 
-        if (data->mInterpole >= 0 || data->mPlayFrame >= 0 || data->mStartFrame >= 0 || data->mEndFrame >= 0 || data->mRepeatFrame >= 0 || data->mLoopMode != 0xFF) {
+        if (data->mInterpole >= 0 || data->mPlayFrame >= 0 || data->mStartFrame >= 0 || data->mEndFrame >= 0 || data->mRepeatFrame >= 0 ||
+            data->mLoopMode != 0xFF) {
             reflectDataPtr = true;
         }
 

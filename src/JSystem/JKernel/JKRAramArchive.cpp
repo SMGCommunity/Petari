@@ -1,5 +1,5 @@
-#include "JSystem/JKernel/JKRAram.hpp"
 #include "JSystem/JKernel/JKRAramArchive.hpp"
+#include "JSystem/JKernel/JKRAram.hpp"
 #include "JSystem/JKernel/JKRHeap.hpp"
 
 JKRAramArchive::JKRAramArchive(long entryNum, EMountDirection mountDir) : JKRArchive(entryNum, MOUNT_MODE_ARAM) {

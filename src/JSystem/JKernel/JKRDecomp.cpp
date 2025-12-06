@@ -1,19 +1,19 @@
 #include "JSystem/JKernel/JKRDecomp.hpp"
-#include "JSystem/JKernel/JKRHeap.hpp"
 #include "JSystem/JKernel/JKRAramPiece.hpp"
+#include "JSystem/JKernel/JKRHeap.hpp"
 #include "revolution.h"
 
 #define NR_MESSAGES 8
 
 namespace {
-    JKRDecomp *gDecompInstance; // 0x806B71D8
-    OSMessage gMessage[NR_MESSAGES]; // 0x8060D038
-    OSMessageQueue gMessageQueue; // 0x8060D058
-}
+    JKRDecomp* gDecompInstance;       // 0x806B71D8
+    OSMessage gMessage[NR_MESSAGES];  // 0x8060D038
+    OSMessageQueue gMessageQueue;     // 0x8060D058
+}  // namespace
 
 JKRDecompCommand::JKRDecompCommand() {
     OSInitMessageQueue(&mMessageQueue, &mMessage, 1);
-    mThis = this; // Probably a pointer to the data stored at 0x00 instead
+    mThis = this;  // Probably a pointer to the data stored at 0x00 instead
     _14 = 0;
     _1C = nullptr;
     _20 = 0;
@@ -23,26 +23,19 @@ JKRDecomp::JKRDecomp(long a1) : JKRThread(0x4000, 0x10, a1) {
     OSResumeThread(mThread);
 }
 
-JKRDecomp::~JKRDecomp() {
-
-}
+JKRDecomp::~JKRDecomp() {}
 
 s32 JKRDecomp::run() {
     OSInitMessageQueue(&gMessageQueue, &gMessage[0], NR_MESSAGES);
 
-    JKRDecompCommand *commandPtr;
+    JKRDecompCommand* commandPtr;
 
     while (true) {
-        OSReceiveMessage(&gMessageQueue, reinterpret_cast<OSMessage *>(&commandPtr), OS_MESSAGE_BLOCK);
+        OSReceiveMessage(&gMessageQueue, reinterpret_cast< OSMessage* >(&commandPtr), OS_MESSAGE_BLOCK);
 
-        JKRDecompCommand &command = *commandPtr;
+        JKRDecompCommand& command = *commandPtr;
 
-        decode(
-            command.mSrc,
-            command.mDst,
-            command.mCompressedSize,
-            command.mDecompressedSize
-            );
+        decode(command.mSrc, command.mDst, command.mCompressedSize, command.mDecompressedSize);
 
         if (command._20 != 0) {
             if (command._20 == 1) {
@@ -53,29 +46,29 @@ s32 JKRDecomp::run() {
         }
 
         if (command._14 != nullptr) {
-            command._14(reinterpret_cast<u32>(&command));
+            command._14(reinterpret_cast< u32 >(&command));
             continue;
         }
 
         if (command._1C != nullptr) {
-            OSSendMessage(command._1C, reinterpret_cast<OSMessage>(1), OS_MESSAGE_NOBLOCK);
-        }
-        else {
-            OSSendMessage(&command.mMessageQueue, reinterpret_cast<OSMessage>(1), OS_MESSAGE_NOBLOCK);
+            OSSendMessage(command._1C, reinterpret_cast< OSMessage >(1), OS_MESSAGE_NOBLOCK);
+        } else {
+            OSSendMessage(&command.mMessageQueue, reinterpret_cast< OSMessage >(1), OS_MESSAGE_NOBLOCK);
         }
     }
 }
 
-JKRDecomp *JKRDecomp::create(long a1) {
+JKRDecomp* JKRDecomp::create(long a1) {
     if (gDecompInstance == nullptr) {
-        gDecompInstance = new(JKRHeap::sGameHeap, 0) JKRDecomp(a1);
+        gDecompInstance = new (JKRHeap::sGameHeap, 0) JKRDecomp(a1);
     }
 
     return gDecompInstance;
 }
 
-JKRDecompCommand *JKRDecomp::prepareCommand(unsigned char *pSrc, unsigned char *pDst, unsigned long compressedSize, unsigned long decompressedSize, void (*a5)(unsigned long)) {
-    JKRDecompCommand *command = new(JKRHeap::sGameHeap, -4) JKRDecompCommand();
+JKRDecompCommand* JKRDecomp::prepareCommand(unsigned char* pSrc, unsigned char* pDst, unsigned long compressedSize, unsigned long decompressedSize,
+                                            void (*a5)(unsigned long)) {
+    JKRDecompCommand* command = new (JKRHeap::sGameHeap, -4) JKRDecompCommand();
 
     command->mSrc = pSrc;
     command->mDst = pDst;
@@ -86,24 +79,23 @@ JKRDecompCommand *JKRDecomp::prepareCommand(unsigned char *pSrc, unsigned char *
     return command;
 }
 
-void JKRDecomp::sendCommand(JKRDecompCommand *pCommand) {
+void JKRDecomp::sendCommand(JKRDecompCommand* pCommand) {
     OSSendMessage(&gMessageQueue, pCommand, OS_MESSAGE_NOBLOCK);
 }
 
-bool JKRDecomp::sync(JKRDecompCommand *pCommand, int noBlock) {
+bool JKRDecomp::sync(JKRDecompCommand* pCommand, int noBlock) {
     OSMessage message;
 
     if (noBlock == 0) {
         OSReceiveMessage(&pCommand->mMessageQueue, &message, OS_MESSAGE_BLOCK);
         return true;
-    }
-    else {
+    } else {
         return OSReceiveMessage(&pCommand->mMessageQueue, &message, OS_MESSAGE_NOBLOCK) != 0;
     }
 }
 
-bool JKRDecomp::orderSync(unsigned char *pSrc, unsigned char *pDst, unsigned long compressedSize, unsigned long decompressedSize) {
-    JKRDecompCommand *command = prepareCommand(pSrc, pDst, compressedSize, decompressedSize,nullptr);
+bool JKRDecomp::orderSync(unsigned char* pSrc, unsigned char* pDst, unsigned long compressedSize, unsigned long decompressedSize) {
+    JKRDecompCommand* command = prepareCommand(pSrc, pDst, compressedSize, decompressedSize, nullptr);
 
     OSSendMessage(&gMessageQueue, command, OS_MESSAGE_NOBLOCK);
     bool received = sync(command, 0);
@@ -113,13 +105,12 @@ bool JKRDecomp::orderSync(unsigned char *pSrc, unsigned char *pDst, unsigned lon
     return received;
 }
 
-void JKRDecomp::decode(unsigned char *pSrc, unsigned char *pDst, unsigned long compressedSize, unsigned long decompressedSize) {
+void JKRDecomp::decode(unsigned char* pSrc, unsigned char* pDst, unsigned long compressedSize, unsigned long decompressedSize) {
     EJKRCompression compression = checkCompressed(pSrc);
 
     if (compression == JKR_COMPRESSION_SZP) {
         decodeSZP(pSrc, pDst, compressedSize, decompressedSize);
-    }
-    else if (compression == JKR_COMPRESSION_SZS) {
+    } else if (compression == JKR_COMPRESSION_SZS) {
         decodeSZS(pSrc, pDst, compressedSize, decompressedSize);
     }
 }
@@ -128,8 +119,8 @@ void JKRDecomp::decode(unsigned char *pSrc, unsigned char *pDst, unsigned long c
 
 }*/
 
-#ifdef NON_MATCHING // Wrong registers
-void JKRDecomp::decodeSZS(u8 *pSrc, u8 *pDst, u32 compressedSize, u32 a4) {
+#ifdef NON_MATCHING  // Wrong registers
+void JKRDecomp::decodeSZS(u8* pSrc, u8* pDst, u32 compressedSize, u32 a4) {
     u32 decompSize = ((s32)pDst + *(u32*)(pSrc + 4)) - a4;
     u8 byte1, byte2;
     s32 validBitCount = 0;
@@ -160,31 +151,29 @@ void JKRDecomp::decodeSZS(u8 *pSrc, u8 *pDst, u32 compressedSize, u32 a4) {
                 if (compressedSize == 0) {
                     return;
                 }
-            }
-            else {
+            } else {
                 a4--;
             }
 
             pSrc++;
-        }
-        else {
+        } else {
             // This bit specifically
             byte1 = *pSrc++;
             byte2 = *pSrc++;
 
             u8* copySrc = pDst;
-            copySrc -= ((byte1 & 0xF) << 8) | byte2;;
+            copySrc -= ((byte1 & 0xF) << 8) | byte2;
+            ;
             u32 numBytes = byte1 >> 4;
 
             if (numBytes == 0) {
                 numBytes = *pSrc++ + 0x12;
-            }
-            else {
+            } else {
                 numBytes += 2;
             }
-            
+
             do {
-               if (a4 == 0) {
+                if (a4 == 0) {
                     compressedSize--;
                     *pDst = *(copySrc - 1);
                     pDst++;
@@ -192,8 +181,7 @@ void JKRDecomp::decodeSZS(u8 *pSrc, u8 *pDst, u32 compressedSize, u32 a4) {
                     if (compressedSize == 0) {
                         return;
                     }
-                }
-                else {
+                } else {
                     a4--;
                 }
 
@@ -207,12 +195,12 @@ void JKRDecomp::decodeSZS(u8 *pSrc, u8 *pDst, u32 compressedSize, u32 a4) {
 }
 #endif
 
-EJKRCompression JKRDecomp::checkCompressed(unsigned char *pSrc) {
+EJKRCompression JKRDecomp::checkCompressed(unsigned char* pSrc) {
     if (pSrc[0] == 'Y' && pSrc[1] == 'a' && pSrc[3] == '0') {
         if (pSrc[2] == 'y') {
             return JKR_COMPRESSION_SZP;
         }
-        
+
         if (pSrc[2] == 'z') {
             return JKR_COMPRESSION_SZS;
         }

@@ -10,10 +10,10 @@ class NameObjExecuteInfo {
 public:
     NameObjExecuteInfo();
 
-    void setConnectInfo(NameObj *, int, int, int, int);
+    void setConnectInfo(NameObj*, int, int, int, int);
     void initConnectting();
-    void requestConnect(u8 *);
-    void requestDisconnect(u8 *, bool);
+    void requestConnect(u8*);
+    void requestDisconnect(u8*, bool);
     void executeRequirementConnectMovement() NO_INLINE;
     void executeRequirementDisconnectMovement() NO_INLINE;
     void executeRequirementConnectDraw() NO_INLINE;
@@ -38,17 +38,17 @@ private:
     /* 0xA */ s16 _A;
 };
 
-class NameObjExecuteHolder : public NameObj { 
+class NameObjExecuteHolder : public NameObj {
 public:
     NameObjExecuteHolder(int);
 
-    void registerActor(NameObj *, int, int, int, int);
+    void registerActor(NameObj*, int, int, int, int);
     void initConnectting();
-    void connectToScene(NameObj *);
-    void connectToDraw(NameObj *);
-    void disconnectToScene(NameObj *);
-    void disconnectToDraw(NameObj *);
-    bool isConnectToDraw(const NameObj *) const;
+    void connectToScene(NameObj*);
+    void connectToDraw(NameObj*);
+    void disconnectToScene(NameObj*);
+    void disconnectToDraw(NameObj*);
+    bool isConnectToDraw(const NameObj*) const;
     void executeRequirementConnectMovement();
     void executeRequirementDisconnectMovement();
     void executeRequirementConnectDraw();
@@ -56,7 +56,7 @@ public:
     void executeRequirementDisconnectDrawDelay();
     void requestMovementOn(int);
     void requestMovementOff(int);
-    NameObjExecuteInfo* getConnectToSceneInfo(const NameObj *) const;
+    NameObjExecuteInfo* getConnectToSceneInfo(const NameObj*) const;
 
 private:
     /* 0x0C */ NameObjExecuteInfo* mExecuteArray;
@@ -70,13 +70,13 @@ private:
 };
 
 namespace MR {
-    void registerNameObjToExecuteHolder(NameObj *, int, int, int, int);
+    void registerNameObjToExecuteHolder(NameObj*, int, int, int, int);
     void initConnectting();
-    void connectToSceneTemporarily(NameObj *);
-    void disconnectToSceneTemporarily(NameObj *);
-    void connectToDrawTemporarily(NameObj *);
-    void disconnectToDrawTemporarily(NameObj *);
-    bool isConnectToDrawTemporarily(const NameObj *);
+    void connectToSceneTemporarily(NameObj*);
+    void disconnectToSceneTemporarily(NameObj*);
+    void connectToDrawTemporarily(NameObj*);
+    void disconnectToDrawTemporarily(NameObj*);
+    bool isConnectToDrawTemporarily(const NameObj*);
     void executeRequirementConnectMovement();
     void executeRequirementDisconnectMovement();
     void executeRequirementConnectDraw();
@@ -84,5 +84,5 @@ namespace MR {
     void executeRequirementDisconnectDrawDelay();
     void requestMovementOnWithCategory(int);
     void requestMovementOffWithCategory(int);
-    void findActorLightInfo(const LiveActor *);
-};
+    void findActorLightInfo(const LiveActor*);
+};  // namespace MR

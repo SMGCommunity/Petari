@@ -17,13 +17,13 @@
 namespace NrvNeedlePlant {
     NEW_NERVE(NeedlePlantNrvWait, NeedlePlant, Wait);
     NEW_NERVE(NeedlePlantNrvShake, NeedlePlant, Shake);
-}; 
+};  // namespace NrvNeedlePlant
 
-NeedlePlant::NeedlePlant(const char *pName) : MapObjActor(pName) {
-    _C4 = -1; 
+NeedlePlant::NeedlePlant(const char* pName) : MapObjActor(pName) {
+    _C4 = -1;
 }
 
-void NeedlePlant::init(const JMapInfoIter &rIter) {
+void NeedlePlant::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);
     MapObjActorInitInfo info;
     info.setupHioNode("地形オブジェ");
@@ -40,7 +40,7 @@ void NeedlePlant::init(const JMapInfoIter &rIter) {
     initEffectKeeper(1, "NeedlePlant", false);
     MR::addEffectHitNormal(this, nullptr);
     initSound(4, 0);
-    TVec3f vec3_2; //Second Vector3f
+    TVec3f vec3_2;  // Second Vector3f
     vec3_2.set(0.0f, 150.0f * mScale.x, 0.0f);
     MR::initStarPointerTarget(this, 150.0f * mScale.x, vec3_2);
     MR::getJMapInfoArg0NoInit(rIter, &_C4);
@@ -57,7 +57,7 @@ void NeedlePlant::exeShake() {
         MR::startBck(this, "Shake", nullptr);
         MR::startSound(this, "SE_OJ_LEAVES_SWING", -1, -1);
     }
-    
+
     if (MR::isBckStopped(this)) {
         setNerve(&NrvNeedlePlant::NeedlePlantNrvWait::sInstance);
     }
@@ -76,7 +76,7 @@ void NeedlePlant::kill() {
     MapObjActor::kill();
 }
 
-void NeedlePlant::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
+void NeedlePlant::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     // TODO: Possible inline. https://decomp.me/scratch/zwlUm
     if (MR::calcDistance(pSender, pReceiver, nullptr) > 70.0f * mScale.x + pReceiver->mRadius) {
         return;
@@ -94,11 +94,11 @@ void NeedlePlant::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
     }
 }
 
-bool NeedlePlant::receiveMsgPush(HitSensor *pSender, HitSensor *pReceiver) {
+bool NeedlePlant::receiveMsgPush(HitSensor* pSender, HitSensor* pReceiver) {
     if (isNerve(&NrvNeedlePlant::NeedlePlantNrvShake::sInstance)) {
         return false;
     }
-    
+
     if (!MR::isSensorEnemy(pSender)) {
         return false;
     }
@@ -106,7 +106,7 @@ bool NeedlePlant::receiveMsgPush(HitSensor *pSender, HitSensor *pReceiver) {
     return true;
 }
 
-bool NeedlePlant::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool NeedlePlant::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgStarPieceReflect(msg)) {
         setNerve(&NrvNeedlePlant::NeedlePlantNrvShake::sInstance);
         return true;
@@ -118,12 +118,12 @@ bool NeedlePlant::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor 
     }
 }
 
-bool NeedlePlant::receiveMsgEnemyAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool NeedlePlant::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     kill();
     return true;
 }
 
-void NeedlePlant::connectToScene(const MapObjActorInitInfo &) {
+void NeedlePlant::connectToScene(const MapObjActorInitInfo&) {
     MR::connectToSceneNoShadowedMapObj(this);
 }
 
@@ -131,6 +131,6 @@ NeedlePlant::~NeedlePlant() {}
 
 inline void NeedlePlant::exeWait() {
     if (MR::isFirstStep(this)) {
-        MR::tryStartAllAnim(this, mObjectName); 
+        MR::tryStartAllAnim(this, mObjectName);
     }
 }

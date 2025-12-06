@@ -8,16 +8,16 @@ class CameraViewInterpolator {
 public:
     CameraViewInterpolator();
 
-    void updateCameraMtx(MtxPtr, const TVec3f &, const CameraTargetObj *, f32);
+    void updateCameraMtx(MtxPtr, const TVec3f&, const CameraTargetObj*, f32);
     void setInterpolation(u32);
     bool isInterpolating() const;
     bool isInterpolatingNearlyEnd() const;
     void lookAtCenter();
-    void calcCollision(const TPos3f &);
-    void calcBinder(TVec3f *, const TVec3f &, const TVec3f &);
+    void calcCollision(const TPos3f&);
+    void calcBinder(TVec3f*, const TVec3f&, const TVec3f&);
     void reduceOscillation();
-    void updateCalcState(const CameraTargetObj *);
-    void interpolateCameraSwitching(MtxPtr, const TVec3f &, f32);
+    void updateCalcState(const CameraTargetObj*);
+    void interpolateCameraSwitching(MtxPtr, const TVec3f&, f32);
     void checkNearlyEnd(MtxPtr);
     void translateByRepulsion();
 

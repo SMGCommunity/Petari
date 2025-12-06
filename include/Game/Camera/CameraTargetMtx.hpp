@@ -5,25 +5,25 @@
 
 class CameraTargetMtx : public CameraTargetObj {
 public:
-    CameraTargetMtx(const char *);
+    CameraTargetMtx(const char*);
     virtual ~CameraTargetMtx();
-    
+
     virtual void movement();
 
-    virtual const TVec3f *getPosition() const;
-    virtual const TVec3f *getUpVec() const;
-    virtual const TVec3f *getFrontVec() const;
-    virtual const TVec3f *getSideVec() const;
-    virtual const TVec3f *getLastMove() const;
-    virtual const TVec3f *getGroundPos() const;
-    virtual const TVec3f *getGravityVector() const;
+    virtual const TVec3f* getPosition() const;
+    virtual const TVec3f* getUpVec() const;
+    virtual const TVec3f* getFrontVec() const;
+    virtual const TVec3f* getSideVec() const;
+    virtual const TVec3f* getLastMove() const;
+    virtual const TVec3f* getGroundPos() const;
+    virtual const TVec3f* getGravityVector() const;
 
-    virtual CubeCameraArea *getCubeCameraArea() const;
-    
+    virtual CubeCameraArea* getCubeCameraArea() const;
+
     void invalidateLastMove();
 
     void setMtx(register MtxPtr mtx) NO_INLINE {
-        register TMtx34f &dst = mMatrix;
+        register TMtx34f& dst = mMatrix;
 
         __asm {
             psq_l   f0, 0x00(mtx), 0x0, 0
@@ -41,14 +41,14 @@ public:
         }
     }
 
-    TMtx34f mMatrix;                // 0x10
-    TVec3f mPosition;               // 0x40
-    TVec3f mLastMove;               // 0x4C
-    TVec3f mGravityVector;          // 0x58
-    TVec3f mUp;                     // 0x64
-    TVec3f mFront;                  // 0x70
-    TVec3f mSide;                   // 0x7C
-    bool mInvalidLastMove;          // 0x88
+    TMtx34f mMatrix;        // 0x10
+    TVec3f mPosition;       // 0x40
+    TVec3f mLastMove;       // 0x4C
+    TVec3f mGravityVector;  // 0x58
+    TVec3f mUp;             // 0x64
+    TVec3f mFront;          // 0x70
+    TVec3f mSide;           // 0x7C
+    bool mInvalidLastMove;  // 0x88
     u8 _89[3];
-    CubeCameraArea *mCameraArea;    // 0x8C
+    CubeCameraArea* mCameraArea;  // 0x8C
 };

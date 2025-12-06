@@ -7,19 +7,19 @@ class CollectTico;
 
 class StrayTico : public LiveActor {
 public:
-    StrayTico(const char *, CollectTico *);
+    StrayTico(const char*, CollectTico*);
 
     virtual ~StrayTico();
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
     virtual void appear();
     virtual void control();
     virtual void calcAndSetBaseMtx();
-    virtual void attackSensor(HitSensor *, HitSensor *);
-    virtual bool receiveMsgPush(HitSensor *, HitSensor *);
-    virtual bool receiveMsgPlayerAttack(u32, HitSensor *, HitSensor *);
-    virtual bool receiveOtherMsg(u32, HitSensor *, HitSensor *);
+    virtual void attackSensor(HitSensor*, HitSensor*);
+    virtual bool receiveMsgPush(HitSensor*, HitSensor*);
+    virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
+    virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
 
-    bool requestCompleteDemo(const TVec3f &, const TVec3f &, f32);
+    bool requestCompleteDemo(const TVec3f&, const TVec3f&, f32);
     void exeWait();
     void exeGlad();
     void exeChase();
@@ -32,8 +32,8 @@ public:
     bool isCompleteDemoEnd() const;
     void noticeEnd();
 
-    CollectTico* mParent;               // 0x8C
-    PartsModel* mBubbleModel;           // 0x90
+    CollectTico* mParent;      // 0x8C
+    PartsModel* mBubbleModel;  // 0x90
     TQuat4f _94;
     TVec3f _A4;
     TVec3f _B0;

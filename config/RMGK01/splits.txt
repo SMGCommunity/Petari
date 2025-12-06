@@ -5192,7 +5192,7 @@ Game/MapObj/PlantGroup.cpp:
 
 Game/MapObj/PlantPoint.cpp:
 	.text       start:0x8020E394 end:0x8020E4D4
-	.data       start:0x8059B728 end:0x8059B790
+	.data       start:0x8059B728 end:0x8059B738
 	.sdata2     start:0x806BDA28 end:0x806BDA38
 
 Game/MapObj/PlantRailInfo.cpp:
@@ -5203,7 +5203,7 @@ Game/MapObj/PomponPlant.cpp:
 	.text       start:0x8020E8A0 end:0x8020EE70
 	.ctors      start:0x8052EE08 end:0x8052EE0C
 	.rodata     start:0x805335C8 end:0x80533600
-	.data       start:0x8059B790 end:0x8059BA90
+	.data       start:0x8059B738 end:0x8059BA90
 	.sbss       start:0x806B5590 end:0x806B55A0
 	.sdata2     start:0x806BDA40 end:0x806BDA58
 
@@ -7329,24 +7329,24 @@ Game/Ride/SpaceCocoon.cpp:
 	.text       start:0x8032DB5C end:0x803306A8
 	.ctors      start:0x8052F1E4 end:0x8052F1E8
 	.rodata     start:0x80539D80 end:0x80539D88
-	.data       start:0x805CFE88 end:0x805CFF70
+	.data       start:0x805CFE88 end:0x805D02A8
 	.sbss       start:0x806B6408 end:0x806B6448
 	.sdata2     start:0x806C0A00 end:0x806C0A78
 
 Game/Ride/SphereAccelSensorController.cpp:
 	.text       start:0x803306A8 end:0x80330AF8
 	.rodata     start:0x80539D88 end:0x80539D90
-	.data       start:0x805CFF70 end:0x805D02A8
+	.data       start:0x805D02A8 end:0x805D02D0
 	.sdata2     start:0x806C0A78 end:0x806C0AB8
 
 Game/Ride/SphereController.cpp:
 	.text       start:0x80330AF8 end:0x80330B38
-	.data       start:0x805D02A8 end:0x805D02D0
+	.data       start:0x805D02D0 end:0x805D02F0
 	.sdata2     start:0x806C0AB8 end:0x806C0AC0
 
 Game/Ride/SpherePadController.cpp:
 	.text       start:0x80330B38 end:0x80330F98
-	.data       start:0x805D02D0 end:0x805D0318
+	.data       start:0x805D02F0 end:0x805D0318
 	.sdata2     start:0x806C0AC0 end:0x806C0AD0
 
 Game/Ride/SurfRay.cpp:
@@ -7507,15 +7507,16 @@ Game/Scene/SceneNameObjListExecutor.cpp:
 Game/Scene/SceneNameObjMovementController.cpp:
 	.text       start:0x8034654C end:0x80346C0C
 	.ctors      start:0x8052F21C end:0x8052F220
-	.data       start:0x805D2420 end:0x805D2520
+	.data       start:0x805D2420 end:0x805D24A8
 	.sbss       start:0x806B6630 end:0x806B6638
 
 Game/Scene/StageDataHolder.cpp:
 	.text       start:0x80346C0C end:0x80348C74
-	.data       start:0x805D2520 end:0x805D2730
+	.data       start:0x805D24A8 end:0x805D2730
 
 Game/Scene/StageFileLoader.cpp:
 	.text       start:0x80348C74 end:0x80348F4C
+	.data       start:0x805D2730 end:0x805D2748
 	.sdata2     start:0x806C0E18 end:0x806C0E20
 
 Game/Scene/StageResourceLoader.cpp:
@@ -7523,7 +7524,7 @@ Game/Scene/StageResourceLoader.cpp:
 
 Game/Scene/StopSceneController.cpp:
 	.text       start:0x80348F5C end:0x803491EC
-	.data       start:0x805D2730 end:0x805D27D8
+	.data       start:0x805D2748 end:0x805D27D8
 
 Game/Screen/THPDraw.c:
 	.text       start:0x803491EC end:0x803499F4
@@ -8775,6 +8776,7 @@ Game/System/GameEventFlag.cpp:
 Game/System/GameEventFlagTable.cpp:
 	.text       start:0x803B3D74 end:0x803B4D8C
 	.rodata     start:0x8053C918 end:0x8053D7C8
+	.data       start:0x805DE758 end:0x805DF8C8
 	.sdata      start:0x806B25E0 end:0x806B2608
 	.sbss       start:0x806B6F58 end:0x806B6F60
 
@@ -11486,12 +11488,12 @@ MSL_C/MSL_Common_Embedded/Math/Double_precision/e_log10.c:
 
 MSL_C/MSL_Common_Embedded/Math/Double_precision/e_pow.c:
 	.text       start:0x8052538C end:0x80525BD4
-	.rodata     start:0x80562F08 end:0x80563040
+	.rodata     start:0x80562F08 end:0x80562F38
 	.sdata2     start:0x806C25F0 end:0x806C2700
 
 MSL_C/MSL_Common_Embedded/Math/Double_precision/e_rem_pio2.c:
 	.text       start:0x80525BD4 end:0x80525F6C
-	.rodata     start:0x80563040 end:0x805630C0
+	.rodata     start:0x80562F38 end:0x805630C0
 	.sdata2     start:0x806C2700 end:0x806C2758
 
 MSL_C/MSL_Common_Embedded/Math/Double_precision/k_cos.c:

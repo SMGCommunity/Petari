@@ -5,10 +5,10 @@
 
 class GalaxyMoveArgument {
 public:
-    GalaxyMoveArgument(u32, const char *, s32, const JMapIdInfo *);
+    GalaxyMoveArgument(u32, const char*, s32, const JMapIdInfo*);
 
-    bool isEqualStage(char const *) const;
-    bool isEqualStageScenario(char const *, int) const;
+    bool isEqualStage(char const*) const;
+    bool isEqualStageScenario(char const*, int) const;
 
     /* 0x0 */ u32 mMoveType;
     /* 0x4 */ const char* mStageName;

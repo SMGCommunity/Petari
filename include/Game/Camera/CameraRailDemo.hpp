@@ -4,12 +4,12 @@
 
 class CameraRailDemo : public Camera {
 public:
-    CameraRailDemo(const char *);
+    CameraRailDemo(const char*);
     virtual ~CameraRailDemo();
 
     virtual void reset();
-    virtual CameraTargetObj *calc();
-    virtual CamTranslatorBase *createTranslator();
+    virtual CameraTargetObj* calc();
+    virtual CamTranslatorBase* createTranslator();
 
     void setParam(s32, s32, s32, s32, f32);
     void calcLinear();

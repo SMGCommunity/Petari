@@ -11,10 +11,10 @@ TripodBossStepSequence::TripodBossStepSequence() {
     }
 }
 
-void TripodBossStepSequence::addStepPoint(TripodBossStepPoint *pPoint) {
+void TripodBossStepSequence::addStepPoint(TripodBossStepPoint* pPoint) {
     int temp = pPoint->_B4;
     int pointNum = mPointNum++;
-    
+
     for (int i = mPointNum - 1; i > 0; i--) {
         if (mStepPoints[i - 1]->_B4 < temp) {
             mStepPoints[i] = pPoint;

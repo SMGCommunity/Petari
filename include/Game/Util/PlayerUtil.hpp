@@ -187,4 +187,4 @@ namespace MR {
     JUTTexture* getFullScreenBlurTexture();
     u16 getPlayerMovementTimer();
     CubeCameraArea* getCameraCube();
-};
+};  // namespace MR

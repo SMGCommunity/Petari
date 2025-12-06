@@ -8,7 +8,7 @@ public:
 
     virtual ~J3DAnmBase();
 
-    u8 mLoopMode;       // 0x4
+    u8 mLoopMode;  // 0x4
     u8 _5;
     s16 mLoopDuration;  // 0x6
     f32 mCurrentFrame;  // 0x8
@@ -16,10 +16,7 @@ public:
 
 class J3DFrameCtrl {
 public:
-
-    inline J3DFrameCtrl(s16 endFrame) {
-        init(endFrame);
-    }
+    inline J3DFrameCtrl(s16 endFrame) { init(endFrame); }
 
     virtual ~J3DFrameCtrl();
 

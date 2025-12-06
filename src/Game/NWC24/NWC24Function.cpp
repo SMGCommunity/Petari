@@ -26,11 +26,9 @@ namespace {
             *pTicks = ticks;
         }
 
-        return td.year == tdSent.year
-            && td.mon == tdSent.mon
-            && td.mday == tdSent.mday;
+        return td.year == tdSent.year && td.mon == tdSent.mon && td.mday == tdSent.mday;
     }
-};
+};  // namespace
 
 namespace MR {
     // calcWiiMailSize
@@ -59,7 +57,5 @@ namespace MR {
         GameDataFunction::setSysConfigFileSentBytes(sentBytes);
     }
 
-    const wchar_t* getMailSender(const char* pMessageId) {
-        return MR::getGameMessageDirect(pMessageId);
-    }
-};
+    const wchar_t* getMailSender(const char* pMessageId) { return MR::getGameMessageDirect(pMessageId); }
+};  // namespace MR

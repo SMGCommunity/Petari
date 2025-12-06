@@ -2,7 +2,7 @@
 #include "Game/Util.hpp"
 #include <JSystem/J3DGraphBase/J3DMaterial.hpp>
 
-MaterialCtrl::MaterialCtrl(J3DModelData *pModelData, const char *pMaterialName) {
+MaterialCtrl::MaterialCtrl(J3DModelData* pModelData, const char* pMaterialName) {
     mModelData = pModelData;
     mMaterial = nullptr;
 
@@ -14,8 +14,7 @@ MaterialCtrl::MaterialCtrl(J3DModelData *pModelData, const char *pMaterialName) 
 void MaterialCtrl::update() {
     if (mMaterial) {
         updateMaterial(mMaterial);
-    }
-    else {
+    } else {
         u16 i = 0;
         while (i < mModelData->mMaterialTable.mMaterialCount) {
             updateMaterial(mModelData->mMaterialTable.mMaterials[i]);
@@ -24,7 +23,7 @@ void MaterialCtrl::update() {
     }
 }
 
-FogCtrl::FogCtrl(J3DModelData *pModelData, bool a3) : MaterialCtrl(pModelData, nullptr) {
+FogCtrl::FogCtrl(J3DModelData* pModelData, bool a3) : MaterialCtrl(pModelData, nullptr) {
     mNumMaterials = 0;
     mMaterials = nullptr;
 
@@ -68,12 +67,11 @@ void FogCtrl::update() {
 }
 #endif
 
-MatColorCtrl::MatColorCtrl(J3DModelData *pModelData, const char *pName, u32 color, const J3DGXColor *pColor) : MaterialCtrl(pModelData, pName) {
+MatColorCtrl::MatColorCtrl(J3DModelData* pModelData, const char* pName, u32 color, const J3DGXColor* pColor) : MaterialCtrl(pModelData, pName) {
     mColorChoice = color;
-    mColor = pColor; 
-} 
-
-void MatColorCtrl::updateMaterial(J3DMaterial *pMaterial) {
-    pMaterial->mColorBlock->setMatColor(mColorChoice, mColor);
+    mColor = pColor;
 }
 
+void MatColorCtrl::updateMaterial(J3DMaterial* pMaterial) {
+    pMaterial->mColorBlock->setMatColor(mColorChoice, mColor);
+}

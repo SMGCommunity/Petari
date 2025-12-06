@@ -1,6 +1,6 @@
+#include "Game/Screen/TitleSequenceProduct.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/EncouragePal60Window.hpp"
-#include "Game/Screen/TitleSequenceProduct.hpp"
 #include "Game/System/GameDataFunction.hpp"
 #include "Game/Util/GamePadUtil.hpp"
 #include "Game/Util/LayoutUtil.hpp"
@@ -15,13 +15,11 @@ namespace {
 };
 
 namespace TitleSequenceProductSub {
-    LogoLayout::LogoLayout() :
-        SimpleLayout("ロゴ", "TitleLogo", 2, -1)
-    {
+    LogoLayout::LogoLayout() : SimpleLayout("ロゴ", "TitleLogo", 2, -1) {
         initEffectKeeper(1, "TitleLogo", nullptr);
         kill();
     }
-};
+};  // namespace TitleSequenceProductSub
 
 namespace {
     NEW_NERVE(TitleSequenceProductDisplayEncouragePal60Window, TitleSequenceProduct, DisplayEncouragePal60Window);
@@ -31,20 +29,14 @@ namespace {
     NEW_NERVE(TitleSequenceProductLogoDisplay, TitleSequenceProduct, LogoDisplay);
     NEW_NERVE(TitleSequenceProductDecide, TitleSequenceProduct, Decide);
     NEW_NERVE(TitleSequenceProductDead, TitleSequenceProduct, Dead);
-};
+};  // namespace
 
-TitleSequenceProduct::TitleSequenceProduct() :
-    NerveExecutor(""),
-    mLogoLayout(nullptr),
-    mPressStartLayout(nullptr),
-    mEncouragePal60Window(nullptr),
-    mAButtonChecker(nullptr),
-    mBButtonChecker(nullptr)
-{
+TitleSequenceProduct::TitleSequenceProduct()
+    : NerveExecutor(""), mLogoLayout(nullptr), mPressStartLayout(nullptr), mEncouragePal60Window(nullptr), mAButtonChecker(nullptr),
+      mBButtonChecker(nullptr) {
     if (MR::isDisplayEncouragePal60Window()) {
         initNerve(&TitleSequenceProductDisplayEncouragePal60Window::sInstance);
-    }
-    else {
+    } else {
         initNerve(&TitleSequenceProductBgmPrepare::sInstance);
     }
 
@@ -136,8 +128,7 @@ void TitleSequenceProduct::exeLogoDisplay() {
         MR::startCSSound("CS_CLICK_CLOSE", 0, 0);
         MR::tryRumblePadMiddle(this, 0);
         setNerve(&TitleSequenceProductDecide::sInstance);
-    }
-    else {
+    } else {
         updateButtonReaction(mAButtonChecker, "ReactionA");
         updateButtonReaction(mBButtonChecker, "ReactionB");
         updatePressStartReaction();
@@ -170,8 +161,7 @@ void TitleSequenceProduct::exeDead() {
 void TitleSequenceProduct::appear() {
     if (mIsDisplayEncouragePal60Window) {
         setNerve(&TitleSequenceProductDisplayEncouragePal60Window::sInstance);
-    }
-    else {
+    } else {
         setNerve(&TitleSequenceProductBgmPrepare::sInstance);
     }
 }
@@ -188,8 +178,7 @@ void TitleSequenceProduct::updateButtonReaction(TriggerChecker* pButtonChecker, 
     if (pButtonChecker->getOnTrigger()) {
         MR::startAnim(mLogoLayout, pAnimName, 1);
         MR::setAnimFrameAndStop(mLogoLayout, 0.0f, 1);
-    }
-    else if (pButtonChecker->getOffTrigger()) {
+    } else if (pButtonChecker->getOffTrigger()) {
         MR::startAnim(mLogoLayout, pAnimName, 1);
     }
 }
@@ -197,8 +186,7 @@ void TitleSequenceProduct::updateButtonReaction(TriggerChecker* pButtonChecker, 
 void TitleSequenceProduct::updatePressStartReaction() {
     if (mAButtonChecker->getOnTrigger()) {
         MR::startAnim(mPressStartLayout, "ButtonReaction", 0);
-    }
-    else if (mBButtonChecker->getOnTrigger()) {
+    } else if (mBButtonChecker->getOnTrigger()) {
         MR::startAnim(mPressStartLayout, "ButtonReaction", 0);
     }
 }

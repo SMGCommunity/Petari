@@ -1,12 +1,13 @@
+#include "Game/System/GameSystemObjHolder.hpp"
 #include "Game/Effect/ParticleResourceHolder.hpp"
 #include "Game/NameObj/NameObjRegister.hpp"
 #include "Game/Screen/ScreenPreserver.hpp"
 #include "Game/Screen/StarPointerDirector.hpp"
+#include "Game/SingletonHolder.hpp"
 #include "Game/System/AudSystemWrapper.hpp"
 #include "Game/System/ErrorArchive.hpp"
 #include "Game/System/FileLoader.hpp"
 #include "Game/System/FunctionAsyncExecutor.hpp"
-#include "Game/System/GameSystemObjHolder.hpp"
 #include "Game/System/HeapMemoryWatcher.hpp"
 #include "Game/System/Language.hpp"
 #include "Game/System/MessageHolder.hpp"
@@ -14,23 +15,12 @@
 #include "Game/System/ResourceHolderManager.hpp"
 #include "Game/System/WPadHolder.hpp"
 #include "Game/Util/RenderMode.hpp"
-#include "Game/SingletonHolder.hpp"
 #include <JSystem/JUtility/JUTVideo.hpp>
 
-GameSystemObjHolder::GameSystemObjHolder() :
-    mObjHolder(nullptr),
-    mParticleResHolder(nullptr),
-    mRenderModeObj(nullptr),
-    mCaptureScreenDir(nullptr),
-    mScreenPreserver(nullptr),
-    mSysWrapper(nullptr),
-    mWPadHolder(nullptr),
-    mAsyncExec(nullptr),
-    mMsgHolder(nullptr),
-    mStarPointerDir(nullptr),
-    mRandom(0),
-    mLanguage(MR::getDecidedLanguageFromIPL())
-{
+GameSystemObjHolder::GameSystemObjHolder()
+    : mObjHolder(nullptr), mParticleResHolder(nullptr), mRenderModeObj(nullptr), mCaptureScreenDir(nullptr), mScreenPreserver(nullptr),
+      mSysWrapper(nullptr), mWPadHolder(nullptr), mAsyncExec(nullptr), mMsgHolder(nullptr), mStarPointerDir(nullptr), mRandom(0),
+      mLanguage(MR::getDecidedLanguageFromIPL()) {
     initDvd();
     initNAND();
     initNameObj();
@@ -38,7 +28,7 @@ GameSystemObjHolder::GameSystemObjHolder() :
 }
 
 void GameSystemObjHolder::initAfterStationedResourceLoaded() {
-    SingletonHolder<NameObjRegister>::get()->setCurrentHolder(mObjHolder);
+    SingletonHolder< NameObjRegister >::get()->setCurrentHolder(mObjHolder);
     mParticleResHolder = new ParticleResourceHolder("/ParticleData/Effect.arc");
     mMsgHolder->initGameData();
     MR::createStarPointerLayout();
@@ -94,7 +84,7 @@ void GameSystemObjHolder::updateAudioSystem() {
 }
 
 void GameSystemObjHolder::clearRequestFileInfo(bool unk) {
-    SingletonHolder<FileLoader>::get()->clearRequestFileInfo(unk);
+    SingletonHolder< FileLoader >::get()->clearRequestFileInfo(unk);
 }
 
 void GameSystemObjHolder::drawStarPointer() {
@@ -117,17 +107,15 @@ void GameSystemObjHolder::initDvd() {
     JKRMemArchive archive;
 
     JKRFileLoader::initializeVolumeList();
-    SingletonHolder<FileLoader>::init();
+    SingletonHolder< FileLoader >::init();
 }
 
 void GameSystemObjHolder::initNAND() {
-    SingletonHolder<NANDManager>::init();
+    SingletonHolder< NANDManager >::init();
 }
 
 void GameSystemObjHolder::initAudio() {
-    mSysWrapper = new AudSystemWrapper(
-        SingletonHolder<HeapMemoryWatcher>::get()->mAudSystemHeap,
-        MR::getStationedHeapNapa());
+    mSysWrapper = new AudSystemWrapper(SingletonHolder< HeapMemoryWatcher >::get()->mAudSystemHeap, MR::getStationedHeapNapa());
     mSysWrapper->requestResourceForInitialize();
 }
 
@@ -170,8 +158,8 @@ void GameSystemObjHolder::initRenderMode() {
 void GameSystemObjHolder::initNameObj() {
     mObjHolder = new NameObjHolder(256);
 
-    SingletonHolder<NameObjRegister>::init();
-    SingletonHolder<NameObjRegister>::get()->setCurrentHolder(mObjHolder);
+    SingletonHolder< NameObjRegister >::init();
+    SingletonHolder< NameObjRegister >::get()->setCurrentHolder(mObjHolder);
 }
 
 void GameSystemObjHolder::initFunctionAsyncExecutor() {
@@ -179,7 +167,7 @@ void GameSystemObjHolder::initFunctionAsyncExecutor() {
 }
 
 void GameSystemObjHolder::initResourceHolderManager() {
-    SingletonHolder<ResourceHolderManager>::init();
+    SingletonHolder< ResourceHolderManager >::init();
 }
 
 void GameSystemObjHolder::initGameController() {

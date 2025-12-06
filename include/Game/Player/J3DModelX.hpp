@@ -8,20 +8,20 @@ class J3DShapePacketX;
 
 class J3DModelX : public J3DModel {
 public:
-    J3DModelX(J3DModelData *, u32, u32);
+    J3DModelX(J3DModelData*, u32, u32);
 
     virtual ~J3DModelX();
 
-    void simpleDrawShape(J3DMaterial *);
-    void storeDisplayList(_GDLObj *, u32);
-    void shapePacketDrawFast(J3DShapePacketX *);
-    void shapeDrawFast(J3DShapeX *) const;
-    void setDynamicDL(u8 *, u32);
+    void simpleDrawShape(J3DMaterial*);
+    void storeDisplayList(_GDLObj*, u32);
+    void shapePacketDrawFast(J3DShapePacketX*);
+    void shapeDrawFast(J3DShapeX*) const;
+    void setDynamicDL(u8*, u32);
     void setDrawView(u32);
-    void directDraw(J3DModel *);
+    void directDraw(J3DModel*);
 
     struct Flags {
-        inline void clear() { *(u32 *)this = 0; }
+        inline void clear() { *(u32*)this = 0; }
 
         unsigned _0 : 1;
         unsigned _1 : 1;
@@ -82,9 +82,9 @@ public:
     u32 _1B8;
     u32 _1BC;
     u32 _1C0;
-    u32 *_1C4;
-    u32 *_1C8;
-    u16 *_1CC;
+    u32* _1C4;
+    u32* _1C8;
+    u16* _1CC;
     u8 _1D0;
     f32 _1D4;
     u32 _1D8;

@@ -1,7 +1,7 @@
+#include "Game/Scene/SceneFactory.hpp"
 #include "Game/Scene/GameScene.hpp"
 #include "Game/Scene/IntermissionScene.hpp"
 #include "Game/Scene/LogoScene.hpp"
-#include "Game/Scene/SceneFactory.hpp"
 #include <cstdio>
 
 namespace {
@@ -10,17 +10,17 @@ namespace {
         /* 0x4 */ Scene* (*mCreateFunc)();
     };
 
-    template<typename T>
+    template < typename T >
     Scene* createScene() {
         return new T();
     }
 
     const Name2CreateFunc cCreateTable[] = {
-        {"Game", createScene<GameScene>},
-        {"Intermission", createScene<IntermissionScene>},
-        {"Logo", createScene<LogoScene>},
+        {"Game", createScene< GameScene >},
+        {"Intermission", createScene< IntermissionScene >},
+        {"Logo", createScene< LogoScene >},
     };
-};
+};  // namespace
 
 namespace MR {
     Scene* createScene(const char* pName) {
@@ -42,4 +42,4 @@ namespace MR {
 
         return (*pIter->mCreateFunc)();
     }
-};
+};  // namespace MR

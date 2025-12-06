@@ -8,16 +8,10 @@ class ImageEffectDirector;
 class ImageEffectState {
 public:
     /// @brief Creates a new `ImageEffectState`.
-    ImageEffectState(ImageEffectDirector* pHost) :
-        mHost(pHost)
-    {
-        
-    }
+    ImageEffectState(ImageEffectDirector* pHost) : mHost(pHost) {}
 
     /// @brief Destroys the `ImageEffectState`.
-    virtual ~ImageEffectState() {
-        
-    }
+    virtual ~ImageEffectState() {}
 
     virtual void update();
     virtual bool doesEffectExist() const;
@@ -36,7 +30,7 @@ namespace ImageEffectStateImpl {
         /// @brief Creates a new `StateNull`.
         /// @param pHost The pointer to the owning `ImageEffectDirector` instance.
         StateNull(ImageEffectDirector* pHost);
-        
+
         virtual bool doesEffectExist() const;
         virtual ImageEffectBase* getEffect() const;
     };
@@ -45,7 +39,7 @@ namespace ImageEffectStateImpl {
         /// @brief Creates a new `StateBloomNormal`.
         /// @param pHost The pointer to the owning `ImageEffectDirector` instance.
         StateBloomNormal(ImageEffectDirector* pHost);
-        
+
         virtual void update();
         virtual bool doesEffectExist() const;
         virtual ImageEffectBase* getEffect() const;
@@ -72,11 +66,11 @@ namespace ImageEffectStateImpl {
     };
 
     class StateBloomSimple : public ImageEffectState {
-    public:    
-    /// @brief Creates a new `StateBloomSimple`.
+    public:
+        /// @brief Creates a new `StateBloomSimple`.
         /// @param pHost The pointer to the owning `ImageEffectDirector` instance.
         StateBloomSimple(ImageEffectDirector* pHost);
-        
+
         virtual bool doesEffectExist() const;
         virtual ImageEffectBase* getEffect() const;
 
@@ -93,7 +87,7 @@ namespace ImageEffectStateImpl {
         /// @brief Creates a new `StateScreenBlur`.
         /// @param pHost The pointer to the owning `ImageEffectDirector` instance.
         StateScreenBlur(ImageEffectDirector* pHost);
-        
+
         virtual bool doesEffectExist() const;
         virtual ImageEffectBase* getEffect() const;
 
@@ -105,7 +99,7 @@ namespace ImageEffectStateImpl {
         /// @brief Creates a new `StateDepthOfField`.
         /// @param pHost The pointer to the owning `ImageEffectDirector` instance.
         StateDepthOfField(ImageEffectDirector* pHost);
-        
+
         virtual bool doesEffectExist() const;
         virtual ImageEffectBase* getEffect() const;
 
@@ -113,4 +107,4 @@ namespace ImageEffectStateImpl {
         void setBlurMaxDist(s32 blurMaxDist);
         void setBlurMinDist(s32 blurMinDist);
     };
-};
+};  // namespace ImageEffectStateImpl

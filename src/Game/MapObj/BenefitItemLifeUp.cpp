@@ -1,7 +1,7 @@
 #include "Game/MapObj/BenefitItemLifeUp.hpp"
 #include <cstring>
 
-BenefitItemLifeUp::BenefitItemLifeUp(const char *pName) : BenefitItemObj(pName, "KinokoLifeUp") {
+BenefitItemLifeUp::BenefitItemLifeUp(const char* pName) : BenefitItemObj(pName, "KinokoLifeUp") {
     if (MR::isGalaxyDarkCometAppearInCurrentStage()) {
         _D8 = 1;
     }
@@ -26,24 +26,22 @@ void BenefitItemLifeUp::initModelAndEfx() {
     MR::addHitSensorMapObj(this, "body", 4, 50.0f, offs);
 }
 
-void BenefitItemLifeUp::runEfx(const char *pName) {
+void BenefitItemLifeUp::runEfx(const char* pName) {
     char str[0x40];
     strcpy(str, pName);
     strcat(str, "LifeUp");
     MR::emitEffect(this, str);
 }
 
-void BenefitItemLifeUp::init(const JMapInfoIter &rIter) {
+void BenefitItemLifeUp::init(const JMapInfoIter& rIter) {
     BenefitItemObj::init(rIter);
 }
 
-void BenefitItemLifeUp::stopEfx(const char *pName) {
+void BenefitItemLifeUp::stopEfx(const char* pName) {
     char str[0x40];
     strcpy(str, pName);
     strcat(str, "LifeUp");
     MR::emitEffect(this, str);
 }
 
-BenefitItemLifeUp::~BenefitItemLifeUp() {
-    
-}
+BenefitItemLifeUp::~BenefitItemLifeUp() {}

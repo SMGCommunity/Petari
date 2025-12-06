@@ -1,10 +1,8 @@
 #include "Game/MapObj/ReverseGravityRoomPlanet.hpp"
 
-ReverseGravityRoomPlanet::ReverseGravityRoomPlanet(const char *pName) : MapObjActor(pName) {
+ReverseGravityRoomPlanet::ReverseGravityRoomPlanet(const char* pName) : MapObjActor(pName) {}
 
-}
-
-void ReverseGravityRoomPlanet::init(const JMapInfoIter &rIter) {
+void ReverseGravityRoomPlanet::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);
     MapObjActorInitInfo info;
     info.setupHioNode("惑星");
@@ -36,7 +34,7 @@ void ReverseGravityRoomPlanet::exeUpStart() {
     }
 }
 
-void ReverseGravityRoomPlanet::initCaseUseSwitchA(const MapObjActorInitInfo &rIter) {
+void ReverseGravityRoomPlanet::initCaseUseSwitchA(const MapObjActorInitInfo& rIter) {
     void (ReverseGravityRoomPlanet::*startOff)(void) = &ReverseGravityRoomPlanet::startSwitchOff;
     void (ReverseGravityRoomPlanet::*startOn)(void) = &ReverseGravityRoomPlanet::startSwitchOn;
     MR::listenStageSwitchOnOffA(this, MR::Functor(this, startOff), MR::Functor(this, startOn));
@@ -56,25 +54,19 @@ namespace NrvReverseGravityRoomPlanet {
     INIT_NERVE(ReverseGravityRoomPlanetNrvUpStart);
     INIT_NERVE(ReverseGravityRoomPlanetNrvUpWait);
 
-    void ReverseGravityRoomPlanetNrvUpWait::execute(Spine *pSpine) const {
+    void ReverseGravityRoomPlanetNrvUpWait::execute(Spine* pSpine) const {}
 
-    }
-
-    void ReverseGravityRoomPlanetNrvUpStart::execute(Spine *pSpine) const {
-        ReverseGravityRoomPlanet* planet = reinterpret_cast<ReverseGravityRoomPlanet*>(pSpine->mExecutor);
+    void ReverseGravityRoomPlanetNrvUpStart::execute(Spine* pSpine) const {
+        ReverseGravityRoomPlanet* planet = reinterpret_cast< ReverseGravityRoomPlanet* >(pSpine->mExecutor);
         planet->exeUpStart();
     }
 
-    void ReverseGravityRoomPlanetNrvDownWait::execute(Spine *pSpine) const {
+    void ReverseGravityRoomPlanetNrvDownWait::execute(Spine* pSpine) const {}
 
-    }
-
-    void ReverseGravityRoomPlanetNrvDownStart::execute(Spine *pSpine) const {
-        ReverseGravityRoomPlanet* planet = reinterpret_cast<ReverseGravityRoomPlanet*>(pSpine->mExecutor);
+    void ReverseGravityRoomPlanetNrvDownStart::execute(Spine* pSpine) const {
+        ReverseGravityRoomPlanet* planet = reinterpret_cast< ReverseGravityRoomPlanet* >(pSpine->mExecutor);
         planet->exeDownStart();
     }
-};
+};  // namespace NrvReverseGravityRoomPlanet
 
-ReverseGravityRoomPlanet::~ReverseGravityRoomPlanet() {
-    
-}
+ReverseGravityRoomPlanet::~ReverseGravityRoomPlanet() {}

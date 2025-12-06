@@ -7,11 +7,11 @@ class SimpleLayout;
 
 class FullnessMeter : public LayoutActor {
 public:
-    FullnessMeter(LiveActor *, s32, s32);
+    FullnessMeter(LiveActor*, s32, s32);
 
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
     virtual void control();
-    
+
     void setNumber(s32);
     void requestAppear();
     void requestDisappear();

@@ -1,9 +1,9 @@
 #include "Game/Enemy/Karon.hpp"
-#include "Game/Enemy/TerritoryMover.hpp"
 #include "Game/Enemy/AnimScaleController.hpp"
+#include "Game/Enemy/TerritoryMover.hpp"
 #include "Game/Enemy/WalkerStateBindStarPointer.hpp"
-#include "Game/LiveActor/Nerve.hpp"
 #include "Game/LiveActor/Binder.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util/ActorMovementUtil.hpp"
 #include "Game/Util/ActorSwitchUtil.hpp"
 #include "Game/Util/JMapUtil.hpp"
@@ -11,14 +11,14 @@
 #include "Game/Util/MapUtil.hpp"
 
 namespace {
-    static const KaronParam hNoMoveNoTurnParam = { 0.0f, 1.2f, 0.80000001f, 0.0f };
-    static const KaronParam hNoMoveNoTurnOnAirParam = { 0.0f, 2.0f, 0.94f, 0.0f };
-    static const KaronParam hWalkparam = { 0.12f, 1.2f, 0.94f, 2.0f };
-    static const KaronParam hSearchParam = { 0.0f, 1.2f, 0.94f, 2.0f };
-    static const KaronParam hPursueParam = { 0.25f, 1.2f, 0.94f, 2.0f };
-    static const KaronParam hHitReactionOnGroundParam = { 0.0f, 1.2f, 0.80f, 5.0f };
-    static const KaronParam hHitReactionAirParam = { 0.0f, 2.0f, 0.94f, 5.0f };
-};
+    static const KaronParam hNoMoveNoTurnParam = {0.0f, 1.2f, 0.80000001f, 0.0f};
+    static const KaronParam hNoMoveNoTurnOnAirParam = {0.0f, 2.0f, 0.94f, 0.0f};
+    static const KaronParam hWalkparam = {0.12f, 1.2f, 0.94f, 2.0f};
+    static const KaronParam hSearchParam = {0.0f, 1.2f, 0.94f, 2.0f};
+    static const KaronParam hPursueParam = {0.25f, 1.2f, 0.94f, 2.0f};
+    static const KaronParam hHitReactionOnGroundParam = {0.0f, 1.2f, 0.80f, 5.0f};
+    static const KaronParam hHitReactionAirParam = {0.0f, 2.0f, 0.94f, 5.0f};
+};  // namespace
 
 namespace NrvKaron {
     NEW_NERVE(HostTypeNrvFixWait, Karon, FixWait);
@@ -37,9 +37,9 @@ namespace NrvKaron {
     NEW_NERVE(HostTypeNrvDeath, Karon, Death);
     NEW_NERVE(HostTypeNrvSinkDown, Karon, SinkDown);
     NEW_NERVE_ONEND(HostTypeNrvBindStarPointer, Karon, BindStarPointer, BindStarPointer);
-};
+};  // namespace NrvKaron
 
-Karon::Karon(const char *pName) : LiveActor(pName) {
+Karon::Karon(const char* pName) : LiveActor(pName) {
     mTerritoryMover = nullptr;
     _90 = 0;
     _94 = 0;
@@ -47,7 +47,7 @@ Karon::Karon(const char *pName) : LiveActor(pName) {
     mStateStarPointer = nullptr;
 }
 
-void Karon::init(const JMapInfoIter &rIter) {
+void Karon::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     MR::useStageSwitchWriteDead(this, rIter);
     if (MR::useStageSwitchReadAppear(this, rIter)) {
@@ -55,7 +55,7 @@ void Karon::init(const JMapInfoIter &rIter) {
     }
 
     bool needsFixWait = false;
-    if(MR::useStageSwitchReadA(this, rIter)) {
+    if (MR::useStageSwitchReadA(this, rIter)) {
         needsFixWait = true;
     }
 
@@ -68,8 +68,7 @@ void Karon::init(const JMapInfoIter &rIter) {
 
     if (arg0 == -1) {
         _94 = 0;
-    }
-    else {
+    } else {
         _94 = 1;
     }
 
@@ -82,8 +81,7 @@ void Karon::init(const JMapInfoIter &rIter) {
 
     if (needsFixWait) {
         initNerve(&NrvKaron::HostTypeNrvFixWait::sInstance);
-    }
-    else {
+    } else {
         initNerve(&NrvKaron::HostTypeNrvWait::sInstance);
     }
 
@@ -155,11 +153,9 @@ void Karon::exeStepBroken() {
         MR::addVelocityLimit(this, v6 * 1.0f);
         MR::moveAndTurnToPlayer(this, hNoMoveNoTurnParam._0, hNoMoveNoTurnParam._4, hNoMoveNoTurnParam._8, hNoMoveNoTurnParam._C);
         MR::calcGravity(this);
-    }
-    else if (MR::isBinded(this)) {
+    } else if (MR::isBinded(this)) {
         mVelocity.scale(MR::getBindedNormal(this)->dot(mVelocity));
-    }
-    else {
+    } else {
         mVelocity.scale(mGravity.dot(mVelocity), mGravity);
         MR::forceBindOnGround(this, 1.0f, 0.8f);
     }
@@ -187,15 +183,13 @@ void Karon::exeRecover() {
         MR::onCalcGravity(this);
         setNerve(&NrvKaron::HostTypeNrvWait::sInstance);
     }
-
 }
 
 void Karon::exeHitReaction() {
     if (MR::isFirstStep(this)) {
         if (isNerve(&NrvKaron::HostTypeNrvStarPieceHit::sInstance)) {
             MR::startAction(this, "StarPiece");
-        }
-        else {
+        } else {
             MR::startAction(this, "AttackHit");
         }
     }
@@ -205,26 +199,24 @@ void Karon::exeHitReaction() {
     if (isNerve(&NrvKaron::HostTypeNrvStarPieceHit::sInstance)) {
         if (MR::isOnGround(this)) {
             MR::moveAndTurnToPlayer(this, hNoMoveNoTurnParam._0, hNoMoveNoTurnParam._4, hNoMoveNoTurnParam._8, hNoMoveNoTurnParam._C);
+        } else {
+            MR::moveAndTurnToPlayer(this, hNoMoveNoTurnOnAirParam._0, hNoMoveNoTurnOnAirParam._4, hNoMoveNoTurnOnAirParam._8,
+                                    hNoMoveNoTurnOnAirParam._C);
         }
-        else {
-            MR::moveAndTurnToPlayer(this, hNoMoveNoTurnOnAirParam._0, hNoMoveNoTurnOnAirParam._4, hNoMoveNoTurnOnAirParam._8, hNoMoveNoTurnOnAirParam._C);
-        }
-    }
-    else if (MR::isOnGround(this)) {
-        MR::moveAndTurnToPlayer(this, hHitReactionOnGroundParam._0, hHitReactionOnGroundParam._4, hHitReactionOnGroundParam._8, hHitReactionOnGroundParam._C);
-    }
-    else {
+    } else if (MR::isOnGround(this)) {
+        MR::moveAndTurnToPlayer(this, hHitReactionOnGroundParam._0, hHitReactionOnGroundParam._4, hHitReactionOnGroundParam._8,
+                                hHitReactionOnGroundParam._C);
+    } else {
         MR::moveAndTurnToPlayer(this, hHitReactionAirParam._0, hHitReactionAirParam._4, hHitReactionAirParam._8, hHitReactionAirParam._C);
     }
 
     if (MR::isOnGround(this) && MR::isActionEnd(this)) {
         if (isNerve(&NrvKaron::HostTypeNrvStarPieceHit::sInstance)) {
             setNerve(&NrvKaron::HostTypeNrvStarPieceHitWait::sInstance);
-        }
-        else {
+        } else {
             setNerve(&NrvKaron::HostTypeNrvWait::sInstance);
         }
-    }    
+    }
 }
 
 void Karon::exeDeath() {
@@ -235,7 +227,7 @@ void Karon::exeDeath() {
     }
 
     moveAndTurn(&hNoMoveNoTurnParam);
-    
+
     if (MR::isActionEnd(this)) {
         kill();
     }

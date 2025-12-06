@@ -4,15 +4,15 @@
 
 class Pole : public LiveActor {
 public:
-    Pole(const char *);
+    Pole(const char*);
 
-    virtual void init(const JMapInfoIter &);
-    virtual void appear();        
+    virtual void init(const JMapInfoIter&);
+    virtual void appear();
     virtual void calcAnim();
-    virtual void attackSensor(HitSensor *, HitSensor *);
-    virtual bool receiveMsgEnemyAttack(u32, HitSensor *, HitSensor *);
-    virtual bool receiveOtherMsg(u32, HitSensor *, HitSensor *);
-    virtual MtxPtr getBaseMtx() const;        
+    virtual void attackSensor(HitSensor*, HitSensor*);
+    virtual bool receiveMsgEnemyAttack(u32, HitSensor*, HitSensor*);
+    virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
+    virtual MtxPtr getBaseMtx() const;
 
     void exeDemoAppear();
     void exeFree();
@@ -33,7 +33,7 @@ public:
     bool tryHandstandTurn();
     bool isEnableTurn() const;
     void updateBindTrans();
-    void calcGravityMtx(TPos3f *);
+    void calcGravityMtx(TPos3f*);
     void updateTopPos(f32);
     f32 getPoleSubPadStickX() const;
     f32 getPoleSubPadStickY() const;
@@ -48,8 +48,8 @@ public:
     bool _AC;
     f32 _B0;
     f32 _B4;
-    LiveActor* mActor; // 0xB8
-    ActorCameraInfo* mInfo; // 0xBC
+    LiveActor* mActor;       // 0xB8
+    ActorCameraInfo* mInfo;  // 0xBC
     TVec3f _C0;
     TVec3f _CC;
     TVec3f _D8;

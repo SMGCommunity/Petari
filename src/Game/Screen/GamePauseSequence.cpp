@@ -1,7 +1,7 @@
+#include "Game/Screen/GamePauseSequence.hpp"
 #include "Game/AudioLib/AudSystem.hpp"
 #include "Game/AudioLib/AudWrap.hpp"
 #include "Game/LiveActor/Nerve.hpp"
-#include "Game/Screen/GamePauseSequence.hpp"
 #include "Game/Screen/PauseMenu.hpp"
 #include "Game/System/GalaxyMapController.hpp"
 #include "Game/System/GameSystemFunction.hpp"
@@ -16,16 +16,9 @@ namespace {
     NEW_NERVE(GamePauseSequenceActivePauseMenu, GamePauseSequence, ActivePauseMenu);
     NEW_NERVE(GamePauseSequenceActivePowerStarList, GamePauseSequence, ActivePowerStarList);
     NEW_NERVE(GamePauseSequenceSceneInformation, GamePauseSequence, SceneInformation);
-};
+};  // namespace
 
-GamePauseSequence::GamePauseSequence() :
-    LayoutActor("ポーズ画面管理", true),
-    mMenuType(ActivePause),
-    mPauseMenu(nullptr),
-    mWindowMenuFunc(nullptr)
-{
-    
-}
+GamePauseSequence::GamePauseSequence() : LayoutActor("ポーズ画面管理", true), mMenuType(ActivePause), mPauseMenu(nullptr), mWindowMenuFunc(nullptr) {}
 
 void GamePauseSequence::init(const JMapInfoIter& rIter) {
     if (!MR::isStageDisablePauseMenu()) {
@@ -36,7 +29,7 @@ void GamePauseSequence::init(const JMapInfoIter& rIter) {
     initNerve(&GamePauseSequenceDeactive::sInstance);
 }
 
-void GamePauseSequence::initWindowMenu(const MR::FunctorBase &rFunc) {
+void GamePauseSequence::initWindowMenu(const MR::FunctorBase& rFunc) {
     mWindowMenuFunc = rFunc.clone(nullptr);
 }
 
@@ -67,9 +60,7 @@ void GamePauseSequence::deactivate() {
     setNerve(&GamePauseSequenceDeactive::sInstance);
 }
 
-void GamePauseSequence::exeDeactive() {
-    
-}
+void GamePauseSequence::exeDeactive() {}
 
 void GamePauseSequence::exeActivePauseMenu() {
     if (MR::isDead(mPauseMenu)) {
@@ -79,7 +70,6 @@ void GamePauseSequence::exeActivePauseMenu() {
 
 void GamePauseSequence::exeActivePowerStarList() {
     if (MR::isFirstStep(this)) {
-        
     }
 
     if (!MR::isActiveGalaxyMapLayout()) {
@@ -87,6 +77,4 @@ void GamePauseSequence::exeActivePowerStarList() {
     }
 }
 
-void GamePauseSequence::exeSceneInformation() {
-    
-}
+void GamePauseSequence::exeSceneInformation() {}

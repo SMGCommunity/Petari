@@ -5,7 +5,7 @@
 
 namespace MR {
     /// @brief A contiguous reallocatable array.
-    template<class T>
+    template < class T >
     class AssignableArray {
     public:
         typedef T Item;
@@ -18,9 +18,7 @@ namespace MR {
 
         /// @brief Creates a new `AssignableArray`.
         /// @param num The number of elements.
-        AssignableArray(s32 num) {
-            init(num);
-        }
+        AssignableArray(s32 num) { init(num); }
 
         /// @brief Destroys the `AssignableArray`.
         ~AssignableArray() {
@@ -32,16 +30,12 @@ namespace MR {
         /// @brief Returns the element at the given position.
         /// @param idx The position of the element.
         /// @return The reference to the element.
-        T& operator[](int idx) {
-            return mArr[idx];
-        }
+        T& operator[](int idx) { return mArr[idx]; }
 
         /// @brief Returns the element at the given position.
         /// @param idx The position of the element.
         /// @return The reference to the element.
-        const T& operator[](int idx) const {
-            return mArr[idx];
-        }
+        const T& operator[](int idx) const { return mArr[idx]; }
 
         /// @brief Allocates memory for the array.
         /// @param num The number of elements.
@@ -52,33 +46,23 @@ namespace MR {
 
         /// @brief Returns the number of elements.
         /// @return The number of elements.
-        int size() const {
-            return mMaxSize;
-        }
+        int size() const { return mMaxSize; }
 
         /// @brief Returns an iterator to the first element.
         /// @return The pointer to the first element.
-        T* begin() {
-            return &mArr[0];
-        }
+        T* begin() { return &mArr[0]; }
 
         /// @brief Returns an iterator to the first element.
         /// @return The pointer to the first element.
-        const T* begin() const {
-            return &mArr[0];
-        }
+        const T* begin() const { return &mArr[0]; }
 
         /// @brief Returns an iterator past the last element.
         /// @return The pointer past the last element.
-        T* end() {
-            return &mArr[mMaxSize];
-        }
+        T* end() { return &mArr[mMaxSize]; }
 
         /// @brief Returns an iterator past the last element.
         /// @return The pointer past the last element.
-        const T* end() const {
-            return &mArr[mMaxSize];
-        }
+        const T* end() const { return &mArr[mMaxSize]; }
 
         /// @brief The pointer to the array of elements.
         /* 0x0 */ T* mArr;
@@ -88,53 +72,54 @@ namespace MR {
     };
 
     /// @brief A contiguous fixed-size array.
-    template<class T, int N>
+    template < class T, int N >
     class FixedArray {
     public:
         typedef T Item;
+        template < class X >
+        struct RemovePtr {
+            typedef X Type;
+        };
+        template < class X >
+        struct RemovePtr< X* > {
+            typedef X Type;
+        };
+        typedef RemovePtr< T >::Type Base;
 
         /// @brief Returns the element at the given position.
         /// @param idx The position of the element.
         /// @return The reference to the element.
-        T& operator[](int idx) {
-            return mArr[idx];
-        }
+        T& operator[](int idx) { return mArr[idx]; }
 
         /// @brief Returns the element at the given position.
         /// @param idx The position of the element.
         /// @return The reference to the element.
-        const T& operator[](int idx) const {
-            return mArr[idx];
-        }
+        const T& operator[](int idx) const { return mArr[idx]; }
 
         /// @brief Returns the number of elements.
         /// @return The number of elements.
-        int size() const {
-            return N;
-        }
+        int size() const { return N; }
 
         /// @brief Returns an iterator to the first element.
         /// @return The pointer to the first element.
-        T* begin() {
-            return &mArr[0];
-        }
+        T* begin() { return &mArr[0]; }
 
         /// @brief Returns an iterator to the first element.
         /// @return The pointer to the first element.
-        const T* begin() const {
-            return &mArr[0];
-        }
+        const T* begin() const { return &mArr[0]; }
 
         /// @brief Returns an iterator past the last element.
         /// @return The pointer past the last element.
-        T* end() {
-            return &mArr[N];
-        }
+        T* end() { return &mArr[N]; }
 
         /// @brief Returns an iterator past the last element.
         /// @return The pointer past the last element.
-        const T* end() const {
-            return &mArr[N];
+        const T* end() const { return &mArr[N]; }
+
+        void callAllFunc(void (Base::*func)()) {
+            for (T* it = begin(); it != end(); ++it) {
+                ((*it)->*func)();
+            }
         }
 
     private:
@@ -143,54 +128,40 @@ namespace MR {
     };
 
     /// @brief A contiguous growable array.
-    template<class T>
+    template < class T >
     class Vector {
     public:
         /// @brief Creates a new `Vector`.
-        Vector() {
-            clear();
-        }
+        Vector() { clear(); }
 
         /// @brief Destroys the `Vector`.
-        ~Vector() {
-            
-        }
+        ~Vector() {}
 
         /// @brief Returns the element at the given position.
         /// @param idx The position of the element.
         /// @return The reference to the element.
-        T::Item& operator[](int idx) {
-            return mArray[idx];
-        }
+        T::Item& operator[](int idx) { return mArray[idx]; }
 
         /// @brief Returns the element at the given position.
         /// @param idx The position of the element.
         /// @return The reference to the element.
-        const T::Item& operator[](int idx) const {
-            return mArray[idx];
-        }
+        const T::Item& operator[](int idx) const { return mArray[idx]; }
 
         /// @brief Allocates memory for the array.
         /// @param num The number of elements.
-        void init(s32 num) {
-            mArray.init(num);
-        }
+        void init(s32 num) { mArray.init(num); }
 
         /// @brief Returns the number of elements.
         /// @return The number of elements.
-        int size() const {
-            return mCount;
-        }
+        int size() const { return mCount; }
 
         /// @brief Returns the number of elements that can be stored without reallocating.
         /// @return The number of elements that can be stored.
-        int capacity() const {
-            return mArray.size();
-        }
+        int capacity() const { return mArray.size(); }
 
         /// @brief Appends a copy of `rItem` to the end of the container.
         /// @param rItem The reference to the value to append.
-        void push_back(const T::Item &rItem) {
+        void push_back(const T::Item& rItem) {
             u32 index = mCount;
 
             mCount++;
@@ -213,33 +184,23 @@ namespace MR {
         }
 
         /// @brief Removes all values from the container.
-        void clear() {
-            mCount = 0;
-        }
+        void clear() { mCount = 0; }
 
         /// @brief Returns an iterator to the first element.
         /// @return The pointer to the first element.
-        T::Item* begin() {
-            return &mArray[0];
-        }
+        T::Item* begin() { return &mArray[0]; }
 
         /// @brief Returns an iterator to the first element.
         /// @return The pointer to the first element.
-        const T::Item* begin() const {
-            return &mArray[0];
-        }
+        const T::Item* begin() const { return &mArray[0]; }
 
         /// @brief Returns an iterator past the last element.
         /// @return The pointer past the last element.
-        T::Item* end() {
-            return &mArray[mCount];
-        }
+        T::Item* end() { return &mArray[mCount]; }
 
         /// @brief Returns an iterator past the last element.
         /// @return The pointer past the last element.
-        const T::Item* end() const {
-            return &mArray[mCount];
-        }
+        const T::Item* end() const { return &mArray[mCount]; }
 
         /// @brief The array of elements.
         /* 0x0 */ T mArray;
@@ -248,7 +209,7 @@ namespace MR {
         /* 0x? */ s32 mCount;
     };
 
-    template<class T, int S>
+    template < class T, int S >
     class FixedRingBuffer {
     public:
         class iterator {
@@ -267,15 +228,15 @@ namespace MR {
                 }
             }
 
-            T* mHead;   // 0x0
-            T* mTail;   // 0x4
-            T* mEnd;    // 0x8
+            T* mHead;  // 0x0
+            T* mTail;  // 0x4
+            T* mEnd;   // 0x8
         };
 
-        void push_back(const T &);
+        void push_back(const T&);
 
         T* mBuffer[S];
 
         int _58;
     };
-};
+};  // namespace MR

@@ -1,14 +1,10 @@
 #include "Game/MapObj/IceStep.hpp"
 
-IceStep::IceStep(const char *pName) : LiveActor(pName) {
+IceStep::IceStep(const char* pName) : LiveActor(pName) {}
 
-}
+IceStep::~IceStep() {}
 
-IceStep::~IceStep() {
-
-}
-
-void IceStep::init(const JMapInfoIter &rIter) {
+void IceStep::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     initModelManagerWithAnm("IceStep", nullptr, false);
     MR::connectToSceneMapObjStrongLight(this);
@@ -35,20 +31,20 @@ void IceStep::exeWait() {
     }
 
     switch (mTimer) {
-        case 0x12C:
-            MR::startBpk(this, "TimeOutLong");
-            break;
-        case 0x78:
-            MR::startBpk(this, "TimeOutShort");
-            break;
-        case 1:
-            destroy();
-            break;
-        case 0:
-            if (MR::isBckStopped(this)) {
-                kill();
-            }
-            break;
+    case 0x12C:
+        MR::startBpk(this, "TimeOutLong");
+        break;
+    case 0x78:
+        MR::startBpk(this, "TimeOutShort");
+        break;
+    case 1:
+        destroy();
+        break;
+    case 0:
+        if (MR::isBckStopped(this)) {
+            kill();
+        }
+        break;
     }
 }
 
@@ -66,20 +62,20 @@ void IceStep::setOn(u32 stepIdx, const TVec3f &rPosition, const TVec3f &rRotatio
     }
 
     TVec3f upVec;
-    MR::calcUpVec(&upVec, this); 
+    MR::calcUpVec(&upVec, this);
     TVec3f multVec(MR::multVecNoCtor(MR::multVecNoCtor(upVec, v8), 0.2f));
     mPosition = MR::addVec(multVec, rPosition);
-  
+  
     MR::startBck(this, "Start", nullptr);
     MR::startBpk(this, "Start");
-    MR::startSound(this, "SE_OJ_ICE_FLOOR_FREEZE", -1, -1); 
+    MR::startSound(this, "SE_OJ_ICE_FLOOR_FREEZE", -1, -1);
     mTimer = 0x4B0;
-    MR::invalidateClipping(this); 
-    MR::resetPosition(this); 
+    MR::invalidateClipping(this);
+    MR::resetPosition(this);
     setNerve(&NrvIceStep::IceStepNrvWait::sInstance);
     MR::validateCollisionParts(this);
     MR::showModel(this);
-    appear(); 
+    appear();
 }
 */
 
@@ -99,11 +95,11 @@ void IceStep::doHit() {
     mTimer = 0;
 }
 
-bool IceStep::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool IceStep::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     return false;
 }
 
-bool IceStep::receiveMsgEnemyAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool IceStep::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isOnPlayer(this)) {
         return false;
     }
@@ -112,15 +108,13 @@ bool IceStep::receiveMsgEnemyAttack(u32 msg, HitSensor *pSender, HitSensor *pRec
         doHit();
         return true;
     }
-    
+
     return false;
 }
 
-void IceStep::control() {
-    
-}
+void IceStep::control() {}
 
 namespace NrvIceStep {
     INIT_NERVE(IceStepNrvWait);
     INIT_NERVE(IceStepNrvHit);
-}; 
+};  // namespace NrvIceStep

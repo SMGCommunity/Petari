@@ -18,18 +18,18 @@ public:
 
 class WaterRoadModelInfo {
 public:
-    WaterRoadModelInfo(WaterRoad *, bool);
+    WaterRoadModelInfo(WaterRoad*, bool);
 
-    void initPoints(WaterRoad *);
+    void initPoints(WaterRoad*);
     void initDisplayList();
     void sendGD() const;
     void drawGD() const;
-    void drawDirect(const WaterRoad *) const;
-    s32 calcDemoDrawPointNum(const WaterRoad *) const;
-    void loadMaterialHigh(const WaterRoad *) const;
+    void drawDirect(const WaterRoad*) const;
+    s32 calcDemoDrawPointNum(const WaterRoad*) const;
+    void loadMaterialHigh(const WaterRoad*) const;
     void loadMaterialLow() const;
 
-    bool mIsLow;        // 0x0
+    bool mIsLow;  // 0x0
     u32 _4;
     s32 _8;
     u32 _C;

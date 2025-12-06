@@ -1,7 +1,7 @@
 #include "Game/Camera/CameraMtxRegParallel.hpp"
 #include "Game/Camera/CamTranslatorMtxRegParallel.hpp"
 
-CameraMtxRegParallel::CameraMtxRegParallel(const char *pName) : Camera(pName) {
+CameraMtxRegParallel::CameraMtxRegParallel(const char* pName) : Camera(pName) {
     mString = nullptr;
     mAngleB = 0.0f;
     mAngleA = 0.0f;
@@ -11,10 +11,8 @@ CameraMtxRegParallel::CameraMtxRegParallel(const char *pName) : Camera(pName) {
     mWPoint.z = 0.0f;
 }
 
-CameraMtxRegParallel::~CameraMtxRegParallel() {
+CameraMtxRegParallel::~CameraMtxRegParallel() {}
 
-}
-
-CamTranslatorBase *CameraMtxRegParallel::createTranslator() {
+CamTranslatorBase* CameraMtxRegParallel::createTranslator() {
     return new CamTranslatorMtxRegParallel(this);
 }

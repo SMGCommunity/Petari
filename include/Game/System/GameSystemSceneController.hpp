@@ -18,9 +18,9 @@ class SceneControlInfo {
 public:
     SceneControlInfo();
 
-    void setScene(const char *);
-    void setStage(const char *);
-    void setStartIdInfo(const JMapIdInfo &);
+    void setScene(const char*);
+    void setStage(const char*);
+    void setStartIdInfo(const JMapIdInfo&);
 
     /* 0x00 */ char mScene[32];
     /* 0x20 */ char mStage[32];
@@ -88,7 +88,7 @@ public:
     Scene* getCurrentSceneForExecute() const;
     const Nerve* getNextNerveOnResetProcessing() const;
     bool tryDestroyFileCacheHeap(bool) NO_INLINE;
-    void requestChangeNerve(const Nerve *);
+    void requestChangeNerve(const Nerve*);
 
     /* 0x00 */ SceneControlInfo _0;
     /* 0x4C */ SceneControlInfo _4C;

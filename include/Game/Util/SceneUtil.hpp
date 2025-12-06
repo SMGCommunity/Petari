@@ -82,4 +82,4 @@ namespace MR {
     void clearCurrentPlacementZoneId();
     s32 getCurrentPlacementZoneId();
     const char* getCurrentPlacementZoneName();
-};
+};  // namespace MR

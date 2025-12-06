@@ -1,10 +1,11 @@
 #pragma once
 
+#include <revolution/nwc24.h>
 #include <revolution/types.h>
+
 
 class JKRHeap;
 class NWC24SendThread;
-enum NWC24Err;
 
 class NWC24System {
 public:

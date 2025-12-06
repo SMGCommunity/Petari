@@ -6,12 +6,11 @@ class OceanRing;
 
 class OceanRingBloomDrawer : public NameObj {
 public:
-    OceanRingBloomDrawer(OceanRing *);
+    OceanRingBloomDrawer(OceanRing*);
 
     virtual ~OceanRingBloomDrawer();
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
     virtual void draw() const;
 
-
-    OceanRing* mRing;   // 0xC
+    OceanRing* mRing;  // 0xC
 };

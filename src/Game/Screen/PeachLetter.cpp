@@ -1,7 +1,7 @@
+#include "Game/Screen/PeachLetter.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/NameObj/NameObjArchiveListCollector.hpp"
 #include "Game/Screen/IconAButton.hpp"
-#include "Game/Screen/PeachLetter.hpp"
 #include "Game/Util/GamePadUtil.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
@@ -11,14 +11,9 @@ namespace NrvPeachLetter {
     NEW_NERVE(PeachLetterNrvAppear, PeachLetter, Appear);
     NEW_NERVE(PeachLetterNrvWait, PeachLetter, Wait);
     NEW_NERVE(PeachLetterNrvEnd, PeachLetter, End);
-};
+};  // namespace NrvPeachLetter
 
-PeachLetter::PeachLetter(const char* pName) :
-    LayoutActor(pName, true),
-    mAButtonIcon(nullptr)
-{
-    
-}
+PeachLetter::PeachLetter(const char* pName) : LayoutActor(pName, true), mAButtonIcon(nullptr) {}
 
 void PeachLetter::init(const JMapInfoIter&) {
     initLayoutManager("PeachLetter", 1);

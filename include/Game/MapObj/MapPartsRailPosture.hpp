@@ -5,10 +5,10 @@
 
 class MapPartsRailPosture : public MapPartsFunction {
 public:
-    MapPartsRailPosture(LiveActor *);
+    MapPartsRailPosture(LiveActor*);
 
     virtual ~MapPartsRailPosture();
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
     virtual bool isWorking() const;
     virtual void start();
     virtual void end();

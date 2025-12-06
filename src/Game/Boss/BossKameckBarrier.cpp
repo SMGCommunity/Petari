@@ -4,11 +4,11 @@ namespace NrvBossKameckBarrier {
     NEW_NERVE(BossKameckBarrierNrvWait, BossKameckBarrier, Wait);
 };
 
-BossKameckBarrier::BossKameckBarrier(const char *pName, const char *pBossName) : LiveActor(pName) {
+BossKameckBarrier::BossKameckBarrier(const char* pName, const char* pBossName) : LiveActor(pName) {
     mBossName = pBossName;
 }
 
-void BossKameckBarrier::init(const JMapInfoIter &rIter) {
+void BossKameckBarrier::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     initModelManagerWithAnm(mBossName, nullptr, false);
     MR::connectToSceneEnemy(this);
@@ -20,9 +20,7 @@ void BossKameckBarrier::init(const JMapInfoIter &rIter) {
     makeActorDead();
 }
 
-void BossKameckBarrier::control() {
-
-}
+void BossKameckBarrier::control() {}
 
 void BossKameckBarrier::exeWait() {
     if (MR::isFirstStep(this)) {
@@ -31,6 +29,4 @@ void BossKameckBarrier::exeWait() {
     }
 }
 
-BossKameckBarrier::~BossKameckBarrier() {
-
-}
+BossKameckBarrier::~BossKameckBarrier() {}

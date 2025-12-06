@@ -6,11 +6,11 @@
 #include "revolution/types.h"
 
 class WalkerStateBlowDamageParam {
-    public:
+public:
     int _0;
 };
 
-class WalkerStateBlowDamage : public ActorStateBase<LiveActor> {
+class WalkerStateBlowDamage : public ActorStateBase< LiveActor > {
 public:
     WalkerStateBlowDamage(LiveActor*, TVec3f*, WalkerStateBlowDamageParam*);
 

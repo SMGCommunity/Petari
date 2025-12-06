@@ -1,6 +1,6 @@
 #include "Game/MapObj/ManholeCover.hpp"
 
-void ManholeCover::init(const JMapInfoIter &rIter) {
+void ManholeCover::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);
     MapObjActorInitInfo info;
     info.setupHioNode("地形オブジェ");
@@ -18,8 +18,9 @@ void ManholeCover::init(const JMapInfoIter &rIter) {
     MapObjActor::initialize(rIter, info);
 }
 
-bool ManholeCover::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
-    if (!MR::isMsgPlayerHipDropFloor(msg) && !MR::isMsgPlayerUpperPunch(msg) || !isNerve(&NrvManholeCover::HostTypeWait::sInstance) && !isNerve(&NrvManholeCover::HostTypeRattle::sInstance)) {
+bool ManholeCover::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
+    if (!MR::isMsgPlayerHipDropFloor(msg) && !MR::isMsgPlayerUpperPunch(msg) ||
+        !isNerve(&NrvManholeCover::HostTypeWait::sInstance) && !isNerve(&NrvManholeCover::HostTypeRattle::sInstance)) {
         return false;
     }
 

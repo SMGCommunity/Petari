@@ -1,10 +1,9 @@
 #include "Game/Map/WaterPoint.hpp"
 #include "Game/Util.hpp"
 
-WaterPoint::WaterPoint(const TVec3f &rPos, const TVec3f &rUpVec, f32 coordAcrossRail, f32 coordOnRail, f32 height, f32 flowSpeedRate) :
-    mPosition(rPos), mOrigPos(rPos), mCoordAcrossRail(coordAcrossRail), mCoordOnRail(coordOnRail), mUpVec(rUpVec), mHeight(height), mFlowSpeedRate(flowSpeedRate), mAlpha(-1) {
-
-}
+WaterPoint::WaterPoint(const TVec3f& rPos, const TVec3f& rUpVec, f32 coordAcrossRail, f32 coordOnRail, f32 height, f32 flowSpeedRate)
+    : mPosition(rPos), mOrigPos(rPos), mCoordAcrossRail(coordAcrossRail), mCoordOnRail(coordOnRail), mUpVec(rUpVec), mHeight(height),
+      mFlowSpeedRate(flowSpeedRate), mAlpha(-1) {}
 
 void WaterPoint::initAfterPlacement() {
     if (mHeight != 0.0f) {
@@ -27,7 +26,7 @@ void WaterPoint::updatePos(f32 waveTheta1, f32 waveTheta2, f32 waveHeight1, f32 
     f32 height = calcHeight(waveTheta1, waveTheta2, waveHeight1, waveHeight2, mCoordAcrossRail, mCoordOnRail);
     f32 v9 = a5 * height;
     mPosition.x = mUpVec.x * v9;
-    mPosition.y = mUpVec.y * (a5 * height); 
+    mPosition.y = mUpVec.y * (a5 * height);
     mPosition.z = mUpVec.z * v9;
     mPosition.addInline_4(mOrigPos);
 }

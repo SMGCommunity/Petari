@@ -8,7 +8,7 @@ SpinDriverCamera::SpinDriverCamera() {
     mAppearCameraFrame = 0;
 }
 
-void SpinDriverCamera::startAppearCamera(LiveActor *pActor, const TVec3f &a2, const TVec3f &a3, const TVec3f &a4) {
+void SpinDriverCamera::startAppearCamera(LiveActor* pActor, const TVec3f& a2, const TVec3f& a3, const TVec3f& a4) {
     if (mCameraInfo) {
         mAppearCameraFrame = MR::getMultiActorCameraFrames(pActor, mCameraInfo, "出現イベント用");
 
@@ -21,7 +21,7 @@ void SpinDriverCamera::startAppearCamera(LiveActor *pActor, const TVec3f &a2, co
     }
 }
 
-void SpinDriverCamera::endAppearCamera(LiveActor *pActor) {
+void SpinDriverCamera::endAppearCamera(LiveActor* pActor) {
     if (mCameraInfo && mAppearCameraFrame > 0) {
         MR::endMultiActorCamera(pActor, mCameraInfo, "出現イベント用", false, -1);
     }
@@ -31,13 +31,13 @@ u32 SpinDriverCamera::getAppearCameraFrames() const {
     return mAppearCameraFrame;
 }
 
-void SpinDriverCamera::update(const TVec3f &a1, const TVec3f &a2) {
+void SpinDriverCamera::update(const TVec3f& a1, const TVec3f& a2) {
     if (mCamera) {
-        switch(mCamera->isEnd()) {
-            case false:
-                mCamera->update();
-                updateTargetMatrix(a1, a2);
-                break;
+        switch (mCamera->isEnd()) {
+        case false:
+            mCamera->update();
+            updateTargetMatrix(a1, a2);
+            break;
         }
     }
 }
@@ -57,16 +57,16 @@ void SpinDriverCamera::end() {
 
 // SpinDriverCamera::updateTargetMatrix
 
-BOOL SpinDriverCamera::isUseAppearCamera(LiveActor *pActor) const {
+BOOL SpinDriverCamera::isUseAppearCamera(LiveActor* pActor) const {
     if (!mCameraInfo) {
         return false;
     }
-    
+
     u32 frames = MR::getMultiActorCameraFrames(pActor, mCameraInfo, "出現イベント用");
     return (-frames & ~frames) >> 31;
 }
 
-void SpinDriverCamera::init(const JMapInfoIter &rIter, LiveActor *pActor) {
+void SpinDriverCamera::init(const JMapInfoIter& rIter, LiveActor* pActor) {
     ActorCameraInfo info(rIter);
 
     if (info.mCameraSetID != -1) {
@@ -75,11 +75,11 @@ void SpinDriverCamera::init(const JMapInfoIter &rIter, LiveActor *pActor) {
         mCamera = new MultiEventCamera();
         mCamera->setUp(pActor->mName, new ActorCameraInfo(rIter), arg3);
         mCamera->setEndCameraTypeAtLanding();
-        mTargetMtx =  new CameraTargetMtx("カメラターゲットダミー");
+        mTargetMtx = new CameraTargetMtx("カメラターゲットダミー");
     }
 }
 
-void SpinDriverCamera::initAppearCamera(const JMapInfoIter &rIter, LiveActor *pActor) {
+void SpinDriverCamera::initAppearCamera(const JMapInfoIter& rIter, LiveActor* pActor) {
     ActorCameraInfo info(rIter);
     if (info.mCameraSetID != -1) {
         MR::initMultiActorCamera(pActor, rIter, &mCameraInfo, "出現イベント用");

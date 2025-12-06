@@ -6,7 +6,7 @@ namespace nw4r {
     namespace lyt {
         class DrawInfo;
     };
-};
+};  // namespace nw4r
 
 class GalaxyMapCometIcon : public LayoutActor {
 public:

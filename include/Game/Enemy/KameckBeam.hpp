@@ -11,9 +11,9 @@ public:
 
 class KameckBeamCollisionFilter {
 public:
-    KameckBeamCollisionFilter(const TVec3f *, f32);
+    KameckBeamCollisionFilter(const TVec3f*, f32);
 
-    virtual bool isInvalidParts(const CollisionParts *) const;
+    virtual bool isInvalidParts(const CollisionParts*) const;
 
     TVec3f* _4;
     f32 _8;
@@ -21,17 +21,17 @@ public:
 
 class KameckBeam : public LiveActor {
 public:
-    KameckBeam(const char *);
+    KameckBeam(const char*);
 
     virtual ~KameckBeam();
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
     virtual void calcAnim();
     virtual void kill();
     virtual void control();
-    virtual void attackSensor(HitSensor *, HitSensor *);
-    virtual bool receiveOtherMsg(u32, HitSensor *, HitSensor *);
+    virtual void attackSensor(HitSensor*, HitSensor*);
+    virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
 
-    void setEventListener(KameckBeamEventListener *);
+    void setEventListener(KameckBeamEventListener*);
 
     void requestShootToPlayerGround(f32);
 

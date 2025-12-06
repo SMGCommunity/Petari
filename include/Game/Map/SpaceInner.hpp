@@ -4,10 +4,10 @@
 
 class SpaceInner : public LiveActor {
 public:
-    SpaceInner(const char *);
+    SpaceInner(const char*);
 
     virtual ~SpaceInner();
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
     virtual void calcAnim();
     virtual void appear();
 
@@ -18,4 +18,4 @@ public:
 namespace NrvSpaceInner {
     NERVE(HostTypeDisappear);
     NERVE(HostTypeAppear);
-};
+};  // namespace NrvSpaceInner

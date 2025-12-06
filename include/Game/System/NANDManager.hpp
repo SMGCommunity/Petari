@@ -5,7 +5,7 @@
 class NANDManagerThread;
 class NANDRequestInfo;
 
-typedef void (NANDReqFunc)(NANDRequestInfo *);
+typedef void(NANDReqFunc)(NANDRequestInfo*);
 
 class NANDRequestInfo {
 public:
@@ -13,11 +13,11 @@ public:
 
     void init();
     bool isDone() const;
-    const char* setMove(const char *, const char *);
-    const char* setWriteSeq(const char *, const void *, u32, u8, u8);
-    const char* setReadSeq(const char *, void *, u32, u32 *);
-    const char* setCheck(u32, u32, u32 *);
-    const char* setDelete(const char *);
+    const char* setMove(const char*, const char*);
+    const char* setWriteSeq(const char*, const void*, u32, u8, u8);
+    const char* setReadSeq(const char*, void*, u32, u32*);
+    const char* setCheck(u32, u32, u32*);
+    const char* setDelete(const char*);
 
     /* 0x00 */ char mPath[NAND_MAX_PATH];
     /* 0x40 */ u32 _40;
@@ -44,7 +44,7 @@ class NANDManager {
 public:
     NANDManager();
 
-    bool addRequest(NANDRequestInfo *);
+    bool addRequest(NANDRequestInfo*);
 
 private:
     /* 0x00 */ OSMutex mMutex;
@@ -53,11 +53,7 @@ private:
 
 class NANDResultCode {
 public:
-    NANDResultCode(s32 code) :
-        mCode(code)
-    {
-        
-    }
+    NANDResultCode(s32 code) : mCode(code) {}
 
     s32 getCode() const;
     bool isSuccess() const;
@@ -74,5 +70,5 @@ private:
 };
 
 namespace MR {
-    void addRequestToNANDManager(NANDRequestInfo *);
+    void addRequestToNANDManager(NANDRequestInfo*);
 };

@@ -42,4 +42,4 @@ namespace MR {
     s32 searchChildJoint(J3DJoint*, J3DJoint*);
     s32 getParentJoint(J3DModelData*, J3DJoint*);
     s32 getParentJoint(const LiveActor*, J3DJoint*);
-};
+};  // namespace MR

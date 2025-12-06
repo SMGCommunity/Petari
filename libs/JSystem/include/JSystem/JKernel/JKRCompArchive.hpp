@@ -8,10 +8,10 @@ public:
     virtual ~JKRCompArchive(void);
 
     virtual void removeResourceAll();
-    virtual bool removeResource(void *);
-    virtual s32 getExpandedResSize(const void *) const;
-    virtual void *fetchResource(SDIFileEntry *, unsigned long *);
-    virtual void *fetchResource(void *, unsigned long, SDIFileEntry *, unsigned long *);
+    virtual bool removeResource(void*);
+    virtual s32 getExpandedResSize(const void*) const;
+    virtual void* fetchResource(SDIFileEntry*, unsigned long*);
+    virtual void* fetchResource(void*, unsigned long, SDIFileEntry*, unsigned long*);
 
     void open(long);
 

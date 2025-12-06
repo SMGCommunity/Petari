@@ -1,6 +1,5 @@
 #pragma once
 
-#include "Game/NameObj/NameObj.hpp"
 #include "Game/LiveActor/EffectKeeper.hpp"
 #include "Game/LiveActor/HitSensorKeeper.hpp"
 #include "Game/LiveActor/LiveActorFlag.hpp"
@@ -8,6 +7,7 @@
 #include "Game/LiveActor/ShadowController.hpp"
 #include "Game/LiveActor/Spine.hpp"
 #include "Game/Map/StageSwitch.hpp"
+#include "Game/NameObj/NameObj.hpp"
 #include <JSystem/JGeometry/TVec.hpp>
 
 class ActorAnimKeeper;
@@ -32,7 +32,7 @@ public:
 
     /// @brief Intializes the `LiveActor` while being placed into a scene.
     /// @param rIter The reference to an iterator over a `JMapInfo`.
-    virtual void init(const JMapInfoIter& rIter);
+    virtual void init(const JMapInfoIter& rIter) override;
 
     virtual void movement();
     virtual void calcAnim();
@@ -71,19 +71,20 @@ public:
 
     /// @brief Gets a sensor.
     /// @param pSensorName The name of the sensor to get.
-    /// @returns The sensor that contains the name given. Returns the result of HitSensorKeeper::getSensor or NULL if there is no HitSensorKeeper created.
+    /// @returns The sensor that contains the name given. Returns the result of HitSensorKeeper::getSensor or NULL if there is no HitSensorKeeper
+    /// created.
     HitSensor* getSensor(const char* pSensorName) const;
     void initModelManagerWithAnm(const char* pModelArcName, const char* pAnimArcName, bool);
-    void initNerve(const Nerve *);
+    void initNerve(const Nerve*);
     void initHitSensor(int);
     void initBinder(f32, f32, u32);
     void initRailRider(const JMapInfoIter& rIter);
-    void initEffectKeeper(int, const char *, bool);
+    void initEffectKeeper(int, const char*, bool);
     void initSound(int, bool);
     void initShadowControllerList(u32);
-    void initActorCollisionParts(const char *, HitSensor *, ResourceHolder *, MtxPtr, bool, bool);
+    void initActorCollisionParts(const char*, HitSensor*, ResourceHolder*, MtxPtr, bool, bool);
     void initStageSwitch(const JMapInfoIter& rIter);
-    void initActorStarPointerTarget(f32, const TVec3f *, MtxPtr, TVec3f);
+    void initActorStarPointerTarget(f32, const TVec3f*, MtxPtr, TVec3f);
     void initActorLightCtrl();
     void addToSoundObjHolder();
     void updateBinder();

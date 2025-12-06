@@ -13,17 +13,15 @@ namespace NrvTripodBossShell {
     NEW_NERVE(TripodBossShellNrvNonActive, TripodBossShell, NonActive);
     NEW_NERVE(TripodBossShellNrvWait, TripodBossShell, Wait);
     NEW_NERVE(TripodBossShellNrvBreak, TripodBossShell, Break);
-};
+};  // namespace NrvTripodBossShell
 
-TripodBossShell::~TripodBossShell() {
+TripodBossShell::~TripodBossShell() {}
 
-}
-
-TripodBossShell::TripodBossShell(const char *pName) : TripodBossFixPartsBase(pName) {
+TripodBossShell::TripodBossShell(const char* pName) : TripodBossFixPartsBase(pName) {
     mBreakModel = nullptr;
 }
 
-void TripodBossShell::init(const JMapInfoIter &rIter) {
+void TripodBossShell::init(const JMapInfoIter& rIter) {
     TripodBossFixPartsBase::init(rIter);
     initModelManagerWithAnm("TripodBossShell", nullptr, false);
     MR::connectToScene(this, 0x23, 0xB, 0x1F, -1);
@@ -49,7 +47,7 @@ void TripodBossShell::kill() {
     mBreakModel->kill();
 }
 
-bool TripodBossShell::receiveMsgEnemyAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool TripodBossShell::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (pReceiver == getSensor("killer_terget") && !isNerve(&NrvTripodBossShell::TripodBossShellNrvBreak::sInstance)) {
         setNerve(&NrvTripodBossShell::TripodBossShellNrvBreak::sInstance);
         return true;
@@ -111,6 +109,4 @@ void TripodBossShell::exeWait() {
     updateTripodMatrix();
 }
 
-void TripodBossShell::exeNonActive() {
-    
-}
+void TripodBossShell::exeNonActive() {}

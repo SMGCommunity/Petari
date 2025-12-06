@@ -1,11 +1,11 @@
 #include "Game/Map/Air.hpp"
+#include "Game/MapObj/SpiderThread.hpp"
 #include "Game/MapObj/SpinDriverPathDrawer.hpp"
+#include "Game/NameObj/NameObjExecuteHolder.hpp"
 #include "Game/Scene/SceneFunction.hpp"
 #include "Game/Scene/SceneNameObjMovementController.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Scene/StopSceneController.hpp"
-#include "Game/MapObj/SpiderThread.hpp"
-#include "Game/NameObj/NameObjExecuteHolder.hpp"
 #include "Game/Util.hpp"
 #include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/DrawUtil.hpp"
@@ -13,11 +13,11 @@
 #include <JSystem/J3DGraphBase/J3DSys.hpp>
 
 void SceneFunction::movementStopSceneController() {
-    MR::getSceneObj<StopSceneController>(SceneObj_StopSceneController)->movement();
+    MR::getSceneObj< StopSceneController >(SceneObj_StopSceneController)->movement();
 }
 
 void SceneFunction::executeMovementList() {
-    if (MR::getSceneObj<StopSceneController>(SceneObj_StopSceneController)->isSceneStopped()) {
+    if (MR::getSceneObj< StopSceneController >(SceneObj_StopSceneController)->isSceneStopped()) {
         return;
     }
 
@@ -163,7 +163,7 @@ void SceneFunction::executeDrawBufferListNormalOpaBeforeVolumeShadow() {
 
 void SceneFunction::executeDrawBufferListNormalOpaBeforeSilhouette() {
     CategoryList::drawOpa(MR::DrawBufferType_NoShadowedMapObj);
-    CategoryList::drawOpa(MR::DrawBufferType_NoShadowedMapObjStrongLight); 
+    CategoryList::drawOpa(MR::DrawBufferType_NoShadowedMapObjStrongLight);
 }
 
 void SceneFunction::executeDrawBufferListNormalOpa() {
@@ -245,9 +245,8 @@ void SceneFunction::executeDrawListXlu() {
     MR::reinitGX();
     CategoryList::execute(MR::DrawType_VolumeModel);
     CategoryList::execute(MR::DrawType_0x30);
-    if ( !MR::isDrawSpinDriverPathAtOpa() )
-    {
-      CategoryList::execute(MR::DrawType_SpinDriverPathDrawer);
+    if (!MR::isDrawSpinDriverPathAtOpa()) {
+        CategoryList::execute(MR::DrawType_SpinDriverPathDrawer);
     }
     CategoryList::execute(MR::DrawType_ClipAreaDropLaser);
     CategoryList::execute(MR::DrawType_SpiderThread);

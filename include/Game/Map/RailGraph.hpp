@@ -11,8 +11,8 @@ class RailGraph {
 public:
     RailGraph();
 
-    s32 addNode(const TVec3f &);
-    void connectNodeTwoWay(s32, s32, const RailGraphEdge *);
+    s32 addNode(const TVec3f&);
+    void connectNodeTwoWay(s32, s32, const RailGraphEdge*);
     RailGraphNode* getNode(s32) const;
     RailGraphEdge* getEdge(s32) const;
     bool isValidEdge(s32) const;

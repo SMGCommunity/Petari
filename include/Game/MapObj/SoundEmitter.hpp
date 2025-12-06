@@ -4,16 +4,16 @@
 
 class JAISoundID;
 
-class SoundEmitter: public LiveActor {
+class SoundEmitter : public LiveActor {
 public:
-    SoundEmitter(const char *);
+    SoundEmitter(const char*);
 
     virtual ~SoundEmitter();
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
     virtual void control();
 
     void exePlaySound();
     void exeStandBy();
-    
+
     s32 _8C;
 };

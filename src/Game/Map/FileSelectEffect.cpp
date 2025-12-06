@@ -4,13 +4,13 @@ namespace {
     NEW_NERVE(FileSelectEffectNrvAppear, FileSelectEffect, Appear);
     NEW_NERVE(FileSelectEffectNrvWait, FileSelectEffect, Wait);
     NEW_NERVE(FileSelectEffectNrvDisappear, FileSelectEffect, Disappear);
-};
+};  // namespace
 
-FileSelectEffect::FileSelectEffect(const char *pName) : LiveActor(pName) {
+FileSelectEffect::FileSelectEffect(const char* pName) : LiveActor(pName) {
     mEffectFrame = 0.0f;
 }
 
-void FileSelectEffect::init(const JMapInfoIter &rIter) {
+void FileSelectEffect::init(const JMapInfoIter& rIter) {
     initModelManagerWithAnm("MiniatureGalaxySelect", nullptr, false);
     MR::connectToSceneMapObj(this);
     MR::invalidateClipping(this);
@@ -36,9 +36,7 @@ void FileSelectEffect::exeAppear() {
     }
 }
 
-void FileSelectEffect::exeWait() {
-    
-}
+void FileSelectEffect::exeWait() {}
 
 void FileSelectEffect::exeDisappear() {
     if (MR::isFirstStep(this)) {
@@ -54,6 +52,4 @@ void FileSelectEffect::exeDisappear() {
 
 // FileSelectEffect::calcAndSetBaseMtx
 
-FileSelectEffect::~FileSelectEffect() {
-
-}
+FileSelectEffect::~FileSelectEffect() {}

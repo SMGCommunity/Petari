@@ -22,7 +22,7 @@ struct SpeakerInfo {
 
 class SpkSpeakerCtrl {
 public:
-    static void setMixingBuffer(SpkMixingBuffer *);
+    static void setMixingBuffer(SpkMixingBuffer*);
     static void setup();
     static void connect(s32);
     static void disconnect(s32);
@@ -37,7 +37,7 @@ public:
     static void reconnectProcess(s32);
     static void initReconnect(s32);
     static void continuousUsingProcess(s32);
-    static void updateSpeaker(OSAlarm *, OSContext *);
+    static void updateSpeaker(OSAlarm*, OSContext*);
     static bool isEnable(s32);
     static void extensionProcess(s32, s32);
     static f32 getDeviceVolume(s32);

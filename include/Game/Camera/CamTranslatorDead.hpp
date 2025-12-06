@@ -4,10 +4,10 @@
 
 class CamTranslatorDead : public CamTranslatorBase {
 public:
-	CamTranslatorDead(CameraDead *);
+    CamTranslatorDead(CameraDead*);
 
-    virtual void setParam(const CameraParamChunk *);
-    virtual Camera *getCamera() const;
+    virtual void setParam(const CameraParamChunk*);
+    virtual Camera* getCamera() const;
 
-    CameraDead *mCamera;    // 0x4
+    CameraDead* mCamera;  // 0x4
 };

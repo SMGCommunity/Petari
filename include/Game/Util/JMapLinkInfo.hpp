@@ -4,11 +4,11 @@
 
 class JMapLinkInfo {
 public:
-    JMapLinkInfo(const JMapInfoIter &, bool);
+    JMapLinkInfo(const JMapInfoIter&, bool);
 
     void invalidate();
-    void setLinkedInfo(const JMapInfoIter &);
-    void setLinkInfo(const JMapInfoIter &);
+    void setLinkedInfo(const JMapInfoIter&);
+    void setLinkInfo(const JMapInfoIter&);
 
     s32 _0;
     s32 _4;

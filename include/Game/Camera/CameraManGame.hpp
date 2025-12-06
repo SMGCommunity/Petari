@@ -13,10 +13,10 @@ class CamHeliEffector;
 
 class CameraManGame : public CameraMan {
 public:
-    CameraManGame(CameraHolder *, CameraParamChunkHolder *, const char *);
+    CameraManGame(CameraHolder*, CameraParamChunkHolder*, const char*);
     virtual ~CameraManGame();
 
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
 
     virtual void calc();
     virtual void notifyActivate();
@@ -36,18 +36,18 @@ public:
     void zoomIn();
     void zoomOut();
     void selectCameraChunk();
-    void setChunk(const CameraParamChunkID &);
+    void setChunk(const CameraParamChunkID&);
     void setNullCamera();
-    CameraParamChunk *tryToReplaceChunkToDefault(CameraParamChunk *);
-    void requestResetIfNecessary(CameraParamChunk *);
-    bool isNecessaryToReset(CameraParamChunk *) const;
+    CameraParamChunk* tryToReplaceChunkToDefault(CameraParamChunk*);
+    void requestResetIfNecessary(CameraParamChunk*);
+    bool isNecessaryToReset(CameraParamChunk*) const;
     bool isCurrentChunkEnableEndInterp() const;
-    void replaceCurrentChunkAndCamera(CameraParamChunk *);
+    void replaceCurrentChunkAndCamera(CameraParamChunk*);
     void applyParameter();
     void checkReset();
     void setSafePose();
-    void keepAwayWatchPos(TVec3f *, const TVec3f &);
-    void calcSafeUpVec(TVec3f *, const TVec3f &, const TVec3f &); // TODO
+    void keepAwayWatchPos(TVec3f*, const TVec3f&);
+    void calcSafeUpVec(TVec3f*, const TVec3f&, const TVec3f&);  // TODO
     void createDefaultCamera();
     void createDefaultWaterCamera();
     void createDefaultWaterSurfaceCamera();
@@ -58,7 +58,7 @@ public:
     bool tryShiftToGCapture();
     bool tryShiftToSwimOrWaterSurface();
     bool tryShiftToFooFighter();
-    void updateNormal(); // TODO
+    void updateNormal();  // TODO
     void updateSwim();
     void updateWaterSurface();
     void updateGCapture();
@@ -68,19 +68,19 @@ public:
     bool tryZoomCamera();
     bool isZoomCamera() const;
 
-    CameraHolder *mHolder;                  // 0x48
-    CameraParamChunkHolder *mChunkHolder;   // 0x4C
-    Camera *mCamera;                        // 0x50
-    CameraParamChunk *mChunk;               // 0x54
+    CameraHolder* mHolder;                 // 0x48
+    CameraParamChunkHolder* mChunkHolder;  // 0x4C
+    Camera* mCamera;                       // 0x50
+    CameraParamChunk* mChunk;              // 0x54
     u8 _58;
     u8 _59[3];
     u32 _5C;
-    CamKarikariEffector *mKarikari;         // 0x60
-    CamHeliEffector *mHeli;                 // 0x64
-    u32 mTypeState;                         // 0x68
+    CamKarikariEffector* mKarikari;  // 0x60
+    CamHeliEffector* mHeli;          // 0x64
+    u32 mTypeState;                  // 0x68
     u8 _6C;
     u8 _6D[3];
     s32 _70;
-    bool mZoomedIn;                         // 0x74
+    bool mZoomedIn;  // 0x74
     u8 _75[3];
 };

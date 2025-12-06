@@ -275,7 +275,7 @@ namespace MR {
     /// @param channel The handle to the Wii Remote.
     /// @return `true` if the Wii Remote is being controlled, `false` otherwise.
     bool isOperatingWPad(s32 channel);
-};
+};  // namespace MR
 
 namespace WPadFunction {
     WPadRumble* getWPadRumble(s32 channel);

@@ -1,19 +1,13 @@
 #include "Game/AreaObj/CameraRepulsiveArea.hpp"
 #include "Game/Util/AreaObjUtil.hpp"
 
-CameraRepulsiveArea::~CameraRepulsiveArea() {
+CameraRepulsiveArea::~CameraRepulsiveArea() {}
 
-}
+CameraRepulsiveSphere::~CameraRepulsiveSphere() {}
 
-CameraRepulsiveSphere::~CameraRepulsiveSphere() {
+CameraRepulsiveCylinder::~CameraRepulsiveCylinder() {}
 
-}
-
-CameraRepulsiveCylinder::~CameraRepulsiveCylinder() {
-
-}
-
-TVec3f CameraRepulsiveSphere::getRepulsion(const TVec3f &rRep) {
+TVec3f CameraRepulsiveSphere::getRepulsion(const TVec3f& rRep) {
     TVec3f ret;
     ret.x = 0.0f;
     ret.y = 0.0f;
@@ -21,7 +15,7 @@ TVec3f CameraRepulsiveSphere::getRepulsion(const TVec3f &rRep) {
     return ret;
 }
 
-TVec3f CameraRepulsiveCylinder::getRepulsion(const TVec3f &rRep) {
+TVec3f CameraRepulsiveCylinder::getRepulsion(const TVec3f& rRep) {
     TVec3f position;
     MR::calcCylinderPos(&position, this);
     TVec3f upVec;

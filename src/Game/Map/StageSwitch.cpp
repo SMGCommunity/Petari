@@ -14,8 +14,7 @@ void BitFlag128::set(int bit_index, bool setTrue) {
 
     if (setTrue) {
         flag |= (1 << (bit_index % 32));
-    }
-    else {
+    } else {
         flag &= ~(1 << (bit_index % 32));
     }
 }
@@ -28,7 +27,7 @@ ZoneSwitch::ZoneSwitch() : BitFlag128() {
     }
 }
 
-SwitchIdInfo::SwitchIdInfo(s32 switchID, const JMapInfoIter &rIter) {
+SwitchIdInfo::SwitchIdInfo(s32 switchID, const JMapInfoIter& rIter) {
     mIDInfo = nullptr;
     mIsGlobal = switchID >= 1000;
     mIDInfo = new JMapIdInfo(switchID, rIter);
@@ -42,7 +41,7 @@ s32 SwitchIdInfo::getSwitchNo() const {
     return mIDInfo->_0;
 }
 
-void StageSwitchContainer::createAndAddZone(const SwitchIdInfo &rInfo) {
+void StageSwitchContainer::createAndAddZone(const SwitchIdInfo& rInfo) {
     if (findZoneSwitchFromTable(rInfo)) {
         return;
     }
@@ -54,7 +53,7 @@ void StageSwitchContainer::createAndAddZone(const SwitchIdInfo &rInfo) {
     mSwitches.push_back(sw);
 }
 
-ZoneSwitch* StageSwitchContainer::getZoneSwitch(const SwitchIdInfo &rInfo) {
+ZoneSwitch* StageSwitchContainer::getZoneSwitch(const SwitchIdInfo& rInfo) {
     if (rInfo.mIsGlobal) {
         return mGlobalSwitches;
     }
@@ -62,7 +61,7 @@ ZoneSwitch* StageSwitchContainer::getZoneSwitch(const SwitchIdInfo &rInfo) {
     return findZoneSwitchFromTable(rInfo);
 }
 
-ZoneSwitch* StageSwitchContainer::findZoneSwitchFromTable(const SwitchIdInfo &rInfo) {
+ZoneSwitch* StageSwitchContainer::findZoneSwitchFromTable(const SwitchIdInfo& rInfo) {
     for (int i = 0; i < mSwitches.size(); i++) {
         ContainerSwitch* pContainer = &mSwitches[i];
 
@@ -131,8 +130,8 @@ bool StageSwitchCtrl::isValidSwitchDead() const {
 bool StageSwitchCtrl::isOnAllSwitchAfterB(int idx) const {
     for (s32 i = 0; i < idx; i++) {
         s32 switchNo = i + mSW_B->getSwitchNo();
-        StageSwitchContainer* pContainer = MR::getSceneObj<StageSwitchContainer>(SceneObj_StageSwitchContainer);
-        
+        StageSwitchContainer* pContainer = MR::getSceneObj< StageSwitchContainer >(SceneObj_StageSwitchContainer);
+
         if (!pContainer->getZoneSwitch(*mSW_B)->get(switchNo)) {
             return false;
         }
@@ -144,10 +143,10 @@ bool StageSwitchCtrl::isOnAllSwitchAfterB(int idx) const {
 
 // isOnAnyOneSwitchAfterB
 
-SwitchIdInfo* StageSwitchFunction::createSwitchIdInfo(const char *pSwitchName, const JMapInfoIter &rIter, bool unused) {
+SwitchIdInfo* StageSwitchFunction::createSwitchIdInfo(const char* pSwitchName, const JMapInfoIter& rIter, bool unused) {
     s32 switchNo;
-    bool res = rIter.getValue<s32>(pSwitchName, &switchNo);
-    
+    bool res = rIter.getValue< s32 >(pSwitchName, &switchNo);
+
     if (!res) {
         return nullptr;
     }
@@ -159,17 +158,17 @@ SwitchIdInfo* StageSwitchFunction::createSwitchIdInfo(const char *pSwitchName, c
     SwitchIdInfo* inf = new SwitchIdInfo(switchNo, rIter);
 
     if (switchNo < 0x3E8) {
-        StageSwitchContainer* pContainer = MR::getSceneObj<StageSwitchContainer>(SceneObj_StageSwitchContainer);
+        StageSwitchContainer* pContainer = MR::getSceneObj< StageSwitchContainer >(SceneObj_StageSwitchContainer);
 
-        pContainer->createAndAddZone(*inf); 
+        pContainer->createAndAddZone(*inf);
     }
 
     return inf;
 }
 
-void StageSwitchFunction::onSwitchBySwitchIdInfo(const SwitchIdInfo &rSwitchId) {
+void StageSwitchFunction::onSwitchBySwitchIdInfo(const SwitchIdInfo& rSwitchId) {
     s32 switchNo = rSwitchId.getSwitchNo();
-    StageSwitchContainer* pContainer = MR::getSceneObj<StageSwitchContainer>(SceneObj_StageSwitchContainer);
+    StageSwitchContainer* pContainer = MR::getSceneObj< StageSwitchContainer >(SceneObj_StageSwitchContainer);
 
     ZoneSwitch* pZoneSwitch = pContainer->getZoneSwitch(rSwitchId);
 
@@ -178,9 +177,9 @@ void StageSwitchFunction::onSwitchBySwitchIdInfo(const SwitchIdInfo &rSwitchId) 
     }
 }
 
-void StageSwitchFunction::offSwitchBySwitchIdInfo(const SwitchIdInfo &rSwitchId) {
+void StageSwitchFunction::offSwitchBySwitchIdInfo(const SwitchIdInfo& rSwitchId) {
     s32 switchNo = rSwitchId.getSwitchNo();
-    StageSwitchContainer* pContainer = MR::getSceneObj<StageSwitchContainer>(SceneObj_StageSwitchContainer);
+    StageSwitchContainer* pContainer = MR::getSceneObj< StageSwitchContainer >(SceneObj_StageSwitchContainer);
 
     ZoneSwitch* pZoneSwitch = pContainer->getZoneSwitch(rSwitchId);
 
@@ -189,9 +188,9 @@ void StageSwitchFunction::offSwitchBySwitchIdInfo(const SwitchIdInfo &rSwitchId)
     }
 }
 
-bool StageSwitchFunction::isOnSwitchBySwitchIdInfo(const SwitchIdInfo &rSwitchId) {
+bool StageSwitchFunction::isOnSwitchBySwitchIdInfo(const SwitchIdInfo& rSwitchId) {
     s32 switchNo = rSwitchId.getSwitchNo();
-    StageSwitchContainer* pContainer = MR::getSceneObj<StageSwitchContainer>(SceneObj_StageSwitchContainer);
+    StageSwitchContainer* pContainer = MR::getSceneObj< StageSwitchContainer >(SceneObj_StageSwitchContainer);
 
     ZoneSwitch* pZoneSwitch = pContainer->getZoneSwitch(rSwitchId);
 
@@ -199,29 +198,16 @@ bool StageSwitchFunction::isOnSwitchBySwitchIdInfo(const SwitchIdInfo &rSwitchId
 }
 
 namespace MR {
-    StageSwitchCtrl* createStageSwitchCtrl(NameObj *pObj, const JMapInfoIter &rIter) {
-        return new StageSwitchCtrl(rIter);
-    }
-};
+    StageSwitchCtrl* createStageSwitchCtrl(NameObj* pObj, const JMapInfoIter& rIter) { return new StageSwitchCtrl(rIter); }
+};  // namespace MR
 
-StageSwitchContainer::~StageSwitchContainer() {
+StageSwitchContainer::~StageSwitchContainer() {}
 
-}
-
-StageSwitchContainer::StageSwitchContainer() :
-    NameObj("ステージスイッチ"),
-    mSwitches(),
-    mGlobalSwitches()
-{
+StageSwitchContainer::StageSwitchContainer() : NameObj("ステージスイッチ"), mSwitches(), mGlobalSwitches() {
     mGlobalSwitches = new ZoneSwitch();
 }
 
-StageSwitchCtrl::StageSwitchCtrl(const JMapInfoIter &rIter) :
-    mSW_A(nullptr),
-    mSW_B(nullptr),
-    mSW_Appear(nullptr),
-    mSW_Dead(nullptr)
-{
+StageSwitchCtrl::StageSwitchCtrl(const JMapInfoIter& rIter) : mSW_A(nullptr), mSW_B(nullptr), mSW_Appear(nullptr), mSW_Dead(nullptr) {
     mSW_A = StageSwitchFunction::createSwitchIdInfo("SW_A", rIter, true);
     mSW_B = StageSwitchFunction::createSwitchIdInfo("SW_B", rIter, true);
     mSW_Appear = StageSwitchFunction::createSwitchIdInfo("SW_APPEAR", rIter, false);

@@ -7,12 +7,9 @@ namespace {
     const f32 cRumbleFreq = 2.0f;
     const f32 cRumbleAmp = 8.0f;
     const s32 cRumbleFrame = 15;
-};
+};  // namespace
 
-CountUpPaneRumbler::CountUpPaneRumbler(LayoutActor* pHost, const char* pPaneName) :
-    mRumbleCalculator(nullptr),
-    mPosition(0.0f, 0.0f)
-{
+CountUpPaneRumbler::CountUpPaneRumbler(LayoutActor* pHost, const char* pPaneName) : mRumbleCalculator(nullptr), mPosition(0.0f, 0.0f) {
     mRumbleCalculator = new RumbleCalculatorCosMultLinear(cRumbleFreq, HALF_PI, cRumbleAmp, cRumbleFrame);
 
     connectPane(pHost, pPaneName);

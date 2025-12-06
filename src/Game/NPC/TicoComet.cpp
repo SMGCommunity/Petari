@@ -2,8 +2,8 @@
 #include "Game/Demo/AstroDemoFunction.hpp"
 #include "Game/Enemy/AnimScaleController.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
-#include "Game/MapObj/StarPieceDirector.hpp"
 #include "Game/LiveActor/PartsModel.hpp"
+#include "Game/MapObj/StarPieceDirector.hpp"
 #include "Game/NPC/NPCActorItem.hpp"
 #include "Game/Screen/GalaxyMapController.hpp"
 #include "Game/Util/EventUtil.hpp"
@@ -17,13 +17,13 @@ namespace NrvTicoEat {
     NEW_NERVE(TicoEatNrvEatPst, TicoEat, EatPst);
     NEW_NERVE(TicoEatNrvEatEnd, TicoEat, EatEnd);
     NEW_NERVE(TicoEatNrvReaction, TicoEat, Reaction);
-};
+};  // namespace NrvTicoEat
 
 namespace NrvTicoComet {
     NEW_NERVE(TicoCometNrvDemoAnim, TicoComet, DemoAnim);
     NEW_NERVE(TicoCometNrvDemoFade, TicoComet, DemoFade);
     NEW_NERVE(TicoCometNrvDemoEnd, TicoComet, DemoEnd);
-};
+};  // namespace NrvTicoComet
 
 namespace {
     class TicoEatParam : public AnimScaleParam {
@@ -38,15 +38,15 @@ namespace {
     }
 
     static TicoEatParam sParam;
-};
+};  // namespace
 
-TicoEat::TicoEat(const char *pName) : Tico(pName) {
+TicoEat::TicoEat(const char* pName) : Tico(pName) {
     _190 = 0;
     _194 = 0;
     _198 = 0;
 }
 
-void TicoEat::init(const JMapInfoIter &rIter) {
+void TicoEat::init(const JMapInfoIter& rIter) {
     mScaleController = new AnimScaleController(&sParam);
     mReactionNerve = &NrvTicoEat::TicoEatNrvReaction::sInstance;
     _178 = MR::getJointMtx(this, "Center");
@@ -67,7 +67,7 @@ void TicoEat::control() {
     Tico::control();
 }
 
-bool TicoEat::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool TicoEat::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgStarPieceGift(msg)) {
         if (_198 == _194) {
             MR::startAction(this, "Eat0");
@@ -109,7 +109,7 @@ bool TicoEat::tryEat() {
     if (isEmptyNerve()) {
         pushNerve(&NrvTicoEat::TicoEatNrvEatPre::sInstance);
     }
-    
+
     if (isNerve(&NrvTicoEat::TicoEatNrvEatEnd::sInstance)) {
         popNerve();
         return true;
@@ -130,7 +130,7 @@ bool TicoEat::eventFunc(u32 event) {
     if (event == 1) {
         MR::forceAppearStarPieceCounterForTicoFat();
     }
-    
+
     if (event == 2) {
         MR::disappearStarPieceCounterForTicoFat();
     }
@@ -144,7 +144,7 @@ void TicoEat::exeReaction() {
     }
 
     startReactionSound();
-    
+
     if (MR::tryStartReactionAndPopNerve(this)) {
         return;
     }
@@ -156,10 +156,9 @@ void TicoEat::exeEatPre() {
         MR::startBva(this, "Big0");
     }
 
-    
     TVec3f neg;
     TVec3f dir = MR::getCamZdir();
-    
+
     JMathInlineVEC::PSVECNegate(&dir, &neg);
     if (MR::turnQuatZDirRad(&_A0, _A0, neg, 0.034906585f)) {
         popAndPushNerve(&NrvTicoEat::TicoEatNrvEatNow::sInstance);
@@ -168,7 +167,6 @@ void TicoEat::exeEatPre() {
 
 void TicoEat::exeEatNow() {
     if (MR::isFirstStep(this)) {
-        
     }
 
     if (_198 != 0 && MR::isIntervalStep(this, 100 / _194)) {
@@ -192,15 +190,11 @@ void TicoEat::exeEatPst() {
     }
 }
 
-void TicoEat::exeEatEnd() {
-    
-}
+void TicoEat::exeEatEnd() {}
 
-TicoComet::TicoComet(const char *pName) : TicoEat(pName) {
-    
-}
+TicoComet::TicoComet(const char* pName) : TicoEat(pName) {}
 
-void TicoComet::init(const JMapInfoIter &rIter) {
+void TicoComet::init(const JMapInfoIter& rIter) {
     NPCActorCaps caps("TicoComet");
     NPCActorItem item;
     item.mActor = "TicoComet";
@@ -327,10 +321,6 @@ void TicoComet::exeDemoFade() {
     }
 }
 
-void TicoComet::exeDemoEnd() {
+void TicoComet::exeDemoEnd() {}
 
-}
-
-void TicoEat::startReactionSound() {
-
-}
+void TicoEat::startReactionSound() {}

@@ -4,12 +4,12 @@
 
 class CameraParallel : public Camera {
 public:
-    CameraParallel(const char *);
+    CameraParallel(const char*);
     virtual ~CameraParallel();
 
     virtual void reset();
-    virtual CameraTargetObj *calc();
-    virtual CamTranslatorBase *createTranslator();
+    virtual CameraTargetObj* calc();
+    virtual CamTranslatorBase* createTranslator();
     virtual bool isEnableToRoundLeft() const;
     virtual bool isEnableToRoundRight() const;
     virtual bool isEnableToReset() const;
@@ -17,9 +17,9 @@ public:
     void calcIdealPose();
     void calcRound();
 
-    f32 mAngleB;    // 0x4C
-    f32 mAngleA;    // 0x50
-    f32 mDist;      // 0x54
+    f32 mAngleB;  // 0x4C
+    f32 mAngleA;  // 0x50
+    f32 mDist;    // 0x54
     bool _58;
     bool _59;
     u8 _5A[2];

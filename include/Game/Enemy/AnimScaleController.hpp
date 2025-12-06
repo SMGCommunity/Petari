@@ -1,7 +1,7 @@
 #pragma once
 
-#include "JSystem/JGeometry.hpp"
 #include "Game/System/NerveExecutor.hpp"
+#include "JSystem/JGeometry.hpp"
 
 class AnimScaleParam {
 public:
@@ -24,7 +24,7 @@ public:
 
 class AnimScaleController : public NerveExecutor {
 public:
-    AnimScaleController(AnimScaleParam *);
+    AnimScaleController(AnimScaleParam*);
 
     virtual ~AnimScaleController();
 
@@ -35,7 +35,7 @@ public:
     void setParamTight();
     void startHitReaction();
     void startDpdHitVibration();
-    bool isHitReaction(s32) const; 
+    bool isHitReaction(s32) const;
 
     void stopAndReset();
 

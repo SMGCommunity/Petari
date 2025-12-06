@@ -1,10 +1,8 @@
 #include "Game/MapObj/DashRing.hpp"
 
-DashRing::~DashRing() {
+DashRing::~DashRing() {}
 
-}
-
-void DashRing::initCommon(const JMapInfoIter &rIter, const char *pName) {
+void DashRing::initCommon(const JMapInfoIter& rIter, const char* pName) {
     MR::initDefaultPos(this, rIter);
     _A4 = 0;
     _A6 = 0;
@@ -14,8 +12,7 @@ void DashRing::initCommon(const JMapInfoIter &rIter, const char *pName) {
         initModelManagerWithAnm(pName, nullptr, false);
         MR::connectToSceneMapObj(this);
         _B4 = 1;
-    }
-    else {
+    } else {
         MR::connectToScene(this, 34, -1, -1, 56);
     }
 
@@ -23,7 +20,7 @@ void DashRing::initCommon(const JMapInfoIter &rIter, const char *pName) {
     MR::addHitSensorMapObj(this, "body", 4, 1000.0f, TVec3f(0.0f, 0.0f, 0.0f));
     MR::validateClipping(this);
     calcAxis();
-    
+
     _A8 = 300;
     _AC = 120;
     _B0 = 2.5f;
@@ -98,8 +95,7 @@ void DashRing::calcSubAxis() {
         stack_8.x = stack_14.y;
         stack_8.y = -stack_14.x;
         stack_8.z = 0.0f;
-    }
-    else {
+    } else {
         stack_8.x = stack_14.x;
         stack_8.y = 0.0f;
         stack_8.z = -stack_14.y;
@@ -111,6 +107,6 @@ void DashRing::calcSubAxis() {
 
 // DashRing::draw
 
-void DashRing::init(const JMapInfoIter &rIter) {
+void DashRing::init(const JMapInfoIter& rIter) {
     initCommon(rIter, "DashRing");
 }

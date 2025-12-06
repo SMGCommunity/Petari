@@ -25,13 +25,11 @@
 namespace NrvFireBall {
     NEW_NERVE(FireBallNrvThrow, FireBall, Throw);
     NEW_NERVE(FireBallNrvReflect, FireBall, Reflect);
-};
+};  // namespace NrvFireBall
 
-FireBall::FireBall(const char* pName) : LiveActor(pName),
-    _8C(nullptr),
-    _90(0.0f, 1.0f, 0.0f) { }
+FireBall::FireBall(const char* pName) : LiveActor(pName), _8C(nullptr), _90(0.0f, 1.0f, 0.0f) {}
 
-void FireBall::init(const JMapInfoIter & rIter) {
+void FireBall::init(const JMapInfoIter& rIter) {
     initModelManagerWithAnm("FireBall", nullptr, false);
     MR::connectToSceneEnemyDecoration(this);
     initHitSensor(1);
@@ -58,7 +56,7 @@ void FireBall::kill() {
     LiveActor::kill();
 }
 
-//FireBall::appearAndThrow(const TVec3f &, f32, f32)
+// FireBall::appearAndThrow(const TVec3f &, f32, f32)
 
 void FireBall::control() {
     Color8 color;
@@ -81,12 +79,12 @@ void FireBall::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
         kill();
         return;
     }
-    if (MR::isSensorEnemy(pReceiver) && pReceiver->mHost != this->_8C && MR::sendMsgEnemyAttackFire(pReceiver, pSender) ) {
+    if (MR::isSensorEnemy(pReceiver) && pReceiver->mHost != this->_8C && MR::sendMsgEnemyAttackFire(pReceiver, pSender)) {
         kill();
     }
 }
 
-bool FireBall::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool FireBall::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgJetTurtleAttack(msg)) {
         kill();
         return false;
@@ -116,7 +114,7 @@ HitSensor* FireBall::isBindedAny() const {
 }
 
 bool FireBall::tryToKill() {
-    HitSensor* bindedSensor  = isBindedAny();
+    HitSensor* bindedSensor = isBindedAny();
 
     if (bindedSensor) {
         MR::sendMsgEnemyAttack(bindedSensor, getSensor("body"));
@@ -139,7 +137,6 @@ void FireBall::setVelocityToPlayer(f32 param1) {
     JMathInlineVEC::PSVECSubtract2(&stack_14, &mPosition, &a1);
     MR::normalize(&a1);
     mVelocity.scale(param1, a1);
-
 }
 
 void FireBall::calcReflectVelocity() {
@@ -181,18 +178,17 @@ void FireBall::exeThrow() {
         }
     }
 
-    if (tryToKill())  {
+    if (tryToKill()) {
         return;
     }
 }
 
 void FireBall::exeReflect() {
-
     if (MR::isFirstStep(this)) {
         MR::start2PAttackAssistSound();
         MR::startSound(this, "SE_EM_FIRE_BUBBLE_REFLECT", -1, -1);
     }
-    mVelocity.mult(0.96f);    
+    mVelocity.mult(0.96f);
 
     if (!tryToKill()) {
         if (MR::isStep(this, 60)) {

@@ -5,12 +5,12 @@
 NrvSky::HostTypeWait NrvSky::HostTypeWait::sInstance;
 NrvSky::HostTypeChange NrvSky::HostTypeChange::sInstance;
 
-Sky::Sky(const char *pSkyName) : LiveActor(pSkyName) {
+Sky::Sky(const char* pSkyName) : LiveActor(pSkyName) {
     mSpaceInner = 0;
     mReflectionModel = 0;
 }
 
-void Sky::init(const JMapInfoIter &rIter) {
+void Sky::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     const char* objectName = 0;
     MR::getObjectName(&objectName, rIter);
@@ -28,7 +28,7 @@ void Sky::init(const JMapInfoIter &rIter) {
             void (Sky::*d)(void) = &Sky::disappearSpaceInner;
             void (Sky::*a)(void) = &Sky::appearSpaceInner;
             MR::listenStageSwitchOnOffB(this, MR::Functor(this, d), MR::Functor(this, a));
-        } 
+        }
     }
 
     s32 arg = -1;
@@ -52,8 +52,7 @@ void Sky::init(const JMapInfoIter &rIter) {
     if (MR::isValidSwitchAppear(this)) {
         MR::syncStageSwitchAppear(this);
         makeActorDead();
-    }
-    else {
+    } else {
         makeActorAppeared();
     }
 }
@@ -66,7 +65,7 @@ void Sky::calcAnim() {
     LiveActor::calcAnim();
 }
 
-void Sky::initModel(const char *pModelName) {
+void Sky::initModel(const char* pModelName) {
     initModelManagerWithAnm(pModelName, 0, false);
 }
 
@@ -74,12 +73,10 @@ void Sky::control() {
     if (mSpaceInner && MR::isValidSwitchB(this)) {
         if (MR::isDead(mSpaceInner)) {
             MR::showModelIfHidden(this);
-        }
-        else {
+        } else {
             if (mSpaceInner->isAppeared()) {
                 MR::hideModelIfShown(this);
-            }
-            else {
+            } else {
                 MR::showModelIfHidden(this);
             }
         }
@@ -98,13 +95,11 @@ void Sky::disappearSpaceInner() {
     }
 }
 
-ProjectionMapSky::ProjectionMapSky(const char *pSkyName) : Sky(pSkyName) {
+ProjectionMapSky::ProjectionMapSky(const char* pSkyName) : Sky(pSkyName) {
     mMtxSetter = 0;
 }
 
-Sky::~Sky() {
-
-}
+Sky::~Sky() {}
 
 void ProjectionMapSky::calcAndSetBaseMtx() {
     LiveActor::calcAndSetBaseMtx();
@@ -114,7 +109,7 @@ void ProjectionMapSky::calcAndSetBaseMtx() {
     }
 }
 
-void ProjectionMapSky::initModel(const char *pName) {
+void ProjectionMapSky::initModel(const char* pName) {
     initModelManagerWithAnm(pName, 0, true);
     mMtxSetter = MR::initDLMakerProjmapEffectMtxSetter(this);
     MR::newDifferedDLBuffer(this);
@@ -122,23 +117,21 @@ void ProjectionMapSky::initModel(const char *pName) {
 }
 
 namespace NrvSky {
-    void HostTypeChange::execute(Spine *pSpine) const {
-        Sky* sky = reinterpret_cast<Sky*>(pSpine->mExecutor);
+    void HostTypeChange::execute(Spine* pSpine) const {
+        Sky* sky = reinterpret_cast< Sky* >(pSpine->mExecutor);
 
         if (MR::isFirstStep(sky)) {
             MR::startAllAnim(sky, cChangeAnimName);
         }
     }
 
-    void HostTypeWait::execute(Spine *pSpine) const {
-        Sky* sky = reinterpret_cast<Sky*>(pSpine->mExecutor);
+    void HostTypeWait::execute(Spine* pSpine) const {
+        Sky* sky = reinterpret_cast< Sky* >(pSpine->mExecutor);
 
         if (MR::isValidSwitchA(sky) && MR::isOnSwitchA(sky)) {
             sky->setNerve(&NrvSky::HostTypeChange::sInstance);
         }
     }
-};
+};  // namespace NrvSky
 
-ProjectionMapSky::~ProjectionMapSky() {
-
-}
+ProjectionMapSky::~ProjectionMapSky() {}

@@ -1,5 +1,5 @@
-#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/OneUpBoard.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/DemoUtil.hpp"
 #include "Game/Util/LayoutUtil.hpp"
@@ -9,13 +9,9 @@
 namespace NrvOneUpBoard {
     NEW_NERVE(HostTypeWait, OneUpBoard, Wait);
     NEW_NERVE(HostTypeAppear, OneUpBoard, Appear);
-};
+};  // namespace NrvOneUpBoard
 
-OneUpBoard::OneUpBoard() :
-    LayoutActor("1UPボード", true)
-{
-    
-}
+OneUpBoard::OneUpBoard() : LayoutActor("1UPボード", true) {}
 
 void OneUpBoard::init(const JMapInfoIter& rIter) {
     initLayoutManager("OneUp", 2);
@@ -42,20 +38,14 @@ void OneUpBoard::calcPos() {
     MR::calcScreenPosition(&pos, *MR::getPlayerCenterPos());
 
     pos.y -= 60.0f;
-    pos.y = pos.y >= 160.0f
-        ? pos.y
-        : 160.0f;
+    pos.y = pos.y >= 160.0f ? pos.y : 160.0f;
 
     setTrans(pos);
 }
 
-void OneUpBoard::control() {
-    
-}
+void OneUpBoard::control() {}
 
-void OneUpBoard::exeWait() {
-    
-}
+void OneUpBoard::exeWait() {}
 
 void OneUpBoard::exeAppear() {
     if (MR::isFirstStep(this)) {

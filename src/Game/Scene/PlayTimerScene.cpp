@@ -1,5 +1,5 @@
-#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Scene/PlayTimerScene.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/TimeLimitLayout.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/SequenceUtil.hpp"
@@ -15,15 +15,10 @@ namespace NrvPlayTimerScene {
     NEW_NERVE(PlayTimerSceneNormal, PlayTimerScene, Normal);
     NEW_NERVE(PlayTimerSceneTimeUp, PlayTimerScene, TimeUp);
     NEW_NERVE(PlayTimerSceneFadeoutAfterTimeUp, PlayTimerScene, FadeoutAfterTimeUp);
-};
+};  // namespace NrvPlayTimerScene
 
-PlayTimerScene::PlayTimerScene() :
-    Scene("PlayTimerScene"),
-    mTimeLimitLayout(nullptr),
-    mTimeUpLayout(nullptr),
-    mTimeUpWaitFrame(sTimeUpWaitFrame),
-    _20(nullptr)
-{
+PlayTimerScene::PlayTimerScene()
+    : Scene("PlayTimerScene"), mTimeLimitLayout(nullptr), mTimeUpLayout(nullptr), mTimeUpWaitFrame(sTimeUpWaitFrame), _20(nullptr) {
     initNerve(&NrvPlayTimerScene::PlayTimerSceneNormal::sInstance);
 
     _20 = new ValueControl(30);

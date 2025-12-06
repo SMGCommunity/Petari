@@ -1,7 +1,6 @@
 #include "Game/Player/Mario.hpp"
 
-void Mario::clearSlope()
-{
+void Mario::clearSlope() {
     _8F0 = 0.0f;
     mMovementStates._23 = false;
     _8F8.zero();

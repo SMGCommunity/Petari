@@ -16,7 +16,7 @@ SimpleClipPartsObj::SimpleClipPartsObj(const char* pName) : MapObjActor(pName) {
 
 SimpleClipPartsObj::~SimpleClipPartsObj() {}
 
-void SimpleClipPartsObj::init(const JMapInfoIter &rIfter) {
+void SimpleClipPartsObj::init(const JMapInfoIter& rIfter) {
     MapObjActor::init(rIfter);
     MapObjActorInitInfo info;
     info.setupRailMover();
@@ -39,24 +39,24 @@ void SimpleClipPartsObj::control() {
     }
 }
 
-void SimpleClipPartsObj::connectToScene(const MapObjActorInitInfo &Ifter) {
+void SimpleClipPartsObj::connectToScene(const MapObjActorInitInfo& Ifter) {
     if (Ifter.mConnectToScene) {
         MR::connectToClippedMapParts(this);
     }
 }
 
-void SimpleClipPartsObj::initCaseUseSwitchA(const MapObjActorInitInfo &Ifter) {}
+void SimpleClipPartsObj::initCaseUseSwitchA(const MapObjActorInitInfo& Ifter) {}
 
-void SimpleClipPartsObj::initCaseNoUseSwitchA(const MapObjActorInitInfo &Ifter) {}
+void SimpleClipPartsObj::initCaseNoUseSwitchA(const MapObjActorInitInfo& Ifter) {}
 
-void SimpleClipPartsObj::initCaseUseSwitchB(const MapObjActorInitInfo &Ifter) {
+void SimpleClipPartsObj::initCaseUseSwitchB(const MapObjActorInitInfo& Ifter) {
     void (MapObjActor::*start)(void) = &MapObjActor::startMapPartsFunctions;
     void (MapObjActor::*end)(void) = &MapObjActor::endMapPartsFunctions;
-    MR::listenStageSwitchOnOffB(this, MR::Functor<MapObjActor>(this, start), MR::Functor<MapObjActor>(this, end));
+    MR::listenStageSwitchOnOffB(this, MR::Functor< MapObjActor >(this, start), MR::Functor< MapObjActor >(this, end));
     setStateWait();
 }
 
-void SimpleClipPartsObj::initCaseNoUseSwitchB(const MapObjActorInitInfo &Ifter) {
+void SimpleClipPartsObj::initCaseNoUseSwitchB(const MapObjActorInitInfo& Ifter) {
     MapObjActor::startMapPartsFunctions();
 }
 

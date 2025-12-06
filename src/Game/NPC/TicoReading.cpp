@@ -8,11 +8,9 @@ namespace NrvTicoReading {
     NEW_NERVE(TicoReadingNrvWait, TicoReading, Wait);
 };
 
-TicoReading::TicoReading(const char *pName) : LiveActor(pName) {
+TicoReading::TicoReading(const char* pName) : LiveActor(pName) {}
 
-}
-
-void TicoReading::init(const JMapInfoIter &rIter) {
+void TicoReading::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     initModelManagerWithAnm("Tico", nullptr, false);
     MR::connectToSceneNpc(this);
@@ -45,6 +43,4 @@ void TicoReading::exeWait() {
     }
 }
 
-TicoReading::~TicoReading() {
-
-}
+TicoReading::~TicoReading() {}

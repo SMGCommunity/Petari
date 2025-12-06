@@ -4,11 +4,11 @@
 
 class SphereRailDash : public LiveActor {
 public:
-    SphereRailDash(const char *);
+    SphereRailDash(const char*);
 
     virtual ~SphereRailDash();
-    virtual void init(const JMapInfoIter &);
-    virtual bool receiveOtherMsg(u32, HitSensor *, HitSensor *);
+    virtual void init(const JMapInfoIter&);
+    virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
 
     void exeWait();
     void exeRailMove();
@@ -27,4 +27,4 @@ public:
 namespace NrvSphereRailDash {
     NERVE(SphereRailDashNrvWait);
     NERVE(SphereRailDashNrvRailMove);
-};
+};  // namespace NrvSphereRailDash

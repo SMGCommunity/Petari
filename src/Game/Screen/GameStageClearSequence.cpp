@@ -1,5 +1,5 @@
-#include "Game/MapObj/PowerStar.hpp"
 #include "Game/Screen/GameStageClearSequence.hpp"
+#include "Game/MapObj/PowerStar.hpp"
 #include "Game/Screen/LayoutActor.hpp"
 #include "Game/Screen/SimpleLayout.hpp"
 #include "Game/Util.hpp"
@@ -11,7 +11,7 @@
 namespace NrvGameStageClearSequence {
     NEW_NERVE(GameStageClearSequencePowerStarGetDemo, GameStageClearSequence, PowerStarGetDemo);
     NEW_NERVE(GameStageClearSequenceGrandStarGetDemo, GameStageClearSequence, GrandStarGetDemo);
-};
+};  // namespace NrvGameStageClearSequence
 
 GameStageClearSequence::GameStageClearSequence() : LayoutActor("ステージクリアシーケンス", true) {
     mEffectLayout = nullptr;
@@ -19,7 +19,7 @@ GameStageClearSequence::GameStageClearSequence() : LayoutActor("ステージク�
     mFollowPos.y = 0.0f;
 }
 
-void GameStageClearSequence::init(const JMapInfoIter &rIter) {
+void GameStageClearSequence::init(const JMapInfoIter& rIter) {
     mEffectLayout = new SimpleEffectLayout("スター取得", "GetStar", 1, -1);
     mEffectLayout->initWithoutIter();
     MR::setFollowPos(&mFollowPos, mEffectLayout, nullptr);
@@ -99,8 +99,7 @@ void GameStageClearSequence::exeGrandStarGetDemo() {
     if (MR::isStep(this, 53)) {
         if (PowerStar::isCurrentStageKoopaVs3()) {
             MR::startSubBGM("BGM_GRAND_STAR_GET_2", false);
-        }
-        else {
+        } else {
             MR::startSubBGM("BGM_GRAND_STAR_GET", false);
         }
     }
@@ -120,8 +119,7 @@ void GameStageClearSequence::exeGrandStarGetDemo() {
             MR::requestChangeStageAfterStageClear();
             kill();
         }
-    }
-    else {
+    } else {
         if (MR::isStep(this, 670)) {
             MR::closeWipeCircle(-1);
         }

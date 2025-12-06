@@ -4,10 +4,10 @@
 
 class ClipFieldMapParts : public GeneralMapParts {
 public:
-    ClipFieldMapParts(const char *);
+    ClipFieldMapParts(const char*);
 
     virtual ~ClipFieldMapParts();
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
     virtual void control();
     virtual void connectToScene();
 };

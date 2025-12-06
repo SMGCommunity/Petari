@@ -6,7 +6,7 @@
 #include "Game/Util/LiveActorUtil.hpp"
 #include "revolution/types.h"
 
-LavaSunPlanet::LavaSunPlanet(const char *pName) : LiveActor(pName) {
+LavaSunPlanet::LavaSunPlanet(const char* pName) : LiveActor(pName) {
     mRotator = nullptr;
     mObjName = nullptr;
     mLodCtrl = nullptr;
@@ -21,10 +21,9 @@ void LavaSunPlanet::control() {
 }
 
 void LavaSunPlanet::calcAndSetBaseMtx() {
-    if (mRotator == nullptr)  {
+    if (mRotator == nullptr) {
         LiveActor::calcAndSetBaseMtx();
-    }
-    else {
+    } else {
         TPos3f mtx;
         mtx.setInline(mRotator->getRotateMtx());
         mtx.mMtx[0][3] = mPosition.x;
@@ -34,7 +33,7 @@ void LavaSunPlanet::calcAndSetBaseMtx() {
     }
 }
 
-void LavaSunPlanet::init(const JMapInfoIter &rIter) {
+void LavaSunPlanet::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     MR::getObjectName(&mObjName, rIter);
     initModelManagerWithAnm(mObjName, nullptr, true);
@@ -50,8 +49,7 @@ void LavaSunPlanet::init(const JMapInfoIter &rIter) {
 
     if (MR::isExistAnim(this, mObjName)) {
         MR::startAllAnim(this, mObjName);
-    }
-    else if (!MR::isExistEffectTexMtx(this)) {
+    } else if (!MR::isExistEffectTexMtx(this)) {
         calcAnim();
         MR::offCalcAnim(this);
     }
@@ -68,6 +66,4 @@ void LavaSunPlanet::init(const JMapInfoIter &rIter) {
     lodEffect->updateMtxUseBaseMtx();
 }
 
-LavaSunPlanet::~LavaSunPlanet() {
-    
-}
+LavaSunPlanet::~LavaSunPlanet() {}

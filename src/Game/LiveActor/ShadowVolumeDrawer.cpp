@@ -4,14 +4,14 @@
 namespace {
     static Color8 sShapeColor(0xC0, 0xC0, 0, 4);
     static Color8 sDebugShapeColor(0xFF, 0, 0, 0x80);
-};
+};  // namespace
 
 ShadowVolumeDrawInit::ShadowVolumeDrawInit() : NameObj("シャドウボリューム描画初期化") {
     MR::FunctorV0F func(*MR::setupShadowVolumeDraw);
     MR::registerPreDrawFunction(func, 0x27);
 }
 
-ShadowVolumeDrawer::ShadowVolumeDrawer(const char *pName) : ShadowDrawer(pName) {
+ShadowVolumeDrawer::ShadowVolumeDrawer(const char* pName) : ShadowDrawer(pName) {
     mStartDrawShapeOffset = 0.0f;
     mEndDrawShapeOffset = 0.0f;
     mIsCutDropShadow = false;
@@ -35,7 +35,7 @@ void ShadowVolumeDrawer::offCutDropShadow() {
     mIsCutDropShadow = false;
 }
 
-void ShadowVolumeDrawer::calcBaseDropPosition(TVec3f *pVec) const {
+void ShadowVolumeDrawer::calcBaseDropPosition(TVec3f* pVec) const {
     calcBaseDropPosition(pVec, getController());
 }
 
@@ -45,7 +45,7 @@ f32 ShadowVolumeDrawer::calcBaseDropLength() const {
 
 #ifdef NON_MATCHING
 // reg usage issues at the bottom
-f32 ShadowVolumeDrawer::calcBaseDropLength(const ShadowController *pController) const {
+f32 ShadowVolumeDrawer::calcBaseDropLength(const ShadowController* pController) const {
     f32 length = pController->getDropLength();
 
     if (mIsCutDropShadow) {
@@ -60,13 +60,9 @@ f32 ShadowVolumeDrawer::calcBaseDropLength(const ShadowController *pController) 
 }
 #endif
 
-void ShadowVolumeDrawer::loadModelDrawMtx() const {
+void ShadowVolumeDrawer::loadModelDrawMtx() const {}
 
-}
-
-void ShadowVolumeDrawer::drawShape() const {
-
-}
+void ShadowVolumeDrawer::drawShape() const {}
 
 bool ShadowVolumeDrawer::isDraw() const {
     return getController()->isDraw();
@@ -75,7 +71,7 @@ bool ShadowVolumeDrawer::isDraw() const {
 void ShadowVolumeDrawer::draw() const {
     if (isDraw()) {
         loadModelDrawMtx();
-        GXColor shapeColor = reinterpret_cast<GXColor&>(sShapeColor);
+        GXColor shapeColor = reinterpret_cast< GXColor& >(sShapeColor);
         GXSetTevColor(GX_TEVREG0, shapeColor);
         GXSetColorUpdate(0);
         GXSetDstAlpha(0, 0);
@@ -91,6 +87,4 @@ void ShadowVolumeDrawer::draw() const {
     }
 }
 
-ShadowVolumeDrawInit::~ShadowVolumeDrawInit() {
-
-}
+ShadowVolumeDrawInit::~ShadowVolumeDrawInit() {}

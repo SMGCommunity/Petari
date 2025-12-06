@@ -20,7 +20,7 @@ bool ShadowVolumeOval::isDraw() const {
     return ret;
 }
 
-void ShadowVolumeOval::setSize(register const TVec3f &rVec) {
+void ShadowVolumeOval::setSize(register const TVec3f& rVec) {
     __asm {
         psq_l f0, 0(rVec), 0, 0
         lfs f1, 8(rVec)

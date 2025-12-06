@@ -1,17 +1,13 @@
-#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/WipeGameOver.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 
 namespace NrvWipeGameOver {
     NEW_NERVE(WipeGameOverWait, WipeGameOver, Wait);
     NEW_NERVE(WipeGameOverActive, WipeGameOver, Active);
-};
+};  // namespace NrvWipeGameOver
 
-WipeGameOver::WipeGameOver() :
-    WipeLayoutBase("ゲームオーバー")
-{
-    
-}
+WipeGameOver::WipeGameOver() : WipeLayoutBase("ゲームオーバー") {}
 
 void WipeGameOver::init(const JMapInfoIter& rIter) {
     initNerve(&NrvWipeGameOver::WipeGameOverWait::sInstance);
@@ -58,9 +54,7 @@ bool WipeGameOver::isWipeOut() const {
     return isNerve(&NrvWipeGameOver::WipeGameOverActive::sInstance) && !MR::isAnimStopped(this, 0);
 }
 
-void WipeGameOver::exeWait() {
-    
-}
+void WipeGameOver::exeWait() {}
 
 void WipeGameOver::exeActive() {
     if (MR::isFirstStep(this)) {

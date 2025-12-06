@@ -1,7 +1,7 @@
 #include "Game/LiveActor/ClippingJudge.hpp"
 #include "Game/Util.hpp"
 
-ClippingJudge::ClippingJudge(const char *pName) : NameObj(pName), mFrustum() {
+ClippingJudge::ClippingJudge(const char* pName) : NameObj(pName), mFrustum() {
     for (s32 i = 0; i < 8; i++) {
         mClipDistances[i] = -1.0f;
     }
@@ -16,9 +16,7 @@ ClippingJudge::ClippingJudge(const char *pName) : NameObj(pName), mFrustum() {
     mClipDistances[7] = 5000.0f;
 }
 
-void ClippingJudge::init(const JMapInfoIter &rIter) {
-
-}
+void ClippingJudge::init(const JMapInfoIter& rIter) {}
 
 void ClippingJudge::movement() {
     calcViewingVolume(&mFrustum, MR::getFarZ());
@@ -28,16 +26,14 @@ void ClippingJudge::movement() {
     }
 }
 
-bool ClippingJudge::isJudgedToClipFrustum(const TVec3f &rVec, f32 a2) const {
+bool ClippingJudge::isJudgedToClipFrustum(const TVec3f& rVec, f32 a2) const {
     return !mFrustum.mayIntersectBall3(rVec, a2);
 }
 
-bool ClippingJudge::isJudgedToClipFrustum(const TVec3f &rVec, f32 a2, s32 index) const {
+bool ClippingJudge::isJudgedToClipFrustum(const TVec3f& rVec, f32 a2, s32 index) const {
     return (!index) ? !mFrustum.mayIntersectBall3(rVec, a2) : !mClipFrustums[index].mayIntersectBall3(rVec, a2);
 }
 
 // ClippingJudge::calcViewingVolume
 
-ClippingJudge::~ClippingJudge() {
-
-}
+ClippingJudge::~ClippingJudge() {}

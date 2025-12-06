@@ -1,7 +1,7 @@
+#include "Game/Camera/CameraParamChunkHolder.hpp"
 #include "Game/Camera/CameraHolder.hpp"
 #include "Game/Camera/CameraLocalUtil.hpp"
 #include "Game/Camera/CameraParamChunk.hpp"
-#include "Game/Camera/CameraParamChunkHolder.hpp"
 #include "Game/Camera/CameraParamChunkID.hpp"
 #include "Game/Camera/DotCamParams.hpp"
 #include "Game/Util/SceneUtil.hpp"
@@ -10,42 +10,38 @@
 
 #define CHUNK_CAPACITY 0x400
 
-CameraParamChunkHolder::CameraParamChunkHolder(CameraHolder *pCameraHolder, const char *pName) : NameObj(pName) {
+CameraParamChunkHolder::CameraParamChunkHolder(CameraHolder* pCameraHolder, const char* pName) : NameObj(pName) {
     mCameraHolder = pCameraHolder;
     mChunkCapacity = CHUNK_CAPACITY;
     mNrChunks = 0;
-    mChunks = new CameraParamChunk *[CHUNK_CAPACITY];
+    mChunks = new CameraParamChunk*[CHUNK_CAPACITY];
     mIsSorted = 0;
 }
 
-CameraParamChunkHolder::~CameraParamChunkHolder() {
+CameraParamChunkHolder::~CameraParamChunkHolder() {}
 
-}
-
-CameraParamChunk *CameraParamChunkHolder::createChunk(const CameraParamChunkID &rID, JKRHeap *pHeap) {
+CameraParamChunk* CameraParamChunkHolder::createChunk(const CameraParamChunkID& rID, JKRHeap* pHeap) {
     if (isNewAttribute(rID)) {
         char firstChar = rID.mName[0];
-        CameraParamChunk *chunk;
+        CameraParamChunk* chunk;
 
         if (firstChar == 'e') {
-            chunk = new(pHeap, 0) CameraParamChunkEvent(mCameraHolder, rID);
-        }
-        else if (firstChar == 'g' || firstChar == 'c' || firstChar == 's') {
-            chunk = new(pHeap, 0) CameraParamChunkGame(mCameraHolder, rID);
-        }
-        else {
-            chunk = new(pHeap, 0) CameraParamChunk(mCameraHolder, rID);
+            chunk = new (pHeap, 0) CameraParamChunkEvent(mCameraHolder, rID);
+        } else if (firstChar == 'g' || firstChar == 'c' || firstChar == 's') {
+            chunk = new (pHeap, 0) CameraParamChunkGame(mCameraHolder, rID);
+        } else {
+            chunk = new (pHeap, 0) CameraParamChunk(mCameraHolder, rID);
         }
 
         mChunks[mNrChunks++] = chunk;
-        
+
         return chunk;
     }
-    
+
     return nullptr;
 }
 
-CameraParamChunk *CameraParamChunkHolder::getChunk(const CameraParamChunkID &rID) {
+CameraParamChunk* CameraParamChunkHolder::getChunk(const CameraParamChunkID& rID) {
     if (rID.mName == nullptr) {
         return nullptr;
     }
@@ -65,7 +61,7 @@ void CameraParamChunkHolder::sort() {
         }
 
         if (minIndex != i) {
-            CameraParamChunk *temp = mChunks[i];
+            CameraParamChunk* temp = mChunks[i];
             mChunks[i] = mChunks[minIndex];
             mChunks[minIndex] = temp;
         }
@@ -80,7 +76,7 @@ void CameraParamChunkHolder::loadCameraParameters() {
     }
 }
 
-bool CameraParamChunkHolder::isNewAttribute(const CameraParamChunkID &rID) {
+bool CameraParamChunkHolder::isNewAttribute(const CameraParamChunkID& rID) {
     for (s32 i = 0; i < mNrChunks; i++) {
         if (*mChunks[i]->mParamChunkID == rID) {
             return false;
@@ -90,7 +86,7 @@ bool CameraParamChunkHolder::isNewAttribute(const CameraParamChunkID &rID) {
     return true;
 }
 
-CameraParamChunk *CameraParamChunkHolder::findChunk(const CameraParamChunkID &rID) {
+CameraParamChunk* CameraParamChunkHolder::findChunk(const CameraParamChunkID& rID) {
     if (mIsSorted) {
         s32 low = 0;
         s32 high = mNrChunks - 1;
@@ -100,8 +96,7 @@ CameraParamChunk *CameraParamChunkHolder::findChunk(const CameraParamChunkID &rI
 
             if (*mChunks[middle]->mParamChunkID > rID) {
                 low = middle + 1;
-            }
-            else {
+            } else {
                 high = middle;
             }
         }
@@ -109,8 +104,7 @@ CameraParamChunk *CameraParamChunkHolder::findChunk(const CameraParamChunkID &rI
         if (*mChunks[low]->mParamChunkID == rID) {
             return mChunks[low];
         }
-    }
-    else {
+    } else {
         for (s32 i = 0; i < mNrChunks; i++) {
             if (*mChunks[i]->mParamChunkID == rID) {
                 return mChunks[i];
@@ -121,7 +115,7 @@ CameraParamChunk *CameraParamChunkHolder::findChunk(const CameraParamChunkID &rI
     return nullptr;
 }
 
-CameraParamChunk *CameraParamChunkHolder::findChunk(s32 zoneID, const char *pName) {
+CameraParamChunk* CameraParamChunkHolder::findChunk(s32 zoneID, const char* pName) {
     for (s32 i = 0; i < mNrChunks; i++) {
         if (mChunks[i]->mParamChunkID->equals(zoneID, pName)) {
             return mChunks[i];
@@ -134,7 +128,7 @@ CameraParamChunk *CameraParamChunkHolder::findChunk(s32 zoneID, const char *pNam
 #ifdef NON_MATCHING
 // Stack is 0x10 bytes smaller
 void CameraParamChunkHolder::loadFile(s32 zoneID) {
-    void *data;
+    void* data;
     s32 local44;
     MR::getStageCameraData(&data, &local44, zoneID);
 
@@ -143,20 +137,19 @@ void CameraParamChunkHolder::loadFile(s32 zoneID) {
         mCameraVersion = reader.mVersion;
 
         while (reader.hasMoreChunk()) {
-            const char *id = nullptr;
+            const char* id = nullptr;
             reader.getValueString("id", &id);
 
-            CameraParamChunk *chunk = findChunk(zoneID, id);
+            CameraParamChunk* chunk = findChunk(zoneID, id);
 
             if (chunk != nullptr && chunk->_64 != 0) {
                 reader.nextToChunk();
-            }
-            else {
+            } else {
                 if (chunk != nullptr) {
                     chunk->load(&reader, mCameraHolder);
                     arrangeChunk(chunk);
                 }
-                
+
                 reader.nextToChunk();
             }
         }
@@ -164,15 +157,15 @@ void CameraParamChunkHolder::loadFile(s32 zoneID) {
 }
 #endif
 
-void CameraParamChunkHolder::arrangeChunk(CameraParamChunk *pChunk) {
+void CameraParamChunkHolder::arrangeChunk(CameraParamChunk* pChunk) {
     s32 index = pChunk->mCameraTypeIndex;
 
     if (mCameraHolder->getIndexOf("CAM_TYPE_FOLLOW") == index) {
         if (mCameraVersion < 0x30001) {
-            CameraGeneralParam *param = pChunk->mGeneralParam;
+            CameraGeneralParam* param = pChunk->mGeneralParam;
 
-            param->mAngleA = 0.17453294f; // 10 degrees
-            param->mAngleB = 0.34906587f; // 20 degrees
+            param->mAngleA = 0.17453294f;  // 10 degrees
+            param->mAngleB = 0.34906587f;  // 20 degrees
         }
 
         if (mCameraVersion < 0x30002) {
@@ -181,10 +174,10 @@ void CameraParamChunkHolder::arrangeChunk(CameraParamChunk *pChunk) {
     }
 
     if (mCameraVersion < 0x30003) {
-        const char *className = pChunk->getClassName();
+        const char* className = pChunk->getClassName();
 
         if (strcmp(className, "Game") == 0) {
-            CameraParamChunkGame *pGameChunk = reinterpret_cast<CameraParamChunkGame *>(pChunk);
+            CameraParamChunkGame* pGameChunk = reinterpret_cast< CameraParamChunkGame* >(pChunk);
             pGameChunk->mThru = 0;
         }
     }
@@ -193,7 +186,7 @@ void CameraParamChunkHolder::arrangeChunk(CameraParamChunk *pChunk) {
 
     if (mCameraHolder->getIndexOf("CAM_TYPE_RAIL_FOLLOW") == index) {
         if (mCameraVersion < 0x30007) {
-            CameraGeneralParam *param = pChunk->mGeneralParam;
+            CameraGeneralParam* param = pChunk->mGeneralParam;
 
             param->mWPoint.x = 30.0f;
             param->mWPoint.y = 0.35f;
@@ -232,7 +225,7 @@ void CameraParamChunkHolder::arrangeChunk(CameraParamChunk *pChunk) {
         index = pChunk->mCameraTypeIndex;
 
         if (mCameraHolder->getIndexOf("CAM_TYPE_CHARMED_VECREG") == index) {
-            CameraGeneralParam *param = pChunk->mGeneralParam;
+            CameraGeneralParam* param = pChunk->mGeneralParam;
             param->mString.setCharPtr(CameraLocalUtil::getDummyVecRegName());
         }
     }

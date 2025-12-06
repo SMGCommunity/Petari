@@ -1,7 +1,7 @@
+#include "Game/Util/StringUtil.hpp"
 #include "Game/Screen/ReplaceTagProcessor.hpp"
 #include "Game/Util/EventUtil.hpp"
 #include "Game/Util/MessageUtil.hpp"
-#include "Game/Util/StringUtil.hpp"
 #include <cctype>
 // #include <cstdarg>
 #include <cstdio>
@@ -15,9 +15,9 @@
 
 #ifdef __cplusplus
 extern "C" {
-    int strcasecmp(const char*, const char*);
-    // extern int vswprintf(wchar_t*, size_t, const wchar_t*, va_list);
-    int wcsncpy(wchar_t*, const wchar_t*, size_t);
+int strcasecmp(const char*, const char*);
+// extern int vswprintf(wchar_t*, size_t, const wchar_t*, va_list);
+int wcsncpy(wchar_t*, const wchar_t*, size_t);
 };
 #endif
 
@@ -58,8 +58,7 @@ namespace MR {
             minute = 59;
             second = 59;
             centisecond = 99;
-        }
-        else {
+        } else {
             s32 signedFrame = frame;
 
             minute = signedFrame / FRAME_PER_MIN;
@@ -79,8 +78,7 @@ namespace MR {
         if (frame >= FRAME_PER_HOUR) {
             minute = 59;
             second = 59;
-        }
-        else {
+        } else {
             minute = frame / FRAME_PER_MIN;
             second = (frame % FRAME_PER_MIN) / FRAME_PER_SEC;
         }
@@ -90,9 +88,7 @@ namespace MR {
         ReplaceTagFunction::ReplaceArgs(pDst, 16, pMessage, 0, minute, second);
     }
 
-    wchar_t* addNumberFontTag(wchar_t* pDst, int tag) {
-        return MR::addNumberFontTag(pDst, L"%d", tag);
-    }
+    wchar_t* addNumberFontTag(wchar_t* pDst, int tag) { return MR::addNumberFontTag(pDst, L"%d", tag); }
 
     char* removeExtensionString(char* pDst, u32 size, const char* pPath) {
         snprintf(pDst, size, "%s", pPath);
@@ -109,21 +105,13 @@ namespace MR {
         return pDirSeparator;
     }
 
-    void makeRaceBestTimeString(wchar_t* pDst, int raceId) {
-        MR::makeClearTimeString(pDst, getRaceBestTime(raceId));
-    }
+    void makeRaceBestTimeString(wchar_t* pDst, int raceId) { MR::makeClearTimeString(pDst, getRaceBestTime(raceId)); }
 
-    void makeRaceCurrentTimeString(wchar_t* pDst) {
-        MR::makeClearTimeString(pDst, getRaceCurrentTime());
-    }
+    void makeRaceCurrentTimeString(wchar_t* pDst) { MR::makeClearTimeString(pDst, getRaceCurrentTime()); }
 
-    void copyString(char* pDst, const char* pSrc, u32 num) {
-        strncpy(pDst, pSrc, num);
-    }
+    void copyString(char* pDst, const char* pSrc, u32 num) { strncpy(pDst, pSrc, num); }
 
-    void copyString(wchar_t* pDst, const wchar_t* pSrc, u32 num) {
-        wcsncpy(pDst, pSrc, num);
-    }
+    void copyString(wchar_t* pDst, const wchar_t* pSrc, u32 num) { wcsncpy(pDst, pSrc, num); }
 
     wchar_t* addPictureFontCode(wchar_t* pDst, int code) {
         pDst[0] = code;
@@ -133,7 +121,7 @@ namespace MR {
     }
 
     wchar_t* addPictureFontTag(wchar_t* pDst, int tag) {
-        Tag* pTag = reinterpret_cast<Tag*>(pDst);
+        Tag* pTag = reinterpret_cast< Tag* >(pDst);
 
         pTag->_0 = 26;
         pTag->mDataSize = sizeof(Tag);
@@ -162,7 +150,7 @@ namespace MR {
         va_list args;
         va_start(args, pFmt);
 
-        Tag* pTag = reinterpret_cast<Tag*>(pDst);
+        Tag* pTag = reinterpret_cast< Tag* >(pDst);
 
         int num = vswprintf(pTag->mBuffer, 256, pFmt, args);
 
@@ -196,7 +184,7 @@ namespace MR {
         u32 i;
 
         for (i = 0; i < num - 1; pDst++, pSrc++, i++) {
-            const char* p = reinterpret_cast<const char*>(pSrc);
+            const char* p = reinterpret_cast< const char* >(pSrc);
 
             if (p[0] != '\0') {
                 break;
@@ -214,25 +202,15 @@ namespace MR {
         return i;
     }
 
-    int strcasecmp(const char* pStr1, const char* pStr2) {
-        return ::strcasecmp(pStr1, pStr2);
-    }
+    int strcasecmp(const char* pStr1, const char* pStr2) { return ::strcasecmp(pStr1, pStr2); }
 
-    bool isEqualString(const char* pStr1, const char* pStr2) {
-        return strcmp(pStr1, pStr2) == 0;
-    }
+    bool isEqualString(const char* pStr1, const char* pStr2) { return strcmp(pStr1, pStr2) == 0; }
 
-    bool isEqualStringCase(const char* pStr1, const char* pStr2) {
-        return strcasecmp(pStr1, pStr2) == 0;
-    }
+    bool isEqualStringCase(const char* pStr1, const char* pStr2) { return strcasecmp(pStr1, pStr2) == 0; }
 
-    bool isEqualSubString(const char* pStr, const char* pSubStr) {
-        return strstr(pStr, pSubStr) != nullptr;
-    }
+    bool isEqualSubString(const char* pStr, const char* pSubStr) { return strstr(pStr, pSubStr) != nullptr; }
 
-    bool hasStringSpace(const char* pStr) {
-        return strchr(pStr, ' ') != nullptr;
-    }
+    bool hasStringSpace(const char* pStr) { return strchr(pStr, ' ') != nullptr; }
 
     bool isDigitStringTail(const char* pStr, int digitNum) {
         for (int i = 1; i <= digitNum; i++) {
@@ -256,12 +234,10 @@ namespace MR {
         return false;
     }
 
-    bool isNullOrEmptyString(const char* pStr) {
-        return pStr == nullptr || MR::isEqualString(pStr, "");
-    }
+    bool isNullOrEmptyString(const char* pStr) { return pStr == nullptr || MR::isEqualString(pStr, ""); }
 
     bool isMessageEditorNextTag(const wchar_t* pStr) {
-        const Tag* pTag = reinterpret_cast<const Tag*>(pStr);
+        const Tag* pTag = reinterpret_cast< const Tag* >(pStr);
         u8 v1 = pTag->_3;
         wchar_t v2 = pTag->mBuffer[0];
 
@@ -277,7 +253,7 @@ namespace MR {
                     break;
                 }
 
-                u16 dataSize = reinterpret_cast<const Tag*>(pMessage)->mDataSize;
+                u16 dataSize = reinterpret_cast< const Tag* >(pMessage)->mDataSize;
 
                 // FIXME: r3-r4 used instead of r30-r31, and slwi used instead of clrrwi.
                 pMessage = (pMessage + dataSize) - 1;
@@ -366,4 +342,4 @@ namespace MR {
 
         sscanf(pSrc, "\t{%ff,%ff,%ff,%ff}", &pDst[0], &pDst[1], &pDst[2], &pDst[3]);
     }
-};
+};  // namespace MR

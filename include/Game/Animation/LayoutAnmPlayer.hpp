@@ -6,7 +6,7 @@ namespace nw4r {
     namespace lyt {
         class AnimTransform;
     };
-};
+};  // namespace nw4r
 
 class LayoutManager;
 

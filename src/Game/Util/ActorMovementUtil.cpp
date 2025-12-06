@@ -1,11 +1,11 @@
-#include "Game/Util.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
 #include "Game/Animation/Xanimecore.hpp"
 #include "Game/LiveActor/Binder.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/ShadowController.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
-#include "Game/Util/ActorMovementUtil.hpp"
+#include "Game/Util.hpp"
 #include "Game/Util/ActorShadowUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MapUtil.hpp"
@@ -21,7 +21,7 @@
 #include <cmath>
 
 namespace {
-    void calcRotate(LiveActor *pActor, const TVec3f &a2, f32 a3); /* {
+    void calcRotate(LiveActor* pActor, const TVec3f& a2, f32 a3); /* {
         TPos3f stack_44;
         TVec3f stack_38;
         TVec3f stack_2c;
@@ -71,7 +71,7 @@ namespace {
 };
 
 namespace MR {
-    f32 calcDistance(const HitSensor *pSensor1, const HitSensor *pSensor2, TVec3f *a3) {
+    f32 calcDistance(const HitSensor* pSensor1, const HitSensor* pSensor2, TVec3f* a3) {
         TVec3f sensor2_pos(pSensor2->mPosition);
         JMathInlineVEC::PSVECSubtract((Vec*)&sensor2_pos, (Vec*)&pSensor1->mPosition, (Vec*)&sensor2_pos);
 
@@ -80,8 +80,7 @@ namespace MR {
         if (a3) {
             if (mag > 0.0f) {
                 PSVECScale((Vec*)&sensor2_pos, (Vec*)a3, 1.0f / mag);
-            }
-            else {
+            } else {
                 a3->zero();
             }
         }
@@ -89,37 +88,35 @@ namespace MR {
         return mag;
     }
 
-    f32 calcDistance(const LiveActor *pActor, const TVec3f &rVec) {
-        return PSVECDistance((Vec*)&pActor->mPosition, &(const Vec &)rVec);
-    }
+    f32 calcDistance(const LiveActor* pActor, const TVec3f& rVec) { return PSVECDistance((Vec*)&pActor->mPosition, &(const Vec&)rVec); }
 
-    f32 calcDistanceHorizontal(const LiveActor *pActor, const TVec3f &a2, const TVec3f &a3) {
+    f32 calcDistanceHorizontal(const LiveActor* pActor, const TVec3f& a2, const TVec3f& a3) {
         TVec3f stack_8(a2);
         JMathInlineVEC::PSVECSubtract((Vec*)&stack_8, (Vec*)&pActor->mPosition, (Vec*)&stack_8);
         MR::vecKillElement(stack_8, a3, &stack_8);
         return PSVECMag((Vec*)&stack_8);
     }
 
-    f32 calcDistanceVertical(const LiveActor *pActor, const TVec3f &a2, const TVec3f &a3) {
+    f32 calcDistanceVertical(const LiveActor* pActor, const TVec3f& a2, const TVec3f& a3) {
         TVec3f stack_8(a2);
         JMathInlineVEC::PSVECSubtract((Vec*)&stack_8, (Vec*)&pActor->mPosition, (Vec*)&stack_8);
         stack_8.scale(a3.dot(stack_8), a3);
         return PSVECMag((Vec*)&stack_8);
     }
 
-    f32 calcDistanceVertical(const LiveActor *pActor, const TVec3f &a2) {
-        const TVec3f &grav = pActor->mGravity;
+    f32 calcDistanceVertical(const LiveActor* pActor, const TVec3f& a2) {
+        const TVec3f& grav = pActor->mGravity;
         TVec3f stack_8(a2);
         JMathInlineVEC::PSVECSubtract((Vec*)&stack_8, (Vec*)&pActor->mPosition, (Vec*)&stack_8);
         stack_8.scale(grav.dot(stack_8), grav);
         return PSVECMag((Vec*)&stack_8);
     }
 
-    f32 calcDistanceToPlayer(const LiveActor *pActor) {
+    f32 calcDistanceToPlayer(const LiveActor* pActor) {
         return (!MR::isExistSceneObj(SceneObj_MarioHolder) ? FLOAT_MAX : PSVECDistance((Vec*)&pActor->mPosition, (Vec*)MR::getPlayerPos()));
     }
 
-    f32 calcDistanceToPlayerH(const LiveActor *pActor) {
+    f32 calcDistanceToPlayerH(const LiveActor* pActor) {
         if (MR::isExistSceneObj(SceneObj_MarioHolder) == false) {
             return FLOAT_MAX;
         }
@@ -129,31 +126,29 @@ namespace MR {
         return PSVECMag((Vec*)&stack_8);
     }
 
-    bool isNear(const HitSensor *pSensor_1, const HitSensor *pSensor_2, f32 dist) {
+    bool isNear(const HitSensor* pSensor_1, const HitSensor* pSensor_2, f32 dist) {
         f32 sqr = pSensor_1->mPosition.squared(pSensor_2->mPosition);
         return sqr < (dist * dist);
     }
 
-    bool isNear(const LiveActor *pActor_1, const LiveActor *pActor_2, f32 dist) {
+    bool isNear(const LiveActor* pActor_1, const LiveActor* pActor_2, f32 dist) {
         f32 sqr = pActor_1->mPosition.squared(pActor_2->mPosition);
         return sqr < (dist * dist);
     }
 
-    bool isNear(const LiveActor *pActor, const TVec3f &rVec, f32 dist) {
+    bool isNear(const LiveActor* pActor, const TVec3f& rVec, f32 dist) {
         f32 sqr = pActor->mPosition.squared(rVec);
         return sqr < (dist * dist);
     }
 
-    bool isNearPlayer(const LiveActor *pActor, f32 dist) {
-        return (MR::isPlayerHidden() ? false : MR::isNearPlayerAnyTime(pActor, dist));
-    }
+    bool isNearPlayer(const LiveActor* pActor, f32 dist) { return (MR::isPlayerHidden() ? false : MR::isNearPlayerAnyTime(pActor, dist)); }
 
-    bool isNearPlayerAnyTime(const LiveActor *pActor, f32 dist) {
+    bool isNearPlayerAnyTime(const LiveActor* pActor, f32 dist) {
         f32 sqr = pActor->mPosition.squared(*MR::getPlayerPos());
         return sqr < (dist * dist);
     }
 
-    bool isNearPlayer(const TVec3f &rPos, f32 dist) {
+    bool isNearPlayer(const TVec3f& rPos, f32 dist) {
         if (MR::isPlayerHidden()) {
             return false;
         }
@@ -180,7 +175,7 @@ namespace MR {
         return (stack_14.squared() < a2 * a2);
     } */
 
-    bool isNearPlayerHorizontal(const LiveActor *pActor, f32 dist) {
+    bool isNearPlayerHorizontal(const LiveActor* pActor, f32 dist) {
         TVec3f stack_14;
         if (isPlayerHidden()) {
             return false;
@@ -191,61 +186,60 @@ namespace MR {
         float f1 = vecKillElement(stack_8, pActor->mGravity, &stack_14);
         return (stack_14.squared() < dist * dist);
     }
-    
-    void calcFrontVec(TVec3f *pFrontVec, const LiveActor *pActor) {
+
+    void calcFrontVec(TVec3f* pFrontVec, const LiveActor* pActor) {
         MtxPtr mtx = pActor->getBaseMtx();
         pFrontVec->set(mtx[0][2], mtx[1][2], mtx[2][2]);
     }
 
-    void calcUpVec(TVec3f *pUpVec, const LiveActor *pActor) {
+    void calcUpVec(TVec3f* pUpVec, const LiveActor* pActor) {
         MtxPtr mtx = pActor->getBaseMtx();
         pUpVec->set(mtx[0][1], mtx[1][1], mtx[2][1]);
     }
 
-    void calcSideVec(TVec3f *pSideVec, const LiveActor *pActor) {
+    void calcSideVec(TVec3f* pSideVec, const LiveActor* pActor) {
         MtxPtr mtx = pActor->getBaseMtx();
         pSideVec->set(mtx[0][0], mtx[1][0], mtx[2][0]);
     }
 
-    void calcPositionUpOffset(TVec3f *a1, const LiveActor *pActor, f32 a3) {
+    void calcPositionUpOffset(TVec3f* a1, const LiveActor* pActor, f32 a3) {
         TVec3f stack_8;
-        TVec3f *stack_c = a1;
+        TVec3f* stack_c = a1;
         MR::calcUpVec(&stack_8, pActor);
 
         JMAVECScaleAdd((Vec*)&stack_8, (Vec*)&pActor->mPosition, (Vec*)stack_c, a3);
     }
 
-    void calcVecToPlayerH(TVec3f *pToPlayerHVec, const LiveActor *pActor, const TVec3f *a3) {
+    void calcVecToPlayerH(TVec3f* pToPlayerHVec, const LiveActor* pActor, const TVec3f* a3) {
         calcVecToTargetPosH(pToPlayerHVec, pActor, *MR::getPlayerPos(), a3);
     }
 
-    void calcVecFromPlayerH(TVec3f *pFromPlayerHVec, const LiveActor *pActor) {
+    void calcVecFromPlayerH(TVec3f* pFromPlayerHVec, const LiveActor* pActor) {
         calcVecToTargetPosH(pFromPlayerHVec, pActor, *MR::getPlayerPos(), nullptr);
         pFromPlayerHVec->scale(-1.0f);
     }
 
-    void calcVecToTargetPosH(TVec3f *pToTargetHVec, const LiveActor *pActor, const TVec3f &a3, const TVec3f *a4) {
-        pToTargetHVec->set<f32>(a3);
+    void calcVecToTargetPosH(TVec3f* pToTargetHVec, const LiveActor* pActor, const TVec3f& a3, const TVec3f* a4) {
+        pToTargetHVec->set< f32 >(a3);
 
-        TVec3f *vec = pToTargetHVec;
+        TVec3f* vec = pToTargetHVec;
         JMathInlineVEC::PSVECSubtract((Vec*)vec, (Vec*)&pActor->mPosition, (Vec*)vec);
 
         if (a4 == nullptr) {
             MR::vecKillElement(*pToTargetHVec, pActor->mGravity, pToTargetHVec);
-        }
-        else {
+        } else {
             MR::vecKillElement(*pToTargetHVec, *a4, pToTargetHVec);
         }
 
         MR::normalizeOrZero(pToTargetHVec);
     }
 
-    void calcVecFromTargetPosH(TVec3f *pFromTargetHVec, const LiveActor *pActor, const TVec3f &a3, const TVec3f *a4) {
+    void calcVecFromTargetPosH(TVec3f* pFromTargetHVec, const LiveActor* pActor, const TVec3f& a3, const TVec3f* a4) {
         calcVecToTargetPosH(pFromTargetHVec, pActor, a3, a4);
         pFromTargetHVec->scale(-1.0f);
     }
 
-    bool isFaceToTargetDegree(const LiveActor *pActor, const TVec3f &a2, const TVec3f &a3, f32 a4) {
+    bool isFaceToTargetDegree(const LiveActor* pActor, const TVec3f& a2, const TVec3f& a3, f32 a4) {
         TVec3f stack_8(a2);
 
         JMathInlineVEC::PSVECSubtract((Vec*)&stack_8, (Vec*)&pActor->mPosition, (Vec*)&stack_8);
@@ -253,7 +247,7 @@ namespace MR {
         return MR::isNearAngleDegree(stack_8, a3, a4);
     }
 
-    bool isFaceToPlayerDegree(const LiveActor *pActor, const TVec3f &a2, f32 a3) {
+    bool isFaceToPlayerDegree(const LiveActor* pActor, const TVec3f& a2, f32 a3) {
         TVec3f stack_8(*MR::getPlayerPos());
 
         JMathInlineVEC::PSVECSubtract((Vec*)&stack_8, (Vec*)&pActor->mPosition, (Vec*)&stack_8);
@@ -261,7 +255,7 @@ namespace MR {
         return MR::isNearAngleDegree(stack_8, a2, a3);
     }
 
-    bool isFaceToTargetDegree(const LiveActor *pActor, const TVec3f &a2, f32 a3) {
+    bool isFaceToTargetDegree(const LiveActor* pActor, const TVec3f& a2, f32 a3) {
         TVec3f stack_14;
         MR::calcFrontVec(&stack_14, pActor);
 
@@ -271,7 +265,7 @@ namespace MR {
         return MR::isNearAngleDegree(stack_8, stack_14, a3);
     }
 
-    bool isFaceToPlayerDegree(const LiveActor *pActor, f32 a2) {
+    bool isFaceToPlayerDegree(const LiveActor* pActor, f32 a2) {
         TVec3f stack_14;
         MR::calcFrontVec(&stack_14, pActor);
 
@@ -281,7 +275,7 @@ namespace MR {
         return MR::isNearAngleDegree(stack_8, stack_14, a2);
     }
 
-    bool isFaceToPlayerDegreeHV(const LiveActor *pActor, const TVec3f &a2, f32 a3, f32 a4) {
+    bool isFaceToPlayerDegreeHV(const LiveActor* pActor, const TVec3f& a2, f32 a3, f32 a4) {
         TVec3f stack_8(*MR::getPlayerPos());
 
         JMathInlineVEC::PSVECSubtract((Vec*)&stack_8, (Vec*)&pActor->mPosition, (Vec*)&stack_8);
@@ -289,25 +283,25 @@ namespace MR {
         return MR::isNearAngleDegreeHV(stack_8, a2, pActor->mGravity, a3, a4);
     }
 
-    bool isFaceToTargetHorizontalDegree(const LiveActor *pActor, const TVec3f &a2, const TVec3f &a3, f32 a4) {
+    bool isFaceToTargetHorizontalDegree(const LiveActor* pActor, const TVec3f& a2, const TVec3f& a3, f32 a4) {
         TVec3f stack_20;
         TVec3f stack_14;
 
         TVec3f stack_8(a2);
         JMathInlineVEC::PSVECSubtract((Vec*)&stack_8, (Vec*)&pActor->mPosition, (Vec*)&stack_8);
 
-        const TVec3f *grav = &pActor->mGravity;
+        const TVec3f* grav = &pActor->mGravity;
         JMAVECScaleAdd((Vec*)grav, (Vec*)&stack_8, (Vec*)&stack_20, -pActor->mGravity.dot(stack_8));
         JMAVECScaleAdd((Vec*)grav, (Vec*)&a3, (Vec*)&stack_14, -pActor->mGravity.dot(a3));
 
         return MR::isNearAngleDegree(stack_20, stack_14, a4);
     }
 
-    bool isFaceToPlayerHorizontalDegree(const LiveActor *pActor, const TVec3f &a2, f32 a3) {
+    bool isFaceToPlayerHorizontalDegree(const LiveActor* pActor, const TVec3f& a2, f32 a3) {
         return MR::isFaceToTargetHorizontalDegree(pActor, *MR::getPlayerPos(), a2, a3);
     }
 
-    bool isClockwiseToDir(const LiveActor *pActor, const TVec3f &v1, const TVec3f &v2) {
+    bool isClockwiseToDir(const LiveActor* pActor, const TVec3f& v1, const TVec3f& v2) {
         TVec3f stack_14;
         TVec3f stack_8;
         PSVECCrossProduct((Vec*)&pActor->mGravity, (Vec*)&v2, (Vec*)&stack_8);
@@ -315,7 +309,7 @@ namespace MR {
         return (stack_14.dot(v1) >= 0.0f);
     }
 
-    bool isClockwiseToPlayer(const LiveActor *pActor, const TVec3f &v1) {
+    bool isClockwiseToPlayer(const LiveActor* pActor, const TVec3f& v1) {
         TVec3f stack_20(*getPlayerPos());
         JMathInlineVEC::PSVECSubtract((Vec*)&stack_20, (Vec*)&pActor->mPosition, (Vec*)&stack_20);
         TVec3f stack_14;
@@ -323,7 +317,6 @@ namespace MR {
         TVec3f stack_8;
         normalizeOrZero(stack_14, &stack_8);
         return (stack_8.dot(v1) >= 0.0f);
-
     }
 
     // Minor mismatch: The sideVec initialization uses void* TVec3() from Xanimecore
@@ -335,7 +328,7 @@ namespace MR {
         return (stack_8.dot(sideVec) >= 0.0f);
     } */
 
-    bool isLeftSideFromPlayer(const LiveActor *pActor) {
+    bool isLeftSideFromPlayer(const LiveActor* pActor) {
         TVec3f stack_14;
         getPlayerSideVec(&stack_14);
         TVec3f* playerPos = getPlayerPos();
@@ -344,19 +337,17 @@ namespace MR {
         return (stack_14.dot(stack_8) >= 0.0f);
     }
 
-    bool isInSightConePlayer(const LiveActor *pActor, const TVec3f &a2, f32 dist, f32 angle) {
-        return isNearPlayerAnyTime(pActor, dist)
-            && isFaceToPlayerDegree(pActor, a2, angle);
+    bool isInSightConePlayer(const LiveActor* pActor, const TVec3f& a2, f32 dist, f32 angle) {
+        return isNearPlayerAnyTime(pActor, dist) && isFaceToPlayerDegree(pActor, a2, angle);
     }
 
-    bool isInSightFanPlayer(const LiveActor *pActor, const TVec3f &a2, f32 dist, f32 a3, f32 a4) {
-        return isNearPlayerAnyTime(pActor, dist)
-            && isFaceToPlayerDegreeHV(pActor, a2, a3, a4);
+    bool isInSightFanPlayer(const LiveActor* pActor, const TVec3f& a2, f32 dist, f32 a3, f32 a4) {
+        return isNearPlayerAnyTime(pActor, dist) && isFaceToPlayerDegreeHV(pActor, a2, a3, a4);
     }
-    
-    bool isBindedWallFront(const LiveActor *pActor, const TVec3f &v1, float a3) {
+
+    bool isBindedWallFront(const LiveActor* pActor, const TVec3f& v1, float a3) {
         if (isBindedWall(pActor)) {
-            TVec3f wallNormal(*getWallNormal(pActor)); // stack_8
+            TVec3f wallNormal(*getWallNormal(pActor));  // stack_8
             if (v1.dot(wallNormal) < -a3) {
                 return true;
             }
@@ -364,9 +355,7 @@ namespace MR {
         return false;
     }
 
-    bool isOnPlayer(const LiveActor *pActor) {
-        return isActorOnPlayer(pActor);
-    }
+    bool isOnPlayer(const LiveActor* pActor) { return isActorOnPlayer(pActor); }
 
     // Minor mismatch: Stack positions of stack_8 (== scaledUpVec) and stack_14 are switche
     /* bool isPlayerExistSide(const LiveActor *pActor, f32 a2, f32 a3) {
@@ -403,7 +392,7 @@ namespace MR {
         normalizeOrZero(&stack_2c);
         return (a3 < upVec.dot(stack_2c));
     } */
-    
+
     // Minor mismatch: Stack positions of stack_8 (== scaledDownVec) and stack_14 are switched
     /* bool isExistPlayerDown(const LiveActor *pActor, float a2, float a3) {
         TVec3f stack_38 = TVec3f(*getPlayerCenterPos());
@@ -420,75 +409,68 @@ namespace MR {
         return (a3 < stack_2c.dot(stack_38));
     } */
 
-    bool isInWater(const LiveActor *pActor, const TVec3f &rOffset) {
+    bool isInWater(const LiveActor* pActor, const TVec3f& rOffset) {
         TVec3f stack_8(pActor->mPosition);
         stack_8.add(rOffset);
 
         return MR::isInWater(stack_8);
     }
 
-    bool isInDeath(const LiveActor *pActor, const TVec3f &rOffset) {
+    bool isInDeath(const LiveActor* pActor, const TVec3f& rOffset) {
         TVec3f stack_8(pActor->mPosition);
         stack_8.add(rOffset);
 
         return MR::isInDeath(stack_8);
     }
 
-    void makeMtxTR(MtxPtr mtx, const LiveActor *pActor) {
-        MR::makeMtxTR(mtx,
-            pActor->mPosition.x, pActor->mPosition.y, pActor->mPosition.z,
-            pActor->mRotation.x, pActor->mRotation.y, pActor->mRotation.z);
+    void makeMtxTR(MtxPtr mtx, const LiveActor* pActor) {
+        MR::makeMtxTR(mtx, pActor->mPosition.x, pActor->mPosition.y, pActor->mPosition.z, pActor->mRotation.x, pActor->mRotation.y,
+                      pActor->mRotation.z);
     }
 
-    void makeMtxTRS(MtxPtr mtx, const LiveActor *pActor) {
-        MR::makeMtxTRS(mtx,
-            pActor->mPosition.x, pActor->mPosition.y, pActor->mPosition.z,
-            pActor->mRotation.x, pActor->mRotation.y, pActor->mRotation.z,
-            pActor->mScale.x, pActor->mScale.y, pActor->mScale.z);
+    void makeMtxTRS(MtxPtr mtx, const LiveActor* pActor) {
+        MR::makeMtxTRS(mtx, pActor->mPosition.x, pActor->mPosition.y, pActor->mPosition.z, pActor->mRotation.x, pActor->mRotation.y,
+                       pActor->mRotation.z, pActor->mScale.x, pActor->mScale.y, pActor->mScale.z);
     }
 
-    void makeMtxTransRotateY(MtxPtr mtx, const LiveActor *pActor) {
-        MR::makeMtxTransRotateY(mtx,
-            pActor->mPosition.x, pActor->mPosition.y, pActor->mPosition.z,
-            pActor->mRotation.y);
+    void makeMtxTransRotateY(MtxPtr mtx, const LiveActor* pActor) {
+        MR::makeMtxTransRotateY(mtx, pActor->mPosition.x, pActor->mPosition.y, pActor->mPosition.z, pActor->mRotation.y);
     }
 
-    void calcMtxFromGravityAndZAxis(TPos3f *pResult, const LiveActor *pActor, const TVec3f &vGravity, const TVec3f &zAxis) {
-        TPos3f pos; // stack_44
+    void calcMtxFromGravityAndZAxis(TPos3f* pResult, const LiveActor* pActor, const TVec3f& vGravity, const TVec3f& zAxis) {
+        TPos3f pos;  // stack_44
         pos.setInline(pActor->getBaseMtx());
-        TVec3f yDir; // stack_38
-        TVec3f zDir; // stack_2c
-        TVec3f xDir; // stack_20
-        TVec3f xDir2; // stack_14
+        TVec3f yDir;   // stack_38
+        TVec3f zDir;   // stack_2c
+        TVec3f xDir;   // stack_20
+        TVec3f xDir2;  // stack_14
         if (!isNearZero(vGravity, 0.001f)) {
             TVec3f stack_8 = -vGravity;
             yDir = stack_8;
-        }
-        else {
+        } else {
             pos.getYDir(yDir);
         }
         if (!isNearZero(zAxis, 0.001f)) {
             zDir = zAxis;
-        }
-        else {
+        } else {
             pos.getZDir(zDir);
         }
         PSVECCrossProduct((Vec*)&zDir, (Vec*)&yDir, (Vec*)&xDir);
-        if (isNearZero(xDir,0.001f)) {
+        if (isNearZero(xDir, 0.001f)) {
             pos.getXDir(xDir2);
             PSVECCrossProduct((Vec*)&xDir2, (Vec*)&yDir, (Vec*)&zDir);
         }
         makeMtxUpFrontPos(pResult, yDir, zDir, pActor->mPosition);
     }
 
-    void calcAndSetBaseMtxFromGravityAndZAxis(LiveActor *pActor, const TVec3f &zAxis) {
+    void calcAndSetBaseMtxFromGravityAndZAxis(LiveActor* pActor, const TVec3f& zAxis) {
         TPos3f stack_8;
         stack_8.identity();
         calcMtxFromGravityAndZAxis(&stack_8, pActor, pActor->mGravity, zAxis);
         setBaseTRMtx(pActor, stack_8);
     }
 
-    void calcActorAxis(TVec3f *outputX, TVec3f *outputY, TVec3f *outputZ, const LiveActor *pActor) {
+    void calcActorAxis(TVec3f* outputX, TVec3f* outputY, TVec3f* outputZ, const LiveActor* pActor) {
         TRot3f stack_8;
         stack_8.identity();
         makeMtxTR(stack_8, pActor);
@@ -497,39 +479,38 @@ namespace MR {
         stack_8.getZDir(*outputZ);
     }
 
-    void calcActorAxisX(TVec3f *pDest, const LiveActor *pActor) {
+    void calcActorAxisX(TVec3f* pDest, const LiveActor* pActor) {
         TRot3f stack_8;
         stack_8.identity();
         makeMtxTR(stack_8, pActor);
         stack_8.getXDir(*pDest);
     }
 
-    void calcActorAxisY(TVec3f *pDest, const LiveActor *pActor) {
+    void calcActorAxisY(TVec3f* pDest, const LiveActor* pActor) {
         TRot3f stack_8;
         stack_8.identity();
         makeMtxTR(stack_8, pActor);
         stack_8.getYDir(*pDest);
     }
 
-    void calcActorAxisZ(TVec3f *pDest, const LiveActor *pActor) {
+    void calcActorAxisZ(TVec3f* pDest, const LiveActor* pActor) {
         TRot3f stack_8;
         stack_8.identity();
         makeMtxTR(stack_8, pActor);
         stack_8.getZDir(*pDest);
     }
 
-    bool faceToVector(TQuat4f *pQuat, TVec3f a2, f32 a3) {
-        TVec3f yDir; // stack_8
+    bool faceToVector(TQuat4f* pQuat, TVec3f a2, f32 a3) {
+        TVec3f yDir;  // stack_8
         pQuat->getYDir(yDir);
         normalizeOrZero(&a2);
         if (vecKillElement(a2, yDir, &a2) > 0.95f) {
             return false;
-        }
-        else {
+        } else {
             return turnQuatZDirRad(pQuat, *pQuat, a2, a3 * PI_180);
         }
     }
-    
+
     // Minor mismatch: see isPlayerLeftSide
     /* bool faceToPoint(MtxPtr mtx, TVec3f a2, f32 a3) {
         TVec3f stack_14 = TVec3f(mtx[0][3],mtx[1][3], mtx[2][3]);
@@ -537,23 +518,39 @@ namespace MR {
         return faceToVector(mtx, a2, a3);
     } */
 
-    void makeQuatFromRotate(TQuat4f *pQuat, const LiveActor *pActor) {
+    void makeQuatFromRotate(TQuat4f* pQuat, const LiveActor* pActor) {
         makeQuatRotateDegree(pQuat, pActor->mRotation);
         return;
     }
 
-    void makeQuatAndFrontFromRotate(TQuat4f *pQuat, TVec3f *pVec, const LiveActor *pActor) {
+    void makeQuatAndFrontFromRotate(TQuat4f* pQuat, TVec3f* pVec, const LiveActor* pActor) {
         makeQuatRotateDegree(pQuat, pActor->mRotation);
         pQuat->getZDir(*pVec);
         return;
     }
 
+    void turnQuatUpToGravity(TQuat4f* pQuatDest, const TQuat4f& pQuatSrc, const LiveActor* pActor) {
+        TVec3f yDir;
+        pQuatSrc.getYDir(yDir);
 
-    void blendQuatFromGroundAndFront(TQuat4f *a1, const LiveActor *pActor, const TVec3f &a3, f32 a4, f32 a5) {
+        TQuat4f q1;
+        if (yDir.dot(-pActor->mGravity) <= -0.999f) {
+            TVec3f xDir;
+            pQuatSrc.getXDir(xDir);
+            q1.setRotate(xDir, PI);
+        } else {
+            q1.setRotate(yDir, -pActor->mGravity);
+        }
+        PSQUATMultiply(reinterpret_cast< const Quaternion* >(&q1), reinterpret_cast< const Quaternion* >(&pQuatSrc),
+                       reinterpret_cast< Quaternion* >(pQuatDest));
+        pQuatDest->normalize();
+    }
+
+    void blendQuatFromGroundAndFront(TQuat4f* a1, const LiveActor* pActor, const TVec3f& a3, f32 a4, f32 a5) {
         MR::blendQuatUpFront(a1, MR::isBindedGround(pActor) ? *MR::getGroundNormal(pActor) : -pActor->mGravity, a3, a4, a5);
     }
 
-    void resetPosition(LiveActor *pActor) {
+    void resetPosition(LiveActor* pActor) {
         MR::clearHitSensors(pActor);
 
         if (pActor->mBinder != nullptr) {
@@ -573,39 +570,39 @@ namespace MR {
         MR::requestCalcActorShadowAppear(pActor);
     }
 
-    void resetPosition(LiveActor *pActor, const TVec3f &rPosition) {
-        pActor->mPosition.set<f32>(rPosition);
+    void resetPosition(LiveActor* pActor, const TVec3f& rPosition) {
+        pActor->mPosition.set< f32 >(rPosition);
 
         MR::resetPosition(pActor);
     }
 
-    void resetPosition(LiveActor *pActor, const char *a2) {
+    void resetPosition(LiveActor* pActor, const char* a2) {
         TVec3f pos(0.0f, 0.0f, 0.0f);
         TVec3f rot(0.0f, 0.0f, 0.0f);
         MR::findNamePos(a2, &pos, &rot);
 
-        pActor->mPosition.set<f32>(pos);
-        pActor->mRotation.set<f32>(rot);
+        pActor->mPosition.set< f32 >(pos);
+        pActor->mRotation.set< f32 >(rot);
 
         MR::resetPosition(pActor);
     }
-    
-    void calcVelocityMoveToDirectionHorizon(TVec3f *a1, const LiveActor *pActor, const TVec3f &a3, f32 a4) {
-        TVec3f* pGravity = const_cast<TVec3f*>(&pActor->mGravity);
+
+    void calcVelocityMoveToDirectionHorizon(TVec3f* a1, const LiveActor* pActor, const TVec3f& a3, f32 a4) {
+        TVec3f* pGravity = const_cast< TVec3f* >(&pActor->mGravity);
         a1->rejection(a3, *pGravity);
         normalizeOrZero(a1);
         a1->scale(a4);
     }
 
-    void calcVelocityMoveToDirectionHorizon(TVec3f *a1, const LiveActor *pActor, const TVec3f &a3, f32 a4, f32 a5, f32 a6, f32 a7) {
-        TVec3f* pGravity = const_cast<TVec3f*>(&pActor->mGravity);
+    void calcVelocityMoveToDirectionHorizon(TVec3f* a1, const LiveActor* pActor, const TVec3f& a3, f32 a4, f32 a5, f32 a6, f32 a7) {
+        TVec3f* pGravity = const_cast< TVec3f* >(&pActor->mGravity);
         a1->rejection(a3, *pGravity);
         float stack_8;
         separateScalarAndDirection(&stack_8, a1, *a1);
         a1->scale(getInterpolateValue(normalize(stack_8, a6, a7), a4, a5));
     }
 
-    void calcVelocityMoveToDirection(TVec3f *a1, const LiveActor *pActor, const TVec3f &a3, f32 a4) {
+    void calcVelocityMoveToDirection(TVec3f* a1, const LiveActor* pActor, const TVec3f& a3, f32 a4) {
         calcVelocityMoveToDirectionHorizon(a1, pActor, a3, a4);
         if (isOnGround(pActor)) {
             const TVec3f* pGroundNormal = getGroundNormal(pActor);
@@ -613,7 +610,7 @@ namespace MR {
         }
     }
 
-    void calcVelocityMoveToDirection(TVec3f *a1, const LiveActor *pActor, const TVec3f &a3, f32 a4, f32 a5, f32 a6, f32 a7) {
+    void calcVelocityMoveToDirection(TVec3f* a1, const LiveActor* pActor, const TVec3f& a3, f32 a4, f32 a5, f32 a6, f32 a7) {
         calcVelocityMoveToDirectionHorizon(a1, pActor, a3, a4, a5, a6, a7);
         if (isOnGround(pActor)) {
             const TVec3f* pGroundNormal = getGroundNormal(pActor);
@@ -621,19 +618,19 @@ namespace MR {
         }
     }
 
-    void calcVelocityMoveToTarget(TVec3f *a1, const LiveActor *pActor, const TVec3f &a3, f32 a4) {
+    void calcVelocityMoveToTarget(TVec3f* a1, const LiveActor* pActor, const TVec3f& a3, f32 a4) {
         TVec3f stack_8(a3);
         JMathInlineVEC::PSVECSubtract((Vec*)&stack_8, (Vec*)&(pActor->mPosition), (Vec*)&stack_8);
         calcVelocityMoveToDirection(a1, pActor, stack_8, a4);
     }
 
-    void addVelocityMoveToDirection(LiveActor *pActor, const TVec3f &a2, f32 a3) {
+    void addVelocityMoveToDirection(LiveActor* pActor, const TVec3f& a2, f32 a3) {
         TVec3f stack_8;
         calcVelocityMoveToDirection(&stack_8, pActor, a2, a3);
         (pActor->mVelocity).add(stack_8);
     }
 
-    void addVelocityMoveToTarget(LiveActor *pActor, const TVec3f &a2, f32 a3) {
+    void addVelocityMoveToTarget(LiveActor* pActor, const TVec3f& a2, f32 a3) {
         TVec3f stack_14(a2);
         JMathInlineVEC::PSVECSubtract((Vec*)&stack_14, (Vec*)&(pActor->mPosition), (Vec*)&stack_14);
         TVec3f stack_8;
@@ -641,7 +638,7 @@ namespace MR {
         (pActor->mVelocity).add(stack_8);
     }
 
-    void addVelocityMoveToTarget(LiveActor *pActor, const TVec3f &a2, f32 a3, f32 a4, f32 a5, f32 a6) {
+    void addVelocityMoveToTarget(LiveActor* pActor, const TVec3f& a2, f32 a3, f32 a4, f32 a5, f32 a6) {
         TVec3f stack_14(a2);
         JMathInlineVEC::PSVECSubtract((Vec*)&stack_14, (Vec*)&(pActor->mPosition), (Vec*)&stack_14);
         TVec3f stack_8;
@@ -649,7 +646,7 @@ namespace MR {
         (pActor->mVelocity).add(stack_8);
     }
 
-    void addVelocityAwayFromTarget(LiveActor *pActor, const TVec3f &a2, f32 a3) {
+    void addVelocityAwayFromTarget(LiveActor* pActor, const TVec3f& a2, f32 a3) {
         TVec3f stack_14(pActor->mPosition);
         JMathInlineVEC::PSVECSubtract((Vec*)&stack_14, (Vec*)&a2, (Vec*)&stack_14);
         TVec3f stack_8;
@@ -657,7 +654,7 @@ namespace MR {
         (pActor->mVelocity).add(stack_8);
     }
 
-    void addVelocityAwayFromTarget(LiveActor *pActor, const TVec3f &a2, f32 a3, f32 a4, f32 a5, f32 a6) {
+    void addVelocityAwayFromTarget(LiveActor* pActor, const TVec3f& a2, f32 a3, f32 a4, f32 a5, f32 a6) {
         TVec3f stack_14(pActor->mPosition);
         JMathInlineVEC::PSVECSubtract((Vec*)&stack_14, (Vec*)&a2, (Vec*)&stack_14);
         TVec3f stack_8;
@@ -665,7 +662,7 @@ namespace MR {
         (pActor->mVelocity).add(stack_8);
     }
 
-    void addVelocityClockwiseToDirection(LiveActor *pActor, const TVec3f &a2, f32 a3) {
+    void addVelocityClockwiseToDirection(LiveActor* pActor, const TVec3f& a2, f32 a3) {
         TVec3f stack_14;
         if (normalizeOrZero(a2, &stack_14)) {
             return;
@@ -676,25 +673,25 @@ namespace MR {
         (pActor->mVelocity).add(stack_8);
     }
 
-    void addVelocityClockwiseToTarget(LiveActor *pActor, const TVec3f &a2, f32 a3) {
+    void addVelocityClockwiseToTarget(LiveActor* pActor, const TVec3f& a2, f32 a3) {
         TVec3f stack_8(a2);
         JMathInlineVEC::PSVECSubtract((Vec*)&stack_8, (Vec*)&(pActor->mPosition), (Vec*)&stack_8);
         addVelocityClockwiseToDirection(pActor, stack_8, a3);
     }
 
-    void addVelocityClockwiseToPlayer(LiveActor *pActor, f32 a2) {
+    void addVelocityClockwiseToPlayer(LiveActor* pActor, f32 a2) {
         TVec3f stack_8(*getPlayerPos());
         JMathInlineVEC::PSVECSubtract((Vec*)&stack_8, (Vec*)&(pActor->mPosition), (Vec*)&stack_8);
         addVelocityClockwiseToDirection(pActor, stack_8, a2);
     }
 
-    void addVelocityJump(LiveActor *pActor, f32 a2) {
+    void addVelocityJump(LiveActor* pActor, f32 a2) {
         TVec3f stack_8(pActor->mGravity);
         stack_8.scale(-a2);
         (pActor->mVelocity).add(stack_8);
     }
 
-    bool addVelocityLimit(LiveActor *pActor, const TVec3f &a2) {
+    bool addVelocityLimit(LiveActor* pActor, const TVec3f& a2) {
         TVec3f stack_18;
         float stack_8;
         separateScalarAndDirection(&stack_8, &stack_18, a2);
@@ -712,32 +709,30 @@ namespace MR {
         return true;
     }
 
-    void setVelocityJump(LiveActor *pActor, f32 a2) {
+    void setVelocityJump(LiveActor* pActor, f32 a2) {
         TVec3f stack_8(pActor->mGravity);
         stack_8.scale(-a2);
         (pActor->mVelocity).set(stack_8);
     }
 
-    void addVelocityToGravity(LiveActor *pActor, f32 a2) {
+    void addVelocityToGravity(LiveActor* pActor, f32 a2) {
         TVec3f stack_8(pActor->mGravity);
         stack_8.scale(a2);
         (pActor->mVelocity).add(stack_8);
     }
 
-    void addVelocityToGravityOrGround(LiveActor *pActor, f32 a2) {
+    void addVelocityToGravityOrGround(LiveActor* pActor, f32 a2) {
         if (isBindedGround(pActor)) {
             JMAVECScaleAdd((Vec*)getGroundNormal(pActor), (Vec*)&(pActor->mVelocity), (Vec*)&(pActor->mVelocity), -a2);
-        }
-        else {
-            addVelocityToGravity(pActor,a2);
+        } else {
+            addVelocityToGravity(pActor, a2);
         }
     }
-    
-    bool addVelocityToCollisionNormal(LiveActor *pActor, f32 a2) {
+
+    bool addVelocityToCollisionNormal(LiveActor* pActor, f32 a2) {
         if (isBinded(pActor) == false) {
             return false;
-        }
-        else {
+        } else {
             TVec3f stack_14(*getBindedFixReactionVector(pActor));
             if (isNearZero(stack_14, 0.001f)) {
                 return false;
@@ -750,23 +745,20 @@ namespace MR {
         }
     }
 
-    void addVelocityKeepHeight(LiveActor *pActor, const TVec3f &a2, f32 a3, f32 a4) {
-        addVelocityKeepHeight(pActor, a2, 0.0f, a3, a4);
-    }
+    void addVelocityKeepHeight(LiveActor* pActor, const TVec3f& a2, f32 a3, f32 a4) { addVelocityKeepHeight(pActor, a2, 0.0f, a3, a4); }
 
-    void addVelocityKeepHeight(LiveActor *pActor, const TVec3f &a2, f32 a3, f32 a4, f32 a5) {
+    void addVelocityKeepHeight(LiveActor* pActor, const TVec3f& a2, f32 a3, f32 a4, f32 a5) {
         TVec3f stack_8(a2);
         JMathInlineVEC::PSVECSubtract((Vec*)&stack_8, (Vec*)&(pActor->mPosition), (Vec*)&stack_8);
         addVelocityToGravity(pActor, a4 * normalizeAbs((pActor->mGravity).dot(stack_8) - a3, -a5, a5));
     }
-    
-    bool addVelocityKeepHeightUseShadow(LiveActor *pActor, f32 a2, f32 a3, f32 a4, const char *pName) {
+
+    bool addVelocityKeepHeightUseShadow(LiveActor* pActor, f32 a2, f32 a3, f32 a4, const char* pName) {
         if (pName != nullptr) {
             if (isShadowProjected(pActor, pName) == false) {
                 return false;
             }
-        }
-        else {
+        } else {
             if (isShadowProjectedAny(pActor) == false) {
                 return false;
             }
@@ -774,8 +766,7 @@ namespace MR {
         float shadowLength;
         if (pName != nullptr) {
             shadowLength = getShadowProjectionLength(pActor, pName);
-        }
-        else {
+        } else {
             shadowLength = getShadowNearProjectionLength(pActor);
         }
         shadowLength -= a2;
@@ -783,13 +774,12 @@ namespace MR {
         return true;
     }
 
-    bool addVelocityKeepHeightUseShadow(LiveActor *pActor, f32 a2, f32 a3, f32 a4, f32 a5, const char *pName) {
+    bool addVelocityKeepHeightUseShadow(LiveActor* pActor, f32 a2, f32 a3, f32 a4, f32 a5, const char* pName) {
         if (pName != nullptr) {
             if (isShadowProjected(pActor, pName) == false) {
                 return false;
             }
-        }
-        else {
+        } else {
             if (isShadowProjectedAny(pActor) == false) {
                 return false;
             }
@@ -797,21 +787,19 @@ namespace MR {
         float f1;
         if (pName != nullptr) {
             f1 = getShadowProjectionLength(pActor, pName);
-        }
-        else {
+        } else {
             f1 = getShadowNearProjectionLength(pActor);
         }
         f1 -= a2;
         f1 = normalizeAbs(f1, -a5, a5);
         if (f1 >= 0.0f) {
             addVelocityToGravity(pActor, a3 * f1);
-        }
-        else {
+        } else {
             addVelocityToGravity(pActor, a4 * f1);
         }
         return true;
     }
-    
+
     // Minor mismatch: Stack variables out of order + one instruction swap
     /* void addVelocitySeparateHV(LiveActor *pActor, const TVec3f &a2, f32 a3, f32 a4) {
         TVec3f* pGravity = &pActor->mGravity;
@@ -842,9 +830,7 @@ namespace MR {
         pActor->mVelocity.set(stack_20);
     } */
 
-    void attenuateVelocity(LiveActor *pActor, f32 scalar) {
-        (pActor->mVelocity).scale(scalar);
-    }
+    void attenuateVelocity(LiveActor* pActor, f32 scalar) { (pActor->mVelocity).scale(scalar); }
 
     // Bad stack (de)initialization
     /* void attenuateVelocityExceptDirection(LiveActor *pActor, const TVec3f &a2, f32 a3) {
@@ -857,20 +843,20 @@ namespace MR {
         pVelocity->add(stack_8);
     } */
 
-    void restrictVelocity(LiveActor *pActor, f32 speed) {
+    void restrictVelocity(LiveActor* pActor, f32 speed) {
         if ((pActor->mVelocity).squared() > speed * speed) {
             (pActor->mVelocity).setLength(speed);
         }
     }
 
-    void killVelocityOnGroundH(LiveActor *pActor) {
+    void killVelocityOnGroundH(LiveActor* pActor) {
         if (isOnGround(pActor)) {
             const TVec3f* pNormal = getGroundNormal(pActor);
             pActor->mVelocity.scale(pNormal->dot(pActor->mVelocity), *pNormal);
         }
     }
 
-    void killVelocityOnGroundCosH(LiveActor *pActor, f32 a2) {
+    void killVelocityOnGroundCosH(LiveActor* pActor, f32 a2) {
         if (isOnGround(pActor) && isFloorPolygonCos(*getGroundNormal(pActor), pActor->mGravity, a2)) {
             const TVec3f* pNormal = getGroundNormal(pActor);
             pActor->mVelocity.scale(pNormal->dot(pActor->mVelocity), *pNormal);
@@ -888,7 +874,7 @@ namespace MR {
         }
     } */
 
-    void forceBindOnGround(LiveActor *pActor, f32 a2, f32 a3) {
+    void forceBindOnGround(LiveActor* pActor, f32 a2, f32 a3) {
         if (isShadowProjected(pActor, nullptr)) {
             TVec3f stack_20;
             getShadowProjectionPos(pActor, nullptr, &stack_20);
@@ -978,29 +964,17 @@ namespace MR {
         return false;
     } */
 
-    void zeroVelocity(LiveActor *pActor) {
-        (pActor->mVelocity).zero();
-    }
+    void zeroVelocity(LiveActor* pActor) { (pActor->mVelocity).zero(); }
 
-    void setVelocity(LiveActor *pActor, const TVec3f &speed) {
-        (pActor->mVelocity).set(speed);
-    }
+    void setVelocity(LiveActor* pActor, const TVec3f& speed) { (pActor->mVelocity).set(speed); }
 
-    void addVelocity(LiveActor *pActor, const TVec3f &speed) {
-        (pActor->mVelocity).add(speed);
-    }
+    void addVelocity(LiveActor* pActor, const TVec3f& speed) { (pActor->mVelocity).add(speed); }
 
-    void scaleVelocity(LiveActor *pActor, f32 scaleFactor) {
-        (pActor->mVelocity).scale(scaleFactor);
-    }
+    void scaleVelocity(LiveActor* pActor, f32 scaleFactor) { (pActor->mVelocity).scale(scaleFactor); }
 
-    f32 calcVelocityLength(const LiveActor *pActor) {
-        return PSVECMag((Vec*)&(pActor->mVelocity));
-    }
+    f32 calcVelocityLength(const LiveActor* pActor) { return PSVECMag((Vec*)&(pActor->mVelocity)); }
 
-    f32 calcGravitySpeed(const LiveActor *pActor) {
-        return (pActor->mVelocity).dot(pActor->mGravity);
-    }
+    f32 calcGravitySpeed(const LiveActor* pActor) { return (pActor->mVelocity).dot(pActor->mGravity); }
 
     // Two instruction swaps + bad stack ordering
     /* void applyVelocityDampAndGravity(LiveActor *pActor, f32 a2, f32 groundedScalar, f32 airborneScalar, f32 fallingScalar, f32 a6) {
@@ -1037,7 +1011,7 @@ namespace MR {
         }
     } */
 
-    void setVelocityJumpAwayFromPlayer(LiveActor *pActor, f32 a2, f32 a3) {
+    void setVelocityJumpAwayFromPlayer(LiveActor* pActor, f32 a2, f32 a3) {
         TVec3f* pVelocity = &pActor->mVelocity;
         calcVecToTargetPosH(pVelocity, (pActor), *getPlayerPos(), nullptr);
         pVelocity->scale(-1.0f);
@@ -1060,7 +1034,7 @@ namespace MR {
         return false
     } */
 
-    void addVelocityFromPush(LiveActor *pActor, f32 a2, HitSensor *pSensor1, HitSensor *pSensor2) {
+    void addVelocityFromPush(LiveActor* pActor, f32 a2, HitSensor* pSensor1, HitSensor* pSensor2) {
         TVec3f stack_14(pSensor2->mPosition);
         JMathInlineVEC::PSVECSubtract((Vec*)&stack_14, (Vec*)&(pSensor1->mPosition), (Vec*)&stack_14);
         TVec3f stack_8 = -(pActor->mGravity);
@@ -1071,7 +1045,7 @@ namespace MR {
         addVelocityLimit(pActor, stack_14);
     }
 
-    void addVelocityFromPushHorizon(LiveActor *pActor, f32 speed, HitSensor *pSensor1, HitSensor *pSensor2) {
+    void addVelocityFromPushHorizon(LiveActor* pActor, f32 speed, HitSensor* pSensor1, HitSensor* pSensor2) {
         TVec3f stack_8(pSensor2->mPosition);
         JMathInlineVEC::PSVECSubtract((Vec*)&stack_8, (Vec*)&(pSensor1->mPosition), (Vec*)&stack_8);
         vecKillElement(stack_8, pActor->mGravity, &stack_8);
@@ -1079,19 +1053,19 @@ namespace MR {
         (pActor->mVelocity).add(stack_8);
     }
 
-    void addVelocitySeparateHV(LiveActor *pActor, HitSensor *pSensor1, HitSensor *pSensor2, f32 a4, f32 a5) {
+    void addVelocitySeparateHV(LiveActor* pActor, HitSensor* pSensor1, HitSensor* pSensor2, f32 a4, f32 a5) {
         TVec3f stack_8(pSensor2->mPosition);
         JMathInlineVEC::PSVECSubtract((Vec*)&stack_8, (Vec*)&(pSensor1->mPosition), (Vec*)&stack_8);
         addVelocitySeparateHV(pActor, stack_8, a4, a5);
     }
 
-    void setVelocitySeparateHV(LiveActor *pActor, HitSensor *pSensor1, HitSensor *pSensor2, f32 a4, f32 a5) {
+    void setVelocitySeparateHV(LiveActor* pActor, HitSensor* pSensor1, HitSensor* pSensor2, f32 a4, f32 a5) {
         TVec3f stack_8(pSensor2->mPosition);
         JMathInlineVEC::PSVECSubtract((Vec*)&stack_8, (Vec*)&(pSensor1->mPosition), (Vec*)&stack_8);
         setVelocitySeparateHV(pActor, stack_8, a4, a5);
     }
 
-    void setVelocityBlowAttack(LiveActor *pActor, HitSensor *pSensor1, HitSensor *pSensor2, f32 a4, f32 a5, s32 a6) {
+    void setVelocityBlowAttack(LiveActor* pActor, HitSensor* pSensor1, HitSensor* pSensor2, f32 a4, f32 a5, s32 a6) {
         setVelocitySeparateHV(pActor, pSensor1, pSensor2, a4, a5);
         if (isNearPlayerAnyTime(pActor, 1000.0f)) {
             stopSceneForDefaultHit(a6);
@@ -1111,7 +1085,7 @@ namespace MR {
         return true;
     } */
 
-    bool calcVelocityAreaMoveOnGround(TVec3f *a1, const LiveActor *pActor) {
+    bool calcVelocityAreaMoveOnGround(TVec3f* a1, const LiveActor* pActor) {
         a1->zero();
         if ((isOnGround(pActor) == false) || (isBindedGroundAreaMove(pActor) == false)) {
             return false;
@@ -1120,81 +1094,74 @@ namespace MR {
         return true;
     }
 
-    bool calcVelocityAreaOrRailMoveOnGround(TVec3f *a1, const LiveActor *pActor) {
-        return calcVelocityAreaMoveOnGround(a1, pActor)
-            || calcVelocityRailMoveOnGround(a1, pActor);
+    bool calcVelocityAreaOrRailMoveOnGround(TVec3f* a1, const LiveActor* pActor) {
+        return calcVelocityAreaMoveOnGround(a1, pActor) || calcVelocityRailMoveOnGround(a1, pActor);
     }
 
-    void rotateDirectionGravityDegree(const LiveActor *pActor, TVec3f *a2, f32 angle) {
-        rotateVecRadian(a2, (pActor->mGravity), PI_180 * angle);
-    }
+    void rotateDirectionGravityDegree(const LiveActor* pActor, TVec3f* a2, f32 angle) { rotateVecRadian(a2, (pActor->mGravity), PI_180 * angle); }
 
-    void turnDirection(const LiveActor *pActor, TVec3f *a2, const TVec3f &a3, f32 a4) {
-        turnVecToVecCosOnPlane(a2, a3, (pActor->mGravity), a4);
-    }
+    void turnDirection(const LiveActor* pActor, TVec3f* a2, const TVec3f& a3, f32 a4) { turnVecToVecCosOnPlane(a2, a3, (pActor->mGravity), a4); }
 
-    void turnDirectionDegree(const LiveActor *pActor, TVec3f *a2, const TVec3f &a3, f32 a4) {
+    void turnDirectionDegree(const LiveActor* pActor, TVec3f* a2, const TVec3f& a3, f32 a4) {
         turnVecToVecCosOnPlane(a2, a3, (pActor->mGravity), cosDegree(a4));
     }
 
-    void turnDirectionToTarget(const LiveActor *pActor, TVec3f *a2, const TVec3f &a3, f32 a4) {
+    void turnDirectionToTarget(const LiveActor* pActor, TVec3f* a2, const TVec3f& a3, f32 a4) {
         TVec3f stack_8(a3);
         JMathInlineVEC::PSVECSubtract((Vec*)&stack_8, (Vec*)&(pActor->mPosition), (Vec*)&stack_8);
         turnVecToVecCosOnPlane(a2, stack_8, pActor->mGravity, a4);
     }
 
-    void turnDirectionToTargetDegree(const LiveActor *pActor, TVec3f *a2, const TVec3f &a3, f32 a4) {
+    void turnDirectionToTargetDegree(const LiveActor* pActor, TVec3f* a2, const TVec3f& a3, f32 a4) {
         TVec3f stack_8(a3);
         JMathInlineVEC::PSVECSubtract((Vec*)&stack_8, (Vec*)&(pActor->mPosition), (Vec*)&stack_8);
         turnVecToVecCosOnPlane(a2, stack_8, (pActor->mGravity), cosDegree(a4));
     }
 
-    void turnDirectionToTargetDegreeHorizon(const LiveActor *pActor, TVec3f *a2, const TVec3f &a3, f32 a4) {
+    void turnDirectionToTargetDegreeHorizon(const LiveActor* pActor, TVec3f* a2, const TVec3f& a3, f32 a4) {
         TVec3f stack_8(a3);
         JMathInlineVEC::PSVECSubtract((Vec*)&stack_8, (Vec*)&(pActor->mPosition), (Vec*)&stack_8);
         vecKillElement(stack_8, pActor->mGravity, &stack_8);
         turnVecToVecCosOnPlane(a2, stack_8, pActor->mGravity, cosDegree(a4));
     }
 
-    void turnDirectionToTargetUseGroundNormalDegree(const LiveActor *pActor, TVec3f *a2, const TVec3f &a3, f32 a4) {
+    void turnDirectionToTargetUseGroundNormalDegree(const LiveActor* pActor, TVec3f* a2, const TVec3f& a3, f32 a4) {
         TVec3f stack_8(a3);
         JMathInlineVEC::PSVECSubtract((Vec*)&stack_8, (Vec*)&(pActor->mPosition), (Vec*)&stack_8);
         a4 = cosDegree(a4);
         turnVecToVecCosOnPlane(a2, stack_8, isBindedGround(pActor) ? *getGroundNormal(pActor) : (pActor->mGravity), a4);
     }
 
-    void turnDirectionToPlayerDegree(const LiveActor *pActor, TVec3f *a2, f32 a3) {
-        turnDirectionToTargetDegree(pActor, a2, *getPlayerPos(), a3);
-    }
-    
-    void turnDirectionToPlayerDegreeHorizon(const LiveActor *pActor, TVec3f *a2, f32 a3) {
+    void turnDirectionToPlayerDegree(const LiveActor* pActor, TVec3f* a2, f32 a3) { turnDirectionToTargetDegree(pActor, a2, *getPlayerPos(), a3); }
+
+    void turnDirectionToPlayerDegreeHorizon(const LiveActor* pActor, TVec3f* a2, f32 a3) {
         turnDirectionToTargetDegreeHorizon(pActor, a2, *getPlayerPos(), a3);
     }
 
-    void turnDirectionFromTargetDegree(const LiveActor *pActor, TVec3f *a2, const TVec3f &a3, f32 a4) {
+    void turnDirectionFromTargetDegree(const LiveActor* pActor, TVec3f* a2, const TVec3f& a3, f32 a4) {
         TVec3f stack_8(pActor->mPosition);
         JMathInlineVEC::PSVECSubtract((Vec*)&stack_8, (Vec*)&a3, (Vec*)&stack_8);
         turnVecToVecCosOnPlane(a2, stack_8, pActor->mGravity, cosDegree(a4));
     }
 
-    void turnDirectionFromTargetDegreeHorizon(const LiveActor *pActor, TVec3f *a2, const TVec3f &a3, f32 a4) {
+    void turnDirectionFromTargetDegreeHorizon(const LiveActor* pActor, TVec3f* a2, const TVec3f& a3, f32 a4) {
         TVec3f stack_8(pActor->mPosition);
         JMathInlineVEC::PSVECSubtract((Vec*)&stack_8, (Vec*)&a3, (Vec*)&stack_8);
         vecKillElement(stack_8, (pActor->mGravity), &stack_8);
         turnVecToVecCosOnPlane(a2, stack_8, (pActor->mGravity), cosDegree(a4));
     }
 
-    void turnDirectionFromPlayerDegree(const LiveActor *pActor, TVec3f *a2, f32 a3) {
+    void turnDirectionFromPlayerDegree(const LiveActor* pActor, TVec3f* a2, f32 a3) {
         turnDirectionFromTargetDegree(pActor, a2, *getPlayerPos(), a3);
     }
 
-    void turnDirectionFromPlayerDegreeHorizon(const LiveActor *pActor, TVec3f *a2, f32 a3) {
+    void turnDirectionFromPlayerDegreeHorizon(const LiveActor* pActor, TVec3f* a2, f32 a3) {
         turnDirectionFromTargetDegreeHorizon(pActor, a2, *getPlayerPos(), a3);
     }
 
-    f32 turnDirectionAndGravityH(TQuat4f *a1, const LiveActor *pActor, const TVec3f &a3, f32 a4, f32 a5) {
+    f32 turnDirectionAndGravityH(TQuat4f* a1, const LiveActor* pActor, const TVec3f& a3, f32 a4, f32 a5) {
         TVec3f stack_20(a3);
-        vecKillElement(stack_20,pActor->mGravity, &stack_20);
+        vecKillElement(stack_20, pActor->mGravity, &stack_20);
         normalizeOrZero(&stack_20);
         TVec3f stack_14;
         a1->getZDir(stack_14);
@@ -1202,8 +1169,7 @@ namespace MR {
         float f30 = 1.0f;
         if (isNearZero(stack_20, 0.001f) == false) {
             turnVecToVecRadian(&stack_14, stack_14, stack_20, a4, pActor->mGravity);
-        }
-        else {
+        } else {
             a5 = 1.0f;
             f30 = 0.1f;
         }
@@ -1224,20 +1190,18 @@ namespace MR {
         return ret;
     } */
 
-    void turnDirectionToGround(const LiveActor *pActor, TVec3f *a2) {
-        
+    void turnDirectionToGround(const LiveActor* pActor, TVec3f* a2) {
         TVec3f stack_8;
         if (isBindedGround(pActor)) {
             stack_8.scale(-1.0f, *getGroundNormal(pActor));
-        }
-        else {
+        } else {
             stack_8.set(pActor->mGravity);
         }
         JMAVECScaleAdd((Vec*)&stack_8, (Vec*)a2, (Vec*)a2, -stack_8.dot(*a2));
         normalize(a2);
     }
-    
-    void moveAndTurnToDirection(LiveActor *pActor, TVec3f *a2, const TVec3f &a3, f32 a4, f32 a5, f32 a6, f32 a7) {
+
+    void moveAndTurnToDirection(LiveActor* pActor, TVec3f* a2, const TVec3f& a3, f32 a4, f32 a5, f32 a6, f32 a7) {
         turnVecToVecCosOnPlane(a2, a3, pActor->mGravity, cosDegree(a7));
         turnDirectionToGround(pActor, a2);
         TVec3f stack_8;
@@ -1248,13 +1212,13 @@ namespace MR {
         addVelocityToGravityOrGround(pActor, a5);
     }
 
-    void moveAndTurnToTarget(LiveActor *pActor, TVec3f *a2, const TVec3f &a3, f32 a4, f32 a5, f32 a6, f32 a7) {
+    void moveAndTurnToTarget(LiveActor* pActor, TVec3f* a2, const TVec3f& a3, f32 a4, f32 a5, f32 a6, f32 a7) {
         TVec3f stack_8(a3);
         JMathInlineVEC::PSVECSubtract((Vec*)&stack_8, (Vec*)&(pActor->mPosition), (Vec*)&stack_8);
         moveAndTurnToDirection(pActor, a2, stack_8, a4, a5, a6, a7);
     }
 
-    void moveAndTurnToPlayer(LiveActor *pActor, TVec3f *a2, f32 a3, f32 a4, f32 a5, f32 a6) {
+    void moveAndTurnToPlayer(LiveActor* pActor, TVec3f* a2, f32 a3, f32 a4, f32 a5, f32 a6) {
         TVec3f stack_8(*getPlayerPos());
         JMathInlineVEC::PSVECSubtract((Vec*)&stack_8, (Vec*)&(pActor->mPosition), (Vec*)&stack_8);
         moveAndTurnToDirection(pActor, a2, stack_8, a3, a4, a5, a6);
@@ -1275,21 +1239,21 @@ namespace MR {
         addVelocityToGravityOrGround(pActor, a5);
     } */
 
-    void escapeFromPlayer(LiveActor *pActor, TVec3f *a2, f32 a3, f32 a4, f32 a5, f32 a6) {
+    void escapeFromPlayer(LiveActor* pActor, TVec3f* a2, f32 a3, f32 a4, f32 a5, f32 a6) {
         TVec3f* playerPos = getPlayerPos();
         TVec3f stack_8(pActor->mPosition);
         JMathInlineVEC::PSVECSubtract((Vec*)&stack_8, (Vec*)playerPos, (Vec*)&stack_8);
         moveAndTurnToDirection(pActor, a2, stack_8, a3, a4, a5, a6);
     }
 
-    void moveAndTurnToDirection(LiveActor *pActor, const TVec3f &a2, f32 a3, f32 a4, f32 a5, f32 a6) {
+    void moveAndTurnToDirection(LiveActor* pActor, const TVec3f& a2, f32 a3, f32 a4, f32 a5, f32 a6) {
         TVec3f stack_8;
         calcFrontVec(&stack_8, pActor);
         moveAndTurnToDirection(pActor, &stack_8, a2, a3, a4, a5, a6);
         calcRotate(pActor, stack_8, a6);
     }
 
-    void moveAndTurnToTarget(LiveActor *pActor, const TVec3f &a2, f32 a3, f32 a4, f32 a5, f32 a6) {
+    void moveAndTurnToTarget(LiveActor* pActor, const TVec3f& a2, f32 a3, f32 a4, f32 a5, f32 a6) {
         TVec3f stack_14;
         calcFrontVec(&stack_14, pActor);
         normalizeOrZero(&stack_14);
@@ -1299,9 +1263,7 @@ namespace MR {
         calcRotate(pActor, stack_14, a6);
     }
 
-    void moveAndTurnToPlayer(LiveActor *pActor, f32 a2, f32 a3, f32 a4, f32 a5) {
-        moveAndTurnToTarget(pActor, *getPlayerPos(), a2, a3, a4, a5);
-    }
+    void moveAndTurnToPlayer(LiveActor* pActor, f32 a2, f32 a3, f32 a4, f32 a5) { moveAndTurnToTarget(pActor, *getPlayerPos(), a2, a3, a4, a5); }
 
     /* void moveAndTurnAlongRail(LiveActor *pActor, f32 a2, f32 a3, f32 a4, f32 a5, f32 a6, bool *a7) {
         TQuat4f stack_20;
@@ -1313,4 +1275,4 @@ namespace MR {
         moveAndTurnToDirection(pActor, &stack_14, stack_8, a3, a4, a5, a6);
         ::calcRotate(pActor, stack_14, a6);
     } */
-};
+};  // namespace MR

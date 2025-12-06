@@ -4,7 +4,7 @@
 
 class JAISoundID {
 public:
-    JAISoundID() {
+    JAISoundID(){
 
     };
     JAISoundID(u32 id) : mID(id) {}

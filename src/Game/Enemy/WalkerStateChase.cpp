@@ -15,16 +15,17 @@ namespace {
 namespace NrvWalkerStateChase {
     NEW_NERVE(WalkerStateChaseNrvStart, WalkerStateChase, Start);
     NEW_NERVE(WalkerStateChaseNrvEnd, WalkerStateChase, End);
-};
+};  // namespace NrvWalkerStateChase
 
-WalkerStateChase::WalkerStateChase(LiveActor *pActor, TVec3f *pVec, WalkerStateParam *pParam, WalkerStateChaseParam *pChaseParam) : ActorStateBase<LiveActor>("クリボー追いかけ状態") {
+WalkerStateChase::WalkerStateChase(LiveActor* pActor, TVec3f* pVec, WalkerStateParam* pParam, WalkerStateChaseParam* pChaseParam)
+    : ActorStateBase< LiveActor >("クリボー追いかけ状態") {
     mParentActor = pActor;
     mStateParam = pParam;
     mChaseParam = pChaseParam;
     _18 = pVec;
-    
+
     if (pChaseParam == nullptr) {
-        mChaseParam = &sDefaultParam; 
+        mChaseParam = &sDefaultParam;
     }
 
     initNerve(&NrvWalkerStateChase::WalkerStateChaseNrvStart::sInstance);
@@ -52,8 +53,7 @@ void WalkerStateChase::exeStart() {
     if (MR::isFallNextMove(mParentActor, 150.0f, 150.0f, 150.0f, nullptr)) {
         MR::zeroVelocity(mParentActor);
         setNerve(&NrvWalkerStateChase::WalkerStateChaseNrvEnd::sInstance);
-    }
-    else if (MR::isGreaterStep(this, mChaseParam->_8) || (MR::isGreaterStep(this, mChaseParam->_4) && !isInSight)) {
+    } else if (MR::isGreaterStep(this, mChaseParam->_8) || (MR::isGreaterStep(this, mChaseParam->_4) && !isInSight)) {
         setNerve(&NrvWalkerStateChase::WalkerStateChaseNrvEnd::sInstance);
     }
 }
@@ -80,6 +80,4 @@ bool WalkerStateChase::isRunning() const {
     return isRunning;
 }
 
-WalkerStateChase::~WalkerStateChase() {
-
-}
+WalkerStateChase::~WalkerStateChase() {}

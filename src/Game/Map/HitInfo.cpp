@@ -1,5 +1,5 @@
-#include "Game/Map/CollisionParts.hpp"
 #include "Game/Map/HitInfo.hpp"
+#include "Game/Map/CollisionParts.hpp"
 #include "Game/Map/KCollision.hpp"
 #include "Game/Util/MathUtil.hpp"
 
@@ -16,42 +16,42 @@ Triangle::Triangle() {
     mPos[2].zero();
 }
 
-void Triangle::fillData(CollisionParts *pParts, u32 index, HitSensor *pSensor) {
+void Triangle::fillData(CollisionParts* pParts, u32 index, HitSensor* pSensor) {
     mParts = pParts;
     mIdx = index;
     mSensor = pSensor;
 
-    KCollisionServer *server = pParts->mServer;
+    KCollisionServer* server = pParts->mServer;
     MtxPtr matrix;
-    KC_PrismData *prism = server->getPrismData(index);
+    KC_PrismData* prism = server->getPrismData(index);
 
-    mNormals[0].set<f32>(*server->getFaceNormal(prism));
-    mNormals[1].set<f32>(*server->getEdgeNormal1(prism));
-    mNormals[2].set<f32>(*server->getEdgeNormal2(prism));
-    mNormals[3].set<f32>(*server->getEdgeNormal3(prism));
+    mNormals[0].set< f32 >(*server->getFaceNormal(prism));
+    mNormals[1].set< f32 >(*server->getEdgeNormal1(prism));
+    mNormals[2].set< f32 >(*server->getEdgeNormal2(prism));
+    mNormals[3].set< f32 >(*server->getEdgeNormal3(prism));
 
-    matrix = reinterpret_cast<MtxPtr>(&mParts->mBaseMatrix);
+    matrix = reinterpret_cast< MtxPtr >(&mParts->mBaseMatrix);
 
-    PSMTXMultVecSR(matrix, reinterpret_cast<Vec *>(&mNormals[0]), reinterpret_cast<Vec *>(&mNormals[0]));
-    PSMTXMultVecSR(matrix, reinterpret_cast<Vec *>(&mNormals[1]), reinterpret_cast<Vec *>(&mNormals[1]));
-    PSMTXMultVecSR(matrix, reinterpret_cast<Vec *>(&mNormals[2]), reinterpret_cast<Vec *>(&mNormals[2]));
-    PSMTXMultVecSR(matrix, reinterpret_cast<Vec *>(&mNormals[3]), reinterpret_cast<Vec *>(&mNormals[3]));
+    PSMTXMultVecSR(matrix, reinterpret_cast< Vec* >(&mNormals[0]), reinterpret_cast< Vec* >(&mNormals[0]));
+    PSMTXMultVecSR(matrix, reinterpret_cast< Vec* >(&mNormals[1]), reinterpret_cast< Vec* >(&mNormals[1]));
+    PSMTXMultVecSR(matrix, reinterpret_cast< Vec* >(&mNormals[2]), reinterpret_cast< Vec* >(&mNormals[2]));
+    PSMTXMultVecSR(matrix, reinterpret_cast< Vec* >(&mNormals[3]), reinterpret_cast< Vec* >(&mNormals[3]));
 
     MR::normalize(&mNormals[0]);
     MR::normalize(&mNormals[1]);
     MR::normalize(&mNormals[2]);
     MR::normalize(&mNormals[3]);
 
-    mPos[0].set<f32>(server->getPos(prism, 0));
-    mPos[1].set<f32>(server->getPos(prism, 1));
-    mPos[2].set<f32>(server->getPos(prism, 2));
+    mPos[0].set< f32 >(server->getPos(prism, 0));
+    mPos[1].set< f32 >(server->getPos(prism, 1));
+    mPos[2].set< f32 >(server->getPos(prism, 2));
 
-    PSMTXMultVecSR(matrix, reinterpret_cast<Vec *>(&mPos[0]), reinterpret_cast<Vec *>(&mPos[0]));
-    PSMTXMultVecSR(matrix, reinterpret_cast<Vec *>(&mPos[1]), reinterpret_cast<Vec *>(&mPos[1]));
-    PSMTXMultVecSR(matrix, reinterpret_cast<Vec *>(&mPos[2]), reinterpret_cast<Vec *>(&mPos[2]));
+    PSMTXMultVecSR(matrix, reinterpret_cast< Vec* >(&mPos[0]), reinterpret_cast< Vec* >(&mPos[0]));
+    PSMTXMultVecSR(matrix, reinterpret_cast< Vec* >(&mPos[1]), reinterpret_cast< Vec* >(&mPos[1]));
+    PSMTXMultVecSR(matrix, reinterpret_cast< Vec* >(&mPos[2]), reinterpret_cast< Vec* >(&mPos[2]));
 }
 
-const char *Triangle::getHostName() const {
+const char* Triangle::getHostName() const {
     return mParts->getHostName();
 }
 
@@ -67,116 +67,109 @@ bool Triangle::isValid() const {
     return mIdx != 0xFFFFFFFF;
 }
 
-const TVec3f *Triangle::getNormal(int index) const {
+const TVec3f* Triangle::getNormal(int index) const {
     return &mNormals[index];
 }
 
-const TVec3f *Triangle::getFaceNormal() const {
+const TVec3f* Triangle::getFaceNormal() const {
     return &mNormals[0];
 }
 
-const TVec3f *Triangle::getEdgeNormal(int index) const {
+const TVec3f* Triangle::getEdgeNormal(int index) const {
     return &mNormals[index + 1];
 }
 
-const TVec3f *Triangle::getPos(int index) const {
+const TVec3f* Triangle::getPos(int index) const {
     return &mPos[index];
 }
 
-const TVec3f *Triangle::calcAndGetNormal(int index) {
-    KCollisionServer *server = mParts->mServer;
-    KC_PrismData *prism = server->getPrismData(mIdx);
+const TVec3f* Triangle::calcAndGetNormal(int index) {
+    KCollisionServer* server = mParts->mServer;
+    KC_PrismData* prism = server->getPrismData(mIdx);
 
-    MtxPtr matrix = reinterpret_cast<MtxPtr>(&mParts->mBaseMatrix);
+    MtxPtr matrix = reinterpret_cast< MtxPtr >(&mParts->mBaseMatrix);
 
     switch (index) {
-        case 0: {
-                mNormals[0].set<f32>(*server->getFaceNormal(prism));
-                PSMTXMultVecSR(matrix, reinterpret_cast<Vec *>(&mNormals[0]), reinterpret_cast<Vec *>(&mNormals[0]));
-                MR::normalize(&mNormals[0]);
+    case 0: {
+        mNormals[0].set< f32 >(*server->getFaceNormal(prism));
+        PSMTXMultVecSR(matrix, reinterpret_cast< Vec* >(&mNormals[0]), reinterpret_cast< Vec* >(&mNormals[0]));
+        MR::normalize(&mNormals[0]);
 
-                return &mNormals[0];
-            }
-            break;
-        case 1: {
-                mNormals[1].set<f32>(*server->getEdgeNormal1(prism));
-                PSMTXMultVecSR(matrix, reinterpret_cast<Vec *>(&mNormals[1]), reinterpret_cast<Vec *>(&mNormals[1]));
-                MR::normalize(&mNormals[1]);
+        return &mNormals[0];
+    } break;
+    case 1: {
+        mNormals[1].set< f32 >(*server->getEdgeNormal1(prism));
+        PSMTXMultVecSR(matrix, reinterpret_cast< Vec* >(&mNormals[1]), reinterpret_cast< Vec* >(&mNormals[1]));
+        MR::normalize(&mNormals[1]);
 
-                return &mNormals[1];
-            }
-            break;
-        case 2: {
-                mNormals[2].set<f32>(*server->getEdgeNormal2(prism));
-                PSMTXMultVecSR(matrix, reinterpret_cast<Vec *>(&mNormals[2]), reinterpret_cast<Vec *>(&mNormals[2]));
-                MR::normalize(&mNormals[2]);
-                
-                return &mNormals[2];
-            }
-            break;
-        case 3: {
-                mNormals[3].set<f32>(*server->getEdgeNormal3(prism));
-                PSMTXMultVecSR(matrix, reinterpret_cast<Vec *>(&mNormals[3]), reinterpret_cast<Vec *>(&mNormals[3]));
-                MR::normalize(&mNormals[3]);
+        return &mNormals[1];
+    } break;
+    case 2: {
+        mNormals[2].set< f32 >(*server->getEdgeNormal2(prism));
+        PSMTXMultVecSR(matrix, reinterpret_cast< Vec* >(&mNormals[2]), reinterpret_cast< Vec* >(&mNormals[2]));
+        MR::normalize(&mNormals[2]);
 
-                return &mNormals[3];
-            }
-            break;
+        return &mNormals[2];
+    } break;
+    case 3: {
+        mNormals[3].set< f32 >(*server->getEdgeNormal3(prism));
+        PSMTXMultVecSR(matrix, reinterpret_cast< Vec* >(&mNormals[3]), reinterpret_cast< Vec* >(&mNormals[3]));
+        MR::normalize(&mNormals[3]);
+
+        return &mNormals[3];
+    } break;
     }
 
     return &mNormals[index];
 }
 
-const TVec3f *Triangle::calcAndGetEdgeNormal(int index) {
-    KCollisionServer *server = mParts->mServer;
-    KC_PrismData *prism = server->getPrismData(mIdx);
+const TVec3f* Triangle::calcAndGetEdgeNormal(int index) {
+    KCollisionServer* server = mParts->mServer;
+    KC_PrismData* prism = server->getPrismData(mIdx);
 
-    MtxPtr matrix = reinterpret_cast<MtxPtr>(&mParts->mBaseMatrix);
+    MtxPtr matrix = reinterpret_cast< MtxPtr >(&mParts->mBaseMatrix);
 
     switch (index) {
-        case 0: {
-                mNormals[1].set<f32>(*server->getEdgeNormal1(prism));
-                PSMTXMultVecSR(matrix, reinterpret_cast<Vec *>(&mNormals[1]), reinterpret_cast<Vec *>(&mNormals[1]));
-                MR::normalize(&mNormals[1]);
+    case 0: {
+        mNormals[1].set< f32 >(*server->getEdgeNormal1(prism));
+        PSMTXMultVecSR(matrix, reinterpret_cast< Vec* >(&mNormals[1]), reinterpret_cast< Vec* >(&mNormals[1]));
+        MR::normalize(&mNormals[1]);
 
-                return &mNormals[1];
-            }
-            break;
-        case 1: {
-                mNormals[2].set<f32>(*server->getEdgeNormal2(prism));
-                PSMTXMultVecSR(matrix, reinterpret_cast<Vec *>(&mNormals[2]), reinterpret_cast<Vec *>(&mNormals[2]));
-                MR::normalize(&mNormals[2]);
+        return &mNormals[1];
+    } break;
+    case 1: {
+        mNormals[2].set< f32 >(*server->getEdgeNormal2(prism));
+        PSMTXMultVecSR(matrix, reinterpret_cast< Vec* >(&mNormals[2]), reinterpret_cast< Vec* >(&mNormals[2]));
+        MR::normalize(&mNormals[2]);
 
-                return &mNormals[2];
-            }
-            break;
-        case 2: {
-                mNormals[3].set<f32>(*server->getEdgeNormal3(prism));
-                PSMTXMultVecSR(matrix, reinterpret_cast<Vec *>(&mNormals[3]), reinterpret_cast<Vec *>(&mNormals[3]));
-                MR::normalize(&mNormals[3]);
+        return &mNormals[2];
+    } break;
+    case 2: {
+        mNormals[3].set< f32 >(*server->getEdgeNormal3(prism));
+        PSMTXMultVecSR(matrix, reinterpret_cast< Vec* >(&mNormals[3]), reinterpret_cast< Vec* >(&mNormals[3]));
+        MR::normalize(&mNormals[3]);
 
-                return &mNormals[3];
-            }
-            break;
+        return &mNormals[3];
+    } break;
     }
 
     return &mNormals[index + 1];
 }
 
-const TVec3f *Triangle::calcAndGetPos(int index) {
-    KCollisionServer *server = mParts->mServer;
-    KC_PrismData *prism = server->getPrismData(mIdx);
+const TVec3f* Triangle::calcAndGetPos(int index) {
+    KCollisionServer* server = mParts->mServer;
+    KC_PrismData* prism = server->getPrismData(mIdx);
 
-    TVec3f *pos = &mPos[index];
+    TVec3f* pos = &mPos[index];
 
-    pos->set<f32>(server->getPos(prism, index));
+    pos->set< f32 >(server->getPos(prism, index));
 
     mParts->mBaseMatrix.mult(*pos, *pos);
 
     return pos;
 }
 
-void Triangle::calcForceMovePower(TVec3f *a1, const TVec3f &a2) const {
+void Triangle::calcForceMovePower(TVec3f* a1, const TVec3f& a2) const {
     mParts->calcForceMovePower(a1, a2);
 }
 
@@ -192,20 +185,19 @@ JMapInfoIter Triangle::getAttributes() const {
     return mParts->mServer->getAttributes(mIdx);
 }
 
-TPos3f *Triangle::getBaseMtx() const {
+TPos3f* Triangle::getBaseMtx() const {
     return &mParts->mBaseMatrix;
 }
 
-TPos3f *Triangle::getBaseInvMtx() const {
+TPos3f* Triangle::getBaseInvMtx() const {
     return &mParts->mInvBaseMatrix;
 }
 
-TPos3f *Triangle::getPrevBaseMtx() const {
+TPos3f* Triangle::getPrevBaseMtx() const {
     return &mParts->mPrevBaseMatrix;
 }
 
-HitInfo::HitInfo() : mParentTriangle(), _60(0.0f),
-    _64(0, 0, 0), _70(0, 0, 0), _7C(0, 0, 0) {
+HitInfo::HitInfo() : mParentTriangle(), _60(0.0f), mHitPos(0, 0, 0), _70(0, 0, 0), _7C(0, 0, 0) {
     _88 = 0;
 }
 

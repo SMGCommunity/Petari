@@ -6,7 +6,7 @@ class MarioActor;
 
 class MarioFlow : public MarioState {
 public:
-    MarioFlow(MarioActor *);
+    MarioFlow(MarioActor*);
     u16 _12;
     u16 _14;
     f32 _18;

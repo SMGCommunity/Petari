@@ -1,7 +1,7 @@
-#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/MapObj/AirBubble.hpp"
+#include "Game/LiveActor/HitSensor.hpp"
 
-AirBubble::AirBubble(const char *pName) : LiveActor(pName) {
+AirBubble::AirBubble(const char* pName) : LiveActor(pName) {
     _A4.x = 0.0f;
     _A4.y = 0.0f;
     _A4.z = 1.0f;
@@ -9,7 +9,7 @@ AirBubble::AirBubble(const char *pName) : LiveActor(pName) {
     _C4 = 360;
 }
 
-void AirBubble::init(const JMapInfoIter &rIter) {
+void AirBubble::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     MR::useStageSwitchWriteDead(this, rIter);
     initModelManagerWithAnm("AirBubble", nullptr, false);
@@ -46,13 +46,11 @@ void AirBubble::kill() {
     LiveActor::kill();
 }
 
-void AirBubble::control() {
+void AirBubble::control() {}
 
-}
-
-void AirBubble::appearMove(const TVec3f &a1, s32 a2) {
-    _8C.set<f32>(a1);
-    mPosition.set<f32>(a1);
+void AirBubble::appearMove(const TVec3f& a1, s32 a2) {
+    _8C.set< f32 >(a1);
+    mPosition.set< f32 >(a1);
     appear();
     MR::showModel(this);
     setNerve(&NrvAirBubble::AirBubbleNrvMove::sInstance);
@@ -70,14 +68,13 @@ void AirBubble::exeBreak() {
     }
 }
 
-bool AirBubble::receiveMsgPush(HitSensor *pSender, HitSensor *pReceiver) {
+bool AirBubble::receiveMsgPush(HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isSensorPlayer(pReceiver)) {
         if (isNerve(&NrvAirBubble::AirBubbleNrvKillWait::sInstance)) {
             MR::incPlayerOxygen(8);
             kill();
             return true;
-        }
-        else {
+        } else {
             setNerve(&NrvAirBubble::AirBubbleNrvBreak::sInstance);
         }
 
@@ -87,7 +84,7 @@ bool AirBubble::receiveMsgPush(HitSensor *pSender, HitSensor *pReceiver) {
     return false;
 }
 
-bool AirBubble::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool AirBubble::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     bool res;
 
     if (MR::isMsgItemShow(msg)) {
@@ -101,13 +98,11 @@ bool AirBubble::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceive
     if (MR::isMsgItemStartMove(msg)) {
         _C9 = 1;
         return true;
-    }
-    else if (MR::isMsgItemEndMove(msg)) {
+    } else if (MR::isMsgItemEndMove(msg)) {
         _C9 = 0;
         _8C = mPosition;
         return true;
-    }
-    else if (MR::isMsgSpinStormRange(msg) && canSpinGet()) {
+    } else if (MR::isMsgSpinStormRange(msg) && canSpinGet()) {
         TVec3f stack_8(pSender->mPosition);
         stack_8 -= mPosition;
 
@@ -128,9 +123,7 @@ bool AirBubble::canSpinGet() const {
     return false;
 }
 
-AirBubble::~AirBubble() {
-
-}
+AirBubble::~AirBubble() {}
 
 namespace NrvAirBubble {
     INIT_NERVE(AirBubbleNrvWait);
@@ -138,26 +131,26 @@ namespace NrvAirBubble {
     INIT_NERVE(AirBubbleNrvBreak);
     INIT_NERVE(AirBubbleNrvKillWait);
 
-    void AirBubbleNrvKillWait::execute(Spine *pSpine) const {
-        AirBubble* bubble = reinterpret_cast<AirBubble*>(pSpine->mExecutor);
-        
+    void AirBubbleNrvKillWait::execute(Spine* pSpine) const {
+        AirBubble* bubble = reinterpret_cast< AirBubble* >(pSpine->mExecutor);
+
         if (MR::isGreaterStep(bubble, 90)) {
             bubble->kill();
         }
     }
 
-    void AirBubbleNrvBreak::execute(Spine *pSpine) const {
-        AirBubble* bubble = reinterpret_cast<AirBubble*>(pSpine->mExecutor);
+    void AirBubbleNrvBreak::execute(Spine* pSpine) const {
+        AirBubble* bubble = reinterpret_cast< AirBubble* >(pSpine->mExecutor);
         bubble->exeBreak();
     }
 
-    void AirBubbleNrvMove::execute(Spine *pSpine) const {
-        AirBubble* bubble = reinterpret_cast<AirBubble*>(pSpine->mExecutor);
+    void AirBubbleNrvMove::execute(Spine* pSpine) const {
+        AirBubble* bubble = reinterpret_cast< AirBubble* >(pSpine->mExecutor);
         bubble->exeMove();
     }
 
-    void AirBubbleNrvWait::execute(Spine *pSpine) const {
-        AirBubble* bubble = reinterpret_cast<AirBubble*>(pSpine->mExecutor);
+    void AirBubbleNrvWait::execute(Spine* pSpine) const {
+        AirBubble* bubble = reinterpret_cast< AirBubble* >(pSpine->mExecutor);
         bubble->exeWait();
     }
-};
+};  // namespace NrvAirBubble

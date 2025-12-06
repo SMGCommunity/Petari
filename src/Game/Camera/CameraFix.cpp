@@ -1,8 +1,8 @@
 #include "Game/Camera/CameraFix.hpp"
-#include "Game/Camera/CameraTargetMtx.hpp"
 #include "Game/Camera/CamTranslatorFix.hpp"
+#include "Game/Camera/CameraTargetMtx.hpp"
 
-CameraFix::CameraFix(const char *pName) : Camera(pName) {
+CameraFix::CameraFix(const char* pName) : Camera(pName) {
     _4C = 0.0f;
     _50 = 0.0f;
     _54 = 0.0f;
@@ -15,10 +15,8 @@ CameraFix::CameraFix(const char *pName) : Camera(pName) {
     mTarget = new CameraTargetMtx("カメラターゲットダミー");
 }
 
-CameraFix::~CameraFix() {
+CameraFix::~CameraFix() {}
 
-}
-
-CamTranslatorBase *CameraFix::createTranslator() {
+CamTranslatorBase* CameraFix::createTranslator() {
     return new CamTranslatorFix(this);
 }

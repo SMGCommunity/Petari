@@ -4,12 +4,10 @@
 
 class CamTranslatorCharmedVecRegTower : public CamTranslatorBase {
 public:
-	inline CamTranslatorCharmedVecRegTower(CameraCharmedVecRegTower *pCamera) {
-		mCamera = pCamera;
-	}
+    inline CamTranslatorCharmedVecRegTower(CameraCharmedVecRegTower* pCamera) { mCamera = pCamera; }
 
-	virtual void setParam(const CameraParamChunk *);
-	virtual Camera *getCamera() const;
+    virtual void setParam(const CameraParamChunk*);
+    virtual Camera* getCamera() const;
 
-	CameraCharmedVecRegTower *mCamera;	// 0x4
+    CameraCharmedVecRegTower* mCamera;  // 0x4
 };

@@ -10,7 +10,7 @@ public:
     virtual ~AnimStampController();
 
     void init(s32, f32, f32, f32, f32, f32, f32);
-    void startAnim(const TVec3f &);
+    void startAnim(const TVec3f&);
     void exeAnim();
     bool isAnimEnd() const;
 

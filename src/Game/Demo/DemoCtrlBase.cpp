@@ -3,7 +3,7 @@
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 
-DemoCtrlBase::DemoCtrlBase(LiveActor *pActor, const char *pName) {
+DemoCtrlBase::DemoCtrlBase(LiveActor* pActor, const char* pName) {
     mActor = pActor;
     mCameraInfo = nullptr;
     mDemoName = pName;
@@ -11,7 +11,7 @@ DemoCtrlBase::DemoCtrlBase(LiveActor *pActor, const char *pName) {
     _10 = false;
 }
 
-void DemoCtrlBase::init(const JMapInfoIter &rIter) {
+void DemoCtrlBase::init(const JMapInfoIter& rIter) {
     MR::initActorCamera(mActor, rIter, &mCameraInfo);
 }
 

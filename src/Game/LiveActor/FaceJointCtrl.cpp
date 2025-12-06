@@ -2,7 +2,7 @@
 #include "Game/LiveActor/DynamicJointCtrl.hpp"
 #include "Game/Util/JointController.hpp"
 
-FaceJointCtrl::FaceJointCtrl(LiveActor *pActor) {
+FaceJointCtrl::FaceJointCtrl(LiveActor* pActor) {
     mHostActor = pActor;
     _4 = 45.0f;
     _8 = 0.0f;

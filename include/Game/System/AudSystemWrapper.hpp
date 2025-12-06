@@ -2,13 +2,13 @@
 
 #include <JSystem/JKernel/JKRArchive.hpp>
 #include <JSystem/JKernel/JKRExpHeap.hpp>
-#include <JSystem/JKernel/JKRSolidHeap.hpp> 
+#include <JSystem/JKernel/JKRSolidHeap.hpp>
 
 class AudSystem;
 
 class AudSystemWrapper {
 public:
-    AudSystemWrapper(JKRSolidHeap *, JKRHeap *);
+    AudSystemWrapper(JKRSolidHeap*, JKRHeap*);
 
     void requestResourceForInitialize();
     void createAudioSystem();

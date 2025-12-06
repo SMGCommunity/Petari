@@ -15,7 +15,7 @@ namespace nw4r {
     namespace ut {
         class Font;
     };
-};
+};  // namespace nw4r
 
 namespace MR {
     GameSystemObjHolder* getGameSystemObjHolder();
@@ -50,4 +50,4 @@ namespace MR {
     bool isDisplayEncouragePal60Window();
     JMapIdInfo* getPlayerRestartIdInfo();
     void setPlayerRestartIdInfo(const JMapIdInfo&);
-};
+};  // namespace MR

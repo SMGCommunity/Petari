@@ -2,7 +2,7 @@
 #include "Game/Util.hpp"
 #include "JSystem/JMath.hpp"
 
-MapObjConnector::MapObjConnector(LiveActor *pActor) {
+MapObjConnector::MapObjConnector(LiveActor* pActor) {
     mHost = pActor;
     _4 = 0;
     _8.identity();
