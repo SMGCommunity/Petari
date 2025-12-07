@@ -1,12 +1,13 @@
 #pragma once
 
+#include "nw4r/lyt/resources.h"
+#include "nw4r/lyt/types.h"
 #include "nw4r/math/types.h"
 #include "nw4r/ut/Color.h"
 #include "nw4r/ut/LinkList.h"
 #include "nw4r/ut/RuntimeTypeInfo.h"
-#include "nw4r/lyt/types.h"
-#include "nw4r/lyt/resources.h"
 #include <cstddef>
+
 
 namespace nw4r {
     namespace ut {
@@ -22,7 +23,7 @@ namespace nw4r {
 
                 ut::LinkListNode mLink;
             };
-        };
+        };  // namespace detail
 
         class AnimTransform;
         class AnimationLink;
@@ -31,19 +32,19 @@ namespace nw4r {
         class DrawInfo;
         class Pane;
 
-        #ifdef __MWERKS__
-        typedef ut::LinkList<Pane, offsetof(detail::PaneBase, mLink)> PaneList;
-        #else
-        typedef ut::LinkList<Pane, 0> PaneList;
-        #endif
+#ifdef __MWERKS__
+        typedef ut::LinkList< Pane, offsetof(detail::PaneBase, mLink) > PaneList;
+#else
+        typedef ut::LinkList< Pane, 0 > PaneList;
+#endif
 
         class Pane : public detail::PaneBase {
         public:
             NW4R_UT_RUNTIME_TYPEINFO;
             virtual ~Pane();
-            virtual void CalculateMtx(const DrawInfo &);
-            virtual void Draw(const DrawInfo &);
-            virtual void DrawSelf(const DrawInfo &);
+            virtual void CalculateMtx(const DrawInfo&);
+            virtual void Draw(const DrawInfo&);
+            virtual void DrawSelf(const DrawInfo&);
             virtual void Animate(u32);
             virtual void AnimateSelf(u32);
             virtual const ut::Color GetVtxColor(u32) const;
@@ -52,34 +53,27 @@ namespace nw4r {
             virtual void SetColorElement(u32, u8);
             virtual u8 GetVtxColorElement(u32) const;
             virtual void SetVtxColorElement(u32, u8);
-            virtual Pane* FindPaneByName(const char *, bool);
-            virtual Material* FindMaterialByName(const char *, bool);
-            virtual void BindAnimation(AnimTransform *, bool);
-            virtual void UnbindAnimation(AnimTransform *, bool);
+            virtual Pane* FindPaneByName(const char*, bool);
+            virtual Material* FindMaterialByName(const char*, bool);
+            virtual void BindAnimation(AnimTransform*, bool);
+            virtual void UnbindAnimation(AnimTransform*, bool);
             virtual void UnbindAllAnimation(bool);
-            virtual void UnbindAnimationSelf(AnimTransform *);
-            virtual AnimationLink* FindAnimationLinkSelf(AnimTransform *);
-            virtual AnimationLink* FindAnimationLinkSelf(const AnimResource&);
-            virtual void SetAnimationEnable(AnimTransform *, bool, bool);
-            virtual void SetAnimationEnable(const AnimResource &, bool, bool);
+            virtual void UnbindAnimationSelf(AnimTransform*);
+            virtual AnimationLink* FindAnimationLinkSelf(AnimTransform*);
+            virtual void SetAnimationEnable(AnimTransform*, bool, bool);
+            virtual void SetAnimationEnable(const AnimResource&, bool, bool);
             virtual u8 GetMaterialNum() const;
             virtual Material* GetMaterial() const;
             virtual Material* GetMaterial(u32) const;
-            virtual void LoadMtx(const DrawInfo &);
+            virtual void LoadMtx(const DrawInfo&);
 
-            bool IsUserAllocated() const {
-                return mbUserAllocated;
-            }
-            
-            Pane* GetParent() const {
-                return mpParent;
-            }
+            bool IsUserAllocated() const { return mbUserAllocated; }
 
-            void AppendChild(Pane *);
+            Pane* GetParent() const { return mpParent; }
 
-            void SetExtUserDataList(const res::ExtUserDataList *pBlock) {
-                mpExtUserDataList = pBlock;
-            }
+            void AppendChild(Pane*);
+
+            void SetExtUserDataList(const res::ExtUserDataList* pBlock) { mpExtUserDataList = pBlock; }
 
             Pane* mpParent;
             PaneList mChildList;
@@ -101,5 +95,5 @@ namespace nw4r {
             u8 mbUserAllocated;
             u8 mPadding;
         };
-    };
-};
+    };  // namespace lyt
+};  // namespace nw4r

@@ -37,7 +37,7 @@ namespace nw4r {
 
         MEMAllocator* Layout::mspAllocator = nullptr;
 
-        Layout::Layout() : mpRootPane(nullptr), mpGroupContainer(nullptr), mLayoutSize(0.0f, 0.0f) {}
+        Layout::Layout() : mpRootPane(nullptr), mpGroupContainer(nullptr), mLayoutSize(0.0f, 0.0f), _20(0) {}
 
         Layout::~Layout() {
             DeleteObj(mpGroupContainer);
@@ -76,6 +76,7 @@ namespace nw4r {
                 switch (detail::GetSignatureInt(pDataBlockHead->kind)) {
                 case 'lyt1': {
                     const res::Layout* pResLyt = static_cast< const res::Layout* >(dataPtr);
+                    _20 = pResLyt->originType != 0 ? ORIGINTYPE_CENTER : ORIGINTYPE_TOPLEFT;
                     mLayoutSize = pResLyt->layoutSize;
                     break;
                 }
@@ -108,10 +109,6 @@ namespace nw4r {
                         pLastPane = pPane;
                     }
                 } break;
-
-                case 'usd1':
-                    pLastPane->SetExtUserDataList(reinterpret_cast< const res::ExtUserDataList* >(pDataBlockHead));
-                    break;
                 case 'pas1':
                     pParentPane = pLastPane;
                     break;
@@ -186,7 +183,9 @@ namespace nw4r {
             }
         }
 
-        void Layout::UnbindAllAnimation() { UnbindAnimation(0); }
+        void Layout::UnbindAllAnimation() {
+            UnbindAnimation(0);
+        }
 
         /*
         bool Layout::BindAnimationAuto(const AnimResource &animRes, ResourceAccessor *pResAcsr) {
@@ -289,11 +288,15 @@ namespace nw4r {
         }
 
         const ut::Rect Layout::GetLayoutRect() const {
-            return ut::Rect(-mLayoutSize.width / 2, mLayoutSize.height / 2, mLayoutSize.width / 2, -mLayoutSize.height / 2);
+            if (_20 == 1) {
+                return ut::Rect(-mLayoutSize.width / 2, mLayoutSize.height / 2, mLayoutSize.width / 2, -mLayoutSize.height / 2);
+            }
+
+            return ut::Rect(0.0f, 0.0f, mLayoutSize.width, mLayoutSize.height);
         }
 
         // have to do more headers to decomp these two
         // nw4r::lyt::Layout::SetTagProcessor
         // nw4r::lyt::Layout::BuildPaneObj
     };  // namespace lyt
-};      // namespace nw4r
+};  // namespace nw4r
