@@ -24,6 +24,7 @@ namespace nw4r {
         class Material {
         public:
             const char* GetName() const { return mName; }
+            bool IsUserAllocated() const { return mbUserAllocated; }
 
             virtual ~Material();
             virtual bool SetupGX(bool, u8);

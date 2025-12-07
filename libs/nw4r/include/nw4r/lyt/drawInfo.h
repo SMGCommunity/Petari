@@ -10,6 +10,17 @@ namespace nw4r {
             DrawInfo();
             virtual ~DrawInfo();
 
+            const math::MTX34& GetViewMtx() const { return mViewMtx; }
+            bool IsMultipleViewMtxOnDraw() const { return mFlag.mulViewDraw; }
+            bool IsInfluencedAlpha() const { return mFlag.influencedAlpha; }
+            void SetInfluencedAlpha(bool bEnable) { mFlag.influencedAlpha = bEnable; }
+            bool IsLocationAdjust() const { return mFlag.locationAdjust; }
+            const math::VEC2& GetLocationAdjustScale() const { return mLocationAdjustScale; }
+            f32 GetGlobalAlpha() const { return mGlobalAlpha; }
+            void SetGlobalAlpha(f32 alpha) { mGlobalAlpha = alpha; }
+            bool IsInvisiblePaneCalculateMtx() const { return mFlag.invisiblePaneCalculateMtx; }
+            bool IsYAxisUp() const { return mViewRect.bottom - mViewRect.top < 0.0f; }
+
             math::MTX34 mViewMtx;
             ut::Rect mViewRect;
             math::VEC2 mLocationAdjustScale;
@@ -22,5 +33,5 @@ namespace nw4r {
                 u8 invisiblePaneCalculateMtx : 1;
             } mFlag;
         };
-    };
-};
+    };  // namespace lyt
+};  // namespace nw4r

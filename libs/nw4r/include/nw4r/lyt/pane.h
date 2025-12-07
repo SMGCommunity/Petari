@@ -73,6 +73,8 @@ namespace nw4r {
             void SetUserData(const char*);
 
             bool IsUserAllocated() const { return mbUserAllocated; }
+            bool IsInfluencedAlpha() const { return detail::TestBit(mFlag, 1); }
+            bool IsLocationAdjust() const { return detail::TestBit(mFlag, 2); }
 
             Pane* GetParent() const { return mpParent; }
 
@@ -81,6 +83,7 @@ namespace nw4r {
             void AppendChild(Pane*);
             void AddAnimationLink(AnimationLink*);
             math::VEC2 GetVtxPos() const;
+            void CalculateMtxChild(const DrawInfo& rInfo);
 
             bool IsVisible() const { return detail::TestBit(mFlag, 0); }
 

@@ -36,18 +36,18 @@ namespace nw4r {
         public:
             VEC2() {}
 
-            VEC2(const _VEC2& v) { 
-                x = v.x; y = v.y;
+            VEC2(const _VEC2& v) {
+                x = v.x;
+                y = v.y;
             }
 
-            VEC2(f32 fx, f32 fy) { 
-                x = fx; y = fy;
+            VEC2(f32 fx, f32 fy) {
+                x = fx;
+                y = fy;
             }
         };
 
-        struct VEC3 : public _VEC3 {
-
-        };
+        struct VEC3 : public _VEC3 {};
 
         struct MTX34 : public _MTX34 {
         public:
@@ -58,12 +58,25 @@ namespace nw4r {
             operator ConstMtxPtr() const { return (ConstMtxPtr)&_00; }
         };
 
+        inline MTX34* MTX34Copy(MTX34* pOut, const MTX34* pIn) {
+            PSMTXCopy(*pIn, *pOut);
+            return pOut;
+        }
+
         inline MTX34* MTX34Identity(MTX34* pOut) {
             PSMTXIdentity(*pOut);
             return pOut;
         }
-    };
-};
+
+        inline MTX34* MTX34Mult(MTX34* pOut, const MTX34* pA, const MTX34* pB) {
+            PSMTXConcat(*pA, *pB, *pOut);
+            return pOut;
+        }
+
+        MTX34* MTX34Mult(MTX34* pOut, const MTX34* p, f32 f);
+
+    };  // namespace math
+};  // namespace nw4r
 
 typedef nw4r::math::VEC2 (*TexCoordQuad)[4];
 typedef const nw4r::math::VEC2 (*ConstTexCoordQuad)[4];

@@ -1,8 +1,19 @@
 #include "nw4r/lyt/animation.h"
 #include "nw4r/lyt/common.h"
+#include "nw4r/lyt/drawInfo.h"
+#include "nw4r/lyt/layout.h"
 #include "nw4r/lyt/material.h"
 #include "nw4r/lyt/pane.h"
+#include "nw4r/math/triangular.h"
 #include <cstdio>
+
+namespace nw4r {
+    void ReverseYAxis(math::MTX34* pMtx) {
+        pMtx->m[0][1] = -pMtx->m[0][1];
+        pMtx->m[1][1] = -pMtx->m[1][1];
+        pMtx->m[2][1] = -pMtx->m[2][1];
+    }
+}  // namespace nw4r
 
 namespace nw4r {
     namespace lyt {
@@ -30,6 +41,22 @@ namespace nw4r {
             mAlpha = pRes->alpha;
             mGlbAlpha = mAlpha;
             mFlag = pRes->flag;
+        }
+
+        Pane::~Pane() {
+            for (PaneList::Iterator it = mChildList.GetBeginIter(); it != mChildList.GetEndIter();) {
+                PaneList::Iterator currIt = it++;
+                mChildList.Erase(currIt);
+                if (!currIt->IsUserAllocated()) {
+                    Layout::DeleteObj(&(*currIt));
+                }
+            }
+
+            UnbindAnimationSelf(0);
+
+            if (mpMaterial && !mpMaterial->IsUserAllocated()) {
+                Layout::DeleteObj(mpMaterial);
+            }
         }
 
         void Pane::Init() {
@@ -132,6 +159,72 @@ namespace nw4r {
             return nullptr;
         }
 
+        void Pane::CalculateMtx(const DrawInfo& rInfo) {
+            if (!IsVisible() && !rInfo.IsInvisiblePaneCalculateMtx()) {
+                return;
+            }
+
+            math::MTX34 mtx1, mtx2;
+            math::MTX34 rotateMtx;
+
+            math::VEC2 scale = mScale;
+            if (rInfo.IsLocationAdjust() && IsLocationAdjust()) {
+                scale.x *= rInfo.GetLocationAdjustScale().x;
+                scale.y *= rInfo.GetLocationAdjustScale().y;
+            }
+
+            PSMTXScale(mtx2, scale.x, scale.y, 1.0f);
+
+            PSMTXRotRad(rotateMtx, 'x', NW4R_MATH_DEG_TO_RAD(mRotate.x));
+            PSMTXConcat(rotateMtx, mtx2, mtx1);
+
+            PSMTXRotRad(rotateMtx, 'y', NW4R_MATH_DEG_TO_RAD(mRotate.y));
+            PSMTXConcat(rotateMtx, mtx1, mtx2);
+
+            PSMTXRotRad(rotateMtx, 'z', NW4R_MATH_DEG_TO_RAD(mRotate.z));
+            PSMTXConcat(rotateMtx, mtx2, mtx1);
+
+            PSMTXTransApply(mtx1, mMtx, mTranslate.x, mTranslate.y, mTranslate.z);
+
+            if (mpParent != NULL) {
+                math::MTX34Mult(&mGlbMtx, &mpParent->mGlbMtx, &mMtx);
+            } else if (rInfo.IsMultipleViewMtxOnDraw()) {
+                mGlbMtx = mMtx;
+            } else {
+                math::MTX34Mult(&mGlbMtx, &rInfo.GetViewMtx(), &mMtx);
+            }
+
+            if (rInfo.IsInfluencedAlpha() && mpParent != NULL) {
+                mGlbAlpha = static_cast< u8 >(mAlpha * rInfo.GetGlobalAlpha());
+            } else {
+                mGlbAlpha = mAlpha;
+            }
+
+            f32 glbAlpha = rInfo.GetGlobalAlpha();
+            bool influenced = rInfo.IsInfluencedAlpha();
+            bool modifyInfo = IsInfluencedAlpha() && mAlpha != 255;
+
+            if (modifyInfo) {
+                DrawInfo& rMtInfo = const_cast< DrawInfo& >(rInfo);
+                rMtInfo.SetGlobalAlpha(glbAlpha * mAlpha * (1.0f / 255.0f));
+                rMtInfo.SetInfluencedAlpha(true);
+            }
+
+            CalculateMtxChild(rInfo);
+
+            if (modifyInfo) {
+                DrawInfo& rMtInfo = const_cast< DrawInfo& >(rInfo);
+                rMtInfo.SetGlobalAlpha(glbAlpha);
+                rMtInfo.SetInfluencedAlpha(influenced);
+            }
+        }
+
+        void Pane::CalculateMtxChild(const DrawInfo& rInfo) {
+            for (PaneList::Iterator it = mChildList.GetBeginIter(); it != mChildList.GetEndIter(); ++it) {
+                it->CalculateMtx(rInfo);
+            }
+        }
+
         void Pane::Draw(const DrawInfo& rInfo) {
             if (!IsVisible()) {
                 return;
@@ -220,6 +313,31 @@ namespace nw4r {
                     it->SetAnimationEnable(pAnimTrans, enable, recursive);
                 }
             }
+        }
+
+        void Pane::LoadMtx(const DrawInfo& rInfo) {
+            math::MTX34 mtx;
+            math::MTX34* pMtx = NULL;
+
+            if (rInfo.IsMultipleViewMtxOnDraw()) {
+                math::MTX34Mult(&mtx, &rInfo.GetViewMtx(), &mGlbMtx);
+
+                if (rInfo.IsYAxisUp()) {
+                    ReverseYAxis(&mtx);
+                }
+
+                pMtx = &mtx;
+            } else if (rInfo.IsYAxisUp()) {
+                math::MTX34Copy(&mtx, &mGlbMtx);
+                pMtx = &mtx;
+
+                ReverseYAxis(&mtx);
+            } else {
+                pMtx = &mGlbMtx;
+            }
+
+            GXLoadPosMtxImm(*pMtx, GX_PNMTX0);
+            GXSetCurrentMtx(GX_PNMTX0);
         }
 
         math::VEC2 Pane::GetVtxPos() const {
