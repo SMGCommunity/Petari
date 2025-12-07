@@ -391,7 +391,8 @@ namespace MR {
     s32 countShowGroupMember(const LiveActor*);
     s32 countHideGroupMember(const LiveActor*);
 
-    f32 getBckFrame(const LiveActor*);
+    f32 getBckFrame(const LiveActor *);
+    f32 getBrkFrame(const LiveActor *);
 
     f32 calcNerveValue(const LiveActor*, s32, s32, f32, f32);
 
