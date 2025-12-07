@@ -2,6 +2,7 @@
 #include "nw4r/lyt/common.h"
 #include "nw4r/lyt/group.h"
 #include "nw4r/lyt/layout.h"
+#include "nw4r/lyt/material.h"
 #include "nw4r/lyt/pane.h"
 #include "nw4r/lyt/resources.h"
 #include "nw4r/lyt/util.h"

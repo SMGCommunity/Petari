@@ -1,6 +1,7 @@
 #pragma once
 
 #include "nw4r/lyt/common.h"
+#include "nw4r/lyt/material.h"
 #include "nw4r/lyt/resources.h"
 #include "nw4r/ut/LinkList.h"
 #include <revolution/types.h>
@@ -23,12 +24,12 @@ namespace nw4r {
             AnimTransform();
 
             virtual ~AnimTransform();
-            virtual void SetResource(const res::AnimationBlock *, ResourceAccessor *) = 0;
-            virtual void SetResource(const res::AnimationBlock *, ResourceAccessor *, u16) = 0;
-            virtual void Bind(Pane *, bool, bool) = 0;
-            virtual void Bind(Material *, bool) = 0;
-            virtual void Animate(u32, Pane *) = 0;
-            virtual void Animate(u32, Material *) = 0;
+            virtual void SetResource(const res::AnimationBlock*, ResourceAccessor*) = 0;
+            virtual void SetResource(const res::AnimationBlock*, ResourceAccessor*, u16) = 0;
+            virtual void Bind(Pane*, bool) = 0;
+            virtual void Bind(Material*) = 0;
+            virtual void Animate(u32, Pane*) = 0;
+            virtual void Animate(u32, Material*) = 0;
 
             u16 GetFrameSize() const;
             bool IsLoopData() const;
@@ -43,12 +44,12 @@ namespace nw4r {
             AnimTransformBasic();
 
             virtual ~AnimTransformBasic();
-            virtual void SetResource(const res::AnimationBlock *, ResourceAccessor *);
-            virtual void SetResource(const res::AnimationBlock *, ResourceAccessor *, u16);
-            virtual void Bind(Pane *, bool, bool);
-            virtual void Bind(Material *, bool);
-            virtual void Animate(u32, Pane *);
-            virtual void Animate(u32, Material *);
+            virtual void SetResource(const res::AnimationBlock*, ResourceAccessor*);
+            virtual void SetResource(const res::AnimationBlock*, ResourceAccessor*, u16);
+            virtual void Bind(Pane*, bool);
+            virtual void Bind(Material*);
+            virtual void Animate(u32, Pane*);
+            virtual void Animate(u32, Material*);
 
             void** mpFileResAry;
             AnimationLink* mAnimLinkAry;
@@ -59,18 +60,14 @@ namespace nw4r {
         public:
             AnimResource();
 
-            explicit AnimResource(const void *anmResBuf) {
-                Set(anmResBuf);
-            }
+            explicit AnimResource(const void* anmResBuf) { Set(anmResBuf); }
 
-            void Set(const void *);
+            void Set(const void*);
 
-            const res::AnimationBlock* GetResourceBlock() const {
-                return mpResBlock;
-            }
+            const res::AnimationBlock* GetResourceBlock() const { return mpResBlock; }
 
             bool IsDescendingBind() const;
-            
+
             u16 GetGroupNum() const;
             const AnimationGroupRef* GetGroupArray() const;
 
@@ -78,8 +75,8 @@ namespace nw4r {
             const AnimationShareInfo* GetAnimationShareInfoArray() const;
 
             u16 CalcAnimationNum(Pane*, bool) const;
-            u16 CalcAnimationNum(Material *) const;
-            u16 CalcAnimationNum(Group *, bool) const;
+            u16 CalcAnimationNum(Material*) const;
+            u16 CalcAnimationNum(Group*, bool) const;
 
             const res::BinaryFileHeader* mpFileHeader;
             const res::AnimationBlock* mpResBlock;
@@ -90,22 +87,18 @@ namespace nw4r {
         namespace detail {
             class AnimPaneTree {
             public:
-                AnimPaneTree() {
-                    Init();
-                }
+                AnimPaneTree() { Init(); }
 
-                AnimPaneTree(Pane *pTargetPane, const AnimResource &animRes) {
+                AnimPaneTree(Pane* pTargetPane, const AnimResource& animRes) {
                     Init();
                     Set(pTargetPane, animRes);
                 }
 
-                bool IsEnabled() const { 
-                    return mLinkNum > 0; 
-                }
+                bool IsEnabled() const { return mLinkNum > 0; }
 
-                AnimTransform* Bind(Layout *, Pane *, ResourceAccessor *) const;
+                AnimTransform* Bind(Layout*, Pane*, ResourceAccessor*) const;
 
-                void Set(Pane *, const AnimResource &);
+                void Set(Pane*, const AnimResource&);
                 void Init();
 
                 AnimResource mAnimRes;
@@ -114,6 +107,10 @@ namespace nw4r {
                 u16 mAnimMatIdxs[9];
                 u8 mAnimMatCnt;
             };
-        };
-    };
-};
+
+            AnimationLink* FindAnimationLink(AnimationList* pAnimList, AnimTransform* pAnimTrans);
+            AnimationLink* FindAnimationLink(AnimationList* pAnimList, const AnimResource& animRes);
+            void UnbindAnimationLink(AnimationList* pAnimList, AnimTransform* pAnimTrans);
+        };  // namespace detail
+    };  // namespace lyt
+};  // namespace nw4r

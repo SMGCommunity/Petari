@@ -1,9 +1,9 @@
 #pragma once
 
-#include <revolution.h>
+#include "nw4r/ut/LinkList.h"
 #include <cstddef>
 #include <mem.h>
-#include "nw4r/ut/LinkList.h"
+#include <revolution.h>
 
 namespace nw4r {
     namespace lyt {
@@ -13,16 +13,23 @@ namespace nw4r {
             typedef s32 ResS32;
             typedef u32 ResU32;
 
-            template<typename T>
-            inline const T* ConvertOffsToPtr(const void *baseAddr, unsigned int offs) {
-                return reinterpret_cast<const T*>(static_cast<const u8*>(baseAddr) + offs);
+            template < typename T >
+            inline const T* ConvertOffsToPtr(const void* baseAddr, unsigned int offs) {
+                return reinterpret_cast< const T* >(static_cast< const u8* >(baseAddr) + offs);
             }
-        };
+
+            template < typename T >
+            inline bool TestBit(T bits, int pos) {
+                const T mask = T(1 << pos);
+
+                return 0 != (bits & mask);
+            }
+        };  // namespace detail
 
         struct Size {
-            Size(f32 aWidth, f32 aHeight) : width(aWidth), height(aHeight) {
+            Size() : width(0.0f), height(0.0f) {}
 
-            }
+            Size(f32 aWidth, f32 aHeight) : width(aWidth), height(aHeight) {}
 
             f32 width;
             f32 height;
@@ -42,24 +49,24 @@ namespace nw4r {
             f32 b;
         };
 
-
         class AnimTransform;
 
         class AnimationLink {
         public:
-            AnimationLink() {
-                Reset();
-            }
+            AnimationLink() { Reset(); }
 
-            void Reset() {
-                Set(nullptr, 0, false);
-            }
+            void Reset() { Set(nullptr, 0, false); }
 
-            void Set(AnimTransform *pTrans, u16 idx, bool dis) {
+            void Set(AnimTransform* pTrans, u16 idx, bool dis) {
                 mAnimTrans = pTrans;
                 mIdx = idx;
                 mbDisable = dis;
             }
+
+            bool IsEnable() const { return !mbDisable; }
+            void SetEnable(bool enable) { mbDisable = !enable; }
+            u16 GetIndex() const { return mIdx; }
+            AnimTransform* GetAnimTransform() const { return mAnimTrans; }
 
             ut::LinkListNode mLink;
             AnimTransform* mAnimTrans;
@@ -67,11 +74,11 @@ namespace nw4r {
             bool mbDisable;
         };
 
-        #ifdef __MWERKS__
-        typedef ut::LinkList<AnimationLink, offsetof(AnimationLink, mLink)> AnimationList;
-        #else
-        typedef ut::LinkList<AnimationLink, 0> AnimationList;
-        #endif
+#ifdef __MWERKS__
+        typedef ut::LinkList< AnimationLink, offsetof(AnimationLink, mLink) > AnimationList;
+#else
+        typedef ut::LinkList< AnimationLink, 0 > AnimationList;
+#endif
 
         struct AnimationGroupRef {
             AnimationGroupRef() : flag(0) {
@@ -79,9 +86,7 @@ namespace nw4r {
                 memset(padding, 0, sizeof(padding));
             }
 
-            const char* GetName() const { 
-                return name;
-            }
+            const char* GetName() const { return name; }
 
             char name[17];
             u8 flag;
@@ -89,18 +94,13 @@ namespace nw4r {
         };
 
         struct AnimationShareInfo {
+            const char* GetSrcPaneName() const { return srcPaneName; }
 
-            const char* GetSrcPaneName() const { 
-                return srcPaneName; 
-            }
-
-            const char* GetTargetGroupName() const {
-                return targetGroupName;
-            }
+            const char* GetTargetGroupName() const { return targetGroupName; }
 
             char srcPaneName[17];
             char targetGroupName[17];
             u8 padding[2];
         };
-    };
-};
+    };  // namespace lyt
+};  // namespace nw4r

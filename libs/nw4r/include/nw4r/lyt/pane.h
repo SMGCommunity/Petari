@@ -8,7 +8,6 @@
 #include "nw4r/ut/RuntimeTypeInfo.h"
 #include <cstddef>
 
-
 namespace nw4r {
     namespace ut {
         struct Rect;
@@ -41,6 +40,8 @@ namespace nw4r {
         class Pane : public detail::PaneBase {
         public:
             NW4R_UT_RUNTIME_TYPEINFO;
+
+            Pane(const res::Pane*);
             virtual ~Pane();
             virtual void CalculateMtx(const DrawInfo&);
             virtual void Draw(const DrawInfo&);
@@ -67,13 +68,21 @@ namespace nw4r {
             virtual Material* GetMaterial(u32) const;
             virtual void LoadMtx(const DrawInfo&);
 
+            void Init();
+            void SetName(const char*);
+            void SetUserData(const char*);
+
             bool IsUserAllocated() const { return mbUserAllocated; }
 
             Pane* GetParent() const { return mpParent; }
 
+            void InsertChild(PaneList::Iterator, Pane*);
+            void RemoveChild(Pane*);
             void AppendChild(Pane*);
+            void AddAnimationLink(AnimationLink*);
+            math::VEC2 GetVtxPos() const;
 
-            void SetExtUserDataList(const res::ExtUserDataList* pBlock) { mpExtUserDataList = pBlock; }
+            bool IsVisible() const { return detail::TestBit(mFlag, 0); }
 
             Pane* mpParent;
             PaneList mChildList;
@@ -82,10 +91,9 @@ namespace nw4r {
             math::VEC3 mTranslate;
             math::VEC3 mRotate;
             math::VEC2 mScale;
-            math::VEC2 mSize;
+            Size mSize;
             math::MTX34 mMtx;
             math::MTX34 mGlbMtx;
-            const res::ExtUserDataList* mpExtUserDataList;
             u8 mAlpha;
             u8 mGlbAlpha;
             u8 mBasePosition;
