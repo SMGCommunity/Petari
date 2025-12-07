@@ -434,6 +434,18 @@ void Petari::initFootPrint(const JMapInfoIter& rIter) {
     MR::getJMapInfoArg0NoInit(rIter, &mFootprintYOffs);
 }
 
+// Non-matching because of stack
+void Petari::updateFootPrint() {
+    if (MR::isBindedGround(this)) {
+        f32 yOffs = mFootprintYOffs;
+        TVec3f v8(*MR::getGroundNormal(this));
+        v8 *= yOffs;
+        TVec3f v9(mPosition);
+        v9 -= v8;
+        mFootPrint->addPrint(v9, mFront, *MR::getGroundNormal(this), false);
+    }
+}
+
 // Non-matching because of one instruction swap
 void Petari::initFrontVec() {
     TMtx34f mtx;
