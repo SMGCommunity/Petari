@@ -1,4 +1,12 @@
 #include "Game/NameObj/NameObjFactory.hpp"
+#include "Game/AreaObj.hpp"
+#include "Game/Boss.hpp"
+#include "Game/Enemy.hpp"
+#include "Game/Gravity.hpp"
+#include "Game/Map.hpp"
+#include "Game/MapObj.hpp"
+#include "Game/NPC.hpp"
+#include "Game/Ride.hpp"
 
 namespace {
     template < typename T >
