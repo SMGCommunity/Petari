@@ -1,7 +1,4 @@
 #include "Game/Map/PlanetMapCreator.hpp"
-#include "Game/NameObj/NameObjArchiveListCollector.hpp"
-#include "Game/NameObj/NameObjFactory.hpp"
-#include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/AreaObj.hpp"
 #include "Game/Boss.hpp"
 #include "Game/Enemy.hpp"
@@ -9,33 +6,71 @@
 #include "Game/Map.hpp"
 #include "Game/MapObj.hpp"
 #include "Game/NPC.hpp"
+#include "Game/NameObj.hpp"
 #include "Game/Ride.hpp"
+#include "Game/Scene.hpp"
 #include "Game/Util.hpp"
 #include <cstdio>
 #include <cstring>
 
 namespace {
     static const PlanetEntry sUniquePlanetCreateFuncTable[] = {
-        {"BeamGoRoundPlanet", /* createNameObj<BeamGoRoundPlanet>, */},
-        {"BumpAppearPlanet", /* createNameObj<BumpAppearPlanet>, */},
-        {"ChoConveyorPlanetB", /* createNameObj<RailPlanetMap>, */},
+        {
+            "BeamGoRoundPlanet",
+            /* createNameObj<BeamGoRoundPlanet>, */
+        },
+        {
+            "BumpAppearPlanet",
+            /* createNameObj<BumpAppearPlanet>, */
+        },
+        {
+            "ChoConveyorPlanetB",
+            /* createNameObj<RailPlanetMap>, */
+        },
         {
             "ChoConveyorPlanetD",
             createNameObj< RotateMoveObj >,
         },
-        {"DinoPackunBattlePlanet", /* createNameObj<FurPlanetMap>, */},
-        {"DarkHopperPlanetA", /* createNameObj<SimpleClipPartsObj>, */},
-        {"DarkHopperPlanetB", /* createNameObj<SimpleClipPartsObj>, */},
-        {"DarkHopperPlanetC", /* createNameObj<SimpleClipPartsObj>, */},
-        {"DarkHopperPlanetD", /* createNameObj<SimpleClipPartsObj>, */},
-        {"DarknessRoomPlanet", /* createNameObj<SimpleClipPartsObj>, */},
-        {"FlagDiscPlanetB", /* createNameObj<PlanetMapFarClippable>, */},
-        {"FlagDiscPlanetC", /* createNameObj<PlanetMapFarClippable>, */},
+        {
+            "DinoPackunBattlePlanet",
+            /* createNameObj<FurPlanetMap>, */
+        },
+        {
+            "DarkHopperPlanetA",
+            createNameObj< SimpleClipPartsObj >,
+        },
+        {
+            "DarkHopperPlanetB",
+            createNameObj< SimpleClipPartsObj >,
+        },
+        {
+            "DarkHopperPlanetC",
+            createNameObj< SimpleClipPartsObj >,
+        },
+        {
+            "DarkHopperPlanetD",
+            createNameObj< SimpleClipPartsObj >,
+        },
+        {
+            "DarknessRoomPlanet",
+            createNameObj< SimpleClipPartsObj >,
+        },
+        {
+            "FlagDiscPlanetB",
+            /* createNameObj<PlanetMapFarClippable>, */
+        },
+        {
+            "FlagDiscPlanetC",
+            /* createNameObj<PlanetMapFarClippable>, */
+        },
         {
             "FlagDiscPlanetD",
             createNameObj< RotateMoveObj >,
         },
-        {"FlagDiscPlanetE", /* createNameObj<PlanetMapFarClippable>, */},
+        {
+            "FlagDiscPlanetE",
+            /* createNameObj<PlanetMapFarClippable>, */
+        },
         {
             "HatchWaterPlanet",
             createNameObj< HatchWaterPlanet >,
@@ -44,38 +79,98 @@ namespace {
             "HeavensDoorInsidePlanet",
             createNameObj< SimpleMapObj >,
         },
-        {"HoneyQueenPlanet", /* createNameObj<FurPlanetMap>, */},
-        {"LavaJamboSunPlanet", /* createNameObj<LavaJamboSunPlanet>, */},
-        {"LavaRotatePlanet", /* createNameObj<LavaSunPlanet>, */},
-        {"LavaDomedPlanet", /* createNameObj<LavaSunPlanet>, */},
+        {
+            "HoneyQueenPlanet",
+            /* createNameObj<FurPlanetMap>, */
+        },
+        {
+            "LavaJamboSunPlanet",
+            createNameObj< LavaJamboSunPlanet >,
+        },
+        {
+            "LavaRotatePlanet",
+            createNameObj< LavaSunPlanet >,
+        },
+        {
+            "LavaDomedPlanet",
+            createNameObj< LavaSunPlanet >,
+        },
         {
             "MarblePlanet",
             createNameObj< MarblePlanet >,
         },
-        {"PeachCastleGardenPlanet", /* createNameObj<PeachCastleGardenPlanet>, */},
-        {"SandCapsuleInsidePlanet", /* createNameObj<SandCapsuleInsidePlanet>, */},
-        {"ScaleDownRelayPlanet", /* createNameObj<FlexibleSphere>, */},
-        {"SnowCapsulePlanet", /* createNameObj<SnowCapsulePlanet>, */},
-        {"TeresaRoomPlanet", /* createNameObj<PlanetMapAnimLow>, */},
-        {"TridentPlanet", /* createNameObj<AstroSimpleObj>, */},
-        {"QuestionBoxPlanetA", /* createNameObj<QuestionBoxGalleryObj>, */},
-        {"QuestionBoxPlanetB", /* createNameObj<QuestionBoxGalleryObj>, */},
-        {"QuestionBoxPlanetC", /* createNameObj<QuestionBoxGalleryObj>, */},
-        {"QuestionBoxPlanetD", /* createNameObj<QuestionBoxGalleryObj>, */},
-        {"QuestionBoxPlanetE", /* createNameObj<QuestionBoxGalleryObj>, */},
-        {"Quicksand2DPlanet", /* createNameObj<RailPlanetMap>, */},
+        {
+            "PeachCastleGardenPlanet",
+            createNameObj< PeachCastleGardenPlanet >,
+        },
+        {
+            "SandCapsuleInsidePlanet",
+            createNameObj< SandCapsuleInsidePlanet >,
+        },
+        {
+            "ScaleDownRelayPlanet",
+            /* createNameObj<FlexibleSphere>, */
+        },
+        {
+            "SnowCapsulePlanet",
+            createNameObj< SnowCapsulePlanet >,
+        },
+        {
+            "TeresaRoomPlanet",
+            /* createNameObj<PlanetMapAnimLow>, */
+        },
+        {
+            "TridentPlanet",
+            createNameObj< AstroSimpleObj >,
+        },
+        {
+            "QuestionBoxPlanetA",
+            /* createNameObj<QuestionBoxGalleryObj>, */
+        },
+        {
+            "QuestionBoxPlanetB",
+            /* createNameObj<QuestionBoxGalleryObj>, */
+        },
+        {
+            "QuestionBoxPlanetC",
+            /* createNameObj<QuestionBoxGalleryObj>, */
+        },
+        {
+            "QuestionBoxPlanetD",
+            /* createNameObj<QuestionBoxGalleryObj>, */
+        },
+        {
+            "QuestionBoxPlanetE",
+            /* createNameObj<QuestionBoxGalleryObj>, */
+        },
+        {
+            "Quicksand2DPlanet",
+            /* createNameObj<RailPlanetMap>, */
+        },
         {
             "ReverseGravityRoomPlanet",
             createNameObj< ReverseGravityRoomPlanet >,
         },
-        {"SandStreamHighTowerPlanet", /* createNameObj<RailPlanetMap>, */},
-        {"SandStreamJointPlanetA", /* createNameObj<RailPlanetMap>, */},
-        {"SandStreamJointPlanetB", /* createNameObj<RailPlanetMap>, */},
+        {
+            "SandStreamHighTowerPlanet",
+            /* createNameObj<RailPlanetMap>, */
+        },
+        {
+            "SandStreamJointPlanetA",
+            /* createNameObj<RailPlanetMap>, */
+        },
+        {
+            "SandStreamJointPlanetB",
+            /* createNameObj<RailPlanetMap>, */
+        },
         {
             "StarDustStartPlanet",
             createNameObj< RotateMoveObj >,
         },
-        {"WormEatenPlanet", /* createNameObj<WormEatenPlanet>, */},
+        {
+            "WormEatenPlanet",
+            createNameObj< WormEatenPlanet >,
+        },
     };
     static const UniqueEntry sUniquePlanetUniqueArchiveName[] = {
         {
