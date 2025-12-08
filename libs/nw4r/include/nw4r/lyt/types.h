@@ -35,6 +35,10 @@ namespace nw4r {
             f32 height;
         };
 
+        inline bool operator==(const Size& a, const Size& b) {
+            return a.width == b.width && a.height == b.height;
+        }
+
         struct InflationLRTB {
             f32 l;
             f32 r;
@@ -47,6 +51,32 @@ namespace nw4r {
             f32 r;
             f32 t;
             f32 b;
+        };
+
+        struct TexCoordGen {
+            TexCoordGen() : reserve(0) { Set(GX_TG_MTX2x4, GX_TG_TEX0, GX_IDENTITY); }
+
+            TexCoordGen(GXTexGenType aTexGenType, GXTexGenSrc aTexGenSrc, u32 aTexMtx)
+                : reserve(0)
+
+            {
+                Set(aTexGenType, aTexGenSrc, aTexMtx);
+            }
+
+            void Set(GXTexGenType aTexGenType, GXTexGenSrc aTexGenSrc, u32 aTexMtx) {
+                texGenType = aTexGenType;
+                texGenSrc = aTexGenSrc;
+                texMtx = u8(aTexMtx);
+            }
+
+            GXTexGenType GetTexGenType() const { return GXTexGenType(texGenType); }
+            GXTexGenSrc GetTexGenSrc() const { return GXTexGenSrc(texGenSrc); }
+            u32 GetTexMtx() const { return texMtx; }
+
+            u8 texGenType;
+            u8 texGenSrc;
+            u8 texMtx;
+            u8 reserve;
         };
 
         class AnimTransform;

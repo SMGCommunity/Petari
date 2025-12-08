@@ -7,6 +7,8 @@
 
 namespace nw4r {
     namespace lyt {
+        class Material;
+
         namespace detail {
             inline bool IsCITexelFormat(_GXTexFmt fmt) {
                 return fmt == GX_TF_C4 || fmt == GX_TF_C8 || fmt == GX_TF_C14X2;
@@ -21,12 +23,17 @@ namespace nw4r {
 
             class TexCoordAry {
             public:
+                typedef const math::VEC2 (*ConstArrayType)[4];
                 TexCoordAry();
 
                 void Free();
                 void Reserve(u8);
                 void SetSize(u8);
                 void Copy(const void*, u8);
+
+                bool IsEmpty() const { return mCap == 0; }
+                u8 GetSize() const { return mNum; }
+                ConstArrayType GetArray() const { return mData; }
 
                 u8 mCap;
                 u8 mNum;
@@ -61,6 +68,15 @@ namespace nw4r {
             inline s32 GetSignatureInt(const char sig[4]) {
                 return *reinterpret_cast< const s32* >(sig);
             }
+
+            inline u8 GetVtxColorElement(const ut::Color* pColors, u32 idx) {
+                return reinterpret_cast< const u8* >(&pColors[idx / 4])[idx % 4];
+            }
+            inline void SetVtxColorElement(ut::Color* pColors, u32 idx, u8 value) {
+                reinterpret_cast< u8* >(&pColors[idx / 4])[idx % 4] = value;
+            }
+
+            const Size GetTextureSize(Material* pMaterial, u8 texMapIdx);
 
         };  // namespace detail
     };  // namespace lyt

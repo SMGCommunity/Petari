@@ -1,11 +1,14 @@
 #pragma once
 
 #include "nw4r/lyt/animation.h"
+#include "nw4r/lyt/texMap.h"
 #include "nw4r/lyt/types.h"
 #include "nw4r/ut/Color.h"
 
 namespace nw4r {
     namespace lyt {
+        class TexMap;
+
         namespace detail {
             struct BitGXNums {
                 u32 texMap : 4;
@@ -23,6 +26,8 @@ namespace nw4r {
         };  // namespace detail
         class Material {
         public:
+            Material(const res::Material*, const ResBlockSet&);
+
             const char* GetName() const { return mName; }
             bool IsUserAllocated() const { return mbUserAllocated; }
 
@@ -34,6 +39,23 @@ namespace nw4r {
             virtual void Animate();
             virtual AnimationLink* FindAnimationLink(AnimTransform*);
             virtual void SetAnimationEnable(AnimTransform*, bool);
+
+            const TexMap* GetTexMapAry() const;
+            TexMap* GetTexMapAry();
+
+            const TexCoordGen* GetTexCoordGenAry() const;
+            TexCoordGen* GetTexCoordGenAry();
+
+            u8 GetTextureNum() const { return u8(mGXMemNum.texMap); }
+            void SetTextureNum(u8 num);
+
+            u8 GetTextureCap() const { return u8(mGXMemCap.texMap); }
+            u8 GetTexCoordGenCap() const { return u8(mGXMemCap.texCoordGen); }
+
+            void SetTexCoordGenNum(u8 num);
+            void SetTexture(u8 texMapIdx, const TexMap& texMap) { GetTexMapAry()[texMapIdx].Set(texMap); }
+
+            void SetTexCoordGen(u32 idx, TexCoordGen value) { GetTexCoordGenAry()[idx] = value; }
 
             AnimationList mAnimList;
             GXColorS10 mTevCols[3];
