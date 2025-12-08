@@ -45,6 +45,9 @@ namespace nw4r {
                 x = fx;
                 y = fy;
             }
+
+            operator f32*() { return reinterpret_cast< f32* >(this); }
+            operator const f32*() const { return reinterpret_cast< const f32* >(this); }
         };
 
         struct VEC3 : public _VEC3 {};
