@@ -7309,19 +7309,19 @@ Game/Ride/Pole.cpp:
 	.text       start:0x8032982C end:0x8032B838
 	.ctors      start:0x8052F1DC end:0x8052F1E0
 	.rodata     start:0x80539D70 end:0x80539D80
-	.data       start:0x805CF888 end:0x805CFC00
+	.data       start:0x805CF888 end:0x805CFC10
 	.sbss       start:0x806B63A8 end:0x806B63E8
 	.sdata2     start:0x806C0930 end:0x806C09B0
 
 Game/Ride/SledRopePoint.cpp:
 	.text       start:0x8032B838 end:0x8032BA6C
-	.data       start:0x805CFC00 end:0x805CFC10
+	.data       start:0x805CFC10 end:0x805CFC20
 	.sdata2     start:0x806C09B0 end:0x806C09C0
 
 Game/Ride/SlingShooter.cpp:
 	.text       start:0x8032BA6C end:0x8032DB5C
 	.ctors      start:0x8052F1E0 end:0x8052F1E4
-	.data       start:0x805CFC10 end:0x805CFE88
+	.data       start:0x805CFC20 end:0x805CFE88
 	.sbss       start:0x806B63E8 end:0x806B6408
 	.sdata2     start:0x806C09C0 end:0x806C0A00
 
