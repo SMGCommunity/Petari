@@ -40,12 +40,6 @@ namespace nw4r {
             virtual AnimationLink* FindAnimationLink(AnimTransform*);
             virtual void SetAnimationEnable(AnimTransform*, bool);
 
-            const TexMap* GetTexMapAry() const;
-            TexMap* GetTexMapAry();
-
-            const TexCoordGen* GetTexCoordGenAry() const;
-            TexCoordGen* GetTexCoordGenAry();
-
             u8 GetTextureNum() const { return u8(mGXMemNum.texMap); }
             void SetTextureNum(u8 num);
 
@@ -56,6 +50,24 @@ namespace nw4r {
             void SetTexture(u8 texMapIdx, const TexMap& texMap) { GetTexMapAry()[texMapIdx].Set(texMap); }
 
             void SetTexCoordGen(u32 idx, TexCoordGen value) { GetTexCoordGenAry()[idx] = value; }
+
+            const TexMap* GetTexMapAry() const;
+            TexMap* GetTexMapAry();
+            const TexCoordGen* GetTexCoordGenAry() const;
+            TexCoordGen* GetTexCoordGenAry();
+            TexSRT* GetTexSRTAry();
+            ChanCtrl* GetChanCtrlAry();
+            ut::Color* GetMatColAry();
+            TevSwapMode* GetTevSwapAry();
+            AlphaCompare* GetAlphaComparePtr();
+            BlendMode* GetBlendModePtr();
+            IndirectStage* GetIndirectStageAry();
+            TexSRT* GetIndTexSRTAry();
+            TevStage* GetTevStageAry();
+            void SetName(const char*);
+            void SetTevStageNum(u8);
+            void SetIndStageNum(u8);
+            void SetColorElement(u32, s16);
 
             AnimationList mAnimList;
             GXColorS10 mTevCols[3];

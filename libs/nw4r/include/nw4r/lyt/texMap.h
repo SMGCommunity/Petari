@@ -7,6 +7,27 @@ namespace nw4r {
     namespace lyt {
         class TexMap {
         public:
+            TexMap() {
+                SetImage(NULL);
+                SetSize(0, 0);
+                SetTexelFormat(GX_TF_I4);
+                SetWrapMode(GX_CLAMP, GX_CLAMP);
+                SetMipMap(false);
+                SetFilter(GX_LINEAR, GX_LINEAR);
+                SetLOD(0.0f, 0.0f);
+                SetLODBias(0.0f);
+                SetBiasClampEnable(false);
+                SetEdgeLODEnable(false);
+                SetAnisotropy(GX_ANISO_1);
+                SetPalette(NULL);
+                SetPaletteFormat(GX_TL_IA8);
+                SetPaletteEntryNum(0);
+            }
+
+            void SetImage(void* pImage) { mImage = pImage; }
+
+            void SetAnisotropy(GXAnisotropy aniso) { mBits.anisotropy = aniso; }
+
             void Get(_GXTexObj*) const;
             void Get(_GXTlutObj*) const;
             void Set(const _GXTexObj&);
