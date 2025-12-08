@@ -53,6 +53,8 @@ public:
 
 class RailMoveIndirectObj : public RailMoveObj {
 public:
+    inline RailMoveIndirectObj(const char* pName) : RailMoveObj(pName) {}
+
     virtual ~RailMoveIndirectObj();
 
     virtual void connectToScene(const MapObjActorInitInfo&);

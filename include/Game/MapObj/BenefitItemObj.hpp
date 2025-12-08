@@ -83,6 +83,7 @@ public:
 
 class BenefitItemOneUp : public BenefitItemObj {
 public:
+    inline BenefitItemOneUp(const char* a1) : BenefitItemObj(a1, "KinokoOneUp") {}
     inline BenefitItemOneUp(const char* a1, const char* a2) : BenefitItemObj(a1, a2) {}
 
     virtual ~BenefitItemOneUp() {}

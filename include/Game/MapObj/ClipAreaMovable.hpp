@@ -22,9 +22,9 @@ class ClipAreaMovable : public ClipArea {
 };
 
 namespace MR {
-    ClipArea* createClipAreaSphere(const char* pModel);
-    ClipArea* createClipAreaCenterBox(const char* pModel);
-    ClipArea* createClipAreaBottomBox(const char* pModel);
-    ClipArea* createClipAreaTopCone(const char* pModel);
-    ClipArea* createClipAreaBottomCone(const char* pModel);
+    NameObj* createClipAreaSphere(const char* pModel);
+    NameObj* createClipAreaCenterBox(const char* pModel);
+    NameObj* createClipAreaBottomBox(const char* pModel);
+    NameObj* createClipAreaTopCone(const char* pModel);
+    NameObj* createClipAreaBottomCone(const char* pModel);
 }  // namespace MR

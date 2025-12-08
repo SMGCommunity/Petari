@@ -9,6 +9,8 @@ const Mtx qMtx2_2 = {};
 
 class WaterRoad : public LiveActor {
 public:
+    WaterRoad(const char*);
+
     u32 _8C;
     u32 _90;
     u32 _94;

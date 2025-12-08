@@ -3,10 +3,6 @@
 #include "Game/LiveActor/ActorCameraInfo.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
 
-namespace {
-    static const char* cDemoName = "カギ出現";
-};
-
 class KeySwitch : public LiveActor {
 public:
     KeySwitch(const char*);
