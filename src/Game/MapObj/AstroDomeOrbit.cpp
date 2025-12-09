@@ -1,12 +1,17 @@
 #include "Game/MapObj/AstroDomeOrbit.hpp"
-#include "Game/Map/SphereSelector.hpp"
+#include "Game/LiveActor/LiveActor.hpp"
 #include "Game/MapObj/MiniatureGalaxyHolder.hpp"
+#include "Game/Util/Color.hpp"
 #include "Game/Util/Functor.hpp"
+#include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Map/SphereSelector.hpp"
 #include "JSystem/JGeometry/TMatrix.hpp"
 #include "revolution/gx/GXEnum.h"
 #include "revolution/gx/GXGeometry.h"
 #include "revolution/gx/GXVert.h"
+
 
 namespace {
     static f32 cRotateOutermost[3] = {20.0f, 45.0f, 0.0f};

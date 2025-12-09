@@ -1,8 +1,8 @@
 #pragma once
 
-#include <revolution.h>
 #include "nw4r/lyt/types.h"
 #include "nw4r/math/types.h"
+#include <revolution.h>
 
 namespace nw4r {
     namespace lyt {
@@ -117,9 +117,7 @@ namespace nw4r {
                 u32 frameOffsetTableOffset;
             };
 
-            struct Bounding : Pane {
-
-            };
+            struct Bounding : Pane {};
 
             struct ExtUserDataList {
                 DataBlockHeader blockHeader;
@@ -132,6 +130,17 @@ namespace nw4r {
                 char name[16];
                 u16 paneNum;
                 u8 padding[2];
+            };
+
+            struct MaterialResourceNum {
+                u32 bits;
+            };
+
+            struct Material {
+                char name[20];
+                GXColorS10 tevCols[3];
+                GXColor tevKCols[4];
+                MaterialResourceNum resNum;
             };
 
             struct AnimationTagBlock {
@@ -174,6 +183,6 @@ namespace nw4r {
                 u16 value;
                 u16 pad;
             };
-        };
-    };
-};
+        };  // namespace res
+    };  // namespace lyt
+};  // namespace nw4r

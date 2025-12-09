@@ -3,7 +3,7 @@
 #include "Game/Demo/DemoCastGroup.hpp"
 #include "Game/Demo/DemoExecutor.hpp"
 
-class DemoCastSubGroup : DemoCastGroup {
+class DemoCastSubGroup : public DemoCastGroup {
 public:
     DemoCastSubGroup(const char*);
 

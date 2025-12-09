@@ -2,7 +2,6 @@
 
 #include "Game/LiveActor/LiveActor.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
-#include "revolution/mtx.h"
 
 class AstroDomeCameraController : public LiveActor {
 public:

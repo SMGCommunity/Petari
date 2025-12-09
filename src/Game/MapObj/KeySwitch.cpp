@@ -1,6 +1,10 @@
 #include "Game/MapObj/KeySwitch.hpp"
 #include "JSystem/JMath/JMath.hpp"
 
+namespace {
+    static const char* cDemoName = "カギ出現";
+};
+
 KeySwitch::~KeySwitch() {}
 
 KeySwitch::KeySwitch(const char* pName) : LiveActor(pName) {
@@ -205,7 +209,7 @@ bool KeySwitch::tryAvoid() {
     if (sensor->mType != 0x58) {
         return false;
     }
-    
+
     sensorActor = sensor->mHost;
     TVec3f up;
     MR::calcUpVec(&up, sensorActor);

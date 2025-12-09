@@ -93,6 +93,7 @@ public:
 };
 
 class SimpleTextureSwitchChangeObj : public SimpleMapObj {
+public:
     inline SimpleTextureSwitchChangeObj(const char* pName) : SimpleMapObj(pName) {}
 
     virtual ~SimpleTextureSwitchChangeObj();
@@ -103,6 +104,7 @@ class SimpleTextureSwitchChangeObj : public SimpleMapObj {
 };
 
 class UFOKinokoUnderConstruction : public MapObjActor {
+public:
     inline UFOKinokoUnderConstruction(const char* pName) : MapObjActor(pName) {}
 
     virtual ~UFOKinokoUnderConstruction();

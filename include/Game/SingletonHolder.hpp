@@ -1,5 +1,7 @@
 #pragma once
 
+#include "revolution/types.h"
+
 template < typename T >
 class SingletonHolder {
 public:

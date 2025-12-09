@@ -7,7 +7,7 @@
 extern "C" {
 #endif
 
-typedef struct{
+typedef struct {
     f32 x, y, z;
 } Vec, *VecPtr;
 
@@ -41,42 +41,42 @@ void C_MTXPerspective(Mtx44, f32, f32, f32, f32);
 void PSMTXIdentity(Mtx);
 void PSMTXCopy(const Mtx, Mtx);
 void PSMTXConcat(const Mtx, const Mtx, Mtx);
-void PSMTXMultVecSR(const Mtx, const Vec *, Vec *);
+void PSMTXMultVecSR(const Mtx, const Vec*, Vec*);
 
 u32 PSMTXInverse(const Mtx, Mtx);
 
-void PSMTXMultVec(const Mtx, const Vec *, Vec *);
+void PSMTXMultVec(const Mtx, const Vec*, Vec*);
 
+void PSMTXTransApply(const Mtx src, Mtx dst, f32 xT, f32 yT, f32 zT);
 void PSMTXScaleApply(const Mtx, Mtx, f32, f32, f32);
 void PSMTXScale(Mtx, f32, f32, f32);
-
-void PSMTXRotAxisRad(Mtx dst, const Vec *, f32);
+void PSMTXRotRad(Mtx m, char axis, f32 rad);
+void PSMTXRotAxisRad(Mtx dst, const Vec*, f32);
 
 /* Paired Single Quaternion */
-void PSQUATMultiply(const Quaternion *, const Quaternion *, Quaternion *);
+void PSQUATMultiply(const Quaternion*, const Quaternion*, Quaternion*);
 
 /* C Vector */
 
-f32 C_VECMag(const Vec *);
+f32 C_VECMag(const Vec*);
 
 /* Paired Single Vector */
-void PSVECAdd(const Vec *, const Vec *, Vec *);
-void PSVECSubtract(const Vec *, const Vec *, Vec *);
-void PSVECScale(const Vec *, const Vec *, f32);
-void PSVECNormalize(const Vec *, Vec *);
+void PSVECAdd(const Vec*, const Vec*, Vec*);
+void PSVECSubtract(const Vec*, const Vec*, Vec*);
+void PSVECScale(const Vec*, const Vec*, f32);
+void PSVECNormalize(const Vec*, Vec*);
 
-f32 PSVECMag(const Vec *);
-f32 PSVECDotProduct(const Vec *, const Vec *);
-void PSVECCrossProduct(const Vec *, const Vec *, Vec *);
-f32 PSVECDistance(const Vec *, const Vec *);
+f32 PSVECMag(const Vec*);
+f32 PSVECDotProduct(const Vec*, const Vec*);
+void PSVECCrossProduct(const Vec*, const Vec*, Vec*);
+f32 PSVECDistance(const Vec*, const Vec*);
 
 /* SMG1 uses the paired single versions of matrix / vector operations */
-#define VECNormalize    PSVECNormalize
-#define VECMag          PSVECMag
-
+#define VECNormalize PSVECNormalize
+#define VECMag PSVECMag
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif // MTX_H
+#endif  // MTX_H

@@ -37,6 +37,14 @@ public:
     virtual bool isOnStartAnmTrigger() const;
 };
 
+class AnmModelSwitchMoveEndKill : public AnmModelSwitchMove {
+public:
+    AnmModelSwitchMoveEndKill(const char* pName) : AnmModelSwitchMove(pName){};
+
+    virtual ~AnmModelSwitchMoveEndKill();
+    virtual bool isKilledAtMoveDone() const;
+};
+
 class AnmModelGroundOnMove : public AnmModelObj {
 public:
     AnmModelGroundOnMove(const char*);

@@ -20,6 +20,7 @@ namespace MR {
 
     bool getFirstPolyOnLineToMap(TVec3f*, Triangle*, const TVec3f&, const TVec3f&);
     bool getFirstPolyOnLineToMapExceptActor(TVec3f*, Triangle*, const TVec3f&, const TVec3f&, const LiveActor*);
+    bool getFirstPolyOnLineToMapAndMoveLimit(TVec3f*, Triangle*, const TVec3f&, const TVec3f&);
     bool getFirstPolyNormalOnLineToMap(TVec3f*, const TVec3f&, const TVec3f&, TVec3f*, const HitSensor*);
 
     bool isWallCodeNoAction(const Triangle*);

@@ -37,7 +37,3 @@ namespace NrvDesertMovingLand {
     NERVE_DECL_EXE(HostTypeMoveUpSign, DesertMovingLand, MoveSign);
     NERVE_DECL_EXE(HostTypeStop, DesertMovingLand, Stop);
 };  // namespace NrvDesertMovingLand
-
-namespace {
-    static const char* cDemoName = "砂漠ＵＦＯ上昇";
-};

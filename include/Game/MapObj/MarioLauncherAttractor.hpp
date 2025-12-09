@@ -4,6 +4,7 @@
 #include "Game/LiveActor/LiveActor.hpp"
 
 class MarioLauncherAttractor : public LiveActor {
+public:
     MarioLauncherAttractor(const char* pName);
 
     virtual ~MarioLauncherAttractor() {}

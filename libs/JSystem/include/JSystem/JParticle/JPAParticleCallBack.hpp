@@ -1,6 +1,6 @@
 #pragma once
 
-#include <JSystem/JParticle/JPAEmitterCallback.hpp>
+#include <JSystem/JParticle/JPAEmitterCallBack.hpp>
 
 class JPABaseParticle;
 

@@ -2,4 +2,4 @@
 
 class MarioMove;
 
-void MarioMove::initAfter();
+// void MarioMove::initAfter();

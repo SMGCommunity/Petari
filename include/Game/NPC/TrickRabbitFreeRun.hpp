@@ -7,6 +7,9 @@
 #include "Game/Util/JMapInfo.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
 #include <cstddef>
+
+class SpotMarkLight;
+
 class TrickRabbitFreeRun : public LiveActor {
 public:
     TrickRabbitFreeRun(const char* pName);

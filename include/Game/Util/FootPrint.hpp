@@ -9,6 +9,7 @@ class FootPrintInfo;
 
 class FootPrint : public NameObj {
 public:
+    FootPrint(const char*, s32);
     FootPrint(const char*, s32, s32);
     void setTexture(ResTIMG*);
     void addPrint(const TVec3f&, const TVec3f&, const TVec3f&, bool);
