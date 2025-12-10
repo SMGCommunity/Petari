@@ -1910,7 +1910,7 @@ config.libs = [
             Object(NonMatching, "Game/Ride/PlantLeaf.cpp"),
             Object(NonMatching, "Game/Ride/PlantStalk.cpp"),
             Object(NonMatching, "Game/Ride/Pole.cpp"),
-            Object(NonMatching, "Game/Ride/SledRopePoint.cpp"),
+            Object(Matching, "Game/Ride/SledRopePoint.cpp"),
             Object(NonMatching, "Game/Ride/SlingShooter.cpp"),
             Object(NonMatching, "Game/Ride/SpaceCocoon.cpp"),
             Object(NonMatching, "Game/Ride/SphereAccelSensorController.cpp"),
