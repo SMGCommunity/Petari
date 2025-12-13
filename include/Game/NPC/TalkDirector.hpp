@@ -27,10 +27,10 @@ public:
     void updateMessage();
     void prepTalk(TalkMessageCtrl*, bool, bool, bool);
     void termTalk();
-    void initState(TalkMessageCtrl*);
+    TalkState* initState(TalkMessageCtrl*);
     bool isInvalidTalk() const;
     void appearYesNoSelector(const TalkMessageCtrl*) const;
-    u32 getDemoType(const TalkMessageCtrl*, bool) const;
+    s32 getDemoType(const TalkMessageCtrl*, bool) const;
     u8 getBranchResult(u16);
     void initBranchResult();
     void pauseOff();
@@ -43,18 +43,17 @@ public:
     void exeSlct();
     void exeNext();
     void exeTerm();
+    void exeWait();
 
     MR::AssignableArray< TalkMessageCtrl* > mMsgControls;  // 0x20
-    TalkPeekZ* mPeekZ;                                     // 0x2C
-    TalkBalloonHolder* mBalloonHolder;                     // 0x30
-    TalkStateHolder* mStateHolder;                         // 0x34
-    TalkMessageCtrl* mMsgCtrl;                             // 0x38
-    u32 _3C;
-    u32 _40;
-    bool _44;
-    bool _45;
-    bool _46;
-    bool _47;
+    u32 _28;
+    TalkPeekZ* mPeekZ;                  // 0x2C
+    TalkBalloonHolder* mBalloonHolder;  // 0x30
+    TalkStateHolder* mStateHolder;      // 0x34
+    TalkMessageCtrl* mMsgCtrl;          // 0x38
+    TalkMessageCtrl* _3C;
+    TalkMessageCtrl* _40;
+    TalkMessageCtrl* _44;
     TalkState* mTalkState;  // 0x48
     bool _4C;
     bool _4D;
@@ -97,6 +96,13 @@ public:
     bool mIsRosettaTalkAstroDemoRecover;      // 0x89
     bool mIsRosettaTalkTorchProgress;         // 0x8A
     bool mIsOnGameEventFlagViewNormalEnding;  // 0x8B
+};
+
+class TalkPeekZ {
+public:
+    TalkPeekZ();
+    void setDrawSyncToken();
+    void drawSyncCallback(u16);
 };
 
 namespace MR {
