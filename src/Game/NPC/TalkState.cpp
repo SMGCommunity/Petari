@@ -170,7 +170,7 @@ bool TalkStateNormal::test() {
 }
 
 void TalkStateNormal::clos() {
-    _24->term();
+    mAButton->term();
     mBalloon->close();
 }
 
@@ -189,26 +189,26 @@ bool TalkStateNormal::term(const TalkMessageCtrl* pArg1) {
 // Stuck at 99% because assembly string labels don't match, even though the code *should* be correct.
 bool TalkStateNormal::prep(const TalkMessageCtrl* pArg1) {
     if (TalkStateNormal::isLostMessage(pArg1)) {
-        _24->term();
+        mAButton->term();
         return false;
     }
 
     TalkStateNormal::updateButton();
 
     if (!_18->isEnableTalkPlayerStateNormal()) {
-        _24->term();
+        mAButton->term();
     } else if (!MR::testCorePadTriggerA(0)) {
         TalkMessageInfo* info = TalkFunction::getMessageInfo(_04);
-        if (!_24->isOpen()) {
+        if (!mAButton->isOpen()) {
             if (info->isBalloonSign()) {
-                _24->openWithRead();
+                mAButton->openWithRead();
             } else {
-                _24->openWithTalk();
+                mAButton->openWithTalk();
             }
             MR::startSystemSE("SE_SM_TALK_BUTTON_APPEAR", -1, -1);
         }
     } else {
-        _24->term();
+        mAButton->term();
         MR::startSystemSE("SE_SY_TALK_START", -1, -1);
         MR::startCSSound("CS_CLICK_OPEN", nullptr, 0);
     }
@@ -236,19 +236,17 @@ void TalkStateNormal::updateButton() {
     TVec2f playerScreenPos;                 // 0x28
     MR::calcScreenPosition(&playerScreenPos, *MR::getPlayerCenterPos());
 
-    // Outer TVec2f is 0x20 but shouldn't exist?
-    // Inner TVec2f is 0x10 but should be 0x20
+    // JGeometry::TVec2<float>::TVec2(const JGeometry::TVec2<float>&) shouldn't be called
     TVec2f v10(TVec2f(0.0f, -1.0f) * (40.0f * f1));
     playerScreenPos.x += v10.x;
     playerScreenPos.y += v10.y;
 
-    // Outer TVec2f is 0x18 but shouldn't exist?
-    // Inner TVec2f is 0x08 but should be 0x18
+    // JGeometry::TVec2<float>::TVec2(const JGeometry::TVec2<float>&) shouldn't be called
     TVec2f v11(TVec2f(up.x, up.y) * (60.0f * f2));
     playerScreenPos.x += v11.x;
     playerScreenPos.y += v11.y;
 
-    _24->setTrans(playerScreenPos);
+    mAButton->setTrans(playerScreenPos);
 }
 
 TalkStateCompose::TalkStateCompose() : TalkStateNormal() {}
@@ -279,11 +277,11 @@ bool TalkStateCompose::prep(const TalkMessageCtrl* pArg1) {
     } else if (_04->isNearPlayer(_04->mTalkDistance)) {
         unknownBool = TalkStateNormal::prep(pArg1);
     } else {
-        _24->term();
+        mAButton->term();
     }
 
     if (!unknownBool) {
-        _24->term();
+        mAButton->term();
         mSecondBalloon->close();
     }
 
@@ -291,24 +289,24 @@ bool TalkStateCompose::prep(const TalkMessageCtrl* pArg1) {
 }
 
 TalkStateHolder::TalkStateHolder() : _00(new TalkSupportPlayerWatcher()) {
-    _04 = new IconAButton(true, false);
-    _04->initWithoutIter();
+    mAButton = new IconAButton(true, false);
+    mAButton->initWithoutIter();
 
-    _1C = new TalkBalloonShort("会話吹き出し[合成会話]");
-    _1C->initWithoutIter();
-    _1C->initInterval();
-    _1C->kill();
+    mBalloonShort = new TalkBalloonShort("会話吹き出し[合成会話]");
+    mBalloonShort->initWithoutIter();
+    mBalloonShort->initInterval();
+    mBalloonShort->kill();
 
     mTalkShort = new TalkStateShort();
 
     mTalkNormal = new TalkStateNormal();
-    mTalkNormal->_24 = _04;
+    mTalkNormal->mAButton = mAButton;
     mTalkNormal->_18 = _00;
 
     mTalkCompose = new TalkStateCompose();
-    mTalkCompose->_24 = _04;
+    mTalkCompose->mAButton = mAButton;
     mTalkCompose->_18 = _00;
-    mTalkCompose->mSecondBalloon = _1C;
+    mTalkCompose->mSecondBalloon = mBalloonShort;
 
     mTalkEvent = new TalkStateEvent();
     mTalkEvent->_18 = _00;
@@ -321,7 +319,7 @@ void TalkStateHolder::update() {
 }
 
 void TalkStateHolder::pauseOff() {
-    MR::requestMovementOn(_04);
+    MR::requestMovementOn(mAButton);
 }
 
 TalkState* TalkStateHolder::getState(const TalkMessageCtrl* pArg1) {
