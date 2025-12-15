@@ -8598,7 +8598,7 @@ Game/System/Overwrite.cpp:
 	.text       start:0x803A41E0 end:0x803A70BC
 	.ctors      start:0x8052F388 end:0x8052F38C
 	.rodata     start:0x8053B8C0 end:0x8053B8D0
-	.data       start:0x805DBD20 end:0x805DBEE8
+	.data       start:0x805DBD20 end:0x805DBE28
 	.bss        start:0x8060B388 end:0x8060B3C0
 	.sdata      start:0x806B2578 end:0x806B2590
 	.sdata2     start:0x806C1448 end:0x806C1478
@@ -8609,6 +8609,7 @@ Game/System/PauseButtonCheckerInGame.cpp:
 Game/System/PlacedHiddenStarScenarioTable.cpp:
 	.text       start:0x803A7218 end:0x803A7274
 	.rodata     start:0x8053B8D0 end:0x8053B8E0
+	.data       start:0x805DBE28 end:0x805DBE40
 
 Game/System/RenderMode.cpp:
 	.text       start:0x803A7274 end:0x803A7448
@@ -8617,6 +8618,7 @@ Game/System/RenderMode.cpp:
 Game/System/ResourceHolder.cpp:
 	.text       start:0x803A7448 end:0x803A7FC4
 	.rodata     start:0x8053BB48 end:0x8053BBA8
+	.data       start:0x805DBE40 end:0x805DBEE8
 	.sdata      start:0x806B2590 end:0x806B2598
 
 Game/System/ResourceHolderManager.cpp:
