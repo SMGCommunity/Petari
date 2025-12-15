@@ -288,7 +288,9 @@ bool TalkStateCompose::prep(const TalkMessageCtrl* pArg1) {
     return unknownBool;
 }
 
-TalkStateHolder::TalkStateHolder() : _00(new TalkSupportPlayerWatcher()) {
+TalkStateHolder::TalkStateHolder() {
+    _00 = new TalkSupportPlayerWatcher();
+
     mAButton = new IconAButton(true, false);
     mAButton->initWithoutIter();
 
