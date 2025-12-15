@@ -236,7 +236,6 @@ bool JumpBranch::updateBind() {
 
             f32 proj = mFront.dot(stickXZ);
 
-            // f32 scaleFront = mFront.x * 10.0f;
             jumpDir.x = proj * (mFront.x * 10.0f);
             jumpDir.y = proj * (mFront.y * 10.0f) + 16.0f;
             jumpDir.z = proj * (mFront.z * 10.0f);
