@@ -3,6 +3,7 @@
 #include "Game/Ride/BigBubble.hpp"
 #include "Game/Ride/Fluff.hpp"
 #include "Game/Ride/FluffWind.hpp"
+#include "Game/Ride/JumpBranch.hpp"
 #include "Game/Ride/Plant.hpp"
 #include "Game/Ride/Pole.hpp"
 #include "Game/Ride/SphereController.hpp"

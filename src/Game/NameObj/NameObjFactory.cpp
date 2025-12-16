@@ -829,7 +829,7 @@ namespace {
         },
         {
             "JumpBranch",
-            nullptr,
+            createNameObj< JumpBranch >,
             "JumpBranch",
         },
         {
