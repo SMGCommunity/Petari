@@ -7884,7 +7884,10 @@ namespace {
             "AstroDomeSky",
             AstroMapObjFunction::makeArchiveListFromArg0,
         },
-        {"AstroDomeGalaxySelector", /* GalaxySelectInfo::makeArchiveList, */},
+        {
+            "AstroDomeGalaxySelector",
+            GalaxySelectInfo::makeArchiveList,
+        },
         {
             "AstroStarPlate",
             AstroMapObjFunction::makeArchiveListFromArg0,

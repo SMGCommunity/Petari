@@ -1,24 +1,30 @@
 #pragma once
 
-#include "Game/NameObj/NameObjArchiveListCollector.hpp"
 #include "Game/Screen/LayoutActor.hpp"
-#include "Game/Util/JMapInfo.hpp"
-#include "revolution/types.h"
+
+class GalaxyInfoLayoutSetter;
+class NameObjArchiveListCollector;
+class ValueControl;
 
 class GalaxySelectInfo : public LayoutActor {
 public:
     GalaxySelectInfo(bool);
-    ~GalaxySelectInfo();
-    virtual void init(const JMapInfoIter&);
+
+    virtual void init(const JMapInfoIter& rIter);
     virtual void draw() const;
     virtual void appear();
     virtual void kill();
+    virtual void control();
 
-    void show(const char*, u32, s32);
-    void makeArchiveList(NameObjArchiveListCollector*, const JMapInfoIter&);
-    void control();
-    void show(const char*, u32, bool, s32);
+    bool show(const char*, u32, int);
+    static void makeArchiveList(NameObjArchiveListCollector* pCollector, const JMapInfoIter& rIter);
+    bool show(const char*, u32, bool, int);
     void exeWait();
-    void exeDisappear();
-    // ...
+    void exeDisappear() NO_INLINE;
+
+    /* 0x20 */ bool _20;
+    /* 0x24 */ const char* _24;
+    /* 0x28 */ bool _28;
+    /* 0x2C */ ValueControl* mFadeinoutControl;
+    /* 0x30 */ GalaxyInfoLayoutSetter* mInfoLayoutSetter;
 };

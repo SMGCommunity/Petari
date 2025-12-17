@@ -2003,7 +2003,7 @@ config.libs = [
             Object(NonMatching, "Game/Screen/GalaxyNamePlate.cpp"),
             Object(NonMatching, "Game/Screen/GalaxyNamePlateDrawer.cpp"),
             Object(Matching, "Game/Screen/GalaxySelectBackButton.cpp"),
-            Object(NonMatching, "Game/Screen/GalaxySelectInfo.cpp"),
+            Object(Matching, "Game/Screen/GalaxySelectInfo.cpp"),
             Object(Matching, "Game/Screen/GamePauseSequence.cpp"),
             Object(Matching, "Game/Screen/GameSceneLayoutHolder.cpp"),
             Object(Matching, "Game/Screen/GameStageClearSequence.cpp"),
