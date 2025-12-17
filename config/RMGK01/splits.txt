@@ -7764,6 +7764,7 @@ Game/Screen/GalaxyMapIcon.cpp:
 	.text       start:0x8035EF74 end:0x8035F4D8
 	.rodata     start:0x8053A700 end:0x8053A708
 	.data       start:0x805D5088 end:0x805D50F8
+	.sdata      start:0x806B23D8 end:0x806B23E0
 	.sdata2     start:0x806C0F88 end:0x806C0F90
 
 Game/Screen/GalaxyMapMarioIcon.cpp:
