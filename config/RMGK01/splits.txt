@@ -8779,7 +8779,7 @@ Game/System/GameEventFlagTable.cpp:
 	.text       start:0x803B3D74 end:0x803B4D8C
 	.rodata     start:0x8053C918 end:0x8053D7C8
 	.data       start:0x805DE758 end:0x805DF8C8
-	.sdata      start:0x806B25E0 end:0x806B2608
+	.sdata      start:0x806B25E0 end:0x806B25F0
 	.sbss       start:0x806B6F58 end:0x806B6F60
 
 Game/System/GameEventFlagChecker.cpp:
@@ -8827,6 +8827,7 @@ Game/System/SaveDataHandler.cpp:
 	.ctors      start:0x8052F398 end:0x8052F39C
 	.rodata     start:0x8053D8A8 end:0x8053D8D0
 	.data       start:0x805DFDE8 end:0x805DFE88
+	.sdata      start:0x806B25F0 end:0x806B25F8
 	.sbss       start:0x806B6F88 end:0x806B6FA0
 
 Game/System/SaveDataHandleSequence.cpp:
@@ -8855,8 +8856,9 @@ Game/System/StarPieceAlmsStorage.cpp:
 Game/System/StorySequenceExecutor.cpp:
 	.text       start:0x803BB954 end:0x803BD404
 	.ctors      start:0x8052F3A0 end:0x8052F3A4
-	.rodata     start:0x8053D910 end:0x8053EB38
+	.rodata     start:0x8053D910 end:0x8053DC20
 	.data       start:0x805E00E0 end:0x805E07E8
+	.sdata      start:0x806B25F8 end:0x806B2600
 	.sbss       start:0x806B6FD8 end:0x806B7000
 
 Game/System/SysConfigFile.cpp:
@@ -8883,6 +8885,7 @@ Game/Util/ActorSensorUtil.cpp:
 Game/Util/ActorShadowLocalUtil.cpp:
 	.text       start:0x803C5054 end:0x803C61B8
 	.data       start:0x805E08D0 end:0x805E0AB0
+	.sdata      start:0x806B2600 end:0x806B2608
 	.sdata2     start:0x806C1568 end:0x806C1578
 
 Game/Util/ActorShadowUtil.cpp:
