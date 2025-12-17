@@ -1,22 +1,26 @@
 #pragma once
-#include "Game/LiveActor/HitSensor.hpp"
-#include "Game/LiveActor/LiveActor.hpp"
-#include "Game/NPC/TalkMessageCtrl.hpp"
-#include "Game/System/NerveExecutor.hpp"
 
-class RabbitStateWaitStart : public NerveExecutor {
+#include "Game/LiveActor/ActorStateBase.hpp"
+#include <JSystem/JGeometry/TVec.hpp>
+
+class HitSensor;
+class LiveActor;
+class TalkMessageCtrl;
+
+class RabbitStateWaitStart : public ActorStateBaseInterface {
 public:
-    RabbitStateWaitStart(LiveActor* pActor, TVec3f* pPos, TalkMessageCtrl* pCtrl);
-    virtual ~RabbitStateWaitStart();
+    RabbitStateWaitStart(LiveActor* pHost, TVec3f* pHostRotateFront, TalkMessageCtrl* pTalkMessageCtrl);
+
     virtual void init();
     virtual void appear();
     virtual void control();
     virtual bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
     virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
+
     void setTalkActionName(const char* pName);
-    void requestTrample();
-    void requestSpin();
-    void requestHitReaction();
+    bool requestTrample();
+    bool requestSpin();
+    bool requestHitReaction();
     bool isEnableReaction() const;
     bool trySmallTurn();
     bool tryTalk();
@@ -29,20 +33,10 @@ public:
     void exePointing();
     void exeTalk();
 
-    u32 _8;
-    u32 _C;
-    u32 _10;
-    u32 _14;
-    u32 _18;
-    bool _1C;
+    /* 0x0C */ LiveActor* mHost;
+    /* 0x10 */ const char* mTalkActionName;
+    /* 0x14 */ TVec3f* mHostRotateFront;
+    /* 0x18 */ TalkMessageCtrl* mTalkMessageCtrl;
+    /* 0x1C */ bool _1C;
+    /* 0x1D */ bool _1D;
 };
-
-namespace NrvRabbitStateWatiStart {
-    NERVE_DECL_EXE(RabbitStateWaitStartNrvWait, RabbitStateWaitStart, Wait);
-    NERVE_DECL_EXE(RabbitStateWaitStartNrvSmallTurn, RabbitStateWaitStart, SmallTurn);
-    NERVE_DECL_EXE(RabbitStateWaitStartNrvHitReaction, RabbitStateWaitStart, HitReaction);
-    NERVE_DECL_EXE(RabbitStateWaitStartNrvTrample, RabbitStateWaitStart, Trample);
-    NERVE_DECL_EXE(RabbitStateWaitStartNrvSpin, RabbitStateWaitStart, Spin);
-    NERVE_DECL_EXE(RabbitStateWaitStartNrvPointing, RabbitStateWaitStart, Pointing);
-    NERVE_DECL_EXE(RabbitStateWaitStartNrvTalk, RabbitStateWaitStart, Talk);
-}  // namespace NrvRabbitStateWatiStart

@@ -6271,7 +6271,7 @@ Game/NPC/Rabbit.cpp:
 	.text       start:0x8027F8CC end:0x8028110C
 	.ctors      start:0x8052EFCC end:0x8052EFD0
 	.data       start:0x805B1E50 end:0x805B2180
-	.sdata      start:0x806B2128 end:0x806B2160
+	.sdata      start:0x806B2128 end:0x806B2150
 	.sbss       start:0x806B5E88 end:0x806B5EC8
 	.sdata2     start:0x806BED78 end:0x806BEDE8
 
@@ -6286,6 +6286,7 @@ Game/NPC/RabbitStateWaitStart.cpp:
 	.text       start:0x80281750 end:0x8028217C
 	.ctors      start:0x8052EFD4 end:0x8052EFD8
 	.data       start:0x805B22B8 end:0x805B2450
+	.sdata      start:0x806B2150 end:0x806B2158
 	.sbss       start:0x806B5ED8 end:0x806B5EF8
 	.sdata2     start:0x806BEDF8 end:0x806BEE10
 
@@ -6326,6 +6327,7 @@ Game/NPC/RunawayRabbit.cpp:
 	.ctors      start:0x8052EFEC end:0x8052EFF0
 	.data       start:0x805B3080 end:0x805B3370
 	.bss        start:0x8060AE20 end:0x8060AE78
+	.sdata      start:0x806B2158 end:0x806B2160
 	.sbss       start:0x806B5F40 end:0x806B5F68
 	.sdata2     start:0x806BEE70 end:0x806BEEE8
 

@@ -471,7 +471,7 @@ void TrickRabbit::exeWaitStart() {
         mRabbitStateWaitStart->_1C = true;
     }
 
-    if (MR::updateActorState(this, (ActorStateBaseInterface*)mRabbitStateWaitStart) && !tryStartDemoRunnaway())
+    if (MR::updateActorState(this, mRabbitStateWaitStart) && !tryStartDemoRunnaway())
         setNerve(&NrvTrickRabbit::TrickRabbitNrvTryStartDemoRunnaway::sInstance);
 }
 
@@ -694,7 +694,7 @@ void TrickRabbit::exeCaught() {
         MR::stopStageBGM(60);
         MR::startSystemSE("SE_SY_TOTAL_COMPLETE", -1, -1);
     }
-    MR::updateActorStateAndNextNerve(this, (ActorStateBaseInterface*)mRabbitStateCaught, &NrvTrickRabbit::TrickRabbitNrvWaitPowerStarDemo::sInstance);
+    MR::updateActorStateAndNextNerve(this, mRabbitStateCaught, &NrvTrickRabbit::TrickRabbitNrvWaitPowerStarDemo::sInstance);
 }
 
 void TrickRabbit::exeWaitPowerStarDemo() {
@@ -730,7 +730,7 @@ void TrickRabbit::exeGiveUp() {
         mRabbitStateWaitStart->setTalkActionName("GiveUpTalk");
         mRabbitStateWaitStart->_1C = false;
     }
-    MR::updateActorState(this, (ActorStateBaseInterface*)mRabbitStateWaitStart);
+    MR::updateActorState(this, mRabbitStateWaitStart);
 }
 
 void TrickRabbit::doWait() {
