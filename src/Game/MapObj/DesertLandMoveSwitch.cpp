@@ -150,7 +150,7 @@ bool DesertLandMoveSwitch::tryConnect() {
     if (mMapObjConnector->_4 != 0)
         return true;
 
-    mMapObjConnector->attachToUnder();
+    return mMapObjConnector->attachToUnder();
 }
 
 void DesertLandMoveSwitch::updateTimerSE() {

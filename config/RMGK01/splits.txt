@@ -6271,7 +6271,7 @@ Game/NPC/Rabbit.cpp:
 	.text       start:0x8027F8CC end:0x8028110C
 	.ctors      start:0x8052EFCC end:0x8052EFD0
 	.data       start:0x805B1E50 end:0x805B2180
-	.sdata      start:0x806B2128 end:0x806B2160
+	.sdata      start:0x806B2128 end:0x806B2150
 	.sbss       start:0x806B5E88 end:0x806B5EC8
 	.sdata2     start:0x806BED78 end:0x806BEDE8
 
@@ -6286,6 +6286,7 @@ Game/NPC/RabbitStateWaitStart.cpp:
 	.text       start:0x80281750 end:0x8028217C
 	.ctors      start:0x8052EFD4 end:0x8052EFD8
 	.data       start:0x805B22B8 end:0x805B2450
+	.sdata      start:0x806B2150 end:0x806B2158
 	.sbss       start:0x806B5ED8 end:0x806B5EF8
 	.sdata2     start:0x806BEDF8 end:0x806BEE10
 
@@ -6326,6 +6327,7 @@ Game/NPC/RunawayRabbit.cpp:
 	.ctors      start:0x8052EFEC end:0x8052EFF0
 	.data       start:0x805B3080 end:0x805B3370
 	.bss        start:0x8060AE20 end:0x8060AE78
+	.sdata      start:0x806B2158 end:0x806B2160
 	.sbss       start:0x806B5F40 end:0x806B5F68
 	.sdata2     start:0x806BEE70 end:0x806BEEE8
 
@@ -7764,6 +7766,7 @@ Game/Screen/GalaxyMapIcon.cpp:
 	.text       start:0x8035EF74 end:0x8035F4D8
 	.rodata     start:0x8053A700 end:0x8053A708
 	.data       start:0x805D5088 end:0x805D50F8
+	.sdata      start:0x806B23D8 end:0x806B23E0
 	.sdata2     start:0x806C0F88 end:0x806C0F90
 
 Game/Screen/GalaxyMapMarioIcon.cpp:
@@ -8598,7 +8601,7 @@ Game/System/Overwrite.cpp:
 	.text       start:0x803A41E0 end:0x803A70BC
 	.ctors      start:0x8052F388 end:0x8052F38C
 	.rodata     start:0x8053B8C0 end:0x8053B8D0
-	.data       start:0x805DBD20 end:0x805DBEE8
+	.data       start:0x805DBD20 end:0x805DBE28
 	.bss        start:0x8060B388 end:0x8060B3C0
 	.sdata      start:0x806B2578 end:0x806B2590
 	.sdata2     start:0x806C1448 end:0x806C1478
@@ -8609,6 +8612,7 @@ Game/System/PauseButtonCheckerInGame.cpp:
 Game/System/PlacedHiddenStarScenarioTable.cpp:
 	.text       start:0x803A7218 end:0x803A7274
 	.rodata     start:0x8053B8D0 end:0x8053B8E0
+	.data       start:0x805DBE28 end:0x805DBE40
 
 Game/System/RenderMode.cpp:
 	.text       start:0x803A7274 end:0x803A7448
@@ -8617,6 +8621,7 @@ Game/System/RenderMode.cpp:
 Game/System/ResourceHolder.cpp:
 	.text       start:0x803A7448 end:0x803A7FC4
 	.rodata     start:0x8053BB48 end:0x8053BBA8
+	.data       start:0x805DBE40 end:0x805DBEE8
 	.sdata      start:0x806B2590 end:0x806B2598
 
 Game/System/ResourceHolderManager.cpp:
@@ -8777,7 +8782,7 @@ Game/System/GameEventFlagTable.cpp:
 	.text       start:0x803B3D74 end:0x803B4D8C
 	.rodata     start:0x8053C918 end:0x8053D7C8
 	.data       start:0x805DE758 end:0x805DF8C8
-	.sdata      start:0x806B25E0 end:0x806B2608
+	.sdata      start:0x806B25E0 end:0x806B25F0
 	.sbss       start:0x806B6F58 end:0x806B6F60
 
 Game/System/GameEventFlagChecker.cpp:
@@ -8825,6 +8830,7 @@ Game/System/SaveDataHandler.cpp:
 	.ctors      start:0x8052F398 end:0x8052F39C
 	.rodata     start:0x8053D8A8 end:0x8053D8D0
 	.data       start:0x805DFDE8 end:0x805DFE88
+	.sdata      start:0x806B25F0 end:0x806B25F8
 	.sbss       start:0x806B6F88 end:0x806B6FA0
 
 Game/System/SaveDataHandleSequence.cpp:
@@ -8853,8 +8859,9 @@ Game/System/StarPieceAlmsStorage.cpp:
 Game/System/StorySequenceExecutor.cpp:
 	.text       start:0x803BB954 end:0x803BD404
 	.ctors      start:0x8052F3A0 end:0x8052F3A4
-	.rodata     start:0x8053D910 end:0x8053EB38
+	.rodata     start:0x8053D910 end:0x8053DC20
 	.data       start:0x805E00E0 end:0x805E07E8
+	.sdata      start:0x806B25F8 end:0x806B2600
 	.sbss       start:0x806B6FD8 end:0x806B7000
 
 Game/System/SysConfigFile.cpp:
@@ -8881,6 +8888,7 @@ Game/Util/ActorSensorUtil.cpp:
 Game/Util/ActorShadowLocalUtil.cpp:
 	.text       start:0x803C5054 end:0x803C61B8
 	.data       start:0x805E08D0 end:0x805E0AB0
+	.sdata      start:0x806B2600 end:0x806B2608
 	.sdata2     start:0x806C1568 end:0x806C1578
 
 Game/Util/ActorShadowUtil.cpp:

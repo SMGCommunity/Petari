@@ -1,39 +1,33 @@
 #pragma once
 
-#include "Game/LiveActor/LiveActor.hpp"
-#include "Game/NPC/TalkMessageCtrl.hpp"
-#include "Game/System/NerveExecutor.hpp"
-#include <cstddef>
+#include "Game/LiveActor/ActorStateBase.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
 
-class RabbitStateCaught : public NerveExecutor {
+class LiveActor;
+class ModelObj;
+class TalkMessageCtrl;
+
+class RabbitStateCaught : public ActorStateBaseInterface {
 public:
-    RabbitStateCaught(LiveActor* pActor, TalkMessageCtrl* pCtrl);
-    virtual ~RabbitStateCaught();
+    RabbitStateCaught(LiveActor* pHost, TalkMessageCtrl* pTalkMessageCtrl);
+
     virtual void init();
     virtual void appear();
     virtual void control();
+
     void unusePowerStarModel();
+    void exeTryStartDemo();
     void exeCaught();
     void exeCaughtLand();
     void exeCaughtEvent();
     void setCaughtStartMarioPose();
-    void blendBaseMatrixToMario(f32 f) const;
+    void blendBaseMatrixToMario(f32) const;
 
-    s32 _C;
-    TQuat4f _10;
-    TVec3f _20;
-    s32 _2C;
-    s32 _30;
-    TMtx34f _34;
-    s32 _60;
-    bool _64;
+    /* 0x0C */ LiveActor* mHost;
+    /* 0x10 */ TQuat4f mCaughtStartMarioRot;
+    /* 0x20 */ TVec3f mCaughtStartMarioPos;
+    /* 0x2C */ TalkMessageCtrl* mTalkMessageCtrl;
+    /* 0x30 */ ModelObj* mPowerStarModel;
+    /* 0x34 */ TMtx34f mCaughtLandMarioBaseMtx;
+    /* 0x64 */ bool mUsePowerStarModel;
 };
-
-const size_t test = sizeof(RabbitStateCaught);
-
-namespace NrvRabbitStateCaught {
-    NERVE_DECL_NULL(RabbitStateCaughtNrvTryStartDemo);
-    NERVE_DECL_EXE(RabbitStateCaughtNrvCaught, RabbitStateCaught, Caught);
-    NERVE_DECL_EXE(RabbitStateCaughtNrvCaughtLand, RabbitStateCaught, CaughtLand);
-    NERVE_DECL_EXE(RabbitStateCaughtNrvCaughtEvent, RabbitStateCaught, CaughtEvent);
-}  // namespace NrvRabbitStateCaught

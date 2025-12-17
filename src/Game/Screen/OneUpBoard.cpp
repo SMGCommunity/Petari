@@ -6,6 +6,11 @@
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 
+namespace {
+    static const f32 sOffsetY = 60.0f;
+    static const f32 sOffsetYMin = 160.0f;
+};  // namespace
+
 namespace NrvOneUpBoard {
     NEW_NERVE(HostTypeWait, OneUpBoard, Wait);
     NEW_NERVE(HostTypeAppear, OneUpBoard, Appear);
@@ -37,8 +42,8 @@ void OneUpBoard::calcPos() {
 
     MR::calcScreenPosition(&pos, *MR::getPlayerCenterPos());
 
-    pos.y -= 60.0f;
-    pos.y = pos.y >= 160.0f ? pos.y : 160.0f;
+    pos.y -= sOffsetY;
+    pos.y = pos.y >= sOffsetYMin ? pos.y : sOffsetYMin;
 
     setTrans(pos);
 }

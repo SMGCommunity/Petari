@@ -1,23 +1,19 @@
 #pragma once
 
-#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/LiveActor/Nerve.hpp"
-#include "Game/NPC/TrickRabbit.hpp"
-#include "Game/Util/JMapInfo.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
-#include <cstddef>
 
+class FootPrint;
 class SpotMarkLight;
+class TalkMessageCtrl;
 
 class TrickRabbitFreeRun : public LiveActor {
 public:
+    /// @brief Creates a new `TrickRabbitFreeRun`.
+    /// @param pName A pointer to the null-terminated name of the object.
     TrickRabbitFreeRun(const char* pName);
-    virtual ~TrickRabbitFreeRun();
+
     virtual void init(const JMapInfoIter& rIter);
     virtual void initAfterPlacement();
-    virtual void initSensor();
-    virtual void initState();
     virtual void control();
     virtual void calcAndSetBaseMtx();
     virtual void attackSensor(HitSensor* pSender, HitSensor* pReceiver);
@@ -25,36 +21,30 @@ public:
     virtual bool receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
     virtual bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
     virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
-    void receiveMsgBlowDamage(HitSensor* pSender, HitSensor* pReceiver);
-    void requestCaught();
+
+    void initSensor();
+    void initState();
+    bool receiveMsgBlowDamage(HitSensor* pSender, HitSensor* pReceiver);
+    bool requestCaught();
     void exeWaitStart();
+    void exeTryDemo();
     void exeRunawayStart();
     void exeRunaway();
+    void exeBlowDamage();
     void exeCaught();
     void exePowerStarDemo();
     void exeGiveUp();
-    void isEnableCaught() const;
-    void isEnableBlowDamage() const;
+    bool isEnableCaught() const;
+    bool isEnableBlowDamage() const;
     void startJumpSound();
 
-    TQuat4f _8C;
-    TVec3f _9C;
-    s32 _A8;
-    s32 _AC;
-    s32 _B0;
-    s32 _B4;
-    TalkMessageCtrl* mTalkCtrl;
-    FootPrint* mFootPrint;          // 0xBC
-    SpotMarkLight* mSpotMarkLight;  // 0xC0
+    /* 0x8C */ TQuat4f _8C;
+    /* 0x9C */ TVec3f _9C;
+    /* 0xA8 */ s32 _A8;
+    /* 0xAC */ s32 _AC;
+    /* 0xB0 */ s32 _B0;
+    /* 0xB4 */ s32 _B4;
+    /* 0xB8 */ TalkMessageCtrl* mTalkMessageCtrl;
+    /* 0xBC */ FootPrint* mFootPrint;
+    /* 0xC0 */ SpotMarkLight* mSpotMarkLight;
 };
-
-namespace NrvTrickRabbitFreeRun {
-    NERVE_DECL_EXE(TrickRabbitFreeRunNrvWaitStart, TrickRabbitFreeRun, WaitStart);
-    NERVE_DECL_NULL(TrickRabbitFreeRunNrvTryDemo);
-    NERVE_DECL_EXE(TrickRabbitFreeRunNrvRunawayStart, TrickRabbitFreeRun, RunawayStart);
-    NERVE_DECL_EXE(TrickRabbitFreeRunNrvRunaway, TrickRabbitFreeRun, Runaway);
-    NERVE(TrickRabbitFreeRunNrvBlowDamage);
-    NERVE_DECL_EXE(TrickRabbitFreeRunNrvCaught, TrickRabbitFreeRun, Caught);
-    NERVE_DECL_EXE(TrickRabbitFreeRunNrvPowerStarDemo, TrickRabbitFreeRun, PowerStarDemo);
-    NERVE_DECL_EXE(TrickRabbitFreeRunNrvGiveUp, TrickRabbitFreeRun, GiveUp);
-};  // namespace NrvTrickRabbitFreeRun

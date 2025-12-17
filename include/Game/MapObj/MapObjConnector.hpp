@@ -6,9 +6,9 @@ class MapObjConnector {
 public:
     MapObjConnector(LiveActor*);
 
-    void attachToUnder();
-    void attachToBack();
-    void attach(const TVec3f&);
+    bool attachToUnder();
+    bool attachToBack();
+    bool attach(const TVec3f&);
     void connect();
     void connect(LiveActor*);
 

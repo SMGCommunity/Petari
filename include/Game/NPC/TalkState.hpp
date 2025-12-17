@@ -8,6 +8,11 @@ class LiveActor;
 class TalkSupportPlayerWatcher;
 class IconAButton;
 class LayoutActor;
+class TalkBalloonShort;
+class TalkBalloonEvent;
+class TalkBalloonInfo;
+class TalkBalloonSign;
+class TalkBalloonCompose;
 
 class TalkState {
 public:
@@ -34,7 +39,7 @@ public:
 
     TalkMessageCtrl* _04;
     /* 0x08 */ TalkBalloon* mBalloon;
-    u32 mMessageID;  // 0xC
+    /* 0x0C */ u32 mMessageID;
 };
 
 class TalkStateShort : public TalkState {
@@ -77,7 +82,7 @@ public:
     virtual bool term(const TalkMessageCtrl*);
     void updateButton();
 
-    IconAButton* _24;
+    /* 0x24 */ IconAButton* mAButton;
 };
 
 class TalkStateCompose : public TalkStateNormal {
@@ -98,15 +103,16 @@ public:
 
     void update();
     void pauseOff();
-    u32 getState(const TalkMessageCtrl*);
+    TalkState* getState(const TalkMessageCtrl*);
 
     TalkSupportPlayerWatcher* _00;
-    LayoutActor* _04;
-    /* 0x08 */ u32 mTalkShort;
-    /* 0x0C */ u32 mTalkNormal;
-    /* 0x10 */ u32 mTalkEvent;
-    /* 0x14 */ u32 mTalkCompose;
-    /* 0x18 */ u32 mTalkUnknown;
+    /* 0x04 */ IconAButton* mAButton;
+    /* 0x08 */ TalkStateShort* mTalkShort;
+    /* 0x0C */ TalkStateNormal* mTalkNormal;
+    /* 0x10 */ TalkStateEvent* mTalkEvent;
+    /* 0x14 */ TalkStateCompose* mTalkCompose;
+    /* 0x18 */ TalkState* mTalk;
+    /* 0x1C */ TalkBalloonShort* mBalloonShort;
 };
 
 namespace MR {

@@ -457,6 +457,24 @@ namespace JGeometry {
             this->mMtx[1][2] = a3.y;
             this->mMtx[2][2] = a3.z;
         }
+
+        inline void setVecAndTransInline(const TVec3f& a1, const TVec3f& a2, const TVec3f& a3, const TVec3f& a4) {
+            this->mMtx[0][0] = a1.x;
+            this->mMtx[1][0] = a1.y;
+            this->mMtx[2][0] = a1.z;
+
+            this->mMtx[0][1] = a2.x;
+            this->mMtx[1][1] = a2.y;
+            this->mMtx[2][1] = a2.z;
+
+            this->mMtx[0][2] = a3.x;
+            this->mMtx[1][2] = a3.y;
+            this->mMtx[2][2] = a3.z;
+
+            this->mMtx[0][3] = a4.x;
+            this->mMtx[1][3] = a4.y;
+            this->mMtx[2][3] = a4.z;
+        }
     };
 };  // namespace JGeometry
 

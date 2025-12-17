@@ -10,7 +10,11 @@ namespace {
         {18000, 100, true, true, true}, {10800, 100, true, true, true},  {3600, 100, true, true, true},
         {1800, 100, true, true, false}, {600, 600, false, false, false},
     };
-};
+    static const s32 sScaleUpDownFrame = 8;
+    static const f32 sScaleMaxAdd = 0.5f;
+    static const s32 sFadeoutBeforeFrame = 90;
+    static const s32 sFadeinoutFrame = 60;
+};  // namespace
 
 void TimeUpLayout::init(const JMapInfoIter& rIter) {
     initLayoutManager("TimeUp", 1);
@@ -27,17 +31,17 @@ namespace NrvTimeLimitLayout {
 };  // namespace NrvTimeLimitLayout
 
 TimeLimitLayout::TimeLimitLayout(u32 timeLimit)
-    : LayoutActor("タイムリミット", true), mTime(0), mTimeLimit(timeLimit), mScaleCtrl(nullptr), mAlphaCtrl(nullptr), mCurrentTiming(nullptr),
+    : LayoutActor("タイムリミット", true), mTime(0), mTimeLimit(timeLimit), mScaleControl(nullptr), mFadeControl(nullptr), mCurrentTiming(nullptr),
       mIsSuspend(false), _35(false) {}
 
 void TimeLimitLayout::init(const JMapInfoIter& rIter) {
     initLayoutManager("TimeLimit", 1);
 
-    mScaleCtrl = new ValueControl(8);
-    mScaleCtrl->setZero();
+    mScaleControl = new ValueControl(sScaleUpDownFrame);
+    mScaleControl->setZero();
 
-    mAlphaCtrl = new ValueControl(60);
-    mAlphaCtrl->setOne();
+    mFadeControl = new ValueControl(sFadeinoutFrame);
+    mFadeControl->setOne();
 
     MR::setInfluencedAlphaToChild(this);
     initNerve(&NrvTimeLimitLayout::TimeLimitLayoutCountDown::sInstance);
@@ -73,8 +77,8 @@ void TimeLimitLayout::resetFrame() {
 
     mIsSuspend = false;
 
-    mScaleCtrl->setOne();
-    mAlphaCtrl->setOne();
+    mScaleControl->setOne();
+    mFadeControl->setOne();
 
     mCurrentTiming = &sTimingTable[0];
 }
@@ -119,15 +123,15 @@ void TimeLimitLayout::exeCountDown() {
 
 void TimeLimitLayout::exeScaleUp() {
     if (MR::isFirstStep(this)) {
-        mScaleCtrl->setDirToOneResetFrame();
-        mAlphaCtrl->setOne();
+        mScaleControl->setDirToOneResetFrame();
+        mFadeControl->setOne();
     }
 
     if (updateNormal()) {
         return;
     }
 
-    if (mScaleCtrl->mFrame == mScaleCtrl->mMaxFrame) {
+    if (mScaleControl->mFrame == mScaleControl->mMaxFrame) {
         setNerve(&NrvTimeLimitLayout::TimeLimitLayoutScaleKeep::sInstance);
     }
 }
@@ -154,14 +158,14 @@ void TimeLimitLayout::exeScaleKeep() {
 
 void TimeLimitLayout::exeScaleDown() {
     if (MR::isFirstStep(this)) {
-        mScaleCtrl->setDirToZeroResetFrame();
+        mScaleControl->setDirToZeroResetFrame();
     }
 
     if (updateNormal()) {
         return;
     }
 
-    if (mScaleCtrl->mFrame == mScaleCtrl->mMaxFrame) {
+    if (mScaleControl->mFrame == mScaleControl->mMaxFrame) {
         if (mCurrentTiming->_A && !_35) {
             setNerve(&NrvTimeLimitLayout::TimeLimitLayoutFadeout::sInstance);
         } else {
@@ -171,15 +175,15 @@ void TimeLimitLayout::exeScaleDown() {
 }
 
 void TimeLimitLayout::exeFadeout() {
-    if (MR::isStep(this, 90)) {
-        mAlphaCtrl->setDirToZeroResetFrame();
+    if (MR::isStep(this, sFadeoutBeforeFrame)) {
+        mFadeControl->setDirToZeroResetFrame();
     }
 
     if (updateNormal()) {
         return;
     }
 
-    if (mAlphaCtrl->mFrame == 0) {
+    if (mFadeControl->mFrame == 0) {
         setNerve(&NrvTimeLimitLayout::TimeLimitLayoutCountDown::sInstance);
     }
 }
@@ -187,16 +191,36 @@ void TimeLimitLayout::exeFadeout() {
 void TimeLimitLayout::exeTimeUpReady() {}
 
 void TimeLimitLayout::control() {
-    mAlphaCtrl->update();
-    mScaleCtrl->update();
+    mFadeControl->update();
+    mScaleControl->update();
 
-    f32 paneScale = 1.0f + MR::getEaseInOutValue(mScaleCtrl->getValue(), 0.0f, 1.0f, 1.0f) * 0.5f;
+    f32 paneScale = 1.0f + MR::getEaseInOutValue(mScaleControl->getValue(), 0.0f, 1.0f, 1.0f) * sScaleMaxAdd;
 
     MR::setPaneScale(this, paneScale, paneScale, "TimeLimit");
-    MR::setLayoutAlphaFloat(this, MR::getEaseInOutValue(mAlphaCtrl->getValue(), 0.0f, 1.0f, 1.0f));
+    MR::setLayoutAlphaFloat(this, MR::getEaseInOutValue(mFadeControl->getValue(), 0.0f, 1.0f, 1.0f));
 }
 
-// TimeLimitLayout::getCurrentTiming
+const Timing* TimeLimitLayout::getCurrentTiming() const {
+    for (s32 i = 0; i < sizeof(::sTimingTable) / sizeof(*::sTimingTable); i++) {
+        u32 scaleStartFrame = ::sTimingTable[i].mScaleStartFrame;
+        u32 timeLimit = mTimeLimit;
+        u32 frame = scaleStartFrame - ::sTimingTable[i].mScaleKeepFrame;
+
+        if (timeLimit >= frame && scaleStartFrame >= timeLimit) {
+            continue;
+        }
+
+        u32 timeLeft = timeLimit - mTime;
+
+        if (frame > timeLeft || timeLeft >= scaleStartFrame) {
+            continue;
+        }
+
+        return &::sTimingTable[i];
+    }
+
+    return nullptr;
+}
 
 bool TimeLimitLayout::updateNormal() {
     if (mIsSuspend) {

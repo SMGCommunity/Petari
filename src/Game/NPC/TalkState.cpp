@@ -8,8 +8,11 @@
 #include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/DemoUtil.hpp"
 #include "Game/Util/GamePadUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
+#include "JSystem/JGeometry/TVec.hpp"
 #include "revolution/types.h"
 
 TalkState::TalkState() : _04(nullptr), mBalloon(nullptr) {}
@@ -51,6 +54,8 @@ bool TalkState::isSelfInterrupt(const TalkMessageCtrl* pArg1) const {
 
     return _04->getMessageID() != mMessageID;
 }
+
+TalkStateShort::TalkStateShort() : TalkState() {}
 
 bool TalkStateShort::prep(const TalkMessageCtrl* pArg1) {
     return !TalkState::isLostMessage(pArg1);
@@ -154,6 +159,8 @@ u32 TalkStateEvent::getPageCount() const {
     return mPageCount;
 }
 
+TalkStateNormal::TalkStateNormal() : TalkStateEvent() {}
+
 bool TalkStateNormal::test() {
     if (!_18->isEnableTalkPlayerStateNormal() || !MR::testCorePadTriggerA(0)) {
         return false;
@@ -163,7 +170,7 @@ bool TalkStateNormal::test() {
 }
 
 void TalkStateNormal::clos() {
-    _24->term();
+    mAButton->term();
     mBalloon->close();
 }
 
@@ -182,32 +189,67 @@ bool TalkStateNormal::term(const TalkMessageCtrl* pArg1) {
 // Stuck at 99% because assembly string labels don't match, even though the code *should* be correct.
 bool TalkStateNormal::prep(const TalkMessageCtrl* pArg1) {
     if (TalkStateNormal::isLostMessage(pArg1)) {
-        _24->term();
+        mAButton->term();
         return false;
     }
 
     TalkStateNormal::updateButton();
 
     if (!_18->isEnableTalkPlayerStateNormal()) {
-        _24->term();
+        mAButton->term();
     } else if (!MR::testCorePadTriggerA(0)) {
         TalkMessageInfo* info = TalkFunction::getMessageInfo(_04);
-        if (!_24->isOpen()) {
+        if (!mAButton->isOpen()) {
             if (info->isBalloonSign()) {
-                _24->openWithRead();
+                mAButton->openWithRead();
             } else {
-                _24->openWithTalk();
+                mAButton->openWithTalk();
             }
             MR::startSystemSE("SE_SM_TALK_BUTTON_APPEAR", -1, -1);
         }
     } else {
-        _24->term();
+        mAButton->term();
         MR::startSystemSE("SE_SY_TALK_START", -1, -1);
         MR::startCSSound("CS_CLICK_OPEN", nullptr, 0);
     }
 
     return true;
 }
+
+void TalkStateNormal::updateButton() {
+    TVec3f camZ(MR::getCamZdir());                   // 0x78
+    TVec3f camY(MR::getCamYdir());                   // 0x6c
+    TVec3f up;                                       // 0x60
+    TVec3f centerPlayer(*MR::getPlayerCenterPos());  // 0x54
+    MR::getPlayerUpVec(&up);
+
+    f32 f1 = __fabs(camZ.dot(up));
+    f32 f2 = camY.dot(up);
+    f1 = f1 * f1;
+
+    TVec3f up_but_bigger(up);  // 0x48 but should be 0x3c
+    up_but_bigger.mult(1000.0f);
+
+    MR::calcNormalizedScreenPosition(&up, up_but_bigger + centerPlayer);  // Second arg is 0x3c, but should be 0x48
+    MR::calcNormalizedScreenPosition(&centerPlayer, centerPlayer);
+    MR::normalize(up - centerPlayer, &up);  // First arg is 0x30
+    TVec2f playerScreenPos;                 // 0x28
+    MR::calcScreenPosition(&playerScreenPos, *MR::getPlayerCenterPos());
+
+    // JGeometry::TVec2<float>::TVec2(const JGeometry::TVec2<float>&) shouldn't be called
+    TVec2f v10(TVec2f(0.0f, -1.0f) * (40.0f * f1));
+    playerScreenPos.x += v10.x;
+    playerScreenPos.y += v10.y;
+
+    // JGeometry::TVec2<float>::TVec2(const JGeometry::TVec2<float>&) shouldn't be called
+    TVec2f v11(TVec2f(up.x, up.y) * (60.0f * f2));
+    playerScreenPos.x += v11.x;
+    playerScreenPos.y += v11.y;
+
+    mAButton->setTrans(playerScreenPos);
+}
+
+TalkStateCompose::TalkStateCompose() : TalkStateNormal() {}
 
 void TalkStateCompose::init(TalkMessageCtrl* pArg1, TalkBalloon* pArg2) {
     TalkState::init(pArg1, pArg2);
@@ -235,15 +277,43 @@ bool TalkStateCompose::prep(const TalkMessageCtrl* pArg1) {
     } else if (_04->isNearPlayer(_04->mTalkDistance)) {
         unknownBool = TalkStateNormal::prep(pArg1);
     } else {
-        _24->term();
+        mAButton->term();
     }
 
     if (!unknownBool) {
-        _24->term();
+        mAButton->term();
         mSecondBalloon->close();
     }
 
     return unknownBool;
+}
+
+TalkStateHolder::TalkStateHolder() {
+    _00 = new TalkSupportPlayerWatcher();
+
+    mAButton = new IconAButton(true, false);
+    mAButton->initWithoutIter();
+
+    mBalloonShort = new TalkBalloonShort("会話吹き出し[合成会話]");
+    mBalloonShort->initWithoutIter();
+    mBalloonShort->initInterval();
+    mBalloonShort->kill();
+
+    mTalkShort = new TalkStateShort();
+
+    mTalkNormal = new TalkStateNormal();
+    mTalkNormal->mAButton = mAButton;
+    mTalkNormal->_18 = _00;
+
+    mTalkCompose = new TalkStateCompose();
+    mTalkCompose->mAButton = mAButton;
+    mTalkCompose->_18 = _00;
+    mTalkCompose->mSecondBalloon = mBalloonShort;
+
+    mTalkEvent = new TalkStateEvent();
+    mTalkEvent->_18 = _00;
+
+    mTalk = new TalkState();
 }
 
 void TalkStateHolder::update() {
@@ -251,10 +321,10 @@ void TalkStateHolder::update() {
 }
 
 void TalkStateHolder::pauseOff() {
-    MR::requestMovementOn(_04);
+    MR::requestMovementOn(mAButton);
 }
 
-u32 TalkStateHolder::getState(const TalkMessageCtrl* pArg1) {
+TalkState* TalkStateHolder::getState(const TalkMessageCtrl* pArg1) {
     TalkMessageInfo* info = TalkFunction::getMessageInfo(pArg1);
 
     if (info->isNormalTalk()) {
@@ -273,5 +343,5 @@ u32 TalkStateHolder::getState(const TalkMessageCtrl* pArg1) {
         return mTalkCompose;
     }
 
-    return mTalkUnknown;
+    return mTalk;
 }
