@@ -53,9 +53,8 @@ public:
     void createVPanObj();
 
     CameraMan* mCameraMan;       // 0xC
-    CameraPoseParam* mPosParam;  // 0x10
+    CameraPoseParam* mPoseParam; // 0x10
     CameraHeightArrange* mVPan;  // 0x14
     bool mIsLOfsErpOff;          // 0x18
-    u8 _19[3];
-    TMtx34f mZoneMatrix;  // 0x1C
+    TMtx34f mZoneMatrix;         // 0x1C
 };

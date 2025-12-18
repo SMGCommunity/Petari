@@ -264,10 +264,7 @@ void CameraManEvent::setExtraParam() {
     mCamera->setZoneMtx(zoneID);
 
     CameraLocalUtil::setGlobalOffset(mCamera, mChunk->mExParam.mWOffset);
-
-    TVec3f* localOffset = CameraLocalUtil::getLocalOffset(this);
-    CameraLocalUtil::setLocalOffset(mCamera, *localOffset);
-
+    CameraLocalUtil::setLocalOffset(mCamera, CameraLocalUtil::getLocalOffset(this));
     CameraLocalUtil::setFrontOffset(mCamera, mChunk->mExParam.mLOffset);
     CameraLocalUtil::setUpperOffset(mCamera, mChunk->mExParam.mLOffsetV);
 

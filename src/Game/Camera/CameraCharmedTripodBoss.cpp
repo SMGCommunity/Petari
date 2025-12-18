@@ -17,9 +17,9 @@ CameraCharmedTripodBoss::CameraCharmedTripodBoss(const char* pName) : Camera(pNa
 }
 
 void CameraCharmedTripodBoss::reset() {
-    CameraLocalUtil::setPos(this, *CameraLocalUtil::getPos(mCameraMan));
-    CameraLocalUtil::setWatchPos(this, *CameraLocalUtil::getWatchPos(mCameraMan));
-    CameraLocalUtil::setUpVec(this, *CameraLocalUtil::getUpVec(mCameraMan));
+    CameraLocalUtil::setPos(this, CameraLocalUtil::getPos(mCameraMan));
+    CameraLocalUtil::setWatchPos(this, CameraLocalUtil::getWatchPos(mCameraMan));
+    CameraLocalUtil::setUpVec(this, CameraLocalUtil::getUpVec(mCameraMan));
 }
 
 CameraTargetObj* CameraCharmedTripodBoss::calc() {

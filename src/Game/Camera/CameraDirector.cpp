@@ -38,16 +38,16 @@ namespace {
 }  // namespace
 
 void CameraPoseParam::copyFrom(const CameraPoseParam& rOther) {
-    _0.set< f32 >(rOther._0);
+    mWatchUpVec.set< f32 >(rOther.mWatchUpVec);
     mWatchPos.set< f32 >(rOther.mWatchPos);
-    _18.set< f32 >(rOther._18);
-    _24.set< f32 >(rOther._24);
-    _30 = rOther._30;
-    _34.set< f32 >(rOther._34);
-    _40.set< f32 >(rOther._40);
-    _4C = rOther._4C;
-    _50 = rOther._50;
-    _54 = rOther._54;
+    mUpVec.set< f32 >(rOther.mUpVec);
+    mPos.set< f32 >(rOther.mPos);
+    mFovy = rOther.mFovy;
+    mGlobalOffset.set< f32 >(rOther.mGlobalOffset);
+    mLocalOffset.set< f32 >(rOther.mLocalOffset);
+    mFrontOffset = rOther.mFrontOffset;
+    mUpperOffset = rOther.mUpperOffset;
+    mRoll = rOther.mRoll;
 }
 
 char* CameraParamChunkID_Tmp::getBuffer(u32 size) {
@@ -91,7 +91,7 @@ void CameraMan::roundLeft() {}
 void CameraMan::roundRight() {}
 
 CameraDirector::CameraDirector(const char* pName) : NameObj(pName) {
-    _C = 0;
+    mUsedTarget = nullptr;
     mStack = new CameraManStack();
     mOnlyCamera = new OnlyCamera("OnlyCamera");
     mPoseParam1 = new CameraPoseParam();
@@ -135,8 +135,6 @@ CameraDirector::CameraDirector(const char* pName) : NameObj(pName) {
     _1C0.identity();
     MR::createCenterScreenBlur();
 }
-
-CameraDirector::~CameraDirector() {}
 
 void CameraDirector::init(const JMapInfoIter& rIter) {}
 
@@ -241,7 +239,10 @@ void CameraDirector::calcPose() {
 }
 
 /*void CameraDirector::calcSubjective() {
-    
+
+
+
+
 }*/
 
 bool CameraDirector::isInterpolationOff() {
@@ -269,7 +270,7 @@ void CameraDirector::createViewMtx() {
     calcViewMtxFromPoseParam(&view, mPoseParam1);
 
     CameraPoseParam* poseParam = mPoseParam1;
-    CameraTargetObj* target = _C;
+    CameraTargetObj* target = mUsedTarget;
     TVec3f& rWatchPos = poseParam->mWatchPos;
 
     CameraMan* man = getCurrentCameraMan();

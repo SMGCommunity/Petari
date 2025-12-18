@@ -1,7 +1,7 @@
 #pragma once
 
-#include "JSystem/JGeometry/TVec.hpp"
-#include "revolution.h"
+#include <JSystem/JGeometry/TVec.hpp>
+#include <revolution/types.h>
 
 class CameraPoseParam {
 public:
@@ -9,14 +9,14 @@ public:
 
     void copyFrom(const CameraPoseParam&);
 
-    TVec3f _0;
-    TVec3f mWatchPos;  // 0xC
-    TVec3f _18;
-    TVec3f _24;
-    f32 _30;
-    TVec3f _34;
-    TVec3f _40;
-    f32 _4C;
-    f32 _50;
-    f32 _54;
+    /* 0x00 */ TVec3f mWatchUpVec;
+    /* 0x0C */ TVec3f mWatchPos;
+    /* 0x18 */ TVec3f mUpVec;
+    /* 0x24 */ TVec3f mPos;
+    /* 0x30 */ f32 mFovy;
+    /* 0x34 */ TVec3f mGlobalOffset;
+    /* 0x40 */ TVec3f mLocalOffset;
+    /* 0x4C */ f32 mFrontOffset;
+    /* 0x50 */ f32 mUpperOffset;
+    /* 0x54 */ f32 mRoll;
 };

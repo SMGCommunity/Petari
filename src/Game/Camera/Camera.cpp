@@ -12,7 +12,7 @@ Camera* CamTranslatorDummy::getCamera() const {
 }
 
 Camera::Camera(const char* pName) : NameObj(pName) {
-    mPosParam = new CameraPoseParam();
+    mPoseParam = new CameraPoseParam();
     mVPan = nullptr;
     mIsLOfsErpOff = false;
     mZoneMatrix.identity();
