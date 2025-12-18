@@ -64,6 +64,7 @@ namespace MR {
     void startAfterBossBGM();
 
     void startCSSound(const char*, const char*, s32);
+    void startCSSound2P(const char*, const char*);
 
     bool hasME();
 
