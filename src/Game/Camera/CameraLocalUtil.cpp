@@ -100,7 +100,7 @@ namespace CameraLocalUtil {
     }
 
     bool isForceCameraChange() {
-        return MR::getCameraDirector()->isForceCameraChange();
+        return getCameraDirector()->isForceCameraChange();
     }
 
     CameraDirector* getCameraDirector() {

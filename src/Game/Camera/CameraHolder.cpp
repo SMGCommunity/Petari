@@ -118,7 +118,7 @@ CameraHolder::CameraHolder(const char* pName) : NameObj(pName) {
 }
 
 s32 CameraHolder::getNum() const {
-    return sizeof(sCameraTable) / sizeof(*sCameraTable);
+    return sizeof(::sCameraTable) / sizeof(*::sCameraTable);
 }
 
 CamTranslatorBase* CameraHolder::getTranslator(s32 index) {
