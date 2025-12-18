@@ -113,7 +113,7 @@ namespace {
 CameraHolder::CameraHolder(const char* pName) : NameObj(pName) {
     createCameras();
 
-    mDefaultCameraIndex = getIndexOf(sDefaultCamera);
+    mDefaultCameraIndex = getIndexOf(getNameStrOfDefault());
     mDefaultCamera = getDefaultCamera();
 }
 
@@ -127,12 +127,24 @@ CamTranslatorBase* CameraHolder::getTranslator(s32 index) {
 
 s32 CameraHolder::getIndexOf(const char* pName) const {
     for (s32 i = 0; i < getNum(); i++) {
-        if (strcmp(pName, ::sCameraTable[i].mName) == 0) {
+        if (strcmp(pName, getNameStrOf(i)) == 0) {
             return i;
         }
     }
 
     return -1;
+}
+
+const char* CameraHolder::getNameStrOf(s32 index) const {
+    return ::sCameraTable[index].mName;
+}
+
+const char* CameraHolder::getExplainStrOf(s32 index) const {
+    return ::sCameraTable[index].mExplain;
+}
+
+bool CameraHolder::isPublic(s32 index) const {
+    return ::sCameraTable[index].mIsPublic;
 }
 
 Camera* CameraHolder::getDefaultCamera() {
@@ -141,6 +153,10 @@ Camera* CameraHolder::getDefaultCamera() {
 
 s32 CameraHolder::getIndexOfDefault() const {
     return mDefaultCameraIndex;
+}
+
+const char* CameraHolder::getNameStrOfDefault() const {
+    return sDefaultCamera;
 }
 
 s32 CameraHolder::getIndexOf(Camera* pCamera) const {
