@@ -5,7 +5,7 @@
 
 class CameraDPD : public Camera {
 public:
-    CameraDPD(const char*);
+    CameraDPD(const char* pName = "DPD操作カメラ");
     virtual ~CameraDPD();
 
     virtual void reset();

@@ -4,7 +4,7 @@
 
 class CameraTwistedPassage : public Camera {
 public:
-    CameraTwistedPassage(const char*);
+    CameraTwistedPassage(const char* pName = "ねじれ回廊カメラ");
     virtual ~CameraTwistedPassage();
 
     virtual void reset();

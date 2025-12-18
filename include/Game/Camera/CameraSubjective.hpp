@@ -4,7 +4,7 @@
 
 class CameraSubjective : public Camera {
 public:
-    CameraSubjective(const char*);
+    CameraSubjective(const char* pName = "主観カメラ");
     virtual ~CameraSubjective();
 
     virtual void reset();

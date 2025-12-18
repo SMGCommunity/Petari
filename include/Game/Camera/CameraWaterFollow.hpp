@@ -4,7 +4,7 @@
 
 class CameraWaterFollow : public Camera {
 public:
-    CameraWaterFollow(const char*);
+    CameraWaterFollow(const char* pName = "水中フォロー");
     virtual ~CameraWaterFollow();
 
     virtual void reset();

@@ -4,7 +4,7 @@
 
 class CameraObjParallel : public Camera {
 public:
-    CameraObjParallel(const char*);
+    CameraObjParallel(const char* pName = "オブジェ並行カメラ");
     virtual ~CameraObjParallel();
 
     virtual void reset();

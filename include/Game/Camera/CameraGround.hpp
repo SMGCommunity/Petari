@@ -4,7 +4,7 @@
 
 class CameraGround : public Camera {
 public:
-    CameraGround(const char*);
+    CameraGround(const char* pName = "地面カメラ");
     virtual ~CameraGround();
 
     virtual void reset();

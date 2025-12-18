@@ -6,7 +6,7 @@ class CameraTargetMtx;
 
 class CameraFix : public Camera {
 public:
-    CameraFix(const char*);
+    CameraFix(const char* pName = "完全固定カメラ");
     virtual ~CameraFix();
 
     virtual void reset();

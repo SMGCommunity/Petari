@@ -4,7 +4,7 @@
 
 class CameraSlide : public Camera {
 public:
-    CameraSlide(const char*);
+    CameraSlide(const char* pName = "スライドカメラ");
     virtual ~CameraSlide();
 
     virtual void reset();

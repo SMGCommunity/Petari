@@ -5,7 +5,7 @@
 
 class CameraMedianPlanet : public Camera {
 public:
-    CameraMedianPlanet(const char*);
+    CameraMedianPlanet(const char* pName = "中点注目プラネットカメラ");
     virtual ~CameraMedianPlanet();
 
     virtual void reset();

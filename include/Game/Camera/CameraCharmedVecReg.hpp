@@ -4,7 +4,7 @@
 
 class CameraCharmedVecReg : public Camera {
 public:
-    CameraCharmedVecReg(const char*);
+    CameraCharmedVecReg(const char* pName = "ベクトルレジスタ注目カメラ");
     virtual ~CameraCharmedVecReg();
 
     virtual void reset();

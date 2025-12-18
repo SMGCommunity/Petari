@@ -4,7 +4,7 @@
 
 class CameraFooFighter : public Camera {
 public:
-    CameraFooFighter(const char*);
+    CameraFooFighter(const char* pName = "フーファイター");
     virtual ~CameraFooFighter();
 
     virtual void reset();

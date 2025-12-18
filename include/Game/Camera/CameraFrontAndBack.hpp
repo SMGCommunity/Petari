@@ -5,7 +5,7 @@
 
 class CameraFrontAndBack : public Camera {
 public:
-    CameraFrontAndBack(const char*);
+    CameraFrontAndBack(const char* pName = "表裏カメラ");
     virtual ~CameraFrontAndBack();
 
     virtual void reset();

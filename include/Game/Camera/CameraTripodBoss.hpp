@@ -4,7 +4,7 @@
 
 class CameraTripodBoss : public CameraTower {
 public:
-    CameraTripodBoss(const char*);
+    CameraTripodBoss(const char* pName = "三脚ボスカメラ");
     virtual ~CameraTripodBoss();
 
     virtual CameraTargetObj* calc();

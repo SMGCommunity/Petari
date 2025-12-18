@@ -8,8 +8,8 @@ class CamTranslatorBase;
 class CameraHolder : public NameObj {
 public:
     CameraHolder(const char*);
-    virtual ~CameraHolder();
 
+    s32 getNum() const;
     CamTranslatorBase* getTranslator(s32);
     s32 getIndexOf(const char*) const;
     Camera* getDefaultCamera();
@@ -18,8 +18,8 @@ public:
     void createCameras();
     Camera* getCameraInner(s32) const;
 
-    s32 mDefaultCameraIndex;                // 0xC
-    Camera** mCameras;                      // 0x10
-    CamTranslatorBase** mTranslators;       // 0x14
-    CamTranslatorBase* mDefaultTranslator;  // 0x18
+    /* 0x0C */ s32 mDefaultCameraIndex;
+    /* 0x10 */ Camera** mCameras;
+    /* 0x14 */ CamTranslatorBase** mTranslators;
+    /* 0x18 */ Camera* mDefaultCamera;
 };

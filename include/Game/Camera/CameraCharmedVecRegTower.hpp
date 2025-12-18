@@ -4,7 +4,7 @@
 
 class CameraCharmedVecRegTower : public Camera {
 public:
-    CameraCharmedVecRegTower(const char*);
+    CameraCharmedVecRegTower(const char* pName = "CameraCharmedVecRegTower");
     virtual ~CameraCharmedVecRegTower();
 
     virtual void reset();

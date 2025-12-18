@@ -4,7 +4,7 @@
 
 class CameraSpiral : public Camera {
 public:
-    CameraSpiral(const char*);
+    CameraSpiral(const char* pName = "螺旋カメラ（デモ用）");
     virtual ~CameraSpiral();
 
     virtual void reset();

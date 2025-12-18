@@ -4,7 +4,7 @@
 
 class CameraFixedPoint : public Camera {
 public:
-    CameraFixedPoint(const char*);
+    CameraFixedPoint(const char* pName = "定点カメラ");
     virtual ~CameraFixedPoint();
 
     virtual void reset();

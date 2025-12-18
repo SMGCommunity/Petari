@@ -4,7 +4,7 @@
 
 class CameraBehind : public Camera {
 public:
-    CameraBehind(const char*);
+    CameraBehind(const char* pName = "後方カメラ");
     virtual ~CameraBehind();
 
     virtual void reset();

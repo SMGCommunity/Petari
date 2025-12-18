@@ -4,7 +4,7 @@
 
 class CameraRailFollow : public Camera {
 public:
-    CameraRailFollow(const char*);
+    CameraRailFollow(const char* pName = "レールフォローカメラ");
     virtual ~CameraRailFollow();
 
     virtual void reset();

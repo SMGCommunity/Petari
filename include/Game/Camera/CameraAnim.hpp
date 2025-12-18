@@ -108,7 +108,7 @@ public:
 
 class CameraAnim : public Camera {
 public:
-    CameraAnim(const char*);
+    CameraAnim(const char* pName = "アニメーションカメラ");
     virtual ~CameraAnim();
 
     virtual void reset();
