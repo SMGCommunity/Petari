@@ -998,7 +998,7 @@ config.libs = [
             Object(NonMatching, "Game/Demo/DemoTimeKeeper.cpp"),
             Object(NonMatching, "Game/Demo/DemoWipeKeeper.cpp"),
             Object(NonMatching, "Game/Demo/GrandStarReturnDemoStarter.cpp"),
-            Object(NonMatching, "Game/Demo/PrologueDirector.cpp"),
+            Object(Matching, "Game/Demo/PrologueDirector.cpp"),
             Object(NonMatching, "Game/Demo/ReturnDemoRailMove.cpp"),
             Object(NonMatching, "Game/Demo/ScenarioStarter.cpp"),
             Object(NonMatching, "Game/Demo/StarReturnDemoStarter.cpp"),
