@@ -64,9 +64,9 @@ public:
     void initSystemData();
     void initGameData();
 
-    MessageData* mSystemMessage;  // 0x0
-    MessageData* mGameMessage;    // 0x4
-    MessageData* mSceneData;      // 0x8
+    /* 0x00 */ MessageData* mSystemMessageData;
+    /* 0x04 */ MessageData* mGameMessageData;
+    /* 0x08 */ MessageData* mSceneMessageData;
 };
 
 class MessageSystem {
@@ -76,16 +76,14 @@ public:
     struct FlowNodeBranch {};
 
     struct FlowNodeEvent {
-        u8 mFlowType;   // 0x0
-        u8 mEventType;  // 0x1
-        u16 mBranchID;  // 0x2
-        u32 mArg;       // 0x4
+        /* 0x00 */ u8 mFlowType;
+        /* 0x01 */ u8 mEventType;
+        /* 0x02 */ u16 mBranchID;
+        /* 0x04 */ u32 mArg;
     };
 
-    static inline TalkNode* getCurrentBranchNodeFromSceneMsg(u32 idx) { return getSceneMessageData()->getBranchNode(idx); }
-
-    static void getSystemMessageDirect(TalkMessageInfo*, const char*);
-    static void getGameMessageDirect(TalkMessageInfo*, const char*);
-    static void getLayoutMessageDirect(TalkMessageInfo*, const char*);
+    static bool getSystemMessageDirect(TalkMessageInfo*, const char*);
+    static bool getGameMessageDirect(TalkMessageInfo*, const char*);
+    static bool getLayoutMessageDirect(TalkMessageInfo*, const char*);
     static MessageData* getSceneMessageData();
 };
