@@ -93,16 +93,12 @@ namespace MR {
         MR::createSceneObj(SceneObj_CoinHolder);
     }
 
-    NameObj* getCoinHolder() {
-        SceneObjHolder* holder = MR::getSceneObjHolder();
-        return holder->getObj(SceneObj_CoinHolder);
+    CoinHolder* getCoinHolder() {
+        return getSceneObj<CoinHolder>(SceneObj_CoinHolder);
     }
 
     void addToCoinHolder(const NameObj* pNameObj, Coin* pCoin) {
-        // Grabs the Coin holder obj, then discards that and does it again?????
-        SceneObjHolder* holder = MR::getSceneObjHolder();
-        holder->getObj(SceneObj_CoinHolder);
-        CoinHolder* coinHolder = (CoinHolder*)MR::getSceneObjHolder()->getObj(SceneObj_CoinHolder);
-        pCoin->setHostInfo(coinHolder->declare(pNameObj, 1));
+        getCoinHolder();
+        pCoin->setHostInfo(getCoinHolder()->declare(pNameObj, 1));
     }
 };  // namespace MR

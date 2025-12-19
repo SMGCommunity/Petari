@@ -14,6 +14,7 @@ class BrkCtrl;
 class BtkCtrl;
 class CollisionParts;
 class CollisionPartsFilterBase;
+class Flag;
 class HitSensor;
 class LiveActor;
 class LiveActorGroup;
@@ -57,10 +58,6 @@ namespace MR {
     bool isValidCalcAnim(const LiveActor*);
     bool isValidCalcViewAndEntry(const LiveActor*);
     bool isValidDraw(const LiveActor*);
-
-    bool isValidCollisionParts(LiveActor*);
-    void setCollisionMtx(LiveActor*);
-    void setCollisionMtx(LiveActor*, CollisionParts*);
 
     void invalidateClipping(LiveActor*);
 
@@ -186,20 +183,6 @@ namespace MR {
 
     void setClippingTypeSphereContainsModelBoundingBox(LiveActor*, f32);
 
-    void validateCollisionParts(LiveActor*);
-    void validateCollisionParts(CollisionParts*);
-
-    void invalidateCollisionParts(LiveActor*);
-    void invalidateCollisionParts(CollisionParts*);
-
-    void offUpdateCollisionParts(LiveActor*);
-
-    void onUpdateCollisionPartsOnetimeImmediately(LiveActor*);
-
-    bool isExistCollisionParts(const LiveActor*);
-
-    void resetAllCollisionMtx(LiveActor*);
-
     void startAllAnim(const LiveActor*, const char*);
     bool tryStartAllAnim(const LiveActor*, const char*);
 
@@ -286,18 +269,49 @@ namespace MR {
 
     void newDifferedDLBuffer(LiveActor*);
 
+    bool isExistKcl(LiveActor*, const char*);
+    f32 getCollisionBoundingSphereRange(const LiveActor*);
+    bool isValidCollisionParts(LiveActor*);
+    void validateCollisionParts(LiveActor*);
+    void validateCollisionParts(CollisionParts*);
+    void invalidateCollisionParts(LiveActor*);
+    void invalidateCollisionParts(CollisionParts*);
+    void onUpdateCollisionParts(LiveActor*);
+    void onUpdateCollisionPartsOnetimeImmediately(LiveActor*);
+    void offUpdateCollisionParts(LiveActor*);
+    void resetAllCollisionMtx(LiveActor*);
+    void setCollisionMtx(LiveActor*);
+    void setCollisionMtx(LiveActor*, CollisionParts*);
+    CollisionParts* getCollisionParts(const LiveActor*);
+    bool isExistCollisionParts(const LiveActor*);
+    u32 getCollisionSensorType(const CollisionParts*);
     ModelObj* createModelObjMapObj(const char*, const char*, MtxPtr);
     ModelObj* createModelObjMapObjStrongLight(const char*, const char*, MtxPtr);
-    ModelObj* createModelObjIndirectMapObj(const char*, const char*, MtxPtr);
     ModelObj* createModelObjNoSilhouettedMapObj(const char*, const char*, MtxPtr);
-    ModelObj* createModelObjNpc(const char*, const char*, MtxPtr);
+    ModelObj* createModelObjNoSilhouettedMapObjStrongLight(const char*, const char*, MtxPtr);
+    ModelObj* createModelObjIndirectMapObj(const char*, const char*, MtxPtr);
+    ModelObj* createModelObjPlayerDecoration(const char*, const char*, MtxPtr);
     ModelObj* createModelObjEnemy(const char*, const char*, MtxPtr);
-
+    ModelObj* createModelObjNpc(const char*, const char*, MtxPtr);
+    ModelObj* createModelObjPlanetLow(const char*, const char*, MtxPtr);
     ModelObj* createModelObjBloomModel(const char*, const char*, MtxPtr);
-
     PartsModel* createPartsModelMapObj(LiveActor*, const char*, const char*, MtxPtr);
+    PartsModel* createPartsModelMapObjStrongLight(LiveActor*, const char*, const char*, MtxPtr);
+    PartsModel* createPartsModelNoSilhouettedMapObj(LiveActor*, const char*, const char*, MtxPtr);
+    PartsModel* createPartsModelEnemy(LiveActor*, const char*, const char*, MtxPtr);
+    PartsModel* createPartsModelNpc(LiveActor*, const char*, const char*, MtxPtr);
+    PartsModel* createPartsModelIndirectNpc(LiveActor*, const char*, const char*, MtxPtr);
+    PartsModel* createPartsModelEnemyAndFix(LiveActor*, const char*, const char*, MtxPtr, const TVec3f&, const TVec3f&, const char*);
+    PartsModel* createPartsModelNpcAndFix(LiveActor*, const char*, const char*, const char*);
+    LodCtrl* createLodCtrlNPC(LiveActor*, const JMapInfoIter&);
+    LodCtrl* createLodCtrlPlanet(LiveActor*, const JMapInfoIter&, f32, s32);
+    LodCtrl* createLodCtrlMapObj(LiveActor*, const JMapInfoIter&, f32);
+    Flag* createMapFlag(const char*, const char*, const TVec3f*, const TVec3f&, f32, f32, f32, s32, s32, f32);
+    void stopSceneAtStep(const LiveActor*, s32, s32);
+    void tryRumblePadAndCameraDistanceVeryStrong(const LiveActor*, f32, f32, f32);
+    void tryRumblePadAndCameraDistanceStrong(const LiveActor*, f32, f32, f32);
+    void tryRumblePadAndCameraDistanceMiddle(const LiveActor*, f32, f32, f32);
 
-    void sendMsgToGroupMember(u32, LiveActor*, HitSensor*, const char*);
 
     void callAppearAllGroupMember(const LiveActor*);
     void callMakeActorDeadAllGroupMember(const LiveActor*);
@@ -306,15 +320,9 @@ namespace MR {
 
     void setGroupClipping(LiveActor*, const JMapInfoIter&, int);
 
-    PartsModel* createPartsModelNoSilhouettedMapObj(LiveActor*, const char*, const char*, MtxPtr);
-
     void startAction(const LiveActor*, const char*);
 
     bool tryStartAction(const LiveActor*, const char*);
-
-    LodCtrl* createLodCtrlPlanet(LiveActor*, const JMapInfoIter&, f32, s32);
-    LodCtrl* createLodCtrlNPC(LiveActor*, const JMapInfoIter&);
-    LodCtrl* createLodCtrlMapObj(LiveActor*, const JMapInfoIter&, f32);
 
     bool changeShowModelFlagSyncNearClipping(LiveActor*, f32);
 
@@ -355,8 +363,6 @@ namespace MR {
     bool tryCreateCollisionAllOtherCategory(LiveActor*, MtxPtr, HitSensor*, CollisionParts**, CollisionParts**, CollisionParts**);
     bool tryCreateCollisionAllOtherCategory(LiveActor*, HitSensor*, CollisionParts**, CollisionParts**, CollisionParts**);
 
-    f32 getCollisionBoundingSphereRange(const LiveActor*);
-
     bool isExistAnim(const LiveActor*, const char*);
 
     void setMirrorReflectionInfoFromMtxYUp(const TPos3f&);
@@ -366,10 +372,6 @@ namespace MR {
 
     void addToAttributeGroupSearchTurtle(const LiveActor*);
 
-    void stopSceneAtStep(const LiveActor*, s32, s32);
-
-    void tryRumblePadAndCameraDistanceStrong(const LiveActor*, f32, f32, f32);
-
     void initJointTransform(const LiveActor*);
 
     void initCollisionPartsAutoEqualScaleOne(LiveActor*, const char*, HitSensor*, MtxPtr);
@@ -378,15 +380,11 @@ namespace MR {
     ResTIMG* getTexFromArc(const char*, const LiveActor*);
     PartsModel* createBloomModel(LiveActor*, MtxPtr);
 
-    CollisionParts* getCollisionParts(const LiveActor*);
-
     TexMtxCtrl* initDLMakerTexMtx(LiveActor*, const char*);
 
     void changeModelDataTexAll(LiveActor*, const char*, const ResTIMG&);
 
     void reflectBckCtrlData(LiveActor*, const BckCtrlData&);
-
-    bool isExistKcl(LiveActor*, const char*);
 
     s32 countShowGroupMember(const LiveActor*);
     s32 countHideGroupMember(const LiveActor*);
