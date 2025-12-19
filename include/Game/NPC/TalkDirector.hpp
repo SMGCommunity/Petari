@@ -31,7 +31,7 @@ public:
     bool isInvalidTalk() const;
     void appearYesNoSelector(const TalkMessageCtrl*) const;
     s32 getDemoType(const TalkMessageCtrl*, bool) const;
-    u8 getBranchResult(u16);
+    bool getBranchResult(u16);
     void initBranchResult();
     void pauseOff();
     void balloonOff();
@@ -60,7 +60,7 @@ public:
     bool _4E;
     bool mIsInvalidClipping;  // 0x4F
     bool _50;
-    u32 mDemoType;  // 0x54
+    s32 mDemoType;  // 0x54
     bool _58;
     bool _59;
     bool _5A;
@@ -111,4 +111,5 @@ namespace MR {
     void invalidateTalkDirector();
     void setTalkDirectorDrawSyncToken();
     bool isActiveTalkBalloonShort();
+    void endNPCTalkCamera(bool, s32);
 };  // namespace MR

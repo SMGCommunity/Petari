@@ -106,4 +106,5 @@ public:
     static const wchar_t* getMessage(const TalkMessageCtrl*);
     static void onTalkStateEntry(TalkMessageCtrl*);
     static void onTalkStateNone(TalkMessageCtrl*);
+    static void onTalkStateEnableStart(TalkMessageCtrl*);
 };

@@ -4,15 +4,21 @@
 #include "Game/NPC/TalkMessageCtrl.hpp"
 #include "Game/NPC/TalkMessageInfo.hpp"
 #include "Game/NPC/TalkState.hpp"
+#include "Game/Screen/GameSceneLayoutHolder.hpp"
 #include "Game/Screen/LayoutActor.hpp"
+#include "Game/Util/ActorCameraUtil.hpp"
 #include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/DemoUtil.hpp"
+#include "Game/Util/EventUtil.hpp"
 #include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
+#include "Game/Util/ScreenUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
 #include "Game/Util/TalkUtil.hpp"
 #include "revolution/types.h"
+#include <cstdio>
 
 namespace NrvTalkDirector {
     NEW_NERVE(TalkDirectorNrvWait, TalkDirector, Wait);
@@ -178,6 +184,25 @@ bool TalkDirector::isInvalidTalk() const {
     return MR::isPlayerDead();
 }
 
+void TalkDirector::appearYesNoSelector(const TalkMessageCtrl* pArg) const {
+    const char* branchID = pArg->getBranchID();
+
+    char buff[0x100];
+    snprintf(buff, 0x100, "Select_%s_Yes", branchID);
+
+    char buff2[0x100];
+    snprintf(buff2, 0x100, "Select_%s_No", branchID);
+
+    if (pArg->isSelectYesNo()) {
+        MR::resetYesNoSelectorSE();
+    } else {
+        MR::setYesNoSelectorSE("SE_SY_TALK_FOCUS_ITEM", "SE_SY_TALK_SELECT_YES", "SE_SY_TALK_SELECT_YES");
+    }
+    MR::requestMovementOn((LayoutActor*)MR::getGameSceneLayoutHolder()->mYesNoLayout);
+
+    MR::appearYesNoSelector(buff, buff2, nullptr);
+}
+
 void TalkDirector::updateMessage() {
     mBalloonHolder->update();
     mStateHolder->update();
@@ -245,17 +270,155 @@ void TalkDirector::prepTalk(TalkMessageCtrl* pArg1, bool arg2, bool arg3, bool a
     }
 }
 
-TalkState* TalkDirector::initState(TalkMessageCtrl* pArg) {
-    u32 state = mStateHolder->getState(pArg);
-    TalkBalloon* balloon = mBalloonHolder->getBalloon(pArg);
-    balloon->movement();
-    TalkMessageInfo* info = TalkFunction::getMessageInfo(pArg);
-    if (info->isCameraNormal()) {
-        if (info->isCameraEvent()) {
-        }
+void TalkDirector::termTalk() {
+    TalkMessageCtrl* control = mTalkState->_04;
+    _4D = true;
+
+    if (mMessageInfo.isCameraNormal()) {
+        MR::endNPCTalkCamera(false, -1);
+    } else if (mMessageInfo.isCameraEvent()) {
+        MR::endMultiActorCamera(mHostActor, mCameraInfo, "会話", false, -1);
     }
 
-    info = TalkFunction::getMessageInfo(pArg);
-    // mMessageInfo = info->_0;
-    // return state;
+    if (!mIsInvalidClipping) {
+        MR::validateClipping(control->mHostActor);
+    }
+
+    if (_59) {
+        MR::endPlayerTalk();
+    }
+
+    switch (mDemoType) {
+    case 2:
+        MR::resumeTimeKeepDemo(control->mHostActor);
+        break;
+    case 1:
+        MR::endDemo(control->mHostActor, "会話");
+        break;
+    }
+
+    mDemoType = 0;
+    _59 = false;
+    mIsInvalidClipping = false;
 }
+
+TalkState* TalkDirector::initState(TalkMessageCtrl* pArg) {
+    TalkState* state = mStateHolder->getState(pArg);
+    TalkBalloon* balloon = mBalloonHolder->getBalloon(pArg);
+    state->init(pArg, balloon);
+
+    TalkMessageInfo* info = TalkFunction::getMessageInfo(pArg);
+    if (info->isCameraNormal() || info->isCameraEvent()) {
+        info = TalkFunction::getMessageInfo(pArg);
+        mMessageInfo = *info;
+        mCameraInfo = pArg->mCameraInfo;
+        mHostActor = pArg->mHostActor;
+    }
+
+    return state;
+}
+
+s32 TalkDirector::getDemoType(const TalkMessageCtrl* pArg, bool arg2) const {
+    s32 demoType;
+    if (TalkFunction::isShortTalk(pArg)) {
+        demoType = 0;
+    } else if (MR::isTimeKeepDemoActive()) {
+        if (arg2) {
+            demoType = 2;
+        } else {
+            demoType = 3;
+        }
+    } else {
+        demoType = 1;
+    }
+
+    if (!arg2 && demoType != 3) {
+        return 0;
+    }
+
+    return demoType;
+}
+
+// Gets the arg-th bool of TalkDirector's booleans, which start at 0x70
+bool TalkDirector::getBranchResult(u16 arg) {
+    if (arg == 18) {
+        return MR::isAnyPlayerLeftSupply();
+    }
+
+    if (arg == 12) {
+        return MR::isLuigiDisappearFromAstroGalaxy();
+    }
+
+    if (arg == 13) {
+        return MR::isOnLuigiHiding();
+    }
+
+    return (reinterpret_cast< bool* >(this) + arg)[0x70];
+}
+
+void TalkDirector::initBranchResult() {
+    mIsKinopioExplorerRescued = MR::isKinopioExplorerRescued();
+    mIsKinopioExplorerOrganize = MR::isKinopioExplorerOrganize();
+    mIsKinopioExplorerTalkGetGrandStar2 = MR::isKinopioExplorerTalkGetGrandStar2();
+    mIsKinopioExplorerTrickComet = MR::isKinopioExplorerTrickComet();
+    mIsKinopioExplorerTalkGetGrandStar3 = MR::isKinopioExplorerTalkGetGrandStar3();
+    mIsKinopioExplorerStartMessenger = MR::isKinopioExplorerStartMessenger();
+    mIsKinopioExplorerTalkGetGrandStar4 = MR::isKinopioExplorerTalkGetGrandStar4();
+    mIsKinopioExplorerTalkGetGrandStar5 = MR::isKinopioExplorerTalkGetGrandStar5();
+    mIsKinopioExplorerTalkGetGrandStar6 = MR::isKinopioExplorerTalkGetGrandStar6();
+    mIsKinopioExplorerTalkGoFinalBattle = MR::isKinopioExplorerTalkGoFinalBattle();
+    mIsEndLuigiHideAndSeek = MR::isEndLuigiHideAndSeekEvent();
+    mIsKinopioExplorerCompleteTrickComet = MR::isKinopioExplorerCompleteTrickComet();
+    mHasOneGreenStar = MR::calcCurrentGreenStarNum() == 1;
+    mHasTwoGreenStars = MR::calcCurrentGreenStarNum() == 2;
+    mHasThreeGreenStars = MR::calcCurrentGreenStarNum() == 3;
+    mIsUnlockedRedDriver = MR::isOnGameEventFlagRedDriver();
+    mIsActiveLuigiHideAndSeek = MR::isActiveLuigiHideAndSeekEvent();
+    mIsGalaxyPurpleCometLaunch = MR::isGalaxyPurpleCometLaunch();
+    misRosettaTalkTorchLecture = MR::isRosettaTalkTorchLecture();
+    mIsRosettaTalkTrickComet = MR::isRosettaTalkTrickComet();
+    mIsRosettaTalkKoopa = MR::isRosettaTalkKoopa();
+    mIsRosettaTalkCountDownStart = MR::isRosettaTalkCountDownStart();
+    mIsRosettaTalkAstroDemoRecover = MR::isRosettaTalkAstroDomeRecover();
+    mIsRosettaTalkTorchProgress = MR::isRosettaTalkTorchProgress();
+    mIsOnGameEventFlagViewNormalEnding = MR::isOnGameEventFlagViewNormalEnding();
+}
+
+void TalkDirector::exePrep() {
+    MR::isLessStep(this, 4);
+    if (mTalkState->prep(mMsgCtrl)) {
+        TalkFunction::onTalkStateEnableStart(mTalkState->_04);
+        return;
+    }
+
+    TalkFunction::onTalkStateNone(mTalkState->_04);
+    mTalkState = nullptr;
+    setNerve(&NrvTalkDirector::TalkDirectorNrvWait::sInstance);
+}
+
+void TalkDirector::pauseOff() {
+    MR::requestMovementOn(this);
+    mBalloonHolder->pauseOff();
+    mStateHolder->pauseOff();
+}
+
+void TalkDirector::balloonOff() {
+    if (mTalkState != nullptr) {
+        mTalkState->balloonOff();
+        mBalloonHolder->balloonOff();
+    }
+}
+
+bool TalkDirector::isNormalTalking() const {
+    return isSystemTalking() && mDemoType == 1;
+}
+
+LiveActor* TalkDirector::getTalkingActor() const {
+    if (isSystemTalking()) {
+        return mTalkState->_04->mHostActor;
+    }
+
+    return nullptr;
+}
+
+void TalkDirector::exeWait() {}
