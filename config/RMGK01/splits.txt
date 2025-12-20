@@ -151,12 +151,6 @@ nw4r/lyt/lyt_common.cpp:
 	.sbss       start:0x806B2EB0 end:0x806B2EB8
 	.sdata2     start:0x806B7D28 end:0x806B7D30
 
-RVL_SDK/os/init/__start.c:
-	.init       start:0x80004000 end:0x800042E0
-
-RVL_SDK/os/init/__ppc_eabi_init.cpp:
-	.init       start:0x800042E0 end:0x80004338
-
 Game/Animation/AnmPlayer.cpp:
 	.text       start:0x800161D0 end:0x800178C8
 	.data       start:0x80564A00 end:0x80564A28
@@ -11308,6 +11302,12 @@ RVL_SDK/bte/sdp_server.c:
 RVL_SDK/bte/sdp_utils.c:
 	.text       start:0x80517310 end:0x80518350
 	.data       start:0x80609630 end:0x80609868
+
+RVL_SDK/os/init/__start.c:
+	.init       start:0x80004000 end:0x800042E0
+
+RVL_SDK/os/init/__ppc_eabi_init.cpp:
+	.init       start:0x800042E0 end:0x80004338
 
 Runtime/__mem.c:
 	.init       start:0x80004338 end:0x8000446C
