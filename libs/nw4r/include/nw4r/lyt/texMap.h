@@ -41,9 +41,9 @@ namespace nw4r {
 
             inline GXTexWrapMode GetWrapModeT() const { return GXTexWrapMode(mBits.wrapT); }
 
-            inline GXTexFilter GetMinFilter() const NO_INLINE { return GXTexFilter(mBits.minFilter); }
+            inline GXTexFilter GetMinFilter() const { return GXTexFilter(mBits.minFilter); }
 
-            inline GXTexFilter GetMagFilter() const NO_INLINE { return GXTexFilter(mBits.magFilter); }
+            inline GXTexFilter GetMagFilter() const { return GXTexFilter(mBits.magFilter); }
 
             inline bool IsBiasClampEnable() const { return 0 != mBits.biasClampEnable; }
 

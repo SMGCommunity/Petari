@@ -41,13 +41,13 @@ namespace nw4r {
             virtual AnimationLink* FindAnimationLink(AnimTransform*);
             virtual void SetAnimationEnable(AnimTransform*, bool);
 
-            void Init() NO_INLINE;
+            void Init();
             void InitBitGXNums(detail::BitGXNums*);
             void ReserveGXMem(u8 texMapNum, u8 texSRTNum, u8 texCoordGenNum, u8 tevStageNum, bool allocTevSwap, u8 indStageNum, u8 indSRTNum,
                               bool allocChanCtrl, bool allocMatCol, bool allocAlpComp, bool allocBlendMode);
 
             u8 GetTextureNum() const { return u8(mGXMemNum.texMap); }
-            void SetTextureNum(u8 num) NO_INLINE;
+            void SetTextureNum(u8 num);
 
             u8 GetTextureCap() const { return u8(mGXMemCap.texMap); }
             u8 GetTexCoordGenCap() const { return u8(mGXMemCap.texCoordGen); }
