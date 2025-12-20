@@ -50,7 +50,7 @@ public:
     void rootNodePre(bool);
     void rootNodePst();
     bool isCurrentNodeContinue() const;
-    void rootNodeEve();
+    bool rootNodeEve();
     void rootNodeSel(bool);
     void registerBranchFunc(const TalkMessageFuncBase&);
     void registerEventFunc(const TalkMessageFuncBase&);
@@ -107,4 +107,6 @@ public:
     static void onTalkStateEntry(TalkMessageCtrl*);
     static void onTalkStateNone(TalkMessageCtrl*);
     static void onTalkStateEnableStart(TalkMessageCtrl*);
+    static void onTalkStateTalking(TalkMessageCtrl*);
+    static void onTalkStateEnableEnd(TalkMessageCtrl*);
 };

@@ -15,6 +15,7 @@
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/ScreenUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
 #include "Game/Util/TalkUtil.hpp"
 #include "revolution/types.h"
@@ -409,6 +410,19 @@ void TalkDirector::balloonOff() {
     }
 }
 
+// TODO : fix
+bool TalkDirector::isSystemTalking() const {
+    if (!isNerve(&NrvTalkDirector::TalkDirectorNrvTalk::sInstance) && !isNerve(&NrvTalkDirector::TalkDirectorNrvSlct::sInstance)) {
+        if (isNerve(&NrvTalkDirector::TalkDirectorNrvNext::sInstance)) {
+            return;
+        }
+    } else {
+        return !TalkFunction::isShortTalk(mTalkState->_04);
+    }
+
+    return false;
+}
+
 bool TalkDirector::isNormalTalking() const {
     return isSystemTalking() && mDemoType == 1;
 }
@@ -422,3 +436,99 @@ LiveActor* TalkDirector::getTalkingActor() const {
 }
 
 void TalkDirector::exeWait() {}
+
+void TalkDirector::exeTalk() {
+    TalkMessageCtrl* control = mTalkState->_04;
+    TalkFunction::onTalkStateTalking(control);
+
+    // TODO: is that really the way to do it
+    bool cond = false;
+
+    if (mDemoType == 0) {
+        cond = mTalkState->isLostMessage(mMsgCtrl);
+    }
+
+    if (!cond) {
+        if (!mTalkState->talk(mMsgCtrl)) {
+            return;
+        }
+
+        MR::readMessage(control);
+    }
+
+    if (TalkFunction::isSelectTalk(control)) {
+        setNerve(&NrvTalkDirector::TalkDirectorNrvSlct::sInstance);
+        return;
+    }
+
+    mTalkState->clos();
+    _50 = false;
+
+    if (_44 != nullptr && !mTalkState->isSelfInterrupt(_44)) {
+        control->rootNodePst();
+    }
+
+    setNerve(&NrvTalkDirector::TalkDirectorNrvNext::sInstance);
+    exeNext();
+}
+
+void TalkDirector::exeSlct() {
+    TalkMessageCtrl* control = mTalkState->_04;
+    if (MR::isFirstStep(this)) {
+        appearYesNoSelector(control);
+        MR::startSystemSE("SE_SM_TALKBLN_OPEN", -1, -1);
+    }
+
+    TalkFunction::onTalkStateTalking(control);
+
+    if (MR::isYesNoSelected()) {
+        MR::resetYesNoSelectorSE();
+        mTalkState->clos();
+        _50 = true;
+
+        if (_44 != nullptr) {
+            control->rootNodeSel(MR::isYesNoSelectedYes());
+            control->rootNodePre(true);
+        }
+
+        setNerve(&NrvTalkDirector::TalkDirectorNrvNext::sInstance);
+        exeNext();
+    }
+}
+
+void TalkDirector::exeNext() {
+    TalkMessageCtrl* control = mTalkState->_04;
+
+    bool cond = control->isCurrentNodeContinue();
+
+    if (control->rootNodeEve()) {
+        _50 |= cond;
+        if (_50) {
+            if (TalkFunction::isShortTalk(control)) {
+                termTalk();
+            }
+            control->rootNodePre(true);
+            mTalkState = initState(control);
+            mTalkState->open();
+            setNerve(&NrvTalkDirector::TalkDirectorNrvTalk::sInstance);
+
+            return;
+        }
+        termTalk();
+        TalkFunction::onTalkStateEnableEnd(control);
+        setNerve(&NrvTalkDirector::TalkDirectorNrvTerm::sInstance);
+    }
+}
+
+void TalkDirector::exeTerm() {
+    if (!_58) {
+        if (!mTalkState->term(mMsgCtrl)) {
+            return;
+        }
+    }
+
+    TalkFunction::onTalkStateNone(mTalkState->_04);
+    mTalkState = nullptr;
+
+    setNerve(&NrvTalkDirector::TalkDirectorNrvWait::sInstance);
+}
