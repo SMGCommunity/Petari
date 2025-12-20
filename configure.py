@@ -296,7 +296,7 @@ cflags_nw = [
     "-maxerrors 1",
     "-nosyspath",
     "-RTTI off",
-    "-fp_contract on",
+    "-fp_contract off",
     "-str reuse",
     "-enc SJIS",
     "-ipa file",

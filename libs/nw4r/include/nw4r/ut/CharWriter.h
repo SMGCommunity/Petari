@@ -10,12 +10,7 @@ namespace nw4r {
 
         class CharWriter {
         public:
-            enum GradationMode {
-                GRADMODE_NONE,
-                GRADMODE_H,
-                GRADMODE_V,
-                NUM_OF_GRADMODE
-            };
+            enum GradationMode { GRADMODE_NONE, GRADMODE_H, GRADMODE_V, NUM_OF_GRADMODE };
 
             CharWriter();
             ~CharWriter();
@@ -59,15 +54,13 @@ namespace nw4r {
                 mCursorPos.y = y;
             }
 
-            f32 GetCursorX() const {
-                return mCursorPos.x;
-            }
-
-            f32 GetCursorY() const {
-                return mCursorPos.y;
-            }
+            f32 GetCursorX() const { return mCursorPos.x; }
+            f32 GetCursorY() const { return mCursorPos.y; }
+            void SetFont(const Font& rFont) { mFont = &rFont; }
+            const Font* GetFont() const { return mFont; }
 
             f32 GetFontWidth() const;
+            void SetFontSize(f32 width, f32 height);
 
             ColorMapping mColorMapping;
             VertexColor mVertexColor;
@@ -81,5 +74,5 @@ namespace nw4r {
             f32 mFixedWidth;
             const Font* mFont;
         };
-    };
-};
+    };  // namespace ut
+};  // namespace nw4r

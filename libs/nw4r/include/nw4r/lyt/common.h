@@ -14,6 +14,14 @@ namespace nw4r {
                 return fmt == GX_TF_C4 || fmt == GX_TF_C8 || fmt == GX_TF_C14X2;
             }
 
+            inline u8 GetHorizontalPosition(u8 packed) {
+                return packed % 3;
+            }
+
+            inline u8 GetVerticalPosition(u8 packed) {
+                return packed / 3;
+            }
+
             bool IsModulateVertexColor(ut::Color*, u8);
             const ut::Color MultipleAlpha(const ut::Color, u8);
             void MultipleAlpha(ut::Color*, const ut::Color*, u8);
