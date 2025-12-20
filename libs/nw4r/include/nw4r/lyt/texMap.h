@@ -1,5 +1,6 @@
 #pragma once
 
+#include "nw4r/lyt/types.h"
 #include "revolution/tpl.h"
 #include <revolution.h>
 
@@ -40,9 +41,9 @@ namespace nw4r {
 
             inline GXTexWrapMode GetWrapModeT() const { return GXTexWrapMode(mBits.wrapT); }
 
-            inline GXTexFilter GetMinFilter() const { return GXTexFilter(mBits.minFilter); }
+            inline GXTexFilter GetMinFilter() const NO_INLINE { return GXTexFilter(mBits.minFilter); }
 
-            inline GXTexFilter GetMagFilter() const { return GXTexFilter(mBits.magFilter); }
+            inline GXTexFilter GetMagFilter() const NO_INLINE { return GXTexFilter(mBits.magFilter); }
 
             inline bool IsBiasClampEnable() const { return 0 != mBits.biasClampEnable; }
 
@@ -101,6 +102,8 @@ namespace nw4r {
             void SetPaletteEntryNum(u16 value) { mPltEntryNum = value; }
 
             void Set(const TexMap& texMap) { *this = texMap; }
+
+            const Size GetSize() const { return Size(mWidth, mHeight); }
 
             void* mImage;      // 0x00
             void* mPalette;    // 0x04

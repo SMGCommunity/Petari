@@ -4,6 +4,7 @@
 #include "nw4r/lyt/texMap.h"
 #include "nw4r/lyt/types.h"
 #include "nw4r/ut/Color.h"
+#include "revolution/vi.h"
 
 namespace nw4r {
     namespace lyt {
@@ -40,8 +41,13 @@ namespace nw4r {
             virtual AnimationLink* FindAnimationLink(AnimTransform*);
             virtual void SetAnimationEnable(AnimTransform*, bool);
 
+            void Init() NO_INLINE;
+            void InitBitGXNums(detail::BitGXNums*);
+            void ReserveGXMem(u8 texMapNum, u8 texSRTNum, u8 texCoordGenNum, u8 tevStageNum, bool allocTevSwap, u8 indStageNum, u8 indSRTNum,
+                              bool allocChanCtrl, bool allocMatCol, bool allocAlpComp, bool allocBlendMode);
+
             u8 GetTextureNum() const { return u8(mGXMemNum.texMap); }
-            void SetTextureNum(u8 num);
+            void SetTextureNum(u8 num) NO_INLINE;
 
             u8 GetTextureCap() const { return u8(mGXMemCap.texMap); }
             u8 GetTexCoordGenCap() const { return u8(mGXMemCap.texCoordGen); }
@@ -61,6 +67,8 @@ namespace nw4r {
 
             bool IsBlendModeCap() const { return mGXMemCap.blendMode; }
 
+            const TexMap& GetTexture(u8 texMapIdx) const { return GetTexMapAry()[texMapIdx]; }
+
             const TexMap* GetTexMapAry() const;
             TexMap* GetTexMapAry();
             const TexCoordGen* GetTexCoordGenAry() const;
@@ -78,6 +86,7 @@ namespace nw4r {
             void SetTevStageNum(u8);
             void SetIndStageNum(u8);
             void SetColorElement(u32, s16);
+            void AddAnimationLink(AnimationLink*);
 
             AnimationList mAnimList;
             GXColorS10 mTevCols[3];
