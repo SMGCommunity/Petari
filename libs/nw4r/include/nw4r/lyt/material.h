@@ -51,6 +51,16 @@ namespace nw4r {
 
             void SetTexCoordGen(u32 idx, TexCoordGen value) { GetTexCoordGenAry()[idx] = value; }
 
+            bool IsAlphaCompareCap() const { return mGXMemCap.alpComp; }
+
+            bool IsTevSwapCap() const { return mGXMemCap.tevSwap; }
+
+            bool IsChanCtrlCap() const { return mGXMemCap.chanCtrl; }
+
+            bool IsMatColorCap() const { return mGXMemCap.matCol; }
+
+            bool IsBlendModeCap() const { return mGXMemCap.blendMode; }
+
             const TexMap* GetTexMapAry() const;
             TexMap* GetTexMapAry();
             const TexCoordGen* GetTexCoordGenAry() const;

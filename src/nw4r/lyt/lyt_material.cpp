@@ -19,6 +19,74 @@ namespace {
         return !(rLhs == rRhs);
     }
 
+    void SetIndTexMtx(GXIndTexMtxID id, const f32 mtx[2][3]) {
+        f32 m00, m01, m02, m10, m11, m12;
+        f32 a00, a01, a02, a10, a11, a12;
+
+        s8 scaleExp = 0;
+
+        m00 = mtx[0][0];
+        m01 = mtx[0][1];
+        m02 = mtx[0][2];
+        m10 = mtx[1][0];
+        m11 = mtx[1][1];
+        m12 = mtx[1][2];
+
+        a00 = nw4r::math::FAbs(m00);
+        a01 = nw4r::math::FAbs(m01);
+        a02 = nw4r::math::FAbs(m02);
+        a10 = nw4r::math::FAbs(m10);
+        a11 = nw4r::math::FAbs(m11);
+        a12 = nw4r::math::FAbs(m12);
+
+        if (a00 >= 1.0f || a01 >= 1.0f || a02 >= 1.0f || a10 >= 1.0f || a11 >= 1.0f || a12 >= 1.0f) {
+            do {
+                if (scaleExp >= 46) {
+                    break;
+                }
+
+                scaleExp++;
+
+                m00 /= 2.0f;
+                m01 /= 2.0f;
+                m02 /= 2.0f;
+                m10 /= 2.0f;
+                m11 /= 2.0f;
+                m12 /= 2.0f;
+
+                a00 /= 2.0f;
+                a01 /= 2.0f;
+                a02 /= 2.0f;
+                a10 /= 2.0f;
+                a11 /= 2.0f;
+                a12 /= 2.0f;
+            } while (a00 >= 1.0f || a01 >= 1.0f || a02 >= 1.0f || a10 >= 1.0f || a11 >= 1.0f || a12 >= 1.0f);
+
+        } else if (a00 < 0.5f && a01 < 0.5f && a02 < 0.5f && a10 < 0.5f && a11 < 0.5f && a12 < 0.5f) {
+            do {
+                scaleExp--;
+
+                m00 *= 2.0f;
+                m01 *= 2.0f;
+                m02 *= 2.0f;
+                m10 *= 2.0f;
+                m11 *= 2.0f;
+                m12 *= 2.0f;
+
+                a00 *= 2.0f;
+                a01 *= 2.0f;
+                a02 *= 2.0f;
+                a10 *= 2.0f;
+                a11 *= 2.0f;
+                a12 *= 2.0f;
+
+            } while (a00 < 0.5f && a01 < 0.5f && a02 < 0.5f && a10 < 0.5f && a11 < 0.5f && a12 < 0.5f && scaleExp > -17);
+        }
+
+        f32 outMtx[2][3] = {m00, m01, m02, m10, m11, m12};
+        GXSetIndTexMtx(id, outMtx, scaleExp);
+    }
+
     void CalcTextureMtx(nw4r::math::MTX34* pMtx, const nw4r::lyt::TexSRT& rSrt) {
         nw4r::math::VEC2 center(0.5f, 0.5f);
 
@@ -315,6 +383,334 @@ namespace nw4r {
                 SetColorComponentValue(&mTevKCols[regIdx], (idx - detail::ANIMTARGET_MATCOLOR_TEVKONST0_R) % 4, value);
             } break;
             }
+        }
+
+        bool Material::SetupGX(bool modulate, u8 alpha) {
+            static GXTevKColorSel kColSels[GX_MAX_TEXMAP] = {GX_TEV_KCSEL_K3_A, GX_TEV_KCSEL_K3_B, GX_TEV_KCSEL_K3_G, GX_TEV_KCSEL_K3_R,
+                                                             GX_TEV_KCSEL_K2_A, GX_TEV_KCSEL_K2_B, GX_TEV_KCSEL_K2_G, GX_TEV_KCSEL_K2_R};
+
+            static GXTevKAlphaSel kAlpSels[GX_MAX_TEXMAP] = {GX_TEV_KASEL_K3_A, GX_TEV_KASEL_K3_B, GX_TEV_KASEL_K3_G, GX_TEV_KASEL_K3_R,
+                                                             GX_TEV_KASEL_K2_A, GX_TEV_KASEL_K2_B, GX_TEV_KASEL_K2_G, GX_TEV_KASEL_K2_R};
+
+            bool useVtxColor = true;
+            bool useMatColor = false;
+
+            GXSetNumChans(1);
+
+            if (IsChanCtrlCap()) {
+                const ChanCtrl* const pChanCtrl = GetChanCtrlAry();
+
+                GXSetChanCtrl(GX_COLOR0, GX_FALSE, GX_SRC_REG, pChanCtrl->GetColorSrc(), GX_LIGHT_NULL, GX_DF_NONE, GX_AF_NONE);
+
+                GXSetChanCtrl(GX_ALPHA0, GX_FALSE, GX_SRC_REG, pChanCtrl->GetAlphaSrc(), GX_LIGHT_NULL, GX_DF_NONE, GX_AF_NONE);
+
+                useVtxColor = pChanCtrl->GetColorSrc() == GX_SRC_VTX || pChanCtrl->GetAlphaSrc() == GX_SRC_VTX;
+
+                useMatColor = pChanCtrl->GetColorSrc() == GX_SRC_REG || pChanCtrl->GetAlphaSrc() == GX_SRC_REG;
+            } else {
+                GXSetChanCtrl(GX_COLOR0A0, GX_FALSE, GX_SRC_REG, GX_SRC_VTX, GX_LIGHT_NULL, GX_DF_NONE, GX_AF_NONE);
+            }
+
+            bool useRasStage = false;
+
+            if (useVtxColor) {
+                useRasStage = useRasStage || modulate;
+            }
+
+            if (useMatColor) {
+                ut::Color matColor = ut::Color::WHITE;
+
+                if (IsMatColorCap()) {
+                    matColor = *GetMatColAry();
+                }
+
+                matColor = detail::MultipleAlpha(matColor, alpha);
+                GXSetChanMatColor(GX_COLOR0A0, matColor);
+
+                useRasStage = useRasStage || matColor != ut::Color::WHITE;
+            }
+
+            bool setTexMtx = false;
+            bool useTexMtx[10];
+
+            for (int i = 0; i < 10; i++) {
+                useTexMtx[i] = false;
+            }
+
+            GXSetNumTexGens(mGXMemNum.texCoordGen);
+            if (mGXMemNum.texCoordGen > 0) {
+                const TexCoordGen* const pTexCoordGen = GetTexCoordGenAry();
+
+                for (int i = 0; i < mGXMemNum.texCoordGen; i++) {
+                    u32 texMtx = pTexCoordGen[i].GetTexMtx();
+
+                    if (pTexCoordGen[i].GetTexGenType() == GX_TG_MTX2x4 && texMtx != GX_IDENTITY) {
+                        useTexMtx[GetTexMtxIdx(texMtx)] = true;
+                        setTexMtx = true;
+                    }
+
+                    GXSetTexCoordGen2(static_cast< GXTexCoordID >(i), pTexCoordGen[i].GetTexGenType(), pTexCoordGen[i].GetTexGenSrc(), texMtx,
+                                      GX_FALSE, 0x7D);
+                }
+            }
+
+            if (setTexMtx) {
+                const TexSRT* const pTexSrt = GetTexSRTAry();
+
+                for (u8 i = 0; i < mGXMemNum.texSRT; i++) {
+                    if (!useTexMtx[i]) {
+                        continue;
+                    }
+
+                    math::MTX34 mtx;
+                    CalcTextureMtx(&mtx, pTexSrt[i]);
+                    GXLoadTexMtxImm(mtx, GetTexMtx(i), GX_MTX2x4);
+                }
+            }
+
+            if (mGXMemNum.texMap > 0) {
+                u32 tlutID = GX_TLUT0;
+                u32 bigTlutID = GX_BIGTLUT0;
+
+                const TexMap* const pTexMap = GetTexMapAry();
+
+                for (int i = 0; i < mGXMemNum.texMap; i++) {
+                    const TexMap& rTexMap = pTexMap[i];
+
+                    GXTexObj texObj;
+                    rTexMap.Get(&texObj);
+
+                    if (detail::IsCITexelFormat(rTexMap.GetTexelFormat())) {
+                        u32 tlutName;
+                        if (static_cast< int >(rTexMap.GetTexelFormat()) == GX_TF_C14X2) {
+                            tlutName = bigTlutID++;
+                        } else {
+                            tlutName = tlutID++;
+                        }
+
+                        GXInitTexObjTlut(&texObj, tlutName);
+
+                        GXTlutObj tlutObj;
+                        rTexMap.Get(&tlutObj);
+
+                        GXLoadTlut(&tlutObj, tlutName);
+                    }
+
+                    GXLoadTexObj(&texObj, static_cast< GXTexMapID >(i));
+                }
+            }
+
+            GXSetTevColorS10(GX_TEVREG0, mTevCols[0]);
+            GXSetTevColorS10(GX_TEVREG1, mTevCols[1]);
+            GXSetTevColorS10(GX_TEVREG2, mTevCols[2]);
+
+            GXSetTevKColor(GX_KCOLOR0, mTevKCols[GX_KCOLOR0]);
+            GXSetTevKColor(GX_KCOLOR1, mTevKCols[GX_KCOLOR1]);
+            GXSetTevKColor(GX_KCOLOR2, mTevKCols[GX_KCOLOR2]);
+            GXSetTevKColor(GX_KCOLOR3, mTevKCols[GX_KCOLOR3]);
+
+            if (IsTevSwapCap()) {
+                const TevSwapMode* const pTevSwap = GetTevSwapAry();
+
+                for (int i = 0; i < GX_MAX_TEVSWAP; i++) {
+                    GXSetTevSwapModeTable(static_cast< GXTevSwapSel >(i), pTevSwap[i].GetR(), pTevSwap[i].GetG(), pTevSwap[i].GetB(),
+                                          pTevSwap[i].GetA());
+                }
+            } else {
+                GXSetTevSwapModeTable(GX_TEV_SWAP0, GX_CH_RED, GX_CH_GREEN, GX_CH_BLUE, GX_CH_ALPHA);
+
+                GXSetTevSwapModeTable(GX_TEV_SWAP1, GX_CH_RED, GX_CH_RED, GX_CH_RED, GX_CH_ALPHA);
+
+                GXSetTevSwapModeTable(GX_TEV_SWAP2, GX_CH_GREEN, GX_CH_GREEN, GX_CH_GREEN, GX_CH_ALPHA);
+
+                GXSetTevSwapModeTable(GX_TEV_SWAP3, GX_CH_BLUE, GX_CH_BLUE, GX_CH_BLUE, GX_CH_ALPHA);
+            }
+
+            bool setIndTexMtx = false;
+            bool useIndTexMtx[3];
+
+            for (int i = 0; i < 3; i++) {
+                useIndTexMtx[i] = false;
+            }
+
+            if (mGXMemNum.tevStage > 0) {
+                GXSetNumTevStages(mGXMemNum.tevStage);
+
+                const TevStage* const pTevStage = GetTevStageAry();
+
+                for (int i = 0; i < mGXMemNum.tevStage; i++) {
+                    GXTevStageID tevStage = static_cast< GXTevStageID >(i);
+
+                    GXSetTevOrder(tevStage, pTevStage[i].GetTexCoordGen(), pTevStage[i].GetTexMap(), pTevStage[i].GetColorChan());
+
+                    GXSetTevSwapMode(tevStage, pTevStage[i].GetRasSwapSel(), pTevStage[i].GetTexSwapSel());
+
+                    GXSetTevColorIn(tevStage, pTevStage[i].GetColorInA(), pTevStage[i].GetColorInB(), pTevStage[i].GetColorInC(),
+                                    pTevStage[i].GetColorInD());
+
+                    GXSetTevColorOp(tevStage, pTevStage[i].GetColorOp(), pTevStage[i].GetColorBias(), pTevStage[i].GetColorScale(),
+                                    pTevStage[i].IsColorClamp(), pTevStage[i].GetColorOutReg());
+
+                    GXSetTevKColorSel(tevStage, pTevStage[i].GetKColorSel());
+
+                    GXSetTevAlphaIn(tevStage, pTevStage[i].GetAlphaInA(), pTevStage[i].GetAlphaInB(), pTevStage[i].GetAlphaInC(),
+                                    pTevStage[i].GetAlphaInD());
+
+                    GXSetTevAlphaOp(tevStage, pTevStage[i].GetAlphaOp(), pTevStage[i].GetAlphaBias(), pTevStage[i].GetAlphaScale(),
+                                    pTevStage[i].IsAlphaClamp(), pTevStage[i].GetAlphaOutReg());
+
+                    GXSetTevKAlphaSel(tevStage, pTevStage[i].GetKAlphaSel());
+                    GXIndTexMtxID indMtx = pTevStage[i].GetIndMtxSel();
+
+                    GXSetTevIndirect(tevStage, pTevStage[i].GetIndStage(), pTevStage[i].GetIndFormat(), pTevStage[i].GetIndBiasSel(), indMtx,
+                                     pTevStage[i].GetIndWrapS(), pTevStage[i].GetIndWrapT(), pTevStage[i].IsIndAddPrev(), pTevStage[i].IsIndUtcLod(),
+                                     pTevStage[i].GetIndAlphaSel());
+                    if (GX_ITM_0 <= indMtx && indMtx <= GX_ITM_2) {
+                        useIndTexMtx[indMtx - 1] = true;
+                        setIndTexMtx = true;
+                    }
+                }
+
+                useRasStage = true;
+            } else {
+                u8 tevStageID = GX_TEVSTAGE0;
+
+                if (mGXMemNum.texMap == 0) {
+                    GXTevStageID tevStage = GX_TEVSTAGE0;
+
+                    GXSetTevOrder(tevStage, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR0A0);
+                    GXSetTevColorIn(tevStage, GX_CC_ZERO, GX_CC_C1, GX_CC_RASC, GX_CC_ZERO);
+                    GXSetTevAlphaIn(tevStage, GX_CA_ZERO, GX_CA_A1, GX_CA_RASA, GX_CA_ZERO);
+
+                    useRasStage = true;
+                    tevStageID = GX_TEVSTAGE1;
+                } else {
+                    if (mGXMemNum.texMap == 1) {
+                        GXTevStageID tevStage = GX_TEVSTAGE0;
+
+                        GXSetTevOrder(tevStage, GX_TEXCOORD0, GX_TEXMAP0, GX_COLOR_NULL);
+                        GXSetTevColorIn(tevStage, GX_CC_C0, GX_CC_C1, GX_CC_TEXC, GX_CC_ZERO);
+                        GXSetTevAlphaIn(tevStage, GX_CA_A0, GX_CA_A1, GX_CA_TEXA, GX_CA_ZERO);
+
+                        tevStageID = GX_TEVSTAGE1;
+                    } else {
+                        if (mGXMemNum.texMap == 2) {
+                            GXTevStageID tevStage = GX_TEVSTAGE0;
+
+                            GXSetTevOrder(tevStage, GX_TEXCOORD0, GX_TEXMAP0, GX_COLOR_NULL);
+                            GXSetTevColorIn(tevStage, GX_CC_ZERO, GX_CC_ZERO, GX_CC_ZERO, GX_CC_TEXC);
+                            GXSetTevAlphaIn(tevStage, GX_CA_ZERO, GX_CA_ZERO, GX_CA_ZERO, GX_CA_TEXA);
+
+                            tevStage = GX_TEVSTAGE1;
+
+                            GXSetTevOrder(tevStage, GX_TEXCOORD1, GX_TEXMAP1, GX_COLOR_NULL);
+                            GXSetTevColorIn(tevStage, GX_CC_TEXC, GX_CC_CPREV, GX_CC_KONST, GX_CC_ZERO);
+                            GXSetTevAlphaIn(tevStage, GX_CA_TEXA, GX_CA_APREV, GX_CA_KONST, GX_CA_ZERO);
+
+                            GXSetTevKColorSel(tevStage, kColSels[GX_TEXMAP0]);
+                            GXSetTevKAlphaSel(tevStage, kAlpSels[GX_TEXMAP0]);
+
+                            tevStageID = GX_TEVSTAGE2;
+                        } else {
+                            for (int i = 0; i < mGXMemNum.texMap; i++) {
+                                GXTevStageID tevStage = static_cast< GXTevStageID >(tevStageID);
+
+                                GXSetTevOrder(tevStage, static_cast< GXTexCoordID >(i), static_cast< GXTexMapID >(i), GX_COLOR_NULL);
+
+                                GXTevColorArg colorD = i == GX_TEXMAP0 ? GX_CC_ZERO : GX_CC_CPREV;
+                                GXTevAlphaArg alphaD = i == GX_TEXMAP0 ? GX_CA_ZERO : GX_CA_APREV;
+
+                                GXSetTevColorIn(tevStage, GX_CC_ZERO, GX_CC_TEXC, GX_CC_KONST, colorD);
+                                GXSetTevAlphaIn(tevStage, GX_CA_ZERO, GX_CA_TEXA, GX_CA_KONST, alphaD);
+
+                                GXSetTevKColorSel(tevStage, kColSels[i]);
+                                GXSetTevKAlphaSel(tevStage, kAlpSels[i]);
+
+                                tevStageID++;
+                            }
+                        }
+
+                        if (mTevCols[0] != DefaultBlackColor || mTevCols[1] != DefaultWhiteColor) {
+                            GXTevStageID tevStage = static_cast< GXTevStageID >(tevStageID);
+
+                            GXSetTevOrder(tevStage, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR_NULL);
+                            GXSetTevColorIn(tevStage, GX_CC_C0, GX_CC_C1, GX_CC_CPREV, GX_CC_ZERO);
+                            GXSetTevAlphaIn(tevStage, GX_CA_A0, GX_CA_A1, GX_CA_APREV, GX_CA_ZERO);
+
+                            tevStageID++;
+                        }
+                    }
+
+                    if (useRasStage) {
+                        GXTevStageID tevStage = static_cast< GXTevStageID >(tevStageID);
+
+                        GXSetTevOrder(tevStage, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR0A0);
+                        GXSetTevColorIn(tevStage, GX_CC_ZERO, GX_CC_CPREV, GX_CC_RASC, GX_CC_ZERO);
+                        GXSetTevAlphaIn(tevStage, GX_CA_ZERO, GX_CA_APREV, GX_CA_RASA, GX_CA_ZERO);
+
+                        tevStageID++;
+                    }
+                }
+
+                const u8 tevStageNum = tevStageID;
+                for (u8 id = 0; id < tevStageNum; id++) {
+                    GXTevStageID tevStage = static_cast< GXTevStageID >(id);
+
+                    GXSetTevColorOp(tevStage, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, TRUE, GX_TEVPREV);
+                    GXSetTevAlphaOp(tevStage, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, TRUE, GX_TEVPREV);
+
+                    GXSetTevDirect(tevStage);
+                    GXSetTevSwapMode(tevStage, GX_TEV_SWAP0, GX_TEV_SWAP0);
+                }
+
+                GXSetNumTevStages(tevStageNum);
+            }
+
+            if (setIndTexMtx) {
+                const TexSRT* const pIndTexSrt = GetIndTexSRTAry();
+
+                for (int i = 0; i < mGXMemNum.indSRT; i++) {
+                    if (!useIndTexMtx[i]) {
+                        continue;
+                    }
+
+                    f32 mtx[2][3];
+                    CalcIndTexMtx(mtx, pIndTexSrt[i]);
+                    SetIndTexMtx(static_cast< GXIndTexMtxID >(GX_ITM_0 + i), mtx);
+                }
+            }
+
+            GXSetNumIndStages(mGXMemNum.indStage);
+            if (mGXMemNum.indStage > 0) {
+                const IndirectStage* const pIndStage = GetIndirectStageAry();
+
+                for (int i = 0; i < mGXMemNum.indStage; i++) {
+                    GXIndTexStageID indStage = static_cast< GXIndTexStageID >(i);
+
+                    GXSetIndTexOrder(indStage, pIndStage[i].GetTexCoordGen(), pIndStage[i].GetTexMap());
+
+                    GXSetIndTexCoordScale(indStage, pIndStage[i].GetScaleS(), pIndStage[i].GetScaleT());
+                }
+            }
+
+            if (IsAlphaCompareCap()) {
+                const AlphaCompare* const pAlphaComp = GetAlphaComparePtr();
+
+                GXSetAlphaCompare(pAlphaComp->GetComp0(), pAlphaComp->GetRef0(), pAlphaComp->GetOp(), pAlphaComp->GetComp1(), pAlphaComp->GetRef1());
+            } else {
+                GXSetAlphaCompare(GX_ALWAYS, 0, GX_AOP_AND, GX_ALWAYS, 0);
+            }
+
+            if (IsBlendModeCap()) {
+                const BlendMode* const pBlendMode = GetBlendModePtr();
+
+                GXSetBlendMode(pBlendMode->GetType(), pBlendMode->GetSrcFactor(), pBlendMode->GetDstFactor(), pBlendMode->GetOp());
+
+            } else {
+                GXSetBlendMode(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_SET);
+            }
+
+            return useRasStage && useVtxColor;
         }
 
     };  // namespace lyt
