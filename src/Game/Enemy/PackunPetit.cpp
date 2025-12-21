@@ -214,7 +214,7 @@ void PackunPetit::exePunchDown() {
 
     JMAVECScaleAdd(&mGravity, &mBlownModel->mVelocity, &mBlownModel->mVelocity, 2.5f);
 
-    if (!MR::isHiddenModel(mBlownModel) && (MR::isStep(this, 20) || MR::checkStikeBallToMap(mBlownModel->mPosition, 50.0f))) {
+    if (!MR::isHiddenModel(mBlownModel) && (MR::isStep(this, 20) || MR::checkStrikeBallToMap(mBlownModel->mPosition, 50.0f))) {
         MR::emitEffect(mBlownModel, "Death");
         MR::appearStarPiece(this, mBlownModel->mPosition, 3, 10.0f, 40.0f, false);
         MR::startSound(this, "SE_OJ_STAR_PIECE_BURST", -1, -1);
