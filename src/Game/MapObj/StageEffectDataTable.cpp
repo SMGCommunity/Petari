@@ -1,3 +1,5 @@
+#include "Game/MapObj/StageEffectDataTable.hpp"
+
 namespace {
     enum CameraShakeType { Strong = 1, Normal = 2, NormalWeak = 3, Weak = 4, VeryWeak = 5 };
 
