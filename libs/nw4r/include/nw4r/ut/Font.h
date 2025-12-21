@@ -58,6 +58,11 @@ namespace nw4r {
 
             void InitReaderFunc(FontEncoding);
 
+            const CharStrmReader GetCharStrmReader() const NO_INLINE {
+                CharStrmReader reader(mReadFunc);
+                return reader;
+            }
+
             CharStrmReader::ReadNextCharFunc mReadFunc;
         };
 

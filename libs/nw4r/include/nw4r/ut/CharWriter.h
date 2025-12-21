@@ -90,6 +90,10 @@ namespace nw4r {
                 mScale.y = hvScale;
             }
 
+            f32 GetScaleH() const { return mScale.x; }
+
+            f32 GetScaleV() const { return mScale.y; }
+
             void SetGradationMode(GradationMode mode) {
                 mTextColor.gradationMode = mode;
                 UpdateVertexColor();
