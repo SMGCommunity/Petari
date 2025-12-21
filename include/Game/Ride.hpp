@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Game/Ride/BigBubble.hpp"
+#include "Game/Ride/Creeper.hpp"
 #include "Game/Ride/Fluff.hpp"
 #include "Game/Ride/FluffWind.hpp"
 #include "Game/Ride/JumpBranch.hpp"

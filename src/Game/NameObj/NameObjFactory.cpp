@@ -794,7 +794,7 @@ namespace {
         },
         {
             "Creeper",
-            nullptr,
+            createNameObj< Creeper >,
             "Creeper",
         },
         {
