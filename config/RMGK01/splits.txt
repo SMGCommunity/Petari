@@ -3380,7 +3380,7 @@ Game/LiveActor/HitSensorKeeper.cpp:
 Game/LiveActor/IKJointCtrl.cpp:
 	.text       start:0x8016492C end:0x80165674
 	.data       start:0x80587BD0 end:0x80587CA8
-	.sdata      start:0x806B1B68 end:0x806B1BA8
+	.sdata      start:0x806B1B68 end:0x806B1B70
 	.sdata2     start:0x806BBC68 end:0x806BBC78
 
 Game/LiveActor/LiveActor.cpp:
@@ -3402,6 +3402,7 @@ Game/LiveActor/LiveActorGroupArray.cpp:
 Game/LiveActor/LodCtrl.cpp:
 	.text       start:0x80166C70 end:0x80167868
 	.data       start:0x80587DA0 end:0x80587DF0
+	.sdata      start:0x806B1B70 end:0x806B1B78
 	.sdata2     start:0x806BBC88 end:0x806BBC98
 
 Game/LiveActor/MaterialCtrl.cpp:
@@ -3447,15 +3448,18 @@ Game/LiveActor/PartsModel.cpp:
 
 Game/LiveActor/RailRider.cpp:
 	.text       start:0x8016AA38 end:0x8016B5A4
+	.sdata      start:0x806B1B78 end:0x806B1B80
 	.sdata2     start:0x806BBCD8 end:0x806BBCF0
 
 Game/LiveActor/SensorHitChecker.cpp:
 	.text       start:0x8016B5A4 end:0x8016BDE8
 	.data       start:0x80588190 end:0x805881D8
+	.sdata      start:0x806B1B80 end:0x806B1B88
 
 Game/LiveActor/ShadowController.cpp:
 	.text       start:0x8016BDE8 end:0x8016CD3C
 	.data       start:0x805881D8 end:0x80588240
+	.sdata      start:0x806B1B88 end:0x806B1B90
 	.sdata2     start:0x806BBCF0 end:0x806BBD08
 
 Game/LiveActor/ShadowDrawer.cpp:
@@ -3561,6 +3565,7 @@ Game/Map/Air.cpp:
 Game/Map/BezierRail.cpp:
 	.text       start:0x80171690 end:0x80172820
 	.data       start:0x80588B10 end:0x80588B20
+	.sdata      start:0x806B1B90 end:0x806B1B98
 	.sdata2     start:0x806BBDC0 end:0x806BBDF8
 
 Game/Map/Butterfly.cpp:
@@ -3578,6 +3583,7 @@ Game/Map/CollisionCategorizedKeeper.cpp:
 
 Game/Map/CollisionCode.cpp:
 	.text       start:0x801750F8 end:0x80175B98
+	.sdata      start:0x806B1B98 end:0x806B1BA8
 
 Game/Map/CollisionDirector.cpp:
 	.text       start:0x80175B98 end:0x80175D4C
