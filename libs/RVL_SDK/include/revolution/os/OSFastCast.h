@@ -5,12 +5,11 @@
 extern "C" {
 #endif
 
-#define OSf32tou16(in,out)  asm volatile ("psq_st   %1, 0(%0), 1, 3 " : : "b" (out) , "f" (*(in)) : "memory")
-#define OSu16tof32(in,out)  asm volatile ("psq_l   %0, 0(%1), 1, 3  " : "=f" (*(out)) : "b" (in) )
+#define OSf32tou16(in, out) asm volatile("psq_st   %1, 0(%0), 1, 3 " : : "b"(out), "f"(*(in)) : "memory")
+#define OSu16tof32(in, out) asm volatile("psq_l   %0, 0(%1), 1, 3  " : "=f"(*(out)) : "b"(in))
 
-static inline void OSInitFastCast(void)
-{
-    #ifdef __MWERKS__
+static inline void OSInitFastCast(void) {
+#ifdef __MWERKS__
     asm
     {
         li      r3, 4
@@ -29,11 +28,11 @@ static inline void OSInitFastCast(void)
         oris    r3, r3, 7
         mtspr   0x395, r3
     }
-    #endif
+#endif
 }
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif // OSFASTCAST_H
+#endif  // OSFASTCAST_H

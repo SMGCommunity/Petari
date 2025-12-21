@@ -11,10 +11,8 @@
 #include "revolution/mtx.h"
 #include "revolution/nand.h"
 #include "revolution/os.h"
-#include "revolution/types.h"
 #include "revolution/vi.h"
 #include "revolution/wenc.h"
 #include "revolution/wpad.h"
 
-
-#endif // REVOLUTION_H
+#endif  // REVOLUTION_H

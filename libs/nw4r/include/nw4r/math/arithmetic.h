@@ -11,6 +11,12 @@ namespace nw4r {
             return rval;
         }
 
+        inline u16 F32ToU16(f32 x) {
+            u16 rval;
+            OSf32tou16(&x, &rval);
+            return rval;
+        }
+
         inline f32 FAbs(register f32 x) {
             register f32 ax;
 
