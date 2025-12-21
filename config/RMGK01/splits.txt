@@ -3579,16 +3579,17 @@ Game/Map/Butterfly.cpp:
 
 Game/Map/CollisionCategorizedKeeper.cpp:
 	.text       start:0x80173B6C end:0x801750F8
-	.data       start:0x80588C80 end:0x80588ED8
+	.data       start:0x80588C80 end:0x80588CA8
 	.sdata2     start:0x806BBE58 end:0x806BBE68
 
 Game/Map/CollisionCode.cpp:
 	.text       start:0x801750F8 end:0x80175B98
+	.data       start:0x80588CA8 end:0x80588EC8
 	.sdata      start:0x806B1B98 end:0x806B1BA8
 
 Game/Map/CollisionDirector.cpp:
 	.text       start:0x80175B98 end:0x80175D4C
-	.data       start:0x80588ED8 end:0x80588F00
+	.data       start:0x80588EC8 end:0x80588F00
 
 Game/Map/CollisionParts.cpp:
 	.text       start:0x80175D4C end:0x80177614

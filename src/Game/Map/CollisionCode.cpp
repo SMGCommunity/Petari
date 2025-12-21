@@ -1,40 +1,41 @@
 #include "Game/Map/CollisionCode.hpp"
-
+#include "Game/Map/HitInfo.hpp"
 #include "Game/Util/HashUtil.hpp"
 
-CollisionCode::CollisionCode() : mFloorTable(0), mWallTable(0), mSoundTable(0), mCameraTable(0) {
+CollisionCode::CollisionCode() : mFloorTable(nullptr), mWallTable(nullptr), mSoundTable(nullptr), mCameraTable(nullptr) {
     createFloorTable();
     createWallTable();
     createSoundTable();
     createCameraTable();
 }
 
-CodeTable::CodeTable(u32 maxNum) {
-    mMaxNumCodes = maxNum;
-    mNumCodes = 0;
-    mHashCodes = new u32[maxNum];
-    _C = new u32[maxNum];
-    mNames = new const char*[maxNum];
+CodeTable::CodeTable(u32 numMax) {
+    mCodeNumMax = numMax;
+    mCodeNum = 0;
+    mHashTable = new u32[numMax];
+    mCodeTable = new u32[numMax];
+    mNameTable = new const char*[numMax];
 }
 
-void CodeTable::add(const char* pName, u32 num) {
-    mHashCodes[mNumCodes] = MR::getHashCode(pName);
-    _C[mNumCodes] = num;
-    mNames[mNumCodes] = pName;
-    mNumCodes++;
+void CodeTable::add(const char* pName, u32 code) {
+    mHashTable[mCodeNum] = MR::getHashCode(pName);
+    mCodeTable[mCodeNum] = code;
+    mNameTable[mCodeNum] = pName;
+    mCodeNum++;
 }
 
 const char* CollisionCode::getFloorCodeString(const Triangle& rTriangle) {
     JMapInfoIter iter = rTriangle.getAttributes();
 
     u32 code = getCode(iter, mFloorTable, "Floor_code");
+
     return mFloorTable->getString(code);
 }
 
-const char* CodeTable::getString(u32 val) {
-    for (s32 i = 0; i < mNumCodes; i++) {
-        if (val == _C[i]) {
-            return mNames[i];
+const char* CodeTable::getString(u32 code) {
+    for (s32 i = 0; i < mCodeNum; i++) {
+        if (code == mCodeTable[i]) {
+            return mNameTable[i];
         }
     }
 
@@ -45,42 +46,41 @@ const char* CollisionCode::getWallCodeString(const Triangle& rTriangle) {
     JMapInfoIter iter = rTriangle.getAttributes();
 
     u32 code = getCode(iter, mWallTable, "Wall_code");
+
     return mWallTable->getString(code);
 }
 
 const char* CollisionCode::getSoundCodeString(const Triangle& rTriangle) {
     JMapInfoIter iter = rTriangle.getAttributes();
+
     return getSoundCodeString(iter);
 }
 
 const char* CollisionCode::getSoundCodeString(const JMapInfoIter& rIter) {
     if (!rIter.isValid()) {
-        return "nullptr";
+        return "null";
     }
 
     if (rIter.mInfo->getValueType("Sound_code") == 0) {
         u32 code = 0;
 
-        bool ret = rIter.getValue< u32 >("Sound_code", &code);
-
-        if (ret) {
+        if (rIter.getValue< u32 >("Sound_code", &code)) {
             return mSoundTable->getString(code);
         }
     } else {
-        const char* code = 0;
+        const char* pCode = nullptr;
 
-        bool ret = rIter.getValue< const char* >("Sound_code", &code);
-
-        if (ret) {
-            return code;
+        if (rIter.getValue< const char* >("Sound_code", &pCode)) {
+            return pCode;
         }
     }
 
-    return "nullptr";
+    return "null";
 }
 
 u32 CollisionCode::getCameraID(const Triangle& rTriangle) {
     JMapInfoIter iter = rTriangle.getAttributes();
+
     return getCameraID(iter);
 }
 
@@ -92,28 +92,24 @@ u32 CollisionCode::getCode(const JMapInfoIter& rIter, CodeTable* pCodeTable, con
     if (rIter.mInfo->getValueType(pName) == 0) {
         u32 code = 0;
 
-        bool ret = rIter.getValue< u32 >(pName, &code);
-
-        if (ret) {
+        if (rIter.getValue< u32 >(pName, &code)) {
             return code;
         }
     } else {
-        const char* code = 0;
+        const char* pCode = nullptr;
 
-        bool ret = rIter.getValue< const char* >(pName, &code);
+        if (rIter.getValue< const char* >(pName, &pCode)) {
+            u32 code = 0;
+            u32 hash = MR::getHashCode(pCode);
 
-        if (ret) {
-            u32 ret_code = 0;
-            u32 hash = MR::getHashCode(code);
-
-            for (s32 i = 0; i < pCodeTable->mNumCodes; i++) {
-                if (hash == pCodeTable->mHashCodes[i]) {
-                    ret_code = pCodeTable->_C[i];
+            for (s32 i = 0; i < pCodeTable->mCodeNum; i++) {
+                if (hash == pCodeTable->mHashTable[i]) {
+                    code = pCodeTable->mCodeTable[i];
                     break;
                 }
             }
 
-            return ret_code;
+            return code;
         }
     }
 
@@ -121,85 +117,81 @@ u32 CollisionCode::getCode(const JMapInfoIter& rIter, CodeTable* pCodeTable, con
 }
 
 void CollisionCode::createFloorTable() {
-    mFloorTable = new CodeTable(0x23);
-
-    mFloorTable->add("Normal", 0);
-    mFloorTable->add("Death", 1);
-    mFloorTable->add("Slip", 2);
-    mFloorTable->add("NoSlip", 3);
-    mFloorTable->add("DamageNormal", 4);
-    mFloorTable->add("Ice", 5);
-    mFloorTable->add("JumpLow", 6);
-    mFloorTable->add("JumpMiddle", 7);
-    mFloorTable->add("JumpHigh", 8);
-    mFloorTable->add("Slider", 9);
-    mFloorTable->add("DamageFire", 0xA);
-    mFloorTable->add("JumpNormal", 0xB);
-    mFloorTable->add("FireDance", 0xC);
-    mFloorTable->add("Sand", 0xD);
-    mFloorTable->add("Glass", 0xE);
-    mFloorTable->add("DamageElectric", 0xF);
-    mFloorTable->add("PullBack", 0x10);
-    mFloorTable->add("Sink", 0x11);
-    mFloorTable->add("SinkPoison", 0x12);
-    mFloorTable->add("Slide", 0x13);
-    mFloorTable->add("WaterBottomH", 0x14);
-    mFloorTable->add("WaterBottomM", 0x15);
-    mFloorTable->add("WaterBottomL", 0x16);
-    mFloorTable->add("Wet", 0x17);
-    mFloorTable->add("Needle", 0x18);
-    mFloorTable->add("SinkDeath", 0x19);
-    mFloorTable->add("Snow", 0x1A);
-    mFloorTable->add("RailMove", 0x1B);
-    mFloorTable->add("AreaMove", 0x1C);
-    mFloorTable->add("Press", 0x1D);
-    mFloorTable->add("NoStampSand", 0x1E);
-    mFloorTable->add("SinkDeathMud", 0x1F);
-    mFloorTable->add("Brake", 0x20);
-    mFloorTable->add("GlassIce", 0x21);
-    mFloorTable->add("JumpParasol", 0x22);
+    mFloorTable = new CodeTable(CollisionFloorCode_End);
+    mFloorTable->add("Normal", CollisionFloorCode_Normal);
+    mFloorTable->add("Death", CollisionFloorCode_Death);
+    mFloorTable->add("Slip", CollisionFloorCode_Slip);
+    mFloorTable->add("NoSlip", CollisionFloorCode_NoSlip);
+    mFloorTable->add("DamageNormal", CollisionFloorCode_DamageNormal);
+    mFloorTable->add("Ice", CollisionFloorCode_Ice);
+    mFloorTable->add("JumpLow", CollisionFloorCode_JumpLow);
+    mFloorTable->add("JumpMiddle", CollisionFloorCode_JumpMiddle);
+    mFloorTable->add("JumpHigh", CollisionFloorCode_JumpHigh);
+    mFloorTable->add("Slider", CollisionFloorCode_Slider);
+    mFloorTable->add("DamageFire", CollisionFloorCode_DamageFire);
+    mFloorTable->add("JumpNormal", CollisionFloorCode_JumpNormal);
+    mFloorTable->add("FireDance", CollisionFloorCode_FireDance);
+    mFloorTable->add("Sand", CollisionFloorCode_Sand);
+    mFloorTable->add("Glass", CollisionFloorCode_Glass);
+    mFloorTable->add("DamageElectric", CollisionFloorCode_DamageElectric);
+    mFloorTable->add("PullBack", CollisionFloorCode_PullBack);
+    mFloorTable->add("Sink", CollisionFloorCode_Sink);
+    mFloorTable->add("SinkPoison", CollisionFloorCode_SinkPoison);
+    mFloorTable->add("Slide", CollisionFloorCode_Slide);
+    mFloorTable->add("WaterBottomH", CollisionFloorCode_WaterBottomH);
+    mFloorTable->add("WaterBottomM", CollisionFloorCode_WaterBottomM);
+    mFloorTable->add("WaterBottomL", CollisionFloorCode_WaterBottomL);
+    mFloorTable->add("Wet", CollisionFloorCode_Wet);
+    mFloorTable->add("Needle", CollisionFloorCode_Needle);
+    mFloorTable->add("SinkDeath", CollisionFloorCode_SinkDeath);
+    mFloorTable->add("Snow", CollisionFloorCode_Snow);
+    mFloorTable->add("RailMove", CollisionFloorCode_RailMove);
+    mFloorTable->add("AreaMove", CollisionFloorCode_AreaMove);
+    mFloorTable->add("Press", CollisionFloorCode_Press);
+    mFloorTable->add("NoStampSand", CollisionFloorCode_NoStampSand);
+    mFloorTable->add("SinkDeathMud", CollisionFloorCode_SinkDeathMud);
+    mFloorTable->add("Brake", CollisionFloorCode_Brake);
+    mFloorTable->add("GlassIce", CollisionFloorCode_GlassIce);
+    mFloorTable->add("JumpParasol", CollisionFloorCode_JumpParasol);
 }
 
 void CollisionCode::createWallTable() {
-    mWallTable = new CodeTable(0x9);
-
-    mWallTable->add("Normal", 0);
-    mWallTable->add("NotWallJump", 1);
-    mWallTable->add("NotWallSlip", 2);
-    mWallTable->add("NotGrab", 3);
-    mWallTable->add("GhostThroughCode", 4);
-    mWallTable->add("NotSideStep", 5);
-    mWallTable->add("Rebound", 6);
-    mWallTable->add("Fur", 7);
-    mWallTable->add("NoAction", 8);
+    mWallTable = new CodeTable(CollisionWallCode_End);
+    mWallTable->add("Normal", CollisionWallCode_Normal);
+    mWallTable->add("NotWallJump", CollisionWallCode_NotWallJump);
+    mWallTable->add("NotWallSlip", CollisionWallCode_NotWallSlip);
+    mWallTable->add("NotGrab", CollisionWallCode_NotGrab);
+    mWallTable->add("GhostThroughCode", CollisionWallCode_GhostThroughCode);
+    mWallTable->add("NotSideStep", CollisionWallCode_NotSideStep);
+    mWallTable->add("Rebound", CollisionWallCode_Rebound);
+    mWallTable->add("Fur", CollisionWallCode_Fur);
+    mWallTable->add("NoAction", CollisionWallCode_NoAction);
 }
 
 void CollisionCode::createSoundTable() {
-    mSoundTable = new CodeTable(0x10);
-
-    mSoundTable->add("nullptr", 0);
-    mSoundTable->add("Soil", 1);
-    mSoundTable->add("Lawn", 2);
-    mSoundTable->add("Stone", 3);
-    mSoundTable->add("Marble", 4);
-    mSoundTable->add("WoodThick", 5);
-    mSoundTable->add("WoodThin", 6);
-    mSoundTable->add("Metal", 7);
-    mSoundTable->add("Snow", 8);
-    mSoundTable->add("Ice", 9);
-    mSoundTable->add("Shallow", 0xA);
-    mSoundTable->add("Sand", 0xB);
-    mSoundTable->add("Beach", 0xC);
-    mSoundTable->add("Carpet", 0xD);
-    mSoundTable->add("Mud", 0xE);
-    mSoundTable->add("Honey", 0xF);
+    mSoundTable = new CodeTable(CollisionSoundCode_End);
+    mSoundTable->add("null", CollisionSoundCode_Null);
+    mSoundTable->add("Soil", CollisionSoundCode_Soil);
+    mSoundTable->add("Lawn", CollisionSoundCode_Lawn);
+    mSoundTable->add("Stone", CollisionSoundCode_Stone);
+    mSoundTable->add("Marble", CollisionSoundCode_Marble);
+    mSoundTable->add("WoodThick", CollisionSoundCode_WoodThick);
+    mSoundTable->add("WoodThin", CollisionSoundCode_WoodThin);
+    mSoundTable->add("Metal", CollisionSoundCode_Metal);
+    mSoundTable->add("Snow", CollisionSoundCode_Snow);
+    mSoundTable->add("Ice", CollisionSoundCode_Ice);
+    mSoundTable->add("Shallow", CollisionSoundCode_Shallow);
+    mSoundTable->add("Sand", CollisionSoundCode_Sand);
+    mSoundTable->add("Beach", CollisionSoundCode_Beach);
+    mSoundTable->add("Carpet", CollisionSoundCode_Carpet);
+    mSoundTable->add("Mud", CollisionSoundCode_Mud);
+    mSoundTable->add("Honey", CollisionSoundCode_Honey);
 }
 
 void CollisionCode::createCameraTable() {
-    mCameraTable = new CodeTable(2);
-
-    mCameraTable->add("NoThrough", 0);
-    mCameraTable->add("Through", 1);
+    mCameraTable = new CodeTable(CollisionCameraCode_End);
+    mCameraTable->add("NoThrough", CollisionCameraCode_NoThrough);
+    mCameraTable->add("Through", CollisionCameraCode_Through);
 }
 
 u32 CollisionCode::getFloorCode(const JMapInfoIter& rIter) {
