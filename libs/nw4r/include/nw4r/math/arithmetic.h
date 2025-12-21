@@ -3,13 +3,23 @@
 #include <revolution/os.h>
 #include <revolution/types.h>
 
-
 namespace nw4r {
     namespace math {
         inline f32 U16ToF32(u16 x) {
             f32 rval;
             OSu16tof32(&x, &rval);
             return rval;
+        }
+
+        inline f32 FAbs(register f32 x) {
+            register f32 ax;
+
+            __asm {
+                fabs ax, x
+            }
+            ;
+
+            return ax;
         }
     };  // namespace math
 };  // namespace nw4r
