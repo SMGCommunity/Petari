@@ -7,7 +7,7 @@
 #include "Game/Util/ObjUtil.hpp"
 
 ClippingDirector::ClippingDirector() : NameObj("クリッピング指揮"), mJudge(nullptr), mActorHolder(nullptr), mGroupHolder(nullptr) {
-    mJudge = new ClippingJudge("クリッピング判定");
+    mJudge = new ClippingJudge("クリッピング判定者");
     mJudge->initWithoutIter();
 
     mActorHolder = new ClippingActorHolder();

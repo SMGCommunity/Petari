@@ -1,7 +1,7 @@
 #include "Game/Screen/LensFlare.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/BrightObj.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
-#include "Game/LiveActor/Nerve.hpp"
 #include "Game/System/DrawSyncManager.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
@@ -13,22 +13,16 @@ namespace {
     NEW_NERVE(LensFlareModelNrvShow, LensFlareModel, Show);
     NEW_NERVE(LensFlareModelNrvFadeIn, LensFlareModel, FadeIn);
     NEW_NERVE(LensFlareModelNrvFadeOut, LensFlareModel, FadeOut);
-};
+};  // namespace
 
 namespace {
     LensFlareDirector* getLensFlareDirector() {
-        return MR::getSceneObj<LensFlareDirector>(SceneObj_LensFlareDirector);
+        return MR::getSceneObj< LensFlareDirector >(SceneObj_LensFlareDirector);
     }
-};
+};  // namespace
 
-LensFlareModel::LensFlareModel(const char* pName, const char* pArcName) :
-    LiveActor(pName),
-    _8C(0.0f),
-    _90(0.0f),
-    _94(0.0f),
-    _98(new TriggerChecker()),
-    _9C(new TriggerChecker())
-{
+LensFlareModel::LensFlareModel(const char* pName, const char* pArcName)
+    : LiveActor(pName), _8C(0.0f), _90(0.0f), _94(0.0f), _98(new TriggerChecker()), _9C(new TriggerChecker()) {
     initModelManagerWithAnm(pArcName, nullptr, false);
     MR::connectToScene3DModelFor2D(this);
     MR::invalidateClipping(this);
@@ -41,8 +35,7 @@ void LensFlareModel::update(bool param1, bool param2) {
 
     if (_98->getOnTrigger()) {
         notifyInArea();
-    }
-    else if (_98->getOffTrigger()) {
+    } else if (_98->getOffTrigger()) {
         setNerve(&::LensFlareModelNrvFadeOut::sInstance);
     }
 
@@ -52,8 +45,7 @@ void LensFlareModel::update(bool param1, bool param2) {
         if (isNerve(&::LensFlareModelNrvHide::sInstance)) {
             setNerve(&::LensFlareModelNrvShow::sInstance);
         }
-    }
-    else if (_9C->getOffTrigger() && (isNerve(&::LensFlareModelNrvShow::sInstance) || isNerve(&::LensFlareModelNrvFadeIn::sInstance))) {
+    } else if (_9C->getOffTrigger() && (isNerve(&::LensFlareModelNrvShow::sInstance) || isNerve(&::LensFlareModelNrvFadeIn::sInstance))) {
         setNerve(&::LensFlareModelNrvHide::sInstance);
     }
 }
@@ -167,9 +159,7 @@ LensFlareLine::LensFlareLine() : LensFlareModel("グレア（ライン）", "Gla
     _94 = 0.05f;
 }
 
-void LensFlareLine::appearAnim() {
-    
-}
+void LensFlareLine::appearAnim() {}
 
 void LensFlareLine::controlAnim() {
     MR::startBrk(this, "GlareLine");
@@ -178,20 +168,8 @@ void LensFlareLine::controlAnim() {
 }
 
 LensFlareDirector::LensFlareDirector()
-    : NameObj("レンズフレア管理"),
-      mRing(nullptr),
-      mGlow(nullptr),
-      mLine(nullptr),
-      mBrightObjArray(),
-      _60(0.0f, 0.0f),
-      _68(0.0f),
-      _6C(0.0f, 0.0f),
-      _74(0.0f),
-      _78(0.0f),
-      _7C(0),
-      mDrawSyncTokenIndex(0),
-      mBrightCamInfo(nullptr)
-{
+    : NameObj("レンズフレア管理"), mRing(nullptr), mGlow(nullptr), mLine(nullptr), mBrightObjArray(), _60(0.0f, 0.0f), _68(0.0f), _6C(0.0f, 0.0f),
+      _74(0.0f), _78(0.0f), _7C(0), mDrawSyncTokenIndex(0), mBrightCamInfo(nullptr) {
     // _7C = DrawSyncManager::sInstance->setCallback(3, 2, &_C);
 }
 
