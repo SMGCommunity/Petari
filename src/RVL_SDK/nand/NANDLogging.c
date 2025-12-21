@@ -45,7 +45,7 @@ BOOL NANDLoggingAddMessageAsync(NANDLoggingCallback cb, const char* fmt, ...) {
     }   
 
     va_start(ap, fmt);
-    vsnprintf(s_message, 256, fmt, ap);
+    vsnprintf(s_message, sizeof(s_message), fmt, ap);
     va_end(ap);
 
     s_callback = cb;

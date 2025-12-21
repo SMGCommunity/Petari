@@ -167,15 +167,15 @@ void UFOBase::calcAndSetBaseMtx() {
 void UFOBase::initSubModel(const JMapInfoIter& rIter, const char* name) {
     mLODCtrl = MR::createLodCtrlMapObj(this, rIter, 100.0f);
     if (MR::isExistSubModel(name, "Bloom")) {
-        char pChar[0x100];
-        snprintf(pChar, 0x100u, "%sBloom", name);
+        char buf[0x100];
+        snprintf(buf, sizeof(buf), "%sBloom", name);
         const char* name2 = mName;
-        mModel = MR::createModelObjBloomModel(name2, pChar, getBaseMtx());
+        mModel = MR::createModelObjBloomModel(name2, buf, getBaseMtx());
         f32 num = 500.0f;
         MR::calcModelBoundingRadius(&num, this);
         MR::setClippingFarMax(mModel);
         MR::setClippingTypeSphere(mModel, num);
-        MR::startBpk(mModel, pChar);
+        MR::startBpk(mModel, buf);
     }
 }
 

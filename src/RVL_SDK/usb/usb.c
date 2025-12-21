@@ -169,7 +169,7 @@ IOSError IUSB_OpenDeviceIds(const char *did, u16 vid, u16 pid, IOSFd *fd) {
     }
 
     memset(req, 0, sizeof(iusb_ctxt));
-    snprintf(req->u.path, 64, "/dev/usb/%s/%x/%x", did, vid, pid);
+    snprintf(req->u.path, sizeof(req->u.path), "/dev/usb/%s/%x/%x", did, vid, pid);
     USB_LOG("OpenDevice - %s\n", req->u.path);
     rv = IOS_Open(req->u.path, 0);
     USB_LOG("OpenDevice returned: %d\n", rv);
