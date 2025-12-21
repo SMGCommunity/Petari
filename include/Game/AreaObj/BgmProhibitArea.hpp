@@ -10,7 +10,7 @@ struct BgmMuteSet {
 };
 
 namespace {
-    static BgmMuteSet sBgmMuteSet[2] = {{"OceanPhantomCaveGalaxy", 7, 1}, {"SoundMapCodeTest", 7, 1}};
+    static BgmMuteSet sBgmMuteSet[] = {{"OceanPhantomCaveGalaxy", 7, 1}, {"SoundMapCodeTest", 7, 1}};
 
     BgmMuteSet* findDataElement(const char*);
 };  // namespace

@@ -14,29 +14,29 @@
 #include "revolution/types.h"
 
 namespace {
-    static const char* hScaleJointName[3] = {"WideInSide", "WideOutSide", "Hirgh1"};
+    static const char* hScaleJointName[] = {"WideInSide", "WideOutSide", "Hirgh1"};
 
-    static const f32 hOnAirParam[4] = {0.0f, 3.0f, 0.96f, 0.0f};
+    static const f32 hOnAirParam[] = {0.0f, 3.0f, 0.96f, 0.0f};
 
-    static const f32 hOnGroundParam[4] = {0.0f, 1.0f, 0.8f, 0.0f};
+    static const f32 hOnGroundParam[] = {0.0f, 1.0f, 0.8f, 0.0f};
 
-    static const f32 hFlyParam[4] = {0.0f, 0.5f, 0.9f, 1.0f};
+    static const f32 hFlyParam[] = {0.0f, 0.5f, 0.9f, 1.0f};
 
-    static const f32 hAngryDemoParam[4] = {0.0f, 0.5f, 0.9f, 1.5f};
+    static const f32 hAngryDemoParam[] = {0.0f, 0.5f, 0.9f, 1.5f};
 
-    static const f32 hEscapeOnGroundParam[4] = {-0.7f, 1.0f, 0.96f, 180.0f};
+    static const f32 hEscapeOnGroundParam[] = {-0.7f, 1.0f, 0.96f, 180.0f};
 
-    static const f32 hEscapeOnAirParam[4] = {0.0f, 3.0f, 0.96f, 0.0f};
+    static const f32 hEscapeOnAirParam[] = {0.0f, 3.0f, 0.96f, 0.0f};
 
-    static const f32 hPreRecoverJumpParam[4] = {0.0f, 1.0f, 0.96f, 0.0f};
+    static const f32 hPreRecoverJumpParam[] = {0.0f, 1.0f, 0.96f, 0.0f};
 
-    static const f32 hDamageJumpParam[4] = {0.0f, 1.9f, 0.98f, 0.0f};
+    static const f32 hDamageJumpParam[] = {0.0f, 1.9f, 0.98f, 0.0f};
 
-    static const f32 hAttackParam[4] = {0.0f, 6.0f, 0.98f, 0.0f};
+    static const f32 hAttackParam[] = {0.0f, 6.0f, 0.98f, 0.0f};
 
-    static f32 hExtinguishOnAirParam[4] = {0.0f, 0.125f, 0.96f, 0.0f};
+    static f32 hExtinguishOnAirParam[] = {0.0f, 0.125f, 0.96f, 0.0f};
 
-    static f32 hExtinguishFallOnAirParam[4] = {0.0f, 4.0f, 0.96f, 0.0f};
+    static f32 hExtinguishFallOnAirParam[] = {0.0f, 4.0f, 0.96f, 0.0f};
 };  // namespace
 
 namespace NrvIceMerameraKing {

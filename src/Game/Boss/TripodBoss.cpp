@@ -20,7 +20,7 @@
 #include <cstdio>
 
 namespace {
-    static const char* sLegBoneNameTable[3] = {"LeftLeg", "RightLeg", "BackLeg"};
+    static const char* sLegBoneNameTable[] = {"LeftLeg", "RightLeg", "BackLeg"};
 
     static s32 sKillerGeneraterIncreaseSeTiming = 0x5A;
     static s32 sHeadExplodeSeTiming;
@@ -1155,7 +1155,11 @@ void TripodBossBone::setAttachBaseMatrix(const TPos3f& rPos) {
 }
 
 namespace MR {
-    NameObj* createTripodBoss(const char* pName) { return new TripodBoss(pName); }
+    NameObj* createTripodBoss(const char* pName) {
+        return new TripodBoss(pName);
+    }
 
-    NameObj* createTripod2Boss(const char* pName) { return new TripodBoss(pName); }
+    NameObj* createTripod2Boss(const char* pName) {
+        return new TripodBoss(pName);
+    }
 };  // namespace MR

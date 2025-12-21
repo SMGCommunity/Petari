@@ -18,7 +18,7 @@ namespace {
     }
 
     // we will define the creation funcs later
-    static const ExterminationEntry sCreateTable[3] = {{"ChildKuribo", nullptr}, {"ChildSkeletalFishBaby", nullptr}, {"ChildMeramera", nullptr}};
+    static const ExterminationEntry sCreateTable[] = {{"ChildKuribo", nullptr}, {"ChildSkeletalFishBaby", nullptr}, {"ChildMeramera", nullptr}};
 };  // namespace
 
 class ExterminationChecker : public LiveActor {
@@ -35,7 +35,7 @@ public:
     void exeAppearKeySwitch();
 
     inline CreationFunc findEntry(const char* pName) {
-        for (s32 j = 0; j < 3; j++) {
+        for (s32 j = 0; j < sizeof(sCreateTable) / sizeof(*sCreateTable); j++) {
             if (sCreateTable[j].mChildName && MR::isEqualStringCase(sCreateTable[j].mChildName, pName)) {
                 return sCreateTable[j].mCreationFunc;
             }

@@ -12,34 +12,36 @@ struct Param {
 };
 
 namespace {
-    static Param sParams[3] = {{
-                                   "PhantomCandlestand",
-                                   500.0f,  // mClippingRadius
-                                   50.0f,   // mSensorRange
-                                   220.0f,  // 0xC
-                                   0.0f,    // 0x14
-                                   false    // mCanUseSwitch
-                               },
-                               {
-                                   "TeresaMansionCandlestand",
-                                   800.0f,  // mClippingRadius
-                                   70.0f,   // mSensorRange
-                                   300.0f,  // 0xC
-                                   220.0f,  // 0x10
-                                   -5.0f,   // 0x14
-                                   false    // mCanUseSwitch
-                               },
-                               {
-                                   "CandlestandIceVolcano",
-                                   500.0f,  // mClippingRadius
-                                   150.0f,  // mSensorRange
-                                   220.0f,  // 0xC
-                                   0.0f,    // 0x10
-                                   0.0f,    // 0x14
-                                   true     // mCanUseSwitch
-                               }};
+    static Param sParams[] = {{
+                                  "PhantomCandlestand",
+                                  500.0f,  // mClippingRadius
+                                  50.0f,   // mSensorRange
+                                  220.0f,  // 0xC
+                                  0.0f,    // 0x14
+                                  false    // mCanUseSwitch
+                              },
+                              {
+                                  "TeresaMansionCandlestand",
+                                  800.0f,  // mClippingRadius
+                                  70.0f,   // mSensorRange
+                                  300.0f,  // 0xC
+                                  220.0f,  // 0x10
+                                  -5.0f,   // 0x14
+                                  false    // mCanUseSwitch
+                              },
+                              {
+                                  "CandlestandIceVolcano",
+                                  500.0f,  // mClippingRadius
+                                  150.0f,  // mSensorRange
+                                  220.0f,  // 0xC
+                                  0.0f,    // 0x10
+                                  0.0f,    // 0x14
+                                  true     // mCanUseSwitch
+                              }};
 
-    Param* get(s32 idx) { return &sParams[idx]; }
+    Param* get(s32 idx) {
+        return &sParams[idx];
+    }
 
     Param* getParam(const char* pObjName) NO_INLINE {
         for (s32 i = 0; i < 3; i++) {

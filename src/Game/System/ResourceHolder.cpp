@@ -3,8 +3,8 @@
 #include "Game/System/ResourceHolder.hpp"
 
 namespace {
-    const char* sModelExt[2] = {".bdl", ".bmd"};
-    const char* sMotionExt[2] = {".bck", ".bca"};
+    const char* sModelExt[] = {".bdl", ".bmd"};
+    const char* sMotionExt[] = {".bck", ".bca"};
     const char* sBtkExt = ".btk";
     const char* sBpkExt = ".bpk";
     const char* sBtpExt = ".btp";

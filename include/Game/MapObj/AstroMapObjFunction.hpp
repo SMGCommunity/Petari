@@ -13,16 +13,16 @@ namespace {
     s32 getNumGrandStarForRevival(const char*, s32) NO_INLINE;
     s32 getNumGrandStarForOpen(const char*, s32) NO_INLINE;
 
-    const char* cAstroDomeNameTable[6] = {"AstroDomeObservatory", "AstroDomeWell",    "AstroDomeKitchen",
-                                          "AstroDomeBedRoom",     "AstroDomeMachine", "AstroDomeTower"};
+    const char* cAstroDomeNameTable[] = {"AstroDomeObservatory", "AstroDomeWell",    "AstroDomeKitchen",
+                                         "AstroDomeBedRoom",     "AstroDomeMachine", "AstroDomeTower"};
 
-    const char* cAstroDomeSkyNameTable[6] = {"AstroDomeSkyA", "AstroDomeSkyB", "AstroDomeSkyC", "AstroDomeSkyA", "AstroDomeSkyB", "AstroDomeSkyC"};
+    const char* cAstroDomeSkyNameTable[] = {"AstroDomeSkyA", "AstroDomeSkyB", "AstroDomeSkyC", "AstroDomeSkyA", "AstroDomeSkyB", "AstroDomeSkyC"};
 
-    const char* cAstroDomeEntranceNameTable[6] = {"AstroDomeEntranceObservatory", "AstroDomeEntranceWell",    "AstroDomeEntranceKitchen",
-                                                  "AstroDomeEntranceBedRoom",     "AstroDomeEntranceMachine", "AstroDomeEntranceTower"};
+    const char* cAstroDomeEntranceNameTable[] = {"AstroDomeEntranceObservatory", "AstroDomeEntranceWell",    "AstroDomeEntranceKitchen",
+                                                 "AstroDomeEntranceBedRoom",     "AstroDomeEntranceMachine", "AstroDomeEntranceTower"};
 
-    const char* cAstroStarPlateNameTable[6] = {"AstroStarPlateObservatory", "AstroStarPlateWell",    "AstroStarPlateKitchen",
-                                               "AstroStarPlateBedRoom",     "AstroStarPlateMachine", "AstroStarPlateTower"};
+    const char* cAstroStarPlateNameTable[] = {"AstroStarPlateObservatory", "AstroStarPlateWell",    "AstroStarPlateKitchen",
+                                              "AstroStarPlateBedRoom",     "AstroStarPlateMachine", "AstroStarPlateTower"};
 
     const char* cAstroNamePlateArcName = "AstroNamePlateData";
     const char* cAstroNamePlateFileName = "AstroNamePlateData.bcsv";

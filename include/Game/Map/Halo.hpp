@@ -10,7 +10,7 @@ struct HaloParam {
 };
 
 namespace {
-    HaloParam sParams[2] = {{"ZoneHalo", 70.0f, 20.0f, 4.0f}, {"PowerStarHalo", 80.0f, 20.0f, 30.0f}};
+    HaloParam sParams[] = {{"ZoneHalo", 70.0f, 20.0f, 4.0f}, {"PowerStarHalo", 80.0f, 20.0f, 30.0f}};
 };
 
 class Halo : public MapObjActor {

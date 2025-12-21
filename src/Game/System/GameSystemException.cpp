@@ -22,7 +22,7 @@ namespace {
         return ret;
     }
 
-    const s32 cDispExceptionCommand[8] = {8, 4, 1, 2, 0x100, 0x10, 0, 0};
+    const s32 cDispExceptionCommand[] = {8, 4, 1, 2, 0x100, 0x10, 0, 0};
 };  // namespace
 
 void GameSystemException::init() {

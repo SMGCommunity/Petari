@@ -8,7 +8,7 @@
 #include "Game/Util/ObjUtil.hpp"
 
 namespace {
-    static const char* cCometBrkName[5] = {"Red", "Blue", "White", "Yellow", "Purple"};
+    static const char* cCometBrkName[] = {"Red", "Blue", "White", "Yellow", "Purple"};
 };
 
 namespace NrvAstroDomeComet {

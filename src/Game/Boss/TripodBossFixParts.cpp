@@ -18,11 +18,11 @@ struct TripodBossSetting {
 };
 
 namespace {
-    static TripodBossSetting sTripodBossSettingTable[5] = {{"TripodBossBodyABloom", 3},
-                                                           {"TripodBossFootBloom", 3},
-                                                           {"TriPodBossLeg2ABloom", 3},
-                                                           {"TripodBossEyeLight", 2},
-                                                           {"TripodBossEyeLightBloom", 3}};
+    static TripodBossSetting sTripodBossSettingTable[] = {{"TripodBossBodyABloom", 3},
+                                                          {"TripodBossFootBloom", 3},
+                                                          {"TriPodBossLeg2ABloom", 3},
+                                                          {"TripodBossEyeLight", 2},
+                                                          {"TripodBossEyeLightBloom", 3}};
 
     TripodBossSetting* getSetting(const char* pObjName) {
         for (u32 i = 0; i < 5; i++) {

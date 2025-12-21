@@ -7,9 +7,8 @@ namespace NrvChipCounter {
 };
 
 namespace {
-    static s32 sChipPainCount = 0x5;
-
-    static const char* sChipPainName[5] = {"Chip1", "Chip2", "Chip3", "Chip4", "Chip5"};
+    static const char* sChipPainName[] = {"Chip1", "Chip2", "Chip3", "Chip4", "Chip5"};
+    static s32 sChipPainCount = sizeof(sChipPainName) / sizeof(*sChipPainName);
 };  // namespace
 
 ChipCounter::ChipCounter(const char* pName, s32 type) : LayoutActor(pName, true) {

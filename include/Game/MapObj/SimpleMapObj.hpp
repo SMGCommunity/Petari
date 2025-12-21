@@ -10,7 +10,7 @@ struct SoundEffectDataEntry {
 };
 
 namespace {
-    static SoundEffectDataEntry sSeDataTable[8] = {
+    static SoundEffectDataEntry sSeDataTable[] = {
         {"KoopaShipSeesawStep", "SE_OJ_LV_KOOPA_SHIP_SEESAW", 0.001f},   {"IceVolcanoBalanceStepA", "SE_OJ_LV_VOL_BAL_STEP_ROT", 0.001f},
         {"IceVolcanoBalanceStepB", "SE_OJ_LV_VOL_BAL_STEP_ROT", 0.001f}, {"IceMountainSeesawSlipA", "SE_OJ_LV_ICE_M_SEESAW_S", 0.001f},
         {"IceMountainSeesawSlipB", "SE_OJ_LV_ICE_M_SEESAW_M", 0.001f},   {"IceMountainSeesawSlipC", "SE_OJ_LV_ICE_M_SEESAW_L", 0.001f},
