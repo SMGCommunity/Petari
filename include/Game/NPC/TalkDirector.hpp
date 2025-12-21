@@ -45,12 +45,11 @@ public:
     void exeTerm();
     void exeWait();
 
-    MR::AssignableArray< TalkMessageCtrl* > mMsgControls;  // 0x20
-    u32 _28;
-    TalkPeekZ* mPeekZ;                  // 0x2C
-    TalkBalloonHolder* mBalloonHolder;  // 0x30
-    TalkStateHolder* mStateHolder;      // 0x34
-    TalkMessageCtrl* mMsgCtrl;          // 0x38
+    MR::Vector< MR::AssignableArray< TalkMessageCtrl* > > mMsgControls;  // 0x20
+    TalkPeekZ* mPeekZ;                                                   // 0x2C
+    TalkBalloonHolder* mBalloonHolder;                                   // 0x30
+    TalkStateHolder* mStateHolder;                                       // 0x34
+    TalkMessageCtrl* mMsgCtrl;                                           // 0x38
     TalkMessageCtrl* _3C;
     TalkMessageCtrl* _40;
     TalkMessageCtrl* _44;

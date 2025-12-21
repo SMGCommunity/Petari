@@ -32,8 +32,10 @@ namespace NrvTalkDirector {
 }  // namespace NrvTalkDirector
 
 TalkDirector::TalkDirector(const char* pArg)
-    : LayoutActor(pArg, true), _28(0), mMsgCtrl(nullptr), _3C(nullptr), _40(nullptr), _44(nullptr), mTalkState(nullptr), _4C(false), _4D(false),
-      _4E(false), mIsInvalidClipping(false), mDemoType(0), _58(false), _59(false) {}
+    : LayoutActor(pArg, true), mMsgCtrl(nullptr), _3C(nullptr), _40(nullptr), _44(nullptr), mTalkState(nullptr), _4C(false), _4D(false), _4E(false),
+      mIsInvalidClipping(false), mDemoType(0), _58(false), _59(false) {}
+
+TalkDirector::~TalkDirector() {}
 
 void TalkDirector::init(const JMapInfoIter& pArg) {
     MR::connectToScene(this, 10, -1, -1, -1);
@@ -150,11 +152,11 @@ bool TalkDirector::test(TalkMessageCtrl* pArg1, bool arg2, bool arg3) {
 
 bool TalkDirector::start(TalkMessageCtrl* pArg1, bool arg2, bool arg3, bool arg4) {
     if (test(pArg1, arg2, arg3)) {
+        if (isNerve(&NrvTalkDirector::TalkDirectorNrvTalk::sInstance)) {
+            return true;
+        }
+    } else {
         return false;
-    }
-
-    if (isNerve(&NrvTalkDirector::TalkDirectorNrvTalk::sInstance)) {
-        return true;
     }
 
     pArg1->rootNodePre(true);
@@ -209,7 +211,7 @@ void TalkDirector::updateMessage() {
     mBalloonHolder->update();
     mStateHolder->update();
 
-    for (TalkMessageCtrl** i = mMsgControls.mArr; i != &mMsgControls.mArr[_28]; i = i + 1) {
+    for (TalkMessageCtrl** i = mMsgControls.mArray.mArr; i != &mMsgControls[mMsgControls.mCount]; i = i + 1) {
         if (MR::isTalkEntry(*i)) {
             TalkFunction::onTalkStateNone(*i);
         }
@@ -411,13 +413,9 @@ void TalkDirector::balloonOff() {
     }
 }
 
-// TODO : fix
 bool TalkDirector::isSystemTalking() const {
-    if (!isNerve(&NrvTalkDirector::TalkDirectorNrvTalk::sInstance) && !isNerve(&NrvTalkDirector::TalkDirectorNrvSlct::sInstance)) {
-        if (isNerve(&NrvTalkDirector::TalkDirectorNrvNext::sInstance)) {
-            return;
-        }
-    } else {
+    if (isNerve(&NrvTalkDirector::TalkDirectorNrvTalk::sInstance) || isNerve(&NrvTalkDirector::TalkDirectorNrvSlct::sInstance) ||
+        isNerve(&NrvTalkDirector::TalkDirectorNrvNext::sInstance)) {
         return !TalkFunction::isShortTalk(mTalkState->_04);
     }
 
@@ -442,7 +440,6 @@ void TalkDirector::exeTalk() {
     TalkMessageCtrl* control = mTalkState->_04;
     TalkFunction::onTalkStateTalking(control);
 
-    // TODO: is that really the way to do it
     bool cond = false;
 
     if (mDemoType == 0) {
