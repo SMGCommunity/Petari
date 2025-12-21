@@ -4,6 +4,7 @@
 #include "Game/NPC/TalkMessageCtrl.hpp"
 #include "Game/NPC/TalkMessageInfo.hpp"
 #include "Game/NPC/TalkState.hpp"
+#include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Screen/GameSceneLayoutHolder.hpp"
 #include "Game/Screen/LayoutActor.hpp"
 #include "Game/Util/ActorCameraUtil.hpp"
@@ -31,8 +32,8 @@ namespace NrvTalkDirector {
 }  // namespace NrvTalkDirector
 
 TalkDirector::TalkDirector(const char* pArg)
-    : LayoutActor(pArg, true), _28(0), mMsgCtrl(nullptr), _3C(0), _40(0), _44(false), mTalkState(nullptr), _4C(false), _4D(false), _4E(false),
-      mIsInvalidClipping(false), mDemoType(0), _58(false), _59(false) {}
+    : LayoutActor(pArg, true), _28(0), mMsgCtrl(nullptr), _3C(nullptr), _40(nullptr), _44(nullptr), mTalkState(nullptr), _4C(false), _4D(false),
+      _4E(false), mIsInvalidClipping(false), mDemoType(0), _58(false), _59(false) {}
 
 void TalkDirector::init(const JMapInfoIter& pArg) {
     MR::connectToScene(this, 10, -1, -1, -1);
@@ -95,8 +96,9 @@ bool TalkDirector::request(TalkMessageCtrl* pArg1, bool arg2) {
         }
     } else {
         f32 scale = var31 ? 1.2f : 1.0f;
+        f32 talkDistance = pArg1->mTalkDistance;
 
-        if (!pArg1->isNearPlayer(pArg1->mTalkDistance * scale)) {
+        if (!pArg1->isNearPlayer(scale * talkDistance)) {
             return false;
         }
 
@@ -139,7 +141,6 @@ bool TalkDirector::test(TalkMessageCtrl* pArg1, bool arg2, bool arg3) {
         return false;
     }
 
-    // 1 is probably an enum
     if (getDemoType(pArg1, arg3) == 1 && !MR::canStartDemo()) {
         return false;
     }
@@ -148,7 +149,7 @@ bool TalkDirector::test(TalkMessageCtrl* pArg1, bool arg2, bool arg3) {
 }
 
 bool TalkDirector::start(TalkMessageCtrl* pArg1, bool arg2, bool arg3, bool arg4) {
-    if (!test(pArg1, arg2, arg3)) {
+    if (test(pArg1, arg2, arg3)) {
         return false;
     }
 
@@ -464,7 +465,7 @@ void TalkDirector::exeTalk() {
     mTalkState->clos();
     _50 = false;
 
-    if (_44 != nullptr && !mTalkState->isSelfInterrupt(_44)) {
+    if (control->mIsOnRootNodeAuto && !mTalkState->isSelfInterrupt(_44)) {
         control->rootNodePst();
     }
 
@@ -486,7 +487,7 @@ void TalkDirector::exeSlct() {
         mTalkState->clos();
         _50 = true;
 
-        if (_44 != nullptr) {
+        if (control->mIsOnRootNodeAuto) {
             control->rootNodeSel(MR::isYesNoSelectedYes());
             control->rootNodePre(true);
         }
@@ -531,4 +532,33 @@ void TalkDirector::exeTerm() {
     mTalkState = nullptr;
 
     setNerve(&NrvTalkDirector::TalkDirectorNrvWait::sInstance);
+}
+
+void MR::pauseOffTalkDirector() {
+    ((TalkDirector*)MR::getSceneObjHolder()->getObj(0x19))->pauseOff();
+}
+
+void MR::balloonOffTalkDirector() {
+    ((TalkDirector*)MR::getSceneObjHolder()->getObj(0x19))->balloonOff();
+}
+
+void MR::invalidateTalkDirector() {
+    TalkDirector* director = (TalkDirector*)MR::getSceneObjHolder()->getObj(0x19);
+    director->_4E = true;
+}
+
+void MR::setTalkDirectorDrawSyncToken() {
+    TalkDirector* director = (TalkDirector*)MR::getSceneObjHolder()->getObj(0x19);
+    if (director) {
+        ((TalkDirector*)MR::getSceneObjHolder()->getObj(0x19))->mPeekZ->setDrawSyncToken();
+    }
+}
+
+bool MR::isActiveTalkBalloonShort() {
+    TalkDirector* director = (TalkDirector*)MR::getSceneObjHolder()->getObj(0x19);
+    if (director) {
+        return ((TalkDirector*)MR::getSceneObjHolder()->getObj(0x19))->mBalloonHolder->isActiveBalloonShort();
+    }
+
+    return false;
 }
