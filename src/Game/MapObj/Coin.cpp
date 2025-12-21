@@ -161,7 +161,7 @@ void Coin::makeActorDead() {
 
 void Coin::calcAndSetBaseMtx() {
     TVec3f another_vec;
-    another_vec.set< f32 >(MR::isNearZero(mGravity, 0.001f) ? TVec3f(0.0f, 1.0f, 0.0f) : -mGravity);
+    another_vec.set< f32 >(MR::isNearZero(mGravity) ? TVec3f(0.0f, 1.0f, 0.0f) : -mGravity);
     JMAVECScaleAdd(&another_vec, &mPosition, &mDropPosition, 70.0f);
 
     TPos3f pos;
@@ -389,7 +389,7 @@ void Coin::appearMove(const TVec3f& a1, const TVec3f& a2, s32 a3, s32 a4) {
 }
 
 void Coin::appearHop(const TVec3f& a1, const TVec3f& a2) {
-    if (MR::isNearZero(a2, 0.001f)) {
+    if (MR::isNearZero(a2)) {
         mGravity.x = 0.0f;
         mGravity.y = -1.0f;
         mGravity.z = 0.0f;

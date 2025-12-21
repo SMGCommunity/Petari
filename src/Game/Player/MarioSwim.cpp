@@ -1042,13 +1042,13 @@ JGeometry::TUtil<f32>::epsilonEquals(stack_F8.y, _154.y, 0.000003814697265625f) 
         }
     }
     TVec3f stack_E0;
-    if (MR::calcWhirlPoolAccelInfo(getTrans(), &stack_E0) && !MR::isNearZero(stack_E0, 0.001f)) {
+    if (MR::calcWhirlPoolAccelInfo(getTrans(), &stack_E0) && !MR::isNearZero(stack_E0)) {
         _184 += stack_E0;
         TVec3f stack_D4(stack_E0);
         MR::normalizeOrZero(&stack_D4);
         MR::vecBlendSphere(_60, stack_D4, &_60, 0.1f);
     }
-    if (!_8A && !_19 && !MR::isNearZero(_190, 0.001f)) {
+    if (!_8A && !_19 && !MR::isNearZero(_190)) {
         f32 angleDiff = MR::diffAngleSignedHorizontal(_190, _60, getPlayer()->getAirGravityVec());
         f32 cmp = 1.04719758034f;
         if (angleDiff > cmp) {

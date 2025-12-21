@@ -162,7 +162,7 @@ void BasaBasa::exeChase() {
     f32 dot = gravityPtr->dot(v5);
     JMAVECScaleAdd(gravityPtr, &v5, &v5, -dot);
     MR::normalizeOrZero(&v5);
-    if (!MR::isNearZero(v5, 0.001f)) {
+    if (!MR::isNearZero(v5)) {
         TVec3f v4;
         v4.setPS(v5);
         MR::rotateVecDegree(&v4, mGravity, _B8);
@@ -244,7 +244,7 @@ void BasaBasa::exeAttackStart() {
     JMAVECScaleAdd(&_9C, &mGravity, &v3, 2.0f);
     JGeometry::negateInternal(&v3.x, &v3.x);
     MR::normalizeOrZero(&v3);
-    if (MR::isNearZero(v3, 0.001f)) {
+    if (MR::isNearZero(v3)) {
         TVec3f gravityNeg;
         JGeometry::negateInternal(&mGravity.x, &gravityNeg.x);
         v3.set< f32 >(gravityNeg);
@@ -339,7 +339,7 @@ void BasaBasa::exeHitBack() {
         JMathInlineVEC::PSVECAdd(&_9C, &mGravity, &v3);
         JGeometry::negateInternal(&v3.x, &v3.x);
         MR::normalizeOrZero(&v3);
-        if (MR::isNearZero(v3, 0.001f)) {
+        if (MR::isNearZero(v3)) {
             TVec3f v2;
             JGeometry::negateInternal(&mGravity.x, &v2.x);
             v3.set< f32 >(v2);
@@ -763,7 +763,7 @@ void BasaBasa::controlVelocity() {
                 velocityPtr->scale(v6 * JGeometry::TUtil< f32 >::inv_sqrt(sqr));
             }
         } else {
-            if (MR::isNearZero(mVelocity, 0.001f)) {
+            if (MR::isNearZero(mVelocity)) {
                 mVelocity.zero();
             }
         }

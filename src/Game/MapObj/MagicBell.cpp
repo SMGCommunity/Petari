@@ -149,9 +149,9 @@ bool MagicBell::tryRing() {
         if (((v4->x * v4->x) + (v4->y * v4->y)) > 64.0f) {
             TVec3f v12;
             MR::getStarPointerWorldVelocityDirection(&v12, 0);
-            if (MR::isNearZero(v12, 0.001f)) {
+            if (MR::isNearZero(v12)) {
                 v12.set(MR::getRandom(-1.0f, 1.0f), MR::getRandom(-1.0f, 1.0f), MR::getRandom(-1.0f, 1.0f));
-                if (MR::isNearZero(v12, 0.001f)) {
+                if (MR::isNearZero(v12)) {
                     v12.set(1.0f, 0.0f, 0.0f);
                 } else {
                     MR::normalize(&v12);

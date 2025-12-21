@@ -91,7 +91,7 @@ void DashRing::calcSubAxis() {
     TVec3f stack_14(mAxis);
     TVec3f stack_8;
 
-    if (MR::isNearZero(stack_14.y, 0.001f)) {
+    if (MR::isNearZero(stack_14.y)) {
         stack_8.x = stack_14.y;
         stack_8.y = -stack_14.x;
         stack_8.z = 0.0f;

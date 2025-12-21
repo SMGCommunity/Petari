@@ -29,7 +29,7 @@ void SpinDriver::init(const JMapInfoIter& rIter) {
     MR::offCalcGravity(this);
     TVec3f gravityVector;
     MR::calcGravityVectorOrZero(this, &gravityVector, nullptr, 0);
-    if (MR::isNearZero(gravityVector, 0.001f)) {
+    if (MR::isNearZero(gravityVector)) {
         gravityVector.set(0.0f, -1.0f, 0.0f);
     }
 

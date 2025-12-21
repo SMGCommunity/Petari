@@ -277,19 +277,19 @@ namespace MR {
     /// @param x The number to evaluate.
     /// @param tolerance The maximum allowed difference from zero.
     /// @return `true` if the number is approximately equal to zero, `false` otherwise.
-    bool isNearZero(f32 x, f32 tolerance);
+    bool isNearZero(f32 x, f32 tolerance = 0.001f);
 
     /// @brief Determines if the elements of a three-dimensional vector are all approximately equal to zero.
     /// @param[in] rVec A reference to the three-dimensional vector to evaluate.
     /// @param tolerance The maximum allowed difference from zero.
     /// @return `true` if the elements are approximately equal to zero, `false` otherwise.
-    bool isNearZero(const TVec3f& rVec, f32 tolerance);
+    bool isNearZero(const TVec3f& rVec, f32 tolerance = 0.001f);
 
     /// @brief Determines if the elements of a two-dimensional vector are all approximately equal to zero.
     /// @param[in] rVec A reference to the two-dimensional vector to evaluate.
     /// @param tolerance The maximum allowed difference from zero.
     /// @return `true` if the elements are approximately equal to zero, `false` otherwise.
-    bool isNearZero(const TVec2f& rVec, f32 tolerance);
+    bool isNearZero(const TVec2f& rVec, f32 tolerance = 0.001f);
 
     f32 diffAngleAbs(f32, f32);
     f32 normalizeAngleAbs(f32);

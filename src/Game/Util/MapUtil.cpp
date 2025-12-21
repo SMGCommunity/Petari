@@ -23,7 +23,7 @@ namespace MR {
     }
 
     bool isWallPolygon(const TVec3f& rParam1, const TVec3f& rParam2) {
-        if (isNearZero(rParam1, 0.001f)) {
+        if (isNearZero(rParam1)) {
             return false;
         }
 
@@ -31,7 +31,7 @@ namespace MR {
     }
 
     bool isFloorPolygon(const TVec3f& rParam1, const TVec3f& rParam2) {
-        if (isNearZero(rParam1, 0.001f)) {
+        if (isNearZero(rParam1)) {
             return false;
         }
 
@@ -39,7 +39,7 @@ namespace MR {
     }
 
     bool isFloorPolygonCos(const TVec3f& rParam1, const TVec3f& rParam2, f32 param3) {
-        if (isNearZero(rParam1, 0.001f)) {
+        if (isNearZero(rParam1)) {
             return false;
         }
 

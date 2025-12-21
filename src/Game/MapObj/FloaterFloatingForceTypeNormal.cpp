@@ -76,7 +76,7 @@ void FloaterFloatingForceTypeNormal::exeMoveFirst() {
 void FloaterFloatingForceTypeNormal::exeMove() {
     bool isOnPlayer = MR::isOnPlayer(MR::getBodySensor(mHost));
 
-    if (isOnPlayer && MR::isNearZero(_44, 0.001f) && !FloaterFunction::isExistSpeedUpLanding(_18)) {
+    if (isOnPlayer && MR::isNearZero(_44) && !FloaterFunction::isExistSpeedUpLanding(_18)) {
         MapPartsFunction::setNerve(&NrvFloaterFloatingForceTypeNormal::HostTypeMoveFirst::sInstance);
     }
 

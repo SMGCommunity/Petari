@@ -508,14 +508,14 @@ bool Pole::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
                     TVec3f v22(mPosition);
                     v22.sub(*MR::getPlayerPos());
                     MR::vecKillElement(v22, _D8, &v22);
-                    if (MR::isNearZero(v22, 0.001f)) {
+                    if (MR::isNearZero(v22)) {
                         v22.set< f32 >(_E4);
                     } else {
                         MR::normalize(&v22);
                     }
                     _F0.mult(v22, v22);
                     v22.y = 0.0f;
-                    if (!MR::isNearZero(v22, 0.001f)) {
+                    if (!MR::isNearZero(v22)) {
                         MR::normalize(&v22);
                     } else {
                         v22.set< f32 >(_E4);

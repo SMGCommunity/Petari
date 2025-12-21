@@ -37,7 +37,7 @@ namespace {
         MR::calcUpVec(&stack_2c, pActor);
         MR::vecBlend(stack_2c, stack_38, &stack_20, 0.1f);
         MR::normalizeOrZero(&stack_20);
-        if (MR::isNearZero(stack_20, 0.001f)) {
+        if (MR::isNearZero(stack_20)) {
             stack_20.set(stack_2c);
         }
         MR::makeMtxUpFront(&stack_44, stack_20, a2);
@@ -444,19 +444,19 @@ namespace MR {
         TVec3f zDir;   // stack_2c
         TVec3f xDir;   // stack_20
         TVec3f xDir2;  // stack_14
-        if (!isNearZero(vGravity, 0.001f)) {
+        if (!isNearZero(vGravity)) {
             TVec3f stack_8 = -vGravity;
             yDir = stack_8;
         } else {
             pos.getYDir(yDir);
         }
-        if (!isNearZero(zAxis, 0.001f)) {
+        if (!isNearZero(zAxis)) {
             zDir = zAxis;
         } else {
             pos.getZDir(zDir);
         }
         PSVECCrossProduct((Vec*)&zDir, (Vec*)&yDir, (Vec*)&xDir);
-        if (isNearZero(xDir, 0.001f)) {
+        if (isNearZero(xDir)) {
             pos.getXDir(xDir2);
             PSVECCrossProduct((Vec*)&xDir2, (Vec*)&yDir, (Vec*)&zDir);
         }
@@ -695,7 +695,7 @@ namespace MR {
         TVec3f stack_18;
         float stack_8;
         separateScalarAndDirection(&stack_8, &stack_18, a2);
-        if (isNearZero(stack_18, 0.001f)) {
+        if (isNearZero(stack_18)) {
             return false;
         }
         float f1 = stack_18.dot(pActor->mVelocity);
@@ -734,7 +734,7 @@ namespace MR {
             return false;
         } else {
             TVec3f stack_14(*getBindedFixReactionVector(pActor));
-            if (isNearZero(stack_14, 0.001f)) {
+            if (isNearZero(stack_14)) {
                 return false;
             }
             normalize(&stack_14);
@@ -898,7 +898,7 @@ namespace MR {
             return false;
         }
         TVec3f bindedReactnVec(*getBindedFixReactionVector(pActor));
-        if (isNearZero(bindedReactnVec, 0.001f)) {
+        if (isNearZero(bindedReactnVec)) {
             return false;
         }
         normalize(&bindedReactnVec);
@@ -938,7 +938,7 @@ namespace MR {
             return false;
         }
         TVec3f stack_38(*getBindedFixReactionVector(pActor));
-        if (isNearZero(stack_38, 0.001f)) {
+        if (isNearZero(stack_38)) {
             return false;
         }
         normalize(&stack_38);
@@ -1167,7 +1167,7 @@ namespace MR {
         a1->getZDir(stack_14);
         float f31 = 0.0f;
         float f30 = 1.0f;
-        if (isNearZero(stack_20, 0.001f) == false) {
+        if (isNearZero(stack_20) == false) {
             turnVecToVecRadian(&stack_14, stack_14, stack_20, a4, pActor->mGravity);
         } else {
             a5 = 1.0f;

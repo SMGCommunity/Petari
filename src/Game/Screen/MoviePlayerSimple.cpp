@@ -141,9 +141,9 @@ s32 MoviePlayerSimple::getTotalFrame() const {
 void MoviePlayerSimple::setFrameRateDefault() {
     f32 frameRate = mPlayerWrapper->getFrameRate();
 
-    if (MR::isNearZero(frameRate - 59.94f, 0.001f)) {
+    if (MR::isNearZero(frameRate - 59.94f)) {
         mMovie->mFrameRateDefault = 1;
-    } else if (MR::isNearZero(frameRate - 29.97f, 0.001f)) {
+    } else if (MR::isNearZero(frameRate - 29.97f)) {
         mMovie->mFrameRateDefault = 2;
     }
 }

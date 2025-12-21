@@ -45,7 +45,7 @@ bool TalkSupportPlayerWatcher::isEnableTalkPlayerStateNormal() const {
         return false;
     }
 
-    if (!MR::isNearZero(MR::getSubPadStickX(0), 0.001f) || !MR::isNearZero(MR::getSubPadStickY(0), 0.001f)) {
+    if (!MR::isNearZero(MR::getSubPadStickX(0)) || !MR::isNearZero(MR::getSubPadStickY(0))) {
         return false;
     }
 

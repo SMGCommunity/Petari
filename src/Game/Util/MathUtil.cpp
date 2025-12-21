@@ -96,7 +96,7 @@ namespace MR {
 
         addRandomVector(pDst, rSrc, range);
 
-        if (isNearZero(rSrc, 0.001f)) {
+        if (isNearZero(rSrc)) {
             pDst->set(rSrc);
         } else {
             pDst->setLength(srcLength);
@@ -155,7 +155,7 @@ namespace MR {
 
         pParam1->rejection(z, rParam2);
 
-        if (isNearZero(*pParam1, 0.001f)) {
+        if (isNearZero(*pParam1)) {
             TVec3f x(1.0f, 0.0f, 0.0f);
 
             pParam1->rejection(x, rParam2);
@@ -184,7 +184,7 @@ namespace MR {
 
         PSVECCrossProduct(&v1, &rParam4, &v2);
 
-        if (isNearZero(v2, 0.001f)) {
+        if (isNearZero(v2)) {
             pParam1->zero();
             *pParam2 = 1.0f;
 
@@ -339,7 +339,7 @@ namespace MR {
     // normalizeOrZero
 
     bool normalizeOrZero(TVec3f* pVec) {
-        if (isNearZero(*pVec, 0.001f)) {
+        if (isNearZero(*pVec)) {
             pVec->zero();
 
             return true;
@@ -359,7 +359,7 @@ namespace MR {
     void separateScalarAndDirection(f32* pScalar, TVec3f* pDir, const TVec3f& rVec) {
         *pScalar = rVec.length();
 
-        if (isNearZero(rVec, 0.001f)) {
+        if (isNearZero(rVec)) {
             pDir->zero();
         } else {
             normalize(rVec, pDir);
@@ -369,7 +369,7 @@ namespace MR {
     f32 normalize(f32 x, f32 min, f32 max) {
         f32 range = max - min;
 
-        if (!isNearZero(range, 0.001f)) {
+        if (!isNearZero(range)) {
         } else if (x < min) {
             return 0.0f;
         } else {
@@ -603,7 +603,7 @@ namespace MR {
     };
 
     f32 vecKillElement(const TVec3f& a1, const TVec3f& a2, TVec3f* a3) {
-        if (isNearZero(a2, 0.001f)) {
+        if (isNearZero(a2)) {
             *a3 = a1;
 
             return 0.0f;
@@ -775,7 +775,7 @@ namespace MR {
     // diffAngleSignedHorizontal
 
     bool isNearAngleRadian(const TVec3f& rParam1, const TVec3f& rParam2, f32 param3) {
-        if (isNearZero(rParam1, 0.001f) || isNearZero(rParam2, 0.001f)) {
+        if (isNearZero(rParam1) || isNearZero(rParam2)) {
             return false;
         }
 

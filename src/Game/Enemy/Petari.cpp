@@ -252,7 +252,7 @@ void Petari::calcSpinOutVelocity(f32 speed) {
     
     JMAVECScaleAdd(&mGravity, &deltaDir, &deltaDir, -mGravity.dot(deltaDir));
     
-    if (!MR::isNearZero(deltaDir, 0.001f)) {
+    if (!MR::isNearZero(deltaDir)) {
         TVec3f negDir;
         JGeometry::negateInternal((f32*)&deltaDir, (f32*)&negDir);
         mFront = negDir;
@@ -270,7 +270,7 @@ void Petari::calcApproachDirection() {
     TVec3f v4(*MR::getPlayerCenterPos());
     v4 -= mBodyCenter;
     mTargetDir = v4;
-    if (MR::isNearZero(mTargetDir, 0.001f)) {
+    if (MR::isNearZero(mTargetDir)) {
         mTargetDir = mFront;
     }
     MR::normalize(&mTargetDir);
@@ -281,7 +281,7 @@ void Petari::calcEscapeDirection() {
     TVec3f v4(mBodyCenter);
     v4 -= *playerCenterPos;
     mTargetDir = v4;
-    if (MR::isNearZero(mTargetDir, 0.001f)) {
+    if (MR::isNearZero(mTargetDir)) {
         mTargetDir = mFront;
     }
     MR::normalize(&mTargetDir);
@@ -299,7 +299,7 @@ void Petari::avoidPlayer() {
     }
     TVec3f dirToPlayer(*MR::getPlayerCenterPos());
     dirToPlayer -= mBodyCenter;
-    if (!MR::isNearZero(dirToPlayer, 0.001f)) {
+    if (!MR::isNearZero(dirToPlayer)) {
         TVec3f v11(dirToPlayer);
         v11 *= 0.01f;
         f32 avoidWeight = 3.0f / v11.squared();
@@ -323,7 +323,7 @@ void Petari::avoidPlayer() {
 void Petari::avoidWall() {
     TVec3f planarDir(mTargetDir);
     JMAVECScaleAdd(&mGravity, &planarDir, &planarDir, -mGravity.dot(planarDir));
-    if (!MR::isNearZero(planarDir, 0.001f)) {
+    if (!MR::isNearZero(planarDir)) {
         MR::normalize(&planarDir);
         Triangle rayHitTri;
         TVec3f v17(planarDir);
@@ -332,7 +332,7 @@ void Petari::avoidWall() {
         if (MR::getFirstPolyOnLineToMapAndMoveLimit(&v19, &rayHitTri, mBodyCenter, v17)) {
             TVec3f wallNormal(*rayHitTri.getNormal(0));
             JMAVECScaleAdd(&mGravity, &wallNormal, &wallNormal, -mGravity.dot(wallNormal));
-            if (!MR::isNearZero(wallNormal, 0.001f)) {
+            if (!MR::isNearZero(wallNormal)) {
                 MR::normalize(&wallNormal);
                 f32 proximity = 1.0f - (PSVECDistance(&v19, &mBodyCenter) / 600.0f);
                 MR::clamp01(&proximity);

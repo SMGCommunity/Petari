@@ -57,7 +57,7 @@ void GCapture::updateRibbonPointEffectMatrix(const TVec3f& rVec) {
     v5.set< f32 >(x, y, z);
     TVec3f v4(v5);
     v4 -= rVec;
-    if (MR::isNearZero(v4, 0.001f)) {
+    if (MR::isNearZero(v4)) {
         _8C.setTrans(rVec);
     } else {
         MR::makeMtxUpNoSupportPos(&_8C, v4, rVec);

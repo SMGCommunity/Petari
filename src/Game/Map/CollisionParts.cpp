@@ -166,7 +166,7 @@ void CollisionParts::updateMtx() {
             _EC = dVar4;
             _F0 = dVar4;
 
-            if (!MR::isNearZero(var, 0.001f)) {
+            if (!MR::isNearZero(var)) {
                 updateBoundingSphereRangePrivate(dVar4);
             }
         }
@@ -194,7 +194,7 @@ f32 CollisionParts::makeEqualScale(MtxPtr matrix) {
     scaleDiff.y = scale.y - scale.z;
     scaleDiff.z = scale.x - scale.y;
 
-    if (MR::isNearZero(scaleDiff.x, 0.001f) && MR::isNearZero(scaleDiff.y, 0.001f) && MR::isNearZero(scaleDiff.z, 0.001f)) {
+    if (MR::isNearZero(scaleDiff.x) && MR::isNearZero(scaleDiff.y) && MR::isNearZero(scaleDiff.z)) {
         return scale.x;
     }
 

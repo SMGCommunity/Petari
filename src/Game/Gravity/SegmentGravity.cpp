@@ -72,14 +72,14 @@ void SegmentGravity::updateLocalParam() {
 
     TVec3f localAxis = mGravityPoints[1] - mGravityPoints[0];
     MR::normalizeOrZero(&localAxis);
-    if (MR::isNearZero(localAxis, 0.00100000005f)) {
+    if (MR::isNearZero(localAxis)) {
         rArtifact = false;
         mOppositeSideVecOrtho.zero();
         return;
     }
     JMAVECScaleAdd(&localAxis, &mSideVector, &mOppositeSideVecOrtho, -localAxis.dot(mSideVector));
     MR::normalizeOrZero(&mOppositeSideVecOrtho);
-    if (MR::isNearZero(mOppositeSideVecOrtho, 0.00100000005f)) {
+    if (MR::isNearZero(mOppositeSideVecOrtho)) {
         mOppositeSideVecOrtho.zero();
         return;
     }

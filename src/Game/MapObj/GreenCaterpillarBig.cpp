@@ -34,7 +34,7 @@ void GreenCaterpillarBigBody::control() {
 }
 
 void GreenCaterpillarBigBody::calcAndSetBaseMtx() {
-    if (MR::isNearZero(mFrontVec, 0.001f)) {
+    if (MR::isNearZero(mFrontVec)) {
         LiveActor::calcAndSetBaseMtx();
     } else {
         MtxPtr jointMtx = MR::getJointMtx(mCaterpillar, "FollowPoint");

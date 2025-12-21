@@ -124,7 +124,7 @@ bool RailRider::isReachedGoal() const {
 
     if (!v4) {
         bool v6 = false;
-        if (!mIsNotReverse && MR::isNearZero(mLength, 0.001f)) {
+        if (!mIsNotReverse && MR::isNearZero(mLength)) {
             v6 = true;
         }
 
@@ -145,9 +145,9 @@ bool RailRider::isReachedEdge() const {
     } else {
         ret = true;
 
-        if (!MR::isNearZero(mCoord, 0.001f)) {
+        if (!MR::isNearZero(mCoord)) {
             f32 val = mCoord - mBezierRail->getTotalLength();
-            if (!MR::isNearZero(val, 0.001f)) {
+            if (!MR::isNearZero(val)) {
                 ret = false;
             }
         }

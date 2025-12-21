@@ -194,7 +194,7 @@ void TripodBossGuardWall::updateCameraTarget() {
     f32 v9 = up.dot(front);
     JMAVECScaleAdd(&up, &front, &front, -v9);
 
-    if (MR::isNearZero(front, 0.001f)) {
+    if (MR::isNearZero(front)) {
         f32 z = mBaseMtx.mMtx[2][2];
         f32 y = mBaseMtx.mMtx[1][2];
         f32 x = mBaseMtx.mMtx[0][2];

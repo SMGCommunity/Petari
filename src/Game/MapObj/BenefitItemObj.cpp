@@ -393,7 +393,7 @@ void BenefitItemObj::control() {
             kill();
         }
 
-        if (!MR::isNearZero(mVelocity, 0.001f)) {
+        if (!MR::isNearZero(mVelocity)) {
             if (MR::isInDeath(this, TVec3f(0.0f, 0.0f, 0.0f))) {
                 runEfx("Vanish");
                 kill();
@@ -750,7 +750,7 @@ void BenefitItemObj::calcAndSetBaseMtxInMovement() {
             _98 = stack_8;
         }
 
-        if (!MR::isNearZero(stack_8, 0.001f)) {
+        if (!MR::isNearZero(stack_8)) {
             if (MR::isSameDirection(_A4, stack_8, 0.0099999998f)) {
                 MR::setMtxTrans(getBaseMtx(), mPosition);
             } else {

@@ -101,7 +101,7 @@ bool Tamakoro::ringMtxCallBack(TPos3f* pMtx, const JointControllerInfo& pJointCt
     TVec3f trans;
     pMtx->getTransInline(trans);
 
-    if (MR::isNearZero(mMoveVec, 0.001f) || MR::isSameDirection(mMoveVec, mRingUp, 0.01f)) {
+    if (MR::isNearZero(mMoveVec) || MR::isSameDirection(mMoveVec, mRingUp, 0.01f)) {
         MR::makeMtxUpNoSupport(pMtx, mRingUp);
     } else {
         MR::makeMtxUpFront(pMtx, mRingUp, mMoveVec);
@@ -149,7 +149,7 @@ void Tamakoro::updateBindActorMatrix() {
 void Tamakoro::updateRingUpVec() {
     TVec3f up = -mGravity;
 
-    if (!MR::isNearZero(mMoveVec, 0.001f)) {
+    if (!MR::isNearZero(mMoveVec)) {
         TVec3f v1;
         TVec3f up2 = -mGravity;
         JMAVECScaleAdd(&mMoveVec, &up2, &v1, mMoveSpeed);
@@ -1004,7 +1004,7 @@ void Tamakoro::updateMarioPose(f32 pDegree) {
     f32 dot = grav->dot(*vel);
     JMAVECScaleAdd(grav, vel, &v1, -dot);  // v1.rejection(vel, grav);
 
-    if (MR::isNearZero(v1, 0.001f)) {
+    if (MR::isNearZero(v1)) {
         if (mMoveSpeed > 0.001f) {
             MR::turnDirectionDegree(this, &mMarioRotateFront, mMoveVec, pDegree * mMoveSpeed);
         }

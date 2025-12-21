@@ -58,7 +58,7 @@ void SeaGull::init(const JMapInfoIter& rIter) {
     _AC.set(stack_14);
     _AC.add(stack_8);
 
-    if (MR::isNearZero(_AC, 0.001f)) {
+    if (MR::isNearZero(_AC)) {
         _AC.x = 0.0f;
         _AC.y = 0.0f;
         _AC.z = 1.0f;

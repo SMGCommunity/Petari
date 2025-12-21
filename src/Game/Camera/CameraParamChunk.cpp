@@ -199,7 +199,7 @@ void CameraParamChunk::getVPanAxis(TVec3f* pOut) const {
     pOut->y = mExParam.mVPanAxis.y;
     pOut->z = mExParam.mVPanAxis.z;
 
-    if (MR::isNearZero(*pOut, 0.001f)) {
+    if (MR::isNearZero(*pOut)) {
         pOut->set(0.0f, 1.0f, 0.0f);
     }
 

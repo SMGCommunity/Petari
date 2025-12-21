@@ -138,7 +138,7 @@ bool Fluff::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
         
         mForwardVec = mVelocity;
         MR::vecKillElement(mForwardVec, mUpVec, &mForwardVec);
-        if (MR::isNearZero(mForwardVec, 0.001f)) {
+        if (MR::isNearZero(mForwardVec)) {
             MR::getPlayerFrontVec(&mForwardVec);
         }
         else {
@@ -271,14 +271,14 @@ bool Fluff::updateRide() {
     TVec3f worldStickDirection(0.0f, 0.0f, 0.0f);
     MR::calcWorldStickDirectionXZ(&worldStickDirection, 0);
     MR::vecKillElement(worldStickDirection, mUpVec, &worldStickDirection);
-    if (!MR::isNearZero(worldStickDirection, 0.001f)) {
+    if (!MR::isNearZero(worldStickDirection)) {
         MR::normalize(&worldStickDirection);
-        if (!MR::isNearZero(mWindDir, 0.001f)) {
+        if (!MR::isNearZero(mWindDir)) {
             MR::vecKillElement(worldStickDirection, mWindDir, &worldStickDirection);
         }
         
         TVec3f steerTargetDirection(worldStickDirection);
-        if (!MR::isNearZero(steerTargetDirection, 0.001f)) {
+        if (!MR::isNearZero(steerTargetDirection)) {
             MR::normalize(&steerTargetDirection);
             MR::vecBlend(mForwardVec, steerTargetDirection, &mForwardVec, 0.1f);
         }
@@ -351,7 +351,7 @@ void Fluff::updateWind() {
         mTargetUpVec = mUpVec;
     }
     
-    if (!MR::isNearZero(targetMoveDir, 0.001f)) {
+    if (!MR::isNearZero(targetMoveDir)) {
         TVec3f moveDirNorm(targetMoveDir);
         MR::normalize(&moveDirNorm);
         TVec3f initialUpVec;

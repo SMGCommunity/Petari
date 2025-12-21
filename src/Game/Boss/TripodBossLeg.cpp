@@ -108,7 +108,7 @@ void TripodBossLeg::setIKParam(f32 rootLength, f32 middleLength, const TVec3f& a
     v12.y = 0.0f;
     _A0.identity();
 
-    if (!MR::isNearZero(v12, 0.001f)) {
+    if (!MR::isNearZero(v12)) {
         MR::normalize(&v12);
         _A0.mMtx[0][0] = v12.x;
         _A0.mMtx[1][0] = v12.y;

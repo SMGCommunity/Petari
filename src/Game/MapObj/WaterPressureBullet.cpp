@@ -70,7 +70,7 @@ void WaterPressureBullet::control() {
         kill();
     } else {
         TVec3f stack_8;
-        if (MR::isNearZero(mVelocity, 0.001)) {
+        if (MR::isNearZero(mVelocity)) {
             stack_8.set(mGravity);
         } else {
             stack_8.set(mVelocity);

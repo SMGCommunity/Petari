@@ -6,7 +6,7 @@ ClipAreaShape::ClipAreaShape(const char* pName) : mModelData(nullptr) {
 }
 
 bool ClipAreaShape::isInArea(const TVec3f& a1, f32 a2, const TPos3f& a3, const TVec3f& a4) const {
-    if (MR::isNearZero(a4.x, 0.001f) || (MR::isNearZero(a4.y, 0.001f) || MR::isNearZero(a4.z, 0.001f))) {
+    if (MR::isNearZero(a4.x) || (MR::isNearZero(a4.y) || MR::isNearZero(a4.z))) {
         return false;
     }
 

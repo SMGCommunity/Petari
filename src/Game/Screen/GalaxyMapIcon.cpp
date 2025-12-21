@@ -138,7 +138,7 @@ bool GalaxyMapIcon::isPointing() const {
 
     MR::copyPaneScale(&paneScale, this, nullptr);
 
-    if (MR::isNearZero(paneScale, 0.001f)) {
+    if (MR::isNearZero(paneScale)) {
         return false;
     }
 

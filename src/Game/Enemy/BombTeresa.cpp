@@ -598,10 +598,10 @@ void BombTeresa::exeDrift() {
     }
     PSVECCrossProduct(&mGravity, &_AC, &v14);
     PSVECCrossProduct(&mGravity, &(*MR::getPlayerPos() - MR::getCamPos()), &v15);
-    if (MR::isNearZero(v14, 0.001)) {
+    if (MR::isNearZero(v14)) {
         MR::makeAxisVerticalZX(&v14, mGravity);
     }
-    if (MR::isNearZero(v15, 0.001)) {
+    if (MR::isNearZero(v15)) {
         MR::makeAxisVerticalZX(&v15, mGravity);
     }
     MR::normalize(&v14);
