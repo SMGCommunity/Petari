@@ -40,7 +40,7 @@ nw4r/ut/ut_ResFontBase.cpp:
 
 nw4r/ut/ut_ResFont.cpp:
 	.text       start:0x80008170 end:0x80008478
-	.data       start:0x80563540 end:0x805635E8
+	.data       start:0x80563540 end:0x805635A0
 
 nw4r/ut/ut_CharWriter.cpp:
 	.text       start:0x80008478 end:0x80009D40
@@ -60,7 +60,7 @@ nw4r/db/db_console.cpp:
 
 nw4r/db/db_assert.cpp:
 	.text       start:0x8000B8C4 end:0x8000BBA0
-	.data       start:0x805635E8 end:0x80564678
+	.data       start:0x805635A0 end:0x80564678
 	.sdata      start:0x806B1620 end:0x806B1628
 	.sbss       start:0x806B2E78 end:0x806B2E80
 
