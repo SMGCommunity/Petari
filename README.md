@@ -9,6 +9,7 @@ Petari
 
 [Discord Badge]: https://img.shields.io/discord/727908905392275526?color=%237289DA&logo=discord&logoColor=%23FFFFFF
 [discord]: https://discord.gg/ZxEqyYeZbf
+[progress]: https://decomp.dev/SMGCommunity/Petari
 
 <!-- markdownlint-disable MD033 -->
 [<img src="https://decomp.dev/SMGCommunity/Petari.svg?w=512&h=256" width="512" height="256" alt="A visual">][Progress]
