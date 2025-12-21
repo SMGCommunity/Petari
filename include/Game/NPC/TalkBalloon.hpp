@@ -107,7 +107,7 @@ public:
     TalkBalloon* getBalloon(const TalkMessageCtrl*);
     void balloonOff();
     void update();
-    bool isActiveBalloonShort();
+    bool isActiveBalloonShort() const;
 
     /* 0x00 */ TalkBalloonShort** mBalloonShortArray;
     TalkBalloonEvent* _04;
