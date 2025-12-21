@@ -9,4 +9,5 @@ class AudFader
 
         float mFloatVar;
         float mFloatVar2;
+        float mFloatVar3;
 };
