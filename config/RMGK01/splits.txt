@@ -10700,11 +10700,12 @@ RVL_SDK/vi/vi3in1.c:
 	.text       start:0x804B6C9C end:0x804B8360
 	.data       start:0x805FD7B8 end:0x805FDD60
 	.bss        start:0x80666360 end:0x80666A00
-	.sdata      start:0x806B2AE0 end:0x806B2B00
+	.sdata      start:0x806B2AE0 end:0x806B2AF8
 	.sbss       start:0x806B7858 end:0x806B7870
 
 RVL_SDK/mtx/mtx.c:
 	.text       start:0x804B8360 end:0x804B8CC0
+	.sdata      start:0x806B2AF8 end:0x806B2B00
 	.sdata2     start:0x806C20E8 end:0x806C2108
 
 RVL_SDK/mtx/mtxvec.c:

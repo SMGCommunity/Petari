@@ -2472,9 +2472,9 @@ config.libs = [
         "mtx",
         [
             Object(NonMatching, "RVL_SDK/mtx/mtx.c"),
-            Object(NonMatching, "RVL_SDK/mtx/mtxvec.c"),
+            Object(Matching, "RVL_SDK/mtx/mtxvec.c"),
             Object(NonMatching, "RVL_SDK/mtx/mtx44.c"),
-            Object(NonMatching, "RVL_SDK/mtx/vec.c"),
+            Object(Matching, "RVL_SDK/mtx/vec.c"),
             Object(NonMatching, "RVL_SDK/mtx/quat.c"),
         ],
     ),

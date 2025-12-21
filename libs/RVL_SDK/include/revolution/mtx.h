@@ -9,7 +9,7 @@ extern "C" {
 
 typedef struct {
     f32 x, y, z;
-} Vec, *VecPtr;
+} Vec, *VecPtr, Point3d;
 
 typedef struct {
     s16 x;
@@ -30,6 +30,9 @@ typedef f32 Mtx44[4][4];
 typedef f32 (*Mtx44Ptr)[4];
 
 typedef f32 Mtx33[3][3];
+
+#define MTXDegToRad(a) ((a) * 0.01745329252f)
+#define MTXRadToDeg(a) ((a) * 57.29577951f)
 
 /* C Matrix */
 void C_MTXIdentity(Mtx);
@@ -63,7 +66,7 @@ f32 C_VECMag(const Vec*);
 /* Paired Single Vector */
 void PSVECAdd(const Vec*, const Vec*, Vec*);
 void PSVECSubtract(const Vec*, const Vec*, Vec*);
-void PSVECScale(const Vec*, const Vec*, f32);
+void PSVECScale(const Vec*, Vec*, f32);
 void PSVECNormalize(const Vec*, Vec*);
 
 f32 PSVECMag(const Vec*);
