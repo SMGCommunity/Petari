@@ -534,7 +534,7 @@ config.libs = [
     NWLib(
         "libnw4r_db",
         [
-            Object(NonMatching, "nw4r/db/db_console.cpp"),
+            Object(Matching, "nw4r/db/db_console.cpp"),
             Object(NonMatching, "nw4r/db/db_assert.cpp"),
         ],
     ),
