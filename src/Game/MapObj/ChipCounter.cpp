@@ -48,13 +48,13 @@ void ChipCounter::init(const JMapInfoIter& rIter) {
 
 void ChipCounter::control() {
     if (MR::isActiveTalkBalloonShort()) {
-        _30 -= 0.050000001f;
+        _30 -= 0.05f;
 
         if (_30 < 0.0f) {
             _30 = 0.0f;
         }
     } else {
-        _30 += 0.050000001f;
+        _30 += 0.05f;
 
         if (_30 > 1.0f) {
             _30 = 1.0f;

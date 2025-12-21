@@ -88,7 +88,7 @@ void LavaSteam::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (!isNerve(&NrvLavaSteam::HostTypeWait::sInstance) && !isNerve(&NrvLavaSteam::HostTypeWaitForSwitchOn::sInstance)) {
         if (MR::isSensorPlayerOrRide(pReceiver)) {
             f32 rad = pReceiver->mRadius;
-            f32 f31 = rad * 0.69999999f;
+            f32 f31 = rad * 0.7f;
 
             if (isNerve(&NrvLavaSteam::HostTypeSteam::sInstance)) {
                 TVec3f stack_30 = _8C * 400.0f;

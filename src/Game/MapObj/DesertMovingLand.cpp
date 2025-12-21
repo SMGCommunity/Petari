@@ -159,7 +159,7 @@ void DesertMovingLand::exeMoveSign() {
         if (MR::isDemoActive("砂ＵＦＯ下降"))
             MR::stopStageBGM(0x3C);
 
-        MR::shakeCameraInfinity(this, 0.15000001f, 1.2f);
+        MR::shakeCameraInfinity(this, 0.15f, 1.2f);
     }
 
     MR::startLevelSound(this, "SE_OJ_LV_DESERT_LAND_SIGN", -1, -1, -1);

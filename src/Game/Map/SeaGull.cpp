@@ -127,9 +127,9 @@ void SeaGull::exeHoverRight() {
 void SeaGull::control() {
     updateHover();
 
-    mVelocity.x *= 0.99000001f;
-    mVelocity.y *= 0.99000001f;
-    mVelocity.z *= 0.99000001f;
+    mVelocity.x *= 0.99f;
+    mVelocity.y *= 0.99f;
+    mVelocity.z *= 0.99f;
 
     f32 mag = PSVECMag((const Vec*)&mVelocity);
 

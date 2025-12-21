@@ -93,7 +93,7 @@ void CollapsePlane::control() {
 }
 
 bool CollapsePlane::calcJointPlane(TPos3f* pPos, const JointControllerInfo&) {
-    f32 new_scale = (1.0f - ((0.69999999f * _D0)) / mTimer);
+    f32 new_scale = (1.0f - ((0.7f * _D0)) / mTimer);
     TMtx34f mtx;
     mtx.identity();
     MR::preScaleMtx(mtx.toMtxPtr(), new_scale, 1.0f, new_scale);

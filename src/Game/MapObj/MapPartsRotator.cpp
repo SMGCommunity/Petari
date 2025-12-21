@@ -108,7 +108,7 @@ void MapPartsRotator::initRotateSpeed(const JMapInfoIter& rIter) {
         _18 = mRotateAngle / rotate_time;
     } else {
         MR::getMapPartsArgRotateSpeed(&mRotateSpeed, rIter);
-        _18 *= 0.0099999998f;
+        _18 *= 0.01f;
     }
 
     if (mRotateAngle < 0.0f) {

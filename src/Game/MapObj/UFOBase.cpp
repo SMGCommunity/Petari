@@ -68,7 +68,7 @@ void UFOBase::init(const JMapInfoIter& rIter) {
     MR::tryRegisterDemoCast(this, rIter);
     MR::calcFrontVec(&_9C, this);
     MR::getMapPartsArgRotateSpeed(&_A8, rIter);
-    _A8 *= 0.0099999998f;
+    _A8 *= 0.01f;
     MR::getMapPartsArgMoveConditionType(&_AC, rIter);
     MR::tryStartAllAnim(this, name);
 

@@ -169,7 +169,7 @@ void BossKameck::updatePose() {
         }
     }
 
-    MR::blendQuatUpFront(&_90, stack_44, _A0, 0.039999999f, 0.2f);
+    MR::blendQuatUpFront(&_90, stack_44, _A0, 0.04f, 0.2f);
 }
 */
 

@@ -458,7 +458,7 @@ void PowerStar::initPosture() {
         TVec3f negGravity;
         negGravity.negateInline_2(mGravity);
 
-        if (!MR::isSameDirection(negGravity, stack_14, 0.0099999998f)) {
+        if (!MR::isSameDirection(negGravity, stack_14, 0.01f)) {
             MR::makeMtxUpFront(&_B8, negGravity, stack_14);
         }
         else {

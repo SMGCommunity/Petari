@@ -313,7 +313,7 @@ void MarioActor::init2(const TVec3f& a, const TVec3f& b, s32 initialAnimation) {
     initMorphStringTable();
     MR::declareGlobalEventCameraAbyss("奈落カメラ");
     MR::declareBlackHoleCamera("ブラックホール");
-    MR::declareGlobalEventCameraDead("昇天カメラ", 0.34999999404f, 0x78, 0x3C);
+    MR::declareGlobalEventCameraDead("昇天カメラ", 0.35f, 0x78, 0x3C);
     MR::declareGlobalEventCamera("水中フォロー");
     MR::declareGlobalEventCamera("水中プラネット");
     MR::declareGlobalEventCamera("水上フォロー");
@@ -352,8 +352,7 @@ void MarioActor::init2(const TVec3f& a, const TVec3f& b, s32 initialAnimation) {
     _27C.zero();
     _288.zero();
     _498 = new FixedPosition(this, "HandR", TVec3f(0.0f, 0.0f, 0.0f), TVec3f(0.0f, 0.0f, 0.0f));
-    _49C = new FixedPosition(this, "HandR", TVec3f(76.3300018311f, 15.6899995804f, 88.9899978638f),
-                             TVec3f(1.79999995232f, 52.5099983215f, 39.5800018311f));
+    _49C = new FixedPosition(this, "HandR", TVec3f(76.33f, 15.69f, 88.99f), TVec3f(1.8f, 52.51f, 39.58f));
     _494 = 0;
     _4B0 = 35.0f;
     _4B4 = 60.0f;

@@ -300,8 +300,8 @@ void OceanRing::calcStreamVec(const TVec3f& a1, f32 a2, TVec3f* pStreamVec) cons
 }
 
 void OceanRing::movement() {
-    mWaveTheta1 += -0.039999999f;
-    mWaveTheta2 += -0.059999999f;
+    mWaveTheta1 += -0.04f;
+    mWaveTheta2 += -0.06f;
     updatePoints();
     mRingDrawer->update();
     TVec3f nearPos;

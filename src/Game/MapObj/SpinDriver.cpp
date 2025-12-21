@@ -157,7 +157,7 @@ void SpinDriver::control() {
     _104 = v4;
     f32 v6 = fmod((TWO_PI + v5), TWO_PI_D);
     _104 = -PI + v6;
-    _108 *= 0.94999999f;
+    _108 *= 0.95f;
 }
 */
 
@@ -314,9 +314,9 @@ void SpinDriver::exeNonActive() {
 
     if (isSwingOrPointed) {
         f32 v3 = _108;
-        _108 += 0.050000001f;
-        if (v3 > 0.15000001f) {
-            _108 = 0.15000001f;
+        _108 += 0.05f;
+        if (v3 > 0.15f) {
+            _108 = 0.15f;
         }
     }
 }
@@ -354,11 +354,11 @@ void SpinDriver::exeWait() {
     bool isSwingOrPointed = MR::isPadSwing(WPAD_CHAN0) || MR::isPlayerPointedBy2POnTriggerButton();
 
     if (isSwingOrPointed) {
-        _108 += 0.050000001f;
+        _108 += 0.05f;
     }
 
     if (_13C > 0) {
-        _108 += 0.0080000004f;
+        _108 += 0.008f;
         MR::startLevelSound(this, "SE_OJ_LV_SPIN_DRV_SHINE", -1, -1, -1);
         if (!_140) {
             MR::emitEffect(this, "SpinDriverLight");
@@ -388,7 +388,7 @@ void SpinDriver::exeCapture() {
         moveBindPosToCenter();
         _11C = MR::calcNerveRate(this, 40);
         updateBindActorMatrix(_11C);
-        _108 += 0.0080000004f;
+        _108 += 0.008f;
         MR::tryRumblePadWeak(this, 0);
         _13C = 60;
 
@@ -427,7 +427,7 @@ void SpinDriver::exeShootStart() {
         f32 v5 = MR::clamp((2.0f * clamp), 0.0f, 1.0f);
         _B8.set(MR::multAndAddVec(stack_50, _F4, v5, 1.0f - v5));
         updateBindActorMatrix((v5 + (_11C * (1.0f - v5))));
-        _108 += 0.039999999f;
+        _108 += 0.04f;
         MR::tryRumblePadMiddle(this, 0);
         if (tryShoot()) {
             return;
@@ -584,9 +584,9 @@ void SpinDriver::moveBindPosToCenter() {
     MR::separateScalarAndDirection(&scalar, &stack_24, stack_24);
     f32 v3 = scalar / 120.0f;
     _C4 += MR::multVec(stack_24, 1.5f, v3);
-    _C4.x *= 0.80000001f;
-    _C4.y *= 0.80000001f;
-    _C4.z *= 0.80000001f;
+    _C4.x *= 0.8f;
+    _C4.y *= 0.8f;
+    _C4.z *= 0.8f;
 }
 */
 

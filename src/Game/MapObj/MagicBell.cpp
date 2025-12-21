@@ -31,8 +31,8 @@ void MagicBell::init(const JMapInfoIter& rIter) {
     mtx.identity();
     MR::makeMtxTR(mtx.toMtxPtr(), this);
     MR::calcGravity(this);
-    mBellSwinger = new Swinger(&mPosition, mtx.toMtxPtr(), 100.0f, 0.60000002f, 0.99000001f, &mGravity);
-    mBellRodSwinger = new Swinger(&mPosition, mtx.toMtxPtr(), 50.0f, 0.30000001f, 0.94999999f, &mGravity);
+    mBellSwinger = new Swinger(&mPosition, mtx.toMtxPtr(), 100.0f, 0.60f, 0.99f, &mGravity);
+    mBellRodSwinger = new Swinger(&mPosition, mtx.toMtxPtr(), 50.0f, 0.3f, 0.95f, &mGravity);
     makeActorAppeared();
 }
 
@@ -70,7 +70,7 @@ void MagicBell::exeRing()
     mBellSwinger->update();
     mBellRodSwinger->update();
 
-    if (mBellSwinger->_20.dot(mBellRodSwinger->_20) < 0.94999999f) {
+    if (mBellSwinger->_20.dot(mBellRodSwinger->_20) < 0.95f) {
         TVec3f v17(mBellSwinger->_20);
         v17.sub(mBellRodSwinger->_20);
         f32 v3 = mBellRodSwinger->_20.dot(v17);

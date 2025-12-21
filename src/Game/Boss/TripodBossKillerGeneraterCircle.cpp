@@ -23,7 +23,7 @@ namespace {
 
     static const GeneratorCircleData sSetUpDataTable[3] = {
         {"TripodBossUpperKillerCannon", sUpperHorizonAngleTable, 7, 2150.0f, 49.0f, -29.0f, 975.0f, 1, 0x1000000},
-        {"TripodBossUnderKillerCannon", sUnderHorizonAngleTable, 6, 2150.0f, 5.8000002f, 39.200001f, 975.0f, 0, 0x1000000},
+        {"TripodBossUnderKillerCannon", sUnderHorizonAngleTable, 6, 2150.0f, 5.8f, 39.2f, 975.0f, 0, 0x1000000},
         {"TripodBossBottomKillerCannon", sBottomHorizonAngleTable, 3, 500.0f, -50.0f, -30.0f, -1300.0f, 0, 0}};
 
     const GeneratorCircleData* getCirlceData(const char* pName) {

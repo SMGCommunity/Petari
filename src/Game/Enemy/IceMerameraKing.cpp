@@ -16,27 +16,27 @@
 namespace {
     static const char* hScaleJointName[3] = {"WideInSide", "WideOutSide", "Hirgh1"};
 
-    static const f32 hOnAirParam[4] = {0.0f, 3.0f, 0.95999998f, 0.0f};
+    static const f32 hOnAirParam[4] = {0.0f, 3.0f, 0.96f, 0.0f};
 
-    static const f32 hOnGroundParam[4] = {0.0f, 1.0f, 0.80000001f, 0.0f};
+    static const f32 hOnGroundParam[4] = {0.0f, 1.0f, 0.8f, 0.0f};
 
-    static const f32 hFlyParam[4] = {0.0f, 0.5f, 0.89999998f, 1.0f};
+    static const f32 hFlyParam[4] = {0.0f, 0.5f, 0.9f, 1.0f};
 
-    static const f32 hAngryDemoParam[4] = {0.0f, 0.5f, 0.89999998f, 1.5f};
+    static const f32 hAngryDemoParam[4] = {0.0f, 0.5f, 0.9f, 1.5f};
 
-    static const f32 hEscapeOnGroundParam[4] = {-0.69999999f, 1.0f, 0.95999998f, 180.0f};
+    static const f32 hEscapeOnGroundParam[4] = {-0.7f, 1.0f, 0.96f, 180.0f};
 
-    static const f32 hEscapeOnAirParam[4] = {0.0f, 3.0f, 0.95999998f, 0.0f};
+    static const f32 hEscapeOnAirParam[4] = {0.0f, 3.0f, 0.96f, 0.0f};
 
-    static const f32 hPreRecoverJumpParam[4] = {0.0f, 1.0f, 0.95999998f, 0.0f};
+    static const f32 hPreRecoverJumpParam[4] = {0.0f, 1.0f, 0.96f, 0.0f};
 
-    static const f32 hDamageJumpParam[4] = {0.0f, 1.9f, 0.98000002f, 0.0f};
+    static const f32 hDamageJumpParam[4] = {0.0f, 1.9f, 0.98f, 0.0f};
 
-    static const f32 hAttackParam[4] = {0.0f, 6.0f, 0.98000002f, 0.0f};
+    static const f32 hAttackParam[4] = {0.0f, 6.0f, 0.98f, 0.0f};
 
-    static f32 hExtinguishOnAirParam[4] = {0.0f, 0.125f, 0.95999998f, 0.0f};
+    static f32 hExtinguishOnAirParam[4] = {0.0f, 0.125f, 0.96f, 0.0f};
 
-    static f32 hExtinguishFallOnAirParam[4] = {0.0f, 4.0f, 0.95999998f, 0.0f};
+    static f32 hExtinguishFallOnAirParam[4] = {0.0f, 4.0f, 0.96f, 0.0f};
 };  // namespace
 
 namespace NrvIceMerameraKing {
@@ -765,7 +765,7 @@ bool IceMerameraKing::isEnableThrow() {
     TVec3f v9;
     MR::calcUpVec(&v9, this);
     bool flag = false;
-    flag = -0.60000002f < v9.dot(v10);
+    flag = -0.60f < v9.dot(v10);
     return flag;
 }
 

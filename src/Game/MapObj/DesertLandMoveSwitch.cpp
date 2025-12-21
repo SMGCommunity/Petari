@@ -30,7 +30,7 @@ DesertLandMoveSwitch::DesertLandMoveSwitch(const char* pName) : LiveActor(pName)
     _9A = 0;
     _9C = 0;
     _A0 = 0;
-    mSpringValue->setParam(0.0f, 0.0f, 0.34999999f, 0.75f, 0.0f);
+    mSpringValue->setParam(0.0f, 0.0f, 0.35f, 0.75f, 0.0f);
 }
 
 void DesertLandMoveSwitch::init(const JMapInfoIter& rIter) {

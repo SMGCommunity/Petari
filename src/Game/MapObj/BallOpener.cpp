@@ -57,7 +57,7 @@ void BallOpener::exeSetCenter() {
 
     bindHole();
 
-    if (_B8.squared() < 0.000099999997f) {
+    if (_B8.squared() < 0.0001f) {
         _C4++;
     } else {
         _C4 = 0;

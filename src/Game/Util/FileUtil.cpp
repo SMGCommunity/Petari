@@ -99,7 +99,7 @@ namespace MR {
         if (pHeap) {
             heap = pHeap;
         } else {
-            heap = MR::getAproposHeapForSceneArchive(0.029999999f);
+            heap = MR::getAproposHeapForSceneArchive(0.03f);
         }
 
         char objArch[0x100];

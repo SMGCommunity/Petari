@@ -485,8 +485,8 @@ static inline f32 funCalcTime() {
 f32 MarioSwim::getSurface() const {
     f32 fr1f = funVecTime(*this);
     f32 fr1e = funCalcTime();
-    f32 fr1d = 0.00999999977648f;
-    f32 fr1c = 0.0299999993294f;
+    f32 fr1d = 0.01f;
+    f32 fr1c = 0.03f;
     u16 tmp = 1800;
     fr1d = 1.0f + fr1d * MR::sin(funConversions1(_24, tmp));
     tmp = 500;

@@ -35,12 +35,12 @@ void WaterPoint::updatePos(f32 waveTheta1, f32 waveTheta2, f32 waveHeight1, f32 
 /* thanks to WMC for naming the vars */
 f32 WaterPoint::calcHeight(f32 waveTheta1, f32 waveTheta2, f32 waveHeight1, f32 waveHeight2, f32 coordAcrossRail, f32 coordOnRail) const {
     // "Wave 2" moves along the rail
-    f32 actualWaveHeight2 = (waveHeight2 * MR::sin(waveTheta2 + (0.0024999999f * coordOnRail)));
+    f32 actualWaveHeight2 = (waveHeight2 * MR::sin(waveTheta2 + (0.0025f * coordOnRail)));
 
     // "Wave 1" moves diagonal to the rail
     f32 wave1PerpendicularComponent = 0.003f * coordAcrossRail;
     f32 wave1ThetaPlusPerpendicularComponent = waveTheta1 + wave1PerpendicularComponent;
-    f32 normalizedWaveHeight1 = MR::sin(wave1ThetaPlusPerpendicularComponent + 0.00030000001f * coordOnRail);
+    f32 normalizedWaveHeight1 = MR::sin(wave1ThetaPlusPerpendicularComponent + 0.0003f * coordOnRail);
     f32 actualWaveHeight1 = waveHeight1 * normalizedWaveHeight1;
 
     f32 finalHeight = mHeight * (actualWaveHeight2 + actualWaveHeight1);

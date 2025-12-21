@@ -240,7 +240,7 @@ void SuperSpinDriver::exeCapture() {
         f32 rate = MR::calcNerveRate(this, 60);
         _134 = rate;
         updateBindActorPoseToShoot((f64)rate);
-        _144 += 0.0040000002f;
+        _144 += 0.0040f;
         MR::tryRumblePadWeak(this, 0);
         _178 = 60;
 

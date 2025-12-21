@@ -168,7 +168,7 @@ void SkeletalFishGuard::exeApart() {
         f32 sqr = v14.squared();
         if (sqr > 0.0000038146973f) {
             f32 inv = JGeometry::TUtil< f32 >::inv_sqrt(sqr);
-            v14.scale(inv * 0.30000001f);
+            v14.scale(inv * 0.3f);
         }
 
         f32 v6 = _A4.squared();
@@ -177,7 +177,7 @@ void SkeletalFishGuard::exeApart() {
             _A4.y = 0.0f;
             _A4.x = 0.0f;
         } else {
-            TVec3f v10 = v14 * 0.30000001f;
+            TVec3f v10 = v14 * 0.3f;
             JMathInlineVEC::PSVECSubtract(_A4, v10, _A4);
         }
     }
@@ -211,7 +211,7 @@ void SkeletalFishGuard::exeFollow() {
     MR::startLevelSound(this, "SE_BM_LV_SKL_GUARD_SWIM_NORMAL", -1, -1, -1);
     MR::startLevelSound(this, "SE_BM_LV_SKL_GUARD_ALARM", MR::calcDistanceToPlayer(this), -1, -1);
     mPosition += _D0 * _C4;
-    _C4 += 0.80000001f;
+    _C4 += 0.8f;
     if (_C4 >= 22.0f) {
         _C4 = 22.0f;
     }
@@ -247,7 +247,7 @@ void SkeletalFishGuard::exeStraight() {
     MR::startLevelSound(this, "SE_BM_LV_SKL_GUARD_ALARM", MR::calcDistanceToPlayer(this), -1, -1);
     mPosition += _D0 * _C4;
 
-    _C4 += 0.80000001f;
+    _C4 += 0.8f;
     if (_C4 >= 22.0f) {
         _C4 = 22.0f;
     }

@@ -217,10 +217,10 @@ void WaterCameraFilter::loadMaterial() const {
     GXSetTevIndWarp(GX_TEVSTAGE0, GX_INDTEXSTAGE0, 1, 0, GX_ITM_0);
     f32 ind[2][3];
     ind[0][1] = 0.0f;
-    ind[0][0] = 0.050000001f;
+    ind[0][0] = 0.05f;
     ind[0][2] = 0.0f;
     ind[1][0] = 0.0f;
-    ind[1][1] = 0.050000001f;
+    ind[1][1] = 0.05f;
     ind[1][2] = 0.0f;
     GXSetIndTexMtx(GX_ITM_0, ind, 0);
     GXColor color;

@@ -12,7 +12,7 @@ struct AudEffectData {
 
 namespace {
     const AudEffectData cAudEffectDataList[5] = {
-        {0.0f, 0x7F, 1.0f, 0x5A}, {1.0f, 0x7F, 1.0f, 0x5A}, {0.0f, 0x0A, 1.0f, 0x5A}, {1.0f, 0x7F, 0.0f, 0x5A}, {0.80000001f, 0x7F, 1.0f, 0x5A},
+        {0.0f, 0x7F, 1.0f, 0x5A}, {1.0f, 0x7F, 1.0f, 0x5A}, {0.0f, 0x0A, 1.0f, 0x5A}, {1.0f, 0x7F, 0.0f, 0x5A}, {0.8f, 0x7F, 1.0f, 0x5A},
     };
 }
 

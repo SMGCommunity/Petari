@@ -199,7 +199,7 @@ void BreakableCage::initMapToolInfo(const JMapInfoIter& rIter) {
 
     if (mCageType == CAGE_NORMAL) {
         MR::getJMapInfoArg0WithInit(rIter, &mRotationSpeed);
-        mRotationSpeed *= 0.0099999998f;
+        mRotationSpeed *= 0.01f;
     }
 
     if (isTypeCage()) {

@@ -883,9 +883,9 @@ void TripodBoss::calcDemoMovement() {
 void TripodBoss::calcBodyMovement() {
     addAccelToWeightPosition();
     _5D4 += _5E0;
-    _5E0.x *= 0.94999999f;
-    _5E0.y *= 0.94999999f;
-    _5E0.z *= 0.94999999f;
+    _5E0.x *= 0.95f;
+    _5E0.y *= 0.95f;
+    _5E0.z *= 0.95f;
     MR::makeMtxTR(mBodyMtx, _5D4, mRotation);
 }
 
@@ -916,7 +916,7 @@ void TripodBoss::addAccelToWeightPosition() {
 
     JMAVECLerp(&v21.mMax, &v21.mMin, &v19, 0.5f);
 
-    MR::vecBlend(v19, v20, &v18, 0.30000001f);
+    MR::vecBlend(v19, v20, &v18, 0.3f);
     TVec3f* center = &mMovableArea->mCenter;
     TVec3f v14(v18);
     v14 -= *center;
@@ -942,7 +942,7 @@ void TripodBoss::addAccelToWeightPosition() {
 
     v15 *= (1.0f / v10);
     TVec3f v11(v15);
-    v11 *= 0.80000001f;
+    v11 *= 0.8f;
     _5E0 += v11;
 }
 

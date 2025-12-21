@@ -108,7 +108,7 @@ void KeySwitch::exeAppear() {
             MR::startSound(this, "SE_OJ_KEY_SWITCH_BOUND", mag, -1);
             TVec3f neg;
             neg.negateInline_2(mGravity);
-            MR::calcReboundVelocity(&mVelocity, neg, 0.60000002f, 0.69999999f);
+            MR::calcReboundVelocity(&mVelocity, neg, 0.60f, 0.7f);
         }
         else {
             val = true;

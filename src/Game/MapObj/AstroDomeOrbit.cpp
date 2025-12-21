@@ -78,7 +78,7 @@ void AstroDomeOrbit::setup(s32 radiusIdx) {
 }
 
 void AstroDomeOrbit::moveCoord() {
-    _90 = calcRepeatedRotateCoord(-0.050000001f + _90);
+    _90 = calcRepeatedRotateCoord(-0.05f + _90);
 }
 
 void AstroDomeOrbit::calcGalaxyPos(TVec3f* pPos) const {

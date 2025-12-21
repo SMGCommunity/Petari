@@ -106,7 +106,7 @@ bool ConeGravity::calcOwnGravityVector(TVec3f* pDest, f32* pScalar, const TVec3f
         }
     }
 
-    if (mTopCutRate < 0.00999999978f) {
+    if (mTopCutRate < 0.01f) {
         MR::calcPerpendicFootToLineInside(&pointOfAttraction, rPos, dirOnDirectrix, apex);
     } else {
         TVec3f generatrixTermination;
