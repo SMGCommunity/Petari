@@ -246,6 +246,12 @@ namespace JGeometry {
             return ret;
         }
 
+        TVec3 subOperatorInLine(const TVec3& op) const {
+            TVec3 ret(*this);
+            ret.sub(op);
+            return ret;
+        }
+
         template < typename T >
         void set(const TVec3< T >& rVec) {
             x = rVec.x;
