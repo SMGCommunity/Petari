@@ -1,10 +1,13 @@
 #pragma once
 
 #include "nw4r/ut/CharStrmReader.h"
+#include "nw4r/ut/fontResourceFormat.h"
 #include <revolution.h>
 
 namespace nw4r {
     namespace ut {
+        typedef u16 CharCode;
+
         enum FontEncoding {
             FONT_ENCODING_UTF8,
             FONT_ENCODING_UTF16,
@@ -12,12 +15,6 @@ namespace nw4r {
             FONT_ENCODING_CP1252,
 
             FONT_ENCODING_MAX
-        };
-
-        struct CharWidths {
-            s8 left;
-            u8 glyphWidth;
-            s8 charWidth;
         };
 
         struct Glyph {
@@ -35,7 +32,9 @@ namespace nw4r {
         public:
             enum Type { TYPE_NULL, TYPE_ROM, TYPE_RESOURCE, TYPE_PAIR };
 
-            virtual ~Font();
+            Font() : mReadFunc(&CharStrmReader::ReadNextCharCP1252) {}
+
+            virtual ~Font() {}
             virtual int GetWidth() const = 0;                                  // at 0xC
             virtual int GetHeight() const = 0;                                 // at 0x10
             virtual int GetAscent() const = 0;                                 // at 0x14
@@ -47,14 +46,17 @@ namespace nw4r {
             virtual Type GetType() const = 0;                                  // at 0x2C
             virtual GXTexFmt GetTextureFormat() const = 0;                     // at 0x30
             virtual int GetLineFeed() const = 0;                               // at 0x34
-            virtual CharWidths GetDefaultCharWidths() const = 0;               // at 0x38
+            virtual const CharWidths GetDefaultCharWidths() const = 0;         // at 0x38
             virtual void SetDefaultCharWidths(const CharWidths& rWidths) = 0;  // at 0x3C
             virtual bool SetAlternateChar(u16 ch) = 0;                         // at 0x40
             virtual void SetLineFeed(int lf) = 0;                              // at 0x44
             virtual int GetCharWidth(u16 ch) const = 0;                        // at 0x48
-            virtual CharWidths GetCharWidths(u16 ch) const = 0;                // at 0x4C
+            virtual const CharWidths GetCharWidths(u16 ch) const = 0;          // at 0x4C
             virtual void GetGlyph(Glyph* pGlyph, u16 ch) const = 0;            // at 0x50
-            virtual FontEncoding GetEncoding() const = 0;                      // at 0x54
+            virtual bool HasGlyph(CharCode c) const = 0;                       // at 0x54
+            virtual FontEncoding GetEncoding() const = 0;                      // at 0x58
+
+            void InitReaderFunc(FontEncoding);
 
             CharStrmReader::ReadNextCharFunc mReadFunc;
         };
