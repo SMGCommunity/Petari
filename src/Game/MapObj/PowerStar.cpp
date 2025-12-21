@@ -12,6 +12,9 @@ const GXColor lightColor[] = {
 };
 
 namespace {
+    const char* cAppearDemoName = "パワースター出現";
+    const char* cStageClearAnimNameKoopaVs3 = "GrandStarGetKoopaVs3";
+
     void setupColor(LiveActor* pActor, bool useFrame, int frame) {
         MR::startBtp(pActor, "PowerStar");
         MR::setBtpFrameAndStop(pActor, useFrame ? 0.0f : frame);

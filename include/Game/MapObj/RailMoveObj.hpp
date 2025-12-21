@@ -3,10 +3,6 @@
 #include "Game/Demo/DemoCtrlBase.hpp"
 #include "Game/MapObj/MapObjActor.hpp"
 
-namespace {
-    const char* cMoveBckName = "Move";
-};
-
 class RailMoveObj : public MapObjActor {
 public:
     RailMoveObj(const char*);

@@ -2,6 +2,10 @@
 
 /* it seems like this file was compiled with an earlier compiler version */
 
+namespace {
+    static f32 sCanBindTime = 90.0f;
+};
+
 bool SuperSpinDriver::tryEndCapture() {
     if (MR::isGreaterStep(this, 60) && PSVECDistance(&_C4, &mPosition) < 15.0f) {
         cancelBind();
@@ -377,11 +381,17 @@ void SuperSpinDriver::exeShootOnEnd() {
 }
 
 namespace MR {
-    NameObj* createSuperSpinDriverYellow(const char* pName) { return new SuperSpinDriver(pName, 0); }
+    NameObj* createSuperSpinDriverYellow(const char* pName) {
+        return new SuperSpinDriver(pName, 0);
+    }
 
-    NameObj* createSuperSpinDriverGreen(const char* pName) { return new SuperSpinDriver(pName, 1); }
+    NameObj* createSuperSpinDriverGreen(const char* pName) {
+        return new SuperSpinDriver(pName, 1);
+    }
 
-    NameObj* createSuperSpinDriverPink(const char* pName) { return new SuperSpinDriver(pName, 2); }
+    NameObj* createSuperSpinDriverPink(const char* pName) {
+        return new SuperSpinDriver(pName, 2);
+    }
 };  // namespace MR
 
 namespace NrvSuperSpinDriver {

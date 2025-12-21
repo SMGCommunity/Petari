@@ -1,6 +1,13 @@
 #include "Game/MapObj/BreakableCage.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
+#include "Game/LiveActor/ModelObj.hpp"
+#include "Game/MapObj/DummyDisplayModel.hpp"
 #include "Game/MapObj/PowerStar.hpp"
+
+namespace {
+    Vec cHitSensorOffsetCage;
+    Vec cHitSensorOffsetFixation;
+};  // namespace
 
 BreakableCage::BreakableCage(const char* pName) : LiveActor(pName) {
     mBreakModel = nullptr;

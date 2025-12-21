@@ -11,16 +11,6 @@ struct ExterminationEntry {
     CreationFunc mCreationFunc;
 };
 
-namespace {
-    template < typename T >
-    LiveActor* createLiveActor(const char* pName) {
-        return new T(pName);
-    }
-
-    // we will define the creation funcs later
-    static const ExterminationEntry sCreateTable[] = {{"ChildKuribo", nullptr}, {"ChildSkeletalFishBaby", nullptr}, {"ChildMeramera", nullptr}};
-};  // namespace
-
 class ExterminationChecker : public LiveActor {
 public:
     ExterminationChecker(const char*);
@@ -33,16 +23,6 @@ public:
     void exeTryStartDemoAppear();
     void exeAppearStar();
     void exeAppearKeySwitch();
-
-    inline CreationFunc findEntry(const char* pName) {
-        for (s32 j = 0; j < sizeof(sCreateTable) / sizeof(*sCreateTable); j++) {
-            if (sCreateTable[j].mChildName && MR::isEqualStringCase(sCreateTable[j].mChildName, pName)) {
-                return sCreateTable[j].mCreationFunc;
-            }
-        }
-
-        return nullptr;
-    }
 
     LiveActorGroup* mGroup;  // 0x8C
     KeySwitch* mKeySwitch;   // 0x90

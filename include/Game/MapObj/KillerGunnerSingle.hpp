@@ -2,10 +2,6 @@
 
 #include "Game/LiveActor/LiveActor.hpp"
 
-namespace {
-    static Vec sShellPos;
-};
-
 class KillerGunnerSingle : public LiveActor {
 public:
     KillerGunnerSingle(const char*);

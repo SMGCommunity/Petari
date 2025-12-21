@@ -1,5 +1,9 @@
 #include "Game/MapObj/CapsuleCage.hpp"
 
+namespace {
+    const char* cDemoCameraName = "注目カメラ";
+};  // namespace
+
 CapsuleCage::CapsuleCage(const char* pName) : MapObjActor(pName) {
     mInfo = nullptr;
 }

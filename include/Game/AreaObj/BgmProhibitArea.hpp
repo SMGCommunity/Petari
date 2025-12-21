@@ -1,19 +1,12 @@
 #pragma once
 
 #include "Game/AreaObj/AreaObj.hpp"
-#include "Game/Util.hpp"
 
 struct BgmMuteSet {
     const char* mGalaxyName;
     u32 _4;
     u32 _8;
 };
-
-namespace {
-    static BgmMuteSet sBgmMuteSet[] = {{"OceanPhantomCaveGalaxy", 7, 1}, {"SoundMapCodeTest", 7, 1}};
-
-    BgmMuteSet* findDataElement(const char*);
-};  // namespace
 
 class BgmProhibitArea : public AreaObj {
 public:

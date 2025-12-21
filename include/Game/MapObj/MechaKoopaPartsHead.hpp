@@ -2,13 +2,6 @@
 
 #include "Game/MapObj/MapObjActor.hpp"
 
-namespace {
-    const char* sDemoPartNameBreak = "壊れ開始";
-    const char* sDemoPartNameFadeOut = "フェードアウト";
-    const char* sDemoPartNameWhite = "白画面";
-    const char* sDemoPartNameFadeIn = "フェードイン";
-};  // namespace
-
 class MechaKoopaPartsHead : public MapObjActor {
 public:
     MechaKoopaPartsHead(const char*);
