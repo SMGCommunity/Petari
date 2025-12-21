@@ -21,8 +21,6 @@ namespace nw4r {
                 return *this;
             }
 
-            Color& operator=(const Color&);
-
             Color& operator=(const GXColor& color) { return operator=(*reinterpret_cast< const u32* >(&color)); }
 
             ~Color() {}

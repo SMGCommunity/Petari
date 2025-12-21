@@ -522,7 +522,7 @@ config.libs = [
             Object(Matching, "nw4r/ut/ut_LinkList.cpp"),
             Object(Matching, "nw4r/ut/ut_binaryFileFormat.cpp"),
             Object(Matching, "nw4r/ut/ut_CharStrmReader.cpp"),
-            Object(NonMatching, "nw4r/ut/ut_TagProcessorBase.cpp"),
+            Object(Matching, "nw4r/ut/ut_TagProcessorBase.cpp"),
             Object(Matching, "nw4r/ut/ut_Font.cpp"),
             Object(NonMatching, "nw4r/ut/ut_RomFont.cpp"),
             Object(Matching, "nw4r/ut/ut_ResFontBase.cpp"),

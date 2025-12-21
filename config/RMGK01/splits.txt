@@ -25,6 +25,7 @@ nw4r/ut/ut_CharStrmReader.cpp:
 nw4r/ut/ut_TagProcessorBase.cpp:
 	.text       start:0x8000734C end:0x80007A1C
 	.data       start:0x80563420 end:0x80563448
+	.sdata2     start:0x806B7C20 end:0x806B7C28
 
 nw4r/ut/ut_Font.cpp:
 	.text       start:0x80007A1C end:0x80007AC4

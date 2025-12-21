@@ -24,6 +24,8 @@ namespace nw4r {
             u32 GetDrawFlag() const { return mDrawFlag; }
             void SetDrawFlag(u32 flag) { mDrawFlag = flag; }
 
+            f32 GetLineHeight() const;
+
             TagProcessorBase< CharT >* GetTagProcessor() const { return mTagProcessor; }
             void SetTagProcessor(TagProcessorBase< CharT >* pProcessor) { mTagProcessor = pProcessor; }
 

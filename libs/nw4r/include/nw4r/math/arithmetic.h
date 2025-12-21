@@ -27,5 +27,11 @@ namespace nw4r {
 
             return ax;
         }
+
+        inline f32 FSelect(register f32 cond, register f32 ifPos, register f32 ifNeg) {
+            register f32 ret;
+            asm { fsel   ret, cond, ifPos, ifNeg }
+            return ret;
+        }
     };  // namespace math
 };  // namespace nw4r

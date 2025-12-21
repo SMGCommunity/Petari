@@ -1,6 +1,8 @@
 #pragma once
 
+#include "nw4r/math/arithmetic.h"
 #include <revolution.h>
+
 
 namespace nw4r {
     namespace ut {
@@ -18,6 +20,18 @@ namespace nw4r {
                 left = x;
                 bottom = y + GetHeight();
                 top = y;
+            }
+
+            void Normalize() {
+                const f32 l = left;
+                const f32 t = top;
+                const f32 r = right;
+                const f32 b = bottom;
+
+                left = nw4r::math::FSelect(r - l, l, r);
+                right = nw4r::math::FSelect(r - l, r, l);
+                top = nw4r::math::FSelect(b - t, t, b);
+                bottom = nw4r::math::FSelect(b - t, b, t);
             }
 
             f32 left;
