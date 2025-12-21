@@ -206,29 +206,45 @@ namespace MR {
         return addHitSensorCallback(pActor, pName, ATYPE_EYE, groupSize, radius);
     }
 
-    HitSensor* addBodyMessageSensorReceiver(LiveActor* pActor) { return addBodyMessageSensor(pActor, ATYPE_RECEIVER); }
+    HitSensor* addBodyMessageSensorReceiver(LiveActor* pActor) {
+        return addBodyMessageSensor(pActor, ATYPE_RECEIVER);
+    }
 
-    HitSensor* addBodyMessageSensorMapObj(LiveActor* pActor) { return addBodyMessageSensor(pActor, ATYPE_MAP_OBJ); }
+    HitSensor* addBodyMessageSensorMapObj(LiveActor* pActor) {
+        return addBodyMessageSensor(pActor, ATYPE_MAP_OBJ);
+    }
 
-    HitSensor* addBodyMessageSensorMapObjPress(LiveActor* pActor) { return addBodyMessageSensor(pActor, ATYPE_MAP_OBJ_PRESS); }
+    HitSensor* addBodyMessageSensorMapObjPress(LiveActor* pActor) {
+        return addBodyMessageSensor(pActor, ATYPE_MAP_OBJ_PRESS);
+    }
 
-    HitSensor* addBodyMessageSensorMapObjMoveCollision(LiveActor* pActor) { return addBodyMessageSensor(pActor, ATYPE_MAP_OBJ_MOVE_COLLISION); }
+    HitSensor* addBodyMessageSensorMapObjMoveCollision(LiveActor* pActor) {
+        return addBodyMessageSensor(pActor, ATYPE_MAP_OBJ_MOVE_COLLISION);
+    }
 
-    HitSensor* addBodyMessageSensorEnemy(LiveActor* pActor) { return addBodyMessageSensor(pActor, ATYPE_ENEMY); }
+    HitSensor* addBodyMessageSensorEnemy(LiveActor* pActor) {
+        return addBodyMessageSensor(pActor, ATYPE_ENEMY);
+    }
 
     HitSensor* addMessageSensor(LiveActor* pActor, const char* pName, u32 type) {
         return addHitSensor(pActor, pName, type, 0, 0.0f, TVec3f(0.0f, 0.0f, 0.0f));
     }
 
-    HitSensor* addMessageSensorReceiver(LiveActor* pActor, const char* pName) { return addMessageSensor(pActor, pName, ATYPE_RECEIVER); }
+    HitSensor* addMessageSensorReceiver(LiveActor* pActor, const char* pName) {
+        return addMessageSensor(pActor, pName, ATYPE_RECEIVER);
+    }
 
-    HitSensor* addMessageSensorMapObj(LiveActor* pActor, const char* pName) { return addMessageSensor(pActor, pName, ATYPE_MAP_OBJ); }
+    HitSensor* addMessageSensorMapObj(LiveActor* pActor, const char* pName) {
+        return addMessageSensor(pActor, pName, ATYPE_MAP_OBJ);
+    }
 
     HitSensor* addMessageSensorMapObjMoveCollision(LiveActor* pActor, const char* pName) {
         return addMessageSensor(pActor, pName, ATYPE_MAP_OBJ_MOVE_COLLISION);
     }
 
-    HitSensor* addMessageSensorEnemy(LiveActor* pActor, const char* pName) { return addMessageSensor(pActor, pName, ATYPE_ENEMY); }
+    HitSensor* addMessageSensorEnemy(LiveActor* pActor, const char* pName) {
+        return addMessageSensor(pActor, pName, ATYPE_ENEMY);
+    }
 
     bool tryUpdateHitSensorsAll(LiveActor* pActor) {
         if (pActor->mSensorKeeper != nullptr) {
@@ -240,11 +256,17 @@ namespace MR {
         return false;
     }
 
-    void updateHitSensorsAll(LiveActor* pActor) { pActor->mSensorKeeper->update(); }
+    void updateHitSensorsAll(LiveActor* pActor) {
+        pActor->mSensorKeeper->update();
+    }
 
-    bool isSensorType(const HitSensor* pSensor, u32 type) { return pSensor->isType(type); }
+    bool isSensorType(const HitSensor* pSensor, u32 type) {
+        return pSensor->isType(type);
+    }
 
-    HitSensor* getSensorWithIndex(LiveActor* pActor, int index) { return pActor->mSensorKeeper->getNthSensorInfo(index)->mSensor; }
+    HitSensor* getSensorWithIndex(LiveActor* pActor, int index) {
+        return pActor->mSensorKeeper->getNthSensorInfo(index)->mSensor;
+    }
 
     HitSensor* getTaking(const LiveActor* pActor) {
         if (pActor->mSensorKeeper != nullptr) {
@@ -262,13 +284,17 @@ namespace MR {
         return nullptr;
     }
 
-    void setSensorPos(HitSensor* pSensor, const TVec3f& rPos) { pSensor->mPosition.set(rPos); }
+    void setSensorPos(HitSensor* pSensor, const TVec3f& rPos) {
+        pSensor->mPosition.set(rPos);
+    }
 
     void setSensorOffset(LiveActor* pActor, const char* pName, const TVec3f& rOffset) {
         pActor->mSensorKeeper->getSensorInfo(pName)->_C.setPS(rOffset);
     }
 
-    void setSensorRadius(LiveActor* pActor, const char* pName, f32 radius) { pActor->mSensorKeeper->getSensorInfo(pName)->mSensor->mRadius = radius; }
+    void setSensorRadius(LiveActor* pActor, const char* pName, f32 radius) {
+        pActor->mSensorKeeper->getSensorInfo(pName)->mSensor->mRadius = radius;
+    }
 
     void setHitSensorApart(HitSensor* pSender, HitSensor* pReceiver) {
         if (getTaking(getSensorHost(pSender)) == pReceiver || getTaken(getSensorHost(pReceiver)) == pSender) {
@@ -292,11 +318,17 @@ namespace MR {
         }
     }
 
-    void validateHitSensor(LiveActor* pActor, const char* pName) { pActor->mSensorKeeper->getSensor(pName)->validate(); }
+    void validateHitSensor(LiveActor* pActor, const char* pName) {
+        pActor->mSensorKeeper->getSensor(pName)->validate();
+    }
 
-    void invalidateHitSensor(LiveActor* pActor, const char* pName) { pActor->mSensorKeeper->getSensor(pName)->invalidate(); }
+    void invalidateHitSensor(LiveActor* pActor, const char* pName) {
+        pActor->mSensorKeeper->getSensor(pName)->invalidate();
+    }
 
-    bool isValidHitSensor(LiveActor* pActor, const char* pName) { return pActor->mSensorKeeper->getSensor(pName)->mValidByHost; }
+    bool isValidHitSensor(LiveActor* pActor, const char* pName) {
+        return pActor->mSensorKeeper->getSensor(pName)->mValidByHost;
+    }
 
     void clearHitSensors(LiveActor* pActor) {
         if (pActor->mSensorKeeper != nullptr) {
@@ -304,15 +336,25 @@ namespace MR {
         }
     }
 
-    HitSensor* getSensor(LiveActor* pActor, int index) { return pActor->mSensorKeeper->getNthSensorInfo(index)->mSensor; }
+    HitSensor* getSensor(LiveActor* pActor, int index) {
+        return pActor->mSensorKeeper->getNthSensorInfo(index)->mSensor;
+    }
 
-    LiveActor* getSensorHost(const HitSensor* pSensor) { return pSensor->mHost; }
+    LiveActor* getSensorHost(const HitSensor* pSensor) {
+        return pSensor->mHost;
+    }
 
-    bool isSensor(const HitSensor* pSensor, const char* pName) { return pSensor == getSensorHost(pSensor)->getSensor(pName); }
+    bool isSensor(const HitSensor* pSensor, const char* pName) {
+        return pSensor == getSensorHost(pSensor)->getSensor(pName);
+    }
 
-    bool isSensorPlayer(const HitSensor* pSensor) { return pSensor->isType(ATYPE_PLAYER); }
+    bool isSensorPlayer(const HitSensor* pSensor) {
+        return pSensor->isType(ATYPE_PLAYER);
+    }
 
-    bool isSensorBinder(const HitSensor* pSensor) { return pSensor->isType(ATYPE_BINDER); }
+    bool isSensorBinder(const HitSensor* pSensor) {
+        return pSensor->isType(ATYPE_BINDER);
+    }
 
     bool isSensorRide(const HitSensor* pSensor) {
         if (pSensor->mType > ATYPE_RIDE_START && pSensor->mType < ATYPE_RIDE_END) {
@@ -322,7 +364,9 @@ namespace MR {
         return false;
     }
 
-    bool isSensorPlayerOrRide(const HitSensor* pSensor) { return isSensorPlayer(pSensor) || isSensorRide(pSensor); }
+    bool isSensorPlayerOrRide(const HitSensor* pSensor) {
+        return isSensorPlayer(pSensor) || isSensorRide(pSensor);
+    }
 
     bool isSensorEnemy(const HitSensor* pSensor) {
         if (pSensor->mType > ATYPE_ENEMY_START && pSensor->mType < ATYPE_ENEMY_END) {
@@ -332,7 +376,9 @@ namespace MR {
         return false;
     }
 
-    bool isSensorEnemyAttack(const HitSensor* pSensor) { return pSensor->isType(ATYPE_ENEMY_ATTACK); }
+    bool isSensorEnemyAttack(const HitSensor* pSensor) {
+        return pSensor->isType(ATYPE_ENEMY_ATTACK);
+    }
 
     bool isSensorNpc(const HitSensor* pSensor) {
         if (pSensor->mType > ATYPE_NPC_START && pSensor->mType < ATYPE_NPC_END) {
@@ -374,9 +420,13 @@ namespace MR {
         return false;
     }
 
-    bool isSensorEye(const HitSensor* pSensor) { return pSensor->isType(ATYPE_EYE); }
+    bool isSensorEye(const HitSensor* pSensor) {
+        return pSensor->isType(ATYPE_EYE);
+    }
 
-    bool isSensorPush(const HitSensor* pSensor) { return pSensor->isType(ATYPE_PUSH); }
+    bool isSensorPush(const HitSensor* pSensor) {
+        return pSensor->isType(ATYPE_PUSH);
+    }
 
     bool isSensorItem(const HitSensor* pSensor) {
         if (pSensor->isType(ATYPE_COIN) || pSensor->isType(ATYPE_COIN_RED) || pSensor->isType(ATYPE_KINOKO_ONEUP)) {
@@ -386,9 +436,13 @@ namespace MR {
         return false;
     }
 
-    bool tryGetItem(HitSensor* pSender, HitSensor* pReceiver) { return pReceiver->receiveMessage(ACTMES_ITEM_GET, pSender); }
+    bool tryGetItem(HitSensor* pSender, HitSensor* pReceiver) {
+        return pReceiver->receiveMessage(ACTMES_ITEM_GET, pSender);
+    }
 
-    const TVec3f& getSensorPos(const HitSensor* pSensor) { return pSensor->mPosition; }
+    const TVec3f& getSensorPos(const HitSensor* pSensor) {
+        return pSensor->mPosition;
+    }
 
     void calcSensorDirection(TVec3f* pDir, const HitSensor* pSensor1, const HitSensor* pSensor2) {
         TVec3f dir(pSensor2->mPosition);
@@ -414,25 +468,45 @@ namespace MR {
         normalizeOrZero(pHorizon);
     }
 
-    HitSensor* getMessageSensor() { return getSceneObj< MessageSensorHolder >(SceneObj_MessageSensorHolder)->getSensor(nullptr); }
+    HitSensor* getMessageSensor() {
+        return getSceneObj< MessageSensorHolder >(SceneObj_MessageSensorHolder)->getSensor(nullptr);
+    }
 
-    bool sendArbitraryMsg(u32 msg, HitSensor* pReceiver, HitSensor* pSender) { return pReceiver->receiveMessage(msg, pSender); }
+    bool sendArbitraryMsg(u32 msg, HitSensor* pReceiver, HitSensor* pSender) {
+        return pReceiver->receiveMessage(msg, pSender);
+    }
 
-    bool sendMsgPush(HitSensor* pReceiver, HitSensor* pSender) { return sendArbitraryMsg(ACTMES_PUSH, pReceiver, pSender); }
+    bool sendMsgPush(HitSensor* pReceiver, HitSensor* pSender) {
+        return sendArbitraryMsg(ACTMES_PUSH, pReceiver, pSender);
+    }
 
-    bool sendMsgPlayerTrample(HitSensor* pReceiver, HitSensor* pSender) { return sendArbitraryMsg(ACTMES_PLAYER_TRAMPLE, pReceiver, pSender); }
+    bool sendMsgPlayerTrample(HitSensor* pReceiver, HitSensor* pSender) {
+        return sendArbitraryMsg(ACTMES_PLAYER_TRAMPLE, pReceiver, pSender);
+    }
 
-    bool sendMsgPlayerPunch(HitSensor* pReceiver, HitSensor* pSender) { return sendArbitraryMsg(ACTMES_PLAYER_PUNCH, pReceiver, pSender); }
+    bool sendMsgPlayerPunch(HitSensor* pReceiver, HitSensor* pSender) {
+        return sendArbitraryMsg(ACTMES_PLAYER_PUNCH, pReceiver, pSender);
+    }
 
-    bool sendMsgJump(HitSensor* pReceiver, HitSensor* pSender) { return sendArbitraryMsg(ACTMES_JUMP, pReceiver, pSender); }
+    bool sendMsgJump(HitSensor* pReceiver, HitSensor* pSender) {
+        return sendArbitraryMsg(ACTMES_JUMP, pReceiver, pSender);
+    }
 
-    bool sendMsgTouchJump(HitSensor* pReceiver, HitSensor* pSender) { return sendArbitraryMsg(ACTMES_TOUCHJUMP, pReceiver, pSender); }
+    bool sendMsgTouchJump(HitSensor* pReceiver, HitSensor* pSender) {
+        return sendArbitraryMsg(ACTMES_TOUCHJUMP, pReceiver, pSender);
+    }
 
-    bool sendMsgTaken(HitSensor* pReceiver, HitSensor* pSender) { return sendArbitraryMsg(ACTMES_TAKEN, pReceiver, pSender); }
+    bool sendMsgTaken(HitSensor* pReceiver, HitSensor* pSender) {
+        return sendArbitraryMsg(ACTMES_TAKEN, pReceiver, pSender);
+    }
 
-    bool sendMsgKick(HitSensor* pReceiver, HitSensor* pSender) { return sendArbitraryMsg(ACTMES_KICK, pReceiver, pSender); }
+    bool sendMsgKick(HitSensor* pReceiver, HitSensor* pSender) {
+        return sendArbitraryMsg(ACTMES_KICK, pReceiver, pSender);
+    }
 
-    bool sendMsgAwayJump(HitSensor* pReceiver, HitSensor* pSender) { return sendArbitraryMsg(ACTMES_AWAYJUMP, pReceiver, pSender); }
+    bool sendMsgAwayJump(HitSensor* pReceiver, HitSensor* pSender) {
+        return sendArbitraryMsg(ACTMES_AWAYJUMP, pReceiver, pSender);
+    }
 
     bool sendMsgEnemyAttackMsgToDir(u32 msg, HitSensor* pReceiver, HitSensor* pSender, const TVec3f& rDir) {
         TVec3f senderPos(pSender->mPosition);
@@ -452,7 +526,9 @@ namespace MR {
         return sendArbitraryMsg(ACTMES_ENEMY_ATTACK_FLIP_WEAK_JUMP, pReceiver, pSender);
     }
 
-    bool sendMsgEnemyAttackFlip(HitSensor* pReceiver, HitSensor* pSender) { return sendArbitraryMsg(ACTMES_ENEMY_ATTACK_FLIP, pReceiver, pSender); }
+    bool sendMsgEnemyAttackFlip(HitSensor* pReceiver, HitSensor* pSender) {
+        return sendArbitraryMsg(ACTMES_ENEMY_ATTACK_FLIP, pReceiver, pSender);
+    }
 
     bool sendMsgEnemyAttackFlipToDir(HitSensor* pReceiver, HitSensor* pSender, const TVec3f& rDir) {
         return sendMsgEnemyAttackMsgToDir(ACTMES_ENEMY_ATTACK_FLIP, pReceiver, pSender, rDir);
@@ -474,7 +550,9 @@ namespace MR {
         return sendMsgEnemyAttackMsgToDir(ACTMES_ENEMY_ATTACK_FLIP_MAXIMUM, pReceiver, pSender, rDir);
     }
 
-    bool sendMsgEnemyAttack(HitSensor* pReceiver, HitSensor* pSender) { return sendArbitraryMsg(ACTMES_ENEMY_ATTACK, pReceiver, pSender); }
+    bool sendMsgEnemyAttack(HitSensor* pReceiver, HitSensor* pSender) {
+        return sendArbitraryMsg(ACTMES_ENEMY_ATTACK, pReceiver, pSender);
+    }
 
     bool sendMsgEnemyAttackStrong(HitSensor* pReceiver, HitSensor* pSender) {
         return sendArbitraryMsg(ACTMES_ENEMY_ATTACK_STRONG, pReceiver, pSender);
@@ -520,7 +598,9 @@ namespace MR {
         return sendArbitraryMsg(ACTMES_IS_LOCKON_STAR_PIECE_SHOOT, pReceiver, pSender);
     }
 
-    bool sendMsgStarPieceAttack(HitSensor* pReceiver, HitSensor* pSender) { return sendArbitraryMsg(ACTMES_STAR_PIECE_ATTACK, pReceiver, pSender); }
+    bool sendMsgStarPieceAttack(HitSensor* pReceiver, HitSensor* pSender) {
+        return sendArbitraryMsg(ACTMES_STAR_PIECE_ATTACK, pReceiver, pSender);
+    }
 
     bool sendMsgStarPieceGift(HitSensor* pReceiver, HitSensor* pSender, u32 num) {
         return sendArbitraryMsg((num + ACTMES_STAR_PIECE_GIFT) - 1, pReceiver, pSender);
@@ -573,7 +653,9 @@ namespace MR {
         return isSent;
     }
 
-    bool sendMsgToBindedSensor(u32 msg, HitSensor* pSender) { return sendMsgToBindedSensor(msg, getSensorHost(pSender), pSender); }
+    bool sendMsgToBindedSensor(u32 msg, HitSensor* pSender) {
+        return sendMsgToBindedSensor(msg, getSensorHost(pSender), pSender);
+    }
 
     bool sendMsgToGroundSensor(u32 msg, HitSensor* pSender) {
         if (!isBindedGround(getSensorHost(pSender))) {
@@ -593,7 +675,9 @@ namespace MR {
         return getWallSensor(getSensorHost(pSender))->receiveMessage(msg, pSender);
     }
 
-    bool sendMsgStartDemo(LiveActor* pActor) { return sendSimpleMsgToActor(ACTMES_START_DEMO, pActor); }
+    bool sendMsgStartDemo(LiveActor* pActor) {
+        return sendSimpleMsgToActor(ACTMES_START_DEMO, pActor);
+    }
 
     bool sendMsgToEnemyAttackBlow(HitSensor* pReceiver, HitSensor* pSender) {
         return sendArbitraryMsg(ACTMES_TO_ENEMY_ATTACK_BLOW, pReceiver, pSender);
@@ -691,124 +775,238 @@ namespace MR {
         return false;
     }
 
-    HitSensor* getGroundSensor(const LiveActor* pActor) { return pActor->mBinder->mGroundInfo.mParentTriangle.mSensor; }
+    HitSensor* getGroundSensor(const LiveActor* pActor) {
+        return pActor->mBinder->mGroundInfo.mParentTriangle.mSensor;
+    }
 
-    HitSensor* getRoofSensor(const LiveActor* pActor) { return pActor->mBinder->mRoofInfo.mParentTriangle.mSensor; }
+    HitSensor* getRoofSensor(const LiveActor* pActor) {
+        return pActor->mBinder->mRoofInfo.mParentTriangle.mSensor;
+    }
 
-    HitSensor* getWallSensor(const LiveActor* pActor) { return pActor->mBinder->mWallInfo.mParentTriangle.mSensor; }
+    HitSensor* getWallSensor(const LiveActor* pActor) {
+        return pActor->mBinder->mWallInfo.mParentTriangle.mSensor;
+    }
 
     bool isMsgPlayerHitAll(u32 msg) {
         return msg == ACTMES_PLAYER_PUNCH || msg == ACTMES_PLAYER_UPPER_PUNCH || msg == ACTMES_JET_TURTLE_ATTACK || msg == ACTMES_FIREBALL_ATTACK ||
                msg == ACTMES_FREEZE_ATTACK || msg == ACTMES_INVINCIBLE_ATTACK;
     }
 
-    bool isMsgPlayerSpinAttack(u32 msg) { return msg == ACTMES_PLAYER_PUNCH; }
+    bool isMsgPlayerSpinAttack(u32 msg) {
+        return msg == ACTMES_PLAYER_PUNCH;
+    }
 
-    bool isMsgPlayerTrample(u32 msg) { return msg == ACTMES_PLAYER_TRAMPLE; }
+    bool isMsgPlayerTrample(u32 msg) {
+        return msg == ACTMES_PLAYER_TRAMPLE;
+    }
 
-    bool isMsgPlayerHipDrop(u32 msg) { return msg == ACTMES_PLAYER_HIP_DROP; }
+    bool isMsgPlayerHipDrop(u32 msg) {
+        return msg == ACTMES_PLAYER_HIP_DROP;
+    }
 
-    bool isMsgPlayerHipDropFloor(u32 msg) { return msg == ACTMES_PLAYER_HIP_DROP_FLOOR; }
+    bool isMsgPlayerHipDropFloor(u32 msg) {
+        return msg == ACTMES_PLAYER_HIP_DROP_FLOOR;
+    }
 
-    bool isMsgPlayerUpperPunch(u32 msg) { return msg == ACTMES_PLAYER_UPPER_PUNCH; }
+    bool isMsgPlayerUpperPunch(u32 msg) {
+        return msg == ACTMES_PLAYER_UPPER_PUNCH;
+    }
 
-    bool isMsgPlayerKick(u32 msg) { return msg == ACTMES_KICK; }
+    bool isMsgPlayerKick(u32 msg) {
+        return msg == ACTMES_KICK;
+    }
 
-    bool isMsgJetTurtleAttack(u32 msg) { return msg == ACTMES_JET_TURTLE_ATTACK; }
+    bool isMsgJetTurtleAttack(u32 msg) {
+        return msg == ACTMES_JET_TURTLE_ATTACK;
+    }
 
-    bool isMsgFireBallAttack(u32 msg) { return msg == ACTMES_FIREBALL_ATTACK; }
+    bool isMsgFireBallAttack(u32 msg) {
+        return msg == ACTMES_FIREBALL_ATTACK;
+    }
 
-    bool isMsgSearchlightAttack(u32 msg) { return msg == ACTMES_SEARCHLIGHT_ATTACK; }
+    bool isMsgSearchlightAttack(u32 msg) {
+        return msg == ACTMES_SEARCHLIGHT_ATTACK;
+    }
 
-    bool isMsgFreezeAttack(u32 msg) { return msg == ACTMES_FREEZE_ATTACK; }
+    bool isMsgFreezeAttack(u32 msg) {
+        return msg == ACTMES_FREEZE_ATTACK;
+    }
 
-    bool isMsgInvincibleAttack(u32 msg) { return msg == ACTMES_INVINCIBLE_ATTACK; }
+    bool isMsgInvincibleAttack(u32 msg) {
+        return msg == ACTMES_INVINCIBLE_ATTACK;
+    }
 
-    bool isMsgInvalidHit(u32 msg) { return msg == ACTMES_INVALID_HIT; }
+    bool isMsgInvalidHit(u32 msg) {
+        return msg == ACTMES_INVALID_HIT;
+    }
 
-    bool isMsgAutoRushBegin(u32 msg) { return msg == ACTMES_AUTORUSH_BEGIN; }
+    bool isMsgAutoRushBegin(u32 msg) {
+        return msg == ACTMES_AUTORUSH_BEGIN;
+    }
 
-    bool isMsgRushBegin(u32 msg) { return msg == ACTMES_RUSH_BEGIN; }
+    bool isMsgRushBegin(u32 msg) {
+        return msg == ACTMES_RUSH_BEGIN;
+    }
 
-    bool isMsgUpdateBaseMtx(u32 msg) { return msg == ACTMES_UPDATE_BASEMTX; }
+    bool isMsgUpdateBaseMtx(u32 msg) {
+        return msg == ACTMES_UPDATE_BASEMTX;
+    }
 
-    bool isMsgRushCancel(u32 msg) { return msg == ACTMES_RUSH_CANCEL; }
+    bool isMsgRushCancel(u32 msg) {
+        return msg == ACTMES_RUSH_CANCEL;
+    }
 
-    bool isMsgIsRushTakeOver(u32 msg) { return msg == ACTMES_IS_RUSH_TAKEOVER; }
+    bool isMsgIsRushTakeOver(u32 msg) {
+        return msg == ACTMES_IS_RUSH_TAKEOVER;
+    }
 
-    bool isMsgFloorTouch(u32 msg) { return msg == ACTMES_FLOOR_TOUCH; }
+    bool isMsgFloorTouch(u32 msg) {
+        return msg == ACTMES_FLOOR_TOUCH;
+    }
 
-    bool isMsgWallTouch(u32 msg) { return msg == ACTMES_WALL_TOUCH; }
+    bool isMsgWallTouch(u32 msg) {
+        return msg == ACTMES_WALL_TOUCH;
+    }
 
-    bool isMsgCeilTouch(u32 msg) { return msg == ACTMES_CEIL_TOUCH; }
+    bool isMsgCeilTouch(u32 msg) {
+        return msg == ACTMES_CEIL_TOUCH;
+    }
 
-    bool isMsgItemGet(u32 msg) { return msg == ACTMES_ITEM_GET; }
+    bool isMsgItemGet(u32 msg) {
+        return msg == ACTMES_ITEM_GET;
+    }
 
-    bool isMsgItemPull(u32 msg) { return msg == ACTMES_ITEM_PULL; }
+    bool isMsgItemPull(u32 msg) {
+        return msg == ACTMES_ITEM_PULL;
+    }
 
-    bool isMsgItemShow(u32 msg) { return msg == ACTMES_ITEM_SHOW; }
+    bool isMsgItemShow(u32 msg) {
+        return msg == ACTMES_ITEM_SHOW;
+    }
 
-    bool isMsgItemHide(u32 msg) { return msg == ACTMES_ITEM_HIDE; }
+    bool isMsgItemHide(u32 msg) {
+        return msg == ACTMES_ITEM_HIDE;
+    }
 
-    bool isMsgItemStartMove(u32 msg) { return msg == ACTMES_ITEM_START_MOVE; }
+    bool isMsgItemStartMove(u32 msg) {
+        return msg == ACTMES_ITEM_START_MOVE;
+    }
 
-    bool isMsgItemEndMove(u32 msg) { return msg == ACTMES_ITEM_END_MOVE; }
+    bool isMsgItemEndMove(u32 msg) {
+        return msg == ACTMES_ITEM_END_MOVE;
+    }
 
-    bool isMsgInhaleBlackHole(u32 msg) { return msg == ACTMES_INHALE_BLACK_HOLE; }
+    bool isMsgInhaleBlackHole(u32 msg) {
+        return msg == ACTMES_INHALE_BLACK_HOLE;
+    }
 
-    bool isMsgEnemyAttack(u32 msg) { return msg == ACTMES_ENEMY_ATTACK; }
+    bool isMsgEnemyAttack(u32 msg) {
+        return msg == ACTMES_ENEMY_ATTACK;
+    }
 
-    bool isMsgEnemyAttackFire(u32 msg) { return msg == ACTMES_ENEMY_ATTACK_FIRERUN; }
+    bool isMsgEnemyAttackFire(u32 msg) {
+        return msg == ACTMES_ENEMY_ATTACK_FIRERUN;
+    }
 
-    bool isMsgEnemyAttackFireStrong(u32 msg) { return msg == ACTMES_ENEMY_ATTACK_FIRERUN_STRONG; }
+    bool isMsgEnemyAttackFireStrong(u32 msg) {
+        return msg == ACTMES_ENEMY_ATTACK_FIRERUN_STRONG;
+    }
 
-    bool isMsgEnemyAttackElectric(u32 msg) { return msg == ACTMES_ENEMY_ATTACK_ELECTRIC; }
+    bool isMsgEnemyAttackElectric(u32 msg) {
+        return msg == ACTMES_ENEMY_ATTACK_ELECTRIC;
+    }
 
-    bool isMsgExplosionAttack(u32 msg) { return msg == ACTMES_ENEMY_ATTACK_EXPLOSION; }
+    bool isMsgExplosionAttack(u32 msg) {
+        return msg == ACTMES_ENEMY_ATTACK_EXPLOSION;
+    }
 
-    bool isMsgToEnemyAttackBlow(u32 msg) { return msg == ACTMES_TO_ENEMY_ATTACK_BLOW; }
+    bool isMsgToEnemyAttackBlow(u32 msg) {
+        return msg == ACTMES_TO_ENEMY_ATTACK_BLOW;
+    }
 
-    bool isMsgToEnemyAttackTrample(u32 msg) { return msg == ACTMES_TO_ENEMY_ATTACK_TRAMPLE; }
+    bool isMsgToEnemyAttackTrample(u32 msg) {
+        return msg == ACTMES_TO_ENEMY_ATTACK_TRAMPLE;
+    }
 
-    bool isMsgToEnemyAttackShockWave(u32 msg) { return msg == ACTMES_TO_ENEMY_ATTACK_SHOCK_WAVE; }
+    bool isMsgToEnemyAttackShockWave(u32 msg) {
+        return msg == ACTMES_TO_ENEMY_ATTACK_SHOCK_WAVE;
+    }
 
-    bool isMsgSpinStormRange(u32 msg) { return msg == ACTMES_SPIN_STORM_RANGE; }
+    bool isMsgSpinStormRange(u32 msg) {
+        return msg == ACTMES_SPIN_STORM_RANGE;
+    }
 
-    bool isMsgTutorialStart(u32 msg) { return msg == ACTMES_TUTORIAL_START; }
+    bool isMsgTutorialStart(u32 msg) {
+        return msg == ACTMES_TUTORIAL_START;
+    }
 
-    bool isMsgTutorialNext(u32 msg) { return msg == ACTMES_TUTORIAL_NEXT; }
+    bool isMsgTutorialNext(u32 msg) {
+        return msg == ACTMES_TUTORIAL_NEXT;
+    }
 
-    bool isMsgTutorialPrev(u32 msg) { return msg == ACTMES_TUTORIAL_PREV; }
+    bool isMsgTutorialPrev(u32 msg) {
+        return msg == ACTMES_TUTORIAL_PREV;
+    }
 
-    bool isMsgTutorialPass(u32 msg) { return msg == ACTMES_TUTORIAL_PASS; }
+    bool isMsgTutorialPass(u32 msg) {
+        return msg == ACTMES_TUTORIAL_PASS;
+    }
 
-    bool isMsgTutorialOmit(u32 msg) { return msg == ACTMES_TUTORIAL_OMIT; }
+    bool isMsgTutorialOmit(u32 msg) {
+        return msg == ACTMES_TUTORIAL_OMIT;
+    }
 
-    bool isMsgRaceReady(u32 msg) { return msg == ACTMES_RACE_READY; }
+    bool isMsgRaceReady(u32 msg) {
+        return msg == ACTMES_RACE_READY;
+    }
 
-    bool isMsgRaceStart(u32 msg) { return msg == ACTMES_RACE_START; }
+    bool isMsgRaceStart(u32 msg) {
+        return msg == ACTMES_RACE_START;
+    }
 
-    bool isMsgRaceReset(u32 msg) { return msg == ACTMES_RACE_RESET; }
+    bool isMsgRaceReset(u32 msg) {
+        return msg == ACTMES_RACE_RESET;
+    }
 
-    bool isMsgLockOnStarPieceShoot(u32 msg) { return msg == ACTMES_IS_LOCKON_STAR_PIECE_SHOOT; }
+    bool isMsgLockOnStarPieceShoot(u32 msg) {
+        return msg == ACTMES_IS_LOCKON_STAR_PIECE_SHOOT;
+    }
 
-    bool isMsgBallDashWall(u32 msg) { return msg == ACTMES_BALL_DASH_WALL; }
+    bool isMsgBallDashWall(u32 msg) {
+        return msg == ACTMES_BALL_DASH_WALL;
+    }
 
-    bool isMsgBallDashGround(u32 msg) { return msg == ACTMES_BALL_DASH_GROUND; }
+    bool isMsgBallDashGround(u32 msg) {
+        return msg == ACTMES_BALL_DASH_GROUND;
+    }
 
-    bool isMsgStartPowerStarGet(u32 msg) { return msg == ACTMES_START_POWER_STAR_GET; }
+    bool isMsgStartPowerStarGet(u32 msg) {
+        return msg == ACTMES_START_POWER_STAR_GET;
+    }
 
-    bool isMsgTouchPlantItem(u32 msg) { return msg == ACTMES_PLANT_GROUP_EMIT_ITEM; }
+    bool isMsgTouchPlantItem(u32 msg) {
+        return msg == ACTMES_PLANT_GROUP_EMIT_ITEM;
+    }
 
-    bool isMsgHitmarkEmit(u32 msg) { return msg == ACTMES_HITMARK_EMIT; }
+    bool isMsgHitmarkEmit(u32 msg) {
+        return msg == ACTMES_HITMARK_EMIT;
+    }
 
-    bool isMsgStarPieceAttack(u32 msg) { return msg == ACTMES_STAR_PIECE_ATTACK; }
+    bool isMsgStarPieceAttack(u32 msg) {
+        return msg == ACTMES_STAR_PIECE_ATTACK;
+    }
 
-    bool isMsgStarPieceReflect(u32 msg) { return msg == ACTMES_IS_STAR_PIECE_REFLECT; }
+    bool isMsgStarPieceReflect(u32 msg) {
+        return msg == ACTMES_IS_STAR_PIECE_REFLECT;
+    }
 
-    bool isMsgStarPieceGift(u32 msg) { return msg >= ACTMES_STAR_PIECE_GIFT && msg <= ACTMES_STAR_PIECE_GIFT_MAX; }
+    bool isMsgStarPieceGift(u32 msg) {
+        return msg >= ACTMES_STAR_PIECE_GIFT && msg <= ACTMES_STAR_PIECE_GIFT_MAX;
+    }
 
-    s32 getNumStarPieceGift(u32 msg) { return (msg - ACTMES_STAR_PIECE_GIFT) + 1; }
+    s32 getNumStarPieceGift(u32 msg) {
+        return (msg - ACTMES_STAR_PIECE_GIFT) + 1;
+    }
 
     void calcPosBetweenSensors(TVec3f* pPos, const HitSensor* pSensor1, const HitSensor* pSensor2, f32 offset) {
         TVec3f dir(pSensor2->mPosition);
@@ -843,5 +1041,7 @@ namespace MR {
         return false;
     }
 
-    HitSensor* addBodyMessageSensor(LiveActor* pActor, u32 type) { return addHitSensor(pActor, "body", type, 0, 0.0f, TVec3f(0.0f, 0.0f, 0.0f)); }
+    HitSensor* addBodyMessageSensor(LiveActor* pActor, u32 type) {
+        return addHitSensor(pActor, "body", type, 0, 0.0f, TVec3f(0.0f, 0.0f, 0.0f));
+    }
 };  // namespace MR

@@ -312,7 +312,6 @@ namespace MR {
     void tryRumblePadAndCameraDistanceStrong(const LiveActor*, f32, f32, f32);
     void tryRumblePadAndCameraDistanceMiddle(const LiveActor*, f32, f32, f32);
 
-
     void callAppearAllGroupMember(const LiveActor*);
     void callMakeActorDeadAllGroupMember(const LiveActor*);
     void callRequestMovementOnAllGroupMember(const LiveActor*);
@@ -389,8 +388,8 @@ namespace MR {
     s32 countShowGroupMember(const LiveActor*);
     s32 countHideGroupMember(const LiveActor*);
 
-    f32 getBckFrame(const LiveActor *);
-    f32 getBrkFrame(const LiveActor *);
+    f32 getBckFrame(const LiveActor*);
+    f32 getBrkFrame(const LiveActor*);
 
     f32 calcNerveValue(const LiveActor*, s32, s32, f32, f32);
 

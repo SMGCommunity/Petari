@@ -218,7 +218,9 @@ void FileSelectInfo::reflectInfo() {
 }
 
 namespace FileSelectInfoSub {
-    SlideState::SlideState(FileSelectInfo* pHost) : NerveExecutor("スライド状態"), mHost(pHost) { initNerve(&SlideStateNrvNormalPos::sInstance); }
+    SlideState::SlideState(FileSelectInfo* pHost) : NerveExecutor("スライド状態"), mHost(pHost) {
+        initNerve(&SlideStateNrvNormalPos::sInstance);
+    }
 
     void SlideState::exeNormalPos() {
         if (MR::isFirstStep(this)) {
@@ -256,7 +258,9 @@ namespace FileSelectInfoSub {
 };  // namespace FileSelectInfoSub
 
 namespace FileSelectInfoSub {
-    CharaState::CharaState(FileSelectInfo* pHost) : NerveExecutor("キャラ選択状態"), mHost(pHost) { initNerve(&CharaStateNrvMario::sInstance); }
+    CharaState::CharaState(FileSelectInfo* pHost) : NerveExecutor("キャラ選択状態"), mHost(pHost) {
+        initNerve(&CharaStateNrvMario::sInstance);
+    }
 
     void CharaState::exeMario() {
         if (MR::isFirstStep(this)) {

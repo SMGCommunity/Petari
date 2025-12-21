@@ -19,7 +19,9 @@ namespace {
         return !MR::isOnGameEventFlagUseAstroDome() || (MR::isStageAstroLocation() && !MR::isEqualStageName("HeavensDoorGalaxy"));
     }
 
-    bool isStageHideScenarioTitle() { return MR::isStageBeginPrologueEvent() || MR::isStageAstroLocation(); }
+    bool isStageHideScenarioTitle() {
+        return MR::isStageBeginPrologueEvent() || MR::isStageAstroLocation();
+    }
 };  // namespace
 
 namespace NrvPauseMenu {

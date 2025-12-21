@@ -39,7 +39,7 @@ public:
 
 class AnmModelSwitchMoveEndKill : public AnmModelSwitchMove {
 public:
-    AnmModelSwitchMoveEndKill(const char* pName) : AnmModelSwitchMove(pName){};
+    AnmModelSwitchMoveEndKill(const char* pName) : AnmModelSwitchMove(pName) {};
 
     virtual ~AnmModelSwitchMoveEndKill();
     virtual bool isKilledAtMoveDone() const;

@@ -13,9 +13,13 @@ namespace {
 };
 
 namespace AstroDemoFunction {
-    int getOpenedAstroDomeNum() { return MR::calcOpenedAstroDomeNum(); }
+    int getOpenedAstroDomeNum() {
+        return MR::calcOpenedAstroDomeNum();
+    }
 
-    const char* getGrandStarReturnDemoName(int index) { return cGrandStarReturnDemoTable[index]; }
+    const char* getGrandStarReturnDemoName(int index) {
+        return cGrandStarReturnDemoTable[index];
+    }
 
     int getActiveGrandStarReturnDemoIndex() {
         for (int i = 0; i < sizeof(cGrandStarReturnDemoTable) / sizeof(*cGrandStarReturnDemoTable); i++) {

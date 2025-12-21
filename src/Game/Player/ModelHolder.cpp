@@ -16,6 +16,6 @@ ModelHolder::ModelHolder(const char* pName, bool b) : LiveActor(pName) {
 void ModelHolder::updateMtx(MtxPtr mtxPtr) {
     J3DModel* model = MR::getJ3DModel(this);
     PSMTXCopy(mtxPtr, model->mBaseTransformMtx);
-    model->calc(); // 0x10
-    model->viewCalc(); // 0x1C
+    model->calc();      // 0x10
+    model->viewCalc();  // 0x1C
 }

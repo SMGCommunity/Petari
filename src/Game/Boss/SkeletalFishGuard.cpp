@@ -361,7 +361,7 @@ void SkeletalFishGuard::calcAndSetBaseMtx() {
             x = stack_A0.mMtx[0][0];
             y = stack_A0.mMtx[1][0];
             z = stack_A0.mMtx[2][0];
-            
+
             stack_24.set(x, y, z);
             z = stack_A0.mMtx[2][1];
             y = stack_A0.mMtx[1][1];
@@ -603,7 +603,7 @@ bool SkeletalFishGuard::isInScreen() const {
     return MR::calcScreenPosition(&screen, mPosition);
 }
 
-//#ifdef NON_MATCHING
+// #ifdef NON_MATCHING
 /*
 bool SkeletalFishGuard::isPlayerInAttackRange() const {
     //const Vec* posPtr = mPosition;
@@ -626,11 +626,11 @@ bool SkeletalFishGuard::isPlayerInAttackRange() const {
     if (dot < lap) {
         return false;
     }
-    
+
     return true;
 }
 */
-//#endif
+// #endif
 
 #ifdef NON_MATCHING
 // pretty close

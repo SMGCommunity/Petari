@@ -5,37 +5,67 @@
 #include "Game/System/GameSystemSceneController.hpp"
 
 namespace {
-    GameScene* getGameScene() NO_INLINE { return static_cast< GameScene* >(SingletonHolder< GameSystem >::get()->mSceneController->mScene); }
+    GameScene* getGameScene() NO_INLINE {
+        return static_cast< GameScene* >(SingletonHolder< GameSystem >::get()->mSceneController->mScene);
+    }
 };  // namespace
 
 namespace GameSceneFunction {
-    void notifyEndScenarioStarter() { getGameScene()->notifyEndScenarioStarter(); }
+    void notifyEndScenarioStarter() {
+        getGameScene()->notifyEndScenarioStarter();
+    }
 
-    void requestPlayMovieDemo() { getGameScene()->requestPlayMovieDemo(); }
+    void requestPlayMovieDemo() {
+        getGameScene()->requestPlayMovieDemo();
+    }
 
-    void requestStartGameOverDemo() { getGameScene()->requestStartGameOverDemo(); }
+    void requestStartGameOverDemo() {
+        getGameScene()->requestStartGameOverDemo();
+    }
 
-    void requestEndGameOverDemo() { getGameScene()->requestEndGameOverDemo(); }
+    void requestEndGameOverDemo() {
+        getGameScene()->requestEndGameOverDemo();
+    }
 
-    void requestEndMissDemo() { getGameScene()->requestEndMissDemo(); }
+    void requestEndMissDemo() {
+        getGameScene()->requestEndMissDemo();
+    }
 
-    void requestPowerStarGetDemo() { getGameScene()->requestPowerStarGetDemo(); }
+    void requestPowerStarGetDemo() {
+        getGameScene()->requestPowerStarGetDemo();
+    }
 
-    void requestGrandStarGetDemo() { getGameScene()->requestGrandStarGetDemo(); }
+    void requestGrandStarGetDemo() {
+        getGameScene()->requestGrandStarGetDemo();
+    }
 
-    void requestShowGalaxyMap() { getGameScene()->requestShowGalaxyMap(); }
+    void requestShowGalaxyMap() {
+        getGameScene()->requestShowGalaxyMap();
+    }
 
-    void requestStaffRoll() { getGameScene()->requestStaffRoll(); }
+    void requestStaffRoll() {
+        getGameScene()->requestStaffRoll();
+    }
 
-    bool isExecScenarioOpeningCamera() { return getGameScene()->isExecScenarioOpeningCamera(); }
+    bool isExecScenarioOpeningCamera() {
+        return getGameScene()->isExecScenarioOpeningCamera();
+    }
 
-    bool isExecScenarioStarter() { return getGameScene()->isExecScenarioStarter(); }
+    bool isExecScenarioStarter() {
+        return getGameScene()->isExecScenarioStarter();
+    }
 
-    bool isExecStageClearDemo() { return getGameScene()->isExecStageClearDemo(); }
+    bool isExecStageClearDemo() {
+        return getGameScene()->isExecStageClearDemo();
+    }
 
-    void loadScenarioWaveData() { SingletonHolder< GameSystem >::get()->mSceneController->loadScenarioWaveData(); }
+    void loadScenarioWaveData() {
+        SingletonHolder< GameSystem >::get()->mSceneController->loadScenarioWaveData();
+    }
 
-    bool isLoadDoneScenarioWaveData() { return SingletonHolder< GameSystem >::get()->mSceneController->isLoadDoneScenarioWaveData(); }
+    bool isLoadDoneScenarioWaveData() {
+        return SingletonHolder< GameSystem >::get()->mSceneController->isLoadDoneScenarioWaveData();
+    }
 
     void activateDraw3D() {
         GameScene* pGameScene = getGameScene();

@@ -10,7 +10,7 @@ namespace nw4r {
         class Layout;
         class Pane;
     };  // namespace lyt
-};      // namespace nw4r
+};  // namespace nw4r
 
 class LayoutGroupCtrl;
 class LayoutHolder;

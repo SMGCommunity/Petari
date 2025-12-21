@@ -53,4 +53,4 @@ namespace MR {
         const char* getEffectAttributeName(s32);
         AutoEffectInfo* createAutoEffect(const char*, const char*);
     };  // namespace Effect
-};      // namespace MR
+};  // namespace MR

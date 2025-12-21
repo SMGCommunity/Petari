@@ -15,9 +15,13 @@ namespace {
     const s32 cOverlayStartStep = 122;
     // const s32 cOverlayFrame
 
-    s32 getChapterNumberMin() { return MR::getPictureBookChapterAlreadyRead() + 1; }
+    s32 getChapterNumberMin() {
+        return MR::getPictureBookChapterAlreadyRead() + 1;
+    }
 
-    s32 getChapterNumberMax() { return MR::getPictureBookChapterCanRead(); }
+    s32 getChapterNumberMax() {
+        return MR::getPictureBookChapterCanRead();
+    }
 };  // namespace
 
 namespace NrvRosettaReading {

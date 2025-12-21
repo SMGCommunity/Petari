@@ -261,7 +261,7 @@ void Pole::exeBindTurn() {
     }
 
     if (!_A9) {
-        
+
         f32 pad = (2.5f * getPoleSubPadStickX());
         f32 sub = MR::subtractFromSum(pad, mRotation.y, 0.0f);
         mRotation.y += pad;

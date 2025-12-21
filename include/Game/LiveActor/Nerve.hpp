@@ -17,7 +17,7 @@ public:
 #define NERVE(name)                                                                                                                                  \
     class name : public Nerve {                                                                                                                      \
     public:                                                                                                                                          \
-        name() NO_INLINE{};                                                                                                                          \
+        name() NO_INLINE {};                                                                                                                         \
         virtual void execute(Spine*) const;                                                                                                          \
         static name sInstance;                                                                                                                       \
     };
@@ -26,7 +26,7 @@ public:
 #define NERVE_EXECEND(name)                                                                                                                          \
     class name : public Nerve {                                                                                                                      \
     public:                                                                                                                                          \
-        name() NO_INLINE{};                                                                                                                          \
+        name() NO_INLINE {};                                                                                                                         \
         virtual void execute(Spine*) const;                                                                                                          \
         virtual void executeOnEnd(Spine*) const;                                                                                                     \
         static name sInstance;                                                                                                                       \
@@ -47,7 +47,7 @@ public:
 #define NERVE_DECL(name, parent_class, func)                                                                                                         \
     class name : public Nerve {                                                                                                                      \
     public:                                                                                                                                          \
-        name() NO_INLINE{};                                                                                                                          \
+        name() NO_INLINE {};                                                                                                                         \
         virtual void execute(Spine* pSpine) const {                                                                                                  \
             parent_class* actor = reinterpret_cast< parent_class* >(pSpine->mExecutor);                                                              \
             actor->func();                                                                                                                           \
@@ -59,7 +59,7 @@ public:
 #define NERVE_DECL_EXE(name, parent_class, executor_name)                                                                                            \
     class name : public Nerve {                                                                                                                      \
     public:                                                                                                                                          \
-        name() NO_INLINE{};                                                                                                                          \
+        name() NO_INLINE {};                                                                                                                         \
         virtual void execute(Spine* pSpine) const {                                                                                                  \
             parent_class* actor = reinterpret_cast< parent_class* >(pSpine->mExecutor);                                                              \
             actor->exe##executor_name();                                                                                                             \
@@ -71,7 +71,7 @@ public:
 #define NERVE_DECL_ONEND(name, parent_class, func, onEndFunc)                                                                                        \
     class name : public Nerve {                                                                                                                      \
     public:                                                                                                                                          \
-        name() NO_INLINE{};                                                                                                                          \
+        name() NO_INLINE {};                                                                                                                         \
         virtual void execute(Spine* pSpine) const {                                                                                                  \
             parent_class* actor = reinterpret_cast< parent_class* >(pSpine->mExecutor);                                                              \
             actor->func();                                                                                                                           \
@@ -89,7 +89,9 @@ public:
     public:                                                                                                                                          \
         name() NO_INLINE {}                                                                                                                          \
         virtual void execute(Spine* pSpine) const {}                                                                                                 \
-        inline static name* get() { return &sInstance; }                                                                                             \
+        inline static name* get() {                                                                                                                  \
+            return &sInstance;                                                                                                                       \
+        }                                                                                                                                            \
         static name sInstance;                                                                                                                       \
     };
 
@@ -107,7 +109,7 @@ public:
 #define NEW_NERVE_ONEND(name, parent_class, executor_name, executorOnEnd_name)                                                                       \
     class name : public Nerve {                                                                                                                      \
     public:                                                                                                                                          \
-        name() NO_INLINE{};                                                                                                                          \
+        name() NO_INLINE {};                                                                                                                         \
         virtual void execute(Spine* pSpine) const {                                                                                                  \
             parent_class* actor = reinterpret_cast< parent_class* >(pSpine->mExecutor);                                                              \
             actor->exe##executor_name();                                                                                                             \

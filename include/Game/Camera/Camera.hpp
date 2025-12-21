@@ -52,9 +52,9 @@ public:
     void setZoneMtx(s32);
     void createVPanObj();
 
-    CameraMan* mCameraMan;       // 0xC
-    CameraPoseParam* mPoseParam; // 0x10
-    CameraHeightArrange* mVPan;  // 0x14
-    bool mIsLOfsErpOff;          // 0x18
-    TMtx34f mZoneMatrix;         // 0x1C
+    CameraMan* mCameraMan;        // 0xC
+    CameraPoseParam* mPoseParam;  // 0x10
+    CameraHeightArrange* mVPan;   // 0x14
+    bool mIsLOfsErpOff;           // 0x18
+    TMtx34f mZoneMatrix;          // 0x1C
 };

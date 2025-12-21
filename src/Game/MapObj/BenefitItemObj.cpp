@@ -333,7 +333,7 @@ void BenefitItemObj::appearThrowUp() {
         f32 speed = cAppearThrowUpSpd2;
         mVelocity = MR::createVecAndScale(rotated_axis, speed);
     }
-    
+
     MR::invalidateClipping(this);
 }
 */

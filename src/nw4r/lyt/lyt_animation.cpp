@@ -9,9 +9,13 @@ namespace nw4r {
 
         AnimTransform::~AnimTransform() {}
 
-        u16 AnimTransform::GetFrameSize() const { return mpRes->frameSize; }
+        u16 AnimTransform::GetFrameSize() const {
+            return mpRes->frameSize;
+        }
 
-        bool AnimTransform::IsLoopData() const { return mpRes->loop != 0; }
+        bool AnimTransform::IsLoopData() const {
+            return mpRes->loop != 0;
+        }
 
         AnimTransformBasic::AnimTransformBasic() : mpFileResAry(nullptr), mAnimLinkAry(nullptr), mAnimLinkNum(0) {}
 
@@ -50,4 +54,4 @@ namespace nw4r {
             }
         }
     };  // namespace lyt
-};      // namespace nw4r
+};  // namespace nw4r

@@ -2,11 +2,17 @@
 #include "Game/Util.hpp"
 
 namespace ActorShadow {
-    u32 getShadowControllerCount(const LiveActor* pActor) { return pActor->mShadowControllerList->getControllerCount(); }
+    u32 getShadowControllerCount(const LiveActor* pActor) {
+        return pActor->mShadowControllerList->getControllerCount();
+    }
 
-    ShadowController* getShadowController(const LiveActor* pActor, u32 a2) { return pActor->mShadowControllerList->getController(a2); }
+    ShadowController* getShadowController(const LiveActor* pActor, u32 a2) {
+        return pActor->mShadowControllerList->getController(a2);
+    }
 
-    ShadowController* getShadowController(const LiveActor* pActor, const char* pName) { return pActor->mShadowControllerList->getController(pName); }
+    ShadowController* getShadowController(const LiveActor* pActor, const char* pName) {
+        return pActor->mShadowControllerList->getController(pName);
+    }
 
     ShadowController* createShadowControllerVolumeParam(LiveActor* pActor, const char* pName) {
         ShadowController* pController = new ShadowController(pActor, pName);

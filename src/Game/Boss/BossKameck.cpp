@@ -157,7 +157,7 @@ void BossKameck::updatePose() {
         f32 v4 = MR::normalize(mag, 0.0f, 3.0f);
         TVec3f v13(v18);
 
-        
+
         ptr->scaleInline((4.0f * v4) / mag);
         ptr->addInline(v13);
 

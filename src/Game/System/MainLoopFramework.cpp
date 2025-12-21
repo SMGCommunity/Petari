@@ -145,7 +145,9 @@ void MainLoopFramework::exchangeXfb_double() {
 }
 
 namespace {
-    s32 getDisplayingXfbIndex() { return JUTXfb::getManager()->getDisplayingXfbIndex(); }
+    s32 getDisplayingXfbIndex() {
+        return JUTXfb::getManager()->getDisplayingXfbIndex();
+    }
 }  // namespace
 
 void MainLoopFramework::exchangeXfb_triple() {

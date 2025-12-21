@@ -450,7 +450,9 @@ namespace MR {
 
     void clampBoth(f32*, f32, f32);
 
-    inline f32 wrapAngleTowards(f32 a, f32 b) { return a + (f32)fmod(360.0f + (b - a), 360.0f); }
+    inline f32 wrapAngleTowards(f32 a, f32 b) {
+        return a + (f32)fmod(360.0f + (b - a), 360.0f);
+    }
 
 #ifdef __MWERKS__
     inline f32 frsqrte(register f32 x) {

@@ -19,7 +19,7 @@ CameraRailHolder::RailSet& CameraRailHolder::RailSet::operator=(const RailSet& r
 
     for (u32 i = 0; i < MR::getZoneNum(); i++) {
         for (u32 j = 0; j < MR::getPlacedRailNum(i); i++) {
-            
+
         }
     }
 }*/

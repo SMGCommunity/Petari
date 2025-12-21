@@ -120,7 +120,9 @@ namespace MR {
         return MR::getSceneObj< SkeletalFishBabyRailHolder >(SceneObj_SkeletalFishBabyRailHolder);
     }
 
-    void createSkeletalFishBabyRailHolder() { MR::createSceneObj(SceneObj_SkeletalFishBabyRailHolder); }
+    void createSkeletalFishBabyRailHolder() {
+        MR::createSceneObj(SceneObj_SkeletalFishBabyRailHolder);
+    }
 };  // namespace MR
 
 SkeletalFishBabyRailHolder::~SkeletalFishBabyRailHolder() {}

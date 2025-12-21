@@ -21,7 +21,7 @@ namespace NrvAstroDomeSky {
     NEW_NERVE(AstroDomeNrvDisappear, AstroDomeSky, Disappear);
     NEW_NERVE(AstroDomeNrvReturnDemoWait, AstroDomeSky, ReturnDemoWait);
     NEW_NERVE(AstroDomeNrvJumpOutDemo, AstroDomeSky, JumpOutDemo);
-}
+}  // namespace NrvAstroDomeSky
 
 namespace {
     const char* cAstroDomeSkyTable[] = {"AstroDomeSkyA", "AstroDomeSkyB", "AstroDomeSkyC"};
@@ -40,7 +40,7 @@ void AstroDomeSky::init(const JMapInfoIter& rIter) {
     s32 arg = -1;
     MR::getJMapInfoArg0NoInit(rIter, &arg);
     const char* arg2 = cAstroDomeSkyTable[arg - 1];
-    initModelManagerWithAnm(arg2, 0 , true);
+    initModelManagerWithAnm(arg2, 0, true);
     _94 = MR::initDLMakerProjmapEffectMtxSetter(this);
     MR::newDifferedDLBuffer(this);
     MR::startBtk(this, arg2);
@@ -64,8 +64,7 @@ bool AstroDomeSky::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pRece
     if (SphereSelectorFunction::isMsgSelectStart(msg)) {
         setNerve(&NrvAstroDomeSky::AstroDomeNrvAppear::sInstance);
         return true;
-    }
-    else if (SphereSelectorFunction::isMsgSelectEnd(msg)) {
+    } else if (SphereSelectorFunction::isMsgSelectEnd(msg)) {
         setNerve(&NrvAstroDomeSky::AstroDomeNrvDisappear::sInstance);
         return true;
     }
@@ -77,20 +76,17 @@ bool AstroDomeSky::tryRotateAppearence() {
         if (!isNerve(&NrvAstroDomeSky::AstroDomeNrvRotateDisappear::sInstance)) {
             if (isNerve(&NrvAstroDomeSky::AstroDomeNrvRotateAppear::sInstance) && !MR::isBrkStopped(this)) {
                 _8C = 59.0f - MR::getBrkFrame(this);
-            }
-            else {
+            } else {
                 _8C = 0.0f;
             }
             setNerve(&NrvAstroDomeSky::AstroDomeNrvRotateDisappear::sInstance);
             return true;
         }
-    }
-    else {
+    } else {
         if (isNerve(&NrvAstroDomeSky::AstroDomeNrvRotateDisappear::sInstance)) {
             if (!MR::isBrkStopped(this)) {
                 _8C = 59.0f - MR::getBrkFrame(this);
-            }
-            else {
+            } else {
                 _8C = 29.0f;
             }
             setNerve(&NrvAstroDomeSky::AstroDomeNrvRotateAppear::sInstance);

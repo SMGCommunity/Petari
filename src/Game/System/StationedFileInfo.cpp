@@ -959,5 +959,7 @@ namespace MR {
         },
     };
 
-    const StationedFileInfo* getStationedFileInfoTable() { return cStationedFileInfo; }
+    const StationedFileInfo* getStationedFileInfoTable() {
+        return cStationedFileInfo;
+    }
 };  // namespace MR

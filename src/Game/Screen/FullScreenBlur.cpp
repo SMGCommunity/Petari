@@ -6,4 +6,4 @@ namespace MR {
     }
 
     // drawFullScreenBlur
-};
+};  // namespace MR

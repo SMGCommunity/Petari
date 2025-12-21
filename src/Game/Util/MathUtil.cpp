@@ -53,15 +53,25 @@ namespace MR {
         return reinterpret_cast< f32& >(value) - 1.0f;
     }
 
-    f32 getRandom(f32 min, f32 max) { return min + (max - min) * getRandom(); }
+    f32 getRandom(f32 min, f32 max) {
+        return min + (max - min) * getRandom();
+    }
 
-    s32 getRandom(s32 min, s32 max) { return getRandom(static_cast< f32 >(min), static_cast< f32 >(max)); }
+    s32 getRandom(s32 min, s32 max) {
+        return getRandom(static_cast< f32 >(min), static_cast< f32 >(max));
+    }
 
-    f32 getRandomDegree() { return getRandom(cMinDegree, cMaxDegree); }
+    f32 getRandomDegree() {
+        return getRandom(cMinDegree, cMaxDegree);
+    }
 
-    void calcRandomVec(TVec3f* pDst, f32 min, f32 max) { pDst->set< f32 >(getRandom(min, max), getRandom(min, max), getRandom(min, max)); }
+    void calcRandomVec(TVec3f* pDst, f32 min, f32 max) {
+        pDst->set< f32 >(getRandom(min, max), getRandom(min, max), getRandom(min, max));
+    }
 
-    bool isHalfProbability() { return getRandom() < 0.5f; }
+    bool isHalfProbability() {
+        return getRandom() < 0.5f;
+    }
 
     f32 getSignHalfProbability() {
         if (isHalfProbability()) {
@@ -71,7 +81,9 @@ namespace MR {
         }
     }
 
-    void getRandomVector(TVec3f* pDst, f32 range) { pDst->set< f32 >(getRandom(-range, range), getRandom(-range, range), getRandom(-range, range)); }
+    void getRandomVector(TVec3f* pDst, f32 range) {
+        pDst->set< f32 >(getRandom(-range, range), getRandom(-range, range), getRandom(-range, range));
+    }
 
 #ifdef NON_MATCHING
     // stack places randVec and otherVec wrongly
@@ -103,19 +115,27 @@ namespace MR {
         }
     }
 
-    f32 getInterpolateValue(f32 t, f32 start, f32 end) { return start + (end - start) * t; }
+    f32 getInterpolateValue(f32 t, f32 start, f32 end) {
+        return start + (end - start) * t;
+    }
 
-    f32 getLinerValue(f32 x, f32 start, f32 end, f32 max) { return getInterpolateValue(x / max, start, end); }
+    f32 getLinerValue(f32 x, f32 start, f32 end, f32 max) {
+        return getInterpolateValue(x / max, start, end);
+    }
 
     f32 getLinerValueFromMinMax(f32 x, f32 min, f32 max, f32 start, f32 end) {
         return getInterpolateValue((JGeometry::TUtil< f32 >::clamp(x, min, max) - min) / (max - min), start, end);
     }
 
     // FIXME: Source registers swapped in multiplication by pi.
-    f32 getEaseInValue(f32 x, f32 start, f32 end, f32 max) { return getInterpolateValue(1.0f - JMACosRadian(((x / max) * PI) / 2.0f), start, end); }
+    f32 getEaseInValue(f32 x, f32 start, f32 end, f32 max) {
+        return getInterpolateValue(1.0f - JMACosRadian(((x / max) * PI) / 2.0f), start, end);
+    }
 
     // FIXME: Source registers swapped in multiplication by pi.
-    f32 getEaseOutValue(f32 x, f32 start, f32 end, f32 max) { return getInterpolateValue(JMASinRadian(((x / max) * PI) / 2.0f), start, end); }
+    f32 getEaseOutValue(f32 x, f32 start, f32 end, f32 max) {
+        return getInterpolateValue(JMASinRadian(((x / max) * PI) / 2.0f), start, end);
+    }
 
     // FIXME: Source registers swapped in multiplication by pi, and the instruction is swapped.
     f32 getEaseInOutValue(f32 x, f32 start, f32 end, f32 max) {
@@ -205,7 +225,9 @@ namespace MR {
     // calcReboundVelocity
     // calcParabolicFunctionParam
 
-    void makeQuatRotateRadian(TQuat4f* pParam1, const TVec3f& rParam2) { pParam1->setEuler(rParam2.x, rParam2.y, rParam2.z); }
+    void makeQuatRotateRadian(TQuat4f* pParam1, const TVec3f& rParam2) {
+        pParam1->setEuler(rParam2.x, rParam2.y, rParam2.z);
+    }
 
     // FIXME: Floating-point registers are allocated incorrectly.
     void makeQuatRotateDegree(TQuat4f* pParam1, const TVec3f& rParam2) {
@@ -326,7 +348,9 @@ namespace MR {
     // calcLocalVec
     // normalize
 
-    void normalize(TVec3f* pVec) { PSVECNormalize(pVec, pVec); }
+    void normalize(TVec3f* pVec) {
+        PSVECNormalize(pVec, pVec);
+    }
 
     // normalize
     // normalize
@@ -539,7 +563,9 @@ namespace MR {
     }
 #endif
 
-    u8 lerp(u8 start, u8 end, f32 t) { return JGeometry::TUtil< f32 >::clamp(start + (end - start) * t, 0.0f, 255.0f); }
+    u8 lerp(u8 start, u8 end, f32 t) {
+        return JGeometry::TUtil< f32 >::clamp(start + (end - start) * t, 0.0f, 255.0f);
+    }
 
     GXColor lerp(GXColor start, GXColor end, f32 t) {
         u8 a = lerp(start.a, end.a, t);
@@ -644,7 +670,9 @@ namespace MR {
 #endif
     }
 
-    void vecBlend(const TVec3f& a1, const TVec3f& a2, TVec3f* a3, f32 a4) { PSvecBlend(&a1, &a2, a3, 1.0f - a4, a4); }
+    void vecBlend(const TVec3f& a1, const TVec3f& a2, TVec3f* a3, f32 a4) {
+        PSvecBlend(&a1, &a2, a3, 1.0f - a4, a4);
+    }
 
     // vecBlendNormal
     // vecBlendSphere
@@ -719,7 +747,9 @@ namespace MR {
         return 2;
     }
 
-    f32 diffAngleAbsFast(const TVec3f& rParam1, const TVec3f& rParam2) { return JMAAcosRadian(rParam1.dot(rParam2)); }
+    f32 diffAngleAbsFast(const TVec3f& rParam1, const TVec3f& rParam2) {
+        return JMAAcosRadian(rParam1.dot(rParam2));
+    }
 
     f32 diffAngleAbs(const TVec3f& rParam1, const TVec3f& rParam2) {
         f32 length1 = rParam1.length();
@@ -844,7 +874,9 @@ namespace MR {
 
     // createBoundingBox
 
-    bool isNormalize(const TVec3f& rVec, f32 tolerance) { return __fabsf(1.0f - rVec.length()) <= tolerance; }
+    bool isNormalize(const TVec3f& rVec, f32 tolerance) {
+        return __fabsf(1.0f - rVec.length()) <= tolerance;
+    }
 
     // setNan
 
@@ -858,7 +890,9 @@ namespace MR {
 
     // getFootPoint
 
-    f32 mod(f32 x, f32 y) { return fmod(x, y); }
+    f32 mod(f32 x, f32 y) {
+        return fmod(x, y);
+    }
 
     void floatToFixed16(TVec3s* pDst, const TVec3f& pSrc, u8 q) {
         f32 scale = 1 << q;

@@ -52,9 +52,15 @@ void ClippingDirector::entryLodCtrl(LodCtrl* pLod, const JMapInfoIter& rIter) {
 }
 
 namespace MR {
-    ClippingDirector* getClippingDirector() { return MR::getSceneObj< ClippingDirector >(SceneObj_ClippingDirector); }
+    ClippingDirector* getClippingDirector() {
+        return MR::getSceneObj< ClippingDirector >(SceneObj_ClippingDirector);
+    }
 
-    void addToClippingTarget(LiveActor* pActor) { getClippingDirector()->mActorHolder->addToClippingTarget(pActor); }
+    void addToClippingTarget(LiveActor* pActor) {
+        getClippingDirector()->mActorHolder->addToClippingTarget(pActor);
+    }
 
-    void removeFromClippingTarget(LiveActor* pActor) { getClippingDirector()->mActorHolder->removeFromClippingTarget(pActor); }
+    void removeFromClippingTarget(LiveActor* pActor) {
+        getClippingDirector()->mActorHolder->removeFromClippingTarget(pActor);
+    }
 };  // namespace MR

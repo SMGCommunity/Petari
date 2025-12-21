@@ -277,11 +277,17 @@ void GameEventFlagTableInstance::initSortTable() {
 }
 namespace GameEventFlagTable {
 
-    GameEventFlagIter getBeginIter() { return GameEventFlagIter(); }
+    GameEventFlagIter getBeginIter() {
+        return GameEventFlagIter();
+    }
 
-    GameEventFlagAccessor makeAccessor(const char* flagName) { return findFlag(flagName); }
+    GameEventFlagAccessor makeAccessor(const char* flagName) {
+        return findFlag(flagName);
+    }
 
-    s32 getTableSize() { return sizeof(sGameEventFlagStatic) / sizeof(*sGameEventFlagStatic); }
+    s32 getTableSize() {
+        return sizeof(sGameEventFlagStatic) / sizeof(*sGameEventFlagStatic);
+    }
 
     const GameEventFlag* getFlag(int index) {
         if (index < 0 || index >= getTableSize()) {
@@ -291,7 +297,9 @@ namespace GameEventFlagTable {
         }
     }
 
-    const GameEventFlag* findFlag(const char* flagName) { return SingletonHolder< GameEventFlagTableInstance >::get()->findFlag(flagName); }
+    const GameEventFlag* findFlag(const char* flagName) {
+        return SingletonHolder< GameEventFlagTableInstance >::get()->findFlag(flagName);
+    }
 
     const char* getEventFlagNameSpecialPowerStar(const char* galaxyName, s32 starId) {
         for (GameEventFlagIter iter = getBeginIter(); !iter.isEnd(); iter.goNext()) {
@@ -341,9 +349,13 @@ namespace GameEventFlagTable {
         return nullptr;
     };
 
-    bool isExist(const char* flagName) { return findFlag(flagName) != nullptr; };
+    bool isExist(const char* flagName) {
+        return findFlag(flagName) != nullptr;
+    };
 
-    int getIndex(const GameEventFlag* eventFlag) { return eventFlag - &sGameEventFlagStatic[0]; };
+    int getIndex(const GameEventFlag* eventFlag) {
+        return eventFlag - &sGameEventFlagStatic[0];
+    };
 
     bool isDependedAnother(const char* flagName1, const char* flagName2) {
         const GameEventFlag* flag1 = findFlag(flagName1);
@@ -405,6 +417,8 @@ namespace GameEventFlagTable {
         return flagAccessor.getNeedStarPieceNum();
     }
 
-    s32 calcGreenPowerStarNum() { return calcSpecialPowerStarNum("SpecialStarGreen"); }
+    s32 calcGreenPowerStarNum() {
+        return calcSpecialPowerStarNum("SpecialStarGreen");
+    }
 
 }  // namespace GameEventFlagTable

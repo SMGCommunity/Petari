@@ -8,7 +8,9 @@
 #include "Game/System/GameSystemSceneController.hpp"
 
 namespace {
-    SceneDataInitializer* getSceneDataInitializer() { return MR::getSceneObj< SceneDataInitializer >(SceneObj_SceneDataInitializer); }
+    SceneDataInitializer* getSceneDataInitializer() {
+        return MR::getSceneObj< SceneDataInitializer >(SceneObj_SceneDataInitializer);
+    }
 };  // namespace
 
 void SceneFunction::startStageFileLoad() {

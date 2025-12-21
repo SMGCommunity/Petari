@@ -26,7 +26,9 @@ void MiiFaceIconHolder::registerIcon(MiiFaceIcon* pIcon) {
 }
 
 namespace MR {
-    MiiFaceIconHolder* getMiiFaceIconHolder() { return MR::getSceneObj< MiiFaceIconHolder >(SceneObj_MiiFaceIconHolder); }
+    MiiFaceIconHolder* getMiiFaceIconHolder() {
+        return MR::getSceneObj< MiiFaceIconHolder >(SceneObj_MiiFaceIconHolder);
+    }
 
     void registerMiiFaceIcon(MiiFaceIcon* pIcon) {
         MR::createSceneObj(SceneObj_MiiFaceIconHolder);

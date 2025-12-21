@@ -436,7 +436,9 @@ namespace {
         return MR::getSceneObj< MoviePlayingSequenceHolder >(SceneObj_MoviePlayingSequenceHolder);
     }
 
-    MoviePlayingSequence* getMoviePlayingSequence(int idx) { return getMoviePlayingSequenceHolder()->getSequence(idx); }
+    MoviePlayingSequence* getMoviePlayingSequence(int idx) {
+        return getMoviePlayingSequenceHolder()->getSequence(idx);
+    }
 };  // namespace
 
 MoviePlayingSequenceHolder::MoviePlayingSequenceHolder(const char* pName) : NameObj(pName) {
@@ -465,23 +467,41 @@ s32 MoviePlayingSequenceHolder::getSequenceNum() const {
 }
 
 namespace MR {
-    void createMoviePlayingSequence() { createSceneObj(SceneObj_MoviePlayingSequenceHolder); }
+    void createMoviePlayingSequence() {
+        createSceneObj(SceneObj_MoviePlayingSequenceHolder);
+    }
 
-    void startMovie(int type) { getMoviePlayingSequence(type)->appear(); }
+    void startMovie(int type) {
+        getMoviePlayingSequence(type)->appear();
+    }
 
-    bool isEndMovie(int type) { return isDead(getMoviePlayingSequence(type)); }
+    bool isEndMovie(int type) {
+        return isDead(getMoviePlayingSequence(type));
+    }
 
-    void startMovieEpilogueA() { startMovie(MoviePlayingSequence::MovieType_EpilogueA); }
+    void startMovieEpilogueA() {
+        startMovie(MoviePlayingSequence::MovieType_EpilogueA);
+    }
 
-    void startMovieEndingA() { startMovie(MoviePlayingSequence::MovieType_EndingA); }
+    void startMovieEndingA() {
+        startMovie(MoviePlayingSequence::MovieType_EndingA);
+    }
 
-    void startMovieEndingB() { startMovie(MoviePlayingSequence::MovieType_EndingB); }
+    void startMovieEndingB() {
+        startMovie(MoviePlayingSequence::MovieType_EndingB);
+    }
 
-    bool isEndMovieEpilogueA() { return isEndMovie(MoviePlayingSequence::MovieType_EpilogueA); }
+    bool isEndMovieEpilogueA() {
+        return isEndMovie(MoviePlayingSequence::MovieType_EpilogueA);
+    }
 
-    bool isEndMovieEndingA() { return isEndMovie(MoviePlayingSequence::MovieType_EndingA); }
+    bool isEndMovieEndingA() {
+        return isEndMovie(MoviePlayingSequence::MovieType_EndingA);
+    }
 
-    bool isEndMovieEndingB() { return isEndMovie(MoviePlayingSequence::MovieType_EndingB); }
+    bool isEndMovieEndingB() {
+        return isEndMovie(MoviePlayingSequence::MovieType_EndingB);
+    }
 
     bool isMoviePlayingOnSequence() {
         if (!isExistSceneObj(SceneObj_MoviePlayingSequenceHolder)) {

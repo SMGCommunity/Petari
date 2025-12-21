@@ -1,7 +1,7 @@
 #include "Game/Ride/Fluff.hpp"
-#include "Game/Ride/FluffWind.hpp"
 #include "Game/Camera/CameraTargetMtx.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
+#include "Game/Ride/FluffWind.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
 
 namespace NrvFluff {
@@ -14,22 +14,12 @@ namespace NrvFluff {
     NEW_NERVE(FluffNrvRideFlyOnWind, Fluff, RideFlyOnWind);
     NEW_NERVE(FluffNrvRideSpinUp, Fluff, RideSpinUp);
     NEW_NERVE(FluffNrvRideSpinUpOnWind, Fluff, RideSpinUp);
-}
+}  // namespace NrvFluff
 
-Fluff::Fluff(const char* pName) :
-    LiveActor(pName),
-    mRightVec(1.0f, 0.0f, 0.0f),
-    mUpVec(0.0f, 1.0f, 0.0f),
-    mForwardVec(0.0f, 0.0f, 1.0f),
-    mTargetUpVec(0.0f, 1.0f, 0.0f),
-    mWindDir(0.0f, 0.0f, 0.0f),
-    mWindStrength(0.0f),
-    mWindSpinTimer(-1),
-    mSpinsRemaining(-1),
-    mModel(nullptr),
-    mRider(nullptr),
-    mCameraTargetMtx(nullptr)
-{
+Fluff::Fluff(const char* pName)
+    : LiveActor(pName), mRightVec(1.0f, 0.0f, 0.0f), mUpVec(0.0f, 1.0f, 0.0f), mForwardVec(0.0f, 0.0f, 1.0f), mTargetUpVec(0.0f, 1.0f, 0.0f),
+      mWindDir(0.0f, 0.0f, 0.0f), mWindStrength(0.0f), mWindSpinTimer(-1), mSpinsRemaining(-1), mModel(nullptr), mRider(nullptr),
+      mCameraTargetMtx(nullptr) {
     mInitialMtx.identity();
 }
 
@@ -86,16 +76,14 @@ void Fluff::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
 
 bool Fluff::receiveMsgPlayerAttack(u32 msg, HitSensor*, HitSensor*) {
     if (MR::isMsgPlayerSpinAttack(msg)) {
-        if (
-            isNerve(&NrvFluff::FluffNrvFreeBloom::sInstance) && MR::isGreaterStep(this, 15)
-            || isNerve(&NrvFluff::FluffNrvFreeWaitOnGround::sInstance)
-        ) {
+        if (isNerve(&NrvFluff::FluffNrvFreeBloom::sInstance) && MR::isGreaterStep(this, 15) ||
+            isNerve(&NrvFluff::FluffNrvFreeWaitOnGround::sInstance)) {
             MR::tryRumblePadMiddle(this, 0);
             TVec3f impulse(mGravity);
             impulse *= -10.0f;
             mVelocity = impulse;
             setNerve(&NrvFluff::FluffNrvFreeWaitAir::sInstance);
-            
+
             return false;
         }
 
@@ -105,21 +93,22 @@ bool Fluff::receiveMsgPlayerAttack(u32 msg, HitSensor*, HitSensor*) {
             impulse *= -5.0f;
             mVelocity = impulse;
             setNerve(&NrvFluff::FluffNrvFreeWaitAir::sInstance);
-            
+
             return false;
         }
     }
-    
+
     return false;
 }
 
 bool Fluff::receiveMsgEnemyAttack(u32, HitSensor*, HitSensor* pReceiver) {
-    if (mRider != nullptr && (MR::isSensor(pReceiver, "DamageMario") || MR::isSensor(pReceiver, "DamageMiddle") || MR::isSensor(pReceiver, "DamageHead"))) {
+    if (mRider != nullptr &&
+        (MR::isSensor(pReceiver, "DamageMario") || MR::isSensor(pReceiver, "DamageMiddle") || MR::isSensor(pReceiver, "DamageHead"))) {
         endBind(0.0f);
-        
+
         return true;
     }
-    
+
     return false;
 }
 
@@ -135,16 +124,15 @@ bool Fluff::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
         if (mVelocity.dot(mGravity) > 0.0f) {
             MR::vecKillElement(mVelocity, mGravity, &mVelocity);
         }
-        
+
         mForwardVec = mVelocity;
         MR::vecKillElement(mForwardVec, mUpVec, &mForwardVec);
         if (MR::isNearZero(mForwardVec)) {
             MR::getPlayerFrontVec(&mForwardVec);
-        }
-        else {
+        } else {
             MR::normalize(&mForwardVec);
         }
-        
+
         TVec3f upVec(mUpVec);
         mInitialMtx.getYDir(mUpVec);
         MR::makeAxisUpFront(&mRightVec, &mForwardVec, mUpVec, mForwardVec);
@@ -162,17 +150,17 @@ bool Fluff::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
         MR::validateHitSensor(this, "DamageMario");
         MR::validateHitSensor(this, "DamageMiddle");
         MR::validateHitSensor(this, "DamageHead");
-        
+
         if (MR::isValidSwitchA(this)) {
             MR::onSwitchA(this);
         }
-        
+
         MR::offBind(this);
         setNerve(&NrvFluff::FluffNrvRideStart::sInstance);
-        
+
         return true;
     }
-    
+
     if (MR::isMsgUpdateBaseMtx(msg)) {
         TVec3f marioHangPosVec;
         MR::copyJointPos(this, "MarioHang", &marioHangPosVec);
@@ -180,19 +168,19 @@ bool Fluff::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
         marioHangPos.setTrans(marioHangPosVec);
         MR::makeMtxUpFrontPos(&marioHangPos, mTargetUpVec, mForwardVec, marioHangPosVec);
         MR::setPlayerBaseMtx(marioHangPos);
-        
+
         return true;
     }
-    
+
     if (MR::isMsgRushCancel(msg)) {
         MR::emitEffect(this, "Splash");
         MR::startSound(this, "SE_OJ_FLUFF_BREAK", -1, -1);
         mRider = nullptr;
         setNerve(&NrvFluff::FluffNrvFreeWaitInvalid::sInstance);
-        
+
         return true;
     }
-    
+
     return false;
 }
 
@@ -207,18 +195,17 @@ void Fluff::endBind(f32 ejectForce) {
         MR::endBindAndPlayerJump(this, jumpImpulseVec, 0);
         MR::startSound(mRider, "SE_PV_JUMP_S", -1, -1);
         MR::startSound(mRider, "SE_PM_JUMP_M", -1, -1);
-    }
-    else {
+    } else {
         MR::endBindAndPlayerWait(this);
         MR::startSound(mRider, "SE_PV_JUMP_S", -1, -1);
     }
-    
+
     MR::setGameCameraTargetToPlayer();
-    
+
     if (MR::isValidSwitchA(this)) {
         MR::offSwitchA(this);
     }
-    
+
     mRider = nullptr;
     MR::startBrk(this, "Fluff");
     MR::deleteEffect(this, "HardWind");
@@ -226,7 +213,7 @@ void Fluff::endBind(f32 ejectForce) {
     MR::emitEffect(this, "Splash");
     MR::startSound(this, "SE_OJ_FLUFF_BREAK", -1, 1);
     MR::releaseSoundHandle(this, "SE_OJ_FLUFF_BREAK");
-    
+
     setNerve(&NrvFluff::FluffNrvFreeWaitInvalid::sInstance);
 }
 
@@ -236,14 +223,13 @@ bool Fluff::trySpinUp(s32 step) {
     if (mSpinsRemaining > 0 && MR::isPadSwing(0) && MR::isGreaterStep(this, step)) {
         if (mWindSpinTimer > 0) {
             setNerve(&NrvFluff::FluffNrvRideSpinUpOnWind::sInstance);
-        }
-        else {
+        } else {
             setNerve(&NrvFluff::FluffNrvRideSpinUp::sInstance);
         }
-        
+
         return true;
     }
-    
+
     return false;
 }
 
@@ -253,21 +239,21 @@ bool Fluff::updateRide() {
         Fluff::endBind(18.0f);
         return true;
     }
-    
+
     if (MR::isBinded(this)) {
         endBind(0.0f);
         return true;
     }
-    
+
     mVelocity.x *= 0.98f;
     mVelocity.y *= 0.98f;
     mVelocity.z *= 0.98f;
-    
+
     TVec3f targetUp;
     JGeometry::negateInternal((f32*)&mGravity, (f32*)&targetUp);
     MR::vecBlend(mUpVec, targetUp, &mUpVec, 0.01f);
     MR::normalize(&mUpVec);
-    
+
     TVec3f worldStickDirection(0.0f, 0.0f, 0.0f);
     MR::calcWorldStickDirectionXZ(&worldStickDirection, 0);
     MR::vecKillElement(worldStickDirection, mUpVec, &worldStickDirection);
@@ -276,20 +262,20 @@ bool Fluff::updateRide() {
         if (!MR::isNearZero(mWindDir)) {
             MR::vecKillElement(worldStickDirection, mWindDir, &worldStickDirection);
         }
-        
+
         TVec3f steerTargetDirection(worldStickDirection);
         if (!MR::isNearZero(steerTargetDirection)) {
             MR::normalize(&steerTargetDirection);
             MR::vecBlend(mForwardVec, steerTargetDirection, &mForwardVec, 0.1f);
         }
-        
+
         MR::normalize(&mForwardVec);
         worldStickDirection *= 0.2f;
         mVelocity += worldStickDirection;
         PSVECCrossProduct(&mUpVec, &mForwardVec, &mRightVec);
         MR::startLevelSound(this, "SE_OJ_LV_FLUFF_SIDE_MOVE", -1, -1, -1);
     }
-    
+
     updateWind();
     return false;
 }
@@ -305,15 +291,15 @@ void Fluff::updateWind() {
         TVec3f windImpulse(mWindDir);
         windImpulse *= windSpeedScale;
         mVelocity += windImpulse;
-        
+
         f32 speedAlongWind = MR::vecKillElement(mVelocity, mWindDir, &mVelocity);
         f32 speedAlongGrav = MR::vecKillElement(mVelocity, mGravity, &mVelocity);
         MR::restrictVelocity(this, 6.0f);
-        
+
         TVec3f processedWindVec(mWindDir);
         processedWindVec *= speedAlongWind;
         mVelocity += processedWindVec;
-        
+
         TVec3f processedGravVec(mGravity);
         processedGravVec *= speedAlongGrav;
         mVelocity += processedGravVec;
@@ -321,7 +307,7 @@ void Fluff::updateWind() {
     } else {
         targetMoveDir = mForwardVec;
     }
-    
+
     if (mSpinsRemaining > 0) {
         if (MR::getSubPadStickX(0) == 0.0f || MR::getSubPadStickY(0) == 0.0f) {
             MR::vecBlend(mForwardVec, targetMoveDir, &mForwardVec, 0.08f);
@@ -332,17 +318,17 @@ void Fluff::updateWind() {
         MR::rotateVecDegree(&mForwardVec, mUpVec, 10.0f);
         MR::startLevelSound(this, "SE_OJ_LV_FLUFF_FLY_FALL", -1, -1, -1);
     }
-    
+
     TVec3f gravityImpulse(mGravity);
     gravityImpulse *= 0.15f;
     mVelocity += gravityImpulse;
-    
+
     TPos3f orientationMtx;
     orientationMtx.identity();
     MR::makeMtxUpFront(&orientationMtx, mUpVec, mForwardVec);
     mRightVec.set(orientationMtx.mMtx[0][0], orientationMtx.mMtx[1][0], orientationMtx.mMtx[2][0]);
     mForwardVec.set(orientationMtx.mMtx[0][2], orientationMtx.mMtx[1][2], orientationMtx.mMtx[2][2]);
-    
+
     if (mWindStrength > 0.0f) {
         f32 tiltFactor = MR::clamp(((mWindStrength - 200.0f) / 1300.0f), 0.0f, 1.0f);
         f32 easeInValue = MR::getEaseInValue((1.0f - tiltFactor), 0.0f, 1.0f, 1.0f);
@@ -350,17 +336,17 @@ void Fluff::updateWind() {
     } else {
         mTargetUpVec = mUpVec;
     }
-    
+
     if (!MR::isNearZero(targetMoveDir)) {
         TVec3f moveDirNorm(targetMoveDir);
         MR::normalize(&moveDirNorm);
         TVec3f initialUpVec;
         mInitialMtx.getYDir(initialUpVec);
-        
+
         TPos3f v20;
         v20.identity();
         MR::makeMtxUpFrontPos(&v20, initialUpVec, moveDirNorm, mPosition);
-        
+
         mCameraTargetMtx->setMtx(v20.mMtx);
     }
 }
@@ -499,11 +485,10 @@ void Fluff::exeRideSpinUp() {
     if (MR::isFirstStep(this)) {
         if (isNerve(&NrvFluff::FluffNrvRideSpinUpOnWind::sInstance)) {
             MR::startSound(mRider, "SE_PV_JUMP_JOY", -1, -1);
-        }
-        else {
+        } else {
             MR::startSound(mRider, "SE_PV_TWIST_START", -1, -1);
         }
-        
+
         MR::tryRumblePadMiddle(this, 0);
         MR::startBckPlayer("FluffSpin", (const char*)nullptr);
         MR::tryPlayerCoinPull();
@@ -515,20 +500,18 @@ void Fluff::exeRideSpinUp() {
                 MR::startSound(this, "SE_OJ_FLUFF_RISE_UP_1", -1, -1);
                 MR::startBck(this, "Spin1st", nullptr);
                 MR::startBrk(this, "Spin1st");
-            }
-            else if (mSpinsRemaining == 1) {
+            } else if (mSpinsRemaining == 1) {
                 MR::startSound(this, "SE_OJ_FLUFF_RISE_UP_2", -1, -1);
                 MR::startBck(this, "Spin2nd", nullptr);
                 MR::startBrk(this, "Spin2nd");
-            }
-            else {
+            } else {
                 MR::startSound(this, "SE_OJ_FLUFF_RISE_UP_4", -1, -1);
                 MR::startBck(this, "Spin3rd", nullptr);
                 MR::startBrk(this, "Spin3rd");
             }
         }
     }
-    
+
     if (!updateRide()) {
         if (mSpinsRemaining >= 0 && MR::isLessStep(this, 30)) {
             TVec3f liftImpulse(mUpVec);
@@ -540,11 +523,11 @@ void Fluff::exeRideSpinUp() {
             mVelocity += liftImpulse;
             MR::tryRumblePadVeryWeak(this, 0);
         }
-        
+
         if (mWindStrength > 0.0f && mWindStrength < 300.0f) {
             mWindSpinTimer = 30;
         }
-        
+
         if (!trySpinUp(60) && MR::isBckStopped(this)) {
             setNerve(&NrvFluff::FluffNrvRideFly::sInstance);
         }

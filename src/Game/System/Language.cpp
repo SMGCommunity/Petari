@@ -143,9 +143,13 @@ namespace MR {
         return cLanguageMap[4][i];
     }
 
-    u32 getLanguage() { return SingletonHolder< GameSystem >::get()->mObjHolder->mLanguage; }
+    u32 getLanguage() {
+        return SingletonHolder< GameSystem >::get()->mObjHolder->mLanguage;
+    }
 
-    u32 getLanguageFromIPL() { return getLanguage() & LANGUAGE_MASK; }
+    u32 getLanguageFromIPL() {
+        return getLanguage() & LANGUAGE_MASK;
+    }
 
     const char* getCurrentLanguagePrefix() {
         u32 id = getLanguage();
@@ -186,7 +190,11 @@ namespace MR {
         return nullptr;
     }
 
-    u32 getLanguageNum() { return sizeof(cLanguages) / sizeof(*cLanguages); }
+    u32 getLanguageNum() {
+        return sizeof(cLanguages) / sizeof(*cLanguages);
+    }
 
-    const char* getLanguagePrefixByIndex(u32 index) { return cLanguages[index].mName; }
+    const char* getLanguagePrefixByIndex(u32 index) {
+        return cLanguages[index].mName;
+    }
 };  // namespace MR

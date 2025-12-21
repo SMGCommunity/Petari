@@ -5,7 +5,7 @@ namespace nw4r {
         class Font;
         class ResFont;
     };  // namespace ut
-};      // namespace nw4r
+};  // namespace nw4r
 
 class JKRMemArchive;
 

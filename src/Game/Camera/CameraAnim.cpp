@@ -164,7 +164,7 @@ f32 CamAnmDataAccessor::getFovy(f32 key) const {
     f32 diff = key - fKey;
 
     if (diff < 0.0f) {
-        
+
     }
 }*/
 

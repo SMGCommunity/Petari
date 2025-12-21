@@ -196,7 +196,7 @@ void DesertMovingLand::initCaseUseSwitchB(const MapObjActorInitInfo& rInfo) {}
 
 void DesertMovingLand::initCaseUseSwitchA(const MapObjActorInitInfo& rInfo) {}
 
-DesertMovingLand::~DesertMovingLand(){};
+DesertMovingLand::~DesertMovingLand() {};
 
 namespace NrvDesertMovingLand {
     HostTypeWaitTop(HostTypeWaitTop::sInstance);

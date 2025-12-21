@@ -141,7 +141,9 @@ namespace MR {
         return SingletonHolder< FileLoader >::get()->receiveArchive(buf);
     }
 
-    void receiveAllRequestedFile() { SingletonHolder< FileLoader >::get()->receiveAllRequestedFile(); }
+    void receiveAllRequestedFile() {
+        SingletonHolder< FileLoader >::get()->receiveAllRequestedFile();
+    }
 
     void* createAndAddArchive(void* pData, JKRHeap* pHeap, const char* pFile) {
         return SingletonHolder< FileLoader >::get()->createAndAddArchive(pData, pHeap, pFile);

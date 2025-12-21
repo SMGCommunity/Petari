@@ -114,7 +114,7 @@ s32 SkeletalFishGuardHolder::countGuardAlive() const {
 /*
 void SkeletalFishGuardHolder::checkDistanceAndAppear(s32 numGuards) {
     f32 len, v7, v9;
-    
+
     f32 guardOffsLvl = mFishBoss->mBossInfo->getLevelStatus(mFishBoss->_110)->mGuardOffsLevel;
     f32 coord = MR::getRailCoord(mBossRail);
 
