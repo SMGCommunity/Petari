@@ -23,7 +23,7 @@ s32 JUTException::run() {
     OSInitMessageQueue(&sMessageQueue, &sMessageBuffer, 1);
     OSMessage msg;
     while (true) {
-        OSReceiveMessage(&sMessageQueue, &msg, 1);
+        OSReceiveMessage(&sMessageQueue, &msg, OS_MESSAGE_BLOCK);
         VISetPreRetraceCallback(0);
         VISetPostRetraceCallback(0);
         CallbackObject* obj = (CallbackObject*)msg;
@@ -79,7 +79,7 @@ void JUTException::errorHandler(u16 err, OSContext* pContext, u32 a3, u32 a4) {
     exCallbackObject.context = pContext;
     exCallbackObject.param_3 = a3;
     exCallbackObject.param_4 = a4;
-    OSSendMessage(&sMessageQueue, &exCallbackObject, 1);
+    OSSendMessage(&sMessageQueue, &exCallbackObject, OS_MESSAGE_BLOCK);
     OSEnableScheduler();
     OSYieldThread();
 }
@@ -110,7 +110,7 @@ void JUTException::panic_f_va(const char* file, int line, const char* format, va
         sConsole->print_f("%s in \"%s\" on line %d\n", buffer, file, line);
     }
 
-    OSSendMessage(&sMessageQueue, &exCallbackObject, 1);
+    OSSendMessage(&sMessageQueue, &exCallbackObject, OS_MESSAGE_BLOCK);
     OSThread* current_thread = OSGetCurrentThread();
     OSSuspendThread(current_thread);
 }

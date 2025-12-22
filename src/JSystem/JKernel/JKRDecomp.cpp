@@ -90,7 +90,7 @@ bool JKRDecomp::sync(JKRDecompCommand* pCommand, int noBlock) {
         OSReceiveMessage(&pCommand->mMessageQueue, &message, OS_MESSAGE_BLOCK);
         return true;
     } else {
-        return OSReceiveMessage(&pCommand->mMessageQueue, &message, OS_MESSAGE_NOBLOCK) != 0;
+        return OSReceiveMessage(&pCommand->mMessageQueue, &message, OS_MESSAGE_NOBLOCK);
     }
 }
 

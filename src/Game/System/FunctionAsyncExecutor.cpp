@@ -39,7 +39,7 @@ void* FunctionAsyncExecutorThread::run() {
         mName = info->mName;
         mIsSuspended = true;
         info->execute();
-        OSSendMessage(&info->mQueue, 0, OS_MESSAGE_NOBLOCK);
+        OSSendMessage(&info->mQueue, nullptr, OS_MESSAGE_NOBLOCK);
         info->mIsEnd = true;
     }
 }
@@ -59,7 +59,7 @@ void FunctionAsyncExecutorOnMainThread::update() {
         info->mPriority = OSGetThreadPriority(OSGetCurrentThread());
         info->execute();
 
-        OSSendMessage(&info->mQueue, 0, OS_MESSAGE_NOBLOCK);
+        OSSendMessage(&info->mQueue, nullptr, OS_MESSAGE_NOBLOCK);
 
         info->mIsEnd = true;
     }
