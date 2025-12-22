@@ -2226,7 +2226,7 @@ config.libs = [
             Object(NonMatching, "Game/Util/DrawUtil.cpp"),
             Object(NonMatching, "Game/Util/EffectUtil.cpp"),
             Object(NonMatching, "Game/Util/EventUtil.cpp"),
-            Object(NonMatching, "Game/Util/FileUtil.cpp"),
+            Object(Matching, "Game/Util/FileUtil.cpp"),
             Object(NonMatching, "Game/Util/FootPrint.cpp"),
             Object(NonMatching, "Game/Util/FurCtrl.cpp"),
             Object(NonMatching, "Game/Util/FurDrawer.cpp"),
