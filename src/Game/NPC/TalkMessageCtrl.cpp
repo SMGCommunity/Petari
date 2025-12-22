@@ -1,7 +1,11 @@
 #include "Game/NPC/TalkMessageCtrl.hpp"
 #include "Game/LiveActor/ActorCameraInfo.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
+#include "Game/NPC/TalkDirector.hpp"
+#include "Game/NPC/TalkMessageInfo.hpp"
 #include "Game/NPC/TalkNodeCtrl.hpp"
+#include "Game/Util/ActorSwitchUtil.hpp"
+#include "Game/Util/TalkUtil.hpp"
 
 #ifdef NON_MATCHING
 // one liner regswap with mNodeCtrl->mCurrentNode
@@ -23,7 +27,52 @@ void TalkMessageCtrl::createMessageDirect(const JMapInfoIter& rIter, const char*
     _3C = 1;
 }
 
-// ...
+bool TalkMessageCtrl::rootNodeEve() {
+    TalkNodeCtrl* nodeCtrl = mNodeCtrl;
+    TalkNode* nodeEvent = nodeCtrl->getCurrentNodeEvent();
+    if (nodeEvent == nullptr) {
+        return true;
+    }
+
+    u8 groupID = nodeEvent->mGroupID;
+    if (groupID <= 1) {
+        if (mEventFunc == nullptr) {
+            return true;
+        }
+
+        if (mEventFunc->operator()(nodeEvent->mNextIdx) == nullptr) {
+            return false;
+        }
+    } else if (groupID == 4) {
+        if (mAnimeFunc == nullptr) {
+            return true;
+        }
+
+        if (mAnimeFunc->operator()(nodeEvent->mNextIdx) == nullptr) {
+            return false;
+        }
+    } else if (groupID == 3) {
+        rootNodePst();
+        return true;
+    } else if (groupID == 5) {
+        MR::onSwitchA(mHostActor);
+    } else if (groupID == 6) {
+        MR::onSwitchB(mHostActor);
+    } else if (groupID == 7) {
+        if (mKillFunc->operator()(nodeEvent->mNextIdx) == nullptr) {
+            return false;
+        }
+    }
+
+    bool cond = nodeCtrl->isExistNextNode();
+    rootNodePst();
+
+    if (cond && nodeCtrl->getCurrentNodeEvent()) {
+        return false;
+    }
+
+    return true;
+}
 
 void TalkMessageCtrl::rootNodePst() {
     TalkNodeCtrl* ctrl = mNodeCtrl;
@@ -101,14 +150,37 @@ u32 TalkMessageCtrl::getMessageID() const {
     }
 }
 
-// TalkMessageCtrl::requestTalk
-// TalkMessageCtrl::requestTalkForce
-// TalkMessageCtrl::startTalk
-// TalkMessageCtrl::startTalkForce
-// TalkMessageCtrl::startTalkForcePuppetable
-// TalkMessageCtrl::startTalkForceWithoutDemo
-// TalkMessageCtrl::startTalkForceWithoutDemoPuppetable
-// TalkMessageCtrl::endTalk
+bool TalkMessageCtrl::requestTalk() {
+    return TalkFunction::requestTalkSystem(this, false);
+}
+
+bool TalkMessageCtrl::requestTalkForce() {
+    return TalkFunction::requestTalkSystem(this, true);
+}
+
+void TalkMessageCtrl::startTalk() {
+    TalkFunction::startTalkSystem(this, false, true, true);
+}
+
+void TalkMessageCtrl::startTalkForce() {
+    TalkFunction::startTalkSystem(this, true, true, true);
+}
+
+void TalkMessageCtrl::startTalkForcePuppetable() {
+    TalkFunction::startTalkSystem(this, true, true, false);
+}
+
+void TalkMessageCtrl::startTalkForceWithoutDemo() {
+    TalkFunction::startTalkSystem(this, true, false, true);
+}
+
+void TalkMessageCtrl::startTalkForceWithoutDemoPuppetable() {
+    TalkFunction::startTalkSystem(this, true, false, false);
+}
+
+void TalkMessageCtrl::endTalk() {
+    TalkFunction::endTalkSystem(this);
+}
 // TalkMessageCtrl::updateBalloonPos
 
 /*
@@ -207,4 +279,52 @@ const char* TalkMessageCtrl::getBranchID() const {
     }
 
     return result;
+}
+
+bool TalkFunction::isShortTalk(const TalkMessageCtrl* pCtrl) {
+    return pCtrl->mNodeCtrl->mMessageInfo.isShortTalk();
+}
+
+bool TalkFunction::isComposeTalk(const TalkMessageCtrl* pCtrl) {
+    return pCtrl->mNodeCtrl->mMessageInfo.isComposeTalk();
+}
+
+bool TalkFunction::isSelectTalk(const TalkMessageCtrl* pCtrl) {
+    return pCtrl->mNodeCtrl->mNodeData == 0;
+}
+
+bool TalkFunction::isEventNode(const TalkMessageCtrl* pCtrl) {
+    return pCtrl->mNodeCtrl->isCurrentNodeEvent();
+}
+
+void TalkFunction::onTalkStateNone(TalkMessageCtrl* pCtrl) {
+    pCtrl->_18 = 0;
+}
+
+void TalkFunction::onTalkStateEntry(TalkMessageCtrl* pCtrl) {
+    pCtrl->_18 = 1;
+}
+
+void TalkFunction::onTalkStateEnableStart(TalkMessageCtrl* pCtrl) {
+    pCtrl->_18 = 2;
+}
+
+void TalkFunction::onTalkStateTalking(TalkMessageCtrl* pCtrl) {
+    pCtrl->_18 = 3;
+}
+
+void TalkFunction::onTalkStateEnableEnd(TalkMessageCtrl* pCtrl) {
+    pCtrl->_18 = 4;
+}
+
+TalkMessageInfo* TalkFunction::getMessageInfo(const TalkMessageCtrl* pCtrl) {
+    return &pCtrl->mNodeCtrl->mMessageInfo;
+}
+
+const wchar_t* TalkFunction::getMessage(const TalkMessageCtrl* pCtrl) {
+    return (const wchar_t*)pCtrl->mNodeCtrl->mMessageInfo._0;
+}
+
+const wchar_t* TalkFunction::getSubMessage(const TalkMessageCtrl* pCtrl) {
+    return (const wchar_t*)pCtrl->mNodeCtrl->getSubMessage();
 }
