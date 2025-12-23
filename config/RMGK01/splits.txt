@@ -9763,14 +9763,15 @@ RVL_SDK/gd/GDTexture.c:
 	.sdata      start:0x806B2780 end:0x806B2788
 	.sdata2     start:0x806C1C98 end:0x806C1CA0
 
+RVL_SDK/gd/GDTransform.c:
+	.text       start:0x8044F838 end:0x8044FC10
+
 RVL_SDK/kpad/KPAD.c:
+	.text       start:0x8044FC10 end:0x80452EDC
 	.data       start:0x805EA578 end:0x805EA5D0
 	.sdata      start:0x806B2788 end:0x806B27F8
 	.sbss       start:0x806B72C8 end:0x806B72E0
 	.sdata2     start:0x806C1CA0 end:0x806C1D08
-
-RVL_SDK/gd/GDTransform.c:
-	.text       start:0x8044F838 end:0x80452EDC
 
 RVL_SDK/thp/THPDec.c:
 	.text       start:0x80452EDC end:0x804562AC
