@@ -286,8 +286,9 @@ void calc_acc(KPADInsideStatus* kp, f32* acc, f32 acc2) {
 void calc_acc_horizon(KPADInsideStatus* kp) {
     f32 f1, vx, vy, ax, ay;
     f1 = sqrt(kp->hard_acc.x * kp->hard_acc.x + kp->hard_acc.y * kp->hard_acc.y);
-    if (f1 == 0.0f || f1 >= 2.0f)
+    if (f1 == 0.0f || f1 >= 2.0f) {
         return;
+    }
     ax = kp->hard_acc.x / f1;
     ay = kp->hard_acc.y / f1;
 
@@ -302,8 +303,9 @@ void calc_acc_horizon(KPADInsideStatus* kp) {
     ay = (vy - kp->acc_horizon.y) * f1 + kp->acc_horizon.y;
 
     f1 = sqrt(ax * ax + ay * ay);
-    if (f1 == 0.0f)
+    if (f1 == 0.0f) {
         return;
+    }
     kp->acc_horizon.x = ax / f1;
     kp->acc_horizon.y = ay / f1;
 
@@ -337,8 +339,9 @@ void calc_acc_vertical(KPADInsideStatus* kp) {
     ax = sqrt(f2 = kp->hard_acc.x * kp->hard_acc.x + kp->hard_acc.y * kp->hard_acc.y);
     ay = -kp->hard_acc.z;
     f1 = sqrt(f2 + ay * ay);
-    if (f1 == 0.0f || f1 >= 2.0f)
+    if (f1 == 0.0f || f1 >= 2.0f) {
         return;
+    }
     ax /= f1;
     ay /= f1;
 
@@ -351,8 +354,9 @@ void calc_acc_vertical(KPADInsideStatus* kp) {
     ay = (ay - sp->acc_vertical.y) * f1 + sp->acc_vertical.y;
 
     f1 = sqrt(ax * ax + ay * ay);
-    if (f1 == 0.0f)
+    if (f1 == 0.0f) {
         return;
+    }
     sp->acc_vertical.x = ax / f1;
     sp->acc_vertical.y = ay / f1;
 }
@@ -453,18 +457,21 @@ s8 select_2obj_first(KPADInsideStatus* kp) {
 
     op1 = kp->kobj_sample;
     do {
-        if (op1->error_fg != 0)
+        if (op1->error_fg != 0) {
             continue;
+        }
 
         op2 = op1 + 1;
         do {
-            if (op2->error_fg != 0)
+            if (op2->error_fg != 0) {
                 continue;
+            }
 
             f1 = calc_horizon(kp, &op1->center, &op2->center, &hori);
 
-            if (f1 <= kp->err_dist_min || f1 >= kp_err_dist_max)
+            if (f1 <= kp->err_dist_min || f1 >= kp_err_dist_max) {
                 continue;
+            }
 
             f1 = kp->acc_horizon.x * hori.x + kp->acc_horizon.y * hori.y;
             if (f1 < 0.0f) {
@@ -484,8 +491,9 @@ s8 select_2obj_first(KPADInsideStatus* kp) {
         } while (++op2 <= &kp->kobj_sample[WPAD_DPD_MAX_OBJECTS - 1]);
     } while (++op1 < &kp->kobj_sample[WPAD_DPD_MAX_OBJECTS - 1]);
 
-    if (max == kp_err_first_inpr)
+    if (max == kp_err_first_inpr) {
         return 0;
+    }
 
     kp->kobj_regular[0] = *rp1;
     kp->kobj_regular[1] = *rp2;
@@ -500,13 +508,15 @@ s8 select_2obj_continue(KPADInsideStatus* kp) {
     f32 f1, f2, f3, vx, vy, min = 2.0f;
     op1 = kp->kobj_sample;
     do {
-        if (op1->error_fg != 0)
+        if (op1->error_fg != 0) {
             continue;
+        }
 
         op2 = op1 + 1;
         do {
-            if (op2->error_fg != 0)
+            if (op2->error_fg != 0) {
                 continue;
+            }
             vx = op2->center.x - op1->center.x;
             vy = op2->center.y - op1->center.y;
             f3 = sqrt(vx * vx + vy * vy);
@@ -515,8 +525,9 @@ s8 select_2obj_continue(KPADInsideStatus* kp) {
             nrm.y = vy * f1;
 
             f1 *= kp->dist_vv1;
-            if (f1 <= kp->err_dist_min || f1 >= kp_err_dist_max)
+            if (f1 <= kp->err_dist_min || f1 >= kp_err_dist_max) {
                 continue;
+            }
 
             f1 -= kp->sec_dist;
             if (f1 < 0.0f) {
@@ -524,8 +535,9 @@ s8 select_2obj_continue(KPADInsideStatus* kp) {
             } else {
                 f1 *= kp->err_dist_speed_1;
             }
-            if (f1 >= 1.0f)
+            if (f1 >= 1.0f) {
                 continue;
+            }
 
             f2 = kp->sec_nrm.x * nrm.x + kp->sec_nrm.y * nrm.y;
             if (f2 < 0.0f) {
@@ -534,8 +546,9 @@ s8 select_2obj_continue(KPADInsideStatus* kp) {
             } else {
                 rev_fg = 0;
             }
-            if (f2 <= kp_err_next_inpr)
+            if (f2 <= kp_err_next_inpr) {
                 continue;
+            }
             f2 = (1.0f - f2) / (1.0f - kp_err_next_inpr);
             f1 += f2;
             if (f1 < min) {
@@ -552,8 +565,9 @@ s8 select_2obj_continue(KPADInsideStatus* kp) {
         } while (++op2 <= &kp->kobj_sample[WPAD_DPD_MAX_OBJECTS - 1]);
     } while (++op1 < &kp->kobj_sample[WPAD_DPD_MAX_OBJECTS - 1]);
 
-    if (min == 2.0f)
+    if (min == 2.0f) {
         return 0;
+    }
 
     kp->kobj_regular[0] = *rp1;
     kp->kobj_regular[1] = *rp2;
@@ -574,8 +588,9 @@ s8 select_1obj_first(KPADInsideStatus* kp) {
 
     op1 = kp->kobj_sample;
     do {
-        if (op1->error_fg != 0)
+        if (op1->error_fg != 0) {
             continue;
+        }
 
         p1.x = op1->center.x - vx;
         p1.y = op1->center.y - vy;
@@ -615,15 +630,18 @@ s8 select_1obj_continue(KPADInsideStatus* kp) {
 
     op1 = kp->kobj_regular;
     do {
-        if (op1->error_fg != 0)
+        if (op1->error_fg != 0) {
             continue;
-        if (op1->state_fg != 0)
+        }
+        if (op1->state_fg != 0) {
             continue;
+        }
 
         op2 = kp->kobj_sample;
         do {
-            if (op2->error_fg != 0)
+            if (op2->error_fg != 0) {
                 continue;
+            }
 
             vx = op1->center.x - op2->center.x;
             vy = op1->center.y - op2->center.y;
@@ -880,8 +898,9 @@ void check_kobj_outside_frame(KPADInsideStatus* kp, KPADObject* kobj_t) {
     KPADObject* kobj_p = &kobj_t[WPAD_DPD_MAX_OBJECTS - 1];
 
     do {
-        if (kobj_p->error_fg < 0)
+        if (kobj_p->error_fg < 0) {
             continue;
+        }
 
         if (kobj_p->center.x <= kp->kobj_frame_min.x || kobj_p->center.x >= kp->kobj_frame_max.x || kobj_p->center.y <= kp->kobj_frame_min.y ||
             kobj_p->center.y >= kp->kobj_frame_max.y) {
@@ -895,13 +914,15 @@ void check_kobj_same_position(KPADObject* kobj_t) {
 
     op1 = kobj_t;
     do {
-        if (op1->error_fg != 0)
+        if (op1->error_fg != 0) {
             continue;
+        }
 
         op2 = op1 + 1;
         do {
-            if (op2->error_fg != 0)
+            if (op2->error_fg != 0) {
                 continue;
+            }
 
             if (op1->center.x == op2->center.x && op1->center.y == op2->center.y) {
                 op2->error_fg |= 2;
@@ -929,41 +950,48 @@ void read_kpad_dpd(KPADInsideStatus* kp, KPADUnifiedWpadStatus* uwp) {
     kp->valid_objs = 0;
     op1 = &kp->kobj_sample[WPAD_DPD_MAX_OBJECTS - 1];
     do {
-        if (op1->error_fg == 0)
+        if (op1->error_fg == 0) {
             ++kp->valid_objs;
+        }
     } while (--op1 >= kp->kobj_sample);
 
-    if (sp->acc_vertical.x <= kp_err_up_inpr)
+    if (sp->acc_vertical.x <= kp_err_up_inpr) {
         goto LABEL_select_NG;
+    }
 
     if (sp->dpd_valid_fg == 2 || sp->dpd_valid_fg == -2) {
         if (kp->valid_objs >= 2) {
             valid_fg_next = select_2obj_continue(kp);
-            if (valid_fg_next)
+            if (valid_fg_next) {
                 goto LABEL_select_OK;
+            }
         }
         if (kp->valid_objs >= 1) {
             valid_fg_next = select_1obj_continue(kp);
-            if (valid_fg_next)
+            if (valid_fg_next) {
                 goto LABEL_select_OK;
+            }
         }
     } else if (sp->dpd_valid_fg == 1 || sp->dpd_valid_fg == -1) {
         if (kp->valid_objs >= 2) {
             valid_fg_next = select_2obj_first(kp);
-            if (valid_fg_next)
+            if (valid_fg_next) {
                 goto LABEL_select_OK;
+            }
         }
         if (kp->valid_objs >= 1) {
             valid_fg_next = select_1obj_continue(kp);
-            if (valid_fg_next)
+            if (valid_fg_next) {
                 goto LABEL_select_OK;
+            }
         }
     } else {
         if (kp->valid_objs >= 2) {
             valid_fg_next = select_2obj_first(kp);
 
-            if (valid_fg_next)
+            if (valid_fg_next) {
                 goto LABEL_select_OK;
+            }
         }
         if (kp->valid_objs == 1) {
             valid_fg_next = select_1obj_first(kp);
@@ -1328,7 +1356,6 @@ void KPADInit(void) {
         KPADEnableAimingMode(i);
         kp->fsAccRevise = 0;
 
-        //----- ��]�s��̏�����
         MTXRowCol(kp_fs_rot, 0, 0) = 1;
         MTXRowCol(kp_fs_rot, 0, 1) = 0;
         MTXRowCol(kp_fs_rot, 0, 2) = 0;
