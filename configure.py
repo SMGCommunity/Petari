@@ -450,6 +450,16 @@ def SDKLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
     }
 
 
+def SDKLib_KPAD(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
+    return {
+        "lib": lib_name,
+        "mw_version": "Wii/1.0",
+        "cflags": cflags_sdk,
+        "progress_category": "sdk",
+        "objects": objects,
+    }
+
+
 def RFLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
     return {
         "lib": lib_name,
@@ -2458,7 +2468,7 @@ config.libs = [
             Object(Matching, "RVL_SDK/ipc/ipcProfile.c"),
         ],
     ),
-    SDKLib("kpad", [Object(NonMatching, "RVL_SDK/kpad/KPAD.c")]),
+    SDKLib_KPAD("kpad", [Object(NonMatching, "RVL_SDK/kpad/KPAD.c")]),
     SDKLib(
         "mem",
         [

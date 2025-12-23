@@ -34,6 +34,8 @@ typedef f32 Mtx33[3][3];
 #define MTXDegToRad(a) ((a) * 0.01745329252f)
 #define MTXRadToDeg(a) ((a) * 57.29577951f)
 
+#define MTXRowCol(m, r, c) ((m)[(r)][(c)])
+
 /* C Matrix */
 void C_MTXIdentity(Mtx);
 void C_MTXCopy(const Mtx, Mtx);
