@@ -18,15 +18,19 @@ void AudFader::update() {
     }
 
     mFloatVar += mFloatVar3;
-    //mFloatVar3 += mFloatVar;
+    // mFloatVar3 += mFloatVar;
     if (mFloatVar3 > 0.0f) {
         // mFloatVar += mFloatVar3;
         // mFloatVar = mFloatVar2;
-        if (mFloatVar3 <= mFloatVar2) {
+        if (mFloatVar3 >= mFloatVar2) {
             mFloatVar = mFloatVar2;
             mFloatVar3 = 0.0f;
-            //mFloatVar3 = mFloatVar;
+            // mFloatVar3 = mFloatVar;
+        }
+    } else {
+        if ((mFloatVar3 <= mFloatVar2)) {
+            mFloatVar = mFloatVar2;
+            mFloatVar3 = mFloatVar;
         }
     }
-    // NOTE: put else here and match instructions from 0x20 to 0x3C  
 }
