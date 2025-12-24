@@ -156,13 +156,12 @@ bool RailRider::isReachedEdge() const {
     return ret;
 }
 
-#ifdef NON_MATCHING  // missing frsp instruction
 void RailRider::setCoord(f32 coord) {
     mCoord = coord;
-    mBezierRail->normalizePos(coord, 1);
+    mCoord = mBezierRail->normalizePos(mCoord, 1);
     syncPosDir();
 }
-#endif
+
 
 void RailRider::setSpeed(f32 coord) {
     mSpeed = coord;
