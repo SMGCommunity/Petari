@@ -6,68 +6,75 @@
 
 typedef void (*CallbackFunc)(OSError, OSContext*, u32, u32);
 
-typedef struct _GXRenderModeObj GXRenderModeObj;
-typedef struct OSContext OSContext;
 class JUTDirectPrint;
 
 class JUTExternalFB {
 public:
-    JUTExternalFB(_GXRenderModeObj*, GXGamma, void*, u32);
+    JUTExternalFB(GXRenderModeObj*, GXGamma, void*, u32);
 
     void changeFrameBuffer(void*, u16, u16);
 
 public:
-    _GXRenderModeObj* mRenderMode;  // 0x0
-    u32 mSize;                      // 0x4
-    u32 _8;
-    u16 _C;
-    u16 mGamma;  // 0xE
-    bool _10;
-    u8 _11[3];
+    /* 0x00 */ GXRenderModeObj* mRenderMode;
+    /* 0x04 */ u32 mSize;
+    /* 0x08 */ u32 _8;
+    /* 0x0C */ u16 _C;
+    /* 0x0E */ u16 mGamma;
+    /* 0x10 */ bool _10;
 };
 
 class JUTException : public JKRThread {
 public:
-    virtual ~JUTException();
+    enum EInfoPage {};
+
+    JUTException(JUTDirectPrint*);
+
     virtual s32 run();
 
-    void createFB();
-    void printContext(u16, OSContext*, u32, u32);
-    bool isEnablePad() const;
-
     static void create(JUTDirectPrint*);
-    static void createConsole(void*, u32);
-
-    static void setPreUserCallback(CallbackFunc);
-    static void errorHandler(u16, OSContext*, u32, u32);
+    static void errorHandler(OSError, OSContext*, u32, u32);
     static void panic_f_va(char const*, int, char const*, va_list);
     static void panic_f(const char*, int, const char*, ...);
-
+    void showFloatSub(int, f32);
+    void showFloat(OSContext*);
+    void searchPartialModule(u32, u32*, u32*, u32*, u32*);
+    void showStack(OSContext*);
+    void showMainInfo(OSError, OSContext*, u32, u32);
+    void showGPR(OSContext*);
+    void showMapInfo_subroutine(u32, bool);
+    void showGPRMap(OSContext*);
+    void showSRR0Map(OSContext*);
+    void printDebugInfo(EInfoPage, OSError, OSContext*, u32, u32);
+    bool isEnablePad() const;
+    void readPad(u32*, u32*);
+    void printContext(OSError, OSContext*, u32, u32);
+    static void waitTime(s32);
+    void createFB();
+    static void setPreUserCallback(CallbackFunc);
+    static bool queryMapAddress(char*, u32, s32, u32*, u32*, char*, u32, bool, bool);
+    static bool queryMapAddress_single(char*, u32, s32, u32*, u32*, char*, u32, bool, bool);
+    static void createConsole(void*, u32);
     static JUTConsole* getConsole() NO_INLINE { return sConsole; }
 
-    static void waitTime(s32);
-
-    void readPad(u32*, u32*);
-
-    static u32 msr;
-    static u32 fpscr;
     static OSMessageQueue sMessageQueue;
     static JUTException* sErrorManager;
     static CallbackFunc sPreUserCallback;
     static CallbackFunc sPostUserCallback;
-    static OSMessage sMessageBuffer;
+    static OSMessage sMessageBuffer[1];
+    static void* sConsoleBuffer;
     static u32 sConsoleBufferSize;
     static JUTConsole* sConsole;
+    static u32 msr;
+    static u32 fpscr;
 
-    JUTExternalFB* mFrameMemory;   // 0x7C
-    JUTDirectPrint* mDirectPrint;  // 0x80
-    u32 _84;
-    // JUTGamePad* mGamePad;                   // 0x84
-    JUTGamePad::EPadPort mGamePadPort;  // 0x88
-    s32 mPrintWaitTime0;                // 0x8C
-    s32 mPrintWaitTime1;                // 0x90
-    u32 mTraceSuppress;                 // 0x94
-    u32 _98;
-    u32 mPrintFlags;    // 0x9C
-    u32 mStackPointer;  // 0xA0
+    /* 0x7C */ JUTExternalFB* mFrameMemory;
+    /* 0x80 */ JUTDirectPrint* mDirectPrint;
+    /* 0x84 */ u32 _84;  // JUTGamePad* mGamePad;
+    /* 0x88 */ JUTGamePad::EPadPort mGamePadPort;
+    /* 0x8C */ s32 mPrintWaitTime0;
+    /* 0x90 */ s32 mPrintWaitTime1;
+    /* 0x94 */ u32 mTraceSuppress;
+    /* 0x98 */ u32 _98;
+    /* 0x9C */ u32 mPrintFlags;
+    /* 0xA0 */ u32 mStackPointer;
 };
