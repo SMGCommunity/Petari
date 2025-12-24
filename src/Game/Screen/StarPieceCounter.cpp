@@ -308,3 +308,8 @@ void StarPieceCounter::exeDisappear() {
         setNerve(&NrvStarPieceCounter::StarPieceCounterNrvHide::sInstance);
     }
 }
+
+void CounterLayoutAppearer::setAppearOffset(const TVec2f& param1) {
+    _C.x = param1.x;
+    _C.y = param1.y;
+}

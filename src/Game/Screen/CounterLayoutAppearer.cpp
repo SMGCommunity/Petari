@@ -62,11 +62,6 @@ void CounterLayoutAppearer::updateLayoutOffset(f32 offset) {
 }
 #endif
 
-void CounterLayoutAppearer::setAppearOffset(const TVec2f& param1) {
-    _C.x = param1.x;
-    _C.y = param1.y;
-}
-
 void CounterLayoutAppearer::exeHide() {}
 
 void CounterLayoutAppearer::exeAppear() {
