@@ -35,7 +35,7 @@
 #define LANGUAGE_MASK (~REGION_MASK)
 
 namespace {
-    const u8 cLanguageMap[][10] = {
+    const u8 cSCLanguage2GameLanguageTable[][10] = {
         {
             // RMGJ
             LANGUAGE_JPJAPANESE,
@@ -131,7 +131,7 @@ namespace MR {
         if (language < 0) {
             i = 0;
         } else {
-            s32 size = sizeof(cLanguageMap[4]) / sizeof(*cLanguageMap[4]);
+            s32 size = sizeof(cSCLanguage2GameLanguageTable[4]) / sizeof(*cSCLanguage2GameLanguageTable[4]);
 
             if (language <= size) {
                 i = language;
@@ -140,7 +140,7 @@ namespace MR {
             }
         }
 
-        return cLanguageMap[4][i];
+        return cSCLanguage2GameLanguageTable[4][i];
     }
 
     u32 getLanguage() {
