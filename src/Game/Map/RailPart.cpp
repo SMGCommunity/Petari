@@ -26,13 +26,16 @@ void RailPart::calcPos(TVec3f* pOut, f32 t) const {
     }
 }
 
+#pragma dont_inline on
 void RailPart::calcVelocity(TVec3f* pOut, f32 t) const {
     if (mRailPartLinear) {
-        pOut->set< f32 >(mRailPartLinear->mCtrlDegree1);
+        const TVec3f& velocity = mRailPartLinear->mCtrlDegree1;
+        pOut->set(velocity);
     } else {
         mRailPartBezier->calcVelocity(pOut, t);
     }
 }
+#pragma dont_inline off
 
 f32 RailPart::getLength(f32 t1, f32 t2, int k) const {
     if (mRailPartLinear) {
