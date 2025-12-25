@@ -2,16 +2,21 @@
 #include "Game/Camera/CameraTargetObj.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
 
-CameraTargetHolder::CameraTargetHolder() {
-    mTarget = nullptr;
-    mTargetActor = new CameraTargetActor("アクター注目");
-    mTargetPlayer = new CameraTargetPlayer("マリオ注目");
+namespace {
+// TODO: These are in lbl_805763C0/lbl_805763CD but im not sure if I can make it link to that
+// (has to edit symbols.txt)
+const char sCameraTargetActorName[] = "アクター注目";
+const char sCameraTargetPlayerName[] = "マリオ注目";
 }
 
-CameraTargetHolder::~CameraTargetHolder() {}
+CameraTargetHolder::CameraTargetHolder() {
+    mTarget = nullptr;
+    mTargetActor = new CameraTargetActor(sCameraTargetActorName);
+    mTargetPlayer = new CameraTargetPlayer(sCameraTargetPlayerName);
+}
 
 void CameraTargetHolder::movement() {
-    mTargetActor->movement();
+    mTarget->movement();
 }
 
 CameraTargetObj* CameraTargetHolder::get() {
@@ -42,3 +47,7 @@ bool CameraTargetHolder::isMoving() const {
 
     return length > 1.0f;
 }
+
+CameraTargetHolder::~CameraTargetHolder() {}
+__declspec(section ".data") extern const u32 sCameraTargetHolderDataPad = 0;
+__declspec(section ".sdata2") extern const f32 sCameraTargetHolderSdata2Pad = 0.0f;
