@@ -19,35 +19,37 @@ namespace {
     }
 
     const u32 cDispExceptionCommand[] = {
-        0x0008, // +Control Pad ↑
-        0x0004, // +Control Pad ↓
-        0x0001, // +Control Pad ←
-        0x0002, // +Control Pad →
-        0x0100, // A Button
-        0x0010, // 1 Button + 2 Button
+        0x0008,  // +Control Pad ↑
+        0x0004,  // +Control Pad ↓
+        0x0001,  // +Control Pad ←
+        0x0002,  // +Control Pad →
+        0x0100,  // A Button
+        0x0010,  // 1 Button + 2 Button
         0x0000,
     };
 };  // namespace
 
 void GameSystemException::init() {
-    JUTDirectPrint* print = JUTDirectPrint::start();
+    JUTDirectPrint* pDirectPrint = JUTDirectPrint::start();
+
     JUTAssertion::create();
     JUTAssertion::changeDisplayTime(600);
     JUTAssertion::changeDevice(3);
     JUTConsoleManager::createManager(nullptr);
-    JUTException::create(print);
+    JUTException::create(pDirectPrint);
     JUTException::createConsole(new u8[0x24FC], 0x24FC);
     JUTException::setPreUserCallback(GameSystemException::handleException);
     JUTException::sErrorManager->mPrintWaitTime1 = 0;
     JUTException::sErrorManager->mPrintWaitTime0 = 0;
-    JUTConsole* console = JUTException::getConsole();
-    console->mPositionX = 0xF;
-    console->mPositionY = 0x30;
-    console = JUTException::getConsole();
-    console->mHeight = 0x16;
 
-    if (console->mHeight > console->mMaxLines) {
-        console->mHeight = console->mMaxLines;
+    JUTConsole* pConsole = JUTException::getConsole();
+    pConsole->mPositionX = 0xF;
+    pConsole->mPositionY = 0x30;
+    pConsole = JUTException::getConsole();
+    pConsole->mHeight = 0x16;
+
+    if (pConsole->mHeight > pConsole->mMaxLines) {
+        pConsole->mHeight = pConsole->mMaxLines;
     }
 
     GameSystemException::sMapFileUsingBuffer = new u8[0x10];
@@ -69,7 +71,7 @@ void GameSystemException::handleException(OSError error, OSContext* pContext, u3
         }
 
         JUTException* exception = JUTException::sErrorManager;
-        exception->_84 = -1;
+        exception->mGamePad = reinterpret_cast< JUTGamePad* >(0xFFFFFFFF);
         exception->mGamePadPort = JUTGamePad::Port_Unknown;
     }
 
