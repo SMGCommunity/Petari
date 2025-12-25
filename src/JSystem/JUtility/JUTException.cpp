@@ -1,4 +1,5 @@
 #include "JSystem/JUtility/JUTException.hpp"
+#include "Game/System/WPad.hpp"
 #include "JSystem/JKernel/JKRHeap.hpp"
 #include "JSystem/JUtility/JUTConsole.hpp"
 #include "JSystem/JUtility/JUTDirectPrint.hpp"
@@ -203,6 +204,23 @@ bool JUTException::isEnablePad() const {
     }
 
     return mGamePad != nullptr;
+}
+
+void JUTException::readPad(u32* pHold, u32* pTrigger) {
+    OSTime startTime = OSGetTime();
+    OSTime elapsed;
+
+    do {
+        elapsed = OSTicksToMilliseconds(OSGetTime() - startTime);
+    } while (elapsed < 50);
+
+    *pHold = 0;
+    *pTrigger = 0;
+
+    MR::getPadDataForExceptionNoInit(WPAD_CHAN0, pHold, pTrigger);
+    MR::getPadDataForExceptionNoInit(WPAD_CHAN1, pHold, pTrigger);
+    MR::getPadDataForExceptionNoInit(WPAD_CHAN2, pHold, pTrigger);
+    MR::getPadDataForExceptionNoInit(WPAD_CHAN3, pHold, pTrigger);
 }
 
 // JUTException::printContext

@@ -1,6 +1,5 @@
 #pragma once
 
-#include "Game/System/WPad.hpp"
 #include "JSystem/JKernel/JKRThread.hpp"
 #include "JSystem/JUtility/JUTGamePad.hpp"
 
@@ -47,24 +46,7 @@ public:
     void showSRR0Map(OSContext*);
     void printDebugInfo(EInfoPage, OSError, OSContext*, u32, u32);
     bool isEnablePad() const;
-
-    void readPad(u32* pHold, u32* pTrigger) {
-        OSTime startTime = OSGetTime();
-        OSTime elapsed;
-
-        do {
-            elapsed = OSTicksToMilliseconds(OSGetTime() - startTime);
-        } while (elapsed < 50);
-
-        *pHold = 0;
-        *pTrigger = 0;
-
-        MR::getPadDataForExceptionNoInit(WPAD_CHAN0, pHold, pTrigger);
-        MR::getPadDataForExceptionNoInit(WPAD_CHAN1, pHold, pTrigger);
-        MR::getPadDataForExceptionNoInit(WPAD_CHAN2, pHold, pTrigger);
-        MR::getPadDataForExceptionNoInit(WPAD_CHAN3, pHold, pTrigger);
-    }
-
+    void readPad(u32*, u32*);
     void printContext(OSError, OSContext*, u32, u32);
     static void waitTime(s32);
     void createFB();
