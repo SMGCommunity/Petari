@@ -13,16 +13,20 @@ void* GameSystemException::sMapFileUsingBuffer;
 
 namespace {
     bool isBootWPAD() {
-        bool ret = false;
-        GameSystemObjHolder* objHolder = SingletonHolder< GameSystem >::get()->mObjHolder;
-        if (objHolder != nullptr && objHolder->mWPadHolder != nullptr) {
-            ret = true;
-        }
+        GameSystemObjHolder* pObjHolder = SingletonHolder< GameSystem >::get()->mObjHolder;
 
-        return ret;
+        return pObjHolder != nullptr && pObjHolder->mWPadHolder != nullptr;
     }
 
-    const s32 cDispExceptionCommand[] = {8, 4, 1, 2, 0x100, 0x10, 0, 0};
+    const u32 cDispExceptionCommand[] = {
+        0x0008, // +Control Pad ↑
+        0x0004, // +Control Pad ↓
+        0x0001, // +Control Pad ←
+        0x0002, // +Control Pad →
+        0x0100, // A Button
+        0x0010, // 1 Button + 2 Button
+        0x0000,
+    };
 };  // namespace
 
 void GameSystemException::init() {
@@ -49,8 +53,8 @@ void GameSystemException::init() {
     GameSystemException::sMapFileUsingBuffer = new u8[0x10];
 }
 
-void GameSystemException::handleException(u16 a1, OSContext* pContext, u32 a3, u32 a4) {
-    if (!JUTVideo::sManager) {
+void GameSystemException::handleException(OSError error, OSContext* pContext, u32 dsisr, u32 dar) {
+    if (JUTVideo::sManager == nullptr) {
         JUTException::sConsole->mOutput = 2;
         JUTException::sConsole->mVisible = false;
         JUTAssertion::setVisible(false);
@@ -60,32 +64,34 @@ void GameSystemException::handleException(u16 a1, OSContext* pContext, u32 a3, u
     JUTAssertion::flushMessage();
 
     if (::isBootWPAD()) {
-        for (u32 i = 0; i < MR::getWPadMaxCount(); i++) {
-            WPADControlMotor(i, 0);
+        for (s32 chan = WPAD_CHAN0; chan < WPAD_CHAN0 + MR::getWPadMaxCount(); chan++) {
+            WPADControlMotor(chan, WPAD_MOTOR_STOP);
         }
 
         JUTException* exception = JUTException::sErrorManager;
-        JUTException::sErrorManager->_84 = -1;
+        exception->_84 = -1;
         exception->mGamePadPort = JUTGamePad::Port_Unknown;
     }
 
-    AIRegisterDMACallback(0);
+    AIRegisterDMACallback(nullptr);
 
     if (::isBootWPAD()) {
-        s32 v3 = 0;
-        u32 v6 = 0;
-        u32 v5 = 0;
-        s32 v4;
-        while (cDispExceptionCommand[v3]) {
-            JUTException::waitTime(100);
-            JUTException::sErrorManager->readPad(&v6, &v5);
+        s32 padCommandSuccessCounter = 0;
+        u32 padCommandHold = 0;
+        u32 padCommandTrigger = 0;
 
-            if (v6 != 0) {
-                if ((cDispExceptionCommand[v3] & v6) == cDispExceptionCommand[v3]) {
-                    v3++;
-                } else {
-                    v3 = 0;
-                }
+        while (cDispExceptionCommand[padCommandSuccessCounter]) {
+            JUTException::waitTime(100);
+            JUTException::sErrorManager->readPad(&padCommandHold, &padCommandTrigger);
+
+            if (padCommandHold == 0) {
+                continue;
+            }
+
+            if ((cDispExceptionCommand[padCommandSuccessCounter] & padCommandHold) == cDispExceptionCommand[padCommandSuccessCounter]) {
+                padCommandSuccessCounter++;
+            } else {
+                padCommandSuccessCounter = 0;
             }
         }
     }
