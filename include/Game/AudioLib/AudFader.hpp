@@ -1,13 +1,12 @@
 #pragma once
 
-class AudFader
-{
-    public:
-        AudFader();
-        void set(float floatVar, long longVar);
-        void update();
+class AudFader {
+public:
+    AudFader();
+    void set(float desiredVolume, long fadeTime);
+    void update();
 
-        float mFloatVar;
-        float mFloatVar2;
-        float mFloatVar3;
+    float mCurrentVolume;
+    float mFinalVolume;
+    float mStepVolume;
 };

@@ -1,33 +1,33 @@
 #include "Game/AudioLib/AudFader.hpp"
 
-AudFader::AudFader() : mFloatVar(1.f), mFloatVar2(1.f), mFloatVar3(0.f) {}
+AudFader::AudFader() : mCurrentVolume(1.f), mFinalVolume(1.f), mStepVolume(0.f) {}
 
-void AudFader::set(float floatVar, long longVar) {
-    if (longVar == 0) {
-        mFloatVar = floatVar;
-        mFloatVar3 = 0.f;
+void AudFader::set(float desiredVolume, long fadeTime) {
+    if (fadeTime == 0) {
+        mCurrentVolume = desiredVolume;
+        mStepVolume = 0.f;
     } else {
-        mFloatVar3 = (floatVar - mFloatVar) / (float)(longVar);
+        mStepVolume = (desiredVolume - mCurrentVolume) / (float)(fadeTime);
     }
-    mFloatVar2 = floatVar;
+    mFinalVolume = desiredVolume;
 }
 
 void AudFader::update() {
-    if (mFloatVar3 == 0.0f) {
+    if (mStepVolume == 0.0f) {
         return;
     }
 
-    mFloatVar += mFloatVar3;
+    mCurrentVolume += mStepVolume;
 
-    if (mFloatVar3 > 0.0f) {
-        if (mFloatVar >= mFloatVar2) {
-            mFloatVar = mFloatVar2;
-            mFloatVar3 = 0.0f;
+    if (mStepVolume > 0.0f) {
+        if (mCurrentVolume >= mFinalVolume) {
+            mCurrentVolume = mFinalVolume;
+            mStepVolume = 0.0f;
         }
     } else {
-        if (mFloatVar <= mFloatVar2) {
-            mFloatVar = mFloatVar2;
-            mFloatVar3 = 0.f;
+        if (mCurrentVolume <= mFinalVolume) {
+            mCurrentVolume = mFinalVolume;
+            mStepVolume = 0.f;
         }
     }
 }
