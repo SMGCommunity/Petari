@@ -6,13 +6,6 @@
 #include "Game/AudioLib/AudSystem.hpp"
 #include <revolution.h>
 
-// temp
-class AudBgmMgr {
-public:
-    u8 _0[0x10];
-    u32 _10;
-};
-
 class AudSceneMgr;
 
 class AudWrap {
