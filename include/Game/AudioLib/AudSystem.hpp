@@ -10,6 +10,7 @@ class AudEffector;
 class AudMeObject;
 class AudRemixMgr;
 class AudRhythmMeSystem;
+class AudSceneMgr;
 class AudSeStrategyMgr;
 class AudSoundObjHolder;
 class AudSoundObject;
@@ -74,6 +75,8 @@ public:
     inline AudEffector* getAudEffector() const { return mAudEffector; }
     inline void setVar(u32 var) { _830 = var; }
 
+    static AudSystem* msBasic;
+
     /* 0x0814 */ u8 _814;
     /* 0x0815 */ u8 _815;
     /* 0x0816 */ u8 _816;
@@ -88,10 +91,10 @@ public:
     /* 0x0838 */ u32 _838;
     /* 0x083C */ u32 _83C;
     /* 0x0840 */ u8 _840[0x1AC];
-    /* 0x09EC */ AudSoundObject* _9EC;
-    /* 0x09F0 */ AudSoundObject* _9F0;
-    /* 0x09F4 */ AudMeObject* _9F4;
-    /* 0x09F8 */ u32 _9F8;
+    /* 0x09EC */ AudSoundObject* mSystemSeObject;
+    /* 0x09F0 */ AudSoundObject* mAtmosphereSeObject;
+    /* 0x09F4 */ AudMeObject* mSystemMeObject;
+    /* 0x09F8 */ AudSceneMgr* mSceneMgr;
     /* 0x09FC */ AudBgmMgr mBgmMgr;
     /* 0x12FC */ AudSoundObjHolder* mSoundObjHolder;
     /* 0x1300 */ AudRhythmMeSystem* mRhythmMeSystem;
