@@ -185,7 +185,7 @@ void BossKameckStateBattle::exeWait() {
         MR::startAction(mBossKameck, "Wait");
     }
 
-    MR::attenuateVelocity(mBossKameck, 0.95999998f);
+    MR::attenuateVelocity(mBossKameck, 0.96f);
 
     if (MR::isGreaterStep(this, 60)) {
         startMove();
@@ -214,9 +214,9 @@ void BossKameckStateBattle::exeMove() {
     }
 
     MR::turnDirectionToPlayerDegree(mBossKameck, &mBossKameck->_A0, 6.0f);
-    MR::addVelocityMoveToTarget(mBossKameck, _20, 0.089999996f, 0.89999998f, 0.0f, 400.0f);
+    MR::addVelocityMoveToTarget(mBossKameck, _20, 0.09f, 0.9f, 0.0f, 400.0f);
     MR::addVelocityKeepHeight(mBossKameck, _20, 0.0f, 0.5f, 50.0f);
-    MR::attenuateVelocity(mBossKameck, 0.95999998f);
+    MR::attenuateVelocity(mBossKameck, 0.96f);
     tryAttackWait();
 }
 
@@ -255,7 +255,7 @@ void BossKameckStateBattle::exeHideMove() {
 
     MR::addVelocityMoveToTarget(mBossKameck, _20, (0.1f * v2), v2, 0.0f, 400.0f);
     MR::addVelocityKeepHeight(mBossKameck, _20, 0.0f, 0.5f, 50.0f);
-    MR::attenuateVelocity(mBossKameck, 0.89999998f);
+    MR::attenuateVelocity(mBossKameck, 0.9f);
     MR::turnDirectionToPlayerDegree(mBossKameck, &mBossKameck->_A0, 6.0f);
 
     if (MR::isNear(mBossKameck, _20, 100.0f)) {
@@ -328,9 +328,9 @@ void BossKameckStateBattle::exeAttackWait() {
 
     MR::startLevelSound(mBossKameck, "SE_BM_LV_KAMECK_STAFF_TURN", -1, -1, -1);
     MR::turnDirectionToPlayerDegree(mBossKameck, &mBossKameck->_A0, 6.0f);
-    MR::addVelocityMoveToTarget(mBossKameck, _20, 0.089999996f, 0.89999998f, 0.0f, 400.0f);
+    MR::addVelocityMoveToTarget(mBossKameck, _20, 0.09f, 0.9f, 0.0f, 400.0f);
     MR::addVelocityKeepHeight(mBossKameck, _20, 0.0f, 0.2f, 50.0f);
-    MR::attenuateVelocity(mBossKameck, 0.89999998f);
+    MR::attenuateVelocity(mBossKameck, 0.9f);
 
     if (MR::isGreaterStep(this, 60)) {
         setNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvAttack::sInstance);
@@ -354,7 +354,7 @@ void BossKameckStateBattle::exeAttack() {
         MR::startSound(mBossKameck, "SE_BM_KAMECK_STAFF_EFFECT", -1, -1);
     }
 
-    MR::attenuateVelocity(mBossKameck, 0.95999998f);
+    MR::attenuateVelocity(mBossKameck, 0.96f);
 
     if (MR::isGreaterStep(this, 30)) {
         setNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvWait::sInstance);
@@ -390,9 +390,9 @@ void BossKameckStateBattle::exeRecover() {
 
     if (MR::isGreaterStep(this, 60)) {
         MR::turnDirectionToPlayerDegree(mBossKameck, &mBossKameck->_A0, 6.0f);
-        MR::addVelocityMoveToTarget(mBossKameck, _20, 0.089999996f, 0.89999998f, 0.0f, 400.0f);
+        MR::addVelocityMoveToTarget(mBossKameck, _20, 0.09f, 0.9f, 0.0f, 400.0f);
         MR::addVelocityKeepHeight(mBossKameck, _20, 0.0f, 0.5f, 50.0f);
-        MR::attenuateVelocity(mBossKameck, 0.95999998f);
+        MR::attenuateVelocity(mBossKameck, 0.96f);
     }
 
     if (MR::isGreaterStep(this, 60)) {
@@ -406,10 +406,10 @@ void BossKameckStateBattle::exeRecover() {
 void BossKameckStateBattle::exeGuard() {
     if (MR::isFirstStep(this)) {
         MR::startAction(mBossKameck, "Guard");
-        MR::turnDirectionToTarget(mBossKameck, &mBossKameck->_A0, *MR::getPlayerPos(), 0.30000001f);
+        MR::turnDirectionToTarget(mBossKameck, &mBossKameck->_A0, *MR::getPlayerPos(), 0.3f);
     }
 
-    MR::attenuateVelocity(mBossKameck, 0.95999998f);
+    MR::attenuateVelocity(mBossKameck, 0.96f);
 
     if (MR::isActionEnd(mBossKameck)) {
         startMove();

@@ -4,7 +4,9 @@ namespace nw4r {
     namespace ut {
 
         namespace {
-            inline bool IsSJISLeadByte(u8 c) { return ((0x81 <= c) && (c < 0xA0)) || (0xE0 <= c); }
+            inline bool IsSJISLeadByte(u8 c) {
+                return ((0x81 <= c) && (c < 0xA0)) || (0xE0 <= c);
+            }
         };  // namespace
 
         u16 CharStrmReader::ReadNextCharUTF8() {
@@ -49,4 +51,4 @@ namespace nw4r {
             return code;
         }
     };  // namespace ut
-};      // namespace nw4r
+};  // namespace nw4r

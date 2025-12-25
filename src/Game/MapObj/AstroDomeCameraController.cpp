@@ -86,15 +86,14 @@ void AstroDomeCameraController::calcZoomOutPos(TVec3f* v1) const {
     SphereSelectorFunction::calcOffsetPos(v1, gZeroVec, TVec3f(0.0f, 0.0f, -22000.0f), _8C.negateInline(), TVec3f(0.0f, 1.0f, 0.0f));
 }
 
-void AstroDomeCameraController::calcZoomInPos(TVec3f *v1, const TVec3f &v2) const {
+void AstroDomeCameraController::calcZoomInPos(TVec3f* v1, const TVec3f& v2) const {
     TVec3f zoomOutPos;
     calcZoomOutPos(&zoomOutPos);
-    TVec3f *trans = &SphereSelectorFunction::getSelectedActorTrans();
+    TVec3f* trans = &SphereSelectorFunction::getSelectedActorTrans();
     TVec3f x;
     JMathInlineVEC::PSVECSubtract2(trans, &zoomOutPos, &x);
     SphereSelectorFunction::calcOffsetPos(v1, SphereSelectorFunction::getSelectedActorTrans(), cZoomInPos, x, v2);
 }
-
 
 void AstroDomeCameraController::calcZoomInTarget(TVec3f* vec1, const TVec3f& vec2) const {
     TVec3f stack;
@@ -108,7 +107,7 @@ void AstroDomeCameraController::calcZoomInUp(TVec3f* vec) const {
     f32 v3 = pos[2][1];
     f32 v2 = pos[1][1];
     f32 v1 = pos[0][1];
-    vec->set<f32>(v1, v2 ,v3);
+    vec->set< f32 >(v1, v2, v3);
 }
 
 void AstroDomeCameraController::exeGalaxySelectStart() {

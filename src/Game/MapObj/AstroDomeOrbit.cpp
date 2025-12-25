@@ -1,24 +1,23 @@
 #include "Game/MapObj/AstroDomeOrbit.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
+#include "Game/Map/SphereSelector.hpp"
 #include "Game/MapObj/MiniatureGalaxyHolder.hpp"
 #include "Game/Util/Color.hpp"
 #include "Game/Util/Functor.hpp"
 #include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
-#include "Game/Map/SphereSelector.hpp"
 #include "JSystem/JGeometry/TMatrix.hpp"
 #include "revolution/gx/GXEnum.h"
 #include "revolution/gx/GXGeometry.h"
 #include "revolution/gx/GXVert.h"
 
-
 namespace {
-    static f32 cRotateOutermost[3] = {20.0f, 45.0f, 0.0f};
+    static f32 cRotateOutermost[] = {20.0f, 45.0f, 0.0f};
 
-    static f32 cRadius[5] = {4000.0f, 6200.0f, 8100.0f, 10300.0f, 12000.0f};
+    static f32 cRadius[] = {4000.0f, 6200.0f, 8100.0f, 10300.0f, 12000.0f};
 
-    static f32 cRadiusLastDome[4] = {4000.0f, 6700.0f, 9100.0f, 11800.0f};
+    static f32 cRadiusLastDome[] = {4000.0f, 6700.0f, 9100.0f, 11800.0f};
 
     static Color8 cColor(0x13, 0xB1, 0xFF, 0xFF);
     static Color8 cBloomColor(0, 0xB4, 0x64, 0xFF);
@@ -78,7 +77,7 @@ void AstroDomeOrbit::setup(s32 radiusIdx) {
 }
 
 void AstroDomeOrbit::moveCoord() {
-    _90 = calcRepeatedRotateCoord(-0.050000001f + _90);
+    _90 = calcRepeatedRotateCoord(-0.05f + _90);
 }
 
 void AstroDomeOrbit::calcGalaxyPos(TVec3f* pPos) const {

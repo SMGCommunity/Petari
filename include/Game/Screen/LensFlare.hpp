@@ -16,18 +16,21 @@ public:
 
     virtual void appear();
     virtual void control();
-    virtual void appearAnim();
-    virtual void controlAnim();
+    virtual void appearAnim() {}
+    virtual void controlAnim() {}
 
     void update(bool, bool);
+    void exeKill();
     void exeHide();
     void exeShow();
     void exeFadeIn();
     void exeFadeOut();
     void notifyInArea();
 
-private:
-    /* 0x8C */ TVec3f _8C;
+protected:
+    /* 0x8C */ f32 _8C;
+    /* 0x90 */ f32 _90;
+    /* 0x94 */ f32 _94;
     /* 0x98 */ TriggerChecker* _98;
     /* 0x9C */ TriggerChecker* _9C;
 };
@@ -39,6 +42,8 @@ public:
 
     virtual void appearAnim();
     virtual void controlAnim();
+
+    /* 0xA0 */ f32 _A0;
 };
 
 class LensFlareGlow : public LensFlareModel {
@@ -77,7 +82,6 @@ public:
     bool checkBrightObj(bool);
     void controlFlare(s32, bool);
 
-private:
     /* 0x0C */ void* _C;
     /* 0x10 */ LensFlareRing* mRing;
     /* 0x14 */ LensFlareGlow* mGlow;

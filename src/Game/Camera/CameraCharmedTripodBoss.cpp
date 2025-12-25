@@ -48,14 +48,14 @@ CameraTargetObj* CameraCharmedTripodBoss::calc() {
     v27.concat(v28, v29);
     CameraTargetObj* v7 = CameraLocalUtil::getTarget(this);
     TVec3f v22 = *v7->getPosition();
-    if (MR::isNearZero(v22, 0.001f)) {
+    if (MR::isNearZero(v22)) {
         return v2;
     }
 
     MR::normalize(&v22);
     TVec3f v21;
     PSVECCrossProduct(&v24, &v22, &v21);
-    if (!MR::isNearZero(v22, 0.001f)) {
+    if (!MR::isNearZero(v22)) {
         MR::normalize(&v21);
         PSVECCrossProduct(&v22, &v21, &v24);
         MR::normalize(&v22);

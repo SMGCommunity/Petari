@@ -81,7 +81,7 @@ void FountainBig::exeSpout() {
         mScale.y = calcNerve;
         mScale.x = 1.0f;
         mScale.z = 1.0f;
-        MR::clamp(calcNerve, 0.0099999998f, 1.0f);
+        MR::clamp(calcNerve, 0.01f, 1.0f);
     }
     MR::startLevelSound(this, "SE_OJ_LV_FOUNTAIN_BIG_SPOUT", -1, -1, -1);
     if (MR::isStep(this, 180)) {
@@ -96,7 +96,7 @@ void FountainBig::exeSpoutEnd() {
     mScale.x = 1.0f;
     mScale.z = 1.0f;
     mScale.y = calcNerve;
-    MR::clamp(calcNerve, 0.0099999998f, 1.0f);
+    MR::clamp(calcNerve, 0.01f, 1.0f);
     if (MR::isStep(this, 10)) {
         MR::hideModel(this);
         setNerve(&NrvFountainBig::FountainBigNrvWait::sInstance);

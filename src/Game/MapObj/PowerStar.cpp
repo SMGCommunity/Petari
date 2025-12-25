@@ -7,11 +7,14 @@
 #include "Game/NameObj/NameObjArchiveListCollector.hpp"
 #include "math_types.hpp"
 
-const GXColor lightColor[5] = {
+const GXColor lightColor[] = {
     {0x96, 0x96, 0x32, 0}, {0x32, 0x32, 0x96, 0}, {0x32, 0x96, 0x32, 0}, {0x96, 0x32, 0x32, 0}, {0x64, 0x64, 0x64, 0},
 };
 
 namespace {
+    const char* cAppearDemoName = "パワースター出現";
+    const char* cStageClearAnimNameKoopaVs3 = "GrandStarGetKoopaVs3";
+
     void setupColor(LiveActor* pActor, bool useFrame, int frame) {
         MR::startBtp(pActor, "PowerStar");
         MR::setBtpFrameAndStop(pActor, useFrame ? 0.0f : frame);
@@ -458,7 +461,7 @@ void PowerStar::initPosture() {
         TVec3f negGravity;
         negGravity.negateInline_2(mGravity);
 
-        if (!MR::isSameDirection(negGravity, stack_14, 0.0099999998f)) {
+        if (!MR::isSameDirection(negGravity, stack_14, 0.01f)) {
             MR::makeMtxUpFront(&_B8, negGravity, stack_14);
         }
         else {

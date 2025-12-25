@@ -55,7 +55,3 @@ public:
     Identifier** mIdentiferArray;  // 0xC
     int mCount;                    // 0x10
 };
-
-namespace {
-    CreationFuncPtr getCreator(const PlacementInfoOrdered::Identifier&);
-};

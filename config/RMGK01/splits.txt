@@ -25,6 +25,7 @@ nw4r/ut/ut_CharStrmReader.cpp:
 nw4r/ut/ut_TagProcessorBase.cpp:
 	.text       start:0x8000734C end:0x80007A1C
 	.data       start:0x80563420 end:0x80563448
+	.sdata2     start:0x806B7C20 end:0x806B7C28
 
 nw4r/ut/ut_Font.cpp:
 	.text       start:0x80007A1C end:0x80007AC4
@@ -40,7 +41,7 @@ nw4r/ut/ut_ResFontBase.cpp:
 
 nw4r/ut/ut_ResFont.cpp:
 	.text       start:0x80008170 end:0x80008478
-	.data       start:0x80563540 end:0x805635E8
+	.data       start:0x80563540 end:0x805635A0
 
 nw4r/ut/ut_CharWriter.cpp:
 	.text       start:0x80008478 end:0x80009D40
@@ -60,7 +61,7 @@ nw4r/db/db_console.cpp:
 
 nw4r/db/db_assert.cpp:
 	.text       start:0x8000B8C4 end:0x8000BBA0
-	.data       start:0x805635E8 end:0x80564678
+	.data       start:0x805635A0 end:0x80564678
 	.sdata      start:0x806B1620 end:0x806B1628
 	.sbss       start:0x806B2E78 end:0x806B2E80
 
@@ -150,12 +151,6 @@ nw4r/lyt/lyt_common.cpp:
 	.bss        start:0x8060A3F8 end:0x8060A418
 	.sbss       start:0x806B2EB0 end:0x806B2EB8
 	.sdata2     start:0x806B7D28 end:0x806B7D30
-
-RVL_SDK/os/init/__start.c:
-	.init       start:0x80004000 end:0x800042E0
-
-RVL_SDK/os/init/__ppc_eabi_init.cpp:
-	.init       start:0x800042E0 end:0x80004338
 
 Game/Animation/AnmPlayer.cpp:
 	.text       start:0x800161D0 end:0x800178C8
@@ -3386,7 +3381,7 @@ Game/LiveActor/HitSensorKeeper.cpp:
 Game/LiveActor/IKJointCtrl.cpp:
 	.text       start:0x8016492C end:0x80165674
 	.data       start:0x80587BD0 end:0x80587CA8
-	.sdata      start:0x806B1B68 end:0x806B1BA8
+	.sdata      start:0x806B1B68 end:0x806B1B70
 	.sdata2     start:0x806BBC68 end:0x806BBC78
 
 Game/LiveActor/LiveActor.cpp:
@@ -3408,6 +3403,7 @@ Game/LiveActor/LiveActorGroupArray.cpp:
 Game/LiveActor/LodCtrl.cpp:
 	.text       start:0x80166C70 end:0x80167868
 	.data       start:0x80587DA0 end:0x80587DF0
+	.sdata      start:0x806B1B70 end:0x806B1B78
 	.sdata2     start:0x806BBC88 end:0x806BBC98
 
 Game/LiveActor/MaterialCtrl.cpp:
@@ -3453,15 +3449,18 @@ Game/LiveActor/PartsModel.cpp:
 
 Game/LiveActor/RailRider.cpp:
 	.text       start:0x8016AA38 end:0x8016B5A4
+	.sdata      start:0x806B1B78 end:0x806B1B80
 	.sdata2     start:0x806BBCD8 end:0x806BBCF0
 
 Game/LiveActor/SensorHitChecker.cpp:
 	.text       start:0x8016B5A4 end:0x8016BDE8
 	.data       start:0x80588190 end:0x805881D8
+	.sdata      start:0x806B1B80 end:0x806B1B88
 
 Game/LiveActor/ShadowController.cpp:
 	.text       start:0x8016BDE8 end:0x8016CD3C
 	.data       start:0x805881D8 end:0x80588240
+	.sdata      start:0x806B1B88 end:0x806B1B90
 	.sdata2     start:0x806BBCF0 end:0x806BBD08
 
 Game/LiveActor/ShadowDrawer.cpp:
@@ -3567,6 +3566,7 @@ Game/Map/Air.cpp:
 Game/Map/BezierRail.cpp:
 	.text       start:0x80171690 end:0x80172820
 	.data       start:0x80588B10 end:0x80588B20
+	.sdata      start:0x806B1B90 end:0x806B1B98
 	.sdata2     start:0x806BBDC0 end:0x806BBDF8
 
 Game/Map/Butterfly.cpp:
@@ -3579,15 +3579,17 @@ Game/Map/Butterfly.cpp:
 
 Game/Map/CollisionCategorizedKeeper.cpp:
 	.text       start:0x80173B6C end:0x801750F8
-	.data       start:0x80588C80 end:0x80588ED8
+	.data       start:0x80588C80 end:0x80588CA8
 	.sdata2     start:0x806BBE58 end:0x806BBE68
 
 Game/Map/CollisionCode.cpp:
 	.text       start:0x801750F8 end:0x80175B98
+	.data       start:0x80588CA8 end:0x80588EC8
+	.sdata      start:0x806B1B98 end:0x806B1BA8
 
 Game/Map/CollisionDirector.cpp:
 	.text       start:0x80175B98 end:0x80175D4C
-	.data       start:0x80588ED8 end:0x80588F00
+	.data       start:0x80588EC8 end:0x80588F00
 
 Game/Map/CollisionParts.cpp:
 	.text       start:0x80175D4C end:0x80177614
@@ -9450,18 +9452,19 @@ JSystem/JUtility/JUTFont.cpp:
 JSystem/JUtility/JUTException.cpp:
 	.text       start:0x804187C4 end:0x8041A0BC
 	.ctors      start:0x8052F3E4 end:0x8052F3E8
-	.data       start:0x805E7E48 end:0x805E8420
-	.bss        start:0x8060D078 end:0x8060D4F0
+	.data       start:0x805E7E48 end:0x805E83A0
+	.bss        start:0x8060D078 end:0x8060D3B0
 	.sbss       start:0x806B71E8 end:0x806B7210
 	.sdata2     start:0x806C1A10 end:0x806C1A20
 
 JSystem/JUtility/JUTDirectPrint.cpp:
 	.text       start:0x8041A0BC end:0x8041A7A4
-	.data       start:0x805E8420 end:0x805E8668
+	.data       start:0x805E83A0 end:0x805E8668
 	.sbss       start:0x806B7210 end:0x806B7218
 
 JSystem/JUtility/JUTAssert.cpp:
 	.text       start:0x8041A7A4 end:0x8041AA7C
+	.bss        start:0x8060D3B0 end:0x8060D4F0
 	.sdata      start:0x806B2718 end:0x806B2740
 	.sbss       start:0x806B7218 end:0x806B7220
 	.sdata2     start:0x806C1A20 end:0x806C1A30
@@ -9761,14 +9764,15 @@ RVL_SDK/gd/GDTexture.c:
 	.sdata      start:0x806B2780 end:0x806B2788
 	.sdata2     start:0x806C1C98 end:0x806C1CA0
 
+RVL_SDK/gd/GDTransform.c:
+	.text       start:0x8044F838 end:0x8044FC10
+
 RVL_SDK/kpad/KPAD.c:
+	.text       start:0x8044FC10 end:0x80452EDC
 	.data       start:0x805EA578 end:0x805EA5D0
 	.sdata      start:0x806B2788 end:0x806B27F8
 	.sbss       start:0x806B72C8 end:0x806B72E0
 	.sdata2     start:0x806C1CA0 end:0x806C1D08
-
-RVL_SDK/gd/GDTransform.c:
-	.text       start:0x8044F838 end:0x80452EDC
 
 RVL_SDK/thp/THPDec.c:
 	.text       start:0x80452EDC end:0x804562AC
@@ -10698,11 +10702,12 @@ RVL_SDK/vi/vi3in1.c:
 	.text       start:0x804B6C9C end:0x804B8360
 	.data       start:0x805FD7B8 end:0x805FDD60
 	.bss        start:0x80666360 end:0x80666A00
-	.sdata      start:0x806B2AE0 end:0x806B2B00
+	.sdata      start:0x806B2AE0 end:0x806B2AF8
 	.sbss       start:0x806B7858 end:0x806B7870
 
 RVL_SDK/mtx/mtx.c:
 	.text       start:0x804B8360 end:0x804B8CC0
+	.sdata      start:0x806B2AF8 end:0x806B2B00
 	.sdata2     start:0x806C20E8 end:0x806C2108
 
 RVL_SDK/mtx/mtxvec.c:
@@ -11308,6 +11313,12 @@ RVL_SDK/bte/sdp_server.c:
 RVL_SDK/bte/sdp_utils.c:
 	.text       start:0x80517310 end:0x80518350
 	.data       start:0x80609630 end:0x80609868
+
+RVL_SDK/os/init/__start.c:
+	.init       start:0x80004000 end:0x800042E0
+
+RVL_SDK/os/init/__ppc_eabi_init.cpp:
+	.init       start:0x800042E0 end:0x80004338
 
 Runtime/__mem.c:
 	.init       start:0x80004338 end:0x8000446C

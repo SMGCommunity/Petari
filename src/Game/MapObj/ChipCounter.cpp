@@ -7,9 +7,8 @@ namespace NrvChipCounter {
 };
 
 namespace {
-    static s32 sChipPainCount = 0x5;
-
-    static const char* sChipPainName[5] = {"Chip1", "Chip2", "Chip3", "Chip4", "Chip5"};
+    static const char* sChipPainName[] = {"Chip1", "Chip2", "Chip3", "Chip4", "Chip5"};
+    static s32 sChipPainCount = sizeof(sChipPainName) / sizeof(*sChipPainName);
 };  // namespace
 
 ChipCounter::ChipCounter(const char* pName, s32 type) : LayoutActor(pName, true) {
@@ -48,13 +47,13 @@ void ChipCounter::init(const JMapInfoIter& rIter) {
 
 void ChipCounter::control() {
     if (MR::isActiveTalkBalloonShort()) {
-        _30 -= 0.050000001f;
+        _30 -= 0.05f;
 
         if (_30 < 0.0f) {
             _30 = 0.0f;
         }
     } else {
-        _30 += 0.050000001f;
+        _30 += 0.05f;
 
         if (_30 > 1.0f) {
             _30 = 1.0f;

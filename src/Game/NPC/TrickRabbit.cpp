@@ -937,7 +937,7 @@ void TrickRabbit::addMovingAccel(const TVec3f& rVec, f32 f) {
     JMAVECScaleAdd(&stack_20, &rVec, &stack_14, -dot);
     MR::separateScalarAndDirection(&_D0, &stack_14, stack_14);
 
-    if (!MR::isNearZero(stack_14, 0.001f))
+    if (!MR::isNearZero(stack_14))
         MR::turnVecToVecCos(&_9C, _9C, stack_14, 0.98f, stack_20, 0.02f);
 
     TVec3f stack_8(_9C * f);

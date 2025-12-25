@@ -1,6 +1,6 @@
+#include "Game/Screen/GameStageClearSequence.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/PowerStar.hpp"
-#include "Game/Screen/GameStageClearSequence.hpp"
 #include "Game/Screen/SimpleLayout.hpp"
 #include "Game/Util/EventUtil.hpp"
 #include "Game/Util/LayoutUtil.hpp"
@@ -29,7 +29,8 @@ namespace NrvGameStageClearSequence {
     NEW_NERVE(GameStageClearSequenceGrandStarGetDemo, GameStageClearSequence, GrandStarGetDemo);
 };  // namespace NrvGameStageClearSequence
 
-GameStageClearSequence::GameStageClearSequence() : LayoutActor("ステージクリアシーケンス", true), mEffectLayout(nullptr), mEffectFollowPos(0.0f, 0.0f) {}
+GameStageClearSequence::GameStageClearSequence()
+    : LayoutActor("ステージクリアシーケンス", true), mEffectLayout(nullptr), mEffectFollowPos(0.0f, 0.0f) {}
 
 void GameStageClearSequence::init(const JMapInfoIter& rIter) {
     mEffectLayout = new SimpleEffectLayout("スター取得", "GetStar", 1, -1);

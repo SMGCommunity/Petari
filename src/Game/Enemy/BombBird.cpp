@@ -132,7 +132,7 @@ void BombBird::exeEscape() {
     MR::vecKillElement(v6, mGravity, &v6);
     MR::normalizeOrZero(&v6);
 
-    if (!MR::isNearZero(v6, 0.001f)) {
+    if (!MR::isNearZero(v6)) {
         MR::moveAndTurnToDirection(this, &_9C, v6, 0.3f, 1.0f, 0.959f, 4.4836625f);
     }
 

@@ -66,7 +66,7 @@ public:
 
     JSUList(bool thing) : JSUPtrList(thing) {}
 
-    ~JSUList(){
+    ~JSUList() {
 
     };
 

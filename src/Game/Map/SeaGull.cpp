@@ -58,7 +58,7 @@ void SeaGull::init(const JMapInfoIter& rIter) {
     _AC.set(stack_14);
     _AC.add(stack_8);
 
-    if (MR::isNearZero(_AC, 0.001f)) {
+    if (MR::isNearZero(_AC)) {
         _AC.x = 0.0f;
         _AC.y = 0.0f;
         _AC.z = 1.0f;
@@ -127,9 +127,9 @@ void SeaGull::exeHoverRight() {
 void SeaGull::control() {
     updateHover();
 
-    mVelocity.x *= 0.99000001f;
-    mVelocity.y *= 0.99000001f;
-    mVelocity.z *= 0.99000001f;
+    mVelocity.x *= 0.99f;
+    mVelocity.y *= 0.99f;
+    mVelocity.z *= 0.99f;
 
     f32 mag = PSVECMag((const Vec*)&mVelocity);
 

@@ -134,8 +134,8 @@ void CameraParamChunk::load(DotCamReader* pReader, CameraHolder* pHolder) {
     pReader->getValueInt("vpanuse", &mExParam.mVPanUse);
     pReader->getValueVec("vpanaxis", &mExParam.mVPanAxis);
 
-    static const char* sFlagNames[6] = {"flag.noreset",     "flag.nofovy",       "flag.lofserpoff",
-                                        "flag.antibluroff", "flag.collisionoff", "flag.subjectiveoff"};
+    static const char* sFlagNames[] = {"flag.noreset",     "flag.nofovy",       "flag.lofserpoff",
+                                       "flag.antibluroff", "flag.collisionoff", "flag.subjectiveoff"};
 
     for (u32 i = 0; i < 6; i++) {
         s32 flag;
@@ -199,7 +199,7 @@ void CameraParamChunk::getVPanAxis(TVec3f* pOut) const {
     pOut->y = mExParam.mVPanAxis.y;
     pOut->z = mExParam.mVPanAxis.z;
 
-    if (MR::isNearZero(*pOut, 0.001f)) {
+    if (MR::isNearZero(*pOut)) {
         pOut->set(0.0f, 1.0f, 0.0f);
     }
 

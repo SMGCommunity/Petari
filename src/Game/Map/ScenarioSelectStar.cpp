@@ -2,7 +2,7 @@
 #include "Game/MapObj/PowerStar.hpp"
 #include "Game/Util.hpp"
 #include "math_types.hpp"
-//#include <JSystem/JMath/JMATrigonometric.hpp>
+// #include <JSystem/JMath/JMATrigonometric.hpp>
 
 namespace NrvScenarioSelectStar {
     NEW_NERVE(ScenarioSelectStarNrvAppear, ScenarioSelectStar, Appear);

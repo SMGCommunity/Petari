@@ -3,6 +3,12 @@
 #include "Game/MapObj/StageEffectDataTable.hpp"
 #include "Game/Util.hpp"
 
+namespace {
+    static const char* cSwitchJointName = "Switch";
+    static const char* cMoveJointName = "Move";
+    static const char* cMoveAnimName = "Move";
+};  // namespace
+
 HipDropDemoMoveObj::~HipDropDemoMoveObj() {}
 
 HipDropMoveObj::HipDropMoveObj(const char* pName) : LiveActor(pName) {

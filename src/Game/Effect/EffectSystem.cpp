@@ -57,5 +57,7 @@ void EffectSystem::createSingleEmitter(SingleEmitter* pSingleEmitter, MultiEmitt
 }
 
 namespace MR {
-    EffectSystem* getEffectSystem() { return getSceneObj< EffectSystem >(SceneObj_EffectSystem); }
+    EffectSystem* getEffectSystem() {
+        return getSceneObj< EffectSystem >(SceneObj_EffectSystem);
+    }
 };  // namespace MR

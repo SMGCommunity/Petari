@@ -1,13 +1,9 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/LiveActor/ModelObj.hpp"
-#include "Game/MapObj/DummyDisplayModel.hpp"
 
-namespace {
-    Vec cHitSensorOffsetCage;
-    Vec cHitSensorOffsetFixation;
-};  // namespace
+class DummyDisplayModel;
+class ModelObj;
 
 class BreakableCage : public LiveActor {
 public:

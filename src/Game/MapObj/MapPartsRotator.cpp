@@ -33,7 +33,7 @@ void MapPartsRotator::init(const JMapInfoIter& rIter) {
     MR::getMapPartsArgRotateType(&mRotateType, rIter);
     MR::getMapPartsArgSignMotionType(&mSignMotionType, rIter);
 
-    if (MR::isNearZero(_18, 0.001f)) {
+    if (MR::isNearZero(_18)) {
         initNerve(&NrvMapPartsRotator::HostTypeNeverMove::sInstance);
     } else {
         initNerve(&NrvMapPartsRotator::HostTypeWait::sInstance);
@@ -108,7 +108,7 @@ void MapPartsRotator::initRotateSpeed(const JMapInfoIter& rIter) {
         _18 = mRotateAngle / rotate_time;
     } else {
         MR::getMapPartsArgRotateSpeed(&mRotateSpeed, rIter);
-        _18 *= 0.0099999998f;
+        _18 *= 0.01f;
     }
 
     if (mRotateAngle < 0.0f) {

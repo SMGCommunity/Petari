@@ -153,15 +153,15 @@ void BossKameck::updatePose() {
     TVec3f stack_44;
     TVec3f* ptr = &stack_44;
 
-    if (!MR::isNearZero(mag, 0.001f)) {
+    if (!MR::isNearZero(mag)) {
         f32 v4 = MR::normalize(mag, 0.0f, 3.0f);
         TVec3f v13(v18);
 
-        
+
         ptr->scaleInline((4.0f * v4) / mag);
         ptr->addInline(v13);
 
-        if (!MR::isNearZero(*ptr, 0.001f)) {
+        if (!MR::isNearZero(*ptr)) {
             MR::normalize(ptr);
         }
         else {
@@ -169,7 +169,7 @@ void BossKameck::updatePose() {
         }
     }
 
-    MR::blendQuatUpFront(&_90, stack_44, _A0, 0.039999999f, 0.2f);
+    MR::blendQuatUpFront(&_90, stack_44, _A0, 0.04f, 0.2f);
 }
 */
 

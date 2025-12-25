@@ -37,11 +37,11 @@ void FindingLuigiEventScheduler::setStateHiding() {
 }
 
 void FindingLuigiEventScheduler::getHidingGalaxyNameAndStarId(const char** pStageName, s32* pStarID) const {
-    char printBuffer[25] = "SpecialStarFindingLuigi1";
+    char printBuffer[] = "SpecialStarFindingLuigi1";
     s32 index = 1;
 
     do {
-        snprintf(printBuffer, 0x19, "SpecialStarFindingLuigi%1d", index);
+        snprintf(printBuffer, sizeof(printBuffer), "SpecialStarFindingLuigi%1d", index);
         if (!GameDataFunction::isOnGameEventFlag(printBuffer)) {
             // found event flag that is not completed
             GameEventFlagAccessor accessor = GameEventFlagTable::makeAccessor(printBuffer);
@@ -107,11 +107,11 @@ s32 FindingLuigiEventScheduler::calcPowerStarIndexLuigiHas() const {
         return 0;
     }
 
-    char printBuffer[25] = "SpecialStarFindingLuigi1";
+    char printBuffer[] = "SpecialStarFindingLuigi1";
     s32 index = 1;
 
     do {
-        snprintf(printBuffer, 0x19, "SpecialStarFindingLuigi%1d", index);
+        snprintf(printBuffer, sizeof(printBuffer), "SpecialStarFindingLuigi%1d", index);
         if (!GameDataFunction::isOnGameEventFlag(printBuffer)) {
             return index;
         }

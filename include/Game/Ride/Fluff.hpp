@@ -8,7 +8,7 @@ class ModelObj;
 class Fluff : public LiveActor {
 public:
     Fluff(const char* pName);
-    
+
     virtual void init(const JMapInfoIter& rIter);
     virtual void initAfterPlacement();
     virtual void calcAndSetBaseMtx();
@@ -16,7 +16,7 @@ public:
     virtual bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
     virtual bool receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
     virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
-    
+
     void exeFreeBloom();
     void exeFreeWaitOnGround();
     void exeFreeWaitAir();
@@ -26,7 +26,7 @@ public:
     void exeRideFlyOnWind();
     void exeRideSpinUp();
     void exeRideSpinUpOnWind();
-    
+
     bool updateRide();
     void updateWind();
     bool trySpinUp(s32 step);

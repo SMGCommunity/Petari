@@ -1,6 +1,13 @@
 #include "Game/MapObj/BreakableCage.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
+#include "Game/LiveActor/ModelObj.hpp"
+#include "Game/MapObj/DummyDisplayModel.hpp"
 #include "Game/MapObj/PowerStar.hpp"
+
+namespace {
+    Vec cHitSensorOffsetCage;
+    Vec cHitSensorOffsetFixation;
+};  // namespace
 
 BreakableCage::BreakableCage(const char* pName) : LiveActor(pName) {
     mBreakModel = nullptr;
@@ -199,7 +206,7 @@ void BreakableCage::initMapToolInfo(const JMapInfoIter& rIter) {
 
     if (mCageType == CAGE_NORMAL) {
         MR::getJMapInfoArg0WithInit(rIter, &mRotationSpeed);
-        mRotationSpeed *= 0.0099999998f;
+        mRotationSpeed *= 0.01f;
     }
 
     if (isTypeCage()) {

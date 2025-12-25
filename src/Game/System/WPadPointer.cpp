@@ -6,7 +6,7 @@
 // arrays are generating a constructor for some reason
 WPadPointer::WPadPointer(const WPad* pPad) {
     mPad = pPad;
-    mPosPlayRadius = 0.029999999f;
+    mPosPlayRadius = 0.03f;
     mPosSensitivity = 0.5f;
     mHoriPlayRadius = 0.0;
     mHoriSensitivity = 1.0f;

@@ -112,7 +112,11 @@ void LuigiLetter::makeArchiveListCommon(NameObjArchiveListCollector* pCollector,
 }
 
 namespace MR {
-    LuigiLetter* createLuigiLetterForTalk() { return new LuigiLetter(true, MR::getLuigiLetterGalaxyNameForNPC()); }
+    LuigiLetter* createLuigiLetterForTalk() {
+        return new LuigiLetter(true, MR::getLuigiLetterGalaxyNameForNPC());
+    }
 
-    LuigiLetter* createLuigiLetterForMenu() { return new LuigiLetter(false, MR::getLuigiLetterGalaxyName()); }
+    LuigiLetter* createLuigiLetterForMenu() {
+        return new LuigiLetter(false, MR::getLuigiLetterGalaxyName());
+    }
 };  // namespace MR

@@ -43,11 +43,17 @@ namespace {
 };  // namespace
 
 namespace FloaterFunction {
-    const char* getSeGroundOn(const char* pObjName) { return getSeNameTable(pObjName)->mSeGroundOn; }
+    const char* getSeGroundOn(const char* pObjName) {
+        return getSeNameTable(pObjName)->mSeGroundOn;
+    }
 
-    const char* getSeMoveDown(const char* pObjName) { return getSeNameTable(pObjName)->mSeMoveDown; }
+    const char* getSeMoveDown(const char* pObjName) {
+        return getSeNameTable(pObjName)->mSeMoveDown;
+    }
 
-    const char* getSeMoveUp(const char* pObjName) { return getSeNameTable(pObjName)->mSeMoveUp; }
+    const char* getSeMoveUp(const char* pObjName) {
+        return getSeNameTable(pObjName)->mSeMoveUp;
+    }
 
     bool isExistImpactOnRide(const char* pObjName) {
         return MR::isEqualString("LavaHomeFloaterA", pObjName) || MR::isEqualString("LavaHomeFloaterB", pObjName) ||
@@ -55,5 +61,7 @@ namespace FloaterFunction {
                MR::isEqualString("LavaFloatingStepC", pObjName) || MR::isEqualString("LavaFloatingStepD", pObjName);
     }
 
-    bool isExistSpeedUpLanding(const char* pObjName) { return MR::isEqualString("FloaterOtakingFloaterA", pObjName); }
+    bool isExistSpeedUpLanding(const char* pObjName) {
+        return MR::isEqualString("FloaterOtakingFloaterA", pObjName);
+    }
 };  // namespace FloaterFunction

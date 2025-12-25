@@ -142,10 +142,10 @@ if not config.non_matching:
 # Tool versions
 config.binutils_tag = "2.42-1"
 config.compilers_tag = "20240706"
-config.dtk_tag = "v1.3.0"
-config.objdiff_tag = "v2.4.0"
-config.sjiswrap_tag = "v1.2.0"
-config.wibo_tag = "0.6.11"
+config.dtk_tag = "v1.7.6"
+config.objdiff_tag = "v3.4.5"
+config.sjiswrap_tag = "v1.2.2"
+config.wibo_tag = "1.0.0"
 
 # Project
 config.config_path = Path("config") / config.version / "config.yml"
@@ -290,13 +290,13 @@ cflags_nw = [
     "-fp hardware",
     "-Cpp_exceptions off",
     "-O4,p",
-    "-inline auto,level=2",
+    "-inline auto",
     '-pragma "cats off"',
     '-pragma "warn_notinlined off"',
     "-maxerrors 1",
     "-nosyspath",
     "-RTTI off",
-    "-fp_contract on",
+    "-fp_contract off",
     "-str reuse",
     "-enc SJIS",
     "-ipa file",
@@ -450,6 +450,16 @@ def SDKLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
     }
 
 
+def SDKLib_KPAD(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
+    return {
+        "lib": lib_name,
+        "mw_version": "Wii/1.0",
+        "cflags": cflags_sdk,
+        "progress_category": "sdk",
+        "objects": objects,
+    }
+
+
 def RFLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
     return {
         "lib": lib_name,
@@ -519,14 +529,14 @@ config.libs = [
     NWLib(
         "libnw4r_ut",
         [
-            Object(NonMatching, "nw4r/ut/ut_LinkList.cpp"),
-            Object(NonMatching, "nw4r/ut/ut_binaryFileFormat.cpp"),
-            Object(NonMatching, "nw4r/ut/ut_CharStrmReader.cpp"),
-            Object(NonMatching, "nw4r/ut/ut_TagProcessorBase.cpp"),
-            Object(NonMatching, "nw4r/ut/ut_Font.cpp"),
+            Object(Matching, "nw4r/ut/ut_LinkList.cpp"),
+            Object(Matching, "nw4r/ut/ut_binaryFileFormat.cpp"),
+            Object(Matching, "nw4r/ut/ut_CharStrmReader.cpp"),
+            Object(Matching, "nw4r/ut/ut_TagProcessorBase.cpp"),
+            Object(Matching, "nw4r/ut/ut_Font.cpp"),
             Object(NonMatching, "nw4r/ut/ut_RomFont.cpp"),
-            Object(NonMatching, "nw4r/ut/ut_ResFontBase.cpp"),
-            Object(NonMatching, "nw4r/ut/ut_ResFont.cpp"),
+            Object(Matching, "nw4r/ut/ut_ResFontBase.cpp"),
+            Object(Matching, "nw4r/ut/ut_ResFont.cpp"),
             Object(NonMatching, "nw4r/ut/ut_CharWriter.cpp"),
             Object(NonMatching, "nw4r/ut/ut_TextWriterBase.cpp"),
         ],
@@ -534,7 +544,7 @@ config.libs = [
     NWLib(
         "libnw4r_db",
         [
-            Object(NonMatching, "nw4r/db/db_console.cpp"),
+            Object(Matching, "nw4r/db/db_console.cpp"),
             Object(NonMatching, "nw4r/db/db_assert.cpp"),
         ],
     ),
@@ -542,7 +552,7 @@ config.libs = [
         "libnw4r_math",
         [
             Object(NonMatching, "nw4r/math/math_triangular.cpp"),
-            Object(NonMatching, "nw4r/math/math_types.cpp"),
+            Object(Matching, "nw4r/math/math_types.cpp"),
         ],
     ),
     NWLib(
@@ -2129,7 +2139,7 @@ config.libs = [
             Object(Matching, "Game/System/FunctionAsyncExecutor.cpp"),
             Object(Matching, "Game/System/GameSystem.cpp"),
             Object(Matching, "Game/System/GameSystemDimmingWatcher.cpp"),
-            Object(NonMatching, "Game/System/GameSystemErrorWatcher.cpp"),
+            Object(Matching, "Game/System/GameSystemErrorWatcher.cpp"),
             Object(Matching, "Game/System/GameSystemException.cpp"),
             Object(NonMatching, "Game/System/GameSystemFontHolder.cpp"),
             Object(Matching, "Game/System/GameSystemFrameControl.cpp"),
@@ -2226,7 +2236,7 @@ config.libs = [
             Object(NonMatching, "Game/Util/DrawUtil.cpp"),
             Object(NonMatching, "Game/Util/EffectUtil.cpp"),
             Object(NonMatching, "Game/Util/EventUtil.cpp"),
-            Object(NonMatching, "Game/Util/FileUtil.cpp"),
+            Object(Matching, "Game/Util/FileUtil.cpp"),
             Object(NonMatching, "Game/Util/FootPrint.cpp"),
             Object(NonMatching, "Game/Util/FurCtrl.cpp"),
             Object(NonMatching, "Game/Util/FurDrawer.cpp"),
@@ -2458,7 +2468,7 @@ config.libs = [
             Object(Matching, "RVL_SDK/ipc/ipcProfile.c"),
         ],
     ),
-    SDKLib("kpad", [Object(NonMatching, "RVL_SDK/kpad/KPAD.c")]),
+    SDKLib_KPAD("kpad", [Object(NonMatching, "RVL_SDK/kpad/KPAD.c")]),
     SDKLib(
         "mem",
         [
@@ -2472,9 +2482,9 @@ config.libs = [
         "mtx",
         [
             Object(NonMatching, "RVL_SDK/mtx/mtx.c"),
-            Object(NonMatching, "RVL_SDK/mtx/mtxvec.c"),
+            Object(Matching, "RVL_SDK/mtx/mtxvec.c"),
             Object(NonMatching, "RVL_SDK/mtx/mtx44.c"),
-            Object(NonMatching, "RVL_SDK/mtx/vec.c"),
+            Object(Matching, "RVL_SDK/mtx/vec.c"),
             Object(NonMatching, "RVL_SDK/mtx/quat.c"),
         ],
     ),

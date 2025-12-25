@@ -161,7 +161,7 @@ void Coin::makeActorDead() {
 
 void Coin::calcAndSetBaseMtx() {
     TVec3f another_vec;
-    another_vec.set< f32 >(MR::isNearZero(mGravity, 0.001f) ? TVec3f(0.0f, 1.0f, 0.0f) : -mGravity);
+    another_vec.set< f32 >(MR::isNearZero(mGravity) ? TVec3f(0.0f, 1.0f, 0.0f) : -mGravity);
     JMAVECScaleAdd(&another_vec, &mPosition, &mDropPosition, 70.0f);
 
     TPos3f pos;
@@ -270,7 +270,7 @@ void Coin::exeMove() {
 
             if (!MR::isNoBind(this)) {
                 calcRebouond();
-                mVelocity += mGravity * (mIsInWater ? 0.30000001f : 1.0f);
+                mVelocity += mGravity * (mIsInWater ? 0.3f : 1.0f);
                 attenuateVelocity();
             }
 
@@ -389,7 +389,7 @@ void Coin::appearMove(const TVec3f& a1, const TVec3f& a2, s32 a3, s32 a4) {
 }
 
 void Coin::appearHop(const TVec3f& a1, const TVec3f& a2) {
-    if (MR::isNearZero(a2, 0.001f)) {
+    if (MR::isNearZero(a2)) {
         mGravity.x = 0.0f;
         mGravity.y = -1.0f;
         mGravity.z = 0.0f;
@@ -566,11 +566,11 @@ void Coin::setCannotTime(s32 time) {
 
 void Coin::calcRebouond() {
     if (MR::isBindedRoof(this)) {
-        MR::calcReboundVelocity(&mVelocity, *MR::getRoofNormal(this), 0.60000002f, 0.5f);
+        MR::calcReboundVelocity(&mVelocity, *MR::getRoofNormal(this), 0.60f, 0.5f);
     }
 
     if (MR::isBindedWall(this)) {
-        MR::calcReboundVelocity(&mVelocity, *MR::getWallNormal(this), 0.60000002f, 0.5f);
+        MR::calcReboundVelocity(&mVelocity, *MR::getWallNormal(this), 0.60f, 0.5f);
     }
 
     if (MR::isBindedGround(this)) {
@@ -600,9 +600,9 @@ void Coin::attenuateVelocity() {
     f32 velocity;
 
     if (mIsInWater) {
-        velocity = 0.80000001f;
+        velocity = 0.8f;
     } else if (MR::isOnGround(this)) {
-        velocity = 0.89999998f;
+        velocity = 0.9f;
     } else {
         velocity = 0.995f;
     }

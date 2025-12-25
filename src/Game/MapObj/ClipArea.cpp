@@ -60,15 +60,25 @@ bool ClipArea::isInArea(const TVec3f& vec, f32 f1) const {
 }
 
 namespace MR {
-    void setClipSphereArea(ClipArea* mArea) { mArea->mShape = new ClipAreaShapeSphere(); }
+    void setClipSphereArea(ClipArea* mArea) {
+        mArea->mShape = new ClipAreaShapeSphere();
+    }
 
-    void setClipCenterBoxArea(ClipArea* mArea) { mArea->mShape = new ClipAreaShapeBox(0); }
+    void setClipCenterBoxArea(ClipArea* mArea) {
+        mArea->mShape = new ClipAreaShapeBox(0);
+    }
 
-    void setClipBottomBoxArea(ClipArea* mArea) { mArea->mShape = new ClipAreaShapeBox(1); }
+    void setClipBottomBoxArea(ClipArea* mArea) {
+        mArea->mShape = new ClipAreaShapeBox(1);
+    }
 
-    void setClipTopConeArea(ClipArea* mArea) { mArea->mShape = new ClipAreaShapeCone(0); }
+    void setClipTopConeArea(ClipArea* mArea) {
+        mArea->mShape = new ClipAreaShapeCone(0);
+    }
 
-    void setClipBottomConeArea(ClipArea* mArea) { mArea->mShape = new ClipAreaShapeCone(1); }
+    void setClipBottomConeArea(ClipArea* mArea) {
+        mArea->mShape = new ClipAreaShapeCone(1);
+    }
 }  // namespace MR
 
 MtxPtr ClipArea::getBaseMtx() const {

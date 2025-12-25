@@ -3,10 +3,6 @@
 #include "Game/MapObj/MapObjActor.hpp"
 #include "Game/Util/JointController.hpp"
 
-namespace {
-    static u32 sBloomSyncStep;
-};
-
 class FlipPanel : public MapObjActor {
 public:
     FlipPanel(const char*);

@@ -12,7 +12,3 @@ public:
 
     void forceBreak();
 };
-
-namespace {
-    static f32 cRadius = 50.0f;
-};

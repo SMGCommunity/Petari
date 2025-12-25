@@ -94,7 +94,7 @@ namespace MR {
     }
 
     CoinHolder* getCoinHolder() {
-        return getSceneObj<CoinHolder>(SceneObj_CoinHolder);
+        return getSceneObj< CoinHolder >(SceneObj_CoinHolder);
     }
 
     void addToCoinHolder(const NameObj* pNameObj, Coin* pCoin) {

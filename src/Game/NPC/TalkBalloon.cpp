@@ -381,7 +381,7 @@ void TalkBalloonHolder::balloonOff() {
 
 void TalkBalloonHolder::update() {}
 
-bool TalkBalloonHolder::isActiveBalloonShort() {
+bool TalkBalloonHolder::isActiveBalloonShort() const {
     for (int i = 0; i < 4; i++) {
         if (!MR::isDead(mBalloonShortArray[i])) {
             return true;

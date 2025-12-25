@@ -149,7 +149,7 @@ bool OceanRing::calcWaterInfo(const TVec3f& a1, const TVec3f& a2, WaterInfo* pIn
     TVec3f v19(a1);
     v19.sub(v24);
 
-    if (MR::isNearZero(v19, 0.001f)) {
+    if (MR::isNearZero(v19)) {
         pInfo->mEdgeDistance = v9;
         TVec3f v18(a2);
         v18.scale(v9);
@@ -278,7 +278,7 @@ f32 OceanRing::calcWaveHeight(const TVec3f& a1, f32 a2, TVec3f* a3) const {
     v31.sub(v34);
     PSVECCrossProduct(&v31, &v32, a3);
 
-    if (MR::isNearZero(*a3, 0.001f)) {
+    if (MR::isNearZero(*a3)) {
         a3->set< f32 >(-v42);
     } else {
         MR::normalize(a3);
@@ -300,8 +300,8 @@ void OceanRing::calcStreamVec(const TVec3f& a1, f32 a2, TVec3f* pStreamVec) cons
 }
 
 void OceanRing::movement() {
-    mWaveTheta1 += -0.039999999f;
-    mWaveTheta2 += -0.059999999f;
+    mWaveTheta1 += -0.04f;
+    mWaveTheta2 += -0.06f;
     updatePoints();
     mRingDrawer->update();
     TVec3f nearPos;

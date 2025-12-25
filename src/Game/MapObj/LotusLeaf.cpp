@@ -97,7 +97,7 @@ void LotusLeaf::exeShake() {
         return;
     }
     f32 f_a = value - mVelocity.y;
-    if (MR::isNearZero(f_a, 0.000099999997f) && MR::isNearZero(f_a, 0.000099999997f)) {
+    if (MR::isNearZero(f_a, 0.0001f) && MR::isNearZero(f_a, 0.0001f)) {
         mVelocity.zero();
         if (isNerve(&NrvLotusLeaf::HostTypeShakeOnPlayer::sInstance)) {
             setNerve(&NrvLotusLeaf::HostTypeWaitPlayerOn::sInstance);

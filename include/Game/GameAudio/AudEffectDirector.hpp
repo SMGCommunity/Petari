@@ -6,8 +6,6 @@ class AudEffectDirector : public NameObj {
 public:
     AudEffectDirector();
 
-    virtual ~AudEffectDirector();
-
     virtual void init(const JMapInfoIter& rIter);
     virtual void movement();
 

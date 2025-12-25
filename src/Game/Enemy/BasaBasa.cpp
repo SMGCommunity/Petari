@@ -162,7 +162,7 @@ void BasaBasa::exeChase() {
     f32 dot = gravityPtr->dot(v5);
     JMAVECScaleAdd(gravityPtr, &v5, &v5, -dot);
     MR::normalizeOrZero(&v5);
-    if (!MR::isNearZero(v5, 0.001f)) {
+    if (!MR::isNearZero(v5)) {
         TVec3f v4;
         v4.setPS(v5);
         MR::rotateVecDegree(&v4, mGravity, _B8);
@@ -195,8 +195,8 @@ void BasaBasa::exeQuickTurnStart() {
 
 void BasaBasa::exeQuickTurn() {
     JMAVECScaleAdd(&_9C, &mVelocity, &mVelocity, 2.0f);
-    MR::turnDirectionToTargetDegree(this, &_9C, *_B4, 2.5500002f);
-    if (MR::isFaceToTargetHorizontalDegree(this, *_B4, _9C, 2.5500002f)) {
+    MR::turnDirectionToTargetDegree(this, &_9C, *_B4, 2.55f);
+    if (MR::isFaceToTargetHorizontalDegree(this, *_B4, _9C, 2.55f)) {
         setNerve(&NrvBasaBasa::BasaBasaNrvChase::sInstance);
     } else {
         trySetNerveDPDSwoon();
@@ -239,12 +239,12 @@ void BasaBasa::exeAttackStart() {
         MR::startBck(this, "AttackStart", nullptr);
     }
 
-    MR::turnDirectionToTargetDegree(this, &_9C, *_B4, 2.5500002f);
+    MR::turnDirectionToTargetDegree(this, &_9C, *_B4, 2.55f);
     TVec3f v3;
     JMAVECScaleAdd(&_9C, &mGravity, &v3, 2.0f);
     JGeometry::negateInternal(&v3.x, &v3.x);
     MR::normalizeOrZero(&v3);
-    if (MR::isNearZero(v3, 0.001f)) {
+    if (MR::isNearZero(v3)) {
         TVec3f gravityNeg;
         JGeometry::negateInternal(&mGravity.x, &gravityNeg.x);
         v3.set< f32 >(gravityNeg);
@@ -281,7 +281,7 @@ void BasaBasa::exeAttack() {
     }
     TVec3f v5;
     MR::normalize(v9, &v5);
-    MR::turnDirectionToTargetDegree(this, &_9C, _BC, 2.5500002f);
+    MR::turnDirectionToTargetDegree(this, &_9C, _BC, 2.55f);
     JMAVECScaleAdd(&v5, &mVelocity, &mVelocity, 10.0f);
     if (MR::isNear(this, _BC, 40.0f) || MR::isBindedWall(this) || MR::isStep(this, 180)) {
         setNerve(&NrvBasaBasa::BasaBasaNrvAttackEnd::sInstance);
@@ -316,7 +316,7 @@ void BasaBasa::exeAttackEndRecover() {
     JGeometry::negateInternal(&v3.x, &v3.x);
     MR::normalize(&v3);
     if (MR::getBckFrame(this) >= 116.0f) {
-        JMAVECScaleAdd(&v3, &mVelocity, &mVelocity, 0.30000001f);
+        JMAVECScaleAdd(&v3, &mVelocity, &mVelocity, 0.3f);
     }
 
     if (MR::isBckStopped(this)) {
@@ -339,7 +339,7 @@ void BasaBasa::exeHitBack() {
         JMathInlineVEC::PSVECAdd(&_9C, &mGravity, &v3);
         JGeometry::negateInternal(&v3.x, &v3.x);
         MR::normalizeOrZero(&v3);
-        if (MR::isNearZero(v3, 0.001f)) {
+        if (MR::isNearZero(v3)) {
             TVec3f v2;
             JGeometry::negateInternal(&mGravity.x, &v2.x);
             v3.set< f32 >(v2);
@@ -372,7 +372,7 @@ void BasaBasa::exeComeHome() {
         _B4 = &_CC;
     }
 
-    MR::turnDirectionToTargetDegree(this, &_9C, *_B4, 2.5500002f);
+    MR::turnDirectionToTargetDegree(this, &_9C, *_B4, 2.55f);
     JMAVECScaleAdd(&_9C, &mVelocity, &mVelocity, 2.0f);
     tuneHeight();
     if (isNearTarget(300.0f)) {
@@ -396,7 +396,7 @@ void BasaBasa::exeAttachCelling() {
         MR::invalidateHitSensors(this);
     }
 
-    MR::turnDirectionDegree(this, &_9C, _D8, 2.5500002f);
+    MR::turnDirectionDegree(this, &_9C, _D8, 2.55f);
     if (MR::isNear(this, _CC, 10.0f)) {
         mVelocity.zero();
         MR::resetPosition(this, _CC);
@@ -735,11 +735,11 @@ void BasaBasa::controlVelocity() {
         f32 v4 = v15.dot(*velocity);
         JMAVECScaleAdd(&v15, velocity, velocity, -v4);
         JMathInlineVEC::PSVECAdd(&mVelocity, &v14, &mVelocity);
-        f32 v5 = 0.94999999f;
+        f32 v5 = 0.95f;
         if (isNerve(&NrvBasaBasa::BasaBasaNrvAttackEnd::sInstance)) {
-            v5 = 0.95999998f;
+            v5 = 0.96f;
         } else if (isNerve(&NrvBasaBasa::BasaBasaNrvChaseStart::sInstance)) {
-            v5 = 0.44999999f;
+            v5 = 0.45f;
         }
 
         mVelocity.scale(v5);
@@ -763,7 +763,7 @@ void BasaBasa::controlVelocity() {
                 velocityPtr->scale(v6 * JGeometry::TUtil< f32 >::inv_sqrt(sqr));
             }
         } else {
-            if (MR::isNearZero(mVelocity, 0.001f)) {
+            if (MR::isNearZero(mVelocity)) {
                 mVelocity.zero();
             }
         }

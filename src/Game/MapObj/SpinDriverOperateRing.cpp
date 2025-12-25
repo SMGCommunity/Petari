@@ -48,7 +48,7 @@ void SpinDriverOperateRing::update(const TVec3f& a1, const TVec3f& a2) {
 void SpinDriverOperateRing::updateDirection(const TVec3f& rVec) {
     TVec3f stack_20;
     TVec3f direction(mDirection);
-    direction.scale(0.89999998f);
+    direction.scale(0.9f);
     TVec3f stack_14(rVec);
     stack_14.scale(0.1f);
     TVec3f stack_20(stack_14);
@@ -68,14 +68,14 @@ void SpinDriverOperateRing::resetVelocityAndTrans() {
 void SpinDriverOperateRing::addAccelToOperatePlane(const TVec3f& rVec) {
     f32 dot = -rVec.dot(_A4);
     TVec3f scalar(rVec);
-    scalar.scale(0.050000001f * dot);
+    scalar.scale(0.05f * dot);
     mAccelerate += scalar;
 }
 
 void SpinDriverOperateRing::addAccelToCenter() {
     f32 norm = MR::normalize(_DC, 0.1f, 1.0f);
 
-    if (norm > 0.000099999997f) {
+    if (norm > 0.0001f) {
         f32 scalar = ((0.5f * norm) / _D8);
         TVec3f accel(_A4);
         accel.scale(scalar);

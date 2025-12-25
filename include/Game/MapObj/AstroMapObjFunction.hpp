@@ -9,26 +9,6 @@ class GalaxyNamePlate;
 class LiveActor;
 class JMapInfo;
 
-namespace {
-    s32 getNumGrandStarForRevival(const char*, s32) NO_INLINE;
-    s32 getNumGrandStarForOpen(const char*, s32) NO_INLINE;
-
-    const char* cAstroDomeNameTable[6] = {"AstroDomeObservatory", "AstroDomeWell",    "AstroDomeKitchen",
-                                          "AstroDomeBedRoom",     "AstroDomeMachine", "AstroDomeTower"};
-
-    const char* cAstroDomeSkyNameTable[6] = {"AstroDomeSkyA", "AstroDomeSkyB", "AstroDomeSkyC", "AstroDomeSkyA", "AstroDomeSkyB", "AstroDomeSkyC"};
-
-    const char* cAstroDomeEntranceNameTable[6] = {"AstroDomeEntranceObservatory", "AstroDomeEntranceWell",    "AstroDomeEntranceKitchen",
-                                                  "AstroDomeEntranceBedRoom",     "AstroDomeEntranceMachine", "AstroDomeEntranceTower"};
-
-    const char* cAstroStarPlateNameTable[6] = {"AstroStarPlateObservatory", "AstroStarPlateWell",    "AstroStarPlateKitchen",
-                                               "AstroStarPlateBedRoom",     "AstroStarPlateMachine", "AstroStarPlateTower"};
-
-    const char* cAstroNamePlateArcName = "AstroNamePlateData";
-    const char* cAstroNamePlateFileName = "AstroNamePlateData.bcsv";
-
-};  // namespace
-
 class AstroMapObjFunction {
 public:
     static void makeArchiveListFromArg0(NameObjArchiveListCollector*, const JMapInfoIter&);

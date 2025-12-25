@@ -15,7 +15,9 @@
 #include "revolution/mtx.h"
 
 namespace MR {
-    void initShadowController(LiveActor* pActor, u32 numShadows) { pActor->initShadowControllerList(numShadows); }
+    void initShadowController(LiveActor* pActor, u32 numShadows) {
+        pActor->initShadowControllerList(numShadows);
+    }
 
     void addShadowSurfaceCircle(LiveActor* pActor, const char* pName, f32 radius) {
         ShadowController* pController = ActorShadow::createShadowControllerSuefaceParam(pActor, pName);
@@ -49,7 +51,9 @@ namespace MR {
         pCylinder->setRadius(radius);
     }
 
-    void addShadowVolumeBox(LiveActor* pActor, const char* pName, const TVec3f& a3) { addShadowVolumeBox(pActor, pName, a3, pActor->getBaseMtx()); }
+    void addShadowVolumeBox(LiveActor* pActor, const char* pName, const TVec3f& a3) {
+        addShadowVolumeBox(pActor, pName, a3, pActor->getBaseMtx());
+    }
 
     // Minor mismatch: stack_8 not initialized correctly
     /* void addShadowVolumeBox(LiveActor *pActor, const char *pName, const TVec3f &a3, MtxPtr mtx) {
@@ -266,7 +270,9 @@ namespace MR {
         }
     }
 
-    bool isExistShadow(const LiveActor* pActor, const char* pName) { return ActorShadow::isExistShadowController(pActor, pName); }
+    bool isExistShadow(const LiveActor* pActor, const char* pName) {
+        return ActorShadow::isExistShadowController(pActor, pName);
+    }
 
     void validateShadow(LiveActor* pActor, const char* pName) {
         if (pName != nullptr) {
@@ -383,7 +389,9 @@ namespace MR {
         }
     }
 
-    bool isShadowProjected(const LiveActor* pActor, const char* pName) { return ActorShadow::getShadowController(pActor, pName)->isProjected(); }
+    bool isShadowProjected(const LiveActor* pActor, const char* pName) {
+        return ActorShadow::getShadowController(pActor, pName)->isProjected();
+    }
 
     bool isShadowProjectedAny(const LiveActor* pActor) {
         u32 count = ActorShadow::getShadowControllerCount(pActor);

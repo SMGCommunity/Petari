@@ -30,7 +30,7 @@ DesertLandMoveSwitch::DesertLandMoveSwitch(const char* pName) : LiveActor(pName)
     _9A = 0;
     _9C = 0;
     _A0 = 0;
-    mSpringValue->setParam(0.0f, 0.0f, 0.34999999f, 0.75f, 0.0f);
+    mSpringValue->setParam(0.0f, 0.0f, 0.35f, 0.75f, 0.0f);
 }
 
 void DesertLandMoveSwitch::init(const JMapInfoIter& rIter) {
@@ -67,7 +67,7 @@ void DesertLandMoveSwitch::calcAnim() {
     TPos3f mtx2;
     mtx2.setInline(mtx);
     f32 val = mSpringValue->_4;
-    if (!MR::isNearZero(val, 0.001f)) {
+    if (!MR::isNearZero(val)) {
         TVec3f stack_20;
         f32 f3 = mtx2[2][3];
         f32 f2 = mtx2[1][3];

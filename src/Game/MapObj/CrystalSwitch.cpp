@@ -117,7 +117,7 @@ void CrystalSwitch::calcRotSpeed() {
         }
 
         MR::setBckRate(this, mRotateSpeed);
-        mRotateSpeed *= 0.99000001f;
+        mRotateSpeed *= 0.99f;
 
         if (mRotateSpeed < 0.0f) {
             mRotateSpeed = 0.0f;

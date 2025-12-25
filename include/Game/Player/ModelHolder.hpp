@@ -5,7 +5,7 @@
 #include "revolution/mtx.h"
 
 class ModelHolder : public LiveActor {
-    public:
+public:
     ModelHolder(const char*, bool);
 
     void updateMtx(MtxPtr);

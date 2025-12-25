@@ -1,5 +1,6 @@
 #pragma once
 
+#include "nw4r/lyt/types.h"
 #include "revolution/tpl.h"
 #include <revolution.h>
 
@@ -101,6 +102,8 @@ namespace nw4r {
             void SetPaletteEntryNum(u16 value) { mPltEntryNum = value; }
 
             void Set(const TexMap& texMap) { *this = texMap; }
+
+            const Size GetSize() const { return Size(mWidth, mHeight); }
 
             void* mImage;      // 0x00
             void* mPalette;    // 0x04

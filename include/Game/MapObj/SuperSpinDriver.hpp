@@ -7,10 +7,6 @@
 #include "Game/MapObj/SpinDriverPathDrawer.hpp"
 #include "Game/MapObj/SpinDriverShootPath.hpp"
 
-namespace {
-    static f32 sCanBindTime = 90.0f;
-};
-
 class SuperSpinDriver : public LiveActor {
 public:
     SuperSpinDriver(const char*, s32);

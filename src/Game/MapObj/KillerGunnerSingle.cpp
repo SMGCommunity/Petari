@@ -1,6 +1,10 @@
 #include "Game/MapObj/KillerGunnerSingle.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 
+namespace {
+    static Vec sShellPos;
+};
+
 KillerGunnerSingle::KillerGunnerSingle(const char* pName) : LiveActor(pName) {}
 
 void KillerGunnerSingle::init(const JMapInfoIter& rIter) {

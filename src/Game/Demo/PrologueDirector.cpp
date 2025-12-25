@@ -291,7 +291,11 @@ void PrologueHolder::start() {
 }
 
 namespace MR {
-    PrologueHolder* getPrologueHolder() { return MR::getSceneObj< PrologueHolder >(SceneObj_PrologueHolder); }
+    PrologueHolder* getPrologueHolder() {
+        return MR::getSceneObj< PrologueHolder >(SceneObj_PrologueHolder);
+    }
 
-    void startPrologue() { getPrologueHolder()->start(); }
+    void startPrologue() {
+        getPrologueHolder()->start();
+    }
 };  // namespace MR

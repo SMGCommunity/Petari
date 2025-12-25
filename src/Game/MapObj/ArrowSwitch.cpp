@@ -3,7 +3,7 @@
 #include <cmath>
 
 namespace {
-    const f32 sRotYTargetList[4] = {0.0f, 90.0f, 180.0f, -90.0f};
+    const f32 sRotYTargetList[] = {0.0f, 90.0f, 180.0f, -90.0f};
 };
 
 ArrowSwitch::ArrowSwitch(const char* pName) : LiveActor(pName) {
@@ -53,7 +53,7 @@ void ArrowSwitch::init(const JMapInfoIter &rIter) {
     if (arg >= 0) {
         MR::setShadowDropLength(this, nullptr, arg);
     }
-    
+
     MR::needStageSwitchWriteA(this, rIter);
 
     if (!_9C) {

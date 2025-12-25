@@ -1,5 +1,9 @@
 #include "Game/Scene/PlacementInfoOrdered.hpp"
 
+namespace {
+    CreationFuncPtr getCreator(const PlacementInfoOrdered::Identifier&);
+};  // namespace
+
 #ifndef NON_MATCHING
 // functionally equiv, just isn't reloading the array size properly
 PlacementInfoOrdered::PlacementInfoOrdered(int count) {
@@ -22,7 +26,7 @@ void PlacementInfoOrdered::requestFileLoad() {
 
         if (getCreator(*id)) {
             if (id->_4 == -1) {
-                
+
             }
         }
     }

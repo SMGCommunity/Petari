@@ -1,159 +1,156 @@
 #pragma once
 
-#include <Inline.hpp>
-
-#include "JSystem/JKernel/JKRDvdRipper.hpp"
-#include "revolution.h"
+#include <JSystem/JKernel/JKRDvdRipper.hpp>
+#include <revolution/types.h>
 
 class JKRArchive;
 class JKRHeap;
 
 namespace MR {
+    /// @brief Determines if a file exists within the disc file system.
+    /// @param[in] pFilePath A pointer to the null-terminated absolute path of the file.
+    /// @param[in] considerLanguage Determines if the file is localized.
+    /// @return `true` if the file exists within the disc file system, `false` otherwise.
+    bool isFileExist(const char* pFilePath, bool considerLanguage) NO_INLINE;
 
-    /// @brief Checks whether a file exists.
-    /// @param pFile Path to the file.
-    /// @param considerLanguage Whether to consider language prefix.
-    /// @return true if file exists, false otherwise.
-    bool isFileExist(const char* pFile, bool considerLanguage) NO_INLINE;
+    /// @brief Returns the size of a file, in bytes.
+    /// @param[in] pFilePath A pointer to the null-terminated absolute path of the file.
+    /// @param[in] considerLanguage Determines if the file is localized.
+    /// @return The size of the file, in bytes.
+    u32 getFileSize(const char* pFilePath, bool considerLanguage);
 
-    /// @brief Gets the size of a file.
-    /// @param pFile Path to the file.
-    /// @param considerLanguage Whether to consider language prefix.
-    /// @return Size of the file in bytes.
-    u32 getFileSize(const char* pFile, bool considerLanguage);
+    /// @brief Converts a file path to its entry number, with respect to the current language.
+    /// @param[in] pFilePath A pointer to the null-terminated absolute path of the file.
+    /// @return The entry number if the file was found, `-1` otherwise.
+    s32 convertPathToEntrynumConsideringLanguage(const char* pFilePath);
 
-    /// @brief Converts a file path to its DVD entry number, considering the language prefix.
-    /// @param pFile Path to the file.
-    /// @return The DVD entry number, or -1 if not found.
-    s32 convertPathToEntrynumConsideringLanguage(const char* pFile);
+    /// @brief Loads a file into main memory synchronously.
+    /// @param[in] pFilePath A pointer to the null-terminated absolute path of the file.
+    /// @param[out] pDst A pointer to the target memory address, or `nullptr` to allocate.
+    /// @param[in,out] pHeap An optional pointer to the target heap.
+    /// @param[in] allocDir The direction for the allocation.
+    /// @return A pointer to the loaded file data.
+    void* loadToMainRAM(const char* pFilePath, u8* pDst, JKRHeap* pHeap, JKRDvdRipper::EAllocDirection allocDir);
 
-    /// @brief Loads a file to main RAM synchronously.
-    /// @param pFile Path to the file.
-    /// @param pData Target memory address, or nullptr to allocate.
-    /// @param pHeap Memory heap to use.
-    /// @param allocDir Allocation direction.
-    /// @return Pointer to the loaded data.
-    void* loadToMainRAM(const char* pFile, u8* pData, JKRHeap* pHeap, JKRDvdRipper::EAllocDirection allocDir);
+    /// @brief Requests asynchronous loading of a file into main memory.
+    /// @param[in] pFilePath A pointer to the null-terminated absolute path of the file.
+    /// @param[out] pDst A pointer to the target memory address, or `nullptr` to allocate.
+    /// @param[in,out] pHeap An optional pointer to the target heap.
+    /// @param[in] allocDir The direction for the allocation.
+    void loadAsyncToMainRAM(const char* pFilePath, u8* pDst, JKRHeap* pHeap, JKRDvdRipper::EAllocDirection allocDir);
 
-    /// @brief Requests asynchronous file load to main RAM.
-    /// @param pFile Path to the file.
-    /// @param pData Target memory address, or nullptr to allocate.
-    /// @param pHeap Memory heap to use.
-    /// @param allocDir Allocation direction.
-    void loadAsyncToMainRAM(const char* pFile, u8* pData, JKRHeap* pHeap, JKRDvdRipper::EAllocDirection allocDir);
+    /// @brief Mounts an archive file synchronously.
+    /// @param[in] pFilePath A pointer to the null-terminated absolute path of the archive file.
+    /// @param[in,out] pHeap An optional pointer to the target heap.
+    /// @return A pointer to the mounted archive.
+    void* mountArchive(const char* pFilePath, JKRHeap* pHeap);
 
-    /// @brief Mounts an archive synchronously.
-    /// @param pFile Path to the archive file.
-    /// @param pHeap Memory heap to use.
-    /// @return Pointer to the mounted archive.
-    void* mountArchive(const char* pFile, JKRHeap* pHeap);
+    /// @brief Requests asynchronous mounting of an archive file.
+    /// @param[in] pFilePath A pointer to the null-terminated absolute path of the archive file.
+    /// @param[in,out] pHeap An optional pointer to the target heap.
+    void mountAsyncArchive(const char* pFilePath, JKRHeap* pHeap);
 
-    /// @brief Requests asynchronous mounting of an archive.
-    /// @param pFile Path to the archive file.
-    /// @param pHeap Memory heap to use.
-    void mountAsyncArchive(const char* pFile, JKRHeap* pHeap);
+    /// @brief Requests asynchronous mounting of an object or layout archive file.
+    /// @param[in] pFilePrefix A pointer to the null-terminated name of the archive file, without the extension.
+    /// @param[in,out] pHeap An optional pointer to the target heap.
+    void mountAsyncArchiveByObjectOrLayoutName(const char* pFilePrefix, JKRHeap* pHeap);
 
-    /// @brief Mounts an object or layout archive based on the provided file name.
-    /// @param pFile Object or layout name.
-    /// @param pHeap Memory heap to use (optional).
-    void mountAsyncArchiveByObjectOrLayoutName(const char* pFile, JKRHeap* pHeap);
+    /// @brief Returns the data of a file after it has been asynchronously loaded.
+    /// @param[in] pFilePath A pointer to the null-terminated absolute path of the file.
+    /// @return A pointer to the loaded file data.
+    void* receiveFile(const char* pFilePath);
 
-    /// @brief Receives a file after it has been asynchronously loaded.
-    /// @param pFile Path to the file.
-    /// @return Pointer to the loaded data.
-    void* receiveFile(const char* pFile);
-
-    /// @brief Receives an archive after it has been asynchronously mounted.
-    /// @param pFile Path to the archive file.
-    /// @return Pointer to the mounted archive.
-    void* receiveArchive(const char* pFile);
+    /// @brief Returns the archive after it has been asynchronously mounted.
+    /// @param[in] pFilePath A pointer to the null-terminated absolute path of the archive file.
+    /// @return A pointer to the mounted archive.
+    void* receiveArchive(const char* pFilePath);
 
     /// @brief Receives all files that have been requested for loading.
     void receiveAllRequestedFile();
 
-    /// @brief Creates and adds an archive from existing memory data.
-    /// @param pData Pointer to the archive data.
-    /// @param pHeap Heap to add the archive to.
-    /// @param pFile File name for identification.
-    /// @return Pointer to the created archive.
-    void* createAndAddArchive(void* pData, JKRHeap* pHeap, const char* pFile);
+    /// @brief Creates an archive from existing memory data.
+    /// @param[in] pArcData A pointer to the archive file data.
+    /// @param[in,out] pHeap A pointer to the target heap.
+    /// @param[in] pFilePath A pointer to the null-terminated absolute path of the file.
+    /// @return A pointer to the created archive.
+    void* createAndAddArchive(void* pArcData, JKRHeap* pHeap, const char* pFilePath);
 
-    /// @brief Gets the mounted archive and heap for a given file.
-    /// @param pFile Archive file path.
-    /// @param pArchive Output pointer to archive.
-    /// @param pHeap Output pointer to heap.
-    void getMountedArchiveAndHeap(const char* pFile, JKRArchive** pArchive, JKRHeap** pHeap);
+    /// @brief Returns the mounted archive and heap for a given file by pointer.
+    /// @param[in] pFilePath A pointer to the null-terminated absolute path of the archive file.
+    /// @param[out] ppArchive A pointer to the archive pointer to initialize.
+    /// @param[out] ppHeap A pointer to the heap pointer to initialize.
+    void getMountedArchiveAndHeap(const char* pFilePath, JKRArchive** ppArchive, JKRHeap** ppHeap);
 
-    /// @brief Removes a file from memory, considering language prefix.
-    /// @param pFile Path to the file.
-    void removeFileConsideringLanguage(const char* pFile);
+    /// @brief Removes a file from memory, with respect to the current language.
+    /// @param[in] pFilePath A pointer to the null-terminated absolute path of the file.
+    void removeFileConsideringLanguage(const char* pFilePath);
 
-    /// @brief Removes resources and file holders from memory if they belong to the specified heap.
-    /// @param heap The heap to check.
-    void removeResourceAndFileHolderIfIsEqualHeap(JKRHeap* heap);
+    /// @brief Removes resource and file holders from memory if they belong to the given heap.
+    /// @param[in,out] pHeap A pointer to the heap to compare with.
+    void removeResourceAndFileHolderIfIsEqualHeap(JKRHeap* pHeap);
 
-    /// @brief Decompresses a file from an archive into RAM.
-    /// @param archive Archive containing the file.
-    /// @param filename File name within the archive.
-    /// @param heap Heap to allocate memory from.
-    /// @param align Alignment for the allocation.
-    /// @return Pointer to the decompressed file data.
-    void* decompressFileFromArchive(JKRArchive* archive, const char* filename, JKRHeap* heap, int align);
+    /// @brief Decompresses a file from an archive file.
+    /// @param[in] pArchive A pointer to the target archive.
+    /// @param[in] pFilePath A pointer to the null-terminated absolute path of the file within the archive file.
+    /// @param[in,out] pHeap A pointer to the target heap.
+    /// @param[in] align The alignment for the allocation.
+    /// @return A pointer to the decompressed file data.
+    void* decompressFileFromArchive(JKRArchive* pArchive, const char* pFilePath, JKRHeap* pHeap, int align);
 
-    /// @brief Checks if a file is currently loaded.
-    /// @param pFile File path.
-    /// @return true if the file is loaded, false otherwise.
-    bool isLoadedFile(const char* pFile);
+    /// @brief Determines if an file is currently loaded.
+    /// @param[in] pFilePath A pointer to the null-terminated absolute path of the file.
+    /// @return `true` if the file is currently loaded, `false` otherwise.
+    bool isLoadedFile(const char* pFilePath);
 
-    /// @brief Checks if an archive is currently mounted.
-    /// @param pFile Archive path.
-    /// @return true if the archive is mounted, false otherwise.
-    bool isMountedArchive(const char* pFile);
+    /// @brief Determines if an archive file is currently mounted.
+    /// @param[in] pFilePath A pointer to the null-terminated absolute path of the archive file.
+    /// @return `true` if the archive file is currently mounted, `false` otherwise.
+    bool isMountedArchive(const char* pFilePath);
 
-    /// @brief Checks if an object or layout archive is loaded.
-    /// @param pFile Object or layout name.
-    /// @return true if loaded, false otherwise.
-    bool isLoadedObjectOrLayoutArchive(const char* pFile);
+    /// @brief Determines if an object or layout archive file is currently loaded.
+    /// @param[in] pFilePrefix A pointer to the null-terminated name of the archive file, without the extension.
+    /// @return `true` if the archive file is currently loaded, `false` otherwise.
+    bool isLoadedObjectOrLayoutArchive(const char* pFilePrefix);
 
-    /// @brief Builds a language-aware file path.
-    /// @param pName Output buffer for the file name.
-    /// @param length Maximum length of the buffer.
-    /// @param pFile Base file path.
-    void makeFileNameConsideringLanguage(char* pName, u32 length, const char* pFile);
+    /// @brief Creates an absolute path to a language-aware file.
+    /// @param[out] pDst A pointer to the path buffer to initialize.
+    /// @param[in] size The size of the path buffer, in bytes.
+    /// @param[in] pFilePath A pointer to the null-terminated absolute path of the file.
+    void makeFileNameConsideringLanguage(char* pDst, u32 size, const char* pFilePath);
 
-    /// @brief Constructs an object archive file name from the provided name.
-    /// @param pName Output buffer for the archive name.
-    /// @param length Buffer length.
-    /// @param pFile Object name.
-    /// @return true if a valid archive was found, false otherwise.
-    bool makeObjectArchiveFileName(char* pName, u32 length, const char* pFile);
+    /// @brief Creates an absolute path to the given object's archive file.
+    /// @param[out] pDst A pointer to the path buffer to initialize.
+    /// @param[in] size The size of the path buffer, in bytes.
+    /// @param[in] pFileName A pointer to the null-terminated name of the archive file.
+    /// @return `true` if a valid archive file exists in the file system, `false` otherwise.
+    bool makeObjectArchiveFileName(char* pDst, u32 size, const char* pFileName);
 
-    /// @brief Constructs an object archive file name using a prefix.
-    /// @param pName Output buffer for the archive name.
-    /// @param length Buffer length.
-    /// @param pFile Object name.
-    /// @param unused Unused flag.
-    /// @return true if a valid archive was found, false otherwise.
-    bool makeObjectArchiveFileNameFromPrefix(char* pName, u32 length, const char* pFile, bool unused) NO_INLINE;
+    /// @brief Creates an absolute path to the given object's archive file.
+    /// @param[out] pDst A pointer to the path buffer to initialize.
+    /// @param[in] size The size of the path buffer, in bytes.
+    /// @param[in] pFilePrefix A pointer to the null-terminated name of the archive file, without the extension.
+    /// @param[in] unused Unused flag.
+    /// @return `true` if a valid archive file exists in the file system, `false` otherwise.
+    bool makeObjectArchiveFileNameFromPrefix(char* pDst, u32 size, const char* pFilePrefix, bool unused) NO_INLINE;
 
-    /// @brief Constructs a layout archive file name from the provided name.
-    /// @param pName Output buffer for the archive name.
-    /// @param length Buffer length.
-    /// @param pFile Layout name.
-    /// @return true if a valid archive was found, false otherwise.
-    bool makeLayoutArchiveFileName(char* pName, u32 length, const char* pFile);
+    /// @brief Creates an absolute path to the given layout's archive file.
+    /// @param[out] pDst A pointer to the path buffer to initialize.
+    /// @param[in] size The size of the path buffer, in bytes.
+    /// @param[in] pFileName A pointer to the null-terminated name of the archive file.
+    /// @return `true` if a valid archive file exists in the file system, `false` otherwise.
+    bool makeLayoutArchiveFileName(char* pDst, u32 size, const char* pFileName);
 
-    /// @brief Constructs a layout archive file name using a prefix, with optional fallback.
-    /// @param pName Output buffer for the archive name.
-    /// @param length Buffer length.
-    /// @param pFile Layout name.
-    /// @param fallback Whether to fall back if none found.
-    /// @return true if a valid archive was found, false otherwise.
-    bool makeLayoutArchiveFileNameFromPrefix(char* pName, u32 length, const char* pFile, bool fallback);
+    /// @brief Creates an absolute path to the given layout's archive file.
+    /// @param[out] pDst A pointer to the path buffer to initialize.
+    /// @param[in] size The size of the path buffer, in bytes.
+    /// @param[in] pFilePrefix A pointer to the null-terminated name of the archive file, without the extension.
+    /// @param[in] fallback Whether to fall back if none found.
+    /// @return `true` if a valid archive file exists in the file system, `false` otherwise.
+    bool makeLayoutArchiveFileNameFromPrefix(char* pDst, u32 size, const char* pFilePrefix, bool fallback);
 
-    /// @brief Creates a scenario archive file name from the given stage name.
-    /// @param pName Output buffer for the file name.
-    /// @param length Buffer length.
-    /// @param pFile Stage name.
-    void makeScenarioArchiveFileName(char* pName, u32 length, const char* pFile);
+    /// @brief Creates an absolute path to the given galaxy's mission archive file.
+    /// @param[out] pDst A pointer to the path buffer to initialize.
+    /// @param[in] size The size of the path buffer, in bytes.
+    /// @param[in] pStageName A pointer to the null-terminated name of the galaxy.
+    void makeScenarioArchiveFileName(char* pDst, u32 size, const char* pStageName);
 };  // namespace MR

@@ -17,7 +17,9 @@
 #include <cstdio>
 
 namespace {
-    AudSystemWrapper* getAudioSystemWrapper() NO_INLINE { return SingletonHolder< GameSystem >::get()->mObjHolder->mSysWrapper; }
+    AudSystemWrapper* getAudioSystemWrapper() NO_INLINE {
+        return SingletonHolder< GameSystem >::get()->mObjHolder->mSysWrapper;
+    }
 };  // namespace
 
 namespace NrvGameSystemSceneController {

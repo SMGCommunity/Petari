@@ -70,7 +70,7 @@ void WaterPressureBullet::control() {
         kill();
     } else {
         TVec3f stack_8;
-        if (MR::isNearZero(mVelocity, 0.001)) {
+        if (MR::isNearZero(mVelocity)) {
             stack_8.set(mGravity);
         } else {
             stack_8.set(mVelocity);
@@ -139,7 +139,7 @@ void WaterPressureBullet::exeFly() {
     }
 
     if (!_B0) {
-        JMAVECScaleAdd(&mGravity, &mVelocity, &mVelocity, 0.40000001f);
+        JMAVECScaleAdd(&mGravity, &mVelocity, &mVelocity, 0.4f);
     }
 
     if (MR::isPadSwing(WPAD_CHAN0) && mHostActor != nullptr && !_B2) {

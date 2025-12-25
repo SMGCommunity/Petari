@@ -9,10 +9,6 @@ struct HaloParam {
     f32 clippingRadius;  // 0xC
 };
 
-namespace {
-    HaloParam sParams[2] = {{"ZoneHalo", 70.0f, 20.0f, 4.0f}, {"PowerStarHalo", 80.0f, 20.0f, 30.0f}};
-};
-
 class Halo : public MapObjActor {
 public:
     Halo(const char*);
@@ -26,18 +22,6 @@ public:
     bool isDistanceAppear() const;
     bool isDistanceDisappear() const;
     void exeDisappear();
-
-    inline HaloParam* getParam() const {
-        const char* objName = mObjectName;
-        for (u32 i = 0; i < 2; i++) {
-            HaloParam* curParam = &sParams[i];
-            if (MR::isEqualString(objName, curParam->haloName)) {
-                return curParam;
-            }
-        }
-
-        return nullptr;
-    }
 
     f32 mDistance;  // 0xC4
 };

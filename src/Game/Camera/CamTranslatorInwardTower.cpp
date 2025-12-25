@@ -7,7 +7,7 @@ void CamTranslatorInwardTower::setParam(const CameraParamChunk* pChunk) {
 
     TVec3f axis = general->mAxis;
 
-    if (MR::isNearZero(axis, 0.001f)) {
+    if (MR::isNearZero(axis)) {
         axis.set(0.0f, 1.0f, 0.0f);
     } else {
         MR::normalize(&axis);

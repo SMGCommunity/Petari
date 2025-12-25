@@ -20,8 +20,8 @@ namespace NrvStarPointerGuidance {
 };  // namespace NrvStarPointerGuidance
 
 StarPointerGuidance::StarPointerGuidance(const char* pName)
-    : LayoutActor(pName, true), mSpineFrame1P(nullptr), mSpineGuidance(nullptr), mSpineFrame2P(nullptr), _2C(0), _30(0), _34(0), _38(nullptr), _3C(nullptr), _40(false), _41(false),
-      _42(true), _43(false), _44(1), _48(1), _4C(1) {}
+    : LayoutActor(pName, true), mSpineFrame1P(nullptr), mSpineGuidance(nullptr), mSpineFrame2P(nullptr), _2C(0), _30(0), _34(0), _38(nullptr),
+      _3C(nullptr), _40(false), _41(false), _42(true), _43(false), _44(1), _48(1), _4C(1) {}
 
 void StarPointerGuidance::init(const JMapInfoIter& rIter) {
     initLayoutManager("PointerGuidance", 1);

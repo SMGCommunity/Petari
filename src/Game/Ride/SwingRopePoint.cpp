@@ -18,7 +18,7 @@ bool SwingRopePoint::restrict(const TVec3f& rAnchor, f32 length, const TVec3f* p
     }
 
     TVec3f v2(nextPosDiff);
-    if (MR::isNearZero(v2, 0.001f)) {
+    if (MR::isNearZero(v2)) {
         v2.set(mUp);
         v2.scale(-1.0f);
     } else {
@@ -44,7 +44,7 @@ void SwingRopePoint::strain(const TVec3f& rAnchor, f32 length) {
     nextPosDiff.sub(rAnchor);
 
     TVec3f v2(nextPosDiff);
-    if (MR::isNearZero(v2, 0.001f)) {
+    if (MR::isNearZero(v2)) {
         v2.set(mUp);
         v2.scale(-1.0f);
     } else {
@@ -67,7 +67,7 @@ void SwingRopePoint::updatePos(f32 vel) {
 void SwingRopePoint::updateAxis(const TVec3f& rAxis) {
     TVec3f side(mSide);
     PSVECCrossProduct(&mUp, &rAxis, &mSide);
-    if (MR::isNearZero(mSide, 0.001f)) {
+    if (MR::isNearZero(mSide)) {
         mSide.set(side);
     } else {
         MR::normalize(&mSide);
@@ -75,7 +75,7 @@ void SwingRopePoint::updateAxis(const TVec3f& rAxis) {
 
     TVec3f front(mFront);
     PSVECCrossProduct(&mSide, &mUp, &mFront);
-    if (MR::isNearZero(mFront, 0.001f)) {
+    if (MR::isNearZero(mFront)) {
         mFront.set(front);
     } else {
         MR::normalize(&mFront);
@@ -97,7 +97,7 @@ void SwingRopePoint::setInfo(const TVec3f& rTarget, const TVec3f& rVelocity, con
     TVec3f direction(rTarget);
     direction.sub(rAnchor);
 
-    if (MR::isNearZero(direction, 0.001f)) {
+    if (MR::isNearZero(direction)) {
         direction.set< f32 >(0.0f, -1.0f, 0.0f);
     } else {
         MR::normalize(&direction);

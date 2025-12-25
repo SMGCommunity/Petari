@@ -325,7 +325,7 @@ void CameraManEvent::resetCameraIfRequested() {
     TVec3f up = TVec3f(*CameraLocalUtil::getUpVec(mCamera));
 
     TVec3f dir = watchPos - pos;
-    
+
     f32 length = PSVECMag(reinterpret_cast<Vec *>(&dir));
 
     if (length < 300.0f) {

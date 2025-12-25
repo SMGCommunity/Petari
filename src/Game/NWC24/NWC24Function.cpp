@@ -57,5 +57,7 @@ namespace MR {
         GameDataFunction::setSysConfigFileSentBytes(sentBytes);
     }
 
-    const wchar_t* getMailSender(const char* pMessageId) { return MR::getGameMessageDirect(pMessageId); }
+    const wchar_t* getMailSender(const char* pMessageId) {
+        return MR::getGameMessageDirect(pMessageId);
+    }
 };  // namespace MR

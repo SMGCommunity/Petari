@@ -89,7 +89,7 @@ bool TripodBossMovableArea::collideSphere(HitResult* pResult, const TVec3f& a2, 
     f32 v17;
     MR::separateScalarAndDirection(&v17, &v27, v27);
     if (v17 < v10) {
-        if (MR::isNearZero(v17, 0.001f)) {
+        if (MR::isNearZero(v17)) {
             v27.set< int >(0, 1, 0);
         }
 
@@ -111,7 +111,7 @@ void TripodBossMovableArea::calcNearLandingPosition(TVec3f* pPos, const TVec3f& 
     v16 -= mCenter;
     MR::separateScalarAndDirection(&v8, &v16, v16);
 
-    if (MR::isNearZero(v8, 0.001f)) {
+    if (MR::isNearZero(v8)) {
         v16 = mBaseAxis;
     }
 
@@ -130,7 +130,7 @@ void TripodBossMovableArea::calcNearLandingPosition(TVec3f* pPos, const TVec3f& 
         TVec3f v15(v16);
         v6 = mBaseAxis.dot(v16);
         JMAVECScaleAdd(&mBaseAxis, &v16, &v15, -v6);
-        if (MR::isNearZero(v15, 0.001f)) {
+        if (MR::isNearZero(v15)) {
             v15.zero();
             int idx = MR::getMinAbsElementIndex(mBaseAxis);
             (&v15.x)[idx] = 1.0f;
@@ -147,7 +147,7 @@ void TripodBossMovableArea::calcLandingNormal(TVec3f* pNorm, const TVec3f& a2) c
     TVec3f norm(a2);
     norm -= mCenter;
     MR::normalizeOrZero(&norm);
-    if (MR::isNearZero(norm, 0.001f)) {
+    if (MR::isNearZero(norm)) {
         norm = mBaseAxis;
     }
 
@@ -164,7 +164,7 @@ void TripodBossMovableArea::calcLandingFront(TVec3f* pFront, const TVec3f& a2) c
     f32 v7 = v11.dot(v9);
     JMAVECScaleAdd(&v11, &v9, &v10, -v7);
     MR::normalizeOrZero(&v10);
-    if (MR::isNearZero(v10, 0.001f)) {
+    if (MR::isNearZero(v10)) {
         v10.zero();
         int idx = MR::getMinAbsElementIndex(mBaseAxis);
         (&v10.x)[idx] = 1.0f;

@@ -113,13 +113,21 @@ s32 MultiSceneActor::getNerveStep() const {
 }
 
 namespace MultiScene {
-    void startBck(MultiSceneActor* pActor, const char* pBckName) { pActor->getModelManager()->startBck(pBckName, nullptr); }
+    void startBck(MultiSceneActor* pActor, const char* pBckName) {
+        pActor->getModelManager()->startBck(pBckName, nullptr);
+    }
 
-    void startBtk(MultiSceneActor* pActor, const char* pBtkName) { pActor->getModelManager()->startBtk(pBtkName); }
+    void startBtk(MultiSceneActor* pActor, const char* pBtkName) {
+        pActor->getModelManager()->startBtk(pBtkName);
+    }
 
-    void startBtp(MultiSceneActor* pActor, const char* pBtpName) { pActor->getModelManager()->startBtp(pBtpName); }
+    void startBtp(MultiSceneActor* pActor, const char* pBtpName) {
+        pActor->getModelManager()->startBtp(pBtpName);
+    }
 
-    void startBva(MultiSceneActor* pActor, const char* pBvaName) { pActor->getModelManager()->startBva(pBvaName); }
+    void startBva(MultiSceneActor* pActor, const char* pBvaName) {
+        pActor->getModelManager()->startBva(pBvaName);
+    }
 
     void setBtpFrameAndStop(MultiSceneActor* pActor, f32 frame) {
         J3DFrameCtrl* pBtpCtrl;
@@ -141,17 +149,29 @@ namespace MultiScene {
         pBvaCtrl->mSpeed = 0.0f;
     }
 
-    bool isBckStopped(MultiSceneActor* pActor) { return pActor->getModelManager()->isBckStopped(); }
+    bool isBckStopped(MultiSceneActor* pActor) {
+        return pActor->getModelManager()->isBckStopped();
+    }
 
-    bool isStep(const MultiSceneActor* pActor, s32 step) { return pActor->getNerveStep() == step; }
+    bool isStep(const MultiSceneActor* pActor, s32 step) {
+        return pActor->getNerveStep() == step;
+    }
 
-    bool isFirstStep(const MultiSceneActor* pActor) { return pActor->getNerveStep() == 0; }
+    bool isFirstStep(const MultiSceneActor* pActor) {
+        return pActor->getNerveStep() == 0;
+    }
 
-    bool isGreaterStep(const MultiSceneActor* pActor, s32 step) { return pActor->getNerveStep() > step; }
+    bool isGreaterStep(const MultiSceneActor* pActor, s32 step) {
+        return pActor->getNerveStep() > step;
+    }
 
-    bool isLessStep(const MultiSceneActor* pActor, s32 step) { return pActor->getNerveStep() < step; }
+    bool isLessStep(const MultiSceneActor* pActor, s32 step) {
+        return pActor->getNerveStep() < step;
+    }
 
-    bool isLessEqualStep(const MultiSceneActor* pActor, s32 step) { return pActor->getNerveStep() <= step; }
+    bool isLessEqualStep(const MultiSceneActor* pActor, s32 step) {
+        return pActor->getNerveStep() <= step;
+    }
 
     void setNerveAtStep(MultiSceneActor* pActor, const Nerve* pNerve, s32 step) {
         if (isStep(pActor, step)) {
@@ -181,11 +201,17 @@ namespace MultiScene {
         return MR::getLinerValue(calcNerveRate(pActor, stepMax), valueStart, valueEnd, 1.0f);
     }
 
-    void emitEffect(const MultiSceneActor* pActor, const char* pParam2) { pActor->getEffectKeeper()->create(pParam2, pActor->getEffectSystem()); }
+    void emitEffect(const MultiSceneActor* pActor, const char* pParam2) {
+        pActor->getEffectKeeper()->create(pParam2, pActor->getEffectSystem());
+    }
 
-    void deleteEffectAll(const MultiSceneActor* pActor) { pActor->getEffectKeeper()->deleteAll(); }
+    void deleteEffectAll(const MultiSceneActor* pActor) {
+        pActor->getEffectKeeper()->deleteAll();
+    }
 
-    void forceDeleteEffectAll(const MultiSceneActor* pActor) { pActor->getEffectKeeper()->forceDeleteAll(pActor->getEffectSystem()); }
+    void forceDeleteEffectAll(const MultiSceneActor* pActor) {
+        pActor->getEffectKeeper()->forceDeleteAll(pActor->getEffectSystem());
+    }
 
     MtxPtr getJointMtx(const MultiSceneActor* pActor, const char* pParam2) {
         return MR::getJointMtx(pActor->getModelManager()->getJ3DModel(), (const char*)pParam2);

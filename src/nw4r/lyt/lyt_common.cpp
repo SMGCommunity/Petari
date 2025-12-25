@@ -8,9 +8,13 @@
 namespace nw4r {
     namespace lyt {
         namespace detail {
-            bool EqualsResName(const char* a1, const char* a2) { return strncmp(a1, a2, 0x10) == 0; }
+            bool EqualsResName(const char* a1, const char* a2) {
+                return strncmp(a1, a2, 0x10) == 0;
+            }
 
-            bool EqualsMaterialName(const char* a1, const char* a2) { return strncmp(a1, a2, 0x14) == 0; }
+            bool EqualsMaterialName(const char* a1, const char* a2) {
+                return strncmp(a1, a2, 0x14) == 0;
+            }
 
             bool TestFileHeader(const res::BinaryFileHeader& fileHeader, u32 sig) {
                 return GetSignatureInt(fileHeader.signature) == sig && fileHeader.byteOrder == 0xFEFF;
@@ -172,5 +176,5 @@ namespace nw4r {
                 DrawQuad(basePt, size, num, texCoords, vtxColors ? colors : 0);
             }
         };  // namespace detail
-    };      // namespace lyt
-};          // namespace nw4r
+    };  // namespace lyt
+};  // namespace nw4r

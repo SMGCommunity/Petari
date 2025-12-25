@@ -4,7 +4,7 @@
 #include <cstdio>
 
 namespace {
-    static f32 sSensorSizeTable[8] = {100.0f, 300.0f, 350.0f, 420.0f, 480.0f, 540.0f, 600.0f, 0.0f};
+    static f32 sSensorSizeTable[] = {100.0f, 300.0f, 350.0f, 420.0f, 480.0f, 540.0f, 600.0f, 0.0f};
 };
 
 AstroCore::AstroCore(const char* pName) : MapObjActor(pName) {}

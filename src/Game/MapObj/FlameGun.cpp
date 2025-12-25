@@ -127,7 +127,7 @@ void FlameGun::exeRotate() {
         MR::validateHitSensor(this, "attack");
     }
 
-    mRotation.y += 0.89999998f;
+    mRotation.y += 0.9f;
     MR::startLevelSound(this, "SE_EM_LV_FLAMEGUN_FIRE", -1, -1, -1);
 
     if (!MR::isValidHitSensor(this, "attack")) {

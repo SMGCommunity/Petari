@@ -7,7 +7,7 @@ class AnimScaleController;
 class Petari : public LiveActor {
 public:
     Petari(const char* pName);
-    
+
     virtual void init(const JMapInfoIter& rIter);
     virtual void initAfterPlacement();
     virtual void makeActorAppeared();
@@ -34,12 +34,12 @@ public:
     void exeJumpOut();
     void exeLurk();
     void exeKickOut();
-    
+
     void endFreeze();
     void endApproach();
     void endWait();
     void endEscape();
-    
+
     void initFootPrint(const JMapInfoIter& rIter);
     void updateFootPrint();
     void initFrontVec();
@@ -66,7 +66,7 @@ public:
     bool receivePlayerAttackAtBody(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
     bool receivePlayerAttackAtSpin(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
     void calcMouthPos(TVec3f* pOut) const;
-    
+
     /* 0x8C */ AnimScaleController* mAnimScaleCtrl;
     /* 0x90 */ FootPrint* mFootPrint;
     /* 0x94 */ f32 mFootprintYOffs;
@@ -78,6 +78,6 @@ public:
     /* 0xC4 */ f32 mMeanderAngle;
     /* 0xC8 */ s32 mStarPieceTotal;
     /* 0xCC */ s32 mStarPieceRemaining;
-    /* 0xD0 */ u8 _D0; // unused
+    /* 0xD0 */ u8 _D0;  // unused
     /* 0xD4 */ TMtx34f mHeadMtx;
 };

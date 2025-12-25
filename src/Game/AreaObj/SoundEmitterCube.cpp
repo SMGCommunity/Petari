@@ -3,7 +3,7 @@
 #include "Game/Util.hpp"
 
 namespace {
-    const char* gSoundNameTable[4] = {"SE_AT_LV_GRAVE", "SE_AT_LV_KOOPA_WIND", "SE_AT_LV_WIND_DESERT", "SE_AT_LV_WIND_ICE_MT_TOP"};
+    const char* gSoundNameTable[] = {"SE_AT_LV_GRAVE", "SE_AT_LV_KOOPA_WIND", "SE_AT_LV_WIND_DESERT", "SE_AT_LV_WIND_ICE_MT_TOP"};
 }
 
 SoundEmitterCube::SoundEmitterCube(int type, const char* pName) : AreaObj(type, pName) {

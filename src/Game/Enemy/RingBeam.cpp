@@ -337,7 +337,7 @@ void RingBeam::exeSpread() {
     if (!MR::isPowerStarGetDemoActive()) {
         temp12 = MR::getCamPos();
         temp12 -= ec;
-        if (!MR::isNearZero(temp12, 0.001f)) {
+        if (!MR::isNearZero(temp12)) {
             f32 radius;
             f32 dot;
             f32 float2;

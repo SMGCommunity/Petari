@@ -132,7 +132,7 @@ namespace JGadget {
 
         TLinkList() NO_INLINE : TNodeLinkList() {}
 
-        ~TLinkList() NO_INLINE{};
+        ~TLinkList() NO_INLINE {};
 
         TLinkListNode* begin() NO_INLINE { return iterator(CALL_INLINE_FUNC(TNodeLinkList::iterator, TNodeLinkList::begin())).curr; }
 
