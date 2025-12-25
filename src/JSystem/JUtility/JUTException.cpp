@@ -7,12 +7,11 @@ OSMessageQueue JUTException::sMessageQueue = {0};
 JUTException* JUTException::sErrorManager;
 
 struct CallbackObject {
-    CallbackFunc callback;  // 0x0
-    u16 error;              // 0x4
-    u16 pad;                // 0x6
-    OSContext* context;     // 0x8
-    int param_3;            // 0xC
-    int param_4;            // 0x10
+    /* 0x00 */ CallbackFunc callback;
+    /* 0x04 */ OSError error;
+    /* 0x08 */ OSContext* context;
+    /* 0x0C */ int dsisr;
+    /* 0x10 */ int dar;
 };
 
 static CallbackObject exCallbackObject;
@@ -20,65 +19,67 @@ static OSContext context;
 
 s32 JUTException::run() {
     PPCMtmsr(PPCMfmsr() & 0xFFFFF6FF);
-    OSInitMessageQueue(&sMessageQueue, &sMessageBuffer, 1);
+    OSInitMessageQueue(&sMessageQueue, sMessageBuffer, sizeof(sMessageBuffer) / sizeof(*sMessageBuffer));
     OSMessage msg;
+
     while (true) {
         OSReceiveMessage(&sMessageQueue, &msg, OS_MESSAGE_BLOCK);
-        VISetPreRetraceCallback(0);
-        VISetPostRetraceCallback(0);
+        VISetPreRetraceCallback(nullptr);
+        VISetPostRetraceCallback(nullptr);
         CallbackObject* obj = (CallbackObject*)msg;
 
-        CallbackFunc hndlr = obj->callback;
-        u16 error = obj->error;
-        OSContext* ctxt = obj->context;
-        u32 param_3 = obj->param_3;
-        u32 param_4 = obj->param_4;
+        CallbackFunc callback = obj->callback;
+        OSError error = obj->error;
+        OSContext* context = obj->context;
+        u32 dsisr = obj->dsisr;
+        u32 dar = obj->dar;
 
-        if (error < 0x11) {
-            mStackPointer = ctxt->gpr[1];
+        if (error < OS_ERROR_MAX) {
+            mStackPointer = context->gpr[1];
         }
 
-        void* frameBuf = VIGetCurrentFrameBuffer();
-        mFrameMemory = (JUTExternalFB*)frameBuf;
+        mFrameMemory = static_cast< JUTExternalFB* >(VIGetCurrentFrameBuffer());
 
-        if (frameBuf == nullptr) {
+        if (mFrameMemory == nullptr) {
             sErrorManager->createFB();
         }
 
         sErrorManager->mDirectPrint->changeFrameBuffer(mFrameMemory, sErrorManager->mDirectPrint->mFrameBufferWidth,
                                                        sErrorManager->mDirectPrint->mFrameBufferHeight);
 
-        if (hndlr != nullptr) {
-            hndlr(error, ctxt, param_3, param_4);
+        if (callback != nullptr) {
+            callback(error, context, dsisr, dar);
         }
 
         OSDisableInterrupts();
-        void* frameBuffer = VIGetCurrentFrameBuffer();
-        mFrameMemory = (JUTExternalFB*)frameBuffer;
-        sErrorManager->mDirectPrint->changeFrameBuffer(frameBuffer, sErrorManager->mDirectPrint->mFrameBufferWidth,
+
+        mFrameMemory = static_cast< JUTExternalFB* >(VIGetCurrentFrameBuffer());
+        sErrorManager->mDirectPrint->changeFrameBuffer(mFrameMemory, sErrorManager->mDirectPrint->mFrameBufferWidth,
                                                        sErrorManager->mDirectPrint->mFrameBufferHeight);
-        sErrorManager->printContext(error, ctxt, param_3, param_4);
+        sErrorManager->printContext(error, context, dsisr, dar);
     }
 }
 
-void JUTException::errorHandler(u16 err, OSContext* pContext, u32 a3, u32 a4) {
+void JUTException::errorHandler(OSError error, OSContext* pContext, u32 dsisr, u32 dar) {
     JUTException::msr = PPCMfmsr();
     JUTException::fpscr = pContext->fpscr;
-    OSFillFPUContext(pContext);
-    OSSetErrorHandler(err, nullptr);
 
-    if (err == 15) {
-        OSProtectRange(0, 0, 0, 3);
-        OSProtectRange(1, 0, 0, 3);
-        OSProtectRange(2, 0, 0, 3);
-        OSProtectRange(3, 0, 0, 3);
+    OSFillFPUContext(pContext);
+    OSSetErrorHandler(error, nullptr);
+
+    if (error == OS_ERROR_PROTECTION) {
+        OSProtectRange(/* OS_PROTECT_CHAN0 */ 0, nullptr, 0, /* OS_PROTECT0_BIT | OS_PROTECT1_BIT*/ 3);
+        OSProtectRange(/* OS_PROTECT_CHAN1 */ 1, nullptr, 0, /* OS_PROTECT0_BIT | OS_PROTECT1_BIT*/ 3);
+        OSProtectRange(/* OS_PROTECT_CHAN2 */ 2, nullptr, 0, /* OS_PROTECT0_BIT | OS_PROTECT1_BIT*/ 3);
+        OSProtectRange(/* OS_PROTECT_CHAN3 */ 3, nullptr, 0, /* OS_PROTECT0_BIT | OS_PROTECT1_BIT*/ 3);
     }
 
     exCallbackObject.callback = sPreUserCallback;
-    exCallbackObject.error = err;
+    exCallbackObject.error = error;
     exCallbackObject.context = pContext;
-    exCallbackObject.param_3 = a3;
-    exCallbackObject.param_4 = a4;
+    exCallbackObject.dsisr = dsisr;
+    exCallbackObject.dar = dar;
+
     OSSendMessage(&sMessageQueue, &exCallbackObject, OS_MESSAGE_BLOCK);
     OSEnableScheduler();
     OSYieldThread();
@@ -89,20 +90,19 @@ void JUTException::panic_f_va(const char* file, int line, const char* format, va
     vsnprintf(buffer, sizeof(buffer) - 1, format, args);
 
     if (sErrorManager == nullptr) {
-        OSPanic((char*)file, line, buffer);
+        OSPanic(file, line, buffer);
     }
 
-    OSContext* current_context = OSGetCurrentContext();
-    memcpy(&context, current_context, sizeof(OSContext));
-    sErrorManager->mStackPointer = (u32)OSGetStackPointer();
+    memcpy(&context, OSGetCurrentContext(), sizeof(OSContext));
+    sErrorManager->mStackPointer = OSGetStackPointer();
 
     exCallbackObject.callback = sPreUserCallback;
     exCallbackObject.error = 0xFF;
     exCallbackObject.context = &context;
-    exCallbackObject.param_3 = 0;
-    exCallbackObject.param_4 = 0;
+    exCallbackObject.dsisr = 0;
+    exCallbackObject.dar = 0;
 
-    if (sConsole == nullptr || (sConsole && (sConsole->getOutput() & 2) == 0)) {
+    if (sConsole == nullptr || (sConsole != nullptr && (sConsole->getOutput() & 2) == 0)) {
         OSReport("%s in \"%s\" on line %d\n", buffer, file, line);
     }
 
@@ -111,8 +111,7 @@ void JUTException::panic_f_va(const char* file, int line, const char* format, va
     }
 
     OSSendMessage(&sMessageQueue, &exCallbackObject, OS_MESSAGE_BLOCK);
-    OSThread* current_thread = OSGetCurrentThread();
-    OSSuspendThread(current_thread);
+    OSSuspendThread(OSGetCurrentThread());
 }
 
 void JUTException::panic_f(const char* file, int line, const char* format, ...) {
@@ -139,8 +138,17 @@ bool JUTException::isEnablePad() const {
     }
 
     if (mGamePadPort >= JUTGamePad::Port_1) {
-        return 1;
+        return true;
     }
 
     return _84 != 0;
 }
+
+// JUTException::readPad
+// JUTException::printContext
+// JUTException::waitTime
+// JUTException::createFB
+// JUTException::setPreUserCallback
+// JUTException::queryMapAddress
+// JUTException::queryMapAddress_single
+// JUTException::createConsole
