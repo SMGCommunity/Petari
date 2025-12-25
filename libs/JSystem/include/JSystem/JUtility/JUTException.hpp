@@ -46,7 +46,7 @@ public:
     void showSRR0Map(OSContext*);
     void printDebugInfo(EInfoPage, OSError, OSContext*, u32, u32);
     bool isEnablePad() const;
-    void readPad(u32*, u32*);
+    bool readPad(u32*, u32*);
     void printContext(OSError, OSContext*, u32, u32);
     static void waitTime(s32);
     void createFB();

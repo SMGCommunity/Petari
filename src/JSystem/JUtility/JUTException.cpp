@@ -206,7 +206,7 @@ bool JUTException::isEnablePad() const {
     return mGamePad != nullptr;
 }
 
-void JUTException::readPad(u32* pHold, u32* pTrigger) {
+bool JUTException::readPad(u32* pTrigger, u32* pHold) {
     OSTime startTime = OSGetTime();
     OSTime elapsed;
 
@@ -221,6 +221,8 @@ void JUTException::readPad(u32* pHold, u32* pTrigger) {
     MR::getPadDataForExceptionNoInit(WPAD_CHAN1, pHold, pTrigger);
     MR::getPadDataForExceptionNoInit(WPAD_CHAN2, pHold, pTrigger);
     MR::getPadDataForExceptionNoInit(WPAD_CHAN3, pHold, pTrigger);
+
+    return true;
 }
 
 // JUTException::printContext
