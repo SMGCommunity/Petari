@@ -2315,9 +2315,9 @@ config.libs = [
     SDKLib(
         "axfx",
         [
-            Object(NonMatching, "RVL_SDK/axfx/AXFXReverbHi.c"),
-            Object(NonMatching, "RVL_SDK/axfx/AXFXReverbHiExp.c"),
-            Object(NonMatching, "RVL_SDK/axfx/AXFXHooks.c"),
+            Object(Matching, "RVL_SDK/axfx/AXFXReverbHi.c"),
+            Object(Matching, "RVL_SDK/axfx/AXFXReverbHiExp.c"),
+            Object(Matching, "RVL_SDK/axfx/AXFXHooks.c"),
         ],
     ),
     SDKLib("base", [Object(Matching, "RVL_SDK/base/PPCArch.c")]),
