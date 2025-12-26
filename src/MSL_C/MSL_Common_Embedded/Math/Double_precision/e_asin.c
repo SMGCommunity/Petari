@@ -1,8 +1,11 @@
 #include <cmath>
 
+// clang-format off
 extern double sqrt(double);
 int __float_nan[];
+#ifndef NAN
 #define NAN       (*(float*)      __float_nan)
+#endif
 
 #define __LO(x) ( sizeof(x)==8 ? *(1+(int*)&x) : (*(int*)&x))
 #define __HI(x) (*(int*)&x)
@@ -77,3 +80,5 @@ qS4 =  7.70381505559019352791e-02; /* 0x3FB3B8C5, 0xB12E9282 */
 	}    
 	if(hx>0) return t; else return -t;    
 }
+
+// clang-format on

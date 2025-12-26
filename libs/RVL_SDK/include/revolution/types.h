@@ -50,6 +50,12 @@ typedef int BOOL;
 
 #define NO_INLINE __attribute__((noinline))
 
+#if __MWERKS__
+#define ATTRIBUTE_ALIGN(num) __attribute__((aligned(num)))
+#else
+#define ATTRIBUTE_ALIGN(num)
+#endif
+
 #ifndef TRUE
 #define TRUE 1
 #endif
