@@ -2666,6 +2666,7 @@ config.libs = [
             Object(NonMatching, "RVL_SDK/wpad/WPAD.c"),
             Object(NonMatching, "RVL_SDK/wpad/WPADHIDParser.c"),
             Object(NonMatching, "RVL_SDK/wpad/WPADEncrypt.c"),
+            Object(NonMatching, "RVL_SDK/wpad/WPADMem.c"),
             Object(NonMatching, "RVL_SDK/wpad/debug_msg.c"),
         ],
     ),
