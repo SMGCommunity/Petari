@@ -16,26 +16,18 @@ void TerritoryMover::decideNextTargetPos(const LiveActor* pActor) {
     f32 dot = gravity->dot(randVec);
     JMAVECScaleAdd(gravity, &randVec, &randVec, -dot);
 
-    randVec.x *= _0;
-    randVec.y *= _0;
-    randVec.z *= _0;
+    randVec.mult(_0);
 
-    randVec.x += _4.x;
-    randVec.y += _4.y;
-    randVec.z += _4.z;
-
-    _10.x = randVec.x;
-    _10.y = randVec.y;
-    _10.z = randVec.z;
+    JMathInlineVEC::PSVECAdd(&randVec, &_4, &randVec);
+    _10.setPS(randVec);
 }
 
 bool TerritoryMover::isReachedTarget(const LiveActor* pActor, f32 a2) {
-    TVec3f diff;
-    diff.x = _10.x - pActor->mPosition.x;
-    diff.y = _10.y - pActor->mPosition.y;
-    diff.z = _10.z - pActor->mPosition.z;
-
     TVec3f planar;
-    JMAVECScaleAdd(&pActor->mGravity, &diff, &planar, -pActor->mGravity.dot(diff));
+    TVec3f diff(_10);
+    const TVec3f* gravity = &pActor->mGravity;
+
+    JMathInlineVEC::PSVECSubtract(&diff, &pActor->mPosition, &diff);
+    JMAVECScaleAdd(gravity, &diff, &planar, -gravity->dot(diff));
     return PSVECMag(&planar) < a2;
 }
