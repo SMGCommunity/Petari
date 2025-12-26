@@ -1,28 +1,41 @@
 #include "Game/Enemy/TerritoryMover.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
+#include "Game/Util/MathUtil.hpp"
 #include "JSystem/JMath/JMath.hpp"
 
 TerritoryMover::TerritoryMover(f32 a1) {
     _0 = a1;
 }
 
-/* not even close but will look at it later */
 void TerritoryMover::decideNextTargetPos(const LiveActor* pActor) {
-    TVec3f v11;
-    MR::getRandomVector(&v11, 1.0f);
-    MR::normalizeOrZero(&v11);
-    const TVec3f* gravPtr = &pActor->mGravity;
-    f32 dot = gravPtr->dot(v11);
-    JMAVECScaleAdd(gravPtr, &v11, &v11, -dot);
-    f32 x = v11.x * _0;
-    f32 y = v11.y * _0;
-    f32 z = v11.z * _0;
-    v11.x = x;
-    v11.y = y;
-    v11.z = z;
+    TVec3f randVec;
+    MR::getRandomVector(&randVec, 1.0f);
+    MR::normalizeOrZero(&randVec);
 
-    JMathInlineVEC::PSVECAdd(&v11, &v11, &_4);
-    JMathInlineVEC::PSVECAdd(&_4, &_4, &_10);
+    const TVec3f* gravity = &pActor->mGravity;
+    f32 dot = gravity->dot(randVec);
+    JMAVECScaleAdd(gravity, &randVec, &randVec, -dot);
+
+    randVec.x *= _0;
+    randVec.y *= _0;
+    randVec.z *= _0;
+
+    randVec.x += _4.x;
+    randVec.y += _4.y;
+    randVec.z += _4.z;
+
+    _10.x = randVec.x;
+    _10.y = randVec.y;
+    _10.z = randVec.z;
 }
 
-// TerritoryMover::isReachedTarget
+bool TerritoryMover::isReachedTarget(const LiveActor* pActor, f32 a2) {
+    TVec3f diff;
+    diff.x = _10.x - pActor->mPosition.x;
+    diff.y = _10.y - pActor->mPosition.y;
+    diff.z = _10.z - pActor->mPosition.z;
+
+    TVec3f planar;
+    JMAVECScaleAdd(&pActor->mGravity, &diff, &planar, -pActor->mGravity.dot(diff));
+    return PSVECMag(&planar) < a2;
+}
