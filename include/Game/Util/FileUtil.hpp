@@ -5,6 +5,7 @@
 
 class JKRArchive;
 class JKRHeap;
+class JKRMemArchive;
 
 namespace MR {
     /// @brief Determines if a file exists within the disc file system.
@@ -43,7 +44,7 @@ namespace MR {
     /// @param[in] pFilePath A pointer to the null-terminated absolute path of the archive file.
     /// @param[in,out] pHeap An optional pointer to the target heap.
     /// @return A pointer to the mounted archive.
-    void* mountArchive(const char* pFilePath, JKRHeap* pHeap);
+    JKRMemArchive* mountArchive(const char* pFilePath, JKRHeap* pHeap);
 
     /// @brief Requests asynchronous mounting of an archive file.
     /// @param[in] pFilePath A pointer to the null-terminated absolute path of the archive file.
@@ -63,7 +64,7 @@ namespace MR {
     /// @brief Returns the archive after it has been asynchronously mounted.
     /// @param[in] pFilePath A pointer to the null-terminated absolute path of the archive file.
     /// @return A pointer to the mounted archive.
-    void* receiveArchive(const char* pFilePath);
+    JKRMemArchive* receiveArchive(const char* pFilePath);
 
     /// @brief Receives all files that have been requested for loading.
     void receiveAllRequestedFile();
@@ -72,8 +73,7 @@ namespace MR {
     /// @param[in] pArcData A pointer to the archive file data.
     /// @param[in,out] pHeap A pointer to the target heap.
     /// @param[in] pFilePath A pointer to the null-terminated absolute path of the file.
-    /// @return A pointer to the created archive.
-    void* createAndAddArchive(void* pArcData, JKRHeap* pHeap, const char* pFilePath);
+    void createAndAddArchive(void* pArcData, JKRHeap* pHeap, const char* pFilePath);
 
     /// @brief Returns the mounted archive and heap for a given file by pointer.
     /// @param[in] pFilePath A pointer to the null-terminated absolute path of the archive file.

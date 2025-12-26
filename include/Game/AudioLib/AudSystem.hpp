@@ -19,6 +19,7 @@ class JAISoundHandle;
 class JAISoundID;
 class JAUSectionHeap;
 class JKRArchive;
+class JKRSolidHeap;
 class SpkSystem;
 
 class AudSystem : public JAUSoundMgr {
@@ -110,3 +111,6 @@ public:
     /* 0x1328 */ u32 _1328;
     /* 0x132C */ SpkSystem* mSpkSystem;
 };
+
+AudSystem* AudNewAudSystem(JKRSolidHeap*, void*, JKRArchive*, JKRArchive*, JKRArchive*, JKRArchive*);
+AudSystem* AudNewAudSystem_(JAUSectionHeap*, JKRArchive*, JKRArchive*, JKRArchive*, int);

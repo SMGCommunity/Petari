@@ -24,7 +24,7 @@ MiiFacePartsHolder::~MiiFacePartsHolder() {
 void MiiFacePartsHolder::init(const JMapInfoIter& rIter) {
     mRFLWorkBuffer = new (MR::getSceneHeapGDDR3(), 32) u8[RFLGetWorkSize(false)];
 
-    JKRMemArchive* pArchive = reinterpret_cast< JKRMemArchive* >(MR::receiveArchive("/ObjectData/MiiFaceDatabase.arc"));
+    JKRMemArchive* pArchive = MR::receiveArchive("/ObjectData/MiiFaceDatabase.arc");
     void* pResBuffer = pArchive->getResource("/RFL_Res.dat");
     u32 resSize = pArchive->getResSize(pResBuffer);
     _38 = RFLInitResAsync(mRFLWorkBuffer, pResBuffer, resSize, false);

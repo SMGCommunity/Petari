@@ -52,7 +52,7 @@ public:
     void offPlayerLeftSupply();
     s32 getStockedStarPieceNum() const;
     void addStockedStarPiece(int);
-    void setupSpinDriverPathStorage(const char*, int, int, int, f32*);
+    s32 setupSpinDriverPathStorage(const char*, int, int, int, f32*);
     void updateSpinDriverPathStorage(const char*, int, int, f32);
     s32 getStarPieceNumGivingToTicoSeed(int) const;
     u32 getStarPieceNumMaxGivingToTicoSeed(int) const;
