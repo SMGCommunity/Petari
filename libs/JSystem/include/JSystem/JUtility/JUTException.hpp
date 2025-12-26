@@ -1,11 +1,11 @@
 #pragma once
 
 #include "JSystem/JKernel/JKRThread.hpp"
-#include "JSystem/JUtility/JUTConsole.hpp"
 #include "JSystem/JUtility/JUTGamePad.hpp"
 
-typedef void (*CallbackFunc)(OSError, OSContext*, u32, u32);
+typedef void (*JUTExceptionUserCallback)(OSError, OSContext*, u32, u32);
 
+class JUTConsole;
 class JUTDirectPrint;
 
 class JUTExternalFB {
@@ -31,7 +31,7 @@ public:
 
     virtual s32 run();
 
-    static void create(JUTDirectPrint*);
+    static JUTException* create(JUTDirectPrint*);
     static void errorHandler(OSError, OSContext*, u32, u32);
     static void panic_f_va(char const*, int, char const*, va_list);
     static void panic_f(const char*, int, const char*, ...);
@@ -46,20 +46,24 @@ public:
     void showSRR0Map(OSContext*);
     void printDebugInfo(EInfoPage, OSError, OSContext*, u32, u32);
     bool isEnablePad() const;
-    void readPad(u32*, u32*);
+    bool readPad(u32*, u32*);
     void printContext(OSError, OSContext*, u32, u32);
     static void waitTime(s32);
     void createFB();
-    static void setPreUserCallback(CallbackFunc);
+    static JUTExceptionUserCallback setPreUserCallback(JUTExceptionUserCallback);
     static bool queryMapAddress(char*, u32, s32, u32*, u32*, char*, u32, bool, bool);
-    static bool queryMapAddress_single(char*, u32, s32, u32*, u32*, char*, u32, bool, bool);
+
+    static bool queryMapAddress_single(char*, u32, s32, u32*, u32*, char*, u32, bool, bool) { return false; }
+
     static void createConsole(void*, u32);
     static JUTConsole* getConsole() NO_INLINE { return sConsole; }
 
     static OSMessageQueue sMessageQueue;
+    // static JSUList<JUTException::JUTExMapFile> sMapFileList;
+    static const char* sCpuExpName[];
     static JUTException* sErrorManager;
-    static CallbackFunc sPreUserCallback;
-    static CallbackFunc sPostUserCallback;
+    static JUTExceptionUserCallback sPreUserCallback;
+    static JUTExceptionUserCallback sPostUserCallback;
     static OSMessage sMessageBuffer[1];
     static void* sConsoleBuffer;
     static u32 sConsoleBufferSize;
@@ -69,7 +73,7 @@ public:
 
     /* 0x7C */ JUTExternalFB* mFrameMemory;
     /* 0x80 */ JUTDirectPrint* mDirectPrint;
-    /* 0x84 */ u32 _84;  // JUTGamePad* mGamePad;
+    /* 0x84 */ JUTGamePad* mGamePad;
     /* 0x88 */ JUTGamePad::EPadPort mGamePadPort;
     /* 0x8C */ s32 mPrintWaitTime0;
     /* 0x90 */ s32 mPrintWaitTime1;

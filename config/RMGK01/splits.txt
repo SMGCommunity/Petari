@@ -9452,18 +9452,19 @@ JSystem/JUtility/JUTFont.cpp:
 JSystem/JUtility/JUTException.cpp:
 	.text       start:0x804187C4 end:0x8041A0BC
 	.ctors      start:0x8052F3E4 end:0x8052F3E8
-	.data       start:0x805E7E48 end:0x805E8420
-	.bss        start:0x8060D078 end:0x8060D4F0
+	.data       start:0x805E7E48 end:0x805E83A0
+	.bss        start:0x8060D078 end:0x8060D3B0
 	.sbss       start:0x806B71E8 end:0x806B7210
 	.sdata2     start:0x806C1A10 end:0x806C1A20
 
 JSystem/JUtility/JUTDirectPrint.cpp:
 	.text       start:0x8041A0BC end:0x8041A7A4
-	.data       start:0x805E8420 end:0x805E8668
+	.data       start:0x805E83A0 end:0x805E8668
 	.sbss       start:0x806B7210 end:0x806B7218
 
 JSystem/JUtility/JUTAssert.cpp:
 	.text       start:0x8041A7A4 end:0x8041AA7C
+	.bss        start:0x8060D3B0 end:0x8060D4F0
 	.sdata      start:0x806B2718 end:0x806B2740
 	.sbss       start:0x806B7218 end:0x806B7220
 	.sdata2     start:0x806C1A20 end:0x806C1A30
@@ -10992,9 +10993,12 @@ RVL_SDK/wpad/WPAD.c:
 RVL_SDK/wpad/WPADHIDParser.c:
 	.text       start:0x804DE36C end:0x804E380C
 	.data       start:0x80600EF0 end:0x80601410
-	.bss        start:0x80678238 end:0x806789F0
+	.bss        start:0x80678238 end:0x80678250
 	.sbss       start:0x806B7B10 end:0x806B7B30
 	.sdata2     start:0x806C22A8 end:0x806C22F8
+
+RVL_SDK/wpad/WPADMem.c:
+	.bss        start:0x80678250 end:0x806782A0
 
 RVL_SDK/wpad/WPADEncrypt.c:
 	.text       start:0x804E380C end:0x804E48B4

@@ -9,7 +9,6 @@
 extern "C" {
 #endif
 
-
 typedef struct {
     u8 equ;
     u16 acv;
@@ -70,37 +69,19 @@ typedef struct {
     timing_s* timing;
 } HorVer_s;
 
-typedef enum _VITiming {
-    VI_TMG_GAME = 0,
-    VI_TMG_DVD  = 1
-} VITiming;
+typedef enum _VITiming { VI_TMG_GAME = 0, VI_TMG_DVD = 1 } VITiming;
 
-typedef enum _VIVideo {
-    VI_VMODE_NTSC = 0,
-    VI_VMODE_MPAL = 1,
-    VI_VMODE_PAL = 2,
-    VI_VMODE_RGB = 3
-} VIVideo;
-
+typedef enum _VIVideo { VI_VMODE_NTSC = 0, VI_VMODE_MPAL = 1, VI_VMODE_PAL = 2, VI_VMODE_RGB = 3 } VIVideo;
 
 typedef struct VIGammaObj {
-    u16 a[6];     
+    u16 a[6];
     u8 yin[7];
     u16 yout[7];
 } VIGammaObj;
 
-typedef enum _VITimeToDIM {
-    VI_DM_DEFAULT = 0,
-    VI_DM_10M,
-    VI_DM_15M
-} VITimeToDIM;
+typedef enum _VITimeToDIM { VI_DM_DEFAULT = 0, VI_DM_10M, VI_DM_15M } VITimeToDIM;
 
-typedef enum _VIACPType {
-    VI_ACP_OFF = 1,
-    VI_ACP_TYPE1 = 2,
-    VI_ACP_TYPE2 = 3,
-    VI_ACP_TYPE3 = 4
-} VIACPType;
+typedef enum _VIACPType { VI_ACP_OFF = 1, VI_ACP_TYPE1 = 2, VI_ACP_TYPE2 = 3, VI_ACP_TYPE3 = 4 } VIACPType;
 
 typedef enum _VIGamma {
     VI_GM_0_1 = 1,
@@ -135,14 +116,7 @@ typedef enum _VIGamma {
     VI_GM_3_0
 } VIGamma;
 
-typedef enum _VIOverDrive {
-	VI_ODV_L1 = 0,
-    VI_ODV_L2 = 1,
-    VI_ODV_L3 = 2,
-    VI_ODV_L4 = 3,
-    VI_ODV_L5 = 4,
-    VI_ODV_L6 = 5
-} VIOverDrive;
+typedef enum _VIOverDrive { VI_ODV_L1 = 0, VI_ODV_L2 = 1, VI_ODV_L3 = 2, VI_ODV_L4 = 3, VI_ODV_L5 = 4, VI_ODV_L6 = 5 } VIOverDrive;
 
 typedef struct VIMacroVisionObj {
     u8 m[26];
@@ -165,7 +139,7 @@ extern VIMacroVisionObj VIZeroACPType;
 
 typedef void (*VIPositionCallback)(s16, s16);
 
-void __VIGetCurrentPosition(s16 *, s16 *);
+void __VIGetCurrentPosition(s16*, s16*);
 u32 VIGetDTVStatus(void);
 
 BOOL VIResetDimmingCount();
@@ -179,27 +153,28 @@ void VISetBlack(BOOL);
 void VIFlush();
 void VIWaitForRetrace();
 u32 VIGetRetraceCount(void);
-void VISetNextFrameBuffer(void *);
+void VISetNextFrameBuffer(void*);
 
-void VIConfigure(const GXRenderModeObj *);
+void VIConfigure(const GXRenderModeObj*);
 void VIConfigurePan(u16, u16, u16, u16);
 
 void __VISetRevolutionModeSimple();
 
 BOOL VIEnableDimming(BOOL);
 
-typedef u8 VIBool;
-#define VI_FALSE ((VIBool)0) 
-#define VI_TRUE ((VIBool)1) 
-#define VI_DISABLE ((VIBool)0) 
-#define VI_ENABLE ((VIBool)1) 
+BOOL __VIResetRFIdle(void);
 
-#define VI_TVMODE(FMT, INT) ( ((FMT) << 2) + (INT) )
+typedef u8 VIBool;
+#define VI_FALSE ((VIBool)0)
+#define VI_TRUE ((VIBool)1)
+#define VI_DISABLE ((VIBool)0)
+#define VI_ENABLE ((VIBool)1)
+
 #define VI_3D 3
 #define VI_TVMODE_NTSC_3D ((VITVMode)VI_TVMODE(VI_NTSC, VI_3D))
 #define VI_GCA 6
-#define VI_TVMODE_GCA_INT (VITVMode)VI_TVMODE(VI_GCA, VI_INTERLACE)
-#define VI_TVMODE_GCA_PROG (VITVMode)VI_TVMODE(VI_GCA, VI_PROGRESSIVE)
+#define VI_TVMODE_GCA_INT (VITVMode) VI_TVMODE(VI_GCA, VI_INTERLACE)
+#define VI_TVMODE_GCA_PROG (VITVMode) VI_TVMODE(VI_GCA, VI_PROGRESSIVE)
 #define VI_TVMODE_PAL_PROG (VITVMode)6
 
 #define VI_EXTRA 7
@@ -214,5 +189,4 @@ typedef u8 VIBool;
 }
 #endif
 
-
-#endif // VI_H
+#endif  // VI_H
