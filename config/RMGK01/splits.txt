@@ -10863,7 +10863,7 @@ RVL_SDK/axfx/AXFXReverbHi.c:
 RVL_SDK/axfx/AXFXReverbHiExp.c:
 	.text       start:0x804CAB30 end:0x804CB90C
 	.data       start:0x806002A8 end:0x80600448
-	.sdata2     start:0x806C2248 end:0x806C2290
+	.sdata2     start:0x806C2248 end:0x806C2288
 
 RVL_SDK/axfx/AXFXHooks.c:
 	.text       start:0x804CB90C end:0x804CB944
@@ -10879,6 +10879,7 @@ RVL_SDK/mem/mem_expHeap.c:
 
 RVL_SDK/mem/mem_allocator.c:
 	.text       start:0x804CC5F4 end:0x804CC648
+	.sdata2     start:0x806C2288 end:0x806C2290
 
 RVL_SDK/mem/mem_list.c:
 	.text       start:0x804CC648 end:0x804CC75C
