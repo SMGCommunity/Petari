@@ -45,7 +45,7 @@ void GameSystemFontHolder::createFontFromEmbeddedData() {
 
 void GameSystemFontHolder::createFontFromFile() {
     nw4r::ut::ResFont* pFont;
-    JKRArchive* pArchive = reinterpret_cast< JKRMemArchive* >(MR::receiveArchive("/LayoutData/Font.arc"));
+    JKRMemArchive* pArchive = MR::receiveArchive("/LayoutData/Font.arc");
 
     pFont = new nw4r::ut::ResFont();
     pFont->SetResource(pArchive->getResource("/MessageFont26.brfnt"));

@@ -3,7 +3,7 @@
 #include "Game/Scene/PlacementInfoOrdered.hpp"
 #include "Game/Scene/StageResourceLoader.hpp"
 #include "Game/System/ScenarioDataParser.hpp"
-#include "JSystem/JKernel/JKRArchive.hpp"
+#include <JSystem/JKernel/JKRMemArchive.hpp>
 #include <cstdio>
 
 JMapInfoIter JMapInfo::end() const {
@@ -152,7 +152,7 @@ JMapInfo StageDataHolder::getCommonPathPointInfo(const JMapInfo** ppOut, int idx
 
 JMapInfo StageDataHolder::getCommonPathPointInfoFromRailDataIndex(const JMapInfo** ppInfo, int idx) const {
     const JMapInfo* pInfo = findJmpInfoFromArray(&mPathObjs, "CommonPathInfo");
-    char buf[0x80];
+    char buf[128];
     snprintf(buf, sizeof(buf), "CommonPathPointInfo.%d", idx);
     *ppInfo = findJmpInfoFromArray(&mPathObjs, buf);
     return *pInfo;
@@ -236,7 +236,7 @@ const char* StageDataHolder::getJapaneseObjectName(const char* pName) const {
     const JMapInfoIter englishName = mObjNameTbl->findElement< const char* >("en_name", pName, 0);
 
     if (englishName == mObjNameTbl->end()) {
-        return 0;
+        return nullptr;
     }
 
     const char* japaneseName;
@@ -245,7 +245,7 @@ const char* StageDataHolder::getJapaneseObjectName(const char* pName) const {
 }
 
 void* StageDataHolder::getStageArchiveResource(const char* pName) {
-    return mArchive->getResource(0x3F3F3F3F, pName);
+    return mArchive->getResource('????', pName);
 }
 
 s32 StageDataHolder::getStageArchiveResourceSize(void* pData) {
@@ -265,8 +265,7 @@ void StageDataHolder::initPlacementMario() {
 }
 
 void StageDataHolder::initTableData() {
-    JKRArchive* archive = (JKRArchive*)MR::receiveArchive("/StageData/ObjTableTable.arc");
-    void* tableFile = archive->getResource(0x3F3F3F3F, "ObjNameTable.tbl");
+    void* tableFile = MR::receiveArchive("/StageData/ObjTableTable.arc")->getResource('????', "ObjNameTable.tbl");
 
     mObjNameTbl = new JMapInfo();
     mObjNameTbl->attach(tableFile);
