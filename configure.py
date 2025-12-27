@@ -461,6 +461,16 @@ def SDKLib_KPAD(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
     }
 
 
+def SDKLib_WENC(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
+    return {
+        "lib": lib_name,
+        "mw_version": "GC/3.0a5.2",
+        "cflags": cflags_sdk,
+        "progress_category": "sdk",
+        "objects": objects,
+    }
+
+
 def RFLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
     return {
         "lib": lib_name,
@@ -2660,7 +2670,7 @@ config.libs = [
             Object(NonMatching, "RVL_SDK/vi/vi3in1.c"),
         ],
     ),
-    SDKLib("wenc", [Object(NonMatching, "RVL_SDK/wenc/wenc.c")]),
+    SDKLib_WENC("wenc", [Object(NonMatching, "RVL_SDK/wenc/wenc.c")]),
     SDKLib(
         "wpad",
         [
