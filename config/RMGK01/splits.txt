@@ -4659,7 +4659,7 @@ Game/MapObj/FlameGun.cpp:
 Game/MapObj/FlexibleSphere.cpp:
 	.text       start:0x801DC9D0 end:0x801DD218
 	.data       start:0x80594740 end:0x80594868
-	.sdata      start:0x806B1E10 end:0x806B1E30
+	.sdata      start:0x806B1E10 end:0x806B1E18
 	.sdata2     start:0x806BD028 end:0x806BD060
 
 Game/MapObj/FlipPanel.cpp:
@@ -4687,6 +4687,7 @@ Game/MapObj/GCapture.cpp:
 	.text       start:0x801DF110 end:0x801E1420
 	.ctors      start:0x8052ED24 end:0x8052ED28
 	.data       start:0x80594D58 end:0x80594F88
+	.sdata      start:0x806B1E18 end:0x806B1E20
 	.sbss       start:0x806B51A0 end:0x806B51C0
 	.sdata2     start:0x806BD0A8 end:0x806BD118
 
@@ -4699,6 +4700,7 @@ Game/MapObj/GCaptureTarget.cpp:
 	.text       start:0x801E1B9C end:0x801E2974
 	.ctors      start:0x8052ED28 end:0x8052ED2C
 	.data       start:0x80595000 end:0x80595258
+	.sdata      start:0x806B1E20 end:0x806B1E28
 	.sbss       start:0x806B51C0 end:0x806B51D8
 	.sdata2     start:0x806BD138 end:0x806BD160
 
@@ -4720,6 +4722,7 @@ Game/MapObj/GreenCaterpillarBig.cpp:
 	.text       start:0x801E3750 end:0x801E42DC
 	.ctors      start:0x8052ED34 end:0x8052ED38
 	.data       start:0x805953F8 end:0x80595600
+	.sdata      start:0x806B1E28 end:0x806B1E30
 	.sbss       start:0x806B51F0 end:0x806B5208
 	.sdata2     start:0x806BD198 end:0x806BD1B8
 

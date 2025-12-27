@@ -91,6 +91,7 @@
 #include "Game/MapObj/FirePressureBulletHolder.hpp"
 #include "Game/MapObj/FirePressureRadiate.hpp"
 #include "Game/MapObj/FlameGun.hpp"
+#include "Game/MapObj/FlexibleSphere.hpp"
 #include "Game/MapObj/FlipPanel.hpp"
 #include "Game/MapObj/FloaterFloatingForce.hpp"
 #include "Game/MapObj/FloaterFloatingForceTypeNormal.hpp"

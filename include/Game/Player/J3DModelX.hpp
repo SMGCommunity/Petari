@@ -3,6 +3,7 @@
 #include <JSystem/J3DGraphAnimator/J3DModel.hpp>
 #include <revolution/gd/GDBase.h>
 
+class J3DShape;
 class J3DShapeX;
 class J3DShapePacketX;
 
@@ -12,6 +13,7 @@ public:
 
     virtual ~J3DModelX();
 
+    void viewCalc2();
     void simpleDrawShape(J3DMaterial*);
     void storeDisplayList(_GDLObj*, u32);
     void shapePacketDrawFast(J3DShapePacketX*);
@@ -73,7 +75,7 @@ public:
     u32 _118;
     u32 _11C;
     u32 _120;
-    u32 _124;
+    void (*mShapeCallback)(J3DShape*);
     u32 _128;
     u32 _12C;
     u8 _130[0x1B0 - 0x130];

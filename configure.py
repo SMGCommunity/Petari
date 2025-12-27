@@ -1458,7 +1458,7 @@ config.libs = [
             Object(Matching, "Game/MapObj/FirePressureBulletHolder.cpp"),
             Object(NonMatching, "Game/MapObj/FirePressureRadiate.cpp"),
             Object(NonMatching, "Game/MapObj/FlameGun.cpp"),
-            Object(NonMatching, "Game/MapObj/FlexibleSphere.cpp"),
+            Object(Matching, "Game/MapObj/FlexibleSphere.cpp"),
             Object(Matching, "Game/MapObj/FlipPanel.cpp"),
             Object(NonMatching, "Game/MapObj/Fountain.cpp"),
             Object(Matching, "Game/MapObj/FountainBig.cpp"),
