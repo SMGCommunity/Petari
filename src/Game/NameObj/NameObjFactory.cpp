@@ -874,7 +874,7 @@ namespace {
         },
         {
             "Trapeze",
-            nullptr,
+            createNameObj< Trapeze >,
             "Trapeze",
         },
         {

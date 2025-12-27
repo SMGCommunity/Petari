@@ -210,9 +210,8 @@ void PlantStalk::drawGrowUp() const {
 }
 
 PlantStalkDrawInit::PlantStalkDrawInit(const char* pName) : NameObj(pName) {
-    // this will probably match when the inlining issue with JUTTexture is corrected.
     mTexture = nullptr;
-    mTexture = new JUTTexture(MR::loadTexFromArc("Plant.arc", "PlantStalk.bti"), 0);
+    mTexture = new JUTTexture(MR::loadTexFromArc("Plant.arc", "PlantStalk.bti"));
 
     MR::FunctorV0M< const PlantStalkDrawInit*, void (PlantStalkDrawInit::*)() const > preDrawFunctor(this, &PlantStalkDrawInit::initDraw);
     MR::registerPreDrawFunction(preDrawFunctor, 4);
