@@ -8796,6 +8796,7 @@ Game/System/GameDataHolder.cpp:
 	.text       start:0x803B2C60 end:0x803B37C0
 	.rodata     start:0x8053C908 end:0x8053C918
 	.data       start:0x805DE6C0 end:0x805DE738
+	.sdata      start:0x806B25D0 end:0x806B25D8
 
 Game/System/GameDataPlayerStatus.cpp:
 	.text       start:0x803B37C0 end:0x803B3A5C
@@ -8803,6 +8804,7 @@ Game/System/GameDataPlayerStatus.cpp:
 
 Game/System/GameDataTemporaryInGalaxy.cpp:
 	.text       start:0x803B3A5C end:0x803B3CA8
+	.sdata      start:0x806B25D8 end:0x806B25E0
 
 Game/System/GameEventFlag.cpp:
 	.text       start:0x803B3CA8 end:0x803B3D74

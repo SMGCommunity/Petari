@@ -2198,7 +2198,7 @@ config.libs = [
             Object(NonMatching, "Game/System/GameDataGalaxyStorage.cpp"),
             Object(NonMatching, "Game/System/GameDataHolder.cpp"),
             Object(Matching, "Game/System/GameDataPlayerStatus.cpp"),
-            Object(NonMatching, "Game/System/GameDataTemporaryInGalaxy.cpp"),
+            Object(Matching, "Game/System/GameDataTemporaryInGalaxy.cpp"),
             Object(NonMatching, "Game/System/GameEventFlag.cpp"),
             Object(NonMatching, "Game/System/GameEventFlagTable.cpp"),
             Object(NonMatching, "Game/System/GameEventFlagChecker.cpp"),
