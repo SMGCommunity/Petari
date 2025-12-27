@@ -2,7 +2,7 @@
 #define GDGEOMETRY_H
 
 #include "revolution/gd/GDBase.h"
-#include "revolution/gx.h"
+#include "revolution/gx/GXEnum.h"
 #include "revolution/types.h"
 
 #ifdef __cplusplus
