@@ -42,7 +42,6 @@ u32 __MEM2End = 0x80003128;
 #define OSMicrosecondsToTicks(usec) (((usec) * (OS_TIMER_CLOCK / 125000)) / 8)
 
 void* OSPhysicalToUncached(u32);
-u32 OSCachedToPhysical(const void* caddr);
 
 #define OS_CACHED_REGION_PREFIX 0x8000
 #define OS_UNCACHED_REGION_PREFIX 0xC000
