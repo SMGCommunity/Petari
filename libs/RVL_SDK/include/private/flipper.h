@@ -31,4 +31,8 @@ inline void ACRWriteReg(u32 offset, u32 val) {
     __ACRRegs[offset >> 2] = val;
 }
 
+inline u32 ACRReadReg(u32 offset) {
+    return __ACRRegs[offset >> 2];
+}
+
 #endif  // FLIPPER_H

@@ -340,6 +340,7 @@ cflags_sdk = [
 ]
 
 cflags_sdk_exi = ["-O3" if flag == "-O4,p" else flag for flag in cflags_sdk]
+cflags_sdk_wpad = ["-fp off" if flag == "-fp hardware" else flag for flag in cflags_sdk]
 
 cflags_rfl = [
     "-nodefaults",
@@ -2663,7 +2664,7 @@ config.libs = [
     SDKLib(
         "wpad",
         [
-            Object(NonMatching, "RVL_SDK/wpad/WPAD.c"),
+            Object(NonMatching, "RVL_SDK/wpad/WPAD.c", cflags=cflags_sdk_wpad),
             Object(NonMatching, "RVL_SDK/wpad/WPADHIDParser.c"),
             Object(NonMatching, "RVL_SDK/wpad/WPADEncrypt.c"),
             Object(NonMatching, "RVL_SDK/wpad/WPADMem.c"),

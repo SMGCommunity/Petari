@@ -4,7 +4,6 @@
 #include <cstdarg>
 #include <revolution/types.h>
 
-
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -112,6 +111,8 @@ u16 OSUTF32toSJIS(u32);
 
 extern void __RAS_OSDisableInterrupts_begin(void);
 extern void __RAS_OSDisableInterrupts_end(void);
+
+const char* OSGetAppGamename(void);
 
 #ifndef ASSERT
 #define ASSERT(exp) ((void)0)
