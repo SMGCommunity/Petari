@@ -1700,7 +1700,7 @@ config.libs = [
             Object(Matching, "Game/NPC/RabbitStateWaitStart.cpp"),
             Object(NonMatching, "Game/NPC/Rosetta.cpp"),
             Object(NonMatching, "Game/NPC/RosettaDemoAstroDome.cpp"),
-            Object(NonMatching, "Game/NPC/RosettaDemoEpilogue.cpp"),
+            Object(Matching, "Game/NPC/RosettaDemoEpilogue.cpp"),
             Object(NonMatching, "Game/NPC/RosettaDemoHeavensDoor.cpp"),
             Object(Matching, "Game/NPC/RosettaReading.cpp"),
             Object(NonMatching, "Game/NPC/RunawayRabbit.cpp"),
