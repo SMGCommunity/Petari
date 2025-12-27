@@ -7,18 +7,20 @@
 extern "C" {
 #endif
 
+#define SS_MASK(mask) ((u32)((0xfe << 24) | (mask)))
+
 typedef struct _GDLObj {
-  u8 *start;
-  u32 length;
-  u8 *ptr;
-  u8 *top;
+    u8* start;
+    u32 length;
+    u8* ptr;
+    u8* top;
 } GDLObj;
 
 typedef void (*GDOverflowCallback)(void);
 
-extern GDLObj *__GDCurrentDL;
+extern GDLObj* __GDCurrentDL;
 
-void GDInitGDLObj(GDLObj *, void *, u32);
+void GDInitGDLObj(GDLObj*, void*, u32);
 
 void GDPadCurr32();
 
@@ -41,18 +43,17 @@ static void GDWrite_u8(u8 data) {
 
 static void GDWrite_u16(u16 data) {
     GDOverflowCheck(2);
-    __GDWrite((u8) (data >> 8));
-    __GDWrite((u8) (data & 0xff));
+    __GDWrite((u8)(data >> 8));
+    __GDWrite((u8)(data & 0xff));
 }
 
 static void GDWrite_u32(u32 data) {
     GDOverflowCheck(4);
-    __GDWrite((u8) ((data >> 24) & 0xff));
-    __GDWrite((u8) ((data >> 16) & 0xff));
-    __GDWrite((u8) ((data >>  8) & 0xff));
-    __GDWrite((u8) ((data >>  0) & 0xff));
+    __GDWrite((u8)((data >> 24) & 0xff));
+    __GDWrite((u8)((data >> 16) & 0xff));
+    __GDWrite((u8)((data >> 8) & 0xff));
+    __GDWrite((u8)((data >> 0) & 0xff));
 }
-
 
 static void GDWrite_f32(f32 data) {
     typedef union {
@@ -67,12 +68,30 @@ static void GDWrite_f32(f32 data) {
     GDWrite_u32(fid.u);
 }
 
+static inline void GDWriteBPCmd(u32 regval) {
+    GDWrite_u8(0x61);
+    GDWrite_u32(regval);
+}
+
+static inline void GDWriteCPCmd(u8 addr, u32 val) {
+    GDWrite_u8(8);
+    GDWrite_u8(addr);
+    GDWrite_u32(val);
+}
+
+static inline void GDWriteXFCmd(u16 addr, u32 val) {
+    GDWrite_u8(0x10);
+    GDWrite_u16(0);
+    GDWrite_u16(addr);
+    GDWrite_u32(val);
+}
+
 void GDOverflowed(void);
 
 static void GDPosition3f32(f32 x, f32 y, f32 z) {
-  GDWrite_f32(x);
-  GDWrite_f32(y);
-  GDWrite_f32(z);
+    GDWrite_f32(x);
+    GDWrite_f32(y);
+    GDWrite_f32(z);
 }
 
 void GDColor4u8(u8, u8, u8, u8);
@@ -81,4 +100,4 @@ void GDColor4u8(u8, u8, u8, u8);
 }
 #endif
 
-#endif // GDBASE_H
+#endif  // GDBASE_H
