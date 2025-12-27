@@ -109,7 +109,7 @@ namespace {
         },
         {
             "ScaleDownRelayPlanet",
-            /* createNameObj<FlexibleSphere>, */
+            createNameObj< FlexibleSphere >,
         },
         {
             "SnowCapsulePlanet",

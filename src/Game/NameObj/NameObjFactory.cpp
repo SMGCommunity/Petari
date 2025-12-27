@@ -3569,7 +3569,7 @@ namespace {
         },
         {
             "FlexibleSandPlanetPartsA",
-            nullptr,
+            createNameObj< FlexibleSphere >,
             "FlexibleSandPlanetPartsA",
         },
         {
