@@ -9795,6 +9795,8 @@ RVL_SDK/tpl/TPL.c:
 
 RVL_SDK/wenc/wenc.c:
 	.text       start:0x80456874 end:0x80456B4C
+	.rodata     start:0x8055C488 end:0x8055C4C8
+	.sdata2     start:0x806C1D28 end:0x806C1D30
 
 RVL_SDK/rso/RSOLink.c:
 	.text       start:0x80456B4C end:0x80457EBC
@@ -9804,6 +9806,7 @@ RVLFaceLib/RFL_System.c:
 	extab       start:0x800064E0 end:0x80006500
 	extabindex  start:0x800069A0 end:0x800069D0
 	.text       start:0x80457EBC end:0x80458878
+	.rodata     start:0x8055C4C8 end:0x8055C4D8
 	.sdata      start:0x806B2808 end:0x806B2810
 	.sbss       start:0x806B7408 end:0x806B7420
 
@@ -9820,7 +9823,7 @@ RVLFaceLib/RFL_NANDAccess.c:
 	extabindex  start:0x80006A90 end:0x80006B44
 	.text       start:0x804598A4 end:0x8045B458
 	.data       start:0x805EA7C8 end:0x805EA820
-	.sdata2     start:0x806C1D28 end:0x806C1D38
+	.sdata2     start:0x806C1D30 end:0x806C1D38
 	.sbss2      start:0x806C2918 end:0x806C2920
 
 RVLFaceLib/RFL_Model.c:
