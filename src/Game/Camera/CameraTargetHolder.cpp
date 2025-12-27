@@ -49,5 +49,6 @@ bool CameraTargetHolder::isMoving() const {
 }
 
 CameraTargetHolder::~CameraTargetHolder() {}
-__declspec(section ".data") extern const u32 sCameraTargetHolderDataPad = 0;
-__declspec(section ".sdata2") extern const f32 sCameraTargetHolderSdata2Pad = 0.0f;
+
+const u32 sCameraTargetHolderDataPad = 0;
+const f32 sCameraTargetHolderSdata2Pad = 0.0f;
