@@ -1,15 +1,8 @@
 #pragma once
 
-#include "Game/Util.hpp"
-#include "JSystem/JGeometry.hpp"
-#include "JSystem/JUtility/JUTTexture.hpp"
-#include <revolution.h>
+#include <revolution/types.h>
 
-namespace {
-    static Color8 sTevColor0(0xE0E0E0FF);
-    Color8 sTevColor1(0xFF000000);
-    TVec3f sEnvMatTrans(1.0f, 1.0f, 1.5f);
-};  // namespace
+class JUTTexture;
 
 class BigBubbleDrawer {
 public:

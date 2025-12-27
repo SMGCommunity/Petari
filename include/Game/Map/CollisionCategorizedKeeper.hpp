@@ -19,15 +19,15 @@ public:
     void addToGlobal(CollisionParts*);
     void removeFromGlobal(CollisionParts*);
 
-    void checkStrikePoint(const TVec3f&, HitInfo*);
-    void checkStrikeBall(const TVec3f&, f32, bool, const CollisionPartsFilterBase*, const TriangleFilterBase*);
-    void checkStrikeBallWithThickness(const TVec3f&, f32, f32, const CollisionPartsFilterBase*, const TriangleFilterBase*);
-    void checkStrikeLine(const TVec3f&, const TVec3f&, s32, const CollisionPartsFilterBase*, const TriangleFilterBase*);
-    void createAreaPolygonList(Triangle*, u32, const TVec3f&, const TVec3f&);
-    void createAreaPolygonListArray(Triangle*, u32, TVec3f*, u32);
+    s32 checkStrikePoint(const TVec3f&, HitInfo*);
+    s32 checkStrikeBall(const TVec3f&, f32, bool, const CollisionPartsFilterBase*, const TriangleFilterBase*);
+    s32 checkStrikeBallWithThickness(const TVec3f&, f32, f32, const CollisionPartsFilterBase*, const TriangleFilterBase*);
+    s32 checkStrikeLine(const TVec3f&, const TVec3f&, s32, const CollisionPartsFilterBase*, const TriangleFilterBase*);
+    u32 createAreaPolygonList(Triangle*, u32, const TVec3f&, const TVec3f&);
+    u32 createAreaPolygonListArray(Triangle*, u32, TVec3f*, u32);
     void isSphereOverlappingWithBox(const TVec3f&, const TVec3f&, const TVec3f&, f32);
-    void searchSameHostParts(CollisionParts**, CollisionParts*) const;
-    void getStrikeInfo(u32);
+    bool searchSameHostParts(CollisionParts**, CollisionParts*) const;
+    HitInfo* getStrikeInfo(u32);
     CollisionZone* getZone(int);
 
     HitInfo* mHitInfoArray;  // 0xC

@@ -4,7 +4,7 @@
 
 class CameraFollow : public Camera {
 public:
-    CameraFollow(const char*);
+    CameraFollow(const char* pName = "フォローカメラ");
     virtual ~CameraFollow();
 
     virtual void reset();

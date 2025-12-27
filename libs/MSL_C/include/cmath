@@ -6,7 +6,7 @@ extern "C" {
 #endif
 
 inline long double fabsl(long double x) {
-    return  __fabs((double)x);
+    return __fabs((double)x);
 }
 
 double acos(double);
@@ -15,7 +15,7 @@ double atan(double);
 double atan2(double, double);
 double ceil(double);
 double floor(double);
-double frexp(double, int *);
+double frexp(double, int*);
 double ldexp(double, int);
 double sqrt(double);
 
@@ -44,20 +44,20 @@ double __kernel_sin(double, double, int);
 double __kernel_cos(double, double);
 double __kernel_tan(double, double, int);
 
-int __ieee754_rem_pio2(double, double *);
+int __ieee754_rem_pio2(double, double*);
 
 #ifdef __MWERKS__
 int __float_huge[];
 int __float_nan[];
 int __double_huge[];
 
-#define INFINITY (*(float*) __float_huge)	
-#define NAN (*(float*) __float_nan)
-#define HUGE_VAL (*(double*) __double_huge) 
+#define INFINITY (*(float*)__float_huge)
+#define NAN (*(float*)__float_nan)
+#define HUGE_VAL (*(double*)__double_huge)
 #endif
 
 #ifdef __cplusplus
 };
 #endif
 
-#endif // CMATH_H
+#endif  // CMATH_H

@@ -50,7 +50,7 @@ public:
     void rootNodePre(bool);
     void rootNodePst();
     bool isCurrentNodeContinue() const;
-    void rootNodeEve();
+    bool rootNodeEve();
     void rootNodeSel(bool);
     void registerBranchFunc(const TalkMessageFuncBase&);
     void registerEventFunc(const TalkMessageFuncBase&);
@@ -91,7 +91,7 @@ public:
     static bool isShortTalk(const TalkMessageCtrl*);
     static bool isComposeTalk(const TalkMessageCtrl*);
     static bool isSelectTalk(const TalkMessageCtrl*);
-    bool isEventNode(const TalkMessageCtrl*);
+    static bool isEventNode(const TalkMessageCtrl*);
 
     static bool requestTalkSystem(TalkMessageCtrl*, bool);
     static void startTalkSystem(TalkMessageCtrl*, bool, bool, bool);
@@ -104,4 +104,9 @@ public:
     static TalkMessageInfo* getMessageInfo(const TalkMessageCtrl*);
     static const wchar_t* getSubMessage(const TalkMessageCtrl*);
     static const wchar_t* getMessage(const TalkMessageCtrl*);
+    static void onTalkStateEntry(TalkMessageCtrl*);
+    static void onTalkStateNone(TalkMessageCtrl*);
+    static void onTalkStateEnableStart(TalkMessageCtrl*);
+    static void onTalkStateTalking(TalkMessageCtrl*);
+    static void onTalkStateEnableEnd(TalkMessageCtrl*);
 };

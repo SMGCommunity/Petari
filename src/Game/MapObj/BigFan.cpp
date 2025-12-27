@@ -74,7 +74,7 @@ void BigFan::calcWindInfo(TVec3f *pWindInfo, const TVec3f &a2) {
             pWindInfo->zero();
             return;
         }
-        
+
         TVec3f front_vec;
         MR::calcFrontVec(&front_vec, this);
         MR::normalize(&front_vec);

@@ -75,9 +75,8 @@ s32 MiniatureGalaxyHolder::calcIndex(const LiveActor* mActor) const {
         if (mMiniGalaxy3->_8C != 2 && mMiniGalaxy3 != mMiniGalaxy2) {
             if (mMiniGalaxy2->_8C == 2) {
                 x++;
-            }
-            else if (MR::getPowerStarNumToOpenGalaxy(mMiniGalaxy3->_118) < mStarNum) {
-                    x++;
+            } else if (MR::getPowerStarNumToOpenGalaxy(mMiniGalaxy3->_118) < mStarNum) {
+                x++;
             }
         }
     }
@@ -103,7 +102,7 @@ void MiniatureGalaxyHolder::updateCometStatus() {
     }
 }
 
-void MiniatureGalaxyFunction::registerMiniatureGalaxyToHolder(LiveActor * mActor, const JMapInfoIter & rIter) {
+void MiniatureGalaxyFunction::registerMiniatureGalaxyToHolder(LiveActor* mActor, const JMapInfoIter& rIter) {
     MR::createSceneObj(115);
     getMiniGalaxyHolder()->registerActor(mActor, rIter);
 }
@@ -112,7 +111,7 @@ s32 MiniatureGalaxyFunction::getMiniatureGalaxyNum() {
     return getMiniGalaxyHolder()->_8C->mObjectCount;
 }
 
-void MiniatureGalaxyFunction::calcMiniatureGalaxyIndex(const LiveActor * mActor) {
+void MiniatureGalaxyFunction::calcMiniatureGalaxyIndex(const LiveActor* mActor) {
     getMiniGalaxyHolder()->calcIndex(mActor);
 }
 

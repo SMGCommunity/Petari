@@ -22,7 +22,9 @@ ArrowSwitchMulti* ArrowSwitchMultiHolder::findSwitch(const JMapIdInfo* pInfo) {
 }
 
 namespace MR {
-    void createArrowSwitchMultiHolder() { MR::createSceneObj(SceneObj_ArrowSwitchMultiHolder); }
+    void createArrowSwitchMultiHolder() {
+        MR::createSceneObj(SceneObj_ArrowSwitchMultiHolder);
+    }
 
     void registerArrowSwitchMulti(ArrowSwitchMulti* pSwitch) {
         MR::getSceneObj< ArrowSwitchMultiHolder >(SceneObj_ArrowSwitchMultiHolder)->registerActor(pSwitch);

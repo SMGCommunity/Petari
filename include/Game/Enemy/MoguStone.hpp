@@ -1,18 +1,22 @@
 #pragma once
 
-#include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
-#include "Game/Util/ParabolicPath.hpp"
 
-namespace {
-    static f32 hAddHeight = 200.0f;
-};
+class ParabolicPath;
 
 class MoguStone : public ModelObj {
 public:
     MoguStone(const char*, const char*);
 
+    virtual void init(const JMapInfoIter& rIter);
+    virtual void appear();
+    virtual void calcAndSetBaseMtx();
+    virtual void attackSensor(HitSensor*, HitSensor*);
     virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
+
+    void exeTaken();
+    void exeThrow();
+    void exeFall();
     // incomplete class
 
     TVec4f _90;
@@ -27,19 +31,13 @@ public:
     ThrowingIce(const char*);
 
     virtual void init(const JMapInfoIter&);
-    virtual void doBehavior();
     virtual void attackSensor(HitSensor*, HitSensor*);
     virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
+    virtual void doBehavior();
     virtual void startBreakSound();
     virtual void startThrowLevelSound();
 
     void emitIce(const TVec3f&, const TVec3f&, f32, const TVec3f&);
 
-    ParabolicPath* mPath;  //_C4
+    /* 0xC4 */ ParabolicPath* mPath;
 };
-
-namespace NrvMoguStone {
-    NERVE(MoguStoneNrvTaken);
-    NERVE(MoguStoneNrvThrow);
-    // incomplete
-};  // namespace NrvMoguStone

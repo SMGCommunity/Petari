@@ -3,7 +3,6 @@
 #include <revolution/nwc24.h>
 #include <revolution/types.h>
 
-
 class JKRHeap;
 class NWC24SendThread;
 

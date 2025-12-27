@@ -93,7 +93,7 @@ void Dossun::initShadow() {
 
 /*
 void Dossun::calcParameters() {
-    
+
 }
 */
 

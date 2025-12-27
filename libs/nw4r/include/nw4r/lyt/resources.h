@@ -52,6 +52,44 @@ namespace nw4r {
                 u8 padding[2];
             };
 
+            struct TexMap {
+                TexMap() : texIdx(0), wrapSflt(0), wrapTflt(0) {}
+
+                GXTexWrapMode GetWarpModeS() const { return GXTexWrapMode(detail::GetBits(wrapSflt, 0, 2)); }
+                GXTexWrapMode GetWarpModeT() const { return GXTexWrapMode(detail::GetBits(wrapTflt, 0, 2)); }
+
+                GXTexFilter GetMinFilter() const {
+                    const int bitLen = 3;
+                    const u8 bitData = detail::GetBits(wrapSflt, 2, bitLen);
+                    return GXTexFilter(detail::GetBits(bitData + GX_LINEAR, 0, bitLen));
+                }
+
+                GXTexFilter GetMagFilter() const {
+                    const int bitLen = 1;
+                    const u8 bitData = detail::GetBits(wrapTflt, 2, bitLen);
+                    return GXTexFilter(detail::GetBits(bitData + GX_LINEAR, 0, bitLen));
+                }
+
+                void SetWarpModeS(GXTexWrapMode value) { detail::SetBits(&wrapSflt, 0, 2, u8(value)); }
+                void SetWarpModeT(GXTexWrapMode value) { detail::SetBits(&wrapTflt, 0, 2, u8(value)); }
+
+                void SetMinFilter(GXTexFilter value) {
+                    const int bitLen = 3;
+                    const u8 bitData = u8(detail::GetBits(value - GX_LINEAR, 0, bitLen));  // Set to zero when (value = GX_LINEAR)
+                    detail::SetBits(&wrapSflt, 2, bitLen, bitData);
+                }
+
+                void SetMagFilter(GXTexFilter value) {
+                    const int bitLen = 1;
+                    const u8 bitData = u8(detail::GetBits(value - GX_LINEAR, 0, bitLen));
+                    detail::SetBits(&wrapTflt, 2, bitLen, bitData);
+                }
+
+                u16 texIdx;
+                u8 wrapSflt;
+                u8 wrapTflt;
+            };
+
             struct MaterialList {
                 DataBlockHeader blockHeader;
                 u16 materialNum;
@@ -133,6 +171,18 @@ namespace nw4r {
             };
 
             struct MaterialResourceNum {
+                u8 GetTexMapNum() const NO_INLINE { return u8(detail::GetBits(bits, 0, 4)); }
+                u8 GetTexSRTNum() const NO_INLINE { return u8(detail::GetBits(bits, 4, 4)); }
+                u8 GetTexCoordGenNum() const NO_INLINE { return u8(detail::GetBits(bits, 8, 4)); }
+                bool HasTevSwapTable() const NO_INLINE { return detail::TestBit(bits, 12); }
+                u8 GetIndTexSRTNum() const NO_INLINE { return u8(detail::GetBits(bits, 13, 2)); }
+                u8 GetIndTexStageNum() const NO_INLINE { return u8(detail::GetBits(bits, 15, 3)); }
+                u8 GetTevStageNum() const NO_INLINE { return u8(detail::GetBits(bits, 18, 5)); }
+                bool HasAlphaCompare() const NO_INLINE { return detail::TestBit(bits, 23); }
+                bool HasBlendMode() const NO_INLINE { return detail::TestBit(bits, 24); }
+                u8 GetChanCtrlNum() const NO_INLINE { return u8(detail::GetBits(bits, 25, 1)); }
+                u8 GetMatColNum() const NO_INLINE { return u8(detail::GetBits(bits, 27, 1)); }
+
                 u32 bits;
             };
 

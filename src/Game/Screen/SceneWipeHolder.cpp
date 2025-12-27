@@ -36,7 +36,9 @@ SceneWipeHolder::SceneWipeHolder() : WipeHolderBase(8, "シーンワイプ保持
 }
 
 namespace SceneWipeHolderFunction {
-    SceneWipeHolder* getSceneWipeHolder() { return MR::getSceneObj< SceneWipeHolder >(SceneObj_SceneWipeHolder); }
+    SceneWipeHolder* getSceneWipeHolder() {
+        return MR::getSceneObj< SceneWipeHolder >(SceneObj_SceneWipeHolder);
+    }
 
     void openWipe(const char* pWipeName, s32 step) {
         getSceneWipeHolder()->forceClose(pWipeName);
@@ -48,7 +50,11 @@ namespace SceneWipeHolderFunction {
         getSceneWipeHolder()->wipe(nullptr, step);
     }
 
-    void forceOpenWipe(const char* pWipeName) { getSceneWipeHolder()->forceOpen(pWipeName); }
+    void forceOpenWipe(const char* pWipeName) {
+        getSceneWipeHolder()->forceOpen(pWipeName);
+    }
 
-    void forceCloseWipe(const char* pWipeName) { getSceneWipeHolder()->forceClose(pWipeName); }
+    void forceCloseWipe(const char* pWipeName) {
+        getSceneWipeHolder()->forceClose(pWipeName);
+    }
 };  // namespace SceneWipeHolderFunction

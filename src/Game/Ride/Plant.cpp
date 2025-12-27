@@ -644,7 +644,7 @@ bool Plant::tryReachGoal() {
     TVec3f endFront(mStalk->mPlantPoints[0]->mUp);
     MR::vecKillElement(endFront, mGravity, &endFront);
 
-    if (!MR::isNearZero(endFront, 0.001f)) {
+    if (!MR::isNearZero(endFront)) {
         MR::normalize(&endFront);
         MR::setPlayerFrontTargetVec(endFront, 1);
     }

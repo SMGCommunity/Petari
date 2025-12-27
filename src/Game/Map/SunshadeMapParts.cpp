@@ -16,7 +16,9 @@ void SunshadeMapParts::calcAnim() {
 }
 
 namespace MR {
-    SunshadeMapParts* createSunshadeMapParts(const char* pName) { return new SunshadeMapParts(pName); }
+    SunshadeMapParts* createSunshadeMapParts(const char* pName) {
+        return new SunshadeMapParts(pName);
+    }
 };  // namespace MR
 
 SunshadeMapParts::~SunshadeMapParts() {}

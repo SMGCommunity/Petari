@@ -11,4 +11,4 @@ namespace nw4r {
 
         DrawInfo::~DrawInfo() {}
     };  // namespace lyt
-};      // namespace nw4r
+};  // namespace nw4r

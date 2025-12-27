@@ -2,12 +2,6 @@
 
 #include "Game/LiveActor/LiveActor.hpp"
 
-namespace {
-    static const char* cSwitchJointName = "Switch";
-    static const char* cMoveJointName = "Move";
-    static const char* cMoveAnimName = "Move";
-};  // namespace
-
 class HipDropMoveObj : public LiveActor {
 public:
     HipDropMoveObj(const char*);

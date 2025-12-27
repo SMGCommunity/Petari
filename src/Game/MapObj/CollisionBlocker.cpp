@@ -1,5 +1,9 @@
 #include "Game/MapObj/CollisionBlocker.hpp"
 
+namespace {
+    static f32 cRadius = 50.0f;
+};
+
 CollisionBlocker::CollisionBlocker(const char* pName) : LiveActor(pName) {}
 
 void CollisionBlocker::init(const JMapInfoIter& rIter) {

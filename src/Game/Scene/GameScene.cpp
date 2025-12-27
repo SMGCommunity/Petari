@@ -25,7 +25,9 @@
 #include <JSystem/J3DGraphBase/J3DSys.hpp>
 
 namespace {
-    CometRetryButton* getCometRetryButton() { return MR::getSceneObj< CometRetryButton >(SceneObj_CometRetryButton); }
+    CometRetryButton* getCometRetryButton() {
+        return MR::getSceneObj< CometRetryButton >(SceneObj_CometRetryButton);
+    }
 };  // namespace
 
 namespace NrvGameScene {

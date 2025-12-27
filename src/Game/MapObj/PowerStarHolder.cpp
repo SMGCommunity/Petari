@@ -67,7 +67,9 @@ PowerStarRequestInfo* PowerStarHolder::findPowerStarRequestInfo(int starNum) con
 }
 
 namespace MR {
-    void registerPowerStar(PowerStar* pStar, int starNum) { EventFunction::getPowerStarHolder()->registerPowerStar(pStar, starNum); }
+    void registerPowerStar(PowerStar* pStar, int starNum) {
+        EventFunction::getPowerStarHolder()->registerPowerStar(pStar, starNum);
+    }
 };  // namespace MR
 
 bool PowerStarFunction::isEndPowerStarAppearDemo(int starNum) {

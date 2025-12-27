@@ -121,7 +121,7 @@ bool CounterLayoutController::isPlayerMoving() const {
         return true;
     }
 
-    if (!MR::isNearZero(MR::getSubPadStickX(WPAD_CHAN0), 0.001f) || !MR::isNearZero(MR::getSubPadStickY(WPAD_CHAN0), 0.001f) ||
+    if (!MR::isNearZero(MR::getSubPadStickX(WPAD_CHAN0)) || !MR::isNearZero(MR::getSubPadStickY(WPAD_CHAN0)) ||
         MR::testPadButtonAnyWithoutHome(WPAD_CHAN0) || MR::isCorePadSwing(WPAD_CHAN0) || MR::isSubPadSwing(WPAD_CHAN0)) {
         return true;
     }

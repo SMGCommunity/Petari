@@ -8,7 +8,7 @@ void CamTranslatorCharmedFix::setParam(const CameraParamChunk* pChunk) {
     TVec3f up;
     up.setPS(general->mUp);
 
-    if (MR::isNearZero(up, 0.001f)) {
+    if (MR::isNearZero(up)) {
         up.set(0.0f, 1.0f, 0.0f);
     } else {
         MR::normalize(&up);

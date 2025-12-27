@@ -11,4 +11,4 @@ namespace MR {
         bool isExistPadRumble(const char*);
         const char* getStartEffect(const char*);
     };  // namespace Demo
-};      // namespace MR
+};  // namespace MR

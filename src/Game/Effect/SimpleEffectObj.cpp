@@ -20,7 +20,7 @@ namespace NrvSimpleEffectObj {
 };  // namespace NrvSimpleEffectObj
 
 namespace {
-    const s_effectDataTable sEffectDataTable[12] = {
+    const s_effectDataTable sEffectDataTable[] = {
         {"IceLayerBreak", "SE_OJ_ICE_LAYER_BREAK", nullptr, 0, "最強", 7},
         {"LavaVolcanoEruption", nullptr, nullptr, 0, "最強", 0},
         {"LavaHomeVolcanoFallingRock", nullptr, "SE_AT_LV_FALLING_ROCK", -1, nullptr, 0},
@@ -37,7 +37,7 @@ namespace {
     const s_effectDataTable* findDataElement(const char* pString) {
         u32 i = 0;
         u32 v2 = 0;
-        for (i = 0; i < 12; i++) {
+        for (i = 0; i < sizeof(sEffectDataTable) / sizeof(*sEffectDataTable); i++) {
             const s_effectDataTable* table = &sEffectDataTable[v2];
             if (MR::isEqualString(pString, table->_0)) {
                 return table;

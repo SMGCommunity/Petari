@@ -313,7 +313,7 @@ void MarioActor::init2(const TVec3f& a, const TVec3f& b, s32 initialAnimation) {
     initMorphStringTable();
     MR::declareGlobalEventCameraAbyss("奈落カメラ");
     MR::declareBlackHoleCamera("ブラックホール");
-    MR::declareGlobalEventCameraDead("昇天カメラ", 0.34999999404f, 0x78, 0x3C);
+    MR::declareGlobalEventCameraDead("昇天カメラ", 0.35f, 0x78, 0x3C);
     MR::declareGlobalEventCamera("水中フォロー");
     MR::declareGlobalEventCamera("水中プラネット");
     MR::declareGlobalEventCamera("水上フォロー");
@@ -352,8 +352,7 @@ void MarioActor::init2(const TVec3f& a, const TVec3f& b, s32 initialAnimation) {
     _27C.zero();
     _288.zero();
     _498 = new FixedPosition(this, "HandR", TVec3f(0.0f, 0.0f, 0.0f), TVec3f(0.0f, 0.0f, 0.0f));
-    _49C = new FixedPosition(this, "HandR", TVec3f(76.3300018311f, 15.6899995804f, 88.9899978638f),
-                             TVec3f(1.79999995232f, 52.5099983215f, 39.5800018311f));
+    _49C = new FixedPosition(this, "HandR", TVec3f(76.33f, 15.69f, 88.99f), TVec3f(1.8f, 52.51f, 39.58f));
     _494 = 0;
     _4B0 = 35.0f;
     _4B4 = 60.0f;
@@ -732,13 +731,13 @@ void MarioActor::movement() {
     if (MR::isOppositeDirection(_288, stack_11C, 0.01f)) {
         f32 mag_288 = PSVECMag(&_288);
         f32 magStack_11C = PSVECMag(&stack_11C);
-        if (!MR::isNearZero(mag_288, 0.001f) && !MR::isNearZero(magStack_11C, 0.001f) && MR::isNearZero(mag_288 - magStack_11C, 1.0f)) {
+        if (!MR::isNearZero(mag_288) && !MR::isNearZero(magStack_11C) && MR::isNearZero(mag_288 - magStack_11C, 1.0f)) {
             mPosition -= _288.scaleInline(0.5f);
         }
     }
     if (PSVECMag(&stack_128) > 0.1f) {
         if (!(getMovementStates()._A)) {
-            if (!MR::isNearZero(mVelocity, 0.001f)) {
+            if (!MR::isNearZero(mVelocity)) {
                 TVec3f stack_110(_294);
                 stack_110 -= _270;
                 f32 diffMag = PSVECMag(&stack_110);
@@ -752,7 +751,7 @@ void MarioActor::movement() {
             if (stack_134.dot(getGravityVec()) < -0.0f) {
                 TVec3f stack_110;
                 MR::vecKillElement(mVelocity, getGravityVec(), &stack_110);
-                if (MR::isNearZero(stack_110, 0.001f)) {
+                if (MR::isNearZero(stack_110)) {
                     MR::vecKillElement(stack_134, getGravityVec(), &stack_110);
                 }
                 stack_110.setLength(PSVECMag(&stack_134));  // needs to be inlined
@@ -1030,7 +1029,7 @@ void MarioActor::updateBehavior() {
 }
 
 void MarioActor::updateBindRatio() {
-    if (!_934 && !MR::isNearZero(_978 - _264, 0.001f)) {
+    if (!_934 && !MR::isNearZero(_978 - _264)) {
         f32 mag = PSVECMag(&_978);
         TVec3f stack_38(_978);
         stack_38 -= _264;
@@ -1039,7 +1038,7 @@ void MarioActor::updateBindRatio() {
         } else {
             _984 -= 0.01f;
         }
-    } else if (!MR::isNearZero(_978, 0.001f)) {
+    } else if (!MR::isNearZero(_978)) {
         _984 -= 0.01f;
     }
     _984 = MR::clamp(_984, 0.0f, 1.0f);
@@ -1559,7 +1558,7 @@ bool MarioActor::doStun() {
         if (!--_38C) {
             f32 stickX, stickY;
             getStickValue(&stickX, &stickY);
-            if (MR::isNearZero(stickX, 0.001f) && MR::isNearZero(stickY, 0.001f) && !getMovementStates()._A) {
+            if (MR::isNearZero(stickX) && MR::isNearZero(stickY) && !getMovementStates()._A) {
                 mMario->stopWalk();
             }
         }

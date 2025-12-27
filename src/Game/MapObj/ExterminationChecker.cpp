@@ -2,6 +2,26 @@
 #include "Game/LiveActor/LiveActorGroup.hpp"
 #include "Game/MapObj/KeySwitch.hpp"
 
+namespace {
+    template < typename T >
+    LiveActor* createLiveActor(const char* pName) {
+        return new T(pName);
+    }
+
+    // we will define the creation funcs later
+    static const ExterminationEntry sCreateTable[] = {{"ChildKuribo", nullptr}, {"ChildSkeletalFishBaby", nullptr}, {"ChildMeramera", nullptr}};
+
+    inline CreationFunc findEntry(const char* pName) {
+        for (s32 j = 0; j < sizeof(sCreateTable) / sizeof(*sCreateTable); j++) {
+            if (sCreateTable[j].mChildName && MR::isEqualStringCase(sCreateTable[j].mChildName, pName)) {
+                return sCreateTable[j].mCreationFunc;
+            }
+        }
+
+        return nullptr;
+    }
+};  // namespace
+
 ExterminationChecker::ExterminationChecker(const char* pName) : LiveActor(pName) {
     mGroup = nullptr;
     mKeySwitch = nullptr;

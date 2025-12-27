@@ -38,13 +38,21 @@ void CoinRotater::movement() {
 */
 
 namespace MR {
-    void createCoinRotater() { MR::createSceneObj(SceneObj_CoinRotater); }
+    void createCoinRotater() {
+        MR::createSceneObj(SceneObj_CoinRotater);
+    }
 
-    TMtx34f& getCoinRotateYMatrix() { return MR::getSceneObj< CoinRotater >(SceneObj_CoinRotater)->mRotateYMtx; }
+    TMtx34f& getCoinRotateYMatrix() {
+        return MR::getSceneObj< CoinRotater >(SceneObj_CoinRotater)->mRotateYMtx;
+    }
 
-    TMtx34f& getCoinHiSpeedRotateYMatrix() { return MR::getSceneObj< CoinRotater >(SceneObj_CoinRotater)->mHiSpeedRotateYMtx; }
+    TMtx34f& getCoinHiSpeedRotateYMatrix() {
+        return MR::getSceneObj< CoinRotater >(SceneObj_CoinRotater)->mHiSpeedRotateYMtx;
+    }
 
-    TMtx34f& getCoinInWaterRotateYMatrix() { return MR::getSceneObj< CoinRotater >(SceneObj_CoinRotater)->mWaterRotateMtx; }
+    TMtx34f& getCoinInWaterRotateYMatrix() {
+        return MR::getSceneObj< CoinRotater >(SceneObj_CoinRotater)->mWaterRotateMtx;
+    }
 };  // namespace MR
 
 CoinRotater::~CoinRotater() {}

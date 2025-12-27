@@ -4,7 +4,7 @@
 
 class CameraMedianTower : public Camera {
 public:
-    CameraMedianTower(const char*);
+    CameraMedianTower(const char* pName = "中点塔カメラ");
     virtual ~CameraMedianTower();
 
     virtual void reset();

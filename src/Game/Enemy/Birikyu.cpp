@@ -153,7 +153,7 @@ void Birikyu::initCollision() {
 void Birikyu::initShadow() {
     if (_A8) {
         f32 num = getHitRadius();
-        MR::initShadowVolumeSphere(this, (0.80000001f * (num * mScale.x)));
+        MR::initShadowVolumeSphere(this, (0.8f * (num * mScale.x)));
         MR::onCalcShadowDropPrivateGravity(this, nullptr);
         MR::onCalcShadow(this, nullptr);
         MR::onCalcGravity(this);
@@ -289,7 +289,7 @@ void BirikyuWithFace::calcAndSetBaseMtx() {
             vec.negate();
         }
         TVec3f vec2(_AC);
-        if (MR::isSameDirection(vec2, vec, 0.0099999998f)) {
+        if (MR::isSameDirection(vec2, vec, 0.01f)) {
             MR::makeMtxSideFront(&vec3, vec, _B8);
         } else {
             MR::makeMtxSideUp(&vec3, vec, vec2);

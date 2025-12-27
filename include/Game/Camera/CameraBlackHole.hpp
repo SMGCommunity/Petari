@@ -4,7 +4,7 @@
 
 class CameraBlackHole : public Camera {
 public:
-    CameraBlackHole(const char*);
+    CameraBlackHole(const char* pName = "ブラックホールカメラ");
     virtual ~CameraBlackHole();
 
     virtual void reset();

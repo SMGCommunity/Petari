@@ -1,8 +1,15 @@
 #include "Game/AreaObj/BgmProhibitArea.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
+#include "Game/Util/SceneUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
+#include "Game/Util/StringUtil.hpp"
 
 BgmProhibitArea::~BgmProhibitArea() {}
 
 namespace {
+    static BgmMuteSet sBgmMuteSet[] = {{"OceanPhantomCaveGalaxy", 7, 1}, {"SoundMapCodeTest", 7, 1}};
+
     BgmMuteSet* findDataElement(const char* pName) {
         for (u32 i = 0; i < 2; i++) {
             BgmMuteSet* ret = &sBgmMuteSet[i];

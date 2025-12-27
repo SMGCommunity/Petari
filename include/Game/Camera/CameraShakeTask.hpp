@@ -3,7 +3,6 @@
 #include <JSystem/JGeometry.hpp>
 #include <revolution.h>
 
-
 class CameraShakePattern;
 
 class CameraShakeTask {

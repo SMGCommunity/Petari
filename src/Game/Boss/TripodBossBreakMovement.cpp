@@ -10,16 +10,16 @@ namespace NrvTripodBossBreakMovement {
 };  // namespace NrvTripodBossBreakMovement
 
 TripodBossBreakMovement::TripodBossBreakMovement(const char* pName) : LiveActor(pName), mSpring(nullptr), _CC(0, 0, 0), _D8(0, 0, 0), _E4(0, 1, 0) {
-    _F0 = 0.30000001f;
+    _F0 = 0.3f;
     _F4 = 0.0f;
-    _F8 = 0.89999998f;
+    _F8 = 0.9f;
     _FC = 0;
     _100 = -1;
     _8C.identity();
     initNerve(&NrvTripodBossBreakMovement::TripodBossBreakMovementNrvWait::sInstance);
     MR::invalidateClipping(this);
     mSpring = new SpringValue();
-    mSpring->setParam(0.0f, 0.0f, 0.2f, 0.89999998f, 0.0f);
+    mSpring->setParam(0.0f, 0.0f, 0.2f, 0.9f, 0.0f);
     setBreakDownLevel(1);
 }
 
@@ -34,9 +34,9 @@ void TripodBossBreakMovement::start(const TPos3f& a1, s32 a2) {
     f32 v15 = MR::getRandom(-1.0f, 1.0f);
     _CC.set< f32 >(v15, v14, v13);
     MR::normalizeOrZero(&_CC);
-    f32 v16 = MR::getRandom(0.0099999998f, 0.039999999f);
+    f32 v16 = MR::getRandom(0.01f, 0.04f);
     _CC *= v16;
-    _F8 = MR::getRandom(0.995f, 0.99699998f);
+    _F8 = MR::getRandom(0.995f, 0.997f);
     MR::zeroVelocity(this);
     _100 = a2;
     _FC = 0;

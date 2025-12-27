@@ -4,11 +4,6 @@
 #include "Game/MapObj/SpinDriverCamera.hpp"
 #include "Game/MapObj/SpinDriverShootPath.hpp"
 
-namespace {
-    static s32 cSpaceFlyStartFrame = 0xA;
-    static s32 cSpaceFlyEndFrame = 0x32;
-};  // namespace
-
 class SpinDriver : public LiveActor {
 public:
     SpinDriver(const char*);

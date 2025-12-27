@@ -125,7 +125,7 @@ void SkeletalFishGuard::exeAppear() {
 
     TVec3f v28 = mPosition - v29;
 
-    if (!MR::isNearZero(v28, 0.001f)) {
+    if (!MR::isNearZero(v28)) {
         _D0.setPS(v28);
         MR::normalize(&_D0);
     }
@@ -163,12 +163,12 @@ void SkeletalFishGuard::exeApart() {
     f32 v3 = (f32)getNerveStep() / 80.0f;
     TVec3f v14(_A4);
 
-    if (!MR::isNearZero(v14, 0.001f)) {
+    if (!MR::isNearZero(v14)) {
         MR::normalize(&v14);
         f32 sqr = v14.squared();
         if (sqr > 0.0000038146973f) {
             f32 inv = JGeometry::TUtil< f32 >::inv_sqrt(sqr);
-            v14.scale(inv * 0.30000001f);
+            v14.scale(inv * 0.3f);
         }
 
         f32 v6 = _A4.squared();
@@ -177,7 +177,7 @@ void SkeletalFishGuard::exeApart() {
             _A4.y = 0.0f;
             _A4.x = 0.0f;
         } else {
-            TVec3f v10 = v14 * 0.30000001f;
+            TVec3f v10 = v14 * 0.3f;
             JMathInlineVEC::PSVECSubtract(_A4, v10, _A4);
         }
     }
@@ -211,7 +211,7 @@ void SkeletalFishGuard::exeFollow() {
     MR::startLevelSound(this, "SE_BM_LV_SKL_GUARD_SWIM_NORMAL", -1, -1, -1);
     MR::startLevelSound(this, "SE_BM_LV_SKL_GUARD_ALARM", MR::calcDistanceToPlayer(this), -1, -1);
     mPosition += _D0 * _C4;
-    _C4 += 0.80000001f;
+    _C4 += 0.8f;
     if (_C4 >= 22.0f) {
         _C4 = 22.0f;
     }
@@ -247,7 +247,7 @@ void SkeletalFishGuard::exeStraight() {
     MR::startLevelSound(this, "SE_BM_LV_SKL_GUARD_ALARM", MR::calcDistanceToPlayer(this), -1, -1);
     mPosition += _D0 * _C4;
 
-    _C4 += 0.80000001f;
+    _C4 += 0.8f;
     if (_C4 >= 22.0f) {
         _C4 = 22.0f;
     }
@@ -353,7 +353,7 @@ void SkeletalFishGuard::calcAndSetBaseMtx() {
         JGeometry::negateInternal((f32*)&mGravity, (f32*)&stack_30);
         PSVECCrossProduct(stack_30, _D0, stack_24);
 
-        if (MR::isNearZero(stack_24, 0.001f)) {
+        if (MR::isNearZero(stack_24)) {
             MtxPtr mtx = getBaseMtx();
             TPos3f stack_A0;
             f32 x, y, z;
@@ -361,7 +361,7 @@ void SkeletalFishGuard::calcAndSetBaseMtx() {
             x = stack_A0.mMtx[0][0];
             y = stack_A0.mMtx[1][0];
             z = stack_A0.mMtx[2][0];
-            
+
             stack_24.set(x, y, z);
             z = stack_A0.mMtx[2][1];
             y = stack_A0.mMtx[1][1];
@@ -447,14 +447,14 @@ void SkeletalFishGuard::rotateHorizontal(const TVec3f& a2, f32 scalar) {
     f32 dot = grav->dot(a2);
     TVec3f v10;
     JMAVECScaleAdd(grav, &a2, &v10, -dot);
-    if (!MR::isNearZero(v10, 0.001f)) {
+    if (!MR::isNearZero(v10)) {
         MR::normalize(&v10);
         TVec3f* v11 = &_D0;
         TVec3f* g = &mGravity;
         f32 v8 = g->dot(*v11);
         TVec3f v9;
         JMAVECScaleAdd(g, &_D0, &v9, -v8);
-        if (!MR::isNearZero(v9, 0.001f)) {
+        if (!MR::isNearZero(v9)) {
             MR::normalize(&v9);
             turn(v11, v9, v10, scalar);
         }
@@ -465,7 +465,7 @@ void SkeletalFishGuard::rotateVertical(const TVec3f& a2, f32 a3) {
     TVec3f v12;
     PSVECCrossProduct(&mGravity, &_D0, &v12);
 
-    if (!MR::isNearZero(v12, 0.001f)) {
+    if (!MR::isNearZero(v12)) {
         MR::normalize(&v12);
         f32 angle = mGravity.angle(a2);
         f32 v7 = (angle - mGravity.angle(_D0));
@@ -567,7 +567,7 @@ void SkeletalFishGuard::lookToPlayer(f32 a2, f32 a3) {
     TVec3f pos(*MR::getPlayerCenterPos());
     pos -= mPosition;
 
-    if (!MR::isNearZero(pos, 0.001f)) {
+    if (!MR::isNearZero(pos)) {
         MR::normalize(&pos);
         rotateHorizontal(pos, a2);
         rotateVertical(pos, a3);
@@ -603,7 +603,7 @@ bool SkeletalFishGuard::isInScreen() const {
     return MR::calcScreenPosition(&screen, mPosition);
 }
 
-//#ifdef NON_MATCHING
+// #ifdef NON_MATCHING
 /*
 bool SkeletalFishGuard::isPlayerInAttackRange() const {
     //const Vec* posPtr = mPosition;
@@ -616,7 +616,7 @@ bool SkeletalFishGuard::isPlayerInAttackRange() const {
         return false;
     }
 
-    if (MR::isNearZero(v7, 0.001f)) {
+    if (MR::isNearZero(v7)) {
         return false;
     }
 
@@ -626,11 +626,11 @@ bool SkeletalFishGuard::isPlayerInAttackRange() const {
     if (dot < lap) {
         return false;
     }
-    
+
     return true;
 }
 */
-//#endif
+// #endif
 
 #ifdef NON_MATCHING
 // pretty close
@@ -657,7 +657,7 @@ bool SkeletalFishGuard::isLineOfSightClear() const {
     JMAVECScaleAdd(_100, v12, v12, -v5);
     bool ret = true;
 
-    if (!MR::isNearZero(v11, 0.001f) && !MR::isNearZero(v12, 0.001f)) {
+    if (!MR::isNearZero(v11) && !MR::isNearZero(v12)) {
         f32 v6 = PSVECMag(v11);
         f32 thick = mFishBoss->getBodyThickness();
         f64 angle = JMAAsinRadian(thick / v6);

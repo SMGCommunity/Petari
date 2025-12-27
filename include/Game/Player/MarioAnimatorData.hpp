@@ -2,7 +2,7 @@
 
 #include "Game/Animation/XanimeResource.hpp"
 
-XanimeQuadBckTable quadAnimeTable[7] = {
+XanimeQuadBckTable quadAnimeTable[] = {
     {
         {"基本"},        // mParent
         "WalkSoft",      // fileName1
@@ -82,7 +82,7 @@ XanimeQuadBckTable quadAnimeTable[7] = {
     },
 };
 
-XanimeTripleBckTable tripleAnimeTable[8] = {
+XanimeTripleBckTable tripleAnimeTable[] = {
     {
         {"坂左右ウエイト"},  // mParent
         "Wait",              // fileName1
@@ -157,7 +157,7 @@ XanimeTripleBckTable tripleAnimeTable[8] = {
     },
 };
 
-XanimeDoubleBckTable doubleAnimeTable[4] = {
+XanimeDoubleBckTable doubleAnimeTable[] = {
     {
         {"しゃがみ基本"},  // mParent
         "SquatWait",       // fileName1
@@ -188,7 +188,7 @@ XanimeDoubleBckTable doubleAnimeTable[4] = {
     },
 };
 
-XanimeSingleBckTable singleAnimeTable[0x124] = {
+XanimeSingleBckTable singleAnimeTable[] = {
     {
         {"ジャンプ"},  // mParent
         "Jump",        // fileName
@@ -1943,7 +1943,7 @@ XanimeSingleBckTable singleAnimeTable[0x124] = {
     },
 };
 
-XanimeGroupInfo marioAnimeTable[0x134] = {
+XanimeGroupInfo marioAnimeTable[] = {
     {
         {"基本"},        // mParent
         1.00000000000f,  // 0x4
@@ -9954,9 +9954,9 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
     },
 };
 
-XanimeAuxInfo marioAnimeAuxTable[1] = {{""}};
+XanimeAuxInfo marioAnimeAuxTable[] = {{""}};
 
-XanimeOfsInfo marioAnimeOfsTable[35] = {
+XanimeOfsInfo marioAnimeOfsTable[] = {
     {
         {"ダメージ"},    // mParent
         0.00000000000f,  // 0x4
@@ -10204,7 +10204,7 @@ XanimeOfsInfo marioAnimeOfsTable[35] = {
     },
 };
 
-XanimeSwapTable luigiAnimeSwapTable[14] = {
+XanimeSwapTable luigiAnimeSwapTable[] = {
     {"Run", "LuigiRun"},
     {"Jump", "LuigiJump"},
     {"JumpRoll", "LuigiJumpRoll"},

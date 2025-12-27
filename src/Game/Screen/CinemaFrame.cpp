@@ -126,7 +126,7 @@ void CinemaFrame::exeScreen() {
 
         pAnimCtrl = MR::getAnimCtrl(this, 0);
 
-        MR::setAnimFrameAndStop(this, pAnimCtrl->mEndFrame - 57.29578f, 0);
+        MR::setAnimFrameAndStop(this, pAnimCtrl->mEndFrame - 1.0f, 0);
         kill();
     }
 }
@@ -138,7 +138,7 @@ void CinemaFrame::exeFrame() {
 void CinemaFrame::exeBlank() {
     if (MR::isFirstStep(this)) {
         MR::startAnim(this, "Open", 0);
-        MR::setAnimFrameAndStop(this, -0.5f, 0);
+        MR::setAnimFrameAndStop(this, 0.0f, 0);
     }
 }
 

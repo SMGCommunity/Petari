@@ -1,4 +1,15 @@
 #include "Game/MapObj/BigBubbleDrawer.hpp"
+#include "Game/Util/CameraUtil.hpp"
+#include "Game/Util/Color.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
+#include <JSystem/JUtility/JUTTexture.hpp>
+
+namespace {
+    static Color8 sTevColor0(0xE0E0E0FF);
+    Color8 sTevColor1(0xFF000000);
+    TVec3f sEnvMatTrans(1.0f, 1.0f, 1.5f);
+};  // namespace
 
 BigBubbleDrawer::BigBubbleDrawer() {
     mBubbleTexture = nullptr;

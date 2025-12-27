@@ -1,20 +1,19 @@
 #pragma once
 
-#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/Util/JMapInfo.hpp"
 
 class TicoRail : public LiveActor {
 public:
-    TicoRail(const char*);
+    /// @brief Creates a new `TicoRail`.
+    /// @param pName A pointer to the null-terminated name of the object.
+    TicoRail(const char* pName);
 
-    virtual ~TicoRail();
-    virtual void init(const JMapInfoIter&);
+    virtual void init(const JMapInfoIter& rIter);
     virtual void kill();
     virtual void control();
     virtual void calcAndSetBaseMtx();
-    virtual void attackSensor(HitSensor*, HitSensor*);
-    virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
+    virtual void attackSensor(HitSensor* pSender, HitSensor* pReceiver);
+    virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
 
     void exeWait();
     void exeLookAround();
@@ -28,7 +27,7 @@ public:
     bool isGreaterEqualStepAndRandom(s32) const;
     bool isSameRailActor(const LiveActor*) const;
 
-    TVec3f _8C;
-    LiveActor* _98;
-    LodCtrl* mLodCtrl;  // 0x9C
+    /* 0x8C */ TVec3f _8C;
+    /* 0x98 */ LiveActor* _98;
+    /* 0x9C */ LodCtrl* mLodCtrl;
 };

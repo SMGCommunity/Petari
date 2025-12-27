@@ -768,34 +768,50 @@ namespace JGadget {
 
     TLinkListNode::TLinkListNode() : mPrev(nullptr), mNext(nullptr) {}
 
-    TLinkListNode* TNodeLinkList::end() { return iterator(&mEnd).curr; }
+    TLinkListNode* TNodeLinkList::end() {
+        return iterator(&mEnd).curr;
+    }
 
-    TNodeLinkList::iterator::iterator(TLinkListNode* node) { curr = node; }
+    TNodeLinkList::iterator::iterator(TLinkListNode* node) {
+        curr = node;
+    }
 
     TNodeLinkList::iterator::iterator(const TNodeLinkList::iterator& rOther) : curr(rOther.curr) {}
 
     TNodeLinkList::iterator::iterator() {}
 
-    TLinkListNode* TNodeLinkList::begin() { return iterator(mEnd.getNext()).curr; }
+    TLinkListNode* TNodeLinkList::begin() {
+        return iterator(mEnd.getNext()).curr;
+    }
 
-    TLinkListNode* TLinkListNode::getNext() const { return mNext; }
+    TLinkListNode* TLinkListNode::getNext() const {
+        return mNext;
+    }
 
     TNodeLinkList::iterator& TNodeLinkList::iterator::operator++() {
         curr = curr->getNext();
         return *this;
     }
 
-    TLinkListNode* TNodeLinkList::iterator::operator->() const { return curr; }
+    TLinkListNode* TNodeLinkList::iterator::operator->() const {
+        return curr;
+    }
 
-    bool operator!=(JASTrack::TList::InternalList::iterator a, JASTrack::TList::InternalList::iterator b) { return !(a == b); }
+    bool operator!=(JASTrack::TList::InternalList::iterator a, JASTrack::TList::InternalList::iterator b) {
+        return !(a == b);
+    }
 
     bool operator==(JASTrack::TList::InternalList::iterator a, JASTrack::TList::InternalList::iterator b) {
         return CALL_INLINE_FUNC(TNodeLinkList::iterator, a.curr) == CALL_INLINE_FUNC(TNodeLinkList::iterator, b.curr);
     }
 
-    bool operator==(TNodeLinkList::iterator a, TNodeLinkList::iterator b) { return a.curr == b.curr; }
+    bool operator==(TNodeLinkList::iterator a, TNodeLinkList::iterator b) {
+        return a.curr == b.curr;
+    }
 
-    TNodeLinkList::TNodeLinkList() : mEnd() { Initialize_(); }
+    TNodeLinkList::TNodeLinkList() : mEnd() {
+        Initialize_();
+    }
 }  // namespace JGadget
 
 JASTrack::TList::~TList() {}

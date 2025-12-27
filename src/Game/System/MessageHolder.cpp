@@ -1,7 +1,7 @@
 #include "Game/System/MessageHolder.hpp"
 #include "Game/NPC/TalkMessageInfo.hpp"
 #include "Game/System/GameSystemObjHolder.hpp"
-#include "JSystem/JKernel/JKRArchive.hpp"
+#include <JSystem/JKernel/JKRArchive.hpp>
 
 #define SYSTEMMESSAGE_ARC "/Memory/SystemMessage.arc"
 #define MESSAGE_ARC "/MessageData/Message.arc"
@@ -10,24 +10,31 @@ namespace {
     u8* getBlock(u32 magic, u8* pData) {
         u32 numBlocks = *reinterpret_cast< u32* >(pData + 0xc);
         pData += 0x20;
+
         for (u32 i = 0; i < numBlocks; i++) {
             u32 blockMagic = *reinterpret_cast< u32* >(pData);
+
             if (blockMagic == magic) {
                 return pData;
             }
+
             u32 blockSize = *reinterpret_cast< u32* >(pData + 4);
             pData += blockSize;
         }
+
         return nullptr;
     }
 }  // namespace
 
 bool MessageData::getMessageDirect(TalkMessageInfo* pMessageInfo, const char* pMessage) const {
     s32 messageIndex = findMessageIndex(pMessage);
+
     if (messageIndex >= 0 && messageIndex < mInfoBlock->mItemCount) {
         getMessage(pMessageInfo, 0, messageIndex);
+
         return true;
     }
+
     return false;
 }
 
@@ -41,6 +48,7 @@ bool MessageData::getMessage(TalkMessageInfo* pMessageInfo, u16, u16 infoToolInd
     pMessageInfo->_A = *(pInfoTool + 0xa);
     pMessageInfo->_B = *(pInfoTool + 0xb);
     pMessageInfo->mBalloonType = *(pInfoTool + 9);
+
     return true;
 }
 
@@ -49,10 +57,12 @@ TalkNode* MessageData::findNode(const char* pMessage) const {
 
     for (int i = 0; i < mFlowBlock->mNodeCount; i++) {
         TalkNode* pNode = reinterpret_cast< TalkNode* >(mFlowBlock + 1) + i;
+
         if (pNode->mNodeType == 1 && pNode->mIndex == messageIndex) {
             return pNode;
         }
     }
+
     return nullptr;
 }
 
@@ -72,46 +82,34 @@ u8* MessageData::getMessageInfoTool(int index) const {
     return reinterpret_cast< u8* >(mInfoBlock + 1) + mInfoBlock->mItemSize * index;
 }
 
-MessageHolder::MessageHolder() {
-    mSystemMessage = nullptr;
-    mGameMessage = nullptr;
-    mSceneData = nullptr;
-}
+MessageHolder::MessageHolder() : mSystemMessageData(nullptr), mGameMessageData(nullptr), mSceneMessageData(nullptr) {}
 
 void MessageHolder::initSceneData() {
-    mSceneData = mGameMessage;
+    mSceneMessageData = mGameMessageData;
 }
 
 void MessageHolder::destroySceneData() {
-    mSceneData = nullptr;
+    mSceneMessageData = nullptr;
 }
 
-void MessageSystem::getSystemMessageDirect(TalkMessageInfo* pMessageInfo, const char* pMessage) {
-    MR::getGameSystemObjHolder()->mMsgHolder->mSystemMessage->getMessageDirect(pMessageInfo, pMessage);
+bool MessageSystem::getSystemMessageDirect(TalkMessageInfo* pMessageInfo, const char* pMessageId) {
+    return MR::getGameSystemObjHolder()->mMsgHolder->mSystemMessageData->getMessageDirect(pMessageInfo, pMessageId);
 }
 
-void MessageSystem::getGameMessageDirect(TalkMessageInfo* pMessageInfo, const char* pMessage) {
-    MR::getGameSystemObjHolder()->mMsgHolder->mGameMessage->getMessageDirect(pMessageInfo, pMessage);
+bool MessageSystem::getGameMessageDirect(TalkMessageInfo* pMessageInfo, const char* pMessageId) {
+    return MR::getGameSystemObjHolder()->mMsgHolder->mGameMessageData->getMessageDirect(pMessageInfo, pMessageId);
 }
 
-void MessageSystem::getLayoutMessageDirect(TalkMessageInfo* pMessageInfo, const char* pMessage) {
-    MR::getGameSystemObjHolder()->mMsgHolder->mGameMessage->getMessageDirect(pMessageInfo, pMessage);
+bool MessageSystem::getLayoutMessageDirect(TalkMessageInfo* pMessageInfo, const char* pMessageId) {
+    return MR::getGameSystemObjHolder()->mMsgHolder->mGameMessageData->getMessageDirect(pMessageInfo, pMessageId);
 }
 
 MessageData* MessageSystem::getSceneMessageData() {
-    return MR::getGameSystemObjHolder()->mMsgHolder->mSceneData;
+    return MR::getGameSystemObjHolder()->mMsgHolder->mSceneMessageData;
 }
 
-MessageData::MessageData(const char* pArchiveName) {
-    mIDTable = nullptr;
-    mInfoBlock = nullptr;
-    mDataBlock = nullptr;
-    _C = 0;
-    mFlowBlock = nullptr;
-    _14 = nullptr;
-    _18 = nullptr;
-    mFLI1Block = nullptr;
-
+MessageData::MessageData(const char* pArchiveName)
+    : mIDTable(nullptr), mInfoBlock(nullptr), mDataBlock(nullptr), _C(0), mFlowBlock(nullptr), _14(nullptr), _18(nullptr), mFLI1Block(nullptr) {
     JKRArchive* pArchive = nullptr;
     JKRHeap* pHeap = nullptr;
     MR::getMountedArchiveAndHeap(pArchiveName, &pArchive, &pHeap);
@@ -125,10 +123,12 @@ MessageData::MessageData(const char* pArchiveName) {
     mInfoBlock = (MessageInfoBlock*)getBlock('INF1', msgData);
     mDataBlock = (MessageDataBlock*)getBlock('DAT1', msgData);
     mFlowBlock = (MessageFlowBlock*)getBlock('FLW1', msgData);
-    if (mFlowBlock) {
+
+    if (mFlowBlock != nullptr) {
         _14 = reinterpret_cast< u16* >(reinterpret_cast< TalkNode* >(mFlowBlock + 1) + mFlowBlock->mNodeCount);
         _18 = reinterpret_cast< u8* >(_14 + mFlowBlock->_A);
     }
+
     mFLI1Block = (MessageFLI1Block*)getBlock('FLI1', msgData);
 }
 
@@ -147,17 +147,20 @@ s32 MessageData::findMessageIndex(const char* pMessage) const {
 
     s32 messageIndex = -1;
     s32 itemIndex = iter.mInfo->searchItemInfo("Index");
+
     if (itemIndex >= 0) {
         iter.mInfo->getValueFast(iter.mIndex, itemIndex, &messageIndex);
     }
+
     return messageIndex;
 }
 
 void MessageHolder::initSystemData() {
-    mSystemMessage = new MessageData(SYSTEMMESSAGE_ARC);
+    mSystemMessageData = new MessageData(SYSTEMMESSAGE_ARC);
 }
 
 void MessageHolder::initGameData() {
-    MR::mountArchive(MESSAGE_ARC, 0);
-    mGameMessage = new MessageData(MESSAGE_ARC);
+    MR::mountArchive(MESSAGE_ARC, nullptr);
+
+    mGameMessageData = new MessageData(MESSAGE_ARC);
 }

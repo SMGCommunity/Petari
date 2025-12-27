@@ -4,7 +4,7 @@
 
 class CameraTalk : public Camera {
 public:
-    CameraTalk(const char*);
+    CameraTalk(const char* pName = "会話カメラ");
     virtual ~CameraTalk();
 
     virtual void reset();

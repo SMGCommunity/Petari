@@ -13,4 +13,4 @@ namespace nw4r {
             OSInitFastCast();
         }
     };  // namespace lyt
-};      // namespace nw4r
+};  // namespace nw4r

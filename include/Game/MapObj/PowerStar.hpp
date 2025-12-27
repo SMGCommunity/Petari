@@ -5,11 +5,6 @@
 class NameObjArchiveListCollector;
 class PowerStarAppearPoint;
 
-namespace {
-    const char* cAppearDemoName = "パワースター出現";
-    const char* cStageClearAnimNameKoopaVs3 = "GrandStarGetKoopaVs3";
-};  // namespace
-
 class PowerStar : public LiveActor {
 public:
     PowerStar(const char*);

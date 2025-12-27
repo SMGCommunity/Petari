@@ -34,7 +34,9 @@ namespace MR {
         return MR::getSceneObj< SkeletalFishBossRailHolder >(SceneObj_SkeletalFishBossRailHolder);
     }
 
-    void createSkeletalFishBossRailHolder() { MR::createSceneObj(SceneObj_SkeletalFishBossRailHolder); }
+    void createSkeletalFishBossRailHolder() {
+        MR::createSceneObj(SceneObj_SkeletalFishBossRailHolder);
+    }
 };  // namespace MR
 
 SkeletalFishBossRailHolder::~SkeletalFishBossRailHolder() {}

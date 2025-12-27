@@ -4,7 +4,9 @@
 namespace nw4r {
     namespace ut {
         namespace detail {
-            void LinkListImpl::Clear() { Erase(GetBeginIter(), GetEndIter()); }
+            void LinkListImpl::Clear() {
+                Erase(GetBeginIter(), GetEndIter());
+            }
 
             LinkListImpl::Iterator LinkListImpl::Insert(Iterator it, pointer p) {
                 Node* const pIt = it.mPointer;
@@ -41,7 +43,9 @@ namespace nw4r {
                 return itLast;
             }
 
-            LinkListImpl::~LinkListImpl() { Clear(); }
+            LinkListImpl::~LinkListImpl() {
+                Clear();
+            }
 
             LinkListImpl::Iterator LinkListImpl::Erase(Iterator it) {
                 Iterator itNext = it;
@@ -49,5 +53,5 @@ namespace nw4r {
                 return Erase(it, itNext);
             }
         };  // namespace detail
-    };      // namespace ut
-};          // namespace nw4r
+    };  // namespace ut
+};  // namespace nw4r

@@ -7,9 +7,13 @@
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 
+namespace {
+    const char* cEffectName = "Ripple";
+};  // namespace
+
 namespace NrvSimpleFloaterObj {
     NEW_NERVE(SimpleFloaterObjNrvWait, SimpleFloaterObj, Wait);
-};
+};  // namespace NrvSimpleFloaterObj
 
 SimpleFloaterObj::SimpleFloaterObj(const char* pName) : LiveActor(pName) {
     _8C = 0;

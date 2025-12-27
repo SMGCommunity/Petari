@@ -26,7 +26,7 @@ void Note::init(const JMapInfoIter& rIter) {
     mFlashCtrl = new FlashingCtrl(this, true);
     MR::calcGravityAndDropShadowVector(this, &mGravity, nullptr, 0);
 
-    if (MR::isNearZero(mGravity, 0.001f)) {
+    if (MR::isNearZero(mGravity)) {
         mGravity.x = 0.0f;
         mGravity.y = -1.0f;
         mGravity.z = 0.0f;

@@ -46,7 +46,7 @@ namespace {
         TicoFatParam() {
             _20 = 0.12f;
             _24 = 0.12f;
-            _28 = 0.89999998f;
+            _28 = 0.9f;
         }
     };
 
@@ -380,7 +380,7 @@ bool TicoFat::eventFunc(u32 var) {
 }
 
 f32 TicoFat::calcScale() {
-    return (1.0f + ((f32)(_1E4 - _1E0) / _1E4) * 0.89999998f);
+    return (1.0f + ((f32)(_1E4 - _1E0) / _1E4) * 0.9f);
 }
 
 void TicoFat::setScale(f32 scale) {
@@ -392,7 +392,7 @@ void TicoFat::setScale(f32 scale) {
         mScaleController->startHitReaction();
     }
 
-    f32 v5 = (scale - 1.0f) / 0.89999998f;
+    f32 v5 = (scale - 1.0f) / 0.9f;
     if (1.0f >= v5) {
         v5 = v5;
     } else {
@@ -436,7 +436,7 @@ void TicoFat::setMessage(s32 msg) {
             nodeCount = 2;
         } else if (v5 >= 0.25f) {
             nodeCount = 3;
-        } else if (v5 >= 0.050000001f) {
+        } else if (v5 >= 0.05f) {
             nodeCount = 4;
         } else {
             nodeCount = 5;
@@ -869,7 +869,7 @@ void TicoFat::exeFly() {
 
     TVec3f v8, shootPos, direction;
     mShootPath->calcPosition(&shootPos, easeIn);
-    mShootPath->calcDirection(&direction, easeIn, 0.0099999998f);
+    mShootPath->calcDirection(&direction, easeIn, 0.01f);
     TVec3f up;
     MR::calcUpVec(&up, this);
     MR::blendQuatFrontUp(&_A0, _A0, v8, up, 0.1f, 0.0f);

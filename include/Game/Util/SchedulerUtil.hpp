@@ -3,10 +3,10 @@
 namespace MR {
     class ProhibitSchedulerAndInterrupts {
     public:
-        ProhibitSchedulerAndInterrupts(bool);
+        ProhibitSchedulerAndInterrupts(bool unused);
 
         ~ProhibitSchedulerAndInterrupts();
 
-        u32 _0;
+        int mInterruptsStatus;
     };
 };  // namespace MR

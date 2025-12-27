@@ -23,7 +23,7 @@ namespace nw4r {
         class Font;
         class Rect;
     };  // namespace ut
-};      // namespace nw4r
+};  // namespace nw4r
 
 class TextBoxRecursiveOperation {
 public:

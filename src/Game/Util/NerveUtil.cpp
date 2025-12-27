@@ -3,21 +3,37 @@
 #include "Game/Util/MathUtil.hpp"
 
 namespace MR {
-    bool isStep(const NerveExecutor* pExecutor, s32 step) { return pExecutor->getNerveStep() == step; }
+    bool isStep(const NerveExecutor* pExecutor, s32 step) {
+        return pExecutor->getNerveStep() == step;
+    }
 
-    bool isFirstStep(const NerveExecutor* pExecutor) { return isStep(pExecutor, 0); }
+    bool isFirstStep(const NerveExecutor* pExecutor) {
+        return isStep(pExecutor, 0);
+    }
 
-    bool isLessStep(const NerveExecutor* pExecutor, s32 step) { return pExecutor->getNerveStep() < step; }
+    bool isLessStep(const NerveExecutor* pExecutor, s32 step) {
+        return pExecutor->getNerveStep() < step;
+    }
 
-    bool isLessEqualStep(const NerveExecutor* pExecutor, s32 step) { return pExecutor->getNerveStep() <= step; }
+    bool isLessEqualStep(const NerveExecutor* pExecutor, s32 step) {
+        return pExecutor->getNerveStep() <= step;
+    }
 
-    bool isGreaterStep(const NerveExecutor* pExecutor, s32 step) { return pExecutor->getNerveStep() > step; }
+    bool isGreaterStep(const NerveExecutor* pExecutor, s32 step) {
+        return pExecutor->getNerveStep() > step;
+    }
 
-    bool isGreaterEqualStep(const NerveExecutor* pExecutor, s32 step) { return pExecutor->getNerveStep() >= step; }
+    bool isGreaterEqualStep(const NerveExecutor* pExecutor, s32 step) {
+        return pExecutor->getNerveStep() >= step;
+    }
 
-    bool isIntervalStep(const NerveExecutor* pExecutor, s32 step) { return pExecutor->getNerveStep() % step == 0; }
+    bool isIntervalStep(const NerveExecutor* pExecutor, s32 step) {
+        return pExecutor->getNerveStep() % step == 0;
+    }
 
-    bool isNewNerve(const NerveExecutor* pExecutor) { return pExecutor->getNerveStep() < 0; }
+    bool isNewNerve(const NerveExecutor* pExecutor) {
+        return pExecutor->getNerveStep() < 0;
+    }
 
     f32 calcNerveRate(const NerveExecutor* pExecutor, s32 stepMax) {
         return stepMax <= 0 ? 1.0f : clamp(static_cast< f32 >(pExecutor->getNerveStep()) / stepMax, 0.0f, 1.0f);

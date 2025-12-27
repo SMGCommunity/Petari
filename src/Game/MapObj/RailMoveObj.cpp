@@ -3,6 +3,10 @@
 #include "Game/MapObj/MapPartsRailRotator.hpp"
 #include "Game/MapObj/StageEffectDataTable.hpp"
 
+namespace {
+    const char* cMoveBckName = "Move";
+};  // namespace
+
 RailMoveObj::RailMoveObj(const char* pName) : MapObjActor(pName) {
     _C4.zero();
     _D0 = 0;

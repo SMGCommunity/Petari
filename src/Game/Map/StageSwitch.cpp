@@ -198,7 +198,9 @@ bool StageSwitchFunction::isOnSwitchBySwitchIdInfo(const SwitchIdInfo& rSwitchId
 }
 
 namespace MR {
-    StageSwitchCtrl* createStageSwitchCtrl(NameObj* pObj, const JMapInfoIter& rIter) { return new StageSwitchCtrl(rIter); }
+    StageSwitchCtrl* createStageSwitchCtrl(NameObj* pObj, const JMapInfoIter& rIter) {
+        return new StageSwitchCtrl(rIter);
+    }
 };  // namespace MR
 
 StageSwitchContainer::~StageSwitchContainer() {}

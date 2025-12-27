@@ -21,7 +21,7 @@ void* FileLoaderThread::run() {
 
     while (true) {
         OSMessage msg;
-        OSReceiveMessage(&mQueue, &msg, 1);
+        OSReceiveMessage(&mQueue, &msg, OS_MESSAGE_BLOCK);
         RequestFileInfo* info = (RequestFileInfo*)msg;
 
         switch (info->_0) {

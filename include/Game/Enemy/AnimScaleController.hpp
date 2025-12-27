@@ -29,8 +29,10 @@ public:
     virtual ~AnimScaleController();
 
     void update();
+    void updateScale(f32, f32);
     void startCrush();
     void startAnim();
+    void startAndAddScaleVelocityY(f32);
 
     void setParamTight();
     void startHitReaction();
@@ -38,6 +40,15 @@ public:
     bool isHitReaction(s32) const;
 
     void stopAndReset();
+    void resetScale();
+
+    bool tryStop();
+
+    void exeAnim();
+    inline void exeStop();
+    void exeDpdVibration();
+    void exeHitReaction();
+    void exeCrush();
 
     AnimScaleParam* _8;
     TVec3f _C;

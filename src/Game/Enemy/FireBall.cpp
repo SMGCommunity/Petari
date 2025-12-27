@@ -65,7 +65,7 @@ void FireBall::control() {
 }
 
 void FireBall::calcAndSetBaseMtx() {
-    if (!MR::isNearZero(mVelocity, 0.001f)) {
+    if (!MR::isNearZero(mVelocity)) {
         TVec3f stack_8;
         TPos3f stack_14;
         MR::normalize(mVelocity, &stack_8);
@@ -141,14 +141,14 @@ void FireBall::setVelocityToPlayer(f32 param1) {
 
 void FireBall::calcReflectVelocity() {
     MR::getStarPointerWorldVelocityDirection(&mVelocity, *MR::getStarPointerLastPointedPort(this));
-    if (MR::isNearZero(mVelocity, 0.001f)) {
+    if (MR::isNearZero(mVelocity)) {
         mVelocity.set(_90);
     } else {
         MR::vecKillElement(mVelocity, _90, &mVelocity);
         TVec3f v7;
         v7.scale(MR::getRandom(0.0f, 1.0f), _90);
         mVelocity.add(v7);
-        if (MR::isNearZero(mVelocity, 0.001f)) {
+        if (MR::isNearZero(mVelocity)) {
             mVelocity.set(_90);
         } else {
             MR::normalize(&mVelocity);

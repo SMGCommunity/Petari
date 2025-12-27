@@ -7,7 +7,7 @@ namespace nw4r {
         class ArcResourceAccessor;
         class Layout;
     };  // namespace lyt
-};      // namespace nw4r
+};  // namespace nw4r
 
 struct MEMAllocator;
 

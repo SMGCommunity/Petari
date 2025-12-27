@@ -4,7 +4,7 @@
 
 class CameraTripodBossJoint : public Camera {
 public:
-    CameraTripodBossJoint(const char*);
+    CameraTripodBossJoint(const char* pName = "三脚ボス関節カメラ");
     virtual ~CameraTripodBossJoint();
 
     virtual void reset();

@@ -10,8 +10,8 @@ namespace NrvCounterLayoutAppearer {
     NEW_NERVE(CounterLayoutAppearerNrvDisappear, CounterLayoutAppearer, Disappear);
 };  // namespace NrvCounterLayoutAppearer
 
-CounterLayoutAppearer::CounterLayoutAppearer(LayoutActor* pActor, const TVec2f& param2)
-    : NerveExecutor("カウンタ出現制御"), mLayout(pActor), _C(param2.x, param2.y), mFollowPos(0.0f, 0.0f), _1C(0.0f, 0.0f) {
+CounterLayoutAppearer::CounterLayoutAppearer(LayoutActor* pActor, const TVec2f& rAppearOffset)
+    : NerveExecutor("カウンタ出現制御"), mLayout(pActor), mAppearOffset(rAppearOffset.x, rAppearOffset.y), mFollowPos(0.0f, 0.0f), _1C(0.0f, 0.0f) {
     MR::setFollowPos(&mFollowPos, pActor, nullptr);
     MR::setFollowTypeAdd(mLayout, nullptr);
     initNerve(&NrvCounterLayoutAppearer::CounterLayoutAppearerNrvHide::sInstance);
@@ -54,18 +54,13 @@ void CounterLayoutAppearer::updateLayoutOffset(f32 offset) {
     static f32 sZero = 0.0f;
 
     TVec2f vec;
-    vec.x = sZero - _C.x;
-    vec.y = sZero - _C.y;
+    vec.x = sZero - mAppearOffset.x;
+    vec.y = sZero - mAppearOffset.y;
 
-    mFollowPos.x = _C.x + offset * vec.x + _1C.x;
-    mFollowPos.y = _C.y + offset * vec.y + _1C.y;
+    mFollowPos.x = mAppearOffset.x + offset * vec.x + _1C.x;
+    mFollowPos.y = mAppearOffset.y + offset * vec.y + _1C.y;
 }
 #endif
-
-void CounterLayoutAppearer::setAppearOffset(const TVec2f& param1) {
-    _C.x = param1.x;
-    _C.y = param1.y;
-}
 
 void CounterLayoutAppearer::exeHide() {}
 
@@ -88,7 +83,7 @@ void CounterLayoutAppearer::exeDisappear() {
         MR::startAnim(mLayout, "End", 0);
     }
 
-    updateLayoutOffset(1.0f - MR::calcNerveEaseInRate(this, MR::getAnimFrameMax(mLayout, (u32)0)));
+    updateLayoutOffset(1.0f - MR::calcNerveEaseInRate(this, MR::getAnimFrameMax(mLayout, static_cast<u32>(0))));
 
     if (MR::isAnimStopped(mLayout, 0)) {
         setNerve(&NrvCounterLayoutAppearer::CounterLayoutAppearerNrvHide::sInstance);

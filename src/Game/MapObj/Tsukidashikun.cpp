@@ -22,7 +22,7 @@ namespace NrvTsukidashikun {
     NEW_NERVE(TsukidashikunNrvSignForward, Tsukidashikun, Sign);
     NEW_NERVE(TsukidashikunNrvMoveBack, Tsukidashikun, Move);
     NEW_NERVE(TsukidashikunNrvMoveForward, Tsukidashikun, Move);
-}; // namespace NrvTsukidashikun
+};  // namespace NrvTsukidashikun
 
 Tsukidashikun::Tsukidashikun(const char* pName) : MapObjActor(pName), _C4(10.0f), mTimer(120) {}
 

@@ -218,7 +218,7 @@ void MarioModule::setYangleOffset(f32 offset) {
 }
 
 bool MarioModule::isStickOn() const {
-    return !MR::isNearZero(mActor->mMario->mStickPos.z, 0.001f);
+    return !MR::isNearZero(mActor->mMario->mStickPos.z);
 }
 
 bool MarioModule::isStickFull() const {
@@ -232,7 +232,7 @@ TVec3f& MarioModule::getWorldPadDir() const {
 // regswap
 bool MarioModule::calcWorldPadDir(TVec3f* pDest, f32 a2, f32 a3, bool a4) {
     pDest->zero();
-    if (MR::isNearZero(a2, 0.001f) && MR::isNearZero(a3, 0.001f)) {
+    if (MR::isNearZero(a2) && MR::isNearZero(a3)) {
         return false;
     }
     if (!mActor->mMario->_10._11) {
@@ -526,7 +526,7 @@ f32 MarioModule::calcPolygonAngleD(const Triangle* pTri) const {
     if (pTri->isValid() == false) {
         return 0.0f;
     }
-    if (MR::isNearZero(*pTri->getNormal(0), 0.001f)) {
+    if (MR::isNearZero(*pTri->getNormal(0))) {
         return 0.0f;
     }
     return calcAngleD(*pTri->getNormal(0));

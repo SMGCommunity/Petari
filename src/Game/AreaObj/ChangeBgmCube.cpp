@@ -74,7 +74,7 @@ void ChangeBgmCube::movement() {
     if (!_3C) {
         return;
     }
-     
+
     switch(mObjArg0) {
         case 1:
             if (mObjArg3 != 1) {

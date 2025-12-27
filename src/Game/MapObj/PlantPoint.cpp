@@ -11,7 +11,7 @@ PlantPoint::PlantPoint(const TVec3f& pPosition, const TVec3f& pUp, f32 thickness
     TVec3f side;
     PSVECCrossProduct(&mFront, &mUp, &side);
 
-    if (MR::isNearZero(side, 0.001f)) {
+    if (MR::isNearZero(side)) {
         MR::makeAxisUpFront(&mFront, &mSide, mUp, mSide);
     } else {
         MR::makeAxisUpSide(&mSide, &mFront, mUp, mFront);

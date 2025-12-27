@@ -40,16 +40,16 @@ void CameraTripodBossJoint::calcIdealPose() {
 
     if (_68) {
         if (_6C <= _70) {
-            f32 v5 = (_70 - 0.079999998f);
-            _70 -= 0.079999998f;
+            f32 v5 = (_70 - 0.08f);
+            _70 -= 0.08f;
             if (v5 <= _6C) {
                 _70 = _6C;
                 _68 = 0;
             }
         }
         else {
-            f32 v4 = _70 + 0.079999998f;
-            _70 += 0.079999998f;
+            f32 v4 = _70 + 0.08f;
+            _70 += 0.08f;
             if (v4 >= _6C) {
                 _70 = _6C;
                 _68 = 0;
@@ -57,8 +57,8 @@ void CameraTripodBossJoint::calcIdealPose() {
         }
     }
     else if (CameraLocalUtil::tryCameraReset()) {
-        f32 v6 = _70 * 0.69999999f;
-        _70 *= 0.69999999f;
+        f32 v6 = _70 * 0.7f;
+        _70 *= 0.7f;
         _6C = v6;
     }
     else if (CameraLocalUtil::testCameraPadTriggerRoundLeft()) {

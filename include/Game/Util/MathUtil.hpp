@@ -277,19 +277,19 @@ namespace MR {
     /// @param x The number to evaluate.
     /// @param tolerance The maximum allowed difference from zero.
     /// @return `true` if the number is approximately equal to zero, `false` otherwise.
-    bool isNearZero(f32 x, f32 tolerance);
+    bool isNearZero(f32 x, f32 tolerance = 0.001f);
 
     /// @brief Determines if the elements of a three-dimensional vector are all approximately equal to zero.
     /// @param[in] rVec A reference to the three-dimensional vector to evaluate.
     /// @param tolerance The maximum allowed difference from zero.
     /// @return `true` if the elements are approximately equal to zero, `false` otherwise.
-    bool isNearZero(const TVec3f& rVec, f32 tolerance);
+    bool isNearZero(const TVec3f& rVec, f32 tolerance = 0.001f);
 
     /// @brief Determines if the elements of a two-dimensional vector are all approximately equal to zero.
     /// @param[in] rVec A reference to the two-dimensional vector to evaluate.
     /// @param tolerance The maximum allowed difference from zero.
     /// @return `true` if the elements are approximately equal to zero, `false` otherwise.
-    bool isNearZero(const TVec2f& rVec, f32 tolerance);
+    bool isNearZero(const TVec2f& rVec, f32 tolerance = 0.001f);
 
     f32 diffAngleAbs(f32, f32);
     f32 normalizeAngleAbs(f32);
@@ -450,7 +450,9 @@ namespace MR {
 
     void clampBoth(f32*, f32, f32);
 
-    inline f32 wrapAngleTowards(f32 a, f32 b) { return a + (f32)fmod(360.0f + (b - a), 360.0f); }
+    inline f32 wrapAngleTowards(f32 a, f32 b) {
+        return a + (f32)fmod(360.0f + (b - a), 360.0f);
+    }
 
 #ifdef __MWERKS__
     inline f32 frsqrte(register f32 x) {

@@ -100,8 +100,8 @@ bool KoopaBattleMapStair::isRequestAttackVs3() const {
 }
 
 namespace {
-    static OffsetPair offset_table[8] = {{0.0f, -1.0f}, {1.0f, -1.0f}, {1.0f, 0.0f},  {1.0f, 1.0f},
-                                         {0.0f, 1.0f},  {-1.0f, 1.0f}, {-1.0f, 0.0f}, {-1.0f, -1.0f}};
+    static OffsetPair offset_table[] = {{0.0f, -1.0f}, {1.0f, -1.0f}, {1.0f, 0.0f},  {1.0f, 1.0f},
+                                        {0.0f, 1.0f},  {-1.0f, 1.0f}, {-1.0f, 0.0f}, {-1.0f, -1.0f}};
 
     void updateNearestPos(TVec3f* pPos, f32* pTable, const TVec3f& a3, const TVec3f& a4, s32 a5, s32 a6) {
         if (a5 < 0) {

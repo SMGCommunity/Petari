@@ -3,9 +3,9 @@
 #include "Game/Camera/CameraShakeTask.hpp"
 #include "Game/Util/CameraUtil.hpp"
 
-f32 sVerticalTaskTable[7] = {0.08f, 0.2f, 0.5f, 1.0f, 3.0f, 6.0f, 9.0f};
+f32 sVerticalTaskTable[] = {0.08f, 0.2f, 0.5f, 1.0f, 3.0f, 6.0f, 9.0f};
 
-f32 sHorizontalTable[3] = {0.3f, 1.0f, 3.0f};
+f32 sHorizontalTable[] = {0.3f, 1.0f, 3.0f};
 
 CameraShaker::CameraShaker(const char* pName) : NameObj(pName) {
     createSinglyVerticalTask();

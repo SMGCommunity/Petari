@@ -58,7 +58,7 @@ public:
 #ifdef __MWERKS__
     static void* operator new(u32 size) NO_INLINE { return memPool_.alloc(size); }
 #endif
-    static void operator delete(void* addr, u32 size)NO_INLINE { memPool_.free(addr, size); }
+    static void operator delete(void* addr, u32 size) NO_INLINE { memPool_.free(addr, size); }
 };
 
 template < typename T >

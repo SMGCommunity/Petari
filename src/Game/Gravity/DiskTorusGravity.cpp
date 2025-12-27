@@ -56,7 +56,7 @@ bool DiskTorusGravity::calcOwnGravityVector(TVec3f* pDest, f32* pScalar, const T
     TVec3f dirOnTorusPlane = relativePosition - mRotation * centralAxisY;
     f32 distanceToCentralAxis;
     MR::separateScalarAndDirection(&distanceToCentralAxis, &dirOnTorusPlane, dirOnTorusPlane);
-    if (MR::isNearZero(distanceToCentralAxis, 0.00100000005f)) {
+    if (MR::isNearZero(distanceToCentralAxis)) {
         // Just choose a direction in-plane for gravity if the object is sitting
         // on the central axis (otherwise dirOnTorusPlane is zero)
         MR::makeAxisVerticalZX(&dirOnTorusPlane, mRotation);

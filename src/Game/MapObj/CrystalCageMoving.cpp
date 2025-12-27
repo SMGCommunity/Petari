@@ -1,6 +1,11 @@
 #include "Game/MapObj/CrystalCageMoving.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
-#include "JSystem/JMath/JMath.hpp"
+#include "Game/LiveActor/ModelObj.hpp"
+#include <JSystem/JMath/JMath.hpp>
+
+namespace {
+    TVec3f sDummyModelOffset;
+};
 
 CrystalCageMoving::CrystalCageMoving(const char* pName) : MapObjActor(pName) {
     mTicoModel = nullptr;

@@ -2,8 +2,8 @@
 #include "JSystem/JUtility/JUTConsole.hpp"
 #include <new>
 
-#define ALIGN_PREV(X, N) ((X) & ~((N)-1))
-#define ALIGN_NEXT(X, N) ALIGN_PREV(((X) + (N)-1), N)
+#define ALIGN_PREV(X, N) ((X) & ~((N) - 1))
+#define ALIGN_NEXT(X, N) ALIGN_PREV(((X) + (N) - 1), N)
 
 static u32 DBfoundSize;
 static u32 DBfoundOffset;

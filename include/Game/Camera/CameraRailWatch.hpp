@@ -4,7 +4,7 @@
 
 class CameraRailWatch : public Camera {
 public:
-    CameraRailWatch(const char*);
+    CameraRailWatch(const char* pName = "レール注目カメラ");
     virtual ~CameraRailWatch();
 
     virtual void reset();

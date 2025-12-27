@@ -1,5 +1,21 @@
 #include "Game/Map/Halo.hpp"
 
+namespace {
+    HaloParam sParams[] = {{"ZoneHalo", 70.0f, 20.0f, 4.0f}, {"PowerStarHalo", 80.0f, 20.0f, 30.0f}};
+
+    inline const HaloParam* getParam(const char* pName) {
+        for (u32 i = 0; i < sizeof(sParams) / sizeof(*sParams); i++) {
+            HaloParam* curParam = &sParams[i];
+
+            if (MR::isEqualString(pName, curParam->haloName)) {
+                return curParam;
+            }
+        }
+
+        return nullptr;
+    }
+};  // namespace
+
 Halo::Halo(const char* pName) : MapObjActor(pName) {
     mDistance = 70.0f;
 }
@@ -12,7 +28,7 @@ void Halo::init(const JMapInfoIter &rIter) {
     info.setupDefaultPos();
     info.setupConnectToScene();
     info.setupNerve(&NrvHalo::HostTypeAppear::sInstance);
-    info.setupClippingRadius(100.0f * getParam()->clippingRadius);
+    info.setupClippingRadius(100.0f * getParam(mObjectName)->clippingRadius);
     info.setupFarClipping(-1.0f);
     info.setupAffectedScale();
     initialize(rIter, info);

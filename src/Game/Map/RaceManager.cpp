@@ -22,9 +22,13 @@ namespace {
         {"サーフィン[トライアル]", 2, 0, "RaceName_SurfingTrial", "SurfingLv1Galaxy", 1, false},
         {"サーフィン[チャレンジ]", 2, 180, "RaceName_SurfingChallenge", "SurfingLv2Galaxy", 1, false}};
 
-    const RaceStructData& getRaceStruceData(s32 id) { return sRaceStruct[id]; }
+    const RaceStructData& getRaceStruceData(s32 id) {
+        return sRaceStruct[id];
+    }
 
-    RaceManager* getRaceManager() { return MR::getSceneObj< RaceManager >(SceneObj_RaceManager); }
+    RaceManager* getRaceManager() {
+        return MR::getSceneObj< RaceManager >(SceneObj_RaceManager);
+    }
 };  // namespace
 
 RaceManagerLayout::RaceManagerLayout(const char* pName) : LayoutActor(pName, true) {}
@@ -447,17 +451,29 @@ namespace RaceManagerFunction {
         getRaceManager()->entry(pRacer);
     }
 
-    void startRaceWithWipe() { getRaceManager()->startWithWipe(); }
+    void startRaceWithWipe() {
+        getRaceManager()->startWithWipe();
+    }
 
-    void startRaceImmediately() { getRaceManager()->startImmediately(); }
+    void startRaceImmediately() {
+        getRaceManager()->startImmediately();
+    }
 
-    u32 getRaceRank() { return getRaceManager()->mRank; }
+    u32 getRaceRank() {
+        return getRaceManager()->mRank;
+    }
 
-    u32 getRaceTime() { return getRaceManager()->mTime; }
+    u32 getRaceTime() {
+        return getRaceManager()->mTime;
+    }
 
-    const char* getRaceName(int index) { return getRaceStruceData(index).mName; }
+    const char* getRaceName(int index) {
+        return getRaceStruceData(index).mName;
+    }
 
-    const char* getRaceMessageId(int index) { return getRaceStruceData(index).mMessageId; }
+    const char* getRaceMessageId(int index) {
+        return getRaceStruceData(index).mMessageId;
+    }
 
     s32 getRaceId(const char* pGalaxyName, s32 scenarioNo) {
         for (s32 i = 0; i < sizeof(sRaceStruct) / sizeof(*sRaceStruct); i++) {

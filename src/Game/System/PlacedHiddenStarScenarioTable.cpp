@@ -8,7 +8,7 @@ namespace {
     };
 
     const PlacedHiddenStarInfo cPlacedHiddenStarInfoTable[] = {
-        { "HeavenlyBeachGalaxy", 6, 3 },
+        {"HeavenlyBeachGalaxy", 6, 3},
     };
 };  // namespace
 

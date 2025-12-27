@@ -19,7 +19,9 @@ namespace nw4r {
                             GetAnisotropy());
         }
 
-        void TexMap::Get(_GXTlutObj* pTlutObj) const { GXInitTlutObj(pTlutObj, GetPalette(), GetPaletteFormat(), GetPaletteEntryNum()); }
+        void TexMap::Get(_GXTlutObj* pTlutObj) const {
+            GXInitTlutObj(pTlutObj, GetPalette(), GetPaletteFormat(), GetPaletteEntryNum());
+        }
 
         void TexMap::Set(const GXTexObj& texObj) {
             void* image;
@@ -75,4 +77,4 @@ namespace nw4r {
             ReplaceImage(TPLGet(p, id));
         }
     };  // namespace lyt
-};      // namespace nw4r
+};  // namespace nw4r

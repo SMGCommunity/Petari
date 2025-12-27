@@ -42,7 +42,7 @@ bool ConeGravity::calcOwnGravityVector(TVec3f* pDest, f32* pScalar, const TVec3f
     TVec3f positionOnBasePlane;
     positionOnBasePlane.rejection(relativePosition, unitWorldCentralAxis);
 
-    if (MR::isNearZero(positionOnBasePlane, 0.00100000005f)) {
+    if (MR::isNearZero(positionOnBasePlane)) {
         f32 positionOnCentralAxis;
         f32 distance = absfInline(positionOnCentralAxis, relativePosition.dot(unitWorldCentralAxis));
 
@@ -74,7 +74,7 @@ bool ConeGravity::calcOwnGravityVector(TVec3f* pDest, f32* pScalar, const TVec3f
 
     bool isInsideCone = false;
 
-    if (MR::isNearZero(centralAxisLength, 0.00100000005f) || MR::isNearZero(mWorldRadius, 0.00100000005f)) {
+    if (MR::isNearZero(centralAxisLength) || MR::isNearZero(mWorldRadius)) {
         // The cone is too small to have an inner region
         isInsideCone = false;
     } else if (distanceToCentralAxis < mWorldRadius - centralAxisY * (mWorldRadius / centralAxisLength)) {
@@ -94,7 +94,7 @@ bool ConeGravity::calcOwnGravityVector(TVec3f* pDest, f32* pScalar, const TVec3f
 
         MR::calcPerpendicFootToLineInside(&pointOfAttraction, rPos, worldBaseCenter, dirOnDirectrix);
 
-        if (MR::isNearZero(pointOfAttraction - rPos, 0.00100000005f)) {
+        if (MR::isNearZero(pointOfAttraction - rPos)) {
             *pDest = -unitWorldCentralAxis;
             *pScalar = 0.0f;
 
@@ -106,7 +106,7 @@ bool ConeGravity::calcOwnGravityVector(TVec3f* pDest, f32* pScalar, const TVec3f
         }
     }
 
-    if (mTopCutRate < 0.00999999978f) {
+    if (mTopCutRate < 0.01f) {
         MR::calcPerpendicFootToLineInside(&pointOfAttraction, rPos, dirOnDirectrix, apex);
     } else {
         TVec3f generatrixTermination;
@@ -135,14 +135,14 @@ bool ConeGravity::calcOwnGravityVector(TVec3f* pDest, f32* pScalar, const TVec3f
         MR::calcPerpendicFootToLineInside(&pointOfAttraction, rPos, dirOnDirectrix, generatrixTermination);
     }
 
-    if (MR::isNearZero(pointOfAttraction - rPos, 0.00100000005f)) {
+    if (MR::isNearZero(pointOfAttraction - rPos)) {
         TVec3f generatrixDirection = apex - dirOnDirectrix;
         MR::normalizeOrZero(&generatrixDirection);
 
         TVec3f gravity;
         gravity.rejection((-positionOnBasePlane), generatrixDirection);
 
-        if (MR::isNearZero(gravity, 0.00100000005f)) {
+        if (MR::isNearZero(gravity)) {
             *pDest = -unitWorldCentralAxis;
         } else {
             MR::normalize(gravity, pDest);

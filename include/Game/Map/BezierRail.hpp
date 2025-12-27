@@ -4,10 +4,6 @@
 #include "Game/Util.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
 
-namespace {
-    void calcRailDirection(TVec3f*, const RailPart*, f32);
-};
-
 class BezierRailPart {
 public:
     inline BezierRailPart() {}

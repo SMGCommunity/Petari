@@ -7,6 +7,16 @@
 #include <cstdio>
 
 namespace {
+    const char* cAstroDomeNameTable[] = {"AstroDomeObservatory", "AstroDomeWell",    "AstroDomeKitchen",
+                                         "AstroDomeBedRoom",     "AstroDomeMachine", "AstroDomeTower"};
+    const char* cAstroDomeSkyNameTable[] = {"AstroDomeSkyA", "AstroDomeSkyB", "AstroDomeSkyC", "AstroDomeSkyA", "AstroDomeSkyB", "AstroDomeSkyC"};
+    const char* cAstroDomeEntranceNameTable[] = {"AstroDomeEntranceObservatory", "AstroDomeEntranceWell",    "AstroDomeEntranceKitchen",
+                                                 "AstroDomeEntranceBedRoom",     "AstroDomeEntranceMachine", "AstroDomeEntranceTower"};
+    const char* cAstroStarPlateNameTable[] = {"AstroStarPlateObservatory", "AstroStarPlateWell",    "AstroStarPlateKitchen",
+                                              "AstroStarPlateBedRoom",     "AstroStarPlateMachine", "AstroStarPlateTower"};
+    const char* cAstroNamePlateArcName = "AstroNamePlateData";
+    const char* cAstroNamePlateFileName = "AstroNamePlateData.bcsv";
+
     s32 getNumGrandStarForRevival(const char* pName, s32 domeId) {
         const char* modelName = AstroMapObjFunction::getModelName(pName, domeId);
 

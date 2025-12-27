@@ -8,18 +8,18 @@
 #include <cstdio>
 
 namespace {
-    const Vec sStarPointerTargetOffset[4] = {{
-                                                 0.0f,
-                                                 0.0f,
-                                                 150.0f,
-                                             },
-                                             {0.0f, 0.0f, 0.0f},
-                                             {0.0f, 0.0f, 0.0f},
-                                             {0.0f, 0.0f, 0.0f}};
+    const Vec sStarPointerTargetOffset[] = {{
+                                                0.0f,
+                                                0.0f,
+                                                150.0f,
+                                            },
+                                            {0.0f, 0.0f, 0.0f},
+                                            {0.0f, 0.0f, 0.0f},
+                                            {0.0f, 0.0f, 0.0f}};
 
-    const f32 sStarPointerTargetSize[4] = {220.0f, 150.0f, 120.0f, 120.0f};
+    const f32 sStarPointerTargetSize[] = {220.0f, 150.0f, 120.0f, 120.0f};
 
-    const char* sStarPointerTargetJoint[4] = {"Joint00", "Joint01", "Joint02", "Joint03"};
+    const char* sStarPointerTargetJoint[] = {"Joint00", "Joint01", "Joint02", "Joint03"};
 };  // namespace
 
 namespace {

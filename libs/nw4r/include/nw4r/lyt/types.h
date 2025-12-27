@@ -25,6 +25,20 @@ namespace nw4r {
             }
 
             template < typename T >
+            inline void SetBits(T* pBits, int pos, int len, T val) {
+                const u32 MaxValue = 0xFFFFFFFFU >> (32 - len);
+                const T mask = T(~(MaxValue << pos));
+                *pBits &= mask;
+                *pBits |= val << pos;
+            }
+
+            template < typename T >
+            inline T GetBits(T bits, int pos, int len) {
+                const u32 mask = ~(0xFFFFFFFFU << len);
+                return T((bits >> pos) & mask);
+            }
+
+            template < typename T >
             inline bool TestBit(T bits, int pos) {
                 const T mask = T(1 << pos);
 
@@ -116,6 +130,8 @@ namespace nw4r {
         };
 
         struct TexSRT {
+            TexSRT& operator=(const TexSRT&);
+
             math::VEC2 translate;
             f32 rotate;
             math::VEC2 scale;
@@ -160,7 +176,6 @@ namespace nw4r {
                 scaleS = aScaleS;
                 scaleT = aScaleT;
             }
-
             GXTexCoordID GetTexCoordGen() const { return GXTexCoordID(texCoordGen); }
             GXTexMapID GetTexMap() const { return GXTexMapID(texMap); }
             GXIndTexScale GetScaleS() const { return GXIndTexScale(scaleS); }

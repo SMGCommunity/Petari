@@ -108,7 +108,7 @@ void TripodBossLeg::setIKParam(f32 rootLength, f32 middleLength, const TVec3f& a
     v12.y = 0.0f;
     _A0.identity();
 
-    if (!MR::isNearZero(v12, 0.001f)) {
+    if (!MR::isNearZero(v12)) {
         MR::normalize(&v12);
         _A0.mMtx[0][0] = v12.x;
         _A0.mMtx[1][0] = v12.y;
@@ -319,15 +319,15 @@ void TripodBossLeg::exeLeaveOut() {
         _234.zero();
         updatePose();
     } else if (calcLegHeight(_98) < 1000.0f) {
-        addAccelUpLeg(_98, 0.80000001f);
+        addAccelUpLeg(_98, 0.8f);
         updateAnkleUp(calcLegHeight(_98));
     } else {
         addToTargetPower(_240, 1.0f);
         addIKLimitPower();
         mForceEndPoint += _234;
-        _234.x *= 0.89999998f;
-        _234.y *= 0.89999998f;
-        _234.z *= 0.89999998f;
+        _234.x *= 0.9f;
+        _234.y *= 0.9f;
+        _234.z *= 0.9f;
         updatePose();
         updateAnkleSlerpToBasePose();
     }
@@ -338,9 +338,9 @@ void TripodBossLeg::exeMove() {
     addToTargetPower(_240, 1.0f);
     addIKLimitPower();
     mForceEndPoint += _234;
-    _234.x *= 0.89999998f;
-    _234.y *= 0.89999998f;
-    _234.z *= 0.89999998f;
+    _234.x *= 0.9f;
+    _234.y *= 0.9f;
+    _234.z *= 0.9f;
     updatePose();
 }
 
@@ -354,9 +354,9 @@ void TripodBossLeg::exeMoveToLandingPos() {
     addToTargetPower(_240, 1.0f);
     addIKLimitPower();
     mForceEndPoint += _234;
-    _234.x *= 0.94999999f;
-    _234.y *= 0.94999999f;
-    _234.z *= 0.94999999f;
+    _234.x *= 0.95f;
+    _234.y *= 0.95f;
+    _234.z *= 0.95f;
     updatePose();
     updateAnkleSlerpToBasePose();
 
@@ -379,9 +379,9 @@ void TripodBossLeg::exeStampSign() {
     addToTargetPower(_240, 1.0f);
     addIKLimitPower();
     mForceEndPoint += _234;
-    _234.x *= 0.89999998f;
-    _234.y *= 0.89999998f;
-    _234.z *= 0.89999998f;
+    _234.x *= 0.9f;
+    _234.y *= 0.9f;
+    _234.z *= 0.9f;
 
     if (MR::isGreaterStep(this, 20)) {
         TVec3f v8(_98->mStepNormal);
@@ -423,9 +423,9 @@ void TripodBossLeg::exeLanding() {
     _234 += v9;
     addIKLimitPower();
     mForceEndPoint += _234;
-    _234.x *= 0.98000002f;
-    _234.y *= 0.98000002f;
-    _234.z *= 0.98000002f;
+    _234.x *= 0.98f;
+    _234.y *= 0.98f;
+    _234.z *= 0.98f;
     updateIKPose();
     TVec3f v12;
     mEndJointMtx.getTrans(v12);
@@ -544,7 +544,7 @@ void TripodBossLeg::addIKLimitPower() {
         v5 = 0.5f;
         v6 = 0.0f;
     } else {
-        v5 = 0.89999998f;
+        v5 = 0.9f;
         v6 = 5.0f;
     }
 
@@ -565,9 +565,9 @@ void TripodBossLeg::addAccelUpLeg(TripodBossStepPoint* pPoint, f32 a3) {
     _234 += v7;
     addIKLimitPower();
     mForceEndPoint += _234;
-    _234.x *= 0.89999998f;
-    _234.y *= 0.89999998f;
-    _234.z *= 0.89999998f;
+    _234.x *= 0.9f;
+    _234.y *= 0.9f;
+    _234.z *= 0.9f;
     updatePose();
 }
 
@@ -687,7 +687,7 @@ void TripodBossLeg::updateAnkleLanding() {
     TVec3f v6(mForceEndPoint);
     v6 -= *stepPos;
     f32 v3 = v6.dot(_98->mStepNormal);
-    f32 v4 = MR::normalize((v3 / _250), 0.15000001f, 1.0f);
+    f32 v4 = MR::normalize((v3 / _250), 0.15f, 1.0f);
     TQuat4f quat;
     quat.slerp(_1F0, _200, ((1.0f - v4) * ((1.0f - v4) * (1.0f - v4))));
     quat.normalize();

@@ -5,7 +5,7 @@
 
 class CameraDead : public Camera {
 public:
-    CameraDead(const char*);
+    CameraDead(const char* pName = "通常死亡カメラ");
     virtual ~CameraDead();
 
     virtual void reset();

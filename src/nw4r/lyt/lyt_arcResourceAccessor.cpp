@@ -102,8 +102,10 @@ namespace nw4r {
             return GetResourceSub(&mArcHandle, mResRootDir, type, pName, pSize);
         }
 
-        ut::Font* ArcResourceAccessor::GetFont(const char* pName) { return detail::FindFont(&mFontList, pName); }
+        ut::Font* ArcResourceAccessor::GetFont(const char* pName) {
+            return detail::FindFont(&mFontList, pName);
+        }
 
         ArcResourceAccessor::~ArcResourceAccessor() {}
     };  // namespace lyt
-};      // namespace nw4r
+};  // namespace nw4r

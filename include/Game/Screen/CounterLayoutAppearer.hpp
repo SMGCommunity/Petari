@@ -16,7 +16,12 @@ public:
     bool isDisappeared() const;
     void reset();
     void updateLayoutOffset(f32);
-    void setAppearOffset(const TVec2f&);
+
+    void setAppearOffset(const TVec2f& rOffset) {
+        mAppearOffset.x = rOffset.x;
+        mAppearOffset.y = rOffset.y;
+    }
+
     void exeHide();
     void exeAppear();
     void exeShow();
@@ -24,7 +29,7 @@ public:
 
 private:
     /* 0x08 */ LayoutActor* mLayout;
-    /* 0x0C */ TVec2f _C;
+    /* 0x0C */ TVec2f mAppearOffset;
     /* 0x14 */ TVec2f mFollowPos;
     /* 0x1C */ TVec2f _1C;
 };

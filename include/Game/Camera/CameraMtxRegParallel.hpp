@@ -4,7 +4,7 @@
 
 class CameraMtxRegParallel : public Camera {
 public:
-    CameraMtxRegParallel(const char*);
+    CameraMtxRegParallel(const char* pName = "マトリクスレジスタ並行カメラ");
     virtual ~CameraMtxRegParallel();
 
     virtual void reset();

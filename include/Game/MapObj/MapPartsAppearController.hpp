@@ -3,7 +3,6 @@
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/MapPartsFunction.hpp"
 
-
 class PostureHolder;
 
 class MapPartsAppearController : public MapPartsFunction {

@@ -4,7 +4,7 @@
 
 class CameraInnerCylinder : public Camera {
 public:
-    CameraInnerCylinder(const char*);
+    CameraInnerCylinder(const char* pName = "CameraInnerCylinder");
     virtual ~CameraInnerCylinder();
 
     virtual void reset();

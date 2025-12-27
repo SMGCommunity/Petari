@@ -8,7 +8,7 @@ void CamTranslatorTrundle::setParam(const CameraParamChunk* pChunk) {
 
     TVec3f axis = general->mAxis;
 
-    if (!MR::isNearZero(axis, 0.001f)) {
+    if (!MR::isNearZero(axis)) {
         MR::normalize(&axis);
 
         f32 dist;

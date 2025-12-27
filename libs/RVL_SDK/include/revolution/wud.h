@@ -2,6 +2,7 @@
 #define WUD_H
 
 #include "revolution.h"
+#include "revolution/bte.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -25,18 +26,18 @@ typedef struct WUDDeviceInfo {
     u16 attr_mask;
 } WUDDeviceInfo;
 
-typedef void*(*WUDAlloc) (u32);
-typedef u8 (*WUDFree) (void *);
-typedef void (*WUDSyncDeviceCallback) (s32, s32);
-typedef void (*WUDClearDeviceCallback) (s32);
-typedef void (*WUDHidRecvCallback) (u8, u8*, u16);
-typedef void (*WUDHidConnCallback) (WUDDeviceInfo *, u8);
-typedef void (*WUDStoredCallback) (void *);
+typedef void* (*WUDAlloc)(u32);
+typedef u8 (*WUDFree)(void*);
+typedef void (*WUDSyncDeviceCallback)(s32, s32);
+typedef void (*WUDClearDeviceCallback)(s32);
+typedef void (*WUDHidRecvCallback)(u8, u8*, u16);
+typedef void (*WUDHidConnCallback)(WUDDeviceInfo*, u8);
+typedef void (*WUDStoredCallback)(void*);
 
 typedef struct DeviceList {
-    WUDDeviceInfo *info;
-    void *prev;
-    void *next;
+    WUDDeviceInfo* info;
+    void* prev;
+    void* next;
 } DeviceList;
 
 typedef struct WUDControlBlock {
@@ -51,11 +52,11 @@ typedef struct WUDControlBlock {
     u8 shutStatus;
     u8 devNums;
     u8 devSmpNums;
-    DeviceList *smpListHead;
-    DeviceList *smpListTail;
+    DeviceList* smpListHead;
+    DeviceList* smpListTail;
     DeviceList smpList[6];
-    DeviceList *stdListHead;
-    DeviceList *stdListTail;
+    DeviceList* stdListHead;
+    DeviceList* stdListTail;
     DeviceList stdList[10];
     WUDDeviceInfo devInfo[10];
     WUDDeviceInfo devSmpInfo[6];
@@ -85,26 +86,39 @@ typedef struct WUDControlBlock {
     s16 incomeCnt;
 } WUDControlBlock;
 
-void WUD_DEBUGPrint(const char *, ...);
-void WUDiMoveTopSmpDevInfoPtr(WUDDeviceInfo *);
-void WUDiMoveTopStdDevInfoPtr(WUDDeviceInfo *);
+void WUD_DEBUGPrint(const char*, ...);
+void WUDiMoveTopSmpDevInfoPtr(WUDDeviceInfo*);
+void WUDiMoveTopStdDevInfoPtr(WUDDeviceInfo*);
 void WUDSetSniffMode(BTD_ADDR, s32);
 void WUDiRemoveDevice(BTD_ADDR);
-void WUDiMoveBottomSmpDevInfoPtr(WUDDeviceInfo *);
-void WUDiMoveTopSmpDevInfoPtr(WUDDeviceInfo *);
-void WUDiMoveBottomStdDevInfoPtr(WUDDeviceInfo *);
-void WUDiMoveTopOfDisconnectedSmpDevice(WUDDeviceInfo *);
-void WUDiMoveTopOfDisconnectedStdDevice(WUDDeviceInfo *);
+void WUDiMoveBottomSmpDevInfoPtr(WUDDeviceInfo*);
+void WUDiMoveTopSmpDevInfoPtr(WUDDeviceInfo*);
+void WUDiMoveBottomStdDevInfoPtr(WUDDeviceInfo*);
+void WUDiMoveTopOfDisconnectedSmpDevice(WUDDeviceInfo*);
+void WUDiMoveTopOfDisconnectedStdDevice(WUDDeviceInfo*);
 WUDDeviceInfo* WUDiGetDevInfo(BTD_ADDR);
+
+BOOL WUDCancelSyncDevice(void);
+BOOL WUDStopSyncSimple(void);
+s32 WUDGetStatus(void);
+void WUDShutdown(BOOL);
+void WUDSetVisibility(u8, u8);
+BOOL WUDIsBusy(void);
+WUDHidRecvCallback WUDSetHidRecvCallback(WUDHidRecvCallback);
+WUDHidConnCallback WUDSetHidConnCallback(WUDHidConnCallback);
+void WUDRegisterAllocator(WUDAlloc, WUDFree);
+u8* _WUDGetDevAddr(u8);
+BOOL WUDSetDisableChannel(s8);
 
 extern WUDControlBlock _wcb;
 extern WUDDeviceInfo _work;
-extern u8* _dev_handle_to_bda[16]; 
+extern u8* _dev_handle_to_bda[16];
 extern u16 _dev_handle_queue_size[16];
 extern u16 _dev_handle_notack_num[16];
+extern SCBtDeviceInfoArray _scArray;
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif // WUD_H
+#endif  // WUD_H

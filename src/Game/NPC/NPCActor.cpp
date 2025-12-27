@@ -116,7 +116,7 @@ NPCActor::NPCActor(const char* pName) : LiveActor(pName) {
     _120 = 0;
     _10C = 2.0f;
     _110 = 0.1f;
-    _114 = 0.079999998f;
+    _114 = 0.08f;
     _118 = 1.0f;
     _124 = 0;
     _128 = 1;

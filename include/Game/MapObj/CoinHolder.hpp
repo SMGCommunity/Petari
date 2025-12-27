@@ -35,5 +35,5 @@ namespace MR {
     void createCoinRotater();
 
     void addToCoinHolder(const NameObj*, Coin*);
-    NameObj* getCoinHolder();
+    CoinHolder* getCoinHolder();
 };  // namespace MR

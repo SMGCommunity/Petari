@@ -13,7 +13,9 @@ namespace {
 };  // namespace
 
 namespace FileSelectFunc {
-    u32 getMiiNameBufferSize() { return RFL_NAME_LEN + 1; }
+    u32 getMiiNameBufferSize() {
+        return RFL_NAME_LEN + 1;
+    }
 
     void copyMiiName(u16* pName, const FileSelectIconID& rIcon) {
         if (rIcon.isFellow()) {

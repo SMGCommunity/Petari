@@ -14,10 +14,13 @@
 #include "Game/System/HeapMemoryWatcher.hpp"
 #include "Game/System/ScenarioDataParser.hpp"
 #include "Game/System/WPadHolder.hpp"
+#include <JSystem/JKernel/JKRSolidHeap.hpp>
 #include <cstdio>
 
 namespace {
-    AudSystemWrapper* getAudioSystemWrapper() NO_INLINE { return SingletonHolder< GameSystem >::get()->mObjHolder->mSysWrapper; }
+    AudSystemWrapper* getAudioSystemWrapper() NO_INLINE {
+        return SingletonHolder< GameSystem >::get()->mObjHolder->mSysWrapper;
+    }
 };  // namespace
 
 namespace NrvGameSystemSceneController {

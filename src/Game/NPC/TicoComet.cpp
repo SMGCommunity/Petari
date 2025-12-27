@@ -34,7 +34,7 @@ namespace {
     TicoEatParam::TicoEatParam() : AnimScaleParam() {
         _20 = 0.12f;
         _24 = 0.12f;
-        _28 = 0.89999998f;
+        _28 = 0.9f;
     }
 
     static TicoEatParam sParam;

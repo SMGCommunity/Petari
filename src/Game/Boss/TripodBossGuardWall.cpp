@@ -16,8 +16,8 @@ struct WallPart2Angle {
 };
 
 namespace {
-    static WallPart2Angle sWallPartPlacementAngleTable[8] = {{0.0f, 4},      {45.0f, 8},     {90.0f, 0xC},   {135.0f, 0x10},
-                                                             {180.0f, 0x14}, {225.0f, 0x18}, {270.0f, 0x1C}, {315.0f, 0x20}};
+    static WallPart2Angle sWallPartPlacementAngleTable[] = {{0.0f, 4},      {45.0f, 8},     {90.0f, 0xC},   {135.0f, 0x10},
+                                                            {180.0f, 0x14}, {225.0f, 0x18}, {270.0f, 0x1C}, {315.0f, 0x20}};
 
     static s32 sMoveSeLength = 0x3A;
 };  // namespace
@@ -194,7 +194,7 @@ void TripodBossGuardWall::updateCameraTarget() {
     f32 v9 = up.dot(front);
     JMAVECScaleAdd(&up, &front, &front, -v9);
 
-    if (MR::isNearZero(front, 0.001f)) {
+    if (MR::isNearZero(front)) {
         f32 z = mBaseMtx.mMtx[2][2];
         f32 y = mBaseMtx.mMtx[1][2];
         f32 x = mBaseMtx.mMtx[0][2];

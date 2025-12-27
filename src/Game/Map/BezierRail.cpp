@@ -40,7 +40,7 @@ namespace {
 
         f32 v8;
 
-        if (MR::isNearZero(*pOut, 0.001f)) {
+        if (MR::isNearZero(*pOut)) {
             if (t < 0.5f) {
                 v8 = 0.01f + t;
             } else {
@@ -207,7 +207,7 @@ f32 BezierRailPart::getNearestParam(const TVec3f& rPos, f32 delta) const {
 f32 BezierRail::normalizePos(f32 t, int direction) const {
     if (mIsClosed) {
         f32 pos = MR::mod(t, getTotalLength());
-        if (direction < 0 && MR::isNearZero(pos, 0.001f)) {
+        if (direction < 0 && MR::isNearZero(pos)) {
             pos = getTotalLength();
         }
         if (pos < 0.0f) {
@@ -356,12 +356,12 @@ void BezierRail::getIncludedSection(const RailPart** pRailParts, f32* pPos, f32 
 int BezierRail::getCurrentCtrlPointIndex(f32 t, bool forward) const {
     f32 pos = normalizePos(t, forward ? 1 : -1);
 
-    if (MR::isNearZero(pos, 0.001f)) {
+    if (MR::isNearZero(pos)) {
         return 0;
     }
 
     f32 totalLength = getTotalLength();
-    if (MR::isNearZero(totalLength - pos, 0.001f)) {
+    if (MR::isNearZero(totalLength - pos)) {
         return !mIsClosed ? mPointNum - 1 : 0;
     }
 

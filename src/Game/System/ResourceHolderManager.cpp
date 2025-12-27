@@ -108,7 +108,7 @@ ResourceHolderManagerName2Resource* ResourceHolderManager::createAndAddInner(con
     char archivePath[128];
     (*pMakeArchiveFileNameFunc)(archivePath, sizeof(archivePath), pArcName);
 
-    if (!MR::receiveArchive(archivePath)) {
+    if (MR::receiveArchive(archivePath) == nullptr) {
         MR::mountArchive(archivePath, MR::getCurrentHeap());
     }
 

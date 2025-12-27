@@ -16,7 +16,7 @@ void IKJointCtrl::setEndDirection(const TVec3f& rDirection, f32 a2) {
     s32 val = MR::vecBlendSphere(_78, rDirection, &_78, a2);
 
     if (!val) {
-        MR::turnRandomVector(&_78, _78, 0.0099999998f);
+        MR::turnRandomVector(&_78, _78, 0.01f);
     }
 
     _AC = a2;

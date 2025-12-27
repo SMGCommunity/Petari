@@ -66,7 +66,7 @@ void Swinger::updateSwingMtx(const TVec3f& a1) {
     _48.z *= -1.0f;
     TVec3f v14(_3C);
     PSVECCrossProduct(&_48, &_54, &_3C);
-    if (MR::isNearZero(_3C, 0.001f)) {
+    if (MR::isNearZero(_3C)) {
         _3C.set< f32 >(v14);
     }
     MR::normalize(&_3C);

@@ -75,7 +75,9 @@ namespace MR {
         MR::getSceneObj< SpinDriverPathDrawInit >(SceneObj_SpinDriverPathDrawInit)->mGreenTexture->load(GX_TEXMAP0);
     }
 
-    void setSpinDriverPathColorPink() { MR::getSceneObj< SpinDriverPathDrawInit >(SceneObj_SpinDriverPathDrawInit)->mPinkTexture->load(GX_TEXMAP0); }
+    void setSpinDriverPathColorPink() {
+        MR::getSceneObj< SpinDriverPathDrawInit >(SceneObj_SpinDriverPathDrawInit)->mPinkTexture->load(GX_TEXMAP0);
+    }
 
     bool isDrawSpinDriverPathAtOpa() {
         if (!MR::isExistSceneObj(SceneObj_SpinDriverPathDrawInit)) {
@@ -85,9 +87,13 @@ namespace MR {
         return MR::getSceneObj< SpinDriverPathDrawInit >(SceneObj_SpinDriverPathDrawInit)->mIsPathAtOpa;
     }
 
-    void onDrawSpinDriverPathAtOpa() { MR::getSceneObj< SpinDriverPathDrawInit >(SceneObj_SpinDriverPathDrawInit)->mIsPathAtOpa = true; }
+    void onDrawSpinDriverPathAtOpa() {
+        MR::getSceneObj< SpinDriverPathDrawInit >(SceneObj_SpinDriverPathDrawInit)->mIsPathAtOpa = true;
+    }
 
-    void offDrawSpinDriverPathAtOpa() { MR::getSceneObj< SpinDriverPathDrawInit >(SceneObj_SpinDriverPathDrawInit)->mIsPathAtOpa = false; }
+    void offDrawSpinDriverPathAtOpa() {
+        MR::getSceneObj< SpinDriverPathDrawInit >(SceneObj_SpinDriverPathDrawInit)->mIsPathAtOpa = false;
+    }
 };  // namespace MR
 
 void SpinDriverPathDrawer::init(const JMapInfoIter& rIter) {

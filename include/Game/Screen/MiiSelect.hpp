@@ -3,7 +3,6 @@
 #include "Game/Map/FileSelectIconID.hpp"
 #include "Game/Screen/LayoutActor.hpp"
 
-
 namespace nw4r {
     namespace lyt {
         class TexMap;
@@ -39,7 +38,7 @@ public:
     bool isAppearing() const;
     bool isSelected();
     bool isDummySelected();
-    void getSelectedID(FileSelectIconID *);
+    void getSelectedID(FileSelectIconID*);
     nw4r::lyt::TexMap* getSelectedMiiTexMap();
     void admitIcon();
     void prohibitIcon(const FileSelectIconID&);

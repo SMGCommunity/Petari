@@ -306,7 +306,7 @@ void OceanRingDrawer::loadMaterialBloom() const {
     mWaterTex->load(GX_TEXMAP0);
     GXSetNumIndStages(0);
     TVec3f zDir = MR::getCamZdir();
-    f32 v6 = ((MR::clamp(zDir.y, -0.2f, 0.1f) - -0.2f) / 0.30000001f);
+    f32 v6 = ((MR::clamp(zDir.y, -0.2f, 0.1f) - -0.2f) / 0.3f);
     f32 v8 = ((MR::clamp(WaterAreaFunction::getCameraWaterDepth(), 150.0f, 300.0f) - 150.0f) / 150.0f);
 
     if (v6 >= v8) {

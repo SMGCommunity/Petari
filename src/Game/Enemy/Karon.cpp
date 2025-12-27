@@ -11,7 +11,7 @@
 #include "Game/Util/MapUtil.hpp"
 
 namespace {
-    static const KaronParam hNoMoveNoTurnParam = {0.0f, 1.2f, 0.80000001f, 0.0f};
+    static const KaronParam hNoMoveNoTurnParam = {0.0f, 1.2f, 0.8f, 0.0f};
     static const KaronParam hNoMoveNoTurnOnAirParam = {0.0f, 2.0f, 0.94f, 0.0f};
     static const KaronParam hWalkparam = {0.12f, 1.2f, 0.94f, 2.0f};
     static const KaronParam hSearchParam = {0.0f, 1.2f, 0.94f, 2.0f};

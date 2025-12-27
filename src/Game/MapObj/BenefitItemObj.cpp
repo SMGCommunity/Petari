@@ -11,7 +11,7 @@ namespace {
     const f32 cAppearThrowUpSpd = 10.0f;
     const f32 cAppearThrowUpSpd2 = 15.0f;
     const f32 cGravity = 0.5f;
-    const f32 cReflectWallX = 0.30000001f;
+    const f32 cReflectWallX = 0.3f;
     static f32 cSpdRotateY = JGeometry::TUtil< f32 >::PI() / 60.0f;
 };  // namespace
 
@@ -333,7 +333,7 @@ void BenefitItemObj::appearThrowUp() {
         f32 speed = cAppearThrowUpSpd2;
         mVelocity = MR::createVecAndScale(rotated_axis, speed);
     }
-    
+
     MR::invalidateClipping(this);
 }
 */
@@ -393,7 +393,7 @@ void BenefitItemObj::control() {
             kill();
         }
 
-        if (!MR::isNearZero(mVelocity, 0.001f)) {
+        if (!MR::isNearZero(mVelocity)) {
             if (MR::isInDeath(this, TVec3f(0.0f, 0.0f, 0.0f))) {
                 runEfx("Vanish");
                 kill();
@@ -608,10 +608,10 @@ void BenefitItemObj::doEscape() {
                 _BC.z *= 1.1f;
             }
             else {
-                _BC += MR::createVecAndScale(v22, 0.0099999998f);
-                _BC.x *= 0.0099999998f;
-                _BC.y *= 0.0099999998f;
-                _BC.z *= 0.0099999998f;
+                _BC += MR::createVecAndScale(v22, 0.01f);
+                _BC.x *= 0.01f;
+                _BC.y *= 0.01f;
+                _BC.z *= 0.01f;
             }
         }
 
@@ -629,9 +629,9 @@ void BenefitItemObj::doEscape() {
     }
     else {
         _E5 = 1;
-        _BC.x *= 0.94999999f;
-        _BC.y *= 0.94999999f;
-        _BC.z *= 0.94999999f;
+        _BC.x *= 0.95f;
+        _BC.y *= 0.95f;
+        _BC.z *= 0.95f;
         _C8 += MR::createVecAndScale(mGravity, 1.0f);
 
         if (PSVECMag(&_C8) > 20.0f) {
@@ -750,8 +750,8 @@ void BenefitItemObj::calcAndSetBaseMtxInMovement() {
             _98 = stack_8;
         }
 
-        if (!MR::isNearZero(stack_8, 0.001f)) {
-            if (MR::isSameDirection(_A4, stack_8, 0.0099999998f)) {
+        if (!MR::isNearZero(stack_8)) {
+            if (MR::isSameDirection(_A4, stack_8, 0.01f)) {
                 MR::setMtxTrans(getBaseMtx(), mPosition);
             } else {
                 TPos3f pos;

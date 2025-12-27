@@ -9,15 +9,6 @@ struct SoundEffectDataEntry {
     f32 _8;
 };
 
-namespace {
-    static SoundEffectDataEntry sSeDataTable[8] = {
-        {"KoopaShipSeesawStep", "SE_OJ_LV_KOOPA_SHIP_SEESAW", 0.001f},   {"IceVolcanoBalanceStepA", "SE_OJ_LV_VOL_BAL_STEP_ROT", 0.001f},
-        {"IceVolcanoBalanceStepB", "SE_OJ_LV_VOL_BAL_STEP_ROT", 0.001f}, {"IceMountainSeesawSlipA", "SE_OJ_LV_ICE_M_SEESAW_S", 0.001f},
-        {"IceMountainSeesawSlipB", "SE_OJ_LV_ICE_M_SEESAW_M", 0.001f},   {"IceMountainSeesawSlipC", "SE_OJ_LV_ICE_M_SEESAW_L", 0.001f},
-        {"IceMountainSeesawSlipD", "SE_OJ_LV_ICE_M_SEESAW_L", 0.001f},   {"IceMountainSeesawNoSlipA", "SE_OJ_LV_ICE_M_SEESAW_S", 0.001f},
-    };
-};
-
 class SimpleMapObj : public MapObjActor {
 public:
     SimpleMapObj(const char* pName) : MapObjActor(pName) {}

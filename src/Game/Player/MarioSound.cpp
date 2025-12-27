@@ -13,7 +13,7 @@ struct SoundList {
     u32 _14;
 };
 
-SoundList soundlist[206] = {
+SoundList soundlist[] = {
     {
         "声小ジャンプ",  // name
         0x10000,         // 0x4
@@ -1672,7 +1672,7 @@ struct SoundSwapList {
     u32 offset3;
 };
 
-SoundSwapList soundswaplist[1] = {{"", 0, 0, 0}};
+SoundSwapList soundswaplist[] = {{"", 0, 0, 0}};
 
 void Mario::initSound() {
     u32 length = initSoundTable(soundlist, 0);

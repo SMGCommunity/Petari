@@ -145,7 +145,9 @@ void MainLoopFramework::exchangeXfb_double() {
 }
 
 namespace {
-    s32 getDisplayingXfbIndex() { return JUTXfb::getManager()->getDisplayingXfbIndex(); }
+    s32 getDisplayingXfbIndex() {
+        return JUTXfb::getManager()->getDisplayingXfbIndex();
+    }
 }  // namespace
 
 void MainLoopFramework::exchangeXfb_triple() {
@@ -434,7 +436,7 @@ namespace {
 
             u32 msg;
             do {
-                if (!OSReceiveMessage(&JUTVideo::sManager->mMessageQueue, (OSMessage*)&msg, 1)) {
+                if (!OSReceiveMessage(&JUTVideo::sManager->mMessageQueue, (OSMessage*)&msg, OS_MESSAGE_BLOCK)) {
                     msg = dummy;
                 }
             } while ((s32)(msg - nextCount) < 0);

@@ -3,7 +3,9 @@
 
 namespace JGadget {
 
-    inline const JGadget::TLinkListNode* getNode(const JGadget::TNodeLinkList::iterator& self) { return self.curr; }
+    inline const JGadget::TLinkListNode* getNode(const JGadget::TNodeLinkList::iterator& self) {
+        return self.curr;
+    }
 
     TNodeLinkList::~TNodeLinkList() {}
 
@@ -40,7 +42,9 @@ namespace JGadget {
         return next;
     }
 
-    void TNodeLinkList::Remove(TLinkListNode* node) { remove_if(TPRIsEqual_pointer_< TLinkListNode >(node)); }
+    void TNodeLinkList::Remove(TLinkListNode* node) {
+        remove_if(TPRIsEqual_pointer_< TLinkListNode >(node));
+    }
 
     void TNodeLinkList::Initialize_() {
         mLen = 0;

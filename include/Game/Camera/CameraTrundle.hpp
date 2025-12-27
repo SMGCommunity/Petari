@@ -4,7 +4,7 @@
 
 class CameraTrundle : public Camera {
 public:
-    CameraTrundle(const char*);
+    CameraTrundle(const char* pName = "トランドルカメラ");
     virtual ~CameraTrundle();
 
     virtual void reset();

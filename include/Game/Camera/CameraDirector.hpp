@@ -61,7 +61,6 @@ public:
     };
 
     CameraDirector(const char*);
-    virtual ~CameraDirector();
 
     virtual void init(const JMapInfoIter&);
     virtual void movement();
@@ -135,27 +134,25 @@ public:
     // 0x04: mName
     // 0x84: unknown
 
-    // These are the only members which have been found accessed
-
-    CameraTargetObj* _C;
-    CameraManStack* mStack;                     // 0x10
-    OnlyCamera* mOnlyCamera;                    // 0x14
-    CameraPoseParam* mPoseParam1;               // 0x18
-    CameraPoseParam* mPoseParam2;               // 0x1C
-    CameraHolder* mHolder;                      // 0x20
-    CameraParamChunkHolder* mChunkHolder;       // 0x24
-    GameCameraCreator* mCameraCreator;          // 0x28
-    CameraRailHolder* mRailHolder;              // 0x2C
-    CameraRegisterHolder* mRegisterHolder;      // 0x30
-    CameraTargetHolder* mTargetHolder;          // 0x34
-    CameraShaker* mShaker;                      // 0x38
-    CameraViewInterpolator* mViewInterpolator;  // 0x3C
-    CameraCover* mCover;                        // 0x40
-    CameraRotChecker* mRotChecker;              // 0x44
-    CameraManGame* mCameraManGame;              // 0x48
-    CameraManEvent* mCameraManEvent;            // 0x4C
-    CameraManPause* mCameraManPause;            // 0x50
-    CameraManSubjective* mCameraManSubjective;  // 0x54
+    /* 0x0C */ CameraTargetObj* mUsedTarget;
+    /* 0x10 */ CameraManStack* mStack;
+    /* 0x14 */ OnlyCamera* mOnlyCamera;
+    /* 0x18 */ CameraPoseParam* mPoseParam1;
+    /* 0x1C */ CameraPoseParam* mPoseParam2;
+    /* 0x20 */ CameraHolder* mHolder;
+    /* 0x24 */ CameraParamChunkHolder* mChunkHolder;
+    /* 0x28 */ GameCameraCreator* mCameraCreator;
+    /* 0x2C */ CameraRailHolder* mRailHolder;
+    /* 0x30 */ CameraRegisterHolder* mRegisterHolder;
+    /* 0x34 */ CameraTargetHolder* mTargetHolder;
+    /* 0x38 */ CameraShaker* mShaker;
+    /* 0x3C */ CameraViewInterpolator* mViewInterpolator;
+    /* 0x40 */ CameraCover* mCover;
+    /* 0x44 */ CameraRotChecker* mRotChecker;
+    /* 0x48 */ CameraManGame* mCameraManGame;
+    /* 0x4C */ CameraManEvent* mCameraManEvent;
+    /* 0x50 */ CameraManPause* mCameraManPause;
+    /* 0x54 */ CameraManSubjective* mCameraManSubjective;
     bool _58;
     u8 _59[3];
     s32 _5C[2][34];

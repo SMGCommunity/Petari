@@ -15,6 +15,7 @@
 #include "Game/System/ResourceHolderManager.hpp"
 #include "Game/System/WPadHolder.hpp"
 #include "Game/Util/RenderMode.hpp"
+#include <JSystem/JKernel/JKRExpHeap.hpp>
 #include <JSystem/JUtility/JUTVideo.hpp>
 
 GameSystemObjHolder::GameSystemObjHolder()

@@ -129,7 +129,9 @@ void SensorHitChecker::checkAttack(HitSensor* pSensor1, HitSensor* pSensor2) con
 #endif
 
 namespace MR {
-    void initHitSensorGroup(HitSensor* pSensor) { MR::getSceneObj< SensorHitChecker >(SceneObj_SensorHitChecker)->initGroup(pSensor); }
+    void initHitSensorGroup(HitSensor* pSensor) {
+        MR::getSceneObj< SensorHitChecker >(SceneObj_SensorHitChecker)->initGroup(pSensor);
+    }
 };  // namespace MR
 
 SensorHitChecker::~SensorHitChecker() {}

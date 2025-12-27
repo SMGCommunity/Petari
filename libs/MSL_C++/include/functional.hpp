@@ -22,8 +22,7 @@ public:
     S operator()(T* p) const;
 
 private:
-    S(T::*mf_)
-    ();
+    S (T::*mf_)();
 };
 
 template < class S, class T >

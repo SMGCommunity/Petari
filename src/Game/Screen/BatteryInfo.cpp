@@ -6,6 +6,8 @@
 #include "Game/Util/NerveUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 
+#define WPAD_BATTERY_LEVEL_EMPTY -1
+
 namespace {
     static const s32 sDisplayFrameBatteryLow = 120;
     static const s32 sLowIntervalFrame = 18000;
@@ -39,11 +41,11 @@ void BatteryInfo::exeEnought() {
         MR::hidePane(mHost, mPaneName);
     }
 
-    if (MR::getWPad(mChannel)->getBattery() == -1) {
+    if (MR::getWPad(mChannel)->getBattery() == WPAD_BATTERY_LEVEL_EMPTY) {
         setNerve(&BatteryInfoNoneHide::sInstance);
-    } else if (MR::getWPad(mChannel)->getBattery() == 0) {
+    } else if (MR::getWPad(mChannel)->getBattery() == WPAD_BATTERY_LEVEL_CRITICAL) {
         setNerve(&BatteryInfoCriticalAppear::sInstance);
-    } else if (MR::getWPad(mChannel)->getBattery() == 1) {
+    } else if (MR::getWPad(mChannel)->getBattery() == WPAD_BATTERY_LEVEL_LOW) {
         setNerve(&BatteryInfoLowAppear::sInstance);
     }
 }
@@ -78,15 +80,15 @@ void BatteryInfo::exeLowHide() {
         MR::hidePane(mHost, mPaneName);
     }
 
-    if (MR::getWPad(mChannel)->getBattery() == -1) {
+    if (MR::getWPad(mChannel)->getBattery() == WPAD_BATTERY_LEVEL_EMPTY) {
         if (mChannel == WPAD_CHAN1) {
             setNerve(&BatteryInfoNoneAppear::sInstance);
         } else {
             setNerve(&BatteryInfoNoneHide::sInstance);
         }
-    } else if (MR::getWPad(mChannel)->getBattery() == 0) {
+    } else if (MR::getWPad(mChannel)->getBattery() == WPAD_BATTERY_LEVEL_CRITICAL) {
         setNerve(&BatteryInfoCriticalAppear::sInstance);
-    } else if (MR::getWPad(mChannel)->getBattery() > 1) {
+    } else if (MR::getWPad(mChannel)->getBattery() > WPAD_BATTERY_LEVEL_LOW) {
         setNerve(&BatteryInfoEnought::sInstance);
     } else if (MR::isGreaterStep(this, sLowIntervalFrame)) {
         setNerve(&BatteryInfoLowAppear::sInstance);
@@ -165,17 +167,17 @@ bool BatteryInfo::tryChangeNerveWithBatteryLeftAlreadyAppear() {
     const Nerve* pNerve;
 
     switch (MR::getWPad(mChannel)->getBattery()) {
-    case -1:
+    case WPAD_BATTERY_LEVEL_EMPTY:
         if (mChannel == WPAD_CHAN1) {
             pNerve = &BatteryInfoNoneAppear::sInstance;
         } else {
             pNerve = &BatteryInfoDisappear::sInstance;
         }
         break;
-    case 0:
+    case WPAD_BATTERY_LEVEL_CRITICAL:
         pNerve = &BatteryInfoCritical::sInstance;
         break;
-    case 1:
+    case WPAD_BATTERY_LEVEL_LOW:
         pNerve = &BatteryInfoLow::sInstance;
         break;
     default:

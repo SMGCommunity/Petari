@@ -9,7 +9,9 @@ SpkMixingBuffer* sMixingBuffer;
 SpeakerInfo sSpeakerInfo[WPAD_MAX_CONTROLLERS];
 
 namespace {
-    SpeakerInfo& getSpeakerInfo(s32 idx) { return sSpeakerInfo[idx]; }
+    SpeakerInfo& getSpeakerInfo(s32 idx) {
+        return sSpeakerInfo[idx];
+    }
 };  // namespace
 
 void SpkSpeakerCtrl::setMixingBuffer(SpkMixingBuffer* pMixingBuffer) {

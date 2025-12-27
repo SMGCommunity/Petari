@@ -1,4 +1,5 @@
 #include "Game/AreaObj/RestartCube.hpp"
+#include "Game/AudioLib/AudBgmMgr.hpp"
 #include "Game/AudioLib/AudWrap.hpp"
 #include "Game/GameAudio/AudStageBgmTable.hpp"
 #include "Game/System/GameDataTemporaryInGalaxy.hpp"
@@ -56,7 +57,8 @@ void RestartCube::changeBgm() {
         u32 bgmID = AudStageBgmTable::getBgmId(MR::getCurrentStageName(), _40);
 
         if (bgmID + 0x10000 != 0xFFFF) {
-            u32 val = AudWrap::getBgmMgr()->_10;
+            u32 val = AudWrap::getBgmMgr()->_10[0];
+
             if (val == bgmID && MR::isPlayingStageBgm()) {
                 return;
             }

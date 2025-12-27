@@ -32,13 +32,21 @@ namespace {
     char* test[] = {"Shadow00", "Joint02", "SkeletalFishBossShadow"};
     static SkeletalFishBoss::JointToShadow sShadowInfo = {"Shadow00", "Joint02", "SkeletalFishBossShadow"};
 
-    inline SkeletalFishBoss::JointToShadow& testInline() { return sShadowInfo; }
+    inline SkeletalFishBoss::JointToShadow& testInline() {
+        return sShadowInfo;
+    }
 
-    inline const char* getName(SkeletalFishBoss::JointToShadow& jointToShadow) { return jointToShadow.mName; }
+    inline const char* getName(SkeletalFishBoss::JointToShadow& jointToShadow) {
+        return jointToShadow.mName;
+    }
 
-    inline const char* getShadowName(SkeletalFishBoss::JointToShadow& jointToShadow) { return jointToShadow.mShadowName; }
+    inline const char* getShadowName(SkeletalFishBoss::JointToShadow& jointToShadow) {
+        return jointToShadow.mShadowName;
+    }
 
-    inline const char* getJointName(SkeletalFishBoss::JointToShadow& jointToShadow) { return jointToShadow.mJointName; }
+    inline const char* getJointName(SkeletalFishBoss::JointToShadow& jointToShadow) {
+        return jointToShadow.mJointName;
+    }
 };  // namespace
 
 namespace {
@@ -779,7 +787,7 @@ bool SkeletalFishBoss::calcGravityCenter(TVec3f *pOut, const TVec3f &rFirstPoint
     TVec3f firstGravityVector;
     MR::calcGravityVector(this, firstGravityCenter, &firstGravityVector, nullptr, 0);
     firstGravityVector.negate();
-    
+
     TVec3f secondGravityCenter(rSecondPoint);
     TVec3f secondGravityVector;
     MR::calcGravityVector(this, secondGravityCenter, &secondGravityVector, nullptr, 0);
@@ -789,7 +797,7 @@ bool SkeletalFishBoss::calcGravityCenter(TVec3f *pOut, const TVec3f &rFirstPoint
     f32 secondGravitySquared = secondGravityVector.squared();
     f32 dotProduct = firstGravityVector.dot(secondGravityVector);
     f32 dotProductSquared = dotProduct * dotProduct;
-    
+
     TVec3f distanceVector(firstGravityCenter - secondGravityCenter);
     TVec3f reversedDistanceVector(secondGravityCenter - firstGravityCenter);
     f32 dotFirst = distanceVector.dot(secondGravityVector);

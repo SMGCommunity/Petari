@@ -7,6 +7,22 @@
 #include "Game/Util/RailUtil.hpp"
 #include "JSystem/JMath/JMath.hpp"
 
+namespace {
+    static const s32 sStepForWait = 60;
+    static const s32 sStepForLookAroundL = 40;
+    static const s32 sStepForLookAroundLR = 120;
+    static const s32 sStepForLookAroundLRL = 160;
+    static const s32 sStepForMove = 500;
+    // static const s32 sStepForMoveAccel = _;
+    static const s32 sStepForTalk = 320;
+    // static const f32 sRailSpeedMax = _;
+    // static const f32 sRailSpeedTalk = _;
+    static const f32 sRailSpeedGoodBye = 1.5f;
+    static const f32 sTurnRate = 1.2f;
+    static const f32 sTalkTerritoryY = 30.0f;
+    // static const s32 sRandomMax = _;
+};  // namespace
+
 namespace NrvTicoRail {
     NEW_NERVE(TicoRailNrvWait, TicoRail, Wait);
     NEW_NERVE(TicoRailNrvLookAround, TicoRail, LookAround);
@@ -20,13 +36,7 @@ namespace NrvTicoRail {
     NEW_NERVE(TicoRailNrvGoodBye, TicoRail, GoodBye);
 };  // namespace NrvTicoRail
 
-TicoRail::TicoRail(const char* pName) : LiveActor(pName) {
-    _8C.x = 0.0f;
-    _8C.y = 0.0f;
-    _8C.z = 0.0f;
-    _98 = 0;
-    mLodCtrl = nullptr;
-}
+TicoRail::TicoRail(const char* pName) : LiveActor(pName), _8C(0.0f, 0.0f, 1.0f), _98(nullptr), mLodCtrl(nullptr) {}
 
 void TicoRail::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
@@ -49,11 +59,13 @@ void TicoRail::init(const JMapInfoIter& rIter) {
     AstroDemoFunction::tryRegisterGrandStarReturnAndSimpleCast(this, rIter);
     AstroDemoFunction::tryRegisterDemo(this, "バトラーグリーンドライバ説明", rIter);
     s32 rand = MR::getRandom(0l, 2l);
+
     if (rand == 0) {
         initNerve(&NrvTicoRail::TicoRailNrvWait::sInstance);
     } else if (rand == 1) {
         initNerve(&NrvTicoRail::TicoRailNrvMove::sInstance);
     }
+
     makeActorAppeared();
 }
 
@@ -62,7 +74,7 @@ void TicoRail::exeWait() {
         MR::startBck(this, "Turn", nullptr);
     }
 
-    if (isGreaterEqualStepAndRandom(60)) {
+    if (isGreaterEqualStepAndRandom(sStepForWait)) {
         setNerve(&NrvTicoRail::TicoRailNrvLookAround::sInstance);
     }
 }
@@ -74,18 +86,21 @@ void TicoRail::exeLookAround() {
 
     TVec3f up;
     MR::calcUpVec(&up, this);
+
     f32 rotate = 0.0f;
-    if (MR::isLessStep(this, 40)) {
-        rotate = 1.2f;
-    } else if (MR::isLessStep(this, 120)) {
-        rotate = -1.2f;
-    } else if (MR::isLessStep(this, 160)) {
-        rotate = 1.2f;
+
+    if (MR::isLessStep(this, sStepForLookAroundL)) {
+        rotate = sTurnRate;
+    } else if (MR::isLessStep(this, sStepForLookAroundLR)) {
+        rotate = -sTurnRate;
+    } else if (MR::isLessStep(this, sStepForLookAroundLRL)) {
+        rotate = sTurnRate;
     }
 
     MR::rotateVecDegree(&_8C, up, rotate);
+
     if (MR::isStep(this, 160)) {
-        if (MR::getRandom(0l, 2l) == 0) {
+        if (MR::getRandom(0l, 2l) != 0) {
             setNerve(&NrvTicoRail::TicoRailNrvMoveSign::sInstance);
         } else {
             setNerve(&NrvTicoRail::TicoRailNrvMoveSignAndTurn::sInstance);
@@ -96,6 +111,7 @@ void TicoRail::exeLookAround() {
 void TicoRail::exeMoveSign() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "Spin", nullptr);
+
         if (isNerve(&NrvTicoRail::TicoRailNrvMoveSignAndTurn::sInstance)) {
             MR::reverseRailDirection(this);
         }
@@ -106,6 +122,7 @@ void TicoRail::exeMoveSign() {
     TVec3f reversedDir;
     JMathInlineVEC::PSVECNegate(railDirection, &reversedDir);
     MR::blendVec(&_8C, reversedDir, MR::getRailDirection(this), rate);
+
     if (MR::isBckStopped(this)) {
         setNerve(&NrvTicoRail::TicoRailNrvMove::sInstance);
     }
@@ -118,7 +135,8 @@ void TicoRail::exeMove() {
 
     MR::moveCoordAndFollowTrans(this, MR::calcNerveValue(this, 0, 200.0f, 15.0f));
     _8C.set< f32 >(MR::getRailDirection(this));
-    if (isGreaterEqualStepAndRandom(500)) {
+
+    if (isGreaterEqualStepAndRandom(sStepForMove)) {
         setNerve(&NrvTicoRail::TicoRailNrvStop::sInstance);
     }
 }
@@ -129,6 +147,7 @@ void TicoRail::exeStop() {
     }
 
     MR::moveCoordAndFollowTrans(this, MR::calcNerveValue(this, MR::getBckFrameMax(this), 15.0f, 0.0f));
+
     if (MR::isBckStopped(this)) {
         setNerve(&NrvTicoRail::TicoRailNrvWait::sInstance);
     }
@@ -142,6 +161,7 @@ void TicoRail::exeTalkStart() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "Spin", nullptr);
         TVec3f v14(MR::getRailDirection(this));
+
         if (diff.dot(v14) > 0.0f) {
             MR::reverseRailDirection(this);
         }
@@ -149,6 +169,7 @@ void TicoRail::exeTalkStart() {
 
     MR::moveCoordAndFollowTrans(this, 2.0f);
     MR::blendVec(&_8C, MR::getRailDirection(this), diff, MR::calcNerveRate(this, MR::getBckFrameMax(this)));
+
     if (MR::isBckStopped(this)) {
         setNerve(&NrvTicoRail::TicoRailNrvTalk::sInstance);
     }
@@ -167,7 +188,7 @@ void TicoRail::exeTalk() {
         MR::startBck(this, "Talk", nullptr);
     }
 
-    if (MR::isStep(this, 320)) {
+    if (MR::isStep(this, sStepForTalk)) {
         setNerve(&NrvTicoRail::TicoRailNrvGoodBye::sInstance);
     }
 }
@@ -179,6 +200,7 @@ void TicoRail::exeTalkCancel() {
 
     MR::moveCoordAndFollowTrans(this, 15.0f);
     _8C.set< f32 >(MR::getRailDirection(this));
+
     if (MR::isBckStopped(this)) {
         setNerve(&NrvTicoRail::TicoRailNrvMove::sInstance);
     }
@@ -187,13 +209,16 @@ void TicoRail::exeTalkCancel() {
 void TicoRail::exeGoodBye() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "CallBack", nullptr);
+
         TVec3f v3(MR::getRailDirection(this));
+
         if (_8C.dot(v3) > 0.0f) {
             MR::reverseRailDirection(this);
         }
     }
 
-    MR::moveCoordAndFollowTrans(this, 1.5f);
+    MR::moveCoordAndFollowTrans(this, sRailSpeedGoodBye);
+
     if (MR::isBckLooped(this)) {
         _98 = nullptr;
         setNerve(&NrvTicoRail::TicoRailNrvMoveSign::sInstance);
@@ -205,13 +230,7 @@ bool TicoRail::isGreaterEqualStepAndRandom(s32 step) const {
         return true;
     }
 
-    bool ret = false;
-
-    if (MR::isGreaterEqualStep(this, step) && MR::getRandom(0l, 300l) == 0) {
-        ret = true;
-    }
-
-    return ret;
+    return MR::isGreaterEqualStep(this, step) && MR::getRandom(0l, 300l) == 0;
 }
 
 void TicoRail::kill() {
@@ -269,7 +288,7 @@ bool TicoRail::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver
         return false;
     }
 
-    if (MR::calcDistanceVertical(this, pSender->mHost->mPosition) > 30.0f) {
+    if (MR::calcDistanceVertical(this, pSender->mHost->mPosition) > sTalkTerritoryY) {
         return false;
     }
 
@@ -284,9 +303,5 @@ bool TicoRail::isSameRailActor(const LiveActor* pActor) const {
         return false;
     }
 
-    bool ret = MR::getRailPointPosStart(this) == MR::getRailPointPosStart(pActor) && (MR::getRailPointPosEnd(this) == MR::getRailPointPosEnd(pActor));
-
-    return ret;
+    return MR::getRailPointPosStart(this) == MR::getRailPointPosStart(pActor) && MR::getRailPointPosEnd(this) == MR::getRailPointPosEnd(pActor);
 }
-
-TicoRail::~TicoRail() {}

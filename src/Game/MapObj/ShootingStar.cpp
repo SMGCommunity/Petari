@@ -63,7 +63,7 @@ void ShootingStar::appearPreShooting() {
 
 /*
 void ShootingStar::control() {
-    
+
     mRotation.y = zero + fmod((360.0f + ((10.0f + mRotation.y) - zero)), 360.0);
 }
 

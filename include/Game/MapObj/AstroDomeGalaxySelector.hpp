@@ -26,7 +26,7 @@ public:
     void exeGalaxySelectStart();
     void exeGalaxyConfirmStart();
     void exeGalaxySelectCancel();
-    void exeWaitStartDemo(){};  // Yeah this is just a return I guess?
+    void exeWaitStartDemo() {};  // Yeah this is just a return I guess?
     void exeDemoDomeLecture();
     void exeGalaxyConfirm();
     void exeGalaxyConfirmCancel();  // Auto inlined

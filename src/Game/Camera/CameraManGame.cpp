@@ -187,10 +187,10 @@ void CameraManGame::zoomIn() {
 
     CameraParamChunk* chunk = mChunkHolder->getChunk(chunkID);
 
-    TVec3f* pos = CameraLocalUtil::getPos(this);
-    TVec3f* watchPos = CameraLocalUtil::getWatchPos(this);
+    const TVec3f& pos = CameraLocalUtil::getPos(this);
+    const TVec3f& watchPos = CameraLocalUtil::getWatchPos(this);
 
-    f32 distance = PSVECDistance(reinterpret_cast< Vec* >(watchPos), reinterpret_cast< Vec* >(pos));
+    f32 distance = PSVECDistance(&watchPos, &pos);
     f32 dVar3 = JMAAsinRadian(100.0f / distance);
     f32 var2 = 1.5f;
     f32 var1 = dVar3 * var2;
@@ -354,9 +354,7 @@ void CameraManGame::applyParameter() {
     camera->setZoneMtx(mChunk->getZoneID());
 
     CameraLocalUtil::setGlobalOffset(mCamera, mChunk->mExParam.mWOffset);
-
-    TVec3f* localOffset = CameraLocalUtil::getLocalOffset(this);
-    CameraLocalUtil::setLocalOffset(mCamera, *localOffset);
+    CameraLocalUtil::setLocalOffset(mCamera, CameraLocalUtil::getLocalOffset(this));
     CameraLocalUtil::setFrontOffset(mCamera, mChunk->mExParam.mLOffset);
     CameraLocalUtil::setUpperOffset(mCamera, mChunk->mExParam.mLOffsetV);
 
@@ -409,9 +407,9 @@ void CameraManGame::checkReset() {
 }
 
 void CameraManGame::setSafePose() {
-    TVec3f pos = TVec3f(*CameraLocalUtil::getPos(mCamera));
-    TVec3f watchPos = TVec3f(*CameraLocalUtil::getWatchPos(mCamera));
-    TVec3f up = TVec3f(*CameraLocalUtil::getUpVec(mCamera));
+    TVec3f pos = TVec3f(CameraLocalUtil::getPos(mCamera));
+    TVec3f watchPos = TVec3f(CameraLocalUtil::getWatchPos(mCamera));
+    TVec3f up = TVec3f(CameraLocalUtil::getUpVec(mCamera));
 
     if (MR::isNan(pos) || MR::isNan(watchPos) || MR::isNan(up)) {
         return;
@@ -424,14 +422,14 @@ void CameraManGame::setSafePose() {
     CameraLocalUtil::setUpVec(this, up);
     CameraLocalUtil::setWatchPos(this, watchPos);
 
-    TVec3f* watchUp = CameraLocalUtil::getWatchUpVec(mCamera);
-    CameraLocalUtil::setWatchUpVec(this, *watchUp);
+    const TVec3f& watchUp = CameraLocalUtil::getWatchUpVec(mCamera);
+    CameraLocalUtil::setWatchUpVec(this, watchUp);
 
-    TVec3f* globalOffset = CameraLocalUtil::getGlobalOffset(mCamera);
-    CameraLocalUtil::setGlobalOffset(this, *globalOffset);
+    const TVec3f& globalOffset = CameraLocalUtil::getGlobalOffset(mCamera);
+    CameraLocalUtil::setGlobalOffset(this, globalOffset);
 
-    TVec3f* localOffset = CameraLocalUtil::getLocalOffset(mCamera);
-    CameraLocalUtil::setLocalOffset(this, *localOffset);
+    const TVec3f& localOffset = CameraLocalUtil::getLocalOffset(mCamera);
+    CameraLocalUtil::setLocalOffset(this, localOffset);
 
     f32 fovy = CameraLocalUtil::getFovy(mCamera);
     CameraLocalUtil::setFovy(this, fovy);

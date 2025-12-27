@@ -80,7 +80,7 @@ void AstroCountDownPlate::exeCountToZero() {
     }
 
     f32 v2 = MR::calcNerveRate(this, 50);
-    f32 v3 = MR::getConvergeVibrationValue(v2, 0.1f, 0.0f, 0.30000001f, 4.0f);
+    f32 v3 = MR::getConvergeVibrationValue(v2, 0.1f, 0.0f, 0.3f, 4.0f);
     _8C.mInfo.mSRTInfo.mTransY = v3;
 
     if (_1B4) {

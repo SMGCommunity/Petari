@@ -276,7 +276,7 @@ void BigBubble::exeEscape() {
         updateNormalVelocity();
         TVec3f vec;
         _158.getYDir(vec);
-        
+
     }
 }
 */

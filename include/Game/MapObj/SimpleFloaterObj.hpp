@@ -17,7 +17,3 @@ public:
     MapPartsFloatingForce* _90;
     TVec3f _94;
 };
-
-namespace {
-    const char* cEffectName = "Ripple";
-}

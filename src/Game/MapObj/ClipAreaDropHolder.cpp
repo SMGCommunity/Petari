@@ -14,7 +14,9 @@ ClipAreaDropHolder::ClipAreaDropHolder() : DeriveActorGroup< ClipAreaDrop >("ク
 }
 
 namespace MR {
-    NameObj* createClipAreaDropHolder() { return MR::createSceneObj(0x4F); }
+    NameObj* createClipAreaDropHolder() {
+        return MR::createSceneObj(0x4F);
+    }
 
     ClipAreaDrop* getDeadClipAreaDrop() {
         ClipAreaDropHolder* pObj = (ClipAreaDropHolder*)MR::getSceneObjHolder()->getObj(0x4F);

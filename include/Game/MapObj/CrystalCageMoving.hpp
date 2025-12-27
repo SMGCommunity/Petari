@@ -1,11 +1,8 @@
 #pragma once
 
-#include "Game/LiveActor/ModelObj.hpp"
 #include "Game/MapObj/MapObjActor.hpp"
 
-namespace {
-    TVec3f sDummyModelOffset;
-};
+class ModelObj;
 
 class CrystalCageMoving : public MapObjActor {
 public:

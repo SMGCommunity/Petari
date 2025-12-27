@@ -802,7 +802,7 @@ void Poihana::contactMario(HitSensor* pSender, HitSensor* pReceiver) {
             }
         }
 
-        if (MR::isNearZero(mVelocity, 0.001f)) {
+        if (MR::isNearZero(mVelocity)) {
             mVelocity.zero();
         }
     }

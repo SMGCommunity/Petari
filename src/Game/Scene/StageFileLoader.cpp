@@ -13,7 +13,7 @@ StageFileLoader::StageFileLoader(const char* pName) {
 
 void StageFileLoader::startLoadingStageFile() {
     for (int i = 0; i < mZoneCount; i++) {
-        MR::mountAsyncArchive(mStageFiles[i], MR::getAproposHeapForSceneArchive(0.029999999f));
+        MR::mountAsyncArchive(mStageFiles[i], MR::getAproposHeapForSceneArchive(0.03f));
     }
 }
 

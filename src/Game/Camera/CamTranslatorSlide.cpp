@@ -7,7 +7,7 @@
 
     TVec3f axis = general->mAxis;
 
-    if (MR::isNearZero(axis, 0.001f)) {
+    if (MR::isNearZero(axis)) {
         axis.set(1.0f, 0.0f, 0.0f);
     }
 
@@ -15,7 +15,7 @@
 
     TVec3f up = general->mUp;
 
-    if (MR::isNearZero(up, 0.001f) || MR::isSameDirection(axis, up, 0.001f)) {
+    if (MR::isNearZero(up) || MR::isSameDirection(axis, up, 0.001f)) {
         up.set(0.0f, 1.0f, 0.0f);
 
         // Quaternion/matrix stuff here

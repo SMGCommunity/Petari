@@ -2,10 +2,6 @@
 
 #include "Game/MapObj/MapObjActor.hpp"
 
-namespace {
-    const char* cDemoCameraName = "注目カメラ";
-};
-
 class CapsuleCage : public MapObjActor {
 public:
     CapsuleCage(const char*);

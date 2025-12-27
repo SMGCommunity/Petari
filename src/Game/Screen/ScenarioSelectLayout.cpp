@@ -286,7 +286,7 @@ void ScenarioSelectLayout::appearAllStar(s32 starCount, s32 a3, bool a4) {
     else {
         for (s32 i = 0; i < starCount; i++) {
             s32 v10;
-            
+
             if (a4) {
                 v10 = starCount % 80;
             }

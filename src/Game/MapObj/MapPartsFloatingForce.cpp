@@ -79,19 +79,19 @@ void MapPartsFloatingForce::initForSpringMotion(const JMapInfoIter& rIter) {
 void MapPartsFloatingForce::updateVelocity() {
     if (MR::isOnPlayer(MR::getBodySensor(mHost))) {
         if (_20 <= _48) {
-            _4C = MR::converge< f32 >(_4C, 0.0f, 0.050000001f);
+            _4C = MR::converge< f32 >(_4C, 0.0f, 0.05f);
         } else {
-            _4C = _4C + (0.000099999997f * mRotateSpeed);
+            _4C = _4C + (0.0001f * mRotateSpeed);
         }
     } else {
         if (_48 <= 0.0f) {
-            _4C = MR::converge< f32 >(_4C, 0.0f, 0.050000001f);
+            _4C = MR::converge< f32 >(_4C, 0.0f, 0.05f);
         } else {
-            _4C = _4C - (0.000099999997f * mRotateAngle);
+            _4C = _4C - (0.0001f * mRotateAngle);
         }
     }
 
-    _4C *= 0.98000002f;
+    _4C *= 0.98f;
     _4C = MR::clamp(_4C, -50.0f, 50.0f);
 }
 

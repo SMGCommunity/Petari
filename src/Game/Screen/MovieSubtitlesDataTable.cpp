@@ -1,10 +1,8 @@
 #include "Game/Screen/MovieSubtitlesDataTable.hpp"
 #include "Game/Util/StringUtil.hpp"
 
-#define ENTRY(name, step, appear)                                                                                                                    \
-    { name, step, appear }
-#define NULL_ENTRY                                                                                                                                   \
-    { nullptr, -1, -1 }
+#define ENTRY(name, step, appear) {name, step, appear}
+#define NULL_ENTRY {nullptr, -1, -1}
 
 namespace {
     static const SubtitlesInfo sSubtitlesInfo[] = {
@@ -92,9 +90,13 @@ namespace {
 };  // namespace
 
 namespace MovieSubtitlesUtil {
-    const SubtitlesMessageInfo* getSubtitlesMessageInfo(const char* pMovieName, s32 idx) { return &getSubtitlesInfo(pMovieName)->mMessageInfo[idx]; }
+    const SubtitlesMessageInfo* getSubtitlesMessageInfo(const char* pMovieName, s32 idx) {
+        return &getSubtitlesInfo(pMovieName)->mMessageInfo[idx];
+    }
 
-    bool isExistSubtitles(const char* pMovieName, s32 idx) { return getSubtitlesMessageInfo(pMovieName, idx)->mMessageID != nullptr; }
+    bool isExistSubtitles(const char* pMovieName, s32 idx) {
+        return getSubtitlesMessageInfo(pMovieName, idx)->mMessageID != nullptr;
+    }
 
     const char* getSubtitlesMessageId(const char* pMovieName, s32 idx) {
         const SubtitlesMessageInfo* pSubtitles = getSubtitlesMessageInfo(pMovieName, idx);

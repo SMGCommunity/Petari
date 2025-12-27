@@ -5,6 +5,5 @@ public:
     /// @brief Creates a new `StageStateKeeper`.
     StageStateKeeper();
 
-private:
-    /* 0x0 */ bool mIsPowerStarAppeared;
+    /* 0x00 */ bool mIsPowerStarAppeared;
 };

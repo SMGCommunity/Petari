@@ -1,6 +1,6 @@
 #pragma once
 
-#include <revolution.h>
+#include <revolution/os.h>
 
 class GameDataHolder;
 class GameDataSomeScenarioAccessor;
@@ -19,7 +19,7 @@ namespace GameDataFunction {
     s32 getPowerStarNumOwned(const char*);
     s32 getPowerStarNumMax();
     s32 getPictureBookChapterCanRead();
-    s32 getPictureBookChapterAlreadyRead();
+    u16 getPictureBookChapterAlreadyRead();
     void setPictureBookChapterAlreadyRead(int);
     void onGameEventFlag(const char*);
     bool canOnGameEventFlag(const char*);

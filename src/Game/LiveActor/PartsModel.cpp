@@ -14,7 +14,7 @@ PartsModel::PartsModel(LiveActor* pActor, const char* pName, const char* pModelN
     }
 
     if (mMtx) {
-        mPosition.set(mMtx[0][3], mMtx[1][3], mMtx[2][3]);
+        mPosition.set< f32 >(mMtx[0][3], mMtx[1][3], mMtx[2][3]);
     } else {
         mPosition.set< f32 >(pActor->mPosition);
     }

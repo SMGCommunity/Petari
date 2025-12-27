@@ -33,15 +33,27 @@ namespace MR {
         fillScreenArea(TVec2s(0, 0), TVec2s(width, height));
     }
 
-    const JUTTexture* getMarioShadowTex() { return mShadowTex; }
+    const JUTTexture* getMarioShadowTex() {
+        return mShadowTex;
+    }
 
-    const JUTTexture* getMarioShadowTexForLoad() { return mShadowTex; }
+    const JUTTexture* getMarioShadowTexForLoad() {
+        return mShadowTex;
+    }
 
-    const TVec3f& getMarioShadowVec() { return mShadowVec; }
+    const TVec3f& getMarioShadowVec() {
+        return mShadowVec;
+    }
 
-    void setMarioShadowTex(const JUTTexture* pShadowTex) { mShadowTex = pShadowTex; }
+    void setMarioShadowTex(const JUTTexture* pShadowTex) {
+        mShadowTex = pShadowTex;
+    }
 
-    void activateGameSceneDraw3D() { GameSceneFunction::activateDraw3D(); }
+    void activateGameSceneDraw3D() {
+        GameSceneFunction::activateDraw3D();
+    }
 
-    void deactivateGameSceneDraw3D() { GameSceneFunction::deactivateDraw3D(); }
+    void deactivateGameSceneDraw3D() {
+        GameSceneFunction::deactivateDraw3D();
+    }
 };  // namespace MR

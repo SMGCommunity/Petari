@@ -61,17 +61,25 @@ namespace MR {
         }
     }
 
-    bool tryStartDemoRegistered(LiveActor* pActor, const char* pName) { return DemoFunction::tryStartDemoRegistered(pActor, pName); }
+    bool tryStartDemoRegistered(LiveActor* pActor, const char* pName) {
+        return DemoFunction::tryStartDemoRegistered(pActor, pName);
+    }
 
     bool tryStartDemoRegisteredMarioPuppetable(LiveActor* pActor, const char* pName) {
         return DemoFunction::tryStartDemoRegisteredMarioPuppetable(pActor, pName);
     }
 
-    void registerDemoSimpleCastAll(LiveActor* pActor) { DemoFunction::registerDemoSimpleCastAllFunction(pActor); }
+    void registerDemoSimpleCastAll(LiveActor* pActor) {
+        DemoFunction::registerDemoSimpleCastAllFunction(pActor);
+    }
 
-    void registerDemoSimpleCastAll(LayoutActor* pLayoutActor) { DemoFunction::registerDemoSimpleCastAllFunction(pLayoutActor); }
+    void registerDemoSimpleCastAll(LayoutActor* pLayoutActor) {
+        DemoFunction::registerDemoSimpleCastAllFunction(pLayoutActor);
+    }
 
-    void registerDemoSimpleCastAll(NameObj* pObj) { DemoFunction::registerDemoSimpleCastAllFunction(pObj); }
+    void registerDemoSimpleCastAll(NameObj* pObj) {
+        DemoFunction::registerDemoSimpleCastAllFunction(pObj);
+    }
 
     bool isDemoCast(const LiveActor* pActor, const char* pName) {
         DemoExecutor* pExecutor = DemoFunction::findDemoExecutor(pActor);
@@ -85,13 +93,21 @@ namespace MR {
         }
     }
 
-    bool isRegisteredDemoActionAppear(const LiveActor* pActor) { return DemoFunction::isRegisteredDemoActionAppear(pActor); }
+    bool isRegisteredDemoActionAppear(const LiveActor* pActor) {
+        return DemoFunction::isRegisteredDemoActionAppear(pActor);
+    }
 
-    bool isRegisteredDemoActionNerve(const LiveActor* pActor) { return DemoFunction::isRegisteredDemoActionNerve(pActor); }
+    bool isRegisteredDemoActionNerve(const LiveActor* pActor) {
+        return DemoFunction::isRegisteredDemoActionNerve(pActor);
+    }
 
-    void endDemo(NameObj* pObj, const char* pName) { DemoFunction::getDemoDirector()->endDemo(pObj, pName, false); }
+    void endDemo(NameObj* pObj, const char* pName) {
+        DemoFunction::getDemoDirector()->endDemo(pObj, pName, false);
+    }
 
-    void endDemoWaitCameraInterpolating(NameObj* pObj, const char* pName) { DemoFunction::getDemoDirector()->endDemo(pObj, pName, true); }
+    void endDemoWaitCameraInterpolating(NameObj* pObj, const char* pName) {
+        DemoFunction::getDemoDirector()->endDemo(pObj, pName, true);
+    }
 
     void initDemoSheetTalkAnim(LiveActor* pActor, const JMapInfoIter& rIter, const char* pName1, const char* pName2, TalkMessageCtrl* pTalkCtrl) {
         tryInitDemoSheetTalkAnim(pActor, rIter, pName1, pName2, pTalkCtrl);
@@ -104,9 +120,13 @@ namespace MR {
         }
     }
 
-    bool isDemoExist(const char* pName) { return DemoFunction::getDemoDirector()->isExistTimeKeepDemo(pName); }
+    bool isDemoExist(const char* pName) {
+        return DemoFunction::getDemoDirector()->isExistTimeKeepDemo(pName);
+    }
 
-    bool isDemoActive() { return DemoFunction::getDemoDirector()->mIsActive; }
+    bool isDemoActive() {
+        return DemoFunction::getDemoDirector()->mIsActive;
+    }
 
     bool isDemoActive(const char* pName) {
         DemoExecutor* pExecutor = DemoFunction::getDemoDirector()->mExecutor;
@@ -162,9 +182,13 @@ namespace MR {
         }
     }
 
-    bool isDemoLastStep() { return DemoFunction::isDemoLastPartLastStep(); }
+    bool isDemoLastStep() {
+        return DemoFunction::isDemoLastPartLastStep();
+    }
 
-    bool isDemoPartActive(const char* pName) { return DemoFunction::isDemoPartActiveFunction(pName); }
+    bool isDemoPartActive(const char* pName) {
+        return DemoFunction::isDemoPartActiveFunction(pName);
+    }
 
     bool isDemoPartStep(const char* pName, s32 a2) {
         if (DemoFunction::isDemoPartActiveFunction(pName) == false) {
@@ -209,17 +233,29 @@ namespace MR {
         }
     }
 
-    s32 getDemoPartTotalStep(const char* pName) { return DemoFunction::getDemoPartTotalStepFunction(pName); }
+    s32 getDemoPartTotalStep(const char* pName) {
+        return DemoFunction::getDemoPartTotalStepFunction(pName);
+    }
 
-    s32 getDemoPartStep(const char* pName) { return DemoFunction::getDemoPartStepFunction(pName); }
+    s32 getDemoPartStep(const char* pName) {
+        return DemoFunction::getDemoPartStepFunction(pName);
+    }
 
-    void pauseTimeKeepDemo(LiveActor* pActor) { DemoFunction::pauseTimeKeepDemo(pActor); }
+    void pauseTimeKeepDemo(LiveActor* pActor) {
+        DemoFunction::pauseTimeKeepDemo(pActor);
+    }
 
-    void resumeTimeKeepDemo(LiveActor* pActor) { DemoFunction::resumeTimeKeepDemo(pActor); }
+    void resumeTimeKeepDemo(LiveActor* pActor) {
+        DemoFunction::resumeTimeKeepDemo(pActor);
+    }
 
-    bool isPowerStarGetDemoActive() { return GameSceneFunction::isExecStageClearDemo(); }
+    bool isPowerStarGetDemoActive() {
+        return GameSceneFunction::isExecStageClearDemo();
+    }
 
-    const char* getCurrentDemoPartNameMain(const char* pName) { return DemoFunction::getCurrentDemoPartNameMain(pName); }
+    const char* getCurrentDemoPartNameMain(const char* pName) {
+        return DemoFunction::getCurrentDemoPartNameMain(pName);
+    }
 
     void endTalkingSequence(NameObj* pObj) {
         const char* pName = "会話";
@@ -250,5 +286,7 @@ namespace MR {
         }
     }
 
-    bool isDemoPartTalk(const char* pName) { return DemoFunction::isDemoPartTalk(pName); }
+    bool isDemoPartTalk(const char* pName) {
+        return DemoFunction::isDemoPartTalk(pName);
+    }
 };  // namespace MR

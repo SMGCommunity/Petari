@@ -6,6 +6,21 @@
 #include <cstdio>
 #include <cstring>
 
+namespace {
+    void loadLightDiffuse(_GXColor color, const TVec3f& rPos, _GXLightID lightID) {
+        GXLightObj lightObj;
+
+        GXInitLightPos(&lightObj, rPos.x, rPos.y, rPos.z);
+        GXInitLightAttn(&lightObj, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f);
+
+        _GXColor new_color(color);
+        GXInitLightColor(&lightObj, new_color);
+        GXLoadLightObjImm(&lightObj, lightID);
+    }
+
+    void getDataActorLightInfo(JMapInfo*, int, ActorLightInfo*, const char*);
+};  // namespace
+
 void LightFunction::initLightData() {
     MR::getSceneObj< LightDirector >(SceneObj_LightDirector)->initData();
 }

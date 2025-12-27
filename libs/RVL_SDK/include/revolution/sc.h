@@ -1,8 +1,9 @@
 #ifndef SC_H
 #define SC_H
 
-#include <revolution/os.h>
+#include "revolution/bte.h"
 #include <revolution/nand.h>
+#include <revolution/os.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -81,30 +82,30 @@ typedef enum {
 } SCItemID;
 
 typedef struct {
-        OSThreadQueue threadQueue;
-        NANDFileInfo nandFileInfo;
-        NANDCommandBlock nandCommandBlock;
+    OSThreadQueue threadQueue;
+    NANDFileInfo nandFileInfo;
+    NANDCommandBlock nandCommandBlock;
 
-        union {
-            u8 nandType;
-            NANDStatus nandStatus;
-        } u;
+    union {
+        u8 nandType;
+        NANDStatus nandStatus;
+    } u;
 
-        u8 nandStep;
-        u8 nandNeedClose;
-        u8 reloadFileCount;
-        SCReloadConfFileCallback reloadCallback;
-        s32 reloadResult;
-        const char* reloadFileName[2];
-        u8* reloadBufp[2];
-        u32 reloadSizeExpected[2];
-        u32 reloadedSize[2];
-        SCFlushCallback flushCallback;
-        u32 flushResult;
-        u32 flushSize;
+    u8 nandStep;
+    u8 nandNeedClose;
+    u8 reloadFileCount;
+    SCReloadConfFileCallback reloadCallback;
+    s32 reloadResult;
+    const char* reloadFileName[2];
+    u8* reloadBufp[2];
+    u32 reloadSizeExpected[2];
+    u32 reloadedSize[2];
+    SCFlushCallback flushCallback;
+    u32 flushResult;
+    u32 flushSize;
 } SCControl;
 
-s32 SCReloadConfFileAsync(u8 *, u32, SCReloadConfFileCallback);
+s32 SCReloadConfFileAsync(u8*, u32, SCReloadConfFileCallback);
 
 #define SC_LANG_JAPANESE 0u
 #define SC_LANG_ENGLISH 1u
@@ -126,25 +127,32 @@ void SCInit(void);
 u32 SCCheckStatus(void);
 u32 SCGetCounterBias(void);
 
-BOOL SCGetIdleMode(SCIdleModeInfo *);
+BOOL SCGetIdleMode(SCIdleModeInfo*);
 
-BOOL SCFindByteArrayItem(void *, u32, SCItemID);
-BOOL SCFindU8Item(u8* , SCItemID);
-BOOL SCFindS8Item(s8 *, SCItemID);
-BOOL SCFindU32Item(u32 *, SCItemID);
+BOOL SCFindByteArrayItem(void*, u32, SCItemID);
+BOOL SCFindU8Item(u8*, SCItemID);
+BOOL SCFindS8Item(s8*, SCItemID);
+BOOL SCFindU32Item(u32*, SCItemID);
 
 s8 SCGetProductGameRegion(void);
 
-BOOL __SCF1(const char *, char *, u32);
+BOOL __SCF1(const char*, char*, u32);
 
 s8 SCGetDisplayOffsetH(void);
 s8 SCGetProductArea(void);
 u8 SCGetScreenSaverMode(void);
 
 u8 SCGetSoundMode(void);
+u32 SCGetBtDpdSensibility(void);
+u8 SCGetWpadSensorBarPosition(void);
+u8 SCGetWpadMotorMode(void);
+u8 SCGetWpadSpeakerVolume(void);
+
+BOOL SCSetBtDeviceInfoArray(const SCBtDeviceInfoArray*);
+void SCFlushAsync(SCFlushCallback);
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif // SC_H
+#endif  // SC_H

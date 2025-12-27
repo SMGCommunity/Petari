@@ -27,9 +27,9 @@ void CameraWaterFollow::reset() {
     _68 = 0.0f;
     _64 = 0.0f;
     _60 = 0.0f;
-    CameraLocalUtil::setWatchPos(this, *CameraLocalUtil::getWatchPos(mCameraMan));
-    CameraLocalUtil::setPos(this, *CameraLocalUtil::getPos(mCameraMan));
-    CameraLocalUtil::setUpVecAndWatchUpVec(this, *CameraLocalUtil::getUpVec(mCameraMan));
+    CameraLocalUtil::setWatchPos(this, CameraLocalUtil::getWatchPos(mCameraMan));
+    CameraLocalUtil::setPos(this, CameraLocalUtil::getPos(mCameraMan));
+    CameraLocalUtil::setUpVecAndWatchUpVec(this, CameraLocalUtil::getUpVec(mCameraMan));
 }
 
 CameraWaterFollow::~CameraWaterFollow() {}

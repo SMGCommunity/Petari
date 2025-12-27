@@ -106,14 +106,14 @@ void DiskGravity::updateLocalParam() {
     bool& rArtifact = artifact;
 
     mValidCos = JMath::sSinCosTable.cosLap(0.5f * mValidDegree);
-    if (MR::isNearZero(mLocalNormal, 0.00100000005f)) {
+    if (MR::isNearZero(mLocalNormal)) {
         rArtifact = true;
         mOppositeSideVecOrtho.zero();
         return;
     }
     JMAVECScaleAdd(&mLocalNormal, &mSideDirection, &mOppositeSideVecOrtho, -mLocalNormal.dot(mSideDirection));
     MR::normalizeOrZero(&mOppositeSideVecOrtho);
-    if (MR::isNearZero(mOppositeSideVecOrtho, 0.00100000005f)) {
+    if (MR::isNearZero(mOppositeSideVecOrtho)) {
         mOppositeSideVecOrtho.zero();
         return;
     }

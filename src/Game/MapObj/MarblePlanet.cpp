@@ -205,7 +205,7 @@ void MarblePlanetElectron::init(const JMapInfoIter& rIter) {
 
 void MarblePlanetElectron::exeMove() {
     MR::turnDirectionToGround(this, &_94);
-    MR::attenuateVelocity(this, 0.99000001f);
+    MR::attenuateVelocity(this, 0.99f);
     f32 mag = PSVECMag(&mVelocity);
     f32 scale = (mag >= 13.0f ? mag : 13.0f);
     mVelocity.scale(scale, _94);

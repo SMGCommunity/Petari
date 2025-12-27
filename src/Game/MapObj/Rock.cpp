@@ -43,7 +43,7 @@ void Rock::init(const JMapInfoIter& rIter) {
     initRailRider(rIter);
     initEffect();
 
-    MR::initStarPointerTarget(this, 275.0f * (mRockType == WanwanRollingMini ? 0.30000001f : mScale.x), TVec3f(0.0f));
+    MR::initStarPointerTarget(this, 275.0f * (mRockType == WanwanRollingMini ? 0.3f : mScale.x), TVec3f(0.0f));
     initSound(5, false);
 
     f32 shadowDrop;
@@ -51,7 +51,7 @@ void Rock::init(const JMapInfoIter& rIter) {
         f32 radius;
 
         if (mRockType == WanwanRollingMini) {
-            radius = 0.30000001f;
+            radius = 0.3f;
         } else {
             radius = mScale.x;
         }
@@ -61,7 +61,7 @@ void Rock::init(const JMapInfoIter& rIter) {
     } else {
         f32 radius;
         if (mRockType == WanwanRollingMini) {
-            radius = 0.30000001f;
+            radius = 0.3f;
         } else {
             radius = mScale.x;
         }
@@ -199,7 +199,7 @@ void Rock::initSensor() {
 
     f32 v3;
     if (mRockType == WanwanRollingMini) {
-        v3 = 0.30000001f;
+        v3 = 0.3f;
     } else {
         v3 = mScale.x;
     }
@@ -266,7 +266,7 @@ bool Rock::isInClippingRange() const {
     f32 v2;
 
     if (mRockType == WanwanRollingMini) {
-        v2 = 0.30000001f;
+        v2 = 0.3f;
     } else {
         v2 = mScale.x;
     }
@@ -278,7 +278,7 @@ bool Rock::isInClippingRange() const {
     f32 v4;
 
     if (mRockType == WanwanRollingMini) {
-        v4 = 0.30000001f;
+        v4 = 0.3f;
     } else {
         v4 = mScale.x;
     }

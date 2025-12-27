@@ -17,7 +17,7 @@ void CamTranslatorCharmedVecRegTower::setParam(const CameraParamChunk* pChunk) {
 
     MR::normalizeOrZero(&axis);
 
-    if (MR::isNearZero(axis, 0.001f)) {
+    if (MR::isNearZero(axis)) {
         axis.set(0.0f, 1.0f, 0.0f);
     }
 

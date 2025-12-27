@@ -5,6 +5,10 @@
 #include "Game/Util.hpp"
 #include "JSystem/JMath/JMath.hpp"
 
+namespace {
+    static u32 sBloomSyncStep;
+};
+
 FlipPanel::FlipPanel(const char* pName) : MapObjActor(pName) {
     mDelegator = 0;
     mFlipPanelGroup = 0;

@@ -215,5 +215,7 @@ namespace MR {
         return getSceneObj< SceneNameObjMovementController >(SceneObj_SceneNameObjMovementController);
     }
 
-    void notifyRequestNameObjMovementOnOff() { getSceneNameObjMovementController()->notifyRequestNameObjMovementOnOff(true); }
+    void notifyRequestNameObjMovementOnOff() {
+        getSceneNameObjMovementController()->notifyRequestNameObjMovementOnOff(true);
+    }
 };  // namespace MR

@@ -101,9 +101,15 @@ namespace DemoExecutorFunction {
         pExecutor->setTalkMessageCtrl(pActor, pTalkCtrl);
     }
 
-    void pauseTimeKeepDemo(DemoExecutor* pExecutor) { return pExecutor->pause(); }
+    void pauseTimeKeepDemo(DemoExecutor* pExecutor) {
+        return pExecutor->pause();
+    }
 
-    void resumeTimeKeepDemo(DemoExecutor* pExecutor) { return pExecutor->resume(); }
+    void resumeTimeKeepDemo(DemoExecutor* pExecutor) {
+        return pExecutor->resume();
+    }
 
-    bool isPauseTimeKeepDemo(const DemoExecutor* pExecutor) { return pExecutor->mTimeKeeper->mIsPaused; }
+    bool isPauseTimeKeepDemo(const DemoExecutor* pExecutor) {
+        return pExecutor->mTimeKeeper->mIsPaused;
+    }
 };  // namespace DemoExecutorFunction

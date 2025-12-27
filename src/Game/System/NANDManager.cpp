@@ -123,7 +123,9 @@ bool NANDResultCode::isUnknown() const {
 }
 
 namespace MR {
-    void addRequestToNANDManager(NANDRequestInfo* pRequestInfo) { SingletonHolder< NANDManager >::get()->addRequest(pRequestInfo); }
+    void addRequestToNANDManager(NANDRequestInfo* pRequestInfo) {
+        SingletonHolder< NANDManager >::get()->addRequest(pRequestInfo);
+    }
 };  // namespace MR
 
 const char* NANDRequestInfo::setDelete(const char* pName) {

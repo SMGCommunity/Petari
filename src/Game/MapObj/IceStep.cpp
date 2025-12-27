@@ -65,7 +65,7 @@ void IceStep::setOn(u32 stepIdx, const TVec3f &rPosition, const TVec3f &rRotatio
     MR::calcUpVec(&upVec, this);
     TVec3f multVec(MR::multVecNoCtor(MR::multVecNoCtor(upVec, v8), 0.2f));
     mPosition = MR::addVec(multVec, rPosition);
-  
+
     MR::startBck(this, "Start", nullptr);
     MR::startBpk(this, "Start");
     MR::startSound(this, "SE_OJ_ICE_FLOOR_FREEZE", -1, -1);

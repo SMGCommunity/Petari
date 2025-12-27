@@ -23,6 +23,20 @@ namespace MR {
 };  // namespace MR
 
 namespace {
+    const char cMessageIdGetNormalStar[] = "System_Result000";
+    const char cMessageIdGetHiddenStar[] = "System_Result003";
+    const char cMessageIdGalaxyComplete[] = "System_Result009";
+    const char cMessageIdGetStarPiece[] = "System_Result004";
+    const char cMessageIdNewGalaxyDiscover[] = "System_Result001";
+    const char cMessageIdOpenLibraryRoom[] = "System_Result008";
+    const char cMessageIdGetPictureBook[] = "System_Result005";
+    const char cMessageIdUpdateBestScore[] = "System_Result006";
+    const char cMessageIdTicoGalaxyAppear[] = "System_Result007";
+    const char cNamePowerStarNum[] = "ShaStarNum";
+    const char cNameGalaxyStarPieceNum[] = "ShaTPieceLNum";
+    const char cNameTotalStarPieceNum[] = "ShaTPieceRNum";
+    const char cNameBestCoinNum[] = "ShaCoinNum";
+    const char cNameBestCoinRoot[] = "Coin";
     static const s32 sWaitBeforeCountUpPowerStar = 85;
     static const s32 sWaitAppearInformationWindow = 15;
     static const s32 sWaitDisplayStarPieceCount = 45;
@@ -59,7 +73,7 @@ DisplayInformationForResult::DisplayInformationForResult(StageResultInformer* pH
 
 void DisplayInformationForResult::exeAppear() {
     if (MR::isFirstStep(this)) {
-        if (MR::isEqualString(mMessageId, "System_Result009")) {
+        if (MR::isEqualString(mMessageId, cMessageIdGalaxyComplete)) {
             MR::startSubBGM("BGM_GALAXY_COMPLETE", false);
         } else {
             MR::startSubBGM("BGM_NEW_GALAXY", false);
@@ -121,7 +135,7 @@ void StageResultInformer::kill() {
 }
 
 void StageResultInformer::exeAppearGetPowerStar() {
-    const char* pMessageId = "System_Result000";
+    const char* pMessageId = cMessageIdGetNormalStar;
 
     if (MR::isFirstStep(this)) {
         MR::showLayout(this);
@@ -133,7 +147,7 @@ void StageResultInformer::exeAppearGetPowerStar() {
         GalaxyStatusAccessor accessor = MR::makeGalaxyStatusAccessor(GameSequenceFunction::getClearedStageName());
 
         if (accessor.isHiddenStar(GameSequenceFunction::getClearedPowerStarId())) {
-            pMessageId = "System_Result003";
+            pMessageId = cMessageIdGetHiddenStar;
         }
 
         MR::setTextBoxGameMessageRecursive(this, "Result", pMessageId);
@@ -143,7 +157,7 @@ void StageResultInformer::exeAppearGetPowerStar() {
             MR::getScenarioNameOnCurrentLanguage(GameSequenceFunction::getClearedStageName(), GameSequenceFunction::getClearedPowerStarId()), 1);
         MR::startAnim(this, "Line", 1);
         MR::setAnimFrameAndStopAdjustTextHeight(this, "Result", 1);
-        MR::setTextBoxNumberRecursive(this, "ShaStarNum", mSequenceChecker->getPrevPowerStarNum());
+        MR::setTextBoxNumberRecursive(this, cNamePowerStarNum, mSequenceChecker->getPrevPowerStarNum());
         MR::startSubBGM("BGM_ASTRO_RETURN", false);
     }
 
@@ -162,7 +176,7 @@ void StageResultInformer::exeWaitBeforeCountUpPowerStar() {
 
 void StageResultInformer::exeCountUpPowerStar() {
     if (MR::isFirstStep(this)) {
-        MR::setTextBoxNumberRecursive(this, "ShaStarNum", mSequenceChecker->getAfterPowerStarNum());
+        MR::setTextBoxNumberRecursive(this, cNamePowerStarNum, mSequenceChecker->getAfterPowerStarNum());
         MR::startAnim(this, "Flash", 0);
         MR::startSystemSE("SE_SY_RESULT_POW_STAR_INC", -1, -1);
         MR::emitEffect(this, "ResultStarCounter");
@@ -195,7 +209,7 @@ void StageResultInformer::exeDisappearGetPowerStar() {
 }
 
 void StageResultInformer::exeShowGalaxyComplete() {
-    tryShowAndKeyWaitInformationWindow("System_Result009", nullptr);
+    tryShowAndKeyWaitInformationWindow(cMessageIdGalaxyComplete, nullptr);
 }
 
 void StageResultInformer::exeAppearUpdateBestScore() {
@@ -203,7 +217,7 @@ void StageResultInformer::exeAppearUpdateBestScore() {
         setCounterPaneShowHide(false, true, false);
         MR::startSubBGM("BGM_HIGH_SCORE", false);
         MR::startAnim(this, "Appear", 0);
-        MR::setTextBoxGameMessageRecursive(this, "Result", "System_Result006");
+        MR::setTextBoxGameMessageRecursive(this, "Result", cMessageIdUpdateBestScore);
         MR::startAnim(this, "Line", 1);
         MR::setAnimFrameAndStopAdjustTextHeight(this, "Result", 1);
         GameSequenceFunction::reflectStageResultSequenceCoin();
@@ -235,12 +249,12 @@ void StageResultInformer::exeAppearGetStarPiece() {
     if (MR::isFirstStep(this)) {
         setCounterPaneShowHide(false, false, true);
         MR::startAnim(this, "Appear", 0);
-        MR::setTextBoxGameMessageRecursive(this, "Result", "System_Result004");
+        MR::setTextBoxGameMessageRecursive(this, "Result", cMessageIdGetStarPiece);
         MR::startAnim(this, "Line", 1);
         MR::setAnimFrameAndStopAdjustTextHeight(this, "Result", 1);
         mClearedStarPieceNum = GameSequenceFunction::getClearedStarPieceNum();
-        MR::setTextBoxNumberRecursive(this, "ShaTPieceLNum", mClearedStarPieceNum);
-        MR::setTextBoxNumberRecursive(this, "ShaTPieceRNum", MR::getStockedStarPieceNum());
+        MR::setTextBoxNumberRecursive(this, cNameGalaxyStarPieceNum, mClearedStarPieceNum);
+        MR::setTextBoxNumberRecursive(this, cNameTotalStarPieceNum, MR::getStockedStarPieceNum());
     }
 
     MR::setNerveAtAnimStopped(this, &::StageResultInformerDisplayGetStarPiece::sInstance, 0);
@@ -270,8 +284,8 @@ void StageResultInformer::exeDisplayGetStarPiece() {
         MR::deleteEffect(this, "Flash");
     }
 
-    MR::setTextBoxNumberRecursive(this, "ShaTPieceLNum", mClearedStarPieceNum);
-    MR::setTextBoxNumberRecursive(this, "ShaTPieceRNum", MR::getStockedStarPieceNum());
+    MR::setTextBoxNumberRecursive(this, cNameGalaxyStarPieceNum, mClearedStarPieceNum);
+    MR::setTextBoxNumberRecursive(this, cNameTotalStarPieceNum, MR::getStockedStarPieceNum());
 
     if (MR::isAnimStopped(this, 0) && !hasStarPiece) {
         MR::startAnim(this, "Flash", 0);
@@ -294,8 +308,8 @@ void StageResultInformer::exeWaitBeforeDisappearGetStarPiece() {
         MR::addStockedStarPiece(mClearedStarPieceNum);
         MR::startSystemSE("SE_SY_STAR_PIECE_SUM_UP_END", -1, -1);
         mClearedStarPieceNum = 0;
-        MR::setTextBoxNumberRecursive(this, "ShaTPieceLNum", 0);
-        MR::setTextBoxNumberRecursive(this, "ShaTPieceRNum", MR::getStockedStarPieceNum());
+        MR::setTextBoxNumberRecursive(this, cNameGalaxyStarPieceNum, 0);
+        MR::setTextBoxNumberRecursive(this, cNameTotalStarPieceNum, MR::getStockedStarPieceNum());
         MR::deleteEffect(this, "ResultPieceCounter");
     }
 
@@ -319,7 +333,7 @@ void StageResultInformer::exeDisappearGetStarPiece() {
 }
 
 void StageResultInformer::exeShowNewGalaxyDiscover() {
-    tryShowAndKeyWaitInformationWindow("System_Result001", &::StageResultInformerShowGalaxyMap::sInstance);
+    tryShowAndKeyWaitInformationWindow(cMessageIdNewGalaxyDiscover, &::StageResultInformerShowGalaxyMap::sInstance);
 }
 
 void StageResultInformer::exeShowGalaxyMap() {
@@ -332,10 +346,10 @@ void StageResultInformer::exeShowGalaxyMap() {
 
 void StageResultInformer::exeShowGetPictureBook() {
     if (MR::isFirstStep(this)) {
-        const char* pMessageId = "System_Result005";
+        const char* pMessageId = cMessageIdGetPictureBook;
 
         if (mSequenceChecker->isJustOpenLibraryRoom()) {
-            pMessageId = "System_Result008";
+            pMessageId = cMessageIdOpenLibraryRoom;
         }
 
         mInformationDisplayer->mMessageId = pMessageId;
@@ -352,7 +366,7 @@ void StageResultInformer::exeShowGetPictureBook() {
 }
 
 void StageResultInformer::exeShowTicoGalaxyAppear() {
-    tryShowAndKeyWaitInformationWindow("System_Result007", &::StageResultInformerShowAstroMapForTico::sInstance);
+    tryShowAndKeyWaitInformationWindow(cMessageIdTicoGalaxyAppear, &::StageResultInformerShowAstroMapForTico::sInstance);
 }
 
 void StageResultInformer::exeShowAstroMapForTico() {
@@ -363,16 +377,22 @@ void StageResultInformer::exeShowAstroMapForTico() {
     }
 }
 
-/*
 void StageResultInformer::initBestScoreWindow() {
-    GameDataSomeScenarioAccessor accessor = GameDataFunction::makeGalaxyScenarioAccessor(
-        GameSequenceFunction::getClearedStageName(),
-        GameSequenceFunction::getClearedPowerStarId());
+    // GameDataSomeScenarioAccessor accessor = GameDataFunction::makeGalaxyScenarioAccessor(
+    //     GameSequenceFunction::getClearedStageName(),
+    //     GameSequenceFunction::getClearedPowerStarId());
     s32 clearedCoinNum = GameSequenceFunction::getClearedCoinNum();
 
-    MR::setTextBoxNumberRecursive(this, "ShaCoinNum", clearedCoinNum);
+    MR::setTextBoxNumberRecursive(this, cNameBestCoinNum, clearedCoinNum);
+
+    // ...
+
+    if (clearedCoinNum < 0) {
+        MR::showPane(this, cNameBestCoinRoot);
+    } else {
+        MR::hidePane(this, cNameBestCoinRoot);
+    }
 }
-*/
 
 // StageResultInformer::decideNextNerve
 
