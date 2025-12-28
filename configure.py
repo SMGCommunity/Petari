@@ -2037,7 +2037,7 @@ config.libs = [
             Object(NonMatching, "Game/Screen/ImageEffectLocalUtil.cpp"),
             Object(NonMatching, "Game/Screen/ImageEffectResource.cpp"),
             Object(NonMatching, "Game/Screen/ImageEffectState.cpp"),
-            Object(NonMatching, "Game/Screen/ImageEffectSystemHolder.cpp"),
+            Object(Matching, "Game/Screen/ImageEffectSystemHolder.cpp"),
             Object(Matching, "Game/Screen/InformationMessage.cpp"),
             Object(Matching, "Game/Screen/InformationObserver.cpp"),
             Object(NonMatching, "Game/Screen/IsbnManager.cpp"),
