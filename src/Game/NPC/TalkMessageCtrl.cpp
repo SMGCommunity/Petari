@@ -25,13 +25,12 @@
 
 TalkMessageCtrl::~TalkMessageCtrl() {}
 
-// one liner regswap with mNodeCtrl->mCurrentNode
 void TalkMessageCtrl::createMessage(const JMapInfoIter& rIter, const char* pName) {
     mNodeCtrl = new TalkNodeCtrl();
     mNodeCtrl->createFlowNode(this, rIter, pName, &mCameraInfo);
 
     if (mNodeCtrl->mCurrentNode != nullptr) {
-        mAlreadyDoneFlags = MR::setupAlreadyDoneFlag(((MessageNode*)mNodeCtrl->mCurrentNode)->mMessage, rIter, &_3C);
+        mAlreadyDoneFlags = MR::setupAlreadyDoneFlag((const char*)mNodeCtrl->_0, rIter, &_3C);
     } else {
         _3C = 1;
     }
