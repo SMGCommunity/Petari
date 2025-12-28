@@ -219,6 +219,7 @@
 #include "Game/MapObj/UFOBase.hpp"
 #include "Game/MapObj/UFOKinoko.hpp"
 #include "Game/MapObj/ValveSwitch.hpp"
+#include "Game/MapObj/WarpPod.hpp"
 #include "Game/MapObj/WatchTowerRotateStep.hpp"
 #include "Game/MapObj/WaterLeakPipe.hpp"
 #include "Game/MapObj/WaterPressureBullet.hpp"

@@ -889,7 +889,7 @@ namespace {
         },
         {
             "WarpPod",
-            nullptr,
+            createNameObj< WarpPod >,
             "WarpPod",
         },
         {

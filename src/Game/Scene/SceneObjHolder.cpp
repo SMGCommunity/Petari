@@ -47,7 +47,7 @@
 #include "Game/MapObj/BigBubbleHolder.hpp"
 #include "Game/MapObj/BigFanHolder.hpp"
 #include "Game/MapObj/ChipHolder.hpp"
-// #include "Game/MapObj/ClipAreaDropHolder.hpp"
+#include "Game/MapObj/ClipAreaDropHolder.hpp"
 #include "Game/MapObj/ClipAreaHolder.hpp"
 // #include "Game/MapObj/ClipFieldFillDraw.hpp"
 #include "Game/MapObj/CoinHolder.hpp"
@@ -64,7 +64,7 @@
 #include "Game/MapObj/SpiderThread.hpp"
 #include "Game/MapObj/SpinDriverPathDrawer.hpp"
 #include "Game/MapObj/StarPieceDirector.hpp"
-// #include "Game/MapObj/WarpPod.hpp"
+#include "Game/MapObj/WarpPod.hpp"
 #include "Game/MapObj/WaterPressureBulletHolder.hpp"
 #include "Game/NPC/EventDirector.hpp"
 #include "Game/NPC/MiiFaceIconHolder.hpp"
@@ -78,11 +78,11 @@
 #include "Game/Player/GroupChecker.hpp"
 #include "Game/Player/MarioHolder.hpp"
 // #include "Game/Player/PlayerEvent.hpp"
-// #include "Game/Ride/FluffWind.hpp"
-// #include "Game/Ride/PlantLeaf.hpp"
-// #include "Game/Ride/PlantStalk.hpp"
+#include "Game/Ride/FluffWind.hpp"
+#include "Game/Ride/PlantLeaf.hpp"
+#include "Game/Ride/PlantStalk.hpp"
 // #include "Game/Ride/SwingRope.hpp"
-// #include "Game/Ride/Trapeze.hpp"
+#include "Game/Ride/Trapeze.hpp"
 #include "Game/Scene/PlacementStateChecker.hpp"
 #include "Game/Scene/SceneDataInitializer.hpp"
 #include "Game/Scene/SceneNameObjMovementController.hpp"
@@ -245,8 +245,7 @@ NameObj* SceneObjHolder::newEachObj(int id) {
     case SceneObj_MoviePlayerSimple:
         return new MoviePlayerSimple();
     case SceneObj_WarpPodMgr:
-        // return new WarpPodMgr("ワープポッド管理局");
-        return nullptr;
+        return new WarpPodMgr("ワープポッド管理局");
     case SceneObj_CenterScreenBlur:
         return new CenterScreenBlur();
     case SceneObj_OdhConverter:
@@ -309,13 +308,11 @@ NameObj* SceneObjHolder::newEachObj(int id) {
         // return new SwingRopeGroup("スイングロープ描画");
         return nullptr;
     case SceneObj_PlantStalkDrawInit:
-        // return new PlantStalkDrawInit("植物の茎描画初期化");
-        return nullptr;
+        return new PlantStalkDrawInit("植物の茎描画初期化");
     case SceneObj_PlantLeafDrawInit:
-        // return new PlantLeafDrawInit("描画初期化[植物の葉]");
-        return nullptr;
+        return new PlantLeafDrawInit("描画初期化[植物の葉]");
     case SceneObj_TrapezeRopeDrawInit:
-        // return new TrapezeRopeDrawInit("空中ブランコロープ描画");
+        return new TrapezeRopeDrawInit("空中ブランコロープ描画");
     case SceneObj_VolumeModelDrawInit:
         return new VolumeModelDrawInit();
     case SceneObj_SpinDriverPathDrawInit:
@@ -323,8 +320,7 @@ NameObj* SceneObjHolder::newEachObj(int id) {
     case SceneObj_NoteGroup:
         return new NoteGroup();
     case SceneObj_ClipAreaDropHolder:
-        // return new ClipAreaDropHolder();
-        return nullptr;
+        return new ClipAreaDropHolder();
     case SceneObj_FallOutFieldDraw:
         return new FallOutFieldDraw("クリップエリア描画[抜き]");
     case SceneObj_ClipFieldFillDraw:
@@ -391,8 +387,7 @@ NameObj* SceneObjHolder::newEachObj(int id) {
     case SceneObj_MiiFaceIconHolder:
         return new MiiFaceIconHolder(16, "Miiアイコン保持管理");
     case SceneObj_FluffWindHolder:
-        // return new FluffWindHolder();
-        return nullptr;
+        return new FluffWindHolder();
     case SceneObj_SphereSelector:
         return new SphereSelector();
     case SceneObj_GalaxyNamePlateDrawer:

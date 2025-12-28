@@ -5790,7 +5790,7 @@ Game/MapObj/TransparentWall.cpp:
 Game/MapObj/TreasureBoxCracked.cpp:
 	.text       start:0x8024CD84 end:0x8024E0E0
 	.ctors      start:0x8052EF0C end:0x8052EF10
-	.rodata     start:0x80534C80 end:0x80534D40
+	.rodata     start:0x80534C80 end:0x80534CE0
 	.data       start:0x805A4F60 end:0x805A52B0
 	.sbss       start:0x806B59F8 end:0x806B5A10
 	.sdata2     start:0x806BE638 end:0x806BE660
@@ -5831,13 +5831,15 @@ Game/MapObj/UFOKinoko.cpp:
 Game/MapObj/ValveSwitch.cpp:
 	.text       start:0x80250478 end:0x80250C1C
 	.ctors      start:0x8052EF24 end:0x8052EF28
+	.rodata     start:0x80534CE0 end:0x80534CE8
 	.data       start:0x805A5B70 end:0x805A5CD8
 	.sbss       start:0x806B5A70 end:0x806B5A80
 	.sdata2     start:0x806BE6A0 end:0x806BE6B8
 
 Game/MapObj/WarpPod.cpp:
 	.text       start:0x80250C1C end:0x802524FC
-	.data       start:0x805A5CD8 end:0x805A5EC0
+	.rodata     start:0x80534CE8 end:0x80534CF8
+	.data       start:0x805A5CD8 end:0x805A5E38
 	.sdata      start:0x806B20A0 end:0x806B20B0
 	.sbss       start:0x806B5A80 end:0x806B5A88
 	.sdata2     start:0x806BE6B8 end:0x806BE6E0
@@ -5845,7 +5847,8 @@ Game/MapObj/WarpPod.cpp:
 Game/MapObj/WatchTowerRotateStep.cpp:
 	.text       start:0x802524FC end:0x80252B80
 	.ctors      start:0x8052EF28 end:0x8052EF2C
-	.data       start:0x805A5EC0 end:0x805A5F68
+	.rodata     start:0x80534CF8 end:0x80534D00
+	.data       start:0x805A5E38 end:0x805A5F68
 	.sbss       start:0x806B5A88 end:0x806B5A98
 	.sdata2     start:0x806BE6E0 end:0x806BE708
 
@@ -5884,10 +5887,12 @@ Game/MapObj/WaterPressureBulletHolder.cpp:
 
 Game/MapObj/WaveFloatingForce.cpp:
 	.text       start:0x80254734 end:0x802549D0
+	.rodata     start:0x80534D00 end:0x80534D10
 	.sdata2     start:0x806BE758 end:0x806BE778
 
 Game/MapObj/WhirlPool.cpp:
 	.text       start:0x802549D0 end:0x80255A48
+	.rodata     start:0x80534D10 end:0x80534D28
 	.data       start:0x805A6458 end:0x805A6510
 	.sdata      start:0x806B20D0 end:0x806B20D8
 	.sdata2     start:0x806BE778 end:0x806BE7D0
@@ -5925,12 +5930,14 @@ Game/MapObj/GeneralMapParts.cpp:
 
 Game/MapObj/FloaterFloatingForce.cpp:
 	.text       start:0x8025834C end:0x802585D0
+	.rodata     start:0x80534D28 end:0x80534D30
 	.data       start:0x805A6AC0 end:0x805A6B08
 	.sdata2     start:0x806BE810 end:0x806BE818
 
 Game/MapObj/FloaterFloatingForceTypeNormal.cpp:
 	.text       start:0x802585D0 end:0x80258D4C
 	.ctors      start:0x8052EF44 end:0x8052EF48
+	.rodata     start:0x80534D30 end:0x80534D38
 	.data       start:0x805A6B08 end:0x805A6B90
 	.sbss       start:0x806B5AE8 end:0x806B5AF8
 	.sdata2     start:0x806BE818 end:0x806BE848
@@ -5938,6 +5945,7 @@ Game/MapObj/FloaterFloatingForceTypeNormal.cpp:
 Game/MapObj/FloaterFloatingForceTypeSpring.cpp:
 	.text       start:0x80258D4C end:0x80259524
 	.ctors      start:0x8052EF48 end:0x8052EF4C
+	.rodata     start:0x80534D38 end:0x80534D40
 	.data       start:0x805A6B90 end:0x805A6E50
 	.sbss       start:0x806B5AF8 end:0x806B5B08
 	.sdata2     start:0x806BE848 end:0x806BE860
