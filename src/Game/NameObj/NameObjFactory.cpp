@@ -859,7 +859,7 @@ namespace {
         },
         {
             "SurfRay",
-            nullptr,  // createNameObj< SurfRay > // issues with creation
+            createNameObj< SurfRay >,
             "SurfRay",
         },
         {
