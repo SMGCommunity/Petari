@@ -21,7 +21,7 @@ public:
     bool branchFunc(u32);
     bool eventFunc(u32);
 
-    void makeArchiveList(NameObjArchiveListCollector*, const JMapInfoIter&);
+    static void makeArchiveList(NameObjArchiveListCollector*, const JMapInfoIter&);
     void startDemo(NerveExecutor*);
     void endDemo();
     void endDemoWithInterpole();

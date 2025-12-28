@@ -734,7 +734,7 @@ namespace {
         },
         {
             "Rosetta",
-            nullptr,
+            createNameObj< Rosetta >,
             nullptr,
         },
         {
@@ -7849,7 +7849,10 @@ namespace {
             "PenguinRacerLeader",
             NPCActor::makeArchiveListDefault,
         },
-        {"Rosetta", /* Rosetta::makeArchiveList, */},
+        {
+            "Rosetta",
+            Rosetta::makeArchiveList,
+        },
         {
             "HoneyBee",
             HoneyBee::makeArchiveList,
