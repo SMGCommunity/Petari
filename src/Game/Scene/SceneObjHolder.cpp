@@ -100,7 +100,7 @@
 #include "Game/Screen/GalaxyMapController.hpp"
 #include "Game/Screen/GalaxyNamePlateDrawer.hpp"
 #include "Game/Screen/GameSceneLayoutHolder.hpp"
-// #include "Game/Screen/HeatHazeEffect.hpp"
+#include "Game/Screen/HeatHazeEffect.hpp"
 #include "Game/Screen/ImageEffectSystemHolder.hpp"
 #include "Game/Screen/InformationObserver.hpp"
 #include "Game/Screen/LensFlare.hpp"
@@ -348,8 +348,7 @@ NameObj* SceneObjHolder::newEachObj(int id) {
     case SceneObj_QuakeEffectGenerator:
         return new QuakeEffectGenerator();
     case SceneObj_HeatHazeDirector:
-        // return new HeatHazeDirector("陽炎制御");
-        return nullptr;
+        return new HeatHazeDirector("陽炎制御");
     case SceneObj_BlueChipHolder:
         return new ChipHolder("ブルーチップホルダー", 0);
     case SceneObj_YellowChipHolder:
