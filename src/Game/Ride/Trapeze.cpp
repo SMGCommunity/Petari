@@ -49,12 +49,8 @@ void Trapeze::init(const JMapInfoIter& rIter) {
     mtx.getYDirInline(mUp);
     mtx.getZDirInline(mFront);
 
-    // f32 ropeLength = mScale.y * 100.0f;
     mRopeLength = mScale.y * 100.0f;
     mScale.set(1.0f, 1.0f, 1.0f);
-    // mScale.x = 1.0f;
-    // mScale.y = 1.0f;
-    // mScale.z = 1.0f;
 
     TVec3f spawnPos(mPosition.x, mPosition.y - mRopeLength, mPosition.z);
     mSwingPoint = new SwingRopePoint(spawnPos);
