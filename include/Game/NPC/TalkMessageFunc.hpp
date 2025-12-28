@@ -5,7 +5,7 @@
 
 class TalkMessageFuncBase {
 public:
-    virtual void* operator()(u32) const = 0;
+    virtual bool operator()(u32) const = 0;
     virtual TalkMessageFuncBase* clone() const = 0;
     virtual TalkMessageFuncBase* clone(JKRHeap*) const = 0;
 };
@@ -17,7 +17,7 @@ public:
 
     inline TalkMessageFuncM() {}
 
-    virtual void* operator()(u32 arg) const { (mCaller->*mCallee)(arg); }
+    virtual bool operator()(u32 arg) const { (mCaller->*mCallee)(arg); }
 
     virtual TalkMessageFuncM* clone() const { return new TalkMessageFuncM(*this); }
 

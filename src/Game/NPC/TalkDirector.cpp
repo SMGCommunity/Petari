@@ -561,5 +561,5 @@ bool MR::isActiveTalkBalloonShort() {
 }
 
 bool TalkFunction::requestTalkSystem(TalkMessageCtrl* pCtrl, bool force) {
-    ((TalkDirector*)MR::getSceneObjHolder()->getObj(0x19))->request(pCtrl, force);
+    return ((TalkDirector*)MR::getSceneObjHolder()->getObj(0x19))->request(pCtrl, force);
 }
