@@ -38,24 +38,24 @@ public:
     f32 getPoleSubPadStickX() const;
     f32 getPoleSubPadStickY() const;
 
-    TVec3f _8C;
-    TVec3f _98;
-    f32 _A4;
-    bool _A8;
-    bool _A9;
-    bool _AA;
-    bool _AB;
-    bool _AC;
-    f32 _B0;
-    f32 _B4;
-    LiveActor* mActor;       // 0xB8
-    ActorCameraInfo* mInfo;  // 0xBC
-    TVec3f _C0;
-    TVec3f _CC;
-    TVec3f _D8;
-    TVec3f _E4;
-    TMtx34f _F0;
-    MtxPtr _120;
-    MtxPtr _124;
-    TMtx34f _128;
+    /* 0x8C */ TVec3f mBasePos;
+    /* 0x98 */ TVec3f mTopPos;
+    /* 0xA4 */ f32 mPoleLength;
+    /* 0xA8 */ bool mDisableHandstand;
+    /* 0xA9 */ bool mIsSquare;
+    /* 0xAA */ bool mNoModel;
+    /* 0xAB */ bool mInvertStick;
+    /* 0xAC */ bool mUsePole9mCollision;
+    /* 0xB0 */ f32 mClimbCoord;
+    /* 0xB4 */ f32 mClimbSpeed;
+    /* 0xB8 */ LiveActor* mRider;
+    /* 0xBC */ ActorCameraInfo* mCameraInfo;
+    /* 0xC0 */ TVec3f mCenterPos;
+    /* 0xCC */ TVec3f mSide;
+    /* 0xD8 */ TVec3f mUp;
+    /* 0xE4 */ TVec3f mFront;
+    /* 0xF0 */ TPos3f mPosMtx;
+    /* 0x120 */ MtxPtr mTopMtx;
+    /* 0x124 */ MtxPtr mBottomMtx;
+    /* 0x128 */ TMtx34f mBaseMtx;
 };
