@@ -5,7 +5,7 @@
 
 namespace JGeometry {
     template < typename T >
-    struct TQuat4 : public TVec3< T > {
+    struct TQuat4 : public Quaternion {
     public:
         /* Constructors */
         inline TQuat4() {}
@@ -24,6 +24,8 @@ namespace JGeometry {
             this->z = _z;
             this->w = _w;
         }
+
+        inline TVec3< T >* toTvec() { return (TVec3< T >*)this; }
 
         void set(T, T, T, T);
 
@@ -55,7 +57,7 @@ namespace JGeometry {
 
         void setRotate(const TVec3< T >& pVec, f32 pAngle) {
             f32 halfAngle = pAngle * 0.5f;
-            scale(sin(halfAngle), pVec);
+            toTvec()->scale(sin(halfAngle), pVec);
             this->w = cos(halfAngle);
         }
 
@@ -81,8 +83,6 @@ namespace JGeometry {
 
         /* Operators */
         TQuat4< T >& operator=(const TQuat4< T >& rSrc);
-
-        T w;
     };
 };  // namespace JGeometry
 
