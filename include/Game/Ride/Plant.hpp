@@ -63,8 +63,8 @@ public:
     /* 0x100 */ J3DShapeDraw* mShapeDraw;
     /* 0x104 */ LiveActor* mRider;
     /* 0x108 */ f32 mRailCoord;
-    /* 0x10C */ TVec3f mSide;   // mSide ???
-    /* 0x118 */ TVec3f mFront;  // mUp ????
+    /* 0x10C */ TVec3f mUp;
+    /* 0x118 */ TVec3f mFront;
 
     /* 0x124 */ f32 mRideVelocity;
     /// @note this system is not actually used in the final game,

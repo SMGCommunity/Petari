@@ -25,7 +25,7 @@ PlantRailInfo::PlantRailInfo(const JMapInfoIter& rIter, f32 speed)
 
     PlantPoint* firstPoint = getPlantPoint(0);
     PlantPoint* lastPoint = getPlantPoint(mNumPlantPoints - 2);
-    firstPoint->setAxisAndPos(lastPoint->mFront, lastPoint->mUp, lastPoint->mSide, firstPoint->mPosition);
+    firstPoint->setAxisAndPos(lastPoint->mSide, lastPoint->mUp, lastPoint->mFront, firstPoint->mPosition);
 }
 
 void PlantRailInfo::calcPosAndAxisY(TVec3f* pPos, TVec3f* pAxisY, f32 coord) const {
