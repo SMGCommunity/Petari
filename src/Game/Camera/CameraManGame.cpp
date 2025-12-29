@@ -344,7 +344,6 @@ void CameraManGame::replaceCurrentChunkAndCamera(CameraParamChunk* pChunk) {
     mChunk = pChunk;
 }
 
-#ifdef NON_MATCHING
 // Register mismatch, r0 used
 void CameraManGame::applyParameter() {
     CamTranslatorBase* translator = mHolder->getTranslator(mChunk->mCameraTypeIndex);
@@ -365,14 +364,14 @@ void CameraManGame::applyParameter() {
     }
 
     if (mChunk->isLOfsErpOff()) {
-        camera->_18 = 1;
+        camera->mIsLOfsErpOff = 1;
     } else {
-        camera->_18 = 0;
+        camera->mIsLOfsErpOff = 0;
     }
 
     CameraLocalUtil::setRoll(mCamera, mChunk->mExParam.mRoll);
 
-    if (camera->mVPan != nullptr) {
+    if (camera->doesVPanExist()) {
         CameraHeightArrange* vPan = camera->mVPan;
         vPan->resetParameter();
 
@@ -394,7 +393,6 @@ void CameraManGame::applyParameter() {
         vPan->_60 = 1;
     }
 }
-#endif
 
 void CameraManGame::checkReset() {
     if (_58 == 0 || mChunk == nullptr || mCamera == nullptr) {

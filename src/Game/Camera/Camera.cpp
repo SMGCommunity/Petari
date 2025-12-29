@@ -60,39 +60,21 @@ CamTranslatorBase* Camera::createTranslator() {
     return new CamTranslatorDummy(this);
 }
 
-#ifdef NON_MATCHING
-// mVPan is placed in r3 instead of r0 when comparing with nullptr
 void Camera::setZoneMtx(s32 zoneID) {
     if (zoneID <= 0) {
         mZoneMatrix.identity();
-    } else {
+    }
+    else {
         mZoneMatrix.identity();
 
-        register TMtx34f* matrix = MR::getZonePlacementMtx(zoneID);
-        register Camera* camera = this;
-
-        __asm {
-            psq_l   f0, 0x00(matrix), 0, 0
-            psq_l   f1, 0x08(matrix), 0, 0
-            psq_l   f2, 0x10(matrix), 0, 0
-            psq_l   f3, 0x18(matrix), 0, 0
-            psq_l   f4, 0x20(matrix), 0, 0
-            psq_l   f5, 0x28(matrix), 0, 0
-            psq_st  f0, 0x1C(camera), 0, 0
-            psq_st  f1, 0x24(camera), 0, 0
-            psq_st  f2, 0x2C(camera), 0, 0
-            psq_st  f3, 0x34(camera), 0, 0
-            psq_st  f4, 0x3C(camera), 0, 0
-            psq_st  f5, 0x44(camera), 0, 0
-        }
-        ;
+        TMtx34f *matrix = MR::getZonePlacementMtx(zoneID);
+        mZoneMatrix.setInline(*matrix);
     }
 
-    if (mVPan != nullptr) {
-        pan->_60 = 1;
+    if (doesVPanExist()) {
+        mVPan->_60 = 1;
     }
 }
-#endif
 
 void Camera::createVPanObj() {
     mVPan = new CameraHeightArrange(this);
