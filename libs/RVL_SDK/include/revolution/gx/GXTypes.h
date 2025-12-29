@@ -1,16 +1,16 @@
 #ifndef GXTYPES_H
 #define GXTYPES_H
 
-#include "revolution/types.h"
 #include "revolution/gx/GXEnum.h"
 #include "revolution/gx/GXStruct.h"
+#include "revolution/types.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 #define PHY_ADDR_MASK ~((~0x3FFF) << 16)
-#define GX_PHY_ADDR(a)  ((u32)a & PHY_ADDR_MASK)
+#define GX_PHY_ADDR(a) ((u32)a & PHY_ADDR_MASK)
 
 typedef struct _GXData {
     u16 vNumNot;
@@ -65,8 +65,8 @@ typedef struct _GXData {
     GXTexRegion TexRegions1[8];
     GXTexRegion TexRegions2[8];
     GXTlutRegion TlutRegions[20];
-    GXTexRegion *(*texRegionCallback)(const GXTexObj *, GXTexMapID);
-    GXTlutRegion *(*tlutRegionCallback)(u32 tlut_name);
+    GXTexRegion* (*texRegionCallback)(const GXTexObj*, GXTexMapID);
+    GXTlutRegion* (*tlutRegionCallback)(u32 tlut_name);
     GXAttrType nrmType;
     GXBool hasNrms;
     GXBool hasBiNrms;
@@ -95,8 +95,11 @@ typedef struct _GXData {
     u32 dirtyState;
 } GXData;
 
-extern GXData *const __GXData;
+extern GXData* const __GXData;
 #define gx __GXData
+
+#define BP_SENT() gx->bpSentNot = GX_FALSE;
+#define XF_SENT() gx->bpSentNot = GX_TRUE;
 
 extern void __GXFlushTextureState();
 extern void __GXAbort();
@@ -111,12 +114,12 @@ typedef struct __GXLightObjInt_struct {
     f32 ldir[3];
 } GXLightObjInt;
 
-#define GX_SETUP_LIGHT(l,p) \
-    GXLightObjInt  *l;    \
-    l = (GXLightObjInt *)p;\
+#define GX_SETUP_LIGHT(l, p)                                                                                                                         \
+    GXLightObjInt* l;                                                                                                                                \
+    l = (GXLightObjInt*)p;
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif // GXTYPES_H
+#endif  // GXTYPES_H
