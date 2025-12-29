@@ -46,7 +46,7 @@ void TalkMessageCtrl::createMessageDirect(const JMapInfoIter& rIter, const char*
     _3C = 1;
 }
 
-// this functions indicates that TalkNode's mNextIdx is 4 bytes, but it is 2.
+// this functions indicates that TalkNode's mNextIdx is 4 bytes, but it is 2 bytes, according to RootNodePre.
 bool TalkMessageCtrl::rootNodeEve() {
     TalkNodeCtrl* nodeCtrl = mNodeCtrl;
     TalkNode* nodeEvent = nodeCtrl->getCurrentNodeEvent();
@@ -291,15 +291,17 @@ void TalkMessageCtrl::endTalk() {
     TalkFunction::endTalkSystem(this);
 }
 
-// regswap between r30 and r31
 bool TalkMessageCtrl::isNearPlayer(const TalkMessageCtrl* pCtrl) {
+    TVec3f* hostPos;
+    TVec3f* ctrlHostPos;
+
     if (pCtrl == nullptr) {
         return true;
     }
 
     TVec3f* playerPos = MR::getPlayerPos();
-    TVec3f* hostPos = &mHostActor->mPosition;
-    TVec3f* ctrlHostPos = &pCtrl->mHostActor->mPosition;
+    hostPos = &mHostActor->mPosition;
+    ctrlHostPos = &pCtrl->mHostActor->mPosition;
 
     return hostPos->squared(*playerPos) < ctrlHostPos->squared(*playerPos);
 }
@@ -465,11 +467,12 @@ bool TalkMessageCtrl::isNearPlayer(f32 distance) const {
         return true;
     }
 
-    // regswap between f31 and f30
-    f32 talkDist = mTalkDistance;
-    if (distance <= 0.0f && mNodeCtrl->mMessageInfo.isComposeTalk()) {
-        f32 scale = 2.0f;
-        talkDist = distance * scale;
+    if (distance <= 0.0f) {
+        distance = mTalkDistance;
+        if (mNodeCtrl->mMessageInfo.isComposeTalk()) {
+            f32 scale = 2.0f;
+            distance = distance * scale;
+        }
     }
 
     TVec3f v2(mHostActor->mPosition);  // 0x44
@@ -480,8 +483,7 @@ bool TalkMessageCtrl::isNearPlayer(f32 distance) const {
     TVec3f v3;  // 0x38
     f32 f2 = MR::vecKillElement(v2 - *MR::getPlayerCenterPos(), mHostActor->mGravity, &v3);
 
-    // Somehow can't get bgt to generate. Putting <= at the first comparison generates a cror eq, lt, eq
-    if (__fabs(f2) < talkDist && v3.squared() < talkDist * talkDist) {
+    if (!(__fabs(f2) > distance) && v3.squared() < distance * distance) {
         TalkMessageInfo* info = &mNodeCtrl->mMessageInfo;
         bool cond = info->mTalkType;
         if (mIsStartOnlyFront || info->isBalloonSign()) {
@@ -501,9 +503,9 @@ bool TalkMessageCtrl::isNearPlayer(f32 distance) const {
             v4.set< f32 >(setX, setY, setZ);
             v4.setPS2(*MR::getPlayerPos() - v4);
 
-            f2 = MR::vecKillElement(v4, v3, &v4);
+            f32 f3 = MR::vecKillElement(v4, v3, &v4);
 
-            if (f2 > 0.0f) {
+            if (f3 > 0.0f) {
                 return true;
             }
         } else {
