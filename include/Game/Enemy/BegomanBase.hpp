@@ -12,24 +12,6 @@ class BegomanBase : public LiveActor {
 public:
     BegomanBase(const char*);
 
-    const BegomanSound* getSoundBaby();
-    const BegomanSound* getSoundNormal();
-    const BegomanSound* getSoundBoss();
-
-    f32 getRailPushVelHBoss() const;
-    f32 getRailPushJumpBoss() const;
-
-    void initCore(const JMapInfoIter&, const char*, bool);
-    void initEffect(s32);
-    void initEffectAndStarPointerBind();
-    void initAfterPlacement();
-    void initShadow(f32, const char*);
-    void initSensor(s32, f32, f32, const char*);
-    void initUseSwitchB(const JMapInfoIter&, const MR::FunctorBase&);
-
-    bool calcJointLocator1(TPos3f*, const JointControllerInfo&);
-    void calcAnimCore(TPos3f*);
-
     virtual void makeActorDead();
     virtual void appear();
     virtual void kill();
@@ -49,6 +31,24 @@ public:
     virtual void addVelocityOnPushedFromElectricRail(const TVec3f&, const TVec3f&);
 
     virtual bool requestAttack();
+
+    const BegomanSound* getSoundBaby();
+    const BegomanSound* getSoundNormal();
+    const BegomanSound* getSoundBoss();
+
+    f32 getRailPushVelHBoss() const;
+    f32 getRailPushJumpBoss() const;
+
+    void initCore(const JMapInfoIter&, const char*, bool);
+    void initEffect(s32);
+    void initEffectAndStarPointerBind();
+    void initAfterPlacement();
+    void initShadow(f32, const char*);
+    void initSensor(s32, f32, f32, const char*);
+    void initUseSwitchB(const JMapInfoIter&, const MR::FunctorBase&);
+
+    bool calcJointLocator1(TPos3f*, const JointControllerInfo&);
+    void calcAnimCore(TPos3f*);
 
     void exeNoCalcWaitCore(f32, const Nerve*);
     void finishNoCalcWait();
@@ -112,7 +112,7 @@ public:
     WalkerStateBindStarPointer* mStarPointBind;
 
     bool mIsTouchElectricRail;
-    bool mcanTrySetReturn;
+    bool mCanTrySetReturn;
     bool mInvertSideVec;
 };
 

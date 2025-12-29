@@ -36,7 +36,7 @@ namespace {
 BegomanBase::BegomanBase(const char* pName)
     : LiveActor(pName), mBaseDelegator(nullptr), mFaceVec(0.0f, 0.0f, 1.0f), mTargetVec(0.0f, 0.0f, 1.0f), _A8(0.0f, 0.0f, -1.0f), _B4(1.0f, 1.0f, 1.0f),
       _C0(0, 0, 0, 1), _D0(0, 0, 0, 1), mTiredCounter(0), mElectricCounter(0), mInitPos(0.0f, 0.0f, 0.0f), mScaleControler(nullptr),
-      mStarPointBind(nullptr), mcanTrySetReturn(false) {}
+      mStarPointBind(nullptr), mCanTrySetReturn(false) {}
 
 // needed to get a string to show up in .data, should be deadstripped.
 const BegomanSound* BegomanBase::getSoundBaby() {
@@ -64,9 +64,9 @@ void BegomanBase::initCore(const JMapInfoIter& rIter, const char* pModelArcName,
         s32 arg0 = -1;
         MR::getJMapInfoArg0NoInit(rIter, &arg0);
         if (arg0 == -1) {
-            mcanTrySetReturn = false;
+            mCanTrySetReturn = false;
         } else {
-            mcanTrySetReturn = true;
+            mCanTrySetReturn = true;
         }
     }
     MR::connectToSceneEnemy(this);
@@ -183,8 +183,7 @@ void BegomanBase::control() {
     _A8.set(upVec);
 
     yRotationQuat.setRotate(0.0f, 1.0f, 0.0f, mRotation.y);
-    PSQUATMultiply(reinterpret_cast< const Quaternion* >(&yRotationQuat), reinterpret_cast< const Quaternion* >(&_D0),
-                   reinterpret_cast< Quaternion* >(&_D0));
+    PSQUATMultiply(&yRotationQuat, &_D0, &_D0);
 }
 
 void BegomanBase::startClipped() {
@@ -575,7 +574,7 @@ bool BegomanBase::isNearInitPos() const {
 }
 
 bool BegomanBase::trySetReturnNerve() {
-    if (MR::isValidSwitchA(this) && !MR::isOnSwitchA(this) && mcanTrySetReturn) {
+    if (MR::isValidSwitchA(this) && !MR::isOnSwitchA(this) && mCanTrySetReturn) {
         setNerveReturn();
         return true;
     }
@@ -941,7 +940,7 @@ void BegomanBase::calcAndSetBaseMtx() {
 }
 
 bool BegomanBase::requestAttack() {
-    return MR::getSceneObj< BegomanAttackPermitter >(0x3D)->requestAttack(this);
+    return MR::getSceneObj< BegomanAttackPermitter >(SceneObj_BegomanAttackPermitter)->requestAttack(this);
 }
 
 BegomanAttackPermitter::BegomanAttackPermitter(const char* pName) : LiveActor(pName), _8C(nullptr), mBegoman(nullptr), mDistToPlayer(99999.0f), _98(false) {}
