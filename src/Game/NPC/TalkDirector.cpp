@@ -564,32 +564,32 @@ bool TalkFunction::requestTalkSystem(TalkMessageCtrl* pCtrl, bool force) {
     return ((TalkDirector*)MR::getSceneObjHolder()->getObj(0x19))->request(pCtrl, force);
 }
 
-void TalkFunction::startTalkSystem(TalkMessageCtrl* pControl, bool force, bool demo, bool notPuppetable) {
-    ((TalkDirector*)MR::getSceneObjHolder()->getObj(0x19))->start(pControl, force, demo, notPuppetable);
+void TalkFunction::startTalkSystem(TalkMessageCtrl* pCtrl, bool force, bool demo, bool notPuppetable) {
+    ((TalkDirector*)MR::getSceneObjHolder()->getObj(0x19))->start(pCtrl, force, demo, notPuppetable);
 }
 
-void TalkFunction::endTalkSystem(TalkMessageCtrl* pControl) {
+void TalkFunction::endTalkSystem(TalkMessageCtrl* pCtrl) {
     MR::getSceneObjHolder()->getObj(0x19);
-    MR::isTalkEnableEnd(pControl);
+    MR::isTalkEnableEnd(pCtrl);
 }
 
-bool TalkFunction::isTalkSystemStart(const TalkMessageCtrl* pControl) {
+bool TalkFunction::isTalkSystemStart(const TalkMessageCtrl* pCtrl) {
     TalkDirector* director = (TalkDirector*)MR::getSceneObjHolder()->getObj(0x19);
 
-    return director->mMsgCtrl == pControl && director->_4C;
+    return director->mMsgCtrl == pCtrl && director->_4C;
 }
 
-bool TalkFunction::isTalkSystemEnd(const TalkMessageCtrl* pControl) {
+bool TalkFunction::isTalkSystemEnd(const TalkMessageCtrl* pCtrl) {
     TalkDirector* director = (TalkDirector*)MR::getSceneObjHolder()->getObj(0x19);
 
-    return director->mMsgCtrl == pControl && director->_4D;
+    return director->mMsgCtrl == pCtrl && director->_4D;
 }
 
 bool TalkFunction::getBranchAstroGalaxyResult(u16 arg) {
     return ((TalkDirector*)MR::getSceneObjHolder()->getObj(0x19))->getBranchResult(arg);
 }
 
-void TalkFunction::registerTalkSystem(TalkMessageCtrl* pControl) {
+void TalkFunction::registerTalkSystem(TalkMessageCtrl* pCtrl) {
     TalkDirector* director = (TalkDirector*)MR::getSceneObjHolder()->getObj(0x19);
-    director->mMsgControls.push_back(pControl);
+    director->mMsgControls.push_back(pCtrl);
 }
