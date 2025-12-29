@@ -2449,6 +2449,7 @@ Game/Enemy/BegomanBase.cpp:
 	.ctors      start:0x8052EA3C end:0x8052EA40
 	.rodata     start:0x80531C68 end:0x80531CE0
 	.data       start:0x805796E0 end:0x80579968
+	.sdata      start:0x806B18C0 end:0x806B18C8
 	.sbss       start:0x806B3BD8 end:0x806B3BE8
 	.sdata2     start:0x806B9F68 end:0x806BA000
 

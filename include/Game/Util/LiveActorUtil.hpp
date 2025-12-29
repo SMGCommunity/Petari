@@ -339,6 +339,7 @@ namespace MR {
 
     bool isBindedGround(const LiveActor*);
     bool isBindedWall(const LiveActor*);
+    bool isBindedWallOfMap(const LiveActor*);
 
     bool isBindedGroundIce(const LiveActor*);
     bool isBindedGroundWater(const LiveActor*);
