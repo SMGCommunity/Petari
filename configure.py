@@ -2438,17 +2438,17 @@ config.libs = [
         ],
     ),
     SDKLib("fs", [Object(Matching, "RVL_SDK/fs/fs.c")]),
-    SDKLib(
+    SDKLib_WENC(
         "gd",
         [
-            Object(NonMatching, "RVL_SDK/gd/GDBase.c"),
-            Object(NonMatching, "RVL_SDK/gd/GDGeometry.c"),
-            Object(NonMatching, "RVL_SDK/gd/GDIndirect.c"),
-            Object(NonMatching, "RVL_SDK/gd/GDLight.c"),
-            Object(NonMatching, "RVL_SDK/gd/GDPixel.c"),
-            Object(NonMatching, "RVL_SDK/gd/GDTev.c"),
-            Object(NonMatching, "RVL_SDK/gd/GDTexture.c"),
-            Object(NonMatching, "RVL_SDK/gd/GDTransform.c"),
+            Object(Matching, "RVL_SDK/gd/GDBase.c"),
+            Object(Matching, "RVL_SDK/gd/GDGeometry.c"),
+            Object(Matching, "RVL_SDK/gd/GDIndirect.c"),
+            Object(Matching, "RVL_SDK/gd/GDLight.c"),
+            Object(Matching, "RVL_SDK/gd/GDPixel.c"),
+            Object(Matching, "RVL_SDK/gd/GDTev.c"),
+            Object(Matching, "RVL_SDK/gd/GDTexture.c"),
+            Object(Matching, "RVL_SDK/gd/GDTransform.c"),
         ],
     ),
     SDKLib(

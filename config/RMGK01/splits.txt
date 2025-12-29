@@ -9752,12 +9752,12 @@ JSystem/JParticle/JPAMath.cpp:
 
 RVL_SDK/gd/GDBase.c:
 	.text       start:0x8044BDD0 end:0x8044BF28
-	.sbss       start:0x806B72B8 end:0x806B72C8
+	.sbss       start:0x806B72B8 end:0x806B72C0
 
 RVL_SDK/gd/GDGeometry.c:
 	.text       start:0x8044BF28 end:0x8044D728
-	.data       start:0x805EA4A8 end:0x805EA578
-	.sdata      start:0x806B2758 end:0x806B2780
+	.data       start:0x805EA4A8 end:0x805EA568
+	.sdata      start:0x806B2758 end:0x806B2760
 
 RVL_SDK/gd/GDIndirect.c:
 	.text       start:0x8044D728 end:0x8044D804
@@ -9771,10 +9771,11 @@ RVL_SDK/gd/GDPixel.c:
 
 RVL_SDK/gd/GDTev.c:
 	.text       start:0x8044E9C8 end:0x8044F3F8
+	.data       start:0x805EA568 end:0x805EA578
 
 RVL_SDK/gd/GDTexture.c:
 	.text       start:0x8044F3F8 end:0x8044F838
-	.sdata      start:0x806B2780 end:0x806B2788
+	.sdata      start:0x806B2760 end:0x806B2788
 	.sdata2     start:0x806C1C98 end:0x806C1CA0
 
 RVL_SDK/gd/GDTransform.c:
@@ -9784,7 +9785,7 @@ RVL_SDK/kpad/KPAD.c:
 	.text       start:0x8044FC10 end:0x80452EDC
 	.data       start:0x805EA578 end:0x805EA5D0
 	.sdata      start:0x806B2788 end:0x806B27F8
-	.sbss       start:0x806B72C8 end:0x806B72E0
+	.sbss       start:0x806B72C0 end:0x806B72E0
 	.sdata2     start:0x806C1CA0 end:0x806C1D08
 
 RVL_SDK/thp/THPDec.c:

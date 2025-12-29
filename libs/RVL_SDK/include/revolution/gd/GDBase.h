@@ -86,6 +86,12 @@ static inline void GDWriteXFCmd(u16 addr, u32 val) {
     GDWrite_u32(val);
 }
 
+static inline void GDWriteXFCmdHdr(u16 addr, u8 len) {
+    GDWrite_u8(0x10);
+    GDWrite_u16((u16)((len)-1));
+    GDWrite_u16(addr);
+}
+
 void GDOverflowed(void);
 
 static void GDPosition3f32(f32 x, f32 y, f32 z) {
