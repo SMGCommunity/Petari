@@ -113,6 +113,8 @@ extern void __RAS_OSDisableInterrupts_end(void);
 
 const char* OSGetAppGamename(void);
 
+#define OSAssert_Line(line_, exp_)
+
 #ifndef ASSERT
 #define ASSERT(exp) ((void)0)
 #endif

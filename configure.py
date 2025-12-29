@@ -335,8 +335,11 @@ cflags_sdk = [
     "-i libs/RVLFaceLib/include",
     "-i libs/RVL_SDK/include",
     "-i libs/Runtime/include",
+    "-i src/RVL_SDK/bte",
     f"-i build/{config.version}/include",
     f"-DVERSION={version_num}",
+    "-ir libs/RVL_SDK/include/revolution/bte",
+    "-DREVOLUTION",
 ]
 
 cflags_sdk_exi = ["-O3" if flag == "-O4,p" else flag for flag in cflags_sdk]
