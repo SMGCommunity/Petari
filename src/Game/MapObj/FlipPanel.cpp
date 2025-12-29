@@ -28,7 +28,7 @@ void FlipPanel::init(const JMapInfoIter& rIter) {
     info.setupSound(4);
     info.setupNerve(&NrvFlipPanel::FlipPanelNrvFront::sInstance);
     initialize(rIter, info);
-    mIsReverse = isObjectName("FipPanelReverse");
+    mIsReverse = isObjectName("FlipPanelReverse");
     mDelegator = MR::createJointDelegatorWithNullChildFunc(this, &FlipPanel::calcJointMove, "Panel");
     mFlipPanelGroup = MR::joinToGroupArray(this, rIter, 0, 0x20);
     MR::invalidateClipping(this);

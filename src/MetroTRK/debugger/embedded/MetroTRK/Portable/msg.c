@@ -1,7 +1,12 @@
-#include "export/UART.h"
-#include "portable/msgbuf.h"
+/**
+ * msg.c
+ * Description:
+ */
 
-int TRKMessageSend(MessageBuffer *buffer) {
-    TRKWriteUARTN(buffer->fData, buffer->fLength);
-    return 0;
+#include "MetroTRK/Portable/msg.h"
+#include "trk.h"
+
+DSError TRKMessageSend(TRK_Msg* msg) {
+    DSError write_err = TRKWriteUARTN(&msg->m_msg, msg->m_msgLength);
+    return DS_NoError;
 }

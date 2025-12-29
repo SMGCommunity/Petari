@@ -23,6 +23,7 @@ public:
 
     void clear();
     u32 setupFlag(const char*, const JMapInfoIter&, u32*);
+    void updateValue(int, u32);
 
     AlreadyDoneInfo* mDoneInfos;  // 0x0
     int mNumInfos;                // 0x4

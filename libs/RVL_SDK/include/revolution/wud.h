@@ -86,6 +86,10 @@ typedef struct WUDControlBlock {
     s16 incomeCnt;
 } WUDControlBlock;
 
+BOOL WUDInit();
+BOOL WUDStartFastSyncSimple(void);
+u32 WUDGetAllocatedMemSize(void);
+WUDSyncDeviceCallback WUDSetSyncSimpleCallback(WUDSyncDeviceCallback);
 void WUD_DEBUGPrint(const char*, ...);
 void WUDiMoveTopSmpDevInfoPtr(WUDDeviceInfo*);
 void WUDiMoveTopStdDevInfoPtr(WUDDeviceInfo*);
@@ -109,6 +113,10 @@ WUDHidConnCallback WUDSetHidConnCallback(WUDHidConnCallback);
 void WUDRegisterAllocator(WUDAlloc, WUDFree);
 u8* _WUDGetDevAddr(u8);
 BOOL WUDSetDisableChannel(s8);
+u8 WUDGetBufferStatus(void);
+u8 _WUDGetLinkNumber(void);
+u16 _WUDGetQueuedSize(s8);
+u16 _WUDGetNotAckedSize(s8);
 
 extern WUDControlBlock _wcb;
 extern WUDDeviceInfo _work;

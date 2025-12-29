@@ -1,66 +1,65 @@
-#include "portable/msgbuf.h"
-#include "portable/msgcmd.h"
-#include "portable/msghndlr.h"
-#include "portable/dserror.h"
-#include "TRK_Types.h"
+/**
+ * dispatch.c
+ * Description:
+ */
 
-DSError TRKDispatchMessage(MessageBuffer* buffer) {
-    DSError result = kDispatchError;
-    MessageBuffer* temp = buffer;
-    ui8 command;
-    
-    TRKSetBufferPosition(buffer, 0);
-    
-    command = temp->fData[4];
-    
-    switch(command){
-        case kDSConnect:
-            result = TRKDoConnect(temp); 
-        	break;
-        case kDSDisconnect:
-            result = TRKDoDisconnect(temp);
-        	break;
-        case kDSReset:
-            result = TRKDoReset(temp);
-        	break;
-        case kDSOverride:
-            result = TRKDoOverride(temp);
-        	break;
-        /* v0.4 removes these two cases */
-        case kDSVersions:
-            result = TRKDoVersions(temp);
-            break;
-        case kDSSupportMask:
-            result = TRKDoSupportMask(temp);
-            break;
-        case kDSReadMemory:
-            result = TRKDoReadMemory(temp);
-        	break;
-        case kDSWriteMemory:
-            result = TRKDoWriteMemory(temp);
-        	break;
-        case kDSReadRegisters:
-            result = TRKDoReadRegisters(temp);
-        	break;
-        case kDSWriteRegisters:
-            result = TRKDoWriteRegisters(temp);
-        	break;
-        case kDSContinue:
-            result = TRKDoContinue(temp);
-        	break;
-        case kDSStep:
-            result = TRKDoStep(temp);
-        	break;
-        case kDSStop:
-            result = TRKDoStop(temp);
-        	break;
-        case kDSSetOption:
-            result = TRKDoSetOption(temp);
-        	break;
-    }
-    return result;
+#include "MetroTRK/Portable/dispatch.h"
+#include "MetroTRK/Portable/msgbuf.h"
+
+DSError TRKInitializeDispatcher() {
+    return DS_NoError;
 }
 
-DSError TRKInitializeDispatcher(void) {
-    return kNoError;
+BOOL TRKDispatchMessage(TRKBuffer* msg) {
+    u32 err;
+
+    err = DS_DispatchError;
+    TRKSetBufferPosition(msg, 0);
+
+    switch (msg->data[4]) {
+    case DSMSG_Connect:
+        err = TRKDoConnect(msg);
+        break;
+    case DSMSG_Disconnect:
+        err = TRKDoDisconnect(msg);
+        break;
+    case DSMSG_Reset:
+        err = TRKDoReset(msg);
+        break;
+    case DSMSG_Override:
+        err = TRKDoOverride(msg);
+        break;
+    case DSMSG_Versions:
+        err = TRKDoVersions(msg);
+        break;
+    case DSMSG_SupportMask:
+        err = TRKDoSupportMask(msg);
+        break;
+    case DSMSG_ReadMemory:
+        err = TRKDoReadMemory(msg);
+        break;
+    case DSMSG_WriteMemory:
+        err = TRKDoWriteMemory(msg);
+        break;
+    case DSMSG_ReadRegisters:
+        err = TRKDoReadRegisters(msg);
+        break;
+    case DSMSG_WriteRegisters:
+        err = TRKDoWriteRegisters(msg);
+        break;
+    case DSMSG_Continue:
+        err = TRKDoContinue(msg);
+        break;
+    case DSMSG_Step:
+        err = TRKDoStep(msg);
+        break;
+    case DSMSG_Stop:
+        err = TRKDoStop(msg);
+        break;
+    case DSMSG_SetOption:
+        err = TRKDoSetOption(msg);
+        break;
+    }
+
+    return err;
 }

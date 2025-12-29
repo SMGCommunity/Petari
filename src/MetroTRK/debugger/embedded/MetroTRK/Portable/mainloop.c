@@ -1,48 +1,55 @@
-#include "portable/msgbuf.h"
-#include "portable/nubevent.h"
-#include "portable/serpoll.h"
-#include "TRK_Types.h"
-
+#include "MetroTRK/Portable/serpoll.h"
+#include "ppc/Generic/targimpl.h"
+#include "trk.h"
 
 void TRKNubMainLoop(void) {
-	MessageBuffer* msg;
-	NubEvent event;
-	s32 var_r31 = false;
-	s32 var_r30 = false;
+    void* msg;
+    TRKEvent event;
+    BOOL isShutdownRequested;
+    BOOL isNewInput;
 
-	while (var_r31 == false) {
-		if (TRKGetNextEvent(&event) != false) {
-			var_r30 = false;
-			switch (event.fType) {
-			case kNullEvent:
-				break;
-			case kRequestEvent:
-				msg = TRKGetBuffer(event.fMessageBufferID);
-				TRKDispatchMessage(msg);
-				break;
-			case kShutdownEvent:
-				var_r31 = true;
-				break;
-			case kBreakpointEvent:
-			case kExceptionEvent:
-				TRKTargetInterrupt(&event);
-				break;
-			case kSupportEvent:
-				TRKTargetSupportRequest();
-				break;
-			}
+    isShutdownRequested = FALSE;
+    isNewInput = FALSE;
+    while (isShutdownRequested == FALSE) {
+        if (TRKGetNextEvent(&event) != FALSE) {
+            isNewInput = FALSE;
 
-			TRKDestructEvent(&event);
-		} 
-        else if (var_r30 == false || *(ui8*)gTRKInputPendingPtr != 0) {
-			var_r30 = true;
-			TRKGetInput();
-		} 
-        else {
-			if (TRKTargetStopped() == false) {
-				TRKTargetContinue();
-			}
-			var_r30 = false;
-		}
-	}
+            switch (event.eventType) {
+            case NUBEVENT_Null:
+                break;
+
+            case NUBEVENT_Request:
+                msg = TRKGetBuffer(event.msgBufID);
+                TRKDispatchMessage(msg);
+                break;
+
+            case NUBEVENT_Shutdown:
+                isShutdownRequested = TRUE;
+                break;
+
+            case NUBEVENT_Breakpoint:
+            case NUBEVENT_Exception:
+                TRKTargetInterrupt(&event);
+                break;
+
+            case NUBEVENT_Support:
+                TRKTargetSupportRequest();
+                break;
+            }
+
+            TRKDestructEvent(&event);
+            continue;
+        }
+
+        if ((isNewInput == FALSE) || (*(u8*)gTRKInputPendingPtr != '\0')) {
+            isNewInput = TRUE;
+            TRKGetInput();
+            continue;
+        }
+
+        if (TRKTargetStopped() == FALSE) {
+            TRKTargetContinue();
+        }
+        isNewInput = FALSE;
+    }
 }

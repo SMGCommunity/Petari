@@ -1,84 +1,69 @@
-#include "portable/nubinit.h"
-#include "portable/dserror.h"
-#include "portable/dispatch.h"
-#include "portable/serpoll.h"
-#include "dolphin.h"
+#include "MetroTRK/Portable/nubinit.h"
+#include "MetroTRK/Portable/serpoll.h"
 
-s32 gTRKBigEndian;
+BOOL gTRKBigEndian;
 
-void TRKNubWelcome(void) {
-	TRK_board_display("MetroTRK for Revolution v0.1");
+DSError TRKInitializeNub(void) {
+    DSError ret;
+    DSError uartErr;
+
+    ret = TRKInitializeEndian();
+
+    if (ret == DS_NoError) {
+        usr_put_initialize();
+    }
+    if (ret == DS_NoError) {
+        ret = TRKInitializeEventQueue();
+    }
+    if (ret == DS_NoError) {
+        ret = TRKInitializeMessageBuffers();
+    }
+    if (ret == DS_NoError) {
+        ret = TRKInitializeDispatcher();
+    }
+    InitializeProgramEndTrap();
+    if (ret == DS_NoError) {
+        ret = TRKInitializeSerialHandler();
+    }
+    if (ret == DS_NoError) {
+        ret = TRKInitializeTarget();
+    }
+    if (ret == DS_NoError) {
+        uartErr = TRKInitializeIntDrivenUART(0x0000e100, 1, 0, &gTRKInputPendingPtr);
+        TRKTargetSetInputPendingPtr(gTRKInputPendingPtr);
+        if (uartErr != DS_NoError) {
+            ret = uartErr;
+        }
+    }
+    return ret;
 }
 
 DSError TRKTerminateNub(void) {
-	TRKTerminateSerialHandler();
-	return kNoError;
+    TRKTerminateSerialHandler();
+    return DS_NoError;
 }
 
-s32 TRKInitializeEndian(void) {
-	ui8 bendian[4];
-	s32 result = false;
-	gTRKBigEndian = true;
-
-	bendian[0] = 0x12;
-	bendian[1] = 0x34;
-	bendian[2] = 0x56;
-	bendian[3] = 0x78;
-
-	if (*(ui32*)bendian == 0x12345678) {
-		gTRKBigEndian = true;
-	} 
-    else if (*(ui32*)bendian == 0x78563412) {
-		gTRKBigEndian = false;
-	} 
-    else {
-		result = true;
-	}
-
-    /* v0.1 has this call, v0.4 removes it */
-    if (result == false) {
-        usr_put_initialize();
-    }
-
-	return result;
+void TRKNubWelcome(void) {
+    TRK_board_display("MetroTRK for GAMECUBE v2.6");
+    return;
 }
 
-DSError TRKInitializeNub(void) {
-	DSError result;
-	DSError resultTemp;
+BOOL TRKInitializeEndian(void) {
+    u8 bendian[4];
+    BOOL result = FALSE;
+    gTRKBigEndian = TRUE;
 
-	result = TRKInitializeEndian();
+    bendian[0] = 0x12;
+    bendian[1] = 0x34;
+    bendian[2] = 0x56;
+    bendian[3] = 0x78;
 
-	if (result == kNoError) {
-		result = TRKInitializeEventQueue();
-	}
-
-	if (result == kNoError) {
-		result = TRKInitializeMessageBuffers();
-	}
-
-    /* v0.1 has this call, v0.4 removes it */
-    if (result == kNoError) {
-        result = TRKInitializeDispatcher();
+    if (*(u32*)bendian == 0x12345678) {
+        gTRKBigEndian = TRUE;
+    } else if (*(u32*)bendian == 0x78563412) {
+        gTRKBigEndian = FALSE;
+    } else {
+        result = TRUE;
     }
-    
-	InitializeProgramEndTrap();
-
-	if (result == kNoError) {
-		result = TRKInitializeSerialHandler();
-	}
-
-	if (result == kNoError) {
-		result = TRKInitializeTarget();
-	}
-
-	if (result == kNoError) {
-		/* v0.4 has this line as resultTemp = TRK_InitializeIntDrivenUART(1, 0, &gTRKInputPendingPtr); */
-		resultTemp = TRKInitializeIntDrivenUART(0xE100, 1, 0, &gTRKInputPendingPtr);
-		TRKTargetSetInputPendingPtr(gTRKInputPendingPtr);
-		if (resultTemp != kNoError) {
-			result = resultTemp;
-		}
-	}
-	return result;
+    return result;
 }

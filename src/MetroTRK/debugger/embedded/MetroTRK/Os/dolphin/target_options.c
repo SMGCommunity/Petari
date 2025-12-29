@@ -1,14 +1,16 @@
-#include "TRK_Types.h"
+/**
+ * target_options.c
+ * Description:
+ */
 
-static u8 bUseSerialIO;
+#include "Os/dolphin/target_options.h"
 
-/* this is about as close as you are going to get */
-u8 GetUseSerialIO(void)
-{
-    return bUseSerialIO;
+static u8 useSerialIO;
+
+void SetUseSerialIO(u8 serialIO) {
+    useSerialIO = serialIO;
 }
 
-void SetUseSerialIO(u8 result) {
-    bUseSerialIO = result;
-    return;
+u8 GetUseSerialIO(void) {
+    return useSerialIO;
 }

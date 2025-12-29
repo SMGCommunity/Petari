@@ -12,7 +12,6 @@ public:
 
     void pauseOff();
 
-private:
     /* 0x0C */ ImageEffectResource* mResource;
     /* 0x10 */ ImageEffectDirector* mDirector;
 };

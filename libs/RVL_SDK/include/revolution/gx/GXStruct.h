@@ -5,8 +5,8 @@
 extern "C" {
 #endif
 
-#include <revolution/types.h>
 #include <revolution/gx/GXEnum.h>
+#include <revolution/types.h>
 #include <revolution/vi/vitypes.h>
 
 typedef struct _GXColor {
@@ -30,11 +30,16 @@ typedef struct _GXLightObj {
 } GXLightObj;
 
 typedef struct _GXVtxAttrFmtList {
-    GXAttr        attr;
-    GXCompCnt     cnt;
-    GXCompType    type;
-    u8            frac;
+    GXAttr attr;
+    GXCompCnt cnt;
+    GXCompType type;
+    u8 frac;
 } GXVtxAttrFmtList;
+
+typedef struct _GXVtxDescList {
+    GXAttr attr;
+    GXAttrType type;
+} GXVtxDescList;
 
 typedef struct _GXTexRegion {
     u32 dummy[4];
@@ -68,4 +73,4 @@ typedef struct _GXFogAdjTable {
 }
 #endif
 
-#endif // GXSTRUCT_H
+#endif  // GXSTRUCT_H

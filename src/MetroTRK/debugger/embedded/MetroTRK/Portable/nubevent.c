@@ -1,85 +1,63 @@
-#include "portable/nubevent.h"
-#include "portable/mutex_TRK.h"
-#include "portable/mem_TRK.h"
+#include "MetroTRK/Portable/nubevent.h"
 
-typedef struct EventQueue {
-    DSMutex fMutex;
-    int fCount;
-    int fFirst;
-    NubEvent fEventList[2];
-    NubEventID fEventID;
-} EventQueue;
+TRKEventQueue gTRKEventQueue;
 
-EventQueue gTRKEventQueue;
-
-void TRKDestructEvent(NubEvent* oldEvent) {
-    TRKReleaseBuffer(oldEvent->fMessageBufferID);
+DSError TRKInitializeEventQueue() {
+    TRKInitializeMutex(&gTRKEventQueue);
+    TRKAcquireMutex(&gTRKEventQueue);
+    gTRKEventQueue.count = 0;
+    gTRKEventQueue.next = 0;
+    gTRKEventQueue.eventID = 0x100;
+    TRKReleaseMutex(&gTRKEventQueue);
+    return DS_NoError;
 }
 
-void TRKConstructEvent(NubEvent *newEvent, NubEventType type) {
-    newEvent->fType = type;
-    newEvent->fID = 0;
-    newEvent->fMessageBufferID = -1;
-}
-
-void TRKCopyEvent(NubEvent *dstEvent, const NubEvent *srcEvent) {
-    TRK_memcpy(dstEvent, srcEvent, sizeof(*dstEvent));
-}
-
-int TRKPostEvent(const NubEvent *copiedEvent) {
-    int result = 0;
-    int nextEntry;
-
-    TRKAcquireMutex(&gTRKEventQueue.fMutex);
-
-    if (gTRKEventQueue.fCount == 2) {
-        result = 0x100;
+BOOL TRKGetNextEvent(TRKEvent* event) {
+    BOOL status = 0;
+    TRKAcquireMutex(&gTRKEventQueue);
+    if (0 < gTRKEventQueue.count) {
+        TRK_memcpy(event, &gTRKEventQueue.events[gTRKEventQueue.next], sizeof(TRKEvent));
+        gTRKEventQueue.count--;
+        if (++gTRKEventQueue.next == 2) {
+            gTRKEventQueue.next = 0;
+        }
+        status = 1;
     }
-    else {
-        nextEntry = (gTRKEventQueue.fFirst + gTRKEventQueue.fCount) % 2;
-        TRKCopyEvent(&gTRKEventQueue.fEventList[nextEntry], copiedEvent);
+    TRKReleaseMutex(&gTRKEventQueue);
+    return status;
+}
 
-        gTRKEventQueue.fEventList[nextEntry].fID = gTRKEventQueue.fEventID;
-        gTRKEventQueue.fEventID++;
+DSError TRKPostEvent(TRKEvent* event) {
+    DSError ret = DS_NoError;
+    int nextEventID;
 
-        if (gTRKEventQueue.fEventID < 0x100) {
-            gTRKEventQueue.fEventID = 0x100;
+    TRKAcquireMutex(&gTRKEventQueue);
+
+    if (gTRKEventQueue.count == 2) {
+        ret = DS_EventQueueFull;
+
+    } else {
+        nextEventID = (gTRKEventQueue.next + gTRKEventQueue.count) % 2;
+        TRK_memcpy(&gTRKEventQueue.events[nextEventID], event, sizeof(TRKEvent));
+        gTRKEventQueue.events[nextEventID].eventID = gTRKEventQueue.eventID;
+
+        if (++gTRKEventQueue.eventID < 0x100) {
+            gTRKEventQueue.eventID = 0x100;
         }
 
-        gTRKEventQueue.fCount++;
+        gTRKEventQueue.count++;
     }
 
-    TRKReleaseMutex(&gTRKEventQueue.fMutex);
-    return result;
+    TRKReleaseMutex(&gTRKEventQueue);
+    return ret;
 }
 
-s32 TRKGetNextEvent(NubEvent* resultEvent) {
-    s32 result = 0;
-
-    TRKAcquireMutex(&gTRKEventQueue.fMutex);
-
-    if (gTRKEventQueue.fCount > 0) {
-        TRKCopyEvent(resultEvent, &gTRKEventQueue.fEventList[gTRKEventQueue.fFirst]);
-        gTRKEventQueue.fCount--;
-        gTRKEventQueue.fFirst++;
-
-        if (gTRKEventQueue.fFirst == 2) {
-            gTRKEventQueue.fFirst = 0;
-        }
-
-        result = 1;
-    }
-
-    TRKReleaseMutex(&gTRKEventQueue.fMutex);
-    return result;
+void TRKConstructEvent(TRKEvent* event, NubEventType eventType) {
+    event->eventType = eventType;
+    event->eventID = 0;
+    event->msgBufID = -1;
 }
 
-int TRKInitializeEventQueue(void) {
-    TRKInitializeMutex(&gTRKEventQueue.fMutex);
-    TRKAcquireMutex(&gTRKEventQueue.fMutex);
-    gTRKEventQueue.fCount = 0;
-    gTRKEventQueue.fFirst = 0;
-    gTRKEventQueue.fEventID = 0x100;
-    TRKReleaseMutex(&gTRKEventQueue.fMutex);
-    return 0;
+void TRKDestructEvent(TRKEvent* event) {
+    TRKReleaseBuffer(event->msgBufID);
 }

@@ -28,6 +28,7 @@
 #include "Game/NPC/PenguinMaster.hpp"
 #include "Game/NPC/PenguinStudent.hpp"
 #include "Game/NPC/PowerStarEventKeeper.hpp"
+#include "Game/NPC/Rosetta.hpp"
 #include "Game/NPC/RosettaReading.hpp"
 #include "Game/NPC/SignBoard.hpp"
 #include "Game/NPC/StageStateKeeper.hpp"

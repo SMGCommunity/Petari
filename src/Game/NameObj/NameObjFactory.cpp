@@ -734,7 +734,7 @@ namespace {
         },
         {
             "Rosetta",
-            nullptr,
+            createNameObj< Rosetta >,
             nullptr,
         },
         {
@@ -859,7 +859,7 @@ namespace {
         },
         {
             "SurfRay",
-            nullptr,  // createNameObj< SurfRay > // issues with creation
+            createNameObj< SurfRay >,
             "SurfRay",
         },
         {
@@ -874,7 +874,7 @@ namespace {
         },
         {
             "Trapeze",
-            nullptr,
+            createNameObj< Trapeze >,
             "Trapeze",
         },
         {
@@ -889,7 +889,7 @@ namespace {
         },
         {
             "WarpPod",
-            nullptr,
+            createNameObj< WarpPod >,
             "WarpPod",
         },
         {
@@ -3569,7 +3569,7 @@ namespace {
         },
         {
             "FlexibleSandPlanetPartsA",
-            nullptr,
+            createNameObj< FlexibleSphere >,
             "FlexibleSandPlanetPartsA",
         },
         {
@@ -7849,7 +7849,10 @@ namespace {
             "PenguinRacerLeader",
             NPCActor::makeArchiveListDefault,
         },
-        {"Rosetta", /* Rosetta::makeArchiveList, */},
+        {
+            "Rosetta",
+            Rosetta::makeArchiveList,
+        },
         {
             "HoneyBee",
             HoneyBee::makeArchiveList,

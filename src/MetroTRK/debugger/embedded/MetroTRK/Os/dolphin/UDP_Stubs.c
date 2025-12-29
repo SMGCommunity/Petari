@@ -1,42 +1,42 @@
-#include "TRK_Types.h"
+/**
+ * UDP_Stubs.c
+ * Description:
+ */
 
-typedef void (*DBCallback)(s32, void *);
+#include "Os/dolphin/UDP_Stubs.h"
 
-s32 udp_cc_post_stop(void)
-{
+__declspec(weak) int udp_cc_initialize(void* flagOut, __OSInterruptHandler handler) {
     return -1;
 }
 
-s32 udp_cc_pre_continue(void)
-{
+__declspec(weak) int udp_cc_shutdown(void) {
     return -1;
 }
 
-s32 udp_cc_peek(void)
-{
+__declspec(weak) int udp_cc_open(void) {
+    return -1;
+}
+
+__declspec(weak) int udp_cc_close(void) {
+    return -1;
+}
+
+__declspec(weak) int udp_cc_read(u8* dest, int size) {
     return 0;
 }
 
-s32 udp_cc_write(u8 *buffer, s32 length) {
+__declspec(weak) int udp_cc_write(const u8* src, int size) {
     return 0;
 }
 
-s32 udp_cc_read(u8 *buffer, s32 length) {
-    return 0;   
+__declspec(weak) int udp_cc_peek(void) {
+    return 0;
 }
 
-s32 udp_cc_close(void) {
+__declspec(weak) int udp_cc_pre_continue(void) {
     return -1;
 }
 
-s32 udp_cc_open(void) {
-    return -1;
-}
-
-s32 udp_cc_shutdown(void) {
-    return -1;
-}
-
-s32 udp_cc_initialize(volatile u8 **inputPendingPtrRef, DBCallback cb) {
+__declspec(weak) int udp_cc_post_stop(void) {
     return -1;
 }

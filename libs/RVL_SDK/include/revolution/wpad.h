@@ -13,7 +13,9 @@ typedef void (*WPADConnectCallback)(s32 chan, s32 reason);
 typedef void (*WPADCallback)(s32 chan, s32 result);
 typedef void* (*WPADAlloc)(u32 size);
 typedef u8 (*WPADFree)(void* ptr);
+typedef void (*WPADSyncDeviceCallback)(s32 result, s32 num);
 typedef void (*WPADSamplingCallback)(s32 chan);
+typedef void (*WPADFlushCallback)(u32 result);
 
 typedef u32 WPADDeviceType;
 typedef s32 WPADChannel;
@@ -41,6 +43,23 @@ typedef s32 WPADChannel;
 #define WPAD_BUTTON_Z 0x2000
 #define WPAD_BUTTON_C 0x4000
 #define WPAD_BUTTON_HOME 0x8000
+
+#define WPAD_CL_BUTTON_UP 0x0001
+#define WPAD_CL_BUTTON_LEFT 0x0002
+#define WPAD_CL_TRIGGER_ZR 0x0004
+#define WPAD_CL_BUTTON_X 0x0008
+#define WPAD_CL_BUTTON_A 0x0010
+#define WPAD_CL_BUTTON_Y 0x0020
+#define WPAD_CL_BUTTON_B 0x0040
+#define WPAD_CL_TRIGGER_ZL 0x0080
+#define WPAD_CL_RESERVED 0x0100
+#define WPAD_CL_TRIGGER_R 0x0200
+#define WPAD_CL_BUTTON_PLUS 0x0400
+#define WPAD_CL_BUTTON_HOME 0x0800
+#define WPAD_CL_BUTTON_MINUS 0x1000
+#define WPAD_CL_TRIGGER_L 0x2000
+#define WPAD_CL_BUTTON_DOWN 0x4000
+#define WPAD_CL_BUTTON_RIGHT 0x8000
 
 #define WPAD_DPD_MAX_OBJECTS 4
 #define WPAD_DPD_IMG_RESO_WX 1024
@@ -119,6 +138,20 @@ typedef s32 WPADChannel;
 #define WPAD_WRITE_LEN_MASK (u16)(0x001F)
 #define WPAD_READ_ULEN_MASK (u16)(0xFF00)
 #define WPAD_READ_LLEN_MASK (u16)(0x00FF)
+
+#define WPAD_BTN_HCURSOR_MASK (WPAD_BUTTON_LEFT | WPAD_BUTTON_RIGHT)
+#define WPAD_BTN_VCURSOR_MASK (WPAD_BUTTON_UP | WPAD_BUTTON_DOWN)
+#define WPAD_CLB_HCURSOR_MASK (WPAD_CL_BUTTON_LEFT | WPAD_CL_BUTTON_RIGHT)
+#define WPAD_CLB_VCURSOR_MASK (WPAD_CL_BUTTON_UP | WPAD_CL_BUTTON_DOWN)
+
+#define SPK_CLK_REG 0x04a20009
+#define SPK_CLK_ON 1
+#define SPK_CLK_OFF 0
+#define SPK_RST_REG 0x04a20001
+#define SPK_DERESET 0x01
+#define SPK_RESET 0x80
+#define SPK_CTRL_REG 0x04a20008
+#define SPK_CTRL_PLAY 1
 
 typedef struct DPDObject {
     s16 x;

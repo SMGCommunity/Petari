@@ -2,16 +2,16 @@
 
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/Map/WaterInfo.hpp"
-#include "revolution/mtx.h"
-#include "revolution/types.h"
-#include <JSystem/JGeometry/TVec.hpp>
 
 class ActorJointCtrl;
 class ProjmapEffectMtxSetter;
 
 class SurfRay : public LiveActor {
 public:
-    SurfRay(const char*, s32);
+    /// @brief Creates a new `SurfRay`.
+    /// @param pName A pointer to the null-terminated name of the object.
+    /// @param padChannel The handle to the Wii Remote.
+    SurfRay(const char* pName, s32 padChannel = 0);
 
     virtual void init(const JMapInfoIter&);
     virtual void control();
@@ -70,13 +70,10 @@ public:
 
     /* 0xFC */ LiveActor* mRider;
 
-    /* 0x100 */ s32 mChannel;
+    /* 0x100 */ s32 mPadChannel;
     /* 0x104 */ f32 mRayTilt;
     /* 0x108 */ bool mInWater;
-    /* 0x109 */ u8 _109;  // not used?
-    /* 0x10A */ u8 _10A;  // not used?
-    /* 0x10B */ u8 _10B;  // not used?
-    /* 0x10C */ s32 mAirtime;
+    /* 0x10C */ s32 mAirTime;
     /* 0x110 */ TVec3f mWaterNormal;
     /* 0x11C */ WaterInfo mWaterInfo;
     /* 0x16C */ TVec3f mWaterShadowPos;
@@ -87,8 +84,6 @@ public:
 
     /* 0x184 */ bool mInTutorialArea;
     /* 0x185 */ bool mInTutorial;
-    /* 0x186 */ u8 _186;  // not used?
-    /* 0x187 */ u8 _187;  // not used?
     /* 0x188 */ s32 mLectureIdx;
 
     /* 0x18C */ TPos3f mEffectHostMtx;

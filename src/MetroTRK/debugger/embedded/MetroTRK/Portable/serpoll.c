@@ -1,94 +1,75 @@
-#include "portable/msgbuf.h"
-#include "portable/msghndlr.h"
-#include "portable/nubevent.h"
-#include "portable/serframe.h"
-#include "export/UART.h"
+#include "MetroTRK/Portable/serpoll.h"
+#include "MetroTRK/Portable/nubevent.h"
+#include "trk.h"
 
-typedef enum ReceiverState {
-	kWaitFlag,
-	kFoundFlag,
-	kInFrame,
-	kFrameOverflow
-} ReceiverState;
+static TRKFramingState gTRKFramingState;
 
-typedef struct FramingState {
-    MessageBufferID fBufferID;
-    MessageBuffer* fBuffer;
-    ReceiverState fReceiveState;
-    int fEscape;
-    FCSType fFCS;
-} FramingState;
+void* gTRKInputPendingPtr;
 
-static void* gTRKInputPendingPtr;
-static FramingState gTRKFramingState;
+MessageBufferID TRKTestForPacket() {
+    u8 payloadBuf[0x880];
+    u8 packetBuf[0x40];
+    int bufID;
+    TRKBuffer* msg;
+    MessageBufferID result;
 
-int TRKInitializeSerialHandler(void) {
-    gTRKFramingState.fBufferID = -1;
-    gTRKFramingState.fReceiveState = 0;
-    gTRKFramingState.fEscape = 0;
-    return 0;
-}
+    if (TRKPollUART() <= 0) {
+        return -1;
+    }
 
-int TRKTerminateSerialHandler(void) {
-    return 0;
-}
+    result = TRKGetFreeBuffer(&bufID, &msg);
 
-void TRKProcessInput(MessageBufferID bufferID) {
-    NubEvent event;
-    TRKConstructEvent(&event, kRequestEvent);
-    event.fMessageBufferID = bufferID;
-    gTRKFramingState.fBufferID = -1;
-    TRKPostEvent(&event);
+    TRKSetBufferPosition(msg, 0);
+    if (TRKReadUARTN(packetBuf, 0x40) == UART_NoError) {
+        int readSize;
+
+        TRKAppendBuffer_ui8(msg, packetBuf, 0x40);
+        readSize = ((u32*)packetBuf)[0] - 0x40;
+        result = bufID;
+        if (readSize > 0) {
+            if (TRKReadUARTN(payloadBuf, ((u32*)packetBuf)[0] - 0x40) == UART_NoError) {
+                TRKAppendBuffer_ui8(msg, payloadBuf, ((u32*)packetBuf)[0]);
+            } else {
+                TRKReleaseBuffer(result);
+                result = -1;
+            }
+        }
+    } else {
+        TRKReleaseBuffer(result);
+        result = -1;
+    }
+
+    return result;
 }
 
 void TRKGetInput(void) {
-    MessageBuffer* msgBuffer;
-    MessageBufferID bufferID;
-    NubEvent event;
-
-    bufferID = TRKTestForPacket();
-
-    if (bufferID != -1) {
-        msgBuffer = TRKGetBuffer(bufferID);
-        TRKConstructEvent(&event, 2);
-        event.fMessageBufferID = bufferID;
-        gTRKFramingState.fBufferID = -1;
+    MessageBufferID id = TRKTestForPacket();
+    if (id != -1) {
+        TRKEvent event;
+        TRKGetBuffer(id);
+        TRKConstructEvent(&event, NUBEVENT_Request);
+        event.msgBufID = id;
+        gTRKFramingState.msgBufID = -1;
         TRKPostEvent(&event);
     }
 }
 
-MessageBufferID TRKTestForPacket(void) {
-    MessageBufferID bufferID;
-    MessageBufferID replyID;
-    MessageBuffer *msgbuf;
-    int data[16];
+void TRKProcessInput(int bufferIdx) {
+    TRKEvent event;
 
-    if (TRKPollUART() <= kNoError) {
-        return -1;
-    }
+    TRKConstructEvent(&event, NUBEVENT_Request);
+    event.msgBufID = bufferIdx;
+    gTRKFramingState.msgBufID = -1;
+    TRKPostEvent(&event);
+}
 
-    replyID = TRKGetFreeBuffer(&bufferID, &msgbuf);
-    TRKSetBufferPosition(msgbuf, 0);
+DSError TRKInitializeSerialHandler() {
+    gTRKFramingState.msgBufID = -1;
+    gTRKFramingState.receiveState = DSRECV_Wait;
+    gTRKFramingState.isEscape = FALSE;
+    return DS_NoError;
+}
 
-    if (TRKReadUARTN(data, 0x40) == 0) {
-        TRKAppendBuffer_ui8(msgbuf, (const u8*)data, 0x40);
-        replyID = bufferID;
-
-        if ((data[0] - 0x40 ) > 0) {
-            char buffer[0x880];
-            if (TRKReadUARTN(buffer, (u32)(data[0] - 0x40)) == 0) {
-                TRKAppendBuffer_ui8(msgbuf, (const u8*)buffer, data[0]);
-            }
-            else {
-                TRKReleaseBuffer(replyID);
-                replyID = -1;
-            }
-        }
-    }
-    else {
-        TRKReleaseBuffer(replyID);
-        replyID = -1;
-    }
-
-    return replyID;
+DSError TRKTerminateSerialHandler(void) {
+    return DS_NoError;
 }

@@ -1,27 +1,34 @@
-#include "portable/msghndlr.h"
+/**
+ * usr_put.c
+ * Description:
+ */
 
-extern void OSReport(const char *);
+#include "Os/dolphin/usr_put.h"
+// #include "dolphin/os.h"
 
-void usr_put_initialize() {
-    
-}
+// void OSReport(char* fmt, ...) causes extra crclr instruction.
+// look into issue later
+extern void OSReport(char* fmt);
 
-int usr_puts_serial(const char *s) {
-    int result = 0;
+BOOL usr_puts_serial(const char* msg) {
+    BOOL connect_ = FALSE;
     char c;
     char buf[2];
 
-    while ((result == 0) && (c = *s++) != 0) {
-        int conn = GetTRKConnected();
+    while (!connect_ && (c = *msg++) != '\0') {
+        BOOL connect = GetTRKConnected();
 
         buf[0] = c;
         buf[1] = '\0';
 
-        SetTRKConnected(0);
+        SetTRKConnected(FALSE);
         OSReport(buf);
-        SetTRKConnected(conn);
-        result = 0;
+
+        SetTRKConnected(connect);
+        connect_ = FALSE;
     }
 
-    return result;
+    return connect_;
 }
+
+void usr_put_initialize(void) {}
