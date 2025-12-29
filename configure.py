@@ -1775,7 +1775,7 @@ config.libs = [
     GameLib(
         "NameObj",
         [
-            Object(NonMatching, "Game/NameObj/ModelChangableObjFactory.cpp"),
+            Object(Matching, "Game/NameObj/ModelChangableObjFactory.cpp"),
             Object(Matching, "Game/NameObj/MovementOnOffGroupHolder.cpp"),
             Object(Matching, "Game/NameObj/NameObj.cpp"),
             Object(Matching, "Game/NameObj/NameObjAdaptor.cpp"),

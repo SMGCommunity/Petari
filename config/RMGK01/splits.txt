@@ -6043,13 +6043,14 @@ Game/MapObj/MapPartsSeesaw1AxisRotator.cpp:
 Game/MapObj/MapPartsSeesaw2AxisRotator.cpp:
 	.text       start:0x802608D8 end:0x80261080
 	.ctors      start:0x8052EF74 end:0x8052EF78
-	.data       start:0x805A75D8 end:0x805A7730
+	.data       start:0x805A75D8 end:0x805A7660
 	.sbss       start:0x806B5BD0 end:0x806B5BE0
 	.sdata2     start:0x806BE9C8 end:0x806BE9E8
 
 Game/NameObj/ModelChangableObjFactory.cpp:
 	.text       start:0x80261080 end:0x8026144C
 	.rodata     start:0x80534E70 end:0x80534F00
+	.data       start:0x805A7660 end:0x805A7730
 
 Game/NameObj/MovementOnOffGroupHolder.cpp:
 	.text       start:0x8026144C end:0x802616B4
