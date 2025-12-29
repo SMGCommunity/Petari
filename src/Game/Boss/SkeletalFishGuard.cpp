@@ -483,7 +483,7 @@ void SkeletalFishGuard::rotateVertical(const TVec3f& a2, f32 a3) {
         f32 v8 = (0.5f * v7);
         f32 v9 = sin(v8);
         TQuat4f v10;
-        v10.scale(v9, v12);
+        v10.toTvec()->scale(v9, v12);
         v10.w = cos(v8);
         v10.transform(_D0);
     }
