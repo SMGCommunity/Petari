@@ -34,6 +34,8 @@ public:
 
 class WalkerStateRunaway : public ActorStateBase< LiveActor > {
 public:
+    WalkerStateRunaway(LiveActor* pActor, TVec3f* a2, WalkerStateRunawayParam* pParam);
+
     virtual ~WalkerStateRunaway();
     virtual void appear();
 

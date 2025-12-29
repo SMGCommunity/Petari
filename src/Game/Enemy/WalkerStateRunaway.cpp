@@ -1,6 +1,7 @@
 #include "Game/Enemy/WalkerStateRunaway.hpp"
 #include "Game/Util/ActorMovementUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 
 namespace {
@@ -12,6 +13,101 @@ namespace NrvWalkerStateRunaway {
     NEW_NERVE(WalkerStateRunawayNrvRunaway, WalkerStateRunaway, Runaway);
     NEW_NERVE(WalkerStateRunawayNrvWallJump, WalkerStateRunaway, WallJump);
 };  // namespace NrvWalkerStateRunaway
+
+WalkerStateRunawayParam::WalkerStateRunawayParam() {
+    _0 = "FollowMe";
+    _4 = "Run";
+    _8 = "Jump";
+    _C = 0.050000001f;
+    _10 = 1.0f;
+    _14 = 0.89999998f;
+    _18 = 0.99000001f;
+    _1C = 5;
+    _20 = 3.0f;
+    _24 = 1100.0f;
+    _28 = 1300.0f;
+    _2C = 10.0f;
+    _30 = 3.0f;
+    _34 = 30;
+    _38 = 25.0f;
+    _3C = 1.0f;
+    _40 = 0.89999998f;
+    _44 = 1.4f;
+    _48 = 6;
+    _4C = 0.30000001f;
+    _50 = 8.0f;
+    _54 = 15.0f;
+}
+
+WalkerStateRunaway::WalkerStateRunaway(LiveActor* pActor, TVec3f* a2, WalkerStateRunawayParam* pParam)
+    : ActorStateBase< LiveActor >("歩行型アクター逃げ") {
+    mParentActor = pActor;
+    mParam = pParam;
+    _14 = a2;
+    _18 = 0;
+    _1C = 1.0f;
+
+    if (pParam == nullptr) {
+        mParam = &sDefaultParam;
+    }
+
+    initNerve(&NrvWalkerStateRunaway::WalkerStateRunawayNrvWait::sInstance);
+}
+
+void WalkerStateRunaway::appear() {
+    mIsDead = false;
+    setNerve(&NrvWalkerStateRunaway::WalkerStateRunawayNrvWait::sInstance);
+    _18 = 0;
+}
+
+bool WalkerStateRunaway::tryRunaway() {
+    if (MR::isNearPlayer(mParentActor, mParam->_24)) {
+        setNerve(&NrvWalkerStateRunaway::WalkerStateRunawayNrvRunaway::sInstance);
+        return true;
+    }
+
+    return false;
+}
+
+bool WalkerStateRunaway::tryWait() {
+    bool isNear = !MR::isNearPlayer(mParentActor, mParam->_28);
+    if (isNear) {
+        setNerve(&NrvWalkerStateRunaway::WalkerStateRunawayNrvWait::sInstance);
+        return true;
+    }
+
+    return false;
+}
+
+bool WalkerStateRunaway::tryWallJump() {
+    if (MR::isBindedWall(mParentActor) && MR::calcHitPowerToWall(mParentActor) > 0.0f) {
+        TVec3f horiz;
+        MR::calcVecFromPlayerH(&horiz, mParentActor);
+        TVec3f wallNorml;
+        MR::calcWallNormalHorizontal(&wallNorml, mParentActor);
+
+        if (MR::isOppositeDirection(horiz, wallNorml, 0.0099999998f)) {
+            f32 dir;
+            if (MR::isHalfProbability()) {
+                dir = mParam->_50;
+            } else {
+                dir = -mParam->_50;
+            }
+
+            MR::addVelocityClockwiseToDirection(mParentActor, wallNorml, dir);
+        } else {
+            TVec3f dir;
+            JMathInlineVEC::PSVECAdd(&horiz, &wallNorml, &dir);
+            MR::addVelocityMoveToDirection(mParentActor, dir, mParam->_50);
+        }
+
+        MR::addVelocityJump(mParentActor, mParam->_54);
+        setNerve(&NrvWalkerStateRunaway::WalkerStateRunawayNrvWallJump::sInstance);
+        return true;
+    }
+
+    return false;
+}
 
 void WalkerStateRunaway::exeWait() {
     if (MR::isFirstStep(this)) {
