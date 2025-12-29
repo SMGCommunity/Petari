@@ -456,7 +456,7 @@ bool TalkMessageCtrl::inMessageArea() const {
     return false;
 }
 
-bool TalkMessageCtrl::isNearPlayer(float distance) const {
+bool TalkMessageCtrl::isNearPlayer(f32 distance) const {
     if (mNodeCtrl->mMessageInfo.isNullTalk()) {
         return false;
     }
@@ -466,21 +466,21 @@ bool TalkMessageCtrl::isNearPlayer(float distance) const {
     }
 
     // regswap between f31 and f30
-    float talkDist = mTalkDistance;
+    f32 talkDist = mTalkDistance;
     if (distance <= 0.0f && mNodeCtrl->mMessageInfo.isComposeTalk()) {
-        float scale = 2.0f;
+        f32 scale = 2.0f;
         talkDist = distance * scale;
     }
 
     TVec3f v2(mHostActor->mPosition);  // 0x44
-
     if (mMtx != nullptr) {
-        v2.set< float >(mMtx[0][3], mMtx[1][3], mMtx[2][3]);
+        v2.set< f32 >(mMtx[0][3], mMtx[1][3], mMtx[2][3]);
     }
 
     TVec3f v3;  // 0x38
-    float f2 = MR::vecKillElement(v2 - *MR::getPlayerCenterPos(), mHostActor->mGravity, &v3);
+    f32 f2 = MR::vecKillElement(v2 - *MR::getPlayerCenterPos(), mHostActor->mGravity, &v3);
 
+    // Somehow can't get bgt to generate. Putting <= at the first comparison generates a cror eq, lt, eq
     if (__fabs(f2) < talkDist && v3.squared() < talkDist * talkDist) {
         TalkMessageInfo* info = &mNodeCtrl->mMessageInfo;
         bool cond = info->mTalkType;
@@ -492,17 +492,16 @@ bool TalkMessageCtrl::isNearPlayer(float distance) const {
             f32 setZ = pos[2][2];
             f32 setY = pos[1][2];
             f32 setX = pos[0][2];
-            v3.set< float >(setX, setY, setZ);
+            v3.set< f32 >(setX, setY, setZ);
 
             TVec3f v4;  // 0x20
             setZ = pos[2][3];
             setY = pos[1][3];
             setX = pos[0][3];
-            v4.set< float >(setX, setY, setZ);
+            v4.set< f32 >(setX, setY, setZ);
+            v4.setPS2(*MR::getPlayerPos() - v4);
 
-            f32 f3 = v4.z;
-
-            f2 = MR::vecKillElement((*MR::getPlayerPos() - v4), v3, &v4);
+            f2 = MR::vecKillElement(v4, v3, &v4);
 
             if (f2 > 0.0f) {
                 return true;
@@ -522,21 +521,15 @@ void TalkMessageCtrl::updateBalloonPos() {
         pos.set(mMtx);
     }
 
-    TPos3f* tPos = MR::getCameraInvViewMtx();
-    TPos3f* tPos2;
-    // loop
-
-    TVec3f nullVec(0.0f, 0.0f, 0.0f);
-    MtxPtr newMatrix;
-    MR::setMtxTrans(newMatrix, nullVec.x, nullVec.y, nullVec.z);
-    MR::addTransMtxLocal(newMatrix, _2C);
-
+    TPos3f tPos = *MR::getCameraInvViewMtx();
     TVec3f v3;
-    v3.set(newMatrix[3][0], newMatrix[3][1], newMatrix[3][2]);
+    TVec3f nullVec(0.0f, 0.0f, 0.0f);
+    MR::setMtxTrans(tPos, nullVec.x, nullVec.y, nullVec.z);
+    MR::addTransMtxLocal(tPos, _2C);
 
-    TVec3f v4(newMatrix[2][0], newMatrix[2][1], newMatrix[2][2]);
-
-    MR::calcScreenPosition(&_1C, v4 + v3);
+    v3.set< f32 >(pos[0][3], pos[1][3], pos[2][3]);
+    v3.addInLine(TVec3f(tPos[0][3], tPos[1][3], tPos[2][3]));
+    MR::calcScreenPosition(&_1C, v3);
 }
 
 TalkMessageCtrl::TalkMessageCtrl(LiveActor* pHost, const TVec3f& arg2, MtxPtr pArg3)
