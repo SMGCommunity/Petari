@@ -563,3 +563,33 @@ bool MR::isActiveTalkBalloonShort() {
 bool TalkFunction::requestTalkSystem(TalkMessageCtrl* pCtrl, bool force) {
     return ((TalkDirector*)MR::getSceneObjHolder()->getObj(0x19))->request(pCtrl, force);
 }
+
+void TalkFunction::startTalkSystem(TalkMessageCtrl* pControl, bool force, bool demo, bool notPuppetable) {
+    ((TalkDirector*)MR::getSceneObjHolder()->getObj(0x19))->start(pControl, force, demo, notPuppetable);
+}
+
+void TalkFunction::endTalkSystem(TalkMessageCtrl* pControl) {
+    MR::getSceneObjHolder()->getObj(0x19);
+    MR::isTalkEnableEnd(pControl);
+}
+
+bool TalkFunction::isTalkSystemStart(const TalkMessageCtrl* pControl) {
+    TalkDirector* director = (TalkDirector*)MR::getSceneObjHolder()->getObj(0x19);
+
+    return director->mMsgCtrl == pControl && director->_4C;
+}
+
+bool TalkFunction::isTalkSystemEnd(const TalkMessageCtrl* pControl) {
+    TalkDirector* director = (TalkDirector*)MR::getSceneObjHolder()->getObj(0x19);
+
+    return director->mMsgCtrl == pControl && director->_4D;
+}
+
+bool TalkFunction::getBranchAstroGalaxyResult(u16 arg) {
+    return ((TalkDirector*)MR::getSceneObjHolder()->getObj(0x19))->getBranchResult(arg);
+}
+
+void TalkFunction::registerTalkSystem(TalkMessageCtrl* pControl) {
+    TalkDirector* director = (TalkDirector*)MR::getSceneObjHolder()->getObj(0x19);
+    director->mMsgControls.push_back(pControl);
+}

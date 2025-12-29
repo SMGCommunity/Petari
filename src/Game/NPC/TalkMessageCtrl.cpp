@@ -46,7 +46,6 @@ void TalkMessageCtrl::createMessageDirect(const JMapInfoIter& rIter, const char*
     _3C = 1;
 }
 
-// this functions indicates that TalkNode's mNextIdx is 4 bytes, but it is 2 bytes, according to RootNodePre.
 bool TalkMessageCtrl::rootNodeEve() {
     TalkNodeCtrl* nodeCtrl = mNodeCtrl;
     TalkNode* nodeEvent = nodeCtrl->getCurrentNodeEvent();
@@ -60,7 +59,7 @@ bool TalkMessageCtrl::rootNodeEve() {
             return true;
         }
 
-        if (mEventFunc->operator()(nodeEvent->mNextIdx) == nullptr) {
+        if (mEventFunc->operator()(nodeEvent->mUnknown) == nullptr) {
             return false;
         }
     } else if (groupID == 4) {
@@ -68,7 +67,7 @@ bool TalkMessageCtrl::rootNodeEve() {
             return true;
         }
 
-        if (mAnimeFunc->operator()(nodeEvent->mNextIdx) == nullptr) {
+        if (mAnimeFunc->operator()(nodeEvent->mUnknown) == nullptr) {
             return false;
         }
     } else if (groupID == 3) {
@@ -79,7 +78,7 @@ bool TalkMessageCtrl::rootNodeEve() {
     } else if (groupID == 6) {
         MR::onSwitchB(mHostActor);
     } else if (groupID == 7) {
-        if (mKillFunc->operator()(nodeEvent->mNextIdx) == nullptr) {
+        if (mKillFunc->operator()(nodeEvent->mUnknown) == nullptr) {
             return false;
         }
     }

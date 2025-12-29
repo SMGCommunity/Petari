@@ -16,11 +16,16 @@ public:
 
 class TalkNode {
 public:
-    u8 mNodeType;    // 0x0
-    u8 mGroupID;     // 0x1
-    u16 mIndex;      // 0x2
-    u16 mNextIdx;    // 0x4
-    u16 mNextGroup;  // 0x6
+    u8 mNodeType;  // 0x0
+    u8 mGroupID;   // 0x1
+    u16 mIndex;    // 0x2
+    union {
+        u32 mUnknown;  // 0x4
+        struct {
+            u16 mNextIdx;    // 0x4
+            u16 mNextGroup;  // 0x6
+        };
+    };
 };
 
 class MessageNode {
