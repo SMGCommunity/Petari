@@ -10,20 +10,20 @@ public:
     void entry(u16);
     bool search(u16) const;
 
-    u16 mHistory[0x10];  // 0x0
-    s32 mCount;          // 0x20
+    /* 0x0 */ u16 mHistory[0x10];
+    /* 0x20 */ s32 mCount;
 };
 
 class TalkNode {
 public:
-    u8 mNodeType;  // 0x0
-    u8 mGroupID;   // 0x1
-    u16 mIndex;    // 0x2
+    /* 0x0 */ u8 mNodeType;
+    /* 0x1 */ u8 mGroupID;
+    /* 0x2 */ u16 mIndex;
     union {
-        u32 mUnknown;  // 0x4
+        /* 0x4 */ u32 mUnknown;
         struct {
-            u16 mNextIdx;    // 0x4
-            u16 mNextGroup;  // 0x6
+            /* 0x4 */ u16 mNextIdx;
+            /* 0x6 */ u16 mNextGroup;
         };
     };
 };
@@ -59,11 +59,11 @@ public:
     void initNodeRecursive(TalkMessageCtrl*, const JMapInfoIter&, ActorCameraInfo*, RecursiveHelper*);
 
     u32 _0;
-    s32 mCurrentNodeIdx;           // 0x4
-    TalkMessageInfo mMessageInfo;  // 0x8
-    TalkMessageHistory mHistory;   // 0x14
+    /* 0x4 */ s32 mCurrentNodeIdx;
+    /* 0x8 */ TalkMessageInfo mMessageInfo;
+    /* 0x14 */ TalkMessageHistory mHistory;
     TalkNode* _38;
-    TalkNode* mCurrentNode;  // 0x3C
-    TalkNode* mFlowNode;     // 0x40
-    s16 mNodeData;           // 0x44
+    /* 0x3C */ TalkNode* mCurrentNode;
+    /* 0x40 */ TalkNode* mFlowNode;
+    /* 0x44 */ s16 mNodeData;
 };
