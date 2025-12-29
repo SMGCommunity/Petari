@@ -92,7 +92,7 @@ public:
     bool incAndCheckTiredCounter();
     bool isInWaterAndSetWaterNerve(const Nerve*, TPos3f*);
 
-    JointControlDelegator< BegomanBase >* mDelegator; // _8C
+    JointControlDelegator< BegomanBase >* mBaseDelegator; // _8C
 
     TVec3f mFaceVec; //0x90
     TVec3f mTargetVec;  // 0x9C
@@ -103,10 +103,10 @@ public:
     TQuat4f _C0;
     TQuat4f _D0;
 
-    s32 mTiredCounter;
-    s32 mElectricCounter;
+    s32 mTiredCounter; // _E0
+    s32 mElectricCounter; //_E4
 
-    TVec3f mInitPos;
+    TVec3f mInitPos; //_E8
 
     AnimScaleController* mScaleControler;
     WalkerStateBindStarPointer* mStarPointBind;

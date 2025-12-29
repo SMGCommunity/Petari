@@ -34,7 +34,7 @@ namespace {
 }  // namespace
 
 BegomanBase::BegomanBase(const char* pName)
-    : LiveActor(pName), mDelegator(nullptr), mFaceVec(0.0f, 0.0f, 1.0f), mTargetVec(0.0f, 0.0f, 1.0f), _A8(0.0f, 0.0f, -1.0f), _B4(1.0f, 1.0f, 1.0f),
+    : LiveActor(pName), mBaseDelegator(nullptr), mFaceVec(0.0f, 0.0f, 1.0f), mTargetVec(0.0f, 0.0f, 1.0f), _A8(0.0f, 0.0f, -1.0f), _B4(1.0f, 1.0f, 1.0f),
       _C0(0, 0, 0, 1), _D0(0, 0, 0, 1), mTiredCounter(0), mElectricCounter(0), mInitPos(0.0f, 0.0f, 0.0f), mScaleControler(nullptr),
       mStarPointBind(nullptr), mcanTrySetReturn(false) {}
 
@@ -71,7 +71,7 @@ void BegomanBase::initCore(const JMapInfoIter& rIter, const char* pModelArcName,
     }
     MR::connectToSceneEnemy(this);
 
-    mDelegator = MR::createJointDelegatorWithNullChildFunc(this, &BegomanBase::calcJointLocator1, "Locator1");
+    mBaseDelegator = MR::createJointDelegatorWithNullChildFunc(this, &BegomanBase::calcJointLocator1, "Locator1");
     MR::onCalcGravity(this);
     MR::initLightCtrl(this);
 
@@ -283,7 +283,7 @@ void BegomanBase::exeSignAttackCore(const MR::ActorMoveParam& rMoveParam, const 
 
     if (!requestAttack()) {
         if (!trySetReturnNerve()) {
-            setNerve(setNerveReturn());
+            setNerve(getNerveWait());
         }
     } else {
         if (MR::isActionEnd(this)) {
@@ -320,7 +320,7 @@ void BegomanBase::exePursueCore(const MR::ActorMoveParam& rMoveParam, const Nerv
 
     if (!requestAttack()) {
         if (!trySetReturnNerve()) {
-            setNerve(setNerveReturn());
+            setNerve(getNerveWait());
         }
         return;
     }
@@ -344,7 +344,7 @@ void BegomanBase::exePursueCore(const MR::ActorMoveParam& rMoveParam, const Nerv
 
     if (!trySetReturnNerve()) {
         if (2000.0f < MR::calcDistanceToPlayer(mPosition) && !trySetReturnNerve()) {
-            setNerve(setNerveReturn());
+            setNerve(getNerveWait());
         }
     }
 }
@@ -371,7 +371,7 @@ void BegomanBase::exeTurnCore(const MR::ActorMoveParam& rMoveParam, const Nerve*
 
         if (!attackRequested && MR::isGreaterStep(this, 30)) {
             if (!trySetReturnNerve()) {
-                setNerve(setNerveReturn());
+                setNerve(getNerveWait());
             }
             return;
         }
@@ -383,7 +383,7 @@ void BegomanBase::exeTurnCore(const MR::ActorMoveParam& rMoveParam, const Nerve*
             }
 
             if (2000.0f < MR::calcDistanceToPlayer(mPosition) && !trySetReturnNerve()) {
-                setNerve(setNerveReturn());
+                setNerve(getNerveWait());
             }
         }
     }
@@ -548,12 +548,12 @@ void BegomanBase::exeLaunch() {
 
     if (MR::isOnGround(this)) {
         MR::validateHitSensors(this);
-        setNerve(setNerveReturn());
+        setNerve(getNerveWait());
     }
 }
 
 void BegomanBase::exeBindStarPointer() {
-    if (MR::updateActorStateAndNextNerve(this, mStarPointBind, setNerveReturn())) {
+    if (MR::updateActorStateAndNextNerve(this, mStarPointBind, getNerveWait())) {
         return;
     }
 }
@@ -937,7 +937,7 @@ void BegomanBase::calcAndSetBaseMtx() {
         MR::setBaseScale(this, stack8);
     }
 
-    mDelegator->registerCallBack();
+    mBaseDelegator->registerCallBack();
 }
 
 bool BegomanBase::requestAttack() {
