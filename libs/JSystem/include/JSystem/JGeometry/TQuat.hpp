@@ -59,6 +59,12 @@ namespace JGeometry {
             this->w = cos(halfAngle);
         }
 
+        // used in BegoManBase to get the TVec constructor inlined
+        void setRotate(f32 x, f32 y, f32 z, f32 pAngle) {
+            TVec3f pVec(x, y, z);
+            setRotate(pVec, pAngle);
+        }
+
         void rotate(TVec3f& rDest) const;
 
         void slerp(const TQuat4< T >& a1, const TQuat4< T >& a2, T a3) {
