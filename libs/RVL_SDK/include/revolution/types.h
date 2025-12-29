@@ -46,6 +46,12 @@ typedef int BOOL;
 #endif
 #endif
 
+#ifdef __MWERKS__
+#define __REGISTER register
+#else
+#define __REGISTER
+#endif
+
 #if !defined(AT_ADDRESS)
 #if defined(__MWERKS__)
 #define AT_ADDRESS(x)							: x

@@ -1,15 +1,20 @@
-#include "TRK_Types.h"
-#include "portable/dserror.h"
+/**
+ * main_TRK.c
+ * Description:
+ */
+
+#include "MetroTRK/Portable/main_TRK.h"
 
 static DSError TRK_mainError;
 
-void TRK_main(void) {
+DSError TRK_main(void) {
     TRK_mainError = TRKInitializeNub();
 
-    if (TRK_mainError == 0) {
+    if (TRK_mainError == DS_NoError) {
         TRKNubWelcome();
         TRKNubMainLoop();
     }
 
     TRK_mainError = TRKTerminateNub();
+    return TRK_mainError;
 }

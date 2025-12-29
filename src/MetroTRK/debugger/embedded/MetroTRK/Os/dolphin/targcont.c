@@ -1,5 +1,9 @@
-#include "TRK_Types.h"
-#include "portable/dserror.h"
+/**
+ * targcont.c
+ * Description:
+ */
+
+#include "Os/dolphin/targcont.h"
 
 DSError TRKTargetContinue(void) {
     TRKTargetSetStopped(0);

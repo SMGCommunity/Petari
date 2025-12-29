@@ -1,13 +1,18 @@
-#include "portable/mutex_TRK.h"
+/**
+ * mutex_TRK.c
+ * Description:
+ */
 
-TRKResult TRKReleaseMutex(void *) {
-    return TRK_Success;
+#include "trk.h"
+
+DSError TRKInitializeMutex(void*) {
+    return DS_NoError;
 }
 
-TRKResult TRKAcquireMutex(void *) {
-    return TRK_Success;
+DSError TRKAcquireMutex(void*) {
+    return DS_NoError;
 }
 
-TRKResult TRKInitializeMutex(void *) {
-    return TRK_Success;
+DSError TRKReleaseMutex(void*) {
+    return DS_NoError;
 }
