@@ -42,7 +42,7 @@ public:
 
     virtual bool onTouchElectric(const TVec3f&, const TVec3f&);
 
-    virtual const Nerve* setNerveReturn() = 0;
+    virtual bool setNerveReturn() = 0;
     virtual const Nerve* setNerveLaunch() {};
     virtual const Nerve* getNerveWait() = 0;
 
