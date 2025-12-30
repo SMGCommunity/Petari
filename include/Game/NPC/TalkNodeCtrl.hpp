@@ -3,8 +3,6 @@
 #include "Game/NPC/TalkMessageCtrl.hpp"
 #include "Game/NPC/TalkMessageInfo.hpp"
 
-class RecursiveHelper;
-
 class TalkMessageHistory {
 public:
     void entry(u16);
@@ -26,6 +24,13 @@ public:
             /* 0x6 */ u16 mNextGroup;
         };
     };
+};
+
+class RecursiveHelper {
+public:
+    inline bool hasNode(const TalkNode*) const;
+    TalkNode* mStack[64];
+    s32 mIndex;
 };
 
 class MessageNode {
@@ -58,7 +63,7 @@ public:
     void createFlowNode(TalkMessageCtrl*, const JMapInfoIter&, const char*, ActorCameraInfo**);
     void initNodeRecursive(TalkMessageCtrl*, const JMapInfoIter&, ActorCameraInfo*, RecursiveHelper*);
 
-    u32 _0;
+    char* _0;
     /* 0x4 */ s32 mCurrentNodeIdx;
     /* 0x8 */ TalkMessageInfo mMessageInfo;
     /* 0x14 */ TalkMessageHistory mHistory;

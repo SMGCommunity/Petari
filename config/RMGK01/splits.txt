@@ -6569,7 +6569,7 @@ Game/NPC/TalkDirector.cpp:
 
 Game/NPC/TalkMessageCtrl.cpp:
 	.text       start:0x802A0400 end:0x802A136C
-	.data       start:0x805B6A80 end:0x805B6C98
+	.data       start:0x805B6A80 end:0x805B6C88
 	.sdata2     start:0x806BF338 end:0x806BF348
 
 Game/NPC/TalkMessageInfo.cpp:
@@ -6577,6 +6577,7 @@ Game/NPC/TalkMessageInfo.cpp:
 
 Game/NPC/TalkNodeCtrl.cpp:
 	.text       start:0x802A1494 end:0x802A1E9C
+	.data       start:0x805B6C88 end:0x805B6C98
 
 Game/NPC/TurnJointCtrl.cpp:
 	.text       start:0x802A1E9C end:0x802A28F4
