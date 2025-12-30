@@ -1,17 +1,12 @@
 #include "Game/System/FileHolder.hpp"
 #include "Game/Util.hpp"
 
-#define FILE_HOLDER_STATE_NONE      0
-#define FILE_HOLDER_STATE_READING   1
-#define FILE_HOLDER_STATE_DONE      2
+#define FILE_HOLDER_STATE_NONE 0
+#define FILE_HOLDER_STATE_READING 1
+#define FILE_HOLDER_STATE_DONE 2
 
-FileHolderFileEntry::FileHolderFileEntry(const char *pFilePath, JKRHeap *pHeap, void *pContext) :
-    mEntryNum(DVDConvertPathToEntrynum(pFilePath)),
-    mContext(nullptr),
-    mHeap(pHeap),
-    mState(FILE_HOLDER_STATE_NONE),
-    mContextSet(true)
-{
+FileHolderFileEntry::FileHolderFileEntry(const char* pFilePath, JKRHeap* pHeap, void* pContext)
+    : mEntryNum(DVDConvertPathToEntrynum(pFilePath)), mContext(nullptr), mHeap(pHeap), mState(FILE_HOLDER_STATE_NONE), mContextSet(true) {
     OSInitMessageQueue(&mQueue, &mMessage, 1);
 
     if (pContext) {
@@ -34,7 +29,7 @@ void FileHolderFileEntry::waitReadDone() {
     }
 }
 
-void FileHolderFileEntry::setContext(void *pContext, JKRHeap *pHeap) {
+void FileHolderFileEntry::setContext(void* pContext, JKRHeap* pHeap) {
     mContext = pContext;
     mHeap = pHeap;
 
@@ -46,30 +41,27 @@ FileHolder::FileHolder() {
     mEntries.init(0x180);
 }
 
-FileHolderFileEntry *FileHolder::add(const char *pFilePath, JKRHeap *pHeap, void *pContext) {
-    FileHolderFileEntry *pEntry = new(pHeap, 0) FileHolderFileEntry(pFilePath, pHeap, pContext);
+FileHolderFileEntry* FileHolder::add(const char* pFilePath, JKRHeap* pHeap, void* pContext) {
+    FileHolderFileEntry* pEntry = new (pHeap, 0) FileHolderFileEntry(pFilePath, pHeap, pContext);
     mEntries.push_back(pEntry);
     return pEntry;
 }
 
-bool FileHolder::isExist(const char *pFilePath) const {
+bool FileHolder::isExist(const char* pFilePath) const {
     return findEntry(pFilePath);
 }
 
-void *FileHolder::getContext(const char *pFilePath) const {
+void* FileHolder::getContext(const char* pFilePath) const {
     return findEntry(pFilePath)->mContext;
 }
 
-void FileHolder::removeIfIsEqualHeap(JKRHeap *pHeap) {
+void FileHolder::removeIfIsEqualHeap(JKRHeap* pHeap) {
     if (pHeap == nullptr) {
         return;
     }
 
-    for (FileHolderFileEntry **i = mEntries.begin(); i != mEntries.end(); ) {
-        if ((*i)->mHeap == pHeap
-            || MR::getHeapNapa((*i)->mHeap) == pHeap
-            || MR::getHeapGDDR3((*i)->mHeap) == pHeap)
-        {
+    for (FileHolderFileEntry** i = mEntries.begin(); i != mEntries.end();) {
+        if ((*i)->mHeap == pHeap || MR::getHeapNapa((*i)->mHeap) == pHeap || MR::getHeapGDDR3((*i)->mHeap) == pHeap) {
             delete *i;
             mEntries.erase(i);
         } else {
@@ -78,19 +70,20 @@ void FileHolder::removeIfIsEqualHeap(JKRHeap *pHeap) {
     }
 }
 
-FileHolderFileEntry **FileHolder::removeFile(const char *pFilePath) {
-    FileHolderFileEntry **p;
-    FileHolderFileEntry *pEntry = findEntry(pFilePath);
+FileHolderFileEntry** FileHolder::removeFile(const char* pFilePath) {
+    FileHolderFileEntry** p;
+    FileHolderFileEntry* pEntry = findEntry(pFilePath);
 
-    for (p = mEntries.begin(); p != mEntries.end() && *p != pEntry; p++);
+    for (p = mEntries.begin(); p != mEntries.end() && *p != pEntry; p++)
+        ;
     delete *p;
 
     return mEntries.erase(p);
 }
 
-FileHolderFileEntry *FileHolder::findEntry(const char *pFilePath) const {
+FileHolderFileEntry* FileHolder::findEntry(const char* pFilePath) const {
     s32 entryNum = DVDConvertPathToEntrynum(pFilePath);
-    for (FileHolderFileEntry * const *pEntry = mEntries.begin(); pEntry != mEntries.end(); pEntry++) {
+    for (FileHolderFileEntry* const* pEntry = mEntries.begin(); pEntry != mEntries.end(); pEntry++) {
         if (entryNum == (*pEntry)->mEntryNum) {
             return *pEntry;
         }

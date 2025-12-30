@@ -215,7 +215,7 @@ namespace MR {
         class iterator {
         public:
             inline iterator() {}
-            
+
             iterator(T* head, T* tail);
 
             void operator++();
@@ -231,9 +231,9 @@ namespace MR {
 
         void push_back(const T& val);
 
-        T mBuffer[S];           // 0x00
-        iterator mHead;         // 0x40 for S=16
-        iterator mEnd;          // 0x4C for S=16
-        s32 mCount;             // 0x58 for S=16
+        T mBuffer[S];    // 0x00
+        iterator mHead;  // 0x40 for S=16
+        iterator mEnd;   // 0x4C for S=16
+        s32 mCount;      // 0x58 for S=16
     };
 };  // namespace MR

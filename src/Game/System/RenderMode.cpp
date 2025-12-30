@@ -1,7 +1,7 @@
 #include "Game/System/RenderMode.hpp"
 #include <revolution/gx.h>
-#include <revolution/vi.h>
 #include <revolution/sc.h>
+#include <revolution/vi.h>
 
 const GXRenderModeObj GXNtscIntDf[] = {
     {
@@ -17,28 +17,20 @@ const GXRenderModeObj GXNtscIntDf[] = {
         GX_FALSE,
         GX_FALSE,
         {
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
         },
-        {
-            32,
-            0,
-            32,
-            0,
-            0,
-            0,
-            0
-        },
+        {32, 0, 32, 0, 0, 0, 0},
     },
     {
         VI_TVMODE_NTSC_INT,
@@ -53,28 +45,20 @@ const GXRenderModeObj GXNtscIntDf[] = {
         GX_FALSE,
         GX_FALSE,
         {
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
         },
-        {
-            32,
-            0,
-            32,
-            0,
-            0,
-            0,
-            0
-        },
+        {32, 0, 32, 0, 0, 0, 0},
     },
 
 };
@@ -93,28 +77,20 @@ const GXRenderModeObj GXNtscProg[] = {
         GX_FALSE,
         GX_FALSE,
         {
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
         },
-        {
-            32,
-            0,
-            32,
-            0,
-            0,
-            0,
-            0
-        },
+        {32, 0, 32, 0, 0, 0, 0},
     },
     {
         VI_TVMODE_NTSC_PROG,
@@ -129,28 +105,20 @@ const GXRenderModeObj GXNtscProg[] = {
         GX_FALSE,
         GX_FALSE,
         {
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
         },
-        {
-            32,
-            0,
-            32,
-            0,
-            0,
-            0,
-            0
-        },
+        {32, 0, 32, 0, 0, 0, 0},
     },
 
 };
@@ -169,28 +137,20 @@ const GXRenderModeObj GXPalIntDf[] = {
         GX_FALSE,
         GX_FALSE,
         {
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
         },
-        {
-            32,
-            0,
-            32,
-            0,
-            0,
-            0,
-            0
-        },
+        {32, 0, 32, 0, 0, 0, 0},
     },
     {
         VI_TVMODE_PAL_INT,
@@ -205,28 +165,20 @@ const GXRenderModeObj GXPalIntDf[] = {
         GX_FALSE,
         GX_FALSE,
         {
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
         },
-        {
-            32,
-            0,
-            32,
-            0,
-            0,
-            0,
-            0
-        },
+        {32, 0, 32, 0, 0, 0, 0},
     },
 
 };
@@ -245,28 +197,20 @@ const GXRenderModeObj GXEurgb60HzIntDf[] = {
         GX_FALSE,
         GX_FALSE,
         {
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
         },
-        {
-            32,
-            0,
-            32,
-            0,
-            0,
-            0,
-            0
-        },
+        {32, 0, 32, 0, 0, 0, 0},
     },
     {
         VI_TVMODE_EURGB60_INT,
@@ -281,28 +225,20 @@ const GXRenderModeObj GXEurgb60HzIntDf[] = {
         GX_FALSE,
         GX_FALSE,
         {
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
         },
-        {
-            32,
-            0,
-            32,
-            0,
-            0,
-            0,
-            0
-        },
+        {32, 0, 32, 0, 0, 0, 0},
     },
 
 };
@@ -321,28 +257,20 @@ const GXRenderModeObj GXEurgb60HzProg[] = {
         GX_FALSE,
         GX_FALSE,
         {
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
         },
-        {
-            32,
-            0,
-            32,
-            0,
-            0,
-            0,
-            0
-        },
+        {32, 0, 32, 0, 0, 0, 0},
     },
     {
         VI_TVMODE_EURGB60_PROG,
@@ -357,59 +285,51 @@ const GXRenderModeObj GXEurgb60HzProg[] = {
         GX_FALSE,
         GX_FALSE,
         {
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
-            { 6, 6 },
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
+            {6, 6},
         },
-        {
-            32,
-            0,
-            32,
-            0,
-            0,
-            0,
-            0
-        },
+        {32, 0, 32, 0, 0, 0, 0},
     },
 
 };
 
 namespace MR {
-    const GXRenderModeObj *getSuitableRenderMode() {
-        const GXRenderModeObj *result = nullptr;
+    const GXRenderModeObj* getSuitableRenderMode() {
+        const GXRenderModeObj* result = nullptr;
         bool is16Per9 = isAspectRatioFlag16Per9();
 
         if (VIGetDTVStatus() == 1 && isProgressiveModeOn()) {
             switch (VIGetTvFormat()) {
-                case VI_NTSC:
-                case VI_MPAL:
-                    result = &GXNtscProg[is16Per9];
-                    break;
-                case VI_PAL:
-                case VI_EURGB60:
-                    result = &GXEurgb60HzProg[is16Per9];
-                    break;
+            case VI_NTSC:
+            case VI_MPAL:
+                result = &GXNtscProg[is16Per9];
+                break;
+            case VI_PAL:
+            case VI_EURGB60:
+                result = &GXEurgb60HzProg[is16Per9];
+                break;
             }
         } else {
             switch (VIGetTvFormat()) {
-                case VI_NTSC:
-                case VI_MPAL:
-                    return &GXNtscIntDf[is16Per9];
-                case VI_PAL:
-                    if (!isEuRgb60ModeOn()) { 
-                        return &GXPalIntDf[is16Per9];
-                    }
-                case VI_EURGB60:
-                    return &GXEurgb60HzIntDf[is16Per9];
+            case VI_NTSC:
+            case VI_MPAL:
+                return &GXNtscIntDf[is16Per9];
+            case VI_PAL:
+                if (!isEuRgb60ModeOn()) {
+                    return &GXPalIntDf[is16Per9];
+                }
+            case VI_EURGB60:
+                return &GXEurgb60HzIntDf[is16Per9];
             }
         }
 
@@ -431,18 +351,18 @@ namespace MR {
     u32 getRequiredExternalFrameBufferSize() {
         return 0xA9600;
     }
-}
+}  // namespace MR
 
 u32 RenderModeObj::getViWidthMax() {
     switch (VIGetTvFormat()) {
-        case VI_PAL:
-            return VI_MAX_WIDTH_PAL;
-        case VI_MPAL:
-            return VI_MAX_WIDTH_MPAL;
-        case VI_EURGB60:
-            return VI_MAX_WIDTH_EURGB60;
-        case VI_NTSC:
-        default:
-            return VI_MAX_WIDTH_NTSC;
+    case VI_PAL:
+        return VI_MAX_WIDTH_PAL;
+    case VI_MPAL:
+        return VI_MAX_WIDTH_MPAL;
+    case VI_EURGB60:
+        return VI_MAX_WIDTH_EURGB60;
+    case VI_NTSC:
+    default:
+        return VI_MAX_WIDTH_NTSC;
     }
 }

@@ -8781,7 +8781,6 @@ Game/System/GalaxyCometState.cpp:
 	.text       start:0x803AFDC8 end:0x803AFFB4
 	.ctors      start:0x8052F38C end:0x8052F390
 	.data       start:0x805DE478 end:0x805DE4B8
-	.data       start:0x805DE478 end:0x805DE4B8
 	.sbss       start:0x806B6F50 end:0x806B6F58
 
 Game/System/GalaxyMoveArgument.cpp:
@@ -8790,26 +8789,21 @@ Game/System/GalaxyMoveArgument.cpp:
 Game/System/GalaxyNameSortTable.cpp:
 	.text       start:0x803B00A0 end:0x803B0208
 	.data       start:0x805DE4B8 end:0x805DE4C0
-	.data       start:0x805DE4B8 end:0x805DE4C0
 
 Game/System/GalaxyStatusAccessor.cpp:
 	.text       start:0x803B0208 end:0x803B0A08
-	.data       start:0x805DE4C0 end:0x805DE520
 	.data       start:0x805DE4C0 end:0x805DE520
 
 Game/System/GameDataConst.cpp:
 	.text       start:0x803B0A08 end:0x803B0DCC
 	.data       start:0x805DE520 end:0x805DE5C0
-	.data       start:0x805DE520 end:0x805DE5C0
 
 Game/System/GameDataFunction.cpp:
 	.text       start:0x803B0DCC end:0x803B2220
 	.data       start:0x805DE5C0 end:0x805DE630
-	.data       start:0x805DE5C0 end:0x805DE630
 
 Game/System/GameDataGalaxyStorage.cpp:
 	.text       start:0x803B2220 end:0x803B2C60
-	.data       start:0x805DE630 end:0x805DE6C0
 	.data       start:0x805DE630 end:0x805DE6C0
 
 Game/System/GameDataHolder.cpp:
