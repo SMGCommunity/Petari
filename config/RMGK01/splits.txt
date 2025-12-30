@@ -10564,26 +10564,28 @@ RVL_SDK/os/OSContext.c:
 RVL_SDK/os/OSError.c:
 	.text       start:0x804A60D4 end:0x804A6808
 	.data       start:0x805EFC00 end:0x805EFF20
-	.bss        start:0x80664E50 end:0x80665188
+	.bss        start:0x80664E50 end:0x80664EC0
 	.sdata      start:0x806B2A50 end:0x806B2A60
 
 RVL_SDK/os/OSExec.c:
 	.text       start:0x804A6808 end:0x804A7E78
-	.data       start:0x805EFF20 end:0x805F0110
+	.data       start:0x805EFF20 end:0x805EFF90
 	.sdata      start:0x806B2A60 end:0x806B2A68
 	.sbss       start:0x806B7690 end:0x806B76A8
 	.sdata2     start:0x806C2080 end:0x806C2088
 
 RVL_SDK/os/OSFatal.c:
 	.text       start:0x804A7E78 end:0x804A8AB0
-	.bss        start:0x80665188 end:0x806651A0
-	.sdata      start:0x806B2A68 end:0x806B2A78
-	.sdata2     start:0x806C2088 end:0x806C20D0
+	.bss        start:0x80664EC0 end:0x806651A0
+	.sdata      start:0x806B2A68 end:0x806B2A70
+	.sdata2     start:0x806C2088 end:0x806C20C8
 
 RVL_SDK/os/OSFont.c:
 	.text       start:0x804A8AB0 end:0x804A9778
-	.data       start:0x805F0110 end:0x805F0AA0
+	.data       start:0x805EFF90 end:0x805F0AA0
+	.sdata      start:0x806B2A70 end:0x806B2A78
 	.sbss       start:0x806B76A8 end:0x806B76B8
+	.sdata2     start:0x806C20C8 end:0x806C20D0
 
 RVL_SDK/os/OSInterrupt.c:
 	.text       start:0x804A9778 end:0x804A9EFC

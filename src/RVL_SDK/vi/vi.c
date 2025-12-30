@@ -6,7 +6,6 @@
 
 const char* __VIVersion = "<< RVL_SDK - VI \trelease build: Aug  8 2007 02:07:17 (0x4199_60831) >>";
 
-extern BOOL __OSIsDiag;
 static BOOL IsInitialized = FALSE;
 static void __VIRetraceHandler(__OSInterrupt, OSContext *);
 
