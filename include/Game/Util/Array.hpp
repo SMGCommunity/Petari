@@ -171,7 +171,7 @@ namespace MR {
         /// @brief Removes the value at the given position from the container.
         /// @param pIter The pointer to the position where the value should be removed.
         /// @return The pointer to the position of the removed value.
-        T::Item* erase(T::Item* pIter) NO_INLINE {
+        T::Item* erase(T::Item* pIter) {
             if (end() - pIter - 1 > 0) {
                 for (T::Item* p = pIter; p + 1 != end(); p++) {
                     *p = *(p + 1);
@@ -215,7 +215,7 @@ namespace MR {
         class iterator {
         public:
             inline iterator() {}
-            
+
             iterator(T* head, T* tail);
 
             void operator++();
@@ -231,9 +231,9 @@ namespace MR {
 
         void push_back(const T& val);
 
-        T mBuffer[S];           // 0x00
-        iterator mHead;         // 0x40 for S=16
-        iterator mEnd;          // 0x4C for S=16
-        s32 mCount;             // 0x58 for S=16
+        T mBuffer[S];    // 0x00
+        iterator mHead;  // 0x40 for S=16
+        iterator mEnd;   // 0x4C for S=16
+        s32 mCount;      // 0x58 for S=16
     };
 };  // namespace MR
