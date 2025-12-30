@@ -41,7 +41,7 @@ bool MessageData::getMessageDirect(TalkMessageInfo* pMessageInfo, const char* pM
 bool MessageData::getMessage(TalkMessageInfo* pMessageInfo, u16, u16 infoToolIndex) const {
     u8* pInfoTool = getMessageInfoTool(infoToolIndex);
     pMessageInfo->_0 = reinterpret_cast< u8* >(mDataBlock + 1) + *reinterpret_cast< u32* >(pInfoTool);
-    pMessageInfo->_4 = *reinterpret_cast< u16* >(pInfoTool + 4);
+    pMessageInfo->cameraSetID = *reinterpret_cast< u16* >(pInfoTool + 4);
     pMessageInfo->_6 = *(pInfoTool + 6);
     pMessageInfo->mCameraType = *(pInfoTool + 7);
     pMessageInfo->mTalkType = *(pInfoTool + 8);
