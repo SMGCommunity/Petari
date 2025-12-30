@@ -10836,7 +10836,7 @@ RVL_SDK/dvd/dvdqueue.c:
 RVL_SDK/dvd/dvderror.c:
 	.text       start:0x804C7090 end:0x804C7994
 	.data       start:0x805FEB78 end:0x805FEBA8
-	.bss        start:0x8066BE60 end:0x8066C380
+	.bss        start:0x8066BE60 end:0x8066C0C0
 	.sbss       start:0x806B7998 end:0x806B79A8
 
 RVL_SDK/dvd/dvdidutils.c:
@@ -10853,12 +10853,14 @@ RVL_SDK/dvd/dvdDeviceError.c:
 	.text       start:0x804C7C00 end:0x804C7E98
 	.rodata     start:0x80561B78 end:0x80561B98
 	.data       start:0x805FF208 end:0x805FF3A0
+	.bss        start:0x8066C0C0 end:0x8066C0E0
 	.sdata      start:0x806B2B90 end:0x806B2B98
 	.sbss       start:0x806B79B0 end:0x806B79B8
 
 RVL_SDK/dvd/dvd_broadway.c:
 	.text       start:0x804C7E98 end:0x804CA2E4
 	.data       start:0x805FF3A0 end:0x80600260
+	.bss        start:0x8066C0E0 end:0x8066C380
 	.sdata      start:0x806B2B98 end:0x806B2BA8
 	.sbss       start:0x806B79B8 end:0x806B79E0
 
