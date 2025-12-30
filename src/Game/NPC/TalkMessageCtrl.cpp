@@ -310,8 +310,8 @@ void TalkMessageCtrl::startCamera(s32 a1) {
     if (inf->isCameraNormal()) {
         MR::startNPCTalkCamera(this, mHostActor->getBaseMtx(), 1.0f, a1);
     } else if (inf->isCameraEvent()) {
-        if (inf->cameraSetID) {
-            mCameraInfo->mCameraSetID = inf->cameraSetID;
+        if (inf->mCameraSetID) {
+            mCameraInfo->mCameraSetID = inf->mCameraSetID;
             MR::startMultiActorCameraNoTarget(mHostActor, mCameraInfo, "会話", a1);
         }
     }
