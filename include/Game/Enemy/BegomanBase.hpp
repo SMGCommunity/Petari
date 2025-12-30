@@ -3,6 +3,7 @@
 #include "Game/Enemy/WalkerStateBindStarPointer.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
 
+class BegomanBaby;
 
 struct BegomanSound {
     const char* mSound;
@@ -25,7 +26,7 @@ public:
     virtual bool onTouchElectric(const TVec3f&, const TVec3f&);
 
     virtual bool setNerveReturn() = 0;
-    virtual const Nerve* setNerveLaunch() {};
+    virtual const Nerve* setNerveLaunch();
     virtual const Nerve* getNerveWait() = 0;
 
     virtual void addVelocityOnPushedFromElectricRail(const TVec3f&, const TVec3f&);
@@ -69,6 +70,9 @@ public:
 
     static void launchBegomanCore(LiveActor*, BegomanBase**, s32, f32, f32, f32, const TVec3f*);
     static void launchBegoman(LiveActor*, BegomanBase**, s32, f32, f32, f32, const TVec3f*);
+    static void launchBegomanBabyFromGuarder(LiveActor*, BegomanBaby**, s32, f32, f32, f32, const TVec3f*);
+    static void launchBegomanBabyLauncher(LiveActor*, BegomanBaby**, s32, f32, f32, f32, const TVec3f*);
+
 
     void updateTargetVec();
     void updateRotateY(f32, f32);
