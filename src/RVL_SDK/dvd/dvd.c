@@ -981,7 +981,6 @@ static void cbForStateReset(u32 intType) {
     }
 }
 
-extern BOOL __OSIsDiag;
 void __DVDShowFatalMessageForSystem(u32 command, u32 intType);
 static void stateMotorStopped(void) {
     MotorState = 1;

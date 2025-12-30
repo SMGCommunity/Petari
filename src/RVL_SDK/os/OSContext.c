@@ -13,6 +13,9 @@ volatile OSContext* __OSCurrentContext;
 volatile OSContext* __OSFPUContext;
 #endif
 
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
 static asm void __OSLoadFPUContext(register u32 dummy, register OSContext *pContext) {
     nofralloc
     lhz r5, pContext->state
@@ -95,7 +98,11 @@ norm_fpr:
 _ret:
     blr
 }
+#pragma pop
 
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
 static asm void __OSSaveFPUContext(register u32 v0, register u32 v1, register OSContext *pContext) {
     nofralloc
     lhz r3, pContext->state
@@ -178,11 +185,12 @@ static asm void __OSSaveFPUContext(register u32 v0, register u32 v1, register OS
 _ret:
     blr    
 }
+#pragma pop
 
 asm void OSSaveFPUContext(register OSContext *pContext) {
     nofralloc
-    addi r4, pContext, 0
-    b __OSLoadFPUContext
+    addi r5, pContext, 0
+    b __OSSaveFPUContext
 }
 
 asm void OSSetCurrentContext(register OSContext *pContext) {
@@ -193,7 +201,7 @@ asm void OSSetCurrentContext(register OSContext *pContext) {
     stw r5, 0xC0(r4)
     lwz r5, 0xD8(r4)
     cmpw r5, pContext
-    beq disableFPU
+    bne disableFPU
 
     lwz r6, pContext->srr1
     ori r6, r6, 0x2000
@@ -465,7 +473,7 @@ void OSDumpContext(OSContext* context) {
 
         OSReport("\n\nFPRs----------\n");
         for (i = 0; i < 32; i += 2) {
-            OSReport("ps%d \t= 0x%x \t ps%d \t= 0x%x\n", i, (u32)context->psf[i], i + 1, (u32)context->psf[i + 1]);
+            OSReport("fr%d 	= %d 	 fr%d 	= %d\n", i, (u32)context->fpr[i], i + 1, (u32)context->fpr[i + 1]);
         }
 
         OSReport("\n\nPSFs----------\n");
@@ -501,7 +509,7 @@ inline void SwitchFPUContext(__OSException ex, OSContext *pContext) {
     OSLoadContext(pContext);
 }
 
-asm void OSLoadFPUContext(register OSContext *pContext) {
+inline asm void OSLoadFPUContext(register OSContext *pContext) {
     nofralloc
     addi r4, pContext, 0
     b __OSLoadFPUContext
@@ -559,6 +567,9 @@ void __OSContextInit(void) {
     DBPrintf("FPU-unavailable handler installed\n");
 }
 
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
 asm void OSFillFPUContext(register OSContext* context) {
     nofralloc
     mfmsr   r5
@@ -640,3 +651,4 @@ asm void OSFillFPUContext(register OSContext* context) {
 _return:
     blr
 }
+#pragma pop
