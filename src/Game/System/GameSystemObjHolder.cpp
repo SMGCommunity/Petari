@@ -12,11 +12,12 @@
 #include "Game/System/Language.hpp"
 #include "Game/System/MessageHolder.hpp"
 #include "Game/System/NANDManager.hpp"
+#include "Game/System/RenderMode.hpp"
 #include "Game/System/ResourceHolderManager.hpp"
 #include "Game/System/WPadHolder.hpp"
-#include "Game/Util/RenderMode.hpp"
 #include <JSystem/JKernel/JKRExpHeap.hpp>
 #include <JSystem/JUtility/JUTVideo.hpp>
+#include <revolution/gx/GXStruct.h>
 
 GameSystemObjHolder::GameSystemObjHolder()
     : mObjHolder(nullptr), mParticleResHolder(nullptr), mRenderModeObj(nullptr), mCaptureScreenDir(nullptr), mScreenPreserver(nullptr),
@@ -121,22 +122,22 @@ void GameSystemObjHolder::initAudio() {
 }
 
 void GameSystemObjHolder::initRenderMode() {
-    RenderModeObj* pRenderModeObj;
+    const GXRenderModeObj* pRenderModeObj;
 
     mRenderModeObj = new GXRenderModeObj();
     pRenderModeObj = MR::getSuitableRenderMode();
 
-    mRenderModeObj->viTVmode = pRenderModeObj->mTVMode;
-    mRenderModeObj->fbWidth = pRenderModeObj->mFrameBufWidth;
-    mRenderModeObj->efbHeight = pRenderModeObj->mEFBHeight;
-    mRenderModeObj->xfbHeight = pRenderModeObj->mXFBHeight;
-    mRenderModeObj->viXOrigin = pRenderModeObj->mXOrigin;
-    mRenderModeObj->viYOrigin = pRenderModeObj->mYOrigin;
-    mRenderModeObj->viWidth = pRenderModeObj->mVIWidth;
-    mRenderModeObj->viHeight = pRenderModeObj->mVIHeight;
-    mRenderModeObj->xFBmode = pRenderModeObj->mMode;
-    mRenderModeObj->field_rendering = pRenderModeObj->mFieldRendering;
-    mRenderModeObj->aa = pRenderModeObj->mAA;
+    mRenderModeObj->viTVmode = pRenderModeObj->viTVmode;
+    mRenderModeObj->fbWidth = pRenderModeObj->fbWidth;
+    mRenderModeObj->efbHeight = pRenderModeObj->efbHeight;
+    mRenderModeObj->xfbHeight = pRenderModeObj->xfbHeight;
+    mRenderModeObj->viXOrigin = pRenderModeObj->viXOrigin;
+    mRenderModeObj->viYOrigin = pRenderModeObj->viYOrigin;
+    mRenderModeObj->viWidth = pRenderModeObj->viWidth;
+    mRenderModeObj->viHeight = pRenderModeObj->viHeight;
+    mRenderModeObj->xFBmode = pRenderModeObj->xFBmode;
+    mRenderModeObj->field_rendering = pRenderModeObj->field_rendering;
+    mRenderModeObj->aa = pRenderModeObj->aa;
 
     /*for (int i = 0; i < 12; i++) {
         for (int j = 0; j < 3; j++) {
@@ -145,13 +146,13 @@ void GameSystemObjHolder::initRenderMode() {
         }
     }*/
 
-    mRenderModeObj->vfilter[0] = pRenderModeObj->mFilter[0];
-    mRenderModeObj->vfilter[1] = pRenderModeObj->mFilter[1];
-    mRenderModeObj->vfilter[2] = pRenderModeObj->mFilter[2];
-    mRenderModeObj->vfilter[3] = pRenderModeObj->mFilter[3];
-    mRenderModeObj->vfilter[4] = pRenderModeObj->mFilter[4];
-    mRenderModeObj->vfilter[5] = pRenderModeObj->mFilter[5];
-    mRenderModeObj->vfilter[6] = pRenderModeObj->mFilter[6];
+    mRenderModeObj->vfilter[0] = pRenderModeObj->vfilter[0];
+    mRenderModeObj->vfilter[1] = pRenderModeObj->vfilter[1];
+    mRenderModeObj->vfilter[2] = pRenderModeObj->vfilter[2];
+    mRenderModeObj->vfilter[3] = pRenderModeObj->vfilter[3];
+    mRenderModeObj->vfilter[4] = pRenderModeObj->vfilter[4];
+    mRenderModeObj->vfilter[5] = pRenderModeObj->vfilter[5];
+    mRenderModeObj->vfilter[6] = pRenderModeObj->vfilter[6];
 
     JUTVideo::createManager(mRenderModeObj);
 }
