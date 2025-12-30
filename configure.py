@@ -1927,8 +1927,8 @@ config.libs = [
         [
             Object(NonMatching, "Game/Ride/BigBubble.cpp"),
             Object(NonMatching, "Game/Ride/Creeper.cpp"),
-            Object(NonMatching, "Game/Ride/Fluff.cpp"),
-            Object(NonMatching, "Game/Ride/FluffWind.cpp"),
+            Object(Matching, "Game/Ride/Fluff.cpp"),
+            Object(Matching, "Game/Ride/FluffWind.cpp"),
             Object(NonMatching, "Game/Ride/JumpBranch.cpp"),
             Object(NonMatching, "Game/Ride/Plant.cpp"),
             Object(NonMatching, "Game/Ride/PlantLeaf.cpp"),
