@@ -46,9 +46,27 @@ typedef int BOOL;
 #endif
 #endif
 
-#define AT_ADDRESS(xyz) : (xyz)
+#ifdef __MWERKS__
+#define __REGISTER register
+#else
+#define __REGISTER
+#endif
+
+#if !defined(AT_ADDRESS)
+#if defined(__MWERKS__)
+#define AT_ADDRESS(x)							: x
+#else
+#define AT_ADDRESS(x)
+#endif
+#endif
 
 #define NO_INLINE __attribute__((noinline))
+
+#if __MWERKS__
+#define ATTRIBUTE_ALIGN(num) __attribute__((aligned(num)))
+#else
+#define ATTRIBUTE_ALIGN(num)
+#endif
 
 #ifndef TRUE
 #define TRUE 1

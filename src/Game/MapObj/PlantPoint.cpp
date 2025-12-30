@@ -7,20 +7,20 @@ PlantPoint::PlantPoint(const TVec3f& pPosition, const TVec3f& pUp, f32 thickness
     // this constructor is patterned a bit weird... this only matches if mPosition
     // *specifically* is constructed as this, but this feels like a hack. Possibly
     // some TVec3 inline shenanigans to look into in the future.
-    : mPosition(pPosition.x, pPosition.y, pPosition.z), mFront(1.0f, 0.0f, 0.0f), mUp(pUp), mSide(0.0f, 0.0f, 1.0f), mThickness(thickness) {
-    TVec3f side;
-    PSVECCrossProduct(&mFront, &mUp, &side);
+    : mPosition(pPosition.x, pPosition.y, pPosition.z), mSide(1.0f, 0.0f, 0.0f), mUp(pUp), mFront(0.0f, 0.0f, 1.0f), mThickness(thickness) {
+    TVec3f front;
+    PSVECCrossProduct(&mSide, &mUp, &front);
 
-    if (MR::isNearZero(side)) {
-        MR::makeAxisUpFront(&mFront, &mSide, mUp, mSide);
+    if (MR::isNearZero(front)) {
+        MR::makeAxisUpFront(&mSide, &mFront, mUp, mFront);
     } else {
-        MR::makeAxisUpSide(&mSide, &mFront, mUp, mFront);
+        MR::makeAxisUpSide(&mFront, &mSide, mUp, mSide);
     }
 }
 
-void PlantPoint::setAxisAndPos(const TVec3f& pFront, const TVec3f& pUp, const TVec3f& pSide, const TVec3f& pPosition) {
-    mFront.set(pFront);
-    mUp.set(pUp);
+void PlantPoint::setAxisAndPos(const TVec3f& pSide, const TVec3f& pUp, const TVec3f& pFront, const TVec3f& pPosition) {
     mSide.set(pSide);
+    mUp.set(pUp);
+    mFront.set(pFront);
     mPosition.set(pPosition);
 }

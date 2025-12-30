@@ -1,18 +1,18 @@
 #pragma once
 
-#include <revolution/types.h>
+#include <revolution/gx.h>
 
 class JUTTexture;
 
 class ImageEffectResource {
 public:
-    /// @brief Creates a new `ImageEffectResource`.
+    /// @brief Creates a new `ImageEffectResource`.
     ImageEffectResource();
 
     void createBloomTexture();
     void createBlurTexture();
     void createDOFTexture();
-    void createTexture(f32, GXTexFmt);
+    JUTTexture* createTexture(f32, GXTexFmt);
 
 private:
     /* 0x00 */ JUTTexture* _0;

@@ -56,7 +56,7 @@ void PlantStalk::init(const JMapInfoIter& rIter) {
     }
 
     PlantPoint* point = mPlantPoints[0];
-    point->setAxisAndPos(point->mFront, point->mUp, point->mSide, mPosition);
+    point->setAxisAndPos(point->mSide, point->mUp, point->mFront, mPosition);
 
     MR::invalidateClipping(this);
     makeActorAppeared();
@@ -116,7 +116,7 @@ bool PlantStalk::updateGrowUp() {
     for (s32 idx = 1; idx < mGrownPlantPoints; idx++) {
         PlantPoint* point = mPlantPoints[idx];
         PlantPoint* other = mRailInfo->mPlantPoints[(mGrownPlantPoints - 1) - idx];
-        point->setAxisAndPos(other->mFront, other->mUp, other->mSide, other->mPosition);
+        point->setAxisAndPos(other->mSide, other->mUp, other->mFront, other->mPosition);
     }
 
     return false;
@@ -156,17 +156,17 @@ void PlantStalk::drawGrowUp() const {
     GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, mGrownPlantPoints * 2);
     for (s32 idx = 0; idx < mGrownPlantPoints; idx++) {
         PlantPoint* point = mPlantPoints[idx];
-        TVec3f front(mPlantPoints[idx]->mFront);
         TVec3f side(mPlantPoints[idx]->mSide);
-        front.scale(mPlantPoints[idx]->mThickness);
+        TVec3f front(mPlantPoints[idx]->mFront);
         side.scale(mPlantPoints[idx]->mThickness);
+        front.scale(mPlantPoints[idx]->mThickness);
 
-        GXPosition3f32(point->mPosition.x + 10.0f * side.x, point->mPosition.y + 10.0f * side.y, point->mPosition.z + 10.0f * side.z);
+        GXPosition3f32(point->mPosition.x + 10.0f * front.x, point->mPosition.y + 10.0f * front.y, point->mPosition.z + 10.0f * front.z);
         GXColor1u32(::sColorPlusZ);
         GXTexCoord2f32(0.0f, idx);
 
-        GXPosition3f32(point->mPosition.x + 10.0f * front.x - 10.0f * side.x, point->mPosition.y + 10.0f * front.y - 10.0f * side.y,
-                       point->mPosition.z + 10.0f * front.z - 10.0f * side.z);
+        GXPosition3f32(point->mPosition.x + 10.0f * side.x - 10.0f * front.x, point->mPosition.y + 10.0f * side.y - 10.0f * front.y,
+                       point->mPosition.z + 10.0f * side.z - 10.0f * front.z);
         GXColor1u32(::sColorPlusX);
         GXTexCoord2f32(1.0f, idx);
     }
@@ -174,17 +174,17 @@ void PlantStalk::drawGrowUp() const {
     GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, mGrownPlantPoints * 2);
     for (s32 idx = 0; idx < mGrownPlantPoints; idx++) {
         PlantPoint* point = mPlantPoints[idx];
-        TVec3f front(mPlantPoints[idx]->mFront);
         TVec3f side(mPlantPoints[idx]->mSide);
-        front.scale(mPlantPoints[idx]->mThickness);
+        TVec3f front(mPlantPoints[idx]->mFront);
         side.scale(mPlantPoints[idx]->mThickness);
+        front.scale(mPlantPoints[idx]->mThickness);
 
-        GXPosition3f32(point->mPosition.x - 10.0f * front.x - 10.0f * side.x, point->mPosition.y - 10.0f * front.y - 10.0f * side.y,
-                       point->mPosition.z - 10.0f * front.z - 10.0f * side.z);
+        GXPosition3f32(point->mPosition.x - 10.0f * side.x - 10.0f * front.x, point->mPosition.y - 10.0f * side.y - 10.0f * front.y,
+                       point->mPosition.z - 10.0f * side.z - 10.0f * front.z);
         GXColor1u32(::sColorMinusX);
         GXTexCoord2f32(0.0f, idx);
 
-        GXPosition3f32(point->mPosition.x + 10.0f * side.x, point->mPosition.y + 10.0f * side.y, point->mPosition.z + 10.0f * side.z);
+        GXPosition3f32(point->mPosition.x + 10.0f * front.x, point->mPosition.y + 10.0f * front.y, point->mPosition.z + 10.0f * front.z);
         GXColor1u32(::sColorPlusZ);
         GXTexCoord2f32(1.0f, idx);
     }
@@ -192,27 +192,26 @@ void PlantStalk::drawGrowUp() const {
     GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, mGrownPlantPoints * 2);
     for (s32 idx = 0; idx < mGrownPlantPoints; idx++) {
         PlantPoint* point = mPlantPoints[idx];
-        TVec3f front(mPlantPoints[idx]->mFront);
         TVec3f side(mPlantPoints[idx]->mSide);
-        front.scale(mPlantPoints[idx]->mThickness);
+        TVec3f front(mPlantPoints[idx]->mFront);
         side.scale(mPlantPoints[idx]->mThickness);
+        front.scale(mPlantPoints[idx]->mThickness);
 
-        GXPosition3f32(point->mPosition.x + 10.0f * front.x - 10.0f * side.x, point->mPosition.y + 10.0f * front.y - 10.0f * side.y,
-                       point->mPosition.z + 10.0f * front.z - 10.0f * side.z);
+        GXPosition3f32(point->mPosition.x + 10.0f * side.x - 10.0f * front.x, point->mPosition.y + 10.0f * side.y - 10.0f * front.y,
+                       point->mPosition.z + 10.0f * side.z - 10.0f * front.z);
         GXColor1u32(::sColorPlusX);
         GXTexCoord2f32(0.0f, idx);
 
-        GXPosition3f32(point->mPosition.x - 10.0f * front.x - 10.0f * side.x, point->mPosition.y - 10.0f * front.y - 10.0f * side.y,
-                       point->mPosition.z - 10.0f * front.z - 10.0f * side.z);
+        GXPosition3f32(point->mPosition.x - 10.0f * side.x - 10.0f * front.x, point->mPosition.y - 10.0f * side.y - 10.0f * front.y,
+                       point->mPosition.z - 10.0f * side.z - 10.0f * front.z);
         GXColor1u32(::sColorMinusX);
         GXTexCoord2f32(1.0f, idx);
     }
 }
 
 PlantStalkDrawInit::PlantStalkDrawInit(const char* pName) : NameObj(pName) {
-    // this will probably match when the inlining issue with JUTTexture is corrected.
     mTexture = nullptr;
-    mTexture = new JUTTexture(MR::loadTexFromArc("Plant.arc", "PlantStalk.bti"), 0);
+    mTexture = new JUTTexture(MR::loadTexFromArc("Plant.arc", "PlantStalk.bti"));
 
     MR::FunctorV0M< const PlantStalkDrawInit*, void (PlantStalkDrawInit::*)() const > preDrawFunctor(this, &PlantStalkDrawInit::initDraw);
     MR::registerPreDrawFunction(preDrawFunctor, 4);

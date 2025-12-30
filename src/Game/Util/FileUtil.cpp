@@ -57,7 +57,7 @@ namespace MR {
         SingletonHolder< FileLoader >::get()->requestLoadToMainRAM(filePath, pDst, pHeap, allocDir, false);
     }
 
-    void* mountArchive(const char* pFilePath, JKRHeap* pHeap) {
+    JKRMemArchive* mountArchive(const char* pFilePath, JKRHeap* pHeap) {
         mountAsyncArchive(pFilePath, pHeap);
 
         return receiveArchive(pFilePath);
@@ -99,7 +99,7 @@ namespace MR {
         return SingletonHolder< FileLoader >::get()->receiveFile(filePath);
     }
 
-    void* receiveArchive(const char* pFilePath) {
+    JKRMemArchive* receiveArchive(const char* pFilePath) {
         char filePath[256];
         makeFileNameConsideringLanguage(filePath, sizeof(filePath), pFilePath);
 
@@ -110,8 +110,8 @@ namespace MR {
         SingletonHolder< FileLoader >::get()->receiveAllRequestedFile();
     }
 
-    void* createAndAddArchive(void* pArcData, JKRHeap* pHeap, const char* pFilePath) {
-        return SingletonHolder< FileLoader >::get()->createAndAddArchive(pArcData, pHeap, pFilePath);
+    void createAndAddArchive(void* pArcData, JKRHeap* pHeap, const char* pFilePath) {
+        SingletonHolder< FileLoader >::get()->createAndAddArchive(pArcData, pHeap, pFilePath);
     }
 
     void getMountedArchiveAndHeap(const char* pFilePath, JKRArchive** ppArchive, JKRHeap** ppHeap) {

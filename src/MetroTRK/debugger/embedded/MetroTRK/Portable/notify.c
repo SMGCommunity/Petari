@@ -1,32 +1,28 @@
-#include "portable/dserror.h"
-#include "portable/msgbuf.h"
-#include "portable/msgcmd.h"
+#include "MetroTRK/Portable/notify.h"
+#include "trk.h"
 
-DSError TRKDoNotifyStopped(MessageCommandID command) {
+DSError TRKDoNotifyStopped(MessageCommandID cmd) {
+    int reqIdx;
+    int bufIdx;
+    TRKBuffer* msg;
     DSError err;
-    MessageBufferID replyID, bufferID;
-    MessageBuffer* buffer;
+    DSError bufError;
 
-    err = TRKGetFreeBuffer(&bufferID, &buffer);
-
-    if (err == 0) {
-        if (err == 0) {
-            if (command == 0x90) {
-                TRKTargetAddStopInfo(buffer);
-            }
-            else {
-                TRKTargetAddExceptionInfo(buffer);
+    bufError = TRKGetFreeBuffer(&bufIdx, &msg);
+    if ((err = bufError) == FALSE) {
+        if (err == DS_NoError) {
+            if (cmd == DSMSG_NotifyStopped) {
+                TRKTargetAddStopInfo(msg);
+            } else {
+                TRKTargetAddExceptionInfo(msg);
             }
         }
-
-        err = TRKRequestSend(buffer, &replyID, 2, 3, 1);
-        
-        if (err == 0) {
-            TRKReleaseBuffer(replyID);
+        bufError = TRKRequestSend(msg, &reqIdx, 2, 3, 1);
+        err = bufError;
+        if (err == DS_NoError) {
+            TRKReleaseBuffer(reqIdx);
         }
-
-        TRKReleaseBuffer(bufferID);
+        TRKReleaseBuffer(bufIdx);
     }
-    
     return err;
 }

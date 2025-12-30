@@ -47,21 +47,22 @@ typedef struct {
     char_map char_set;
 } scan_format;
 
+extern const scan_format lbl_805628B8;
+
 #define set_char_map(map, ch) map[(unsigned char)ch >> 3] |= (1 << (ch & 7))
 #define tst_char_map(map, ch) (map[(unsigned char)ch >> 3] &  (1 << (ch & 7)))
 
-  const char* parse_format(const char* format_string, scan_format *format) {
-    const char* s = format_string;
-    int c;
-    int flag_found, invert;
-    scan_format f = { 0, 0, normal_argument, 0, 2147483647, { 0 } };
+static const char* parse_format(const char* format_string, scan_format *format) {
+	const char* s = format_string;
+	int c;
+	int flag_found, invert;
+	scan_format f = { 0, 0, normal_argument, 0, 0x7FFFFFFF, { 0 } };
 
-    if (((c = *++s) == '%')) {
-        f.conversion_char = c;
-        *format = f;
-        return ((const char*)s + 1);
-    }
-
+	if (((c = (signed char)*++s) == '%')) {
+		f.conversion_char = c;
+		*format = f;
+		return ((const char*)s + 1);
+	}
     if (c == '*') {
         f.suppress_assignment = 1;
         c = *++s;
@@ -589,7 +590,7 @@ static int __sformatter(int (*ReadProc)(void *, int, int), void * ReadProcArg, c
 							c = rval;
 							if (format.argument_options == wchar_argument) {
 								mbtowc(((wchar_t*)arg_ptr), (char*)(&c), 1);
-								arg_ptr += sizeof(wchar_t);
+								arg_ptr++;
 							}
 							else {
 								*arg_ptr++ = c;

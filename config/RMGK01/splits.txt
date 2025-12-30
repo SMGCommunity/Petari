@@ -4661,7 +4661,7 @@ Game/MapObj/FlameGun.cpp:
 Game/MapObj/FlexibleSphere.cpp:
 	.text       start:0x801DC9D0 end:0x801DD218
 	.data       start:0x80594740 end:0x80594868
-	.sdata      start:0x806B1E10 end:0x806B1E30
+	.sdata      start:0x806B1E10 end:0x806B1E18
 	.sdata2     start:0x806BD028 end:0x806BD060
 
 Game/MapObj/FlipPanel.cpp:
@@ -4689,6 +4689,7 @@ Game/MapObj/GCapture.cpp:
 	.text       start:0x801DF110 end:0x801E1420
 	.ctors      start:0x8052ED24 end:0x8052ED28
 	.data       start:0x80594D58 end:0x80594F88
+	.sdata      start:0x806B1E18 end:0x806B1E20
 	.sbss       start:0x806B51A0 end:0x806B51C0
 	.sdata2     start:0x806BD0A8 end:0x806BD118
 
@@ -4701,6 +4702,7 @@ Game/MapObj/GCaptureTarget.cpp:
 	.text       start:0x801E1B9C end:0x801E2974
 	.ctors      start:0x8052ED28 end:0x8052ED2C
 	.data       start:0x80595000 end:0x80595258
+	.sdata      start:0x806B1E20 end:0x806B1E28
 	.sbss       start:0x806B51C0 end:0x806B51D8
 	.sdata2     start:0x806BD138 end:0x806BD160
 
@@ -4722,6 +4724,7 @@ Game/MapObj/GreenCaterpillarBig.cpp:
 	.text       start:0x801E3750 end:0x801E42DC
 	.ctors      start:0x8052ED34 end:0x8052ED38
 	.data       start:0x805953F8 end:0x80595600
+	.sdata      start:0x806B1E28 end:0x806B1E30
 	.sbss       start:0x806B51F0 end:0x806B5208
 	.sdata2     start:0x806BD198 end:0x806BD1B8
 
@@ -5789,7 +5792,7 @@ Game/MapObj/TransparentWall.cpp:
 Game/MapObj/TreasureBoxCracked.cpp:
 	.text       start:0x8024CD84 end:0x8024E0E0
 	.ctors      start:0x8052EF0C end:0x8052EF10
-	.rodata     start:0x80534C80 end:0x80534D40
+	.rodata     start:0x80534C80 end:0x80534CE0
 	.data       start:0x805A4F60 end:0x805A52B0
 	.sbss       start:0x806B59F8 end:0x806B5A10
 	.sdata2     start:0x806BE638 end:0x806BE660
@@ -5830,13 +5833,15 @@ Game/MapObj/UFOKinoko.cpp:
 Game/MapObj/ValveSwitch.cpp:
 	.text       start:0x80250478 end:0x80250C1C
 	.ctors      start:0x8052EF24 end:0x8052EF28
+	.rodata     start:0x80534CE0 end:0x80534CE8
 	.data       start:0x805A5B70 end:0x805A5CD8
 	.sbss       start:0x806B5A70 end:0x806B5A80
 	.sdata2     start:0x806BE6A0 end:0x806BE6B8
 
 Game/MapObj/WarpPod.cpp:
 	.text       start:0x80250C1C end:0x802524FC
-	.data       start:0x805A5CD8 end:0x805A5EC0
+	.rodata     start:0x80534CE8 end:0x80534CF8
+	.data       start:0x805A5CD8 end:0x805A5E38
 	.sdata      start:0x806B20A0 end:0x806B20B0
 	.sbss       start:0x806B5A80 end:0x806B5A88
 	.sdata2     start:0x806BE6B8 end:0x806BE6E0
@@ -5844,7 +5849,8 @@ Game/MapObj/WarpPod.cpp:
 Game/MapObj/WatchTowerRotateStep.cpp:
 	.text       start:0x802524FC end:0x80252B80
 	.ctors      start:0x8052EF28 end:0x8052EF2C
-	.data       start:0x805A5EC0 end:0x805A5F68
+	.rodata     start:0x80534CF8 end:0x80534D00
+	.data       start:0x805A5E38 end:0x805A5F68
 	.sbss       start:0x806B5A88 end:0x806B5A98
 	.sdata2     start:0x806BE6E0 end:0x806BE708
 
@@ -5883,10 +5889,12 @@ Game/MapObj/WaterPressureBulletHolder.cpp:
 
 Game/MapObj/WaveFloatingForce.cpp:
 	.text       start:0x80254734 end:0x802549D0
+	.rodata     start:0x80534D00 end:0x80534D10
 	.sdata2     start:0x806BE758 end:0x806BE778
 
 Game/MapObj/WhirlPool.cpp:
 	.text       start:0x802549D0 end:0x80255A48
+	.rodata     start:0x80534D10 end:0x80534D28
 	.data       start:0x805A6458 end:0x805A6510
 	.sdata      start:0x806B20D0 end:0x806B20D8
 	.sdata2     start:0x806BE778 end:0x806BE7D0
@@ -5924,12 +5932,14 @@ Game/MapObj/GeneralMapParts.cpp:
 
 Game/MapObj/FloaterFloatingForce.cpp:
 	.text       start:0x8025834C end:0x802585D0
+	.rodata     start:0x80534D28 end:0x80534D30
 	.data       start:0x805A6AC0 end:0x805A6B08
 	.sdata2     start:0x806BE810 end:0x806BE818
 
 Game/MapObj/FloaterFloatingForceTypeNormal.cpp:
 	.text       start:0x802585D0 end:0x80258D4C
 	.ctors      start:0x8052EF44 end:0x8052EF48
+	.rodata     start:0x80534D30 end:0x80534D38
 	.data       start:0x805A6B08 end:0x805A6B90
 	.sbss       start:0x806B5AE8 end:0x806B5AF8
 	.sdata2     start:0x806BE818 end:0x806BE848
@@ -5937,6 +5947,7 @@ Game/MapObj/FloaterFloatingForceTypeNormal.cpp:
 Game/MapObj/FloaterFloatingForceTypeSpring.cpp:
 	.text       start:0x80258D4C end:0x80259524
 	.ctors      start:0x8052EF48 end:0x8052EF4C
+	.rodata     start:0x80534D38 end:0x80534D40
 	.data       start:0x805A6B90 end:0x805A6E50
 	.sbss       start:0x806B5AF8 end:0x806B5B08
 	.sdata2     start:0x806BE848 end:0x806BE860
@@ -6034,13 +6045,14 @@ Game/MapObj/MapPartsSeesaw1AxisRotator.cpp:
 Game/MapObj/MapPartsSeesaw2AxisRotator.cpp:
 	.text       start:0x802608D8 end:0x80261080
 	.ctors      start:0x8052EF74 end:0x8052EF78
-	.data       start:0x805A75D8 end:0x805A7730
+	.data       start:0x805A75D8 end:0x805A7660
 	.sbss       start:0x806B5BD0 end:0x806B5BE0
 	.sdata2     start:0x806BE9C8 end:0x806BE9E8
 
 Game/NameObj/ModelChangableObjFactory.cpp:
 	.text       start:0x80261080 end:0x8026144C
 	.rodata     start:0x80534E70 end:0x80534F00
+	.data       start:0x805A7660 end:0x805A7730
 
 Game/NameObj/MovementOnOffGroupHolder.cpp:
 	.text       start:0x8026144C end:0x802616B4
@@ -8798,6 +8810,7 @@ Game/System/GameDataHolder.cpp:
 	.text       start:0x803B2C60 end:0x803B37C0
 	.rodata     start:0x8053C908 end:0x8053C918
 	.data       start:0x805DE6C0 end:0x805DE738
+	.sdata      start:0x806B25D0 end:0x806B25D8
 
 Game/System/GameDataPlayerStatus.cpp:
 	.text       start:0x803B37C0 end:0x803B3A5C
@@ -8805,6 +8818,7 @@ Game/System/GameDataPlayerStatus.cpp:
 
 Game/System/GameDataTemporaryInGalaxy.cpp:
 	.text       start:0x803B3A5C end:0x803B3CA8
+	.sdata      start:0x806B25D8 end:0x806B25E0
 
 Game/System/GameEventFlag.cpp:
 	.text       start:0x803B3CA8 end:0x803B3D74
@@ -9454,18 +9468,19 @@ JSystem/JUtility/JUTFont.cpp:
 JSystem/JUtility/JUTException.cpp:
 	.text       start:0x804187C4 end:0x8041A0BC
 	.ctors      start:0x8052F3E4 end:0x8052F3E8
-	.data       start:0x805E7E48 end:0x805E8420
-	.bss        start:0x8060D078 end:0x8060D4F0
+	.data       start:0x805E7E48 end:0x805E83A0
+	.bss        start:0x8060D078 end:0x8060D3B0
 	.sbss       start:0x806B71E8 end:0x806B7210
 	.sdata2     start:0x806C1A10 end:0x806C1A20
 
 JSystem/JUtility/JUTDirectPrint.cpp:
 	.text       start:0x8041A0BC end:0x8041A7A4
-	.data       start:0x805E8420 end:0x805E8668
+	.data       start:0x805E83A0 end:0x805E8668
 	.sbss       start:0x806B7210 end:0x806B7218
 
 JSystem/JUtility/JUTAssert.cpp:
 	.text       start:0x8041A7A4 end:0x8041AA7C
+	.bss        start:0x8060D3B0 end:0x8060D4F0
 	.sdata      start:0x806B2718 end:0x806B2740
 	.sbss       start:0x806B7218 end:0x806B7220
 	.sdata2     start:0x806C1A20 end:0x806C1A30
@@ -9740,12 +9755,12 @@ JSystem/JParticle/JPAMath.cpp:
 
 RVL_SDK/gd/GDBase.c:
 	.text       start:0x8044BDD0 end:0x8044BF28
-	.sbss       start:0x806B72B8 end:0x806B72C8
+	.sbss       start:0x806B72B8 end:0x806B72C0
 
 RVL_SDK/gd/GDGeometry.c:
 	.text       start:0x8044BF28 end:0x8044D728
-	.data       start:0x805EA4A8 end:0x805EA578
-	.sdata      start:0x806B2758 end:0x806B2780
+	.data       start:0x805EA4A8 end:0x805EA568
+	.sdata      start:0x806B2758 end:0x806B2760
 
 RVL_SDK/gd/GDIndirect.c:
 	.text       start:0x8044D728 end:0x8044D804
@@ -9759,10 +9774,11 @@ RVL_SDK/gd/GDPixel.c:
 
 RVL_SDK/gd/GDTev.c:
 	.text       start:0x8044E9C8 end:0x8044F3F8
+	.data       start:0x805EA568 end:0x805EA578
 
 RVL_SDK/gd/GDTexture.c:
 	.text       start:0x8044F3F8 end:0x8044F838
-	.sdata      start:0x806B2780 end:0x806B2788
+	.sdata      start:0x806B2760 end:0x806B2788
 	.sdata2     start:0x806C1C98 end:0x806C1CA0
 
 RVL_SDK/gd/GDTransform.c:
@@ -9772,7 +9788,7 @@ RVL_SDK/kpad/KPAD.c:
 	.text       start:0x8044FC10 end:0x80452EDC
 	.data       start:0x805EA578 end:0x805EA5D0
 	.sdata      start:0x806B2788 end:0x806B27F8
-	.sbss       start:0x806B72C8 end:0x806B72E0
+	.sbss       start:0x806B72C0 end:0x806B72E0
 	.sdata2     start:0x806C1CA0 end:0x806C1D08
 
 RVL_SDK/thp/THPDec.c:
@@ -9794,6 +9810,8 @@ RVL_SDK/tpl/TPL.c:
 
 RVL_SDK/wenc/wenc.c:
 	.text       start:0x80456874 end:0x80456B4C
+	.rodata     start:0x8055C488 end:0x8055C4C8
+	.sdata2     start:0x806C1D28 end:0x806C1D30
 
 RVL_SDK/rso/RSOLink.c:
 	.text       start:0x80456B4C end:0x80457EBC
@@ -9803,6 +9821,7 @@ RVLFaceLib/RFL_System.c:
 	extab       start:0x800064E0 end:0x80006500
 	extabindex  start:0x800069A0 end:0x800069D0
 	.text       start:0x80457EBC end:0x80458878
+	.rodata     start:0x8055C4C8 end:0x8055C4D8
 	.sdata      start:0x806B2808 end:0x806B2810
 	.sbss       start:0x806B7408 end:0x806B7420
 
@@ -9819,7 +9838,7 @@ RVLFaceLib/RFL_NANDAccess.c:
 	extabindex  start:0x80006A90 end:0x80006B44
 	.text       start:0x804598A4 end:0x8045B458
 	.data       start:0x805EA7C8 end:0x805EA820
-	.sdata2     start:0x806C1D28 end:0x806C1D38
+	.sdata2     start:0x806C1D30 end:0x806C1D38
 	.sbss2      start:0x806C2918 end:0x806C2920
 
 RVLFaceLib/RFL_Model.c:
@@ -10864,7 +10883,7 @@ RVL_SDK/axfx/AXFXReverbHi.c:
 RVL_SDK/axfx/AXFXReverbHiExp.c:
 	.text       start:0x804CAB30 end:0x804CB90C
 	.data       start:0x806002A8 end:0x80600448
-	.sdata2     start:0x806C2248 end:0x806C2290
+	.sdata2     start:0x806C2248 end:0x806C2288
 
 RVL_SDK/axfx/AXFXHooks.c:
 	.text       start:0x804CB90C end:0x804CB944
@@ -10880,6 +10899,7 @@ RVL_SDK/mem/mem_expHeap.c:
 
 RVL_SDK/mem/mem_allocator.c:
 	.text       start:0x804CC5F4 end:0x804CC648
+	.sdata2     start:0x806C2288 end:0x806C2290
 
 RVL_SDK/mem/mem_list.c:
 	.text       start:0x804CC648 end:0x804CC75C
@@ -10994,9 +11014,12 @@ RVL_SDK/wpad/WPAD.c:
 RVL_SDK/wpad/WPADHIDParser.c:
 	.text       start:0x804DE36C end:0x804E380C
 	.data       start:0x80600EF0 end:0x80601410
-	.bss        start:0x80678238 end:0x806789F0
+	.bss        start:0x80678238 end:0x80678250
 	.sbss       start:0x806B7B10 end:0x806B7B30
 	.sdata2     start:0x806C22A8 end:0x806C22F8
+
+RVL_SDK/wpad/WPADMem.c:
+	.bss        start:0x80678250 end:0x806782A0
 
 RVL_SDK/wpad/WPADEncrypt.c:
 	.text       start:0x804E380C end:0x804E48B4

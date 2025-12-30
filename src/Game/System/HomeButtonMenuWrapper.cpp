@@ -53,8 +53,8 @@ void RSO::setupRsoHomeButtonMenu() {
             reinterpret_cast< ProloguePtr >(rsoPtr->mProlog)(RSOIsImportSymbolResolvedAll(rsoPtr));
             for (i = 0; i < 7; i++) {
                 pTbl = &exp_tbl[i];
-                RSOFindExportSymbolAddr(rsoPtr, pTbl->mSymbolName);
-                *(pTbl->mSymbolPtr) = (u32)RSOFindExportSymbolAddr(rsoPtr, pTbl->mSymbolName);
+                RSOFindExportSymbolAddr(rsoPtr, pTbl->symbol_name);
+                *(pTbl->symbol_ptr) = (u32)RSOFindExportSymbolAddr(rsoPtr, pTbl->symbol_name);
             }
         }
     }

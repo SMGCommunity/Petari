@@ -18,8 +18,8 @@ public:
 
     void preDraw() const;
     void postDraw() const;
-    void getIntensity1Default() const;
-    void getIntensity2Default() const;
+    u8 getIntensity1Default() const;
+    u8 getIntensity2Default() const;
     bool isForEachModel() const;
     void initDraw() const;
     void drawTexture(JUTTexture*, s32, s32, u8, BLOOM_TEX_DRAW_TYPE) const;
@@ -28,8 +28,7 @@ public:
     void initBlur(JUTTexture*, u32, f32) const;
     void drawBlur(s32, s32, MtxPtr, u32, u32) const;
 
-private:
-    /* 0x14 */ s8 _14;
+    /* 0x14 */ u8 _14;
     /* 0x18 */ f32 _18;
     /* 0x1C */ f32 _1C;
     /* 0x20 */ u8 _20;

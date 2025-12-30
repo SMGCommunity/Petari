@@ -15,6 +15,7 @@
 #include "Game/Util/SceneUtil.hpp"
 #include "Game/Util/ScreenUtil.hpp"
 #include <nw4r/lyt/layout.h>
+#include <nw4r/ut/ResFont.h>
 
 namespace MR {
     GameSystemObjHolder* getGameSystemObjHolder() {
@@ -40,23 +41,19 @@ namespace MR {
     }
 
     nw4r::ut::Font* getPictureFontNW4R() {
-        // TODO: Explicit cast should be removed or adjusted when nw4r::ut::ResFont is properly declared.
-        return reinterpret_cast< nw4r::ut::Font* >(SingletonHolder< GameSystem >::get()->mFontHolder->mPictureFont);
+        return SingletonHolder< GameSystem >::get()->mFontHolder->mPictureFont;
     }
 
     nw4r::ut::Font* getMenuFontNW4R() {
-        // TODO: Explicit cast should be removed or adjusted when nw4r::ut::ResFont is properly declared.
-        return reinterpret_cast< nw4r::ut::Font* >(SingletonHolder< GameSystem >::get()->mFontHolder->mMenuFont);
+        return SingletonHolder< GameSystem >::get()->mFontHolder->mMenuFont;
     }
 
     nw4r::ut::Font* getNumberFontNW4R() {
-        // TODO: Explicit cast should be removed or adjusted when nw4r::ut::ResFont is properly declared.
-        return reinterpret_cast< nw4r::ut::Font* >(SingletonHolder< GameSystem >::get()->mFontHolder->mNumberFont);
+        return SingletonHolder< GameSystem >::get()->mFontHolder->mNumberFont;
     }
 
     nw4r::ut::Font* getCinemaFontNW4R() {
-        // TODO: Explicit cast should be removed or adjusted when nw4r::ut::ResFont is properly declared.
-        return reinterpret_cast< nw4r::ut::Font* >(SingletonHolder< GameSystem >::get()->mFontHolder->mCinemaFont);
+        return SingletonHolder< GameSystem >::get()->mFontHolder->mCinemaFont;
     }
 
     ParticleResourceHolder* getParticleResourceHolder() {

@@ -1,81 +1,69 @@
-#include "TRK_Types.h"
-#include "size_t.h"
+#include "utils/common/CircleBuffer.h"
 
-typedef s32 CBError;
+u32 CBGetBytesAvailableForRead(CircleBuffer* cb) {
+    return cb->mBytesToRead;
+}
 
-CBError CircleBufferReadBytes(u32 *buffer, u8 *data, size_t length) {
-    size_t size;
+void CircleBufferInitialize(CircleBuffer* cb, u8* buf, s32 size) {
+    cb->start_ptr = buf;
+    cb->size = size;
+    cb->read_ptr = cb->start_ptr;
+    cb->write_ptr = cb->start_ptr;
+    cb->mBytesToRead = 0;
+    cb->mBytesToWrite = cb->size;
+    MWInitializeCriticalSection(&cb->mCriticalSection);
+}
 
-    if (length > buffer[4]) {
+int CircleBufferWriteBytes(CircleBuffer* cb, u8* buf, u32 size) {
+    int availSize;
+
+    if (size > cb->mBytesToWrite) {
         return -1;
     }
-
-    MWEnterCriticalSection(&buffer[6]);
-    size = buffer[3] - (buffer[0] - buffer[2]);
-
-    if (length < size) {
-        memcpy(data, (void *)buffer[0], length);
-        buffer[0] += length;
-    }
-    else {
-        memcpy(data, (void *)buffer[0], size);
-        memcpy(&data[size], (void *)buffer[2], (length - size));
-        buffer[0] = ((buffer[2] + length) - size);
+    MWEnterCriticalSection(&cb->mCriticalSection);
+    availSize = cb->size - (cb->write_ptr - cb->start_ptr);
+    if (availSize >= size) {
+        memcpy(cb->write_ptr, buf, size);
+        cb->write_ptr += size;
+    } else {
+        memcpy(cb->write_ptr, buf, availSize);
+        memcpy(cb->start_ptr, buf + availSize, size - availSize);
+        cb->write_ptr = cb->start_ptr + size - availSize;
     }
 
-    if (buffer[3] == (buffer[0] - buffer[2])) {
-        buffer[0] = buffer[2];
+    if (cb->size == (cb->write_ptr - cb->start_ptr)) {
+        cb->write_ptr = cb->start_ptr;
     }
 
-    buffer[5] += length;
-    buffer[4] -= length;
-    MWExitCriticalSection(&buffer[6]);
-
+    cb->mBytesToWrite -= size;
+    cb->mBytesToRead += size;
+    MWExitCriticalSection(&cb->mCriticalSection);
     return 0;
 }
 
-CBError CircleBufferWriteBytes(u32 *buffer, u8 *data, size_t length) {
-    size_t size;
+int CircleBufferReadBytes(CircleBuffer* cb, u8* buf, u32 size) {
+    int availSize;
 
-    if (length > buffer[5]) {
+    if (size > cb->mBytesToRead) {
         return -1;
     }
-
-    MWEnterCriticalSection(&buffer[6]);
-    size = buffer[3] - (buffer[1] - buffer[2]);
-
-    if (size >= length) {
-        memcpy((void *)buffer[1], data, length);
-        buffer[1] += length;
-    }
-    else {
-        memcpy((void *)buffer[1], data, size);
-        memcpy((void *)buffer[2], &data[size], (length - size));
-        buffer[1] = ((buffer[2] + length) - size);
+    MWEnterCriticalSection(&cb->mCriticalSection);
+    availSize = cb->size - (cb->read_ptr - cb->start_ptr);
+    if (size < availSize) {
+        memcpy(buf, cb->read_ptr, size);
+        cb->read_ptr += size;
+    } else {
+        memcpy(buf, cb->read_ptr, availSize);
+        memcpy(buf + availSize, cb->start_ptr, size - availSize);
+        cb->read_ptr = cb->start_ptr + size - availSize;
     }
 
-    if (buffer[3] == (buffer[1] - buffer[2])) {
-        buffer[1] = buffer[2];
+    if (cb->size == (cb->read_ptr - cb->start_ptr)) {
+        cb->read_ptr = cb->start_ptr;
     }
 
-    buffer[5] -= length;
-    buffer[4] += length;
-    MWExitCriticalSection(&buffer[6]);
-
+    cb->mBytesToWrite += size;
+    cb->mBytesToRead -= size;
+    MWExitCriticalSection(&cb->mCriticalSection);
     return 0;
-}
-
-void CircleBufferInitialize(u32 *dest, u32 src, u32 buffersize) {
-    dest[2] = src;
-    dest[3] = buffersize;
-    dest[0] = dest[2];
-    dest[1] = dest[2];
-    dest[4] = 0;
-    dest[5] = dest[3];
-
-    MWInitializeCriticalSection(&dest[6]);
-}
-
-u32 CBGetBytesAvailableForRead(u32 *buffer) {
-    return buffer[4];
 }

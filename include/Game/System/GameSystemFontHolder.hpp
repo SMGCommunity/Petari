@@ -1,5 +1,7 @@
 #pragma once
 
+#include <revolution/types.h>
+
 namespace nw4r {
     namespace ut {
         class Font;
@@ -18,7 +20,7 @@ public:
     void createFontFromEmbeddedData();
     void createFontFromFile();
 
-    /* 0x00 */ void* _0;
+    /* 0x00 */ u8* _0;
     /* 0x04 */ JKRMemArchive* _4;
     /* 0x08 */ nw4r::ut::ResFont* mEmbeddedMessageFont;
     /* 0x0C */ nw4r::ut::ResFont* mMessageFont;

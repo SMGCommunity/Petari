@@ -12,3 +12,4 @@
 #include "Game/Ride/SurfRayTutorial.hpp"
 #include "Game/Ride/Tamakoro.hpp"
 #include "Game/Ride/TamakoroTutorial.hpp"
+#include "Game/Ride/Trapeze.hpp"

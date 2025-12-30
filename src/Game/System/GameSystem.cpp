@@ -30,6 +30,7 @@
 #include "Game/Util/SequenceUtil.hpp"
 #include "Game/Util/SystemUtil.hpp"
 #include <JSystem/JKernel/JKRAram.hpp>
+#include <JSystem/JKernel/JKRExpHeap.hpp>
 #include <nw4r/lyt/init.h>
 #include <revolution.h>
 

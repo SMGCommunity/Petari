@@ -335,11 +335,15 @@ cflags_sdk = [
     "-i libs/RVLFaceLib/include",
     "-i libs/RVL_SDK/include",
     "-i libs/Runtime/include",
+    "-i src/RVL_SDK/bte",
     f"-i build/{config.version}/include",
     f"-DVERSION={version_num}",
+    "-ir libs/RVL_SDK/include/revolution/bte",
+    "-DREVOLUTION",
 ]
 
 cflags_sdk_exi = ["-O3" if flag == "-O4,p" else flag for flag in cflags_sdk]
+cflags_sdk_wpad = ["-fp off" if flag == "-fp hardware" else flag for flag in cflags_sdk]
 
 cflags_rfl = [
     "-nodefaults",
@@ -454,6 +458,16 @@ def SDKLib_KPAD(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
     return {
         "lib": lib_name,
         "mw_version": "Wii/1.0",
+        "cflags": cflags_sdk,
+        "progress_category": "sdk",
+        "objects": objects,
+    }
+
+
+def SDKLib_WENC(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
+    return {
+        "lib": lib_name,
+        "mw_version": "GC/3.0a5.2",
         "cflags": cflags_sdk,
         "progress_category": "sdk",
         "objects": objects,
@@ -1447,7 +1461,7 @@ config.libs = [
             Object(Matching, "Game/MapObj/FirePressureBulletHolder.cpp"),
             Object(NonMatching, "Game/MapObj/FirePressureRadiate.cpp"),
             Object(NonMatching, "Game/MapObj/FlameGun.cpp"),
-            Object(NonMatching, "Game/MapObj/FlexibleSphere.cpp"),
+            Object(Matching, "Game/MapObj/FlexibleSphere.cpp"),
             Object(Matching, "Game/MapObj/FlipPanel.cpp"),
             Object(NonMatching, "Game/MapObj/Fountain.cpp"),
             Object(Matching, "Game/MapObj/FountainBig.cpp"),
@@ -1761,7 +1775,7 @@ config.libs = [
     GameLib(
         "NameObj",
         [
-            Object(NonMatching, "Game/NameObj/ModelChangableObjFactory.cpp"),
+            Object(Matching, "Game/NameObj/ModelChangableObjFactory.cpp"),
             Object(Matching, "Game/NameObj/MovementOnOffGroupHolder.cpp"),
             Object(Matching, "Game/NameObj/NameObj.cpp"),
             Object(Matching, "Game/NameObj/NameObjAdaptor.cpp"),
@@ -1919,7 +1933,7 @@ config.libs = [
             Object(NonMatching, "Game/Ride/Plant.cpp"),
             Object(NonMatching, "Game/Ride/PlantLeaf.cpp"),
             Object(NonMatching, "Game/Ride/PlantStalk.cpp"),
-            Object(NonMatching, "Game/Ride/Pole.cpp"),
+            Object(Matching, "Game/Ride/Pole.cpp"),
             Object(Matching, "Game/Ride/SledRopePoint.cpp"),
             Object(NonMatching, "Game/Ride/SlingShooter.cpp"),
             Object(NonMatching, "Game/Ride/SpaceCocoon.cpp"),
@@ -2026,7 +2040,7 @@ config.libs = [
             Object(NonMatching, "Game/Screen/ImageEffectLocalUtil.cpp"),
             Object(NonMatching, "Game/Screen/ImageEffectResource.cpp"),
             Object(NonMatching, "Game/Screen/ImageEffectState.cpp"),
-            Object(NonMatching, "Game/Screen/ImageEffectSystemHolder.cpp"),
+            Object(Matching, "Game/Screen/ImageEffectSystemHolder.cpp"),
             Object(Matching, "Game/Screen/InformationMessage.cpp"),
             Object(Matching, "Game/Screen/InformationObserver.cpp"),
             Object(NonMatching, "Game/Screen/IsbnManager.cpp"),
@@ -2139,7 +2153,7 @@ config.libs = [
             Object(Matching, "Game/System/FunctionAsyncExecutor.cpp"),
             Object(Matching, "Game/System/GameSystem.cpp"),
             Object(Matching, "Game/System/GameSystemDimmingWatcher.cpp"),
-            Object(NonMatching, "Game/System/GameSystemErrorWatcher.cpp"),
+            Object(Matching, "Game/System/GameSystemErrorWatcher.cpp"),
             Object(Matching, "Game/System/GameSystemException.cpp"),
             Object(NonMatching, "Game/System/GameSystemFontHolder.cpp"),
             Object(Matching, "Game/System/GameSystemFrameControl.cpp"),
@@ -2315,9 +2329,9 @@ config.libs = [
     SDKLib(
         "axfx",
         [
-            Object(NonMatching, "RVL_SDK/axfx/AXFXReverbHi.c"),
-            Object(NonMatching, "RVL_SDK/axfx/AXFXReverbHiExp.c"),
-            Object(NonMatching, "RVL_SDK/axfx/AXFXHooks.c"),
+            Object(Matching, "RVL_SDK/axfx/AXFXReverbHi.c"),
+            Object(Matching, "RVL_SDK/axfx/AXFXReverbHiExp.c"),
+            Object(Matching, "RVL_SDK/axfx/AXFXHooks.c"),
         ],
     ),
     SDKLib("base", [Object(Matching, "RVL_SDK/base/PPCArch.c")]),
@@ -2427,17 +2441,17 @@ config.libs = [
         ],
     ),
     SDKLib("fs", [Object(Matching, "RVL_SDK/fs/fs.c")]),
-    SDKLib(
+    SDKLib_WENC(
         "gd",
         [
-            Object(NonMatching, "RVL_SDK/gd/GDBase.c"),
-            Object(NonMatching, "RVL_SDK/gd/GDGeometry.c"),
-            Object(NonMatching, "RVL_SDK/gd/GDIndirect.c"),
-            Object(NonMatching, "RVL_SDK/gd/GDLight.c"),
-            Object(NonMatching, "RVL_SDK/gd/GDPixel.c"),
-            Object(NonMatching, "RVL_SDK/gd/GDTev.c"),
-            Object(NonMatching, "RVL_SDK/gd/GDTexture.c"),
-            Object(NonMatching, "RVL_SDK/gd/GDTransform.c"),
+            Object(Matching, "RVL_SDK/gd/GDBase.c"),
+            Object(Matching, "RVL_SDK/gd/GDGeometry.c"),
+            Object(Matching, "RVL_SDK/gd/GDIndirect.c"),
+            Object(Matching, "RVL_SDK/gd/GDLight.c"),
+            Object(Matching, "RVL_SDK/gd/GDPixel.c"),
+            Object(Matching, "RVL_SDK/gd/GDTev.c"),
+            Object(Matching, "RVL_SDK/gd/GDTexture.c"),
+            Object(Matching, "RVL_SDK/gd/GDTransform.c"),
         ],
     ),
     SDKLib(
@@ -2659,13 +2673,14 @@ config.libs = [
             Object(NonMatching, "RVL_SDK/vi/vi3in1.c"),
         ],
     ),
-    SDKLib("wenc", [Object(NonMatching, "RVL_SDK/wenc/wenc.c")]),
+    SDKLib_WENC("wenc", [Object(NonMatching, "RVL_SDK/wenc/wenc.c")]),
     SDKLib(
         "wpad",
         [
-            Object(NonMatching, "RVL_SDK/wpad/WPAD.c"),
+            Object(NonMatching, "RVL_SDK/wpad/WPAD.c", cflags=cflags_sdk_wpad),
             Object(NonMatching, "RVL_SDK/wpad/WPADHIDParser.c"),
             Object(NonMatching, "RVL_SDK/wpad/WPADEncrypt.c"),
+            Object(NonMatching, "RVL_SDK/wpad/WPADMem.c"),
             Object(NonMatching, "RVL_SDK/wpad/debug_msg.c"),
         ],
     ),
@@ -2813,20 +2828,30 @@ config.libs = [
     TRKLib(
         "MetroTRK",
         [
-            Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Portable/mainloop.c"),
-            Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Portable/nubevent.c"),
-            Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Portable/nubinit.c"),
-            Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Portable/msg.c"),
-            Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Portable/msgbuf.c"),
+            Object(
+                NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Portable/mainloop.c"
+            ),
+            Object(
+                NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Portable/nubevent.c"
+            ),
+            Object(
+                NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Portable/nubinit.c"
+            ),
+            Object(NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Portable/msg.c"),
+            Object(
+                NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Portable/msgbuf.c"
+            ),
             Object(
                 NonMatching,
                 "MetroTRK/debugger/embedded/MetroTRK/Portable/serpoll.c",
                 extra_cflags=["-sdata 8"],
             ),
             Object(
-                Matching, "MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/usr_put.c"
+                NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/usr_put.c"
             ),
-            Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Portable/dispatch.c"),
+            Object(
+                NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Portable/dispatch.c"
+            ),
             Object(
                 NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Portable/msghndlr.c"
             ),
@@ -2834,25 +2859,27 @@ config.libs = [
                 NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Portable/support.c"
             ),
             Object(
-                Matching, "MetroTRK/debugger/embedded/MetroTRK/Portable/mutex_TRK.c"
+                NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Portable/mutex_TRK.c"
             ),
-            Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Portable/notify.c"),
             Object(
-                Matching,
+                NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Portable/notify.c"
+            ),
+            Object(
+                NonMatching,
                 "MetroTRK/debugger/embedded/MetroTRK/Processor/ppc/Generic/flush_cache.c",
             ),
             Object(
                 NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Portable/mem_TRK.c"
             ),
             Object(
-                Matching, "MetroTRK/debugger/embedded/MetroTRK/Portable/string_TRK.c"
+                NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Portable/string_TRK.c"
             ),
             Object(
                 NonMatching,
                 "MetroTRK/debugger/embedded/MetroTRK/Processor/ppc/Generic/targimpl.c",
             ),
             Object(
-                Matching,
+                NonMatching,
                 "MetroTRK/debugger/embedded/MetroTRK/Processor/ppc/Generic/mpc_7xx_603e.c",
             ),
             Object(NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Export/mslsupp.c"),
@@ -2860,16 +2887,18 @@ config.libs = [
                 NonMatching,
                 "MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/dolphin_trk.c",
             ),
-            Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Portable/main_TRK.c"),
+            Object(
+                NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Portable/main_TRK.c"
+            ),
             Object(
                 NonMatching,
                 "MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/dolphin_trk_glue.c",
             ),
             Object(
-                Matching, "MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/targcont.c"
+                NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/targcont.c"
             ),
             Object(
-                Matching,
+                NonMatching,
                 "MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/target_options.c",
             ),
             Object(
@@ -2880,7 +2909,8 @@ config.libs = [
                 "MetroTRK/gamedev/cust_connection/cc/exi2/GCN/EXI2_GDEV_GCN/main.c",
             ),
             Object(
-                Matching, "MetroTRK/gamedev/cust_connection/utils/common/CircleBuffer.c"
+                NonMatching,
+                "MetroTRK/gamedev/cust_connection/utils/common/CircleBuffer.c",
             ),
             Object(
                 NonMatching,

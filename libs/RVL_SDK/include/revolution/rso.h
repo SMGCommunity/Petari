@@ -7,6 +7,8 @@
 extern "C" {
 #endif
 
+#define RSO_FAR_JUMP_SIZE 24
+
 typedef struct RSOObjectHeader RSOObjectHeader;
 typedef u32 RSOHash;
 typedef struct RSOObjectList RSOObjectList;
@@ -19,11 +21,17 @@ typedef struct RSOImportTable RSOImportTable;
 typedef struct RSORel RSORel;
 typedef struct RSOExportFuncTable RSOExportFuncTable;
 
-struct RSOExportFuncTable {
-    const char* mSymbolName;
-    u32* mSymbolPtr;
+struct RSOImportTable {
+    u32 strOffset;
+    u32 value;
+    u32 relOffset;
 };
-    
+
+struct RSOExportFuncTable {
+    const char* symbol_name;
+    u32* symbol_ptr;
+};
+
 struct RSOObjectList {
     RSOObjectInfo* mHead;
     RSOObjectInfo* mTail;
@@ -72,21 +80,20 @@ struct RSOSectionInfo {
     u32 mSize;
 };
 
-BOOL RSOListInit(void *);
-BOOL RSOLinkList(void *, void *);
+BOOL RSOListInit(void*);
+BOOL RSOLinkList(void*, void*);
 
-BOOL RSOIsImportSymbolResolvedAll(const RSOObjectHeader *);
+BOOL RSOIsImportSymbolResolvedAll(const RSOObjectHeader*);
 
-int RSOGetJumpCodeSize(const RSOObjectHeader *);
-int RSOGetJumpCodeSize(const RSOObjectHeader *);
-void RSOMakeJumpCode(const RSOObjectHeader *, void *);
+int RSOGetJumpCodeSize(const RSOObjectHeader*);
+int RSOGetJumpCodeSize(const RSOObjectHeader*);
+void RSOMakeJumpCode(const RSOObjectHeader*, void*);
 
-const void* RSOFindExportSymbolAddr(const RSOObjectHeader *, const char *);
-int RSOLinkJump(RSOObjectHeader *,const RSOObjectHeader *,void *);
-
+const void* RSOFindExportSymbolAddr(const RSOObjectHeader*, const char*);
+int RSOLinkJump(RSOObjectHeader*, const RSOObjectHeader*, void*);
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif // RSO_H
+#endif  // RSO_H

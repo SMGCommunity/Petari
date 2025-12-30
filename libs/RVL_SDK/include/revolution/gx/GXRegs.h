@@ -14,7 +14,6 @@ extern "C" {
 #include <private/su_reg.h>
 #include <private/tev_reg.h>
 #include <private/tx_reg.h>
-#include <private/xf_mem.h>
 #include <revolution/base/PPCWGPipe.h>
 #include <revolution/gx/shortcut_bp_reg.h>
 #include <revolution/gx/shortcut_cp_reg.h>
@@ -24,8 +23,6 @@ extern "C" {
 #include <revolution/gx/shortcut_ras_reg.h>
 #include <revolution/gx/shortcut_su_reg.h>
 #include <revolution/gx/shortcut_tev_reg.h>
-#include <revolution/gx/shortcut_xf_mem.h>
-
 
 #ifdef __MWERKS__
 extern volatile PPCWGPipe gxfifo : 0xCC008000;

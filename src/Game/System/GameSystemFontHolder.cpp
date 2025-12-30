@@ -30,12 +30,13 @@ nw4r::ut::Font* GameSystemFontHolder::getMessageFont() const {
 void GameSystemFontHolder::createFontFromEmbeddedData() {
     JKRArchive* pArchive = nullptr;
     JKRHeap* pHeap = nullptr;
-    char embeddedFontPath[256];
 
     MR::getMountedArchiveAndHeap("ErrorMessageArchive.arc", &pArchive, &pHeap);
+
+    char embeddedFontPath[256];
     snprintf(embeddedFontPath, sizeof(embeddedFontPath), "/%s/LayoutData/EmbeddedFont.arc", MR::getCurrentLanguagePrefix());
 
-    _0 = MR::decompressFileFromArchive(pArchive, embeddedFontPath, pHeap, -32);
+    _0 = static_cast<u8*>(MR::decompressFileFromArchive(pArchive, embeddedFontPath, pHeap, -32));
     _4 = new(pHeap, 0) JKRMemArchive();
     _4->mountFixed(_0, JKR_MEM_BREAK_FLAG_0);
     mEmbeddedMessageFont = new(pHeap, -4) nw4r::ut::ResFont();
@@ -44,7 +45,7 @@ void GameSystemFontHolder::createFontFromEmbeddedData() {
 
 void GameSystemFontHolder::createFontFromFile() {
     nw4r::ut::ResFont* pFont;
-    JKRArchive* pArchive = reinterpret_cast< JKRMemArchive* >(MR::receiveArchive("/LayoutData/Font.arc"));
+    JKRMemArchive* pArchive = MR::receiveArchive("/LayoutData/Font.arc");
 
     pFont = new nw4r::ut::ResFont();
     pFont->SetResource(pArchive->getResource("/MessageFont26.brfnt"));
