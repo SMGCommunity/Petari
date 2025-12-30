@@ -8622,7 +8622,7 @@ Game/System/NANDErrorSequence.cpp:
 	.text       start:0x803A27E4 end:0x803A371C
 	.ctors      start:0x8052F384 end:0x8052F388
 	.data       start:0x805DBB60 end:0x805DBCE0
-	.sbss       start:0x806B6EE0 end:0x806B6F20
+	.sbss       start:0x806B6EE0 end:0x806B6F10
 
 Game/System/NANDManager.cpp:
 	.text       start:0x803A371C end:0x803A3B40
@@ -8647,6 +8647,7 @@ Game/System/Overwrite.cpp:
 	.data       start:0x805DBD20 end:0x805DBE28
 	.bss        start:0x8060B388 end:0x8060B3C0
 	.sdata      start:0x806B2578 end:0x806B2590
+	.sbss       start:0x806B6F10 end:0x806B6F18
 	.sdata2     start:0x806C1448 end:0x806C1478
 
 Game/System/PauseButtonCheckerInGame.cpp:
@@ -8704,6 +8705,7 @@ Game/System/WPad.cpp:
 Game/System/WPadAcceleration.cpp:
 	.text       start:0x803ABD30 end:0x803AC4AC
 	.rodata     start:0x8053C4A0 end:0x8053C4A8
+	.sbss       start:0x806B6F18 end:0x806B6F20
 	.sdata2     start:0x806C1488 end:0x806C14A0
 
 Game/System/WPadButton.cpp:

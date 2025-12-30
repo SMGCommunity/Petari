@@ -2167,7 +2167,7 @@ config.libs = [
             Object(NonMatching, "Game/System/LayoutHolder.cpp"),
             Object(Matching, "Game/System/MainLoopFramework.cpp"),
             Object(Matching, "Game/System/MessageHolder.cpp"),
-            Object(NonMatching, "Game/System/NANDErrorSequence.cpp"),
+            Object(Matching, "Game/System/NANDErrorSequence.cpp"),
             Object(Matching, "Game/System/NANDManager.cpp"),
             Object(Matching, "Game/System/NANDManagerThread.cpp"),
             Object(Matching, "Game/System/NerveExecutor.cpp"),
