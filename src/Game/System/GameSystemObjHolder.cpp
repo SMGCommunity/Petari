@@ -15,9 +15,9 @@
 #include "Game/System/RenderMode.hpp"
 #include "Game/System/ResourceHolderManager.hpp"
 #include "Game/System/WPadHolder.hpp"
-#include "revolution/gx/GXStruct.h"
 #include <JSystem/JKernel/JKRExpHeap.hpp>
 #include <JSystem/JUtility/JUTVideo.hpp>
+#include <revolution/gx/GXStruct.h>
 
 GameSystemObjHolder::GameSystemObjHolder()
     : mObjHolder(nullptr), mParticleResHolder(nullptr), mRenderModeObj(nullptr), mCaptureScreenDir(nullptr), mScreenPreserver(nullptr),
