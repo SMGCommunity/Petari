@@ -136,7 +136,7 @@ const char* const __DVDErrorMessageEurope[] = {
     "de handleiding voor meer informatie."
 };
 
-const char* const __DVDErrorMessage104 [] = {
+const char* __DVDErrorMessage104 [] = {
     "\n"
     "\n"
     "エラーコード１０４。\n"
@@ -171,14 +171,14 @@ void __DVDShowFatalMessage(void) {
 
     switch (SCGetProductGameRegion()) {
         default:
-            messageList = __DVDErrorMessage104;
+            messageList = __DVDErrorMessageDefault;
             break;
         case 2:
             messageList = __DVDErrorMessageEurope;
             break;
         case 4:
         case 5:
-            messageList = __DVDErrorMessageDefault;
+            messageList = __DVDErrorMessage104;
             break;
     }
 

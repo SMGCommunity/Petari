@@ -10826,7 +10826,7 @@ RVL_SDK/dvd/dvd.c:
 	.text       start:0x804C2128 end:0x804C6E38
 	.data       start:0x805FE7D0 end:0x805FEB78
 	.bss        start:0x80667180 end:0x8066BE30
-	.sdata      start:0x806B2B70 end:0x806B2B90
+	.sdata      start:0x806B2B70 end:0x806B2B88
 	.sbss       start:0x806B7900 end:0x806B7998
 
 RVL_SDK/dvd/dvdqueue.c:
@@ -10846,6 +10846,7 @@ RVL_SDK/dvd/dvdFatal.c:
 	.text       start:0x804C7A84 end:0x804C7C00
 	.rodata     start:0x80561B40 end:0x80561B78
 	.data       start:0x805FEBA8 end:0x805FF208
+	.sdata      start:0x806B2B88 end:0x806B2B90
 	.sbss       start:0x806B79A8 end:0x806B79B0
 	.sdata2     start:0x806C2238 end:0x806C2240
 
