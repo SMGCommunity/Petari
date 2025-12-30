@@ -294,18 +294,20 @@ const wchar_t* TalkNodeCtrl::getSubMessage() const {
     return nullptr;
 }
 
-void TalkNodeCtrl::initNodeRecursive(TalkMessageCtrl* pMsgCtrl, const JMapInfoIter& rIter, ActorCameraInfo* pCameraInf, RecursiveHelper* pHelper) {
-    TalkNode* currentNode = mCurrentNode;
-    bool containsCurrentNode = false;
-
-    for (int i = 0; i < pHelper->mIndex; i++) {
-        if (pHelper->mStack[i] == currentNode) {
-            containsCurrentNode = true;
-            break;
+bool RecursiveHelper::hasNode(const TalkNode* pNode) const {
+    for (int i = 0; i < mIndex; i++) {
+        if (mStack[i] == pNode) {
+            return true;
         }
     }
 
-    if (containsCurrentNode) {
+    return false;
+}
+
+void TalkNodeCtrl::initNodeRecursive(TalkMessageCtrl* pMsgCtrl, const JMapInfoIter& rIter, ActorCameraInfo* pCameraInf, RecursiveHelper* pHelper) {
+    TalkNode* currentNode = mCurrentNode;
+
+    if (pHelper->hasNode(currentNode)) {
         return;
     }
 

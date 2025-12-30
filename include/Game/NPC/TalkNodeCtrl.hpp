@@ -28,6 +28,7 @@ public:
 
 class RecursiveHelper {
 public:
+    inline bool hasNode(const TalkNode*) const;
     TalkNode* mStack[64];
     s32 mIndex;
 };
