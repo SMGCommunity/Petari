@@ -31,7 +31,7 @@ const char* const __DVDErrorMessageDefault[] = {
     "\n"
     "\n"
     "Ein Fehler ist aufgetreten.\n"
-    "Drücke den Ausgabeknopf, entnimm die\n"
+    "Dr\xFC""cke den Ausgabeknopf, entnimm die\n"
     "Disc und schalte die Wii-Konsole aus.\n"
     "Bitte lies die Wii-Bedienungsanleitung,\n"
     "um weitere Informationen zu erhalten.",
@@ -41,23 +41,23 @@ const char* const __DVDErrorMessageDefault[] = {
     "\n"
     "Une erreur est survenue.\n"
     "Appuyez sur le bouton EJECT, retirez\n"
-    "le disque et éteignez la console.\n"
-    "Veuillez vous référer au mode d'emploi\n"
-    "Wii pour plus de détails.",
+    "le disque et \xE9""teignez la console.\n"
+    "Veuillez vous r\xE9""f\xE9""rer au mode d'emploi\n"
+    "Wii pour plus de d\xE9""tails.",
 
     "\n"
     "\n"
     "\n"
     "Se ha producido un error.\n"
-    "Pulsa el Botón EJECT, extrae el disco y\n"
+    "Pulsa el Bot\xF3""n EJECT, extrae el disco y\n"
     "apaga la consola. Consulta el manual de\n"
     "instrucciones de la consola Wii para\n"
-    "obtener más información.",
+    "obtener m\xE1""s informaci\xF3""n.",
 
     "\n"
     "\n"
     "\n"
-    "Si è verificato un errore.\n"
+    "Si \xE8"" verificato un errore.\n"
     "Premi il pulsante EJECT, estrai il disco\n"
     "e spegni la console. Per maggiori\n"
     "informazioni, consulta il manuale di\n"
@@ -95,7 +95,7 @@ const char* const __DVDErrorMessageEurope[] = {
     "\n"
     "\n"
     "Ein Fehler ist aufgetreten.\n"
-    "Drücke den Ausgabeknopf, entnimm die\n"
+    "Dr\xFC""cke den Ausgabeknopf, entnimm die\n"
     "Disc und schalte die Wii-Konsole aus.\n"
     "Bitte lies die Wii-Bedienungsanleitung,\n"
     "um weitere Informationen zu erhalten.",
@@ -105,23 +105,23 @@ const char* const __DVDErrorMessageEurope[] = {
     "\n"
     "Une erreur est survenue.\n"
     "Appuyez sur le bouton EJECT, retirez\n"
-    "le disque et éteignez la console.\n"
-    "Veuillez vous référer au mode d'emploi\n"
-    "Wii pour plus de détails.",
+    "le disque et \xE9""teignez la console.\n"
+    "Veuillez vous r\xE9""f\xE9""rer au mode d'emploi\n"
+    "Wii pour plus de d\xE9""tails.",
 
     "\n"
     "\n"
     "\n"
     "Se ha producido un error.\n"
-    "Pulsa el Botón EJECT, extrae el disco y\n"
+    "Pulsa el Bot\xF3""n EJECT, extrae el disco y\n"
     "apaga la consola. Consulta el manual de\n"
     "instrucciones de la consola Wii para\n"
-    "obtener más información.",
+    "obtener m\xE1""s informaci\xF3""n.",
 
     "\n"
     "\n"
     "\n"
-    "Si è verificato un errore.\n"
+    "Si \xE8"" verificato un errore.\n"
     "Premi il pulsante EJECT, estrai il disco\n"
     "e spegni la console. Per maggiori\n"
     "informazioni, consulta il manuale di\n"
