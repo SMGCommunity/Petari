@@ -2507,10 +2507,10 @@ config.libs = [
         [
             Object(Matching, "RVL_SDK/nand/nand.c"),
             Object(Matching, "RVL_SDK/nand/NANDOpenClose.c"),
-            Object(NonMatching, "RVL_SDK/nand/NANDCore.c"),
+            Object(Matching, "RVL_SDK/nand/NANDCore.c"),
             Object(Matching, "RVL_SDK/nand/NANDSecret.c"),
-            Object(NonMatching, "RVL_SDK/nand/NANDCheck.c"),
-            Object(NonMatching, "RVL_SDK/nand/NANDLogging.c"),
+            Object(Matching, "RVL_SDK/nand/NANDCheck.c"),
+            Object(Matching, "RVL_SDK/nand/NANDLogging.c"),
         ],
     ),
     SDKLib(

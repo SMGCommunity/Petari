@@ -10850,7 +10850,7 @@ RVL_SDK/dvd/dvdFatal.c:
 
 RVL_SDK/dvd/dvdDeviceError.c:
 	.text       start:0x804C7C00 end:0x804C7E98
-	.rodata     start:0x80561B78 end:0x80561CE0
+	.rodata     start:0x80561B78 end:0x80561B98
 	.data       start:0x805FF208 end:0x805FF3A0
 	.sdata      start:0x806B2B90 end:0x806B2B98
 	.sbss       start:0x806B79B0 end:0x806B79B8
@@ -10895,7 +10895,7 @@ RVL_SDK/axfx/AXFXHooks.c:
 
 RVL_SDK/mem/mem_heapCommon.c:
 	.text       start:0x804CB944 end:0x804CBDB0
-	.bss        start:0x8066C380 end:0x8066C400
+	.bss        start:0x8066C380 end:0x8066C3C0
 	.sbss       start:0x806B7A38 end:0x806B7A40
 
 RVL_SDK/mem/mem_expHeap.c:
@@ -10934,7 +10934,9 @@ RVL_SDK/nand/NANDOpenClose.c:
 
 RVL_SDK/nand/NANDCore.c:
 	.text       start:0x804CEC2C end:0x804CFA28
-	.data       start:0x80600620 end:0x806007E0
+	.rodata     start:0x80561B98 end:0x80561CE0
+	.data       start:0x80600620 end:0x80600770
+	.bss        start:0x8066C3C0 end:0x8066C400
 	.sdata      start:0x806B2BD8 end:0x806B2C00
 	.sbss       start:0x806B7A60 end:0x806B7A68
 
@@ -10943,13 +10945,13 @@ RVL_SDK/nand/NANDSecret.c:
 
 RVL_SDK/nand/NANDCheck.c:
 	.text       start:0x804CFAE0 end:0x804CFCA4
-	.data       start:0x806007E0 end:0x80600820
+	.data       start:0x80600770 end:0x80600820
 	.sdata      start:0x806B2C00 end:0x806B2C10
 
 RVL_SDK/nand/NANDLogging.c:
 	.text       start:0x804CFCA4 end:0x804D0274
 	.data       start:0x80600820 end:0x80600868
-	.bss        start:0x8066C400 end:0x806748A0
+	.bss        start:0x8066C400 end:0x8066C700
 	.sdata      start:0x806B2C10 end:0x806B2C18
 	.sbss       start:0x806B7A68 end:0x806B7A70
 
@@ -10957,6 +10959,7 @@ RVL_SDK/sc/scsystem.c:
 	.text       start:0x804D0274 end:0x804D1BD8
 	.rodata     start:0x80561CE0 end:0x80561D38
 	.data       start:0x80600868 end:0x80600A40
+	.bss        start:0x8066C700 end:0x806748A0
 	.sdata      start:0x806B2C18 end:0x806B2D20
 	.sbss       start:0x806B7A70 end:0x806B7A88
 
