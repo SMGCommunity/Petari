@@ -1,10 +1,10 @@
 #include "Game/Enemy/BegomanBase.hpp"
 #include "Game/Enemy/AnimScaleController.hpp"
+#include "Game/Enemy/BegomanBaby.hpp"
 #include "Game/Map/WaterInfo.hpp"
 #include "Game/Util.hpp"
 #include "Game/mapObj/ElectricRailHolder.hpp"
 #include "JSystem/JMath/JMATrigonometric.hpp"
-#include "revolution/types.h"
 
 namespace NrvBegomanAttackPermitter {
     NEW_NERVE(HostTypeNrvWait, BegomanAttackPermitter, Wait);
@@ -34,9 +34,9 @@ namespace {
 }  // namespace
 
 BegomanBase::BegomanBase(const char* pName)
-    : LiveActor(pName), mBaseDelegator(nullptr), mFaceVec(0.0f, 0.0f, 1.0f), mTargetVec(0.0f, 0.0f, 1.0f), _A8(0.0f, 0.0f, -1.0f), _B4(1.0f, 1.0f, 1.0f),
-      _C0(0, 0, 0, 1), _D0(0, 0, 0, 1), mTiredCounter(0), mElectricCounter(0), mInitPos(0.0f, 0.0f, 0.0f), mScaleControler(nullptr),
-      mStarPointBind(nullptr), mCanTrySetReturn(false) {}
+    : LiveActor(pName), mBaseDelegator(nullptr), mFaceVec(0.0f, 0.0f, 1.0f), mTargetVec(0.0f, 0.0f, 1.0f), _A8(0.0f, 0.0f, -1.0f),
+      _B4(1.0f, 1.0f, 1.0f), _C0(0, 0, 0, 1), _D0(0, 0, 0, 1), mTiredCounter(0), mElectricCounter(0), mInitPos(0.0f, 0.0f, 0.0f),
+      mScaleControler(nullptr), mStarPointBind(nullptr), mCanTrySetReturn(false) {}
 
 // needed to get a string to show up in .data, should be deadstripped.
 const BegomanSound* BegomanBase::getSoundBaby() {
@@ -630,6 +630,26 @@ void BegomanBase::launchBegoman(LiveActor* pActor, BegomanBase** begomanArray, s
     }
 }
 
+void BegomanBase::launchBegomanBabyFromGuarder(LiveActor* pActor, BegomanBaby** babyArray, s32 numBegoman, f32 distFromLauncher, f32 f2, f32 f3,
+                                               const TVec3f* pVec) {
+    launchBegomanCore(pActor, (BegomanBase**)babyArray, numBegoman, distFromLauncher, f2, f3, pVec);
+    
+    for (int i = 0; i < numBegoman; i++) {
+        babyArray[i]->appearFromGuarder();
+    }
+}
+
+void BegomanBase::launchBegomanBabyLauncher(LiveActor* pActor, BegomanBaby** babyArray, s32 numBegoman, f32 distFromLauncher, f32 f2, f32 f3,
+                                            const TVec3f* pVec) {
+    launchBegomanCore(pActor, (BegomanBase**)babyArray, numBegoman, distFromLauncher, f2, f3, pVec);
+    
+    for (int i = 0; i < numBegoman; i++) {
+        babyArray[i]->appearFromLaunch(pActor->mPosition, -pActor->mGravity);
+    }
+}
+
+const Nerve* BegomanBase::setNerveLaunch() {}
+
 void BegomanBase::updateRotateY(f32 newRotationTarget, f32 rotationLimit) {
     f32 newYRotation = 0.0f;
 
@@ -791,7 +811,7 @@ bool BegomanBase::checkTouchElectricRail(bool notCheckPush) {
     } else {
         mElectricCounter = 0;
     }
-    
+
     return ret;
 }
 
@@ -943,7 +963,8 @@ bool BegomanBase::requestAttack() {
     return MR::getSceneObj< BegomanAttackPermitter >(SceneObj_BegomanAttackPermitter)->requestAttack(this);
 }
 
-BegomanAttackPermitter::BegomanAttackPermitter(const char* pName) : LiveActor(pName), _8C(nullptr), mBegoman(nullptr), mDistToPlayer(99999.0f), _98(false) {}
+BegomanAttackPermitter::BegomanAttackPermitter(const char* pName)
+    : LiveActor(pName), _8C(nullptr), mBegoman(nullptr), mDistToPlayer(99999.0f), _98(false) {}
 
 void BegomanAttackPermitter::init(const JMapInfoIter& rIter) {
     MR::connectToSceneEnemyDecorationMovement(this);
@@ -969,7 +990,6 @@ bool BegomanAttackPermitter::requestAttack(BegomanBase* pBegoman) {
 
     if (isNerve(&NrvBegomanAttackPermitter::HostTypeNrvReceive::sInstance) || isNerve(&NrvBegomanAttackPermitter::HostTypeNrvWait::sInstance)) {
         if (mBegoman == nullptr) {
-
             mBegoman = pBegoman;
             mDistToPlayer = MR::calcDistanceToPlayer(pBegoman->mPosition);
 
@@ -977,7 +997,6 @@ bool BegomanAttackPermitter::requestAttack(BegomanBase* pBegoman) {
                 setNerve(&NrvBegomanAttackPermitter::HostTypeNrvReceive::sInstance);
             }
         } else {
-
             f32 distToPlayerPBegoman = MR::calcDistanceToPlayer(pBegoman->mPosition);
             if (distToPlayerPBegoman < mDistToPlayer) {
                 mDistToPlayer = distToPlayerPBegoman;

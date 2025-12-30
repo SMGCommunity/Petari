@@ -2441,6 +2441,7 @@ Game/Enemy/BegomanBaby.cpp:
 	.ctors      start:0x8052EA38 end:0x8052EA3C
 	.rodata     start:0x80531BF0 end:0x80531C68
 	.data       start:0x805792D8 end:0x805796E0
+	.sdata      start:0x806B18B8 end:0x806B18C0
 	.sbss       start:0x806B3B88 end:0x806B3BD8
 	.sdata2     start:0x806B9EF8 end:0x806B9F68
 
