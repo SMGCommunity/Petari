@@ -4,6 +4,7 @@
 #include "Game/Demo.hpp"
 #include "Game/Effect.hpp"
 #include "Game/Enemy.hpp"
+#include "Game/Enemy/BegomanBaby.hpp"
 #include "Game/Gravity.hpp"
 #include "Game/Map.hpp"
 #include "Game/MapObj.hpp"
@@ -1049,7 +1050,7 @@ namespace {
         },
         {
             "BegomanBaby",
-            nullptr,
+            createNameObj<BegomanBaby>,
             "BegomanBaby",
         },
         {
