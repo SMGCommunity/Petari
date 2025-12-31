@@ -266,6 +266,23 @@ namespace JGeometry {
             this->mMtx[2][2] = rSrcZ.z;
         }
 
+        inline void getXYZDirInline(TVec3f& rDstX, TVec3f& rDstY, TVec3f& rDstZ) {
+            f32 z1 = this->mMtx[2][0];
+            f32 y1 = this->mMtx[1][0];
+            f32 x1 = this->mMtx[0][0];
+            rDstX.set< f32 >(x1, y1, z1);
+
+            f32 z2 = this->mMtx[2][1];
+            f32 y2 = this->mMtx[1][1];
+            f32 x2 = this->mMtx[0][1];
+            rDstY.set< f32 >(x2, y2, z2);
+
+            f32 z3 = this->mMtx[2][2];
+            f32 y3 = this->mMtx[1][2];
+            f32 x3 = this->mMtx[0][2];
+            rDstZ.set< f32 >(x3, y3, z3);
+        }
+
         inline void zeroTrans() {
             this->mMtx[0][3] = 0.0f;
             this->mMtx[1][3] = 0.0f;

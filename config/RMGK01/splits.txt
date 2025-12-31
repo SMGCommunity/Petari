@@ -2441,6 +2441,7 @@ Game/Enemy/BegomanBaby.cpp:
 	.ctors      start:0x8052EA38 end:0x8052EA3C
 	.rodata     start:0x80531BF0 end:0x80531C68
 	.data       start:0x805792D8 end:0x805796E0
+	.sdata      start:0x806B18B8 end:0x806B18C0
 	.sbss       start:0x806B3B88 end:0x806B3BD8
 	.sdata2     start:0x806B9EF8 end:0x806B9F68
 
@@ -6568,7 +6569,7 @@ Game/NPC/TalkDirector.cpp:
 
 Game/NPC/TalkMessageCtrl.cpp:
 	.text       start:0x802A0400 end:0x802A136C
-	.data       start:0x805B6A80 end:0x805B6C98
+	.data       start:0x805B6A80 end:0x805B6C88
 	.sdata2     start:0x806BF338 end:0x806BF348
 
 Game/NPC/TalkMessageInfo.cpp:
@@ -6576,6 +6577,7 @@ Game/NPC/TalkMessageInfo.cpp:
 
 Game/NPC/TalkNodeCtrl.cpp:
 	.text       start:0x802A1494 end:0x802A1E9C
+	.data       start:0x805B6C88 end:0x805B6C98
 
 Game/NPC/TurnJointCtrl.cpp:
 	.text       start:0x802A1E9C end:0x802A28F4
@@ -8621,7 +8623,7 @@ Game/System/NANDErrorSequence.cpp:
 	.text       start:0x803A27E4 end:0x803A371C
 	.ctors      start:0x8052F384 end:0x8052F388
 	.data       start:0x805DBB60 end:0x805DBCE0
-	.sbss       start:0x806B6EE0 end:0x806B6F20
+	.sbss       start:0x806B6EE0 end:0x806B6F10
 
 Game/System/NANDManager.cpp:
 	.text       start:0x803A371C end:0x803A3B40
@@ -8646,6 +8648,7 @@ Game/System/Overwrite.cpp:
 	.data       start:0x805DBD20 end:0x805DBE28
 	.bss        start:0x8060B388 end:0x8060B3C0
 	.sdata      start:0x806B2578 end:0x806B2590
+	.sbss       start:0x806B6F10 end:0x806B6F18
 	.sdata2     start:0x806C1448 end:0x806C1478
 
 Game/System/PauseButtonCheckerInGame.cpp:
@@ -8703,6 +8706,7 @@ Game/System/WPad.cpp:
 Game/System/WPadAcceleration.cpp:
 	.text       start:0x803ABD30 end:0x803AC4AC
 	.rodata     start:0x8053C4A0 end:0x8053C4A8
+	.sbss       start:0x806B6F18 end:0x806B6F20
 	.sdata2     start:0x806C1488 end:0x806C14A0
 
 Game/System/WPadButton.cpp:
@@ -10563,26 +10567,28 @@ RVL_SDK/os/OSContext.c:
 RVL_SDK/os/OSError.c:
 	.text       start:0x804A60D4 end:0x804A6808
 	.data       start:0x805EFC00 end:0x805EFF20
-	.bss        start:0x80664E50 end:0x80665188
+	.bss        start:0x80664E50 end:0x80664EC0
 	.sdata      start:0x806B2A50 end:0x806B2A60
 
 RVL_SDK/os/OSExec.c:
 	.text       start:0x804A6808 end:0x804A7E78
-	.data       start:0x805EFF20 end:0x805F0110
+	.data       start:0x805EFF20 end:0x805EFF90
 	.sdata      start:0x806B2A60 end:0x806B2A68
 	.sbss       start:0x806B7690 end:0x806B76A8
 	.sdata2     start:0x806C2080 end:0x806C2088
 
 RVL_SDK/os/OSFatal.c:
 	.text       start:0x804A7E78 end:0x804A8AB0
-	.bss        start:0x80665188 end:0x806651A0
-	.sdata      start:0x806B2A68 end:0x806B2A78
-	.sdata2     start:0x806C2088 end:0x806C20D0
+	.bss        start:0x80664EC0 end:0x806651A0
+	.sdata      start:0x806B2A68 end:0x806B2A70
+	.sdata2     start:0x806C2088 end:0x806C20C8
 
 RVL_SDK/os/OSFont.c:
 	.text       start:0x804A8AB0 end:0x804A9778
-	.data       start:0x805F0110 end:0x805F0AA0
+	.data       start:0x805EFF90 end:0x805F0AA0
+	.sdata      start:0x806B2A70 end:0x806B2A78
 	.sbss       start:0x806B76A8 end:0x806B76B8
+	.sdata2     start:0x806C20C8 end:0x806C20D0
 
 RVL_SDK/os/OSInterrupt.c:
 	.text       start:0x804A9778 end:0x804A9EFC
@@ -10820,7 +10826,7 @@ RVL_SDK/dvd/dvd.c:
 	.text       start:0x804C2128 end:0x804C6E38
 	.data       start:0x805FE7D0 end:0x805FEB78
 	.bss        start:0x80667180 end:0x8066BE30
-	.sdata      start:0x806B2B70 end:0x806B2B90
+	.sdata      start:0x806B2B70 end:0x806B2B88
 	.sbss       start:0x806B7900 end:0x806B7998
 
 RVL_SDK/dvd/dvdqueue.c:
@@ -10830,7 +10836,7 @@ RVL_SDK/dvd/dvdqueue.c:
 RVL_SDK/dvd/dvderror.c:
 	.text       start:0x804C7090 end:0x804C7994
 	.data       start:0x805FEB78 end:0x805FEBA8
-	.bss        start:0x8066BE60 end:0x8066C380
+	.bss        start:0x8066BE60 end:0x8066C0C0
 	.sbss       start:0x806B7998 end:0x806B79A8
 
 RVL_SDK/dvd/dvdidutils.c:
@@ -10840,19 +10846,22 @@ RVL_SDK/dvd/dvdFatal.c:
 	.text       start:0x804C7A84 end:0x804C7C00
 	.rodata     start:0x80561B40 end:0x80561B78
 	.data       start:0x805FEBA8 end:0x805FF208
+	.sdata      start:0x806B2B88 end:0x806B2B90
 	.sbss       start:0x806B79A8 end:0x806B79B0
 	.sdata2     start:0x806C2238 end:0x806C2240
 
 RVL_SDK/dvd/dvdDeviceError.c:
 	.text       start:0x804C7C00 end:0x804C7E98
-	.rodata     start:0x80561B78 end:0x80561CE0
+	.rodata     start:0x80561B78 end:0x80561B98
 	.data       start:0x805FF208 end:0x805FF3A0
+	.bss        start:0x8066C0C0 end:0x8066C0E0
 	.sdata      start:0x806B2B90 end:0x806B2B98
 	.sbss       start:0x806B79B0 end:0x806B79B8
 
 RVL_SDK/dvd/dvd_broadway.c:
 	.text       start:0x804C7E98 end:0x804CA2E4
 	.data       start:0x805FF3A0 end:0x80600260
+	.bss        start:0x8066C0E0 end:0x8066C380
 	.sdata      start:0x806B2B98 end:0x806B2BA8
 	.sbss       start:0x806B79B8 end:0x806B79E0
 
@@ -10890,7 +10899,7 @@ RVL_SDK/axfx/AXFXHooks.c:
 
 RVL_SDK/mem/mem_heapCommon.c:
 	.text       start:0x804CB944 end:0x804CBDB0
-	.bss        start:0x8066C380 end:0x8066C400
+	.bss        start:0x8066C380 end:0x8066C3C0
 	.sbss       start:0x806B7A38 end:0x806B7A40
 
 RVL_SDK/mem/mem_expHeap.c:
@@ -10929,7 +10938,9 @@ RVL_SDK/nand/NANDOpenClose.c:
 
 RVL_SDK/nand/NANDCore.c:
 	.text       start:0x804CEC2C end:0x804CFA28
-	.data       start:0x80600620 end:0x806007E0
+	.rodata     start:0x80561B98 end:0x80561CE0
+	.data       start:0x80600620 end:0x80600770
+	.bss        start:0x8066C3C0 end:0x8066C400
 	.sdata      start:0x806B2BD8 end:0x806B2C00
 	.sbss       start:0x806B7A60 end:0x806B7A68
 
@@ -10938,13 +10949,13 @@ RVL_SDK/nand/NANDSecret.c:
 
 RVL_SDK/nand/NANDCheck.c:
 	.text       start:0x804CFAE0 end:0x804CFCA4
-	.data       start:0x806007E0 end:0x80600820
+	.data       start:0x80600770 end:0x80600820
 	.sdata      start:0x806B2C00 end:0x806B2C10
 
 RVL_SDK/nand/NANDLogging.c:
 	.text       start:0x804CFCA4 end:0x804D0274
 	.data       start:0x80600820 end:0x80600868
-	.bss        start:0x8066C400 end:0x806748A0
+	.bss        start:0x8066C400 end:0x8066C700
 	.sdata      start:0x806B2C10 end:0x806B2C18
 	.sbss       start:0x806B7A68 end:0x806B7A70
 
@@ -10952,6 +10963,7 @@ RVL_SDK/sc/scsystem.c:
 	.text       start:0x804D0274 end:0x804D1BD8
 	.rodata     start:0x80561CE0 end:0x80561D38
 	.data       start:0x80600868 end:0x80600A40
+	.bss        start:0x8066C700 end:0x806748A0
 	.sdata      start:0x806B2C18 end:0x806B2D20
 	.sbss       start:0x806B7A70 end:0x806B7A88
 

@@ -9,25 +9,8 @@
 
 #include <__ppc_eabi_linker.h>
 
-static __OSExceptionHandler* OSExceptionTable;
 
-static u32  __OSExceptionLocations[] = {
-    0x100,
-    0x200,
-    0x300,
-    0x400,
-    0x500,
-    0x600,
-    0x700,
-    0x800,
-    0x900,
-    0xC00,
-    0xD00,
-    0xF00,
-    0x1300,
-    0x1400,
-    0x1700
-};
+
 
 
 void __OSEVStart(void);
@@ -37,20 +20,18 @@ void __DBVECTOR(void);
 void __OSDBINTSTART(void);
 void __OSDBINTEND(void);
 void __OSDBJUMPSTART(void);
+void __OSDBJUMPDEST(void);
 void __OSDBJUMPEND(void);
 
-static f64 ZeroF;
-static f32 ZeroPS[2];
+
 
 static DVDDriveInfo DriveInfo;
 static DVDCommandBlock DriveBlock;
-static char GameNameBuffer[5];
-__declspec(weak) BOOL __OSIsGcam = FALSE;
-OSTime __OSStartTime;
 BOOL __OSInIPL = FALSE;
 BOOL __OSInNandBoot = FALSE;
+__declspec(weak) BOOL __OSIsGcam = FALSE;
+OSTime __OSStartTime;
 extern BOOL __OSInReboot;
-BOOL __OSIsDiag = FALSE;
 
 static OSBootInfo* volatile BootInfo;
 
@@ -65,6 +46,11 @@ extern u32  __DVDLongFileNameFlag;
 extern u32  __PADSpec;
 static BOOL AreWeInitialized = FALSE;
 OSExecParams __OSRebootParams;
+static char GameNameBuffer[5];
+static f64 ZeroF;
+static f32 ZeroPS[2];
+static __OSExceptionHandler* OSExceptionTable;
+
 
 static void OSExceptionInit(void);
 void OSDefaultExceptionHandler( __OSException exception, OSContext* context );
@@ -177,8 +163,8 @@ u32 __OSGetHollywoodRev(void) {
 u32 OSGetConsoleType(void) {
     u32 hwRev;
     u32 gddrSize;
-
-    if (BootInfo == NULL || BootInfo->consoleType == 0) {
+    OSBootInfo *info = BootInfo;
+    if (info == NULL || info->consoleType == 0) {
         return 0x10000002;
     }
 
@@ -222,7 +208,7 @@ u32 OSGetConsoleType(void) {
                 }
 
                 if (hwRev > 0x11) {
-                    return 0x10000031;
+                    return 0x10000021;
                 }
 
             case 0x300:
@@ -282,7 +268,7 @@ u32 OSGetConsoleType(void) {
             return 0x21;
         }
         else {
-            return 0x10000031;
+            return 0x10000021;
         }
     }
 
@@ -390,6 +376,10 @@ static void ReportOSInfo(void) {
     u32 consoleType;
     u32 sysMemSize;
     OSIOSRev ios;
+    void* MEM1Hi;
+    void* MEM1Lo;
+    void* MEM2Hi;
+    void* MEM2Lo;
 
     OSReport("\nRevolution OS\n");
     OSReport("Kernel built : %s %s\n", "Jan 30 2008", "01:38:43");
@@ -461,8 +451,12 @@ static void ReportOSInfo(void) {
     sysMemSize = (OSGetConsoleSimulatedMem1Size() + OSGetConsoleSimulatedMem2Size());
     OSReport("Memory %d MB\n", sysMemSize/(1024*1024));
 
-    OSReport("MEM1 Arena : 0x%x - 0x%x\n", OSGetMEM1ArenaLo(), OSGetMEM1ArenaHi());
-    OSReport("MEM2 Arena : 0x%x - 0x%x\n", OSGetMEM2ArenaLo(), OSGetMEM2ArenaHi());
+    MEM1Hi = OSGetMEM1ArenaHi();
+    MEM1Lo = OSGetMEM1ArenaLo();
+    OSReport("MEM1 Arena : 0x%x - 0x%x\n", MEM1Lo, MEM1Hi);
+    MEM2Hi = OSGetMEM2ArenaHi();
+    MEM2Lo = OSGetMEM2ArenaLo();
+    OSReport("MEM2 Arena : 0x%x - 0x%x\n", MEM2Lo, MEM2Hi);
 }
 
 void OSInit(void) {
@@ -640,6 +634,24 @@ void OSInit(void) {
 }
 
 static void OSExceptionInit(void) {
+    static u32  __OSExceptionLocations[] = {
+    0x100,
+    0x200,
+    0x300,
+    0x400,
+    0x500,
+    0x600,
+    0x700,
+    0x800,
+    0x900,
+    0xC00,
+    0xD00,
+    0xF00,
+    0x1300,
+    0x1400,
+    0x1700
+};
+
     __OSException exception;
     void* destAddr;
     u32* opCodeAddr;
@@ -671,13 +683,13 @@ static void OSExceptionInit(void) {
 
         if (__DBIsExceptionMarked(exception)) {
             DBPrintf(">>> OSINIT: exception %d vectored to debugger\n", exception);
-            memcpy((void*)__DBVECTOR, (void*)__OSDBJUMPSTART, (u32)__OSDBJUMPEND - (u32)__OSDBJUMPSTART);
+            memcpy((void*)__DBVECTOR, (void*)__OSDBINTEND, (u32)__OSDBJUMPEND - (u32)__OSDBINTEND);
         }
         else {
             u32* ops = (u32*)__DBVECTOR;
             int cb;
 
-            for (cb = 0; cb < (u32)__OSDBJUMPEND - (u32)__OSDBJUMPSTART; cb += 4) {
+            for (cb = 0; cb < (u32)__OSDBJUMPEND - (u32)__OSDBINTEND; cb += 4) {
                 // set op to NOP
                 *ops++ = 0x60000000;
             }
@@ -720,7 +732,7 @@ entry __OSDBINTEND
 static asm void __OSDBJump(void) {
     nofralloc
 entry __OSDBJUMPSTART
-    bla 0x60
+    bla __OSDBJUMPDEST
 entry __OSDBJUMPEND
 }
 
@@ -753,6 +765,8 @@ entry __OSEVStart
     mflr r3
     stw r3, 132(r4)
     mfctr r3
+entry __OSDBJUMPDEST
+ 
     stw r3, 136(r4)
     mfxer r3
     stw r3, 140(r4)

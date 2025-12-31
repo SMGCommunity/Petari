@@ -12,7 +12,9 @@ public:
     void decideNextTargetPos(const LiveActor*);
     bool isReachedTarget(const LiveActor*, f32);
 
+    void setCenter(const TVec3f& rPos) { mCenter.set(rPos); }
+
     f32 _0;
-    TVec3f _4;
+    TVec3f mCenter;  // 0x4
     TVec3f _10;
 };
