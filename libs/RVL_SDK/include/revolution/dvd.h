@@ -240,7 +240,7 @@ u32 DVDLowGetCoverRegister(void);
 bool DVDLowReadDiskID(DVDDiskID *, DVDLowCallback);
 bool DVDLowRequestAudioStatus(u32, DVDLowCallback);
 bool DVDLowAudioStream(u32, u32, u32, DVDLowCallback);
-bool DVDLowAudioBufferConfig(bool enable, u32 size, DVDLowCallback callback);
+bool DVDLowAudioBufferConfig(BOOL enable, u32 size, DVDLowCallback callback);
 bool DVDLowInquiry(DVDDriveInfo *, DVDLowCallback);
 bool DVDLowClosePartition(DVDLowCallback);
 bool DVDLowSetMaximumRotation(u32, DVDLowCallback);
