@@ -2421,11 +2421,11 @@ config.libs = [
         "dvd",
         [
             Object(Matching, "RVL_SDK/dvd/dvdfs.c"),
-            Object(NonMatching, "RVL_SDK/dvd/dvd.c"),
+            Object(Matching, "RVL_SDK/dvd/dvd.c"),
             Object(Matching, "RVL_SDK/dvd/dvdqueue.c"),
-            Object(NonMatching, "RVL_SDK/dvd/dvderror.c"),
+            Object(Matching, "RVL_SDK/dvd/dvderror.c"),
             Object(Matching, "RVL_SDK/dvd/dvdidutils.c"),
-            Object(NonMatching, "RVL_SDK/dvd/dvdFatal.c"),
+            Object(Matching, "RVL_SDK/dvd/dvdFatal.c"),
             Object(NonMatching, "RVL_SDK/dvd/dvdDeviceError.c"),
             Object(NonMatching, "RVL_SDK/dvd/dvd_broadway.c"),
         ],
@@ -2507,10 +2507,10 @@ config.libs = [
         [
             Object(Matching, "RVL_SDK/nand/nand.c"),
             Object(Matching, "RVL_SDK/nand/NANDOpenClose.c"),
-            Object(NonMatching, "RVL_SDK/nand/NANDCore.c"),
+            Object(Matching, "RVL_SDK/nand/NANDCore.c"),
             Object(Matching, "RVL_SDK/nand/NANDSecret.c"),
-            Object(NonMatching, "RVL_SDK/nand/NANDCheck.c"),
-            Object(NonMatching, "RVL_SDK/nand/NANDLogging.c"),
+            Object(Matching, "RVL_SDK/nand/NANDCheck.c"),
+            Object(Matching, "RVL_SDK/nand/NANDLogging.c"),
         ],
     ),
     SDKLib(
