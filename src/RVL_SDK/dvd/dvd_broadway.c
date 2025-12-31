@@ -645,7 +645,7 @@ bool DVDLowReset(DVDLowCallback callback) {
     return true;
 }
 
-bool DVDLowAudioBufferConfig(bool enable, u32 size, DVDLowCallback callback) {
+bool DVDLowAudioBufferConfig(BOOL enable, u32 size, DVDLowCallback callback) {
     dvdContext_t* dvdContext;
     IOSError rv;
 
