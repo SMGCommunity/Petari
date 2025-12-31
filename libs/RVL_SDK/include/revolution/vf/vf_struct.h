@@ -170,7 +170,7 @@ typedef struct PF_CLUSTER_LINK_VOL {
     unsigned long link_max;   // offset 0x8, size 0x4
 } PF_CLUSTER_LINK_VOL;
 
-struct PF_FILE {
+typedef struct PF_FILE {
     // total size: 0x34
     unsigned long stat;              // offset 0x0, size 0x4
     unsigned long open_mode;         // offset 0x4, size 0x4
@@ -180,7 +180,19 @@ struct PF_FILE {
     long last_error;                 // offset 0x1C, size 0x4
     PF_CURSOR cursor;                // offset 0x20, size 0x10
     unsigned short lock_count;       // offset 0x30, size 0x2
-};
+} PF_FILE;
+
+typedef struct PF_INFO {
+    // total size: 0x20
+    unsigned long file_size;       // offset 0x0, size 0x4
+    unsigned long io_pointer;      // offset 0x4, size 0x4
+    unsigned long empty_size;      // offset 0x8, size 0x4
+    unsigned long allocated_size;  // offset 0xC, size 0x4
+    unsigned long lock_mode;       // offset 0x10, size 0x4
+    struct PF_FILE* lock_owner;    // offset 0x14, size 0x4
+    unsigned long lock_count;      // offset 0x18, size 0x4
+    unsigned long lock_tcount;     // offset 0x1C, size 0x4
+} PF_INFO;
 
 struct PF_LOCK {
     // total size: 0x10
