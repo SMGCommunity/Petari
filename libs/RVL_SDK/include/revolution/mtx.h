@@ -60,6 +60,11 @@ void PSMTXRotAxisRad(Mtx dst, const Vec*, f32);
 
 /* Paired Single Quaternion */
 void PSQUATMultiply(const Quaternion*, const Quaternion*, Quaternion*);
+void PSMTXQuat(Mtx dst, const Quaternion* quat);
+
+/* C Quaternion */
+void C_QUATMtx(Quaternion* r, const Mtx m);
+void C_QUATSlerp(const Quaternion* p, const Quaternion* q, Quaternion* r, f32 t);
 
 /* C Vector */
 
