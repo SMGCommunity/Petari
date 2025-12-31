@@ -559,14 +559,14 @@ namespace MR {
 
 #pragma dont_inline on
     void makeMtxUpNoSupportPos(TPos3f* pDst, const TVec3f& rUp, const TVec3f& rPos) {
-        Vec support;
+        TVec3f support;
         if (MR::getMaxAbsElementIndex(rUp) == 2) {
-            ((TVec3f*)&support)->set<f32>(0.0f, 1.0f, 0.0f);
+            support.set<f32>(0.0f, 1.0f, 0.0f);
         } else {
-            ((TVec3f*)&support)->set<f32>(0.0f, 0.0f, 1.0f);
+            support.set<f32>(0.0f, 0.0f, 1.0f);
         }
 
-        MR::makeMtxUpFrontPos(pDst, rUp, *(TVec3f*)&support, rPos);
+        MR::makeMtxUpFrontPos(pDst, rUp, support, rPos);
     }
 #pragma dont_inline reset
 
@@ -593,14 +593,14 @@ namespace MR {
 
 #pragma dont_inline on
     void makeMtxFrontNoSupportPos(TPos3f* pDst, const TVec3f& rFront, const TVec3f& rPos) {
-        Vec support;
+        TVec3f support;
         if (MR::getMaxAbsElementIndex(rFront) == 1) {
-            ((TVec3f*)&support)->set<f32>(1.0f, 0.0f, 0.0f);
+            support.set<f32>(1.0f, 0.0f, 0.0f);
         } else {
-            ((TVec3f*)&support)->set<f32>(0.0f, 1.0f, 0.0f);
+            support.set<f32>(0.0f, 1.0f, 0.0f);
         }
 
-        MR::makeMtxFrontUpPos(pDst, rFront, *(TVec3f*)&support, rPos);
+        MR::makeMtxFrontUpPos(pDst, rFront, support, rPos);
     }
 #pragma dont_inline reset
 
