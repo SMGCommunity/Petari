@@ -17,7 +17,7 @@ MR::BothDirList< MainLoopFrameworkAlarm > MainLoopFrameworkAlarm::sList(false);
 
 GXTexObj clear_z_tobj;
 
-Mtx e_mtx = {{1f, 0f, 0f, 0f}, {0f, 1f, 0f, 0f}, {0f, 0f, 1f, 0f}};
+Mtx e_mtx = {{1.0f, 0.0f, 0.0f, 0.0f}, {0.0f, 1.0f, 0.0f, 0.0f}, {0.0f, 0.0f, 1.0f, 0.0f}};
 
 u32 clearZTexData[] = {0x00FF00FF, 0x00FF00FF, 0x00FF00FF, 0x00FF00FF, 0x00FF00FF, 0x00FF00FF, 0x00FF00FF, 0x00FF00FF,
                        0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF};
@@ -42,14 +42,14 @@ void MainLoopFramework::ctor_subroutine(bool useAlpha) {
     mTickDuration = 0;
     mUseAlpha = useAlpha;
     mUseVFilter = true;
-    mCombinationRatio = 0f;
+    mCombinationRatio = 0.0f;
     mTick = OSGetTick();
     mLastFrameTime = 0;
     mLastVideoTickDelta = 0;
     mSingleBufferIndex = 0;
     _3E = 0;
     GXInitTexObj(&clear_z_tobj, clearZTexData, 4, 4, GX_TF_Z24X8, GX_REPEAT, GX_REPEAT, GX_FALSE);
-    GXInitTexObjLOD(&clear_z_tobj, GX_NEAR, GX_NEAR, 0f, 0f, 0f, GX_FALSE, GX_FALSE, GX_ANISO_1);
+    GXInitTexObjLOD(&clear_z_tobj, GX_NEAR, GX_NEAR, 0.0f, 0.0f, 0.0f, GX_FALSE, GX_FALSE, GX_ANISO_1);
     mRenderInterval = 1;
     mRenderCounter = 0;
     mDoRenderFrame = false;
@@ -109,13 +109,13 @@ void MainLoopFramework::drawendXfb_single() {
         prepareCopyDisp();
         waitDrawDoneAndSetAlarm();
         GXFlush();
-        pXfbMgr->mLastDrawnXfbIndex = pXfbMgr->mDrawingXfbIndex;
+        pXfbMgr->mDrawnXfbIndex = pXfbMgr->mDrawingXfbIndex;
     }
 }
 
 void MainLoopFramework::exchangeXfb_double() {
     JUTXfb* pXfbMgr = JUTXfb::sManager;
-    if (pXfbMgr->mLastDrawnXfbIndex == pXfbMgr->mDisplayingXfbIndex) {
+    if (pXfbMgr->mDrawnXfbIndex == pXfbMgr->mDisplayingXfbIndex) {
         if (pXfbMgr->mDrawingXfbIndex >= 0) {
             if (mPreRenderCallback) {
                 mPreRenderCallback();
@@ -123,7 +123,7 @@ void MainLoopFramework::exchangeXfb_double() {
             prepareCopyDisp();
             GXCopyDisp(pXfbMgr->getDrawingXfb(), GX_TRUE);
             if (!_C) {
-                pXfbMgr->mLastDrawnXfbIndex = pXfbMgr->mDrawingXfbIndex;
+                pXfbMgr->mDrawnXfbIndex = pXfbMgr->mDrawingXfbIndex;
                 GXDrawDone();
                 JUTVideo::dummyNoDrawWait();
             } else {
@@ -134,7 +134,7 @@ void MainLoopFramework::exchangeXfb_double() {
             }
         }
         s16 lastIdx = pXfbMgr->mDrawingXfbIndex;
-        pXfbMgr->mLastDrawnXfbIndex = lastIdx;
+        pXfbMgr->mDrawnXfbIndex = lastIdx;
         pXfbMgr->mDrawingXfbIndex = lastIdx >= 0 ? lastIdx ^ 1 : 0;
     } else {
         clearEfb(mClearColor);
@@ -155,7 +155,7 @@ void MainLoopFramework::exchangeXfb_triple() {
     if (pXfbMgr->mDrawingXfbIndex >= 0) {
         callDirectDraw();
     }
-    pXfbMgr->mLastDrawnXfbIndex = pXfbMgr->mDrawingXfbIndex;
+    pXfbMgr->mDrawnXfbIndex = pXfbMgr->mDrawingXfbIndex;
     s16 nextIdx = pXfbMgr->mDrawingXfbIndex + 1;
     do {
         if (nextIdx >= 3 || nextIdx < 0) {
@@ -198,7 +198,7 @@ void MainLoopFramework::endGX() {
         ortho.setPort();
         JUTConsoleManager::sManager->draw();
     }
-    if (_C || JUTXfb::sManager->mBufferMode == 1) {
+    if (_C || JUTXfb::sManager->mBufferNum == 1) {
         JUTAssertion::flushMessage_dbPrint();
     }
     GXFlush();
@@ -218,7 +218,7 @@ void MainLoopFramework::beginRender() {
 
     if (mDoRenderFrame) {
         JUTXfb* xfb = JUTXfb::sManager;
-        switch (xfb->mBufferMode) {
+        switch (xfb->mBufferNum) {
         case 1:
             if (xfb->_1C != 2) {
                 xfb->_1C = 1;
@@ -250,7 +250,7 @@ void MainLoopFramework::endRender() {
     endGX();
     if (mDoRenderFrame) {
         JUTXfb* xfb = JUTXfb::sManager;
-        switch (xfb->mBufferMode) {
+        switch (xfb->mBufferNum) {
         case 1:
             drawendXfb_single();
             break;
@@ -267,7 +267,7 @@ void MainLoopFramework::endRender() {
 void MainLoopFramework::endFrame() {
     if (mDoRenderFrame) {
         JUTXfb* xfb = JUTXfb::sManager;
-        switch (xfb->mBufferMode) {
+        switch (xfb->mBufferNum) {
         case 1:
             break;
         case 2:
