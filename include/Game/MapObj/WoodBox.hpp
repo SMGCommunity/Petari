@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/MapObj/BenefitItemObj.hpp"
 
 class WoodBox : public LiveActor {
 public:
