@@ -3,6 +3,15 @@
 #include "Game/MapObj/RockCreator.hpp"
 #include "math_types.hpp"
 
+namespace NrvRock {
+    NEW_NERVE(RockNrvAppear, Rock, Appear);
+    NEW_NERVE(RockNrvAppearMoveInvalidBind, Rock, AppearMoveInvalidBind);
+    NEW_NERVE(RockNrvMove, Rock, Move);
+    NEW_NERVE(RockNrvMoveInvalidBind, Rock, MoveInvalidBind);
+    NEW_NERVE(RockNrvBreak, Rock, Break);
+    NEW_NERVE(RockNrvFreeze, Rock, Freeze);
+};  // namespace NrvRock
+
 namespace {
     const Vec cWeakSensorOffset = {0.0f, 0.0f, -150.0f};
 };
@@ -369,12 +378,3 @@ void Rock::appearStarPiece() {
 // Rock::exeFreeze
 
 Rock::~Rock() {}
-
-namespace NrvRock {
-    INIT_NERVE(RockNrvAppear);
-    INIT_NERVE(RockNrvAppearMoveInvalidBind);
-    INIT_NERVE(RockNrvMove);
-    INIT_NERVE(RockNrvMoveInvalidBind);
-    INIT_NERVE(RockNrvBreak);
-    INIT_NERVE(RockNrvFreeze);
-};  // namespace NrvRock

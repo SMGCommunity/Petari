@@ -17,6 +17,7 @@ public:
     static void initLightData();
     static ResourceHolder* loadLightArchive();
     static s32 createLightDataParser(JMapInfo**);
+    static s32 createZoneDataParser(const char*, JMapInfo**);
 
     static void loadAllLightWhite();
 
@@ -26,8 +27,6 @@ public:
 
     static void getAreaLightLightData(JMapInfo*, int, AreaLightInfo*);
     static const char* getDefaultAreaLightName();
-
-    static s32 createZoneDataParser(const char*, JMapInfo**);
 
     static void loadPointLightInfo(const PointLightInfo*);
 

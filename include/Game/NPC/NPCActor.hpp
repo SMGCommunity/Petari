@@ -12,12 +12,6 @@ static const char* PointingDefault = "Pointing";
 static const char* TrampledDefault = "Trampled";
 static const char* SpinDefault = "Spin";
 
-namespace NrvNPCActor {
-    NERVE(NPCActorNrvWait);
-    NERVE(NPCActorNrvTalk);
-    NERVE(NPCActorNrvReaction);
-};  // namespace NrvNPCActor
-
 class NPCActorCaps {
 public:
     NPCActorCaps(const char*);
@@ -122,8 +116,10 @@ public:
 
     bool tryPushNullNerve();
 
+    void exeReaction();
     void exeWait();
     void exeTalk();
+    void exeNull();
 
     void setInitPose();
 

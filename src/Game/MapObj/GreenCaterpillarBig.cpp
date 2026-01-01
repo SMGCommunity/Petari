@@ -1,5 +1,13 @@
 #include "Game/MapObj/GreenCaterpillarBig.hpp"
 
+namespace NrvGreenCaterpillarBig {
+    NEW_NERVE(GreenCaterpillarBigNrvHide, GreenCaterpillarBig, Hide);
+    NEW_NERVE(GreenCaterpillarBigNrvWriggle, GreenCaterpillarBig, Wriggle);
+    NEW_NERVE(GreenCaterpillarBigNrvRest, GreenCaterpillarBig, Rest);
+    NEW_NERVE(GreenCaterpillarBigNrvEndAdjust, GreenCaterpillarBig, EndAdjust);
+    NEW_NERVE(GreenCaterpillarBigNrvEnd, GreenCaterpillarBig, End);
+};  // namespace NrvGreenCaterpillarBig
+
 GreenCaterpillarBigBody::GreenCaterpillarBigBody(LiveActor* pCaterpillar, MtxPtr mtx)
     : ModelObj("オオムイムイ体", "GreenCaterpillarBigBody", mtx, -2, -2, -2, false) {
     mCaterpillar = pCaterpillar;
@@ -96,6 +104,10 @@ void GreenCaterpillarBig::startWriggle() {
     setNerve(&NrvGreenCaterpillarBig::GreenCaterpillarBigNrvWriggle::sInstance);
 }
 
+void GreenCaterpillarBig::exeHide() {
+    MR::startLevelSound(this, "SE_OJ_LV_GRN_CATERP_EAT", -1, -1, -1);
+}
+
 void GreenCaterpillarBig::exeWriggle() {
     if (MR::isFirstStep(this)) {
         if (MR::isHiddenModel(this)) {
@@ -132,6 +144,22 @@ void GreenCaterpillarBig::exeWriggle() {
                 leaveApple();
             }
         }
+    }
+}
+
+void GreenCaterpillarBig::exeRest() {
+    MR::startLevelSound(this, "SE_OJ_LV_GRN_CATERP_EAT", -1, -1, -1);
+}
+
+void GreenCaterpillarBig::exeEndAdjust() {
+    if (MR::isStep(this, 120)) {
+        setNerve(&NrvGreenCaterpillarBig::GreenCaterpillarBigNrvEnd::sInstance);
+    }
+}
+
+void GreenCaterpillarBig::exeEnd() {
+    if (MR::isFirstStep(this)) {
+        MR::startBck(this, "Wait", nullptr);
     }
 }
 
@@ -215,40 +243,3 @@ void GreenCaterpillarBig::leaveApple() {
 GreenCaterpillarBigBody::~GreenCaterpillarBigBody() {}
 
 GreenCaterpillarBig::~GreenCaterpillarBig() {}
-
-namespace NrvGreenCaterpillarBig {
-    INIT_NERVE(GreenCaterpillarBigNrvHide);
-    INIT_NERVE(GreenCaterpillarBigNrvWriggle);
-    INIT_NERVE(GreenCaterpillarBigNrvRest);
-    INIT_NERVE(GreenCaterpillarBigNrvEndAdjust);
-    INIT_NERVE(GreenCaterpillarBigNrvEnd);
-
-    void GreenCaterpillarBigNrvEnd::execute(Spine* pSpine) const {
-        GreenCaterpillarBig* caterpillar = reinterpret_cast< GreenCaterpillarBig* >(pSpine->mExecutor);
-        if (MR::isFirstStep(caterpillar)) {
-            MR::startBck(caterpillar, "Wait", nullptr);
-        }
-    }
-
-    void GreenCaterpillarBigNrvEndAdjust::execute(Spine* pSpine) const {
-        GreenCaterpillarBig* caterpillar = reinterpret_cast< GreenCaterpillarBig* >(pSpine->mExecutor);
-        if (MR::isStep(caterpillar, 0x78)) {
-            caterpillar->setNerve(&NrvGreenCaterpillarBig::GreenCaterpillarBigNrvEnd::sInstance);
-        }
-    }
-
-    void GreenCaterpillarBigNrvRest::execute(Spine* pSpine) const {
-        GreenCaterpillarBig* caterpillar = reinterpret_cast< GreenCaterpillarBig* >(pSpine->mExecutor);
-        MR::startLevelSound(caterpillar, "SE_OJ_LV_GRN_CATERP_EAT", -1, -1, -1);
-    }
-
-    void GreenCaterpillarBigNrvWriggle::execute(Spine* pSpine) const {
-        GreenCaterpillarBig* caterpillar = reinterpret_cast< GreenCaterpillarBig* >(pSpine->mExecutor);
-        caterpillar->exeWriggle();
-    }
-
-    void GreenCaterpillarBigNrvHide::execute(Spine* pSpine) const {
-        GreenCaterpillarBig* caterpillar = reinterpret_cast< GreenCaterpillarBig* >(pSpine->mExecutor);
-        MR::startLevelSound(caterpillar, "SE_OJ_LV_GRN_CATERP_EAT", -1, -1, -1);
-    }
-};  // namespace NrvGreenCaterpillarBig

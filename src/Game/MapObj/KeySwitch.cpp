@@ -1,6 +1,12 @@
 #include "Game/MapObj/KeySwitch.hpp"
 #include "JSystem/JMath/JMath.hpp"
 
+namespace NrvKeySwitch {
+    NEW_NERVE(KeySwitchNrvDemoStart, KeySwitch, DemoStart);
+    NEW_NERVE(KeySwitchNrvAppear, KeySwitch, Appear);
+    NEW_NERVE(KeySwitchNrvWait, KeySwitch, Wait);
+};  // namespace NrvKeySwitch
+
 namespace {
     static const char* cDemoName = "カギ出現";
 };
@@ -226,24 +232,3 @@ bool KeySwitch::tryAvoid() {
     return true;
 }
 */
-
-namespace NrvKeySwitch {
-    INIT_NERVE(KeySwitchNrvDemoStart);
-    INIT_NERVE(KeySwitchNrvAppear);
-    INIT_NERVE(KeySwitchNrvWait);
-
-    void KeySwitchNrvWait::execute(Spine* pSpine) const {
-        KeySwitch* key = reinterpret_cast< KeySwitch* >(pSpine->mExecutor);
-        key->exeWait();
-    }
-
-    void KeySwitchNrvAppear::execute(Spine* pSpine) const {
-        KeySwitch* key = reinterpret_cast< KeySwitch* >(pSpine->mExecutor);
-        key->exeAppear();
-    }
-
-    void KeySwitchNrvDemoStart::execute(Spine* pSpine) const {
-        KeySwitch* key = reinterpret_cast< KeySwitch* >(pSpine->mExecutor);
-        key->exeDemoStart();
-    }
-};  // namespace NrvKeySwitch

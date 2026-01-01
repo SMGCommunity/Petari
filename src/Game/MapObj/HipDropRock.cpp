@@ -8,6 +8,12 @@
 #include "JSystem/JGeometry/TVec.hpp"
 #include "revolution/mtx.h"
 
+namespace NrvHipDropRock {
+    NEW_NERVE(HipDropRockNrvWait, HipDropRock, Wait);
+    NEW_NERVE(HipDropRockNrvBreak, HipDropRock, Break);
+    NEW_NERVE(HipDropRockNrvWreck, HipDropRock, Wreck);
+};  // namespace NrvHipDropRock
+
 HipDropRock::HipDropRock(const char* pName) : LiveActor(pName) {
     mModel = nullptr;
     _C0 = -1;
@@ -35,6 +41,49 @@ void HipDropRock::init(const JMapInfoIter& rIter) {
     }
     initNerve(&NrvHipDropRock::HipDropRockNrvWait::sInstance);
     makeActorAppeared();
+}
+
+void HipDropRock::exeWait() {
+    if (MR::isFirstStep(this)) {
+        MR::validateClipping(this);
+    }
+}
+
+void HipDropRock::exeBreak() {
+    if (MR::isFirstStep(this)) {
+        MR::startSound(this, "SE_OJ_ROCK_BREAK", -1, -1);
+        MR::invalidateCollisionParts(this);
+        MR::invalidateClipping(this);
+        if (_C8) {
+            MR::hideModel(this);
+        } else {
+            MR::startBva(this, "BreakLevel");
+        }
+        mModel->makeActorAppeared();
+        MR::invalidateClipping(mModel);
+        MR::startBck(mModel, "HipDropRockBreak", nullptr);
+        if (MR::isValidSwitchB(this)) {
+            MR::onSwitchB(this);
+        }
+        HipDropRock::appearItem();
+    }
+    if (MR::isStep(this, 30) && MR::isValidSwitchDead(this)) {
+        MR::onSwitchDead(this);
+    }
+    if (MR::isBckStopped(mModel) && MR::isGreaterStep(this, 30)) {
+        mModel->kill();
+        if (_C8) {
+            kill();
+        } else {
+            setNerve(&NrvHipDropRock::HipDropRockNrvWreck::sInstance);
+        }
+    }
+}
+
+void HipDropRock::exeWreck() {
+    if (MR::isFirstStep(this)) {
+        MR::validateClipping(this);
+    }
 }
 
 bool HipDropRock::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
@@ -89,55 +138,3 @@ void HipDropRock::appearItem() {
         }
     }
 }
-
-void HipDropRock::exeBreak() {
-    if (MR::isFirstStep(this)) {
-        MR::startSound(this, "SE_OJ_ROCK_BREAK", -1, -1);
-        MR::invalidateCollisionParts(this);
-        MR::invalidateClipping(this);
-        if (_C8) {
-            MR::hideModel(this);
-        } else {
-            MR::startBva(this, "BreakLevel");
-        }
-        mModel->makeActorAppeared();
-        MR::invalidateClipping(mModel);
-        MR::startBck(mModel, "HipDropRockBreak", nullptr);
-        if (MR::isValidSwitchB(this)) {
-            MR::onSwitchB(this);
-        }
-        HipDropRock::appearItem();
-    }
-    if (MR::isStep(this, 30) && MR::isValidSwitchDead(this)) {
-        MR::onSwitchDead(this);
-    }
-    if (MR::isBckStopped(mModel) && MR::isGreaterStep(this, 30)) {
-        mModel->kill();
-        if (_C8) {
-            kill();
-        } else {
-            setNerve(&NrvHipDropRock::HipDropRockNrvWreck::sInstance);
-        }
-    }
-}
-
-namespace NrvHipDropRock {
-    INIT_NERVE(HipDropRockNrvWait);
-    INIT_NERVE(HipDropRockNrvBreak);
-    INIT_NERVE(HipDropRockNrvWreck);
-
-    void HipDropRockNrvWait::execute(Spine* pSpine) const {
-        HipDropRock* pActor = (HipDropRock*)pSpine->mExecutor;
-        pActor->ValClip1();
-    }
-
-    void HipDropRockNrvBreak::execute(Spine* pSpine) const {
-        HipDropRock* pActor = (HipDropRock*)pSpine->mExecutor;
-        pActor->exeBreak();
-    }
-
-    void HipDropRockNrvWreck::execute(Spine* pSpine) const {
-        HipDropRock* pActor = (HipDropRock*)pSpine->mExecutor;
-        pActor->ValClip2();
-    }
-};  // namespace NrvHipDropRock

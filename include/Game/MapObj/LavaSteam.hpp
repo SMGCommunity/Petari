@@ -12,15 +12,10 @@ public:
     virtual void endClipped();
     void startSteam();
     void exeWait();
+    void exeWaitForSwitchOn();
     void exeSteam();
+    void exeSteamEnd();
 
     TVec3f _8C;
     TVec3f _98;
 };
-
-namespace NrvLavaSteam {
-    NERVE(HostTypeSteamEnd);
-    NERVE_DECL(HostTypeSteam, LavaSteam, LavaSteam::exeSteam);
-    NERVE_DECL(HostTypeWait, LavaSteam, LavaSteam::exeWait);
-    NERVE_DECL_NULL(HostTypeWaitForSwitchOn);
-};  // namespace NrvLavaSteam

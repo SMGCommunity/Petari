@@ -35,10 +35,3 @@ public:
     f32 mDeceleration;  // 0xA8
     f32 _AC;
 };
-
-namespace NrvBallRail {
-    NERVE_DECL(BallRailNrvWait, BallRail, BallRail::exeWait);
-    NERVE_DECL(BallRailNrvSetUp, BallRail, BallRail::exeSetUp);
-    NERVE_DECL(BallRailNrvRun, BallRail, BallRail::exeRun);
-    NERVE_DECL(BallRailNrvNoBind, BallRail, BallRail::exeNoBind);
-};  // namespace NrvBallRail

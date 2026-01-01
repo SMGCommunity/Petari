@@ -21,14 +21,10 @@ public:
     void startKill();
     void appearHost();
     void killHost();
+    void exeWait();
     void exeDisappear();
 
     s32 mSignMotionType;            // 0x18
     PostureHolder* mPostureHolder;  // 0x1C
     u8 _20;
 };
-
-namespace NrvMapPartsAppearController {
-    NERVE(HostTypeWait);
-    NERVE(HostTypeDisappear);
-};  // namespace NrvMapPartsAppearController

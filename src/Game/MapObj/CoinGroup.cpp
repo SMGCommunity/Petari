@@ -1,6 +1,13 @@
 #include "Game/MapObj/CoinGroup.hpp"
 #include "Game/Util.hpp"
 
+namespace NrvCoinGroup {
+    NEW_NERVE(CoinGroupNrvAppear, CoinGroup, Appear);
+    NEW_NERVE(CoinGroupNrvTryStartDemo, CoinGroup, TryStartDemo);
+    NEW_NERVE(CoinGroupNrvDemoAppear, CoinGroup, DemoAppear);
+    NEW_NERVE(CoinGroupNrvKill, CoinGroup, Kill);
+};  // namespace NrvCoinGroup
+
 CoinGroup::CoinGroup(const char* pName) : LiveActor(pName) {
     mCoinArray = nullptr;
     mCameraInfo = nullptr;
@@ -74,10 +81,10 @@ void CoinGroup::killCoinAll() {
 }
 
 void CoinGroup::appearCoinAll() {
-    if (mTimeLimit >= 0) {
-        appearCoinAllTimer();
-    } else {
+    if (mTimeLimit < 0) {
         appearCoinFix();
+    } else {
+        appearCoinAllTimer();
     }
 }
 
@@ -122,6 +129,8 @@ void CoinGroup::exeAppear() {
     }
 }
 
+void CoinGroup::exeTryStartDemo() {}
+
 void CoinGroup::exeDemoAppear() {
     if (MR::isFirstStep(this)) {
         MR::startActorCameraTargetSelf(this, mCameraInfo, 30);
@@ -137,29 +146,9 @@ void CoinGroup::exeDemoAppear() {
     }
 }
 
-namespace NrvCoinGroup {
-    INIT_NERVE(CoinGroupNrvAppear);
-    INIT_NERVE(CoinGroupNrvTryStartDemo);
-    INIT_NERVE(CoinGroupNrvDemoAppear);
-    INIT_NERVE(CoinGroupNrvKill);
-
-    void CoinGroupNrvKill::execute(Spine* pSpine) const {
-        CoinGroup* coin = reinterpret_cast< CoinGroup* >(pSpine->mExecutor);
-        coin->kill();
-    }
-
-    void CoinGroupNrvDemoAppear::execute(Spine* pSpine) const {
-        CoinGroup* coin = reinterpret_cast< CoinGroup* >(pSpine->mExecutor);
-        coin->exeDemoAppear();
-    }
-
-    void CoinGroupNrvTryStartDemo::execute(Spine* pSpine) const {}
-
-    void CoinGroupNrvAppear::execute(Spine* pSpine) const {
-        CoinGroup* coin = reinterpret_cast< CoinGroup* >(pSpine->mExecutor);
-        coin->exeAppear();
-    }
-};  // namespace NrvCoinGroup
+void CoinGroup::exeKill() {
+    kill();
+}
 
 const char* CoinGroup::getCoinName() const {
     return "コイン(グループ配置)";

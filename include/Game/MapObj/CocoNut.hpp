@@ -65,6 +65,7 @@ public:
     void exeMove();
     void exeInWater();
     void exeBreak();
+    void exeReplaceReady();
 
     inline f32 getSize() { return _D0; }
 
@@ -87,12 +88,3 @@ private:
     bool _15E;                   // something about clipping
     bool mContinueRolling;       // 0x15F
 };
-
-namespace NrvCocoNut {
-    NERVE(CocoNutNrvWait)
-    NERVE(CocoNutNrvWaitOnBind)
-    NERVE(CocoNutNrvMove)
-    NERVE(CocoNutNrvInWater)
-    NERVE(CocoNutNrvBreak)
-    NERVE(CocoNutNrvReplaceReady)
-};  // namespace NrvCocoNut

@@ -21,6 +21,7 @@ public:
     void deleteEffectFire();
     void emitEffectExtinguishFire();
     void appearItem();
+    void exeWaitFire();
     void exeFire();
     void exeExtinguish();
     void exeFlicker();
@@ -31,12 +32,3 @@ public:
     bool mHasItemAppear;                    // 0xC8
     SpinPullParticleCallBack* mSpinPtclCb;  // 0xCC
 };
-
-namespace NrvCandlestand {
-    NERVE_DECL_NULL(HostTypeWaitFire);
-    NERVE_DECL(HostTypeFire, Candlestand, Candlestand::exeFire);
-    NERVE_DECL(HostTypeBurn, Candlestand, Candlestand::exeBurn);
-    NERVE_DECL(HostTypeAttack, Candlestand, Candlestand::exeAttack);
-    NERVE_DECL(HostTypeExtinguish, Candlestand, Candlestand::exeExtinguish);
-    NERVE_DECL(HostTypeFlicker, Candlestand, Candlestand::exeFlicker);
-};  // namespace NrvCandlestand

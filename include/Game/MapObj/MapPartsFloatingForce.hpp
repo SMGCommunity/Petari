@@ -53,10 +53,3 @@ public:
     TVec3f _50;
     f32 _5C;
 };
-
-namespace NrvMapPartsFloatingForce {
-    NERVE(HostTypeWait);
-    NERVE(HostTypeMove);
-    NERVE(HostTypeMoveSpring);
-    NERVE(HostTypeMoveReturn);
-};  // namespace NrvMapPartsFloatingForce

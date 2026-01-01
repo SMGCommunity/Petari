@@ -3,6 +3,13 @@
 #include "Game/MapObj/FloaterFunction.hpp"
 #include "Game/Util.hpp"
 
+namespace NrvMapPartsFloatingForce {
+    NEW_NERVE(HostTypeWait, MapPartsFloatingForce, Wait);
+    NEW_NERVE(HostTypeMove, MapPartsFloatingForce, Move);
+    NEW_NERVE(HostTypeMoveSpring, MapPartsFloatingForce, MoveSpring);
+    NEW_NERVE(HostTypeMoveReturn, MapPartsFloatingForce, MoveReturn);
+};  // namespace NrvMapPartsFloatingForce
+
 SpringStep::SpringStep(f32 cond, f32 speed, f32 angle) {
     mSpringValue = 0;
     mCondition = cond;
@@ -164,30 +171,3 @@ void MapPartsFloatingForce::exeMoveSpring() {
 // MapPartsFloatingForce::exeMoveReturn
 
 MapPartsFloatingForce::~MapPartsFloatingForce() {}
-
-namespace NrvMapPartsFloatingForce {
-    INIT_NERVE(HostTypeWait);
-    INIT_NERVE(HostTypeMove);
-    INIT_NERVE(HostTypeMoveSpring);
-    INIT_NERVE(HostTypeMoveReturn);
-
-    void HostTypeMoveReturn::execute(Spine* pSpine) const {
-        MapPartsFloatingForce* force = reinterpret_cast< MapPartsFloatingForce* >(pSpine->mExecutor);
-        force->exeMoveReturn();
-    }
-
-    void HostTypeMoveSpring::execute(Spine* pSpine) const {
-        MapPartsFloatingForce* force = reinterpret_cast< MapPartsFloatingForce* >(pSpine->mExecutor);
-        force->exeMoveSpring();
-    }
-
-    void HostTypeMove::execute(Spine* pSpine) const {
-        MapPartsFloatingForce* force = reinterpret_cast< MapPartsFloatingForce* >(pSpine->mExecutor);
-        force->exeMove();
-    }
-
-    void HostTypeWait::execute(Spine* pSpine) const {
-        MapPartsFloatingForce* force = reinterpret_cast< MapPartsFloatingForce* >(pSpine->mExecutor);
-        force->exeWait();
-    }
-};  // namespace NrvMapPartsFloatingForce

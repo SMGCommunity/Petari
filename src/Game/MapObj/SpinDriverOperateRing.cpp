@@ -1,5 +1,9 @@
 #include "Game/MapObj/SpinDriverOperateRing.hpp"
 
+namespace NrvSpinDriverOperateRing {
+    NEW_NERVE(SpinDriverOperateRingNrvWait, SpinDriverOperateRing, Wait);
+};
+
 SpinDriverOperateRing::SpinDriverOperateRing(const char* pName)
     : LiveActor(pName), _8C(0, 0, 0), _98(0, 0, 0), _A4(0, 0, 0), mAccelerate(0, 0, 0), mDirection(0, 0, 0) {
     _E0 = 0;
@@ -17,6 +21,8 @@ void SpinDriverOperateRing::init(const JMapInfoIter& rIter) {
 }
 
 void SpinDriverOperateRing::control() {}
+
+void SpinDriverOperateRing::exeWait() {}
 
 void SpinDriverOperateRing::setRadiusRate(f32 rate) {
     mRadiusRate = MR::normalize(rate, 0.0f, 1.0f);
@@ -90,9 +96,3 @@ void SpinDriverOperateRing::attenuateVelocity() {
 }
 
 SpinDriverOperateRing::~SpinDriverOperateRing() {}
-
-namespace NrvSpinDriverOperateRing {
-    INIT_NERVE(SpinDriverOperateRingNrvWait);
-
-    void SpinDriverOperateRingNrvWait::execute(Spine*) const {}
-};  // namespace NrvSpinDriverOperateRing

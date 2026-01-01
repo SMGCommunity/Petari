@@ -27,6 +27,17 @@
 #include "JSystem/JGeometry/TVec.hpp"
 #include "revolution/mtx.h"
 
+namespace NrvEyeBeamer {
+    NEW_NERVE(EyeBeamerNrvDemoStartWait, EyeBeamer, DemoStartWait);
+    NEW_NERVE(EyeBeamerNrvDemoWait, EyeBeamer, DemoWait);
+    NEW_NERVE(EyeBeamerNrvDemoTurn, EyeBeamer, DemoTurn);
+    NEW_NERVE(EyeBeamerNrvDemoGotoPatrol, EyeBeamer, DemoGotoPatrol);
+    NEW_NERVE(EyeBeamerNrvWait, EyeBeamer, Wait);
+    NEW_NERVE(EyeBeamerNrvTurn, EyeBeamer, Turn);
+    NEW_NERVE(EyeBeamerNrvGotoPatrol, EyeBeamer, GotoPatrol);
+    NEW_NERVE(EyeBeamerNrvPatrol, EyeBeamer, Patrol);
+};  // namespace NrvEyeBeamer
+
 EyeBeamer::EyeBeamer(const char* pName)
     : LiveActor(pName), mRailMover(nullptr), mBeamMdl(nullptr), mBeamBloom(nullptr), mBeamVolumeDrawer(nullptr), _CC(0, 0, 0, 1), _DC(0, 0, 0, 1),
       _EC(0, 0, 0), _F8(0, 0, 0), _104(0, 0, 0), _140(0, 0, 0), _15C(2000.0f), _160(-1.0f), mIsInMercatorCube(false) {
@@ -205,7 +216,7 @@ void EyeBeamer::calcAnim() {
     MR::preScaleMtx(_9C, TVec3f(one, temp, one));
 }
 
-void EyeBeamer::calcAndSetBaseMtx() {};
+void EyeBeamer::calcAndSetBaseMtx(){};
 
 void EyeBeamer::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (isOnBeam() && MR::isSensorPlayer(pReceiver) && isInBeamRange(*MR::getPlayerPos())) {
@@ -234,6 +245,14 @@ bool EyeBeamer::tryPatrol() {
         return true;
     }
     return false;
+}
+
+void EyeBeamer::exeDemoStartWait() {}
+
+void EyeBeamer::exeDemoWait() {
+    if (MR::isDemoLastStep()) {
+        setNerve(&NrvEyeBeamer::EyeBeamerNrvPatrol::sInstance);
+    }
 }
 
 void EyeBeamer::exeDemoTurn() {
@@ -265,6 +284,8 @@ void EyeBeamer::exeDemoGotoPatrol() {
     if (MR::isDemoPartLastStep("アイビーマー降下"))
         setNerve(&NrvEyeBeamer::EyeBeamerNrvDemoWait::sInstance);
 }
+
+void EyeBeamer::exeWait() {}
 
 void EyeBeamer::exeTurn() {
     if (MR::isFirstStep(this)) {
@@ -335,27 +356,11 @@ bool EyeBeamer::isInBeamRange(const TVec3f& rVec) const {
 }
 
 bool EyeBeamer::isOnBeam() const {
-    if (isNerve(&NrvEyeBeamer::EyeBeamerNrvDemoWait::sInstance) || isNerve(&NrvEyeBeamer::EyeBeamerNrvWait::sInstance) ||
+    if (isNerve(&NrvEyeBeamer::EyeBeamerNrvDemoStartWait::sInstance) || isNerve(&NrvEyeBeamer::EyeBeamerNrvWait::sInstance) ||
         isNerve(&NrvEyeBeamer::EyeBeamerNrvPatrol::sInstance))
         return true;
 
     return false;
 }
 
-EyeBeamer::~EyeBeamer() {};
-
-namespace NrvEyeBeamer {
-    void EyeBeamerNrvDemoWait::execute(Spine* pSpine) const {
-        EyeBeamer* pEyeBeamer = (EyeBeamer*)pSpine->mExecutor;
-        if (MR::isDemoLastStep())
-            pEyeBeamer->setNerve(&NrvEyeBeamer::EyeBeamerNrvPatrol::sInstance);
-    }
-    EyeBeamerNrvDemoStartWait(EyeBeamerNrvDemoStartWait::sInstance);
-    EyeBeamerNrvDemoWait(EyeBeamerNrvDemoWait::sInstance);
-    EyeBeamerNrvDemoTurn(EyeBeamerNrvDemoTurn::sInstance);
-    EyeBeamerNrvDemoGotoPatrol(EyeBeamerNrvDemoGotoPatrol::sInstance);
-    EyeBeamerNrvWait(EyeBeamerNrvWait::sInstance);
-    EyeBeamerNrvTurn(EyeBeamerNrvTurn::sInstance);
-    EyeBeamerNrvGotoPatrol(EyeBeamerNrvGotoPatrol::sInstance);
-    EyeBeamerNrvPatrol(EyeBeamerNrvPatrol::sInstance);
-};  // namespace NrvEyeBeamer
+EyeBeamer::~EyeBeamer(){};
