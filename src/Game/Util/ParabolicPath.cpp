@@ -54,14 +54,12 @@ void ParabolicPath::calcDirection(TVec3f* pOutDirection, f32 a2, f32 a3) const {
     if (a2 < a3) {
         f31 = a3;
         f0 = 0.0f;
+    } else if (a2 > 1.0f - a3) {
+        f0 = 1.0f;
+        f31 = 1.0f - a3;
     } else {
-        if (a2 > 1.0f - a3) {
-            f0 = 1.0f;
-            f31 = 1.0f - a3;
-        } else {
-            f0 = a2;
-            f31 = a2 + a3;
-        }
+        f0 = a2;
+        f31 = a2 + a3;
     }
 
     TVec3f stack_20;
