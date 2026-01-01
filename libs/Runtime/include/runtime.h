@@ -4,6 +4,7 @@
 extern "C" {
 #endif
 
+typedef unsigned long u32;
 typedef unsigned long long u64;
 
 u32 __cvt_fp2unsigned(double);
