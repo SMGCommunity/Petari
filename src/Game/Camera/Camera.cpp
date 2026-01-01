@@ -63,10 +63,8 @@ CamTranslatorBase* Camera::createTranslator() {
 void Camera::setZoneMtx(s32 zoneID) {
     if (zoneID <= 0) {
         mZoneMatrix.identity();
-    }
-    else {
+    } else {
         mZoneMatrix.identity();
-
         TMtx34f *matrix = MR::getZonePlacementMtx(zoneID);
         mZoneMatrix.setInline(*matrix);
     }

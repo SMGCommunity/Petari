@@ -364,9 +364,9 @@ void CameraManGame::applyParameter() {
     }
 
     if (mChunk->isLOfsErpOff()) {
-        camera->mIsLOfsErpOff = 1;
+        camera->mIsLOfsErpOff = true;
     } else {
-        camera->mIsLOfsErpOff = 0;
+        camera->mIsLOfsErpOff = false;
     }
 
     CameraLocalUtil::setRoll(mCamera, mChunk->mExParam.mRoll);
