@@ -19,6 +19,7 @@ public:
     void exeWait();
     void exeMove();
     void exeBreak();
+    void exeKillWait();
     bool canSpinGet() const;
 
     TVec3f _8C;
@@ -33,10 +34,3 @@ public:
     u8 _C8;
     u8 _C9;
 };
-
-namespace NrvAirBubble {
-    NERVE(AirBubbleNrvWait);
-    NERVE(AirBubbleNrvMove);
-    NERVE(AirBubbleNrvBreak);
-    NERVE(AirBubbleNrvKillWait);
-};  // namespace NrvAirBubble

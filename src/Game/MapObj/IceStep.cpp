@@ -1,5 +1,10 @@
 #include "Game/MapObj/IceStep.hpp"
 
+namespace NrvIceStep {
+    NEW_NERVE(IceStepNrvHit, IceStep, Hit);
+    NEW_NERVE(IceStepNrvWait, IceStep, Wait);
+};  // namespace NrvIceStep
+
 IceStep::IceStep(const char* pName) : LiveActor(pName) {}
 
 IceStep::~IceStep() {}
@@ -44,6 +49,19 @@ void IceStep::exeWait() {
         if (MR::isBckStopped(this)) {
             kill();
         }
+        break;
+    }
+}
+
+inline void IceStep::exeHit() {
+    s32 step = getNerveStep();
+
+    switch (step) {
+    case 5:
+        MR::hideModel(this);
+        break;
+    case 0xF:
+        kill();
         break;
     }
 }
@@ -113,8 +131,3 @@ bool IceStep::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pRec
 }
 
 void IceStep::control() {}
-
-namespace NrvIceStep {
-    INIT_NERVE(IceStepNrvWait);
-    INIT_NERVE(IceStepNrvHit);
-};  // namespace NrvIceStep

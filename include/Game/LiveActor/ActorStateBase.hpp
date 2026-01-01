@@ -26,5 +26,5 @@ class ActorStateBase : public ActorStateBaseInterface {
 public:
     ActorStateBase(const char* pName) : ActorStateBaseInterface(pName) {}
 
-    virtual ~ActorStateBase() {}
+    virtual ~ActorStateBase() NO_INLINE {}
 };

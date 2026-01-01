@@ -5,6 +5,12 @@
 #include "JSystem/JMath.hpp"
 #include "math_types.hpp"
 
+namespace NrvCrystalCage {
+    NEW_NERVE(CrystalCageNrvWait, CrystalCage, Wait);
+    NEW_NERVE(CrystalCageNrvBreak, CrystalCage, Break);
+    NEW_NERVE(CrystalCageNrvBreakAfter, CrystalCage, BreakAfter);
+};  // namespace NrvCrystalCage
+
 CrystalCage::CrystalCage(const char* pName)
     : LiveActor(pName), mCrystalCageType(0), mBreakObj(nullptr), _C4(1), _C8(0), mRumbleCalc(nullptr), _D0(0.0f, 0.0f, 1.0f), _DC(gZeroVec),
       _E8(gZeroVec), mDisplayModel(nullptr), _F8(gZeroVec), _104(0), _108(-1), mIsBreakObjVisible(false), mPlayRiddleSFX(false), mHasBinding(false),
@@ -390,26 +396,5 @@ void CrystalCage::exeBreakAfter() {
         mBreakObj->kill();
     }
 }
-
-namespace NrvCrystalCage {
-    INIT_NERVE(CrystalCageNrvWait);
-    INIT_NERVE(CrystalCageNrvBreak);
-    INIT_NERVE(CrystalCageNrvBreakAfter);
-
-    void CrystalCageNrvBreakAfter::execute(Spine* pSpine) const {
-        CrystalCage* cage = reinterpret_cast< CrystalCage* >(pSpine->mExecutor);
-        cage->exeBreakAfter();
-    }
-
-    void CrystalCageNrvBreak::execute(Spine* pSpine) const {
-        CrystalCage* cage = reinterpret_cast< CrystalCage* >(pSpine->mExecutor);
-        cage->exeBreak();
-    }
-
-    void CrystalCageNrvWait::execute(Spine* pSpine) const {
-        CrystalCage* cage = reinterpret_cast< CrystalCage* >(pSpine->mExecutor);
-        cage->exeWait();
-    }
-};  // namespace NrvCrystalCage
 
 CrystalCage::~CrystalCage() {}

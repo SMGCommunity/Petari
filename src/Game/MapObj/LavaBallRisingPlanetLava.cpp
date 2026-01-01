@@ -1,5 +1,12 @@
 #include "Game/MapObj/LavaBallRisingPlanetLava.hpp"
 
+namespace NrvLavaBallRisingPlanetLava {
+    NEW_NERVE(LavaBallRisingPlanetLavaNrvWaitSmall, LavaBallRisingPlanetLava, Wait);
+    NEW_NERVE(LavaBallRisingPlanetLavaNrvWaitBig, LavaBallRisingPlanetLava, Wait);
+    NEW_NERVE(LavaBallRisingPlanetLavaNrvScaleUp, LavaBallRisingPlanetLava, ScaleUp);
+    NEW_NERVE(LavaBallRisingPlanetLavaNrvScaleDown, LavaBallRisingPlanetLava, ScaleDown);
+};  // namespace NrvLavaBallRisingPlanetLava
+
 LavaBallRisingPlanetLava::LavaBallRisingPlanetLava(const char* pName) : MapObjActor(pName) {}
 
 void LavaBallRisingPlanetLava::init(const JMapInfoIter& rIter) {
@@ -47,10 +54,3 @@ void LavaBallRisingPlanetLava::exeScaleDown() {
 }
 
 LavaBallRisingPlanetLava::~LavaBallRisingPlanetLava() {}
-
-namespace NrvLavaBallRisingPlanetLava {
-    INIT_NERVE(LavaBallRisingPlanetLavaNrvWaitSmall);
-    INIT_NERVE(LavaBallRisingPlanetLavaNrvWaitBig);
-    INIT_NERVE(LavaBallRisingPlanetLavaNrvScaleUp);
-    INIT_NERVE(LavaBallRisingPlanetLavaNrvScaleDown);
-};  // namespace NrvLavaBallRisingPlanetLava

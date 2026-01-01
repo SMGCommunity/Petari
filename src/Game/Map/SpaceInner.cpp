@@ -1,8 +1,10 @@
 #include "Game/Map/SpaceInner.hpp"
 #include "Game/Util.hpp"
 
-NrvSpaceInner::HostTypeAppear NrvSpaceInner::HostTypeAppear::sInstance;
-NrvSpaceInner::HostTypeDisappear NrvSpaceInner::HostTypeDisappear::sInstance;
+namespace NrvSpaceInner {
+    NEW_NERVE(HostTypeAppear, SpaceInner, Appear);
+    NEW_NERVE(HostTypeDisappear, SpaceInner, Disappear);
+};  // namespace NrvSpaceInner
 
 SpaceInner::SpaceInner(const char* pName) : LiveActor(pName) {}
 
@@ -22,6 +24,14 @@ void SpaceInner::calcAnim() {
     mPosition.y = pos.y;
     mPosition.z = pos.z;
     LiveActor::calcAnim();
+}
+
+void SpaceInner::exeAppear() {}
+
+void SpaceInner::exeDisappear() {
+    if (MR::isBrkStopped(this)) {
+        kill();
+    }
 }
 
 void SpaceInner::appear() {
@@ -44,14 +54,3 @@ bool SpaceInner::isAppeared() const {
 }
 
 SpaceInner::~SpaceInner() {}
-
-namespace NrvSpaceInner {
-    void HostTypeDisappear::execute(Spine* pSpine) const {
-        SpaceInner* actor = reinterpret_cast< SpaceInner* >(pSpine->mExecutor);
-        if (MR::isBrkStopped(actor)) {
-            actor->kill();
-        }
-    }
-
-    void HostTypeAppear::execute(Spine* pSpine) const {}
-};  // namespace NrvSpaceInner

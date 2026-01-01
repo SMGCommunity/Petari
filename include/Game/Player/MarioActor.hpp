@@ -52,6 +52,13 @@ public:
     XjointTransform* getJointCtrl(const char*) const;
     void updateRotationInfo();
     void exeWait();
+    void exeGameOver();
+    void exeGameOverAbyss();
+    void exeGameOverFire();
+    // void exeGameOverBlackHole();
+    void exeGameOverNonStop();
+    void exeGameOverSink();
+    void exeTimeWait();
     void movement();
     void control();
     void control2();
@@ -643,14 +650,17 @@ public:
     bool _FCD;
 };
 
+// header defined since these actually get defined in CamHeliEffector
+// and in sinit of NameObjFactory
 namespace NrvMarioActor {
-    NERVE(MarioActorNrvWait);
-    NERVE(MarioActorNrvGameOver);
-    NERVE(MarioActorNrvGameOverAbyss);
-    NERVE(MarioActorNrvGameOverAbyss2);
-    NERVE(MarioActorNrvGameOverFire);
-    NERVE(MarioActorNrvGameOverBlackHole);
-    NERVE(MarioActorNrvGameOverSink);
-    NERVE(MarioActorNrvTimeWait);
-    NERVE(MarioActorNrvNoRush);
+    NERVE_DECL_EXE(MarioActorNrvWait, MarioActor, Wait);
+    NERVE_DECL_EXE(MarioActorNrvGameOver, MarioActor, GameOver);
+    NERVE_DECL_EXE(MarioActorNrvGameOverAbyss, MarioActor, GameOverAbyss);
+    NERVE_DECL_EXE(MarioActorNrvGameOverAbyss2, MarioActor, GameOverAbyss);
+    NERVE_DECL_EXE(MarioActorNrvGameOverFire, MarioActor, GameOverFire);
+    NERVE_DECL_EXE(MarioActorNrvGameOverBlackHole, MarioActor, GameOverBlackHole2);
+    NERVE_DECL_EXE(MarioActorNrvGameOverNonStop, MarioActor, GameOverNonStop);
+    NERVE_DECL_EXE(MarioActorNrvGameOverSink, MarioActor, GameOverSink);
+    NERVE_DECL_EXE(MarioActorNrvTimeWait, MarioActor, TimeWait);
+    NERVE_DECL_EXE(MarioActorNrvNoRush, MarioActor, Wait);
 }  // namespace NrvMarioActor

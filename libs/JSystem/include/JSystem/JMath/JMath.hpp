@@ -10,6 +10,7 @@ f32 JMASinDegree(f32);
 f32 JMASinRadian(f32);
 void JMAVECLerp(const Vec*, const Vec*, Vec*, f32);
 void JMAVECScaleAdd(const Vec*, const Vec*, Vec*, f32);
+void JMAQuatLerp(const Quaternion*, const Quaternion*, f32, Quaternion*);
 
 namespace JMath {
     f32 fastReciprocal(f32);

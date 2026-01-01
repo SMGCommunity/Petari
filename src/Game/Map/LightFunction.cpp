@@ -31,8 +31,32 @@ ResourceHolder* LightFunction::loadLightArchive() {
     return MR::createAndAddResourceHolder(buf);
 }
 
-// LightFunction::createLightDataParser
-// LightFunction::createZoneDataParser
+s32 LightFunction::createLightDataParser(JMapInfo** pOut) {
+    ResourceHolder* holder = MR::getSceneObj< LightDirector >(SceneObj_LightDirector)->mResourceHolder;
+    JMapInfo* info = MR::tryCreateCsvParser(holder, "LightData.bcsv");
+    *pOut = info;
+    if (info->mData != nullptr) {
+        return info->mData->mNumEntries;
+    }
+
+    return 0;
+}
+
+s32 LightFunction::createZoneDataParser(const char* pZone, JMapInfo** pOut) {
+    ResourceHolder* holder = MR::getSceneObj< LightDirector >(SceneObj_LightDirector)->mResourceHolder;
+    JMapInfo* info = MR::tryCreateCsvParser(holder, "Light%s.bcsv", pZone);
+    *pOut = info;
+
+    if (info != nullptr) {
+        if (info->mData != nullptr) {
+            return info->mData->mNumEntries;
+        }
+
+        return 0;
+    }
+
+    return 0;
+}
 
 void LightFunction::getAreaLightLightData(JMapInfo* pInfo, int idx, AreaLightInfo* pLightInfo) {
     MR::getCsvDataStr(&pLightInfo->mAreaLightName, pInfo, "AreaLightName", idx);

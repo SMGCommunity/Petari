@@ -1,6 +1,11 @@
 #include "Game/MapObj/SpaceMine.hpp"
 #include "math_types.hpp"
 
+namespace NrvSpaceMine {
+    NEW_NERVE(HostTypeWait, SpaceMine, Wait);
+    NEW_NERVE(HostTypeAppear, SpaceMine, Appear);
+};  // namespace NrvSpaceMine
+
 SpaceMine::SpaceMine(const char* pName) : MapObjActor(pName), mClippingRange(gZeroVec) {
     _C4 = 1.0f;
     _D4 = -1;
@@ -163,18 +168,3 @@ void SpaceMine::exeAppear() {
 }
 
 SpaceMine::~SpaceMine() {}
-
-namespace NrvSpaceMine {
-    void HostTypeAppear::execute(Spine* pSpine) const {
-        SpaceMine* mine = reinterpret_cast< SpaceMine* >(pSpine->mExecutor);
-        mine->exeAppear();
-    }
-
-    void HostTypeWait::execute(Spine* pSpine) const {
-        SpaceMine* mine = reinterpret_cast< SpaceMine* >(pSpine->mExecutor);
-        mine->exeWait();
-    }
-
-    INIT_NERVE(HostTypeWait);
-    INIT_NERVE(HostTypeAppear);
-};  // namespace NrvSpaceMine

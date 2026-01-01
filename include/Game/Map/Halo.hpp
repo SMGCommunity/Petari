@@ -21,6 +21,7 @@ public:
 
     bool isDistanceAppear() const;
     bool isDistanceDisappear() const;
+    void exeAppear();
     void exeDisappear();
 
     f32 mDistance;  // 0xC4
@@ -39,15 +40,3 @@ public:
 
     s32 _C8;
 };
-
-namespace NrvHalo {
-    NERVE(HostTypeAppear);
-    NERVE(HostTypeDisappear);
-    INIT_NERVE(HostTypeAppear);
-    INIT_NERVE(HostTypeDisappear);
-};  // namespace NrvHalo
-
-namespace NrvPowerStarHalo {
-    NERVE(HostTypeWaitScenarioOpeningEnd);
-    INIT_NERVE(HostTypeWaitScenarioOpeningEnd);
-};  // namespace NrvPowerStarHalo

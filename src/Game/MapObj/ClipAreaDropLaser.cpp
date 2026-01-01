@@ -16,11 +16,10 @@
 #include "revolution/gx/GXGeometry.h"
 #include "revolution/gx/GXPixel.h"
 
-void sdata2() {
-    f32 f = 1.0f;
-    f32 f2 = 0.0f;
-    f32 f3 = -1.0f;
-}
+namespace NrvClipAreaDropLaser {
+    NEW_NERVE(ClipAreaDropLaserNrvWait, ClipAreaDropLaser, Wait);
+    NEW_NERVE(ClipAreaDropLaserNrvMove, ClipAreaDropLaser, Move);
+};  // namespace NrvClipAreaDropLaser
 
 ClipAreaDropLaser::ClipAreaDropLaser(const char* pName) : LiveActor(pName) {
     mNumPointsToDraw = 0.0f;
@@ -120,8 +119,3 @@ void ClipAreaDropLaser::incrementDrawCount() {
 }
 
 ClipAreaDropLaser::~ClipAreaDropLaser() {}
-
-namespace NrvClipAreaDropLaser {
-    ClipAreaDropLaserNrvWait(ClipAreaDropLaserNrvWait::sInstance);
-    ClipAreaDropLaserNrvMove(ClipAreaDropLaserNrvMove::sInstance);
-}  // namespace NrvClipAreaDropLaser

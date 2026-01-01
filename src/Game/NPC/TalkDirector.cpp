@@ -52,7 +52,7 @@ void TalkDirector::movement() {
     LayoutActor::movement();
 }
 
-bool TalkDirector::request(TalkMessageCtrl* pArg1, bool arg2) {
+bool TalkDirector::request(TalkMessageCtrl* pArg1, bool force) {
     _4D = false;
     bool var31 = false;
     _4C = false;
@@ -70,7 +70,7 @@ bool TalkDirector::request(TalkMessageCtrl* pArg1, bool arg2) {
         }
     }
 
-    if (!arg2 && !TalkFunction::isShortTalk(pArg1) && MR::isPlayerElementModeHopper()) {
+    if (!force && !TalkFunction::isShortTalk(pArg1) && MR::isPlayerElementModeHopper()) {
         return false;
     }
 
@@ -86,7 +86,7 @@ bool TalkDirector::request(TalkMessageCtrl* pArg1, bool arg2) {
         TalkFunction::onTalkStateEntry(pArg1);
     }
 
-    if (arg2) {
+    if (force) {
         if (TalkFunction::isShortTalk(pArg1)) {
             if (pArg1->isNearPlayer(_40)) {
                 _40 = pArg1;
@@ -558,4 +558,38 @@ bool MR::isActiveTalkBalloonShort() {
     }
 
     return false;
+}
+
+bool TalkFunction::requestTalkSystem(TalkMessageCtrl* pCtrl, bool force) {
+    return ((TalkDirector*)MR::getSceneObjHolder()->getObj(0x19))->request(pCtrl, force);
+}
+
+void TalkFunction::startTalkSystem(TalkMessageCtrl* pCtrl, bool force, bool demo, bool notPuppetable) {
+    ((TalkDirector*)MR::getSceneObjHolder()->getObj(0x19))->start(pCtrl, force, demo, notPuppetable);
+}
+
+void TalkFunction::endTalkSystem(TalkMessageCtrl* pCtrl) {
+    MR::getSceneObjHolder()->getObj(0x19);
+    MR::isTalkEnableEnd(pCtrl);
+}
+
+bool TalkFunction::isTalkSystemStart(const TalkMessageCtrl* pCtrl) {
+    TalkDirector* director = (TalkDirector*)MR::getSceneObjHolder()->getObj(0x19);
+
+    return director->mMsgCtrl == pCtrl && director->_4C;
+}
+
+bool TalkFunction::isTalkSystemEnd(const TalkMessageCtrl* pCtrl) {
+    TalkDirector* director = (TalkDirector*)MR::getSceneObjHolder()->getObj(0x19);
+
+    return director->mMsgCtrl == pCtrl && director->_4D;
+}
+
+bool TalkFunction::getBranchAstroGalaxyResult(u16 arg) {
+    return ((TalkDirector*)MR::getSceneObjHolder()->getObj(0x19))->getBranchResult(arg);
+}
+
+void TalkFunction::registerTalkSystem(TalkMessageCtrl* pCtrl) {
+    TalkDirector* director = (TalkDirector*)MR::getSceneObjHolder()->getObj(0x19);
+    director->mMsgControls.push_back(pCtrl);
 }

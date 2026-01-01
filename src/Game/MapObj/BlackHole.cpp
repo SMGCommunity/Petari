@@ -3,6 +3,12 @@
 #include "Game/LiveActor/ModelObj.hpp"
 #include "Game/Util.hpp"
 
+namespace NrvBlackHole {
+    NEW_NERVE(BlackHoleNrvWait, BlackHole, Wait);
+    NEW_NERVE(BlackHoleNrvDemo, BlackHole, Demo);
+    NEW_NERVE(BlackHoleNrvDisappear, BlackHole, Disappear);
+};  // namespace NrvBlackHole
+
 // BlackHole::BlackHole
 
 void BlackHole::init(const JMapInfoIter& rIter) {
@@ -183,6 +189,10 @@ void BlackHole::exeWait() {
     }
 }
 
+void BlackHole::exeDemo() {
+    MR::startLevelSound(this, "SE_OJ_LV_BLACK_HOLE", -1, -1, -1);
+}
+
 void BlackHole::exeDisappear() {
     if (MR::isFirstStep(this)) {
         MR::startSound(this, "SE_OJ_BLACK_HOLE_DISAPPEAR", -1, -1);
@@ -199,25 +209,3 @@ void BlackHole::exeDisappear() {
 }
 
 BlackHole::~BlackHole() {}
-
-namespace NrvBlackHole {
-    BlackHoleNrvWait BlackHoleNrvWait::sInstance;
-    BlackHoleNrvDemo BlackHoleNrvDemo::sInstance;
-    BlackHoleNrvDisappear BlackHoleNrvDisappear::sInstance;
-
-    void BlackHoleNrvDisappear::execute(Spine* pSpine) const {
-        BlackHole* blackHole = reinterpret_cast< BlackHole* >(pSpine->mExecutor);
-        blackHole->exeDisappear();
-    }
-
-    void BlackHoleNrvDemo::execute(Spine* pSpine) const {
-        BlackHole* blackHole = reinterpret_cast< BlackHole* >(pSpine->mExecutor);
-        MR::startLevelSound(blackHole, "SE_OJ_LV_BLACK_HOLE", -1, -1, -1);
-    }
-
-    void BlackHoleNrvWait::execute(Spine* pSpine) const {
-        BlackHole* blackHole = reinterpret_cast< BlackHole* >(pSpine->mExecutor);
-        blackHole->exeWait();
-    }
-
-};  // namespace NrvBlackHole

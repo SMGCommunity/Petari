@@ -11,14 +11,10 @@ public:
     virtual void control();
     virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
 
+    void exeWait();
+    void exeEnd();
     void exeSpout();
     void switchEmitGlow();
 
     bool mIsCoinFlower;  // 0xC4
 };
-
-namespace NrvTreasureSpot {
-    NERVE(TreasureSpotNrvWait);
-    NERVE(TreasureSpotNrvEnd);
-    NERVE(TreasureSpotNrvSpout);
-};  // namespace NrvTreasureSpot

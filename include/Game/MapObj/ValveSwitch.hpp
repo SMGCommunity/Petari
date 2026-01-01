@@ -25,10 +25,3 @@ public:
     MapObjConnector* mObjConnector;  // 0xC0
     bool _C4;
 };
-
-namespace NrvValveSwitch {
-    NERVE_DECL_EXE(ValveSwitchNrvWait, ValveSwitch, Wait);
-    NERVE_DECL_EXE(ValveSwitchNrvAdjust, ValveSwitch, Adjust);
-    NERVE_DECL_EXE(ValveSwitchNrvValve, ValveSwitch, Valve);
-    NERVE_DECL_EXE(ValveSwitchNrvEnd, ValveSwitch, End);
-};  // namespace NrvValveSwitch
