@@ -10,6 +10,7 @@
 #include "Game/Ride/SphereController.hpp"
 #include "Game/Ride/SurfRay.hpp"
 #include "Game/Ride/SurfRayTutorial.hpp"
+#include "Game/Ride/SwingRope.hpp"
 #include "Game/Ride/Tamakoro.hpp"
 #include "Game/Ride/TamakoroTutorial.hpp"
 #include "Game/Ride/Trapeze.hpp"
