@@ -2,6 +2,20 @@
 
 /* it seems like this file was compiled with an earlier compiler version */
 
+namespace NrvSuperSpinDriver {
+    NEW_NERVE(SuperSpinDriverNrvTryDemo, SuperSpinDriver, TryDemo);
+    NEW_NERVE(SuperSpinDriverNrvEmptyNonActive, SuperSpinDriver, EmptyNonActive);
+    NEW_NERVE(SuperSpinDriverNrvEmptyAppear, SuperSpinDriver, EmptyAppear);
+    NEW_NERVE(SuperSpinDriverNrvEmptyWait, SuperSpinDriver, EmptyWait);
+    NEW_NERVE(SuperSpinDriverNrvNonActive, SuperSpinDriver, NonActive);
+    NEW_NERVE(SuperSpinDriverNrvAppear, SuperSpinDriver, Appear);
+    NEW_NERVE(SuperSpinDriverNrvWait, SuperSpinDriver, Wait);
+    NEW_NERVE(SuperSpinDriverNrvCapture, SuperSpinDriver, Capture);
+    NEW_NERVE(SuperSpinDriverNrvShootStart, SuperSpinDriver, ShootStart);
+    NEW_NERVE_ONEND(SuperSpinDriverNrvShoot, SuperSpinDriver, Shoot, Shoot);
+    NEW_NERVE(SuperSpinDriverNrvCoolDown, SuperSpinDriver, CoolDown);
+};  // namespace NrvSuperSpinDriver
+
 namespace {
     static f32 sCanBindTime = 90.0f;
 };
@@ -120,6 +134,8 @@ void SuperSpinDriver::requestShow() {
         makeActorAppeared();
     }
 }
+
+void SuperSpinDriver::exeTryDemo() {}
 
 void SuperSpinDriver::exeEmptyNonActive() {
     if (MR::isFirstStep(this)) {
@@ -256,6 +272,21 @@ void SuperSpinDriver::exeCapture() {
     }
 }
 
+void SuperSpinDriver::endShoot() {
+    MR::invalidateHitSensor(this, "body");
+    mOperateRing->reset();
+}
+
+void SuperSpinDriver::exeCoolDown() {
+    // BUG, is supposed to be a conditional to call tryEndCoolDown
+    if (MR::isFirstStep(this)) {
+    }
+
+    if (!tryEndCoolDown()) {
+        trySwitchOff();
+    }
+}
+
 void SuperSpinDriver::updateShootMotion() {
     if (MR::isStep(this, _154)) {
         MR::startBckPlayer("SpaceFlyLoop", "SuperSpinDriverFlyLoop");
@@ -365,45 +396,10 @@ bool SuperSpinDriver::isRightToUse() const {
 }
 */
 
-void SuperSpinDriver::exeCoolDown() {
-    // BUG, is supposed to be a conditional to call tryEndCoolDown
-    if (MR::isFirstStep(this)) {
-    }
-
-    if (!tryEndCoolDown()) {
-        trySwitchOff();
-    }
-}
-
-void SuperSpinDriver::exeShootOnEnd() {
-    MR::invalidateHitSensor(this, "body");
-    mOperateRing->reset();
-}
-
 namespace MR {
-    NameObj* createSuperSpinDriverYellow(const char* pName) {
-        return new SuperSpinDriver(pName, 0);
-    }
+    NameObj* createSuperSpinDriverYellow(const char* pName) { return new SuperSpinDriver(pName, 0); }
 
-    NameObj* createSuperSpinDriverGreen(const char* pName) {
-        return new SuperSpinDriver(pName, 1);
-    }
+    NameObj* createSuperSpinDriverGreen(const char* pName) { return new SuperSpinDriver(pName, 1); }
 
-    NameObj* createSuperSpinDriverPink(const char* pName) {
-        return new SuperSpinDriver(pName, 2);
-    }
+    NameObj* createSuperSpinDriverPink(const char* pName) { return new SuperSpinDriver(pName, 2); }
 };  // namespace MR
-
-namespace NrvSuperSpinDriver {
-    INIT_NERVE(SuperSpinDriverNrvTryDemo);
-    INIT_NERVE(SuperSpinDriverNrvEmptyNonActive);
-    INIT_NERVE(SuperSpinDriverNrvEmptyAppear);
-    INIT_NERVE(SuperSpinDriverNrvEmptyWait);
-    INIT_NERVE(SuperSpinDriverNrvNonActive);
-    INIT_NERVE(SuperSpinDriverNrvAppear);
-    INIT_NERVE(SuperSpinDriverNrvWait);
-    INIT_NERVE(SuperSpinDriverNrvCapture);
-    INIT_NERVE(SuperSpinDriverNrvShootStart);
-    INIT_NERVE(SuperSpinDriverNrvShoot);
-    INIT_NERVE(SuperSpinDriverNrvCoolDown);
-};  // namespace NrvSuperSpinDriver

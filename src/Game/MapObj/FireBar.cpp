@@ -2,6 +2,10 @@
 #include "Game/Util.hpp"
 #include "JSystem/JMath/JMath.hpp"
 
+namespace NrvFireBar {
+    NEW_NERVE(FireBarNrvWait, FireBar, Wait);
+};
+
 FireBarBall::~FireBarBall() {}
 
 FireBar::~FireBar() {}
@@ -223,12 +227,3 @@ void FireBar::fixFireBarBall() {
         mFireBalls[i]->mPosition.set< f32 >(scaled);
     }
 }
-
-namespace NrvFireBar {
-    FireBarNrvWait FireBarNrvWait::sInstance;
-
-    void FireBarNrvWait::execute(Spine* pSpine) const {
-        FireBar* bar = reinterpret_cast< FireBar* >(pSpine->mExecutor);
-        bar->exeWait();
-    }
-};  // namespace NrvFireBar

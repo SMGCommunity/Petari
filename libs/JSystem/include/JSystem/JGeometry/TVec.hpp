@@ -60,8 +60,8 @@ namespace JGeometry {
 
         T length() const { return JGeometry::TUtil< T >::sqrt((x * x) + (y * y)); }
 
-        T squared() const;
-        T squared(const TVec2< T >&) const;
+        T squared() const { return x * x + y * y; };
+        T squared(const TVec2< T >& rOther) const;  //{ return (x - rOther.x) * (x - rOther.x) + (y - rOther.y) * (y - rOther.y); };
         T dot(const TVec2< T >& rOther) const;
         T distance(const TVec2< T >& rOther) const;
         void zero();
@@ -352,6 +352,7 @@ namespace JGeometry {
         }
 
         void add(const TVec3< f32 >& b) NO_INLINE { JMathInlineVEC::PSVECAdd(this, &b, this); }
+        inline void addInline(const TVec3< f32 >& b) { JMathInlineVEC::PSVECAdd(this, &b, this); }
 
         void add(const TVec3&, const TVec3&);
 
@@ -377,6 +378,8 @@ namespace JGeometry {
             this->y *= -1.0f;
             this->z *= -1.0f;
         }
+
+        inline void invertInternal() { JMathInlineVEC::PSVECNegate(this, this); }
 
         void scale(f32 scale);
         void scale(f32, const TVec3&);

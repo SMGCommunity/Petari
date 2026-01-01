@@ -4,6 +4,13 @@
 /* Note -- this file was compiled super early on in the game's life, so it was compiled under -O2 where the release build is -O4,p. Keep this in mind!
  */
 
+namespace NrvCrystalSwitch {
+    NEW_NERVE(CrystalSwitchNrvOff, CrystalSwitch, Off);
+    NEW_NERVE(CrystalSwitchNrvSwitchDown, CrystalSwitch, SwitchDown);
+    NEW_NERVE(CrystalSwitchNrvOn, CrystalSwitch, On);
+    NEW_NERVE(CrystalSwitchNrvSwitchUp, CrystalSwitch, SwitchUp);
+};  // namespace NrvCrystalSwitch
+
 CrystalSwitch::CrystalSwitch(const char* pName) : LiveActor(pName) {
     _8C = 0;
     _90 = 300;
@@ -102,6 +109,14 @@ void CrystalSwitch::exeOn() {
     }
 }
 
+void CrystalSwitch::exeSwitchUp() {
+    if (MR::isFirstStep(this)) {
+        MR::startBpk(this, "Off");
+    }
+
+    tryOff();
+}
+
 void CrystalSwitch::calcRotSpeed() {
     if (isNerve(&NrvCrystalSwitch::CrystalSwitchNrvOn::sInstance)) {
         if (mRotateSpeed < 10.0f) {
@@ -126,35 +141,3 @@ void CrystalSwitch::calcRotSpeed() {
 }
 
 CrystalSwitch::~CrystalSwitch() {}
-
-namespace NrvCrystalSwitch {
-    INIT_NERVE(CrystalSwitchNrvOff);
-    INIT_NERVE(CrystalSwitchNrvSwitchDown);
-    INIT_NERVE(CrystalSwitchNrvOn);
-    INIT_NERVE(CrystalSwitchNrvSwitchUp);
-
-    void CrystalSwitchNrvSwitchUp::execute(Spine* pSpine) const {
-        CrystalSwitch* crystal = reinterpret_cast< CrystalSwitch* >(pSpine->mExecutor);
-
-        if (MR::isFirstStep(crystal)) {
-            MR::startBpk(crystal, "Off");
-        }
-
-        crystal->tryOff();
-    }
-
-    void CrystalSwitchNrvOn::execute(Spine* pSpine) const {
-        CrystalSwitch* crystal = reinterpret_cast< CrystalSwitch* >(pSpine->mExecutor);
-        crystal->exeOn();
-    }
-
-    void CrystalSwitchNrvSwitchDown::execute(Spine* pSpine) const {
-        CrystalSwitch* crystal = reinterpret_cast< CrystalSwitch* >(pSpine->mExecutor);
-        crystal->exeSwitchDown();
-    }
-
-    void CrystalSwitchNrvOff::execute(Spine* pSpine) const {
-        CrystalSwitch* crystal = reinterpret_cast< CrystalSwitch* >(pSpine->mExecutor);
-        crystal->exeOff();
-    }
-};  // namespace NrvCrystalSwitch

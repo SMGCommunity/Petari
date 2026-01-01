@@ -3,6 +3,17 @@
 #include "Game/LiveActor/ModelObj.hpp"
 #include <JSystem/JMath/JMath.hpp>
 
+namespace NrvCrystalCageMoving {
+    NEW_NERVE(CrystalCageMovingNrvWaitBig, CrystalCageMoving, WaitBig);
+    NEW_NERVE_ONEND(CrystalCageMovingNrvBreakBig, CrystalCageMoving, BreakBig, BreakBig);
+    NEW_NERVE(CrystalCageMovingNrvWaitSmall, CrystalCageMoving, WaitSmall);
+    NEW_NERVE(CrystalCageMovingNrvBreakSmall, CrystalCageMoving, BreakSmall);
+    NEW_NERVE(CrystalCageMovingNrvBreakAll, CrystalCageMoving, BreakAll);
+    NEW_NERVE(CrystalCageMovingNrvDemoTicoMove, CrystalCageMoving, DemoTicoMove);
+    NEW_NERVE(CrystalCageMovingNrvDemoTicoStop, CrystalCageMoving, DemoTicoStop);
+    NEW_NERVE(CrystalCageMovingNrvDemoTicoChange, CrystalCageMoving, DemoTicoChange);
+};  // namespace NrvCrystalCageMoving
+
 namespace {
     TVec3f sDummyModelOffset;
 };
@@ -45,6 +56,8 @@ void CrystalCageMoving::init(const JMapInfoIter& rIter) {
     }
 }
 
+void CrystalCageMoving::exeWaitBig() {}
+
 void CrystalCageMoving::exeBreakBig() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "CoreWait", nullptr);
@@ -59,6 +72,8 @@ void CrystalCageMoving::exeBreakBig() {
         setNerve(&NrvCrystalCageMoving::CrystalCageMovingNrvWaitSmall::sInstance);
     }
 }
+
+void CrystalCageMoving::exeWaitSmall() {}
 
 void CrystalCageMoving::exeBreakSmall() {
     if (MR::isFirstStep(this)) {
@@ -119,6 +134,10 @@ void CrystalCageMoving::exeDemoTicoChange() {
     if (MR::isBckStopped(mTicoModel)) {
         kill();
     }
+}
+
+void CrystalCageMoving::endBreakBig() {
+    MR::endActorCamera(this, mCameraInfo, true, -1);
 }
 
 void CrystalCageMoving::kill() {
@@ -242,53 +261,3 @@ bool CrystalCageMoving::isNerveTypeEnd() const {
 }
 
 CrystalCageMoving::~CrystalCageMoving() {}
-
-namespace NrvCrystalCageMoving {
-    INIT_NERVE(CrystalCageMovingNrvWaitBig);
-    INIT_NERVE(CrystalCageMovingNrvBreakBig);
-    INIT_NERVE(CrystalCageMovingNrvWaitSmall);
-    INIT_NERVE(CrystalCageMovingNrvBreakSmall);
-    INIT_NERVE(CrystalCageMovingNrvBreakAll);
-    INIT_NERVE(CrystalCageMovingNrvDemoTicoMove);
-    INIT_NERVE(CrystalCageMovingNrvDemoTicoStop);
-    INIT_NERVE(CrystalCageMovingNrvDemoTicoChange);
-
-    void CrystalCageMovingNrvDemoTicoChange::execute(Spine* pSpine) const {
-        CrystalCageMoving* cage = reinterpret_cast< CrystalCageMoving* >(pSpine->mExecutor);
-        cage->exeDemoTicoChange();
-    }
-
-    void CrystalCageMovingNrvDemoTicoStop::execute(Spine* pSpine) const {
-        CrystalCageMoving* cage = reinterpret_cast< CrystalCageMoving* >(pSpine->mExecutor);
-        cage->exeDemoTicoStop();
-    }
-
-    void CrystalCageMovingNrvDemoTicoMove::execute(Spine* pSpine) const {
-        CrystalCageMoving* cage = reinterpret_cast< CrystalCageMoving* >(pSpine->mExecutor);
-        cage->exeDemoTicoMove();
-    }
-
-    void CrystalCageMovingNrvBreakAll::execute(Spine* pSpine) const {
-        CrystalCageMoving* cage = reinterpret_cast< CrystalCageMoving* >(pSpine->mExecutor);
-        cage->exeBreakAll();
-    }
-
-    void CrystalCageMovingNrvBreakSmall::execute(Spine* pSpine) const {
-        CrystalCageMoving* cage = reinterpret_cast< CrystalCageMoving* >(pSpine->mExecutor);
-        cage->exeBreakSmall();
-    }
-
-    void CrystalCageMovingNrvWaitSmall::execute(Spine*) const {}
-
-    void CrystalCageMovingNrvBreakBig::executeOnEnd(Spine* pSpine) const {
-        CrystalCageMoving* cage = reinterpret_cast< CrystalCageMoving* >(pSpine->mExecutor);
-        MR::endActorCamera(cage, cage->mCameraInfo, true, -1);
-    }
-
-    void CrystalCageMovingNrvBreakBig::execute(Spine* pSpine) const {
-        CrystalCageMoving* cage = reinterpret_cast< CrystalCageMoving* >(pSpine->mExecutor);
-        cage->exeBreakBig();
-    }
-
-    void CrystalCageMovingNrvWaitBig::execute(Spine*) const {}
-};  // namespace NrvCrystalCageMoving

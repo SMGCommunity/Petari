@@ -3,6 +3,21 @@
 #include "Game/AudioLib/AudWrap.hpp"
 #include "Game/GameAudio/AudStageBgmTable.hpp"
 
+namespace NrvEarthenPipe {
+    NEW_NERVE(EarthenPipeNrvWait, EarthenPipe, Wait);
+    NEW_NERVE(EarthenPipeNrvReady, EarthenPipe, Ready);
+    NEW_NERVE(EarthenPipeNrvPlayerIn, EarthenPipe, PlayerIn);
+    NEW_NERVE(EarthenPipeNrvTargetPipeShowUp, EarthenPipe, TargetPipeShowUp);
+    NEW_NERVE(EarthenPipeNrvPlayerOut, EarthenPipe, PlayerOut);
+    NEW_NERVE(EarthenPipeNrvInvalid, EarthenPipe, Invalid);
+    NEW_NERVE(EarthenPipeNrvHide, EarthenPipe, Hide);
+    NEW_NERVE(EarthenPipeNrvShow, EarthenPipe, Show);
+    NEW_NERVE(EarthenPipeNrvWaitToShowUp, EarthenPipe, WaitToShowUp);
+    NEW_NERVE(EarthenPipeNrvShowUp, EarthenPipe, ShowUp);
+    NEW_NERVE(EarthenPipeNrvWaitToHideDown, EarthenPipe, WaitToHideDown);
+    NEW_NERVE(EarthenPipeNrvHideDown, EarthenPipe, HideDown);
+};  // namespace NrvEarthenPipe
+
 EarthenPipe::EarthenPipe(const char* pName) : LiveActor(pName) {
     _8C.x = 0.0f;
     _8C.y = 0.0f;
@@ -321,6 +336,22 @@ void EarthenPipe::exeInvalid() {
     }
 }
 
+void EarthenPipe::exeHide() {}
+
+void EarthenPipe::exeShow() {}
+
+void EarthenPipe::exeWaitToHideDown() {
+    if (MR::isStep(this, 40)) {
+        setNerve(&NrvEarthenPipe::EarthenPipeNrvHideDown::sInstance);
+    }
+}
+
+void EarthenPipe::exeWaitToShowUp() {
+    if (MR::isStep(this, 20)) {
+        setNerve(&NrvEarthenPipe::EarthenPipeNrvShowUp::sInstance);
+    }
+}
+
 void EarthenPipe::exeShowUp() {
     if (MR::isFirstStep(this)) {
         MR::showModel(this);
@@ -329,7 +360,7 @@ void EarthenPipe::exeShowUp() {
         MR::startSystemSE("SE_SY_ITEM_APPEAR", -1, -1);
     }
 
-    f32 easeIn = MR::getEaseInValue(getNerveStep() / 35.0f, 0.0f, 1.0f, 1.0f);
+    f32 easeIn = MR::getEaseInValue(getNerveStep() / 30.0f, 0.0f, 1.0f, 1.0f);
     calcTrans(easeIn);
 
     if (MR::isLessStep(this, 30)) {
@@ -471,33 +502,6 @@ void EarthenPipeMediator::entry(EarthenPipe* pPipe, const JMapInfoIter& rIter) {
 EarthenPipe::~EarthenPipe() {}
 
 EarthenPipeMediator::~EarthenPipeMediator() {}
-
-namespace NrvEarthenPipe {
-    INIT_NERVE(EarthenPipeNrvHideDown);
-    INIT_NERVE(EarthenPipeNrvWaitToHideDown);
-    INIT_NERVE(EarthenPipeNrvShowUp);
-    INIT_NERVE(EarthenPipeNrvWaitToShowUp);
-    INIT_NERVE(EarthenPipeNrvShow);
-    INIT_NERVE(EarthenPipeNrvHide);
-    INIT_NERVE(EarthenPipeNrvInvalid);
-    INIT_NERVE(EarthenPipeNrvPlayerOut);
-    INIT_NERVE(EarthenPipeNrvTargetPipeShowUp);
-    INIT_NERVE(EarthenPipeNrvPlayerIn);
-    INIT_NERVE(EarthenPipeNrvReady);
-    INIT_NERVE(EarthenPipeNrvWait);
-};  // namespace NrvEarthenPipe
-
-void EarthenPipe::exeWaitToHideDown() {
-    if (MR::isStep(this, 0x28)) {
-        setNerve(&NrvEarthenPipe::EarthenPipeNrvHideDown::sInstance);
-    }
-}
-
-void EarthenPipe::exeWaitToShowUp() {
-    if (MR::isStep(this, 0x14)) {
-        setNerve(&NrvEarthenPipe::EarthenPipeNrvShowUp::sInstance);
-    }
-}
 
 MtxPtr EarthenPipe::getBaseMtx() const {
     return mTopJointMtx;

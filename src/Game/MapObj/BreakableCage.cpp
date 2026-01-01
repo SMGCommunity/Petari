@@ -4,6 +4,12 @@
 #include "Game/MapObj/DummyDisplayModel.hpp"
 #include "Game/MapObj/PowerStar.hpp"
 
+namespace NrvBreakableCage {
+    NEW_NERVE(BreakableCageNrvWait, BreakableCage, Wait);
+    NEW_NERVE(BreakableCageNrvWaitStartDemoBreak, BreakableCage, WaitStartDemoBreak);
+    NEW_NERVE(BreakableCageNrvBreak, BreakableCage, Break);
+};  // namespace NrvBreakableCage
+
 namespace {
     Vec cHitSensorOffsetCage;
     Vec cHitSensorOffsetFixation;
@@ -318,6 +324,8 @@ void BreakableCage::exeWait() {
     }
 }
 
+void BreakableCage::exeWaitStartDemoBreak() {}
+
 void BreakableCage::exeBreak() {
     u32 v2 = 1;
     u32 v3 = 0;
@@ -419,21 +427,3 @@ void BreakableCage::exeBreak() {
 }
 
 BreakableCage::~BreakableCage() {}
-
-namespace NrvBreakableCage {
-    INIT_NERVE(BreakableCageNrvWait);
-    INIT_NERVE(BreakableCageNrvWaitStartDemoBreak);
-    INIT_NERVE(BreakableCageNrvBreak);
-
-    void BreakableCageNrvBreak::execute(Spine* pSpine) const {
-        BreakableCage* cage = reinterpret_cast< BreakableCage* >(pSpine->mExecutor);
-        cage->exeBreak();
-    }
-
-    void BreakableCageNrvWaitStartDemoBreak::execute(Spine* pSpine) const {}
-
-    void BreakableCageNrvWait::execute(Spine* pSpine) const {
-        BreakableCage* cage = reinterpret_cast< BreakableCage* >(pSpine->mExecutor);
-        cage->exeWait();
-    }
-};  // namespace NrvBreakableCage

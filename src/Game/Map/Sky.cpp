@@ -2,8 +2,14 @@
 #include "Game/LiveActor/MirrorReflectionModel.hpp"
 #include "Game/Map/SpaceInner.hpp"
 
-NrvSky::HostTypeWait NrvSky::HostTypeWait::sInstance;
-NrvSky::HostTypeChange NrvSky::HostTypeChange::sInstance;
+namespace NrvSky {
+    NEW_NERVE(HostTypeWait, Sky, Wait);
+    NEW_NERVE(HostTypeChange, Sky, Change);
+};  // namespace NrvSky
+
+namespace {
+    const char* cChangeAnimName = "Change";
+}
 
 Sky::Sky(const char* pSkyName) : LiveActor(pSkyName) {
     mSpaceInner = 0;
@@ -25,9 +31,7 @@ void Sky::init(const JMapInfoIter& rIter) {
         mSpaceInner->initWithoutIter();
 
         if (MR::isValidSwitchB(this)) {
-            void (Sky::*d)(void) = &Sky::disappearSpaceInner;
-            void (Sky::*a)(void) = &Sky::appearSpaceInner;
-            MR::listenStageSwitchOnOffB(this, MR::Functor(this, d), MR::Functor(this, a));
+            MR::listenStageSwitchOnOffB(this, MR::Functor(this, &Sky::appearSpaceInner), MR::Functor(this, &Sky::disappearSpaceInner));
         }
     }
 
@@ -95,6 +99,18 @@ void Sky::disappearSpaceInner() {
     }
 }
 
+void Sky::exeWait() {
+    if (MR::isValidSwitchA(this) && MR::isOnSwitchA(this)) {
+        setNerve(&NrvSky::HostTypeChange::sInstance);
+    }
+}
+
+void Sky::exeChange() {
+    if (MR::isFirstStep(this)) {
+        MR::startAllAnim(this, cChangeAnimName);
+    }
+}
+
 ProjectionMapSky::ProjectionMapSky(const char* pSkyName) : Sky(pSkyName) {
     mMtxSetter = 0;
 }
@@ -115,23 +131,5 @@ void ProjectionMapSky::initModel(const char* pName) {
     MR::newDifferedDLBuffer(this);
     mMtxSetter->updateMtxUseBaseMtx();
 }
-
-namespace NrvSky {
-    void HostTypeChange::execute(Spine* pSpine) const {
-        Sky* sky = reinterpret_cast< Sky* >(pSpine->mExecutor);
-
-        if (MR::isFirstStep(sky)) {
-            MR::startAllAnim(sky, cChangeAnimName);
-        }
-    }
-
-    void HostTypeWait::execute(Spine* pSpine) const {
-        Sky* sky = reinterpret_cast< Sky* >(pSpine->mExecutor);
-
-        if (MR::isValidSwitchA(sky) && MR::isOnSwitchA(sky)) {
-            sky->setNerve(&NrvSky::HostTypeChange::sInstance);
-        }
-    }
-};  // namespace NrvSky
 
 ProjectionMapSky::~ProjectionMapSky() {}

@@ -7,6 +7,13 @@
 #include "math_types.hpp"
 #include "revolution/types.h"
 
+namespace NrvLavaSteam {
+    NEW_NERVE(HostTypeWait, LavaSteam, Wait);
+    NEW_NERVE(HostTypeWaitForSwitchOn, LavaSteam, WaitForSwitchOn);
+    NEW_NERVE(HostTypeSteam, LavaSteam, Steam);
+    NEW_NERVE(HostTypeSteamEnd, LavaSteam, SteamEnd);
+};  // namespace NrvLavaSteam
+
 LavaSteam::LavaSteam(const char* pName) : LiveActor(pName) {
     f32 f = 1.0f;
     f32 g = 0.0f;
@@ -174,6 +181,8 @@ void LavaSteam::exeWait() {
 }
 #endif
 
+void LavaSteam::exeWaitForSwitchOn() {}
+
 void LavaSteam::exeSteam() {
     if (MR::isFirstStep(this)) {
         MR::emitEffect(this, "Steam");
@@ -188,17 +197,10 @@ void LavaSteam::exeSteam() {
     }
 }
 
-LavaSteam::~LavaSteam() {}
-namespace NrvLavaSteam {
-    void HostTypeSteamEnd::execute(Spine* pSpine) const {
-        LavaSteam* pActor = (LavaSteam*)pSpine->mExecutor;
-
-        if (MR::isStep(pActor, 90))
-            pActor->setNerve(&NrvLavaSteam::HostTypeWait::sInstance);
+void LavaSteam::exeSteamEnd() {
+    if (MR::isStep(this, 90)) {
+        setNerve(&NrvLavaSteam::HostTypeWait::sInstance);
     }
+}
 
-    HostTypeWait(HostTypeWait::sInstance);
-    HostTypeWaitForSwitchOn(HostTypeWaitForSwitchOn::sInstance);
-    HostTypeSteam(HostTypeSteam::sInstance);
-    HostTypeSteamEnd(HostTypeSteamEnd::sInstance);
-}  // namespace NrvLavaSteam
+LavaSteam::~LavaSteam() {}

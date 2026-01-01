@@ -22,7 +22,9 @@ public:
     void appearCoinAllTimer();
     void setCoinTrans(s32, const TVec3f&);
     void exeAppear();
+    void exeTryStartDemo();
     void exeDemoAppear();
+    void exeKill();
 
     Coin** mCoinArray;             // 0x8C
     ActorCameraInfo* mCameraInfo;  // 0x90
@@ -30,10 +32,3 @@ public:
     s32 mTimeLimit;                // 0x98
     bool mIsPurpleCoinGroup;       // 0x9C
 };
-
-namespace NrvCoinGroup {
-    NERVE(CoinGroupNrvAppear);
-    NERVE(CoinGroupNrvTryStartDemo);
-    NERVE(CoinGroupNrvDemoAppear);
-    NERVE(CoinGroupNrvKill);
-};  // namespace NrvCoinGroup

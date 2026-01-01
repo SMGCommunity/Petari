@@ -2,6 +2,12 @@
 #include "math_types.hpp"
 #include <cmath>
 
+namespace NrvArrowSwitch {
+    NEW_NERVE(ArrowSwitchNrvRotate, ArrowSwitch, Rotate);
+    NEW_NERVE(ArrowSwitchNrvLock, ArrowSwitch, Lock);
+    NEW_NERVE(ArrowSwitchNrvWait, ArrowSwitch, Wait);
+};  // namespace NrvArrowSwitch
+
 namespace {
     const f32 sRotYTargetList[] = {0.0f, 90.0f, 180.0f, -90.0f};
 };
@@ -323,26 +329,5 @@ s32 ArrowSwitch::getOneStep() const {
     return 0;
 }
 */
-
-namespace NrvArrowSwitch {
-    INIT_NERVE(ArrowSwitchNrvWait);
-    INIT_NERVE(ArrowSwitchNrvRotate);
-    INIT_NERVE(ArrowSwitchNrvLock);
-
-    void ArrowSwitchNrvLock::execute(Spine* pSpine) const {
-        ArrowSwitch* sw = reinterpret_cast< ArrowSwitch* >(pSpine->mExecutor);
-        sw->exeLock();
-    }
-
-    void ArrowSwitchNrvRotate::execute(Spine* pSpine) const {
-        ArrowSwitch* sw = reinterpret_cast< ArrowSwitch* >(pSpine->mExecutor);
-        sw->exeRotate();
-    }
-
-    void ArrowSwitchNrvWait::execute(Spine* pSpine) const {
-        ArrowSwitch* sw = reinterpret_cast< ArrowSwitch* >(pSpine->mExecutor);
-        sw->exeWait();
-    }
-};  // namespace NrvArrowSwitch
 
 ArrowSwitch::~ArrowSwitch() {}

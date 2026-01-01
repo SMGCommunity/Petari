@@ -11,12 +11,7 @@ public:
     virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
     virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
 
+    void exeWait();
     void exeOpen();
     void exeRattle();
 };
-
-namespace NrvManholeCover {
-    NERVE_DECL_NULL(HostTypeWait);
-    NERVE_DECL(HostTypeOpen, ManholeCover, ManholeCover::exeOpen);
-    NERVE_DECL(HostTypeRattle, ManholeCover, ManholeCover::exeRattle);
-};  // namespace NrvManholeCover

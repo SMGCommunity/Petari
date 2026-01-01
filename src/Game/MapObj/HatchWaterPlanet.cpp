@@ -2,6 +2,12 @@
 #include "Game/LiveActor/LodCtrl.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
 
+namespace NrvHatchWaterPlanet {
+    NEW_NERVE(HatchWaterPlanetNrvWait, HatchWaterPlanet, Wait);
+    NEW_NERVE(HatchWaterPlanetNrvOpen, HatchWaterPlanet, Open);
+    NEW_NERVE(HatchWaterPlanetNrvWaitAfterOpen, HatchWaterPlanet, WaitAfterOpen);
+};  // namespace NrvHatchWaterPlanet
+
 HatchWaterPlanet::HatchWaterPlanet(const char* pName) : LiveActor(pName) {
     mPlanetLODCtrl = nullptr;
     mCollisionParts = nullptr;
@@ -25,7 +31,7 @@ void HatchWaterPlanet::init(const JMapInfoIter& rIter) {
     MR::setClippingTypeSphereContainsModelBoundingBox(this, 100.0f);
     MR::setClippingFarMax(this);
     mPlanetLODCtrl = MR::createLodCtrlPlanet(this, rIter, -1.0f, -1);
-    mPlanetLODCtrl->invalidate();
+    mPlanetLODCtrl->validate();
     initNerve(&NrvHatchWaterPlanet::HatchWaterPlanetNrvWait::sInstance);
     makeActorAppeared();
 }
@@ -33,6 +39,8 @@ void HatchWaterPlanet::init(const JMapInfoIter& rIter) {
 void HatchWaterPlanet::control() {
     mPlanetLODCtrl->update();
 }
+
+void HatchWaterPlanet::exeWait() {}
 
 void HatchWaterPlanet::exeOpen() {
     if (MR::isFirstStep(this)) {
@@ -60,21 +68,3 @@ void HatchWaterPlanet::exeWaitAfterOpen() {
 }
 
 HatchWaterPlanet::~HatchWaterPlanet() {}
-
-namespace NrvHatchWaterPlanet {
-    INIT_NERVE(HatchWaterPlanetNrvWait);
-    INIT_NERVE(HatchWaterPlanetNrvOpen);
-    INIT_NERVE(HatchWaterPlanetNrvWaitAfterOpen);
-
-    void HatchWaterPlanetNrvWaitAfterOpen::execute(Spine* pSpine) const {
-        HatchWaterPlanet* planet = reinterpret_cast< HatchWaterPlanet* >(pSpine->mExecutor);
-        planet->exeWaitAfterOpen();
-    }
-
-    void HatchWaterPlanetNrvOpen::execute(Spine* pSpine) const {
-        HatchWaterPlanet* planet = reinterpret_cast< HatchWaterPlanet* >(pSpine->mExecutor);
-        planet->exeOpen();
-    }
-
-    void HatchWaterPlanetNrvWait::execute(Spine* pSpine) const {}
-};  // namespace NrvHatchWaterPlanet

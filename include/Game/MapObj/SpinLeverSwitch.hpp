@@ -16,12 +16,7 @@ public:
 
     void exeWait();
     void exeSwitchOn();
+    void exeEnd();
 
     MapObjConnector* mConnector;  //_8C
 };
-
-namespace NrvSpinLeverSwitch {
-    NERVE(SpinLeverSwitchNrvWait);
-    NERVE(SpinLeverSwitchNrvSwitchOn);
-    NERVE(SpinLeverSwitchNrvEnd);
-};  // namespace NrvSpinLeverSwitch

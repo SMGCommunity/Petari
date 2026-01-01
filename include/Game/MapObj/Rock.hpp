@@ -79,12 +79,3 @@ public:
     s32 mRollSoundTimer;  // 0x13C
     s32 _140;
 };
-
-namespace NrvRock {
-    NERVE_DECL(RockNrvAppear, Rock, Rock::exeAppear);
-    NERVE_DECL(RockNrvAppearMoveInvalidBind, Rock, Rock::exeAppearMoveInvalidBind);
-    NERVE_DECL(RockNrvMove, Rock, Rock::exeMove);
-    NERVE_DECL(RockNrvMoveInvalidBind, Rock, Rock::exeMoveInvalidBind);
-    NERVE_DECL(RockNrvBreak, Rock, Rock::exeBreak);
-    NERVE_DECL(RockNrvFreeze, Rock, Rock::exeFreeze);
-};  // namespace NrvRock

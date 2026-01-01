@@ -21,6 +21,7 @@ public:
     void requestPlayerStopped();
     void initCount(s32);
     void setCount(s32);
+    void exeHide();
     void exeAppear();
     void exeWaitStart();
     void exeWait();
@@ -48,18 +49,3 @@ public:
     f32 _48;                                  // 0x48
     f32 _4C;                                  // 0x4C
 };
-
-namespace NrvMeterLayout {
-    NERVE_DECL_NULL(MeterLayoutNrvHide);
-    NERVE_DECL_EXE(MeterLayoutNrvAppear, MeterLayout, Appear);
-    NERVE_DECL_EXE(MeterLayoutNrvWait, MeterLayout, Wait);
-    NERVE_DECL_EXE(MeterLayoutNrvWaitStart, MeterLayout, WaitStart);
-    NERVE_DECL_EXE(MeterLayoutNrvPowerUp, MeterLayout, PowerUp);
-    NERVE_DECL_EXE(MeterLayoutNrvMeterMove, MeterLayout, MeterMove);
-    NERVE_DECL_EXE(MeterLayoutNrvCounterMove, MeterLayout, CounterMove);
-    NERVE_DECL_EXE(MeterLayoutNrvRecover, MeterLayout, Recover);
-    NERVE_DECL_EXE(MeterLayoutNrvDamage, MeterLayout, Damage);
-    NERVE_DECL_EXE(MeterLayoutNrvBreakMeter, MeterLayout, BreakMeter);
-    NERVE_DECL_EXE(MeterLayoutNrvZeroMeter, MeterLayout, ZeroMeter);
-    NERVE_DECL_EXE(MeterLayoutNrvZeroMeterBreak, MeterLayout, ZeroMeterBreak);
-}  // namespace NrvMeterLayout

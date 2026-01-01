@@ -1,6 +1,11 @@
 #include "Game/MapObj/MeteoContainer.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 
+namespace NrvMeteoContainer {
+    NEW_NERVE(MeteoContainerNrvWait, MeteoContainer, Wait);
+    NEW_NERVE(MeteoContainerNrvDestroy, MeteoContainer, Destroy);
+};  // namespace NrvMeteoContainer
+
 MeteoContainer::MeteoContainer(const char* pName) : LiveActor(pName) {}
 
 void MeteoContainer::init(const JMapInfoIter& rIter) {
@@ -65,6 +70,8 @@ bool MeteoContainer::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pRe
     return false;
 }
 
+void MeteoContainer::exeWait() {}
+
 void MeteoContainer::exeDestroy() {
     if (MR::isStep(this, 2)) {
         MR::stopScene(10);
@@ -77,8 +84,3 @@ void MeteoContainer::exeDestroy() {
 }
 
 MeteoContainer::~MeteoContainer() {}
-
-namespace NrvMeteoContainer {
-    INIT_NERVE(MeteoContainerNrvWait);
-    INIT_NERVE(MeteoContainerNrvDestroy);
-};  // namespace NrvMeteoContainer

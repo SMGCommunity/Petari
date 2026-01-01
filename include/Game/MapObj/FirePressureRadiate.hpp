@@ -39,12 +39,3 @@ public:
     MsgSharedGroup* mGroup;  // 0xD8
     bool _DC;
 };
-
-namespace NrvFirePressureRadiate {
-    NERVE_DECL(FirePressureRadiateNrvRelax, FirePressureRadiate, FirePressureRadiate::exeRelax);
-    NERVE_DECL(FirePressureRadiateNrvSyncWait, FirePressureRadiate, FirePressureRadiate::exeSyncWait);
-    NERVE_DECL(FirePressureRadiateNrvWait, FirePressureRadiate, FirePressureRadiate::exeWait);
-    NERVE_DECL(FirePressureRadiateNrvPrepareToRadiate, FirePressureRadiate, FirePressureRadiate::exePrepareToRadiate);
-    NERVE_DECL(FirePressureRadiateNrvRadiate, FirePressureRadiate, FirePressureRadiate::exeRadiate);
-    NERVE_DECL(FirePressureRadiateNrvRadiateMargin, FirePressureRadiate, FirePressureRadiate::exeRadiateMargin);
-};  // namespace NrvFirePressureRadiate

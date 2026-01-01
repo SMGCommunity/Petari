@@ -1,6 +1,14 @@
 #include "Game/MapObj/FountainBig.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 
+namespace NrvFountainBig {
+    NEW_NERVE(FountainBigNrvWait, FountainBig, Wait);
+    NEW_NERVE(FountainBigNrvSign, FountainBig, Sign);
+    NEW_NERVE(FountainBigNrvSignStop, FountainBig, SignStop);
+    NEW_NERVE(FountainBigNrvSpout, FountainBig, Spout);
+    NEW_NERVE(FountainBigNrvSpoutEnd, FountainBig, SpoutEnd);
+};  // namespace NrvFountainBig
+
 FountainBig::FountainBig(const char* pName) : LiveActor(pName) {
     mClippingRadius.x = 0.0f;
     mClippingRadius.y = 0.0f;
@@ -131,11 +139,3 @@ void FountainBig::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
         }
     }
 }
-
-namespace NrvFountainBig {
-    INIT_NERVE(FountainBigNrvWait);
-    INIT_NERVE(FountainBigNrvSign);
-    INIT_NERVE(FountainBigNrvSignStop);
-    INIT_NERVE(FountainBigNrvSpout);
-    INIT_NERVE(FountainBigNrvSpoutEnd);
-};  // namespace NrvFountainBig

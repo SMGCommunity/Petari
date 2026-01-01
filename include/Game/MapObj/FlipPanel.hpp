@@ -17,6 +17,7 @@ public:
     void exeFrontLand();
     void exeBackLand();
     void exeWait();
+    void exeEndPrepare();
     void exeEnd();
     bool calcJointMove(TPos3f*, const JointControllerInfo&);
     bool checkPlayerOnTop();
@@ -48,18 +49,3 @@ public:
     s32 mPowerStarId;  // 0x98
     u8 _9C;
 };
-
-namespace NrvFlipPanel {
-    NERVE(FlipPanelNrvFront);
-    NERVE(FlipPanelNrvBack);
-    NERVE(FlipPanelNrvFrontLand);
-    NERVE(FlipPanelNrvBackLand);
-    NERVE(FlipPanelNrvEnd);
-    NERVE(FlipPanelNrvEndPrepare);
-};  // namespace NrvFlipPanel
-
-namespace NrvFlipPanelObserver {
-    NERVE(FlipPanelObserverNrvWait);
-    NERVE(FlipPanelObserverNrvDemoWait);
-    NERVE(FlipPanelObserverNrvComplete);
-};  // namespace NrvFlipPanelObserver
