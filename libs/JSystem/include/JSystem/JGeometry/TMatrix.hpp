@@ -184,7 +184,20 @@ namespace JGeometry {
 
         void getZDir(TVec3f& rDest) const NO_INLINE { rDest.set(this->mMtx[0][2], this->mMtx[1][2], this->mMtx[2][2]); };
 
-        void getXYZDir(TVec3f& rDestX, TVec3f& rDestY, TVec3f& rDestZ) const;
+        void getXYZDir(TVec3f& rDestX, TVec3f& rDestY, TVec3f& rDestZ) const NO_INLINE {
+            f32 xz = this->mMtx[2][0];
+            f32 xy = this->mMtx[1][0];
+            f32 xx = this->mMtx[0][0];
+            rDestX.set<f32>(xx, xy, xz);
+            f32 yz = this->mMtx[2][1];
+            f32 yy = this->mMtx[1][1];
+            f32 yx = this->mMtx[0][1];
+            rDestY.set<f32>(yx, yy, yz);
+            f32 zz = this->mMtx[2][2];
+            f32 zy = this->mMtx[1][2];
+            f32 zx = this->mMtx[0][2];
+            rDestZ.set<f32>(zx, zy, zz);
+        }
         void setXDir(const TVec3f& rSrc);
         void setXDir(f32 x, f32 y, f32 z);
         void setYDir(const TVec3f& rSrc);
@@ -203,6 +216,17 @@ namespace JGeometry {
 
         void getScale(TVec3f& rDest) const;
         void setScale(const TVec3f& rSrc);
+        void setScale(f32 x, f32 y, f32 z) NO_INLINE {
+            this->mMtx[0][0] = x;
+            this->mMtx[0][1] = 0.0f;
+            this->mMtx[0][2] = 0.0f;
+            this->mMtx[1][0] = 0.0f;
+            this->mMtx[1][1] = y;
+            this->mMtx[1][2] = 0.0f;
+            this->mMtx[2][0] = 0.0f;
+            this->mMtx[2][1] = 0.0f;
+            this->mMtx[2][2] = z;
+        }
         void setRotate(const TVec3f&, f32);
         void setRotate(const TVec3f&, const TVec3f&);
 
@@ -240,6 +264,23 @@ namespace JGeometry {
             this->mMtx[0][2] = rSrcZ.x;
             this->mMtx[1][2] = rSrcZ.y;
             this->mMtx[2][2] = rSrcZ.z;
+        }
+
+        inline void getXYZDirInline(TVec3f& rDstX, TVec3f& rDstY, TVec3f& rDstZ) {
+            f32 z1 = this->mMtx[2][0];
+            f32 y1 = this->mMtx[1][0];
+            f32 x1 = this->mMtx[0][0];
+            rDstX.set< f32 >(x1, y1, z1);
+
+            f32 z2 = this->mMtx[2][1];
+            f32 y2 = this->mMtx[1][1];
+            f32 x2 = this->mMtx[0][1];
+            rDstY.set< f32 >(x2, y2, z2);
+
+            f32 z3 = this->mMtx[2][2];
+            f32 y3 = this->mMtx[1][2];
+            f32 x3 = this->mMtx[0][2];
+            rDstZ.set< f32 >(x3, y3, z3);
         }
 
         inline void zeroTrans() {

@@ -59,8 +59,6 @@ namespace MR {
     bool isValidCalcViewAndEntry(const LiveActor*);
     bool isValidDraw(const LiveActor*);
 
-    void invalidateClipping(LiveActor*);
-
     bool isClipped(const LiveActor*);
     bool isInvalidClipping(const LiveActor*);
 
@@ -276,6 +274,8 @@ namespace MR {
     void validateCollisionParts(CollisionParts*);
     void invalidateCollisionParts(LiveActor*);
     void invalidateCollisionParts(CollisionParts*);
+    void validateExCollisionParts(LiveActor*);
+    void invalidateExCollisionParts(LiveActor*);
     void onUpdateCollisionParts(LiveActor*);
     void onUpdateCollisionPartsOnetimeImmediately(LiveActor*);
     void offUpdateCollisionParts(LiveActor*);
@@ -339,6 +339,7 @@ namespace MR {
 
     bool isBindedGround(const LiveActor*);
     bool isBindedWall(const LiveActor*);
+    bool isBindedWallOfMap(const LiveActor*);
 
     bool isBindedGroundIce(const LiveActor*);
     bool isBindedGroundWater(const LiveActor*);

@@ -4,6 +4,17 @@
 #include <cstdio>
 #include <cstring>
 
+namespace NrvSpinDriver {
+    NEW_NERVE(SpinDriverNrvTryDemo, SpinDriver, TryDemo);
+    NEW_NERVE(SpinDriverNrvNonActive, SpinDriver, NonActive);
+    NEW_NERVE(SpinDriverNrvAppear, SpinDriver, Appear);
+    NEW_NERVE(SpinDriverNrvWait, SpinDriver, Wait);
+    NEW_NERVE(SpinDriverNrvCapture, SpinDriver, Capture);
+    NEW_NERVE(SpinDriverNrvShootStart, SpinDriver, ShootStart);
+    NEW_NERVE(SpinDriverNrvShoot, SpinDriver, Shoot);
+    NEW_NERVE(SpinDriverNrvCoolDown, SpinDriver, CoolDown);
+};  // namespace NrvSpinDriver
+
 namespace {
     static s32 cSpaceFlyStartFrame = 0xA;
     static s32 cSpaceFlyEndFrame = 0x32;
@@ -307,6 +318,8 @@ bool SpinDriver::trySwitchOff() {
 
     return false;
 }
+
+void SpinDriver::exeTryDemo() {}
 
 void SpinDriver::exeNonActive() {
     if (MR::isFirstStep(this)) {
@@ -706,51 +719,3 @@ bool SpinDriver::canBind(HitSensor *pSensor) const {
 */
 
 SpinDriver::~SpinDriver() {}
-
-namespace NrvSpinDriver {
-    INIT_NERVE(SpinDriverNrvTryDemo);
-    INIT_NERVE(SpinDriverNrvNonActive);
-    INIT_NERVE(SpinDriverNrvAppear);
-    INIT_NERVE(SpinDriverNrvWait);
-    INIT_NERVE(SpinDriverNrvCapture);
-    INIT_NERVE(SpinDriverNrvShootStart);
-    INIT_NERVE(SpinDriverNrvShoot);
-    INIT_NERVE(SpinDriverNrvCoolDown);
-
-    void SpinDriverNrvCoolDown::execute(Spine* pSpine) const {
-        SpinDriver* spinDriver = reinterpret_cast< SpinDriver* >(pSpine->mExecutor);
-        spinDriver->exeCoolDown();
-    }
-
-    void SpinDriverNrvShoot::execute(Spine* pSpine) const {
-        SpinDriver* spinDriver = reinterpret_cast< SpinDriver* >(pSpine->mExecutor);
-        spinDriver->exeShoot();
-    }
-
-    void SpinDriverNrvShootStart::execute(Spine* pSpine) const {
-        SpinDriver* spinDriver = reinterpret_cast< SpinDriver* >(pSpine->mExecutor);
-        spinDriver->exeShootStart();
-    }
-
-    void SpinDriverNrvCapture::execute(Spine* pSpine) const {
-        SpinDriver* spinDriver = reinterpret_cast< SpinDriver* >(pSpine->mExecutor);
-        spinDriver->exeCapture();
-    }
-
-    void SpinDriverNrvWait::execute(Spine* pSpine) const {
-        SpinDriver* spinDriver = reinterpret_cast< SpinDriver* >(pSpine->mExecutor);
-        spinDriver->exeWait();
-    }
-
-    void SpinDriverNrvAppear::execute(Spine* pSpine) const {
-        SpinDriver* spinDriver = reinterpret_cast< SpinDriver* >(pSpine->mExecutor);
-        spinDriver->exeAppear();
-    }
-
-    void SpinDriverNrvNonActive::execute(Spine* pSpine) const {
-        SpinDriver* spinDriver = reinterpret_cast< SpinDriver* >(pSpine->mExecutor);
-        spinDriver->exeNonActive();
-    }
-
-    void SpinDriverNrvTryDemo::execute(Spine* pSpine) const {}
-};  // namespace NrvSpinDriver

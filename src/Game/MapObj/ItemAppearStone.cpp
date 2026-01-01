@@ -1,5 +1,9 @@
 #include "Game/MapObj/ItemAppearStone.hpp"
 
+namespace NrvItemAppearStone {
+    NEW_NERVE(HostTypeWait, ItemAppearStone, Wait);
+};
+
 ItemAppearStone::ItemAppearStone(const char* pName) : LiveActor(pName) {}
 
 void ItemAppearStone::init(const JMapInfoIter& rIter) {
@@ -36,12 +40,3 @@ void ItemAppearStone::exeWait() {
 }
 
 ItemAppearStone::~ItemAppearStone() {}
-
-namespace NrvItemAppearStone {
-    INIT_NERVE(HostTypeWait);
-
-    void HostTypeWait::execute(Spine* pSpine) const {
-        ItemAppearStone* stone = reinterpret_cast< ItemAppearStone* >(pSpine->mExecutor);
-        stone->exeWait();
-    }
-};  // namespace NrvItemAppearStone

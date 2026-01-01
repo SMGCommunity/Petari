@@ -16,8 +16,11 @@ public:
     virtual void control();
     virtual void initModel(const char*);
 
-    void disappearSpaceInner();
     void appearSpaceInner();
+    void disappearSpaceInner();
+
+    void exeWait();
+    void exeChange();
 
     SpaceInner* mSpaceInner;                  // 0x8C
     MirrorReflectionModel* mReflectionModel;  // 0x90
@@ -33,10 +36,3 @@ public:
 
     ProjmapEffectMtxSetter* mMtxSetter;  // 0x94
 };
-
-namespace NrvSky {
-    const char* cChangeAnimName = "Change";
-
-    NERVE(HostTypeWait);
-    NERVE(HostTypeChange);
-};  // namespace NrvSky

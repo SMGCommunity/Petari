@@ -13,9 +13,11 @@
 #include <cstdio>
 #include <cstring>
 
-NrvMapObjActor::HostTypeDone NrvMapObjActor::HostTypeDone::sInstance;
-NrvMapObjActor::HostTypeMove NrvMapObjActor::HostTypeMove::sInstance;
-NrvMapObjActor::HostTypeWait NrvMapObjActor::HostTypeWait::sInstance;
+namespace NrvMapObjActor {
+    NEW_NERVE(HostTypeWait, MapObjActor, Wait);
+    NEW_NERVE(HostTypeMove, MapObjActor, Move);
+    NEW_NERVE(HostTypeDone, MapObjActor, Done);
+};  // namespace NrvMapObjActor
 
 namespace {
     const char* cBrkNameColorChange = "ColorChange";
@@ -411,6 +413,8 @@ void MapObjActor::exeMove() {
     }
 }
 
+void MapObjActor::exeDone() {}
+
 void MapObjActorUtil::startAllMapPartsFunctions(const MapObjActor* pActor) {
     if (pActor->mRotator) {
         pActor->mRotator->start();
@@ -587,17 +591,3 @@ void MapObjActorUtil::appearBloomModel(MapObjActor* pActor) {
     snprintf(buf, sizeof(buf), "%sBloom", pActor->mObjectName);
     MR::tryStartAllAnim(pActor->mBloomModel, buf);
 }
-
-namespace NrvMapObjActor {
-    void HostTypeDone::execute(Spine* pSpine) const {}
-
-    void HostTypeMove::execute(Spine* pSpine) const {
-        MapObjActor* actor = reinterpret_cast< MapObjActor* >(pSpine->mExecutor);
-        actor->exeMove();
-    }
-
-    void HostTypeWait::execute(Spine* pSpine) const {
-        MapObjActor* actor = reinterpret_cast< MapObjActor* >(pSpine->mExecutor);
-        actor->exeWait();
-    }
-};  // namespace NrvMapObjActor

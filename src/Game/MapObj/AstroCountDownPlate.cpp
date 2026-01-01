@@ -2,6 +2,13 @@
 #include "Game/LiveActor/MaterialCtrl.hpp"
 #include "Game/MapObj/AstroMapObjFunction.hpp"
 
+namespace NrvAstroCountDownPlate {
+    NEW_NERVE(AstroCountDownPlateNrvDead, AstroCountDownPlate, Wait);
+    NEW_NERVE(AstroCountDownPlateNrvAlive, AstroCountDownPlate, Wait);
+    NEW_NERVE(AstroCountDownPlateNrvRevival, AstroCountDownPlate, Revival);
+    NEW_NERVE(AstroCountDownPlateNrvCountToZero, AstroCountDownPlate, CountToZero);
+};  // namespace NrvAstroCountDownPlate
+
 namespace {
     const char* cMaterialName01 = "StarNumber01_v_x";
     const char* cMaterialName10 = "StarNumber01_v_x(2)";
@@ -137,12 +144,5 @@ void AstroCountDownPlate::startDemoStartCountDown() {
 void AstroCountDownPlate::startDemoLastBattle() {
     setNerve(&NrvAstroCountDownPlate::AstroCountDownPlateNrvCountToZero::sInstance);
 }
-
-namespace NrvAstroCountDownPlate {
-    INIT_NERVE(AstroCountDownPlateNrvDead);
-    INIT_NERVE(AstroCountDownPlateNrvAlive);
-    INIT_NERVE(AstroCountDownPlateNrvRevival);
-    INIT_NERVE(AstroCountDownPlateNrvCountToZero);
-};  // namespace NrvAstroCountDownPlate
 
 AstroCountDownPlate::~AstroCountDownPlate() {}

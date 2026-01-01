@@ -41,8 +41,3 @@ public:
     s32 _AC;
     u8 _B0;
 };
-
-namespace NrvArrowSwitchMulti {
-    NERVE(ArrowSwitchMultiNrvWait);
-    NERVE(ArrowSwitchMultiNrvRotate);
-};  // namespace NrvArrowSwitchMulti

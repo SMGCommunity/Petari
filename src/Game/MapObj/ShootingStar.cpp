@@ -1,5 +1,11 @@
 #include "Game/MapObj/ShootingStar.hpp"
 
+namespace NrvShootingStar {
+    NEW_NERVE(HostTypeNrvPreShooting, ShootingStar, PreShooting);
+    NEW_NERVE(HostTypeNrvShooting, ShootingStar, Shooting);
+    NEW_NERVE(HostTypeNrvWaitForNextShoot, ShootingStar, WaitForNextShoot);
+};  // namespace NrvShootingStar
+
 ShootingStar::ShootingStar(const char* pName) : LiveActor(pName), _8C(0, 0, 0), _98(0, 0, 1), _A4(0, -1, 0) {
     _B0 = 5;
     _B4 = 0xF0;
@@ -105,26 +111,5 @@ void ShootingStar::exeWaitForNextShoot() {
         setNerve(&NrvShootingStar::HostTypeNrvPreShooting::sInstance);
     }
 }
-
-namespace NrvShootingStar {
-    INIT_NERVE(HostTypeNrvPreShooting);
-    INIT_NERVE(HostTypeNrvShooting);
-    INIT_NERVE(HostTypeNrvWaitForNextShoot);
-
-    void HostTypeNrvWaitForNextShoot::execute(Spine* pSpine) const {
-        ShootingStar* star = reinterpret_cast< ShootingStar* >(pSpine->mExecutor);
-        star->exeWaitForNextShoot();
-    }
-
-    void HostTypeNrvShooting::execute(Spine* pSpine) const {
-        ShootingStar* star = reinterpret_cast< ShootingStar* >(pSpine->mExecutor);
-        star->exeShooting();
-    }
-
-    void HostTypeNrvPreShooting::execute(Spine* pSpine) const {
-        ShootingStar* star = reinterpret_cast< ShootingStar* >(pSpine->mExecutor);
-        star->exePreShooting();
-    }
-};  // namespace NrvShootingStar
 
 ShootingStar::~ShootingStar() {}

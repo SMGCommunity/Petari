@@ -3,6 +3,11 @@
 #include "Game/LiveActor/HitSensor.hpp"
 #include "JSystem/JMath/JMath.hpp"
 
+namespace NrvWaterPressureBullet {
+    NEW_NERVE(WaterPressureBulletNrvFly, WaterPressureBullet, Fly);
+    NEW_NERVE(WaterPressureBulletNrvSpinKill, WaterPressureBullet, SpinKill);
+};  // namespace NrvWaterPressureBullet
+
 WaterPressureBullet::WaterPressureBullet(const char* pName) : LiveActor(pName) {
     _8C.x = 0.0f;
     _8C.y = 0.0f;
@@ -302,18 +307,3 @@ void WaterPressureBullet::updateSuffererMtx() {
 }
 
 WaterPressureBullet::~WaterPressureBullet() {}
-
-namespace NrvWaterPressureBullet {
-    INIT_NERVE(WaterPressureBulletNrvFly);
-    INIT_NERVE(WaterPressureBulletNrvSpinKill);
-
-    void WaterPressureBulletNrvSpinKill::execute(Spine* pSpine) const {
-        WaterPressureBullet* bullet = reinterpret_cast< WaterPressureBullet* >(pSpine->mExecutor);
-        bullet->exeSpinKill();
-    }
-
-    void WaterPressureBulletNrvFly::execute(Spine* pSpine) const {
-        WaterPressureBullet* bullet = reinterpret_cast< WaterPressureBullet* >(pSpine->mExecutor);
-        bullet->exeFly();
-    }
-};  // namespace NrvWaterPressureBullet

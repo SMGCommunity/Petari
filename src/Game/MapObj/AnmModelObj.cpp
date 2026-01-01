@@ -7,6 +7,12 @@ namespace {
     const char* cEndLoopEffectName = "EndLoop";
 };  // namespace
 
+namespace NrvAnmModelObj {
+    NEW_NERVE(HostTypeWait, AnmModelObj, Wait);
+    NEW_NERVE(HostTypeMove, AnmModelObj, Move);
+    NEW_NERVE(HostTypeDone, AnmModelObj, Done);
+};  // namespace NrvAnmModelObj
+
 AnmModelObj::AnmModelObj(const char* pName) : MapObjActor(pName) {
     mJointPos.x = 0.0f;
     mJointPos.y = 0.0f;
@@ -227,12 +233,6 @@ AnmModelGroundOnMove::~AnmModelGroundOnMove() {}
 AnmModelBindMove::~AnmModelBindMove() {}
 
 AnmModelSwitchMoveEventCamera::~AnmModelSwitchMoveEventCamera() {}
-
-namespace NrvAnmModelObj {
-    INIT_NERVE(HostTypeWait);
-    INIT_NERVE(HostTypeMove);
-    INIT_NERVE(HostTypeDone);
-};  // namespace NrvAnmModelObj
 
 void AnmModelObj::startInner() {}
 

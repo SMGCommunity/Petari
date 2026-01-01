@@ -2,6 +2,12 @@
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/Map/CollisionParts.hpp"
 
+namespace NrvPTimerSwitch {
+    NEW_NERVE(PTimerSwitchNrvOff, PTimerSwitch, Off);
+    NEW_NERVE(PTimerSwitchNrvSwitchDown, PTimerSwitch, SwitchDown);
+    NEW_NERVE(PTimerSwitchNrvOn, PTimerSwitch, On);
+};  // namespace NrvPTimerSwitch
+
 PTimerSwitch::PTimerSwitch(const char* pName) : LiveActor(pName) {
     mSwitchCollision = nullptr;
     mConnector = nullptr;
@@ -144,24 +150,3 @@ void PTimerSwitch::exeOn() {
         kill();
     }
 }
-
-namespace NrvPTimerSwitch {
-    INIT_NERVE(PTimerSwitchNrvOn);
-    INIT_NERVE(PTimerSwitchNrvSwitchDown);
-    INIT_NERVE(PTimerSwitchNrvOff);
-
-    void PTimerSwitchNrvOn::execute(Spine* pSpine) const {
-        PTimerSwitch* actor = reinterpret_cast< PTimerSwitch* >(pSpine->mExecutor);
-        actor->exeOn();
-    }
-
-    void PTimerSwitchNrvSwitchDown::execute(Spine* pSpine) const {
-        PTimerSwitch* actor = reinterpret_cast< PTimerSwitch* >(pSpine->mExecutor);
-        actor->exeSwitchDown();
-    }
-
-    void PTimerSwitchNrvOff::execute(Spine* pSpine) const {
-        PTimerSwitch* actor = reinterpret_cast< PTimerSwitch* >(pSpine->mExecutor);
-        actor->exeOff();
-    }
-}  // namespace NrvPTimerSwitch

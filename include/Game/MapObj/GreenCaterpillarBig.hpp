@@ -31,7 +31,11 @@ public:
     virtual void calcAndSetBaseMtx();
 
     void startWriggle();
+    void exeHide();
     void exeWriggle();
+    void exeRest();
+    void exeEndAdjust();
+    void exeEnd();
     void initBodyParts(const JMapInfoIter&);
     bool tryGenerateBodyParts();
     void fixBodyPartsOnRail();
@@ -45,11 +49,3 @@ public:
     u8 _9D;
     LodCtrl* mPlanetLOD;  // 0xA0
 };
-
-namespace NrvGreenCaterpillarBig {
-    NERVE(GreenCaterpillarBigNrvHide);
-    NERVE(GreenCaterpillarBigNrvWriggle);
-    NERVE(GreenCaterpillarBigNrvRest);
-    NERVE(GreenCaterpillarBigNrvEndAdjust);
-    NERVE(GreenCaterpillarBigNrvEnd);
-};  // namespace NrvGreenCaterpillarBig

@@ -53,7 +53,6 @@
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/PostureHolder.hpp"
 #include "Game/Util/RailUtil.hpp"
-#include "Game/Util/RenderMode.hpp"
 #include "Game/Util/RumbleCalculator.hpp"
 #include "Game/Util/SceneUtil.hpp"
 #include "Game/Util/SchedulerUtil.hpp"

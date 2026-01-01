@@ -1,6 +1,14 @@
 #include "Game/NPC/NPCActor.hpp"
 #include "Game/NPC/NPCActorItem.hpp"
 #include "Game/Util.hpp"
+#include "Game/Util/NPCUtil.hpp"
+
+namespace NrvNPCActor {
+    NEW_NERVE(NPCActorNrvReaction, NPCActor, Reaction);
+    NEW_NERVE(NPCActorNrvWait, NPCActor, Wait);
+    NEW_NERVE(NPCActorNrvTalk, NPCActor, Talk);
+    NEW_NERVE(NPCActorNrvNull, NPCActor, Null);
+};  // namespace NrvNPCActor
 
 NPCActorCaps::NPCActorCaps(const char* pName) {
     _0 = pName;
@@ -200,3 +208,12 @@ void NPCActor::initAfterPlacement() {
         MR::calcAnimDirect(this);
     }
 }
+
+void NPCActor::exeReaction() {
+    MR::tryStartReactionAndPopNerve(this);
+}
+
+// void NPCActor::exeWait()
+// void NPCActor::exeTalk()
+
+void NPCActor::exeNull() {}

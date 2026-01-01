@@ -37,6 +37,7 @@ public:
     void setShadowAndPoseModeFromJMapIter(const JMapInfoIter&);
     void exeNonActive();
     void exeFix();
+    void exeFixHide();
     void exeFixTimer();
     void exeMove();
     void exeControled();
@@ -88,14 +89,3 @@ namespace MR {
     NameObj* createDirectSetPurpleCoin(const char*);
     NameObj* createPurpleCoin(const NameObj*, const char*);
 };  // namespace MR
-
-namespace NrvCoin {
-    NERVE(CoinNrvNonActive);
-    NERVE(CoinNrvFix);
-    NERVE(CoinNrvFixHide);
-    NERVE(CoinNrvFixTimer);
-    NERVE(CoinNrvControled);
-    NERVE(CoinNrvSpinDrained);
-    NERVE(CoinNrvMove);
-    NERVE(CoinNrvHop);
-};  // namespace NrvCoin

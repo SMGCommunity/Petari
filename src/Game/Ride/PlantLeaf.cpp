@@ -9,11 +9,11 @@
 #include <JSystem/JGeometry/TMatrix.hpp>
 
 PlantLeaf::PlantLeaf(f32 leafCoord, const TVec3f& pPosition, const TVec3f& pGrowDirection, f32 leafSize)
-    : LiveActor("葉（伸び植物）"), mSpringVel(0.0f), mSpringAccel(0.0f), mLeafCoord(leafCoord), mLeafSize(leafSize), mFront(1.0f, 0.0f, 0.0f),
-      mUp(0.0f, 1.0f, 0.0f), mSide(pGrowDirection) {
+    : LiveActor("葉（伸び植物）"), mSpringVel(0.0f), mSpringAccel(0.0f), mLeafCoord(leafCoord), mLeafSize(leafSize), mSide(1.0f, 0.0f, 0.0f),
+      mUp(0.0f, 1.0f, 0.0f), mFront(pGrowDirection) {
     mPosition.set(pPosition);
-    MR::makeAxisFrontUp(&mFront, &mUp, mSide, mUp);
-    mBaseMtx.setXYZDir(mFront, mUp, mSide);
+    MR::makeAxisFrontUp(&mSide, &mUp, mFront, mUp);
+    mBaseMtx.setXYZDir(mSide, mUp, mFront);
     mBaseMtx.scale(mLeafSize * 0.0001f);
     mBaseMtx.setTrans(mPosition);
     mPosMtx.identity();
@@ -38,7 +38,7 @@ void PlantLeaf::init(const JMapInfoIter&) {
 }
 
 void PlantLeaf::updateGrowUp(const TVec3f& rStalkPos, const TVec3f& rAxisY, f32 growthPercent, f32 offset) {
-    mPosition.set(mSide);
+    mPosition.set(mFront);
     mPosition.mult(offset);
     mPosition.addInLine(rStalkPos);
 
@@ -47,8 +47,8 @@ void PlantLeaf::updateGrowUp(const TVec3f& rStalkPos, const TVec3f& rAxisY, f32 
     mUp.y = rAxisY.y * (1.0f - t) + t;
     mUp.z = rAxisY.z * (1.0f - t);
 
-    MR::makeAxisFrontUp(&mFront, &mUp, mSide, mUp);
-    mBaseMtx.setXYZDir(mFront, mUp, mSide);
+    MR::makeAxisFrontUp(&mSide, &mUp, mFront, mUp);
+    mBaseMtx.setXYZDir(mSide, mUp, mFront);
     mBaseMtx.scale(mLeafSize * growthPercent);
     mBaseMtx.setTrans(mPosition);
 }
@@ -79,13 +79,13 @@ bool PlantLeaf::updateSpring(f32 growthPercent) {
     if (__fabsf(mSpringVel) < 0.01f && __fabsf(mSpringAccel) < 0.001f) {
         mSpringVel = 0.0f;
         mSpringAccel = 0.0f;
-        MR::makeAxisFrontUp(&mFront, &mUp, mSide, mUp);
-        mBaseMtx.setXYZDir(mFront, mUp, mSide);
+        MR::makeAxisFrontUp(&mSide, &mUp, mFront, mUp);
+        mBaseMtx.setXYZDir(mSide, mUp, mFront);
         mBaseMtx.scale(mLeafSize * growthPercent);
         mBaseMtx.setTrans(mPosition);
         return true;
     } else {
-        TVec3f side(mSide);
+        TVec3f side(mFront);
         TVec3f front;
         TVec3f up;
         side.y += mSpringVel;

@@ -4,7 +4,9 @@
 #include "Game/System/FileRipper.hpp"
 #include "Game/System/Language.hpp"
 #include "Game/System/ResourceHolderManager.hpp"
+#include "Game/Util/MemoryUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
+#include "Game/Util/SystemUtil.hpp"
 #include <cstdio>
 
 namespace MR {

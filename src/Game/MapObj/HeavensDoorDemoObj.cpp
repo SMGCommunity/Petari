@@ -3,6 +3,12 @@
 #include "Game/MapObj/StageEffectDataTable.hpp"
 #include "Game/Util/Functor.hpp"
 
+namespace NrvHeavensDoorDemoObj {
+    NEW_NERVE(HeavensDoorDemoObjNrvAppear, HeavensDoorDemoObj, Appear);
+    NEW_NERVE(HeavensDoorDemoObjNrvWait, HeavensDoorDemoObj, Wait);
+    NEW_NERVE(HeavensDoorDemoObjNrvVanish, HeavensDoorDemoObj, Vanish);
+};  // namespace NrvHeavensDoorDemoObj
+
 HeavensDoorDemoObj::HeavensDoorDemoObj(const char* pName) : MapObjActor(pName) {
     _C4 = false;
 }
@@ -29,7 +35,7 @@ void HeavensDoorDemoObj::init(const JMapInfoIter& rIter) {
     if (MR::isDemoCast(this, nullptr)) {
         MR::tryRegisterDemoActionNerve(this, &NrvHeavensDoorDemoObj::HeavensDoorDemoObjNrvVanish::sInstance, nullptr);
         if (MapObjActor::isObjectName("HeavensDoorInsideCage")) {
-            MR::tryRegisterDemoActionFunctor(this, MR::Functor_Inline(this, &HeavensDoorDemoObj::startInsideCageDemo), "消滅");
+            MR::tryRegisterDemoActionFunctor(this, MR::Functor_Inline(this, &HeavensDoorDemoObj::startInsideCageDemo), "ミニ太陽消失");
         }
     }
 }
@@ -49,6 +55,12 @@ void HeavensDoorDemoObj::exeAppear() {
         MR::StageEffect::tryStageEffectStop(this, mObjectName);
         MR::StageEffect::stopShakingCameraMoving(this, mObjectName);
         setNerve(&NrvHeavensDoorDemoObj::HeavensDoorDemoObjNrvWait::sInstance);
+    }
+}
+
+void HeavensDoorDemoObj::exeWait() {
+    if (MapObjActor::isObjectName("HeavensDoorInsidePlanetPartsA")) {
+        MR::startLevelSound(this, "SE_OJ_LV_HD_INSIDE_SUN_WORK", -1, -1, -1);
     }
 }
 
@@ -97,24 +109,3 @@ void HeavensDoorDemoObj::startInsideCageDemo() {
     MR::StageEffect::shakeCameraMoving(this, mObjectName);
     _C4 = true;
 }
-
-namespace NrvHeavensDoorDemoObj {
-    INIT_NERVE(HeavensDoorDemoObjNrvAppear);
-    INIT_NERVE(HeavensDoorDemoObjNrvWait);
-    INIT_NERVE(HeavensDoorDemoObjNrvVanish);
-
-    void HeavensDoorDemoObjNrvAppear::execute(Spine* pSpine) const {
-        HeavensDoorDemoObj* door = reinterpret_cast< HeavensDoorDemoObj* >(pSpine->mExecutor);
-        door->exeAppear();
-    }
-
-    void HeavensDoorDemoObjNrvWait::execute(Spine* pSpine) const {
-        HeavensDoorDemoObj* door = reinterpret_cast< HeavensDoorDemoObj* >(pSpine->mExecutor);
-        door->exeWait();
-    }
-
-    void HeavensDoorDemoObjNrvVanish::execute(Spine* pSpine) const {
-        HeavensDoorDemoObj* door = reinterpret_cast< HeavensDoorDemoObj* >(pSpine->mExecutor);
-        door->exeVanish();
-    }
-};  // namespace NrvHeavensDoorDemoObj

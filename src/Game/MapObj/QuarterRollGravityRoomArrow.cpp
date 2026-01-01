@@ -6,6 +6,14 @@
 #include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 
+namespace NrvQuarterRollGravityRoomArrow {
+    NEW_NERVE(QuarterRollGravityRoomArrowNrvWait, QuarterRollGravityRoomArrow, Wait);
+    NEW_NERVE(QuarterRollGravityRoomArrowNrvRollOnA, QuarterRollGravityRoomArrow, RollOnA)
+    NEW_NERVE(QuarterRollGravityRoomArrowNrvRollOffA, QuarterRollGravityRoomArrow, RollOffA)
+    NEW_NERVE(QuarterRollGravityRoomArrowNrvRollOnB, QuarterRollGravityRoomArrow, RollOnB)
+    NEW_NERVE(QuarterRollGravityRoomArrowNrvRollOffB, QuarterRollGravityRoomArrow, RollOffB)
+}  // namespace NrvQuarterRollGravityRoomArrow
+
 QuarterRollGravityRoomArrow::QuarterRollGravityRoomArrow(const char* pName) : MapObjActor(pName) {}
 
 void QuarterRollGravityRoomArrow::init(const JMapInfoIter& rIter) {
@@ -15,6 +23,8 @@ void QuarterRollGravityRoomArrow::init(const JMapInfoIter& rIter) {
     info.setupNerve(&NrvQuarterRollGravityRoomArrow::QuarterRollGravityRoomArrowNrvWait::sInstance);
     initialize(rIter, info);
 }
+
+void QuarterRollGravityRoomArrow::exeWait() {}
 
 void QuarterRollGravityRoomArrow::exeRollOnA() {
     if (MR::isFirstStep(this)) {
@@ -38,10 +48,9 @@ void QuarterRollGravityRoomArrow::exeRollOnB() {
 }
 
 void QuarterRollGravityRoomArrow::exeRollOffB() {
-    if (MR::isFirstStep(this))
+    if (MR::isFirstStep(this)) {
         MR::startBck(this, "RollGravityBReverse", 0);
-    if (MR::isBckStopped(this))
-        setNerve(&NrvQuarterRollGravityRoomArrow::QuarterRollGravityRoomArrowNrvWait::sInstance);
+    }
 }
 
 void QuarterRollGravityRoomArrow::initCaseUseSwitchA(const MapObjActorInitInfo& rInfo) {
@@ -72,13 +81,3 @@ void QuarterRollGravityRoomArrow::onRollB() {
 void QuarterRollGravityRoomArrow::offRollB() {
     setNerve(&NrvQuarterRollGravityRoomArrow::QuarterRollGravityRoomArrowNrvRollOffB::sInstance);
 }
-
-QuarterRollGravityRoomArrow::~QuarterRollGravityRoomArrow() {}
-
-namespace NrvQuarterRollGravityRoomArrow {
-    QuarterRollGravityRoomArrowNrvWait(QuarterRollGravityRoomArrowNrvWait::sInstance);
-    QuarterRollGravityRoomArrowNrvRollOnA(QuarterRollGravityRoomArrowNrvRollOnA::sInstance);
-    QuarterRollGravityRoomArrowNrvRollOffA(QuarterRollGravityRoomArrowNrvRollOffA::sInstance);
-    QuarterRollGravityRoomArrowNrvRollOnB(QuarterRollGravityRoomArrowNrvRollOnB::sInstance);
-    QuarterRollGravityRoomArrowNrvRollOffB(QuarterRollGravityRoomArrowNrvRollOffB::sInstance);
-}  // namespace NrvQuarterRollGravityRoomArrow

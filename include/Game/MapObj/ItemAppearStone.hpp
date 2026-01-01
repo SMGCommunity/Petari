@@ -13,7 +13,3 @@ public:
 
     void exeWait();
 };
-
-namespace NrvItemAppearStone {
-    NERVE(HostTypeWait);
-};

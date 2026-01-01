@@ -23,8 +23,3 @@ public:
     int mDrawCount;             // 0x394
     f32 mSpeed;                 // 0x398
 };
-
-namespace NrvClipAreaDropLaser {
-    NERVE_DECL_EXE(ClipAreaDropLaserNrvWait, ClipAreaDropLaser, Wait);
-    NERVE_DECL_EXE(ClipAreaDropLaserNrvMove, ClipAreaDropLaser, Move);
-};  // namespace NrvClipAreaDropLaser

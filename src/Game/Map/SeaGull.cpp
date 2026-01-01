@@ -1,9 +1,11 @@
 #include "Game/Map/SeaGull.hpp"
 #include "Game/Util.hpp"
 
-NrvSeaGull::SeaGullNrvHoverFront NrvSeaGull::SeaGullNrvHoverFront::sInstance;
-NrvSeaGull::SeaGullNrvHoverLeft NrvSeaGull::SeaGullNrvHoverLeft::sInstance;
-NrvSeaGull::SeaGullNrvHoverRight NrvSeaGull::SeaGullNrvHoverRight::sInstance;
+namespace NrvSeaGull {
+    NEW_NERVE(SeaGullNrvHoverFront, SeaGull, HoverFront);
+    NEW_NERVE(SeaGullNrvHoverLeft, SeaGull, HoverLeft);
+    NEW_NERVE(SeaGullNrvHoverRight, SeaGull, HoverRight);
+};  // namespace NrvSeaGull
 
 SeaGull::SeaGull(SeaGullGroup* pGroup) : LiveActor("カモメ") {
     mSeaGullGroup = pGroup;
@@ -213,20 +215,3 @@ TVec3f* SeaGullGroup::updatePosInfo(s32* a1, bool a2) const {
 SeaGull::~SeaGull() {}
 
 SeaGullGroup::~SeaGullGroup() {}
-
-namespace NrvSeaGull {
-    void SeaGullNrvHoverRight::execute(Spine* pSpine) const {
-        SeaGull* gull = reinterpret_cast< SeaGull* >(pSpine->mExecutor);
-        gull->exeHoverRight();
-    }
-
-    void SeaGullNrvHoverLeft::execute(Spine* pSpine) const {
-        SeaGull* gull = reinterpret_cast< SeaGull* >(pSpine->mExecutor);
-        gull->exeHoverLeft();
-    }
-
-    void SeaGullNrvHoverFront::execute(Spine* pSpine) const {
-        SeaGull* gull = reinterpret_cast< SeaGull* >(pSpine->mExecutor);
-        gull->exeHoverFront();
-    }
-};  // namespace NrvSeaGull

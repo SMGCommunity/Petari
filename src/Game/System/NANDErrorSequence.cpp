@@ -208,7 +208,7 @@ void NANDErrorSequence::exeRemove() {
     if (resultCode.isSuccess() || resultCode.isNoExistFile()) {
         setNerve(&NANDErrorSequenceRemoveDoneKeyWait::sInstance);
     } else if (tryNoRecoverErroSequence(resultCode.getCode())) {
-        // FIXME: cmpwi instruction should not be optimized out.
+        return;
     }
 }
 

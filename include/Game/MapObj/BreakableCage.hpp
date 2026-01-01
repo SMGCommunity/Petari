@@ -27,7 +27,9 @@ public:
     bool isTypeCage() const;
     bool isAppearPowerStar() const;
     bool tryBreak();
+
     void exeWait();
+    void exeWaitStartDemoBreak();
     void exeBreak();
 
     TPos3f mMtx;                         // 0x8C
@@ -39,9 +41,3 @@ public:
     bool mDelayDeadActivate;             // 0xCD
     const ActorCameraInfo* mCameraInfo;  // 0xD0
 };
-
-namespace NrvBreakableCage {
-    NERVE(BreakableCageNrvWait);
-    NERVE(BreakableCageNrvWaitStartDemoBreak);
-    NERVE(BreakableCageNrvBreak);
-};  // namespace NrvBreakableCage

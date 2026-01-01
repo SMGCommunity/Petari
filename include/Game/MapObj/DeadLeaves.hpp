@@ -11,12 +11,8 @@ public:
     virtual void init(const JMapInfoIter&);
     virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
 
+    void exeWait();
     void exeSpin();
 
     s32 mItemType;  // 0xC4
 };
-
-namespace NrvDeadLeaves {
-    NERVE(DeadLeavesNrvWait);
-    NERVE(DeadLeavesNrvSpin);
-};  // namespace NrvDeadLeaves

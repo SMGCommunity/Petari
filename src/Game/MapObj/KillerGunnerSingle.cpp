@@ -1,6 +1,13 @@
 #include "Game/MapObj/KillerGunnerSingle.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 
+namespace NrvKillerGunnerSingle {
+    NEW_NERVE(HostTypeWait, KillerGunnerSingle, Wait);
+    NEW_NERVE(HostTypeCharge, KillerGunnerSingle, Charge);
+    NEW_NERVE(HostTypeShoot, KillerGunnerSingle, Shoot);
+    NEW_NERVE(HostTypeAttack, KillerGunnerSingle, Attack);
+};  // namespace NrvKillerGunnerSingle
+
 namespace {
     static Vec sShellPos;
 };
@@ -90,10 +97,3 @@ inline void KillerGunnerSingle::exeAttack() {
 }
 
 KillerGunnerSingle::~KillerGunnerSingle() {}
-
-namespace NrvKillerGunnerSingle {
-    INIT_NERVE(HostTypeAttack);
-    INIT_NERVE(HostTypeShoot);
-    INIT_NERVE(HostTypeCharge);
-    INIT_NERVE(HostTypeWait);
-};  // namespace NrvKillerGunnerSingle

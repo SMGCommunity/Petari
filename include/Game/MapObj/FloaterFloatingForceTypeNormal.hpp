@@ -16,6 +16,7 @@ public:
     void updateVelocity(bool);
     void soundMoveSE();
     void setStateMove();
+    void exeWait();
     void exeMoveFirst();
     void exeMove();
 
@@ -25,10 +26,3 @@ public:
     f32 _44;
     TVec3f mVelocity;  // 0x48
 };
-
-namespace NrvFloaterFloatingForceTypeNormal {
-    NERVE(HostTypeWait);
-    NERVE(HostTypeMoveFirst);
-    NERVE(HostTypeMoveOffPlayer);
-    NERVE(HostTypeMoveOnPlayer);
-};  // namespace NrvFloaterFloatingForceTypeNormal

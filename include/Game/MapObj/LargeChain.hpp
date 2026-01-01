@@ -12,6 +12,7 @@ public:
     virtual void makeActorAppeared();
     virtual void makeActorDead();
 
+    void exeWait();
     void exeBreak();
     void createChainParts();
     void invalidateClippingAllChainParts();
@@ -21,8 +22,3 @@ public:
     /* 0x94 */ LargeChainParts* mChainArray;  ///< The array of LargeChainParts
     /* 0x98 */ u32 mChainCount;               ///< The number of chain parts.
 };
-
-namespace NrvLargeChain {
-    NERVE_DECL_NULL(LargeChainNrvWait);
-    NERVE_DECL(LargeChainNrvBreak, LargeChain, LargeChain::exeBreak);
-};  // namespace NrvLargeChain

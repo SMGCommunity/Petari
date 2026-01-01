@@ -2,6 +2,12 @@
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/Util/GeometryBindUtil.hpp"
 
+namespace NrvBallOpener {
+    NEW_NERVE(BallOpenerNrvWait, BallOpener, Wait);
+    NEW_NERVE(BallOpenerNrvSetCenter, BallOpener, SetCenter);
+    NEW_NERVE(BallOpenerNrvOpen, BallOpener, Open);
+};  // namespace NrvBallOpener
+
 BallOpener::~BallOpener() {}
 
 BallOpener::BallOpener(const char* pName) : LiveActor(pName) {
@@ -94,9 +100,3 @@ void BallOpener::exeOpen() {
 }
 
 // BallOpener::bindHole
-
-namespace NrvBallOpener {
-    INIT_NERVE(BallOpenerNrvWait);
-    INIT_NERVE(BallOpenerNrvSetCenter);
-    INIT_NERVE(BallOpenerNrvOpen);
-};  // namespace NrvBallOpener

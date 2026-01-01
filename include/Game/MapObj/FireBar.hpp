@@ -40,7 +40,3 @@ public:
     s32 mStickCount;     // 0xA4
     f32 mStickDistance;  // 0xA8
 };
-
-namespace NrvFireBar {
-    NERVE(FireBarNrvWait);
-};

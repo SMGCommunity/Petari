@@ -7,7 +7,7 @@ namespace {
 };
 
 namespace NrvAstroMapBoard {
-    NERVE_DECL_NULL(AstroMapBoardNrvWait);
+    NEW_NERVE(AstroMapBoardNrvWait, AstroMapBoard, Wait);
 };
 
 AstroMapBoard::AstroMapBoard(const char* pName) : MapObjActor(pName) {}
@@ -17,7 +17,7 @@ void AstroMapBoard::init(const JMapInfoIter& rIter) {
     MapObjActorInitInfo info;
     MapObjActorUtil::setupInitInfoSimpleMapObj(&info);
     info.setupPrepareChangeDummyTexture(cDummyTexName);
-    info.setupNerve(NrvAstroMapBoard::AstroMapBoardNrvWait::get());
+    info.setupNerve(&NrvAstroMapBoard::AstroMapBoardNrvWait::sInstance);
     info.setupFarClipping(-1.0f);
     info.setupNoAppearRiddleSE();
     initialize(rIter, info);
@@ -42,8 +42,6 @@ void AstroMapBoard::initAfterPlacement() {
     }
 }
 
-AstroMapBoard::~AstroMapBoard() {}
+void AstroMapBoard::exeWait() {}
 
-namespace NrvAstroMapBoard {
-    INIT_NERVE(AstroMapBoardNrvWait);
-};
+AstroMapBoard::~AstroMapBoard() {}
