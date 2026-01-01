@@ -4,7 +4,7 @@
 #include "Game/Enemy/AnimStampController.hpp"
 #include "Game/Enemy/BallBeamer.hpp"
 #include "Game/Enemy/BasaBasa.hpp"
-#include "Game/Enemy/BegomanBase.hpp"
+#include "Game/Enemy/BegomanBaby.hpp"
 #include "Game/Enemy/Birikyu.hpp"
 #include "Game/Enemy/BombBird.hpp"
 #include "Game/Enemy/BombTeresa.hpp"
