@@ -5,15 +5,15 @@
 FloorCode::FloorCode() {}
 
 u32 FloorCode::getCode(const Triangle* triangle) {
-    u32 res;
+    u32 code;
     if (triangle == nullptr) {
-        res = -1;
+        code = -1;
     } else {
         if (!triangle->isValid()) {
-            res = -1;
+            code = -1;
         } else {
             return MR::getFloorCodeIndex(triangle);
         }
     }
-    return res;
+    return code;
 }
