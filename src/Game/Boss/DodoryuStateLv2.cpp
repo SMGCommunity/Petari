@@ -255,10 +255,10 @@ void DodoryuStateLv2::exeEscape() {
     if (MR::isFirstStep(this)) {
         startAnim(*reinterpret_cast<const DodoryuAnimSet*>(reinterpret_cast<u8*>(mChaseParam) + 0x194));
         f32 speed = *reinterpret_cast<f32*>(reinterpret_cast<u8*>(mChaseParam) + 0x68);
-        s32 turnMax = *reinterpret_cast<s32*>(reinterpret_cast<u8*>(mChaseParam) + 0x60);
-        s32 turnMin = *reinterpret_cast<s32*>(reinterpret_cast<u8*>(mChaseParam) + 0x64);
         f32 accel = *reinterpret_cast<f32*>(reinterpret_cast<u8*>(mChaseParam) + 0x6C);
         f32 brake = *reinterpret_cast<f32*>(reinterpret_cast<u8*>(mChaseParam) + 0x70);
+        s32 turnMax = *reinterpret_cast<s32*>(reinterpret_cast<u8*>(mChaseParam) + 0x60);
+        s32 turnMin = *reinterpret_cast<s32*>(reinterpret_cast<u8*>(mChaseParam) + 0x64);
         mDodoryu->shiftMoveStateEscape(speed, turnMax, turnMin, accel, brake);
         mDodoryu->validateStarPieceSensor();
     }
@@ -409,7 +409,12 @@ void DodoryuStateLv2::exeFindPos() {
         addVelocity(false);
         TVec3f offset;
         if (mDodoryu->keepOffFromClosedArea(&offset)) {
-            TPos3f mtx(mDodoryu->mBaseMtx);
+            TPos3f mtx;
+            u64* dst = reinterpret_cast<u64*>(&mtx);
+            const u64* src = reinterpret_cast<const u64*>(&mDodoryu->mBaseMtx);
+            for (int i = 0; i < 6; ++i) {
+                dst[i] = src[i];
+            }
             TVec3f trans;
             mtx.getTrans(trans);
             TVec3f scaledOffset(offset);
@@ -459,8 +464,8 @@ void DodoryuStateLv2::exeChaseMoreStart() {
         } else {
             MR::normalize(&toPlayer);
         }
-        s16 bckFrames = MR::getBckCtrl(mDodoryu)->mEndFrame;
         TVec3f vel(toPlayer);
+        s16 bckFrames = MR::getBckCtrl(mDodoryu)->mEndFrame;
         vel.scale(1500.0f / (f32)bckFrames);
         mDodoryu->mVelocity.set(vel);
     }
@@ -494,7 +499,10 @@ void DodoryuStateLv2::exeChaseMore() {
     MR::startLevelSound(mDodoryu, "SE_BM_LV_DODORYU_CHASE", -1, -1, -1);
     mDodoryu->tryRumblePad();
     if (!_E4) {
-        // Check velocity magnitude
+        f32 velocityMag = PSVECMag(&mDodoryu->mVelocity);
+        f32 speedLimit = *reinterpret_cast<f32*>(reinterpret_cast<u8*>(mChaseParam) + 0xB8);
+        if (velocityMag <= speedLimit) {
+        }
     }
     _E0--;
     if (_E0 <= 0) {
@@ -581,16 +589,18 @@ void DodoryuStateLv2::catchAttackSensor(HitSensor* pSender, HitSensor* pReceiver
             return;
         }
     }
-    if (isAttackableNerve() && !mPlayerStaggering) {
-        attackStrongToDir(pSender, pReceiver);
-    } else {
-        if (mDodoryu->isHeadNeedle(pSender, pReceiver)) {
-            if (MR::sendMsgEnemyAttack(pReceiver, pSender)) {
-                return;
-            }
+    if (isAttackableNerve()) {
+        if (!mPlayerStaggering) {
+            attackStrongToDir(pSender, pReceiver);
+            return;
         }
-        MR::sendMsgPush(pReceiver, pSender);
     }
+    if (mDodoryu->isHeadNeedle(pSender, pReceiver)) {
+        if (MR::sendMsgEnemyAttack(pReceiver, pSender)) {
+            return;
+        }
+    }
+    MR::sendMsgPush(pReceiver, pSender);
 }
 
 bool DodoryuStateLv2::catchPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
@@ -796,7 +806,10 @@ void DodoryuStateLv2::keepVerticalizedVelocity() {
     f32 dotResult = pGrav->dot(*pVel);
     TVec3f newVel;
     JMAVECScaleAdd(pGrav, pVel, &newVel, -dotResult);
-    newVel.setLength(velMag);
+    f32 squared = newVel.squared();
+    if (squared > 0.0f) {
+        newVel.scale(velMag * JGeometry::TUtil< f32 >::inv_sqrt(squared));
+    }
     mDodoryu->mVelocity.set(newVel);
 }
 
@@ -886,16 +899,20 @@ void DodoryuStateLv2::calcLimitedRotateMtx(TPos3f* pMtx, const TVec3f& rFrom, co
     f32 crossMag = PSVECMag((Vec*)&cross);
     f32 dotResult = rFrom.dot(rTo);
     f32 angle = JMath::sAtanTable.atan2_(crossMag, dotResult);
+    f32 absAngle = __fabsf(angle);
     f32 ratio = 1.0f;
-    if (__fabs(angle) > maxAngle) {
-        ratio = maxAngle / __fabs(angle);
+    if (absAngle > maxAngle) {
+        ratio = maxAngle / absAngle;
     }
     TVec3f cross2;
     PSVECCrossProduct((Vec*)&rFrom, (Vec*)&rTo, (Vec*)&cross2);
     f32 crossMag2 = PSVECMag((Vec*)&cross2);
     TVec4f quat;
     if (crossMag2 <= 0.001f) {
-        quat.set(0.0f, 0.0f, 0.0f, 1.0f);
+        quat.x = 0.0f;
+        quat.y = 0.0f;
+        quat.z = 0.0f;
+        quat.h = 1.0f;
     } else {
         f32 dotResult2 = rFrom.dot(rTo);
         f32 angle2 = JMath::sAtanTable.atan2_(crossMag2, dotResult2);
