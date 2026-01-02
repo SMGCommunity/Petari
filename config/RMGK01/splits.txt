@@ -10370,25 +10370,25 @@ JSystem/JAudio2/JASSoundParams.cpp:
 	.text       start:0x8049806C end:0x804980E0
 	.sdata2     start:0x806C1FD8 end:0x806C1FE0
 
-JSystem/JAudio2/dspproc.c:
+JSystem/JAudio2/dspproc.cpp:
 	.text       start:0x804980E0 end:0x804983A0
 	.rodata     start:0x805618C8 end:0x805618F0
 	.sdata      start:0x806B29F0 end:0x806B29F8
 	.sbss       start:0x806B75A8 end:0x806B75B0
 	.sdata2     start:0x806C1FE0 end:0x806C1FE8
 
-JSystem/JAudio2/dsptask.c:
+JSystem/JAudio2/dsptask.cpp:
 	.text       start:0x804983A0 end:0x80498760
 	.rodata     start:0x805618F0 end:0x80561A60
 	.data       start:0x805ECFA0 end:0x805EEEA0
 	.bss        start:0x80664B60 end:0x80664BE0
 	.sbss       start:0x806B75B0 end:0x806B75C0
 
-JSystem/JAudio2/osdsp.c:
+JSystem/JAudio2/osdsp.cpp:
 	.text       start:0x80498760 end:0x804987E0
 	.rodata     start:0x80561A60 end:0x80561A80
 
-JSystem/JAudio2/osdsp_task.c:
+JSystem/JAudio2/osdsp_task.cpp:
 	.text       start:0x804987E0 end:0x80498CCC
 	.rodata     start:0x80561A80 end:0x80561B30
 	.bss        start:0x80664BE0 end:0x80664BF8
