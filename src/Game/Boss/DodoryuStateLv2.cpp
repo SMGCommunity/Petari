@@ -938,16 +938,12 @@ void DodoryuStateLv2::calcLimitedRotateMtx(TPos3f* pMtx, const TVec3f& rFrom, co
 }
 
 bool DodoryuStateLv2::isReflectSpinAttack() const {
-    bool result = false;
-    if (isNerve(&DodoryuStateLv2NrvChaseAppearStart::sInstance)
+    return isNerve(&DodoryuStateLv2NrvChaseAppearStart::sInstance)
         || isNerve(&DodoryuStateLv2NrvChaseAppear::sInstance)
         || isNerve(&DodoryuStateLv2NrvChaseAppearEnd::sInstance)
         || isNerve(&DodoryuStateLv2NrvChaseMoreStart::sInstance)
         || isNerve(&DodoryuStateLv2NrvChaseMore::sInstance)
-        || isNerve(&DodoryuStateLv2NrvChaseMoreEnd::sInstance)) {
-        result = true;
-    }
-    return result;
+        || isNerve(&DodoryuStateLv2NrvChaseMoreEnd::sInstance);
 }
 
 void DodoryuStateLv2::shiftChaseUnderground() {
