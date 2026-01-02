@@ -1,11 +1,12 @@
 #include "Game/LiveActor/ShadowController.hpp"
 #include "Game/LiveActor/ShadowDrawer.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 
 ShadowControllerHolder::ShadowControllerHolder() : NameObj("影管理"), _C(), _18(), _24(false) {
     mFarClip = 4000.0f;
     _C.init(0x500);
     _18.init(0x400);
-    MR::connectToScene(this, 0x2D, -1, -1, -1);
+    MR::connectToScene(this, MR::MovementType_ShadowControllerHolder, -1, -1, -1);
 
     if (MR::isEqualStageName("AstroGalaxy") || MR::isEqualStageName("PeachCastleGardenGalaxy") || MR::isEqualStageName("PeachCastleFinalGalaxy")) {
         _24 = true;

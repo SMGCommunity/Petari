@@ -89,8 +89,8 @@ const TimingInfo* CaptureScreenDirector::findFromName(const char* pName) const {
     return nullptr;
 }
 
-CaptureScreenActor::CaptureScreenActor(u32 param1, const char* pCameraName) : NameObj("画面キャプチャ"), mCameraName(pCameraName) {
-    MR::connectToScene(this, -1, -1, -1, param1);
+CaptureScreenActor::CaptureScreenActor(u32 drawType, const char* pCameraName) : NameObj("画面キャプチャ"), mCameraName(pCameraName) {
+    MR::connectToScene(this, -1, -1, -1, drawType);
 }
 
 void CaptureScreenActor::draw() const {

@@ -1,6 +1,13 @@
 #include "Game/MapObj/ValveSwitch.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 
+namespace NrvValveSwitch {
+    NEW_NERVE(ValveSwitchNrvWait, ValveSwitch, Wait);
+    NEW_NERVE(ValveSwitchNrvAdjust, ValveSwitch, Adjust);
+    NEW_NERVE(ValveSwitchNrvValve, ValveSwitch, Valve);
+    NEW_NERVE(ValveSwitchNrvEnd, ValveSwitch, End);
+};  // namespace NrvValveSwitch
+
 ValveSwitch::ValveSwitch(const char* pName) : LiveActor(pName) {
     _8C = nullptr;
     mObjConnector = nullptr;
@@ -123,12 +130,5 @@ void ValveSwitch::updateBindActorMtx() {
     posMtx.mMtx[2][3] = sensor->mPosition.z;
     MR::setBaseTRMtx(_8C, posMtx);
 }
-
-namespace NrvValveSwitch {
-    INIT_NERVE(ValveSwitchNrvWait);
-    INIT_NERVE(ValveSwitchNrvAdjust);
-    INIT_NERVE(ValveSwitchNrvValve);
-    INIT_NERVE(ValveSwitchNrvEnd);
-};  // namespace NrvValveSwitch
 
 ValveSwitch::~ValveSwitch() {}

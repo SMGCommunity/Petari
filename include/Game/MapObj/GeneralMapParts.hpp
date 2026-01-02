@@ -32,6 +32,7 @@ public:
     bool isFixed() const;
     void startMove();
     void exeWait();
+    void exeWaitForPlayerOn();
     void exeMoveStart();
 
     ActorCameraInfo* mCameraInfo;                                         // 0x98
@@ -48,10 +49,3 @@ public:
     u8 _E4;
     u8 _E5;
 };
-
-namespace NrvGeneralMapParts {
-    NERVE(HostTypeWait);
-    NERVE(HostTypeWaitForPlayerOn);
-    NERVE(HostTypeMoveStart);
-    NERVE(HostTypeMove);
-};  // namespace NrvGeneralMapParts

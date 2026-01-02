@@ -21,6 +21,13 @@
 #include "revolution/mtx.h"
 #include "revolution/types.h"
 
+namespace NrvDesertLandMoveSwitch {
+    NEW_NERVE(HostTypeWait, DesertLandMoveSwitch, Wait);
+    NEW_NERVE(HostTypeSwitchDown, DesertLandMoveSwitch, SwitchDown);
+    NEW_NERVE(HostTypeOn, DesertLandMoveSwitch, On);
+    NEW_NERVE(HostTypeReturn, DesertLandMoveSwitch, Return);
+};  // namespace NrvDesertLandMoveSwitch
+
 DesertLandMoveSwitch::DesertLandMoveSwitch(const char* pName) : LiveActor(pName) {
     mCollisionParts = 0;
     mSpringValue = new SpringValue();
@@ -44,7 +51,7 @@ void DesertLandMoveSwitch::init(const JMapInfoIter& rIter) {
         initNerve(&NrvDesertLandMoveSwitch::HostTypeWait::sInstance);
     } else {
         MR::startBck(this, "On", 0);
-        MR::setAllAnimFrameAtEnd(this, "End");
+        MR::setAllAnimFrameAtEnd(this, "On");
         initNerve(&NrvDesertLandMoveSwitch::HostTypeOn::sInstance);
     }
     f32 stack_8 = -1.0f;
@@ -246,12 +253,6 @@ void DesertLandMoveSwitch::exeReturn() {
         setNerve(&NrvDesertLandMoveSwitch::HostTypeWait::sInstance);
     }
 }
-namespace NrvDesertLandMoveSwitch {
-    HostTypeWait(HostTypeWait::sInstance);
-    HostTypeSwitchDown(HostTypeSwitchDown::sInstance);
-    HostTypeOn(HostTypeOn::sInstance);
-    HostTypeReturn(HostTypeReturn::sInstance);
-};  // namespace NrvDesertLandMoveSwitch
 
 void SpringValue::reset() {
     _4 = _0;

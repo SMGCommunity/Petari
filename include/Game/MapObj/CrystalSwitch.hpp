@@ -18,6 +18,7 @@ public:
     void exeOff();
     void exeSwitchDown();
     void exeOn();
+    void exeSwitchUp();
     void calcRotSpeed();
 
     u32 _8C;
@@ -25,10 +26,3 @@ public:
     f32 mRotateSpeed;  // 0x94
     u8 _98;
 };
-
-namespace NrvCrystalSwitch {
-    NERVE(CrystalSwitchNrvOff);
-    NERVE(CrystalSwitchNrvSwitchDown);
-    NERVE(CrystalSwitchNrvOn);
-    NERVE(CrystalSwitchNrvSwitchUp);
-};  // namespace NrvCrystalSwitch

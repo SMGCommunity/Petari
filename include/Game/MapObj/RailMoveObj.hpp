@@ -93,10 +93,3 @@ public:
     bool tryStartRotateAtPoint();
     bool tryStartRotateBetweenPoints();
 };
-
-namespace NrvRailMoveObj {
-    NERVE(HostTypeWait);
-    NERVE(HostTypeWaitForPlayerOn);
-    NERVE(HostTypeMove);
-    NERVE(HostTypeDone);
-};  // namespace NrvRailMoveObj

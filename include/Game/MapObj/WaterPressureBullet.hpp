@@ -34,8 +34,3 @@ public:
     u8 _B3;
     ActorCameraInfo** mCameraInfo;  // 0xB4
 };
-
-namespace NrvWaterPressureBullet {
-    NERVE(WaterPressureBulletNrvFly);
-    NERVE(WaterPressureBulletNrvSpinKill);
-};  // namespace NrvWaterPressureBullet

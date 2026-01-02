@@ -52,6 +52,10 @@ public:
     void setZoneMtx(s32);
     void createVPanObj();
 
+    bool doesVPanExist() const {
+        return mVPan != nullptr;
+    }
+
     CameraMan* mCameraMan;        // 0xC
     CameraPoseParam* mPoseParam;  // 0x10
     CameraHeightArrange* mVPan;   // 0x14

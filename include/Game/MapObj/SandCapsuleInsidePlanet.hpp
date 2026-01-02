@@ -10,10 +10,8 @@ public:
     virtual void init(const JMapInfoIter&);
     virtual void initCaseUseSwitchA(const MapObjActorInitInfo&);
 
+    void exeWait();
+
     void startOn();
     void startOff();
-};
-
-namespace NrvSandCapsuleInsidePlanet {
-    NERVE_DECL_NULL(SandCapsuleInsidePlanetNrvWait);
 };

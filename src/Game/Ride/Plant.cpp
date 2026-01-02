@@ -4,6 +4,7 @@
 #include "Game/MapObj/PlantPoint.hpp"
 #include "Game/Ride/PlantLeaf.hpp"
 #include "Game/Ride/PlantStalk.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Util/ActorCameraUtil.hpp"
 #include "Game/Util/ActorMovementUtil.hpp"
@@ -62,7 +63,7 @@ void Plant::init(const JMapInfoIter& pMapInfoIter) {
 
     mShapeDraw = ((PlantLeafDrawInit*)MR::getSceneObjHolder()->getObj(SceneObj_PlantLeafDrawInit))->mShapeDraw;
 
-    MR::connectToScene(this, 0x29, 7, -1, 5);
+    MR::connectToScene(this, MR::MovementType_Ride, MR::CalcAnimType_Ride, -1, MR::DrawType_Plant);
 
     MR::getJMapInfoArg0NoInit(pMapInfoIter, &mLaunchSpeed);
     MR::getJMapInfoArg1NoInit(pMapInfoIter, &mLaunchNormal);

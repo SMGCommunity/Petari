@@ -1,4 +1,5 @@
 #include "Game/MapObj/DashRing.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 
 DashRing::~DashRing() {}
 
@@ -13,7 +14,7 @@ void DashRing::initCommon(const JMapInfoIter& rIter, const char* pName) {
         MR::connectToSceneMapObj(this);
         _B4 = 1;
     } else {
-        MR::connectToScene(this, 34, -1, -1, 56);
+        MR::connectToScene(this, MR::MovementType_MapObj, -1, -1, MR::DrawType_DashRing);
     }
 
     initHitSensor(1);

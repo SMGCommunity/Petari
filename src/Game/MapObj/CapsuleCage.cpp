@@ -1,5 +1,12 @@
 #include "Game/MapObj/CapsuleCage.hpp"
 
+namespace NrvCapsuleCage {
+    NEW_NERVE(CapsuleCageNrvWait, CapsuleCage, Wait);
+    NEW_NERVE(CapsuleCageNrvStartCamera, CapsuleCage, StartCamera);
+    NEW_NERVE(CapsuleCageNrvOpen, CapsuleCage, Open);
+    NEW_NERVE(CapsuleCageNrvEndCamera, CapsuleCage, EndCamera);
+};  // namespace NrvCapsuleCage
+
 namespace {
     const char* cDemoCameraName = "注目カメラ";
 };  // namespace
@@ -21,6 +28,8 @@ void CapsuleCage::init(const JMapInfoIter& rIter) {
         mInfo = nullptr;
     }
 }
+
+void CapsuleCage::exeWait() {}
 
 void CapsuleCage::exeStartCamera() {
     if (MR::isFirstStep(this)) {
@@ -85,13 +94,6 @@ void CapsuleCage::exeEndCamera() {
         kill();
     }
 }
-
-namespace NrvCapsuleCage {
-    INIT_NERVE(CapsuleCageNrvWait);
-    INIT_NERVE(CapsuleCageNrvStartCamera);
-    INIT_NERVE(CapsuleCageNrvOpen);
-    INIT_NERVE(CapsuleCageNrvEndCamera);
-};  // namespace NrvCapsuleCage
 
 void CapsuleCage::initCaseNoUseSwitchB(const MapObjActorInitInfo&) {}
 

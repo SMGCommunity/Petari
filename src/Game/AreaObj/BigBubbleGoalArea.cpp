@@ -1,4 +1,5 @@
 #include "Game/AreaObj/BigBubbleGoalArea.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 #include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/DirectDraw.hpp"
 #include "Game/Util/JMapUtil.hpp"
@@ -20,7 +21,7 @@ void BigBubbleGoalArea::init(const JMapInfoIter& rIter) {
     _48 = mObjArg0 <= 0 ? 1.0f : (f32)mObjArg0;
 
     MR::getJMapInfoTrans(rIter, &mTranslation);
-    MR::connectToScene(this, 34, -1, -1, 16);
+    MR::connectToScene(this, MR::MovementType_MapObj, -1, -1, MR::DrawType_BigBubbleGoal);
 }
 
 void BigBubbleGoalArea::movement() {

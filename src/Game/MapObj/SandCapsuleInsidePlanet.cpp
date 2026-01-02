@@ -1,5 +1,9 @@
 #include "Game/MapObj/SandCapsuleInsidePlanet.hpp"
 
+namespace NrvSandCapsuleInsidePlanet {
+    NEW_NERVE(SandCapsuleInsidePlanetNrvWait, SandCapsuleInsidePlanet, Wait);
+};
+
 SandCapsuleInsidePlanet::SandCapsuleInsidePlanet(const char* pName) : MapObjActor(pName) {}
 
 void SandCapsuleInsidePlanet::init(const JMapInfoIter& rIter) {
@@ -18,6 +22,8 @@ void SandCapsuleInsidePlanet::initCaseUseSwitchA(const MapObjActorInitInfo& rInf
     MR::listenStageSwitchOnOffA(this, MR::Functor(this, onFunc), MR::Functor(this, offFunc));
 }
 
+void SandCapsuleInsidePlanet::exeWait() {}
+
 void SandCapsuleInsidePlanet::startOn() {
     MR::startBrk(this, "On");
 }
@@ -25,9 +31,5 @@ void SandCapsuleInsidePlanet::startOn() {
 void SandCapsuleInsidePlanet::startOff() {
     MR::startBrk(this, "Off");
 }
-
-namespace NrvSandCapsuleInsidePlanet {
-    INIT_NERVE(SandCapsuleInsidePlanetNrvWait);
-};
 
 SandCapsuleInsidePlanet::~SandCapsuleInsidePlanet() {}

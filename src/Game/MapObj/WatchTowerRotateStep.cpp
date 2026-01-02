@@ -2,9 +2,11 @@
 #include "Game/Util.hpp"
 #include "Inline.hpp"
 
-NrvWatchTowerRotateStep::WatchTowerRotateStepNrvWait NrvWatchTowerRotateStep::WatchTowerRotateStepNrvWait::sInstance;
-NrvWatchTowerRotateStep::WatchTowerRotateStepNrvMoveStart NrvWatchTowerRotateStep::WatchTowerRotateStepNrvMoveStart::sInstance;
-NrvWatchTowerRotateStep::WatchTowerRotateStepNrvMove NrvWatchTowerRotateStep::WatchTowerRotateStepNrvMove::sInstance;
+namespace NrvWatchTowerRotateStep {
+    NEW_NERVE(WatchTowerRotateStepNrvWait, WatchTowerRotateStep, Wait);
+    NEW_NERVE(WatchTowerRotateStepNrvMoveStart, WatchTowerRotateStep, MoveStart);
+    NEW_NERVE(WatchTowerRotateStepNrvMove, WatchTowerRotateStep, Move);
+};  // namespace NrvWatchTowerRotateStep
 
 WatchTowerRotateStep::WatchTowerRotateStep(const char* pName) : LiveActor(pName) {
     mRotDeg.x = 0.0f;
@@ -78,6 +80,8 @@ void WatchTowerRotateStep::initLift(const JMapInfoIter &rIter) {
 
 // WatchTowerRotateStep::attachLift();
 
+void WatchTowerRotateStep::exeWait() {}
+
 void WatchTowerRotateStep::exeMoveStart() {
     TVec3f upVec;
 
@@ -97,20 +101,11 @@ void WatchTowerRotateStep::exeMoveStart() {
     }
 }
 
-namespace NrvWatchTowerRotateStep {
-    void WatchTowerRotateStepNrvMove::execute(Spine* pSpine) const {
-        WatchTowerRotateStep* pActor = reinterpret_cast< WatchTowerRotateStep* >(pSpine->mExecutor);
-        TVec3f frontVec;
+void WatchTowerRotateStep::exeMove() {
+    TVec3f frontVec;
 
-        MR::calcFrontVec(&frontVec, pActor);
-        MR::rotateVecDegree(&pActor->mRotDeg, frontVec, 0.3f);
-        pActor->attachLift();
-        MR::startLevelSound(pActor, "SE_OJ_LV_WATCH_TOWER_ROTATE", -1, -1, -1);
-    }
-
-    void WatchTowerRotateStepNrvMoveStart::execute(Spine* pSpine) const {
-        reinterpret_cast< WatchTowerRotateStep* >(pSpine->mExecutor)->exeMoveStart();
-    }
-
-    void WatchTowerRotateStepNrvWait::execute(Spine* pSpine) const {}
-};  // namespace NrvWatchTowerRotateStep
+    MR::calcFrontVec(&frontVec, this);
+    MR::rotateVecDegree(&mRotDeg, frontVec, 0.3f);
+    attachLift();
+    MR::startLevelSound(this, "SE_OJ_LV_WATCH_TOWER_ROTATE", -1, -1, -1);
+}

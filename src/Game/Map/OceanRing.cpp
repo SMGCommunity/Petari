@@ -4,6 +4,7 @@
 #include "Game/Map/OceanRingDrawer.hpp"
 #include "Game/Map/OceanRingPipe.hpp"
 #include "Game/Map/WaterAreaHolder.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 #include "Game/Util/DemoUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/MemoryUtil.hpp"
@@ -57,7 +58,7 @@ OceanRing::OceanRing(const char* pName) : LiveActor(pName) {
 }
 
 void OceanRing::init(const JMapInfoIter& rIter) {
-    MR::connectToScene(this, 0x22, -1, -1, 0x8);
+    MR::connectToScene(this, MR::MovementType_MapObj, -1, -1, MR::DrawType_OceanRing);
     MR::initDefaultPos(this, rIter);
     initRailRider(rIter);
     initPoints();

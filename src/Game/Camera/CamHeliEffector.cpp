@@ -1,11 +1,5 @@
 #include "Game/Camera/CamHeliEffector.hpp"
 #include "Game/Camera/CameraTargetObj.hpp"
+#include "Game/Player/MarioActor.hpp"  // DO NOT REMOVE
 
-bool CameraTargetObj::isCameraStateOn(u32 a1) const {
-    return false;
-}
-
-CamHeliEffector::CamHeliEffector() {
-    _0 = 0;
-    _4 = 0.0f;
-}
+CamHeliEffector::CamHeliEffector() : _0(0), _4(0.0f) {}

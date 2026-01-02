@@ -3,6 +3,18 @@
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Screen/NoteCounter.hpp"
 
+namespace NrvNoteFairy {
+    NEW_NERVE(NoteFairyNrvHide, NoteFairy, Hide);
+    NEW_NERVE(NoteFairyNrvStartAppearDemo, NoteFairy, StartAppearDemo);
+    NEW_NERVE(NoteFairyNrvRailMoveStart, NoteFairy, RailMoveStart);
+    NEW_NERVE(NoteFairyNrvDemoAppear, NoteFairy, DemoAppear);
+    NEW_NERVE(NoteFairyNrvAppearNoteBloom, NoteFairy, AppearNoteBloom);
+    NEW_NERVE(NoteFairyNrvAppearNote, NoteFairy, AppearNote);
+    NEW_NERVE(NoteFairyNrvEndWait, NoteFairy, EndWait);
+    NEW_NERVE(NoteFairyNrvSuccessDemo, NoteFairy, SuccessDemo);
+    NEW_NERVE(NoteFairyNrvSuccess, NoteFairy, Success);
+};  // namespace NrvNoteFairy
+
 NoteFairy::NoteFairy(const char* pName) : LiveActor(pName) {
     _8C.x = 0.0f;
     _8C.y = 0.0f;
@@ -449,15 +461,3 @@ bool NoteFairy::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceive
 }
 
 NoteFairy::~NoteFairy() {}
-
-namespace NrvNoteFairy {
-    INIT_NERVE(NoteFairyNrvHide);
-    INIT_NERVE(NoteFairyNrvStartAppearDemo);
-    INIT_NERVE(NoteFairyNrvRailMoveStart);
-    INIT_NERVE(NoteFairyNrvDemoAppear);
-    INIT_NERVE(NoteFairyNrvAppearNoteBloom);
-    INIT_NERVE(NoteFairyNrvAppearNote);
-    INIT_NERVE(NoteFairyNrvEndWait);
-    INIT_NERVE(NoteFairyNrvSuccessDemo);
-    INIT_NERVE(NoteFairyNrvSuccess);
-};  // namespace NrvNoteFairy

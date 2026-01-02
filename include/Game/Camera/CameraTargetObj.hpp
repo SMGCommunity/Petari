@@ -36,7 +36,7 @@ public:
     virtual bool isBeeMode() const;
     virtual bool isFooFighterMode() const;
     virtual u32 getSpecialMode() const;
-    virtual bool isCameraStateOn(u32) const;
+    virtual bool isCameraStateOn(u32) const { return false; };
     virtual CubeCameraArea* getCubeCameraArea() const;
     virtual Triangle* getGroundTriangle() const;
     virtual GravityInfo* getGravityInfo() const;

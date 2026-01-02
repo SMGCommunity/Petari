@@ -1,6 +1,7 @@
 #include "Game/MapObj/ClipAreaDropLaser.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/MapObj/ClipAreaDropHolder.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 #include "Game/Util/ActorSwitchUtil.hpp"
 #include "Game/Util/DirectDraw.hpp"
 #include "Game/Util/EffectUtil.hpp"
@@ -16,11 +17,10 @@
 #include "revolution/gx/GXGeometry.h"
 #include "revolution/gx/GXPixel.h"
 
-void sdata2() {
-    f32 f = 1.0f;
-    f32 f2 = 0.0f;
-    f32 f3 = -1.0f;
-}
+namespace NrvClipAreaDropLaser {
+    NEW_NERVE(ClipAreaDropLaserNrvWait, ClipAreaDropLaser, Wait);
+    NEW_NERVE(ClipAreaDropLaserNrvMove, ClipAreaDropLaser, Move);
+};  // namespace NrvClipAreaDropLaser
 
 ClipAreaDropLaser::ClipAreaDropLaser(const char* pName) : LiveActor(pName) {
     mNumPointsToDraw = 0.0f;
@@ -32,7 +32,7 @@ ClipAreaDropLaser::ClipAreaDropLaser(const char* pName) : LiveActor(pName) {
 
 void ClipAreaDropLaser::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
-    MR::connectToScene(this, 0x22, -1, -1, 0x14);
+    MR::connectToScene(this, MR::MovementType_MapObj, -1, -1, MR::DrawType_ClipAreaDropLaser);
     initRailRider(rIter);
     MR::moveCoordAndTransToRailStartPoint(this);
     mSpeed = 20.0f;
@@ -120,8 +120,3 @@ void ClipAreaDropLaser::incrementDrawCount() {
 }
 
 ClipAreaDropLaser::~ClipAreaDropLaser() {}
-
-namespace NrvClipAreaDropLaser {
-    ClipAreaDropLaserNrvWait(ClipAreaDropLaserNrvWait::sInstance);
-    ClipAreaDropLaserNrvMove(ClipAreaDropLaserNrvMove::sInstance);
-}  // namespace NrvClipAreaDropLaser

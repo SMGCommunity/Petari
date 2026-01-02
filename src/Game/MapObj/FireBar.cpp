@@ -1,12 +1,17 @@
 #include "Game/MapObj/FireBar.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 #include "Game/Util.hpp"
 #include "JSystem/JMath/JMath.hpp"
+
+namespace NrvFireBar {
+    NEW_NERVE(FireBarNrvWait, FireBar, Wait);
+};
 
 FireBarBall::~FireBarBall() {}
 
 FireBar::~FireBar() {}
 
-FireBarBall::FireBarBall(LiveActor* pParent) : ModelObj("ファイアバー玉", "FireBarBall", 0, 0xB, -2, -2, false) {
+FireBarBall::FireBarBall(LiveActor* pParent) : ModelObj("ファイアバー玉", "FireBarBall", 0, MR::DrawBufferType_NoShadowedMapObj, -2, -2, false) {
     mFireBarParent = pParent;
 }
 
@@ -223,12 +228,3 @@ void FireBar::fixFireBarBall() {
         mFireBalls[i]->mPosition.set< f32 >(scaled);
     }
 }
-
-namespace NrvFireBar {
-    FireBarNrvWait FireBarNrvWait::sInstance;
-
-    void FireBarNrvWait::execute(Spine* pSpine) const {
-        FireBar* bar = reinterpret_cast< FireBar* >(pSpine->mExecutor);
-        bar->exeWait();
-    }
-};  // namespace NrvFireBar

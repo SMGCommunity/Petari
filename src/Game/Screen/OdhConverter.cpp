@@ -1,5 +1,6 @@
 #include "Game/Screen/OdhConverter.hpp"
 #include "Game/NameObj/NameObjAdaptor.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Util/MemoryUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
@@ -19,9 +20,7 @@ namespace {
     const u32 cTexPosX = 0;
     const u32 cTexPosY = 0;
 
-    OdhConverter* getConverter() {
-        return MR::getSceneObj< OdhConverter >(SceneObj_OdhConverter);
-    }
+    OdhConverter* getConverter() { return MR::getSceneObj< OdhConverter >(SceneObj_OdhConverter); }
 };  // namespace
 
 OdhConverter::OdhConverter()
@@ -29,7 +28,7 @@ OdhConverter::OdhConverter()
       mIsRequestedCapture(false), mImage(nullptr), mCaptureImage(nullptr) {}
 
 void OdhConverter::init(const JMapInfoIter& rIter) {
-    MR::connectToScene(this, -1, -1, -1, 62);
+    MR::connectToScene(this, -1, -1, -1, MR::DrawType_LayoutOnPause);
     MR::CurrentHeapRestorer heapRestorer(MR::getSceneHeapGDDR3());
 
     mImage = new (32) u8[mLimitSize];
@@ -57,13 +56,9 @@ void OdhConverter::convert() {
 }
 
 namespace MR {
-    void createOdhConverter() {
-        createSceneObj(SceneObj_OdhConverter);
-    }
+    void createOdhConverter() { createSceneObj(SceneObj_OdhConverter); }
 
-    void requestCaptureOdhImage() {
-        return getConverter()->requestCapture();
-    }
+    void requestCaptureOdhImage() { return getConverter()->requestCapture(); }
 
     bool isRequestedCaptureOdhImage() {
         if (!isExistSceneObj(SceneObj_OdhConverter)) {
@@ -73,9 +68,7 @@ namespace MR {
         return getConverter()->isRequestedCapture();
     }
 
-    void captureOdhImage() {
-        getConverter()->capture();
-    }
+    void captureOdhImage() { getConverter()->capture(); }
 
     void setPortCaptureOdhImage() {
         Mtx44 mtx;
