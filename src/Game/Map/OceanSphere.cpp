@@ -257,21 +257,20 @@ OceanSpherePoint* OceanSpherePlane::getPoint(int row, int col) const {
 
 OceanSpherePlaneEdge::OceanSpherePlaneEdge(s32 pointCount, const TVec3f* pCenter, const TVec3f& axis1, const TVec3f& axis2,
     const TVec2f& tex1, const TVec2f& tex2) {
-    const s32 pointCountValue = pointCount;
-    s32 pointCountMinus2 = pointCountValue - 2;
-    s32 pointCountMinus1 = pointCountValue - 1;
+    s32 pointCountMinus2 = pointCount - 2;
+    s32 pointCountMinus1 = pointCount - 1;
     mPointCount = pointCountMinus2;
     mPoints = 0;
     mPoints = new OceanSpherePoint*[mPointCount];
     TVec3f axis;
-    TRot3f rot;
     PSVECCrossProduct(&axis1, &axis2, &axis);
     MR::normalize(&axis);
+    TRot3f rot;
     rot.identity();
     rot.setRotate(axis, (1.0f / (f32)pointCountMinus1) * 1.5707964f);
     TVec3f vec(axis1);
 
-    u32 offset = 0;
+    s32 idx = 0;
     for (s32 i = 0; i < mPointCount; i++) {
         rot.mult(vec, vec);
         f32 rate = (f32)(i + 1) / (f32)pointCountMinus1;
@@ -282,8 +281,8 @@ OceanSpherePlaneEdge::OceanSpherePlaneEdge(s32 pointCount, const TVec3f* pCenter
         TVec2f localTex;
         localTex.x = temp3.x;
         localTex.y = temp3.y;
-        mPoints[offset / sizeof(OceanSpherePoint*)] = new OceanSpherePoint(pCenter, vec, (f32)i, (f32)i, localTex);
-        offset += sizeof(OceanSpherePoint*);
+        mPoints[idx] = new OceanSpherePoint(pCenter, vec, (f32)i, (f32)i, localTex);
+        idx++;
     }
 }
 
@@ -727,19 +726,13 @@ void OceanSphere::control() {
     
 skip_update:
 
-    const f32 zero = 0.0f;
-    const f32 one = 1.0f;
     const f32 add = 0.0008f;
     const f32 sub = -0.0008f;
 
-    f32 t0 = (add + mTexOffs0X) - one;
-    mTexOffs0X = fmod(zero + t0, one) + one;
-    f32 t1 = (add + mTexOffs0Y) - one;
-    mTexOffs0Y = fmod(zero + t1, one) + one;
-    f32 t2 = (add + mTexOffs1X) - one;
-    mTexOffs1X = fmod(zero + t2, one) + one;
-    f32 t3 = (sub + mTexOffs1Y) - one;
-    mTexOffs1Y = fmod(zero + t3, one) + one;
+    mTexOffs0X = (f32)(1.0 + fmod((add + mTexOffs0X) - 1.0f, 1.0));
+    mTexOffs0Y = (f32)(1.0 + fmod((add + mTexOffs0Y) - 1.0f, 1.0));
+    mTexOffs1X = (f32)(1.0 + fmod((add + mTexOffs1X) - 1.0f, 1.0));
+    mTexOffs1Y = (f32)(1.0 + fmod((sub + mTexOffs1Y) - 1.0f, 1.0));
 }
 
 void OceanSphere::updatePoints() {
@@ -1064,40 +1057,9 @@ void OceanSphere::loadMaterialBack() const {
 
     TPos3f pos;
     MtxPtr camMtx = MR::getCameraViewMtx();
-#ifdef __MWERKS__
-    {
-        register MtxPtr pSrc = camMtx;
-        register TPos3f* pDest = &pos;
-        register f32 scale = 0.779175f;
-        register f32 r0, r1, r2, r3, r4, r5;
-        register f32 zero = 0.0f;
-        __asm {
-            psq_l     r0, 0(pSrc), 0, 0
-            psq_l     r1, 8(pSrc), 0, 0
-            psq_l     r2, 0x10(pSrc), 0, 0
-            psq_l     r3, 0x18(pSrc), 0, 0
-            psq_l     r4, 0x20(pSrc), 0, 0
-            psq_l     r5, 0x28(pSrc), 0, 0
-            ps_muls0  r0, r0, scale
-            ps_muls0  r1, r1, scale
-            ps_muls0  r2, r2, scale
-            ps_muls0  r3, r3, scale
-            ps_muls0  r4, r4, scale
-            ps_muls0  r5, r5, scale
-            psq_st    r0, 0(pDest), 0, 0
-            stfs      zero, 0xc(pDest)
-            psq_st    r2, 0x10(pDest), 0, 0
-            stfs      zero, 0x1c(pDest)
-            psq_st    r4, 0x20(pDest), 0, 0
-            stfs      zero, 0x2c(pDest)
-        }
-        ;
-    }
-#else
     pos.set(camMtx);
     pos.scale(0.779175f);
     pos.zeroTrans();
-#endif
     GXLoadTexMtxImm(pos.toMtxPtr(), GX_TEXMTX0, GX_MTX2x4);
 
     mWaterEnvTex->load(GX_TEXMAP0);
