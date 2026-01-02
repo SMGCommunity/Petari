@@ -1,18 +1,15 @@
 #pragma once
 
-#include "Game/Boss/Dodoryu.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
 
+class Dodoryu;
 class HitSensor;
 
 class DodoryuStateBase : public LiveActor {
 public:
-    inline DodoryuStateBase(Dodoryu* pDodoryu, const char* pName) : LiveActor(pName) {
-        mDodoryu = pDodoryu;
+    DodoryuStateBase(Dodoryu* pDodoryu, const char* pName) : LiveActor(pName), mDodoryu(pDodoryu) {
     }
-
-    virtual ~DodoryuStateBase();
-
+    
     virtual void start();
     virtual void end();
     virtual void catchAttackSensor(HitSensor*, HitSensor*);
@@ -25,5 +22,5 @@ public:
     bool calcVerticalizedDir(TVec3f*, const TVec3f&);
     void calcAttackDir(TVec3f*, const TVec3f&, const TVec3f&);
 
-    Dodoryu* mDodoryu;  // 0x8C
+    /* 0x8C */ Dodoryu* mDodoryu;
 };

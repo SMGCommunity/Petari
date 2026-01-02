@@ -3,12 +3,88 @@
 #include "Game/Boss/Dodoryu.hpp"
 #include "Game/Boss/DodoryuStateBase.hpp"
 
-class DodoryuChaseParam;
+class JMapInfoIter;
+
+struct DodoryuChaseParam {
+    /* 0x00 */ s32 _0;
+    /* 0x04 */ f32 _4;
+    /* 0x08 */ f32 _8;
+    /* 0x0C */ f32 _C;
+    /* 0x10 */ f32 _10;
+    /* 0x14 */ f32 _14;
+    /* 0x18 */ s32 _18;
+    /* 0x1C */ f32 _1C;
+    /* 0x20 */ f32 _20;
+    /* 0x24 */ f32 _24;
+    /* 0x28 */ f32 _28;
+    /* 0x2C */ s32 _2C;
+    /* 0x30 */ s32 _30;
+    /* 0x34 */ f32 _34;
+    /* 0x38 */ f32 _38;
+    /* 0x3C */ f32 _3C;
+    /* 0x40 */ f32 _40;
+    /* 0x44 */ f32 _44;
+    /* 0x48 */ f32 _48;
+    /* 0x4C */ s32 _4C;
+    /* 0x50 */ s32 _50;
+    /* 0x54 */ s32 _54;
+    /* 0x58 */ s32 _58;
+    /* 0x5C */ f32 _5C;
+    /* 0x60 */ s32 _60;
+    /* 0x64 */ s32 _64;
+    /* 0x68 */ f32 _68;
+    /* 0x6C */ f32 _6C;
+    /* 0x70 */ f32 _70;
+    /* 0x74 */ s32 _74;
+    /* 0x78 */ s32 _78;
+    /* 0x7C */ s32 _7C;
+    /* 0x80 */ s32 _80;
+    /* 0x84 */ f32 _84;
+    /* 0x88 */ f32 _88;
+    /* 0x8C */ f32 _8C;
+    /* 0x90 */ s32 _90;
+    /* 0x94 */ s32 _94;
+    /* 0x98 */ u32 _98;
+    /* 0x9C */ u8 _9C;
+    /* 0x9D */ u8 _9D;
+    /* 0x9E */ u8 _9E;
+    /* 0x9F */ u8 _9F;
+    /* 0xA0 */ f32 _A0;
+    /* 0xA4 */ f32 _A4;
+    /* 0xA8 */ f32 _A8;
+    /* 0xAC */ f32 _AC;
+    /* 0xB0 */ s32 _B0;
+    /* 0xB4 */ s32 _B4;
+    /* 0xB8 */ f32 _B8;
+    /* 0xBC */ s32 _BC;
+    /* 0xC0 */ s32 _C0;
+    /* 0xC4 */ s32 _C4;
+    /* 0xC8 */ s32 _C8;
+    /* 0xCC */ DodoryuAnimSet _CC;
+    /* 0xE0 */ DodoryuAnimSet _E0;
+    /* 0xF4 */ DodoryuAnimSet _F4;
+    /* 0x108 */ DodoryuAnimSet _108;
+    /* 0x11C */ DodoryuAnimSet _11C;
+    /* 0x130 */ DodoryuAnimSet _130;
+    /* 0x144 */ DodoryuAnimSet _144;
+    /* 0x158 */ DodoryuAnimSet _158;
+    /* 0x16C */ DodoryuAnimSet _16C;
+    /* 0x180 */ DodoryuAnimSet _180;
+    /* 0x194 */ DodoryuAnimSet _194;
+    /* 0x1A8 */ DodoryuAnimSet _1A8;
+    /* 0x1BC */ DodoryuAnimSet _1BC;
+    /* 0x1D0 */ DodoryuAnimSet _1D0;
+    /* 0x1E4 */ DodoryuAnimSet _1E4;
+    /* 0x1F8 */ DodoryuAnimSet _1F8;
+    /* 0x20C */ DodoryuAnimSet _20C;
+    /* 0x220 */ DodoryuAnimSet _220;
+    /* 0x234 */ DodoryuAnimSet _234;
+    /* 0x248 */ DodoryuAnimSet _248;
+};
 
 class DodoryuStateLv2 : public DodoryuStateBase {
 public:
     DodoryuStateLv2(Dodoryu*, DodoryuChaseParam*, const char*);
-    virtual ~DodoryuStateLv2();
 
     virtual void init(const JMapInfoIter&);
     virtual void control();
@@ -86,24 +162,24 @@ public:
     void startBva(const DodoryuAnimSet&);
     void startLeadHillBck(const DodoryuAnimSet&);
 
-    void* _90;
-    TVec3f _94;
-    TVec3f _A0;
-    f32 _AC;
-    f32 _B0;
-    f32 _B4;
-    s32 _B8;
-    s32 _BC;
-    s32 mAppearCount;             // 0xC0
-    s32 _C4;
-    s32 _C8;
-    s32 _CC;
-    f32 _D0;
-    f32 _D4;
-    f32 _D8;
-    s32 mFindPosCounter;          // 0xDC
-    s32 _E0;
-    bool _E4;
-    DodoryuChaseParam* mChaseParam;  // 0xE8
-    bool mPlayerStaggering;          // 0xEC
+    /* 0x90 */ void* _90;
+    /* 0x94 */ TVec3f _94;
+    /* 0xA0 */ TVec3f _A0;
+    /* 0xAC */ f32 _AC;
+    /* 0xB0 */ f32 _B0;
+    /* 0xB4 */ f32 _B4;
+    /* 0xB8 */ s32 _B8;
+    /* 0xBC */ s32 _BC;
+    /* 0xC0 */ s32 mAppearCount;
+    /* 0xC4 */ s32 _C4;
+    /* 0xC8 */ s32 _C8;
+    /* 0xCC */ s32 _CC;
+    /* 0xD0 */ f32 _D0;
+    /* 0xD4 */ f32 _D4;
+    /* 0xD8 */ f32 _D8;
+    /* 0xDC */ s32 mFindPosCounter;
+    /* 0xE0 */ s32 _E0;
+    /* 0xE4 */ bool _E4;
+    /* 0xE8 */ DodoryuChaseParam* mChaseParam;
+    /* 0xEC */ bool mPlayerStaggering;
 };

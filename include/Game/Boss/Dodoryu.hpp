@@ -3,14 +3,12 @@
 #include "Game/LiveActor/LiveActor.hpp"
 #include <JSystem/JGeometry/TMatrix.hpp>
 
-class DodoryuChaseParam;
+struct DodoryuChaseParam;
 class DodoryuStateBase;
 
 class Dodoryu : public LiveActor {
 public:
     Dodoryu(const char*);
-
-    virtual ~Dodoryu();
 
     void setHillAppearNumMax();
     void shiftMoveStateNull();
