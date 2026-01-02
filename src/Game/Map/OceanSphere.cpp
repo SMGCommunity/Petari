@@ -1058,8 +1058,19 @@ void OceanSphere::loadMaterialBack() const {
     TPos3f pos;
     MtxPtr camMtx = MR::getCameraViewMtx();
     pos.set(camMtx);
-    pos.scale(0.779175f);
-    pos.zeroTrans();
+    f32 sc = 0.779175f;
+    pos.mMtx[0][0] *= sc;
+    pos.mMtx[0][1] *= sc;
+    pos.mMtx[0][2] *= sc;
+    pos.mMtx[1][0] *= sc;
+    pos.mMtx[1][1] *= sc;
+    pos.mMtx[1][2] *= sc;
+    pos.mMtx[2][0] *= sc;
+    pos.mMtx[2][1] *= sc;
+    pos.mMtx[2][2] *= sc;
+    pos.mMtx[0][3] = 0.0f;
+    pos.mMtx[1][3] = 0.0f;
+    pos.mMtx[2][3] = 0.0f;
     GXLoadTexMtxImm(pos.toMtxPtr(), GX_TEXMTX0, GX_MTX2x4);
 
     mWaterEnvTex->load(GX_TEXMAP0);
