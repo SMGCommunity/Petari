@@ -1219,8 +1219,6 @@ void OceanSphere::sendVertex(const OceanSpherePoint* pPoint, bool useEnvMap, boo
     }
 }
 
-OceanSphere::~OceanSphere() {}
-
 namespace NrvOceanSphere {
     INIT_NERVE(OceanSphereNrvRiseUp);
     INIT_NERVE(OceanSphereNrvWait);

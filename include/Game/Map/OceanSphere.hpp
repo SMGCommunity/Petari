@@ -13,7 +13,6 @@ class OceanSphere : public LiveActor {
 public:
     OceanSphere(const char*);
 
-    virtual ~OceanSphere();
     virtual void init(const JMapInfoIter&);
     virtual void appear();
     virtual void control();
