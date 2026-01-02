@@ -452,104 +452,82 @@ void OceanSphere::initPoints() {
     }
 
     point = static_cast<OceanSpherePoint*>(operator new(sizeof(OceanSpherePoint)));
-    if (point) {
-        TVec2f texPX;
-        texPX.y = 0.0f;
-        texPX.x = 1.0f;
-        point = new (point) OceanSpherePoint(&self->mPosition, axisBase[0], 0.0f, 0.0f, texPX);
+    if (point != nullptr) {
+        TVec2f texPX(1.0f, 0.0f);
+        point = new (point) OceanSpherePoint(&self->mPosition, axisBase[0], 1.0f, 1.0f, texPX);
     }
     self->mAxisPointPX = point;
 
     point = static_cast<OceanSpherePoint*>(operator new(sizeof(OceanSpherePoint)));
-    if (point) {
-        TVec2f texNX;
+    if (point != nullptr) {
+        TVec2f texNX(1.0f, 0.0f);
         texNX.x = 0.0f;
         texNX.y = 1.0f;
         TVec3f negAxisX = -axisBase[0];
-        point = new (point) OceanSpherePoint(&self->mPosition, negAxisX, 0.0f, 0.0f, texNX);
+        point = new (point) OceanSpherePoint(&self->mPosition, negAxisX, 1.0f, 1.0f, texNX);
     }
     self->mAxisPointNX = point;
 
     point = static_cast<OceanSpherePoint*>(operator new(sizeof(OceanSpherePoint)));
-    if (point) {
-        TVec2f texPY;
-        texPY.x = 0.5f;
-        texPY.y = 0.5f;
-        point = new (point) OceanSpherePoint(&self->mPosition, axisBase[1], 0.0f, 0.0f, texPY);
+    if (point != nullptr) {
+        TVec2f texPY(0.5f, 0.5f);
+        point = new (point) OceanSpherePoint(&self->mPosition, axisBase[1], 1.0f, 1.0f, texPY);
     }
     self->mAxisPointPY = point;
 
     point = static_cast<OceanSpherePoint*>(operator new(sizeof(OceanSpherePoint)));
-    if (point) {
-        TVec2f texNY;
-        texNY.x = 0.5f;
-        texNY.y = 0.5f;
+    if (point != nullptr) {
+        TVec2f texNY(0.5f, 0.5f);
         TVec3f negAxisY = -axisBase[1];
-        point = new (point) OceanSpherePoint(&self->mPosition, negAxisY, 0.0f, 0.0f, texNY);
+        point = new (point) OceanSpherePoint(&self->mPosition, negAxisY, 1.0f, 1.0f, texNY);
     }
     self->mAxisPointNY = point;
 
     point = static_cast<OceanSpherePoint*>(operator new(sizeof(OceanSpherePoint)));
-    if (point) {
-        TVec2f texPZ;
-        texPZ.x = 1.0f;
-        texPZ.y = 1.0f;
-        point = new (point) OceanSpherePoint(&self->mPosition, axisBase[2], 0.0f, 0.0f, texPZ);
+    if (point != nullptr) {
+        TVec2f texPZ(1.0f, 1.0f);
+        point = new (point) OceanSpherePoint(&self->mPosition, axisBase[2], 1.0f, 1.0f, texPZ);
     }
     self->mAxisPointPZ = point;
 
     point = static_cast<OceanSpherePoint*>(operator new(sizeof(OceanSpherePoint)));
-    if (point) {
-        TVec2f texNZ;
+    if (point != nullptr) {
+        TVec2f texNZ(1.0f, 1.0f);
         texNZ.x = 0.0f;
         texNZ.y = 0.0f;
         TVec3f negAxisZ = -axisBase[2];
-        point = new (point) OceanSpherePoint(&self->mPosition, negAxisZ, 0.0f, 0.0f, texNZ);
+        point = new (point) OceanSpherePoint(&self->mPosition, negAxisZ, 1.0f, 1.0f, texNZ);
     }
     self->mAxisPointNZ = point;
 
     plane = static_cast<OceanSpherePlane*>(operator new(sizeof(OceanSpherePlane)));
-    if (plane) {
-        TVec2f planeLU3;
-        planeLU3.x = 1.0f;
-        planeLU3.y = 1.0f;
-        TVec2f planeLU2;
-        planeLU2.x = 0.0f;
-        planeLU2.y = 0.0f;
-        TVec2f planeLU1;
+    if (plane != nullptr) {
+        TVec2f planeLU1(1.0f, 0.0f);
         planeLU1.x = 0.0f;
         planeLU1.y = 1.0f;
+        TVec2f planeLU2(0.0f, 0.0f);
+        TVec2f planeLU3(1.0f, 1.0f);
         TVec3f planeNegAxisX = -axisBase[0];
         plane = new (plane) OceanSpherePlane(self->mPointCount, &self->mPosition, axisBase[1], planeNegAxisX, planeLU1, planeLU2, planeLU3);
     }
     self->mPlaneLeftUpper = plane;
 
     plane = static_cast<OceanSpherePlane*>(operator new(sizeof(OceanSpherePlane)));
-    if (plane) {
-        TVec2f planeRU3;
-        planeRU3.x = 0.0f;
-        planeRU3.y = 0.0f;
-        TVec2f planeRU2;
-        planeRU2.x = 1.0f;
-        planeRU2.y = 1.0f;
-        TVec2f planeRU1;
-        planeRU1.x = 1.0f;
-        planeRU1.y = 0.0f;
+    if (plane != nullptr) {
+        TVec2f planeRU1(1.0f, 0.0f);
+        TVec2f planeRU2(1.0f, 1.0f);
+        TVec2f planeRU3(0.0f, 0.0f);
         plane = new (plane) OceanSpherePlane(self->mPointCount, &self->mPosition, axisBase[1], axisBase[0], planeRU1, planeRU2, planeRU3);
     }
     self->mPlaneRightUpper = plane;
 
     plane = static_cast<OceanSpherePlane*>(operator new(sizeof(OceanSpherePlane)));
-    if (plane) {
-        TVec2f planeLL3;
-        planeLL3.x = 0.0f;
-        planeLL3.y = 0.0f;
-        TVec2f planeLL2;
-        planeLL2.x = 1.0f;
-        planeLL2.y = 1.0f;
-        TVec2f planeLL1;
+    if (plane != nullptr) {
+        TVec2f planeLL1(1.0f, 0.0f);
         planeLL1.x = 0.0f;
         planeLL1.y = 1.0f;
+        TVec2f planeLL2(1.0f, 1.0f);
+        TVec2f planeLL3(0.0f, 0.0f);
         TVec3f planeNegAxisX = -axisBase[0];
         TVec3f planeNegAxisY = -axisBase[1];
         plane = new (plane) OceanSpherePlane(self->mPointCount, &self->mPosition, planeNegAxisY, planeNegAxisX, planeLL1, planeLL2, planeLL3);
@@ -557,67 +535,45 @@ void OceanSphere::initPoints() {
     self->mPlaneLeftLower = plane;
 
     plane = static_cast<OceanSpherePlane*>(operator new(sizeof(OceanSpherePlane)));
-    if (plane) {
-        TVec2f planeRL3;
-        planeRL3.x = 1.0f;
-        planeRL3.y = 1.0f;
-        TVec2f planeRL2;
-        planeRL2.x = 0.0f;
-        planeRL2.y = 0.0f;
-        TVec2f planeRL1;
-        planeRL1.x = 1.0f;
-        planeRL1.y = 0.0f;
+    if (plane != nullptr) {
+        TVec2f planeRL1(1.0f, 0.0f);
+        TVec2f planeRL2(0.0f, 0.0f);
+        TVec2f planeRL3(1.0f, 1.0f);
         TVec3f planeNegAxisY = -axisBase[1];
         plane = new (plane) OceanSpherePlane(self->mPointCount, &self->mPosition, planeNegAxisY, axisBase[0], planeRL1, planeRL2, planeRL3);
     }
     self->mPlaneRightLower = plane;
 
     edge = static_cast<OceanSpherePlaneEdge*>(operator new(sizeof(OceanSpherePlaneEdge)));
-    if (edge) {
-        TVec2f edge0UV2;
-        edge0UV2.x = 1.0f;
-        edge0UV2.y = 1.0f;
-        TVec2f edge0UV1;
-        edge0UV1.x = 0.5f;
-        edge0UV1.y = 0.5f;
+    if (edge != nullptr) {
+        TVec2f edge0UV1(0.5f, 0.5f);
+        TVec2f edge0UV2(1.0f, 1.0f);
         edge = new (edge) OceanSpherePlaneEdge(self->mPointCount, &self->mPosition, axisBase[1], axisBase[2], edge0UV1, edge0UV2);
     }
     self->mEdge0 = edge;
 
     edge = static_cast<OceanSpherePlaneEdge*>(operator new(sizeof(OceanSpherePlaneEdge)));
-    if (edge) {
-        TVec2f edge1UV2;
-        edge1UV2.x = 0.0f;
-        edge1UV2.y = 0.0f;
-        TVec2f edge1UV1;
-        edge1UV1.x = 0.5f;
-        edge1UV1.y = 0.5f;
+    if (edge != nullptr) {
+        TVec2f edge1UV1(0.5f, 0.5f);
+        TVec2f edge1UV2(1.0f, 1.0f);
         TVec3f edge1AxisZ = -axisBase[2];
         edge = new (edge) OceanSpherePlaneEdge(self->mPointCount, &self->mPosition, axisBase[1], edge1AxisZ, edge1UV1, edge1UV2);
     }
     self->mEdge1 = edge;
 
     edge = static_cast<OceanSpherePlaneEdge*>(operator new(sizeof(OceanSpherePlaneEdge)));
-    if (edge) {
-        TVec2f edge2UV2;
-        edge2UV2.x = 1.0f;
-        edge2UV2.y = 1.0f;
-        TVec2f edge2UV1;
-        edge2UV1.x = 0.5f;
-        edge2UV1.y = 0.5f;
+    if (edge != nullptr) {
+        TVec2f edge2UV1(0.5f, 0.5f);
+        TVec2f edge2UV2(1.0f, 1.0f);
         TVec3f edge2AxisY = -axisBase[1];
         edge = new (edge) OceanSpherePlaneEdge(self->mPointCount, &self->mPosition, edge2AxisY, axisBase[2], edge2UV1, edge2UV2);
     }
     self->mEdge2 = edge;
 
     edge = static_cast<OceanSpherePlaneEdge*>(operator new(sizeof(OceanSpherePlaneEdge)));
-    if (edge) {
-        TVec2f edge3UV2;
-        edge3UV2.x = 0.0f;
-        edge3UV2.y = 0.0f;
-        TVec2f edge3UV1;
-        edge3UV1.x = 0.5f;
-        edge3UV1.y = 0.5f;
+    if (edge != nullptr) {
+        TVec2f edge3UV1(0.5f, 0.5f);
+        TVec2f edge3UV2(1.0f, 1.0f);
         TVec3f edge3AxisZ = -axisBase[2];
         TVec3f edge3AxisY = -axisBase[1];
         edge = new (edge) OceanSpherePlaneEdge(self->mPointCount, &self->mPosition, edge3AxisY, edge3AxisZ, edge3UV1, edge3UV2);
@@ -625,38 +581,26 @@ void OceanSphere::initPoints() {
     self->mEdge3 = edge;
 
     edge = static_cast<OceanSpherePlaneEdge*>(operator new(sizeof(OceanSpherePlaneEdge)));
-    if (edge) {
-        TVec2f edge4UV2;
-        edge4UV2.y = 1.0f;
-        edge4UV2.x = 0.0f;
-        TVec2f edge4UV1;
-        edge4UV1.x = 1.0f;
-        edge4UV1.y = 1.0f;
+    if (edge != nullptr) {
+        TVec2f edge4UV1(1.0f, 1.0f);
+        TVec2f edge4UV2(0.0f, 1.0f);
         TVec3f edge4AxisX = -axisBase[0];
         edge = new (edge) OceanSpherePlaneEdge(self->mPointCount, &self->mPosition, axisBase[2], edge4AxisX, edge4UV1, edge4UV2);
     }
     self->mEdge4 = edge;
 
     edge = static_cast<OceanSpherePlaneEdge*>(operator new(sizeof(OceanSpherePlaneEdge)));
-    if (edge) {
-        TVec2f edge5UV2;
-        edge5UV2.x = 1.0f;
-        edge5UV2.y = 0.0f;
-        TVec2f edge5UV1;
-        edge5UV1.x = 1.0f;
-        edge5UV1.y = 1.0f;
+    if (edge != nullptr) {
+        TVec2f edge5UV1(1.0f, 1.0f);
+        TVec2f edge5UV2(1.0f, 0.0f);
         edge = new (edge) OceanSpherePlaneEdge(self->mPointCount, &self->mPosition, axisBase[2], axisBase[0], edge5UV1, edge5UV2);
     }
     self->mEdge5 = edge;
 
     edge = static_cast<OceanSpherePlaneEdge*>(operator new(sizeof(OceanSpherePlaneEdge)));
-    if (edge) {
-        TVec2f edge6UV2;
-        edge6UV2.x = 0.0f;
-        edge6UV2.y = 1.0f;
-        TVec2f edge6UV1;
-        edge6UV1.x = 0.0f;
-        edge6UV1.y = 0.0f;
+    if (edge != nullptr) {
+        TVec2f edge6UV1(0.0f, 0.0f);
+        TVec2f edge6UV2(0.0f, 1.0f);
         TVec3f edge6AxisX = -axisBase[0];
         TVec3f edge6AxisZ = -axisBase[2];
         edge = new (edge) OceanSpherePlaneEdge(self->mPointCount, &self->mPosition, edge6AxisZ, edge6AxisX, edge6UV1, edge6UV2);
@@ -664,13 +608,11 @@ void OceanSphere::initPoints() {
     self->mEdge6 = edge;
 
     edge = static_cast<OceanSpherePlaneEdge*>(operator new(sizeof(OceanSpherePlaneEdge)));
-    if (edge) {
-        TVec2f edge7UV2;
-        edge7UV2.y = 0.0f;
-        edge7UV2.x = 1.0f;
-        TVec2f edge7UV1;
+    if (edge != nullptr) {
+        TVec2f edge7UV1(1.0f, 1.0f);
         edge7UV1.x = 0.0f;
         edge7UV1.y = 0.0f;
+        TVec2f edge7UV2(1.0f, 0.0f);
         TVec3f edge7AxisZ = -axisBase[2];
         edge = new (edge) OceanSpherePlaneEdge(self->mPointCount, &self->mPosition, edge7AxisZ, axisBase[0], edge7UV1, edge7UV2);
     }
