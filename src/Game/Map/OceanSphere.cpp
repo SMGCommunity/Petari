@@ -191,7 +191,7 @@ OceanSpherePlane::OceanSpherePlane(s32 pointCount, const TVec3f* pCenter, const 
     const TVec2f& tex2, const TVec2f& tex3) {
     mAxisPointCount = pointCount - 2;
     mGridPointCount = mAxisPointCount * mAxisPointCount;
-    mPoints = 0;
+    mPoints = nullptr;
     mPoints = new OceanSpherePoint*[mGridPointCount];
 
     TRot3f rot;
@@ -260,7 +260,7 @@ OceanSpherePlaneEdge::OceanSpherePlaneEdge(s32 pointCount, const TVec3f* pCenter
     s32 pointCountMinus2 = pointCount - 2;
     s32 pointCountMinus1 = pointCount - 1;
     mPointCount = pointCountMinus2;
-    mPoints = 0;
+    mPoints = nullptr;
     mPoints = new OceanSpherePoint*[mPointCount];
     TVec3f axis;
     PSVECCrossProduct(&axis1, &axis2, &axis);
@@ -662,10 +662,10 @@ void OceanSphere::control() {
             goto skip_update;
         }
     }
-    
+
     mUseDisplayList = false;
     updatePoints();
-    
+
 skip_update:
 
     const f32 add = 0.0008f;
@@ -1050,7 +1050,7 @@ void OceanSphere::drawSphere(bool useEnvMap, bool useGD) const {
 
         beginDrawPolygon(i, mPointCount, useGD);
 
-        for (s32 j = 0; j < (mPointCount - i - 1); j++) {
+        for (s32 j = 0; j < mPointCount - i - 1; j++) {
             s32 u = mPointCount - 1 - j;
             const OceanSpherePoint* p0 = getPlanePointLeftUpper(u, i + 1);
             sendVertex(getPlanePointLeftUpper(u, i), useEnvMap, useGD);
@@ -1070,7 +1070,7 @@ void OceanSphere::drawSphere(bool useEnvMap, bool useGD) const {
 
         beginDrawPolygon(i, mPointCount, useGD);
 
-        for (s32 j = 0; j < (mPointCount - i - 1); j++) {
+        for (s32 j = 0; j < mPointCount - i - 1; j++) {
             s32 u = mPointCount - 1 - j;
             const OceanSpherePoint* p0 = getPlanePointRightUpper(u, i + 1);
             sendVertex(getPlanePointRightUpper(u, i), useEnvMap, useGD);
@@ -1090,7 +1090,7 @@ void OceanSphere::drawSphere(bool useEnvMap, bool useGD) const {
 
         beginDrawPolygon(i, mPointCount, useGD);
 
-        for (s32 j = 0; j < (mPointCount - i - 1); j++) {
+        for (s32 j = 0; j < mPointCount - i - 1; j++) {
             s32 u = mPointCount - 1 - j;
             const OceanSpherePoint* p0 = getPlanePointLeftLower(u, i + 1);
             sendVertex(getPlanePointLeftLower(u, i), useEnvMap, useGD);
@@ -1110,7 +1110,7 @@ void OceanSphere::drawSphere(bool useEnvMap, bool useGD) const {
 
         beginDrawPolygon(i, mPointCount, useGD);
 
-        for (s32 j = 0; j < (mPointCount - i - 1); j++) {
+        for (s32 j = 0; j < mPointCount - i - 1; j++) {
             s32 u = mPointCount - 1 - j;
             const OceanSpherePoint* p0 = getPlanePointRightLower(u, i + 1);
             sendVertex(getPlanePointRightLower(u, i), useEnvMap, useGD);
