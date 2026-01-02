@@ -864,7 +864,7 @@ namespace {
         },
         {
             "SwingRope",
-            nullptr,
+            createNameObj< SwingRope >,
             "SwingRope",
         },
         {
@@ -1049,7 +1049,7 @@ namespace {
         },
         {
             "BegomanBaby",
-            nullptr,
+            createNameObj<BegomanBaby>,
             "BegomanBaby",
         },
         {

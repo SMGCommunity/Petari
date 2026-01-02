@@ -4,6 +4,7 @@
 #include "Game/NPC/TalkMessageCtrl.hpp"
 #include "Game/NPC/TalkMessageInfo.hpp"
 #include "Game/NPC/TalkState.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Screen/GameSceneLayoutHolder.hpp"
 #include "Game/Screen/LayoutActor.hpp"
@@ -38,7 +39,7 @@ TalkDirector::TalkDirector(const char* pArg)
 TalkDirector::~TalkDirector() {}
 
 void TalkDirector::init(const JMapInfoIter& pArg) {
-    MR::connectToScene(this, 10, -1, -1, -1);
+    MR::connectToScene(this, MR::MovementType_TalkDirector, -1, -1, -1);
     mBalloonHolder = new TalkBalloonHolder();
     mStateHolder = new TalkStateHolder();
     mMsgControls.init(0x80);

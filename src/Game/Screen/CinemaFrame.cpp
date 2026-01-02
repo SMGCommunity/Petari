@@ -1,5 +1,6 @@
 #include "Game/Screen/CinemaFrame.hpp"
 #include "Game/LiveActor/Nerve.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include <JSystem/J3DGraphAnimator/J3DAnimation.hpp>
@@ -16,7 +17,7 @@ namespace NrvCinemaFrame {
 
 CinemaFrame::CinemaFrame(bool param1) : LayoutActor("シネマフレーム", true) {
     if (param1) {
-        MR::connectToScene(this, 14, 13, -1, 69);
+        MR::connectToScene(this, MR::MovementType_Layout, MR::CalcAnimType_Layout, -1, MR::DrawType_CinemaFrame);
     }
 }
 

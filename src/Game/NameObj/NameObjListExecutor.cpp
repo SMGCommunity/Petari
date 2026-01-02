@@ -38,8 +38,8 @@ void NameObjListExecutor::allocateDrawBufferActorList() {
     mBufferHolder->allocateActorListBuffer();
 }
 
-void NameObjListExecutor::registerPreDrawFunction(const MR::FunctorBase& rFunc, int a2) {
-    mDrawList->registerExecuteBeforeFunction(rFunc, a2);
+void NameObjListExecutor::registerPreDrawFunction(const MR::FunctorBase& rFunc, int drawType) {
+    mDrawList->registerExecuteBeforeFunction(rFunc, drawType);
 }
 
 void NameObjListExecutor::findLightInfo(LiveActor* pActor, int a2, int a3) const {

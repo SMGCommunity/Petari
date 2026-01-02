@@ -4,6 +4,7 @@
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
 #include "Game/MapObj/BenefitItemObj.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/EffectUtil.hpp"
 #include "Game/Util/JMapUtil.hpp"
@@ -76,7 +77,7 @@ void WoodBox::init(const JMapInfoIter& rIter) {
         mPlaySolveSE = true;
     }
 
-    mBreakModel = new ModelObj("壊れモデル", "WoodBoxBreak", getBaseMtx(), 0xF, -2, -2, false);
+    mBreakModel = new ModelObj("壊れモデル", "WoodBoxBreak", getBaseMtx(), MR::DrawBufferType_NoSilhouettedMapObjStrongLight, -2, -2, false);
     mBreakModel->mScale.setPS2(mScale);
     MR::initLightCtrl(mBreakModel);
     mBreakModel->kill();

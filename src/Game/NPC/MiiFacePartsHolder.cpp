@@ -4,6 +4,7 @@
 #include "Game/NPC/MiiFaceParts.hpp"
 #include "Game/NPC/MiiFaceRecipe.hpp"
 #include "Game/NameObj/NameObjAdaptor.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/System/GameSequenceFunction.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
@@ -29,7 +30,7 @@ void MiiFacePartsHolder::init(const JMapInfoIter& rIter) {
     u32 resSize = pArchive->getResSize(pResBuffer);
     _38 = RFLInitResAsync(mRFLWorkBuffer, pResBuffer, resSize, false);
 
-    MR::connectToScene(this, -1, 6, -1, 37);
+    MR::connectToScene(this, -1, MR::CalcAnimType_NPC, -1, MR::DrawType_MiiFacePartsHolder);
 
     MR::FunctorV0M< MiiFacePartsHolder*, void (MiiFacePartsHolder::*)() > initFunc(this, &MiiFacePartsHolder::reinitCharModel);
 

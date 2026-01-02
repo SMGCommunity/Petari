@@ -103,7 +103,7 @@ namespace MR {
     NameObjGroup* joinToNameObjGroup(NameObj*, const char*);
     NameObjGroup* joinToMovementOnOffGroup(const char*, NameObj*, u32);
     void onMovementOnOffGroup(const char*);
-    void registerPreDrawFunction(const MR::FunctorBase&, int);
+    void registerPreDrawFunction(const MR::FunctorBase& functor, int drawType);
     NameObjAdaptor* createDrawAdaptor(const char*, const MR::FunctorBase&);
     NameObjAdaptor* createAdaptorAndConnectToDrawBloomModel(const char*, const MR::FunctorBase&);
     void listenNameObjStageSwitchOnAppear(const NameObj*, const StageSwitchCtrl*, const MR::FunctorBase&);

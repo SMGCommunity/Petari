@@ -1,9 +1,10 @@
 #include "Game/LiveActor/SensorHitChecker.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Util.hpp"
 
 void SensorHitChecker::init(const JMapInfoIter& rIter) {
-    MR::connectToScene(this, 5, -1, -1, -1);
+    MR::connectToScene(this, MR::MovementType_SensorHitChecker, -1, -1, -1);
 }
 
 void SensorHitChecker::initGroup(HitSensor* pSensor) {
@@ -129,9 +130,7 @@ void SensorHitChecker::checkAttack(HitSensor* pSensor1, HitSensor* pSensor2) con
 #endif
 
 namespace MR {
-    void initHitSensorGroup(HitSensor* pSensor) {
-        MR::getSceneObj< SensorHitChecker >(SceneObj_SensorHitChecker)->initGroup(pSensor);
-    }
+    void initHitSensorGroup(HitSensor* pSensor) { MR::getSceneObj< SensorHitChecker >(SceneObj_SensorHitChecker)->initGroup(pSensor); }
 };  // namespace MR
 
 SensorHitChecker::~SensorHitChecker() {}

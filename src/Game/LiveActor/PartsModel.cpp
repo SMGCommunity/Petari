@@ -1,7 +1,8 @@
 #include "Game/LiveActor/PartsModel.hpp"
 #include "Game/NameObj/NameObjExecuteHolder.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 
-PartsModel::PartsModel(LiveActor* pActor, const char* pName, const char* pModelName, MtxPtr mtx, int a5, bool a6) : LiveActor(pName) {
+PartsModel::PartsModel(LiveActor* pActor, const char* pName, const char* pModelName, MtxPtr mtx, int drawBufferType, bool a6) : LiveActor(pName) {
     mHost = pActor;
     mFixedPos = nullptr;
     mMtx = mtx;
@@ -9,8 +10,8 @@ PartsModel::PartsModel(LiveActor* pActor, const char* pName, const char* pModelN
     _99 = false;
     mIsDead = false;
 
-    if (a5 < 0) {
-        a5 = 8;
+    if (drawBufferType < 0) {
+        drawBufferType = MR::DrawBufferType_MapObj;
     }
 
     if (mMtx) {
@@ -24,19 +25,19 @@ PartsModel::PartsModel(LiveActor* pActor, const char* pName, const char* pModelN
 
     initModelManagerWithAnm(pModelName, nullptr, a6);
 
-    u32 v14 = 43;
-    u32 v15 = 11;
+    u32 movementType = MR::MovementType_EnemyDecoration;
+    u32 calcAnimType = MR::CalcAnimType_MapObjDecoration;
 
-    if ((a5 - 21) <= (u32)2) {
-        v14 = 38;
-        v15 = 10;
+    if ((drawBufferType - MR::DrawBufferType_PlayerDecoration) <= (u32)2) {
+        movementType = MR::MovementType_PlayerDecoration;
+        calcAnimType = MR::CalcAnimType_PlayerDecoration;
     }
 
-    if (a5 == 16 || a5 == 27) {
-        v14 = 40;
-        v15 = 6;
+    if (drawBufferType == MR::DrawBufferType_NPC || drawBufferType == MR::DrawBufferType_IndirectNpc) {
+        movementType = MR::MovementType_NPC;
+        calcAnimType = MR::CalcAnimType_NPC;
     }
-    MR::connectToScene(this, v14, v15, a5, -1);
+    MR::connectToScene(this, movementType, calcAnimType, drawBufferType, -1);
 }
 
 void PartsModel::makeActorAppeared() {

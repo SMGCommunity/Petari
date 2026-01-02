@@ -2,6 +2,7 @@
 #include "Game/LiveActor/ClippingActorHolder.hpp"
 #include "Game/LiveActor/ClippingGroupHolder.hpp"
 #include "Game/LiveActor/ClippingJudge.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
@@ -16,7 +17,7 @@ ClippingDirector::ClippingDirector() : NameObj("クリッピング指揮"), mJud
     mGroupHolder = new ClippingGroupHolder();
     mGroupHolder->initWithoutIter();
 
-    MR::connectToScene(this, 4, -1, -1, -1);
+    MR::connectToScene(this, MR::MovementType_ClippingDirector, -1, -1, -1);
 }
 
 void ClippingDirector::endInitActorSystemInfo() {
@@ -52,15 +53,9 @@ void ClippingDirector::entryLodCtrl(LodCtrl* pLod, const JMapInfoIter& rIter) {
 }
 
 namespace MR {
-    ClippingDirector* getClippingDirector() {
-        return MR::getSceneObj< ClippingDirector >(SceneObj_ClippingDirector);
-    }
+    ClippingDirector* getClippingDirector() { return MR::getSceneObj< ClippingDirector >(SceneObj_ClippingDirector); }
 
-    void addToClippingTarget(LiveActor* pActor) {
-        getClippingDirector()->mActorHolder->addToClippingTarget(pActor);
-    }
+    void addToClippingTarget(LiveActor* pActor) { getClippingDirector()->mActorHolder->addToClippingTarget(pActor); }
 
-    void removeFromClippingTarget(LiveActor* pActor) {
-        getClippingDirector()->mActorHolder->removeFromClippingTarget(pActor);
-    }
+    void removeFromClippingTarget(LiveActor* pActor) { getClippingDirector()->mActorHolder->removeFromClippingTarget(pActor); }
 };  // namespace MR

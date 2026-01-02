@@ -2,6 +2,7 @@
 #include "Game/AudioLib/AudEffector.hpp"
 #include "Game/AudioLib/AudSystem.hpp"
 #include "Game/AudioLib/AudWrap.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 
@@ -21,7 +22,7 @@ namespace {
 AudEffectDirector::AudEffectDirector() : NameObj("オーディオエフェクトディレクター"), _C(0), _10(0), _14(0) {}
 
 void AudEffectDirector::init(const JMapInfoIter& rIter) {
-    MR::connectToScene(this, 24, -1, -1, -1);
+    MR::connectToScene(this, MR::MovementType_AudEffectDirector, -1, -1, -1);
 }
 
 void AudEffectDirector::movement() {

@@ -1,6 +1,7 @@
 #include "Game/MapObj/CrystalCageMoving.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 #include <JSystem/JMath/JMath.hpp>
 
 namespace NrvCrystalCageMoving {
@@ -221,7 +222,7 @@ void CrystalCageMoving::initDummyModel(const JMapInfoIter& rIter) {
     TVec3f stack_8;
     PSMTXMultVec(_C8.toMtxPtr(), &sDummyModelOffset, &stack_8);
     _C8.setTrans(stack_8);
-    mTicoModel = new ModelObj("動くクリスタルケージ中身", "Tico", _C8.toMtxPtr(), 0x21, -2, -2, false);
+    mTicoModel = new ModelObj("動くクリスタルケージ中身", "Tico", _C8.toMtxPtr(), MR::DrawBufferType_CrystalItem, -2, -2, false);
     mTicoModel->initWithoutIter();
     ModelObj* tico = mTicoModel;
     tico->mScale.x = 3.0f;
