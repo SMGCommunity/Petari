@@ -1,6 +1,7 @@
 #include "Game/Map/CollisionDirector.hpp"
 #include "Game/Map/CollisionCategorizedKeeper.hpp"
 #include "Game/Map/CollisionCode.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Util/ObjUtil.hpp"
 
@@ -17,7 +18,7 @@ CollisionDirector::CollisionDirector() : NameObj("地形コリジョン") {
         mKeepers[i] = new CollisionCategorizedKeeper(i);
     }
 
-    MR::connectToScene(this, 0x20, -1, -1, -1);
+    MR::connectToScene(this, MR::MovementType_CollisionDirector, -1, -1, -1);
 }
 
 CollisionDirector::~CollisionDirector() {}

@@ -185,7 +185,7 @@ NameObj* SceneObjHolder::newEachObj(int id) {
     case SceneObj_MovementOnOffGroupHolder:
         return new MovementOnOffGroupHolder("Movementグループ管理");
     case SceneObj_CaptureScreenActor:
-        return new CaptureScreenActor(45, "Indirect");
+        return new CaptureScreenActor(MR::DrawType_CaptureScreenIndirect, "Indirect");
     case SceneObj_AudCameraWatcher:
         // return new AudCameraWatcher();
         return nullptr;
@@ -419,13 +419,9 @@ NameObj* SceneObjHolder::newEachObj(int id) {
 }
 
 namespace MR {
-    NameObj* createSceneObj(int id) {
-        return getSceneObjHolder()->create(id);
-    }
+    NameObj* createSceneObj(int id) { return getSceneObjHolder()->create(id); }
 
-    SceneObjHolder* getSceneObjHolder() {
-        return SingletonHolder< GameSystem >::get()->mSceneController->getSceneObjHolder();
-    }
+    SceneObjHolder* getSceneObjHolder() { return SingletonHolder< GameSystem >::get()->mSceneController->getSceneObjHolder(); }
 
     bool isExistSceneObj(int id) {
         GameSystemSceneController* pSceneController = SingletonHolder< GameSystem >::get()->mSceneController;

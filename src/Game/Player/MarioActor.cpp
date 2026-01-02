@@ -17,6 +17,7 @@
 #include "Game/Player/MarioShadow.hpp"
 #include "Game/Player/MarioSwim.hpp"
 #include "Game/Player/RushEndInfo.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 #include "Game/Screen/GameSceneLayoutHolder.hpp"
 #include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/FootPrint.hpp"
@@ -268,7 +269,7 @@ void MarioActor::init2(const TVec3f& a, const TVec3f& b, s32 initialAnimation) {
     // Matrix?
     _C28 = new DUMMY[MR::getJointNum(this)];
 
-    MR::connectToScene(this, 0x25, 0x9, 0x14, 0x22);
+    MR::connectToScene(this, MR::MovementType_Player, MR::CalcAnimType_Player, MR::DrawBufferType_Player, MR::DrawType_Player);
     MR::initLightCtrlForPlayer(this);
     mMarioAnim = new MarioAnimator(this);
     mMarioEffect = new MarioEffect(this);

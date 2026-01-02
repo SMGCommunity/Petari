@@ -1,4 +1,5 @@
 #include "Game/LiveActor/VolumeModelDrawer.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/System/ResourceHolder.hpp"
 #include "Game/Util/CameraUtil.hpp"
@@ -9,7 +10,7 @@
 
 VolumeModelDrawInit::VolumeModelDrawInit() : NameObj("ボリュームモデル描画初期化") {
     MR::FunctorV0F func(*MR::setupShadowVolumeDraw);
-    MR::registerPreDrawFunction(func, 0x1C);
+    MR::registerPreDrawFunction(func, MR::DrawType_VolumeModel);
 }
 
 VolumeModelDrawer::VolumeModelDrawer(const char* pName, const char* pFileName, MtxPtr mtx) : NameObj(pName) {

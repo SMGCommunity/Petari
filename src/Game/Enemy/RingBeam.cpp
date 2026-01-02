@@ -3,6 +3,7 @@
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
 #include "Game/Map/HitInfo.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 
 // GX function that is included as a local symbol for some reason
 extern "C" {
@@ -168,7 +169,8 @@ void RingBeam::init(const JMapInfoIter& rIter) {
     mtx.getTrans(_c0);
     mtx.getTrans(_cc);
     if (_9d) {
-        _a4 = new ModelObj("影モデル", "JumpBeamerBeamShadow", nullptr, 28, 42, 8, 0);
+        _a4 = new ModelObj("影モデル", "JumpBeamerBeamShadow", nullptr, MR::DrawBufferType_IndirectEnemy, MR::MovementType_Enemy,
+                           MR::CalcAnimType_Enemy, false);
         _a4->initWithoutIter();
         _a4->mPosition.set(this->mPosition);
         _a4->mRotation.set(this->mRotation);

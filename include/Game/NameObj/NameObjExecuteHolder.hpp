@@ -31,10 +31,10 @@ private:
     /* 0x0 */ NameObj* mExecutedObj;
     /* 0x4 */ s8 _4;
     /* 0x5 */ s8 _5;
-    /* 0x6 */ s8 _6;
-    /* 0x7 */ s8 _7;
-    /* 0x8 */ s8 _8;
-    /* 0x9 */ s8 _9;
+    /* 0x6 */ s8 mMovementType;
+    /* 0x7 */ s8 mCalcAnimType;
+    /* 0x8 */ s8 mDrawType;
+    /* 0x9 */ s8 mDrawBufferType;
     /* 0xA */ s16 _A;
 };
 

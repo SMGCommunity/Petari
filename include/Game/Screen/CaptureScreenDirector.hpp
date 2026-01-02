@@ -37,9 +37,9 @@ private:
 class CaptureScreenActor : public NameObj {
 public:
     /// @brief Creates a new `CaptureScreenActor`.
-    /// @param param1 TODO.
+    /// @param drawType TODO.
     /// @param pCameraName TODO.
-    CaptureScreenActor(u32 param1, const char* pCameraName);
+    CaptureScreenActor(u32 drawType, const char* pCameraName);
 
     /// @brief Draws the `CaptureScreenActor` to the screen.
     virtual void draw() const;

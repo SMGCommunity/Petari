@@ -12,11 +12,13 @@
 #include "Game/LiveActor/SensorHitChecker.hpp"
 #include "Game/Map/CollisionParts.hpp"
 #include "Game/NameObj/NameObjExecuteHolder.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 #include "Game/System/ResourceHolder.hpp"
 #include "Game/Util/JointController.hpp"
 #include <JSystem/JMath/JMATrigonometric.hpp>
 #include <JSystem/JMath/JMath.hpp>
 #include <cstdio>
+
 
 namespace {
     static SkeletalFishBoss::SensorToCollider sColInfo[0xE] = {
@@ -32,21 +34,13 @@ namespace {
     char* test[] = {"Shadow00", "Joint02", "SkeletalFishBossShadow"};
     static SkeletalFishBoss::JointToShadow sShadowInfo = {"Shadow00", "Joint02", "SkeletalFishBossShadow"};
 
-    inline SkeletalFishBoss::JointToShadow& testInline() {
-        return sShadowInfo;
-    }
+    inline SkeletalFishBoss::JointToShadow& testInline() { return sShadowInfo; }
 
-    inline const char* getName(SkeletalFishBoss::JointToShadow& jointToShadow) {
-        return jointToShadow.mName;
-    }
+    inline const char* getName(SkeletalFishBoss::JointToShadow& jointToShadow) { return jointToShadow.mName; }
 
-    inline const char* getShadowName(SkeletalFishBoss::JointToShadow& jointToShadow) {
-        return jointToShadow.mShadowName;
-    }
+    inline const char* getShadowName(SkeletalFishBoss::JointToShadow& jointToShadow) { return jointToShadow.mShadowName; }
 
-    inline const char* getJointName(SkeletalFishBoss::JointToShadow& jointToShadow) {
-        return jointToShadow.mJointName;
-    }
+    inline const char* getJointName(SkeletalFishBoss::JointToShadow& jointToShadow) { return jointToShadow.mJointName; }
 };  // namespace
 
 namespace {
@@ -676,7 +670,7 @@ void SkeletalFishBoss::initScarFlash() {
 }
 
 void SkeletalFishBoss::initBreakModel() {
-    mBreakModel = new ModelObj("壊れモデル", "SkeletalFishBossBreak", _150.mMtx, 0x12, -2, -2, false);
+    mBreakModel = new ModelObj("壊れモデル", "SkeletalFishBossBreak", _150.mMtx, MR::DrawBufferType_Enemy, -2, -2, false);
     mBreakModel->initWithoutIter();
     MR::initLightCtrl(mBreakModel);
     mBreakModel->makeActorDead();
@@ -1013,7 +1007,7 @@ bool SkeletalFishBoss::isEnableToBeDamaged() const {
 }
 
 SkeletalFishBossHead::SkeletalFishBossHead(LiveActor* pActor)
-    : PartsModel(pActor, "スカルシャーク頭", "SkeletalFishBossHeadA", nullptr, 0x12, false) {
+    : PartsModel(pActor, "スカルシャーク頭", "SkeletalFishBossHeadA", nullptr, MR::DrawBufferType_Enemy, false) {
     initFixedPosition("Head");
     initHitSensor(17);
     MR::addHitSensorAtJointEnemy(this, "body", "Head", 8, 400.0f, TVec3f(0.0f, -120.0f, 320.0f));
@@ -1126,18 +1120,19 @@ void SkeletalFishBossHead::createSubModel() {
     const char* coneMdls[2] = {"LightConeLeft", "LightConeRight"};
 
     for (s32 i = 0; i < 2; i++) {
-        mLightModels[i] = new ModelObj("眼光", "SkeletalFishBossLight", MR::getJointMtx(this, coneMdls[i]), 18, -1, -1, false);
+        mLightModels[i] = new ModelObj("眼光", "SkeletalFishBossLight", MR::getJointMtx(this, coneMdls[i]), MR::DrawBufferType_Enemy, -1, -1, false);
         mLightModels[i]->initWithoutIter();
         MR::invalidateClipping(mLightModels[i]);
 
-        mBloomModels[i] = new ModelObj("眼光ブルーム", "SkeletalFishBossLightBloom", MR::getJointMtx(this, coneMdls[i]), 30, -1, -1, false);
+        mBloomModels[i] = new ModelObj("眼光ブルーム", "SkeletalFishBossLightBloom", MR::getJointMtx(this, coneMdls[i]),
+                                       MR::DrawBufferType_BloomModel, -1, -1, false);
         mBloomModels[i]->initWithoutIter();
         MR::invalidateClipping(mBloomModels[i]);
     }
 }
 
 SkeletalFishBossScarFlash::SkeletalFishBossScarFlash(LiveActor* pActor)
-    : PartsModel(pActor, "スカルシャーク傷跡エフェクトモデル", "SkeletalFishBossScarFlash", nullptr, 0x12, false) {
+    : PartsModel(pActor, "スカルシャーク傷跡エフェクトモデル", "SkeletalFishBossScarFlash", nullptr, MR::DrawBufferType_Enemy, false) {
     initFixedPosition("Head");
 }
 

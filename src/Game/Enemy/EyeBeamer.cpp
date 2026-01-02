@@ -4,6 +4,7 @@
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/VolumeModelDrawer.hpp"
 #include "Game/MapObj/MapPartsRailMover.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 #include "Game/Util/ActorMovementUtil.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/ActorSwitchUtil.hpp"
@@ -102,16 +103,16 @@ void EyeBeamer::initStartNerve(const JMapInfoIter& rIter) {
 void EyeBeamer::initModel() {
     initModelManagerWithAnm("EyeBeamer", 0, false);
     mBeamVolumeDrawer = new VolumeModelDrawer("ビームボリューム", "EyeBeamerBeamVolume", _9C);
-    mBeamBloom = new ModelObj("ビームブルーム", "EyeBeamerBeamBloom", _9C, 0x1E, -2, -2, false);
+    mBeamBloom = new ModelObj("ビームブルーム", "EyeBeamerBeamBloom", _9C, MR::DrawBufferType_BloomModel, -2, -2, false);
     mBeamBloom->initWithoutIter();
     MR::invalidateClipping(mBeamBloom);
-    mBeamMdl = new ModelObj("ビーム", "EyeBeamerBeam", _9C, 0x19, -2, -2, false);
+    mBeamMdl = new ModelObj("ビーム", "EyeBeamerBeam", _9C, MR::DrawBufferType_IndirectMapObj, -2, -2, false);
     mBeamMdl->initWithoutIter();
     MR::invalidateClipping(mBeamMdl);
     MR::startBtk(mBeamMdl, "EyeBeamerBeam");
     MR::registerDemoSimpleCastAll(mBeamBloom);
     MR::registerDemoSimpleCastAll(mBeamMdl);
-    MR::connectToScene(this, 0x22, 5, 0xA, 0x1C);
+    MR::connectToScene(this, MR::MovementType_MapObj, MR::CalcAnimType_MapObj, MR::DrawBufferType_MapObjStrongLight, MR::DrawType_VolumeModel);
 }
 
 void EyeBeamer::initAfterPlacement() {
