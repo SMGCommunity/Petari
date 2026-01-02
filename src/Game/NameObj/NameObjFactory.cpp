@@ -1049,7 +1049,7 @@ namespace {
         },
         {
             "BegomanBaby",
-            nullptr,
+            createNameObj<BegomanBaby>,
             "BegomanBaby",
         },
         {
