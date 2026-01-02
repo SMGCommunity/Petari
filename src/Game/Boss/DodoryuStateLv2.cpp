@@ -78,8 +78,6 @@ void DodoryuStateLv2::start() {
     mAppearCount = 0;
 }
 
-DodoryuStateLv2::~DodoryuStateLv2() {}
-
 void DodoryuStateLv2::exeStart() {
     if (MR::isFirstStep(this)) {
         startAnim(mChaseParam->_CC);
@@ -498,7 +496,7 @@ void DodoryuStateLv2::exeChaseMore() {
     MR::startLevelSound(mDodoryu, "SE_BM_LV_DODORYU_CHASE", -1, -1, -1);
     mDodoryu->tryRumblePad();
     if (!_E4) {
-        f32 velocityMag = PSVECMag(&mDodoryu->mVelocity);
+        f32 velocityMag = mDodoryu->mVelocity.length();
         f32 speedLimit = mChaseParam->_B8;
         if (velocityMag <= speedLimit) {
         }
@@ -799,16 +797,13 @@ void DodoryuStateLv2::calcRandomVelocity(s32 time) {
     mDodoryu->mVelocity.set(vel);
 }
 void DodoryuStateLv2::keepVerticalizedVelocity() {
-    f32 velMag = PSVECMag(&mDodoryu->mVelocity);
+    f32 velMag = mDodoryu->mVelocity.length();
     TVec3f* pVel = &mDodoryu->mVelocity;
     TVec3f* pGrav = &mDodoryu->mGravity;
     f32 dotResult = pGrav->dot(*pVel);
     TVec3f newVel;
     JMAVECScaleAdd(pGrav, pVel, &newVel, -dotResult);
-    f32 squared = newVel.squared();
-    if (squared > 0.0f) {
-        newVel.scale(velMag * JGeometry::TUtil< f32 >::inv_sqrt(squared));
-    }
+    newVel.setLength(velMag);
     mDodoryu->mVelocity.set(newVel);
 }
 
@@ -895,7 +890,7 @@ void DodoryuStateLv2::calcLimitedRotateMtx(TPos3f* pMtx, const TVec3f& rFrom, co
     f32 maxAngle = rate * 3.14159f / 180.0f;
     TVec3f cross;
     PSVECCrossProduct((Vec*)&rFrom, (Vec*)&rTo, (Vec*)&cross);
-    f32 crossMag = PSVECMag((Vec*)&cross);
+    f32 crossMag = cross.length();
     f32 dotResult = rFrom.dot(rTo);
     f32 angle = JMath::sAtanTable.atan2_(crossMag, dotResult);
     f32 absAngle = __fabsf(angle);
@@ -905,7 +900,7 @@ void DodoryuStateLv2::calcLimitedRotateMtx(TPos3f* pMtx, const TVec3f& rFrom, co
     }
     TVec3f cross2;
     PSVECCrossProduct((Vec*)&rFrom, (Vec*)&rTo, (Vec*)&cross2);
-    f32 crossMag2 = PSVECMag((Vec*)&cross2);
+    f32 crossMag2 = cross2.length();
     TVec4f quat;
     if (crossMag2 <= 0.001f) {
         quat.x = 0.0f;
