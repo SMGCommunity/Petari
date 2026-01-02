@@ -79,6 +79,26 @@ void MarioModule::changeAnimation(const char* pAnim1, const char* pAnim2) {
     }
 }
 
+void MarioModule::changeAnimationNonStop(const char* pAnim) {
+    if (!mActor->_B90) {
+        if (pAnim) {
+            changeAnimation(pAnim, (const char*)nullptr);
+        }
+        if (!mActor->mMarioAnim->mXanimePlayer->_20->mLoopMode) {
+            mActor->mMarioAnim->mXanimePlayer->_20->mLoopMode = 1;
+        }
+    }
+}
+
+void MarioModule::changeAnimationWithAttr(const char* pAnim, u32 attr) {
+    if (!mActor->_B90) {
+        if (pAnim) {
+            changeAnimation(pAnim, (const char*)nullptr);
+        }
+        mActor->mMarioAnim->mXanimePlayer->_20->mLoopMode = attr;
+    }
+}
+
 void MarioModule::stopAnimation(const char* pAnim1, const char* pAnim2) {
     if (!mActor->_B90) {
         if (pAnim2) {
@@ -262,10 +282,21 @@ void MarioModule::addVelocity(const TVec3f& rAdd) {
     mActor->mMario->mVelocity += rAdd;
 }
 
-// vecScaleAdd is inlined
-/* void MarioModule::addVelocity(const TVec3f &rAdd, f32 scale) {
-    MR::vecScaleAdd(&mActor->mMario->_160, &rAdd, scale);
-} */
+#ifdef __MWERKS__
+void MarioModule::addVelocity(const register TVec3f& rAdd, register f32 scale) {
+    register TVec3f* pVelocity = &mActor->mMario->mVelocity;
+    asm {
+        psq_l f4, 0(rAdd), 0, 0
+        psq_l f2, 8(rAdd), 1, 0
+        psq_l f3, 0(pVelocity), 0, 0
+        psq_l f0, 8(pVelocity), 1, 0
+        ps_madds0 f3, f4, scale, f3
+        ps_madds0 f0, f2, scale, f0
+        psq_st f3, 0(pVelocity), 0, 0
+        psq_st f0, 8(pVelocity), 1, 0
+    }
+}
+#endif
 
 void MarioModule::addVelocityAfter(const TVec3f& rAdd) {
     mActor->mMario->mVelocityAfter += rAdd;
@@ -309,7 +340,7 @@ void MarioModule::playEffect(const char* pEffectName) {
     mActor->playEffect(pEffectName);
 }
 
-void MarioModule::playEffectTarns(const char* pEffectName, const TVec3f& rTrans) {
+void MarioModule::playEffectTrans(const char* pEffectName, const TVec3f& rTrans) {
     mActor->playEffectTrans(pEffectName, rTrans);
 }
 
@@ -442,7 +473,7 @@ bool MarioModule::checkSquat(bool a1) {
     if (MR::getKarikariClingNum() < 1 == false) {
         return false;
     }
-    if (mActor->_468.x) {
+    if (*(u32*)&mActor->_468.x) {
         return false;
     }
     if (mActor->_B94 != 0) {
@@ -574,7 +605,7 @@ bool MarioModule::isInputDisable() const {
     if (mActor->mMario->mMovementStates._22) {
         return true;
     }
-    if (mActor->mMario->isStatusActive(12)) {
+    if (mActor->mMario->isStatusActive(18)) {
         return true;
     }
     if (isAnimationRun("ハード着地")) {  // "Hard landing"

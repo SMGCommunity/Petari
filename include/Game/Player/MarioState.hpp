@@ -9,9 +9,9 @@ public:
     virtual void init();
     virtual bool proc(u32);
     virtual bool start();
+    virtual bool notice();
     virtual bool close();
     virtual bool update();
-    virtual bool notice();
     virtual bool keep();
     virtual bool postureCtrl(MtxPtr);
     virtual void hitWall(const TVec3f&, HitSensor*);
@@ -19,6 +19,8 @@ public:
     virtual bool passRing(const HitSensor*);
     virtual f32 getBlurOffset() const;
     virtual void draw3D() const;
+
+    u32 getNoticedStatus() const;
 
     u32 _8;
     u32 mStatusId;  // 0xC

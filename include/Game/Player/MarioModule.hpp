@@ -34,7 +34,7 @@ public:
     bool isPlayerModeFoo() const;
     void changeAnimation(const char*, const char*);
     void changeAnimationNonStop(const char*);
-    void changeAnimationWithAttr(const char*, const char*);
+    void changeAnimationWithAttr(const char*, u32);
     void stopAnimation(const char*, const char*);
     bool isDefaultAnimationRun(const char*) const;
     void changeAnimationInterpoleFrame(u32);
@@ -66,7 +66,7 @@ public:
     TVec3f& getJumpVec() const;
     void setJumpVec(const TVec3f&);
     void playEffect(const char*);
-    void playEffectTarns(const char*, const TVec3f&);
+    void playEffectTrans(const char*, const TVec3f&);
     void playEffectRT(const char*, const TVec3f&, const TVec3f&);
     void playEffectRTZ(const char*, const TVec3f&, const TVec3f&);
     void playEffectRTW(const char*, const TVec3f&, const TVec3f&);
