@@ -45,6 +45,10 @@ namespace MR {
 
     void moveCoord(LiveActor*, f32);
 
+    void moveCoordToRailPoint(LiveActor*, s32);
+
+    s32 getNextRailPointNo(const LiveActor*);
+
     void moveTransToOtherActorRailPos(LiveActor*, const LiveActor*);
 
     const TVec3f& getRailPos(const LiveActor*);
@@ -54,6 +58,8 @@ namespace MR {
 
     void moveCoordToStartPos(LiveActor*);
     void moveCoordAndTransToRailStartPoint(LiveActor*);
+
+    void moveCoordAndTransToNextPoint(LiveActor*);
 
     bool getJMapInfoRailArg0NoInit(const LiveActor*, s32*);
     bool getRailPointArg0NoInit(const LiveActor*, s32, f32*);
