@@ -293,37 +293,37 @@ void OceanSpherePlaneEdge::update(f32 radius, f32 wave1Time, f32 wave2Time) {
     }
 }
 
-OceanSphere::OceanSphere(const char* pName) : LiveActor(pName) {
-    mRadius = 0.0f;
-    mRadiusTarget = 0.0f;
-    mPointCount = 0;
-    mAxisPointPX = nullptr;
-    mAxisPointNX = nullptr;
-    mAxisPointPY = nullptr;
-    mAxisPointNY = nullptr;
-    mAxisPointPZ = nullptr;
-    mAxisPointNZ = nullptr;
-    mPlaneLeftUpper = nullptr;
-    mPlaneRightUpper = nullptr;
-    mPlaneLeftLower = nullptr;
-    mPlaneRightLower = nullptr;
-    mEdge0 = nullptr;
-    mEdge1 = nullptr;
-    mEdge2 = nullptr;
-    mEdge3 = nullptr;
-    mEdge4 = nullptr;
-    mEdge5 = nullptr;
-    mEdge6 = nullptr;
-    mEdge7 = nullptr;
-    mWaveTime1 = 0.0f;
-    mWaveTime2 = 0.0f;
-    mTexOffs0X = 0.0f;
-    mTexOffs0Y = 0.0f;
-    mTexOffs1X = 0.0f;
-    mTexOffs1Y = 0.0f;
-    mWaterTex = nullptr;
-    mWaterEnvTex = nullptr;
-
+OceanSphere::OceanSphere(const char* pName)
+    : LiveActor(pName),
+      mRadius(0.0f),
+      mRadiusTarget(0.0f),
+      mPointCount(0),
+      mAxisPointPX(nullptr),
+      mAxisPointNX(nullptr),
+      mAxisPointPY(nullptr),
+      mAxisPointNY(nullptr),
+      mAxisPointPZ(nullptr),
+      mAxisPointNZ(nullptr),
+      mPlaneLeftUpper(nullptr),
+      mPlaneRightUpper(nullptr),
+      mPlaneLeftLower(nullptr),
+      mPlaneRightLower(nullptr),
+      mEdge0(nullptr),
+      mEdge1(nullptr),
+      mEdge2(nullptr),
+      mEdge3(nullptr),
+      mEdge4(nullptr),
+      mEdge5(nullptr),
+      mEdge6(nullptr),
+      mEdge7(nullptr),
+      mWaveTime1(0.0f),
+      mWaveTime2(0.0f),
+      mTexOffs0X(0.0f),
+      mTexOffs0Y(0.0f),
+      mTexOffs1X(0.0f),
+      mTexOffs1Y(0.0f),
+      mWaterTex(nullptr),
+      mWaterEnvTex(nullptr) {
     GXColor front;
     front.r = sOceanSphereTevReg1FrontDefaultR;
     front.g = sOceanSphereTevReg1FrontDefaultG;
