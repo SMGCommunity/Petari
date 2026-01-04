@@ -2,6 +2,7 @@
 #include "Game/Map/OceanSpherePoint.hpp"
 #include "Game/Map/WaterAreaHolder.hpp"
 #include "Game/Map/WaterInfo.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 #include "Game/Util.hpp"
 #include <JSystem/JGeometry.hpp>
 #include <JSystem/JGeometry/TMatrix.hpp>
@@ -351,7 +352,7 @@ OceanSphere::OceanSphere(const char* pName)
 }
 
 void OceanSphere::init(const JMapInfoIter& rIter) {
-    MR::connectToScene(this, 0x22, -1, -1, 0x0B);
+    MR::connectToScene(this, MR::MovementType_MapObj, -1, -1, MR::DrawType_OceanSphere);
     MR::initDefaultPos(this, rIter);
     mRadius = 100.0f * mScale.x;
     mRadiusTarget = mRadius;
@@ -568,17 +569,12 @@ void OceanSphere::control() {
     mWaveTime1 += -0.1f;
     mWaveTime2 += -0.1f;
 
-    if (!mAlwaysUseRealDrawing) {
-        if (MR::calcDistanceToPlayer(this) > 10000.0f) {
-            mUseDisplayList = true;
-            goto skip_update;
-        }
+    if (!mAlwaysUseRealDrawing && MR::calcDistanceToPlayer(this) > 10000.0f) {
+        mUseDisplayList = true;
+    } else {
+        mUseDisplayList = false;
+        updatePoints();
     }
-
-    mUseDisplayList = false;
-    updatePoints();
-
-skip_update:
 
     const f32 add = 0.0008f;
     const f32 sub = -0.0008f;
