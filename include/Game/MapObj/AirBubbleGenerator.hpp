@@ -17,8 +17,3 @@ public:
     s32 mSpawnDelay;      // 0x90
     s32 mBubbleDuration;  // 0x94
 };
-
-namespace NrvAirBubbleGenerator {
-    NERVE_DECL(AirBubbleGeneratorNrvGenerate, AirBubbleGenerator, AirBubbleGenerator::exeGenerate);
-    NERVE_DECL(AirBubbleGenerateNrvWait, AirBubbleGenerator, AirBubbleGenerator::exeWait);
-};  // namespace NrvAirBubbleGenerator

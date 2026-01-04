@@ -5,9 +5,12 @@
 #include <revolution.h>
 
 class LiveActor;
+class DrawBuffer;
 
 namespace MR {
     void initActorLightInfoLightType(LiveActor*, s32);
+    
+    void initActorLightInfoDrawBuffer(LiveActor*, DrawBuffer*);
 
     void requestPointLight(const LiveActor*, TVec3f, Color8, f32, s32);
 

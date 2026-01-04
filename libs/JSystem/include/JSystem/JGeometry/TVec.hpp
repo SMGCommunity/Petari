@@ -5,6 +5,7 @@
 // #include "math_types.hpp"
 #include "JSystem/JGeometry/TUtil.hpp"
 #include "math_types.hpp"
+#include "revolution/mtx.h"
 #include <JSystem/JMath/JMath.hpp>
 
 namespace JGeometry {
@@ -60,8 +61,8 @@ namespace JGeometry {
 
         T length() const { return JGeometry::TUtil< T >::sqrt((x * x) + (y * y)); }
 
-        T squared() const;
-        T squared(const TVec2< T >&) const;
+        T squared() const { return x * x + y * y; };
+        T squared(const TVec2< T >& rOther) const;  //{ return (x - rOther.x) * (x - rOther.x) + (y - rOther.y) * (y - rOther.y); };
         T dot(const TVec2< T >& rOther) const;
         T distance(const TVec2< T >& rOther) const;
         void zero();
@@ -352,6 +353,7 @@ namespace JGeometry {
         }
 
         void add(const TVec3< f32 >& b) NO_INLINE { JMathInlineVEC::PSVECAdd(this, &b, this); }
+        inline void addInline(const TVec3< f32 >& b) { JMathInlineVEC::PSVECAdd(this, &b, this); }
 
         void add(const TVec3&, const TVec3&);
 
@@ -377,6 +379,8 @@ namespace JGeometry {
             this->y *= -1.0f;
             this->z *= -1.0f;
         }
+
+        inline void invertInternal() { JMathInlineVEC::PSVECNegate(this, this); }
 
         void scale(f32 scale);
         void scale(f32, const TVec3&);
@@ -446,7 +450,7 @@ namespace JGeometry {
     };
 
     template < typename T >
-    struct TVec4 {
+    class TVec4 : public Quaternion {
     public:
         /* Constructors */
         inline TVec4() {}
@@ -464,17 +468,97 @@ namespace JGeometry {
         void set(const JGeometry::TVec4< A >&);
 
         template < typename A >
-        void set(A _x, A _y, A _z, A _h) {
+        void set(A _x, A _y, A _z, A _w) {
             x = _x;
             y = _y;
             z = _z;
-            h = _h;
+            w = _w;
         }
 
         void scale(T val);
-
-        T x, y, z, h;
     };
+
+    template < typename T >
+    struct TQuat4 : public TVec4< T > {
+    public:
+        /* Constructors */
+        inline TQuat4() {}
+
+        inline TQuat4(T xyz, T _w) {
+            this->x = xyz;
+            this->y = xyz;
+            this->z = xyz;
+            this->w = _w;
+        }
+
+        template < typename A >
+        TQuat4(A _x, A _y, A _z, A _w) {
+            this->x = _x;
+            this->y = _y;
+            this->z = _z;
+            this->w = _w;
+        }
+
+        inline TVec3< T >* toTvec() { return (TVec3< T >*)this; }
+
+        void set(T, T, T, T);
+
+        /* General operations */
+        void normalize();
+        void normalize(const TQuat4< T >& rSrc);
+
+        void getXDir(TVec3< T >& rDest) const {
+            rDest.template set< T >(1.0f - this->y * this->y * 2.0f - this->z * this->z * 2.0f, this->x * this->y * 2.0f + this->w * this->z * 2.0f,
+                                    this->x * this->z * 2.0f - this->w * this->y * 2.0f);
+        }
+
+        void getYDir(TVec3< T >& rDest) const {
+            rDest.template set< T >(this->x * this->y * 2.0f - this->w * this->z * 2.0f, 1.0f - this->x * this->x * 2.0f - this->z * this->z * 2.0f,
+                                    this->y * this->z * 2.0f + this->w * this->x * 2.0f);
+        }
+
+        void getZDir(TVec3< T >& rDest) const {
+            rDest.template set< T >(this->x * this->z * 2.0f + this->w * this->y * 2.0f, this->y * this->z * 2.0f - this->w * this->x * 2.0f,
+                                    1.0f - this->x * this->x * 2.0f - this->y * this->y * 2.0f);
+        }
+
+        void getEuler(TVec3< T >& rDest) const;
+        void setEuler(T _x, T _y, T _z);
+        void setEulerZ(T _z);
+
+        void setRotate(const TVec3< T >&, const TVec3< T >&, T);
+        void setRotate(const TVec3< T >&, const TVec3< T >&);
+
+        void setRotate(const TVec3< T >& pVec, f32 pAngle) {
+            f32 halfAngle = pAngle * 0.5f;
+            toTvec()->scale(sin(halfAngle), pVec);
+            this->w = cos(halfAngle);
+        }
+
+        // used in BegoManBase to get the TVec constructor inlined
+        void setRotate(f32 x, f32 y, f32 z, f32 pAngle) {
+            TVec3< T > pVec(x, y, z);
+            setRotate(pVec, pAngle);
+        }
+
+        void rotate(TVec3< T >& rDest) const;
+
+        void slerp(const TQuat4< T >& a1, const TQuat4< T >& a2, T a3) {
+            this->x = a1.x;
+            this->y = a1.y;
+            this->z = a1.z;
+            this->w = a1.w;
+            this->slerp(a2, a3);
+        }
+
+        void slerp(const TQuat4< T >&, T);
+        void transform(const TVec3< T >&, TVec3< T >& rDest);
+        void transform(TVec3< T >& rDest);
+
+        /* Operators */
+        TQuat4< T >& operator=(const TQuat4< T >& rSrc);
+    };
+
 };  // namespace JGeometry
 
 typedef JGeometry::TVec2< s16 > TVec2s;
@@ -482,3 +566,4 @@ typedef JGeometry::TVec2< f32 > TVec2f;
 typedef JGeometry::TVec3< f32 > TVec3f;
 typedef JGeometry::TVec3< s16 > TVec3s;
 typedef JGeometry::TVec4< f32 > TVec4f;
+typedef JGeometry::TQuat4< f32 > TQuat4f;

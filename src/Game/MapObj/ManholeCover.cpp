@@ -1,5 +1,11 @@
 #include "Game/MapObj/ManholeCover.hpp"
 
+namespace NrvManholeCover {
+    NEW_NERVE(HostTypeWait, ManholeCover, Wait);
+    NEW_NERVE(HostTypeOpen, ManholeCover, Open);
+    NEW_NERVE(HostTypeRattle, ManholeCover, Rattle);
+};  // namespace NrvManholeCover
+
 void ManholeCover::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);
     MapObjActorInitInfo info;
@@ -27,3 +33,5 @@ bool ManholeCover::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor
     setNerve(&NrvManholeCover::HostTypeOpen::sInstance);
     return true;
 }
+
+void ManholeCover::exeWait() {}

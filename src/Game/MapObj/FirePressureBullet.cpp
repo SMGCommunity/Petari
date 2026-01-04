@@ -1,5 +1,9 @@
 #include "Game/MapObj/FirePressureBullet.hpp"
 
+namespace NrvFirePressureBullet {
+    NEW_NERVE(FirePressureBulletNrvFly, FirePressureBullet, Fly);
+};
+
 FirePressureBullet::FirePressureBullet(const char* pName) : LiveActor(pName) {
     _8C.x = 0.0f;
     _8C.y = 0.0f;
@@ -43,12 +47,12 @@ void FirePressureBullet::shotFireBullet(LiveActor* pActor, const TPos3f& rPos, c
     _9C = a3;
     _A0 = a4;
     _A1 = a5;
-    _8C.set(v11, v9, v7);
+    _8C.set< f32 >(v11, v9, v7);
     mVelocity.scale(_9C, _8C);
     f32 z = rPos.mMtx[2][3];
     f32 y = rPos.mMtx[1][3];
     f32 x = rPos.mMtx[0][3];
-    mPosition.set(x, y, z);
+    mPosition.set< f32 >(x, y, z);
     mRotation.z = 0.0f;
     mRotation.y = 0.0f;
     mRotation.x = 0.0f;
@@ -85,7 +89,7 @@ void FirePressureBullet::exeFly() {
 void FirePressureBullet::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isSensorEnemy(pReceiver) || MR::isSensorMapObj(pReceiver)) {
         kill();
-    } else if (!MR::isSensorPlayer(pReceiver) && MR::sendMsgEnemyAttackFire(pReceiver, pSender)) {
+    } else if (MR::isSensorPlayer(pReceiver) && MR::sendMsgEnemyAttackFire(pReceiver, pSender)) {
         kill();
     }
 }
@@ -99,7 +103,3 @@ bool FirePressureBullet::isCrash() const {
 }
 
 FirePressureBullet::~FirePressureBullet() {}
-
-namespace NrvFirePressureBullet {
-    INIT_NERVE(FirePressureBulletNrvFly);
-};

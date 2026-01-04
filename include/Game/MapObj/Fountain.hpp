@@ -19,8 +19,3 @@ public:
     const char* mFountainName;  // 0x8C
     TVec3f _90;
 };
-
-namespace NrvFountain {
-    NERVE_DECL(HostTypeMove, Fountain, Fountain::exeMove);
-    NERVE_DECL(HostTypeWait, Fountain, Fountain::exeWait);
-};  // namespace NrvFountain

@@ -6,6 +6,15 @@
 #include "JSystem/JMath.hpp"
 #include "math_types.hpp"
 
+namespace NrvCocoNut {
+    NEW_NERVE(CocoNutNrvWait, CocoNut, Wait);
+    NEW_NERVE(CocoNutNrvWaitOnBind, CocoNut, WaitOnBind);
+    NEW_NERVE(CocoNutNrvMove, CocoNut, Move);
+    NEW_NERVE(CocoNutNrvInWater, CocoNut, InWater);
+    NEW_NERVE(CocoNutNrvBreak, CocoNut, Break);
+    NEW_NERVE(CocoNutNrvReplaceReady, CocoNut, ReplaceReady);
+};  // namespace NrvCocoNut
+
 inline void negateInternalInline(const TVec3f& src, TVec3f* dst) {
     JGeometry::negateInternal((f32*)&src, (f32*)dst);
 }
@@ -911,38 +920,8 @@ void CocoNut::exeBreak() {
     }
 }
 
-namespace NrvCocoNut {
-    INIT_NERVE(CocoNutNrvWait)
-    INIT_NERVE(CocoNutNrvWaitOnBind)
-    INIT_NERVE(CocoNutNrvMove)
-    INIT_NERVE(CocoNutNrvInWater)
-    INIT_NERVE(CocoNutNrvBreak)
-    INIT_NERVE(CocoNutNrvReplaceReady)
-
-    void CocoNutNrvReplaceReady::execute(Spine* pSpine) const {
-        CocoNut* nut = reinterpret_cast< CocoNut* >(pSpine->mExecutor);
-        if (MR::isFirstStep(nut)) {
-            MR::validateClipping(nut);
-        }
+void CocoNut::exeReplaceReady() {
+    if (MR::isFirstStep(this)) {
+        MR::validateClipping(this);
     }
-    void CocoNutNrvBreak::execute(Spine* pSpine) const {
-        CocoNut* nut = reinterpret_cast< CocoNut* >(pSpine->mExecutor);
-        nut->exeBreak();
-    }
-    void CocoNutNrvInWater::execute(Spine* pSpine) const {
-        CocoNut* nut = reinterpret_cast< CocoNut* >(pSpine->mExecutor);
-        nut->exeInWater();
-    }
-    void CocoNutNrvMove::execute(Spine* pSpine) const {
-        CocoNut* nut = reinterpret_cast< CocoNut* >(pSpine->mExecutor);
-        nut->exeMove();
-    }
-    void CocoNutNrvWaitOnBind::execute(Spine* pSpine) const {
-        CocoNut* nut = reinterpret_cast< CocoNut* >(pSpine->mExecutor);
-        nut->exeWaitOnBind();
-    }
-    void CocoNutNrvWait::execute(Spine* pSpine) const {
-        CocoNut* nut = reinterpret_cast< CocoNut* >(pSpine->mExecutor);
-        nut->exeWait();
-    }
-}  // namespace NrvCocoNut
+}

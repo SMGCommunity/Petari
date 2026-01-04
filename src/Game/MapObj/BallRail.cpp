@@ -2,6 +2,13 @@
 #include "Game/LiveActor/HitSensor.hpp"
 #include <JSystem/JMath/JMath.hpp>
 
+namespace NrvBallRail {
+    NEW_NERVE(BallRailNrvWait, BallRail, Wait);
+    NEW_NERVE(BallRailNrvSetUp, BallRail, SetUp);
+    NEW_NERVE(BallRailNrvRun, BallRail, Run);
+    NEW_NERVE(BallRailNrvNoBind, BallRail, NoBind);
+};  // namespace NrvBallRail
+
 BallRail::BallRail(const char* pName) : LiveActor(pName) {
     mRailPoints = nullptr;
     _90 = nullptr;
@@ -195,10 +202,3 @@ void BallRail::exeNoBind() {
 BallRailPoint::BallRailPoint() : _0(0, 0, 0), _C(1, 0, 0), _18(0, 1, 0), _24(0, 0, 1) {}
 
 BallRail::~BallRail() {}
-
-namespace NrvBallRail {
-    INIT_NERVE(BallRailNrvWait);
-    INIT_NERVE(BallRailNrvSetUp);
-    INIT_NERVE(BallRailNrvRun);
-    INIT_NERVE(BallRailNrvNoBind);
-};  // namespace NrvBallRail

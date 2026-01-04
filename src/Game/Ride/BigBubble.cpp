@@ -59,7 +59,7 @@ BigBubble::BigBubble(const char *pName) : LiveActor(pName), _8C(0), _90(0), _94(
 void BigBubble::init(const JMapInfoIter &rIter) {
     MR::initDefaultPos(this, rIter);
     _118.setTrans(mPosition);
-    MR::connectToScene(this, 41, 5, -1, -1);
+    MR::connectToScene(this, MR::MovementType_Ride, MR::CalcAnimType_MapObj, -1, -1);
     BigBubble::initSensor();
     initNerve(&NrvBigBubble::BigBubbleNrvWait::sInstance);
     getBaseRadius();

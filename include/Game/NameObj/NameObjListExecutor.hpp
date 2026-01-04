@@ -19,7 +19,7 @@ public:
     void init();
     s16 registerDrawBuffer(LiveActor*, int);
     void allocateDrawBufferActorList();
-    void registerPreDrawFunction(const MR::FunctorBase&, int);
+    void registerPreDrawFunction(const MR::FunctorBase&, int drawType);
     void findLightInfo(LiveActor*, int, int) const;
     void incrementCheckMovement(NameObj*, int);
     void incrementCheckCalcAnim(NameObj*, int);

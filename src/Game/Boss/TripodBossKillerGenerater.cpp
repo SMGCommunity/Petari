@@ -3,6 +3,7 @@
 #include "Game/Boss/TripodBossKillerGenerator.hpp"
 #include "Game/Enemy/HomingKiller.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 #include "Game/Util/ActorSwitchUtil.hpp"
 #include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
@@ -33,7 +34,7 @@ void TripodBossKillerGenerater::init(const JMapInfoIter& rIter) {
     TripodBossFixPartsBase::init(rIter);
     MR::makeMtxTR(_E4, this);
     initModelManagerWithAnm("TripodBossKillerCannon", nullptr, false);
-    MR::connectToScene(this, 0x23, 0xB, 0x1F, -1);
+    MR::connectToScene(this, MR::MovementType_MapObjDecoration, MR::CalcAnimType_MapObjDecoration, MR::DrawBufferType_TripodBoss, -1);
     MR::getJMapInfoArg1NoInit(rIter, &_118);
     initClippingSphere();
     mKiller = new HomingKiller("ホーミングキラー");

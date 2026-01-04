@@ -1,4 +1,5 @@
 #include "Game/MapObj/SpinDriverPathDrawer.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 #include <revolution/gx/GXVert.h>
 
@@ -6,7 +7,7 @@ SpinDriverPathDrawInit::SpinDriverPathDrawInit()
     : NameObj("スピンドライバーレール描画初期化"), mOrangeTexture(nullptr), mGreenTexture(nullptr), mPinkTexture(nullptr), mMaskTexture(nullptr),
       mIsPathAtOpa(false) {
     void (SpinDriverPathDrawInit::*drawFunc)(void) = &SpinDriverPathDrawInit::initDraw;
-    MR::registerPreDrawFunction(MR::Functor(this, drawFunc), 18);
+    MR::registerPreDrawFunction(MR::Functor(this, drawFunc), MR::DrawType_SpinDriverPathDrawer);
     mOrangeTexture = new JUTTexture(MR::loadTexFromArc("SpinDriverPath.arc", "NormalColor.bti"), 0);
     mGreenTexture = new JUTTexture(MR::loadTexFromArc("SpinDriverPath.arc", "Green.bti"), 0);
     mPinkTexture = new JUTTexture(MR::loadTexFromArc("SpinDriverPath.arc", "Pink.bti"), 0);
@@ -75,9 +76,7 @@ namespace MR {
         MR::getSceneObj< SpinDriverPathDrawInit >(SceneObj_SpinDriverPathDrawInit)->mGreenTexture->load(GX_TEXMAP0);
     }
 
-    void setSpinDriverPathColorPink() {
-        MR::getSceneObj< SpinDriverPathDrawInit >(SceneObj_SpinDriverPathDrawInit)->mPinkTexture->load(GX_TEXMAP0);
-    }
+    void setSpinDriverPathColorPink() { MR::getSceneObj< SpinDriverPathDrawInit >(SceneObj_SpinDriverPathDrawInit)->mPinkTexture->load(GX_TEXMAP0); }
 
     bool isDrawSpinDriverPathAtOpa() {
         if (!MR::isExistSceneObj(SceneObj_SpinDriverPathDrawInit)) {
@@ -87,17 +86,13 @@ namespace MR {
         return MR::getSceneObj< SpinDriverPathDrawInit >(SceneObj_SpinDriverPathDrawInit)->mIsPathAtOpa;
     }
 
-    void onDrawSpinDriverPathAtOpa() {
-        MR::getSceneObj< SpinDriverPathDrawInit >(SceneObj_SpinDriverPathDrawInit)->mIsPathAtOpa = true;
-    }
+    void onDrawSpinDriverPathAtOpa() { MR::getSceneObj< SpinDriverPathDrawInit >(SceneObj_SpinDriverPathDrawInit)->mIsPathAtOpa = true; }
 
-    void offDrawSpinDriverPathAtOpa() {
-        MR::getSceneObj< SpinDriverPathDrawInit >(SceneObj_SpinDriverPathDrawInit)->mIsPathAtOpa = false;
-    }
+    void offDrawSpinDriverPathAtOpa() { MR::getSceneObj< SpinDriverPathDrawInit >(SceneObj_SpinDriverPathDrawInit)->mIsPathAtOpa = false; }
 };  // namespace MR
 
 void SpinDriverPathDrawer::init(const JMapInfoIter& rIter) {
-    MR::connectToScene(this, -1, -1, -1, 0x12);
+    MR::connectToScene(this, -1, -1, -1, MR::DrawType_SpinDriverPathDrawer);
     initPositionList(75.0f, 20.0f);
     initClipping();
     initPathEnd();

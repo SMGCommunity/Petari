@@ -3,6 +3,11 @@
 #include "Game/MapObj/ArrowSwitchMultiHolder.hpp"
 #include "math_types.hpp"
 
+namespace NrvArrowSwitchMulti {
+    NEW_NERVE(ArrowSwitchMultiNrvRotate, ArrowSwitchMulti, Rotate);
+    NEW_NERVE(ArrowSwitchMultiNrvWait, ArrowSwitchMulti, Wait);
+};  // namespace NrvArrowSwitchMulti
+
 ArrowSwitchTarget::ArrowSwitchTarget(const char* pName) : NameObj(pName) {
     mJMapIDInfo = nullptr;
     mStageSwitchCtrl = nullptr;
@@ -158,18 +163,3 @@ void ArrowSwitchMulti::exeWait() {
 ArrowSwitchMulti::~ArrowSwitchMulti() {}
 
 ArrowSwitchTarget::~ArrowSwitchTarget() {}
-
-namespace NrvArrowSwitchMulti {
-    INIT_NERVE(ArrowSwitchMultiNrvWait);
-    INIT_NERVE(ArrowSwitchMultiNrvRotate);
-
-    void ArrowSwitchMultiNrvRotate::execute(Spine* pSpine) const {
-        ArrowSwitchMulti* sw = reinterpret_cast< ArrowSwitchMulti* >(pSpine->mExecutor);
-        sw->exeRotate();
-    }
-
-    void ArrowSwitchMultiNrvWait::execute(Spine* pSpine) const {
-        ArrowSwitchMulti* sw = reinterpret_cast< ArrowSwitchMulti* >(pSpine->mExecutor);
-        sw->exeWait();
-    }
-};  // namespace NrvArrowSwitchMulti

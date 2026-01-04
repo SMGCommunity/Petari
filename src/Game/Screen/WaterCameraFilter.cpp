@@ -1,6 +1,7 @@
 #include "Game/Screen/WaterCameraFilter.hpp"
 #include "Game/Camera/CameraContext.hpp"
 #include "Game/Map/WaterAreaHolder.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 #include "Game/Screen/MissLayout.hpp"
 #include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/DemoUtil.hpp"
@@ -37,7 +38,7 @@ WaterCameraFilter::WaterCameraFilter() : LiveActor("水中カメラフィルタ�
 }
 
 void WaterCameraFilter::init(const JMapInfoIter& rIter) {
-    MR::connectToScene(this, 0x22, -1, -1, 0x3A);
+    MR::connectToScene(this, MR::MovementType_MapObj, -1, -1, MR::DrawType_WaterCameraFilter);
     MR::invalidateClipping(this);
     initNerve(&NrvWaterCameraFilter::WaterCameraFilterNrvAir::sInstance);
     initScreenTex();

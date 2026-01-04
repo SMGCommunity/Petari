@@ -3,9 +3,15 @@
 #include "Game/MapObj/StageEffectDataTable.hpp"
 #include "Game/Util.hpp"
 
+namespace NrvHipDropMoveObj {
+    NEW_NERVE(HostTypeWait, HipDropMoveObj, Wait);
+    NEW_NERVE(HostTypeMove, HipDropMoveObj, Move);
+    NEW_NERVE(HostTypeDone, HipDropMoveObj, Done);
+};  // namespace NrvHipDropMoveObj
+
 namespace {
-    static const char* cSwitchJointName = "Switch";
     static const char* cMoveJointName = "Move";
+    static const char* cSwitchJointName = "Switch";
     static const char* cMoveAnimName = "Move";
 };  // namespace
 
@@ -60,6 +66,8 @@ bool HipDropMoveObj::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSens
 bool HipDropMoveObj::isEndMove() const {
     return MR::isBckStopped(this);
 }
+
+void HipDropMoveObj::exeWait() {}
 
 void HipDropMoveObj::exeMove() {
     if (MR::isFirstStep(this)) {
@@ -126,6 +134,8 @@ void HipDropMoveObj::exeMove() {
     }
 }
 
+void HipDropMoveObj::exeDone() {}
+
 HipDropDemoMoveObj::HipDropDemoMoveObj(const char* pName) : HipDropMoveObj(pName) {
     mMtx.identity();
 }
@@ -159,21 +169,6 @@ void HipDropDemoMoveObj::moving() {
         MR::setPlayerBaseMtx((MtxPtr)&stack_8);
     }
 }
-
-namespace NrvHipDropMoveObj {
-    HostTypeWait HostTypeWait::sInstance;
-    HostTypeMove HostTypeMove::sInstance;
-    HostTypeDone HostTypeDone::sInstance;
-
-    void HostTypeDone::execute(Spine* pSpine) const {}
-
-    void HostTypeMove::execute(Spine* pSpine) const {
-        HipDropMoveObj* obj = reinterpret_cast< HipDropMoveObj* >(pSpine->mExecutor);
-        obj->exeMove();
-    }
-
-    void HostTypeWait::execute(Spine* pSpine) const {}
-};  // namespace NrvHipDropMoveObj
 
 void HipDropMoveObj::moveStart() {}
 

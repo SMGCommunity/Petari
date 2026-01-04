@@ -2,9 +2,11 @@
 #include "Game/Camera/CameraTargetMtx.hpp"
 #include "Game/LiveActor/ActorCameraInfo.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Screen/PrologueLetter.hpp"
 #include "Game/Screen/ProloguePictureBook.hpp"
+
 
 namespace {
     static const char* sPictureBookDemoName = "プロローグデモ";
@@ -239,7 +241,7 @@ void PrologueDirector::createLetter() {
 }
 
 void PrologueDirector::createScenery() {
-    mScenery = new ModelObj("背景書割", "DemoLetter", nullptr, 10, -2, -2, false);
+    mScenery = new ModelObj("背景書割", "DemoLetter", nullptr, MR::DrawBufferType_MapObjStrongLight, -2, -2, false);
 
     MR::invalidateClipping(mScenery);
     mScenery->initWithoutIter();
@@ -291,11 +293,7 @@ void PrologueHolder::start() {
 }
 
 namespace MR {
-    PrologueHolder* getPrologueHolder() {
-        return MR::getSceneObj< PrologueHolder >(SceneObj_PrologueHolder);
-    }
+    PrologueHolder* getPrologueHolder() { return MR::getSceneObj< PrologueHolder >(SceneObj_PrologueHolder); }
 
-    void startPrologue() {
-        getPrologueHolder()->start();
-    }
+    void startPrologue() { getPrologueHolder()->start(); }
 };  // namespace MR

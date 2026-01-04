@@ -64,14 +64,3 @@ private:
     bool _B8;
     s32 mInvincibleHitCoolDown;  // 0xBC
 };
-
-namespace NrvPunchingKinoko {
-    NERVE(PunchingKinokoNrvWait);
-    NERVE(PunchingKinokoNrvSwing);
-    NERVE(PunchingKinokoNrvPunched);
-    NERVE(PunchingKinokoNrvPunchedBrake);
-    NERVE(PunchingKinokoNrvHitted);
-    NERVE(PunchingKinokoNrvPointSnaped);
-    NERVE(PunchingKinokoNrvCrushed);
-    NERVE(PunchingKinokoNrvCrushedEnd);
-};  // namespace NrvPunchingKinoko

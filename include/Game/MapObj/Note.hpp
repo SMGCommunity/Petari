@@ -49,9 +49,3 @@ public:
     /* 0xB4 */ FlashingCtrl* mFlashCtrl;  // A pointer to the FlashingCtrl instance that handles the "fading away" effects.
     u32 _B8;
 };
-
-namespace NrvNote {
-    NERVE_DECL(NoteNrvWait, Note, Note::exeWait);
-    NERVE_DECL(NoteNrvCountDown, Note, Note::exeCountDown);
-    NERVE_DECL(NoteNrvFlyUp, Note, Note::exeFlyUp);
-};  // namespace NrvNote

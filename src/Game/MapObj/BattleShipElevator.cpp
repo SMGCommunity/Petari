@@ -2,6 +2,12 @@
 #include "Game/Map/CollisionParts.hpp"
 #include "Game/Util/DemoUtil.hpp"
 
+namespace NrvBattleShipElevator {
+    NEW_NERVE(BattleShipElevatorNrvWait, BattleShipElevator, Wait);
+    NEW_NERVE(BattleShipElevatorNrvMove, BattleShipElevator, Move);
+    NEW_NERVE(BattleShipElevatorNrvEnd, BattleShipElevator, End);
+};  // namespace NrvBattleShipElevator
+
 BattleShipElevator::BattleShipElevator(const char* pName) : MapObjActor(pName) {}
 
 BattleShipElevator::~BattleShipElevator() {}
@@ -19,6 +25,8 @@ void BattleShipElevator::init(const JMapInfoIter& rIter) {
     MapObjActor::initialize(rIter, info);
 }
 
+void BattleShipElevator::exeWait() {}
+
 void BattleShipElevator::exeMove() {
     if (MR::isFirstStep(this)) {
         MR::startSound(this, "SE_OJ_B_SHIP_ELEV_START", -1, -1);
@@ -30,6 +38,8 @@ void BattleShipElevator::exeMove() {
         setNerve(&NrvBattleShipElevator::BattleShipElevatorNrvEnd::sInstance);
     }
 }
+
+void BattleShipElevator::exeEnd() {}
 
 void BattleShipElevator::control() {
     if (!isNerve(&NrvBattleShipElevator::BattleShipElevatorNrvWait::sInstance)) {
@@ -51,18 +61,3 @@ bool BattleShipElevator::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor*
 
     return false;
 }
-
-namespace NrvBattleShipElevator {
-    INIT_NERVE(BattleShipElevatorNrvWait);
-    INIT_NERVE(BattleShipElevatorNrvMove);
-    INIT_NERVE(BattleShipElevatorNrvEnd);
-
-    void BattleShipElevatorNrvWait::execute(Spine* pSpine) const {}
-
-    void BattleShipElevatorNrvMove::execute(Spine* pSpine) const {
-        BattleShipElevator* planet = reinterpret_cast< BattleShipElevator* >(pSpine->mExecutor);
-        planet->exeMove();
-    }
-
-    void BattleShipElevatorNrvEnd::execute(Spine* pSpine) const {}
-};  // namespace NrvBattleShipElevator

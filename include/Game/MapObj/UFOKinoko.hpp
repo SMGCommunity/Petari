@@ -19,12 +19,7 @@ public:
 
     void startMove();
 
+    void exeWait();
     void exeMove();
     void exeStop();
 };
-
-namespace NrvUFOKinoko {
-    NERVE(HostTypeWait)
-    NERVE(HostTypeMove)
-    NERVE(HostTypeStop)
-};  // namespace NrvUFOKinoko

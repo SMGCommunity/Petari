@@ -1,4 +1,5 @@
 #include "Game/LiveActor/FlashingCtrl.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 #include "Game/Util.hpp"
 
 FlashingCtrl::FlashingCtrl(LiveActor* pActor, bool toggleDraw) : NameObj("点滅") {
@@ -8,7 +9,7 @@ FlashingCtrl::FlashingCtrl(LiveActor* pActor, bool toggleDraw) : NameObj("点滅
     mOverrideInterval = 0;
     mTimer = 0;
     mFlashStartTime = 0;
-    MR::connectToScene(this, 0x22, -1, -1, -1);
+    MR::connectToScene(this, MR::MovementType_MapObj, -1, -1, -1);
 }
 
 void FlashingCtrl::movement() {

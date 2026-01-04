@@ -13,6 +13,7 @@ public:
 
     void exeWait();
     void exeMoveStart();
+    void endMoveStart();
     void exeMove();
     void exeBreakStart();
     void exeBreak();
@@ -20,14 +21,3 @@ public:
 
     bool mIsRightArm;  // 0xC4
 };
-
-namespace NrvMechaKoopaPartsArm {
-    NERVE(MechaKoopaPartsArmNrvWaitFront);
-    NERVE(MechaKoopaPartsArmNrvWaitRear);
-    NERVE_EXECEND(MechaKoopaPartsArmNrvMoveStartFront);
-    NERVE_EXECEND(MechaKoopaPartsArmNrvMoveStartRear);
-    NERVE(MechaKoopaPartsArmNrvMoveFront);
-    NERVE(MechaKoopaPartsArmNrvMoveRear);
-    NERVE(MechaKoopaPartsArmNrvBreakStart);
-    NERVE(MechaKoopaPartsArmNrvBreak);
-};  // namespace NrvMechaKoopaPartsArm

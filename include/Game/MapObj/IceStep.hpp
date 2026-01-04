@@ -13,18 +13,7 @@ public:
     virtual bool receiveMsgEnemyAttack(u32, HitSensor*, HitSensor*);
 
     void exeWait();
-    inline void exeHit() {
-        s32 step = getNerveStep();
-
-        switch (step) {
-        case 5:
-            MR::hideModel(this);
-            break;
-        case 0xF:
-            kill();
-            break;
-        }
-    }
+    void exeHit();
 
     void setOn(u32, const TVec3f&, const TVec3f&);
     void destroy();
@@ -33,8 +22,3 @@ public:
     Mtx _8C;
     u16 mTimer;  // 0xBC
 };
-
-namespace NrvIceStep {
-    NERVE_DECL(IceStepNrvHit, IceStep, IceStep::exeHit);
-    NERVE_DECL(IceStepNrvWait, IceStep, IceStep::exeWait);
-};  // namespace NrvIceStep

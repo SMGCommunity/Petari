@@ -47,8 +47,11 @@ public:
     void updateRotateMtx(AxisType, f32);
     void calcRotateAxisDir(AxisType, TVec3f*) const;
 
-    void exeRotate();
+    void exeNeverMove();
+    void exeWait();
     void exeRotateStart();
+    void exeRotate();
+    void exeStopAtEnd();
 
     f32 _18;
     f32 mRotateAngle;      // 0x1C
@@ -65,11 +68,3 @@ public:
     f32 _A0;
     bool mIsOnReverse;  // 0xA4
 };
-
-namespace NrvMapPartsRotator {
-    NERVE(HostTypeNeverMove);
-    NERVE(HostTypeWait);
-    NERVE(HostTypeRotateStart);
-    NERVE(HostTypeRotate);
-    NERVE(HostTypeStopAtEnd);
-};  // namespace NrvMapPartsRotator

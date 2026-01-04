@@ -27,9 +27,3 @@ public:
     TVec3f _B8;
     s32 _C4;
 };
-
-namespace NrvBallOpener {
-    NERVE_DECL(BallOpenerNrvWait, BallOpener, BallOpener::exeWait);
-    NERVE_DECL(BallOpenerNrvSetCenter, BallOpener, BallOpener::exeSetCenter);
-    NERVE_DECL(BallOpenerNrvOpen, BallOpener, BallOpener::exeOpen);
-};  // namespace NrvBallOpener
