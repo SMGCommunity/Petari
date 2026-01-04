@@ -456,7 +456,7 @@ void DodoryuStateLv2::exeChaseMoreStart() {
         TVec3f* playerPos = MR::getPlayerPos();
         TVec3f toPlayer(mDodoryu->mPosition);
         toPlayer.sub(*playerPos);
-        if (MR::isNearZero(toPlayer, 0.001f)) {
+        if (MR::isNearZero(toPlayer)) {
             MR::getPlayerFrontVec(&toPlayer);
         } else {
             MR::normalize(&toPlayer);
@@ -686,8 +686,7 @@ bool DodoryuStateLv2::isDown() const {
 }
 
 bool DodoryuStateLv2::isAttackableNerve() const {
-    bool result = false;
-    if (isNerve(&DodoryuStateLv2NrvChaseHide::sInstance)
+    return isNerve(&DodoryuStateLv2NrvChaseHide::sInstance)
         || isNerve(&DodoryuStateLv2NrvReadyAppear::sInstance)
         || isNerve(&DodoryuStateLv2NrvChaseAppearStart::sInstance)
         || isNerve(&DodoryuStateLv2NrvChaseAppear::sInstance)
@@ -695,10 +694,7 @@ bool DodoryuStateLv2::isAttackableNerve() const {
         || (isNerve(&DodoryuStateLv2NrvDive::sInstance) && MR::isGreaterStep(this, 20))
         || isNerve(&DodoryuStateLv2NrvChaseMoreStart::sInstance)
         || isNerve(&DodoryuStateLv2NrvChaseMore::sInstance)
-        || isNerve(&DodoryuStateLv2NrvChaseMoreEnd::sInstance)) {
-        result = true;
-    }
-    return result;
+        || isNerve(&DodoryuStateLv2NrvChaseMoreEnd::sInstance);
 }
 
 bool DodoryuStateLv2::tryShiftToChaseAppear() {
@@ -889,7 +885,7 @@ void DodoryuStateLv2::addVelocity(bool snapToGround) {
 void DodoryuStateLv2::calcLimitedRotateMtx(TPos3f* pMtx, const TVec3f& rFrom, const TVec3f& rTo, f32 rate) {
     f32 maxAngle = rate * 3.14159f / 180.0f;
     TVec3f cross;
-    PSVECCrossProduct((Vec*)&rFrom, (Vec*)&rTo, (Vec*)&cross);
+    PSVECCrossProduct(&rFrom, &rTo, &cross);
     f32 crossMag = cross.length();
     f32 dotResult = rFrom.dot(rTo);
     f32 angle = JMath::sAtanTable.atan2_(crossMag, dotResult);
@@ -899,7 +895,7 @@ void DodoryuStateLv2::calcLimitedRotateMtx(TPos3f* pMtx, const TVec3f& rFrom, co
         ratio = maxAngle / absAngle;
     }
     TVec3f cross2;
-    PSVECCrossProduct((Vec*)&rFrom, (Vec*)&rTo, (Vec*)&cross2);
+    PSVECCrossProduct(&rFrom, &rTo, &cross2);
     f32 crossMag2 = cross2.length();
     TVec4f quat;
     if (crossMag2 <= 0.001f) {
