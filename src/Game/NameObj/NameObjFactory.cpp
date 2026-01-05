@@ -6,6 +6,7 @@
 #include "Game/Enemy.hpp"
 #include "Game/Gravity.hpp"
 #include "Game/Map.hpp"
+#include "Game/Map/GroupSwitchWatcher.hpp"
 #include "Game/MapObj.hpp"
 #include "Game/NPC.hpp"
 #include "Game/Player.hpp"
@@ -864,7 +865,7 @@ namespace {
         },
         {
             "SwingRope",
-            nullptr,
+            createNameObj< SwingRope >,
             "SwingRope",
         },
         {
@@ -1049,7 +1050,7 @@ namespace {
         },
         {
             "BegomanBaby",
-            createNameObj<BegomanBaby>,
+            createNameObj< BegomanBaby >,
             "BegomanBaby",
         },
         {
@@ -5894,7 +5895,7 @@ namespace {
         },
         {
             "GroupSwitchWatcher",
-            nullptr,
+            createNameObj< GroupSwitchWatcher >,
             nullptr,
         },
         {

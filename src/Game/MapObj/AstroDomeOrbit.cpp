@@ -2,6 +2,7 @@
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/Map/SphereSelector.hpp"
 #include "Game/MapObj/MiniatureGalaxyHolder.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 #include "Game/Util/Color.hpp"
 #include "Game/Util/Functor.hpp"
 #include "Game/Util/JMapInfo.hpp"
@@ -29,7 +30,7 @@ AstroDomeOrbit::AstroDomeOrbit() : LiveActor("天文ドームの軌道") {
 }
 
 void AstroDomeOrbit::init(const JMapInfoIter& rIter) {
-    MR::connectToScene(this, -1, -1, -1, 0x1F);
+    MR::connectToScene(this, -1, -1, -1, MR::DrawType_AstroDomeOrbit);
     MR::invalidateClipping(this);
     MR::createAdaptorAndConnectToDrawBloomModel("天文ドーム軌道ブルーム描画", MR::Functor_Inline(this, &AstroDomeOrbit::drawBloom));
     makeActorDead();

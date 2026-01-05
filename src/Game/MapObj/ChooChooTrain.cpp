@@ -1,4 +1,5 @@
 #include "Game/MapObj/ChooChooTrain.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 #include "Game/Util.hpp"
 #include "Game/Util/Array.hpp"
 
@@ -64,7 +65,8 @@ void ChooChooTrain::init(const JMapInfoIter& rIter) {
     int i;
 
     for (i = 0; i < defTrainParts; i++) {
-        ModelObj* pObj = new ModelObj("汽車ポッポ客車", "ChooChooTrainBody", 0, -2, 0x1E, 2, false);
+        ModelObj* pObj =
+            new ModelObj("汽車ポッポ客車", "ChooChooTrainBody", 0, -2, MR::MovementType_CollisionMapObj, MR::CalcAnimType_CollisionMapObj, false);
         pObj->initWithoutIter();
         MR::initCollisionParts(pObj, "ChooChooTrainBody", getSensor("body"), 0);
         MR::invalidateClipping(pObj);

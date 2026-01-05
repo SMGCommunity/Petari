@@ -1,6 +1,7 @@
 #include "Game/LiveActor/LiveActorGroupArray.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 #include <cstdio>
 #include <cstring>
 
@@ -22,7 +23,7 @@ MsgSharedGroup::MsgSharedGroup(const char* pName, s32 a2, const JMapInfoIter& rI
 }
 
 void MsgSharedGroup::init(const JMapInfoIter& rIter) {
-    MR::connectToScene(this, 6, -1, -1, -1);
+    MR::connectToScene(this, MR::MovementType_MsgSharedGroup, -1, -1, -1);
 }
 
 void MsgSharedGroup::movement() {

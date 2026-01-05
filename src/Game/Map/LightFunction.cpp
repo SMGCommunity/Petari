@@ -1,10 +1,14 @@
 #include "Game/Map/LightFunction.hpp"
 #include "Game/AreaObj/LightArea.hpp"
+#include "Game/Map/LightDataHolder.hpp"
 #include "Game/Map/LightDirector.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Util.hpp"
+#include "revolution/gx/GXEnum.h"
 #include <cstdio>
 #include <cstring>
+
+const GXLightID cLightDataIDs[8] = {GX_LIGHT0, GX_LIGHT1, GX_LIGHT2, GX_LIGHT3, GX_LIGHT4, GX_LIGHT5, GX_LIGHT6, GX_LIGHT7};
 
 namespace {
     void loadLightDiffuse(_GXColor color, const TVec3f& rPos, _GXLightID lightID) {
@@ -17,8 +21,6 @@ namespace {
         GXInitLightColor(&lightObj, new_color);
         GXLoadLightObjImm(&lightObj, lightID);
     }
-
-    void getDataActorLightInfo(JMapInfo*, int, ActorLightInfo*, const char*);
 };  // namespace
 
 void LightFunction::initLightData() {
@@ -57,6 +59,34 @@ s32 LightFunction::createZoneDataParser(const char* pZone, JMapInfo** pOut) {
 
     return 0;
 }
+
+namespace {
+    void getDataLightInfo(JMapInfo* pInfo, int id, LightInfo* pLightInfo, const char* pName) {
+        char colorBuf[256];
+        snprintf(colorBuf, sizeof(colorBuf), "%sColor", pName);
+        MR::getCsvDataColor(&pLightInfo->mColor, pInfo, colorBuf, id);
+        char posBuf[256];
+        snprintf(posBuf, sizeof(posBuf), "%sPos", pName);
+        MR::getCsvDataVec(&pLightInfo->mPos, pInfo, posBuf, id);
+        char camBuf[128];
+        snprintf(camBuf, sizeof(camBuf), "%sFollowCamra", pName);
+        MR::getCsvDataBool(&pLightInfo->mIsFollowCamera, pInfo, camBuf, id);
+    }
+
+    void getDataActorLightInfo(JMapInfo* pInfo, int lightID, ActorLightInfo* pActorInfo, const char* pName) {
+        char lightBuf[256];
+        snprintf(lightBuf, sizeof(lightBuf), "%sLight%d", pName, 0);
+        getDataLightInfo(pInfo, lightID, &pActorInfo->mInfo0, lightBuf);
+        snprintf(lightBuf, sizeof(lightBuf), "%sLight%d", pName, 1);
+        getDataLightInfo(pInfo, lightID, &pActorInfo->mInfo1, lightBuf);
+        char alphaBuf[256];
+        snprintf(alphaBuf, sizeof(alphaBuf), "%sAlpha2", pName);
+        MR::getCsvDataU8(&pActorInfo->mAlpha2, pInfo, alphaBuf, lightID);
+        char ambBuf[256];
+        snprintf(ambBuf, sizeof(ambBuf), "%sAmbient", pName);
+        MR::getCsvDataColor(&pActorInfo->mColor, pInfo, ambBuf, lightID);
+    }
+};  // namespace
 
 void LightFunction::getAreaLightLightData(JMapInfo* pInfo, int idx, AreaLightInfo* pLightInfo) {
     MR::getCsvDataStr(&pLightInfo->mAreaLightName, pInfo, "AreaLightName", idx);

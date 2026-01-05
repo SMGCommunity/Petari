@@ -1,5 +1,6 @@
 #include "Game/AreaObj/WarpCube.hpp"
 #include "Game/LiveActor/ActorCameraInfo.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 #include "Game/Util/AreaObjUtil.hpp"
 #include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/DirectDraw.hpp"
@@ -111,6 +112,6 @@ void WarpCube::init(const JMapInfoIter& rIter) {
     mEventName = new char[eventNameLength + 1];
     strcpy(mEventName, &eventName[0]);
 
-    MR::connectToScene(this, 13, -1, -1, 24);
+    MR::connectToScene(this, MR::MovementType_AreaObj, -1, -1, MR::DrawType_WarpPodPath);
     _48 = 0;
 }

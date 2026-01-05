@@ -1,4 +1,5 @@
 #include "Game/LiveActor/ShadowVolumeDrawer.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 
 namespace {
@@ -8,7 +9,7 @@ namespace {
 
 ShadowVolumeDrawInit::ShadowVolumeDrawInit() : NameObj("シャドウボリューム描画初期化") {
     MR::FunctorV0F func(*MR::setupShadowVolumeDraw);
-    MR::registerPreDrawFunction(func, 0x27);
+    MR::registerPreDrawFunction(func, MR::DrawType_ShadowVolume);
 }
 
 ShadowVolumeDrawer::ShadowVolumeDrawer(const char* pName) : ShadowDrawer(pName) {
@@ -16,7 +17,7 @@ ShadowVolumeDrawer::ShadowVolumeDrawer(const char* pName) : ShadowDrawer(pName) 
     mEndDrawShapeOffset = 0.0f;
     mIsCutDropShadow = false;
     MR::createSceneObj(SceneObj_ShadowVolumeDrawInit);
-    MR::connectToScene(this, -1, -1, -1, 0x27);
+    MR::connectToScene(this, -1, -1, -1, MR::DrawType_ShadowVolume);
 }
 
 void ShadowVolumeDrawer::setStartDrawShepeOffset(f32 offs) {

@@ -1,6 +1,7 @@
 #include "Game/Ride/PlantStalk.hpp"
 #include "Game/MapObj/PlantPoint.hpp"
 #include "Game/MapObj/PlantRailInfo.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 #include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/Functor.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
@@ -214,9 +215,10 @@ PlantStalkDrawInit::PlantStalkDrawInit(const char* pName) : NameObj(pName) {
     mTexture = new JUTTexture(MR::loadTexFromArc("Plant.arc", "PlantStalk.bti"));
 
     MR::FunctorV0M< const PlantStalkDrawInit*, void (PlantStalkDrawInit::*)() const > preDrawFunctor(this, &PlantStalkDrawInit::initDraw);
-    MR::registerPreDrawFunction(preDrawFunctor, 4);
+    MR::registerPreDrawFunction(preDrawFunctor, MR::DrawType_PlantStalk);
     // The above should probably be this instead, but MR::Functor_Inline does not like consts at the moment
-    // MR::registerPreDrawFunction(MR::Functor_Inline(const_cast< const PlantStalkDrawInit* >(this), &PlantStalkDrawInit::initDraw), 4);
+    // MR::registerPreDrawFunction(MR::Functor_Inline(const_cast< const PlantStalkDrawInit* >(this), &PlantStalkDrawInit::initDraw),
+    // MR::DrawType_PlantStalk);
 }
 
 void PlantStalkDrawInit::initDraw() const {

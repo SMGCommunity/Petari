@@ -1,4 +1,5 @@
 #include "Game/MapObj/FireBar.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 #include "Game/Util.hpp"
 #include "JSystem/JMath/JMath.hpp"
 
@@ -10,7 +11,7 @@ FireBarBall::~FireBarBall() {}
 
 FireBar::~FireBar() {}
 
-FireBarBall::FireBarBall(LiveActor* pParent) : ModelObj("ファイアバー玉", "FireBarBall", 0, 0xB, -2, -2, false) {
+FireBarBall::FireBarBall(LiveActor* pParent) : ModelObj("ファイアバー玉", "FireBarBall", 0, MR::DrawBufferType_NoShadowedMapObj, -2, -2, false) {
     mFireBarParent = pParent;
 }
 

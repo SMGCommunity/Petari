@@ -284,10 +284,8 @@ void CameraManEvent::setExtraParam() {
     CameraLocalUtil::setRoll(mCamera, mChunk->mExParam.mRoll);
 }
 
-#ifdef NON_MATCHING
-// r0 nonsense
 void CameraManEvent::setVPanParam() {
-    if (mCamera->mVPan != nullptr) {
+    if (mCamera->doesVPanExist()) {
         CameraHeightArrange* vPan = mCamera->mVPan;
         vPan->resetParameter();
 
@@ -309,7 +307,6 @@ void CameraManEvent::setVPanParam() {
         vPan->_60 = 1;
     }
 }
-#endif
 
 void CameraManEvent::resetCameraIfRequested() {
     if (_BC) {

@@ -11,6 +11,7 @@
 #include "Game/Map/FileSelectFunc.hpp"
 #include "Game/Map/FileSelectIconID.hpp"
 #include "Game/Map/GroundChecker.hpp"
+#include "Game/Map/GroupSwitchWatcher.hpp"
 #include "Game/Map/Halo.hpp"
 #include "Game/Map/HitInfo.hpp"
 #include "Game/Map/KCollision.hpp"

@@ -1,6 +1,7 @@
 #include "Game/MapObj/ClipAreaDropLaser.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/MapObj/ClipAreaDropHolder.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 #include "Game/Util/ActorSwitchUtil.hpp"
 #include "Game/Util/DirectDraw.hpp"
 #include "Game/Util/EffectUtil.hpp"
@@ -31,7 +32,7 @@ ClipAreaDropLaser::ClipAreaDropLaser(const char* pName) : LiveActor(pName) {
 
 void ClipAreaDropLaser::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
-    MR::connectToScene(this, 0x22, -1, -1, 0x14);
+    MR::connectToScene(this, MR::MovementType_MapObj, -1, -1, MR::DrawType_ClipAreaDropLaser);
     initRailRider(rIter);
     MR::moveCoordAndTransToRailStartPoint(this);
     mSpeed = 20.0f;

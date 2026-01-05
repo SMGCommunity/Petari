@@ -1,6 +1,7 @@
 #include "Game/MapObj/WarpPod.hpp"
 #include "Game/LiveActor/ActorCameraInfo.hpp"
 #include "Game/LiveActor/LiveActorGroup.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/CameraUtil.hpp"
@@ -14,14 +15,7 @@
 #include <cstdio>
 
 GXColor gGlowEffectEnvColor[] = {
-    {0, 100, 200},
-    {44, 255, 42},
-    {255, 60, 60},
-    {196, 166, 0},
-    {0, 255, 0},
-    {255, 0, 255},
-    {255, 255, 0},
-    {255, 255, 255},
+    {0, 100, 200}, {44, 255, 42}, {255, 60, 60}, {196, 166, 0}, {0, 255, 0}, {255, 0, 255}, {255, 255, 0}, {255, 255, 255},
 };
 
 namespace {
@@ -37,7 +31,7 @@ namespace MR {
             return nullptr;
         }
 
-        return getSceneObj<WarpPodMgr>(SceneObj_WarpPodMgr);
+        return getSceneObj< WarpPodMgr >(SceneObj_WarpPodMgr);
     }
 };  // namespace MR
 
@@ -46,16 +40,16 @@ WarpPodMgr::WarpPodMgr(const char* pName) : NameObj(pName) {
     _C = nullptr;
     _14 = 0;
 
-    MR::connectToScene(this, -1, -1, -1, 24);
+    MR::connectToScene(this, -1, -1, -1, MR::DrawType_WarpPodPath);
 }
 
 WarpPod* WarpPodMgr::getPairPod(const LiveActor* pParam1) {
-    if (static_cast<const WarpPod*>(pParam1)->_8C == nullptr) {
+    if (static_cast< const WarpPod* >(pParam1)->_8C == nullptr) {
         return nullptr;
     }
 
     for (u32 i = 0; i < _10->getObjectCount(); i++) {
-        WarpPod* pWarpPod = static_cast<WarpPod*>(_10->getActor(i));
+        WarpPod* pWarpPod = static_cast< WarpPod* >(_10->getActor(i));
 
         if (pWarpPod == pParam1) {
             continue;
@@ -65,7 +59,7 @@ WarpPod* WarpPodMgr::getPairPod(const LiveActor* pParam1) {
             continue;
         }
 
-        if (*pWarpPod->_8C == *static_cast<const WarpPod*>(pParam1)->_8C) {
+        if (*pWarpPod->_8C == *static_cast< const WarpPod* >(pParam1)->_8C) {
             return pWarpPod;
         }
     }
@@ -74,7 +68,7 @@ WarpPod* WarpPodMgr::getPairPod(const LiveActor* pParam1) {
 }
 
 void WarpPodMgr::startEventCamera(const LiveActor* pWarpPod) {
-    static_cast<const WarpPod*>(pWarpPod)->startEventCamera();
+    static_cast< const WarpPod* >(pWarpPod)->startEventCamera();
 
     _C = pWarpPod;
 }
@@ -86,7 +80,7 @@ void WarpPodMgr::endEventCamera() {
         return;
     }
 
-    const_cast<WarpPod*>(static_cast<const WarpPod*>(_C))->endEventCamera();
+    const_cast< WarpPod* >(static_cast< const WarpPod* >(_C))->endEventCamera();
 
     pPairPod = getPairPod(_C);
     pPairPod->_A0 = 60;
@@ -113,7 +107,7 @@ void WarpPodMgr::notifyWarpEnd(WarpPod* pWarpPod) {
 
 void WarpPodMgr::draw() const {
     for (u32 i = 0; i < _10->getObjectCount(); i++) {
-        static_cast<WarpPod*>(_10->getActor(i))->drawCylinder(MR::mDrawTimer);
+        static_cast< WarpPod* >(_10->getActor(i))->drawCylinder(MR::mDrawTimer);
     }
 
     MR::mDrawTimer++;
@@ -173,9 +167,9 @@ void WarpPod::init(const JMapInfoIter& rIter) {
     strcpy(mEventCameraName, eventCameraName);
 
     if (mArg1 == 0) {
-        MR::connectToScene(this, 34, -1, -1, -1);
+        MR::connectToScene(this, MR::MovementType_MapObj, -1, -1, -1);
     } else {
-        MR::connectToScene(this, 34, 5, 8, -1);
+        MR::connectToScene(this, MR::MovementType_MapObj, MR::CalcAnimType_MapObj, MR::DrawBufferType_MapObj, -1);
     }
 
     initSound(4, false);
@@ -280,7 +274,7 @@ void WarpPod::appear() {
 
         MR::invalidateClipping(this);
 
-        _CB  = false;
+        _CB = false;
 
         MR::startSound(this, "SE_OJ_WARP_POD_PATH_APPEAR", -1, -1);
         MR::startBck(this, "Active", nullptr);

@@ -3,6 +3,7 @@
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Map/SphereSelector.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 #include "Game/Util/DemoUtil.hpp"
 #include "Game/Util/DrawUtil.hpp"
 #include "Game/Util/JMapInfo.hpp"
@@ -44,7 +45,7 @@ void AstroDomeSky::init(const JMapInfoIter& rIter) {
     _94 = MR::initDLMakerProjmapEffectMtxSetter(this);
     MR::newDifferedDLBuffer(this);
     MR::startBtk(this, arg2);
-    MR::connectToScene(this, 36, 5, 35, 30);
+    MR::connectToScene(this, MR::MovementType_Sky, MR::CalcAnimType_MapObj, MR::DrawBufferType_AstroDomeSky, MR::DrawType_AstroDomeSkyClear);
     MR::invalidateClipping(this);
     initNerve(&NrvAstroDomeSky::AstroDomeNrvHide::sInstance);
     MR::tryRegisterDemoCast(this, rIter);

@@ -142,8 +142,8 @@ namespace MR {
         DrawType_SpiderThread = 0x15,
         DrawType_SpaceCocoon = 0x16,
         DrawType_0x17 = 0x17,
-        DrawType_WarpPodPath = 0x18,
-        DrawType_FlexibleSphere = 0x19,
+        DrawType_WarpPodPath = 0x18,     // TODO: DrawType_NormalMap?
+        DrawType_FlexibleSphere = 0x19,  // TODO: DrawType_DynamicCollisionObj?
         DrawType_KirairaChain = 0x1A,
         DrawType_WaterPlant = 0x1B,
         DrawType_VolumeModel = 0x1C,

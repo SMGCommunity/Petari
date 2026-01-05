@@ -1,6 +1,7 @@
 #include "Game/MapObj/DynamicCollisionObj.hpp"
 #include "Game/Map/CollisionParts.hpp"
 #include "Game/Map/KCollision.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 
 DynamicCollisionObj::DynamicCollisionObj(const char* pName) : LiveActor(pName) {
     _A4 = 0;
@@ -12,7 +13,7 @@ DynamicCollisionObj::DynamicCollisionObj(const char* pName) : LiveActor(pName) {
 
 void DynamicCollisionObj::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
-    MR::connectToScene(this, 42, 8, -1, 25);
+    MR::connectToScene(this, MR::MovementType_Enemy, MR::CalcAnimType_Enemy, -1, MR::DrawType_FlexibleSphere);
 
     _8C = nullptr;
 }
