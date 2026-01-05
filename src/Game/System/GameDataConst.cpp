@@ -43,12 +43,14 @@ bool GameDataConst::isGalaxyLuigiArrested(const char* pGalaxy, s32 starId) {
 }
 
 bool GameDataConst::isQuestionGalaxy(const char* pGalaxy) {
-    for(GameEventFlagIter iter = GameEventFlagTable::getBeginIter(); !iter.isEnd(); iter .goNext()) {
+    for (GameEventFlagIter iter = GameEventFlagTable::getBeginIter(); !iter.isEnd(); iter.goNext()) {
         GameEventFlagAccessor accessor(iter.getFlag());
-        if(accessor.isTypeGalaxyOpenStar()) {
+
+        if (accessor.isTypeGalaxyOpenStar()) {
             char dest[0x40];
             snprintf(dest, sizeof(dest), "Appear%s", pGalaxy);
-            if(MR::isEqualString(accessor.getName(), dest)) {
+
+            if (MR::isEqualString(accessor.getName(), dest)) {
                 return true;
             }
         }
@@ -73,10 +75,11 @@ u32 GameDataConst::getIncludedGrandGalaxyId(const char* pGalaxy) {
 }
 
 bool GameDataConst::isPowerStarSpecial(const char* pGalaxy, s32 starId, const char* pSpecial) {
-    for(GameEventFlagIter iter = GameEventFlagTable::getBeginIter(); !iter.isEnd(); iter .goNext()) {
+    for (GameEventFlagIter iter = GameEventFlagTable::getBeginIter(); !iter.isEnd(); iter.goNext()) {
         GameEventFlagAccessor accessor(iter.getFlag());
-        if(accessor.isTypeSpecialStar() && accessor.getStarId() == starId) {
-            if(MR::isEqualString(accessor.getGalaxyName(), pGalaxy) && strstr(accessor.getName(),pSpecial) != nullptr) {
+        
+        if (accessor.isTypeSpecialStar() && accessor.getStarId() == starId) {
+            if (MR::isEqualString(accessor.getGalaxyName(), pGalaxy) && strstr(accessor.getName(), pSpecial) != nullptr) {
                 return true;
             }
         }
