@@ -14,20 +14,20 @@ s32 GameDataConst::getPowerStarNumToOpenGalaxy(const char* pGalaxy) {
     return powerStarNum;
 }
 
-bool GameDataConst::isPowerStarGreen(const char* pName, s32 a2) {
-    return isPowerStarSpecial(pName, a2, "SpecialStarGreen");
+bool GameDataConst::isPowerStarGreen(const char* pGalaxy, s32 starId) {
+    return isPowerStarSpecial(pGalaxy, starId, "SpecialStarGreen");
 }
 
-bool GameDataConst::isPowerStarRed(const char* pName, s32 a2) {
-    return isPowerStarSpecial(pName, a2, "SpecialStarRed");
+bool GameDataConst::isPowerStarRed(const char* pGalaxy, s32 starId) {
+    return isPowerStarSpecial(pGalaxy, starId, "SpecialStarRed");
 }
 
-bool GameDataConst::isPowerStarLuigiHas(const char* pName, s32 a2) {
-    return isPowerStarSpecial(pName, a2, "SpecialStarFindingLuigi");
+bool GameDataConst::isPowerStarLuigiHas(const char* pGalaxy, s32 starId) {
+    return isPowerStarSpecial(pGalaxy, starId, "SpecialStarFindingLuigi");
 }
 
-bool GameDataConst::isGrandStar(const char* pName, s32 a2) {
-    return isPowerStarSpecial(pName, a2, "SpecialStarGrand");
+bool GameDataConst::isGrandStar(const char* pGalaxy, s32 starId) {
+    return isPowerStarSpecial(pGalaxy, starId, "SpecialStarGrand");
 }
 
 bool GameDataConst::isGalaxyLuigiArrested(const char* pGalaxy, s32 starId) {
@@ -40,6 +40,22 @@ bool GameDataConst::isGalaxyLuigiArrested(const char* pGalaxy, s32 starId) {
     }
 
     return ret;
+}
+
+bool GameDataConst::isQuestionGalaxy(const char* pGalaxy) {
+    for (GameEventFlagIter iter = GameEventFlagTable::getBeginIter(); !iter.isEnd(); iter.goNext()) {
+        GameEventFlagAccessor accessor(iter.getFlag());
+
+        if (accessor.isTypeGalaxyOpenStar()) {
+            char dest[0x40];
+            snprintf(dest, sizeof(dest), "Appear%s", pGalaxy);
+
+            if (MR::isEqualString(accessor.getName(), dest)) {
+                return true;
+            }
+        }
+    }
+    return false;
 }
 
 bool GameDataConst::isGalaxyAppearGreenDriver(const char* pGalaxyName) {
@@ -56,4 +72,17 @@ u32 GameDataConst::getIncludedGrandGalaxyId(const char* pGalaxy) {
     u32 grandGalaxyNo = 0;
     element.getValue< u32 >("GrandGalaxyNo", &grandGalaxyNo);
     return grandGalaxyNo;
+}
+
+bool GameDataConst::isPowerStarSpecial(const char* pGalaxy, s32 starId, const char* pSpecial) {
+    for (GameEventFlagIter iter = GameEventFlagTable::getBeginIter(); !iter.isEnd(); iter.goNext()) {
+        GameEventFlagAccessor accessor(iter.getFlag());
+        
+        if (accessor.isTypeSpecialStar() && accessor.getStarId() == starId) {
+            if (MR::isEqualString(accessor.getGalaxyName(), pGalaxy) && strstr(accessor.getName(), pSpecial) != nullptr) {
+                return true;
+            }
+        }
+    }
+    return false;
 }
