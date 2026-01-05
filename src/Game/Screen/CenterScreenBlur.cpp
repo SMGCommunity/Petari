@@ -1,5 +1,6 @@
 #include "Game/Screen/CenterScreenBlur.hpp"
 #include "Game/LiveActor/Nerve.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 #include "Game/Screen/FullScreenBlur.hpp"
 #include "Game/Util/DemoUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
@@ -14,7 +15,7 @@ namespace NrvCenterScreenBlur {
 CenterScreenBlur::CenterScreenBlur() : LiveActor("画面中心ブラー"), mTotalFrame(0), mFadeInFrame(0), mFadeOutFrame(0), _98(0.0f), _9C(0), _A0(0.0f) {}
 
 void CenterScreenBlur::init(const JMapInfoIter& rIter) {
-    MR::connectToScene(this, 0x17, -1, -1, 0x2F);
+    MR::connectToScene(this, MR::MovementType_ImageEffect, -1, -1, MR::DrawType_CenterScreenBlur);
     MR::invalidateClipping(this);
     MR::registerDemoSimpleCastAll(this);
     initNerve(&NrvCenterScreenBlur::CenterScreenBlurNrvFadeIn::sInstance);

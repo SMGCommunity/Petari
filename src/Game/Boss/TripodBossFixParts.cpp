@@ -1,6 +1,7 @@
 #include "Game/Boss/TripodBossFixParts.hpp"
 #include "Game/Boss/TripodBossAccesser.hpp"
 #include "Game/Boss/TripodBossFixPartsBase.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 #include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
@@ -64,9 +65,9 @@ void TripodBossFixParts::init(const JMapInfoIter& rIter) {
     initModelManagerWithAnm(mapPartsID, nullptr, false);
 
     if (val) {
-        MR::connectToScene(this, 0x23, 0xB, 0x1E, -1);
+        MR::connectToScene(this, MR::MovementType_MapObjDecoration, MR::CalcAnimType_MapObjDecoration, MR::DrawBufferType_BloomModel, -1);
     } else {
-        MR::connectToScene(this, 0x23, 0xB, 0x1F, -1);
+        MR::connectToScene(this, MR::MovementType_MapObjDecoration, MR::CalcAnimType_MapObjDecoration, MR::DrawBufferType_TripodBoss, -1);
     }
 
     if (MR::isEqualString(objName, "TriPodBossBodyA")) {

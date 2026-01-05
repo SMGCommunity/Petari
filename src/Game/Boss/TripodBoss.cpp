@@ -8,6 +8,7 @@
 #include "Game/LiveActor/ModelObj.hpp"
 #include "Game/Map/CollisionParts.hpp"
 #include "Game/MapObj/DummyDisplayModel.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 #include "Game/Util/ActorCameraUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
@@ -96,7 +97,7 @@ void TripodBoss::init(const JMapInfoIter& rIter) {
     initModelManagerWithAnm(objName, nullptr, false);
     char lowName[0x20];
     sprintf(lowName, "%sLow", objName);
-    mLowModel = new ModelObj("三脚ボスLODモデル", lowName, getBaseMtx(), 31, -2, -2, false);
+    mLowModel = new ModelObj("三脚ボスLODモデル", lowName, getBaseMtx(), MR::DrawBufferType_TripodBoss, -2, -2, false);
     mLowModel->initWithoutIter();
     MR::invalidateClipping(mLowModel);
     mLowModel->makeActorAppeared();
@@ -1155,11 +1156,7 @@ void TripodBossBone::setAttachBaseMatrix(const TPos3f& rPos) {
 }
 
 namespace MR {
-    NameObj* createTripodBoss(const char* pName) {
-        return new TripodBoss(pName);
-    }
+    NameObj* createTripodBoss(const char* pName) { return new TripodBoss(pName); }
 
-    NameObj* createTripod2Boss(const char* pName) {
-        return new TripodBoss(pName);
-    }
+    NameObj* createTripod2Boss(const char* pName) { return new TripodBoss(pName); }
 };  // namespace MR

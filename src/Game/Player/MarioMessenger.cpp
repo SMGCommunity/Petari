@@ -1,4 +1,5 @@
 #include "Game/Player/MarioMessenger.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 
@@ -9,7 +10,7 @@ MarioMessenger::MarioMessenger(HitSensor* pSender) : NameObj("マリオメッセ
     mMsgArray = new u32[ARRAY_SIZE];
     mArraySize = 0;
 
-    MR::connectToScene(this, 39, -1, -1, -1);
+    MR::connectToScene(this, MR::MovementType_PlayerMessenger, -1, -1, -1);
 }
 
 void MarioMessenger::movement() {

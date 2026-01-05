@@ -1,4 +1,5 @@
 #include "Game/MapObj/WaterLeakPipe.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 
 namespace NrvIceStepNoSlip {
     NEW_NERVE(IceStepNoSlipNrvAppear, IceStepNoSlip, Appear);
@@ -14,7 +15,7 @@ IceStepNoSlip::~IceStepNoSlip() {}
 
 WaterLeakPipe::~WaterLeakPipe() {}
 
-IceStepNoSlip::IceStepNoSlip(MtxPtr mtx) : ModelObj("アイス床", "IceStepNoSlip", mtx, 0x1A, -2, -2, false) {}
+IceStepNoSlip::IceStepNoSlip(MtxPtr mtx) : ModelObj("アイス床", "IceStepNoSlip", mtx, MR::DrawBufferType_IndirectMapObjStrongLight, -2, -2, false) {}
 
 void IceStepNoSlip::init(const JMapInfoIter& rIter) {
     ModelObj::init(rIter);

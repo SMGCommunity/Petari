@@ -5,9 +5,9 @@
 
 class LightInfo {
 public:
-    _GXColor mColor;     // 0x0
-    TVec3f mPos;         // 0x4
-    u8 mIsFollowCamera;  // 0x10
+    _GXColor mColor;       // 0x0
+    TVec3f mPos;           // 0x4
+    bool mIsFollowCamera;  // 0x10
 };
 
 class LightInfoCoin : public LightInfo {

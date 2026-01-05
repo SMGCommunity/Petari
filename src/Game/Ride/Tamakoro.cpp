@@ -4,6 +4,7 @@
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Ride/SphereAccelSensorController.hpp"
 #include "Game/Ride/TamakoroTutorial.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 #include "Game/Util/ActorMovementUtil.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/ActorShadowUtil.hpp"
@@ -60,7 +61,7 @@ Tamakoro::Tamakoro(const char* pName)
 void Tamakoro::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     initModelManagerWithAnm("Tamakoro", 0, false);
-    MR::connectToScene(this, 0x29, 7, 0x1a, -1);
+    MR::connectToScene(this, MR::MovementType_Ride, MR::CalcAnimType_Ride, MR::DrawBufferType_IndirectMapObjStrongLight, -1);
     MR::makeQuatFromRotate(&mBaseQuat, this);
     MR::initShadowVolumeSphere(this, 150.0f);
     initEffectKeeper(0, 0, false);
