@@ -41,7 +41,7 @@ namespace {
 }  // namespace
 
 BossBegoman::BossBegoman(const char* pName)
-    : BegomanBase(pName), mBabyFollowers(nullptr), mSpikeFollowers(nullptr), mBabyFollowerNum(0), mSpikeFollowerNum(0), mFollowerKind(bothFollower),
+    : BegomanBase(pName), mBabyFollowers(nullptr), mSpikeFollowers(nullptr), mBabyFollowerNum(0), mSpikeFollowerNum(0), mFollowerKind(FollowerKind_BothFollower),
       mPath(nullptr), mHead(nullptr), mHealth(3), _150(0.2f), mOpeningDemoInfo(nullptr) {
     mHeadMtx.identity();
 }
@@ -78,9 +78,9 @@ void BossBegoman::init(const JMapInfoIter& rIter) {
     s32 arg7 = -1;
     MR::getJMapInfoArg7NoInit(rIter, &arg7);
     if (arg7 == -1) {
-        mFollowerKind = babyFollower;
+        mFollowerKind = FollowerKind_BabyFollower;
     } else {
-        mFollowerKind = spikeFollower;
+        mFollowerKind = FollowerKind_SpikeFollower;
     }
 
     mBabyFollowerNum = 3;
@@ -134,15 +134,15 @@ void BossBegoman::appear() {
 
 void BossBegoman::kill() {
     BegomanBase::kill();
-    killAllFollower(bothFollower);
+    killAllFollower(FollowerKind_BothFollower);
     MR::startAfterBossBGM();
     MR::requestAppearPowerStar(this, mPosition);
 }
 
 void BossBegoman::control() {
-    TVec3f HeadEdgeScale;
-    MR::copyJointScale(mHead, "Edge", &HeadEdgeScale);
-    MR::setShadowVolumeSphereRadius(this, nullptr, 200.0f * (1.0f - 0.35f * (1 - HeadEdgeScale.x)));
+    TVec3f headEdgeScale;
+    MR::copyJointScale(mHead, "Edge", &headEdgeScale);
+    MR::setShadowVolumeSphereRadius(this, nullptr, 200.0f * (1.0f - 0.35f * (1 - headEdgeScale.x)));
 
     if (isNerve(&NrvBossBegoman::HostTypeNrvOnWeak::sInstance) || isNerve(&NrvBossBegoman::HostTypeNrvOnWeakTurn::sInstance)) {
         HitSensor* bodySensor = getSensor("body");
@@ -231,12 +231,12 @@ const Nerve* BossBegoman::getNerveWait() {
 }
 
 void BossBegoman::addVelocityOnPushedFromElectricRail(const TVec3f& a1, const TVec3f& a2) {
-    TVec3f RailPushVelH(mInitPos);
-    RailPushVelH.sub(getSensor("body")->mPosition);
-    MR::vecKillElement(RailPushVelH, mGravity, &RailPushVelH);
-    RailPushVelH.setLength(getRailPushVelHBoss());
+    TVec3f railPushVelH(mInitPos);
+    railPushVelH.sub(getSensor("body")->mPosition);
+    MR::vecKillElement(railPushVelH, mGravity, &railPushVelH);
+    railPushVelH.setLength(getRailPushVelHBoss());
 
-    mVelocity.add(RailPushVelH);
+    mVelocity.add(railPushVelH);
     mVelocity.add(mGravity.scaleInline(-getRailPushJumpBoss()));
 }
 
@@ -534,8 +534,8 @@ void BossBegoman::exeElectricDeath() {
             MR::emitEffect(this, "Death");
         } else {
             if (mHealth == 1) {
-                killAllFollower(spikeFollower);
-                mFollowerKind = spikeFollower;
+                killAllFollower(FollowerKind_SpikeFollower);
+                mFollowerKind = FollowerKind_SpikeFollower;
             }
             setNerve(&NrvBossBegoman::HostTypeNrvJumpToInitPos::sInstance);
         }
@@ -634,17 +634,16 @@ void BossBegoman::tryLaunchFollower() {
             vec.set(mFaceVec);
         }
 
-        if (mFollowerKind == babyFollower) {
+        if (mFollowerKind == FollowerKind_BabyFollower) {
             launchBegomanBabyFromGuarder(this, mBabyFollowers, mBabyFollowerNum, 100.0f, 10.0f, 15.0f, &vec);
-        } else if (mFollowerKind == spikeFollower) {
+        } else if (mFollowerKind == FollowerKind_SpikeFollower) {
             launchBegoman(this, mSpikeFollowers, mSpikeFollowerNum, 100.0f, 10.0f, 15.0f, &vec);
         }
     }
 }
 
 void BossBegoman::killAllFollower(FollowerKind kind) {
-    if (kind == babyFollower || kind == bothFollower) {
-    
+    if (kind == FollowerKind_BabyFollower || kind == FollowerKind_BothFollower) {
         for (int i = 0; i < mBabyFollowerNum; i++) {
             if (!MR::isDead(mBabyFollowers[i])) {
                 MR::emitEffect(mBabyFollowers[i], "Death");
@@ -653,8 +652,7 @@ void BossBegoman::killAllFollower(FollowerKind kind) {
         }
     }
 
-    if (kind == spikeFollower || kind == bothFollower) {
-
+    if (kind == FollowerKind_SpikeFollower || kind == FollowerKind_BothFollower) {
         for (int i = 0; i < mSpikeFollowerNum; i++) {
             if (!MR::isDead(mSpikeFollowers[i])) {
                 MR::emitEffect(mSpikeFollowers[i], "Death");
@@ -665,7 +663,7 @@ void BossBegoman::killAllFollower(FollowerKind kind) {
 }
 
 bool BossBegoman::isDeadAllFollower() {
-    if (mFollowerKind == babyFollower) {
+    if (mFollowerKind == FollowerKind_BabyFollower) {
         return isDeadAllFollowerCore((BegomanBase**)mBabyFollowers, mBabyFollowerNum);
     } else {
         return isDeadAllFollowerCore((BegomanBase**)mSpikeFollowers, mSpikeFollowerNum);
@@ -712,16 +710,16 @@ void BossBegoman::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
         return;
     }
 
-    bool AttackPlayerEdge;
+    bool attackPlayerEdge;
 
     if (mHead->isEdgeOut() && MR::isPlayerExistSide(this, 80.0f, 0.25f)) {
-        AttackPlayerEdge = MR::sendMsgEnemyAttackFire(pReceiver, pSender);
+        attackPlayerEdge = MR::sendMsgEnemyAttackFire(pReceiver, pSender);
     } else {
         MR::sendMsgEnemyAttackFlipRot(pReceiver, pSender);
         return;
     }
 
-    if (AttackPlayerEdge) {
+    if (attackPlayerEdge) {
         TVec3f dirReceiverToSender(pSender->mPosition);
         dirReceiverToSender.sub(pReceiver->mPosition);
         MR::normalizeOrZero(&dirReceiverToSender);

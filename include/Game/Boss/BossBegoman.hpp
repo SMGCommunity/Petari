@@ -12,37 +12,29 @@ class BegomanSpike;
 
 class BossBegoman : public BegomanBase {
 public:
-    BossBegoman(const char*);
-
     enum FollowerKind {
-        babyFollower = 0,
-        spikeFollower = 1,
-        bothFollower = 2,
+        FollowerKind_BabyFollower = 0,
+        FollowerKind_SpikeFollower = 1,
+        FollowerKind_BothFollower = 2,
     };
 
+    BossBegoman(const char*);
+
     virtual void init(const JMapInfoIter& rIter);
-
     virtual void calcAnim();
-
     virtual void appear();
     virtual void kill();
-
     virtual void control();
     virtual void attackSensor(HitSensor* pSender, HitSensor* pReceiver);
     virtual bool receiveMsgPush(HitSensor* pSender, HitSensor* pReceiver);
     virtual bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
     virtual bool receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
     virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
-
-    virtual u32 getKind() const {return 0;};
-
+    virtual u32 getKind() const { return 0; };
     virtual bool onTouchElectric(const TVec3f&, const TVec3f&);
-
     virtual bool setNerveReturn();
     virtual const Nerve* getNerveWait();
-
     virtual void addVelocityOnPushedFromElectricRail(const TVec3f&, const TVec3f&);
-
     virtual bool requestAttack();
 
     void setStepBackNerve();
@@ -88,16 +80,16 @@ public:
 
     void startRotationLevelSound();
 
-    BegomanBaby** mBabyFollowers; //9x100
-    //should really be begomanSpike, but the class is not defined yet
-    BegomanBase** mSpikeFollowers; //0x104
-    s32 mBabyFollowerNum; //0x108
-    s32 mSpikeFollowerNum; //0x10C
-    FollowerKind mFollowerKind; //110
-    ParabolicPath* mPath; // 0x114;
-    BossBegomanHead* mHead; // 0x118;
-    TPos3f mHeadMtx; // 0x11C
-    s32 mHealth; // 0x14C
+    /* 0x100 */ BegomanBaby** mBabyFollowers;
+    // should really be begomanSpike, but the class is not defined yet
+    /* 0x104 */ BegomanBase** mSpikeFollowers;
+    /* 0x108 */ s32 mBabyFollowerNum;
+    /* 0x10C */ s32 mSpikeFollowerNum;
+    /* 0x110 */ FollowerKind mFollowerKind;
+    /* 0x114 */ ParabolicPath* mPath;
+    /* 0x118 */ BossBegomanHead* mHead;
+    /* 0x11C */ TPos3f mHeadMtx;
+    /* 0x14C */ s32 mHealth;
     f32 _150;
-    ActorCameraInfo* mOpeningDemoInfo; // 0x154
+    /* 0x145 */ ActorCameraInfo* mOpeningDemoInfo;
 };
