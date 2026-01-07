@@ -1,27 +1,25 @@
 #include "Game/System/GameEventFlag.hpp"
 
-GameEventFlagAccessor::GameEventFlagAccessor(const GameEventFlag* flag) {
-    mFlag = flag;
-}
+GameEventFlagAccessor::GameEventFlagAccessor(const GameEventFlag* pFlag) : mFlag(pFlag) {}
 
 const char* GameEventFlagAccessor::getName() const {
     return mFlag->mName;
 }
 
 bool GameEventFlagAccessor::isTypeGalaxyOpenStar() const {
-    return mFlag->mType == 2;
+    return mFlag->mType == GameEventFlag::Type_GalaxyOpenStar;
 }
 
 bool GameEventFlagAccessor::isTypeSpecialStar() const {
-    return mFlag->mType == 3;
+    return mFlag->mType == GameEventFlag::Type_SpecialStar;
 }
 
 bool GameEventFlagAccessor::isTypeStarPiece() const {
-    return mFlag->mType == 8;
+    return mFlag->mType == GameEventFlag::Type_StarPiece;
 }
 
 bool GameEventFlagAccessor::isTypeEventValueIsZero() const {
-    return mFlag->mType == 9;
+    return mFlag->mType == GameEventFlag::Type_EventValueIsZero;
 }
 
 const char* GameEventFlagAccessor::getGalaxyName() const {
@@ -33,7 +31,7 @@ s32 GameEventFlagAccessor::getStarId() const {
 }
 
 s32 GameEventFlagAccessor::getStarPieceIndex() const {
-    return mFlag->StarPieceIndex;
+    return mFlag->mStarPieceIndex;
 }
 
 const char* GameEventFlagAccessor::getGalaxyNameWithStarPiece() const {
@@ -41,7 +39,7 @@ const char* GameEventFlagAccessor::getGalaxyNameWithStarPiece() const {
 }
 
 s32 GameEventFlagAccessor::getNeedStarPieceNum() const {
-    return mFlag->mStarPieceNum * 10;
+    return mFlag->mNeedStarPieceNum * 10;
 }
 
 const char* GameEventFlagAccessor::getEventValueName() const {
