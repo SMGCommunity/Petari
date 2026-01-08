@@ -91,5 +91,5 @@ public:
     /* 0x11C */ TPos3f mHeadMtx;
     /* 0x14C */ s32 mHealth;
     f32 _150;
-    /* 0x145 */ ActorCameraInfo* mOpeningDemoInfo;
+    /* 0x154 */ ActorCameraInfo* mOpeningDemoInfo;
 };
