@@ -547,7 +547,7 @@ public:
         unsigned _F : 1;
         unsigned _10 : 1;
         unsigned _11 : 1;
-        unsigned _12 : 1;
+        unsigned mIsUnderwater : 1;
         unsigned _13 : 1;
         unsigned _14 : 1;
         unsigned _15 : 1;
@@ -736,7 +736,7 @@ public:
     Triangle* _47C;
     Triangle* _480;
     Triangle* _484;
-    f32 _488;
+    f32 mVerticalSpeed; // 0x488
     TVec3f mGroundPos;  // 0x48C
     TVec3f _498;
     TVec3f _4A4;
@@ -838,9 +838,7 @@ public:
     u8 _734;
     u8 _735;
     f32 _738;
-    f32 _73C;
-    f32 _740;
-    f32 _744;
+    TVec3f _73C;
     u8 _748;
     f32 _74C;
     u32 _750;

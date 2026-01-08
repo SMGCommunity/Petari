@@ -99,8 +99,8 @@ MarioActor::MarioActor(const char* pName) : LiveActor(pName), _1B0(0xFFFFFFFF) {
 
     _3C1 = false;
     _211 = 0;
-    _468.y = 0;
-    _468.z = 0;
+    _46C = 0;
+    _470 = 0;
     _474 = 0;
     _924 = nullptr;
     _928 = 0;
@@ -608,7 +608,7 @@ bool MarioActor::isJumping() const {
     if (_934) {
         return _938.dot(getGravityVec()) < -10.0f;
     }
-    if (mPlayerMode == 6 && mMario->_488 < mConst->getTable()->mTeresaDropDownHeight) {
+    if (mPlayerMode == 6 && mMario->mVerticalSpeed < mConst->getTable()->mTeresaDropDownHeight) {
         return false;
     }
     if (mMario->isWalling()) {
@@ -713,7 +713,7 @@ void MarioActor::exeWait() {
 }
 
 void MarioActor::movement() {
-    _468.y = 0;
+    _46C = 0;
     _378++;
     _1E1 = 0;
     PSMTXCopy(_AE0.toMtxPtr(), _AB0.toMtxPtr());
@@ -1103,15 +1103,15 @@ bool MarioActor::doRush() {
                 mMario->forceExitSwim();
             }
         } else if (!selectWaterInOut(_924->mHost->mName)) {
-            s32 initial = mMario->mSwim->_144;
+            s32 initial = mMario->mSwim->mSwimState;
             mMario->mSwim->checkWaterCube(false);
-            if ((int)mMario->mSwim->_144 != initial) {
-                if (mMario->mSwim->_144 <= 1 && (u32)initial - 2 <= 1) {
-                    playEffectRT("水面ジャンプ水柱", mMario->mSwim->_160, mMario->mSwim->_16C);
-                    emitEffectWaterColumn(mMario->mSwim->_160, mMario->mSwim->_16C);
-                } else if ((u32)initial <= 1 && mMario->mSwim->_144 - 2 <= 1) {
-                    playEffectRT("水面ジャンプ水柱", -mMario->_328, mMario->mSwim->_16C);
-                    emitEffectWaterColumn(mMario->mSwim->_160, mMario->mSwim->_16C);
+            if ((int)mMario->mSwim->mSwimState != initial) {
+                if (mMario->mSwim->mSwimState <= 1 && (u32)initial - 2 <= 1) {
+                    playEffectRT("水面ジャンプ水柱", mMario->mSwim->mSurfacePos, mMario->mSwim->mSurfaceNorm);
+                    emitEffectWaterColumn(mMario->mSwim->mSurfacePos, mMario->mSwim->mSurfaceNorm);
+                } else if ((u32)initial <= 1 && mMario->mSwim->mSwimState - 2 <= 1) {
+                    playEffectRT("水面ジャンプ水柱", -mMario->_328, mMario->mSwim->mSurfaceNorm);
+                    emitEffectWaterColumn(mMario->mSwim->mSurfacePos, mMario->mSwim->mSurfaceNorm);
                 }
                 if (initial == 2) {
                     mWaterLife = 8;
@@ -1230,7 +1230,7 @@ void MarioActor::updateSwingAction() {
     if (mMario->isStatusActive(0x13)) {
         canRush = false;
     }
-    if (_468.x) {
+    if (_468) {
         canRush = false;
     }
     if (mMario->isStatusActive(2)) {

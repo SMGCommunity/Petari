@@ -10,6 +10,9 @@ class MarineSnow;
 
 class MarioSwim : public MarioState {
 public:
+    enum WaterExitAction { EXIT_ACTION_NONE = 0, EXIT_ACTION_JUMP = 1, EXIT_ACTION_FALL = 3, EXIT_ACTION_SLIDE = 5, EXIT_ACTION_SURFACE };
+    enum SwimState { SWIM_STATE_NONE = 0, SWIM_STATE_ENTERING = 1, SWIM_STATE_UNDERWATER = 2, SWIM_STATE_SURFACE = 3 };
+
     MarioSwim(MarioActor*);
 
     virtual void init();
@@ -25,6 +28,8 @@ public:
     virtual bool passRing(const HitSensor*);
     virtual f32 getBlurOffset() const;
     virtual void draw3D() const;
+    virtual f32 getStickY() const;
+    virtual TVec3f& getGravityVec() const;
 
     bool checkWaterCube(bool);
     void onSurface();
@@ -32,7 +37,7 @@ public:
     void updateLifeByTime();
     void surfacePaddle();
     void flowOnWave(f32);
-    void checkWaterBottom();
+    bool checkWaterBottom();
     void spin();
     void decideVelocity();
     void procBuoyancy();
@@ -46,10 +51,16 @@ public:
     void startJet(u32);
     void addDamage(const TVec3f&);
     void addFaint(const TVec3f&);
-
+    AreaInfo* getWaterAreaInfo(WaterInfo*, const TVec3f&, TVec2f*);
+    void decOxygen(u16 amount);
+    void incOxygen();
+    void incLife();
+    void decLife();
+    f32 calcRingAcc();
+    void hitPunch(const TVec3f& rPunchDir);
     f32 getSurface() const;
-
-    virtual TVec3f& getGravityVec() const;
+    bool tryJetAttack(HitSensor*);
+    void dropJet(bool);
 
     static inline f32 getWorthlessNumber() { return 0.523598790169f; }
 
@@ -94,7 +105,7 @@ public:
 
     MarineSnow* _14;
     u8 _18;
-    u8 _19;
+    bool mIsOnSurface;  // 0x19
     u8 _1A;
     u8 _1B;
     u8 _1C;
@@ -119,29 +130,29 @@ public:
     u16 _40;
     u16 _42;
     u16 _44;
-    f32 _48;
+    f32 mSurfaceOffset;  // 0x48
     f32 _4C;
     f32 _50;
     f32 _54;
     f32 _58;
     f32 _5C;
     TVec3f _60;
-    TVec3f _6C;
+    TVec3f mUpVec;  // 0x6C
     u8 _78;
     u16 _7A;
     u16 _7C;
     f32 _80;
     f32 _84;
     u8 _88;
-    u16 _8A;
-    u16 _8C;
-    u16 _8E;
-    u16 _90;
-    f32 _94;
-    f32 _98;
+    u16 mIsNormalRingDash; // 0x8A
+    u16 mRingDashTimer; // 0x8C
+    u16 mRingDashChargeTimer; //0x8E
+    u16 mRingDashMaxDuration; // 0x90
+    f32 mRingDashSpeedScale; // 0x94
+    f32 mBlurOffset;  // 0x98
     u8 _9C;
-    u8 _9D;
-    u8 _9E;
+    u8 _9D;    
+    u8 mNextAction;  // 0x9E
     u8 _9F;
     TVec3f _A0;
     u8 _AC;
@@ -151,22 +162,22 @@ public:
     f32 _E0;
     f32 _E4;
     u16 _E8;
-    u16 _EA;
+    u16 mOxygen;  // 0xEA
     u16 _EC;
     u16 _EE;
     u16 _F0;
-    WaterInfo _F4;
-    s32 _144;
+    WaterInfo mWaterInfo;  // 0xF4
+    s32 mSwimState;        // 0x144
     TVec3f _148;
     TVec3f _154;
-    TVec3f _160;
-    TVec3f _16C;
+    TVec3f mSurfacePos;   // 0x160
+    TVec3f mSurfaceNorm;  // 0x16C
     TVec3f _178;
     TVec3f _184;
     TVec3f _190;
-    f32 _19C;
+    f32 mWaterDepth;  // 0x19C
     f32 _1A0;
-    f32 _1A4;
+    f32 mDistToFloor;  // 0x1A4
     f32 _1A8;
     f32 _1AC;
     u16 _1B0;
