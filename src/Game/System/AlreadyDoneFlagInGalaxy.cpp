@@ -85,3 +85,7 @@ u32 AlreadyDoneFlagInGalaxy::setupFlag(const char* pName, const JMapInfoIter& rI
 
     return result;
 }
+
+void AlreadyDoneFlagInGalaxy::updateValue(int a1, u32 a2) {
+    mDoneInfos[a1].set(a2 != 0);
+}
