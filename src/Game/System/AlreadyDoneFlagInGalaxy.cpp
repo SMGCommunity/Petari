@@ -27,7 +27,7 @@ void AlreadyDoneInfo::init(const char* pInfo, s32 a2, s32 a3) {
 bool AlreadyDoneInfo::isEqual(const AlreadyDoneInfo& otherInfo) const {
     bool ret = 0;
 
-    if ((otherInfo._0 & 0x7FFF) == (_0 & 0x7FFF)) {
+    if ((otherInfo._0 & 0x7FFFu) == (_0 & 0x7FFFu)) {
         if (otherInfo._2 == _2) {
             if (otherInfo._4 == _4) {
                 ret = 1;
@@ -39,19 +39,17 @@ bool AlreadyDoneInfo::isEqual(const AlreadyDoneInfo& otherInfo) const {
 }
 
 void AlreadyDoneInfo::set(bool flag) {
-    _0 = (flag ? 0 : 0x8000) | _0 & 0x7FFF;
+    _0 = (flag ? 0x8000 : 0) | _0 & 0x7FFF;
 }
 
-AlreadyDoneFlagInGalaxy::AlreadyDoneFlagInGalaxy(int numInfos) : mDoneInfos(0), mNumInfos(0), _8(0) {
-    mDoneInfos = new AlreadyDoneInfo[numInfos];
-    mNumInfos = numInfos;
+AlreadyDoneFlagInGalaxy::AlreadyDoneFlagInGalaxy(int numInfos) : mDoneInfos(), _8(0) {
+    mDoneInfos.init(numInfos);
 }
 
 void AlreadyDoneFlagInGalaxy::clear() {
     _8 = 0;
 }
 
-#ifdef NON_MATCHING
 u32 AlreadyDoneFlagInGalaxy::setupFlag(const char* pName, const JMapInfoIter& rIter, u32* a3) {
     u32 result;
 
@@ -59,31 +57,31 @@ u32 AlreadyDoneFlagInGalaxy::setupFlag(const char* pName, const JMapInfoIter& rI
     MR::getJMapInfoLinkID(rIter, &linkID);
     s32 zoneID = MR::getPlacedZoneId(rIter);
 
-    AlreadyDoneInfo info;
-    info.init(pName, zoneID, linkID);
+    // There may be a function that got inlined here, because in SMG2 there is a function call here with the
+    // contents below this comment
+    
+     AlreadyDoneInfo info;
+     info.init(pName, zoneID, linkID);
 
-    AlreadyDoneInfo* infs = mDoneInfos;
-    AlreadyDoneInfo* lastInfs = &mDoneInfos[_8];
+     AlreadyDoneInfo* infs = mDoneInfos.begin();
+     AlreadyDoneInfo* lastInfs = &mDoneInfos[_8];
 
-    while (infs != lastInfs && !infs->isEqual(info)) {
-        infs++;
-    }
+     while (infs != lastInfs && !infs->isEqual(info)) {
+     infs++;
+     }
 
-    u32 v10 = _8;
-    AlreadyDoneInfo* new_infs = &mDoneInfos[v10];
+     AlreadyDoneInfo* new_infs = &mDoneInfos[_8];
 
-    if (infs != new_infs) {
-        result = infs - mDoneInfos;
-        *a3 = (infs->_0 >> 15) & 0x1;
-    } else {
-        result = _8;
-        _8 = v10 + 1;
-        new_infs->_0 = info._0;
-        new_infs->_2 = info._2;
-        new_infs->_4 = info._4;
-        *a3 = 0;
-    }
+     if (infs != new_infs) {
+         result = infs - mDoneInfos.begin();
+         *a3 = (infs->_0 >> 15) & 0x1;
+     } else {
+         result = _8++;
+         new_infs->_0 = info._0;
+         new_infs->_2 = info._2;
+         new_infs->_4 = info._4;
+         *a3 = 0;
+     }
 
     return result;
 }
-#endif
