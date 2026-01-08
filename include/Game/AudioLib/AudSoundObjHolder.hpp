@@ -1,17 +1,21 @@
 #pragma once
 
-#include "Game/AudioLib/AudSoundObject.hpp"
-#include "JSystem/JKernel/JKRHeap.hpp"
+#include <revolution/types.h>
+
+class AudSoundObject;
+class JKRHeap;
 
 class AudSoundObjHolder {
 public:
-    AudSoundObjHolder(JKRHeap* heap, long capacity);
+    /// @brief Creates a new AudSoundObjHolder
+    AudSoundObjHolder(JKRHeap* pHeap, long capacity);
     void update();
-    void add(AudSoundObject* sound);
-    void remove(AudSoundObject* sound);
+    void add(AudSoundObject* pSound);
+    void remove(AudSoundObject* pSsound);
+    /// @brief Shifts to the left sounds from initialIndex to finalIndex in mArray to replace AudSoundObject stored in initialIndex
     void moveOver(long initialIndex, long finalIndex);
 
     /* 0x00 */ AudSoundObject** mArray;  ///< AudSoundObject storage
-    /* 0x04 */ long mCapacity;           ///< Physical capacity of mArray
-    /* 0x08 */ long mSize;               ///< Logical capacity of mArray
+    /* 0x04 */ s32 mCapacity;            ///< Physical capacity of mArray
+    /* 0x08 */ s32 mSize;                ///< Logical capacity of mArray
 };

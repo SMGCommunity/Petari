@@ -1,10 +1,12 @@
 #include "Game/AudioLib/AudSoundObjHolder.hpp"
 
-/// @brief Creates a new AudSoundObjHolder
-AudSoundObjHolder::AudSoundObjHolder(JKRHeap* heap, long capacity) {
+#include "Game/AudioLib/AudSoundObject.hpp"
+#include <JSystem/JKernel/JKRHeap.hpp>
+
+AudSoundObjHolder::AudSoundObjHolder(JKRHeap* pHeap, long capacity) {
     mCapacity = capacity;
     mSize = 0;
-    mArray = new (heap, 0) AudSoundObject*[capacity];
+    mArray = new (pHeap, 0) AudSoundObject*[capacity];
 }
 
 void AudSoundObjHolder::update() {
@@ -13,19 +15,19 @@ void AudSoundObjHolder::update() {
     }
 }
 
-void AudSoundObjHolder::add(AudSoundObject* sound) {
+void AudSoundObjHolder::add(AudSoundObject* pSound) {
     if (mSize < mCapacity) {
-        mArray[mSize] = sound;
+        mArray[mSize] = pSound;
         mSize++;
     }
 };
 
-void AudSoundObjHolder::remove(AudSoundObject* sound) {
+void AudSoundObjHolder::remove(AudSoundObject* pSound) {
     int soundIndex = -1;
 
     // Find sound object index in mArray
     for (int i = mSize - 1; i >= 0; i--) {
-        if (mArray[i] == sound) {
+        if (mArray[i] == pSound) {
             soundIndex = i;
             break;
         }
@@ -38,9 +40,8 @@ void AudSoundObjHolder::remove(AudSoundObject* sound) {
     }
 }
 
-/// @brief Shifts to the right sounds from initialIndex to finalIndex in mArray to replace AudSoundObject stored in initialIndex
 void AudSoundObjHolder::moveOver(long initialIndex, long finalIndex) {
     for (int i = initialIndex; i < finalIndex; i++) {
-        mArray[i] = mArray[i - 1];
+        mArray[i] = mArray[i + 1];
     }
 }
