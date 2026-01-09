@@ -9,6 +9,7 @@
 #include "Game/Map.hpp"
 #include "Game/Map/GroupSwitchWatcher.hpp"
 #include "Game/MapObj.hpp"
+#include "Game/MapObj/JetTurtle.hpp"
 #include "Game/NPC.hpp"
 #include "Game/Player.hpp"
 #include "Game/Ride.hpp"
@@ -801,7 +802,7 @@ namespace {
         },
         {
             "JetTurtle",
-            nullptr,
+            createNameObj< JetTurtle >,
             "Koura",
         },
         {
@@ -826,7 +827,7 @@ namespace {
         },
         {
             "GoldenTurtle",
-            nullptr,
+            createNameObj< GoldenTurtle >,
             "KouraShine",
         },
         {
