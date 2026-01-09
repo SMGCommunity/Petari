@@ -10,7 +10,15 @@ class MarineSnow;
 
 class MarioSwim : public MarioState {
 public:
-    enum WaterExitAction { EXIT_ACTION_NONE = 0, EXIT_ACTION_JUMP = 1, EXIT_ACTION_FALL = 3, EXIT_ACTION_SLIDE = 5, EXIT_ACTION_SURFACE };
+    enum WaterExitAction {
+        EXIT_ACTION_NONE = 0,
+        EXIT_ACTION_JUMP = 1,        // Shallow water jump
+        EXIT_ACTION_POWER_JUMP = 2,  // Spin jump or paddle jump
+        EXIT_ACTION_FALL = 3,
+
+        EXIT_ACTION_SLIDE = 5,
+        EXIT_ACTION_SURFACE = 6
+    };
     enum SwimState { SWIM_STATE_NONE = 0, SWIM_STATE_ENTERING = 1, SWIM_STATE_UNDERWATER = 2, SWIM_STATE_SURFACE = 3 };
 
     MarioSwim(MarioActor*);
@@ -103,85 +111,85 @@ public:
 
     inline bool check7Aand7C() const { return _7A || _7C; }
 
-    MarineSnow* _14;
-    u8 _18;
-    bool mIsOnSurface;  // 0x19
-    u8 _1A;
-    u8 _1B;
-    u8 _1C;
-    u8 _1D;
-    u8 _1E;
-    u8 _1F;
-    u8 _20;
-    u8 _21;
-    u8 _22;
-    u32 _24;
-    u32 _28;
-    u16 _2C;
-    u16 _2E;
-    u16 _30;
-    u16 _32;
-    u16 _34;
-    u16 _36;
-    u16 _38;
-    u16 _3A;
-    u16 _3C;
-    u16 _3E;
-    u16 _40;
-    u16 _42;
-    u16 _44;
-    f32 mSurfaceOffset;  // 0x48
-    f32 _4C;
-    f32 _50;
-    f32 _54;
-    f32 _58;
-    f32 _5C;
-    TVec3f _60;
-    TVec3f mUpVec;  // 0x6C
-    u8 _78;
-    u16 _7A;
-    u16 _7C;
-    f32 _80;
-    f32 _84;
-    u8 _88;
-    u16 mIsNormalRingDash; // 0x8A
-    u16 mRingDashTimer; // 0x8C
-    u16 mRingDashChargeTimer; //0x8E
-    u16 mRingDashMaxDuration; // 0x90
-    f32 mRingDashSpeedScale; // 0x94
-    f32 mBlurOffset;  // 0x98
-    u8 _9C;
-    u8 _9D;    
-    u8 mNextAction;  // 0x9E
-    u8 _9F;
-    TVec3f _A0;
-    u8 _AC;
-    u8 _AD;
-    u16 _AE;
-    TMtx34f _B0;
-    f32 _E0;
-    f32 _E4;
-    u16 _E8;
-    u16 mOxygen;  // 0xEA
-    u16 _EC;
-    u16 _EE;
-    u16 _F0;
-    WaterInfo mWaterInfo;  // 0xF4
-    s32 mSwimState;        // 0x144
-    TVec3f _148;
-    TVec3f _154;
-    TVec3f mSurfacePos;   // 0x160
-    TVec3f mSurfaceNorm;  // 0x16C
-    TVec3f _178;
-    TVec3f _184;
-    TVec3f _190;
-    f32 mWaterDepth;  // 0x19C
-    f32 _1A0;
-    f32 mDistToFloor;  // 0x1A4
-    f32 _1A8;
-    f32 _1AC;
-    u16 _1B0;
-    u8 _1B2;
-    f32 _1B4;
-    f32 _1B8;
+    /* 0x014 */ MarineSnow* _14;
+    /* 0x018 */ u8 _18;
+    /* 0x019 */ bool mIsOnSurface;
+    /* 0x01A */ u8 _1A;
+    /* 0x01B */ u8 _1B;
+    /* 0x01C */ u8 _1C;
+    /* 0x01D */ u8 _1D;
+    /* 0x01E */ u8 _1E;
+    /* 0x01F */ u8 _1F;
+    /* 0x020 */ u8 _20;
+    /* 0x021 */ u8 _21;
+    /* 0x022 */ u8 _22;
+    /* 0x024 */ u32 _24;
+    /* 0x028 */ u32 _28;
+    /* 0x02C */ u16 _2C;
+    /* 0x02E */ u16 _2E;
+    /* 0x030 */ u16 _30;
+    /* 0x032 */ u16 _32;
+    /* 0x034 */ u16 _34;
+    /* 0x036 */ u16 _36;
+    /* 0x038 */ u16 _38;
+    /* 0x03A */ u16 _3A;
+    /* 0x03C */ u16 _3C;
+    /* 0x03E */ u16 _3E;
+    /* 0x040 */ u16 _40;
+    /* 0x042 */ u16 _42;
+    /* 0x044 */ u16 _44;
+    /* 0x048 */ f32 mSurfaceOffset;
+    /* 0x04C */ f32 _4C;
+    /* 0x050 */ f32 _50;
+    /* 0x054 */ f32 _54;
+    /* 0x058 */ f32 _58;
+    /* 0x05C */ f32 _5C;
+    /* 0x060 */ TVec3f _60;
+    /* 0x06C */ TVec3f mUpVec;
+    /* 0x078 */ u8 _78;
+    /* 0x07A */ u16 _7A;
+    /* 0x07C */ u16 _7C;
+    /* 0x080 */ f32 _80;
+    /* 0x084 */ f32 _84;
+    /* 0x088 */ u8 _88;
+    /* 0x08A */ u16 mIsNormalRingDash;
+    /* 0x08C */ u16 mRingDashTimer;
+    /* 0x08E */ u16 mRingDashChargeTimer;
+    /* 0x090 */ u16 mRingDashMaxDuration;
+    /* 0x094 */ f32 mRingDashSpeedScale;
+    /* 0x098 */ f32 mBlurOffset;
+    /* 0x09C */ u8 _9C;
+    /* 0x09D */ u8 _9D;
+    /* 0x09E */ u8 mNextAction;
+    /* 0x09F */ u8 _9F;
+    /* 0x0A0 */ TVec3f _A0;
+    /* 0x0AC */ u8 _AC;
+    /* 0x0AD */ u8 _AD;
+    /* 0x0AE */ u16 _AE;
+    /* 0x0B0 */ TMtx34f _B0;
+    /* 0x0E0 */ f32 _E0;
+    /* 0x0E4 */ f32 _E4;
+    /* 0x0E8 */ u16 _E8;
+    /* 0x0EA */ u16 mOxygen;
+    /* 0x0EC */ u16 _EC;
+    /* 0x0EE */ u16 _EE;
+    /* 0x0F0 */ u16 _F0;
+    /* 0x0F4 */ WaterInfo mWaterInfo;
+    /* 0x144 */ s32 mSwimState;
+    /* 0x148 */ TVec3f _148;
+    /* 0x154 */ TVec3f _154;
+    /* 0x160 */ TVec3f mSurfacePos;
+    /* 0x16C */ TVec3f mSurfaceNorm;
+    /* 0x178 */ TVec3f _178;
+    /* 0x184 */ TVec3f _184;
+    /* 0x190 */ TVec3f _190;
+    /* 0x19C */ f32 mWaterDepth;
+    /* 0x1A0 */ f32 _1A0;
+    /* 0x1A4 */ f32 mDistToFloor;
+    /* 0x1A8 */ f32 _1A8;
+    /* 0x1AC */ f32 _1AC;
+    /* 0x1B0 */ u16 _1B0;
+    /* 0x1B2 */ u8 _1B2;
+    /* 0x1B4 */ f32 _1B4;
+    /* 0x1B8 */ f32 _1B8;
 };

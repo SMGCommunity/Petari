@@ -93,7 +93,7 @@ MarioActor::MarioActor(const char* pName) : LiveActor(pName), _1B0(0xFFFFFFFF) {
     _951 = 0;
     _974 = 0;
     _39C = 0;
-    _3B0 = 0.000003814697265625f;
+    _3B0 = 1.0f;
 
     _3B4.zero();
 

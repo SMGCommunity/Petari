@@ -522,5 +522,5 @@ public:
     /* 0x00 */ MarioConstTable* mTable[2];
 
     /// @brief The index of the working player character constant table.
-    /* 0x08 */ s32 mCurrentTable;
+    /* 0x08 */ u32 mCurrentTable;
 };
