@@ -5,9 +5,9 @@
 class LiveActor;
 
 struct ActorAnimDataInfo {
-    const char* mName;  // 0x0
-    f32 mStartFrame;    // 0x4
-    u8 mIsKeepAnim;     // 0x8
+    /* 0x0 */ const char* mName;
+    /* 0x4 */ f32 mStartFrame;
+    /* 0x8 */ u8 mIsKeepAnim;
 };
 
 struct ActorAnimKeeperInfo {
@@ -31,8 +31,8 @@ public:
     ActorAnimKeeperInfo* findAnimInfo(const char*) const;
     static ActorAnimKeeper* tryCreate(LiveActor*);
 
-    LiveActor* mActor;                // 0x0
-    s32 mNumInfo;                     // 0x4
-    ActorAnimKeeperInfo* mInfoArray;  // 0x8
-    ActorAnimKeeperInfo* mCurrentInfo;
+    /* 0x0 */ LiveActor* mActor;
+    /* 0x4 */ s32 mNumInfo;
+    /* 0x8 */ ActorAnimKeeperInfo* mInfoArray;
+    /* 0xC */ ActorAnimKeeperInfo* mCurrentInfo;
 };
