@@ -8,12 +8,12 @@ class JKRHeap;
 class AudSoundObjHolder {
 public:
     /// @brief Creates a new AudSoundObjHolder
-    AudSoundObjHolder(JKRHeap* pHeap, long capacity);
+    AudSoundObjHolder(JKRHeap* pHeap, s32 capacity);
     void update();
     void add(AudSoundObject* pSound);
     void remove(AudSoundObject* pSsound);
     /// @brief Shifts to the left sounds from initialIndex to finalIndex in mArray to replace AudSoundObject stored in initialIndex
-    void moveOver(long initialIndex, long finalIndex);
+    void moveOver(s32 initialIndex, s32 finalIndex);
 
     /* 0x00 */ AudSoundObject** mArray;  ///< AudSoundObject storage
     /* 0x04 */ s32 mCapacity;            ///< Physical capacity of mArray

@@ -3,7 +3,7 @@
 #include "Game/AudioLib/AudSoundObject.hpp"
 #include <JSystem/JKernel/JKRHeap.hpp>
 
-AudSoundObjHolder::AudSoundObjHolder(JKRHeap* pHeap, long capacity) {
+AudSoundObjHolder::AudSoundObjHolder(JKRHeap* pHeap, s32 capacity) {
     mCapacity = capacity;
     mSize = 0;
     mArray = new (pHeap, 0) AudSoundObject*[capacity];
@@ -40,7 +40,7 @@ void AudSoundObjHolder::remove(AudSoundObject* pSound) {
     }
 }
 
-void AudSoundObjHolder::moveOver(long initialIndex, long finalIndex) {
+void AudSoundObjHolder::moveOver(s32 initialIndex, s32 finalIndex) {
     for (int i = initialIndex; i < finalIndex; i++) {
         mArray[i] = mArray[i + 1];
     }
