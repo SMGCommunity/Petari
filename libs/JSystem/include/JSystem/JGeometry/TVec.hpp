@@ -516,10 +516,12 @@ namespace JGeometry {
 
         void set(T, T, T, T);
 
+#ifdef __MWERKS__
         template < typename T >
         inline void set(T _x, T _y, T _z, T _w) {
             TVec4< T >::set(_x, _y, _z, _w);
         }
+#endif
 
         /* General operations */
         void normalize();

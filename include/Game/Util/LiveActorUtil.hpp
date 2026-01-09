@@ -385,6 +385,7 @@ namespace MR {
     const char* createMiddleModelObjName(const LiveActor*);
 
     void addToAttributeGroupSearchTurtle(const LiveActor*);
+    bool isExistInAttributeGroupSearchTurtle(const LiveActor*);
 
     void initJointTransform(const LiveActor*);
 
