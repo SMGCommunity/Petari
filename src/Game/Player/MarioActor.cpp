@@ -1106,10 +1106,11 @@ bool MarioActor::doRush() {
             s32 initial = mMario->mSwim->mSwimState;
             mMario->mSwim->checkWaterCube(false);
             if ((int)mMario->mSwim->mSwimState != initial) {
-                if (mMario->mSwim->mSwimState <= 1 && (u32)initial - 2 <= 1) {
+                if (mMario->mSwim->mSwimState <= MarioSwim::SWIM_STATE_ENTERING && (u32)initial - 2 <= 1) {
                     playEffectRT("水面ジャンプ水柱", mMario->mSwim->mSurfacePos, mMario->mSwim->mSurfaceNorm);
                     emitEffectWaterColumn(mMario->mSwim->mSurfacePos, mMario->mSwim->mSurfaceNorm);
-                } else if ((u32)initial <= 1 && mMario->mSwim->mSwimState - 2 <= 1) {
+                    //SWIM_STATE_UNDERWATER and SWIM_STATE_SURFACE
+                } else if ((u32)initial <= 1 && mMario->mSwim->mSwimState - MarioSwim::SWIM_STATE_UNDERWATER <= 1) {
                     playEffectRT("水面ジャンプ水柱", -mMario->_328, mMario->mSwim->mSurfaceNorm);
                     emitEffectWaterColumn(mMario->mSwim->mSurfacePos, mMario->mSwim->mSurfaceNorm);
                 }
