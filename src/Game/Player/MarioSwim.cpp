@@ -1292,16 +1292,16 @@ void MarioSwim::incOxygen() {
     MarioActor* actor = mActor;
     u16 currentOxygen = mOxygen;
     MarioConst* mConst = actor->mConst;
-    MarioConstTable* table = actor->mConst->mTable[actor->mConst->mCurrentTable];
+    MarioConstTable* table = actor->mConst->getTable();
 
     if (currentOxygen == table->mOxygenMax) {
         return;
     }
-    u32 maxOxygen = actor->mConst->mTable[actor->mConst->mCurrentTable]->mOxygenMax;
+    u32 maxOxygen = actor->mConst->getTable()->mOxygenMax;
     mOxygen = mOxygen + (maxOxygen / 8);
     u32 oxygenCheck = mOxygen;
 
-    MarioConstTable* tableCheck = actor->mConst->mTable[actor->mConst->mCurrentTable];
+    MarioConstTable* tableCheck = actor->mConst->getTable();
     u16 maxOxygenCheck = tableCheck->mOxygenMax;
     if (oxygenCheck > maxOxygenCheck) {
         // 0x64: sth r0, 0xea(r3)
@@ -1348,7 +1348,7 @@ f32 MarioSwim::calcRingAcc() {
 
             if (this->mRingDashChargeTimer == 1) {
                 MarioActor* actor = this->mActor;
-                MarioConstTable* table = actor->mConst->mTable[actor->mConst->mCurrentTable];
+                MarioConstTable* table = actor->mConst->getTable();
 
                 actor->_1AA = table->mStarPieceFogTime;
                 actor->_1AC = 0.0f;
