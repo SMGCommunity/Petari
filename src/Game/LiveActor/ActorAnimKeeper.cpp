@@ -116,15 +116,15 @@ namespace {
 
 bool ActorAnimKeeper::initAnimData() {
     const ResourceHolder* pResourceHolder = MR::getResourceHolder(mActor);
-    JMapInfo* CsvParser = MR::tryCreateCsvParser(pResourceHolder, "%s.bcsv", ::sFileName);
+    JMapInfo* csvParser = MR::tryCreateCsvParser(pResourceHolder, "%s.bcsv", ::sFileName);
 
-    if (CsvParser == nullptr) {
+    if (csvParser == nullptr) {
         return false;
     }
 
     s32 numInfo = 0;
-    if (CsvParser != nullptr) {
-        numInfo = MR::getCsvDataElementNum(CsvParser);
+    if (csvParser != nullptr) {
+        numInfo = MR::getCsvDataElementNum(csvParser);
     }
     mNumInfo = numInfo;
 
@@ -133,13 +133,13 @@ bool ActorAnimKeeper::initAnimData() {
 
     for (int i = 0; i < mNumInfo; i++) {
         ActorAnimKeeperInfo* currentInfo = &infoArray[i];
-        MR::getCsvDataStr(&currentInfo->mName, CsvParser, "ActorAnimName", i);
-        ::getCsvDataAnimData(&currentInfo->mBckInfo, "Bck", CsvParser, i);
-        ::getCsvDataAnimData(&currentInfo->mBtkInfo, "Btk", CsvParser, i);
-        ::getCsvDataAnimData(&currentInfo->mBrkInfo, "Brk", CsvParser, i);
-        ::getCsvDataAnimData(&currentInfo->mBpkInfo, "Bpk", CsvParser, i);
-        ::getCsvDataAnimData(&currentInfo->mBtpInfo, "Btp", CsvParser, i);
-        ::getCsvDataAnimData(&currentInfo->mBvaInfo, "Bva", CsvParser, i);
+        MR::getCsvDataStr(&currentInfo->mName, csvParser, "ActorAnimName", i);
+        ::getCsvDataAnimData(&currentInfo->mBckInfo, "Bck", csvParser, i);
+        ::getCsvDataAnimData(&currentInfo->mBtkInfo, "Btk", csvParser, i);
+        ::getCsvDataAnimData(&currentInfo->mBrkInfo, "Brk", csvParser, i);
+        ::getCsvDataAnimData(&currentInfo->mBpkInfo, "Bpk", csvParser, i);
+        ::getCsvDataAnimData(&currentInfo->mBtpInfo, "Btp", csvParser, i);
+        ::getCsvDataAnimData(&currentInfo->mBvaInfo, "Bva", csvParser, i);
     }
     return true;
 }
