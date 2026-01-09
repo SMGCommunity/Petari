@@ -62,6 +62,7 @@ namespace MR {
     void moveCoordAndTransToNextPoint(LiveActor*);
 
     bool getJMapInfoRailArg0NoInit(const LiveActor*, s32*);
+    bool getRailPointArg0NoInit(const LiveActor*, s32, s32*);
     bool getRailPointArg0NoInit(const LiveActor*, s32, f32*);
 
     void reverseRailDirection(LiveActor*);

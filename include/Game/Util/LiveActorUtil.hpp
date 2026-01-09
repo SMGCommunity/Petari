@@ -226,6 +226,8 @@ namespace MR {
     void setBtkFrame(LiveActor*, f32);
     void setBtkFrameAndStop(const LiveActor*, f32);
 
+    f32 getBtpFrame(const LiveActor*);
+
     bool isExistBck(const LiveActor*, const char*);
     bool isExistBva(const LiveActor*, const char*);
     bool isExistBtk(const LiveActor*, const char*);
@@ -399,4 +401,6 @@ namespace MR {
     TVec3f* getBindedFixReactionVector(const LiveActor*);
 
     CollisionParts* tryCreateCollisionSunshade(LiveActor*, HitSensor*);
+
+    const char* getPlayingBckName(const LiveActor*);
 };  // namespace MR

@@ -132,6 +132,7 @@ namespace JGeometry {
     struct TVec3< f32 > : public Vec {
         inline TVec3(const Vec& vec) NO_INLINE { setTVec3f(&vec.x, &x); }
 
+#ifdef __MWERKS__
         // Used inlined and non-inlined?
         TVec3(const TVec3< f32 >& vec) {
             const register Vec* v_a = &vec;
@@ -148,6 +149,9 @@ namespace JGeometry {
             }
             ;
         }
+#else
+        TVec3(const TVec3< f32 >& vec);
+#endif
 
         // Can't be NO_INLINE (gets inlined in DiskGravity::DiskGravity())
         template < typename T >
@@ -319,6 +323,7 @@ namespace JGeometry {
 
         inline void setPS(const TVec3< f32 >& rSrc) { JGeometry::setTVec3f(&rSrc.x, &x); }
 
+#ifdef __MWERKS__
         // Point gravity doesn't match if we use setPS
         inline void setPS2(const TVec3< f32 >& rSrc) {
             const register Vec* v_a = &rSrc;
@@ -351,6 +356,10 @@ namespace JGeometry {
             }
             ;
         }
+#else
+        void setPS2(const TVec3< f32 >& rSrc);
+        void setPSZeroVec();
+#endif
 
         void add(const TVec3< f32 >& b) NO_INLINE { JMathInlineVEC::PSVECAdd(this, &b, this); }
         inline void addInline(const TVec3< f32 >& b) { JMathInlineVEC::PSVECAdd(this, &b, this); }
@@ -388,6 +397,7 @@ namespace JGeometry {
 
         f32 squared() const { return JMathInlineVEC::PSVECSquareMag(this); };
 
+#ifdef __MWERKS__
         // this theoretically should just forward JMathInlineVEC::PSVECSquareDistance,
         // however using the exact same asm causes mismatches. Keeping it here instead
         // keeps the exact matches, and even allows for more use cases that match.
@@ -415,6 +425,9 @@ namespace JGeometry {
 
             return sqdist;
         };
+#else
+        f32 squared(const TVec3& rB) const;
+#endif
 
         void zero();
 
@@ -460,7 +473,7 @@ namespace JGeometry {
             x = _x;
             y = _y;
             z = _z;
-            h = _h;
+            w = _h;
         }
 
         /* General operations */
@@ -468,7 +481,7 @@ namespace JGeometry {
         void set(const JGeometry::TVec4< A >&);
 
         template < typename A >
-        void set(A _x, A _y, A _z, A _w) {
+        void set(A _x, A _y, A _z, A _w) NO_INLINE {
             x = _x;
             y = _y;
             z = _z;
@@ -502,6 +515,11 @@ namespace JGeometry {
         inline TVec3< T >* toTvec() { return (TVec3< T >*)this; }
 
         void set(T, T, T, T);
+
+        template < typename T >
+        inline void set(T _x, T _y, T _z, T _w) {
+            TVec4< T >::set(_x, _y, _z, _w);
+        }
 
         /* General operations */
         void normalize();

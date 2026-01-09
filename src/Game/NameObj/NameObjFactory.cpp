@@ -4,6 +4,7 @@
 #include "Game/Demo.hpp"
 #include "Game/Effect.hpp"
 #include "Game/Enemy.hpp"
+#include "Game/Enemy/Pukupuku.hpp"
 #include "Game/Gravity.hpp"
 #include "Game/Map.hpp"
 #include "Game/Map/GroupSwitchWatcher.hpp"
@@ -1110,7 +1111,7 @@ namespace {
         },
         {
             "Pukupuku",
-            nullptr,
+            createNameObj< Pukupuku >,
             "Pukupuku",
         },
         {

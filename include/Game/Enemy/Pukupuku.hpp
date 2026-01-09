@@ -47,7 +47,7 @@ public:
     void updatePoseByRailIgnoreUpScale();
     void rotatePoseByLocalZ();
     void calcGroundHitMtx(TPos3f*) const;
-    bool isReadyToJumpFromLand() const;
+    bool isReadyToJumpFromLand() const NO_INLINE;
     void exeWait();
     void exeMoveWater();
     void exeMoveWaterAfterJump();
@@ -66,12 +66,19 @@ public:
         MR::startBtp(this, pBtp);
     }
 
+    inline void getCurrentRailPointPos(TVec3f* pOut) { MR::calcRailPointPos(pOut, this, MR::getCurrentRailPointNo(this)); }
+
+    inline void getNextRailPointPos(TVec3f* pOut) { MR::calcRailPointPos(pOut, this, MR::getNextRailPointNo(this)); }
+
+    inline void exeMoveWaterAfterJumpAfterPointing() { updateMoveWaterAfterJump(); }
+
     PukupukuStateLanding* mStateLanding;  // 0x8C
     TVec3f _90;
     TVec3f _9C;
     TQuat4f _A8;
     AnimScaleController* mScaleCtrl;           // 0xB8
     WalkerStateBindStarPointer* mStarPointer;  // 0xBC
+    const char* _C0;
     Nerve* _C4;
     f32 _C8;
     f32 _CC;
