@@ -10,18 +10,29 @@ struct ActorAnimDataInfo {
     u8 mIsKeepAnim;     // 0x8
 };
 
+struct ActorAnimKeeperInfo {
+    /* 0x0 */ const char* mName;
+    /* 0x4 */ ActorAnimDataInfo mBckInfo;
+    /* 0x10 */ ActorAnimDataInfo mBtkInfo;
+    /* 0x1C */ ActorAnimDataInfo mBrkInfo;
+    /* 0x28 */ ActorAnimDataInfo mBpkInfo;
+    /* 0x34 */ ActorAnimDataInfo mBtpInfo;
+    /* 0x40 */ ActorAnimDataInfo mBvaInfo;
+};
+
 class ActorAnimKeeper {
 public:
     ActorAnimKeeper(LiveActor*);
 
-    void start(const char*);
+    bool start(const char*);
     void update();
     bool isPlaying(const char*) const;
-
+    bool initAnimData();
+    ActorAnimKeeperInfo* findAnimInfo(const char*) const;
     static ActorAnimKeeper* tryCreate(LiveActor*);
 
-    LiveActor* mActor;  // 0x0
-    u32 _4;
-    u32 _8;
-    u32 _C;
+    LiveActor* mActor;                // 0x0
+    s32 mNumInfo;                     // 0x4
+    ActorAnimKeeperInfo* mInfoArray;  // 0x8
+    ActorAnimKeeperInfo* mCurrentInfo;
 };

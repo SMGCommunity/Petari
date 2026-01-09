@@ -233,7 +233,19 @@ namespace MR {
     bool isExistBtp(const LiveActor*, const char*);
     bool isExistBrk(const LiveActor*, const char*);
 
+    bool isBckExist(const LiveActor*, const char*);
+    bool isBtkExist(const LiveActor*, const char*);
+    bool isBrkExist(const LiveActor*, const char*);
+    bool isBpkExist(const LiveActor*, const char*);
+    bool isBtpExist(const LiveActor*, const char*);
+    bool isBvaExist(const LiveActor*, const char*);
+
     bool isBckPlaying(const LiveActor*, const char*);
+    bool isBtkPlaying(const LiveActor*, const char*);
+    bool isBrkPlaying(const LiveActor*, const char*);
+    bool isBpkPlaying(const LiveActor*, const char*);
+    bool isBtpPlaying(const LiveActor*, const char*);
+    bool isBvaPlaying(const LiveActor*, const char*);
 
     bool isBckLooped(const LiveActor*);
     bool checkPassBckFrame(const LiveActor* pActor, f32 f);
