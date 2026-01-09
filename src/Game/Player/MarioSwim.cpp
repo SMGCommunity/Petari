@@ -1308,7 +1308,7 @@ void MarioSwim::incOxygen() {
         mOxygen = maxOxygenCheck;
     }
     
-    MarioConstTable* soundTable = mActor->mConst->mTable[mActor->mConst->mCurrentTable];
+    MarioConstTable* soundTable = mActor->mConst->->getTable();
     if (mOxygen == soundTable->mOxygenMax) {
         // Play "Full" sound
         playSound("酸素回復最大", -1);
