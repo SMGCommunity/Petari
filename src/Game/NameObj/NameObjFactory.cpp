@@ -1612,7 +1612,7 @@ namespace {
         },
         {
             "SpiderCoin",
-            nullptr,
+            createNameObj< SpiderCoin >,
             "Coin",
         },
         {

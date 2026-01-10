@@ -194,6 +194,7 @@
 #include "Game/MapObj/SoundEmitter.hpp"
 #include "Game/MapObj/SpaceMine.hpp"
 #include "Game/MapObj/SphereRailDash.hpp"
+#include "Game/MapObj/SpiderCoin.hpp"
 #include "Game/MapObj/SpiderMapBlock.hpp"
 #include "Game/MapObj/SpiderThread.hpp"
 #include "Game/MapObj/SpinDriver.hpp"
