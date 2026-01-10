@@ -1603,7 +1603,7 @@ config.libs = [
             Object(NonMatching, "Game/MapObj/SpiderThreadHangInfo.cpp"),
             Object(NonMatching, "Game/MapObj/SpiderThreadMainPoint.cpp"),
             Object(NonMatching, "Game/MapObj/SpiderThreadPart.cpp"),
-            Object(NonMatching, "Game/MapObj/SpiderThreadPoint.cpp"),
+            Object(Matching, "Game/MapObj/SpiderThreadPoint.cpp"),
             Object(NonMatching, "Game/MapObj/SpiderThreadRadialLine.cpp"),
             Object(Matching, "Game/MapObj/SpiderThreadWindCtrl.cpp"),
             Object(NonMatching, "Game/MapObj/SpinDriver.cpp"),
