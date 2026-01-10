@@ -21,11 +21,9 @@ void WaveFloatingForce::update() {
 }
 */
 
-#ifdef NON_MATCHING
 f32 WaveFloatingForce::getCurrentValue() const {
     return _8 * JMath::sSinCosTable.sinLapRad(_C);
 }
-#endif
 
 #define TWO_PI 6.2831855f
 #define TWO_PI_APPROX 6.283185482025146

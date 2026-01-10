@@ -95,7 +95,6 @@ f32 KeyCamAnmDataAccessor::get4f(f32 key, u32 offset, u32 count) const {
     return calcHermite(key, values[0], values[1], values[2], values[3], values[4], values[5]);
 }
 
-#ifdef NON_MATCHING
 // Float instruction order, register mismatch
 f32 KeyCamAnmDataAccessor::calcHermite(f32 key, f32 a2, f32 a3, f32 a4, f32 a5, f32 a6, f32 a7) const {
     f32 fVar1 = a4 / 30.0f;
@@ -104,7 +103,6 @@ f32 KeyCamAnmDataAccessor::calcHermite(f32 key, f32 a2, f32 a3, f32 a4, f32 a5, 
 
     return -(key - a2) * (fVar2 * fVar1 - a7 / 30.0f * fVar3 + fVar1 * fVar3 + fVar1) - (((fVar2 + fVar2) * fVar3 - fVar2 * fVar2) * (a3 - a6) + a3);
 }
-#endif
 
 CamAnmDataAccessor::~CamAnmDataAccessor() {}
 

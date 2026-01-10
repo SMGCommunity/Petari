@@ -7,7 +7,6 @@ NameObjListExecutor::NameObjListExecutor() {
     mDrawList = 0;
 }
 
-#ifdef NON_MATCHING
 // meh
 NameObjListExecutor::~NameObjListExecutor() {
     delete mMovementList;
@@ -18,7 +17,6 @@ NameObjListExecutor::~NameObjListExecutor() {
         delete mBufferHolder->_8;
     }
 }
-#endif
 
 void NameObjListExecutor::init() {
     initMovementList();

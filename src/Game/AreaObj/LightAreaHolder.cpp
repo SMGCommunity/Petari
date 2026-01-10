@@ -6,7 +6,6 @@ LightAreaHolder::LightAreaHolder(s32 type, const char* pName) : AreaObjMgr(type,
     LightFunction::registerLightAreaHolder(this);
 }
 
-#ifdef NON_MATCHING
 // for some reason the register movement for isTargetArea are wrong
 bool LightAreaHolder::tryFindLightID(const TVec3f& rArea, ZoneLightID* pLightID) const {
     const LightArea* lightArea = reinterpret_cast< LightArea* >(find_in(rArea));
@@ -29,7 +28,6 @@ bool LightAreaHolder::tryFindLightID(const TVec3f& rArea, ZoneLightID* pLightID)
         }
     }
 }
-#endif
 
 void LightAreaHolder::initAfterPlacement() {
     sort();

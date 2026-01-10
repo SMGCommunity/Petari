@@ -225,7 +225,6 @@ void ArrowSwitch::exeWait() {
     }
 }
 
-#ifdef NON_MATCHING
 void ArrowSwitch::exeRotate() {
     if (MR::isFirstStep(this)) {
         MR::startSound(this, "SE_OJ_ARROW_SWITCH_ON", -1, -1);
@@ -271,7 +270,6 @@ void ArrowSwitch::exeRotate() {
         }
     }
 }
-#endif
 
 void ArrowSwitch::exeLock() {
     if (MR::isFirstStep(this)) {

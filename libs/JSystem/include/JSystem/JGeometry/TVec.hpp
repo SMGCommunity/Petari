@@ -594,6 +594,8 @@ namespace JGeometry {
             this->slerp(a2, a3);
         }
 
+        void scale(f32 scalar, const TVec3< T >& rVec) { TVec3< T >::scale(scalar, rVec); }
+
         void slerp(const TQuat4< T >&, T);
         void transform(const TVec3< T >&, TVec3< T >& rDest);
         void transform(TVec3< T >& rDest);

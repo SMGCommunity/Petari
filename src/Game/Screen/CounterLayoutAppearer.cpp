@@ -49,7 +49,6 @@ void CounterLayoutAppearer::reset() {
     setNerve(&NrvCounterLayoutAppearer::CounterLayoutAppearerNrvHide::sInstance);
 }
 
-#ifdef NON_MATCHING
 void CounterLayoutAppearer::updateLayoutOffset(f32 offset) {
     static f32 sZero = 0.0f;
 
@@ -60,7 +59,6 @@ void CounterLayoutAppearer::updateLayoutOffset(f32 offset) {
     mFollowPos.x = mAppearOffset.x + offset * vec.x + _1C.x;
     mFollowPos.y = mAppearOffset.y + offset * vec.y + _1C.y;
 }
-#endif
 
 void CounterLayoutAppearer::exeHide() {}
 
@@ -83,7 +81,7 @@ void CounterLayoutAppearer::exeDisappear() {
         MR::startAnim(mLayout, "End", 0);
     }
 
-    updateLayoutOffset(1.0f - MR::calcNerveEaseInRate(this, MR::getAnimFrameMax(mLayout, static_cast<u32>(0))));
+    updateLayoutOffset(1.0f - MR::calcNerveEaseInRate(this, MR::getAnimFrameMax(mLayout, static_cast< u32 >(0))));
 
     if (MR::isAnimStopped(mLayout, 0)) {
         setNerve(&NrvCounterLayoutAppearer::CounterLayoutAppearerNrvHide::sInstance);

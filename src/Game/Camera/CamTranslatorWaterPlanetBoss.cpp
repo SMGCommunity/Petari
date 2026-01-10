@@ -5,7 +5,6 @@ CamTranslatorWaterPlanetBoss::CamTranslatorWaterPlanetBoss(CameraWaterPlanetBoss
     mCamera = pCamera;
 }
 
-#ifdef NON_MATCHING
 // wPoint.z is put into f2 instead of f8
 void CamTranslatorWaterPlanetBoss::setParam(const CameraParamChunk* pChunk) {
     CameraWaterPlanetBoss* camera;
@@ -44,7 +43,6 @@ void CamTranslatorWaterPlanetBoss::setParam(const CameraParamChunk* pChunk) {
     camera->mUpY = upY;
     camera->mUpZ = upZ;
 }
-#endif
 
 Camera* CamTranslatorWaterPlanetBoss::getCamera() const {
     return mCamera;

@@ -402,7 +402,6 @@ void BenefitItemObj::control() {
     }
 }
 
-#ifdef NON_MATCHING
 // close but small diff
 void BenefitItemObj::exeWait() {
     if (_DF && !_E1) {
@@ -424,7 +423,6 @@ void BenefitItemObj::exeWait() {
         return;
     }
 }
-#endif
 
 void BenefitItemObj::doRotateY() {
     if (isNerve(&NrvBenefitItemObj::HostTypeNrvAppearGround::sInstance)) {

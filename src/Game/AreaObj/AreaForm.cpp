@@ -100,7 +100,6 @@ f32 AreaFormCube::getBaseSize() {
     return 1000.0f;
 }
 
-#ifdef NON_MATCHING
 // issues with floating point math order
 void AreaFormCube::updateBoxParam() {
     MR::makeMtxRotate(_48, mRotation.x, mRotation.y, mRotation.z);
@@ -121,8 +120,8 @@ void AreaFormCube::updateBoxParam() {
 
     TVec3f v9(v20, v21, v22);
 
-    _30.set(v10);
-    _3C.set(v9);
+    mBounding.i.set(v10);
+    mBounding.f.set(v9);
 
     if (_8 == 1) {
         TVec3f temp;
@@ -132,11 +131,10 @@ void AreaFormCube::updateBoxParam() {
         temp.z = 0.0f;
         temp.y = 0.5f * v7;
 
-        _30.add(temp);
-        _3C.add(temp);
+        mBounding.i.add(temp);
+        mBounding.f.add(temp);
     }
 }
-#endif
 
 void AreaFormCube::calcWorldMtx(register TPos3f* pPos) const {
     register const AreaFormCube* cube = this;

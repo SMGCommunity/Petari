@@ -195,7 +195,7 @@ void Rock::initModel() {
     }
 }
 
-#ifdef NON_MATCHING
+/*
 void Rock::initSensor() {
     s32 v2;
     if (mRockType != NormalRock) {
@@ -222,7 +222,7 @@ void Rock::initSensor() {
         MR::addHitSensor(this, "weak", v2, 16, (125.0f * mScale.x), v8);
     }
 }
-#endif
+*/
 
 void Rock::initEffect() {
     if (mRockType == WanwanRollingMini) {

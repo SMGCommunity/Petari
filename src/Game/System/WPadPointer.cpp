@@ -2,7 +2,6 @@
 #include "Game/Util.hpp"
 #include <JSystem/JUtility/JUTVideo.hpp>
 
-#ifdef NON_MATCHING
 // arrays are generating a constructor for some reason
 WPadPointer::WPadPointer(const WPad* pPad) {
     mPad = pPad;
@@ -13,19 +12,18 @@ WPadPointer::WPadPointer(const WPad* pPad) {
     mDistPlayRadius = 0.0f;
     mDistSensitivity = 1.0f;
     _2C = 0;
-    _30 = 0.0f;
+    mDistDisplay = 0.0f;
     _34 = 0;
     _38 = 0;
     _3C = 0;
     mEnablePastCount = 0;
-    _44 = 0;
+    mIsPointInScreen = 0;
     _45 = 0;
     mPointingPosArray = new TVec2f[0x78];
     mHorizonArray = new TVec2f[0x78];
     _C = 120;
     reset();
 }
-#endif
 
 void WPadPointer::reset() {
     for (s32 i = 0; i < _C; i++) {

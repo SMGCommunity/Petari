@@ -71,7 +71,6 @@ void ChipBase::initSensor() {
     MR::addHitSensorEnemy(this, "body", 8, radius * xScale, TVec3f(0.0f, 0.0f, 0.0f));
 }
 
-#ifdef NON_MATCHING
 void ChipBase::initShadow(const JMapInfoIter& rIter) {
     if (MR::isValidInfo(rIter)) {
         MR::getJMapInfoArg2WithInit(rIter, &_B5);
@@ -104,7 +103,6 @@ void ChipBase::initShadow(const JMapInfoIter& rIter) {
         MR::onCalcShadowDropPrivateGravityOneTime(this, 0);
     }
 }
-#endif
 
 void ChipBase::initJMapParam(const JMapInfoIter& rIter) {
     if (MR::isValidInfo(rIter)) {
@@ -275,7 +273,6 @@ void ChipBase::exeFlashing() {
 
 void ChipBase::exeHide() {}
 
-#ifdef NON_MATCHING
 // mAirBubble load isn't loading twice
 void ChipBase::exeGot() {
     if (MR::isFirstStep(this)) {
@@ -298,7 +295,6 @@ void ChipBase::exeGot() {
 
     kill();
 }
-#endif
 
 bool ChipBase::isGettable() const {
     if (MR::isDead(this)) {

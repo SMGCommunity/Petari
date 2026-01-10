@@ -10,9 +10,8 @@ namespace NrvMapPartsRotator {
     NEW_NERVE(HostTypeStopAtEnd, MapPartsRotator, StopAtEnd);
 };  // namespace NrvMapPartsRotator
 
-#ifdef NON_MATCHING
 // floating reg order on the inlined matrix set, but oh well
-MapPartsRotator::MapPartsRotator(LiveActor* pActor) : MapPartsFunction(pActor, "自身回転") {
+MapPartsRotator::MapPartsRotator(LiveActor* pActor) : MapPartsRotatorBase(pActor, "自身回転") {
     _18 = 0.0f;
     mRotateAngle = 0.0f;
     mRotateStopTime = 0;
@@ -30,7 +29,6 @@ MapPartsRotator::MapPartsRotator(LiveActor* pActor) : MapPartsFunction(pActor, "
     updateBaseHostMtx();
     _70.setInline(_40);
 }
-#endif
 
 void MapPartsRotator::init(const JMapInfoIter& rIter) {
     MR::getMapPartsArgRotateAngle(&mRotateAngle, rIter);

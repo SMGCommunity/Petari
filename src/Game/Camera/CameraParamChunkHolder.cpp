@@ -125,7 +125,6 @@ CameraParamChunk* CameraParamChunkHolder::findChunk(s32 zoneID, const char* pNam
     return nullptr;
 }
 
-#ifdef NON_MATCHING
 // Stack is 0x10 bytes smaller
 void CameraParamChunkHolder::loadFile(s32 zoneID) {
     void* data;
@@ -155,7 +154,6 @@ void CameraParamChunkHolder::loadFile(s32 zoneID) {
         }
     }
 }
-#endif
 
 void CameraParamChunkHolder::arrangeChunk(CameraParamChunk* pChunk) {
     s32 index = pChunk->mCameraTypeIndex;

@@ -45,8 +45,8 @@ void AirBubbleGenerator::exeWait() {
     }
 }
 
-#ifdef NON_MATCHING
 // inlined assembly math is not matching, deal with this later
+/*
 void AirBubbleGenerator::exeGenerate() {
     TVec3f axisY;
 
@@ -58,7 +58,7 @@ void AirBubbleGenerator::exeGenerate() {
     if (MR::isGreaterStep(this, 6)) {
         MR::calcActorAxisY(&axisY, this);
         MR::appearAirBubble(MR::createVecAndScaleByAndAdd_2(axisY, mPosition), mBubbleDuration);
-        setNerve(&NrvAirBubbleGenerator::AirBubbleGenerateNrvWait::sInstance);
+        setNerve(&NrvAirBubbleGenerator::AirBubbleGeneratorNrvWait::sInstance);
     }
 }
-#endif
+*/

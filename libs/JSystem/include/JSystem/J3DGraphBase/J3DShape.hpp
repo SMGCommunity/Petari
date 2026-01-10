@@ -16,6 +16,7 @@ public:
 
 class J3DCurrentMtx : public J3DCurrentMtxInfo {
 public:
+    void setCurrentTexMtx(u8, u8, u8, u8, u8, u8, u8, u8);
 };
 
 class J3DShape {

@@ -50,9 +50,7 @@ void SpinDriverOperateRing::update(const TVec3f& a1, const TVec3f& a2) {
     }
 }
 
-#ifdef NON_MATCHING
 void SpinDriverOperateRing::updateDirection(const TVec3f& rVec) {
-    TVec3f stack_20;
     TVec3f direction(mDirection);
     direction.scale(0.9f);
     TVec3f stack_14(rVec);
@@ -61,7 +59,6 @@ void SpinDriverOperateRing::updateDirection(const TVec3f& rVec) {
     stack_20 += direction;
     mDirection = stack_20;
 }
-#endif
 
 void SpinDriverOperateRing::resetVelocityAndTrans() {
     mDirection.zero();

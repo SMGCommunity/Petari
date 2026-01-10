@@ -2,7 +2,6 @@
 #include "Game/Camera/CameraParamChunk.hpp"
 #include "Game/Util/MathUtil.hpp"
 
-#ifdef NON_MATCHING
 // Register mismatch
 void CamTranslatorFrontAndBack::setParam(const CameraParamChunk* pChunk) {
     CameraGeneralParam* general = pChunk->mGeneralParam;
@@ -34,7 +33,6 @@ void CamTranslatorFrontAndBack::setParam(const CameraParamChunk* pChunk) {
     camera->mAngleB = angleB2;
     camera->mDist = dist;
 }
-#endif
 
 Camera* CamTranslatorFrontAndBack::getCamera() const {
     return mCamera;

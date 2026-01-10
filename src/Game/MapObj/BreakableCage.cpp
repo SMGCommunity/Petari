@@ -146,7 +146,6 @@ void BreakableCage::kill() {
     }
 }
 
-#ifndef NON_MATCHING
 void BreakableCage::calcAndSetBaseMtx() {
     if (mCageType == CAGE_NORMAL) {
         f32 v2 = (0.017453292f * mRotation.y);
@@ -178,7 +177,6 @@ void BreakableCage::calcAndSetBaseMtx() {
         MR::setBaseTRMtx(this, mMtx);
     }
 }
-#endif
 
 bool BreakableCage::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     bool result;

@@ -47,7 +47,6 @@ void SpkSoundVolume::setFadeOut(s32 fadeOut) {
 SpkSound::SpkSound()
     : JSUPtrLink(this), mSoundHandle(nullptr), _14(-1), _18(0), _1C(0), _20(0), _24(100), _28(0), _2C(0), _30(-1), _34(-1), _38(0), _3C(-1) {}
 
-#ifdef NON_MATCHING
 SpkSound::~SpkSound() {
     releaseHandle();
 
@@ -55,7 +54,6 @@ SpkSound::~SpkSound() {
         JASPoolAllocObject< SpkSound >::memPool_.free(this, 0x60);
     }
 }
-#endif
 
 // SpkSound::update
 
