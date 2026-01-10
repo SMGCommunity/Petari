@@ -66,4 +66,4 @@ struct PlanetMapClippingInfo {
     f32 _C;
     f32 _10;
     s32 _14;
-} PlanetMapClippingInfo;
+};

@@ -17,11 +17,10 @@
 #include "revolution/types.h"
 #include <cstdio>
 
-
 namespace {
     const char* cFollowJointName = "Move";
 
-    static struct PlanetMapClippingInfo sClippingInfo = {"PhantomShipA", 3000.0f, 800.0f, 1300.0f, 0.0f, 0};
+    static PlanetMapClippingInfo sClippingInfo = {"PhantomShipA", 3000.0f, 800.0f, 1300.0f, 0.0f, 0};
 };  // namespace
 
 PlanetMap::PlanetMap(const char* pName, const char* pModelName)
@@ -92,7 +91,7 @@ void PlanetMap::initClipping(const JMapInfoIter& rIter) {
     if (MR::isValidInfo(rIter)) {
         MR::getJMapInfoArg1NoInit(rIter, &v2);
     }
-    struct PlanetMapClippingInfo* info = &::sClippingInfo;
+    PlanetMapClippingInfo* info = &::sClippingInfo;
 
     if (MR::isEqualStringCase(mModelName, ::sClippingInfo.mName)) {
         info = nullptr;
