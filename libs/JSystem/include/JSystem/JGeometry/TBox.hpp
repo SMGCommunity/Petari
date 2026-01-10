@@ -75,7 +75,10 @@ namespace JGeometry {
     public:
         TBox3() {}
 
-        bool intersectsPoint(const TVec3f&) const;
+        bool intersectsPoint(const TVec3f& rPos) const {
+            return (rPos.x >= this->i.x && rPos.y >= this->i.y && rPos.z >= this->i.z && rPos.x < this->f.x && rPos.y < this->f.y &&
+                    rPos.z < this->f.z);
+        }
     };
 
     template < typename T >
