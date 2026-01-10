@@ -32,10 +32,24 @@
 #include "Game/Util/AreaObjUtil.hpp"
 #include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/GamePadUtil.hpp"
+#include "Game/Util/JMapInfo.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "JSystem/JGeometry/TMatrix.hpp"
+#include "JSystem/JGeometry/TUtil.hpp"
+#include "JSystem/JGeometry/TVec.hpp"
+#include "JSystem/JMath/JMATrigonometric.hpp"
 #include <cstdio>
 #include <va_list.h>
 
 namespace {
+    bool isExistFileInArcLocal(const ResourceHolder* pHolder, const char* pArchive, va_list pFormat) NO_INLINE {
+        char buf[0x100];
+        vsnprintf(buf, sizeof(buf), pArchive, pFormat);
+
+        return pHolder->mFileInfoTable->isExistRes(buf) != false;
+    }
+
     JMapInfo* tryCreateCsvParserLocal(const ResourceHolder* pHolder, const char* pArchive, va_list pFormat) NO_INLINE {
         char buf[0x100];
         vsnprintf(buf, sizeof(buf), pArchive, pFormat);
@@ -52,11 +66,17 @@ namespace {
 };  // namespace
 
 namespace MR {
-    bool isJudgedToClipFrustum(const TVec3f& rParam1, f32 param2) { return MR::getClippingJudge()->isJudgedToClipFrustum(rParam1, param2); }
+    bool isJudgedToClipFrustum(const TVec3f& rParam1, f32 param2) {
+        return MR::getClippingJudge()->isJudgedToClipFrustum(rParam1, param2);
+    }
 
-    bool isJudgedToClipFrustum100m(const TVec3f& rParam1, f32 param2) { return MR::getClippingJudge()->isJudgedToClipFrustum(rParam1, param2, 6); }
+    bool isJudgedToClipFrustum100m(const TVec3f& rParam1, f32 param2) {
+        return MR::getClippingJudge()->isJudgedToClipFrustum(rParam1, param2, 6);
+    }
 
-    bool isJudgedToClipFrustum300m(const TVec3f& rParam1, f32 param2) { return MR::getClippingJudge()->isJudgedToClipFrustum(rParam1, param2, 4); }
+    bool isJudgedToClipFrustum300m(const TVec3f& rParam1, f32 param2) {
+        return MR::getClippingJudge()->isJudgedToClipFrustum(rParam1, param2, 4);
+    }
 
     bool isJudgedToNearClip(const TVec3f& rParam1, f32 param2) {
         TVec3f camPos = MR::getCamPos();
@@ -70,7 +90,9 @@ namespace MR {
         return MR::getWaterAreaObj(&waterInfo, rParam1);
     }
 
-    bool isInDeath(const TVec3f& rParam1) { return MR::isInAreaObj("DeathArea", rParam1); }
+    bool isInDeath(const TVec3f& rParam1) {
+        return MR::isInAreaObj("DeathArea", rParam1);
+    }
 
     bool isInDarkMatter(const TVec3f& rParam1) {
         return MR::isInAreaObj("DarkMatterCube", rParam1) || MR::isInAreaObj("DarkMatterCylinder", rParam1);
@@ -106,7 +128,9 @@ namespace MR {
         MR::connectToScene(pActor, MR::MovementType_CollisionEnemy, MR::CalcAnimType_CollisionEnemy, MR::DrawBufferType_Enemy, -1);
     }
 
-    void connectToSceneCollisionEnemyMovement(NameObj* pObj) { MR::connectToScene(pObj, MR::MovementType_CollisionEnemy, -1, -1, -1); }
+    void connectToSceneCollisionEnemyMovement(NameObj* pObj) {
+        MR::connectToScene(pObj, MR::MovementType_CollisionEnemy, -1, -1, -1);
+    }
 
     void connectToSceneCollisionEnemyStrongLight(LiveActor* pActor) {
         MR::connectToScene(pActor, MR::MovementType_CollisionEnemy, MR::CalcAnimType_CollisionEnemy, MR::DrawBufferType_MapObjStrongLight, -1);
@@ -117,9 +141,13 @@ namespace MR {
                            -1);
     }
 
-    void connectToSceneNpc(LiveActor* pActor) { MR::connectToScene(pActor, MR::MovementType_NPC, MR::CalcAnimType_NPC, MR::DrawBufferType_NPC, -1); }
+    void connectToSceneNpc(LiveActor* pActor) {
+        MR::connectToScene(pActor, MR::MovementType_NPC, MR::CalcAnimType_NPC, MR::DrawBufferType_NPC, -1);
+    }
 
-    void connectToSceneNpcMovement(LiveActor* pActor) { MR::connectToScene(pActor, MR::MovementType_NPC, -1, -1, -1); }
+    void connectToSceneNpcMovement(LiveActor* pActor) {
+        MR::connectToScene(pActor, MR::MovementType_NPC, -1, -1, -1);
+    }
 
     void connectToSceneRide(LiveActor* pActor) {
         MR::connectToScene(pActor, MR::MovementType_Ride, MR::CalcAnimType_Ride, MR::DrawBufferType_Ride, -1);
@@ -129,19 +157,29 @@ namespace MR {
         MR::connectToScene(pActor, MR::MovementType_Enemy, MR::CalcAnimType_Enemy, MR::DrawBufferType_Enemy, -1);
     }
 
-    void connectToSceneEnemyMovement(NameObj* pObj) { MR::connectToScene(pObj, MR::MovementType_Enemy, -1, -1, -1); }
+    void connectToSceneEnemyMovement(NameObj* pObj) {
+        MR::connectToScene(pObj, MR::MovementType_Enemy, -1, -1, -1);
+    }
 
     void connectToSceneMapObj(LiveActor* pActor) {
         MR::connectToScene(pActor, MR::MovementType_MapObj, MR::CalcAnimType_MapObj, MR::DrawBufferType_MapObj, -1);
     }
 
-    void connectToSceneMapObjMovement(NameObj* pObj) { MR::connectToScene(pObj, MR::MovementType_MapObj, -1, -1, -1); }
+    void connectToSceneMapObjMovement(NameObj* pObj) {
+        MR::connectToScene(pObj, MR::MovementType_MapObj, -1, -1, -1);
+    }
 
-    void connectToSceneMapObjMovementCalcAnim(NameObj* pObj) { MR::connectToScene(pObj, MR::MovementType_MapObj, MR::CalcAnimType_MapObj, -1, -1); }
+    void connectToSceneMapObjMovementCalcAnim(NameObj* pObj) {
+        MR::connectToScene(pObj, MR::MovementType_MapObj, MR::CalcAnimType_MapObj, -1, -1);
+    }
 
-    void connectToSceneMapObjNoMovement(LiveActor* pActor) { MR::connectToScene(pActor, -1, MR::CalcAnimType_MapObj, MR::DrawBufferType_MapObj, -1); }
+    void connectToSceneMapObjNoMovement(LiveActor* pActor) {
+        MR::connectToScene(pActor, -1, MR::CalcAnimType_MapObj, MR::DrawBufferType_MapObj, -1);
+    }
 
-    void connectToSceneMapObjNoCalcAnim(LiveActor* pActor) { MR::connectToScene(pActor, MR::MovementType_MapObj, -1, MR::DrawBufferType_MapObj, -1); }
+    void connectToSceneMapObjNoCalcAnim(LiveActor* pActor) {
+        MR::connectToScene(pActor, MR::MovementType_MapObj, -1, MR::DrawBufferType_MapObj, -1);
+    }
 
     void connectToSceneMapObjNoCalcAnimStrongLight(LiveActor* pActor) {
         MR::connectToScene(pActor, MR::MovementType_MapObj, -1, MR::DrawBufferType_MapObjStrongLight, -1);
@@ -155,7 +193,9 @@ namespace MR {
         MR::connectToScene(pActor, MR::MovementType_MapObjDecoration, MR::CalcAnimType_MapObjDecoration, MR::DrawBufferType_MapObjStrongLight, -1);
     }
 
-    void connectToSceneMapObjDecorationMovement(NameObj* pObj) { MR::connectToScene(pObj, MR::MovementType_MapObjDecoration, -1, -1, -1); }
+    void connectToSceneMapObjDecorationMovement(NameObj* pObj) {
+        MR::connectToScene(pObj, MR::MovementType_MapObjDecoration, -1, -1, -1);
+    }
 
     void connectToSceneMapObjStrongLight(LiveActor* pActor) {
         MR::connectToScene(pActor, MR::MovementType_MapObj, MR::CalcAnimType_MapObj, MR::DrawBufferType_MapObjStrongLight, -1);
@@ -189,7 +229,9 @@ namespace MR {
         MR::connectToScene(pActor, MR::MovementType_EnemyDecoration, MR::CalcAnimType_MapObjDecoration, MR::DrawBufferType_EnemyDecoration, -1);
     }
 
-    void connectToSceneEnemyDecorationMovement(NameObj* pObj) { MR::connectToScene(pObj, MR::MovementType_EnemyDecoration, -1, -1, -1); }
+    void connectToSceneEnemyDecorationMovement(NameObj* pObj) {
+        MR::connectToScene(pObj, MR::MovementType_EnemyDecoration, -1, -1, -1);
+    }
 
     void connectToSceneEnemyDecorationMovementCalcAnim(NameObj* pObj) {
         MR::connectToScene(pObj, MR::MovementType_EnemyDecoration, MR::CalcAnimType_MapObjDecoration, -1, -1);
@@ -219,17 +261,25 @@ namespace MR {
         MR::connectToScene(pActor, MR::MovementType_MapObj, MR::CalcAnimType_MapObj, MR::DrawBufferType_IndirectMapObjStrongLight, -1);
     }
 
-    void connectToSceneScreenEffectMovement(NameObj* pObj) { MR::connectToScene(pObj, MR::MovementType_ScreenEffect, -1, -1, -1); }
+    void connectToSceneScreenEffectMovement(NameObj* pObj) {
+        MR::connectToScene(pObj, MR::MovementType_ScreenEffect, -1, -1, -1);
+    }
 
-    void connectToSceneAreaObj(NameObj* pObj) { MR::connectToScene(pObj, MR::MovementType_AreaObj, -1, -1, -1); }
+    void connectToSceneAreaObj(NameObj* pObj) {
+        MR::connectToScene(pObj, MR::MovementType_AreaObj, -1, -1, -1);
+    }
 
     void connectToScene3DModelFor2D(LiveActor* pActor) {
         MR::connectToScene(pActor, MR::MovementType_Layout, MR::CalcAnimType_Layout, MR::DrawBufferType_Model3DFor2D, -1);
     }
 
-    void connectToSceneLayout(NameObj* pObj) { MR::connectToScene(pObj, MR::MovementType_Layout, MR::CalcAnimType_Layout, -1, MR::DrawType_Layout); }
+    void connectToSceneLayout(NameObj* pObj) {
+        MR::connectToScene(pObj, MR::MovementType_Layout, MR::CalcAnimType_Layout, -1, MR::DrawType_Layout);
+    }
 
-    void connectToSceneLayoutMovementCalcAnim(NameObj* pObj) { MR::connectToScene(pObj, MR::MovementType_Layout, MR::CalcAnimType_Layout, -1, -1); }
+    void connectToSceneLayoutMovementCalcAnim(NameObj* pObj) {
+        MR::connectToScene(pObj, MR::MovementType_Layout, MR::CalcAnimType_Layout, -1, -1);
+    }
 
     void connectToSceneLayoutDecoration(NameObj* pObj) {
         MR::connectToScene(pObj, MR::MovementType_LayoutDecoration, MR::CalcAnimType_LayoutDecoration, -1, MR::DrawType_LayoutDecoration);
@@ -239,7 +289,9 @@ namespace MR {
         MR::connectToScene(pObj, MR::MovementType_Layout, MR::CalcAnimType_Layout, -1, MR::DrawType_TalkLayout);
     }
 
-    void connectToSceneTalkLayoutNoMovement(NameObj* pObj) { MR::connectToScene(pObj, -1, MR::CalcAnimType_Layout, -1, MR::DrawType_TalkLayout); }
+    void connectToSceneTalkLayoutNoMovement(NameObj* pObj) {
+        MR::connectToScene(pObj, -1, MR::CalcAnimType_Layout, -1, MR::DrawType_TalkLayout);
+    }
 
     void connectToSceneWipeLayout(NameObj* pObj) {
         MR::connectToScene(pObj, MR::MovementType_WipeLayout, MR::CalcAnimType_Layout, -1, MR::DrawType_WipeLayout);
@@ -257,9 +309,13 @@ namespace MR {
         MR::connectToScene(pObj, MR::MovementType_LayoutOnPause, MR::CalcAnimType_Layout, -1, -1);
     }
 
-    void connectToSceneLayoutMovement(NameObj* pObj) { MR::connectToScene(pObj, MR::MovementType_Layout, -1, -1, -1); }
+    void connectToSceneLayoutMovement(NameObj* pObj) {
+        MR::connectToScene(pObj, MR::MovementType_Layout, -1, -1, -1);
+    }
 
-    void connectToSceneMovie(NameObj* pObj) { MR::connectToScene(pObj, MR::MovementType_Movie, -1, -1, MR::DrawType_Movie); }
+    void connectToSceneMovie(NameObj* pObj) {
+        MR::connectToScene(pObj, MR::MovementType_Movie, -1, -1, MR::DrawType_Movie);
+    }
 
     void connectToSceneMirrorMapObj(LiveActor* pActor) {
         MR::connectToScene(pActor, MR::MovementType_MapObj, MR::CalcAnimType_MirrorMapObj, MR::DrawBufferType_MirrorMapObj, -1);
@@ -273,7 +329,9 @@ namespace MR {
         MR::connectToScene(pActor, -1, MR::CalcAnimType_MirrorMapObj, MR::DrawBufferType_MirrorMapObj, -1);
     }
 
-    void connectToSceneCamera(NameObj* pObj) { MR::connectToScene(pObj, MR::MovementType_Camera, -1, -1, -1); }
+    void connectToSceneCamera(NameObj* pObj) {
+        MR::connectToScene(pObj, MR::MovementType_Camera, -1, -1, -1);
+    }
 
     void connectToSceneNoShadowedMapObj(LiveActor* pActor) {
         MR::connectToScene(pActor, MR::MovementType_MapObj, MR::CalcAnimType_MapObj, MR::DrawBufferType_NoShadowedMapObj, -1);
@@ -315,7 +373,9 @@ namespace MR {
         MR::connectToScene(pActor, MR::MovementType_MapObj, MR::CalcAnimType_MapObj, -1, 0x18);  // ??
     }
 
-    void requestMovementOn(NameObj* pObj) { NameObjFunction::requestMovementOn(pObj); }
+    void requestMovementOn(NameObj* pObj) {
+        NameObjFunction::requestMovementOn(pObj);
+    }
 
     void requestMovementOn(LiveActor* pActor) {
         NameObjFunction::requestMovementOn(pActor);
@@ -325,9 +385,13 @@ namespace MR {
         }
     }
 
-    void requestMovementOn(LayoutActor* pActor) { NameObjFunction::requestMovementOn(pActor); }
+    void requestMovementOn(LayoutActor* pActor) {
+        NameObjFunction::requestMovementOn(pActor);
+    }
 
-    void requestMovementOff(NameObj* pObj) { NameObjFunction::requestMovementOff(pObj); }
+    void requestMovementOff(NameObj* pObj) {
+        NameObjFunction::requestMovementOff(pObj);
+    }
 
     NameObjGroup* joinToNameObjGroup(NameObj* pObj, const char* pGroupName) {
         NameObjGroup* pObjGroup = static_cast< NameObjGroup* >(NameObjFinder::find(pGroupName));
@@ -453,7 +517,12 @@ namespace MR {
         return loadTexFromArc(arcBuf, texBuf);
     }
 
-    bool isExistFileInArc(const ResourceHolder*, const char*, ...);
+    bool isExistFileInArc(const ResourceHolder* pHolder, const char* pFormat, ...) {
+        va_list list;
+        va_start(list, pFormat);
+
+        return ::isExistFileInArcLocal(pHolder, pFormat, list);
+    }
 
     JMapInfo* createCsvParser(const ResourceHolder* pHolder, const char* pFormat, ...) {
         va_list list;
@@ -468,8 +537,20 @@ namespace MR {
         return MR::createCsvParser(pResourceHolder, pFormat);
     }
 
-    // tryCreateCsvParser
-    // tryCreateCsvParser
+    JMapInfo* tryCreateCsvParser(const LiveActor* pActor, const char* pFormat, ...) {
+        va_list list;
+        va_start(list, pFormat);
+
+        return ::tryCreateCsvParserLocal(getResourceHolder(pActor), pFormat, list);
+    }
+
+    JMapInfo* tryCreateCsvParser(const ResourceHolder* pHolder, const char* pFormat, ...) {
+        // exact same code as createCsvParser(const ResourceHolder*, const char*, ...)
+        va_list list;
+        va_start(list, pFormat);
+
+        return ::tryCreateCsvParserLocal(pHolder, pFormat, list);
+    }
 
     s32 getCsvDataElementNum(const JMapInfo* pMapInfo) {
         if (pMapInfo->mData != nullptr) {
@@ -495,7 +576,9 @@ namespace MR {
         }
     }
 
-    void getCsvDataS32(s32* pOut, const JMapInfo* pMapInfo, const char* pKey, s32 idx) { pMapInfo->getValue< s32 >(idx, pKey, pOut); }
+    void getCsvDataS32(s32* pOut, const JMapInfo* pMapInfo, const char* pKey, s32 idx) {
+        pMapInfo->getValue< s32 >(idx, pKey, pOut);
+    }
 
     void getCsvDataU8(u8* pOut, const JMapInfo* pMapInfo, const char* pKey, s32 idx) {
         s32 val = 0;
@@ -519,35 +602,61 @@ namespace MR {
     void getCsvDataVec(Vec*, const JMapInfo*, const char*, s32);
     void getCsvDataColor(GXColor*, const JMapInfo*, const char*, s32);
 
-    bool isStageStateScenarioOpeningCamera() { return GameSceneFunction::isExecScenarioOpeningCamera(); }
+    bool isStageStateScenarioOpeningCamera() {
+        return GameSceneFunction::isExecScenarioOpeningCamera();
+    }
 
-    bool isStageStatePowerStarAppeared() { return EventFunction::getStageStateKeeper()->mIsPowerStarAppeared; }
+    bool isStageStatePowerStarAppeared() {
+        return EventFunction::getStageStateKeeper()->mIsPowerStarAppeared;
+    }
 
-    void declarePowerStar(const NameObj* pObj) { declareEventPowerStar(pObj, -1, true); }
+    void declarePowerStar(const NameObj* pObj) {
+        declareEventPowerStar(pObj, -1, true);
+    }
 
-    void declarePowerStar(const NameObj* pObj, s32 param2) { declareEventPowerStar(pObj, param2, true); }
+    void declarePowerStar(const NameObj* pObj, s32 param2) {
+        declareEventPowerStar(pObj, param2, true);
+    }
 
-    void declarePowerStarCoin100() { declareEventPowerStar("１００枚コイン", -1, true); }
+    void declarePowerStarCoin100() {
+        declareEventPowerStar("１００枚コイン", -1, true);
+    }
 
     void appearPowerStarContinueCurrentDemo(const NameObj* pObj, const TVec3f& rParam2) {
         appearEventPowerStar(pObj->mName, -1, &rParam2, true, false);
     }
 
-    void appearPowerStarWithoutDemo(const NameObj* pObj) { appearEventPowerStar(pObj->mName, -1, nullptr, false, true); }
+    void appearPowerStarWithoutDemo(const NameObj* pObj) {
+        appearEventPowerStar(pObj->mName, -1, nullptr, false, true);
+    }
 
-    void requestAppearPowerStar(const NameObj* pObj) { appearEventPowerStar(pObj->mName, -1, nullptr, false, false); }
+    void requestAppearPowerStar(const NameObj* pObj) {
+        appearEventPowerStar(pObj->mName, -1, nullptr, false, false);
+    }
 
-    void requestAppearPowerStar(const NameObj* pObj, const TVec3f& rParam2) { appearEventPowerStar(pObj->mName, -1, &rParam2, false, false); }
+    void requestAppearPowerStar(const NameObj* pObj, const TVec3f& rParam2) {
+        appearEventPowerStar(pObj->mName, -1, &rParam2, false, false);
+    }
 
     void requestAppearPowerStar(const NameObj* pObj, s32 param2, const TVec3f& rParam3) {
         appearEventPowerStar(pObj->mName, param2, &rParam3, false, false);
     }
 
-    // requestAppearPowerStar
+    void requestAppearPowerStar(const NameObj* pObj, const LiveActor* pActor, float flt) {
+        MtxPtr baseMtx = pActor->getBaseMtx();
+        TVec3f baseMtxY(baseMtx[1][0], baseMtx[1][1], baseMtx[1][2]);
+        baseMtxY.scale(flt);
+        baseMtxY.add(pActor->mPosition);
+        appearEventPowerStar(pObj->mName, -1, &baseMtxY, false, false);
+    }
 
-    void requestAppearPowerStarCoin100() { appearEventPowerStar("１００枚コイン", -1, nullptr, false, false); }
+    void requestAppearPowerStarCoin100() {
+        appearEventPowerStar("１００枚コイン", -1, nullptr, false, false);
+    }
 
-    bool isEndPowerStarAppearDemo(const NameObj* pObj) { return isEndEventPowerStarAppearDemo(pObj->mName); }
+    bool isEndPowerStarAppearDemo(const NameObj* pObj) {
+        return isEndEventPowerStarAppearDemo(pObj->mName);
+    }
 
     ModelObj* createPowerStarDemoModel(const NameObj* pObj, const char* pName, MtxPtr pMtx) {
         ModelObj* pPowerStarDemoModel = createModelObjNoSilhouettedMapObjStrongLight(pName, "PowerStar", pMtx);
@@ -566,13 +675,21 @@ namespace MR {
         MR::getCoinHolder()->declare(pObj, param2);
     }
 
-    s32 getDeclareRemnantCoinCount(const NameObj* pObj) { return MR::getCoinHolder()->getDeclareRemnantCoinCount(pObj); }
+    s32 getDeclareRemnantCoinCount(const NameObj* pObj) {
+        return MR::getCoinHolder()->getDeclareRemnantCoinCount(pObj);
+    }
 
-    void hopCoin(const NameObj* pObj, const TVec3f& rParam2, const TVec3f& rParam3) { MR::getCoinHolder()->hopCoin(pObj, rParam2, rParam3); }
+    void hopCoin(const NameObj* pObj, const TVec3f& rParam2, const TVec3f& rParam3) {
+        MR::getCoinHolder()->hopCoin(pObj, rParam2, rParam3);
+    }
 
-    void appearCoinFix(const NameObj* pObj, const TVec3f& rParam2, s32 param3) { MR::getCoinHolder()->appearCoinFix(pObj, rParam2, param3); }
+    void appearCoinFix(const NameObj* pObj, const TVec3f& rParam2, s32 param3) {
+        MR::getCoinHolder()->appearCoinFix(pObj, rParam2, param3);
+    }
 
-    void appearCoinPop(const NameObj* pObj, const TVec3f& rParam2, s32 param3) { MR::getCoinHolder()->appearCoinPop(pObj, rParam2, param3); }
+    void appearCoinPop(const NameObj* pObj, const TVec3f& rParam2, s32 param3) {
+        MR::getCoinHolder()->appearCoinPop(pObj, rParam2, param3);
+    }
 
     void appearCoinPopToDirection(const NameObj* pObj, const TVec3f& rParam2, const TVec3f& rParam3, s32 param4) {
         MR::getCoinHolder()->appearCoinPopToDirection(pObj, rParam2, rParam3, param4);
@@ -582,9 +699,11 @@ namespace MR {
         MR::getCoinHolder()->appearCoinToVelocity(pObj, rParam2, rParam3, param4);
     }
 
-    void appearCoinCircle(const NameObj* pObj, const TVec3f& rParam2, s32 param3) { MR::getCoinHolder()->appearCoinCircle(pObj, rParam2, param3); }
+    void appearCoinCircle(const NameObj* pObj, const TVec3f& rParam2, s32 param3) {
+        MR::getCoinHolder()->appearCoinCircle(pObj, rParam2, param3);
+    }
 
-    // declareStarPiece
+    // declareStarPiece(const NameObj* pObj, s32 param2)
     // getDeclareRemnantStarPieceCount
     // getDeclareRemnantStarPieceCountNotExist
     // declareStarPieceReceiver
@@ -602,7 +721,36 @@ namespace MR {
         return pKinokoOneUp;
     }
 
-    void appearKinokoOneUpPop(BenefitItemObj*, MtxPtr, f32);
+    void appearKinokoOneUpPop(BenefitItemObj* pBenefitObj, MtxPtr pMtx, f32 flt) {
+        TPos3f pos;
+        TVec3f vec1;
+        pos.setInline(pMtx);
+
+        if (pos(2, 0) - 1.0f >= -0.0000038146973f) {
+            vec1.set(JMath::sAtanTable.atan2_(-pos(0, 1), pos(1, 1)), -HALF_PI, 0.0f);
+        } else if (1.0f + pos(2, 0) <= 0.0000038146973f) {
+            vec1.set(JMath::sAtanTable.atan2_(pos(0, 1), pos(1, 1)), -HALF_PI, 0.0f);
+        } else {
+            vec1.x = JMath::sAtanTable.atan2_(pos(2, 1), pos(2, 2));
+            vec1.z = JMath::sAtanTable.atan2_(pos(1, 0), pos(0, 0));
+            vec1.y = JGeometry::TUtil< f32 >::asin(-pos(1, 4));
+        }
+
+        TVec3f transVec;
+        TVec3f vec3;
+        TVec3f vec2(vec1);
+
+        vec2.scale(57.29578f);
+        pBenefitObj->mRotation.set(vec2);
+
+        pos.getTrans(transVec);
+        pos.getYDirInline(vec3);
+        MR::normalize(&vec3);
+
+        TVec3f vec4(vec3);
+        vec4.scale(flt);
+        pBenefitObj->shoot(transVec, vec4, true);
+    }
 
     BenefitItemLifeUp* createKinokoSuper() {
         BenefitItemLifeUp* pKinokoSuper = new BenefitItemLifeUp("スーパーキノコ");
@@ -612,9 +760,13 @@ namespace MR {
         return pKinokoSuper;
     }
 
-    void appearKinokoSuper(BenefitItemLifeUp* pKinokoSuper, MtxPtr pMtx, f32 param3) { appearKinokoOneUpPop(pKinokoSuper, pMtx, param3); }
+    void appearKinokoSuper(BenefitItemLifeUp* pKinokoSuper, MtxPtr pMtx, f32 param3) {
+        appearKinokoOneUpPop(pKinokoSuper, pMtx, param3);
+    }
 
-    void stopScene(s32 param1) { MR::getSceneObj< StopSceneController >(SceneObj_StopSceneController)->requestStopScene(param1); }
+    void stopScene(s32 param1) {
+        MR::getSceneObj< StopSceneController >(SceneObj_StopSceneController)->requestStopScene(param1);
+    }
 
     void stopSceneForDefaultHit(s32 param1) {
         MR::getSceneObj< StopSceneController >(SceneObj_StopSceneController)->requestStopSceneDelay(param1, 2);
@@ -652,41 +804,75 @@ namespace MR {
         return WPadFunction::getWPadRumble(channel)->vibratePatternIfNotExist(pParam1, "強");
     }
 
-    void shakeCameraVeryStrong() { getCameraDirector()->mShaker->shakeVertical(CameraShaker::SINGLY_VERTICAL_POWER_VERY_STRONG); }
+    void shakeCameraVeryStrong() {
+        getCameraDirector()->mShaker->shakeVertical(CameraShaker::SINGLY_VERTICAL_POWER_VERY_STRONG);
+    }
 
-    void shakeCameraStrong() { getCameraDirector()->mShaker->shakeVertical(CameraShaker::SINGLY_VERTICAL_POWER_STRONG); }
+    void shakeCameraStrong() {
+        getCameraDirector()->mShaker->shakeVertical(CameraShaker::SINGLY_VERTICAL_POWER_STRONG);
+    }
 
-    void shakeCameraNormalStrong() { getCameraDirector()->mShaker->shakeVertical(CameraShaker::SINGLY_VERTICAL_POWER_NORMAL_STRONG); }
+    void shakeCameraNormalStrong() {
+        getCameraDirector()->mShaker->shakeVertical(CameraShaker::SINGLY_VERTICAL_POWER_NORMAL_STRONG);
+    }
 
-    void shakeCameraNormal() { getCameraDirector()->mShaker->shakeVertical(CameraShaker::SINGLY_VERTICAL_POWER_NORMAL); }
+    void shakeCameraNormal() {
+        getCameraDirector()->mShaker->shakeVertical(CameraShaker::SINGLY_VERTICAL_POWER_NORMAL);
+    }
 
-    void shakeCameraNormalWeak() { getCameraDirector()->mShaker->shakeVertical(CameraShaker::SINGLY_VERTICAL_POWER_NORMAL_WEAK); }
+    void shakeCameraNormalWeak() {
+        getCameraDirector()->mShaker->shakeVertical(CameraShaker::SINGLY_VERTICAL_POWER_NORMAL_WEAK);
+    }
 
-    void shakeCameraWeak() { getCameraDirector()->mShaker->shakeVertical(CameraShaker::SINGLY_VERTICAL_POWER_WEAK); }
+    void shakeCameraWeak() {
+        getCameraDirector()->mShaker->shakeVertical(CameraShaker::SINGLY_VERTICAL_POWER_WEAK);
+    }
 
-    void shakeCameraVeryWeak() { getCameraDirector()->mShaker->shakeVertical(CameraShaker::SINGLY_VERTICAL_POWER_VERY_WEAK); }
+    void shakeCameraVeryWeak() {
+        getCameraDirector()->mShaker->shakeVertical(CameraShaker::SINGLY_VERTICAL_POWER_VERY_WEAK);
+    }
 
-    void shakeCameraInfinity(NameObj* pObj, f32 param2, f32 param3) { getCameraDirector()->mShaker->shakeInfinity(pObj, param2, 15.0f / param3); }
+    void shakeCameraInfinity(NameObj* pObj, f32 param2, f32 param3) {
+        getCameraDirector()->mShaker->shakeInfinity(pObj, param2, 15.0f / param3);
+    }
 
-    void stopShakingCamera(NameObj* pObj) { getCameraDirector()->mShaker->stopShakingInfinity(pObj); }
+    void stopShakingCamera(NameObj* pObj) {
+        getCameraDirector()->mShaker->stopShakingInfinity(pObj);
+    }
 
-    bool isName(const NameObj* pObj, const char* pName) { return strcmp(pObj->mName, pName) == 0; }
+    bool isName(const NameObj* pObj, const char* pName) {
+        return strcmp(pObj->mName, pName) == 0;
+    }
 
-    bool isSame(const NameObj* pObj1, const NameObj* pObj2) { return pObj1 == pObj2; }
+    bool isSame(const NameObj* pObj1, const NameObj* pObj2) {
+        return pObj1 == pObj2;
+    }
 
-    bool tryRegisterNamePosLinkObj(const NameObj* pObj, const JMapInfoIter& rIter) { return MR::getNamePosHolder()->tryRegisterLinkObj(pObj, rIter); }
+    bool tryRegisterNamePosLinkObj(const NameObj* pObj, const JMapInfoIter& rIter) {
+        return MR::getNamePosHolder()->tryRegisterLinkObj(pObj, rIter);
+    }
 
-    void findNamePos(const char* pName, MtxPtr pMtx) { MR::tryFindLinkNamePos(nullptr, pName, pMtx); }
+    void findNamePos(const char* pName, MtxPtr pMtx) {
+        MR::tryFindLinkNamePos(nullptr, pName, pMtx);
+    }
 
-    void findNamePos(const char* pName, TVec3f* a2, TVec3f* a3) { getNamePosHolder()->find(nullptr, pName, a2, a3); }
+    void findNamePos(const char* pName, TVec3f* a2, TVec3f* a3) {
+        getNamePosHolder()->find(nullptr, pName, a2, a3);
+    }
 
     // findNamePosOnGround
 
-    bool tryFindNamePos(const char* pName, MtxPtr pMtx) { return tryFindLinkNamePos(nullptr, pName, pMtx); }
+    bool tryFindNamePos(const char* pName, MtxPtr pMtx) {
+        return tryFindLinkNamePos(nullptr, pName, pMtx);
+    }
 
-    bool tryFindNamePos(const char* pName, TVec3f* pParam2, TVec3f* pParam3) { return tryFindLinkNamePos(nullptr, pName, pParam2, pParam3); }
+    bool tryFindNamePos(const char* pName, TVec3f* pParam2, TVec3f* pParam3) {
+        return tryFindLinkNamePos(nullptr, pName, pParam2, pParam3);
+    }
 
-    void findLinkNamePos(const NameObj* pObj, const char* pName, MtxPtr pMtx) { tryFindLinkNamePos(pObj, pName, pMtx); }
+    void findLinkNamePos(const NameObj* pObj, const char* pName, MtxPtr pMtx) {
+        tryFindLinkNamePos(pObj, pName, pMtx);
+    }
 
     // tryFindLinkNamePos
 
