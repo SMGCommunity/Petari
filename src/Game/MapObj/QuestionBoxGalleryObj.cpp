@@ -19,10 +19,9 @@ namespace NrvQuestionBoxGalleryObj {
     NEW_NERVE(QuestionBoxGalleryObjNrvOnWait, QuestionBoxGalleryObj, OnWait);
     NEW_NERVE(QuestionBoxGalleryObjNrvOffStart, QuestionBoxGalleryObj, OffStart);
     NEW_NERVE(QuestionBoxGalleryObjNrvOffWait, QuestionBoxGalleryObj, OffWait);
-};
+};  // namespace NrvQuestionBoxGalleryObj
 
-QuestionBoxGalleryObj::QuestionBoxGalleryObj(const char* pName) : MapObjActor(pName) { }
-
+QuestionBoxGalleryObj::QuestionBoxGalleryObj(const char* pName) : MapObjActor(pName) {}
 
 void QuestionBoxGalleryObj::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);
@@ -67,7 +66,6 @@ void QuestionBoxGalleryObj::init(const JMapInfoIter& rIter) {
     } else {
         initNerve(&NrvQuestionBoxGalleryObj::QuestionBoxGalleryObjNrvOffWait::sInstance);
     }
-
 }
 
 void QuestionBoxGalleryObj::exeOnStart() {
@@ -94,7 +92,7 @@ void QuestionBoxGalleryObj::exeOffStart() {
 
     if (MR::isBckStopped(this)) {
         setNerve(&NrvQuestionBoxGalleryObj::QuestionBoxGalleryObjNrvOffWait::sInstance);
-    }  
+    }
 }
 
 void QuestionBoxGalleryObj::exeOffWait() {
@@ -105,12 +103,14 @@ void QuestionBoxGalleryObj::exeOffWait() {
 }
 
 void QuestionBoxGalleryObj::initCaseUseSwitchA(const MapObjActorInitInfo& pInitInfo) {
-    MR::FunctorV0M< QuestionBoxGalleryObj*, void (QuestionBoxGalleryObj::*)() > SwitchOnFunc = MR::Functor<QuestionBoxGalleryObj>(this, &QuestionBoxGalleryObj::startSwitchOn);
+    MR::FunctorV0M< QuestionBoxGalleryObj*, void (QuestionBoxGalleryObj::*)() > SwitchOnFunc =
+        MR::Functor< QuestionBoxGalleryObj >(this, &QuestionBoxGalleryObj::startSwitchOn);
     MR::listenStageSwitchOnA(this, SwitchOnFunc);
 }
 
 void QuestionBoxGalleryObj::initCaseUseSwitchB(const MapObjActorInitInfo& pInitInfo) {
-    MR::FunctorV0M< QuestionBoxGalleryObj*, void (QuestionBoxGalleryObj::*)() > SwitchOnFunc = MR::Functor<QuestionBoxGalleryObj>(this, &QuestionBoxGalleryObj::startSwitchOff);
+    MR::FunctorV0M< QuestionBoxGalleryObj*, void (QuestionBoxGalleryObj::*)() > SwitchOnFunc =
+        MR::Functor< QuestionBoxGalleryObj >(this, &QuestionBoxGalleryObj::startSwitchOff);
     MR::listenStageSwitchOnB(this, SwitchOnFunc);
 }
 
@@ -141,5 +141,3 @@ void QuestionBoxGalleryObj::startSwitchOff() {
     MR::startSound(this, "SE_OJ_Q_BOX_LIGHT_OFF", -1, -1);
     setNerve(&NrvQuestionBoxGalleryObj::QuestionBoxGalleryObjNrvOffStart::sInstance);
 }
-
-QuestionBoxGalleryObj::~QuestionBoxGalleryObj() {}

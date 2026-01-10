@@ -1,7 +1,8 @@
 #pragma once
 
-#include "Game/LiveActor/PartsModel.hpp"
 #include "Game/MapObj/MapObjActor.hpp"
+
+class PartsModel;
 
 class PeachCastleGardenPlanet : public MapObjActor {
 public:

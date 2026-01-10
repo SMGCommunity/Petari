@@ -1,5 +1,7 @@
 #include "Game/Map/PlanetMap.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
+#include "Game/LiveActor/ModelObj.hpp"
+#include "Game/Map/OceanHomeMapCtrl.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/ActorSwitchUtil.hpp"
 #include "Game/Util/DemoUtil.hpp"
@@ -13,33 +15,18 @@
 #include "Game/Util/StringUtil.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
 #include "revolution/types.h"
-#include "Game/Map/OceanHomeMapCtrl.hpp"
 #include <cstdio>
-#include "Game/LiveActor/ModelObj.hpp"
+
 
 namespace {
     const char* cFollowJointName = "Move";
 
-    static struct PlanetMapClippingInfo sClippingInfo = {
-        "PhantomShipA",
-        3000.0f,
-        800.0f,
-        1300.0f,
-        0.0f,
-        0
-    };
-};
+    static struct PlanetMapClippingInfo sClippingInfo = {"PhantomShipA", 3000.0f, 800.0f, 1300.0f, 0.0f, 0};
+};  // namespace
 
-PlanetMap::PlanetMap(const char* pName, const char* pModelName) : LiveActor(pName),
-    mModelName(pModelName),
-    _90(0.0f,0.0f,0.0f),
-    mLODCtrl(nullptr),
-    mBloomModel(nullptr),
-    mWaterModel(nullptr),
-    mIndirectModel(nullptr) 
-{
-
-}
+PlanetMap::PlanetMap(const char* pName, const char* pModelName)
+    : LiveActor(pName), mModelName(pModelName), _90(0.0f, 0.0f, 0.0f), mLODCtrl(nullptr), mBloomModel(nullptr), mWaterModel(nullptr),
+      mIndirectModel(nullptr) {}
 
 void PlanetMap::init(const JMapInfoIter& rIter) {
     MR::getObjectName(&mModelName, rIter);
@@ -60,7 +47,7 @@ void PlanetMap::init(const JMapInfoIter& rIter) {
     if (MR::isExistCollisionResource(this, mModelName)) {
         MtxPtr jointMTX = nullptr;
         if (MR::isExistJoint(this, ::cFollowJointName)) {
-                jointMTX = MR::getJointMtx(this, ::cFollowJointName);
+            jointMTX = MR::getJointMtx(this, ::cFollowJointName);
         }
         MR::initCollisionParts(this, mModelName, getSensor("body"), jointMTX);
     }
@@ -70,7 +57,7 @@ void PlanetMap::init(const JMapInfoIter& rIter) {
 
     if (MR::isExistAnim(this, mModelName)) {
         MR::startAllAnim(this, mModelName);
-    } else if(!MR::isExistEffectTexMtx(this)) {
+    } else if (!MR::isExistEffectTexMtx(this)) {
         calcAnim();
         MR::offCalcAnim(this);
     }
@@ -82,12 +69,11 @@ void PlanetMap::init(const JMapInfoIter& rIter) {
         makeActorDead();
     }
 
-    if(MR::tryRegisterDemoCast(this, rIter) && MR::isRegisteredDemoActionAppear(this)) {
+    if (MR::tryRegisterDemoCast(this, rIter) && MR::isRegisteredDemoActionAppear(this)) {
         makeActorDead();
     }
     MR::useStageSwitchSleep(this, rIter);
 }
-
 
 void PlanetMap::makeActorAppeared() {
     LiveActor::makeActorAppeared();
@@ -108,12 +94,12 @@ void PlanetMap::initClipping(const JMapInfoIter& rIter) {
     }
     struct PlanetMapClippingInfo* info = &::sClippingInfo;
 
-    if (MR::isEqualStringCase(mModelName, ::sClippingInfo.name)) {
+    if (MR::isEqualStringCase(mModelName, ::sClippingInfo.mName)) {
         info = nullptr;
     }
 
-    if (info) {
-        TVec3f _4 = TVec3f( info->_4, info->_8, info->_C);
+    if (info != nullptr) {
+        TVec3f _4 = TVec3f(info->_4, info->_8, info->_C);
         TVec3f _8;
         _8.addInLine(_4);
         _90.set(_8);
@@ -131,13 +117,12 @@ void PlanetMap::initClipping(const JMapInfoIter& rIter) {
     }
 }
 
-
 s32 PlanetMap::getLowMovementType() const {
     return -1;
 }
 
 void PlanetMap::initModel(const char* pModelName, const JMapInfoIter& rIter) {
-    initModelManagerWithAnm(pModelName, nullptr,false);
+    initModelManagerWithAnm(pModelName, nullptr, false);
     s32 lowMovementType = getLowMovementType();
     f32 farClippingDistance = getFarClipDistance();
     mLODCtrl = MR::createLodCtrlPlanet(this, rIter, farClippingDistance, lowMovementType);
@@ -197,7 +182,7 @@ bool PlanetMap::tryDeleteMyEffect() {
 
 FurPlanetMap::FurPlanetMap(const char* pName) : PlanetMap(pName, nullptr) {}
 
-PlanetMap::~PlanetMap() { }
+PlanetMap::~PlanetMap() {}
 
 void FurPlanetMap::init(const JMapInfoIter& rIter) {
     PlanetMap::init(rIter);

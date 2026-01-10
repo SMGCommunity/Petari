@@ -1,9 +1,11 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/LiveActor/LodCtrl.hpp"
-#include "Game/LiveActor/PartsModel.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
+
+class LodCtrl;
+class ModelObj;
+class PartsModel;
 
 class PlanetMap : public LiveActor {
 public:
@@ -27,7 +29,7 @@ public:
 
     /* 0x8C */ const char* mModelName;
     TVec3f _90;
-    /* 0x9C */  LodCtrl* mLODCtrl;
+    /* 0x9C */ LodCtrl* mLODCtrl;
     /* 0xA0 */ ModelObj* mBloomModel;
     /* 0xA4 */ PartsModel* mWaterModel;
     /* 0xA8 */ PartsModel* mIndirectModel;
@@ -36,7 +38,7 @@ public:
 class FurPlanetMap : public PlanetMap {
 public:
     FurPlanetMap(const char*);
-    
+
     virtual ~FurPlanetMap();
     virtual void init(const JMapInfoIter&);
 };
@@ -44,7 +46,7 @@ public:
 class RailPlanetMap : public PlanetMap {
 public:
     RailPlanetMap(const char*);
-    
+
     virtual ~RailPlanetMap();
     virtual void init(const JMapInfoIter&);
 };
@@ -54,12 +56,11 @@ public:
     PlanetMapAnimLow();
 
     virtual ~PlanetMapAnimLow();
-    virtual s32 getLowMovementType() const;  
+    virtual s32 getLowMovementType() const;
 };
 
-
 struct PlanetMapClippingInfo {
-    const char* name;
+    const char* mName;
     f32 _4;
     f32 _8;
     f32 _C;
