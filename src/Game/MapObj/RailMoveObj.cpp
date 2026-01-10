@@ -15,7 +15,7 @@ namespace {
 };  // namespace
 
 RailMoveObj::RailMoveObj(const char* pName) : MapObjActor(pName) {
-    _C4.zero();
+    _C4.setPSZeroVec();
     _D0 = 0;
 }
 
