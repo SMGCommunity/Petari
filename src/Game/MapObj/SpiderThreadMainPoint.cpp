@@ -1,5 +1,6 @@
 #include "Game/MapObj/SpiderThreadMainPoint.hpp"
 #include "Game/MapObj/SpiderThreadPart.hpp"
+#include "Game/MapObj/SpiderThreadRadialLine.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include <revolution/mtx.h>
 

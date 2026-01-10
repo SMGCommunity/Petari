@@ -1,10 +1,11 @@
 #pragma once
 
 #include "Game/MapObj/SpiderThreadPoint.hpp"
-#include "Game/MapObj/SpiderThreadRadialLine.hpp"
 #include <JSystem/JGeometry/TVec.hpp>
 
 class SpiderThreadPart;
+class SpiderThreadRadialLine;
+class SpiderThreadMainPoint;
 
 class SpiderThreadPointNearInfo {
 public:
