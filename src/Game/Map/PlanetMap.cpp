@@ -222,9 +222,3 @@ PlanetMapAnimLow::~PlanetMapAnimLow() {}
 f32 PlanetMap::getFarClipDistance() const {
     return -1.0f;
 }
-
-void keep() {  
-    TVec3f one(0.0f);
-    TVec3f two(2.0f);
-    one.set(two);
-}

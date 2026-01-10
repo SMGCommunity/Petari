@@ -5,7 +5,6 @@
 #include "Game/LiveActor/PartsModel.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
 
-
 class PlanetMap : public LiveActor {
 public:
     PlanetMap(const char*, const char*);
