@@ -343,8 +343,7 @@ NameObj* SceneObjHolder::newEachObj(int id) {
         // return new ElectricRailHolder("電撃レール保持");
         return nullptr;
     case SceneObj_SpiderThread:
-        // return new SpiderThread("クモの巣");
-        return nullptr;
+        return new SpiderThread("クモの巣");
     case SceneObj_QuakeEffectGenerator:
         return new QuakeEffectGenerator();
     case SceneObj_HeatHazeDirector:
