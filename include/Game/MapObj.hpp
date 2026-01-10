@@ -170,6 +170,7 @@
 #include "Game/MapObj/PunchingKinoko.hpp"
 #include "Game/MapObj/PurpleCoinHolder.hpp"
 #include "Game/MapObj/PurpleCoinStarter.hpp"
+#include "Game/MapObj/RailBlock.hpp"
 #include "Game/MapObj/RailMoveObj.hpp"
 #include "Game/MapObj/RainCloud.hpp"
 #include "Game/MapObj/ReverseGravityRoomPlanet.hpp"

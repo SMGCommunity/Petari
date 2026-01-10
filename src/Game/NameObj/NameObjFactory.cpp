@@ -1762,7 +1762,7 @@ namespace {
         },
         {
             "TsukidashikunBig",
-            nullptr,
+            createNameObj< RailBlock >,
             "TsukidashikunBig",
         },
         {
