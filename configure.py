@@ -1604,7 +1604,7 @@ config.libs = [
             Object(Matching, "Game/MapObj/SpiderThreadMainPoint.cpp"),
             Object(NonMatching, "Game/MapObj/SpiderThreadPart.cpp"),
             Object(Matching, "Game/MapObj/SpiderThreadPoint.cpp"),
-            Object(NonMatching, "Game/MapObj/SpiderThreadRadialLine.cpp"),
+            Object(Matching, "Game/MapObj/SpiderThreadRadialLine.cpp"),
             Object(Matching, "Game/MapObj/SpiderThreadWindCtrl.cpp"),
             Object(NonMatching, "Game/MapObj/SpinDriver.cpp"),
             Object(NonMatching, "Game/MapObj/SpinDriverCamera.cpp"),
