@@ -16,12 +16,12 @@
 #include "JSystem/JMath/JMath.hpp"
 
 StinkBugBase::StinkBugBase(const char* pArg)
-    : LiveActor(pArg), _8C(0.0f, 0.0f, 1.0f), _98(0.0f, 0.0f, 0.0f), _A4(0.0f, 0.0f, 1.0f), _B0(180.0f), _B4(1000.0f), _B8(false) {}
+    : LiveActor(pArg), _8C(0.0f, 0.0f, 1.0f), _98(0.0f, 0.0f, 0.0f), _A4(0.0f, 0.0f, 1.0f), _B0(180.0f), mRadius(1000.0f), _B8(false) {}
 
 void StinkBugBase::setDashVelocity(f32 velocity) {
     TVec3f result;
-    f32 f1 = _B4;
-    JMAVECScaleAdd(&_8C, &_98, &result, f1);
+    f32 radius = mRadius;
+    JMAVECScaleAdd(&_8C, &_98, &result, radius);
     f32 distance = PSVECDistance(&result, &mPosition);
     // Illogical branching in the ASM. Possible inline?
     if (velocity >= distance) {
@@ -59,7 +59,7 @@ void StinkBugBase::init(const JMapInfoIter& rIter) {
 }
 
 bool StinkBugBase::isPlayerInTerritory(f32 arg1, f32 arg2, f32 arg3, f32 arg4) const {
-    if (!MR::isNearPlayer(this, _B4 + arg1)) {
+    if (!MR::isNearPlayer(this, mRadius + arg1)) {
         return false;
     }
 
@@ -112,11 +112,11 @@ bool StinkBugBase::isPlayerInTerritory(f32 arg1, f32 arg2, f32 arg3, f32 arg4) c
     return MR::isNearAngleDegree(v5, _A4, _B0);
 }
 
-bool StinkBugBase::tryTurnSearch(f32 arg) {
+bool StinkBugBase::tryTurnSearch(f32 angle) {
     if (_B8) {
-        MR::rotateVecDegree(&_8C, mGravity, arg);
+        MR::rotateVecDegree(&_8C, mGravity, angle);
     } else {
-        MR::rotateVecDegree(&_8C, mGravity, -arg);
+        MR::rotateVecDegree(&_8C, mGravity, -angle);
     }
 
     if (!MR::isNearAngleDegree(_8C, _A4, _B0)) {
@@ -128,9 +128,9 @@ bool StinkBugBase::tryTurnSearch(f32 arg) {
     return false;
 }
 
-bool StinkBugBase::tryTurnDashSign(f32 arg) {
+bool StinkBugBase::tryTurnDashSign(f32 angle) {
     TVec3f* playerPos = MR::getPlayerPos();
-    MR::turnDirectionToTargetUseGroundNormalDegree(this, &_8C, *playerPos, arg);
+    MR::turnDirectionToTargetUseGroundNormalDegree(this, &_8C, *playerPos, angle);
     MR::clampVecAngleDeg(&_8C, _A4, _B0);
     return true;
 }

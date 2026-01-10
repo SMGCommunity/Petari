@@ -21,6 +21,6 @@ public:
     TVec3f _98;
     TVec3f _A4;
     f32 _B0;
-    f32 _B4;
+    /* 0xB4 */ f32 mRadius;
     bool _B8;
 };
