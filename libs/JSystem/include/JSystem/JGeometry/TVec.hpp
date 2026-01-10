@@ -47,12 +47,22 @@ namespace JGeometry {
             y = rSrc.y;
         }
 
+        void add(const TVec2< T >& other) {
+            x += other.x;
+            y += other.y;
+        }
+
         /* General operations */
         template < typename A >
         void set(const JGeometry::TVec2< A >& rSrc);
 
-        template < typename A >
-        void set(A _x, A _y);
+        void set(T v) { y = x = v; }
+
+        template < typename U >
+        void set(const U x, const U y) {
+            this->x = x;
+            this->y = y;
+        }
 
         void setMin(const TVec2< T >&);
         void setMax(const TVec2< T >&);

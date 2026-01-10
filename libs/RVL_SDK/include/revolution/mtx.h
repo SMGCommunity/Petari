@@ -58,6 +58,8 @@ void PSMTXScale(Mtx, f32, f32, f32);
 void PSMTXRotRad(Mtx m, char axis, f32 rad);
 void PSMTXRotAxisRad(Mtx dst, const Vec*, f32);
 
+void PSMTXTrans(Mtx m, f32 xT, f32 yT, f32 zT);
+
 /* Paired Single Quaternion */
 void PSQUATMultiply(const Quaternion*, const Quaternion*, Quaternion*);
 void PSMTXQuat(Mtx dst, const Quaternion* quat);
