@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Game/LiveActor/PartsModel.hpp"
 #include "Game/MapObj/MapObjActor.hpp"
 
 class PeachCastleGardenPlanet : public MapObjActor {
@@ -15,5 +16,5 @@ public:
     void exeWait();
     void exeDamage();
 
-    u32 _C4;
+    PartsModel* _C4;
 };
