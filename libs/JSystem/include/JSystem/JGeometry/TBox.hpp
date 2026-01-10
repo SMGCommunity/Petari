@@ -19,7 +19,7 @@ namespace JGeometry {
         f32 getWidth() const { return f.x - i.x; }
         f32 getHeight() const { return f.y - i.y; }
 
-        bool isValid() const NO_INLINE { return f.isAbove(i); }
+        bool isValid() const { return f.isAbove(i); }
 
         void addPos(f32 x, f32 y) { addPos(TVec2< f32 >(x, y)); }
 
@@ -47,7 +47,7 @@ namespace JGeometry {
             TBox< TVec2< T > >::f.set(_f);
         }
 
-        TBox2(f32 x0, f32 y0, f32 x1, f32 y1) NO_INLINE { set(x0, y0, x1, y1); }
+        TBox2(f32 x0, f32 y0, f32 x1, f32 y1) { set(x0, y0, x1, y1); }
         // void set<T>(const TBox2<T> &a1, const TBox2<T> &a2);
 
         void operator=(const JGeometry::TBox2< T >&);
@@ -64,7 +64,7 @@ namespace JGeometry {
 
         void set(const TBox< TVec2< T > >& other) { set(other.i, other.f); }
         void set(const TVec2< f32 >& i, const TVec2< f32 >& f) { this->i.set(i), this->f.set(f); }
-        void set(f32 x0, f32 y0, f32 x1, f32 y1) {
+        void set(f32 x0, f32 y0, f32 x1, f32 y1) NO_INLINE {
             this->i.set(x0, y0);
             this->f.set(x1, y1);
         }
