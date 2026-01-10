@@ -6,6 +6,7 @@
 #include "JSystem/JGeometry/TUtil.hpp"
 #include "math_types.hpp"
 #include "revolution/mtx.h"
+#include "revolution/types.h"
 #include <JSystem/JMath/JMath.hpp>
 
 namespace JGeometry {
@@ -472,6 +473,18 @@ namespace JGeometry {
             }
             f32 lengthinv = JGeometry::TUtil< f32 >::inv_sqrt(oldlength);
             scale(lengthinv * newlength);
+            return lengthinv * oldlength;
+        };
+
+        f32 setLength2(f32 newlength) {
+            f32 oldlength = squared();
+            if (oldlength <= 0.0000038146973f) {
+                return 0.0f;
+            }
+            f32 lengthinv = JGeometry::TUtil< f32 >::inv_sqrt(oldlength);
+            x *= lengthinv * newlength;
+            y *= lengthinv * newlength;
+            z *= lengthinv * newlength;
             return lengthinv * oldlength;
         };
 
