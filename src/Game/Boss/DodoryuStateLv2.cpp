@@ -28,29 +28,11 @@ namespace {
     NEW_NERVE(DodoryuStateLv2NrvChaseMoreStart, DodoryuStateLv2, ChaseMoreStart);
     NEW_NERVE_ONEND(DodoryuStateLv2NrvChaseMore, DodoryuStateLv2, ChaseMore, ChaseMore);
     NEW_NERVE(DodoryuStateLv2NrvChaseMoreEnd, DodoryuStateLv2, ChaseMoreEnd);
-}
+}  // namespace
 
 DodoryuStateLv2::DodoryuStateLv2(Dodoryu* pDodoryu, DodoryuChaseParam* pParam, const char* pName)
-    : DodoryuStateBase(pDodoryu, pName),
-      _90(nullptr),
-      _94(0.0f, 0.0f, 0.0f),
-      _A0(0.0f, 0.0f, 0.0f),
-      _AC(0.0f),
-      _B0(1.0f),
-      _B4(0.0f),
-      _B8(0),
-      _BC(0),
-      mAppearCount(0),
-      _C4(0),
-      _C8(0),
-      _CC(0),
-      _D0(0.0f),
-      _D4(0.0f),
-      _D8(0.0f),
-      mFindPosCounter(0),
-      _E0(0),
-      _E4(true),
-      mChaseParam(pParam),
+    : DodoryuStateBase(pDodoryu, pName), _90(nullptr), _94(0.0f, 0.0f, 0.0f), _A0(0.0f, 0.0f, 0.0f), _AC(0.0f), _B0(1.0f), _B4(0.0f), _B8(0), _BC(0),
+      mAppearCount(0), _C4(0), _C8(0), _CC(0), _D0(0.0f), _D4(0.0f), _D8(0.0f), mFindPosCounter(0), _E0(0), _E4(true), mChaseParam(pParam),
       mPlayerStaggering(false) {
     initWithoutIter();
 }
@@ -407,8 +389,8 @@ void DodoryuStateLv2::exeFindPos() {
         TVec3f offset;
         if (mDodoryu->keepOffFromClosedArea(&offset)) {
             TPos3f mtx;
-            u64* dst = reinterpret_cast<u64*>(&mtx);
-            const u64* src = reinterpret_cast<const u64*>(&mDodoryu->mBaseMtx);
+            u64* dst = reinterpret_cast< u64* >(&mtx);
+            const u64* src = reinterpret_cast< const u64* >(&mDodoryu->mBaseMtx);
             for (int i = 0; i < 6; ++i) {
                 dst[i] = src[i];
             }
@@ -561,9 +543,8 @@ void DodoryuStateLv2::catchHipDrop() {
         setNerve(&DodoryuStateLv2NrvEscapeJump::sInstance);
         return;
     }
-    if (!isNerve(&DodoryuStateLv2NrvChaseMoreStart::sInstance)
-        && !isNerve(&DodoryuStateLv2NrvChaseMore::sInstance)
-        && !isNerve(&DodoryuStateLv2NrvChaseMoreEnd::sInstance)) {
+    if (!isNerve(&DodoryuStateLv2NrvChaseMoreStart::sInstance) && !isNerve(&DodoryuStateLv2NrvChaseMore::sInstance) &&
+        !isNerve(&DodoryuStateLv2NrvChaseMoreEnd::sInstance)) {
         bool useChaseMore = mChaseParam->_9C;
         if (useChaseMore) {
             mDodoryu->reactJumpOutCommon();
@@ -580,9 +561,8 @@ void DodoryuStateLv2::catchAttackSensor(HitSensor* pSender, HitSensor* pReceiver
         return;
     }
     if (isNerve(&DodoryuStateLv2NrvDive::sInstance)) {
-        if (MR::isSensor(pSender, "RightHand") || MR::isSensor(pSender, "LeftHand") ||
-            MR::isSensor(pSender, "RightLeg") || MR::isSensor(pSender, "LeftLeg") ||
-            MR::isSensor(pSender, "Head")) {
+        if (MR::isSensor(pSender, "RightHand") || MR::isSensor(pSender, "LeftHand") || MR::isSensor(pSender, "RightLeg") ||
+            MR::isSensor(pSender, "LeftLeg") || MR::isSensor(pSender, "Head")) {
             return;
         }
     }
@@ -666,35 +646,25 @@ void DodoryuStateLv2::knockOver() {
 }
 
 bool DodoryuStateLv2::isEnableToCatchHipDrop() const {
-    return isNerve(&DodoryuStateLv2NrvChaseHide::sInstance) ||
-           isNerve(&DodoryuStateLv2NrvReadyAppear::sInstance) ||
-           isNerve(&DodoryuStateLv2NrvChaseAppearStart::sInstance) ||
-           isNerve(&DodoryuStateLv2NrvChaseAppear::sInstance) ||
-           isNerve(&DodoryuStateLv2NrvChaseAppearEnd::sInstance) ||
-           isNerve(&DodoryuStateLv2NrvEscape::sInstance) ||
-           isNerve(&DodoryuStateLv2NrvChaseMoreStart::sInstance) ||
-           isNerve(&DodoryuStateLv2NrvChaseMore::sInstance) ||
+    return isNerve(&DodoryuStateLv2NrvChaseHide::sInstance) || isNerve(&DodoryuStateLv2NrvReadyAppear::sInstance) ||
+           isNerve(&DodoryuStateLv2NrvChaseAppearStart::sInstance) || isNerve(&DodoryuStateLv2NrvChaseAppear::sInstance) ||
+           isNerve(&DodoryuStateLv2NrvChaseAppearEnd::sInstance) || isNerve(&DodoryuStateLv2NrvEscape::sInstance) ||
+           isNerve(&DodoryuStateLv2NrvChaseMoreStart::sInstance) || isNerve(&DodoryuStateLv2NrvChaseMore::sInstance) ||
            isNerve(&DodoryuStateLv2NrvChaseMoreEnd::sInstance);
 }
 
 bool DodoryuStateLv2::isDown() const {
-    return isNerve(&DodoryuStateLv2NrvJumpOut::sInstance) ||
-           isNerve(&DodoryuStateLv2NrvEscape::sInstance) ||
-           isNerve(&DodoryuStateLv2NrvEscapeJump::sInstance) ||
-           isNerve(&DodoryuStateLv2NrvRecover::sInstance) ||
+    return isNerve(&DodoryuStateLv2NrvJumpOut::sInstance) || isNerve(&DodoryuStateLv2NrvEscape::sInstance) ||
+           isNerve(&DodoryuStateLv2NrvEscapeJump::sInstance) || isNerve(&DodoryuStateLv2NrvRecover::sInstance) ||
            (isNerve(&DodoryuStateLv2NrvDive::sInstance) && MR::isLessEqualStep(this, 20));
 }
 
 bool DodoryuStateLv2::isAttackableNerve() const {
-    return isNerve(&DodoryuStateLv2NrvChaseHide::sInstance)
-        || isNerve(&DodoryuStateLv2NrvReadyAppear::sInstance)
-        || isNerve(&DodoryuStateLv2NrvChaseAppearStart::sInstance)
-        || isNerve(&DodoryuStateLv2NrvChaseAppear::sInstance)
-        || isNerve(&DodoryuStateLv2NrvChaseAppearEnd::sInstance)
-        || (isNerve(&DodoryuStateLv2NrvDive::sInstance) && MR::isGreaterStep(this, 20))
-        || isNerve(&DodoryuStateLv2NrvChaseMoreStart::sInstance)
-        || isNerve(&DodoryuStateLv2NrvChaseMore::sInstance)
-        || isNerve(&DodoryuStateLv2NrvChaseMoreEnd::sInstance);
+    return isNerve(&DodoryuStateLv2NrvChaseHide::sInstance) || isNerve(&DodoryuStateLv2NrvReadyAppear::sInstance) ||
+           isNerve(&DodoryuStateLv2NrvChaseAppearStart::sInstance) || isNerve(&DodoryuStateLv2NrvChaseAppear::sInstance) ||
+           isNerve(&DodoryuStateLv2NrvChaseAppearEnd::sInstance) || (isNerve(&DodoryuStateLv2NrvDive::sInstance) && MR::isGreaterStep(this, 20)) ||
+           isNerve(&DodoryuStateLv2NrvChaseMoreStart::sInstance) || isNerve(&DodoryuStateLv2NrvChaseMore::sInstance) ||
+           isNerve(&DodoryuStateLv2NrvChaseMoreEnd::sInstance);
 }
 
 bool DodoryuStateLv2::tryShiftToChaseAppear() {
@@ -811,9 +781,8 @@ void DodoryuStateLv2::attackStrongToDir(HitSensor* pSender, HitSensor* pReceiver
         if (isNerve(&DodoryuStateLv2NrvDive::sInstance)) {
             return;
         }
-        bool isHideNerve = isNerve(&DodoryuStateLv2NrvChaseHide::sInstance) ||
-                          isNerve(&DodoryuStateLv2NrvReadyAppear::sInstance) ||
-                          isNerve(&DodoryuStateLv2NrvChaseAppearEnd::sInstance);
+        bool isHideNerve = isNerve(&DodoryuStateLv2NrvChaseHide::sInstance) || isNerve(&DodoryuStateLv2NrvReadyAppear::sInstance) ||
+                           isNerve(&DodoryuStateLv2NrvChaseAppearEnd::sInstance);
         if (isHideNerve) {
             setNerve(&DodoryuStateLv2NrvHideAttack::sInstance);
         } else {
@@ -902,7 +871,7 @@ void DodoryuStateLv2::calcLimitedRotateMtx(TPos3f* pMtx, const TVec3f& rFrom, co
         quat.x = 0.0f;
         quat.y = 0.0f;
         quat.z = 0.0f;
-        quat.h = 1.0f;
+        quat.w = 1.0f;
     } else {
         f32 dotResult2 = rFrom.dot(rTo);
         f32 angle2 = JMath::sAtanTable.atan2_(crossMag2, dotResult2);
@@ -910,7 +879,7 @@ void DodoryuStateLv2::calcLimitedRotateMtx(TPos3f* pMtx, const TVec3f& rFrom, co
         f32 sinHalf = sin(halfAngle);
         TVec3f* pQuatXYZ = (TVec3f*)&quat;
         pQuatXYZ->scale(sinHalf / crossMag2, cross2);
-        quat.h = cos(halfAngle);
+        quat.w = cos(halfAngle);
     }
     pMtx->zeroTrans();
     f32 xx = 2.0f * quat.x * quat.x;
@@ -918,10 +887,10 @@ void DodoryuStateLv2::calcLimitedRotateMtx(TPos3f* pMtx, const TVec3f& rFrom, co
     f32 zz = 2.0f * quat.z * quat.z;
     f32 xy = 2.0f * quat.x * quat.y;
     f32 xz = 2.0f * quat.x * quat.z;
-    f32 xw = 2.0f * quat.h * quat.z;
+    f32 xw = 2.0f * quat.w * quat.z;
     f32 yz = 2.0f * quat.y * quat.z;
-    f32 yw = 2.0f * quat.h * quat.y;
-    f32 zw = 2.0f * quat.h * quat.x;
+    f32 yw = 2.0f * quat.w * quat.y;
+    f32 zw = 2.0f * quat.w * quat.x;
     pMtx->mMtx[0][0] = 1.0f - yy - zz;
     pMtx->mMtx[0][1] = xy - xw;
     pMtx->mMtx[0][2] = xz + yw;
@@ -934,12 +903,9 @@ void DodoryuStateLv2::calcLimitedRotateMtx(TPos3f* pMtx, const TVec3f& rFrom, co
 }
 
 bool DodoryuStateLv2::isReflectSpinAttack() const {
-    return isNerve(&DodoryuStateLv2NrvChaseAppearStart::sInstance)
-        || isNerve(&DodoryuStateLv2NrvChaseAppear::sInstance)
-        || isNerve(&DodoryuStateLv2NrvChaseAppearEnd::sInstance)
-        || isNerve(&DodoryuStateLv2NrvChaseMoreStart::sInstance)
-        || isNerve(&DodoryuStateLv2NrvChaseMore::sInstance)
-        || isNerve(&DodoryuStateLv2NrvChaseMoreEnd::sInstance);
+    return isNerve(&DodoryuStateLv2NrvChaseAppearStart::sInstance) || isNerve(&DodoryuStateLv2NrvChaseAppear::sInstance) ||
+           isNerve(&DodoryuStateLv2NrvChaseAppearEnd::sInstance) || isNerve(&DodoryuStateLv2NrvChaseMoreStart::sInstance) ||
+           isNerve(&DodoryuStateLv2NrvChaseMore::sInstance) || isNerve(&DodoryuStateLv2NrvChaseMoreEnd::sInstance);
 }
 
 void DodoryuStateLv2::shiftChaseUnderground() {
