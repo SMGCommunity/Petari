@@ -42,8 +42,8 @@ void J2DPane::changeUseTrans(J2DPane* p_pane) {
         yOffset = mBounds.getHeight();
     }
 
-    mTranslateX = mBounds._0.x + xOffset;
-    mTranslateY = mBounds._0.y + yOffset;
+    mTranslateX = mBounds.i.x + xOffset;
+    mTranslateY = mBounds.i.y + yOffset;
 
     mRotateOffsetX = xOffset;
     mRotateOffsetY = yOffset;
@@ -82,36 +82,36 @@ J2DPane::~J2DPane() {
 void J2DPane::place(JGeometry::TBox2< f32 > const& box) {
     JGeometry::TBox2< f32 > tmpBox;
 
-    if (mBounds._0.x == 0) {
-        tmpBox._0.x = 0;
-        tmpBox._8.x = box.getWidth();
-        mTranslateX = box._0.x;
-    } else if (mBounds._8.x == 0) {
-        tmpBox._0.x = -box.getWidth();
-        tmpBox._8.x = 0;
-        mTranslateX = box._8.x;
+    if (mBounds.i.x == 0) {
+        tmpBox.i.x = 0;
+        tmpBox.f.x = box.getWidth();
+        mTranslateX = box.i.x;
+    } else if (mBounds.f.x == 0) {
+        tmpBox.i.x = -box.getWidth();
+        tmpBox.f.x = 0;
+        mTranslateX = box.f.x;
     } else {
-        tmpBox._0.x = -(box.getWidth() / 2);
-        tmpBox._8.x = box.getWidth() / 2;
-        mTranslateX = (box._0.x + box._8.x) / 2;
+        tmpBox.i.x = -(box.getWidth() / 2);
+        tmpBox.f.x = box.getWidth() / 2;
+        mTranslateX = (box.i.x + box.f.x) / 2;
     }
 
-    if (mBounds._0.y == 0) {
-        tmpBox._0.y = 0;
-        tmpBox._8.y = box.getHeight();
-        mTranslateY = box._0.y;
-    } else if (mBounds._8.y == 0) {
-        tmpBox._0.y = -box.getHeight();
-        tmpBox._8.y = 0;
-        mTranslateY = box._8.y;
+    if (mBounds.i.y == 0) {
+        tmpBox.i.y = 0;
+        tmpBox.f.y = box.getHeight();
+        mTranslateY = box.i.y;
+    } else if (mBounds.f.y == 0) {
+        tmpBox.i.y = -box.getHeight();
+        tmpBox.f.y = 0;
+        mTranslateY = box.f.y;
     } else {
-        tmpBox._0.y = -(box.getHeight() / 2);
-        tmpBox._8.y = box.getHeight() / 2;
-        mTranslateY = (box._0.y + box._8.y) / 2;
+        tmpBox.i.y = -(box.getHeight() / 2);
+        tmpBox.f.y = box.getHeight() / 2;
+        mTranslateY = (box.i.y + box.f.y) / 2;
     }
 
-    f32 xOff = tmpBox._0.x - mBounds._0.x;
-    f32 yOff = tmpBox._0.y - mBounds._0.y;
+    f32 xOff = tmpBox.i.x - mBounds.i.x;
+    f32 yOff = tmpBox.i.y - mBounds.i.y;
     J2DPane* child;
     for (child = getFirstChildPane(); child != NULL; child = child->getNextChildPane()) {
         child->mTranslateX += xOff;
@@ -124,8 +124,8 @@ void J2DPane::place(JGeometry::TBox2< f32 > const& box) {
 
     J2DPane* parent = getParentPane();
     if (parent != NULL) {
-        mTranslateX += parent->mBounds._0.x;
-        mTranslateY += parent->mBounds._0.y;
+        mTranslateX += parent->mBounds.i.x;
+        mTranslateY += parent->mBounds.i.y;
     }
     calcMtx();
 }
@@ -152,13 +152,13 @@ void J2DPane::resize(f32 x, f32 y) {
 
     const J2DPane* parent = getParentPane();
     if (parent != NULL) {
-        f32 xAdd = -parent->mBounds._0.x;
-        f32 yAdd = -parent->mBounds._0.y;
+        f32 xAdd = -parent->mBounds.i.x;
+        f32 yAdd = -parent->mBounds.i.y;
         box.addPos(xAdd, yAdd);
     }
 
-    box._8.x = box._8.x + x;
-    box._8.y = box._8.y + y;
+    box.f.x = box.f.x + x;
+    box.f.y = box.f.y + y;
     place(box);
 }
 
@@ -208,7 +208,7 @@ bool J2DPane::isUsed(const ResFONT* p_font) {
     return false;
 }
 
-void J2DPane::makeMatrix(f32 param_0, f32 param_1, f32 param_2, f32 param_3) {
+void J2DPane::makeMatrix(f32 parami, f32 param_1, f32 param_2, f32 param_3) {
     f32 tmpX = mRotateOffsetX - param_2;
     f32 tmpY = mRotateOffsetY - param_3;
     Mtx rotX, rotY, rotZ, rotMtx, mtx, tmp;
@@ -220,7 +220,7 @@ void J2DPane::makeMatrix(f32 param_0, f32 param_1, f32 param_2, f32 param_3) {
     PSMTXConcat(rotY, tmp, rotMtx);
     PSMTXScaleApply(mtx, mPositionMtx, mScaleX, mScaleY, 1);
     PSMTXConcat(rotMtx, mPositionMtx, tmp);
-    PSMTXTransApply(tmp, mPositionMtx, param_0 + tmpX, param_1 + tmpY, 0);
+    PSMTXTransApply(tmp, mPositionMtx, parami + tmpX, param_1 + tmpY, 0);
 }
 
 void J2DPane::setCullBack(GXCullMode mode) {
@@ -368,7 +368,7 @@ void J2DPane::calcMtx() {
 }
 
 void J2DPane::makeMatrix(f32 a, f32 b) {
-    makeMatrix(a, b, -mBounds._0.x, -mBounds._0.y);
+    makeMatrix(a, b, -mBounds.i.x, -mBounds.i.y);
 }
 
 void J2DPane::rewriteAlpha() {}

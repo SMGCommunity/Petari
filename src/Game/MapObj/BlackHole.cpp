@@ -158,8 +158,8 @@ bool BlackHole::isInCubeBox(const TVec3f& rVec) const {
     _A8.multTranspose(rVec, stack_8);
     bool ret = false;
     TBox3f* box = _A4;
-    if (stack_8.x >= box->mMin.x && stack_8.y >= box->mMin.y && stack_8.z >= box->mMin.z && stack_8.x < box->mMax.x && stack_8.y < box->mMax.y &&
-        stack_8.z < box->mMax.z) {
+    if (stack_8.x >= box->i.x && stack_8.y >= box->i.y && stack_8.z >= box->i.z && stack_8.x < box->f.x && stack_8.y < box->f.y &&
+        stack_8.z < box->f.z) {
         ret = true;
     }
 

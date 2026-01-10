@@ -260,9 +260,9 @@ void MoviePlayerSimple::drawCinemaFrame() const {
 
     s16 width = MR::getFrameBufferWidth();
     TBox2s top(0, 0, width, sCinemaFrameHeightTop);
-    MR::fillScreenArea(top._0, top._8);
+    MR::fillScreenArea(top.i, top.f);
 
     s16 height = MR::getFrameBufferHeight();
     TBox2s bottom(0, sCinemaFrameHeightBottom, width, height);
-    MR::fillScreenArea(bottom._0, bottom._8);
+    MR::fillScreenArea(bottom.i, bottom.f);
 }

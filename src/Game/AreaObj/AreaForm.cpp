@@ -33,12 +33,12 @@ AreaFormCube::AreaFormCube(int a1) {
     mScale.x = 1.0f;
     mScale.y = 1.0f;
     mScale.z = 1.0f;
-    mBounding.mMin.x = 0.0f;
-    mBounding.mMin.y = 0.0f;
-    mBounding.mMin.z = 0.0f;
-    mBounding.mMax.x = 0.0f;
-    mBounding.mMax.y = 0.0f;
-    mBounding.mMax.z = 0.0f;
+    mBounding.i.x = 0.0f;
+    mBounding.i.y = 0.0f;
+    mBounding.i.z = 0.0f;
+    mBounding.f.x = 0.0f;
+    mBounding.f.y = 0.0f;
+    mBounding.f.z = 0.0f;
 }
 
 void AreaFormCube::init(const JMapInfoIter& rIter) {
@@ -55,8 +55,8 @@ bool AreaFormCube::isInVolume(const TVec3f& rPos) const {
     TVec3f transpose;
     pos.multTranspose(rPos, transpose);
 
-    return transpose.x >= mBounding.mMin.x && transpose.y >= mBounding.mMin.y && transpose.z >= mBounding.mMin.z && transpose.x < mBounding.mMax.x &&
-           transpose.y < mBounding.mMax.y && transpose.z < mBounding.mMax.z;
+    return transpose.x >= mBounding.i.x && transpose.y >= mBounding.i.y && transpose.z >= mBounding.i.z && transpose.x < mBounding.f.x &&
+           transpose.y < mBounding.f.y && transpose.z < mBounding.f.z;
 }
 
 void AreaFormCube::calcWorldPos(TVec3f* pPos) const {
@@ -86,8 +86,8 @@ void AreaFormCube::calcWorldBox(TDirBox3f* pBox) const {
     pBox->_18.z = pos.mMtx[2][2];
     pBox->_24.z = pos.mMtx[2][3];
 
-    JMathInlineVEC::PSVECSubtract(&mBounding.mMax, &mBounding.mMin, &pBox->_30);
-    pos.mult(mBounding.mMin, pBox->_24);
+    JMathInlineVEC::PSVECSubtract(&mBounding.f, &mBounding.i, &pBox->_30);
+    pos.mult(mBounding.i, pBox->_24);
 }
 
 void AreaFormCube::calcLocalPos(TVec3f* pPos, const TVec3f& a2) const {

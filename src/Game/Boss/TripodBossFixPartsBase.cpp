@@ -38,14 +38,14 @@ void TripodBossFixPartsBase::initAfterPlacement() {
 void TripodBossFixPartsBase::initClippingSphere() {
     TBox3f box;
     MR::calcModelBoundingBox(&box, this);
-    TVec3f v9(box.mMin);
-    JMathInlineVEC::PSVECAdd2(&v9, &box.mMax, &v9);
+    TVec3f v9(box.i);
+    JMathInlineVEC::PSVECAdd2(&v9, &box.f, &v9);
     TVec3f v10(v9);
     v10.x *= 0.5f;
     v10.y *= 0.5f;
     v10.z *= 0.5f;
     _D0 = v10;
-    mClippingDistance = PSVECDistance(&_D0, &box.mMin);
+    mClippingDistance = PSVECDistance(&_D0, &box.i);
 }
 
 void TripodBossFixPartsBase::setClippingSphere(const TVec3f& a1, f32 dist) {

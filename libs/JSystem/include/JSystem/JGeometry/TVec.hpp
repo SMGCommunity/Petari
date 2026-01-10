@@ -64,8 +64,21 @@ namespace JGeometry {
             this->y = y;
         }
 
-        void setMin(const TVec2< T >&);
-        void setMax(const TVec2< T >&);
+        void setMin(const TVec2< f32 >& min) {
+            if (x >= min.x)
+                x = min.x;
+            if (y >= min.y)
+                y = min.y;
+        }
+
+        void setMax(const TVec2< f32 >& max) {
+            if (x <= max.x)
+                x = max.x;
+            if (y <= max.y)
+                y = max.y;
+        }
+
+        inline bool isAbove(const TVec2< T >& other) const { return (x >= other.x) && (y >= other.y) ? true : false; }
 
         void sub(const TVec2< T >& rOther);
 
