@@ -8,10 +8,10 @@
 #include "JSystem/JGeometry/TVec.hpp"
 #include "JSystem/JMath/JMath.hpp"
 
-IceVolcanoUpDownPlane::IceVolcanoUpDownPlane(const char* pName) : RailMoveObj(pName), _D4(0.0f, 0.0f, 0.0f) {}
+IceVolcanoUpDownPlane::IceVolcanoUpDownPlane(const char* pName) : RailMoveObj(pName), mNearestPosToPlayer(0.0f, 0.0f, 0.0f) {}
 
 void IceVolcanoUpDownPlane::move() {
-    bool success = tryCalcNearestPosToPlayer(&_D4);
+    bool success = tryCalcNearestPosToPlayer(&mNearestPosToPlayer);
 
     if (isMoving() && success) {
         MR::StageEffect::tryStageEffectMoving(this, mObjectName);
@@ -48,7 +48,7 @@ bool IceVolcanoUpDownPlane::tryCalcNearestPosToPlayer(TVec3f* pArg) const {
 }
 
 TVec3f* IceVolcanoUpDownPlane::getSoundCalcPos() {
-    return &_D4;
+    return &mNearestPosToPlayer;
 }
 
 void RailMoveObj::setupInitInfo(const JMapInfoIter& rIter, MapObjActorInitInfo* pActorInitInfo) {}

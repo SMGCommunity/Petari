@@ -9,5 +9,5 @@ class IceVolcanoUpDownPlane : RailMoveObj {
     bool tryCalcNearestPosToPlayer(TVec3f*) const;
     TVec3f* getSoundCalcPos();
 
-    TVec3f _D4;
+    /* 0xD4 */ TVec3f mNearestPosToPlayer;
 };
