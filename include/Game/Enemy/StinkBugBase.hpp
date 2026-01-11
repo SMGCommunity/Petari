@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/Util/JMapInfo.hpp"
+
+class HitSensor;
 
 class StinkBugBase : public LiveActor {
 public:
