@@ -72,6 +72,23 @@ void XanimeCore::doFreeze() {
     _1C = 0.0f;
 }
 
+void XanimeCore::freezeCopy(J3DModelData* pModelData, XanimeCore* pOther, u32 jointIndex, u32 interp) {
+    J3DJoint* joint = pModelData->mJointTree.mJointNode[jointIndex];
+
+    for (J3DJoint* child = joint->mChild; child; child = child->mYoung) {
+        freezeCopy(pModelData, pOther, child->mJointNo, interp);
+    }
+
+    mJointList[jointIndex]._28 = pOther->mJointList[jointIndex]._28;
+    pOther->mJointList[jointIndex]._5C = 0.0f;
+
+    f32 rate = 1.0f;
+    if (interp) {
+        rate = 1.0f / interp;
+    }
+    pOther->mJointList[jointIndex]._60 = rate;
+}
+
 // XanimeCore::setBck
 
 void XanimeCore::setWeight(u8 idx, f32 weight) {

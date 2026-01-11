@@ -93,22 +93,24 @@ void Mario::closeStatus(MarioState* pState) {
         _97C = (MarioState*)pState->_8;
     } else {
         while (pCurr) {
-            if ((MarioState*)pCurr->_8 == pState) {
-                pCurr->_8 = pState->_8;
+            MarioState* pNext = (MarioState*)pCurr->_8;
+            if (pNext == pState) {
                 break;
             }
-            pCurr = (MarioState*)pCurr->_8;
+            pCurr = pNext;
         }
+        pCurr->_8 = pState->_8;
     }
     pState->_8 = 0;
     pState->proc(1);
 }
 
 u32 Mario::getCurrentStatus() const {
-    if (!_97C) {
+    MarioState* pState = _97C;
+    if (pState == 0) {
         return 0;
     }
-    return _97C->mStatusId;
+    return pState->mStatusId;
 }
 
 bool Mario::isStatusActive(u32 statusId) const {

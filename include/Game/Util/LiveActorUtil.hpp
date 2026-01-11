@@ -265,6 +265,8 @@ namespace MR {
 
     ProjmapEffectMtxSetter* initDLMakerProjmapEffectMtxSetter(LiveActor*);
 
+    void initDLMakerFog(LiveActor*, bool);
+
     void newDifferedDLBuffer(LiveActor*);
 
     bool isExistKcl(LiveActor*, const char*);

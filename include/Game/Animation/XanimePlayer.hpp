@@ -66,6 +66,8 @@ public:
 
     inline XanimeCore* getCore() { return mCore; }
 
+    f32 tellAnimationFrame() const;
+
     /* 0x00 */ J3DModel* mModel;
     /* 0x04 */ J3DModelData* mModelData;
     /* 0x08 */ f32 _08;

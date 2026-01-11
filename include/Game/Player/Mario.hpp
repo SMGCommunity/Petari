@@ -192,7 +192,7 @@ public:
 
     void blown(const TVec3f&);
 
-    void taskOnEffectCheck(u32);
+    bool taskOnEffectCheck(u32);
 
     void doFlow();
 
@@ -332,7 +332,7 @@ public:
     bool isWalling() const;
     void checkWallStick();
     void checkStickWallSide();
-    void checkStickFrontBack();
+    s32 checkStickFrontBack();
     void fixWallingPosition(bool);
     void fixWallingDir();
     void fixWallingTop();

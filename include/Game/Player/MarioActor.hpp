@@ -14,8 +14,11 @@ class MarioConst;
 class MarioEffect;
 class MarioAnimator;
 class MarioMessenger;
+class MultiEmitter;
 class CollisionShadow;
 class DLchanger;
+class J3DModel;
+class J3DModelData;
 class J3DModelX;
 class TornadoMario;
 class ModelHolder;
@@ -47,6 +50,7 @@ public:
     void changeNullAnimation(const char*, s8);
     void clearNullAnimation(s8);
     void changeSpecialModeAnimation(const char*);
+    void updateSpecialModeAnimation();
     bool isStopNullAnimation() const;
     void changeGameOverAnimation();
     XjointTransform* getJointCtrl(const char*) const;
@@ -130,6 +134,8 @@ public:
 
     void setPunchHitTimer(u8);
     void initEffect();
+    void initMaterialEffect();
+    void initCommonEffect();
     void addSoundObjHolder();
     void initParts();
     void initMorphStringTable();
@@ -144,6 +150,9 @@ public:
     bool isAllHidden() const;
 
     void drawMarioModel() const;
+    J3DModel* getJ3DModel() const;
+    J3DModelData* getModelData() const;
+    J3DModel* getSimpleModel() const;
 
     // Called by drawMarioModel
     void drawSpinInhibit() const;
@@ -159,21 +168,31 @@ public:
     void updateGravityVec(bool, bool);
     void changeTeresaAnimation(const char*, s32);
 
-    void playEffect(const char*);
+    MultiEmitter* playEffect(const char*);
     void playEffectTrans(const char*, const TVec3f&);
+    MultiEmitter* playMaterialEffect(const char*);
+    MultiEmitter* playCommonEffect(const char*);
     void stopEffect(const char*);
+    void stopMaterialEffect(const char*);
+    void stopCommonEffect(const char*);
+    void stopEffectForce(const char*);
+    bool isCommonEffect(const char*) const;
+    bool isMaterialEffect(const char*) const;
+    s32 getFloorMaterialIndex(u32) const;
 
     void updateActionTrigger();
     void updateControllerSwing();
     void updateControllerSwingLeft();
     void update2D();
     void updateTakingPosition();
+    void offTakingFlag();
     void updateSearchLight();
     void updateThrowing();
     void updateBeeWingAnimation();
     void updateFairyStar();
     void updatePlayerMode();
     void updateEffect();
+    bool checkEffectWaterColumn();
     void updateThrowVector();
     void updateForCamera();
     void updateTornado();
@@ -198,7 +217,6 @@ public:
     bool selectRecoverFlyMeter(const HitSensor*) const;
     void endRush(const RushEndInfo*);
     void stopSpinTicoEffect(bool);
-    void stopEffectForce(const char*);
     bool isRequestRush() const;
     bool isRequestSpinJump2P() const;
     bool tryReleaseBombTeresa();
@@ -218,6 +236,7 @@ public:
     void tryCoinPullInRush();
 
     void damageDropThrowMemoSensor();
+    void rushDropThrowMemoSensor();
 
     void setPlayerMode(u16, bool);
 
@@ -232,6 +251,8 @@ public:
     void entryWallWalkMode(const TVec3f&, const TVec3f&);
 
     const HitSensor& getCarrySensor() const;
+    HitSensor* getLookTargetSensor() const;
+    f32 getFaceLookHeight(const char*) const;
 
     const MarioConst& getConst() const { return *mConst; }
 
