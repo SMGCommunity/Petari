@@ -10,11 +10,12 @@
 #include "JSystem/JGeometry/TVec.hpp"
 #include "revolution/types.h"
 
-
 namespace NrvWaterfallCaveCover {
     NEW_NERVE(HostTypeWait, WaterfallCaveCover, Wait);
     NEW_NERVE(HostTypeBreak, WaterfallCaveCover, Break);
 }  // namespace NrvWaterfallCaveCover
+
+inline WaterfallCaveCover::WaterfallCaveCover(const char* pName) : MapObjActor(pName) {}
 
 void WaterfallCaveCover::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);
