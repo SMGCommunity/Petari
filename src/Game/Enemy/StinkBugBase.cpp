@@ -15,8 +15,8 @@
 #include "JSystem/JMath/JMATrigonometric.hpp"
 #include "JSystem/JMath/JMath.hpp"
 
-StinkBugBase::StinkBugBase(const char* pArg)
-    : LiveActor(pArg), _8C(0.0f, 0.0f, 1.0f), _98(0.0f, 0.0f, 0.0f), _A4(0.0f, 0.0f, 1.0f), _B0(180.0f), mRadius(1000.0f), _B8(false) {}
+StinkBugBase::StinkBugBase(const char* pName)
+    : LiveActor(pName), _8C(0.0f, 0.0f, 1.0f), _98(0.0f, 0.0f, 0.0f), _A4(0.0f, 0.0f, 1.0f), _B0(180.0f), mRadius(1000.0f), _B8(false) {}
 
 void StinkBugBase::setDashVelocity(f32 velocity) {
     TVec3f result;
