@@ -32,7 +32,6 @@ SeaGull::SeaGull(SeaGullGroup* pGroup) : LiveActor("カモメ") {
     _E0 = 0;
 }
 
-#ifdef NON_MATCHING
 void SeaGull::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     MR::calcActorAxis(&_C4, &_B8, &_AC, this);
@@ -74,7 +73,6 @@ void SeaGull::init(const JMapInfoIter& rIter) {
     MR::invalidateClipping(this);
     makeActorAppeared();
 }
-#endif
 
 void SeaGull::exeHoverFront() {
     if (MR::isFirstStep(this)) {

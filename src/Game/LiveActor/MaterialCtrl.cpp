@@ -58,14 +58,12 @@ FogCtrl::FogCtrl(J3DModelData* pModelData, bool a3) : MaterialCtrl(pModelData, n
     }
 }
 
-#ifdef NON_MATCHING
 void FogCtrl::update() {
     for (s32 i = 0; i < mNumMaterials; i++) {
         J3DPEBlockFull& block = *(J3DPEBlockFull*)mMaterials[i]->mPEBlock;
         mMaterials[i]->mPEBlock->getFog() = block.mFogInfo;
     }
 }
-#endif
 
 MatColorCtrl::MatColorCtrl(J3DModelData* pModelData, const char* pName, u32 color, const J3DGXColor* pColor) : MaterialCtrl(pModelData, pName) {
     mColorChoice = color;

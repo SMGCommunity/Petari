@@ -54,7 +54,6 @@ void LavaSteam::init(const JMapInfoIter& rIter) {
     makeActorAppeared();
 }
 
-#ifdef NON_MATCHING
 void LavaSteam::initAfterPlacement() {
     TRot3f mtx;
     mtx.identity();
@@ -84,9 +83,7 @@ void LavaSteam::initAfterPlacement() {
     _8C.set(mtx.mMtx[0][1], mtx.mMtx[1][1], mtx.mMtx[2][1]);
     MR::normalize(&_8C);
 }
-#endif
 
-#ifdef NON_MATCHING
 void LavaSteam::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     TVec3f stack_64;
     TVec3f stack_58;
@@ -140,7 +137,6 @@ void LavaSteam::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
         }
     }
 }
-#endif
 
 void LavaSteam::startClipped() {
     LiveActor::startClipped();
@@ -158,7 +154,6 @@ void LavaSteam::startSteam() {
     setNerve(&NrvLavaSteam::HostTypeSteam::sInstance);
 }
 
-#ifdef NON_MATCHING
 void LavaSteam::exeWait() {
     if (MR::isFirstStep(this)) {
         MR::invalidateHitSensors(this);
@@ -179,7 +174,6 @@ void LavaSteam::exeWait() {
     if (MR::isStep(this, 120))
         setNerve(&NrvLavaSteam::HostTypeSteam::sInstance);
 }
-#endif
 
 void LavaSteam::exeWaitForSwitchOn() {}
 

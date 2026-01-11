@@ -12,7 +12,6 @@
 #include "Game/Player/MarioAnimator.hpp"
 #include "Game/Player/MarioBlown.hpp"
 #include "Game/Player/MarioBump.hpp"
-#include "Game/Player/MarioBury.hpp"
 #include "Game/Player/MarioClimb.hpp"
 #include "Game/Player/MarioConst.hpp"
 #include "Game/Player/MarioCrush.hpp"

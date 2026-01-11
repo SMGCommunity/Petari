@@ -138,7 +138,6 @@ void BeeFlowerHover::exeRecover() {
     }
 }
 
-#ifdef NON_MATCHING
 void BeeFlowerHover::control() {
     if (!isNerve(&NrvBeeFlowerHover::BeeFlowerHoverNrvRecover::sInstance)) {
         mLodCtrlPlanet->update();
@@ -162,8 +161,8 @@ void BeeFlowerHover::control() {
 
     TVec3f v10;
     v10.set(v11);
-    f32 mag = PSVECMag(v10);
-    PSVECNormalize(v10, v10);
+    f32 mag = PSVECMag(&v10);
+    PSVECNormalize(&v10, &v10);
     f32 v6 = sin(v5);
     f32 v7 = cos(v5);
     v12.mMtx[0][0] = v7 + ((1.0f - v7) * (v10.x * v10.x));
@@ -187,7 +186,6 @@ void BeeFlowerHover::control() {
         mPosition.set(mRailMover->_28);
     }
 }
-#endif
 
 void BeeFlowerHover::calcAndSetBaseMtx() {
     TPos3f stack_8;

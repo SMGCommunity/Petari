@@ -49,7 +49,7 @@ void SensorHitChecker::movement() {
     doObjColInSameGroup(mCharacterGroup);
 }
 
-#ifdef NON_MATCHING  // Wrong registers
+// Wrong registers
 void SensorHitChecker::doObjColGroup(SensorGroup* pGroup1, SensorGroup* pGroup2) const {
     s32 group1SensorCount = pGroup1->mSensorCount;
     for (s32 i = 0; i < group1SensorCount; i++) {
@@ -77,9 +77,8 @@ void SensorHitChecker::doObjColGroup(SensorGroup* pGroup1, SensorGroup* pGroup2)
         }
     }
 }
-#endif
 
-#ifdef NON_MATCHING  // Same register issue
+// Same register issue
 void SensorHitChecker::doObjColInSameGroup(SensorGroup* pSensorGroup) const {
     s32 sensorGroupCount = pSensorGroup->mSensorCount;
     for (s32 i = 0; i < sensorGroupCount; i++) {
@@ -106,9 +105,8 @@ void SensorHitChecker::doObjColInSameGroup(SensorGroup* pSensorGroup) const {
         }
     }
 }
-#endif
 
-#ifdef NON_MATCHING  // Wrong registers
+// Wrong registers
 void SensorHitChecker::checkAttack(HitSensor* pSensor1, HitSensor* pSensor2) const {
     if (pSensor1->mHost != pSensor2->mHost) {
         f32 xPos = pSensor1->mPosition.x - pSensor2->mPosition.x;
@@ -127,10 +125,11 @@ void SensorHitChecker::checkAttack(HitSensor* pSensor1, HitSensor* pSensor2) con
         }
     }
 }
-#endif
 
 namespace MR {
-    void initHitSensorGroup(HitSensor* pSensor) { MR::getSceneObj< SensorHitChecker >(SceneObj_SensorHitChecker)->initGroup(pSensor); }
+    void initHitSensorGroup(HitSensor* pSensor) {
+        MR::getSceneObj< SensorHitChecker >(SceneObj_SensorHitChecker)->initGroup(pSensor);
+    }
 };  // namespace MR
 
 SensorHitChecker::~SensorHitChecker() {}

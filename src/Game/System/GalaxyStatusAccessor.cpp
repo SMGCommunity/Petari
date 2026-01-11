@@ -59,7 +59,7 @@ bool GalaxyStatusAccessor::isExistGrandStar() const {
     return false;
 }
 
-#ifdef NON_MATCHING  // The good old registers problem
+// The good old registers problem
 bool GalaxyStatusAccessor::isExistAnyComet() const {
     const char* pIsComet;
 
@@ -79,7 +79,6 @@ bool GalaxyStatusAccessor::isExistAnyComet() const {
 
     return false;
 }
-#endif
 
 s32 GalaxyStatusAccessor::getNormalCometScenarioNo() const {
     const char* pNormal;

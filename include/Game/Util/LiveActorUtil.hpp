@@ -226,6 +226,8 @@ namespace MR {
     void setBtkFrame(LiveActor*, f32);
     void setBtkFrameAndStop(const LiveActor*, f32);
 
+    f32 getBtpFrame(const LiveActor*);
+
     bool isExistBck(const LiveActor*, const char*);
     bool isExistBva(const LiveActor*, const char*);
     bool isExistBtk(const LiveActor*, const char*);
@@ -233,7 +235,19 @@ namespace MR {
     bool isExistBtp(const LiveActor*, const char*);
     bool isExistBrk(const LiveActor*, const char*);
 
+    bool isBckExist(const LiveActor*, const char*);
+    bool isBtkExist(const LiveActor*, const char*);
+    bool isBrkExist(const LiveActor*, const char*);
+    bool isBpkExist(const LiveActor*, const char*);
+    bool isBtpExist(const LiveActor*, const char*);
+    bool isBvaExist(const LiveActor*, const char*);
+
     bool isBckPlaying(const LiveActor*, const char*);
+    bool isBtkPlaying(const LiveActor*, const char*);
+    bool isBrkPlaying(const LiveActor*, const char*);
+    bool isBpkPlaying(const LiveActor*, const char*);
+    bool isBtpPlaying(const LiveActor*, const char*);
+    bool isBvaPlaying(const LiveActor*, const char*);
 
     bool isBckLooped(const LiveActor*);
     bool checkPassBckFrame(const LiveActor* pActor, f32 f);
@@ -327,7 +341,7 @@ namespace MR {
 
     bool changeShowModelFlagSyncNearClipping(LiveActor*, f32);
 
-    u32 createIndirectPlanetModel(LiveActor*, MtxPtr);
+    PartsModel* createIndirectPlanetModel(LiveActor*, MtxPtr);
     bool tryCreateMirrorActor(LiveActor*, const char*);
 
     CollisionParts* createCollisionPartsFromLiveActor(LiveActor*, const char*, HitSensor*, CollisionScaleType);
@@ -373,6 +387,7 @@ namespace MR {
     const char* createMiddleModelObjName(const LiveActor*);
 
     void addToAttributeGroupSearchTurtle(const LiveActor*);
+    bool isExistInAttributeGroupSearchTurtle(const LiveActor*);
 
     void initJointTransform(const LiveActor*);
 
@@ -381,6 +396,7 @@ namespace MR {
 
     ResTIMG* getTexFromArc(const char*, const LiveActor*);
     PartsModel* createBloomModel(LiveActor*, MtxPtr);
+    PartsModel* createWaterModel(LiveActor*, MtxPtr);
 
     TexMtxCtrl* initDLMakerTexMtx(LiveActor*, const char*);
 
@@ -401,4 +417,8 @@ namespace MR {
     TVec3f* getBindedFixReactionVector(const LiveActor*);
 
     CollisionParts* tryCreateCollisionSunshade(LiveActor*, HitSensor*);
+
+    CollisionParts* tryCreateCollisionWaterSurface(LiveActor*, HitSensor*);
+
+    const char* getPlayingBckName(const LiveActor*);
 };  // namespace MR

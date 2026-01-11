@@ -50,7 +50,6 @@ void SubmarineVolcanoBigColumn::kill() {
     LiveActor::kill();
 }
 
-#ifdef NON_MATCHING
 void SubmarineVolcanoBigColumn::exeWait() {
     if (mIsSmallColumn) {
         if (MR::isStep(this, 360)) {
@@ -59,14 +58,13 @@ void SubmarineVolcanoBigColumn::exeWait() {
             TVec3f v11;
             v11.scale(125.0f, upVec);
             TVec3f pos;
-            pos.setInlinePS(v11);
-            pos.addInline_4(mPosition);
+            pos.setPS(v11);
+            pos.addInLine(mPosition);
             MR::appearAirBubble(pos, 360);
             setNerve(&NrvSubmarineVolcanoBigColumn::SubmarineVolcanoBigColumnNrvWait::sInstance);
         }
     }
 }
-#endif
 
 void SubmarineVolcanoBigColumn::exeBreak() {
     if (MR::isFirstStep(this)) {

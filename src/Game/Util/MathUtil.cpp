@@ -85,9 +85,8 @@ namespace MR {
         pDst->set< f32 >(getRandom(-range, range), getRandom(-range, range), getRandom(-range, range));
     }
 
-#ifdef NON_MATCHING
     // stack places randVec and otherVec wrongly
-    void addRandomVector(TVec3f* pOut, const TVec3f& rOtherVec, f32 a3) {
+    void addRandomVector(TVec3f* pOut, const TVec3f& rOtherVec, f32 range) {
         f32 x = getRandom(-range, range);
         f32 y = getRandom(-range, range);
         f32 z = getRandom(-range, range);
@@ -101,7 +100,6 @@ namespace MR {
         otherVec.add(randVec);
         pOut->set(otherVec);
     }
-#endif
 
     void turnRandomVector(TVec3f* pDst, const TVec3f& rSrc, f32 range) {
         f32 srcLength = rSrc.length();
@@ -545,7 +543,6 @@ namespace MR {
         return res;
     }
 
-#ifdef NON_MATCHING
     // register use is wrong, and mull is in wrong order for isAngleBetween
     f32 blendAngle(f32 a1, f32 a2, f32 a3) {
         f32 a1_n = normalizeAngleAbs(a1);
@@ -561,7 +558,6 @@ namespace MR {
 
         return normalizeAngleAbs(((1.0f - a3) * a1_n) + (a3 * a2_n));
     }
-#endif
 
     u8 lerp(u8 start, u8 end, f32 t) {
         return JGeometry::TUtil< f32 >::clamp(start + (end - start) * t, 0.0f, 255.0f);

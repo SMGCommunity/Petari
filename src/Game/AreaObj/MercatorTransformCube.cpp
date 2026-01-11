@@ -42,8 +42,8 @@ void MercatorTransformCube::calcLocalBoxSize(TVec3f* pPos) const {
     TVec3f max;
     TVec3f min;
 
-    min.set< f32 >(box->mMin);
-    max.set< f32 >(box->mMax);
+    min.set< f32 >(box->i);
+    max.set< f32 >(box->f);
 
     JMathInlineVEC::PSVECSubtract(reinterpret_cast< Vec* >(&max), reinterpret_cast< Vec* >(&min), reinterpret_cast< Vec* >(pPos));
 }

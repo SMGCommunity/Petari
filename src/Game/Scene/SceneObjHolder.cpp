@@ -121,7 +121,7 @@
 #include "Game/SingletonHolder.hpp"
 
 SceneObjHolder::SceneObjHolder() {
-    for (int i = 0; i < SceneObj_COUNT; i++) {
+    for (int i = 0; i < SceneObj_NumMax; i++) {
         mObj[i] = nullptr;
     }
 }
@@ -343,8 +343,7 @@ NameObj* SceneObjHolder::newEachObj(int id) {
         // return new ElectricRailHolder("電撃レール保持");
         return nullptr;
     case SceneObj_SpiderThread:
-        // return new SpiderThread("クモの巣");
-        return nullptr;
+        return new SpiderThread("クモの巣");
     case SceneObj_QuakeEffectGenerator:
         return new QuakeEffectGenerator();
     case SceneObj_HeatHazeDirector:
@@ -419,9 +418,13 @@ NameObj* SceneObjHolder::newEachObj(int id) {
 }
 
 namespace MR {
-    NameObj* createSceneObj(int id) { return getSceneObjHolder()->create(id); }
+    NameObj* createSceneObj(int id) {
+        return getSceneObjHolder()->create(id);
+    }
 
-    SceneObjHolder* getSceneObjHolder() { return SingletonHolder< GameSystem >::get()->mSceneController->getSceneObjHolder(); }
+    SceneObjHolder* getSceneObjHolder() {
+        return SingletonHolder< GameSystem >::get()->mSceneController->getSceneObjHolder();
+    }
 
     bool isExistSceneObj(int id) {
         GameSystemSceneController* pSceneController = SingletonHolder< GameSystem >::get()->mSceneController;

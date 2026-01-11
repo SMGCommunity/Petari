@@ -129,7 +129,6 @@ const RequestFileInfo* FileLoader::getRequestFileInfoConst(const char* pName) co
     return nullptr;
 }
 
-#ifdef NON_MATCHING
 // string load is in the wrong spot for some reason
 RequestFileInfo* FileLoader::addRequest(const char* pName) {
     OSMutex* mutex = &mMutex;
@@ -143,4 +142,3 @@ RequestFileInfo* FileLoader::addRequest(const char* pName) {
     OSUnlockMutex(mutex);
     return info;
 }
-#endif

@@ -900,10 +900,10 @@ void TripodBoss::addAccelToWeightPosition() {
     TBox3f v21;
     TVec3f v18, v19, v20;
     TBox3f v22;
-    v22.mMin.set< f32 >(_5C8);
-    v22.mMax.set< f32 >(_5C8);
-    v21.mMin.set< f32 >(_5C8);
-    v21.mMax.set< f32 >(_5C8);
+    v22.i.set< f32 >(_5C8);
+    v22.f.set< f32 >(_5C8);
+    v21.i.set< f32 >(_5C8);
+    v21.f.set< f32 >(_5C8);
 
     for (u32 i = 0; i < 3; i++) {
         if (mLegs[i]->canWeighting()) {
@@ -913,9 +913,9 @@ void TripodBoss::addAccelToWeightPosition() {
         v21.extend(mLegs[i]->mForceEndPoint);
     }
 
-    JMAVECLerp(&v22.mMax, &v22.mMin, &v20, 0.5f);
+    JMAVECLerp(&v22.f, &v22.i, &v20, 0.5f);
 
-    JMAVECLerp(&v21.mMax, &v21.mMin, &v19, 0.5f);
+    JMAVECLerp(&v21.f, &v21.i, &v19, 0.5f);
 
     MR::vecBlend(v19, v20, &v18, 0.3f);
     TVec3f* center = &mMovableArea->mCenter;
@@ -949,14 +949,14 @@ void TripodBoss::addAccelToWeightPosition() {
 
 void TripodBoss::calcClippingSphere() {
     TBox3f v4;
-    v4.mMin.set< f32 >(_5D4);
-    v4.mMax.set< f32 >(_5D4);
+    v4.i.set< f32 >(_5D4);
+    v4.f.set< f32 >(_5D4);
 
     for (u32 i = 0; i < 3; i++) {
         v4.extend(mLegs[i]->mForceEndPoint);
     }
 
-    JMAVECLerp(&v4.mMax, &v4.mMin, &_5EC, 0.5f);
+    JMAVECLerp(&v4.f, &v4.i, &_5EC, 0.5f);
 }
 
 void TripodBoss::clippingModel() {
@@ -1156,7 +1156,11 @@ void TripodBossBone::setAttachBaseMatrix(const TPos3f& rPos) {
 }
 
 namespace MR {
-    NameObj* createTripodBoss(const char* pName) { return new TripodBoss(pName); }
+    NameObj* createTripodBoss(const char* pName) {
+        return new TripodBoss(pName);
+    }
 
-    NameObj* createTripod2Boss(const char* pName) { return new TripodBoss(pName); }
+    NameObj* createTripod2Boss(const char* pName) {
+        return new TripodBoss(pName);
+    }
 };  // namespace MR

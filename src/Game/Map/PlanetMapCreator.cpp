@@ -273,7 +273,6 @@ CreatorFuncPtr PlanetMapCreator::getCreateFunc(const char* pParam1) {
     return nullptr;  // createNameObj<PlanetMap>
 }
 
-#ifdef NON_MATCHING
 // regalloc issues
 void PlanetMapCreator::makeArchiveListPlanet(NameObjArchiveListCollector* pArchiveList, const JMapInfoIter& rIter, const char* pName) {
     PlanetMapData* pTableData = getTableData(pName);
@@ -326,7 +325,6 @@ void PlanetMapCreator::makeArchiveListPlanet(NameObjArchiveListCollector* pArchi
         }
     }
 }
-#endif
 
 void PlanetMapCreator::createPlanetMapDataTable(JMapInfo* pInfo) {
     for (int i = 0; i < mTableCount; i++) {

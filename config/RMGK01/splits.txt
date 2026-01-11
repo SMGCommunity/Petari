@@ -4792,12 +4792,12 @@ Game/MapObj/IceStep.cpp:
 
 Game/MapObj/IceVolcanoUpDownPlane.cpp:
 	.text       start:0x801E79DC end:0x801E7CA0
-	.data       start:0x80596048 end:0x80596100
+	.data       start:0x80596048 end:0x805960F8
 	.sdata2     start:0x806BD238 end:0x806BD248
 
 Game/MapObj/InvisiblePolygonObj.cpp:
 	.text       start:0x801E7CA0 end:0x801E7EC0
-	.data       start:0x80596100 end:0x80596178
+	.data       start:0x805960F8 end:0x80596178
 	.sdata2     start:0x806BD248 end:0x806BD250
 
 Game/MapObj/InvisiblePolygonObjGCapture.cpp:
@@ -5582,8 +5582,8 @@ Game/MapObj/SpiderMapBlock.cpp:
 
 Game/MapObj/SpiderThread.cpp:
 	.text       start:0x802300FC end:0x8023174C
-	.rodata     start:0x80533858 end:0x805338C0
-	.data       start:0x805A08F0 end:0x805A09B8
+	.rodata     start:0x80533858 end:0x80533890
+	.data       start:0x805A08F0 end:0x805A0998
 	.sdata2     start:0x806BE0E8 end:0x806BE118
 
 Game/MapObj/SpiderThreadHangInfo.cpp:
@@ -5597,11 +5597,13 @@ Game/MapObj/SpiderThreadMainPoint.cpp:
 Game/MapObj/SpiderThreadPart.cpp:
 	.text       start:0x80231F50 end:0x802340F0
 	.ctors      start:0x8052EEBC end:0x8052EEC0
+	.rodata     start:0x80533890 end:0x80533898
 	.sbss       start:0x806B58B0 end:0x806B58C0
 	.sdata2     start:0x806BE138 end:0x806BE180
 
 Game/MapObj/SpiderThreadPoint.cpp:
 	.text       start:0x802340F0 end:0x802346C8
+	.data       start:0x805A0998 end:0x805A09B8
 	.sdata2     start:0x806BE180 end:0x806BE1A0
 
 Game/MapObj/SpiderThreadRadialLine.cpp:
@@ -5614,6 +5616,7 @@ Game/MapObj/SpiderThreadWindCtrl.cpp:
 Game/MapObj/SpinDriver.cpp:
 	.text       start:0x8023493C end:0x802369B4
 	.ctors      start:0x8052EEC0 end:0x8052EEC4
+	.rodata     start:0x80533898 end:0x805338A8
 	.data       start:0x805A09B8 end:0x805A0D30
 	.sdata      start:0x806B2020 end:0x806B2068
 	.sbss       start:0x806B58C0 end:0x806B58E0
@@ -5632,11 +5635,13 @@ Game/MapObj/SpinDriverOperateRing.cpp:
 
 Game/MapObj/SpinDriverPathDrawer.cpp:
 	.text       start:0x80237804 end:0x80238A34
+	.rodata     start:0x805338A8 end:0x805338B0
 	.data       start:0x805A0DB8 end:0x805A0EF0
 	.sdata2     start:0x806BE268 end:0x806BE2A0
 
 Game/MapObj/SpinDriverShootPath.cpp:
 	.text       start:0x80238A34 end:0x80239140
+	.rodata     start:0x805338B0 end:0x805338B8
 	.sdata2     start:0x806BE2A0 end:0x806BE2B8
 
 Game/MapObj/SpinDriverUtil.cpp:
@@ -5667,6 +5672,7 @@ Game/MapObj/SpringJetWater.cpp:
 Game/MapObj/SpringWaterFloaterSpot.cpp:
 	.text       start:0x8023B98C end:0x8023C59C
 	.ctors      start:0x8052EED4 end:0x8052EED8
+	.rodata     start:0x805338B8 end:0x805338C0
 	.data       start:0x805A12A0 end:0x805A3720
 	.sbss       start:0x806B5920 end:0x806B5930
 	.sdata2     start:0x806BE370 end:0x806BE3B0
@@ -10343,7 +10349,7 @@ JSystem/JAudio2/JASAiCtrl.cpp:
 JSystem/JAudio2/JASAudioThread.cpp:
 	.text       start:0x80496CF0 end:0x80497034
 	.ctors      start:0x8052F41C end:0x8052F420
-	.data       start:0x805ECF50 end:0x805EEEA0
+	.data       start:0x805ECF50 end:0x805ECFA0
 	.bss        start:0x806627E0 end:0x806627F0
 	.sbss       start:0x806B7588 end:0x806B7590
 
@@ -10364,26 +10370,32 @@ JSystem/JAudio2/JASDriverIF.cpp:
 	.text       start:0x80497EDC end:0x8049806C
 	.ctors      start:0x8052F420 end:0x8052F424
 	.bss        start:0x806627F0 end:0x80664B60
-	.sdata      start:0x806B29E8 end:0x806B29F8
+	.sdata      start:0x806B29E8 end:0x806B29F0
 
 JSystem/JAudio2/JASSoundParams.cpp:
-	.text       start:0x8049806C end:0x80498CCC
+	.text       start:0x8049806C end:0x804980E0
 	.sdata2     start:0x806C1FD8 end:0x806C1FE0
 
 JSystem/JAudio2/dspproc.cpp:
+	.text       start:0x804980E0 end:0x804983A0
 	.rodata     start:0x805618C8 end:0x805618F0
+	.sdata      start:0x806B29F0 end:0x806B29F8
 	.sbss       start:0x806B75A8 end:0x806B75B0
 	.sdata2     start:0x806C1FE0 end:0x806C1FE8
 
 JSystem/JAudio2/dsptask.cpp:
+	.text       start:0x804983A0 end:0x80498760
 	.rodata     start:0x805618F0 end:0x80561A60
+	.data       start:0x805ECFA0 end:0x805EEEA0
 	.bss        start:0x80664B60 end:0x80664BE0
 	.sbss       start:0x806B75B0 end:0x806B75C0
 
 JSystem/JAudio2/osdsp.cpp:
+	.text       start:0x80498760 end:0x804987E0
 	.rodata     start:0x80561A60 end:0x80561A80
 
 JSystem/JAudio2/osdsp_task.cpp:
+	.text       start:0x804987E0 end:0x80498CCC
 	.rodata     start:0x80561A80 end:0x80561B30
 	.bss        start:0x80664BE0 end:0x80664BF8
 	.sbss       start:0x806B75C0 end:0x806B75C0

@@ -113,8 +113,6 @@ void WarpPodMgr::draw() const {
     MR::mDrawTimer++;
 }
 
-WarpPod::WarpPod(const char* pName) : LiveActor(pName), _8C(nullptr) {}
-
 void WarpPod::init(const JMapInfoIter& rIter) {
     MR::createSceneObj(SceneObj_WarpPodMgr);
     MR::joinToGroup(this, "ワープポッド群");

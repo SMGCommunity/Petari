@@ -1,7 +1,6 @@
 #include "Game/Camera/CamTranslatorSpiral.hpp"
 #include "Game/Camera/CameraParamChunk.hpp"
 
-#ifdef NON_MATCHING
 // Register mismatch
 void CamTranslatorSpiral::setParam(const CameraParamChunk* pChunk) {
     CameraSpiral* camera = mCamera;
@@ -35,7 +34,6 @@ void CamTranslatorSpiral::setParam(const CameraParamChunk* pChunk) {
     camera->mWPointX = wPointX;
     camera->mAxisX = axisX;
 }
-#endif
 
 Camera* CamTranslatorSpiral::getCamera() const {
     return mCamera;
