@@ -48,7 +48,7 @@ void StinkBugBase::init(const JMapInfoIter& rIter) {
     MR::initShadowFromCSV(this, "Shadow");
     initEffectKeeper(2, nullptr, false);
     MR::addEffectHitNormal(this, nullptr);
-    initSound(4, 0);
+    initSound(4, false);
     MR::useStageSwitchWriteDead(this, rIter);
     _98.set(mPosition);
     MR::calcFrontVec(&_8C, this);
