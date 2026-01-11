@@ -5047,7 +5047,7 @@ namespace {
         },
         {
             "RailCoin",
-            nullptr,
+            MR::createRailCoin,
             nullptr,
         },
         {
@@ -5057,7 +5057,7 @@ namespace {
         },
         {
             "PurpleRailCoin",
-            nullptr,
+            MR::createRailPurpleCoin,
             "PurpleCoin",
         },
         {

@@ -3,6 +3,13 @@
 #include "Game/AreaObj/AreaObj.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
 
+class DivideMercatorRailPosInfo {
+public:
+    inline DivideMercatorRailPosInfo() {}
+
+    virtual void setPosition(s32, const TVec3f&) = 0;
+};
+
 class MercatorTransformCube : public AreaObj {
 public:
     MercatorTransformCube(int, const char*);
@@ -19,6 +26,8 @@ public:
 };
 
 namespace MR {
+    void getDivideMercatorRailPosition(DivideMercatorRailPosInfo*, const LiveActor*, u32, f32, u32);
+
     void initDefaultPosForMercator(LiveActor*, const JMapInfoIter&, bool);
 
     void convertMercatorPlaneToSphereTransAndRotate(TVec3f*, TPos3f*, const TVec3f&, bool);
