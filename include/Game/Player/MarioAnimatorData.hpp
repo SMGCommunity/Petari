@@ -10204,19 +10204,4 @@ XanimeOfsInfo marioAnimeOfsTable[] = {
     },
 };
 
-XanimeSwapTable luigiAnimeSwapTable[] = {
-    {"Run", "LuigiRun"},
-    {"Jump", "LuigiJump"},
-    {"JumpRoll", "LuigiJumpRoll"},
-    {"JumpBack", "LuigiJumpBack"},
-    {"RunEnd", "LuigiRunEnd"},
-    {"Spin", "LuigiSpin"},
-    {"SpinGround", "LuigiSpinGround"},
-    {"SpaceFlyShort", "LuigiSpaceFlyShort"},
-    {"Wait", "LuigiWait"},
-    {"WaitSlopeL", "LuigiWaitSlopeL"},
-    {"WaitSlopeR", "LuigiWaitSlopeR"},
-    {"WaitSlopeU", "LuigiWaitSlopeU"},
-    {"WaitSlopeD", "LuigiWaitSlopeD"},
-    {"", nullptr},
-};
+extern XanimeSwapTable luigiAnimeSwapTable[];

@@ -17,6 +17,9 @@ namespace MR {
 
     void calcJ3DModel(LiveActor*);
 
+    s32 getLightNumMax(const LiveActor*);
+    s32 getLightNumMax(J3DModelData*);
+
     u32 getMaterialNo(J3DModelData*, const char*);
     u32 getMaterialNo(J3DModel*, const char*);
     J3DMaterial* getMaterial(J3DModelData*, const char*);

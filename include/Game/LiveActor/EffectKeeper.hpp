@@ -25,6 +25,7 @@ public:
     void changeEffectName(const char*, const char*);
 
     void enableSort();
+    void finalizeSort();
     void playEmitterOffClipped();
     void stopEmitterOnClipped();
 

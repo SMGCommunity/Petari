@@ -192,7 +192,7 @@ public:
 
     void blown(const TVec3f&);
 
-    void taskOnEffectCheck(u32);
+    bool taskOnEffectCheck(u32);
 
     void doFlow();
 
@@ -316,7 +316,7 @@ public:
     void taskOnRotation(u32);
 
     void sendStateMsg(u32);
-    void updatePosture(MtxPtr);
+    bool updatePosture(MtxPtr);
     void changeStatus(MarioState*);
     void closeStatus(MarioState*);
     u32 getCurrentStatus() const;
@@ -332,7 +332,7 @@ public:
     bool isWalling() const;
     void checkWallStick();
     void checkStickWallSide();
-    void checkStickFrontBack();
+    s32 checkStickFrontBack();
     void fixWallingPosition(bool);
     void fixWallingDir();
     void fixWallingTop();

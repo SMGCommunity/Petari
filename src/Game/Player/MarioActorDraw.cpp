@@ -88,3 +88,15 @@ void MarioActor::drawMarioModel() const {
         GXSetDstAlpha(0, 0);
     }
 }
+
+J3DModel* MarioActor::getJ3DModel() const {
+    return mModels[mCurrModel];
+}
+
+J3DModelData* MarioActor::getModelData() const {
+    return getJ3DModel()->mModelData;
+}
+
+J3DModel* MarioActor::getSimpleModel() const {
+    return reinterpret_cast<J3DModel*>(_A14);
+}
