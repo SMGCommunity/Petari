@@ -35,12 +35,7 @@ SpiderThreadPart::SpiderThreadPart(SpiderThreadMainPoint* pPointA, SpiderThreadM
         pos.add(mPointA->mPosition);
 
         s32 halfNumPoints = mNumPoints / 2;
-        // FIXME: regswap
-        // https://decomp.me/scratch/onG7b
-        s32 index = halfNumPoints - idx;
-        if (index < 0) {
-            index = -index;
-        }
+        s32 index = __abs(halfNumPoints - idx);
         f32 indexNormalized = 1.0f - (static_cast< f32 >(index) / static_cast< f32 >(halfNumPoints));
 
         f32 length = mDistBetweenMainPoints - 200.0f;
