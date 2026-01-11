@@ -40,9 +40,9 @@ void StinkBugBase::fixInitPos() {
 
 void StinkBugBase::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
-    const char* buff;
-    MR::getObjectName(&buff, rIter);
-    initModelManagerWithAnm(buff, nullptr, false);
+    const char* objectName;
+    MR::getObjectName(&objectName, rIter);
+    initModelManagerWithAnm(objectName, nullptr, false);
     MR::connectToSceneCollisionEnemyNoShadowedMapObjStrongLight(this);
     MR::initLightCtrl(this);
     MR::initShadowFromCSV(this, "Shadow");
