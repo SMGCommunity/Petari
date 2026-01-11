@@ -16,7 +16,7 @@ namespace {
         /* 0x04 */ const char* mLeaveAnimName;
     };
 
-    static const TVec3f sKoopaJrPos = TVec3f(135.0f, 188.0f, 0.0f);
+    static const TVec3f sKoopaJrPos(135.0f, 188.0f, 0.0f);
     static const char* sPartName = "クッパＪｒ．デモ";
     static const char* sJointNameKoopaJrPos = "obj";
     static const s32 sBgmStartStep = 309;
@@ -81,6 +81,7 @@ void DemoKoopaJrShip::exeAppear() {
     if (MR::isBckStopped(this)) {
         setNerve(&::DemoKoopaJrShipNrvTalk::sInstance);
     } else if (tryDemoEnd()) {
+        return;
     }
 }
 
@@ -95,6 +96,7 @@ void DemoKoopaJrShip::exeTalk() {
     if (!DemoFunction::isPauseTimeKeepDemo(this)) {
         setNerve(&::DemoKoopaJrShipNrvFlyAway::sInstance);
     } else if (tryDemoEnd()) {
+        return;
     }
 }
 
