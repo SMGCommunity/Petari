@@ -162,7 +162,6 @@ JMapInfoIter KCollisionServer::getAttributes(u32 index) const {
     return iter;
 }
 
-#ifdef NON_MATCHING
 // Register mismatch
 s32* KCollisionServer::searchBlock(s32* a1, const u32& rX, const u32& rY, const u32& rZ) const {
     KCLFile* file = mFile;
@@ -185,4 +184,3 @@ s32* KCollisionServer::searchBlock(s32* a1, const u32& rX, const u32& rY, const 
 
     return reinterpret_cast< s32* >(octree + (offset & 0x7FFFFFFF));
 }
-#endif

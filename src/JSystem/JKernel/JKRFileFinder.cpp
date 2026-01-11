@@ -16,10 +16,8 @@ JKRArcFinder::JKRArcFinder(JKRArchive* pArchive, long firstFileIndex, long nrFil
     findNextFile();
 }
 
-#ifdef NON_MATCHING
 // Looks identical to base destructor, does not call ~JKRFileFinder()
 JKRArcFinder::~JKRArcFinder() {}
-#endif
 
 bool JKRArcFinder::findNextFile() {
     if (mHasMoreFiles) {

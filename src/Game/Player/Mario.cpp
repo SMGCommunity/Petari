@@ -5,7 +5,6 @@
 #include "Game/Player/MarioActor.hpp"
 #include "Game/Player/MarioBlown.hpp"
 #include "Game/Player/MarioBump.hpp"
-#include "Game/Player/MarioBury.hpp"
 #include "Game/Player/MarioClimb.hpp"
 #include "Game/Player/MarioCrush.hpp"
 #include "Game/Player/MarioDamage.hpp"
@@ -77,7 +76,7 @@ Mario::Mario(MarioActor* actor) : MarioModule(actor) {
     _2F8.zero();
     _328.zero();
     _334.zero();
-    _488 = 0.0f;
+    mVerticalSpeed = 0.0f;
     _430 = 0;
     _3BC = 0;
     _3BE = 0;
@@ -139,9 +138,7 @@ Mario::Mario(MarioActor* actor) : MarioModule(actor) {
     _76C = 0;
     _770 = 0.0f;
     _738 = 0.0f;
-    _73C = 0.0f;
-    _740 = 1.0f;
-    _744 = 0.0f;
+    _73C = TVec3f(0.0f, 0.0f, 0.0f);
     _368.set(0.0f, 1.0f, 0.0f);
     _374 = -_368;
     _380 = _368;
@@ -1029,7 +1026,7 @@ void Mario::updateSoundCode() {
 
 // nearly, last conditional doesn't want to cooperate
 bool Mario::isForceStopRush() const {
-    if (_488 != 0.0f) {
+    if (mVerticalSpeed != 0.0f) {
         goto exit_false;
     }
     u16 temp = _960;
@@ -1371,7 +1368,7 @@ const TVec3f* Mario::getGravityVec() const {
         }
     }
     if (isSwimming()) {
-        if (mSwim->_19C >= -150.0f && mDrawStates._F && MR::isNearZero(_38C) == false) {
+        if (mSwim->mWaterDepth >= -150.0f && mDrawStates._F && MR::isNearZero(_38C) == false) {
             return &_38C;
         }
         return &mAirGravityVec;

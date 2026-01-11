@@ -6,6 +6,7 @@
 #include "JSystem/JGeometry/TUtil.hpp"
 #include "math_types.hpp"
 #include "revolution/mtx.h"
+#include "revolution/types.h"
 #include <JSystem/JMath/JMath.hpp>
 
 namespace JGeometry {
@@ -47,15 +48,38 @@ namespace JGeometry {
             y = rSrc.y;
         }
 
+        void add(const TVec2< T >& other) {
+            x += other.x;
+            y += other.y;
+        }
+
         /* General operations */
         template < typename A >
         void set(const JGeometry::TVec2< A >& rSrc);
 
-        template < typename A >
-        void set(A _x, A _y);
+        void set(T v) { y = x = v; }
 
-        void setMin(const TVec2< T >&);
-        void setMax(const TVec2< T >&);
+        template < typename U >
+        void set(const U x, const U y) {
+            this->x = x;
+            this->y = y;
+        }
+
+        void setMin(const TVec2< f32 >& min) {
+            if (x >= min.x)
+                x = min.x;
+            if (y >= min.y)
+                y = min.y;
+        }
+
+        void setMax(const TVec2< f32 >& max) {
+            if (x <= max.x)
+                x = max.x;
+            if (y <= max.y)
+                y = max.y;
+        }
+
+        inline bool isAbove(const TVec2< T >& other) const { return (x >= other.x) && (y >= other.y) ? true : false; }
 
         void sub(const TVec2< T >& rOther);
 
@@ -452,6 +476,18 @@ namespace JGeometry {
             return lengthinv * oldlength;
         };
 
+        f32 setLength2(f32 newlength) {
+            f32 oldlength = squared();
+            if (oldlength <= 0.0000038146973f) {
+                return 0.0f;
+            }
+            f32 lengthinv = JGeometry::TUtil< f32 >::inv_sqrt(oldlength);
+            x *= lengthinv * newlength;
+            y *= lengthinv * newlength;
+            z *= lengthinv * newlength;
+            return lengthinv * oldlength;
+        };
+
         f32 setLength(const TVec3&, f32);
 
         f32 length() const { return PSVECMag(this); }
@@ -516,10 +552,12 @@ namespace JGeometry {
 
         void set(T, T, T, T);
 
+#ifdef __MWERKS__
         template < typename T >
         inline void set(T _x, T _y, T _z, T _w) {
             TVec4< T >::set(_x, _y, _z, _w);
         }
+#endif
 
         /* General operations */
         void normalize();
@@ -568,6 +606,8 @@ namespace JGeometry {
             this->w = a1.w;
             this->slerp(a2, a3);
         }
+
+        void scale(f32 scalar, const TVec3< T >& rVec) { TVec3< T >::scale(scalar, rVec); }
 
         void slerp(const TQuat4< T >&, T);
         void transform(const TVec3< T >&, TVec3< T >& rDest);

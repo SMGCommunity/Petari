@@ -37,11 +37,9 @@ namespace MR {
     // updateModelDiffDL
     // isEnvelope
 
-#ifdef NON_MATCHING
     // some inlining issue
     void hideMaterial(J3DModel* pModel, const char* pMaterialName) {
         J3DShapePacket* pckt = pModel->mMaterialPacket[getMaterialNo(pModel, pMaterialName)]._2C;
         pckt->mFlags |= 0x10;
     }
-#endif
 };  // namespace MR

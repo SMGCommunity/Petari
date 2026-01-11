@@ -1,7 +1,7 @@
 #include "Game/Camera/CamTranslatorCharmedVecRegTower.hpp"
 #include "Game/Camera/CameraParamChunk.hpp"
+#include "Game/Util.hpp"
 
-#ifdef NON_MATCHING
 // Register issues
 void CamTranslatorCharmedVecRegTower::setParam(const CameraParamChunk* pChunk) {
     CameraGeneralParam* general = pChunk->mGeneralParam;
@@ -13,7 +13,7 @@ void CamTranslatorCharmedVecRegTower::setParam(const CameraParamChunk* pChunk) {
     f32 dist;
     bool uVar3;
 
-    axis.setInline(general->mAxis);
+    axis.set(general->mAxis);
 
     MR::normalizeOrZero(&axis);
 
@@ -37,7 +37,6 @@ void CamTranslatorCharmedVecRegTower::setParam(const CameraParamChunk* pChunk) {
     camera->mDist = dist;
     camera->_70 = uVar3;
 }
-#endif
 
 Camera* CamTranslatorCharmedVecRegTower::getCamera() const {
     return mCamera;

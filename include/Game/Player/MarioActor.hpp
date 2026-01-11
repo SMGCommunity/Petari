@@ -119,7 +119,7 @@ public:
     bool isEnableMoveMario() const;
     bool isEnableNerveChange() const;
 
-    void forcceGameOver();
+    void forceGameOver();
     void forceGameOverAbyss();
     void forceGameOverBlackHole();
     void forceGameOverNonStop();
@@ -200,6 +200,7 @@ public:
     void stopSpinTicoEffect(bool);
     void stopEffectForce(const char*);
     bool isRequestRush() const;
+    bool isRequestJump2P() const;
     bool isRequestSpinJump2P() const;
     bool tryReleaseBombTeresa();
     void initBlackHoleOut();  // void ?
@@ -216,6 +217,7 @@ public:
     bool sendPunch(HitSensor*, bool);
     void reactionPunch(HitSensor*);
     void tryCoinPullInRush();
+    bool tryJetAttack(HitSensor*);
 
     void damageDropThrowMemoSensor();
 
@@ -384,7 +386,16 @@ public:
     u32 _424;
     u32 _428[4];
     u8 _438[0x30];
-    TVec3f _468;
+    union {
+        struct {
+            u32 _468;
+            u32 _46C;
+            u32 _470;
+        };
+        TVec3f _468Vec;
+    };
+    
+    //TVec3f _468;
     u32 _474;
     f32 _478;
     u32 _47C;

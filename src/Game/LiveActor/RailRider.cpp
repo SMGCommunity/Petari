@@ -107,7 +107,7 @@ bool RailRider::isLoop() const {
     return mBezierRail->mIsClosed;
 }
 
-#ifdef NON_MATCHING  // Wrong registers
+// Wrong registers
 bool RailRider::isReachedGoal() const {
     if (mBezierRail->mIsClosed) {
         return false;
@@ -117,14 +117,14 @@ bool RailRider::isReachedGoal() const {
     bool v4 = false;
 
     if (mIsNotReverse) {
-        if (MR::isNearZero(mLength - mBezierRail->getTotalLength(), 0.0f)) {
+        if (MR::isNearZero(mCoord - mBezierRail->getTotalLength(), 0.0f)) {
             v4 = true;
         }
     }
 
     if (!v4) {
         bool v6 = false;
-        if (!mIsNotReverse && MR::isNearZero(mLength)) {
+        if (!mIsNotReverse && MR::isNearZero(mCoord)) {
             v6 = true;
         }
 
@@ -135,7 +135,6 @@ bool RailRider::isReachedGoal() const {
 
     return v3;
 }
-#endif
 
 bool RailRider::isReachedEdge() const {
     bool ret;
@@ -161,7 +160,6 @@ void RailRider::setCoord(f32 coord) {
     mCoord = mBezierRail->normalizePos(mCoord, 1);
     syncPosDir();
 }
-
 
 void RailRider::setSpeed(f32 coord) {
     mSpeed = coord;
@@ -215,7 +213,7 @@ f32 RailRider::getPointCoord(s32 idx) const {
     return mBezierRail->getRailPosCoord(idx);
 }
 
-#ifdef NON_MATCHING  // Second call to setCoord gets inlined
+// Second call to setCoord gets inlined
 void RailRider::initBezierRail(const JMapInfoIter& rIter, const JMapInfo* pInfo) {
     mBezierRail = new BezierRail(rIter, pInfo);
     syncPosDir();
@@ -224,7 +222,6 @@ void RailRider::initBezierRail(const JMapInfoIter& rIter, const JMapInfo* pInfo)
     setCoord(0.0f);
     mStartPos.set(mCurPos);
 }
-#endif
 
 bool RailRider::getPointArgS32NoInit(const char* pStr, s32* pOut, s32 pointNum) const {
     s32 val;

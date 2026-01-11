@@ -58,7 +58,7 @@ void WaterPressureBullet::kill() {
     LiveActor::kill();
 }
 
-#ifdef NON_MATCHING
+/*
 void WaterPressureBullet::control() {
     bool v1 = true;
     bool v2 = false;
@@ -85,7 +85,7 @@ void WaterPressureBullet::control() {
         MR::turnVecToVecCosOnPlane(&_8C, stack_8, _98, JMASCos(val));
     }
 }
-#endif
+*/
 
 void WaterPressureBullet::calcAndSetBaseMtx() {
     TPos3f pos;

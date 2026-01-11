@@ -339,7 +339,7 @@ namespace MR {
 
     bool changeShowModelFlagSyncNearClipping(LiveActor*, f32);
 
-    u32 createIndirectPlanetModel(LiveActor*, MtxPtr);
+    PartsModel* createIndirectPlanetModel(LiveActor*, MtxPtr);
     bool tryCreateMirrorActor(LiveActor*, const char*);
 
     CollisionParts* createCollisionPartsFromLiveActor(LiveActor*, const char*, HitSensor*, CollisionScaleType);
@@ -385,6 +385,7 @@ namespace MR {
     const char* createMiddleModelObjName(const LiveActor*);
 
     void addToAttributeGroupSearchTurtle(const LiveActor*);
+    bool isExistInAttributeGroupSearchTurtle(const LiveActor*);
 
     void initJointTransform(const LiveActor*);
 
@@ -393,6 +394,7 @@ namespace MR {
 
     ResTIMG* getTexFromArc(const char*, const LiveActor*);
     PartsModel* createBloomModel(LiveActor*, MtxPtr);
+    PartsModel* createWaterModel(LiveActor*, MtxPtr);
 
     TexMtxCtrl* initDLMakerTexMtx(LiveActor*, const char*);
 
@@ -413,6 +415,8 @@ namespace MR {
     TVec3f* getBindedFixReactionVector(const LiveActor*);
 
     CollisionParts* tryCreateCollisionSunshade(LiveActor*, HitSensor*);
+
+    CollisionParts* tryCreateCollisionWaterSurface(LiveActor*, HitSensor*);
 
     const char* getPlayingBckName(const LiveActor*);
 };  // namespace MR

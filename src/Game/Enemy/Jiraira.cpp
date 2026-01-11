@@ -135,7 +135,6 @@ void Jiraira::exeRecover() {
     }
 }
 
-#ifdef NON_MATCHING
 void Jiraira::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (pSender == getSensor("explode")) {
         TVec3f tes = mPosition;
@@ -143,7 +142,7 @@ void Jiraira::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
         TVec3f thing;
         HitSensor* sensor = 0;
         sensorActor = sensor->mHost;
-        thing.subInline2(mPosition, sensorActor->mPosition);
+        thing.sub(mPosition, sensorActor->mPosition);
         if (!MR::isExistMapCollisionExceptActor(thing, thing, this)) {
             if (MR::isSensorPlayer(pReceiver)) {
                 MR::sendMsgEnemyAttackExplosion(pReceiver, pSender);
@@ -159,7 +158,6 @@ void Jiraira::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
         }
     }
 }
-#endif
 
 bool Jiraira::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (isNerve(&NrvJiraira::HostTypeNrvExplode::sInstance) || isNerve(&NrvJiraira::HostTypeNrvSteppedExplode::sInstance) ||

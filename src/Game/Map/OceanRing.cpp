@@ -51,10 +51,10 @@ OceanRing::OceanRing(const char* pName) : LiveActor(pName) {
     mSoundObj2 = nullptr;
     mOceanRingPipe = nullptr;
     mBloomDrawer = nullptr;
-    mBox.mMin.zero();
-    mBox.mMax.zero();
-    mClippingBox.mMin.zero();
-    mClippingBox.mMax.zero();
+    mBox.i.zero();
+    mBox.f.zero();
+    mClippingBox.i.zero();
+    mClippingBox.f.zero();
 }
 
 void OceanRing::init(const JMapInfoIter& rIter) {
@@ -516,18 +516,18 @@ void OceanRing::calcClippingBox() {
 
     MR::calcBoundingBox(this, &mClippingBox, 200.0f);
     TVec3f v9(v1);
-    mClippingBox.mMin.sub(v9);
-    mClippingBox.mMax.add(v9);
-    mBox.mMin.set< f32 >(mClippingBox.mMin);
-    mBox.mMax.set< f32 >(mClippingBox.mMax);
+    mClippingBox.i.sub(v9);
+    mClippingBox.f.add(v9);
+    mBox.i.set< f32 >(mClippingBox.i);
+    mBox.f.set< f32 >(mClippingBox.f);
     TVec3f v8(5000.0f);
-    mBox.mMin.sub(v8);
-    mBox.mMax.add(v8);
+    mBox.i.sub(v8);
+    mBox.f.add(v8);
     TVec3f v7(mWidthMax);
-    mClippingBox.mMin.sub(v7);
-    mClippingBox.mMax.add(v7);
-    JMAVECLerp(&mClippingBox.mMax, &mClippingBox.mMin, &_108, 0.5f);
-    f32 dist = PSVECDistance(&_108, &mClippingBox.mMin);
+    mClippingBox.i.sub(v7);
+    mClippingBox.f.add(v7);
+    JMAVECLerp(&mClippingBox.f, &mClippingBox.i, &_108, 0.5f);
+    f32 dist = PSVECDistance(&_108, &mClippingBox.i);
     MR::setClippingTypeSphere(this, (100.0f + dist), &_108);
     MR::setClippingFarMax(this);
 }

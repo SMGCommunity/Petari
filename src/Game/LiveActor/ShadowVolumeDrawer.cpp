@@ -44,7 +44,6 @@ f32 ShadowVolumeDrawer::calcBaseDropLength() const {
     return calcBaseDropLength(getController());
 }
 
-#ifdef NON_MATCHING
 // reg usage issues at the bottom
 f32 ShadowVolumeDrawer::calcBaseDropLength(const ShadowController* pController) const {
     f32 length = pController->getDropLength();
@@ -59,7 +58,6 @@ f32 ShadowVolumeDrawer::calcBaseDropLength(const ShadowController* pController) 
     length += mEndDrawShapeOffset + negStart;
     return length;
 }
-#endif
 
 void ShadowVolumeDrawer::loadModelDrawMtx() const {}
 

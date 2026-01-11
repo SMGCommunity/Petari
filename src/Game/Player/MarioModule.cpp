@@ -442,7 +442,7 @@ bool MarioModule::checkSquat(bool a1) {
     if (MR::getKarikariClingNum() < 1 == false) {
         return false;
     }
-    if (mActor->_468.x) {
+    if (mActor->_468) {
         return false;
     }
     if (mActor->_B94 != 0) {
@@ -457,7 +457,7 @@ bool MarioModule::checkSquat(bool a1) {
         }
         return false;
     }
-    if (!a1 && mActor->mMario->_488 > 100.0f) {
+    if (!a1 && mActor->mMario->mVerticalSpeed > 100.0f) {
         return false;
     }
     return mActor->checkButtonType(9, false);

@@ -15,7 +15,6 @@ CoinRotater::CoinRotater(const char* pName) : NameObj(pName) {
 }
 
 /*
-#ifndef NON_MATCHING
 // regalloc
 void CoinRotater::movement() {
     f32 v2 = MR::subtractFromSum(8.0f, _C, 0.0f);
@@ -34,7 +33,6 @@ void CoinRotater::movement() {
     MR::makeMtxRotateY(mHiSpeedRotateYMtx.mMtx, _14);
     MR::makeMtxRotateY(mWaterRotateMtx.mMtx, _10);
 }
-#endif
 */
 
 namespace MR {
