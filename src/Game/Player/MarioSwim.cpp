@@ -1584,7 +1584,6 @@ void MarioSwim::doDecLifeByCold() {
 
         mActor->_BC4 = 16;
     }
-
 }
 
 void MarioSwim::startSpinDash() {
@@ -1637,8 +1636,7 @@ void MarioSwim::spin() {
 
     if (_32 != 0) {
         return;
-    }
-    else if (checkTrgA()) {
+    } else if (checkTrgA()) {
         if (_7A != 0) {
             _7A = 0;
             startSpinDash();
@@ -1783,12 +1781,12 @@ void MarioSwim::jet() {
 
             if (_54 > targetSpeed) {
                 _54 *= 0.95f;
-                return;  
+                return;
             }
 
             if (_54 > (0.1f * targetSpeed)) {
                 _54 *= 0.96f;
-                return;  
+                return;
             }
 
         } else {
@@ -1816,7 +1814,6 @@ void MarioSwim::jet() {
         ringDash();
     }
 }
-
 
 void MarioSwim::decideAnimation() {
     // This is the only way I could achieve a block copy
@@ -1910,7 +1907,6 @@ void MarioSwim::decideAnimation() {
     }
     MarioModule::getAnimator()->setSpeed(animSpeeds.speeds[animIndex]);
 }
-
 
 void MarioSwim::decideEffect(bool isReset) {
     u8 oldState = _9F;

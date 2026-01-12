@@ -236,7 +236,7 @@ public:
     const HitSensor* getCarrySensor() const;
 
     const MarioConst& getConst() const { return *mConst; }
-    
+
     inline u32 getHealth() const { return mHealth; }
 
     inline const Mario::MovementStates& getMovementStates() const { return mMario->mMovementStates; }
@@ -394,8 +394,8 @@ public:
         };
         TVec3f _468Vec;
     };
-    
-    //TVec3f _468;
+
+    // TVec3f _468;
     u32 _474;
     f32 _478;
     u32 _47C;
