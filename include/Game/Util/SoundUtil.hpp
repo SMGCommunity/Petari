@@ -55,6 +55,7 @@ namespace MR {
     bool isPreparedStageBgm();
 
     void setStageBGMState(s32, u32);
+    void setStageBGMStateBit(u32);
 
     void setCubeBgmChangeInvalid();
     bool isCubeBgmChangeInvalid();
