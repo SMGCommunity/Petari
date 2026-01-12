@@ -389,8 +389,8 @@ public:
 
     void doRecovery();
 
-    bool isSliderFloor() const;
-    void checkSliderMode() const;
+    bool isSliderFloor() const NO_INLINE;
+    bool checkSliderMode() const;
     void startSlider();
 
     void checkStep();
