@@ -55,7 +55,7 @@ public:
     void jet();
     void pushedByWaterWall();
     void setDamage(const TVec3f&, u16);
-    void updateUnderwater();
+    void updateUnderWater();
     void startJet(u32);
     void addDamage(const TVec3f&);
     void addFaint(const TVec3f&);
@@ -69,6 +69,10 @@ public:
     f32 getSurface() const;
     bool tryJetAttack(HitSensor*);
     void dropJet(bool);
+    void updateOxygenWatch();
+    void doDecLifeByCold();
+    void startSpinDash();
+    void ringDash();
 
     static inline f32 getWorthlessNumber() { return 0.523598790169f; }
 
@@ -110,7 +114,12 @@ public:
     inline TVec3f getPlayer380() const { return getPlayer()->_380; }
 
     inline bool check7Aand7C() const { return _7A || _7C; }
-
+    inline f32 getSwimFrontJetSpeed();
+    inline f32 getSwimFrontJetSpeedSlow();
+    inline f32 getSwimFrontMaxSpeed();
+    inline void updateSwimWeight(int animIndex, const MarioConstTable* table);
+    inline void setupSwimSpeeds(f32* speeds);
+    
     /* 0x014 */ MarineSnow* _14;
     /* 0x018 */ u8 _18;
     /* 0x019 */ bool mIsOnSurface;
@@ -152,7 +161,7 @@ public:
     /* 0x080 */ f32 _80;
     /* 0x084 */ f32 _84;
     /* 0x088 */ u8 _88;
-    /* 0x08A */ u16 mIsNormalRingDash;
+    /* 0x08A */ u16 mJetTimer;
     /* 0x08C */ u16 mRingDashTimer;
     /* 0x08E */ u16 mRingDashChargeTimer;
     /* 0x090 */ u16 mRingDashMaxDuration;

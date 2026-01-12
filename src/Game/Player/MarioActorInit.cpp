@@ -371,7 +371,7 @@ void MarioActor::initMember() {
     _F21 = 0;
     _F24 = 0;
     _F28 = 0;
-    _F2C.zero();
+    _F2CVec.zero();
     _F38 = 0;
     _F3C = 0;
     _F40 = 0;
