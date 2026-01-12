@@ -218,8 +218,8 @@ Mario::Mario(MarioActor* actor) : MarioModule(actor) {
 
     _8E8 = new Triangle();
 
-    _8CC = new Triangle();
-    _8D0 = new Triangle();
+    _8CC[0] = new Triangle();
+    _8CC[1] = new Triangle();
 
     _564 = -1;
     _568 = 0;

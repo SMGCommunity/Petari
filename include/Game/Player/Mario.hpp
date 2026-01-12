@@ -403,15 +403,15 @@ public:
     void checkEnforceMoveInner();
     void recordRelativePosition();
     void invalidateRelativePosition();
-    MtxPtr getMoveBaseMtx() const;
-    void moveRelativePosition(u32);
-    void moveRelativePositionWall();
+    TPos3f* getMoveBaseMtx() const;
+    u32 moveRelativePosition(u32);
+    u32 moveRelativePositionWall();
     void recordLastGround();
     void getLastGroundPos(TVec3f*) const;
-    void getLastGroundEdgeNrm(u32) const;
+    const TVec3f* getLastGroundEdgeNrm(u32) const;
     void getLastGroundEdgeIndex(const TVec3f&, const TVec3f&) const;
     void pushedByReaction();
-    void addReaction(TVec3f&);
+    void addReaction(const TVec3f&);
     bool tryPushToVelocity();
     void push(const TVec3f&);
     void push2(const TVec3f&);
@@ -465,6 +465,7 @@ public:
 
     // instruction comments to make it easier to identify each bit
     struct MovementStates {
+        /* 0x00 */
         unsigned jumping : 1;  // _0 (srwi rX, rX, 31)
         unsigned _1 : 1;       // extrwi rX, rX, 1, 1
         unsigned _2 : 1;
@@ -481,7 +482,7 @@ public:
         unsigned _D : 1;
         unsigned _E : 1;
         unsigned _F : 1;
-        unsigned _10 : 1;
+        unsigned _10 : 1;  // rlwinm rX, rX, 0, 17, 15
         unsigned _11 : 1;
         unsigned _12 : 1;
         unsigned _13 : 1;
@@ -489,14 +490,15 @@ public:
         unsigned _15 : 1;
         unsigned debugMode : 1;  // _16
         unsigned _17 : 1;
-        unsigned _18 : 1;
-        unsigned _19 : 1;
-        unsigned _1A : 1;
+        unsigned _18 : 1;  // rlwinm rX, rX, 0, 25, 23
+        unsigned _19 : 1;  // extrwi rX, rX, 1, 25
+        unsigned _1A : 1;  // extrwi rX, rX, 1, 26
         unsigned _1B : 1;
         unsigned _1C : 1;
         unsigned _1D : 1;
         unsigned digitalJump : 1;  // _1E
         unsigned _1F : 1;
+        /* 0x04 */
         unsigned _20 : 1;
         unsigned _21 : 1;
         unsigned _22 : 1;
@@ -899,8 +901,7 @@ public:
     /* 0x8B0 */ TVec3f _8B0;
     /* 0x8BC */ TVec3f _8BC;
     /* 0x8C8 */ Triangle* _8C8;
-    /* 0x8CC */ Triangle* _8CC;
-    /* 0x8D0 */ Triangle* _8D0;
+    /* 0x8CC */ Triangle* _8CC[2];
     /* 0x8D4 */ u32 _8D4;
     /* 0x8D8 */ u32 _8D8;
     /* 0x8DC */ TVec3f _8DC;
