@@ -502,7 +502,7 @@ public:
         unsigned _20 : 1;
         unsigned _21 : 1;
         unsigned _22 : 1;
-        unsigned _23 : 1;
+        unsigned _23 : 1;  // extrwi rX, rX, 1, 3
         unsigned _24 : 1;
         unsigned _25 : 1;
         unsigned _26 : 1;
