@@ -219,6 +219,8 @@ public:
     void tryCoinPullInRush();
     bool tryJetAttack(HitSensor*);
 
+    bool isRequestJump() const;
+
     void damageDropThrowMemoSensor();
 
     void setPlayerMode(u16, bool);
@@ -394,8 +396,8 @@ public:
         };
         TVec3f _468Vec;
     };
-    
-    //TVec3f _468;
+
+    // TVec3f _468;
     u32 _474;
     f32 _478;
     u32 _47C;

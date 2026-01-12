@@ -463,9 +463,10 @@ public:
     void stick2DadjustGround(f32&, f32&);
     void calcDir2D(f32, f32, TVec3f*);
 
+    // instruction comments to make it easier to identify each bit
     struct MovementStates {
-        unsigned jumping : 1;  // _0
-        unsigned _1 : 1;
+        unsigned jumping : 1;  // _0 (srwi rX, rX, 31)
+        unsigned _1 : 1;       // extrwi rX, rX, 1, 1
         unsigned _2 : 1;
         unsigned turning : 1;  // _3
         unsigned _4 : 1;
@@ -474,7 +475,7 @@ public:
         unsigned _7 : 1;
         unsigned _8 : 1;
         unsigned _9 : 1;
-        unsigned _A : 1;
+        unsigned _A : 1;  // extrwi rX, rX, 1, 10
         unsigned _B : 1;
         unsigned _C : 1;
         unsigned _D : 1;
