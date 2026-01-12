@@ -79,4 +79,13 @@ typedef int BOOL;
 #define ROUND_UP(x, align) (((x) + (align) - 1) & (-(align)))
 #define ROUND_UP_PTR(x, align) ((void*)((((u32)(x)) + (align) - 1) & (~((align) - 1))))
 
+/* just some common intrinsics */
+
+#ifndef __MWERKS__
+f32 __frsqrte(f32);
+u32 __cntlzw(u32);
+s32 __abs(s32);
+f32 __fabsf(f32);
+#endif
+
 #endif  // TYPES_H
