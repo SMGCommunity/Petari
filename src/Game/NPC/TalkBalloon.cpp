@@ -31,7 +31,7 @@ namespace NrvTalkBalloonEvent {
     NEW_NERVE(TalkBalloonEventNrvClose, TalkBalloonEvent, Close);
 }  // namespace NrvTalkBalloonEvent
 
-TalkBalloon::TalkBalloon(const char* pArg) : LayoutActor(pArg, true), mMessageCtrl(nullptr), mTextFormer(0), _28(false), _29(false) {}
+TalkBalloon::TalkBalloon(const char* pName) : LayoutActor(pName, true), mMessageCtrl(nullptr), mTextFormer(nullptr), _28(false), _29(false) {}
 
 void TalkBalloon::create(const char* pArg1, bool arg2, bool arg3) {
     _28 = arg2;
@@ -54,7 +54,7 @@ void TalkBalloon::create(const char* pArg1, bool arg2, bool arg3) {
     }
 }
 
-void TalkBalloon::init(const JMapInfoIter& pIter) {
+void TalkBalloon::init(const JMapInfoIter& rIter) {
     kill();
 }
 
@@ -63,8 +63,8 @@ void TalkBalloon::kill() {
     mMessageCtrl = nullptr;
 }
 
-void TalkBalloon::open(TalkMessageCtrl* pArg1) {
-    mMessageCtrl = pArg1;
+void TalkBalloon::open(TalkMessageCtrl* pCtrl) {
+    mMessageCtrl = pCtrl;
     MR::startAnim(this, "Appear", 0);
     if (_28) {
         MR::startPaneAnim(this, "Balloon", "Beak", 0);
@@ -152,7 +152,7 @@ void TalkBalloon::updateBalloon() {
     }
 }
 
-TalkBalloonShort::TalkBalloonShort(const char* pArg) : TalkBalloon(pArg), _2C(0) {
+TalkBalloonShort::TalkBalloonShort(const char* pName) : TalkBalloon(pName), _2C(0) {
     initNerve(&NrvTalkBalloonShort::TalkBalloonShortNrvOpen::sInstance);
 }
 
@@ -204,21 +204,21 @@ void TalkBalloonShort::exeOpen() {
     }
 }
 
-void TalkBalloonShort::open(TalkMessageCtrl* pArg) {
-    TalkBalloon::open(pArg);
+void TalkBalloonShort::open(TalkMessageCtrl* pCtrl) {
+    TalkBalloon::open(pCtrl);
     MR::showScreen(this);
     LayoutActor::appear();
     TalkTextFormer* tempFormer = mTextFormer;
 
     const wchar_t* message;
-    if (TalkFunction::isComposeTalk(pArg)) {
-        message = TalkFunction::getSubMessage(pArg);
+    if (TalkFunction::isComposeTalk(pCtrl)) {
+        message = TalkFunction::getSubMessage(pCtrl);
     } else {
-        message = TalkFunction::getMessage(pArg);
+        message = TalkFunction::getMessage(pCtrl);
     }
 
     tempFormer->formMessage(message, 0);
-    tempFormer->setArg(pArg->mTagArg, 0);
+    tempFormer->setArg(pCtrl->mTagArg, 0);
 
     s32 numLine = MR::countMessageLine(message);
 
@@ -240,7 +240,7 @@ void TalkBalloonShort::open(TalkMessageCtrl* pArg) {
     LayoutActor::setNerve(&NrvTalkBalloonShort::TalkBalloonShortNrvOpen::sInstance);
 }
 
-TalkBalloonEvent::TalkBalloonEvent(const char* pArg) : TalkBalloon(pArg), _2C(1), _30(0) {
+TalkBalloonEvent::TalkBalloonEvent(const char* pName) : TalkBalloon(pName), _2C(1), _30(0) {
     initNerve(&NrvTalkBalloonEvent::TalkBalloonEventNrvWait::sInstance);
 }
 
@@ -249,12 +249,12 @@ void TalkBalloonEvent::init(const JMapInfoIter& rIter) {
     MR::createAndAddPaneCtrl(this, "AButtonPosition", 1);
 }
 
-void TalkBalloonEvent::open(TalkMessageCtrl* pArg) {
-    mMessageCtrl = pArg;
+void TalkBalloonEvent::open(TalkMessageCtrl* pCtrl) {
+    mMessageCtrl = pCtrl;
     LayoutActor::appear();
-    TalkMessageInfo* info = TalkFunction::getMessageInfo(pArg);
+    TalkMessageInfo* info = TalkFunction::getMessageInfo(pCtrl);
     mTextFormer->formMessage((const wchar_t*)info->_0, _2C);
-    mTextFormer->setArg(pArg->mTagArg, 0);
+    mTextFormer->setArg(pCtrl->mTagArg, 0);
     _30->kill();
     _30->setFollowActorPane(this, "AButtonPosition");
     updateBalloon();
@@ -363,7 +363,7 @@ void TalkBalloonEvent::updateBeak() {
     }
 }
 
-TalkBalloonSign::TalkBalloonSign(const char* pArg) : TalkBalloonEvent(pArg) {
+TalkBalloonSign::TalkBalloonSign(const char* pName) : TalkBalloonEvent(pName) {
     _2C = 2;
 }
 
@@ -372,10 +372,10 @@ void TalkBalloonSign::init(const JMapInfoIter& rIter) {
     MR::createAndAddPaneCtrl(this, "AButtonPosition", 1);
 }
 
-TalkBalloonInfo::TalkBalloonInfo(const char* pArg) : TalkBalloon(pArg) {}
+TalkBalloonInfo::TalkBalloonInfo(const char* pName) : TalkBalloon(pName) {}
 
-void TalkBalloonInfo::open(TalkMessageCtrl* pArg) {
-    TalkMessageInfo* info = TalkFunction::getMessageInfo(pArg);
+void TalkBalloonInfo::open(TalkMessageCtrl* pCtrl) {
+    TalkMessageInfo* info = TalkFunction::getMessageInfo(pCtrl);
     MR::appearInformationMessage((const wchar_t*)info->_0, true);
 }
 
@@ -392,22 +392,22 @@ bool TalkBalloonInfo::isTextAppearedAll() {
     return true;
 }
 
-TalkBalloonIcon::TalkBalloonIcon(const char* pArg) : TalkBalloonShort(pArg) {}
+TalkBalloonIcon::TalkBalloonIcon(const char* pName) : TalkBalloonShort(pName) {}
 
 void TalkBalloonIcon::init(const JMapInfoIter& rIter) {
     TalkBalloon::create("TalkBalloonLetter", false, false);
 }
 
-void TalkBalloonIcon::open(TalkMessageCtrl* pArg) {
-    TalkBalloon::open(pArg);
+void TalkBalloonIcon::open(TalkMessageCtrl* pCtrl) {
+    TalkBalloon::open(pCtrl);
     MR::showScreen(this);
     LayoutActor::appear();
 
-    const wchar_t* message = TalkFunction::getMessage(pArg);
+    const wchar_t* message = TalkFunction::getMessage(pCtrl);
     TalkTextFormer* former = mTextFormer;
 
     former->formMessage(message, 2);
-    former->setArg(pArg->mTagArg, 0);
+    former->setArg(pCtrl->mTagArg, 0);
     LayoutActor::setNerve(&NrvTalkBalloonShort::TalkBalloonShortNrvOpen::sInstance);
 }
 
