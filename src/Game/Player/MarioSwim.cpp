@@ -12,6 +12,7 @@
 #include "Game/Util/AreaObjUtil.hpp"
 #include "Game/Util/SceneUtil.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
+#include "math_types.hpp"
 #include "revolution/types.h"
 #include <cstddef>
 
@@ -2012,6 +2013,92 @@ void MarioSwim::decideEffect(bool isReset) {
             playSound("水面ウエイト", -1);
         }
     }
+}
+#define PI 3.1415927f
+void MarioSwim::updateTilt() {
+    f32 targetTiltX = 0.0f;
+    f32 blendX = 0.1f;
+
+    if (mIsOnSurface) {
+        if (MarioModule::getStickP() > 0.1f) {
+            f32 stickX = MarioModule::getStickX();
+
+            f32 angle = (stickX * PI) / 6.0f;
+            f32 absAngle = __fabsf(angle);
+
+            TVec3f padDir = MarioModule::getWorldPadDir();
+            f32 dot = _60.dot(padDir);
+            f32 scale = MR::clamp(1.0f - dot, 0.0f, 1.0f);
+
+            targetTiltX = absAngle * scale;
+
+            TVec3f cross;
+            PSVECCrossProduct(&_60, &padDir, &cross);
+            if (cross.dot(mUpVec) > 0.0f) {
+                targetTiltX = -targetTiltX;
+            }
+
+            if (__fabsf(_E0) >= __fabsf(targetTiltX)) {
+                blendX = 0.03f;
+            }
+        }
+    } else {
+        targetTiltX = (MarioModule::getStickX() * PI) / 5.0f;
+    }
+
+    if (MarioModule::isAnimationRun("水泳ターン左") || 
+        MarioModule::isAnimationRun("水泳ターン右") || 
+        MarioModule::isAnimationRun("水泳ターン下")) {
+        f32 stickX = MarioModule::getStickX();
+        targetTiltX = (MR::clamp(stickX / 0.7f, -1.0f, 1.0f) * PI) * 0.125f;
+    }
+
+    f32 targetTiltY = 0.0f;
+
+    if (!mIsOnSurface) {
+        if (_3C == 0) {
+
+            f32 scaledTilt = (getStickY() * PI);
+            targetTiltY = scaledTilt / 12.0f;
+
+            if (getStickY() > 0.0f && _5C <= 2.0f/3.0f*PI) {
+                targetTiltY = getStickY() * PI * 0.125f;
+            }
+        } else {
+
+            if (getStickY() < 0.0f) {
+                f32 divisor = mActor->getConst().getTable()->mSwimTiltZdown;
+                targetTiltY = (getStickY() * PI) / divisor;
+            } else if (getStickY() > 0.0f) {
+                f32 divisor = mActor->getConst().getTable()->mSwimTiltZup;
+                targetTiltY = (getStickY() * PI) / divisor;
+            } else {
+
+                if (_3C != 0) {
+                    f32 fade = (f32)_3C / 120.0f;
+                    if (fade > 1.0f) 
+                        fade = 1.0f;
+                    targetTiltY = targetTiltY - (fade * (PI * 0.1f)); 
+                }
+                else {
+                    targetTiltY = 0.0f;
+                }
+            }
+        }
+    }
+
+    _E0 = (blendX * targetTiltX) + ((1.0f - blendX) * _E0);
+    _E4 = (0.1f * targetTiltY) + (0.9f * _E4);
+
+    Mtx mtxRotX, mtxRotZ;
+
+    PSMTXRotRad(mtxRotX, 'x', _E0);
+    PSMTXRotRad(mtxRotZ, 'z', _E4);
+
+    PSMTXConcat(mtxRotX, mtxRotZ, _B0);
+
+    u16 jointID = getAnimator()->getUpperJointID();
+    MarioModule::setJointGlobalMtx(jointID, _B0);
 }
 
 /*
