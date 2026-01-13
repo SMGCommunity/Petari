@@ -240,7 +240,7 @@ void TalkBalloonShort::open(TalkMessageCtrl* pCtrl) {
     LayoutActor::setNerve(&NrvTalkBalloonShort::TalkBalloonShortNrvOpen::sInstance);
 }
 
-TalkBalloonEvent::TalkBalloonEvent(const char* pName) : TalkBalloon(pName), _2C(1), _30(0) {
+TalkBalloonEvent::TalkBalloonEvent(const char* pName) : TalkBalloon(pName), _2C(1), mAButton(0) {
     initNerve(&NrvTalkBalloonEvent::TalkBalloonEventNrvWait::sInstance);
 }
 
@@ -255,8 +255,8 @@ void TalkBalloonEvent::open(TalkMessageCtrl* pCtrl) {
     TalkMessageInfo* info = TalkFunction::getMessageInfo(pCtrl);
     mTextFormer->formMessage((const wchar_t*)info->_0, _2C);
     mTextFormer->setArg(pCtrl->mTagArg, 0);
-    _30->kill();
-    _30->setFollowActorPane(this, "AButtonPosition");
+    mAButton->kill();
+    mAButton->setFollowActorPane(this, "AButtonPosition");
     updateBalloon();
     LayoutActor::setNerve(&NrvTalkBalloonEvent::TalkBalloonEventNrvWait::sInstance);
 }
@@ -268,8 +268,8 @@ void TalkBalloonEvent::close() {
         MR::startSystemSE("SE_SY_TALK_OK", -1, -1);
     }
 
-    if (!MR::isDead(_30)) {
-        _30->term();
+    if (!MR::isDead(mAButton)) {
+        mAButton->term();
     }
 
     MR::recoverSoundVolumeSetting(30);
@@ -282,7 +282,7 @@ bool TalkBalloonEvent::turnPage() {
     if (mTextFormer->nextPage()) {
         mTextFormer->setArg(mMessageCtrl->mTagArg, 0);
         MR::startSystemSE("SE_SY_TALK_FOCUS_ITEM", -1, -1);
-        _30->term();
+        mAButton->term();
 
         return true;
     }
@@ -332,9 +332,9 @@ void TalkBalloonEvent::exeOpen() {
 
 void TalkBalloonEvent::exeTalk() {
     updateTalking();
-    if (mTextFormer->isTextAppearedAll() && MR::isDead(_30) && !TalkFunction::getMessageInfo(mMessageCtrl)->isBalloonFix()) {
+    if (mTextFormer->isTextAppearedAll() && MR::isDead(mAButton) && !TalkFunction::getMessageInfo(mMessageCtrl)->isBalloonFix()) {
         if (!TalkFunction::isSelectTalk(mMessageCtrl) || hasNextPage()) {
-            _30->openWithoutMessage();
+            mAButton->openWithoutMessage();
         }
     }
 }
@@ -445,8 +445,8 @@ TalkBalloonHolder::TalkBalloonHolder() : _14(0) {
     mAButton = new IconAButton(true, false);
     mAButton->initWithoutIter();
 
-    mBalloonEvent->_30 = mAButton;
-    mBalloonSign->_30 = mAButton;
+    mBalloonEvent->mAButton = mAButton;
+    mBalloonSign->mAButton = mAButton;
 }
 
 void TalkBalloonHolder::balloonOff() {

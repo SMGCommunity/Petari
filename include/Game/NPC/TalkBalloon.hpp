@@ -68,7 +68,7 @@ public:
     void exeClose();
 
     u32 _2C;
-    IconAButton* _30;
+    /* 0x30 */ IconAButton* mAButton;
 };
 
 class TalkBalloonSign : public TalkBalloonEvent {
