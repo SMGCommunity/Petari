@@ -26,8 +26,8 @@ public:
 
     void create(const char*, bool, bool);
 
-    TalkMessageCtrl* mMessageCtrl;
-    TalkTextFormer* mTextFormer;
+    /* 0x20 */ TalkMessageCtrl* mMessageCtrl;
+    /* 0x24 */ TalkTextFormer* mTextFormer;
     bool _28;
     bool _29;
 };
