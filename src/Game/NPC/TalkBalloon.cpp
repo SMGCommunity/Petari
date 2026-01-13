@@ -132,7 +132,7 @@ void TalkBalloon::updateBalloon() {
         }
 
         if (!_29) {
-            if ((f32)__fabs(paneAnimFrame - paneAnimFrameMax) < 10.0f) {
+            if (static_cast< f32 >(__fabs(paneAnimFrame - paneAnimFrameMax)) < 10.0f) {
                 return;
             }
             _29 = true;
@@ -253,7 +253,7 @@ void TalkBalloonEvent::open(TalkMessageCtrl* pCtrl) {
     mMessageCtrl = pCtrl;
     LayoutActor::appear();
     TalkMessageInfo* info = TalkFunction::getMessageInfo(pCtrl);
-    mTextFormer->formMessage((const wchar_t*)info->_0, _2C);
+    mTextFormer->formMessage(reinterpret_cast< const wchar_t* >(info->_0), _2C);
     mTextFormer->setArg(pCtrl->mTagArg, 0);
     mAButton->kill();
     mAButton->setFollowActorPane(this, "AButtonPosition");
@@ -354,7 +354,7 @@ void TalkBalloonEvent::updateBeak() {
     TalkMessageCtrl* messageCtrl = mMessageCtrl;
     TVec2f v1(messageCtrl->_1C.x, messageCtrl->_1C.y);
 
-    if (0.0f <= v1.x && v1.x < MR::getScreenWidth() && 120.0f <= v1.y && v1.y < (s32)JUTVideo::sManager->mRenderModeObj->efbHeight) {
+    if (0.0f <= v1.x && v1.x < MR::getScreenWidth() && 120.0f <= v1.y && v1.y < static_cast< s32 >(JUTVideo::sManager->mRenderModeObj->efbHeight)) {
         MR::showPane(this, "ShaBeak");
         MR::showPane(this, "PicBeak");
     } else {
@@ -376,7 +376,7 @@ TalkBalloonInfo::TalkBalloonInfo(const char* pName) : TalkBalloon(pName) {}
 
 void TalkBalloonInfo::open(TalkMessageCtrl* pCtrl) {
     TalkMessageInfo* info = TalkFunction::getMessageInfo(pCtrl);
-    MR::appearInformationMessage((const wchar_t*)info->_0, true);
+    MR::appearInformationMessage(reinterpret_cast< const wchar_t* >(info->_0), true);
 }
 
 void TalkBalloonInfo::close() {
