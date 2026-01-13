@@ -26,10 +26,10 @@ public:
 
     void create(const char*, bool, bool);
 
-    TalkMessageCtrl* _20;
-    TalkTextFormer* _24;
+    TalkMessageCtrl* mMessageCtrl;
+    TalkTextFormer* mTextFormer;
     bool _28;
-    u8 _29;
+    bool _29;
 };
 
 class TalkBalloonShort : public TalkBalloon {
@@ -56,7 +56,6 @@ public:
     virtual void init(const JMapInfoIter&);
     virtual void open(TalkMessageCtrl*);
     virtual void close();
-    virtual void updateBalloon();
     virtual bool turnPage();
     virtual void skipMessage();
     virtual bool isTextAppearedAll();
