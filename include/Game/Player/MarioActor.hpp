@@ -23,7 +23,8 @@ class J3DModelX;
 class TornadoMario;
 class ModelHolder;
 
-bool gIsLuigi;  // (cc68 - 10000)(r13)
+extern bool lbl_806B6288;  // (cc68 - 10000)(r13)
+#define gIsLuigi lbl_806B6288
 
 class MarioActor : public LiveActor {
 public:
@@ -96,6 +97,7 @@ public:
     void calcAnimInMovement();
     void forceSetBaseMtx(MtxPtr);
     void calcAnim();
+    bool finalizeFreezeModel();
     void calcAndSetBaseMtx();
     void setBlendMtxTimer(u16);
     void getGroundPos(TVec3f* dst) const;
@@ -684,15 +686,17 @@ public:
 
 // header defined since these actually get defined in CamHeliEffector
 // and in sinit of NameObjFactory
+#ifndef MARIO_ACTOR_SKIP_NRV
 namespace NrvMarioActor {
-    NERVE_DECL_EXE(MarioActorNrvWait, MarioActor, Wait);
-    NERVE_DECL_EXE(MarioActorNrvGameOver, MarioActor, GameOver);
-    NERVE_DECL_EXE(MarioActorNrvGameOverAbyss, MarioActor, GameOverAbyss);
-    NERVE_DECL_EXE(MarioActorNrvGameOverAbyss2, MarioActor, GameOverAbyss);
-    NERVE_DECL_EXE(MarioActorNrvGameOverFire, MarioActor, GameOverFire);
-    NERVE_DECL_EXE(MarioActorNrvGameOverBlackHole, MarioActor, GameOverBlackHole2);
-    NERVE_DECL_EXE(MarioActorNrvGameOverNonStop, MarioActor, GameOverNonStop);
-    NERVE_DECL_EXE(MarioActorNrvGameOverSink, MarioActor, GameOverSink);
-    NERVE_DECL_EXE(MarioActorNrvTimeWait, MarioActor, TimeWait);
-    NERVE_DECL_EXE(MarioActorNrvNoRush, MarioActor, Wait);
+    NEW_NERVE(MarioActorNrvWait, MarioActor, Wait);
+    NEW_NERVE(MarioActorNrvGameOver, MarioActor, GameOver);
+    NEW_NERVE(MarioActorNrvGameOverAbyss, MarioActor, GameOverAbyss);
+    NEW_NERVE(MarioActorNrvGameOverAbyss2, MarioActor, GameOverAbyss);
+    NEW_NERVE(MarioActorNrvGameOverFire, MarioActor, GameOverFire);
+    NEW_NERVE(MarioActorNrvGameOverBlackHole, MarioActor, GameOverBlackHole2);
+    NEW_NERVE(MarioActorNrvGameOverNonStop, MarioActor, GameOverNonStop);
+    NEW_NERVE(MarioActorNrvGameOverSink, MarioActor, GameOverSink);
+    NEW_NERVE(MarioActorNrvTimeWait, MarioActor, TimeWait);
+    NEW_NERVE(MarioActorNrvNoRush, MarioActor, Wait);
 }  // namespace NrvMarioActor
+#endif
