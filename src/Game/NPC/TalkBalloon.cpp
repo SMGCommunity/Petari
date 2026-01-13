@@ -423,34 +423,34 @@ TalkBalloonHolder::TalkBalloonHolder() : _14(0) {
     }
 
     // "Speech bubble [event]"
-    _04 = new TalkBalloonEvent("会話吹き出し[イベント]");
-    _04->initWithoutIter();
-    _04->kill();
+    mBalloonEvent = new TalkBalloonEvent("会話吹き出し[イベント]");
+    mBalloonEvent->initWithoutIter();
+    mBalloonEvent->kill();
 
     // "Speech bubble [information]"
-    _08 = new TalkBalloonInfo("会話吹き出し[インフォメーション]");
-    _08->initWithoutIter();
-    _08->kill();
+    mBalloonInfo = new TalkBalloonInfo("会話吹き出し[インフォメーション]");
+    mBalloonInfo->initWithoutIter();
+    mBalloonInfo->kill();
 
     // "Speech bubble [signboard]"
-    _0C = new TalkBalloonSign("会話吹き出し[看板]");
-    _0C->initWithoutIter();
-    _0C->kill();
+    mBalloonSign = new TalkBalloonSign("会話吹き出し[看板]");
+    mBalloonSign->initWithoutIter();
+    mBalloonSign->kill();
 
     // "Speech bubble [icon]"
-    _10 = new TalkBalloonIcon("会話吹き出し[アイコン]");
-    _10->initWithoutIter();
-    _10->kill();
+    mBalloonIcon = new TalkBalloonIcon("会話吹き出し[アイコン]");
+    mBalloonIcon->initWithoutIter();
+    mBalloonIcon->kill();
 
-    _18 = new IconAButton(true, false);
-    _18->initWithoutIter();
+    mAButton = new IconAButton(true, false);
+    mAButton->initWithoutIter();
 
-    _04->_30 = _18;
-    _0C->_30 = _18;
+    mBalloonEvent->_30 = mAButton;
+    mBalloonSign->_30 = mAButton;
 }
 
 void TalkBalloonHolder::balloonOff() {
-    _18->kill();
+    mAButton->kill();
 }
 
 void TalkBalloonHolder::update() {}
@@ -466,16 +466,16 @@ bool TalkBalloonHolder::isActiveBalloonShort() const {
 }
 
 void TalkBalloonHolder::pauseOff() {
-    _04->pauseOff();
-    _08->pauseOff();
-    _0C->pauseOff();
-    _10->pauseOff();
+    mBalloonEvent->pauseOff();
+    mBalloonInfo->pauseOff();
+    mBalloonSign->pauseOff();
+    mBalloonIcon->pauseOff();
 
     for (int i = 0; i < 4; i++) {
         mBalloonShortArray[i]->pauseOff();
     }
 
-    MR::requestMovementOn(_18);
+    MR::requestMovementOn(mAButton);
 }
 
 TalkBalloon* TalkBalloonHolder::getBalloon(const TalkMessageCtrl* pArg) {
@@ -483,30 +483,30 @@ TalkBalloon* TalkBalloonHolder::getBalloon(const TalkMessageCtrl* pArg) {
     const TalkMessageInfo* info = TalkFunction::getMessageInfo(pArg);
 
     if (info->isNormalTalk()) {
-        balloon = _04;
+        balloon = mBalloonEvent;
     } else if (info->isShortTalk()) {
         mBalloonShortArray[_14]->_2C = 0;
         balloon = mBalloonShortArray[_14];
     } else if (info->isEventTalk()) {
-        balloon = _04;
+        balloon = mBalloonEvent;
     } else if (info->isComposeTalk()) {
         mBalloonShortArray[_14]->_2C = 0;
-        balloon = _04;
+        balloon = mBalloonEvent;
     } else {
         balloon = nullptr;
     }
 
     if (info->isBalloonInfo()) {
-        balloon = _08;
+        balloon = mBalloonInfo;
     } else if (info->isBalloonSign()) {
-        balloon = _0C;
+        balloon = mBalloonSign;
     } else if (info->isBalloonFix()) {
-        balloon = _04;
+        balloon = mBalloonEvent;
     } else if (info->isBalloonCall()) {
         mBalloonShortArray[_14]->_2C = 120;
         balloon = mBalloonShortArray[_14];
     } else if (info->isBalloonIcon()) {
-        balloon = _10;
+        balloon = mBalloonIcon;
     }
 
     if (balloon == mBalloonShortArray[_14]) {

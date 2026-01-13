@@ -109,12 +109,12 @@ public:
     bool isActiveBalloonShort() const;
 
     /* 0x00 */ TalkBalloonShort** mBalloonShortArray;
-    TalkBalloonEvent* _04;
-    TalkBalloonInfo* _08;
-    TalkBalloonSign* _0C;
-    TalkBalloonIcon* _10;
+    /* 0x04 */ TalkBalloonEvent* mBalloonEvent;
+    /* 0x08 */ TalkBalloonInfo* mBalloonInfo;
+    /* 0x0C */ TalkBalloonSign* mBalloonSign;
+    /* 0x10 */ TalkBalloonIcon* mBalloonIcon;
     s32 _14;
-    IconAButton* _18;
+    /* 0x18 */ IconAButton* mAButton;
 };
 
 namespace MR {
