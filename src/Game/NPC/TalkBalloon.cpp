@@ -33,23 +33,23 @@ namespace NrvTalkBalloonEvent {
 
 TalkBalloon::TalkBalloon(const char* pName) : LayoutActor(pName, true), mMessageCtrl(nullptr), mTextFormer(nullptr), _28(false), _29(false) {}
 
-void TalkBalloon::create(const char* pArg1, bool arg2, bool arg3) {
+void TalkBalloon::create(const char* pLayoutName, bool arg2, bool isTalkLayout) {
     _28 = arg2;
 
-    if (arg3) {
+    if (isTalkLayout) {
         MR::connectToSceneTalkLayout(this);
     } else {
         MR::connectToSceneLayout(this);
     }
 
-    if (pArg1 != nullptr) {
-        LayoutActor::initLayoutManager(pArg1, 2);
+    if (pLayoutName != nullptr) {
+        initLayoutManager(pLayoutName, 2);
+
         if (_28) {
             MR::createAndAddPaneCtrl(this, "Balloon", 1);
         }
 
         mTextFormer = new TalkTextFormer(this, "Text00");
-
         MR::hideScreen(this);
     }
 }
