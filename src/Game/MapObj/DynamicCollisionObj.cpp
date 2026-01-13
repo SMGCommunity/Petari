@@ -50,8 +50,9 @@ void DynamicCollisionObj::updateTriangle() {
         MR::normalizeOrZero(&cross);
         _9C[i] = cross;
 
-        if (!mKCLFile)
+        if (!mKCLFile) {
             continue;
+        }
 
         TVec3f cross2;
         TVec3f cross3;
@@ -104,12 +105,15 @@ void DynamicCollisionObj::updateCollisionHeader() {
     masks[0] = (s32)extent.x;
     masks[1] = (s32)extent.y;
     masks[2] = (s32)extent.z;
-    if (!masks[0])
+    if (!masks[0]) {
         masks[0] = 1;
-    if (!masks[1])
+    }
+    if (!masks[1]) {
         masks[1] = 1;
-    if (!masks[2])
+    }
+    if (!masks[2]) {
         masks[2] = 1;
+    }
 
     // Find highest number of bits to shift
     u32 max_entropy = 0;
@@ -122,8 +126,9 @@ void DynamicCollisionObj::updateCollisionHeader() {
         for (u32 bit = 0; bit < 32; bit++) {
             if ((val & bits_sel)) {
                 masks[component] = ~mask_sel;
-                if (max_entropy < i)
+                if (max_entropy < i) {
                     max_entropy = i;
+                }
                 break;
             }
 
