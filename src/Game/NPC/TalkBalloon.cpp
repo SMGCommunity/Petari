@@ -240,7 +240,7 @@ void TalkBalloonShort::open(TalkMessageCtrl* pCtrl) {
     LayoutActor::setNerve(&NrvTalkBalloonShort::TalkBalloonShortNrvOpen::sInstance);
 }
 
-TalkBalloonEvent::TalkBalloonEvent(const char* pName) : TalkBalloon(pName), _2C(1), mAButton(0) {
+TalkBalloonEvent::TalkBalloonEvent(const char* pName) : TalkBalloon(pName), _2C(1), mAButton(nullptr) {
     initNerve(&NrvTalkBalloonEvent::TalkBalloonEventNrvWait::sInstance);
 }
 
