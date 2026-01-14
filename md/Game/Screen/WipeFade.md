@@ -10,7 +10,7 @@
 | `__dt__14WipeLayoutBaseFv` | `0x803918B8` | :white_check_mark: (100.0%) |
 | `init__8WipeFadeFRC12JMapInfoIter` | `0x80391914` | :white_check_mark: (100.0%) |
 | `control__8WipeFadeFv` | `0x80391924` | :white_check_mark: (100.0%) |
-| `draw__8WipeFadeCFv` | `0x80391984` | :x: (0.0%) |
+| `draw__8WipeFadeCFv` | `0x80391984` | :white_check_mark: (100.0%) |
 | `wipe__8WipeFadeFl` | `0x80391A94` | :white_check_mark: (100.0%) |
 | `forceClose__8WipeFadeFv` | `0x80391B20` | :white_check_mark: (100.0%) |
 | `forceOpen__8WipeFadeFv` | `0x80391B78` | :white_check_mark: (100.0%) |

@@ -11,7 +11,7 @@
 | `exeTimer__14SimpleTimerObjFv` | `0x80227C58` | :white_check_mark: (100.0%) |
 | `appear__14SimpleTimerObjFv` | `0x80227C94` | :white_check_mark: (100.0%) |
 | `kill__14SimpleTimerObjFv` | `0x80227CE0` | :white_check_mark: (100.0%) |
-| `control__14SimpleTimerObjFv` | `0x80227D34` | :x: (93.3%) |
+| `control__14SimpleTimerObjFv` | `0x80227D34` | :white_check_mark: (100.0%) |
 | `__dt__14SimpleTimerObjFv` | `0x80227D70` | :white_check_mark: (100.0%) |
 | `__sinit_\SimpleTimerObj_cpp` | `0x80227DC8` | :white_check_mark: (100.0%) |
 | `__ct__Q217NrvSimpleTimerObj22SimpleTimerObjNrvTimerFv` | `0x80227DD0` | :white_check_mark: (100.0%) |

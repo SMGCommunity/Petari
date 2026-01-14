@@ -7,12 +7,12 @@
 | Name | Address | Match % |
 |------|---------|---------|
 | `createRoot__10JKRExpHeapFib` | `0x8040B528` | :white_check_mark: (100.0%) |
-| `create__10JKRExpHeapFUlP7JKRHeapb` | `0x8040B5A8` | :x: (65.5%) |
-| `create__10JKRExpHeapFPvUlP7JKRHeapb` | `0x8040B680` | :x: (63.0%) |
-| `do_destroy__10JKRExpHeapFv` | `0x8040B730` | :x: (93.9%) |
-| `__ct__10JKRExpHeapFPvUlP7JKRHeapb` | `0x8040B7B4` | :x: (65.8%) |
+| `create__10JKRExpHeapFUlP7JKRHeapb` | `0x8040B5A8` | :white_check_mark: (100.0%) |
+| `create__10JKRExpHeapFPvUlP7JKRHeapb` | `0x8040B680` | :white_check_mark: (100.0%) |
+| `do_destroy__10JKRExpHeapFv` | `0x8040B730` | :x: (99.8%) |
+| `__ct__10JKRExpHeapFPvUlP7JKRHeapb` | `0x8040B7B4` | :white_check_mark: (100.0%) |
 | `__dt__10JKRExpHeapFv` | `0x8040B83C` | :x: (0.0%) |
-| `do_alloc__10JKRExpHeapFUli` | `0x8040B8A8` | :x: (81.4%) |
+| `do_alloc__10JKRExpHeapFUli` | `0x8040B8A8` | :white_check_mark: (100.0%) |
 | `allocFromHead__10JKRExpHeapFUli` | `0x8040B9B0` | :x: (0.0%) |
 | `allocFromHead__10JKRExpHeapFUl` | `0x8040BC14` | :x: (0.0%) |
 | `allocFromTail__10JKRExpHeapFUli` | `0x8040BCF8` | :x: (0.0%) |

@@ -8,7 +8,7 @@
 |------|---------|---------|
 | `__ct__11ZoneLightIDFv` | `0x801896C0` | :white_check_mark: (100.0%) |
 | `clear__11ZoneLightIDFv` | `0x801896D0` | :white_check_mark: (100.0%) |
-| `isTargetArea__11ZoneLightIDCFPC9LightArea` | `0x801896E0` | :x: (83.3%) |
+| `isTargetArea__11ZoneLightIDCFPC9LightArea` | `0x801896E0` | :x: (99.8%) |
 | `isOutOfArea__11ZoneLightIDCFv` | `0x80189710` | :white_check_mark: (100.0%) |
 | `__ct__13LightZoneInfoFv` | `0x8018971C` | :white_check_mark: (100.0%) |
 | `getAreaLightNameInZoneData__13LightZoneInfoCFl` | `0x8018972C` | :white_check_mark: (100.0%) |

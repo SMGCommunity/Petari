@@ -14,9 +14,9 @@
 | `CloseCallbackFromReload` | `0x804D06FC` | :white_check_mark: (100.0%) |
 | `FinishFromReload` | `0x804D0788` | :white_check_mark: (100.0%) |
 | `CloseCallbackFromReloadError` | `0x804D08C4` | :white_check_mark: (100.0%) |
-| `ParseConfBuf` | `0x804D08C8` | :x: (99.3%) |
-| `UnpackItem` | `0x804D0B14` | :x: (99.0%) |
-| `DeleteItemByID` | `0x804D0CAC` | :x: (97.0%) |
+| `ParseConfBuf` | `0x804D08C8` | :x: (99.6%) |
+| `UnpackItem` | `0x804D0B14` | :x: (99.4%) |
+| `DeleteItemByID` | `0x804D0CAC` | :x: (100.0%) |
 | `CreateItemByID` | `0x804D0E3C` | :white_check_mark: (100.0%) |
 | `SCFindByteArrayItem` | `0x804D10B4` | :white_check_mark: (100.0%) |
 | `SCReplaceByteArrayItem` | `0x804D1194` | :white_check_mark: (100.0%) |

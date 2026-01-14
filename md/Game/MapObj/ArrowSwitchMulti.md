@@ -20,7 +20,7 @@
 | `requestPunch__16ArrowSwitchMultiFP9HitSensorP9HitSensor` | `0x801A81CC` | :white_check_mark: (100.0%) |
 | `exeWait__16ArrowSwitchMultiFv` | `0x801A82A4` | :white_check_mark: (100.0%) |
 | `exeRotate__16ArrowSwitchMultiFv` | `0x801A8318` | :x: (0.0%) |
-| `__dt__16ArrowSwitchMultiFv` | `0x801A84B8` | :x: (95.7%) |
+| `__dt__16ArrowSwitchMultiFv` | `0x801A84B8` | :white_check_mark: (100.0%) |
 | `__dt__17ArrowSwitchTargetFv` | `0x801A8514` | :white_check_mark: (100.0%) |
 | `__sinit_\ArrowSwitchMulti_cpp` | `0x801A856C` | :white_check_mark: (100.0%) |
 | `__ct__Q219NrvArrowSwitchMulti23ArrowSwitchMultiNrvWaitFv` | `0x801A8598` | :white_check_mark: (100.0%) |

@@ -14,4 +14,4 @@
 | `createFillUpFlag__20SkeletalFishBossRailFv` | `0x8007BBC4` | :white_check_mark: (100.0%) |
 | `createFillUpNamePosID__20SkeletalFishBossRailFv` | `0x8007BC54` | :white_check_mark: (100.0%) |
 | `linkFillUpNamePosID__20SkeletalFishBossRailFv` | `0x8007BCC4` | :white_check_mark: (100.0%) |
-| `__dt__20SkeletalFishBossRailFv` | `0x8007BD38` | :x: (95.7%) |
+| `__dt__20SkeletalFishBossRailFv` | `0x8007BD38` | :white_check_mark: (100.0%) |

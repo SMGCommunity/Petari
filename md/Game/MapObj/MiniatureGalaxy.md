@@ -1,10 +1,12 @@
 # main/Game/MapObj/MiniatureGalaxy
 
+**Source Path:** `src/Game/MapObj/MiniatureGalaxy.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__ct__15MiniatureGalaxyFPCc` | `0x801FEDEC` | :x: (0.0%) |
+| `__ct__15MiniatureGalaxyFPCc` | `0x801FEDEC` | :x: (22.8%) |
 | `init__15MiniatureGalaxyFRC12JMapInfoIter` | `0x801FEEB4` | :x: (0.0%) |
 | `initAfterPlacement__15MiniatureGalaxyFv` | `0x801FF09C` | :x: (0.0%) |
 | `appear__15MiniatureGalaxyFv` | `0x801FF0D4` | :x: (0.0%) |

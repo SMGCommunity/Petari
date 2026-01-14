@@ -7,7 +7,7 @@
 | Name | Address | Match % |
 |------|---------|---------|
 | `__ct__9RailGraphFv` | `0x80198D90` | :white_check_mark: (100.0%) |
-| `addNode__9RailGraphFRCQ29JGeometry8TVec3<f>` | `0x80198E30` | :x: (89.2%) |
+| `addNode__9RailGraphFRCQ29JGeometry8TVec3<f>` | `0x80198E30` | :x: (99.5%) |
 | `connectNodeTwoWay__9RailGraphFllPC13RailGraphEdge` | `0x80198EC4` | :white_check_mark: (100.0%) |
 | `__as__13RailGraphEdgeFRC13RailGraphEdge` | `0x80198F90` | :white_check_mark: (100.0%) |
 | `getNode__9RailGraphCFl` | `0x80199024` | :white_check_mark: (100.0%) |

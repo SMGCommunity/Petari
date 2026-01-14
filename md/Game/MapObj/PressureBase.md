@@ -11,9 +11,9 @@
 | `exeSync__17PressureMessengerFv` | `0x80211804` | :white_check_mark: (100.0%) |
 | `__ct__12PressureBaseFPCc` | `0x80211874` | :white_check_mark: (100.0%) |
 | `init__12PressureBaseFRC12JMapInfoIter` | `0x802118F8` | :white_check_mark: (100.0%) |
-| `initAfterPlacement__12PressureBaseFv` | `0x80211C98` | :x: (0.0%) |
+| `initAfterPlacement__12PressureBaseFv` | `0x80211C98` | :x: (99.4%) |
 | `calcAndSetBaseMtx__12PressureBaseFv` | `0x80211D28` | :white_check_mark: (100.0%) |
-| `control__12PressureBaseFv` | `0x80211D5C` | :x: (94.7%) |
+| `control__12PressureBaseFv` | `0x80211D5C` | :x: (99.9%) |
 | `exeBound__12PressureBaseFv` | `0x80211DA8` | :white_check_mark: (100.0%) |
 | `exeWait__12PressureBaseFv` | `0x80211EC8` | :white_check_mark: (100.0%) |
 | `exePrepareToShot__12PressureBaseFv` | `0x80211F54` | :white_check_mark: (100.0%) |
@@ -49,8 +49,8 @@
 | `execute__Q220NrvPressureMessenger24PressureMessengerNrvSyncCFP5Spine` | `0x80212620` | :white_check_mark: (100.0%) |
 | `Functor<12PressureBase>__2MRFP12PressureBaseM12PressureBaseFPCvPv_v_Q22MR51FunctorV0M<P12PressureBase,M12PressureBaseFPCvPv_v>` | `0x80212628` | :white_check_mark: (100.0%) |
 | `__cl__Q22MR51FunctorV0M<P12PressureBase,M12PressureBaseFPCvPv_v>CFv` | `0x80212668` | :white_check_mark: (100.0%) |
-| `clone__Q22MR51FunctorV0M<P12PressureBase,M12PressureBaseFPCvPv_v>CFP7JKRHeap` | `0x80212698` | :x: (96.2%) |
-| `__dt__17PressureMessengerFv` | `0x80212700` | :x: (95.7%) |
+| `clone__Q22MR51FunctorV0M<P12PressureBase,M12PressureBaseFPCvPv_v>CFP7JKRHeap` | `0x80212698` | :white_check_mark: (100.0%) |
+| `__dt__17PressureMessengerFv` | `0x80212700` | :white_check_mark: (100.0%) |
 | `__dt__37JointControlDelegator<12PressureBase>Fv` | `0x8021275C` | :white_check_mark: (100.0%) |
 | `calcJointMatrix__37JointControlDelegator<12PressureBase>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | `0x8021279C` | :white_check_mark: (100.0%) |
 | `calcJointMatrixAfterChild__37JointControlDelegator<12PressureBase>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | `0x80212804` | :white_check_mark: (100.0%) |

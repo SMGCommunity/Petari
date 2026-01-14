@@ -27,7 +27,7 @@
 | `play__17MoviePlayerSimpleFb` | `0x80371884` | :white_check_mark: (100.0%) |
 | `stop__17MoviePlayerSimpleFv` | `0x803718CC` | :white_check_mark: (100.0%) |
 | `calcNeedMemoryForMovieWorks__17MoviePlayerSimpleFv` | `0x8037192C` | :white_check_mark: (100.0%) |
-| `drawCinemaFrame__17MoviePlayerSimpleCFv` | `0x803719E0` | :white_check_mark: (100.0%) |
+| `drawCinemaFrame__17MoviePlayerSimpleCFv` | `0x803719E0` | :x: (0.0%) |
 | `__sinit_\MoviePlayerSimple_cpp` | `0x80371A60` | :white_check_mark: (100.0%) |
 | `__ct__Q231@unnamed@MoviePlayerSimple_cpp@20MoviePlayerSimpleOffFv` | `0x80371AA4` | :white_check_mark: (100.0%) |
 | `__ct__Q231@unnamed@MoviePlayerSimple_cpp@21MoviePlayerSimpleOpenFv` | `0x80371AB4` | :white_check_mark: (100.0%) |
@@ -40,4 +40,4 @@
 | `execute__Q231@unnamed@MoviePlayerSimple_cpp@21MoviePlayerSimpleOpenCFP5Spine` | `0x80371B08` | :white_check_mark: (100.0%) |
 | `execute__Q231@unnamed@MoviePlayerSimple_cpp@20MoviePlayerSimpleOffCFP5Spine` | `0x80371B10` | :white_check_mark: (100.0%) |
 | `@32@__dt__17MoviePlayerSimpleFv` | `0x80371B14` | :white_check_mark: (100.0%) |
-| `__ct__Q29JGeometry8TBox2<s>Fssss` | `0x80371B1C` | :x: (0.0%) |
+| `__ct__Q29JGeometry8TBox2<s>Fssss` | `0x80371B1C` | :white_check_mark: (100.0%) |

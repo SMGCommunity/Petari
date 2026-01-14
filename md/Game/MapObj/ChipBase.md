@@ -9,8 +9,8 @@
 | `__ct__8ChipBaseFPCclPCc` | `0x801BDC50` | :white_check_mark: (100.0%) |
 | `init__8ChipBaseFRC12JMapInfoIter` | `0x801BDCD4` | :white_check_mark: (100.0%) |
 | `initModel__8ChipBaseFRC12JMapInfoIter` | `0x801BDDF4` | :x: (0.0%) |
-| `initSensor__8ChipBaseFv` | `0x801BDEE8` | :x: (25.6%) |
-| `initShadow__8ChipBaseFRC12JMapInfoIter` | `0x801BDF84` | :x: (0.0%) |
+| `initSensor__8ChipBaseFv` | `0x801BDEE8` | :x: (57.3%) |
+| `initShadow__8ChipBaseFRC12JMapInfoIter` | `0x801BDF84` | :x: (98.6%) |
 | `initJMapParam__8ChipBaseFRC12JMapInfoIter` | `0x801BE0BC` | :white_check_mark: (100.0%) |
 | `initAfterPlacement__8ChipBaseFv` | `0x801BE164` | :white_check_mark: (100.0%) |
 | `deactive__8ChipBaseFv` | `0x801BE1AC` | :white_check_mark: (100.0%) |
@@ -28,7 +28,7 @@
 | `requestStartControl__8ChipBaseFv` | `0x801BE638` | :white_check_mark: (100.0%) |
 | `requestEndControl__8ChipBaseFv` | `0x801BE688` | :white_check_mark: (100.0%) |
 | `exeFlashing__8ChipBaseFv` | `0x801BE6D8` | :white_check_mark: (100.0%) |
-| `exeGot__8ChipBaseFv` | `0x801BE74C` | :x: (0.0%) |
+| `exeGot__8ChipBaseFv` | `0x801BE74C` | :x: (98.1%) |
 | `isGettable__8ChipBaseCFv` | `0x801BE838` | :white_check_mark: (100.0%) |
 | `isNeedBubble__8ChipBaseFRC12JMapInfoIter` | `0x801BE8CC` | :white_check_mark: (100.0%) |
 | `makeArchiveList__8ChipBaseFP27NameObjArchiveListCollectorRC12JMapInfoIter` | `0x801BE920` | :white_check_mark: (100.0%) |

@@ -1,11 +1,13 @@
 # main/JSystem/J3DGraphLoader/J3DModelLoader
 
+**Source Path:** `src/JSystem/J3DGraphLoader/J3DModelLoader.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__ct__14J3DModelLoaderFv` | `0x8043DC8C` | :x: (0.0%) |
-| `load__22J3DModelLoaderDataBaseFPCvUl` | `0x8043DCBC` | :x: (0.0%) |
+| `__ct__14J3DModelLoaderFv` | `0x8043DC8C` | :white_check_mark: (100.0%) |
+| `load__22J3DModelLoaderDataBaseFPCvUl` | `0x8043DCBC` | :x: (95.9%) |
 | `loadMaterialTable__22J3DModelLoaderDataBaseFPCv` | `0x8043DDBC` | :x: (0.0%) |
 | `loadBinaryDisplayList__22J3DModelLoaderDataBaseFPCvUl` | `0x8043DE3C` | :x: (0.0%) |
 | `load__14J3DModelLoaderFPCvUl` | `0x8043DED0` | :x: (0.0%) |
@@ -28,10 +30,10 @@
 | `readPatchedMaterial__14J3DModelLoaderFPC16J3DMaterialBlockUl` | `0x8043F608` | :x: (0.0%) |
 | `readMaterialDL__14J3DModelLoaderFPC18J3DMaterialDLBlockUl` | `0x8043F744` | :x: (0.0%) |
 | `modifyMaterial__14J3DModelLoaderFUl` | `0x8043F8F0` | :x: (0.0%) |
-| `__dt__14J3DModelLoaderFv` | `0x8043F96C` | :x: (0.0%) |
-| `__dt__18J3DModelLoader_v21Fv` | `0x8043F9AC` | :x: (0.0%) |
-| `__ct__18J3DModelLoader_v26Fv` | `0x8043F9EC` | :x: (0.0%) |
-| `__dt__18J3DModelLoader_v26Fv` | `0x8043FA28` | :x: (0.0%) |
+| `__dt__14J3DModelLoaderFv` | `0x8043F96C` | :white_check_mark: (100.0%) |
+| `__dt__18J3DModelLoader_v21Fv` | `0x8043F9AC` | :white_check_mark: (100.0%) |
+| `__ct__18J3DModelLoader_v26Fv` | `0x8043F9EC` | :white_check_mark: (100.0%) |
+| `__dt__18J3DModelLoader_v26Fv` | `0x8043FA28` | :white_check_mark: (100.0%) |
 | `readMaterial__14J3DModelLoaderFPC16J3DMaterialBlockUl` | `0x8043FA68` | :x: (0.0%) |
 | `readMaterial_v21__14J3DModelLoaderFPC20J3DMaterialBlock_v21Ul` | `0x8043FA6C` | :x: (0.0%) |
 | `readMaterialTable__14J3DModelLoaderFPC16J3DMaterialBlockUl` | `0x8043FA70` | :x: (0.0%) |

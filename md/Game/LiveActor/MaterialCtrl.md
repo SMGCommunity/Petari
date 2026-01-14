@@ -9,7 +9,7 @@
 | `__ct__12MaterialCtrlFP12J3DModelDataPCc` | `0x80167868` | :white_check_mark: (100.0%) |
 | `update__12MaterialCtrlFv` | `0x801678C4` | :white_check_mark: (100.0%) |
 | `__ct__7FogCtrlFP12J3DModelDatab` | `0x80167954` | :white_check_mark: (100.0%) |
-| `update__7FogCtrlFv` | `0x80167AC4` | :x: (0.0%) |
+| `update__7FogCtrlFv` | `0x80167AC4` | :x: (69.3%) |
 | `__ct__12MatColorCtrlFP12J3DModelDataPCcUlPC10J3DGXColor` | `0x80167B64` | :white_check_mark: (100.0%) |
 | `updateMaterial__12MatColorCtrlFP11J3DMaterial` | `0x80167BB8` | :white_check_mark: (100.0%) |
 | `__ct__26ViewProjmapEffectMtxSetterFP12J3DModelData` | `0x80167BD8` | :x: (0.0%) |

@@ -12,7 +12,7 @@
 | `control__17AstroDomeAsteroidFv` | `0x801AA47C` | :white_check_mark: (100.0%) |
 | `calcAndSetBaseMtx__17AstroDomeAsteroidFv` | `0x801AA4DC` | :white_check_mark: (100.0%) |
 | `receiveOtherMsg__17AstroDomeAsteroidFUlP9HitSensorP9HitSensor` | `0x801AA53C` | :white_check_mark: (100.0%) |
-| `__dt__17AstroDomeAsteroidFv` | `0x801AA540` | :x: (95.7%) |
+| `__dt__17AstroDomeAsteroidFv` | `0x801AA540` | :white_check_mark: (100.0%) |
 | `__sinit_\AstroDomeAsteroid_cpp` | `0x801AA59C` | :white_check_mark: (100.0%) |
 | `__ct__Q220NrvAstroDomeAsteroid24AstroDomeAsteroidNrvWaitFv` | `0x801AA5A4` | :white_check_mark: (100.0%) |
 | `execute__Q220NrvAstroDomeAsteroid24AstroDomeAsteroidNrvWaitCFP5Spine` | `0x801AA5B4` | :white_check_mark: (100.0%) |

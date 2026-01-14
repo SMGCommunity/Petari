@@ -17,6 +17,6 @@
 | `updateLastModified__14ConfigDataMiscFv` | `0x803AEA68` | :white_check_mark: (100.0%) |
 | `makeHeaderHashCode__14ConfigDataMiscCFv` | `0x803AEA9C` | :white_check_mark: (100.0%) |
 | `getSignature__14ConfigDataMiscCFv` | `0x803AEAA4` | :white_check_mark: (100.0%) |
-| `serialize__14ConfigDataMiscCFPUcUl` | `0x803AEAB0` | :x: (45.2%) |
-| `deserialize__14ConfigDataMiscFPCUcUl` | `0x803AEB40` | :x: (73.2%) |
+| `serialize__14ConfigDataMiscCFPUcUl` | `0x803AEAB0` | :white_check_mark: (100.0%) |
+| `deserialize__14ConfigDataMiscFPCUcUl` | `0x803AEB40` | :white_check_mark: (100.0%) |
 | `initializeData__14ConfigDataMiscFv` | `0x803AEC1C` | :white_check_mark: (100.0%) |

@@ -11,6 +11,6 @@
 | `startClipped__13ChooChooTrainFv` | `0x801C0524` | :white_check_mark: (100.0%) |
 | `endClipped__13ChooChooTrainFv` | `0x801C0590` | :white_check_mark: (100.0%) |
 | `init__13ChooChooTrainFRC12JMapInfoIter` | `0x801C05FC` | :white_check_mark: (100.0%) |
-| `control__13ChooChooTrainFv` | `0x801C0930` | :x: (64.7%) |
+| `control__13ChooChooTrainFv` | `0x801C0930` | :x: (100.0%) |
 | `__dt__Q22MR27AssignableArray<P8ModelObj>Fv` | `0x801C0B5C` | :white_check_mark: (100.0%) |
-| `__dt__13ChooChooTrainFv` | `0x801C0BBC` | :x: (92.9%) |
+| `__dt__13ChooChooTrainFv` | `0x801C0BBC` | :white_check_mark: (100.0%) |

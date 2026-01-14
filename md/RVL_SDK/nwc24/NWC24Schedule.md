@@ -8,7 +8,7 @@
 |------|---------|---------|
 | `NWC24SuspendScheduler` | `0x80469DC0` | :white_check_mark: (100.0%) |
 | `NWC24ResumeScheduler` | `0x80469E90` | :white_check_mark: (100.0%) |
-| `NWC24iSetScriptMode` | `0x80469F80` | :x: (97.1%) |
+| `NWC24iSetScriptMode` | `0x80469F80` | :x: (99.9%) |
 | `NWC24iRequestGenerateUserId` | `0x8046A120` | :x: (0.0%) |
 | `NWC24iTrySuspendForOpenLib` | `0x8046A2DC` | :x: (0.0%) |
 | `NWC24iResumeForCloseLib` | `0x8046A3BC` | :x: (0.0%) |

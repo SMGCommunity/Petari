@@ -19,7 +19,7 @@
 | `exeRadiateOnly__8FlameGunFv` | `0x801DC5B8` | :white_check_mark: (100.0%) |
 | `updateHitSensor__8FlameGunFP9HitSensor` | `0x801DC630` | :x: (0.0%) |
 | `attackSensor__8FlameGunFP9HitSensorP9HitSensor` | `0x801DC848` | :white_check_mark: (100.0%) |
-| `__dt__8FlameGunFv` | `0x801DC898` | :x: (95.7%) |
+| `__dt__8FlameGunFv` | `0x801DC898` | :white_check_mark: (100.0%) |
 | `__sinit_\FlameGun_cpp` | `0x801DC8F4` | :white_check_mark: (100.0%) |
 | `__ct__Q211NrvFlameGun21HostTypeNrvSwitchWaitFv` | `0x801DC940` | :white_check_mark: (100.0%) |
 | `__ct__Q211NrvFlameGun15HostTypeNrvWaitFv` | `0x801DC950` | :white_check_mark: (100.0%) |

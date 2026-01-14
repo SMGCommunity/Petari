@@ -8,4 +8,4 @@
 |------|---------|---------|
 | `GXSetGPMetric` | `0x804C0AD4` | :white_check_mark: (100.0%) |
 | `GXClearGPMetric` | `0x804C1300` | :white_check_mark: (100.0%) |
-| `GXReadXfRasMetric` | `0x804C1310` | :x: (0.0%) |
+| `GXReadXfRasMetric` | `0x804C1310` | :white_check_mark: (100.0%) |

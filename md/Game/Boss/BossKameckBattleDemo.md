@@ -7,8 +7,8 @@
 | Name | Address | Match % |
 |------|---------|---------|
 | `__ct__22BossKameckDemoPositionFv` | `0x800387B8` | :white_check_mark: (100.0%) |
-| `init__22BossKameckDemoPositionFRC12JMapInfoIter` | `0x80038810` | :x: (87.3%) |
-| `__ct__20BossKameckBattleDemoFP10BossKameckRC12JMapInfoIter` | `0x800388EC` | :x: (94.6%) |
+| `init__22BossKameckDemoPositionFRC12JMapInfoIter` | `0x80038810` | :x: (99.9%) |
+| `__ct__20BossKameckBattleDemoFP10BossKameckRC12JMapInfoIter` | `0x800388EC` | :x: (99.9%) |
 | `init__20BossKameckBattleDemoFv` | `0x80038980` | :white_check_mark: (100.0%) |
 | `appear__20BossKameckBattleDemoFv` | `0x80038988` | :white_check_mark: (100.0%) |
 | `kill__20BossKameckBattleDemoFv` | `0x800389A4` | :white_check_mark: (100.0%) |
@@ -21,16 +21,16 @@
 | `startDemoDownVs1__20BossKameckBattleDemoFv` | `0x80038B54` | :white_check_mark: (100.0%) |
 | `startDemoDownVs2__20BossKameckBattleDemoFv` | `0x80038B64` | :white_check_mark: (100.0%) |
 | `exeWaitAppearVs1__20BossKameckBattleDemoFv` | `0x80038B74` | :white_check_mark: (100.0%) |
-| `exeAppearVs1__20BossKameckBattleDemoFv` | `0x80038BE8` | :x: (93.0%) |
+| `exeAppearVs1__20BossKameckBattleDemoFv` | `0x80038BE8` | :x: (99.9%) |
 | `exeWaitAppearVs2__20BossKameckBattleDemoFv` | `0x80038D78` | :white_check_mark: (100.0%) |
-| `exeAppearVs2__20BossKameckBattleDemoFv` | `0x80038DEC` | :x: (93.3%) |
-| `exePowerUpVs1__20BossKameckBattleDemoFv` | `0x80038F90` | :x: (94.9%) |
-| `exePowerUpVs2__20BossKameckBattleDemoFv` | `0x800390CC` | :x: (94.1%) |
-| `exeDownVs1__20BossKameckBattleDemoFv` | `0x80039220` | :x: (93.4%) |
-| `exeDownVs2__20BossKameckBattleDemoFv` | `0x80039404` | :x: (93.4%) |
+| `exeAppearVs2__20BossKameckBattleDemoFv` | `0x80038DEC` | :x: (99.9%) |
+| `exePowerUpVs1__20BossKameckBattleDemoFv` | `0x80038F90` | :x: (99.9%) |
+| `exePowerUpVs2__20BossKameckBattleDemoFv` | `0x800390CC` | :x: (99.9%) |
+| `exeDownVs1__20BossKameckBattleDemoFv` | `0x80039220` | :x: (99.9%) |
+| `exeDownVs2__20BossKameckBattleDemoFv` | `0x80039404` | :x: (99.9%) |
 | `updateCastPose__20BossKameckBattleDemoFv` | `0x800395E8` | :white_check_mark: (100.0%) |
 | `__dt__20BossKameckBattleDemoFv` | `0x80039674` | :white_check_mark: (100.0%) |
-| `__dt__22BossKameckDemoPositionFv` | `0x800396CC` | :x: (95.7%) |
+| `__dt__22BossKameckDemoPositionFv` | `0x800396CC` | :white_check_mark: (100.0%) |
 | `__sinit_\BossKameckBattleDemo_cpp` | `0x80039728` | :white_check_mark: (100.0%) |
 | `__ct__Q222NrvBossKamecBattleDemo35BossKameckBattleDemoNrvTryStartDemoFv` | `0x8003978C` | :white_check_mark: (100.0%) |
 | `__ct__Q222NrvBossKamecBattleDemo36BossKameckBattleDemoNrvWaitAppearVs1Fv` | `0x8003979C` | :white_check_mark: (100.0%) |
