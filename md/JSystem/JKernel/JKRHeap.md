@@ -6,11 +6,11 @@
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__ct__7JKRHeapFPvUlP7JKRHeapb` | `0x8040AB8C` | :white_check_mark: (100.0%) |
+| `__ct__7JKRHeapFPvUlP7JKRHeapb` | `0x8040AB8C` | :x: (90.4%) |
 | `__dt__17JSULink<7JKRHeap>Fv` | `0x8040ACA4` | :x: (95.7%) |
 | `__dt__17JSUTree<7JKRHeap>Fv` | `0x8040AD00` | :x: (96.6%) |
 | `__dt__22JSUList<11JKRDisposer>Fv` | `0x8040AD74` | :x: (95.7%) |
-| `__dt__7JKRHeapFv` | `0x8040ADD0` | :x: (90.2%) |
+| `__dt__7JKRHeapFv` | `0x8040ADD0` | :x: (98.4%) |
 | `initArena__7JKRHeapFPPcPUli` | `0x8040AEC4` | :white_check_mark: (100.0%) |
 | `becomeSystemHeap__7JKRHeapFv` | `0x8040AF8C` | :white_check_mark: (100.0%) |
 | `becomeCurrentHeap__7JKRHeapFv` | `0x8040AF9C` | :white_check_mark: (100.0%) |
@@ -27,21 +27,21 @@
 | `getMaxFreeBlock__7JKRHeapFv` | `0x8040B104` | :white_check_mark: (100.0%) |
 | `getTotalFreeSize__7JKRHeapFv` | `0x8040B114` | :white_check_mark: (100.0%) |
 | `findFromRoot__7JKRHeapFPv` | `0x8040B124` | :white_check_mark: (100.0%) |
-| `find__7JKRHeapCFPv` | `0x8040B168` | :x: (4.3%) |
-| `findAllHeap__7JKRHeapCFPv` | `0x8040B214` | :x: (4.0%) |
-| `dispose_subroutine__7JKRHeapFUlUl` | `0x8040B2C0` | :x: (17.8%) |
+| `find__7JKRHeapCFPv` | `0x8040B168` | :x: (90.7%) |
+| `findAllHeap__7JKRHeapCFPv` | `0x8040B214` | :x: (90.7%) |
+| `dispose_subroutine__7JKRHeapFUlUl` | `0x8040B2C0` | :x: (76.0%) |
 | `dispose__7JKRHeapFPvUl` | `0x8040B374` | :white_check_mark: (100.0%) |
 | `dispose__7JKRHeapFPvPv` | `0x8040B39C` | :white_check_mark: (100.0%) |
 | `dispose__7JKRHeapFv` | `0x8040B3A0` | :white_check_mark: (100.0%) |
-| `copyMemory__7JKRHeapFPvPvUl` | `0x8040B3F0` | :x: (26.5%) |
-| `JKRDefaultMemoryErrorRoutine__FPvUli` | `0x8040B418` | :x: (25.0%) |
+| `copyMemory__7JKRHeapFPvPvUl` | `0x8040B3F0` | :white_check_mark: (100.0%) |
+| `JKRDefaultMemoryErrorRoutine__FPvUli` | `0x8040B418` | :x: (63.8%) |
 | `setErrorHandler__7JKRHeapFPFPvUli_v` | `0x8040B438` | :white_check_mark: (100.0%) |
-| `__nw__FUl` | `0x8040B458` | :x: (0.0%) |
-| `__nw__FUli` | `0x8040B464` | :x: (0.0%) |
-| `__nw__FUlP7JKRHeapi` | `0x8040B46C` | :x: (0.0%) |
-| `__nwa__FUl` | `0x8040B47C` | :x: (0.0%) |
-| `__nwa__FUli` | `0x8040B488` | :x: (0.0%) |
-| `__nwa__FUlP7JKRHeapi` | `0x8040B490` | :x: (0.0%) |
+| `__nw__FUl` | `0x8040B458` | :white_check_mark: (100.0%) |
+| `__nw__FUli` | `0x8040B464` | :white_check_mark: (100.0%) |
+| `__nw__FUlP7JKRHeapi` | `0x8040B46C` | :white_check_mark: (100.0%) |
+| `__nwa__FUl` | `0x8040B47C` | :white_check_mark: (100.0%) |
+| `__nwa__FUli` | `0x8040B488` | :white_check_mark: (100.0%) |
+| `__nwa__FUlP7JKRHeapi` | `0x8040B490` | :white_check_mark: (100.0%) |
 | `__dl__FPv` | `0x8040B4A0` | :white_check_mark: (100.0%) |
 | `__dla__FPv` | `0x8040B4A8` | :white_check_mark: (100.0%) |
 | `state_register__7JKRHeapCFPQ27JKRHeap6TStateUl` | `0x8040B4B0` | :white_check_mark: (100.0%) |

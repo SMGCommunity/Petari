@@ -6,13 +6,13 @@
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__ct__12ModelManagerFv` | `0x801693CC` | :x: (0.0%) |
+| `__ct__12ModelManagerFv` | `0x801693CC` | :white_check_mark: (100.0%) |
 | `update__12ModelManagerFv` | `0x801693FC` | :white_check_mark: (100.0%) |
 | `calcAnim__12ModelManagerFv` | `0x80169498` | :white_check_mark: (100.0%) |
 | `calcView__12ModelManagerFv` | `0x801694D0` | :white_check_mark: (100.0%) |
 | `entry__12ModelManagerFv` | `0x80169500` | :white_check_mark: (100.0%) |
 | `newDifferedDLBuffer__12ModelManagerFv` | `0x80169530` | :white_check_mark: (100.0%) |
-| `updateDL__12ModelManagerFb` | `0x80169538` | :x: (0.0%) |
+| `updateDL__12ModelManagerFb` | `0x80169538` | :white_check_mark: (100.0%) |
 | `startBck__12ModelManagerFPCcPCc` | `0x80169664` | :white_check_mark: (100.0%) |
 | `startBckWithInterpole__12ModelManagerFPCcl` | `0x801696C4` | :white_check_mark: (100.0%) |
 | `startBtk__12ModelManagerFPCc` | `0x80169718` | :white_check_mark: (100.0%) |
@@ -26,11 +26,11 @@
 | `stopBpk__12ModelManagerFv` | `0x80169984` | :white_check_mark: (100.0%) |
 | `stopBva__12ModelManagerFv` | `0x801699CC` | :white_check_mark: (100.0%) |
 | `getBckCtrl__12ModelManagerCFv` | `0x801699E4` | :x: (0.0%) |
-| `getBtkCtrl__12ModelManagerCFv` | `0x801699F0` | :x: (0.0%) |
-| `getBrkCtrl__12ModelManagerCFv` | `0x801699FC` | :x: (0.0%) |
-| `getBtpCtrl__12ModelManagerCFv` | `0x80169A08` | :x: (0.0%) |
-| `getBpkCtrl__12ModelManagerCFv` | `0x80169A14` | :x: (0.0%) |
-| `getBvaCtrl__12ModelManagerCFv` | `0x80169A20` | :x: (0.0%) |
+| `getBtkCtrl__12ModelManagerCFv` | `0x801699F0` | :white_check_mark: (100.0%) |
+| `getBrkCtrl__12ModelManagerCFv` | `0x801699FC` | :white_check_mark: (100.0%) |
+| `getBtpCtrl__12ModelManagerCFv` | `0x80169A08` | :white_check_mark: (100.0%) |
+| `getBpkCtrl__12ModelManagerCFv` | `0x80169A14` | :white_check_mark: (100.0%) |
+| `getBvaCtrl__12ModelManagerCFv` | `0x80169A20` | :white_check_mark: (100.0%) |
 | `isBckStopped__12ModelManagerCFv` | `0x80169A2C` | :x: (0.0%) |
 | `isBtkStopped__12ModelManagerCFv` | `0x80169A48` | :white_check_mark: (100.0%) |
 | `isBrkStopped__12ModelManagerCFv` | `0x80169A60` | :white_check_mark: (100.0%) |
@@ -46,13 +46,13 @@
 | `getJointTransform__12ModelManagerFPCc` | `0x80169B24` | :x: (0.0%) |
 | `getResourceHolder__12ModelManagerCFv` | `0x80169B90` | :x: (0.0%) |
 | `getModelResourceHolder__12ModelManagerCFv` | `0x80169BAC` | :white_check_mark: (100.0%) |
-| `getJ3DModel__12ModelManagerCFv` | `0x80169BB4` | :x: (0.0%) |
+| `getJ3DModel__12ModelManagerCFv` | `0x80169BB4` | :white_check_mark: (100.0%) |
 | `getJ3DModelData__12ModelManagerCFv` | `0x80169BD0` | :white_check_mark: (100.0%) |
-| `getPlayingBckName__12ModelManagerCFv` | `0x80169BF4` | :x: (0.0%) |
+| `getPlayingBckName__12ModelManagerCFv` | `0x80169BF4` | :white_check_mark: (100.0%) |
 | `initModelAndAnimation__12ModelManagerFP14ResourceHolderPCcP14ResourceHolder10J3DMdlFlag` | `0x80169C0C` | :x: (0.0%) |
-| `initMaterialAnm__12ModelManagerFv` | `0x80169CA0` | :x: (0.0%) |
-| `initVisibilityAnm__12ModelManagerFv` | `0x80169DBC` | :x: (0.0%) |
-| `calc__12ModelManagerFv` | `0x80169E3C` | :x: (0.0%) |
-| `changeBckSetting__12ModelManagerFPCcPCcP12XanimePlayer` | `0x80169ED4` | :x: (0.0%) |
+| `initMaterialAnm__12ModelManagerFv` | `0x80169CA0` | :white_check_mark: (100.0%) |
+| `initVisibilityAnm__12ModelManagerFv` | `0x80169DBC` | :x: (94.4%) |
+| `calc__12ModelManagerFv` | `0x80169E3C` | :white_check_mark: (100.0%) |
+| `changeBckSetting__12ModelManagerFPCcPCcP12XanimePlayer` | `0x80169ED4` | :white_check_mark: (100.0%) |
 | `init__12ModelManagerFPCcPCcb` | `0x80169F40` | :x: (0.0%) |
 | `isStop__13AnmPlayerBaseCFv` | `0x8016A09C` | :x: (0.0%) |

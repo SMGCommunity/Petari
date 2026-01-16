@@ -1,5 +1,7 @@
 # main/Game/Util/DrawUtil
 
+**Source Path:** `src/Game/Util/DrawUtil.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
@@ -16,24 +18,24 @@
 | `clearAlphaBuffer__2MRFUc` | `0x803CC10C` | :x: (0.0%) |
 | `clearAlphaBuffer__2MRFUcRCQ29JGeometry8TVec2<f>RCQ29JGeometry8TVec2<f>` | `0x803CC184` | :x: (0.0%) |
 | `fillScreenSetup__2MRFRC8_GXColor` | `0x803CC46C` | :x: (0.0%) |
-| `fillScreenArea__2MRFRCQ29JGeometry8TVec2<s>RCQ29JGeometry8TVec2<s>` | `0x803CC684` | :x: (0.0%) |
-| `fillScreen__2MRFRC8_GXColor` | `0x803CC6FC` | :x: (0.0%) |
+| `fillScreenArea__2MRFRCQ29JGeometry8TVec2<s>RCQ29JGeometry8TVec2<s>` | `0x803CC684` | :x: (96.5%) |
+| `fillScreen__2MRFRC8_GXColor` | `0x803CC6FC` | :white_check_mark: (100.0%) |
 | `setupShadowVolumeDraw__2MRFv` | `0x803CC750` | :x: (0.0%) |
 | `drawSimpleModel__2MRFP12J3DModelData` | `0x803CC8BC` | :x: (0.0%) |
 | `fillSilhouetteColor__2MRFv` | `0x803CC930` | :x: (0.0%) |
-| `getMarioShadowTex__2MRFv` | `0x803CCCC8` | :x: (0.0%) |
-| `getMarioShadowTexForLoad__2MRFv` | `0x803CCCD0` | :x: (0.0%) |
-| `getMarioShadowVec__2MRFv` | `0x803CCCD8` | :x: (0.0%) |
-| `setMarioShadowTex__2MRFPC10JUTTexture` | `0x803CCCE4` | :x: (0.0%) |
+| `getMarioShadowTex__2MRFv` | `0x803CCCC8` | :white_check_mark: (100.0%) |
+| `getMarioShadowTexForLoad__2MRFv` | `0x803CCCD0` | :white_check_mark: (100.0%) |
+| `getMarioShadowVec__2MRFv` | `0x803CCCD8` | :white_check_mark: (100.0%) |
+| `setMarioShadowTex__2MRFPC10JUTTexture` | `0x803CCCE4` | :white_check_mark: (100.0%) |
 | `setMarioShadowVec__2MRFRCQ29JGeometry8TVec3<f>` | `0x803CCCEC` | :x: (0.0%) |
 | `loadTexProjectionMtx__2MRFUl` | `0x803CCD08` | :x: (0.0%) |
 | `nonFilteredCapture__2MRFP10JUTTexturess` | `0x803CCE00` | :x: (0.0%) |
 | `simpleDraw__2MRFP8J3DModelP11J3DMaterial` | `0x803CCE88` | :x: (0.0%) |
-| `activateGameSceneDraw3D__2MRFv` | `0x803CCF2C` | :x: (0.0%) |
-| `deactivateGameSceneDraw3D__2MRFv` | `0x803CCF30` | :x: (0.0%) |
+| `activateGameSceneDraw3D__2MRFv` | `0x803CCF2C` | :white_check_mark: (100.0%) |
+| `deactivateGameSceneDraw3D__2MRFv` | `0x803CCF30` | :white_check_mark: (100.0%) |
 | `__ct__19J2DOrthoGraphSimpleFv` | `0x803CCF34` | :x: (0.0%) |
 | `setPort__19J2DOrthoGraphSimpleFv` | `0x803CD064` | :x: (0.0%) |
-| `__sinit_\DrawUtil_cpp` | `0x803CD068` | :x: (0.0%) |
+| `__sinit_\DrawUtil_cpp` | `0x803CD068` | :white_check_mark: (100.0%) |
 | `getGrafType__13J2DOrthoGraphCFv` | `0x803CD074` | :x: (0.0%) |
 | `GXPosition3f32` | `0x803CD07C` | :x: (0.0%) |
 | `place__14J2DGrafContextFffff` | `0x803CD090` | :x: (0.0%) |

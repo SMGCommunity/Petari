@@ -16,8 +16,8 @@
 | `requestPunch__11ArrowSwitchFP9HitSensorP9HitSensor` | `0x801A73E4` | :white_check_mark: (100.0%) |
 | `listenOnSwitch__11ArrowSwitchFv` | `0x801A7554` | :white_check_mark: (100.0%) |
 | `listenOffSwitch__11ArrowSwitchFv` | `0x801A7638` | :white_check_mark: (100.0%) |
-| `exeWait__11ArrowSwitchFv` | `0x801A76E4` | :x: (96.4%) |
-| `exeRotate__11ArrowSwitchFv` | `0x801A7754` | :x: (0.0%) |
+| `exeWait__11ArrowSwitchFv` | `0x801A76E4` | :x: (99.8%) |
+| `exeRotate__11ArrowSwitchFv` | `0x801A7754` | :x: (84.4%) |
 | `exeLock__11ArrowSwitchFv` | `0x801A794C` | :white_check_mark: (100.0%) |
 | `isPlusLimit__11ArrowSwitchCFv` | `0x801A79BC` | :white_check_mark: (100.0%) |
 | `isMinusLimit__11ArrowSwitchCFv` | `0x801A7A38` | :white_check_mark: (100.0%) |
@@ -32,4 +32,4 @@
 | `Functor<11ArrowSwitch>__2MRFP11ArrowSwitchM11ArrowSwitchFPCvPv_v_Q22MR49FunctorV0M<P11ArrowSwitch,M11ArrowSwitchFPCvPv_v>` | `0x801A7B6C` | :x: (0.0%) |
 | `__cl__Q22MR49FunctorV0M<P11ArrowSwitch,M11ArrowSwitchFPCvPv_v>CFv` | `0x801A7BAC` | :x: (0.0%) |
 | `clone__Q22MR49FunctorV0M<P11ArrowSwitch,M11ArrowSwitchFPCvPv_v>CFP7JKRHeap` | `0x801A7BDC` | :x: (0.0%) |
-| `__dt__11ArrowSwitchFv` | `0x801A7C44` | :x: (95.7%) |
+| `__dt__11ArrowSwitchFv` | `0x801A7C44` | :white_check_mark: (100.0%) |

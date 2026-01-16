@@ -25,4 +25,6 @@ public:
     u32 _8;
     u32 mStatusId;  // 0xC
     u8 _10;
+    u8 _11;
+    u16 _12;
 };

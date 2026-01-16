@@ -9,11 +9,11 @@
 | `initLightRegisterAll__13LightFunctionFv` | `0x80188398` | :x: (0.0%) |
 | `initLightData__13LightFunctionFv` | `0x801884E8` | :white_check_mark: (100.0%) |
 | `loadLightArchive__13LightFunctionFv` | `0x80188514` | :white_check_mark: (100.0%) |
-| `createLightDataParser__13LightFunctionFPP8JMapInfo` | `0x80188550` | :x: (0.0%) |
-| `createZoneDataParser__13LightFunctionFPCcPP8JMapInfo` | `0x801885B4` | :x: (0.0%) |
-| `getDataLightInfo__27@unnamed@LightFunction_cpp@FP8JMapInfoiP9LightInfoPCc` | `0x80188638` | :x: (0.0%) |
-| `getDataActorLightInfo__27@unnamed@LightFunction_cpp@FP8JMapInfoiP14ActorLightInfoPCc` | `0x801886FC` | :x: (0.0%) |
-| `getAreaLightLightData__13LightFunctionFP8JMapInfoiP13AreaLightInfo` | `0x801887F4` | :x: (88.2%) |
+| `createLightDataParser__13LightFunctionFPP8JMapInfo` | `0x80188550` | :white_check_mark: (100.0%) |
+| `createZoneDataParser__13LightFunctionFPCcPP8JMapInfo` | `0x801885B4` | :white_check_mark: (100.0%) |
+| `getDataLightInfo__27@unnamed@LightFunction_cpp@FP8JMapInfoiP9LightInfoPCc` | `0x80188638` | :white_check_mark: (100.0%) |
+| `getDataActorLightInfo__27@unnamed@LightFunction_cpp@FP8JMapInfoiP14ActorLightInfoPCc` | `0x801886FC` | :x: (99.9%) |
+| `getAreaLightLightData__13LightFunctionFP8JMapInfoiP13AreaLightInfo` | `0x801887F4` | :x: (99.9%) |
 | `getDefaultAreaLightName__13LightFunctionFv` | `0x801888C0` | :x: (0.0%) |
 | `getDefaultStepInterpolate__13LightFunctionFv` | `0x801888F0` | :x: (0.0%) |
 | `registerPlayerLightCtrl__13LightFunctionFPC14ActorLightCtrl` | `0x80188920` | :x: (0.0%) |

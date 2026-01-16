@@ -2320,10 +2320,10 @@ config.libs = [
     SDKLib(
         "ax",
         [
-            Object(NonMatching, "RVL_SDK/ax/AXAlloc.c"),
-            Object(NonMatching, "RVL_SDK/ax/AXAux.c"),
-            Object(NonMatching, "RVL_SDK/ax/AXCL.c"),
-            Object(NonMatching, "RVL_SDK/ax/AXVPB.c"),
+            Object(Matching, "RVL_SDK/ax/AXAlloc.c"),
+            Object(Matching, "RVL_SDK/ax/AXAux.c"),
+            Object(Matching, "RVL_SDK/ax/AXCL.c"),
+            Object(Matching, "RVL_SDK/ax/AXVPB.c"),
         ],
     ),
     SDKLib(

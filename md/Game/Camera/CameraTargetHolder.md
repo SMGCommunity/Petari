@@ -7,7 +7,7 @@
 | Name | Address | Match % |
 |------|---------|---------|
 | `__ct__18CameraTargetHolderFv` | `0x800AFCCC` | :white_check_mark: (100.0%) |
-| `movement__18CameraTargetHolderFv` | `0x800AFD4C` | :x: (80.0%) |
+| `movement__18CameraTargetHolderFv` | `0x800AFD4C` | :white_check_mark: (100.0%) |
 | `get__18CameraTargetHolderFv` | `0x800AFD60` | :white_check_mark: (100.0%) |
 | `set__18CameraTargetHolderFP15CameraTargetObj` | `0x800AFD68` | :white_check_mark: (100.0%) |
 | `set__18CameraTargetHolderFPC9LiveActor` | `0x800AFD70` | :white_check_mark: (100.0%) |

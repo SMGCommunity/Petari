@@ -12,7 +12,7 @@
 | `convertTransAndRotate__21MercatorTransformCubeCFPQ29JGeometry8TVec3<f>PQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RCQ29JGeometry8TVec3<f>b` | `0x80023844` | :x: (0.0%) |
 | `getSphereRadius__21MercatorTransformCubeCFv` | `0x80023A3C` | :white_check_mark: (100.0%) |
 | `calcUV__21MercatorTransformCubeCFPQ29JGeometry8TVec2<f>RCQ29JGeometry8TVec3<f>` | `0x80023A7C` | :white_check_mark: (100.0%) |
-| `calcLocalBoxSize__21MercatorTransformCubeCFPQ29JGeometry8TVec3<f>` | `0x80023B0C` | :x: (60.7%) |
+| `calcLocalBoxSize__21MercatorTransformCubeCFPQ29JGeometry8TVec3<f>` | `0x80023B0C` | :x: (72.6%) |
 | `convertMercatorPlaneToSphereTransAndRotate__2MRFPQ29JGeometry8TVec3<f>PQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RCQ29JGeometry8TVec3<f>b` | `0x80023B6C` | :x: (0.0%) |
 | `convertMercatorPlaneToSphereTransAndRotate__2MRFPQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>b` | `0x80023BC0` | :x: (0.0%) |
 | `initDefaultPosForMercator__2MRFP9LiveActorRC12JMapInfoIterb` | `0x80023C44` | :x: (0.0%) |

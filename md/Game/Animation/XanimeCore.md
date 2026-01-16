@@ -17,12 +17,12 @@
 | `__mi__Q29JGeometry8TVec3<f>CFRCQ29JGeometry8TVec3<f>` | `0x80018F38` | :x: (0.0%) |
 | `__as__10QuaternionFRC10Quaternion` | `0x80018F90` | :x: (0.0%) |
 | `init__11XanimeTrackFv` | `0x80018FB4` | :white_check_mark: (100.0%) |
-| `__ct__10XjointInfoFv` | `0x80018FD0` | :x: (50.0%) |
+| `__ct__10XjointInfoFv` | `0x80018FD0` | :x: (76.8%) |
 | `__ct__15XjointTransformFv` | `0x80019060` | :x: (0.0%) |
 | `shareJointTransform__10XanimeCoreFPC10XanimeCore` | `0x800190F0` | :white_check_mark: (100.0%) |
 | `enableJointTransform__10XanimeCoreFP12J3DModelData` | `0x800190FC` | :x: (0.0%) |
 | `reconfigJointTransform__10XanimeCoreFP12J3DModelData` | `0x80019220` | :x: (0.0%) |
-| `initMember__10XanimeCoreFUl` | `0x8001929C` | :x: (0.0%) |
+| `initMember__10XanimeCoreFUl` | `0x8001929C` | :x: (58.0%) |
 | `__ct__10XanimeCoreFUlUlUc` | `0x8001935C` | :white_check_mark: (100.0%) |
 | `__ct__10XanimeCoreFUlP10XanimeCore` | `0x800193EC` | :white_check_mark: (100.0%) |
 | `doFreeze__10XanimeCoreFv` | `0x8001944C` | :white_check_mark: (100.0%) |
@@ -40,7 +40,7 @@
 | `freezeCopy__10XanimeCoreFP12J3DModelDataP10XanimeCoreUlUl` | `0x8001ACF4` | :x: (0.0%) |
 | `initT__10XanimeCoreFP12J3DModelData` | `0x8001ADE0` | :x: (0.0%) |
 | `fixT__10XanimeCoreFPQ29JGeometry8TVec3<f>` | `0x8001AEC8` | :x: (0.0%) |
-| `__dt__10XanimeCoreFv` | `0x8001AF10` | :x: (54.5%) |
+| `__dt__10XanimeCoreFv` | `0x8001AF10` | :x: (61.2%) |
 | `__ct__14XtransformInfoFv` | `0x8001AF50` | :white_check_mark: (100.0%) |
 | `calc__10XanimeCoreFv` | `0x8001AFA0` | :x: (0.0%) |
 | `init__10XanimeCoreFRC3VecRA3_A4_Cf` | `0x8001B0C4` | :x: (0.0%) |

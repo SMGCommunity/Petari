@@ -28,8 +28,8 @@
 | `__as__Q29JGeometry9TQuat4<f>FRCQ29JGeometry9TQuat4<f>` | `0x800175E0` | :x: (0.0%) |
 | `__ct__13AnmPlayerBaseFPC8ResTable` | `0x80017604` | :white_check_mark: (100.0%) |
 | `update__13AnmPlayerBaseFv` | `0x8001765C` | :white_check_mark: (100.0%) |
-| `reflectFrame__13AnmPlayerBaseFv` | `0x80017674` | :x: (0.0%) |
-| `start__13AnmPlayerBaseFPCc` | `0x8001768C` | :x: (0.0%) |
+| `reflectFrame__13AnmPlayerBaseFv` | `0x80017674` | :white_check_mark: (100.0%) |
+| `start__13AnmPlayerBaseFPCc` | `0x8001768C` | :white_check_mark: (100.0%) |
 | `stop__13AnmPlayerBaseFv` | `0x8001771C` | :white_check_mark: (100.0%) |
 | `isPlaying__13AnmPlayerBaseCFPCc` | `0x8001775C` | :white_check_mark: (100.0%) |
 | `__ct__21MaterialAnmPlayerBaseFPC8ResTableP12J3DModelData` | `0x800177BC` | :white_check_mark: (100.0%) |

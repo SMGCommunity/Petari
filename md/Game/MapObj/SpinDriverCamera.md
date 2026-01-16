@@ -7,8 +7,8 @@
 | Name | Address | Match % |
 |------|---------|---------|
 | `__ct__16SpinDriverCameraFv` | `0x802369B4` | :white_check_mark: (100.0%) |
-| `startAppearCamera__16SpinDriverCameraFP9LiveActorRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | `0x802369CC` | :x: (97.7%) |
-| `endAppearCamera__16SpinDriverCameraFP9LiveActor` | `0x80236A7C` | :x: (92.9%) |
+| `startAppearCamera__16SpinDriverCameraFP9LiveActorRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | `0x802369CC` | :x: (99.9%) |
+| `endAppearCamera__16SpinDriverCameraFP9LiveActor` | `0x80236A7C` | :x: (99.6%) |
 | `getAppearCameraFrames__16SpinDriverCameraCFv` | `0x80236AB4` | :white_check_mark: (100.0%) |
 | `start__16SpinDriverCameraFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | `0x80236ABC` | :x: (0.0%) |
 | `update__16SpinDriverCameraFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | `0x80236B40` | :white_check_mark: (100.0%) |

@@ -11,10 +11,10 @@
 | `start__30FloaterFloatingForceTypeNormalFv` | `0x80258688` | :white_check_mark: (100.0%) |
 | `updateHostTrans__30FloaterFloatingForceTypeNormalCFPQ29JGeometry8TVec3<f>` | `0x802586BC` | :x: (0.0%) |
 | `updateVelocity__30FloaterFloatingForceTypeNormalFb` | `0x80258738` | :x: (0.0%) |
-| `soundMoveSE__30FloaterFloatingForceTypeNormalFv` | `0x80258998` | :x: (97.6%) |
+| `soundMoveSE__30FloaterFloatingForceTypeNormalFv` | `0x80258998` | :x: (100.0%) |
 | `setStateMove__30FloaterFloatingForceTypeNormalFv` | `0x80258A3C` | :white_check_mark: (100.0%) |
 | `exeMoveFirst__30FloaterFloatingForceTypeNormalFv` | `0x80258A94` | :white_check_mark: (100.0%) |
-| `exeMove__30FloaterFloatingForceTypeNormalFv` | `0x80258B3C` | :x: (98.2%) |
+| `exeMove__30FloaterFloatingForceTypeNormalFv` | `0x80258B3C` | :x: (100.0%) |
 | `__dt__30FloaterFloatingForceTypeNormalFv` | `0x80258C18` | :white_check_mark: (100.0%) |
 | `__sinit_\FloaterFloatingForceTypeNormal_cpp` | `0x80258C70` | :white_check_mark: (100.0%) |
 | `__ct__Q233NrvFloaterFloatingForceTypeNormal12HostTypeWaitFv` | `0x80258CAC` | :white_check_mark: (100.0%) |

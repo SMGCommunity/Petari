@@ -1,5 +1,7 @@
 # main/Game/Util/NPCUtil
 
+**Source Path:** `src/Game/Util/NPCUtil.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
@@ -47,36 +49,36 @@
 | `tryChangeTalkActionRandom__2MRFP8NPCActorPCcPCcPCc` | `0x803EF8D8` | :x: (0.0%) |
 | `calcFloatOffset__2MRFPC8NPCActorff` | `0x803EF99C` | :x: (0.0%) |
 | `calcAndSetFloatBaseMtx__2MRFP8NPCActorf` | `0x803EFACC` | :x: (0.0%) |
-| `__ct__11TakeOutStarFP8NPCActorPCcPCcPC5Nerve` | `0x803EFBA0` | :x: (0.0%) |
-| `takeOut__11TakeOutStarFv` | `0x803EFC54` | :x: (0.0%) |
-| `isFirstStep__11TakeOutStarFv` | `0x803EFCA0` | :x: (0.0%) |
-| `isLastStep__11TakeOutStarFv` | `0x803EFCFC` | :x: (0.0%) |
-| `exeAnim__11TakeOutStarFv` | `0x803EFD04` | :x: (0.0%) |
-| `exeDemo__11TakeOutStarFv` | `0x803EFEA4` | :x: (0.0%) |
-| `__ct__11FadeStarterFP8NPCActorl` | `0x803EFF3C` | :x: (0.0%) |
-| `update__11FadeStarterFv` | `0x803EFFAC` | :x: (0.0%) |
-| `exeFade__11FadeStarterFv` | `0x803EFFF8` | :x: (0.0%) |
-| `__ct__11DemoStarterFP8NPCActor` | `0x803F009C` | :x: (0.0%) |
-| `update__11DemoStarterFv` | `0x803F00FC` | :x: (0.0%) |
-| `start__11DemoStarterFv` | `0x803F0134` | :x: (0.0%) |
-| `exeFade__11DemoStarterFv` | `0x803F0178` | :x: (0.0%) |
-| `__dt__11TakeOutStarFv` | `0x803F01D8` | :x: (0.0%) |
-| `__sinit_\NPCUtil_cpp` | `0x803F0230` | :x: (0.0%) |
-| `__ct__Q214NrvTakeOutStar18TakeOutStarNrvAnimFv` | `0x803F0294` | :x: (0.0%) |
-| `__ct__Q214NrvTakeOutStar18TakeOutStarNrvDemoFv` | `0x803F02A4` | :x: (0.0%) |
-| `__ct__Q214NrvTakeOutStar18TakeOutStarNrvTermFv` | `0x803F02B4` | :x: (0.0%) |
-| `__ct__Q214NrvFadeStarter18FadeStarterNrvFadeFv` | `0x803F02C4` | :x: (0.0%) |
-| `__ct__Q214NrvFadeStarter18FadeStarterNrvTermFv` | `0x803F02D4` | :x: (0.0%) |
-| `__ct__Q214NrvDemoStarter18DemoStarterNrvInitFv` | `0x803F02E4` | :x: (0.0%) |
-| `__ct__Q214NrvDemoStarter18DemoStarterNrvFadeFv` | `0x803F02F4` | :x: (0.0%) |
-| `__ct__Q214NrvDemoStarter18DemoStarterNrvWaitFv` | `0x803F0304` | :x: (0.0%) |
-| `__ct__Q214NrvDemoStarter18DemoStarterNrvTermFv` | `0x803F0314` | :x: (0.0%) |
-| `execute__Q214NrvDemoStarter18DemoStarterNrvTermCFP5Spine` | `0x803F0324` | :x: (0.0%) |
-| `execute__Q214NrvDemoStarter18DemoStarterNrvWaitCFP5Spine` | `0x803F0328` | :x: (0.0%) |
-| `execute__Q214NrvDemoStarter18DemoStarterNrvFadeCFP5Spine` | `0x803F037C` | :x: (0.0%) |
-| `execute__Q214NrvDemoStarter18DemoStarterNrvInitCFP5Spine` | `0x803F0384` | :x: (0.0%) |
-| `execute__Q214NrvFadeStarter18FadeStarterNrvTermCFP5Spine` | `0x803F0388` | :x: (0.0%) |
-| `execute__Q214NrvFadeStarter18FadeStarterNrvFadeCFP5Spine` | `0x803F038C` | :x: (0.0%) |
-| `execute__Q214NrvTakeOutStar18TakeOutStarNrvTermCFP5Spine` | `0x803F0394` | :x: (0.0%) |
-| `execute__Q214NrvTakeOutStar18TakeOutStarNrvDemoCFP5Spine` | `0x803F0398` | :x: (0.0%) |
-| `execute__Q214NrvTakeOutStar18TakeOutStarNrvAnimCFP5Spine` | `0x803F03A0` | :x: (0.0%) |
+| `__ct__11TakeOutStarFP8NPCActorPCcPCcPC5Nerve` | `0x803EFBA0` | :white_check_mark: (100.0%) |
+| `takeOut__11TakeOutStarFv` | `0x803EFC54` | :white_check_mark: (100.0%) |
+| `isFirstStep__11TakeOutStarFv` | `0x803EFCA0` | :white_check_mark: (100.0%) |
+| `isLastStep__11TakeOutStarFv` | `0x803EFCFC` | :white_check_mark: (100.0%) |
+| `exeAnim__11TakeOutStarFv` | `0x803EFD04` | :x: (99.9%) |
+| `exeDemo__11TakeOutStarFv` | `0x803EFEA4` | :white_check_mark: (100.0%) |
+| `__ct__11FadeStarterFP8NPCActorl` | `0x803EFF3C` | :white_check_mark: (100.0%) |
+| `update__11FadeStarterFv` | `0x803EFFAC` | :white_check_mark: (100.0%) |
+| `exeFade__11FadeStarterFv` | `0x803EFFF8` | :white_check_mark: (100.0%) |
+| `__ct__11DemoStarterFP8NPCActor` | `0x803F009C` | :white_check_mark: (100.0%) |
+| `update__11DemoStarterFv` | `0x803F00FC` | :white_check_mark: (100.0%) |
+| `start__11DemoStarterFv` | `0x803F0134` | :white_check_mark: (100.0%) |
+| `exeFade__11DemoStarterFv` | `0x803F0178` | :white_check_mark: (100.0%) |
+| `__dt__11TakeOutStarFv` | `0x803F01D8` | :white_check_mark: (100.0%) |
+| `__sinit_\NPCUtil_cpp` | `0x803F0230` | :white_check_mark: (100.0%) |
+| `__ct__Q214NrvTakeOutStar18TakeOutStarNrvAnimFv` | `0x803F0294` | :white_check_mark: (100.0%) |
+| `__ct__Q214NrvTakeOutStar18TakeOutStarNrvDemoFv` | `0x803F02A4` | :white_check_mark: (100.0%) |
+| `__ct__Q214NrvTakeOutStar18TakeOutStarNrvTermFv` | `0x803F02B4` | :white_check_mark: (100.0%) |
+| `__ct__Q214NrvFadeStarter18FadeStarterNrvFadeFv` | `0x803F02C4` | :white_check_mark: (100.0%) |
+| `__ct__Q214NrvFadeStarter18FadeStarterNrvTermFv` | `0x803F02D4` | :white_check_mark: (100.0%) |
+| `__ct__Q214NrvDemoStarter18DemoStarterNrvInitFv` | `0x803F02E4` | :white_check_mark: (100.0%) |
+| `__ct__Q214NrvDemoStarter18DemoStarterNrvFadeFv` | `0x803F02F4` | :white_check_mark: (100.0%) |
+| `__ct__Q214NrvDemoStarter18DemoStarterNrvWaitFv` | `0x803F0304` | :white_check_mark: (100.0%) |
+| `__ct__Q214NrvDemoStarter18DemoStarterNrvTermFv` | `0x803F0314` | :white_check_mark: (100.0%) |
+| `execute__Q214NrvDemoStarter18DemoStarterNrvTermCFP5Spine` | `0x803F0324` | :white_check_mark: (100.0%) |
+| `execute__Q214NrvDemoStarter18DemoStarterNrvWaitCFP5Spine` | `0x803F0328` | :white_check_mark: (100.0%) |
+| `execute__Q214NrvDemoStarter18DemoStarterNrvFadeCFP5Spine` | `0x803F037C` | :white_check_mark: (100.0%) |
+| `execute__Q214NrvDemoStarter18DemoStarterNrvInitCFP5Spine` | `0x803F0384` | :white_check_mark: (100.0%) |
+| `execute__Q214NrvFadeStarter18FadeStarterNrvTermCFP5Spine` | `0x803F0388` | :white_check_mark: (100.0%) |
+| `execute__Q214NrvFadeStarter18FadeStarterNrvFadeCFP5Spine` | `0x803F038C` | :white_check_mark: (100.0%) |
+| `execute__Q214NrvTakeOutStar18TakeOutStarNrvTermCFP5Spine` | `0x803F0394` | :white_check_mark: (100.0%) |
+| `execute__Q214NrvTakeOutStar18TakeOutStarNrvDemoCFP5Spine` | `0x803F0398` | :white_check_mark: (100.0%) |
+| `execute__Q214NrvTakeOutStar18TakeOutStarNrvAnimCFP5Spine` | `0x803F03A0` | :white_check_mark: (100.0%) |

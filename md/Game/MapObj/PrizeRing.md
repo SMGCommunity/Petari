@@ -15,9 +15,9 @@
 | `setNervePass__9PrizeRingFv` | `0x80212A30` | :white_check_mark: (100.0%) |
 | `isReadyToPass__9PrizeRingCFv` | `0x80212A38` | :white_check_mark: (100.0%) |
 | `isReadyToKill__9PrizeRingCFv` | `0x80212A80` | :white_check_mark: (100.0%) |
-| `exeStart__9PrizeRingFv` | `0x80212AC8` | :x: (92.3%) |
+| `exeStart__9PrizeRingFv` | `0x80212AC8` | :x: (99.9%) |
 | `exeLoop__9PrizeRingFv` | `0x80212B64` | :white_check_mark: (100.0%) |
-| `exeTimeout__9PrizeRingFv` | `0x80212BE0` | :x: (93.0%) |
+| `exeTimeout__9PrizeRingFv` | `0x80212BE0` | :x: (99.9%) |
 | `exePass__9PrizeRingFv` | `0x80212C8C` | :white_check_mark: (100.0%) |
 | `isPassed__9PrizeRingCFv` | `0x80212D0C` | :x: (0.0%) |
 | `attackSensor__9PrizeRingFP9HitSensorP9HitSensor` | `0x80212D5C` | :white_check_mark: (100.0%) |

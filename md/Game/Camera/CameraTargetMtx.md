@@ -29,4 +29,4 @@
 | `isLongDrop__15CameraTargetObjCFv` | `0x800B0094` | :white_check_mark: (100.0%) |
 | `isTurning__15CameraTargetObjCFv` | `0x800B009C` | :white_check_mark: (100.0%) |
 | `init__15CameraTargetObjFRC12JMapInfoIter` | `0x800B00A4` | :white_check_mark: (100.0%) |
-| `movement__15CameraTargetMtxFv` | `0x800B00A8` | :x: (0.0%) |
+| `movement__15CameraTargetMtxFv` | `0x800B00A8` | :x: (98.6%) |

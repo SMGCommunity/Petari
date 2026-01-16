@@ -9,13 +9,13 @@
 | `__ct__8BallRailFPCc` | `0x801B1444` | :white_check_mark: (100.0%) |
 | `init__8BallRailFRC12JMapInfoIter` | `0x801B14A8` | :white_check_mark: (100.0%) |
 | `control__8BallRailFv` | `0x801B15C4` | :white_check_mark: (100.0%) |
-| `receiveOtherMsg__8BallRailFUlP9HitSensorP9HitSensor` | `0x801B15C8` | :x: (91.2%) |
-| `initRailPoints__8BallRailFv` | `0x801B16A4` | :x: (82.5%) |
+| `receiveOtherMsg__8BallRailFUlP9HitSensorP9HitSensor` | `0x801B15C8` | :x: (77.5%) |
+| `initRailPoints__8BallRailFv` | `0x801B16A4` | :x: (98.4%) |
 | `exeWait__8BallRailFv` | `0x801B189C` | :white_check_mark: (100.0%) |
 | `exeSetUp__8BallRailFv` | `0x801B18F4` | :x: (0.0%) |
 | `exeRun__8BallRailFv` | `0x801B1A40` | :x: (0.0%) |
-| `__ct__13BallRailPointFv` | `0x801B1BF8` | :x: (3.3%) |
-| `__dt__8BallRailFv` | `0x801B1C70` | :x: (95.7%) |
+| `__ct__13BallRailPointFv` | `0x801B1BF8` | :white_check_mark: (100.0%) |
+| `__dt__8BallRailFv` | `0x801B1C70` | :white_check_mark: (100.0%) |
 | `__sinit_\BallRail_cpp` | `0x801B1CCC` | :white_check_mark: (100.0%) |
 | `__ct__Q211NrvBallRail15BallRailNrvWaitFv` | `0x801B1D08` | :white_check_mark: (100.0%) |
 | `__ct__Q211NrvBallRail16BallRailNrvSetUpFv` | `0x801B1D18` | :white_check_mark: (100.0%) |

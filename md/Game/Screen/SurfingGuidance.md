@@ -19,10 +19,10 @@
 | `turnRightHold__15SurfingGuidanceFv` | `0x8038C6F4` | :white_check_mark: (100.0%) |
 | `turnRightSuccess__15SurfingGuidanceFv` | `0x8038C738` | :white_check_mark: (100.0%) |
 | `deactivate__15SurfingGuidanceFv` | `0x8038C77C` | :white_check_mark: (100.0%) |
-| `exeFadeIn__15SurfingGuidanceFv` | `0x8038C7C0` | :x: (89.7%) |
-| `exeLevelOffReady__15SurfingGuidanceFv` | `0x8038C834` | :x: (91.1%) |
-| `exeTurnLeftReady__15SurfingGuidanceFv` | `0x8038C8E8` | :x: (91.1%) |
-| `exeTurnRightReady__15SurfingGuidanceFv` | `0x8038C99C` | :x: (91.1%) |
+| `exeFadeIn__15SurfingGuidanceFv` | `0x8038C7C0` | :x: (99.9%) |
+| `exeLevelOffReady__15SurfingGuidanceFv` | `0x8038C834` | :x: (99.9%) |
+| `exeTurnLeftReady__15SurfingGuidanceFv` | `0x8038C8E8` | :x: (99.9%) |
+| `exeTurnRightReady__15SurfingGuidanceFv` | `0x8038C99C` | :x: (99.9%) |
 | `exeFadeOut__15SurfingGuidanceFv` | `0x8038CA50` | :white_check_mark: (100.0%) |
 | `__dt__15SurfingGuidanceFv` | `0x8038CAC8` | :white_check_mark: (100.0%) |
 | `__sinit_\SurfingGuidance_cpp` | `0x8038CB24` | :white_check_mark: (100.0%) |

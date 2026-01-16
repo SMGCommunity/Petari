@@ -7,7 +7,7 @@
 | Name | Address | Match % |
 |------|---------|---------|
 | `__ct__13MarioAnimatorFP10MarioActor` | `0x802CAD30` | :white_check_mark: (100.0%) |
-| `init__13MarioAnimatorFv` | `0x802CAD70` | :x: (92.3%) |
+| `init__13MarioAnimatorFv` | `0x802CAD70` | :white_check_mark: (100.0%) |
 | `isAnimationStop__13MarioAnimatorCFv` | `0x802CAFAC` | :white_check_mark: (100.0%) |
 | `targetWeight__13MarioAnimatorFPfff` | `0x802CAFC8` | :x: (0.0%) |
 | `setWalkWeight__13MarioAnimatorFPCf` | `0x802CB0B8` | :x: (0.0%) |
@@ -31,7 +31,7 @@
 | `getUpperFrame__13MarioAnimatorCFv` | `0x802CC77C` | :x: (0.0%) |
 | `setWalkMode__13MarioAnimatorFv` | `0x802CC784` | :x: (0.0%) |
 | `calc__13MarioAnimatorFv` | `0x802CC8F8` | :x: (0.0%) |
-| `change__13MarioAnimatorFPCc` | `0x802CCAA8` | :x: (97.5%) |
+| `change__13MarioAnimatorFPCc` | `0x802CCAA8` | :x: (99.2%) |
 | `changeUpper__13MarioAnimatorFPCc` | `0x802CCBE8` | :white_check_mark: (100.0%) |
 | `stopUpper__13MarioAnimatorFPCc` | `0x802CCC20` | :x: (0.0%) |
 | `changeDefault__13MarioAnimatorFPCc` | `0x802CCCDC` | :white_check_mark: (100.0%) |

@@ -1,5 +1,7 @@
 # main/Game/MapObj/StageEffectDataTable
 
+**Source Path:** `src/Game/MapObj/StageEffectDataTable.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
