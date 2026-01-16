@@ -1,15 +1,10 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/LiveActor/LodCtrl.hpp"
-#include "Game/Util/JMapInfo.hpp"
-class LavaStrangeRock : public LiveActor {
-    public:
-    LavaStrangeRock(const char*);
 
-    s32 rockType;  //0x8C
-    s32 _90;  //0x90
-    LodCtrl* mLodCtrlPlanet;  //0x94
+class LavaStrangeRock : public LiveActor {
+public:
+    LavaStrangeRock(const char*);
 
     virtual void init(const JMapInfoIter&);
     virtual void control();
@@ -17,4 +12,8 @@ class LavaStrangeRock : public LiveActor {
     void initModelAndClipping(const JMapInfoIter&);
     void initEffect();
     void exeWait();
+
+    /* 0x8C */ s32 rockType;
+    /* 0x90 */ s32 _90;
+    /* 0x94 */ LodCtrl* mLodCtrlPlanet;
 };
