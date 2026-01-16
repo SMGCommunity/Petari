@@ -4960,14 +4960,14 @@ Game/MapObj/LavaSteam.cpp:
 Game/MapObj/LavaStrangeRock.cpp:
 	.text       start:0x801F4C64 end:0x801F5254
 	.ctors      start:0x8052ED9C end:0x8052EDA0
-	.data       start:0x80597F40 end:0x805980A0
+	.data       start:0x80597F40 end:0x8059806C
 	.sbss       start:0x806B53B0 end:0x806B53B8
 	.sdata2     start:0x806BD560 end:0x806BD580
 
 Game/MapObj/LotusLeaf.cpp:
 	.text       start:0x801F5254 end:0x801F586C
 	.ctors      start:0x8052EDA0 end:0x8052EDA4
-	.data       start:0x805980A0 end:0x80598158
+	.data       start:0x80598070 end:0x80598158
 	.sbss       start:0x806B53B8 end:0x806B53C8
 	.sdata2     start:0x806BD580 end:0x806BD5B8
 
