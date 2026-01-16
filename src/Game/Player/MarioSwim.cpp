@@ -160,7 +160,7 @@ MarioSwim::MarioSwim(MarioActor* pActor) : MarioState(pActor, 6), mWaterInfo() {
     _1D = 0;
     _1E = 0;
     _1F = 0;
-    mIsSwimmingAtSurface = 0;
+    mIsSwimmingAtSurface = false;
     _21 = 0;
     _22 = 0;
     _24 = 0;
@@ -429,7 +429,7 @@ bool MarioSwim::start() {
             _2C = 15;
             _2E = mActor->getConst().getTable()->mJumpSinkTimer;
 
-            mIsSwimmingAtSurface = 1;
+            mIsSwimmingAtSurface = true;
             _5C = 1.49599659443f;
             if (getPlayer()->mVerticalSpeed < 200.0f) {
                 f32 ftmp = (getPlayer()->mVerticalSpeed / 200.0f);
@@ -453,7 +453,7 @@ bool MarioSwim::start() {
                 startJet(r1b);
 
                 r1e = 2;
-                mIsSwimmingAtSurface = 0;
+                mIsSwimmingAtSurface = false;
                 _5C = 2.09439516068f;
 
                 if (mIsOnSurface) {
@@ -770,7 +770,7 @@ bool MarioSwim::update() {
                 if (mJetTimer) {
                     if (getStickY() > 0.707000017166f) {
                         _5C = mActor->getConst().getTable()->mZsinkAngleX;
-                        mIsSwimmingAtSurface = 0;
+                        mIsSwimmingAtSurface = false;
                         _1E = 0;
                     }
 
@@ -1861,7 +1861,7 @@ void MarioSwim::decideAnimation() {
             animIndex = 2;
         } else {
             animIndex = 3;
-            if (mIsSwimmingAtSurface != 0) {  // Crouching/squatting check?
+            if (mIsSwimmingAtSurface != false) { 
                 if (MarioModule::getStickP() > 0.1f) {
                     animIndex = 1;
                 }
@@ -1881,7 +1881,7 @@ void MarioSwim::decideAnimation() {
 
             if (MarioModule::isAnimationRun("水泳上昇呼吸")) {
                 MarioModule::stopAnimation("水泳上昇呼吸", static_cast< const char* >(nullptr));
-                if (mIsSwimmingAtSurface == 0) {
+                if (mIsSwimmingAtSurface == false) {
                     _1B = 1;
                 }
             }

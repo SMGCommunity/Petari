@@ -137,7 +137,7 @@ public:
     /* 0x01D */ u8 _1D;
     /* 0x01E */ u8 _1E;
     /* 0x01F */ u8 _1F;
-    /* 0x020 */ u8 mIsSwimmingAtSurface;
+    /* 0x020 */ bool mIsSwimmingAtSurface;
     /* 0x021 */ u8 _21;
     /* 0x022 */ u8 _22;
     /* 0x024 */ u32 _24;
