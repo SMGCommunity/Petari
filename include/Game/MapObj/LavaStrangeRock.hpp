@@ -13,7 +13,7 @@ public:
     void initEffect();
     void exeWait();
 
-    /* 0x8C */ s32 rockType;
+    /* 0x8C */ s32 mRockType;
     /* 0x90 */ s32 _90;
     /* 0x94 */ LodCtrl* mLodCtrlPlanet;
 };
