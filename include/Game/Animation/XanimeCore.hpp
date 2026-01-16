@@ -89,6 +89,7 @@ public:
     void shareJointTransform(const XanimeCore*);
     void doFreeze();
     void setBck(u32, J3DAnmTransform*);
+    void freezeCopy(J3DModelData*, XanimeCore*, u32, u32);
 
     void enableJointTransform(J3DModelData*);
 

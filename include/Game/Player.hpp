@@ -10,7 +10,6 @@
 #include "Game/Player/MarioAccess.hpp"
 #include "Game/Player/MarioActor.hpp"
 #include "Game/Player/MarioAnimator.hpp"
-#include "Game/Player/MarioAnimatorData.hpp"
 #include "Game/Player/MarioBlown.hpp"
 #include "Game/Player/MarioBump.hpp"
 #include "Game/Player/MarioClimb.hpp"

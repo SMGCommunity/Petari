@@ -9,9 +9,9 @@ public:
     virtual void init();
     virtual bool proc(u32);
     virtual bool start();
+    virtual bool notice();
     virtual bool close();
     virtual bool update();
-    virtual bool notice();
     virtual bool keep();
     virtual bool postureCtrl(MtxPtr);
     virtual void hitWall(const TVec3f&, HitSensor*);

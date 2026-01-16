@@ -3,6 +3,7 @@
 class JPABaseEmitter;
 
 class JPAEmitterCallBack {
+public:
     virtual ~JPAEmitterCallBack();
     virtual void execute(JPABaseEmitter*);
     virtual void executeAfter(JPABaseEmitter*);

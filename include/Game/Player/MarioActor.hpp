@@ -14,13 +14,17 @@ class MarioConst;
 class MarioEffect;
 class MarioAnimator;
 class MarioMessenger;
+class MultiEmitter;
 class CollisionShadow;
 class DLchanger;
+class J3DModel;
+class J3DModelData;
 class J3DModelX;
 class TornadoMario;
 class ModelHolder;
 
-bool gIsLuigi;  // (cc68 - 10000)(r13)
+extern bool lbl_806B6288;  // (cc68 - 10000)(r13)
+#define gIsLuigi lbl_806B6288
 
 class MarioActor : public LiveActor {
 public:
@@ -47,6 +51,7 @@ public:
     void changeNullAnimation(const char*, s8);
     void clearNullAnimation(s8);
     void changeSpecialModeAnimation(const char*);
+    void updateSpecialModeAnimation();
     bool isStopNullAnimation() const;
     void changeGameOverAnimation();
     XjointTransform* getJointCtrl(const char*) const;
@@ -92,6 +97,7 @@ public:
     void calcAnimInMovement();
     void forceSetBaseMtx(MtxPtr);
     void calcAnim();
+    bool finalizeFreezeModel();
     void calcAndSetBaseMtx();
     void setBlendMtxTimer(u16);
     void getGroundPos(TVec3f* dst) const;
@@ -130,6 +136,8 @@ public:
 
     void setPunchHitTimer(u8);
     void initEffect();
+    void initMaterialEffect();
+    void initCommonEffect();
     void addSoundObjHolder();
     void initParts();
     void initMorphStringTable();
@@ -144,6 +152,9 @@ public:
     bool isAllHidden() const;
 
     void drawMarioModel() const;
+    J3DModel* getJ3DModel() const;
+    J3DModelData* getModelData() const;
+    J3DModel* getSimpleModel() const;
 
     // Called by drawMarioModel
     void drawSpinInhibit() const;
@@ -159,21 +170,31 @@ public:
     void updateGravityVec(bool, bool);
     void changeTeresaAnimation(const char*, s32);
 
-    void playEffect(const char*);
+    MultiEmitter* playEffect(const char*);
     void playEffectTrans(const char*, const TVec3f&);
+    MultiEmitter* playMaterialEffect(const char*);
+    MultiEmitter* playCommonEffect(const char*);
     void stopEffect(const char*);
+    void stopMaterialEffect(const char*);
+    void stopCommonEffect(const char*);
+    void stopEffectForce(const char*);
+    bool isCommonEffect(const char*) const;
+    bool isMaterialEffect(const char*) const;
+    s32 getFloorMaterialIndex(u32) const;
 
     void updateActionTrigger();
     void updateControllerSwing();
     void updateControllerSwingLeft();
     void update2D();
     void updateTakingPosition();
+    void offTakingFlag();
     void updateSearchLight();
     void updateThrowing();
     void updateBeeWingAnimation();
     void updateFairyStar();
     void updatePlayerMode();
     void updateEffect();
+    bool checkEffectWaterColumn();
     void updateThrowVector();
     void updateForCamera();
     void updateTornado();
@@ -198,7 +219,6 @@ public:
     bool selectRecoverFlyMeter(const HitSensor*) const;
     void endRush(const RushEndInfo*);
     void stopSpinTicoEffect(bool);
-    void stopEffectForce(const char*);
     bool isRequestRush() const;
     bool isRequestJump2P() const;
     bool isRequestSpinJump2P() const;
@@ -222,6 +242,7 @@ public:
     bool isRequestJump() const;
 
     void damageDropThrowMemoSensor();
+    void rushDropThrowMemoSensor();
 
     void setPlayerMode(u16, bool);
 
@@ -235,7 +256,9 @@ public:
 
     void entryWallWalkMode(const TVec3f&, const TVec3f&);
 
-    const HitSensor* getCarrySensor() const;
+    const HitSensor& getCarrySensor() const;
+    HitSensor* getLookTargetSensor() const;
+    f32 getFaceLookHeight(const char*) const;
 
     const MarioConst& getConst() const { return *mConst; }
 
@@ -668,15 +691,17 @@ public:
 
 // header defined since these actually get defined in CamHeliEffector
 // and in sinit of NameObjFactory
+#ifndef MARIO_ACTOR_SKIP_NRV
 namespace NrvMarioActor {
-    NERVE_DECL_EXE(MarioActorNrvWait, MarioActor, Wait);
-    NERVE_DECL_EXE(MarioActorNrvGameOver, MarioActor, GameOver);
-    NERVE_DECL_EXE(MarioActorNrvGameOverAbyss, MarioActor, GameOverAbyss);
-    NERVE_DECL_EXE(MarioActorNrvGameOverAbyss2, MarioActor, GameOverAbyss);
-    NERVE_DECL_EXE(MarioActorNrvGameOverFire, MarioActor, GameOverFire);
-    NERVE_DECL_EXE(MarioActorNrvGameOverBlackHole, MarioActor, GameOverBlackHole2);
-    NERVE_DECL_EXE(MarioActorNrvGameOverNonStop, MarioActor, GameOverNonStop);
-    NERVE_DECL_EXE(MarioActorNrvGameOverSink, MarioActor, GameOverSink);
-    NERVE_DECL_EXE(MarioActorNrvTimeWait, MarioActor, TimeWait);
-    NERVE_DECL_EXE(MarioActorNrvNoRush, MarioActor, Wait);
+    NEW_NERVE(MarioActorNrvWait, MarioActor, Wait);
+    NEW_NERVE(MarioActorNrvGameOver, MarioActor, GameOver);
+    NEW_NERVE(MarioActorNrvGameOverAbyss, MarioActor, GameOverAbyss);
+    NEW_NERVE(MarioActorNrvGameOverAbyss2, MarioActor, GameOverAbyss);
+    NEW_NERVE(MarioActorNrvGameOverFire, MarioActor, GameOverFire);
+    NEW_NERVE(MarioActorNrvGameOverBlackHole, MarioActor, GameOverBlackHole2);
+    NEW_NERVE(MarioActorNrvGameOverNonStop, MarioActor, GameOverNonStop);
+    NEW_NERVE(MarioActorNrvGameOverSink, MarioActor, GameOverSink);
+    NEW_NERVE(MarioActorNrvTimeWait, MarioActor, TimeWait);
+    NEW_NERVE(MarioActorNrvNoRush, MarioActor, Wait);
 }  // namespace NrvMarioActor
+#endif
