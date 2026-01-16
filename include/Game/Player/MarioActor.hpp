@@ -218,6 +218,7 @@ public:
     void reactionPunch(HitSensor*);
     void tryCoinPullInRush();
     bool tryJetAttack(HitSensor*);
+    void releaseThrowMemoSensor();
 
     bool isRequestJump() const;
 
