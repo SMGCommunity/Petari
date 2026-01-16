@@ -92,17 +92,20 @@ void Mario::check2DMode() {
     }
 }
 
-static const int sMarioMove2DSinit = (__ct__Q213NrvMarioActor17MarioActorNrvWaitFv(&sInstance__Q213NrvMarioActor17MarioActorNrvWait),
-    __ct__Q213NrvMarioActor21MarioActorNrvGameOverFv(&sInstance__Q213NrvMarioActor21MarioActorNrvGameOver),
-    __ct__Q213NrvMarioActor26MarioActorNrvGameOverAbyssFv(&sInstance__Q213NrvMarioActor26MarioActorNrvGameOverAbyss),
-    __ct__Q213NrvMarioActor27MarioActorNrvGameOverAbyss2Fv(&sInstance__Q213NrvMarioActor27MarioActorNrvGameOverAbyss2),
-    __ct__Q213NrvMarioActor25MarioActorNrvGameOverFireFv(&sInstance__Q213NrvMarioActor25MarioActorNrvGameOverFire),
-    __ct__Q213NrvMarioActor30MarioActorNrvGameOverBlackHoleFv(&sInstance__Q213NrvMarioActor30MarioActorNrvGameOverBlackHole),
-    __ct__Q213NrvMarioActor28MarioActorNrvGameOverNonStopFv(&sInstance__Q213NrvMarioActor28MarioActorNrvGameOverNonStop),
-    __ct__Q213NrvMarioActor25MarioActorNrvGameOverSinkFv(&sInstance__Q213NrvMarioActor25MarioActorNrvGameOverSink),
-    __ct__Q213NrvMarioActor21MarioActorNrvTimeWaitFv(&sInstance__Q213NrvMarioActor21MarioActorNrvTimeWait),
-    __ct__Q213NrvMarioActor19MarioActorNrvNoRushFv(&sInstance__Q213NrvMarioActor19MarioActorNrvNoRush),
-    0);
+extern "C" void __sinit_MarioMove2D_cpp() {
+    __ct__Q213NrvMarioActor17MarioActorNrvWaitFv(&sInstance__Q213NrvMarioActor17MarioActorNrvWait);
+    __ct__Q213NrvMarioActor21MarioActorNrvGameOverFv(&sInstance__Q213NrvMarioActor21MarioActorNrvGameOver);
+    __ct__Q213NrvMarioActor26MarioActorNrvGameOverAbyssFv(&sInstance__Q213NrvMarioActor26MarioActorNrvGameOverAbyss);
+    __ct__Q213NrvMarioActor27MarioActorNrvGameOverAbyss2Fv(&sInstance__Q213NrvMarioActor27MarioActorNrvGameOverAbyss2);
+    __ct__Q213NrvMarioActor25MarioActorNrvGameOverFireFv(&sInstance__Q213NrvMarioActor25MarioActorNrvGameOverFire);
+    __ct__Q213NrvMarioActor30MarioActorNrvGameOverBlackHoleFv(&sInstance__Q213NrvMarioActor30MarioActorNrvGameOverBlackHole);
+    __ct__Q213NrvMarioActor28MarioActorNrvGameOverNonStopFv(&sInstance__Q213NrvMarioActor28MarioActorNrvGameOverNonStop);
+    __ct__Q213NrvMarioActor25MarioActorNrvGameOverSinkFv(&sInstance__Q213NrvMarioActor25MarioActorNrvGameOverSink);
+    __ct__Q213NrvMarioActor21MarioActorNrvTimeWaitFv(&sInstance__Q213NrvMarioActor21MarioActorNrvTimeWait);
+    __ct__Q213NrvMarioActor19MarioActorNrvNoRushFv(&sInstance__Q213NrvMarioActor19MarioActorNrvNoRush);
+}
+
+__declspec(section ".ctors") extern void* const __sinit_MarioMove2D_cpp_reference = __sinit_MarioMove2D_cpp;
 
 void Mario::calcMoveDir2D(f32 f1, f32 f2, TVec3f* pOut) {
     f32 stickX = f1;

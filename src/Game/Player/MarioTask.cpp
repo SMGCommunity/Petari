@@ -1,8 +1,6 @@
 #include "Game/Player/Mario.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
-#define MARIO_ACTOR_SKIP_NRV
 #include "Game/Player/MarioActor.hpp"
-#undef MARIO_ACTOR_SKIP_NRV
 #include "Game/Util/MathUtil.hpp"
 #include "revolution/mtx.h"
 
@@ -481,16 +479,17 @@ void Mario::startJumpDropSlide(const HitSensor* pSensor) {
     mJumpVec.z = sZero;
 }
 
-namespace {
-static const int sMarioTaskSinit = (__ct__Q213NrvMarioActor17MarioActorNrvWaitFv(&sInstance__Q213NrvMarioActor17MarioActorNrvWait),
-    __ct__Q213NrvMarioActor21MarioActorNrvGameOverFv(&sInstance__Q213NrvMarioActor21MarioActorNrvGameOver),
-    __ct__Q213NrvMarioActor26MarioActorNrvGameOverAbyssFv(&sInstance__Q213NrvMarioActor26MarioActorNrvGameOverAbyss),
-    __ct__Q213NrvMarioActor27MarioActorNrvGameOverAbyss2Fv(&sInstance__Q213NrvMarioActor27MarioActorNrvGameOverAbyss2),
-    __ct__Q213NrvMarioActor25MarioActorNrvGameOverFireFv(&sInstance__Q213NrvMarioActor25MarioActorNrvGameOverFire),
-    __ct__Q213NrvMarioActor30MarioActorNrvGameOverBlackHoleFv(&sInstance__Q213NrvMarioActor30MarioActorNrvGameOverBlackHole),
-    __ct__Q213NrvMarioActor28MarioActorNrvGameOverNonStopFv(&sInstance__Q213NrvMarioActor28MarioActorNrvGameOverNonStop),
-    __ct__Q213NrvMarioActor25MarioActorNrvGameOverSinkFv(&sInstance__Q213NrvMarioActor25MarioActorNrvGameOverSink),
-    __ct__Q213NrvMarioActor21MarioActorNrvTimeWaitFv(&sInstance__Q213NrvMarioActor21MarioActorNrvTimeWait),
-    __ct__Q213NrvMarioActor19MarioActorNrvNoRushFv(&sInstance__Q213NrvMarioActor19MarioActorNrvNoRush),
-    0);
-}  // namespace
+extern "C" void __sinit_MarioTask_cpp() {
+    __ct__Q213NrvMarioActor17MarioActorNrvWaitFv(&sInstance__Q213NrvMarioActor17MarioActorNrvWait);
+    __ct__Q213NrvMarioActor21MarioActorNrvGameOverFv(&sInstance__Q213NrvMarioActor21MarioActorNrvGameOver);
+    __ct__Q213NrvMarioActor26MarioActorNrvGameOverAbyssFv(&sInstance__Q213NrvMarioActor26MarioActorNrvGameOverAbyss);
+    __ct__Q213NrvMarioActor27MarioActorNrvGameOverAbyss2Fv(&sInstance__Q213NrvMarioActor27MarioActorNrvGameOverAbyss2);
+    __ct__Q213NrvMarioActor25MarioActorNrvGameOverFireFv(&sInstance__Q213NrvMarioActor25MarioActorNrvGameOverFire);
+    __ct__Q213NrvMarioActor30MarioActorNrvGameOverBlackHoleFv(&sInstance__Q213NrvMarioActor30MarioActorNrvGameOverBlackHole);
+    __ct__Q213NrvMarioActor28MarioActorNrvGameOverNonStopFv(&sInstance__Q213NrvMarioActor28MarioActorNrvGameOverNonStop);
+    __ct__Q213NrvMarioActor25MarioActorNrvGameOverSinkFv(&sInstance__Q213NrvMarioActor25MarioActorNrvGameOverSink);
+    __ct__Q213NrvMarioActor21MarioActorNrvTimeWaitFv(&sInstance__Q213NrvMarioActor21MarioActorNrvTimeWait);
+    __ct__Q213NrvMarioActor19MarioActorNrvNoRushFv(&sInstance__Q213NrvMarioActor19MarioActorNrvNoRush);
+}
+
+__declspec(section ".ctors") extern void* const __sinit_MarioTask_cpp_reference = __sinit_MarioTask_cpp;

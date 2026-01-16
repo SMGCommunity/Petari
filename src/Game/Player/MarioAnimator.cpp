@@ -15,10 +15,46 @@
 #include "JSystem/J3DGraphAnimator/J3DJoint.hpp"
 #include "JSystem/J3DGraphAnimator/J3DModelData.hpp"
 #include "JSystem/J3DGraphAnimator/J3DModel.hpp"
-#include "JSystem/JMath/JMATrigonometric.hpp"
 #include <revolution/mtx.h>
 #include <cmath>
 #include <cstring>
+
+namespace JMath {
+    template < s32 Len, typename T >
+    class TAtanTable {
+    public:
+        T atan2_(T, T) const;
+
+        T mTable[Len];
+        T _1000;
+    };
+}  // namespace JMath
+
+extern "C" JMath::TAtanTable< 1024, f32 > lbl_8062FC80;
+
+extern "C" {
+    extern u8 sInstance__Q213NrvMarioActor17MarioActorNrvWait;
+    extern u8 sInstance__Q213NrvMarioActor21MarioActorNrvGameOver;
+    extern u8 sInstance__Q213NrvMarioActor26MarioActorNrvGameOverAbyss;
+    extern u8 sInstance__Q213NrvMarioActor27MarioActorNrvGameOverAbyss2;
+    extern u8 sInstance__Q213NrvMarioActor25MarioActorNrvGameOverFire;
+    extern u8 sInstance__Q213NrvMarioActor30MarioActorNrvGameOverBlackHole;
+    extern u8 sInstance__Q213NrvMarioActor28MarioActorNrvGameOverNonStop;
+    extern u8 sInstance__Q213NrvMarioActor25MarioActorNrvGameOverSink;
+    extern u8 sInstance__Q213NrvMarioActor21MarioActorNrvTimeWait;
+    extern u8 sInstance__Q213NrvMarioActor19MarioActorNrvNoRush;
+
+    void __ct__Q213NrvMarioActor17MarioActorNrvWaitFv(void*);
+    void __ct__Q213NrvMarioActor21MarioActorNrvGameOverFv(void*);
+    void __ct__Q213NrvMarioActor26MarioActorNrvGameOverAbyssFv(void*);
+    void __ct__Q213NrvMarioActor27MarioActorNrvGameOverAbyss2Fv(void*);
+    void __ct__Q213NrvMarioActor25MarioActorNrvGameOverFireFv(void*);
+    void __ct__Q213NrvMarioActor30MarioActorNrvGameOverBlackHoleFv(void*);
+    void __ct__Q213NrvMarioActor28MarioActorNrvGameOverNonStopFv(void*);
+    void __ct__Q213NrvMarioActor25MarioActorNrvGameOverSinkFv(void*);
+    void __ct__Q213NrvMarioActor21MarioActorNrvTimeWaitFv(void*);
+    void __ct__Q213NrvMarioActor19MarioActorNrvNoRushFv(void*);
+}
 
 extern const char lbl_805BAC68[];
 extern const char lbl_805C3F7E[];
@@ -541,7 +577,7 @@ void MarioAnimator::setHoming() {
         if (len < 10.0f) {
             angleV = 0.0f;
         } else {
-            angleV = JMath::sAtanTable.atan2_(angleV, len);
+            angleV = lbl_8062FC80.atan2_(angleV, len);
         }
 
         const MarioConstTable* table = mActor->mConst->getTable();
@@ -1151,18 +1187,20 @@ HitSensor* MarioActor::getLookTargetSensor() const {
     return *reinterpret_cast<HitSensor* const*>(reinterpret_cast<const u8*>(this) + 0x46C);
 }
 
-namespace NrvMarioActor {
-    MarioActorNrvWait MarioActorNrvWait::sInstance;
-    MarioActorNrvGameOver MarioActorNrvGameOver::sInstance;
-    MarioActorNrvGameOverAbyss MarioActorNrvGameOverAbyss::sInstance;
-    MarioActorNrvGameOverAbyss2 MarioActorNrvGameOverAbyss2::sInstance;
-    MarioActorNrvGameOverFire MarioActorNrvGameOverFire::sInstance;
-    MarioActorNrvGameOverBlackHole MarioActorNrvGameOverBlackHole::sInstance;
-    MarioActorNrvGameOverNonStop MarioActorNrvGameOverNonStop::sInstance;
-    MarioActorNrvGameOverSink MarioActorNrvGameOverSink::sInstance;
-    MarioActorNrvTimeWait MarioActorNrvTimeWait::sInstance;
-    MarioActorNrvNoRush MarioActorNrvNoRush::sInstance;
+extern "C" void __sinit_MarioAnimator_cpp() {
+    __ct__Q213NrvMarioActor17MarioActorNrvWaitFv(&sInstance__Q213NrvMarioActor17MarioActorNrvWait);
+    __ct__Q213NrvMarioActor21MarioActorNrvGameOverFv(&sInstance__Q213NrvMarioActor21MarioActorNrvGameOver);
+    __ct__Q213NrvMarioActor26MarioActorNrvGameOverAbyssFv(&sInstance__Q213NrvMarioActor26MarioActorNrvGameOverAbyss);
+    __ct__Q213NrvMarioActor27MarioActorNrvGameOverAbyss2Fv(&sInstance__Q213NrvMarioActor27MarioActorNrvGameOverAbyss2);
+    __ct__Q213NrvMarioActor25MarioActorNrvGameOverFireFv(&sInstance__Q213NrvMarioActor25MarioActorNrvGameOverFire);
+    __ct__Q213NrvMarioActor30MarioActorNrvGameOverBlackHoleFv(&sInstance__Q213NrvMarioActor30MarioActorNrvGameOverBlackHole);
+    __ct__Q213NrvMarioActor28MarioActorNrvGameOverNonStopFv(&sInstance__Q213NrvMarioActor28MarioActorNrvGameOverNonStop);
+    __ct__Q213NrvMarioActor25MarioActorNrvGameOverSinkFv(&sInstance__Q213NrvMarioActor25MarioActorNrvGameOverSink);
+    __ct__Q213NrvMarioActor21MarioActorNrvTimeWaitFv(&sInstance__Q213NrvMarioActor21MarioActorNrvTimeWait);
+    __ct__Q213NrvMarioActor19MarioActorNrvNoRushFv(&sInstance__Q213NrvMarioActor19MarioActorNrvNoRush);
 }
+
+__declspec(section ".ctors") extern void* const __sinit_MarioAnimator_cpp_reference = __sinit_MarioAnimator_cpp;
 
 f32 XanimePlayer::tellAnimationFrame() const {
     if (isTerminate()) {
