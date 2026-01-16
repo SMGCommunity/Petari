@@ -1351,11 +1351,11 @@ f32 MarioSwim::calcRingAcc() {
                 actor->_1B5 = 0;
             }
             if (mRingDashChargeTimer == 0) {
-                MarioModule::startPadVib(3);
+                startPadVib(3);
                 if (!mJetTimer) {
-                    MarioModule::changeAnimation("カメ持ちリング", static_cast< const char* >(nullptr));
+                    changeAnimation("カメ持ちリング", static_cast< const char* >(nullptr));
                 } else {
-                    MarioModule::changeAnimation("リングダッシュ", static_cast< const char* >(nullptr));
+                    changeAnimation("リングダッシュ", static_cast< const char* >(nullptr));
                 }
             }
 
@@ -1392,7 +1392,7 @@ void MarioSwim::hitPunch(const TVec3f& rPunchDir) {
         _A0 = rPunchDir;
         _78 = 1;
 
-        MarioModule::stopAnimation("アッパーパンチ", static_cast< const char* >(nullptr));
+        stopAnimation("アッパーパンチ", static_cast< const char* >(nullptr));
     }
 }
 
@@ -1447,7 +1447,7 @@ void MarioSwim::flowOnWave(f32 unused) {
 }
 
 AreaInfo* MarioSwim::getWaterAreaInfo(WaterInfo* pInfo, const TVec3f& rPos, TVec2f* pOutVec) {
-    AreaInfo* waterAreaInfo = MR::getWaterAreaInfo(pInfo, rPos, MarioModule::getPlayer()->getAirGravityVec(), false);
+    AreaInfo* waterAreaInfo = MR::getWaterAreaInfo(pInfo, rPos, getPlayer()->getAirGravityVec(), false);
 
     if (pOutVec) {
         pOutVec->x = -pInfo->mCamWaterDepth;
@@ -1495,7 +1495,7 @@ bool MarioSwim::tryJetAttack(HitSensor* pHitSensor) {
     if (mActor->tryJetAttack(pHitSensor) == true) {
         dropJet(1);
 
-        const TVec3f& trans = MarioModule::getTrans();
+        const TVec3f& trans = getTrans();
         TVec3f damageDir = trans - pHitSensor->mPosition;
         addDamage(damageDir);
 
@@ -1771,7 +1771,7 @@ void MarioSwim::jet() {
         if (mJetTimer == 1) {
             if (checkLvlZ()) {
                 MR::emitEffect(mActor->getCarrySensor()->mHost, "BrakeLamp");
-                MarioModule::getPlayer()->_1C._9 = 1;
+                getPlayer()->_1C._9 = 1;
             }
         }
 
@@ -1779,10 +1779,10 @@ void MarioSwim::jet() {
 
         if (checkLvlZ()) {
             if (checkTrgZ() || _24 < 2) {
-                MarioModule::playSound("亀ブレーキ", -1);
+                playSound("亀ブレーキ", -1);
                 MR::emitEffect(mActor->getCarrySensor()->mHost, "BrakeLamp");
             }
-            MarioModule::getPlayer()->_1C._9 = 1;
+            getPlayer()->_1C._9 = 1;
 
             if (_54 > targetSpeed) {
                 _54 *= 0.95f;
@@ -1795,7 +1795,7 @@ void MarioSwim::jet() {
             }
 
         } else {
-            MarioModule::playSound("亀ジェット泳ぎ", -1);
+            playSound("亀ジェット泳ぎ", -1);
             MR::forceDeleteEffect(mActor->getCarrySensor()->mHost, "BrakeLamp");
         }
 
@@ -1834,16 +1834,16 @@ void MarioSwim::decideAnimation() {
 
     if (mJetTimer != 0)
         return;
-    if (MarioModule::isAnimationRun("水泳水面初期移動")) {
-        if (MarioModule::getStickP() < 0.1f) {
-            MarioModule::stopAnimationUpper(nullptr, nullptr);
+    if (isAnimationRun("水泳水面初期移動")) {
+        if (getStickP() < 0.1f) {
+            stopAnimationUpper(nullptr, nullptr);
         }
     }
 
-    if (MarioModule::isAnimationRun(nullptr) && !MarioModule::isAnimationRun("水泳上昇呼吸")) {
-        if (__fabsf(MarioModule::getStickX()) < 0.1f) {
-            MarioModule::stopAnimation("水泳ターン左", static_cast< const char* >(nullptr));
-            MarioModule::stopAnimation("水泳ターン右", static_cast< const char* >(nullptr));
+    if (isAnimationRun(nullptr) && !isAnimationRun("水泳上昇呼吸")) {
+        if (__fabsf(getStickX()) < 0.1f) {
+            stopAnimation("水泳ターン左", static_cast< const char* >(nullptr));
+            stopAnimation("水泳ターン右", static_cast< const char* >(nullptr));
         }
         return;
     }
@@ -1856,31 +1856,31 @@ void MarioSwim::decideAnimation() {
     u32 animIndex = 0;
 
     if (!mIsOnSurface) {
-        if (MarioModule::checkLvlA()) {
-            MarioModule::playSound("水中バタ足", -1);
+        if (checkLvlA()) {
+            playSound("水中バタ足", -1);
             animIndex = 2;
         } else {
             animIndex = 3;
             if (mIsSwimmingAtSurface != false) { 
-                if (MarioModule::getStickP() > 0.1f) {
+                if (getStickP() > 0.1f) {
                     animIndex = 1;
                 }
-            } else if (__fabsf(MarioModule::getStickX()) > 0.1f && _5C < 1.6534699f && _54 < cTurnMotionSpeed) {
-                if (MarioModule::getStickX() < 0.0f) {
-                    MarioModule::changeAnimation("水泳ターン左", static_cast< const char* >(nullptr));
+            } else if (__fabsf(getStickX()) > 0.1f && _5C < 1.6534699f && _54 < cTurnMotionSpeed) {
+                if (getStickX() < 0.0f) {
+                    changeAnimation("水泳ターン左", static_cast< const char* >(nullptr));
                 } else {
-                    MarioModule::changeAnimation("水泳ターン右", static_cast< const char* >(nullptr));
+                    changeAnimation("水泳ターン右", static_cast< const char* >(nullptr));
                 }
                 return;
             }
         }
     } else {
         // Surface logic
-        if (MarioModule::getStickP() > 0.1f) {
-            MarioModule::playSound("水面バタ足", -1);
+        if (getStickP() > 0.1f) {
+            playSound("水面バタ足", -1);
 
-            if (MarioModule::isAnimationRun("水泳上昇呼吸")) {
-                MarioModule::stopAnimation("水泳上昇呼吸", static_cast< const char* >(nullptr));
+            if (isAnimationRun("水泳上昇呼吸")) {
+                stopAnimation("水泳上昇呼吸", static_cast< const char* >(nullptr));
                 if (mIsSwimmingAtSurface == false) {
                     _1B = 1;
                 }
@@ -1890,7 +1890,7 @@ void MarioSwim::decideAnimation() {
 
             if (_1B != 0) {
                 getAnimator()->forceSetBlendWeight(&cWeightTable[4]);
-                MarioModule::changeAnimationUpper("水泳水面初期移動", static_cast< const char* >(nullptr));
+                changeAnimationUpper("水泳水面初期移動", static_cast< const char* >(nullptr));
                 _1B = 0;
                 return;
             }
@@ -1899,7 +1899,7 @@ void MarioSwim::decideAnimation() {
                 _1B = 1;
             }
             animIndex = 0;
-            if (MarioModule::isAnimationRun(nullptr)) {
+            if (isAnimationRun(nullptr)) {
                 return;
             }
         }
@@ -1910,13 +1910,13 @@ void MarioSwim::decideAnimation() {
     } else {
         getAnimator()->setBlendWeight(&cWeightTable[animIndex * 4], mActor->getConst().getTable()->mWeightBlendRatioSwim);
     }
-    MarioModule::getAnimator()->setSpeed(animSpeeds.speeds[animIndex]);
+    getAnimator()->setSpeed(animSpeeds.speeds[animIndex]);
 }
 
 void MarioSwim::decideEffect(bool isReset) {
     u8 oldState = _9F;
     if (mIsOnSurface) {
-        if (!MarioModule::isAnimationRun("水泳水面初期移動")) {
+        if (!isAnimationRun("水泳水面初期移動")) {
             if (_54 > 2.5f) {
                 _9F = 1;
             } else {
@@ -1924,7 +1924,7 @@ void MarioSwim::decideEffect(bool isReset) {
             }
         }
     } else {
-        if (MarioModule::checkLvlZ() || MarioModule::checkLvlA() || _2C != 0 || MarioModule::isAnimationRun(nullptr)) {
+        if (checkLvlZ() || checkLvlA() || _2C != 0 || isAnimationRun(nullptr)) {
             _9F = 2;
         } else {
             _9F = 3;
@@ -2023,13 +2023,13 @@ void MarioSwim::updateTilt() {
     f32 blendX = 0.1f;
 
     if (mIsOnSurface) {
-        if (MarioModule::getStickP() > 0.1f) {
-            f32 stickX = MarioModule::getStickX();
+        if (getStickP() > 0.1f) {
+            f32 stickX = getStickX();
 
             f32 angle = (stickX * PI) / 6.0f;
             f32 absAngle = __fabsf(angle);
 
-            TVec3f padDir = MarioModule::getWorldPadDir();
+            TVec3f padDir = getWorldPadDir();
             f32 dot = _60.dot(padDir);
             f32 scale = MR::clamp(1.0f - dot, 0.0f, 1.0f);
 
@@ -2046,11 +2046,11 @@ void MarioSwim::updateTilt() {
             }
         }
     } else {
-        targetTiltX = (MarioModule::getStickX() * PI) / 5.0f;
+        targetTiltX = (getStickX() * PI) / 5.0f;
     }
 
-    if (MarioModule::isAnimationRun("水泳ターン左") || MarioModule::isAnimationRun("水泳ターン右") || MarioModule::isAnimationRun("水泳ターン下")) {
-        f32 stickX = MarioModule::getStickX();
+    if (isAnimationRun("水泳ターン左") || isAnimationRun("水泳ターン右") || isAnimationRun("水泳ターン下")) {
+        f32 stickX = getStickX();
         targetTiltX = (MR::clamp(stickX / 0.7f, -1.0f, 1.0f) * PI) * 0.125f;
     }
 
@@ -2088,14 +2088,12 @@ void MarioSwim::updateTilt() {
     _E4 = (0.1f * targetTiltY) + (0.9f * _E4);
 
     Mtx mtxRotX, mtxRotZ;
-
     PSMTXRotRad(mtxRotX, 'x', _E0);
     PSMTXRotRad(mtxRotZ, 'z', _E4);
-
     PSMTXConcat(mtxRotX, mtxRotZ, _B0);
 
     u16 jointID = getAnimator()->getUpperJointID();
-    MarioModule::setJointGlobalMtx(jointID, _B0);
+    setJointGlobalMtx(jointID, _B0);
 }
 
 void MarioSwim::resetJet() {
@@ -2137,16 +2135,14 @@ void MarioSwim::addVelocity(const TVec3f& rVelocity) {
     if (mIsOnSurface && mNextAction != EXIT_ACTION_NONE) {
         const TVec3f& gravity = getAirGravityVec();
         TVec3f horizontalVel;
-
         f32 verticalMag = MR::vecKillElement(rVelocity, gravity, &horizontalVel);
-
         if (verticalMag < 0.0f) {
-            MarioModule::addVelocity(horizontalVel);
+            addVelocity(horizontalVel);
         } else {
-            MarioModule::addVelocity(rVelocity);
+            addVelocity(rVelocity);
         }
     } else {
-        MarioModule::addVelocity(rVelocity);
+        addVelocity(rVelocity);
     }
 }
 
@@ -2159,7 +2155,6 @@ bool MarioSwim::startJet(u32 type) {
     mJetTimer = 1;
 
     forceStopSpin();
-
     // Swim Jet
     if (!isAnimationRun("水泳ジェット")) {
         // Swim Jet Start
@@ -2175,9 +2170,7 @@ bool MarioSwim::startJet(u32 type) {
 void MarioSwim::forceStopSpin() {
     _7C = 0;
     _7A = 0;
-
-    MarioModule::setYangleOffset(0.0f);
-
+    setYangleOffset(0.0f);
     _80 = 0.0f;
     _84 = 0.0f;
 
@@ -2188,7 +2181,7 @@ void MarioSwim::forceStopSpin() {
     stopAnimation("水上スピン", static_cast< const char* >(nullptr));
     stopAnimation("水上スピン移動", static_cast< const char* >(nullptr));
 
-    MarioModule::stopEffect("水泳スピン");
+    stopEffect("水泳スピン");
 }
 
 void MarioSwim::hitPoly(u8 type, const TVec3f& rNormal, HitSensor* pSensor) {
@@ -2306,14 +2299,14 @@ bool MarioSwim::passRing(const HitSensor* pSensor) {
         mRingDashChargeTimer = mActor->getConst().getTable()->mSwimRingDashChargeTime;
 
         if (mJetTimer == 0) {
-            MarioModule::changeAnimation("リングダッシュ準備", static_cast< const char* >(nullptr));
+            changeAnimation("リングダッシュ準備", static_cast< const char* >(nullptr));
         } else {
-            MarioModule::changeAnimation("カメ持ちリング準備", static_cast< const char* >(nullptr));
+            changeAnimation("カメ持ちリング準備", static_cast< const char* >(nullptr));
         }
     }
 
     if (mRingDashChargeTimer) {
-        MarioModule::getPlayer()->push((ringPos - getTrans()).scaleInline(0.25f));
+        getPlayer()->push((ringPos - getTrans()).scaleInline(0.25f));
     }
 
     DashRing* host = static_cast< DashRing* >(pSensor->mHost);
@@ -2321,30 +2314,30 @@ bool MarioSwim::passRing(const HitSensor* pSensor) {
     mRingDashSpeedScale = host->_B0;
     mRingDashTimer = host->_A8;
 
-    MarioModule::playSound("亀加速", -1);
+    playSound("亀加速", -1);
 
     return true;
 }
 
 void MarioSwim::addFaint(const TVec3f& rFaintDir) {
-    if (MarioModule::getPlayer()->getDamageAfterTimer() != 0) {
+    if (getPlayer()->getDamageAfterTimer() != 0) {
         return;
     }
 
     if (_AC == 0) {
-        Mario* player = MarioModule::getPlayer();
+        Mario* player = getPlayer();
         player->_41E = 150;
     }
 
     dropJet(false);
     _AE = mActor->getConst().getTable()->mWaterInnerFaintTime;
 
-    MarioModule::changeAnimation("水泳ダメージ", static_cast< const char* >(nullptr));
-    MarioModule::playSound("水中ダメージ", -1);
-    MarioModule::playSound("声水中ダメージ", -1);
-    MarioModule::playSound("ダメージ", -1);
+    changeAnimation("水泳ダメージ", static_cast< const char* >(nullptr));
+    playSound("水中ダメージ", -1);
+    playSound("声水中ダメージ", -1);
+    playSound("ダメージ", -1);
 
-    MarioModule::startPadVib(2);
+    startPadVib(2);
     _A0 = rFaintDir;
     _A0.setLength(mActor->getConst().getTable()->mSwimFaintSpeed);
     _2C = 0;
@@ -2368,7 +2361,7 @@ f32 MarioSwim::checkUnderWaterFull(const TVec3f& rVec) {
     f32 maxDist = 10000.0f;
 
     while (currentDist < maxDist) {
-        TVec3f checkPos = MarioModule::getTrans().translate(rVec.scaleInline(offset)).translate(getGravityVec().scaleInline(currentDist - offset));
+        TVec3f checkPos = getTrans().translate(rVec.scaleInline(offset)).translate(getGravityVec().scaleInline(currentDist - offset));
         if (MR::getAreaObj("ForbidWaterSearchCube", checkPos) != nullptr) {
             return -1.0f;
         }
@@ -2393,9 +2386,9 @@ void MarioSwim::pushedByWaterWall() {
     if (!(mDistanceToWaterSurface < 0.0f)) {
         f32 wallDistanceLimit = 80.0f;
         if (mDistanceToWaterSurface < wallDistanceLimit) {
-            TVec3f pushDir = MarioModule::getTrans() - _178;
+            TVec3f pushDir = getTrans() - _178;
             pushDir.setLength(wallDistanceLimit - mDistanceToWaterSurface);
-            MarioModule::getPlayer()->push(pushDir);
+            getPlayer()->push(pushDir);
 
             if (MR::normalizeOrZero(&pushDir) == 0) {
                 const TVec3f& headVec = getPlayer()->mHeadVec;
@@ -2430,8 +2423,8 @@ void MarioSwim::pushedByWaterWall() {
 
 void MarioSwim::hitHead(const HitInfo* pHit) {
     if (mJetTimer != 0) {
-        if (MarioModule::sendPunch(pHit->mParentTriangle.mSensor, false) == 1) {
-            MarioModule::startCamVib(0);
+        if (sendPunch(pHit->mParentTriangle.mSensor, false) == 1) {
+            startCamVib(0);
             return;
         }
 
@@ -2460,7 +2453,7 @@ void MarioSwim::hitHead(const HitInfo* pHit) {
         }
     }
 
-    TVec3f pushBack = MarioModule::getTrans() - pHit->mHitPos;
+    TVec3f pushBack = getTrans() - pHit->mHitPos;
     MR::vecKillElement(pushBack, *pHit->mParentTriangle.getNormal(0), &pushBack);
     pushBack.setLength(5.0f);
     addVelocity(pushBack);
