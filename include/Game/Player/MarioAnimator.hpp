@@ -69,7 +69,6 @@ public:
     s32 getUpperJointID() const;
     void initWalkWeight();
     void addRumblePower(f32, u32);
-    void setBlendWeight(const f32*, f32);
 
     inline void f1(const char* name) {
         getPlayer()->startBas(nullptr, false, 0.0f, 0.0f);

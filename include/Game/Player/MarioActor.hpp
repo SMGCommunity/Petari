@@ -256,7 +256,7 @@ public:
 
     void entryWallWalkMode(const TVec3f&, const TVec3f&);
 
-    const HitSensor& getCarrySensor() const;
+    const HitSensor* getCarrySensor() const;
     HitSensor* getLookTargetSensor() const;
     f32 getFaceLookHeight(const char*) const;
 

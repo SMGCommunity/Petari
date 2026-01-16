@@ -1,4 +1,5 @@
 #include "Game/Animation/XanimeCore.hpp"
+#include "JSystem/J3DGraphAnimator/J3DJoint.hpp"
 
 void XanimeTrack::init() {
     _0 = 0;

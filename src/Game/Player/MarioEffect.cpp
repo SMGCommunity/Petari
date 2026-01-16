@@ -476,7 +476,10 @@ void MarioEffect::updateFollowMtx(MovingFollowMtx* pFollow) {
         MR::setMtxTrans(temp.toMtxPtr(), rTrans.x, rTrans.y, rTrans.z);
 
         if (!pFollow->_64) {
-            pFollow->_64 = getPlayer()->getMoveBaseMtx();
+            TPos3f* baseMtx = getPlayer()->getMoveBaseMtx();
+            if (baseMtx) {
+                pFollow->_64 = baseMtx->toMtxPtr();
+            }
         }
 
         if (!pFollow->_64) {
@@ -1200,7 +1203,7 @@ void MarioActor::updateEffect() {
     flagC = 0;
     if (mario->mMovementStates_LOW_WORD & 0x80000000) {
         if (mPlayerMode == 4 && mario->checkLvlA() && mario->_402 != 0 && ((_37C & 3) == 0)) {
-            if (mario->_488 < 100.0f) {
+            if (mario->mVerticalSpeed < 100.0f) {
                 flagC = 1;
             } else if (mario->mSwim->_1B2 != 0 && mario->mSwim->_1B8 < 100.0f) {
                 flagC = 1;
