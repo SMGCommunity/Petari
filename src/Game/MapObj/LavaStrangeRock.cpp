@@ -114,8 +114,9 @@ void LavaStrangeRock::exeWait() {
             return;
         TVec3f upPlusPosition = mPosition + upVec2;
         TVec3f* pCenterPos2 = MR::getPlayerCenterPos();
-        if ((MR::checkHitSegmentSphere(*pCenterPos2, mPosition, upPlusPosition, v1, 0)) != 1)
+        if ((MR::checkHitSegmentSphere(*pCenterPos2, mPosition, upPlusPosition, v1, 0)) != 1) {
             return;
+        }
         MR::emitEffect(this, "Break");
         switch ((unsigned)mRockType) {  // the lack of breaks here is intentional
         case 0:
