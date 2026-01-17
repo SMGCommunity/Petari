@@ -2,11 +2,12 @@
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/ActorSwitchUtil.hpp"
+#include "Game/Util/EffectUtil.hpp"
 #include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
-#include "Game/Util/MathUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
 #include "revolution/types.h"
 
@@ -15,6 +16,8 @@
 namespace NrvLavaGeyser {
     NEW_NERVE(LavaGeyserNrvWaitSwitch, LavaGeyser, WaitSwitch);
     NEW_NERVE(LavaGeyserNrvWait, LavaGeyser, Wait);
+    NEW_NERVE(LavaGeyserNerveSign, LavaGeyser, Sign);
+    NEW_NERVE(LavaGeyserNerveShootUp, LavaGeyser, ShootUp);
 }  // namespace NrvLavaGeyser
 
 LavaGeyser::LavaGeyser(const char* pName)
@@ -23,7 +26,7 @@ LavaGeyser::LavaGeyser(const char* pName)
 
 void LavaGeyser::init(const JMapInfoIter& iter) {
     MR::initDefaultPos(this, iter);
-    //TODO: Fix register mismatch here
+    // TODO: Fix register mismatch here
     TQuat4f quat1;
     f32 rotX = mRotation.x;
     f32 rotY = mRotation.y;
@@ -50,4 +53,27 @@ void LavaGeyser::init(const JMapInfoIter& iter) {
         initNerve(&NrvLavaGeyser::LavaGeyserNrvWait::sInstance);
     }
     makeActorAppeared();
+}
+
+void LavaGeyser::exeWaitSwitch() {
+    if (MR::isFirstStep(this)) {
+        MR::hideModel(this);
+        MR::invalidateHitSensors(this);
+    }
+    if (MR::isOnSwitchA(this)) {
+        setNerve(&NrvLavaGeyser::LavaGeyserNerveSign::sInstance);
+    }
+}
+
+void LavaGeyser::exeSign() {
+    if(MR::isFirstStep(this)) {
+        const TVec3f *pos = &mPosition;
+        _94.set(*pos);
+        MR::emitEffect(this, "Sign"); //
+    }
+    MR::startLevelSound(this, "SE_OJ_LV_LAVA_GEYSER_SIGN", -1, -1, -1);
+    if(MR::isStep(this, 90)) {
+        MR::deleteEffect(this, "Sign");
+    setNerve(&NrvLavaGeyser::LavaGeyserNerveShootUp::sInstance);
+    }
 }
