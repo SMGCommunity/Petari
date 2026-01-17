@@ -4,6 +4,7 @@
 
 class DinoPackun;
 class HitSensor;
+class DinoPackunAction;
 
 class DinoPackunSequencer : public NerveExecutor {
 public:
@@ -24,6 +25,6 @@ public:
     virtual bool receiveMsgPlayerAttackTail(u32, HitSensor*, HitSensor*);
     virtual bool receiveOtherMsgTail(u32, HitSensor*, HitSensor*);
 
-    DinoPackun* mParent;  // 0x8
-    u32 _C;
+    DinoPackun* mParent;               // 0x8
+    DinoPackunAction* mCurrentAction;  // 0xC
 };
