@@ -697,7 +697,7 @@ bool MarioSwim::update() {
             doJetJump(0);
             return false;
         }
-        if (mRingDashTimer && getPlayer()->mVerticalSpeed - mWaterDepth > 200.0f) {
+        if (mRingDashTimer != 0 && getPlayer()->mVerticalSpeed - mWaterDepth > 200.0f) {
             f32 res = MR::clamp(_54 / mActor->getConst().getTable()->mSwimToWalkSpd, 0.0f, 1.0f);
             getPlayer()->mMovementStates._5 = false;
             getPlayer()->_278 = res;
@@ -801,7 +801,7 @@ bool MarioSwim::update() {
             }
             _50 *= mActor->getConst().getTable()->mSwimRotZIne;
         } else {
-            if (!mRingDashTimer && mDistToFloor > 200.0f && checkTrgZ() && !_32 && !_2E && mJetTimer == 0 && !check7Aand7C()) {
+            if (mRingDashTimer == 0 && mDistToFloor > 200.0f && checkTrgZ() && !_32 && !_2E && mJetTimer == 0 && !check7Aand7C()) {
                 stopAnimation(nullptr, static_cast< const char* >(nullptr));
                 changeAnimation("水泳潜り", static_cast< const char* >(nullptr));
                 playSound("水中潜り", -1);
@@ -1367,8 +1367,8 @@ f32 MarioSwim::calcRingAcc() {
             }
 
             f32 result = mRingDashSpeedScale;
-            if (mRingDashTimer < mRingDashMaxDuration) {
-                f32 ratio = (f32)mRingDashTimer / (f32)mRingDashMaxDuration;
+            if (mRingDashTimer != 0 < mRingDashMaxDuration) {
+                f32 ratio = static_cast<f32>(mRingDashTimer) / static_cast<f32>(mRingDashMaxDuration);
                 result = (1.0f - ratio) + (mRingDashSpeedScale * ratio);
             }
 
@@ -2295,7 +2295,7 @@ void MarioSwim::dropJet(bool isDamage) {
 
 bool MarioSwim::passRing(const HitSensor* pSensor) {
     const TVec3f& ringPos = pSensor->mPosition;
-    if (!mRingDashTimer) {
+    if (mRingDashTimer == 0) {
         mRingDashChargeTimer = mActor->getConst().getTable()->mSwimRingDashChargeTime;
 
         if (mJetTimer == 0) {
@@ -2305,7 +2305,7 @@ bool MarioSwim::passRing(const HitSensor* pSensor) {
         }
     }
 
-    if (mRingDashChargeTimer) {
+    if (mRingDashChargeTimer != 0) {
         getPlayer()->push((ringPos - getTrans()).scaleInline(0.25f));
     }
 
@@ -2568,6 +2568,75 @@ void MarioSwim::addDamage(const TVec3f& rDamageDir) {
 
     if (MR::normalizeOrZero(&postureDir) == 0) {
         _60 = -postureDir;
+    }
+}
+
+void MarioSwim::updateUnderWater() {
+
+    if (MarioModule::getPlayerMode() != 4 && MarioModule::getStickP() > 0.1f) {
+        _1B4 = 0.0f;
+    }
+
+    u32 searchLimit = 2;
+    if (MarioModule::getPlayerMode() == 3) {
+        searchLimit = 10;
+    }
+
+    TVec3f searchDir = MarioModule::getFrontVec();
+    if (!MR::isNearZero(mActor->getLastMove(), 0.001f)) {
+        searchDir = mActor->getLastMove();
+        MR::vecKillElement(searchDir, getGravityVec(), &searchDir);
+        MR::normalizeOrZero(&searchDir);
+    }
+
+    const f32 kOffset = 100.0f;
+
+    for (u32 i = 0; i < searchLimit; ++i) {
+        TVec3f checkPos = MarioModule::getTrans()
+            .translate(searchDir.scaleInline(kOffset))
+            .translate(getGravityVec().scaleInline(_1B4 - kOffset));
+
+        WaterInfo waterInfo;
+        MR::getWaterAreaObj(&waterInfo, checkPos);
+
+        if (waterInfo.isInWater()) {
+            _1B8 = _1B4;
+            
+            if (_1B4 > 300.0f) {
+                TVec2f depthVec;
+                getWaterAreaInfo(&waterInfo, checkPos, &depthVec);
+                
+                _1B8 = (waterInfo.mStreamVec - MarioModule::getTrans()).dot(getGravityVec());
+                _1B2 = 1;
+                _1B4 = 0.0f;
+                return;
+            } 
+            
+            if (_1B4 < 210.0f && MarioModule::getPlayerMode() == 3) {
+                if (!MR::checkStrikePointToMap(checkPos, nullptr)) {
+                    TVec2f depthVec;
+                    getWaterAreaInfo(&waterInfo, checkPos, &depthVec);
+                    
+                    if (depthVec.x < 100.0f) {
+                        if (!(getPlayer()->mMovementStates._1) || getPlayer()->_71C) {
+                            mActor->createIceFloor(waterInfo.mSurfacePos.translate(searchDir.scaleInline(170.0f)));
+                        }
+                        _1B4 = 0.0f;
+                        return;
+                    }
+                }
+            }
+            _1B4 = 0.0f;
+            return;
+        }
+
+        if (MR::checkStrikePointToMap(checkPos, nullptr)) {
+            _1B2 = 0;
+            _1B4 = 0.0f;
+            return;
+        }
+
+        _1B4 += 40.0f;
     }
 }
 
