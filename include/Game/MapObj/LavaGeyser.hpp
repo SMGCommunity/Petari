@@ -1,7 +1,9 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
+
 class LavaGeyser : public LiveActor {
 public:
     LavaGeyser(const char*);
@@ -16,4 +18,7 @@ public:
     /* B0 */ f32 _B0;
     /* B4 */ f32 _B4;
     /* B8 */ f32 _B8;
+
+    void exeWait();
+    void exeWaitSwitch();
 };

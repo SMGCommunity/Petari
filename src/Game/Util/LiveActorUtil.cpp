@@ -10,6 +10,7 @@
 #include "Game/NameObj/NameObjExecuteHolder.hpp"
 #include "Game/System/ResourceHolder.hpp"
 #include "Game/Util/MapUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
 #include "Game/Util/ModelUtil.hpp"
 #include <JSystem/JUtility/JUTNameTab.hpp>
 #include <cstdio>
@@ -235,10 +236,8 @@ namespace MR {
     // setBckFrameAtRandom
     void setBtkFrameAtRandom(const LiveActor* pActor) {
         s16 actorEndFrame = pActor->mModelManager->getBtkCtrl()->mEndFrame;
-        f32 randomFloat = MR::getRandom();
-        f32 endFrameDouble = actorEndFrame;
-        s32 randFromEndFrame = (endFrameDouble * randomFloat);
-        pActor->mModelManager->getBtkCtrl()->mCurrentFrame = static_cast< f32 >(randFromEndFrame);
+        s32 frameRand = (actorEndFrame * MR::getRandom());
+        pActor->mModelManager->getBtkCtrl()->mCurrentFrame = frameRand;
     }
     // setBckFrameAndStop
     // setBtkFrameAndStop
