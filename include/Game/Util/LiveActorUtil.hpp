@@ -188,6 +188,8 @@ namespace MR {
 
     bool isBrkOneTimeAndStopped(const LiveActor*);
 
+    void setBtkFrameAtRandom(const LiveActor*);
+
     bool tryStartBckAndBtp(const LiveActor*, const char*, const char*);
     void setAllAnimFrame(const LiveActor*, const char*, f32);
     void setAllAnimFrameAndStop(const LiveActor*, const char*, f32);
