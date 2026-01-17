@@ -1,6 +1,7 @@
 #pragma once
 
 #include "JSystem/JGeometry/TVec.hpp"
+
 class MarineSnow {
 public:
     MarineSnow();
