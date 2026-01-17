@@ -7,6 +7,8 @@
 #include "Game/Ride/JumpBranch.hpp"
 #include "Game/Ride/Plant.hpp"
 #include "Game/Ride/Pole.hpp"
+#include "Game/Ride/SlingShooter.hpp"
+#include "Game/Ride/SpaceCocoon.hpp"
 #include "Game/Ride/SphereController.hpp"
 #include "Game/Ride/SurfRay.hpp"
 #include "Game/Ride/SurfRayTutorial.hpp"

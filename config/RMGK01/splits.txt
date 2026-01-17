@@ -7351,7 +7351,7 @@ Game/Ride/SledRopePoint.cpp:
 Game/Ride/SlingShooter.cpp:
 	.text       start:0x8032BA6C end:0x8032DB5C
 	.ctors      start:0x8052F1E0 end:0x8052F1E4
-	.data       start:0x805CFC20 end:0x805CFE88
+	.data       start:0x805CFC20 end:0x805CFF70
 	.sdata      start:0x806B2320 end:0x806B2328
 	.sbss       start:0x806B63E8 end:0x806B6408
 	.sdata2     start:0x806C09C0 end:0x806C0A00
@@ -7360,7 +7360,7 @@ Game/Ride/SpaceCocoon.cpp:
 	.text       start:0x8032DB5C end:0x803306A8
 	.ctors      start:0x8052F1E4 end:0x8052F1E8
 	.rodata     start:0x80539D80 end:0x80539D88
-	.data       start:0x805CFE88 end:0x805D02A8
+	.data       start:0x805CFF70 end:0x805D02A8
 	.sdata      start:0x806B2328 end:0x806B2330
 	.sbss       start:0x806B6408 end:0x806B6448
 	.sdata2     start:0x806C0A00 end:0x806C0A78
