@@ -17,8 +17,8 @@ public:
     void unlockNodePosition(u32);
     void lockEndNodePosition();
     void unlockEndNodePosition();
-    void registerPreCalcJointCallback();
-    void registerJointCallback();
+    void registerPreCalcJointCallBack();
+    void registerJointCallBack();
     void updateJoint();
     void addAccelKeepBend();
     void addAccelKeepDistance();
