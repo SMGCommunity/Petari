@@ -9,14 +9,6 @@ JUTTexture::JUTTexture() {
     mTIMG = nullptr;
 }
 
-JUTTexture::JUTTexture(const ResTIMG* pTIMG, u8 param2) {
-    mEmbPalette = nullptr;
-
-    storeTIMG(pTIMG, param2);
-
-    mFlag &= 2;
-}
-
 JUTTexture::JUTTexture(int width, int height, GXTexFmt format) {
     mFlag = mFlag & 2 | 1;
     u32 bufSize = GXGetTexBufferSize(width, height, format, GX_FALSE, 1);

@@ -74,6 +74,8 @@ public:
     JSUTree< J2DPane >* getEndChild() { return mPaneTree.getEndChild(); }
     const JSUTree< J2DPane >* getPaneTree() { return &mPaneTree; }
 
+    bool isVisible() const { return mVisible; }
+
     static JGeometry::TBox2< f32 > static_mBounds;
 
     u16 _4;
