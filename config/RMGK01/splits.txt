@@ -820,14 +820,14 @@ Game/Boss/DinoPackunTailRoot.cpp:
 Game/Boss/DinoPackunTrackFire.cpp:
 	.text       start:0x8004DA68 end:0x8004E024
 	.ctors      start:0x8052E8C4 end:0x8052E8C8
-	.data       start:0x80569FB8 end:0x8056A0E8
+	.data       start:0x80569FB8 end:0x8056A0D0
 	.sbss       start:0x806B3230 end:0x806B3238
 	.sdata2     start:0x806B8650 end:0x806B8660
 
 Game/Boss/DinoPackunVs1.cpp:
 	.text       start:0x8004E024 end:0x8004E614
 	.ctors      start:0x8052E8C8 end:0x8052E8CC
-	.data       start:0x8056A0E8 end:0x8056A1B8
+	.data       start:0x8056A0D0 end:0x8056A1B8
 	.sbss       start:0x806B3238 end:0x806B3260
 
 Game/Boss/DinoPackunVs2.cpp:
