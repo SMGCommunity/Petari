@@ -5679,20 +5679,22 @@ Game/MapObj/SpringWaterFloaterSpot.cpp:
 
 Game/MapObj/StageEffectDataTable.cpp:
 	.text       start:0x8023C59C end:0x8023D084
-	.rodata     start:0x805338C0 end:0x80534C80
+	.rodata     start:0x805338C0 end:0x80534C18
 	.sdata2     start:0x806BE3B0 end:0x806BE3B8
 
 Game/MapObj/StarPiece.cpp:
 	.text       start:0x8023D084 end:0x80240BD4
 	.ctors      start:0x8052EED8 end:0x8052EEDC
-	.data       start:0x805A3720 end:0x805A3B30
+	.rodata     start:0x80534C18 end:0x80534C48
+	.data       start:0x805A3720 end:0x805A3A38
 	.sbss       start:0x806B5930 end:0x806B5960
 	.sdata2     start:0x806BE3B8 end:0x806BE440
 
 Game/MapObj/StarPieceDirector.cpp:
 	.text       start:0x80240BD4 end:0x802422D8
 	.ctors      start:0x8052EEDC end:0x8052EEE0
-	.data       start:0x805A3B30 end:0x805A3BF0
+	.rodata     start:0x80534C48 end:0x80534C80
+	.data       start:0x805A3A38 end:0x805A3BF0
 	.sbss       start:0x806B5960 end:0x806B5968
 	.sdata2     start:0x806BE440 end:0x806BE480
 

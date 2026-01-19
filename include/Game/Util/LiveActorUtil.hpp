@@ -2,6 +2,7 @@
 
 #include "Game/Animation/AnmPlayer.hpp"
 #include "Game/Util/JMapInfo.hpp"
+#include "JSystem/J3DGraphBase/J3DStruct.hpp"
 #include "JSystem/JGeometry/TMatrix.hpp"
 #include "JSystem/JGeometry/TQuat.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
@@ -397,6 +398,8 @@ namespace MR {
     PartsModel* createWaterModel(LiveActor*, MtxPtr);
 
     TexMtxCtrl* initDLMakerTexMtx(LiveActor*, const char*);
+
+    void initDLMakerMatColor0(LiveActor*, const char*, const J3DGXColor*);
 
     void changeModelDataTexAll(LiveActor*, const char*, const ResTIMG&);
 
