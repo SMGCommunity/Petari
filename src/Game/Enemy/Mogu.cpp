@@ -107,3 +107,16 @@ void Mogu::exeHideWait() {
         }
     }
 }
+
+bool Mogu::isPlayerExistUp() {
+    TVec3f vecToPlayer(*MR::getPlayerCenterPos());
+    vecToPlayer -= mPosition;
+    f32 dot = _A8.dot(vecToPlayer);
+    if (dot < 0.0f) {
+        return false;
+    }
+
+    TVec3f* playerGravity = MR::getPlayerGravity();
+    MR::vecKillElement(vecToPlayer, *playerGravity, &vecToPlayer);
+    return vecToPlayer.length() < 400.0f;
+}
