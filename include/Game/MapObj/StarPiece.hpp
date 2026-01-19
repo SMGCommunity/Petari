@@ -2,8 +2,9 @@
 #include "Game/NameObj/NameObj.hpp"
 #include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/TriangleFilter.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
 #include "JSystem/J3DGraphBase/J3DStruct.hpp"
+#include "JSystem/JGeometry/TVec.hpp"
+
 
 class HitSensor;
 // this function does not belong in this header, but will put here for now
@@ -13,7 +14,7 @@ namespace MR {
 
 struct StarPieceReceiverInfo {
 public:
-    inline StarPieceReceiverInfo(NameObj* pNameObj, s32 a2, s32 a3, s32 a4) : mObj(pNameObj), _4(a2) , _8(a3), mGotCount(a4){}
+    inline StarPieceReceiverInfo(NameObj* pNameObj, s32 a2, s32 a3, s32 a4) : mObj(pNameObj), _4(a2), _8(a3), mGotCount(a4) {}
     NameObj* mObj;
     u32 _4;
     u32 _8;
@@ -22,28 +23,18 @@ public:
 
 struct StarPieceHostInfo {
 public:
-    inline StarPieceHostInfo(NameObj* pNameObj, s32 a2, s32 a3, s32 a4) : mObj(pNameObj), _4(a2) , _8(a3), _C(a4){}
-    bool isAppearable() NO_INLINE {
-    
-        return  _C < _4 && _8 < _4 - _C;
-    }
+    inline StarPieceHostInfo(NameObj* pNameObj, s32 a2, s32 a3, s32 a4) : mObj(pNameObj), _4(a2), _8(a3), _C(a4) {}
+    bool isAppearable() NO_INLINE { return _C < _4 && _8 < _4 - _C; }
 
     NameObj* mObj;
     s32 _4;
     s32 _8;
     s32 _C;
-
 };
 
-
 class StarPiece : public LiveActor {
-public: 
-
-    enum groupType {
-        groupType_noGroup,
-        groupType_FloatingGroup,
-        groupType_RailMoveGroup
-    };
+public:
+    enum groupType { groupType_noGroup, groupType_FloatingGroup, groupType_RailMoveGroup };
 
     StarPiece(const char*);
 
@@ -114,7 +105,7 @@ public:
     TVec3f _A8;
     TVec3f _B4;
 
-    /* 0xC0 */ TriangleFilterDelegator<StarPiece>* mDelegator;
+    /* 0xC0 */ TriangleFilterDelegator< StarPiece >* mDelegator;
     /* 0xC4 */ HitSensor* mTargetSensor;
     s32 _C8;
     /* 0xCC */ s32 mGettableDelayCounter;
@@ -127,19 +118,18 @@ public:
     /* 0xE0*/ StarPieceReceiverInfo* mReceiverInfo;
     /* 0XE4 */ s32 mNumGift;
 
-
     struct {
         bool isGoToPlayer : 1;
-        //is set to true in constuctor and when nerve is railMove or Floating
-        //in practice, is always true
+        // is set to true in constuctor and when nerve is railMove or Floating
+        // in practice, is always true
         bool _1 : 1;
-        //flags related to enabling/disabling shadows
+        // flags related to enabling/disabling shadows
         bool _2 : 1;
         bool _3 : 1;
 
         bool isGroup : 1;
         bool InWater : 1;
-        //used in IsEffectLight
+        // used in IsEffectLight
         bool _6 : 1;
         bool isLaunched : 1;
     } /* 0XE8 */ mFlags;

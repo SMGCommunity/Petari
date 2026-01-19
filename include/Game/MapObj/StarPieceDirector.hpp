@@ -58,13 +58,12 @@ public:
     StarPieceReceiverInfo* findReceiverInfo(const NameObj*);
     void calcShootGoalUsingPointingDepth();
 
-
     /* 0x18 */ u32 mNumStarPieceNewed;
     /* 0x1C */ u32 mNumStarPieceGettable;
     /* 0x20 */ s32 mColorIndex;
     /* 0x24 */ s32 mNumStarPiecesLaunched;
 
-    /* 0x28 */StarPieceHostInfo* mHostInfoArray[0x200];
+    /* 0x28 */ StarPieceHostInfo* mHostInfoArray[0x200];
 
     /* 0x828 */ u32 mNewHostInfoIndex;
 
@@ -73,12 +72,11 @@ public:
     /* 0x930 */ bool mResetChasingStarPiece;
     /* 0x934 */ StarPieceShooter* mStarPieceShooters[2];
 
-    //only fist 16 entries ever get used
+    // only fist 16 entries ever get used
     bool mGetSoundArray[0x20];
 
     s32 mSoundIndex;
     bool mQueueNewGetSound;
-
 };
 
 class StarPieceShooter : public LiveActor {
@@ -88,7 +86,6 @@ public:
     virtual void init(const JMapInfoIter&);
     virtual void control();
     virtual void attackSensor(HitSensor* pSender, HitSensor* pReceiver);
-
 
     void exeWait();
     void exeLockOn();
@@ -107,5 +104,4 @@ public:
     s32 _A4;
     TVec3f _A8;
     TVec3f _B4;
-
 };
