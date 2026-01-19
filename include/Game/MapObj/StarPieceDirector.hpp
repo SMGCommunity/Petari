@@ -73,10 +73,10 @@ public:
     /* 0x934 */ StarPieceShooter* mStarPieceShooters[2];
 
     // only fist 16 entries ever get used
-    bool mGetSoundArray[0x20];
+    /* 0x93C */ bool mGetSoundArray[0x20];
 
-    s32 mSoundIndex;
-    bool mQueueNewGetSound;
+    /* 0x95C */ s32 mSoundIndex;
+    /* 0x960 */ bool mQueueNewGetSound;
 };
 
 class StarPieceShooter : public LiveActor {

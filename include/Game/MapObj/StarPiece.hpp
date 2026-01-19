@@ -113,9 +113,9 @@ public:
 
     /* 0xD4 */ J3DGXColor mColor;
 
-    /* 0xD8*/ groupType mGroupType;
-    /* 0xDC*/ StarPieceHostInfo* mHostInfo;
-    /* 0xE0*/ StarPieceReceiverInfo* mReceiverInfo;
+    /* 0xD8 */ groupType mGroupType;
+    /* 0xDC */ StarPieceHostInfo* mHostInfo;
+    /* 0xE0 */ StarPieceReceiverInfo* mReceiverInfo;
     /* 0XE4 */ s32 mNumGift;
 
     struct {
