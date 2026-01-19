@@ -32,7 +32,7 @@ enum J3DDiffFlag {
 
 class J3DDisplayListObj {
 public:
-    J3DDisplayListObj() {
+    J3DDisplayListObj() NO_INLINE {
         mpDisplayList[0] = NULL;
         mpDisplayList[1] = NULL;
         mSize = 0;
