@@ -128,3 +128,13 @@ void Mogu::tearDownThrow() {
         mStone->kill();
     }
 }
+
+void Mogu::exeHipDropReaction() {
+    if (MR::isFirstStep(this)) {
+        MR::startAction(this, "HipDropReaction");
+    }
+
+    if (MR::isActionEnd(this)) {
+        setNerve(&NrvMogu::HostTypeNrvSwoon::sInstance);
+    }
+}
