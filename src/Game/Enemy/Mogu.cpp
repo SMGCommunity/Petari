@@ -12,6 +12,7 @@
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/SceneUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
 #include "revolution/mtx.h"
@@ -34,8 +35,8 @@ namespace NrvMogu {
 }  // namespace NrvMogu
 
 Mogu::Mogu(const char* pName)
-    : LiveActor(pName), mNerveExecutor(nullptr), _90(0), mStone(nullptr), _98(nullptr), _9C(0, 0, 1), _A8(0, 1, 0), _B4(true), mIsCannonFleet(false) {
-}
+    : LiveActor(pName), mNerveExecutor(nullptr), _90(0), mStone(nullptr), mHole(nullptr), _9C(0, 0, 1), _A8(0, 1, 0), _B4(true),
+      mIsCannonFleet(false) {}
 
 void Mogu::init(const JMapInfoIter& rIter) {
     if (MR::isValidInfo(rIter)) {
@@ -73,7 +74,7 @@ void Mogu::init(const JMapInfoIter& rIter) {
     //
     MR::initStarPointerTarget(this, 100.0f, TVec3f(0.0f, 50.0f, 0.0f));
 
-    _98->initWithoutIter();
+    mHole->initWithoutIter();
     mIsCannonFleet = MR::isEqualStageName("CannonFleetGalaxy");
 }
 
@@ -136,5 +137,19 @@ void Mogu::exeHipDropReaction() {
 
     if (MR::isActionEnd(this)) {
         setNerve(&NrvMogu::HostTypeNrvSwoon::sInstance);
+    }
+}
+
+void Mogu::exeSwoonEnd() {
+    if (MR::isFirstStep(this)) {
+        MR::startAction(this, "SwoonEnd");
+    }
+
+    MR::startLevelSound(this, "SE_EM_LV_MOGU_SWOON_RECOVER", -1, -1, -1);
+
+    if (MR::isActionEnd(this)) {
+        MR::startAction(mHole, "Close");
+        MR::startSound(this, "SE_EM_MOGUHOLE_CLOSE", -1, -1);
+        setNerve(&NrvMogu::HostTypeNrvHideWait::sInstance);
     }
 }

@@ -34,12 +34,12 @@ public:
     void tryPunchHitted(HitSensor*, HitSensor*, bool);
     void calcAndSetBaseMtx();
 
-    NerveExecutor* mNerveExecutor;
+    /* 0x8C */ NerveExecutor* mNerveExecutor;
     u32 _90;
-    MoguStone* mStone;
-    NameObj* _98;
+    /* 0x94 */ MoguStone* mStone;
+    /* 0x98 */ LiveActor* mHole;
     TVec3f _9C;
     TVec3f _A8;
     bool _B4;
-    bool mIsCannonFleet;
+    /* 0xB5 */ bool mIsCannonFleet;
 };
