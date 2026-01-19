@@ -26,10 +26,10 @@ public:
 
     void create(const char*, bool, bool);
 
-    TalkMessageCtrl* _20;
-    TalkTextFormer* _24;
+    /* 0x20 */ TalkMessageCtrl* mMessageCtrl;
+    /* 0x24 */ TalkTextFormer* mTextFormer;
     bool _28;
-    u8 _29;
+    bool _29;
 };
 
 class TalkBalloonShort : public TalkBalloon {
@@ -56,7 +56,6 @@ public:
     virtual void init(const JMapInfoIter&);
     virtual void open(TalkMessageCtrl*);
     virtual void close();
-    virtual void updateBalloon();
     virtual bool turnPage();
     virtual void skipMessage();
     virtual bool isTextAppearedAll();
@@ -69,7 +68,7 @@ public:
     void exeClose();
 
     u32 _2C;
-    IconAButton* _30;
+    /* 0x30 */ IconAButton* mAButton;
 };
 
 class TalkBalloonSign : public TalkBalloonEvent {
@@ -110,12 +109,12 @@ public:
     bool isActiveBalloonShort() const;
 
     /* 0x00 */ TalkBalloonShort** mBalloonShortArray;
-    TalkBalloonEvent* _04;
-    TalkBalloonInfo* _08;
-    TalkBalloonSign* _0C;
-    TalkBalloonIcon* _10;
+    /* 0x04 */ TalkBalloonEvent* mBalloonEvent;
+    /* 0x08 */ TalkBalloonInfo* mBalloonInfo;
+    /* 0x0C */ TalkBalloonSign* mBalloonSign;
+    /* 0x10 */ TalkBalloonIcon* mBalloonIcon;
     s32 _14;
-    IconAButton* _18;
+    /* 0x18 */ IconAButton* mAButton;
 };
 
 namespace MR {

@@ -20,7 +20,7 @@
 | `setMtx__14CollisionPartsFRCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>` | `0x80176198` | :white_check_mark: (100.0%) |
 | `setMtx__14CollisionPartsFv` | `0x801761A0` | :white_check_mark: (100.0%) |
 | `updateMtx__14CollisionPartsFv` | `0x801761AC` | :white_check_mark: (100.0%) |
-| `makeEqualScale__14CollisionPartsFPA4_f` | `0x801762F0` | :x: (0.0%) |
+| `makeEqualScale__14CollisionPartsFPA4_f` | `0x801762F0` | :x: (99.6%) |
 | `updateBoundingSphereRange__14CollisionPartsFv` | `0x801764AC` | :white_check_mark: (100.0%) |
 | `updateBoundingSphereRange__14CollisionPartsFQ29JGeometry8TVec3<f>` | `0x801764F4` | :white_check_mark: (100.0%) |
 | `updateBoundingSphereRangePrivate__14CollisionPartsFf` | `0x80176514` | :white_check_mark: (100.0%) |
@@ -31,8 +31,8 @@
 | `checkStrikeBallCore__14CollisionPartsFP7HitInfoUlRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>fffPP12KC_PrismDataPfPUcPC18TriangleFilterBasePCQ29JGeometry8TVec3<f>` | `0x80176A48` | :x: (0.0%) |
 | `checkStrikeBallWithThickness__14CollisionPartsFP7HitInfoUlRCQ29JGeometry8TVec3<f>ffPC18TriangleFilterBase` | `0x80176BF0` | :x: (0.0%) |
 | `calcCollidePosition__14CollisionPartsFPQ29JGeometry8TVec3<f>RC12KC_PrismDataUc` | `0x80176DA8` | :x: (0.0%) |
-| `projectToPlane__14CollisionPartsFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | `0x801770F0` | :x: (0.0%) |
+| `projectToPlane__14CollisionPartsFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | `0x801770F0` | :x: (78.7%) |
 | `checkStrikeLine__14CollisionPartsFP7HitInfoUlRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>PC18TriangleFilterBase` | `0x801771A4` | :x: (0.0%) |
 | `createAreaPolygonList__14CollisionPartsFP8TriangleUlRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | `0x80177390` | :x: (0.0%) |
 | `createAreaPolygonListArray__14CollisionPartsFP8TriangleUlPQ29JGeometry8TVec3<f>Ul` | `0x8017747C` | :x: (0.0%) |
-| `calcForceMovePower__14CollisionPartsCFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | `0x8017758C` | :x: (74.4%) |
+| `calcForceMovePower__14CollisionPartsCFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | `0x8017758C` | :white_check_mark: (100.0%) |

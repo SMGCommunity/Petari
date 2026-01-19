@@ -7,8 +7,8 @@
 | Name | Address | Match % |
 |------|---------|---------|
 | `__ct__10FileLoaderFv` | `0x80399330` | :white_check_mark: (100.0%) |
-| `requestLoadToMainRAM__10FileLoaderFPCcPUcP7JKRHeapQ212JKRDvdRipper15EAllocDirectionb` | `0x80399408` | :x: (83.1%) |
-| `requestMountArchive__10FileLoaderFPCcP7JKRHeapb` | `0x803994D0` | :x: (82.5%) |
+| `requestLoadToMainRAM__10FileLoaderFPCcPUcP7JKRHeapQ212JKRDvdRipper15EAllocDirectionb` | `0x80399408` | :white_check_mark: (100.0%) |
+| `requestMountArchive__10FileLoaderFPCcP7JKRHeapb` | `0x803994D0` | :white_check_mark: (100.0%) |
 | `isLoaded__10FileLoaderCFPCc` | `0x80399590` | :white_check_mark: (100.0%) |
 | `isMountedArchive__10FileLoaderCFPCc` | `0x80399598` | :white_check_mark: (100.0%) |
 | `receiveFile__10FileLoaderFPCc` | `0x803995C4` | :white_check_mark: (100.0%) |
@@ -19,6 +19,6 @@
 | `clearRequestFileInfo__10FileLoaderFb` | `0x803996FC` | :white_check_mark: (100.0%) |
 | `removeHolderIfIsEqualHeap__10FileLoaderFP7JKRHeap` | `0x80399708` | :white_check_mark: (100.0%) |
 | `removeFile__10FileLoaderFPCc` | `0x80399750` | :white_check_mark: (100.0%) |
-| `isNeedToLoad__10FileLoaderCFPCc` | `0x80399758` | :x: (95.7%) |
+| `isNeedToLoad__10FileLoaderCFPCc` | `0x80399758` | :white_check_mark: (100.0%) |
 | `getRequestFileInfoConst__10FileLoaderCFPCc` | `0x803997B4` | :white_check_mark: (100.0%) |
-| `addRequest__10FileLoaderFPCc` | `0x80399830` | :x: (0.0%) |
+| `addRequest__10FileLoaderFPCc` | `0x80399830` | :x: (92.9%) |

@@ -10,10 +10,10 @@
 | `isEnd__24CameraShakePatternSinglyCFv` | `0x800AD67C` | :white_check_mark: (100.0%) |
 | `getOffset__24CameraShakePatternSinglyCFPQ29JGeometry8TVec2<f>` | `0x800AD694` | :white_check_mark: (100.0%) |
 | `start__24CameraShakePatternSinglyFv` | `0x800AD6A4` | :white_check_mark: (100.0%) |
-| `update__24CameraShakePatternSinglyFv` | `0x800AD6B4` | :x: (0.0%) |
+| `update__24CameraShakePatternSinglyFv` | `0x800AD6B4` | :x: (94.4%) |
 | `setDirection__24CameraShakePatternSinglyFRCQ29JGeometry8TVec2<f>` | `0x800AD7A8` | :white_check_mark: (100.0%) |
 | `__ct__29CameraShakePatternVerticalSinFff` | `0x800AD7E0` | :white_check_mark: (100.0%) |
-| `isEnd__29CameraShakePatternVerticalSinCFv` | `0x800AD80C` | :x: (87.5%) |
+| `isEnd__29CameraShakePatternVerticalSinCFv` | `0x800AD80C` | :x: (99.1%) |
 | `getOffset__29CameraShakePatternVerticalSinCFPQ29JGeometry8TVec2<f>` | `0x800AD84C` | :white_check_mark: (100.0%) |
 | `start__29CameraShakePatternVerticalSinFv` | `0x800AD85C` | :white_check_mark: (100.0%) |
 | `update__29CameraShakePatternVerticalSinFv` | `0x800AD86C` | :white_check_mark: (100.0%) |

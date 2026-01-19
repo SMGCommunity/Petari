@@ -218,6 +218,10 @@ public:
     void reactionPunch(HitSensor*);
     void tryCoinPullInRush();
     bool tryJetAttack(HitSensor*);
+    void releaseThrowMemoSensor();
+    void createIceFloor(const TVec3f&);
+
+    bool isRequestJump() const;
 
     void damageDropThrowMemoSensor();
 
@@ -233,7 +237,7 @@ public:
 
     void entryWallWalkMode(const TVec3f&, const TVec3f&);
 
-    const HitSensor& getCarrySensor() const;
+    const HitSensor* getCarrySensor() const;
 
     const MarioConst& getConst() const { return *mConst; }
 
@@ -394,8 +398,8 @@ public:
         };
         TVec3f _468Vec;
     };
-    
-    //TVec3f _468;
+
+    // TVec3f _468;
     u32 _474;
     f32 _478;
     u32 _47C;
@@ -628,7 +632,10 @@ public:
     u32 _F24;
     u16 _F28;
     // padding
-    TVec3f _F2C;
+    union {
+        u32 _F2C;
+        TVec3f _F2CVec;
+    };
     u8 _F38;
     // padding
     union {

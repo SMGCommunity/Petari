@@ -1,16 +1,16 @@
 #include <revolution.h>
 
-#define TRUNC(n, a) (((u32) (n)) & ~((a) - 1))
-#define ROUND(n, a) (((u32) (n) + (a) - 1) & ~((a) - 1))
+#define TRUNC(n, a) (((u32)(n)) & ~((a) - 1))
+#define ROUND(n, a) (((u32)(n) + (a) - 1) & ~((a) - 1))
 
 volatile int __OSCurrHeap = -1;
 typedef struct Cell Cell;
 typedef struct HeapDesc HeapDesc;
 
 struct Cell {
-    Cell* prev;     // 0x0
-    Cell* next;     // 0x4
-    long size;      // 0x8
+    Cell* prev;  // 0x0
+    Cell* next;  // 0x4
+    long size;   // 0x8
 };
 
 struct HeapDesc {
@@ -42,8 +42,7 @@ static Cell* DLExtract(Cell* list, Cell* cell) {
 
     if (cell->prev == 0) {
         return cell->next;
-    }
-    else {
+    } else {
         cell->prev->next = cell->next;
         return list;
     }
@@ -74,7 +73,7 @@ static Cell* DLInsert(Cell* list, Cell* cell) {
             }
         }
     }
-    
+
     if (prev != 0) {
         prev->next = cell;
 
@@ -88,8 +87,7 @@ static Cell* DLInsert(Cell* list, Cell* cell) {
         }
 
         return list;
-    }
-    else {
+    } else {
         return cell;
     }
 }
@@ -101,7 +99,7 @@ void* OSAllocFromHeap(int heap, u32 size) {
     long leftSize;
 
     desc = &HeapArray[heap];
-    size += 0x3F;
+    size += 32;
     size = ROUND(size, 32);
 
     for (cell = desc->free; cell != 0; cell = cell->next) {
@@ -120,8 +118,7 @@ void* OSAllocFromHeap(int heap, u32 size) {
     if (leftSize < (u32)0x40) {
         // inlined
         desc->free = DLExtract(desc->free, cell);
-    }
-    else {
+    } else {
         cell->size = size;
         newCell = (Cell*)((char*)cell + size);
         newCell->size = leftSize;
@@ -134,8 +131,7 @@ void* OSAllocFromHeap(int heap, u32 size) {
 
         if (newCell->prev != 0) {
             newCell->prev->next = newCell;
-        }
-        else {
+        } else {
             desc->free = newCell;
         }
     }
@@ -144,7 +140,7 @@ void* OSAllocFromHeap(int heap, u32 size) {
     return (void*)((char*)cell + 0x20);
 }
 
-void OSFreeToHeap(int heap, void *ptr) {
+void OSFreeToHeap(int heap, void* ptr) {
     HeapDesc* desc;
     Cell* cell;
 
@@ -182,7 +178,7 @@ void* OSInitAlloc(void* arenaStart, void* arenaEnd, int max) {
     return arenaStart;
 }
 
-int OSCreateHeap(void *start, void *end) {
+int OSCreateHeap(void* start, void* end) {
     int heap;
     HeapDesc* desc;
     Cell* cell;

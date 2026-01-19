@@ -9,12 +9,12 @@
 | `scale__Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>Ff` | `0x801A17E0` | :x: (0.0%) |
 | `__ct__18WaterRoadModelInfoFP9WaterRoadb` | `0x801A1874` | :x: (0.0%) |
 | `initPoints__18WaterRoadModelInfoFP9WaterRoad` | `0x801A18D8` | :x: (0.0%) |
-| `initDisplayList__18WaterRoadModelInfoFv` | `0x801A1E04` | :x: (16.4%) |
+| `initDisplayList__18WaterRoadModelInfoFv` | `0x801A1E04` | :x: (32.8%) |
 | `sendGD__18WaterRoadModelInfoCFv` | `0x801A1EE0` | :x: (0.0%) |
 | `drawGD__18WaterRoadModelInfoCFv` | `0x801A2124` | :white_check_mark: (100.0%) |
 | `drawDirect__18WaterRoadModelInfoCFPC9WaterRoad` | `0x801A2174` | :x: (0.0%) |
 | `calcDemoDrawPointNum__18WaterRoadModelInfoCFPC9WaterRoad` | `0x801A2794` | :white_check_mark: (100.0%) |
-| `loadMaterialHigh__18WaterRoadModelInfoCFPC9WaterRoad` | `0x801A2808` | :x: (89.1%) |
+| `loadMaterialHigh__18WaterRoadModelInfoCFPC9WaterRoad` | `0x801A2808` | :x: (96.6%) |
 | `loadMaterialLow__18WaterRoadModelInfoCFv` | `0x801A2E2C` | :white_check_mark: (100.0%) |
 | `__ct__9WaterRoadFPCc` | `0x801A32C4` | :x: (0.0%) |
 | `init__9WaterRoadFRC12JMapInfoIter` | `0x801A33A0` | :x: (0.0%) |

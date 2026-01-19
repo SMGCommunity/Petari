@@ -100,7 +100,13 @@ static void GDPosition3f32(f32 x, f32 y, f32 z) {
     GDWrite_f32(z);
 }
 
+inline static void GDSetCurrent(GDLObj* dl) {
+    __GDCurrentDL = dl;
+}
+
 void GDColor4u8(u8, u8, u8, u8);
+
+void GDFlushCurrToMem();
 
 #ifdef __cplusplus
 }

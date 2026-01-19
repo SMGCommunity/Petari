@@ -6,7 +6,7 @@
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__ct__14JKRAramArchiveFlQ210JKRArchive15EMountDirection` | `0x804125E0` | :x: (65.1%) |
+| `__ct__14JKRAramArchiveFlQ210JKRArchive15EMountDirection` | `0x804125E0` | :white_check_mark: (100.0%) |
 | `__dt__14JKRAramArchiveFv` | `0x80412684` | :x: (0.0%) |
 | `open__14JKRAramArchiveFl` | `0x804127C4` | :x: (0.0%) |
 | `fetchResource__14JKRAramArchiveFPQ210JKRArchive12SDIFileEntryPUl` | `0x80412AE0` | :x: (0.0%) |

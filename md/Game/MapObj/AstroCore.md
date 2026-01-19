@@ -20,5 +20,5 @@
 | `execute__Q212NrvAstroCore16AstroCoreNrvGrowCFP5Spine` | `0x801A963C` | :white_check_mark: (100.0%) |
 | `execute__Q212NrvAstroCore16AstroCoreNrvWaitCFP5Spine` | `0x801A9644` | :white_check_mark: (100.0%) |
 | `__cl__Q22MR43FunctorV0M<P9AstroCore,M9AstroCoreFPCvPv_v>CFv` | `0x801A9684` | :white_check_mark: (100.0%) |
-| `clone__Q22MR43FunctorV0M<P9AstroCore,M9AstroCoreFPCvPv_v>CFP7JKRHeap` | `0x801A96B4` | :x: (96.2%) |
+| `clone__Q22MR43FunctorV0M<P9AstroCore,M9AstroCoreFPCvPv_v>CFP7JKRHeap` | `0x801A96B4` | :white_check_mark: (100.0%) |
 | `__dt__9AstroCoreFv` | `0x801A971C` | :white_check_mark: (100.0%) |

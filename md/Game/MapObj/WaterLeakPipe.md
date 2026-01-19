@@ -7,7 +7,7 @@
 | Name | Address | Match % |
 |------|---------|---------|
 | `__dt__13IceStepNoSlipFv` | `0x80252E58` | :white_check_mark: (100.0%) |
-| `__dt__13WaterLeakPipeFv` | `0x80252EB0` | :x: (95.7%) |
+| `__dt__13WaterLeakPipeFv` | `0x80252EB0` | :white_check_mark: (100.0%) |
 | `__ct__13IceStepNoSlipFPA4_f` | `0x80252F0C` | :white_check_mark: (100.0%) |
 | `init__13IceStepNoSlipFRC12JMapInfoIter` | `0x80252F6C` | :white_check_mark: (100.0%) |
 | `appear__13IceStepNoSlipFv` | `0x80252FDC` | :white_check_mark: (100.0%) |
@@ -15,7 +15,7 @@
 | `__ct__13WaterLeakPipeFPCc` | `0x8025307C` | :white_check_mark: (100.0%) |
 | `init__13WaterLeakPipeFRC12JMapInfoIter` | `0x802530E0` | :white_check_mark: (100.0%) |
 | `exeWait__13WaterLeakPipeFv` | `0x80253260` | :white_check_mark: (100.0%) |
-| `exeFreeze__13WaterLeakPipeFv` | `0x802532C0` | :x: (95.5%) |
+| `exeFreeze__13WaterLeakPipeFv` | `0x802532C0` | :x: (100.0%) |
 | `receiveMsgPlayerAttack__13WaterLeakPipeFUlP9HitSensorP9HitSensor` | `0x802533C8` | :x: (0.0%) |
 | `initPipeHeight__13WaterLeakPipeFv` | `0x802534DC` | :white_check_mark: (100.0%) |
 | `__sinit_\WaterLeakPipe_cpp` | `0x8025359C` | :white_check_mark: (100.0%) |

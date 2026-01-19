@@ -2,85 +2,79 @@
 #include "JSystem/JKernel/JKRHeap.hpp"
 #include <cstring>
 #include <revolution/gx/GXDispList.h>
+#include <stdint.h>
 
-u32 J3DShapeDraw::countVertex(u32 dataSize) {
-    // nonmatching: shenanigans afoot.
-    // This code as-is matches except for the obvious nonmatch of li r3,0 (corresponding to the count = 0 line).
-    // However doing the obvious fix will obliterate the rest of the function.
-    // https://decomp.me/scratch/9Omoe
+u32 J3DShapeDraw::countVertex(u32 stride) {
+    u32 count = 0;
+    u8* dlStart = (u8*)getDisplayList();
 
-    u32 count;  // = 0;  // BEWARE THE HYDRA!
-    u8* readPtr = mBuffer;
-
-    u16 numData;
-    for (; readPtr - mBuffer < mBufferSize; readPtr = readPtr + dataSize * numData + 3) {
-        u8 tag = *readPtr;
-        if (tag != 0xA0 && tag != 0x98) {
+    for (u8* dl = dlStart; (dl - dlStart) < getDisplayListSize();) {
+        u8 cmd = *(u8*)dl;
+        dl++;
+        if (cmd != GX_TRIANGLEFAN && cmd != GX_TRIANGLESTRIP)
             break;
-        }
-
-        numData = *reinterpret_cast< u16* >(readPtr + 1);
-        count = count + numData;
+        int vtxNum = *((u16*)(dl));
+        dl += 2;
+        count += vtxNum;
+        dl = (u8*)dl + stride * vtxNum;
     }
+
     return count;
 }
 
-void J3DShapeDraw::addTexMtxIndexInDL(u32 dataSize, u32 splitSize, u32 paramC) {
-    // Nonmatching: register allocation issues. Otherwise logically matching.
-    // https://decomp.me/scratch/XD4No
+void J3DShapeDraw::addTexMtxIndexInDL(u32 stride, u32 attrOffs, u32 valueBase) {
+    u32 byteNum = countVertex(stride);
+    u32 oldSize = mDisplayListSize;
+    u32 newSize = ALIGN_NEXT(oldSize + byteNum, 0x20);
+    u8* newDLStart = new (0x20) u8[newSize];
+    u8* oldDLStart = (u8*)mDisplayList;
+    u8* oldDL = oldDLStart;
+    u8* newDL = newDLStart;
 
-    u32 size = mBufferSize + countVertex(dataSize) + 0x1F & ~0x1F;  // pad to 32 bytes
+    for (; (oldDL - oldDLStart) < mDisplayListSize;) {
+        // Copy command
+        u8 cmd = *(u8*)oldDL;
+        oldDL++;
+        *newDL++ = cmd;
 
-    u8* writeBuffer = new (0x20) u8[size];
-
-    u8* bufferStart = mBuffer;
-    u8* readPtr = bufferStart;
-    u8* writePtr = writeBuffer;
-    s32 numData;
-
-    for (; readPtr - bufferStart < mBufferSize; readPtr = readPtr + dataSize * numData + 3) {
-        u8 tag = *readPtr;
-        *(writePtr++) = tag;
-
-        if (tag != 0xA0 && tag != 0x98) {
+        if (cmd != GX_TRIANGLEFAN && cmd != GX_TRIANGLESTRIP)
             break;
+
+        // Copy count
+        int vtxNum = *(u16*)oldDL;
+        oldDL += 2;
+        *(u16*)newDL = vtxNum;
+        newDL += 2;
+
+        for (int i = 0; i < vtxNum; i++) {
+            u8* oldDLVtx = &oldDL[stride * i];
+            u8 pnmtxidx = *oldDLVtx;
+            memcpy(newDL, oldDLVtx, (int)attrOffs);
+            newDL += attrOffs;
+            *newDL++ = valueBase + pnmtxidx;
+            memcpy(newDL, oldDLVtx + attrOffs, stride - attrOffs);
+            newDL += (stride - attrOffs);
         }
 
-        numData = *reinterpret_cast< u16* >(readPtr + 1);
-        *(reinterpret_cast< u16* >(writePtr)) = numData;
-        writePtr += 2;
-
-        for (s32 i = 0; i < numData; i++) {
-            u8 d = readPtr[dataSize * i + 3];
-            u8* dataOffset = readPtr + dataSize * i + 3;
-            memcpy(writePtr, dataOffset, splitSize);
-
-            u8* offset2 = writePtr + splitSize;
-            *(offset2++) = paramC + d;
-            memcpy(offset2, dataOffset + splitSize, dataSize - splitSize);
-
-            writePtr = offset2 + (dataSize - splitSize);
-        }
+        oldDL = (u8*)oldDL + stride * vtxNum;
     }
 
-    u32 bufferSize = writePtr - writeBuffer + 0x1F & ~0x1F;  // pad to 32 bytes
+    u32 realSize = ALIGN_NEXT((uintptr_t)newDL - (uintptr_t)newDLStart, 0x20);
+    for (; (newDL - newDLStart) < newSize; newDL++)
+        *newDL = 0;
 
-    for (; writePtr - writeBuffer < size; writePtr++) {
-        *writePtr = 0;
-    }
-
-    mBufferSize = bufferSize;
-    mBuffer = writeBuffer;
-    DCStoreRange(mBuffer, mBufferSize);
+    mDisplayListSize = realSize;
+    mDisplayList = newDLStart;
+    DCStoreRange(newDLStart, mDisplayListSize);
 }
 
-J3DShapeDraw::J3DShapeDraw(const u8* b, u32 c) {
-    mBuffer = const_cast< u8* >(b);
-    mBufferSize = c;
+J3DShapeDraw::J3DShapeDraw(const u8* displayList, u32 displayListSize) {
+    mDisplayList = (void*)displayList;
+    mDisplayListSize = displayListSize;
 }
 
 void J3DShapeDraw::draw() const {
-    GXCallDisplayList(mBuffer, mBufferSize);
+    GXCallDisplayList(mDisplayList, mDisplayListSize);
 }
 
 J3DShapeDraw::~J3DShapeDraw() {}

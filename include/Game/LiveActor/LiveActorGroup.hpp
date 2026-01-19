@@ -31,5 +31,5 @@ public:
         return nullptr;
     }
 
-    ~DeriveActorGroup() {}
+    ~DeriveActorGroup() NO_INLINE {}
 };

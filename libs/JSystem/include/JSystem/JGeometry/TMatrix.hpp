@@ -188,15 +188,15 @@ namespace JGeometry {
             f32 xz = this->mMtx[2][0];
             f32 xy = this->mMtx[1][0];
             f32 xx = this->mMtx[0][0];
-            rDestX.set<f32>(xx, xy, xz);
+            rDestX.set< f32 >(xx, xy, xz);
             f32 yz = this->mMtx[2][1];
             f32 yy = this->mMtx[1][1];
             f32 yx = this->mMtx[0][1];
-            rDestY.set<f32>(yx, yy, yz);
+            rDestY.set< f32 >(yx, yy, yz);
             f32 zz = this->mMtx[2][2];
             f32 zy = this->mMtx[1][2];
             f32 zx = this->mMtx[0][2];
-            rDestZ.set<f32>(zx, zy, zz);
+            rDestZ.set< f32 >(zx, zy, zz);
         }
         void setXDir(const TVec3f& rSrc);
         void setXDir(f32 x, f32 y, f32 z);
@@ -440,6 +440,13 @@ namespace JGeometry {
             this->mMtx[2][1] = two * z * y + two * w * x;
             this->mMtx[1][2] = two * z * y - two * w * x;
             this->mMtx[2][2] = (1.0f - two * x * x) - two * y * y;
+        }
+
+        void setRotateQuaternionInlineAndTrans(const TQuat4f& q, const TVec3f& v) {
+            setRotateQuaternionInline(q);
+            this->mMtx[0][3] = v.x;
+            this->mMtx[1][3] = v.y;
+            this->mMtx[2][3] = v.z;
         }
 
         inline void mult33Inline(const TVec3f& rSrc, TVec3f& rDst) const {

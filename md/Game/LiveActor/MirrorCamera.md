@@ -13,7 +13,7 @@
 | `setMirrorMapInfo__12MirrorCameraFP12J3DModelData` | `0x80168BFC` | :x: (0.0%) |
 | `updateViewMtx__12MirrorCameraFv` | `0x80168D00` | :x: (0.0%) |
 | `updateModelTexMtx__12MirrorCameraFv` | `0x80168EA0` | :x: (0.0%) |
-| `getDistance__12MirrorCameraCFRCQ29JGeometry8TVec3<f>` | `0x80168F4C` | :x: (68.0%) |
+| `getDistance__12MirrorCameraCFRCQ29JGeometry8TVec3<f>` | `0x80168F4C` | :x: (99.7%) |
 | `getMirrorCamera__2MRFv` | `0x80168FB0` | :white_check_mark: (100.0%) |
 | `getDistanceToMirror__2MRFRCQ29JGeometry8TVec3<f>` | `0x80168FD8` | :white_check_mark: (100.0%) |
 | `__dt__12MirrorCameraFv` | `0x80169014` | :white_check_mark: (100.0%) |

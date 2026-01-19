@@ -14,7 +14,7 @@
 | `calcAndSetBaseMtx__15SpinLeverSwitchFv` | `0x802396C4` | :white_check_mark: (100.0%) |
 | `attackSensor__15SpinLeverSwitchFP9HitSensorP9HitSensor` | `0x802396F8` | :white_check_mark: (100.0%) |
 | `receiveMsgPlayerAttack__15SpinLeverSwitchFUlP9HitSensorP9HitSensor` | `0x80239768` | :white_check_mark: (100.0%) |
-| `__dt__15SpinLeverSwitchFv` | `0x80239808` | :x: (95.7%) |
+| `__dt__15SpinLeverSwitchFv` | `0x80239808` | :white_check_mark: (100.0%) |
 | `__sinit_\SpinLeverSwitch_cpp` | `0x80239864` | :white_check_mark: (100.0%) |
 | `__ct__Q218NrvSpinLeverSwitch22SpinLeverSwitchNrvWaitFv` | `0x80239898` | :white_check_mark: (100.0%) |
 | `__ct__Q218NrvSpinLeverSwitch26SpinLeverSwitchNrvSwitchOnFv` | `0x802398A8` | :white_check_mark: (100.0%) |

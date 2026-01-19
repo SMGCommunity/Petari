@@ -1,6 +1,7 @@
 #include "Game/MapObj/AstroCountDownPlate.hpp"
 #include "Game/LiveActor/MaterialCtrl.hpp"
 #include "Game/MapObj/AstroMapObjFunction.hpp"
+#include <JSystem/J3DGraphBase/J3DTevs.hpp>
 
 namespace NrvAstroCountDownPlate {
     NEW_NERVE(AstroCountDownPlateNrvDead, AstroCountDownPlate, Wait);
@@ -88,7 +89,7 @@ void AstroCountDownPlate::exeCountToZero() {
 
     f32 v2 = MR::calcNerveRate(this, 50);
     f32 v3 = MR::getConvergeVibrationValue(v2, 0.1f, 0.0f, 0.3f, 4.0f);
-    _8C.mInfo.mSRTInfo.mTransY = v3;
+    _8C.mInfo.mSRTInfo.mTranslationY = v3;
 
     if (_1B4) {
         MR::startLevelSound(this, "SE_OJ_LV_CDN_PLATE_LIGHT", -1, -1, -1);
@@ -108,8 +109,8 @@ void AstroCountDownPlate::initTextureAtNumLeftStar() {
 void AstroCountDownPlate::setNumLeftStar() {
     s32 starLeft = MR::getPowerStarLeftToDisplayCountDownPlate();
     f32 mod = starLeft % 10;
-    _120.mInfo.mSRTInfo.mTransY = 0.1f * (starLeft / 10);
-    _8C.mInfo.mSRTInfo.mTransY = 0.1f * mod;
+    _120.mInfo.mSRTInfo.mTranslationY = 0.1f * (starLeft / 10);
+    _8C.mInfo.mSRTInfo.mTranslationY = 0.1f * mod;
 }
 
 void AstroCountDownPlate::selectNrvWait() {

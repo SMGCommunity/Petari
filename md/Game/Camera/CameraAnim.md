@@ -7,21 +7,21 @@
 | Name | Address | Match % |
 |------|---------|---------|
 | `set__18CamAnmDataAccessorFPvPv` | `0x800941C8` | :white_check_mark: (100.0%) |
-| `getPos__18CamAnmDataAccessorCFPQ29JGeometry8TVec3<f>f` | `0x800941D4` | :x: (84.2%) |
-| `getWatchPos__18CamAnmDataAccessorCFPQ29JGeometry8TVec3<f>f` | `0x8009426C` | :x: (84.2%) |
+| `getPos__18CamAnmDataAccessorCFPQ29JGeometry8TVec3<f>f` | `0x800941D4` | :x: (85.3%) |
+| `getWatchPos__18CamAnmDataAccessorCFPQ29JGeometry8TVec3<f>f` | `0x8009426C` | :x: (85.3%) |
 | `getTwist__18CamAnmDataAccessorCFf` | `0x80094304` | :white_check_mark: (100.0%) |
 | `getFovy__18CamAnmDataAccessorCFf` | `0x80094314` | :white_check_mark: (100.0%) |
 | `get__18CamAnmDataAccessorCFfUlUl` | `0x80094324` | :x: (0.0%) |
 | `set__21KeyCamAnmDataAccessorFPvPv` | `0x8009442C` | :white_check_mark: (100.0%) |
-| `getPos__21KeyCamAnmDataAccessorCFPQ29JGeometry8TVec3<f>f` | `0x80094438` | :x: (85.4%) |
-| `getWatchPos__21KeyCamAnmDataAccessorCFPQ29JGeometry8TVec3<f>f` | `0x800944DC` | :x: (85.4%) |
+| `getPos__21KeyCamAnmDataAccessorCFPQ29JGeometry8TVec3<f>f` | `0x80094438` | :x: (86.3%) |
+| `getWatchPos__21KeyCamAnmDataAccessorCFPQ29JGeometry8TVec3<f>f` | `0x800944DC` | :x: (86.3%) |
 | `getTwist__21KeyCamAnmDataAccessorCFf` | `0x80094580` | :white_check_mark: (100.0%) |
 | `getFovy__21KeyCamAnmDataAccessorCFf` | `0x80094594` | :white_check_mark: (100.0%) |
 | `get__21KeyCamAnmDataAccessorCFfUlUlUl` | `0x800945A8` | :white_check_mark: (100.0%) |
 | `searchKeyFrameIndex__21KeyCamAnmDataAccessorCFfUlUlUl` | `0x800945D4` | :white_check_mark: (100.0%) |
 | `get3f__21KeyCamAnmDataAccessorCFfUlUl` | `0x80094630` | :white_check_mark: (100.0%) |
-| `get4f__21KeyCamAnmDataAccessorCFfUlUl` | `0x800946B4` | :x: (87.9%) |
-| `calcHermite__21KeyCamAnmDataAccessorCFfffffff` | `0x80094738` | :x: (0.0%) |
+| `get4f__21KeyCamAnmDataAccessorCFfUlUl` | `0x800946B4` | :x: (99.9%) |
+| `calcHermite__21KeyCamAnmDataAccessorCFfffffff` | `0x80094738` | :x: (31.2%) |
 | `__ct__10CameraAnimFPCc` | `0x8009477C` | :white_check_mark: (100.0%) |
 | `reset__10CameraAnimFv` | `0x8009484C` | :x: (0.0%) |
 | `calc__10CameraAnimFv` | `0x800948D0` | :x: (0.0%) |

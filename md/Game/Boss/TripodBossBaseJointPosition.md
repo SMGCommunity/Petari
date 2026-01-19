@@ -10,5 +10,5 @@
 | `init__27TripodBossBaseJointPositionFRC12JMapInfoIter` | `0x80089D24` | :white_check_mark: (100.0%) |
 | `initAfterPlacement__27TripodBossBaseJointPositionFv` | `0x80089DB4` | :white_check_mark: (100.0%) |
 | `control__27TripodBossBaseJointPositionFv` | `0x80089E00` | :white_check_mark: (100.0%) |
-| `__dt__27TripodBossBaseJointPositionFv` | `0x80089E60` | :x: (95.7%) |
+| `__dt__27TripodBossBaseJointPositionFv` | `0x80089E60` | :white_check_mark: (100.0%) |
 | `getBaseMtx__27TripodBossBaseJointPositionCFv` | `0x80089EBC` | :white_check_mark: (100.0%) |

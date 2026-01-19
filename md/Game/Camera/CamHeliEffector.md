@@ -8,7 +8,7 @@
 |------|---------|---------|
 | `__ct__15CamHeliEffectorFv` | `0x80091D24` | :white_check_mark: (100.0%) |
 | `update__15CamHeliEffectorFP9CameraMan` | `0x80091D38` | :x: (0.0%) |
-| `isCameraStateOn__15CameraTargetObjCFUl` | `0x80092054` | :white_check_mark: (100.0%) |
+| `isCameraStateOn__15CameraTargetObjCFUl` | `0x80092054` | :x: (0.0%) |
 | `__sinit_\CamHeliEffector_cpp` | `0x8009205C` | :x: (0.0%) |
 | `__ct__Q213NrvMarioActor17MarioActorNrvWaitFv` | `0x800920C8` | :x: (0.0%) |
 | `__ct__Q213NrvMarioActor21MarioActorNrvGameOverFv` | `0x800920D8` | :x: (0.0%) |

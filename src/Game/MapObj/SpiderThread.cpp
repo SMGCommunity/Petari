@@ -139,14 +139,14 @@ void SpiderThread::startActorBind(LiveActor* pActor, const TVec3f** pPointPos, c
     mNumHangInfos++;
 }
 
-void SpiderThread::touchActor(const TVec3f& rPos, const TVec3f& rVel) {
+bool SpiderThread::touchActor(const TVec3f& rPos, const TVec3f& rVel) {
     const TVec3f* pointPos = nullptr;
     const TVec3f* neutralPos = nullptr;
     s32 nearestIndex = 0;
     s32 pointNum = 0;
     findNearestPointPos(&pointPos, &neutralPos, &nearestIndex, &pointNum, rPos);
 
-    mSubParts[nearestIndex]->touchActor(pointNum, rVel);
+    return mSubParts[nearestIndex]->touchActor(pointNum, rVel);
 }
 
 void SpiderThread::tryPush(const TVec3f& rPos, f32 radius) {
@@ -442,12 +442,12 @@ void MR::startActorBindToSpiderThread(LiveActor* pActor, const TVec3f** pPointPo
     getThreadObj()->startActorBind(pActor, pPointPos, pNeutralPos, pUp, rPos, rVel, 1);
 }
 
-void MR::sendMsgToSpiderThread(u32 msg, HitSensor* pSender) {
-    getThreadObj()->receiveMessage(msg, pSender, MR::getMessageSensor());
+bool MR::sendMsgToSpiderThread(u32 msg, HitSensor* pSender) {
+    return getThreadObj()->receiveMessage(msg, pSender, MR::getMessageSensor());
 }
 
-void MR::touchActorToSpiderThread(const TVec3f& rPos, const TVec3f& rVel) {
-    getThreadObj()->touchActor(rPos, rVel);
+bool MR::touchActorToSpiderThread(const TVec3f& rPos, const TVec3f& rVel) {
+    return getThreadObj()->touchActor(rPos, rVel);
 }
 
 void MR::tryPushSpiderThread(const TVec3f& rPos, f32 radius) {

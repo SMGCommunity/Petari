@@ -256,6 +256,8 @@ cflags_jsys = [
     f"-DVERSION={version_num}",
 ]
 
+cflags_jsys_j3d = [*cflags_jsys, "-O4,p"]
+
 cflags_trk = [
     "-nodefaults",
     "-proc gekko",
@@ -509,6 +511,16 @@ def JSysLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
         "lib": lib_name,
         "mw_version": "GC/3.0a3",
         "cflags": cflags_jsys,
+        "progress_category": "jsys",
+        "objects": objects,
+    }
+
+
+def JSys_J3DLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
+    return {
+        "lib": lib_name,
+        "mw_version": "GC/3.0a3.3",
+        "cflags": cflags_jsys_j3d,
         "progress_category": "jsys",
         "objects": objects,
     }
@@ -1167,7 +1179,7 @@ config.libs = [
             Object(NonMatching, "Game/Enemy/WalkerStateStagger.cpp"),
             Object(NonMatching, "Game/Enemy/WalkerStateWander.cpp"),
             Object(NonMatching, "Game/Enemy/WaterBazooka.cpp"),
-            Object(NonMatching, "Game/Enemy/WaterBazookaCapsule.cpp"),
+            Object(Matching, "Game/Enemy/WaterBazookaCapsule.cpp"),
         ],
     ),
     GameLib(
@@ -2320,10 +2332,10 @@ config.libs = [
     SDKLib(
         "ax",
         [
-            Object(NonMatching, "RVL_SDK/ax/AXAlloc.c"),
-            Object(NonMatching, "RVL_SDK/ax/AXAux.c"),
-            Object(NonMatching, "RVL_SDK/ax/AXCL.c"),
-            Object(NonMatching, "RVL_SDK/ax/AXVPB.c"),
+            Object(Matching, "RVL_SDK/ax/AXAlloc.c"),
+            Object(Matching, "RVL_SDK/ax/AXAux.c"),
+            Object(Matching, "RVL_SDK/ax/AXCL.c"),
+            Object(Matching, "RVL_SDK/ax/AXVPB.c"),
         ],
     ),
     SDKLib(
@@ -2923,7 +2935,7 @@ config.libs = [
         [
             Object(NonMatching, "JSystem/J2DGraph/J2DGrafContext.cpp"),
             Object(NonMatching, "JSystem/J2DGraph/J2DOrthoGraph.cpp"),
-            Object(NonMatching, "JSystem/J2DGraph/J2DMatBlock.cpp"),
+            Object(Matching, "JSystem/J2DGraph/J2DMatBlock.cpp"),
             Object(NonMatching, "JSystem/J2DGraph/J2DPane.cpp"),
             Object(NonMatching, "JSystem/J2DGraph/J2DScreen.cpp"),
             Object(NonMatching, "JSystem/J2DGraph/J2DPicture.cpp"),
@@ -2957,7 +2969,11 @@ config.libs = [
             Object(NonMatching, "JSystem/J3DGraphBase/J3DShapeMtx.cpp"),
             Object(NonMatching, "JSystem/J3DGraphBase/J3DShapeDraw.cpp"),
             Object(NonMatching, "JSystem/J3DGraphBase/J3DShape.cpp"),
-            Object(NonMatching, "JSystem/J3DGraphBase/J3DMaterial.cpp"),
+            Object(
+                NonMatching,
+                "JSystem/J3DGraphBase/J3DMaterial.cpp",
+                cflags=cflags_jsys_j3d,
+            ),
             Object(NonMatching, "JSystem/J3DGraphBase/J3DMatBlock.cpp"),
             Object(NonMatching, "JSystem/J3DGraphBase/J3DTevs.cpp"),
             Object(NonMatching, "JSystem/J3DGraphBase/J3DDrawBuffer.cpp"),

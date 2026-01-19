@@ -30,4 +30,4 @@
 | `update__18BaseMatrixFollowerFv` | `0x804012E0` | :x: (0.0%) |
 | `__dt__Q22MR42AssignableArray<P22BaseMatrixFollowTarget>Fv` | `0x804012E4` | :x: (0.0%) |
 | `__dt__Q22MR38AssignableArray<P18BaseMatrixFollower>Fv` | `0x80401344` | :x: (0.0%) |
-| `__dt__28BaseMatrixFollowTargetHolderFv` | `0x804013A4` | :x: (67.6%) |
+| `__dt__28BaseMatrixFollowTargetHolderFv` | `0x804013A4` | :x: (64.1%) |

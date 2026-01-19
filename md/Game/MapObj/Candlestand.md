@@ -6,7 +6,7 @@
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `getParam__25@unnamed@Candlestand_cpp@FPCc` | `0x801BC5EC` | :x: (48.3%) |
+| `getParam__25@unnamed@Candlestand_cpp@FPCc` | `0x801BC5EC` | :x: (64.6%) |
 | `__ct__11CandlestandFPCc` | `0x801BC65C` | :white_check_mark: (100.0%) |
 | `init__11CandlestandFRC12JMapInfoIter` | `0x801BC6AC` | :white_check_mark: (100.0%) |
 | `makeActorAppeared__11CandlestandFv` | `0x801BC814` | :white_check_mark: (100.0%) |
@@ -16,13 +16,13 @@
 | `receiveMsgPlayerAttack__11CandlestandFUlP9HitSensorP9HitSensor` | `0x801BC9B4` | :white_check_mark: (100.0%) |
 | `receiveMsgEnemyAttack__11CandlestandFUlP9HitSensorP9HitSensor` | `0x801BCA60` | :white_check_mark: (100.0%) |
 | `receiveOtherMsg__11CandlestandFUlP9HitSensorP9HitSensor` | `0x801BCB0C` | :white_check_mark: (100.0%) |
-| `emitEffectFire__11CandlestandFv` | `0x801BCBAC` | :x: (85.7%) |
-| `deleteEffectFire__11CandlestandFv` | `0x801BCC1C` | :x: (85.7%) |
-| `emitEffectExtinguishFire__11CandlestandFv` | `0x801BCC8C` | :x: (87.1%) |
+| `emitEffectFire__11CandlestandFv` | `0x801BCBAC` | :x: (99.9%) |
+| `deleteEffectFire__11CandlestandFv` | `0x801BCC1C` | :x: (99.9%) |
+| `emitEffectExtinguishFire__11CandlestandFv` | `0x801BCC8C` | :x: (99.9%) |
 | `appearItem__11CandlestandFv` | `0x801BCD08` | :x: (0.0%) |
 | `exeFire__11CandlestandFv` | `0x801BCF5C` | :white_check_mark: (100.0%) |
 | `exeExtinguish__11CandlestandFv` | `0x801BD004` | :white_check_mark: (100.0%) |
-| `exeFlicker__11CandlestandFv` | `0x801BD0B4` | :x: (89.8%) |
+| `exeFlicker__11CandlestandFv` | `0x801BD0B4` | :x: (99.9%) |
 | `__dt__11CandlestandFv` | `0x801BD178` | :white_check_mark: (100.0%) |
 | `__sinit_\Candlestand_cpp` | `0x801BD1D0` | :white_check_mark: (100.0%) |
 | `__ct__Q214NrvCandlestand16HostTypeWaitFireFv` | `0x801BD21C` | :white_check_mark: (100.0%) |

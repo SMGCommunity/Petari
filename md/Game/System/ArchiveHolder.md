@@ -12,5 +12,5 @@
 | `createAndAdd__13ArchiveHolderFPvP7JKRHeapPCc` | `0x80395D4C` | :white_check_mark: (100.0%) |
 | `getArchive__13ArchiveHolderCFPCc` | `0x80395DE8` | :white_check_mark: (100.0%) |
 | `getArchiveAndHeap__13ArchiveHolderCFPCcPP10JKRArchivePP7JKRHeap` | `0x80395E1C` | :white_check_mark: (100.0%) |
-| `removeIfIsEqualHeap__13ArchiveHolderFP7JKRHeap` | `0x80395E6C` | :x: (0.0%) |
+| `removeIfIsEqualHeap__13ArchiveHolderFP7JKRHeap` | `0x80395E6C` | :white_check_mark: (100.0%) |
 | `findEntry__13ArchiveHolderCFPCc` | `0x80395F6C` | :white_check_mark: (100.0%) |

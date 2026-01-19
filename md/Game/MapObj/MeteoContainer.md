@@ -15,7 +15,7 @@
 | `receiveMsgPush__14MeteoContainerFP9HitSensorP9HitSensor` | `0x801FD620` | :white_check_mark: (100.0%) |
 | `receiveOtherMsg__14MeteoContainerFUlP9HitSensorP9HitSensor` | `0x801FD628` | :white_check_mark: (100.0%) |
 | `exeDestroy__14MeteoContainerFv` | `0x801FD680` | :white_check_mark: (100.0%) |
-| `__dt__14MeteoContainerFv` | `0x801FD6EC` | :x: (95.7%) |
+| `__dt__14MeteoContainerFv` | `0x801FD6EC` | :white_check_mark: (100.0%) |
 | `__sinit_\MeteoContainer_cpp` | `0x801FD748` | :white_check_mark: (100.0%) |
 | `__ct__Q217NrvMeteoContainer21MeteoContainerNrvWaitFv` | `0x801FD774` | :white_check_mark: (100.0%) |
 | `__ct__Q217NrvMeteoContainer24MeteoContainerNrvDestroyFv` | `0x801FD784` | :white_check_mark: (100.0%) |

@@ -20,8 +20,8 @@
 | `testButton2__10WPadButtonCFv` | `0x803AC620` | :white_check_mark: (100.0%) |
 | `testButtonC__10WPadButtonCFv` | `0x803AC62C` | :white_check_mark: (100.0%) |
 | `testButtonZ__10WPadButtonCFv` | `0x803AC638` | :white_check_mark: (100.0%) |
-| `testTriggerUp__10WPadButtonCFv` | `0x803AC644` | :x: (66.7%) |
-| `testTriggerDown__10WPadButtonCFv` | `0x803AC650` | :x: (66.7%) |
+| `testTriggerUp__10WPadButtonCFv` | `0x803AC644` | :white_check_mark: (100.0%) |
+| `testTriggerDown__10WPadButtonCFv` | `0x803AC650` | :white_check_mark: (100.0%) |
 | `testTriggerLeft__10WPadButtonCFv` | `0x803AC65C` | :white_check_mark: (100.0%) |
 | `testTriggerRight__10WPadButtonCFv` | `0x803AC668` | :white_check_mark: (100.0%) |
 | `testTriggerA__10WPadButtonCFv` | `0x803AC674` | :white_check_mark: (100.0%) |

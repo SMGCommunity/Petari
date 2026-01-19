@@ -872,7 +872,7 @@ namespace {
         },
         {
             "SpaceCocoon",
-            nullptr,
+            createNameObj< SpaceCocoon >,
             "SpaceCocoon",
         },
         {
@@ -1607,7 +1607,7 @@ namespace {
         },
         {
             "SpiderAttachPoint",
-            nullptr,
+            createNameObj< SlingShooter >,
             "SpiderThreadAttachPoint",
         },
         {

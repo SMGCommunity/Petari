@@ -8,5 +8,5 @@
 |------|---------|---------|
 | `__ct__16MercatorFixPartsFPCc` | `0x801FC740` | :white_check_mark: (100.0%) |
 | `receiveOtherMsg__16MercatorFixPartsFUlP9HitSensorP9HitSensor` | `0x801FC784` | :white_check_mark: (100.0%) |
-| `__dt__16MercatorFixPartsFv` | `0x801FC798` | :x: (95.7%) |
+| `__dt__16MercatorFixPartsFv` | `0x801FC798` | :white_check_mark: (100.0%) |
 | `init__16MercatorFixPartsFRC12JMapInfoIter` | `0x801FC7F4` | :white_check_mark: (100.0%) |

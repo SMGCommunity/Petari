@@ -42,7 +42,11 @@ public:
     /// @brief Creates a new `JUTTexture`.
     /// @param pTIMG TODO.
     /// @param param2 TODO.
-    JUTTexture(const ResTIMG* pTIMG, u8 param2);
+    JUTTexture(const ResTIMG* p_timg, u8 param_1) {
+        mEmbPalette = NULL;
+        storeTIMG(p_timg, param_1);
+        setCaptureFlag(false);
+    }
 
     inline JUTTexture(const ResTIMG* pTIMG) {
         mEmbPalette = nullptr;
@@ -64,6 +68,12 @@ public:
     void capture(int, int, GXTexFmt, bool, u8);
     void setCaptureFlag(bool);
     void setEmbPaletteDelFlag(bool);
+
+    s32 getWidth() const { return mTIMG->mWidth; }
+    s32 getHeight() const { return mTIMG->mHeight; }
+    s32 getTransparency() const { return mTIMG->mTransparency; }
+    const ResTIMG* getTexInfo() const { return mTIMG; }
+    int getTlutName() const { return _3A; }
 
     /* 0x00 */ GXTexObj mObj;
     /* 0x20 */ ResTIMG* mTIMG;

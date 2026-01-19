@@ -24,7 +24,7 @@
 | `getBaseMtx__8TriangleCFv` | `0x80182F18` | :white_check_mark: (100.0%) |
 | `getBaseInvMtx__8TriangleCFv` | `0x80182F24` | :white_check_mark: (100.0%) |
 | `getPrevBaseMtx__8TriangleCFv` | `0x80182F30` | :white_check_mark: (100.0%) |
-| `__ct__7HitInfoFv` | `0x80182F3C` | :x: (6.5%) |
+| `__ct__7HitInfoFv` | `0x80182F3C` | :white_check_mark: (100.0%) |
 | `isCollisionAtFace__7HitInfoCFv` | `0x80182FB8` | :white_check_mark: (100.0%) |
 | `isCollisionAtEdge__7HitInfoCFv` | `0x80182FCC` | :white_check_mark: (100.0%) |
 | `isCollisionAtCorner__7HitInfoCFv` | `0x80182FEC` | :white_check_mark: (100.0%) |

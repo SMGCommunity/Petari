@@ -10,7 +10,7 @@
 | `add__15HitSensorKeeperFPCcUlUsfP9LiveActorRCQ29JGeometry8TVec3<f>` | `0x80164200` | :white_check_mark: (100.0%) |
 | `addPos__15HitSensorKeeperFPCcUlUsfP9LiveActorPCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | `0x801642C0` | :white_check_mark: (100.0%) |
 | `addMtx__15HitSensorKeeperFPCcUlUsfP9LiveActorPA4_fRCQ29JGeometry8TVec3<f>` | `0x80164384` | :white_check_mark: (100.0%) |
-| `addCallback__15HitSensorKeeperFPCcUlUsfP9LiveActor` | `0x80164448` | :white_check_mark: (100.0%) |
+| `addCallback__15HitSensorKeeperFPCcUlUsfP9LiveActor` | `0x80164448` | :x: (57.0%) |
 | `getSensor__15HitSensorKeeperCFPCc` | `0x80164520` | :white_check_mark: (100.0%) |
 | `update__15HitSensorKeeperFv` | `0x801645D8` | :white_check_mark: (100.0%) |
 | `doObjCol__15HitSensorKeeperFv` | `0x80164634` | :white_check_mark: (100.0%) |

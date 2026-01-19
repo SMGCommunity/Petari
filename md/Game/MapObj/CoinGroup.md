@@ -9,7 +9,7 @@
 | `__ct__9CoinGroupFPCc` | `0x801C896C` | :white_check_mark: (100.0%) |
 | `init__9CoinGroupFRC12JMapInfoIter` | `0x801C89C4` | :white_check_mark: (100.0%) |
 | `killCoinAll__9CoinGroupFv` | `0x801C8C74` | :white_check_mark: (100.0%) |
-| `appearCoinAll__9CoinGroupFv` | `0x801C8CDC` | :x: (80.0%) |
+| `appearCoinAll__9CoinGroupFv` | `0x801C8CDC` | :white_check_mark: (100.0%) |
 | `appearCoinFix__9CoinGroupFv` | `0x801C8CF0` | :white_check_mark: (100.0%) |
 | `appearCoinAllTimer__9CoinGroupFv` | `0x801C8D58` | :white_check_mark: (100.0%) |
 | `setCoinTrans__9CoinGroupFlRCQ29JGeometry8TVec3<f>` | `0x801C8DBC` | :white_check_mark: (100.0%) |
@@ -29,4 +29,4 @@
 | `placementCoin__9CoinGroupFv` | `0x801C903C` | :white_check_mark: (100.0%) |
 | `Functor<9CoinGroup>__2MRFP9CoinGroupM9CoinGroupFPCvPv_v_Q22MR43FunctorV0M<P9CoinGroup,M9CoinGroupFPCvPv_v>` | `0x801C9040` | :white_check_mark: (100.0%) |
 | `__cl__Q22MR43FunctorV0M<P9CoinGroup,M9CoinGroupFPCvPv_v>CFv` | `0x801C9080` | :white_check_mark: (100.0%) |
-| `clone__Q22MR43FunctorV0M<P9CoinGroup,M9CoinGroupFPCvPv_v>CFP7JKRHeap` | `0x801C90B0` | :x: (96.2%) |
+| `clone__Q22MR43FunctorV0M<P9CoinGroup,M9CoinGroupFPCvPv_v>CFP7JKRHeap` | `0x801C90B0` | :white_check_mark: (100.0%) |
