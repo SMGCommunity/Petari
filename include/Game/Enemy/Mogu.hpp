@@ -4,6 +4,7 @@
 
 class HitSensor;
 class NerveExecutor;
+class MoguStone;
 
 class Mogu : public LiveActor {
 public:
@@ -35,7 +36,7 @@ public:
 
     NerveExecutor* mNerveExecutor;
     u32 _90;
-    u32 _94;
+    MoguStone* mStone;
     NameObj* _98;
     TVec3f _9C;
     TVec3f _A8;

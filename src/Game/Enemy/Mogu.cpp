@@ -1,4 +1,5 @@
 #include "Game/Enemy/Mogu.hpp"
+#include "Game/Enemy/MoguStone.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
@@ -33,7 +34,8 @@ namespace NrvMogu {
 }  // namespace NrvMogu
 
 Mogu::Mogu(const char* pName)
-    : LiveActor(pName), mNerveExecutor(nullptr), _90(0), _94(0), _98(nullptr), _9C(0, 0, 1), _A8(0, 1, 0), _B4(true), mIsCannonFleet(false) {}
+    : LiveActor(pName), mNerveExecutor(nullptr), _90(0), mStone(nullptr), _98(nullptr), _9C(0, 0, 1), _A8(0, 1, 0), _B4(true), mIsCannonFleet(false) {
+}
 
 void Mogu::init(const JMapInfoIter& rIter) {
     if (MR::isValidInfo(rIter)) {
@@ -119,4 +121,10 @@ bool Mogu::isPlayerExistUp() {
     TVec3f* playerGravity = MR::getPlayerGravity();
     MR::vecKillElement(vecToPlayer, *playerGravity, &vecToPlayer);
     return vecToPlayer.length() < 400.0f;
+}
+
+void Mogu::tearDownThrow() {
+    if (mStone->isTaken()) {
+        mStone->kill();
+    }
 }

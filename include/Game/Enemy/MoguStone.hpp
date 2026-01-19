@@ -17,6 +17,7 @@ public:
     void exeTaken();
     void exeThrow();
     void exeFall();
+    bool isTaken();
     // incomplete class
 
     TVec4f _90;
