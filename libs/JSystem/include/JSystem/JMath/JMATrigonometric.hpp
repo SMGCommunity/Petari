@@ -22,8 +22,8 @@ namespace JMath {
         static const u32 LEN = 1 << Bits;
         std::pair< f32, f32 > table[LEN];
 
-        f32 sinShort(s16 v) const { return table[static_cast<u16>(v) >> (16 - Bits)].a1; }
-        f32 cosShort(s16 v) const { return table[static_cast<u16>(v) >> (16 - Bits)].b1; }
+        f32 sinShort(s16 v) const { return table[static_cast< u16 >(v) >> (16 - Bits)].a1; }
+        f32 cosShort(s16 v) const { return table[static_cast< u16 >(v) >> (16 - Bits)].b1; }
 
         inline f32 sinLapRad(f32 v) {
             if (v < 0.0f) {
@@ -80,9 +80,9 @@ namespace JMath {
         T _1000;
     };
 
-    static TSinCosTable< 14, f32 > sSinCosTable;
-    static TAtanTable< 1024, f32 > sAtanTable;
-    static TAsinAcosTable< 1024, f32 > sAsinAcosTable;
+    extern TSinCosTable< 14, f32 > sSinCosTable;
+    extern TAtanTable< 1024, f32 > sAtanTable;
+    extern TAsinAcosTable< 1024, f32 > sAsinAcosTable;
 };  // namespace JMath
 
 inline f32 JMASSin(u16 s) {
