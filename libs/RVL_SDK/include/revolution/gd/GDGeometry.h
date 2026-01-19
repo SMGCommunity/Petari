@@ -3,6 +3,7 @@
 
 #include "revolution/gd/GDBase.h"
 #include "revolution/gx/GXEnum.h"
+#include "revolution/gx/GXStruct.h"
 #include "revolution/types.h"
 
 #ifdef __cplusplus
@@ -177,6 +178,10 @@ static void GDBegin(GXPrimitive type, GXVtxFmt vtxfmt, u16 nverts);
 #define CP_REG_VAT_GRP2(tx4Frac, tx5Cnt, tx5Type, tx5Frac, tx6Cnt, tx6Type, tx6Frac, tx7Cnt, tx7Type, tx7Frac)                                       \
     ((tx4Frac) << 0 | (tx5Cnt) << 5 | (tx5Type) << 6 | (tx5Frac) << 9 | (tx6Cnt) << 14 | (tx6Type) << 15 | (tx6Frac) << 18 | (tx7Cnt) << 23 |        \
      (tx7Type) << 24 | (tx7Frac) << 27)
+
+void GDSetArray(GXAttr attr, const void* base_ptr, u8 stride);
+void GDSetArrayRaw(GXAttr attr, u32 base_ptr_raw, u8 stride);
+void GDSetVtxDescv(const GXVtxDescList* attrPtr);
 
 #ifdef __cplusplus
 }

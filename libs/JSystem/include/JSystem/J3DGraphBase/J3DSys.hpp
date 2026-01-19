@@ -73,8 +73,30 @@ public:
     J3DMatPacket* getMatPacket() { return mMatPacket; }
     void setMaterialMode(u32 mode) { mMaterialMode = mode; }
 
+    void* getVtxPos() { return mVtxPos; }
+    void setVtxPos(void* pVtxPos) { mVtxPos = pVtxPos; }
+
+    void* getVtxNrm() { return mVtxNrm; }
+    void setVtxNrm(void* pVtxNrm) { mVtxNrm = pVtxNrm; }
+
+    void* getVtxCol() { return mVtxCol; }
+    void setVtxCol(GXColor* pVtxCol) { mVtxCol = pVtxCol; }
+
+    void setModelDrawMtx(Mtx* pMtxArr) {
+        mModelDrawMtx = pMtxArr;
+        GXSetArray(GX_POS_MTX_ARRAY, mModelDrawMtx, sizeof(*mModelDrawMtx));
+    }
+
+    void setModelNrmMtx(Mtx33* pMtxArr) {
+        mModelNrmMtx = pMtxArr;
+        GXSetArray(GX_NRM_MTX_ARRAY, mModelNrmMtx, sizeof(*mModelNrmMtx));
+    }
+
+    J3DShapePacket* getShapePacket() { return mShapePacket; }
+
     static Mtx mCurrentMtx;
     static J3DTexCoordScaleInfo sTexCoordScaleTable[8];
 };
 
+extern u32 j3dDefaultViewNo;
 extern J3DSys j3dSys;

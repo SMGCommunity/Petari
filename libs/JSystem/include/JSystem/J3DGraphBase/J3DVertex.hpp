@@ -17,6 +17,28 @@ public:
 class J3DVertexData {
 public:
     J3DVertexData();
+    ~J3DVertexData() {}
+
+    void* getVtxPosArray() const { return mVtxPosArray; }
+    void* getVtxNrmArray() const { return mVtxNrmArray; }
+    GXColor* getVtxColorArray(u8 idx) const { return mVtxColorArray[idx]; }
+    void* getVtxTexCoordArray(u8 idx) const { return mVtxTexCoordArray[idx]; }
+    void* getVtxNBTArray() const { return mVtxNBTArray; }
+    u32 getNrmNum() const { return mNrmNum; }
+    u32 getVtxNum() const { return mVtxNum; }
+    GXVtxAttrFmtList* getVtxAttrFmtList() const { return mVtxAttrFmtList; }
+    u8 getVtxPosFrac() const { return mVtxPosFrac; }
+    u8 getVtxNrmFrac() const { return mVtxNrmFrac; }
+    int getVtxPosType() const { return mVtxPosType; }
+    int getVtxNrmType() const { return mVtxNrmType; }
+
+    void setVtxPosFrac(u8 frac) { mVtxPosFrac = frac; }
+    void setVtxPosType(GXCompType type) { mVtxPosType = type; }
+    void setVtxNrmFrac(u8 frac) { mVtxNrmFrac = frac; }
+    void setVtxNrmType(GXCompType type) { mVtxNrmType = type; }
+
+private:
+    friend class J3DModelLoader;
 
     /* 0x00 */ u32 mVtxNum;
     /* 0x04 */ u32 mNrmNum;
