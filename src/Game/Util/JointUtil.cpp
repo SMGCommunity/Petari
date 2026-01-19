@@ -79,7 +79,7 @@ namespace MR {
     }
 
     void hideJoint(J3DJoint* pJoint) {
-        for (J3DMaterial* mat = pJoint->mMesh; mat != nullptr; mat = mat->_4) {
+        for (J3DMaterial* mat = pJoint->mMesh; mat != nullptr; mat = mat->mNext) {
             mat->mShape->mFlags |= 1;
         }
     }
@@ -111,7 +111,7 @@ namespace MR {
     }
 
     void showJoint(J3DJoint* pJoint) {
-        for (J3DMaterial* mat = pJoint->mMesh; mat != nullptr; mat = mat->_4) {
+        for (J3DMaterial* mat = pJoint->mMesh; mat != nullptr; mat = mat->mNext) {
             mat->mShape->mFlags &= ~1;
         }
     }

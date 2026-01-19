@@ -19,4 +19,7 @@ typedef unsigned char uint_least8_t;
 typedef unsigned short uint_least16_t;
 typedef unsigned long uint_least32_t;
 
+typedef uint32_t uintptr_t;
+typedef int32_t intptr_t;
+
 #endif  // __STDC_STDINT_H__

@@ -225,6 +225,8 @@ namespace nw4r {
 
         };  // namespace
 
+#pragma dont_inline on
+
         // inlining is off the charts here. No idea why the compiler will not inline so much of these calls
         Material::Material(const res::Material* pRes, const ResBlockSet& resBlockSet) {
             Init();
@@ -358,6 +360,8 @@ namespace nw4r {
                 }
             }
         }
+
+#pragma dont_inline reset
 
         void Material::Init() {
             mTevCols[0] = DefaultBlackColor;

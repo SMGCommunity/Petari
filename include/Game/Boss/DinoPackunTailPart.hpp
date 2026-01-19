@@ -15,6 +15,9 @@ public:
     virtual void requestUnLockPosition();
     virtual JointController* createJointControllerOwn(LiveActor*, const char*);
 
+    inline void exeLockPosition();
+    inline void exeWait();
+
     f32 _D4;
     u8 _D8;
     u8 _D9;

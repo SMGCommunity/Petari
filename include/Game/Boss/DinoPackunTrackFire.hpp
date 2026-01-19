@@ -19,7 +19,7 @@ public:
     void exeWait();
     void exeGround();
 
-    TMtx34f _8C;
+    TPos3f _8C;
 };
 
 class DinoPackunTrackFireHolder : public DeriveActorGroup< DinoPackunTrackFire > {
