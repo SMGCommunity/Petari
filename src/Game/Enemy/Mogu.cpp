@@ -1,10 +1,15 @@
 #include "Game/Enemy/Mogu.hpp"
+#include "Game/Enemy/AnimScaleController.hpp"
 #include "Game/Enemy/MoguStone.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
+#include "Game/LiveActor/ModelObj.hpp"
 #include "Game/LiveActor/Nerve.hpp"
+#include "Game/System/NerveExecutor.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/ActorShadowUtil.hpp"
 #include "Game/Util/ActorSwitchUtil.hpp"
 #include "Game/Util/EffectUtil.hpp"
+#include "Game/Util/FixedPosition.hpp"
 #include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
@@ -35,7 +40,7 @@ namespace NrvMogu {
 }  // namespace NrvMogu
 
 Mogu::Mogu(const char* pName)
-    : LiveActor(pName), mNerveExecutor(nullptr), _90(0), mStone(nullptr), mHole(nullptr), _9C(0, 0, 1), _A8(0, 1, 0), _B4(true),
+    : LiveActor(pName), mNerveExecutor(nullptr), _90(nullptr), mStone(nullptr), mHole(nullptr), _9C(0, 0, 1), _A8(0, 1, 0), _B4(true),
       mIsCannonFleet(false) {}
 
 void Mogu::init(const JMapInfoIter& rIter) {
@@ -62,19 +67,42 @@ void Mogu::init(const JMapInfoIter& rIter) {
     MR::declareStarPiece(this, 3);
     MR::declareCoin(this, 1);
 
-    f32 f1 = mScale.y * 160.0f;
+    f32 scaleY = mScale.y;
+    f32 f1 = scaleY * 160.0f;
     initBinder(f1, f1, 0);
     initHitSensor(2);
+
     TVec3f v1(-55.0f, 0.0f, 13.0f);
     TVec3f v2(v1);
-    v2 *= mScale.y;
+    v2 *= scaleY;
 
     MR::addHitSensorAtJointEnemy(this, "body", "Head", 32, 150.0f * mScale.y, v2);
     initEffectKeeper(false, nullptr, false);
-    //
     MR::initStarPointerTarget(this, 100.0f, TVec3f(0.0f, 50.0f, 0.0f));
 
+    initSound(4, 0);
+    initNerve(&NrvMogu::HostTypeNrvSearch::sInstance);
+    mGravity.set(-_A8);
+
+    MR::initShadowVolumeSphere(this, 60.0f * mRotation.y);
+    MR::invalidateShadow(this, nullptr);
+    MR::initLightCtrl(this);
+    mNerveExecutor = new AnimScaleController(nullptr);
+
+    makeActorAppeared();
+
+    _90 = new FixedPosition(this, "ArmR2", TVec3f(67.38f, 0.0f, 0.0f), TVec3f(0.0f, 0.0f, 0.0f));
+
+    // "Rock-throwing stone"
+    mStone = new MoguStone("投石用の石", "MoguStone");
+    mStone->initWithoutIter();
+
+    // "Burrow model"
+    mHole = new ModelObj("巣穴モデル", "MoguHole", nullptr, -2, -2, -2, false);
+    mHole->mPosition.set(mPosition);
+    mHole->mRotation.set(mRotation);
     mHole->initWithoutIter();
+
     mIsCannonFleet = MR::isEqualStageName("CannonFleetGalaxy");
 }
 

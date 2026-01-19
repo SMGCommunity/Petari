@@ -3,8 +3,9 @@
 #include "Game/LiveActor/LiveActor.hpp"
 
 class HitSensor;
-class NerveExecutor;
+class AnimScaleController;
 class MoguStone;
+class FixedPosition;
 
 class Mogu : public LiveActor {
 public:
@@ -34,10 +35,10 @@ public:
     void tryPunchHitted(HitSensor*, HitSensor*, bool);
     void calcAndSetBaseMtx();
 
-    /* 0x8C */ NerveExecutor* mNerveExecutor;
-    u32 _90;
+    /* 0x8C */ AnimScaleController* mNerveExecutor;
+    FixedPosition* _90;
     /* 0x94 */ MoguStone* mStone;
-    /* 0x98 */ LiveActor* mHole;
+    /* 0x98 */ ModelObj* mHole;
     TVec3f _9C;
     TVec3f _A8;
     bool _B4;
