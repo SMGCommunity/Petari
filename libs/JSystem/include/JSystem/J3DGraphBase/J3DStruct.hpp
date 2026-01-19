@@ -37,13 +37,36 @@ struct J3DBlendInfo {
 };
 
 struct J3DTextureSRTInfo {
-    f32 mScaleX;    // 0x0
-    f32 mScaleY;    // 0x4
-    s16 mRotation;  // 0x8
-    s16 mPad;       // 0xA
-    f32 mTransX;    // 0xC
-    f32 mTransY;    // 0x10
-};
+    /* 0x00 */ f32 mScaleX;
+    /* 0x04 */ f32 mScaleY;
+    /* 0x08 */ s16 mRotation;
+    /* 0x0C */ f32 mTranslationX;
+    /* 0x10 */ f32 mTranslationY;
+
+    inline void operator=(J3DTextureSRTInfo const& other) {
+#ifdef __MWERKS__
+        __REGISTER const f32* src = &other.mScaleX;
+        __REGISTER f32* dst = &mScaleX;
+        __REGISTER f32 xy;
+        asm {
+            psq_l xy, 0(src), 0, 0
+            psq_st xy, 0(dst), 0, 0
+        }
+        ;
+
+        // Unclear why there's a 4 byte copy here.
+        *(u32*)&mRotation = *(u32*)&other.mRotation;
+        src = &other.mTranslationX;
+        dst = &mTranslationX;
+
+        asm {
+            psq_l xy, 0(src), 0, 0
+            psq_st xy, 0(dst), 0, 0
+        }
+        ;
+#endif
+    }
+};  // Size: 0x14
 
 struct J3DTexMtxInfo {
     void operator=(const J3DTexMtxInfo&);

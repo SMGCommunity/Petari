@@ -12,11 +12,27 @@ void JMAVECLerp(const Vec*, const Vec*, Vec*, f32);
 void JMAVECScaleAdd(const Vec*, const Vec*, Vec*, f32);
 void JMAQuatLerp(const Quaternion*, const Quaternion*, f32, Quaternion*);
 
+inline f32 JMAFastSqrt(__REGISTER const f32 input) {
+#ifdef __MWERKS__
+    if (input > 0.0f) {
+        __REGISTER f32 out;
+        asm {
+            frsqrte out, input
+        }
+        return out * input;
+    } else {
+        return input;
+    }
+#endif
+}
+
 namespace JMath {
     f32 fastReciprocal(f32);
 
     template < typename T >
-    f32 fastSqrt(T);
+    inline T fastSqrt(T value) {
+        return JMAFastSqrt(value);
+    }
 
     void gekko_ps_copy12(void*, const void*);
     void gekko_ps_copy16(void*, const void*);
