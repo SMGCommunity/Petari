@@ -3,7 +3,6 @@
 #include "JSystem/J3DGraphBase/J3DFifo.hpp"
 #include <revolution.h>
 
-
 class J3DMaterial;
 class J3DShapeMtx;
 class J3DShapeDraw;
@@ -158,8 +157,6 @@ public:
 
     static void* sOldVcdVatCmd;
     static bool sEnvelopeFlag;
-
-private:
     friend struct J3DShapeFactory;
     friend class J3DJointTree;
 

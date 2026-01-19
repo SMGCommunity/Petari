@@ -79,6 +79,9 @@ typedef int BOOL;
 #define ROUND_UP(x, align) (((x) + (align) - 1) & (-(align)))
 #define ROUND_UP_PTR(x, align) ((void*)((((u32)(x)) + (align) - 1) & (~((align) - 1))))
 
+#define ALIGN_PREV(X, N) ((X) & ~((N) - 1))
+#define ALIGN_NEXT(X, N) ALIGN_PREV(((X) + (N) - 1), N)
+
 /* just some common intrinsics */
 
 #ifndef __MWERKS__

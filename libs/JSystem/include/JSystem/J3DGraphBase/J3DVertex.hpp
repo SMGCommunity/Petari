@@ -37,7 +37,6 @@ public:
     void setVtxNrmFrac(u8 frac) { mVtxNrmFrac = frac; }
     void setVtxNrmType(GXCompType type) { mVtxNrmType = type; }
 
-private:
     friend class J3DModelLoader;
 
     /* 0x00 */ u32 mVtxNum;
