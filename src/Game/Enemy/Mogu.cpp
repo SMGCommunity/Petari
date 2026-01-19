@@ -7,7 +7,9 @@
 #include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/SceneUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
@@ -90,5 +92,18 @@ void Mogu::endClipped() {
     LiveActor::endClipped();
     if (isNerve(&NrvMogu::HostTypeNrvTurn::sInstance)) {
         setNerve(&NrvMogu::HostTypeNrvTurn::sInstance);
+    }
+}
+
+void Mogu::exeHideWait() {
+    TVec3f normalToPlayer(*MR::getPlayerPos());
+    normalToPlayer -= mPosition;
+    MR::normalizeOrZero(&normalToPlayer);
+    f32 dot = mGravity.dot(normalToPlayer);
+    if (!(dot < -0.75f)) {
+        f32 distanceToPlayer = MR::calcDistanceToPlayer(this);
+        if (MR::isGreaterStep(this, 0x78) && 400.0f < distanceToPlayer && distanceToPlayer < 2000.0f) {
+            setNerve(&NrvMogu::HostTypeNrvAppear::sInstance);
+        }
     }
 }
