@@ -86,6 +86,7 @@ f32 __frsqrte(f32);
 u32 __cntlzw(u32);
 s32 __abs(s32);
 f32 __fabsf(f32);
+void* __memcpy(void*, const void*, int);
 #endif
 
 #endif  // TYPES_H

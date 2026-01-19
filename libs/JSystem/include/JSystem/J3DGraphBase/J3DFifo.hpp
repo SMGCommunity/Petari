@@ -13,3 +13,22 @@ inline void J3DFifoWriteXFCmdHdr(u16 addr, u8 len) {
     GXCmd1u16(len - 1);
     GXCmd1u16(addr);
 }
+
+inline void J3DFifoLoadIndx(u8 cmd, u16 indx, u16 addr) {
+    GXWGFifo.u8 = cmd;
+    GXWGFifo.u16 = indx;
+    GXWGFifo.u16 = addr;
+}
+
+inline void J3DFifoLoadNrmMtxIndx3x3(u16 index, u32 addr) {
+    GXCmd1u8(0x28);
+    GXCmd1u16(index);
+    GXCmd1u16(((9 - 1) << 12) | (u16)((addr * 3) + 0x400));
+}
+
+void J3DFifoLoadPosMtxImm(f32 (*)[4], u32);
+void J3DFifoLoadNrmMtxImm(f32 (*)[4], u32);
+void J3DFifoLoadNrmMtxImm3x3(f32 (*)[3], u32);
+void J3DFifoLoadNrmMtxToTexMtx(f32 (*)[4], u32);
+void J3DFifoLoadNrmMtxToTexMtx3x3(f32 (*)[3], u32);
+void J3DFifoLoadTexCached(GXTexMapID, u32, GXTexCacheSize, u32, GXTexCacheSize);

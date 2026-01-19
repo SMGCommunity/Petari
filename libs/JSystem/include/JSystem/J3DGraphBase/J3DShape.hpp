@@ -32,6 +32,8 @@ public:
     void loadPreDrawSetting() const;
     void loadVtxArray() const;
 
+    void setCurrentMtx(J3DCurrentMtx& mtx) { mCurrentMtx = mtx; }
+
     J3DMaterial* mMaterial;        // 0x04
     u16 mIndex;                    // 0x08
     u16 mMtxGroupNum;              // 0x0A

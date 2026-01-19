@@ -33,12 +33,7 @@ inline void J3DGDWriteBPCmd(u32 regval) {
     J3DGDWrite_u32(regval);
 }
 
-inline void J3DGDWriteXFCmd(u16 addr, u32 val) {
-    J3DGDWrite_u8(0x10);
-    J3DGDWrite_u16(0);
-    J3DGDWrite_u16(addr);
-    J3DGDWrite_u32(val);
-}
+void J3DGDWriteXFCmd(u16 addr, u32 val);
 
 inline void J3DGDWriteXFCmdHdr(u16 addr, u8 len) {
     J3DGDWrite_u8(0x10);

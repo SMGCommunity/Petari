@@ -1,6 +1,7 @@
 #include "Game/MapObj/AstroCountDownPlate.hpp"
 #include "Game/LiveActor/MaterialCtrl.hpp"
 #include "Game/MapObj/AstroMapObjFunction.hpp"
+#include <JSystem/J3DGraphBase/J3DTevs.hpp>
 
 namespace NrvAstroCountDownPlate {
     NEW_NERVE(AstroCountDownPlateNrvDead, AstroCountDownPlate, Wait);

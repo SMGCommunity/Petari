@@ -256,6 +256,8 @@ cflags_jsys = [
     f"-DVERSION={version_num}",
 ]
 
+cflags_jsys_j3d = [*cflags_jsys, "-O4,p"]
+
 cflags_trk = [
     "-nodefaults",
     "-proc gekko",
@@ -509,6 +511,16 @@ def JSysLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
         "lib": lib_name,
         "mw_version": "GC/3.0a3",
         "cflags": cflags_jsys,
+        "progress_category": "jsys",
+        "objects": objects,
+    }
+
+
+def JSys_J3DLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
+    return {
+        "lib": lib_name,
+        "mw_version": "GC/3.0a3.3",
+        "cflags": cflags_jsys_j3d,
         "progress_category": "jsys",
         "objects": objects,
     }
@@ -2957,7 +2969,11 @@ config.libs = [
             Object(NonMatching, "JSystem/J3DGraphBase/J3DShapeMtx.cpp"),
             Object(NonMatching, "JSystem/J3DGraphBase/J3DShapeDraw.cpp"),
             Object(NonMatching, "JSystem/J3DGraphBase/J3DShape.cpp"),
-            Object(NonMatching, "JSystem/J3DGraphBase/J3DMaterial.cpp"),
+            Object(
+                NonMatching,
+                "JSystem/J3DGraphBase/J3DMaterial.cpp",
+                cflags=cflags_jsys_j3d,
+            ),
             Object(NonMatching, "JSystem/J3DGraphBase/J3DMatBlock.cpp"),
             Object(NonMatching, "JSystem/J3DGraphBase/J3DTevs.cpp"),
             Object(NonMatching, "JSystem/J3DGraphBase/J3DDrawBuffer.cpp"),
