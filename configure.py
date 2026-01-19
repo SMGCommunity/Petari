@@ -1179,7 +1179,7 @@ config.libs = [
             Object(NonMatching, "Game/Enemy/WalkerStateStagger.cpp"),
             Object(NonMatching, "Game/Enemy/WalkerStateWander.cpp"),
             Object(NonMatching, "Game/Enemy/WaterBazooka.cpp"),
-            Object(NonMatching, "Game/Enemy/WaterBazookaCapsule.cpp"),
+            Object(Matching, "Game/Enemy/WaterBazookaCapsule.cpp"),
         ],
     ),
     GameLib(

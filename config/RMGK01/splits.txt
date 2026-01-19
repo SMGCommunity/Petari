@@ -3162,20 +3162,20 @@ Game/Enemy/WaterBazooka.cpp:
 	.text       start:0x80151CF4 end:0x801549F0
 	.ctors      start:0x8052EB8C end:0x8052EB90
 	.rodata     start:0x805325B8 end:0x805325C8
-	.data       start:0x805862B8 end:0x80586878
+	.data       start:0x805862B8 end:0x80586808
 	.sbss       start:0x806B49C0 end:0x806B4A00
 	.sdata2     start:0x806BBA88 end:0x806BBAD0
 
 Game/Enemy/WaterBazookaCapsule.cpp:
 	.text       start:0x801549F0 end:0x80154F30
 	.ctors      start:0x8052EB90 end:0x8052EB94
-	.data       start:0x80586878 end:0x80586948
+	.data       start:0x80586808 end:0x80586920
 	.sbss       start:0x806B4A00 end:0x806B4A10
 	.sdata2     start:0x806BBAD0 end:0x806BBAD8
 
 Game/GameAudio/AudCameraWatcher.cpp:
 	.text       start:0x80154F30 end:0x801550B8
-	.data       start:0x80586948 end:0x80586CF8
+	.data       start:0x80586920 end:0x80586CF8
 	.sdata2     start:0x806BBAD8 end:0x806BBAE0
 
 Game/GameAudio/AudStageBgmWrap.cpp:
