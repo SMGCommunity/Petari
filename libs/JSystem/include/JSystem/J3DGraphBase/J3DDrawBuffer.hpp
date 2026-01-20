@@ -57,6 +57,10 @@ public:
     typedef void (J3DDrawBuffer::*drawFunc)() const;
 
     J3DDrawBuffer() { initialize(); }
+    inline J3DDrawBuffer(u32 bufferSize) {
+        initialize();
+        allocBuffer(bufferSize);
+    }
     ~J3DDrawBuffer();
     void initialize();
     int allocBuffer(u32);
