@@ -134,7 +134,7 @@ void TripodBossGuardWallPart::setHostMatrix(const TPos3f* pPos) {
 
 void TripodBossGuardWallPart::setPlacementAngle(f32 angle) {
     mPlacementAngle = angle;
-    mPlacementAngle = MR::wrapAngleTowards(0.0f, (f64)angle);
+    MR::repeatDegree(&mPlacementAngle);
 }
 
 void TripodBossGuardWallPart::setStartTiming(s32 timing) {
