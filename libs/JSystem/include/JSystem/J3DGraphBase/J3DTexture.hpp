@@ -49,10 +49,7 @@ struct J3DTexCoord : public J3DTexCoordInfo {
     u32 getTexMtxReg() const { return mTexMtxReg & 0xff; }
     void setTexGenMtx(u8 param_1) { mTexGenMtx = param_1; }
     void setTexMtxReg(u16 reg) { mTexMtxReg = reg; }
-    J3DTexCoord& operator=(const J3DTexCoord& other) {
-        *(u32*)this = *(u32*)&other;
-        return *this;
-    }
+    J3DTexCoord& operator=(const J3DTexCoord& other);
 
     void resetTexMtxReg() { mTexMtxReg = mTexGenMtx; }
 

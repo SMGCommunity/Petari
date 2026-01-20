@@ -36,7 +36,7 @@ const GXColor effectColors[] = {{0x00, 0x55, 0xff, 0xFF}, {0xFF, 0xFF, 0x00, 0xF
 const GXColor initColors[] = {{0x80, 0x00, 0x99, 0xFF}, {0xE6, 0xA0, 0x00, 0xFF}, {0x46, 0xA1, 0x08, 0xFF},
                               {0x37, 0x5A, 0xA0, 0xFF}, {0xBE, 0x33, 0x0B, 0xFF}, {0x80, 0x80, 0x80, 0xFF}};
 
-J3DGXColor defaultCol = {0, 0, 0, 0xFF};
+J3DGXColor defaultCol((GXColor){255, 0, 0, 255});
 
 namespace NrvStarPiece {
     NEW_NERVE(HostTypeNrvFloating, StarPiece, Floating);
@@ -162,7 +162,7 @@ void StarPiece::init(const JMapInfoIter& rIter) {
     MR::offCalcGravity(this);
 
     mDelegator = TriangleFilterDelegator< StarPiece >::allocateDelegator(this, &isIgnoreTriOnThrow);
-    
+
     MR::tryCreateMirrorActor(this, "StarPiece");
     MR::startBtk(this, "Gift");
     MR::setBtkFrameAndStop(this, 5.0f);
@@ -658,7 +658,7 @@ void StarPiece::exeThrow() {
 
     vec3.set(_B4);
     vec3.sub(_A8);
-    
+
     f32 flt2 = 0.0f;
     vec2 = _A8.addOperatorInLine(vec3.scaleInline(flt)).addOperatorInLine((-mGravity).scaleInline(flt2));
     if (mTargetSensor != nullptr) {
@@ -1216,7 +1216,7 @@ bool StarPiece::touchPlayer() {
     }
     MR::stopSound(this, "SE_OJ_STAR_PIECE_FLY_W", 0);
     MR::stopSound(this, "SE_OJ_STAR_PIECE_FLY", 0);
-    
+
     MR::forceDeleteEffect(this, "StarPieceFlyingBlur");
     setNerve(&NrvStarPiece::HostTypeNrvToPlayerEnd::sInstance);
     getSensor("body")->invalidate();

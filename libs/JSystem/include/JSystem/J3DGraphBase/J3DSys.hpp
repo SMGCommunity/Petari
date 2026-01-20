@@ -9,6 +9,13 @@ enum J3DSysDrawBuf {
     /* 0x2 */ J3DSysDrawBuf_MAX
 };
 
+struct J3DTexCoordScaleInfo {
+    /* 0x0 */ u16 field_0x00;
+    /* 0x2 */ u16 field_0x02;
+    /* 0x4 */ u16 field_0x04;
+    /* 0x6 */ u16 field_0x06;
+};
+
 enum J3DError {
     kJ3DError_Success = 0,
     kJ3DError_Alloc = 4,
@@ -21,13 +28,6 @@ class J3DShapePacket;
 class J3DShape;
 class J3DDrawBuffer;
 class J3DTexture;
-
-struct J3DTexCoordScaleInfo {
-    /* 0x0 */ u16 field_0x00;
-    /* 0x2 */ u16 field_0x02;
-    /* 0x4 */ u16 field_0x04;
-    /* 0x6 */ u16 field_0x06;
-};
 
 enum J3DSysFlag {
     J3DSysFlag_SkinPosCpu = 0x00000004,
