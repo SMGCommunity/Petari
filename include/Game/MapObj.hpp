@@ -208,6 +208,7 @@
 #include "Game/MapObj/SpinLeverSwitch.hpp"
 #include "Game/MapObj/StageEffectDataTable.hpp"
 #include "Game/MapObj/StarPieceDirector.hpp"
+#include "Game/MapObj/StarPieceFollowGroup.hpp"
 #include "Game/MapObj/StarPieceGroup.hpp"
 #include "Game/MapObj/SubmarineVolcanoBigColumn.hpp"
 #include "Game/MapObj/Sun.hpp"

@@ -5102,7 +5102,7 @@ namespace {
         },
         {
             "StarPiece",
-            nullptr,
+            createNameObj< StarPiece >,
             "StarPiece",
         },
         {
@@ -5117,7 +5117,7 @@ namespace {
         },
         {
             "StarPieceFollowGroup",
-            nullptr,
+            createNameObj< StarPieceFollowGroup >,
             nullptr,
         },
         {
