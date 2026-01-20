@@ -9605,12 +9605,13 @@ JSystem/J3DGraphBase/J3DMatBlock.cpp:
 
 JSystem/J3DGraphBase/J3DTevs.cpp:
 	.text       start:0x8042FE60 end:0x80430D70
-	.rodata     start:0x8055C250 end:0x8055C360
+	.rodata     start:0x8055C250 end:0x8055C348
 	.data       start:0x805E9868 end:0x805E9988
 	.sdata2     start:0x806C1AE8 end:0x806C1B18
 
 JSystem/J3DGraphBase/J3DDrawBuffer.cpp:
 	.text       start:0x80430D70 end:0x804313A8
+	.rodata     start:0x8055C348 end:0x8055C350
 	.data       start:0x805E9988 end:0x805E99E8
 	.sbss       start:0x806B7298 end:0x806B72A0
 	.sdata2     start:0x806C1B18 end:0x806C1B20
@@ -9646,6 +9647,7 @@ JSystem/J3DGraphAnimator/J3DModel.cpp:
 
 JSystem/J3DGraphAnimator/J3DAnimation.cpp:
 	.text       start:0x80433964 end:0x804375AC
+	.rodata     start:0x8055C350 end:0x8055C360
 	.data       start:0x805E9A98 end:0x805E9BB8
 	.sdata2     start:0x806C1B40 end:0x806C1B60
 

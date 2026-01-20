@@ -54,6 +54,8 @@ public:
 
     J3DTexGenBlock* getTexGenBlock() { return mTexGenBlock; }
 
+    u16 getTexNo(u32 idx) { return mTevBlock->getTexNo(idx); }
+
     /* 0x04 */ J3DMaterial* mNext;
     /* 0x08 */ J3DShape* mShape;
     /* 0x0C */ J3DJoint* mJoint;

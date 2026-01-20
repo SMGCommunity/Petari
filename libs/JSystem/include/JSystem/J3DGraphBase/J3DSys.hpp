@@ -68,6 +68,8 @@ public:
     void reinitIndStages();
     void reinitPixelProc();
 
+    MtxPtr getViewMtx() { return mViewMtx; }
+
     bool checkFlag(u32 flag) { return mFlags & flag ? true : false; }
 
     J3DMatPacket* getMatPacket() { return mMatPacket; }
@@ -97,6 +99,8 @@ public:
     void setModel(J3DModel* pModel) { mModel = pModel; }
 
     J3DShapePacket* getShapePacket() { return mShapePacket; }
+
+    J3DTexture* getTexture() { return mTexture; }
 
     static Mtx mCurrentMtx;
     static J3DTexCoordScaleInfo sTexCoordScaleTable[8];

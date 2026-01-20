@@ -1,6 +1,33 @@
 #pragma once
 
 #include "JSystem/J3DGraphBase/J3DStruct.hpp"
+#include "JSystem/JUtility/JUTTexture.hpp"
+#include <stdint.h>
+
+class J3DTexture {
+private:
+    /* 0x0 */ u16 mNum;
+    /* 0x2 */ u16 unk_0x2;
+    /* 0x4 */ ResTIMG* mpRes;
+
+public:
+    J3DTexture(u16 num, ResTIMG* res) : mNum(num), unk_0x2(0), mpRes(res) {}
+
+    void loadGX(u16, GXTexMapID) const;
+    void entryNum(u16);
+    void addResTIMG(u16, ResTIMG const*);
+    virtual ~J3DTexture() {}
+
+    u16 getNum() const { return mNum; }
+
+    ResTIMG* getResTIMG(u16 index) const { return &mpRes[index]; }
+
+    void setResTIMG(u16 index, const ResTIMG& timg) {
+        mpRes[index] = timg;
+        mpRes[index].mImageDataOffset = ((mpRes[index].mImageDataOffset + (uintptr_t)&timg - (uintptr_t)(mpRes + index)));
+        mpRes[index].mPaletteDataOffset = ((mpRes[index].mPaletteDataOffset + (uintptr_t)&timg - (uintptr_t)(mpRes + index)));
+    }
+};
 
 extern J3DTexCoordInfo const j3dDefaultTexCoordInfo[8];
 
