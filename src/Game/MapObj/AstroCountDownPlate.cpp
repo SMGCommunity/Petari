@@ -17,11 +17,7 @@ namespace {
     const char* cStartCountDownDemoName = "ロゼッタカウントダウン開始デモ";
 };  // namespace
 
-AstroCountDownPlate::AstroCountDownPlate(const char* pName) : LiveActor(pName) {
-    _8C.getTexMtxInfo() = j3dDefaultTexMtxInfo;
-    _120.getTexMtxInfo() = j3dDefaultTexMtxInfo;
-    _1B4 = 0;
-}
+AstroCountDownPlate::AstroCountDownPlate(const char* pName) : LiveActor(pName), _1B4(0) {}
 
 void AstroCountDownPlate::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);

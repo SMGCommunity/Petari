@@ -269,6 +269,14 @@ namespace JGeometry {
             return ret;
         }
 
+        inline TVec3 negateOperatorInternal() const {
+            TVec3 ret;
+            JGeometry::negateInternal(&this->x, &ret.x);
+            return ret;
+        }
+
+        inline void negateInternal() { JGeometry::negateInternal(&this->x, &this->x); }
+
         TVec3 operator-(const TVec3& op) const {
             TVec3 ret(*this);
             JMathInlineVEC::PSVECSubtract(&ret, &op, &ret);
@@ -405,6 +413,8 @@ namespace JGeometry {
             return ret;
         }
 
+        inline void scaleAdd(const TVec3& scaleVec, const TVec3& addVec, f32 scale) { JMAVECScaleAdd(&scaleVec, &addVec, this, scale); }
+
         inline void rejection(const TVec3& rVec, const TVec3& rNormal) { JMAVECScaleAdd(&rNormal, &rVec, this, -rNormal.dot(rVec)); }
 
         inline void invert() {
@@ -496,6 +506,12 @@ namespace JGeometry {
         void cubic(const TVec3&, const TVec3&, const TVec3&, const TVec3&, f32);
 
         f32 angle(const TVec3&) const;
+
+        inline TVec3 cross(const TVec3& b) {
+            TVec3 ret;
+            PSVECCrossProduct(this, &b, &ret);
+            return ret;
+        }
     };
 
     template < typename T >

@@ -2888,14 +2888,14 @@ Game/Enemy/MogucchiRefuseTerritory.cpp:
 Game/Enemy/MogucchiShooter.cpp:
 	.text       start:0x80129008 end:0x80129BDC
 	.ctors      start:0x8052EB10 end:0x8052EB14
-	.data       start:0x805823B0 end:0x805825F8
+	.data       start:0x805823B0 end:0x80582590
 	.sbss       start:0x806B4520 end:0x806B4558
 	.sdata2     start:0x806BB148 end:0x806BB160
 
 Game/Enemy/MoguStone.cpp:
 	.text       start:0x80129BDC end:0x8012A98C
 	.ctors      start:0x8052EB14 end:0x8052EB18
-	.data       start:0x805825F8 end:0x80582730
+	.data       start:0x80582590 end:0x80582730
 	.sbss       start:0x806B4558 end:0x806B4568
 	.sdata2     start:0x806BB160 end:0x806BB198
 
@@ -3153,7 +3153,7 @@ Game/Enemy/WalkerStateStagger.cpp:
 Game/Enemy/WalkerStateWander.cpp:
 	.text       start:0x80151980 end:0x80151CF4
 	.ctors      start:0x8052EB88 end:0x8052EB8C
-	.data       start:0x80586230 end:0x805862B8
+	.data       start:0x80586230 end:0x80586298
 	.bss        start:0x8060AAC0 end:0x8060AAD8
 	.sbss       start:0x806B49B8 end:0x806B49C0
 	.sdata2     start:0x806BBA70 end:0x806BBA88
@@ -3162,7 +3162,7 @@ Game/Enemy/WaterBazooka.cpp:
 	.text       start:0x80151CF4 end:0x801549F0
 	.ctors      start:0x8052EB8C end:0x8052EB90
 	.rodata     start:0x805325B8 end:0x805325C8
-	.data       start:0x805862B8 end:0x80586808
+	.data       start:0x80586298 end:0x80586808
 	.sbss       start:0x806B49C0 end:0x806B4A00
 	.sdata2     start:0x806BBA88 end:0x806BBAD0
 
