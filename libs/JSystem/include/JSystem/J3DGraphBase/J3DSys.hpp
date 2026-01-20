@@ -29,6 +29,12 @@ struct J3DTexCoordScaleInfo {
     /* 0x6 */ u16 field_0x06;
 };
 
+enum J3DSysFlag {
+    J3DSysFlag_SkinPosCpu = 0x00000004,
+    J3DSysFlag_SkinNrmCpu = 0x00000008,
+    J3DSysFlag_PostTexMtx = 0x40000000,
+};
+
 class J3DSys {
 public:
     /* 0x000 */ Mtx mViewMtx;
@@ -93,6 +99,9 @@ public:
         mModelNrmMtx = pMtxArr;
         GXSetArray(GX_NRM_MTX_ARRAY, mModelNrmMtx, sizeof(*mModelNrmMtx));
     }
+
+    void setNBTScale(Vec* scale) { mNBTScale = scale; }
+    Vec* getNBTScale() { return mNBTScale; }
 
     void setShapePacket(J3DShapePacket* pPacket) { mShapePacket = pPacket; }
 

@@ -68,20 +68,32 @@ struct J3DTextureSRTInfo {
     }
 };  // Size: 0x14
 
-struct J3DTexMtxInfo {
-    void operator=(const J3DTexMtxInfo&);
-
-    u8 mProjection;              // 0x0
-    u8 mInfo;                    // 0x1
-    s16 mPad;                    // 0x2
-    TVec3f mCenter;              // 0x4
-    J3DTextureSRTInfo mSRTInfo;  // 0x10
-    Mtx44 mEffectMtx;            // 0x24
+enum J3DTexMtxMode {
+    J3DTexMtxMode_None,
+    J3DTexMtxMode_EnvmapBasic,
+    J3DTexMtxMode_ProjmapBasic,
+    J3DTexMtxMode_ViewProjmapBasic,
+    J3DTexMtxMode_Unknown4,
+    J3DTexMtxMode_Unknown5,
+    J3DTexMtxMode_EnvmapOld,
+    J3DTexMtxMode_Envmap,
+    J3DTexMtxMode_Projmap,
+    J3DTexMtxMode_ViewProjmap,
+    J3DTexMtxMode_EnvmapOldEffectMtx,
+    J3DTexMtxMode_EnvmapEffectMtx,
 };
 
-struct J3DTexMtx {
-    J3DTexMtxInfo mInfo;
-    Mtx mOutputMatrix;
+struct J3DTexMtxInfo {
+    void operator=(const J3DTexMtxInfo&);
+    void setEffectMtx(Mtx);
+
+    /* 0x00 */ u8 mProjection;
+    /* 0x01 */ u8 mInfo;
+    /* 0x02 */ u8 field_0x2;
+    /* 0x03 */ u8 field_0x3;
+    /* 0x04 */ Vec mCenter;
+    /* 0x10 */ J3DTextureSRTInfo mSRT;
+    /* 0x24 */ Mtx44 mEffectMtx;
 };
 
 class J3DLightInfo {
