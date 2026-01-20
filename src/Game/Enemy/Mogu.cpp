@@ -4,7 +4,7 @@
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
 #include "Game/LiveActor/Nerve.hpp"
-#include "Game/System/NerveExecutor.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/ActorShadowUtil.hpp"
 #include "Game/Util/ActorSwitchUtil.hpp"
@@ -20,9 +20,13 @@
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
+#include "math_types.hpp"
 #include "revolution/mtx.h"
 
-namespace {}
+namespace {
+    f32 hCannonFleetSightParam[3] = {1500.0f, 10.0f, 90.0f};
+    f32 hThrowableSightParam[3] = {900.0f, 10.0f, 90.0f};
+}  // namespace
 
 namespace NrvMogu {
     NEW_NERVE(HostTypeNrvHideWait, Mogu, HideWait);
@@ -179,5 +183,133 @@ void Mogu::exeSwoonEnd() {
         MR::startAction(mHole, "Close");
         MR::startSound(this, "SE_EM_MOGUHOLE_CLOSE", -1, -1);
         setNerve(&NrvMogu::HostTypeNrvHideWait::sInstance);
+    }
+}
+
+void Mogu::exeHide() {
+    if (MR::isFirstStep(this)) {
+        MR::startAction(this, "Hide");
+        MR::startAction(mHole, "Hide");
+        MR::startSound(this, "SE_EM_MOGU_HIDE", -1, -1);
+
+        TVec3f v1(mPosition);
+        v1 -= *MR::getPlayerCenterPos();
+        f32 length = v1.length();
+
+        MR::vecKillElement(v1, mGravity, &v1);
+        MR::normalizeOrZero(&v1);
+
+        f32 dot = MR::getPlayerVelocity()->dot(v1);
+        if (8.0f < dot || length < 200.0f) {
+            MR::setBckRate(this, 1.5f);
+        }
+    }
+    if (MR::isActionEnd(this)) {
+        MR::startSound(this, "SE_EM_MOGUHOLE_CLOSE", -1, -1);
+        setNerve(&NrvMogu::HostTypeNrvHideWait::sInstance);
+    }
+}
+
+void Mogu::exeAppear() {
+    if (MR::isFirstStep(this)) {
+        MR::startAction(this, "Appear");
+        MR::startAction(mHole, "Open");
+        MR::startSound(this, "SE_EM_MOGUHOLE_OPEN", -1, -1);
+        MR::startSound(this, "SE_EM_MOGU_APPEAR", -1, -1);
+        TVec3f v1;
+        MR::calcVecToPlayerH(&v1, this, nullptr);
+        MR::turnVecToVecRadian(&_9C, _9C, v1, PI, _A8);
+    }
+
+    // "Strong"
+    if (MR::isStarPointerPointing2POnTriggerButton(this, "強", true, false)) {
+        MR::start2PAttackAssistSound();
+        setNerve(&NrvMogu::HostTypeNrvSwoonStart::sInstance);
+        return;
+    }
+
+    if (MR::isGreaterStep(this, 0x1e) && isNearPlayerHipDrop()) {
+        setNerve(&NrvMogu::HostTypeNrvSwoonStart::sInstance);
+        return;
+    }
+
+    f32 distanceToPlayer = MR::calcDistanceToPlayer(this);
+    if (distanceToPlayer < 400.0f || isPlayerExistUp()) {
+        setNerve(&NrvMogu::HostTypeNrvHide::sInstance);
+        return;
+    }
+
+    if (MR::isActionEnd(this)) {
+        setNerve(&NrvMogu::HostTypeNrvSearch::sInstance);
+    }
+}
+
+void Mogu::exeSearch() {
+    if (MR::isFirstStep(this)) {
+        if (isNerve(&NrvMogu::HostTypeNrvTurn::sInstance)) {
+            MR::startAction(this, "Turn");
+        } else {
+            MR::startAction(this, "Wait");
+        }
+    }
+
+    // "Strong"
+    if (MR::isStarPointerPointing2POnTriggerButton(this, "強", true, false)) {
+        MR::start2PAttackAssistSound();
+        setNerve(&NrvMogu::HostTypeNrvSwoonStart::sInstance);
+        return;
+    }
+
+    if (isNearPlayerHipDrop()) {
+        setNerve(&NrvMogu::HostTypeNrvSwoonStart::sInstance);
+        return;
+    }
+
+    if (isNerve(&NrvMogu::HostTypeNrvTurn::sInstance)) {
+        TVec3f v1;
+        MR::calcVecToPlayerH(&v1, this, nullptr);
+        MR::turnVecToVecRadian(&_9C, _9C, v1, 0.03f, _A8);
+    }
+
+    f32 distanceToPlayer = MR::calcDistanceToPlayer(this);
+
+    f32 sightParam;
+    if (mIsCannonFleet) {
+        sightParam = hCannonFleetSightParam[0];
+    } else {
+        sightParam = hThrowableSightParam[0];
+    }
+
+    if (distanceToPlayer < 400.0f || isPlayerExistUp()) {
+        setNerve(&NrvMogu::HostTypeNrvHide::sInstance);
+        return;
+    }
+
+    if (2000.0f < distanceToPlayer) {
+        setNerve(&NrvMogu::HostTypeNrvHide::sInstance);
+        return;
+    }
+
+    if (isNerve(&NrvMogu::HostTypeNrvSearch::sInstance) && distanceToPlayer < sightParam) {
+        if (!MR::isValidSwitchA(this) || MR::isOnSwitchA(this)) {
+            setNerve(&NrvMogu::HostTypeNrvTurn::sInstance);
+            return;
+        }
+    }
+
+    if (isNerve(&NrvMogu::HostTypeNrvTurn::sInstance) && distanceToPlayer < sightParam) {
+        setNerve(&NrvMogu::HostTypeNrvSearch::sInstance);
+        return;
+    }
+
+    if (!MR::isValidSwitchA(this) || MR::isOnSwitchA(this)) {
+        f32* sight2 = hThrowableSightParam;
+        if (mIsCannonFleet) {
+            sight2 = hCannonFleetSightParam;
+        }
+
+        if (MR::isInSightFanPlayer(this, _9C, sight2[0], sight2[1], sight2[2]) && MR::isGreaterStep(this, 0x2d) && MR::isDead(mStone)) {
+            setNerve(&NrvMogu::HostTypeNrvThrow::sInstance);
+        }
     }
 }
