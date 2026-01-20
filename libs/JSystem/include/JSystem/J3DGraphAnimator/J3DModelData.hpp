@@ -14,6 +14,7 @@ public:
 
     void newSharedDisplayList(u32);
     void clear();
+    void syncJ3DSysFlags() const;
 
     inline u16 getMaterialCount() { return mMaterialTable.getMaterialCount(); }
 

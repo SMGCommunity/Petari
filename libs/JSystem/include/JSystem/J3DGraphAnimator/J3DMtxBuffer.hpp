@@ -6,6 +6,13 @@ class J3DJointTree;
 
 class J3DMtxBuffer {
 public:
+    u32* getCurrentViewNoPtr() { return &mCurrentViewNo; }
+    u8* getScaleFlagArray() const { return mpScaleFlagArr; }
+    Mtx* getDrawMtxPtr() { return mpDrawMtxArr[1][mCurrentViewNo]; }
+    Mtx** getDrawMtxPtrPtr() { return mpDrawMtxArr[1]; }
+
+    Mtx33** getNrmMtxPtrPtr() { return mpNrmMtxArr[1]; }
+
     J3DJointTree* mJointTree;  // 0x00
     u8* mpScaleFlagArr;        // 0x04
     u8* mpEvlpScaleFlagArr;    // 0x08

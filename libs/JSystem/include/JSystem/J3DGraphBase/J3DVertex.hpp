@@ -62,18 +62,15 @@ public:
 
     void init();
 
-    u32 _0;
-    u32 _4;
-    u32 _8;
-    u32 _C;
-    u32 _10;
-    u32 _14;
-    u32 _18;
-    u32 _1C;
-    u32 _20;
-    u32 _24;
-    u32 _28;
-    u32 _2C;
-    u32 _30;
-    u32 _34;
+    void setArray() const;
+
+    /* 0x00 */ J3DVertexData* mVtxData;
+    /* 0x04 */ void* mVtxPosArray[2];
+    /* 0x0C */ void* mVtxNrmArray[2];
+    /* 0x14 */ GXColor* mVtxColArray[2];
+    /* 0x1C */ void* mTransformedVtxPosArray[2];
+    /* 0x24 */ void* mTransformedVtxNrmArray[2];
+    /* 0x2C */ void* mCurrentVtxPos;
+    /* 0x30 */ void* mCurrentVtxNrm;
+    /* 0x34 */ GXColor* mCurrentVtxCol;
 };

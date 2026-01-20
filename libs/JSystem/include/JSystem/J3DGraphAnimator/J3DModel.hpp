@@ -8,6 +8,18 @@ class J3DModelData;
 class J3DMtxBuffer;
 class J3DShapePacket;
 
+enum J3DMdlFlag {
+    J3DMdlFlag_None = 0x0,
+    /* 0x00001 */ J3DMdlFlag_Unk1 = 0x1,
+    /* 0x00002 */ J3DMdlFlag_UseDefaultJ3D = 0x2,
+    /* 0x00004 */ J3DMdlFlag_SkinPosCpu = 0x4,
+    /* 0x00008 */ J3DMdlFlag_SkinNrmCpu = 0x8,
+    /* 0x00010 */ J3DMdlFlag_EnableLOD = 0x10,
+    /* 0x20000 */ J3DMdlFlag_UseSharedDL = 0x20000,
+    /* 0x40000 */ J3DMdlFlag_UseSingleDL = 0x40000,
+    /* 0x80000 */ J3DMdlFlag_DifferedDLBuffer = 0x80000,
+};
+
 class J3DModel {
 public:
     virtual void update();
@@ -20,9 +32,15 @@ public:
 
     void setBaseScale(const Vec&);
 
+    J3DModelData* getModelData() { return mModelData; }
+
+    J3DVertexBuffer* getVertexBuffer() { return (J3DVertexBuffer*)&mVertexBuffer; }
+
+    bool checkFlag(u32 flag) const { return (mFlags & flag) ? true : false; }
+
     J3DModelData* mModelData;  // 0x4
-    u32 _8;
-    u32 _C;
+    u32 mFlags;
+    u32 mDiffFlag;
     u32 _10;
     u32 _14;
     f32 _18;

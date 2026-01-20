@@ -92,6 +92,10 @@ public:
         GXSetArray(GX_NRM_MTX_ARRAY, mModelNrmMtx, sizeof(*mModelNrmMtx));
     }
 
+    void setShapePacket(J3DShapePacket* pPacket) { mShapePacket = pPacket; }
+
+    void setModel(J3DModel* pModel) { mModel = pModel; }
+
     J3DShapePacket* getShapePacket() { return mShapePacket; }
 
     static Mtx mCurrentMtx;

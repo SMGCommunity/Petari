@@ -49,6 +49,11 @@ public:
 
     J3DTexCoord* getTexCoord(u32 idx) { return mTexGenBlock->getTexCoord(idx); }
 
+    u32 getTexGenNum() const { return mTexGenBlock->getTexGenNum(); }
+    u8 getTevStageNum() const { return mTevBlock->getTevStageNum(); }
+
+    J3DTexGenBlock* getTexGenBlock() { return mTexGenBlock; }
+
     /* 0x04 */ J3DMaterial* mNext;
     /* 0x08 */ J3DShape* mShape;
     /* 0x0C */ J3DJoint* mJoint;
