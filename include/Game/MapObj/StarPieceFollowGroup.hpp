@@ -1,8 +1,9 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/MapObj/StarPiece.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
+
+class StarPiece;
 
 class StarPieceFollowGroup : public LiveActor {
 public:

@@ -1,4 +1,5 @@
 #include "Game/MapObj/StarPieceFollowGroup.hpp"
+#include "Game/MapObj/StarPiece.hpp"
 #include "Game/Util.hpp"
 #include "Game/Util/ActorSwitchUtil.hpp"
 #include "Game/Util/EventUtil.hpp"
