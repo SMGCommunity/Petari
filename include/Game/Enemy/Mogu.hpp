@@ -31,16 +31,16 @@ public:
     void exeStampDeath();
     void exeHitBlow();
     bool isNearPlayerHipDrop();
-    void attackSensor(HitSensor*, HitSensor*, bool);
-    void receiveMsgPlayerAttack(u32, HitSensor*, bool);
-    void tryPunchHitted(HitSensor*, HitSensor*, bool);
+    void attackSensor(HitSensor*, HitSensor*);
+    bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
+    bool tryPunchHitted(HitSensor*, HitSensor*, bool);
     void calcAndSetBaseMtx();
 
-    /* 0x8C */ AnimScaleController* mNerveExecutor;
+    /* 0x8C */ AnimScaleController* mAnimScaleController;
     FixedPosition* _90;
     /* 0x94 */ MoguStone* mStone;
     /* 0x98 */ ModelObj* mHole;
-    TVec3f mSight;
+    /* 0x9C */ TVec3f mSight;
     TVec3f _A8;
     bool _B4;
     /* 0xB5 */ bool mIsCannonFleet;

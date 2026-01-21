@@ -1,6 +1,7 @@
 #include "Game/Enemy/Mogu.hpp"
 #include "Game/Enemy/AnimScaleController.hpp"
 #include "Game/Enemy/MoguStone.hpp"
+#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
 #include "Game/LiveActor/Nerve.hpp"
@@ -14,12 +15,14 @@
 #include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
+#include "Game/Util/MtxUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/SceneUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
+#include "JSystem/JMath/JMath.hpp"
 #include "math_types.hpp"
 #include "revolution/mtx.h"
 
@@ -44,7 +47,7 @@ namespace NrvMogu {
 }  // namespace NrvMogu
 
 Mogu::Mogu(const char* pName)
-    : LiveActor(pName), mNerveExecutor(nullptr), _90(nullptr), mStone(nullptr), mHole(nullptr), mSight(0, 0, 1), _A8(0, 1, 0), _B4(true),
+    : LiveActor(pName), mAnimScaleController(nullptr), _90(nullptr), mStone(nullptr), mHole(nullptr), mSight(0, 0, 1), _A8(0, 1, 0), _B4(true),
       mIsCannonFleet(false) {}
 
 void Mogu::init(const JMapInfoIter& rIter) {
@@ -64,7 +67,7 @@ void Mogu::init(const JMapInfoIter& rIter) {
         }
     }
     initModelManagerWithAnm("Mogu", nullptr, false);
-    MtxPtr mtx = getBaseMtx();
+    Mtx44Ptr mtx(getBaseMtx());
 
     _A8.set< f32 >(mtx[0][1], mtx[0][2], mtx[0][3]);
     MR::connectToSceneEnemy(this);
@@ -91,7 +94,7 @@ void Mogu::init(const JMapInfoIter& rIter) {
     MR::initShadowVolumeSphere(this, 60.0f * mRotation.y);
     MR::invalidateShadow(this, nullptr);
     MR::initLightCtrl(this);
-    mNerveExecutor = new AnimScaleController(nullptr);
+    mAnimScaleController = new AnimScaleController(nullptr);
 
     makeActorAppeared();
 
@@ -120,7 +123,7 @@ void Mogu::kill() {
 }
 
 void Mogu::control() {
-    mNerveExecutor->updateNerve();
+    mAnimScaleController->updateNerve();
 }
 
 void Mogu::endClipped() {
@@ -459,5 +462,81 @@ void Mogu::exeHitBlow() {
         MR::startAction(mHole, "Down");
         MR::appearStarPiece(this, mPosition, 3, 10.0f, 40.0f, false);
         MR::startSound(this, "SE_OJ_STAR_PIECE_BURST", -1, -1);
+    }
+}
+
+bool Mogu::isNearPlayerHipDrop() {
+    if (!MR::isPlayerHipDropLand()) {
+        return false;
+    }
+
+    f32 distanceToPlayer = MR::calcDistanceToPlayer(this);
+    return 130.0f < distanceToPlayer && distanceToPlayer < 1500.0f;
+}
+
+void Mogu::attackSensor(HitSensor* pHitSensor1, HitSensor* pHitSensor2) {
+    if (pHitSensor1 != getSensor("body") || isNerve(&NrvMogu::HostTypeNrvHideWait::sInstance) || isNerve(&NrvMogu::HostTypeNrvHide::sInstance) ||
+        isNerve(&NrvMogu::HostTypeNrvStampDeath::sInstance) || isNerve(&NrvMogu::HostTypeNrvHitBlow::sInstance)) {
+        return;
+    }
+
+    if (MR::isSensorPlayer(pHitSensor2)) {
+        MR::sendMsgPush(pHitSensor2, pHitSensor1);
+    }
+}
+
+bool Mogu::receiveMsgPlayerAttack(u32 msg, HitSensor* pSensor1, HitSensor* pSensor2) {
+    if (MR::isMsgStarPieceAttack(msg)) {
+        if (isNerve(&NrvMogu::HostTypeNrvSwoonStart::sInstance) || isNerve(&NrvMogu::HostTypeNrvSwoonEnd::sInstance) ||
+            isNerve(&NrvMogu::HostTypeNrvSwoon::sInstance) || isNerve(&NrvMogu::HostTypeNrvHipDropReaction::sInstance)) {
+            mAnimScaleController->startHitReaction();
+        } else if (isNerve(&NrvMogu::HostTypeNrvAppear::sInstance) || isNerve(&NrvMogu::HostTypeNrvSearch::sInstance) ||
+                   isNerve(&NrvMogu::HostTypeNrvThrow::sInstance)) {
+            setNerve(&NrvMogu::HostTypeNrvSwoonStart::sInstance);
+        }
+        return true;
+    }
+
+    if (MR::isMsgJetTurtleAttack(msg) || MR::isMsgInvincibleAttack(msg)) {
+        if (isNerve(&NrvMogu::HostTypeNrvHideWait::sInstance) || isNerve(&NrvMogu::HostTypeNrvHide::sInstance) ||
+            isNerve(&NrvMogu::HostTypeNrvStampDeath::sInstance) || isNerve(&NrvMogu::HostTypeNrvHitBlow::sInstance)) {
+            return false;
+        } else {
+            return tryPunchHitted(pSensor1, pSensor2, true);
+        }
+    }
+
+    if (!isNerve(&NrvMogu::HostTypeNrvSwoonStart::sInstance) && !isNerve(&NrvMogu::HostTypeNrvSwoonEnd::sInstance) &&
+        !isNerve(&NrvMogu::HostTypeNrvSwoon::sInstance) && !isNerve(&NrvMogu::HostTypeNrvHipDropReaction::sInstance)) {
+        return false;
+    }
+
+    if (MR::isMsgPlayerHipDrop(msg) || MR::isMsgPlayerTrample(msg)) {
+        setNerve(&NrvMogu::HostTypeNrvStampDeath::sInstance);
+        return true;
+    }
+
+    if (MR::isMsgPlayerSpinAttack(msg)) {
+        return tryPunchHitted(pSensor1, pSensor2, true);
+    }
+
+    return false;
+}
+
+void Mogu::calcAndSetBaseMtx() {
+    TPos3f p1;
+    MR::makeMtxUpFrontPos(&p1, _A8, mSight, mPosition);
+    MR::setBaseTRMtx(this, p1);
+    TVec3f v2;
+    // f0 f1 regswap
+    JMathInlineVEC::PSVECMultiply(&mAnimScaleController->_C, &mScale, &v2);
+    MR::setBaseScale(this, v2);
+
+    if (isNerve(&NrvMogu::HostTypeNrvThrow::sInstance) && MR::isLessStep(this, 0x2f)) {
+        _90->calc();
+        f32 z = _90->_1C[2][3];
+        f32 y = _90->_1C[1][3];
+        f32 x = _90->_1C[0][3];
+        mStone->mPosition.set< f32 >(x, y, z);
     }
 }
