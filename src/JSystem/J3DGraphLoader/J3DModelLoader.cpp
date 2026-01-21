@@ -6,7 +6,7 @@ J3DModelLoader::J3DModelLoader() {
     mpShapeBlock = nullptr;
     mpMaterialBlock = nullptr;
     mpModelHierarchy = nullptr;
-    _18 = 0;
+    field_0x18 = 0;
     mEnvelopeSize = 0;
 }
 

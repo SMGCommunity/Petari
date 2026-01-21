@@ -71,7 +71,7 @@ struct J3DBlend : public J3DBlendInfo {
 };
 
 struct J3DFog : public J3DFogInfo {
-    J3DFog() { *(J3DFogInfo*)this = j3dDefaultFogInfo; }
+    inline J3DFog() { *(J3DFogInfo*)this = j3dDefaultFogInfo; }
     ~J3DFog() {}
     J3DFog* getFogInfo() { return this; }
     void setFogInfo(J3DFogInfo info) { *(J3DFogInfo*)this = info; }

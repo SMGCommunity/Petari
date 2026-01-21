@@ -5,7 +5,12 @@
 
 class J3DMtxBuffer;
 class JUTNameTab;
-class J3DModelHierarchy;
+
+struct J3DModelHierarchy {
+    /* 0x0 */ u16 mType;
+    /* 0x2 */ u16 mValue;
+};
+
 class J3DJoint;
 
 class J3DJointTree {

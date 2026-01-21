@@ -15,6 +15,6 @@ bool JointController::calcJointMatrixAfterChild(TPos3f*, const JointControllerIn
 }
 
 void JointController::registerCallBack() {
-    mJoint->mJointCallback = JointController::staticCallBack;
-    mJoint->mJointData = this;
+    mJoint->mCallBack = JointController::staticCallBack;
+    mJoint->mCallBackUserData = this;
 }

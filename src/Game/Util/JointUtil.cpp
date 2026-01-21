@@ -96,7 +96,7 @@ namespace MR {
         MR::hideJoint(pJoint);
         J3DJoint *j, *i;
         for (i = pJoint->mChild; i; i = i->mChild) {
-            for (j = i; j; j = j->mYoung) {
+            for (j = i; j; j = j->mYounger) {
                 MR::hideJointAndChildren(j);
             }
         }
@@ -128,7 +128,7 @@ namespace MR {
         MR::showJoint(pJoint);
         J3DJoint *j, *i;
         for (i = pJoint->mChild; i; i = i->mChild) {
-            for (j = i; j; j = j->mYoung) {
+            for (j = i; j; j = j->mYounger) {
                 MR::showJointAndChildren(j);
             }
         }
