@@ -1941,7 +1941,7 @@ config.libs = [
             Object(NonMatching, "Game/Ride/Creeper.cpp"),
             Object(Matching, "Game/Ride/Fluff.cpp"),
             Object(Matching, "Game/Ride/FluffWind.cpp"),
-            Object(NonMatching, "Game/Ride/JumpBranch.cpp"),
+            Object(Matching, "Game/Ride/JumpBranch.cpp"),
             Object(NonMatching, "Game/Ride/Plant.cpp"),
             Object(NonMatching, "Game/Ride/PlantLeaf.cpp"),
             Object(NonMatching, "Game/Ride/PlantStalk.cpp"),
