@@ -22,6 +22,7 @@ public:
     bool isPlayerExistUp();
     void exeSearch();
     void exeThrow();
+    void endThrow();
     void tearDownThrow();
     void exeSwoonStart();
     void exeSwoon();
@@ -39,7 +40,7 @@ public:
     FixedPosition* _90;
     /* 0x94 */ MoguStone* mStone;
     /* 0x98 */ ModelObj* mHole;
-    TVec3f _9C;
+    TVec3f mSight;
     TVec3f _A8;
     bool _B4;
     /* 0xB5 */ bool mIsCannonFleet;
