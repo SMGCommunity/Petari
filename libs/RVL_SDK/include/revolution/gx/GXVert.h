@@ -37,6 +37,15 @@ volatile PPCWGPipe GXWGFifo;
         return;                                                                                                                                      \
     }
 
+#define __GXCDEF4(func, ts, td)                                                                                                                      \
+    static void func(const ts x, const ts y, const ts z, const ts w) {                                                                               \
+        GXWGFifo.td = (td)x;                                                                                                                         \
+        GXWGFifo.td = (td)y;                                                                                                                         \
+        GXWGFifo.td = (td)z;                                                                                                                         \
+        GXWGFifo.td = (td)w;                                                                                                                         \
+        return;                                                                                                                                      \
+    }
+
 __GXCDEF(GXCmd, 1, u8)
 __GXCDEF(GXCmd, 1, u16)
 __GXCDEF(GXCmd, 1, u32)
@@ -47,6 +56,7 @@ __GXCDEF(GXPosition, 3, f32)
 __GXCDEF(GXPosition, 3, s16)
 
 __GXCDEF(GXColor, 1, u32)
+__GXCDEF(GXColor, 4, u8)
 
 __GXCDEF(GXTexCoord, 2, u16)
 __GXCDEF(GXTexCoord, 2, s16)

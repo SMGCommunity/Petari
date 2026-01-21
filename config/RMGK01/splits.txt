@@ -3747,7 +3747,7 @@ Game/Map/LavaSunPlanet.cpp:
 Game/Map/LightDataHolder.cpp:
 	.text       start:0x80188058 end:0x801881C0
 	.data       start:0x8058AB18 end:0x8058AB40
-	.sdata      start:0x806B1BE0 end:0x806B1C58
+	.sdata      start:0x806B1BE0 end:0x806B1BF0
 
 Game/Map/LightDirector.cpp:
 	.text       start:0x801881C0 end:0x80188398
@@ -3771,8 +3771,9 @@ Game/Map/NamePosHolder.cpp:
 
 Game/Map/OceanBowl.cpp:
 	.text       start:0x80189BF4 end:0x8018B780
-	.data       start:0x8058AC58 end:0x8058AD28
-	.sdata2     start:0x806BC130 end:0x806BC190
+	.data       start:0x8058AC58 end:0x8058AD08
+	.sdata      start:0x806B1BF0 end:0x806B1C00
+	.sdata2     start:0x806BC130 end:0x806BC18C
 
 Game/Map/OceanBowlBloomDrawer.cpp:
 	.text       start:0x8018B780 end:0x8018B9A8
