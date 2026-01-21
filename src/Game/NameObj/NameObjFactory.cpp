@@ -4,13 +4,9 @@
 #include "Game/Demo.hpp"
 #include "Game/Effect.hpp"
 #include "Game/Enemy.hpp"
-#include "Game/Enemy/Pukupuku.hpp"
 #include "Game/Gravity.hpp"
 #include "Game/Map.hpp"
-#include "Game/Map/GroupSwitchWatcher.hpp"
 #include "Game/MapObj.hpp"
-#include "Game/MapObj/JetTurtle.hpp"
-#include "Game/MapObj/SandUpDownTriRock.hpp"
 #include "Game/NPC.hpp"
 #include "Game/Player.hpp"
 #include "Game/Ride.hpp"
@@ -2433,12 +2429,12 @@ namespace {
         },
         {
             "WaterBazooka",
-            nullptr,
+            createNameObj< WaterBazooka >,
             "WaterBazooka",
         },
         {
             "ElectricBazooka",
-            nullptr,
+            createNameObj< WaterBazooka >,
             "ElectricBazooka",
         },
         {

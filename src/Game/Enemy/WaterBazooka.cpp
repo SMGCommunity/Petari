@@ -236,7 +236,7 @@ bool WaterBazooka::isFirstShoot() const {
 }
 
 bool WaterBazooka::isTired() const {
-    isNerve(&NrvWaterBazooka::WaterBazookaNrvTire::sInstance);
+    return isNerve(&NrvWaterBazooka::WaterBazookaNrvTire::sInstance);
 }
 
 bool WaterBazooka::isPanic() const {

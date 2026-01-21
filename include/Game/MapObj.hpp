@@ -182,6 +182,7 @@
 #include "Game/MapObj/RosettaPictureBook.hpp"
 #include "Game/MapObj/RotateMoveObj.hpp"
 #include "Game/MapObj/SandCapsuleInsidePlanet.hpp"
+#include "Game/MapObj/SandUpDownTriRock.hpp"
 #include "Game/MapObj/ScrewSwitch.hpp"
 #include "Game/MapObj/SeaBottomTriplePropeller.hpp"
 #include "Game/MapObj/ShootingStar.hpp"
