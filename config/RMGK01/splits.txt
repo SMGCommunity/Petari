@@ -2944,7 +2944,7 @@ Game/Enemy/Petari.cpp:
 	.ctors      start:0x8052EB28 end:0x8052EB2C
 	.rodata     start:0x80532478 end:0x80532490
 	.data       start:0x80583270 end:0x80583568
-	.sdata      start:0x806B1A48 end:0x806B1A60
+	.sdata      start:0x806B1A48 end:0x806B1A58
 	.sbss       start:0x806B4640 end:0x806B4678
 	.sdata2     start:0x806BB2B8 end:0x806BB350
 
@@ -2953,6 +2953,7 @@ Game/Enemy/Poihana.cpp:
 	.ctors      start:0x8052EB2C end:0x8052EB30
 	.rodata     start:0x80532490 end:0x805324B0
 	.data       start:0x80583568 end:0x80583AD8
+	.sdata      start:0x806B1A58 end:0x806B1A60
 	.sbss       start:0x806B4678 end:0x806B46C8
 	.sdata2     start:0x806BB350 end:0x806BB3E0
 

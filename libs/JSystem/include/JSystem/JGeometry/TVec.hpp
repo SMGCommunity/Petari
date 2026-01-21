@@ -416,6 +416,10 @@ namespace JGeometry {
         inline void scaleAdd(const TVec3& scaleVec, const TVec3& addVec, f32 scale) { JMAVECScaleAdd(&scaleVec, &addVec, this, scale); }
 
         inline void rejection(const TVec3& rVec, const TVec3& rNormal) { JMAVECScaleAdd(&rNormal, &rVec, this, -rNormal.dot(rVec)); }
+        inline void rejection(const TVec3& rNormal) {
+            const TVec3& norm = rNormal;
+            JMAVECScaleAdd(&norm, this, this, -norm.dot(*this));
+        }
 
         inline void invert() {
             this->x *= -1.0f;
@@ -627,7 +631,7 @@ namespace JGeometry {
 
         void slerp(const TQuat4< T >&, T);
         void transform(const TVec3< T >&, TVec3< T >& rDest);
-        void transform(TVec3< T >& rDest);
+        void transform(TVec3< T >& rDest) const;
 
         /* Operators */
         TQuat4< T >& operator=(const TQuat4< T >& rSrc);
