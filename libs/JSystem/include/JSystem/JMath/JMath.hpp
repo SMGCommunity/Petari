@@ -199,3 +199,14 @@ namespace JMathInlineVEC {
     void PSVECMultiply(const Vec*, const Vec*, Vec*);
 #endif
 };  // namespace JMathInlineVEC
+
+template < typename T >
+inline T JMAMax(T param_0, T param_1) {
+    T ret;
+    if (param_0 > param_1) {
+        ret = param_0;
+    } else {
+        ret = param_1;
+    }
+    return ret;
+}

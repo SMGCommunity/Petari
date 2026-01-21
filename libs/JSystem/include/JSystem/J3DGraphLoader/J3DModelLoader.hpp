@@ -104,7 +104,7 @@ struct J3DMaterialBlock_v21 : public J3DModelBlock {
     void* mpTexCoordInfo;
     void* mpTexCoord2Info;
     void* mpTexMtxInfo;
-    void* _38;
+    void* field_0x38;
     void* mpTexNo;
     void* mpTevOrderInfo;
     void* mpTevColor;
@@ -209,3 +209,19 @@ class J3DModelLoaderDataBase {
 public:
     static J3DModelData* load(void const*, u32);
 };
+
+static inline u32 getMdlDataFlag_TevStageNum(u32 flags) {
+    return (flags & 0x001f0000) >> 0x10;
+}
+static inline u32 getMdlDataFlag_TexGenFlag(u32 flags) {
+    return flags & 0x0c000000;
+}
+static inline u32 getMdlDataFlag_ColorFlag(u32 flags) {
+    return flags & 0xc0000000;
+}
+static inline u32 getMdlDataFlag_PEFlag(u32 flags) {
+    return flags & 0x30000000;
+}
+static inline u32 getMdlDataFlag_MtxLoadType(u32 flags) {
+    return flags & 0x10;
+}
