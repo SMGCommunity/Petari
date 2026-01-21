@@ -10,6 +10,7 @@
 #include "Game/Map/GroupSwitchWatcher.hpp"
 #include "Game/MapObj.hpp"
 #include "Game/MapObj/JetTurtle.hpp"
+#include "Game/MapObj/SandUpDownTriRock.hpp"
 #include "Game/NPC.hpp"
 #include "Game/Player.hpp"
 #include "Game/Ride.hpp"
@@ -2667,7 +2668,7 @@ namespace {
         },
         {
             "SandUpDownTriRock",
-            nullptr,
+            createNameObj< SandUpDownTriRock >,
             "SandUpDownTriRock",
         },
         {

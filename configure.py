@@ -1584,7 +1584,7 @@ config.libs = [
             Object(NonMatching, "Game/MapObj/SandCapsulePressGround.cpp"),
             Object(NonMatching, "Game/MapObj/Sandstorm.cpp"),
             Object(NonMatching, "Game/MapObj/SandUpDownEffectObj.cpp"),
-            Object(NonMatching, "Game/MapObj/SandUpDownTriRock.cpp"),
+            Object(Matching, "Game/MapObj/SandUpDownTriRock.cpp"),
             Object(NonMatching, "Game/MapObj/ScrewSwitch.cpp"),
             Object(NonMatching, "Game/MapObj/ScrewSwitchReverse.cpp"),
             Object(NonMatching, "Game/MapObj/SeaBottomTriplePropeller.cpp"),
