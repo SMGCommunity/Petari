@@ -8,7 +8,7 @@
 struct J3DGXColorS10 : public GXColorS10 {
     J3DGXColorS10() {}
 
-    J3DGXColorS10(J3DGXColorS10& other) { __memcpy(this, &other, sizeof(J3DGXColorS10)); }
+    J3DGXColorS10(const J3DGXColorS10& other) { __memcpy(this, &other, sizeof(J3DGXColorS10)); }
 
     J3DGXColorS10(const GXColorS10& color) : GXColorS10(color) {}
 
@@ -542,6 +542,27 @@ protected:
     void indexToPtr_private(u32);
 
     /* 0x4 */ u32 mTexNoOffset;
+};
+
+class J3DColorBlockNull : public J3DColorBlock {
+public:
+    virtual u32 getType() { return 'CLNL'; }
+    virtual ~J3DColorBlockNull() {}
+};
+
+class J3DTexGenBlockNull : public J3DTexGenBlock {
+public:
+    virtual void calc(f32 const (*)[4]) {}
+    virtual void calcWithoutViewMtx(f32 const (*)[4]) {}
+    virtual void calcPostTexMtx(f32 const (*)[4]) {}
+    virtual void calcPostTexMtxWithoutViewMtx(f32 const (*)[4]) {}
+    virtual void load() {}
+    virtual void patch() {}
+    virtual void diff(u32) {}
+    virtual void diffTexMtx() {}
+    virtual void diffTexGen() {}
+    virtual u32 getType() { return 'TGNL'; }
+    virtual ~J3DTexGenBlockNull() {}
 };
 
 class J3DTevBlockNull : public J3DTevBlock {

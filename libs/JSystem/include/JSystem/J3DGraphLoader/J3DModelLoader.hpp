@@ -113,7 +113,7 @@ struct J3DMaterialBlock : public J3DModelBlock {
     void* mpTexCoordInfo;
     void* mpTexCoord2Info;
     void* mpTexMtxInfo;
-    void* _44;
+    void* field_0x44;
     void* mpTexNo;
     void* mpTevOrderInfo;
     void* mpTevColor;

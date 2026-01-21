@@ -6,7 +6,7 @@
 
 struct J3DGXColor : public GXColor {
     J3DGXColor() {}
-    J3DGXColor(J3DGXColor& other) { __memcpy(this, &other, sizeof(J3DGXColor)); }
+    J3DGXColor(const J3DGXColor& other) { __memcpy(this, &other, sizeof(J3DGXColor)); }
 
     J3DGXColor(const GXColor color) : GXColor(color) {}
 

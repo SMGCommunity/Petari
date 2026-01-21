@@ -52,7 +52,15 @@ public:
     u32 getTexGenNum() const { return mTexGenBlock->getTexGenNum(); }
     u8 getTevStageNum() const { return mTevBlock->getTevStageNum(); }
 
+    J3DMaterial* getNext() { return mNext; }
+    J3DShape* getShape() { return mShape; }
+    J3DTevBlock* getTevBlock() { return mTevBlock; }
+    J3DColorBlock* getColorBlock() { return mColorBlock; }
     J3DTexGenBlock* getTexGenBlock() { return mTexGenBlock; }
+    J3DDisplayListObj* getSharedDisplayListObj() { return mSharedDLObj; }
+    J3DIndBlock* getIndBlock() { return mIndBlock; }
+    J3DJoint* getJoint() { return mJoint; }
+    J3DPEBlock* getPEBlock() { return mPEBlock; }
 
     u16 getTexNo(u32 idx) { return mTevBlock->getTexNo(idx); }
 
