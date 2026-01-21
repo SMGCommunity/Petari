@@ -1,8 +1,8 @@
 #pragma once
-#include "Game/LiveActor/LiveActor.hpp"
-#include "Game/mapObj/StarPiece.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
 
+#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/MapObj/StarPiece.hpp"
+#include "JSystem/JGeometry/TVec.hpp"
 
 class StarPieceFollowGroup : public LiveActor {
 public:
@@ -25,7 +25,7 @@ public:
     /* 0x98 */ s32 mNumPiecesUse;
 
     /* 0x9C */ f32 mRadius;
-    //appears to go unused
+    // appears to go unused
     u32 _A0;
     /* 0xA4 */ f32 mAngle;
 
