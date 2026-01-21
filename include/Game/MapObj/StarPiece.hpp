@@ -1,10 +1,11 @@
+#pragma once
+
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/NameObj/NameObj.hpp"
 #include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/TriangleFilter.hpp"
 #include "JSystem/J3DGraphBase/J3DStruct.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
-
 
 class HitSensor;
 // this function does not belong in this header, but will put here for now
@@ -120,8 +121,7 @@ public:
 
     struct {
         bool isGoToPlayer : 1;
-        // is set to true in constuctor and when nerve is railMove or Floating
-        // in practice, is always true
+        // is turned off when part of a StarPieceGroup and switchA is off
         bool _1 : 1;
         // flags related to enabling/disabling shadows
         bool _2 : 1;
