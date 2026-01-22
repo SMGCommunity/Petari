@@ -256,6 +256,15 @@ namespace JGeometry {
             return ret;
         }
 
+        //needed in StarPieceFollowGroup???
+        inline TVec3 multInLine(f32 val) {
+            TVec3 ret(*this);
+            ret.x *= val;
+            ret.y *= val;
+            ret.z *= val;
+            return ret;
+        }
+
         TVec3 operator-() const;
 
         bool operator==(const TVec3&) const;

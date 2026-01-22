@@ -5695,7 +5695,7 @@ Game/MapObj/StarPiece.cpp:
 Game/MapObj/StarPieceDirector.cpp:
 	.text       start:0x80240BD4 end:0x802422D8
 	.ctors      start:0x8052EEDC end:0x8052EEE0
-	.rodata     start:0x80534C48 end:0x80534C80
+	.rodata     start:0x80534C48 end:0x80534C50
 	.data       start:0x805A3A38 end:0x805A3BF0
 	.sbss       start:0x806B5960 end:0x806B5968
 	.sdata2     start:0x806BE440 end:0x806BE480
@@ -5703,6 +5703,7 @@ Game/MapObj/StarPieceDirector.cpp:
 Game/MapObj/StarPieceFollowGroup.cpp:
 	.text       start:0x802422D8 end:0x80242F84
 	.ctors      start:0x8052EEE0 end:0x8052EEE4
+	.rodata     start:0x80534C50 end:0x80534C80
 	.data       start:0x805A3BF0 end:0x805A3CF8
 	.sbss       start:0x806B5968 end:0x806B5970
 	.sdata2     start:0x806BE480 end:0x806BE4A8
