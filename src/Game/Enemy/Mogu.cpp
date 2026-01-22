@@ -23,11 +23,11 @@
 #include "Game/Util/StarPointerUtil.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
 #include "JSystem/JMath/JMath.hpp"
-#include "math_types.hpp"
+#include <math_types.hpp>
 
 namespace {
-    f32 hCannonFleetSightParam[3] = {1500.0f, 10.0f, 90.0f};
-    f32 hThrowableSightParam[3] = {900.0f, 10.0f, 90.0f};
+    const f32 hThrowableSightParam[3] = {900.0f, 10.0f, 90.0f};
+    const f32 hCannonFleetSightParam[3] = {1500.0f, 10.0f, 90.0f};
 }  // namespace
 
 namespace NrvMogu {
@@ -280,7 +280,7 @@ void Mogu::exeSearch() {
     }
 
     if (!MR::isValidSwitchA(this) || MR::isOnSwitchA(this)) {
-        f32* sight2 = hThrowableSightParam;
+        const f32* sight2 = hThrowableSightParam;
         if (mIsCannonFleet) {
             sight2 = hCannonFleetSightParam;
         }
@@ -330,15 +330,15 @@ void Mogu::exeThrow() {
 
         f32 f1 = killElementOut.length();
 
-        // Stack swap between 0x20 and 0x8, which are v5 and v7 here
+        // Stack swap between 0x20 and 0x8, which are v5 and v7 here. Possible inline?
         TVec3f v5(mSight);
         v5 *= f1;
 
-        TVec3f v6 = mStone->mPosition;
+        TVec3f v6(mStone->mPosition);
         v6 += v5;
 
         TVec3f v7(v6);
-        v5 += v4;
+        v7 += v4;
 
         mStone->emit(_B4, *stonePos, v7, 15.0f);
         MR::startSound(this, "SE_EM_MOGU_THROW", -1, -1);
