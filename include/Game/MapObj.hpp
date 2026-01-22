@@ -212,6 +212,7 @@
 #include "Game/MapObj/StarPieceDirector.hpp"
 #include "Game/MapObj/StarPieceFollowGroup.hpp"
 #include "Game/MapObj/StarPieceGroup.hpp"
+#include "Game/MapObj/StarPieceSpot.hpp"
 #include "Game/MapObj/SubmarineVolcanoBigColumn.hpp"
 #include "Game/MapObj/Sun.hpp"
 #include "Game/MapObj/SuperSpinDriver.hpp"
