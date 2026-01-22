@@ -71,11 +71,63 @@ public:
 
 class J3DVertexBuffer {
 public:
-    ~J3DVertexBuffer();
+    J3DVertexBuffer() { init(); }
 
+    void setVertexData(J3DVertexData*);
     void init();
-
+    ~J3DVertexBuffer();
     void setArray() const;
+    s32 copyLocalVtxPosArray(u32);
+    s32 copyLocalVtxNrmArray(u32);
+    s32 copyLocalVtxArray(u32);
+    s32 allocTransformedVtxPosArray();
+    s32 allocTransformedVtxNrmArray();
+
+    void setCurrentVtxPos(void* pVtxPos) { mCurrentVtxPos = pVtxPos; }
+    void* getCurrentVtxPos() { return mCurrentVtxPos; }
+
+    void setCurrentVtxNrm(void* pVtxNrm) { mCurrentVtxNrm = pVtxNrm; }
+    void* getCurrentVtxNrm() { return mCurrentVtxNrm; }
+
+    void setCurrentVtxCol(GXColor* pVtxCol) { mCurrentVtxCol = pVtxCol; }
+
+    void frameInit() {
+        setCurrentVtxPos(mVtxPosArray[0]);
+        setCurrentVtxNrm(mVtxNrmArray[0]);
+        setCurrentVtxCol(mVtxColArray[0]);
+    }
+
+    void* getTransformedVtxPos(int idx) { return mTransformedVtxPosArray[idx]; }
+    void* getTransformedVtxNrm(int idx) { return mTransformedVtxNrmArray[idx]; }
+    J3DVertexData* getVertexData() const { return mVtxData; }
+
+    void swapTransformedVtxPos() {
+        void* tmp = mTransformedVtxPosArray[0];
+        mTransformedVtxPosArray[0] = mTransformedVtxPosArray[1];
+        mTransformedVtxPosArray[1] = tmp;
+    }
+
+    void swapTransformedVtxNrm() {
+        void* tmp = mTransformedVtxNrmArray[0];
+        mTransformedVtxNrmArray[0] = mTransformedVtxNrmArray[1];
+        mTransformedVtxNrmArray[1] = tmp;
+    }
+
+    void swapVtxPosArrayPointer() {
+        void* temp = mVtxPosArray[0];
+        mVtxPosArray[0] = mVtxPosArray[1];
+        mVtxPosArray[1] = temp;
+    }
+
+    void swapVtxNrmArrayPointer() {
+        void* temp = mVtxNrmArray[0];
+        mVtxNrmArray[0] = mVtxNrmArray[1];
+        mVtxNrmArray[1] = temp;
+    }
+
+    void* getVtxPosArrayPointer(int index) { return mVtxPosArray[index]; }
+
+    void* getVtxNrmArrayPointer(int index) { return mVtxNrmArray[index]; }
 
     /* 0x00 */ J3DVertexData* mVtxData;
     /* 0x04 */ void* mVtxPosArray[2];

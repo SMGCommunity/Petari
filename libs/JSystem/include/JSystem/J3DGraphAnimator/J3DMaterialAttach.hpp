@@ -16,20 +16,22 @@ public:
 
     virtual ~J3DMaterialTable();
 
-    s32 removeMatColorAnimator(J3DAnmColor*);
-    s32 removeTexNoAnimator(J3DAnmTexPattern*);
-    s32 removeTexMtxAnimator(J3DAnmTextureSRTKey*);
-    s32 removeTevRegAnimator(J3DAnmTevRegKey*);
-    s32 createTexMtxForAnimator(J3DAnmTextureSRTKey*);
-    s32 entryMatColorAnimator(J3DAnmColor*);
-    s32 entryTexNoAnimator(J3DAnmTexPattern*);
-    s32 entryTexMtxAnimator(J3DAnmTextureSRTKey*);
-    s32 entryTevRegAnimator(J3DAnmTevRegKey*);
+    void clear();
+    int removeMatColorAnimator(J3DAnmColor*);
+    int removeTexNoAnimator(J3DAnmTexPattern*);
+    int removeTexMtxAnimator(J3DAnmTextureSRTKey*);
+    int removeTevRegAnimator(J3DAnmTevRegKey*);
+    int createTexMtxForAnimator(J3DAnmTextureSRTKey*);
+    int entryMatColorAnimator(J3DAnmColor*);
+    int entryTexNoAnimator(J3DAnmTexPattern*);
+    int entryTexMtxAnimator(J3DAnmTextureSRTKey*);
+    int entryTevRegAnimator(J3DAnmTevRegKey*);
 
     u16 getMaterialNum() const { return mMaterialNum; }
     J3DTexture* getTexture() const { return mTexture; }
     JUTNameTab* getTextureName() const { return mTextureName; }
-
+    JUTNameTab* getMaterialName() const { return mMaterialName; }
+    bool isLocked() const { return field_0x1c == 1; }
     J3DMaterial* getMaterialNodePointer(u16 idx) const { return mMaterialNodePointer[idx]; }
 
     /* 0x04 */ u16 mMaterialNum;

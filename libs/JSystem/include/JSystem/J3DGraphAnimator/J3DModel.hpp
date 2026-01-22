@@ -34,6 +34,31 @@ typedef void (*J3DCalcCallBack)(J3DModel*, u32 timing);
 
 class J3DModel {
 public:
+    J3DModel() { initialize(); }
+
+    J3DModel(J3DModelData* pModelData, u32 mdlFlags, u32 mtxBufferFlag) {
+        initialize();
+        entryModelData(pModelData, mdlFlags, mtxBufferFlag);
+    }
+
+    void initialize();
+    s32 entryModelData(J3DModelData*, u32, u32);
+    s32 createShapePacket(J3DModelData*);
+    s32 createMatPacket(J3DModelData*, u32);
+    s32 newDifferedDisplayList(u32);
+    void lock();
+    void unlock();
+    void diff();
+    s32 setDeformData(J3DDeformData*, u32);
+    s32 setSkinDeform(J3DSkinDeform*, u32);
+    void calcAnmMtx();
+    void calcWeightEnvelopeMtx();
+    void calcNrmMtx();
+    void calcBumpMtx();
+    void calcBBoardMtx();
+    void prepareShapePackets();
+    void ptrToIndex();
+    void makeDL();
     virtual void update();
     virtual void entry();
     virtual void calc();
@@ -42,22 +67,33 @@ public:
     virtual void viewCalc();
     virtual ~J3DModel();
 
-    void setBaseScale(const Vec&);
-
     J3DModelData* getModelData() { return mModelData; }
 
-    J3DVertexBuffer* getVertexBuffer() { return (J3DVertexBuffer*)&mVertexBuffer; }
-
+    void onFlag(u32 flag) { mFlags |= flag; }
+    void offFlag(u32 flag) { mFlags &= ~flag; }
     bool checkFlag(u32 flag) const { return (mFlags & flag) ? true : false; }
 
-    J3DMtxBuffer* getMtxBuffer() { return mMtxBuffer; }
+    bool isCpuSkinningOn() const { return (mFlags & J3DMdlFlag_SkinPosCpu) && (mFlags & J3DMdlFlag_SkinNrmCpu); }
 
+    Mtx& getBaseTRMtx() { return mBaseTransformMtx; }
+    void setBaseTRMtx(Mtx m) { PSMTXCopy(m, mBaseTransformMtx); }
+    u32 getMtxCalcMode() { return mFlags & (J3DMdlFlag_Unk1 | J3DMdlFlag_UseDefaultJ3D); }
+    J3DVertexBuffer* getVertexBuffer() { return (J3DVertexBuffer*)&mVertexBuffer; }
     J3DMatPacket* getMatPacket(u16 idx) const { return &mMatPacket[idx]; }
     J3DShapePacket* getShapePacket(u16 idx) const { return &mShapePacket[idx]; }
-
-    MtxPtr getWeightAnmMtx(int i) { return mMtxBuffer->getWeightAnmMtx(i); }
-
+    J3DMtxBuffer* getMtxBuffer() { return mMtxBuffer; }
+    void setScaleFlag(int idx, u8 flag) { mMtxBuffer->setScaleFlag(idx, flag); }
+    Mtx33* getBumpMtxPtr(int idx);
+    Mtx33* getNrmMtxPtr();
+    Mtx* getDrawMtxPtr() { return mMtxBuffer->getDrawMtxPtr(); }
+    void setBaseScale(const Vec& scale) { mBaseScale = scale; }
+    void setUserArea(uintptr_t area) { mUserArea = area; }
+    uintptr_t getUserArea() const { return mUserArea; }
+    Vec* getBaseScale() { return &mBaseScale; }
+    void setAnmMtx(int jointNo, Mtx m) { mMtxBuffer->setAnmMtx(jointNo, m); }
     MtxPtr getAnmMtx(int jointNo) { return mMtxBuffer->getAnmMtx(jointNo); }
+    MtxPtr getWeightAnmMtx(int i) { return mMtxBuffer->getWeightAnmMtx(i); }
+    J3DSkinDeform* getSkinDeform() { return mSkinDeform; }
 
     /* 0x04 */ J3DModelData* mModelData;
     /* 0x08 */ u32 mFlags;

@@ -47,7 +47,7 @@ public:
     s32 newSharedDisplayList(u32);
     s32 newSingleSharedDisplayList(u32);
 
-    J3DMaterialAnm* getMaterialAnm() {
+    inline J3DMaterialAnm* getMaterialAnm() {
         if ((uintptr_t)mMaterialAnm < 0xC0000000) {
             return mMaterialAnm;
         } else {
@@ -58,6 +58,9 @@ public:
     bool isDrawModeOpaTexEdge() { return (mMaterialMode & 3) == 0; }
 
     u16 getIndex() { return mIndex; }
+
+    J3DTexMtx* getTexMtx(u32 idx) { return mTexGenBlock->getTexMtx(idx); }
+    void setTexMtx(u32 idx, J3DTexMtx* mtx) { mTexGenBlock->setTexMtx(idx, mtx); }
 
     J3DNBTScale* getNBTScale() { return mTexGenBlock->getNBTScale(); }
 

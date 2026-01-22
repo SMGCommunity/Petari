@@ -26,6 +26,10 @@ public:
     void makeHierarchy(J3DJoint*, J3DModelHierarchy const**, J3DMaterialTable*, J3DShapeTable*);
     void findImportantMtxIndex();
 
+    J3DModelHierarchy const* getHierarchy() { return mHierarchy; }
+    void setHierarchy(J3DModelHierarchy* hierarchy) { mHierarchy = hierarchy; }
+    void setBasicMtxCalc(J3DMtxCalc* calc) { mBasicMtxCalc = calc; }
+
     u16 getJointNum() const { return mJointNum; }
     u16 getDrawMtxNum() const { return mDrawMtxData.mEntryNum; }
     Mtx& getInvJointMtx(int idx) { return mInvJointMtx[idx]; }
@@ -40,7 +44,10 @@ public:
     u16 getDrawFullWgtMtxNum() const { return mDrawMtxData.mDrawFullWgtMtxNum; }
     u8 getWEvlpMixMtxNum(u16 idx) const { return mWEvlpMixMtxNum[idx]; }
 
+    J3DDrawMtxData* getDrawMtxData() { return &mDrawMtxData; }
+    JUTNameTab* getJointName() const { return mJointName; }
     u32 getModelDataType() const { return mModelDataType; }
+    void setModelDataType(u32 type) { mModelDataType = type; }
     J3DJoint* getRootNode() { return mRootNode; }
     J3DJoint* getJointNodePointer(u16 idx) const { return mJointNodePointer[idx]; }
 
