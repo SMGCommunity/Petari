@@ -21,13 +21,23 @@ public:
     virtual void calc(J3DMtxBuffer*, const Vec&, const Mtx&);
     virtual ~J3DJointTree();
 
+    u16 getJointNum() const { return mJointNum; }
+    u16 getDrawMtxNum() const { return mDrawMtxData.mEntryNum; }
     Mtx& getInvJointMtx(int idx) { return mInvJointMtx[idx]; }
 
     u8 getDrawMtxFlag(u16 idx) const { return mDrawMtxData.mDrawMtxFlag[idx]; }
 
     u16 getDrawMtxIndex(u16 idx) const { return mDrawMtxData.mDrawMtxIndex[idx]; }
-
+    u16 getWEvlpMtxNum() const { return mWEvlpMtxNum; }
     u16* getWEvlpImportantMtxIndex() const { return mWEvlpImportantMtxIdx; }
+    u16* getWEvlpMixMtxIndex() const { return mWEvlpMixMtxIndex; }
+    f32* getWEvlpMixWeight() const { return mWEvlpMixWeight; }
+    u16 getDrawFullWgtMtxNum() const { return mDrawMtxData.mDrawFullWgtMtxNum; }
+    u8 getWEvlpMixMtxNum(u16 idx) const { return mWEvlpMixMtxNum[idx]; }
+
+    u32 getModelDataType() const { return mModelDataType; }
+
+    J3DJoint* getJointNodePointer(u16 idx) const { return mJointNodePointer[idx]; }
 
     /* 0x04 */ J3DModelHierarchy* mHierarchy;
     /* 0x08 */ u32 mFlags;

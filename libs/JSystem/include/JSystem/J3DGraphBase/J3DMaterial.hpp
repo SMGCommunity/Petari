@@ -47,6 +47,8 @@ public:
     s32 newSharedDisplayList(u32);
     s32 newSingleSharedDisplayList(u32);
 
+    J3DNBTScale* getNBTScale() { return mTexGenBlock->getNBTScale(); }
+
     J3DTexCoord* getTexCoord(u32 idx) { return mTexGenBlock->getTexCoord(idx); }
 
     u32 getTexGenNum() const { return mTexGenBlock->getTexGenNum(); }

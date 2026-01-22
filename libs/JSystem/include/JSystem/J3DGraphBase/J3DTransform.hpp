@@ -46,3 +46,5 @@ void J3DScaleNrmMtx(f32 (*)[4], const Vec&);
 void J3DScaleNrmMtx33(f32 (*)[3], const Vec&);
 void J3DMtxProjConcat(f32 (*)[4], f32 (*)[4], f32 (*)[4]);
 void J3DPSMtxArrayConcat(f32 (*)[4], f32 (*)[4], f32 (*)[4], u32);
+
+void J3DPSMtx33CopyFrom34(__REGISTER MtxPtr src, __REGISTER Mtx3P dst);

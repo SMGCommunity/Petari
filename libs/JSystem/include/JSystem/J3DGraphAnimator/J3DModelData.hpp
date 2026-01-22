@@ -19,10 +19,14 @@ public:
     void syncJ3DSysFlags() const;
 
     J3DTexture* getTexture() const { return mMaterialTable.getTexture(); }
+    J3DJointTree& getJointTree() { return mJointTree; }
 
     u16 getDrawMtxIndex(u16 idx) const { return mJointTree.getDrawMtxIndex(idx); }
-
+    u16 getWEvlpMtxNum() const { return mJointTree.getWEvlpMtxNum(); }
     u16 getMaterialNum() const { return mMaterialTable.getMaterialNum(); }
+    u16 getJointNum() const { return mJointTree.getJointNum(); }
+    u16 getDrawMtxNum() const { return mJointTree.getDrawMtxNum(); }
+    u32 getModelDataType() const { return mJointTree.getModelDataType(); }
 
     Mtx& getInvJointMtx(int idx) { return mJointTree.getInvJointMtx(idx); }
 
@@ -31,8 +35,10 @@ public:
     u16* getWEvlpImportantMtxIndex() const { return mJointTree.getWEvlpImportantMtxIndex(); }
 
     J3DMaterial* getMaterialNodePointer(u16 idx) const { return mMaterialTable.getMaterialNodePointer(idx); }
+    void setBumpFlag(u32 flag) { mbHasBumpArray = flag; }
 
     bool checkFlag(u32 flag) const { return (mFlags & flag) ? true : false; }
+    u32 getFlag() const { return mFlags; }
 
     /* 0x04 */ void const* mpRawData;
     /* 0x08 */ u32 mFlags;
