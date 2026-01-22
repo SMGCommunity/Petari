@@ -11,10 +11,14 @@ class Mogu : public LiveActor {
 public:
     Mogu(const char*);
 
-    void init(const JMapInfoIter&);
-    void kill();
-    void control();
-    void endClipped();
+    virtual void init(const JMapInfoIter&);
+    virtual void kill();
+    virtual void endClipped();
+    virtual void control();
+    virtual void calcAndSetBaseMtx();
+    virtual void attackSensor(HitSensor*, HitSensor*);
+    virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
+
     void exeWait();
     void exeHide();
     void exeHideWait();
@@ -31,10 +35,7 @@ public:
     void exeStampDeath();
     void exeHitBlow();
     bool isNearPlayerHipDrop();
-    void attackSensor(HitSensor*, HitSensor*);
-    bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
     bool tryPunchHitted(HitSensor*, HitSensor*, bool);
-    void calcAndSetBaseMtx();
 
     /* 0x8C */ AnimScaleController* mAnimScaleController;
     FixedPosition* _90;
