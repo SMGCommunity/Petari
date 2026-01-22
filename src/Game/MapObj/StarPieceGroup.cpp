@@ -1,7 +1,5 @@
 #include "Game/MapObj/StarPieceGroup.hpp"
-#include "Game/LiveActor/LiveActor.hpp"
 #include "Game/MapObj/StarPiece.hpp"
-#include "Game/MapObj/StarPieceDirector.hpp"
 #include "Game/Util/ActorMovementUtil.hpp"
 #include "Game/Util/ActorSwitchUtil.hpp"
 #include "Game/Util/DemoUtil.hpp"
@@ -14,11 +12,7 @@
 #include "Game/Util/RailUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
-#include "JSystem/JGeometry/TMatrix.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
 #include "JSystem/JMath/JMATrigonometric.hpp"
-#include "math_types.hpp"
-#include "revolution/types.h"
 
 namespace NrvStarPieceGroup {
     NEW_NERVE(HostTypeNrvGroup, StarPieceGroup, Group);
@@ -212,7 +206,7 @@ void StarPieceGroup::placementAllPiece() {
 }
 
 void StarPieceGroup::placementPieceOnCircle() {
-    if(mNumPieces == 1) {
+    if (mNumPieces == 1) {
         mPieces[0]->mPosition.set(mPosition);
         return;
     }
@@ -223,12 +217,12 @@ void StarPieceGroup::placementPieceOnCircle() {
     mtxTRS.getXDirInline(xDir);
     mtxTRS.getZDirInline(zDir);
     TVec3f center(mPosition);
-        f32 currentAngle = 0.0f;
+    f32 currentAngle = 0.0f;
     f32 angleBetweenPieces = TWO_PI / mNumPieces;
-    for(u32 i = 0; i < mNumPieces; i++) {
+    for (u32 i = 0; i < mNumPieces; i++) {
         f32 cos = mCircleRadius * JMath::sSinCosTable.cosLapRad(currentAngle);
         f32 sin = mCircleRadius * JMath::sSinCosTable.sinLapRad(currentAngle);
-        mPieces[i]->mPosition.setPS2(zDir*cos + xDir*sin + center);
+        mPieces[i]->mPosition.setPS2(zDir * cos + xDir * sin + center);
         currentAngle += angleBetweenPieces;
     }
     MR::setClippingTypeSphere(this, mCircleRadius);
@@ -236,7 +230,7 @@ void StarPieceGroup::placementPieceOnCircle() {
 
 void StarPieceGroup::placementPieceOnRail() {
     f32 railLength = MR::getRailTotalLength(this);
-            f32 railCoord;
+    f32 railCoord;
     f32 coordDistBetweenPieces;
     if (mNumPieces == 1) {
         coordDistBetweenPieces = 0.0f;
