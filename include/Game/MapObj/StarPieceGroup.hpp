@@ -1,7 +1,8 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/Util/JMapInfo.hpp"
+
+class StarPiece;
 
 class StarPieceGroup : public LiveActor {
 public:
@@ -26,4 +27,17 @@ public:
     void offSwitchA();
     void onSwitchB();
     void exeFlow();
+    void exeGroup();
+
+    /* 0x8C */ StarPiece** mPieces;
+    f32* mRailCoords;
+    bool _94;
+    bool _95;
+    /* 0x98 */ s32 mNumPieces;
+    f32 mCircleRadius;
+    bool mIsRail;
+    bool mPlaceAtPathPoints;
+    s32 _A4;
+    f32 mRailSpeed;
+    TVec3f _AC;
 };
