@@ -26,16 +26,18 @@ public:
     s32 entryTexMtxAnimator(J3DAnmTextureSRTKey*);
     s32 entryTevRegAnimator(J3DAnmTevRegKey*);
 
-    inline u16 getMaterialCount() { return mMaterialCount; }
+    u16 getMaterialNum() const { return mMaterialNum; }
+    J3DTexture* getTexture() const { return mTexture; }
+    JUTNameTab* getTextureName() const { return mTextureName; }
 
-    u16 mMaterialCount;             // 0x4
-    u16 mUniqueMaterialCount;       // 0x6
-    J3DMaterial** mMaterials;       // 0x8
-    JUTNameTab* mNameTable;         // 0xC
-    J3DMaterial* mUniqueMaterials;  // 0x10
-    J3DTexture* mTexture;           // 0x14
-    JUTNameTab* mTextureNameTable;  // 0x18
-    u16 _1C;
-    u8 _1E;
-    u8 _1F;
+    J3DMaterial* getMaterialNodePointer(u16 idx) const { return mMaterialNodePointer[idx]; }
+
+    /* 0x04 */ u16 mMaterialNum;
+    /* 0x06 */ u16 mUniqueMatNum;
+    /* 0x08 */ J3DMaterial** mMaterialNodePointer;
+    /* 0x0C */ JUTNameTab* mMaterialName;
+    /* 0x10 */ J3DMaterial* field_0x10;
+    /* 0x14 */ J3DTexture* mTexture;
+    /* 0x18 */ JUTNameTab* mTextureName;
+    /* 0x1C */ u16 field_0x1c;
 };

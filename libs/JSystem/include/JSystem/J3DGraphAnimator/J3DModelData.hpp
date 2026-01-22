@@ -13,21 +13,26 @@ public:
 
     virtual ~J3DModelData();
 
-    void newSharedDisplayList(u32);
+    s32 newSharedDisplayList(u32);
+    void indexToPtr();
     void clear();
     void syncJ3DSysFlags() const;
 
+    J3DTexture* getTexture() const { return mMaterialTable.getTexture(); }
+
     u16 getDrawMtxIndex(u16 idx) const { return mJointTree.getDrawMtxIndex(idx); }
 
-    inline u16 getMaterialCount() { return mMaterialTable.getMaterialCount(); }
-
-    inline J3DMaterial* getMaterial(u16 idx) { return mMaterialTable.mMaterials[idx]; }
+    u16 getMaterialNum() const { return mMaterialTable.getMaterialNum(); }
 
     Mtx& getInvJointMtx(int idx) { return mJointTree.getInvJointMtx(idx); }
 
     u8 getDrawMtxFlag(u16 idx) const { return mJointTree.getDrawMtxFlag(idx); }
 
     u16* getWEvlpImportantMtxIndex() const { return mJointTree.getWEvlpImportantMtxIndex(); }
+
+    J3DMaterial* getMaterialNodePointer(u16 idx) const { return mMaterialTable.getMaterialNodePointer(idx); }
+
+    bool checkFlag(u32 flag) const { return (mFlags & flag) ? true : false; }
 
     /* 0x04 */ void const* mpRawData;
     /* 0x08 */ u32 mFlags;

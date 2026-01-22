@@ -76,6 +76,8 @@ public:
 
     MtxPtr getViewMtx() { return mViewMtx; }
 
+    void onFlag(u32 flag) { mFlags |= flag; }
+    void offFlag(u32 flag) { mFlags &= ~flag; }
     bool checkFlag(u32 flag) { return mFlags & flag ? true : false; }
 
     J3DMatPacket* getMatPacket() { return mMatPacket; }
@@ -110,6 +112,7 @@ public:
 
     J3DShapePacket* getShapePacket() { return mShapePacket; }
     Mtx& getModelDrawMtx(u16 no) { return mModelDrawMtx[no]; }
+    void setTexture(J3DTexture* pTex) { mTexture = pTex; }
     J3DTexture* getTexture() { return mTexture; }
 
     static Mtx mCurrentMtx;

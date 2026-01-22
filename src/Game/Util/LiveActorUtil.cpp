@@ -48,7 +48,7 @@ namespace {
 namespace MR {
     bool isExistIndirectTexture(const LiveActor* pActor) {
         const char* name = "IndDummy";
-        return MR::getJ3DModelData(pActor)->mMaterialTable.mTextureNameTable->getIndex(name) != -1;
+        return MR::getJ3DModelData(pActor)->mMaterialTable.mTextureName->getIndex(name) != -1;
     }
 
     void initDefaultPos(LiveActor* pActor, const JMapInfoIter& rIter) {
