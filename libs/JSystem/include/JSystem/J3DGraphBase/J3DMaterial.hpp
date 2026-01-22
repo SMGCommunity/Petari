@@ -47,6 +47,18 @@ public:
     s32 newSharedDisplayList(u32);
     s32 newSingleSharedDisplayList(u32);
 
+    J3DMaterialAnm* getMaterialAnm() {
+        if ((uintptr_t)mMaterialAnm < 0xC0000000) {
+            return mMaterialAnm;
+        } else {
+            return NULL;
+        }
+    }
+
+    bool isDrawModeOpaTexEdge() { return (mMaterialMode & 3) == 0; }
+
+    u16 getIndex() { return mIndex; }
+
     J3DNBTScale* getNBTScale() { return mTexGenBlock->getNBTScale(); }
 
     J3DTexCoord* getTexCoord(u32 idx) { return mTexGenBlock->getTexCoord(idx); }

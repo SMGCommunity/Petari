@@ -105,6 +105,8 @@ public:
     void setNBTScale(Vec* scale) { mNBTScale = scale; }
     Vec* getNBTScale() { return mNBTScale; }
 
+    void setMatPacket(J3DMatPacket* pPacket) { mMatPacket = pPacket; }
+
     void setShapePacket(J3DShapePacket* pPacket) { mShapePacket = pPacket; }
 
     J3DModel* getModel() { return mModel; }
@@ -115,7 +117,11 @@ public:
     void setTexture(J3DTexture* pTex) { mTexture = pTex; }
     J3DTexture* getTexture() { return mTexture; }
 
+    J3DDrawBuffer* getDrawBuffer(int type) { return mDrawBuffer[type]; }
+
     static Mtx mCurrentMtx;
+    static Vec mCurrentS;
+    static Vec mParentS;
     static J3DTexCoordScaleInfo sTexCoordScaleTable[8];
 };
 

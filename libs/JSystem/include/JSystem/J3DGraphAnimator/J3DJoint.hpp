@@ -93,3 +93,47 @@ public:
     /* 0x54 */ J3DMtxCalc* mMtxCalc;
     /* 0x58 */ J3DMaterial* mMesh;
 };
+
+class J3DMtxCalcNoAnmBase : public J3DMtxCalc {
+public:
+    virtual ~J3DMtxCalcNoAnmBase() {}
+};
+
+template < class A, class B >
+class J3DMtxCalcNoAnm : public J3DMtxCalcNoAnmBase {
+public:
+    J3DMtxCalcNoAnm() {}
+    virtual ~J3DMtxCalcNoAnm() {}
+    virtual void init(const Vec& param_0, const Mtx& param_1) { B::init(param_0, param_1); }
+    virtual void calc() {
+        J3DTransformInfo& transInfo = getJoint()->getTransformInfo();
+        A::calcTransform(transInfo);
+    }
+};
+
+struct J3DMtxCalcJ3DSysInitSoftimage {
+    static void init(const Vec& param_0, const Mtx& param_1) {
+        J3DSys::mCurrentS = param_0;
+        PSMTXCopy(param_1, J3DSys::mCurrentMtx);
+    }
+};
+
+struct J3DMtxCalcJ3DSysInitMaya {
+    static void init(const Vec&, const Mtx& param_1);
+};
+
+struct J3DMtxCalcJ3DSysInitBasic {
+    static void init(const Vec&, const Mtx& param_1);
+};
+
+struct J3DMtxCalcCalcTransformSoftimage {
+    static void calcTransform(J3DTransformInfo const&);
+};
+
+struct J3DMtxCalcCalcTransformMaya {
+    static void calcTransform(J3DTransformInfo const&);
+};
+
+struct J3DMtxCalcCalcTransformBasic {
+    static void calcTransform(J3DTransformInfo const&);
+};

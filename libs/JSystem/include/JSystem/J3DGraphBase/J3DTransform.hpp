@@ -31,6 +31,8 @@ struct J3DTransformInfo {
 
 struct J3DTextureSRTInfo;
 
+extern J3DTransformInfo const j3dDefaultTransformInfo;
+extern Vec const j3dDefaultScale;
 extern Mtx const j3dDefaultMtx;
 
 void J3DCalcBBoardMtx(f32 (*)[4]);

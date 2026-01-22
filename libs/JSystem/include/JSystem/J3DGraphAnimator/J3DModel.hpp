@@ -52,7 +52,12 @@ public:
 
     J3DMtxBuffer* getMtxBuffer() { return mMtxBuffer; }
 
+    J3DMatPacket* getMatPacket(u16 idx) const { return &mMatPacket[idx]; }
+    J3DShapePacket* getShapePacket(u16 idx) const { return &mShapePacket[idx]; }
+
     MtxPtr getWeightAnmMtx(int i) { return mMtxBuffer->getWeightAnmMtx(i); }
+
+    MtxPtr getAnmMtx(int jointNo) { return mMtxBuffer->getAnmMtx(jointNo); }
 
     /* 0x04 */ J3DModelData* mModelData;
     /* 0x08 */ u32 mFlags;

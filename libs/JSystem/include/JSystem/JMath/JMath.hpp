@@ -2,6 +2,7 @@
 
 #include <revolution.h>
 
+void JMAMTXApplyScale(const Mtx, Mtx, f32, f32, f32);
 f32 JMAAcosRadian(f32);
 f32 JMAAsinRadian(f32);
 f32 JMACosDegree(f32);
