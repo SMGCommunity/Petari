@@ -17,7 +17,6 @@
 namespace NrvStarPieceGroup {
     NEW_NERVE(HostTypeNrvGroup, StarPieceGroup, Group);
     NEW_NERVE(HostTypeNrvFlow, StarPieceGroup, Flow);
-
 }  // namespace NrvStarPieceGroup
 
 StarPieceGroup::StarPieceGroup(const char* pName)
@@ -320,7 +319,7 @@ void StarPieceGroup::endClipped() {
         if (!(mPieces[i]->isOnRailMove() || mPieces[i]->isFloat())) {
             continue;
         }
-        
+
         mPieces[i]->endClipped();
     }
 }
