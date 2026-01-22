@@ -66,10 +66,12 @@ void Mogu::init(const JMapInfoIter& rIter) {
             _B4 = true;
         }
     }
-    initModelManagerWithAnm("Mogu", nullptr, false);
-    Mtx44Ptr mtx(getBaseMtx());
 
+    initModelManagerWithAnm("Mogu", nullptr, false);
+
+    MtxPtr mtx = getBaseMtx();
     _A8.set< f32 >(mtx[0][1], mtx[0][2], mtx[0][3]);
+
     MR::connectToSceneEnemy(this);
     MR::declareStarPiece(this, 3);
     MR::declareCoin(this, 1);
@@ -79,11 +81,10 @@ void Mogu::init(const JMapInfoIter& rIter) {
     initBinder(f1, f1, 0);
     initHitSensor(2);
 
-    TVec3f v1(-55.0f, 0.0f, 13.0f);
-    TVec3f v2(v1);
+    TVec3f v2(TVec3f(TVec3f(-55.0f, 0.0f, 13.0f)));
     v2 *= scaleY;
 
-    MR::addHitSensorAtJointEnemy(this, "body", "Head", 32, 150.0f * mScale.y, v2);
+    MR::addHitSensorAtJointEnemy(this, "body", "Head", 32, 150.0f * scaleY, v2);
     initEffectKeeper(false, nullptr, false);
     MR::initStarPointerTarget(this, 100.0f, TVec3f(0.0f, 50.0f, 0.0f));
 
@@ -91,7 +92,7 @@ void Mogu::init(const JMapInfoIter& rIter) {
     initNerve(&NrvMogu::HostTypeNrvSearch::sInstance);
     mGravity.set(-_A8);
 
-    MR::initShadowVolumeSphere(this, 60.0f * mRotation.y);
+    MR::initShadowVolumeSphere(this, 60.0f * mScale.y);
     MR::invalidateShadow(this, nullptr);
     MR::initLightCtrl(this);
     mAnimScaleController = new AnimScaleController(nullptr);
@@ -539,4 +540,31 @@ void Mogu::calcAndSetBaseMtx() {
         f32 x = _90->_1C[0][3];
         mStone->mPosition.set< f32 >(x, y, z);
     }
+}
+
+bool Mogu::tryPunchHitted(HitSensor* pSensor1, HitSensor* pSensor2, bool arg3) {
+    TVec3f direction(pSensor2->mPosition);
+    direction -= pSensor1->mPosition;
+    MR::vecKillElement(direction, mGravity, &direction);
+    MR::normalizeOrZero(&direction);
+    if (MR::isNearZero(direction, 0.001f)) {
+        setNerve(&NrvMogu::HostTypeNrvStampDeath::sInstance);
+    } else {
+        direction *= 30.0f;
+        TVec3f gravity(mGravity);
+        gravity *= 50.0f;
+        direction -= gravity;
+        mVelocity.setPS2(direction);
+
+        if (MR::isOnGround(this)) {
+            // r3 r4 order swap
+            TVec3f v5(TVec3f(-mGravity));
+            v5 *= 5.0f;
+            mPosition += v5;
+        }
+
+        setNerve(&NrvMogu::HostTypeNrvHitBlow::sInstance);
+    }
+
+    return true;
 }
