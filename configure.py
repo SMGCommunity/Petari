@@ -143,7 +143,7 @@ if not config.non_matching:
 config.binutils_tag = "2.42-1"
 config.compilers_tag = "20240706"
 config.dtk_tag = "v1.7.6"
-config.objdiff_tag = "v3.4.5"
+config.objdiff_tag = "v3.5.1"
 config.sjiswrap_tag = "v1.2.2"
 config.wibo_tag = "1.0.0"
 
@@ -1138,7 +1138,7 @@ config.libs = [
             Object(NonMatching, "Game/Enemy/Mogucchi.cpp"),
             Object(NonMatching, "Game/Enemy/MogucchiHill.cpp"),
             Object(NonMatching, "Game/Enemy/MogucchiRefuseTerritory.cpp"),
-            Object(NonMatching, "Game/Enemy/MogucchiShooter.cpp"),
+            Object(Matching, "Game/Enemy/MogucchiShooter.cpp"),
             Object(NonMatching, "Game/Enemy/MoguStone.cpp"),
             Object(NonMatching, "Game/Enemy/NokonokoLand.cpp"),
             Object(NonMatching, "Game/Enemy/Onimasu.cpp"),
@@ -1584,7 +1584,7 @@ config.libs = [
             Object(NonMatching, "Game/MapObj/SandCapsulePressGround.cpp"),
             Object(NonMatching, "Game/MapObj/Sandstorm.cpp"),
             Object(NonMatching, "Game/MapObj/SandUpDownEffectObj.cpp"),
-            Object(NonMatching, "Game/MapObj/SandUpDownTriRock.cpp"),
+            Object(Matching, "Game/MapObj/SandUpDownTriRock.cpp"),
             Object(NonMatching, "Game/MapObj/ScrewSwitch.cpp"),
             Object(NonMatching, "Game/MapObj/ScrewSwitchReverse.cpp"),
             Object(NonMatching, "Game/MapObj/SeaBottomTriplePropeller.cpp"),
@@ -1941,7 +1941,7 @@ config.libs = [
             Object(NonMatching, "Game/Ride/Creeper.cpp"),
             Object(Matching, "Game/Ride/Fluff.cpp"),
             Object(Matching, "Game/Ride/FluffWind.cpp"),
-            Object(NonMatching, "Game/Ride/JumpBranch.cpp"),
+            Object(Matching, "Game/Ride/JumpBranch.cpp"),
             Object(NonMatching, "Game/Ride/Plant.cpp"),
             Object(NonMatching, "Game/Ride/PlantLeaf.cpp"),
             Object(NonMatching, "Game/Ride/PlantStalk.cpp"),

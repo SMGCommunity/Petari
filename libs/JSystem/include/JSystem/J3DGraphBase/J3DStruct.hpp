@@ -4,14 +4,27 @@
 #include <JSystem/JGeometry/TVec.hpp>
 #include <revolution.h>
 
-class J3DGXColor {
-public:
-    J3DGXColor& operator=(_GXColor);
+struct J3DGXColor : public GXColor {
+    J3DGXColor() {}
+    J3DGXColor(const J3DGXColor& other) { __memcpy(this, &other, sizeof(J3DGXColor)); }
 
-    u8 r;
-    u8 g;
-    u8 b;
-    u8 a;
+    J3DGXColor(const GXColor color) : GXColor(color) {}
+
+    J3DGXColor& operator=(const GXColor color) {
+        *(GXColor*)this = color;
+        return *this;
+    }
+    J3DGXColor& operator=(const J3DGXColor& other) {
+        GXColor::operator=(other);
+        return *this;
+    }
+};
+
+struct J3DZModeInfo {
+    /* 0x0 */ u8 field_0x0;
+    /* 0x1 */ u8 field_0x1;
+    /* 0x2 */ u8 field_0x2;
+    /* 0x3 */ u8 pad;
 };
 
 struct J3DFogInfo {
@@ -68,20 +81,32 @@ struct J3DTextureSRTInfo {
     }
 };  // Size: 0x14
 
-struct J3DTexMtxInfo {
-    void operator=(const J3DTexMtxInfo&);
-
-    u8 mProjection;              // 0x0
-    u8 mInfo;                    // 0x1
-    s16 mPad;                    // 0x2
-    TVec3f mCenter;              // 0x4
-    J3DTextureSRTInfo mSRTInfo;  // 0x10
-    Mtx44 mEffectMtx;            // 0x24
+enum J3DTexMtxMode {
+    J3DTexMtxMode_None,
+    J3DTexMtxMode_EnvmapBasic,
+    J3DTexMtxMode_ProjmapBasic,
+    J3DTexMtxMode_ViewProjmapBasic,
+    J3DTexMtxMode_Unknown4,
+    J3DTexMtxMode_Unknown5,
+    J3DTexMtxMode_EnvmapOld,
+    J3DTexMtxMode_Envmap,
+    J3DTexMtxMode_Projmap,
+    J3DTexMtxMode_ViewProjmap,
+    J3DTexMtxMode_EnvmapOldEffectMtx,
+    J3DTexMtxMode_EnvmapEffectMtx,
 };
 
-struct J3DTexMtx {
-    J3DTexMtxInfo mInfo;
-    Mtx mOutputMatrix;
+struct J3DTexMtxInfo {
+    void operator=(const J3DTexMtxInfo&);
+    void setEffectMtx(Mtx);
+
+    /* 0x00 */ u8 mProjection;
+    /* 0x01 */ u8 mInfo;
+    /* 0x02 */ u8 field_0x2;
+    /* 0x03 */ u8 field_0x3;
+    /* 0x04 */ Vec mCenter;
+    /* 0x10 */ J3DTextureSRTInfo mSRT;
+    /* 0x24 */ Mtx44 mEffectMtx;
 };
 
 class J3DLightInfo {
@@ -101,12 +126,6 @@ struct J3DColorChanInfo {
     /* 0x4 */ u8 mAttnFn;
     /* 0x5 */ u8 mAmbSrc;
     /* 0x6 */ u8 pad[2];
-};
-
-class J3DLightObj {
-public:
-    J3DLightInfo mInfo;
-    GXLightObj mLightObj;
 };
 
 struct J3DTexCoordInfo {

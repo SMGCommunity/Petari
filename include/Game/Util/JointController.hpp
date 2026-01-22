@@ -31,7 +31,7 @@ public:
     void registerCallBack();
     void calcJointMatrixAndSetSystem(J3DJoint*);
     void calcJointMatrixAfterChildAndSetSystem(J3DJoint*);
-    static void staticCallBack(J3DJoint*, int);
+    static int staticCallBack(J3DJoint*, int);
 
     J3DModel* mModel;  // 0x4
     J3DJoint* mJoint;  // 0x8

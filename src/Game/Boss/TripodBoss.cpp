@@ -292,7 +292,7 @@ void TripodBoss::kill() {
 void TripodBoss::control() {
     JMath::gekko_ps_copy12(_BC, mBodyMtx);
     MR::addTransMtxLocal(_BC, _5BC);
-    mDummyModel->mRotation.y = MR::wrapAngleTowards(0.0f, mDummyModel->mRotation.y - _620);
+    mDummyModel->mRotation.y = MR::repeat(mDummyModel->mRotation.y - _620, 0.0f, 360.0f);
 
     if (isNerve(&NrvTripodBoss::TripodBossNrvNonActive::sInstance)) {
         clippingModel();

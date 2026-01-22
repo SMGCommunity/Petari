@@ -311,13 +311,13 @@ bool BreakableCage::tryBreak() {
 
 void BreakableCage::exeWait() {
     if (mCageType == CAGE_NORMAL) {
-        mRotation.y = MR::wrapAngleTowards(0.0f, mRotationSpeed + mRotation.y);
+        mRotation.y = MR::repeat(mRotationSpeed + mRotation.y, 0.0f, 360.0f);
     }
 
     if (mItemModel != nullptr) {
         if (isAppearPowerStar()) {
             DummyDisplayModel* model = mItemModel;
-            mItemModel->mRotation.y = MR::wrapAngleTowards(0.0f, model->mRotation.y + PowerStar::getPowerStarWaitRotateSpeed());
+            mItemModel->mRotation.y = MR::repeat(model->mRotation.y + PowerStar::getPowerStarWaitRotateSpeed(), 0.0f, 360.0f);
         }
     }
 }

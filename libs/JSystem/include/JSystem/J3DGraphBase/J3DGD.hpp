@@ -28,18 +28,11 @@ inline void J3DGDWrite_f32(f32 data) {
     J3DGDWrite_u32(fid.u);
 }
 
-inline void J3DGDWriteBPCmd(u32 regval) {
-    J3DGDWrite_u8(0x61);
-    J3DGDWrite_u32(regval);
-}
+inline void J3DGDWriteBPCmd(u32 regval);
 
 void J3DGDWriteXFCmd(u16 addr, u32 val);
 
-inline void J3DGDWriteXFCmdHdr(u16 addr, u8 len) {
-    J3DGDWrite_u8(0x10);
-    J3DGDWrite_u16(len - 1);
-    J3DGDWrite_u16(addr);
-}
+void J3DGDWriteXFCmdHdr(u16 addr, u8 len);
 
 inline void J3DGXCmd1f32ptr(f32* data) {
     GXCmd1u32(*(u32*)data);
@@ -54,11 +47,7 @@ inline void J3DGXCmd1f32(f32 data) {
     GXCmd1u32(fid.u);
 }
 
-inline void J3DGDWriteCPCmd(u8 reg, u32 value) {
-    J3DGDWrite_u8(8);
-    J3DGDWrite_u8(reg);
-    J3DGDWrite_u32(value);
-}
+inline void J3DGDWriteCPCmd(u8 reg, u32 value);
 
 void J3DGDSetGenMode(u8 texGenNum, u8 colorChanNum, u8 tevStageNum, u8 IndTexStageNum, GXCullMode cullMode);
 void J3DGDSetGenMode_3Param(u8 texGenNum, u8 tevStageNum, u8 indTexStageNum);
@@ -114,11 +103,6 @@ inline void J3DGDSetBlendMode(GXBlendMode mode, GXBlendFactor srcFactor, GXBlend
                     srcFactor << 8 | (mode == GX_BM_SUBTRACT) << 11 | logicOp << 12 | 0x41 << 24);
 }
 
-inline void J3DGDSetZMode(u8 compareEnable, GXCompare func, u8 writeEnable) {
-    J3DGDWriteBPCmd(compareEnable | func << 1 | writeEnable << 4 | 0x40 << 24);
-}
+inline void J3DGDSetZMode(u8 compareEnable, GXCompare func, u8 writeEnable);
 
-inline void J3DGDSetZCompLoc(u32 compLocEnable) {
-    J3DGDWriteBPCmd(0xFE000040);
-    J3DGDWriteBPCmd(compLocEnable << 6 | 0x43 << 24);
-}
+inline void J3DGDSetZCompLoc(u32 compLocEnable);

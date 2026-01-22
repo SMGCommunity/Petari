@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
-#include <JSystem/J3DGraphBase/J3DStruct.hpp>
+#include <JSystem/J3DGraphBase/J3DTexture.hpp>
 
 class AstroCountDownPlate : public LiveActor {
 public:

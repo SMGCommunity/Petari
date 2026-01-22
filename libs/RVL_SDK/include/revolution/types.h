@@ -82,6 +82,9 @@ typedef int BOOL;
 #define ALIGN_PREV(X, N) ((X) & ~((N) - 1))
 #define ALIGN_NEXT(X, N) ALIGN_PREV(((X) + (N) - 1), N)
 
+#define ARRAY_SIZE(o) (s32)(sizeof(o) / sizeof(o[0]))
+#define ARRAY_SIZEU(o) (sizeof(o) / sizeof(o[0]))
+
 /* just some common intrinsics */
 
 #ifndef __MWERKS__
