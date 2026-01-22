@@ -4,7 +4,6 @@
 #include "JSystem/J3DGraphBase/J3DTransform.hpp"
 #include <revolution.h>
 
-
 class J3DAnmTransform;
 class J3DJoint;
 class J3DMaterial;
@@ -44,7 +43,8 @@ public:
     u32 getType() const { return 'NJNT'; }
 
     J3DMaterial* getMesh() { return mMesh; }
-    void addMesh(J3DMaterial* pMesh) {
+
+    inline void addMesh(J3DMaterial* pMesh) {
         if (mMesh != NULL) {
             pMesh->setNext(mMesh);
         }

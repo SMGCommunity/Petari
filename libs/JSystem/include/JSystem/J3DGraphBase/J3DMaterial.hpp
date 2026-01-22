@@ -68,6 +68,10 @@ public:
 
     void setNext(J3DMaterial* pMaterial) { mNext = pMaterial; }
 
+    void addShape(J3DShape* pShape) { mShape = pShape; }
+
+    void setJoint(J3DJoint* pJoint) { mJoint = pJoint; }
+
     /* 0x04 */ J3DMaterial* mNext;
     /* 0x08 */ J3DShape* mShape;
     /* 0x0C */ J3DJoint* mJoint;
