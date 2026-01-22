@@ -26,8 +26,8 @@
 #include <math_types.hpp>
 
 namespace {
-    const f32 hThrowableSightParam[3] = {900.0f, 10.0f, 90.0f};
-    const f32 hCannonFleetSightParam[3] = {1500.0f, 10.0f, 90.0f};
+    const f32 hThrowableSightParam[] = {900.0f, 10.0f, 90.0f};
+    const f32 hCannonFleetSightParam[] = {1500.0f, 10.0f, 90.0f};
 }  // namespace
 
 namespace NrvMogu {
@@ -138,7 +138,7 @@ void Mogu::exeHideWait() {
     f32 dot = mGravity.dot(normalToPlayer);
     if (!(dot < -0.75f)) {
         f32 distanceToPlayer = MR::calcDistanceToPlayer(this);
-        if (MR::isGreaterStep(this, 0x78) && 400.0f < distanceToPlayer && distanceToPlayer < 2000.0f) {
+        if (MR::isGreaterStep(this, 120) && 400.0f < distanceToPlayer && distanceToPlayer < 2000.0f) {
             setNerve(&NrvMogu::HostTypeNrvAppear::sInstance);
         }
     }
@@ -205,7 +205,7 @@ void Mogu::exeAppear() {
         return;
     }
 
-    if (MR::isGreaterStep(this, 0x1e) && isNearPlayerHipDrop()) {
+    if (MR::isGreaterStep(this, 30) && isNearPlayerHipDrop()) {
         setNerve(&NrvMogu::HostTypeNrvSwoonStart::sInstance);
         return;
     }
@@ -285,7 +285,7 @@ void Mogu::exeSearch() {
             sight2 = hCannonFleetSightParam;
         }
 
-        if (MR::isInSightFanPlayer(this, mSight, sight2[0], sight2[1], sight2[2]) && MR::isGreaterStep(this, 0x2d) && MR::isDead(mStone)) {
+        if (MR::isInSightFanPlayer(this, mSight, sight2[0], sight2[1], sight2[2]) && MR::isGreaterStep(this, 45) && MR::isDead(mStone)) {
             setNerve(&NrvMogu::HostTypeNrvThrow::sInstance);
         }
     }
@@ -311,7 +311,7 @@ void Mogu::exeThrow() {
         return;
     }
 
-    if (MR::isStep(this, 0x2f)) {
+    if (MR::isStep(this, 47)) {
         TVec3f upVec;
         MR::calcUpVec(&upVec, this);
 
@@ -394,7 +394,7 @@ void Mogu::exeSwoon() {
         return;
     }
 
-    if (MR::isGreaterStep(this, 0x78)) {
+    if (MR::isGreaterStep(this, 120)) {
         setNerve(&NrvMogu::HostTypeNrvSwoonEnd::sInstance);
     }
 }
@@ -430,7 +430,7 @@ void Mogu::exeStampDeath() {
         MR::startSound(this, "SE_EM_STOMPED_S", -1, -1);
     }
 
-    if (MR::isGreaterStep(this, 0x3c)) {
+    if (MR::isGreaterStep(this, 60)) {
         kill();
         MR::emitEffect(this, "Death");
         MR::startSound(this, "SE_EM_EXPLODE_S", -1, -1);
@@ -454,7 +454,7 @@ void Mogu::exeHitBlow() {
     }
     MR::applyVelocityDampAndGravity(this, 2.0f, 0.8f, 0.98f, 0.98f, 1.0f);
 
-    if (MR::isGreaterStep(this, 0x14)) {
+    if (MR::isGreaterStep(this, 20)) {
         MR::startSound(this, "SE_EM_EXPLODE_S", -1, -1);
         kill();
         MR::startAction(mHole, "Down");
@@ -530,7 +530,7 @@ void Mogu::calcAndSetBaseMtx() {
     JMathInlineVEC::PSVECMultiply(&mAnimScaleController->_C, &mScale, &v2);
     MR::setBaseScale(this, v2);
 
-    if (isNerve(&NrvMogu::HostTypeNrvThrow::sInstance) && MR::isLessStep(this, 0x2f)) {
+    if (isNerve(&NrvMogu::HostTypeNrvThrow::sInstance) && MR::isLessStep(this, 47)) {
         _90->calc();
         f32 z = _90->_1C[2][3];
         f32 y = _90->_1C[1][3];
@@ -544,7 +544,7 @@ bool Mogu::tryPunchHitted(HitSensor* pSensor1, HitSensor* pSensor2, bool arg3) {
     direction -= pSensor1->mPosition;
     MR::vecKillElement(direction, mGravity, &direction);
     MR::normalizeOrZero(&direction);
-    if (MR::isNearZero(direction, 0.001f)) {
+    if (MR::isNearZero(direction)) {
         setNerve(&NrvMogu::HostTypeNrvStampDeath::sInstance);
     } else {
         direction *= 30.0f;
