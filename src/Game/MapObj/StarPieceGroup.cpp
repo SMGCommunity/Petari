@@ -71,6 +71,7 @@ void StarPieceGroup::init(const JMapInfoIter& rIter) {
     const char* objectName = nullptr;
     MR::getObjectName(&objectName, rIter);
     bool isFlow;
+
     if (MR::isEqualString(objectName, "StarPieceFlow")) {
         initNerve(&NrvStarPieceGroup::HostTypeNrvFlow::sInstance);
         isFlow = true;
@@ -78,8 +79,10 @@ void StarPieceGroup::init(const JMapInfoIter& rIter) {
         initNerve(&NrvStarPieceGroup::HostTypeNrvGroup::sInstance);
         isFlow = false;
     }
+
     s32 arg2 = -1;
     MR::initDefaultPos(this, rIter);
+
     if (isFlow) {
         mNumPieces = 1;
         mRailSpeed = 10.0f;
@@ -93,6 +96,7 @@ void StarPieceGroup::init(const JMapInfoIter& rIter) {
         MR::getJMapInfoArg5NoInit(rIter, &_A4);
         MR::joinToGroupArray(this, rIter, nullptr, 32);
     }
+
     bool isRail = MR::isConnectedWithRail(rIter);
     mIsRail = false;
 
@@ -106,14 +110,18 @@ void StarPieceGroup::init(const JMapInfoIter& rIter) {
             mPlaceAtPathPoints = false;
         }
     }
+
     MR::useStageSwitchReadAppear(this, rIter);
     MR::useStageSwitchSleep(this, rIter);
+
     if (MR::useStageSwitchReadA(this, rIter)) {
         MR::listenStageSwitchOnOffA(this, MR::Functor(this, &onSwitchA), MR::Functor(this, &offSwitchA));
     }
+
     if (MR::useStageSwitchReadB(this, rIter)) {
         MR::listenStageSwitchOnB(this, MR::Functor(this, &onSwitchB));
     }
+
     MR::useStageSwitchWriteDead(this, rIter);
     mPieces = new StarPiece*[mNumPieces];
     mRailCoords = new f32[mNumPieces];
@@ -127,27 +135,33 @@ void StarPieceGroup::init(const JMapInfoIter& rIter) {
         } else {
             mPieces[i]->initAndSetFloatingFromGroup(rIter);
         }
+
         if (MR::isValidSwitchAppear(this)) {
             mPieces[i]->makeActorDead();
         }
+
         if (MR::isValidSwitchA(this)) {
             mPieces[i]->mFlags._1 = false;
         }
     }
     MR::connectToSceneMapObjMovement(this);
+
     if (isRail) {
         MR::initAndSetRailClipping(&_AC, this, 100.0f, 500.0f);
     }
+
     MR::validateClipping(this);
     MR::setGroupClipping(this, rIter, 32);
     for (u32 i = 0; i < mNumPieces; i++) {
         MR::invalidateClipping(mPieces[i]);
     }
+
     if (MR::tryRegisterDemoCast(this, rIter)) {
         for (u32 i = 0; i < mNumPieces; i++) {
             MR::tryRegisterDemoCast(mPieces[i], rIter);
         }
     }
+
     if (MR::isValidSwitchAppear(this)) {
         makeActorDead();
         MR::syncStageSwitchAppear(this);
@@ -155,6 +169,7 @@ void StarPieceGroup::init(const JMapInfoIter& rIter) {
         _95 = false;
         makeActorAppeared();
     }
+
     _95 = true;
 }
 
@@ -210,12 +225,15 @@ void StarPieceGroup::placementPieceOnCircle() {
         mPieces[0]->mPosition.set(mPosition);
         return;
     }
+
     TPos3f mtxTRS;
     MR::makeMtxTRS(mtxTRS.toMtxPtr(), this);
+
     TVec3f zDir;
     TVec3f xDir;
     mtxTRS.getXDirInline(xDir);
     mtxTRS.getZDirInline(zDir);
+
     TVec3f center(mPosition);
     f32 currentAngle = 0.0f;
     f32 angleBetweenPieces = TWO_PI / mNumPieces;
@@ -225,6 +243,7 @@ void StarPieceGroup::placementPieceOnCircle() {
         mPieces[i]->mPosition.setPS2(zDir * cos + xDir * sin + center);
         currentAngle += angleBetweenPieces;
     }
+
     MR::setClippingTypeSphere(this, mCircleRadius);
 }
 
@@ -232,6 +251,7 @@ void StarPieceGroup::placementPieceOnRail() {
     f32 railLength = MR::getRailTotalLength(this);
     f32 railCoord;
     f32 coordDistBetweenPieces;
+
     if (mNumPieces == 1) {
         coordDistBetweenPieces = 0.0f;
     } else if (MR::isLoopRail(this) == false) {
@@ -239,6 +259,7 @@ void StarPieceGroup::placementPieceOnRail() {
     } else {
         coordDistBetweenPieces = railLength / mNumPieces;
     }
+
     for (int i = 0; i < mNumPieces; i++) {
         if (i * coordDistBetweenPieces < 0.0f) {
             railCoord = 0.0f;
@@ -247,6 +268,7 @@ void StarPieceGroup::placementPieceOnRail() {
         } else {
             railCoord = i * coordDistBetweenPieces;
         }
+
         TVec3f railPos;
         MR::calcRailPosAtCoord(&railPos, this, railCoord);
         MR::resetPosition(mPieces[i], railPos);
@@ -287,6 +309,7 @@ void StarPieceGroup::startClipped() {
         if (!(mPieces[i]->isOnRailMove() || mPieces[i]->isFloat())) {
             continue;
         }
+
         mPieces[i]->startClipped();
     }
 }
@@ -297,6 +320,7 @@ void StarPieceGroup::endClipped() {
         if (!(mPieces[i]->isOnRailMove() || mPieces[i]->isFloat())) {
             continue;
         }
+        
         mPieces[i]->endClipped();
     }
 }
