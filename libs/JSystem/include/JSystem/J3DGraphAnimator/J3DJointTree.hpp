@@ -27,6 +27,8 @@ public:
 
     u16 getDrawMtxIndex(u16 idx) const { return mDrawMtxData.mDrawMtxIndex[idx]; }
 
+    u16* getWEvlpImportantMtxIndex() const { return mWEvlpImportantMtxIdx; }
+
     /* 0x04 */ J3DModelHierarchy* mHierarchy;
     /* 0x08 */ u32 mFlags;
     /* 0x0C */ u32 mModelDataType;

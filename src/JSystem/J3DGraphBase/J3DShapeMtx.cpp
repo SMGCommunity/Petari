@@ -324,3 +324,188 @@ void J3DShapeMtxConcatView::load() const {
     u16 draw_mtx_index = j3dSys.getModel()->getModelData()->getDrawMtxIndex(mUseMtxIndex);
     (this->*func)(0, draw_mtx_index);
 }
+
+void J3DShapeMtxConcatView::loadNrmMtx(int param_0, u16 param_1, MtxPtr param_2) const {
+    if (sCurrentScaleFlag[param_1] == 1) {
+        if (sTexMtxLoadType == 0x2000) {
+            J3DFifoLoadNrmMtxToTexMtx(param_2, 0x1e);
+        }
+
+        if (!sNBTFlag) {
+            J3DFifoLoadNrmMtxImm(param_2, 0);
+        } else {
+            Mtx33 mtx;
+            Vec* scale = j3dSys.getNBTScale();
+            J3DPSMtx33CopyFrom34(param_2, mtx);
+            J3DScaleNrmMtx33(mtx, *scale);
+            J3DFifoLoadNrmMtxImm3x3(mtx, 0);
+        }
+    } else {
+        Mtx33 mtx;
+        J3DPSCalcInverseTranspose(param_2, mtx);
+        if (sTexMtxLoadType == 0x2000) {
+            J3DFifoLoadNrmMtxToTexMtx3x3(mtx, 0x1e);
+        }
+
+        if (!sNBTFlag) {
+            J3DFifoLoadNrmMtxImm3x3(mtx, 0);
+        } else {
+            Vec* scale = j3dSys.getNBTScale();
+            J3DScaleNrmMtx33(mtx, *scale);
+            J3DFifoLoadNrmMtxImm3x3(mtx, 0);
+        }
+    }
+}
+
+void J3DShapeMtxMulti::load() const {
+    J3DShapeMtx_LoadFunc func = sMtxLoadPipeline[sCurrentPipeline];
+
+    int use_mtx_num = mUseMtxNum;
+    for (int i = 0; i < use_mtx_num; i++) {
+        if (mUseMtxIndexTable[i] != 0xffff) {
+            (this->*func)(i, mUseMtxIndexTable[i]);
+        }
+    }
+}
+
+/*
+void J3DShapeMtxMulti::calcNBTScale(Vec const& param_0, Mtx33* param_1, Mtx33* param_2) {
+    int use_mtx_num = mUseMtxNum;
+    for (int i = 0; i < use_mtx_num; i++) {
+        if (mUseMtxIndexTable[i] != 0xffff) {
+            J3DPSMtx33Copy(param_1[mUseMtxIndexTable[i]], param_2[mUseMtxIndexTable[i]]);
+            J3DScaleNrmMtx33(param_2[mUseMtxIndexTable[i]], param_0);
+        }
+    }
+}
+*/
+
+void J3DShapeMtxMultiConcatView::load() const {
+    sMtxPtrTbl[0] = j3dSys.getModel()->getMtxBuffer()->getUserAnmMtx(0);
+    sMtxPtrTbl[1] = j3dSys.getModel()->getWeightAnmMtx(0);
+
+    if (!sLODFlag) {
+        J3DShapeMtxConcatView_LoadFunc func = sMtxLoadPipeline[sCurrentPipeline];
+        int use_mtx_num = mUseMtxNum;
+        for (int i = 0; i < use_mtx_num; i++) {
+            if (mUseMtxIndexTable[i] != 0xffff) {
+                u16 draw_mtx_index = j3dSys.getModel()->getModelData()->getDrawMtxIndex(mUseMtxIndexTable[i]);
+                j3dSys.setModelDrawMtx((Mtx*)sMtxPtrTbl[j3dSys.getModel()->getModelData()->getDrawMtxFlag(mUseMtxIndexTable[i])]);
+                (this->*func)(i, draw_mtx_index);
+            }
+        }
+    } else {
+        u16* important_mtx_indices = j3dSys.getModel()->getModelData()->getWEvlpImportantMtxIndex();
+        j3dSys.setModelDrawMtx((Mtx*)sMtxPtrTbl[0]);
+
+        int use_mtx_num = mUseMtxNum;
+        for (int i = 0; i < use_mtx_num; i++) {
+            u32 current_pipeline = sCurrentPipeline;
+            J3DShapeMtxConcatView_LoadFunc func = sMtxLoadLODPipeline[current_pipeline];
+
+            if (mUseMtxIndexTable[i] != 0xffff) {
+                u16 important_mtx_index = important_mtx_indices[mUseMtxIndexTable[i]];
+                if (important_mtx_index != sMtxLoadCache[i]) {
+                    if (j3dSys.getModel()->getModelData()->getDrawMtxFlag(mUseMtxIndexTable[i]) == 0) {
+                        func = sMtxLoadPipeline[sCurrentPipeline];
+                    }
+
+                    (this->*func)(i, important_mtx_index);
+                    sMtxLoadCache[i] = important_mtx_index;
+                }
+            }
+        }
+    }
+}
+
+void J3DShapeMtxMultiConcatView::loadNrmMtx(int param_0, u16 param_1, MtxPtr param_2) const {
+    Mtx33 mtx1, mtx2;
+    if (sCurrentScaleFlag[param_1] == 1) {
+        if (sTexMtxLoadType == 0x2000) {
+            J3DFifoLoadNrmMtxToTexMtx(param_2, param_0 * 3 + 0x1e);
+        }
+        if (!sNBTFlag) {
+            J3DFifoLoadNrmMtxImm(param_2, param_0 * 3);
+        } else {
+            Vec* nbt_scale = j3dSys.getNBTScale();
+            J3DPSMtx33CopyFrom34(param_2, mtx1);
+            J3DScaleNrmMtx33(mtx1, *nbt_scale);
+            J3DFifoLoadNrmMtxImm3x3(mtx1, 0);
+        }
+    } else {
+        J3DPSCalcInverseTranspose(param_2, mtx2);
+        if (sTexMtxLoadType == 0x2000) {
+            J3DFifoLoadNrmMtxToTexMtx3x3(mtx2, param_0 * 3 + 0x1e);
+        }
+        if (!sNBTFlag) {
+            J3DFifoLoadNrmMtxImm3x3(mtx2, param_0 * 3);
+        } else {
+            Vec* nbt_scale = j3dSys.getNBTScale();
+            J3DScaleNrmMtx33(mtx2, *nbt_scale);
+            J3DFifoLoadNrmMtxImm3x3(mtx2, param_0 * 3);
+        }
+    }
+}
+
+void J3DShapeMtxBBoardConcatView::load() const {
+    Mtx mtx;
+    u16 draw_mtx_index = j3dSys.getModel()->getModelData()->getDrawMtxIndex(mUseMtxIndex);
+
+    if (j3dSys.getModel()->getModelData()->getDrawMtxFlag(mUseMtxIndex) == 0) {
+        PSMTXConcat(j3dSys.getViewMtx(), j3dSys.getModel()->getMtxBuffer()->getUserAnmMtx(draw_mtx_index), mtx);
+    } else {
+        PSMTXConcat(j3dSys.getViewMtx(), j3dSys.getModel()->getWeightAnmMtx(draw_mtx_index), mtx);
+    }
+
+    J3DCalcBBoardMtx(mtx);
+    J3DFifoLoadPosMtxImm(mtx, 0);
+
+    mtx[0][0] = 1.0f / mtx[0][0];
+    mtx[1][1] = 1.0f / mtx[1][1];
+    mtx[2][2] = 1.0f / mtx[2][2];
+    mtx[0][3] = 0.0f;
+    mtx[1][3] = 0.0f;
+    mtx[2][3] = 0.0f;
+
+    if (!sNBTFlag) {
+        J3DFifoLoadNrmMtxImm(mtx, 0);
+    } else {
+        Vec* nbt_scale = j3dSys.getNBTScale();
+        J3DScaleNrmMtx(mtx, *nbt_scale);
+        J3DFifoLoadNrmMtxImm(mtx, 0);
+    }
+}
+
+void J3DShapeMtxYBBoardConcatView::load() const {
+    Mtx mtx1;
+    Mtx33 mtx2;
+    u16 draw_mtx_index = j3dSys.getModel()->getModelData()->getDrawMtxIndex(mUseMtxIndex);
+
+    if (j3dSys.getModel()->getModelData()->getDrawMtxFlag(mUseMtxIndex) == 0) {
+        PSMTXConcat(j3dSys.getViewMtx(), j3dSys.getModel()->getMtxBuffer()->getUserAnmMtx(draw_mtx_index), mtx1);
+    } else {
+        PSMTXConcat(j3dSys.getViewMtx(), j3dSys.getModel()->getWeightAnmMtx(draw_mtx_index), mtx1);
+    }
+
+    J3DCalcYBBoardMtx(mtx1);
+    J3DFifoLoadPosMtxImm(mtx1, 0);
+
+    if (sCurrentScaleFlag[mUseMtxIndex] == 1) {
+        if (!sNBTFlag) {
+            J3DFifoLoadNrmMtxImm(mtx1, 0);
+        } else {
+            Vec* nbt_scale = j3dSys.getNBTScale();
+            J3DScaleNrmMtx(mtx1, *nbt_scale);
+            J3DFifoLoadNrmMtxImm(mtx1, 0);
+        }
+    } else {
+        J3DPSCalcInverseTranspose(mtx1, mtx2);
+        if (!sNBTFlag) {
+            J3DFifoLoadNrmMtxImm3x3(mtx2, 0);
+        } else {
+            Vec* nbt_scale = j3dSys.getNBTScale();
+            J3DScaleNrmMtx33(mtx2, *nbt_scale);
+            J3DFifoLoadNrmMtxImm3x3(mtx2, 0);
+        }
+    }
+}

@@ -27,6 +27,8 @@ public:
 
     u8 getDrawMtxFlag(u16 idx) const { return mJointTree.getDrawMtxFlag(idx); }
 
+    u16* getWEvlpImportantMtxIndex() const { return mJointTree.getWEvlpImportantMtxIndex(); }
+
     /* 0x04 */ void const* mpRawData;
     /* 0x08 */ u32 mFlags;
     /* 0x0C */ u16 mbHasBumpArray;
