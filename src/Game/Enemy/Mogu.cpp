@@ -24,7 +24,6 @@
 #include "JSystem/JGeometry/TVec.hpp"
 #include "JSystem/JMath/JMath.hpp"
 #include "math_types.hpp"
-#include "revolution/mtx.h"
 
 namespace {
     f32 hCannonFleetSightParam[3] = {1500.0f, 10.0f, 90.0f};
@@ -69,8 +68,9 @@ void Mogu::init(const JMapInfoIter& rIter) {
 
     initModelManagerWithAnm("Mogu", nullptr, false);
 
-    MtxPtr mtx = getBaseMtx();
-    _A8.set< f32 >(mtx[0][1], mtx[0][2], mtx[0][3]);
+    TPos3f mtx;
+    mtx.setInline(getBaseMtx());
+    mtx.getYDirInline(_A8);
 
     MR::connectToSceneEnemy(this);
     MR::declareStarPiece(this, 3);
@@ -87,16 +87,13 @@ void Mogu::init(const JMapInfoIter& rIter) {
     MR::addHitSensorAtJointEnemy(this, "body", "Head", 32, 150.0f * scaleY, v2);
     initEffectKeeper(false, nullptr, false);
     MR::initStarPointerTarget(this, 100.0f, TVec3f(0.0f, 50.0f, 0.0f));
-
     initSound(4, 0);
     initNerve(&NrvMogu::HostTypeNrvSearch::sInstance);
     mGravity.set(-_A8);
-
     MR::initShadowVolumeSphere(this, 60.0f * mScale.y);
     MR::invalidateShadow(this, nullptr);
     MR::initLightCtrl(this);
     mAnimScaleController = new AnimScaleController(nullptr);
-
     makeActorAppeared();
 
     _90 = new FixedPosition(this, "ArmR2", TVec3f(67.38f, 0.0f, 0.0f), TVec3f(0.0f, 0.0f, 0.0f));
@@ -163,30 +160,6 @@ bool Mogu::isPlayerExistUp() {
 void Mogu::tearDownThrow() {
     if (mStone->isTaken()) {
         mStone->kill();
-    }
-}
-
-void Mogu::exeHipDropReaction() {
-    if (MR::isFirstStep(this)) {
-        MR::startAction(this, "HipDropReaction");
-    }
-
-    if (MR::isActionEnd(this)) {
-        setNerve(&NrvMogu::HostTypeNrvSwoon::sInstance);
-    }
-}
-
-void Mogu::exeSwoonEnd() {
-    if (MR::isFirstStep(this)) {
-        MR::startAction(this, "SwoonEnd");
-    }
-
-    MR::startLevelSound(this, "SE_EM_LV_MOGU_SWOON_RECOVER", -1, -1, -1);
-
-    if (MR::isActionEnd(this)) {
-        MR::startAction(mHole, "Close");
-        MR::startSound(this, "SE_EM_MOGUHOLE_CLOSE", -1, -1);
-        setNerve(&NrvMogu::HostTypeNrvHideWait::sInstance);
     }
 }
 
@@ -423,6 +396,30 @@ void Mogu::exeSwoon() {
 
     if (MR::isGreaterStep(this, 0x78)) {
         setNerve(&NrvMogu::HostTypeNrvSwoonEnd::sInstance);
+    }
+}
+
+void Mogu::exeHipDropReaction() {
+    if (MR::isFirstStep(this)) {
+        MR::startAction(this, "HipDropReaction");
+    }
+
+    if (MR::isActionEnd(this)) {
+        setNerve(&NrvMogu::HostTypeNrvSwoon::sInstance);
+    }
+}
+
+void Mogu::exeSwoonEnd() {
+    if (MR::isFirstStep(this)) {
+        MR::startAction(this, "SwoonEnd");
+    }
+
+    MR::startLevelSound(this, "SE_EM_LV_MOGU_SWOON_RECOVER", -1, -1, -1);
+
+    if (MR::isActionEnd(this)) {
+        MR::startAction(mHole, "Close");
+        MR::startSound(this, "SE_EM_MOGUHOLE_CLOSE", -1, -1);
+        setNerve(&NrvMogu::HostTypeNrvHideWait::sInstance);
     }
 }
 

@@ -2853,7 +2853,7 @@ Game/Enemy/Metbo.cpp:
 	.text       start:0x80122D94 end:0x80124C6C
 	.ctors      start:0x8052EB00 end:0x8052EB04
 	.rodata     start:0x80532388 end:0x805323E8
-	.data       start:0x80581950 end:0x80581DF0
+	.data       start:0x80581950 end:0x80581C30
 	.sbss       start:0x806B4478 end:0x806B44C0
 	.sdata2     start:0x806BB008 end:0x806BB058
 
@@ -2861,7 +2861,7 @@ Game/Enemy/Mogu.cpp:
 	.text       start:0x80124C6C end:0x801265D8
 	.ctors      start:0x8052EB04 end:0x8052EB08
 	.rodata     start:0x805323E8 end:0x80532400
-	.data       start:0x80581DF0 end:0x80582058
+	.data       start:0x80581C30 end:0x80581F28
 	.sbss       start:0x806B44C0 end:0x806B44F0
 	.sdata2     start:0x806BB058 end:0x806BB0D0
 
@@ -2869,7 +2869,7 @@ Game/Enemy/Mogucchi.cpp:
 	.text       start:0x801265D8 end:0x80127C74
 	.ctors      start:0x8052EB08 end:0x8052EB0C
 	.rodata     start:0x80532400 end:0x80532428
-	.data       start:0x80582058 end:0x80582130
+	.data       start:0x80581F28 end:0x80582130
 	.sbss       start:0x806B44F0 end:0x806B4508
 	.sdata2     start:0x806BB0D0 end:0x806BB120
 
