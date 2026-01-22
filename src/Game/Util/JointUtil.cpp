@@ -11,7 +11,7 @@
 
 namespace MR {
     J3DJoint* getJoint(J3DModel* pModel, const char* pName) {
-        return pModel->mModelData->mJointTree.mJointNode[(u16)pModel->mModelData->mJointTree.mJointName->getIndex(pName)];
+        return pModel->mModelData->mJointTree.mJointNodePointer[(u16)pModel->mModelData->mJointTree.mJointName->getIndex(pName)];
     }
 
     J3DJoint* getJoint(const LiveActor* pActor, const char* pName) {
@@ -19,7 +19,7 @@ namespace MR {
     }
 
     J3DJoint* getJoint(const LiveActor* pActor, u16 idx) {
-        return MR::getJ3DModelData(pActor)->mJointTree.mJointNode[idx];
+        return MR::getJ3DModelData(pActor)->mJointTree.mJointNodePointer[idx];
     }
 
     MtxPtr getJointMtx(J3DModel* pModel, const char* pName) {

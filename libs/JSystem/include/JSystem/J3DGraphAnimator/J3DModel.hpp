@@ -1,5 +1,6 @@
 #pragma once
 
+#include "JSystem/J3DGraphAnimator/J3DSkinDeform.hpp"
 #include "JSystem/J3DGraphBase/J3DPacket.hpp"
 #include "JSystem/J3DGraphBase/J3DVertex.hpp"
 #include <revolution.h>
@@ -20,6 +21,17 @@ enum J3DMdlFlag {
     /* 0x80000 */ J3DMdlFlag_DifferedDLBuffer = 0x80000,
 };
 
+struct J3DUnkCalc1 {
+    virtual void calc(J3DModel* model);
+};
+
+struct J3DUnkCalc2 {
+    virtual void unk();
+    virtual void calc(J3DModelData* mpModelData);
+};
+
+typedef void (*J3DCalcCallBack)(J3DModel*, u32 timing);
+
 class J3DModel {
 public:
     virtual void update();
@@ -38,23 +50,25 @@ public:
 
     bool checkFlag(u32 flag) const { return (mFlags & flag) ? true : false; }
 
-    J3DModelData* mModelData;  // 0x4
-    u32 mFlags;
-    u32 mDiffFlag;
-    u32 _10;
-    u32 _14;
-    f32 _18;
-    f32 _1C;
-    f32 _20;
-    Mtx mBaseTransformMtx;          // 0x24
-    Mtx mInternalView;              // 0x54
-    J3DMtxBuffer* mMtxBuffer;       // 0x84
-    J3DVertexBuffer mVertexBuffer;  // 0x88
-    J3DMatPacket* mMaterialPacket;  // 0xC0
-    u32 _C4;
-    u32 _C8;
-    u32 _CC;
-    u32 _D0;
-    u32 _D4;
-    u32 _D8;
+    J3DMtxBuffer* getMtxBuffer() { return mMtxBuffer; }
+
+    MtxPtr getWeightAnmMtx(int i) { return mMtxBuffer->getWeightAnmMtx(i); }
+
+    /* 0x04 */ J3DModelData* mModelData;
+    /* 0x08 */ u32 mFlags;
+    /* 0x0C */ u32 mDiffFlag;
+    /* 0x10 */ J3DCalcCallBack mCalcCallBack;
+    /* 0x14 */ uintptr_t mUserArea;
+    /* 0x18 */ Vec mBaseScale;
+    /* 0x24 */ Mtx mBaseTransformMtx;
+    /* 0x54 */ Mtx mInternalView;
+    /* 0x84 */ J3DMtxBuffer* mMtxBuffer;
+    /* 0x88 */ J3DVertexBuffer mVertexBuffer;
+    /* 0xC0 */ J3DMatPacket* mMatPacket;
+    /* 0xC4 */ J3DShapePacket* mShapePacket;
+    /* 0xC8 */ J3DDeformData* mDeformData;
+    /* 0xCC */ J3DSkinDeform* mSkinDeform;
+    /* 0xD0 */ J3DVtxColorCalc* mVtxColorCalc;
+    /* 0xD4 */ J3DUnkCalc1* mUnkCalc1;
+    /* 0xD8 */ J3DUnkCalc2* mUnkCalc2;
 };

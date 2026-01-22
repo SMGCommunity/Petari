@@ -39,7 +39,7 @@ namespace MR {
 
     // some inlining issue
     void hideMaterial(J3DModel* pModel, const char* pMaterialName) {
-        J3DShapePacket* pckt = pModel->mMaterialPacket[getMaterialNo(pModel, pMaterialName)].mpShapePacket;
+        J3DShapePacket* pckt = pModel->mMatPacket[getMaterialNo(pModel, pMaterialName)].mpShapePacket;
         pckt->mFlags |= 0x10;
     }
 };  // namespace MR

@@ -105,10 +105,11 @@ public:
 
     void setShapePacket(J3DShapePacket* pPacket) { mShapePacket = pPacket; }
 
+    J3DModel* getModel() { return mModel; }
     void setModel(J3DModel* pModel) { mModel = pModel; }
 
     J3DShapePacket* getShapePacket() { return mShapePacket; }
-
+    Mtx& getModelDrawMtx(u16 no) { return mModelDrawMtx[no]; }
     J3DTexture* getTexture() { return mTexture; }
 
     static Mtx mCurrentMtx;

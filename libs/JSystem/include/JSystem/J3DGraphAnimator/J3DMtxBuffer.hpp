@@ -12,6 +12,8 @@ public:
     Mtx** getDrawMtxPtrPtr() { return mpDrawMtxArr[1]; }
 
     Mtx33** getNrmMtxPtrPtr() { return mpNrmMtxArr[1]; }
+    MtxPtr getWeightAnmMtx(int idx) { return mpWeightEvlpMtx[idx]; }
+    MtxPtr getUserAnmMtx(int idx) { return mpUserAnmMtx[idx]; }
 
     J3DJointTree* mJointTree;  // 0x00
     u8* mpScaleFlagArr;        // 0x04

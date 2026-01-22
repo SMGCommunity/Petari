@@ -2,16 +2,29 @@
 
 #include <revolution.h>
 
+class J3DModel;
+class J3DAnmVtxColor;
+class J3DVertexBuffer;
+
+struct J3DVtxColorCalc {
+    void calc(J3DModel*);
+    virtual void calc(J3DVertexBuffer*);
+
+    /* 0x0 */ void* vtable;  // inlined vtable?
+    /* 0x4 */ u32 mFlags;
+    /* 0x8 */ J3DAnmVtxColor* mpVtxColor;
+};
+
 class J3DDrawMtxData {
 public:
     J3DDrawMtxData();
 
     ~J3DDrawMtxData();
 
-    u16 mDrawMatrixCount;  // 0x0
-    u16 mRigidMtxCount;    // 0x2
-    u32 _4;
-    u16* mDrawMtxArray;  // 0x8
+    /* 0x0 */ u16 mEntryNum;
+    /* 0x2 */ u16 mDrawFullWgtMtxNum;
+    /* 0x4 */ u8* mDrawMtxFlag;
+    /* 0x8 */ u16* mDrawMtxIndex;
 };
 
 class J3DVertexData {
