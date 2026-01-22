@@ -310,7 +310,7 @@ void StarPieceGroup::endClipped() {
 void StarPieceGroup::exeFlow() {
     f32 railLength = MR::getRailTotalLength(this);
     for (u32 i = 0; i < mNumPieces; i++) {
-        // mRailCoords[i] = MR::repeat(mRailCoords[i] + mRailSpeed, railLength, 0.0f);
+        mRailCoords[i] = MR::repeat(mRailCoords[i] + mRailSpeed, 0.0f, railLength);
         if (mPieces[i]->isOnRailMove()) {
             TVec3f railPos;
             MR::calcRailPosAtCoord(&railPos, this, mRailCoords[i]);
