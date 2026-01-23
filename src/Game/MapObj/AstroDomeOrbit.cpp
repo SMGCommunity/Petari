@@ -194,7 +194,7 @@ void AstroDomeOrbit::drawSide(f32 a2, bool a3, f32 a4) const {
 }
 
 f32 AstroDomeOrbit::calcRepeatedRotateCoord(f32 coord) const {
-    return MR::wrapAngleTowards(0.0f, coord);
+    return MR::repeat(coord, 0.0f, 360.0f);
 }
 
 AstroDomeOrbit::~AstroDomeOrbit() {}

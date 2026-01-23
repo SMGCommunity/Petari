@@ -106,9 +106,9 @@ void PlantLeafDrawInit::init(const JMapInfoIter&) {
 
 void PlantLeafDrawInit::initDraw() const {
     J3DModelData* modelData = MR::getJ3DModelData(this);
-    j3dSys._10C = modelData->mVertexData._18;
-    j3dSys._110 = modelData->mVertexData._1C;
-    j3dSys._114 = modelData->mVertexData._24;
+    j3dSys.mVtxPos = modelData->mVertexData.mVtxPosArray;
+    j3dSys.mVtxNrm = modelData->mVertexData.mVtxNrmArray;
+    j3dSys.mVtxCol = modelData->mVertexData.mVtxColorArray[0];
     mShape->sOldVcdVatCmd = 0;
     mMaterial->loadSharedDL();
     mShape->loadPreDrawSetting();

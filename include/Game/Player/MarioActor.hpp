@@ -238,6 +238,8 @@ public:
     void reactionPunch(HitSensor*);
     void tryCoinPullInRush();
     bool tryJetAttack(HitSensor*);
+    void releaseThrowMemoSensor();
+    void createIceFloor(const TVec3f&);
 
     bool isRequestJump() const;
 

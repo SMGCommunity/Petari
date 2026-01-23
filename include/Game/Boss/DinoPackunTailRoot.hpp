@@ -12,5 +12,5 @@ public:
     virtual void addNodeVelocity(const TVec3f&);
     virtual JointController* createJointControllerOwn(LiveActor*, const char*);
 
-    void calcJointDirection(TPos3f*, const JointControllerInfo&);
+    bool calcJointDirection(TPos3f*, const JointControllerInfo&);
 };

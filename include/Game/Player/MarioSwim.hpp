@@ -37,13 +37,16 @@ public:
     virtual f32 getBlurOffset() const;
     virtual void draw3D() const;
     virtual f32 getStickY() const;
-    virtual TVec3f& getGravityVec() const;
+    virtual const TVec3f& getGravityVec() const;
+    virtual void addVelocity(const TVec3f& rVelocity);
+    virtual void addVelocity(const TVec3f& rVelocity, f32);
+
 
     bool checkWaterCube(bool);
     void onSurface();
     void doJetJump(u8);
     void updateLifeByTime();
-    void surfacePaddle();
+    bool surfacePaddle();
     void flowOnWave(f32);
     bool checkWaterBottom();
     void spin();
@@ -56,7 +59,7 @@ public:
     void pushedByWaterWall();
     void setDamage(const TVec3f&, u16);
     void updateUnderWater();
-    void startJet(u32);
+    bool startJet(u32);
     void addDamage(const TVec3f&);
     void addFaint(const TVec3f&);
     AreaInfo* getWaterAreaInfo(WaterInfo*, const TVec3f&, TVec2f*);
@@ -73,6 +76,11 @@ public:
     void doDecLifeByCold();
     void startSpinDash();
     void ringDash();
+    void resetJet();
+    void forceStopSpin();
+    void resetAndFixPose();
+    f32 checkUnderWaterFull(const TVec3f&);
+    void hitHead(const HitInfo*);
 
     static inline f32 getWorthlessNumber() { return 0.523598790169f; }
 
@@ -120,7 +128,7 @@ public:
     inline void updateSwimWeight(int animIndex, const MarioConstTable* table);
     inline void setupSwimSpeeds(f32* speeds);
     
-    /* 0x014 */ MarineSnow* _14;
+    /* 0x014 */ MarineSnow* mMarineSnow;
     /* 0x018 */ u8 _18;
     /* 0x019 */ bool mIsOnSurface;
     /* 0x01A */ u8 _1A;
@@ -129,7 +137,7 @@ public:
     /* 0x01D */ u8 _1D;
     /* 0x01E */ u8 _1E;
     /* 0x01F */ u8 _1F;
-    /* 0x020 */ u8 _20;
+    /* 0x020 */ bool mIsSwimmingAtSurface;
     /* 0x021 */ u8 _21;
     /* 0x022 */ u8 _22;
     /* 0x024 */ u32 _24;
@@ -196,7 +204,7 @@ public:
     /* 0x1A0 */ f32 _1A0;
     /* 0x1A4 */ f32 mDistToFloor;
     /* 0x1A8 */ f32 _1A8;
-    /* 0x1AC */ f32 _1AC;
+    /* 0x1AC */ f32 mDistanceToWaterSurface;
     /* 0x1B0 */ u16 _1B0;
     /* 0x1B2 */ u8 _1B2;
     /* 0x1B4 */ f32 _1B4;

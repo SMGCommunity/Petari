@@ -579,10 +579,10 @@ void OceanSphere::control() {
     const f32 add = 0.0008f;
     const f32 sub = -0.0008f;
 
-    mTexOffs0X = 1.0f + fmod((add + mTexOffs0X) - 1.0f, 1.0f);
-    mTexOffs0Y = 1.0f + fmod((add + mTexOffs0Y) - 1.0f, 1.0f);
-    mTexOffs1X = 1.0f + fmod((add + mTexOffs1X) - 1.0f, 1.0f);
-    mTexOffs1Y = 1.0f + fmod((sub + mTexOffs1Y) - 1.0f, 1.0f);
+    mTexOffs0X = MR::repeat(add + mTexOffs0X, 0.0f, 1.0f);
+    mTexOffs0Y = MR::repeat(add + mTexOffs0Y, 0.0f, 1.0f);
+    mTexOffs1X = MR::repeat(add + mTexOffs1X, 0.0f, 1.0f);
+    mTexOffs1Y = MR::repeat(sub + mTexOffs1Y, 0.0f, 1.0f);
 }
 
 void OceanSphere::updatePoints() {

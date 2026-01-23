@@ -11,9 +11,11 @@
 #include "Game/MapObj/BenefitItemObj.hpp"
 #include "Game/MapObj/CoinHolder.hpp"
 #include "Game/MapObj/PowerStar.hpp"
+#include "Game/MapObj/StarPieceDirector.hpp"
 #include "Game/NPC/EventDirector.hpp"
 #include "Game/NPC/StageStateKeeper.hpp"
 #include "Game/NameObj/MovementOnOffGroupHolder.hpp"
+#include "Game/NameObj/NameObj.hpp"
 #include "Game/NameObj/NameObjAdaptor.hpp"
 #include "Game/NameObj/NameObjExecuteHolder.hpp"
 #include "Game/NameObj/NameObjFinder.hpp"
@@ -39,6 +41,8 @@
 #include "JSystem/JGeometry/TUtil.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
 #include "JSystem/JMath/JMATrigonometric.hpp"
+#include "revolution/types.h"
+#include <cstddef>
 #include <cstdio>
 #include <va_list.h>
 
@@ -703,15 +707,44 @@ namespace MR {
         MR::getCoinHolder()->appearCoinCircle(pObj, rParam2, param3);
     }
 
-    // declareStarPiece(const NameObj* pObj, s32 param2)
-    // getDeclareRemnantStarPieceCount
-    // getDeclareRemnantStarPieceCountNotExist
-    // declareStarPieceReceiver
-    // clearGotCountStarPieceReceiver
-    // hopStarPiece
-    // appearStarPiece
-    // appearStarPieceToDirection
-    // initStarPieceGetCSSound
+    void declareStarPiece(const NameObj* pObj, s32 num) {
+        getStarPieceDirector()->declare(pObj, num);
+    }
+
+    s32 getDeclareRemnantStarPieceCount(const NameObj* pObj) {
+        return getStarPieceDirector()->getDeclareRemnantStarPieceCount(pObj);
+    }
+
+    s32 getDeclareRemnantStarPieceCountNotExist(const NameObj* pObj) {
+        return getStarPieceDirector()->getDeclareRemnantStarPieceCountNotExist(pObj);
+    }
+
+    void declareStarPieceReceiver(const NameObj* pObj, s32 num) {
+        getStarPieceDirector()->declareReceiveNum(pObj, num);
+    }
+
+    void clearGotCountStarPieceReceiver(const NameObj* pObj) {
+        getStarPieceDirector()->clearGotCountReceiver(pObj);
+    }
+
+    void hopStarPiece(const NameObj* pObj, const TVec3f& rVec1, const TVec3f& rVec2) {
+        getStarPieceDirector()->hopPiece(pObj, rVec1, rVec2);
+    }
+
+    bool appearStarPiece(const NameObj* pObj, const TVec3f& rVec1, s32 a1, f32 f1, f32 f2, bool a2) {
+        return getStarPieceDirector()->appearPiece(pObj, rVec1, a1, f1, f2, false, a2);
+    }
+
+    bool appearStarPieceToDirection(const NameObj* pObj, const TVec3f& rVec1, const TVec3f& rVec2, s32 a1, f32 f1, f32 f2, bool a2) {
+        return getStarPieceDirector()->appearPieceToDirection(pObj, rVec1, rVec2, a1, f1, f2, false, a2);
+    }
+
+    void initStarPieceGetCSSound() {
+        StarPieceDirector* director = getStarPieceDirector();
+        if (director != nullptr) {
+            director->initCSSound();
+        }
+    }
 
     BenefitItemOneUp* createKinokoOneUp() {
         BenefitItemOneUp* pKinokoOneUp = new BenefitItemOneUp("１ＵＰキノコ(create)");

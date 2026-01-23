@@ -256,6 +256,15 @@ namespace JGeometry {
             return ret;
         }
 
+        //needed in StarPieceFollowGroup???
+        inline TVec3 multInLine(f32 val) {
+            TVec3 ret(*this);
+            ret.x *= val;
+            ret.y *= val;
+            ret.z *= val;
+            return ret;
+        }
+
         TVec3 operator-() const;
 
         bool operator==(const TVec3&) const;
@@ -268,6 +277,14 @@ namespace JGeometry {
             JMathInlineVEC::PSVECNegate(this, &ret);
             return ret;
         }
+
+        inline TVec3 negateOperatorInternal() const {
+            TVec3 ret;
+            JGeometry::negateInternal(&this->x, &ret.x);
+            return ret;
+        }
+
+        inline void negateInternal() { JGeometry::negateInternal(&this->x, &this->x); }
 
         TVec3 operator-(const TVec3& op) const {
             TVec3 ret(*this);
@@ -405,7 +422,13 @@ namespace JGeometry {
             return ret;
         }
 
+        inline void scaleAdd(const TVec3& scaleVec, const TVec3& addVec, f32 scale) { JMAVECScaleAdd(&scaleVec, &addVec, this, scale); }
+
         inline void rejection(const TVec3& rVec, const TVec3& rNormal) { JMAVECScaleAdd(&rNormal, &rVec, this, -rNormal.dot(rVec)); }
+        inline void rejection(const TVec3& rNormal) {
+            const TVec3& norm = rNormal;
+            JMAVECScaleAdd(&norm, this, this, -norm.dot(*this));
+        }
 
         inline void invert() {
             this->x *= -1.0f;
@@ -496,6 +519,12 @@ namespace JGeometry {
         void cubic(const TVec3&, const TVec3&, const TVec3&, const TVec3&, f32);
 
         f32 angle(const TVec3&) const;
+
+        inline TVec3 cross(const TVec3& b) {
+            TVec3 ret;
+            PSVECCrossProduct(this, &b, &ret);
+            return ret;
+        }
     };
 
     template < typename T >
@@ -611,7 +640,7 @@ namespace JGeometry {
 
         void slerp(const TQuat4< T >&, T);
         void transform(const TVec3< T >&, TVec3< T >& rDest);
-        void transform(TVec3< T >& rDest);
+        void transform(TVec3< T >& rDest) const;
 
         /* Operators */
         TQuat4< T >& operator=(const TQuat4< T >& rSrc);

@@ -14,7 +14,7 @@ void AnmPlayerBase::update() {
 
 void AnmPlayerBase::reflectFrame() {
     if (mAnmRes != nullptr) {
-        mAnmRes->mCurrentFrame = mFrameCtrl.mCurrentFrame;
+        mAnmRes->mFrame = mFrameCtrl.mCurrentFrame;
     }
 }
 
@@ -26,8 +26,8 @@ void AnmPlayerBase::start(const char* pResName) {
         mAnmRes = pAnmRes;
     }
 
-    mFrameCtrl.init(mAnmRes->mLoopDuration);
-    mFrameCtrl.mLoopMode = mAnmRes->mLoopMode;
+    mFrameCtrl.init(mAnmRes->mFrameMax);
+    mFrameCtrl.mLoopMode = mAnmRes->mAttribute;
     mFrameCtrl.mCurrentFrame = 0.0f;
     mFrameCtrl.mSpeed = 1.0f;
 }

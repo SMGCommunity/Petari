@@ -26,7 +26,7 @@ public:
 
     void initThread(const TVec3f&);
     void startActorBind(LiveActor*, const TVec3f**, const TVec3f**, const TVec3f**, const TVec3f&, const TVec3f&, s32);
-    void touchActor(const TVec3f&, const TVec3f&);
+    bool touchActor(const TVec3f&, const TVec3f&);
     void tryPush(const TVec3f&, f32);
     void stopAllPartsPoint();
     void cutSpiderThread();
@@ -71,8 +71,8 @@ namespace MR {
     void pauseOffSpiderThread();
     f32 getSpiderThreadPosZ();
     void startActorBindToSpiderThread(LiveActor*, const TVec3f**, const TVec3f**, const TVec3f**, const TVec3f&, const TVec3f&);
-    void sendMsgToSpiderThread(u32, HitSensor*);
-    void touchActorToSpiderThread(const TVec3f&, const TVec3f&);
+    bool sendMsgToSpiderThread(u32, HitSensor*);
+    bool touchActorToSpiderThread(const TVec3f&, const TVec3f&);
     void tryPushSpiderThread(const TVec3f&, f32);
     void onSpiderThreadBloom();
     void drawSpiderThreadBloom();

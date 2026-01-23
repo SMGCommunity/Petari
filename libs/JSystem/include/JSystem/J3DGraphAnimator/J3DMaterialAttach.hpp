@@ -16,26 +16,30 @@ public:
 
     virtual ~J3DMaterialTable();
 
-    s32 removeMatColorAnimator(J3DAnmColor*);
-    s32 removeTexNoAnimator(J3DAnmTexPattern*);
-    s32 removeTexMtxAnimator(J3DAnmTextureSRTKey*);
-    s32 removeTevRegAnimator(J3DAnmTevRegKey*);
-    s32 createTexMtxForAnimator(J3DAnmTextureSRTKey*);
-    s32 entryMatColorAnimator(J3DAnmColor*);
-    s32 entryTexNoAnimator(J3DAnmTexPattern*);
-    s32 entryTexMtxAnimator(J3DAnmTextureSRTKey*);
-    s32 entryTevRegAnimator(J3DAnmTevRegKey*);
+    void clear();
+    int removeMatColorAnimator(J3DAnmColor*);
+    int removeTexNoAnimator(J3DAnmTexPattern*);
+    int removeTexMtxAnimator(J3DAnmTextureSRTKey*);
+    int removeTevRegAnimator(J3DAnmTevRegKey*);
+    int createTexMtxForAnimator(J3DAnmTextureSRTKey*);
+    int entryMatColorAnimator(J3DAnmColor*);
+    int entryTexNoAnimator(J3DAnmTexPattern*);
+    int entryTexMtxAnimator(J3DAnmTextureSRTKey*);
+    int entryTevRegAnimator(J3DAnmTevRegKey*);
 
-    inline u16 getMaterialCount() { return mMaterialCount; }
+    u16 getMaterialNum() const { return mMaterialNum; }
+    J3DTexture* getTexture() const { return mTexture; }
+    JUTNameTab* getTextureName() const { return mTextureName; }
+    JUTNameTab* getMaterialName() const { return mMaterialName; }
+    bool isLocked() const { return field_0x1c == 1; }
+    J3DMaterial* getMaterialNodePointer(u16 idx) const { return mMaterialNodePointer[idx]; }
 
-    u16 mMaterialCount;             // 0x4
-    u16 mUniqueMaterialCount;       // 0x6
-    J3DMaterial** mMaterials;       // 0x8
-    JUTNameTab* mNameTable;         // 0xC
-    J3DMaterial* mUniqueMaterials;  // 0x10
-    J3DTexture* mTexture;           // 0x14
-    JUTNameTab* mTextureNameTable;  // 0x18
-    u16 _1C;
-    u8 _1E;
-    u8 _1F;
+    /* 0x04 */ u16 mMaterialNum;
+    /* 0x06 */ u16 mUniqueMatNum;
+    /* 0x08 */ J3DMaterial** mMaterialNodePointer;
+    /* 0x0C */ JUTNameTab* mMaterialName;
+    /* 0x10 */ J3DMaterial* field_0x10;
+    /* 0x14 */ J3DTexture* mTexture;
+    /* 0x18 */ JUTNameTab* mTextureName;
+    /* 0x1C */ u16 field_0x1c;
 };
