@@ -1328,8 +1328,8 @@ void MarioSwim::decLife() {
         TVec3f gravityVec = -getGravityVec();
         getPlayer()->forceSetHeadVecKeepSide(gravityVec);
 
-        u16 upperJoint = getAnimator()->getUpperJointID();
-        setJointGlobalMtx(upperJoint, nullptr);
+        register s32 upperJoint = getAnimator()->getUpperJointID();
+        setJointGlobalMtx(static_cast<u16>(upperJoint), nullptr);
     }
 }
 

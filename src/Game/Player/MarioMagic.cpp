@@ -2,6 +2,14 @@
 #include "Game/Player/MarioActor.hpp"
 #include "Game/Player/MarioModule.hpp"
 
+extern const char lbl_805CD078[];
+extern const char lbl_805CD0C8[];
+extern const char lbl_805CD0D5[];
+
+#pragma force_active on
+__declspec(section ".data") const char gap_07_805CD130_data[0xA0] = { 0 };
+#pragma force_active off
+
 void Mario::stopPunch() {
     if (isStatusActive(17)) {
         closeStatus(mMagic);
@@ -41,40 +49,52 @@ MarioMagic::MarioMagic(MarioActor* pActor) : MarioState(pActor, 0x11) {
 }
 
 bool MarioMagic::close() {
-    stopEffect("スピンライト");
+    stopEffect(lbl_805CD0C8);
 
     if (_12 < 0x1A) {
-        playEffect("スピンライト消去");
+        playEffect(lbl_805CD0D5);
     }
 
     return true;
 }
 
 bool MarioMagic::start() {
-    changeAnimation("地上ひねり", static_cast< const char* >(nullptr));
-    stopEffect("パンチブラー左");
-    stopEffect("パンチブラー右");
-    playEffect("共通地上スピン");
-    playSound("声スピン", -1);
-    playSound("スピンジャンプ", -1);
+    register const char* base = lbl_805CD078;
+    const char* baseCopy = base;
+    const char* punchBlurLeft = base + 0x0B;
+    const char* punchBlurRight = base + 0x1A;
+    const char* commonGroundSpin = base + 0x29;
+    const char* voiceSpin = base + 0x38;
+    const char* spinJump = base + 0x41;
+
+    changeAnimation(baseCopy, static_cast< const char* >(nullptr));
+    stopEffect(punchBlurLeft);
+    stopEffect(punchBlurRight);
+    playEffect(commonGroundSpin);
+    playSound(voiceSpin, -1);
+    playSound(spinJump, -1);
     startPadVib(2);
     _12 = 0;
     return true;
 }
 
 bool MarioMagic::update() {
+    register const char* base = lbl_805CD078;
+    const char* baseCopy = base;
+    const char* groundTwist = baseCopy + 0x0;
+
     if (mActor->isRequestJump()) {
         getPlayer()->tryJump();
         return false;
-    } else if (!isAnimationRun("地上ひねり")) {
+    } else if (!isAnimationRun(groundTwist)) {
         return false;
     }
 
     _12++;
 
     if (_12 == 25) {
-        stopEffect("スピンライト");
-        playEffect("スピンライト消去");
+        stopEffect(base + 0x50);
+        playEffect(base + 0x5D);
     }
 
     if (getPlayer()->mMovementStates.jumping) {

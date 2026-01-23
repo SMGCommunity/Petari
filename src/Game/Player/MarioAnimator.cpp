@@ -86,14 +86,25 @@ MarioAnimator::MarioAnimator(MarioActor* actor) : MarioModule(actor) {
 }
 
 void MarioAnimator::init() {
-    XanimeSwapTable* luigiAnimations = nullptr;
-    if (gIsLuigi) {
-        luigiAnimations = luigiAnimeSwapTable;
-    }
+    {
+        char* base = const_cast<char*>(lbl_805BAC68);
+        char* baseHi = base + 0x10000;
+        XanimeSwapTable* luigiAnimations = nullptr;
+        if (gIsLuigi) {
+            luigiAnimations = reinterpret_cast<XanimeSwapTable*>(baseHi - 0x6E88);
+        }
 
-    mResourceTable =
-        new XanimeResourceTable(MR::getResourceHolder(mActor), marioAnimeTable, marioAnimeAuxTable, marioAnimeOfsTable, &singleAnimeTable[0].parent,
-                                &doubleAnimeTable[0].parent, &tripleAnimeTable[0].parent, &quadAnimeTable[0].parent, luigiAnimations);
+        XanimeGroupInfo* groupInfo = reinterpret_cast<XanimeGroupInfo*>(base + 0x3274);
+        XanimeAuxInfo* auxInfo = reinterpret_cast<XanimeAuxInfo*>(baseHi - 0x721C);
+        XanimeOfsInfo* ofsInfo = reinterpret_cast<XanimeOfsInfo*>(baseHi - 0x7204);
+        XanimeBckTable* singleTable = reinterpret_cast<XanimeBckTable*>(base + 0x2034);
+        XanimeBckTable2* doubleTable = reinterpret_cast<XanimeBckTable2*>(base + 0x498);
+        XanimeBckTable3* tripleTable = reinterpret_cast<XanimeBckTable3*>(base + 0x36C);
+        XanimeBckTable4* quadTable = reinterpret_cast<XanimeBckTable4*>(base + 0x108);
+
+        mResourceTable =
+            new XanimeResourceTable(MR::getResourceHolder(mActor), groupInfo, auxInfo, ofsInfo, singleTable, doubleTable, tripleTable, quadTable, luigiAnimations);
+    }
 
     _14 = 0;
     _15 = 0;
@@ -127,19 +138,27 @@ void MarioAnimator::init() {
 
     mXanimePlayer = new XanimePlayer(MR::getJ3DModel(mActor), mResourceTable);
 
-    const char* base = lbl_805BAC68 + 0x10000;
-    const char* defaultAnim = base - 0x6E18;
+    {
+        char* base = const_cast<char*>(lbl_805BAC68);
+        char* baseHi = base + 0x10000;
+        const char* defaultAnim = baseHi - 0x6E18;
 
-    getPlayer()->startBas(nullptr, false, 0.0f, 0.0f);
-    mXanimePlayer->setDefaultAnimation(defaultAnim);
-    change(defaultAnim);
+        getPlayer()->startBas(nullptr, false, 0.0f, 0.0f);
+        mXanimePlayer->setDefaultAnimation(defaultAnim);
+        change(defaultAnim);
+    }
 
     mXanimePlayer->getCore()->enableJointTransform(MR::getJ3DModelData(mActor));
 
     mActor->mModelManager->mXanimePlayer = mXanimePlayer;
     mXanimePlayerUpper = new XanimePlayer(MR::getJ3DModel(mActor), mResourceTable, mXanimePlayer);
-    changeDefaultUpper(defaultAnim);
-    mXanimePlayerUpper->changeAnimation(defaultAnim);
+    {
+        char* base = const_cast<char*>(lbl_805BAC68);
+        char* baseHi = base + 0x10000;
+        const char* defaultAnimUpper = baseHi - 0x6E18;
+        changeDefaultUpper(defaultAnimUpper);
+        mXanimePlayerUpper->changeAnimation(defaultAnimUpper);
+    }
     mXanimePlayerUpper->mCore->shareJointTransform(mXanimePlayer->mCore);
     PSMTXCopy(MR::tmpMtxRotYRad(3.1415927f), _DC.toMtxPtr());
 }

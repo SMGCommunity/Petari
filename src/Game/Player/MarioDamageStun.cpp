@@ -2,6 +2,10 @@
 #include "Game/Player/MarioActor.hpp"
 #include "Game/Player/MarioStun.hpp"
 
+#pragma force_active on
+__declspec(section ".data") const char gap_07_805C631C_data[0xA4] = { 0 };
+#pragma force_active off
+
 MarioStun::MarioStun(MarioActor* pActor) : MarioState(pActor, 0xe), _12(0), _14(0) {}
 
 bool MarioStun::close() {

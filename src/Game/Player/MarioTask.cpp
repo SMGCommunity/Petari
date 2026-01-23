@@ -162,8 +162,17 @@ void Mario::drawTask() const {
 }
 
 void Mario::initTask() {
-    for (int i = 0; i < 11; i++) {
-        reinterpret_cast<PTMF&>(_984[i]) = __ptmf_null;
+    register u32 offset = 0;
+    register long value1;
+    register long value0;
+    const volatile PTMF* src = &__ptmf_null;
+    for (u32 i = 0; i < 11; i++, offset += sizeof(PTMF)) {
+        value1 = src->this_delta;
+        PTMF* dst = reinterpret_cast<PTMF*>(reinterpret_cast<u8*>(this) + offset + 0x984);
+        value0 = src->vtbl_offset;
+        dst->this_delta = value1;
+        dst->vtbl_offset = value0;
+        dst->func_data = src->func_data;
     }
 
     _974 = nullptr;

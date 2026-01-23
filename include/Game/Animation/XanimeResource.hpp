@@ -44,7 +44,7 @@ public:
     u32 fileHash;          // 0xC
 };
 
-class XanimeDoubleBckTable {
+class XanimeBckTable2 {
 public:
     XanimeBckTable parent;  // 0x0
 
@@ -55,7 +55,7 @@ public:
     f32 _10;
 };
 
-class XanimeTripleBckTable {
+class XanimeBckTable3 {
 public:
     XanimeBckTable parent;  // 0x0
 
@@ -69,7 +69,7 @@ public:
     f32 _18;
 };
 
-class XanimeQuadBckTable {
+class XanimeBckTable4 {
 public:
     XanimeBckTable parent;  // 0x0
 
@@ -85,6 +85,10 @@ public:
     const char* fileName4;  // 0x1C;
     f32 _20;
 };
+
+typedef XanimeBckTable2 XanimeDoubleBckTable;
+typedef XanimeBckTable3 XanimeTripleBckTable;
+typedef XanimeBckTable4 XanimeQuadBckTable;
 
 // Size is 0x14
 class XanimeOfsInfo {
@@ -117,7 +121,7 @@ public:
 
         XanimeGroupInfo*, XanimeAuxInfo*, XanimeOfsInfo*,
 
-        XanimeBckTable*, XanimeBckTable*, XanimeBckTable*, XanimeBckTable*,
+        XanimeBckTable*, XanimeBckTable2*, XanimeBckTable3*, XanimeBckTable4*,
 
         XanimeSwapTable*);
 

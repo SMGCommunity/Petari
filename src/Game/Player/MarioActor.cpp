@@ -24,6 +24,12 @@
 #include "JSystem/JAudio2/JAIAudible.hpp"
 #include "JSystem/JMath/JMath.hpp"
 
+extern "C" {
+    extern u8 sInstance__Q213NrvMarioActor17MarioActorNrvWait;
+    extern u8 sInstance__Q213NrvMarioActor21MarioActorNrvGameOver;
+    extern u8 sInstance__Q213NrvMarioActor25MarioActorNrvGameOverSink;
+}
+
 Triangle& Triangle::operator=(const Triangle& rOther) {
     mParts = rOther.mParts;
     mIdx = rOther.mIdx;
@@ -281,7 +287,7 @@ void MarioActor::init2(const TVec3f& a, const TVec3f& b, s32 initialAnimation) {
     mMario->initAfterConst();
     _36C = new GravityInfo();
     _374 = 0.0f;
-    initNerve(&NrvMarioActor::MarioActorNrvWait::sInstance);
+    initNerve(reinterpret_cast<const Nerve*>(&sInstance__Q213NrvMarioActor17MarioActorNrvWait));
     _FB4 = 0;
     _FB8 = 0;
     initActionMatrix();
@@ -538,7 +544,7 @@ void MarioActor::changeGameOverAnimation() {
     if (mMario->isSwimming()) {
         animation = 7;
     }
-    if (isNerve(&NrvMarioActor::MarioActorNrvGameOverSink::sInstance)) {
+    if (isNerve(reinterpret_cast<const Nerve*>(&sInstance__Q213NrvMarioActor25MarioActorNrvGameOverSink))) {
         animation = 8;
     }
     if (MR::getKarikariClingNum() && mMario->getMovementStates()._1) {
@@ -1491,7 +1497,7 @@ bool MarioActor::doPressing() {
     case 0:
         if (!mMario->checkVerticalPress(false)) {
             if (--_390 == 0x1e && !mHealth && isEnableNerveChange()) {
-                setNerve(&NrvMarioActor::MarioActorNrvGameOver::sInstance);
+                setNerve(reinterpret_cast<const Nerve*>(&sInstance__Q213NrvMarioActor21MarioActorNrvGameOver));
             }
             if (!_390) {
                 mMario->changeAnimation("つぶれ解除", (const char*)nullptr);
@@ -1502,7 +1508,7 @@ bool MarioActor::doPressing() {
     case 2:
     case 3:
         if (--_390 == 0x1e && !mHealth && isEnableNerveChange()) {
-            setNerve(&NrvMarioActor::MarioActorNrvGameOver::sInstance);
+            setNerve(reinterpret_cast<const Nerve*>(&sInstance__Q213NrvMarioActor21MarioActorNrvGameOver));
         }
         if (!_390) {
             mMario->changeAnimation("つぶれ解除", (const char*)nullptr);

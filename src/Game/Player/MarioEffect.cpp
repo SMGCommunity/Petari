@@ -1388,13 +1388,17 @@ MarioEffect::MarioEffect(MarioActor* pActor) : MarioModule(pActor) {
     _1C.mColor = 0xFFFFFFFFu;
     _20.mColor = 0xFFFFFFFFu;
 
-    for (s32 i = 0; i < 0x100; i++) {
-        PSMTXIdentity(_54[i]._4.toMtxPtr());
-        PSMTXIdentity(_54[i]._34.toMtxPtr());
-        _54[i]._64 = nullptr;
-        _54[i].mEmitter = nullptr;
-        _54[i]._0 = 0;
-    }
+    register MovingFollowMtx* follow = _54;
+    register MovingFollowMtx* end = _54 + 0x100;
+    register u32 zero = 0;
+    do {
+        PSMTXIdentity(follow->_4.toMtxPtr());
+        PSMTXIdentity(follow->_34.toMtxPtr());
+        follow->_64 = reinterpret_cast<MtxPtr>(zero);
+        follow->mEmitter = reinterpret_cast<JPABaseEmitter*>(zero);
+        follow->_0 = zero;
+        ++follow;
+    } while (follow < end);
 
     _C = -1;
     _10 = -1;
