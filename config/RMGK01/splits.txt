@@ -3777,7 +3777,7 @@ Game/Map/OceanBowl.cpp:
 
 Game/Map/OceanBowlBloomDrawer.cpp:
 	.text       start:0x8018B780 end:0x8018B9A8
-	.data       start:0x8058AD28 end:0x8058ADC8
+	.data       start:0x8058AD08 end:0x8058AD50
 
 Game/Map/OceanBowlPoint.cpp:
 	.text       start:0x8018B9A8 end:0x8018BBC4
@@ -3785,11 +3785,11 @@ Game/Map/OceanBowlPoint.cpp:
 
 Game/Map/OceanHomeMapCtrl.cpp:
 	.text       start:0x8018BBC4 end:0x8018BE98
-	.data       start:0x8058ADC8 end:0x8058AE40
+	.data       start:0x8058AD50 end:0x8058ADF0
 
 Game/Map/OceanRing.cpp:
 	.text       start:0x8018BE98 end:0x8018D824
-	.data       start:0x8058AE40 end:0x8058AEB8
+	.data       start:0x8058ADF0 end:0x8058AEB8
 	.sdata2     start:0x806BC1A8 end:0x806BC208
 
 Game/Map/OceanRingBloomDrawer.cpp:
