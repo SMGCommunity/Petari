@@ -3789,12 +3789,12 @@ Game/Map/OceanHomeMapCtrl.cpp:
 
 Game/Map/OceanRing.cpp:
 	.text       start:0x8018BE98 end:0x8018D824
-	.data       start:0x8058AE40 end:0x8058AED8
+	.data       start:0x8058AE40 end:0x8058AEB8
 	.sdata2     start:0x806BC1A8 end:0x806BC208
 
 Game/Map/OceanRingBloomDrawer.cpp:
 	.text       start:0x8018D824 end:0x8018D938
-	.data       start:0x8058AED8 end:0x8058AF00
+	.data       start:0x8058AEB8 end:0x8058AF00
 
 Game/Map/OceanRingDrawer.cpp:
 	.text       start:0x8018D938 end:0x8018F784
