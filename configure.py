@@ -1323,7 +1323,7 @@ config.libs = [
             Object(NonMatching, "Game/Map/NamePosHolder.cpp"),
             Object(NonMatching, "Game/Map/OceanBowl.cpp"),
             Object(NonMatching, "Game/Map/OceanBowlBloomDrawer.cpp"),
-            Object(NonMatching, "Game/Map/OceanBowlPoint.cpp"),
+            Object(Matching, "Game/Map/OceanBowlPoint.cpp"),
             Object(NonMatching, "Game/Map/OceanHomeMapCtrl.cpp"),
             Object(NonMatching, "Game/Map/OceanRing.cpp"),
             Object(Matching, "Game/Map/OceanRingBloomDrawer.cpp"),

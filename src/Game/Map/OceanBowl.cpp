@@ -20,7 +20,7 @@
 
 // These are from the debug symbol map
 const f32 sPointInterval = 200.0f;
-//const f32 sPointWaveRateDistMax = 2607.5945f; // I couldn't figure out what sPointWaveRateDistMax ended up being in the final game
+const f32 sPointWaveRateDistMax = 500.0f;
 const f32 sTexRate0 = 0.05f;
 const f32 sTexRate1 = 0.05f;
 const f32 sTexRate2 = 0.1f;
@@ -133,7 +133,7 @@ bool OceanBowl::calcWaterInfo(const TVec3f& rPos, const TVec3f& rGravity, WaterI
 }
 
 void OceanBowl::movement() {
-    const TVec3f* position = &getPoint(12, 12)->_C;
+    const TVec3f* position = &getPoint(12, 12)->mPosition;
     f32 distToPlayer = MR::calcDistanceToPlayer(mPosition);
 
     if ((MR::isCameraInWater() && WaterAreaFunction::getCameraWaterInfo()->mOceanBowl != this) || distToPlayer > sClippingDistance + mRadius) {
@@ -268,8 +268,8 @@ void OceanBowl::moveToLeft() {
 
         TVec3f resetvec(mSide);
         resetvec.scale(-200.0f);
-        resetvec.add(getPoint(x, 1)->_C);
-        mLastPoint->reset(resetvec, MR::clamp((mRadius - PSVECDistance(position, &resetvec)) / 500.0f, 0.0f, 1.0f));
+        resetvec.add(getPoint(x, 1)->mPosition);
+        mLastPoint->reset(resetvec, MR::clamp((mRadius - PSVECDistance(position, &resetvec)) / sPointWaveRateDistMax, 0.0f, 1.0f));
     }
     mTexV0 -= sTexRate0;
     mTexV1 -= sTexRate1;
@@ -290,8 +290,8 @@ void OceanBowl::moveToRight() {
 
         TVec3f resetvec(mSide);
         resetvec.scale(sPointInterval);
-        resetvec.add(getPoint(x, 23)->_C);
-        mLastPoint->reset(resetvec, MR::clamp((mRadius - PSVECDistance(position, &resetvec)) / 500.0f, 0.0f, 1.0f));
+        resetvec.add(getPoint(x, 23)->mPosition);
+        mLastPoint->reset(resetvec, MR::clamp((mRadius - PSVECDistance(position, &resetvec)) / sPointWaveRateDistMax, 0.0f, 1.0f));
     }
     mTexV0 += sTexRate0;
     mTexV1 += sTexRate1;
@@ -312,8 +312,8 @@ void OceanBowl::moveToUpper() {
 
         TVec3f resetvec(mFront);
         resetvec.scale(-sPointInterval);
-        resetvec.add(getPoint(1, y)->_C);
-        mLastPoint->reset(resetvec, MR::clamp((mRadius - PSVECDistance(position, &resetvec)) / 500.0f, 0.0f, 1.0f));
+        resetvec.add(getPoint(1, y)->mPosition);
+        mLastPoint->reset(resetvec, MR::clamp((mRadius - PSVECDistance(position, &resetvec)) / sPointWaveRateDistMax, 0.0f, 1.0f));
     }
     mTexU0 -= sTexRate0;
     mTexU1 -= sTexRate1;
@@ -334,8 +334,8 @@ void OceanBowl::moveToLower() {
 
         TVec3f resetvec(mFront);
         resetvec.scale(sPointInterval);
-        resetvec.add(getPoint(23, y)->_C);
-        mLastPoint->reset(resetvec, MR::clamp((mRadius - PSVECDistance(position, &resetvec)) / 500.0f, 0.0f, 1.0f));
+        resetvec.add(getPoint(23, y)->mPosition);
+        mLastPoint->reset(resetvec, MR::clamp((mRadius - PSVECDistance(position, &resetvec)) / sPointWaveRateDistMax, 0.0f, 1.0f));
     }
     mTexU0 += sTexRate0;
     mTexU1 += sTexRate1;
@@ -355,13 +355,13 @@ void OceanBowl::draw() const {
         GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 0x32);
         for (s32 y = 0; y < 25; y++) {
             pPoint2 = getPoint(x, y);
-            GXPosition3f32(getPoint(x + 1, y)->_0.x, getPoint(x + 1, y)->_0.y, getPoint(x + 1, y)->_0.z);
-            GXColor4u8(0xFF, 0xFF, 0xFF, getPoint(x + 1, y)->_1C);
+            GXPosition3f32(getPoint(x + 1, y)->mVertexPosition.x, getPoint(x + 1, y)->mVertexPosition.y, getPoint(x + 1, y)->mVertexPosition.z);
+            GXColor4u8(0xFF, 0xFF, 0xFF, getPoint(x + 1, y)->mAlpha);
             GXTexCoord2s16(zero, zero);
             GXTexCoord2s16(zero, zero);
 
-            GXPosition3f32(pPoint2->_0.x, pPoint2->_0.y, pPoint2->_0.z);
-            GXColor4u8(0xFF, 0xFF, 0xFF, pPoint2->_1C);
+            GXPosition3f32(pPoint2->mVertexPosition.x, pPoint2->mVertexPosition.y, pPoint2->mVertexPosition.z);
+            GXColor4u8(0xFF, 0xFF, 0xFF, pPoint2->mAlpha);
             GXTexCoord2s16(one, one);
             GXTexCoord2s16(one, one);
 
@@ -412,8 +412,8 @@ void OceanBowl::loadMaterial() const {
     mat[0][2] = mTexU2;
     mat[1][2] = mTexV2;
     GXLoadTexMtxImm(mat, GX_TEXMTX2, GX_MTX2x4);
-    f32 a = (getPoint(0, 0)->_0.x - MR::getPlayerPos()->x) + 2400.0f;
-    f32 b = (getPoint(0, 0)->_0.z - MR::getPlayerPos()->z) + 2400.0f;
+    f32 a = (getPoint(0, 0)->mVertexPosition.x - MR::getPlayerPos()->x) + 2400.0f;
+    f32 b = (getPoint(0, 0)->mVertexPosition.z - MR::getPlayerPos()->z) + 2400.0f;
     mat[0][2] = b / 4800.0f;
     mat[1][2] = a / 4800.0f;
     GXLoadTexMtxImm(mat, GX_TEXMTX4, GX_MTX2x4);
