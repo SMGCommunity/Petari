@@ -12,5 +12,5 @@ public:
     virtual void init(const JMapInfoIter&);
     virtual void draw() const;
 
-    OceanBowl* mRing;  // 0xC
+    OceanBowl* mOwner;  // 0xC
 };

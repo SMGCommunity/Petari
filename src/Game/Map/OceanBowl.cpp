@@ -355,7 +355,8 @@ void OceanBowl::draw() const {
         GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 0x32);
         for (s32 y = 0; y < 25; y++) {
             pPoint2 = getPoint(x, y);
-            GXPosition3f32(getPoint(x + 1, y)->mVertexPosition.x, getPoint(x + 1, y)->mVertexPosition.y, getPoint(x + 1, y)->mVertexPosition.z);
+            OceanBowlPoint* pPoint = getPoint(x + 1, y);
+            GXPosition3f32(pPoint->mVertexPosition.x, pPoint->mVertexPosition.y, pPoint->mVertexPosition.z);
             GXColor4u8(0xFF, 0xFF, 0xFF, getPoint(x + 1, y)->mAlpha);
             GXTexCoord2s16(zero, zero);
             GXTexCoord2s16(zero, zero);
@@ -543,3 +544,5 @@ void OceanBowl::loadMaterialBloom() const {
     GXSetCullMode(GX_CULL_NONE);
     GXSetClipMode(GX_CLIP_ENABLE);
 }
+
+OceanBowl::~OceanBowl() {}
