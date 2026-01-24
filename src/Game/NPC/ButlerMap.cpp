@@ -49,12 +49,12 @@ void ButlerMap::init(const JMapInfoIter& rIter) {
     caps.mObjectName = "Butler";
     caps.setDefault();
     caps.mTalkNerve = &NrvButlerMap::ButlerMapNrvTalk::sInstance;
-    caps._44 = "Body";
+    caps.mSensorJoint = "Body";
     caps.mSensorOffset.x = 0.0f;
     caps.mSensorOffset.y = 0.0f;
     caps.mSensorOffset.z = 0.0f;
-    caps.mUseShadow = true;
-    caps._38 = false;
+    caps.mShadow = true;
+    caps.mBinder = false;
     NPCActor::initialize(rIter, caps);
     setDefaults2();
     _13C = "Spin";

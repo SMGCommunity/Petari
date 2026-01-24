@@ -21,10 +21,10 @@ void PenguinMaster::init(const JMapInfoIter& rIter) {
     f32 stack = 0.0f;
     NPCActorCaps caps = "PenguinMaster";
     caps.setDefault();
-    caps.mUseHitSensors = false;
-    caps._60 = 130.0f;
+    caps.mSensor = false;
+    caps.mShadowSize = 130.0f;
     caps.mMessageOffset.setPS2(TVec3f(0.0f, 430.0f, 0.0f));
-    caps._80 = 180.0f;
+    caps.mPointerSize = 180.0f;
     caps.mStarPointerOffs.x = 0.0f;
     caps.mStarPointerOffs.y = 200.0f;
     caps.mStarPointerOffs.z = 80.0f;

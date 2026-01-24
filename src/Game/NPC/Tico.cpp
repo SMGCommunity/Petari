@@ -62,16 +62,16 @@ void Tico::initBase(s32 color) {
 void Tico::initBase(const JMapInfoIter& rIter, s32 color) {
     NPCActorCaps caps("Tico");
     caps.setDefault();
-    caps._E = 0;
-    caps.mUseShadow = true;
+    caps.mMessage = 0;
+    caps.mShadow = true;
     caps.mWaitNerve = &NrvTico::TicoNrvWait::sInstance;
-    caps._44 = "Body";
+    caps.mSensorJoint = "Body";
     caps.mSensorSize = 60.0f;
     caps.mSensorOffset.z = 0.0f;
     caps.mSensorOffset.y = 0.0f;
     caps.mSensorOffset.x = 0.0f;
     caps._6C = "Body";
-    caps._38 = 0;
+    caps.mBinder = 0;
 
     if (color == -1) {
         caps.mObjectName = "TicoBaby";

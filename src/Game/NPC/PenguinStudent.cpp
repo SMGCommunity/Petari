@@ -46,8 +46,8 @@ void PenguinStudent::init(const JMapInfoIter& rIter) {
     MR::initShadowVolumeSphere(this, 50.0f);
     NPCActor::initTalkCtrl(rIter, "PenguinStudent", TVec3f(0.0f, 150.0f, 0.0f), nullptr);
     NPCActorCaps caps = "";
-    caps._36 = 1;
-    caps.mUsesNerves = false;
+    caps.mLodCtrl = 1;
+    caps.mNerve = false;
     NPCActor::initialize(rIter, caps);
     initNerve(&NrvPenguinStudent::PenguinStudentNrvSwim::sInstance);
     if (MR::isConnectedWithRail(rIter)) {

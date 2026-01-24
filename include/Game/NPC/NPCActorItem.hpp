@@ -6,17 +6,18 @@ class NPCActorItem {
 public:
     inline NPCActorItem() {}
 
-    NPCActorItem(const char* pName) NO_INLINE {
+    //cannot be noinline because of NPCItemParameterReader constructor
+    NPCActorItem(const char* pName) {
         mActor = pName;
-        _4 = "";
-        _8 = "";
-        mArchive = "";
-        _10 = "";
+        mGoods0 = "";
+        mGoodsJoint0 = "";
+        mGoods1 = "";
+        mGoodsJoint1 = "";
     }
 
     const char* mActor;  // 0x00
-    const char* _4;
-    const char* _8;
-    const char* mArchive;  // 0x0C
-    const char* _10;
+    const char* mGoods0;
+    const char* mGoodsJoint0;
+    const char* mGoods1;  // 0x0C
+    const char* mGoodsJoint1;
 };

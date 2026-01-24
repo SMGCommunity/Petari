@@ -12,37 +12,37 @@ namespace NrvNPCActor {
 
 NPCActorCaps::NPCActorCaps(const char* pName) {
     _0 = pName;
-    _C = 0;
-    _D = 0;
-    _28 = 0;
-    mConnectsToScene = 0;
-    mUseLightCtrl = 0;
-    mUseEffect = 0;
-    mUseSounds = 0;
-    mCanBeHitByShell = 0;
-    _35 = 0;
-    _36 = 0;
-    mUsesNerves = 0;
-    mUseHitSensors = 0;
-    _38 = 0;
-    _5C = 0;
-    mUseShadow = 0;
-    mUseRail = 0;
-    _65 = 1;
-    _66 = 0;
+    mMakeActor = 0;
+    mHostIO = 0;
+    mInterpole = 0;
+    mConnectTo = 0;
+    mLightCtrl = 0;
+    mEffect = 0;
+    mSound = 0;
+    mAttribute = 0;
+    mPosition = 0;
+    mLodCtrl = 0;
+    mNerve = 0;
+    mSensor = 0;
+    mBinder = 0;
+    mShadow = 0;
+    _5D = 0;
+    mRailRider = 0;
+    mSwitchDead = 1;
+    mSwitchAppear = 0;
     _67 = 0;
-    _3C = 50.0f;
+    mBinderSize = 50.0f;
     mSensorSize = 50.0f;
-    _60 = 50.0f;
-    _80 = 80.0f;
-    _30 = 4;
+    mShadowSize = 50.0f;
+    mPointerSize = 80.0f;
+    mSoundSize = 4;
     mSceneConnectionType = 0;
-    mUseStarPointer = 0;
+    mPointer = 0;
     mStarPointerOffs.x = 0.0f;
     mStarPointerOffs.y = 0.0f;
     mStarPointerOffs.z = 0.0f;
-    mInitModel = 0;
-    _E = 0;
+    mModel = 0;
+    mMessage = 0;
     _F = 0;
     mMessageOffset.x = 0.0f;
     mMessageOffset.y = 150.0f;
@@ -52,8 +52,8 @@ NPCActorCaps::NPCActorCaps(const char* pName) {
     mTalkMtx = 0;
     mTalkJointName = 0;
     mObjectName = pName;
-    _44 = 0;
-    _58 = 1;
+    mSensorJoint = 0;
+    mSensorMax = 1;
     mWaitNerve = &NrvNPCActor::NPCActorNrvWait::sInstance;
     mTalkNerve = &NrvNPCActor::NPCActorNrvTalk::sInstance;
     mReactionNerve = &NrvNPCActor::NPCActorNrvReaction::sInstance;
@@ -62,26 +62,26 @@ NPCActorCaps::NPCActorCaps(const char* pName) {
 }
 
 void NPCActorCaps::setDefault() {
-    _C = 1;
-    _D = 1;
-    _28 = 1;
-    mConnectsToScene = 1;
-    mUseLightCtrl = 1;
-    mUseEffect = 1;
-    mUseSounds = 1;
-    mCanBeHitByShell = 1;
-    _35 = 1;
-    _36 = 1;
-    mUsesNerves = 1;
-    mUseHitSensors = 1;
-    _38 = 1;
-    _5C = 1;
-    mUseRail = 1;
-    _65 = 1;
-    _66 = 1;
-    mUseStarPointer = 1;
-    mInitModel = 1;
-    _E = 1;
+    mMakeActor = 1;
+    mHostIO = 1;
+    mInterpole = 1;
+    mConnectTo = 1;
+    mLightCtrl = 1;
+    mEffect = 1;
+    mSound = 1;
+    mAttribute = 1;
+    mPosition = 1;
+    mLodCtrl = 1;
+    mNerve = 1;
+    mSensor = 1;
+    mBinder = 1;
+    mShadow = 1;
+    mRailRider = 1;
+    mSwitchDead = 1;
+    mSwitchAppear = 1;
+    mPointer = 1;
+    mModel = 1;
+    mMessage = 1;
 }
 
 void NPCActorCaps::setIndirect() {
@@ -165,8 +165,8 @@ void NPCActor::addArchive(NameObjArchiveListCollector* pCollector, const NPCActo
         pCollector->addArchive(rItem.mActor);
     }
 
-    if (!MR::isNullOrEmptyString(rItem.mArchive) && MR::isNPCItemFileExist(rItem.mArchive)) {
-        pCollector->addArchive(rItem.mArchive);
+    if (!MR::isNullOrEmptyString(rItem.mGoods1) && MR::isNPCItemFileExist(rItem.mGoods1)) {
+        pCollector->addArchive(rItem.mGoods1);
     }
 }
 

@@ -29,17 +29,17 @@ void TicoShop::kill() {
 void TicoShop::init(const JMapInfoIter& rIter) {
     NPCActorCaps caps("TicoShop");
     NPCActorItem item("TicoShop");
-    item._4 = "";
-    item._8 = "";
-    item.mArchive = "";
-    item._10 = "";
+    item.mGoods0 = "";
+    item.mGoodsJoint0 = "";
+    item.mGoods1 = "";
+    item.mGoodsJoint1 = "";
     caps.setDefault();
     caps.mSensorSize = 100.0f;
     caps.mSensorOffset.y = 100.0f;
-    caps.mUseShadow = true;
+    caps.mShadow = true;
     caps._30 = 6;
-    caps._58 = 2;
-    caps._44 = "Center";
+    caps.mSensorMax = 2;
+    caps.mSensorJoint = "Center";
     caps._6C = "Center";
     initialize(rIter, caps);
     MR::addHitSensorAtJointEye(this, "Mouth", "Mouth", 8, 30.0f, TVec3f(0.0f, 0.0f, 0.0f));
