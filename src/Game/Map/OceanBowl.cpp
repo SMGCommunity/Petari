@@ -550,12 +550,3 @@ void OceanBowl::loadMaterialBloom() const {
 }
 
 OceanBowl::~OceanBowl() {}
-
-
-inline OceanBowlPoint* OceanBowl::getPoint(int x, int y) const {
-    return mPoints[x][y];
-}
-
-inline void OceanBowl::setPoint(int x, int y, OceanBowlPoint* pPoint) {
-    mPoints[x][y] = pPoint;
-}
