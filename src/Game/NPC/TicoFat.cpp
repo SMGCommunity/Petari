@@ -147,7 +147,7 @@ void TicoFat::init(const JMapInfoIter& rIter) {
     caps._6C = "Center";
     caps.mPointerSize = 110.0f;
     caps.mBinder = 0;
-    caps._30 = 6;
+    caps.mSoundSize = 6;
     caps.mSensorMax = 2;
     _178 = 0;
     _174 = 0;

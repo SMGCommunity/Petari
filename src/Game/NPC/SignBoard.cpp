@@ -19,7 +19,7 @@ void SignBoard::init(const JMapInfoIter& rIter) {
     caps.mSensorOffset.x = 0.0f;
     caps.mSensorOffset.y = 130.0f;
     caps.mSensorOffset.z = 0.0f;
-    caps.mUseLightCtrl = false;
+    caps.mLightCtrl = false;
     caps.mBinder = 0;
     initialize(rIter, caps);
     getSensor("Body")->setType(127);

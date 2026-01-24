@@ -206,7 +206,7 @@ void TicoComet::init(const JMapInfoIter& rIter) {
     caps.mSensorSize = 100.0f;
     caps.mSensorOffset.y = 100.0f;
     caps.mShadow = true;
-    caps._30 = 6;
+    caps.mSoundSize = 6;
     caps.mSensorMax = 2;
     caps.mSensorJoint = "Center";
     caps._6C = "Center";
