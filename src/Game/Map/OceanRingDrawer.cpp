@@ -2,14 +2,37 @@
 #include "Game/Map/OceanRing.hpp"
 #include "Game/Map/WaterAreaHolder.hpp"
 #include <revolution/gd/GDBase.h>
-static u8 unknownVal = 1;
 
-static GXColor color1 = {0x28, 0x28, 0x28, 0x14};
-static GXColor color2 = {0x76, 0xD7, 0xFF, 0xFF};
+namespace {
+    const f32 sPointNumInPart = 0.0f;
+    const f32 sDistancePartDL = 0.0f;
+    const f32 sFlowSpeedTexRate = 0.0f;
+    const f32 sFlowSpeedTexRateMin = 0.0f;
+    const f32 sTexRate0 = 0.0f;
+    const f32 sTexRate1 = 0.0f;
+    const f32 sTexRate2 = 0.0f;
+    const f32 sTexSpeed0U = 0.0f;
+    const f32 sTexSpeed0V = 0.0f;
+    const f32 sTexSpeed1U = 0.0f;
+    const f32 sTexSpeed1V = 0.0f;
+    const f32 sTexSpeed2V = 0.0f;
+    const f32 sIndirectScale = 0.0f;
+    const f32 sBloomCameraOffsetZ = 0.0f;
+    const f32 sDistancePartDrawBloom = 0.0f;
+    const f32 sBloomCameraUpMin = 0.0f;
+    const f32 sBloomCameraUpMax = 0.0f;
+    const f32 sBloomCameraDepthMin = 0.0f;
+    const f32 sBloomCameraDepthMax = 0.0f;
+
+
+    static GXColor color1 = {0x28, 0x28, 0x28, 0x14};
+    static GXColor color2 = {0x76, 0xD7, 0xFF, 0xFF};
+    static u8 unknownVal = 1;
+}
+
 
 /* functionally matches, tiny instruction swap in the beginning */
-OceanRingPartDrawer::OceanRingPartDrawer(const OceanRing* pRing, int a3, int a4, bool a5, f32* a6, f32* a7, f32* a8) {
-    mOceanRing = pRing;
+OceanRingPartDrawer::OceanRingPartDrawer(const OceanRing* pRing, int a3, int a4, bool a5, f32* a6, f32* a7, f32* a8) : mOceanRing(pRing) {
     _10 = a3;
     _14 = a4;
     mPosition.x = 0.0f;
@@ -40,7 +63,8 @@ OceanRingPartDrawer::OceanRingPartDrawer(const OceanRing* pRing, int a3, int a4,
 void OceanRingPartDrawer::initDisplayList(f32* a1, f32* a2, f32* a3) {
     MR::ProhibitSchedulerAndInterrupts prohibit(false);
 
-    u32 size = (0x50 * _14 * mOceanRing->mStride + 3) >> 5 + 2;
+    u32 x = _14 * 0x50;
+    u32 size = (((x * mOceanRing->mStride + 3) >> 5) + 2) << 5;
     mDispList = new (0x20) u8[size];
     DCInvalidateRange(mDispList, size);
     GDLObj obj;
@@ -53,10 +77,10 @@ void OceanRingPartDrawer::initDisplayList(f32* a1, f32* a2, f32* a3) {
 }
 
 void OceanRingPartDrawer::draw() const {
-    if (PSVECDistance(&mPosition, MR::getPlayerPos()) >= 13000.0f) {
-        GXCallDisplayList(mDispList, mDispListLength);
-    } else {
+    if (PSVECDistance(&mPosition, MR::getPlayerPos()) < 13000.0f) {
         drawDynamic();
+    } else {
+        GXCallDisplayList(mDispList, mDispListLength);
     }
 }
 

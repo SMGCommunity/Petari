@@ -3799,6 +3799,7 @@ Game/Map/OceanRingBloomDrawer.cpp:
 Game/Map/OceanRingDrawer.cpp:
 	.text       start:0x8018D938 end:0x8018F784
 	.data       start:0x8058AF00 end:0x8058AF30
+	.sdata      start:0x806B1C00 end:0x806B1C10
 	.sdata2     start:0x806BC208 end:0x806BC250
 
 Game/Map/OceanRingPipe.cpp:
