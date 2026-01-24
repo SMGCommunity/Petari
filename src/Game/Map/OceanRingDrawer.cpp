@@ -5,7 +5,7 @@
 
 namespace {
     const f32 sPointNumInPart = 0.0f;
-    const f32 sDistancePartDL = 0.0f;
+    const f32 sDistancePartDL = 13000.0f;
     const f32 sFlowSpeedTexRate = 0.0f;
     const f32 sFlowSpeedTexRateMin = 0.0f;
     const f32 sTexRate0 = 0.0f;
@@ -77,12 +77,96 @@ void OceanRingPartDrawer::initDisplayList(f32* a1, f32* a2, f32* a3) {
 }
 
 void OceanRingPartDrawer::draw() const {
-    if (PSVECDistance(&mPosition, MR::getPlayerPos()) < 13000.0f) {
+    if (PSVECDistance(&mPosition, MR::getPlayerPos()) < sDistancePartDL) {
         drawDynamic();
     } else {
         GXCallDisplayList(mDispList, mDispListLength);
     }
 }
+
+void OceanRingPartDrawer::drawGD(f32* a1, f32* a2, f32* a3) const {
+    f32 f30 = 0.05f;
+    f32 f29;
+    f32 f28;
+    f32 f27;
+    f32 f26;
+    f32 f25;
+    f32 f24;
+    f32 f23;
+    f32 f22;
+    f32 f21 = 1.0f;
+
+    f28 = f30 * f21;
+    f29 = 0.1f * f21;
+    f27 = _1C;
+    f25 = _20;
+    f23 = _24;
+    f26 = _1C;
+    f24 = _20;
+    f22 = _24;
+    for (s32 i = 0; i < _14 - 1; i++) {
+        s32 index = _10 + i;
+        s32 indexPlusOne = index + 1;
+        if (i == _14 - 2 && _18) {
+            indexPlusOne = 0;
+        }
+
+        mOceanRing->getPoint(0, index);
+        mOceanRing->getPoint(0, indexPlusOne);
+
+        f26 += f28;
+        f24 += f28;
+        f22 += f29;
+        f32 f20 = 0.0f;
+        f32 f19 = 0.0f;
+        f32 f18 = 0.0f;
+        f32 f17 = 0.0f;
+        f32 f16 = 0.0f;
+        f32 f15 = 0.0f;
+        GDBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, (u16)mOceanRing->mStride << 1);
+
+        for (s32 j = 0; j < mOceanRing->mStride; j++) {
+            WaterPoint* pPoint = mOceanRing->getPoint(j, index);
+            GDPosition3f32(pPoint->mPosition.x, pPoint->mPosition.y, pPoint->mPosition.z);
+            GDColor4u8(0xFF, 0xFF, 0xFF, pPoint->mAlpha);
+            GDWrite_f32(f27);
+            GDWrite_f32(f17);
+            GDWrite_f32(f25);
+            GDWrite_f32(f16);
+            GDWrite_f32(f23);
+            GDWrite_f32(f15);
+
+            pPoint = mOceanRing->getPoint(j, indexPlusOne);
+            GDPosition3f32(pPoint->mPosition.x, pPoint->mPosition.y, pPoint->mPosition.z);
+            GDColor4u8(0xFF, 0xFF, 0xFF, pPoint->mAlpha);
+            GDWrite_f32(f26);
+            GDWrite_f32(f20);
+            GDWrite_f32(f24);
+            GDWrite_f32(f19);
+            GDWrite_f32(f22);
+            GDWrite_f32(f18);
+
+            f17 += f28;
+            f16 += f28;
+            f15 += f29;
+            f20 += f28;
+            f19 += f28;
+            f18 += f29;
+        }
+
+        f27 = f26;
+        f25 = f24;
+        f23 = f22;
+        if (i != _14 - 1) {
+            *a1 += 0.05f * f21;
+            *a2 += 0.05f * f21;
+            *a3 += 0.1f * f21;
+        }
+    }
+}
+
+
+
 
 OceanRingDrawer::OceanRingDrawer(const OceanRing* pOceanRing) {
     mRing = pOceanRing;
