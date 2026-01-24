@@ -9,8 +9,6 @@ namespace JGeometry {
         TBox() : i(), f() {}
         TBox(const TBox& other) : i(other.i), f(other.f) {}
 
-        void extend(const TVec3f&);
-
         T i, f;
     };
 
@@ -35,6 +33,18 @@ namespace JGeometry {
         }
 
         TVec2< f32 > i, f;
+    };
+
+    template <>
+    struct TBox< TVec3< f32 > > {
+        TVec3<f32> i, f;
+
+        void extend(const TVec3f&);
+
+        bool intersectsPoint(const TVec3f& rPos) const {
+            return (rPos.x >= this->i.x && rPos.y >= this->i.y && rPos.z >= this->i.z &&
+                    rPos.x <  this->f.x && rPos.y <  this->f.y && rPos.z <  this->f.z);
+        }
     };
 
     template < typename T >
@@ -74,11 +84,6 @@ namespace JGeometry {
     class TBox3 : public TBox< TVec3< T > > {
     public:
         TBox3() {}
-
-        bool intersectsPoint(const TVec3f& rPos) const {
-            return (rPos.x >= this->i.x && rPos.y >= this->i.y && rPos.z >= this->i.z && rPos.x < this->f.x && rPos.y < this->f.y &&
-                    rPos.z < this->f.z);
-        }
     };
 
     template < typename T >
@@ -95,5 +100,4 @@ namespace JGeometry {
 typedef JGeometry::TBox2< f32 > TBox2f;
 typedef JGeometry::TBox2< s16 > TBox2s;
 typedef JGeometry::TBox3< f32 > TBox3f;
-typedef JGeometry::TBox3< JGeometry::TVec3< f32 > > TBoxVec3f;
 typedef JGeometry::TDirBox3< f32 > TDirBox3f;
