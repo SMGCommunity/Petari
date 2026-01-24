@@ -29,10 +29,6 @@ void TicoShop::kill() {
 void TicoShop::init(const JMapInfoIter& rIter) {
     NPCActorCaps caps("TicoShop");
     NPCActorItem item("TicoShop");
-    item.mGoods0 = "";
-    item.mGoodsJoint0 = "";
-    item.mGoods1 = "";
-    item.mGoodsJoint1 = "";
     caps.setDefault();
     caps.mSensorSize = 100.0f;
     caps.mSensorOffset.y = 100.0f;
