@@ -19,27 +19,29 @@
 #include <cmath>
 
 // These are from the debug symbol map
-const f32 sPointInterval = 200.0f;
-const f32 sPointWaveRateDistMax = 500.0f;
-const f32 sTexRate0 = 0.05f;
-const f32 sTexRate1 = 0.05f;
-const f32 sTexRate2 = 0.1f;
-const f32 sWaveSpeed0 = -0.04f;
-const f32 sWaveSpeed1 = -0.04f;
-const f32 sTexSpeedU0 = -0.0008f;
-const f32 sTexSpeedV0 = -0.0008f;
-const f32 sTexSpeedU1 = -0.001f;
-const f32 sTexSpeedV1 = 0.0008f;
-const f32 sTexSpeedU2 = -0.003f;
-const f32 sTexSpeedV2 = -0.001f;
-const f32 sIndirectScale = 0.1f;
-const f32 sClippingDistance = 1000.0f;
-const f32 sPointIntervalHalf = sPointInterval / 2.0f;
+namespace {
+    const f32 sPointInterval = 200.0f;
+    const f32 sPointWaveRateDistMax = 500.0f;
+    const f32 sTexRate0 = 0.05f;
+    const f32 sTexRate1 = 0.05f;
+    const f32 sTexRate2 = 0.1f;
+    const f32 sWaveSpeed0 = -0.04f;
+    const f32 sWaveSpeed1 = -0.04f;
+    const f32 sTexSpeedU0 = -0.0008f;
+    const f32 sTexSpeedV0 = -0.0008f;
+    const f32 sTexSpeedU1 = -0.001f;
+    const f32 sTexSpeedV1 = 0.0008f;
+    const f32 sTexSpeedU2 = -0.003f;
+    const f32 sTexSpeedV2 = -0.001f;
+    const f32 sIndirectScale = 0.1f;
+    const f32 sClippingDistance = 1000.0f;
+    const f32 sPointIntervalHalf = sPointInterval / 2.0f;
 
-static GXColor sOceanBowlTevReg0 = {0x28, 0x28, 0x28, 0x14};
-static GXColor sOceanBowlTevReg1 = {0xC8, 0xE6, 0xD2, 0xFF};
-static u8 sOceanBowlBloomTevReg0V = 0x5F;
-static u8 sOceanBowlBloomTevReg1V = 0x32;
+    static GXColor sOceanBowlTevReg0 = {0x28, 0x28, 0x28, 0x14};
+    static GXColor sOceanBowlTevReg1 = {0xC8, 0xE6, 0xD2, 0xFF};
+    static u8 sOceanBowlBloomTevReg0V = 0x5F;
+    static u8 sOceanBowlBloomTevReg1V = 0x32;
+} // namespace
 
 OceanBowl::OceanBowl(const char* pName) : LiveActor(pName),
     mSide(1.0f, 0.0f, 0.0f), mUp(0.0f, 1.0f, 0.0f), mFront(0.0f, 0.0f, 1.0f), mRadius(0.0f), mWaveX(0.0f), mWaveZ(0.0f),
@@ -91,9 +93,12 @@ bool OceanBowl::calcWaterInfo(const TVec3f& rPos, const TVec3f& rGravity, WaterI
     TVec3f v(rPos);
     v.sub(*position);
     f32 fa = MR::vecKillElement(v, mUp, &v);
-    f32 fb = (PSVECMag(&v) / B0) * PI * 0.5f;
+    f32 fc = v.length() / B0;
+    f32 fb = fc;
+    fb *= PI;
+    fb *= 0.5f;
 
-    pInfo->_4 = (JMath::sSinCosTable.cosLapRad(fb) * B0);
+    pInfo->_4 = JMath::sSinCosTable.cosLapRad(fb) * B0;
     pInfo->_4 += fa;
 
     pInfo->mCamWaterDepth = -fa;
@@ -106,7 +111,6 @@ bool OceanBowl::calcWaterInfo(const TVec3f& rPos, const TVec3f& rGravity, WaterI
     pInfo->mSurfaceNormal.set(mUp);
 
     MR::vecKillElement(rPos.subOperatorInLine(*position), mUp, &v3);
-
     pInfo->mSurfacePos.set(position->addOperatorInLine(v3));
 
     TVec3f v5(rPos);
@@ -546,3 +550,12 @@ void OceanBowl::loadMaterialBloom() const {
 }
 
 OceanBowl::~OceanBowl() {}
+
+
+inline OceanBowlPoint* OceanBowl::getPoint(int x, int y) const {
+    return mPoints[x][y];
+}
+
+inline void OceanBowl::setPoint(int x, int y, OceanBowlPoint* pPoint) {
+    mPoints[x][y] = pPoint;
+}

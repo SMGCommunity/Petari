@@ -29,9 +29,9 @@ public:
     // void drawDebug(); // We know this existed thanks to a debug symbol map
     
     // getPoint__9OceanBowlCFii from the debug maps, always inlined
-    OceanBowlPoint* getPoint(int x, int y) const { return mPoints[x][y]; }
+    OceanBowlPoint* getPoint(int x, int y) const;
     // setPoint__9OceanBowlFiiP14OceanBowlPoint from the debug maps, always inlined
-    void setPoint(int x, int y, OceanBowlPoint* pPoint) { mPoints[x][y] = pPoint; }
+    void setPoint(int x, int y, OceanBowlPoint* pPoint);
 
     TVec3f mSide;
     TVec3f mUp;
