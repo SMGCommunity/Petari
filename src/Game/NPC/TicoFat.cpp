@@ -142,7 +142,7 @@ void TicoFat::init(const JMapInfoIter& rIter) {
     caps.mSensorSize = 100.0f;
     caps.mSensorOffset.y = 30.0f;
     caps.mSensorJoint = "Center";
-    caps.mShadow = true;
+    caps._5D = true;
     caps.mRailRider = false;
     caps._6C = "Center";
     caps.mPointerSize = 110.0f;

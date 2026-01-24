@@ -39,7 +39,7 @@ void HoneyQueen::init(const JMapInfoIter& rIter) {
     NPCActorCaps caps = "HoneyQueen";
     caps.setDefault();
     caps.mWaitNerve = &NrvHoneyQueen::HoneyQueenNrvWait::sInstance;
-    caps.mShadow = true;
+    caps._5D = true;
     caps.mMessageOffset.x = 0.0f;
     caps.mMessageOffset.y = 950.0f;
     caps.mMessageOffset.z = 0.0f;
