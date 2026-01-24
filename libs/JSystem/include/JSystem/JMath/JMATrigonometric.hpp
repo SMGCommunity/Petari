@@ -52,8 +52,9 @@ namespace JMath {
                 v = -v;
             }
 
-            v *= (LEN / TWO_PI);
-            return table[(u16)v & LEN - 1].b1;
+            f32 tmp = v;
+            tmp *= (LEN / TWO_PI);
+            return table[(u16)tmp & LEN - 1].b1;
         }
 
         inline f32 cosLap(f32 v) {
