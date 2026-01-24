@@ -134,6 +134,28 @@ namespace JGeometry {
         }
     };
 
+    template <>
+    struct TVec3< s16 > {
+        s16 x, y, z;
+
+        TVec3() {}
+
+        TVec3(s16 x, s16 y, s16 z) { set(x, y, z); }
+
+        TVec3& operator=(const TVec3& b) {
+            // Force copies to use lwz/lha
+            *((s32*)this) = *((s32*)&b);
+            z = b.z;
+            return *this;
+        }
+
+        void set(s16 x_, s16 y_, s16 z_) {
+            x = x_;
+            y = y_;
+            z = z_;
+        }
+    };
+
     __attribute__((always_inline)) inline void setTVec3f(const f32* a, f32* b) {
 #ifdef __MWERKS__
         const register f32* v_a = a;
@@ -194,6 +216,9 @@ namespace JGeometry {
         TVec3(f32 val) NO_INLINE { z = y = x = val; }
 
         inline TVec3() {}
+
+        operator Vec*() { return (Vec*)&x; }
+        operator const Vec*() const { return (Vec*)&x; }
 
         TVec3& operator=(const TVec3& b) NO_INLINE {
             setTVec3f(&b.x, &x);
@@ -256,7 +281,7 @@ namespace JGeometry {
             return ret;
         }
 
-        //needed in StarPieceFollowGroup???
+        // needed in StarPieceFollowGroup???
         inline TVec3 multInLine(f32 val) {
             TVec3 ret(*this);
             ret.x *= val;
@@ -268,6 +293,8 @@ namespace JGeometry {
         TVec3 operator-() const;
 
         bool operator==(const TVec3&) const;
+
+        void mul(const TVec3< f32 >& a, const TVec3< f32 >& b) { mulInternal(&a.x, &b.x, &this->x); }
 
         // This should probably be merged with operator-(), but ParallelGravity doesn't inline
         // operator-() despite only referencing it once. So if we can match that, the two functions
@@ -441,6 +468,18 @@ namespace JGeometry {
         void scale(f32 scale);
         void scale(f32, const TVec3&);
         void negate();
+
+        f32 normalize() {
+            f32 sq = squared();
+            if (sq <= TUtil< f32 >::epsilon()) {
+                return 0.0f;
+            }
+            f32 inv_norm = TUtil< f32 >::inv_sqrt(sq);
+            scale(inv_norm);
+            return inv_norm * sq;
+        }
+
+        void cross(const TVec3< f32 >& a, const TVec3< f32 >& b) { PSVECCrossProduct(a, b, *this); }
 
         f32 squared() const { return JMathInlineVEC::PSVECSquareMag(this); };
 

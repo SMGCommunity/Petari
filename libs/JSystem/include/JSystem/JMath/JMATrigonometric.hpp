@@ -116,9 +116,9 @@ namespace JMath {
     }
 };  // namespace JMath
 
-inline f32 JMASSin(u16 s) {
-    return JMath::sSinCosTable.sinShort(s);
-}
+// inline f32 JMASSin(u16 s) {
+//    return JMath::sSinCosTable.sinShort(s);
+//}
 
 inline f32 JMACosShort(s16 v) {
     return JMath::sSinCosTable.cosShort(v);
