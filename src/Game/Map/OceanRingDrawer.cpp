@@ -86,7 +86,7 @@ OceanRingDrawer::OceanRingDrawer(const OceanRing* pOceanRing) {
 void OceanRingDrawer::draw() const {
     loadMaterial();
 
-    if (mRing->_B4) {
+    if (mRing->mIsClipped) {
         GXCallDisplayList(mDispList, _2C);
     } else {
         for (s32 i = 0; i < mDrawerCount; i++) {
@@ -102,7 +102,7 @@ void OceanRingDrawer::drawBloom() const {
     TVec3f camPos = MR::getCamPos();
     zDir.add(camPos);
 
-    if (!mRing->_B4) {
+    if (!mRing->mIsClipped) {
         for (s32 i = 0; i < mDrawerCount; i++) {
             OceanRingPartDrawer* drwr = getDrawer(i);
 
