@@ -29,14 +29,14 @@ void NPCParameterBool::read(JMapInfo* pInfo, s32 a2) {
 NPCParameterV3f::NPCParameterV3f(const char* pName, TVec3f* pVec, f32 f1, f32 f2) : NPCParameterBase(pName), _8(pVec), _C(f1), _10(f2) {}
 
 void NPCParameterV3f::read(JMapInfo* pInfo, s32 a2) {
-    char str[0xFF];
-    MR::copyString(str, mName, 0xFF);
+    char str[255];
+    MR::copyString(str, mName, sizeof(str));
     *(str + strlen(mName) + 1) = 0x0;
-    *(str + strlen(mName)) = 0x58;  // X in ASCII
+    *(str + strlen(mName)) = 'X';  
     pInfo->getValue(a2, str, &_8->x);
-    *(str + strlen(mName)) = 0x59;  // Y in ASCII
+    *(str + strlen(mName)) = 'Y';  
     pInfo->getValue(a2, str, &_8->y);
-    *(str + strlen(mName)) = 0x5A;  // Z in ASCII
+    *(str + strlen(mName)) = 'Z';  // Z in ASCII
     pInfo->getValue(a2, str, &_8->z);
 }
 
@@ -94,7 +94,7 @@ void NPCParameterRange< f32 >::read(JMapInfo* pInfo, s32 a2) {
 void NPCParameterJoint::read(JMapInfo* pInfo, s32 a2) {
     pInfo->getValue(a2, mName, _8);
 
-    if (!strcmp(*_8, "")) {
+    if (strcmp(*_8, "") == 0) {
         mName = "";
     }
 }
