@@ -2586,10 +2586,11 @@ void MarioSwim::hitHead(const HitInfo* pHit) {
 
         const TVec3f* normal = pHit->mParentTriangle.getNormal(0);
         if (normal->dot(getGravityVec()) > 0.0f) {
+            Mario* player = getPlayer();
             TVec3f direction;
             TVec3f velocityPart;
 
-            f32 element = MR::vecKillElement(getPlayer()->_1FC, -*normal, &velocityPart);
+            f32 element = MR::vecKillElement(player->_1FC, -*normal, &velocityPart);
             velocityPart += normal->scaleInline(element).scaleInline(1.5f);
 
             if (velocityPart.length() < 10.0f) {
