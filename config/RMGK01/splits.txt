@@ -4906,13 +4906,13 @@ Game/MapObj/LavaFloater.cpp:
 
 Game/MapObj/LavaGalaxyParts.cpp:
 	.text       start:0x801F0CD0 end:0x801F1114
-	.data       start:0x805976A8 end:0x805977F0
+	.data       start:0x805976A8 end:0x80597758
 	.sdata2     start:0x806BD470 end:0x806BD480
 
 Game/MapObj/LavaGeyser.cpp:
 	.text       start:0x801F1114 end:0x801F19E8
 	.ctors      start:0x8052ED88 end:0x8052ED8C
-	.data       start:0x805977F0 end:0x805978C8
+	.data       start:0x80597758 end:0x805978C8
 	.sdata      start:0x806B1E90 end:0x806B1E98
 	.sbss       start:0x806B5348 end:0x806B5360
 	.sdata2     start:0x806BD480 end:0x806BD498
