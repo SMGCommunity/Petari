@@ -309,7 +309,7 @@ void MarioModule::playEffect(const char* pEffectName) {
     mActor->playEffect(pEffectName);
 }
 
-void MarioModule::playEffectTarns(const char* pEffectName, const TVec3f& rTrans) {
+void MarioModule::playEffectTrans(const char* pEffectName, const TVec3f& rTrans) {
     mActor->playEffectTrans(pEffectName, rTrans);
 }
 

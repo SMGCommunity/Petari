@@ -43,7 +43,7 @@ public:
 
 
     bool checkWaterCube(bool);
-    void onSurface();
+    void onSurface() NO_INLINE;
     void doJetJump(u8);
     void updateLifeByTime();
     bool surfacePaddle();
