@@ -1,7 +1,8 @@
 #pragma once
 
-#include "Game/Effect/SpinPullParticleCallBack.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
+
+class SpinPullParticleCallBack;
 
 class PhantomTorch : public LiveActor {
 public:
