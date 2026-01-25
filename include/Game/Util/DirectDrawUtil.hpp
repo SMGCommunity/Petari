@@ -11,5 +11,3 @@ namespace MR {
     void ddLightingOn(u16);
     void ddLightingOff();
 };  // namespace MR
-
-//static GXTexCacheSize sReinitTextureCacheSize;
