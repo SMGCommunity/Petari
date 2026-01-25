@@ -83,10 +83,11 @@ public:
 
 class JASCriticalSection {
 public:
-    JASCriticalSection() NO_INLINE;
-    inline JASCriticalSection(const JASCriticalSection& rOther) : success(rOther.success) {}
-    ~JASCriticalSection() NO_INLINE;
-    u32 success;
+    JASCriticalSection() { mInterruptState = OSDisableInterrupts(); }
+    ~JASCriticalSection() { OSRestoreInterrupts(mInterruptState); }
+
+private:
+    u32 mInterruptState;
 };
 
 class JASDefaultBankTable : public JASBankTable< 0x100 >, public JASGlobalInstance< JASDefaultBankTable > {
