@@ -187,7 +187,7 @@ public:
     const char* _138;
     const char* _13C;
     AnimScaleController* mScaleController;  // 0x140
-    u32 _144;
+    JointControlDelegator< NPCActor >* mDelegator;  // 0x144
     Nerve* mCurNerve;       // 0x148
     Nerve* mWaitNerve;      // 0x14C
     Nerve* mTalkNerve;      // 0x150
