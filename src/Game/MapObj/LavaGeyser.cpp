@@ -20,6 +20,7 @@ namespace NrvLavaGeyser {
     NEW_NERVE(LavaGeyserNerveSign, LavaGeyser, Sign);
     NEW_NERVE(LavaGeyserNerveShootUp, LavaGeyser, ShootUp);
     NEW_NERVE(LavaGeyserNerveShootKeep, LavaGeyser, ShootKeep);
+    NEW_NERVE(LavaGeyserNerveShootDown, LavaGeyser, ShootDown);
 }  // namespace NrvLavaGeyser
 
 LavaGeyser::LavaGeyser(const char* pName)
@@ -67,6 +68,19 @@ void LavaGeyser::exeWaitSwitch() {
     }
 }
 
+void LavaGeyser::exeWait() {
+    if (MR::isFirstStep(this)) {
+        MR::hideModel(this);
+        MR::invalidateHitSensors(this);
+        _94.set(mPosition);
+    }
+    if (MR::isValidSwitchA(this) && MR::isOnSwitchA(this)) {
+        setNerve(&NrvLavaGeyser::LavaGeyserNrvWaitSwitch::sInstance);
+    } else if (MR::isStep(this, _8c)) {
+        setNerve(&NrvLavaGeyser::LavaGeyserNerveSign::sInstance);
+    }
+}
+
 void LavaGeyser::exeSign() {
     if (MR::isFirstStep(this)) {
         const TVec3f* pos = &mPosition;
@@ -90,7 +104,31 @@ void LavaGeyser::exeShootUp() {
     MR::copyJointPos(this, "Top", &_94);
     MR::startLevelSound(this, "SE_OJ_LV_LAVA_GEYSER_SIGN", -1, -1, -1);
     MR::startLevelSound(this, "SE_OJ_LV_LAVA_GEYSER_KEEP", -1, -1, -1);
-    if(MR::isBckStopped(this)) {
+    if (MR::isBckStopped(this)) {
         setNerve(&NrvLavaGeyser::LavaGeyserNerveShootKeep::sInstance);
+    }
+}
+
+void LavaGeyser::exeShootKeep() {
+    if (MR::isFirstStep(this)) {
+        MR::startBck(this, "LavaGeyserWait", nullptr);
+    }
+    MR::copyJointPos(this, "Top", &_94);
+    MR::startLevelSound(this, "SE_OJ_LV_LAVA_GEYSER_SIGN", -1, -1, -1);
+    MR::startLevelSound(this, "SE_OJ_LV_LAVA_GEYSER_KEEP", -1, -1, -1);
+    if (MR::isStep(this, _90)) {
+        setNerve(&NrvLavaGeyser::LavaGeyserNerveShootDown::sInstance);
+    }
+}
+
+void LavaGeyser::exeShootDown() {
+    if (MR::isFirstStep(this)) {
+        MR::startBck(this, "LavaGeyserDisappear", nullptr);
+    }
+    MR::copyJointPos(this, "Top", &_94);
+    MR::startLevelSound(this, "SE_OJ_LV_LAVA_GEYSER_KEEP", -1, -1, -1);
+    if (MR::isBckStopped(this)) {
+        MR::hideModel(this);
+        setNerve(&NrvLavaGeyser::LavaGeyserNrvWait::sInstance);
     }
 }

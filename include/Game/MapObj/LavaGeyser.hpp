@@ -10,6 +10,7 @@ public:
 
     virtual void init(const JMapInfoIter&);
 
+
     /* 8C */ s32 _8c;
     /* 90 */ s32 _90;
     /* 94 */ TVec3f _94;
@@ -24,4 +25,5 @@ public:
     void exeSign();
     void exeShootUp();
     void exeShootKeep();
+    void exeShootDown();
 };
