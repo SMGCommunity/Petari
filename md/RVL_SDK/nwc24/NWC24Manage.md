@@ -7,7 +7,7 @@
 | Name | Address | Match % |
 |------|---------|---------|
 | `NWC24iRegister` | `0x80464CE4` | :white_check_mark: (100.0%) |
-| `NWC24OpenLib` | `0x80464D1C` | :x: (0.0%) |
+| `NWC24OpenLib` | `0x80464D1C` | :white_check_mark: (100.0%) |
 | `NWC24OpenLibInternal` | `0x80464D3C` | :x: (0.0%) |
 | `NWC24CloseLib` | `0x80464F08` | :x: (0.0%) |
 | `NWC24IsMsgLibOpened` | `0x80464F74` | :white_check_mark: (100.0%) |

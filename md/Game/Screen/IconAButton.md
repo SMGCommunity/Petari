@@ -13,9 +13,9 @@
 | `isWait__11IconAButtonFv` | `0x803638BC` | :white_check_mark: (100.0%) |
 | `openWithTalk__11IconAButtonFv` | `0x803638C4` | :white_check_mark: (100.0%) |
 | `openWithRead__11IconAButtonFv` | `0x8036393C` | :white_check_mark: (100.0%) |
-| `openWithTurn__11IconAButtonFv` | `0x803639B4` | :x: (96.7%) |
+| `openWithTurn__11IconAButtonFv` | `0x803639B4` | :x: (100.0%) |
 | `openWithoutMessage__11IconAButtonFv` | `0x80363A2C` | :white_check_mark: (100.0%) |
-| `term__11IconAButtonFv` | `0x80363AAC` | :x: (0.0%) |
+| `term__11IconAButtonFv` | `0x80363AAC` | :white_check_mark: (100.0%) |
 | `exeOpen__11IconAButtonFv` | `0x80363B18` | :white_check_mark: (100.0%) |
 | `exeTerm__11IconAButtonFv` | `0x80363B80` | :white_check_mark: (100.0%) |
 | `control__11IconAButtonFv` | `0x80363BEC` | :white_check_mark: (100.0%) |

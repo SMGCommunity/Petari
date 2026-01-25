@@ -35,7 +35,6 @@ s32 IKJoint::checkReachIKTarget(f32 a1, f32 a2, f32 a3) {
     return res;
 }
 
-#ifdef NON_MATCHING
 // regalloc
 f32 IKJoint::calcIKRootAngleCosign(f32 a1, f32 a2, f32 a3) {
     s32 targ = checkReachIKTarget(a1, a2, a3);
@@ -69,7 +68,6 @@ f32 IKJoint::calcIKRootAngleCosign(f32 a1, f32 a2, f32 a3) {
 
     return val;
 }
-#endif
 
 // IKJoint::update
 

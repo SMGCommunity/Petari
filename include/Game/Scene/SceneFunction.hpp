@@ -112,8 +112,8 @@ namespace MR {
         DrawBufferType_GlaringLight = 0x22,
         DrawBufferType_AstroDomeSky = 0x23,
         DrawBufferType_Model3DFor2D = 0x24,
-        DrawBufferType_DrawBufferType_0x25 = 0x25,
-        DrawBufferType_DrawBufferType_0x26 = 0x26,
+        DrawBufferType_0x25 = 0x25,
+        DrawBufferType_0x26 = 0x26,
         DrawBufferType_MirrorMapObj = 0x27,
     };
 

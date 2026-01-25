@@ -13,5 +13,5 @@
 | `requestAppear__14SubMeterLayoutFv` | `0x8038B560` | :white_check_mark: (100.0%) |
 | `requestFrameIn__14SubMeterLayoutFv` | `0x8038B5BC` | :white_check_mark: (100.0%) |
 | `requestFrameOut__14SubMeterLayoutFv` | `0x8038B618` | :white_check_mark: (100.0%) |
-| `control__14SubMeterLayoutFv` | `0x8038B654` | :x: (98.0%) |
+| `control__14SubMeterLayoutFv` | `0x8038B654` | :white_check_mark: (100.0%) |
 | `__dt__14SubMeterLayoutFv` | `0x8038B8B4` | :white_check_mark: (100.0%) |

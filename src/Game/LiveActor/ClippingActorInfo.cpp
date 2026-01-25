@@ -52,13 +52,11 @@ void ClippingActorInfo::setTypeToSphere(f32 a1, const TVec3f* a2) {
     }
 }
 
-#ifdef NON_MATCHING
 void ClippingActorInfo::setGroupClippingNo(const JMapInfoIter& rIter) {
     JMapIdInfo* id_info = new JMapIdInfo();
     *id_info = MR::createJMapIdInfoFromClippingGroupId(rIter);
     mInfo = id_info;
 }
-#endif
 
 ClippingActorInfoList::ClippingActorInfoList(int a1) {
     _0 = a1;

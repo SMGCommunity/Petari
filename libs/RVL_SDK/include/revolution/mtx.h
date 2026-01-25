@@ -22,6 +22,7 @@ typedef struct {
 } Quaternion, *QuaternionPtr;
 
 typedef f32 Mtx23[2][3];
+typedef f32 (*Mtx23P)[3];
 
 typedef f32 Mtx[3][4];
 typedef f32 (*MtxPtr)[4];
@@ -30,6 +31,7 @@ typedef f32 Mtx44[4][4];
 typedef f32 (*Mtx44Ptr)[4];
 
 typedef f32 Mtx33[3][3];
+typedef f32 (*Mtx3P)[3];
 
 #define MTXDegToRad(a) ((a) * 0.01745329252f)
 #define MTXRadToDeg(a) ((a) * 57.29577951f)
@@ -57,6 +59,8 @@ void PSMTXScaleApply(const Mtx, Mtx, f32, f32, f32);
 void PSMTXScale(Mtx, f32, f32, f32);
 void PSMTXRotRad(Mtx m, char axis, f32 rad);
 void PSMTXRotAxisRad(Mtx dst, const Vec*, f32);
+
+void PSMTXTrans(Mtx m, f32 xT, f32 yT, f32 zT);
 
 /* Paired Single Quaternion */
 void PSQUATMultiply(const Quaternion*, const Quaternion*, Quaternion*);

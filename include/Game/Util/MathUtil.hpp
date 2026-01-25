@@ -446,13 +446,13 @@ namespace MR {
 
     /// @brief Restricts a number to the unit interval.
     /// @param[in,out] pX A pointer to the number to evaluate and initialize.
-    void clamp01(f32* pX);
+    void clamp01(f32* pX);  // { *pX = *pX < 0.0f ? 0.0f : *pX > 1.0f ? 1.0f : *pX; }
 
-    void clampBoth(f32*, f32, f32);
+    void clampBoth(f32* value, f32 min, f32 max);
 
-    inline f32 wrapAngleTowards(f32 a, f32 b) {
-        return a + (f32)fmod(360.0f + (b - a), 360.0f);
-    }
+    inline f32 repeat(f32 value, f32 min, f32 max) { return min + (f32)fmod(max + (value - min), max); }
+
+    inline void repeatDegree(f32* value) { *value = repeat(*value, 0.0f, 360.0f); }
 
 #ifdef __MWERKS__
     inline f32 frsqrte(register f32 x) {

@@ -6,8 +6,8 @@
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `RFLGetWorkSize` | `0x80457EBC` | :x: (71.4%) |
-| `RFLInitResAsync` | `0x80457ED8` | :x: (96.6%) |
+| `RFLGetWorkSize` | `0x80457EBC` | :white_check_mark: (100.0%) |
+| `RFLInitResAsync` | `0x80457ED8` | :x: (99.9%) |
 | `RFLExit` | `0x80458278` | :white_check_mark: (100.0%) |
 | `bootloadDB2Res_` | `0x80458400` | :white_check_mark: (100.0%) |
 | `RFLAvailable` | `0x8045862C` | :white_check_mark: (100.0%) |

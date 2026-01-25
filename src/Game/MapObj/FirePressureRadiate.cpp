@@ -217,7 +217,6 @@ void FirePressureRadiate::calcRadiateEffectMtx() {
     mRadiateMtx.mMtx[2][3] = trans.z;
 }
 
-#ifdef NON_MATCHING
 bool FirePressureRadiate::calcJointCannon(TPos3f* pOutPos, const JointControllerInfo&) {
     TVec3f v9(0.0f, 0.0f, 1.0f);
     f32 rotDegree = (0.017453292f * mCannonRotation);
@@ -226,9 +225,9 @@ bool FirePressureRadiate::calcJointCannon(TPos3f* pOutPos, const JointController
     v10.mMtx[1][3] = 0.0f;
     v10.mMtx[2][3] = 0.0f;
     TVec3f v8;
-    v8.setInline(v9);
-    PSVECMag(v8);  // oops ?
-    PSVECNormalize(v8, v8);
+    v8.set(v9);
+    PSVECMag(&v8);  // oops ?
+    PSVECNormalize(&v8, &v8);
     f32 v5 = sin(rotDegree);
     f32 v6 = cos(rotDegree);
     v10.mMtx[0][0] = v6 + ((1.0f - v6) * (v8.x * v8.x));
@@ -243,6 +242,5 @@ bool FirePressureRadiate::calcJointCannon(TPos3f* pOutPos, const JointController
     pOutPos->concat(*pOutPos, v10);
     return true;
 }
-#endif
 
 FirePressureRadiate::~FirePressureRadiate() {}

@@ -112,7 +112,6 @@ void CameraHeightArrange::updateHeightAndOffset() {
     _34 += fVar1 * (dVar4 - _34);
 }
 
-#ifdef NON_MATCHING
 // Float operation order
 TVec3f* CameraHeightArrange::getGlobalAxis() {
     if (_60 != 0) {
@@ -132,4 +131,3 @@ TVec3f* CameraHeightArrange::getGlobalAxis() {
 
     return &mGlobalAxis;
 }
-#endif

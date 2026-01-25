@@ -66,7 +66,7 @@ public:
 
     JSUList(bool thing) : JSUPtrList(thing) {}
 
-    ~JSUList() {
+    ~JSUList(){
 
     };
 
@@ -159,7 +159,7 @@ public:
 template < typename T >
 class JSUTreeIterator {
 public:
-    JSUTreeIterator() : mTree(NULL) {}
+    JSUTreeIterator() {}
 
     JSUTreeIterator(JSUTree< T >* tree) : mTree(tree) {}
 
@@ -174,7 +174,7 @@ public:
 
     bool operator!=(JSUTree< T >* other) { return this->mTree != other; }
 
-    JSUTreeIterator< T > operator++(int) NO_INLINE {
+    JSUTreeIterator< T > operator++(int) {
         JSUTreeIterator< T > prev = *this;
         this->mTree = this->mTree->getNextChild();
         return prev;

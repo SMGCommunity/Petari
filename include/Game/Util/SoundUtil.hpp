@@ -33,6 +33,8 @@ namespace MR {
 
     void actorSoundMovement(LiveActor*);
 
+    void startCSSound(const char*, const char*, s32);
+    void startCSSound2P(const char*, const char*);
     void startSystemSE(const char*, s32, s32);
     void stopSystemSE(const char*, u32);
     void startSpinHitSound(const LiveActor*);
@@ -55,6 +57,7 @@ namespace MR {
     bool isPreparedStageBgm();
 
     void setStageBGMState(s32, u32);
+    void setStageBGMStateBit(u32);
 
     void setCubeBgmChangeInvalid();
     bool isCubeBgmChangeInvalid();

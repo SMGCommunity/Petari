@@ -12,7 +12,6 @@ ShadowSurfaceDrawInit::ShadowSurfaceDrawInit(const char *pName) : NameObj(pName)
 }
 */
 
-#ifdef NON_MATCHING
 void ShadowSurfaceDrawInit::initDraw() {
     TDDraw::setup(0, 1, 1);
     GXSetChanCtrl(GX_COLOR0A0, 0, GX_SRC_REG, GX_SRC_REG, 0, GX_DF_NONE, GX_AF_NONE);
@@ -29,7 +28,6 @@ void ShadowSurfaceDrawInit::initDraw() {
     GXSetAlphaUpdate(1);
     GXSetDstAlpha(1, 0);
 }
-#endif
 
 ShadowSurfaceDrawer::ShadowSurfaceDrawer(const char* pName) : ShadowDrawer(pName) {
     MR::createSceneObj(SceneObj_ShadowSurfaceDrawInit);

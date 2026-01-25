@@ -8,7 +8,7 @@
 #include "Game/Demo/DemoDirector.hpp"
 #include "Game/Demo/PrologueDirector.hpp"
 #include "Game/Effect/EffectSystem.hpp"
-// #include "Game/Enemy/BegomanBase.hpp"
+#include "Game/Enemy/BegomanBase.hpp"
 // #include "Game/Enemy/KabokuriFireHolder.hpp"
 #include "Game/Enemy/KameckBeamHolder.hpp"
 #include "Game/Enemy/KarikariDirector.hpp"
@@ -53,7 +53,7 @@
 #include "Game/MapObj/CoinHolder.hpp"
 #include "Game/MapObj/CoinRotater.hpp"
 #include "Game/MapObj/EarthenPipe.hpp"
-// #include "Game/MapObj/ElectricRailHolder.hpp"
+#include "Game/MapObj/ElectricRailHolder.hpp"
 #include "Game/MapObj/FallOutFieldDraw.hpp"
 #include "Game/MapObj/FirePressureBulletHolder.hpp"
 #include "Game/MapObj/GCapture.hpp"
@@ -121,7 +121,7 @@
 #include "Game/SingletonHolder.hpp"
 
 SceneObjHolder::SceneObjHolder() {
-    for (int i = 0; i < SceneObj_COUNT; i++) {
+    for (int i = 0; i < SceneObj_NumMax; i++) {
         mObj[i] = nullptr;
     }
 }
@@ -276,11 +276,9 @@ NameObj* SceneObjHolder::newEachObj(int id) {
         // return new KarikariDirector("カリカリディレクター");
         return nullptr;
     case SceneObj_StarPieceDirector:
-        // return new StarPieceDirector("スターピース指揮");
-        return nullptr;
+        return new StarPieceDirector("スターピース指揮");
     case SceneObj_BegomanAttackPermitter:
-        // return new BegomanAttackPermitter("ベーゴマン攻撃許可者");
-        return nullptr;
+        return new BegomanAttackPermitter("ベーゴマン攻撃許可者");
     case SceneObj_TripodBossAccesser:
         return new TripodBossAccesser("三脚ボスアクセサ");
     case SceneObj_KameckBeamHolder:
@@ -340,11 +338,9 @@ NameObj* SceneObjHolder::newEachObj(int id) {
     case SceneObj_NameObjExecuteHolder:
         return new NameObjExecuteHolder(4096);
     case SceneObj_ElectricRailHolder:
-        // return new ElectricRailHolder("電撃レール保持");
-        return nullptr;
+        return new ElectricRailHolder("電撃レール保持");
     case SceneObj_SpiderThread:
-        // return new SpiderThread("クモの巣");
-        return nullptr;
+        return new SpiderThread("クモの巣");
     case SceneObj_QuakeEffectGenerator:
         return new QuakeEffectGenerator();
     case SceneObj_HeatHazeDirector:
@@ -419,9 +415,13 @@ NameObj* SceneObjHolder::newEachObj(int id) {
 }
 
 namespace MR {
-    NameObj* createSceneObj(int id) { return getSceneObjHolder()->create(id); }
+    NameObj* createSceneObj(int id) {
+        return getSceneObjHolder()->create(id);
+    }
 
-    SceneObjHolder* getSceneObjHolder() { return SingletonHolder< GameSystem >::get()->mSceneController->getSceneObjHolder(); }
+    SceneObjHolder* getSceneObjHolder() {
+        return SingletonHolder< GameSystem >::get()->mSceneController->getSceneObjHolder();
+    }
 
     bool isExistSceneObj(int id) {
         GameSystemSceneController* pSceneController = SingletonHolder< GameSystem >::get()->mSceneController;

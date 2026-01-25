@@ -88,10 +88,9 @@ void NPCActorCaps::setIndirect() {
     mSceneConnectionType = 2;
 }
 
-#ifdef NON_MATCHING
 NPCActor::NPCActor(const char* pName) : LiveActor(pName) {
-    _8C = 0;
-    _90 = 0;
+    mLodCtrl = 0;
+    mMsgCtrl = 0;
     _94 = 0;
     _98 = 0;
     _9C = 0;
@@ -110,16 +109,17 @@ NPCActor::NPCActor(const char* pName) : LiveActor(pName) {
     _E4 = 0;
     _E5 = 0;
     _E6 = 0;
-    _E8 = 1;
-    _E9 = 1;
-    _EC = 2000.0f;
-    _F0 = 4.0f;
-    _F4 = 0.0f;
-    _F8 = 0.0f;
-    _FC = 0;
-    _100 = 0;
-    _104 = 0;
-    _108 = 0;
+    mParam._0 = 1;
+    mParam._1 = 1;
+    mParam._4 = 2000.0f;
+    mParam._8 = 4.0f;
+    mParam._C = 0.0f;
+    mParam._10 = 0.0f;
+    mParam._14 = 0;
+    // todo -- find me
+    //_100 = 0;
+    //_104 = 0;
+    //_108 = 0;
     _11C = 0;
     _120 = 0;
     _10C = 2.0f;
@@ -133,9 +133,9 @@ NPCActor::NPCActor(const char* pName) : LiveActor(pName) {
     _134 = 0;
     _138 = 0;
     _13C = 0;
-    _140 = 0;
+    //_140 = 0;
     _144 = 0;
-    _148 = 0;
+    //_148 = 0;
     _158 = 0x400;
     _A0.set(0.0f, 0.0f, 0.0f, 1.0f);
     _B0.set(0.0f, 0.0f, 0.0f, 1.0f);
@@ -145,7 +145,6 @@ NPCActor::NPCActor(const char* pName) : LiveActor(pName) {
     mTalkNerve = &NrvNPCActor::NPCActorNrvTalk::sInstance;
     mReactionNerve = &NrvNPCActor::NPCActorNrvReaction::sInstance;
 }
-#endif
 
 void NPCActor::makeArchiveList(NameObjArchiveListCollector* pCollector, const JMapInfoIter& rIter) {
     const char* name;
@@ -186,7 +185,7 @@ void NPCActor::setInitPose() {
     _B0.x = _A0.x;
     _B0.y = _A0.y;
     _B0.z = _A0.z;
-    _B0.h = _A0.w;
+    _B0.w = _A0.w;
     _C0.set< f32 >(mPosition);
 }
 

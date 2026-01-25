@@ -2,6 +2,9 @@
 
 #include "JSystem/JKernel/JKRArchive.hpp"
 
+class JKRAramBlock;
+class JKRFile;
+
 class JKRAramArchive : public JKRArchive {
 public:
     JKRAramArchive(long, EMountDirection);
@@ -15,6 +18,6 @@ public:
     void fetchResource_subroutine(unsigned long, unsigned long, unsigned char*, unsigned long, int);
     void fetchResource_subroutine(unsigned long, unsigned long, JKRHeap*, int, unsigned char**);
 
-    void* _64;
-    void* _68;
+    JKRAramBlock* mBlock;
+    JKRFile* mDvdFile;
 };

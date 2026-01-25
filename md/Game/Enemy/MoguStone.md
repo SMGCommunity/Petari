@@ -1,5 +1,7 @@
 # main/Game/Enemy/MoguStone
 
+**Source Path:** `src/Game/Enemy/MoguStone.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
@@ -28,10 +30,10 @@
 | `startBreakSound__11ThrowingIceFv` | `0x8012A8A0` | :x: (0.0%) |
 | `startThrowLevelSound__11ThrowingIceFv` | `0x8012A8B4` | :x: (0.0%) |
 | `__dt__11ThrowingIceFv` | `0x8012A8B8` | :x: (0.0%) |
-| `__sinit_\MoguStone_cpp` | `0x8012A914` | :x: (0.0%) |
-| `__ct__Q212NrvMoguStone17MoguStoneNrvTakenFv` | `0x8012A948` | :x: (0.0%) |
-| `__ct__Q212NrvMoguStone17MoguStoneNrvThrowFv` | `0x8012A958` | :x: (0.0%) |
-| `__ct__Q212NrvMoguStone16MoguStoneNrvFallFv` | `0x8012A968` | :x: (0.0%) |
-| `execute__Q212NrvMoguStone16MoguStoneNrvFallCFP5Spine` | `0x8012A978` | :x: (0.0%) |
-| `execute__Q212NrvMoguStone17MoguStoneNrvThrowCFP5Spine` | `0x8012A980` | :x: (0.0%) |
+| `__sinit_\MoguStone_cpp` | `0x8012A914` | :white_check_mark: (100.0%) |
+| `__ct__Q212NrvMoguStone17MoguStoneNrvTakenFv` | `0x8012A948` | :white_check_mark: (100.0%) |
+| `__ct__Q212NrvMoguStone17MoguStoneNrvThrowFv` | `0x8012A958` | :white_check_mark: (100.0%) |
+| `__ct__Q212NrvMoguStone16MoguStoneNrvFallFv` | `0x8012A968` | :white_check_mark: (100.0%) |
+| `execute__Q212NrvMoguStone16MoguStoneNrvFallCFP5Spine` | `0x8012A978` | :white_check_mark: (100.0%) |
+| `execute__Q212NrvMoguStone17MoguStoneNrvThrowCFP5Spine` | `0x8012A980` | :white_check_mark: (100.0%) |
 | `execute__Q212NrvMoguStone17MoguStoneNrvTakenCFP5Spine` | `0x8012A988` | :x: (0.0%) |

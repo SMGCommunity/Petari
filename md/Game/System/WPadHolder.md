@@ -14,10 +14,10 @@
 | `updateProjectPadData__10WPadHolderFv` | `0x803AC8C0` | :white_check_mark: (100.0%) |
 | `updateInGame__10WPadHolderFv` | `0x803AC910` | :white_check_mark: (100.0%) |
 | `update__10WPadHolderFv` | `0x803AC984` | :white_check_mark: (100.0%) |
-| `initSensorBarPosition__10WPadHolderFv` | `0x803AC9D4` | :x: (97.4%) |
+| `initSensorBarPosition__10WPadHolderFv` | `0x803AC9D4` | :white_check_mark: (100.0%) |
 | `resetPad__10WPadHolderFv` | `0x803ACA6C` | :white_check_mark: (100.0%) |
 | `getWPad__10WPadHolderFl` | `0x803ACAC0` | :white_check_mark: (100.0%) |
-| `setConnectCallback__10WPadHolderFv` | `0x803ACADC` | :x: (0.0%) |
+| `setConnectCallback__10WPadHolderFv` | `0x803ACADC` | :white_check_mark: (100.0%) |
 | `getWPadHolder__24@unnamed@WPadHolder_cpp@Fv` | `0x803ACB38` | :white_check_mark: (100.0%) |
 | `getWPad__2MRFl` | `0x803ACB48` | :white_check_mark: (100.0%) |
 | `resetWPad__2MRFv` | `0x803ACB7C` | :white_check_mark: (100.0%) |

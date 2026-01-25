@@ -2,6 +2,8 @@
 
 #include "Game/MapObj/MapObjActor.hpp"
 
+class PartsModel;
+
 class PeachCastleGardenPlanet : public MapObjActor {
 public:
     PeachCastleGardenPlanet(const char*);
@@ -15,5 +17,5 @@ public:
     void exeWait();
     void exeDamage();
 
-    u32 _C4;
+    PartsModel* _C4;
 };

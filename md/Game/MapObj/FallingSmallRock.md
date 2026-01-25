@@ -11,7 +11,7 @@
 | `startClipped__16FallingSmallRockFv` | `0x801D903C` | :white_check_mark: (100.0%) |
 | `endClipped__16FallingSmallRockFv` | `0x801D9084` | :white_check_mark: (100.0%) |
 | `exeMove__16FallingSmallRockFv` | `0x801D90D4` | :white_check_mark: (100.0%) |
-| `__dt__16FallingSmallRockFv` | `0x801D9158` | :x: (95.7%) |
+| `__dt__16FallingSmallRockFv` | `0x801D9158` | :white_check_mark: (100.0%) |
 | `__sinit_\FallingSmallRock_cpp` | `0x801D91B4` | :white_check_mark: (100.0%) |
 | `__ct__Q219NrvFallingSmallRock12HostTypeWaitFv` | `0x801D91E0` | :white_check_mark: (100.0%) |
 | `__ct__Q219NrvFallingSmallRock12HostTypeMoveFv` | `0x801D91F0` | :white_check_mark: (100.0%) |

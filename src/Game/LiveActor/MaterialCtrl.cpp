@@ -16,13 +16,14 @@ void MaterialCtrl::update() {
         updateMaterial(mMaterial);
     } else {
         u16 i = 0;
-        while (i < mModelData->mMaterialTable.mMaterialCount) {
-            updateMaterial(mModelData->mMaterialTable.mMaterials[i]);
+        while (i < mModelData->mMaterialTable.getMaterialNum()) {
+            updateMaterial(mModelData->mMaterialTable.getMaterialNodePointer(i));
             i++;
         }
     }
 }
 
+/*
 FogCtrl::FogCtrl(J3DModelData* pModelData, bool a3) : MaterialCtrl(pModelData, nullptr) {
     mNumMaterials = 0;
     mMaterials = nullptr;
@@ -30,7 +31,7 @@ FogCtrl::FogCtrl(J3DModelData* pModelData, bool a3) : MaterialCtrl(pModelData, n
     J3DMaterial* nextMat = nullptr;
     for (u16 i = 0; i < pModelData->getMaterialCount(); i++) {
         J3DMaterial* mat = pModelData->getMaterial(i);
-        if (a3 || mat->mPEBlock->getFog().mFogType) {
+        if (a3 || mat->mPEBlock->getFog()->mType) {
             if (nextMat == nullptr) {
                 nextMat = mat;
             }
@@ -51,21 +52,22 @@ FogCtrl::FogCtrl(J3DModelData* pModelData, bool a3) : MaterialCtrl(pModelData, n
 
         for (u16 i = 0; i < pModelData->getMaterialCount(); i++) {
             J3DMaterial* mat = pModelData->getMaterial(i);
-            if (a3 || mat->mPEBlock->getFog().mFogType) {
+            if (a3 || mat->mPEBlock->getFog()->mType) {
                 mMaterials[curMaterial++] = mat;
             }
         }
     }
 }
+*/
 
-#ifdef NON_MATCHING
+/*
 void FogCtrl::update() {
     for (s32 i = 0; i < mNumMaterials; i++) {
         J3DPEBlockFull& block = *(J3DPEBlockFull*)mMaterials[i]->mPEBlock;
-        mMaterials[i]->mPEBlock->getFog() = block.mFogInfo;
+        mMaterials[i]->mPEBlock->getFog() = block.mFog;
     }
 }
-#endif
+    */
 
 MatColorCtrl::MatColorCtrl(J3DModelData* pModelData, const char* pName, u32 color, const J3DGXColor* pColor) : MaterialCtrl(pModelData, pName) {
     mColorChoice = color;

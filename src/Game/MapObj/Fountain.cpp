@@ -12,7 +12,6 @@ Fountain::Fountain(const char* pName) : LiveActor(pName) {
     _90.z = 0.0f;
 }
 
-#ifdef NON_MATCHING
 void Fountain::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     TMtx34f mtx;
@@ -64,7 +63,6 @@ void Fountain::init(const JMapInfoIter& rIter) {
         appear();
     }
 }
-#endif
 
 void Fountain::appear() {
     LiveActor::appear();

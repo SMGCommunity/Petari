@@ -1,5 +1,7 @@
 # main/Game/Ride/BigBubble
 
+**Source Path:** `src/Game/Ride/BigBubble.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
@@ -13,10 +15,10 @@
 | `calcAnim__9BigBubbleFv` | `0x8031E960` | :x: (0.0%) |
 | `draw__9BigBubbleCFv` | `0x8031EA78` | :x: (0.0%) |
 | `generate__9BigBubbleFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>fbllPC21BigBubbleMoveLimitter` | `0x8031EAEC` | :x: (0.0%) |
-| `setActionType__9BigBubbleFl` | `0x8031EC60` | :x: (0.0%) |
+| `setActionType__9BigBubbleFl` | `0x8031EC60` | :white_check_mark: (100.0%) |
 | `setShapeType__9BigBubbleFl` | `0x8031EC98` | :x: (0.0%) |
 | `getBaseRadius__9BigBubbleCFv` | `0x8031ECE8` | :x: (0.0%) |
-| `setHost__9BigBubbleFP9LiveActor` | `0x8031ED30` | :x: (0.0%) |
+| `setHost__9BigBubbleFP9LiveActor` | `0x8031ED30` | :white_check_mark: (100.0%) |
 | `setScale__9BigBubbleFf` | `0x8031ED38` | :x: (0.0%) |
 | `attackSensor__9BigBubbleFP9HitSensorP9HitSensor` | `0x8031EE28` | :x: (0.0%) |
 | `receiveMsgPlayerAttack__9BigBubbleFUlP9HitSensorP9HitSensor` | `0x8031EF64` | :x: (0.0%) |
@@ -26,23 +28,23 @@
 | `requestBind__9BigBubbleFP9HitSensor` | `0x8031F30C` | :x: (0.0%) |
 | `requestMerged__9BigBubbleFP9HitSensorP9HitSensor` | `0x8031F3DC` | :x: (0.0%) |
 | `requestAssimilate__9BigBubbleFP9HitSensorP9HitSensor` | `0x8031F48C` | :x: (0.0%) |
-| `requestCancelBind__9BigBubbleFv` | `0x8031F658` | :x: (0.0%) |
-| `tryAppearEnd__9BigBubbleFv` | `0x8031F6F8` | :x: (0.0%) |
+| `requestCancelBind__9BigBubbleFv` | `0x8031F658` | :white_check_mark: (100.0%) |
+| `tryAppearEnd__9BigBubbleFv` | `0x8031F6F8` | :white_check_mark: (100.0%) |
 | `tryBreak__9BigBubbleFv` | `0x8031F748` | :x: (0.0%) |
-| `tryAutoBreak__9BigBubbleFv` | `0x8031F840` | :x: (0.0%) |
-| `tryBreakEnd__9BigBubbleFv` | `0x8031F8C8` | :x: (0.0%) |
-| `tryEscape__9BigBubbleFv` | `0x8031F920` | :x: (0.0%) |
-| `tryEscapeEnd__9BigBubbleFv` | `0x8031F970` | :x: (0.0%) |
-| `tryMergedCancel__9BigBubbleFv` | `0x8031FA34` | :x: (0.0%) |
+| `tryAutoBreak__9BigBubbleFv` | `0x8031F840` | :white_check_mark: (100.0%) |
+| `tryBreakEnd__9BigBubbleFv` | `0x8031F8C8` | :white_check_mark: (100.0%) |
+| `tryEscape__9BigBubbleFv` | `0x8031F920` | :white_check_mark: (100.0%) |
+| `tryEscapeEnd__9BigBubbleFv` | `0x8031F970` | :white_check_mark: (100.0%) |
+| `tryMergedCancel__9BigBubbleFv` | `0x8031FA34` | :white_check_mark: (100.0%) |
 | `tryMergedEnd__9BigBubbleFv` | `0x8031FA8C` | :x: (0.0%) |
 | `tryGoal__9BigBubbleFv` | `0x8031FB3C` | :x: (0.0%) |
 | `exeAppear__9BigBubbleFv` | `0x8031FBA8` | :x: (0.0%) |
-| `exeWait__9BigBubbleFv` | `0x8031FCC0` | :x: (0.0%) |
+| `exeWait__9BigBubbleFv` | `0x8031FCC0` | :white_check_mark: (100.0%) |
 | `exeCapture__9BigBubbleFv` | `0x8031FD2C` | :x: (0.0%) |
 | `exeMerged__9BigBubbleFv` | `0x8031FEAC` | :x: (0.0%) |
-| `exeBreak__9BigBubbleFv` | `0x80320110` | :x: (0.0%) |
+| `exeBreak__9BigBubbleFv` | `0x80320110` | :white_check_mark: (100.0%) |
 | `exeEscape__9BigBubbleFv` | `0x803201D0` | :x: (0.0%) |
-| `exeGoal__9BigBubbleFv` | `0x803202AC` | :x: (0.0%) |
+| `exeGoal__9BigBubbleFv` | `0x803202AC` | :white_check_mark: (100.0%) |
 | `addDeformVelocityOuter__9BigBubbleFRCQ29JGeometry8TVec3<f>b` | `0x80320304` | :x: (0.0%) |
 | `addDeformVelocityInternalOressure__9BigBubbleFv` | `0x80320508` | :x: (0.0%) |
 | `addDeformVelocityRebound__9BigBubbleFv` | `0x803205CC` | :x: (0.0%) |
@@ -62,27 +64,27 @@
 | `calcLocalDirection__9BigBubbleCFPQ29JGeometry8TVec3<f>l` | `0x80321188` | :x: (0.0%) |
 | `getNearAxisIndex__9BigBubbleCFRCQ29JGeometry8TVec3<f>` | `0x80321270` | :x: (0.0%) |
 | `getMergeIndex__9BigBubbleCFRCQ29JGeometry8TVec3<f>` | `0x8032136C` | :x: (0.0%) |
-| `isPushable__9BigBubbleCFv` | `0x803213B8` | :x: (0.0%) |
-| `isBindMario__9BigBubbleCFv` | `0x80321410` | :x: (0.0%) |
-| `isDraw__9BigBubbleCFv` | `0x80321420` | :x: (0.0%) |
+| `isPushable__9BigBubbleCFv` | `0x803213B8` | :white_check_mark: (100.0%) |
+| `isBindMario__9BigBubbleCFv` | `0x80321410` | :white_check_mark: (100.0%) |
+| `isDraw__9BigBubbleCFv` | `0x80321420` | :white_check_mark: (100.0%) |
 | `isMerged__9BigBubbleCFv` | `0x80321474` | :x: (0.0%) |
-| `isEnemyAttackBreakable__9BigBubbleCFv` | `0x8032147C` | :x: (0.0%) |
-| `__dt__9BigBubbleFv` | `0x803214D4` | :x: (0.0%) |
-| `__sinit_\BigBubble_cpp` | `0x80321530` | :x: (0.0%) |
-| `__ct__Q212NrvBigBubble18BigBubbleNrvAppearFv` | `0x80321584` | :x: (0.0%) |
-| `__ct__Q212NrvBigBubble16BigBubbleNrvWaitFv` | `0x80321594` | :x: (0.0%) |
-| `__ct__Q212NrvBigBubble19BigBubbleNrvCaptureFv` | `0x803215A4` | :x: (0.0%) |
-| `__ct__Q212NrvBigBubble17BigBubbleNrvBreakFv` | `0x803215B4` | :x: (0.0%) |
-| `__ct__Q212NrvBigBubble18BigBubbleNrvEscapeFv` | `0x803215C4` | :x: (0.0%) |
-| `__ct__Q212NrvBigBubble16BigBubbleNrvGoalFv` | `0x803215D4` | :x: (0.0%) |
-| `__ct__Q212NrvBigBubble18BigBubbleNrvMergedFv` | `0x803215E4` | :x: (0.0%) |
-| `execute__Q212NrvBigBubble18BigBubbleNrvMergedCFP5Spine` | `0x803215F4` | :x: (0.0%) |
-| `execute__Q212NrvBigBubble16BigBubbleNrvGoalCFP5Spine` | `0x803215FC` | :x: (0.0%) |
-| `execute__Q212NrvBigBubble18BigBubbleNrvEscapeCFP5Spine` | `0x80321604` | :x: (0.0%) |
-| `execute__Q212NrvBigBubble17BigBubbleNrvBreakCFP5Spine` | `0x8032160C` | :x: (0.0%) |
-| `executeOnEnd__Q212NrvBigBubble19BigBubbleNrvCaptureCFP5Spine` | `0x80321614` | :x: (0.0%) |
-| `execute__Q212NrvBigBubble19BigBubbleNrvCaptureCFP5Spine` | `0x80321654` | :x: (0.0%) |
-| `execute__Q212NrvBigBubble16BigBubbleNrvWaitCFP5Spine` | `0x8032165C` | :x: (0.0%) |
-| `execute__Q212NrvBigBubble18BigBubbleNrvAppearCFP5Spine` | `0x80321664` | :x: (0.0%) |
+| `isEnemyAttackBreakable__9BigBubbleCFv` | `0x8032147C` | :white_check_mark: (100.0%) |
+| `__dt__9BigBubbleFv` | `0x803214D4` | :white_check_mark: (100.0%) |
+| `__sinit_\BigBubble_cpp` | `0x80321530` | :white_check_mark: (100.0%) |
+| `__ct__Q212NrvBigBubble18BigBubbleNrvAppearFv` | `0x80321584` | :white_check_mark: (100.0%) |
+| `__ct__Q212NrvBigBubble16BigBubbleNrvWaitFv` | `0x80321594` | :white_check_mark: (100.0%) |
+| `__ct__Q212NrvBigBubble19BigBubbleNrvCaptureFv` | `0x803215A4` | :white_check_mark: (100.0%) |
+| `__ct__Q212NrvBigBubble17BigBubbleNrvBreakFv` | `0x803215B4` | :white_check_mark: (100.0%) |
+| `__ct__Q212NrvBigBubble18BigBubbleNrvEscapeFv` | `0x803215C4` | :white_check_mark: (100.0%) |
+| `__ct__Q212NrvBigBubble16BigBubbleNrvGoalFv` | `0x803215D4` | :white_check_mark: (100.0%) |
+| `__ct__Q212NrvBigBubble18BigBubbleNrvMergedFv` | `0x803215E4` | :white_check_mark: (100.0%) |
+| `execute__Q212NrvBigBubble18BigBubbleNrvMergedCFP5Spine` | `0x803215F4` | :white_check_mark: (100.0%) |
+| `execute__Q212NrvBigBubble16BigBubbleNrvGoalCFP5Spine` | `0x803215FC` | :white_check_mark: (100.0%) |
+| `execute__Q212NrvBigBubble18BigBubbleNrvEscapeCFP5Spine` | `0x80321604` | :white_check_mark: (100.0%) |
+| `execute__Q212NrvBigBubble17BigBubbleNrvBreakCFP5Spine` | `0x8032160C` | :white_check_mark: (100.0%) |
+| `executeOnEnd__Q212NrvBigBubble19BigBubbleNrvCaptureCFP5Spine` | `0x80321614` | :white_check_mark: (100.0%) |
+| `execute__Q212NrvBigBubble19BigBubbleNrvCaptureCFP5Spine` | `0x80321654` | :white_check_mark: (100.0%) |
+| `execute__Q212NrvBigBubble16BigBubbleNrvWaitCFP5Spine` | `0x8032165C` | :white_check_mark: (100.0%) |
+| `execute__Q212NrvBigBubble18BigBubbleNrvAppearCFP5Spine` | `0x80321664` | :white_check_mark: (100.0%) |
 | `setQT__Q29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>FRCQ29JGeometry9TQuat4<f>RCQ29JGeometry8TVec3<f>` | `0x8032166C` | :x: (0.0%) |
-| `getBaseMtx__9BigBubbleCFv` | `0x80321714` | :x: (0.0%) |
+| `getBaseMtx__9BigBubbleCFv` | `0x80321714` | :white_check_mark: (100.0%) |

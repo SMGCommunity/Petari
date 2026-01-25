@@ -16,5 +16,5 @@
 | `execute__Q226NrvSandCapsuleInsidePlanet30SandCapsuleInsidePlanetNrvWaitCFP5Spine` | `0x8021ED74` | :white_check_mark: (100.0%) |
 | `Functor<23SandCapsuleInsidePlanet>__2MRFP23SandCapsuleInsidePlanetM23SandCapsuleInsidePlanetFPCvPv_v_Q22MR73FunctorV0M<P23SandCapsuleInsidePlanet,M23SandCapsuleInsidePlanetFPCvPv_v>` | `0x8021ED78` | :white_check_mark: (100.0%) |
 | `__cl__Q22MR73FunctorV0M<P23SandCapsuleInsidePlanet,M23SandCapsuleInsidePlanetFPCvPv_v>CFv` | `0x8021EDB8` | :white_check_mark: (100.0%) |
-| `clone__Q22MR73FunctorV0M<P23SandCapsuleInsidePlanet,M23SandCapsuleInsidePlanetFPCvPv_v>CFP7JKRHeap` | `0x8021EDE8` | :x: (96.2%) |
+| `clone__Q22MR73FunctorV0M<P23SandCapsuleInsidePlanet,M23SandCapsuleInsidePlanetFPCvPv_v>CFP7JKRHeap` | `0x8021EDE8` | :white_check_mark: (100.0%) |
 | `__dt__23SandCapsuleInsidePlanetFv` | `0x8021EE50` | :white_check_mark: (100.0%) |

@@ -99,7 +99,6 @@ void BlackHole::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     setNerve(&NrvBlackHole::BlackHoleNrvDemo::sInstance);
 }
 
-#ifdef NON_MATCHING
 // shrug
 void BlackHole::initMapToolInfo(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
@@ -115,8 +114,8 @@ void BlackHole::initMapToolInfo(const JMapInfoIter& rIter) {
         _A0 = 500.0f * mScale.z;
     } else {
         TVec3f stack_C;
-        stack_C.setInlineXYPS(mScale);
-        _A0 = PSVECMag(stack_C);
+        stack_C.setPS(mScale);
+        _A0 = PSVECMag(&stack_C);
     }
 
     f32 arg0;
@@ -130,7 +129,6 @@ void BlackHole::initMapToolInfo(const JMapInfoIter& rIter) {
         _9C = mScale.x;
     }
 }
-#endif
 
 void BlackHole::initModel() {
     initModelManagerWithAnm("BlackHoleRange", 0, false);
@@ -139,7 +137,6 @@ void BlackHole::initModel() {
     updateModelScale(_9C, _9C);
 }
 
-#ifdef NON_MATCHING
 void BlackHole::initCubeBox() {
     MR::makeMtxRotate((MtxPtr)&_A8, mRotation.x, mRotation.y, mRotation.z);
     _A8.mMtx[0][3] = mPosition.x;
@@ -147,19 +144,18 @@ void BlackHole::initCubeBox() {
     _A8.mMtx[2][3] = mPosition.z;
     _A4 = new TBox3f();
     TVec3f stack_8(0.5f * (1000.0f * -mScale.x), 0.5f * (1000.0f * -mScale.y), 0.5f * (1000.0f * -mScale.z));
-    TVec3f stack_14(0.5f * (1000.0f * mScale.x), 0.5f * (1000.0f, mScale.z), 0.5f * (1000.0f * mScale.y));
-    _A4->mMin.set(stack_8);
-    _A4->mMax.set(stack_14);
+    TVec3f stack_14(0.5f * (1000.0f * mScale.x), 0.5f * (1000.0f * mScale.z), 0.5f * (1000.0f * mScale.y));
+    _A4->i.set(stack_8);
+    _A4->f.set(stack_14);
 }
-#endif
 
 bool BlackHole::isInCubeBox(const TVec3f& rVec) const {
     TVec3f stack_8;
     _A8.multTranspose(rVec, stack_8);
     bool ret = false;
     TBox3f* box = _A4;
-    if (stack_8.x >= box->mMin.x && stack_8.y >= box->mMin.y && stack_8.z >= box->mMin.z && stack_8.x < box->mMax.x && stack_8.y < box->mMax.y &&
-        stack_8.z < box->mMax.z) {
+    if (stack_8.x >= box->i.x && stack_8.y >= box->i.y && stack_8.z >= box->i.z && stack_8.x < box->f.x && stack_8.y < box->f.y &&
+        stack_8.z < box->f.z) {
         ret = true;
     }
 

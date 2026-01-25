@@ -31,7 +31,7 @@ public:
     void registerCallBack();
     void calcJointMatrixAndSetSystem(J3DJoint*);
     void calcJointMatrixAfterChildAndSetSystem(J3DJoint*);
-    static void staticCallBack(J3DJoint*, int);
+    static int staticCallBack(J3DJoint*, int);
 
     J3DModel* mModel;  // 0x4
     J3DJoint* mJoint;  // 0x8
@@ -79,6 +79,14 @@ public:
 
 namespace MR {
     void setJointControllerParam(JointController*, const LiveActor*, const char*);
+
+    template < class T >
+    JointControlDelegator< T >* createJointDelegator(T* pHost, const LiveActor* pActor, bool (T::*calcFunc)(TPos3f*, const JointControllerInfo&),
+                                                     bool (T::*calcChild)(TPos3f*, const JointControllerInfo&), const char* pName) {
+        JointControlDelegator< T >* delegator = new JointControlDelegator< T >(pHost, calcFunc, calcChild);
+        setJointControllerParam(delegator, pActor, pName);
+        return delegator;
+    }
 
     template < class T >
     JointControlDelegator< T >* createJointDelegatorWithNullChildFunc(T* pHost, bool (T::*calcFunc)(TPos3f*, const JointControllerInfo&),

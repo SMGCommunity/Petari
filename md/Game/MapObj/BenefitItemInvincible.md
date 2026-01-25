@@ -8,7 +8,7 @@
 |------|---------|---------|
 | `__ct__21BenefitItemInvincibleFPCc` | `0x801B36E4` | :white_check_mark: (100.0%) |
 | `exeCatch__21BenefitItemInvincibleFv` | `0x801B373C` | :white_check_mark: (100.0%) |
-| `init__21BenefitItemInvincibleFRC12JMapInfoIter` | `0x801B379C` | :x: (88.6%) |
+| `init__21BenefitItemInvincibleFRC12JMapInfoIter` | `0x801B379C` | :x: (99.9%) |
 | `initModelAndEfx__21BenefitItemInvincibleFv` | `0x801B3828` | :white_check_mark: (100.0%) |
 | `appearThrowUp__21BenefitItemInvincibleFv` | `0x801B38D8` | :x: (0.0%) |
 | `initEscape__21BenefitItemInvincibleFv` | `0x801B39A8` | :x: (0.0%) |

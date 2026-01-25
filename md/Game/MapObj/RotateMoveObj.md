@@ -7,7 +7,7 @@
 | Name | Address | Match % |
 |------|---------|---------|
 | `init__13RotateMoveObjFRC12JMapInfoIter` | `0x8021E668` | :white_check_mark: (100.0%) |
-| `initCaseUseSwitchB__13RotateMoveObjFRC19MapObjActorInitInfo` | `0x8021E7C4` | :x: (0.0%) |
+| `initCaseUseSwitchB__13RotateMoveObjFRC19MapObjActorInitInfo` | `0x8021E7C4` | :white_check_mark: (100.0%) |
 | `initCaseNoUseSwitchB__13RotateMoveObjFRC19MapObjActorInitInfo` | `0x8021E854` | :white_check_mark: (100.0%) |
 | `setStateMove__13RotateMoveObjFv` | `0x8021E858` | :white_check_mark: (100.0%) |
 | `exeMove__13RotateMoveObjFv` | `0x8021E8BC` | :white_check_mark: (100.0%) |
@@ -23,6 +23,6 @@
 | `execute__Q216NrvRotateMoveObj23HostTypeWaitForPlayerOnCFP5Spine` | `0x8021EA88` | :white_check_mark: (100.0%) |
 | `Functor<13RotateMoveObj>__2MRFP13RotateMoveObjM13RotateMoveObjFPCvPv_v_Q22MR53FunctorV0M<P13RotateMoveObj,M13RotateMoveObjFPCvPv_v>` | `0x8021EAC8` | :white_check_mark: (100.0%) |
 | `__cl__Q22MR53FunctorV0M<P13RotateMoveObj,M13RotateMoveObjFPCvPv_v>CFv` | `0x8021EB08` | :white_check_mark: (100.0%) |
-| `clone__Q22MR53FunctorV0M<P13RotateMoveObj,M13RotateMoveObjFPCvPv_v>CFP7JKRHeap` | `0x8021EB38` | :x: (96.2%) |
+| `clone__Q22MR53FunctorV0M<P13RotateMoveObj,M13RotateMoveObjFPCvPv_v>CFP7JKRHeap` | `0x8021EB38` | :white_check_mark: (100.0%) |
 | `__dt__13RotateMoveObjFv` | `0x8021EBA0` | :x: (91.7%) |
 | `getRotateSpeed__19MapPartsRotatorBaseCFv` | `0x8021EC00` | :x: (0.0%) |

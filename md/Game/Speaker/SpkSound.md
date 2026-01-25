@@ -12,7 +12,7 @@
 | `setFadeOut__14SpkSoundVolumeFl` | `0x80394E28` | :white_check_mark: (100.0%) |
 | `calc__14SpkSoundVolumeFRb` | `0x80394EAC` | :x: (0.0%) |
 | `__ct__8SpkSoundFv` | `0x80394FA4` | :white_check_mark: (100.0%) |
-| `__dt__8SpkSoundFv` | `0x8039501C` | :x: (0.0%) |
+| `__dt__8SpkSoundFv` | `0x8039501C` | :x: (58.3%) |
 | `update__8SpkSoundFf` | `0x80395090` | :x: (0.0%) |
 | `stop__8SpkSoundFl` | `0x80395278` | :white_check_mark: (100.0%) |
 | `attachHandle__8SpkSoundFP14SpkSoundHandle` | `0x803952A4` | :white_check_mark: (100.0%) |

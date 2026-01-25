@@ -3,6 +3,7 @@
 
 #include "revolution/gd/GDBase.h"
 #include "revolution/gx/GXEnum.h"
+#include "revolution/gx/GXStruct.h"
 #include "revolution/types.h"
 
 #ifdef __cplusplus
@@ -157,6 +158,30 @@ extern "C" {
 #define XF_NUMTEX(numtex) ((((unsigned long)(numtex)) << XF_NUMTEX_SHIFT))
 
 static void GDBegin(GXPrimitive type, GXVtxFmt vtxfmt, u16 nverts);
+
+#define XF_REG_TEX(proj, form, tgType, row, embossRow, embossLit)                                                                                    \
+    ((proj) << 1 | (form) << 2 | (tgType) << 4 | (row) << 7 | (embossRow) << 12 | (embossLit) << 15)
+
+#define XF_REG_DUALTEX(mtx, normalize) ((mtx) << 0 | (normalize) << 8)
+
+#define BP_GEN_MODE(nTexGens, nChans, nTevs, p4, nInds)                                                                                              \
+    ((u32)(nTexGens) << 0 | (u32)(nChans) << 4 | (u32)(nTevs) << 10 | (u32)(p4) << 14 | (u32)(nInds) << 16)
+
+#define CP_REG_VAT_GRP0(posCnt, posType, posFrac, nrmCnt, nrmType, c0Cnt, c0Type, c1Cnt, c1Type, tx0Cnt, tx0Type, tx0Frac, p12, nrmIdx3)             \
+    ((posCnt) << 0 | (posType) << 1 | (posFrac) << 4 | (nrmCnt) << 9 | (nrmType) << 10 | (c0Cnt) << 13 | (c0Type) << 14 | (c1Cnt) << 17 |            \
+     (c1Type) << 18 | (tx0Cnt) << 21 | (tx0Type) << 22 | (tx0Frac) << 25 | (p12) << 30 | (nrmIdx3) << 31)
+
+#define CP_REG_VAT_GRP1(tx1Cnt, tx1Type, tx1Frac, tx2Cnt, tx2Type, tx2Frac, tx3Cnt, tx3Type, tx3Frac, tx4Cnt, tx4Type, p11)                          \
+    ((tx1Cnt) << 0 | (tx1Type) << 1 | (tx1Frac) << 4 | (tx2Cnt) << 9 | (tx2Type) << 10 | (tx2Frac) << 13 | (tx3Cnt) << 18 | (tx3Type) << 19 |        \
+     (tx3Frac) << 22 | (tx4Cnt) << 27 | (tx4Type) << 28 | p11 << 31)
+
+#define CP_REG_VAT_GRP2(tx4Frac, tx5Cnt, tx5Type, tx5Frac, tx6Cnt, tx6Type, tx6Frac, tx7Cnt, tx7Type, tx7Frac)                                       \
+    ((tx4Frac) << 0 | (tx5Cnt) << 5 | (tx5Type) << 6 | (tx5Frac) << 9 | (tx6Cnt) << 14 | (tx6Type) << 15 | (tx6Frac) << 18 | (tx7Cnt) << 23 |        \
+     (tx7Type) << 24 | (tx7Frac) << 27)
+
+void GDSetArray(GXAttr attr, const void* base_ptr, u8 stride);
+void GDSetArrayRaw(GXAttr attr, u32 base_ptr_raw, u8 stride);
+void GDSetVtxDescv(const GXVtxDescList* attrPtr);
 
 #ifdef __cplusplus
 }

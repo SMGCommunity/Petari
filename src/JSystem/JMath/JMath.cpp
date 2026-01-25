@@ -3,7 +3,6 @@
 // this is a different type but it works for now
 f32 sLookupTable[1024];
 
-#ifdef NON_MATCHING
 // some small issues
 f32 JMAAcosRadian(f32 val) {
     if (val >= 1.0f) {
@@ -22,4 +21,3 @@ f32 JMAAcosRadian(f32 val) {
     u32 idx = 1023.5f * val;
     return sLookupTable[idx] - 1.5707964f;
 }
-#endif

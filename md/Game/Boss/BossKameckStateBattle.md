@@ -6,7 +6,7 @@
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__ct__21BossKameckStateBattleFP10BossKameck` | `0x8003AAF8` | :x: (0.0%) |
+| `__ct__21BossKameckStateBattleFP10BossKameck` | `0x8003AAF8` | :x: (99.3%) |
 | `init__21BossKameckStateBattleFv` | `0x8003AB90` | :white_check_mark: (100.0%) |
 | `appear__21BossKameckStateBattleFv` | `0x8003AB98` | :white_check_mark: (100.0%) |
 | `setMoveRail__21BossKameckStateBattleFP18BossKameckMoveRail` | `0x8003ABD4` | :white_check_mark: (100.0%) |
@@ -18,12 +18,12 @@
 | `control__21BossKameckStateBattleFv` | `0x8003AE48` | :white_check_mark: (100.0%) |
 | `tryAttackWait__21BossKameckStateBattleFv` | `0x8003AE50` | :white_check_mark: (100.0%) |
 | `trySummonKameck__21BossKameckStateBattleFv` | `0x8003AED4` | :white_check_mark: (100.0%) |
-| `tryChargeBram__21BossKameckStateBattleFv` | `0x8003AF4C` | :x: (85.2%) |
+| `tryChargeBram__21BossKameckStateBattleFv` | `0x8003AF4C` | :white_check_mark: (100.0%) |
 | `startMove__21BossKameckStateBattleFv` | `0x8003B024` | :white_check_mark: (100.0%) |
 | `exeWait__21BossKameckStateBattleFv` | `0x8003B040` | :white_check_mark: (100.0%) |
-| `exeMove__21BossKameckStateBattleFv` | `0x8003B0AC` | :x: (96.6%) |
+| `exeMove__21BossKameckStateBattleFv` | `0x8003B0AC` | :x: (99.8%) |
 | `exeHideMoveStart__21BossKameckStateBattleFv` | `0x8003B20C` | :white_check_mark: (100.0%) |
-| `exeHideMove__21BossKameckStateBattleFv` | `0x8003B2B8` | :x: (97.5%) |
+| `exeHideMove__21BossKameckStateBattleFv` | `0x8003B2B8` | :x: (99.9%) |
 | `exeHideMoveEnd__21BossKameckStateBattleFv` | `0x8003B3F4` | :white_check_mark: (100.0%) |
 | `exeSummonKameckWait__21BossKameckStateBattleFv` | `0x8003B4E4` | :white_check_mark: (100.0%) |
 | `exeSummonKameck__21BossKameckStateBattleFv` | `0x8003B55C` | :white_check_mark: (100.0%) |

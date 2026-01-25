@@ -30,6 +30,8 @@ public:
     void setUpperRotateY(f32);
     void entryCallback(const char*);
     f32 getFrame() const;
+    u16 getUpperJointID() const;
+    void setBlendWeight(const f32*, f32);
 
     inline void f1(const char* name) {
         getPlayer()->startBas(nullptr, false, 0.0f, 0.0f);

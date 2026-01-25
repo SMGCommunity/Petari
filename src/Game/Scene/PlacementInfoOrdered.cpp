@@ -4,7 +4,6 @@ namespace {
     CreationFuncPtr getCreator(const PlacementInfoOrdered::Identifier&);
 };  // namespace
 
-#ifndef NON_MATCHING
 // functionally equiv, just isn't reloading the array size properly
 PlacementInfoOrdered::PlacementInfoOrdered(int count) {
     mIndexArray = nullptr;
@@ -17,7 +16,6 @@ PlacementInfoOrdered::PlacementInfoOrdered(int count) {
     mIdentiferArray = new Identifier*[count];
     MR::zeroMemory(mIdentiferArray, count);
 }
-#endif
 
 /*
 void PlacementInfoOrdered::requestFileLoad() {

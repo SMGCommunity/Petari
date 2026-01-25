@@ -23,4 +23,4 @@
 | `createGlobalPointGravityObj__2MRFPCc` | `0x80158E5C` | :white_check_mark: (100.0%) |
 | `createGlobalSegmentGravityObj__2MRFPCc` | `0x80158EE0` | :white_check_mark: (100.0%) |
 | `createGlobalWireGravityObj__2MRFPCc` | `0x80158F64` | :white_check_mark: (100.0%) |
-| `__dt__16GlobalGravityObjFv` | `0x80158FEC` | :x: (95.7%) |
+| `__dt__16GlobalGravityObjFv` | `0x80158FEC` | :white_check_mark: (100.0%) |

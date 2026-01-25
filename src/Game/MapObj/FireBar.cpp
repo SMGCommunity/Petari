@@ -173,7 +173,6 @@ void FireBar::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
 
 // updateHitSensor__7FireBarFP9HitSensor
 
-#ifdef NON_MATCHING
 // meh
 void FireBar::initFireBarBall(const JMapInfoIter& rIter) {
     mFireBalls = new FireBarBall*[mFireBallCount];
@@ -197,7 +196,6 @@ void FireBar::initFireBarBall(const JMapInfoIter& rIter) {
 
     fixFireBarBall();
 }
-#endif
 
 void FireBar::fixFireBarBall() {
     TVec3f scaled;

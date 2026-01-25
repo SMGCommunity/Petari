@@ -82,7 +82,6 @@ void PartsModel::movement() {
     }
 }
 
-#ifdef NON_MATCHING
 void PartsModel::calcAnim() {
     if (mIsDead || MR::isDead(this) || MR::isNoCalcAnim(this) || MR::isClipped(this)) {
         return;
@@ -93,7 +92,6 @@ void PartsModel::calcAnim() {
     }
     LiveActor::calcAnim();
 }
-#endif
 
 void PartsModel::calcViewAndEntry() {
     if (!mIsDead) {

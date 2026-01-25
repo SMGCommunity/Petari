@@ -4,6 +4,8 @@
 #include "JSystem/J3DGraphBase/J3DStruct.hpp"
 #include <revolution.h>
 
+class J3DTexMtx;
+
 class MaterialCtrl {
 public:
     MaterialCtrl(J3DModelData*, const char*);

@@ -28,6 +28,7 @@
 #include "Game/Enemy/PackunPetit.hpp"
 #include "Game/Enemy/Petari.hpp"
 #include "Game/Enemy/Poihana.hpp"
+#include "Game/Enemy/Pukupuku.hpp"
 #include "Game/Enemy/RingBeam.hpp"
 #include "Game/Enemy/RingBeamer.hpp"
 #include "Game/Enemy/SearchBeamer.hpp"
@@ -41,3 +42,4 @@
 #include "Game/Enemy/WalkerStateParam.hpp"
 #include "Game/Enemy/WalkerStateStagger.hpp"
 #include "Game/Enemy/WalkerStateWander.hpp"
+#include "Game/Enemy/WaterBazooka.hpp"

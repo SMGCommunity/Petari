@@ -109,7 +109,6 @@ void PressureBase::init(const JMapInfoIter& rIter) {
     }
 }
 
-#ifdef NON_MATCHING
 // regswap
 void PressureBase::initAfterPlacement() {
     if (mMessenger != nullptr) {
@@ -126,7 +125,6 @@ void PressureBase::initAfterPlacement() {
         mMessenger->_90 = waitTime + 60;
     }
 }
-#endif
 
 void PressureBase::calcAndSetBaseMtx() {
     LiveActor::calcAndSetBaseMtx();

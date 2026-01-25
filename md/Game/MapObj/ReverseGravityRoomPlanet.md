@@ -24,5 +24,5 @@
 | `execute__Q227NrvReverseGravityRoomPlanet36ReverseGravityRoomPlanetNrvDownStartCFP5Spine` | `0x8021A980` | :white_check_mark: (100.0%) |
 | `Functor<24ReverseGravityRoomPlanet>__2MRFP24ReverseGravityRoomPlanetM24ReverseGravityRoomPlanetFPCvPv_v_Q22MR75FunctorV0M<P24ReverseGravityRoomPlanet,M24ReverseGravityRoomPlanetFPCvPv_v>` | `0x8021A988` | :white_check_mark: (100.0%) |
 | `__cl__Q22MR75FunctorV0M<P24ReverseGravityRoomPlanet,M24ReverseGravityRoomPlanetFPCvPv_v>CFv` | `0x8021A9C8` | :white_check_mark: (100.0%) |
-| `clone__Q22MR75FunctorV0M<P24ReverseGravityRoomPlanet,M24ReverseGravityRoomPlanetFPCvPv_v>CFP7JKRHeap` | `0x8021A9F8` | :x: (96.2%) |
+| `clone__Q22MR75FunctorV0M<P24ReverseGravityRoomPlanet,M24ReverseGravityRoomPlanetFPCvPv_v>CFP7JKRHeap` | `0x8021A9F8` | :white_check_mark: (100.0%) |
 | `__dt__24ReverseGravityRoomPlanetFv` | `0x8021AA60` | :white_check_mark: (100.0%) |

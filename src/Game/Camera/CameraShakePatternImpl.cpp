@@ -23,7 +23,6 @@ void CameraShakePatternSingly::start() {
     mOffset.x = 0.0f;
 }
 
-#ifdef NON_MATCHING
 // Stack issue, fmuls operations order
 void CameraShakePatternSingly::update() {
     s32 uStack44 = 25 - static_cast< s32 >(_4);
@@ -50,7 +49,6 @@ void CameraShakePatternSingly::update() {
 
     mOffset.set(newOffset2);
 }
-#endif
 
 void CameraShakePatternSingly::setDirection(const TVec2f& rDir) {
     mDirection.set(rDir);

@@ -20,7 +20,11 @@ public:
     virtual f32 getBlurOffset() const;
     virtual void draw3D() const;
 
+    u32 getNoticedStatus() const;
+
     u32 _8;
     u32 mStatusId;  // 0xC
     u8 _10;
+    u8 _11;
+    u16 _12;
 };

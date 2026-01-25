@@ -10,7 +10,7 @@
 | `__dv__Q29JGeometry8TVec3<f>CFf` | `0x80183094` | :x: (0.0%) |
 | `__ct__16KCollisionServerFv` | `0x801830E4` | :white_check_mark: (100.0%) |
 | `init__16KCollisionServerFPvPCv` | `0x80183140` | :white_check_mark: (100.0%) |
-| `setData__16KCollisionServerFPv` | `0x8018318C` | :x: (12.9%) |
+| `setData__16KCollisionServerFPv` | `0x8018318C` | :x: (57.7%) |
 | `calcFarthestVertexDistance__16KCollisionServerFv` | `0x80183208` | :x: (0.0%) |
 | `isBinaryInitialized__16KCollisionServerFPCv` | `0x80183390` | :white_check_mark: (100.0%) |
 | `checkPoint__16KCollisionServerFP4FxyzfPf` | `0x8018339C` | :x: (0.0%) |
@@ -28,12 +28,12 @@
 | `getEdgeNormal2__16KCollisionServerCFPC12KC_PrismData` | `0x80185754` | :white_check_mark: (100.0%) |
 | `getEdgeNormal3__16KCollisionServerCFPC12KC_PrismData` | `0x8018576C` | :white_check_mark: (100.0%) |
 | `getNormal__16KCollisionServerCFUl` | `0x80185784` | :white_check_mark: (100.0%) |
-| `calXvec__16KCollisionServerCFPC4FxyzPC4FxyzP4Fxyz` | `0x80185798` | :x: (10.5%) |
-| `getPos__16KCollisionServerCFPC12KC_PrismDatai` | `0x801857E4` | :x: (70.3%) |
+| `calXvec__16KCollisionServerCFPC4FxyzPC4FxyzP4Fxyz` | `0x80185798` | :white_check_mark: (100.0%) |
+| `getPos__16KCollisionServerCFPC12KC_PrismDatai` | `0x801857E4` | :white_check_mark: (100.0%) |
 | `getPrismData__16KCollisionServerCFUl` | `0x801859E4` | :white_check_mark: (100.0%) |
 | `getTriangleNum__16KCollisionServerCFv` | `0x801859FC` | :white_check_mark: (100.0%) |
 | `getAttributes__16KCollisionServerCFUl` | `0x80185A18` | :white_check_mark: (100.0%) |
-| `searchBlock__16KCollisionServerCFPlRCUlRCUlRCUl` | `0x80185A48` | :x: (0.0%) |
+| `searchBlock__16KCollisionServerCFPlRCUlRCUlRCUl` | `0x80185A48` | :x: (97.6%) |
 | `setUsingCast__Q216KCollisionServer3V3uFRCQ29JGeometry8TVec3<f>` | `0x80185AF4` | :white_check_mark: (100.0%) |
 | `find<PP12KC_PrismData,P12KC_PrismData>__3stdFPP12KC_PrismDataPP12KC_PrismDataRCP12KC_PrismData_PP12KC_PrismData` | `0x80185B3C` | :x: (0.0%) |
 | `__as__4FxyzFRC4Fxyz` | `0x80185B60` | :white_check_mark: (100.0%) |

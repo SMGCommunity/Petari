@@ -143,7 +143,7 @@ if not config.non_matching:
 config.binutils_tag = "2.42-1"
 config.compilers_tag = "20240706"
 config.dtk_tag = "v1.7.6"
-config.objdiff_tag = "v3.4.5"
+config.objdiff_tag = "v3.5.1"
 config.sjiswrap_tag = "v1.2.2"
 config.wibo_tag = "1.0.0"
 
@@ -255,6 +255,8 @@ cflags_jsys = [
     f"-i build/{config.version}/include",
     f"-DVERSION={version_num}",
 ]
+
+cflags_jsys_j3d = [*cflags_jsys, "-O4,p"]
 
 cflags_trk = [
     "-nodefaults",
@@ -509,6 +511,16 @@ def JSysLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
         "lib": lib_name,
         "mw_version": "GC/3.0a3",
         "cflags": cflags_jsys,
+        "progress_category": "jsys",
+        "objects": objects,
+    }
+
+
+def JSys_J3DLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
+    return {
+        "lib": lib_name,
+        "mw_version": "GC/3.0a3.3",
+        "cflags": cflags_jsys_j3d,
         "progress_category": "jsys",
         "objects": objects,
     }
@@ -1126,7 +1138,7 @@ config.libs = [
             Object(NonMatching, "Game/Enemy/Mogucchi.cpp"),
             Object(NonMatching, "Game/Enemy/MogucchiHill.cpp"),
             Object(NonMatching, "Game/Enemy/MogucchiRefuseTerritory.cpp"),
-            Object(NonMatching, "Game/Enemy/MogucchiShooter.cpp"),
+            Object(Matching, "Game/Enemy/MogucchiShooter.cpp"),
             Object(NonMatching, "Game/Enemy/MoguStone.cpp"),
             Object(NonMatching, "Game/Enemy/NokonokoLand.cpp"),
             Object(NonMatching, "Game/Enemy/Onimasu.cpp"),
@@ -1167,7 +1179,7 @@ config.libs = [
             Object(NonMatching, "Game/Enemy/WalkerStateStagger.cpp"),
             Object(NonMatching, "Game/Enemy/WalkerStateWander.cpp"),
             Object(NonMatching, "Game/Enemy/WaterBazooka.cpp"),
-            Object(NonMatching, "Game/Enemy/WaterBazookaCapsule.cpp"),
+            Object(Matching, "Game/Enemy/WaterBazookaCapsule.cpp"),
         ],
     ),
     GameLib(
@@ -1206,7 +1218,7 @@ config.libs = [
         "LiveActor",
         [
             Object(Matching, "Game/LiveActor/ActiveActorList.cpp"),
-            Object(NonMatching, "Game/LiveActor/ActorAnimKeeper.cpp"),
+            Object(Matching, "Game/LiveActor/ActorAnimKeeper.cpp"),
             Object(Matching, "Game/LiveActor/ActorCameraInfo.cpp"),
             Object(Matching, "Game/LiveActor/ActorJointCtrl.cpp"),
             Object(NonMatching, "Game/LiveActor/ActorLightCtrl.cpp"),
@@ -1310,9 +1322,9 @@ config.libs = [
             Object(Matching, "Game/Map/LightZoneDataHolder.cpp"),
             Object(NonMatching, "Game/Map/NamePosHolder.cpp"),
             Object(NonMatching, "Game/Map/OceanBowl.cpp"),
-            Object(NonMatching, "Game/Map/OceanBowlBloomDrawer.cpp"),
-            Object(NonMatching, "Game/Map/OceanBowlPoint.cpp"),
-            Object(NonMatching, "Game/Map/OceanHomeMapCtrl.cpp"),
+            Object(Matching, "Game/Map/OceanBowlBloomDrawer.cpp"),
+            Object(Matching, "Game/Map/OceanBowlPoint.cpp"),
+            Object(Matching, "Game/Map/OceanHomeMapCtrl.cpp"),
             Object(NonMatching, "Game/Map/OceanRing.cpp"),
             Object(Matching, "Game/Map/OceanRingBloomDrawer.cpp"),
             Object(NonMatching, "Game/Map/OceanRingDrawer.cpp"),
@@ -1572,7 +1584,7 @@ config.libs = [
             Object(NonMatching, "Game/MapObj/SandCapsulePressGround.cpp"),
             Object(NonMatching, "Game/MapObj/Sandstorm.cpp"),
             Object(NonMatching, "Game/MapObj/SandUpDownEffectObj.cpp"),
-            Object(NonMatching, "Game/MapObj/SandUpDownTriRock.cpp"),
+            Object(Matching, "Game/MapObj/SandUpDownTriRock.cpp"),
             Object(NonMatching, "Game/MapObj/ScrewSwitch.cpp"),
             Object(NonMatching, "Game/MapObj/ScrewSwitchReverse.cpp"),
             Object(NonMatching, "Game/MapObj/SeaBottomTriplePropeller.cpp"),
@@ -1597,15 +1609,15 @@ config.libs = [
             Object(NonMatching, "Game/MapObj/SpaceMine.cpp"),
             Object(NonMatching, "Game/MapObj/SpaceShipStep.cpp"),
             Object(NonMatching, "Game/MapObj/SphereRailDash.cpp"),
-            Object(NonMatching, "Game/MapObj/SpiderCoin.cpp"),
+            Object(Matching, "Game/MapObj/SpiderCoin.cpp"),
             Object(Matching, "Game/MapObj/SpiderMapBlock.cpp"),
-            Object(NonMatching, "Game/MapObj/SpiderThread.cpp"),
-            Object(NonMatching, "Game/MapObj/SpiderThreadHangInfo.cpp"),
-            Object(NonMatching, "Game/MapObj/SpiderThreadMainPoint.cpp"),
-            Object(NonMatching, "Game/MapObj/SpiderThreadPart.cpp"),
-            Object(NonMatching, "Game/MapObj/SpiderThreadPoint.cpp"),
-            Object(NonMatching, "Game/MapObj/SpiderThreadRadialLine.cpp"),
-            Object(NonMatching, "Game/MapObj/SpiderThreadWindCtrl.cpp"),
+            Object(Matching, "Game/MapObj/SpiderThread.cpp"),
+            Object(Matching, "Game/MapObj/SpiderThreadHangInfo.cpp"),
+            Object(Matching, "Game/MapObj/SpiderThreadMainPoint.cpp"),
+            Object(Matching, "Game/MapObj/SpiderThreadPart.cpp"),
+            Object(Matching, "Game/MapObj/SpiderThreadPoint.cpp"),
+            Object(Matching, "Game/MapObj/SpiderThreadRadialLine.cpp"),
+            Object(Matching, "Game/MapObj/SpiderThreadWindCtrl.cpp"),
             Object(NonMatching, "Game/MapObj/SpinDriver.cpp"),
             Object(NonMatching, "Game/MapObj/SpinDriverCamera.cpp"),
             Object(NonMatching, "Game/MapObj/SpinDriverOperateRing.cpp"),
@@ -1929,7 +1941,7 @@ config.libs = [
             Object(NonMatching, "Game/Ride/Creeper.cpp"),
             Object(Matching, "Game/Ride/Fluff.cpp"),
             Object(Matching, "Game/Ride/FluffWind.cpp"),
-            Object(NonMatching, "Game/Ride/JumpBranch.cpp"),
+            Object(Matching, "Game/Ride/JumpBranch.cpp"),
             Object(NonMatching, "Game/Ride/Plant.cpp"),
             Object(NonMatching, "Game/Ride/PlantLeaf.cpp"),
             Object(NonMatching, "Game/Ride/PlantStalk.cpp"),
@@ -2211,10 +2223,10 @@ config.libs = [
             Object(NonMatching, "Game/System/GameDataGalaxyStorage.cpp"),
             Object(NonMatching, "Game/System/GameDataHolder.cpp"),
             Object(Matching, "Game/System/GameDataPlayerStatus.cpp"),
-            Object(NonMatching, "Game/System/GameDataTemporaryInGalaxy.cpp"),
-            Object(NonMatching, "Game/System/GameEventFlag.cpp"),
+            Object(Matching, "Game/System/GameDataTemporaryInGalaxy.cpp"),
+            Object(Matching, "Game/System/GameEventFlag.cpp"),
             Object(NonMatching, "Game/System/GameEventFlagTable.cpp"),
-            Object(NonMatching, "Game/System/GameEventFlagChecker.cpp"),
+            Object(Matching, "Game/System/GameEventFlagChecker.cpp"),
             Object(NonMatching, "Game/System/GameEventFlagStorage.cpp"),
             Object(NonMatching, "Game/System/GameEventValueChecker.cpp"),
             Object(Matching, "Game/System/GameSequenceDirector.cpp"),
@@ -2231,7 +2243,7 @@ config.libs = [
             Object(NonMatching, "Game/System/StarPieceAlmsStorage.cpp"),
             Object(NonMatching, "Game/System/StorySequenceExecutor.cpp"),
             Object(Matching, "Game/System/SysConfigFile.cpp"),
-            Object(NonMatching, "Game/System/UserFile.cpp"),
+            Object(Matching, "Game/System/UserFile.cpp"),
         ],
     ),
     GameLib(
@@ -2320,10 +2332,10 @@ config.libs = [
     SDKLib(
         "ax",
         [
-            Object(NonMatching, "RVL_SDK/ax/AXAlloc.c"),
-            Object(NonMatching, "RVL_SDK/ax/AXAux.c"),
-            Object(NonMatching, "RVL_SDK/ax/AXCL.c"),
-            Object(NonMatching, "RVL_SDK/ax/AXVPB.c"),
+            Object(Matching, "RVL_SDK/ax/AXAlloc.c"),
+            Object(Matching, "RVL_SDK/ax/AXAux.c"),
+            Object(Matching, "RVL_SDK/ax/AXCL.c"),
+            Object(Matching, "RVL_SDK/ax/AXVPB.c"),
         ],
     ),
     SDKLib(
@@ -2923,7 +2935,7 @@ config.libs = [
         [
             Object(NonMatching, "JSystem/J2DGraph/J2DGrafContext.cpp"),
             Object(NonMatching, "JSystem/J2DGraph/J2DOrthoGraph.cpp"),
-            Object(NonMatching, "JSystem/J2DGraph/J2DMatBlock.cpp"),
+            Object(Matching, "JSystem/J2DGraph/J2DMatBlock.cpp"),
             Object(NonMatching, "JSystem/J2DGraph/J2DPane.cpp"),
             Object(NonMatching, "JSystem/J2DGraph/J2DScreen.cpp"),
             Object(NonMatching, "JSystem/J2DGraph/J2DPicture.cpp"),
@@ -2957,7 +2969,11 @@ config.libs = [
             Object(NonMatching, "JSystem/J3DGraphBase/J3DShapeMtx.cpp"),
             Object(NonMatching, "JSystem/J3DGraphBase/J3DShapeDraw.cpp"),
             Object(NonMatching, "JSystem/J3DGraphBase/J3DShape.cpp"),
-            Object(NonMatching, "JSystem/J3DGraphBase/J3DMaterial.cpp"),
+            Object(
+                NonMatching,
+                "JSystem/J3DGraphBase/J3DMaterial.cpp",
+                cflags=cflags_jsys_j3d,
+            ),
             Object(NonMatching, "JSystem/J3DGraphBase/J3DMatBlock.cpp"),
             Object(NonMatching, "JSystem/J3DGraphBase/J3DTevs.cpp"),
             Object(NonMatching, "JSystem/J3DGraphBase/J3DDrawBuffer.cpp"),

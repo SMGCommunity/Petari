@@ -21,8 +21,8 @@
 | `getBvaFrameMax__2MRFPC9LiveActorPCc` | `0x803E97B8` | :x: (0.0%) |
 | `isBckPlaying__2MRFP12XanimePlayerPCc` | `0x803E97F4` | :x: (0.0%) |
 | `findBckNameStringInResource__2MRFPPCcPC14ResourceHolderPCc` | `0x803E9880` | :x: (0.0%) |
-| `getMaterialNo__2MRFP12J3DModelDataPCc` | `0x803E9910` | :white_check_mark: (100.0%) |
-| `getMaterialNo__2MRFP8J3DModelPCc` | `0x803E9938` | :white_check_mark: (100.0%) |
+| `getMaterialNo__2MRFP12J3DModelDataPCc` | `0x803E9910` | :x: (19.5%) |
+| `getMaterialNo__2MRFP8J3DModelPCc` | `0x803E9938` | :x: (26.8%) |
 | `getMaterial__2MRFP12J3DModelDataPCc` | `0x803E9964` | :white_check_mark: (100.0%) |
 | `getMaterial__2MRFP12J3DModelDatai` | `0x803E99A0` | :white_check_mark: (100.0%) |
 | `getMaterial__2MRFP8J3DModeli` | `0x803E99B0` | :white_check_mark: (100.0%) |
@@ -31,7 +31,7 @@
 | `getMaterialName__2MRFPC12J3DModelDatai` | `0x803E9A08` | :x: (0.0%) |
 | `updateModelDiffDL__2MRFP9LiveActor` | `0x803E9A14` | :x: (0.0%) |
 | `isEnvelope__2MRFP11J3DMaterial` | `0x803E9A20` | :x: (0.0%) |
-| `hideMaterial__2MRFP8J3DModelPCc` | `0x803E9A2C` | :x: (0.0%) |
+| `hideMaterial__2MRFP8J3DModelPCc` | `0x803E9A2C` | :x: (85.6%) |
 | `hideMaterial__2MRFPC9LiveActorPCc` | `0x803E9A74` | :x: (0.0%) |
 | `showMaterial__2MRFP8J3DModelPCc` | `0x803E9AA8` | :x: (0.0%) |
 | `showMaterial__2MRFPC9LiveActorPCc` | `0x803E9AF0` | :x: (0.0%) |

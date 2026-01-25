@@ -11,10 +11,16 @@
 #include "Game/Util/RailUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
-#include "JSystem/JMath/JMATrigonometric.hpp"
 #include "JSystem/JMath/JMath.hpp"
 #include "revolution/mtx.h"
 #include "revolution/types.h"
+
+struct SinCosPair {
+    f32 sin;
+    f32 cos;
+};
+
+extern SinCosPair lbl_8060FC80[];
 
 DriftWood::DriftWood(const char* pName) : MapObjActor(pName), 
 mRailDirection(0.0f, 0.0f, 1.0f),
@@ -83,11 +89,11 @@ void DriftWood::exeVibrate() {
     if (step < 0.0f) {
         s32 tempIndex = -45.511112f * step;
         u16 index = tempIndex & 0x3FFF;
-        step = -JMath::sSinCosTable.table[index].a1;
+        step = -lbl_8060FC80[index].sin;
     } else {
         s32 tempIndex = 45.511112f * step;
         u16 index = tempIndex & 0x3FFF;
-        step = JMath::sSinCosTable.table[index].a1;
+        step = lbl_8060FC80[index].sin;
     }
 
     step = 30.0f * step;
