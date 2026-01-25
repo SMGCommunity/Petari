@@ -5,6 +5,7 @@
 #include "Game/Util/EffectUtil.hpp"
 #include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/JMapUtil.hpp"
+#include "Game/Util/JointUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
@@ -18,6 +19,7 @@ namespace NrvLavaGeyser {
     NEW_NERVE(LavaGeyserNrvWait, LavaGeyser, Wait);
     NEW_NERVE(LavaGeyserNerveSign, LavaGeyser, Sign);
     NEW_NERVE(LavaGeyserNerveShootUp, LavaGeyser, ShootUp);
+    NEW_NERVE(LavaGeyserNerveShootKeep, LavaGeyser, ShootKeep);
 }  // namespace NrvLavaGeyser
 
 LavaGeyser::LavaGeyser(const char* pName)
@@ -66,14 +68,29 @@ void LavaGeyser::exeWaitSwitch() {
 }
 
 void LavaGeyser::exeSign() {
-    if(MR::isFirstStep(this)) {
-        const TVec3f *pos = &mPosition;
+    if (MR::isFirstStep(this)) {
+        const TVec3f* pos = &mPosition;
         _94.set(*pos);
-        MR::emitEffect(this, "Sign"); //
+        MR::emitEffect(this, "Sign");  //
     }
     MR::startLevelSound(this, "SE_OJ_LV_LAVA_GEYSER_SIGN", -1, -1, -1);
-    if(MR::isStep(this, 90)) {
+    if (MR::isStep(this, 90)) {
         MR::deleteEffect(this, "Sign");
-    setNerve(&NrvLavaGeyser::LavaGeyserNerveShootUp::sInstance);
+        setNerve(&NrvLavaGeyser::LavaGeyserNerveShootUp::sInstance);
+    }
+}
+
+void LavaGeyser::exeShootUp() {
+    if (MR::isFirstStep(this)) {
+        MR::showModel(this);
+        MR::validateHitSensors(this);
+        MR::startSound(this, "SE_OJ_LAVA_GEYSER_SHOOT", -1, -1);
+        MR::startBck(this, "LavaGeyserAppear", nullptr);
+    }
+    MR::copyJointPos(this, "Top", &_94);
+    MR::startLevelSound(this, "SE_OJ_LV_LAVA_GEYSER_SIGN", -1, -1, -1);
+    MR::startLevelSound(this, "SE_OJ_LV_LAVA_GEYSER_KEEP", -1, -1, -1);
+    if(MR::isBckStopped(this)) {
+        setNerve(&NrvLavaGeyser::LavaGeyserNerveShootKeep::sInstance);
     }
 }

@@ -23,4 +23,5 @@ public:
     void exeWaitSwitch();
     void exeSign();
     void exeShootUp();
+    void exeShootKeep();
 };
