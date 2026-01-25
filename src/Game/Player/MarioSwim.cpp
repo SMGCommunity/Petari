@@ -402,13 +402,11 @@ bool MarioSwim::start() {
 
     if (fr1f < -mWaterDepth) {
         MarioActor* actor = mActor;
-        TVec3f surfacePosCopy(mSurfacePos);
-        surfacePosCopy.scale(fr1f);
-        actor->emitEffectWaterColumn(-mSurfacePos, getTrans() - surfacePosCopy);
+        actor->emitEffectWaterColumn(-mSurfacePos, getTrans() - mSurfacePos.scaleInline(fr1f));
     } else {
         mActor->emitEffectWaterColumn(mSurfacePos, mSurfaceNorm);
     }
-    if (!getPlayer()->getMovementStates().jumping || getPlayer()->mVerticalSpeed > 100.0f || r1e) {
+    if (getPlayer()->getMovementStates().jumping && getPlayer()->mVerticalSpeed > 100.0f || r1e) {
         TVec3f stack_44;
         _24 = 0;
         Mario* mario = getPlayer();
