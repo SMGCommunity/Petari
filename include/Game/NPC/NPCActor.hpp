@@ -4,6 +4,7 @@
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/NameObj/NameObjArchiveListCollector.hpp"
 #include "Game/Util/JointController.hpp"
+#include "JSystem/JGeometry/TMatrix.hpp"
 #include "JSystem/JGeometry/TQuat.hpp"
 #include "revolution/types.h"
 
@@ -43,7 +44,7 @@ public:
     bool mBinder;
     f32 mBinderSize;
     bool mSensor;  // 0x40
-    const char* mSensorJoint;
+    const char* mSensorJoint; // 0x44
     f32 mSensorSize;       // 0x48
     TVec3f mSensorOffset;  // 0x4C
     s32 mSensorMax;
@@ -61,7 +62,7 @@ public:
     const char* _70;
     TVec3f mStarPointerOffs;  // 0x74
     f32 mPointerSize;
-    u32 mSceneConnectionType;  // 0x84
+    s32 mSceneConnectionType;  // 0x84
     Nerve* mWaitNerve;         // 0x88
     Nerve* mTalkNerve;         // 0x8C
     Nerve* mReactionNerve;     // 0x90
@@ -118,6 +119,7 @@ public:
 
     void equipment(const NPCActorItem&, bool);
 
+    void setBaseMtx(const TPos3f&);
     void setBaseMtx(MtxPtr);
 
     inline void setDefaults() {
@@ -148,7 +150,7 @@ public:
     TalkMessageCtrl* mMsgCtrl;  // 0x90
     PartsModel* _94;
     PartsModel* _98;
-    u32 _9C;
+    s32 _9C;
     TQuat4f _A0;
     TVec4f _B0;
     TVec3f _C0;
@@ -187,10 +189,10 @@ public:
     const char* _138;
     const char* _13C;
     AnimScaleController* mScaleController;  // 0x140
-    u32 _144;
+    JointControlDelegator<NPCActor>* mDelegator; // 0x144
     Nerve* mCurNerve;       // 0x148
     Nerve* mWaitNerve;      // 0x14C
     Nerve* mTalkNerve;      // 0x150
     Nerve* mReactionNerve;  // 0x154
-    u32 _158;
+    s32 _158;
 };
