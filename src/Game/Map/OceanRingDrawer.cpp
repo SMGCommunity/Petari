@@ -11,11 +11,11 @@ namespace {
     const f32 sTexRate0 = 0.0f;
     const f32 sTexRate1 = 0.0f;
     const f32 sTexRate2 = 0.0f;
-    const f32 sTexSpeed0U = 0.0f;
-    const f32 sTexSpeed0V = 0.0f;
-    const f32 sTexSpeed1U = 0.0f;
-    const f32 sTexSpeed1V = 0.0f;
-    const f32 sTexSpeed2V = 0.0f;
+    const f32 sTexSpeed0U = -0.003f;
+    const f32 sTexSpeed0V = -0.001f;
+    const f32 sTexSpeed1U = -0.002f;
+    const f32 sTexSpeed1V = 0.001f;
+    const f32 sTexSpeed2V = 0.003f;
     const f32 sIndirectScale = 0.0f;
     const f32 sBloomCameraOffsetZ = 0.0f;
     const f32 sDistancePartDrawBloom = 0.0f;
@@ -165,7 +165,131 @@ void OceanRingPartDrawer::drawGD(f32* a1, f32* a2, f32* a3) const {
     }
 }
 
+void OceanRingPartDrawer::drawDynamic() const {
+    f32 f30 = 0.05f;
+    f32 f29;
+    f32 f28;
+    f32 f27;
+    f32 f26;
+    f32 f25;
+    f32 f24;
+    f32 f23;
+    f32 f22;
+    f32 f21 = 1.0f;
 
+    f28 = f30 * f21;
+    f29 = 0.1f * f21;
+    f27 = _1C;
+    f25 = _20;
+    f23 = _24;
+    f26 = _1C;
+    f24 = _20;
+    f22 = _24;
+    for (s32 i = 0; i < _14 - 1; i++) {
+        s32 index = _10 + i;
+        s32 indexPlusOne = index + 1;
+        if (i == _14 - 2 && _18) {
+            indexPlusOne = 0;
+        }
+
+        mOceanRing->getPoint(0, index);
+        mOceanRing->getPoint(0, indexPlusOne);
+
+        f26 += f28;
+        f24 += f28;
+        f22 += f29;
+        f32 f20 = 0.0f;
+        f32 f19 = 0.0f;
+        f32 f18 = 0.0f;
+        f32 f17 = 0.0f;
+        f32 f16 = 0.0f;
+        f32 f15 = 0.0f;
+        GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, (u16)mOceanRing->mStride << 1);
+
+        for (s32 j = 0; j < mOceanRing->mStride; j++) {
+            WaterPoint* pPoint = mOceanRing->getPoint(j, index);
+            GXPosition3f32(pPoint->mPosition.x, pPoint->mPosition.y, pPoint->mPosition.z);
+            GXColor4u8(0xFF, 0xFF, 0xFF, pPoint->mAlpha);
+            GXTexCoord2f32(f27, f17);
+            GXTexCoord2f32(f25, f16);
+            GXTexCoord2f32(f23, f15);
+
+            pPoint = mOceanRing->getPoint(j, indexPlusOne);
+            GXPosition3f32(pPoint->mPosition.x, pPoint->mPosition.y, pPoint->mPosition.z);
+            GXColor4u8(0xFF, 0xFF, 0xFF, pPoint->mAlpha);
+            GXTexCoord2f32(f26, f20);
+            GXTexCoord2f32(f24, f19);
+            GXTexCoord2f32(f22, f18);
+
+            f17 += f28;
+            f16 += f28;
+            f15 += f29;
+            f20 += f28;
+            f19 += f28;
+            f18 += f29;
+        }
+
+        f27 = f26;
+        f25 = f24;
+        f23 = f22;
+    }
+}
+
+void OceanRingPartDrawer::drawDynamicBloom() const {
+    f32 f30 = 0.05f;
+    f32 f29;
+    f32 f28;
+    f32 f27;
+    f32 f26;
+    f32 f25;
+    f32 f24;
+    f32 f21 = 1.0f;
+
+    f28 = f30 * f21;
+    f29 = 0.1f * f21;
+    f27 = _1C;
+    f25 = _20;
+    f26 = _1C;
+    f24 = _20;
+    for (s32 i = 0; i < _14 - 1; i++) {
+        s32 index = _10 + i;
+        s32 indexPlusOne = index + 1;
+        if (i == _14 - 2 && _18) {
+            indexPlusOne = 0;
+        }
+
+        mOceanRing->getPoint(0, index);
+        mOceanRing->getPoint(0, indexPlusOne);
+
+        f26 += f28;
+        f24 += f28;
+        f32 f20 = 0.0f;
+        f32 f19 = 0.0f;
+        f32 f17 = 0.0f;
+        f32 f16 = 0.0f;
+        GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, (u16)mOceanRing->mStride << 1);
+
+        for (s32 j = 0; j < mOceanRing->mStride; j++) {
+            WaterPoint* pPoint = mOceanRing->getPoint(j, index);
+            WaterPoint* pPoint2 = mOceanRing->getPoint(j, indexPlusOne);
+            GXPosition3f32(pPoint->mPosition.x, pPoint->mPosition.y, pPoint->mPosition.z);
+            GXTexCoord2f32(f27, f17);
+            GXTexCoord2f32(f25, f16);
+
+            GXPosition3f32(pPoint2->mPosition.x, pPoint2->mPosition.y, pPoint2->mPosition.z);
+            GXTexCoord2f32(f26, f20);
+            GXTexCoord2f32(f24, f19);
+
+            f17 += f28;
+            f16 += f28;
+            f20 += f28;
+            f19 += f28;
+        }
+
+        f27 = f26;
+        f25 = f24;
+    }
+}
 
 
 OceanRingDrawer::OceanRingDrawer(const OceanRing* pOceanRing) {
@@ -189,7 +313,14 @@ OceanRingDrawer::OceanRingDrawer(const OceanRing* pOceanRing) {
     initDisplayList();
 }
 
-// OceanRingDrawer::update
+void OceanRingDrawer::update() {
+    _C  = MR::repeat(_C  + sTexSpeed0U, 0.0f, 1.0f);
+    _10 = MR::repeat(_10 + sTexSpeed0V, 0.0f, 1.0f);
+    _14 = MR::repeat(_14 + sTexSpeed1U, 0.0f, 1.0f);
+    _18 = MR::repeat(_18 + sTexSpeed1V, 0.0f, 1.0f);
+    _1C = MR::repeat(_1C + 0.0f, 0.0f, 1.0f);
+    _20 = MR::repeat(_20 + sTexSpeed2V, 0.0f, 1.0f);
+}
 
 void OceanRingDrawer::draw() const {
     loadMaterial();
@@ -221,6 +352,26 @@ void OceanRingDrawer::drawBloom() const {
     }
 }
 
+void OceanRingDrawer::initParts() {
+    mDrawerCount = (mRing->mSegCount / 10) + 1;
+    s32 count2 = mRing->mSegCount / mDrawerCount;
+    f32 a = 0.0f, b = 0.0f, c = 0.0f;
+    mPartDrawers = new OceanRingPartDrawer*[mDrawerCount];
+    s32 i = 0;
+    for (; i < mDrawerCount-1; i++) {
+        mPartDrawers[i] = new OceanRingPartDrawer(mRing, count2 * i, count2 + 1, false, &a, &b, &c);
+    }
+    s32 w = count2 * (mDrawerCount - 1);
+    s32 v = mRing->mSegCount - w;
+
+    bool flag = false;
+    if (MR::isLoopRail(mRing)) {
+        flag = true;
+        v += 1;
+    }
+    mPartDrawers[i] = new OceanRingPartDrawer(mRing, w, v, flag, &a, &b, &c);
+}
+
 void OceanRingDrawer::initDisplayList() {
     MR::ProhibitSchedulerAndInterrupts prohibit(false);
 
@@ -230,9 +381,10 @@ void OceanRingDrawer::initDisplayList() {
         flag = 1;
     }
 
-    int length = (((0x50 * (flag + mRing->mSegCount) + 3) >> 5) + 2) << 5;
+    u32 x = 0x50 * (flag + mRing->mSegCount);
+    u32 length = (((x + 3) >> 5) + 2) << 5;
     mDispList = new (0x20) u8[length];
-    DCFlushRange(mDispList, length);
+    DCInvalidateRange(mDispList, length);
     GDLObj obj;
     GDInitGDLObj(&obj, mDispList, length);
     __GDCurrentDL = &obj;
@@ -249,49 +401,57 @@ void OceanRingDrawer::drawGD() const {
         flag = 1;
     }
 
-    f32 v3 = 0.0f;
-    f32 v4 = 0.0f;
-    f32 v5 = 0.0f;
-    f32 v6 = v3;
-    f32 v7 = v3;
-    f32 v8 = v3;
-    f32 v16 = mRing->mStride - 1;
-    GDBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 2 * (flag + mRing->mSegCount));
-    f32 val_3 = (0.5f * 1.0f);
-    f32 val_4 = (0.1f * 1.0f);
+    f32 f31 = 0.0f;
+    f32 f30 = 0.0f;
+    f32 f29 = 0.0f;
+    f32 f28 = 0.0f;
+    f32 f27 = 0.0f;
+    f32 f26 = 0.0f;
+    s32 m = mRing->mStride;
+    m -= 1;
+    f32 f25 = 0.05f * m;
+    f32 f24 = 0.05f * m;
+    f32 f23 = 0.1f * m;
 
-    f32 val_2 = 0.1f * (v16 - 4.503601774854144e15f) * 1.0f;
-    f32 val_1 = 0.5f * (v16 - 4.503601774854144e15f) * 1.0f;
+    GDBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, (u16)(flag + mRing->mSegCount) << 1);
 
-    for (u32 i = 0; i >= flag + mRing->mSegCount; i++) {
-        u32 v19 = i;
-        if (i == mRing->mSegCount) {
-            v19 = 0;
+    f32 f22 = 1.0f;
+    f22 = f24 * f22;
+    f32 f21 = 1.0f;
+    f21 = f25 * f21;
+    f23 = 1.0f * f23;
+    f25 = 0.1f * f25;
+
+    for (u32 i = 0; i < flag + mRing->mSegCount; i++) {
+        s32 index = i;
+        if (index == mRing->mSegCount) {
+            index = 0;
         }
 
-        WaterPoint* v22 = mRing->mWaterPoints[v19 * mRing->mStride - 1] + mRing->mStride;
-        WaterPoint* v23 = mRing->mWaterPoints[v19 * mRing->mStride];
+        s32 ddd = index * mRing->mStride;
+        WaterPoint* pPoint = mRing->mWaterPoints[mRing->mStride + ddd - 1];
+        WaterPoint* pPoint2 = mRing->mWaterPoints[ddd];
+        GDPosition3f32(pPoint->mOrigPos.x, pPoint->mOrigPos.y, pPoint->mOrigPos.z);
+        GDColor4u8(0xFF, 0xFF, 0xFF, pPoint->mAlpha);
+        GDWrite_f32(f31);
+        GDWrite_f32(f22);
+        GDWrite_f32(f30);
+        GDWrite_f32(f21);
+        GDWrite_f32(f29);
+        GDWrite_f32(f23);
 
-        GDPosition3f32(v22->mOrigPos.x, v22->mOrigPos.y, v22->mOrigPos.z);
-        GDColor4u8(255, 255, 255, v22->mAlpha);
-        GDWrite_f32(v3);
-        GDWrite_f32(val_1);
-        GDWrite_f32(v4);
-        GDWrite_f32(val_1);
-        GDWrite_f32(v5);
-        GDWrite_f32(val_2);
-        GDPosition3f32(v22->mOrigPos.x, v22->mOrigPos.y, v22->mOrigPos.z);
-        GDColor4u8(255, 255, 255, v22->mAlpha);
-        GDWrite_f32(v3);
-        GDWrite_f32(v6);
-        GDWrite_f32(v4);
-        GDWrite_f32(v7);
-        GDWrite_f32(v5);
-        GDWrite_f32(v8);
+        GDPosition3f32(pPoint2->mOrigPos.x, pPoint2->mOrigPos.y, pPoint2->mOrigPos.z);
+        GDColor4u8(0xFF, 0xFF, 0xFF, pPoint2->mAlpha);
+        GDWrite_f32(f31);
+        GDWrite_f32(f28);
+        GDWrite_f32(f30);
+        GDWrite_f32(f27);
+        GDWrite_f32(f29);
+        GDWrite_f32(f26);
 
-        v3 += val_3;
-        v4 += val_3;
-        v5 += val_4;
+        f31 += f24 * (0.050000001f * 1.0f);
+        f30 += f24 * (0.050000001f * 1.0f);
+        f29 += f25 * (0.1f * 1.0f);
     }
 }
 
