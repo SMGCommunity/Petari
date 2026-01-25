@@ -16,6 +16,7 @@
 #include "Game/Util/Color.hpp"
 #include "Game/Util/DemoUtil.hpp"
 #include "Game/Util/DirectDraw.hpp"
+#include "Game/Util/DirectDrawUtil.hpp"
 #include "Game/Util/DrawUtil.hpp"
 #include "Game/Util/EffectUtil.hpp"
 #include "Game/Util/EventUtil.hpp"
