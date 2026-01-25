@@ -103,7 +103,8 @@ public:
     void setStatus(u32 status) { mStatus |= status; }
     void clearStatus(u32 status) { mStatus &= ~status; }
     u32 checkStatus(u32 status) const { return (mStatus & status); }
-    bool checkFlag(u32 flag) const NO_INLINE { return !!(mpRes->getDyn()->getFlag() & flag); }
+    /* SMG1 change -- returns u32 instead of bool */
+    u32 checkFlag(u32 flag) const NO_INLINE { return (mpRes->getDyn()->getFlag() & flag); }
     u8 getResourceManagerID() const { return mResMgrID; }
     u8 getGroupID() const { return mGroupID; }
     u8 getDrawTimes() const { return mDrawTimes; }
