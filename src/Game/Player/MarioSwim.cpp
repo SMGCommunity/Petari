@@ -35,7 +35,6 @@ namespace {
         1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f,
     };
 
-    f32 cWeightTableSP[] = {0.0f, 0.0f, 0.75f, 0.25f};
     f32 cSwimWeightTable[] = {0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f};
     f32 cAnimSpeeds[4] = {1.0f, 1.0f, 1.0f, 1.0f};
     f32 cLimitAngleSink = 0.0f;
@@ -44,6 +43,7 @@ namespace {
     f32 cUpperAngleWait = 0.0f;
     f32 cWaterSurfaceRange = 160.0f;
     f32 cTurnMotionSpeed = 5.0f;
+    
 }  // namespace
 
 inline f32 getSpecialNumber() {
@@ -1237,6 +1237,7 @@ void MarioSwim::flowOnWave(f32 unused) {
 }
 
 void MarioSwim::decideVelocity() {
+    static const f32 cWeightTableSP[] = {0.0f, 0.0f, 0.75f, 0.25f};
     if (mRingDashTimer != 0) {
         return;
     }
@@ -3250,5 +3251,4 @@ void dummyFunction() {
     cFrontAccSpin[0] = 1.0f;
     cFrontAccSpinSurface[0] = 1.0f;
     cWeightTable[0] = 1.0f;
-    cWeightTableSP[0] = 1.0f;
 };
