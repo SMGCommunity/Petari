@@ -8,7 +8,7 @@ void GXTexCoord2f32(f32, f32);
 
 u32 mVtxMode;
 u32 mLightingFlag;
-u16 lbl_806B7058;
+u16 mLightingMask;
 
 namespace MR {
     void ddSetVtxFormat(u32 format) {
@@ -36,12 +36,11 @@ namespace MR {
             GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_CLR0, GX_POS_XYZ, GX_RGBA8, 0);
         }
         if (mLightingFlag != 0) {
-            ddLightingOn(lbl_806B7058);
+            ddLightingOn(mLightingMask);
         } else {
             ddLightingOff();
         }
         ddChangeTev();
-        return;
     }
 
     void ddChangeTev() {
@@ -73,10 +72,8 @@ namespace MR {
                 GXSetNumTevStages(1);
                 GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR0A0);
                 GXSetTevOp(GX_TEVSTAGE0, GX_PASSCLR);
-            }
-              
+            }    
         }
-        return;
     }
 
     void ddSendVtxData(const TVec3f& rVec1, const TVec3f& rVec2, const TVec2f& rVec3) {
@@ -98,22 +95,20 @@ namespace MR {
 
     void ddLightingOn(u16 light) {
         mLightingFlag = 1;
-        lbl_806B7058 = light;
+        mLightingMask = light;
         if ((mVtxMode & 4) != 0) {
-            GXSetChanCtrl(GX_COLOR0A0, GX_TRUE, GX_SRC_VTX, GX_SRC_VTX, lbl_806B7058, GX_DF_CLAMP, GX_AF_NONE);
-            return;
+            GXSetChanCtrl(GX_COLOR0A0, GX_TRUE, GX_SRC_VTX, GX_SRC_VTX, mLightingMask, GX_DF_CLAMP, GX_AF_NONE);
+        } else {
+            GXSetChanCtrl(GX_COLOR0A0, GX_TRUE, GX_SRC_REG, GX_SRC_REG, mLightingMask, GX_DF_CLAMP, GX_AF_NONE);
         }
-        GXSetChanCtrl(GX_COLOR0A0, GX_TRUE, GX_SRC_REG, GX_SRC_REG, lbl_806B7058, GX_DF_CLAMP, GX_AF_NONE);
-        return;
     }
 
     void ddLightingOff() {
         mLightingFlag = 0;
-          if ((mVtxMode & 4) != 0) {
+        if ((mVtxMode & 4) != 0) {
             GXSetChanCtrl(GX_COLOR0A0, GX_FALSE, GX_SRC_VTX, GX_SRC_VTX, GX_LIGHT_NULL, GX_DF_CLAMP, GX_AF_NONE);
-            return;
+        } else {
+            GXSetChanCtrl(GX_COLOR0A0, GX_FALSE, GX_SRC_REG, GX_SRC_REG, GX_LIGHT_NULL, GX_DF_CLAMP, GX_AF_NONE);
         }
-        GXSetChanCtrl(GX_COLOR0A0, GX_FALSE, GX_SRC_REG, GX_SRC_REG, GX_LIGHT_NULL, GX_DF_CLAMP, GX_AF_NONE);
-        return;
     }
 };  // namespace MR
