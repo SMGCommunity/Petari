@@ -248,6 +248,8 @@ cflags_jsys = [
     "-str reuse",
     "-enc SJIS",
     "-use_lmw_stmw off",
+    "-sdata 4",
+    "-sdata2 4",
     "-i include",
     "-i libs/JSystem/include",
     "-i libs/RVL_SDK/include",
