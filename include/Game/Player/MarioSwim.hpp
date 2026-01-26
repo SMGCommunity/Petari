@@ -43,7 +43,7 @@ public:
 
 
     bool checkWaterCube(bool);
-    void onSurface();
+    void onSurface() NO_INLINE;
     void doJetJump(u8);
     void updateLifeByTime();
     bool surfacePaddle();
@@ -163,7 +163,7 @@ public:
     /* 0x05C */ f32 _5C;
     /* 0x060 */ TVec3f _60;
     /* 0x06C */ TVec3f mUpVec;
-    /* 0x078 */ u8 _78;
+    /* 0x078 */ bool _78;
     /* 0x07A */ u16 _7A;
     /* 0x07C */ u16 _7C;
     /* 0x080 */ f32 _80;
