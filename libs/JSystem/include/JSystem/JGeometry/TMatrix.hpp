@@ -228,7 +228,13 @@ namespace JGeometry {
             this->mMtx[2][2] = z;
         }
         void setRotate(const TVec3f&, f32);
-        void setRotate(const TVec3f&, const TVec3f&);
+        void setRotate(const TVec3f& v1, const TVec3f& v2) {
+            // warning, does not match because of the quaternion rotation inline
+            // though logic is correct.
+            TQuat4f q;
+            q.setRotate(v1, v2);
+            setRotateQuaternionInline(q);
+        }
 
         void mult33(TVec3f&) const;
         void mult33(const TVec3f& rDst, TVec3f& rSrc) const;

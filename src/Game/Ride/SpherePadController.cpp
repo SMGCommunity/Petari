@@ -2,19 +2,10 @@
 #include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/GamePadUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
-#include "JSystem/JGeometry/TMatrix.hpp"
-#include "JSystem/JGeometry/TQuat.hpp"
-#include "JSystem/JGeometry/TUtil.hpp"
-#include "revolution/wpad.h"
-
-template <>
-void TRot3f::setRotate(const TVec3f& v1, const TVec3f& v2) {
-    // warning, does not match because of the quaternion rotation inline
-    // though logic is correct.
-    TQuat4f q;
-    q.setRotate(v1, v2);
-    this->setRotateQuaternionInline(q);
-}
+#include <JSystem/JGeometry/TMatrix.hpp>
+#include <JSystem/JGeometry/TQuat.hpp>
+#include <JSystem/JGeometry/TUtil.hpp>
+#include <revolution/wpad.h>
 
 SpherePadController::SpherePadController() : SphereController() {}
 
