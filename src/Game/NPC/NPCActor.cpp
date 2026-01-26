@@ -12,76 +12,76 @@ namespace NrvNPCActor {
 
 NPCActorCaps::NPCActorCaps(const char* pName) {
     _0 = pName;
-    _C = 0;
-    _D = 0;
-    _28 = 0;
-    mConnectsToScene = 0;
-    mUseLightCtrl = 0;
-    mUseEffect = 0;
-    mUseSounds = 0;
-    mCanBeHitByShell = 0;
-    _35 = 0;
-    _36 = 0;
-    mUsesNerves = 0;
-    mUseHitSensors = 0;
-    _38 = 0;
-    _5C = 0;
-    mUseShadow = 0;
-    mUseRail = 0;
-    _65 = 1;
-    _66 = 0;
-    _67 = 0;
-    _3C = 50.0f;
+    mMakeActor = false;
+    mHostIO = false;
+    mInterpole = false;
+    mConnectTo = false;
+    mLightCtrl = false;
+    mEffect = false;
+    mSound = false;
+    mAttribute = false;
+    mPosition = false;
+    mLodCtrl = false;
+    mNerve = false;
+    mSensor = false;
+    mBinder = false;
+    mShadow = false;
+    _5D = false;
+    mRailRider = false;
+    mSwitchDead = true;
+    mSwitchAppear = false;
+    _67 = false;
+    mBinderSize = 50.0f;
     mSensorSize = 50.0f;
-    _60 = 50.0f;
-    _80 = 80.0f;
-    _30 = 4;
+    mShadowSize = 50.0f;
+    mPointerSize = 80.0f;
+    mSoundSize = 4;
     mSceneConnectionType = 0;
-    mUseStarPointer = 0;
+    mPointer = false;
     mStarPointerOffs.x = 0.0f;
     mStarPointerOffs.y = 0.0f;
     mStarPointerOffs.z = 0.0f;
-    mInitModel = 0;
-    _E = 0;
-    _F = 0;
+    mModel = false;
+    mMessage = false;
+    _F = false;
     mMessageOffset.x = 0.0f;
     mMessageOffset.y = 150.0f;
     mMessageOffset.z = 0.0f;
-    mSensorOffset.set(0.0f, 50.0f, 0.0f);
+    mSensorOffset.set< f32 >(0.0f, 50.0f, 0.0f);
     _10 = pName;
-    mTalkMtx = 0;
-    mTalkJointName = 0;
+    mTalkMtx = nullptr;
+    mTalkJointName = nullptr;
     mObjectName = pName;
-    _44 = 0;
-    _58 = 1;
+    mSensorJoint = nullptr;
+    mSensorMax = 1;
     mWaitNerve = &NrvNPCActor::NPCActorNrvWait::sInstance;
     mTalkNerve = &NrvNPCActor::NPCActorNrvTalk::sInstance;
     mReactionNerve = &NrvNPCActor::NPCActorNrvReaction::sInstance;
-    _70 = 0;
-    _6C = 0;
+    _70 = nullptr;
+    _6C = nullptr;
 }
 
 void NPCActorCaps::setDefault() {
-    _C = 1;
-    _D = 1;
-    _28 = 1;
-    mConnectsToScene = 1;
-    mUseLightCtrl = 1;
-    mUseEffect = 1;
-    mUseSounds = 1;
-    mCanBeHitByShell = 1;
-    _35 = 1;
-    _36 = 1;
-    mUsesNerves = 1;
-    mUseHitSensors = 1;
-    _38 = 1;
-    _5C = 1;
-    mUseRail = 1;
-    _65 = 1;
-    _66 = 1;
-    mUseStarPointer = 1;
-    mInitModel = 1;
-    _E = 1;
+    mMakeActor = true;
+    mHostIO = true;
+    mInterpole = true;
+    mConnectTo = true;
+    mLightCtrl = true;
+    mEffect = true;
+    mSound = true;
+    mAttribute = true;
+    mPosition = true;
+    mLodCtrl = true;
+    mNerve = true;
+    mSensor = true;
+    mBinder = true;
+    mShadow = true;
+    mRailRider = true;
+    mSwitchDead = true;
+    mSwitchAppear = true;
+    mPointer = true;
+    mModel = true;
+    mMessage = true;
 }
 
 void NPCActorCaps::setIndirect() {
@@ -89,10 +89,10 @@ void NPCActorCaps::setIndirect() {
 }
 
 NPCActor::NPCActor(const char* pName) : LiveActor(pName) {
-    mLodCtrl = 0;
-    mMsgCtrl = 0;
-    _94 = 0;
-    _98 = 0;
+    mLodCtrl = nullptr;
+    mMsgCtrl = nullptr;
+    _94 = nullptr;
+    _98 = nullptr;
     _9C = 0;
     _D8 = 0;
     _D9 = 0;
@@ -120,8 +120,8 @@ NPCActor::NPCActor(const char* pName) : LiveActor(pName) {
     //_100 = 0;
     //_104 = 0;
     //_108 = 0;
-    _11C = 0;
-    _120 = 0;
+    _11C = nullptr;
+    _120 = nullptr;
     _10C = 2.0f;
     _110 = 0.1f;
     _114 = 0.08f;
@@ -134,7 +134,7 @@ NPCActor::NPCActor(const char* pName) : LiveActor(pName) {
     _138 = 0;
     _13C = 0;
     //_140 = 0;
-    _144 = 0;
+    mDelegator = nullptr;
     //_148 = 0;
     _158 = 0x400;
     _A0.set(0.0f, 0.0f, 0.0f, 1.0f);
@@ -165,8 +165,8 @@ void NPCActor::addArchive(NameObjArchiveListCollector* pCollector, const NPCActo
         pCollector->addArchive(rItem.mActor);
     }
 
-    if (!MR::isNullOrEmptyString(rItem.mArchive) && MR::isNPCItemFileExist(rItem.mArchive)) {
-        pCollector->addArchive(rItem.mArchive);
+    if (!MR::isNullOrEmptyString(rItem.mGoods1) && MR::isNPCItemFileExist(rItem.mGoods1)) {
+        pCollector->addArchive(rItem.mGoods1);
     }
 }
 

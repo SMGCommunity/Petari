@@ -14,13 +14,13 @@ void SignBoard::init(const JMapInfoIter& rIter) {
     NPCActorCaps caps("Signboard");
     caps.setDefault();
     caps.mWaitNerve = &NrvSignBoard::SignBoardNrvWait::sInstance;
-    caps._60 = 30.0f;
+    caps.mShadowSize = 30.0f;
     caps.mSensorSize = 100.0f;
     caps.mSensorOffset.x = 0.0f;
     caps.mSensorOffset.y = 130.0f;
     caps.mSensorOffset.z = 0.0f;
-    caps.mUseLightCtrl = false;
-    caps._38 = 0;
+    caps.mLightCtrl = false;
+    caps.mBinder = 0;
     initialize(rIter, caps);
     getSensor("Body")->setType(127);
     FollowCollisionArea* area = new FollowCollisionArea(TVec3f(130.0f, 160.0f, 20.0f), getBaseMtx(), 80.0f);

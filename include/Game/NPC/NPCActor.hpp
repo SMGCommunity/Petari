@@ -20,56 +20,47 @@ public:
     void setIndirect();
 
     const char* _0;
-    bool mInitModel;          // 0x4
+    bool mModel;          // 0x4
     const char* mObjectName;  // 0x8
-    u8 _C;
-    u8 _D;
-    u8 _E;
-    u8 _F;
+    bool mMakeActor; // 0xC
+    bool mHostIO; // 0xD
+    bool mMessage; // 0xE
+    bool _F;
     const char* _10;
     TVec3f mMessageOffset;       // 0x14
     MtxPtr mTalkMtx;             // 0x20
     const char* mTalkJointName;  // 0x24
-    u8 _28;
-    bool mConnectsToScene;  // 0x29
-    bool mUseLightCtrl;     // 0x2A
-    bool mUseEffect;        // 0x2B
-    bool mUseSounds;        // 0x2C
-    u8 _2D;
-    u8 _2E;
-    u8 _2F;
-    u32 _30;
-    bool mCanBeHitByShell;  // 0x34
-    u8 _35;
-    u8 _36;
-    bool mUsesNerves;  // 0x37
-    u8 _38;
-    u8 _39;
-    u8 _3A;
-    u8 _3B;
-    f32 _3C;
-    bool mUseHitSensors;  // 0x40
-    u8 _41;
-    u8 _42;
-    u8 _43;
-    const char* _44;
+    bool mInterpole;        // 0x28
+    bool mConnectTo;        // 0x29
+    bool mLightCtrl;        // 0x2A
+    bool mEffect;           // 0x2B
+    bool mSound;            // 0x2C
+    s32 mSoundSize;         // 0x30
+    bool mAttribute;  // 0x34
+    bool mPosition;
+    bool mLodCtrl;
+    bool mNerve;  // 0x37
+    bool mBinder;
+    f32 mBinderSize;
+    bool mSensor;  // 0x40
+    const char* mSensorJoint;
     f32 mSensorSize;       // 0x48
     TVec3f mSensorOffset;  // 0x4C
-    u32 _58;
-    u8 _5C;
-    bool mUseShadow;  // 0x5D
+    s32 mSensorMax;
+    bool mShadow;  // 0x5C
+    u8 _5D;
     u8 _5E;
     u8 _5F;
-    f32 _60;
-    bool mUseRail;  // 0x64
-    u8 _65;
-    u8 _66;
+    f32 mShadowSize;
+    bool mRailRider;  // 0x64
+    bool mSwitchDead;
+    bool mSwitchAppear;
     u8 _67;
-    bool mUseStarPointer;  // 0x68
+    bool mPointer;  // 0x68
     const char* _6C;
     const char* _70;
     TVec3f mStarPointerOffs;  // 0x74
-    f32 _80;
+    f32 mPointerSize;
     u32 mSceneConnectionType;  // 0x84
     Nerve* mWaitNerve;         // 0x88
     Nerve* mTalkNerve;         // 0x8C
@@ -196,7 +187,7 @@ public:
     const char* _138;
     const char* _13C;
     AnimScaleController* mScaleController;  // 0x140
-    u32 _144;
+    JointControlDelegator< NPCActor >* mDelegator;  // 0x144
     Nerve* mCurNerve;       // 0x148
     Nerve* mWaitNerve;      // 0x14C
     Nerve* mTalkNerve;      // 0x150

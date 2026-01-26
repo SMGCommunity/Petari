@@ -54,9 +54,9 @@ void HoneyBee::init(const JMapInfoIter& rIter) {
     s32 arg;
     NPCActorCaps caps = "HoneyBee";
     caps.setDefault();
-    caps._38 = 0;
+    caps.mBinder = 0;
     caps._6C = "Center";
-    caps._44 = "Center";
+    caps.mSensorJoint = "Center";
     caps.mSensorSize = 70.0f;
     caps.mSensorOffset.x = 0.0f;
     caps.mSensorOffset.y = -20.0f;

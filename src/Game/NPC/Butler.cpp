@@ -70,13 +70,13 @@ void Butler::init(const JMapInfoIter& rIter) {
     MR::getJMapInfoArg0NoInit(rIter, &_170);
     NPCActorCaps caps = "Butler";
     caps.setDefault();
-    caps._44 = "Body";
+    caps.mSensorJoint = "Body";
     caps.mSensorSize = 50.0f;
     caps.mSensorOffset.x = 0.0f;
     caps.mSensorOffset.y = 0.0f;
     caps.mSensorOffset.z = 0.0f;
-    caps.mUseShadow = true;
-    caps._38 = 0;
+    caps._5D = true;
+    caps.mBinder = 0;
     NPCActor::initialize(rIter, caps);
     setDefaults2();
     _13C = "Spin";
