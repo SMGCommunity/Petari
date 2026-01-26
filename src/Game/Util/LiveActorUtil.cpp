@@ -10,7 +10,6 @@
 #include "Game/NameObj/NameObjExecuteHolder.hpp"
 #include "Game/System/ResourceHolder.hpp"
 #include "Game/Util/MapUtil.hpp"
-#include "Game/Util/MathUtil.hpp"
 #include "Game/Util/ModelUtil.hpp"
 #include <JSystem/JUtility/JUTNameTab.hpp>
 #include <cstdio>
