@@ -1950,7 +1950,7 @@ config.libs = [
             Object(NonMatching, "Game/Ride/SlingShooter.cpp"),
             Object(NonMatching, "Game/Ride/SpaceCocoon.cpp"),
             Object(NonMatching, "Game/Ride/SphereAccelSensorController.cpp"),
-            Object(NonMatching, "Game/Ride/SphereController.cpp"),
+            Object(Matching, "Game/Ride/SphereController.cpp"),
             Object(NonMatching, "Game/Ride/SpherePadController.cpp"),
             Object(Matching, "Game/Ride/SurfRay.cpp"),
             Object(Matching, "Game/Ride/SurfRayTutorial.cpp"),

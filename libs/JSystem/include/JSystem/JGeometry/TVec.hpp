@@ -176,8 +176,25 @@ namespace JGeometry {
 
     template <>
     struct TVec3< f32 > : public Vec {
-        inline TVec3(const Vec& vec) NO_INLINE { setTVec3f(&vec.x, &x); }
+#ifdef __MWERKS__
+        TVec3(const Vec& vec) {
+            const register Vec* v_a = &vec;
+            register Vec* v_b = this;
 
+            register f32 b_x;
+            register f32 a_x;
+
+            asm {
+                psq_l a_x, 0(v_a), 0, 0
+                lfs b_x, 8(v_a)
+                psq_st a_x, 0(v_b), 0, 0
+                stfs b_x, 8(v_b)
+            }
+            ;
+        }
+#else
+        TVec3(const Vec& vec);
+#endif
 #ifdef __MWERKS__
         // Used inlined and non-inlined?
         TVec3(const TVec3< f32 >& vec) {

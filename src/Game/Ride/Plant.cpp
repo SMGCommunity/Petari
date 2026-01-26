@@ -28,10 +28,6 @@
 #include <revolution/types.h>
 #include <revolution/wpad.h>
 
-namespace {
-    static const f32 hSin1 = 0.017453292f;  // sin(1.0f);
-}
-
 namespace NrvPlant {
     NEW_NERVE(PlantNrvWaitFar, Plant, WaitFar);
     NEW_NERVE(PlantNrvSeedWait, Plant, SeedWait);
@@ -366,8 +362,7 @@ void Plant::initLeaf() {
         mLeaves[leaf]->initWithoutIter();
         leafPos -= MR::getInterpolateValue(leafRatio, 100.0f, 300.0f);
 
-        // hey, "small angle approx" only works for SMALL ANGLES
-        f32 rand = hSin1 * MR::getRandom(90.0f, 270.0f);
+        f32 rand = PI_180 * MR::getRandom(90.0f, 270.0f);
         mtx.setRotateInline(TVec3f(0.0f, 1.0f, 0.0f), rand);
         mtx.mult(baseRotate, baseRotate);
     }

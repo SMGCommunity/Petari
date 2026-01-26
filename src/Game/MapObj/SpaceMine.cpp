@@ -6,11 +6,7 @@ namespace NrvSpaceMine {
     NEW_NERVE(HostTypeAppear, SpaceMine, Appear);
 };  // namespace NrvSpaceMine
 
-SpaceMine::SpaceMine(const char* pName) : MapObjActor(pName), mClippingRange(gZeroVec) {
-    _C4 = 1.0f;
-    _D4 = -1;
-    _D8 = 0;
-}
+SpaceMine::SpaceMine(const char* pName) : MapObjActor(pName), _C4(1.0f), mClippingRange(gZeroVec), _D4(-1), _D8(0) {}
 
 void SpaceMine::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);

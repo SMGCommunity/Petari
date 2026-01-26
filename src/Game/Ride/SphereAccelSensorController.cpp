@@ -1,8 +1,43 @@
 #include "Game/Ride/SphereAccelSensorController.hpp"
 #include "Game/Util/GamePadUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
-#include "JSystem/JMath/JMath.hpp"
-#include "revolution/wpad.h"
+#include <JSystem/JMath/JMATrigonometric.hpp>
+#include <JSystem/JMath/JMath.hpp>
+#include <revolution/wpad.h>
+
+namespace {
+    // sMinStableValue
+    // sMaxStableValue
+    // sLimitAccelValue
+    // sIsStableCount
+    // sDownAccelRate
+    // sAjustAvarageRate
+    // sStableRange
+    // sVerticalFreq
+    // sMinYAcc
+    // sMaxYAcc
+    static const f32 sCoreBaseDegreeYZ = 10.0f * PI_180;
+    static const f32 sCoreAccelDegreMargine = 5.0f * PI_180;
+    static const f32 sCoreAccelDegreeRange = 25.0f * PI_180;
+    static const f32 sCoreAccelDegreeRangeY = 25.0f * PI_180;
+    static const f32 sSubBaseDegreeYZ = 45.0f * PI_180;
+    static const f32 sSubAccelDegreMargine = 10.0f * PI_180;
+    static const f32 sSubAccelDegreeRange = 40.0f * PI_180;
+    static const f32 sSubAccelDegreeRangeY = 22.5f * PI_180;
+}  // namespace
+
+inline TVec2f getTrig(f32 angle) {
+    return TVec2f(JMath::sSinCosTable.cosLapRad(angle), JMath::sSinCosTable.sinLapRad(angle));
+}
+
+inline f32 diffAngleAbs(const TVec2f& v1, const TVec2f& v2) {
+    f32 orientation = v1.y * v2.x - v1.x * v2.y;
+    f32 angle = JMAAcosRadian(v1.dot(v2));
+    if (orientation < 0.0f) {
+        angle = -angle;
+    }
+    return angle;
+}
 
 SphereAccelSensorController::SphereAccelSensorController()
     : _58(0), _5C(0), _74(0), _78(0), _7C(0.15f), _80(1.0f), _84(1.7f), _88(2.5f), _8C(0), _90(0), _94(1.0f), _98(0.0f), _9C(0.0f), _A0(0.0f),
@@ -20,11 +55,7 @@ bool SphereAccelSensorController::testBrake() const {
     if (_B8 == 0) {
         return MR::testCorePadButtonA(WPAD_CHAN0);
     } else {
-        bool brake = false;
-        if (MR::testSubPadButtonZ(WPAD_CHAN0) || MR::testSubPadButtonC(WPAD_CHAN0)) {
-            brake = true;
-        }
-        return brake;
+        return MR::testSubPadButtonZ(WPAD_CHAN0) || MR::testSubPadButtonC(WPAD_CHAN0);
     }
 }
 
@@ -39,105 +70,54 @@ bool SphereAccelSensorController::doBrake() const {
 void SphereAccelSensorController::update(const TVec3f&) {}
 
 void SphereAccelSensorController::clacXY(f32* pX, f32* pY) {
-    // this cannot be properly completed until some specific
-    // table is made in J3DMtxBuffer.cpp
-    // https://decomp.me/scratch/L8lBc
+    // FIXME: regswaps and inlines
+    // https://decomp.me/scratch/vkqZ8
 
-    f32 d8;
-    if (_B8 == 0) {
-        d8 = 0.08726646f;  // 0.5f * sin(5.0f)
-    } else {
-        d8 = 0.1745329f;  // 1.0f * sin(1.0f)
-    }
-
-    f32 d5;
-    if (_B8 == 0) {
-        d5 = 0.4363323f;  // 2.5f * sin(1.0f)
-    } else {
-        d5 = 0.6981317f;  // 4.0f * sin(1.0f)
-    }
-
-    f32 d7;
-    if (_B8 == 0) {
-        d7 = 0.4363323f;  // 2.5f * sin(1.0f)
-    } else {
-        d7 = 0.3926991f;  // 2.25f * sin(1.0f)
-    }
-
-    f32 d4;
-    if (_B8 == 0) {
-        d4 = 0.1745329f;  // 1.0f * sin(1.0f)
-    } else {
-        d4 = 0.7853982f;  // 4.5f * sin(1.0f)
-    }
+    // these are probably individual inlines considering the multiple-load of _B8
+    f32 accelDegreMargine = _B8 == 0 ? sCoreAccelDegreMargine : sSubAccelDegreMargine;
+    f32 accelDegreeRange = _B8 == 0 ? sCoreAccelDegreeRange : sSubAccelDegreeRange;
+    f32 accelDegreeRangeY = _B8 == 0 ? sCoreAccelDegreeRangeY : sSubAccelDegreeRangeY;
+    f32 baseDegreeYZ = _B8 == 0 ? sCoreBaseDegreeYZ : sSubBaseDegreeYZ;
 
     TVec3f padAccel;
     getPadAcceleration(&padAccel);
 
-    f32 d6 = 0.0f;
+    f32 angleXY = 0.0f;
     TVec2f accelXY(padAccel.x, __fabsf(padAccel.y));
-
-    if (accelXY.dot(accelXY) > 0.0000038146973f) {
-        // if mag of accelXY > 0.002f
+    if (!isDeadZone(accelXY)) {
         MR::normalizeOrZero(&accelXY);
-        d6 = JMAAsinRadian(accelXY.x);
+        angleXY = JMAAsinRadian(accelXY.x);
     }
 
-    f32 d2 = 0.0f;
+    f32 angleYZ = 0.0f;
     TVec2f accelYZ(-padAccel.y, padAccel.z);
-    if (accelYZ.dot(accelYZ) > 0.0000038146973f) {
-        // if mag of accelYZ > 0.002f
+    if (!isDeadZone(accelYZ)) {
         MR::normalizeOrZero(&accelYZ);
-        d2 = d4;
-        if (d4 < 0.0f) {  // ... nice
-            d2 = -d4;
-        }
-
-        // this is the table in J3DMtxBuffer.cpp that
-        // needs to be completed to match this.
-
-        // "tableScaleValue" = 2607.5945; // 2048 / (4.5f * sin(1.0f))
-        TVec2f v2;
-        // v2.x = SOME_TABLE[(u32)(d2 * tableScaleValue)][1];
-        if (d4 >= 0.0f) {
-            // v2.y = SOME_TABLE[(u32)(d4 * tableScaleValue)][0];
-            v2.y = 1.0f;  // temp for now to get other code to match
-        } else {
-            // v2.y = -SOME_TABLE[(u32)(d4 * -tableScaleValue)][0];
-            v2.y = -1.0f;  // temp for now to get other code to match
-        }
-
-        // careful, accelYZ.y is normalized accel.z
-        // likewise accelYZ.x is normalized accel.y
-        d4 = accelYZ.y * v2.x - accelYZ.x * v2.y;
-        d2 = JMAAcosRadian(accelYZ.dot(v2));
-        if (d4 < 0.0f) {
-            d2 = -d2;
-        }
+        angleYZ = diffAngleAbs(accelYZ, getTrig(baseDegreeYZ));
     }
 
     f32 x;
-    if (d8 > __fabsf(d6)) {
+    if (__fabsf(angleXY) < accelDegreMargine) {
         x = 0.0f;
     } else {
-        if (d6 > 0.0f) {
-            d6 -= d8;
+        if (angleXY > 0.0f) {
+            angleXY -= accelDegreMargine;
         } else {
-            d6 += d8;
+            angleXY += accelDegreMargine;
         }
-        x = d6 / (d5 - d8);
+        x = angleXY / (accelDegreeRange - accelDegreMargine);
     }
 
     f32 y;
-    if (d8 > __fabsf(d2)) {
+    if (__fabsf(angleYZ) < accelDegreMargine) {
         y = 0.0f;
     } else {
-        if (d2 > 0.0f) {
-            d2 -= d8;
+        if (angleYZ > 0.0f) {
+            angleYZ -= accelDegreMargine;
         } else {
-            d2 += d8;
+            angleYZ += accelDegreMargine;
         }
-        y = d2 / (d7 - d8);
+        y = angleYZ / (accelDegreeRangeY - accelDegreMargine);
     }
 
     *pX = x;

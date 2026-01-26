@@ -111,9 +111,7 @@ namespace JMath {
     extern TAtanTable< 1024, f32 > sAtanTable;
     extern TAsinAcosTable< 1024, f32 > sAsinAcosTable;
 
-    inline f32 acosDegree(f32 x) {
-        return sAsinAcosTable.acosDegree(x);
-    }
+    inline f32 acosDegree(f32 x) { return sAsinAcosTable.acosDegree(x); }
 };  // namespace JMath
 
 // inline f32 JMASSin(u16 s) {
