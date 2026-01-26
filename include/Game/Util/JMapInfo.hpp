@@ -77,10 +77,17 @@ public:
         *pValueOut = *reinterpret_cast< const f32* >(pValue);
         return true;
     }
+    bool getValueFast(int entryIndex, int itemIndex, bool* pValueOut) const {
+        const JMapItem* pItem = &mData->mItems[itemIndex];
+        const char* pValue = getEntryAddress(mData, mData->mDataOffset, entryIndex) + pItem->mOffsData;
+        *pValueOut = (*reinterpret_cast< const u32* >(pValue) & pItem->mMask) != 0;
+        return true;
+    }
+
     JMapInfoIter findElementBinary(const char*, const char*) const;
 
     template < typename T >
-    const bool getValue(int entryIndex, const char* pKey, T* pValueOut) const NO_INLINE {
+    const bool getValue(int entryIndex, const char* pKey, T* pValueOut) const {
         s32 itemIndex = searchItemInfo(pKey);
         if (itemIndex < 0) {
             return false;
@@ -134,14 +141,7 @@ public:
 
     template < typename T >
     bool getValue(const char* pKey, T* pValueOut) const {
-        const JMapInfo* info = mInfo;
-        s32 entryIndex = mIndex;
-
-        s32 itemIndex = info->searchItemInfo(pKey);
-        if (itemIndex < 0) {
-            return false;
-        }
-        return info->getValueFast(entryIndex, itemIndex, pValueOut);
+        return mInfo->getValue(mIndex, pKey, pValueOut);
     }
 
     const JMapInfo* mInfo;  // 0x0
