@@ -11,7 +11,11 @@ namespace NrvLavaGeyser {
     NEW_NERVE(LavaGeyserNerveShootDown, LavaGeyser, ShootDown);
 }  // namespace NrvLavaGeyser
 
-LavaGeyser::LavaGeyser(const char* pName) : LiveActor(pName), _8c(180), _90(180), _94(0.0f, 0.0f, 0.0f), _A0(0.0f, 1.0f, 0.0f) {
+LavaGeyser::LavaGeyser(const char* pName) : LiveActor(pName) {
+    _8c = 180;
+    _90 = 180;
+    _94.set(0.0f, 0.0f, 0.0f);
+    _A0.set(0.0f, 1.0f, 0.0f);
     _B0 = 0.0f;
     _AC = 0.0f;
     _B8 = 0.0f;
