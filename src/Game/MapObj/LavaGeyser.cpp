@@ -1,16 +1,4 @@
 #include "Game/MapObj/LavaGeyser.hpp"
-#include "Game/LiveActor/LiveActor.hpp"
-#include "Game/Util/ActorSensorUtil.hpp"
-#include "Game/Util/ActorSwitchUtil.hpp"
-#include "Game/Util/EffectUtil.hpp"
-#include "Game/Util/JMapInfo.hpp"
-#include "Game/Util/JMapUtil.hpp"
-#include "Game/Util/JointUtil.hpp"
-#include "Game/Util/LiveActorUtil.hpp"
-#include "Game/Util/ObjUtil.hpp"
-#include "Game/Util/SoundUtil.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
-#include "revolution/types.h"
 
 #define DEG_TO_RAD_0_1 0.017453292f
 
@@ -24,7 +12,7 @@ namespace NrvLavaGeyser {
 }  // namespace NrvLavaGeyser
 
 LavaGeyser::LavaGeyser(const char* pName)
-    : LiveActor(pName), _8c(180), _90(180), _94(0.0f, 0.0f, 0.0f), _A0(0.0f, 1.0f, 0.0f), _B0(0.0f), _AC(0.0f), _B4(0.0f), _B8(0.0f) {
+    : LiveActor(pName), _8c(180), _90(180), _94(0.0f, 0.0f, 0.0f), _A0(0.0f, 1.0f, 0.0f), _B0(0.0f), _AC(0.0f), _B8(0.0f), _B4(0.0f) {
 }  // last floats are loaded out of order, need to figure out why
 
 void LavaGeyser::init(const JMapInfoIter& iter) {
@@ -39,12 +27,12 @@ void LavaGeyser::init(const JMapInfoIter& iter) {
     MR::getJMapInfoArg0NoInit(iter, &_8c);
     MR::getJMapInfoArg1NoInit(iter, &_90);
     MR::useStageSwitchReadA(this, iter);
-    initModelManagerWithAnm("LavaGeyser", nullptr, false);  // LavaGeyser string is stored externally in LavaGalaxyParts
+    initModelManagerWithAnm("LavaGeyser", nullptr, false);
     MR::startBtk(this, "LavaGeyser");
     MR::setBtkFrameAtRandom(this);
     MR::hideModel(this);
     MR::connectToSceneMapObj(this);
-    initHitSensor(3);  // someday, I'd like to know what that three means
+    initHitSensor(3);
     MR::addHitSensorCallbackMapObj(this, "attack", 1, mScale.y * 100.0f);
     initEffectKeeper(0, nullptr, false);
     initSound(4, false);
@@ -56,6 +44,43 @@ void LavaGeyser::init(const JMapInfoIter& iter) {
         initNerve(&NrvLavaGeyser::LavaGeyserNrvWait::sInstance);
     }
     makeActorAppeared();
+}
+
+void LavaGeyser::startClipped() {
+    LiveActor::startClipped();
+    MR::forceDeleteEffectAll(this);
+    if (!isNerve(&NrvLavaGeyser::LavaGeyserNrvWaitSwitch::sInstance)) {
+        setNerve(&NrvLavaGeyser::LavaGeyserNrvWait::sInstance);
+    }
+}
+
+void LavaGeyser::updateHitSensor(HitSensor* pSensor) {
+    TVec3f cPos = *MR::getPlayerCenterPos();
+    cPos -= mPosition;
+    f32 v1 = _A0.dot(cPos);
+    TVec3f v2 = _94;
+    v2 -= mPosition;
+    f32 v3 = _A0.dot(v2) + -100.f;
+    if (v3 < 0.0f) {
+        pSensor->mPosition.set(_94);
+        return;
+    }
+    f32 v4 = 0.f;
+    if (v1 >= 0.f) {
+        if (v1 > v3) {
+            v4 = v3;
+        } else {
+            v4 = v1;
+        }
+    }
+    pSensor->mPosition.set(mPosition);
+    TVec3f v5 = _A0;
+    v5.mult(v4);
+    pSensor->mPosition.addInLine(v5);
+}
+
+void LavaGeyser::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
+    MR::sendMsgEnemyAttackFireStrong(pReceiver, pSender);
 }
 
 void LavaGeyser::exeWaitSwitch() {

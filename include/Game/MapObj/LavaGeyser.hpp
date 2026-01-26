@@ -1,15 +1,16 @@
 #pragma once
 
+#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/LiveActor/Nerve.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
 
 class LavaGeyser : public LiveActor {
 public:
     LavaGeyser(const char*);
 
     virtual void init(const JMapInfoIter&);
-
+    virtual void startClipped();
+    virtual void updateHitSensor(HitSensor*);
+    virtual void attackSensor(HitSensor*, HitSensor*);
 
     /* 8C */ s32 _8c;
     /* 90 */ s32 _90;
