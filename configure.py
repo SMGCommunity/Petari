@@ -3003,7 +3003,7 @@ config.libs = [
             Object(NonMatching, "JSystem/JAudio2/JASCallback.cpp"),
             Object(NonMatching, "JSystem/JAudio2/JASHeapCtrl.cpp"),
             Object(NonMatching, "JSystem/JAudio2/JASResArcLoader.cpp"),
-            Object(Matching, "JSystem/JAudio2/JASProbe.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASProbe.cpp"),
             Object(NonMatching, "JSystem/JAudio2/JASReport.cpp"),
             Object(NonMatching, "JSystem/JAudio2/JASCmdStack.cpp"),
             Object(NonMatching, "JSystem/JAudio2/JASTrack.cpp"),
