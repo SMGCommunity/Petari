@@ -61,8 +61,6 @@ Butler::Butler(const char* pName) : NPCActor(pName) {
     _171 = false;
 }
 
-NPCActor::~NPCActor() {}
-
 Butler::~Butler() {}
 
 void Butler::init(const JMapInfoIter& rIter) {

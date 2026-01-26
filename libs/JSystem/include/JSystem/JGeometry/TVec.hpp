@@ -309,7 +309,10 @@ namespace JGeometry {
 
         TVec3 operator-() const;
 
-        bool operator==(const TVec3&) const;
+        bool operator==(const TVec3& rVec) const {
+            return TUtil< f32 >::epsilonEquals(x, rVec.x, 0.0000038146973f) && TUtil< f32 >::epsilonEquals(y, rVec.y, 0.0000038146973f) &&
+                   TUtil< f32 >::epsilonEquals(z, rVec.z, 0.0000038146973f);
+        }
 
         void mul(const TVec3< f32 >& a, const TVec3< f32 >& b) { mulInternal(&a.x, &b.x, &this->x); }
 
@@ -642,6 +645,9 @@ namespace JGeometry {
         inline void set(T _x, T _y, T _z, T _w) {
             TVec4< T >::set(_x, _y, _z, _w);
         }
+#else 
+        template < typename T >
+        inline void set(T _x, T _y, T _z, T _w);
 #endif
 
         /* General operations */
