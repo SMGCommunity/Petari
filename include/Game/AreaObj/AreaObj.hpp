@@ -62,6 +62,8 @@ public:
     void entry(AreaObj*);
     AreaObj* find_in(const TVec3f&) const;
 
+    inline AreaObj* getArray(int index) {return mArray[index];}
+
     MR::Vector< MR::AssignableArray< AreaObj* > > mArray;  // 0xC
     s32 _18;
 };
