@@ -16,9 +16,9 @@ namespace {
     const f32 sTexSpeed1U = -0.002f;
     const f32 sTexSpeed1V = 0.001f;
     const f32 sTexSpeed2V = 0.003f;
-    const f32 sIndirectScale = 0.0f;
-    const f32 sBloomCameraOffsetZ = 0.0f;
-    const f32 sDistancePartDrawBloom = 0.0f;
+    const f32 sIndirectScale = 0.1f;
+    const f32 sBloomCameraOffsetZ = 3000.0f;
+    const f32 sDistancePartDrawBloom = 4000.0f;
     const f32 sBloomCameraUpMin = 0.0f;
     const f32 sBloomCameraUpMax = 0.0f;
     const f32 sBloomCameraDepthMin = 0.0f;
@@ -31,13 +31,10 @@ namespace {
 }
 
 
-/* functionally matches, tiny instruction swap in the beginning */
-OceanRingPartDrawer::OceanRingPartDrawer(const OceanRing* pRing, int a3, int a4, bool a5, f32* a6, f32* a7, f32* a8) : mOceanRing(pRing) {
+OceanRingPartDrawer::OceanRingPartDrawer(const OceanRing* pRing, int a3, int a4, bool a5, f32* a6, f32* a7, f32* a8) : mPosition(0.0f, 0.0f, 0.0f) {
+    mOceanRing = pRing;
     _10 = a3;
     _14 = a4;
-    mPosition.x = 0.0f;
-    mPosition.y = 0.0f;
-    mPosition.z = 0.0f;
     _18 = a5;
     _1C = *a6;
     _20 = *a7;
@@ -337,7 +334,7 @@ void OceanRingDrawer::draw() const {
 void OceanRingDrawer::drawBloom() const {
     loadMaterialBloom();
     TVec3f zDir = MR::getCamZdir();
-    zDir.scale(3000.0f);
+    zDir.scale(sBloomCameraOffsetZ);
     TVec3f camPos = MR::getCamPos();
     zDir.add(camPos);
 
@@ -345,7 +342,7 @@ void OceanRingDrawer::drawBloom() const {
         for (s32 i = 0; i < mDrawerCount; i++) {
             OceanRingPartDrawer* drwr = getDrawer(i);
 
-            if (PSVECDistance(&drwr->mPosition, &zDir) < 4000.0f) {
+            if (PSVECDistance(&drwr->mPosition, &zDir) < sDistancePartDrawBloom) {
                 drwr->drawDynamicBloom();
             }
         }
@@ -357,19 +354,23 @@ void OceanRingDrawer::initParts() {
     s32 count2 = mRing->mSegCount / mDrawerCount;
     f32 a = 0.0f, b = 0.0f, c = 0.0f;
     mPartDrawers = new OceanRingPartDrawer*[mDrawerCount];
-    s32 i = 0;
-    for (; i < mDrawerCount-1; i++) {
+    for (s32 i = 0; i < mDrawerCount - 1; i++) {
         mPartDrawers[i] = new OceanRingPartDrawer(mRing, count2 * i, count2 + 1, false, &a, &b, &c);
     }
-    s32 w = count2 * (mDrawerCount - 1);
-    s32 v = mRing->mSegCount - w;
+    s32 v;
+    bool flag;
+    s32 w;
 
-    bool flag = false;
+    s32 last = mDrawerCount - 1;
+    w = count2 * last;
+    v = mRing->mSegCount - w;
+    flag = false;
+
     if (MR::isLoopRail(mRing)) {
         flag = true;
         v += 1;
     }
-    mPartDrawers[i] = new OceanRingPartDrawer(mRing, w, v, flag, &a, &b, &c);
+    mPartDrawers[last] = new OceanRingPartDrawer(mRing, w, v, flag, &a, &b, &c);
 }
 
 void OceanRingDrawer::initDisplayList() {
@@ -401,27 +402,28 @@ void OceanRingDrawer::drawGD() const {
         flag = 1;
     }
 
-    f32 f31 = 0.0f;
-    f32 f30 = 0.0f;
-    f32 f29 = 0.0f;
-    f32 f28 = 0.0f;
-    f32 f27 = 0.0f;
-    f32 f26 = 0.0f;
+    f32 scalex;
+    f32 U0 = 0.0f;
+    f32 U1 = 0.0f;
+    f32 U2 = 0.0f;
+    f32 V01 = 0.0f;
+    f32 V11 = 0.0f;
+    f32 V21 = 0.0f;
     s32 m = mRing->mStride;
     m -= 1;
-    f32 f25 = 0.05f * m;
-    f32 f24 = 0.05f * m;
-    f32 f23 = 0.1f * m;
+    f32 V00 = 0.05f * m;
+    f32 V10 = 0.05f * m;
+    f32 V20 = 0.1f * m;
 
     GDBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, (u16)(flag + mRing->mSegCount) << 1);
 
-    f32 f22 = 1.0f;
-    f22 = f24 * f22;
-    f32 f21 = 1.0f;
-    f21 = f25 * f21;
-    f23 = 1.0f * f23;
-    f25 = 0.1f * f25;
+    scalex = 1.0f;
+    f32 V0 = V00 * scalex;
+    f32 V1 = V10 * scalex;
+    f32 V2 = V20 * scalex;
 
+    WaterPoint* pPoint;
+    WaterPoint* pPoint2;
     for (u32 i = 0; i < flag + mRing->mSegCount; i++) {
         s32 index = i;
         if (index == mRing->mSegCount) {
@@ -429,29 +431,29 @@ void OceanRingDrawer::drawGD() const {
         }
 
         s32 ddd = index * mRing->mStride;
-        WaterPoint* pPoint = mRing->mWaterPoints[mRing->mStride + ddd - 1];
-        WaterPoint* pPoint2 = mRing->mWaterPoints[ddd];
+        pPoint = mRing->mWaterPoints[mRing->mStride + ddd - 1];
+        pPoint2 = mRing->mWaterPoints[ddd];
         GDPosition3f32(pPoint->mOrigPos.x, pPoint->mOrigPos.y, pPoint->mOrigPos.z);
         GDColor4u8(0xFF, 0xFF, 0xFF, pPoint->mAlpha);
-        GDWrite_f32(f31);
-        GDWrite_f32(f22);
-        GDWrite_f32(f30);
-        GDWrite_f32(f21);
-        GDWrite_f32(f29);
-        GDWrite_f32(f23);
+        GDWrite_f32(U0);
+        GDWrite_f32(V0);
+        GDWrite_f32(U1);
+        GDWrite_f32(V1);
+        GDWrite_f32(U2);
+        GDWrite_f32(V2);
 
         GDPosition3f32(pPoint2->mOrigPos.x, pPoint2->mOrigPos.y, pPoint2->mOrigPos.z);
         GDColor4u8(0xFF, 0xFF, 0xFF, pPoint2->mAlpha);
-        GDWrite_f32(f31);
-        GDWrite_f32(f28);
-        GDWrite_f32(f30);
-        GDWrite_f32(f27);
-        GDWrite_f32(f29);
-        GDWrite_f32(f26);
+        GDWrite_f32(U0);
+        GDWrite_f32(V01);
+        GDWrite_f32(U1);
+        GDWrite_f32(V11);
+        GDWrite_f32(U2);
+        GDWrite_f32(V21);
 
-        f31 += f24 * (0.050000001f * 1.0f);
-        f30 += f24 * (0.050000001f * 1.0f);
-        f29 += f25 * (0.1f * 1.0f);
+        U0 += (0.05f * scalex);
+        U1 += (0.05f * scalex);
+        U2 += (0.1f * scalex);
     }
 }
 
@@ -507,12 +509,12 @@ void OceanRingDrawer::loadMaterial() const {
         GXSetTevIndWarp(GX_TEVSTAGE3, GX_INDTEXSTAGE0, 1, 0, GX_ITM_0);
 
         Mtx23 new_mtx;
-        new_mtx[0][0] = 0.1;
-        new_mtx[0][1] = 0.0;
-        new_mtx[0][2] = 0.0;
-        new_mtx[1][0] = 0.0;
-        new_mtx[1][1] = 0.1;
-        new_mtx[1][2] = 0.0;
+        new_mtx[0][0] = sIndirectScale;
+        new_mtx[0][1] = 0.0f;
+        new_mtx[0][2] = 0.0f;
+        new_mtx[1][0] = 0.0f;
+        new_mtx[1][1] = sIndirectScale;
+        new_mtx[1][2] = 0.0f;
 
         GXSetIndTexMtx(GX_ITM_0, new_mtx, 0);
     }

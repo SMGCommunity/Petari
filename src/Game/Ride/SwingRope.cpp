@@ -741,7 +741,7 @@ void SwingRope::drawBind() const {
 
 SwingRopeGroup::SwingRopeGroup(const char* pName) : NameObj(pName) {
     mTexture = nullptr;
-    mTexture = new JUTTexture(MR::loadTexFromArc("SwingRope.arc", "SwingRope.bti"));
+    mTexture = new JUTTexture(MR::loadTexFromArc("SwingRope.arc", "SwingRope.bti"), 0);
 
     MR::FunctorV0M< const SwingRopeGroup*, void (SwingRopeGroup::*)() const > preDrawFunctor(this, &SwingRopeGroup::initDraw);
     MR::registerPreDrawFunction(preDrawFunctor, MR::DrawType_SwingRope);

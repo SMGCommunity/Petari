@@ -149,7 +149,7 @@ void Creeper::init(const JMapInfoIter& rIter) {
 
     initSound(4, false);
 
-    mTexture = new JUTTexture(MR::loadTexFromArc("Creeper.arc", "Stalk.bti"));
+    mTexture = new JUTTexture(MR::loadTexFromArc("Creeper.arc", "Stalk.bti"), 0);
 
     mFlowerModel = MR::createPartsModelNoSilhouettedMapObj(this, "花（つる花）", "CreeperFlower", reinterpret_cast< MtxPtr >(&mTopMtx));
     mLeafModel = MR::createPartsModelNoSilhouettedMapObj(this, "葉（つる花）", "CreeperLeaf", nullptr);

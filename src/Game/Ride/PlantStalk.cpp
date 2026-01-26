@@ -212,7 +212,7 @@ void PlantStalk::drawGrowUp() const {
 
 PlantStalkDrawInit::PlantStalkDrawInit(const char* pName) : NameObj(pName) {
     mTexture = nullptr;
-    mTexture = new JUTTexture(MR::loadTexFromArc("Plant.arc", "PlantStalk.bti"));
+    mTexture = new JUTTexture(MR::loadTexFromArc("Plant.arc", "PlantStalk.bti"), 0);
 
     MR::FunctorV0M< const PlantStalkDrawInit*, void (PlantStalkDrawInit::*)() const > preDrawFunctor(this, &PlantStalkDrawInit::initDraw);
     MR::registerPreDrawFunction(preDrawFunctor, MR::DrawType_PlantStalk);

@@ -31,7 +31,11 @@ struct ResTIMG {
 class JUTTexture {
 public:
     /// @brief Creates a new `JUTTexture`.
-    JUTTexture();
+    JUTTexture() {
+        setCaptureFlag(false);
+        mEmbPalette = NULL;
+        mTIMG = NULL;
+    }
 
     /// @brief Creates a new `JUTTexture`.
     /// @param width The width of the texture, in pixels.
@@ -48,12 +52,6 @@ public:
         setCaptureFlag(false);
     }
 
-    inline JUTTexture(const ResTIMG* pTIMG) {
-        mEmbPalette = nullptr;
-        storeTIMG(pTIMG, (u8)0);
-        mFlag &= 2;
-    }
-
     /// @brief Destroys the `JUTTexture`.
     ~JUTTexture();
 
@@ -66,13 +64,16 @@ public:
     void initTexObj(_GXTlut);
     void load(_GXTexMapID);
     void capture(int, int, GXTexFmt, bool, u8);
-    void setCaptureFlag(bool);
-    void setEmbPaletteDelFlag(bool);
 
+    const ResTIMG* getTexInfo() const { return mTIMG; }
+    s32 getFormat() const { return mTIMG->mFormat; }
+    s32 getTransparency() const { return mTIMG->mTransparency; }
     s32 getWidth() const { return mTIMG->mWidth; }
     s32 getHeight() const { return mTIMG->mHeight; }
-    s32 getTransparency() const { return mTIMG->mTransparency; }
-    const ResTIMG* getTexInfo() const { return mTIMG; }
+    void setCaptureFlag(bool flag) { mFlag &= 2 | flag; }
+    bool getCaptureFlag() const { return mFlag & 1; }
+    bool getEmbPaletteDelFlag() const { return mFlag & 2; }
+    void setEmbPaletteDelFlag(bool flag) { mFlag = (mFlag & 1) | (flag << 1); }
     int getTlutName() const { return mTlutName; }
 
     /* 0x00 */ GXTexObj mObj;
