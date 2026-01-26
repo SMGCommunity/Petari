@@ -818,6 +818,14 @@ JASTrack::TList::~TList() {}
 
 JASTrack::TList::TList() : mList(), mIsInit(false) {}
 
+JASCriticalSection::JASCriticalSection() {
+    mInterruptState = OSDisableInterrupts();
+}
+
+JASCriticalSection::~JASCriticalSection() {
+    OSRestoreInterrupts(mInterruptState);
+}
+
 JASDefaultBankTable::JASDefaultBankTable() : JASBankTable(), JASGlobalInstance(true) {}
 
 JASDefaultBankTable::~JASDefaultBankTable() {}

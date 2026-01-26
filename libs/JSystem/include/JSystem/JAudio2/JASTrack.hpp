@@ -83,8 +83,8 @@ public:
 
 class JASCriticalSection {
 public:
-    JASCriticalSection() { mInterruptState = OSDisableInterrupts(); }
-    ~JASCriticalSection() { OSRestoreInterrupts(mInterruptState); }
+    JASCriticalSection();
+    ~JASCriticalSection();
 
 private:
     u32 mInterruptState;
