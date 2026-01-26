@@ -47,7 +47,45 @@ public:
     s32 newSharedDisplayList(u32);
     s32 newSingleSharedDisplayList(u32);
 
+    inline J3DMaterialAnm* getMaterialAnm() {
+        if ((uintptr_t)mMaterialAnm < 0xC0000000) {
+            return mMaterialAnm;
+        } else {
+            return NULL;
+        }
+    }
+
+    bool isDrawModeOpaTexEdge() { return (mMaterialMode & 3) == 0; }
+
+    u16 getIndex() { return mIndex; }
+
+    J3DTexMtx* getTexMtx(u32 idx) { return mTexGenBlock->getTexMtx(idx); }
+    void setTexMtx(u32 idx, J3DTexMtx* mtx) { mTexGenBlock->setTexMtx(idx, mtx); }
+
+    J3DNBTScale* getNBTScale() { return mTexGenBlock->getNBTScale(); }
+
     J3DTexCoord* getTexCoord(u32 idx) { return mTexGenBlock->getTexCoord(idx); }
+
+    u32 getTexGenNum() const { return mTexGenBlock->getTexGenNum(); }
+    u8 getTevStageNum() const { return mTevBlock->getTevStageNum(); }
+
+    J3DMaterial* getNext() { return mNext; }
+    J3DShape* getShape() { return mShape; }
+    J3DTevBlock* getTevBlock() { return mTevBlock; }
+    J3DColorBlock* getColorBlock() { return mColorBlock; }
+    J3DTexGenBlock* getTexGenBlock() { return mTexGenBlock; }
+    J3DDisplayListObj* getSharedDisplayListObj() { return mSharedDLObj; }
+    J3DIndBlock* getIndBlock() { return mIndBlock; }
+    J3DJoint* getJoint() { return mJoint; }
+    J3DPEBlock* getPEBlock() { return mPEBlock; }
+
+    u16 getTexNo(u32 idx) { return mTevBlock->getTexNo(idx); }
+
+    void setNext(J3DMaterial* pMaterial) { mNext = pMaterial; }
+
+    void addShape(J3DShape* pShape) { mShape = pShape; }
+
+    void setJoint(J3DJoint* pJoint) { mJoint = pJoint; }
 
     /* 0x04 */ J3DMaterial* mNext;
     /* 0x08 */ J3DShape* mShape;

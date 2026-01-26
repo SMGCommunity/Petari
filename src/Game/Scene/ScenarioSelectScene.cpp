@@ -32,8 +32,8 @@ namespace NrvScenarioSelectScene {
 
 namespace {
     J3DDrawBuffer* createDrawBuffer() {
-        J3DDrawBuffer* buffer = new J3DDrawBuffer();
-        buffer->_C = 5;
+        J3DDrawBuffer* buffer = new J3DDrawBuffer(1);
+        buffer->mSortMode = 5;
         return buffer;
     }
 

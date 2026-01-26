@@ -47,9 +47,9 @@ void MultiSceneActor::calcAnim() {
     PSMTXCopy(mtx, mModelManager->getJ3DModel()->mBaseTransformMtx);
 
     J3DModel* pModel = mModelManager->getJ3DModel();
-    pModel->_18 = mScale.x;
-    pModel->_1C = mScale.y;
-    pModel->_20 = mScale.z;
+    pModel->mBaseScale.x = mScale.x;
+    pModel->mBaseScale.y = mScale.y;
+    pModel->mBaseScale.z = mScale.z;
 
     mModelManager->calcAnim();
 }

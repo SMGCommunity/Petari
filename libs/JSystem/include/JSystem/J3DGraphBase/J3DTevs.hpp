@@ -4,6 +4,7 @@
 #include "JSystem/J3DGraphBase/J3DStruct.hpp"
 #include <revolution/gx.h>
 
+extern const J3DLightInfo j3dDefaultLightInfo;
 extern const J3DTexCoordInfo j3dDefaultTexCoordInfo[8];
 
 extern const J3DTexMtxInfo j3dDefaultTexMtxInfo;
@@ -33,6 +34,21 @@ extern const J3DColorChanInfo j3dDefaultColorChanInfo;
 extern const u8 j3dDefaultTevSwapTableID;
 extern const u16 j3dDefaultAlphaCmpID;
 extern const u16 j3dDefaultZModeID;
+
+class J3DLightObj {
+public:
+    J3DLightObj() { mInfo = j3dDefaultLightInfo; }
+    void load(u32) const;
+
+    J3DLightInfo* getLightInfo() { return &mInfo; }
+    J3DLightObj& operator=(J3DLightObj const& other) {
+        mInfo = other.mInfo;
+        return *this;
+    }
+
+    /* 0x00 */ J3DLightInfo mInfo;
+    /* 0x34 */ GXLightObj mLightObj;
+};  // Size = 0x74
 
 struct J3DTevStage {
     J3DTevStage() NO_INLINE {
@@ -251,3 +267,9 @@ struct J3DIndTevStage {
 struct J3DNBTScale;
 struct J3DTexCoord;
 void loadNBTScale(J3DNBTScale& param_0);
+
+void loadTexCoordGens(u32 param_0, J3DTexCoord* param_1);
+void loadTexNo(u32 param_0, u16 const& param_1);
+void patchTexNo_PtrToIdx(u32 texID, u16 const& idx);
+bool isTexNoReg(void* param_0);
+u16 getTexNoReg(void* param_0);

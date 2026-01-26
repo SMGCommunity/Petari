@@ -1,9 +1,9 @@
 #include "JSystem/J3DGraphBase/J3DVertex.hpp"
 
 J3DDrawMtxData::J3DDrawMtxData() {
-    mDrawMatrixCount = 0;
-    _4 = 0;
-    mDrawMtxArray = nullptr;
+    mEntryNum = 0;
+    mDrawMtxFlag = NULL;
+    mDrawMtxIndex = NULL;
 }
 
 J3DDrawMtxData::~J3DDrawMtxData() {}

@@ -21,6 +21,8 @@ public:
     virtual bool receiveMsgPush(HitSensor* pSender, HitSensor* pReceiver);
     virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
 
+    void exeLurk();
+    void exeJumpOut();
     void exeWait();
     void exeApproach();
     void exeEscape();
@@ -30,14 +32,12 @@ public:
     void exeLand();
     void exeSmash();
     void exeSpinOut();
-    void exeFreeze();
-    void exeJumpOut();
-    void exeLurk();
     void exeKickOut();
+    void exeFreeze();
 
-    void endFreeze();
     void endApproach();
     void endWait();
+    void endFreeze();
     void endEscape();
 
     void initFootPrint(const JMapInfoIter& rIter);

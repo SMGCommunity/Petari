@@ -16,8 +16,8 @@ void MaterialCtrl::update() {
         updateMaterial(mMaterial);
     } else {
         u16 i = 0;
-        while (i < mModelData->mMaterialTable.mMaterialCount) {
-            updateMaterial(mModelData->mMaterialTable.mMaterials[i]);
+        while (i < mModelData->mMaterialTable.getMaterialNum()) {
+            updateMaterial(mModelData->mMaterialTable.getMaterialNodePointer(i));
             i++;
         }
     }
