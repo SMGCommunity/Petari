@@ -13,15 +13,14 @@ namespace NrvLavaGeyser {
 
 LavaGeyser::LavaGeyser(const char* pName)
     : LiveActor(pName), _8c(180), _90(180), _94(0.0f, 0.0f, 0.0f), _A0(0.0f, 1.0f, 0.0f), _B0(0.0f), _AC(0.0f), _B8(0.0f), _B4(0.0f) {
-}  // last floats are loaded out of order, need to figure out why
-
+}  // last floats are loaded out of order
 void LavaGeyser::init(const JMapInfoIter& iter) {
     MR::initDefaultPos(this, iter);
     // TODO: Fix register mismatch here
     TQuat4f quat1;
     f32 rotX = mRotation.x;
     f32 rotY = mRotation.y;
-    f32 rotZ = mRotation.z;
+    f32 rotZ = mRotation.z;  // this matches worse without the seperate dec
     quat1.setEuler(DEG_TO_RAD_0_1 * rotX, DEG_TO_RAD_0_1 * rotY, DEG_TO_RAD_0_1 * rotZ);
     quat1.getYDir(_A0);
     MR::getJMapInfoArg0NoInit(iter, &_8c);
@@ -61,18 +60,20 @@ void LavaGeyser::updateHitSensor(HitSensor* pSensor) {
     TVec3f v2 = _94;
     v2 -= mPosition;
     f32 v3 = _A0.dot(v2) + -100.f;
-    if (v3 < 0.0f) {
+    if (v3 < 0.f) {
         pSensor->mPosition.set(_94);
         return;
     }
-    f32 v4 = 0.f;
-    if (v1 >= 0.f) {
-        if (v1 > v3) {
-            v4 = v3;
-        } else {
-            v4 = v1;
-        }
+
+    f32 v4 = 0.0f;
+    if (v1 < 0.0f) {
+        v4 = 0.0f;
+    } else if (v1 > v3) {
+        v4 = v3;
+    } else {
+        v4 = v1;
     }
+
     pSensor->mPosition.set(mPosition);
     TVec3f v5 = _A0;
     v5.mult(v4);
@@ -99,7 +100,7 @@ void LavaGeyser::exeWait() {
         MR::invalidateHitSensors(this);
         _94.set(mPosition);
     }
-    if (MR::isValidSwitchA(this) && MR::isOnSwitchA(this)) {
+    if (MR::isValidSwitchA(this) && !MR::isOnSwitchA(this)) {
         setNerve(&NrvLavaGeyser::LavaGeyserNrvWaitSwitch::sInstance);
     } else if (MR::isStep(this, _8c)) {
         setNerve(&NrvLavaGeyser::LavaGeyserNerveSign::sInstance);

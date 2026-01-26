@@ -17,7 +17,7 @@ public:
     /* 94 */ TVec3f _94;
     /* A0 */ TVec3f _A0;
     /* AC */ f32 _AC;
-    /* B0 */ f32 _B0;
+    /* B0 */ f32 _B0;  // one of these may be a different data type
     /* B4 */ f32 _B4;
     /* B8 */ f32 _B8;
 
