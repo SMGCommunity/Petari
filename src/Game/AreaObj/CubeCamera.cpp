@@ -1,12 +1,17 @@
 #include "Game/AreaObj/CubeCamera.hpp"
+#include "Game/AreaObj/AreaObj.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/SceneUtil.hpp"
+#include "revolution/types.h"
 
 #include <cstring>
 
 CubeCameraArea::CubeCameraArea(int type, const char* pName) : AreaObj(type, pName), _3C(0), mZoneID(0) {}
 
+// needed to get sCubeCategory emitted in sbss;
+s32 CubeCameraArea::sCubeCategory = 0;
 
 void CubeCameraArea::init(const JMapInfoIter& rIter) {
-    //non-matching
     AreaObj::init(rIter);
 
     const char* valid;
@@ -22,11 +27,24 @@ void CubeCameraArea::init(const JMapInfoIter& rIter) {
         mIsValid = false;
     }
 
-    int r4 = 0;
-
     if (rIter.isValid()) {
-
+        mZoneID = MR::getPlacedZoneId(rIter);
+    } else {
+        mZoneID = 0;
     }
+
+    _3C = getCategoryArg();
+    if (_3C < 0) {
+        _3C = 0;
+    }
+
+    u32 temp = 1 << (_3C & 0xF);
+    _3C = _3C >> 4;
+    if (_3C == 0) {
+        _3C |= temp;
+    }
+
+    MR::connectToSceneAreaObj(this);
 }
 
 void CubeCameraArea::movement() {
@@ -73,6 +91,26 @@ void CubeCameraMgr::initAfterLoad() {
     sort();
 }
 
-// CubeCameraMgr::sort
+void CubeCameraMgr::sort() {
+    if (mArray.size() != 0) {
+        for (u32 i = 0; i < mArray.size() - 1; i++) {
+            int swapIndex = i;
+            AreaObj* swapObj = getArray(i);
+            AreaObj* curObj = swapObj;
+            for (u32 j = i + 1; j < mArray.size(); j++) {
+                AreaObj* nextObj = getArray(j);
+                if (swapObj->mObjArg2 > nextObj->mObjArg2) {
+                    swapIndex = j;
+                    swapObj = nextObj;
+                }
+            }
+            
+            if (swapIndex != i) {
+                mArray[i] = swapObj;
+                mArray[swapIndex] = curObj;
+            }
+        }
+    }
+}
 
 CubeCameraMgr::~CubeCameraMgr() {}

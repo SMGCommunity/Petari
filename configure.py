@@ -635,7 +635,7 @@ config.libs = [
             Object(NonMatching, "Game/AreaObj/CameraRepulsiveArea.cpp"),
             Object(NonMatching, "Game/AreaObj/ChangeBgmCube.cpp"),
             Object(NonMatching, "Game/AreaObj/CollisionArea.cpp"),
-            Object(NonMatching, "Game/AreaObj/CubeCamera.cpp"),
+            Object(Matching, "Game/AreaObj/CubeCamera.cpp"),
             Object(Matching, "Game/AreaObj/DeathArea.cpp"),
             Object(Matching, "Game/AreaObj/DepthOfFieldArea.cpp"),
             Object(NonMatching, "Game/AreaObj/FollowCollisionArea.cpp"),
