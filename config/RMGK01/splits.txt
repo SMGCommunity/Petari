@@ -1312,14 +1312,14 @@ Game/Boss/SkeletalFishGuard.cpp:
 	.text       start:0x8007BEE8 end:0x8007E398
 	.ctors      start:0x8052E990 end:0x8052E994
 	.rodata     start:0x805314F8 end:0x80531500
-	.data       start:0x80571948 end:0x80571BB0
+	.data       start:0x80571948 end:0x80571B98
 	.sdata      start:0x806B17B8 end:0x806B17C0
 	.sbss       start:0x806B37B8 end:0x806B37E0
 	.sdata2     start:0x806B8D38 end:0x806B8DA8
 
 Game/Boss/SkeletalFishGuardHolder.cpp:
 	.text       start:0x8007E398 end:0x8007EB28
-	.data       start:0x80571BB0 end:0x80571BD8
+	.data       start:0x80571B98 end:0x80571BD8
 	.sdata2     start:0x806B8DA8 end:0x806B8DB0
 
 Game/Boss/SkeletalFishJointCalc.cpp:
