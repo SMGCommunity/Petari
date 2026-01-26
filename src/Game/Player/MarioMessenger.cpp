@@ -3,11 +3,11 @@
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 
-#define ARRAY_SIZE 32
+#define MSG_SIZE 32
 
 MarioMessenger::MarioMessenger(HitSensor* pSender) : NameObj("マリオメッセンジャー"), mSender(pSender) {
-    mReceiverArray = new HitSensor*[ARRAY_SIZE];
-    mMsgArray = new u32[ARRAY_SIZE];
+    mReceiverArray = new HitSensor*[MSG_SIZE];
+    mMsgArray = new u32[MSG_SIZE];
     mArraySize = 0;
 
     MR::connectToScene(this, MR::MovementType_PlayerMessenger, -1, -1, -1);
@@ -22,7 +22,7 @@ void MarioMessenger::movement() {
 }
 
 void MarioMessenger::addRequest(HitSensor* pReceiver, u32 msg) {
-    if (mArraySize == ARRAY_SIZE) {
+    if (mArraySize == MSG_SIZE) {
         return;
     }
 

@@ -42,3 +42,4 @@
 #include "Game/Enemy/WalkerStateParam.hpp"
 #include "Game/Enemy/WalkerStateStagger.hpp"
 #include "Game/Enemy/WalkerStateWander.hpp"
+#include "Game/Enemy/WaterBazooka.hpp"

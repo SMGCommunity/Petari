@@ -30,6 +30,48 @@ enum J3DDiffFlag {
     J3DDiffFlag_Changed = 0x80000000,
 };
 
+inline u32 getDiffFlag_TexNoNum(u32 diffFlags) {
+    return (diffFlags & 0xf0000) >> 0x10;
+}
+
+inline u32 getDiffFlag_LightObjNum(u32 diffFlags) {
+    return (diffFlags & 0xf0) >> 4;
+}
+
+inline u32 getDiffFlag_TexGenNum(u32 diffFlags) {
+    return (diffFlags & 0xf00) >> 8;
+}
+
+inline int calcDifferedBufferSize_TexMtxSize(u32 param_1) {
+    return param_1 * 0x35;
+}
+
+inline int calcDifferedBufferSize_TexGenSize(u32 param_1) {
+    return param_1 * 0x3d + 10;
+}
+
+inline int calcDifferedBufferSize_TexNoSize(u32 param_1) {
+    return param_1 * 0x37;
+}
+
+inline u32 calcDifferedBufferSize_TexNoAndTexCoordScaleSize(u32 param_1) {
+    u32 res = param_1 * 0x37;
+    res += ((param_1 + 1) >> 1) * 0x37;
+    return res;
+}
+
+inline u32 getDiffFlag_TevStageNum(u32 diffFlags) {
+    return (diffFlags & 0xf00000) >> 0x14;
+}
+
+inline int calcDifferedBufferSize_TevStageSize(u32 param_1) {
+    return param_1 * 10;
+}
+
+inline int calcDifferedBufferSize_TevStageDirectSize(u32 param_1) {
+    return param_1 * 5;
+}
+
 class J3DDisplayListObj {
 public:
     J3DDisplayListObj() NO_INLINE {
@@ -69,6 +111,10 @@ public:
         mpUserArea = NULL;
     }
 
+    virtual int entry(J3DDrawBuffer*);
+    virtual void draw();
+    virtual ~J3DPacket() {}
+
     void addChildPacket(J3DPacket*);
 
     J3DPacket* getNextPacket() const { return mpNextPacket; }
@@ -81,10 +127,6 @@ public:
 
     void* getUserArea() const { return mpUserArea; }
     void setUserArea(uintptr_t area) { mpUserArea = (void*)area; }
-
-    virtual int entry(J3DDrawBuffer*);
-    virtual void draw();
-    virtual ~J3DPacket() {}
 
 public:
     /* 0x04 */ J3DPacket* mpNextPacket;

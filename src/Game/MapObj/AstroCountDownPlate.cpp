@@ -17,11 +17,7 @@ namespace {
     const char* cStartCountDownDemoName = "ロゼッタカウントダウン開始デモ";
 };  // namespace
 
-AstroCountDownPlate::AstroCountDownPlate(const char* pName) : LiveActor(pName) {
-    _8C.mInfo = j3dDefaultTexMtxInfo;
-    _120.mInfo = j3dDefaultTexMtxInfo;
-    _1B4 = 0;
-}
+AstroCountDownPlate::AstroCountDownPlate(const char* pName) : LiveActor(pName), _1B4(0) {}
 
 void AstroCountDownPlate::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
@@ -89,7 +85,7 @@ void AstroCountDownPlate::exeCountToZero() {
 
     f32 v2 = MR::calcNerveRate(this, 50);
     f32 v3 = MR::getConvergeVibrationValue(v2, 0.1f, 0.0f, 0.3f, 4.0f);
-    _8C.mInfo.mSRTInfo.mTranslationY = v3;
+    _8C.getTexMtxInfo().mSRT.mTranslationY = v3;
 
     if (_1B4) {
         MR::startLevelSound(this, "SE_OJ_LV_CDN_PLATE_LIGHT", -1, -1, -1);
@@ -109,8 +105,8 @@ void AstroCountDownPlate::initTextureAtNumLeftStar() {
 void AstroCountDownPlate::setNumLeftStar() {
     s32 starLeft = MR::getPowerStarLeftToDisplayCountDownPlate();
     f32 mod = starLeft % 10;
-    _120.mInfo.mSRTInfo.mTranslationY = 0.1f * (starLeft / 10);
-    _8C.mInfo.mSRTInfo.mTranslationY = 0.1f * mod;
+    _120.getTexMtxInfo().mSRT.mTranslationY = 0.1f * (starLeft / 10);
+    _8C.getTexMtxInfo().mSRT.mTranslationY = 0.1f * mod;
 }
 
 void AstroCountDownPlate::selectNrvWait() {

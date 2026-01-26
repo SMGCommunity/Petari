@@ -2,16 +2,29 @@
 
 #include <revolution.h>
 
+class J3DModel;
+class J3DAnmVtxColor;
+class J3DVertexBuffer;
+
+struct J3DVtxColorCalc {
+    void calc(J3DModel*);
+    virtual void calc(J3DVertexBuffer*);
+
+    /* 0x0 */ void* vtable;  // inlined vtable?
+    /* 0x4 */ u32 mFlags;
+    /* 0x8 */ J3DAnmVtxColor* mpVtxColor;
+};
+
 class J3DDrawMtxData {
 public:
     J3DDrawMtxData();
 
     ~J3DDrawMtxData();
 
-    u16 mDrawMatrixCount;  // 0x0
-    u16 mRigidMtxCount;    // 0x2
-    u32 _4;
-    u16* mDrawMtxArray;  // 0x8
+    /* 0x0 */ u16 mEntryNum;
+    /* 0x2 */ u16 mDrawFullWgtMtxNum;
+    /* 0x4 */ u8* mDrawMtxFlag;
+    /* 0x8 */ u16* mDrawMtxIndex;
 };
 
 class J3DVertexData {
@@ -58,22 +71,71 @@ public:
 
 class J3DVertexBuffer {
 public:
-    ~J3DVertexBuffer();
+    J3DVertexBuffer() { init(); }
 
+    void setVertexData(J3DVertexData*);
     void init();
+    ~J3DVertexBuffer();
+    void setArray() const;
+    s32 copyLocalVtxPosArray(u32);
+    s32 copyLocalVtxNrmArray(u32);
+    s32 copyLocalVtxArray(u32);
+    s32 allocTransformedVtxPosArray();
+    s32 allocTransformedVtxNrmArray();
 
-    u32 _0;
-    u32 _4;
-    u32 _8;
-    u32 _C;
-    u32 _10;
-    u32 _14;
-    u32 _18;
-    u32 _1C;
-    u32 _20;
-    u32 _24;
-    u32 _28;
-    u32 _2C;
-    u32 _30;
-    u32 _34;
+    void setCurrentVtxPos(void* pVtxPos) { mCurrentVtxPos = pVtxPos; }
+    void* getCurrentVtxPos() { return mCurrentVtxPos; }
+
+    void setCurrentVtxNrm(void* pVtxNrm) { mCurrentVtxNrm = pVtxNrm; }
+    void* getCurrentVtxNrm() { return mCurrentVtxNrm; }
+
+    void setCurrentVtxCol(GXColor* pVtxCol) { mCurrentVtxCol = pVtxCol; }
+
+    void frameInit() {
+        setCurrentVtxPos(mVtxPosArray[0]);
+        setCurrentVtxNrm(mVtxNrmArray[0]);
+        setCurrentVtxCol(mVtxColArray[0]);
+    }
+
+    void* getTransformedVtxPos(int idx) { return mTransformedVtxPosArray[idx]; }
+    void* getTransformedVtxNrm(int idx) { return mTransformedVtxNrmArray[idx]; }
+    J3DVertexData* getVertexData() const { return mVtxData; }
+
+    void swapTransformedVtxPos() {
+        void* tmp = mTransformedVtxPosArray[0];
+        mTransformedVtxPosArray[0] = mTransformedVtxPosArray[1];
+        mTransformedVtxPosArray[1] = tmp;
+    }
+
+    void swapTransformedVtxNrm() {
+        void* tmp = mTransformedVtxNrmArray[0];
+        mTransformedVtxNrmArray[0] = mTransformedVtxNrmArray[1];
+        mTransformedVtxNrmArray[1] = tmp;
+    }
+
+    void swapVtxPosArrayPointer() {
+        void* temp = mVtxPosArray[0];
+        mVtxPosArray[0] = mVtxPosArray[1];
+        mVtxPosArray[1] = temp;
+    }
+
+    void swapVtxNrmArrayPointer() {
+        void* temp = mVtxNrmArray[0];
+        mVtxNrmArray[0] = mVtxNrmArray[1];
+        mVtxNrmArray[1] = temp;
+    }
+
+    void* getVtxPosArrayPointer(int index) { return mVtxPosArray[index]; }
+
+    void* getVtxNrmArrayPointer(int index) { return mVtxNrmArray[index]; }
+
+    /* 0x00 */ J3DVertexData* mVtxData;
+    /* 0x04 */ void* mVtxPosArray[2];
+    /* 0x0C */ void* mVtxNrmArray[2];
+    /* 0x14 */ GXColor* mVtxColArray[2];
+    /* 0x1C */ void* mTransformedVtxPosArray[2];
+    /* 0x24 */ void* mTransformedVtxNrmArray[2];
+    /* 0x2C */ void* mCurrentVtxPos;
+    /* 0x30 */ void* mCurrentVtxNrm;
+    /* 0x34 */ GXColor* mCurrentVtxCol;
 };

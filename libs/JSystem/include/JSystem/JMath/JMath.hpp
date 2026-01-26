@@ -2,6 +2,7 @@
 
 #include <revolution.h>
 
+void JMAMTXApplyScale(const Mtx, Mtx, f32, f32, f32);
 f32 JMAAcosRadian(f32);
 f32 JMAAsinRadian(f32);
 f32 JMACosDegree(f32);
@@ -23,6 +24,38 @@ inline f32 JMAFastSqrt(__REGISTER const f32 input) {
     } else {
         return input;
     }
+#endif
+}
+
+inline f32 JMAHermiteInterpolation(__REGISTER f32 p1, __REGISTER f32 p2, __REGISTER f32 p3, __REGISTER f32 p4, __REGISTER f32 p5, __REGISTER f32 p6,
+                                   __REGISTER f32 p7) {
+#ifdef __MWERKS__
+    __REGISTER f32 ff25;
+    __REGISTER f32 ff31;
+    __REGISTER f32 ff30;
+    __REGISTER f32 ff29;
+    __REGISTER f32 ff28;
+    __REGISTER f32 ff27;
+    __REGISTER f32 ff26;
+    // clang-format off
+    asm {
+        fsubs   ff31, p1, p2
+        fsubs   ff30, p5, p2
+        fdivs   ff29, ff31, ff30
+        fmuls   ff28,ff29,ff29
+        fadds   ff25,ff29,ff29
+        fsubs   ff27,ff28,ff29
+        fsubs   ff30, p3, p6
+        fmsubs  ff26,ff25,ff27,ff28
+        fmadds  ff25,p4,ff27,p4
+        fmadds  ff26,ff26,ff30,p3
+        fmadds  ff25,p7,ff27,ff25
+        fmsubs  ff25,ff29,p4,ff25
+        fnmsubs ff25,ff31,ff25,ff26
+
+    }
+    // clang-format on
+    return ff25;
 #endif
 }
 
@@ -199,3 +232,14 @@ namespace JMathInlineVEC {
     void PSVECMultiply(const Vec*, const Vec*, Vec*);
 #endif
 };  // namespace JMathInlineVEC
+
+template < typename T >
+inline T JMAMax(T param_0, T param_1) {
+    T ret;
+    if (param_0 > param_1) {
+        ret = param_0;
+    } else {
+        ret = param_1;
+    }
+    return ret;
+}

@@ -133,8 +133,8 @@ bool NormalMapBase::isNormalMapMaterial(const char* pName) const {
 
 void NormalMapBase::standardDraw(J3DModel* pModel) const {
     if ((_138 & 0x10) == 0) {
-        for (u16 i = 0; i < pModel->mModelData->mMaterialTable.mMaterialCount; i++) {
-            J3DMaterial* mat = pModel->mModelData->getMaterial(i);
+        for (u16 i = 0; i < pModel->mModelData->mMaterialTable.getMaterialNum(); i++) {
+            J3DMaterial* mat = pModel->mModelData->getMaterialNodePointer(i);
             const char* matName = MR::getMaterialName(pModel->mModelData, mat->mIndex);
             if (!isNormalMapMaterial(matName)) {
                 MR::simpleDraw(pModel, mat);
