@@ -4,7 +4,6 @@
 #include "Game/Util/JMapInfo.hpp"
 #include "JSystem/J3DGraphBase/J3DStruct.hpp"
 #include "JSystem/JGeometry/TMatrix.hpp"
-#include "JSystem/JGeometry/TQuat.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
 #include "revolution/mtx.h"
 #include <revolution.h>
@@ -188,6 +187,8 @@ namespace MR {
     bool isAnyAnimOneTimeAndStopped(const LiveActor*, const char*);
 
     bool isBrkOneTimeAndStopped(const LiveActor*);
+
+    void setBtkFrameAtRandom(const LiveActor*);
 
     bool tryStartBckAndBtp(const LiveActor*, const char*, const char*);
     void setAllAnimFrame(const LiveActor*, const char*, f32);
