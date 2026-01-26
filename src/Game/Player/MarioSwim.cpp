@@ -21,6 +21,7 @@
 #include "revolution/types.h"
 #include <cstddef>
 
+const f32 cAnimSpeeds[4] = {1.0f, 1.0f, 1.0f, 1.0f};
 namespace {
     f32 cFrontAcc[] = {-0.2f, -0.2f, -0.2f, -0.1f, -0.1f, -0.1f, -0.1f, -0.1f, -0.0f, -0.0f, 0.0f, 0.0f, 0.0f, 0.0f,
                        0.0f,  0.0f,  0.0f,  0.2f,  0.2f,  0.2f,  0.3f,  0.3f,  0.4f,  0.5f,  0.5f, 0.5f, 0.5f, 0.5f,
@@ -36,7 +37,7 @@ namespace {
     };
 
     f32 cSwimWeightTable[] = {0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f};
-    f32 cAnimSpeeds[4] = {1.0f, 1.0f, 1.0f, 1.0f};
+    f32 cWeightTableSP[] = {0.0f, 0.0f, 0.75f, 0.25f};
     f32 cLimitAngleSink = 0.0f;
     f32 cNeutralAngleWait = 0.0f;
     f32 cLimitAngleWait = 0.0f;
@@ -681,9 +682,6 @@ bool MarioSwim::update() {
                 res2 = -10.0f;
             }
 
-            // TVec3f gravityVec = getGravityVec();
-            // gravityVec.scale(res2);
-            // stack_188 += gravityVec;
             stack_188 += getGravityVec().scaleInline(res2);
             getPlayer()->tryForcePowerJump(stack_188, false);
             mNextAction = EXIT_ACTION_POWER_JUMP;
@@ -700,15 +698,9 @@ bool MarioSwim::update() {
         }
         if (mRingDashTimer != 0 && getPlayer()->mVerticalSpeed - mWaterDepth > 200.0f) {
             f32 res = MR::clamp(_54 / mActor->getConst().getTable()->mSwimToWalkSpd, 0.0f, 1.0f);
+
             getPlayer()->mMovementStates._5 = false;
             getPlayer()->_278 = res;
-
-            // TVec3f upOffset = mUpVec;
-            // upOffset.scale(10.0f);
-            // TVec3f jumpVel = mActor->getLastMove();
-            // jumpVel.scale(2.0f);
-            // TVec3f jumpVelScaled = jumpVel;
-            // jumpVelScaled += upOffset;
             getPlayer()->tryForcePowerJump(mActor->getLastMove().scaleInline(2.0f).translate(mUpVec.scaleInline(10.0f)), false);
 
             mNextAction = EXIT_ACTION_POWER_JUMP;
@@ -723,6 +715,7 @@ bool MarioSwim::update() {
             PSVECCrossProduct(&_60, &rShadowNorm, &stack_17C);
             TVec3f stack_170;
             PSVECCrossProduct(&rShadowNorm, &stack_17C, &stack_170);
+
             if (-mWaterDepth + mDistToFloor > 1000.0f) {
                 _1A = 1;
             }
@@ -776,8 +769,6 @@ bool MarioSwim::update() {
                         _1E = 0;
                     }
 
-                    // f32 a;
-                    // f32 b;
                     MarioConstTable* table = mActor->getConst().getTable();
                     f32 a = getStickY();
                     f32 b = table->mSwimRotXIneT;
@@ -798,21 +789,9 @@ bool MarioSwim::update() {
                 } else if (checkLvlZ() == 0) {
                     res = 0.0f;
                 } else {
-                    // f32 getSwimValue(f32 stick, u32 index, const MarioConstTable* table) {
-                    //     if (index == 2)
-                    //         return table->mSwimRotXIne;
-                    //     if (index == 3)
-                    //         return table->mSwimRotZIne;
-                    //     return 0.0f;
-                    // }
-                    // MarioConstTable* table = mActor->getConst().getTable();
-                    // f32 a = getStickY();
-                    // f32 b = table->mSwimRotXIneT;
-                    // _4C = _4C * b + procAngle(a, b);
                     MarioConstTable* table = mActor->getConst().getTable();
                     f32 a = getStickP();
                     f32 b = table->mSwimRotXIne;
-                    // b = getSwimValue(a = getStickP(), 0, mActor->getConst().getTable());
                     _4C = _4C * b + procAngle(a, b);
                 }
             }
@@ -1262,7 +1241,6 @@ void MarioSwim::flowOnWave(f32 unused) {
 }
 
 void MarioSwim::decideVelocity() {
-    static const f32 cWeightTableSP[] = {0.0f, 0.0f, 0.75f, 0.25f};
     if (mRingDashTimer != 0) {
         return;
     }
@@ -3261,21 +3239,3 @@ void MarioSwim::doJetJump(u8 type) {
 f32 MarioSwim::getBlurOffset() const {
     return mBlurOffset;
 }
-
-/*
- *
- * ***********************************************
- * IMPORTANT: THIS FUNCTION SHOULD BE DELETED ONCE
- * THIS OBJECT FILE MATCHES
- * ***********************************************
- *
- * This function is only present so that the
- * compiler does not cull these variables
- *
- */
-// void dummyFunction() {
-//     cFrontAcc[0] = 1.0f;
-//     cFrontAccSpin[0] = 1.0f;
-//     cFrontAccSpinSurface[0] = 1.0f;
-//     cWeightTable[0] = 1.0f;
-// };
