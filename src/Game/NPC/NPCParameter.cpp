@@ -31,12 +31,12 @@ NPCParameterV3f::NPCParameterV3f(const char* pName, TVec3f* pVec, f32 f1, f32 f2
 void NPCParameterV3f::read(JMapInfo* pInfo, s32 a2) {
     char str[255];
     MR::copyString(str, mName, sizeof(str));
-    *(str + strlen(mName) + 1) = 0x0;
+    *(str + strlen(mName) + 1) = '\0';
     *(str + strlen(mName)) = 'X';  
     pInfo->getValue(a2, str, &_8->x);
     *(str + strlen(mName)) = 'Y';  
     pInfo->getValue(a2, str, &_8->y);
-    *(str + strlen(mName)) = 'Z';  // Z in ASCII
+    *(str + strlen(mName)) = 'Z';
     pInfo->getValue(a2, str, &_8->z);
 }
 

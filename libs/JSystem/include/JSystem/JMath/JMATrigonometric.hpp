@@ -52,8 +52,9 @@ namespace JMath {
                 v = -v;
             }
 
-            v *= (LEN / TWO_PI);
-            return table[(u16)v & LEN - 1].b1;
+            f32 tmp = v;
+            tmp *= (LEN / TWO_PI);
+            return table[(u16)tmp & LEN - 1].b1;
         }
 
         inline f32 cosLap(f32 v) {
@@ -110,14 +111,12 @@ namespace JMath {
     extern TAtanTable< 1024, f32 > sAtanTable;
     extern TAsinAcosTable< 1024, f32 > sAsinAcosTable;
 
-    inline f32 acosDegree(f32 x) {
-        return sAsinAcosTable.acosDegree(x);
-    }
+    inline f32 acosDegree(f32 x) { return sAsinAcosTable.acosDegree(x); }
 };  // namespace JMath
 
-inline f32 JMASSin(u16 s) {
-    return JMath::sSinCosTable.sinShort(s);
-}
+// inline f32 JMASSin(u16 s) {
+//    return JMath::sSinCosTable.sinShort(s);
+//}
 
 inline f32 JMACosShort(s16 v) {
     return JMath::sSinCosTable.cosShort(v);

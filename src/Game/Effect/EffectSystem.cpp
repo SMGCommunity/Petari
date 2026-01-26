@@ -2,6 +2,7 @@
 #include "Game/Effect/EffectSystemUtil.hpp"
 #include "Game/Effect/SingleEmitter.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
+#include "JSystem/JParticle/JPAParticle.hpp"
 #include <JSystem/JParticle/JPAEmitter.hpp>
 #include <JSystem/JParticle/JPAEmitterManager.hpp>
 
@@ -46,12 +47,13 @@ void EffectSystem::createSingleEmitter(SingleEmitter* pSingleEmitter, MultiEmitt
     if (pEmitter != nullptr) {
         pSingleEmitter->link(pEmitter);
 
+        // todo -- probably some internal stuff that happens here...look into this
         if (pCallBack != nullptr) {
-            pEmitter->mEmitter->_EC = pCallBack;
+            pEmitter->mEmitter->mpEmtrCallBack = (JPAEmitterCallBack*)pCallBack;
         }
 
         if (pParticleCallBack != nullptr) {
-            pEmitter->mEmitter->_F0 = pParticleCallBack;
+            pEmitter->mEmitter->mpPtclCallBack = (JPAParticleCallBack*)pParticleCallBack;
         }
     }
 }

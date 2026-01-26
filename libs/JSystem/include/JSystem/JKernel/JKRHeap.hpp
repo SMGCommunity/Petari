@@ -127,3 +127,7 @@ void* operator new[](u32, int);
 
 void* operator new[](u32, JKRHeap*, int);
 #endif
+
+inline void* JKRAllocFromHeap(JKRHeap* heap, u32 size, int alignment) {
+    return JKRHeap::alloc(size, alignment, heap);
+}

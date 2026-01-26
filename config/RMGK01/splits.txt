@@ -2853,7 +2853,7 @@ Game/Enemy/Metbo.cpp:
 	.text       start:0x80122D94 end:0x80124C6C
 	.ctors      start:0x8052EB00 end:0x8052EB04
 	.rodata     start:0x80532388 end:0x805323E8
-	.data       start:0x80581950 end:0x80581DF0
+	.data       start:0x80581950 end:0x80581C30
 	.sbss       start:0x806B4478 end:0x806B44C0
 	.sdata2     start:0x806BB008 end:0x806BB058
 
@@ -2861,7 +2861,7 @@ Game/Enemy/Mogu.cpp:
 	.text       start:0x80124C6C end:0x801265D8
 	.ctors      start:0x8052EB04 end:0x8052EB08
 	.rodata     start:0x805323E8 end:0x80532400
-	.data       start:0x80581DF0 end:0x80582058
+	.data       start:0x80581C30 end:0x80581F28
 	.sbss       start:0x806B44C0 end:0x806B44F0
 	.sdata2     start:0x806BB058 end:0x806BB0D0
 
@@ -2869,7 +2869,7 @@ Game/Enemy/Mogucchi.cpp:
 	.text       start:0x801265D8 end:0x80127C74
 	.ctors      start:0x8052EB08 end:0x8052EB0C
 	.rodata     start:0x80532400 end:0x80532428
-	.data       start:0x80582058 end:0x80582130
+	.data       start:0x80581F28 end:0x80582130
 	.sbss       start:0x806B44F0 end:0x806B4508
 	.sdata2     start:0x806BB0D0 end:0x806BB120
 
@@ -3777,7 +3777,7 @@ Game/Map/OceanBowl.cpp:
 
 Game/Map/OceanBowlBloomDrawer.cpp:
 	.text       start:0x8018B780 end:0x8018B9A8
-	.data       start:0x8058AD28 end:0x8058ADC8
+	.data       start:0x8058AD08 end:0x8058AD50
 
 Game/Map/OceanBowlPoint.cpp:
 	.text       start:0x8018B9A8 end:0x8018BBC4
@@ -3785,20 +3785,21 @@ Game/Map/OceanBowlPoint.cpp:
 
 Game/Map/OceanHomeMapCtrl.cpp:
 	.text       start:0x8018BBC4 end:0x8018BE98
-	.data       start:0x8058ADC8 end:0x8058AE40
+	.data       start:0x8058AD50 end:0x8058ADF0
 
 Game/Map/OceanRing.cpp:
 	.text       start:0x8018BE98 end:0x8018D824
-	.data       start:0x8058AE40 end:0x8058AED8
+	.data       start:0x8058ADF0 end:0x8058AEB8
 	.sdata2     start:0x806BC1A8 end:0x806BC208
 
 Game/Map/OceanRingBloomDrawer.cpp:
 	.text       start:0x8018D824 end:0x8018D938
-	.data       start:0x8058AED8 end:0x8058AF00
+	.data       start:0x8058AEB8 end:0x8058AF00
 
 Game/Map/OceanRingDrawer.cpp:
 	.text       start:0x8018D938 end:0x8018F784
 	.data       start:0x8058AF00 end:0x8058AF30
+	.sdata      start:0x806B1C00 end:0x806B1C10
 	.sdata2     start:0x806BC208 end:0x806BC250
 
 Game/Map/OceanRingPipe.cpp:

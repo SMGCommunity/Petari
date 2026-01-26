@@ -66,7 +66,7 @@ public:
     TVec3f& getJumpVec() const;
     void setJumpVec(const TVec3f&);
     void playEffect(const char*);
-    void playEffectTarns(const char*, const TVec3f&);
+    void playEffectTrans(const char*, const TVec3f&);
     void playEffectRT(const char*, const TVec3f&, const TVec3f&);
     void playEffectRTZ(const char*, const TVec3f&, const TVec3f&);
     void playEffectRTW(const char*, const TVec3f&, const TVec3f&);

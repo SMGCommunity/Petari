@@ -11,9 +11,22 @@
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
-#include "JSystem/JMath/JMATrigonometric.hpp"
-#include "math_types.hpp"
-#include "revolution/types.h"
+#include <JSystem/JMath/JMATrigonometric.hpp>
+#include <math_types.hpp>
+#include <revolution/types.h>
+
+namespace {
+    static const f32 sShadowRadius = 300.0f;
+    static const f32 sShakeInitSpeed = 1.5f;
+    static const f32 sShakeSpeedAtten = 0.95f;
+    static const f32 sShakeSpeedMin = 0.005f;
+    static const f32 sShakeAccelMin = 0.0001f;
+    // static const f32 sAfloatSpeed =
+    // static const f32 sAfloatAccel =
+    static const f32 sShakePeriodStart = 17.0f;
+    static const f32 sShakePeriodSlowPitch = 0.65f;
+    static const f32 sSinkDepthMax = 25.0f;
+}  // namespace
 
 namespace NrvLotusLeaf {
     NEW_NERVE(HostTypeWait, LotusLeaf, Wait);
@@ -22,28 +35,20 @@ namespace NrvLotusLeaf {
     NEW_NERVE(HostTypeWaitPlayerOn, LotusLeaf, WaitPlayerOn);
 }  // namespace NrvLotusLeaf
 
-LotusLeaf::LotusLeaf(const char* pName) : LiveActor(pName) {
-    _8C.zero();
-    //_8C.z = 0;
-    _98 = 0.0f;
-    _9C = 0.0f;
-}
-
-LotusLeaf::~LotusLeaf() {}
+LotusLeaf::LotusLeaf(const char* pName) : LiveActor(pName), mInitPos(gZeroVec), mShakeSpeed(0.0f), mShakePeriod(0.0f) {}
 
 void LotusLeaf::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
-    _8C.set(mPosition);
+    mInitPos.set(mPosition);
     initModelManagerWithAnm("LotusLeaf", nullptr, false);
     MR::connectToSceneMapObj(this);
     initHitSensor(1);
-    HitSensor* sensor = MR::addBodyMessageSensorMapObj(this);
-    MR::initCollisionParts(this, "LotusLeaf", sensor, nullptr);
+    MR::initCollisionParts(this, "LotusLeaf", MR::addBodyMessageSensorMapObj(this), nullptr);
     initSound(4, false);
     initNerve(&NrvLotusLeaf::HostTypeWait::sInstance);
     initEffectKeeper(0, nullptr, false);
-    MR::setEffectHostSRT(this, "LotusLeafRipple", &_8C, nullptr, nullptr);
-    MR::initShadowVolumeCylinder(this, 300.0f);
+    MR::setEffectHostSRT(this, "LotusLeafRipple", &mInitPos, nullptr, nullptr);
+    MR::initShadowVolumeCylinder(this, sShadowRadius);
     if (MR::useStageSwitchReadAppear(this, rIter)) {
         MR::syncStageSwitchAppear(this);
         makeActorDead();
@@ -62,7 +67,7 @@ void LotusLeaf::exeWait() {
 }
 
 void LotusLeaf::exeWaitPlayerOn() {
-    if (_8C.y < mPosition.y) {
+    if (mInitPos.y < mPosition.y) {
         convergeToInitPos();
     }
     if (!MR::isOnPlayer(this)) {
@@ -70,34 +75,42 @@ void LotusLeaf::exeWaitPlayerOn() {
     }
 }
 
-// Todo: Match. Decomp.me: https://decomp.me/scratch/zsY3a
 void LotusLeaf::exeShake() {
+    // FIXME: incorrect load time for mVelocity vector register, regswaps
+    // https://decomp.me/scratch/oDDPt
+
     if (MR::isFirstStep(this)) {
-        _98 = 1.5f;
-        _9C = 17.0f;
+        mShakeSpeed = sShakeInitSpeed;
+        mShakePeriod = sShakePeriodStart;
         MR::startSound(this, "SE_OJ_LOTUS_LEAF_WAVE", -1, -1);
         MR::emitEffect(this, "LotusLeafRipple");
     }
-    f32 v1 = 6.2831855f / _9C;
 
-    f32 value = JMath::sSinCosTable.cosLapRad(v1 * getNerveStep());
-    //* 0.95f + -mPosition.y
-    _9C = -_98 * 0.65f;
-    _98 = v1;
-    mVelocity.y = _9C - mPosition.y;
-    if (value <= _8C.y) {
-        _8C.zero();
+    f32 f1 = TWO_PI / mShakePeriod;
+    f32 vel = -mShakeSpeed * JMath::sSinCosTable.cosLapRad(getNerveStep() * f1);
+    mShakePeriod += sShakePeriodSlowPitch;
+    mShakeSpeed *= sShakeSpeedAtten;
+
+    f32 accel = vel - mVelocity.y;
+    mVelocity.y = vel;
+
+    if (mPosition.y + mVelocity.y <= mInitPos.y - sSinkDepthMax) {
+        mVelocity.zero();
     }
+
     if (isNerve(&NrvLotusLeaf::HostTypeShake::sInstance)) {
         if (MR::isOnPlayer(this)) {
             LiveActor::setNerve(&NrvLotusLeaf::HostTypeShakeOnPlayer::sInstance);
+            return;
         }
-    } else if (!MR::isOnPlayer(this)) {
-        setNerve(&NrvLotusLeaf::HostTypeShake::sInstance);
-        return;
+    } else {
+        if (!MR::isOnPlayer(this)) {
+            setNerve(&NrvLotusLeaf::HostTypeShake::sInstance);
+            return;
+        }
     }
-    f32 f_a = value - mVelocity.y;
-    if (MR::isNearZero(f_a, 0.0001f) && MR::isNearZero(f_a, 0.0001f)) {
+
+    if (MR::isNearZero(accel, sShakeAccelMin) && MR::isNearZero(vel, sShakeSpeedMin)) {
         mVelocity.zero();
         if (isNerve(&NrvLotusLeaf::HostTypeShakeOnPlayer::sInstance)) {
             setNerve(&NrvLotusLeaf::HostTypeWaitPlayerOn::sInstance);
@@ -108,15 +121,20 @@ void LotusLeaf::exeShake() {
 }
 
 void LotusLeaf::convergeToInitPos() {
-    if (mPosition.y >= _8C.y) {
-        mVelocity.y -= 0.04f;
-        if (mPosition.y + mVelocity.y <= _9C) {
+    if (mPosition.y < mInitPos.y) {
+        mVelocity.y += 0.04f;
+        mVelocity.y = (mVelocity.y >= 0.1f) ? 0.1f : mVelocity.y;
+
+        if (mInitPos.y <= mPosition.y + mVelocity.y) {
+            mPosition.y = mInitPos.y;
             mVelocity.zero();
         }
     } else {
-        mVelocity.y += 0.04f;
-        f32 float_1 = mPosition.y + mVelocity.y;
-        if (float_1 <= _9C) {
+        mVelocity.y -= 0.04f;
+        mVelocity.y = (mVelocity.y >= -0.1f) ? mVelocity.y : -0.1f;
+
+        if (mPosition.y + mVelocity.y <= mInitPos.y) {
+            mPosition.y = mInitPos.y;
             mVelocity.zero();
         }
     }

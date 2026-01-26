@@ -50,6 +50,25 @@ NPCActorCaps::NPCActorCaps(const char* pName) {
     mSwitchDead = true;
     mSwitchAppear = false;
     _67 = false;
+    mMakeActor = false;
+    mHostIO = false;
+    mInterpole = false;
+    mConnectTo = false;
+    mLightCtrl = false;
+    mEffect = false;
+    mSound = false;
+    mAttribute = false;
+    mPosition = false;
+    mLodCtrl = false;
+    mNerve = false;
+    mSensor = false;
+    mBinder = false;
+    mShadow = false;
+    _5D = false;
+    mRailRider = false;
+    mSwitchDead = true;
+    mSwitchAppear = false;
+    _67 = false;
     mBinderSize = 50.0f;
     mSensorSize = 50.0f;
     mShadowSize = 50.0f;
@@ -63,14 +82,21 @@ NPCActorCaps::NPCActorCaps(const char* pName) {
     mModel = false;
     mMessage = false;
     _F = false;
+    mModel = false;
+    mMessage = false;
+    _F = false;
     mMessageOffset.x = 0.0f;
     mMessageOffset.y = 150.0f;
     mMessageOffset.z = 0.0f;
     mSensorOffset.set< f32 >(0.0f, 50.0f, 0.0f);
+    mSensorOffset.set< f32 >(0.0f, 50.0f, 0.0f);
     _10 = pName;
     mTalkMtx = nullptr;
     mTalkJointName = nullptr;
+    mTalkMtx = nullptr;
+    mTalkJointName = nullptr;
     mObjectName = pName;
+    mSensorJoint = nullptr;
     mSensorJoint = nullptr;
     mSensorMax = 1;
     mWaitNerve = &NrvNPCActor::NPCActorNrvWait::sInstance;
@@ -78,9 +104,31 @@ NPCActorCaps::NPCActorCaps(const char* pName) {
     mReactionNerve = &NrvNPCActor::NPCActorNrvReaction::sInstance;
     _70 = nullptr;
     _6C = nullptr;
+    _70 = nullptr;
+    _6C = nullptr;
 }
 
 void NPCActorCaps::setDefault() {
+    mMakeActor = true;
+    mHostIO = true;
+    mInterpole = true;
+    mConnectTo = true;
+    mLightCtrl = true;
+    mEffect = true;
+    mSound = true;
+    mAttribute = true;
+    mPosition = true;
+    mLodCtrl = true;
+    mNerve = true;
+    mSensor = true;
+    mBinder = true;
+    mShadow = true;
+    mRailRider = true;
+    mSwitchDead = true;
+    mSwitchAppear = true;
+    mPointer = true;
+    mModel = true;
+    mMessage = true;
     mMakeActor = true;
     mHostIO = true;
     mInterpole = true;
@@ -108,6 +156,10 @@ void NPCActorCaps::setIndirect() {
 }
 
 NPCActor::NPCActor(const char* pName) : LiveActor(pName) {
+    mLodCtrl = nullptr;
+    mMsgCtrl = nullptr;
+    _94 = nullptr;
+    _98 = nullptr;
     mLodCtrl = nullptr;
     mMsgCtrl = nullptr;
     _94 = nullptr;

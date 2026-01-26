@@ -7,6 +7,7 @@
 #include <JSystem/JGeometry.hpp>
 #include <JSystem/JGeometry/TMatrix.hpp>
 #include <JSystem/JMath/JMath.hpp>
+#include <JSystem/JMath/JMATrigonometric.hpp>
 #include <JSystem/JUtility/JUTTexture.hpp>
 #include <math_types.hpp>
 #include <revolution/gd/GDBase.h>
@@ -73,24 +74,8 @@ extern const u8 sOceanSphereFogBackG;
 extern const u8 sOceanSphereFogBackB;
 extern const u8 sOceanSphereFogBackA;
 
-struct SinCosPair {
-    f32 sin;
-    f32 cos;
-};
-
-extern SinCosPair lbl_8060FC80[];
-
 inline f32 yy(f32 y) {
     return y * y;
-}
-
-inline f32 cosLapRad(f32 v) {
-    if (v < 0.0f) {
-        v = -v;
-    }
-
-    v *= ((1 << 14) / TWO_PI);
-    return lbl_8060FC80[(u16)v & ((1 << 14) - 1)].cos;
 }
 
 template <>
@@ -419,22 +404,28 @@ bool OceanSphere::isInWater(const TVec3f& rPos) const {
 }
 
 bool OceanSphere::calcWaterInfo(const TVec3f& rPos, const TVec3f& rGravity, WaterInfo* pInfo) const {
-    TVec3f v = rPos - mPosition;
+    const TVec3f* position = &mPosition;
+    f32 B0 = mRadius;
+
+    TVec3f v = rPos - *position;
     TVec3f negGrav = -rGravity;
     f32 f30 = MR::vecKillElement(v, negGrav, &v);
-    f32 theta = (v.length() / mRadius) * 0.5f * 3.1415927f;
-    f32 cosv = cosLapRad(theta);
-    pInfo->mCamWaterDepth = mRadius * cosv - f30;
-    pInfo->_4 = mRadius * cosv + f30;
-    TVec3f normal = rPos - mPosition;
+    f32 fc = v.length() / B0;
+    f32 theta = fc;
+    theta *= PI;
+    theta *= 0.5f;
+
+    f32 cosv = JMath::sSinCosTable.cosLapRad(theta);
+    pInfo->mCamWaterDepth = B0 * cosv;
+    pInfo->mCamWaterDepth -= f30;
+    pInfo->_4 = B0 * cosv;
+    pInfo->_4 += f30;
+
+    TVec3f normal = rPos - *position;
     MR::normalizeOrZero(&normal);
     pInfo->mSurfaceNormal.set(normal);
-    TVec3f scaled(normal);
-    scaled.x *= mRadius;
-    scaled.y *= mRadius;
-    scaled.z *= mRadius;
-    TVec3f surface = mPosition + scaled;
-    pInfo->mSurfacePos.set(surface);
+
+    pInfo->mSurfacePos.set(*position + normal.multInLine(B0));
     return true;
 }
 

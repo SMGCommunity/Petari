@@ -10,23 +10,23 @@ void ParticleEmitter::invalidate() {
 void ParticleEmitter::init(u16 unused) {
     mPaused = false;
     mStopped = false;
-    mEmitter->mFlag |= JPA_EMITTER_INIT_FLAG;
+    mEmitter->mStatus |= JPAEmtrStts_Immortal;
 }
 
 void ParticleEmitter::pauseOn() {
-    bool paused = mEmitter && mEmitter->mFlag & JPA_EMITTER_PAUSE_FLAG;
+    bool paused = mEmitter && mEmitter->mStatus & JPAEmtrStts_StopCalc;
 
     if (paused) {
         return;
     }
 
-    mEmitter->mFlag |= JPA_EMITTER_PAUSE_FLAG;
+    mEmitter->mStatus |= JPAEmtrStts_StopCalc;
     mPaused = true;
 }
 
 void ParticleEmitter::pauseOff() {
     if (mPaused) {
-        mEmitter->mFlag &= ~JPA_EMITTER_PAUSE_FLAG;
+        mEmitter->mStatus &= ~JPAEmtrStts_StopCalc;
         mPaused = false;
     }
 }
