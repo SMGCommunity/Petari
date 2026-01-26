@@ -10,13 +10,10 @@ namespace {
 
     void getJMapInfoArgPlus(const JMapInfoIter& rIter, const char* pFieldName, s32* pDest) {
         // Get row and column of data
-        s32 row = rIter.mIndex;
-        const JMapInfo* pInfo = rIter.mInfo;
-        s32 column = pInfo->searchItemInfo(pFieldName);
 
         // Try to read value
         s32 result;
-        bool read = column < 0 ? false : pInfo->getValueFast(row, column, &result);
+        bool read = rIter.getValue( pFieldName, &result);
 
         // Set result if applicable
         if (read && result >= 0.0f) {

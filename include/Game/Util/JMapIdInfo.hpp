@@ -14,7 +14,7 @@ public:
         mZoneID = rInf.mZoneID;
     }
 
-    void initalize(s32, const JMapInfoIter&);
+    void initialize(s32, const JMapInfoIter&);
 
     void operator=(const JMapIdInfo& rhs) NO_INLINE {
         _0 = rhs._0;

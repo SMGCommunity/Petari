@@ -146,11 +146,7 @@ s32 MessageData::findMessageIndex(const char* pMessage) const {
     }
 
     s32 messageIndex = -1;
-    s32 itemIndex = iter.mInfo->searchItemInfo("Index");
-
-    if (itemIndex >= 0) {
-        iter.mInfo->getValueFast(iter.mIndex, itemIndex, &messageIndex);
-    }
+    iter.getValue("Index", &messageIndex);
 
     return messageIndex;
 }

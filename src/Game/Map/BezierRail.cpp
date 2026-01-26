@@ -10,11 +10,7 @@ inline void getCsvDataStr(const char** pOut, const JMapInfo* pMapInfo, const cha
     // This SHOULD NOT be here. This is only here to match BezierRail::BezierRail
     // This is an exact copy of MR::getCsvDataStr, but that refuses to inline
     // automatically in BezierRail::BezierRail, so this is used temporarily.
-    int v7 = pMapInfo->searchItemInfo(pKey);
-
-    if (v7 >= 0) {
-        pMapInfo->getValueFast(idx, v7, pOut);
-    }
+    pMapInfo->getValue(idx, pKey, pOut);
 }
 
 inline s32 getCsvDataElementNum(const JMapInfo* pMapInfo) {

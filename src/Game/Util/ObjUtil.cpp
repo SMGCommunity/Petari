@@ -565,11 +565,7 @@ namespace MR {
     }
 
     void getCsvDataStr(const char** pOut, const JMapInfo* pMapInfo, const char* pKey, s32 idx) {
-        int v7 = pMapInfo->searchItemInfo(pKey);
-
-        if (v7 >= 0) {
-            pMapInfo->getValueFast(idx, v7, pOut);
-        }
+        pMapInfo->getValue(idx, pKey, pOut);
     }
 
     void getCsvDataStrOrNULL(const char** pOut, const JMapInfo* pMapInfo, const char* pKey, s32 idx) {

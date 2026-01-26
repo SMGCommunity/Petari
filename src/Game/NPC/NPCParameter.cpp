@@ -15,15 +15,7 @@ void NPCParameterEdit::read(JMapInfo* pInfo, s32 a2) {
 NPCParameterBool::NPCParameterBool(const char* pName, bool* pBool) : NPCParameterBase(pName), _8(pBool) {}
 
 void NPCParameterBool::read(JMapInfo* pInfo, s32 a2) {
-    // most likely inlined JmapInfo::getValue<bool>
-    bool* temp = _8;
-    s32 itemIndex = pInfo->searchItemInfo(mName);
-    if (itemIndex < 0) {
-        return;
-    }
-    const JMapItem* pItem = &pInfo->mData->mItems[itemIndex];
-    const u32* pValue = reinterpret_cast< const u32* >(getEntryAddress(pInfo->mData, pInfo->mData->mDataOffset, a2) + pItem->mOffsData);
-    *temp = (*pValue & pItem->mMask) != 0;
+   pInfo->getValue(a2, mName, _8);
 }
 
 NPCParameterV3f::NPCParameterV3f(const char* pName, TVec3f* pVec, f32 f1, f32 f2) : NPCParameterBase(pName), _8(pVec), _C(f1), _10(f2) {}
@@ -75,12 +67,7 @@ NPCParameterRange< s32 >::NPCParameterRange(const char* pName, s32* pLong, s32 a
 
 template <>
 void NPCParameterRange< s32 >::read(JMapInfo* pInfo, s32 a2) {
-    // inlined JmapInfo::getValue< s32 >
-    s32 itemIndex = pInfo->searchItemInfo(mName);
-    if (itemIndex < 0) {
-        return;
-    }
-    pInfo->getValueFast(a2, itemIndex, _8);
+    pInfo->getValue(a2, mName, _8);
 }
 
 template <>

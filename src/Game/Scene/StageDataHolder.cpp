@@ -161,7 +161,7 @@ JMapInfo StageDataHolder::getCommonPathPointInfoFromRailDataIndex(const JMapInfo
 s32 StageDataHolder::getCurrentStartCameraId() const {
     JMapInfoIter marioIter = makeCurrentMarioJMapInfoIter();
     s32 cameraID;
-    bool ret = marioIter.mInfo->getValue< s32 >(marioIter.mIndex, "Camera_id", &cameraID);
+    bool ret = marioIter.getValue< s32 >("Camera_id", &cameraID);
 
     if (ret) {
         return cameraID;
@@ -171,12 +171,10 @@ s32 StageDataHolder::getCurrentStartCameraId() const {
 }
 
 void StageDataHolder::getStartCameraIdInfoFromStartDataIndex(JMapIdInfo* pInfo, int startDataIdx) const {
-    JMapInfoIter copy;
     JMapInfoIter startIter = getStartJMapInfoIterFromStartDataIndex(startDataIdx);
-    copy = startIter;
     s32 cameraID;
-    copy.mInfo->getValue< s32 >(startIter.mIndex, "Camera_id", &cameraID);
-    pInfo->initalize(cameraID, copy);
+    startIter.getValue< s32 >("Camera_id", &cameraID);
+    pInfo->initialize(cameraID, startIter);
 }
 
 const StageDataHolder* StageDataHolder::findPlacedStageDataHolder(const JMapInfoIter& rIter) const {
@@ -240,7 +238,7 @@ const char* StageDataHolder::getJapaneseObjectName(const char* pName) const {
     }
 
     const char* japaneseName;
-    englishName.mInfo->getValue< const char* >(englishName.mIndex, "jp_name", &japaneseName);
+    englishName.getValue< const char* >("jp_name", &japaneseName);
     return japaneseName;
 }
 

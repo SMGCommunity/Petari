@@ -1,4 +1,5 @@
 #include "Game/Camera/DotCamParams.hpp"
+#include "Game/Util/JMapInfo.hpp"
 #include <cstdio>
 #include <cstring>
 
@@ -87,28 +88,13 @@ bool DotCamReaderInBin::getValueVec(const char* pName, TVec3f* pOut) {
 }
 
 bool DotCamReaderInBin::getValueString(const char* pName, const char** pOut) {
-    s32 iVar3 = mMapIter.mIndex;
-    const JMapInfo* info = mMapIter.mInfo;
-    s32 index = info->searchItemInfo(pName);
-
-    if (index < 0) {
-        return false;
-    }
-
-    return info->getValueFast(iVar3, index, pOut);
+    return mMapIter.getValue(pName, pOut);
 }
 
 // Stack issues
 void DotCamReaderInBin::init(const void* pData) {
     mMapInfo.attach(pData);
-    s32 index = mMapInfo.searchItemInfo("version");
+    mMapInfo.getValue(0, "version", &mVersion);
 
-    bool valid = index >= 0;
-
-    if (valid) {
-        mMapInfo.getValueFast(0, index, &mVersion);
-    }
-
-    mMapIter.mInfo = &mMapInfo;
-    mMapIter.mIndex = 0;
+    mMapIter = JMapInfoIter(&mMapInfo,0);
 }
