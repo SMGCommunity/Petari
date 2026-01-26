@@ -89,7 +89,6 @@ NPCActorCaps::NPCActorCaps(const char* pName) {
     mMessageOffset.y = 150.0f;
     mMessageOffset.z = 0.0f;
     mSensorOffset.set< f32 >(0.0f, 50.0f, 0.0f);
-    mSensorOffset.set< f32 >(0.0f, 50.0f, 0.0f);
     _10 = pName;
     mTalkMtx = nullptr;
     mTalkJointName = nullptr;
