@@ -267,7 +267,10 @@ namespace JGeometry {
 
         TVec3 operator-() const;
 
-        bool operator==(const TVec3&) const;
+        bool operator==(const TVec3& rVec) const {
+            return TUtil< f32 >::epsilonEquals(x, rVec.x, 0.0000038146973f) && TUtil< f32 >::epsilonEquals(y, rVec.y, 0.0000038146973f) &&
+                   TUtil< f32 >::epsilonEquals(z, rVec.z, 0.0000038146973f);
+        }
 
         // This should probably be merged with operator-(), but ParallelGravity doesn't inline
         // operator-() despite only referencing it once. So if we can match that, the two functions
@@ -586,6 +589,9 @@ namespace JGeometry {
         inline void set(T _x, T _y, T _z, T _w) {
             TVec4< T >::set(_x, _y, _z, _w);
         }
+#else 
+        template < typename T >
+        inline void set(T _x, T _y, T _z, T _w);
 #endif
 
         /* General operations */
