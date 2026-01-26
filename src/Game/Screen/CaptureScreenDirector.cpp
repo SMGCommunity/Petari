@@ -55,7 +55,7 @@ void CaptureScreenDirector::invalidateCaptureTiming(const char* pName) {
     }
 }
 
-ResTIMG* CaptureScreenDirector::getResTIMG() const {
+const ResTIMG* CaptureScreenDirector::getResTIMG() const {
     return mTexture->mTIMG;
 }
 

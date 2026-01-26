@@ -139,7 +139,7 @@ namespace MR {
         getCaptureScreenDirector()->captureIfAllow(pParam1);
     }
 
-    ResTIMG* getScreenResTIMG() {
+    const ResTIMG* getScreenResTIMG() {
         return getCaptureScreenDirector()->getResTIMG();
     }
 
