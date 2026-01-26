@@ -1,4 +1,5 @@
 #include "Game/MapObj/LavaGeyser.hpp"
+#include "Game/LiveActor/HitSensor.hpp"
 
 #define DEG_TO_RAD_0_1 0.017453292f
 
@@ -12,8 +13,8 @@ namespace NrvLavaGeyser {
 }  // namespace NrvLavaGeyser
 
 LavaGeyser::LavaGeyser(const char* pName) : LiveActor(pName) {
-    _8c = 180;
-    _90 = 180;
+    mArg0 = 180;
+    mArg1 = 180;
     _94.set(0.0f, 0.0f, 0.0f);
     _A0.set(0.0f, 1.0f, 0.0f);
     _B0 = 0.0f;
@@ -31,8 +32,8 @@ void LavaGeyser::init(const JMapInfoIter& iter) {
     f32 rotZ = mRotation.z;  // this matches worse without the seperate dec
     quat1.setEuler(DEG_TO_RAD_0_1 * rotX, DEG_TO_RAD_0_1 * rotY, DEG_TO_RAD_0_1 * rotZ);
     quat1.getYDir(_A0);
-    MR::getJMapInfoArg0NoInit(iter, &_8c);
-    MR::getJMapInfoArg1NoInit(iter, &_90);
+    MR::getJMapInfoArg0NoInit(iter, &mArg0);
+    MR::getJMapInfoArg1NoInit(iter, &mArg1);
     MR::useStageSwitchReadA(this, iter);
     initModelManagerWithAnm("LavaGeyser", nullptr, false);
     MR::startBtk(this, "LavaGeyser");
@@ -110,7 +111,7 @@ void LavaGeyser::exeWait() {
     }
     if (MR::isValidSwitchA(this) && !MR::isOnSwitchA(this)) {
         setNerve(&NrvLavaGeyser::LavaGeyserNrvWaitSwitch::sInstance);
-    } else if (MR::isStep(this, _8c)) {
+    } else if (MR::isStep(this, mArg0)) {
         setNerve(&NrvLavaGeyser::LavaGeyserNerveSign::sInstance);
     }
 }
@@ -119,7 +120,7 @@ void LavaGeyser::exeSign() {
     if (MR::isFirstStep(this)) {
         const TVec3f* pos = &mPosition;
         _94.set(*pos);
-        MR::emitEffect(this, "Sign");  //
+        MR::emitEffect(this, "Sign");
     }
     MR::startLevelSound(this, "SE_OJ_LV_LAVA_GEYSER_SIGN", -1, -1, -1);
     if (MR::isStep(this, 90)) {
@@ -150,7 +151,7 @@ void LavaGeyser::exeShootKeep() {
     MR::copyJointPos(this, "Top", &_94);
     MR::startLevelSound(this, "SE_OJ_LV_LAVA_GEYSER_SIGN", -1, -1, -1);
     MR::startLevelSound(this, "SE_OJ_LV_LAVA_GEYSER_KEEP", -1, -1, -1);
-    if (MR::isStep(this, _90)) {
+    if (MR::isStep(this, mArg1)) {
         setNerve(&NrvLavaGeyser::LavaGeyserNerveShootDown::sInstance);
     }
 }
