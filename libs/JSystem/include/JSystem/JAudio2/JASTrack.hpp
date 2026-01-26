@@ -153,8 +153,6 @@ public:
 
     void assignExtBuffer(u32, JASSoundParams*);
 
-    void call(u32);
-
     void updateTimedParam();
     void updateTrack(f32);
     void updateTempo();

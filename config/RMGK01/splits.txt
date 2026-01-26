@@ -10095,7 +10095,7 @@ RVL_SDK/vf/pf_file.c:
 
 RVL_SDK/vf/pf_path.c:
 	.text       start:0x8047F0EC end:0x8048195C
-	.sdata      start:0x806B2988 end:0x806B29C8
+	.sdata      start:0x806B2988 end:0x806B29C0
 	.sdata2     start:0x806C1E80 end:0x806C1E90
 
 RVL_SDK/vf/pf_sector.c:
@@ -10249,6 +10249,7 @@ JSystem/JAudio2/JASSeqParser.cpp:
 	.ctors      start:0x8052F408 end:0x8052F40C
 	.rodata     start:0x80561150 end:0x80561168
 	.data       start:0x805EB388 end:0x805ECCB8
+	.sdata      start:0x806B29C0 end:0x806B29C8
 	.sbss       start:0x806B7500 end:0x806B7510
 	.sdata2     start:0x806C1ED8 end:0x806C1EF8
 
