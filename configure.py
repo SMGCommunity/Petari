@@ -808,7 +808,7 @@ config.libs = [
             Object(NonMatching, "Game/Boss/PoltaArm.cpp"),
             Object(NonMatching, "Game/Boss/PoltaBattleLv1.cpp"),
             Object(NonMatching, "Game/Boss/PoltaBattleLv2.cpp"),
-            Object(NonMatching, "Game/Boss/PoltaDemo.cpp"),
+            Object(Matching, "Game/Boss/PoltaDemo.cpp"),
             Object(NonMatching, "Game/Boss/PoltaFunction.cpp"),
             Object(NonMatching, "Game/Boss/PoltaGroundRock.cpp"),
             Object(NonMatching, "Game/Boss/PoltaGroundRockHolder.cpp"),
