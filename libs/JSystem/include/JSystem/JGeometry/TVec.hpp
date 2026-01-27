@@ -645,9 +645,11 @@ namespace JGeometry {
         inline void set(T _x, T _y, T _z, T _w) {
             TVec4< T >::set(_x, _y, _z, _w);
         }
-#else 
-        template < typename T >
-        inline void set(T _x, T _y, T _z, T _w);
+#else
+        template < typename >
+        inline void set(T _x, T _y, T _z, T _w) {
+            TVec4< T >::set(_x, _y, _z, _w);
+        }
 #endif
 
         /* General operations */
