@@ -3008,7 +3008,7 @@ config.libs = [
             Object(NonMatching, "JSystem/JAudio2/JASCmdStack.cpp"),
             Object(NonMatching, "JSystem/JAudio2/JASTrack.cpp"),
             Object(Matching, "JSystem/JAudio2/JASTrackPort.cpp"),
-            Object(NonMatching, "JSystem/JAudio2/JASRegisterParam.cpp"),
+            Object(Matching, "JSystem/JAudio2/JASRegisterParam.cpp"),
             Object(Matching, "JSystem/JAudio2/JASSeqCtrl.cpp"),
             Object(NonMatching, "JSystem/JAudio2/JASSeqParser.cpp"),
             Object(Matching, "JSystem/JAudio2/JASSeqReader.cpp"),
