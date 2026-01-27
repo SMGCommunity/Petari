@@ -405,7 +405,7 @@ class J3DAnmTransformFull : public J3DAnmTransform {
 public:
     J3DAnmTransformFull() : J3DAnmTransform(0, NULL, NULL, NULL) { mAnmTable = NULL; }
 
-    virtual ~J3DAnmTransformFull() {}
+    virtual ~J3DAnmTransformFull();
     virtual s32 getKind() const { return 9; }
     virtual void getTransform(u16, J3DTransformInfo*) const;
 
@@ -691,19 +691,52 @@ public:
 
 class J3DFrameCtrl {
 public:
+    enum Attribute_e {
+        /*  -1 */ EMode_NULL = -1,
+        /* 0x0 */ EMode_NONE,
+        /* 0x1 */ EMode_RESET,
+        /* 0x2 */ EMode_LOOP,
+        /* 0x3 */ EMode_REVERSE,
+        /* 0x4 */ EMode_LOOP_REVERSE,
+    };
+
     inline J3DFrameCtrl(s16 endFrame) { init(endFrame); }
 
-    virtual ~J3DFrameCtrl();
-
+    J3DFrameCtrl() { this->init(0); }
     void init(s16);
-    bool checkPass(f32);
+    void init(int endFrame) { init((s16)endFrame); }
+    BOOL checkPass(f32);
     void update();
+    virtual ~J3DFrameCtrl() {}
 
-    u8 mLoopMode;       // 0x4
-    u8 mFlags;          // 0x5
-    s16 mStartFrame;    // 0x6
-    s16 mEndFrame;      // 0x8
-    s16 mLoopFrame;     // 0xA
-    f32 mSpeed;         // 0xC
-    f32 mCurrentFrame;  // 0x10
-};
+    u8 getAttribute() const { return mAttribute; }
+    void setAttribute(u8 attr) { mAttribute = attr; }
+    u8 getState() const { return mState; }
+    bool checkState(u8 state) const { return mState & state ? true : false; }
+    s16 getStart() const { return mStart; }
+    void setStart(s16 start) {
+        mStart = start;
+        mFrame = start;
+    }
+    s16 getEnd() const { return mEnd; }
+    void setEnd(s16 end) { mEnd = end; }
+    s16 getLoop() const { return mLoop; }
+    void setLoop(s16 loop) { mLoop = loop; }
+    f32 getRate() const { return mRate; }
+    void setRate(f32 rate) { mRate = rate; }
+    f32 getFrame() const { return mFrame; }
+    void setFrame(f32 frame) { mFrame = frame; }
+    void reset() {
+        mFrame = mStart;
+        mRate = 1.0f;
+        mState = 0;
+    }
+
+    /* 0x04 */ u8 mAttribute;
+    /* 0x05 */ u8 mState;
+    /* 0x06 */ s16 mStart;
+    /* 0x08 */ s16 mEnd;
+    /* 0x0A */ s16 mLoop;
+    /* 0x0C */ f32 mRate;
+    /* 0x10 */ f32 mFrame;
+};  // Size: 0x14

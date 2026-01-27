@@ -13,7 +13,7 @@ void LayoutAnmPlayer::movement() {
 void LayoutAnmPlayer::reflectFrame() {
     if (mAnimTransform != nullptr) {
         // TODO: Should be AnimTransform::SetFrame
-        mAnimTransform->mFrame = mFrameCtrl.mCurrentFrame;
+        mAnimTransform->mFrame = mFrameCtrl.mFrame;
     }
 }
 
@@ -26,21 +26,21 @@ void LayoutAnmPlayer::start(const char* pAnimName) {
 
     u32 frameSize = mAnimTransform->GetFrameSize();
 
-    mFrameCtrl.init(frameSize);
+    mFrameCtrl.init((s16)frameSize);
 
     if (mAnimTransform->IsLoopData()) {
-        mFrameCtrl.mLoopMode = 2;
+        mFrameCtrl.mAttribute = 2;
     } else {
-        mFrameCtrl.mLoopMode = 0;
+        mFrameCtrl.mAttribute = 0;
     }
 
-    mFrameCtrl.mCurrentFrame = 0.0f;
-    mFrameCtrl.mSpeed = 1.0f;
+    mFrameCtrl.mFrame = 0.0f;
+    mFrameCtrl.mRate = 1.0f;
     mAnimName = pAnimName;
 }
 
 void LayoutAnmPlayer::stop() {
-    mFrameCtrl.mSpeed = 0.0f;
+    mFrameCtrl.mRate = 0.0f;
 }
 
 // LayoutAnmPlayer::isStop

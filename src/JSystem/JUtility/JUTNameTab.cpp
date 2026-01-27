@@ -50,5 +50,3 @@ u16 JUTNameTab::calcKeyCode(const char* pName) const {
     }
     return keyCode;
 }
-
-JUTNameTab::~JUTNameTab() {}

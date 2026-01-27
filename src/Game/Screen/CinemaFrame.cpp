@@ -127,7 +127,7 @@ void CinemaFrame::exeScreen() {
 
         pAnimCtrl = MR::getAnimCtrl(this, 0);
 
-        MR::setAnimFrameAndStop(this, pAnimCtrl->mEndFrame - 1.0f, 0);
+        MR::setAnimFrameAndStop(this, pAnimCtrl->mEnd - 1.0f, 0);
         kill();
     }
 }

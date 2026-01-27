@@ -132,13 +132,13 @@ void LensFlareRing::appearAnim() {
 void LensFlareRing::controlAnim() {
     MR::startBrk(this, "LensFlare");
     MR::setBrkRate(this, 0.0f);
-    MR::setBrkFrame(this, (1.0f - _8C * _90) * MR::getBrkCtrl(this)->mEndFrame);
+    MR::setBrkFrame(this, (1.0f - _8C * _90) * MR::getBrkCtrl(this)->mEnd);
 
     if (MR::isBckStopped(this)) {
         MR::startBckWithInterpole(this, "LensFlare", 0);
     }
 
-    MR::setBckFrameAndStop(this, _A0 * MR::getBckCtrl(this)->mEndFrame);
+    MR::setBckFrameAndStop(this, _A0 * MR::getBckCtrl(this)->mEnd);
 }
 
 LensFlareGlow::LensFlareGlow() : LensFlareModel("グレア（円形）", "GlareGlow") {
@@ -152,7 +152,7 @@ void LensFlareGlow::appearAnim() {
 void LensFlareGlow::controlAnim() {
     MR::startBrk(this, "GlareGlow");
     MR::setBrkRate(this, 0.0f);
-    MR::setBrkFrame(this, (1.0f - _8C * _90) * MR::getBrkCtrl(this)->mEndFrame);
+    MR::setBrkFrame(this, (1.0f - _8C * _90) * MR::getBrkCtrl(this)->mEnd);
 }
 
 LensFlareLine::LensFlareLine() : LensFlareModel("グレア（ライン）", "GlareLine") {
@@ -164,7 +164,7 @@ void LensFlareLine::appearAnim() {}
 void LensFlareLine::controlAnim() {
     MR::startBrk(this, "GlareLine");
     MR::setBrkRate(this, 0.0f);
-    MR::setBrkFrame(this, (1.0f - _8C * _90) * MR::getBrkCtrl(this)->mEndFrame);
+    MR::setBrkFrame(this, (1.0f - _8C * _90) * MR::getBrkCtrl(this)->mEnd);
 }
 
 LensFlareDirector::LensFlareDirector()
