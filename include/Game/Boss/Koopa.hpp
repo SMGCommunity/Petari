@@ -22,7 +22,6 @@ public:
     virtual bool receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
     virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
 
-private:
     /* 0x8C */ TVec3f _8C;
     /* 0x98 */ KoopaSequencer* mSequencer;
     /* 0x9C */ KoopaSensorCtrl* mSensorCtrl;

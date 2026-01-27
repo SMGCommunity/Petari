@@ -2,6 +2,7 @@
 
 #include "Game/Boss/Koopa.hpp"
 #include "Game/Map/KoopaBattleMapStair.hpp"
+#include "JSystem/JGeometry/TVec.hpp"
 
 namespace KoopaFunction {
     s32 registerBattleMapStair(KoopaBattleMapStair*);
@@ -20,4 +21,5 @@ namespace KoopaFunction {
     bool isKoopaVs3(const Koopa*);
     void* getKoopaPlanetShadow(Koopa*);
     LiveActor* getKoopaPowerUpSwitch(Koopa*);
+    TVec3f* getPlanetCenterPos(const Koopa*);
 };  // namespace KoopaFunction
