@@ -1149,12 +1149,12 @@ Game/Boss/OtaKingMagma.cpp:
 
 Game/Boss/Polta.cpp:
 	.text       start:0x8006E654 end:0x8006F3F4
-	.data       start:0x8056F6B8 end:0x8056F9A0
+	.data       start:0x8056F6B8 end:0x8056F8A8
 	.sdata2     start:0x806B8B40 end:0x806B8B68
 
 Game/Boss/PoltaActionBase.cpp:
 	.text       start:0x8006F3F4 end:0x8006F924
-	.data       start:0x8056F9A0 end:0x8056FA08
+	.data       start:0x8056F8A8 end:0x8056FA08
 	.sdata2     start:0x806B8B68 end:0x806B8B70
 
 Game/Boss/PoltaActionSequencer.cpp:
@@ -1253,19 +1253,19 @@ Game/Boss/PoltaStatePunch.cpp:
 Game/Boss/PoltaStateStagger.cpp:
 	.text       start:0x80075E94 end:0x80076164
 	.ctors      start:0x8052E984 end:0x8052E988
-	.data       start:0x80570920 end:0x805709A0
+	.data       start:0x80570920 end:0x80570990
 	.sbss       start:0x806B3760 end:0x806B3768
 	.sdata2     start:0x806B8C68 end:0x806B8C90
 
 Game/Boss/PoltaWaitStart.cpp:
 	.text       start:0x80076164 end:0x8007624C
-	.data       start:0x805709A0 end:0x805709F0
+	.data       start:0x80570990 end:0x805709D0
 
 Game/Boss/SkeletalFishBaby.cpp:
 	.text       start:0x8007624C end:0x80077248
 	.ctors      start:0x8052E988 end:0x8052E98C
 	.rodata     start:0x80531430 end:0x80531470
-	.data       start:0x805709F0 end:0x80570BC8
+	.data       start:0x805709D0 end:0x80570BC8
 	.sbss       start:0x806B3768 end:0x806B3778
 	.sdata2     start:0x806B8C90 end:0x806B8CC0
 

@@ -820,7 +820,7 @@ config.libs = [
             Object(NonMatching, "Game/Boss/PoltaStateGroundRockAttack.cpp"),
             Object(NonMatching, "Game/Boss/PoltaStatePunch.cpp"),
             Object(NonMatching, "Game/Boss/PoltaStateStagger.cpp"),
-            Object(NonMatching, "Game/Boss/PoltaWaitStart.cpp"),
+            Object(Matching, "Game/Boss/PoltaWaitStart.cpp"),
             Object(NonMatching, "Game/Boss/SkeletalFishBaby.cpp"),
             Object(Matching, "Game/Boss/SkeletalFishBabyRail.cpp"),
             Object(Matching, "Game/Boss/SkeletalFishBabyRailHolder.cpp"),

@@ -4,6 +4,10 @@
 
 class PoltaSensorCtrl;
 class PoltaArm;
+class PoltaActionSequencer;
+class BombTeresaHolder;
+class PoltaRockHolder;
+class PoltaGroundRockHolder;
 
 class Polta : public LiveActor {
 public:
@@ -43,4 +47,16 @@ public:
 	PoltaSensorCtrl* mSensorCtrl;             // 0x8C
 	PoltaArm* mLeftArm;                       // 0x90
 	PoltaArm* mRightArm;                      // 0x94
+	PoltaActionSequencer* mSequencer;         // 0x98
+	BombTeresaHolder* mBombTeresaHolder;      // 0x9C
+	PoltaRockHolder* mRockHolder;             // 0xA0
+	PoltaGroundRockHolder* mGroundRockHolder; // 0xA4
+	ActorCameraInfo* mCameraInfo;             // 0xA8
+	ModelObj* mBreakModel;                    // 0xAC
+	ModelObj* mFormationModel;                // 0xB0
+	TQuat4f _B4;                              // 0xB4
+	TVec3f _C4;                               // 0xC4
+	TQuat4f _D0;                              // 0xD0
+	TVec3f _E0;                               // 0xE0
+	f32 _E4;                                  // 0xE4
 };
