@@ -1215,11 +1215,12 @@ Game/Boss/PoltaRock.cpp:
 
 Game/Boss/PoltaRockHolder.cpp:
 	.text       start:0x800748BC end:0x80074A08
-	.data       start:0x805703B8 end:0x805704F0
+	.data       start:0x805703B8 end:0x805703E0
 
 Game/Boss/PoltaSensorCtrl.cpp:
 	.text       start:0x80074A08 end:0x80074D90
 	.rodata     start:0x805310A0 end:0x80531310
+	.data       start:0x805703E0 end:0x805704F0
 	.sdata2     start:0x806B8C38 end:0x806B8C48
 
 Game/Boss/PoltaStateAttackGround.cpp:
