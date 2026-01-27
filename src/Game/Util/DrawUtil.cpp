@@ -2,6 +2,7 @@
 #include "Game/Camera/CameraContext.hpp"
 #include "Game/Scene/GameSceneFunction.hpp"
 #include "Game/Util/ScreenUtil.hpp"
+#include "Game/Util/CameraUtil.hpp"
 #include <revolution/gx/GXRegs.h>
 
 const JUTTexture* mShadowTex;
@@ -47,6 +48,31 @@ namespace MR {
 
     void setMarioShadowTex(const JUTTexture* pShadowTex) {
         mShadowTex = pShadowTex;
+    }
+
+    // TODO
+    // The TPos3f here is actually a Mtx44
+    void loadTexProjectionMtx(u32 id) {
+        TPos3f cameraProjection;
+        cameraProjection.setInline(*MR::getCameraProjectionMtx());
+        cameraProjection.mMtx[2][0] = 0.0f;
+        cameraProjection.mMtx[2][1] = 0.0f;
+        cameraProjection.mMtx[2][2] = -1.0f;
+        cameraProjection.mMtx[2][3] = 0.0f;
+        cameraProjection.mMtx[3][0] = 0.0f;
+        cameraProjection.mMtx[3][1] = 0.0f;
+        cameraProjection.mMtx[3][2] = 0.0f;
+        cameraProjection.mMtx[3][3] = 1.0f;
+        Mtx matrix;
+        PSMTXConcat(cameraProjection.toMtxPtr(), MR::getCameraViewMtx(), matrix);
+        TMtx34f mat;
+        mat.identity();
+        mat[0][0] = 0.5f;
+        mat[0][2] = 0.5f;
+        mat[1][1] = -0.5f;
+        mat[1][2] = 0.5f;
+        PSMTXConcat(mat, matrix, matrix);
+        GXLoadTexMtxImm(matrix, id, GX_MTX3x4);
     }
 
     void activateGameSceneDraw3D() {
