@@ -67,10 +67,11 @@ public:
     int removeTevRegAnimator(J3DAnmTevRegKey* anm) { return mMaterialTable.removeTevRegAnimator(anm); }
     int removeMatColorAnimator(J3DAnmColor* anm) { return mMaterialTable.removeMatColorAnimator(anm); }
     void syncJ3DSys() const { syncJ3DSysFlags(); }
-    void makeHierarchy(J3DJoint* joint, J3DModelHierarchy const** hierarchy) {
+    void makeHierarchy(J3DJoint* joint, J3DModelHierarchy const** hierarchy) NO_INLINE {
         mJointTree.makeHierarchy(joint, hierarchy, &mMaterialTable, &mShapeTable);
         mShapeTable.initShapeNodes(getDrawMtxData(), &getVertexData());
     }
+
     void show() { mShapeTable.show(); }
     void hide() { mShapeTable.hide(); }
 

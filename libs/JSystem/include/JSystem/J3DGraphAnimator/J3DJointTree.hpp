@@ -53,6 +53,8 @@ public:
 
     J3DMtxCalc* getBasicMtxCalc() { return mBasicMtxCalc; }
 
+    void setFlag(u32 flag) { mFlags = flag; }
+
     /* 0x04 */ J3DModelHierarchy* mHierarchy;
     /* 0x08 */ u32 mFlags;
     /* 0x0C */ u32 mModelDataType;
