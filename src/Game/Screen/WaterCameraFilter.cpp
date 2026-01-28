@@ -42,7 +42,7 @@ void WaterCameraFilter::init(const JMapInfoIter& rIter) {
     MR::invalidateClipping(this);
     initNerve(&NrvWaterCameraFilter::WaterCameraFilterNrvAir::sInstance);
     initScreenTex();
-    JUTTexture* filterTex = new JUTTexture(MR::loadTexFromArc("WaterCameraFilter.arc", "WaterCameraFilter.bti"));
+    JUTTexture* filterTex = new JUTTexture(MR::loadTexFromArc("WaterCameraFilter.arc", "WaterCameraFilter.bti"), 0);
     mFilterTex = filterTex;
     makeActorAppeared();
 }
@@ -110,7 +110,7 @@ void WaterCameraFilter::control() {
 
 void WaterCameraFilter::draw() const {
     if (!isNerve(&NrvWaterCameraFilter::WaterCameraFilterNrvAir::sInstance)) {
-        GXRenderModeObj* renderObj = JUTVideo::sManager->mRenderModeObj;
+        GXRenderModeObj* renderObj = JUTVideo::getManager()->getRenderMode();
         GXSetCopyFilter(GX_FALSE, renderObj->sample_pattern, GX_FALSE, renderObj->vfilter);
         mScreenTex->capture(0, 0, GX_TF_RGB565, false, 0);
         GXSetCopyFilter(GX_FALSE, renderObj->sample_pattern, GX_TRUE, renderObj->vfilter);

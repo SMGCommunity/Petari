@@ -2,13 +2,6 @@
 #include <JSystem/JUtility/JUTPalette.hpp>
 #include <JSystem/JUtility/JUTTexture.hpp>
 
-JUTTexture::JUTTexture() {
-    setCaptureFlag(false);
-
-    mEmbPalette = nullptr;
-    mTIMG = nullptr;
-}
-
 JUTTexture::JUTTexture(int width, int height, GXTexFmt format) {
     mFlag = mFlag & 2 | 1;
     u32 bufSize = GXGetTexBufferSize(width, height, format, GX_FALSE, 1);
@@ -228,12 +221,4 @@ void JUTTexture::capture(int width, int height, GXTexFmt format, bool mipmap, GX
         GXCopyTex(mImage, clear);
         GXPixModeSync();
     }
-}
-
-void JUTTexture::setCaptureFlag(bool set) {
-    mFlag = mFlag & 0x2 | (set << 0);
-}
-
-void JUTTexture::setEmbPaletteDelFlag(bool set) {
-    mFlag = mFlag & 0x1 | (set << 1);
 }

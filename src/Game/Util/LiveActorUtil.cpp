@@ -233,7 +233,11 @@ namespace MR {
     // isBckLooped
     // checkPassBckFrame
     // setBckFrameAtRandom
-    // setBtkFrameAtRandom
+    void setBtkFrameAtRandom(const LiveActor* pActor) {
+        s16 actorEndFrame = pActor->mModelManager->getBtkCtrl()->mEnd;
+        s32 frameRand = (actorEndFrame * MR::getRandom());
+        pActor->mModelManager->getBtkCtrl()->mFrame = frameRand;
+    }
     // setBckFrameAndStop
     // setBtkFrameAndStop
     // setBrkFrameAndStop

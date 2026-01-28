@@ -64,11 +64,11 @@ void ProloguePictureBook::exePlaying() {
 
         MR::testSystemPadTriggerDecide();
 
-        if (sBookPageInfo[index] > static_cast< s32 >(pAnimCtrl->mCurrentFrame)) {
+        if (sBookPageInfo[index] > static_cast< s32 >(pAnimCtrl->mFrame)) {
             return;
         }
 
-        pAnimCtrl->mCurrentFrame = sBookPageInfo[index] - 1.0f;
+        pAnimCtrl->mFrame = sBookPageInfo[index] - 1.0f;
 
         setNerve(&NrvProloguePictureBook::ProloguePictureBookKeyWait::sInstance);
     }
@@ -79,7 +79,7 @@ void ProloguePictureBook::exeKeyWait() {
 
     if (MR::isFirstStep(this)) {
         mAButtonIcon->openWithoutMessage();
-        pAnimCtrl->mSpeed = 0.0f;
+        pAnimCtrl->mRate = 0.0f;
     }
 
     if (MR::testCorePadTriggerA(WPAD_CHAN0)) {
@@ -87,7 +87,7 @@ void ProloguePictureBook::exeKeyWait() {
         mAButtonIcon->term();
 
         mPage++;
-        pAnimCtrl->mSpeed = 1.0f;
+        pAnimCtrl->mRate = 1.0f;
 
         setNerve(&NrvProloguePictureBook::ProloguePictureBookPlaying::sInstance);
     }

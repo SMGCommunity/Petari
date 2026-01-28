@@ -55,6 +55,8 @@ __GXCDEF(GXPosition, 2, f32)
 __GXCDEF(GXPosition, 3, f32)
 __GXCDEF(GXPosition, 3, s16)
 
+__GXCDEF(GXNormal, 3, f32)
+
 __GXCDEF(GXColor, 1, u32)
 __GXCDEF(GXColor, 4, u8)
 

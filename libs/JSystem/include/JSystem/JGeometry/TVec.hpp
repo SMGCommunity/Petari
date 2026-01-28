@@ -469,6 +469,8 @@ namespace JGeometry {
             return ret;
         }
 
+        void scaleAdd(__REGISTER f32 sc, const TVec3< f32 >& a, const TVec3< f32 >& b) { JMAVECScaleAdd(&a, &b, this, sc); }
+
         inline void scaleAdd(const TVec3& scaleVec, const TVec3& addVec, f32 scale) { JMAVECScaleAdd(&scaleVec, &addVec, this, scale); }
 
         inline void rejection(const TVec3& rVec, const TVec3& rNormal) { JMAVECScaleAdd(&rNormal, &rVec, this, -rNormal.dot(rVec)); }
@@ -498,6 +500,8 @@ namespace JGeometry {
             scale(inv_norm);
             return inv_norm * sq;
         }
+
+        inline void mul(const TVec3< f32 >& a) { mul(*this, a); }
 
         void cross(const TVec3< f32 >& a, const TVec3< f32 >& b) { PSVECCrossProduct(a, b, *this); }
 
@@ -645,9 +649,11 @@ namespace JGeometry {
         inline void set(T _x, T _y, T _z, T _w) {
             TVec4< T >::set(_x, _y, _z, _w);
         }
-#else 
-        template < typename T >
-        inline void set(T _x, T _y, T _z, T _w);
+#else
+        template < typename >
+        inline void set(T _x, T _y, T _z, T _w) {
+            TVec4< T >::set(_x, _y, _z, _w);
+        }
 #endif
 
         /* General operations */

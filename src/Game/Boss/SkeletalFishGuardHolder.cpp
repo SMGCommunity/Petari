@@ -111,9 +111,8 @@ s32 SkeletalFishGuardHolder::countGuardAlive() const {
     return aliveGuard;
 }
 
-/*
 void SkeletalFishGuardHolder::checkDistanceAndAppear(s32 numGuards) {
-    f32 len, v7, v9;
+    f32 v7, v9;
 
     f32 guardOffsLvl = mFishBoss->mBossInfo->getLevelStatus(mFishBoss->_110)->mGuardOffsLevel;
     f32 coord = MR::getRailCoord(mBossRail);
@@ -125,8 +124,7 @@ void SkeletalFishGuardHolder::checkDistanceAndAppear(s32 numGuards) {
     for (s32 i = 0; i < MR::getRailPointNum(mBossRail); i++) {
         if (mBossRail->isFillUpPoint(i)) {
             v7 = (MR::getRailPointCoord(mBossRail, i) - guardOffsLvl);
-            len = MR::getRailTotalLength(mBossRail);
-            v9 = MR::modAndSubtract(v7, len, 0.0f);
+            v9 = MR::repeat(v7, 0.0f, MR::getRailTotalLength(mBossRail));
 
             if (v9 < _1C) {
                 v9 = (v9 + (MR::getRailTotalLength(mBossRail)));
@@ -141,7 +139,6 @@ void SkeletalFishGuardHolder::checkDistanceAndAppear(s32 numGuards) {
 
     _1C = MR::getRailCoord(mBossRail);
 }
-*/
 
 void SkeletalFishGuardHolder::appearGuard(s32 numGuards, s32 startGuard) {
     SkeletalFishGuard* guard;

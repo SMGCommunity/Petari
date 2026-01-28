@@ -42,6 +42,10 @@ public:
     void getBaseAxis(JGeometry::TVec3< f32 >& vec) const { vec.set(mBaseAxis); }
     void getBaseAxis(JGeometry::TVec3< f32 >* vec) const { vec->set(mBaseAxis); }
 
+    f32 getCalcCurrentPositionX(const JPABaseEmitter*) const;
+    f32 getCalcCurrentPositionY(const JPABaseEmitter*) const;
+    f32 getCalcCurrentPositionZ(const JPABaseEmitter*) const;
+
 public:
     /* 0x00 */ JGeometry::TVec3< f32 > mPosition;
     /* 0x0C */ JGeometry::TVec3< f32 > mLocalPosition;

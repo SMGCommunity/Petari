@@ -738,7 +738,7 @@ void Trapeze::drawRope(const TVec3f& rPosA, const TVec3f& rPosB, const TVec3f& r
 
 TrapezeRopeDrawInit::TrapezeRopeDrawInit(const char* pName) : NameObj(pName) {
     mTexture = nullptr;
-    mTexture = new JUTTexture(MR::loadTexFromArc("Trapeze.arc", "TrapezeRope.bti"));
+    mTexture = new JUTTexture(MR::loadTexFromArc("Trapeze.arc", "TrapezeRope.bti"), 0);
 
     MR::FunctorV0M< const TrapezeRopeDrawInit*, void (TrapezeRopeDrawInit::*)() const > preDrawFunctor(this, &TrapezeRopeDrawInit::initDraw);
     MR::registerPreDrawFunction(preDrawFunctor, MR::DrawType_Trapeze);

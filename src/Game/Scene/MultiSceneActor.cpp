@@ -133,20 +133,20 @@ namespace MultiScene {
         J3DFrameCtrl* pBtpCtrl;
 
         pBtpCtrl = pActor->getModelManager()->getBtpCtrl();
-        pBtpCtrl->mCurrentFrame = frame;
+        pBtpCtrl->mFrame = frame;
 
         pBtpCtrl = pActor->getModelManager()->getBtpCtrl();
-        pBtpCtrl->mSpeed = 0.0f;
+        pBtpCtrl->mRate = 0.0f;
     }
 
     void setBvaFrameAndStop(MultiSceneActor* pActor, f32 frame) {
         J3DFrameCtrl* pBvaCtrl;
 
         pBvaCtrl = pActor->getModelManager()->getBvaCtrl();
-        pBvaCtrl->mCurrentFrame = frame;
+        pBvaCtrl->mFrame = frame;
 
         pBvaCtrl = pActor->getModelManager()->getBvaCtrl();
-        pBvaCtrl->mSpeed = 0.0f;
+        pBvaCtrl->mRate = 0.0f;
     }
 
     bool isBckStopped(MultiSceneActor* pActor) {

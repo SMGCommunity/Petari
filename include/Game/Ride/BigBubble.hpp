@@ -96,8 +96,3 @@ public:
     bool _231;
     bool _232;
 };
-
-class OctahedronBezierSurface {
-public:
-    OctahedronBezierSurface(u32);
-};

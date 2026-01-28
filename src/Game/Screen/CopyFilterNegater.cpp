@@ -1,7 +1,7 @@
 #include "Game/Screen/CopyFilterNegater.hpp"
 
 CopyFilterNegater::CopyFilterNegater() {
-    mRenderObj = JUTVideo::sManager->mRenderModeObj;
+    mRenderObj = JUTVideo::getManager()->getRenderMode();
     GXSetCopyFilter(GX_FALSE, mRenderObj->sample_pattern, GX_FALSE, mRenderObj->vfilter);
 }
 

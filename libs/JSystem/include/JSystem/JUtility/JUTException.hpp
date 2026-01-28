@@ -1,70 +1,108 @@
 #pragma once
 
 #include "JSystem/JKernel/JKRThread.hpp"
+#include "JSystem/JUtility/JUTConsole.hpp"
 #include "JSystem/JUtility/JUTGamePad.hpp"
 
-typedef void (*JUTExceptionUserCallback)(OSError, OSContext*, u32, u32);
-
-class JUTConsole;
+typedef struct _GXRenderModeObj GXRenderModeObj;
+typedef struct OSContext OSContext;
 class JUTDirectPrint;
 
 class JUTExternalFB {
 public:
-    JUTExternalFB(GXRenderModeObj*, GXGamma, void*, u32);
+    JUTExternalFB(_GXRenderModeObj*, GXGamma, void*, u32);
 
-    void changeFrameBuffer(void*, u16, u16);
-
-public:
-    /* 0x00 */ GXRenderModeObj* mRenderMode;
+private:
+    /* 0x00 */ _GXRenderModeObj* mRenderMode;
     /* 0x04 */ u32 mSize;
-    /* 0x08 */ u32 _8;
-    /* 0x0C */ u16 _C;
+    /* 0x08 */ u32 field_0x08;
+    /* 0x0C */ u16 field_0x0C;
     /* 0x0E */ u16 mGamma;
-    /* 0x10 */ bool _10;
+    /* 0x10 */ bool field_0x10;
+    /* 0x11 */ u8 field_[3];
 };
+
+#define JUT_PRINT_GPR 1
+#define JUT_PRINT_GPR_MAP 2
+#define JUT_PRINT_SRR0_MAP 4
+#define JUT_PRINT_FLOAT 8
+#define JUT_PRINT_STACK 16
+
+typedef void (*JUTExceptionUserCallback)(u16, OSContext*, u32, u32);
 
 class JUTException : public JKRThread {
 public:
-    enum EInfoPage {};
+    enum EInfoPage {
+        EINFO_PAGE_GPR = 1,
+        EINFO_PAGE_FLOAT = 2,
+        EINFO_PAGE_STACK = 3,
+        EINFO_PAGE_GPR_MAP = 4,
+        EINFO_PAGE_SSR0_MAP = 5,
+    };
+
+    class JUTExMapFile {
+    public:
+        JUTExMapFile(char* path) : mLink(this) { mPath = path; }
+
+    public:
+        /* 0x00 */ char* mPath;
+        /* 0x04 */ JSULink< JUTExMapFile > mLink;
+        /* 0x14 */
+    };
 
     JUTException(JUTDirectPrint*);
 
-    virtual s32 run();
+    void showFloatSub(int, f32);
+    void showFloat(OSContext*);
+    void showStack(OSContext*);
+    void showMainInfo(u16, OSContext*, u32, u32);
+    void showGPR(OSContext*);
+    bool showMapInfo_subroutine(u32, bool);
+    void showGPRMap(OSContext*);
+    void showSRR0Map(OSContext*);
+    void printDebugInfo(JUTException::EInfoPage, OSError, OSContext*, u32, u32);
+    bool isEnablePad() const;
+    bool readPad(u32*, u32*);
+    void printContext(u16, OSContext*, u32, u32);
+    void createFB();
+
+    virtual void* run();
 
     static JUTException* create(JUTDirectPrint*);
     static void errorHandler(OSError, OSContext*, u32, u32);
     static void panic_f_va(char const*, int, char const*, va_list);
-    static void panic_f(const char*, int, const char*, ...);
-    void showFloatSub(int, f32);
-    void showFloat(OSContext*);
-    void searchPartialModule(u32, u32*, u32*, u32*, u32*);
-    void showStack(OSContext*);
-    void showMainInfo(OSError, OSContext*, u32, u32);
-    void showGPR(OSContext*);
-    void showMapInfo_subroutine(u32, bool);
-    void showGPRMap(OSContext*);
-    void showSRR0Map(OSContext*);
-    void printDebugInfo(EInfoPage, OSError, OSContext*, u32, u32);
-    bool isEnablePad() const;
-    bool readPad(u32*, u32*);
-    void printContext(OSError, OSContext*, u32, u32);
-    static void waitTime(s32);
-    void createFB();
+    static void panic_f(char const*, int, char const*, ...);
+    static void setFPException(u32);
+    static bool searchPartialModule(u32, u32*, u32*, u32*, u32*);
     static JUTExceptionUserCallback setPreUserCallback(JUTExceptionUserCallback);
+    static JUTExceptionUserCallback setPostUserCallback(JUTExceptionUserCallback);
+    static void appendMapFile(char const*);
     static bool queryMapAddress(char*, u32, s32, u32*, u32*, char*, u32, bool, bool);
-
-    static bool queryMapAddress_single(char*, u32, s32, u32*, u32*, char*, u32, bool, bool) { return false; }
-
+    static bool queryMapAddress_single(char*, u32, s32, u32*, u32*, char*, u32, bool, bool);
     static void createConsole(void*, u32);
+    static void waitTime(s32);
+
+    static JUTException* getManager() { return sErrorManager; }
     static JUTConsole* getConsole() NO_INLINE { return sConsole; }
 
+    JUTExternalFB* getFrameMemory() const { return mFrameMemory; }
+
+    void setTraceSuppress(u32 param_0) { mTraceSuppress = param_0; }
+    void setGamePad(JUTGamePad* gamePad) {
+        mGamePad = gamePad;
+        mGamePadPort = JUTGamePad::Port_Unknown;
+    }
+
+    static void setMapFile(const char* map) { appendMapFile(map); }
+    static void panic(const char* file, int line, const char* msg) { panic_f(file, line, "%s", msg); }
+
     static OSMessageQueue sMessageQueue;
-    // static JSUList<JUTException::JUTExMapFile> sMapFileList;
-    static const char* sCpuExpName[];
+    static const char* sCpuExpName[17];
+    static JSUList< JUTException::JUTExMapFile > sMapFileList;
+    static OSMessage sMessageBuffer[1];
     static JUTException* sErrorManager;
     static JUTExceptionUserCallback sPreUserCallback;
     static JUTExceptionUserCallback sPostUserCallback;
-    static OSMessage sMessageBuffer[1];
     static void* sConsoleBuffer;
     static u32 sConsoleBufferSize;
     static JUTConsole* sConsole;
@@ -78,7 +116,16 @@ public:
     /* 0x8C */ s32 mPrintWaitTime0;
     /* 0x90 */ s32 mPrintWaitTime1;
     /* 0x94 */ u32 mTraceSuppress;
-    /* 0x98 */ u32 _98;
+    /* 0x98 */ u32 field_0x98;
     /* 0x9C */ u32 mPrintFlags;
     /* 0xA0 */ u32 mStackPointer;
+};
+
+/**
+ * @ingroup jsystem-jutility
+ *
+ */
+struct JUTWarn {
+    JUTWarn& operator<<(const char*) { return *this; }
+    JUTWarn& operator<<(s32) { return *this; }
 };

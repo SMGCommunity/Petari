@@ -208,7 +208,7 @@ void Pole::exeBindStart() {
             rotateSpeed = 9.0f;
         }
 
-        s16 frame = MR::getBckCtrl(mRider)->mEndFrame;
+        s16 frame = MR::getBckCtrl(mRider)->mEnd;
         mRotation.y += (rotateSpeed * MR::getEaseOutValue(1.0f - ((f32)getNerveStep() / frame), 0.0f, 1.0f, 1.0f));
     }
 

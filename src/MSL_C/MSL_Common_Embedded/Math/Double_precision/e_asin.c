@@ -7,8 +7,13 @@ int __float_nan[];
 #define NAN       (*(float*)      __float_nan)
 #endif
 
+#ifndef __LO
 #define __LO(x) ( sizeof(x)==8 ? *(1+(int*)&x) : (*(int*)&x))
+#endif
+
+#ifndef __HI
 #define __HI(x) (*(int*)&x)
+#endif
 #define __ULO(x) ( sizeof(x)==8 ? *(1+(uint*)&x) : (*(uint*)&x))
 #define __UHI(x) (*(uint*)&x)
 
