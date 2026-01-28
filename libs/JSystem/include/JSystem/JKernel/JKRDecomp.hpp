@@ -29,7 +29,7 @@ public:
     JKRDecomp(long);
     virtual ~JKRDecomp();
 
-    virtual s32 run();
+    virtual void* run();
 
     static JKRDecomp* create(long);
     static JKRDecompCommand* prepareCommand(unsigned char*, unsigned char*, unsigned long, unsigned long, void (*)(unsigned long));

@@ -62,11 +62,81 @@ int __float_epsilon[];
 #define M_PI 3.14159265358979323846f
 #define M_SQRT3 1.73205f
 
-#define DEG_TO_RAD(degrees) (degrees * (M_PI / 180.0f))
-#define RAD_TO_DEG(radians) (radians * (180.0f / M_PI))
+#define FP_SNAN 0
+#define FP_QNAN 1
+#define FP_INFINITE 2
+#define FP_ZERO 3
+#define FP_NORMAL 4
+#define FP_SUBNORMAL 5
+
+#define FP_NAN FP_QNAN
+
+#define __HI(x) *(int*)&x
+#define __LO(x) *(1 + (int*)&x)
+#define __HIp(x) *(int*)x
+#define __LOp(x) *(1 + (int*)x)
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+inline int __fpclassifyf(float __value) {
+    switch (*(int*)&__value & 0x7f800000) {
+    case 0x7f800000:
+        if ((*(int*)&__value & 0x7fffff) != 0) {
+            return FP_QNAN;
+        }
+        return FP_INFINITE;
+
+    case 0:
+        if ((*(int*)&__value & 0x7fffff) != 0) {
+            return FP_SUBNORMAL;
+        }
+        return FP_ZERO;
+    }
+
+    return FP_NORMAL;
+}
+
+inline int __fpclassifyd(double __value) {
+    switch (__HI(__value) & 0x7ff00000) {
+    case 0x7ff00000: {
+        if ((__HI(__value) & 0x000fffff) || (__LO(__value) & 0xffffffff))
+            return FP_QNAN;
+        else
+            return FP_INFINITE;
+        break;
+    }
+    case 0: {
+        if ((__HI(__value) & 0x000fffff) || (__LO(__value) & 0xffffffff))
+            return FP_SUBNORMAL;
+        else
+            return FP_ZERO;
+        break;
+    }
+    }
+    return FP_NORMAL;
+}
+
+int __fpclassifyl(long double __value);
+
+#ifdef __cplusplus
+};  // extern "C"
+#endif
 
 #ifdef __cplusplus
 };
 #endif
+
+#define DEG_TO_RAD(degrees) (degrees * (M_PI / 180.0f))
+#define RAD_TO_DEG(radians) (radians * (180.0f / M_PI))
+
+#define fpclassify(x)                                                                                                                                \
+    ((sizeof(x) == sizeof(float))  ? __fpclassifyf((float)(x)) :                                                                                     \
+     (sizeof(x) == sizeof(double)) ? __fpclassifyd((double)(x)) :                                                                                    \
+                                     __fpclassifyl((long double)(x)))
+
+#define isnan(x) (fpclassify(x) == FP_NAN)
+#define isinf(x) (fpclassify(x) == FP_INFINITE)
 
 #endif  // CMATH_H

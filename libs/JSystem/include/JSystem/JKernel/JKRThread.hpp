@@ -26,11 +26,11 @@ public:
     JKRThread(unsigned long, int, int);
 
     virtual ~JKRThread();
-    virtual s32 run();
+    virtual void* run();
 
     void setCommon_mesgQueue(JKRHeap*, int);
     void setCommon_heapSpecified(JKRHeap*, u32, int);
-    s32 start(void*);
+    void* start(void*);
 
     static JKRThread* searchThread(OSThread*);
 
