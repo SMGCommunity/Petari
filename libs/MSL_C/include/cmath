@@ -80,43 +80,9 @@ int __float_epsilon[];
 extern "C" {
 #endif
 
-inline int __fpclassifyf(float __value) {
-    switch (*(int*)&__value & 0x7f800000) {
-    case 0x7f800000:
-        if ((*(int*)&__value & 0x7fffff) != 0) {
-            return FP_QNAN;
-        }
-        return FP_INFINITE;
+inline int __fpclassifyf(float __value);
 
-    case 0:
-        if ((*(int*)&__value & 0x7fffff) != 0) {
-            return FP_SUBNORMAL;
-        }
-        return FP_ZERO;
-    }
-
-    return FP_NORMAL;
-}
-
-inline int __fpclassifyd(double __value) {
-    switch (__HI(__value) & 0x7ff00000) {
-    case 0x7ff00000: {
-        if ((__HI(__value) & 0x000fffff) || (__LO(__value) & 0xffffffff))
-            return FP_QNAN;
-        else
-            return FP_INFINITE;
-        break;
-    }
-    case 0: {
-        if ((__HI(__value) & 0x000fffff) || (__LO(__value) & 0xffffffff))
-            return FP_SUBNORMAL;
-        else
-            return FP_ZERO;
-        break;
-    }
-    }
-    return FP_NORMAL;
-}
+inline int __fpclassifyd(double __value);
 
 int __fpclassifyl(long double __value);
 
