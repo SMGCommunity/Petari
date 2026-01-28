@@ -1154,13 +1154,13 @@ Game/Boss/Polta.cpp:
 
 Game/Boss/PoltaActionBase.cpp:
 	.text       start:0x8006F3F4 end:0x8006F924
-	.data       start:0x8056F8A8 end:0x8056FA08
+	.data       start:0x8056F8A8 end:0x8056F9F0
 	.sdata2     start:0x806B8B68 end:0x806B8B70
 
 Game/Boss/PoltaActionSequencer.cpp:
 	.text       start:0x8006F924 end:0x8006FE6C
 	.ctors      start:0x8052E958 end:0x8052E95C
-	.data       start:0x8056FA08 end:0x8056FA78
+	.data       start:0x8056F9F0 end:0x8056FA78
 	.sbss       start:0x806B3670 end:0x806B3688
 
 Game/Boss/PoltaArm.cpp:
