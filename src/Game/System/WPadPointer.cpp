@@ -111,5 +111,5 @@ u32 WPadPointer::getEnablePastCount() const {
 
 void WPadPointer::getPointingPosBasedOnScreen(TVec2f* pOut) const {
     pOut->x = (0.5f + (0.5f * mPointingPosArray->x)) * (int)MR::getScreenWidth();
-    pOut->y = (0.5f + (0.5f * mPointingPosArray->y)) * (int)(JUTVideo::sManager->mRenderModeObj->efbHeight);
+    pOut->y = (0.5f + (0.5f * mPointingPosArray->y)) * (int)(JUTVideo::getManager()->getRenderMode()->efbHeight);
 }

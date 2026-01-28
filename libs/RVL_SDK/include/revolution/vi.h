@@ -164,6 +164,8 @@ BOOL VIEnableDimming(BOOL);
 
 BOOL __VIResetRFIdle(void);
 
+void* VIGetNextFrameBuffer(void);
+
 typedef u8 VIBool;
 #define VI_FALSE ((VIBool)0)
 #define VI_TRUE ((VIBool)1)

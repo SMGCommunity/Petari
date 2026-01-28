@@ -79,7 +79,7 @@ void PlayTimerScene::draw() const {
     v1.a = color;
     graph.setColor(v1, v1, v1, v1);
 
-    f32 height = JUTVideo::sManager->mRenderModeObj->efbHeight;
+    f32 height = JUTVideo::getManager()->getRenderMode()->efbHeight;
     f32 width = MR::getScreenWidth();
     TBox2f box(0.0f, 0.0f, 0.0f + height, 0.0f + width);
     graph.fillBox(box);

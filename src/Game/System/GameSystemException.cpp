@@ -56,7 +56,7 @@ void GameSystemException::init() {
 }
 
 void GameSystemException::handleException(OSError error, OSContext* pContext, u32 dsisr, u32 dar) {
-    if (JUTVideo::sManager == nullptr) {
+    if (JUTVideo::getManager() == nullptr) {
         JUTException::sConsole->mOutput = 2;
         JUTException::sConsole->mVisible = false;
         JUTAssertion::setVisible(false);
