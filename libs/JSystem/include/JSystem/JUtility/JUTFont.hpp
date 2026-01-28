@@ -1,6 +1,7 @@
 #pragma once
 
 #include "JSystem/JUtility/TColor.hpp"
+#include <cstring>
 
 struct ResFONT {};
 
@@ -29,6 +30,12 @@ public:
 
     void setCharColor(JUtility::TColor);
     f32 drawString_size_scale(f32, f32, f32, f32, const char*, u32, bool);
+
+    void drawString(int posX, int posY, const char* str, bool visible) { drawString_size(posX, posY, str, strlen(str), visible); }
+
+    void drawString_size(int posX, int posY, const char* str, u32 len, bool visible) {
+        drawString_size_scale(posX, posY, getWidth(), getHeight(), str, len, visible);
+    }
 
     bool mValid;               // 0x04
     bool mFixed;               // 0x05
