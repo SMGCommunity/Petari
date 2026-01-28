@@ -340,7 +340,7 @@ cflags_sdk = [
     "-i src/RVL_SDK/bte",
     f"-i build/{config.version}/include",
     f"-DVERSION={version_num}",
-    # "-ir libs/RVL_SDK/include/revolution/bte",
+    "-ir libs/RVL_SDK/include/revolution/bte",
     "-DREVOLUTION",
 ]
 
