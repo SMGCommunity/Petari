@@ -70,11 +70,11 @@ typedef struct PF_DIR_ENT {
     unsigned short entry_offset;      // offset 0x23C, size 0x2
 } PF_DIR_ENT;
 
-struct PF_FAT_HINT {
+typedef struct PF_FAT_HINT {
     // total size: 0x8
     unsigned long chain_index;  // offset 0x0, size 0x4
     unsigned long cluster;      // offset 0x4, size 0x4
-};
+} PF_FAT_HINT;
 
 struct PF_CLUSTER_LINK {
     // total size: 0x14
