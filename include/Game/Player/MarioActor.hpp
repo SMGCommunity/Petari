@@ -5,6 +5,7 @@
 #include "Game/Player/Mario.hpp"
 
 class FootPrint;
+class J3DModelData;
 class JAIAudible;
 class MarioNullBck;
 class XjointTransform;
@@ -238,6 +239,12 @@ public:
     void entryWallWalkMode(const TVec3f&, const TVec3f&);
 
     const HitSensor* getCarrySensor() const;
+    HitSensor* getLookTargetSensor() const;
+    f32 getFaceLookHeight(const char*) const;
+    void updateSpecialModeAnimation();
+    J3DModelData* getModelData() const;
+    void rushDropThrowMemoSensor();
+    void offTakingFlag();
 
     const MarioConst& getConst() const { return *mConst; }
 
@@ -393,7 +400,7 @@ public:
     union {
         struct {
             u32 _468;
-            u32 _46C;
+            HitSensor* _46C;
             u32 _470;
         };
         TVec3f _468Vec;
