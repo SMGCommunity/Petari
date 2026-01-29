@@ -1,0 +1,6 @@
+#include "revolution/vf/pf_api_util.h"
+#include "revolution/vf/pf_volume.h"
+
+int VFipf2_errnum() {
+    return VFiPFAPI_convertError(VFiPFVOL_errnum());
+}
