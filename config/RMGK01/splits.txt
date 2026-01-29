@@ -7030,9 +7030,9 @@ Game/Player/MarioSwim.cpp:
 	.text       start:0x802FA024 end:0x80302870
 	.ctors      start:0x8052F148 end:0x8052F14C
 	.rodata     start:0x80539C08 end:0x80539C30
-	.data       start:0x805CBC80 end:0x805CC3B0
-	.sdata      start:0x806B22D0 end:0x806B22F8
-	.sbss       start:0x806B62A0 end:0x806B62B8
+	.data       start:0x805CBC80 end:0x805CC2B4
+	.sdata      start:0x806B22D0 end:0x806B22D8
+	.sbss       start:0x806B62A0 end:0x806B62B0
 	.sdata2     start:0x806C0108 end:0x806C0258
 
 Game/Player/MarioSwimDamage.cpp:
@@ -7042,7 +7042,7 @@ Game/Player/MarioSwimDamage.cpp:
 Game/Player/MarioAccess.cpp:
 	.text       start:0x8030294C end:0x80304EBC
 	.ctors      start:0x8052F150 end:0x8052F154
-	.data       start:0x805CC3B0 end:0x805CC540
+	.data       start:0x805CC358 end:0x805CC540
 	.sdata2     start:0x806C0258 end:0x806C0260
 
 Game/Player/MarioSlip.cpp:
@@ -7150,7 +7150,7 @@ Game/Player/ModelHolder.cpp:
 Game/Player/MarioShadow.cpp:
 	.text       start:0x80312F7C end:0x803150CC
 	.data       start:0x805CD5D8 end:0x805CD618
-	.sdata      start:0x806B22F8 end:0x806B2300
+	.sdata      start:0x806B22D8 end:0x806B2300
 	.sdata2     start:0x806C05B8 end:0x806C0618
 
 Game/Player/MarioMapCode.cpp:
@@ -7203,7 +7203,7 @@ Game/Player/PlayerEventGhostRaceDown.cpp:
 Game/RhythmLib/AudRhythmSeqParser.cpp:
 	.text       start:0x80316D30 end:0x80317C08
 	.data       start:0x805CDF70 end:0x805CDF90
-	.sbss       start:0x806B62B8 end:0x806B62D0
+	.sbss       start:0x806B62B0 end:0x806B62D0
 	.sdata2     start:0x806C0630 end:0x806C0638
 
 Game/RhythmLib/AudBgmTempoAdjuster.cpp:
