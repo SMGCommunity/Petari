@@ -32,8 +32,8 @@ void JASSeqCtrl::init() {
     _51 = false;
 }
 
-void JASSeqCtrl::start(void*, u32 offset) {
-    JASSeqReader::init();
+void JASSeqCtrl::start(void* buffer, u32 offset) {
+    JASSeqReader::init(buffer);
     mSeqCursor = (void*)((u8*)mSeqBuff + offset);
 }
 
