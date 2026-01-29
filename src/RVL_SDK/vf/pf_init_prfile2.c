@@ -1,3 +1,4 @@
+#include "revolution/vf/pf_init_prfile2.h"
 #include "revolution/vf/pf_api_util.h"
 #include "revolution/vf/pf_fatfs.h"
 #include "revolution/vf/pf_system.h"

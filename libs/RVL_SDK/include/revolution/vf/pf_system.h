@@ -1,5 +1,5 @@
-#ifndef REVOLUTION_VF_PF_SYSTEM_H
-#define REVOLUTION_VF_PF_SYSTEM_H
+#ifndef PF_SYSTEM_H
+#define PF_SYSTEM_H
 
 #include <revolution/types.h>
 #include "revolution/vf/vf_struct.h"
