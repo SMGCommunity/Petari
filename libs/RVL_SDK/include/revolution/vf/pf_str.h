@@ -1,5 +1,5 @@
-#ifndef REVOLUTION_VF_PF_STR_H
-#define REVOLUTION_VF_PF_STR_H
+#ifndef PF_STR_H
+#define PF_STR_H
 
 #include <revolution/types.h>
 #include "revolution/vf/vf_struct.h"
