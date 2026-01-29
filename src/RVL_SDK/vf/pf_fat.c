@@ -152,13 +152,13 @@ s32 VFiPFFAT_UpdateClusterLink(PF_FFD* p_ffd, unsigned int cluster, unsigned int
 }
 
 s32 VFiPFFAT_FindClusterLink(PF_FFD* p_ffd, unsigned int chain_index, unsigned int* p_cluster, unsigned int* is_found) {
-    int result;                    // r3
-    unsigned int position;         // r26
-    unsigned int offset;           // r25
-    unsigned int current_cluster;  // r28
-    unsigned int i;                // r27
-    PF_CACHE_PAGE* p_page;         // [sp+8h] [-38h] BYREF
-    u32 next_cluster;              // [sp+Ch] [-34h] BYREF
+    int result;
+    unsigned int position;
+    unsigned int offset;
+    unsigned int current_cluster;
+    unsigned int i;
+    PF_CACHE_PAGE* p_page;
+    u32 next_cluster;
 
     next_cluster = -1;
     *is_found = 0;
@@ -234,7 +234,7 @@ s32 VFiPFFAT_FindClusterLinkPage(PF_FFD* p_ffd, unsigned int chain_index, u32* p
 }
 
 static s32 VFiPFFAT_WriteFATEntry(PF_VOLUME* p_vol, u32 cluster, u32 value) {
-    s32 fat_type;  // r0
+    s32 fat_type;
 
     fat_type = p_vol->bpb.fat_type;
     if (fat_type == FAT_16) {
@@ -287,7 +287,7 @@ s32 VFiPFFAT_ReadClusterPage(PF_FFD* p_ffd, unsigned int cluster, unsigned int c
 }
 
 s32 VFiPFFAT_ClearClusterLink(PF_FFD* p_ffd, u32 chain_index) {
-    unsigned int v2;  // r31
+    unsigned int v2;
 
     v2 = chain_index / (p_ffd->cluster_link.interval + 1);
     if (p_ffd->cluster_link.max_count >= v2) {
