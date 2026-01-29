@@ -629,7 +629,8 @@ bool MarioSwim::update() {
                     if (_9C && (!isAnimationRun("水上一掻き") || !mSurfacePaddleHoldTimer)) {
                         mSurfacePaddleHoldTimer++;
                     }
-                    if ((mWallStickTimer != 0 || mJetTimer != 0 || getPlayer()->mMovementStates._8 || getPlayer()->mMovementStates._32) && checkTrgA()) {
+                    if ((mWallStickTimer != 0 || mJetTimer != 0 || getPlayer()->mMovementStates._8 || getPlayer()->mMovementStates._32) &&
+                        checkTrgA()) {
                         mSurfacePaddleHoldTimer = tmp;
                     }
                 } else {
@@ -1177,7 +1178,7 @@ void MarioSwim::procBuoyancy() {
                     buoyancyScale =
                         mActor->getConst().getTable()->mSwimUpWeakRatio + (distRatio * (1.0f - mActor->getConst().getTable()->mSwimUpWeakRatio));
                 } else {
-                    buoyancyScale = 1.0f + (1.0f - (static_cast<f32>(mStateTimer) / 300.0f));
+                    buoyancyScale = 1.0f + (1.0f - (static_cast< f32 >(mStateTimer) / 300.0f));
                 }
                 mIsSinking = true;
             } else if (isBelowStrongSwimDepth) {
@@ -1212,7 +1213,7 @@ void MarioSwim::procBuoyancy() {
 
         if (mIsSinking) {
             if (mDistToFloor < mActor->getConst().getTable()->mSwimUpBottomDist) {
-                f32 clampRatio = MR::clamp(1.0f - (static_cast<f32>(mActionLockTimer) / 50.0f), 0.0f, 1.0f);
+                f32 clampRatio = MR::clamp(1.0f - (static_cast< f32 >(mActionLockTimer) / 50.0f), 0.0f, 1.0f);
                 f32 sinkFactor = ((1.0f - clampRatio) + (clampRatio * mActor->getConst().getTable()->mSwimReverseSinkRatio));
                 sinkFactor *= 0.1f;
 
@@ -1316,7 +1317,7 @@ void MarioSwim::decideVelocity() {
                         f32 frame = getAnimator()->getFrame();
                         MarioConstTable* table = marioConst->getTable();
 
-                        bool inRange = MR::isInRange(frame, static_cast<f32>(table->mSwimConnectIn), static_cast<f32>(table->mSwimConnectOut));
+                        bool inRange = MR::isInRange(frame, static_cast< f32 >(table->mSwimConnectIn), static_cast< f32 >(table->mSwimConnectOut));
                         if (!inRange) {
                             _1D = true;
                             return;
@@ -1435,7 +1436,7 @@ void MarioSwim::decideAnimation() {
     struct AnimSpeedData {
         f32 speeds[4];
     };
-    AnimSpeedData animSpeeds = *reinterpret_cast<const AnimSpeedData*>(cAnimSpeeds);
+    AnimSpeedData animSpeeds = *reinterpret_cast< const AnimSpeedData* >(cAnimSpeeds);
 
     const MarioConstTable* table = mActor->getConst().getTable();
     animSpeeds.speeds[1] = table->mSwimSurfaceSpeed;
@@ -1542,7 +1543,7 @@ void MarioSwim::decideEffect(bool isReset) {
         }
     }
 
-    if (isReset) {
+    if (isReset == true) {
         mEffectState = 0xFF;
     }
     u8 newState = mEffectState;
@@ -1916,8 +1917,6 @@ void MarioSwim::updateUnderWater() {
                 TVec3f surfacePos = waterInfo.mSurfacePos;
                 _1B8 = (surfacePos - getTrans()).dot(getGravityVec());
                 _1B2 = true;
-                mWaterDistanceTarget = 0.0f;
-                return;
             }
 
             else if (mWaterDistanceTarget < 210.0f && MarioModule::getPlayerMode() == 3) {
@@ -1930,13 +1929,13 @@ void MarioSwim::updateUnderWater() {
                             mActor->createIceFloor(surfacePos.translate(searchDir.scaleInline(170.0f)));
                         }
                         mWaterDistanceTarget = 0.0f;
-                        return;
                     }
                 }
             } else {
                 mWaterDistanceTarget = 0.0f;
-                return;
             }
+            mWaterDistanceTarget = 0.0f;
+            return;
         }
 
         if (MR::checkStrikePointToMap(checkPos, nullptr)) {
@@ -2514,7 +2513,7 @@ void MarioSwim::updateTilt() {
             f32 divisor = mActor->getConst().getTable()->mSwimTiltZdown;
             targetTiltY = (getStickY() * PI) / divisor;
         } else if (mIdleWaitTimer != 0) {
-            f32 fade = static_cast<f32>(mIdleWaitTimer) / 120.0f;
+            f32 fade = static_cast< f32 >(mIdleWaitTimer) / 120.0f;
             if (fade > 1.0f) {
                 fade = 1.0f;
             }
