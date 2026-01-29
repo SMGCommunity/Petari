@@ -841,7 +841,7 @@ config.libs = [
             Object(NonMatching, "Game/Boss/TombSpiderActionBase.cpp"),
             Object(NonMatching, "Game/Boss/TombSpiderActionCocoon.cpp"),
             Object(NonMatching, "Game/Boss/TombSpiderDemo.cpp"),
-            Object(NonMatching, "Game/Boss/TombSpiderEnvironment.cpp"),
+            Object(Matching, "Game/Boss/TombSpiderEnvironment.cpp"),
             Object(NonMatching, "Game/Boss/TombSpiderFunction.cpp"),
             Object(NonMatching, "Game/Boss/TombSpiderGland.cpp"),
             Object(NonMatching, "Game/Boss/TombSpiderParts.cpp"),
