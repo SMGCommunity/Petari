@@ -296,4 +296,34 @@ typedef struct {
 
 struct PF_VOLUME_SET VFipf_vol_set;
 
+typedef struct {
+    // total size: 0x10
+    unsigned long cls; // offset 0x0, size 0x4
+    unsigned long ecl; // offset 0x4, size 0x4
+    unsigned long bps; // offset 0x8, size 0x4
+    unsigned long spc; // offset 0xC, size 0x4
+} PF_DEV_INF;
+
+typedef struct {
+    // total size: 0xC
+    const signed char * p_head; // offset 0x0, size 0x4
+    const signed char * p_tail; // offset 0x4, size 0x4
+    unsigned long code_mode; // offset 0x8, size 0x4
+} PF_STR;
+
+typedef struct {
+    // total size: 0x6
+    unsigned short sys_year; // offset 0x0, size 0x2
+    unsigned short sys_month; // offset 0x2, size 0x2
+    unsigned short sys_day; // offset 0x4, size 0x2
+} PF_SYS_DATE;
+
+typedef struct {
+    // total size: 0x8
+    unsigned short sys_hour; // offset 0x0, size 0x2
+    unsigned short sys_min; // offset 0x2, size 0x2
+    unsigned short sys_sec; // offset 0x4, size 0x2
+    unsigned short sys_ms; // offset 0x6, size 0x2
+} PF_SYS_TIME;
+
 #endif  // VF_STRUCT_H
