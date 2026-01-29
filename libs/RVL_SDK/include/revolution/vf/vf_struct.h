@@ -1,6 +1,8 @@
 #ifndef VF_STRUCT_H
 #define VF_STRUCT_H
 
+#include "revolution/types.h"
+
 typedef struct PF_CURSOR {
     unsigned long position;
     unsigned long sector;
@@ -84,7 +86,7 @@ struct PF_CLUSTER_LINK {
     unsigned long save_index;        // offset 0x10, size 0x4
 };
 
-struct PF_FFD {
+typedef struct PF_FFD {
     // total size: 0x34
     unsigned long start_cluster;          // offset 0x0, size 0x4
     unsigned long* p_start_cluster;       // offset 0x4, size 0x4
@@ -93,7 +95,7 @@ struct PF_FFD {
     struct PF_CLUSTER_LINK cluster_link;  // offset 0x18, size 0x14
     struct PF_FAT_HINT* p_hint;           // offset 0x2C, size 0x4
     struct PF_VOLUME* p_vol;              // offset 0x30, size 0x4
-};
+} PF_FFD;
 
 struct PF_SDD {
     // total size: 0x27C
@@ -212,7 +214,7 @@ typedef struct PF_SFD {
     unsigned short num_handlers;  // offset 0x288, size 0x2
 } PF_SFD;
 
-struct PF_VOLUME {
+typedef struct PF_VOLUME {
     // total size: 0x1880
     struct PF_BPB bpb;                        // offset 0x0, size 0x38
     unsigned long num_free_clusters;          // offset 0x38, size 0x4
@@ -235,9 +237,9 @@ struct PF_VOLUME {
     unsigned short fsi_flag;                  // offset 0x1864, size 0x2
     struct PF_CLUSTER_LINK_VOL cluster_link;  // offset 0x1868, size 0xC
     void* p_part;                             // offset 0x1874, size 0x4
-    void (*p_callback)();                     // offset 0x1878, size 0x4
+    int (*p_callback)();                      // offset 0x1878, size 0x4
     const unsigned char* format_param;        // offset 0x187C, size 0x4
-};
+} PF_VOLUME;
 
 struct PF_CUR_VOLUME {
     unsigned long stat;
