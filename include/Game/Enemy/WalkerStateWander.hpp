@@ -28,7 +28,6 @@ public:
     void exeWait();
     void exeWalk();
 
-    LiveActor* mParent;  // 0x0C
     TVec3f* _10;
     TerritoryMover* mTerritoryMover;       // 0x14
     WalkerStateParam* mStateParam;         // 0x18
