@@ -299,7 +299,7 @@ namespace JGeometry {
         }
 
         // needed in StarPieceFollowGroup???
-        inline TVec3 multInLine(f32 val) {
+        inline TVec3 multInLine(f32 val) const{
             TVec3 ret(*this);
             ret.x *= val;
             ret.y *= val;

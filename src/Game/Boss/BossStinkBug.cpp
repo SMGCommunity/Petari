@@ -1,4 +1,6 @@
 #include "Game/Boss/BossStinkBug.hpp"
+#include "Game/Boss/BossStinkBugBomb.hpp"
+#include "Game/Boss/BossStinkBugBombHolder.hpp"
 #include "Game/LiveActor/ActorJointCtrl.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
@@ -97,7 +99,7 @@ void BossStinkBug::init(const JMapInfoIter& rIter) {
     MR::addBaseMatrixFollowTarget(this, rIter, &_9C, new BossStinkBugFollowValidater(this));
     MR::invalidateClipping(this);
     //_D0 = new BossStinkBugActionSequencer(this, rIter);
-    //_94 = new BossStinkBugBombHolder(this);
+    _94 = new BossStinkBugBombHolder(this);
     _D4 = MR::createPartsModelMapObj(this, "羽モデル", "BossStinkBugWing", nullptr);
     _D4->initFixedPosition("Switch");
     _D8 = MR::createPartsModelMapObj(this, "ボム発射口", "BossStinkBugBombLauncher", nullptr);
@@ -153,11 +155,9 @@ void BossStinkBug::initCollision() {
     }
 }
 
-/*
 void BossStinkBug::disposeBomb() {
     _94->killAll();
 }
-*/
 
 void BossStinkBug::reuestMovementOnParts() {
     MR::requestMovementOn(_D4);
@@ -390,4 +390,29 @@ void BossStinkBug::endEventCamera(const char* pName) {
 
 bool BossStinkBug::isSensorBody(const HitSensor* pSensor) const {
     return pSensor == getSensor("BodyHipDrop");
+}
+
+bool BossStinkBug::throwBomb(f32 f1, f32 f2) {
+    BossStinkBugBomb* throwBomb = _94->getDeadMember();
+
+    if(throwBomb == nullptr) {
+        return false;
+    }
+
+    TPos3f jointMtx;
+    JMath::gekko_ps_copy12(jointMtx, MR::getJointMtx(_D8, "DischargePosition"));
+
+    TVec3f trans;
+    TVec3f yDir;
+
+    jointMtx.getTrans(trans);
+    jointMtx.getYDir(yDir);
+    yDir.scale(-f1);
+    MR::addRandomVector(&yDir, yDir, f2);
+
+    throwBomb->start(trans, yDir);
+
+    MR::startSound(this, "SE_BM_BOSS_BUG_BOMB_EMIT", -1, -1);
+    MR::startBck(_D8, "Discharge", nullptr);
+    return true;
 }

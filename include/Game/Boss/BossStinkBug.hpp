@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Game/Boss/BossStinkBugBomb.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/Map/CollisionParts.hpp"
 #include "Game/Util/BaseMatrixFollowTargetHolder.hpp"
@@ -52,7 +53,7 @@ public:
     void startEventCamera(const char*);
     void endEventCamera(const char*);
     bool isSensorBody(const HitSensor*) const;
-    void throwBomb(f32, f32);
+    bool throwBomb(f32, f32);
 
     CollisionParts** _8C;
     GroundChecker** _90;

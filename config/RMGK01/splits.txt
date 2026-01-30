@@ -650,19 +650,19 @@ Game/Boss/BossStinkBugActionSequencer.cpp:
 Game/Boss/BossStinkBugAngryDemo.cpp:
 	.text       start:0x80041558 end:0x800418B8
 	.ctors      start:0x8052E874 end:0x8052E878
-	.data       start:0x80568358 end:0x80568548
+	.data       start:0x80568358 end:0x80568470
 	.sbss       start:0x806B3100 end:0x806B3108
 
 Game/Boss/BossStinkBugBomb.cpp:
 	.text       start:0x800418B8 end:0x80041FEC
 	.ctors      start:0x8052E878 end:0x8052E87C
-	.data       start:0x80568548 end:0x80568608
+	.data       start:0x80568470 end:0x805685E0
 	.sbss       start:0x806B3108 end:0x806B3110
 	.sdata2     start:0x806B8358 end:0x806B83A0
 
 Game/Boss/BossStinkBugBombHolder.cpp:
 	.text       start:0x80041FEC end:0x800421A0
-	.data       start:0x80568608 end:0x805686B8
+	.data       start:0x805685E0 end:0x805686B8
 
 Game/Boss/BossStinkBugFinishDemo.cpp:
 	.text       start:0x800421A0 end:0x80042550

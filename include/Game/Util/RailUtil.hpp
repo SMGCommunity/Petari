@@ -148,5 +148,8 @@ namespace MR {
 
     void calcBoundingBox(const LiveActor*, TBox3f*, f32);
 
+    f32 calcDifferenceRailCoord(const LiveActor*, float, float);
+    f32 calcDifferenceRailCoord(const LiveActor*, float);
+
     void calcRailClippingInfo(TVec3f*, f32*, const LiveActor*, f32, f32);
 };  // namespace MR
