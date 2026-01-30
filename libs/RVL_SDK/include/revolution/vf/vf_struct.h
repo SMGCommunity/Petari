@@ -338,7 +338,7 @@ struct PF_CHARCODE {
     unsigned long (*is_unicode_mb_char)(unsigned short, unsigned long);  // offset 0x14, size 0x4
 };
 
-struct PF_VOLUME_SET {
+typedef struct PF_VOLUME_SET {
     // total size: 0x27D48
     struct PF_CUR_VOLUME current_vol[1];  // offset 0x0, size 0xC
     long num_attached_drives;             // offset 0xC, size 0x4
@@ -351,7 +351,7 @@ struct PF_VOLUME_SET {
     unsigned long setting;                // offset 0x3C, size 0x4
     struct PF_CONTEXT context[1];         // offset 0x40, size 0x8
     struct PF_VOLUME volumes[26];         // offset 0x48, size 0x27D00
-};
+} PF_VOLUME_SET;
 
 typedef struct {
     // total size: 0x14
@@ -401,5 +401,18 @@ typedef struct {
     unsigned short sys_sec;   // offset 0x4, size 0x2
     unsigned short sys_ms;    // offset 0x6, size 0x2
 } PF_SYS_TIME;
+
+typedef struct PF_ENT_ITER {
+    // total size: 0x6C
+    unsigned long index;                    // offset 0x0, size 0x4
+    struct PF_VOLUME* p_vol;                // offset 0x4, size 0x4
+    struct PF_FFD ffd;                      // offset 0x8, size 0x34
+    unsigned long file_sector_index;        // offset 0x3C, size 0x4
+    unsigned long sector;                   // offset 0x40, size 0x4
+    unsigned short offset;                  // offset 0x44, size 0x2
+    unsigned short offset_mask;             // offset 0x46, size 0x2
+    unsigned char buf[32];                  // offset 0x48, size 0x20
+    unsigned char log2_entries_per_sector;  // offset 0x68, size 0x1
+} PF_ENT_ITER;
 
 #endif  // VF_STRUCT_H

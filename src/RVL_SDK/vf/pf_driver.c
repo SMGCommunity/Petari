@@ -143,7 +143,7 @@ u32 VFiPFDRV_IsDetected(PF_VOLUME* p_vol) {
     return is_detect;
 }
 
-unsigned int VFiPFDRV_IsWProtected(struct PF_VOLUME* p_vol) {
+u32 VFiPFDRV_IsWProtected(PF_VOLUME* p_vol) {
     u32 is_wprotect;
     VFipdm_part_check_media_write_protect(p_vol->p_part, &is_wprotect);
     return is_wprotect;

@@ -13,4 +13,6 @@ s32 VFiPFDRV_lread(PF_VOLUME* p_vol, u8* buf, u32 sector, u32 num_sectors, u32* 
 
 s32 VFiPFDRV_lerase(PF_VOLUME* p_vol, u32 sector, u32 num_sectors);
 
+u32 VFiPFDRV_IsWProtected(PF_VOLUME* p_vol);
+
 #endif  // PF_DRIVER_H
