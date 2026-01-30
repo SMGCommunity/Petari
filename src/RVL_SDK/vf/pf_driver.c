@@ -183,10 +183,12 @@ s32 VFiPFDRV_mount(PF_VOLUME* p_vol) {
     int v5;
     int v6;
     int v7;
+
+    PF_CACHE_PAGE* p_page;
+    u32 nSector;
     int BPBInformation;
     u32 is_valid;
-    u32 nSector;
-    PF_CACHE_PAGE* p_page;
+
     PDM_DISK_INFO disk_inf;
 
     if (!p_vol)
@@ -227,7 +229,11 @@ s32 VFiPFDRV_mount(PF_VOLUME* p_vol) {
             VFiPFCACHE_FreeDataPage(p_vol, p_page);
             VFipdm_part_release_permission(p_vol->p_part, 1);
             return -1;
-        } else if (is_valid) {
+        } else if (!is_valid) {
+            VFiPFCACHE_FreeDataPage(p_vol, p_page);
+            VFipdm_part_release_permission(p_vol->p_part, 1);
+            return 7;
+        } else {
             BPBInformation = VFiPFDRV_GetBPBInformation(p_page->buffer, &p_vol->bpb);
             if (BPBInformation) {
                 VFiPFCACHE_FreeDataPage(p_vol, p_page);
@@ -237,15 +243,13 @@ s32 VFiPFDRV_mount(PF_VOLUME* p_vol) {
                 VFiPFCACHE_FreeDataPage(p_vol, p_page);
                 p_vol->num_free_clusters = -1;
                 p_vol->last_free_cluster = -1;
-                if (p_vol->bpb.fat_type == FAT_32)
-                    return VFiPFDRV_GetFSINFOInformation(p_vol);
-                return BPBInformation;
+                if (p_vol->bpb.fat_type == FAT_32) {
+                    BPBInformation = VFiPFDRV_GetFSINFOInformation(p_vol);
+                }
             }
-        } else {
-            VFiPFCACHE_FreeDataPage(p_vol, p_page);
-            VFipdm_part_release_permission(p_vol->p_part, 1);
-            return 7;
         }
+
+        return BPBInformation;
     }
 }
 
@@ -279,33 +283,46 @@ s32 VFiPFDRV_format(PF_VOLUME* p_vol, const u8* param) {
 
     if (!p_vol)
         return 10;
+
     if ((p_vol->flags & 2) == 0) {
         permission = VFipdm_part_get_permission(p_vol->p_part);
         if (permission) {
-            if (permission != 21)
-                return -1;
-            goto LABEL_14;
+            if (permission == 21) {
+                driver_error_code = VFipdm_part_get_driver_error_code(p_vol->p_part);
+                VFipf_vol_set.last_driver_error = driver_error_code;
+                p_vol->last_driver_error = driver_error_code;
+                return 4096;
+            }
+            return -1;
         }
     }
+
     v5 = VFipdm_part_format(p_vol->p_part, param);
     if (v5) {
-        if (v5 != 21)
+        if (v5 == 21) {
+            driver_error_code = VFipdm_part_get_driver_error_code(p_vol->p_part);
+            VFipf_vol_set.last_driver_error = driver_error_code;
+            p_vol->last_driver_error = driver_error_code;
+            return 4096;
+        }
+        return -1;
+    }
+
+    if ((p_vol->flags & 2) == 0) {
+        v6 = VFipdm_part_release_permission(p_vol->p_part, 1);
+        if (v6) {
+            if (v6 == 21) {
+                driver_error_code = VFipdm_part_get_driver_error_code(p_vol->p_part);
+                VFipf_vol_set.last_driver_error = driver_error_code;
+                p_vol->last_driver_error = driver_error_code;
+                return 4096;
+            }
+
             return -1;
-        goto LABEL_14;
+        }
     }
-    if ((p_vol->flags & 2) != 0)
-        return 0;
-    v6 = VFipdm_part_release_permission(p_vol->p_part, 1);
-    if (!v6)
-        return 0;
-    if (v6 == 21) {
-    LABEL_14:
-        driver_error_code = VFipdm_part_get_driver_error_code(p_vol->p_part);
-        VFipf_vol_set.last_driver_error = driver_error_code;
-        p_vol->last_driver_error = driver_error_code;
-        return 4096;
-    }
-    return -1;
+
+    return 0;
 }
 
 s32 VFiPFDRV_lread(PF_VOLUME* p_vol, u8* buf, u32 sector, u32 num_sectors, u32* p_num_success) {
