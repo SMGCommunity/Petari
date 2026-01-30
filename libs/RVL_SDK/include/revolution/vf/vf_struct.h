@@ -175,13 +175,14 @@ typedef struct PF_FFD {
     struct PF_VOLUME* p_vol;              // offset 0x30, size 0x4
 } PF_FFD;
 
-struct PF_SDD {
+typedef struct PF_SDD {
     // total size: 0x27C
     unsigned long stat;           // offset 0x0, size 0x4
     unsigned short num_handlers;  // offset 0x4, size 0x2
     struct PF_FFD ffd;            // offset 0x8, size 0x34
     struct PF_DIR_ENT dir_entry;  // offset 0x3C, size 0x240
-};
+} PF_SDD;
+
 struct PF_DIR_CURSOR {
     // total size: 0xC
     unsigned long physical_entry_index;  // offset 0x0, size 0x4
@@ -189,13 +190,13 @@ struct PF_DIR_CURSOR {
     unsigned long logical_seek_index;    // offset 0x8, size 0x4
 };
 
-struct PF_DIR {
+typedef struct PF_DIR {
     // total size: 0x1C
     unsigned long stat;           // offset 0x0, size 0x4
     struct PF_SDD* p_sdd;         // offset 0x4, size 0x4
     struct PF_FAT_HINT hint;      // offset 0x8, size 0x8
     struct PF_DIR_CURSOR cursor;  // offset 0x10, size 0xC
-};
+} PF_DIR;
 
 typedef struct PF_CACHE_PAGE {
     // total size: 0x28
