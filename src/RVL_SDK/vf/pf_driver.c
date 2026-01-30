@@ -107,27 +107,28 @@ s32 VFiPFDRV_GetFSINFOInformation(PF_VOLUME* p_vol) {
 s32 VFiPFDRV_StoreFreeCountToFSINFO(PF_VOLUME* p_vol) {
     int result;
     int v3;
-    u32 num_success;
     struct PF_CACHE_PAGE* p_page;
+    u32 num_success;
 
     result = VFiPFCACHE_AllocateDataPage(p_vol, 0xFFFFFFFF, &p_page);
-    if (!result) {
-        v3 = VFiPFDRV_lread(p_vol, p_page->p_buf, p_vol->bpb.fs_info_sector, 1, &num_success);
+    if (result) {
+        return result;
+    }
+
+    v3 = VFiPFDRV_lread(p_vol, p_page->p_buf, p_vol->bpb.fs_info_sector, 1, &num_success);
+    if (v3 || num_success != 1)
+        v3 = 17;
+    if (!v3) {
+        p_page->p_buf[488] = (u8)(p_vol->num_free_clusters & 0xFF);
+        p_page->p_buf[489] = (u8)((p_vol->num_free_clusters >> 8) & 0xFF);
+        p_page->p_buf[490] = (u8)((p_vol->num_free_clusters >> 16) & 0xFF);
+        p_page->p_buf[491] = (u8)((p_vol->num_free_clusters >> 24) & 0xFF);
+        v3 = VFiPFDRV_lwrite(p_vol, p_page->p_buf, p_vol->bpb.fs_info_sector, 1u, &num_success);
         if (v3 || num_success != 1)
             v3 = 17;
-        if (!v3) {
-            p_page->p_buf[488] = (u8)(p_vol->num_free_clusters & 0xFF);
-            p_page->p_buf[489] = (u8)((p_vol->num_free_clusters >> 8) & 0xFF);
-            p_page->p_buf[490] = (u8)((p_vol->num_free_clusters >> 16) & 0xFF);
-            p_page->p_buf[491] = (u8)((p_vol->num_free_clusters >> 24) & 0xFF);
-            v3 = VFiPFDRV_lwrite(p_vol, p_page->p_buf, p_vol->bpb.fs_info_sector, 1u, &num_success);
-            if (v3 || num_success != 1)
-                v3 = 17;
-        }
-        VFiPFCACHE_FreeDataPage(p_vol, p_page);
-        return v3;
     }
-    return result;
+    VFiPFCACHE_FreeDataPage(p_vol, p_page);
+    return v3;
 }
 
 u32 VFiPFDRV_IsInserted(PF_VOLUME* p_vol) {
