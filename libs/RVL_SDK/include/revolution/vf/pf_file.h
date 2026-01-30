@@ -16,4 +16,6 @@ s32 VFiPFFILE_fopen(PF_STR* p_path_str, u32 mode, PF_FILE** pp_file);
 s32 VFiPFFILE_fgetpos(PF_FILE* p_file, u32* pos);
 s32 VFiPFFILE_fsetpos(PF_FILE* p_file, const u32* pos);
 
+void VFiPFFILE_Cursor_MoveToClusterEnd(PF_FILE* p_file, u32 size);
+
 #endif  // PF_FILE_H
