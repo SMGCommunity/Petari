@@ -416,4 +416,11 @@ typedef struct PF_ENT_ITER {
     unsigned char log2_entries_per_sector;  // offset 0x68, size 0x1
 } PF_ENT_ITER;
 
+typedef struct PF_SYSTEM_SET {
+    // total size: 0x4
+    unsigned long flock_count;  // offset 0x0, size 0x4
+} PF_SYSTEM_SET;
+
+struct PF_SYSTEM_SET VFipf_sys_set;
+
 #endif  // VF_STRUCT_H
