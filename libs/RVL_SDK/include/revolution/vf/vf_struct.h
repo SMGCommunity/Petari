@@ -10,7 +10,7 @@ typedef struct PF_CURSOR {
     unsigned short offset_in_sector;
 } PF_CURSOR;
 
-struct PF_BPB {
+typedef struct PF_BPB {
     // total size: 0x38
     unsigned short bytes_per_sector;      // offset 0x0, size 0x2
     unsigned short num_reserved_sectors;  // offset 0x2, size 0x2
@@ -38,7 +38,85 @@ struct PF_BPB {
     unsigned long first_root_dir_sector;     // offset 0x2C, size 0x4
     unsigned long first_data_sector;         // offset 0x30, size 0x4
     unsigned long num_clusters;              // offset 0x34, size 0x4
-};
+} PF_BPB;
+
+typedef struct PDM_BPB {
+    // total size: 0x70
+    unsigned char oem_name[8];            // offset 0x0, size 0x8
+    unsigned short bytes_per_sector;      // offset 0x8, size 0x2
+    unsigned char sectors_per_cluster;    // offset 0xA, size 0x1
+    unsigned char num_FATs;               // offset 0xB, size 0x1
+    unsigned short num_reserved_sectors;  // offset 0xC, size 0x2
+    unsigned short num_root_dir_entries;  // offset 0xE, size 0x2
+    unsigned short total_sectors16;       // offset 0x10, size 0x2
+    unsigned short sectors_per_FAT16;     // offset 0x12, size 0x2
+    unsigned short sector_per_track;      // offset 0x14, size 0x2
+    unsigned long num_hidden_sectors;     // offset 0x18, size 0x4
+    unsigned long total_sectors32;        // offset 0x1C, size 0x4
+    unsigned short num_heads;             // offset 0x20, size 0x2
+    unsigned char media;                  // offset 0x22, size 0x1
+    unsigned char drive;                  // offset 0x23, size 0x1
+    unsigned long vol_id;                 // offset 0x24, size 0x4
+    unsigned char boot_sig;               // offset 0x28, size 0x1
+    unsigned char vol_label[11];          // offset 0x29, size 0xB
+    unsigned char fs_type[8];             // offset 0x34, size 0x8
+    unsigned long sectors_per_FAT32;      // offset 0x3C, size 0x4
+    unsigned short ext_flags;             // offset 0x40, size 0x2
+    unsigned short fs_version;            // offset 0x42, size 0x2
+    unsigned long root_dir_cluster;       // offset 0x44, size 0x4
+    unsigned short fs_info_sector;        // offset 0x48, size 0x2
+    unsigned short backup_boot_sector;    // offset 0x4A, size 0x2
+    unsigned char jump_boot[3];           // offset 0x4C, size 0x3
+    unsigned char num_active_FATs;        // offset 0x4F, size 0x1
+    enum /* @enum$52pdm_bpb_c */ {
+        PDM_FAT_12 = 0,
+        PDM_FAT_16 = 1,
+        PDM_FAT_32 = 2,
+        PDM_FAT_ERR = -1,
+    } fat_type;                              // offset 0x50, size 0x4
+    unsigned char log2_bytes_per_sector;     // offset 0x54, size 0x1
+    unsigned char log2_sectors_per_cluster;  // offset 0x55, size 0x1
+    unsigned short num_root_dir_sectors;     // offset 0x56, size 0x2
+    unsigned long active_FAT_sector;         // offset 0x58, size 0x4
+    unsigned long first_root_dir_sector;     // offset 0x5C, size 0x4
+    unsigned long first_data_sector;         // offset 0x60, size 0x4
+    unsigned long num_clusters;              // offset 0x64, size 0x4
+    unsigned long total_sectors;             // offset 0x68, size 0x4
+    unsigned long sectors_per_FAT;           // offset 0x6C, size 0x4
+} PDM_BPB;
+
+typedef struct PDM_PARTITION {
+    // total size: 0x2C
+    unsigned long status;                    // offset 0x0, size 0x4
+    struct PDM_DISK* p_disk;                 // offset 0x4, size 0x4
+    unsigned long signature;                 // offset 0x8, size 0x4
+    unsigned short part_id;                  // offset 0xC, size 0x2
+    unsigned short open_part_cnt;            // offset 0xE, size 0x2
+    struct PDM_PARTITION* part_lock_handle;  // offset 0x10, size 0x4
+    unsigned long start_sector;              // offset 0x14, size 0x4
+    unsigned long total_sector;              // offset 0x18, size 0x4
+    unsigned long mbr_sector;                // offset 0x1C, size 0x4
+    unsigned char partition_type;            // offset 0x20, size 0x1
+    long driver_last_error;                  // offset 0x24, size 0x4
+    void* p_vol;                             // offset 0x28, size 0x4
+} PDM_PARTITION;
+
+typedef struct PDM_FSINFO {
+    // total size: 0x8
+    unsigned long free_count;  // offset 0x0, size 0x4
+    unsigned long next_free;   // offset 0x4, size 0x4
+} PDM_FSINFO;
+
+typedef struct PDM_DISK_INFO {
+    // total size: 0x14
+    unsigned long total_sectors;      // offset 0x0, size 0x4
+    unsigned short cylinders;         // offset 0x4, size 0x2
+    unsigned char heads;              // offset 0x6, size 0x1
+    unsigned char sectors_per_track;  // offset 0x7, size 0x1
+    unsigned short bytes_per_sector;  // offset 0x8, size 0x2
+    unsigned long media_attr;         // offset 0xC, size 0x4
+    void* format_param;               // offset 0x10, size 0x4
+} PDM_DISK_INFO;
 
 struct PF_LAST_CLUSTER {
     // total size: 0x8
@@ -119,9 +197,7 @@ struct PF_DIR {
     struct PF_DIR_CURSOR cursor;  // offset 0x10, size 0xC
 };
 
-typedef struct PF_CACHE_PAGE;
-
-typedef struct {
+typedef struct PF_CACHE_PAGE {
     // total size: 0x28
     unsigned short stat;           // offset 0x0, size 0x2
     unsigned short option;         // offset 0x2, size 0x2
@@ -298,32 +374,32 @@ struct PF_VOLUME_SET VFipf_vol_set;
 
 typedef struct {
     // total size: 0x10
-    unsigned long cls; // offset 0x0, size 0x4
-    unsigned long ecl; // offset 0x4, size 0x4
-    unsigned long bps; // offset 0x8, size 0x4
-    unsigned long spc; // offset 0xC, size 0x4
+    unsigned long cls;  // offset 0x0, size 0x4
+    unsigned long ecl;  // offset 0x4, size 0x4
+    unsigned long bps;  // offset 0x8, size 0x4
+    unsigned long spc;  // offset 0xC, size 0x4
 } PF_DEV_INF;
 
 typedef struct {
     // total size: 0xC
-    const signed char * p_head; // offset 0x0, size 0x4
-    const signed char * p_tail; // offset 0x4, size 0x4
-    unsigned long code_mode; // offset 0x8, size 0x4
+    const signed char* p_head;  // offset 0x0, size 0x4
+    const signed char* p_tail;  // offset 0x4, size 0x4
+    unsigned long code_mode;    // offset 0x8, size 0x4
 } PF_STR;
 
 typedef struct {
     // total size: 0x6
-    unsigned short sys_year; // offset 0x0, size 0x2
-    unsigned short sys_month; // offset 0x2, size 0x2
-    unsigned short sys_day; // offset 0x4, size 0x2
+    unsigned short sys_year;   // offset 0x0, size 0x2
+    unsigned short sys_month;  // offset 0x2, size 0x2
+    unsigned short sys_day;    // offset 0x4, size 0x2
 } PF_SYS_DATE;
 
 typedef struct {
     // total size: 0x8
-    unsigned short sys_hour; // offset 0x0, size 0x2
-    unsigned short sys_min; // offset 0x2, size 0x2
-    unsigned short sys_sec; // offset 0x4, size 0x2
-    unsigned short sys_ms; // offset 0x6, size 0x2
+    unsigned short sys_hour;  // offset 0x0, size 0x2
+    unsigned short sys_min;   // offset 0x2, size 0x2
+    unsigned short sys_sec;   // offset 0x4, size 0x2
+    unsigned short sys_ms;    // offset 0x6, size 0x2
 } PF_SYS_TIME;
 
 #endif  // VF_STRUCT_H
