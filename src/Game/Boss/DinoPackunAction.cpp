@@ -7,8 +7,7 @@
 #include "Game/Util/MathUtil.hpp"
 #include <JSystem/JGeometry/TVec.hpp>
 
-DinoPackunAction::DinoPackunAction(const char* pName, DinoPackun* pParent) : ActorStateBase< DinoPackun >(pName) {
-    mParent = pParent;
+DinoPackunAction::DinoPackunAction(const char* pName, DinoPackun* pParent) : ActorStateBase< DinoPackun >(pName, pParent) {
     _10 = 1.0f;
 }
 
@@ -16,7 +15,7 @@ bool DinoPackunAction::sendBlowAttackMessage(HitSensor* pSender, HitSensor* pRec
     TVec3f direction;
     MR::calcSensorDirection(&direction, pSender, pReceiver);
 
-    if (mParent->mVelocity.dot(direction) >= 0.0f) {
+    if (mHost->mVelocity.dot(direction) >= 0.0f) {
         if (a3) {
             if (MR::sendMsgEnemyAttackFireStrong(pReceiver, pSender)) {
                 return true;
@@ -50,22 +49,22 @@ bool DinoPackunAction::sendHitAttackMessage(HitSensor* pSender, HitSensor* pRece
 /*
 void DinoPackunAction::updateTurn(s32 a1, f32 a2) {
     TVec3f side;
-    MR::calcSideVec(&side, mParent);
+    MR::calcSideVec(&side, mActor);
     TVec3f stack_8;
     stack_8.setPS(side);
 }
 */
 
 bool DinoPackunAction::updateWalk(s32 a1, f32 a2, s32 a3) {
-    MR::addVelocityMoveToDirection(mParent, mParent->_E8, a2);
+    MR::addVelocityMoveToDirection(mHost, mHost->_E8, a2);
 
     if (a2 > 1.2f) {
-        mParent->updateRunVelocity();
+        mHost->updateRunVelocity();
     } else {
-        mParent->updateNormalVelocity();
+        mHost->updateNormalVelocity();
     }
 
-    DinoPackun* parent = mParent;
+    DinoPackun* parent = mHost;
     parent->updateFootPrintNerve(getNerveStep(), a3);
     if (MR::isGreaterStep(this, a1)) {
         selectTurnDirection();
@@ -76,14 +75,14 @@ bool DinoPackunAction::updateWalk(s32 a1, f32 a2, s32 a3) {
 }
 
 bool DinoPackunAction::updateChase(s32 a1, f32 a2, f32 a3, f32 a4, s32 a5, s32 a6) {
-    if (MR::isFaceToPlayerDegree(mParent, mParent->_E8, a2)) {
-        MR::turnDirectionToPlayerDegree(mParent, &mParent->_E8, a3);
+    if (MR::isFaceToPlayerDegree(mHost, mHost->_E8, a2)) {
+        MR::turnDirectionToPlayerDegree(mHost, &mHost->_E8, a3);
     }
 
-    DinoPackun* parent = mParent;
+    DinoPackun* parent = mHost;
     parent->updateFootPrintNerve(getNerveStep(), a6);
-    MR::addVelocityMoveToDirection(mParent, mParent->_E8, (a4 * MR::calcNerveRate(this, a5)));
-    mParent->updateRunVelocity();
+    MR::addVelocityMoveToDirection(mHost, mHost->_E8, (a4 * MR::calcNerveRate(this, a5)));
+    mHost->updateRunVelocity();
     if (MR::isGreaterStep(this, a1)) {
         return true;
     }
@@ -102,10 +101,10 @@ void DinoPackunAction::selectTurnDirection() {
 DinoPackunAction::~DinoPackunAction() {}
 
 bool DinoPackunAction::updateStart() {
-    mParent->updateNormalVelocity();
+    mHost->updateNormalVelocity();
 
-    if (MR::isBckOneTimeAndStopped(mParent)) {
-        MR::startBck(mParent, "Wait", nullptr);
+    if (MR::isBckOneTimeAndStopped(mHost)) {
+        MR::startBck(mHost, "Wait", nullptr);
     }
 
     if (MR::isGreaterStep(this, 60)) {
@@ -117,19 +116,19 @@ bool DinoPackunAction::updateStart() {
 
 bool DinoPackunAction::updateFind(s32 a1, f32 a2) {
     if (MR::isFirstStep(this)) {
-        MR::startBck(mParent, "Find", nullptr);
-        MR::startSound(mParent, "SE_BV_PAKKUN_FIND", -1, -1);
-        MR::startSound(mParent, "SE_BM_D_PAKKUN_SLAVER", -1, -1);
+        MR::startBck(mHost, "Find", nullptr);
+        MR::startSound(mHost, "SE_BV_PAKKUN_FIND", -1, -1);
+        MR::startSound(mHost, "SE_BM_D_PAKKUN_SLAVER", -1, -1);
     }
 
     if (MR::isStep(this, a1)) {
-        MR::startSound(mParent, "SE_BM_D_PAKKUN_LAND", -1, -1);
+        MR::startSound(mHost, "SE_BM_D_PAKKUN_LAND", -1, -1);
     }
 
-    MR::turnDirectionToPlayerDegree(mParent, &mParent->_E8, a2);
-    mParent->updateNormalVelocity();
+    MR::turnDirectionToPlayerDegree(mHost, &mHost->_E8, a2);
+    mHost->updateNormalVelocity();
 
-    if (MR::isBckStopped(mParent)) {
+    if (MR::isBckStopped(mHost)) {
         return true;
     }
 
@@ -138,10 +137,10 @@ bool DinoPackunAction::updateFind(s32 a1, f32 a2) {
 
 bool DinoPackunAction::updateCoolDown(s32 a1) {
     if (MR::isFirstStep(this)) {
-        MR::startBck(mParent, "CoolDown", nullptr);
+        MR::startBck(mHost, "CoolDown", nullptr);
     }
 
-    mParent->updateNormalVelocity();
+    mHost->updateNormalVelocity();
 
     if (MR::isGreaterStep(this, a1)) {
         return true;
@@ -152,14 +151,14 @@ bool DinoPackunAction::updateCoolDown(s32 a1) {
 
 bool DinoPackunAction::updateAttackHit() {
     if (MR::isFirstStep(this)) {
-        MR::startAction(mParent, "AttackHit");
-        MR::startSound(mParent, "SE_BV_D_PAKKUN_GLAD", -1, -1);
-        MR::startSound(mParent, "SE_BM_D_PAKKUN_SLAVER", -1, -1);
+        MR::startAction(mHost, "AttackHit");
+        MR::startSound(mHost, "SE_BV_D_PAKKUN_GLAD", -1, -1);
+        MR::startSound(mHost, "SE_BM_D_PAKKUN_SLAVER", -1, -1);
     }
 
-    mParent->updateNormalVelocity();
+    mHost->updateNormalVelocity();
 
-    if (MR::isActionEnd(mParent)) {
+    if (MR::isActionEnd(mHost)) {
         return true;
     }
 

@@ -6,7 +6,7 @@ namespace NrvWalkerStateBindStarPointer {
 };
 
 WalkerStateBindStarPointer::WalkerStateBindStarPointer(LiveActor* pActor, AnimScaleController* pController)
-    : ActorStateBase("歩行型スターポインタ拘束"), mHostActor(pActor), mScaleController(pController), mUpdateCounter(0), mHasEffect(false) {
+    : ActorStateBase("歩行型スターポインタ拘束", pActor), mScaleController(pController), mUpdateCounter(0), mHasEffect(false) {
     initNerve(&NrvWalkerStateBindStarPointer::WalkerStateBindStarPointerNrvBind::sInstance);
 
     if (!MR::isRegisteredEffect(pActor, "Touch")) {
@@ -27,14 +27,14 @@ void WalkerStateBindStarPointer::kill() {
     }
 
     const char* effectName = mHasEffect ? "PointerTouch" : "Touch";
-    MR::deleteEffect(mHostActor, effectName);
-    if (MR::isExistBck(mHostActor, nullptr)) {
-        MR::setBckRate(mHostActor, 1.0f);
+    MR::deleteEffect(mHost, effectName);
+    if (MR::isExistBck(mHost, nullptr)) {
+        MR::setBckRate(mHost, 1.0f);
     }
 }
 
 bool WalkerStateBindStarPointer::tryStartPointBind() const {
-    return MR::isStarPointerPointing2POnPressButton(mHostActor, "弱", true, false);
+    return MR::isStarPointerPointing2POnPressButton(mHost, "弱", true, false);
 }
 
 void WalkerStateBindStarPointer::exeBind() {
@@ -42,9 +42,9 @@ void WalkerStateBindStarPointer::exeBind() {
         MR::startDPDHitSound();
         mUpdateCounter = 0;
         const char* effectName = mHasEffect ? "PointerTouch" : "Touch";
-        MR::emitEffect(mHostActor, effectName);
-        if (MR::isExistBck(mHostActor, nullptr)) {
-            MR::setBckRate(mHostActor, 0.0f);
+        MR::emitEffect(mHost, effectName);
+        if (MR::isExistBck(mHost, nullptr)) {
+            MR::setBckRate(mHost, 0.0f);
         }
 
         if (mScaleController != nullptr) {
@@ -52,9 +52,9 @@ void WalkerStateBindStarPointer::exeBind() {
         }
     }
 
-    MR::startDPDFreezeLevelSound(mHostActor);
-    MR::zeroVelocity(mHostActor);
-    if (MR::isStarPointerPointing2POnPressButton(mHostActor, "弱", true, false)) {
+    MR::startDPDFreezeLevelSound(mHost);
+    MR::zeroVelocity(mHost);
+    if (MR::isStarPointerPointing2POnPressButton(mHost, "弱", true, false)) {
         mUpdateCounter = 0;
     } else {
         mUpdateCounter++;

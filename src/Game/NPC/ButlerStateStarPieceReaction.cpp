@@ -13,7 +13,7 @@ namespace NrvButlerStateStarPieceReaction {
 };
 
 ButlerStateStarPieceReaction::ButlerStateStarPieceReaction(LiveActor* pHost, const JMapInfoIter& rIter, const char* pName)
-    : ActorStateBase< LiveActor >("バトラースターピース反応"), mHost(pHost), mTalkMessage(nullptr), _14(false) {
+    : ActorStateBase< LiveActor >("バトラースターピース反応", pHost), mTalkMessage(nullptr), _14(false) {
     mTalkMessage = MR::createTalkCtrlDirectOnRootNodeAutomatic(pHost, rIter, pName, TVec3f(0.0f, 180.0f, 0.0f), nullptr);
 }
 

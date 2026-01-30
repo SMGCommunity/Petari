@@ -24,7 +24,9 @@ public:
 template < typename T >
 class ActorStateBase : public ActorStateBaseInterface {
 public:
-    ActorStateBase(const char* pName) : ActorStateBaseInterface(pName) {}
+    ActorStateBase(const char* pName, T* pActor) : ActorStateBaseInterface(pName), mHost(pActor) {}
 
     virtual ~ActorStateBase() NO_INLINE {}
+
+    T* mHost;
 };

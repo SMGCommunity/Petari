@@ -20,7 +20,6 @@ public:
     void exeBlow();
     void exeBlowLand();
 
-    LiveActor* mParentActor;
     TVec3f* _10;
     TVec3f _14;
 };
