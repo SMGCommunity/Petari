@@ -2,6 +2,7 @@
 #include "Game/Boss/BossStinkBug.hpp"
 #include "Game/Boss/BossStinkBugActionBase.hpp"
 #include "Game/Demo/DemoPositionController.hpp"
+#include "Game/LiveActor/ActorStateBase.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/DemoUtil.hpp"
@@ -28,7 +29,7 @@ BossStinkBugFinishDemo::BossStinkBugFinishDemo(BossStinkBug* pStinkBug, const JM
 }
 
 void BossStinkBugFinishDemo::appear() {
-    mIsDead = false;
+    ActorStateBase::appear();
     setNerve(&NrvBossStinkBugFinishDemo::BossStinkBugFinishDemoNrvTryStart::sInstance);
     MR::requestStartDemoMarioPuppetable(this, getHost(), "ボスカメムシ終了デモ", &NrvBossStinkBugFinishDemo::BossStinkBugFinishDemoNrvDemo::sInstance,
                                         nullptr);
@@ -44,6 +45,7 @@ void BossStinkBugFinishDemo::exeDemo() {
         MR::startBck(getHost(), "FinishDemo", nullptr);
         MR::tryStartAllAnim(getHost()->getWingModel(), "FinishDemo");
     }
+
     mDemoPositionController->movement();
     MR::setPlayerBaseMtx(MR::getJointMtx(mDemoPositionController, "MarioPosition"));
     getHost()->setPose(MR::getJointMtx(mDemoPositionController, "Boss"));

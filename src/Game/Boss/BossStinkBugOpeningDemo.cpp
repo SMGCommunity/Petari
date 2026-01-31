@@ -26,7 +26,7 @@ BossStinkBugOpeningDemo::BossStinkBugOpeningDemo(BossStinkBug* pStinkBug, const 
 }
 
 void BossStinkBugOpeningDemo::appear() {
-    mIsDead = false;
+    ActorStateBase::appear();
     setNerve(&NrvBossStinkBugOpeningDemo::BossStinkBugOpeningDemoNrvTryStart::sInstance);
     MR::requestStartDemoMarioPuppetable(this, getHost(), "ボスカメムシオープニングデモ",
                                         &NrvBossStinkBugOpeningDemo::BossStinkBugOpeningDemoNrvDemo::sInstance, nullptr);

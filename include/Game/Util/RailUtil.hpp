@@ -14,6 +14,7 @@ namespace MR {
     s32 getCurrentRailPointNo(const LiveActor*);
 
     void calcRailPosAtCoord(TVec3f*, const LiveActor*, f32);
+    void calcRailPosFrontCoord(TVec3f*, const LiveActor*, f32);
 
     void calcRailDirectionAtCoord(TVec3f*, const LiveActor*, f32);
 

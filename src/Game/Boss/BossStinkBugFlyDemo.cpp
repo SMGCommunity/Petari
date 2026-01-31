@@ -27,7 +27,7 @@ BossStinkBugFlyDemo::BossStinkBugFlyDemo(BossStinkBug* pStinkBug, const JMapInfo
 }
 
 void BossStinkBugFlyDemo::appear() {
-    mIsDead = false;
+    ActorStateBase::appear();
     setNerve(&NrvBossStinkBugFlyDemo::BossStinkBugFlyDemoNrvTryStart::sInstance);
     MR::requestStartDemoMarioPuppetable(this, getHost(), "ボスカメムシ飛行デモ", &NrvBossStinkBugFlyDemo::BossStinkBugFlyDemoNrvDemo::sInstance,
                                         nullptr);

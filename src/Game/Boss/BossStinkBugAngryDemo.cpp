@@ -27,7 +27,7 @@ BossStinkBugAngryDemo::BossStinkBugAngryDemo(BossStinkBug* pStinkBug, const JMap
 }
 
 void BossStinkBugAngryDemo::appear() {
-    mIsDead = false;
+    ActorStateBase::appear();
     setNerve(&NrvBossStinkBugAngryDemo::BossStinkBugAngryDemoNrvTryStart::sInstance);
     MR::requestStartDemoMarioPuppetable(this, getHost(), "ボスカメムシ怒りデモ", &NrvBossStinkBugAngryDemo::BossStinkBugAngryDemoNrvDemo::sInstance,
                                         nullptr);

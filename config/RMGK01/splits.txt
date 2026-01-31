@@ -618,7 +618,7 @@ Game/Boss/BossStinkBug.cpp:
 Game/Boss/BossStinkBugActionBase.cpp:
 	.text       start:0x8003D1D8 end:0x8003EF1C
 	.data       start:0x80567BC8 end:0x80567F30
-	.sdata      start:0x806B16A0 end:0x806B16C0
+	.sdata      start:0x806B16A0 end:0x806B16B8
 	.sdata2     start:0x806B8268 end:0x806B82D8
 
 Game/Boss/BossStinkBugActionFlyHigh.cpp:
@@ -631,14 +631,15 @@ Game/Boss/BossStinkBugActionFlyHigh.cpp:
 Game/Boss/BossStinkBugActionFlyLow.cpp:
 	.text       start:0x8003FD2C end:0x8004060C
 	.ctors      start:0x8052E868 end:0x8052E86C
-	.data       start:0x805680B8 end:0x805681C8
+	.data       start:0x805680B8 end:0x80568190
 	.sbss       start:0x806B3088 end:0x806B30B0
 	.sdata2     start:0x806B82F8 end:0x806B8328
 
 Game/Boss/BossStinkBugActionGround.cpp:
 	.text       start:0x8004060C end:0x80040F3C
 	.ctors      start:0x8052E86C end:0x8052E870
-	.data       start:0x805681C8 end:0x805682A0
+	.data       start:0x80568190 end:0x805682A0
+	.sdata      start:0x806B16B8 end:0x806B16C0
 	.sbss       start:0x806B30B0 end:0x806B30D8
 	.sdata2     start:0x806B8328 end:0x806B8358
 
