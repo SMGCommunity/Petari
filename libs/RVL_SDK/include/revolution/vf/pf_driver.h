@@ -15,4 +15,6 @@ s32 VFiPFDRV_lerase(PF_VOLUME* p_vol, u32 sector, u32 num_sectors);
 
 u32 VFiPFDRV_IsWProtected(PF_VOLUME* p_vol);
 
+u32 VFiPFDRV_IsInserted(PF_VOLUME* p_vol);
+
 #endif  // PF_DRIVER_H
