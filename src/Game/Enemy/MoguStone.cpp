@@ -1,11 +1,18 @@
 #include "Game/Enemy/MoguStone.hpp"
+#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/ActorShadowUtil.hpp"
+#include "Game/Util/EffectUtil.hpp"
+#include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
+#include "Game/Util/ParabolicPath.hpp"
 #include "Game/Util/SoundUtil.hpp"
+#include "Game/Util/VectorUtil.hpp"
+#include "JSystem/JGeometry/TMatrix.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
 #include "revolution/mtx.h"
 
@@ -130,9 +137,90 @@ void MoguStone::exeThrow() {
     }
 }
 
+void MoguStone::exeFall() {
+    PSQUATMultiply(&_A0, &_90, &_90);
+    _90.normalize();
+    MR::applyVelocityDampAndGravity(this, 2.0f, 0.8f, 0.98f, 0.98f, 1.0f);
+
+    if (MR::isBinded(this) || MR::isGreaterStep(this, 60)) {
+        MR::emitEffect(this, "Break");
+        startBreakSound();
+        kill();
+    }
+}
+
 bool MoguStone::isTaken() {
     return isNerve(&NrvMoguStone::MoguStoneNrvTaken::sInstance);
 }
 
+void MoguStone::attackSensor(HitSensor* pSensor1, HitSensor* pSensor2) {
+    if (pSensor1 == getSensor("body") && MR::isSensorPlayer(pSensor2) && MR::sendMsgEnemyAttack(pSensor2, pSensor1) == true) {
+        MR::emitEffect(this, "Break");
+        MR::startSound(this, "SE_BM_ICEMERAKING_STONE_BREAK", -1, -1);
+        kill();
+    }
+}
+
 void MoguStone::exeTaken() {
+}
+
+bool MoguStone::receiveMsgPlayerAttack(u32 msg, HitSensor* pSensor1, HitSensor* pSensor2) {
+    if (!isNerve(&NrvMoguStone::MoguStoneNrvThrow::sInstance)) {
+        return false;
+    }
+
+    if (MR::isMsgLockOnStarPieceShoot(msg)) {
+        return true;
+    }
+
+    if (MR::isMsgPlayerHitAll(msg) || MR::isMsgStarPieceAttack(msg)) {
+        MR::emitEffect(this, "Break");
+        MR::startSound(this, "SE_BM_ICEMERAKING_STONE_BREAK", -1, -1);
+        kill();
+        return true;
+    }
+
+    return false;
+}
+
+void MoguStone::calcAndSetBaseMtx() {
+    TPos3f mtx;
+    mtx[0][3] = 0.0f;
+    mtx[1][3] = 0.0f;
+    mtx[2][3] = 0.0f;
+
+    mtx.setRotateQuaternionInlineAndTrans(_90, mPosition);
+
+    MR::setBaseTRMtx(this, mtx);
+}
+
+ThrowingIce::ThrowingIce(const char* pName) : MoguStone(pName, "IceManIce"), mPath(nullptr) {
+    mPath = new ParabolicPath();
+    mScale.x = 1.3f;
+    mScale.y = 1.3f;
+    mScale.z = 1.3f;
+}
+
+void ThrowingIce::init(const JMapInfoIter& rIter) {
+    initBinder(60.0f * mScale.y, 0.0f, 0);
+    ModelObj::init(rIter);
+    initHitSensor(1);
+    MR::addHitSensorEnemy(this, "body", 32, 80.0f * mScale.y, TVec3f(0.0f, 0.0f, 0.0f));
+    initNerve(&NrvMoguStone::MoguStoneNrvTaken::sInstance);
+    MR::invalidateClipping(this);
+    MR::onCalcGravity(this);
+    MR::initShadowVolumeSphere(this, 90.0f * mScale.y);
+    makeActorDead();
+}
+
+void ThrowingIce::emitIce(const TVec3f& arg1, const TVec3f& arg2, f32 arg3, const TVec3f& arg4) {
+    mPath->initFromUpVectorAddHeight(arg1, arg2, -arg4, hAddHeight);
+    _BC = arg3;
+
+    TVec3f v2(arg2);
+    v2 -= arg1;
+    MR::vecKillElement(v2, mGravity, &_B0);
+    MR::normalizeOrZero(&_B0);
+    setNerve(&NrvMoguStone::MoguStoneNrvThrow::sInstance);
+    MR::emitEffect(this, "Smoke");
 }
