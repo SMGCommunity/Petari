@@ -1,6 +1,5 @@
 #pragma once
 
-#include "Game/Boss/BossStinkBugBomb.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/Map/CollisionParts.hpp"
 #include "Game/Util/BaseMatrixFollowTargetHolder.hpp"

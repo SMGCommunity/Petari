@@ -16,10 +16,10 @@
 namespace NrvBossStinkBugOpeningDemo {
     NEW_NERVE(BossStinkBugOpeningDemoNrvTryStart, BossStinkBugOpeningDemo, TryStart);
     NEW_NERVE(BossStinkBugOpeningDemoNrvDemo, BossStinkBugOpeningDemo, Demo);
+}  // namespace NrvBossStinkBugOpeningDemo
 
-}
-
-BossStinkBugOpeningDemo::BossStinkBugOpeningDemo(BossStinkBug* pStinkBug, const JMapInfoIter& rIter) : BossStinkBugActionBase("オープニングデモ", pStinkBug), mDemoPositionController(nullptr) {
+BossStinkBugOpeningDemo::BossStinkBugOpeningDemo(BossStinkBug* pStinkBug, const JMapInfoIter& rIter)
+    : BossStinkBugActionBase("オープニングデモ", pStinkBug), mDemoPositionController(nullptr) {
     initNerve(&NrvBossStinkBugOpeningDemo::BossStinkBugOpeningDemoNrvDemo::sInstance);
     mDemoPositionController = new DemoPositionController("BossStinkBugDemo", rIter);
     mDemoPositionController->initAnimCamera("OpeningDemo");
@@ -28,11 +28,12 @@ BossStinkBugOpeningDemo::BossStinkBugOpeningDemo(BossStinkBug* pStinkBug, const 
 void BossStinkBugOpeningDemo::appear() {
     mIsDead = false;
     setNerve(&NrvBossStinkBugOpeningDemo::BossStinkBugOpeningDemoNrvTryStart::sInstance);
-    MR::requestStartDemoMarioPuppetable(this, getHost(), "ボスカメムシオープニングデモ", &NrvBossStinkBugOpeningDemo::BossStinkBugOpeningDemoNrvDemo::sInstance, nullptr);
+    MR::requestStartDemoMarioPuppetable(this, getHost(), "ボスカメムシオープニングデモ",
+                                        &NrvBossStinkBugOpeningDemo::BossStinkBugOpeningDemoNrvDemo::sInstance, nullptr);
 }
 
 void BossStinkBugOpeningDemo::exeDemo() {
-    if(MR::isFirstStep(this)) {
+    if (MR::isFirstStep(this)) {
         MR::overlayWithPreviousScreen(2);
         MR::stopStageBGM(60);
         MR::startBckPlayer("BattleWait", (const char*)nullptr);
@@ -45,7 +46,7 @@ void BossStinkBugOpeningDemo::exeDemo() {
     MR::setPlayerBaseMtx(MR::getJointMtx(mDemoPositionController, "MarioPosition"));
     getHost()->setPose(MR::getJointMtx(mDemoPositionController, "Boss"));
 
-    if(MR::isBckStopped(getHost())) {
+    if (MR::isBckStopped(getHost())) {
         mDemoPositionController->endDemo("OpeningDemo");
         MR::endDemo(getHost(), "ボスカメムシオープニングデモ");
         kill();
@@ -53,5 +54,4 @@ void BossStinkBugOpeningDemo::exeDemo() {
 }
 
 void BossStinkBugOpeningDemo::exeTryStart() {
-
 }

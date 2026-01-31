@@ -663,12 +663,12 @@ Game/Boss/BossStinkBugBomb.cpp:
 
 Game/Boss/BossStinkBugBombHolder.cpp:
 	.text       start:0x80041FEC end:0x800421A0
-	.data       start:0x805685E0 end:0x805686B8
+	.data       start:0x805685E0 end:0x80568630
 
 Game/Boss/BossStinkBugFinishDemo.cpp:
 	.text       start:0x800421A0 end:0x80042550
 	.ctors      start:0x8052E87C end:0x8052E880
-	.data       start:0x805686B8 end:0x80568720
+	.data       start:0x80568630 end:0x80568720
 	.sbss       start:0x806B3110 end:0x806B3120
 
 Game/Boss/BossStinkBugFlyDemo.cpp:

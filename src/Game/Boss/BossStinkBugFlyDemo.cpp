@@ -17,7 +17,6 @@
 namespace NrvBossStinkBugFlyDemo {
     NEW_NERVE(BossStinkBugFlyDemoNrvTryStart, BossStinkBugFlyDemo, TryStart);
     NEW_NERVE(BossStinkBugFlyDemoNrvDemo, BossStinkBugFlyDemo, Demo);
-
 }  // namespace NrvBossStinkBugFlyDemo
 
 BossStinkBugFlyDemo::BossStinkBugFlyDemo(BossStinkBug* pStinkBug, const JMapInfoIter& rIter)
@@ -71,7 +70,7 @@ void BossStinkBugFlyDemo::exeDemo() {
     mDemoPositionController->movement();
     MR::setPlayerBaseMtx(MR::getJointMtx(mDemoPositionController, "MarioPosition"));
     getHost()->setPose(MR::getJointMtx(mDemoPositionController, "Boss"));
-    if(MR::isBckStopped(getHost())) {
+    if (MR::isBckStopped(getHost())) {
         mDemoPositionController->endDemo("FlyDemo");
         MR::endDemo(getHost(), "ボスカメムシ飛行デモ");
         kill();
