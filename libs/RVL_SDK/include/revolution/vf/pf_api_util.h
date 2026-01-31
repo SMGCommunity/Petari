@@ -3,7 +3,7 @@
 
 #include <revolution.h>
 
-u32 VFiPFAPI_ParseOpenModeString(const s8*);
+u32 VFiPFAPI_ParseOpenModeString(const char*);
 int VFiPFAPI_convertError(int);
 int VFiPFAPI_convertReturnValue(int);
 void* VFiPFAPI_convertReturnValue2NULL(int, void*);
