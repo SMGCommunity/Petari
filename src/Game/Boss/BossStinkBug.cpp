@@ -168,7 +168,7 @@ LiveActor* BossStinkBug::getWingModel() {
     return _D4;
 }
 
-PartsModel* BossStinkBug::getBombLauncher() {
+LiveActor* BossStinkBug::getBombLauncher() {
     return _D8;
 }
 

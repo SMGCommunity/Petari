@@ -724,7 +724,7 @@ config.libs = [
             Object(NonMatching, "Game/Boss/BossStinkBugBomb.cpp"),
             Object(NonMatching, "Game/Boss/BossStinkBugBombHolder.cpp"),
             Object(NonMatching, "Game/Boss/BossStinkBugFinishDemo.cpp"),
-            Object(NonMatching, "Game/Boss/BossStinkBugFlyDemo.cpp"),
+            Object(Matching, "Game/Boss/BossStinkBugFlyDemo.cpp"),
             Object(NonMatching, "Game/Boss/BossStinkBugFunction.cpp"),
             Object(Matching, "Game/Boss/BossStinkBugOpeningDemo.cpp"),
             Object(NonMatching, "Game/Boss/DinoPackun.cpp"),

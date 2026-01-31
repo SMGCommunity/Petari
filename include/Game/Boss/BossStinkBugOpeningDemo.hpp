@@ -14,5 +14,5 @@ public:
     void exeDemo();
     void exeTryStart();
 
-    /*_64 */ DemoPositionController* mDemoPositionController;
+    /*0x64 */ DemoPositionController* mDemoPositionController;
 };

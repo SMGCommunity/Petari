@@ -34,7 +34,7 @@ public:
     void disposeBomb();
     void reuestMovementOnParts();
     LiveActor* getWingModel();
-    PartsModel* getBombLauncher();
+    LiveActor* getBombLauncher();
     void calcUpVec(TVec3f*) const;
     void updateAction();
     void updatePose();
