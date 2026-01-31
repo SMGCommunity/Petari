@@ -720,7 +720,7 @@ config.libs = [
             Object(NonMatching, "Game/Boss/BossStinkBugActionFlyLow.cpp"),
             Object(NonMatching, "Game/Boss/BossStinkBugActionGround.cpp"),
             Object(NonMatching, "Game/Boss/BossStinkBugActionSequencer.cpp"),
-            Object(NonMatching, "Game/Boss/BossStinkBugAngryDemo.cpp"),
+            Object(Matching, "Game/Boss/BossStinkBugAngryDemo.cpp"),
             Object(NonMatching, "Game/Boss/BossStinkBugBomb.cpp"),
             Object(NonMatching, "Game/Boss/BossStinkBugBombHolder.cpp"),
             Object(NonMatching, "Game/Boss/BossStinkBugFinishDemo.cpp"),
