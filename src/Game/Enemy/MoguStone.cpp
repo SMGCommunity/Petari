@@ -10,14 +10,14 @@
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/ParabolicPath.hpp"
+#include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
-#include "Game/Util/VectorUtil.hpp"
 #include "JSystem/JGeometry/TMatrix.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
 #include "revolution/mtx.h"
 
 namespace {
-    static f32 hAddHeight = 200.0f;
+    const static f32 hAddHeight = 200.0f;
 };  // namespace
 
 namespace NrvMoguStone {
@@ -26,16 +26,14 @@ namespace NrvMoguStone {
     NEW_NERVE(MoguStoneNrvFall, MoguStone, Fall);
 };  // namespace NrvMoguStone
 
-// Initializer list doesn't match
+// Initializer list doesn't match?
 MoguStone::MoguStone(const char* pName, const char* pModelName) : ModelObj(pName, pModelName, nullptr, -2, -2, -2, false) {
-    // Crashes ?
-    //_90.set(0, 0, 0, 1);
-    _A0.set(0, 0, 0, 1);
+    // Crashes?
+    //_90.set< int >(0, 0, 0, 1);
+    _A0.set< int >(0, 0, 0, 1);
     _B0.set(0.0f, 0.0f, 1.0f);
     _BC = 0.0f;
     _C0 = true;
-
-    TVec3f offset(0.0f, 0.0f, 0.0f);
 }
 
 void MoguStone::init(const JMapInfoIter& rIter) {
@@ -223,4 +221,56 @@ void ThrowingIce::emitIce(const TVec3f& arg1, const TVec3f& arg2, f32 arg3, cons
     MR::normalizeOrZero(&_B0);
     setNerve(&NrvMoguStone::MoguStoneNrvThrow::sInstance);
     MR::emitEffect(this, "Smoke");
+}
+
+void ThrowingIce::doBehavior() {
+    if (MR::isFirstStep(this)) {
+        TVec3f v1;
+        PSVECCrossProduct(_B0, mGravity, &v1);
+
+        f32 one_eighth = 0.125f;
+
+        // Matches, except v3 is actually _A0 which is a TVec4f that somehow uses TVec3f::scale(f32, TVec3f)
+        TVec3f v3;
+        v3.scale(sin(one_eighth), v1);
+        _A0.w = cos(one_eighth);
+    }
+
+    f32 rate = MR::calcNerveRate(this, 101);
+    TVec3f v2;
+    mPath->calcPosition(&v2, rate);
+    TVec3f v3(v2);
+    v3 -= mPosition;
+    mVelocity.set(v3);
+}
+
+void ThrowingIce::attackSensor(HitSensor* pSensor1, HitSensor* pSensor2) {
+    if (pSensor1 == getSensor("body") && MR::isSensorPlayer(pSensor2) &&
+        (MR::isPlayerElementModeIce() ? MR::sendMsgEnemyAttackStrong(pSensor2, pSensor1) : MR::sendMsgEnemyAttackFreeze(pSensor2, pSensor1))) {
+        MR::emitEffect(this, "Break");
+        MR::startSound(this, "SE_BM_ICEMERAKING_STONE_BREAK", -1, -1);
+        MR::deleteEffect(this, "Smoke");
+        kill();
+    }
+}
+
+bool ThrowingIce::receiveMsgPlayerAttack(u32 msg, HitSensor* pSensor1, HitSensor* pSensor2) {
+    if (!isNerve(&NrvMoguStone::MoguStoneNrvThrow::sInstance)) {
+        return false;
+    }
+
+    if (MR::isMsgPlayerSpinAttack(msg)) {
+        return false;
+    }
+
+    MoguStone::receiveMsgPlayerAttack(msg, pSensor1, pSensor2);
+
+    return false;
+}
+
+void ThrowingIce::startBreakSound() {
+    MR::startSound(this, "SE_BM_ICEMERAKING_STONE_BREAK", -1, -1);
+}
+
+void ThrowingIce::startThrowLevelSound() {
 }
