@@ -237,18 +237,6 @@ PoltaSensorCtrl::PoltaSensorCtrl(Polta* pPolta) : mPoltaPtr(pPolta),
 {    
 }
 
-inline s32 PoltaSensorCtrl::getCoreSensorCount() const{
-    return 1;
-}
-
-inline s32 PoltaSensorCtrl::getBodySensorCount() const{
-    return 3;
-}
-
-inline s32 PoltaSensorCtrl::getArmSensorCount() const{
-    return 11;
-}
-
 s32 PoltaSensorCtrl::getSensorCount() const {
     return 28;
 }

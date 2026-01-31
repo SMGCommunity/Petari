@@ -1,13 +1,23 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
+#include "Game/LiveActor/LiveActorGroup.hpp"
 
 class PoltaSensorCtrl;
 class PoltaArm;
 class PoltaActionSequencer;
-class BombTeresaHolder;
 class PoltaRockHolder;
 class PoltaGroundRockHolder;
+class BombTeresa;
+
+class BombTeresaHolder : public DeriveActorGroup<BombTeresa> {
+public:
+	BombTeresaHolder();
+
+	virtual ~BombTeresaHolder();
+
+	void disperseAll();
+};
 
 class Polta : public LiveActor {
 public:

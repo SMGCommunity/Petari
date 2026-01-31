@@ -11,9 +11,9 @@ public:
 	PoltaSensorCtrl(Polta*);
 
 	s32 getSensorCount() const;
-	inline s32 getCoreSensorCount() const;
-	inline s32 getBodySensorCount() const;
-    inline s32 getArmSensorCount() const;
+	inline s32 getCoreSensorCount() const { return 1;};
+	inline s32 getBodySensorCount() const { return 3;};
+    inline s32 getArmSensorCount() const { return 11;};
 	void setScreamSensorSize(f32);
 	void initSensor();
 	bool isCoreSensor(const HitSensor*) const;

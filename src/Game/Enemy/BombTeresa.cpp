@@ -809,15 +809,15 @@ bool BombTeresa::isEnableShockWave() const {
     return true;
 }
 
-bool BombTeresa::appearNormal(const TVec3f& arg0, const TVec3f& arg1) {
+bool BombTeresa::appearNormal(const TVec3f& rPosition, const TVec3f& rVelocity) {
     if (!MR::isDead(this)) {
         return false;
     }
     setNerve(&NrvBombTeresa::BombTeresaNrvAppear::sInstance);
-    mPosition.set(arg0);
+    mPosition.set(rPosition);
     appear();
     MR::showModel(this);
-    mVelocity.set(arg1);
+    mVelocity.set(rVelocity);
     MR::invalidateClipping(this);
     MR::trySetMoveLimitCollision(this);
     return true;
