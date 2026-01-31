@@ -93,7 +93,7 @@ void BombTeresa::initAfterPlacement() {
 void BombTeresa::initFromJMapParam(const JMapInfoIter& rIter) {
     if (MR::isValidInfo(rIter)) {
         MR::initDefaultPos(this, rIter);
-        applyScale(1.0f);
+        mScale.mult(1.0f);
         MR::makeQuatAndFrontFromRotate(&_9C, &_AC, this);
         _D0 = mPosition;
         bool arg1Bool;
