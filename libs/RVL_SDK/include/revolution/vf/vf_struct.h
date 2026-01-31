@@ -416,4 +416,21 @@ typedef struct PF_ENT_ITER {
     unsigned char log2_entries_per_sector;  // offset 0x68, size 0x1
 } PF_ENT_ITER;
 
+typedef struct PF_SYSTEM_SET {
+    // total size: 0x4
+    unsigned long flock_count;  // offset 0x0, size 0x4
+} PF_SYSTEM_SET;
+
+struct PF_SYSTEM_SET VFipf_sys_set;
+
+typedef struct VFSysTime {
+    // total size: 0x18
+    long sec;    // offset 0x0, size 0x4
+    long min;    // offset 0x4, size 0x4
+    long hour;   // offset 0x8, size 0x4
+    long day;    // offset 0xC, size 0x4
+    long month;  // offset 0x10, size 0x4
+    long year;   // offset 0x14, size 0x4
+} VFSysTime;
+
 #endif  // VF_STRUCT_H
