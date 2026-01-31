@@ -8,13 +8,13 @@ public:
     SpringValue(f32, f32, f32, f32, f32);
 
     void setParam(f32, f32, f32, f32, f32);
-    void update();
+    f32 update();
 
     void reset();
 
-    f32 _0;
-    f32 _4;
-    f32 _8;
-    f32 _C;
-    f32 _10;
+    f32 mRestValue;
+    f32 mSpringValue;
+    f32 mAccelFactor;
+    f32 mDamping;
+    f32 mVelocity;
 };
