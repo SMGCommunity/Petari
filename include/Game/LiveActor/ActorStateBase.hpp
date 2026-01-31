@@ -28,5 +28,6 @@ public:
 
     virtual ~ActorStateBase() NO_INLINE {}
 
+    inline T* getHost() const { return  mHost;}
     T* mHost;
 };

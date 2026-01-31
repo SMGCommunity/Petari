@@ -33,7 +33,7 @@ public:
     void initCollision();
     void disposeBomb();
     void reuestMovementOnParts();
-    PartsModel* getWingModel();
+    LiveActor* getWingModel();
     PartsModel* getBombLauncher();
     void calcUpVec(TVec3f*) const;
     void updateAction();

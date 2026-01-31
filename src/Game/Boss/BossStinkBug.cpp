@@ -164,7 +164,7 @@ void BossStinkBug::reuestMovementOnParts() {
     MR::requestMovementOn(_D8);
 }
 
-PartsModel* BossStinkBug::getWingModel() {
+LiveActor* BossStinkBug::getWingModel() {
     return _D4;
 }
 
