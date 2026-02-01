@@ -329,15 +329,15 @@ struct PF_CONTEXT {
     long context_id;
 };
 
-struct PF_CHARCODE {
+typedef struct PF_CHARCODE {
     // total size: 0x18
-    long (*oem2unicode)(signed char*, unsigned short*);                  // offset 0x0, size 0x4
-    long (*unicode2oem)(unsigned short*, signed char*);                  // offset 0x4, size 0x4
-    long (*oem_char_width)(signed char*);                                // offset 0x8, size 0x4
-    unsigned long (*is_oem_mb_char)(signed char, unsigned long);         // offset 0xC, size 0x4
-    long (*unicode_char_width)(unsigned short*);                         // offset 0x10, size 0x4
-    unsigned long (*is_unicode_mb_char)(unsigned short, unsigned long);  // offset 0x14, size 0x4
-};
+    s32 (*oem2unicode)(const s8*, u16*);    // offset 0x0, size 0x4
+    s32 (*unicode2oem)(const u16*, s8*);    // offset 0x4, size 0x4
+    s32 (*oem_char_width)(const s8*);       // offset 0x8, size 0x4
+    u32 (*is_oem_mb_char)(const s8, u32);   // offset 0xC, size 0x4
+    s32 (*unicode_char_width)(const u16*);  // offset 0x10, size 0x4
+    u32 (*is_unicode_mb_char)(u16, u32);    // offset 0x14, size 0x4
+} PF_CHARCODE;
 
 typedef struct PF_VOLUME_SET {
     // total size: 0x27D48

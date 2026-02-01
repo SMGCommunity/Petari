@@ -29,4 +29,10 @@ s32 VFiPFCACHE_WriteDataPage(PF_VOLUME* p_vol, PF_CACHE_PAGE* p_page, u32 set_si
 
 s32 VFiPFCACHE_WriteDataNumSectorAndFreeIfNeeded(PF_VOLUME* p_vol, const u8* p_buf, u32 sector, u32 num_sector, u32* p_num_success);
 
+s32 VFiPFCACHE_InitCaches(PF_VOLUME* p_vol);
+
+void VFiPFCACHE_FreeAllCaches(PF_VOLUME* p_vol);
+
+s32 VFiPFCACHE_FlushAllCaches(PF_VOLUME* p_vol);
+
 #endif  // PF_CACHE_H

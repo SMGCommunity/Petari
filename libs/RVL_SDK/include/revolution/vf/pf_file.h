@@ -18,4 +18,6 @@ s32 VFiPFFILE_fsetpos(PF_FILE* p_file, const u32* pos);
 
 void VFiPFFILE_Cursor_MoveToClusterEnd(PF_FILE* p_file, u32 size);
 
+void VFiPFFILE_FinalizeAllFiles(PF_VOLUME* p_vol);
+
 #endif  // PF_FILE_H

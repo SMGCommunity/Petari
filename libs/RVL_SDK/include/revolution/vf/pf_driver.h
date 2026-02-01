@@ -17,4 +17,10 @@ u32 VFiPFDRV_IsWProtected(PF_VOLUME* p_vol);
 
 u32 VFiPFDRV_IsInserted(PF_VOLUME* p_vol);
 
+s32 VFiPFDRV_mount(PF_VOLUME* p_vol);
+
+s32 VFiPFDRV_unmount(PF_VOLUME* p_vol, u32 mode);
+
+s32 VFiPFDRV_format(PF_VOLUME* p_vol, const u8* param);
+
 #endif  // PF_DRIVER_H

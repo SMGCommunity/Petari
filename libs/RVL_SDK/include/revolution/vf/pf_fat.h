@@ -42,4 +42,6 @@ s32 VFiPFFAT_TraceClustersChain(PF_FFD* p_ffd, u32 start_clst, u32 size, u32* p_
 
 s32 VFiPFFAT_UpdateAlternateFATEntry(PF_VOLUME* p_vol, u8* p_buf, u32 sector, u32 size);
 
+s32 VFiPFFAT_InitFATRegion(PF_VOLUME* p_vol);
+
 #endif  // PF_FAT_H
