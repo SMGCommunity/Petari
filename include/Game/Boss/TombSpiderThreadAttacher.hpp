@@ -8,8 +8,8 @@ public:
 
     virtual void init(const JMapInfoIter& rIter);
 
-    void exeAttach();
     void exeFree();
+    void exeAttach();
 
     /* 0x8C */ MtxPtr mJointMtx;
     /* 0x90 */ f32 mRadius;
