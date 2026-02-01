@@ -930,6 +930,10 @@ void BTA_CleanUp(void (*p_cb)(tBTA_STATUS status));  // probably
  * TODO: would this be part of BLE or WUD?
  */
 
+#define SC_MAX_DEV_ENTRY_FOR_STD 10
+#define SC_MAX_DEV_ENTRY_FOR_SMP 6
+#define SC_MAX_DEV_ENTRY (SC_MAX_DEV_ENTRY_FOR_STD + SC_MAX_DEV_ENTRY_FOR_SMP)
+
 struct small_dev_info {
     char devName[20];  // size 0x14? offset 0x00 // might be 0x13?
     char at_0x14[1];   // size 0x??, offset 0x14?
@@ -937,27 +941,6 @@ struct small_dev_info {
     LINK_KEY linkKey;  // size 0x10, offset 0x20
     char __pad1[0x10];
 };  // size 0x40
-
-typedef struct {
-    BD_ADDR bd_addr;
-    u8 bd_name[64];
-    u8 link_key[16];
-} SCBtCmpDevInfoSingle;
-
-typedef struct {
-    BD_ADDR bd_addr;
-    u8 bd_name[64];
-} SCBtDeviceInfoSingle;
-
-typedef struct {
-    u8 num;
-    SCBtCmpDevInfoSingle info[6];
-} SCBtCmpDevInfoArray;
-
-typedef struct {
-    u8 num;
-    SCBtDeviceInfoSingle info[16];
-} SCBtDeviceInfoArray;
 
 typedef struct {
     UINT8 handle;         /* device handle */
