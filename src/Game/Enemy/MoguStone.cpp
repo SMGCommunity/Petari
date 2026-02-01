@@ -26,11 +26,10 @@ namespace NrvMoguStone {
     NEW_NERVE(MoguStoneNrvFall, MoguStone, Fall);
 };  // namespace NrvMoguStone
 
-// Initializer list doesn't match?
+// Initializer list doesn't match
 MoguStone::MoguStone(const char* pName, const char* pModelName) : ModelObj(pName, pModelName, nullptr, -2, -2, -2, false) {
-    // Crashes?
-    //_90.set< int >(0, 0, 0, 1);
-    _A0.set< int >(0, 0, 0, 1);
+    _90.set(0, 0, 0, 1);
+    _A0.set(0, 0, 0, 1);
     _B0.set(0.0f, 0.0f, 1.0f);
     _BC = 0.0f;
     _C0 = true;
@@ -229,10 +228,7 @@ void ThrowingIce::doBehavior() {
         PSVECCrossProduct(_B0, mGravity, &v1);
 
         f32 one_eighth = 0.125f;
-
-        // Matches, except v3 is actually _A0 which is a TVec4f that somehow uses TVec3f::scale(f32, TVec3f)
-        TVec3f v3;
-        v3.scale(sin(one_eighth), v1);
+        _A0.toTvec()->scale(sin(one_eighth), v1);
         _A0.w = cos(one_eighth);
     }
 
@@ -264,7 +260,6 @@ bool ThrowingIce::receiveMsgPlayerAttack(u32 msg, HitSensor* pSensor1, HitSensor
     }
 
     MoguStone::receiveMsgPlayerAttack(msg, pSensor1, pSensor2);
-
     return false;
 }
 
