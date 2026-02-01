@@ -323,8 +323,7 @@ void BossStinkBug::updateJointControl() {
         TVec3f legJointPos;
         MR::copyJointPos(this, ::sLegJointNameList[i], &legJointPos);
         TVec3f groundCheckPos = _90[i]->mPosition;
-        TVec3f temp = legJointPos;
-        JMathInlineVEC::PSVECSubtract(temp, groundCheckPos, temp);
+        TVec3f dirGroundCheckToLegJoint = legJointPos - groundCheckPos;
 
         if (MR::isBinded(_90[i])) {
             _90[i]->bringFriction(_108, 0.2f);
@@ -332,8 +331,8 @@ void BossStinkBug::updateJointControl() {
             _90[i]->bringFriction(1.0f, 0.08f);
         }
 
-        temp.scale(_90[i]->_8C);
-        _90[i]->mVelocity.set(temp);
+        dirGroundCheckToLegJoint.scale(_90[i]->_8C);
+        _90[i]->mVelocity.set(dirGroundCheckToLegJoint);
         _90[i]->movement();
         jointCtrl->setIKEndPosition(::sLegJointNameList[i], _90[i]->mPosition, _10C);
 

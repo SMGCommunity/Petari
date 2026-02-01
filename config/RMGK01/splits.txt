@@ -199,7 +199,7 @@ Game/Animation/XanimeCore.cpp:
 Game/Animation/XanimePlayer.cpp:
 	.text       start:0x8001B148 end:0x8001C4D4
 	.data       start:0x80564B48 end:0x80564B88
-	.sdata      start:0x806B1650 end:0x806B16A0
+	.sdata      start:0x806B1650 end:0x806B1698
 	.sdata2     start:0x806B7D78 end:0x806B7D88
 
 Game/Animation/XanimeResource.cpp:
@@ -613,6 +613,7 @@ Game/Boss/BossStinkBug.cpp:
 	.rodata     start:0x80530ED8 end:0x80530F00
 	.data       start:0x80567998 end:0x80567BC8
 	.bss        start:0x8060A5E8 end:0x8060A5F8
+	.sdata      start:0x806B1698 end:0x806B16A0
 	.sdata2     start:0x806B8220 end:0x806B8268
 
 Game/Boss/BossStinkBugActionBase.cpp:
