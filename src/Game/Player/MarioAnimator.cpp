@@ -74,7 +74,7 @@ void MarioAnimator::init() {
     changeDefaultUpper("基本");
     mXanimePlayerUpper->changeAnimation("基本");
     mXanimePlayerUpper->mCore->shareJointTransform(mXanimePlayer->mCore);
-    PSMTXCopy(MR::tmpMtxRotYRad(3.14159274101f), _DC.toMtxPtr());
+    PSMTXCopy(MR::tmpMtxRotYRad(PI), _DC.toMtxPtr());
 }
 
 bool MarioAnimator::isAnimationStop() const {
@@ -501,13 +501,13 @@ void MarioAnimator::waterToGround() {
 
     u32 state = *reinterpret_cast<u32*>(swimSensor);
     switch (state) {
-    case 0x0F:
-    case 0x10:
+    case ACTMES_STAR_PIECE_GIFT:
+    case ACTMES_STAR_PIECE_GIFT_1:
         changeAnimationUpper("ひろいウエイト", nullptr);
         mActor->clearNullAnimation(0);
         MR::deleteEffect(reinterpret_cast<LiveActor*>(reinterpret_cast<u32*>(swimSensor)[9]), "SwimBubble");
         break;
-    case 0x19:
+    case ACTMES_STAR_PIECE_GIFT_MAX:
         changeAnimationUpper("カブウエイト", nullptr);
         mActor->clearNullAnimation(0);
         break;
@@ -517,14 +517,14 @@ void MarioAnimator::waterToGround() {
 void MarioAnimator::changePickupAnimation(const HitSensor* pSensor) {
     u32 type = *reinterpret_cast<const u32*>(pSensor);
     switch (type) {
-    case 0x19:
+    case ACTMES_STAR_PIECE_GIFT_MAX:
         mActor->_494 = reinterpret_cast<u32>(mActor->_49C);
         changeAnimation("カブひろい", static_cast<const char*>(nullptr));
         mActor->changeNullAnimation("カブひろい", -2);
         getPlayer()->stopWalk();
         break;
-    case 0x0F:
-    case 0x10:
+    case ACTMES_STAR_PIECE_GIFT:
+    case ACTMES_STAR_PIECE_GIFT_1:
         mActor->_494 = reinterpret_cast<u32>(mActor->_498);
         if (!getPlayer()->isSwimming()) {
             if (mActor->_424 == reinterpret_cast<u32>(pSensor)) {
@@ -554,13 +554,13 @@ void MarioAnimator::changePickupAnimation(const HitSensor* pSensor) {
 void MarioAnimator::changeThrowAnimation(const HitSensor* pSensor) {
     u32 type = *reinterpret_cast<const u32*>(pSensor);
     switch (type) {
-    case 0x19:
+    case ACTMES_STAR_PIECE_GIFT_MAX:
         stopAnimationUpper(nullptr, nullptr);
         changeAnimation("両手投げ", static_cast<const char*>(nullptr));
         startPadVib("マリオ[亀投げ]");
         break;
-    case 0x0F:
-    case 0x10:
+    case ACTMES_STAR_PIECE_GIFT:
+    case ACTMES_STAR_PIECE_GIFT_1:
         stopAnimationUpper(nullptr, nullptr);
         if (getPlayer()->isSwimming()) {
             changeAnimation("水泳亀投げ", "水泳基本");
@@ -587,14 +587,14 @@ void MarioAnimator::updateTakingAnimation(const HitSensor* pSensor) {
 
     u32 type = *reinterpret_cast<const u32*>(pSensor);
     switch (type) {
-    case 0x19:
+    case ACTMES_STAR_PIECE_GIFT_MAX:
         stopAnimation(nullptr, static_cast<const char*>(nullptr));
         changeAnimationUpper("カブウエイト", nullptr);
         mActor->clearNullAnimation(0);
         mActor->offTakingFlag();
         break;
-    case 0x0F:
-    case 0x10:
+    case ACTMES_STAR_PIECE_GIFT:
+    case ACTMES_STAR_PIECE_GIFT_1:
         if (!getPlayer()->isSwimming()) {
             s32 shouldChange = 1;
             if (isAnimationRun("ひろいクイック")) {
@@ -644,7 +644,7 @@ void MarioAnimator::switchMirrorMode() {
         Mtx invBase;
         MtxPtr base = mActor->getBaseMtx();
         PSMTXInverse(base, invBase);
-        PSMTXConcat(MR::tmpMtxRotYRad(3.1415927f), invBase, _DC.toMtxPtr());
+        PSMTXConcat(MR::tmpMtxRotYRad(PI), invBase, _DC.toMtxPtr());
 
         base = mActor->getBaseMtx();
         PSMTXConcat(base, _DC.toMtxPtr(), _DC.toMtxPtr());
@@ -818,8 +818,7 @@ void MarioAnimator::setHipSlidingTilt(f32 stickX, f32 stickY) {
         }
     }
 
-    MarioConst* marioConst = mActor->mConst;
-    MarioConstTable* table = marioConst->mTable[marioConst->mCurrentTable];
+    MarioConstTable* table = mActor->mConst->getTable();
     f32 speed = table->mSliderTiltRatio;
 
     setBlendWeight(weights, speed);
@@ -848,13 +847,12 @@ void MarioAnimator::setTilt() {
     _60 = getFrontVec();
 
     Mario* player = getPlayer();
-    MarioConst* marioConst = mActor->mConst;
-    MarioConstTable* table = marioConst->mTable[marioConst->mCurrentTable];
+    MarioConstTable* table = mActor->mConst->getTable();
 
     f32 ratio = table->mTiltRatio * player->_278;
     tiltAngle *= ratio;
 
-    const f32 maxTilt = 1.5707964f;
+    const f32 maxTilt = HALF_PI;
     f32 absTilt = __fabsf(tiltAngle);
     if (absTilt >= maxTilt) {
         tiltAngle *= (maxTilt / absTilt);
@@ -869,13 +867,12 @@ void MarioAnimator::setTilt() {
         _58 = 0.95f * _58 + 0.05f * tiltAngle;
     }
 
-    marioConst = mActor->mConst;
-    table = marioConst->mTable[marioConst->mCurrentTable];
+    table = mActor->mConst->getTable();
     Mario* player2 = getPlayer();
     f32 lookDown = player2->_278 * table->mLookDownRatio;
 
     Mario* player3 = getPlayer();
-    f32 vertAngle = -player3->_3F4 * 3.1415927f;
+    f32 vertAngle = -player3->_3F4 * PI;
     f32 f5 = vertAngle * 0.25f;
 
     f32 f4 = 0.9f * _5C + 0.1f * lookDown;
@@ -941,15 +938,13 @@ void MarioAnimator::setHoming() {
                     vAngle = 1.0f;
                 }
             } else {
-                MarioConst* marioConst = mActor->mConst;
-                MarioConstTable* table = marioConst->mTable[marioConst->mCurrentTable];
+                MarioConstTable* table = mActor->mConst->getTable();
                 if (vAngle > table->mLookMaxAngleVP) {
                     vAngle = table->mLookMaxAngleVP;
                 }
             }
 
-            MarioConst* marioConst = mActor->mConst;
-            MarioConstTable* table = marioConst->mTable[marioConst->mCurrentTable];
+            MarioConstTable* table = mActor->mConst->getTable();
             f32 lowerLimit = -table->mLookMaxAngleVM;
             if (vAngle < lowerLimit) {
                 vAngle = lowerLimit;
@@ -958,8 +953,7 @@ void MarioAnimator::setHoming() {
 
         angleH = MR::diffAngleAbs(toTarget, getFrontVec());
 
-        MarioConst* marioConst = mActor->mConst;
-        MarioConstTable* table = marioConst->mTable[marioConst->mCurrentTable];
+        MarioConstTable* table = mActor->mConst->getTable();
         if (angleH > table->mLookMaxAngleH) {
             angleH = table->mLookMaxAngleH;
         }
@@ -990,8 +984,7 @@ void MarioAnimator::setHoming() {
     }
 
 
-    MarioConst* marioConst = mActor->mConst;
-    MarioConstTable* table = marioConst->mTable[marioConst->mCurrentTable];
+    MarioConstTable* table = mActor->mConst->getTable();
 
     f32 blend = 0.9f * _110 + 0.1f * angleH;
     _110 = blend;
@@ -1000,14 +993,12 @@ void MarioAnimator::setHoming() {
     f32 rightShoulderRot = 0.0f;
 
     if (angleH > 0.0f) {
-        marioConst = mActor->mConst;
-        table = marioConst->mTable[marioConst->mCurrentTable];
+        table = mActor->mConst->getTable();
         f32 maxH = table->mLookMaxAngleH;
         f32 maxShoulder = table->mLookShoulderMoveMax;
         rightShoulderRot = (blend / maxH) * maxShoulder;
     } else if (angleH < 0.0f) {
-        marioConst = mActor->mConst;
-        table = marioConst->mTable[marioConst->mCurrentTable];
+        table = mActor->mConst->getTable();
         f32 maxH = table->mLookMaxAngleH;
         f32 maxShoulder = table->mLookShoulderMoveMax;
         leftShoulderRot = (-blend / maxH) * maxShoulder;
@@ -1033,7 +1024,7 @@ void MarioAnimator::updateJointRumble() {
     u32 newTimer = timer - 1;
     _74 = newTimer;
 
-    f32 t = (f32)newTimer * 6.2831855f / 30.0f;
+    f32 t = (f32)newTimer * TWO_PI / 30.0f;
     f32 sineVal;
     if (t < 0.0f) {
         f32 tmp = t * -2607.5945f;
@@ -1148,7 +1139,7 @@ void MarioAnimator::update() {
         return;
     }
 
-    u8 walkStateTable[8] = { 0, 1, 2, 3, 4, 5, 6, 7 };
+    u8 walkStateTable[] = { 0, 1, 2, 3, 4, 5, 6, 7 };
 
     Mario* player = getPlayer();
     u8 prevWalkState = player->_71C;
