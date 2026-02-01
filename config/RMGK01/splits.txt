@@ -1149,18 +1149,18 @@ Game/Boss/OtaKingMagma.cpp:
 
 Game/Boss/Polta.cpp:
 	.text       start:0x8006E654 end:0x8006F3F4
-	.data       start:0x8056F6B8 end:0x8056F9A0
+	.data       start:0x8056F6B8 end:0x8056F8A8
 	.sdata2     start:0x806B8B40 end:0x806B8B68
 
 Game/Boss/PoltaActionBase.cpp:
 	.text       start:0x8006F3F4 end:0x8006F924
-	.data       start:0x8056F9A0 end:0x8056FA08
+	.data       start:0x8056F8A8 end:0x8056F9F0
 	.sdata2     start:0x806B8B68 end:0x806B8B70
 
 Game/Boss/PoltaActionSequencer.cpp:
 	.text       start:0x8006F924 end:0x8006FE6C
 	.ctors      start:0x8052E958 end:0x8052E95C
-	.data       start:0x8056FA08 end:0x8056FA78
+	.data       start:0x8056F9F0 end:0x8056FA78
 	.sbss       start:0x806B3670 end:0x806B3688
 
 Game/Boss/PoltaArm.cpp:
@@ -1187,39 +1187,41 @@ Game/Boss/PoltaBattleLv2.cpp:
 Game/Boss/PoltaDemo.cpp:
 	.text       start:0x800722BC end:0x80072A08
 	.ctors      start:0x8052E968 end:0x8052E96C
-	.data       start:0x8056FF30 end:0x805700B0
+	.data       start:0x8056FF30 end:0x80570088
 	.sbss       start:0x806B36F0 end:0x806B3700
 	.sdata2     start:0x806B8BA0 end:0x806B8BB0
 
 Game/Boss/PoltaFunction.cpp:
 	.text       start:0x80072A08 end:0x80073324
+	.data       start:0x80570088 end:0x805700B0
 	.sdata2     start:0x806B8BB0 end:0x806B8BD8
 
 Game/Boss/PoltaGroundRock.cpp:
 	.text       start:0x80073324 end:0x80073C54
 	.ctors      start:0x8052E96C end:0x8052E970
-	.data       start:0x805700B0 end:0x80570228
+	.data       start:0x805700B0 end:0x80570208
 	.sbss       start:0x806B3700 end:0x806B3710
 	.sdata2     start:0x806B8BD8 end:0x806B8C00
 
 Game/Boss/PoltaGroundRockHolder.cpp:
 	.text       start:0x80073C54 end:0x80073DF8
-	.data       start:0x80570228 end:0x805702F8
+	.data       start:0x80570208 end:0x80570250
 
 Game/Boss/PoltaRock.cpp:
 	.text       start:0x80073DF8 end:0x800748BC
 	.ctors      start:0x8052E970 end:0x8052E974
-	.data       start:0x805702F8 end:0x805703B8
+	.data       start:0x80570250 end:0x805703A0
 	.sbss       start:0x806B3710 end:0x806B3720
 	.sdata2     start:0x806B8C00 end:0x806B8C38
 
 Game/Boss/PoltaRockHolder.cpp:
 	.text       start:0x800748BC end:0x80074A08
-	.data       start:0x805703B8 end:0x805704F0
+	.data       start:0x805703A0 end:0x805703E0
 
 Game/Boss/PoltaSensorCtrl.cpp:
 	.text       start:0x80074A08 end:0x80074D90
 	.rodata     start:0x805310A0 end:0x80531310
+	.data       start:0x805703E0 end:0x805704F0
 	.sdata2     start:0x806B8C38 end:0x806B8C48
 
 Game/Boss/PoltaStateAttackGround.cpp:
@@ -1252,19 +1254,19 @@ Game/Boss/PoltaStatePunch.cpp:
 Game/Boss/PoltaStateStagger.cpp:
 	.text       start:0x80075E94 end:0x80076164
 	.ctors      start:0x8052E984 end:0x8052E988
-	.data       start:0x80570920 end:0x805709A0
+	.data       start:0x80570920 end:0x80570990
 	.sbss       start:0x806B3760 end:0x806B3768
 	.sdata2     start:0x806B8C68 end:0x806B8C90
 
 Game/Boss/PoltaWaitStart.cpp:
 	.text       start:0x80076164 end:0x8007624C
-	.data       start:0x805709A0 end:0x805709F0
+	.data       start:0x80570990 end:0x805709D0
 
 Game/Boss/SkeletalFishBaby.cpp:
 	.text       start:0x8007624C end:0x80077248
 	.ctors      start:0x8052E988 end:0x8052E98C
 	.rodata     start:0x80531430 end:0x80531470
-	.data       start:0x805709F0 end:0x80570BC8
+	.data       start:0x805709D0 end:0x80570BC8
 	.sbss       start:0x806B3768 end:0x806B3778
 	.sdata2     start:0x806B8C90 end:0x806B8CC0
 
