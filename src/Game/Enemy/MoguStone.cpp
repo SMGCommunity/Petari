@@ -228,7 +228,7 @@ void ThrowingIce::doBehavior() {
         PSVECCrossProduct(_B0, mGravity, &v1);
 
         f32 one_eighth = 0.125f;
-        _A0.toTvec()->scale(sin(one_eighth), v1);
+        _A0.toTVec3()->scale(sin(one_eighth), v1);
         _A0.w = cos(one_eighth);
     }
 

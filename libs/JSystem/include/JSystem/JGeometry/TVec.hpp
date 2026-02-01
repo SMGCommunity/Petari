@@ -676,7 +676,7 @@ namespace JGeometry {
 
         void scale(T val);
 
-        inline TVec3< T >* toTvec() {
+        inline TVec3< T >* toTVec3() {
             return (TVec3< T >*)this;
         }
     };
