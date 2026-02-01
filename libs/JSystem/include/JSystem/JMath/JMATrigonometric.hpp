@@ -39,11 +39,11 @@ namespace JMath {
 
         inline f32 sinLapRad(f32 v) {
             if (v < 0.0f) {
-                f32 tmp = v * (-LEN / TWO_PI);
-                return -table[(u16)tmp & LEN - 1].a1;
+                v *= -(LEN / TWO_PI);
+                return -table[(u16)v & LEN - 1].a1;
             } else {
-                f32 tmp = v * (LEN / TWO_PI);
-                return table[(u16)tmp & LEN - 1].a1;
+                v *= (LEN / TWO_PI);
+                return table[(u16)v & LEN - 1].a1;
             }
         }
 
