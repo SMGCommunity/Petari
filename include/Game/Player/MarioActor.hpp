@@ -20,6 +20,7 @@ class DLchanger;
 class J3DModelX;
 class TornadoMario;
 class ModelHolder;
+class FixedPosition;
 
 bool gIsLuigi;  // (cc68 - 10000)(r13)
 
@@ -394,8 +395,8 @@ public:
     TMtx34f _3EC;
     u32 _41C;
     u32 _420;
-    u32 _424;
-    u32 _428[4];
+    HitSensor* _424;
+    HitSensor* _428[4];
     u8 _438[0x30];
     union {
         struct {
@@ -416,7 +417,7 @@ public:
     u8 _483;
     TVec3f _484;
     f32 _490;
-    u32 _494;
+    FixedPosition* _494;
     FixedPosition* _498;
     FixedPosition* _49C;
     u32 _4A0;

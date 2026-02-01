@@ -2,6 +2,7 @@
 #include "Game/Animation/XanimeResource.hpp"
 #include "Game/Player/MarioActor.hpp"
 #include "Game/Player/MarioConst.hpp"
+#include "Game/Player/J3DModelX.hpp"
 
 #include "Game/Animation/XanimePlayer.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
@@ -183,7 +184,7 @@ void MarioAnimator::forceSetBlendWeight(const f32* pWeights) {
     f32 weight;
     for (u32 i = 0; i < 4; i++) {
         weight = pWeights[i];
-        reinterpret_cast<f32*>(&_18)[i] = weight;
+        (&_18)[i] = weight;
         mXanimePlayer->changeTrackWeight(i, weight);
     }
 }
@@ -395,7 +396,7 @@ void MarioAnimator::clearAllJointTransform() {
 
     TVec3f zeroVec(0.0f, 0.0f, 0.0f);
     jt = mXanimePlayer->mCore->getJointTransform(0);
-    *reinterpret_cast<TVec3f*>(&jt->_38) = zeroVec;
+    jt->_38 = zeroVec;
 
     _74 = 0;
     _70 = 0.0f;
@@ -416,7 +417,7 @@ void MarioAnimator::calc() {
     Mario* player = getPlayer();
     TVec3f playerPos(player->_13C);
     XjointTransform* joint0 = mXanimePlayer->mCore->getJointTransform(0);
-    *reinterpret_cast<TVec3f*>(&joint0->_38) = playerPos;
+    joint0->_38 = playerPos;
 
 
     if (_6C) {
@@ -430,8 +431,9 @@ void MarioAnimator::calc() {
 
         s32 spineIdx = MR::getJointIndex(mActor, "Spine1");
         J3DModelData* modelData = mActor->getModelData();
-        void* joint = modelData->mJointTree.mJointNodePointer[spineIdx];
-        *reinterpret_cast<u32*>(reinterpret_cast<u8*>(joint) + 0x54) = 0;
+        J3DJoint* joint = modelData->mJointTree.mJointNodePointer[spineIdx];
+        J3DMtxCalc** jointMtxCalc = (J3DMtxCalc**)((u8*)joint + 0x54);
+        *jointMtxCalc = nullptr;
         mXanimePlayer->calcAnm(0);
     }
 
@@ -481,10 +483,12 @@ void MarioAnimator::setHand() {
     scale.z = 1.0f;
     XanimeCore* core = mXanimePlayer->mCore;
     u8 armR = MR::getJointIndex(mActor, "ArmR1");
-    *reinterpret_cast<TVec3f*>(&core->getJointTransform(armR)->_14) = scale;
+    XjointTransform* armRJoint = core->getJointTransform(armR);
+    armRJoint->_14 = scale;
     core = mXanimePlayer->mCore;
     u8 armL = MR::getJointIndex(mActor, "ArmL1");
-    *reinterpret_cast<TVec3f*>(&core->getJointTransform(armL)->_14) = scale;
+    XjointTransform* armLJoint = core->getJointTransform(armL);
+    armLJoint->_14 = scale;
 }
 
 void MarioAnimator::waterToGround() {
@@ -492,20 +496,20 @@ void MarioAnimator::waterToGround() {
     if (mActor->_468 == 0) {
         swimSensor = nullptr;
     } else {
-        swimSensor = reinterpret_cast<HitSensor*>(mActor->_428[0]);
+        swimSensor = mActor->_428[0];
     }
 
     if (swimSensor == nullptr) {
         return;
     }
 
-    u32 state = *reinterpret_cast<u32*>(swimSensor);
+    u32 state = swimSensor->mType;
     switch (state) {
     case ACTMES_STAR_PIECE_GIFT:
     case ACTMES_STAR_PIECE_GIFT_1:
         changeAnimationUpper("ひろいウエイト", nullptr);
         mActor->clearNullAnimation(0);
-        MR::deleteEffect(reinterpret_cast<LiveActor*>(reinterpret_cast<u32*>(swimSensor)[9]), "SwimBubble");
+        MR::deleteEffect(swimSensor->mHost, "SwimBubble");
         break;
     case ACTMES_STAR_PIECE_GIFT_MAX:
         changeAnimationUpper("カブウエイト", nullptr);
@@ -515,19 +519,19 @@ void MarioAnimator::waterToGround() {
 }
 
 void MarioAnimator::changePickupAnimation(const HitSensor* pSensor) {
-    u32 type = *reinterpret_cast<const u32*>(pSensor);
+    u32 type = pSensor->mType;
     switch (type) {
     case ACTMES_STAR_PIECE_GIFT_MAX:
-        mActor->_494 = reinterpret_cast<u32>(mActor->_49C);
+        mActor->_494 = mActor->_49C;
         changeAnimation("カブひろい", static_cast<const char*>(nullptr));
         mActor->changeNullAnimation("カブひろい", -2);
         getPlayer()->stopWalk();
         break;
     case ACTMES_STAR_PIECE_GIFT:
     case ACTMES_STAR_PIECE_GIFT_1:
-        mActor->_494 = reinterpret_cast<u32>(mActor->_498);
+        mActor->_494 = mActor->_498;
         if (!getPlayer()->isSwimming()) {
-            if (mActor->_424 == reinterpret_cast<u32>(pSensor)) {
+            if (mActor->_424 == pSensor) {
                 changeAnimationUpper("ひろいクイック", nullptr);
                 playEffect("ひろいクイック");
                 mActor->clearNullAnimation(-3);
@@ -552,7 +556,7 @@ void MarioAnimator::changePickupAnimation(const HitSensor* pSensor) {
 }
 
 void MarioAnimator::changeThrowAnimation(const HitSensor* pSensor) {
-    u32 type = *reinterpret_cast<const u32*>(pSensor);
+    u32 type = pSensor->mType;
     switch (type) {
     case ACTMES_STAR_PIECE_GIFT_MAX:
         stopAnimationUpper(nullptr, nullptr);
@@ -577,7 +581,7 @@ void MarioAnimator::updateTakingAnimation(const HitSensor* pSensor) {
         return;
     }
 
-    LiveActor* sensorActor = reinterpret_cast<LiveActor*>(reinterpret_cast<const u32*>(pSensor)[9]);
+    LiveActor* sensorActor = pSensor->mHost;
     if (MR::isDead(sensorActor)) {
         if (mActor->_468 != 0) {
             mActor->rushDropThrowMemoSensor();
@@ -585,7 +589,7 @@ void MarioAnimator::updateTakingAnimation(const HitSensor* pSensor) {
         return;
     }
 
-    u32 type = *reinterpret_cast<const u32*>(pSensor);
+    u32 type = pSensor->mType;
     switch (type) {
     case ACTMES_STAR_PIECE_GIFT_MAX:
         stopAnimation(nullptr, static_cast<const char*>(nullptr));
@@ -626,11 +630,11 @@ HitSensor* MarioActor::getLookTargetSensor() const {
 }
 
 void MarioAnimator::switchMirrorMode() {
-    J3DModel* model = MR::getJ3DModel(mActor);
+    J3DModelX* model = static_cast<J3DModelX*>(MR::getJ3DModel(mActor));
     f32 one = 1.0f;
     if (isMirrorAnimation()) {
 
-        u32* modelFlags = reinterpret_cast<u32*>(reinterpret_cast<u8*>(model) + 0x1B0);
+        u32* modelFlags = (u32*)&model->mFlags;
         *modelFlags |= 1;
 
 
@@ -639,7 +643,7 @@ void MarioAnimator::switchMirrorMode() {
         mirrorScale.x = one;
         mirrorScale.y = one;
         mirrorScale.z = -one;
-        *reinterpret_cast<TVec3f*>(&jt->_14) = mirrorScale;
+        jt->_14 = mirrorScale;
 
         Mtx invBase;
         MtxPtr base = mActor->getBaseMtx();
@@ -649,10 +653,10 @@ void MarioAnimator::switchMirrorMode() {
         base = mActor->getBaseMtx();
         PSMTXConcat(base, _DC.toMtxPtr(), _DC.toMtxPtr());
 
-        jt->_6C = reinterpret_cast<u32>(_DC.toMtxPtr());
+        jt->_6C = _DC.toMtxPtr();
     } else {
 
-        u32* modelFlags = reinterpret_cast<u32*>(reinterpret_cast<u8*>(model) + 0x1B0);
+        u32* modelFlags = (u32*)&model->mFlags;
         *modelFlags &= ~1;
 
 
@@ -661,7 +665,7 @@ void MarioAnimator::switchMirrorMode() {
         normalScale.x = one;
         normalScale.y = one;
         normalScale.z = one;
-        *reinterpret_cast<TVec3f*>(&jt->_14) = normalScale;
+        jt->_14 = normalScale;
 
 
         jt->_6C = 0;
