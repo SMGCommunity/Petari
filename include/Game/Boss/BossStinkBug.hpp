@@ -39,7 +39,7 @@ public:
     void updatePose();
     void setPose(MtxPtr);
     void updateCamera();
-    bool isValidFollowId(s32);
+    bool isValidFollowId(s32) const;
     void validateCollisionGround();
     void validateCollisionFly();
     void validateCollisionHitOnly();
