@@ -177,13 +177,10 @@ void VFiPFSTR_ToUpperNStr(PF_STR* p_str, u16 num, s8* dest) {
             *dest++ = (s8)VFipf_toupper(*p);
         }
     } else {
-        for (p = p_str->p_head; num != 0 && *(u16*)p != 0; p += 2, dest += 2, num--) {
-            wp = (const u16*)p;
+        for (wp = (const u16*)p_str->p_head; num != 0 && *wp != 0; num--, wp++, dest += 2) {
             wc = *wp;
 
-            if (wc >= 0x61 && wc <= 0x7A) {
-                wc -= 32;
-            }
+            wc = wc >= 0x61 && wc <= 0x7A ? wc - 32 : wc;
 
             *dest = (s8)wc;
             dest[1] = (s8)(wc >> 8);
