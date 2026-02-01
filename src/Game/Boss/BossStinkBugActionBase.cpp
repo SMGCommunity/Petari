@@ -13,6 +13,7 @@
 #include "Game/Util/RailUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/SpringValue.hpp"
+#include "JSystem/JGeometry/TVec.hpp"
 #include "revolution/mtx.h"
 #include "revolution/types.h"
 #include "revolution/vf/pf_entry.h"
@@ -224,15 +225,16 @@ void BossStinkBugActionBase::updateSoundFly() {
     }
 }
 
-BossStinkBugActionBase::~BossStinkBugActionBase(){};
+BossStinkBugActionBase::~BossStinkBugActionBase() {};
 
 bool BossStinkBugActionBase::updateGroundRegainRail(f32 f1) {
     if (MR::isFirstStep(this)) {
-        MR::tryStartBck(mHost, "GroundWalk", nullptr);
-        BossStinkBugFunction::calcDiffCurrentRailPosition(&_14, mHost, _3C, _44);
+        MR::tryStartBck(getHost(), "GroundWalk", nullptr);
+        BossStinkBugFunction::calcDiffCurrentRailPosition(&_14, getHost(), _3C, _44);
     }
 
-    BossStinkBugFunction::regainToRail(mHost, _14, MR::calcNerveRate(this, 90), f1, 0.0f, 0.0f);
+    f32 nerveRate = MR::calcNerveRate(this, 90);
+    BossStinkBugFunction::regainToRail(getHost(), _14, nerveRate, f1, 0.0f, 0.0f);
     _48 = f1;
 
     if (MR::isGreaterStep(this, 90)) {
@@ -605,7 +607,8 @@ bool BossStinkBugActionBase::updateToGround() {
         _2C = 0.0f;
     }
 
-    getHost()->_10C = MR::calcNerveRate(this, 60);
+    f32 nerveRate = MR::calcNerveRate(this, 60);
+    getHost()->_10C = nerveRate;
     MR::rotateVecDegree(&getHost()->_EC, MR::getRailDirection(getHost()), getHost()->mGravity, MR::calcNerveValue(this, 60, 0.0f, 180.0f));
 
     _48 *= 0.9f;
@@ -657,8 +660,8 @@ bool BossStinkBugActionBase::updateToFly() {
         _48 = MR::calcNerveEaseInOutValue(this, 60, 120, 40.0f, _38);
     }
 
-    _48 = MR::calcNerveEaseInOutValue(this, 120, 0.0f, _3C + _44);
-    BossStinkBugFunction::moveRail(getHost(), _48, _48, 0.0f);
+    f32 nerveEaseInOutValue = MR::calcNerveEaseInOutValue(this, 120, 0.0f, _3C + _44);
+    BossStinkBugFunction::moveRail(getHost(), _48, nerveEaseInOutValue, 0.0f);
 
     if (MR::isGreaterStep(this, 120)) {
         getHost()->validateCollisionFly();
