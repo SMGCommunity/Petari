@@ -1193,18 +1193,19 @@ Game/Boss/PoltaDemo.cpp:
 
 Game/Boss/PoltaFunction.cpp:
 	.text       start:0x80072A08 end:0x80073324
+	.data       start:0x80570088 end:0x805700B0
 	.sdata2     start:0x806B8BB0 end:0x806B8BD8
 
 Game/Boss/PoltaGroundRock.cpp:
 	.text       start:0x80073324 end:0x80073C54
 	.ctors      start:0x8052E96C end:0x8052E970
-	.data       start:0x80570088 end:0x80570228
+	.data       start:0x805700B0 end:0x80570208
 	.sbss       start:0x806B3700 end:0x806B3710
 	.sdata2     start:0x806B8BD8 end:0x806B8C00
 
 Game/Boss/PoltaGroundRockHolder.cpp:
 	.text       start:0x80073C54 end:0x80073DF8
-	.data       start:0x80570228 end:0x80570250
+	.data       start:0x80570208 end:0x80570250
 
 Game/Boss/PoltaRock.cpp:
 	.text       start:0x80073DF8 end:0x800748BC

@@ -25,8 +25,6 @@ namespace NrvPoltaArm {
 
 } //namespace NrvPoltaArm
 
-PoltaArm::~PoltaArm() {}
-
 PoltaArm::PoltaArm(const char* pName, const char* pModelName, MtxPtr pMtx) : ModelObj(pName, pModelName, pMtx, 18, -2, -2, false),
     mFormationModel(nullptr),
     mBreakModel(nullptr),
@@ -279,12 +277,12 @@ void PoltaArm::appearBreakModel() {
     MR::startAction(mBreakModel, "Break");
 }
 
-void PoltaArm::exeWaitRepairEnd() {}
+inline void PoltaArm::exeWaitRepairEnd() {}
 
-void PoltaArm::exeWaitDamageEnd() {}
+inline void PoltaArm::exeWaitDamageEnd() {}
 
-void PoltaArm::endRepair() {
+inline void PoltaArm::endRepair() {
     mFormationModel->kill();
 }
 
-void PoltaArm::exeControlled() {}
+inline void PoltaArm::exeControlled() {}

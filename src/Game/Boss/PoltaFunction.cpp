@@ -9,9 +9,12 @@
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Boss/PoltaRockHolder.hpp"
 #include "Game/Util/MathUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
 #include "JSystem/JMath/JMath.hpp"
 #include "revolution/types.h"
+#include "Game/Boss/PoltaGroundRockHolder.hpp"
+#include "Game/Boss/PoltaGroundRock.hpp"
 
 namespace PoltaFunction {
 
@@ -142,9 +145,30 @@ namespace PoltaFunction {
         return pPolta->mBombTeresaHolder->getDeadActor() == nullptr;
     }
 
-    //getCountDeadGroundRock(Polta*)
+    s32 getCountDeadGroundRock(Polta* pPolta) {
+        return pPolta->mGroundRockHolder->getObjectCount() - pPolta->mGroundRockHolder->getLivingActorNum();
+    }
 
-    //appearGroundRock(Polta*, f32, f32)
+    bool appearGroundRock(Polta* pPolta, float param2, float param3) {
+        PoltaGroundRock* deadMember = (PoltaGroundRock*)pPolta->mGroundRockHolder->getDeadActor();
+        if (deadMember) {
+            deadMember = (PoltaGroundRock*)pPolta->mGroundRockHolder->getDeadActor();
+        } else {
+            return false;
+        }
+        if (deadMember) {
+            TVec3f v28(*MR::getPlayerPos());
+            JMathInlineVEC::PSVECSubtract(v28, pPolta->mPosition, v28);
+            JMAVECScaleAdd(pPolta->mGravity, v28, v28, -pPolta->mGravity.dot(v28));
+            if (MR::normalizeOrZero(&v28)) {
+                v28.setPS(pPolta->_C4);
+            }
+            MR::rotateVecDegree(&v28, pPolta->mGravity, param2);
+            JMAVECScaleAdd(v28, pPolta->mPosition, v28, param3);
+            deadMember->start(pPolta, v28);
+            return true;
+        }
+    }
 
     //bool appearRockCircle(Polta* pPolta, const TVec3f& rVec, f32 param3, s32 param4, s32 param5, s32 rockType)
 
@@ -185,7 +209,9 @@ namespace PoltaFunction {
         pPolta->mBombTeresaHolder->disperseAll();
     }
     
-    //breakGroundRock(Polta*)
+    void breakGroundRock(Polta* pPolta) {
+        pPolta->mGroundRockHolder->breakAll();
+    }
 
     void killBombTeresa(Polta* pPolta) {
         pPolta->mBombTeresaHolder->killAll();
@@ -195,7 +221,9 @@ namespace PoltaFunction {
         pPolta->mRockHolder->killAll();
     }
 
-    //killGroundRock(Polta*)
+    void killGroundRock(Polta* pPolta) {
+        pPolta->mGroundRockHolder->killAll();
+    }
 
     void setBodyHP(Polta* pPolta, s32 param2) {
         MR::startBva(pPolta, "BreakLevel");

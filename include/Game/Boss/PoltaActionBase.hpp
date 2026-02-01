@@ -10,7 +10,6 @@ public:
 	PoltaActionBase(const char*, Polta*);
 
 	virtual ~PoltaActionBase();
-
     virtual void attackSensor(HitSensor* pSender, HitSensor* pReceiver);
     virtual bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
     virtual bool receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);

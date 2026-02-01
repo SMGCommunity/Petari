@@ -19,6 +19,7 @@ mIsAffectBody(true) {
     mAttackToWaitLength = MR::getBckFrameMax(mPoltaPtr, "AttackFrontToWait");
 };
 
+//Unused remnant also found in PoltaStatePunch?
 const char* unusedDamage = "Damage";
 
 void PoltaStateAttackGround::appear() {
