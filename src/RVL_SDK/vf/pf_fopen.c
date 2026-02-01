@@ -16,7 +16,7 @@ PF_FILE * VFipf2_fopen(const char *path, const char *mode) {
         p_ofile = NULL;
     } 
     else {
-        err = VFiPFSTR_InitStr(&path_str, path, 1);
+        err = VFiPFSTR_InitStr(&path_str, (const s8*)path, 1);
         
         if (err == 0) {
             err = VFiPFFILE_fopen(&path_str, open_mode_fopen, &p_ofile);
