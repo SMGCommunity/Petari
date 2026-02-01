@@ -610,13 +610,14 @@ Game/Boss/BossKameckStateBattle.cpp:
 Game/Boss/BossStinkBug.cpp:
 	.text       start:0x8003BE34 end:0x8003D1D8
 	.ctors      start:0x8052E860 end:0x8052E864
-	.rodata     start:0x80530ED8 end:0x80530F18
+	.rodata     start:0x80530ED8 end:0x80530F00
 	.data       start:0x80567998 end:0x80567BC8
 	.bss        start:0x8060A5E8 end:0x8060A5F8
 	.sdata2     start:0x806B8220 end:0x806B8268
 
 Game/Boss/BossStinkBugActionBase.cpp:
 	.text       start:0x8003D1D8 end:0x8003EF1C
+	.rodata     start:0x80530F00 end:0x80530F08
 	.data       start:0x80567BC8 end:0x80567F30
 	.sdata      start:0x806B16A0 end:0x806B16A8
 	.sdata2     start:0x806B8268 end:0x806B82D8
@@ -632,6 +633,7 @@ Game/Boss/BossStinkBugActionFlyHigh.cpp:
 Game/Boss/BossStinkBugActionFlyLow.cpp:
 	.text       start:0x8003FD2C end:0x8004060C
 	.ctors      start:0x8052E868 end:0x8052E86C
+	.rodata     start:0x80530F08 end:0x80530F10
 	.data       start:0x80568088 end:0x80568190
 	.sdata      start:0x806B16B0 end:0x806B16B8
 	.sbss       start:0x806B3088 end:0x806B30B0
@@ -682,6 +684,7 @@ Game/Boss/BossStinkBugFlyDemo.cpp:
 
 Game/Boss/BossStinkBugFunction.cpp:
 	.text       start:0x80042938 end:0x8004314C
+	.rodata     start:0x80530F10 end:0x80530F18
 	.data       start:0x80568880 end:0x805688A0
 	.sdata2     start:0x806B83A0 end:0x806B83D8
 
