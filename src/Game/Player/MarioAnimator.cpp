@@ -292,30 +292,24 @@ void MarioAnimator::setWalkMode() {
     MarioAnimator* self = this;
 
     Mario* player = self->getPlayer();
-    if (!player->mMovementStates._F) {
+    if (player->mMovementStates._F) {
+    } else if (!(player = self->getPlayer())->mMovementStates._10) {
+    } else if ((player = self->getPlayer())->mMovementStates._A) {
+    } else {
         player = self->getPlayer();
-        if (player->mMovementStates._10) {
+        f32 stick = player->_8F0;
+        if (0.0f != stick) {
+        } else if ((u8)(player = self->getPlayer())->checkStickFrontBack() != 2) {
+        } else if (self->isStatusActiveID(0x11)) {
+        } else if (self->isStatusActiveID(0x1f)) {
+        } else {
             player = self->getPlayer();
-            if (!player->mMovementStates._A) {
-                player = self->getPlayer();
-                f32 stick = player->_8F0;
-                if (0.0f == stick) {
-                    player = self->getPlayer();
-                    if ((u8)player->checkStickFrontBack() == 2) {
-                        if (!self->isStatusActiveID(0x11)) {
-                            if (!self->isStatusActiveID(0x1f)) {
-                                player = self->getPlayer();
-                                if (player->mMovementStates._35) {
-                                    self->change("ブレーキ滑り床");
-                                } else {
-                                    self->change("ブレーキ");
-                                }
-                                goto end;
-                            }
-                        }
-                    }
-                }
+            if (player->mMovementStates._35) {
+                self->change("ブレーキ滑り床");
+            } else {
+                self->change("ブレーキ");
             }
+            goto end;
         }
     }
 
