@@ -14,6 +14,7 @@ namespace MR {
     s32 getCurrentRailPointNo(const LiveActor*);
 
     void calcRailPosAtCoord(TVec3f*, const LiveActor*, f32);
+    void calcRailPosFrontCoord(TVec3f*, const LiveActor*, f32);
 
     void calcRailDirectionAtCoord(TVec3f*, const LiveActor*, f32);
 
@@ -147,6 +148,9 @@ namespace MR {
     void calcRailStartPos(TVec3f*, const LiveActor*);
 
     void calcBoundingBox(const LiveActor*, TBox3f*, f32);
+
+    f32 calcDifferenceRailCoord(const LiveActor*, float, float);
+    f32 calcDifferenceRailCoord(const LiveActor*, float);
 
     void calcRailClippingInfo(TVec3f*, f32*, const LiveActor*, f32, f32);
 };  // namespace MR

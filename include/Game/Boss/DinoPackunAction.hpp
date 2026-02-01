@@ -30,6 +30,5 @@ public:
     bool updateCoolDown(s32);
     bool updateAttackHit();
 
-    DinoPackun* mParent;  // 0x0C
     f32 _10;
 };

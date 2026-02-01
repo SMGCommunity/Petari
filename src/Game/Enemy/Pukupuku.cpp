@@ -29,8 +29,7 @@ namespace {
     const char* cBck2BtpTable[8] = {"Bound", "CloseEye", "FlyStart", "OpenEye", "FlyEnd", "OpenEye", "SwimStart", "OpenEye"};
 };  // namespace
 
-PukupukuStateLanding::PukupukuStateLanding(Pukupuku* pParent) : ActorStateBase< Pukupuku >("プクプク地上") {
-    mParent = pParent;
+PukupukuStateLanding::PukupukuStateLanding(Pukupuku* pParent) : ActorStateBase< Pukupuku >("プクプク地上", pParent) {
     mPath = nullptr;
     mValueCtrl = nullptr;
     _18 = 0;
@@ -44,26 +43,26 @@ PukupukuStateLanding::PukupukuStateLanding(Pukupuku* pParent) : ActorStateBase< 
 void PukupukuStateLanding::exeLandingMoveLand() {
     if (MR::isFirstStep(this)) {
         setupJumping(300.0f, 15.0f);
-        mParent->startAnim("Bound", "CloseEye");
+        mHost->startAnim("Bound", "CloseEye");
         emitGroundHitEffect();
     }
 
     mValueCtrl->update();
     updateJumping();
-    mParent->updatePoseByRailIgnoreUpScale();
+    mHost->updatePoseByRailIgnoreUpScale();
 
     bool move = false;
 
-    if (mValueCtrl->isFrameMaxFrame() || MR::isBinded(mParent) && 0.5f < mValueCtrl->getValue()) {
+    if (mValueCtrl->isFrameMaxFrame() || MR::isBinded(mHost) && 0.5f < mValueCtrl->getValue()) {
         move = true;
     }
 
     if (move) {
-        Pukupuku* parent = mParent;
+        Pukupuku* parent = mHost;
         MR::moveCoordToRailPoint(parent, MR::getNextRailPointNo(parent));
 
-        if (MR::isBinded(mParent)) {
-            mParent->mVelocity.zero();
+        if (MR::isBinded(mHost)) {
+            mHost->mVelocity.zero();
         }
 
         setNerveAfterJumpAccordingToNextPoint();
@@ -74,9 +73,9 @@ void PukupukuStateLanding::exeLandingJumpFromWater() {
     if (MR::isFirstStep(this)) {
         _18 = 0;
         setupJumping(500.0f, 15.0f);
-        mParent->rotatePoseByLocalZ();
-        mParent->startAnim("FlyStart", "OpenEye");
-        MR::startSound(mParent, "SE_EM_PUKUPUKU_WATER_OUT", -1, -1);
+        mHost->rotatePoseByLocalZ();
+        mHost->startAnim("FlyStart", "OpenEye");
+        MR::startSound(mHost, "SE_EM_PUKUPUKU_WATER_OUT", -1, -1);
     }
 
     mValueCtrl->update();
@@ -86,16 +85,16 @@ void PukupukuStateLanding::exeLandingJumpFromWater() {
 
     bool move = false;
 
-    if (mValueCtrl->isFrameMaxFrame() || MR::isBinded(mParent) && 0.5f < mValueCtrl->getValue()) {
+    if (mValueCtrl->isFrameMaxFrame() || MR::isBinded(mHost) && 0.5f < mValueCtrl->getValue()) {
         move = true;
     }
 
     if (move) {
-        Pukupuku* parent = mParent;
+        Pukupuku* parent = mHost;
         MR::moveCoordToRailPoint(parent, MR::getNextRailPointNo(parent));
 
-        if (MR::isBinded(mParent)) {
-            mParent->mVelocity.zero();
+        if (MR::isBinded(mHost)) {
+            mHost->mVelocity.zero();
         }
 
         setNerveAfterJumpAccordingToNextPoint();
@@ -106,8 +105,8 @@ void PukupukuStateLanding::exeLandingJumpFromLand() {
     if (MR::isFirstStep(this)) {
         _18 = 0;
         setupJumping(500.0f, 15.0f);
-        mParent->startAnim("FlyEnd", "OpenEye");
-        MR::startSound(mParent, "SE_EM_PUKUPUKU_WING", -1, -1);
+        mHost->startAnim("FlyEnd", "OpenEye");
+        MR::startSound(mHost, "SE_EM_PUKUPUKU_WING", -1, -1);
         emitGroundHitEffect();
     }
 
@@ -117,7 +116,7 @@ void PukupukuStateLanding::exeLandingJumpFromLand() {
     updatePoseByJumpPath(0.15f);
 
     if (mValueCtrl->isFrameMaxFrame()) {
-        MR::moveCoordAndTransToNextPoint(mParent);
+        MR::moveCoordAndTransToNextPoint(mHost);
         emitWaterColumIfNeed(false, true);
         kill();
     }
@@ -127,8 +126,8 @@ void PukupukuStateLanding::updatePoseByJumpPath(f32 a1) {
     TVec3f direction;
     mPath->calcDirection(&direction, mValueCtrl->getValue(), 0.009f);
     MR::normalize(&direction);
-    TVec3f v7 = -mParent->mVelocity;
-    Pukupuku* parent = mParent;
+    TVec3f v7 = -mHost->mVelocity;
+    Pukupuku* parent = mHost;
     if (!MR::isSameDirection(direction, v7, 0.009f)) {
         TQuat4f quat;
         MR::makeQuatFromVec(&quat, direction, v7);
@@ -137,7 +136,7 @@ void PukupukuStateLanding::updatePoseByJumpPath(f32 a1) {
 }
 
 void PukupukuStateLanding::setNerveAfterJumpAccordingToNextPoint() {
-    if (mParent->isReadyToJumpFromLand()) {
+    if (mHost->isReadyToJumpFromLand()) {
         setNerve(&PukupukuStateLandingLandingJumpFromLand::sInstance);
     } else {
         setNerve(&PukupukuStateLandingLandingMoveLand::sInstance);
@@ -146,20 +145,20 @@ void PukupukuStateLanding::setNerveAfterJumpAccordingToNextPoint() {
 
 void PukupukuStateLanding::setupJumping(f32 a1, f32 a2) {
     TVec3f curPos;
-    mParent->getCurrentRailPointPos(&curPos);
+    mHost->getCurrentRailPointPos(&curPos);
     TVec3f nextPos;
-    mParent->getNextRailPointPos(&nextPos);
+    mHost->getNextRailPointPos(&nextPos);
 
-    TVec3f v16(mParent->mPosition);
+    TVec3f v16(mHost->mPosition);
     v16.sub(curPos);
-    TVec3f v15 = -mParent->mGravity;
+    TVec3f v15 = -mHost->mGravity;
     f32 dot = v15.dot(v16);
 
     if (0.0f < dot) {
         a1 = (a1 - dot);
     }
 
-    Pukupuku* parent = mParent;
+    Pukupuku* parent = mHost;
     TVec3f v14 = -parent->mGravity;
     mPath->initFromUpVectorAddHeight(parent->mPosition, nextPos, v14, a1);
     f32 speed = mPath->calcPathSpeedFromAverageSpeed(a2);
@@ -171,18 +170,18 @@ void PukupukuStateLanding::setupJumping(f32 a1, f32 a2) {
 void PukupukuStateLanding::updateJumping() {
     TVec3f pos;
     mPath->calcPosition(&pos, mValueCtrl->getValue());
-    pos.sub(mParent->mPosition);
-    mParent->mVelocity.set< f32 >(pos);
+    pos.sub(mHost->mPosition);
+    mHost->mVelocity.set< f32 >(pos);
 }
 
 void PukupukuStateLanding::emitWaterColumIfNeed(bool a1, bool a2) {
     if (!_18) {
         TVec3f centerJointPos;
-        MR::copyJointPos(mParent, "Center", &centerJointPos);
+        MR::copyJointPos(mHost, "Center", &centerJointPos);
 
         if (a2 || a1 != MR::isInWater(centerJointPos)) {
             TPos3f hitMtx;
-            mParent->calcGroundHitMtx(&hitMtx);
+            mHost->calcGroundHitMtx(&hitMtx);
             f32 num = 1.5f;
             hitMtx.mMtx[0][3] = centerJointPos.x;
             hitMtx.mMtx[1][3] = centerJointPos.y;
@@ -196,29 +195,29 @@ void PukupukuStateLanding::emitWaterColumIfNeed(bool a1, bool a2) {
             hitMtx.mMtx[2][0] = hitMtx.mMtx[2][0] * num;
             hitMtx.mMtx[2][1] = hitMtx.mMtx[2][1] * num;
             hitMtx.mMtx[2][2] = hitMtx.mMtx[2][2] * num;
-            MR::emitEffectHit(mParent, hitMtx, "WaterColumn");
+            MR::emitEffectHit(mHost, hitMtx, "WaterColumn");
             _18 = 1;
         }
     }
 }
 
 void PukupukuStateLanding::emitGroundHitEffect() {
-    if (!MR::isBindedGround(mParent)) {
+    if (!MR::isBindedGround(mHost)) {
         Triangle triangle;
-        Pukupuku* parent = mParent;
+        Pukupuku* parent = mHost;
         TVec3f v3(parent->mGravity);
         v3.scale(100.0f);
 
         TVec3f poly;
         if (MR::getFirstPolyOnLineToMap(&poly, &triangle, parent->mPosition, v3)) {
-            MR::updateEffectFloorCode(mParent, &triangle);
+            MR::updateEffectFloorCode(mHost, &triangle);
         }
     }
 
     TPos3f hitMtx;
-    mParent->calcGroundHitMtx(&hitMtx);
-    MR::emitEffectHit(mParent, hitMtx, "Land");
-    MR::startSound(mParent, "SE_EM_PUKUPUKU_LAND", -1, -1);
+    mHost->calcGroundHitMtx(&hitMtx);
+    MR::emitEffectHit(mHost, hitMtx, "Land");
+    MR::startSound(mHost, "SE_EM_PUKUPUKU_LAND", -1, -1);
 }
 
 Pukupuku::Pukupuku(const char* pName) : LiveActor(pName) {

@@ -19,7 +19,7 @@ SpringStep::SpringStep(f32 cond, f32 speed, f32 angle) {
 }
 
 void SpringStep::addSpringVelocity(f32 vel) {
-    mSpringValue->_10 += vel;
+    mSpringValue->mVelocity += vel;
 }
 
 void SpringStep::setSpringBaseValue(f32 val) {

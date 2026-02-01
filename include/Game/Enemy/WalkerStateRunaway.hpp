@@ -47,7 +47,6 @@ public:
     void exeWallJump();
     bool isRunning() const;
 
-    LiveActor* mParentActor;          // 0xC
     WalkerStateRunawayParam* mParam;  // 0x10
     TVec3f* _14;
     s32 _18;

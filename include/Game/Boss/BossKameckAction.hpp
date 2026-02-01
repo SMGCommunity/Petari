@@ -15,6 +15,4 @@ public:
     virtual bool receiveMsgEnemyAttack(u32, HitSensor*, HitSensor*);
     virtual bool receiveMsgPush(HitSensor*, HitSensor*);
     virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
-
-    BossKameck* mBossKameck;  // 0xC
 };

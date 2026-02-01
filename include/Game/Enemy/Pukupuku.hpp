@@ -25,7 +25,6 @@ public:
     void emitWaterColumIfNeed(bool, bool);
     void emitGroundHitEffect();
 
-    Pukupuku* mParent;         // 0xC
     ParabolicPath* mPath;      // 0x10
     ValueControl* mValueCtrl;  // 0x14
     u8 _18;
