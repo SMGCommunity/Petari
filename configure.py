@@ -716,7 +716,7 @@ config.libs = [
             Object(Matching, "Game/Boss/BossKameckStateBattle.cpp"),
             Object(NonMatching, "Game/Boss/BossStinkBug.cpp"),
             Object(NonMatching, "Game/Boss/BossStinkBugActionBase.cpp"),
-            Object(NonMatching, "Game/Boss/BossStinkBugActionFlyHigh.cpp"),
+            Object(Matching, "Game/Boss/BossStinkBugActionFlyHigh.cpp"),
             Object(NonMatching, "Game/Boss/BossStinkBugActionFlyLow.cpp"),
             Object(Matching, "Game/Boss/BossStinkBugActionGround.cpp"),
             Object(NonMatching, "Game/Boss/BossStinkBugActionSequencer.cpp"),
