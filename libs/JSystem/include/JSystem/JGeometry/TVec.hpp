@@ -34,7 +34,8 @@ namespace JGeometry {
     struct TVec2 {
     public:
         /* Constructors */
-        inline TVec2() {}
+        inline TVec2() {
+        }
 
         template < typename A >
         TVec2(A _x, A _y) {
@@ -57,7 +58,9 @@ namespace JGeometry {
         template < typename A >
         void set(const JGeometry::TVec2< A >& rSrc);
 
-        void set(T v) { y = x = v; }
+        void set(T v) {
+            y = x = v;
+        }
 
         template < typename U >
         void set(const U x, const U y) {
@@ -79,13 +82,19 @@ namespace JGeometry {
                 y = max.y;
         }
 
-        inline bool isAbove(const TVec2< T >& other) const { return (x >= other.x) && (y >= other.y) ? true : false; }
+        inline bool isAbove(const TVec2< T >& other) const {
+            return (x >= other.x) && (y >= other.y) ? true : false;
+        }
 
         void sub(const TVec2< T >& rOther);
 
-        T length() const { return JGeometry::TUtil< T >::sqrt((x * x) + (y * y)); }
+        T length() const {
+            return JGeometry::TUtil< T >::sqrt((x * x) + (y * y));
+        }
 
-        T squared() const { return x * x + y * y; };
+        T squared() const {
+            return x * x + y * y;
+        };
         T squared(const TVec2< T >& rOther) const;  //{ return (x - rOther.x) * (x - rOther.x) + (y - rOther.y) * (y - rOther.y); };
         T dot(const TVec2< T >& rOther) const;
         T distance(const TVec2< T >& rOther) const;
@@ -138,9 +147,12 @@ namespace JGeometry {
     struct TVec3< s16 > {
         s16 x, y, z;
 
-        TVec3() {}
+        TVec3() {
+        }
 
-        TVec3(s16 x, s16 y, s16 z) { set(x, y, z); }
+        TVec3(s16 x, s16 y, s16 z) {
+            set(x, y, z);
+        }
 
         TVec3& operator=(const TVec3& b) {
             // Force copies to use lwz/lha
@@ -230,12 +242,19 @@ namespace JGeometry {
             z = xz;
         }
 
-        TVec3(f32 val) NO_INLINE { z = y = x = val; }
+        TVec3(f32 val) NO_INLINE {
+            z = y = x = val;
+        }
 
-        inline TVec3() {}
+        inline TVec3() {
+        }
 
-        operator Vec*() { return (Vec*)&x; }
-        operator const Vec*() const { return (Vec*)&x; }
+        operator Vec*() {
+            return (Vec*)&x;
+        }
+        operator const Vec*() const {
+            return (Vec*)&x;
+        }
 
         TVec3& operator=(const TVec3& b) NO_INLINE {
             setTVec3f(&b.x, &x);
@@ -272,7 +291,9 @@ namespace JGeometry {
             return ret;
         }
 
-        void addInLine(const TVec3& op) { JMathInlineVEC::PSVECAdd(this, &op, this); }
+        void addInLine(const TVec3& op) {
+            JMathInlineVEC::PSVECAdd(this, &op, this);
+        }
 
         TVec3 operator*(f32 scalar) const NO_INLINE {
             TVec3 ret(*this);
@@ -314,7 +335,9 @@ namespace JGeometry {
                    TUtil< f32 >::epsilonEquals(z, rVec.z, 0.0000038146973f);
         }
 
-        void mul(const TVec3< f32 >& a, const TVec3< f32 >& b) { mulInternal(&a.x, &b.x, &this->x); }
+        void mul(const TVec3< f32 >& a, const TVec3< f32 >& b) {
+            mulInternal(&a.x, &b.x, &this->x);
+        }
 
         // This should probably be merged with operator-(), but ParallelGravity doesn't inline
         // operator-() despite only referencing it once. So if we can match that, the two functions
@@ -331,7 +354,9 @@ namespace JGeometry {
             return ret;
         }
 
-        inline void negateInternal() { JGeometry::negateInternal(&this->x, &this->x); }
+        inline void negateInternal() {
+            JGeometry::negateInternal(&this->x, &this->x);
+        }
 
         TVec3 operator-(const TVec3& op) const {
             TVec3 ret(*this);
@@ -389,7 +414,9 @@ namespace JGeometry {
         void mulInternal(const f32* vec1, const f32* vec2, f32* dst);
 #endif
 
-        void mult(const Vec& src1, const Vec& src2, Vec& dest) { mulInternal(&src1.x, &src2.x, &dest.x); }
+        void mult(const Vec& src1, const Vec& src2, Vec& dest) {
+            mulInternal(&src1.x, &src2.x, &dest.x);
+        }
 
         template < typename T >
         void setAll(f32);
@@ -400,16 +427,24 @@ namespace JGeometry {
             z *= val;
         }
 
-        void sub(const TVec3< f32 >& b) NO_INLINE { JMathInlineVEC::PSVECSubtract(this, &b, this); }
+        void sub(const TVec3< f32 >& b) NO_INLINE {
+            JMathInlineVEC::PSVECSubtract(this, &b, this);
+        }
 
         void sub(const TVec3&, const TVec3&);
 
         // Required for multiple objects to match?
-        inline void multPS(TVec3< f32 >& a, TVec3< f32 >& b) { mulInternal(&b.x, &a.x, &this->x); }
+        inline void multPS(TVec3< f32 >& a, TVec3< f32 >& b) {
+            mulInternal(&b.x, &a.x, &this->x);
+        }
 
-        void setTrans(MtxPtr mtx) { set((*mtx)[3], (*mtx)[7], (*mtx)[11]); }
+        void setTrans(MtxPtr mtx) {
+            set((*mtx)[3], (*mtx)[7], (*mtx)[11]);
+        }
 
-        inline void setPS(const TVec3< f32 >& rSrc) { JGeometry::setTVec3f(&rSrc.x, &x); }
+        inline void setPS(const TVec3< f32 >& rSrc) {
+            JGeometry::setTVec3f(&rSrc.x, &x);
+        }
 
 #ifdef __MWERKS__
         // Point gravity doesn't match if we use setPS
@@ -449,8 +484,12 @@ namespace JGeometry {
         void setPSZeroVec();
 #endif
 
-        void add(const TVec3< f32 >& b) NO_INLINE { JMathInlineVEC::PSVECAdd(this, &b, this); }
-        inline void addInline(const TVec3< f32 >& b) { JMathInlineVEC::PSVECAdd(this, &b, this); }
+        void add(const TVec3< f32 >& b) NO_INLINE {
+            JMathInlineVEC::PSVECAdd(this, &b, this);
+        }
+        inline void addInline(const TVec3< f32 >& b) {
+            JMathInlineVEC::PSVECAdd(this, &b, this);
+        }
 
         void add(const TVec3&, const TVec3&);
 
@@ -469,11 +508,17 @@ namespace JGeometry {
             return ret;
         }
 
-        void scaleAdd(__REGISTER f32 sc, const TVec3< f32 >& a, const TVec3< f32 >& b) { JMAVECScaleAdd(&a, &b, this, sc); }
+        void scaleAdd(__REGISTER f32 sc, const TVec3< f32 >& a, const TVec3< f32 >& b) {
+            JMAVECScaleAdd(&a, &b, this, sc);
+        }
 
-        inline void scaleAdd(const TVec3& scaleVec, const TVec3& addVec, f32 scale) { JMAVECScaleAdd(&scaleVec, &addVec, this, scale); }
+        inline void scaleAdd(const TVec3& scaleVec, const TVec3& addVec, f32 scale) {
+            JMAVECScaleAdd(&scaleVec, &addVec, this, scale);
+        }
 
-        inline void rejection(const TVec3& rVec, const TVec3& rNormal) { JMAVECScaleAdd(&rNormal, &rVec, this, -rNormal.dot(rVec)); }
+        inline void rejection(const TVec3& rVec, const TVec3& rNormal) {
+            JMAVECScaleAdd(&rNormal, &rVec, this, -rNormal.dot(rVec));
+        }
         inline void rejection(const TVec3& rNormal) {
             const TVec3& norm = rNormal;
             JMAVECScaleAdd(&norm, this, this, -norm.dot(*this));
@@ -485,7 +530,9 @@ namespace JGeometry {
             this->z *= -1.0f;
         }
 
-        inline void invertInternal() { JMathInlineVEC::PSVECNegate(this, this); }
+        inline void invertInternal() {
+            JMathInlineVEC::PSVECNegate(this, this);
+        }
 
         void scale(f32 scale);
         void scale(f32, const TVec3&);
@@ -501,11 +548,17 @@ namespace JGeometry {
             return inv_norm * sq;
         }
 
-        inline void mul(const TVec3< f32 >& a) { mul(*this, a); }
+        inline void mul(const TVec3< f32 >& a) {
+            mul(*this, a);
+        }
 
-        void cross(const TVec3< f32 >& a, const TVec3< f32 >& b) { PSVECCrossProduct(a, b, *this); }
+        void cross(const TVec3< f32 >& a, const TVec3< f32 >& b) {
+            PSVECCrossProduct(a, b, *this);
+        }
 
-        f32 squared() const { return JMathInlineVEC::PSVECSquareMag(this); };
+        f32 squared() const {
+            return JMathInlineVEC::PSVECSquareMag(this);
+        };
 
 #ifdef __MWERKS__
         // this theoretically should just forward JMathInlineVEC::PSVECSquareDistance,
@@ -541,7 +594,9 @@ namespace JGeometry {
 
         void zero();
 
-        bool isZero() const { return squared() <= 0.0000038146973f; }
+        bool isZero() const {
+            return squared() <= 0.0000038146973f;
+        }
 
         f32 normalize(const TVec3& rSrc) {
             x = rSrc.x;
@@ -576,7 +631,9 @@ namespace JGeometry {
 
         f32 setLength(const TVec3&, f32);
 
-        f32 length() const { return PSVECMag(this); }
+        f32 length() const {
+            return PSVECMag(this);
+        }
 
         template < typename T >
         void cubic(const TVec3&, const TVec3&, const TVec3&, const TVec3&, f32);
@@ -594,7 +651,8 @@ namespace JGeometry {
     class TVec4 : public Quaternion {
     public:
         /* Constructors */
-        inline TVec4() {}
+        inline TVec4() {
+        }
 
         template < typename A >
         TVec4(A _x, A _y, A _z, A _h) {
@@ -617,13 +675,18 @@ namespace JGeometry {
         }
 
         void scale(T val);
+
+        inline TVec3< T >* toTVec3() {
+            return (TVec3< T >*)this;
+        }
     };
 
     template < typename T >
     struct TQuat4 : public TVec4< T > {
     public:
         /* Constructors */
-        inline TQuat4() {}
+        inline TQuat4() {
+        }
 
         inline TQuat4(T xyz, T _w) {
             this->x = xyz;
@@ -640,18 +703,20 @@ namespace JGeometry {
             this->w = _w;
         }
 
-        inline TVec3< T >* toTvec() { return (TVec3< T >*)this; }
+        inline TVec3< T >* toTvec() {
+            return (TVec3< T >*)this;
+        }
 
         void set(T, T, T, T);
 
 #ifdef __MWERKS__
-        template < typename T >
-        inline void set(T _x, T _y, T _z, T _w) {
+        template < typename A >
+        inline void set(A _x, A _y, A _z, A _w) {
             TVec4< T >::set(_x, _y, _z, _w);
         }
 #else
-        template < typename >
-        inline void set(T _x, T _y, T _z, T _w) {
+        template < typename A >
+        inline void set(A _x, A _y, A _z, A _w) {
             TVec4< T >::set(_x, _y, _z, _w);
         }
 #endif
@@ -704,7 +769,9 @@ namespace JGeometry {
             this->slerp(a2, a3);
         }
 
-        void scale(f32 scalar, const TVec3< T >& rVec) { TVec3< T >::scale(scalar, rVec); }
+        void scale(f32 scalar, const TVec3< T >& rVec) {
+            TVec3< T >::scale(scalar, rVec);
+        }
 
         void slerp(const TQuat4< T >&, T);
         void transform(const TVec3< T >&, TVec3< T >& rDest);
