@@ -32,7 +32,7 @@ PoltaArm* PoltaStatePunch::getAttackActor() {
 }
 
 //Unused remnant also found in PoltaStateAttackGround?
-const char* unusedDamage = "Damage";
+const char* unusedDamagePunch = "Damage";
 
 void PoltaStatePunch::exeStart() {
     if (MR::isFirstStep(this)) {
