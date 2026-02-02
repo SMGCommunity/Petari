@@ -1656,7 +1656,7 @@ bool MarioSwim::close() {
     }
 
     setYangleOffset(0.0f);
-    u16 jointID = getAnimator()->getUpperJointID();
+    s32 jointID = getAnimator()->getUpperJointID();
     setJointGlobalMtx(jointID, nullptr);
 
     decideEffect(true);
@@ -2851,7 +2851,7 @@ void MarioSwim::decLife() {
         TVec3f gravityVec = -getGravityVec();
         getPlayer()->forceSetHeadVecKeepSide(gravityVec);
 
-        u16 upperJoint = getAnimator()->getUpperJointID();
+        s32 upperJoint = getAnimator()->getUpperJointID();
         setJointGlobalMtx(upperJoint, nullptr);
     }
 }

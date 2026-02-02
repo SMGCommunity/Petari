@@ -27,10 +27,10 @@ OSTime OSGetTime(void);
 OSTick OSGetTick(void);
 OSTime __OSGetSystemTime(void);
 OSTime __OSTimeToSystemTime(OSTime);
-void OSTicksToCalendarTime(OSTime, OSCalendarTime *);
+void OSTicksToCalendarTime(OSTime, OSCalendarTime*);
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif // OSTIME_H
+#endif  // OSTIME_H

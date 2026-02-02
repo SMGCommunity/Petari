@@ -332,7 +332,7 @@ public:
     bool isWalling() const;
     void checkWallStick();
     void checkStickWallSide();
-    void checkStickFrontBack();
+    s32 checkStickFrontBack();
     void fixWallingPosition(bool);
     void fixWallingDir();
     void fixWallingTop();
