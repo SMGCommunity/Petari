@@ -95,10 +95,10 @@ public:
      */
 
     inline void funReferenceTime(bool& worthlesser) {
-        if (_5C > 1.57079637051f) {
+        if (mVerticalAngle > 1.57079637051f) {
             worthlesser = true;
         } else {
-            if (_3C > 0x1E) {
+            if (mIdleWaitTimer > 0x1E) {
                 _1E = 1;
             }
             worthlesser = false;
@@ -107,7 +107,7 @@ public:
                 // Note: The binary does not tell us whether this comparison is > or <.
                 // It is not == because that generates an fcmpu instruction, not fcmpo.
                 // It is not <= or >= because those generate cror instructions.
-                if (getWorthlessNumber() + getWorthlessNumber() * stickY < _5C
+                if (getWorthlessNumber() + getWorthlessNumber() * stickY < mVerticalAngle
 
                     // This comparison needs to be present for the compiler to optimize the condition
                     // accurately.
@@ -121,7 +121,7 @@ public:
 
     inline TVec3f getPlayer380() const { return getPlayer()->_380; }
 
-    inline bool check7Aand7C() const { return _7A || _7C; }
+    inline bool check7Aand7C() const { return mSpinTimer || mSpinDashTimer; }
     inline f32 getSwimFrontJetSpeed();
     inline f32 getSwimFrontJetSpeedSlow();
     inline f32 getSwimFrontMaxSpeed();
@@ -131,41 +131,41 @@ public:
     /* 0x014 */ MarineSnow* mMarineSnow;
     /* 0x018 */ u8 _18;
     /* 0x019 */ bool mIsOnSurface;
-    /* 0x01A */ u8 _1A;
-    /* 0x01B */ u8 _1B;
-    /* 0x01C */ u8 _1C;
-    /* 0x01D */ u8 _1D;
-    /* 0x01E */ u8 _1E;
-    /* 0x01F */ u8 _1F;
+    /* 0x01A */ bool mEnteredWater;
+    /* 0x01B */ bool _1B;
+    /* 0x01C */ bool _1C;
+    /* 0x01D */ bool _1D;
+    /* 0x01E */ bool _1E;
+    /* 0x01F */ bool _1F;
     /* 0x020 */ bool mIsSwimmingAtSurface;
-    /* 0x021 */ u8 _21;
-    /* 0x022 */ u8 _22;
-    /* 0x024 */ u32 _24;
-    /* 0x028 */ u32 _28;
-    /* 0x02C */ u16 _2C;
-    /* 0x02E */ u16 _2E;
-    /* 0x030 */ u16 _30;
-    /* 0x032 */ u16 _32;
-    /* 0x034 */ u16 _34;
-    /* 0x036 */ u16 _36;
+    /* 0x021 */ bool mIsSinking;
+    /* 0x022 */ bool _22;
+    /* 0x024 */ u32 mStateTimer;
+    /* 0x028 */ u32 mSurfacePaddleHoldTimer;
+    /* 0x02C */ u16 mActionLockTimer;
+    /* 0x02E */ u16 mSinkTimer;
+    /* 0x030 */ u16 mSwimYAccTimer;
+    /* 0x032 */ u16 mZSinkTimer;
+    /* 0x034 */ u16 mJumpDiveTimer;
+    /* 0x036 */ u16 mDashTimer;
     /* 0x038 */ u16 _38;
-    /* 0x03A */ u16 _3A;
-    /* 0x03C */ u16 _3C;
-    /* 0x03E */ u16 _3E;
-    /* 0x040 */ u16 _40;
-    /* 0x042 */ u16 _42;
+    /* 0x03A */ u16 mBuoyancyDelayTimer;
+    /* 0x03C */ u16 mIdleWaitTimer;
+    /* 0x03E */ u16 mWaveFlowTimer;
+    /* 0x040 */ u16 mJetCooldownTimer;
+    /* 0x042 */ u16 mFloorContactTimer;
     /* 0x044 */ u16 _44;
     /* 0x048 */ f32 mSurfaceOffset;
-    /* 0x04C */ f32 _4C;
-    /* 0x050 */ f32 _50;
-    /* 0x054 */ f32 _54;
-    /* 0x058 */ f32 _58;
-    /* 0x05C */ f32 _5C;
-    /* 0x060 */ TVec3f _60;
+    /* 0x04C */ f32 mStickInputYInertia;
+    /* 0x050 */ f32 mStickInputXInertia;
+    /* 0x054 */ f32 mForwardSpeed;
+    /* 0x058 */ f32 mBuoyancySpeed;
+    /* 0x05C */ f32 mVerticalAngle;
+    /* 0x060 */ TVec3f mFrontVec;
     /* 0x06C */ TVec3f mUpVec;
     /* 0x078 */ bool _78;
-    /* 0x07A */ u16 _7A;
-    /* 0x07C */ u16 _7C;
+    /* 0x07A */ u16 mSpinTimer;
+    /* 0x07C */ u16 mSpinDashTimer;
     /* 0x080 */ f32 _80;
     /* 0x084 */ f32 _84;
     /* 0x088 */ u8 _88;
@@ -175,38 +175,38 @@ public:
     /* 0x090 */ u16 mRingDashMaxDuration;
     /* 0x094 */ f32 mRingDashSpeedScale;
     /* 0x098 */ f32 mBlurOffset;
-    /* 0x09C */ u8 _9C;
+    /* 0x09C */ bool _9C;
     /* 0x09D */ u8 _9D;
     /* 0x09E */ u8 mNextAction;
-    /* 0x09F */ u8 _9F;
-    /* 0x0A0 */ TVec3f _A0;
-    /* 0x0AC */ u8 _AC;
+    /* 0x09F */ u8 mEffectState;
+    /* 0x0A0 */ TVec3f mKnockbackVel;
+    /* 0x0AC */ u8 mDamageType;
     /* 0x0AD */ u8 _AD;
-    /* 0x0AE */ u16 _AE;
-    /* 0x0B0 */ TMtx34f _B0;
-    /* 0x0E0 */ f32 _E0;
-    /* 0x0E4 */ f32 _E4;
-    /* 0x0E8 */ u16 _E8;
+    /* 0x0AE */ u16 mKnockbackTimer;
+    /* 0x0B0 */ TMtx34f mUpperBodyJointMtx;
+    /* 0x0E0 */ f32 mCurrentTiltX;
+    /* 0x0E4 */ f32 mCurrentTiltY;
+    /* 0x0E8 */ u16 mDrownTimer;
     /* 0x0EA */ u16 mOxygen;
-    /* 0x0EC */ u16 _EC;
-    /* 0x0EE */ u16 _EE;
-    /* 0x0F0 */ u16 _F0;
+    /* 0x0EC */ u16 mOxygenWarningTimer;
+    /* 0x0EE */ u16 mOxygenDecreaseDelay;
+    /* 0x0F0 */ u16 mColdWaterDamageInterval;
     /* 0x0F4 */ WaterInfo mWaterInfo;
     /* 0x144 */ s32 mSwimState;
     /* 0x148 */ TVec3f _148;
-    /* 0x154 */ TVec3f _154;
+    /* 0x154 */ TVec3f mAreaFollowMtxPos;
     /* 0x160 */ TVec3f mSurfacePos;
     /* 0x16C */ TVec3f mSurfaceNorm;
     /* 0x178 */ TVec3f _178;
-    /* 0x184 */ TVec3f _184;
-    /* 0x190 */ TVec3f _190;
+    /* 0x184 */ TVec3f mWaterStreamVel;
+    /* 0x190 */ TVec3f mWaterStreamDir;
     /* 0x19C */ f32 mWaterDepth;
     /* 0x1A0 */ f32 _1A0;
     /* 0x1A4 */ f32 mDistToFloor;
     /* 0x1A8 */ f32 _1A8;
     /* 0x1AC */ f32 mDistanceToWaterSurface;
-    /* 0x1B0 */ u16 _1B0;
+    /* 0x1B0 */ u16 mWallStickTimer;
     /* 0x1B2 */ u8 _1B2;
-    /* 0x1B4 */ f32 _1B4;
+    /* 0x1B4 */ f32 mWaterDistanceTarget;
     /* 0x1B8 */ f32 _1B8;
 };
