@@ -62,7 +62,7 @@ namespace TombSpiderFunction {
     void pauseOffTombSpiderParts(const TombSpider*);
     void resetPlayerPosTombSpider(const TombSpider*, bool);
     bool isRotateLeftToPlayer(const TombSpider*);
-    void calcRotateSpeedToPlayer(const TombSpider*, s32);
+    f32 calcRotateSpeedToPlayer(TombSpider*, s32);
 
     void emitAcidMouth(TombSpider*);
     void emitAcidGland(TombSpider*);

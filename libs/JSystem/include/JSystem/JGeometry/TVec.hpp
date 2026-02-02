@@ -407,7 +407,7 @@ namespace JGeometry {
         // Required for multiple objects to match?
         inline void multPS(TVec3< f32 >& a, TVec3< f32 >& b) { mulInternal(&b.x, &a.x, &this->x); }
 
-        void setTrans(MtxPtr mtx) { set((*mtx)[3], (*mtx)[7], (*mtx)[11]); }
+        void setTrans(MtxPtr mtx) { set< f32 >((*mtx)[3], (*mtx)[7], (*mtx)[11]); }
 
         inline void setPS(const TVec3< f32 >& rSrc) { JGeometry::setTVec3f(&rSrc.x, &x); }
 

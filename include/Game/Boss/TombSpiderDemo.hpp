@@ -1,8 +1,10 @@
 #pragma once
 
+#include "Game/Boss/TombSpider.hpp"
 #include <JSystem/JGeometry/TMatrix.hpp>
 
-class TombSpider;
+
+class ActorCameraInfo;
 
 class TombSpiderDemo {
 public:
@@ -14,11 +16,13 @@ public:
     bool updateBattle1stEnd();
     bool updateBattle2ndStart();
     bool updateDeath();
-    bool updateJumpRotateToPlayer();
+    void updateJumpRotateToPlayer();
     bool isStartDemoGateOpen() const;
     bool updateBattle1stStartJumpToPlayer();
 
+    inline ActorCameraInfo* getCameraInfo() { return mParent->mCameraInfo; }
+
     /* 0x00 */ TombSpider* mParent;
     /* 0x04 */ TPos3f mMtx;
-    /* 0x34 */ f32 mRotateVel;
+    /* 0x34 */ f32 mRotateSpeed;
 };
