@@ -2,6 +2,7 @@
 #define WPAD_H
 
 #include <revolution/os.h>
+#include <revolution/sc.h>
 #include <revolution/types.h>
 
 #ifdef __cplusplus
@@ -12,10 +13,10 @@ typedef void (*WPADExtensionCallback)(s32 chan, s32 result);
 typedef void (*WPADConnectCallback)(s32 chan, s32 reason);
 typedef void (*WPADCallback)(s32 chan, s32 result);
 typedef void* (*WPADAlloc)(u32 size);
-typedef u8 (*WPADFree)(void* ptr);
+typedef int (*WPADFree)(void* ptr);
 typedef void (*WPADSyncDeviceCallback)(s32 result, s32 num);
 typedef void (*WPADSamplingCallback)(s32 chan);
-typedef void (*WPADFlushCallback)(u32 result);
+typedef void (*WPADFlushCallback)(SCStatus result);
 
 typedef u32 WPADDeviceType;
 typedef s32 WPADChannel;

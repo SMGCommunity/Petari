@@ -253,7 +253,7 @@ s32 VFiPFDRV_mount(PF_VOLUME* p_vol) {
     }
 }
 
-s32 VFiPFDRV_unmount(PF_VOLUME* p_vol, unsigned int mode) {
+s32 VFiPFDRV_unmount(PF_VOLUME* p_vol, u32 mode) {
     int v4;
     int driver_error_code;
 

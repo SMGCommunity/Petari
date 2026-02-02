@@ -23,4 +23,8 @@ s32 VFiPFENT_ITER_GetEntryOfPath(PF_ENT_ITER* p_iter, PF_DIR_ENT* p_ent, PF_VOLU
 
 s32 VFiPFENT_UpdateSFNEntry(PF_DIR_ENT* p_ent, u32 flag);
 
+s32 VFiPFENT_GetRootDir(PF_VOLUME* p_vol, PF_DIR_ENT* p_ent);
+
+s32 VFiPFENT_MakeRootDir(PF_VOLUME* p_vol);
+
 #endif  // PF_ENTRY_H

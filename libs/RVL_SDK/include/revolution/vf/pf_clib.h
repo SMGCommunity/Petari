@@ -16,4 +16,6 @@ s8* VFipf_strcat(s8* dst, const s8* src);
 s32 VFipf_strcmp(const s8* s1, const s8* s2);
 s32 VFipf_strncmp(const s8* s1, const s8* s2, u32 length);
 
+s8* VFipf_strcpy(s8* dst, const s8* src);
+
 #endif  // PF_CLIB_H
