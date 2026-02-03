@@ -440,4 +440,83 @@ typedef struct VFSysTime {
     long year;   // offset 0x14, size 0x4
 } VFSysTime;
 
+struct PDM_FUNCTBL {
+    // total size: 0x20
+    long (*init)(struct PDM_DISK*);                                                                          // offset 0x0, size 0x4
+    long (*finalize)(struct PDM_DISK*);                                                                      // offset 0x4, size 0x4
+    long (*mount)(struct PDM_DISK*);                                                                         // offset 0x8, size 0x4
+    long (*unmount)(struct PDM_DISK*);                                                                       // offset 0xC, size 0x4
+    long (*format)(struct PDM_DISK*, unsigned char*);                                                        // offset 0x10, size 0x4
+    long (*physical_read)(struct PDM_DISK*, unsigned char*, unsigned long, unsigned long, unsigned long*);   // offset 0x14, size 0x4
+    long (*physical_write)(struct PDM_DISK*, unsigned char*, unsigned long, unsigned long, unsigned long*);  // offset 0x18, size 0x4
+    long (*get_disk_info)(struct PDM_DISK*, struct PDM_DISK_INFO*);                                          // offset 0x1C, size 0x4
+};
+typedef struct PDM_DISK_TBL {
+    // total size: 0x8
+    struct PDM_FUNCTBL* p_func;  // offset 0x0, size 0x4
+    unsigned long ui_ext;        // offset 0x4, size 0x4
+} PDM_DISK_TBL;
+
+typedef struct PDM_INIT_DISK {
+    // total size: 0x8
+    long (*p_func)(struct PDM_DISK_TBL*, unsigned long);  // offset 0x0, size 0x4
+    unsigned long ui_ext;                                 // offset 0x4, size 0x4
+} PDM_INIT_DISK;
+
+typedef struct PDM_DISK {
+    // total size: 0x38
+    unsigned long status;                   // offset 0x0, size 0x4
+    struct PDM_DISK_TBL disk_tbl;           // offset 0x4, size 0x8
+    unsigned long signature;                // offset 0xC, size 0x4
+    unsigned short open_disk_cnt;           // offset 0x10, size 0x2
+    unsigned short disk_lock_cnt;           // offset 0x12, size 0x2
+    struct PDM_DISK* disk_lock_handle;      // offset 0x14, size 0x4
+    struct PDM_DISK_INFO disk_info;         // offset 0x18, size 0x14
+    struct PDM_INIT_DISK* p_init_disk_tbl;  // offset 0x2C, size 0x4
+    struct PDM_PARTITION* p_cur_part;       // offset 0x30, size 0x4
+    void (*p_erase_func)();                 // offset 0x34, size 0x4
+} PDM_DISK;
+
+struct PDM_DISK_HANDLE {
+    // total size: 0x8
+    unsigned long signature;  // offset 0x0, size 0x4
+    struct PDM_DISK* handle;  // offset 0x4, size 0x4
+};
+struct PDM_PARTITION_HANDLE {
+    // total size: 0x8
+    unsigned long signature;       // offset 0x0, size 0x4
+    struct PDM_PARTITION* handle;  // offset 0x4, size 0x4
+};
+typedef struct PDM_DISK_SET {
+    // total size: 0xBCC
+    unsigned short num_partition;                      // offset 0x0, size 0x2
+    unsigned short num_allocated_disk;                 // offset 0x2, size 0x2
+    struct PDM_DISK_HANDLE disk_handle[26];            // offset 0x4, size 0xD0
+    struct PDM_PARTITION_HANDLE partition_handle[26];  // offset 0xD4, size 0xD0
+    struct PDM_DISK disk[26];                          // offset 0x1A4, size 0x5B0
+    struct PDM_PARTITION partition[26];                // offset 0x754, size 0x478
+} PDM_DISK_SET;
+
+typedef struct PDM_PART_TBL {
+    // total size: 0x14
+    unsigned char boot_flag;         // offset 0x0, size 0x1
+    unsigned char partition_type;    // offset 0x1, size 0x1
+    unsigned short s_cylinder;       // offset 0x2, size 0x2
+    unsigned char s_head;            // offset 0x4, size 0x1
+    unsigned char s_sector;          // offset 0x5, size 0x1
+    unsigned short e_cylinder;       // offset 0x6, size 0x2
+    unsigned char e_head;            // offset 0x8, size 0x1
+    unsigned char e_sector;          // offset 0x9, size 0x1
+    unsigned char pad[2];            // offset 0xA, size 0x2
+    unsigned long lba_start_sector;  // offset 0xC, size 0x4
+    unsigned long lba_num_sectors;   // offset 0x10, size 0x4
+} PDM_PART_TBL;
+
+typedef struct PDM_MBR {
+    // total size: 0x58
+    unsigned long current_sector;            // offset 0x0, size 0x4
+    unsigned long epbr_base_sector;          // offset 0x4, size 0x4
+    struct PDM_PART_TBL partition_table[4];  // offset 0x8, size 0x50
+} PDM_MBR;
+
 #endif  // VF_STRUCT_H

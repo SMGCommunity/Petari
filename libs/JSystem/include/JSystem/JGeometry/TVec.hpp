@@ -439,7 +439,7 @@ namespace JGeometry {
         }
 
         void setTrans(MtxPtr mtx) {
-            set((*mtx)[3], (*mtx)[7], (*mtx)[11]);
+            set< f32 >((*mtx)[3], (*mtx)[7], (*mtx)[11]);
         }
 
         inline void setPS(const TVec3< f32 >& rSrc) {
