@@ -765,7 +765,7 @@ static void VFiPFCACHE_FreeFATPage(struct PF_VOLUME* p_vol, struct PF_CACHE_PAGE
         VFiPFCACHE_DoFreeCachePage(&p_vol->cache.p_current_fat, p_page);
 }
 
-void VFiPFCACHE_FreeAllCaches(struct PF_VOLUME* p_vol) {
+void VFiPFCACHE_FreeAllCaches(PF_VOLUME* p_vol) {
     while ((p_vol->cache.p_current_fat->stat & 1) != 0)
         VFiPFCACHE_FreeFATPage(p_vol, p_vol->cache.p_current_fat);
     while ((p_vol->cache.p_current_data->stat & 1) != 0)

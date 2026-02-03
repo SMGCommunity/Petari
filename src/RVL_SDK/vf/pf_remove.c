@@ -7,7 +7,7 @@ int VFipf2_remove(const char *path) {
     long err;
     PF_STR path_str;
 
-    err = VFiPFSTR_InitStr(&path_str, path, 1);
+    err = VFiPFSTR_InitStr(&path_str, (const s8*)path, 1);
     if (err == 0) {
         err = VFiPFFILE_remove(&path_str);
     } else {
