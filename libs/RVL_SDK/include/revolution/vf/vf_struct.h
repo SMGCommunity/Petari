@@ -490,4 +490,26 @@ typedef struct PDM_DISK_SET {
     struct PDM_PARTITION partition[26];                // offset 0x754, size 0x478
 } PDM_DISK_SET;
 
+typedef struct PDM_PART_TBL {
+    // total size: 0x14
+    unsigned char boot_flag;         // offset 0x0, size 0x1
+    unsigned char partition_type;    // offset 0x1, size 0x1
+    unsigned short s_cylinder;       // offset 0x2, size 0x2
+    unsigned char s_head;            // offset 0x4, size 0x1
+    unsigned char s_sector;          // offset 0x5, size 0x1
+    unsigned short e_cylinder;       // offset 0x6, size 0x2
+    unsigned char e_head;            // offset 0x8, size 0x1
+    unsigned char e_sector;          // offset 0x9, size 0x1
+    unsigned char pad[2];            // offset 0xA, size 0x2
+    unsigned long lba_start_sector;  // offset 0xC, size 0x4
+    unsigned long lba_num_sectors;   // offset 0x10, size 0x4
+} PDM_PART_TBL;
+
+typedef struct PDM_MBR {
+    // total size: 0x58
+    unsigned long current_sector;            // offset 0x0, size 0x4
+    unsigned long epbr_base_sector;          // offset 0x4, size 0x4
+    struct PDM_PART_TBL partition_table[4];  // offset 0x8, size 0x50
+} PDM_MBR;
+
 #endif  // VF_STRUCT_H
