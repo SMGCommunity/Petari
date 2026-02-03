@@ -9,7 +9,7 @@ extern "C" {
 
 typedef struct MEMiExpHeapMBlockHead MEMiExpHeapMBlockHead;
 
-struct MEMiExPheapMBlockHead {
+typedef struct MEMiExpHeapMBlockHead {
     u16 signature;
 
     union {
@@ -25,17 +25,41 @@ struct MEMiExPheapMBlockHead {
     u32 blockSize;
     MEMiExpHeapMBlockHead* prev;
     MEMiExpHeapMBlockHead* next;
+} MEMiExPheapMBlockHead;
+
+typedef struct MEMiExpMBlockList MEMiExpMBlockList;
+
+struct MEMiExpMBlockList {
+    MEMiExpHeapMBlockHead* head;
+    MEMiExpHeapMBlockHead* tail;
 };
 
-MEMHeapHandle MEMCreateExpHeapEx(void *, u32, u16);
+typedef struct MEMiExpHeapHead MEMiExpHeapHead;
+
+struct MEMiExpHeapHead {
+    MEMiExpMBlockList mbFreeList;
+    MEMiExpMBlockList mbUsedList;
+
+    u16 groupID;
+
+    union {
+        u16 val;
+        struct {
+            u16 _reserved : 14;
+            u16 useMarginOfAlign : 1;
+            u16 allocMode : 1;
+        } fields;
+    } feature;
+};
+
+MEMHeapHandle MEMCreateExpHeapEx(void*, u32, u16);
 void* MEMDestroyExpHeap(MEMHeapHandle);
 void* MEMAllocFromExpHeapEx(MEMHeapHandle, u32, int);
-void MEMFreeToExpHeap(MEMHeapHandle, void *);
+void MEMFreeToExpHeap(MEMHeapHandle, void*);
 u32 MEMGetAllocatableSizeForExpHeapEx(MEMHeapHandle, int);
-
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif // EXPHEAP_H
+#endif  // EXPHEAP_H
