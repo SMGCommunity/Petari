@@ -4,9 +4,8 @@
 
 class ManholeCover : public MapObjActor {
 public:
-    inline ManholeCover(const char* pName) : MapObjActor(pName) {}
+    ManholeCover(const char*);
 
-    virtual ~ManholeCover();
     virtual void init(const JMapInfoIter&);
     virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
     virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
