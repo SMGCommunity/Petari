@@ -13,4 +13,6 @@ s32 VFiPFVOL_unmount(s8 drv_char, u32 mode);
 s32 VFiPFVOL_CheckForWrite(PF_VOLUME* p_vol);
 s32 VFiPFVOL_CheckForRead(PF_VOLUME* p_vol);
 
+void VFiPFVOL_LoadVolumeLabelFromBuf(const u8* buf, PF_VOLUME* p_vol);
+
 #endif  // PF_VOLUME_H
