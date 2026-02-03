@@ -105,6 +105,8 @@ extern void __GXFlushTextureState();
 extern void __GXAbort();
 extern void __GXSetTmemConfig(u32);
 
+extern void __GetImageTileCount(GXTexFmt fmt, u16 wd, u16 ht, u32* rowTiles, u32* colTiles, u32* cmpTiles);
+
 typedef struct __GXLightObjInt_struct {
     u32 reserved[3];
     u32 Color;
