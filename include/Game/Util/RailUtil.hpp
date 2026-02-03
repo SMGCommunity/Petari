@@ -99,7 +99,7 @@ namespace MR {
     void setRailDirectionToEnd(LiveActor*);
     void setRailDirectionCloseToNearestPos(LiveActor*, const TVec3f&);
 
-    f64 calcNearestRailCoord(const LiveActor*, const TVec3f&);
+    f32 calcNearestRailCoord(const LiveActor*, const TVec3f&);
 
     void moveCoordAndFollowTrans(LiveActor*);
     void moveCoordAndFollowTrans(LiveActor*, f32);
