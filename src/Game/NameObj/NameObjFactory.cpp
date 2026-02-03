@@ -1339,7 +1339,7 @@ namespace {
         },
         {
             "BossStinkBug",
-            nullptr,
+            createNameObj< BossStinkBug >,
             "BossStinkBug",
         },
         {
