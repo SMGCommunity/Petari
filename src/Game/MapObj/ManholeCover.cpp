@@ -1,10 +1,18 @@
 #include "Game/MapObj/ManholeCover.hpp"
+#include "Game/LiveActor/HitSensor.hpp"
+#include "Game/MapObj/MapObjActor.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 
 namespace NrvManholeCover {
     NEW_NERVE(HostTypeWait, ManholeCover, Wait);
     NEW_NERVE(HostTypeOpen, ManholeCover, Open);
     NEW_NERVE(HostTypeRattle, ManholeCover, Rattle);
 };  // namespace NrvManholeCover
+
+ManholeCover::ManholeCover(const char* pName) : MapObjActor(pName) {
+}
 
 void ManholeCover::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);
@@ -25,13 +33,45 @@ void ManholeCover::init(const JMapInfoIter& rIter) {
 }
 
 bool ManholeCover::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (!MR::isMsgPlayerHipDropFloor(msg) && !MR::isMsgPlayerUpperPunch(msg) ||
-        !isNerve(&NrvManholeCover::HostTypeWait::sInstance) && !isNerve(&NrvManholeCover::HostTypeRattle::sInstance)) {
-        return false;
+    if ((MR::isMsgPlayerHipDropFloor(msg) || MR::isMsgPlayerUpperPunch(msg)) &&
+        (isNerve(&NrvManholeCover::HostTypeWait::sInstance) || isNerve(&NrvManholeCover::HostTypeRattle::sInstance))) {
+        setNerve(&NrvManholeCover::HostTypeOpen::sInstance);
+        return true;
     }
 
-    setNerve(&NrvManholeCover::HostTypeOpen::sInstance);
-    return true;
+    return false;
 }
 
-void ManholeCover::exeWait() {}
+bool ManholeCover::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
+    if (MR::isMsgSpinStormRange(msg) && isNerve(&NrvManholeCover::HostTypeWait::sInstance)) {
+        setNerve(&NrvManholeCover::HostTypeRattle::sInstance);
+        return true;
+    }
+    return false;
+}
+
+void ManholeCover::exeOpen() {
+    if (MR::isFirstStep(this)) {
+        MR::startBck(this, "Rotation", nullptr);
+        MR::invalidateCollisionParts(this);
+    }
+
+    if (MR::isBckStopped(this)) {
+        MR::validateCollisionParts(this);
+        setNerve(&NrvManholeCover::HostTypeWait::sInstance);
+    }
+}
+
+void ManholeCover::exeRattle() {
+    if (MR::isFirstStep(this)) {
+        MR::startBck(this, "Vibration", nullptr);
+        MR::startSound(this, "SE_OJ_MANHOLE_RATTLE", -1, -1);
+    }
+
+    if (MR::isGreaterStep(this, 45) && MR::isBckStopped(this)) {
+        setNerve(&NrvManholeCover::HostTypeWait::sInstance);
+    }
+}
+
+void ManholeCover::exeWait() {
+}
