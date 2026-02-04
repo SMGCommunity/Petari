@@ -32,6 +32,7 @@
 #include "Game/Enemy/RingBeam.hpp"
 #include "Game/Enemy/RingBeamer.hpp"
 #include "Game/Enemy/SearchBeamer.hpp"
+#include "Game/Enemy/Snakehead.hpp"
 #include "Game/Enemy/SpinHitController.hpp"
 #include "Game/Enemy/TerritoryMover.hpp"
 #include "Game/Enemy/WalkerStateBindStarPointer.hpp"

@@ -368,6 +368,7 @@ namespace MR {
     bool isOnGround(const LiveActor*);
 
     bool isPressedRoofAndGround(const LiveActor*);
+    bool isPressedMovingWall(const LiveActor*);
 
     void setBinderExceptSensorType(LiveActor*, const TVec3f*, f32);
 

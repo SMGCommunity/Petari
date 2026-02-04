@@ -4,6 +4,7 @@
 #include "Game/Demo.hpp"
 #include "Game/Effect.hpp"
 #include "Game/Enemy.hpp"
+#include "Game/Enemy/Snakehead.hpp"
 #include "Game/Gravity.hpp"
 #include "Game/Map.hpp"
 #include "Game/MapObj.hpp"
@@ -1199,12 +1200,12 @@ namespace {
         },
         {
             "Snakehead",
-            nullptr,
+            createNameObj< Snakehead >,
             "Snakehead",
         },
         {
             "SnakeheadSmall",
-            nullptr,
+            createNameObj< Snakehead >,
             "SnakeheadSmall",
         },
         {

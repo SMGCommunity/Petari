@@ -635,6 +635,10 @@ namespace JGeometry {
             return PSVECMag(this);
         }
 
+        inline f32 distance(const TVec3& rOther) {
+            return PSVECDistance(this, &rOther);
+        }
+
         template < typename T >
         void cubic(const TVec3&, const TVec3&, const TVec3&, const TVec3&, f32);
 

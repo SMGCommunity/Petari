@@ -550,4 +550,472 @@
 #define PE_FIELD_MASK_SET_RID(pe_field_mask, rid)                                                                                                    \
     { pe_field_mask = (((unsigned long)(pe_field_mask)) & ~PE_FIELD_MASK_RID_MASK) | (((unsigned long)(rid)) << PE_FIELD_MASK_RID_SHIFT); }
 
+#define PE_COPY_SRC_ADDR_X_SIZE 10
+#define PE_COPY_SRC_ADDR_X_SHIFT 0
+#define PE_COPY_SRC_ADDR_X_MASK 0x000003ff
+#define PE_COPY_SRC_ADDR_GET_X(pe_copy_src_addr) ((((unsigned long)(pe_copy_src_addr)) & PE_COPY_SRC_ADDR_X_MASK) >> PE_COPY_SRC_ADDR_X_SHIFT)
+#define PE_COPY_SRC_ADDR_SET_X(pe_copy_src_addr, x)                                                                                                  \
+    { pe_copy_src_addr = (((unsigned long)(pe_copy_src_addr)) & ~PE_COPY_SRC_ADDR_X_MASK) | (((unsigned long)(x)) << PE_COPY_SRC_ADDR_X_SHIFT); }
+#define PE_COPY_SRC_ADDR_Y_SIZE 10
+#define PE_COPY_SRC_ADDR_Y_SHIFT 10
+#define PE_COPY_SRC_ADDR_Y_MASK 0x000ffc00
+#define PE_COPY_SRC_ADDR_GET_Y(pe_copy_src_addr) ((((unsigned long)(pe_copy_src_addr)) & PE_COPY_SRC_ADDR_Y_MASK) >> PE_COPY_SRC_ADDR_Y_SHIFT)
+#define PE_COPY_SRC_ADDR_SET_Y(pe_copy_src_addr, y)                                                                                                  \
+    { pe_copy_src_addr = (((unsigned long)(pe_copy_src_addr)) & ~PE_COPY_SRC_ADDR_Y_MASK) | (((unsigned long)(y)) << PE_COPY_SRC_ADDR_Y_SHIFT); }
+#define PE_COPY_SRC_ADDR_PAD0_SIZE 4
+#define PE_COPY_SRC_ADDR_PAD0_SHIFT 20
+#define PE_COPY_SRC_ADDR_PAD0_MASK 0x00f00000
+#define PE_COPY_SRC_ADDR_GET_PAD0(pe_copy_src_addr)                                                                                                  \
+    ((((unsigned long)(pe_copy_src_addr)) & PE_COPY_SRC_ADDR_PAD0_MASK) >> PE_COPY_SRC_ADDR_PAD0_SHIFT)
+#define PE_COPY_SRC_ADDR_SET_PAD0(pe_copy_src_addr, pad0)                                                                                            \
+    {                                                                                                                                                \
+        pe_copy_src_addr =                                                                                                                           \
+            (((unsigned long)(pe_copy_src_addr)) & ~PE_COPY_SRC_ADDR_PAD0_MASK) | (((unsigned long)(pad0)) << PE_COPY_SRC_ADDR_PAD0_SHIFT);          \
+    }
+#define PE_COPY_SRC_ADDR_RID_SIZE 8
+#define PE_COPY_SRC_ADDR_RID_SHIFT 24
+#define PE_COPY_SRC_ADDR_RID_MASK 0xff000000
+#define PE_COPY_SRC_ADDR_GET_RID(pe_copy_src_addr) ((((unsigned long)(pe_copy_src_addr)) & PE_COPY_SRC_ADDR_RID_MASK) >> PE_COPY_SRC_ADDR_RID_SHIFT)
+#define PE_COPY_SRC_ADDR_SET_RID(pe_copy_src_addr, rid)                                                                                              \
+    {                                                                                                                                                \
+        pe_copy_src_addr =                                                                                                                           \
+            (((unsigned long)(pe_copy_src_addr)) & ~PE_COPY_SRC_ADDR_RID_MASK) | (((unsigned long)(rid)) << PE_COPY_SRC_ADDR_RID_SHIFT);             \
+    }
+#define PE_COPY_SRC_ADDR_TOTAL_SIZE 32
+#define PE_COPY_SRC_ADDR(x, y, rid)                                                                                                                  \
+    ((((unsigned long)(x)) << PE_COPY_SRC_ADDR_X_SHIFT) | (((unsigned long)(y)) << PE_COPY_SRC_ADDR_Y_SHIFT) |                                       \
+     (((unsigned long)(rid)) << PE_COPY_SRC_ADDR_RID_SHIFT))
+
+#define PE_COPY_SRC_SIZE_X_SIZE 10
+#define PE_COPY_SRC_SIZE_X_SHIFT 0
+#define PE_COPY_SRC_SIZE_X_MASK 0x000003ff
+#define PE_COPY_SRC_SIZE_GET_X(pe_copy_src_size) ((((unsigned long)(pe_copy_src_size)) & PE_COPY_SRC_SIZE_X_MASK) >> PE_COPY_SRC_SIZE_X_SHIFT)
+#define PE_COPY_SRC_SIZE_SET_X(pe_copy_src_size, x)                                                                                                  \
+    { pe_copy_src_size = (((unsigned long)(pe_copy_src_size)) & ~PE_COPY_SRC_SIZE_X_MASK) | (((unsigned long)(x)) << PE_COPY_SRC_SIZE_X_SHIFT); }
+#define PE_COPY_SRC_SIZE_Y_SIZE 10
+#define PE_COPY_SRC_SIZE_Y_SHIFT 10
+#define PE_COPY_SRC_SIZE_Y_MASK 0x000ffc00
+#define PE_COPY_SRC_SIZE_GET_Y(pe_copy_src_size) ((((unsigned long)(pe_copy_src_size)) & PE_COPY_SRC_SIZE_Y_MASK) >> PE_COPY_SRC_SIZE_Y_SHIFT)
+#define PE_COPY_SRC_SIZE_SET_Y(pe_copy_src_size, y)                                                                                                  \
+    { pe_copy_src_size = (((unsigned long)(pe_copy_src_size)) & ~PE_COPY_SRC_SIZE_Y_MASK) | (((unsigned long)(y)) << PE_COPY_SRC_SIZE_Y_SHIFT); }
+#define PE_COPY_SRC_SIZE_PAD0_SIZE 4
+#define PE_COPY_SRC_SIZE_PAD0_SHIFT 20
+#define PE_COPY_SRC_SIZE_PAD0_MASK 0x00f00000
+#define PE_COPY_SRC_SIZE_GET_PAD0(pe_copy_src_size)                                                                                                  \
+    ((((unsigned long)(pe_copy_src_size)) & PE_COPY_SRC_SIZE_PAD0_MASK) >> PE_COPY_SRC_SIZE_PAD0_SHIFT)
+#define PE_COPY_SRC_SIZE_SET_PAD0(pe_copy_src_size, pad0)                                                                                            \
+    {                                                                                                                                                \
+        pe_copy_src_size =                                                                                                                           \
+            (((unsigned long)(pe_copy_src_size)) & ~PE_COPY_SRC_SIZE_PAD0_MASK) | (((unsigned long)(pad0)) << PE_COPY_SRC_SIZE_PAD0_SHIFT);          \
+    }
+#define PE_COPY_SRC_SIZE_RID_SIZE 8
+#define PE_COPY_SRC_SIZE_RID_SHIFT 24
+#define PE_COPY_SRC_SIZE_RID_MASK 0xff000000
+#define PE_COPY_SRC_SIZE_GET_RID(pe_copy_src_size) ((((unsigned long)(pe_copy_src_size)) & PE_COPY_SRC_SIZE_RID_MASK) >> PE_COPY_SRC_SIZE_RID_SHIFT)
+#define PE_COPY_SRC_SIZE_SET_RID(pe_copy_src_size, rid)                                                                                              \
+    {                                                                                                                                                \
+        pe_copy_src_size =                                                                                                                           \
+            (((unsigned long)(pe_copy_src_size)) & ~PE_COPY_SRC_SIZE_RID_MASK) | (((unsigned long)(rid)) << PE_COPY_SRC_SIZE_RID_SHIFT);             \
+    }
+#define PE_COPY_SRC_SIZE_TOTAL_SIZE 32
+#define PE_COPY_SRC_SIZE(x, y, rid)                                                                                                                  \
+    ((((unsigned long)(x)) << PE_COPY_SRC_SIZE_X_SHIFT) | (((unsigned long)(y)) << PE_COPY_SRC_SIZE_Y_SHIFT) |                                       \
+     (((unsigned long)(rid)) << PE_COPY_SRC_SIZE_RID_SHIFT))
+
+#define PE_COPY_DST_STRIDE_STRIDE_SIZE 10
+#define PE_COPY_DST_STRIDE_STRIDE_SHIFT 0
+#define PE_COPY_DST_STRIDE_STRIDE_MASK 0x000003ff
+#define PE_COPY_DST_STRIDE_GET_STRIDE(pe_copy_dst_stride)                                                                                            \
+    ((((unsigned long)(pe_copy_dst_stride)) & PE_COPY_DST_STRIDE_STRIDE_MASK) >> PE_COPY_DST_STRIDE_STRIDE_SHIFT)
+#define PE_COPY_DST_STRIDE_SET_STRIDE(pe_copy_dst_stride, stride)                                                                                    \
+    {                                                                                                                                                \
+        pe_copy_dst_stride = (((unsigned long)(pe_copy_dst_stride)) & ~PE_COPY_DST_STRIDE_STRIDE_MASK) |                                             \
+                             (((unsigned long)(stride)) << PE_COPY_DST_STRIDE_STRIDE_SHIFT);                                                         \
+    }
+#define PE_COPY_DST_STRIDE_PAD0_SIZE 14
+#define PE_COPY_DST_STRIDE_PAD0_SHIFT 10
+#define PE_COPY_DST_STRIDE_PAD0_MASK 0x00fffc00
+#define PE_COPY_DST_STRIDE_GET_PAD0(pe_copy_dst_stride)                                                                                              \
+    ((((unsigned long)(pe_copy_dst_stride)) & PE_COPY_DST_STRIDE_PAD0_MASK) >> PE_COPY_DST_STRIDE_PAD0_SHIFT)
+#define PE_COPY_DST_STRIDE_SET_PAD0(pe_copy_dst_stride, pad0)                                                                                        \
+    {                                                                                                                                                \
+        pe_copy_dst_stride =                                                                                                                         \
+            (((unsigned long)(pe_copy_dst_stride)) & ~PE_COPY_DST_STRIDE_PAD0_MASK) | (((unsigned long)(pad0)) << PE_COPY_DST_STRIDE_PAD0_SHIFT);    \
+    }
+#define PE_COPY_DST_STRIDE_RID_SIZE 8
+#define PE_COPY_DST_STRIDE_RID_SHIFT 24
+#define PE_COPY_DST_STRIDE_RID_MASK 0xff000000
+#define PE_COPY_DST_STRIDE_GET_RID(pe_copy_dst_stride)                                                                                               \
+    ((((unsigned long)(pe_copy_dst_stride)) & PE_COPY_DST_STRIDE_RID_MASK) >> PE_COPY_DST_STRIDE_RID_SHIFT)
+#define PE_COPY_DST_STRIDE_SET_RID(pe_copy_dst_stride, rid)                                                                                          \
+    {                                                                                                                                                \
+        pe_copy_dst_stride =                                                                                                                         \
+            (((unsigned long)(pe_copy_dst_stride)) & ~PE_COPY_DST_STRIDE_RID_MASK) | (((unsigned long)(rid)) << PE_COPY_DST_STRIDE_RID_SHIFT);       \
+    }
+#define PE_COPY_DST_STRIDE_TOTAL_SIZE 32
+#define PE_COPY_DST_STRIDE(stride, rid)                                                                                                              \
+    ((((unsigned long)(stride)) << PE_COPY_DST_STRIDE_STRIDE_SHIFT) | (((unsigned long)(rid)) << PE_COPY_DST_STRIDE_RID_SHIFT))
+
+#define PE_COPY_CMD_INTERLACED_SIZE 2
+#define PE_COPY_CMD_INTERLACED_SHIFT 12
+#define PE_COPY_CMD_INTERLACED_MASK 0x00003000
+#define PE_COPY_CMD_GET_INTERLACED(pe_copy_cmd) ((((unsigned long)(pe_copy_cmd)) & PE_COPY_CMD_INTERLACED_MASK) >> PE_COPY_CMD_INTERLACED_SHIFT)
+#define PE_COPY_CMD_SET_INTERLACED(pe_copy_cmd, interlaced)                                                                                          \
+    {                                                                                                                                                \
+        pe_copy_cmd =                                                                                                                                \
+            (((unsigned long)(pe_copy_cmd)) & ~PE_COPY_CMD_INTERLACED_MASK) | (((unsigned long)(interlaced)) << PE_COPY_CMD_INTERLACED_SHIFT);       \
+    }
+
+#define PE_COPY_CMD_TEX_FORMAT_SIZE 3
+#define PE_COPY_CMD_TEX_FORMAT_SHIFT 4
+#define PE_COPY_CMD_TEX_FORMAT_MASK 0x00000070
+#define PE_COPY_CMD_GET_TEX_FORMAT(pe_copy_cmd) ((((unsigned long)(pe_copy_cmd)) & PE_COPY_CMD_TEX_FORMAT_MASK) >> PE_COPY_CMD_TEX_FORMAT_SHIFT)
+#define PE_COPY_CMD_SET_TEX_FORMAT(pe_copy_cmd, tex_format)                                                                                          \
+    {                                                                                                                                                \
+        pe_copy_cmd =                                                                                                                                \
+            (((unsigned long)(pe_copy_cmd)) & ~PE_COPY_CMD_TEX_FORMAT_MASK) | (((unsigned long)(tex_format)) << PE_COPY_CMD_TEX_FORMAT_SHIFT);       \
+    }
+
+#define PE_COPY_CMD_MIP_MAP_FILTER_SIZE 1
+#define PE_COPY_CMD_MIP_MAP_FILTER_SHIFT 9
+#define PE_COPY_CMD_MIP_MAP_FILTER_MASK 0x00000200
+#define PE_COPY_CMD_GET_MIP_MAP_FILTER(pe_copy_cmd)                                                                                                  \
+    ((((unsigned long)(pe_copy_cmd)) & PE_COPY_CMD_MIP_MAP_FILTER_MASK) >> PE_COPY_CMD_MIP_MAP_FILTER_SHIFT)
+#define PE_COPY_CMD_SET_MIP_MAP_FILTER(pe_copy_cmd, mip_map_filter)                                                                                  \
+    {                                                                                                                                                \
+        pe_copy_cmd = (((unsigned long)(pe_copy_cmd)) & ~PE_COPY_CMD_MIP_MAP_FILTER_MASK) |                                                          \
+                      (((unsigned long)(mip_map_filter)) << PE_COPY_CMD_MIP_MAP_FILTER_SHIFT);                                                       \
+    }
+
+#define PE_COPY_CMD_TEX_FORMATH_SIZE 1
+#define PE_COPY_CMD_TEX_FORMATH_SHIFT 3
+#define PE_COPY_CMD_TEX_FORMATH_MASK 0x00000008
+#define PE_COPY_CMD_GET_TEX_FORMATH(pe_copy_cmd) ((((unsigned long)(pe_copy_cmd)) & PE_COPY_CMD_TEX_FORMATH_MASK) >> PE_COPY_CMD_TEX_FORMATH_SHIFT)
+#define PE_COPY_CMD_SET_TEX_FORMATH(pe_copy_cmd, tex_formatH)                                                                                        \
+    {                                                                                                                                                \
+        pe_copy_cmd =                                                                                                                                \
+            (((unsigned long)(pe_copy_cmd)) & ~PE_COPY_CMD_TEX_FORMATH_MASK) | (((unsigned long)(tex_formatH)) << PE_COPY_CMD_TEX_FORMATH_SHIFT);    \
+    }
+
+#define PE_COPY_CMD_CCV_SIZE 2
+#define PE_COPY_CMD_CCV_SHIFT 15
+#define PE_COPY_CMD_CCV_MASK 0x00018000
+#define PE_COPY_CMD_GET_CCV(pe_copy_cmd) ((((unsigned long)(pe_copy_cmd)) & PE_COPY_CMD_CCV_MASK) >> PE_COPY_CMD_CCV_SHIFT)
+#define PE_COPY_CMD_SET_CCV(pe_copy_cmd, ccv)                                                                                                        \
+    { pe_copy_cmd = (((unsigned long)(pe_copy_cmd)) & ~PE_COPY_CMD_CCV_MASK) | (((unsigned long)(ccv)) << PE_COPY_CMD_CCV_SHIFT); }
+
+#define PE_COPY_CMD_CLAMP_TOP_SIZE 1
+#define PE_COPY_CMD_CLAMP_TOP_SHIFT 0
+#define PE_COPY_CMD_CLAMP_TOP_MASK 0x00000001
+#define PE_COPY_CMD_GET_CLAMP_TOP(pe_copy_cmd) ((((unsigned long)(pe_copy_cmd)) & PE_COPY_CMD_CLAMP_TOP_MASK) >> PE_COPY_CMD_CLAMP_TOP_SHIFT)
+#define PE_COPY_CMD_SET_CLAMP_TOP(pe_copy_cmd, clamp_top)                                                                                            \
+    { pe_copy_cmd = (((unsigned long)(pe_copy_cmd)) & ~PE_COPY_CMD_CLAMP_TOP_MASK) | (((unsigned long)(clamp_top)) << PE_COPY_CMD_CLAMP_TOP_SHIFT); }
+
+#define PE_COPY_CMD_CLAMP_BOTTOM_SIZE 1
+#define PE_COPY_CMD_CLAMP_BOTTOM_SHIFT 1
+#define PE_COPY_CMD_CLAMP_BOTTOM_MASK 0x00000002
+#define PE_COPY_CMD_GET_CLAMP_BOTTOM(pe_copy_cmd) ((((unsigned long)(pe_copy_cmd)) & PE_COPY_CMD_CLAMP_BOTTOM_MASK) >> PE_COPY_CMD_CLAMP_BOTTOM_SHIFT)
+#define PE_COPY_CMD_SET_CLAMP_BOTTOM(pe_copy_cmd, clamp_bottom)                                                                                      \
+    {                                                                                                                                                \
+        pe_copy_cmd =                                                                                                                                \
+            (((unsigned long)(pe_copy_cmd)) & ~PE_COPY_CMD_CLAMP_BOTTOM_MASK) | (((unsigned long)(clamp_bottom)) << PE_COPY_CMD_CLAMP_BOTTOM_SHIFT); \
+    }
+
+#define PE_COPY_SCALE_SCALE_SIZE 9
+#define PE_COPY_SCALE_SCALE_SHIFT 0
+#define PE_COPY_SCALE_SCALE_MASK 0x000001ff
+#define PE_COPY_SCALE_GET_SCALE(pe_copy_scale) ((((unsigned long)(pe_copy_scale)) & PE_COPY_SCALE_SCALE_MASK) >> PE_COPY_SCALE_SCALE_SHIFT)
+#define PE_COPY_SCALE_SET_SCALE(pe_copy_scale, scale)                                                                                                \
+    { pe_copy_scale = (((unsigned long)(pe_copy_scale)) & ~PE_COPY_SCALE_SCALE_MASK) | (((unsigned long)(scale)) << PE_COPY_SCALE_SCALE_SHIFT); }
+
+#define PE_COPY_SCALE_RID_SIZE 8
+#define PE_COPY_SCALE_RID_SHIFT 24
+#define PE_COPY_SCALE_RID_MASK 0xff000000
+#define PE_COPY_SCALE_GET_RID(pe_copy_scale) ((((unsigned long)(pe_copy_scale)) & PE_COPY_SCALE_RID_MASK) >> PE_COPY_SCALE_RID_SHIFT)
+#define PE_COPY_SCALE_SET_RID(pe_copy_scale, rid)                                                                                                    \
+    { pe_copy_scale = (((unsigned long)(pe_copy_scale)) & ~PE_COPY_SCALE_RID_MASK) | (((unsigned long)(rid)) << PE_COPY_SCALE_RID_SHIFT); }
+
+#define PE_COPY_CMD_VERTICAL_SCALE_SIZE 1
+#define PE_COPY_CMD_VERTICAL_SCALE_SHIFT 10
+#define PE_COPY_CMD_VERTICAL_SCALE_MASK 0x00000400
+#define PE_COPY_CMD_GET_VERTICAL_SCALE(pe_copy_cmd)                                                                                                  \
+    ((((unsigned long)(pe_copy_cmd)) & PE_COPY_CMD_VERTICAL_SCALE_MASK) >> PE_COPY_CMD_VERTICAL_SCALE_SHIFT)
+#define PE_COPY_CMD_SET_VERTICAL_SCALE(pe_copy_cmd, vertical_scale)                                                                                  \
+    {                                                                                                                                                \
+        pe_copy_cmd = (((unsigned long)(pe_copy_cmd)) & ~PE_COPY_CMD_VERTICAL_SCALE_MASK) |                                                          \
+                      (((unsigned long)(vertical_scale)) << PE_COPY_CMD_VERTICAL_SCALE_SHIFT);                                                       \
+    }
+
+#define PE_COPY_CLEAR_COLOR_AR_RED_SIZE 8
+#define PE_COPY_CLEAR_COLOR_AR_RED_SHIFT 0
+#define PE_COPY_CLEAR_COLOR_AR_RED_MASK 0x000000ff
+#define PE_COPY_CLEAR_COLOR_AR_GET_RED(pe_copy_clear_color_ar)                                                                                       \
+    ((((unsigned long)(pe_copy_clear_color_ar)) & PE_COPY_CLEAR_COLOR_AR_RED_MASK) >> PE_COPY_CLEAR_COLOR_AR_RED_SHIFT)
+#define PE_COPY_CLEAR_COLOR_AR_SET_RED(pe_copy_clear_color_ar, red)                                                                                  \
+    {                                                                                                                                                \
+        pe_copy_clear_color_ar = (((unsigned long)(pe_copy_clear_color_ar)) & ~PE_COPY_CLEAR_COLOR_AR_RED_MASK) |                                    \
+                                 (((unsigned long)(red)) << PE_COPY_CLEAR_COLOR_AR_RED_SHIFT);                                                       \
+    }
+
+#define PE_COPY_CLEAR_COLOR_AR_ALPHA_SIZE 8
+#define PE_COPY_CLEAR_COLOR_AR_ALPHA_SHIFT 8
+#define PE_COPY_CLEAR_COLOR_AR_ALPHA_MASK 0x0000ff00
+#define PE_COPY_CLEAR_COLOR_AR_GET_ALPHA(pe_copy_clear_color_ar)                                                                                     \
+    ((((unsigned long)(pe_copy_clear_color_ar)) & PE_COPY_CLEAR_COLOR_AR_ALPHA_MASK) >> PE_COPY_CLEAR_COLOR_AR_ALPHA_SHIFT)
+#define PE_COPY_CLEAR_COLOR_AR_SET_ALPHA(pe_copy_clear_color_ar, alpha)                                                                              \
+    {                                                                                                                                                \
+        pe_copy_clear_color_ar = (((unsigned long)(pe_copy_clear_color_ar)) & ~PE_COPY_CLEAR_COLOR_AR_ALPHA_MASK) |                                  \
+                                 (((unsigned long)(alpha)) << PE_COPY_CLEAR_COLOR_AR_ALPHA_SHIFT);                                                   \
+    }
+
+#define PE_COPY_CLEAR_COLOR_AR_RID_SIZE 8
+#define PE_COPY_CLEAR_COLOR_AR_RID_SHIFT 24
+#define PE_COPY_CLEAR_COLOR_AR_RID_MASK 0xff000000
+#define PE_COPY_CLEAR_COLOR_AR_GET_RID(pe_copy_clear_color_ar)                                                                                       \
+    ((((unsigned long)(pe_copy_clear_color_ar)) & PE_COPY_CLEAR_COLOR_AR_RID_MASK) >> PE_COPY_CLEAR_COLOR_AR_RID_SHIFT)
+#define PE_COPY_CLEAR_COLOR_AR_SET_RID(pe_copy_clear_color_ar, rid)                                                                                  \
+    {                                                                                                                                                \
+        pe_copy_clear_color_ar = (((unsigned long)(pe_copy_clear_color_ar)) & ~PE_COPY_CLEAR_COLOR_AR_RID_MASK) |                                    \
+                                 (((unsigned long)(rid)) << PE_COPY_CLEAR_COLOR_AR_RID_SHIFT);                                                       \
+    }
+
+#define PE_COPY_CLEAR_COLOR_GB_BLUE_SIZE 8
+#define PE_COPY_CLEAR_COLOR_GB_BLUE_SHIFT 0
+#define PE_COPY_CLEAR_COLOR_GB_BLUE_MASK 0x000000ff
+#define PE_COPY_CLEAR_COLOR_GB_GET_BLUE(pe_copy_clear_color_gb)                                                                                      \
+    ((((unsigned long)(pe_copy_clear_color_gb)) & PE_COPY_CLEAR_COLOR_GB_BLUE_MASK) >> PE_COPY_CLEAR_COLOR_GB_BLUE_SHIFT)
+#define PE_COPY_CLEAR_COLOR_GB_SET_BLUE(pe_copy_clear_color_gb, blue)                                                                                \
+    {                                                                                                                                                \
+        pe_copy_clear_color_gb = (((unsigned long)(pe_copy_clear_color_gb)) & ~PE_COPY_CLEAR_COLOR_GB_BLUE_MASK) |                                   \
+                                 (((unsigned long)(blue)) << PE_COPY_CLEAR_COLOR_GB_BLUE_SHIFT);                                                     \
+    }
+
+#define PE_COPY_CLEAR_COLOR_GB_GREEN_SIZE 8
+#define PE_COPY_CLEAR_COLOR_GB_GREEN_SHIFT 8
+#define PE_COPY_CLEAR_COLOR_GB_GREEN_MASK 0x0000ff00
+#define PE_COPY_CLEAR_COLOR_GB_GET_GREEN(pe_copy_clear_color_gb)                                                                                     \
+    ((((unsigned long)(pe_copy_clear_color_gb)) & PE_COPY_CLEAR_COLOR_GB_GREEN_MASK) >> PE_COPY_CLEAR_COLOR_GB_GREEN_SHIFT)
+#define PE_COPY_CLEAR_COLOR_GB_SET_GREEN(pe_copy_clear_color_gb, green)                                                                              \
+    {                                                                                                                                                \
+        pe_copy_clear_color_gb = (((unsigned long)(pe_copy_clear_color_gb)) & ~PE_COPY_CLEAR_COLOR_GB_GREEN_MASK) |                                  \
+                                 (((unsigned long)(green)) << PE_COPY_CLEAR_COLOR_GB_GREEN_SHIFT);                                                   \
+    }
+
+#define PE_COPY_CLEAR_COLOR_GB_RID_SIZE 8
+#define PE_COPY_CLEAR_COLOR_GB_RID_SHIFT 24
+#define PE_COPY_CLEAR_COLOR_GB_RID_MASK 0xff000000
+#define PE_COPY_CLEAR_COLOR_GB_GET_RID(pe_copy_clear_color_gb)                                                                                       \
+    ((((unsigned long)(pe_copy_clear_color_gb)) & PE_COPY_CLEAR_COLOR_GB_RID_MASK) >> PE_COPY_CLEAR_COLOR_GB_RID_SHIFT)
+#define PE_COPY_CLEAR_COLOR_GB_SET_RID(pe_copy_clear_color_gb, rid)                                                                                  \
+    {                                                                                                                                                \
+        pe_copy_clear_color_gb = (((unsigned long)(pe_copy_clear_color_gb)) & ~PE_COPY_CLEAR_COLOR_GB_RID_MASK) |                                    \
+                                 (((unsigned long)(rid)) << PE_COPY_CLEAR_COLOR_GB_RID_SHIFT);                                                       \
+    }
+
+#define PE_COPY_CLEAR_Z_DATA_SIZE 24
+#define PE_COPY_CLEAR_Z_DATA_SHIFT 0
+#define PE_COPY_CLEAR_Z_DATA_MASK 0x00ffffff
+#define PE_COPY_CLEAR_Z_GET_DATA(pe_copy_clear_z) ((((unsigned long)(pe_copy_clear_z)) & PE_COPY_CLEAR_Z_DATA_MASK) >> PE_COPY_CLEAR_Z_DATA_SHIFT)
+#define PE_COPY_CLEAR_Z_SET_DATA(pe_copy_clear_z, data)                                                                                              \
+    { pe_copy_clear_z = (((unsigned long)(pe_copy_clear_z)) & ~PE_COPY_CLEAR_Z_DATA_MASK) | (((unsigned long)(data)) << PE_COPY_CLEAR_Z_DATA_SHIFT); }
+
+#define PE_COPY_CLEAR_Z_RID_SIZE 8
+#define PE_COPY_CLEAR_Z_RID_SHIFT 24
+#define PE_COPY_CLEAR_Z_RID_MASK 0xff000000
+#define PE_COPY_CLEAR_Z_GET_RID(pe_copy_clear_z) ((((unsigned long)(pe_copy_clear_z)) & PE_COPY_CLEAR_Z_RID_MASK) >> PE_COPY_CLEAR_Z_RID_SHIFT)
+#define PE_COPY_CLEAR_Z_SET_RID(pe_copy_clear_z, rid)                                                                                                \
+    { pe_copy_clear_z = (((unsigned long)(pe_copy_clear_z)) & ~PE_COPY_CLEAR_Z_RID_MASK) | (((unsigned long)(rid)) << PE_COPY_CLEAR_Z_RID_SHIFT); }
+
+#define PE_COPY_VFILTER0_RID_SIZE 8
+#define PE_COPY_VFILTER0_RID_SHIFT 24
+#define PE_COPY_VFILTER0_RID_MASK 0xff000000
+#define PE_COPY_VFILTER0_GET_RID(pe_copy_vfilter0) ((((unsigned long)(pe_copy_vfilter0)) & PE_COPY_VFILTER0_RID_MASK) >> PE_COPY_VFILTER0_RID_SHIFT)
+#define PE_COPY_VFILTER0_SET_RID(pe_copy_vfilter0, rid)                                                                                              \
+    {                                                                                                                                                \
+        pe_copy_vfilter0 =                                                                                                                           \
+            (((unsigned long)(pe_copy_vfilter0)) & ~PE_COPY_VFILTER0_RID_MASK) | (((unsigned long)(rid)) << PE_COPY_VFILTER0_RID_SHIFT);             \
+    }
+
+#define PE_COPY_VFILTER1_RID_SIZE 8
+#define PE_COPY_VFILTER1_RID_SHIFT 24
+#define PE_COPY_VFILTER1_RID_MASK 0xff000000
+#define PE_COPY_VFILTER1_GET_RID(pe_copy_vfilter1) ((((unsigned long)(pe_copy_vfilter1)) & PE_COPY_VFILTER1_RID_MASK) >> PE_COPY_VFILTER1_RID_SHIFT)
+#define PE_COPY_VFILTER1_SET_RID(pe_copy_vfilter1, rid)                                                                                              \
+    {                                                                                                                                                \
+        pe_copy_vfilter1 =                                                                                                                           \
+            (((unsigned long)(pe_copy_vfilter1)) & ~PE_COPY_VFILTER1_RID_MASK) | (((unsigned long)(rid)) << PE_COPY_VFILTER1_RID_SHIFT);             \
+    }
+
+#define PE_COPY_VFILTER0_COEFF0_SIZE 6
+#define PE_COPY_VFILTER0_COEFF0_SHIFT 0
+#define PE_COPY_VFILTER0_COEFF0_MASK 0x0000003f
+#define PE_COPY_VFILTER0_GET_COEFF0(pe_copy_vfilter0)                                                                                                \
+    ((((unsigned long)(pe_copy_vfilter0)) & PE_COPY_VFILTER0_COEFF0_MASK) >> PE_COPY_VFILTER0_COEFF0_SHIFT)
+#define PE_COPY_VFILTER0_SET_COEFF0(pe_copy_vfilter0, coeff0)                                                                                        \
+    {                                                                                                                                                \
+        pe_copy_vfilter0 =                                                                                                                           \
+            (((unsigned long)(pe_copy_vfilter0)) & ~PE_COPY_VFILTER0_COEFF0_MASK) | (((unsigned long)(coeff0)) << PE_COPY_VFILTER0_COEFF0_SHIFT);    \
+    }
+
+#define PE_COPY_VFILTER0_COEFF1_SIZE 6
+#define PE_COPY_VFILTER0_COEFF1_SHIFT 6
+#define PE_COPY_VFILTER0_COEFF1_MASK 0x00000fc0
+#define PE_COPY_VFILTER0_GET_COEFF1(pe_copy_vfilter0)                                                                                                \
+    ((((unsigned long)(pe_copy_vfilter0)) & PE_COPY_VFILTER0_COEFF1_MASK) >> PE_COPY_VFILTER0_COEFF1_SHIFT)
+#define PE_COPY_VFILTER0_SET_COEFF1(pe_copy_vfilter0, coeff1)                                                                                        \
+    {                                                                                                                                                \
+        pe_copy_vfilter0 =                                                                                                                           \
+            (((unsigned long)(pe_copy_vfilter0)) & ~PE_COPY_VFILTER0_COEFF1_MASK) | (((unsigned long)(coeff1)) << PE_COPY_VFILTER0_COEFF1_SHIFT);    \
+    }
+
+#define PE_COPY_VFILTER0_COEFF2_SIZE 6
+#define PE_COPY_VFILTER0_COEFF2_SHIFT 12
+#define PE_COPY_VFILTER0_COEFF2_MASK 0x0003f000
+#define PE_COPY_VFILTER0_GET_COEFF2(pe_copy_vfilter0)                                                                                                \
+    ((((unsigned long)(pe_copy_vfilter0)) & PE_COPY_VFILTER0_COEFF2_MASK) >> PE_COPY_VFILTER0_COEFF2_SHIFT)
+#define PE_COPY_VFILTER0_SET_COEFF2(pe_copy_vfilter0, coeff2)                                                                                        \
+    {                                                                                                                                                \
+        pe_copy_vfilter0 =                                                                                                                           \
+            (((unsigned long)(pe_copy_vfilter0)) & ~PE_COPY_VFILTER0_COEFF2_MASK) | (((unsigned long)(coeff2)) << PE_COPY_VFILTER0_COEFF2_SHIFT);    \
+    }
+
+#define PE_COPY_VFILTER0_COEFF3_SIZE 6
+#define PE_COPY_VFILTER0_COEFF3_SHIFT 18
+#define PE_COPY_VFILTER0_COEFF3_MASK 0x00fc0000
+#define PE_COPY_VFILTER0_GET_COEFF3(pe_copy_vfilter0)                                                                                                \
+    ((((unsigned long)(pe_copy_vfilter0)) & PE_COPY_VFILTER0_COEFF3_MASK) >> PE_COPY_VFILTER0_COEFF3_SHIFT)
+#define PE_COPY_VFILTER0_SET_COEFF3(pe_copy_vfilter0, coeff3)                                                                                        \
+    {                                                                                                                                                \
+        pe_copy_vfilter0 =                                                                                                                           \
+            (((unsigned long)(pe_copy_vfilter0)) & ~PE_COPY_VFILTER0_COEFF3_MASK) | (((unsigned long)(coeff3)) << PE_COPY_VFILTER0_COEFF3_SHIFT);    \
+    }
+
+#define PE_COPY_VFILTER1_COEFF4_SIZE 6
+#define PE_COPY_VFILTER1_COEFF4_SHIFT 0
+#define PE_COPY_VFILTER1_COEFF4_MASK 0x0000003f
+#define PE_COPY_VFILTER1_GET_COEFF4(pe_copy_vfilter1)                                                                                                \
+    ((((unsigned long)(pe_copy_vfilter1)) & PE_COPY_VFILTER1_COEFF4_MASK) >> PE_COPY_VFILTER1_COEFF4_SHIFT)
+#define PE_COPY_VFILTER1_SET_COEFF4(pe_copy_vfilter1, coeff4)                                                                                        \
+    {                                                                                                                                                \
+        pe_copy_vfilter1 =                                                                                                                           \
+            (((unsigned long)(pe_copy_vfilter1)) & ~PE_COPY_VFILTER1_COEFF4_MASK) | (((unsigned long)(coeff4)) << PE_COPY_VFILTER1_COEFF4_SHIFT);    \
+    }
+
+#define PE_COPY_VFILTER1_COEFF5_SIZE 6
+#define PE_COPY_VFILTER1_COEFF5_SHIFT 6
+#define PE_COPY_VFILTER1_COEFF5_MASK 0x00000fc0
+#define PE_COPY_VFILTER1_GET_COEFF5(pe_copy_vfilter1)                                                                                                \
+    ((((unsigned long)(pe_copy_vfilter1)) & PE_COPY_VFILTER1_COEFF5_MASK) >> PE_COPY_VFILTER1_COEFF5_SHIFT)
+#define PE_COPY_VFILTER1_SET_COEFF5(pe_copy_vfilter1, coeff5)                                                                                        \
+    {                                                                                                                                                \
+        pe_copy_vfilter1 =                                                                                                                           \
+            (((unsigned long)(pe_copy_vfilter1)) & ~PE_COPY_VFILTER1_COEFF5_MASK) | (((unsigned long)(coeff5)) << PE_COPY_VFILTER1_COEFF5_SHIFT);    \
+    }
+#define PE_COPY_VFILTER1_COEFF6_SIZE 6
+#define PE_COPY_VFILTER1_COEFF6_SHIFT 12
+#define PE_COPY_VFILTER1_COEFF6_MASK 0x0003f000
+#define PE_COPY_VFILTER1_GET_COEFF6(pe_copy_vfilter1)                                                                                                \
+    ((((unsigned long)(pe_copy_vfilter1)) & PE_COPY_VFILTER1_COEFF6_MASK) >> PE_COPY_VFILTER1_COEFF6_SHIFT)
+#define PE_COPY_VFILTER1_SET_COEFF6(pe_copy_vfilter1, coeff6)                                                                                        \
+    {                                                                                                                                                \
+        pe_copy_vfilter1 =                                                                                                                           \
+            (((unsigned long)(pe_copy_vfilter1)) & ~PE_COPY_VFILTER1_COEFF6_MASK) | (((unsigned long)(coeff6)) << PE_COPY_VFILTER1_COEFF6_SHIFT);    \
+    }
+
+#define PE_COPY_DST_BASE_BASE_SIZE 24
+#define PE_COPY_DST_BASE_BASE_SHIFT 0
+#define PE_COPY_DST_BASE_BASE_MASK 0x00ffffff
+#define PE_COPY_DST_BASE_GET_BASE(pe_copy_dst_base)                                                                                                  \
+    ((((unsigned long)(pe_copy_dst_base)) & PE_COPY_DST_BASE_BASE_MASK) >> PE_COPY_DST_BASE_BASE_SHIFT)
+#define PE_COPY_DST_BASE_SET_BASE(pe_copy_dst_base, base)                                                                                            \
+    {                                                                                                                                                \
+        pe_copy_dst_base =                                                                                                                           \
+            (((unsigned long)(pe_copy_dst_base)) & ~PE_COPY_DST_BASE_BASE_MASK) | (((unsigned long)(base)) << PE_COPY_DST_BASE_BASE_SHIFT);          \
+    }
+
+#define PE_COPY_DST_BASE_RID_SIZE 8
+#define PE_COPY_DST_BASE_RID_SHIFT 24
+#define PE_COPY_DST_BASE_RID_MASK 0xff000000
+#define PE_COPY_DST_BASE_GET_RID(pe_copy_dst_base) ((((unsigned long)(pe_copy_dst_base)) & PE_COPY_DST_BASE_RID_MASK) >> PE_COPY_DST_BASE_RID_SHIFT)
+#define PE_COPY_DST_BASE_SET_RID(pe_copy_dst_base, rid)                                                                                              \
+    {                                                                                                                                                \
+        pe_copy_dst_base =                                                                                                                           \
+            (((unsigned long)(pe_copy_dst_base)) & ~PE_COPY_DST_BASE_RID_MASK) | (((unsigned long)(rid)) << PE_COPY_DST_BASE_RID_SHIFT);             \
+    }
+
+#define PE_COPY_CMD_CLEAR_SIZE 1
+#define PE_COPY_CMD_CLEAR_SHIFT 11
+#define PE_COPY_CMD_CLEAR_MASK 0x00000800
+#define PE_COPY_CMD_GET_CLEAR(pe_copy_cmd) ((((unsigned long)(pe_copy_cmd)) & PE_COPY_CMD_CLEAR_MASK) >> PE_COPY_CMD_CLEAR_SHIFT)
+#define PE_COPY_CMD_SET_CLEAR(pe_copy_cmd, clear)                                                                                                    \
+    { pe_copy_cmd = (((unsigned long)(pe_copy_cmd)) & ~PE_COPY_CMD_CLEAR_MASK) | (((unsigned long)(clear)) << PE_COPY_CMD_CLEAR_SHIFT); }
+
+#define PE_COPY_CMD_OPCODE_SIZE 1
+#define PE_COPY_CMD_OPCODE_SHIFT 14
+#define PE_COPY_CMD_OPCODE_MASK 0x00004000
+#define PE_COPY_CMD_GET_OPCODE(pe_copy_cmd) ((((unsigned long)(pe_copy_cmd)) & PE_COPY_CMD_OPCODE_MASK) >> PE_COPY_CMD_OPCODE_SHIFT)
+#define PE_COPY_CMD_SET_OPCODE(pe_copy_cmd, opcode)                                                                                                  \
+    { pe_copy_cmd = (((unsigned long)(pe_copy_cmd)) & ~PE_COPY_CMD_OPCODE_MASK) | (((unsigned long)(opcode)) << PE_COPY_CMD_OPCODE_SHIFT); }
+
+#define PE_COPY_CMD_RID_SIZE 8
+#define PE_COPY_CMD_RID_SHIFT 24
+#define PE_COPY_CMD_RID_MASK 0xff000000
+#define PE_COPY_CMD_GET_RID(pe_copy_cmd) ((((unsigned long)(pe_copy_cmd)) & PE_COPY_CMD_RID_MASK) >> PE_COPY_CMD_RID_SHIFT)
+#define PE_COPY_CMD_SET_RID(pe_copy_cmd, rid)                                                                                                        \
+    { pe_copy_cmd = (((unsigned long)(pe_copy_cmd)) & ~PE_COPY_CMD_RID_MASK) | (((unsigned long)(rid)) << PE_COPY_CMD_RID_SHIFT); }
+
+#define PE_XBOUND_LEFT_SIZE 10
+#define PE_XBOUND_LEFT_SHIFT 0
+#define PE_XBOUND_LEFT_MASK 0x000003ff
+#define PE_XBOUND_GET_LEFT(pe_xbound) ((((unsigned long)(pe_xbound)) & PE_XBOUND_LEFT_MASK) >> PE_XBOUND_LEFT_SHIFT)
+#define PE_XBOUND_SET_LEFT(pe_xbound, left)                                                                                                          \
+    { pe_xbound = (((unsigned long)(pe_xbound)) & ~PE_XBOUND_LEFT_MASK) | (((unsigned long)(left)) << PE_XBOUND_LEFT_SHIFT); }
+#define PE_XBOUND_RIGHT_SIZE 10
+#define PE_XBOUND_RIGHT_SHIFT 10
+#define PE_XBOUND_RIGHT_MASK 0x000ffc00
+#define PE_XBOUND_GET_RIGHT(pe_xbound) ((((unsigned long)(pe_xbound)) & PE_XBOUND_RIGHT_MASK) >> PE_XBOUND_RIGHT_SHIFT)
+#define PE_XBOUND_SET_RIGHT(pe_xbound, right)                                                                                                        \
+    { pe_xbound = (((unsigned long)(pe_xbound)) & ~PE_XBOUND_RIGHT_MASK) | (((unsigned long)(right)) << PE_XBOUND_RIGHT_SHIFT); }
+
+#define PE_XBOUND_RID_SIZE 8
+#define PE_XBOUND_RID_SHIFT 24
+#define PE_XBOUND_RID_MASK 0xff000000
+#define PE_XBOUND_GET_RID(pe_xbound) ((((unsigned long)(pe_xbound)) & PE_XBOUND_RID_MASK) >> PE_XBOUND_RID_SHIFT)
+#define PE_XBOUND_SET_RID(pe_xbound, rid)                                                                                                            \
+    { pe_xbound = (((unsigned long)(pe_xbound)) & ~PE_XBOUND_RID_MASK) | (((unsigned long)(rid)) << PE_XBOUND_RID_SHIFT); }
+
+#define PE_XBOUND_TOTAL_SIZE 32
+#define PE_XBOUND(left, right, rid)                                                                                                                  \
+    ((((unsigned long)(left)) << PE_XBOUND_LEFT_SHIFT) | (((unsigned long)(right)) << PE_XBOUND_RIGHT_SHIFT) |                                       \
+     (((unsigned long)(rid)) << PE_XBOUND_RID_SHIFT))
+
+#define PE_YBOUND_TOP_SIZE 10
+#define PE_YBOUND_TOP_SHIFT 0
+#define PE_YBOUND_TOP_MASK 0x000003ff
+#define PE_YBOUND_GET_TOP(pe_ybound) ((((unsigned long)(pe_ybound)) & PE_YBOUND_TOP_MASK) >> PE_YBOUND_TOP_SHIFT)
+#define PE_YBOUND_SET_TOP(pe_ybound, top)                                                                                                            \
+    { pe_ybound = (((unsigned long)(pe_ybound)) & ~PE_YBOUND_TOP_MASK) | (((unsigned long)(top)) << PE_YBOUND_TOP_SHIFT); }
+#define PE_YBOUND_BOTTOM_SIZE 10
+#define PE_YBOUND_BOTTOM_SHIFT 10
+#define PE_YBOUND_BOTTOM_MASK 0x000ffc00
+#define PE_YBOUND_GET_BOTTOM(pe_ybound) ((((unsigned long)(pe_ybound)) & PE_YBOUND_BOTTOM_MASK) >> PE_YBOUND_BOTTOM_SHIFT)
+#define PE_YBOUND_SET_BOTTOM(pe_ybound, bottom)                                                                                                      \
+    { pe_ybound = (((unsigned long)(pe_ybound)) & ~PE_YBOUND_BOTTOM_MASK) | (((unsigned long)(bottom)) << PE_YBOUND_BOTTOM_SHIFT); }
+#define PE_YBOUND_PAD0_SIZE 4
+#define PE_YBOUND_PAD0_SHIFT 20
+#define PE_YBOUND_PAD0_MASK 0x00f00000
+#define PE_YBOUND_GET_PAD0(pe_ybound) ((((unsigned long)(pe_ybound)) & PE_YBOUND_PAD0_MASK) >> PE_YBOUND_PAD0_SHIFT)
+#define PE_YBOUND_SET_PAD0(pe_ybound, pad0)                                                                                                          \
+    { pe_ybound = (((unsigned long)(pe_ybound)) & ~PE_YBOUND_PAD0_MASK) | (((unsigned long)(pad0)) << PE_YBOUND_PAD0_SHIFT); }
+#define PE_YBOUND_RID_SIZE 8
+#define PE_YBOUND_RID_SHIFT 24
+#define PE_YBOUND_RID_MASK 0xff000000
+#define PE_YBOUND_GET_RID(pe_ybound) ((((unsigned long)(pe_ybound)) & PE_YBOUND_RID_MASK) >> PE_YBOUND_RID_SHIFT)
+#define PE_YBOUND_SET_RID(pe_ybound, rid)                                                                                                            \
+    { pe_ybound = (((unsigned long)(pe_ybound)) & ~PE_YBOUND_RID_MASK) | (((unsigned long)(rid)) << PE_YBOUND_RID_SHIFT); }
+#define PE_YBOUND_TOTAL_SIZE 32
+#define PE_YBOUND(top, bottom, rid)                                                                                                                  \
+    ((((unsigned long)(top)) << PE_YBOUND_TOP_SHIFT) | (((unsigned long)(bottom)) << PE_YBOUND_BOTTOM_SHIFT) |                                       \
+     (((unsigned long)(rid)) << PE_YBOUND_RID_SHIFT))
+
 #endif  // PE_REG_H
