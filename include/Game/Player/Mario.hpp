@@ -322,8 +322,8 @@ public:
     u32 getCurrentStatus() const;
     bool isStatusActive(u32) const;
 
-    bool checkBeeStick();
-    bool tryBeeStick(const HitSensor*);
+    void checkBeeStick();
+    void tryBeeStick(const HitSensor*);
 
     void startTalk(const LiveActor*);
     void endTalk();
@@ -523,7 +523,7 @@ public:
         unsigned _35 : 1;
         unsigned _36 : 1;
         unsigned _37 : 1;
-        unsigned _38 : 1;
+        unsigned _38 : 1;  // rlwimi rX, rX, 7, 24, 24
         unsigned _39 : 1;
         unsigned _3A : 1;
         unsigned _3B : 1;
@@ -566,9 +566,15 @@ public:
         unsigned _1F : 1;
     };
 
-    inline const MovementStates& getMovementStates() const { return mMovementStates; }
-    inline const DrawStates& getDrawStates() const { return mDrawStates; }
-    inline const DrawStates& getPrevDrawStates() const { return mPrevDrawStates; }
+    inline const MovementStates& getMovementStates() const {
+        return mMovementStates;
+    }
+    inline const DrawStates& getDrawStates() const {
+        return mDrawStates;
+    }
+    inline const DrawStates& getPrevDrawStates() const {
+        return mPrevDrawStates;
+    }
 
     union {
         /* 0x008 */ MovementStates mMovementStates;
