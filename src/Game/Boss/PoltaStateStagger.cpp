@@ -31,12 +31,8 @@ void PoltaStateStagger::exeWait() {
     }
     TVec3f v2;
     
-    Polta* poltaTemp = getPolta(); //needs to be here for instruction order
-    
-    TVec3f v20(getPolta()->_E0);
-    JMathInlineVEC::PSVECSubtract(&poltaTemp->mPosition, &v20, &v20);
     float v17;
-    MR::separateScalarAndDirection(&v17, &v2, v20);
+    MR::separateScalarAndDirection(&v17, &v2, getPolta()->_E0 - getPolta()->mPosition);
 
     if (v17 >= 1800.0f) {
         MR::addVelocity(getPolta(), v2.multInLine(v17 - 1800.0f));
