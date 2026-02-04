@@ -7,7 +7,7 @@
 #include "Game/Util/ObjUtil.hpp"
 
 namespace {
-    static const f32 sMeterUpSpeed = 150.0f;
+    static const f32 sMeterUpSpeed = 0.05f;
 }  // namespace
 
 BigBubbleGoalArea::BigBubbleGoalArea(int type, const char* pName) : AreaObj(type, pName), mTranslation(0.0f, 0.0f, 0.0f) {
@@ -26,8 +26,8 @@ void BigBubbleGoalArea::init(const JMapInfoIter& rIter) {
 
 void BigBubbleGoalArea::addBubble(BigBubble* pBubble) {
     if (isValidSwitchA() && !isOnSwitchA()) {
-        f32 bubble21C = pBubble->mVolume;
-        mMeterAmount += bubble21C;
+        f32 volume = pBubble->mVolume;
+        mMeterAmount += volume;
         if (mMeterAmount >= mMeterCapacity) {
             mMeterAmount = mMeterCapacity;
         }
@@ -43,7 +43,7 @@ void BigBubbleGoalArea::movement() {
         return;
     }
 
-    mMeterDisplayAmount += 0.05f;
+    mMeterDisplayAmount += sMeterUpSpeed;
 
     if (mMeterDisplayAmount >= mMeterCapacity) {
         mMeterDisplayAmount = mMeterCapacity;
