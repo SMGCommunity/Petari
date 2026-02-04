@@ -3,9 +3,20 @@
 #include "revolution/vf/pf_entry_iterator.h"
 #include "revolution/vf/pf_fat.h"
 #include "revolution/vf/pf_path.h"
+#include "revolution/vf/pf_sector.h"
 #include "revolution/vf/pf_service.h"
 #include "revolution/vf/pf_str.h"
 #include "revolution/vf/pf_volume.h"
+
+#define GET_U16_LE(addr) ((u16)(__rlwinm(*(u16*)(addr), 24, 24, 31) | __rlwinm(*(u16*)(addr), 8, 16, 23)))
+
+#define GET_U32_LE(addr) ((*(u32*)(addr) << 24) | __rlwinm(*(u32*)(addr), 8, 8, 15) | ((*(u32*)(addr) >> 24) | __rlwinm(*(u32*)(addr), 24, 16, 23)))
+
+#define SET_U16_LE(addr, val) (*(u16*)(addr) = (u16)(__rlwinm((val), 24, 24, 31) | __rlwinm((val), 8, 16, 23)))
+
+#define SET_U32_LE(addr, val)                                                                                                                        \
+    (*(u32*)(addr) =                                                                                                                                 \
+         (u32)(__rlwimi(__rlwinm((u32)(val), 8, 8, 15), (u32)(val), 24, 0, 7) | __rlwimi(__rlwinm((u32)(val), 24, 16, 23), (u32)(val), 8, 24, 31)))
 
 static void VFiPFENT_storeShortNameToBuf(u8* buf, const PF_DIR_ENT* p_ent) {
     VFiPFPATH_putShortName(buf, p_ent->short_name, p_ent->attr);
@@ -118,19 +129,19 @@ void VFiPFENT_LoadShortNameFromBuf(PF_DIR_ENT* p_ent, const u8* buf) {
 }
 
 void VFiPFENT_loadEntryNumericFieldsFromBuf(PF_DIR_ENT* p_ent, const u8* buf) {
-    p_ent->attr = buf[0x0B];
-    p_ent->small_letter_flag = buf[0x0C];
-    p_ent->create_time_ms = buf[0x0D];
+    p_ent->attr = buf[11];
+    p_ent->small_letter_flag = buf[12];
+    p_ent->create_time_ms = buf[13];
 
-    p_ent->create_time = __lhbrx((void*)buf, 0x0E);
-    p_ent->create_date = __lhbrx((void*)buf, 0x10);
-    p_ent->access_date = __lhbrx((void*)buf, 0x12);
-    p_ent->modify_time = __lhbrx((void*)buf, 0x16);
-    p_ent->modify_date = __lhbrx((void*)buf, 0x18);
+    p_ent->create_time = GET_U16_LE(&buf[0x0E]);
+    p_ent->create_date = GET_U16_LE(&buf[0x10]);
+    p_ent->access_date = GET_U16_LE(&buf[0x12]);
+    p_ent->modify_time = GET_U16_LE(&buf[0x16]);
+    p_ent->modify_date = GET_U16_LE(&buf[0x18]);
 
-    p_ent->file_size = __lwbrx((void*)buf, 0x1C);
+    p_ent->file_size = GET_U32_LE(&buf[0x1C]);
 
-    p_ent->start_cluster = (__lhbrx((void*)buf, 0x14) << 16) | __lhbrx((void*)buf, 0x1A);
+    p_ent->start_cluster = (u32)GET_U16_LE(&buf[0x14]) << 16 | GET_U16_LE(&buf[0x1A]);
 }
 
 s32 VFiPFENT_LoadLFNEntryFieldsFromBuf(PF_DIR_ENT* p_ent, const u8* buf, u32 is_reverse) {
@@ -331,10 +342,10 @@ s32 VFiPFENT_findEntry(PF_FFD* p_ffd, PF_DIR_ENT* p_ent, u32 index_search_from, 
         return err;
     }
 
-    if (is_found) {
-        return 0;
-    } else {
+    if (!is_found) {
         return 3;
+    } else {
+        return 0;
     }
 }
 
@@ -431,4 +442,129 @@ s32 VFiPFENT_MakeRootDir(PF_VOLUME* p_vol) {
     }
 
     return err;
+}
+
+u32 VFiPFENT_CompareAttr(u8 attr, u32 attr_required) {
+    u32 is_valid;
+    u32 attr_extra;
+
+    attr_extra = attr & 0x7F;
+    is_valid = 0;
+
+    if (attr_extra == 0) {
+        attr_extra = 0x40;
+    }
+
+    if ((attr_extra & 0x10) == 0) {
+        attr_extra |= 0x100;
+    }
+
+    if (attr_required & 0x80) {
+        attr_required &= ~0x80;
+        if (attr_required == (attr_extra & attr_required)) {
+            is_valid = 1;
+        }
+    } else if (attr_required & 0x1000) {
+        attr_required &= ~0x1000u;
+        if ((attr_required & 0x100) == 0) {
+            attr_extra &= ~0x100;
+        }
+        if (attr_extra == attr_required) {
+            is_valid = 1;
+        }
+    } else if (attr_extra & attr_required) {
+        is_valid = 1;
+    }
+
+    return is_valid;
+}
+
+s32 VFiPFENT_compareEntryName(PF_DIR_ENT* p_ent, PF_STR* p_pattern, u8 attr) {
+    s32 is_match = 1;
+    u32 is_short_search;
+
+    if (p_ent->num_entry_LFNs != 0 && p_ent->ordinal == 1 && p_ent->check_sum == VFiPFENT_CalcCheckSum(p_ent)) {
+        if (VFiPFPATH_MatchFileNameWithPattern((s8*)p_ent, p_pattern, 0, 1)) {
+            is_match = 0;
+        } else {
+            is_match = 1;
+        }
+    }
+
+    if (is_match == 1) {
+        if ((VFipf_vol_set.setting & 2) == 2 && (attr & 8) == 0) {
+            is_short_search = 0;
+        } else {
+            is_short_search = 1;
+        }
+
+        if (VFiPFPATH_MatchFileNameWithPattern(p_ent->short_name, p_pattern, is_short_search, 0)) {
+            is_match = 0;
+        }
+    }
+
+    return is_match;
+}
+
+void VFiPFENT_StoreEntryNumericFieldsToBuf(u8* buf, const PF_DIR_ENT* p_ent) {
+    buf[11] = p_ent->attr;
+    buf[12] = p_ent->small_letter_flag;
+    buf[13] = p_ent->create_time_ms;
+
+    SET_U16_LE(&buf[14], p_ent->create_time);
+    SET_U16_LE(&buf[16], p_ent->create_date);
+    SET_U16_LE(&buf[18], p_ent->access_date);
+    SET_U16_LE(&buf[22], p_ent->modify_time);
+    SET_U16_LE(&buf[24], p_ent->modify_date);
+
+    SET_U16_LE(&buf[20], (u16)(p_ent->start_cluster >> 16));
+    SET_U16_LE(&buf[26], (u16)(p_ent->start_cluster));
+
+    SET_U32_LE(&buf[28], p_ent->file_size);
+}
+
+s32 VFiPFENT_UpdateSFNEntry(PF_DIR_ENT* p_ent, u32 flag) {
+    PF_VOLUME* p_vol;
+    s32 err;
+    u32 success_size;
+    u8 buf[32];
+
+    if (!p_ent) {
+        return 10;
+    }
+    if (!p_ent->p_vol) {
+        return 10;
+    }
+
+    p_vol = p_ent->p_vol;
+
+    if (p_ent->entry_sector < p_vol->bpb.first_data_sector - p_vol->bpb.num_root_dir_sectors) {
+        return 28;
+    }
+    if (p_ent->entry_sector >= p_vol->bpb.total_sectors) {
+        return 16;
+    }
+
+    if (p_ent->start_cluster == 1) {
+        return 14;
+    }
+
+    if (flag) {
+        p_ent->attr |= 0x20;
+    }
+
+    VFiPFENT_storeShortNameToBuf(buf, p_ent);
+    VFiPFENT_StoreEntryNumericFieldsToBuf(buf, p_ent);
+
+    err = VFiPFSEC_WriteData(p_vol, buf, p_ent->entry_sector, p_ent->entry_offset, 32, &success_size, 0, 0);
+
+    if (err) {
+        return err;
+    }
+
+    if (success_size != 32) {
+        return 17;
+    } else {
+        return 0;
+    }
 }
