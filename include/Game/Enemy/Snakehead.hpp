@@ -38,6 +38,6 @@ public:
     f32 _D4;
     f32 _D8;
     TVec3f _DC;
-    u32 _E8;
-    LiveActor* mItem;  // 0xEC
+    s32 _E8;
+    BenefitItemObj* mItem;  // 0xEC
 };
