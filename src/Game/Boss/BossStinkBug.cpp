@@ -49,8 +49,8 @@ namespace {
 }  // namespace
 
 BossStinkBug::BossStinkBug(const char* pName)
-    : LiveActor(pName), _8C(0), _94(nullptr), _98(nullptr), _CC(nullptr), _D0(nullptr), _D4(nullptr), _D8(nullptr), _DC(0.0f, 0.0f, 0.0f, 1.0f),
-      _EC(0.0f, 0.0f, 1.0f), _F8(0.0f, 0.0f, 0.0f), _104(-1), _108(0.15f), _10C(1.0f), _110(false), _111(false) {
+    : LiveActor(pName), _8C(0), _94(nullptr), _98(nullptr), _CC(nullptr), mActionSequencer(nullptr), _D4(nullptr), mBombLauncher(nullptr),
+      _DC(0.0f, 0.0f, 0.0f, 1.0f), _EC(0.0f, 0.0f, 1.0f), _F8(0.0f, 0.0f, 0.0f), _104(-1), _108(0.15f), _10C(1.0f), _110(false), _111(false) {
     _9C.identity();
     _90 = new GroundChecker*[6];
 
@@ -99,30 +99,31 @@ void BossStinkBug::init(const JMapInfoIter& rIter) {
     _98 = new ActorJointCtrl(this);
     MR::addBaseMatrixFollowTarget(this, rIter, &_9C, new BossStinkBugFollowValidater(this));
     MR::invalidateClipping(this);
-    _D0 = new BossStinkBugActionSequencer(this, rIter);
+    mActionSequencer = new BossStinkBugActionSequencer(this, rIter);
     _94 = new BossStinkBugBombHolder(this);
     _D4 = MR::createPartsModelMapObj(this, "羽モデル", "BossStinkBugWing", nullptr);
     _D4->initFixedPosition("Switch");
-    _D8 = MR::createPartsModelMapObj(this, "ボム発射口", "BossStinkBugBombLauncher", nullptr);
-    _D8->initFixedPosition("Body");
+    mBombLauncher = MR::createPartsModelMapObj(this, "ボム発射口", "BossStinkBugBombLauncher", nullptr);
+    mBombLauncher->initFixedPosition("Body");
     MR::declarePowerStar(this);
     initSound(12, false);
     MR::startBrk(this, "Normal");
+
     if (MR::useStageSwitchReadA(this, rIter)) {
         MR::listenStageSwitchOnA(this, MR::Functor_Inline(this, &start));
         makeActorDead();
     } else {
         makeActorAppeared();
     }
+
     MR::useStageSwitchWriteDead(this, rIter);
 }
 
 void BossStinkBug::start() {
-    if(_D0->startAction()) {
+    if (mActionSequencer->startAction()) {
         appear();
     }
 }
-
 
 void BossStinkBug::initCamera(const JMapInfoIter& rIter) {
     MR::getJMapInfoArg7WithInit(rIter, &_104);
@@ -160,7 +161,7 @@ void BossStinkBug::disposeBomb() {
 
 void BossStinkBug::reuestMovementOnParts() {
     MR::requestMovementOn(_D4);
-    MR::requestMovementOn(_D8);
+    MR::requestMovementOn(mBombLauncher);
 }
 
 LiveActor* BossStinkBug::getWingModel() {
@@ -168,7 +169,7 @@ LiveActor* BossStinkBug::getWingModel() {
 }
 
 LiveActor* BossStinkBug::getBombLauncher() {
-    return _D8;
+    return mBombLauncher;
 }
 
 void BossStinkBug::control() {
@@ -219,8 +220,8 @@ void BossStinkBug::calcAnim() {
 }
 
 void BossStinkBug::updateAction() {
-    if (_D0 != nullptr) {
-        _D0->updateNerve();
+    if (mActionSequencer != nullptr) {
+        mActionSequencer->updateNerve();
     }
 }
 
@@ -251,15 +252,13 @@ void BossStinkBug::updateCamera() {
     _F8.setPS2(mPosition);
 }
 
-
-bool BossStinkBug::isValidFollowId(s32 id) const{
-    if (_D0 != nullptr) {
-        return _D0->isValidFollowId(id);
-    }else{
+bool BossStinkBug::isValidFollowId(s32 id) const {
+    if (mActionSequencer != nullptr) {
+        return mActionSequencer->isValidFollowId(id);
+    } else {
         return false;
     }
 }
-
 
 void BossStinkBug::validateCollisionGround() {
     MR::invalidateCollisionParts(_8C[0]);
@@ -359,22 +358,22 @@ void BossStinkBug::appearStarPiece(s32 num) {
 }
 
 void BossStinkBug::attackSensor(HitSensor* pSender, HitSensor* pReciever) {
-    if(_D0 != nullptr) {
-        _D0->attackSensor(pSender, pReciever);
+    if (mActionSequencer != nullptr) {
+        mActionSequencer->attackSensor(pSender, pReciever);
     }
 }
 
 bool BossStinkBug::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if(_D0 != nullptr) {
-        _D0->receiveMsgPlayerAttack(msg, pSender, pReceiver);
+    if (mActionSequencer != nullptr) {
+        mActionSequencer->receiveMsgPlayerAttack(msg, pSender, pReceiver);
     } else {
         return false;
     }
 }
 
 bool BossStinkBug::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if(_D0 != nullptr) {
-        return _D0->receiveOtherMsg(msg, pSender, pReceiver);
+    if (mActionSequencer != nullptr) {
+        return mActionSequencer->receiveOtherMsg(msg, pSender, pReceiver);
     } else {
         return false;
     }
@@ -395,12 +394,12 @@ bool BossStinkBug::isSensorBody(const HitSensor* pSensor) const {
 bool BossStinkBug::throwBomb(f32 f1, f32 f2) {
     BossStinkBugBomb* throwBomb = _94->getDeadMember();
 
-    if(throwBomb == nullptr) {
+    if (throwBomb == nullptr) {
         return false;
     }
 
     TPos3f jointMtx;
-    JMath::gekko_ps_copy12(jointMtx, MR::getJointMtx(_D8, "DischargePosition"));
+    JMath::gekko_ps_copy12(jointMtx, MR::getJointMtx(mBombLauncher, "DischargePosition"));
 
     TVec3f trans;
     TVec3f yDir;
@@ -413,6 +412,6 @@ bool BossStinkBug::throwBomb(f32 f1, f32 f2) {
     throwBomb->start(trans, yDir);
 
     MR::startSound(this, "SE_BM_BOSS_BUG_BOMB_EMIT", -1, -1);
-    MR::startBck(_D8, "Discharge", nullptr);
+    MR::startBck(mBombLauncher, "Discharge", nullptr);
     return true;
 }

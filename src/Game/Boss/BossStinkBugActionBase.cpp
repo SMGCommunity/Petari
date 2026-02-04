@@ -3,7 +3,6 @@
 #include "Game/Boss/BossStinkBugFunction.hpp"
 #include "Game/Util/ActorMovementUtil.hpp"
 #include "Game/Util/CameraUtil.hpp"
-#include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/ModelUtil.hpp"
@@ -16,8 +15,6 @@
 #include "JSystem/JGeometry/TVec.hpp"
 #include "revolution/mtx.h"
 #include "revolution/types.h"
-#include "revolution/vf/pf_entry.h"
-#include "revolution/vi.h"
 
 BossStinkBugActionBase::BossStinkBugActionBase(const char* pName, BossStinkBug* pStinkBug)
     : ActorStateBase< BossStinkBug >(pName, pStinkBug), mSpringValue(nullptr), _14(0.0f, 0.0f, 0.0f), _20(0.0f, 0.0f, 1.0f), _38(15.0f), _3C(0.0f),

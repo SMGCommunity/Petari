@@ -8,7 +8,6 @@
 #include "Game/Util/DemoUtil.hpp"
 #include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/JointUtil.hpp"
-#include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"

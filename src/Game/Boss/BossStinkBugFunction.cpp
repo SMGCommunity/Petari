@@ -49,12 +49,12 @@ void BossStinkBugFunction::turnRail(BossStinkBug* pStinkBug, const TVec3f& rVec1
     f32 moveCoordParameter;
 
     if (f2 <= 0.5f) {
-        moveCoordParameter = f3 * MR::getEaseInOutValue(1 - MR::normalize(f2, 0.0f, 0.5f), 0.0f, 1.0f, 1.0f);
+        moveCoordParameter = f3 * MR::getEaseInOutValue(1.0f - MR::normalize(f2, 0.0f, 0.5f), 0.0f, 1.0f, 1.0f);
     } else {
         if (MR::isRailGoingToEnd(pStinkBug) == a1) {
             MR::reverseRailDirection(pStinkBug);
         }
-        moveCoordParameter = f3 * MR::getEaseInOutValue(MR::normalize(f2, 0.0f, 0.5f), 0.0f, 1.0f, 1.0f);
+        moveCoordParameter = f3 * MR::getEaseInOutValue(MR::normalize(f2, 0.5f, 1.0f), 0.0f, 1.0f, 1.0f);
     }
 
     MR::moveCoord(pStinkBug, moveCoordParameter);
@@ -62,31 +62,31 @@ void BossStinkBugFunction::turnRail(BossStinkBug* pStinkBug, const TVec3f& rVec1
     addHeightOffset(&railPos, pStinkBug, f4);
 
     f32 flt1 = (a1 ? 1.0f : -1.0f);
-    f32 temp = (4.0f * f2) * (f2 - 1.0f);
+    f32 temp = 4.0f * f2 * (f2 - 1.0f);
     temp *= temp;
-    pStinkBug->mRotation.z = MR::repeat( f1 * (1 - temp) + (90.0f * flt1) * temp, -180.0f, 360.0f);
-    
+    pStinkBug->mRotation.z = MR::repeat(f1 * (1 - temp) + (90.0f * flt1) * temp, -180.0f, 360.0f);
+
     MR::rotateVecDegree(&pStinkBug->_EC, rVec1, pStinkBug->mGravity, MR::getEaseInOutValue(f2, 0.0f, 1.0f, 1.0f) * 180.0f * -flt1);
     addLocalHeightOffset(&railPos, pStinkBug, f5);
     pStinkBug->mPosition.set(railPos);
 }
 
-void BossStinkBugFunction::regainToRail(BossStinkBug* pStinkBug, const TVec3f& rVec, f32 f1, f32 f2, f32 f3, f32 f4){
+void BossStinkBugFunction::regainToRail(BossStinkBug* pStinkBug, const TVec3f& rVec, f32 f1, f32 f2, f32 f3, f32 f4) {
     pStinkBug->mRotation.z *= 0.9f;
     MR::moveCoord(pStinkBug, f2);
     TVec3f railPos(MR::getRailPos(pStinkBug));
     addHeightOffset(&railPos, pStinkBug, f3);
     addLocalHeightOffset(&railPos, pStinkBug, f4);
     TVec3f dif = railPos - pStinkBug->mPosition;
-    if(MR::isNearZero(dif)) {
+    if (MR::isNearZero(dif)) {
         MR::turnDirectionDegree(pStinkBug, &pStinkBug->_EC, dif, 2.0f);
     } else {
-        MR::turnDirectionDegree(pStinkBug, &pStinkBug->_EC, MR::getRailDirection(pStinkBug), 2.0f);
+        MR::turnDirectionDegree(pStinkBug, &pStinkBug->_EC, MR::getRailDirection(pStinkBug), 10.0f);
     }
     JMAVECScaleAdd(rVec, railPos, pStinkBug->mPosition, 1.0f - f1);
 }
 
-void BossStinkBugFunction::setFallVelocity(BossStinkBug * pStinkBug, const TVec3f & rVec, f32 f1, f32 f2, f32 f3) {
+void BossStinkBugFunction::setFallVelocity(BossStinkBug* pStinkBug, const TVec3f& rVec, f32 f1, f32 f2, f32 f3) {
     f32 scaleAddFactor;
 
     if (f1 < f2) {
@@ -117,11 +117,11 @@ void BossStinkBugFunction::invalidateAttack(BossStinkBug* pStinkBug) {
     MR::invalidateHitSensor(pStinkBug, "attack_right");
 }
 
-bool BossStinkBugFunction::isHipDropableSensor(const BossStinkBug * pStinkBug, const HitSensor * pSensor) {
+bool BossStinkBugFunction::isHipDropableSensor(const BossStinkBug* pStinkBug, const HitSensor* pSensor) {
     return pStinkBug->isSensorBody(pSensor);
 }
 
-bool BossStinkBugFunction::isExistPlayerBack(const BossStinkBug * pStinkBug, f32 f1) {
+bool BossStinkBugFunction::isExistPlayerBack(const BossStinkBug* pStinkBug, f32 f1) {
     return MR::calcDifferenceRailCoord(pStinkBug, MR::calcNearestRailCoord(pStinkBug, *MR::getPlayerPos())) < -f1;
 }
 

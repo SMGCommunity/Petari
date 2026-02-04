@@ -12,7 +12,6 @@
 #include "Game/Util/RailUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
-#include "JSystem/JMath/JMath.hpp"
 #include "revolution/types.h"
 
 namespace NrvBossStinkBugGroundBattle {

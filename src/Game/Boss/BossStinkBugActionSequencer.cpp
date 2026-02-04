@@ -86,7 +86,6 @@ bool BossStinkBugActionSequencer::startAction() {
 }
 
 void BossStinkBugActionSequencer::exeWaitStart() {
-
 }
 
 void BossStinkBugActionSequencer::exeOpeningDemo() {
@@ -143,5 +142,4 @@ void BossStinkBugActionSequencer::exeFinishDemo() {
 }
 
 void BossStinkBugActionSequencer::exeEnd() {
-    
 }

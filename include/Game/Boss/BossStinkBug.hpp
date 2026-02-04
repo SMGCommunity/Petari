@@ -60,9 +60,9 @@ public:
     ActorJointCtrl* _98;
     TPos3f _9C;
     ActorCameraInfo* _CC;
-    BossStinkBugActionSequencer* _D0;
+    BossStinkBugActionSequencer* mActionSequencer;
     PartsModel* _D4;
-    PartsModel* _D8;
+    PartsModel* mBombLauncher;
     TQuat4f _DC;
     TVec3f _EC;
     TVec3f _F8;
