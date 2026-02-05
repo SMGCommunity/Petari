@@ -6328,14 +6328,14 @@ Game/NPC/RabbitStateWaitStart.cpp:
 Game/NPC/Rosetta.cpp:
 	.text       start:0x8028217C end:0x80282E00
 	.ctors      start:0x8052EFD8 end:0x8052EFDC
-	.data       start:0x805B2450 end:0x805B27A8
+	.data       start:0x805B2450 end:0x805B2698
 	.sbss       start:0x806B5EF8 end:0x806B5F00
 	.sdata2     start:0x806BEE10 end:0x806BEE40
 
 Game/NPC/RosettaDemoAstroDome.cpp:
 	.text       start:0x80282E00 end:0x80283C18
 	.ctors      start:0x8052EFDC end:0x8052EFE0
-	.data       start:0x805B27A8 end:0x805B2B20
+	.data       start:0x805B2698 end:0x805B2B20
 	.sbss       start:0x806B5F00 end:0x806B5F10
 
 Game/NPC/RosettaDemoEpilogue.cpp:

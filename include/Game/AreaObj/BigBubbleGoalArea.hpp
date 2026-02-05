@@ -7,17 +7,20 @@ class BigBubble;
 class BigBubbleGoalArea : public AreaObj {
 public:
     BigBubbleGoalArea(int, const char*);
-    virtual ~BigBubbleGoalArea();
 
     virtual void init(const JMapInfoIter&);
     virtual void movement();
     virtual void draw() const;
-    virtual const char* getManagerName() const;
+    virtual const char* getManagerName() const { return "BigBubbleGoalArea"; };
 
     void addBubble(BigBubble*);
 
-    TVec3f mTranslation;  // 0x3C
-    f32 _48;
-    f32 _4C;
-    f32 _50;
+    /* 0x3C */ TVec3f mTranslation;
+    /* 0x48 */ f32 mMeterCapacity;
+    /* 0x4C */ f32 mMeterDisplayAmount;
+    /* 0x50 */ f32 mMeterAmount;
 };
+
+namespace MR {
+    bool checkBigBubbleGoal(BigBubble*);
+}

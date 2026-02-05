@@ -630,7 +630,7 @@ config.libs = [
             Object(Matching, "Game/AreaObj/AudioEffectArea.cpp"),
             Object(Matching, "Game/AreaObj/BgmProhibitArea.cpp"),
             Object(Matching, "Game/AreaObj/BigBubbleCameraArea.cpp"),
-            Object(NonMatching, "Game/AreaObj/BigBubbleGoalArea.cpp"),
+            Object(Matching, "Game/AreaObj/BigBubbleGoalArea.cpp"),
             Object(Matching, "Game/AreaObj/BloomArea.cpp"),
             Object(NonMatching, "Game/AreaObj/CameraRepulsiveArea.cpp"),
             Object(NonMatching, "Game/AreaObj/ChangeBgmCube.cpp"),

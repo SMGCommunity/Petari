@@ -10,8 +10,8 @@ public:
     virtual ~BigBubbleMoveLimitter();
     virtual void init(const JMapInfoIter&);
 
-    BigBubbleMoveLimitter* limitPosition(TVec3f*, f32) const;
-    BigBubbleMoveLimitter* limitVelocity(TVec3f*, const TVec3f&, f32);
+    bool limitPosition(TVec3f*, f32) const;
+    bool limitVelocity(TVec3f*, const TVec3f&, f32) const;
 
     s32 _C;
     TVec3f _10;

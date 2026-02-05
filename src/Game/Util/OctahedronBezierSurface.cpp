@@ -54,7 +54,7 @@ const TVec3f& OctahedronBezierSurface::getVertex(s32 index) const {
     return mVertices[index];
 }
 
-const TVec3f* OctahedronBezierSurface::getVertexPtr(s32 index) {
+TVec3f* OctahedronBezierSurface::getVertexPtr(s32 index) {
     return &mVertices[index];
 }
 
