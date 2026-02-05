@@ -18,8 +18,7 @@ namespace NrvWalkerStateChase {
 };  // namespace NrvWalkerStateChase
 
 WalkerStateChase::WalkerStateChase(LiveActor* pActor, TVec3f* pVec, WalkerStateParam* pParam, WalkerStateChaseParam* pChaseParam)
-    : ActorStateBase< LiveActor >("クリボー追いかけ状態") {
-    mParentActor = pActor;
+    : ActorStateBase< LiveActor >("クリボー追いかけ状態", pActor) {
     mStateParam = pParam;
     mChaseParam = pChaseParam;
     _18 = pVec;
@@ -38,20 +37,20 @@ void WalkerStateChase::appear() {
 
 void WalkerStateChase::exeStart() {
     if (MR::isFirstStep(this)) {
-        MR::startAction(mParentActor, "Run");
+        MR::startAction(mHost, "Run");
     }
 
-    bool isInSight = WalkerStateFunction::isInSightPlayer(mParentActor, *_18, mStateParam);
+    bool isInSight = WalkerStateFunction::isInSightPlayer(mHost, *_18, mStateParam);
     if (isInSight) {
-        LiveActor* parent = mParentActor;
+        LiveActor* parent = mHost;
         MR::turnDirectionToTargetUseGroundNormalDegree(parent, _18, *MR::getPlayerPos(), mChaseParam->_C);
     }
 
-    MR::addVelocityMoveToDirection(mParentActor, *_18, mChaseParam->_0);
-    WalkerStateFunction::calcPassiveMovement(mParentActor, mStateParam);
+    MR::addVelocityMoveToDirection(mHost, *_18, mChaseParam->_0);
+    WalkerStateFunction::calcPassiveMovement(mHost, mStateParam);
 
-    if (MR::isFallNextMove(mParentActor, 150.0f, 150.0f, 150.0f, nullptr)) {
-        MR::zeroVelocity(mParentActor);
+    if (MR::isFallNextMove(mHost, 150.0f, 150.0f, 150.0f, nullptr)) {
+        MR::zeroVelocity(mHost);
         setNerve(&NrvWalkerStateChase::WalkerStateChaseNrvEnd::sInstance);
     } else if (MR::isGreaterStep(this, mChaseParam->_8) || (MR::isGreaterStep(this, mChaseParam->_4) && !isInSight)) {
         setNerve(&NrvWalkerStateChase::WalkerStateChaseNrvEnd::sInstance);
@@ -60,10 +59,10 @@ void WalkerStateChase::exeStart() {
 
 void WalkerStateChase::exeEnd() {
     if (MR::isFirstStep(this)) {
-        MR::startAction(mParentActor, "Wait");
+        MR::startAction(mHost, "Wait");
     }
 
-    WalkerStateFunction::calcPassiveMovement(mParentActor, mStateParam);
+    WalkerStateFunction::calcPassiveMovement(mHost, mStateParam);
     if (MR::isGreaterStep(this, mChaseParam->_10)) {
         kill();
     }
@@ -72,7 +71,7 @@ void WalkerStateChase::exeEnd() {
 bool WalkerStateChase::isRunning() const {
     bool isRunning = false;
     if (isNerve(&NrvWalkerStateChase::WalkerStateChaseNrvStart::sInstance)) {
-        if (MR::isBindedGround(mParentActor)) {
+        if (MR::isBindedGround(mHost)) {
             isRunning = true;
         }
     }

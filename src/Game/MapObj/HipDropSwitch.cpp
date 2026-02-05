@@ -128,7 +128,7 @@ void HipDropSwitch::exeOff() {
     }
 
     if (!_CD && _CE) {
-        mSpringValue->_10 += -10.0f;
+        mSpringValue->mVelocity += -10.0f;
         MR::startSound(this, "SE_OJ_PNC_KINOKO_BOUND", -1, -1);
     }
 

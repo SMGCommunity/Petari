@@ -10,7 +10,7 @@ namespace NrvWalkerStateBlowDamage {
 }  // namespace NrvWalkerStateBlowDamage
 
 WalkerStateBlowDamage::WalkerStateBlowDamage(LiveActor* pActor, TVec3f* pVec, WalkerStateBlowDamageParam* pBlowDamageParam)
-    : ActorStateBase< LiveActor >("吹き飛びダメージ状態") {
+    : ActorStateBase< LiveActor >("吹き飛びダメージ状態", pActor) {
     initNerve(&NrvWalkerStateBlowDamage::WalkerStateBlowDamageNrvBlow::sInstance);
 }
 WalkerStateBlowDamage::~WalkerStateBlowDamage() {}
@@ -22,19 +22,19 @@ void WalkerStateBlowDamage::appear() {
 
 void WalkerStateBlowDamage::exeBlow() {
     if (MR::isFirstStep(this)) {
-        MR::startAction(this->mParentActor, "Damage");
+        MR::startAction(this->mHost, "Damage");
     }
-    MR::attenuateVelocity(this->mParentActor, 0.99f);
-    MR::addVelocityToGravity(this->mParentActor, 1.0f);
+    MR::attenuateVelocity(this->mHost, 0.99f);
+    MR::addVelocityToGravity(this->mHost, 1.0f);
 
     TVec3f mVelocityNegate;
-    JMathInlineVEC::PSVECNegate(&mParentActor->mVelocity, &mVelocityNegate);
-    MR::turnDirectionDegree(this->mParentActor, this->_10, mVelocityNegate, 15.0f);
+    JMathInlineVEC::PSVECNegate(&mHost->mVelocity, &mVelocityNegate);
+    MR::turnDirectionDegree(this->mHost, this->_10, mVelocityNegate, 15.0f);
 
     if (MR::isGreaterStep(this, 5)) {
-        if (MR::isBindedGround(this->mParentActor)) {
-            MR::startAction(this->mParentActor, "DamageLand");
-            MR::zeroVelocity(this->mParentActor);
+        if (MR::isBindedGround(this->mHost)) {
+            MR::startAction(this->mHost, "DamageLand");
+            MR::zeroVelocity(this->mHost);
             setNerve(&NrvWalkerStateBlowDamage::WalkerStateBlowDamageNrvBlowLand::sInstance);
         }
     }

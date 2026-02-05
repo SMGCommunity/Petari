@@ -2,7 +2,7 @@
 
 #include "Game/LiveActor/LiveActor.hpp"
 
-class DemoPositionController : LiveActor {
+class DemoPositionController : public LiveActor {
 public:
     DemoPositionController(const char*, const JMapInfoIter&);
     virtual ~DemoPositionController();

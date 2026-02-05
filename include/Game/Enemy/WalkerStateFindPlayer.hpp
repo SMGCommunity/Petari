@@ -30,7 +30,6 @@ public:
     bool isFindJumpBegin() const;
     bool isLandStart() const;
 
-    LiveActor* mParent;  // 0x0C
     TVec3f* _10;
     WalkerStateParam* mStateParam;                 // 0x14
     WalkerStateFindPlayerParam* mFindPlayerParam;  // 0x18

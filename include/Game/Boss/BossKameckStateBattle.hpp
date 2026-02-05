@@ -46,7 +46,6 @@ public:
     bool isEnableDamage() const;
     bool isEnableGuard() const;
 
-    BossKameck* mBossKameck;                  // 0xC
     BossKameckMoveRail* mMoveRail;            // 0x10
     BossKameckBattlePattarn* mBattlePattarn;  // 0x14
     KameckBeam* mBeam;                        // 0x18
