@@ -1,5 +1,6 @@
 #include "Game/Player/MarioState.hpp"
 #include "Game/Player/Mario.hpp"
+#include "Game/Player/MarioActor.hpp"
 
 MarioState::MarioState(MarioActor* actor, u32 statusId) : MarioModule(actor) {
     _8 = 0;
@@ -133,3 +134,16 @@ bool Mario::isStatusActive(u32 statusId) const {
 u32 MarioState::getNoticedStatus() const {
     return getPlayer()->_980->mStatusId;
 }
+
+namespace NrvMarioActor {
+    INIT_NERVE(MarioActorNrvWait);
+    INIT_NERVE(MarioActorNrvGameOver);
+    INIT_NERVE(MarioActorNrvGameOverAbyss);
+    INIT_NERVE(MarioActorNrvGameOverAbyss2);
+    INIT_NERVE(MarioActorNrvGameOverFire);
+    INIT_NERVE(MarioActorNrvGameOverBlackHole);
+    INIT_NERVE(MarioActorNrvGameOverNonStop);
+    INIT_NERVE(MarioActorNrvGameOverSink);
+    INIT_NERVE(MarioActorNrvTimeWait);
+    INIT_NERVE(MarioActorNrvNoRush);
+};  // namespace NrvMarioActor
