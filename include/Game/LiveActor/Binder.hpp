@@ -3,6 +3,8 @@
 #include "Game/Map/HitInfo.hpp"
 #include "Game/Util/TriangleFilter.hpp"
 
+class CollisionPartsFilterBase;
+
 class BinderParent {
 public:
     inline BinderParent(MtxPtr mtx) {
@@ -22,6 +24,7 @@ class Binder : BinderParent {
 public:
     Binder(MtxPtr, const TVec3f*, const TVec3f*, f32, f32, u32);
     void clear();
+    void setCollisionPartsFilter(CollisionPartsFilterBase*);
     void setTriangleFilter(TriangleFilterBase*);
     const Triangle* getPlane(int) const;
     u32 copyPlaneArrayAndSortingSensor(HitInfo**, u32);
