@@ -284,17 +284,17 @@ void MarioModule::addTrans(const TVec3f& rShift, const char* pName) {
 }
 
 // regswap
-void MarioModule::cutGravityElementFromJumpVec(bool a1) {
+f32 MarioModule::cutGravityElementFromJumpVec(bool a1) {
     if (a1) {
-        MR::vecKillElement(mActor->mMario->mJumpVec, mActor->_240, &mActor->mMario->mJumpVec);
+        return MR::vecKillElement(mActor->mMario->mJumpVec, mActor->_240, &mActor->mMario->mJumpVec);
     } else {
         TVec3f* pJumpVec = &mActor->mMario->mJumpVec;
-        MR::vecKillElement(*pJumpVec, mActor->getGravityVec(), pJumpVec);
+        return MR::vecKillElement(*pJumpVec, mActor->getGravityVec(), pJumpVec);
     }
 }
 
-void MarioModule::cutVecElementFromJumpVec(const TVec3f& rCut) {
-    MR::vecKillElement(mActor->mMario->mJumpVec, rCut, &mActor->mMario->mJumpVec);
+f32 MarioModule::cutVecElementFromJumpVec(const TVec3f& rCut) {
+    return MR::vecKillElement(mActor->mMario->mJumpVec, rCut, &mActor->mMario->mJumpVec);
 }
 
 TVec3f& MarioModule::getJumpVec() const {
