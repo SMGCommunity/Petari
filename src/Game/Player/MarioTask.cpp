@@ -4,18 +4,6 @@
 #include "Game/Util/MathUtil.hpp"
 #include "revolution/mtx.h"
 
-struct PTMF {
-    long this_delta;
-    long vtbl_offset;
-    long func_data;
-};
-
-extern "C" {
-    extern const PTMF __ptmf_null;
-    long __ptmf_test(const PTMF* ptmf);
-    long __ptmf_cmpr(const PTMF* ptmf1, const PTMF* ptmf2);
-}
-
 extern "C" {
     extern u8 lbl_806B6288;
 }
@@ -125,17 +113,8 @@ void Mario::drawTask() const {
 }
 
 void Mario::initTask() {
-    register u32 offset = 0;
-    register long value1;
-    register long value0;
-    const volatile PTMF* src = &__ptmf_null;
-    for (u32 i = 0; i < 11; i++, offset += sizeof(PTMF)) {
-        value1 = src->this_delta;
-        PTMF* dst = reinterpret_cast<PTMF*>(reinterpret_cast<u8*>(this) + offset + 0x984);
-        value0 = src->vtbl_offset;
-        dst->this_delta = value1;
-        dst->vtbl_offset = value0;
-        dst->func_data = src->func_data;
+    for (u32 i = 0; i < 11; i++) {
+        _984[i] = nullptr;
     }
 
     _974 = nullptr;
@@ -143,7 +122,7 @@ void Mario::initTask() {
 
 bool Mario::isActiveTask(Task task) {
     for (int i = 0; i < 11; i++) {
-        if (__ptmf_cmpr(reinterpret_cast<const PTMF*>(&_984[i]), reinterpret_cast<const PTMF*>(&task)) == 0) {
+        if (_984[i] == task) {
             return true;
         }
     }
@@ -153,7 +132,7 @@ bool Mario::isActiveTask(Task task) {
 
 bool Mario::isActiveTaskID(u32 id) {
     for (int i = 0; i < 11; i++) {
-        if (__ptmf_test(reinterpret_cast<const PTMF*>(&_984[i]))) {
+        if (_984[i] != nullptr) {
             if (_A08[i] & id) {
                 return true;
             }
@@ -170,7 +149,7 @@ bool Mario::pushTask(Task task, u32 flags) {
 
     int index = 0;
     for (; index < 11; index++) {
-        if (!__ptmf_test(reinterpret_cast<const PTMF*>(&_984[index]))) {
+        if (_984[index] == nullptr) {
             break;
         }
     }
@@ -182,8 +161,8 @@ bool Mario::pushTask(Task task, u32 flags) {
 
 void Mario::popTask(Task task) {
     for (int i = 0; i < 11; i++) {
-        if (__ptmf_cmpr(reinterpret_cast<const PTMF*>(&_984[i]), reinterpret_cast<const PTMF*>(&task)) == 0) {
-            reinterpret_cast<PTMF&>(_984[i]) = __ptmf_null;
+        if (_984[i] == task) {
+            _984[i] = nullptr;
             return;
         }
     }
@@ -193,7 +172,7 @@ void Mario::callExtraTasks(u32 flags) {
     execTask();
 
     for (int i = 0; i < 11; i++) {
-        if (!__ptmf_test(reinterpret_cast<const PTMF*>(&_984[i]))) {
+        if (_984[i] == nullptr) {
             continue;
         }
 
