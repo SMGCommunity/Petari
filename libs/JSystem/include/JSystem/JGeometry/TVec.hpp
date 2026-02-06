@@ -148,6 +148,7 @@ namespace JGeometry {
         s16 x, y, z;
 
         TVec3() {
+            x = x; // TODO: This shouldn't be here, but it's the only way to get a Ctor generated in OceanRingPipe.cpp
         }
 
         TVec3(s16 x, s16 y, s16 z) {
@@ -368,6 +369,11 @@ namespace JGeometry {
             TVec3 ret(*this);
             ret.sub(op);
             return ret;
+        }
+
+        TVec3* subInline(const TVec3& op) {
+            JMathInlineVEC::PSVECSubtract(this, &op, this);
+            return this;
         }
 
         template < typename T >
