@@ -193,8 +193,8 @@ void Mario::startHandy() {
 
 bool Mario::taskOnHipDropBlurHopper(u32) {
     Mario* player = getPlayer();
-    if (player->mMovementStates_LOW_WORD & 0x00080000) {
-        if (!(mMovementStates_LOW_WORD & 0x20000000)) {
+    if (player->mMovementStates._C) {
+        if (!mMovementStates._2) {
             if (!isStatusActive(6)) {
                 return true;
             }
@@ -212,8 +212,8 @@ bool Mario::taskOnHipDropBlurHopper(u32) {
 
 bool Mario::taskOnHipDropBlur(u32) {
     Mario* player = getPlayer();
-    if (player->mMovementStates_LOW_WORD & 0x00080000) {
-        if (!(mMovementStates_LOW_WORD & 0x20000000)) {
+    if (player->mMovementStates._C) {
+        if (!mMovementStates._2) {
             if (!isStatusActive(6)) {
                 return true;
             }
@@ -232,7 +232,7 @@ bool Mario::taskOnHipDropBlur(u32) {
 bool Mario::taskOnHipDropSlide(u32 flags) {
     if (flags == 0x100) {
         Mario* player = getPlayer();
-        if (!(player->mMovementStates_LOW_WORD & 0x00080000)) {
+        if (!player->mMovementStates._C) {
             return false;
         }
     }
@@ -242,12 +242,12 @@ bool Mario::taskOnHipDropSlide(u32 flags) {
     }
 
     Mario* player = getPlayer();
-    if (player->mMovementStates_LOW_WORD & 0x20000000) {
+    if (player->mMovementStates._2) {
         return false;
     }
 
     player = getPlayer();
-    if (!(player->mMovementStates_LOW_WORD & 0x80000000)) {
+    if (!player->mMovementStates.jumping) {
         return false;
     }
 

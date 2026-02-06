@@ -20,7 +20,7 @@ void Mario::clearSlope() {
 bool Mario::isEnableSlopeMove() const {
     const bool isNotSlipFloor = !isSlipFloorCode(_960);
     if (isNotSlipFloor) {
-        if ((mMovementStates_HIGH_WORD & 0x10000000) == 0) {
+        if (!mMovementStates._23) {
             if (MR::isNearZero(_8F8, 0.001f)) {
                 return false;
             }
@@ -103,7 +103,7 @@ void Mario::slopeMove() {
         return;
     }
 
-    if ((mMovementStates_LOW_WORD & 0x40000000) == 0) {
+    if (!mMovementStates._1) {
         return;
     }
 
@@ -125,7 +125,7 @@ void Mario::slopeMove() {
 
     if (MR::isSameDirection(stack_17C, getAirGravityVec(), 0.01f) ||
         MR::isOppositeDirection(stack_17C, getAirGravityVec(), 0.01f)) {
-        mMovementStates_HIGH_WORD &= ~0x10000000;
+        mMovementStates._23 = false;
         _904.zero();
         stack_17C.zero();
     }
@@ -133,13 +133,13 @@ void Mario::slopeMove() {
     f32 slopeAngle = calcAngleD(_368);
 
     if ((mDrawStates_WORD & 0x00000100) != 0 && slopeAngle >= 30.0f) {
-        const bool isSlopeMove = (mMovementStates_HIGH_WORD & 0x10000000) != 0;
+        const bool isSlopeMove = mMovementStates._23;
         if (!isSlopeMove) {
             TVec3f stack_E0(-_2C4);
             TVec3f stack_EC(stack_E0);
             stack_EC.scale(2.0f);
             _8F8 = stack_EC;
-            mMovementStates_HIGH_WORD |= 0x10000000;
+            mMovementStates._23 = true;
             _3C4 = 30;
             _8F0 = 10.0f;
         }
@@ -158,7 +158,7 @@ void Mario::slopeMove() {
 
     if ((mDrawStates_WORD & 0x00080000) == 0 || !isSlipPolygon(_45C)) {
         blendRate = 1.0f;
-        if ((mMovementStates_HIGH_WORD & 0x10000000) != 0) {
+        if (mMovementStates._23) {
             if (slopeAngle >= 15.0f) {
                 _8F0 -= 0.4f;
             } else {
@@ -167,7 +167,7 @@ void Mario::slopeMove() {
 
             if (_8F0 < 0.0f) {
                 _8F0 = 0.0f;
-                mMovementStates_HIGH_WORD &= ~0x10000000;
+                mMovementStates._23 = false;
             }
 
             mVelocity.zero();
@@ -175,7 +175,7 @@ void Mario::slopeMove() {
             _8F0 = 0.0f;
         }
     } else {
-        if ((mMovementStates_HIGH_WORD & 0x10000000) == 0) {
+        if (!mMovementStates._23) {
             if (slopeAngle >= mActor->mConst->getTable()->mSlipAngle) {
                 TVec3f stack_164;
                 if (MR::vecKillElement(mVelocity, stack_17C, &stack_164) < 0.0f) {
@@ -185,7 +185,7 @@ void Mario::slopeMove() {
                 }
 
                 mVelocity.zero();
-                mMovementStates_HIGH_WORD |= 0x10000000;
+                mMovementStates._23 = true;
                 _8F0 = 10.0f;
                 return;
             }
@@ -228,7 +228,7 @@ void Mario::slopeMove() {
                     _8F8.zero();
                 }
 
-                mMovementStates_HIGH_WORD |= 0x10000000;
+                mMovementStates._23 = true;
                 _8F0 = 10.0f;
                 mVelocity.zero();
                 mDrawStates_WORD &= ~0x08000000;
@@ -276,7 +276,7 @@ void Mario::slopeMove() {
 
     MR::vecKillElement(_8F8, *mGroundPolygon->getNormal(0), &_8F8);
 
-    if ((mMovementStates_HIGH_WORD & 0x10000000) != 0) {
+    if (mMovementStates._23) {
         _71E = 0;
 
         const f32 moveAngle = calcAngleD(_368);
@@ -303,7 +303,7 @@ void Mario::slopeMove() {
 
         if (MR::isNearZero(_8F8, 0.001f)) {
             if ((mDrawStates_WORD & 0x00080000) == 0) {
-                mMovementStates_HIGH_WORD &= ~0x10000000;
+                mMovementStates._23 = false;
                 return;
             }
         }
@@ -315,7 +315,7 @@ void Mario::slopeMove() {
             MR::vecKillElement(stack_5C, airGravityVec, &stack_134);
 
             if (MR::isNearZero(stack_17C, 0.001f) || (MR::isNearZero(stack_134, 0.001f) && (mDrawStates_WORD & 0x00080000) == 0)) {
-                mMovementStates_HIGH_WORD &= ~0x10000000;
+                mMovementStates._23 = false;
                 return;
             }
 
@@ -334,7 +334,7 @@ void Mario::slopeMove() {
         }
 
         if (MR::isNearZero(_8F8, 0.001f)) {
-            mMovementStates_HIGH_WORD &= ~0x10000000;
+            mMovementStates._23 = false;
             moveSlopeSlide();
             return;
         }
@@ -477,12 +477,12 @@ void Mario::slopeMove() {
     TVec3f stack_8(-_368);
     TVec3f stack_188;
     if (!MR::vecBlendSphere(*getGravityVec(), stack_8, &stack_188, blendRate)) {
-        mMovementStates_HIGH_WORD &= ~0x10000000;
+        mMovementStates._23 = false;
         tryDrop();
         return;
     }
 
-    if ((mMovementStates_LOW_WORD & 0x00800000) != 0) {
+    if (mMovementStates._8) {
         TVec3f stack_F8;
         if (MR::vecKillElement(mVelocity, mFrontVec, &stack_F8) > 0.0f) {
             mVelocity = stack_F8;
