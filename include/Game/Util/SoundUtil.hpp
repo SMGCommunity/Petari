@@ -73,6 +73,7 @@ namespace MR {
 
     void start2PAttackAssistSound();
     void start2PJumpAssistSound();
+    void start2PJumpAssistJustSound();
 
     void startDPDHitSound();
     void startDPDFreezeLevelSound(const LiveActor*);

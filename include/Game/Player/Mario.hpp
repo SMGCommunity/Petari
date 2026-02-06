@@ -50,7 +50,7 @@ class MarioModuleTask;
 
 class Mario : public MarioModule {
 public:
-    typedef bool (Mario::*Task)(const void*, void*, u32);
+    typedef bool (Mario::*Task)(u32);
     Mario(MarioActor*);
 
     virtual bool postureCtrl(MtxPtr);
@@ -188,7 +188,7 @@ public:
     void doFrontStep();
 
     void beeMarioOnGround();
-    void beeMarioOnAir();
+    bool beeMarioOnAir();
 
     void blown(const TVec3f&);
 
@@ -199,36 +199,36 @@ public:
     void tryStartFoo();
 
     bool isRising() const;
-    bool checkWallRiseAndSlipFront();
-    bool tryJump();
-    bool tryTurnJump();
-    bool trySquatJump();
-    bool tryBackJump();
-    bool tryTornadoJump();
+    void checkWallRiseAndSlipFront();
+    void tryJump();
+    void tryTurnJump();
+    void trySquatJump();
+    void tryBackJump();
+    void tryTornadoJump();
     void startTornadoCentering(HitSensor*);
-    void taskOnTornadoCentering(u32);
-    bool trySpinJump(u8);
-    bool tryForceJumpDelay(const TVec3f&);
-    bool tryFreeJumpDelay(const TVec3f&);
-    bool tryForceJump(const TVec3f&, bool);
-    bool tryForceFreeJump(const TVec3f&);
-    bool tryForcePowerJump(const TVec3f&, bool);
-    bool tryFreeJump(const TVec3f&, bool);
-    bool tryWallJump(const TVec3f&, bool);
-    bool tryStickJump(const TVec3f&);
-    bool trySlipUpJump();
-    bool tryHangSlipUp();
-    bool tryDrop();
-    bool isDigitalJump() const;
+    bool taskOnTornadoCentering(u32);
+    void trySpinJump(u8);
+    void tryForceJumpDelay(const TVec3f&);
+    void tryFreeJumpDelay(const TVec3f&);
+    void tryForceJump(const TVec3f&, bool);
+    void tryForceFreeJump(const TVec3f&);
+    void tryForcePowerJump(const TVec3f&, bool);
+    void tryFreeJump(const TVec3f&, bool);
+    void tryWallJump(const TVec3f&, bool);
+    void tryStickJump(const TVec3f&);
+    void trySlipUpJump();
+    void tryHangSlipUp();
+    void tryDrop();
+    bool isDigitalJump() const NO_INLINE;
     void initActiveJumpVec();
     void initJumpParam();
     bool isEnableFutureJump() const;
-    bool procJump(bool);
-    void checkWallRising();
+    void procJump(bool);
+    void checkWallRising() NO_INLINE;
     void checkWallJumpHit();
     void decideSlipUp();
     void moveWallSlide(f32);
-    void jumpToHipDrop();
+    bool jumpToHipDrop();
     void procHipDrop();
     void doAirWalk();
     void stopJump();
@@ -239,8 +239,8 @@ public:
     void checkAndTryForceJump();
     void doLanding();
     void startSlidingTask(u32, f32, u16);
-    void taskOnSlide(u32);
-    void taskOnWallRising(u32);
+    bool taskOnSlide(u32);
+    bool taskOnWallRising(u32);
     void incAirWalkTimer();
 
     void mainMove();
@@ -337,7 +337,7 @@ public:
     void fixWallingDir();
     void fixWallingTop();
     void checkWallFloorCode(u16) const;
-    void checkWallCode(const char*, bool) const;
+    bool checkWallCode(const char*, bool) const;
     void checkWallCodeNorm(u16, TVec3f*, bool) const;
     void setWallCancel();
     void keepDistFrontWall();
