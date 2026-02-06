@@ -734,7 +734,7 @@ public:
     /* 0x43C */ TVec3f _43C;  // front?
     /* 0x448 */ TVec3f _448;
     /* 0x454 */ f32 _454;
-    /* 0x458 */ TriangleFilterDelegator< Mario >* _458;
+    /* 0x458 */ TriangleFilterDelegator<Mario>* _458;
     /* 0x45C */ Triangle* _45C;
     /* 0x460 */ Triangle* _460;
     /* 0x464 */ Triangle* mGroundPolygon;

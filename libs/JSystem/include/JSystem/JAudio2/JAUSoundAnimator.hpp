@@ -18,6 +18,8 @@ public:
     virtual void modifySoundParams(JASSoundParams*, const JAUSoundAnimationSound*, f32);
 
     void setLoopFrame(f32, f32);
+    void startAnimation(const JAUSoundAnimation*, bool, f32, f32);
+    void removeAnimation();
 
     /* 0x04 */ u32 _4;
     /* 0x08 */ union {
