@@ -11,9 +11,6 @@ namespace NrvManholeCover {
     NEW_NERVE(HostTypeRattle, ManholeCover, Rattle);
 };  // namespace NrvManholeCover
 
-ManholeCover::ManholeCover(const char* pName) : MapObjActor(pName) {
-}
-
 void ManholeCover::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);
     MapObjActorInitInfo info;
