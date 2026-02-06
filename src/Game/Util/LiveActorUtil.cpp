@@ -22,6 +22,7 @@
 #include "Game/Map/LightFunction.hpp"
 #include "Game/NameObj/NameObjFinder.hpp"
 #include "Game/NameObj/NameObjExecuteHolder.hpp"
+#include "Game/NameObj/NameObj.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/System/ResourceHolder.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
@@ -52,8 +53,9 @@ class Flag {
 public:
     Flag(const char*);
     void setInfoPos(const char*, const TVec3f*, const TVec3f&, f32, f32, f32, s32, s32, f32);
-    void initWithoutIter();
 };
+
+extern Flag* __ct__4FlagFPCc(Flag*, const char*);
 
 class JAUSoundAnimation {
 public:
@@ -71,7 +73,7 @@ public:
 };
 
 namespace {
-    const f32 sAnimRateScale = 1.0f;
+    f32 sAnimRateScale = 1.0f;
 
     CollisionParts* createCollisionParts(ResourceHolder* pResHolder, const char* pName, HitSensor* pSensor, const TPos3f& rMtx,
                                          MR::CollisionScaleType scaleType, s32 unk) {
@@ -80,8 +82,9 @@ namespace {
         snprintf(kcl, sizeof(kcl), "%s.kcl", pName);
         char pa[0x80];
         snprintf(pa, sizeof(pa), "%s.pa", pName);
+        void* kclRes;
         void* paRes = nullptr;
-        void* kclRes = pResHolder->mFileInfoTable->getRes(kcl);
+        kclRes = pResHolder->mFileInfoTable->getRes(kcl);
         if (pResHolder->mFileInfoTable->isExistRes(pa)) {
             paRes = pResHolder->mFileInfoTable->getRes(pa);
         }
@@ -94,7 +97,6 @@ namespace {
             parts->initWithNotUsingScale(rMtx, pSensor, kclRes, paRes, unk, false);
             break;
         case 2:
-        case 3:
             parts->init(rMtx, pSensor, kclRes, paRes, unk, false);
             break;
         }
@@ -106,7 +108,9 @@ namespace {
         u32 len_sub = strlen(pSubName);
         u32 len_actor = strlen(pActor->mName);
         u32 len_bracket = strlen("（）");
-        u32 len = len_actor + len_sub + len_bracket + 1;
+        u32 len_name = len_sub;
+        len_name = len_actor + len_name;
+        u32 len = len_bracket + len_name + 1;
         char* buf = new char[len];
         snprintf(buf, len, "%s（%s）", pActor->mName, pSubName);
         return buf;
@@ -192,14 +196,40 @@ namespace {
     }
 
     template < typename T >
-    s32 countGroupMember(const LiveActor* pActor, T pPred) NO_INLINE {
+    s32 countGroupMember(const LiveActor* pActor, T pPred) NO_INLINE;
+
+    template <>
+    s32 countGroupMember<bool (*)(LiveActor*)>(const LiveActor* pActor, bool (*pPred)(LiveActor*)) NO_INLINE {
         LiveActorGroupArray* pGroupArray = (LiveActorGroupArray*)MR::getSceneObjHolder()->getObj(SceneObj_LiveActorGroupArray);
         LiveActorGroup* pGroup = pGroupArray->getLiveActorGroup(pActor);
+        s32 count = 0;
         if (pGroup == nullptr) {
             return 0;
         }
 
+        for (s32 i = 0; i < pGroup->getObjectCount(); i++) {
+            LiveActor* pMember = pGroup->getActor(i);
+            if (pMember == pActor) {
+                continue;
+            }
+
+            if (pPred(pMember)) {
+                count++;
+            }
+        }
+
+        return count;
+    }
+
+    template <>
+    s32 countGroupMember<bool (*)(const LiveActor*)>(const LiveActor* pActor, bool (*pPred)(const LiveActor*)) NO_INLINE {
+        LiveActorGroupArray* pGroupArray = (LiveActorGroupArray*)MR::getSceneObjHolder()->getObj(SceneObj_LiveActorGroupArray);
+        LiveActorGroup* pGroup = pGroupArray->getLiveActorGroup(pActor);
         s32 count = 0;
+        if (pGroup == nullptr) {
+            return 0;
+        }
+
         for (s32 i = 0; i < pGroup->getObjectCount(); i++) {
             LiveActor* pMember = pGroup->getActor(i);
             if (pMember == pActor) {
@@ -230,6 +260,7 @@ namespace MR {
     void setBpkFrameAndStop(const LiveActor*, f32);
     void calcGravity(LiveActor*, const TVec3f&);
     void calcGravityOrZero(LiveActor*, const TVec3f&);
+    void showModelIfHidden(LiveActor*) NO_INLINE;
 
     bool isExistIndirectTexture(const LiveActor* pActor) {
         const char* name = "IndDummy";
@@ -245,15 +276,19 @@ namespace MR {
 
     CollisionParts* tryCreateCollisionMoveLimit(LiveActor* pActor, HitSensor* pSensor) {
         char kcl[0x80];
-        snprintf(kcl, sizeof(kcl), "%s.kcl", "MoveLimit");
+        {
+            const char* pKclName = "MoveLimit";
+            snprintf(kcl, sizeof(kcl), "%s.kcl", pKclName);
+        }
 
         if (!MR::getResourceHolder(pActor)->mFileInfoTable->isExistRes(kcl)) {
             return nullptr;
         }
 
         TPos3f mtx;
+        const char* pCollisionName = "MoveLimit";
         MR::makeMtxTRS(mtx, pActor);
-        CollisionParts* parts = createCollisionParts(MR::getResourceHolder(pActor), "MoveLimit", pSensor, mtx, MR::UNKNOWN_2, 3);
+        CollisionParts* parts = createCollisionParts(MR::getResourceHolder(pActor), pCollisionName, pSensor, mtx, MR::UNKNOWN_2, 3);
         if (parts != nullptr) {
             MR::validateCollisionParts(parts);
         }
@@ -263,15 +298,19 @@ namespace MR {
 
     CollisionParts* tryCreateCollisionWaterSurface(LiveActor* pActor, HitSensor* pSensor) {
         char kcl[0x80];
-        snprintf(kcl, sizeof(kcl), "%s.kcl", "WaterSurface");
+        {
+            const char* pKclName = "WaterSurface";
+            snprintf(kcl, sizeof(kcl), "%s.kcl", pKclName);
+        }
 
         if (!MR::getResourceHolder(pActor)->mFileInfoTable->isExistRes(kcl)) {
             return nullptr;
         }
 
         TPos3f mtx;
+        const char* pCollisionName = "WaterSurface";
         MR::makeMtxTRS(mtx, pActor);
-        CollisionParts* parts = createCollisionParts(MR::getResourceHolder(pActor), "WaterSurface", pSensor, mtx, MR::UNKNOWN_2, 2);
+        CollisionParts* parts = createCollisionParts(MR::getResourceHolder(pActor), pCollisionName, pSensor, mtx, MR::UNKNOWN_2, 2);
         if (parts != nullptr) {
             MR::validateCollisionParts(parts);
         }
@@ -281,15 +320,19 @@ namespace MR {
 
     CollisionParts* tryCreateCollisionSunshade(LiveActor* pActor, HitSensor* pSensor) {
         char kcl[0x80];
-        snprintf(kcl, sizeof(kcl), "%s.kcl", "Sunshade");
+        {
+            const char* pKclName = "Sunshade";
+            snprintf(kcl, sizeof(kcl), "%s.kcl", pKclName);
+        }
 
         if (!MR::getResourceHolder(pActor)->mFileInfoTable->isExistRes(kcl)) {
             return nullptr;
         }
 
         TPos3f mtx;
+        const char* pCollisionName = "Sunshade";
         MR::makeMtxTRS(mtx, pActor);
-        CollisionParts* parts = createCollisionParts(MR::getResourceHolder(pActor), "Sunshade", pSensor, mtx, MR::UNKNOWN_2, 1);
+        CollisionParts* parts = createCollisionParts(MR::getResourceHolder(pActor), pCollisionName, pSensor, mtx, MR::UNKNOWN_2, 1);
         if (parts != nullptr) {
             MR::validateCollisionParts(parts);
         }
@@ -339,23 +382,25 @@ namespace MR {
             return false;
         }
 
-        if (!(0.0f <= binder->_C8)) {
+        bool isGround = (0.0f <= binder->_C8);
+        if (!isGround) {
             return false;
         }
 
         const TVec3f* normal = binder->mGroundInfo.mParentTriangle.getNormal(0);
-        return pActor->mVelocity.dot(*normal) <= 0.0f;
+        return !(0.0f < pActor->mVelocity.dot(*normal));
     }
 
     bool isOnGroundCos(const LiveActor* pActor, f32 cos) {
+        bool isGround = false;
         if (isOnGround(pActor)) {
             const TVec3f* normal = pActor->mBinder->mGroundInfo.mParentTriangle.getNormal(0);
             if (MR::isFloorPolygonCos(*normal, pActor->mGravity, cos)) {
-                return true;
+                isGround = true;
             }
         }
 
-        return false;
+        return isGround;
     }
 
     bool isBindedGround(const LiveActor* pActor) {
@@ -369,7 +414,7 @@ namespace MR {
 
     bool isBindedGround(const LiveActor* pActor, HitSensor* pSensor) {
         if (isBindedGround(pActor)) {
-            return MR::getGroundSensor(pActor) == pSensor;
+            return pSensor == MR::getGroundSensor(pActor);
         }
 
         return false;
@@ -386,32 +431,34 @@ namespace MR {
 
     bool isBindedWall(const LiveActor* pActor, HitSensor* pSensor) {
         if (isBindedWall(pActor)) {
-            return MR::getWallSensor(pActor) == pSensor;
+            return pSensor == MR::getWallSensor(pActor);
         }
 
         return false;
     }
 
     bool isBindedWallOfMap(const LiveActor* pActor) {
+        bool isMap = false;
         if (isBindedWall(pActor)) {
             const CollisionParts* parts = pActor->mBinder->mWallInfo.mParentTriangle.mParts;
             if (parts->mKeeperIndex == 0) {
-                return true;
+                isMap = true;
             }
         }
 
-        return false;
+        return isMap;
     }
 
     bool isBindedWallOfMoveLimit(const LiveActor* pActor) {
+        bool isMoveLimit = false;
         if (isBindedWall(pActor)) {
             const CollisionParts* parts = pActor->mBinder->mWallInfo.mParentTriangle.mParts;
             if (parts->mKeeperIndex == 3) {
-                return true;
+                isMoveLimit = true;
             }
         }
 
-        return false;
+        return isMoveLimit;
     }
 
     bool isBindedWallOrSlopeGround(const LiveActor* pActor, f32 cos, TVec3f* pNormal) {
@@ -428,7 +475,8 @@ namespace MR {
             const TVec3f* normal = pActor->mBinder->mGroundInfo.mParentTriangle.getNormal(0);
             if (!MR::isFloorPolygonCos(*normal, pActor->mGravity, cos)) {
                 if (pNormal != nullptr) {
-                    pNormal->set(*normal);
+                    const TVec3f* groundNormal = pActor->mBinder->mGroundInfo.mParentTriangle.getNormal(0);
+                    pNormal->set(*groundNormal);
                 }
 
                 return true;
@@ -449,7 +497,7 @@ namespace MR {
 
     bool isBindedRoof(const LiveActor* pActor, HitSensor* pSensor) {
         if (isBindedRoof(pActor)) {
-            return MR::getRoofSensor(pActor) == pSensor;
+            return pSensor == MR::getRoofSensor(pActor);
         }
 
         return false;
@@ -476,19 +524,28 @@ namespace MR {
             return false;
         }
 
-        if (!MR::isSensorPressObj(MR::getGroundSensor(pActor)) && !MR::isSensorPressObj(MR::getRoofSensor(pActor))) {
-            return false;
+        if (!MR::isSensorPressObj(MR::getGroundSensor(pActor))) {
+            if (!MR::isSensorPressObj(MR::getRoofSensor(pActor))) {
+                goto LABEL_FALSE;
+            }
         }
 
         const Binder* binder = pActor->mBinder;
+        const HitInfo* pRoofInfo = &binder->mRoofInfo;
+        const HitInfo* pGroundInfo = &binder->mGroundInfo;
         TVec3f roofPower;
         TVec3f groundPower;
-        binder->mRoofInfo.mParentTriangle.calcForceMovePower(&roofPower, binder->mRoofInfo.mHitPos);
-        binder->mGroundInfo.mParentTriangle.calcForceMovePower(&groundPower, binder->mGroundInfo.mHitPos);
+        pRoofInfo->mParentTriangle.calcForceMovePower(&roofPower, pRoofInfo->mHitPos);
+        pGroundInfo->mParentTriangle.calcForceMovePower(&groundPower, pGroundInfo->mHitPos);
 
         TVec3f diff(roofPower);
         diff.sub(groundPower);
-        return 0.0f < diff.dot(pActor->mGravity);
+        if (0.0f < diff.dot(pActor->mGravity)) {
+            return true;
+        }
+
+    LABEL_FALSE:
+        return false;
     }
 
     bool isPressedMovingWall(const LiveActor* pActor) {
@@ -552,9 +609,9 @@ namespace MR {
         MR::getJMapInfoRotate(rIter, &pActor->mRotation);
         MR::getJMapInfoScale(rIter, &pActor->mScale);
 
-        f32 rot_x = fmod(360.0f + (pActor->mRotation.x) - 0.0f, 360.0f);
-        f32 rot_y = fmod(360.0f + (pActor->mRotation.y) - 0.0f, 360.0f);
-        pActor->mRotation.x = 0.0f + rot_x;
+        pActor->mRotation.x = MR::repeat(pActor->mRotation.x, 0.0f, 360.0f);
+        pActor->mRotation.y = MR::repeat(pActor->mRotation.y, 0.0f, 360.0f);
+        pActor->mRotation.z = MR::repeat(pActor->mRotation.z, 0.0f, 360.0f);
     }
 
     void initDefaultPosNoRepeat(LiveActor* pActor, const JMapInfoIter& rIter) {
@@ -718,22 +775,48 @@ namespace MR {
 
     void setBaseTRMtx(LiveActor* pActor, const TQuat4f& rQuat) {
         TPos3f mtx;
-        const f32 twice = 2.0f;
+        f32 two = 2.0f;
+        f32 y = rQuat.y;
+        f32 x = rQuat.x;
+        f32 z = rQuat.z;
+        f32 w = rQuat.w;
 
-        const f32 x2 = twice * rQuat.x;
-        const f32 y2 = twice * rQuat.y;
-        const f32 z2 = twice * rQuat.z;
-        const f32 w2 = twice * rQuat.w;
+        f32 ty = two * y;
+        f32 tx = two * x;
+        f32 tz = two * z;
+        f32 tw = two * w;
+        f32 one = 1.0f;
+        f32 yy = ty * y;
+        f32 xx = tx * x;
+        f32 xy = tx * y;
+        f32 zz = tz * z;
+        f32 wz = tw * z;
+        f32 m00 = (one - yy) - zz;
+        f32 m11 = (one - xx) - zz;
+        f32 m01 = xy - wz;
+        f32 m10 = xy + wz;
+        f32 m22 = (one - xx) - yy;
 
-        mtx.mMtx[0][0] = 1.0f - (y2 * rQuat.y) - (z2 * rQuat.z);
-        mtx.mMtx[0][1] = (x2 * rQuat.y) - (w2 * rQuat.z);
-        mtx.mMtx[0][2] = (x2 * rQuat.z) + (w2 * rQuat.y);
-        mtx.mMtx[1][0] = (x2 * rQuat.y) + (w2 * rQuat.z);
-        mtx.mMtx[1][1] = 1.0f - (x2 * rQuat.x) - (z2 * rQuat.z);
-        mtx.mMtx[1][2] = (y2 * rQuat.z) - (w2 * rQuat.x);
-        mtx.mMtx[2][0] = (x2 * rQuat.z) - (w2 * rQuat.y);
-        mtx.mMtx[2][1] = (y2 * rQuat.z) + (w2 * rQuat.x);
-        mtx.mMtx[2][2] = 1.0f - (x2 * rQuat.x) - (y2 * rQuat.y);
+        f32 xz = tx * z;
+        f32 wy = tw * y;
+        f32 yz = ty * z;
+        f32 wx = tw * x;
+
+        f32 m02 = xz + wy;
+        f32 m20 = xz - wy;
+        f32 m12 = yz - wx;
+        f32 m21 = yz + wx;
+
+        mtx.mMtx[0][0] = m00;
+        mtx.mMtx[0][1] = m01;
+        mtx.mMtx[1][1] = m11;
+        mtx.mMtx[1][0] = m10;
+        mtx.mMtx[2][2] = m22;
+        mtx.mMtx[0][2] = m02;
+        mtx.mMtx[1][2] = m12;
+        mtx.mMtx[2][0] = m20;
+        mtx.mMtx[2][1] = m21;
+
         mtx.mMtx[0][3] = pActor->mPosition.x;
         mtx.mMtx[1][3] = pActor->mPosition.y;
         mtx.mMtx[2][3] = pActor->mPosition.z;
@@ -765,9 +848,8 @@ namespace MR {
     }
 
     ResTIMG* getTexFromModel(const char* pName, const LiveActor* pActor) {
-        J3DModelData* pModelData = getJ3DModelData(pActor);
-        s32 texIndex = pModelData->mMaterialTable.getTextureName()->getIndex(pName);
-        return pModelData->mMaterialTable.getTexture()->getResTIMG(texIndex);
+        s32 texIndex = getJ3DModelData(pActor)->mMaterialTable.getTextureName()->getIndex(pName);
+        return getJ3DModelData(pActor)->mMaterialTable.getTexture()->getResTIMG(texIndex);
     }
 
     ResTIMG* getTexFromArc(const char* pName, const LiveActor* pActor) {
@@ -803,57 +885,51 @@ namespace MR {
     }
 
     bool isExistBck(const LiveActor* pActor, const char* pName) {
-        ResTable* pTable = getResourceHolder(pActor)->mMotionResTable;
         if (pName == nullptr) {
-            return pTable->mCount != 0;
+            return getResourceHolder(pActor)->mMotionResTable->mCount != 0;
         }
 
-        return pTable->isExistRes(pName);
+        return getResourceHolder(pActor)->mMotionResTable->isExistRes(pName);
     }
 
     bool isExistBtk(const LiveActor* pActor, const char* pName) {
-        ResTable* pTable = getResourceHolder(pActor)->mBtkResTable;
         if (pName == nullptr) {
-            return pTable->mCount != 0;
+            return getResourceHolder(pActor)->mBtkResTable->mCount != 0;
         }
 
-        return pTable->isExistRes(pName);
+        return getResourceHolder(pActor)->mBtkResTable->isExistRes(pName);
     }
 
     bool isExistBrk(const LiveActor* pActor, const char* pName) {
-        ResTable* pTable = getResourceHolder(pActor)->mBrkResTable;
         if (pName == nullptr) {
-            return pTable->mCount != 0;
+            return getResourceHolder(pActor)->mBrkResTable->mCount != 0;
         }
 
-        return pTable->isExistRes(pName);
+        return getResourceHolder(pActor)->mBrkResTable->isExistRes(pName);
     }
 
     bool isExistBtp(const LiveActor* pActor, const char* pName) {
-        ResTable* pTable = getResourceHolder(pActor)->mBtpResTable;
         if (pName == nullptr) {
-            return pTable->mCount != 0;
+            return getResourceHolder(pActor)->mBtpResTable->mCount != 0;
         }
 
-        return pTable->isExistRes(pName);
+        return getResourceHolder(pActor)->mBtpResTable->isExistRes(pName);
     }
 
     bool isExistBpk(const LiveActor* pActor, const char* pName) {
-        ResTable* pTable = getResourceHolder(pActor)->mBpkResTable;
         if (pName == nullptr) {
-            return pTable->mCount != 0;
+            return getResourceHolder(pActor)->mBpkResTable->mCount != 0;
         }
 
-        return pTable->isExistRes(pName);
+        return getResourceHolder(pActor)->mBpkResTable->isExistRes(pName);
     }
 
     bool isExistBva(const LiveActor* pActor, const char* pName) {
-        ResTable* pTable = getResourceHolder(pActor)->mBvaResTable;
         if (pName == nullptr) {
-            return pTable->mCount != 0;
+            return getResourceHolder(pActor)->mBvaResTable->mCount != 0;
         }
 
-        return pTable->isExistRes(pName);
+        return getResourceHolder(pActor)->mBvaResTable->isExistRes(pName);
     }
 
     bool isExistTexture(const LiveActor* pActor, const char* pName) {
@@ -875,10 +951,9 @@ namespace MR {
     void initDLMakerChangeTex(LiveActor* pActor, const char* pTexName) {
         J3DModelData* pModelData = getJ3DModelData(pActor);
         DisplayListMaker* pDLMaker = pActor->mModelManager->mDisplayListMaker;
-        J3DTexture* pTexture = pModelData->mMaterialTable.getTexture();
 
-        for (u16 texIndex = 0; texIndex < pTexture->getNum(); ++texIndex) {
-            if (strcmp(pModelData->mMaterialTable.getTextureName()->getName(texIndex), pTexName) != 0) {
+        for (u16 texIndex = 0; texIndex < pModelData->mMaterialTable.getTexture()->getNum(); ++texIndex) {
+            if (!MR::isEqualString(pModelData->mMaterialTable.getTextureName()->getName(texIndex), pTexName)) {
                 continue;
             }
 
@@ -919,12 +994,12 @@ namespace MR {
     }
 
     bool tryStartAction(const LiveActor* pActor, const char* pName) {
-        if (isActionStart(pActor, pName)) {
-            return false;
+        if (!isActionStart(pActor, pName)) {
+            startAction(pActor, pName);
+            return true;
         }
 
-        startAction(pActor, pName);
-        return true;
+        return false;
     }
 
     void startAllAnim(const LiveActor* pActor, const char* pName) {
@@ -989,26 +1064,26 @@ namespace MR {
     }
 
     bool tryStartBck(const LiveActor* pActor, const char* pBckName, const char* pBrkName) {
-        if (isBckPlaying(pActor->mModelManager->mXanimePlayer, pBckName)) {
-            return false;
+        if (!isBckPlaying(pActor->mModelManager->mXanimePlayer, pBckName)) {
+            pActor->mModelManager->startBck(pBckName, pBrkName);
+            changeBckForEffectKeeper(pActor);
+            startBas(pActor, pBckName, false, 0.0f, 0.0f);
+            return true;
         }
 
-        pActor->mModelManager->startBck(pBckName, pBrkName);
-        changeBckForEffectKeeper(pActor);
-        startBas(pActor, pBckName, false, 0.0f, 0.0f);
-        return true;
+        return false;
     }
 
     bool tryStartBckAndBtp(const LiveActor* pActor, const char* pBckName, const char* pBtpName) {
-        if (!tryStartBck(pActor, pBckName, pBtpName)) {
-            return false;
+        if (tryStartBck(pActor, pBckName, pBtpName)) {
+            if (isExistBtp(pActor, pBckName)) {
+                pActor->mModelManager->startBtp(pBckName);
+            }
+
+            return true;
         }
 
-        if (isExistBtp(pActor, pBtpName)) {
-            pActor->mModelManager->startBtp(pBtpName);
-        }
-
-        return true;
+        return false;
     }
 
     void setAllAnimFrame(const LiveActor* pActor, const char* pName, f32 frame) {
@@ -1150,13 +1225,16 @@ namespace MR {
     }
 
     void setBinderIgnoreMovingCollision(LiveActor* pActor) {
-        pActor->mBinder->_1EC._0 = pActor->mBinder->_1EC._0;
-        *(u8*)&pActor->mBinder->_1EC &= 0x7F;
+        s8* pFlags = (s8*)&pActor->mBinder->_1EC;
+        s32 flags = *pFlags;
+        flags &= 0xFFFFFF7F;
+        *pFlags = flags;
     }
 
-    void joinToGroup(LiveActor* pActor, const char* pGroupName) {
+    LiveActorGroup* joinToGroup(LiveActor* pActor, const char* pGroupName) {
         LiveActorGroup* pGroup = (LiveActorGroup*)NameObjFinder::find(pGroupName);
         pGroup->registerActor(pActor);
+        return pGroup;
     }
 
     MsgSharedGroup* joinToGroupArray(LiveActor* pActor, const JMapInfoIter& rIter, const char* pName, s32 maxCount) {
@@ -1164,13 +1242,13 @@ namespace MR {
             return nullptr;
         }
 
-        s32 groupId = 0;
-        if (!getJMapInfoGroupID(rIter, &groupId)) {
-            return nullptr;
+        s32 groupId;
+        if (getJMapInfoGroupID(rIter, &groupId)) {
+            LiveActorGroupArray* pGroupArray = (LiveActorGroupArray*)getSceneObjHolder()->getObj(SceneObj_LiveActorGroupArray);
+            return (MsgSharedGroup*)pGroupArray->entry(pActor, rIter, pName, maxCount);
         }
 
-        LiveActorGroupArray* pGroupArray = (LiveActorGroupArray*)getSceneObjHolder()->getObj(SceneObj_LiveActorGroupArray);
-        return (MsgSharedGroup*)pGroupArray->entry(pActor, rIter, pName, maxCount);
+        return nullptr;
     }
 
     LiveActorGroup* getGroupFromArray(const LiveActor* pActor) {
@@ -1180,14 +1258,9 @@ namespace MR {
 
     LiveActor* getPairedGroupMember(const LiveActor* pActor) {
         LiveActorGroup* pGroup = getGroupFromArray(pActor);
-        if (pGroup == nullptr) {
-            return nullptr;
-        }
-
         for (s32 i = 0; i < pGroup->getObjectCount(); i++) {
-            LiveActor* pMember = pGroup->getActor(i);
-            if (pMember != pActor) {
-                return pMember;
+            if (pGroup->getActor(i) != pActor) {
+                return pGroup->getActor(i);
             }
         }
 
@@ -1283,7 +1356,7 @@ namespace MR {
     }
 
     bool isBckLooped(const LiveActor* pActor) {
-        return (pActor->mModelManager->getBckCtrl()->mState & 1) != 0;
+        return (pActor->mModelManager->getBckCtrl()->mState & 0x2) != 0;
     }
 
     bool checkPassBckFrame(const LiveActor* pActor, f32 f) {
@@ -1363,12 +1436,9 @@ namespace MR {
     }
 
     void setBrkFrameEndAndStop(const LiveActor* pActor) {
-        J3DFrameCtrl* pBrkCtrl;
-
-        pBrkCtrl = pActor->mModelManager->getBrkCtrl();
-        pBrkCtrl->mFrame = pBrkCtrl->mEnd;
-
-        pBrkCtrl = pActor->mModelManager->getBrkCtrl();
+        f32 frame = (f32)pActor->mModelManager->getBrkCtrl()->mEnd;
+        pActor->mModelManager->getBrkCtrl()->mFrame = frame;
+        J3DFrameCtrl* pBrkCtrl = pActor->mModelManager->getBrkCtrl();
         pBrkCtrl->mRate = 0.0f;
     }
 
@@ -1408,59 +1478,59 @@ namespace MR {
     }
 
     bool startBckIfExist(const LiveActor* pActor, const char* pBckName) {
-        if (!getResourceHolder(pActor)->mMotionResTable->isExistRes(pBckName)) {
-            return false;
+        if (getResourceHolder(pActor)->mMotionResTable->isExistRes(pBckName)) {
+            pActor->mModelManager->startBck(pBckName, nullptr);
+            changeBckForEffectKeeper(pActor);
+            startBas(pActor, pBckName, false, 0.0f, 0.0f);
+            return true;
         }
 
-        pActor->mModelManager->startBck(pBckName, nullptr);
-        changeBckForEffectKeeper(pActor);
-        startBas(pActor, pBckName, false, 0.0f, 0.0f);
-        return true;
+        return false;
     }
 
     bool startBtkIfExist(const LiveActor* pActor, const char* pBtkName) {
-        if (!getResourceHolder(pActor)->mBtkResTable->isExistRes(pBtkName)) {
-            return false;
+        if (getResourceHolder(pActor)->mBtkResTable->isExistRes(pBtkName)) {
+            pActor->mModelManager->startBtk(pBtkName);
+            return true;
         }
 
-        pActor->mModelManager->startBtk(pBtkName);
-        return true;
+        return false;
     }
 
     bool startBrkIfExist(const LiveActor* pActor, const char* pBrkName) {
-        if (!getResourceHolder(pActor)->mBrkResTable->isExistRes(pBrkName)) {
-            return false;
+        if (getResourceHolder(pActor)->mBrkResTable->isExistRes(pBrkName)) {
+            pActor->mModelManager->startBrk(pBrkName);
+            return true;
         }
 
-        pActor->mModelManager->startBrk(pBrkName);
-        return true;
+        return false;
     }
 
     bool startBtpIfExist(const LiveActor* pActor, const char* pBtpName) {
-        if (!getResourceHolder(pActor)->mBtpResTable->isExistRes(pBtpName)) {
-            return false;
+        if (getResourceHolder(pActor)->mBtpResTable->isExistRes(pBtpName)) {
+            pActor->mModelManager->startBtp(pBtpName);
+            return true;
         }
 
-        pActor->mModelManager->startBtp(pBtpName);
-        return true;
+        return false;
     }
 
     bool startBpkIfExist(const LiveActor* pActor, const char* pBpkName) {
-        if (!getResourceHolder(pActor)->mBpkResTable->isExistRes(pBpkName)) {
-            return false;
+        if (getResourceHolder(pActor)->mBpkResTable->isExistRes(pBpkName)) {
+            pActor->mModelManager->startBpk(pBpkName);
+            return true;
         }
 
-        pActor->mModelManager->startBpk(pBpkName);
-        return true;
+        return false;
     }
 
     bool startBvaIfExist(const LiveActor* pActor, const char* pBvaName) {
-        if (!getResourceHolder(pActor)->mBvaResTable->isExistRes(pBvaName)) {
-            return false;
+        if (getResourceHolder(pActor)->mBvaResTable->isExistRes(pBvaName)) {
+            pActor->mModelManager->startBva(pBvaName);
+            return true;
         }
 
-        pActor->mModelManager->startBva(pBvaName);
-        return true;
+        return false;
     }
 
     bool isBtkPlaying(const LiveActor* pActor, const char* pBtkName) {
@@ -1556,7 +1626,8 @@ namespace MR {
     }
 
     void stopBck(const LiveActor* pActor) {
-        pActor->mModelManager->getBckCtrl()->mRate = 0.0f;
+        J3DFrameCtrl* pBckCtrl = pActor->mModelManager->getBckCtrl();
+        pBckCtrl->mRate = 0.0f;
     }
 
     void stopBtk(const LiveActor* pActor) {
@@ -1576,22 +1647,26 @@ namespace MR {
     }
 
     void setBckRate(const LiveActor* pActor, f32 rate) {
-        pActor->mModelManager->getBckCtrl()->mRate = rate * sAnimRateScale;
+        J3DFrameCtrl* pBckCtrl = pActor->mModelManager->getBckCtrl();
+        pBckCtrl->mRate = rate * sAnimRateScale;
     }
 
     void setBtkRate(const LiveActor* pActor, f32 rate) {
-        pActor->mModelManager->getBtkCtrl()->mRate = rate * sAnimRateScale;
+        J3DFrameCtrl* pBtkCtrl = pActor->mModelManager->getBtkCtrl();
+        pBtkCtrl->mRate = rate * sAnimRateScale;
     }
 
     void setBrkRate(const LiveActor* pActor, f32 rate) {
-        pActor->mModelManager->getBrkCtrl()->mRate = rate * sAnimRateScale;
+        J3DFrameCtrl* pBrkCtrl = pActor->mModelManager->getBrkCtrl();
+        pBrkCtrl->mRate = rate * sAnimRateScale;
     }
 
     void setBvaRate(const LiveActor* pActor, f32 rate) {
-        pActor->mModelManager->getBvaCtrl()->mRate = rate * sAnimRateScale;
+        J3DFrameCtrl* pBvaCtrl = pActor->mModelManager->getBvaCtrl();
+        pBvaCtrl->mRate = rate * sAnimRateScale;
     }
 
-    void setBckFrame(const LiveActor* pActor, f32 frame) {
+    void setBckFrame(const LiveActor* pActor, f32 frame) NO_INLINE {
         pActor->mModelManager->getBckCtrl()->mFrame = frame;
     }
 
@@ -1650,9 +1725,13 @@ namespace MR {
     void setMirrorReflectionInfoFromMtxYUp(const TPos3f& rMtx) {
         TVec3f up;
         TVec3f pos;
+        f32 upZ = rMtx.mMtx[2][1];
+        f32 upY = rMtx.mMtx[1][1];
+        up.set< f32 >(rMtx.mMtx[0][1], upY, upZ);
 
-        up.set(rMtx.mMtx[0][1], rMtx.mMtx[1][1], rMtx.mMtx[2][1]);
-        pos.set(rMtx.mMtx[0][3], rMtx.mMtx[1][3], rMtx.mMtx[2][3]);
+        f32 posZ = rMtx.mMtx[2][3];
+        f32 posY = rMtx.mMtx[1][3];
+        pos.set< f32 >(rMtx.mMtx[0][3], posY, posZ);
 
         MR::getMirrorCamera()->setMirrorMapInfo(up, pos);
     }
@@ -1665,15 +1744,53 @@ namespace MR {
     void changeModelDataTexAll(LiveActor* pActor, const char* pTexName, const ResTIMG& rTimg) {
         J3DModelData* pModelData = MR::getJ3DModelData(pActor);
         DisplayListMaker* pDLMaker = pActor->mModelManager->mDisplayListMaker;
-        J3DTexture* pTexture = pModelData->mMaterialTable.getTexture();
 
-        for (u16 texIndex = 0; texIndex < pTexture->getNum(); texIndex++) {
+        for (u16 texIndex = 0; texIndex < pModelData->mMaterialTable.getTexture()->getNum(); texIndex++) {
             const char* name = pModelData->mMaterialTable.getTextureName()->getName(texIndex);
             if (strcmp(name, pTexName) != 0) {
                 continue;
             }
 
-            pTexture->setResTIMG(texIndex, rTimg);
+            J3DTexture* pTexture = pModelData->mMaterialTable.getTexture();
+            u32 texOffset = static_cast<u32>(texIndex) << 5;
+            const u8* pSrc = reinterpret_cast<const u8*>(&rTimg);
+            u8* pBase = reinterpret_cast<u8*>(pTexture->getResTIMG(0));
+            pBase[texOffset] = pSrc[0];
+
+            u8* pDst = pBase + texOffset;
+            pDst[0x01] = pSrc[0x01];
+            *reinterpret_cast<u16*>(pDst + 0x02) = *reinterpret_cast<const u16*>(pSrc + 0x02);
+            *reinterpret_cast<u16*>(pDst + 0x04) = *reinterpret_cast<const u16*>(pSrc + 0x04);
+            pDst[0x06] = pSrc[0x06];
+            pDst[0x07] = pSrc[0x07];
+            pDst[0x08] = pSrc[0x08];
+            pDst[0x09] = pSrc[0x09];
+            *reinterpret_cast<u16*>(pDst + 0x0A) = *reinterpret_cast<const u16*>(pSrc + 0x0A);
+            *reinterpret_cast<u32*>(pDst + 0x0C) = *reinterpret_cast<const u32*>(pSrc + 0x0C);
+            pDst[0x10] = pSrc[0x10];
+            pDst[0x11] = pSrc[0x11];
+            pDst[0x12] = pSrc[0x12];
+            pDst[0x13] = pSrc[0x13];
+            pDst[0x14] = pSrc[0x14];
+            pDst[0x15] = pSrc[0x15];
+            pDst[0x16] = pSrc[0x16];
+            pDst[0x17] = pSrc[0x17];
+            pDst[0x18] = pSrc[0x18];
+            pDst[0x19] = pSrc[0x19];
+            *reinterpret_cast<s16*>(pDst + 0x1A) = *reinterpret_cast<const s16*>(pSrc + 0x1A);
+            *reinterpret_cast<u32*>(pDst + 0x1C) = *reinterpret_cast<const u32*>(pSrc + 0x1C);
+
+            pBase = reinterpret_cast<u8*>(pTexture->getResTIMG(0));
+            u8* pPal = pBase + texOffset;
+            u32 palOffset = *reinterpret_cast<u32*>(pPal + 0x1C);
+            palOffset = (palOffset + reinterpret_cast<u32>(pSrc)) - reinterpret_cast<u32>(pPal);
+            *reinterpret_cast<u32*>(pPal + 0x1C) = palOffset;
+
+            pBase = reinterpret_cast<u8*>(pTexture->getResTIMG(0));
+            u8* pImg = pBase + texOffset;
+            u32 imgOffset = *reinterpret_cast<u32*>(pImg + 0x0C);
+            imgOffset = (imgOffset + reinterpret_cast<u32>(pSrc)) - reinterpret_cast<u32>(pImg);
+            *reinterpret_cast<u32*>(pImg + 0x0C) = imgOffset;
 
             for (u16 matIndex = 0; matIndex < pModelData->mMaterialTable.getMaterialNum(); matIndex++) {
                 J3DMaterial* material = pModelData->mMaterialTable.getMaterialNodePointer(matIndex);
@@ -1734,11 +1851,10 @@ namespace MR {
 
         AudAnmSoundObject* pSoundObj = pActor->mSoundObject;
         if (pSoundObj != nullptr && pSoundObj->hasAnimHandles()) {
-            f32 endFrame = (f32)rBck.mEndFrame;
             if (rBck.mRepeatFrame < 0) {
-                pSoundObj->setLoopFrame((f32)rBck.mStartFrame, endFrame);
+                pSoundObj->setLoopFrame((f32)rBck.mStartFrame, (f32)rBck.mEndFrame);
             } else {
-                pSoundObj->setLoopFrame((f32)rBck.mRepeatFrame, endFrame);
+                pSoundObj->setLoopFrame((f32)rBck.mRepeatFrame, (f32)rBck.mEndFrame);
             }
 
             pSoundObj->setStartPos((f32)rBck.mStartFrame);
@@ -2105,7 +2221,7 @@ namespace MR {
         onCalcAnim(pActor);
     }
 
-    void showModelIfHidden(LiveActor* pActor) {
+    void showModelIfHidden(LiveActor* pActor) NO_INLINE {
         if (isHiddenModel(pActor)) {
             showModel(pActor);
         }
@@ -2194,12 +2310,15 @@ namespace MR {
         TVec3f gravity;
         calcGravityVectorOrZero(pActor, rPos, &gravity, nullptr, 0);
         if (!isNearZero(gravity, 0.001f)) {
-            pActor->mGravity = gravity;
+            pActor->mGravity.set(gravity);
             return;
         }
 
         if (isBindedGround(pActor)) {
-            pActor->mGravity = -(*pActor->mBinder->mGroundInfo.mParentTriangle.getNormal(0));
+            const TVec3f* normal = pActor->mBinder->mGroundInfo.mParentTriangle.getNormal(0);
+            TVec3f bindGravity;
+            JMathInlineVEC::PSVECNegate(normal, &bindGravity);
+            pActor->mGravity.set(bindGravity);
         }
     }
 
@@ -2252,14 +2371,18 @@ namespace MR {
 
     CollisionParts* tryCreateCollisionMoveLimit(LiveActor* pActor, MtxPtr pMtx, HitSensor* pSensor) {
         char kcl[0x80];
-        snprintf(kcl, sizeof(kcl), "%s.kcl", "MoveLimit");
+        {
+            const char* pKclName = "MoveLimit";
+            snprintf(kcl, sizeof(kcl), "%s.kcl", pKclName);
+        }
         if (!getResourceHolder(pActor)->mFileInfoTable->isExistRes(kcl)) {
             return nullptr;
         }
 
         TPos3f mtx;
+        const char* pCollisionName = "MoveLimit";
         mtx.set(pMtx);
-        CollisionParts* pParts = createCollisionParts(getResourceHolder(pActor), "MoveLimit", pSensor, mtx, UNKNOWN_2, 3);
+        CollisionParts* pParts = createCollisionParts(getResourceHolder(pActor), pCollisionName, pSensor, mtx, UNKNOWN_2, 3);
         pParts->_0 = (TMtx34f*)pMtx;
 
         if (pParts != nullptr) {
@@ -2271,14 +2394,18 @@ namespace MR {
 
     CollisionParts* tryCreateCollisionWaterSurface(LiveActor* pActor, MtxPtr pMtx, HitSensor* pSensor) {
         char kcl[0x80];
-        snprintf(kcl, sizeof(kcl), "%s.kcl", "WaterSurface");
+        {
+            const char* pKclName = "WaterSurface";
+            snprintf(kcl, sizeof(kcl), "%s.kcl", pKclName);
+        }
         if (!getResourceHolder(pActor)->mFileInfoTable->isExistRes(kcl)) {
             return nullptr;
         }
 
         TPos3f mtx;
+        const char* pCollisionName = "WaterSurface";
         mtx.set(pMtx);
-        CollisionParts* pParts = createCollisionParts(getResourceHolder(pActor), "WaterSurface", pSensor, mtx, UNKNOWN_2, 2);
+        CollisionParts* pParts = createCollisionParts(getResourceHolder(pActor), pCollisionName, pSensor, mtx, UNKNOWN_2, 2);
         pParts->_0 = (TMtx34f*)pMtx;
 
         if (pParts != nullptr) {
@@ -2290,14 +2417,18 @@ namespace MR {
 
     CollisionParts* tryCreateCollisionSunshade(LiveActor* pActor, MtxPtr pMtx, HitSensor* pSensor) {
         char kcl[0x80];
-        snprintf(kcl, sizeof(kcl), "%s.kcl", "Sunshade");
+        {
+            const char* pKclName = "Sunshade";
+            snprintf(kcl, sizeof(kcl), "%s.kcl", pKclName);
+        }
         if (!getResourceHolder(pActor)->mFileInfoTable->isExistRes(kcl)) {
             return nullptr;
         }
 
         TPos3f mtx;
+        const char* pCollisionName = "Sunshade";
         mtx.set(pMtx);
-        CollisionParts* pParts = createCollisionParts(getResourceHolder(pActor), "Sunshade", pSensor, mtx, UNKNOWN_2, 1);
+        CollisionParts* pParts = createCollisionParts(getResourceHolder(pActor), pCollisionName, pSensor, mtx, UNKNOWN_2, 1);
         pParts->_0 = (TMtx34f*)pMtx;
 
         if (pParts != nullptr) {
@@ -2307,8 +2438,8 @@ namespace MR {
         return pParts;
     }
 
-    bool tryCreateCollisionAllOtherCategory(LiveActor* pActor, HitSensor* pSensor, CollisionParts** pMoveLimit, CollisionParts** pWaterSurface,
-                                            CollisionParts** pSunshade) {
+    CollisionParts* tryCreateCollisionAllOtherCategory(LiveActor* pActor, HitSensor* pSensor, CollisionParts** pMoveLimit,
+                                                       CollisionParts** pWaterSurface, CollisionParts** pSunshade) {
         CollisionParts* moveLimit = tryCreateCollisionMoveLimit(pActor, pSensor);
         CollisionParts* waterSurface = tryCreateCollisionWaterSurface(pActor, pSensor);
         CollisionParts* sunshade = tryCreateCollisionSunshade(pActor, pSensor);
@@ -2324,11 +2455,11 @@ namespace MR {
             *pSunshade = sunshade;
         }
 
-        return sunshade != nullptr;
+        return sunshade;
     }
 
-    bool tryCreateCollisionAllOtherCategory(LiveActor* pActor, MtxPtr pMtx, HitSensor* pSensor, CollisionParts** pMoveLimit,
-                                            CollisionParts** pWaterSurface, CollisionParts** pSunshade) {
+    CollisionParts* tryCreateCollisionAllOtherCategory(LiveActor* pActor, MtxPtr pMtx, HitSensor* pSensor, CollisionParts** pMoveLimit,
+                                                       CollisionParts** pWaterSurface, CollisionParts** pSunshade) {
         CollisionParts* moveLimit = tryCreateCollisionMoveLimit(pActor, pMtx, pSensor);
         CollisionParts* waterSurface = tryCreateCollisionWaterSurface(pActor, pMtx, pSensor);
         CollisionParts* sunshade = tryCreateCollisionSunshade(pActor, pMtx, pSensor);
@@ -2344,7 +2475,7 @@ namespace MR {
             *pSunshade = sunshade;
         }
 
-        return sunshade != nullptr;
+        return sunshade;
     }
 
     bool isExistKcl(LiveActor* pActor, const char* pName) {
@@ -2362,13 +2493,13 @@ namespace MR {
     }
 
     void validateCollisionParts(LiveActor* pActor) {
+        validateCollisionParts(pActor->mCollisionParts);
         CollisionParts* pParts = pActor->mCollisionParts;
-        validateCollisionParts(pParts);
 
         if (pParts->_0 != nullptr) {
             pParts->updateBoundingSphereRange();
         } else {
-            pParts->updateBoundingSphereRange(pActor->mPosition);
+            pParts->updateBoundingSphereRange(pActor->mScale);
         }
 
         resetAllCollisionMtx(pActor);
@@ -2408,7 +2539,7 @@ namespace MR {
             validateCollisionParts(pActor);
         }
 
-        pParts->_CD = true;
+        pActor->mCollisionParts->_CD = true;
     }
 
     void onUpdateCollisionPartsOnetimeImmediately(LiveActor* pActor) {
@@ -2417,12 +2548,10 @@ namespace MR {
             validateCollisionParts(pActor);
         }
 
+        pParts = pActor->mCollisionParts;
         pParts->_CE = true;
-        pActor->calcAndSetBaseMtx();
-
-        TPos3f mtx;
-        makeMtxTR((MtxPtr)mtx.toMtxPtr(), pActor);
-        setCollisionMtx(pActor, pParts);
+        makeMtxTR(pActor->getBaseMtx(), pActor);
+        setCollisionMtx(pActor, pActor->mCollisionParts);
         pParts->updateMtx();
     }
 
@@ -2432,7 +2561,7 @@ namespace MR {
             validateCollisionParts(pActor);
         }
 
-        pParts->_CD = false;
+        pActor->mCollisionParts->_CD = false;
     }
 
     void resetAllCollisionMtx(LiveActor* pActor) {
@@ -2553,15 +2682,15 @@ namespace MR {
     PartsModel* createPartsModelEnemyAndFix(LiveActor* pHost, const char* pName, const char* pModelName, MtxPtr pMtx, const TVec3f& rPos,
                                             const TVec3f& rRot, const char* pJointName) {
         PartsModel* pModel = new PartsModel(pHost, pName, pModelName, pMtx, 18, false);
-        pModel->initWithoutIter();
         pModel->initFixedPosition(rPos, rRot, pJointName);
+        pModel->initWithoutIter();
         return pModel;
     }
 
     PartsModel* createPartsModelNpcAndFix(LiveActor* pHost, const char* pName, const char* pModelName, const char* pJointName) {
         PartsModel* pModel = new PartsModel(pHost, pName, pModelName, nullptr, 16, false);
-        pModel->initWithoutIter();
         pModel->initFixedPosition(pJointName);
+        pModel->initWithoutIter();
         pModel->_99 = true;
         return pModel;
     }
@@ -2583,12 +2712,13 @@ namespace MR {
         pLod->setDistanceToMiddleAndLow(5000.0f, 10000.0f);
         pLod->setFarClipping(farClip);
 
-        const char* pResName = getModelResourceHolder(pActor)->mModelResTable->getResName(0UL);
         if (pLod->_10 != nullptr) {
+            const char* pResName = getModelResourceHolder(pLod->_10)->mModelResTable->getResName(0UL);
             tryStartAllAnim(pLod->_10, pResName);
         }
 
         if (pLod->_14 != nullptr) {
+            const char* pResName = getModelResourceHolder(pLod->_14)->mModelResTable->getResName(0UL);
             tryStartAllAnim(pLod->_14, pResName);
         }
 
@@ -2601,12 +2731,13 @@ namespace MR {
         pLod->setDistanceToMiddleAndLow(5000.0f, 10000.0f);
         pLod->setFarClipping(farClip);
 
-        const char* pResName = getModelResourceHolder(pActor)->mModelResTable->getResName(0UL);
         if (pLod->_10 != nullptr) {
+            const char* pResName = getModelResourceHolder(pLod->_10)->mModelResTable->getResName(0UL);
             tryStartAllAnim(pLod->_10, pResName);
         }
 
         if (pLod->_14 != nullptr) {
+            const char* pResName = getModelResourceHolder(pLod->_14)->mModelResTable->getResName(0UL);
             tryStartAllAnim(pLod->_14, pResName);
         }
 
@@ -2615,12 +2746,13 @@ namespace MR {
 
     Flag* createMapFlag(const char* pName, const char* pInfoName, const TVec3f* pPos, const TVec3f& rRot, f32 a5, f32 a6, f32 a7, s32 a8, s32 a9,
                         f32 a10) {
-        void* pAlloc = operator new(0x134);
-        Flag* pFlag = pAlloc != nullptr ? new (pAlloc) Flag(pName) : nullptr;
+        Flag* pFlag = (Flag*)operator new(0x134);
         if (pFlag != nullptr) {
-            pFlag->setInfoPos(pInfoName, pPos, rRot, a5, a6, a7, a8, a9, a10);
-            pFlag->initWithoutIter();
+            pFlag = __ct__4FlagFPCc(pFlag, pName);
         }
+
+        pFlag->setInfoPos(pInfoName, pPos, rRot, a5, a6, a7, a8, a9, a10);
+        reinterpret_cast<NameObj*>(pFlag)->initWithoutIter();
 
         return pFlag;
     }
@@ -2715,9 +2847,8 @@ namespace MR {
 };  // namespace MR
 
 void JAUSoundAnimator::setLoopFrame(f32 start, f32 end) {
-    JAUSoundAnimation* pAnim = reinterpret_cast< JAUSoundAnimation* >(this->_8);
-    *reinterpret_cast< f32* >(reinterpret_cast< u8* >(this) + 0x20) = start;
-    *reinterpret_cast< u32* >(reinterpret_cast< u8* >(this) + 0x18) = pAnim->getStartSoundIndex(start);
-    *reinterpret_cast< f32* >(reinterpret_cast< u8* >(this) + 0x24) = end;
-    *reinterpret_cast< u32* >(reinterpret_cast< u8* >(this) + 0x1C) = pAnim->getEndSoundIndex(end);
+    mLoopStartFrame = start;
+    mLoopStartSoundIndex = mSoundAnimation->getStartSoundIndex(start);
+    mLoopEndFrame = end;
+    mLoopEndSoundIndex = mSoundAnimation->getEndSoundIndex(end);
 }

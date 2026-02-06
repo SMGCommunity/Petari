@@ -24,6 +24,7 @@ struct ResTIMG {
     /* 0x16 */ u8 mMinLod;
     /* 0x17 */ u8 mMaxLod;
     /* 0x18 */ u8 mImageNum;
+    /* 0x19 */ u8 _19;
     /* 0x1A */ s16 mLodBias;
     /* 0x1C */ u32 mImageDataOffset;
 };

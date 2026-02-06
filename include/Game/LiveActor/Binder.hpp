@@ -3,6 +3,8 @@
 #include "Game/Map/HitInfo.hpp"
 #include "Game/Util/TriangleFilter.hpp"
 
+class CollisionPartsFilterBase;
+
 class BinderParent {
 public:
     inline BinderParent(MtxPtr mtx) {

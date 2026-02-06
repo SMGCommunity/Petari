@@ -77,7 +77,7 @@ namespace MR {
     void showModel(LiveActor*);
     void hideModel(LiveActor*);
     void hideModelAndOnCalcAnim(LiveActor*);
-    void showModelIfHidden(LiveActor*);
+    void showModelIfHidden(LiveActor*) NO_INLINE;
     void hideModelIfShown(LiveActor*);
     void hideModelAndOnCalcAnimIfShown(LiveActor*);
     void stopAnimFrame(LiveActor*);
@@ -93,7 +93,7 @@ namespace MR {
     bool isCalcGravity(const LiveActor*);
     void onCalcGravity(LiveActor*);
     void offCalcGravity(LiveActor*);
-    void joinToGroup(LiveActor*, const char*);
+    LiveActorGroup* joinToGroup(LiveActor*, const char*);
 
     const char* getModelResName(const LiveActor*);
 
@@ -218,7 +218,7 @@ namespace MR {
 
     void setBvaRate(const LiveActor*, f32);
 
-    void setBckFrame(const LiveActor*, f32);
+    void setBckFrame(const LiveActor*, f32) NO_INLINE;
     f32 getBckFrameMax(const LiveActor*);
     f32 getBrkFrameMax(const LiveActor*);
     f32 getBtkFrameMax(const LiveActor*);
@@ -378,8 +378,8 @@ namespace MR {
 
     void setBinderExceptActor(LiveActor*, const LiveActor*);
 
-    bool tryCreateCollisionAllOtherCategory(LiveActor*, MtxPtr, HitSensor*, CollisionParts**, CollisionParts**, CollisionParts**);
-    bool tryCreateCollisionAllOtherCategory(LiveActor*, HitSensor*, CollisionParts**, CollisionParts**, CollisionParts**);
+    CollisionParts* tryCreateCollisionAllOtherCategory(LiveActor*, MtxPtr, HitSensor*, CollisionParts**, CollisionParts**, CollisionParts**);
+    CollisionParts* tryCreateCollisionAllOtherCategory(LiveActor*, HitSensor*, CollisionParts**, CollisionParts**, CollisionParts**);
 
     bool isExistAnim(const LiveActor*, const char*);
 
