@@ -2,21 +2,13 @@
 #include "Game/Player/MarioActor.hpp"
 #include "Game/AudioLib/AudAnmSoundObject.hpp"
 #include "Game/GameAudio/AudTalkSoundData.hpp"
+#include "Game/Player/MarioWait.hpp"
 #include "Game/System/ResourceHolder.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 #include <cstring>
 
 extern "C" {
-    bool startSound__2MRFPC9LiveActor10JAISoundIDll(const LiveActor*, JAISoundID, s32, s32);
-    void startLevelSound__2MRFPC9LiveActor10JAISoundIDlll(const LiveActor*, JAISoundID, s32, s32, s32);
-    void startSystemSE__2MRF10JAISoundIDll(JAISoundID, s32, s32);
-    void startSystemLevelSE__2MRF10JAISoundIDll(JAISoundID, s32, s32);
-    void stopSound__2MRFPC9LiveActor10JAISoundIDUl(const LiveActor*, JAISoundID, u32);
-    void stopSystemSE__2MRF10JAISoundIDUl(JAISoundID, u32);
-    void startAnimation__16JAUSoundAnimatorFPC17JAUSoundAnimationbff(JAUSoundAnimator*, const JAUSoundAnimation*, bool, f32, f32);
-    void removeAnimation__16JAUSoundAnimatorFv(JAUSoundAnimator*);
-
     extern char lbl_805CB350[];
     extern char lbl_805CB35B[];
     extern char lbl_805C98EB[];
@@ -1704,12 +1696,12 @@ struct SoundSwapList {
 SoundSwapList soundswaplist[] = {{"", 0, 0, 0}};
 
 u32 Mario::initSoundTable(SoundList* list, u32 globalTablePosition) {
-    u32* pSwapOffset = reinterpret_cast< u32* >(soundswaplist) + globalTablePosition;
+    u32* pSwapOffset = reinterpret_cast<u32*>(soundswaplist) + globalTablePosition;
     u32 count = 0;
     u32 listOffset = 0;
 
     while (true) {
-        SoundList* pEntry = reinterpret_cast< SoundList* >(reinterpret_cast< u8* >(list) + listOffset);
+        SoundList* pEntry = reinterpret_cast<SoundList*>(reinterpret_cast<u8*>(list) + listOffset);
         if (pEntry->name[0] == '\0') {
             break;
         }
@@ -1720,13 +1712,13 @@ u32 Mario::initSoundTable(SoundList* list, u32 globalTablePosition) {
         if (globalTablePosition != 0) {
             u32 swapOffset = 0;
             while (true) {
-                const char* pSwapName = *reinterpret_cast< const char** >(reinterpret_cast< u8* >(soundswaplist) + swapOffset);
-                if (pSwapName[0] == '\0') {
+                const SoundSwapList* pSwapEntry = reinterpret_cast<const SoundSwapList*>(reinterpret_cast<const u8*>(soundswaplist) + swapOffset);
+                if (pSwapEntry->name[0] == '\0') {
                     break;
                 }
 
-                if (strcmp(pEntry->name, pSwapName) == 0) {
-                    u32 soundID = *reinterpret_cast< u32* >(reinterpret_cast< u8* >(pSwapOffset) + swapOffset);
+                if (strcmp(pEntry->name, pSwapEntry->name) == 0) {
+                    u32 soundID = *reinterpret_cast<u32*>(reinterpret_cast<u8*>(pSwapOffset) + swapOffset);
                     if (soundID != 0) {
                         pEntry->_14 = soundID;
                     }
@@ -1755,44 +1747,97 @@ void Mario::initSound() {
 }
 
 bool Mario::playSoundJ(const char* pSoundName, s32 timing) {
-    u32 index = 0;
+    u32 index;
     if (_96C->search(pSoundName, &index)) {
-        JAISoundID soundID(soundlist[index]._14);
         s32 type = soundlist[index]._8._4[0] & 0x3;
 
         if (type == 2) {
-            startSystemSE__2MRF10JAISoundIDll(soundID, timing, -1);
-        }
-        else if (type < 2) {
-            if (type == 0) {
-                startSound__2MRFPC9LiveActor10JAISoundIDll(mActor, soundID, timing, -1);
-            }
-            else {
-                startLevelSound__2MRFPC9LiveActor10JAISoundIDlll(mActor, soundID, timing, -1, -1);
-            }
-        }
-        else if (type < 4) {
-            startSystemLevelSE__2MRF10JAISoundIDll(soundID, timing, -1);
+            goto systemSound;
         }
 
-        s32 recurType = soundlist[index]._8._4[0] & 0xFC;
-        if ((recurType == 0x4 || recurType == 0x8) && (mDrawStates._C || mDrawStates._D)) {
+        if (type < 2) {
+            if (type == 0) {
+                goto actorSound;
+            }
+
+            if (type >= 0) {
+                goto levelSound;
+            }
+
+            goto typeEnd;
+        }
+
+        if (type >= 4) {
+            goto typeEnd;
+        }
+
+        goto systemLevelSound;
+
+actorSound:
+        {
+            JAISoundID soundID(soundlist[index]._14);
+            MR::startSound(mActor, soundID, timing, -1);
+        }
+        goto typeEnd;
+
+systemSound:
+        {
+            JAISoundID soundID(soundlist[index]._14);
+            MR::startSystemSE(soundID, timing, -1);
+        }
+        goto typeEnd;
+
+levelSound:
+        {
+            JAISoundID soundID(soundlist[index]._14);
+            MR::startLevelSound(mActor, soundID, timing, -1, -1);
+        }
+        goto typeEnd;
+
+systemLevelSound:
+        {
+            JAISoundID soundID(soundlist[index]._14);
+            MR::startSystemLevelSE(soundID, timing, -1);
+        }
+
+typeEnd:
+        s32 recurType = soundlist[index]._8._4[0];
+        recurType &= ~0x3;
+        if (recurType == 0x8) {
+            goto recurse;
+        }
+
+        if (recurType >= 0x8) {
+            goto recurseEnd;
+        }
+
+        if (recurType == 0x4) {
+            goto recurse;
+        }
+
+        goto recurseEnd;
+
+recurse:
+        if (mDrawStates.mIsUnderwater || mDrawStates._13) {
             playSoundJ(soundlist[index]._C, -1);
         }
+
+recurseEnd:
+        ;
     }
 
-    if (_96C->search(&lbl_806B22C9, pSoundName, &index)) {
+    bool isFound = _96C->search(&lbl_806B22C9, pSoundName, &index);
+    if (isFound) {
         JAISoundID soundID(soundlist[index]._14);
-        return startSound__2MRFPC9LiveActor10JAISoundIDll(mActor, soundID, timing, -1);
+        return MR::startSound(mActor, soundID, timing, -1);
     }
 
-    return false;
+    return isFound;
 }
 
 void Mario::stopSoundJ(const char* pSoundName, u32 delay) {
     u32 index;
     if (_96C->search(pSoundName, &index)) {
-        JAISoundID soundID(soundlist[index]._14);
         s32 stopType = soundlist[index]._8._4[0] & 0x3;
 
         if (stopType != 2) {
@@ -1800,20 +1845,22 @@ void Mario::stopSoundJ(const char* pSoundName, u32 delay) {
             }
             else {
                 if (stopType == 0) {
-                    stopSound__2MRFPC9LiveActor10JAISoundIDUl(mActor, soundID, delay);
+                    JAISoundID soundID(soundlist[index]._14);
+                    MR::stopSound(mActor, soundID, delay);
                 }
                 else {
                 }
             }
         }
         else {
-            stopSystemSE__2MRF10JAISoundIDUl(soundID, delay);
+            JAISoundID soundID(soundlist[index]._14);
+            MR::stopSystemSE(soundID, delay);
         }
     }
 
     if (_96C->search(&lbl_806B22C9, pSoundName, &index)) {
         JAISoundID soundID(soundlist[index]._14);
-        stopSound__2MRFPC9LiveActor10JAISoundIDUl(mActor, soundID, delay);
+        MR::stopSound(mActor, soundID, delay);
     }
 }
 
@@ -1823,15 +1870,14 @@ void Mario::startBas(const char* pAnimName, bool arg2, f32 startFrame, f32 speed
         const JAUSoundAnimation* pRes = nullptr;
 
         if (pAnimName && pHolder->mBasResTable->isExistRes(pAnimName)) {
-            pRes = static_cast< JAUSoundAnimation* >(pHolder->mBasResTable->getRes(pAnimName));
+            pRes = static_cast<JAUSoundAnimation*>(pHolder->mBasResTable->getRes(pAnimName));
         }
 
         if (pRes) {
-            startAnimation__16JAUSoundAnimatorFPC17JAUSoundAnimationbff(
-                reinterpret_cast< JAUSoundAnimator* >(reinterpret_cast< u8* >(mActor->mSoundObject) + 0x48), pRes, arg2, startFrame, speed);
+            mActor->mSoundObject->startAnimation(pRes, arg2, startFrame, speed);
         }
         else {
-            removeAnimation__16JAUSoundAnimatorFv(reinterpret_cast< JAUSoundAnimator* >(reinterpret_cast< u8* >(mActor->mSoundObject) + 0x48));
+            mActor->mSoundObject->removeAnimation();
         }
 
         _970 = pAnimName;
@@ -1861,9 +1907,8 @@ void Mario::playSoundTeresaFlying() {
 
     s32 timing = 100;
     if (getCurrentStatus() == 0x1C) {
-        u16* pWaitData = reinterpret_cast< u16* >(mWait);
-        if (pWaitData[0xA] == 0) {
-            timing = 100 - static_cast< s32 >(pWaitData[0xB]);
+        if (mWait->_14 == 0) {
+            timing = 100 - static_cast<s32>(mWait->_16);
             if (timing < 0) {
                 timing = 0;
             }
