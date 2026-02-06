@@ -16,6 +16,8 @@ public:
     virtual bool playSound(const JAUSoundAnimationSound*, const TVec3f&, f32);
     virtual void modifySoundParams(JASSoundParams*, const JAUSoundAnimationSound*, f32);
 
+    void setLoopFrame(f32, f32);
+
     JAISoundHandles* mHandles;  // 0x04
     u32 _8;
     u32 _C;

@@ -20,6 +20,7 @@ class LiveActor;
 class LiveActorGroup;
 class LodCtrl;
 class ModelObj;
+class MirrorActor;
 class MsgSharedGroup;
 class Nerve;
 class PartsModel;
@@ -225,7 +226,7 @@ namespace MR {
 
     s16 getBrkFrameMax(const LiveActor*, const char*);
 
-    void setBtkFrame(LiveActor*, f32);
+    void setBtkFrame(const LiveActor*, f32);
     void setBtkFrameAndStop(const LiveActor*, f32);
 
     f32 getBtpFrame(const LiveActor*);
@@ -342,7 +343,7 @@ namespace MR {
     bool changeShowModelFlagSyncNearClipping(LiveActor*, f32);
 
     PartsModel* createIndirectPlanetModel(LiveActor*, MtxPtr);
-    bool tryCreateMirrorActor(LiveActor*, const char*);
+    MirrorActor* tryCreateMirrorActor(LiveActor*, const char*);
 
     CollisionParts* createCollisionPartsFromLiveActor(LiveActor*, const char*, HitSensor*, CollisionScaleType);
     CollisionParts* createCollisionPartsFromLiveActor(LiveActor*, const char*, HitSensor*, MtxPtr, CollisionScaleType);
