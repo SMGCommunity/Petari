@@ -216,6 +216,8 @@ public:
     void shootFireBall();
     void doFreezeAttack();
     void initBlink();
+    void updateBlink();
+    bool finalizeFreezeModel();
     void setBlink(const char*);
     void resetSensorCount();
     void getStickValue(f32*, f32*);

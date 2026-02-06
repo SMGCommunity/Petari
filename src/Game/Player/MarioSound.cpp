@@ -1,13 +1,42 @@
 #include "Game/Player/Mario.hpp"
 #include "Game/Player/MarioActor.hpp"
+#include "Game/AudioLib/AudAnmSoundObject.hpp"
+#include "Game/GameAudio/AudTalkSoundData.hpp"
+#include "Game/System/ResourceHolder.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 #include <cstring>
 
+extern "C" {
+    bool startSound__2MRFPC9LiveActor10JAISoundIDll(const LiveActor*, JAISoundID, s32, s32);
+    void startLevelSound__2MRFPC9LiveActor10JAISoundIDlll(const LiveActor*, JAISoundID, s32, s32, s32);
+    void startSystemSE__2MRF10JAISoundIDll(JAISoundID, s32, s32);
+    void startSystemLevelSE__2MRF10JAISoundIDll(JAISoundID, s32, s32);
+    void stopSound__2MRFPC9LiveActor10JAISoundIDUl(const LiveActor*, JAISoundID, u32);
+    void stopSystemSE__2MRF10JAISoundIDUl(JAISoundID, u32);
+    void startAnimation__16JAUSoundAnimatorFPC17JAUSoundAnimationbff(JAUSoundAnimator*, const JAUSoundAnimation*, bool, f32, f32);
+    void removeAnimation__16JAUSoundAnimatorFv(JAUSoundAnimator*);
+
+    extern char lbl_805CB350[];
+    extern char lbl_805CB35B[];
+    extern char lbl_805C98EB[];
+    extern char lbl_805C98FF[];
+    extern char lbl_805C9A48[];
+    extern char lbl_805C9A67[];
+    extern char lbl_806B22C9;
+}
+
 struct SoundList {
+    union SoundFlags {
+        u32 _0;
+        u8 _4[4];
+    };
+
     const char* name;
     u32 _4;
 
-    u32 _8;
-    u32 _C;
+    SoundFlags _8;
+    const char* _C;
 
     u32 _10;
     u32 _14;
@@ -530,7 +559,7 @@ SoundList soundlist[] = {
         "ジャンプ踏切",  // name
         0x20029,         // 0x4
         0x4000000,       // 0x8
-        0x805c98eb,      // 0xC
+        lbl_805C98EB,    // 0xC
         0,               // 0x10
         0,               // 0x14
     },
@@ -538,7 +567,7 @@ SoundList soundlist[] = {
         "着地",      // name
         0x2002a,     // 0x4
         0x4000000,   // 0x8
-        0x805c98ff,  // 0xC
+        lbl_805C98FF,  // 0xC
         0,           // 0x10
         0,           // 0x14
     },
@@ -578,7 +607,7 @@ SoundList soundlist[] = {
         "尻ドロップ着地",  // name
         0x20006,           // 0x4
         0x4000000,         // 0x8
-        0x805c98ff,        // 0xC
+        lbl_805C98FF,      // 0xC
         0,                 // 0x10
         0,                 // 0x14
     },
@@ -642,7 +671,7 @@ SoundList soundlist[] = {
         "スピンジャンプ",  // name
         0x2002c,           // 0x4
         0x4000000,         // 0x8
-        0x805c98eb,        // 0xC
+        lbl_805C98EB,      // 0xC
         0,                 // 0x10
         0,                 // 0x14
     },
@@ -730,7 +759,7 @@ SoundList soundlist[] = {
         "倒れ",      // name
         0x20013,     // 0x4
         0x4000000,   // 0x8
-        0x805c9a48,  // 0xC
+        lbl_805C9A48,  // 0xC
         0,           // 0x10
         0,           // 0x14
     },
@@ -738,7 +767,7 @@ SoundList soundlist[] = {
         "吹っ飛び倒れ",  // name
         0x20017,         // 0x4
         0x4000000,       // 0x8
-        0x805c98ff,      // 0xC
+        lbl_805C98FF,    // 0xC
         0,               // 0x10
         0,               // 0x14
     },
@@ -746,7 +775,7 @@ SoundList soundlist[] = {
         "坂滑り",    // name
         0x20023,     // 0x4
         0x9000000,   // 0x8
-        0x805c9a67,  // 0xC
+        lbl_805C9A67,  // 0xC
         0,           // 0x10
         0,           // 0x14
     },
@@ -754,7 +783,7 @@ SoundList soundlist[] = {
         "ルイージ滑り",  // name
         0x20099,         // 0x4
         0x9000000,       // 0x8
-        0x805c9a67,      // 0xC
+        lbl_805C9A67,    // 0xC
         0,               // 0x10
         0,               // 0x14
     },
@@ -1490,7 +1519,7 @@ SoundList soundlist[] = {
         "スリップ",  // name
         0x2000b,     // 0x4
         0x9000000,   // 0x8
-        0x805c9a67,  // 0xC
+        lbl_805C9A67,  // 0xC
         0,           // 0x10
         0,           // 0x14
     },
@@ -1674,52 +1703,199 @@ struct SoundSwapList {
 
 SoundSwapList soundswaplist[] = {{"", 0, 0, 0}};
 
-void Mario::initSound() {
-    u32 length = initSoundTable(soundlist, 0);
-    _96C = new HashSortTable(length);
-    for (u32 i = 0; i < length; i++) {
-        _96C->add(soundlist[i].name, i, false);
-    }
-    _96C->sort();
-    _970 = 0;
-}
-
-struct OffsetView {
-    u32 offset;
-    u8 padding[12];
-};
-
 u32 Mario::initSoundTable(SoundList* list, u32 globalTablePosition) {
-    OffsetView* currswap = (OffsetView*)((u32*)soundswaplist + globalTablePosition);
-    SoundList* pos = list;
-    int i = 0;
+    u32* pSwapOffset = reinterpret_cast< u32* >(soundswaplist) + globalTablePosition;
+    u32 count = 0;
+    u32 listOffset = 0;
+
     while (true) {
-        pos = list + i;
-        if (pos->name[0] == '\0') {
+        SoundList* pEntry = reinterpret_cast< SoundList* >(reinterpret_cast< u8* >(list) + listOffset);
+        if (pEntry->name[0] == '\0') {
             break;
         }
-        pos->_10 = 0;
-        pos->_14 = pos->_4;
-        if (globalTablePosition > 0) {
-            int j = 0;
+
+        pEntry->_10 = 0;
+        pEntry->_14 = pEntry->_4;
+
+        if (globalTablePosition != 0) {
+            u32 swapOffset = 0;
             while (true) {
-                if (soundswaplist[j].name[0] == '\0') {
+                const char* pSwapName = *reinterpret_cast< const char** >(reinterpret_cast< u8* >(soundswaplist) + swapOffset);
+                if (pSwapName[0] == '\0') {
                     break;
                 }
-                if (strcmp(pos->name, soundswaplist[j].name) == 0) {
-                    if (currswap[j].offset != 0) {
-                        pos->_14 = currswap[j].offset;
+
+                if (strcmp(pEntry->name, pSwapName) == 0) {
+                    u32 soundID = *reinterpret_cast< u32* >(reinterpret_cast< u8* >(pSwapOffset) + swapOffset);
+                    if (soundID != 0) {
+                        pEntry->_14 = soundID;
                     }
                     break;
                 }
-                j++;
+
+                swapOffset += sizeof(SoundSwapList);
             }
         }
-        i++;
+
+        count++;
+        listOffset += sizeof(SoundList);
     }
-    return i;
+
+    return count;
+}
+
+void Mario::initSound() {
+    u32 count = initSoundTable(soundlist, 0);
+    _96C = new HashSortTable(count);
+    for (u32 i = 0; i < count; i++) {
+        _96C->add(soundlist[i].name, i, false);
+    }
+    _96C->sort();
+    _970 = nullptr;
+}
+
+bool Mario::playSoundJ(const char* pSoundName, s32 timing) {
+    u32 index = 0;
+    if (_96C->search(pSoundName, &index)) {
+        JAISoundID soundID(soundlist[index]._14);
+        s32 type = soundlist[index]._8._4[0] & 0x3;
+
+        if (type == 2) {
+            startSystemSE__2MRF10JAISoundIDll(soundID, timing, -1);
+        }
+        else if (type < 2) {
+            if (type == 0) {
+                startSound__2MRFPC9LiveActor10JAISoundIDll(mActor, soundID, timing, -1);
+            }
+            else {
+                startLevelSound__2MRFPC9LiveActor10JAISoundIDlll(mActor, soundID, timing, -1, -1);
+            }
+        }
+        else if (type < 4) {
+            startSystemLevelSE__2MRF10JAISoundIDll(soundID, timing, -1);
+        }
+
+        s32 recurType = soundlist[index]._8._4[0] & 0xFC;
+        if ((recurType == 0x4 || recurType == 0x8) && (mDrawStates._C || mDrawStates._D)) {
+            playSoundJ(soundlist[index]._C, -1);
+        }
+    }
+
+    if (_96C->search(&lbl_806B22C9, pSoundName, &index)) {
+        JAISoundID soundID(soundlist[index]._14);
+        return startSound__2MRFPC9LiveActor10JAISoundIDll(mActor, soundID, timing, -1);
+    }
+
+    return false;
+}
+
+void Mario::stopSoundJ(const char* pSoundName, u32 delay) {
+    u32 index;
+    if (_96C->search(pSoundName, &index)) {
+        JAISoundID soundID(soundlist[index]._14);
+        s32 stopType = soundlist[index]._8._4[0] & 0x3;
+
+        if (stopType != 2) {
+            if (stopType >= 2) {
+            }
+            else {
+                if (stopType == 0) {
+                    stopSound__2MRFPC9LiveActor10JAISoundIDUl(mActor, soundID, delay);
+                }
+                else {
+                }
+            }
+        }
+        else {
+            stopSystemSE__2MRF10JAISoundIDUl(soundID, delay);
+        }
+    }
+
+    if (_96C->search(&lbl_806B22C9, pSoundName, &index)) {
+        JAISoundID soundID(soundlist[index]._14);
+        stopSound__2MRFPC9LiveActor10JAISoundIDUl(mActor, soundID, delay);
+    }
+}
+
+void Mario::startBas(const char* pAnimName, bool arg2, f32 startFrame, f32 speed) {
+    if (mActor->mSoundObject) {
+        ResourceHolder* pHolder = MR::getResourceHolder(mActor);
+        const JAUSoundAnimation* pRes = nullptr;
+
+        if (pAnimName && pHolder->mBasResTable->isExistRes(pAnimName)) {
+            pRes = static_cast< JAUSoundAnimation* >(pHolder->mBasResTable->getRes(pAnimName));
+        }
+
+        if (pRes) {
+            startAnimation__16JAUSoundAnimatorFPC17JAUSoundAnimationbff(
+                reinterpret_cast< JAUSoundAnimator* >(reinterpret_cast< u8* >(mActor->mSoundObject) + 0x48), pRes, arg2, startFrame, speed);
+        }
+        else {
+            removeAnimation__16JAUSoundAnimatorFv(reinterpret_cast< JAUSoundAnimator* >(reinterpret_cast< u8* >(mActor->mSoundObject) + 0x48));
+        }
+
+        _970 = pAnimName;
+    }
+}
+
+bool Mario::isRunningBas(const char* pAnimName) const {
+    if (!_970) {
+        return false;
+    }
+
+    if (strcmp(_970, pAnimName) == 0) {
+        return true;
+    }
+
+    return false;
+}
+
+void Mario::skipBas(f32 frame) {
+    mActor->mSoundObject->skip(frame);
+}
+
+void Mario::playSoundTeresaFlying() {
+    if (getPlayerMode() != 6) {
+        return;
+    }
+
+    s32 timing = 100;
+    if (getCurrentStatus() == 0x1C) {
+        u16* pWaitData = reinterpret_cast< u16* >(mWait);
+        if (pWaitData[0xA] == 0) {
+            timing = 100 - static_cast< s32 >(pWaitData[0xB]);
+            if (timing < 0) {
+                timing = 0;
+            }
+        }
+        else {
+            timing = 0;
+        }
+    }
+
+    playSound(lbl_805CB350, timing);
+}
+
+void Mario::playSoundTrampleCombo(u8 combo) {
+    if (combo >= 7) {
+        return;
+    }
+    MR::startSystemSE(lbl_805CB35B, combo, -1);
 }
 
 void Mario::setSeVersion(u32 version) {
     MR::setSeVersion(mActor, version);
 }
+
+namespace NrvMarioActor {
+    INIT_NERVE(MarioActorNrvWait);
+    INIT_NERVE(MarioActorNrvGameOver);
+    INIT_NERVE(MarioActorNrvGameOverAbyss);
+    INIT_NERVE(MarioActorNrvGameOverAbyss2);
+    INIT_NERVE(MarioActorNrvGameOverFire);
+    INIT_NERVE(MarioActorNrvGameOverBlackHole);
+    INIT_NERVE(MarioActorNrvGameOverNonStop);
+    INIT_NERVE(MarioActorNrvGameOverSink);
+    INIT_NERVE(MarioActorNrvTimeWait);
+    INIT_NERVE(MarioActorNrvNoRush);
+};  // namespace NrvMarioActor
