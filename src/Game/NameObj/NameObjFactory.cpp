@@ -915,7 +915,7 @@ namespace {
         },
         {
             "Takobo",
-            nullptr,
+            createNameObj< Takobo >,
             "Takobo",
         },
         {
@@ -2060,7 +2060,7 @@ namespace {
         },
         {
             "SpinningBox",
-            nullptr,
+            createNameObj< SpinningBox >,
             "SpinningBox",
         },
         {

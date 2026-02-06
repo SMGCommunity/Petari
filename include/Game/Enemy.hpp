@@ -34,6 +34,7 @@
 #include "Game/Enemy/SearchBeamer.hpp"
 #include "Game/Enemy/Snakehead.hpp"
 #include "Game/Enemy/SpinHitController.hpp"
+#include "Game/Enemy/Takobo.hpp"
 #include "Game/Enemy/TerritoryMover.hpp"
 #include "Game/Enemy/WalkerStateBindStarPointer.hpp"
 #include "Game/Enemy/WalkerStateBlowDamage.hpp"
