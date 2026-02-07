@@ -7,19 +7,14 @@ class JASTrack;
 class JASSeqParser {
 public:
     typedef s32 (JASSeqParser::*CommandFunc)(JASTrack*, u32*);
-    typedef u16 (*Callback)(JASTrack*, u16);
 
     enum BranchCondition { COND_ALWAYS = 0, COND_NULL, COND_NONNULL, COND_1, COND_NEGATIVE, COND_POSITIVE };
 
-    static Callback sCallbackFunc;
     struct Command {
         CommandFunc func;
         u16 numArgs;
         u16 argWidths;
     };
-    static Command sCmdInfo[0x60];
-
-    static Command sExtCmdInfo[0xff];
 
     JASSeqParser();
 
@@ -93,4 +88,8 @@ public:
     s32 parseNoteOn(JASTrack*, u8);
     s32 parseCommand(JASTrack*, u8, u16);
     s32 parseRegCommand(JASTrack*, int);
+
+    static Command sCmdInfo[96];
+    static Command sExtCmdInfo[255];
+    static u16 (*sCallbackFunc)(JASTrack*, u16);
 };

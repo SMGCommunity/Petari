@@ -6,8 +6,8 @@
 #include "JSystem/JAudio2/JASDspInterface.hpp"
 #include "JSystem/JAudio2/JASHeapCtrl.hpp"
 #include "JSystem/JAudio2/JASOscillator.hpp"
+#include "JSystem/JAudio2/JASRegisterParam.hpp"
 #include "JSystem/JAudio2/JASSeqCtrl.hpp"
-#include "JSystem/JAudio2/JASSeqRegisterParam.hpp"
 #include "JSystem/JAudio2/JASTrackPort.hpp"
 #include "JSystem/JGadget/linklist.hpp"
 #include <mem.h>
@@ -83,10 +83,11 @@ public:
 
 class JASCriticalSection {
 public:
-    JASCriticalSection() NO_INLINE;
-    inline JASCriticalSection(const JASCriticalSection& rOther) : success(rOther.success) {}
-    ~JASCriticalSection() NO_INLINE;
-    u32 success;
+    JASCriticalSection();
+    ~JASCriticalSection();
+
+private:
+    u32 mInterruptState;
 };
 
 class JASDefaultBankTable : public JASBankTable< 0x100 >, public JASGlobalInstance< JASDefaultBankTable > {
@@ -152,8 +153,6 @@ public:
 
     void assignExtBuffer(u32, JASSoundParams*);
 
-    void call(u32);
-
     void updateTimedParam();
     void updateTrack(f32);
     void updateTempo();
@@ -201,7 +200,6 @@ public:
 
     JASTrackPort mPorts;     // 0x5C
     JASRegisterParam mRegs;  // 0x80
-    u8 _84[0x18];
     Timed _9C[6];
     JASOscillator::Data _E4[2];
     JASOscillator::Point mAdsr[4];    // 0x114
