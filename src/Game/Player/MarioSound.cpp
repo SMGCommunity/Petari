@@ -1750,80 +1750,25 @@ bool Mario::playSoundJ(const char* pSoundName, s32 timing) {
     u32 index;
     if (_96C->search(pSoundName, &index)) {
         s32 type = soundlist[index]._8._4[0] & 0x3;
+        JAISoundID soundID(soundlist[index]._14);
 
-        if (type == 2) {
-            goto systemSound;
-        }
-
-        if (type < 2) {
-            if (type == 0) {
-                goto actorSound;
-            }
-
-            if (type >= 0) {
-                goto levelSound;
-            }
-
-            goto typeEnd;
-        }
-
-        if (type >= 4) {
-            goto typeEnd;
-        }
-
-        goto systemLevelSound;
-
-actorSound:
-        {
-            JAISoundID soundID(soundlist[index]._14);
+        if (type == 0) {
             MR::startSound(mActor, soundID, timing, -1);
         }
-        goto typeEnd;
-
-systemSound:
-        {
-            JAISoundID soundID(soundlist[index]._14);
-            MR::startSystemSE(soundID, timing, -1);
-        }
-        goto typeEnd;
-
-levelSound:
-        {
-            JAISoundID soundID(soundlist[index]._14);
+        else if (type == 1) {
             MR::startLevelSound(mActor, soundID, timing, -1, -1);
         }
-        goto typeEnd;
-
-systemLevelSound:
-        {
-            JAISoundID soundID(soundlist[index]._14);
+        else if (type == 2) {
+            MR::startSystemSE(soundID, timing, -1);
+        }
+        else if (type == 3) {
             MR::startSystemLevelSE(soundID, timing, -1);
         }
 
-typeEnd:
-        s32 recurType = soundlist[index]._8._4[0];
-        recurType &= ~0x3;
-        if (recurType == 0x8) {
-            goto recurse;
-        }
-
-        if (recurType >= 0x8) {
-            goto recurseEnd;
-        }
-
-        if (recurType == 0x4) {
-            goto recurse;
-        }
-
-        goto recurseEnd;
-
-recurse:
-        if (mDrawStates.mIsUnderwater || mDrawStates._13) {
+        s32 recurType = soundlist[index]._8._4[0] & ~0x3;
+        if ((recurType == 0x4 || recurType == 0x8) && (mDrawStates.mIsUnderwater || mDrawStates._13)) {
             playSoundJ(soundlist[index]._C, -1);
         }
-
-recurseEnd:
-        ;
     }
 
     bool isFound = _96C->search(&lbl_806B22C9, pSoundName, &index);
