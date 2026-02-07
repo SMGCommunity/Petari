@@ -27,4 +27,9 @@ s32 VFiPFENT_GetRootDir(PF_VOLUME* p_vol, PF_DIR_ENT* p_ent);
 
 s32 VFiPFENT_MakeRootDir(PF_VOLUME* p_vol);
 
+s32 VFiPFENT_FillVoidEntryToSectors(PF_VOLUME* p_vol, u32 start_sector, u32 num_sectors, u32 is_make_new_directory, PF_DIR_ENT* p_ent,
+                                    PF_DIR_ENT* p_parent_ent);
+
+void VFiPFENT_StoreEntryNumericFieldsToBuf(u8* buf, const PF_DIR_ENT* p_ent);
+
 #endif  // PF_ENTRY_H

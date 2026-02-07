@@ -4,6 +4,7 @@
 #include "revolution/vf/vf_struct.h"
 
 s32 VFiPFFAT_ReadFATSector(PF_VOLUME* p_vol, PF_CACHE_PAGE** pp_page, u32 cluster);
+
 s32 VFiPFFAT_GetContinuousSector(PF_FFD* p_ffd, u32 file_sector_index, u32 size, u32* p_sector, u32* p_num_sector);
 
 s32 VFiPFFAT_UpdateFATEntry(PF_VOLUME* p_vol, PF_CACHE_PAGE* p_page);
@@ -43,5 +44,13 @@ s32 VFiPFFAT_TraceClustersChain(PF_FFD* p_ffd, u32 start_clst, u32 size, u32* p_
 s32 VFiPFFAT_UpdateAlternateFATEntry(PF_VOLUME* p_vol, u8* p_buf, u32 sector, u32 size);
 
 s32 VFiPFFAT_InitFATRegion(PF_VOLUME* p_vol);
+
+s32 VFiPFFAT_MakeRootDir(PF_VOLUME* p_vol);
+
+s32 VFiPFFAT_GetBeforeSector(u32 * p_befor_sector, PF_VOLUME * p_vol, u32 current_sector);
+
+void VFiPFENT_SetDotEntry(u8* entry);
+
+void VFiPFENT_SetDotDotEntry(u8* entry);
 
 #endif  // PF_FAT_H
