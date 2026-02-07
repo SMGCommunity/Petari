@@ -220,7 +220,7 @@ void JumpBeamer::exeHopStart() {
         MR::startBrk(mHeadModel, "OnAndOff");
         MR::startBck(this, "Damage", nullptr);
         MR::deleteEffect(this, "Charge");
-        MR::startSound(this, "SE_EMJGUARDER_HIT", -1, -1);
+        MR::startSound(this, "SE_EM_JGUARDER_HIT", -1, -1);
         HitSensor* bodySensor = getSensor("Body");
         bodySensor->mRadius = 120.0f;
     }
