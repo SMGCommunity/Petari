@@ -5,6 +5,7 @@
 #include "Game/Player/Mario.hpp"
 
 class FootPrint;
+class J3DAnmTexPattern;
 class J3DModelData;
 class JAIAudible;
 class MarioNullBck;
@@ -216,6 +217,8 @@ public:
     void shootFireBall();
     void doFreezeAttack();
     void initBlink();
+    void updateBlink();
+    bool finalizeFreezeModel();
     void setBlink(const char*);
     void resetSensorCount();
     void getStickValue(f32*, f32*);
@@ -567,7 +570,7 @@ public:
     // padding
     u16 _B74;
     // padding
-    void* mEyeRes;  // 0xB78
+    J3DAnmTexPattern* mEyeRes;  // 0xB78
     u32 _B7C;
     u32 _B80;
     u32 _B84;

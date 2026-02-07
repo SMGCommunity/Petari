@@ -7,7 +7,7 @@ class JAISoundStarter;
 class JASSoundParams;
 class JAUSoundAnimationSound;
 
-class AudAnmSoundObject : public AudSoundObject, JAUSoundAnimator {
+class AudAnmSoundObject : public AudSoundObject, public JAUSoundAnimator {
 public:
     AudAnmSoundObject(TVec3f*, u8, JKRHeap*);
 
