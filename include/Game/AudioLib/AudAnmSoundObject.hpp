@@ -7,7 +7,7 @@ class JAISoundStarter;
 class JASSoundParams;
 class JAUSoundAnimationSound;
 
-class AudAnmSoundObject : public AudSoundObject, JAUSoundAnimator {
+class AudAnmSoundObject : public AudSoundObject, public JAUSoundAnimator {
 public:
     AudAnmSoundObject(TVec3f*, u8, JKRHeap*);
 
@@ -18,6 +18,8 @@ public:
     u32* getFreeHandle(const JAUSoundAnimationSound*);
     void skip(f32);
     void setStartPos(f32);
+    void setLoopFrame(f32 a1, f32 a2) { JAUSoundAnimator::setLoopFrame(a1, a2); }
+    bool hasAnimHandles() const { return JAUSoundAnimator::mHandles != nullptr; }
     void updateAnimSound(f32, const TVec3f&, JAISoundStarter*);
     void startAnimSound(const TVec3f&, f32, JAISoundStarter*);
     void releaseHandleIfNecessary(JAISoundHandle*, u32);

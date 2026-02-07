@@ -42,6 +42,7 @@ class MarioTeresa;
 class MarioTalk;
 class MarioMove;
 class HitInfo;
+class HitSensor;
 class Triangle;
 class FloorCode;
 struct SoundList;
@@ -50,7 +51,7 @@ class MarioModuleTask;
 
 class Mario : public MarioModule {
 public:
-    typedef bool (Mario::*Task)(const void*, void*, u32);
+    typedef bool (Mario::*Task)(u32);
     Mario(MarioActor*);
 
     virtual bool postureCtrl(MtxPtr);
@@ -188,7 +189,7 @@ public:
     void doFrontStep();
 
     void beeMarioOnGround();
-    void beeMarioOnAir();
+    bool beeMarioOnAir();
 
     void blown(const TVec3f&);
 
@@ -199,36 +200,36 @@ public:
     void tryStartFoo();
 
     bool isRising() const;
-    bool checkWallRiseAndSlipFront();
-    bool tryJump();
-    bool tryTurnJump();
-    bool trySquatJump();
-    bool tryBackJump();
-    bool tryTornadoJump();
+    void checkWallRiseAndSlipFront();
+    void tryJump();
+    void tryTurnJump();
+    void trySquatJump();
+    void tryBackJump();
+    void tryTornadoJump();
     void startTornadoCentering(HitSensor*);
-    void taskOnTornadoCentering(u32);
-    bool trySpinJump(u8);
-    bool tryForceJumpDelay(const TVec3f&);
-    bool tryFreeJumpDelay(const TVec3f&);
-    bool tryForceJump(const TVec3f&, bool);
-    bool tryForceFreeJump(const TVec3f&);
-    bool tryForcePowerJump(const TVec3f&, bool);
-    bool tryFreeJump(const TVec3f&, bool);
-    bool tryWallJump(const TVec3f&, bool);
-    bool tryStickJump(const TVec3f&);
-    bool trySlipUpJump();
-    bool tryHangSlipUp();
-    bool tryDrop();
-    bool isDigitalJump() const;
+    bool taskOnTornadoCentering(u32);
+    void trySpinJump(u8);
+    void tryForceJumpDelay(const TVec3f&);
+    void tryFreeJumpDelay(const TVec3f&);
+    void tryForceJump(const TVec3f&, bool);
+    void tryForceFreeJump(const TVec3f&);
+    void tryForcePowerJump(const TVec3f&, bool);
+    void tryFreeJump(const TVec3f&, bool);
+    void tryWallJump(const TVec3f&, bool);
+    void tryStickJump(const TVec3f&);
+    void trySlipUpJump();
+    void tryHangSlipUp();
+    void tryDrop();
+    bool isDigitalJump() const NO_INLINE;
     void initActiveJumpVec();
     void initJumpParam();
     bool isEnableFutureJump() const;
-    bool procJump(bool);
-    void checkWallRising();
+    void procJump(bool);
+    void checkWallRising() NO_INLINE;
     void checkWallJumpHit();
     void decideSlipUp();
     void moveWallSlide(f32);
-    void jumpToHipDrop();
+    bool jumpToHipDrop();
     void procHipDrop();
     void doAirWalk();
     void stopJump();
@@ -239,8 +240,8 @@ public:
     void checkAndTryForceJump();
     void doLanding();
     void startSlidingTask(u32, f32, u16);
-    void taskOnSlide(u32);
-    void taskOnWallRising(u32);
+    bool taskOnSlide(u32);
+    bool taskOnWallRising(u32);
     void incAirWalkTimer();
 
     void mainMove();
@@ -316,7 +317,7 @@ public:
     void taskOnRotation(u32);
 
     void sendStateMsg(u32);
-    void updatePosture(MtxPtr);
+    bool updatePosture(MtxPtr);
     void changeStatus(MarioState*);
     void closeStatus(MarioState*);
     u32 getCurrentStatus() const;
@@ -337,7 +338,7 @@ public:
     void fixWallingDir();
     void fixWallingTop();
     void checkWallFloorCode(u16) const;
-    void checkWallCode(const char*, bool) const;
+    bool checkWallCode(const char*, bool) const;
     void checkWallCodeNorm(u16, TVec3f*, bool) const;
     void setWallCancel();
     void keepDistFrontWall();
@@ -427,16 +428,16 @@ public:
     void initTask();
     bool isActiveTask(Task);
     bool isActiveTaskID(u32);
-    void pushTask(Task, u32);
+    bool pushTask(Task, u32);
     void popTask(Task);
     void callExtraTasks(u32);
     void startHandy();
-    void taskOnHipDropBlurHopper(u32);
-    void taskOnHipDropBlur(u32);
-    void taskOnHipDropSlide(u32);
-    void taskOnFreezeEnd(u32);
+    bool taskOnHipDropBlurHopper(u32);
+    bool taskOnHipDropBlur(u32);
+    bool taskOnHipDropSlide(u32);
+    bool taskOnFreezeEnd(u32);
     void startFreezeEnd();
-    void taskOnHandy(u32);
+    bool taskOnHandy(u32);
     void startHipDropBlur();
     void startHipDropSlide(const HitSensor*);
     void startJumpDropSlide(const HitSensor*);
@@ -733,7 +734,7 @@ public:
     /* 0x43C */ TVec3f _43C;  // front?
     /* 0x448 */ TVec3f _448;
     /* 0x454 */ f32 _454;
-    /* 0x458 */ TriangleFilterDelegator< Mario >* _458;
+    /* 0x458 */ TriangleFilterDelegator<Mario>* _458;
     /* 0x45C */ Triangle* _45C;
     /* 0x460 */ Triangle* _460;
     /* 0x464 */ Triangle* mGroundPolygon;
@@ -940,7 +941,7 @@ public:
 
     /* 0x96C */ HashSortTable* _96C;  // Sounds
     /* 0x970 */ const char* _970;     // Sounds or somthing
-    /* 0x974 */ u32 _974;
+    /* 0x974 */ MarioModuleTask* _974;
 
     // Fake
     /* 0x978 */ u32 _978;
@@ -959,7 +960,7 @@ public:
     /* 0xA4C */ TVec3f _A4C;
     /* 0xA58 */ TVec3f _A58;
     /* 0xA64 */ f32 _A64;
-    /* 0xA68 */ u32 _A68;
+    /* 0xA68 */ HitSensor* _A68;
     /* 0xA6C */ u8 _A6C[0x20];  // animations
     /* 0xA8C */ TVec3f _A8C[9];
 };

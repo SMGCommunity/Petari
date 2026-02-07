@@ -59,6 +59,6 @@ public:
     f32 _20;
     JUTTexture* mWaterTex;     // 0x24
     JUTTexture* mWaterIndTex;  // 0x28
-    u32 _2C;
+    u32 mDispListLength;
     u8* mDispList;  // 0x30
 };

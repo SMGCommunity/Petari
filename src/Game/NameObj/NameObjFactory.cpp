@@ -4,7 +4,6 @@
 #include "Game/Demo.hpp"
 #include "Game/Effect.hpp"
 #include "Game/Enemy.hpp"
-#include "Game/Enemy/Snakehead.hpp"
 #include "Game/Gravity.hpp"
 #include "Game/Map.hpp"
 #include "Game/MapObj.hpp"
@@ -915,7 +914,7 @@ namespace {
         },
         {
             "Takobo",
-            nullptr,
+            createNameObj< Takobo >,
             "Takobo",
         },
         {
@@ -2060,7 +2059,7 @@ namespace {
         },
         {
             "SpinningBox",
-            nullptr,
+            createNameObj< SpinningBox >,
             "SpinningBox",
         },
         {
@@ -5955,7 +5954,7 @@ namespace {
         },
         {
             "FileSelector",
-            nullptr,
+            createNameObj< FileSelector >,
             nullptr,
         },
     };
