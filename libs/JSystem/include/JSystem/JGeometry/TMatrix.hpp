@@ -189,7 +189,20 @@ namespace JGeometry {
 
         void multTranspose(const TVec3f& a1, const TVec3f& a2) const;
 
-        void scale(f32);
+        void scale(f32 scalar) {
+            this->mMtx[0][0] *= scalar;
+            this->mMtx[1][0] *= scalar;
+            this->mMtx[2][0] *= scalar;
+            this->mMtx[0][1] *= scalar;
+            this->mMtx[1][1] *= scalar;
+            this->mMtx[2][1] *= scalar;
+            this->mMtx[0][2] *= scalar;
+            this->mMtx[1][2] *= scalar;
+            this->mMtx[2][2] *= scalar;
+            this->mMtx[0][3] *= scalar;
+            this->mMtx[1][3] *= scalar;
+            this->mMtx[2][3] *= scalar;
+        }
     };
     template < class T >
     struct TRotation3 : public T {

@@ -5,10 +5,10 @@
 #include "JSystem/JUtility/JUTTexture.hpp"
 
 namespace {
-    const f32 sTexRateU0 = 0.0f;
-    const f32 sTexRateV0 = 0.0f;
-    const f32 sTexRateU1 = 0.0f;
-    const f32 sTexRateV1 = 0.0f;
+    const f32 sTexRateU0 = 0.08f;
+    const f32 sTexRateV0 = 0.3f;
+    const f32 sTexRateU1 = 0.04f;
+    const f32 sTexRateV1 = 0.3f;
     const f32 sTexSpeedU0 = -0.006f;
     const f32 sTexSpeedU1 = -0.006f;
     const f32 sIndirectScale = 0.3f;
@@ -17,7 +17,6 @@ namespace {
 
     static GXColor sTevReg0 = {0x00, 0x1C, 0x00, 0xFF};
     static GXColor sTevReg1 = {0x78, 0xA0, 0xF6, 0xFF};
-    const GXColor sFogCol = {0xFF, 0xFF, 0xFF, 0xFF};
 }
 
 OceanRingPipeInside::OceanRingPipeInside(const OceanRingPipe* pPipe) : LiveActor("オーシャンリングの内側"),
@@ -64,6 +63,7 @@ void OceanRingPipeInside::draw() const {
     GXCallDisplayList(mDispList, mDispListLength);
 }
 
+const GXColor sFogCol = {0xFF, 0xFF, 0xFF, 0xFF};
 void OceanRingPipeInside::loadMaterial() const {
     GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_F32, 0);
     GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_POS_XYZ, GX_F32, 0);
@@ -122,34 +122,49 @@ void OceanRingPipeInside::loadMaterial() const {
 }
 
 void OceanRingPipeInside::sendGD() const {
-
     u8 something = 0x98;
-    f32 a = 0.0f;
-    f32 b = 0.0f;
-    f32 c = 0.0f;
-    f32 d = 0.0f;
-    f32 e = 0.0f;
-    f32 f = 0.3f;
-    f32 g = 0.0f;
-    f32 h = 0.0f;
-    for (s32 i = 0; i < mRingPipe->_9C-1; i++) {
-        s32 vv = mRingPipe->_98;
+    s32 vv;
+    s32 v;
+    f32 f30;
+    f32 f29;
+    f32 f28;
+    f32 f27;
+    f32 f26;
+    f32 f25;
+    f29 = sTexRateU0;
+    f30 = sTexRateU1;
+    f26 = 0.0f;
+    f25 = 0.0f;
+    f28 = sTexRateV0;
+    f27 = sTexRateV1;
+
+    for (s32 i = 0; i < mRingPipe->_9C - 1; i++) {
+        f32 f24 = 0.0f;
+        f32 f23 = 0.0f;
+        vv = mRingPipe->_98;
         GDWrite_u8(something);
         GDWrite_u16((u16)(vv << 1));
         for (s32 j = 0; j < mRingPipe->_98; j++) {
-            s32 v = j * mRingPipe->_9C;
+            v = j * mRingPipe->_9C;
             GDWrite_u16(i + v);
-            GDWrite_f32(a);
-            GDWrite_f32(b);
-            GDWrite_f32(c);
-            GDWrite_f32(d);
+            GDWrite_f32(f24);
+            GDWrite_f32(f26);
+            GDWrite_f32(f23);
+            GDWrite_f32(f25);
 
-            GDWrite_u16(j + v + 1);
-            GDWrite_f32(e);
-            GDWrite_f32(f);
-            GDWrite_f32(g);
-            GDWrite_f32(h);
+            GDWrite_u16(i + (v + 1));
+            GDWrite_f32(f24);
+            GDWrite_f32(f28);
+            GDWrite_f32(f23);
+            GDWrite_f32(f27);
+
+            f24 += f29;
+            f23 += f30;
         }
+        f26 = f28;
+        f25 = f27;
+        f28 += sTexRateV0;
+        f27 += sTexRateV1;
     }
 }
 

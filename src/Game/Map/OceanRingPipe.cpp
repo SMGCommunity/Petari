@@ -13,7 +13,6 @@ static const char* FlagObjName = "旗";
 OceanRingPipe::~OceanRingPipe() {
 }
 
-
 OceanRingPipe::OceanRingPipe(const OceanRing* ring, f32 a, f32 b) : LiveActor("オーシャンリングの側面"),
 	mOceanRing(ring), _90(0), _94(0), _98(0), _9C(8), _A0(0), _A4(0), _A8(a), _AC(b), mPipeInside(0), mPipeOutside(0) {
 
@@ -36,14 +35,15 @@ void OceanRingPipe::init(const JMapInfoIter& rIter) {
         TVec3f vec(1.0f, 0.0f, 0.0f);
         for (s32 i = 0; i < _98; i += 7) {
             TVec3f grav(0.0f, -1.0f, 0.0f);
-            MR::calcGravityVector(this, _A0[i * _9C], &grav, nullptr, 0);
-            if (grav.y > -0.89999998f)
+            MR::calcGravityVector(this, _A0[calcPointIndex(i, _9C)], &grav, nullptr, 0);
+            if (grav.y > -0.89999998f) {
                 continue;
+            }
 
             if (i & 1) {
-                MR::setClippingFarMax(MR::createMapFlag(FlagObjName, "FlagSurfing", &_A0[i * _9C], vec, f28, f30, f29, 2, 3, -1.0f));
+                MR::setClippingFarMax(MR::createMapFlag(FlagObjName, "FlagSurfing", &_A0[calcPointIndex(i, _9C)], vec, f28, f30, f29, 2, 3, -1.0f));
             } else {
-                MR::setClippingFarMax(MR::createMapFlag(FlagObjName, "FlagSurfing", &_A0[(i-1) + (i * _9C)], vec, f28, f30, f29, 2, 3, -1.0f));
+                MR::setClippingFarMax(MR::createMapFlag(FlagObjName, "FlagSurfing", &_A0[calcPointIndex(i, _9C) + (_9C-1)], vec, f28, f30, f29, 2, 3, -1.0f));
             }
         }
     }
@@ -148,21 +148,3 @@ void OceanRingPipe::initPoints() {
         MR::moveCoord(this, length);
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

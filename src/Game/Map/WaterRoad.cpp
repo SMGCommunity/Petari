@@ -1,17 +1,26 @@
 #include "Game/Map/WaterRoad.hpp"
 #include "Game/Util.hpp"
 
+WaterRoadModelInfo::WaterRoadModelInfo(WaterRoad* road, bool b) : mIsLow(b), _4(0), _8(0), _C(0x0C), _10(0), _14(0), _18(0), mDispListLength(0), mDispList(nullptr) {
+    initPoints(road);
+    initDisplayList();
+}
+
 void WaterRoadModelInfo::initDisplayList() {
     MR::ProhibitSchedulerAndInterrupts scheduler(false);
 
-    s32 val = 0x18;
+    u32 v = ((((mIsLow ? 0x10 : 0x18) + 4 << 1) * _8) + 3) * _C;
 
-    if (mIsLow) {
-        val = 0x10;
-    }
-
-    mList = new u8[0x20];
-    // DCInvalidateRange(mList, )
+    u32 length = ((v >> 5) + 2) << 5;
+    mDispList = new (0x20) u8[length];
+    DCInvalidateRange(mDispList, length);
+    GDLObj obj;
+    GDInitGDLObj(&obj, mDispList, length);
+    __GDCurrentDL = &obj;
+    sendGD();
+    GDPadCurr32();
+    mDispListLength = obj.ptr - obj.start;
+    DCStoreRange(mDispList, length);
 }
 
 void WaterRoadModelInfo::drawGD() const {
@@ -21,7 +30,7 @@ void WaterRoadModelInfo::drawGD() const {
         loadMaterialHigh(0);
     }
 
-    GXCallDisplayList(mList, mDLLength);
+    GXCallDisplayList(mDispList, mDispListLength);
 }
 
 s32 WaterRoadModelInfo::calcDemoDrawPointNum(const WaterRoad* pRoad) const {
