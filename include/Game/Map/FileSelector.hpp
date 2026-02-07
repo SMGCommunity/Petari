@@ -2,6 +2,8 @@
 
 #include "Game/LiveActor/AllLiveActorGroup.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
+#include "Game/Map/FileSelectIconID.hpp"
+#include <RFLi_Types.h>
 #include <nw4r/ut/ResFont.h>
 
 class BackButton;
@@ -37,6 +39,100 @@ public:
     void callbackDelete();
     void callbackManual();
     void notifyItem(FileSelectItem*, s32);
+    void initUserFileArray();
+    void createCameraController();
+    void createSky();
+    void createFileItems();
+    void createOperationButton();
+    void createBackButton();
+    void createBrosButton();
+    void createInfoMessage();
+    void createSysInfoWindow();
+    void createFileInfo();
+    void createTitle();
+    void createMiiSelect();
+    void createMiiConfirmIcon();
+    void createMiiFont();
+    void createManual();
+    void createSelectEffect();
+    void appearAllItems();
+    void disappaerAllLayout();
+    bool isHiddenAllLayout() const;
+    void updateFileInfo();
+    void appearAllIndex();
+    void disappearAllIndex();
+    void invalidateSelectAll();
+    void validateSelectAll();
+    void initUserFile();
+    void restoreUserFile();
+    void checkAllComplete();
+    void onPoint(FileSelectItem*);
+    void onSelect(FileSelectItem*);
+    void clearPointing();
+    void setFileInfo(s32);
+    bool checkSelectedBackButton();
+    void goToNearPoint();
+    void calcBasePos(f32);
+    void initAllItems();
+    void validateRotateAllItems();
+    FileSelectIconID::EFellowID getUserFileFellowID(s32) const;
+    bool isUserFileMiiidValid(s32) const;
+    s32 getUserFileMiiIndex(s32) const;
+    bool isUserFileCorrupted(s32) const;
+    bool isUserFileAppearLuigi(s32) const;
+    bool isUserFileLuigi(s32) const;
+    void setUserFileMario(s32, bool);
+    void storeSetMiiIdUserFile(s32, const FileSelectIconID&);
+    void getMiiId(RFLCreateID*, const FileSelectIconID&);
+    void getIconId(FileSelectIconID*, s32) const;
+    s32 getMissCount(s32) const;
+    void playSelectedME();
+    void updateBgm();
+    void exeTitle();
+    void exeTitleEnd();
+    void exeRFLError();
+    void exeRFLWait();
+    void exeRFLWaitEnd();
+    void exeFileSelectStart();
+    void exeFileSelect();
+    void exeFileConfirmStart();
+    void exeFileConfirmMiiDeleteWarningStart();
+    void exeFileConfirmMiiDeleteWarning();
+    void exeFileConfirmMiiDeleteSave();
+    void exeFileConfirm();
+    void exeDemoStartWait();
+    void exeDemo();
+    void exeCreateConfirmStart();
+    void exeCreateConfirm();
+    void exeCreate();
+    void exeCopyWait();
+    void exeCopySelect();
+    void exeCopyConfirmStart();
+    void exeCopyConfirm();
+    void exeCopySave();
+    void exeCopySaveMii();
+    void exeCopyDemo();
+    void exeCopyRejectStart();
+    void exeCopyReject();
+    void exeMiiWait();
+    void exeMiiTip();
+    void exeMiiSelectStart();
+    void exeMiiSelect();
+    void exeMiiCancel();
+    void exeMiiConfirmWait();
+    void exeMiiConfirm();
+    void exeMiiCreateWait();
+    void exeMiiCreateDemo();
+    void exeMiiCaution();
+    void exeMiiInfoStart();
+    void exeMiiInfo();
+    void exeDeleteConfirmStart();
+    void exeDeleteConfirm();
+    void exeDelete();
+    void exeDeleteDemo();
+    void exeFileBroken();
+    void exeManualStart();
+    void exeManual();
 
     FileSelectCameraController* mCameraController;  // 0x8C
     FileSelectSky* mSky;                            // 0x90
