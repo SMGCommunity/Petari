@@ -8,8 +8,6 @@
 #include "Game/Util/RailUtil.hpp"
 #include "Game/Map/Flag.hpp"
 
-static const char* FlagObjName = "旗";
-
 OceanRingPipe::~OceanRingPipe() {
 }
 
@@ -35,15 +33,14 @@ void OceanRingPipe::init(const JMapInfoIter& rIter) {
         TVec3f vec(1.0f, 0.0f, 0.0f);
         for (s32 i = 0; i < _98; i += 7) {
             TVec3f grav(0.0f, -1.0f, 0.0f);
-            MR::calcGravityVector(this, _A0[calcPointIndex(i, _9C)], &grav, nullptr, 0);
-            if (grav.y > -0.89999998f) {
+            MR::calcGravityVector(this, _A0[calcPointIndex(i, 0)], &grav, nullptr, 0);
+            if (grav.y > -0.9f)
                 continue;
-            }
 
             if (i & 1) {
-                MR::setClippingFarMax(MR::createMapFlag(FlagObjName, "FlagSurfing", &_A0[calcPointIndex(i, _9C)], vec, f28, f30, f29, 2, 3, -1.0f));
+                MR::setClippingFarMax(MR::createMapFlag("旗", "FlagSurfing", &_A0[calcPointIndex(i, 0)], vec, f28, f30, f29, 2, 3, -1.0f));
             } else {
-                MR::setClippingFarMax(MR::createMapFlag(FlagObjName, "FlagSurfing", &_A0[calcPointIndex(i, _9C) + (_9C-1)], vec, f28, f30, f29, 2, 3, -1.0f));
+                MR::setClippingFarMax(MR::createMapFlag("旗", "FlagSurfing", &_A0[calcPointIndex(i, _9C - 1)], vec, f28, f30, f29, 2, 3, -1.0f));
             }
         }
     }
