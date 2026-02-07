@@ -4,7 +4,7 @@
 
 JumpEmitter::JumpEmitter(const char* pName) : LiveActor(pName) {
     _8C = 0;
-    _C0 = 0;
+    mHeadModel = nullptr;
     _C4.x = 0.0f;
     _C4.y = 0.0f;
     _C4.z = 0.0f;
