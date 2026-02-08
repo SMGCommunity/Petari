@@ -12,7 +12,7 @@ namespace {
     const f32 sEnvMapScale = 0.6f;
 
 
-    static GXColor sTevReg0 = {0x00, 0x1C, 0x00, 0xFF};
+    static GXColor sTevReg0 = {0x14, 0x65, 0xFF, 0xB9};
 }  // namespace
 
 OceanRingPipeOutside::OceanRingPipeOutside(const OceanRingPipe* pPipe) : LiveActor("オーシャンリングの内側"),
