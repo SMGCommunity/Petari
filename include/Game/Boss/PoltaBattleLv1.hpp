@@ -31,9 +31,9 @@ public:
 	inline void exeDamageBody();
 	inline void endStagger();
 
-	PoltaStateStagger* mStateStagger; // 0x14
-	PoltaStateGenerateRock* mStateGenerateRock; // 0x18
-	PoltaStateGroundRockAttack* mStateGroundRockAttack; // 0x1C
-	s32 mPoltaHealth; // 0x20
-	s32 _24; // 0x24
+	/* 0x14 */ PoltaStateStagger* mStateStagger;
+	/* 0x18 */ PoltaStateGenerateRock* mStateGenerateRock;
+	/* 0x1C */ PoltaStateGroundRockAttack* mStateGroundRockAttack;
+	/* 0x20 */ s32 mPoltaHealth;
+	s32 _24;
 };
