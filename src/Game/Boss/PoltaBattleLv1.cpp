@@ -61,11 +61,13 @@ void PoltaBattleLv1::control() {
 
 void PoltaBattleLv1::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if ((!isEnableScream() || !PoltaFunction::attackScreamSensor(mPoltaPtr, pSender, pReceiver)) && isEnableSensor(pSender)) {
-            if (MR::isSensorPlayer(pReceiver) && !MR::sendMsgEnemyAttackStrong(pReceiver, pSender)) {
+        if (MR::isSensorPlayer(pReceiver)) {
+            if (!MR::sendMsgEnemyAttackStrong(pReceiver, pSender)) {
                 MR::sendMsgPush(pReceiver, pSender);
-                return;
             }
-             MR::sendMsgPush(pReceiver, pSender);
+            return;
+        }
+        MR::sendMsgPush(pReceiver, pSender);
     }
 }
 

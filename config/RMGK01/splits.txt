@@ -1173,14 +1173,14 @@ Game/Boss/PoltaArm.cpp:
 Game/Boss/PoltaBattleLv1.cpp:
 	.text       start:0x80070AB0 end:0x80071438
 	.ctors      start:0x8052E960 end:0x8052E964
-	.data       start:0x8056FC70 end:0x8056FE70
+	.data       start:0x8056FC70 end:0x8056FDC0
 	.sbss       start:0x806B36A8 end:0x806B36C8
 	.sdata2     start:0x806B8B80 end:0x806B8B88
 
 Game/Boss/PoltaBattleLv2.cpp:
 	.text       start:0x80071438 end:0x800722BC
 	.ctors      start:0x8052E964 end:0x8052E968
-	.data       start:0x8056FE70 end:0x8056FF30
+	.data       start:0x8056FDC0 end:0x8056FF30
 	.sbss       start:0x806B36C8 end:0x806B36F0
 	.sdata2     start:0x806B8B88 end:0x806B8BA0
 
