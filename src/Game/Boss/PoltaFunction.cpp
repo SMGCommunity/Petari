@@ -158,7 +158,7 @@ namespace PoltaFunction {
         }
         if (deadMember) {
             TVec3f v28(*MR::getPlayerPos());
-            JMathInlineVEC::PSVECSubtract(v28, pPolta->mPosition, v28);
+            JMathInlineVEC::PSVECSubtract(pPolta->mPosition, v28, v28);
             JMAVECScaleAdd(pPolta->mGravity, v28, v28, -pPolta->mGravity.dot(v28));
             if (MR::normalizeOrZero(&v28)) {
                 v28.setPS(pPolta->_C4);
@@ -170,6 +170,9 @@ namespace PoltaFunction {
         }
     }
 
+    void testLol() {
+        TVec3f v28(*MR::getPlayerPos());
+    }
     //bool appearRockCircle(Polta* pPolta, const TVec3f& rVec, f32 param3, s32 param4, s32 param5, s32 rockType)
 
     bool appearWhiteRockCircle(Polta* pPolta, const TVec3f& rVec, f32 param3, s32 param4, s32 param5) {
