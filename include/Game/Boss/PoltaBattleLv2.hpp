@@ -46,6 +46,6 @@ public:
 	/* 0x1C */ PoltaStateStagger* mStateStagger;
 	/* 0x20 */ PoltaStateGenerateRock* mStateGenerateRock;
 	/* 0x24 */ PoltaStateGroundRockAttack* mStateGroundRockAttack;
-	s32 mPoltaHealth;
+	/* 0x28 */ s32 mPoltaHealth;
 	s32 _2C;
 };
