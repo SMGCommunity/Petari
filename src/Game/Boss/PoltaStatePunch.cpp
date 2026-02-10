@@ -13,7 +13,8 @@ namespace NrvPoltaStatePunch {
     NEW_NERVE(PoltaStatePunchNrvToWait, PoltaStatePunch, ToWait);
 };  // namespace NrvPoltaStatePunch
 
-PoltaStatePunch::PoltaStatePunch(Polta* pPolta) : ActorStateBase< Polta >("[state]地面叩き攻撃"), mPoltaPtr(pPolta), mIsLeftArmActor(true), mIsActionAffectBody(true) {
+PoltaStatePunch::PoltaStatePunch(Polta* pPolta)
+    : ActorStateBase< Polta >("[state]地面叩き攻撃"), mPoltaPtr(pPolta), mIsLeftArmActor(true), mIsActionAffectBody(true) {
     initNerve(&NrvPoltaStatePunch::PoltaStatePunchNrvStart::sInstance);
 }
 
@@ -31,7 +32,7 @@ PoltaArm* PoltaStatePunch::getAttackActor() {
     }
 }
 
-//Unused remnant also found in PoltaStateAttackGround?
+// Unused remnant also found in PoltaStateAttackGround?
 const char* unusedDamagePunch = "Damage";
 
 void PoltaStatePunch::exeStart() {

@@ -6,11 +6,11 @@ class Polta;
 
 class PoltaDemo : public PoltaActionBase {
 public:
-	PoltaDemo(Polta*);
+    PoltaDemo(Polta*);
 
     virtual ~PoltaDemo();
-	virtual void init();
-	virtual void control();
+    virtual void init();
+    virtual void control();
 
     void startDemoSetting();
     void startOpeningDemo();
@@ -23,6 +23,6 @@ public:
     void exePowerUpDemo();
     void exeDownDemo();
 
-	const Nerve* mCurDemoNerve;
-	const char* mCurDemoName;
+    /* 0x14 */ const Nerve* mCurDemoNerve;
+    /* 0x18 */ const char* mCurDemoName;
 };

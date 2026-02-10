@@ -21,9 +21,9 @@ PoltaStateGenerateRock::PoltaStateGenerateRock(Polta* pPolta)
 }
 
 void PoltaStateGenerateRock::appear() {
-  mIsDead = false;
-  setNerve(&NrvPoltaStateGenerateRock::PoltaStateGenerateRockNrvSign::sInstance);
-  mIndexIntoPattern = 0;
+    mIsDead = false;
+    setNerve(&NrvPoltaStateGenerateRock::PoltaStateGenerateRockNrvSign::sInstance);
+    mIndexIntoPattern = 0;
 }
 
 void PoltaStateGenerateRock::exeSign() {

@@ -5,7 +5,7 @@
 class Polta;
 class HitSensor;
 
-class PoltaStateStagger : public ActorStateBase<Polta> {
+class PoltaStateStagger : public ActorStateBase< Polta > {
 public:
     PoltaStateStagger(Polta*);
 
@@ -22,5 +22,5 @@ public:
     /* 0xC */ Polta* mPoltaPtr;
     u8 padding[0xC];
     /* 0x1C */ const char* mActionName;
-    bool _20;  
+    bool _20;
 };

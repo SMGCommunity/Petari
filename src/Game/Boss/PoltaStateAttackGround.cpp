@@ -9,17 +9,17 @@ namespace NrvPoltaStateAttackGround {
     NEW_NERVE(PoltaStateAttackGroundNrvAttack, PoltaStateAttackGround, Attack);
     NEW_NERVE(PoltaStateAttackGroundNrvToWait, PoltaStateAttackGround, ToWait);
 
-};
+};  // namespace NrvPoltaStateAttackGround
 
-PoltaStateAttackGround::PoltaStateAttackGround(Polta* pPolta) : ActorStateBase<Polta>("[state]地面叩き攻撃"), mPoltaPtr(pPolta),
-mIsAffectBody(true) {
+PoltaStateAttackGround::PoltaStateAttackGround(Polta* pPolta)
+    : ActorStateBase< Polta >("[state]地面叩き攻撃"), mPoltaPtr(pPolta), mIsAffectBody(true) {
     initNerve(&NrvPoltaStateAttackGround::PoltaStateAttackGroundNrvStart::sInstance);
     mAttackStartLength = MR::getBckFrameMax(mPoltaPtr, "AttackFrontStart");
     mAttackLength = MR::getBckFrameMax(mPoltaPtr, "AttackFront");
     mAttackToWaitLength = MR::getBckFrameMax(mPoltaPtr, "AttackFrontToWait");
 };
 
-//Unused remnant also found in PoltaStatePunch?
+// Unused remnant also found in PoltaStatePunch?
 const char* unusedDamage = "Damage";
 
 void PoltaStateAttackGround::appear() {

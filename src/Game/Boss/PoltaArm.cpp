@@ -23,20 +23,14 @@ namespace NrvPoltaArm {
     NEW_NERVE(PoltaArmNrvWaitDamageEnd, PoltaArm, WaitDamageEnd);
     NEW_NERVE(PoltaArmNrvWaitRepairEnd, PoltaArm, WaitRepairEnd);
 
-} //namespace NrvPoltaArm
+}  // namespace NrvPoltaArm
 
-PoltaArm::PoltaArm(const char* pName, const char* pModelName, MtxPtr pMtx) : ModelObj(pName, pModelName, pMtx, 18, -2, -2, false),
-    mFormationModel(nullptr),
-    mBreakModel(nullptr),
-    _C8(2),
-    _CC(2),
-    mBrokenCounter(0),
-    _D4(0),
-    mIsLeftArm(true) 
-{
+PoltaArm::PoltaArm(const char* pName, const char* pModelName, MtxPtr pMtx)
+    : ModelObj(pName, pModelName, pMtx, 18, -2, -2, false), mFormationModel(nullptr), mBreakModel(nullptr), _C8(2), _CC(2), mBrokenCounter(0), _D4(0),
+      mIsLeftArm(true) {
     _98.identity();
     MR::initLightCtrl(this);
-    
+
     if (MR::isEqualString(pModelName, "PoltaLeftArm")) {
         mIsLeftArm = true;
     } else if (MR::isEqualString(pModelName, "PoltaRightArm")) {
@@ -102,7 +96,7 @@ void PoltaArm::exeDamage() {
 
     if (MR::isActionEnd(this)) {
         MR::startAction(this, "DamageWait");
-        setNerve( &NrvPoltaArm::PoltaArmNrvWaitDamageEnd::sInstance);
+        setNerve(&NrvPoltaArm::PoltaArmNrvWaitDamageEnd::sInstance);
     }
 }
 
@@ -201,7 +195,7 @@ void PoltaArm::start() {
     MR::startBva(this, "BreakLevel");
     MR::setBvaFrameAndStop(this, 0.0f);
 
-    s32 CC_temp = _CC; //required for matching, maybe they were planning to do something?
+    s32 CC_temp = _CC;  // required for matching, maybe they were planning to do something?
     mBrokenCounter = 0;
     _C8 = CC_temp;
     setNerve(&NrvPoltaArm::PoltaArmNrvControlled::sInstance);
@@ -210,7 +204,7 @@ void PoltaArm::start() {
 bool PoltaArm::requestBreakBody() {
     if (MR::isDead(this)) {
         return false;
-    }    
+    }
 
     if (isNerve(&NrvPoltaArm::PoltaArmNrvBroken::sInstance)) {
         kill();
@@ -222,7 +216,6 @@ bool PoltaArm::requestBreakBody() {
 }
 
 bool PoltaArm::requestDamage() {
-
     if (MR::isDead(this)) {
         return false;
     }
@@ -276,8 +269,6 @@ void PoltaArm::appearBreakModel() {
     MR::invalidateClipping(mBreakModel);
     MR::startAction(mBreakModel, "Break");
 }
-
-
 
 inline void PoltaArm::exeWaitRepairEnd() {}
 

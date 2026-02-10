@@ -5,7 +5,7 @@
 class Polta;
 class HitSensor;
 
-class PoltaStateAttackGround : public ActorStateBase<Polta> {
+class PoltaStateAttackGround : public ActorStateBase< Polta > {
 public:
     PoltaStateAttackGround(Polta*);
 

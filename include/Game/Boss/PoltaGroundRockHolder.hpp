@@ -4,11 +4,11 @@
 
 class PoltaGroundRock;
 
-class PoltaGroundRockHolder : public DeriveActorGroup<PoltaGroundRock> {
+class PoltaGroundRockHolder : public DeriveActorGroup< PoltaGroundRock > {
 public:
-	PoltaGroundRockHolder();
+    PoltaGroundRockHolder();
 
-	virtual ~PoltaGroundRockHolder();
+    virtual ~PoltaGroundRockHolder();
 
-	void breakAll();
+    void breakAll();
 };

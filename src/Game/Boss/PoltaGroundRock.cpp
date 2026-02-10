@@ -13,26 +13,26 @@ namespace NrvPoltaGroundRock {
     NEW_NERVE(PoltaGroundRockNrvJut, PoltaGroundRock, Jut);
     NEW_NERVE(PoltaGroundRockNrvWait, PoltaGroundRock, Wait);
     NEW_NERVE(PoltaGroundRockNrvBreak, PoltaGroundRock, Break);
-};
+};  // namespace NrvPoltaGroundRock
 PoltaGroundRock::PoltaGroundRock(const char* pName)
     : LiveActor(pName), mOwner(nullptr), mBreakModel(nullptr), _94(0.0f, 0.0f, 0.0f, 1.0f), _A4(0.0f, 0.0f, 0.0f) {}
 
-void PoltaGroundRock::init(const JMapInfoIter&rIter) {
-  MR::initDefaultPos(this, rIter);
-  initModelManagerWithAnm("PoltaGroundRock", nullptr, false);
-  MR::connectToSceneCollisionMapObjWeakLight(this);
-  MR::initLightCtrl(this);
-  initHitSensor(2);
-  MR::addHitSensorMapObj(this, "collision", 0, 0.0f, TVec3f(0.0f, 0.0f, 0.0f));
-  MR::addHitSensorEnemy(this, "body", 16, 170.0f, TVec3f(0.0f, 260.0f, 0.0f));
-  MR::initCollisionParts(this, "PoltaGroundRock", getSensor("collision"), nullptr);
-  initEffectKeeper(0, nullptr, false);
-  MR::setEffectHostSRT(this, "Shadow", &_A4, nullptr, nullptr);
-  initSound(4, false);
-  initNerve(&NrvPoltaGroundRock::PoltaGroundRockNrvSign::sInstance);
-  initBreakModel();
-  MR::invalidateClipping(this);
-  makeActorDead();
+void PoltaGroundRock::init(const JMapInfoIter& rIter) {
+    MR::initDefaultPos(this, rIter);
+    initModelManagerWithAnm("PoltaGroundRock", nullptr, false);
+    MR::connectToSceneCollisionMapObjWeakLight(this);
+    MR::initLightCtrl(this);
+    initHitSensor(2);
+    MR::addHitSensorMapObj(this, "collision", 0, 0.0f, TVec3f(0.0f, 0.0f, 0.0f));
+    MR::addHitSensorEnemy(this, "body", 16, 170.0f, TVec3f(0.0f, 260.0f, 0.0f));
+    MR::initCollisionParts(this, "PoltaGroundRock", getSensor("collision"), nullptr);
+    initEffectKeeper(0, nullptr, false);
+    MR::setEffectHostSRT(this, "Shadow", &_A4, nullptr, nullptr);
+    initSound(4, false);
+    initNerve(&NrvPoltaGroundRock::PoltaGroundRockNrvSign::sInstance);
+    initBreakModel();
+    MR::invalidateClipping(this);
+    makeActorDead();
 }
 
 void PoltaGroundRock::initBreakModel() {

@@ -6,7 +6,7 @@
 #include "Game/System/NerveExecutor.hpp"
 #include "Game/Util/ScreenUtil.hpp"
 
-PoltaActionBase::PoltaActionBase(const char* pName, Polta* pPolta) : ActorStateBase<Polta>(pName), mPoltaPtr(pPolta), _10(0) {
+PoltaActionBase::PoltaActionBase(const char* pName, Polta* pPolta) : ActorStateBase< Polta >(pName), mPoltaPtr(pPolta), _10(0) {
     MR::createCenterScreenBlur();
 }
 
@@ -39,7 +39,7 @@ bool PoltaActionBase::updateDamageBody(bool isFirst) {
         MR::tryRumblePadStrong(this, 0);
         MR::shakeCameraNormalStrong();
         MR::stopScene(3);
-        mPoltaPtr->_E4 = 0.0f;
+        mPoltaPtr->_EC = 0.0f;
         if (isFirst) {
             mPoltaPtr->appearBreakModelFirst(mPoltaPtr->mPosition);
         } else {
@@ -72,7 +72,7 @@ bool PoltaActionBase::updateBreakBody() {
         MR::zeroVelocity(mPoltaPtr);
         MR::shakeCameraNormalStrong();
         MR::stopScene(3);
-        mPoltaPtr->_E4 = 0.0f;
+        mPoltaPtr->_EC = 0.0f;
         mPoltaPtr->appearBreakModelLast(mPoltaPtr->mPosition);
     }
     this->updateScreamSensor();
@@ -87,8 +87,8 @@ bool PoltaActionBase::updateBreakBody() {
     return false;
 }
 
-//Remnants from an unused attack
-const char* sinkUnused =  "Sink";
+// Remnants from an unused attack
+const char* sinkUnused = "Sink";
 const char* popSignUnsued = "PopSign";
 const char* poltaShoutUnused = "SE_BV_POLTA_SHOUT";
 const char* screamUnused = "Scream";
@@ -100,7 +100,7 @@ bool PoltaActionBase::updateDamageCore() {
         MR::tryRumblePadStrong(this, 0);
         MR::shakeCameraNormalStrong();
         MR::stopScene(3);
-        mPoltaPtr->_E4 = 0.0f;
+        mPoltaPtr->_EC = 0.0f;
         MR::zeroVelocity(mPoltaPtr);
         PoltaFunction::disperseBombTeresa(mPoltaPtr);
     }
@@ -108,7 +108,7 @@ bool PoltaActionBase::updateDamageCore() {
         MR::startSound(mPoltaPtr, "SE_BM_POLTA_CORE_DOWN", -1, -1);
         PoltaFunction::killBombTeresa(mPoltaPtr);
         MR::zeroVelocity(mPoltaPtr);
-        return true;    
+        return true;
     }
     return false;
 }

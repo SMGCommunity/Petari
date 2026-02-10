@@ -1,7 +1,7 @@
 #include "Game/Boss/PoltaBattleLv2.hpp"
 #include "Game/Boss/Polta.hpp"
-#include "Game/Boss/PoltaArm.hpp"
 #include "Game/Boss/PoltaActionBase.hpp"
+#include "Game/Boss/PoltaArm.hpp"
 #include "Game/Boss/PoltaFunction.hpp"
 #include "Game/Boss/PoltaStateAttackGround.hpp"
 #include "Game/Boss/PoltaStateGenerateRock.hpp"
@@ -13,6 +13,7 @@
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/ActorStateUtil.hpp"
 #include "Game/Util/LayoutUtil.hpp"
+
 
 namespace NrvPoltaBattleLv2 {
     NEW_NERVE(PoltaBattleLv2NrvWait, PoltaBattleLv2, Wait);

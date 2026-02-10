@@ -20,7 +20,7 @@ namespace NrvPoltaRock {
     NEW_NERVE(PoltaRockNrvFloat, PoltaRock, Float);
     NEW_NERVE(PoltaRockNrvSign, PoltaRock, Sign);
     NEW_NERVE(PoltaRockNrvMove, PoltaRock, Move);
-};
+};  // namespace NrvPoltaRock
 
 PoltaRock::PoltaRock(const char* pName)
     : LiveActor(pName), mOwner(nullptr), _90(0.0f, 0.0f, 0.0f, 1.0f), _A0(0.0f, 0.0f, 1.0f), _AC(0.0f, 0.0f, 0.0f), mType(0) {}
@@ -46,10 +46,10 @@ void PoltaRock::kill() {
     MR::startSound(this, "SE_OJ_POLTA_ROCK_BREAK", -1, -1);
     LiveActor::kill();
     switch (mType) {
-        case 2:
+    case 2:
         MR::emitEffect(this, "BreakYellow");
         break;
-        case 0:
+    case 0:
         MR::emitEffect(this, "BreakWhite");
         break;
     }
@@ -183,7 +183,7 @@ void PoltaRock::exeMove() {
         generateKill();
         return;
     }
-    
+
     if (MR::isGreaterStep(this, 300)) {
         kill();
     }
@@ -191,12 +191,12 @@ void PoltaRock::exeMove() {
 
 void PoltaRock::generateKill() {
     switch (mType) {
-        case 1:
-            PoltaFunction::appearBombTeresaNormal(getOwner(), mPosition, TVec3f(0.0f,0.0f,0.0f));
-            break;
-        case 2:
-            MR::appearCoinPop(getOwner(), mPosition, 1);
-            break;
+    case 1:
+        PoltaFunction::appearBombTeresaNormal(getOwner(), mPosition, TVec3f(0.0f, 0.0f, 0.0f));
+        break;
+    case 2:
+        MR::appearCoinPop(getOwner(), mPosition, 1);
+        break;
     }
     kill();
 }

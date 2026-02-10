@@ -14,8 +14,8 @@ namespace NrvPoltaStateStagger {
     NEW_NERVE(PoltaStateStaggerNrvWait, PoltaStateStagger, Wait);
 };
 
-//mPoltaPtr is set before vtable
-PoltaStateStagger::PoltaStateStagger(Polta* pPolta) : mPoltaPtr(pPolta), ActorStateBase<Polta>("[state]ポルタ弱り状態") {
+// mPoltaPtr is set before vtable
+PoltaStateStagger::PoltaStateStagger(Polta* pPolta) : mPoltaPtr(pPolta), ActorStateBase< Polta >("[state]ポルタ弱り状態") {
     mActionName = "Stagger";
     _20 = true;
     initNerve(&NrvPoltaStateStagger::PoltaStateStaggerNrvWait::sInstance);
@@ -30,7 +30,7 @@ void PoltaStateStagger::exeWait() {
         PoltaFunction::startBckBody(getPolta(), mActionName);
     }
     TVec3f v2;
-    
+
     float v17;
     MR::separateScalarAndDirection(&v17, &v2, getPolta()->_E0 - getPolta()->mPosition);
 
@@ -55,8 +55,6 @@ void PoltaStateStagger::appear() {
     mIsDead = false;
     setNerve(&NrvPoltaStateStagger::PoltaStateStaggerNrvWait::sInstance);
 }
-
-
 
 bool PoltaStateStagger::isEnableSensor() const {
     return isNerve(&NrvPoltaStateStagger::PoltaStateStaggerNrvWait::sInstance);

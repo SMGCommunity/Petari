@@ -12,7 +12,6 @@
 #include "JSystem/JGeometry/TVec.hpp"
 #include "JSystem/JMath/JMath.hpp"
 
-
 namespace NrvPoltaStateGenerateBombTeresa {
     NEW_NERVE(PoltaStateGroundRockAttackNrvSign, PoltaStateGroundRockAttack, Sign);
     NEW_NERVE(PoltaStateGroundRockAttackNrvGenerate, PoltaStateGroundRockAttack, Generate);

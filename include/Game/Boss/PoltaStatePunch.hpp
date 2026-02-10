@@ -6,7 +6,7 @@ class Polta;
 class HitSensor;
 class PoltaArm;
 
-class PoltaStatePunch : public ActorStateBase<Polta> {
+class PoltaStatePunch : public ActorStateBase< Polta > {
 public:
     PoltaStatePunch(Polta*);
 
@@ -25,6 +25,6 @@ public:
 
     /* 0xC */ Polta* mPoltaPtr;
     u8 padding[0xC];
-    bool mIsLeftArmActor;
-    bool mIsActionAffectBody;
+    /* 0x1C */ bool mIsLeftArmActor;
+    /* 0x1D */ bool mIsActionAffectBody;
 };

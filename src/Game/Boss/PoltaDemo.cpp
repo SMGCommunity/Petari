@@ -10,7 +10,6 @@
 #include "Game/Util/PlayerUtil.hpp"
 #include "revolution/types.h"
 
-
 namespace NrvPoltaDemo {
     NEW_NERVE(PoltaDemoNrvTryStartDemo, PoltaDemo, TryStartDemo);
     NEW_NERVE(PoltaDemoNrvOpeningDemo, PoltaDemo, OpeningDemo);

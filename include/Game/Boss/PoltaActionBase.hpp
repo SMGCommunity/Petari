@@ -5,11 +5,11 @@
 class Polta;
 class HitSensor;
 
-class PoltaActionBase : public ActorStateBase<Polta> {
+class PoltaActionBase : public ActorStateBase< Polta > {
 public:
-	PoltaActionBase(const char*, Polta*);
+    PoltaActionBase(const char*, Polta*);
 
-	virtual ~PoltaActionBase();
+    virtual ~PoltaActionBase();
     virtual void attackSensor(HitSensor* pSender, HitSensor* pReceiver);
     virtual bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
     virtual bool receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
@@ -21,6 +21,6 @@ public:
     bool updateDamageCore();
     void updateScreamSensor();
 
-    Polta* mPoltaPtr;
+    /* 0xC */ Polta* mPoltaPtr;
     s32 _10;
 };

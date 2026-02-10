@@ -1,20 +1,21 @@
 #include "Game/Boss/PoltaFunction.hpp"
 #include "Game/Boss/Polta.hpp"
 #include "Game/Boss/PoltaArm.hpp"
+#include "Game/Boss/PoltaGroundRock.hpp"
+#include "Game/Boss/PoltaGroundRockHolder.hpp"
 #include "Game/Boss/PoltaRock.hpp"
+#include "Game/Boss/PoltaRockHolder.hpp"
 #include "Game/Boss/PoltaSensorCtrl.hpp"
 #include "Game/Enemy/BombTeresa.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/EffectUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
-#include "Game/Boss/PoltaRockHolder.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
 #include "JSystem/JMath/JMath.hpp"
 #include "revolution/types.h"
-#include "Game/Boss/PoltaGroundRockHolder.hpp"
-#include "Game/Boss/PoltaGroundRock.hpp"
+
 
 namespace PoltaFunction {
 
@@ -35,11 +36,11 @@ namespace PoltaFunction {
 
     PoltaArm* getLeftArmActor(Polta* pPolta) {
         return pPolta->mLeftArm;
-    } 
+    }
 
     PoltaArm* getRightArmActor(Polta* pPolta) {
         return pPolta->mRightArm;
-    } 
+    }
 
     bool isCoreSensor(const Polta* pPolta, const HitSensor* pSensor) {
         return pPolta->mSensorCtrl->isCoreSensor(pSensor);
@@ -139,7 +140,7 @@ namespace PoltaFunction {
 
     bool isEnableAttackRightArm(Polta* pPolta) {
         return pPolta->mRightArm->isEnableAttack();
-    }   
+    }
 
     bool isMaxGenerateBombTeresa(Polta* pPolta) {
         return pPolta->mBombTeresaHolder->getDeadActor() == nullptr;
@@ -150,30 +151,26 @@ namespace PoltaFunction {
     }
 
     bool appearGroundRock(Polta* pPolta, float param2, float param3) {
-        PoltaGroundRock* deadMember = (PoltaGroundRock*)pPolta->mGroundRockHolder->getDeadActor();
-        if (deadMember) {
-            deadMember = (PoltaGroundRock*)pPolta->mGroundRockHolder->getDeadActor();
-        } else {
+        PoltaGroundRockHolder* groundRockHolder = pPolta->mGroundRockHolder;
+        PoltaGroundRock* deadMember = groundRockHolder->getDeadActor() ? (PoltaGroundRock*)groundRockHolder->getDeadActor() : nullptr;
+
+        if (!deadMember) {
             return false;
         }
-        if (deadMember) {
-            TVec3f v28(*MR::getPlayerPos());
-            JMathInlineVEC::PSVECSubtract(pPolta->mPosition, v28, v28);
-            JMAVECScaleAdd(pPolta->mGravity, v28, v28, -pPolta->mGravity.dot(v28));
-            if (MR::normalizeOrZero(&v28)) {
-                v28.setPS(pPolta->_C4);
-            }
-            MR::rotateVecDegree(&v28, pPolta->mGravity, param2);
-            JMAVECScaleAdd(v28, pPolta->mPosition, v28, param3);
-            deadMember->start(pPolta, v28);
-            return true;
+        TVec3f v28(*MR::getPlayerPos());
+        TVec3f v14;
+        JMathInlineVEC::PSVECSubtract(pPolta->mPosition, v28, v28);
+        JMAVECScaleAdd(pPolta->mGravity, v28, v28, -pPolta->mGravity.dot(v28));
+        if (MR::normalizeOrZero(&v28)) {
+            v28.setPS(pPolta->_C4);
         }
+        MR::rotateVecDegree(&v28, pPolta->mGravity, param2);
+        JMAVECScaleAdd(v28, pPolta->mPosition, v28, param3);
+        deadMember->start(pPolta, v28);
+        return true;
     }
 
-    void testLol() {
-        TVec3f v28(*MR::getPlayerPos());
-    }
-    //bool appearRockCircle(Polta* pPolta, const TVec3f& rVec, f32 param3, s32 param4, s32 param5, s32 rockType)
+    // bool appearRockCircle(Polta* pPolta, const TVec3f& rVec, f32 param3, s32 param4, s32 param5, s32 rockType)
 
     bool appearWhiteRockCircle(Polta* pPolta, const TVec3f& rVec, f32 param3, s32 param4, s32 param5) {
         appearRockCircle(pPolta, rVec, param3, param4, param5, 0);
@@ -187,7 +184,7 @@ namespace PoltaFunction {
         appearRockCircle(pPolta, rVec, param3, param4, param5, 2);
     }
 
-    //All the params besides pPolta go unused.
+    // All the params besides pPolta go unused.
     bool appearBombTeresaFromRoot(Polta* pPolta, float param2, float param3, s32 param4) {
         TVec3f v8;
         JMAVECScaleAdd(pPolta->mGravity, pPolta->mPosition, &v8, -120.0f);
@@ -195,11 +192,11 @@ namespace PoltaFunction {
         if (!deadMember) {
             return false;
         }
-        deadMember->appearShadow(v8, TVec3f(0.0f,0.0f,0.0f));
+        deadMember->appearShadow(v8, TVec3f(0.0f, 0.0f, 0.0f));
         return true;
     }
 
-    bool appearBombTeresaNormal(Polta*pPolta, const TVec3f& rPosition, const TVec3f& rVelocity) {
+    bool appearBombTeresaNormal(Polta* pPolta, const TVec3f& rPosition, const TVec3f& rVelocity) {
         BombTeresa* deadMember = pPolta->mBombTeresaHolder->getDeadMember();
         if (!deadMember) {
             return false;
@@ -211,7 +208,7 @@ namespace PoltaFunction {
     void disperseBombTeresa(Polta* pPolta) {
         pPolta->mBombTeresaHolder->disperseAll();
     }
-    
+
     void breakGroundRock(Polta* pPolta) {
         pPolta->mGroundRockHolder->breakAll();
     }
@@ -219,7 +216,7 @@ namespace PoltaFunction {
     void killBombTeresa(Polta* pPolta) {
         pPolta->mBombTeresaHolder->killAll();
     }
-    
+
     void killPoltaRock(Polta* pPolta) {
         pPolta->mRockHolder->killAll();
     }
@@ -233,24 +230,24 @@ namespace PoltaFunction {
         MR::setBvaFrameAndStop(pPolta, (3.0f - param2));
 
         switch (param2) {
-            case 3:
-                MR::deleteEffect(pPolta, "DamageSmoke1");
-                MR::deleteEffect(pPolta, "DamageSmoke2");
-                break;
-            case 2:
-                MR::emitEffect(pPolta, "DamageSmoke1");
-                MR::deleteEffect(pPolta, "DamageSmoke2");
-                break;
-            case 1:
-                MR::emitEffect(pPolta, "DamageSmoke1");
-                MR::emitEffect(pPolta, "DamageSmoke2");
-                break;
-            case 0:
-            default:
-                MR::deleteEffect(pPolta, "DamageSmoke1");
-                MR::deleteEffect(pPolta, "DamageSmoke2");
-                break;    
+        case 3:
+            MR::deleteEffect(pPolta, "DamageSmoke1");
+            MR::deleteEffect(pPolta, "DamageSmoke2");
+            break;
+        case 2:
+            MR::emitEffect(pPolta, "DamageSmoke1");
+            MR::deleteEffect(pPolta, "DamageSmoke2");
+            break;
+        case 1:
+            MR::emitEffect(pPolta, "DamageSmoke1");
+            MR::emitEffect(pPolta, "DamageSmoke2");
+            break;
+        case 0:
+        default:
+            MR::deleteEffect(pPolta, "DamageSmoke1");
+            MR::deleteEffect(pPolta, "DamageSmoke2");
+            break;
         }
     }
-    
-}; //namespace PoltaFunction
+
+};  // namespace PoltaFunction

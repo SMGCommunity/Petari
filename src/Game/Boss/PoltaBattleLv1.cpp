@@ -2,14 +2,15 @@
 #include "Game/Boss/Polta.hpp"
 #include "Game/Boss/PoltaActionBase.hpp"
 #include "Game/Boss/PoltaFunction.hpp"
-#include "Game/Boss/PoltaStateStagger.hpp"
-#include "Game/Boss/PoltaStateGroundRockAttack.hpp"
 #include "Game/Boss/PoltaStateGenerateRock.hpp"
+#include "Game/Boss/PoltaStateGroundRockAttack.hpp"
+#include "Game/Boss/PoltaStateStagger.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/ActorStateUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
+
 
 namespace NrvPoltaBattleLv1 {
     NEW_NERVE(PoltaBattleLv1NrvWait, PoltaBattleLv1, Wait);
@@ -19,7 +20,7 @@ namespace NrvPoltaBattleLv1 {
     NEW_NERVE(PoltaBattleLv1NrvBreakBody, PoltaBattleLv1, BreakBody);
     NEW_NERVE_ONEND(PoltaBattleLv1NrvStagger, PoltaBattleLv1, Stagger, Stagger);
     NEW_NERVE(PoltaBattleLv1NrvDamageCore, PoltaBattleLv1, DamageCore);
-};
+};  // namespace NrvPoltaBattleLv1
 
 PoltaBattleLv1::PoltaBattleLv1(Polta* pPolta) : PoltaActionBase("ポルタ1戦目", pPolta), mPoltaHealth(3), _24(0) {
     initNerve(&NrvPoltaBattleLv1::PoltaBattleLv1NrvWait::sInstance);
@@ -35,7 +36,7 @@ void PoltaBattleLv1::appear() {
     if (MR::isDead(mPoltaPtr)) {
         mPoltaPtr->makeActorAppeared();
     }
-    
+
     mIsDead = false;
     mPoltaHealth = 3;
     PoltaFunction::setBodyHP(mPoltaPtr, 3);
@@ -124,9 +125,9 @@ void PoltaBattleLv1::exeWait() {
     updateWait();
     if (MR::isGreaterStep(this, 90)) {
         if (_24 == 2 && PoltaFunction::getCountDeadGroundRock(mPoltaPtr) >= 4) {
-           setNerve(&NrvPoltaBattleLv1::PoltaBattleLv1NrvGenerateGroundRock::sInstance);
+            setNerve(&NrvPoltaBattleLv1::PoltaBattleLv1NrvGenerateGroundRock::sInstance);
         } else {
-           setNerve(&NrvPoltaBattleLv1::PoltaBattleLv1NrvGenerateRock::sInstance);
+            setNerve(&NrvPoltaBattleLv1::PoltaBattleLv1NrvGenerateRock::sInstance);
         }
         _24 = (_24 + 4) % 3;
     }
@@ -137,7 +138,7 @@ void PoltaBattleLv1::exeBreakBody() {
         mPoltaPtr->appearStarPiece(10);
     }
     if (updateBreakBody()) {
-       setNerve(&NrvPoltaBattleLv1::PoltaBattleLv1NrvStagger::sInstance);
+        setNerve(&NrvPoltaBattleLv1::PoltaBattleLv1NrvStagger::sInstance);
     }
 }
 
