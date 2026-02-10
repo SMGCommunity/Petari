@@ -57,7 +57,7 @@ void MainLoopFramework::ctor_subroutine(bool useAlpha) {
 }
 
 MainLoopFramework::~MainLoopFramework() {
-    if (JUTVideo::sManager) {
+    if (JUTVideo::getManager()) {
         waitBlanking(2);
     }
     JUTXfb::destroyManager();
@@ -65,7 +65,7 @@ MainLoopFramework::~MainLoopFramework() {
 
 MainLoopFramework* MainLoopFramework::createManager(const GXRenderModeObj* pRenderModeObj, void* xfb1, void* xfb2, void* xfb3, bool useAlpha) {
     if (pRenderModeObj) {
-        JUTVideo::sManager->setRenderMode(pRenderModeObj);
+        JUTVideo::getManager()->setRenderMode(pRenderModeObj);
     }
     if (!sManager) {
         sManager = new MainLoopFramework(xfb1, xfb2, xfb3, useAlpha);
@@ -75,17 +75,17 @@ MainLoopFramework* MainLoopFramework::createManager(const GXRenderModeObj* pRend
 
 void callDirectDraw() {
     u16 efbHeight, fbWidth;
-    fbWidth = JUTVideo::sManager->mRenderModeObj->fbWidth;
-    efbHeight = JUTVideo::sManager->mRenderModeObj->efbHeight;
+    fbWidth = JUTVideo::getManager()->getRenderMode()->fbWidth;
+    efbHeight = JUTVideo::getManager()->getRenderMode()->efbHeight;
     void* pXfb = JUTXfb::sManager->getDrawingXfb();
     JUTDirectPrint::sDirectPrint->changeFrameBuffer(pXfb, fbWidth, efbHeight);
     JUTAssertion::flushMessage();
 }
 
 void MainLoopFramework::prepareCopyDisp() {
-    u16 fbWidth = JUTVideo::sManager->mRenderModeObj->fbWidth;
-    u16 efbHeight = JUTVideo::sManager->mRenderModeObj->efbHeight;
-    u16 xfbHeight = JUTVideo::sManager->mRenderModeObj->xfbHeight;
+    u16 fbWidth = JUTVideo::getManager()->getRenderMode()->fbWidth;
+    u16 efbHeight = JUTVideo::getManager()->getRenderMode()->efbHeight;
+    u16 xfbHeight = JUTVideo::getManager()->getRenderMode()->xfbHeight;
     f32 yscale = GXGetYScaleFactor(efbHeight, xfbHeight);
     u16 nlines = GXGetNumXfbLines(efbHeight, yscale);
     GXSetCopyClear(mClearColor, mClearZ);
@@ -93,8 +93,8 @@ void MainLoopFramework::prepareCopyDisp() {
     GXSetDispCopyDst(fbWidth, nlines);
     GXSetDispCopyYScale(yscale);
     VIFlush();
-    GXSetCopyFilter(JUTVideo::sManager->mRenderModeObj->aa, JUTVideo::sManager->mRenderModeObj->sample_pattern, mUseVFilter,
-                    JUTVideo::sManager->mRenderModeObj->vfilter);
+    GXSetCopyFilter(JUTVideo::getManager()->getRenderMode()->aa, JUTVideo::getManager()->getRenderMode()->sample_pattern, mUseVFilter,
+                    JUTVideo::getManager()->getRenderMode()->vfilter);
     GXSetCopyClamp((GXFBClamp)mCopyClamp);
     GXSetDispCopyGamma((GXGamma)mDispCopyGamma);
     GXSetZMode(GX_TRUE, GX_LEQUAL, GX_TRUE);
@@ -180,7 +180,7 @@ void MainLoopFramework::copyXfb_triple() {
 void MainLoopFramework::preGX() {
     GXInvalidateTexAll();
     GXInvalidateVtxCache();
-    if (JUTVideo::sManager->mRenderModeObj->aa) {
+    if (JUTVideo::getManager()->getRenderMode()->aa) {
         GXSetPixelFmt(GX_PF_RGB565_Z16, GX_ZC_LINEAR);
         GXSetDither(GX_TRUE);
     } else if (mUseAlpha) {
@@ -193,7 +193,8 @@ void MainLoopFramework::preGX() {
 }
 
 void MainLoopFramework::endGX() {
-    J2DOrthoGraph ortho(0f, 0f, JUTVideo::sManager->mRenderModeObj->fbWidth, JUTVideo::sManager->mRenderModeObj->efbHeight, -1f, 1f);
+    J2DOrthoGraph ortho(0.0f, 0.0f, JUTVideo::getManager()->getRenderMode()->fbWidth, JUTVideo::getManager()->getRenderMode()->efbHeight, -1.0f,
+                        1.0f);
     if (JUTConsoleManager::sManager) {
         ortho.setPort();
         JUTConsoleManager::sManager->draw();
@@ -206,7 +207,7 @@ void MainLoopFramework::endGX() {
 
 void MainLoopFramework::waitForRetrace() {
     waitForTick(mTickDuration, mRetraceCount);
-    JUTVideo::sManager->waitRetraceIfNeed();
+    JUTVideo::getManager()->waitRetraceIfNeed();
 }
 
 void MainLoopFramework::beginRender() {
@@ -214,17 +215,17 @@ void MainLoopFramework::beginRender() {
     mLastFrameTime = currentTick - mTick;
     mTick = currentTick;
 
-    mLastVideoTickDelta = currentTick - JUTVideo::sVideoLastTick;
+    mLastVideoTickDelta = currentTick - JUTVideo::getVideoLastTick();
 
     if (mDoRenderFrame) {
         JUTXfb* xfb = JUTXfb::sManager;
         switch (xfb->mBufferNum) {
         case 1:
-            if (xfb->_1C != 2) {
-                xfb->_1C = 1;
+            if (xfb->mSDrawingFlag != 2) {
+                xfb->mSDrawingFlag = 1;
                 clearEfb(mClearColor);
             } else {
-                xfb->_1C = 1;
+                xfb->mSDrawingFlag = 1;
             }
             xfb->mDrawingXfbIndex = mSingleBufferIndex;
             break;
@@ -303,14 +304,14 @@ void MainLoopFramework::setTickRateFromFrame(u16 frame) {
 }
 
 void MainLoopFramework::clearEfb(GXColor color) {
-    u16 fbWidth = JUTVideo::sManager->mRenderModeObj->fbWidth;
-    u16 efbHeight = JUTVideo::sManager->mRenderModeObj->efbHeight;
+    u16 fbWidth = JUTVideo::getManager()->getRenderMode()->fbWidth;
+    u16 efbHeight = JUTVideo::getManager()->getRenderMode()->efbHeight;
     clearEfb(0, 0, fbWidth, efbHeight, color);
 }
 
 void MainLoopFramework::clearEfb(int param1, int param2, int param3, int param4, GXColor color) {
-    u16 fbWidth = JUTVideo::sManager->mRenderModeObj->fbWidth;
-    u16 efbHeight = JUTVideo::sManager->mRenderModeObj->efbHeight;
+    u16 fbWidth = JUTVideo::getManager()->getRenderMode()->fbWidth;
+    u16 efbHeight = JUTVideo::getManager()->getRenderMode()->efbHeight;
     Mtx44 proj;
     C_MTXOrtho(proj, 0f, efbHeight, 0f, fbWidth, 0f, 1f);
     GXSetProjection(proj, GX_ORTHOGRAPHIC);
@@ -371,7 +372,7 @@ void MainLoopFramework::clearEfb(int param1, int param2, int param3, int param4,
 }
 
 void MainLoopFramework::calcCombinationRatio() {
-    s32 videoInterval = JUTVideo::sVideoInterval;
+    s32 videoInterval = JUTVideo::getVideoInterval();
     s32 var1 = videoInterval;
     while (var1 < 2 * mLastFrameTime) {
         var1 += videoInterval;
@@ -436,7 +437,7 @@ namespace {
 
             u32 msg;
             do {
-                if (!OSReceiveMessage(&JUTVideo::sManager->mMessageQueue, (OSMessage*)&msg, OS_MESSAGE_BLOCK)) {
+                if (!OSReceiveMessage(JUTVideo::getManager()->getMessageQueue(), (OSMessage*)&msg, OS_MESSAGE_BLOCK)) {
                     msg = dummy;
                 }
             } while ((s32)(msg - nextCount) < 0);

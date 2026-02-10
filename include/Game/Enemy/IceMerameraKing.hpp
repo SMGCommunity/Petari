@@ -2,6 +2,7 @@
 
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
+#include "Game/Util/Array.hpp"
 
 class CameraTargetDemoActor;
 template < typename T >
@@ -51,9 +52,7 @@ public:
     ThrowingIce* _90;
     Meramera* _94;
     SpinPullParticleCallBack* mSpinParticle;  //_98
-    ThrowingIce** mActor;                     //_9C
-    s32 _A0;
-    s32 _A4;
+    MR::Vector< MR::AssignableArray< ThrowingIce* > > mActor;  //_9C
     LiveActor* _A8;
     LiveActor* _AC;
     TVec3f _B0;
@@ -65,14 +64,14 @@ public:
     u32 _E8;
     s32 _EC;
     s32 _F0;
-    MR::Vector< MR::AssignableArray< ThrowingIce* > > mModelArray;  //_F4
+    ThrowingIce** mModelArray;                                  //_F4
+    CameraTargetDemoActor* _F8;                                 //_F8
+    JointControlDelegator< IceMerameraKing >* mJointController; //_FC
     TQuat4f _100;
     TVec3f _110;
     f32 _11C;
     bool _120;
     bool _121;
-    CameraTargetDemoActor* _F8;
-    JointControlDelegator< IceMerameraKing >* mJointController;  //_FC
 };
 
 class IceMerameraKingShockWave : public ModelObj {

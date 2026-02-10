@@ -14,7 +14,7 @@ public:
     virtual void initAfterPlacement();
     virtual void appear();
     virtual void kill();
-    virtual void makeArchiveList(NameObjArchiveListCollector*, const JMapInfoIter&);
+    static void makeArchiveList(NameObjArchiveListCollector*, const JMapInfoIter&);
     virtual void control();
     virtual void calcAndSetBaseMtx();
     virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
@@ -42,4 +42,5 @@ public:
     s32 _8C;
     u8 unc[0x88];
     const char* _118;
+    u8 _11C[0x138];
 };

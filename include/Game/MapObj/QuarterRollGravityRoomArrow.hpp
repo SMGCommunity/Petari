@@ -5,6 +5,7 @@
 #include "Game/MapObj/MapObjActorInitInfo.hpp"
 #include "Game/Util/JMapInfo.hpp"
 
+
 class QuarterRollGravityRoomArrow : public MapObjActor {
 public:
     QuarterRollGravityRoomArrow(const char* pName);
@@ -24,4 +25,5 @@ public:
     void offRollA();
     void onRollB();
     void offRollB();
+
 };

@@ -102,7 +102,7 @@ void GameSystemObjHolder::captureIfAllowForScreenPreserver() {
 }
 
 GXRenderModeObj* GameSystemObjHolder::getRenderModeObj() const {
-    return JUTVideo::sManager->mRenderModeObj;
+    return JUTVideo::getManager()->getRenderMode();
 }
 
 void GameSystemObjHolder::initDvd() {

@@ -6,20 +6,30 @@
 namespace JGeometry {
     template < class T >
     struct TBox {
-        TBox() : i(), f() {}
-        TBox(const TBox& other) : i(other.i), f(other.f) {}
+        TBox() : i(), f() {
+        }
+        TBox(const TBox& other) : i(other.i), f(other.f) {
+        }
 
         T i, f;
     };
 
     template <>
     struct TBox< TVec2< f32 > > {
-        f32 getWidth() const { return f.x - i.x; }
-        f32 getHeight() const { return f.y - i.y; }
+        f32 getWidth() const {
+            return f.x - i.x;
+        }
+        f32 getHeight() const {
+            return f.y - i.y;
+        }
 
-        bool isValid() const { return f.isAbove(i); }
+        bool isValid() const {
+            return f.isAbove(i);
+        }
 
-        void addPos(f32 x, f32 y) { addPos(TVec2< f32 >(x, y)); }
+        void addPos(f32 x, f32 y) {
+            addPos(TVec2< f32 >(x, y));
+        }
 
         void addPos(const TVec2< f32 >& pos) {
             i.add(pos);
@@ -37,27 +47,54 @@ namespace JGeometry {
 
     template <>
     struct TBox< TVec3< f32 > > {
-        TVec3<f32> i, f;
+        TVec3< f32 > i, f;
 
-        void extend(const TVec3f&);
+        void extend(const TVec3f& rPos) {
+            if (i.x >= rPos.x) {
+                i.x = rPos.x;
+            }
+            if (i.y >= rPos.y) {
+                i.y = rPos.y;
+            }
+            if (i.z >= rPos.z) {
+                i.z = rPos.z;
+            }
+            if (f.x <= rPos.x) {
+                f.x = rPos.x;
+            }
+            if (f.y <= rPos.y) {
+                f.y = rPos.y;
+            }
+            if (f.z <= rPos.z) {
+                f.z = rPos.z;
+            }
+        }
 
         bool intersectsPoint(const TVec3f& rPos) const {
-            return (rPos.x >= this->i.x && rPos.y >= this->i.y && rPos.z >= this->i.z &&
-                    rPos.x <  this->f.x && rPos.y <  this->f.y && rPos.z <  this->f.z);
+            return (rPos.x >= this->i.x && rPos.y >= this->i.y && rPos.z >= this->i.z && rPos.x < this->f.x && rPos.y < this->f.y &&
+                    rPos.z < this->f.z);
+        }
+
+        void set(const TVec3f& a, const TVec3f& b) {
+            i.set(a);
+            f.set(b);
         }
     };
 
     template < typename T >
     struct TBox2 : public TBox< TVec2< T > > {
     public:
-        TBox2() {}
+        TBox2() {
+        }
 
         TBox2(const TVec2< f32 >& _i, const TVec2< f32 >& _f) {
             TBox< TVec2< T > >::i.set(_i);
             TBox< TVec2< T > >::f.set(_f);
         }
 
-        TBox2(f32 x0, f32 y0, f32 x1, f32 y1) { set(x0, y0, x1, y1); }
+        TBox2(f32 x0, f32 y0, f32 x1, f32 y1) {
+            set(x0, y0, x1, y1);
+        }
         // void set<T>(const TBox2<T> &a1, const TBox2<T> &a2);
 
         void operator=(const JGeometry::TBox2< T >&);
@@ -72,8 +109,12 @@ namespace JGeometry {
             }
         }
 
-        void set(const TBox< TVec2< T > >& other) { set(other.i, other.f); }
-        void set(const TVec2< f32 >& i, const TVec2< f32 >& f) { this->i.set(i), this->f.set(f); }
+        void set(const TBox< TVec2< T > >& other) {
+            set(other.i, other.f);
+        }
+        void set(const TVec2< f32 >& i, const TVec2< f32 >& f) {
+            this->i.set(i), this->f.set(f);
+        }
         void set(f32 x0, f32 y0, f32 x1, f32 y1) NO_INLINE {
             this->i.set(x0, y0);
             this->f.set(x1, y1);
@@ -83,7 +124,8 @@ namespace JGeometry {
     template < typename T >
     class TBox3 : public TBox< TVec3< T > > {
     public:
-        TBox3() {}
+        TBox3() {
+        }
     };
 
     template < typename T >

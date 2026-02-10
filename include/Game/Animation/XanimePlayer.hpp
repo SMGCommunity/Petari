@@ -60,6 +60,7 @@ public:
     const char* getCurrentBckName() const;
     const char* getNameStringPointer(const char*) const;
     bool checkPass(f32) const;
+    f32 tellAnimationFrame() const;
     const XanimeGroupInfo* getSimpleGroup() const;
     void duplicateSimpleGroup();
     void changeCurrentAnimation(const XanimeGroupInfo*);

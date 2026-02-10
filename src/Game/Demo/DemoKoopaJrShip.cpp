@@ -170,7 +170,7 @@ void DemoKoopaJrShip::startEntryAnim() {
 void DemoKoopaJrShip::startLeaveAnim() {
     if (mAnimCameraIndex == -1) {
         MR::startBck(this, "Arrival", nullptr);
-        MR::setBckFrame(this, MR::getBckCtrl(this)->mEndFrame - 1.0f);
+        MR::setBckFrame(this, MR::getBckCtrl(this)->mEnd - 1.0f);
         MR::setBckRate(this, -1.0f);
     } else {
         MR::startBck(this, ::sAnim[mAnimCameraIndex].mLeaveAnimName, nullptr);

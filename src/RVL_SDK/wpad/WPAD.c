@@ -4,6 +4,7 @@
 #include "revolution/sc.h"
 #include "revolution/vi.h"
 #include "revolution/wud.h"
+#include "revolution/wud/wud.h"
 #include <cstdio>
 #include <mem.h>
 
@@ -68,7 +69,7 @@ void* noAlloc(u32 size) {
     return NULL;
 }
 
-u8 noFree(void* ptr) {
+int noFree(void* ptr) {
     DEBUGPrint("No Free: Nothing to do!!!\n");
     return 0;
 }
@@ -1157,12 +1158,12 @@ static BOOL WPADiProcessCommand(s32 chan) {
     return FALSE;
 }
 
-static void WPADiConnCallback(WUDDeviceInfo* info, u8 open) {
+static void WPADiConnCallback(WUDDevInfo* info, u8 open) {
     s32 chan = -1;
     WPADControlBlock* p_wpd;
     BOOL isCmdExist;
     WPADCommand cmd;
-    u8 dev_handle = info->handle;
+    u8 dev_handle = info->devHandle;
 
     if (open) {
         DEBUGPrint("connection is opened\n");
@@ -1171,7 +1172,7 @@ static void WPADiConnCallback(WUDDeviceInfo* info, u8 open) {
         _dev_handle_index[dev_handle] = (s8)(chan & 0xff);
         __ClearControlBlock(chan);
 
-        if (!memcmp(info->bd_name, "Nintendo RVL-CNT", 16)) {
+        if (!memcmp(info->devAddr, "Nintendo RVL-CNT", 16)) {
             p_wpd->devType = WPAD_DEV_CORE;
         } else {
             p_wpd->devType = WPAD_DEV_FUTURE;
@@ -2441,14 +2442,4 @@ void __WPADReconnect(BOOL exec) {
     _recFlag = (exec) ? 1 : 0;
     DEBUGPrint("Wait for %d ms until start reconnect!\n", _recCnt);
     OSRestoreInterrupts(enable);
-}
-
-void WPADiShutdown(BOOL exec) {
-    OSCancelAlarm(&_managerAlarm);
-    WUDSetHidRecvCallback(NULL);
-    WUDShutdown(exec);
-}
-
-BOOL WPADCancelSyncDevice() {
-    return WUDCancelSyncDevice();
 }

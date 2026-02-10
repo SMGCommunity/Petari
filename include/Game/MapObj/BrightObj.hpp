@@ -1,6 +1,7 @@
 #pragma once
 
 #include <JSystem/JGeometry/TMatrix.hpp>
+#include "Game/NameObj/NameObj.hpp"
 
 class BrightInfo {
 public:
@@ -40,4 +41,22 @@ public:
     /* 0x60 */ Mtx44 mProjectionMtx[2];
     /* 0xE0 */ TVec3f mCameraDir[2];
     /* 0xF8 */ TVec3f mCameraPos[2];
+};
+
+class BrightObj : public NameObj {
+public:
+    BrightObj(const char*);
+    virtual ~BrightObj();
+
+private:
+    u8 mPad[(0x110) - sizeof(NameObj)];
+};
+
+class BrightSun : public NameObj {
+public:
+    BrightSun(const char*);
+    virtual ~BrightSun();
+
+private:
+    u8 mPad[(0x110) - sizeof(NameObj)];
 };

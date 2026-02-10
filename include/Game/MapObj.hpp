@@ -207,6 +207,7 @@
 #include "Game/MapObj/SpinDriverShootPath.hpp"
 #include "Game/MapObj/SpinDriverUtil.hpp"
 #include "Game/MapObj/SpinLeverSwitch.hpp"
+#include "Game/MapObj/SpinningBox.hpp"
 #include "Game/MapObj/StageEffectDataTable.hpp"
 #include "Game/MapObj/StarPiece.hpp"
 #include "Game/MapObj/StarPieceDirector.hpp"

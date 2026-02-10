@@ -39,9 +39,15 @@ namespace nw4r {
                 void SetSize(u8);
                 void Copy(const void*, u8);
 
-                bool IsEmpty() const { return mCap == 0; }
-                u8 GetSize() const { return mNum; }
-                ConstArrayType GetArray() const { return mData; }
+                bool IsEmpty() const {
+                    return mCap == 0;
+                }
+                u8 GetSize() const {
+                    return mNum;
+                }
+                ConstArrayType GetArray() const {
+                    return mData;
+                }
 
                 u8 mCap;
                 u8 mNum;
@@ -85,6 +91,14 @@ namespace nw4r {
             }
 
             const Size GetTextureSize(Material* pMaterial, u8 texMapIdx);
+
+            inline void SetHorizontalPosition(u8* pVar, u8 newVal) {
+                *pVar = u8(GetVerticalPosition(*pVar) * 3 + newVal);
+            }
+
+            inline void SetVerticalPosition(u8* pVar, u8 newVal) {
+                *pVar = u8(newVal * 3 + GetHorizontalPosition(*pVar));
+            }
 
         };  // namespace detail
     };  // namespace lyt

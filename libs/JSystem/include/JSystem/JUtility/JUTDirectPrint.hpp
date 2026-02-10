@@ -8,7 +8,18 @@ class JUTDirectPrint {
 public:
     static JUTDirectPrint* start();
 
+    void erase(int, int, int, int);
+    void drawChar(int, int, int);
     void changeFrameBuffer(void*, u16, u16);
+    /* -------- */ void print(u16, u16, char const*, ...);
+    void printSub(u16, u16, char const*, va_list, bool);
+    void drawString(u16, u16, char*);
+    void drawString_f(u16, u16, char const*, ...);
+    void setCharColor(u8, u8, u8);
+    void setCharColor(JUtility::TColor);
+
+    static JUTDirectPrint* getManager() { return sDirectPrint; }
+    JUtility::TColor getCharColor() const { return mCharColor; }
 
     void* field_0x00;
     u16 mFrameBufferWidth;

@@ -79,6 +79,8 @@ public:
 
     static void destroy(JKRHeap*);
 
+    static JKRHeap* getCurrentHeap() { return sCurrentHeap; }
+
     static void setAltAramStartAdr(u32);
     static u32 getAltAramStartAdr();
 
@@ -130,4 +132,8 @@ void* operator new[](u32, JKRHeap*, int);
 
 inline void* JKRAllocFromHeap(JKRHeap* heap, u32 size, int alignment) {
     return JKRHeap::alloc(size, alignment, heap);
+}
+
+inline JKRHeap* JKRGetCurrentHeap() {
+    return JKRHeap::getCurrentHeap();
 }

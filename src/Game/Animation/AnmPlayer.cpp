@@ -14,7 +14,7 @@ void AnmPlayerBase::update() {
 
 void AnmPlayerBase::reflectFrame() {
     if (mAnmRes != nullptr) {
-        mAnmRes->mFrame = mFrameCtrl.mCurrentFrame;
+        mAnmRes->mFrame = mFrameCtrl.mFrame;
     }
 }
 
@@ -27,14 +27,14 @@ void AnmPlayerBase::start(const char* pResName) {
     }
 
     mFrameCtrl.init(mAnmRes->mFrameMax);
-    mFrameCtrl.mLoopMode = mAnmRes->mAttribute;
-    mFrameCtrl.mCurrentFrame = 0.0f;
-    mFrameCtrl.mSpeed = 1.0f;
+    mFrameCtrl.mAttribute = mAnmRes->mAttribute;
+    mFrameCtrl.mFrame = 0.0f;
+    mFrameCtrl.mRate = 1.0f;
 }
 
 void AnmPlayerBase::stop() {
     stopAnimation();
-    mFrameCtrl.mSpeed = 0.0f;
+    mFrameCtrl.mRate = 0.0f;
 }
 
 bool AnmPlayerBase::isPlaying(const char* pAnimName) const {

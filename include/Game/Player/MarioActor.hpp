@@ -5,6 +5,8 @@
 #include "Game/Player/Mario.hpp"
 
 class FootPrint;
+class J3DAnmTexPattern;
+class J3DModelData;
 class JAIAudible;
 class MarioNullBck;
 class XjointTransform;
@@ -19,8 +21,9 @@ class DLchanger;
 class J3DModelX;
 class TornadoMario;
 class ModelHolder;
+class FixedPosition;
 
-bool gIsLuigi;  // (cc68 - 10000)(r13)
+extern bool gIsLuigi;  // (cc68 - 10000)(r13)
 
 class MarioActor : public LiveActor {
 public:
@@ -156,6 +159,7 @@ public:
 
     TVec3f& getGravityVec() const;
     TVec3f& getGravityVector() const;
+    const TVec3f& getAirGravityVec() const;
     void updateGravityVec(bool, bool);
     void changeTeresaAnimation(const char*, s32);
 
@@ -201,6 +205,9 @@ public:
     void stopEffectForce(const char*);
     bool isRequestRush() const;
     bool isRequestJump2P() const;
+    bool isKeepJump() const;
+    bool isKeepJump2P() const;
+    bool isRequestHipDrop() const;
     bool isRequestSpinJump2P() const;
     bool tryReleaseBombTeresa();
     void initBlackHoleOut();  // void ?
@@ -210,6 +217,8 @@ public:
     void shootFireBall();
     void doFreezeAttack();
     void initBlink();
+    void updateBlink();
+    bool finalizeFreezeModel();
     void setBlink(const char*);
     void resetSensorCount();
     void getStickValue(f32*, f32*);
@@ -220,6 +229,7 @@ public:
     bool tryJetAttack(HitSensor*);
     void releaseThrowMemoSensor();
     void createIceFloor(const TVec3f&);
+    void syncJumpBeeStickMode();
 
     bool isRequestJump() const;
 
@@ -230,24 +240,44 @@ public:
     bool isActionOk(const char*) const;
 
     bool isInZeroGravitySpot() const;
+    f32 getGravityRatio() const;
+    u32 getGravityLevel() const;
 
     void forceKill(u32);
 
     void sendMsgUpperPunch(HitSensor*);
+    bool sendMsgToSensor(HitSensor*, u32);
 
     void entryWallWalkMode(const TVec3f&, const TVec3f&);
 
     const HitSensor* getCarrySensor() const;
+    HitSensor* getLookTargetSensor() const;
+    bool selectHomingInSuperHipDrop(const char*) const;
+    f32 getFaceLookHeight(const char*) const;
+    void updateSpecialModeAnimation();
+    J3DModelData* getModelData() const;
+    void rushDropThrowMemoSensor();
+    void offTakingFlag();
 
-    const MarioConst& getConst() const { return *mConst; }
+    const MarioConst& getConst() const {
+        return *mConst;
+    }
 
-    inline u32 getHealth() const { return mHealth; }
+    inline u32 getHealth() const {
+        return mHealth;
+    }
 
-    inline const Mario::MovementStates& getMovementStates() const { return mMario->mMovementStates; }
+    inline const Mario::MovementStates& getMovementStates() const {
+        return mMario->mMovementStates;
+    }
 
-    inline const Mario::DrawStates& getDrawStates() const { return mMario->mDrawStates; }
+    inline const Mario::DrawStates& getDrawStates() const {
+        return mMario->mDrawStates;
+    }
 
-    inline const Mario::DrawStates& getPrevDrawStates() const { return mMario->mPrevDrawStates; }
+    inline const Mario::DrawStates& getPrevDrawStates() const {
+        return mMario->mPrevDrawStates;
+    }
 
     struct FBO {
         u32 _0;
@@ -387,13 +417,13 @@ public:
     TMtx34f _3EC;
     u32 _41C;
     u32 _420;
-    u32 _424;
-    u32 _428[4];
+    HitSensor* _424;
+    HitSensor* _428[4];
     u8 _438[0x30];
     union {
         struct {
             u32 _468;
-            u32 _46C;
+            HitSensor* _46C;
             u32 _470;
         };
         TVec3f _468Vec;
@@ -409,7 +439,7 @@ public:
     u8 _483;
     TVec3f _484;
     f32 _490;
-    u32 _494;
+    FixedPosition* _494;
     FixedPosition* _498;
     FixedPosition* _49C;
     u32 _4A0;
@@ -550,7 +580,7 @@ public:
     // padding
     u16 _B74;
     // padding
-    void* mEyeRes;  // 0xB78
+    J3DAnmTexPattern* mEyeRes;  // 0xB78
     u32 _B7C;
     u32 _B80;
     u32 _B84;

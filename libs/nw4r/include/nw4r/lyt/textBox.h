@@ -43,11 +43,39 @@ namespace nw4r {
             u32 MakeDrawFlag() const;
             f32 GetTextMagH() const;
             f32 GetTextMagV() const;
+            void SetTextColor(u32, ut::Color);
+            const ut::Rect GetTextDrawRect() const;
+            const ut::Rect GetTextDrawRect(const DrawInfo&) const;
+            f32 GetTextAlignMag() const;
 
-            void SetFontSize(const Size& rFontSize) { mFontSize = rFontSize; }
+            void Init(u16);
 
-            u8 GetTextPositionH() const { return detail::GetHorizontalPosition(mTextPosition); }
-            u8 GetTextPositionV() const { return detail::GetVerticalPosition(mTextPosition); }
+            void SetFontSize(const Size& rFontSize) {
+                mFontSize = rFontSize;
+            }
+
+            void SetTextPositionH(u8 val) {
+                detail::SetHorizontalPosition(&mTextPosition, val);
+            }
+
+            void SetTextPositionV(u8 val) {
+                detail::SetVerticalPosition(&mTextPosition, val);
+            }
+
+            u8 GetTextPositionH() const {
+                return detail::GetHorizontalPosition(mTextPosition);
+            }
+            u8 GetTextPositionV() const {
+                return detail::GetVerticalPosition(mTextPosition);
+            }
+
+            const ut::Color GetTextColor(u32 type) const {
+                return mTextColors[type];
+            }
+
+            u8 GetTextAlignment() const {
+                return mBits.textAlignment;
+            }
 
             wchar_t* mTextBuf;
             ut::Color mTextColors[2];

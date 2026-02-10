@@ -64,8 +64,8 @@ void Manual2P::appear() {
 
     MR::startAnim(this, "Picture", 1);
 
-    if (_24 > MR::getAnimCtrl(this, 1)->mEndFrame) {
-        _24 = MR::getAnimCtrl(this, 1)->mEndFrame;
+    if (_24 > MR::getAnimCtrl(this, 1)->mEnd) {
+        _24 = MR::getAnimCtrl(this, 1)->mEnd;
     }
 }
 
@@ -162,11 +162,11 @@ void Manual2P::exeScrollRightAfter() {
 void Manual2P::exeScrollLeft() {
     if (MR::isFirstStep(this)) {
         MR::startAnim(this, "PageIn", 0);
-        MR::setAnimFrame(this, MR::getAnimCtrl(this, 0)->mEndFrame - 1.0f, 0);
-        MR::getAnimCtrl(this, 0)->mSpeed = -1.0f;
+        MR::setAnimFrame(this, MR::getAnimCtrl(this, 0)->mFrame - 1.0f, 0);
+        MR::getAnimCtrl(this, 0)->mRate = -1.0f;
     }
 
-    if (MR::getAnimCtrl(this, 0)->mCurrentFrame + MR::getAnimCtrl(this, 0)->mSpeed <= 0.0f) {
+    if (MR::getAnimCtrl(this, 0)->mFrame + MR::getAnimCtrl(this, 0)->mRate <= 0.0f) {
         setNerve(&Manual2PNrvScrollLeftAfter::sInstance);
     }
 }
@@ -174,15 +174,15 @@ void Manual2P::exeScrollLeft() {
 void Manual2P::exeScrollLeftAfter() {
     if (MR::isFirstStep(this)) {
         MR::startAnim(this, "PageIn", 0);
-        MR::setAnimFrame(this, MR::getAnimCtrl(this, 0)->mEndFrame - 1.0f, 0);
-        MR::getAnimCtrl(this, 0)->mSpeed = -1.0f;
+        MR::setAnimFrame(this, MR::getAnimCtrl(this, 0)->mFrame - 1.0f, 0);
+        MR::getAnimCtrl(this, 0)->mRate = -1.0f;
 
         mPageIndex--;
 
         reflectPageIndex();
     }
 
-    if (MR::getAnimCtrl(this, 0)->mCurrentFrame - MR::getAnimCtrl(this, 0)->mSpeed <= 0.0f) {
+    if (MR::getAnimCtrl(this, 0)->mFrame - MR::getAnimCtrl(this, 0)->mRate <= 0.0f) {
         mLeftPaneCtrl->_24 = true;
         mLeftPaneCtrl->forceToWait();
         setNerve(&Manual2PNrvScrollLeftAfter::sInstance);

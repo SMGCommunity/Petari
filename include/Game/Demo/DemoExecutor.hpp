@@ -45,4 +45,5 @@ public:
     u8 _2C[0x32C];                      // padding to 0x358
     DemoTalkAnimCtrl* mTalkAnimCtrls[8];  // 0x358 (inline array)
     s32 mNumTalkAnimCtrls;              // 0x378
+    u8 _37C[0x44];
 };

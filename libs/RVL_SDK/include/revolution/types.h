@@ -85,6 +85,9 @@ typedef int BOOL;
 #define ARRAY_SIZE(o) (s32)(sizeof(o) / sizeof(o[0]))
 #define ARRAY_SIZEU(o) (sizeof(o) / sizeof(o[0]))
 
+#define MAX(x, y) ((x) > (y) ? (x) : (y))
+#define MIN(x, y) ((x) < (y) ? (x) : (y))
+
 /* just some common intrinsics */
 
 #ifndef __MWERKS__

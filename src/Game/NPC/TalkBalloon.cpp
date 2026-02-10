@@ -354,7 +354,8 @@ void TalkBalloonEvent::updateBeak() {
     TalkMessageCtrl* messageCtrl = mMessageCtrl;
     TVec2f v1(messageCtrl->_1C.x, messageCtrl->_1C.y);
 
-    if (0.0f <= v1.x && v1.x < MR::getScreenWidth() && 120.0f <= v1.y && v1.y < static_cast< s32 >(JUTVideo::sManager->mRenderModeObj->efbHeight)) {
+    if (0.0f <= v1.x && v1.x < MR::getScreenWidth() && 120.0f <= v1.y &&
+        v1.y < static_cast< s32 >(JUTVideo::getManager()->getRenderMode()->efbHeight)) {
         MR::showPane(this, "ShaBeak");
         MR::showPane(this, "PicBeak");
     } else {

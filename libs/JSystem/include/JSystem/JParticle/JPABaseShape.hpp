@@ -85,7 +85,7 @@ public:
 
     BOOL isPrmAnm() const { return mpData->mClrFlg & 0x02; }
     BOOL isEnvAnm() const { return mpData->mClrFlg & 0x08; }
-    u8 getClrAnmType() const { return (mpData->mClrFlg >> 4) & 0x07; }
+    inline u8 getClrAnmType() const { return (mpData->mClrFlg >> 4) & 0x07; }
     s16 getClrAnmMaxFrm() const { return mpData->mClrAnmFrmMax; }
     void getPrmClr(GXColor* dst) { *dst = mpData->mClrPrm; }
     void getPrmClr(s16 idx, GXColor* dst) { *dst = mpPrmClrAnmTbl[idx]; }

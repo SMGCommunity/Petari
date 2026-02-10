@@ -22,6 +22,8 @@ public:
     void doDraw(EConsoleType) const;
     u32 getOutput() const { return mOutput; }
 
+    void print(char const*);
+
     JGadget::TLinkListNode mListNode;  // 0x18
     u32 _20;
     int mMaxLines;  // 0x24
@@ -68,6 +70,8 @@ public:
     ConsoleList mList;           // 0x0
     JUTConsole* mActiveConsole;  // 0xC
     JUTConsole* mDirectConsole;  // 0x10
+
+    static JUTConsoleManager* const getManager() { return sManager; }
 
     static JUTConsoleManager* sManager;
 };

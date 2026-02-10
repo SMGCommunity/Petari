@@ -22,7 +22,7 @@ void ButlerExplain::init(const JMapInfoIter& rIter) {
     if (MR::tryRegisterDemoCast(this, rIter)) {
         DemoFunction::tryCreateDemoTalkAnimCtrlForActor(this, "DemoWithButler", nullptr);
         MR::registerDemoActionFunctor(this, MR::Functor_Inline(this, &ButlerExplain::startDemo), "DemoWithButler");
-        DemoFunction::registerDemoTalkMessageCtrl(this, mTalk);
+        DemoFunction::registerDemoTalkMessageCtrl(this, mMsgCtrl);
     }
     MR::tryRegisterDemoCast(this, "グランドスター１帰還", rIter);
 }

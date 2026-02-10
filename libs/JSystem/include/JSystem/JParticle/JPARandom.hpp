@@ -11,7 +11,7 @@ public:
 
     u32 get_rndm_u() { return mSeed = mSeed * 0x19660du + 0x3c6ef35fu; }
 
-    f32 get_rndm_f() NO_INLINE {
+    f32 get_rndm_f() {
         union {
             u32 u;
             f32 f;

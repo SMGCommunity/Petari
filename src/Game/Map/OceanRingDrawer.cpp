@@ -301,7 +301,7 @@ OceanRingDrawer::OceanRingDrawer(const OceanRing* pOceanRing) {
     _20 = 0.0f;
     mWaterTex = nullptr;
     mWaterIndTex = nullptr;
-    _2C = 0;
+    mDispListLength = 0;
     mDispList = nullptr;
 
     mWaterTex = new JUTTexture(MR::loadTexFromArc("WaterWave.arc", "Water.bti"), 0);
@@ -323,7 +323,7 @@ void OceanRingDrawer::draw() const {
     loadMaterial();
 
     if (mRing->mIsClipped) {
-        GXCallDisplayList(mDispList, _2C);
+        GXCallDisplayList(mDispList, mDispListLength);
     } else {
         for (s32 i = 0; i < mDrawerCount; i++) {
             getDrawer(i)->draw();
@@ -391,7 +391,7 @@ void OceanRingDrawer::initDisplayList() {
     __GDCurrentDL = &obj;
     drawGD();
     GDPadCurr32();
-    _2C = obj.ptr - obj.start;
+    mDispListLength = obj.ptr - obj.start;
     DCStoreRange(mDispList, length);
 }
 
