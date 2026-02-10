@@ -13,3 +13,4 @@ void PoltaWaitStart::appear() {
 }
 
 PoltaWaitStart::~PoltaWaitStart() {}
+a
