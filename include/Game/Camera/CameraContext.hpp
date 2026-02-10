@@ -20,7 +20,7 @@ public:
 
     TPos3f mView;        // 0xC
     TPos3f mViewInv;     // 0x3C
-    TPos3f mProjection;  // 0x6C
+    TPos3f mProjection;  // 0x6C : TODO: Actually a Mtx44 through _A8
     f32 _9C;
     f32 _A0;
     f32 _A4;

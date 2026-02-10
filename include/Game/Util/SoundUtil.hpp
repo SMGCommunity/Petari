@@ -30,13 +30,16 @@ namespace MR {
     void stopSubBGM(u32);
 
     void startSound(const LiveActor*, const char*, s32, s32);
+    bool startSound(const LiveActor*, JAISoundID, s32, s32);
 
     void actorSoundMovement(LiveActor*);
 
     void startCSSound(const char*, const char*, s32);
     void startCSSound2P(const char*, const char*);
     void startSystemSE(const char*, s32, s32);
+    void startSystemSE(JAISoundID, s32, s32);
     void stopSystemSE(const char*, u32);
+    void stopSystemSE(JAISoundID, u32);
     void startSpinHitSound(const LiveActor*);
     void startBlowHitSound(const LiveActor*);
     void startSystemME(const char*);
@@ -73,6 +76,7 @@ namespace MR {
 
     void start2PAttackAssistSound();
     void start2PJumpAssistSound();
+    void start2PJumpAssistJustSound();
 
     void startDPDHitSound();
     void startDPDFreezeLevelSound(const LiveActor*);
@@ -82,6 +86,7 @@ namespace MR {
     s32 getRemixMelodyNoteNum(s32);
 
     void startSystemLevelSE(const char*, s32, s32);
+    void startSystemLevelSE(JAISoundID, s32, s32);
 
     void submitSE();
 
@@ -97,6 +102,7 @@ namespace MR {
     void startSubBGM(const char*, bool);
 
     void stopSound(const LiveActor*, const char*, u32);
+    void stopSound(const LiveActor*, JAISoundID, u32);
     void startSoundObjectLevel(AudSoundObject*, const char*, s32);
 
     void limitedStarPieceHitSound();

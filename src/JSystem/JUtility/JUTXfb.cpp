@@ -24,7 +24,7 @@ void JUTXfb::delXfb(int xfbIdx) {
 JUTXfb::JUTXfb(void* a1, void* a2, void* a3) {
     mBufferNum = 0x3;
     clearIndex();
-    _1C = 0x63;
+    mSDrawingFlag = 0x63;
     initiate(a1, a2, a3, UNK_3);
 }
 

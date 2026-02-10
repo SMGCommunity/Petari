@@ -242,13 +242,13 @@ void MiiSelect::control() {
     if (_20[0]->isFirstStepWait() && !_20[1]->isFirstStepWait() && _20[1]->isWait()) {
         pAnimCtrl = MR::getPaneAnimCtrl(this, _20[0]->mPaneName, 0);
 
-        pAnimCtrl->mCurrentFrame = MR::getPaneAnimFrame(this, _20[1]->mPaneName, 0);
+        pAnimCtrl->mFrame = MR::getPaneAnimFrame(this, _20[1]->mPaneName, 0);
     }
 
     if (_20[1]->isFirstStepWait() && !_20[0]->isFirstStepWait() && _20[0]->isWait()) {
         pAnimCtrl = MR::getPaneAnimCtrl(this, _20[1]->mPaneName, 0);
 
-        pAnimCtrl->mCurrentFrame = MR::getPaneAnimFrame(this, _20[0]->mPaneName, 0);
+        pAnimCtrl->mFrame = MR::getPaneAnimFrame(this, _20[0]->mPaneName, 0);
     }
 
     _1F8->movement();

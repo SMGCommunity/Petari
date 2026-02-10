@@ -17,7 +17,7 @@ public:
     JUTNameTab();
     JUTNameTab(const ResNTAB*);
 
-    virtual ~JUTNameTab();
+    virtual ~JUTNameTab() {}
 
     void setResource(const ResNTAB*);
     s32 getIndex(const char*) const;

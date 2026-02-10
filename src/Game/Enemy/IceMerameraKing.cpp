@@ -63,9 +63,9 @@ namespace NrvIceMerameraKing {
 };  // namespace NrvIceMerameraKing
 
 IceMerameraKing::IceMerameraKing(const char* pName)
-    : LiveActor(pName), mFixedPos(nullptr), _90(nullptr), _94(nullptr), mActor(nullptr), _A0(0), _A4(0), _A8(nullptr), _AC(nullptr), _B0(0, 0, 1),
-      _BC(0, 1, 0), _C8(0, 0, 0), _D4(0, 0, 0), _E0(0), _E4(0), _EC(3), _F0(0), mModelArray(), _100(0, 0, 0, 1), _120(false), _110(0.0f, 0.0f, 0.0f),
-      _11C(0.0f), _121(false) {}
+    : LiveActor(pName), mFixedPos(nullptr), _90(nullptr), _94(nullptr), mActor(), _A8(nullptr), _AC(nullptr), _B0(0, 0, 1), _BC(0, 1, 0), _C8(0, 0, 0),
+      _D4(0, 0, 0), _E0(0), _E4(0), _EC(3), _F0(0), mModelArray(nullptr), _F8(nullptr), mJointController(nullptr), _100(0, 0, 0, 1), _110(0.0f, 0.0f, 0.0f),
+      _11C(0.0f), _120(false), _121(false) {}
 
 void IceMerameraKing::init(const JMapInfoIter& rIter) {
     if (MR::isValidInfo(rIter)) {
@@ -98,13 +98,13 @@ void IceMerameraKing::init(const JMapInfoIter& rIter) {
     MR::declareStarPiece(this, 24);
     mFixedPos = new FixedPosition(this, "Top", TVec3f(0, 0, 0), TVec3f(0.0f, 0.0f, 0.0f));
     MR::tryRegisterDemoCast(this, rIter);
-    mActor = new ThrowingIce*[0x6];  //
-    _A0 = 6;
+    mActor.mArray.mArr = new ThrowingIce*[0x6];
+    mActor.mArray.mMaxSize = 6;
 
     for (int i = 0; i < 6; i++) {
         mActor[i] = new ThrowingIce("投擲用の氷");
         mActor[i]->initWithoutIter();
-        _A4 += 1;
+        mActor.mCount += 1;
         MR::tryRegisterDemoCast(mActor[i], rIter);
     }
 
@@ -119,7 +119,7 @@ void IceMerameraKing::init(const JMapInfoIter& rIter) {
     _AC->makeActorDead();
     s32 childNum = MR::getChildObjNum(rIter);
     _F0 = childNum;
-    mModelArray.mArray.mArr = new ThrowingIce*[childNum];
+    mModelArray = new ThrowingIce*[childNum];
 
     for (s32 i = 0; i < _F0; i++) {
         mModelArray[i] = new ThrowingIce("メラメラ");  // wrong
@@ -145,19 +145,17 @@ void IceMerameraKing::init(const JMapInfoIter& rIter) {
 
 void IceMerameraKing::initAfterPlacement() {
     MR::trySetMoveLimitCollision(this);
+    u32 binderFlag = mBinder->_8;
 
-    for (int i = 0; i < _F0; i++) {
-        bool cChar;
-        bool cc = mBinder->_1EC._0;
-        mModelArray.mCount = mBinder->_24;
+    for (s32 i = 0; i < _F0; i++) {
+        Binder* binder = mModelArray[i]->mBinder;
+        binder->_8 = binderFlag;
 
-        if (mBinder->_24) {
-            cChar = cc & 0xDF;
+        if (!binderFlag) {
+            binder->_1EC._2 = false;
         } else {
-            cChar = cc | 0x20;
+            binder->_1EC._2 = true;
         }
-
-        cc = cChar;
     }
     // major
 }
@@ -169,7 +167,7 @@ void IceMerameraKing::kill() {
         MR::onSwitchDead(this);
     }
     MR::startAfterBossBGM();
-    s32 temp = _A4;
+    s32 temp = mActor.mCount;
 
     for (s32 i = 0; i < temp; i++) {
         if (!MR::isDead(mActor[i])) {
@@ -742,7 +740,7 @@ void IceMerameraKing::calcAndSetBaseMtx() {
 }
 
 bool IceMerameraKing::isDeadAllIce() {
-    s32 temp = _A4;
+    s32 temp = mActor.mCount;
     for (s32 i = 0; i < temp; i++) {
         if (!MR::isDead(mActor[i])) {
             return false;
@@ -772,7 +770,7 @@ bool IceMerameraKing::isEnableThrow() {
 ThrowingIce* IceMerameraKing::getDeadWeaponAndAppear() {
     ThrowingIce* v7;
     s32 tempE4 = _E4;
-    s32 temp = _A4;
+    s32 temp = mActor.mCount;
     for (s32 i = 0; i < temp; i++) {
         if (MR::isDead(mActor[tempE4])) {
             MR::resetPosition(mActor[tempE4], mPosition);

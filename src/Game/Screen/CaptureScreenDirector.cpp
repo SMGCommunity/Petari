@@ -15,7 +15,7 @@ namespace {
 CaptureScreenDirector::CaptureScreenDirector() : NameObj("画面キャプチャ"), _C(nullptr), mTimingType("Indirect"), mTexture(nullptr), _18(false) {
     MR::CurrentHeapRestorer heapRestorer(MR::getStationedHeapGDDR3());
 
-    mTexture = new JUTTexture(JUTVideo::sManager->mRenderModeObj->fbWidth, JUTVideo::sManager->mRenderModeObj->efbHeight, GX_TF_RGB565);
+    mTexture = new JUTTexture(JUTVideo::getManager()->getRenderMode()->fbWidth, JUTVideo::getManager()->getRenderMode()->efbHeight, GX_TF_RGB565);
 }
 
 void CaptureScreenDirector::captureIfAllow(const char* pName) {
@@ -29,7 +29,7 @@ void CaptureScreenDirector::captureIfAllow(const char* pName) {
 }
 
 void CaptureScreenDirector::capture() {
-    GXRenderModeObj* pRenderModeObj = JUTVideo::sManager->mRenderModeObj;
+    GXRenderModeObj* pRenderModeObj = JUTVideo::getManager()->getRenderMode();
 
     GXSetCopyFilter(GX_FALSE, pRenderModeObj->sample_pattern, GX_FALSE, pRenderModeObj->vfilter);
     mTexture->capture(0, 0, GX_TF_RGB565, false, 0);

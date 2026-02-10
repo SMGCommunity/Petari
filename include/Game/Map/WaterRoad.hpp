@@ -16,6 +16,7 @@ public:
     u32 _94;
     u32 _98;
     u8 _9C;
+    u8 _9D[0xCF];
 };
 
 class WaterRoadModelInfo {
@@ -38,6 +39,6 @@ public:
     TVec3f* _10;
     TVec3s* _14;
     f32* _18;
-    u32 mDLLength;      // 0x1C
-    const void* mList;  // 0x20
+    u32 mDispListLength;      // 0x1C
+    u8* mDispList;  // 0x20
 };

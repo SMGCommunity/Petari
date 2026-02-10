@@ -2,6 +2,8 @@
 
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
+#include "Game/NameObj/NameObj.hpp"
+class JMapInfoIter;
 
 class HomingKiller : public LiveActor {
 public:
@@ -43,4 +45,13 @@ public:
     u8 _15E;
     PartsModel* mPropeller;   // 0x160
     ModelObj* mTorpedoLight;  // 0x164
+};
+
+class HomingKillerLauncher : public LiveActor {
+public:
+    HomingKillerLauncher(const char*);
+    virtual ~HomingKillerLauncher();
+
+private:
+    u8 mPad[(0x90) - sizeof(LiveActor)];
 };

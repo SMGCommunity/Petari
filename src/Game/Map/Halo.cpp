@@ -53,21 +53,21 @@ void Halo::appear() {
         MR::tryStartAllAnim(this, anim);
         if (MR::isExistBtk(this, anim)) {
             J3DFrameCtrl* ctrl = MR::getBtkCtrl(this);
-            MR::setBtkFrame(this, ctrl->mEndFrame);
+            MR::setBtkFrame(this, ctrl->mEnd);
         }
 
         if (MR::isExistBpk(this, anim)) {
             J3DFrameCtrl* ctrl = MR::getBpkCtrl(this);
-            MR::setBpkFrame(this, ctrl->mEndFrame);
+            MR::setBpkFrame(this, ctrl->mEnd);
         }
         if (MR::isExistBtp(this, anim)) {
             J3DFrameCtrl* ctrl = MR::getBtpCtrl(this);
-            MR::setBpkFrame(this, ctrl->mEndFrame);
+            MR::setBpkFrame(this, ctrl->mEnd);
         }
 
         if (MR::isExistBrk(this, anim)) {
             J3DFrameCtrl* ctrl = MR::getBrkCtrl(this);
-            MR::setBrkFrame(this, ctrl->mEndFrame);
+            MR::setBrkFrame(this, ctrl->mEnd);
         }
 
         MR::hideModel(this);

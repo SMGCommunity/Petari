@@ -188,7 +188,7 @@ public:
 
     f32 get_r_f() { return mRndm.get_rndm_f(); }
     f32 get_r_zp() NO_INLINE { return mRndm.get_rndm_zp(); }
-    f32 get_r_zh() { return mRndm.get_rndm_zh(); }
+    f32 get_r_zh() NO_INLINE { return mRndm.get_rndm_zh(); }
     s16 get_r_ss() NO_INLINE { return mRndm.get_rndm_ss(); }
 
     void stopCreateParticle() { setStatus(JPAEmtrStts_StopEmit); }

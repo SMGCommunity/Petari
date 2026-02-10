@@ -1335,85 +1335,91 @@ Game/Boss/SkeletalFishRailControl.cpp:
 Game/Boss/TombSpider.cpp:
 	.text       start:0x8007F1A4 end:0x8007FC58
 	.ctors      start:0x8052E994 end:0x8052E998
-	.data       start:0x80571BD8 end:0x80571DB0
+	.data       start:0x80571BD8 end:0x80571D78
 	.sdata      start:0x806B17C0 end:0x806B17E0
 	.sbss       start:0x806B37E0 end:0x806B3810
 	.sdata2     start:0x806B8DC8 end:0x806B8DD0
 
 Game/Boss/TombSpiderAcid.cpp:
 	.text       start:0x8007FC58 end:0x800801D0
+	.data       start:0x80571D78 end:0x80571D88
 	.sdata2     start:0x806B8DD0 end:0x806B8DE0
 
 Game/Boss/TombSpiderAction1st.cpp:
 	.text       start:0x800801D0 end:0x80080ACC
 	.ctors      start:0x8052E998 end:0x8052E99C
-	.data       start:0x80571DB0 end:0x80571EE0
+	.data       start:0x80571D88 end:0x80571EB8
 	.sbss       start:0x806B3810 end:0x806B3848
 	.sdata2     start:0x806B8DE0 end:0x806B8DE8
 
 Game/Boss/TombSpiderAction2nd.cpp:
 	.text       start:0x80080ACC end:0x80081368
 	.ctors      start:0x8052E99C end:0x8052E9A0
-	.data       start:0x80571EE0 end:0x80571FE8
+	.data       start:0x80571EB8 end:0x80571FE8
 	.sbss       start:0x806B3848 end:0x806B3880
 	.sdata2     start:0x806B8DE8 end:0x806B8DF0
 
 Game/Boss/TombSpiderActionBase.cpp:
 	.text       start:0x80081368 end:0x80082140
 	.rodata     start:0x80531500 end:0x80531508
-	.data       start:0x80571FE8 end:0x80572218
+	.data       start:0x80571FE8 end:0x805721B8
 	.sdata2     start:0x806B8DF0 end:0x806B8E00
 
 Game/Boss/TombSpiderActionCocoon.cpp:
 	.text       start:0x80082140 end:0x80082484
 	.ctors      start:0x8052E9A0 end:0x8052E9A4
-	.data       start:0x80572218 end:0x805725E0
+	.data       start:0x805721B8 end:0x80572260
 	.sbss       start:0x806B3880 end:0x806B3888
 
 Game/Boss/TombSpiderDemo.cpp:
 	.text       start:0x80082484 end:0x8008306C
 	.rodata     start:0x80531508 end:0x80531510
+	.data       start:0x80572260 end:0x80572458
 	.sdata2     start:0x806B8E00 end:0x806B8E38
 
 Game/Boss/TombSpiderEnvironment.cpp:
 	.text       start:0x8008306C end:0x800831CC
+	.data       start:0x80572458 end:0x805724B8
 	.sdata2     start:0x806B8E38 end:0x806B8E40
 
 Game/Boss/TombSpiderFunction.cpp:
 	.text       start:0x800831CC end:0x80084424
 	.rodata     start:0x80531510 end:0x80531520
+	.data       start:0x805724B8 end:0x805725A0
 	.sdata2     start:0x806B8E40 end:0x806B8E60
 
 Game/Boss/TombSpiderGland.cpp:
 	.text       start:0x80084424 end:0x800847B8
 	.ctors      start:0x8052E9A4 end:0x8052E9A8
-	.data       start:0x805725E0 end:0x80572850
+	.data       start:0x805725A0 end:0x80572698
 	.sbss       start:0x806B3888 end:0x806B3898
 
 Game/Boss/TombSpiderParts.cpp:
 	.text       start:0x800847B8 end:0x80084FE8
+	.data       start:0x80572698 end:0x80572768
 	.sdata2     start:0x806B8E60 end:0x806B8EB0
 
 Game/Boss/TombSpiderSensorCtrl.cpp:
 	.text       start:0x80084FE8 end:0x80085868
+	.data       start:0x80572768 end:0x80572828
 	.sdata2     start:0x806B8EB0 end:0x806B8EE0
 
 Game/Boss/TombSpiderStateSwoon.cpp:
 	.text       start:0x80085868 end:0x80085B10
 	.ctors      start:0x8052E9A8 end:0x8052E9AC
-	.data       start:0x80572850 end:0x805728A0
+	.data       start:0x80572828 end:0x805728A0
 	.sbss       start:0x806B3898 end:0x806B38A8
 
 Game/Boss/TombSpiderThreadAttacher.cpp:
 	.text       start:0x80085B10 end:0x80085CF4
 	.ctors      start:0x8052E9AC end:0x8052E9B0
-	.data       start:0x805728A0 end:0x805729A8
+	.data       start:0x805728A0 end:0x80572948
 	.sbss       start:0x806B38A8 end:0x806B38B0
 
 Game/Boss/TombSpiderVitalSpot.cpp:
 	.text       start:0x80085CF4 end:0x8008618C
 	.ctors      start:0x8052E9B0 end:0x8052E9B4
-	.data       start:0x805729A8 end:0x80572A70
+	.data       start:0x80572948 end:0x80572A70
 	.sbss       start:0x806B38B0 end:0x806B38C8
 
 Game/Boss/TripodBoss.cpp:
@@ -2045,7 +2051,7 @@ Game/Camera/CameraSubjective.cpp:
 
 Game/Camera/CameraTalk.cpp:
 	.text       start:0x800AF408 end:0x800AFBA4
-	.data       start:0x80576368 end:0x805763D8
+	.data       start:0x80576368 end:0x805763C0
 	.sdata2     start:0x806B9938 end:0x806B9970
 
 Game/Camera/CameraTargetArg.cpp:
@@ -2054,7 +2060,7 @@ Game/Camera/CameraTargetArg.cpp:
 
 Game/Camera/CameraTargetHolder.cpp:
 	.text       start:0x800AFCCC end:0x800AFEAC
-	.data       start:0x805763D8 end:0x805763E8
+	.data       start:0x805763C0 end:0x805763E8
 	.sdata2     start:0x806B9970 end:0x806B9978
 
 Game/Camera/CameraTargetMtx.cpp:
@@ -3806,16 +3812,20 @@ Game/Map/OceanRingDrawer.cpp:
 
 Game/Map/OceanRingPipe.cpp:
 	.text       start:0x8018F784 end:0x801900C8
-	.data       start:0x8058AF30 end:0x8058B0A0
+	.data       start:0x8058AF30 end:0x8058AFE8
+	.sdata      start:0x806B1C10 end:0x806B1C18
 	.sdata2     start:0x806BC250 end:0x806BC280
 
 Game/Map/OceanRingPipeInside.cpp:
 	.text       start:0x801900C8 end:0x80190A80
+	.data       start:0x8058AFE8 end:0x8058B0A0
+	.sdata      start:0x806B1C18 end:0x806B1C20
 	.sdata2     start:0x806BC280 end:0x806BC2A0
 
 Game/Map/OceanRingPipeOutside.cpp:
 	.text       start:0x80190A80 end:0x80191530
 	.data       start:0x8058B0A0 end:0x8058B1A0
+	.sdata      start:0x806B1C20 end:0x806B1C28
 	.sdata2     start:0x806BC2A0 end:0x806BC2C0
 
 Game/Map/OceanSphere.cpp:
@@ -4911,13 +4921,13 @@ Game/MapObj/LavaFloater.cpp:
 
 Game/MapObj/LavaGalaxyParts.cpp:
 	.text       start:0x801F0CD0 end:0x801F1114
-	.data       start:0x805976A8 end:0x805977F0
+	.data       start:0x805976A8 end:0x80597758
 	.sdata2     start:0x806BD470 end:0x806BD480
 
 Game/MapObj/LavaGeyser.cpp:
 	.text       start:0x801F1114 end:0x801F19E8
 	.ctors      start:0x8052ED88 end:0x8052ED8C
-	.data       start:0x805977F0 end:0x805978C8
+	.data       start:0x80597758 end:0x805978C8
 	.sdata      start:0x806B1E90 end:0x806B1E98
 	.sbss       start:0x806B5348 end:0x806B5360
 	.sdata2     start:0x806BD480 end:0x806BD498
@@ -6324,14 +6334,14 @@ Game/NPC/RabbitStateWaitStart.cpp:
 Game/NPC/Rosetta.cpp:
 	.text       start:0x8028217C end:0x80282E00
 	.ctors      start:0x8052EFD8 end:0x8052EFDC
-	.data       start:0x805B2450 end:0x805B27A8
+	.data       start:0x805B2450 end:0x805B2698
 	.sbss       start:0x806B5EF8 end:0x806B5F00
 	.sdata2     start:0x806BEE10 end:0x806BEE40
 
 Game/NPC/RosettaDemoAstroDome.cpp:
 	.text       start:0x80282E00 end:0x80283C18
 	.ctors      start:0x8052EFDC end:0x8052EFE0
-	.data       start:0x805B27A8 end:0x805B2B20
+	.data       start:0x805B2698 end:0x805B2B20
 	.sbss       start:0x806B5F00 end:0x806B5F10
 
 Game/NPC/RosettaDemoEpilogue.cpp:
@@ -7032,9 +7042,9 @@ Game/Player/MarioSwim.cpp:
 	.text       start:0x802FA024 end:0x80302870
 	.ctors      start:0x8052F148 end:0x8052F14C
 	.rodata     start:0x80539C08 end:0x80539C30
-	.data       start:0x805CBC80 end:0x805CC3B0
-	.sdata      start:0x806B22D0 end:0x806B22F8
-	.sbss       start:0x806B62A0 end:0x806B62B8
+	.data       start:0x805CBC80 end:0x805CC2B4
+	.sdata      start:0x806B22D0 end:0x806B22D8
+	.sbss       start:0x806B62A0 end:0x806B62B0
 	.sdata2     start:0x806C0108 end:0x806C0258
 
 Game/Player/MarioSwimDamage.cpp:
@@ -7044,7 +7054,7 @@ Game/Player/MarioSwimDamage.cpp:
 Game/Player/MarioAccess.cpp:
 	.text       start:0x8030294C end:0x80304EBC
 	.ctors      start:0x8052F150 end:0x8052F154
-	.data       start:0x805CC3B0 end:0x805CC540
+	.data       start:0x805CC358 end:0x805CC540
 	.sdata2     start:0x806C0258 end:0x806C0260
 
 Game/Player/MarioSlip.cpp:
@@ -7152,7 +7162,7 @@ Game/Player/ModelHolder.cpp:
 Game/Player/MarioShadow.cpp:
 	.text       start:0x80312F7C end:0x803150CC
 	.data       start:0x805CD5D8 end:0x805CD618
-	.sdata      start:0x806B22F8 end:0x806B2300
+	.sdata      start:0x806B22D8 end:0x806B2300
 	.sdata2     start:0x806C05B8 end:0x806C0618
 
 Game/Player/MarioMapCode.cpp:
@@ -7205,7 +7215,7 @@ Game/Player/PlayerEventGhostRaceDown.cpp:
 Game/RhythmLib/AudRhythmSeqParser.cpp:
 	.text       start:0x80316D30 end:0x80317C08
 	.data       start:0x805CDF70 end:0x805CDF90
-	.sbss       start:0x806B62B8 end:0x806B62D0
+	.sbss       start:0x806B62B0 end:0x806B62D0
 	.sdata2     start:0x806C0630 end:0x806C0638
 
 Game/RhythmLib/AudBgmTempoAdjuster.cpp:

@@ -112,7 +112,7 @@ namespace MR {
         return SingletonHolder< HeapMemoryWatcher >::get()->mWPadHeap->alloc(size, 0);
     }
 
-    u8 freeFromWPadHeap(void* pPtr) {
+    int freeFromWPadHeap(void* pPtr) {
         SingletonHolder< HeapMemoryWatcher >::get()->mWPadHeap->free(pPtr);
 
         return 1;

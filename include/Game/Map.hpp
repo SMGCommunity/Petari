@@ -10,6 +10,7 @@
 #include "Game/Map/FileSelectEffect.hpp"
 #include "Game/Map/FileSelectFunc.hpp"
 #include "Game/Map/FileSelectIconID.hpp"
+#include "Game/Map/FileSelector.hpp"
 #include "Game/Map/GroundChecker.hpp"
 #include "Game/Map/GroupSwitchWatcher.hpp"
 #include "Game/Map/Halo.hpp"

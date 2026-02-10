@@ -34,7 +34,7 @@ void MarioActor::exeGameOverBlackHole2() {
         MR::setCubeBgmChangeInvalid();
         MR::clearBgmQueue();
 
-        if (!(mBlackHole->tryStartDemoCamera()) && !(mMario->mMovementStates_HIGH_WORD >> 8 & 0x1)) {
+        if (!(mBlackHole->tryStartDemoCamera()) && !mMario->mMovementStates._28) {
             MR::startBlackHoleCamera("ブラックホール", mBlackHolePosition, mPosition);
         }
 
@@ -46,7 +46,7 @@ void MarioActor::exeGameOverBlackHole2() {
         playEffect(changeMorphString("DieBlackHole"));
         initBlackHoleOut();
 
-        mMario->mMovementStates_HIGH_WORD |= 0x8;
+        mMario->mMovementStates._23 = true;
 
         MR::startStarPointerModeDemoMarioDeath(this);
         MR::deactivateDefaultGameLayout();

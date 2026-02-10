@@ -25,7 +25,7 @@ JKRDecomp::JKRDecomp(long a1) : JKRThread(0x4000, 0x10, a1) {
 
 JKRDecomp::~JKRDecomp() {}
 
-s32 JKRDecomp::run() {
+void* JKRDecomp::run() {
     OSInitMessageQueue(&gMessageQueue, &gMessage[0], NR_MESSAGES);
 
     JKRDecompCommand* commandPtr;

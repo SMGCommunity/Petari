@@ -215,9 +215,21 @@ public:
 
     virtual u32 calcSizeMaterialTable(J3DMaterialBlock const*, u32) { return false; }
 
+    void readInformation(J3DModelInfoBlock const*, u32);
+    void readVertex(J3DVertexBlock const*);
+    void readEnvelop(J3DEnvelopeBlock const*);
+    void readDraw(J3DDrawBlock const*);
+    void readJoint(J3DJointBlock const*);
+    void readShape(J3DShapeBlock const*, u32);
+    void readTexture(J3DTextureBlock const*);
+    void readTextureTable(J3DTextureBlock const*);
+    void readPatchedMaterial(J3DMaterialBlock const*, u32);
+    void readMaterialDL(J3DMaterialDLBlock const*, u32);
+    void modifyMaterial(u32);
+
     u32 calcSizeInformation(J3DModelInfoBlock const*, u32);
     u32 calcSizeJoint(J3DJointBlock const*);
-    inline u32 calcSizeEnvelope(J3DEnvelopeBlock const*);
+    u32 calcSizeEnvelope(J3DEnvelopeBlock const*);
     u32 calcSizeDraw(J3DDrawBlock const*);
     u32 calcSizeShape(J3DShapeBlock const*, u32);
     u32 calcSizeTexture(J3DTextureBlock const*);

@@ -15,8 +15,6 @@ namespace NrvWaterfallCaveCover {
     NEW_NERVE(HostTypeBreak, WaterfallCaveCover, Break);
 }  // namespace NrvWaterfallCaveCover
 
-inline WaterfallCaveCover::WaterfallCaveCover(const char* pName) : MapObjActor(pName) {}
-
 void WaterfallCaveCover::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);
     MapObjActorInitInfo rInitInfo;

@@ -34,7 +34,7 @@ public:
     bool isPlayerModeFoo() const;
     void changeAnimation(const char*, const char*);
     void changeAnimationNonStop(const char*);
-    void changeAnimationWithAttr(const char*, const char*);
+    void changeAnimationWithAttr(const char*, u32);
     void stopAnimation(const char*, const char*);
     bool isDefaultAnimationRun(const char*) const;
     void changeAnimationInterpoleFrame(u32);
@@ -61,8 +61,8 @@ public:
     void clearVelocity();
     TVec3f& getVelocity() const;
     void addTrans(const TVec3f&, const char*);
-    void cutGravityElementFromJumpVec(bool);
-    void cutVecElementFromJumpVec(const TVec3f&);
+    f32 cutGravityElementFromJumpVec(bool);
+    f32 cutVecElementFromJumpVec(const TVec3f&);
     TVec3f& getJumpVec() const;
     void setJumpVec(const TVec3f&);
     void playEffect(const char*);
@@ -106,4 +106,18 @@ public:
     void stopEffect(const char*);
 
     MarioActor* mActor;  // 0x4
+};
+
+class MarioModuleTask {
+public:
+    virtual void init() = 0;
+    virtual void start() = 0;
+    virtual void update() = 0;
+    virtual void calc() = 0;
+    virtual void end() = 0;
+    virtual bool exec() = 0;
+    virtual void draw() const = 0;
+
+    void* _4;
+    MarioModuleTask* mNext;
 };

@@ -37,7 +37,7 @@ void FileSelectNumber::appear() {
 
         pAnimCtrl = MR::getAnimCtrl(this, 0);
 
-        MR::setAnimFrame(this, pAnimCtrl->mEndFrame - animFrame, 0);
+        MR::setAnimFrame(this, pAnimCtrl->mEnd - animFrame, 0);
         setNerve(&FileSelectNumberNrvAppear::sInstance);
     }
 }
@@ -53,7 +53,7 @@ void FileSelectNumber::disappear() {
 
         pAnimCtrl = MR::getAnimCtrl(this, 0);
 
-        MR::setAnimFrame(this, pAnimCtrl->mEndFrame - animFrame, 0);
+        MR::setAnimFrame(this, pAnimCtrl->mEnd - animFrame, 0);
         setNerve(&FileSelectNumberNrvEnd::sInstance);
     } else if (isNerve(&FileSelectNumberNrvWait::sInstance)) {
         MR::startAnim(this, "End", 0);
@@ -117,7 +117,7 @@ namespace FileSelectNumberSub {
 
         pAnimCtrl = MR::getAnimCtrl(mHost, 1);
 
-        MR::setAnimFrame(mHost, pAnimCtrl->mEndFrame - 1.0f, 1);
+        MR::setAnimFrame(mHost, pAnimCtrl->mEnd - 1.0f, 1);
     }
 
     void SelectAnimController::selectIn() {

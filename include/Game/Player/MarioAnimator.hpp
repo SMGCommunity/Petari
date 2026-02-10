@@ -7,6 +7,7 @@
 class MarioActor;
 class XanimeResourceTable;
 class XanimePlayer;
+class HitSensor;
 
 class MarioAnimator : public MarioModule {
 public:
@@ -14,6 +15,7 @@ public:
 
     void init();
     void update();
+    void calc();
 
     void setHoming();
     bool isAnimationStop() const;
@@ -30,8 +32,38 @@ public:
     void setUpperRotateY(f32);
     void entryCallback(const char*);
     f32 getFrame() const;
-    u16 getUpperJointID() const;
+    f32 getUpperFrame() const;
+    s32 getUpperJointID() const;
     void setBlendWeight(const f32*, f32);
+    void targetWeight(f32*, f32, f32);
+    void setWalkWeight(const f32*);
+    void initWalkWeight();
+    bool isLandingAnimationRun() const;
+    bool isCancelableAnimationRun() const;
+    bool isWalkOrWaitingMotion() const;
+    void updateWalkBas(const char*, f32);
+    void setHand();
+    void setTilt();
+    void resetTilt();
+    void setHipSlidingTilt(f32, f32);
+    void setHipSliderTilt();
+    void setHipSlipTilt();
+    void setWalkMode();
+    void updateJointRumble();
+    void addRumblePower(f32, u32);
+    void clearAllJointTransform();
+    bool isMirrorAnimation();
+    void switchMirrorMode();
+    void changePickupAnimation(const HitSensor*);
+    void updateTakingAnimation(const HitSensor*);
+    void changeThrowAnimation(const HitSensor*);
+    void runningCallback();
+    void closeCallback();
+    void spinEntry();
+    void spinUpdate();
+    void spinClose();
+    void stageInCheck();
+    void throwCheck();
 
     inline void f1(const char* name) {
         getPlayer()->startBas(nullptr, false, 0.0f, 0.0f);
@@ -62,8 +94,8 @@ public:
     TMtx34f _7C;
     TMtx34f _AC;
     TMtx34f _DC;
-    u8 _10C;
-    u8 _10D;
+    bool _10C;
+    bool _10D;
     bool mUpperDefaultSet;  // 0x10E
     f32 _110;
     const char* mCurrBck;  // 0x114

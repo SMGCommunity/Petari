@@ -13,7 +13,4 @@ public:
 
     void startDemo();
     inline void exeDemo();
-
-    bool _D8;
-    TalkMessageCtrl* mTalk;
 };

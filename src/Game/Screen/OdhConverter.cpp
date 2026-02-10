@@ -20,7 +20,9 @@ namespace {
     const u32 cTexPosX = 0;
     const u32 cTexPosY = 0;
 
-    OdhConverter* getConverter() { return MR::getSceneObj< OdhConverter >(SceneObj_OdhConverter); }
+    OdhConverter* getConverter() {
+        return MR::getSceneObj< OdhConverter >(SceneObj_OdhConverter);
+    }
 };  // namespace
 
 OdhConverter::OdhConverter()
@@ -42,7 +44,7 @@ void OdhConverter::convert() {
     u8* pScreenTexImage;
 
     pScreenTexImage = MR::getScreenTexImage();
-    pRenderModeObj = JUTVideo::sManager->mRenderModeObj;
+    pRenderModeObj = JUTVideo::getManager()->getRenderMode();
 
     GXSetCopyFilter(GX_FALSE, pRenderModeObj->sample_pattern, GX_FALSE, pRenderModeObj->vfilter);
     GXSetTexCopySrc(cTexPosX, cTexPosY, mCaptureWidth, mCaptureHeight);
@@ -56,9 +58,13 @@ void OdhConverter::convert() {
 }
 
 namespace MR {
-    void createOdhConverter() { createSceneObj(SceneObj_OdhConverter); }
+    void createOdhConverter() {
+        createSceneObj(SceneObj_OdhConverter);
+    }
 
-    void requestCaptureOdhImage() { return getConverter()->requestCapture(); }
+    void requestCaptureOdhImage() {
+        return getConverter()->requestCapture();
+    }
 
     bool isRequestedCaptureOdhImage() {
         if (!isExistSceneObj(SceneObj_OdhConverter)) {
@@ -68,7 +74,9 @@ namespace MR {
         return getConverter()->isRequestedCapture();
     }
 
-    void captureOdhImage() { getConverter()->capture(); }
+    void captureOdhImage() {
+        getConverter()->capture();
+    }
 
     void setPortCaptureOdhImage() {
         Mtx44 mtx;

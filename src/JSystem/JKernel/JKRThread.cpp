@@ -54,7 +54,7 @@ void JKRThread::setCommon_heapSpecified(JKRHeap *pHeap, u32 a2, int a3) {
 }
 */
 
-s32 JKRThread::start(void* pData) {
+void* JKRThread::start(void* pData) {
     return run();
 }
 

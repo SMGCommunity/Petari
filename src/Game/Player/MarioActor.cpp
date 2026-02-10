@@ -24,6 +24,8 @@
 #include "JSystem/JAudio2/JAIAudible.hpp"
 #include "JSystem/JMath/JMath.hpp"
 
+bool gIsLuigi;
+
 Triangle& Triangle::operator=(const Triangle& rOther) {
     mParts = rOther.mParts;
     mIdx = rOther.mIdx;
@@ -1109,7 +1111,7 @@ bool MarioActor::doRush() {
                 if (mMario->mSwim->mSwimState <= MarioSwim::SWIM_STATE_ENTERING && (u32)initial - 2 <= 1) {
                     playEffectRT("水面ジャンプ水柱", mMario->mSwim->mSurfacePos, mMario->mSwim->mSurfaceNorm);
                     emitEffectWaterColumn(mMario->mSwim->mSurfacePos, mMario->mSwim->mSurfaceNorm);
-                    //SWIM_STATE_UNDERWATER and SWIM_STATE_SURFACE
+                    // SWIM_STATE_UNDERWATER and SWIM_STATE_SURFACE
                 } else if ((u32)initial <= 1 && mMario->mSwim->mSwimState - MarioSwim::SWIM_STATE_UNDERWATER <= 1) {
                     playEffectRT("水面ジャンプ水柱", -mMario->_328, mMario->mSwim->mSurfaceNorm);
                     emitEffectWaterColumn(mMario->mSwim->mSurfacePos, mMario->mSwim->mSurfaceNorm);
