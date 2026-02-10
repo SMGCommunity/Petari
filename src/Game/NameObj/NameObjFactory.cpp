@@ -1379,7 +1379,7 @@ namespace {
         },
         {
             "Polta",
-            nullptr,
+            createNameObj< Polta >,
             "Polta",
         },
         {
