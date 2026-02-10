@@ -804,7 +804,7 @@ config.libs = [
             Object(NonMatching, "Game/Boss/OtaKingMagma.cpp"),
             Object(NonMatching, "Game/Boss/Polta.cpp"),
             Object(Matching, "Game/Boss/PoltaActionBase.cpp"),
-            Object(NonMatching, "Game/Boss/PoltaActionSequencer.cpp"),
+            Object(Matching, "Game/Boss/PoltaActionSequencer.cpp"),
             Object(NonMatching, "Game/Boss/PoltaArm.cpp"),
             Object(Matching, "Game/Boss/PoltaBattleLv1.cpp"),
             Object(Matching, "Game/Boss/PoltaBattleLv2.cpp"),
