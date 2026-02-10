@@ -1,11 +1,9 @@
 #pragma once
 
-#include "Game/Enemy/WalkerStateBindStarPointer.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/LiveActor/ModelObj.hpp"
-
 
 class Polta;
+class ModelObj;
 
 class PoltaGroundRock : public LiveActor {
 public:

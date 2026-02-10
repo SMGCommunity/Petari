@@ -25,10 +25,10 @@ public:
     void exeStagger();
     void exeDamageCore();
     void addDamageBody();
-    inline void exeGenerateRock();
-    inline void exeGenerateGroundRock();
-    inline void exeDamageBody();
-    inline void endStagger();
+    void exeGenerateRock();
+    void exeGenerateGroundRock();
+    void exeDamageBody();
+    void endStagger();
 
     /* 0x14 */ PoltaStateStagger* mStateStagger;
     /* 0x18 */ PoltaStateGenerateRock* mStateGenerateRock;

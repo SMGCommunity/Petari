@@ -8,7 +8,6 @@ namespace NrvPoltaStateAttackGround {
     NEW_NERVE(PoltaStateAttackGroundNrvStart, PoltaStateAttackGround, Start);
     NEW_NERVE(PoltaStateAttackGroundNrvAttack, PoltaStateAttackGround, Attack);
     NEW_NERVE(PoltaStateAttackGroundNrvToWait, PoltaStateAttackGround, ToWait);
-
 };  // namespace NrvPoltaStateAttackGround
 
 PoltaStateAttackGround::PoltaStateAttackGround(Polta* pPolta)

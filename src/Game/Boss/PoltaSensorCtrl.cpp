@@ -8,11 +8,11 @@
 #include <JSystem/JKernel/JKRHeap.hpp>
 
 namespace {
-    const PoltaSensorListEntry sCoreSensorList[1] = {
+    const PoltaSensorListEntry sCoreSensorList[] = {
         "Core", "Tongue3", 150.0f, 0.0f, 0.0f, 0.0f,
     };
 
-    const PoltaSensorListEntry sBodySensorList[3] = {{
+    const PoltaSensorListEntry sBodySensorList[] = {{
                                                          "Body1",
                                                          "Head1",
                                                          320.0f,
@@ -37,7 +37,7 @@ namespace {
                                                          0.0f,
                                                      }};
 
-    const PoltaSensorListEntry sLeftArmSensorList[11] = {
+    const PoltaSensorListEntry sLeftArmSensorList[] = {
         {
             "ArmL1",
             "ArmL1",
@@ -128,7 +128,7 @@ namespace {
         },
     };
 
-    const PoltaSensorListEntry sRightArmSensorList[11] = {
+    const PoltaSensorListEntry sRightArmSensorList[] = {
         {
             "ArmR1",
             "ArmR1",
@@ -235,12 +235,14 @@ void PoltaSensorCtrl::setScreamSensorSize(f32 screamSensorSize) {
 }
 
 void PoltaSensorCtrl::initSensor() {
-    mCoreSensors = new HitSensor*[1];
+    mCoreSensors = new HitSensor*[getCoreSensorCount()];
+    
+    for (int i = 0; i < getCoreSensorCount(); i++) {
+        mCoreSensors[i] = MR::addHitSensorAtJointEnemy(mPoltaPtr, sCoreSensorList[i].mName, sCoreSensorList[i].mJointName, 8, sCoreSensorList[i].mRadius,
+                                                    TVec3f(sCoreSensorList[i].mOffsetX, sCoreSensorList[i].mOffsetY, sCoreSensorList[i].mOffsetZ));
+    }
 
-    mCoreSensors[0] = MR::addHitSensorAtJointEnemy(mPoltaPtr, sCoreSensorList[0].mName, sCoreSensorList[0].mJointName, 8, sCoreSensorList[0].mRadius,
-                                                   TVec3f(sCoreSensorList[0].mOffsetX, sCoreSensorList[0].mOffsetY, sCoreSensorList[0].mOffsetZ));
-
-    mBodySensors = new HitSensor*[3];
+    mBodySensors = new HitSensor*[getBodySensorCount()];
 
     for (int i = 0; i < getBodySensorCount(); i++) {
         mBodySensors[i] =
@@ -248,7 +250,7 @@ void PoltaSensorCtrl::initSensor() {
                                          TVec3f(sBodySensorList[i].mOffsetX, sBodySensorList[i].mOffsetY, sBodySensorList[i].mOffsetZ));
     }
 
-    mLeftArmSensors = new HitSensor*[11];
+    mLeftArmSensors = new HitSensor*[getArmSensorCount()];
 
     for (int i = 0; i < getArmSensorCount(); i++) {
         mLeftArmSensors[i] = MR::addHitSensorMtxEnemy(
@@ -256,7 +258,7 @@ void PoltaSensorCtrl::initSensor() {
             TVec3f(sLeftArmSensorList[i].mOffsetX, sLeftArmSensorList[i].mOffsetY, sLeftArmSensorList[i].mOffsetZ));
     }
 
-    mRightArmSensors = new HitSensor*[11];
+    mRightArmSensors = new HitSensor*[getArmSensorCount()];
 
     for (int i = 0; i < getArmSensorCount(); i++) {
         mRightArmSensors[i] = MR::addHitSensorMtxEnemy(

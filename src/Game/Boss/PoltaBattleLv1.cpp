@@ -11,7 +11,6 @@
 #include "Game/Util/ActorStateUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 
-
 namespace NrvPoltaBattleLv1 {
     NEW_NERVE(PoltaBattleLv1NrvWait, PoltaBattleLv1, Wait);
     NEW_NERVE(PoltaBattleLv1NrvGenerateGroundRock, PoltaBattleLv1, GenerateGroundRock);

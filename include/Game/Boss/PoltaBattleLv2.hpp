@@ -25,13 +25,13 @@ public:
     void exeBreakBody();
     void exeStagger();
     void exeDamageCore();
-    inline void endStagger();
-    inline void exeDamageBody();
-    inline void exeGenerateRock();
-    inline void exeGenerateGroundRock();
-    inline void exeAttackGround();
-    inline void exePunch();
-    inline void exeWait();
+    void endStagger();
+    void exeDamageBody();
+    void exeGenerateRock();
+    void exeGenerateGroundRock();
+    void exeAttackGround();
+    void exePunch();
+    void exeWait();
 
     bool isEnableSensor(const HitSensor*) const;
     bool isEnableAttack(const HitSensor*) const;

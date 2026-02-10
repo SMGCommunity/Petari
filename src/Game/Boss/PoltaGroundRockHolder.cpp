@@ -12,7 +12,7 @@ PoltaGroundRockHolder::PoltaGroundRockHolder() : DeriveActorGroup< PoltaGroundRo
 void PoltaGroundRockHolder::breakAll() {
     int objectCount = getObjectCount();
     for (int i = 0; i < objectCount; i++) {
-        PoltaGroundRock* curGroundRock = (PoltaGroundRock*)getActor(i);
+        PoltaGroundRock* curGroundRock = reinterpret_cast<PoltaGroundRock*>(getActor(i));
         curGroundRock->requestBreak();
     }
 }

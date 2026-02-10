@@ -36,21 +36,30 @@ PoltaActionSequencer::PoltaActionSequencer(Polta* pPolta, const JMapInfoIter& rI
 }
 
 void PoltaActionSequencer::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
-    if (mCurrentAction) {
+    if (mCurrentAction != nullptr) {
         mCurrentAction->attackSensor(pSender, pReceiver);
     }
 }
 
 bool PoltaActionSequencer::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    return mCurrentAction ? mCurrentAction->receiveMsgPlayerAttack(msg, pSender, pReceiver) : false;
+    if (mCurrentAction != nullptr) {
+        return mCurrentAction->receiveMsgPlayerAttack(msg, pSender, pReceiver);
+    }
+    return false;
 }
 
 bool PoltaActionSequencer::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    return mCurrentAction ? mCurrentAction->receiveMsgEnemyAttack(msg, pSender, pReceiver) : false;
+    if (mCurrentAction != nullptr) {
+        return mCurrentAction->receiveMsgEnemyAttack(msg, pSender, pReceiver);
+    }
+    return false;
 }
 
 bool PoltaActionSequencer::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    return mCurrentAction ? mCurrentAction->receiveOtherMsg(msg, pSender, pReceiver) : false;
+    if (mCurrentAction != nullptr) {
+        return mCurrentAction->receiveOtherMsg(msg, pSender, pReceiver);
+    }
+    return false;
 }
 
 bool PoltaActionSequencer::updateAction() {

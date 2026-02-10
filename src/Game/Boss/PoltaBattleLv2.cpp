@@ -14,7 +14,6 @@
 #include "Game/Util/ActorStateUtil.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 
-
 namespace NrvPoltaBattleLv2 {
     NEW_NERVE(PoltaBattleLv2NrvWait, PoltaBattleLv2, Wait);
     NEW_NERVE(PoltaBattleLv2NrvPunch, PoltaBattleLv2, Punch);
@@ -112,13 +111,16 @@ bool PoltaBattleLv2::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSenso
                 setNerve(&NrvPoltaBattleLv2::PoltaBattleLv2NrvDamageBody::sInstance);
             }
             return true;
-        } else if (PoltaFunction::isLeftArmSensor(mPoltaPtr, pReceiver)) {
+        }
+        if (PoltaFunction::isLeftArmSensor(mPoltaPtr, pReceiver)) {
             PoltaFunction::damageLeftArm(mPoltaPtr);
             return true;
-        } else if (PoltaFunction::isRightArmSensor(mPoltaPtr, pReceiver)) {
+        }
+        if (PoltaFunction::isRightArmSensor(mPoltaPtr, pReceiver)) {
             PoltaFunction::damageRightArm(mPoltaPtr);
             return true;
-        } else if (PoltaFunction::isCoreSensor(mPoltaPtr, pReceiver)) {
+        }
+        if (PoltaFunction::isCoreSensor(mPoltaPtr, pReceiver)) {
             setNerve(&NrvPoltaBattleLv2::PoltaBattleLv2NrvDamageCore::sInstance);
             return true;
         }

@@ -60,7 +60,7 @@ void Polta::init(const JMapInfoIter& rIter) {
     MR::onCalcGravity(this);
     MR::useStageSwitchWriteDead(this, rIter);
     if (MR::useStageSwitchReadA(this, rIter)) {
-        MR::listenStageSwitchOnA(this, MR::FunctorV0M< Polta*, void (Polta::*)(void) >(this, &Polta::start));
+        MR::listenStageSwitchOnA(this, MR::Functor_Inline(this, &Polta::start));
     }
     MR::startBva(this, "BreakLevel");
     MR::setBvaFrameAndStop(this, 0.0f);
@@ -124,9 +124,9 @@ void Polta::appearStarPiece(s32 starPieceAmount) {
 }
 
 void BombTeresaHolder::disperseAll() {
-    s32 mObjectCount = this->mObjectCount;
-    for (s32 i = 0; i < mObjectCount; i++) {
-        BombTeresa* curBombTeresa = (BombTeresa*)getActor(i);
+    s32 objectCount = mObjectCount;
+    for (s32 i = 0; i < objectCount; i++) {
+        BombTeresa* curBombTeresa = reinterpret_cast< BombTeresa* >(getActor(i));
         curBombTeresa->requestDisperse();
     }
 }
@@ -222,7 +222,7 @@ void Polta::calcAndSetBaseMtx() {
 }
 
 void Polta::updateAction() {
-    if (mSequencer) {
+    if (mSequencer != nullptr) {
         mSequencer->updateNerve();
     }
 }
@@ -240,7 +240,7 @@ void Polta::updatePose(f32 param1, f32 param2) {
 
 void Polta::start() {
     MR::invalidateClipping(this);
-    if (mSequencer) {
+    if (mSequencer != nullptr) {
         mSequencer->startAction();
     }
 }
@@ -252,27 +252,27 @@ void Polta::setStartPose() {
 }
 
 void Polta::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
-    if (mSequencer) {
+    if (mSequencer != nullptr) {
         mSequencer->attackSensor(pSender, pReceiver);
     }
 }
 
 bool Polta::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (mSequencer) {
+    if (mSequencer != nullptr) {
         return mSequencer->receiveMsgPlayerAttack(msg, pSender, pReceiver);
     }
     return false;
 }
 
 bool Polta::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (mSequencer) {
+    if (mSequencer != nullptr) {
         return mSequencer->receiveMsgEnemyAttack(msg, pSender, pReceiver);
     }
     return false;
 }
 
 bool Polta::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (mSequencer) {
+    if (mSequencer != nullptr) {
         return mSequencer->receiveOtherMsg(msg, pSender, pReceiver);
     }
     return false;
