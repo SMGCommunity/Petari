@@ -99,7 +99,7 @@ public:
     void updateBaseScaleMtx();
     void getRealMtx(MtxPtr, const char*) const NO_INLINE;
     void getRealPos(const char*, TVec3f*) const;
-    void getGlobalJointMtx(const char*);
+    MtxPtr getGlobalJointMtx(const char*);
     void calcAnimInMovement();
     void forceSetBaseMtx(MtxPtr);
     void calcAnim();
@@ -177,6 +177,7 @@ public:
     void calcViewMainModel();
     void initFace();
     void updateFace();
+    void updateHand();
     void draw() const override;
     void drawIndirect() const;
     void drawIndirectModel() const;
@@ -209,6 +210,10 @@ public:
     void calcFogLighting();
     void calcViewReflectionModel();
     void calcViewSearchLight();
+    void calcScreenBoxRange();
+    void calcSpinEffect();
+    void changeHandMaterial();
+    void updateRasterScroll();
     void updateDarkMask(u16);
 
     void resetPadSwing();
@@ -218,6 +223,7 @@ public:
     TVec3f& getGravityVector() const;
     const TVec3f& getAirGravityVec() const;
     void updateGravityVec(bool, bool);
+    void updateBaseMtxTeresa(MtxPtr);
     void changeTeresaAnimation(const char*, s32);
 
     MultiEmitter* playEffect(const char*);
