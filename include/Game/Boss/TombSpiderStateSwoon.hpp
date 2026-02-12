@@ -14,6 +14,4 @@ public:
     void exeStart();
     void exeLoop();
     void exeEnd();
-
-    /* 0x0C */ TombSpider* mParent;
 };

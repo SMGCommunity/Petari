@@ -23,7 +23,8 @@ namespace NrvPoltaRock {
 };  // namespace NrvPoltaRock
 
 PoltaRock::PoltaRock(const char* pName)
-    : LiveActor(pName), mOwner(nullptr), _90(0.0f, 0.0f, 0.0f, 1.0f), _A0(0.0f, 0.0f, 1.0f), _AC(0.0f, 0.0f, 0.0f), mType(0) {}
+    : LiveActor(pName), mOwner(nullptr), _90(0.0f, 0.0f, 0.0f, 1.0f), _A0(0.0f, 0.0f, 1.0f), _AC(0.0f, 0.0f, 0.0f), mType(0) {
+}
 
 void PoltaRock::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
@@ -56,7 +57,8 @@ void PoltaRock::kill() {
     mOwner = nullptr;
 }
 
-void PoltaRock::control() {}
+void PoltaRock::control() {
+}
 
 void PoltaRock::calcAndSetBaseMtx() {
     MR::setBaseTRMtx(this, _90);
@@ -157,7 +159,7 @@ void PoltaRock::exeSign() {
     MR::addVelocityMoveToTarget(this, v3, 0.0f, 1.2f, 0.0f, 200.0f);
     MR::addVelocityKeepHeightUseShadow(this, 800.0f, 1.5f, 300.0f, nullptr);
     MR::attenuateVelocity(this, 0.92f);
-    if (MR::isGreaterStep(this, 90)) {
+    if (MR::isGreaterStep(this, 60)) {
         setNerve(&NrvPoltaRock::PoltaRockNrvMove::sInstance);
         MR::onBind(this);
     }
@@ -212,4 +214,5 @@ bool PoltaRock::isEnableExplosion() const {
     return true;
 }
 
-PoltaRock::~PoltaRock() {}
+PoltaRock::~PoltaRock() {
+}

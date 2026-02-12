@@ -21,7 +21,7 @@ public:
 
     bool sendBlowAttackMessage(HitSensor*, HitSensor*, bool);
     bool sendHitAttackMessage(HitSensor*, HitSensor*, bool);
-    void updateTurn(s32, f32);
+    bool updateTurn(s32, f32);
     bool updateWalk(s32, f32, s32);
     bool updateChase(s32, f32, f32, f32, s32, s32);
     void selectTurnDirection();

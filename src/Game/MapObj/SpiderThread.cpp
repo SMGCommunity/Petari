@@ -19,10 +19,6 @@ namespace {
     const CutPointEntry sCutPointNoTable[] = {{0, 3}, {1, 1}, {2, 0}, {4, 3}, {6, 1}, {6, 4}};
 }
 
-inline SpiderThread* getThreadObj() {
-    return reinterpret_cast< SpiderThread* >(MR::getSceneObjHolder()->getObj(SceneObj_SpiderThread));
-}
-
 inline SpiderThreadPart* connectPoints(SpiderThreadPoint* pPointA, SpiderThreadPoint* pPointB) {
     SpiderThreadMainPoint* pointB = reinterpret_cast< SpiderThreadMainPoint* >(pPointB);
     SpiderThreadMainPoint* pointA = reinterpret_cast< SpiderThreadMainPoint* >(pPointA);
@@ -54,7 +50,8 @@ SpiderThread::SpiderThread(const char* pName)
     }
 }
 
-void SpiderThread::init(const JMapInfoIter& rIter) {}
+void SpiderThread::init(const JMapInfoIter& rIter) {
+}
 
 void SpiderThread::initThread(const TVec3f& rPos) {
     mPosition.set(rPos);
@@ -402,31 +399,31 @@ void SpiderThread::initDraw() const {
 }
 
 void MR::initSpiderThread(const TVec3f& rPos) {
-    getThreadObj()->initThread(rPos);
+    MR::getSceneObj< SpiderThread >(SceneObj_SpiderThread)->initThread(rPos);
 }
 
 void MR::appearSpiderThread() {
-    getThreadObj()->appear();
+    MR::getSceneObj< SpiderThread >(SceneObj_SpiderThread)->appear();
 }
 
 void MR::startSpiderThreadBattle() {
-    getThreadObj()->stopAllPartsPoint();
-    getThreadObj()->mWindCtrl->startWindBattle();
+    MR::getSceneObj< SpiderThread >(SceneObj_SpiderThread)->stopAllPartsPoint();
+    MR::getSceneObj< SpiderThread >(SceneObj_SpiderThread)->mWindCtrl->startWindBattle();
 }
 
 void MR::startSpiderThreadChance() {
-    getThreadObj()->stopAllPartsPoint();
-    getThreadObj()->mWindCtrl->startWindChance();
+    MR::getSceneObj< SpiderThread >(SceneObj_SpiderThread)->stopAllPartsPoint();
+    MR::getSceneObj< SpiderThread >(SceneObj_SpiderThread)->mWindCtrl->startWindChance();
 }
 
 void MR::startSpiderThreadBattleEnd() {
-    getThreadObj()->stopAllPartsPoint();
-    getThreadObj()->cutSpiderThread();
-    getThreadObj()->mWindCtrl->startWindBattleEnd();
+    MR::getSceneObj< SpiderThread >(SceneObj_SpiderThread)->stopAllPartsPoint();
+    MR::getSceneObj< SpiderThread >(SceneObj_SpiderThread)->cutSpiderThread();
+    MR::getSceneObj< SpiderThread >(SceneObj_SpiderThread)->mWindCtrl->startWindBattleEnd();
 }
 
 void MR::pauseOffSpiderThread() {
-    MR::requestMovementOn(getThreadObj());
+    MR::requestMovementOn(MR::getSceneObj< SpiderThread >(SceneObj_SpiderThread));
 }
 
 f32 MR::getSpiderThreadPosZ() {
@@ -434,28 +431,28 @@ f32 MR::getSpiderThreadPosZ() {
         return 0.0f;
     }
 
-    return getThreadObj()->mPosition.z;
+    return MR::getSceneObj< SpiderThread >(SceneObj_SpiderThread)->mPosition.z;
 }
 
 void MR::startActorBindToSpiderThread(LiveActor* pActor, const TVec3f** pPointPos, const TVec3f** pNeutralPos, const TVec3f** pUp, const TVec3f& rPos,
                                       const TVec3f& rVel) {
-    getThreadObj()->startActorBind(pActor, pPointPos, pNeutralPos, pUp, rPos, rVel, 1);
+    MR::getSceneObj< SpiderThread >(SceneObj_SpiderThread)->startActorBind(pActor, pPointPos, pNeutralPos, pUp, rPos, rVel, 1);
 }
 
 bool MR::sendMsgToSpiderThread(u32 msg, HitSensor* pSender) {
-    return getThreadObj()->receiveMessage(msg, pSender, MR::getMessageSensor());
+    return MR::getSceneObj< SpiderThread >(SceneObj_SpiderThread)->receiveMessage(msg, pSender, MR::getMessageSensor());
 }
 
 bool MR::touchActorToSpiderThread(const TVec3f& rPos, const TVec3f& rVel) {
-    return getThreadObj()->touchActor(rPos, rVel);
+    return MR::getSceneObj< SpiderThread >(SceneObj_SpiderThread)->touchActor(rPos, rVel);
 }
 
 void MR::tryPushSpiderThread(const TVec3f& rPos, f32 radius) {
-    getThreadObj()->tryPush(rPos, radius);
+    MR::getSceneObj< SpiderThread >(SceneObj_SpiderThread)->tryPush(rPos, radius);
 }
 
 void MR::onSpiderThreadBloom() {
-    getThreadObj()->mIsBloomOn = true;
+    MR::getSceneObj< SpiderThread >(SceneObj_SpiderThread)->mIsBloomOn = true;
 }
 
 void MR::drawSpiderThreadBloom() {
@@ -463,8 +460,8 @@ void MR::drawSpiderThreadBloom() {
         return;
     }
 
-    if (getThreadObj()->mIsBloomOn) {
-        getThreadObj()->draw();
+    if (MR::getSceneObj< SpiderThread >(SceneObj_SpiderThread)->mIsBloomOn) {
+        MR::getSceneObj< SpiderThread >(SceneObj_SpiderThread)->draw();
         CategoryList::drawOpa(MR::DrawBufferType_Ride);
     }
 }

@@ -1241,7 +1241,7 @@ Game/Boss/PoltaStateAttackGround.cpp:
 Game/Boss/PoltaStateGenerateRock.cpp:
 	.text       start:0x800751D0 end:0x800755E8
 	.ctors      start:0x8052E978 end:0x8052E97C
-	.rodata     start:0x80531310 end:0x80531430
+	.rodata     start:0x80531310 end:0x80531428
 	.data       start:0x80570628 end:0x805706D0
 	.sbss       start:0x806B3730 end:0x806B3740
 	.sdata2     start:0x806B8C48 end:0x806B8C58
@@ -1249,6 +1249,7 @@ Game/Boss/PoltaStateGenerateRock.cpp:
 Game/Boss/PoltaStateGroundRockAttack.cpp:
 	.text       start:0x800755E8 end:0x80075A10
 	.ctors      start:0x8052E97C end:0x8052E980
+	.rodata     start:0x80531428 end:0x80531430
 	.data       start:0x805706D0 end:0x80570800
 	.sbss       start:0x806B3740 end:0x806B3750
 	.sdata2     start:0x806B8C58 end:0x806B8C68

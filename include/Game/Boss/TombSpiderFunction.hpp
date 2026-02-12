@@ -38,7 +38,7 @@ namespace TombSpiderFunction {
 
     bool tryDamageEye(HitSensor*, HitSensor*);
     bool tryDamageHip(HitSensor*, HitSensor*);
-    bool tryDamageVitalSpot(HitSensor*, HitSensor*);
+    bool tryDamageVitalSpot(TombSpider*, HitSensor*, HitSensor*);
 
     void invalidateAllPartsSensor(TombSpider*);
     void invalidateMainPartsSensor(TombSpider*);
