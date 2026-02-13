@@ -29,7 +29,7 @@ bool MarioSukekiyo::notice() {
 }
 
 bool MarioSukekiyo::postureCtrl(MtxPtr mtx) {
-    MR::makeMtxUpSide((TPos3f*)mtx, _14, _20);
+    MR::makeMtxUpSide(reinterpret_cast< TPos3f* >(mtx), _14, _20);
     return true;
 }
 
@@ -49,10 +49,10 @@ bool MarioSukekiyo::start() {
     getPlayer()->stopWalk();
 
     if (mStatusId == 26) {
-        changeAnimation("スケキヨ", (const char*)nullptr);
+        changeAnimation("スケキヨ", static_cast< const char* >(nullptr));
     } else {
         playSound("声足埋まり開始", -1);
-        changeAnimation("埋まり", (const char*)nullptr);
+        changeAnimation("埋まり", static_cast< const char* >(nullptr));
     }
     return true;
 }
