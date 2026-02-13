@@ -35,6 +35,10 @@ public:
     void exeDemoDeath();
     void exeWaitDemo();
 
+    inline const f32 getRotate() const {
+        return mRotation.z;
+    }
+
     /* 0x8C */ TombSpiderSensorCtrl* mSensorCtrl;
     /* 0x90 */ TombSpiderParts* mParts;
     /* 0x94 */ TombSpiderEnvironment* mEnvironment;

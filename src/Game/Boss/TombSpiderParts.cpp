@@ -19,8 +19,8 @@ TombSpiderParts::TombSpiderParts(TombSpider* pParent)
     : mParent(pParent), mGlandFrontL(nullptr), mGlandFrontR(nullptr), mGlandRearL(nullptr), mGlandRearR(nullptr), mVitalSpotC(nullptr),
       mVitalSpotL(nullptr), mVitalSpotR(nullptr), mAcid(nullptr), mThreadAttacherWing(nullptr), mThreadAttacherFrontL(nullptr),
       mThreadAttacherCenterL(nullptr), mThreadAttacherRearL(nullptr), mThreadAttacherFrontR(nullptr), mThreadAttacherCenterR(nullptr),
-      mThreadAttacherRearR(nullptr), mMtxEye(nullptr), mMtxMouth(nullptr), mMtxHip(nullptr), mMtxFrontL(nullptr), mMtxFrontR(nullptr),
-      mMtxRearL(nullptr), mMtxRearR(nullptr) {
+      mThreadAttacherRearR(nullptr), mMtxEye(nullptr), mMtxMouth(nullptr), mMtxHip(nullptr), mMtxGlandFrontL(nullptr), mMtxGlandFrontR(nullptr),
+      mMtxGlandRearL(nullptr), mMtxGlandRearR(nullptr) {
 }
 
 void TombSpiderParts::appearThreadAttacherAll() {
@@ -104,10 +104,10 @@ void TombSpiderParts::initParts() {
     mMtxEye = MR::getJointMtx(mParent, "Eye");
     mMtxMouth = MR::getJointMtx(mParent, "Mouth");
     mMtxHip = MR::getJointMtx(mParent, "Hip");
-    mMtxFrontL = MR::getJointMtx(mParent, "FrontL");
-    mMtxFrontR = MR::getJointMtx(mParent, "FrontR");
-    mMtxRearL = MR::getJointMtx(mParent, "RearL");
-    mMtxRearR = MR::getJointMtx(mParent, "RearR");
+    mMtxGlandFrontL = MR::getJointMtx(mParent, "FrontL");
+    mMtxGlandFrontR = MR::getJointMtx(mParent, "FrontR");
+    mMtxGlandRearL = MR::getJointMtx(mParent, "RearL");
+    mMtxGlandRearR = MR::getJointMtx(mParent, "RearR");
 
     mAcid = new TombSpiderAcid(mParent);
 }

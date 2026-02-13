@@ -14,7 +14,7 @@ public:
     virtual void start();
     virtual void init();
     virtual bool isUseEggShell() const;
-    virtual u32 getVsCount() const;
+    virtual s32 getVsCount() const;
     virtual void update();
     virtual void attackSensor(HitSensor* pSender, HitSensor* pReceiver);
     virtual bool receiveMsgPush(HitSensor* pSender, HitSensor* pReceiver);

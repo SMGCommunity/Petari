@@ -21,6 +21,7 @@ namespace TombSpiderFunction {
 
     MtxPtr getMtxEye(const TombSpider*);
     MtxPtr getMtxMouth(const TombSpider*);
+    MtxPtr getMtxHip(const TombSpider*);
     MtxPtr getMtxGlandFrontL(const TombSpider*);
     MtxPtr getMtxGlandFrontR(const TombSpider*);
     MtxPtr getMtxGlandRearL(const TombSpider*);
@@ -30,7 +31,7 @@ namespace TombSpiderFunction {
     void killThreadAttacherAll(TombSpider*);
 
     void startAcid(TombSpider*);
-    bool updateAcid(TombSpider*);
+    void updateAcid(TombSpider*);
     void endAcid(TombSpider*);
 
     bool isAttackEnable(const TombSpiderGland*);
@@ -38,6 +39,7 @@ namespace TombSpiderFunction {
 
     bool tryDamageEye(HitSensor*, HitSensor*);
     bool tryDamageHip(HitSensor*, HitSensor*);
+    bool tryDamageGland(TombSpider*, HitSensor*, HitSensor*);
     bool tryDamageVitalSpot(TombSpider*, HitSensor*, HitSensor*);
 
     void invalidateAllPartsSensor(TombSpider*);
@@ -64,10 +66,8 @@ namespace TombSpiderFunction {
     bool isRotateLeftToPlayer(const TombSpider*);
     f32 calcRotateSpeedToPlayer(TombSpider*, s32);
 
-    void emitAcidMouth(TombSpider*);
+    void emitAcidMouth(TombSpider*) NO_INLINE;
     void emitAcidGland(TombSpider*);
-
-    bool tryDamageGland(TombSpider*, HitSensor*, HitSensor*);
 
     void validateMainPartsSensor(TombSpider*);
     void validateGlandSensor(TombSpider*);
