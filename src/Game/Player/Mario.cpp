@@ -1476,31 +1476,31 @@ bool Mario::isForceStopRush() const {
         goto exit_false;
     }
     u16 temp = _960;
-    if (temp < (s16)0xf) {
-        if (temp == (s16)4) {
+    if (temp < 0xf) {
+        if (temp == 4) {
             goto exit_true;
         }
-        if (temp < (s16)4) {
-            if (temp == (s16)1) {
+        if (temp < 4) {
+            if (temp == 1) {
                 goto exit_true;
             }
             goto exit_false;
         }
-        if (temp == (s16)0xa) {
+        if (temp == 0xa) {
             goto exit_true;
         }
         goto exit_false;
     }
-    if (temp == (s16)0x18) {
+    if (temp == 0x18) {
         goto exit_true;
     }
-    if (temp < (s16)0x18) {
-        if (temp < (s16)0x11 == false) {
+    if (temp < 0x18) {
+        if (temp < 0x11 == false) {
             goto exit_false;
         }
         goto exit_true;
     }
-    if (temp == (s16)0x81 != false) {
+    if (temp == 0x81 != false) {
         goto exit_true;
     }
     goto exit_false;
@@ -1900,7 +1900,7 @@ void Mario::actionMain() {
             }
         }
         if (isStickOn() && isAnimationRun("水泳陸うちあげ")) {
-            stopAnimation(nullptr, (char*)nullptr);
+            stopAnimation(static_cast< const char* >(nullptr), static_cast< const char* >(nullptr));
         }
         if (!mDrawStates._4) {
             _3FE = 0;
@@ -1930,7 +1930,7 @@ void Mario::updateGroundInfo() {
             _3C6 = 0;
         }
         if (b1 && mMovementStates._1 && isDefaultAnimationRun("落下")) {
-            changeAnimation(nullptr, "基本");
+            changeAnimation(static_cast< const char* >(nullptr), "基本");
         }
         if (!isStatusActive(0x13)) {
             if (!isStatusActive(0x13) && !mMovementStates._1 && mMovementStates._3E == 1 && mJumpVec.dot(*Mario::getGravityVec()) > 0.0f
@@ -2058,9 +2058,9 @@ void Mario::createAngleMtx(MtxPtr mtx, bool forceNoFix) {
 
     PSMTXConcat(_C4, mtx, mtx);
 
-    HitSensor* pSensor = reinterpret_cast< HitSensor* >(mActor->_470);
+    HitSensor* pSensor = mActor->_470;
     if (isAnimationRun("投げ")) {
-        pSensor = reinterpret_cast< HitSensor* >(mActor->_474);
+        pSensor = mActor->_474;
     }
     if (mActor->isPunching()) {
         pSensor = mActor->_924;

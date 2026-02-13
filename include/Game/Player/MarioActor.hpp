@@ -30,6 +30,7 @@ class FixedPosition;
 class ModelObj;
 class MultiEmitter;
 class IceStep;
+struct CameraFrontTarget;
 
 extern bool gIsLuigi;  // (cc68 - 10000)(r13)
 
@@ -503,13 +504,13 @@ public:
         struct {
             u32 _468;
             HitSensor* _46C;
-            u32 _470;
+            HitSensor* _470;
         };
         TVec3f _468Vec;
     };
 
     // TVec3f _468;
-    u32 _474;
+    HitSensor* _474;
     f32 _478;
     u32 _47C;
     u8 _480;
@@ -522,7 +523,7 @@ public:
     FixedPosition* _498;
     FixedPosition* _49C;
     FixedPosition* _4A0;
-    u32 _4A4;
+    CameraFrontTarget* _4A4;
     u32 _4A8;
     f32 _4AC;
     f32 _4B0;
@@ -755,7 +756,7 @@ public:
     u16 _F42;
     bool _F44;
     // padding
-    u32 _F48;
+    HitSensor* _F48;
     BlackHole* mBlackHole;
     TVec3f mBlackHolePosition;
     TVec3f mBlackHoleRotateAxis;

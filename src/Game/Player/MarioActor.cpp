@@ -31,6 +31,11 @@
 
 bool gIsLuigi;
 
+struct CameraFrontTarget {
+    u8 _00[0x24];
+    const LiveActor* mActor;
+};
+
 Triangle& Triangle::operator=(const Triangle& rOther) {
     mParts = rOther.mParts;
     mIdx = rOther.mIdx;
@@ -106,9 +111,9 @@ MarioActor::MarioActor(const char* pName) : LiveActor(pName), _1B0(0xFFFFFFFF) {
 
     _3C1 = false;
     _211 = 0;
-    _46C = 0;
-    _470 = 0;
-    _474 = 0;
+    _46C = nullptr;
+    _470 = nullptr;
+    _474 = nullptr;
     _924 = nullptr;
     _928 = 0;
     _480 = 0;
@@ -139,8 +144,8 @@ MarioActor::MarioActor(const char* pName) : LiveActor(pName), _1B0(0xFFFFFFFF) {
     _FCC = false;
     _FCD = false;
 
-    PSMTXIdentity((MtxPtr)&_EA8);
-    PSMTXIdentity((MtxPtr)&_3EC);
+    PSMTXIdentity(_EA8.toMtxPtr());
+    PSMTXIdentity(_3EC.toMtxPtr());
 
     _1F0.zero();
     _1FC.zero();
@@ -167,8 +172,8 @@ MarioActor::MarioActor(const char* pName) : LiveActor(pName), _1B0(0xFFFFFFFF) {
     _934 = false;
     _7E2 = 0;
     _EF6 = 0;
-    _424 = 0;
-    _4A4 = 0;
+    _424 = nullptr;
+    _4A4 = nullptr;
     _6D0 = 0;
     _3A0 = 0;
     _EFC = 0;
@@ -220,11 +225,11 @@ MarioActor::MarioActor(const char* pName) : LiveActor(pName), _1B0(0xFFFFFFFF) {
     _F24 = 0;
     _F28 = 0;
 
-    PSMTXIdentity((MtxPtr)&_C2C);
-    PSMTXIdentity((MtxPtr)&_C5C);
-    PSMTXIdentity((MtxPtr)&_D1C);
-    PSMTXIdentity((MtxPtr)&_D4C);
-    PSMTXIdentity((MtxPtr)&_D7C);
+    PSMTXIdentity(_C2C.toMtxPtr());
+    PSMTXIdentity(_C5C.toMtxPtr());
+    PSMTXIdentity(_D1C.toMtxPtr());
+    PSMTXIdentity(_D4C.toMtxPtr());
+    PSMTXIdentity(_D7C.toMtxPtr());
 
     _1B4 = 0;
     _1C3 = false;
@@ -348,13 +353,13 @@ void MarioActor::init2(const TVec3f& a, const TVec3f& b, s32 initialAnimation) {
     _B48->setTexture(MR::getTexFromArc("Footprint.bti", this));
     switch (initialAnimation) {
     case 1:
-        mMario->changeAnimation("基本", (const char*)nullptr);
+        mMario->changeAnimation("基本", static_cast< const char* >(nullptr));
         break;
     case 2:
         mMario->changeAnimationNonStop("ウォークイン");
         break;
     default:
-        mMario->changeAnimation("ステージインA", (const char*)nullptr);
+        mMario->changeAnimation("ステージインA", static_cast< const char* >(nullptr));
         break;
     }
     updateTransForCamera();
@@ -453,15 +458,15 @@ void MarioActor::changeAnimationNonStop(const char* pName) {
 void MarioActor::changeAnimationUpper(const char* pName) {
     if (!mMario->_71C) {
         if (isAnimationRun("基本")) {
-            mMario->changeAnimationUpper(pName, nullptr);
+            mMario->changeAnimationUpper(pName, static_cast< const char* >(nullptr));
             return;
         }
     }
-    mMario->changeAnimation(pName, (const char*)nullptr);
+    mMario->changeAnimation(pName, static_cast< const char* >(nullptr));
 }
 
 void MarioActor::stopAnimation(const char* pName) {
-    mMario->stopAnimation(pName, (const char*)nullptr);
+    mMario->stopAnimation(pName, static_cast< const char* >(nullptr));
 }
 
 bool MarioActor::isAnimationRun(const char* pName) const {
@@ -807,7 +812,7 @@ void MarioActor::exeWait() {
 }
 
 void MarioActor::movement() {
-    _46C = 0;
+    _46C = nullptr;
     _378++;
     _1E1 = 0;
     PSMTXCopy(_AE0.toMtxPtr(), _AB0.toMtxPtr());
@@ -976,7 +981,7 @@ void MarioActor::movement() {
     _935 = false;
     mMario->_2D0 = 0.0f;
     _F3C_vec[_F40] = mMario->mFrontVec;
-    _F40 = (u16)(_F40 + 1) % _F42;
+    _F40 = (_F40 + 1) % _F42;
 }
 
 void MarioActor::control() {
@@ -1042,7 +1047,7 @@ void MarioActor::control2() {
             mBinder->_1EC._1 = true;
         }
         if (mMario->isDamaging()) {
-            _424 = 0;
+            _424 = nullptr;
         }
     }
 }
@@ -1094,8 +1099,8 @@ void MarioActor::updateBehavior() {
     updateBindRatio();
     updateEffect();
     if (_B94 && !--_B94) {
-        mMario->stopAnimationUpper("ハンマー投げ回転中", nullptr);
-        mMario->stopAnimation("ハンマー投げ回転中", (const char*)nullptr);
+        mMario->stopAnimationUpper("ハンマー投げ回転中", static_cast< const char* >(nullptr));
+        mMario->stopAnimation("ハンマー投げ回転中", static_cast< const char* >(nullptr));
     }
     updatePunching();
     if (!doPressing() && !doStun() && !doRush()) {
@@ -1170,7 +1175,7 @@ void MarioActor::updatePunching() {
         }
     }
     if (mMario->isAnimationRun("ハンマー投げリリース") && mMario->getMovementStates()._1 && !_38C && !mMario->_420 && mMario->Mario::isStickOn()) {
-        mMario->stopAnimation(nullptr, (const char*)nullptr);
+        mMario->stopAnimation(static_cast< const char* >(nullptr), static_cast< const char* >(nullptr));
     }
 }
 
@@ -1200,11 +1205,11 @@ bool MarioActor::doRush() {
             s32 initial = mMario->mSwim->mSwimState;
             mMario->mSwim->checkWaterCube(false);
             if ((int)mMario->mSwim->mSwimState != initial) {
-                if (mMario->mSwim->mSwimState <= MarioSwim::SWIM_STATE_ENTERING && (u32)initial - 2 <= 1) {
+                if (mMario->mSwim->mSwimState <= MarioSwim::SWIM_STATE_ENTERING && static_cast<u32>(initial - 2) <= 1) {
                     playEffectRT("水面ジャンプ水柱", mMario->mSwim->mSurfacePos, mMario->mSwim->mSurfaceNorm);
                     emitEffectWaterColumn(mMario->mSwim->mSurfacePos, mMario->mSwim->mSurfaceNorm);
                     // SWIM_STATE_UNDERWATER and SWIM_STATE_SURFACE
-                } else if ((u32)initial <= 1 && mMario->mSwim->mSwimState - MarioSwim::SWIM_STATE_UNDERWATER <= 1) {
+                } else if (static_cast<u32>(initial) <= 1 && mMario->mSwim->mSwimState - MarioSwim::SWIM_STATE_UNDERWATER <= 1) {
                     playEffectRT("水面ジャンプ水柱", -mMario->_328, mMario->mSwim->mSurfaceNorm);
                     emitEffectWaterColumn(mMario->mSwim->mSurfacePos, mMario->mSwim->mSurfaceNorm);
                 }
@@ -1250,7 +1255,7 @@ void MarioActor::updateSwingTimer() {
             _94E = 5;
         }
         if (_94E && --_94E == 0) {
-            mMario->startPadVib((u32)0);
+            mMario->startPadVib(static_cast< u32 >(0));
             mMario->playSound("スピン回復終了", -1);
             Color8 stack_8;
             stack_8.set(0x50, 0x80, 0xc8, 0);
@@ -1375,11 +1380,11 @@ void MarioActor::updateSwingAction() {
                     mMario->playSound("声スピン", -1);
                     mMario->playSound("スピンジャンプ", -1);
                 }
-                mMario->changeAnimation("ハチスピン空中", (const char*)nullptr);
+                mMario->changeAnimation("ハチスピン空中", static_cast< const char* >(nullptr));
             } else if (getMovementStates()._A || mAlphaEnable) {
-                mMario->changeAnimation("サマーソルト", (const char*)nullptr);
+                mMario->changeAnimation("サマーソルト", static_cast< const char* >(nullptr));
             } else {
-                mMario->changeAnimation("ハチスピン", (const char*)nullptr);
+                mMario->changeAnimation("ハチスピン", static_cast< const char* >(nullptr));
             }
         }
         if (didSpinPunch) {
@@ -1410,12 +1415,12 @@ void MarioActor::updateSwingAction() {
             break;
         }
         if (isJumping()) {
-            mMario->changeAnimation("ハチスピン空中", (const char*)nullptr);
+            mMario->changeAnimation("ハチスピン空中", static_cast< const char* >(nullptr));
         } else {
             if (getMovementStates()._A || mAlphaEnable) {
-                mMario->changeAnimation("サマーソルト", (const char*)nullptr);  // Summersault
+                mMario->changeAnimation("サマーソルト", static_cast< const char* >(nullptr));  // Summersault
             } else {
-                mMario->changeAnimation("ハチスピン", (const char*)nullptr);
+                mMario->changeAnimation("ハチスピン", static_cast< const char* >(nullptr));
             }
         }
         _946 = mConst->getTable()->mSpinIntervalTime + 0x22;
@@ -1588,7 +1593,7 @@ bool MarioActor::doPressing() {
                 setNerve(&NrvMarioActor::MarioActorNrvGameOver::sInstance);
             }
             if (!_390) {
-                mMario->changeAnimation("つぶれ解除", (const char*)nullptr);
+                mMario->changeAnimation("つぶれ解除", static_cast< const char* >(nullptr));
                 _F44 = true;
             }
         }
@@ -1599,7 +1604,7 @@ bool MarioActor::doPressing() {
             setNerve(&NrvMarioActor::MarioActorNrvGameOver::sInstance);
         }
         if (!_390) {
-            mMario->changeAnimation("つぶれ解除", (const char*)nullptr);
+            mMario->changeAnimation("つぶれ解除", static_cast< const char* >(nullptr));
             _F44 = true;
         }
         break;
@@ -1667,7 +1672,7 @@ bool MarioActor::doStun() {
 
 void MarioActor::scaleMtx(MtxPtr rawMtx) {
     TVec3f i, j, k;
-    const TRot3f* pMtx = (TRot3f*)rawMtx;
+    const TRot3f* pMtx = reinterpret_cast<const TRot3f*>(rawMtx);
     f32 scalar = 0.35f * (1.0f - _3B0) + 1.0f;
     pMtx->getXDir(i);
     pMtx->getYDir(j);
@@ -1717,9 +1722,10 @@ void MarioActor::forceSetBaseMtx(MtxPtr mtx) {
     if (_482) {
         MR::extractMtxTrans(mtx, &mPosition);
     }
-    ((TRot3f*)mtx)->getZDir(_2DC);
-    ((TRot3f*)mtx)->getYDir(_2D0);
-    ((TRot3f*)mtx)->getXDir(_2E8);
+    const TRot3f* pMtx = reinterpret_cast<const TRot3f*>(mtx);
+    pMtx->getZDir(_2DC);
+    pMtx->getYDir(_2D0);
+    pMtx->getXDir(_2E8);
     MR::updateHitSensorsAll(this);
     mMario->invalidateRelativePosition();
     mMario->_8F8.zero();
@@ -1838,12 +1844,7 @@ void MarioActor::calcAnimInMovement() {
         }
 
         if (!isFirst) {
-            struct CameraFrontTarget {
-                u8 _00[0x24];
-                const LiveActor* mActor;
-            };
-
-            const LiveActor* pTarget = reinterpret_cast< CameraFrontTarget* >(_4A4)->mActor;
+            const LiveActor* pTarget = _4A4->mActor;
             TVec3f front;
             MR::calcFrontVec(&front, pTarget);
             mMario->setFrontVecKeepUp(front);
@@ -2177,12 +2178,13 @@ void MarioActor::calcAndSetBaseMtx() {
 
         if (hasForcedBaseMtx) {
             TVec3f head;
-            ((TRot3f*)getBaseMtx())->getYDir(head);
+            const TRot3f* pMtx = reinterpret_cast<const TRot3f*>(getBaseMtx());
+            pMtx->getYDir(head);
             MR::normalizeOrZero(&head);
             mMario->setHeadVec(head);
 
             TVec3f front;
-            ((TRot3f*)getBaseMtx())->getZDir(front);
+            pMtx->getZDir(front);
             MR::normalizeOrZero(&front);
             mMario->setFrontVecKeepUp(front);
             mMario->_334 = front;
@@ -2194,11 +2196,12 @@ void MarioActor::calcAndSetBaseMtx() {
             PSMTXCopy(getBaseMtx(), _EA8.toMtxPtr());
 
             TVec3f head;
-            ((TRot3f*)getBaseMtx())->getYDir(head);
+            const TRot3f* pMtx = reinterpret_cast<const TRot3f*>(getBaseMtx());
+            pMtx->getYDir(head);
             mMario->setHeadVec(head);
 
             TVec3f front;
-            ((TRot3f*)getBaseMtx())->getZDir(front);
+            pMtx->getZDir(front);
             mMario->setFrontVecKeepUp(front);
 
             mMario->_278 = 0.0f;
@@ -2586,7 +2589,7 @@ void MarioActor::jumpHop() {
     if (mMario->_430 == 5) {
         mMario->_430 = 0;
         mMario->mMovementStates_LOW_WORD &= ~0x00100000;
-        mMario->changeAnimation("落下", (const char*)nullptr);
+        mMario->changeAnimation("落下", static_cast< const char* >(nullptr));
     }
 
     if (mMario->_430 == 0xB) {
@@ -2783,7 +2786,7 @@ void MarioActor::updateCameraInfo() {
 }
 
 bool MarioActor::binderFilter(const Triangle* pTriangle) {
-    if (_F48 != 0 && pTriangle->mSensor == reinterpret_cast< HitSensor* >(_F48)) {
+    if (_F48 && pTriangle->mSensor == _F48) {
         return true;
     }
     return false;
