@@ -3,6 +3,7 @@
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/MapObj/BlackHole.hpp"
 #include "Game/Player/Mario.hpp"
+#include <revolution/gd/GDBase.h>
 
 class FootPrint;
 class J3DAnmTexPattern;
@@ -31,6 +32,9 @@ class ModelObj;
 class MultiEmitter;
 class IceStep;
 struct CameraFrontTarget;
+class HashSortTable;
+class DrawAdaptor;
+struct SmokeEffectEntry;
 
 extern bool gIsLuigi;  // (cc68 - 10000)(r13)
 
@@ -366,7 +370,7 @@ public:
 
     u8 _8C;
     DLchanger* mDLchanger;  // 0x90
-    u32 _94[0x40];
+    DLchanger* _94[0x40];
     u8* mDL[2];   // 0x194
     u32 mDLSize;  // 0x19C
     u8 mCurrDL;   // 0x1A0
@@ -409,12 +413,12 @@ public:
     u8 _211;
     // padding
     CollisionShadow* _214;
-    u32 _218;
-    u32 _21C;
-    u32 _220;
+    DrawAdaptor* _218;
+    DrawAdaptor* _21C;
+    DrawAdaptor* _220;
     u32 _224;
-    u32 _228;
-    u32 _22C;
+    DrawAdaptor* _228;
+    DrawAdaptor* _22C;
     Mario* mMario;              // 0x230
     MarioAnimator* mMarioAnim;  // 0x234
     MarioEffect* mMarioEffect;  // 0x238
@@ -625,8 +629,8 @@ public:
     u16 _A6C;
     bool _A6E;
     // padding
-    u32 _A70[8];
-    u32 _A90[8];
+    Mtx* _A70[8];
+    Mtx* _A90[8];
     TMtx34f _AB0;
     TMtx34f _AE0;
     u16 _B10;
@@ -677,8 +681,8 @@ public:
 
     u16 _B9C;
     u16 _B9E;
-    u32 _BA0;
-    u32 _BA4;
+    SmokeEffectEntry** _BA0;
+    HashSortTable* _BA4;
     ModelObj* _BA8;
     TVec3f _BAC;
     TVec3f _BB8;

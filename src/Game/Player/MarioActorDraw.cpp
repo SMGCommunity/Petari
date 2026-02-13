@@ -20,6 +20,7 @@
 #include "JSystem/J3DGraphAnimator/J3DModelData.hpp"
 #include "JSystem/J3DGraphBase/J3DMaterial.hpp"
 #include "JSystem/J3DGraphBase/J3DTexture.hpp"
+#include "JSystem/JKernel/JKRSolidHeap.hpp"
 #include "JSystem/JUtility/JUTNameTab.hpp"
 #include "JSystem/JUtility/JUTTexture.hpp"
 #include <cstring>
@@ -59,7 +60,7 @@ struct DLBufferInfoForAddDL {
     u16 _6;
 };
 
-struct DLchangerForAddDL {
+struct DLchangerForAddDL : public DLchanger {
     DLBufferInfoForAddDL* mBuffers;
     u8 _4;
     u8 mCurrentBuffer;
@@ -99,7 +100,7 @@ void MarioActor::initDrawAndModel() {
             MR::Functor(static_cast< const MarioActor* >(this), &MarioActor::drawShadow);
         adaptor = new (mem) DrawAdaptor(functor, 0x29);
     }
-    _218 = reinterpret_cast< u32 >(adaptor);
+    _218 = adaptor;
 
     adaptor = nullptr;
     mem = ::operator new(0x10);
@@ -108,7 +109,7 @@ void MarioActor::initDrawAndModel() {
             MR::Functor(static_cast< const MarioActor* >(this), &MarioActor::drawSilhouette);
         adaptor = new (mem) DrawAdaptor(functor, 0x28);
     }
-    _21C = reinterpret_cast< u32 >(adaptor);
+    _21C = adaptor;
 
     adaptor = nullptr;
     mem = ::operator new(0x10);
@@ -117,7 +118,7 @@ void MarioActor::initDrawAndModel() {
             MR::Functor(static_cast< const MarioActor* >(this), &MarioActor::drawPreWipe);
         adaptor = new (mem) DrawAdaptor(functor, 0x41);
     }
-    _220 = reinterpret_cast< u32 >(adaptor);
+    _220 = adaptor;
 
     adaptor = nullptr;
     mem = ::operator new(0x10);
@@ -126,7 +127,7 @@ void MarioActor::initDrawAndModel() {
             MR::Functor(static_cast< const MarioActor* >(this), &MarioActor::drawScreenBlend);
         adaptor = new (mem) DrawAdaptor(functor, 0x2F);
     }
-    _228 = reinterpret_cast< u32 >(adaptor);
+    _228 = adaptor;
 
     adaptor = nullptr;
     mem = ::operator new(0x10);
@@ -135,7 +136,7 @@ void MarioActor::initDrawAndModel() {
             MR::Functor(static_cast< const MarioActor* >(this), &MarioActor::drawIndirect);
         adaptor = new (mem) DrawAdaptor(functor, 0x24);
     }
-    _22C = reinterpret_cast< u32 >(adaptor);
+    _22C = adaptor;
 
     if (gIsLuigi) {
         initModelManagerWithAnm("Luigi", "MarioAnime", true);
@@ -147,7 +148,7 @@ void MarioActor::initDrawAndModel() {
     baseModel->_DD = 8;
 
     for (u32 i = 0; i < baseModel->_DD; i++) {
-        reinterpret_cast< u32* >(&baseModel->_E0)[i] = reinterpret_cast< u32 >(new (0x20) u8[0xC00]);
+        baseModel->mExtraMtxBuffer[i] = new (0x20) Mtx[0xC00 / sizeof(Mtx)];
     }
 
     MR::initDLMakerFog(this, true);
@@ -195,14 +196,14 @@ void MarioActor::initDrawAndModel() {
         changer->mBuffers[i].mDL = new (0x20) u8[0x100];
     }
 
-    mDLchanger = reinterpret_cast< DLchanger* >(changer);
+    mDLchanger = static_cast< DLchanger* >(changer);
     _1A4 = 0.0f;
 
     swapTextureInit();
     createRainbowDL();
 
     {
-        MR::CurrentHeapRestorer restorer(reinterpret_cast< JKRHeap* >(MR::getSceneHeapGDDR3()));
+        MR::CurrentHeapRestorer restorer(static_cast< JKRHeap* >(MR::getSceneHeapGDDR3()));
         _B7C = new JUTTexture(0x80, 0x40, GX_TF_RGBA8);
 
         JUTTexture** ppTexture = &_B80;
@@ -496,10 +497,9 @@ void MarioActor::initBlur() {
 
     for (u32 i = 0; i < 2; i++) {
         for (u32 j = 0; j < 8; j++) {
-            u32* buffers = &_A70[i * 8];
-            buffers[j] = reinterpret_cast< u32 >(new (0x20) Mtx[_B14]);
+            _A70[i * 8 + j] = new (0x20) Mtx[_B14];
 
-            Mtx* mtxBuffer = reinterpret_cast< Mtx* >(buffers[j]);
+            Mtx* mtxBuffer = _A70[i * 8 + j];
             for (u16 k = 0; k < _B14; k++) {
                 PSMTXIdentity(mtxBuffer[k]);
             }
@@ -717,7 +717,7 @@ void MarioActor::swapTexture(const char* pMaterialName, u8 texNo) const {
         dlSize = 0;
     }
 
-    model->_1C8[materialNo] = reinterpret_cast< u32 >(dl);
+    model->_1C8[materialNo] = dl;
     model->_1CC[materialNo] = dlSize;
 }
 
@@ -945,28 +945,28 @@ void MarioActor::drawReflectModel() const {
         _9A0->drawType0();
     }
 
-    u32* modelFlags = reinterpret_cast< u32* >(&model->mFlags);
-    *modelFlags = 0;
+    model->mFlags.clear();
 
     if (_A08 == 2) {
         GXSetZScaleOffset(1.0f, 0.00001f);
-        *modelFlags |= 0x20;
+        model->mFlags._5 = true;
         model->setDrawView(3);
         model->directDraw(nullptr);
-        *modelFlags = (*modelFlags & ~0x20) | 0x4;
+        model->mFlags._5 = false;
+        model->mFlags._2 = true;
         mDLchanger->addDL(model);
     } else {
         if (isUseScreenBox()) {
             mDLchanger->addDL(model);
         }
 
-        *modelFlags |= 0x800;
+        model->mFlags._B = true;
     }
 
     GXSetZScaleOffset(1.0f, 0.0f);
     model->setDrawView(3);
     model->directDraw(nullptr);
-    *modelFlags = 0;
+    model->mFlags.clear();
 
     MR::hideJoint(model, "HandR0");
     MR::hideJoint(model, "HandL0");
@@ -1001,8 +1001,7 @@ void MarioActor::drawModelBlur() const {
         return;
     }
 
-    u32* flags = reinterpret_cast< u32* >(&model->mFlags);
-    *flags |= 0x1000;
+    model->mFlags._C = true;
 
     Mtx inv;
     PSMTXInverse(const_cast< TMtx34f& >(_AB0).toMtxPtr(), inv);
@@ -1015,20 +1014,20 @@ void MarioActor::drawModelBlur() const {
             for (u16 joint = 0; joint < getModelData()->getJointNum(); joint++) {
                 const u32 prevBuffer = idx + (static_cast< u32 >(1 - _B10) << 3);
                 const u32 currBuffer = idx + (static_cast< u32 >(_B10) << 3);
-                Mtx* src = reinterpret_cast< Mtx* >(_A70[prevBuffer]);
-                Mtx* dst = reinterpret_cast< Mtx* >(_A70[currBuffer]);
+                Mtx* src = _A70[prevBuffer];
+                Mtx* dst = _A70[currBuffer];
                 PSMTXConcat(inv, src[joint], dst[joint]);
             }
         }
 
         const u32 jointCount = getModelData()->getJointNum();
-        DCStoreRange(reinterpret_cast< void* >(_A70[idx + (static_cast< u32 >(_B10) << 3)]), jointCount * sizeof(Mtx));
+        DCStoreRange(_A70[idx + (static_cast< u32 >(_B10) << 3)], jointCount * sizeof(Mtx));
 
-        reinterpret_cast< DLchanger* >(_94[idx + ((i - 1) << 3)])->addDL(model);
+        _94[idx + ((i - 1) << 3)]->addDL(model);
         model->directDraw(nullptr);
     }
 
-    *flags &= ~0x1000;
+    model->mFlags._C = false;
 }
 
 void MarioActor::drawMarioModel() const {
@@ -1173,7 +1172,7 @@ void J3DModelX::swapDrawBuffer(u32 drawBuffer) {
 }
 
 void DLchanger::addDL(J3DModelX* pModel) {
-    DLchangerForAddDL* changer = reinterpret_cast< DLchangerForAddDL* >(this);
+    DLchangerForAddDL* changer = static_cast< DLchangerForAddDL* >(this);
     DLBufferInfoForAddDL* buffer = &changer->mBuffers[changer->mCurrentBuffer];
     pModel->setDynamicDL(buffer->mDL, buffer->mSize);
 }

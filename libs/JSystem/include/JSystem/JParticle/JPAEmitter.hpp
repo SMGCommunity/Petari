@@ -6,6 +6,7 @@
 #include "JSystem/JParticle/JPAMath.hpp"
 #include "JSystem/JParticle/JPARandom.hpp"
 #include "JSystem/JParticle/JPAResource.hpp"
+#include "JSystem/JParticle/JPAEmitterCallBack.hpp"
 #include "JSystem/JSupport/JSUList.hpp"
 #include <revolution/types.h>
 #include <stdint.h>
@@ -63,18 +64,6 @@ struct JPAEmitterWorkData {
     /* 0x214 */ s16 mClrKeyFrame;
     /* 0x216 */ u8 mDrawCount;
 };
-
-#ifndef JPA_EMITTER_CALLBACK_DEFINED
-#define JPA_EMITTER_CALLBACK_DEFINED
-class JPAEmitterCallBack {
-public:
-    virtual ~JPAEmitterCallBack() = 0;
-    virtual void execute(JPABaseEmitter*) {}
-    virtual void executeAfter(JPABaseEmitter*) {}
-    virtual void draw(JPABaseEmitter*) {}
-    virtual void drawAfter(JPABaseEmitter*) {}
-};
-#endif
 
 enum {
     JPAEmtrStts_StopEmit = 0x01,
