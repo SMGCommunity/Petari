@@ -2,8 +2,11 @@
 
 #include <JSystem/JGeometry/TMatrix.hpp>
 
+#include "Game/Boss/TombSpider.hpp"
+#include "Game/Boss/TombSpiderGland.hpp"
+
 class TombSpider;
-class TombSpiderGland;
+// class TombSpiderGland;
 class TombSpiderVitalSpot;
 class TombSpiderAcid;
 class TombSpiderThreadAttacher;

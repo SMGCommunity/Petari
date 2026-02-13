@@ -79,7 +79,7 @@ void Mario::checkStep() {
             TVec3f horizontal;
             MR::vecKillElement(stepOffset, negGravity, &horizontal);
 
-            if (PSVECMag(&horizontal) < 20.0f) {
+            if (horizontal.length() < 20.0f) {
                 if (__fabsf(frontDot) < 0.3926991f) {
                     TVec3f negGravity2 = -*getGravityVec();
                     TVec3f stepOffset2 = _50C - mPosition;
@@ -167,8 +167,8 @@ void Mario::startStep(const TVec3f& rVec) {
             return;
         }
 
-        MtxPtr prevBase = reinterpret_cast<MtxPtr>(_4D8->getPrevBaseMtx());
-        MtxPtr base = reinterpret_cast<MtxPtr>(_4D8->getBaseMtx());
+        MtxPtr prevBase = _4D8->getPrevBaseMtx()->toMtxPtr();
+        MtxPtr base = _4D8->getBaseMtx()->toMtxPtr();
 
         if (!MR::isSameMtx(base, prevBase) && _4D8->mSensor != mGroundPolygon->mSensor) {
             return;

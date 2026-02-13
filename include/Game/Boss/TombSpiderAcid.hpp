@@ -17,11 +17,11 @@ public:
     void updateGroundMtx(TPos3f*, MtxPtr);
 
     /* 0x00 */ TombSpider* mParent;
-    /* 0x04 */ bool mIsGlandEnabled;
+    /* 0x04 */ bool mIsGlandReady;
     /* 0x05 */ bool mIsEmitOn;
-    /* 0x06 */ bool mIsInactive;
-    /* 0x08 */ s32 mEmitTimer;
-    /* 0x0C */ TPos3f mSpiderEffectMtx;
+    /* 0x06 */ bool mIsActive;
+    /* 0x08 */ s32 mStateChangeTimer;
+    /* 0x0C */ TPos3f mMouthEffectMtx;
     /* 0x3C */ TPos3f mGlandFrontLEffectMtx;
     /* 0x6C */ TPos3f mGlandFrontREffectMtx;
     /* 0x9C */ TPos3f mGlandRearLEffectMtx;

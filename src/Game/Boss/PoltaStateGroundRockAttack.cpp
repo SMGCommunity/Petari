@@ -59,7 +59,7 @@ void PoltaStateGroundRockAttack::exeGenerate() {
         if (v14 > 0 && !v16) {
             _14 = !_14;
         }
-        PoltaFunction::appearGroundRock(getHost(), (800.0f + (400.0f * v16)), _14 ? 20.0f : -20.0f);
+        PoltaFunction::appearGroundRock(getHost(), (850.0f + (400.0f * v16)), _14 ? 20.0f : -20.0f);
     }
     if (MR::isGreaterStep(this, 15 * _10 + 90)) {
         setNerve(&NrvPoltaStateGenerateBombTeresa::PoltaStateGroundRockAttackNrvEnd::sInstance);
@@ -75,4 +75,5 @@ void PoltaStateGroundRockAttack::exeEnd() {
     }
 }
 
-PoltaStateGroundRockAttack::~PoltaStateGroundRockAttack() {}
+PoltaStateGroundRockAttack::~PoltaStateGroundRockAttack() {
+}

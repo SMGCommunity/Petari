@@ -54,7 +54,8 @@ public:
         mMtxCalcAfterChildFunc = calcFunc;
     }
 
-    virtual ~JointControlDelegator() {}
+    virtual ~JointControlDelegator() {
+    }
 
     virtual bool calcJointMatrix(TPos3f* a1, const JointControllerInfo& a2) {
         if (mMtxCalcFunc != nullptr) {

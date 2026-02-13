@@ -149,7 +149,7 @@ bool MarioSlider::update() {
     calcGroundAccel();
 
     if (checkTrgA()) {
-        f32 v11 = (PSVECMag(&_14) / mActor->mConst->getTable()->mJumpFrontSpeed);
+        f32 v11 = (_14.length() / mActor->mConst->getTable()->mJumpFrontSpeed);
         getPlayer()->_278 = v11;
         getPlayer()->tryJump();
         return false;
@@ -159,7 +159,7 @@ bool MarioSlider::update() {
         _38 = (stickY * (1.0f - mActor->mConst->getTable()->mSliderBrakeIne)) + (_38 * mActor->mConst->getTable()->mSliderBrakeIne);
         MarioConstTable* tbl = mActor->mConst->getTable();
         _3C = (stickX * (1.0f - tbl->mSliderWeightIne)) + (_3C * tbl->mSliderWeightIne);
-        f32 v18 = (PSVECMag(&_14) - mActor->mConst->getTable()->mSliderBrakePow);
+        f32 v18 = (_14.length() - mActor->mConst->getTable()->mSliderBrakePow);
 
         if (v18 > 20.0f) {
             v18 = (v18 * (1.0f - (0.1f * _38)));
@@ -197,7 +197,7 @@ bool MarioSlider::update() {
             v40.scale(weightPow);
             _14 += v40;
             MR::vecKillElement(_14, getPlayer()->_368, &_14);
-            if (PSVECMag(&_14) > mActor->mConst->getTable()->mSliderMaxSpeed) {
+            if (_14.length() > mActor->mConst->getTable()->mSliderMaxSpeed) {
                 _14.setLength(mActor->mConst->getTable()->mSliderMaxSpeed);
             }
 

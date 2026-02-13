@@ -296,7 +296,7 @@ namespace JGeometry {
             return ret;
         }
 
-        void addInLine(const TVec3& op) {
+        void addInline(const TVec3& op) {
             JMathInlineVEC::PSVECAdd(this, &op, this);
         }
 
@@ -361,6 +361,10 @@ namespace JGeometry {
 
         inline void negateInternal() {
             JGeometry::negateInternal(&this->x, &this->x);
+        }
+
+        inline void negateOtherInternal(const TVec3< f32 >& a) {
+            JGeometry::negateInternal(&a.x, &this->x);
         }
 
         TVec3 operator-(const TVec3& op) const {
@@ -441,7 +445,11 @@ namespace JGeometry {
             JMathInlineVEC::PSVECSubtract(this, &b, this);
         }
 
-        void sub(const TVec3&, const TVec3&);
+        void sub(const TVec3& a, const TVec3& b);
+
+        inline void subInline(const TVec3< f32 >& a, const TVec3< f32 >& b) {
+            JMathInlineVEC::PSVECSubtract(&a, &b, this);
+        }
 
         // Required for multiple objects to match?
         inline void multPS(TVec3< f32 >& a, TVec3< f32 >& b) {
@@ -497,11 +505,10 @@ namespace JGeometry {
         void add(const TVec3< f32 >& b) NO_INLINE {
             JMathInlineVEC::PSVECAdd(this, &b, this);
         }
-        inline void addInline(const TVec3< f32 >& b) {
-            JMathInlineVEC::PSVECAdd(this, &b, this);
-        }
 
-        void add(const TVec3&, const TVec3&);
+        void add(const TVec3& a, const TVec3& b) {
+            JMathInlineVEC::PSVECAdd(&a, &b, this);
+        }
 
         f32 dot(const TVec3&) const;
 

@@ -757,14 +757,14 @@ Game/Boss/DinoPackunBattleVs2Lv1.cpp:
 Game/Boss/DinoPackunDemo.cpp:
 	.text       start:0x80049968 end:0x8004A330
 	.ctors      start:0x8052E8A4 end:0x8052E8A8
-	.data       start:0x805693D0 end:0x80569678
+	.data       start:0x805693D0 end:0x80569628
 	.sbss       start:0x806B31C8 end:0x806B31E0
 	.sdata2     start:0x806B8580 end:0x806B8590
 
 Game/Boss/DinoPackunDemoPosition.cpp:
 	.text       start:0x8004A330 end:0x8004A584
 	.ctors      start:0x8052E8A8 end:0x8052E8AC
-	.data       start:0x80569678 end:0x80569700
+	.data       start:0x80569628 end:0x80569700
 	.sbss       start:0x806B31E0 end:0x806B31E8
 
 Game/Boss/DinoPackunEggShell.cpp:
@@ -787,14 +787,14 @@ Game/Boss/DinoPackunSequencer.cpp:
 Game/Boss/DinoPackunStateAwake.cpp:
 	.text       start:0x8004B13C end:0x8004B318
 	.ctors      start:0x8052E8B4 end:0x8052E8B8
-	.data       start:0x80569970 end:0x80569BE8
+	.data       start:0x80569970 end:0x80569A08
 	.sbss       start:0x806B31F8 end:0x806B3200
 	.sdata2     start:0x806B85B0 end:0x806B85C0
 
 Game/Boss/DinoPackunStateDamage.cpp:
 	.text       start:0x8004B318 end:0x8004BDAC
 	.ctors      start:0x8052E8B8 end:0x8052E8BC
-	.data       start:0x80569BE8 end:0x80569D20
+	.data       start:0x80569A08 end:0x80569D20
 	.bss        start:0x8060A690 end:0x8060A6A8
 	.sbss       start:0x806B3200 end:0x806B3218
 	.sdata2     start:0x806B85C0 end:0x806B85E0
@@ -1241,7 +1241,7 @@ Game/Boss/PoltaStateAttackGround.cpp:
 Game/Boss/PoltaStateGenerateRock.cpp:
 	.text       start:0x800751D0 end:0x800755E8
 	.ctors      start:0x8052E978 end:0x8052E97C
-	.rodata     start:0x80531310 end:0x80531430
+	.rodata     start:0x80531310 end:0x80531428
 	.data       start:0x80570628 end:0x805706D0
 	.sbss       start:0x806B3730 end:0x806B3740
 	.sdata2     start:0x806B8C48 end:0x806B8C58
@@ -1249,6 +1249,7 @@ Game/Boss/PoltaStateGenerateRock.cpp:
 Game/Boss/PoltaStateGroundRockAttack.cpp:
 	.text       start:0x800755E8 end:0x80075A10
 	.ctors      start:0x8052E97C end:0x8052E980
+	.rodata     start:0x80531428 end:0x80531430
 	.data       start:0x805706D0 end:0x80570800
 	.sbss       start:0x806B3740 end:0x806B3750
 	.sdata2     start:0x806B8C58 end:0x806B8C68

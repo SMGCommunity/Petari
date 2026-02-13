@@ -13,7 +13,7 @@ namespace JGeometry {
         void set(const SMatrix34C< T >& rSrc);
         void set(T rxx, T ryx, T rzx, T tx, T rxy, T ryy, T rzy, T ty, T rxz, T ryz, T rzz, T tz);
 
-        void scale(T);
+        void scale(T scale);
 
         inline void setInline(const SMatrix34C< T >& rSrc) {
 #ifdef __MWERKS__
@@ -100,6 +100,18 @@ namespace JGeometry {
             }
             ;
 #endif
+        }
+
+        inline void scaleInline(T scalar) {
+            mMtx[0][0] *= scalar;
+            mMtx[0][1] *= scalar;
+            mMtx[0][2] *= scalar;
+            mMtx[1][0] *= scalar;
+            mMtx[1][1] *= scalar;
+            mMtx[1][2] *= scalar;
+            mMtx[2][0] *= scalar;
+            mMtx[2][1] *= scalar;
+            mMtx[2][2] *= scalar;
         }
 
         inline Mtx* toMtx() {

@@ -26,8 +26,9 @@ class ActorStateBase : public ActorStateBaseInterface {
 public:
     ActorStateBase(const char* pName, T* pActor) : ActorStateBaseInterface(pName), mHost(pActor) {}
 
-    virtual ~ActorStateBase() NO_INLINE {}
+    virtual ~ActorStateBase() {}
 
-    inline T* getHost() const { return  mHost;}
-    T* mHost;
+    inline T* getHost() const { return mHost; }
+    
+    /* 0xC */ T* mHost;
 };

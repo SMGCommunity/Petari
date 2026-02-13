@@ -1,17 +1,18 @@
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Player/Mario.hpp"
 #include "Game/Player/MarioActor.hpp"
-#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util/AreaObjUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/MtxUtil.hpp"
 #include "revolution/mtx.h"
+
 
 void Mario::check2DMode() {
     mMovementStates._37 = false;
     _10._15 = false;
 
     AreaObj* area = MR::getAreaObj("PlaneModeCube", mPosition);
-    if (area) {
+    if (area != nullptr) {
         mMovementStates._37 = true;
 
         TVec3f rotate;
@@ -25,7 +26,7 @@ void Mario::check2DMode() {
         }
     } else {
         area = MR::getAreaObj("PlaneCircularModeCube", mPosition);
-        if (area) {
+        if (area != nullptr) {
             TVec3f rotate;
             MR::calcCubeRotate(area, &rotate);
             PSMTXCopy(MR::tmpMtxRotYDeg(rotate.y), _F4);
@@ -41,7 +42,7 @@ void Mario::check2DMode() {
 
     mMovementStates._3A = false;
     area = MR::getAreaObj("PipeModeCube", mPosition);
-    if (area) {
+    if (area != nullptr) {
         set25Dmode(area);
     }
 }
@@ -89,7 +90,7 @@ void Mario::calcMoveDir2D(f32 a1, f32 a2, TVec3f* pOut) {
     TVec3f stack_8(stack_5C * a2);
     TVec3f stack_14(stack_68 * a1);
     TVec3f stack_20(stack_14);
-    stack_20.addInLine(stack_8);
+    stack_20.addInline(stack_8);
     *pOut = stack_20;
 }
 
@@ -325,7 +326,8 @@ void Mario::beforeJumping2D() {
     _628 = _660;
 }
 
-void Mario::afterLanding2D() {}
+void Mario::afterLanding2D() {
+}
 
 void Mario::clear2DStick() {
     _60E = 0;
