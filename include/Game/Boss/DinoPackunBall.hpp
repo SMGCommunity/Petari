@@ -31,7 +31,7 @@ public:
     void exeRebound();
     void exeLock();
 
-    TMtx34f _D4;
+    TPos3f _D4;
     TQuat4f _104;
     HitSensor* mWeakSensor;  // 0x114
     TVec3f _118;

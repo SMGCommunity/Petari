@@ -21,10 +21,10 @@ namespace TombSpiderFunction {
 
     MtxPtr getMtxEye(const TombSpider*);
     MtxPtr getMtxMouth(const TombSpider*);
-    MtxPtr getMtxFrontL(const TombSpider*);
-    MtxPtr getMtxFrontR(const TombSpider*);
-    MtxPtr getMtxRearL(const TombSpider*);
-    MtxPtr getMtxRearR(const TombSpider*);
+    MtxPtr getMtxGlandFrontL(const TombSpider*);
+    MtxPtr getMtxGlandFrontR(const TombSpider*);
+    MtxPtr getMtxGlandRearL(const TombSpider*);
+    MtxPtr getMtxGlandRearR(const TombSpider*);
 
     void appearThreadAttacherAll(TombSpider*);
     void killThreadAttacherAll(TombSpider*);

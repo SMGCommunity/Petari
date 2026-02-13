@@ -39,7 +39,8 @@ namespace {
 };  // namespace
 
 TamakoroTutorial::TamakoroTutorial(const char* pName)
-    : LiveActor(pName), mHost(nullptr), mTalkCtrl(nullptr), mTalkCtrlAutomatic(nullptr), mPadAccel(0.0f, 0.0f, 0.0f), _A4(false), _A5(false) {}
+    : LiveActor(pName), mHost(nullptr), mTalkCtrl(nullptr), mTalkCtrlAutomatic(nullptr), mPadAccel(0.0f, 0.0f, 0.0f), _A4(false), _A5(false) {
+}
 
 void TamakoroTutorial::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
@@ -364,7 +365,7 @@ void TamakoroTutorial::updateHitSensor(HitSensor* pSensor) {
     TVec3f up(upVec);
     up.mult(dot);
 
-    pSensor->mPosition.addInLine(up);
+    pSensor->mPosition.addInline(up);
 }
 
 void TamakoroTutorial::startTimerSound(s32 step, s32 param2) {

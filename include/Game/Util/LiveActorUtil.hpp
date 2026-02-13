@@ -269,6 +269,8 @@ namespace MR {
 
     void setBckFrameAtRandom(const LiveActor*);
 
+    void startBtkAndSetFrameAndStop(const LiveActor*, const char*, f32);
+
     void setBaseTRMtx(LiveActor*, const TPos3f&);
 
     void setBpkFrame(const LiveActor*, f32);

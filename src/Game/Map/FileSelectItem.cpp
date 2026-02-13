@@ -8,6 +8,7 @@
 #include "Game/NPC/MiiFaceRecipe.hpp"
 #include "Game/Screen/FileSelectNumber.hpp"
 #include "Game/Util/GamePadUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
 #include "RFL_Types.h"
@@ -384,164 +385,11 @@ void FileSelectItem::updatePointing() {
 // still quite a ways to go with this one.
 void FileSelectItem::updateRotate() {
     if (!mIsInvalidRotate) {
-        if (_168 <= 0) {
-            if (MR::isStarPointerInScreen(0)) {
-                TVec3f v35(0.0f, 900.0f, 0.0f);
-                TVec3f v43(mPosition);
-                JMathInlineVEC::PSVECAdd(&v43, &v35, &v43);
-                TVec2f* screenPos = MR::getStarPointerScreenPosition(0);
-                f32 x = screenPos->x;
-                f32 y = screenPos->y;
-
-                if (_154) {
-                    _158 = *screenPos;
-                    _154 = 0;
-                    _156 = _155;
-                }
-
-                TVec3f v42 = MR::getCamPos();  // 0x100
-                TVec3f stack_F4 = v43 - v42;
-
-                f32 v11 = (900.0f + PSVECMag(stack_F4));
-                if (JGeometry::TUtil< f32 >::sqrt(screenPos->squareDist(_158)) < 2.0f) {
-                    TVec3f v40;
-                    MR::calcWorldPositionFromScreen(&v40, *screenPos, v11);
-                    TVec3f v39 = v40 - v42;
-                    MR::normalize(&v39);
-                    TVec3f v38;
-                    PSVECCrossProduct(stack_F4, &v39, &v38);
-
-                    if (PSVECMag(&v38) < 900.0f) {
-                        _155 = 1;
-                    }
-                } else {
-                    TVec3f v37;
-                    MR::calcWorldPositionFromScreen(&v37, *screenPos, v11);
-                    TVec3f v36;
-                    MR::calcWorldPositionFromScreen(&v36, _158, v11);
-                    TVec3f v44 = v42;  // v44 = 0x118 / v42 = 0x100
-                    TVec3f v45 = v37;  // v45 = 0x124 / v37 = 0xC4
-                    TVec3f v46 = v36;  // v46 = 0x130 / v36 = 0xB8
-
-                    TVec3f v26 = v37 - v42;
-
-                    TVec3f v47 = v26;  // v47 = 0x13C / v26 = 0x40
-                    TVec3f v27 = v36 - v37;
-
-                    TVec3f v48 = v27;  // v48 = 0x148 / v27 = 0x4C
-
-                    TVec3f v28 = v42 - v36;
-                    TVec3f v49 = v28;
-                    TVec3f v50;  // 0x160
-                    PSVECCrossProduct(&v48, &v47, &v50);
-                    MR::normalize(&v50);
-                    TVec3f v24 = -v43;
-
-                    f32 v12 = v50.dot(v24);
-
-                    bool v14;
-
-                    if (__fabsf(v12) < 900.0f) {
-                        TVec3f v30(v50);
-                        v30.scale(v12);
-                        TVec3f v29 = -v43;
-                        TVec3f v25 = -v29;
-                        TVec3f v33 = -v25;
-                        TVec3f v34;
-                        PSVECCrossProduct(&v33, &v47, &v34);
-
-                        if (v34.dot(v50) >= 0.0f) {
-                            TVec3f v32 = -v25;
-                            PSVECCrossProduct(&v32, &v48, &v34);
-
-                            if (v34.dot(v50) >= 0.0f) {
-                                TVec3f v31 = -v25;
-                                PSVECCrossProduct(&v31, &v49, &v34);
-
-                                v14 = v34.dot(v50) >= 0.0f;
-                            } else {
-                                v14 = 0;
-                            }
-                        } else {
-                            v14 = 0;
-                        }
-
-                        bool v13;
-
-                        if (v14) {
-                            v13 = 1;
-                        } else if (PSVECDistance(&v44, &v43) > 900.0f) {
-                            if (PSVECDistance(&v45, &v43) > 900.0f) {
-                                if (PSVECDistance(&v46, &v43) > 900.0f) {
-                                    if (checkCollisionOfPointAndCylinder(v43, v44, v47, 900.0f)) {
-                                        v13 = 1;
-                                    } else if (checkCollisionOfPointAndCylinder(v43, v45, v48, 900.0f)) {
-                                        v13 = 1;
-                                    } else {
-                                        v13 = checkCollisionOfPointAndCylinder(v43, v46, v49, 900.0f);
-                                    }
-                                } else {
-                                    v13 = 1;
-                                }
-                            } else {
-                                v13 = 1;
-                            }
-                        } else {
-                            v13 = 0;
-                        }
-
-                        if (v13) {
-                            _155 = 1;
-                        }
-                    }
-                }
-
-                if (_155) {
-                    f32 v15 = -25.0f;
-                    f32 v21 = x - _158.x;
-                    f32 v20 = y - _158.y;
-                    f32 v16 = (_160 + (0.029f * v21) / mScale.x);
-                    _160 += (0.029f * v21) / mScale.x;
-
-                    if (v16 >= -25.0f) {
-                        v15 = 25.0f;
-
-                        if (v16 <= 25.0f) {
-                            v15 = v16;
-                        }
-                    }
-
-                    _160 = v15;
-                }
-
-                _156 = _155;
-                _158 = *screenPos;
-            } else {
-                _154 = 1;
-            }
-
-            f32 v17 = (_160 * 0.98f);
-            _160 *= 0.98f;
-
-            if (v17 >= 0.0f && v17 < 0.5f) {
-                _160 = 0.5f;
-            }
-
-            f32 v18 = _160;
-
-            if (v18 < 0.0f && v18 > -0.5f) {
-                _160 = -0.5f;
-            }
-
-            f32 v19 = MR::repeat(mRotation.y + _160, 360.0f, 0.0f);
-            _155 = 0;
-            mRotation.y = 0.0f + v19;
-        } else {
-            s32 v3 = _16C + 1;
+        if (_168 > 0) {
             _160 = 0.0f;
-            _16C = v3;
 
-            f32 v6 = ((v3 / (_168) * (v3 / _168)));
+            f32 v6 = (f32)++_16C / (_168);
+            v6 *= v6;
             if (v6 > 1.0f) {
                 v6 = 1.0f;
             }
@@ -550,16 +398,154 @@ void FileSelectItem::updateRotate() {
                 v6 = 0.0f;
             }
 
-            if (v3 >= _168) {
+            if (_16C >= _168) {
                 _16C = 0;
                 _168 = 0;
             }
 
-            f32 v7 = fmod(360.0 + (mRotation.y - -180.0f), 360.0);
-            mRotation.y = (-180.0f + v7) - ((-180.0f + v7) * v6);
+            mRotation.y = MR::repeat(mRotation.y, -180.0f, 360.0f);
             mBlinkCtrl->open();
             mBlinkCtrl->setNerve(&FileSelectItemSub::BlinkControllerNrvOpen::sInstance);
+        } else if (MR::isStarPointerInScreen(0)) {
+            TVec3f v35(0.0f, 900.0f, 0.0f);
+            TVec3f v43(mPosition);
+            JMathInlineVEC::PSVECAdd(&v43, &v35, &v43);
+            TVec2f screenPos(*MR::getStarPointerScreenPosition(0));
+
+            if (_154) {
+                _158 = screenPos;
+                _156 = _155;
+                _154 = 0;
+            }
+
+            TVec3f v42 = MR::getCamPos();  // 0x100
+            TVec3f stack_F4 = v43 - v42;
+
+            f32 v11 = (900.0f + stack_F4.length());
+            if (JGeometry::TUtil< f32 >::sqrt(screenPos.squareDist(_158)) < 2.0f) {
+                TVec3f v40;
+                MR::calcWorldPositionFromScreen(&v40, screenPos, v11);
+                TVec3f v39 = v40 - v42;
+                MR::normalize(&v39);
+                TVec3f v38;
+                PSVECCrossProduct(stack_F4, &v39, &v38);
+
+                if (v38.length() < 900.0f) {
+                    _155 = 1;
+                }
+            } else {
+                TVec3f v37;
+                MR::calcWorldPositionFromScreen(&v37, screenPos, v11);
+                TVec3f v36;
+                MR::calcWorldPositionFromScreen(&v36, _158, v11);
+                TVec3f v44;
+                v44 = v42;  // v44 = 0x118 / v42 = 0x100
+                TVec3f v45;
+                v45 = v37;  // v45 = 0x124 / v37 = 0xC4
+                TVec3f v46;
+                v46 = v36;  // v46 = 0x130 / v36 = 0xB8
+
+                TVec3f v47;
+                v47 = v37 - v42;  // v47 = 0x13C / v26 = 0x40
+
+                TVec3f v48;
+                v48 = v36 - v37;  // v48 = 0x148 / v27 = 0x4C
+
+                TVec3f v49;
+                v49 = v42 - v36;
+                TVec3f v50;  // 0x160
+                PSVECCrossProduct(&v48, &v47, &v50);
+                MR::normalize(&v50);
+
+                f32 v12 = v50.dot(v43 - v42);
+
+                bool v14;
+                bool v13;
+
+                if (__fabsf(v12) >= 900.0f) {
+                    v13 = false;
+                } else {
+                    TVec3f v30(v50);
+                    v30.scale(v12);
+                    TVec3f v29;
+                    v29 = v43 - v30;
+                    TVec3f v25 = v29 - v44;
+                    TVec3f v34;
+                    PSVECCrossProduct(&v25, &v47, &v34);
+
+                    if (v34.dot(v50) < 0.0f) {
+                        v14 = 0;
+                    } else {
+                        TVec3f v32 = v25 - v45;
+                        PSVECCrossProduct(&v32, &v48, &v34);
+
+                        if (v34.dot(v50) < 0.0f) {
+                            v14 = 0;
+                        } else {
+                            TVec3f v31 = v25 - v46;
+                            PSVECCrossProduct(&v31, &v49, &v34);
+
+                            v14 = !(v34.dot(v50) < 0.0f);
+                        }
+                    }
+                    if (v14) {
+                        v13 = 1;
+                    } else if (PSVECDistance(&v44, &v43) <= 900.0f) {
+                        v13 = 1;
+                    } else if (PSVECDistance(&v45, &v43) <= 900.0f) {
+                        v13 = 1;
+                    } else if (PSVECDistance(&v46, &v43) <= 900.0f) {
+                        v13 = 1;
+                    } else if (checkCollisionOfPointAndCylinder(v43, v44, v47, 900.0f)) {
+                        v13 = 1;
+                    } else if (checkCollisionOfPointAndCylinder(v43, v45, v48, 900.0f)) {
+                        v13 = 1;
+                    } else {
+                        v13 = checkCollisionOfPointAndCylinder(v43, v46, v49, 900.0f);
+                    }
+                }
+
+                if (v13) {
+                    _155 = 1;
+                }
+            }
+
+            if (_155) {
+                f32 v15 = -25.0f;
+                f32 v21 = screenPos.x - _158.x;
+                f32 v20 = screenPos.y - _158.y;
+                f32 v16 = (_160 + (0.029f * v21) / mScale.x);
+                _160 += (0.029f * v21) / mScale.x;
+
+                if (v16 >= -25.0f) {
+                    v15 = 25.0f;
+
+                    if (v16 <= 25.0f) {
+                        v15 = v16;
+                    }
+                }
+
+                _160 = v15;
+            }
+
+            _156 = _155;
+            _158 = screenPos;
+        } else {
+            _154 = 1;
         }
+
+        _160 *= 0.98f;
+
+        if (_160 >= 0.0f && _160 < 0.5f) {
+            _160 = 0.5f;
+        }
+
+        if (_160 < 0.0f && _160 > -0.5f) {
+            _160 = -0.5f;
+        }
+
+        mRotation.y = MR::repeat(mRotation.y + _160, 0.0f, 360.0f);
+        _155 = 0;
     }
 }
 
