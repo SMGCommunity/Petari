@@ -19,6 +19,7 @@ public:
     void setDamageLast();
     void exePunched();
     void exePulled();
+    void exeTryPulledDemo();
     void exeEggBroken();
     void exeDamage();
     void exeLastDamage();

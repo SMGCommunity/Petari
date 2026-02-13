@@ -25,7 +25,7 @@ void Mario::checkBump() {
 
 void Mario::startBump(const TVec3f& rVec) {
     TVec3f v18 = getTrans() - rVec;
-    if (PSVECMag(&v18) >= 100.0f) {
+    if (v18.length() >= 100.0f) {
         return;
     }
 

@@ -40,8 +40,8 @@ public:
     /* 0x40 */ MtxPtr mMtxEye;
     /* 0x44 */ MtxPtr mMtxMouth;
     /* 0x48 */ MtxPtr mMtxHip;
-    /* 0x4C */ MtxPtr mMtxFrontL;
-    /* 0x50 */ MtxPtr mMtxFrontR;
-    /* 0x54 */ MtxPtr mMtxRearL;
-    /* 0x58 */ MtxPtr mMtxRearR;
+    /* 0x4C */ MtxPtr mMtxGlandFrontL;
+    /* 0x50 */ MtxPtr mMtxGlandFrontR;
+    /* 0x54 */ MtxPtr mMtxGlandRearL;
+    /* 0x58 */ MtxPtr mMtxGlandRearR;
 };

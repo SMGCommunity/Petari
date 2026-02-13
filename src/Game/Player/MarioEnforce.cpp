@@ -25,7 +25,7 @@ void Mario::checkEnforceMoveInner() {
         _184.zero();
     }
 
-    _8D4 = 0;
+    _8D4 = nullptr;
     bool same = moveRelativePositionWall() | moveRelativePosition(0);
     if (same) {
         if (MR::isSameMtx(*_45C->getBaseMtx(), *_45C->getPrevBaseMtx())) {
@@ -256,8 +256,8 @@ u32 Mario::moveRelativePosition(u32) {
 
     addVelocity(_184);
 
-    if (_8D4 == 0 || rTri->mSensor != mHang->mWallSensor) {
-        _8D4 = reinterpret_cast< u32 >(rTri->mSensor);
+    if (_8D4 == nullptr || rTri->mSensor != mHang->mWallSensor) {
+        _8D4 = rTri->mSensor;
     }
 
     if (!MR::isSameMtxRot(*rTri->getBaseMtx(), *rTri->getPrevBaseMtx())) {
@@ -314,8 +314,8 @@ u32 Mario::moveRelativePositionWall() {
             mMovementStates._18 = 1;
         }
 
-        if (_8D4 == 0 || tri->mSensor != mHang->mWallSensor) {
-            _8D4 = reinterpret_cast< u32 >(tri->mSensor);
+        if (_8D4 == nullptr || tri->mSensor != mHang->mWallSensor) {
+            _8D4 = tri->mSensor;
         }
 
         moved = 1;
@@ -408,7 +408,7 @@ void Mario::tryPushToVelocity() {
             pushVec += _35C;
             _350.zero();
             _35C.zero();
-            createAtField(true, PSVECMag(&pushVec));
+            createAtField(true, pushVec.length());
 
             for (u32 i = 0; i < _578; i++) {
                 TVec3f projected;
@@ -440,7 +440,7 @@ void Mario::tryPushToVelocity() {
             }
         }
 
-        _1C_WORD |= 0x400;
+        _1C._A = 1;
     }
 
     mVelocity += _35C;
@@ -524,7 +524,7 @@ void Mario::recordJumpEnforceMove() {
 // Mario::doEnforceJump
 void Mario::doEnforceJump(f32 param) {
     if (mJumpVec.dot(_184) < 0.0f) {
-        mDrawStates_WORD |= 0x10;
+        mDrawStates._4 = 1;
         initActiveJumpVec();
     }
 
@@ -550,7 +550,7 @@ void Mario::doEnforceJump(f32 param) {
 
 // Mario::pushedByWind
 void Mario::pushedByWind() {
-    f32 windMag = PSVECMag(&_91C);
+    f32 windMag = _91C.length();
     const char* noAnim = static_cast< const char* >(nullptr);
 
     TVec3f windDir(_91C);
@@ -591,7 +591,7 @@ void Mario::pushedByWind() {
         TVec3f add(windDir);
         add.scale(windMag);
         _350 += add;
-        _1C_WORD |= 0x400;
+        _1C._A = 1;
         changeAnimation("向かい風ふんばり", noAnim);
         return;
     }
@@ -604,7 +604,7 @@ void Mario::pushedByWind() {
         TVec3f add(scaled);
         add.scale(table->mWindForwardFriction);
         _350 += add;
-        _1C_WORD |= 0x400;
+        _1C._A = 1;
         stopAnimation("向かい風ふんばり", noAnim);
         stopAnimation("向かい風走り", noAnim);
         return;
@@ -633,7 +633,7 @@ void Mario::pushedByWind() {
 
     changeAnimation("向かい風走り", noAnim);
     _350 += final;
-    _1C_WORD |= 0x400;
+    _1C._A = 1;
 }
 
 namespace NrvMarioActor {

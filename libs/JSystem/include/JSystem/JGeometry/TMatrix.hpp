@@ -593,6 +593,34 @@ namespace JGeometry {
             this->mMtx[1][3] = a4.y;
             this->mMtx[2][3] = a4.z;
         }
+
+        inline void normalizeBasis() {
+            f32 scale = JGeometry::TUtil< f32 >::sqrt(
+                (this->mMtx[0][0] * this->mMtx[0][0]) + (this->mMtx[1][0] * this->mMtx[1][0]) + (this->mMtx[2][0] * this->mMtx[2][0]) +
+                (this->mMtx[0][1] * this->mMtx[0][1]) + (this->mMtx[1][1] * this->mMtx[1][1]) + (this->mMtx[2][1] * this->mMtx[2][1]) +
+                (this->mMtx[0][2] * this->mMtx[0][2]) + (this->mMtx[1][2] * this->mMtx[1][2]) + (this->mMtx[2][2] * this->mMtx[2][2]));
+
+            f32 invLenX = JGeometry::TUtil< f32 >::inv_sqrt((this->mMtx[0][0] * this->mMtx[0][0]) + (this->mMtx[1][0] * this->mMtx[1][0]) +
+                                                            (this->mMtx[2][0] * this->mMtx[2][0]));
+
+            this->mMtx[0][0] = invLenX * this->mMtx[0][0];
+            this->mMtx[1][0] = invLenX * this->mMtx[1][0];
+            this->mMtx[2][0] = invLenX * this->mMtx[2][0];
+
+            f32 invLenY = JGeometry::TUtil< f32 >::inv_sqrt((this->mMtx[0][1] * this->mMtx[0][1]) + (this->mMtx[1][1] * this->mMtx[1][1]) +
+                                                            (this->mMtx[2][1] * this->mMtx[2][1]));
+
+            this->mMtx[0][1] = invLenY * this->mMtx[0][1];
+            this->mMtx[1][1] = invLenY * this->mMtx[1][1];
+            this->mMtx[2][1] = invLenY * this->mMtx[2][1];
+
+            f32 invLenZ = JGeometry::TUtil< f32 >::inv_sqrt((this->mMtx[0][2] * this->mMtx[0][2]) + (this->mMtx[1][2] * this->mMtx[1][2]) +
+                                                            (this->mMtx[2][2] * this->mMtx[2][2]));
+
+            this->mMtx[0][2] = invLenZ * this->mMtx[0][2];
+            this->mMtx[1][2] = invLenZ * this->mMtx[1][2];
+            this->mMtx[2][2] = invLenZ * this->mMtx[2][2];
+        }
     };
 };  // namespace JGeometry
 

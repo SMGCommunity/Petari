@@ -14,9 +14,9 @@ void MarioActor::initBlackHoleOut() {
     Mtx rotation;
     TVec3f rotateAxis;
 
-    PSVECCrossProduct(&normalisedRelativeCameraPos, &normalisedRelativePos, &rotateAxis);
+    rotateAxis.cross(normalisedRelativeCameraPos, normalisedRelativePos);
 
-    f32 mag = PSVECMag(&mPosRelativeToBlackHole);
+    f32 mag = mPosRelativeToBlackHole.length();
     TVec3f killed;
     f32 flt = MR::vecKillElement(mCamPos - mPosition, mCamDirZ, &killed);
     flt *= mConst->getTable()->mBlackHoleFirstRadius;
@@ -87,7 +87,7 @@ void MarioActor::exeGameOverBlackHole2() {
     PSMTXMultVec(rotationMatrix, &mPosRelativeToBlackHole, &mPosRelativeToBlackHole);
 
     TVec3f camDirZNegate;
-    JMathInlineVEC::PSVECNegate(&mCamDirZ, &camDirZNegate);
+    camDirZNegate = -mCamDirZ;
     MR::vecBlendSphere(mBlackHoleRotateAxis, camDirZNegate, &mBlackHoleRotateAxis, 0.01f);
 
     f32 distChangeFactor = 180 - getNerveStep();
@@ -96,7 +96,7 @@ void MarioActor::exeGameOverBlackHole2() {
         distChangeFactor = 0.0f;
     }
 
-    f32 newDistToBlackHole = PSVECMag(&mPosRelativeToBlackHole) * distChangeFactor / (1 + distChangeFactor);
+    f32 newDistToBlackHole = mPosRelativeToBlackHole.length() * distChangeFactor / (1 + distChangeFactor);
 
     mPosRelativeToBlackHole.setLength(newDistToBlackHole);
 
