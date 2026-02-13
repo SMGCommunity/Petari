@@ -90,7 +90,7 @@ void Mario::calcMoveDir2D(f32 a1, f32 a2, TVec3f* pOut) {
     TVec3f stack_8(stack_5C * a2);
     TVec3f stack_14(stack_68 * a1);
     TVec3f stack_20(stack_14);
-    stack_20.addInLine(stack_8);
+    stack_20.addInline(stack_8);
     *pOut = stack_20;
 }
 
