@@ -41,6 +41,7 @@ class MarioWarp;
 class MarioTeresa;
 class MarioTalk;
 class MarioMove;
+class AreaObj;
 class HitInfo;
 class HitSensor;
 class Triangle;
@@ -261,13 +262,13 @@ public:
     void calcMoveDir2D(f32, f32, TVec3f*);
     void calcShadowDir2D(const TVec3f&, TVec3f*);
     void stick2Dadjust(f32&, f32&);
-    void set2DMode(bool);
+    void set2Dmode(bool);
     void beforeJumping2D();
     void afterLanding2D();
     void clear2DStick();
 
-    void set25DMode(const AreaObj*);
-    void update25DMode();
+    void set25Dmode(const AreaObj*);
+    void update25Dmode();
     void updateAxisFromMode(u8);
     void calcMoveDir25D(f32, f32, TVec3f*);
 

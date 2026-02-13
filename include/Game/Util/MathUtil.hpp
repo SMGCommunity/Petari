@@ -450,9 +450,17 @@ namespace MR {
 
     void clampBoth(f32* value, f32 min, f32 max);
 
-    inline f32 repeat(f32 value, f32 min, f32 max) { return min + (f32)fmod(max + (value - min), max); }
+    inline f32 repeat(f32 value, f32 min, f32 max) {
+        return min + (f32)fmod(max + (value - min), max);
+    }
 
-    inline void repeatDegree(f32* value) { *value = repeat(*value, 0.0f, 360.0f); }
+    inline void repeatDegree(f32* value) {
+        *value = repeat(*value, 0.0f, 360.0f);
+    }
+
+    inline f32 repeatDegree(f32 value) {
+        return repeat(value, 0.0f, 360.0f);
+    }
 
 #ifdef __MWERKS__
     inline f32 frsqrte(register f32 x) {

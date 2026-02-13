@@ -1,5 +1,7 @@
 #include "Game/Player/Mario.hpp"
+#include "Game/Player/MarioActor.hpp"
 #include "Game/Player/MarioSwim.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 
 bool Mario::checkWaterDamage() {
     if (mMovementStates._1B) {
@@ -14,3 +16,16 @@ bool Mario::checkWaterDamage() {
         return false;
     }
 }
+
+namespace NrvMarioActor {
+    INIT_NERVE(MarioActorNrvWait);
+    INIT_NERVE(MarioActorNrvGameOver);
+    INIT_NERVE(MarioActorNrvGameOverAbyss);
+    INIT_NERVE(MarioActorNrvGameOverAbyss2);
+    INIT_NERVE(MarioActorNrvGameOverFire);
+    INIT_NERVE(MarioActorNrvGameOverBlackHole);
+    INIT_NERVE(MarioActorNrvGameOverNonStop);
+    INIT_NERVE(MarioActorNrvGameOverSink);
+    INIT_NERVE(MarioActorNrvTimeWait);
+    INIT_NERVE(MarioActorNrvNoRush);
+};  // namespace NrvMarioActor

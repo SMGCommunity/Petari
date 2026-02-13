@@ -4,6 +4,9 @@
 #include "Game/Player/Mario.hpp"
 #include "Game/Player/MarioActor.hpp"
 #include "Game/Player/MarioConst.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/MtxUtil.hpp"
+#include "revolution/mtx.h"
 
 void Mario::checkBeeStick() {
     return;
@@ -45,7 +48,7 @@ bool MarioStick::startJump() {
 }
 
 bool MarioStick::postureCtrl(MtxPtr mtx) {
-    MR::makeMtxFrontUp((TPos3f*)mtx, _6C, _78);
+    MR::makeMtxFrontUp(reinterpret_cast<TPos3f*>(mtx), _6C, _78);
     return true;
 }
 
@@ -64,8 +67,7 @@ bool MarioStick::setStickSensor(const HitSensor* pSensor) {
 
     TVec3f v12;
     MR::getRotatedAxisY(&v12, pSensor->mHost->mRotation);
-    TVec3f v11;
-    v11 = -mActor->_2A0;
+    TVec3f v11(mActor->_2A0 - pSensor->mPosition);
     MR::normalizeOrZero(&v11);
 
     if (v12.dot(v11) < mActor->getConst().getTable()->mBeeStickAngleLimit) {
@@ -77,7 +79,11 @@ bool MarioStick::setStickSensor(const HitSensor* pSensor) {
     }
 
     v11.setLength(pSensor->mRadius);
-    _14 = pSensor->mPosition + (v11 * 0.89999998f);
+    TVec3f v8(v11);
+    v8.scale(0.9f);
+    TVec3f v14(pSensor->mPosition);
+    v14 += v8;
+    _14 = v14;
     getPlayer()->setTrans(_14, "Stick");
     clearVelocity();
     MR::normalize(&v11);
@@ -103,7 +109,67 @@ bool MarioStick::start() {
     return true;
 }
 
-// MarioStick::update
+bool MarioStick::update() {
+    getPlayer()->setTrans(_14, nullptr);
+
+    if (checkTrgA()) {
+        if (!isAnimationRun("ハチ壁くっつき")) {
+            if (startJump()) {
+                return false;
+            }
+        }
+    }
+
+    Mario* player = getPlayer();
+    Mtx rotMtx;
+    PSMTXRotAxisRad(rotMtx, &player->mSideVec, 0.01f * getStickY());
+
+    TVec3f stack_2C(_14 - _38);
+    PSMTXMultVec(rotMtx, &stack_2C, &stack_2C);
+
+    if (MR::diffAngleAbs(stack_2C, _2C) < 1.308997f) {
+        TVec3f stack_20(-stack_2C);
+        if (!MR::normalizeOrZero(&stack_20)) {
+            _6C = stack_20;
+        }
+
+        getPlayer()->setFrontVecKeepSide(stack_20);
+    }
+
+    const f32 angle = 0.01f * -getStickX();
+    const TVec3f* gravityVec = getPlayer()->getGravityVec();
+    PSMTXRotAxisRad(rotMtx, gravityVec, angle);
+    PSMTXMultVec(rotMtx, &stack_2C, &stack_2C);
+
+    if (getStickP() > 0.0f) {
+        changeAnimation("ハチ壁移動", static_cast<const char*>(nullptr));
+    } else {
+        stopAnimation("ハチ壁移動", static_cast<const char*>(nullptr));
+    }
+
+    if (MR::diffAngleAbs(stack_2C, _2C) < 1.308997f) {
+        TVec3f stack_14(-stack_2C);
+        if (!MR::normalizeOrZero(&stack_14)) {
+            _6C = stack_14;
+        }
+
+        getPlayer()->setFrontVecKeepUp(stack_14);
+        stack_2C.setLength(_44);
+        TVec3f stack_8(stack_2C);
+        stack_8 += _38;
+        _14 = stack_8;
+    }
+
+    _6C = getFrontVec();
+    _78 = getPlayer()->mHeadVec;
+
+    getPlayer()->incAirWalkTimer();
+    getPlayer()->incAirWalkTimer();
+    getPlayer()->incAirWalkTimer();
+    getPlayer()->incAirWalkTimer();
+
+    return true;
+}
 
 bool MarioStick::close() {
     stopAnimation("ハチ壁くっつき", "落下");
@@ -115,8 +181,22 @@ bool MarioStick::close() {
     getPlayer()->mMovementStates._38 = 0;
     mActor->_F44 = 1;
     playEffectTrans("ハチ花くっつき", _38);
+    return true;
 }
 
 bool MarioStick::notice() {
     return false;
 }
+
+namespace NrvMarioActor {
+    INIT_NERVE(MarioActorNrvWait);
+    INIT_NERVE(MarioActorNrvGameOver);
+    INIT_NERVE(MarioActorNrvGameOverAbyss);
+    INIT_NERVE(MarioActorNrvGameOverAbyss2);
+    INIT_NERVE(MarioActorNrvGameOverFire);
+    INIT_NERVE(MarioActorNrvGameOverBlackHole);
+    INIT_NERVE(MarioActorNrvGameOverNonStop);
+    INIT_NERVE(MarioActorNrvGameOverSink);
+    INIT_NERVE(MarioActorNrvTimeWait);
+    INIT_NERVE(MarioActorNrvNoRush);
+};  // namespace NrvMarioActor

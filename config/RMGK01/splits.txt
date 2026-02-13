@@ -757,26 +757,26 @@ Game/Boss/DinoPackunBattleVs2Lv1.cpp:
 Game/Boss/DinoPackunDemo.cpp:
 	.text       start:0x80049968 end:0x8004A330
 	.ctors      start:0x8052E8A4 end:0x8052E8A8
-	.data       start:0x805693D0 end:0x80569678
+	.data       start:0x805693D0 end:0x80569628
 	.sbss       start:0x806B31C8 end:0x806B31E0
 	.sdata2     start:0x806B8580 end:0x806B8590
 
 Game/Boss/DinoPackunDemoPosition.cpp:
 	.text       start:0x8004A330 end:0x8004A584
 	.ctors      start:0x8052E8A8 end:0x8052E8AC
-	.data       start:0x80569678 end:0x80569700
+	.data       start:0x80569628 end:0x80569700
 	.sbss       start:0x806B31E0 end:0x806B31E8
 
 Game/Boss/DinoPackunEggShell.cpp:
 	.text       start:0x8004A584 end:0x8004A8CC
 	.ctors      start:0x8052E8AC end:0x8052E8B0
-	.data       start:0x80569700 end:0x80569850
+	.data       start:0x80569700 end:0x805697A8
 	.sbss       start:0x806B31E8 end:0x806B31F0
 
 Game/Boss/DinoPackunFire.cpp:
 	.text       start:0x8004A8CC end:0x8004AF74
 	.ctors      start:0x8052E8B0 end:0x8052E8B4
-	.data       start:0x80569850 end:0x80569930
+	.data       start:0x805697A8 end:0x80569930
 	.sbss       start:0x806B31F0 end:0x806B31F8
 	.sdata2     start:0x806B8590 end:0x806B85B0
 
@@ -787,14 +787,14 @@ Game/Boss/DinoPackunSequencer.cpp:
 Game/Boss/DinoPackunStateAwake.cpp:
 	.text       start:0x8004B13C end:0x8004B318
 	.ctors      start:0x8052E8B4 end:0x8052E8B8
-	.data       start:0x80569970 end:0x80569BE8
+	.data       start:0x80569970 end:0x80569A08
 	.sbss       start:0x806B31F8 end:0x806B3200
 	.sdata2     start:0x806B85B0 end:0x806B85C0
 
 Game/Boss/DinoPackunStateDamage.cpp:
 	.text       start:0x8004B318 end:0x8004BDAC
 	.ctors      start:0x8052E8B8 end:0x8052E8BC
-	.data       start:0x80569BE8 end:0x80569D20
+	.data       start:0x80569A08 end:0x80569C88
 	.bss        start:0x8060A690 end:0x8060A6A8
 	.sbss       start:0x806B3200 end:0x806B3218
 	.sdata2     start:0x806B85C0 end:0x806B85E0
@@ -802,7 +802,7 @@ Game/Boss/DinoPackunStateDamage.cpp:
 Game/Boss/DinoPackunStateFire.cpp:
 	.text       start:0x8004BDAC end:0x8004C374
 	.ctors      start:0x8052E8BC end:0x8052E8C0
-	.data       start:0x80569D20 end:0x80569DA0
+	.data       start:0x80569C88 end:0x80569DA0
 	.sbss       start:0x806B3218 end:0x806B3228
 
 Game/Boss/DinoPackunTail.cpp:
@@ -1345,7 +1345,7 @@ Game/Boss/TombSpider.cpp:
 	.text       start:0x8007F1A4 end:0x8007FC58
 	.ctors      start:0x8052E994 end:0x8052E998
 	.data       start:0x80571BD8 end:0x80571D78
-	.sdata      start:0x806B17C0 end:0x806B17E0
+	.sdata      start:0x806B17C0 end:0x806B17C8
 	.sbss       start:0x806B37E0 end:0x806B3810
 	.sdata2     start:0x806B8DC8 end:0x806B8DD0
 
@@ -1395,6 +1395,7 @@ Game/Boss/TombSpiderFunction.cpp:
 	.text       start:0x800831CC end:0x80084424
 	.rodata     start:0x80531510 end:0x80531520
 	.data       start:0x805724B8 end:0x805725A0
+	.sdata      start:0x806B17C8 end:0x806B17D0
 	.sdata2     start:0x806B8E40 end:0x806B8E60
 
 Game/Boss/TombSpiderGland.cpp:
@@ -1406,11 +1407,13 @@ Game/Boss/TombSpiderGland.cpp:
 Game/Boss/TombSpiderParts.cpp:
 	.text       start:0x800847B8 end:0x80084FE8
 	.data       start:0x80572698 end:0x80572768
+	.sdata      start:0x806B17D0 end:0x806B17D8
 	.sdata2     start:0x806B8E60 end:0x806B8EB0
 
 Game/Boss/TombSpiderSensorCtrl.cpp:
 	.text       start:0x80084FE8 end:0x80085868
 	.data       start:0x80572768 end:0x80572828
+	.sdata      start:0x806B17D8 end:0x806B17E0
 	.sdata2     start:0x806B8EB0 end:0x806B8EE0
 
 Game/Boss/TombSpiderStateSwoon.cpp:
