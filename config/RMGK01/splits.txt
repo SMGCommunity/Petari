@@ -2557,6 +2557,7 @@ Game/Enemy/CocoNutBall.cpp:
 	.ctors      start:0x8052EA68 end:0x8052EA6C
 	.rodata     start:0x80531E30 end:0x80531E50
 	.data       start:0x8057B348 end:0x8057B500
+	.sdata      start:0x806B18F0 end:0x806B18F4
 	.sbss       start:0x806B3DA0 end:0x806B3DB8
 	.sdata2     start:0x806BA2A8 end:0x806BA338
 
