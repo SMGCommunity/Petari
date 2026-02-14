@@ -834,7 +834,7 @@ config.libs = [
             Object(Matching, "Game/Boss/SkeletalFishGuardHolder.cpp"),
             Object(Matching, "Game/Boss/SkeletalFishJointCalc.cpp"),
             Object(Matching, "Game/Boss/SkeletalFishRailControl.cpp"),
-            Object(NonMatching, "Game/Boss/TombSpider.cpp"),
+            Object(Matching, "Game/Boss/TombSpider.cpp"),
             Object(NonMatching, "Game/Boss/TombSpiderAcid.cpp"),
             Object(Matching, "Game/Boss/TombSpiderAction1st.cpp"),
             Object(Matching, "Game/Boss/TombSpiderAction2nd.cpp"),

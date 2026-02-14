@@ -325,7 +325,7 @@ namespace JGeometry {
         }
 
         // needed in StarPieceFollowGroup???
-        inline TVec3 multInLine(f32 val) const{
+        inline TVec3 multInLine(f32 val) const {
             TVec3 ret(*this);
             ret.x *= val;
             ret.y *= val;
@@ -652,7 +652,7 @@ namespace JGeometry {
             return PSVECMag(this);
         }
 
-        inline f32 distance(const TVec3& rOther) {
+        inline f32 distance(const TVec3& rOther) const {
             return PSVECDistance(this, &rOther);
         }
 

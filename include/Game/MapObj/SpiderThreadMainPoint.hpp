@@ -35,7 +35,13 @@ public:
     void updateVelocity();
     void closeToNearPoint(const SpiderThreadPointNearInfo*);
 
-    inline SpiderThreadPointNearInfo* getLastInfo() const { return &mNearInfos[mNumNearInfos - 1]; }
+    SpiderThreadPointNearInfo* getNearPointInfo(int idx) const {
+        return &mNearInfos[idx];
+    }
+
+    inline SpiderThreadPointNearInfo* getLastInfo() const {
+        return &mNearInfos[mNumNearInfos - 1];
+    }
 
     /* 0x4C */ SpiderThreadRadialLine* mRadialLine;
     /* 0x50 */ s32 mNearInfoBufferSize;
