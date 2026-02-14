@@ -829,35 +829,35 @@ void MarioActor::movement() {
     TVec3f stack_11C(_288);
     _288 = stack_128;
     if (MR::isOppositeDirection(_288, stack_11C, 0.01f)) {
-        f32 mag_288 = PSVECMag(&_288);
-        f32 magStack_11C = PSVECMag(&stack_11C);
+        f32 mag_288 = _288.length();
+        f32 magStack_11C = stack_11C.length();
         if (!MR::isNearZero(mag_288) && !MR::isNearZero(magStack_11C) && MR::isNearZero(mag_288 - magStack_11C, 1.0f)) {
             mPosition -= _288.scaleInline(0.5f);
         }
     }
-    if (PSVECMag(&stack_128) > 0.1f) {
+    if (stack_128.length() > 0.1f) {
         if (!(getMovementStates()._A)) {
             if (!MR::isNearZero(mVelocity)) {
                 TVec3f stack_110(_294);
                 stack_110 -= _270;
-                f32 diffMag = PSVECMag(&stack_110);
-                f32 vMag = PSVECMag(&mVelocity);
-                if (PSVECMag(&stack_128) > 2.0f * (diffMag + vMag)) {
+                f32 diffMag = stack_110.length();
+                f32 vMag = mVelocity.length();
+                if (stack_128.length() > 2.0f * (diffMag + vMag)) {
                     mMario->stopWalk();
                 }
             }
         }
-        if (getMovementStates()._23 && PSVECMag(&mVelocity) < PSVECMag(&stack_134)) {
+        if (getMovementStates()._23 && mVelocity.length() < stack_134.length()) {
             if (stack_134.dot(getGravityVec()) < -0.0f) {
                 TVec3f stack_110;
                 MR::vecKillElement(mVelocity, getGravityVec(), &stack_110);
                 if (MR::isNearZero(stack_110)) {
                     MR::vecKillElement(stack_134, getGravityVec(), &stack_110);
                 }
-                stack_110.setLength(PSVECMag(&stack_134));  // needs to be inlined
+                stack_110.setLength(stack_134.length());  // needs to be inlined
                 mMario->push(stack_110);
                 if (mMario->_3BC <= 2) {
-                    f32 scale = PSVECMag(&stack_128);
+                    f32 scale = stack_128.length();
                     if (scale > 10.0f) {
                         scale = 10.0f;
                     }
@@ -870,7 +870,7 @@ void MarioActor::movement() {
             TVec3f stack_F8;
             f32 elementA = MR::vecKillElement(stack_134, stack_104, &stack_F8);
             f32 elementB = MR::vecKillElement(mVelocity, stack_104, &stack_F8);
-            if (PSVECMag(&mVelocity) > 20.0f && elementA < elementB * 0.5f) {
+            if (mVelocity.length() > 20.0f && elementA < elementB * 0.5f) {
                 if (mMario->isAnimationRun("坂すべり下向きあおむけ")) {
                     mMario->push(mMario->mFrontVec.scaleInline(5.0f));
                 } else if (mMario->isAnimationRun("坂すべり上向きうつぶせ")) {
@@ -1130,10 +1130,10 @@ void MarioActor::updateBehavior() {
 
 void MarioActor::updateBindRatio() {
     if (!_934 && !MR::isNearZero(_978 - _264)) {
-        f32 mag = PSVECMag(&_978);
+        f32 mag = _978.length();
         TVec3f stack_38(_978);
         stack_38 -= _264;
-        if (mag / PSVECMag(&stack_38) < 2.0f) {
+        if (mag / stack_38.length() < 2.0f) {
             _984 += 0.1f;
         } else {
             _984 -= 0.01f;
@@ -2075,13 +2075,13 @@ void MarioActor::calcAnim() {
 
         TVec3f side(footPos);
         side -= handPos;
-        f32 sideLen = PSVECMag(&side);
+        f32 sideLen = side.length();
         MR::normalizeOrZero(&side);
 
         TVec3f tangent;
-        PSVECCrossProduct(&side, &_240, &tangent);
+        side.cross(_240, tangent);
         MR::normalizeOrZero(&tangent);
-        PSVECCrossProduct(&_240, &tangent, &side);
+        _240.cross(tangent, side);
         if (MR::normalizeOrZero(&side)) {
             mMario->mSideVec = side;
         }
@@ -2301,7 +2301,7 @@ void MarioActor::calcAndSetBaseMtx() {
         f32 delayAngle = 0.0f;
         TVec3f delayAxis;
         if (!MR::normalizeOrZero(&delayDir)) {
-            PSVECCrossProduct(&mMario->mFrontVec, &delayDir, &delayAxis);
+            mMario->mFrontVec.cross(delayDir, delayAxis);
             if (!MR::normalizeOrZero(&delayAxis)) {
                 delayAngle = MR::acosEx(_9F4.dot(delayDir));
                 f32 limit = table->mBeePoseDelayAngleAir;
@@ -2351,7 +2351,7 @@ void MarioActor::calcAndSetBaseMtx() {
 
         if (poseAngle > poseLimit) {
             TVec3f poseAxis;
-            PSVECCrossProduct(&_9F4, &normPose, &poseAxis);
+            _9F4.cross(normPose, poseAxis);
 
             if (MR::normalizeOrZero(&poseAxis)) {
                 _360 = _9F4;
@@ -2767,7 +2767,7 @@ void MarioActor::updateCameraInfo() {
     TVec3f moveDist(mCamPos);
     moveDist -= camPos;
 
-    if (PSVECMag(&moveDist) > 500.0f) {
+    if (moveDist.length() > 500.0f) {
         _F74 = true;
     }
 
