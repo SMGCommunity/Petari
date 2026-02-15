@@ -125,7 +125,7 @@ void DinoPackunVs2::exeBattleLv3() {
         mBattleLv1->_3D = 1;
         mBattleLv1->_3B = 1;
         mBattleLv1->_3A = 1;
-        mBattleLv1->setMiddleBattle();
+        mBattleLv1->setLastBattle();
         mBattleLv1->_3C = 0;
         mCurrentAction = mBattleLv1;
     }
