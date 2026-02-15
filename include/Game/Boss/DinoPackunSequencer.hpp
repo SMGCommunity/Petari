@@ -11,6 +11,7 @@ public:
     DinoPackunSequencer(const char*, DinoPackun*);
 
     virtual ~DinoPackunSequencer();
+
     virtual void start();
     virtual void init();
     virtual bool isUseEggShell() const;
