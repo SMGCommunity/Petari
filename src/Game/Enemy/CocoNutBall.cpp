@@ -326,7 +326,7 @@ void CocoNutBall::setVelocityToPlayer(f32 f1, f32 f2) {
         vec1.set(*MR::getPlayerPos());
     }
 
-    TPos3f rotate;
+    TRot3f rotate;
     f32 angle = 0.017453292f * f2;
     rotate.makeRotateInline(_C8, angle);
     TVec3f vec2;
