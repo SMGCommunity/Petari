@@ -15,22 +15,23 @@ class TombSpiderDemo;
 class TombSpider : public LiveActor {
 public:
     TombSpider(const char*);
-    virtual ~TombSpider();
 
     virtual void init(const JMapInfoIter& rIter);
     virtual void control();
     virtual void updateHitSensor(HitSensor* pSensor);
+    virtual void attackSensor(HitSensor* pSender, HitSensor* pReceiver);
     virtual bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
     virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
 
     void exeWaitPlayer();
     void exeDemoGateOpen();
     void exeActionCocoon();
+    void exeDemoCocoonBreak();
     void exeDemoBattle1stStart();
     void exeDemoBattle1stStartJumpToPlayer();
     void exeAction1st();
+    void exeDemoBattle1stEnd();
     void exeDemoBattle2ndStart();
-    void exeDemoBattle2ndStartJumpToPlayer();
     void exeAction2nd();
     void exeDemoDeath();
     void exeWaitDemo();

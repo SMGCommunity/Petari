@@ -4,17 +4,29 @@
 #include "Game/Util/MathUtil.hpp"
 #include <revolution/mtx.h>
 
+namespace {
+    static const f32 sFrictionRate = 0.9f;
+    // static const _32 sSpeedMin =
+    static const f32 sWindFrictionRate = 0.9f;
+    static const f32 sBasePosAccelRate = 0.3f;
+    static const f32 sBasePosDiffMin = 1.0f;
+    static const f32 sNearMainPointAccelRate = 0.1f;
+    static const f32 sNearHangPointAccelRate = 0.02f;
+    static const f32 sNearPointDiffMin = 1.0f;
+}  // namespace
+
 SpiderThreadPointNearInfo::SpiderThreadPointNearInfo()
-    : mMainPoint(nullptr), mPartPoint(nullptr), mDistToPoint(0.0f), mSpringFactor(0.0f), mThreadPart(nullptr) {}
+    : mMainPoint(nullptr), mPartPoint(nullptr), mDistToPoint(0.0f), mSpringFactor(0.0f), mThreadPart(nullptr) {
+}
 
 void SpiderThreadPointNearInfo::setInfo(f32 springFactor, SpiderThreadPart* pThreadPart, const TVec3f& rVec) {
     mSpringFactor = springFactor;
     mThreadPart = pThreadPart;
 
     if (mMainPoint != nullptr) {
-        mDistToPoint = PSVECDistance(&rVec, &mMainPoint->mPosition);
+        mDistToPoint = rVec.distance(mMainPoint->mPosition);
     } else if (mPartPoint != nullptr) {
-        mDistToPoint = PSVECDistance(&rVec, &mPartPoint->mPosition);
+        mDistToPoint = rVec.distance(mPartPoint->mPosition);
     } else {
         mDistToPoint = 0.0f;
     }
@@ -41,19 +53,19 @@ const TVec3f* SpiderThreadPointNearInfo::getPos() const {
 }
 
 SpiderThreadMainPoint::SpiderThreadMainPoint(const TVec3f& rPos, int nearInfoBufferSize)
-    : SpiderThreadPoint(rPos, 0.9f), mRadialLine(nullptr), mNearInfoBufferSize(nearInfoBufferSize), mNumNearInfos(0), mNearInfos(nullptr) {
+    : SpiderThreadPoint(rPos, sFrictionRate), mRadialLine(nullptr), mNearInfoBufferSize(nearInfoBufferSize), mNumNearInfos(0), mNearInfos(nullptr) {
     mNearInfos = new SpiderThreadPointNearInfo[nearInfoBufferSize];
 }
 
 void SpiderThreadMainPoint::addNearMainPoint(SpiderThreadMainPoint* pMainPoint, SpiderThreadPart* pThreadPart) {
-    mNearInfos[mNumNearInfos].mMainPoint = pMainPoint;
-    mNearInfos[mNumNearInfos].setInfo(0.1f, pThreadPart, mPosition);
+    getNearPointInfo(mNumNearInfos)->mMainPoint = pMainPoint;
+    getNearPointInfo(mNumNearInfos)->setInfo(sNearMainPointAccelRate, pThreadPart, mPosition);
     mNumNearInfos++;
 }
 
 void SpiderThreadMainPoint::addNearPartPoint(SpiderThreadPoint* pThreadPoint, f32 springFactor) {
-    mNearInfos[mNumNearInfos].mPartPoint = pThreadPoint;
-    mNearInfos[mNumNearInfos].setInfo(springFactor, nullptr, mPosition);
+    getNearPointInfo(mNumNearInfos)->mPartPoint = pThreadPoint;
+    getNearPointInfo(mNumNearInfos)->setInfo(springFactor, nullptr, mPosition);
     mNumNearInfos++;
 }
 
@@ -71,10 +83,10 @@ void SpiderThreadMainPoint::removeNearPoint(const SpiderThreadPoint* pThreadPoin
 void SpiderThreadMainPoint::addNearPointToRadial(SpiderThreadPoint* pThreadPoint) {
     if (mRadialLine != nullptr) {
         for (s32 idx = 0; idx < mRadialLine->mNumPoints; idx++) {
-            if (mRadialLine->mPoints[idx] == this) {
-                addNearPartPoint(pThreadPoint, 0.1f);
+            if (mRadialLine->getPoint(idx) == this) {
+                addNearPartPoint(pThreadPoint, sNearMainPointAccelRate);
             } else {
-                mRadialLine->mPoints[idx]->addNearPartPoint(pThreadPoint, 0.02f);
+                mRadialLine->getPoint(idx)->addNearPartPoint(pThreadPoint, sNearHangPointAccelRate);
             }
         }
     }
@@ -83,7 +95,7 @@ void SpiderThreadMainPoint::addNearPointToRadial(SpiderThreadPoint* pThreadPoint
 void SpiderThreadMainPoint::removeNearPointFromRadial(const SpiderThreadPoint* pThreadPoint) {
     if (mRadialLine != nullptr) {
         for (s32 idx = 0; idx < mRadialLine->mNumPoints; idx++) {
-            mRadialLine->mPoints[idx]->removeNearPoint(pThreadPoint);
+            mRadialLine->getPoint(idx)->removeNearPoint(pThreadPoint);
         }
     }
 }
@@ -92,17 +104,17 @@ void SpiderThreadMainPoint::cutNearPoints(s32* numCutPoints, SpiderThreadMainPoi
     SpiderThreadPart* threadPart;
     for (s32 idx = 0; idx < mNumNearInfos; idx++) {
         SpiderThreadMainPoint* mainPoint;
-        if (mNearInfos[idx].mMainPoint != nullptr) {
-            mNearInfos[idx].mMainPoint->removeNearPoint(this);
+        if (getNearPointInfo(idx)->mMainPoint != nullptr) {
+            getNearPointInfo(idx)->mMainPoint->removeNearPoint(this);
 
             mainPoint = pMainPoints[*numCutPoints];
-            threadPart = mNearInfos[idx].mThreadPart;
+            threadPart = getNearPointInfo(idx)->mThreadPart;
 
-            mNearInfos[idx].mMainPoint->addNearMainPoint(mainPoint, threadPart);
+            getNearPointInfo(idx)->mMainPoint->addNearMainPoint(mainPoint, threadPart);
             mainPoint->mPosition.x = mPosition.x;
             mainPoint->mPosition.y = mPosition.y;
             mainPoint->mPosition.z = mPosition.z;
-            mainPoint->addNearMainPoint(mNearInfos[idx].mMainPoint, threadPart);
+            mainPoint->addNearMainPoint(getNearPointInfo(idx)->mMainPoint, threadPart);
             threadPart->cut(this, mainPoint);
 
             *numCutPoints = *numCutPoints + 1;
@@ -111,21 +123,21 @@ void SpiderThreadMainPoint::cutNearPoints(s32* numCutPoints, SpiderThreadMainPoi
 }
 
 void SpiderThreadMainPoint::updateVelocity() {
-    updateWind(0.9f);
+    updateWind(sWindFrictionRate);
 
     TVec3f springBack(mBasePos);
     springBack.sub(mPosition);
 
     TVec3f diff(springBack);
 
-    if (springBack.length() > 1.0f) {
+    if (springBack.length() > sBasePosDiffMin) {
         MR::normalizeOrZero(&springBack);
-        springBack.scale(0.3f);
+        springBack.scale(sBasePosAccelRate);
         mVelocity.add(springBack);
     }
 
     for (s32 idx = 0; idx < mNumNearInfos; idx++) {
-        closeToNearPoint(&mNearInfos[idx]);
+        closeToNearPoint(getNearPointInfo(idx));
     }
 }
 
@@ -135,7 +147,7 @@ void SpiderThreadMainPoint::closeToNearPoint(const SpiderThreadPointNearInfo* pN
         springBack.sub(mPosition);
         f32 dist = springBack.length();
 
-        if (dist < 1.0f) {
+        if (dist < sNearPointDiffMin) {
             return;
         }
 

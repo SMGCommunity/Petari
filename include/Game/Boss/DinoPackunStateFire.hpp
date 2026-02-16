@@ -22,7 +22,7 @@ public:
     void requestCool();
     void setFire();
     void setFireDirect();
-    bool isFire() const;
+    bool isFire() const NO_INLINE;
     bool isEnableFire() const;
     bool isEnableCool() const;
 };

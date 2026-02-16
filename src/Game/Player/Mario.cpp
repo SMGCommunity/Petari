@@ -253,8 +253,8 @@ Mario::Mario(MarioActor* actor) : MarioModule(actor) {
 
     _730 = 0;
 
-    _8D8 = 0;
-    _8D4 = 0;
+    _8D8 = nullptr;
+    _8D4 = nullptr;
 
     _A38 = 0;
     _A68 = 0;
