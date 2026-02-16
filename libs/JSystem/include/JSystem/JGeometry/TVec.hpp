@@ -685,7 +685,12 @@ namespace JGeometry {
 
         /* General operations */
         template < typename A >
-        void set(const JGeometry::TVec4< A >&);
+        void set(const JGeometry::TVec4< A >& rVec) NO_INLINE {
+            this->x = rVec.x;
+            this->y = rVec.y;
+            this->z = rVec.z;
+            this->w = rVec.w;
+        }
 
         template < typename A >
         void set(A _x, A _y, A _z, A _w) NO_INLINE {
@@ -742,6 +747,18 @@ namespace JGeometry {
         }
 #endif
 
+#ifdef __MWERKS__
+        template < typename A >
+        inline void set(const TVec4< T >& rOther) {
+            TVec4< T >::set(rOther);
+        }
+#else
+        template < typename A >
+        inline void set(const TVec4< T >& rOther) {
+            TVec4< T >::set(rOther);
+        }
+#endif
+
         /* General operations */
         void normalize();
         void normalize(const TQuat4< T >& rSrc);
@@ -759,6 +776,19 @@ namespace JGeometry {
         void getZDir(TVec3< T >& rDest) const {
             rDest.template set< T >(this->x * this->z * 2.0f + this->w * this->y * 2.0f, this->y * this->z * 2.0f - this->w * this->x * 2.0f,
                                     1.0f - this->x * this->x * 2.0f - this->y * this->y * 2.0f);
+        }
+
+        inline void rotateVec(TVec3< T >& dst, const TVec3< T >& v) const {
+            float nx = -this->x;
+
+            float v9 = (this->y * v.z) - (this->z * v.y);
+            float v13 = (this->w * v.y) + ((nx * v.z) + (this->z * v.x));
+            float v14 = (this->w * v.z) + ((this->x * v.y) - (this->y * v.x));
+            float v15 = ((nx * v.x) - (this->y * v.y)) - (this->z * v.z);
+
+            dst.set< T >((v15 * nx) + (((this->w * v.x + v9) * this->w) + (v13 * -this->z) - (v14 * -this->y)),
+                         (v15 * -this->y) + ((v14 * nx) + ((-(this->w * v.x + v9) * -this->z) + (v13 * this->w))),
+                         (v15 * -this->z) + ((v14 * this->w) + (((this->w * v.x + v9) * -this->y) - (v13 * nx))));
         }
 
         void getEuler(TVec3< T >& rDest) const;

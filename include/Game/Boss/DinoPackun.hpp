@@ -14,6 +14,18 @@ class DinoPackunSequencer;
 
 class DinoPackun : public LiveActor {
 public:
+    DinoPackun(const char*);
+
+    virtual ~DinoPackun();
+    virtual void init(const JMapInfoIter&);
+    virtual void makeActorDead();
+    virtual void control();
+    virtual void calcAndSetBaseMtx();
+    virtual void attackSensor(HitSensor*, HitSensor*);
+    virtual bool receiveMsgPush(HitSensor*, HitSensor*);
+    virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
+    virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
+
     void initTail();
     void initFootPrint();
     void initDemoPosition(const JMapInfoIter&);
@@ -72,3 +84,8 @@ public:
     s32 _10C;
     u8 _110;
 };
+
+namespace MR {
+    NameObj* createDinoPackunVs1(const char*);
+    NameObj* createDinoPackunVs2(const char*);
+};  // namespace MR

@@ -194,17 +194,7 @@ void DinoPackunBattleVs2Lv1::exeWalk() {
         s32 v4 = _3B ? 15 : 20;
         f32 v5 = _3B ? 1.1f : 1.2f;
 
-        s32 step = getNerveStep();
-        s32 div = (step / v3);
-        f32 v7;
-
-        if (div % 2 == _34) {
-            v7 = -1.0f;
-        } else {
-            v7 = 1.0f;
-        }
-
-        MR::rotateDirectionGravityDegree(getHost(), &getHost()->_E8, (v5 * v7));
+        MR::rotateDirectionGravityDegree(getHost(), &getHost()->_E8, (v5 * ((getNerveStep() / v3) % 2 == _34 ? -1.0f : 1.0f)));
         updateOnOffFireTail(v3, v4, 20);
 
         s32 v8 = _3A ? 500 : 610;
