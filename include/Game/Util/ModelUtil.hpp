@@ -7,6 +7,7 @@
 class J3DModel;
 class J3DMaterial;
 class LiveActor;
+struct ResTIMG;
 
 namespace MR {
     bool isExistModel(const char*);
@@ -14,6 +15,7 @@ namespace MR {
     J3DModel* getJ3DModel(const LiveActor*);
     J3DModelData* getJ3DModelData(const LiveActor*);
     J3DModelData* getJ3DModelData(const char*);
+    ResTIMG* getResTIMG(const LiveActor*, int);
 
     void calcJ3DModel(LiveActor*);
 

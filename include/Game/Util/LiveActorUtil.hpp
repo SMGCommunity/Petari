@@ -168,7 +168,7 @@ namespace MR {
 
     void initFur(LiveActor*);
     void initFurPlanet(LiveActor*);
-    void initFurPlayer(LiveActor*);
+    LiveActor* initFurPlayer(LiveActor*);
     void initCollisionParts(LiveActor*, const char*, HitSensor*, MtxPtr);
 
     void initCollisionPartsAutoEqualScale(LiveActor*, const char*, HitSensor*, MtxPtr);
@@ -283,6 +283,7 @@ namespace MR {
     void startBpk(const LiveActor*, const char*);
 
     ProjmapEffectMtxSetter* initDLMakerProjmapEffectMtxSetter(LiveActor*);
+    void initDLMakerFog(LiveActor*, bool);
 
     void newDifferedDLBuffer(LiveActor*);
 

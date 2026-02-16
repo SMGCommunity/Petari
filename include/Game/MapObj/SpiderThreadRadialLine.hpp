@@ -12,6 +12,10 @@ public:
     void updateVelocity();
     void updatePos();
 
+    SpiderThreadMainPoint* getPoint(int idx) const {
+        return mPoints[idx];
+    }
+
     /* 0x00 */ int mBufferSize;
     /* 0x04 */ s32 mNumPoints;
     /* 0x08 */ SpiderThreadMainPoint** mPoints;

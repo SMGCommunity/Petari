@@ -232,7 +232,7 @@ namespace {
 namespace MR {
     bool isBckPlaying(XanimePlayer*, const char*);
     bool isUseTex(J3DMaterial*, u16);
-    void initMultiFur(LiveActor*, s32);
+    LiveActor* initMultiFur(LiveActor*, s32);
     void initDLMakerChangeTex(LiveActor*, const char*);
     void startBas(const LiveActor*, const char*, bool, f32, f32);
     bool startBckIfExist(const LiveActor*, const char*);
@@ -2314,8 +2314,8 @@ namespace MR {
         initMultiFur(pActor, 3);
     }
 
-    void initFurPlayer(LiveActor* pActor) {
-        initMultiFur(pActor, 0);
+    LiveActor* initFurPlayer(LiveActor* pActor) {
+        return initMultiFur(pActor, 0);
     }
 
     void initCollisionParts(LiveActor* pActor, const char* pName, HitSensor* pSensor, MtxPtr pMtx) {

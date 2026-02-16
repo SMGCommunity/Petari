@@ -25,7 +25,7 @@ void Mario::checkBump() {
 
 void Mario::startBump(const TVec3f& rVec) {
     TVec3f v18 = getTrans() - rVec;
-    if (PSVECMag(&v18) >= 100.0f) {
+    if (v18.length() >= 100.0f) {
         return;
     }
 
@@ -70,31 +70,25 @@ MarioBump::MarioBump(MarioActor* pActor) : MarioState(pActor, 0x1E) {
     _18.zero();
 }
 
-void doSomething() {
-    return;
-}
-
 bool MarioBump::start() {
-    u16 dummy;
     _14 = getPlayer()->_278;
 
-    if (_14 < 0.0f) {
+    if (_14 >= 0.0f) {
         if (_14 < 1.0f) {
         }
     }
 
-    f32 v2 = (16.0f * _14);
-    s16 v3 = 0x14 - v2;
+    s32 blendTimer = 0x14 - static_cast< s32 >(16.0f * _14);
 
-    if (v3 < 4) {
-        v3 = 4;
+    if (blendTimer < 4) {
+        blendTimer = 4;
     }
 
-    mActor->setBlendMtxTimer(v3);
-    _12 = v3;
+    mActor->setBlendMtxTimer(static_cast< u16 >(blendTimer));
+    _12 = static_cast< u16 >(blendTimer);
 
-    if (isAnimationRun(nullptr)) {
-        stopAnimation(nullptr, (const char*)0);
+    if (isAnimationRun(static_cast< const char* >(nullptr))) {
+        stopAnimation(static_cast< const char* >(nullptr), static_cast< const char* >(nullptr));
     }
 
     _18 = getFrontVec();
@@ -131,3 +125,16 @@ bool MarioBump::update() {
 bool MarioBump::close() {
     return true;
 }
+
+namespace NrvMarioActor {
+    INIT_NERVE(MarioActorNrvWait);
+    INIT_NERVE(MarioActorNrvGameOver);
+    INIT_NERVE(MarioActorNrvGameOverAbyss);
+    INIT_NERVE(MarioActorNrvGameOverAbyss2);
+    INIT_NERVE(MarioActorNrvGameOverFire);
+    INIT_NERVE(MarioActorNrvGameOverBlackHole);
+    INIT_NERVE(MarioActorNrvGameOverNonStop);
+    INIT_NERVE(MarioActorNrvGameOverSink);
+    INIT_NERVE(MarioActorNrvTimeWait);
+    INIT_NERVE(MarioActorNrvNoRush);
+};  // namespace NrvMarioActor

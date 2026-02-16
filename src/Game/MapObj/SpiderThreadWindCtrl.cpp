@@ -1,8 +1,22 @@
 #include "Game/MapObj/SpiderThreadWindCtrl.hpp"
 #include "Game/Util/MathUtil.hpp"
 
+namespace {
+    static const f32 sWindAccelBattle = 0.5f;
+    static const f32 sWindAccelChance = 1.0f;
+    // static const _32 sWindAccelDamage =
+    static const f32 sWindAccelBattleEndTarget = 2.0f;
+    static const f32 sWindAccelBattleEndCurrent = 100.0f;
+    static const f32 sWindAccelSpeedBattleEnd = 0.4f;
+    static const s32 sTimeToStartWindMin = 30;
+    static const s32 sTimeToStartWindMax = 120;
+    static const s32 sWindTimeMin = 60;
+    static const s32 sWindTimeMax = 120;
+}  // namespace
+
 SpiderThreadWindCtrl::SpiderThreadWindCtrl()
-    : mWindTargetSpeed(0.5), mWindSpeed(0.5), mWindAccel(0.0f), mWindDirection(0.0f, 0.0f, -1.0f), mWind(mWindDirection) {}
+    : mWindTargetSpeed(sWindAccelBattle), mWindSpeed(sWindAccelBattle), mWindAccel(0.0f), mWindDirection(0.0f, 0.0f, -1.0f), mWind(mWindDirection) {
+}
 
 void SpiderThreadWindCtrl::update() {
     f32 target, speed, accel;
@@ -32,31 +46,31 @@ void SpiderThreadWindCtrl::update() {
 }
 
 void SpiderThreadWindCtrl::startWindBattle() {
-    mWindSpeed = 0.5f;
-    mWindTargetSpeed = 0.5f;
+    mWindSpeed = sWindAccelBattle;
+    mWindTargetSpeed = sWindAccelBattle;
     mWindAccel = 0.0f;
 }
 
 void SpiderThreadWindCtrl::startWindChance() {
-    mWindSpeed = 1.0f;
-    mWindTargetSpeed = 1.0f;
+    mWindSpeed = sWindAccelChance;
+    mWindTargetSpeed = sWindAccelChance;
     mWindAccel = 0.0f;
 }
 
 void SpiderThreadWindCtrl::startWindBattleEnd() {
-    mWindTargetSpeed = 2.0f;
-    mWindSpeed = 100.0f;
-    mWindAccel = 0.4f;
+    mWindTargetSpeed = sWindAccelBattleEndTarget;
+    mWindSpeed = sWindAccelBattleEndCurrent;
+    mWindAccel = sWindAccelSpeedBattleEnd;
 }
 
 s32 SpiderThreadWindCtrl::getTimeToStartWind() const {
     if (mWindSpeed != mWindTargetSpeed) {
-        return 30;
+        return sTimeToStartWindMin;
     }
 
-    return MR::getRandom(static_cast< s32 >(30), static_cast< s32 >(120));
+    return MR::getRandom(sTimeToStartWindMin, sTimeToStartWindMax);
 }
 
 s32 SpiderThreadWindCtrl::getWindTime() const {
-    return MR::getRandom(static_cast< s32 >(60), static_cast< s32 >(120));
+    return MR::getRandom(sWindTimeMin, sWindTimeMax);
 }

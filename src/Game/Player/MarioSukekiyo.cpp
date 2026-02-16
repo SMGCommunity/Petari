@@ -20,7 +20,7 @@ MarioBury::MarioBury(MarioActor* pActor) : MarioSukekiyo(pActor) {
 bool MarioSukekiyo::close() {
     getPlayer()->stopWalk();
     mActor->_F44 = 1;
-    stopAnimation(nullptr, "基本");
+    stopAnimation(static_cast< const char* >(nullptr), "基本");
     return true;
 }
 
@@ -29,7 +29,7 @@ bool MarioSukekiyo::notice() {
 }
 
 bool MarioSukekiyo::postureCtrl(MtxPtr mtx) {
-    MR::makeMtxUpSide((TPos3f*)mtx, _14, _20);
+    MR::makeMtxUpSide(reinterpret_cast< TPos3f* >(mtx), _14, _20);
     return true;
 }
 
@@ -49,10 +49,10 @@ bool MarioSukekiyo::start() {
     getPlayer()->stopWalk();
 
     if (mStatusId == 26) {
-        changeAnimation("スケキヨ", (const char*)nullptr);
+        changeAnimation("スケキヨ", static_cast< const char* >(nullptr));
     } else {
         playSound("声足埋まり開始", -1);
-        changeAnimation("埋まり", (const char*)nullptr);
+        changeAnimation("埋まり", static_cast< const char* >(nullptr));
     }
     return true;
 }
@@ -88,3 +88,16 @@ bool MarioSukekiyo::update() {
 
     return true;
 }
+
+namespace NrvMarioActor {
+    INIT_NERVE(MarioActorNrvWait);
+    INIT_NERVE(MarioActorNrvGameOver);
+    INIT_NERVE(MarioActorNrvGameOverAbyss);
+    INIT_NERVE(MarioActorNrvGameOverAbyss2);
+    INIT_NERVE(MarioActorNrvGameOverFire);
+    INIT_NERVE(MarioActorNrvGameOverBlackHole);
+    INIT_NERVE(MarioActorNrvGameOverNonStop);
+    INIT_NERVE(MarioActorNrvGameOverSink);
+    INIT_NERVE(MarioActorNrvTimeWait);
+    INIT_NERVE(MarioActorNrvNoRush);
+};  // namespace NrvMarioActor
