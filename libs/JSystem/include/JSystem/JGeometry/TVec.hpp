@@ -353,6 +353,10 @@ namespace JGeometry {
             return ret;
         }
 
+        inline void negate(const TVec3& rVec) {
+            JMathInlineVEC::PSVECNegate(rVec, this);
+        }
+
         inline TVec3 negateOperatorInternal() const {
             TVec3 ret;
             JGeometry::negateInternal(&this->x, &ret.x);
@@ -646,7 +650,16 @@ namespace JGeometry {
             return lengthinv * oldlength;
         };
 
-        f32 setLength(const TVec3&, f32);
+        f32 setLength(const TVec3& rVec, f32 newlength)  {
+            f32 oldlength = rVec.squared();
+            if (oldlength <= 0.0000038146973f) {
+                zero();
+                return 0.0f;
+            }
+            f32 lengthinv = JGeometry::TUtil< f32 >::inv_sqrt(oldlength);
+            scale(lengthinv * newlength, rVec);
+            return lengthinv * oldlength;
+        };
 
         f32 length() const {
             return PSVECMag(this);

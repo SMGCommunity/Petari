@@ -531,7 +531,6 @@ namespace JGeometry {
         void getTrans(TVec3f& rDest) const;
         void setTrans(const TVec3f& rSrc);
         void setTrans(f32 x, f32 y, f32 z);
-        void zeroTrans();
 
         void makeRotate(const TVec3f&, f32);
         void makeQuat(const TQuat4f& rSrc);
