@@ -778,19 +778,6 @@ namespace JGeometry {
                                     1.0f - this->x * this->x * 2.0f - this->y * this->y * 2.0f);
         }
 
-        inline void rotateVec(TVec3< T >& dst, const TVec3< T >& v) const {
-            float nx = -this->x;
-
-            float v9 = (this->y * v.z) - (this->z * v.y);
-            float v13 = (this->w * v.y) + ((nx * v.z) + (this->z * v.x));
-            float v14 = (this->w * v.z) + ((this->x * v.y) - (this->y * v.x));
-            float v15 = ((nx * v.x) - (this->y * v.y)) - (this->z * v.z);
-
-            dst.set< T >((v15 * nx) + (((this->w * v.x + v9) * this->w) + (v13 * -this->z) - (v14 * -this->y)),
-                         (v15 * -this->y) + ((v14 * nx) + ((-(this->w * v.x + v9) * -this->z) + (v13 * this->w))),
-                         (v15 * -this->z) + ((v14 * this->w) + (((this->w * v.x + v9) * -this->y) - (v13 * nx))));
-        }
-
         void getEuler(TVec3< T >& rDest) const;
         void setEuler(T _x, T _y, T _z);
         void setEulerZ(T _z);
@@ -810,7 +797,9 @@ namespace JGeometry {
             setRotate(pVec, pAngle);
         }
 
-        void rotate(TVec3< T >& rDest) const;
+        void rotate(TVec3< T >& v) const {
+            transform(v, v);
+        }
 
         void slerp(const TQuat4< T >& a1, const TQuat4< T >& a2, T a3) {
             this->x = a1.x;
@@ -825,8 +814,28 @@ namespace JGeometry {
         }
 
         void slerp(const TQuat4< T >&, T);
-        void transform(const TVec3< T >&, TVec3< T >& rDest);
-        void transform(TVec3< T >& rDest) const;
+
+        void transform(const TVec3< T >& v, TVec3< T >& rDest) const {
+            // transformation via hamiltonian multiplication of a unit quaternion
+            // q*v*q`
+            // where v is the input vector converted into a quaternion with w=0
+            // and q` is the multiplicative inverse of q
+            // (eg: q = w + xi + yj + zk, q` = w - xi - yj - zk)
+
+            TQuat4< T > r;
+            r.x = (this->y * v.z) - (this->z * v.y) + (this->w * v.x);
+            r.y = (-this->x * v.z) + (this->z * v.x) + (this->w * v.y);
+            r.z = (this->x * v.y) - (this->y * v.x) + (this->w * v.z);
+            r.w = (-this->x * v.x) - (this->y * v.y) - (this->z * v.z);
+
+            rDest.template set< T >(r.x * this->w + r.y * -this->z - r.z * -this->y + r.w * -this->x,
+                                    -r.x * -this->z + r.y * this->w + r.z * -this->x + r.w * -this->y,
+                                    r.x * -this->y - r.y * -this->x + r.z * this->w + r.w * -this->z);
+        }
+
+        void transform(TVec3< T >& v) const {
+            transform(v, v);
+        }
 
         /* Operators */
         TQuat4< T >& operator=(const TQuat4< T >& rSrc);
