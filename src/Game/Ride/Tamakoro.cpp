@@ -131,8 +131,6 @@ void Tamakoro::calcAndSetBaseMtx() {
 }
 
 void Tamakoro::updateBindActorMatrix() {
-    // warning, does not match because of the quaternion rotation inline
-    // though logic is correct.
     if (isUseMarioOffset()) {
         JMAVECScaleAdd(&mDirectionToMario, &mPosition, &mMarioPos, 150.0f);
         if (mMarioOffset > 0) {
@@ -142,8 +140,7 @@ void Tamakoro::updateBindActorMatrix() {
 
     // quaternion rotation
     TPos3f mtx;
-    mtx.setRotateQuaternionInline(mRotateQuat);
-    mtx.setTrans(mMarioPos);
+    mtx.setQT(mRotateQuat, mMarioPos);
     MR::setPlayerBaseMtx(mtx);
 }
 

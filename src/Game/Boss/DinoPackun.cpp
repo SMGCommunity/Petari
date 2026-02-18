@@ -470,8 +470,7 @@ void DinoPackun::resetPosition() {
     MR::zeroVelocity(this);
 
     TPos3f v28;
-    v28.setRotateQuaternionInline(_BC);
-    v28.setTrans(mPosition);
+    v28.setQT(_BC, mPosition);
     TVec3f v27;
     v28.mult(sMarioSetLocalPos, v27);
     TVec3f v26;

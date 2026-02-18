@@ -7,7 +7,8 @@ typedef bool (DinoPackunTailNode::*func)(TPos3f*, const JointControllerInfo&);
 
 DinoPackunTailNode::DinoPackunTailNode(const char* pName, DinoPackun* pParent)
     : LiveActor(pName), mParent(pParent), mNodeDirection(0, 0, 0), _9C(0, 0, 0), _A8(0.0f, 0.0f, 0.0f), _B4(nullptr), _B8(nullptr), _BC(nullptr),
-      _C0(nullptr), _C4(nullptr), mLinkLength(90.0f), mKeepBendPower(10.0f), _D0(0) {}
+      _C0(nullptr), _C4(nullptr), mLinkLength(90.0f), mKeepBendPower(10.0f), _D0(0) {
+}
 
 void DinoPackunTailNode::createJointController(LiveActor* pHost, const char* pJointName) {
     _C4 = static_cast< Delegator* >(createJointControllerOwn(pHost, pJointName));
@@ -71,7 +72,7 @@ bool DinoPackunTailNode::turnJointLocalXDir(TPos3f* pMtx, const JointControllerI
 
     MR::normalize(&v23);
     MR::turnQuatXDirRad(&v24, v24, v23, M_PI);
-    pMtx->setRotateQuaternionInlineAndTrans(v24, mPosition);
+    pMtx->setQT(v24, mPosition);
     return true;
 }
 
@@ -148,6 +149,8 @@ void DinoPackunTailNode::addNodeVelocity(const TVec3f& rVel) {
     mVelocity.addInline(rVel);
 }
 
-void DinoPackunTailNode::requestLockPosition() {}
+void DinoPackunTailNode::requestLockPosition() {
+}
 
-void DinoPackunTailNode::requestUnLockPosition() {}
+void DinoPackunTailNode::requestUnLockPosition() {
+}

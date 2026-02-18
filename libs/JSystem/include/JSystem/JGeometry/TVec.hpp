@@ -552,7 +552,13 @@ namespace JGeometry {
         }
 
         void scale(f32 scale);
-        void scale(f32, const TVec3&);
+
+        void scale(f32 scalar, const TVec3& rVec); /*{
+            this->x = rVec.x * scalar;
+            this->y = rVec.y * scalar;
+            this->z = rVec.z * scalar;
+        }*/
+
         void negate();
 
         f32 normalize() {
@@ -661,7 +667,7 @@ namespace JGeometry {
 
         f32 angle(const TVec3&) const;
 
-        inline TVec3 cross(const TVec3& b) {
+        inline TVec3 cross(const TVec3& b) const {
             TVec3 ret;
             PSVECCrossProduct(this, &b, &ret);
             return ret;
@@ -782,7 +788,19 @@ namespace JGeometry {
         void setEuler(T _x, T _y, T _z);
         void setEulerZ(T _z);
 
-        void setRotate(const TVec3< T >&, const TVec3< T >&, T);
+        void setRotate(const TVec3< f32 >& rA, const TVec3< f32 >& rB, f32 ratio) {
+            TVec3< f32 > dir = rA.cross(rB);
+            f32 crossPart = dir.length();
+            if (crossPart <= 0.0000038146973f) {
+                set< f32 >(0.0f, 0.0f, 0.0f, 1.0f);
+            } else {
+                f32 dotPart = rA.dot(rB);
+                f32 halfAngle = ratio * (JMath::sAtanTable.atan2_(crossPart, dotPart) * 0.5f);
+                toTvec()->scale((f32)sin(halfAngle) / crossPart, dir);
+                this->w = cos(halfAngle);
+            }
+        }
+
         void setRotate(const TVec3< T >&, const TVec3< T >&);
 
         void setRotate(const TVec3< T >& pVec, f32 pAngle) {
