@@ -27,8 +27,8 @@ typedef struct NWC24Work {
     char WORK_0x1200[128];
     char WORK_0x1280[128];
     u8 base64Work[256];  // at 0x1300
-    char WORK_0x1400[0x2400 - 0x1400];
-    u8 flHeader[WORK_SIZE(NWC24FLHeader)];              // at 0x2800
+    char WORK_0x1400[0x2a00 - 0x1400];
+    u8 flHeader[WORK_SIZE(NWC24FLHeader)];              // at 0x2400
     u8 secretFlHeader[WORK_SIZE(NWC24SecretFLHeader)];  // at 0x2800
     u8 dlHeader[WORK_SIZE(NWC24DlHeader)];              // at 0x3000
     u8 dlTask[WORK_SIZE(NWC24DlTask)];                  // at 0x3800
