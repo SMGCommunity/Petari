@@ -22,10 +22,18 @@ namespace JMath {
 
     template <>
     struct TAngleConstant_< f32 > {
-        static f32 RADIAN_DEG090() { return 1.5707964f; }
-        static f32 RADIAN_DEG180() { return 3.1415927f; }
-        static f32 RADIAN_DEG360() { return 6.2831855f; }
-        static f32 RADIAN_TO_DEGREE_FACTOR() { return 180.0f / RADIAN_DEG180(); }
+        static f32 RADIAN_DEG090() {
+            return 1.5707964f;
+        }
+        static f32 RADIAN_DEG180() {
+            return 3.1415927f;
+        }
+        static f32 RADIAN_DEG360() {
+            return 6.2831855f;
+        }
+        static f32 RADIAN_TO_DEGREE_FACTOR() {
+            return 180.0f / RADIAN_DEG180();
+        }
     };
 
     template < int Bits, typename T >
@@ -34,8 +42,12 @@ namespace JMath {
         static const u32 LEN = 1 << Bits;
         std::pair< T, T > table[LEN];
 
-        T sinShort(s16 v) const { return table[static_cast< u16 >(v) >> (16U - Bits)].a1; }
-        T cosShort(s16 v) const { return table[static_cast< u16 >(v) >> (16U - Bits)].b1; }
+        T sinShort(s16 v) const {
+            return table[static_cast< u16 >(v) >> (16U - Bits)].a1;
+        }
+        T cosShort(s16 v) const {
+            return table[static_cast< u16 >(v) >> (16U - Bits)].b1;
+        }
 
         inline f32 sinLapRad(f32 v) {
             if (v < 0.0f) {
@@ -43,6 +55,16 @@ namespace JMath {
                 return -table[(u16)tmp & LEN - 1].a1;
             } else {
                 f32 tmp = v * (LEN / TWO_PI);
+                return table[(u16)tmp & LEN - 1].a1;
+            }
+        }
+
+        inline f32 sinLap(f32 v) {
+            if (v < 0.0f) {
+                f32 tmp = v * -45.511112f;
+                return -table[(u16)tmp & LEN - 1].a1;
+            } else {
+                f32 tmp = v * 45.511112f;
                 return table[(u16)tmp & LEN - 1].a1;
             }
         }
@@ -67,7 +89,9 @@ namespace JMath {
             return table[(u16)v & LEN - 1].b1;
         }
 
-        inline f32 get(f32 v) { return table[(u16)v & LEN - 1].b1; }
+        inline f32 get(f32 v) {
+            return table[(u16)v & LEN - 1].b1;
+        }
     };
 
     template < s32 Len, typename T >
@@ -101,7 +125,9 @@ namespace JMath {
             }
         }
 
-        T acosDegree(T x) const { return acos_(x) * TAngleConstant_< T >::RADIAN_TO_DEGREE_FACTOR(); }
+        T acosDegree(T x) const {
+            return acos_(x) * TAngleConstant_< T >::RADIAN_TO_DEGREE_FACTOR();
+        }
 
         T mTable[Len];
         T _1000;
@@ -111,7 +137,9 @@ namespace JMath {
     extern TAtanTable< 1024, f32 > sAtanTable;
     extern TAsinAcosTable< 1024, f32 > sAsinAcosTable;
 
-    inline f32 acosDegree(f32 x) { return sAsinAcosTable.acosDegree(x); }
+    inline f32 acosDegree(f32 x) {
+        return sAsinAcosTable.acosDegree(x);
+    }
 };  // namespace JMath
 
 // inline f32 JMASSin(u16 s) {
