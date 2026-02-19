@@ -1,6 +1,10 @@
 #include "Game/Enemy/WalkerStateBindStarPointer.hpp"
 #include "Game/Enemy/AnimScaleController.hpp"
 
+namespace {
+    static const s32 sPointCanceBindTime = 5;
+}
+
 namespace NrvWalkerStateBindStarPointer {
     NEW_NERVE(WalkerStateBindStarPointerNrvBind, WalkerStateBindStarPointer, Bind);
 };
@@ -60,9 +64,7 @@ void WalkerStateBindStarPointer::exeBind() {
         mUpdateCounter++;
     }
 
-    if (mUpdateCounter > 5) {
+    if (mUpdateCounter > sPointCanceBindTime) {
         update();
     }
 }
-
-WalkerStateBindStarPointer::~WalkerStateBindStarPointer() {}

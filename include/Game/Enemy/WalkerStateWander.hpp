@@ -1,7 +1,7 @@
 #pragma once
 
+#include "Game/LiveActor/ActorStateBase.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/System/NerveExecutor.hpp"
 
 class WalkerStateParam;
 class TerritoryMover;
@@ -10,26 +10,25 @@ class WalkerStateWanderParam {
 public:
     WalkerStateWanderParam();
 
-    s32 _0;
-    s32 _4;
-    f32 _8;
-    f32 _C;
-    f32 _10;
+    /* 0x00 */ s32 mWaitTime;
+    /* 0x04 */ s32 mWalkTime;
+    /* 0x08 */ f32 mSpeed;
+    /* 0x0C */ f32 mTurnDegree;
+    /* 0x10 */ f32 mTargetDistance;
 };
 
 class WalkerStateWander : public ActorStateBase< LiveActor > {
 public:
     WalkerStateWander(LiveActor*, TVec3f*, WalkerStateParam*, WalkerStateWanderParam*);
 
-    virtual ~WalkerStateWander();
     virtual void appear();
 
     void setWanderCenter(const TVec3f&);
     void exeWait();
     void exeWalk();
 
-    TVec3f* _10;
-    TerritoryMover* mTerritoryMover;       // 0x14
-    WalkerStateParam* mStateParam;         // 0x18
-    WalkerStateWanderParam* mWanderParam;  // 0x1C
+    /* 0x10 */ TVec3f* mDirection;
+    /* 0x14 */ TerritoryMover* mTerritoryMover;
+    /* 0x18 */ WalkerStateParam* mStateParam;
+    /* 0x1C */ WalkerStateWanderParam* mWanderParam;
 };

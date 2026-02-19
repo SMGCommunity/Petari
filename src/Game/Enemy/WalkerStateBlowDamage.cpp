@@ -1,46 +1,50 @@
 #include "Game/Enemy/WalkerStateBlowDamage.hpp"
-#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util/ActorMovementUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
-#include "revolution/types.h"
+
+namespace {
+    static const f32 sAirFric = 0.99f;
+    static const f32 sAirGravityAccel = 1.0f;
+    static const f32 sDamageTurnLimit = 15.0f;
+    static const s32 sDamageLandTime = 5;
+}  // namespace
 
 namespace NrvWalkerStateBlowDamage {
     NEW_NERVE(WalkerStateBlowDamageNrvBlow, WalkerStateBlowDamage, Blow);
     NEW_NERVE(WalkerStateBlowDamageNrvBlowLand, WalkerStateBlowDamage, BlowLand);
 }  // namespace NrvWalkerStateBlowDamage
 
-WalkerStateBlowDamage::WalkerStateBlowDamage(LiveActor* pActor, TVec3f* pVec, WalkerStateBlowDamageParam* pBlowDamageParam)
-    : ActorStateBase< LiveActor >("吹き飛びダメージ状態", pActor) {
+WalkerStateBlowDamage::WalkerStateBlowDamage(LiveActor* pActor, TVec3f* pDirection, WalkerStateBlowDamageParam* pBlowDamageParam)
+    : ActorStateBase< LiveActor >("吹き飛びダメージ状態", pActor), mDirection(pDirection), mBlowDamageParam(pBlowDamageParam) {
     initNerve(&NrvWalkerStateBlowDamage::WalkerStateBlowDamageNrvBlow::sInstance);
 }
-WalkerStateBlowDamage::~WalkerStateBlowDamage() {}
 
 void WalkerStateBlowDamage::appear() {
-    mIsDead = 0;
+    mIsDead = false;
     setNerve(&NrvWalkerStateBlowDamage::WalkerStateBlowDamageNrvBlow::sInstance);
 }
 
 void WalkerStateBlowDamage::exeBlow() {
     if (MR::isFirstStep(this)) {
-        MR::startAction(this->mHost, "Damage");
+        MR::startAction(getHost(), "Damage");
     }
-    MR::attenuateVelocity(this->mHost, 0.99f);
-    MR::addVelocityToGravity(this->mHost, 1.0f);
+    MR::attenuateVelocity(getHost(), sAirFric);
+    MR::addVelocityToGravity(getHost(), sAirGravityAccel);
 
     TVec3f mVelocityNegate;
-    JMathInlineVEC::PSVECNegate(&mHost->mVelocity, &mVelocityNegate);
-    MR::turnDirectionDegree(this->mHost, this->_10, mVelocityNegate, 15.0f);
+    JMathInlineVEC::PSVECNegate(&getHost()->mVelocity, &mVelocityNegate);
+    MR::turnDirectionDegree(getHost(), mDirection, mVelocityNegate, sDamageTurnLimit);
 
-    if (MR::isGreaterStep(this, 5)) {
-        if (MR::isBindedGround(this->mHost)) {
-            MR::startAction(this->mHost, "DamageLand");
-            MR::zeroVelocity(this->mHost);
+    if (MR::isGreaterStep(this, sDamageLandTime)) {
+        if (MR::isBindedGround(getHost())) {
+            MR::startAction(getHost(), "DamageLand");
+            MR::zeroVelocity(getHost());
             setNerve(&NrvWalkerStateBlowDamage::WalkerStateBlowDamageNrvBlowLand::sInstance);
         }
     }
 }
 
-inline void WalkerStateBlowDamage::exeBlowLand() {
+void WalkerStateBlowDamage::exeBlowLand() {
     if (MR::isGreaterStep(this, 30)) {
         kill();
     }

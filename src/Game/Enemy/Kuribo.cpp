@@ -37,13 +37,13 @@ namespace {
         mStateParam._C = 1000.0f;
         mStateParam._10 = 70.0f;
         mStateParam._14 = 30.0f;
-        mWanderParam._8 = 0.2f;
-        mWanderParam._0 = 120;
-        mWanderParam._4 = 120;
-        mWanderParam._C = 3.0f;
+        mWanderParam.mSpeed = 0.2f;
+        mWanderParam.mWaitTime = 120;
+        mWanderParam.mWalkTime = 120;
+        mWanderParam.mTurnDegree = 3.0f;
         mChaseParam._0 = 0.4f;
-        mFindPlayerParam._8 = 5.0f;
-        mFindPlayerParam._4 = 20.0f;
+        mFindPlayerParam.mTurnDegree = 5.0f;
+        mFindPlayerParam.mJumpVelocity = 20.0f;
     }
 
     static KuriboParam sParam;
@@ -68,7 +68,8 @@ namespace NrvKuribo {
 
 Kuribo::Kuribo(const char* pName)
     : LiveActor(pName), mScaleController(nullptr), mItemGenerator(nullptr), mStateWander(nullptr), mStateFindPlayer(nullptr),
-      mBindStarPointer(nullptr), mStateStagger(nullptr), mStateChase(nullptr), _A8(0.0f, 0.0f, 0.0f, 1.0f), _B8(0, 0, 1), _C4(0), _C5(1) {}
+      mBindStarPointer(nullptr), mStateStagger(nullptr), mStateChase(nullptr), _A8(0.0f, 0.0f, 0.0f, 1.0f), _B8(0, 0, 1), _C4(0), _C5(1) {
+}
 
 void Kuribo::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
@@ -796,4 +797,5 @@ namespace MR {
     }
 };  // namespace MR
 
-Kuribo::~Kuribo() {}
+Kuribo::~Kuribo() {
+}

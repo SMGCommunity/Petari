@@ -1,12 +1,10 @@
 #include "Game/Enemy/WalkerStateFunction.hpp"
 #include "Game/Enemy/WalkerStateParam.hpp"
-#include "Game/Util.hpp"
 #include "Game/Util/ActorMovementUtil.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
 
-// Required For Float Order, should get stripped when linked.
-void unusedFunction() {
-    f32 x = 0.0f;
+bool WalkerStateFunction::isInSightPlayer(const LiveActor* pActor, const TVec3f& pTVec3f, const WalkerStateParam* pParam) {
+    return MR::isInSightFanPlayer(pActor, pTVec3f, pParam->_C, pParam->_10, pParam->_14);
 }
 
 void WalkerStateFunction::calcPassiveMovement(LiveActor* pActor, const WalkerStateParam* pParam) {
@@ -17,8 +15,4 @@ void WalkerStateFunction::calcPassiveMovement(LiveActor* pActor, const WalkerSta
     } else {
         MR::attenuateVelocity(pActor, pParam->_8);
     }
-}
-
-bool WalkerStateFunction::isInSightPlayer(const LiveActor* pActor, const TVec3f& pTVec3f, const WalkerStateParam* pParam) {
-    return MR::isInSightFanPlayer(pActor, pTVec3f, pParam->_C, pParam->_10, pParam->_14);
 }
