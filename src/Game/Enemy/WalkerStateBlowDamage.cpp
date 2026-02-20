@@ -1,6 +1,4 @@
 #include "Game/Enemy/WalkerStateBlowDamage.hpp"
-#include "Game/Util/ActorMovementUtil.hpp"
-#include "Game/Util/LiveActorUtil.hpp"
 
 namespace {
     static const f32 sAirFric = 0.99f;
@@ -14,8 +12,8 @@ namespace NrvWalkerStateBlowDamage {
     NEW_NERVE(WalkerStateBlowDamageNrvBlowLand, WalkerStateBlowDamage, BlowLand);
 }  // namespace NrvWalkerStateBlowDamage
 
-WalkerStateBlowDamage::WalkerStateBlowDamage(LiveActor* pActor, TVec3f* pDirection, WalkerStateBlowDamageParam* pBlowDamageParam)
-    : ActorStateBase< LiveActor >("吹き飛びダメージ状態", pActor), mDirection(pDirection), mBlowDamageParam(pBlowDamageParam) {
+WalkerStateBlowDamage::WalkerStateBlowDamage(LiveActor* pHost, TVec3f* pDirection, WalkerStateBlowDamageParam* pBlowDamageParam)
+    : ActorStateBase< LiveActor >("吹き飛びダメージ状態", pHost), mDirection(pDirection), mBlowDamageParam(pBlowDamageParam) {
     initNerve(&NrvWalkerStateBlowDamage::WalkerStateBlowDamageNrvBlow::sInstance);
 }
 

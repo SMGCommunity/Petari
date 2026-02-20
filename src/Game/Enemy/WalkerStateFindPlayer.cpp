@@ -1,8 +1,5 @@
 #include "Game/Enemy/WalkerStateFindPlayer.hpp"
 #include "Game/Enemy/WalkerStateFunction.hpp"
-#include "Game/Util/ActorMovementUtil.hpp"
-#include "Game/Util/LiveActorUtil.hpp"
-#include "Game/Util/NerveUtil.hpp"
 
 namespace {
     WalkerStateFindPlayerParam sDefaultParam;
@@ -15,7 +12,7 @@ namespace NrvWalkerStateFindPlayer {
     NEW_NERVE(WalkerStateFindPlayerNrvFindJumpEnd, WalkerStateFindPlayer, FindJumpEnd);
 }  // namespace NrvWalkerStateFindPlayer
 
-WalkerStateFindPlayerParam::WalkerStateFindPlayerParam() : mJumpStartStep(30), mJumpVelocity(20.0f), mTurnDegree(5.0f) {
+WalkerStateFindPlayerParam::WalkerStateFindPlayerParam() : mJumpStartStep(30), mJumpVelocity(20.0f), mTurnMaxRateDegree(5.0f) {
 }
 
 WalkerStateFindPlayer::WalkerStateFindPlayer(LiveActor* pHost, TVec3f* pDirection, WalkerStateParam* pStateParam,
@@ -39,7 +36,7 @@ void WalkerStateFindPlayer::exeFind() {
     }
 
     WalkerStateFunction::calcPassiveMovement(getHost(), mStateParam);
-    MR::turnDirectionToTargetUseGroundNormalDegree(getHost(), mDirection, *MR::getPlayerPos(), mFindPlayerParam->mTurnDegree);
+    MR::turnDirectionToTargetUseGroundNormalDegree(getHost(), mDirection, *MR::getPlayerPos(), mFindPlayerParam->mTurnMaxRateDegree);
 
     if (MR::isStep(this, mFindPlayerParam->mJumpStartStep)) {
         setNerve(&NrvWalkerStateFindPlayer::WalkerStateFindPlayerNrvFindJumpStart::sInstance);

@@ -2,41 +2,40 @@
 
 #include "Game/LiveActor/ActorStateBase.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/System/NerveExecutor.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
 
 class WalkerStateRunawayParam {
 public:
     WalkerStateRunawayParam();
 
-    const char* _0;
-    const char* _4;
-    const char* _8;
-    f32 _C;
-    f32 _10;
-    f32 _14;
-    f32 _18;
-    s32 _1C;
-    f32 _20;
-    f32 _24;
-    f32 _28;
-    f32 _2C;
-    f32 _30;
-    u32 _34;
-    f32 _38;
-    f32 _3C;
-    f32 _40;
-    f32 _44;
-    s32 _48;
-    f32 _4C;
-    f32 _50;
-    f32 _54;
+    /* 0x00 */ const char* mWaitAction;
+    /* 0x04 */ const char* mRunawayAction;
+    /* 0x08 */ const char* mJumpAction;
+    /* 0x0C */ f32 mGroundAccel;
+    /* 0x10 */ f32 mAirAccel;
+    /* 0x14 */ f32 _14;  // mGroundFriction? - fric if ._18 <= _1C
+    /* 0x18 */ f32 _18;  // mAirFriction? - fric if ._18 > _1C
+    /* 0x1C */ s32 _1C;  // step?
+    /* 0x20 */ f32 mTurnMaxRateDegree;
+    /* 0x24 */ f32 mRunawayDistance;
+    /* 0x28 */ f32 mWaitDistance;
+    /* 0x2C */ f32 mRunawayTurnRateMaxDegree;
+    /* 0x30 */ f32 mRunawayTurnRateMinDegree;
+    /* 0x34 */ s32 mRunawayTurnTime;
+    /* 0x38 */ f32 mPlayerFrontLineLength;
+    /* 0x3C */ f32 mRunawayBckRatio;
+    /* 0x40 */ f32 mMinRunawayBckRate;
+    /* 0x44 */ f32 mMaxRunawayBckRate;
+    /* 0x48 */ s32 mWallJumpTime;
+    /* 0x4C */ f32 mWallReboundPower;
+    /* 0x50 */ f32 mWallJumpPowerH;
+    /* 0x54 */ f32 mWallJumpPowerV;
 };
 
 class WalkerStateRunaway : public ActorStateBase< LiveActor > {
 public:
-    WalkerStateRunaway(LiveActor* pActor, TVec3f* a2, WalkerStateRunawayParam* pParam);
+    WalkerStateRunaway(LiveActor* pHost, TVec3f* pDirection, WalkerStateRunawayParam* pRunawayParam);
 
-    virtual ~WalkerStateRunaway();
     virtual void appear();
 
     bool tryRunaway();
@@ -47,8 +46,21 @@ public:
     void exeWallJump();
     bool isRunning() const;
 
-    WalkerStateRunawayParam* mParam;  // 0x10
-    TVec3f* _14;
-    s32 _18;
-    f32 _1C;
+    bool isInWaitRange(f32 range) const {
+        return !MR::isNearPlayer(getHost(), range);
+    }
+
+    WalkerStateRunawayParam* getParam() const {
+        return mRunawayParam;
+    }
+
+    // TODO: what are these values?
+    bool check18() const {
+        return _18 < mRunawayParam->_1C;
+    }
+
+    /* 0x10 */ WalkerStateRunawayParam* mRunawayParam;
+    /* 0x14 */ TVec3f* mDirection;
+    /* 0x18 */ s32 _18;
+    /* 0x1C */ f32 mRunawaySpeed;
 };

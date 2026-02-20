@@ -2,8 +2,6 @@
 #include "Game/Enemy/TerritoryMover.hpp"
 #include "Game/Enemy/WalkerStateFunction.hpp"
 #include "Game/Enemy/WalkerStateParam.hpp"
-#include "Game/Util/ActorMovementUtil.hpp"
-#include "Game/Util/MapUtil.hpp"
 
 namespace {
     WalkerStateWanderParam sDefaultParam;
@@ -14,11 +12,11 @@ namespace NrvWalkerStateWander {
     NEW_NERVE(WalkerStateWanderNrvWalk, WalkerStateWander, Walk);
 }  // namespace NrvWalkerStateWander
 
-WalkerStateWanderParam::WalkerStateWanderParam() : mWaitTime(120), mWalkTime(120), mSpeed(0.2f), mTurnDegree(3.0f), mTargetDistance(20.0f) {
+WalkerStateWanderParam::WalkerStateWanderParam() : mWaitTime(120), mWalkTime(120), mSpeed(0.2f), mTurnMaxRateDegree(3.0f), mTargetDistance(20.0f) {
 }
 
-WalkerStateWander::WalkerStateWander(LiveActor* pActor, TVec3f* pDirection, WalkerStateParam* pStateParam, WalkerStateWanderParam* pWanderParam)
-    : ActorStateBase< LiveActor >("クリボー型うろつき状態", pActor), mDirection(pDirection), mTerritoryMover(nullptr), mStateParam(pStateParam),
+WalkerStateWander::WalkerStateWander(LiveActor* pHost, TVec3f* pDirection, WalkerStateParam* pStateParam, WalkerStateWanderParam* pWanderParam)
+    : ActorStateBase< LiveActor >("クリボー型うろつき状態", pHost), mDirection(pDirection), mTerritoryMover(nullptr), mStateParam(pStateParam),
       mWanderParam(pWanderParam) {
     initNerve(&NrvWalkerStateWander::WalkerStateWanderNrvWait::sInstance);
 
@@ -57,7 +55,7 @@ void WalkerStateWander::exeWalk() {
         MR::startAction(getHost(), "Walk");
     }
 
-    MR::turnDirectionToTargetUseGroundNormalDegree(getHost(), mDirection, mTerritoryMover->_10, mWanderParam->mTurnDegree);
+    MR::turnDirectionToTargetUseGroundNormalDegree(getHost(), mDirection, mTerritoryMover->_10, mWanderParam->mTurnMaxRateDegree);
 
     if (MR::isFaceToTargetHorizontalDegree(getHost(), mTerritoryMover->_10, *mDirection, 8.0f)) {
         MR::addVelocityMoveToDirection(getHost(), *mDirection, mWanderParam->mSpeed);

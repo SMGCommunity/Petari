@@ -300,6 +300,12 @@ namespace JGeometry {
             JMathInlineVEC::PSVECAdd(this, &op, this);
         }
 
+        inline TVec3 addOtherInline(const TVec3& op) const {
+            TVec3 ret;
+            JMathInlineVEC::PSVECAdd(this, &op, &ret);
+            return ret;
+        }
+
         TVec3 operator*(f32 scalar) const NO_INLINE {
             TVec3 ret(*this);
             ret.x *= scalar;

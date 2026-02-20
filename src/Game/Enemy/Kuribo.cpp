@@ -31,18 +31,18 @@ namespace {
     };
 
     KuriboParam::KuriboParam() {
-        mStateParam._0 = 1.5f;
-        mStateParam._4 = 0.99f;
-        mStateParam._8 = 0.93f;
-        mStateParam._C = 1000.0f;
-        mStateParam._10 = 70.0f;
-        mStateParam._14 = 30.0f;
+        mStateParam.mGravityAccel = 1.5f;
+        mStateParam.mAirFriction = 0.99f;
+        mStateParam.mGroundFriction = 0.93f;
+        mStateParam.mPlayerNearDistance = 1000.0f;
+        mStateParam.mPlayerSightFanDegreeH = 70.0f;
+        mStateParam.mPlayerSightFanDegreeV = 30.0f;
         mWanderParam.mSpeed = 0.2f;
         mWanderParam.mWaitTime = 120;
         mWanderParam.mWalkTime = 120;
-        mWanderParam.mTurnDegree = 3.0f;
-        mChaseParam._0 = 0.4f;
-        mFindPlayerParam.mTurnDegree = 5.0f;
+        mWanderParam.mTurnMaxRateDegree = 3.0f;
+        mChaseParam.mChaseSpeed = 0.4f;
+        mFindPlayerParam.mTurnMaxRateDegree = 5.0f;
         mFindPlayerParam.mJumpVelocity = 20.0f;
     }
 

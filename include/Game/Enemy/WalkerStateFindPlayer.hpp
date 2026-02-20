@@ -11,7 +11,7 @@ public:
 
     /* 0x0 */ u32 mJumpStartStep;
     /* 0x4 */ f32 mJumpVelocity;
-    /* 0x8 */ f32 mTurnDegree;
+    /* 0x8 */ f32 mTurnMaxRateDegree;
 };
 
 class WalkerStateFindPlayer : public ActorStateBase< LiveActor > {

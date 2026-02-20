@@ -58,8 +58,7 @@ void WalkerStateStagger::exeStagger() {
     f32 t = MR::calcNerveEaseInOutValue(this, mStaggerParam->mRotateStartTime, mStaggerParam->mRotateEndTime, 1.0f, 0.0f);
     MR::rotateDirectionGravityDegree(getHost(), mDirection, mStaggerParam->mRotateRateDegree * t);
 
-    f32 angle = MR::repeatDegree(mStaggerParam->mStaggerSideCircleRateDegree * getNerveStep());
-    f32 s = JMath::sSinCosTable.sinLap(angle);
+    f32 s = JMath::sSinCosTable.sinLap(MR::repeatDegree(mStaggerParam->mStaggerSideCircleRateDegree * getNerveStep()));
 
     MR::addVelocityClockwiseToDirection(getHost(), mVelH, t * (mStaggerParam->mStaggerSidePower * s));
     MR::addVelocityMoveToDirection(getHost(), mVelH, mStaggerParam->mStaggerFrontPower * t);

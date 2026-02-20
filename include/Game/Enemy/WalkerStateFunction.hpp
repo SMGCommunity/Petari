@@ -5,9 +5,8 @@
 class LiveActor;
 class WalkerStateParam;
 
-class WalkerStateFunction {
-public:
-    static bool isInSightPlayer(const LiveActor*, const TVec3f&, const WalkerStateParam*);
+namespace WalkerStateFunction {
+    bool isInSightPlayer(const LiveActor* pActor, const TVec3f& rDirection, const WalkerStateParam* pStateParam);
 
-    static void calcPassiveMovement(LiveActor*, const WalkerStateParam*);
-};
+    void calcPassiveMovement(LiveActor* pActor, const WalkerStateParam* pStateParam);
+};  // namespace WalkerStateFunction
