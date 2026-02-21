@@ -8,6 +8,7 @@ class J3DModel;
 class J3DMaterial;
 class LiveActor;
 struct ResTIMG;
+class XanimePlayer;
 
 namespace MR {
     bool isExistModel(const char*);
@@ -15,6 +16,7 @@ namespace MR {
     J3DModel* getJ3DModel(const LiveActor*);
     J3DModelData* getJ3DModelData(const LiveActor*);
     J3DModelData* getJ3DModelData(const char*);
+
     ResTIMG* getResTIMG(const LiveActor*, int);
 
     void calcJ3DModel(LiveActor*);
@@ -33,6 +35,8 @@ namespace MR {
 
     void showMaterial(const LiveActor*, const char*);
     void hideMaterial(const LiveActor*, const char*);
+
+    bool isUseTex(J3DMaterial*, u16);
 
     void updateMaterial(LiveActor*);
 
@@ -53,6 +57,9 @@ namespace MR {
     bool isExistEffectTexMtx(LiveActor*);
 
     s16 getBckFrameMax(const LiveActor*, const char*);
+    s16 getBrkFrameMax(const LiveActor*, const char*);
+    s16 getBvaFrameMax(const LiveActor*, const char*);
+    bool isBckPlaying(XanimePlayer*, const char*);
 
     void updateModelManager(LiveActor*);
     void calcAnimModelManager(LiveActor*);
