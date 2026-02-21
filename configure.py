@@ -2306,7 +2306,7 @@ config.libs = [
             Object(NonMatching, "Game/Util/BaseMatrixFollowTargetHolder.cpp"),
             Object(NonMatching, "Game/Util/BezierSurface.cpp"),
             Object(Matching, "Game/Util/BothDirList.cpp"),
-            Object(NonMatching, "Game/Util/CollisionPartsFilter.cpp"),
+            Object(Matching, "Game/Util/CollisionPartsFilter.cpp"),
             Object(NonMatching, "Game/Util/DirectDraw.cpp"),
             Object(NonMatching, "Game/Util/DirectDrawUtil.cpp"),
             Object(NonMatching, "Game/Util/FixedPosition.cpp"),

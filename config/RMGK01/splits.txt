@@ -9240,7 +9240,7 @@ Game/Util/BothDirList.cpp:
 
 Game/Util/CollisionPartsFilter.cpp:
 	.text       start:0x80401F44 end:0x80401F78
-	.data       start:0x805E6E30 end:0x805E6E68
+	.data       start:0x805E6E30 end:0x805E6E48
 
 Game/Util/DirectDraw.cpp:
 	.text       start:0x80401F78 end:0x804044C8
@@ -9253,6 +9253,7 @@ Game/Util/DirectDrawUtil.cpp:
 
 Game/Util/FixedPosition.cpp:
 	.text       start:0x804048EC end:0x80404D68
+	.data       start:0x805E6E48 end:0x805E6E68
 	.sdata2     start:0x806C1948 end:0x806C1950
 
 Game/Util/GeometryBindUtil.cpp:
