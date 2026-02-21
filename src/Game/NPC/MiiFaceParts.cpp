@@ -13,7 +13,8 @@ MiiFaceParts::MiiFaceParts(const char* pName, const MiiFaceRecipe& rRecipe)
     MR::createSceneObj(SceneObj_MiiFacePartsHolder);
 }
 
-MiiFaceParts::~MiiFaceParts() {}
+MiiFaceParts::~MiiFaceParts() {
+}
 
 void MiiFaceParts::init(const JMapInfoIter& rIter) {
     _90 = new (32) u8[mRecipe->getModelBufferSize()];
@@ -69,7 +70,7 @@ void MiiFaceParts::drawXlu(const RFLDrawCoreSetting* pSetting) const {
 
 void MiiFaceParts::initFixedPosition(MtxPtr pParam1, const TVec3f& rParam2, const TVec3f& rParam3) {
     _CC = new FixedPosition(pParam1, rParam2, rParam3);
-    _C8 = _CC->_1C;
+    _C8 = _CC->mMtx;
 }
 
 void MiiFaceParts::changeExpressionNormal() {

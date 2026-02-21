@@ -439,6 +439,47 @@ namespace JGeometry {
             this->mMtx[2][2] = v12 * v13;
         }
 
+        inline void makeMatrixFromRotAxesInline(f32 rx, f32 ry, f32 rz) {
+            // FIXME: this isnt 100% correct yet, caution
+
+            f32 cosZ = cos(rz);
+            f32 cosY = cos(ry);
+            f32 cosX = cos(rx);
+            f32 sinZ = sin(rz);
+            f32 sinY = sin(ry);
+            f32 sinX = sin(rx);
+
+            /*
+            this->mMtx[0][0] = cosY * cosZ;
+            this->mMtx[1][0] = cosY * sinZ;
+            this->mMtx[2][0] = -sinY;
+
+            this->mMtx[0][1] = sinX * sinY * cosZ - cosX * sinZ;
+            this->mMtx[1][1] = sinX * sinY * sinZ + cosX * cosZ;
+            this->mMtx[2][1] = sinX * cosY;
+
+            this->mMtx[0][2] = cosX * cosZ * sinY + sinX * sinZ;
+            this->mMtx[1][2] = cosX * sinZ * sinY - sinX * cosZ;
+            this->mMtx[2][2] = cosX * cosY;
+            */
+
+            this->mMtx[0][0] = cosY * cosZ;
+            this->mMtx[1][0] = cosY * sinZ;
+            this->mMtx[2][0] = -sinY;
+
+            this->mMtx[0][1] = sinX * sinY * cosZ - cosX * sinZ;
+            this->mMtx[1][1] = sinX * sinY * sinZ + cosX * cosZ;
+            this->mMtx[2][1] = sinX * cosY;
+
+            this->mMtx[0][2] = cosX * cosZ * sinY + sinX * sinZ;
+            this->mMtx[1][2] = cosX * sinZ * sinY - sinX * cosZ;
+            this->mMtx[2][2] = cosX * cosY;
+
+            // this->mMtx[0][3] = rTrans.x;
+            // this->mMtx[1][3] = rTrans.y;
+            // this->mMtx[2][3] = rTrans.z;
+        }
+
         inline void setRotateInline(const TVec3f& vec1, f32 r) {
             TVec3f vec;
             vec.set(vec1);
