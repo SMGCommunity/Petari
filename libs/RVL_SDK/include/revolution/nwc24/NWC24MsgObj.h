@@ -34,7 +34,7 @@ typedef struct NWC24MsgObj {
     u32 flags;   // at 0x4
     u32 length;  // at 0x8
     u32 appId;   // at 0xC
-    char UNK_0x10[0x4];
+    s32 UNK_0x10;
     u32 tag;         // at 0x14
     u32 ledPattern;  // at 0x18
     u64 fromId;      // at 0x20
