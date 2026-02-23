@@ -323,6 +323,13 @@ namespace JGeometry {
             return ret;
         }
 
+        // multiple copies of multiplyOperatorInline in the same instruction path dont behave well
+        TVec3 multiplyOperatorInline2(f32 scalar) const {
+            TVec3 ret(*this);
+            ret *= scalar;
+            return ret;
+        }
+
         // appears to be needed in RingBeam to match stack in some places
         TVec3 scaleInline(f32 scalar) const {
             TVec3 ret(*this);
@@ -336,6 +343,13 @@ namespace JGeometry {
             ret.x *= val;
             ret.y *= val;
             ret.z *= val;
+            return ret;
+        }
+
+        // in cases where multInline is used twice in the same instruction path
+        inline TVec3 multInLine2(f32 val) const {
+            TVec3 ret(*this);
+            ret.mult(val);
             return ret;
         }
 
@@ -390,6 +404,12 @@ namespace JGeometry {
             return this;
         }
 
+        inline TVec3 subOtherInline(const TVec3& op) const {
+            TVec3 ret(*this);
+            ret -= op;
+            return ret;
+        }
+
         template < typename T >
         void set(const TVec3< T >& rVec) {
             x = rVec.x;
@@ -436,6 +456,12 @@ namespace JGeometry {
 
         void mult(const Vec& src1, const Vec& src2, Vec& dest) {
             mulInternal(&src1.x, &src2.x, &dest.x);
+        }
+
+        TVec3 mult(const Vec& rOther) {
+            TVec3 ret;
+            mulInternal(&this->x, &rOther.x, &ret.x);
+            return ret;
         }
 
         template < typename T >
@@ -792,6 +818,9 @@ namespace JGeometry {
 
         void getEuler(TVec3< T >& rDest) const;
         void setEuler(T _x, T _y, T _z);
+        void setEulerDegree(T _x, T _y, T _z) {
+            setEuler(_x * PI_180, _y * PI_180, _z * PI_180);
+        }
         void setEulerZ(T _z);
 
         void setRotate(const TVec3< f32 >& rA, const TVec3< f32 >& rB, f32 ratio) {
