@@ -13,6 +13,7 @@ public:
     enum Type { BOMB_HEI = 0, BOMB = 1 };
 
     virtual void init(const JMapInfoIter& rIter);
+    virtual void initAfterPlacement();
     virtual void appear();
     virtual void kill();
     virtual void control();
@@ -25,7 +26,6 @@ public:
     virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
 
     void setGroupClipping(const JMapInfoIter& rIter);
-    void initAfterPlacement();
     void startCountdown();
     void endCountdown();
 
@@ -51,7 +51,6 @@ public:
     bool calcJoint(TPos3f*, const JointControllerInfo&);
     void startBoundSound();
 
-private:
     /* 0x8C */ AnimScaleController* mScaleController;
     /* 0x90 */ WalkerStateBindStarPointer* mBindStarPointerState;
     /* 0x94 */ TQuat4f mRotQuat;
