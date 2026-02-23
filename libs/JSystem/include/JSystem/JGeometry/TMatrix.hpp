@@ -349,6 +349,18 @@ namespace JGeometry {
             this->mMtx[2][2] = rSrcZ.z;
         }
 
+        inline void setXYZDirInline2(const TVec3f& rSrcX, const TVec3f& rSrcY, const TVec3f& rSrcZ) {
+            this->mMtx[0][0] = rSrcX.x;
+            this->mMtx[0][1] = rSrcX.y;
+            this->mMtx[0][2] = rSrcX.z;
+            this->mMtx[1][0] = rSrcY.x;
+            this->mMtx[1][1] = rSrcY.y;
+            this->mMtx[1][2] = rSrcY.z;
+            this->mMtx[2][0] = rSrcZ.x;
+            this->mMtx[2][1] = rSrcZ.y;
+            this->mMtx[2][2] = rSrcZ.z;
+        }
+
         inline void getXYZDirInline(TVec3f& rDstX, TVec3f& rDstY, TVec3f& rDstZ) {
             f32 z1 = this->mMtx[2][0];
             f32 y1 = this->mMtx[1][0];
@@ -583,6 +595,10 @@ namespace JGeometry {
             return get(x, y);
         }
 
+        operator TMatrix34< T >() const {
+            return *(TMatrix34< T >*)this;
+        }
+
         inline void getTransInline(TVec3f& rDest) const {
             f32 z = this->mMtx[2][3];
             f32 y = this->mMtx[1][3];
@@ -608,6 +624,24 @@ namespace JGeometry {
             this->mMtx[0][3] = a1.x;
             this->mMtx[1][3] = a1.y;
             this->mMtx[2][3] = a1.z;
+        }
+
+        inline void setTransInline(const TVec3f& a1) {
+            this->mMtx[0][3] = a1.x;
+            this->mMtx[1][3] = a1.y;
+            this->mMtx[2][3] = a1.z;
+        }
+
+        inline void zeroTransInline() {
+            this->mMtx[0][3] = 0.0f;
+            this->mMtx[1][3] = 0.0f;
+            this->mMtx[2][3] = 0.0f;
+        }
+
+        inline void zeroTransInline2() {
+            this->mMtx[0][3] = 0.0f;
+            this->mMtx[1][3] = 0.0f;
+            this->mMtx[2][3] = 0.0f;
         }
 
         inline void setVecAndTransInline(const TVec3f& a1, const TVec3f& a2, const TVec3f& a3, const TVec3f& a4) {

@@ -96,7 +96,7 @@ namespace MR {
     bool addVelocityLimit(LiveActor*, const TVec3f&);
     void setVelocityJump(LiveActor*, f32);
     void addVelocityToGravity(LiveActor*, f32) NO_INLINE;
-    void addVelocityToGraviyOrGround(LiveActor*, f32);
+    void addVelocityToGravityOrGround(LiveActor*, f32);
     bool addVelocityToCollisionNormal(LiveActor*, f32);
     void addVelocityKeepHeight(LiveActor*, const TVec3f&, f32, f32);
     void addVelocityKeepHeight(LiveActor*, const TVec3f&, f32, f32, f32);
