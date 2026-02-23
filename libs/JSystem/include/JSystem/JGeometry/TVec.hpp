@@ -583,6 +583,12 @@ namespace JGeometry {
             JMathInlineVEC::PSVECNegate(this, this);
         }
 
+        inline TVec3 invertOperatorInternal() {
+            TVec3 ret;
+            JMathInlineVEC::PSVECNegate(this, &ret);
+            return ret;
+        }
+
         void scale(f32 scale);
 
         void scale(f32 scalar, const TVec3& rVec); /*{
