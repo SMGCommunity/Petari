@@ -265,9 +265,6 @@ namespace JGeometry {
 
         void getQuat(TQuat4f& rDest) const;
         void setQuat(const TQuat4f& q) {
-            // this is VERY weird... however, it matches.
-            // TODO: is there a better way to write this?
-
             f32 yy = 2.0f * q.y * q.y;
             f32 zz = 2.0f * q.z * q.z;
             f32 xx = 2.0f * q.x * q.x;
@@ -291,6 +288,11 @@ namespace JGeometry {
             this->mMtx[2][0] = xz - wy;
             this->mMtx[2][1] = yz + wx;
             this->mMtx[2][2] = 1.0f - xx - yy;
+        }
+
+        inline void fromQuat(const TQuat4f& q) {
+            // in cases where setQuat doesnt quite work
+            q.makeMtx((MtxPtr)this);
         }
 
         void getScale(TVec3f& rDest) const;

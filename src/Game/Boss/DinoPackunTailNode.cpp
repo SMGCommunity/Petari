@@ -72,7 +72,8 @@ bool DinoPackunTailNode::turnJointLocalXDir(TPos3f* pMtx, const JointControllerI
 
     MR::normalize(&v23);
     MR::turnQuatXDirRad(&v24, v24, v23, M_PI);
-    pMtx->setQT(v24, mPosition);
+    pMtx->setQuat(v24);
+    pMtx->setTrans(mPosition);
     return true;
 }
 

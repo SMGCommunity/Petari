@@ -896,6 +896,32 @@ namespace JGeometry {
             transform(v, v);
         }
 
+        void makeMtx(MtxPtr pMtx) const {
+            f32 yy = 2.0f * this->y * this->y;
+            f32 zz = 2.0f * this->z * this->z;
+            f32 xx = 2.0f * this->x * this->x;
+
+            f32 xy = 2.0f * this->x * this->y;
+            f32 xz = 2.0f * this->x * this->z;
+            f32 yz = 2.0f * this->y * this->z;
+
+            f32 wx = 2.0f * this->w * this->x;
+            f32 wy = 2.0f * this->w * this->y;
+            f32 wz = 2.0f * this->w * this->z;
+
+            pMtx[0][0] = 1.0f - yy - zz;
+            pMtx[0][1] = xy - wz;
+            pMtx[0][2] = xz + wy;
+
+            pMtx[1][0] = xy + wz;
+            pMtx[1][1] = 1.0f - xx - zz;
+            pMtx[1][2] = yz - wx;
+
+            pMtx[2][0] = xz - wy;
+            pMtx[2][1] = yz + wx;
+            pMtx[2][2] = 1.0f - xx - yy;
+        }
+
         /* Operators */
         TQuat4< T >& operator=(const TQuat4< T >& rSrc);
     };
