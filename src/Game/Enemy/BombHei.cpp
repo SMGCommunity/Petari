@@ -574,12 +574,9 @@ void BombHei::calcAndSetBaseMtx() {
 }
 
 bool BombHei::calcJoint(TPos3f* pMtx, const JointControllerInfo& rJointInfo) {
-    // FIXME: setQuat does not behave nicely here.
-    // https://decomp.me/scratch/CfmhG
-
     TPos3f mtx;
     mtx.zeroTransInline();
-    mtx.setQuat(mRotQuat);
+    mtx.fromQuat(mRotQuat);
 
     // interesting way to transpose a matrix
     TPos3f mtx2;
