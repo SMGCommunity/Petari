@@ -228,4 +228,4 @@ do not mangle to the same symbol.
 
 <!----------------------------------------------------------------------------->
 
-[Discord]: https://discord.gg/QnZ4cKkZm3
+[Discord]: https://discord.gg/ZxEqyYeZbf
