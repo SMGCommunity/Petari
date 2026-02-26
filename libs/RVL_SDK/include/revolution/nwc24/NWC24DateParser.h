@@ -7,8 +7,6 @@
 extern "C" {
 #endif
 
-NWC24Err NWC24iIsValidDate(u16 year, u8 month, u8 day);
-
 typedef struct NWC24iDate {
     u16 year;
     u8 month;
@@ -17,6 +15,10 @@ typedef struct NWC24iDate {
     u8 min;
     u8 sec;
 } NWC24iDate;
+
+NWC24Err NWC24iIsValidDate(u16 year, u8 month, u8 day);
+NWC24Err NWC24iEpochSecondsToDate(NWC24iDate* date, s64 timestamp);
+NWC24Err NWC24iDateToOSCalendarTime(OSCalendarTime* time, const NWC24iDate* date);
 
 #ifdef __cplusplus
 }
