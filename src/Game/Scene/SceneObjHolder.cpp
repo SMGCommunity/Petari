@@ -273,8 +273,7 @@ NameObj* SceneObjHolder::newEachObj(int id) {
     case SceneObj_BigFanHolder:
         return new BigFanHolder();
     case SceneObj_KarikariDirector:
-        // return new KarikariDirector("カリカリディレクター");
-        return nullptr;
+        return new KarikariDirector("カリカリディレクター");
     case SceneObj_StarPieceDirector:
         return new StarPieceDirector("スターピース指揮");
     case SceneObj_BegomanAttackPermitter:
@@ -304,7 +303,6 @@ NameObj* SceneObjHolder::newEachObj(int id) {
         return new ShadowSurfaceDrawInit("水面影描画初期化");
     case SceneObj_SwingRopeGroup:
         return new SwingRopeGroup("スイングロープ描画");
-        return nullptr;
     case SceneObj_PlantStalkDrawInit:
         return new PlantStalkDrawInit("植物の茎描画初期化");
     case SceneObj_PlantLeafDrawInit:
