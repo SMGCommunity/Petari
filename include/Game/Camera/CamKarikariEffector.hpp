@@ -10,5 +10,5 @@ public:
 
     void update(CameraMan*);
 
-    u32 _0;
+    /* 0x00 */ s32 mCounter;
 };
