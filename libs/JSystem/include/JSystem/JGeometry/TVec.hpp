@@ -86,7 +86,10 @@ namespace JGeometry {
             return (x >= other.x) && (y >= other.y) ? true : false;
         }
 
-        void sub(const TVec2< T >& rOther);
+        void sub(const TVec2< T >& rOther) {
+            x = x - rOther.x;
+            y = y - rOther.y;
+        }
 
         T length() const {
             return JGeometry::TUtil< T >::sqrt((x * x) + (y * y));
@@ -104,11 +107,29 @@ namespace JGeometry {
             return ((x - rOther.x) * (x - rOther.x)) + ((y - rOther.y) * (y - rOther.y));
         }
 
+        void scale(f32 scalar) {
+            x *= scalar;
+            y *= scalar;
+        }
+
         /* Operators */
-        TVec2< T >& operator=(const TVec2< T >& rSrc);
+        void operator=(const TVec2< T >& rSrc) {
+            x = rSrc.x;
+            y = rSrc.y;
+        }
         TVec2< T >& operator+(const TVec2< T >& rOther) const;
         TVec2< T >& operator-(const TVec2< T >& rOther) const;
         TVec2< T >& operator*(f32 scale) const;
+
+        f32 setLength(f32 newlength) {
+            f32 oldlength = squared();
+            if (oldlength <= 0.0000038146973f) {
+                return 0.0f;
+            }
+            f32 lengthinv = JGeometry::TUtil< f32 >::inv_sqrt(oldlength);
+            scale(lengthinv * newlength);
+            return lengthinv * oldlength;
+        };
 
         T x, y;
     };

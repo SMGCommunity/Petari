@@ -564,6 +564,8 @@ namespace JGeometry {
     template < class T >
     struct TPosition3 : public TRotation3< T > {
     public:
+        TPosition3(){};
+
         void getTrans(TVec3f& rDest) const;
 
         void setTrans(const TVec3f& rSrc) {
