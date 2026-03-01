@@ -142,7 +142,8 @@ void KoopaFireStairs::exeFly() {
             MR::startLevelSound(this, "SE_BM_LV_KOOPAJR_SHIP_METEOR", -1, -1, -1);
         }
 
-        mRotation.x = MR::repeatDegree(mRotation.x + 15.0f);
+        mRotation.x += 15.0f;
+        mRotation.x = MR::repeatDegree(mRotation.x);
     }
 }
 
