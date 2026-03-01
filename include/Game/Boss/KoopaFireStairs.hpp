@@ -19,7 +19,7 @@ public:
     void exeFly();
     void exeBreak();
 
-    u8 _8C;
+    bool _8C;
     const KoopaBattleMapStair* mStair;  // 0x90
     TVec3f _94;
     TVec3f _A0;
