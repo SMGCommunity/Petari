@@ -4,4 +4,6 @@
 
 namespace KoopaFunction {
     s32 registerBattleMapStair(KoopaBattleMapStair*);
-};
+
+    bool tryRestartKoopa();
+};  // namespace KoopaFunction
