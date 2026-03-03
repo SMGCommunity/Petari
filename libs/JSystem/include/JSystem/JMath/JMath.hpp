@@ -3,12 +3,6 @@
 #include <revolution.h>
 
 void JMAMTXApplyScale(const Mtx, Mtx, f32, f32, f32);
-f32 JMAAcosRadian(f32);
-f32 JMAAsinRadian(f32);
-f32 JMACosDegree(f32);
-f32 JMACosRadian(f32);
-f32 JMASinDegree(f32);
-f32 JMASinRadian(f32);
 void JMAVECLerp(const Vec*, const Vec*, Vec*, f32);
 void JMAVECScaleAdd(const Vec*, const Vec*, Vec*, f32);
 void JMAQuatLerp(const Quaternion*, const Quaternion*, f32, Quaternion*);

@@ -34,6 +34,8 @@ namespace MR {
 
     void actorSoundMovement(LiveActor*);
 
+    void startBas(const LiveActor*, const char*, bool, f32, f32);
+
     void startCSSound(const char*, const char*, s32);
     void startCSSound2P(const char*, const char*);
     void startSystemSE(const char*, s32, s32);

@@ -852,7 +852,7 @@ void DodoryuStateLv2::addVelocity(bool snapToGround) {
 }
 
 void DodoryuStateLv2::calcLimitedRotateMtx(TPos3f* pMtx, const TVec3f& rFrom, const TVec3f& rTo, f32 rate) {
-    f32 maxAngle = rate * 3.14159f / 180.0f;
+    f32 maxAngle = rate * PI / 180.0f;
     TVec3f cross;
     PSVECCrossProduct(&rFrom, &rTo, &cross);
     f32 crossMag = cross.length();
@@ -863,43 +863,9 @@ void DodoryuStateLv2::calcLimitedRotateMtx(TPos3f* pMtx, const TVec3f& rFrom, co
     if (absAngle > maxAngle) {
         ratio = maxAngle / absAngle;
     }
-    TVec3f cross2;
-    PSVECCrossProduct(&rFrom, &rTo, &cross2);
-    f32 crossMag2 = cross2.length();
-    TVec4f quat;
-    if (crossMag2 <= 0.001f) {
-        quat.x = 0.0f;
-        quat.y = 0.0f;
-        quat.z = 0.0f;
-        quat.w = 1.0f;
-    } else {
-        f32 dotResult2 = rFrom.dot(rTo);
-        f32 angle2 = JMath::sAtanTable.atan2_(crossMag2, dotResult2);
-        f32 halfAngle = ratio * angle2 * 0.5f;
-        f32 sinHalf = sin(halfAngle);
-        TVec3f* pQuatXYZ = (TVec3f*)&quat;
-        pQuatXYZ->scale(sinHalf / crossMag2, cross2);
-        quat.w = cos(halfAngle);
-    }
-    pMtx->zeroTrans();
-    f32 xx = 2.0f * quat.x * quat.x;
-    f32 yy = 2.0f * quat.y * quat.y;
-    f32 zz = 2.0f * quat.z * quat.z;
-    f32 xy = 2.0f * quat.x * quat.y;
-    f32 xz = 2.0f * quat.x * quat.z;
-    f32 xw = 2.0f * quat.w * quat.z;
-    f32 yz = 2.0f * quat.y * quat.z;
-    f32 yw = 2.0f * quat.w * quat.y;
-    f32 zw = 2.0f * quat.w * quat.x;
-    pMtx->mMtx[0][0] = 1.0f - yy - zz;
-    pMtx->mMtx[0][1] = xy - xw;
-    pMtx->mMtx[0][2] = xz + yw;
-    pMtx->mMtx[1][0] = xy + xw;
-    pMtx->mMtx[1][1] = 1.0f - xx - zz;
-    pMtx->mMtx[1][2] = yz - zw;
-    pMtx->mMtx[2][0] = xz - yw;
-    pMtx->mMtx[2][1] = yz + zw;
-    pMtx->mMtx[2][2] = 1.0f - xx - yy;
+    TQuat4f quat;
+    quat.setRotate(rFrom, rTo, ratio);
+    pMtx->makeQuat(quat);
 }
 
 bool DodoryuStateLv2::isReflectSpinAttack() const {

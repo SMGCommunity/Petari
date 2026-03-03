@@ -470,8 +470,7 @@ void DinoPackun::resetPosition() {
     MR::zeroVelocity(this);
 
     TPos3f v28;
-    v28.setRotateQuaternionInline(_BC);
-    v28.setTrans(mPosition);
+    v28.setQT(_BC, mPosition);
     TVec3f v27;
     v28.mult(sMarioSetLocalPos, v27);
     TVec3f v26;
@@ -485,18 +484,15 @@ void DinoPackun::resetPosition() {
     MR::setPlayerBaseMtx(v28);
 }
 
-void DinoPackun::adjustTailRootPosition(const TVec3f& a1, f32 a2) {
-    TVec3f v20;
-    _BC.rotateVec(v20, a1);
-    v20.add(mPosition);
-    TVec3f v19;
-    v19 = mTail->getNode(1)->mPosition;
+void DinoPackun::adjustTailRootPosition(const TVec3f& rDir, f32 ratio) {
+    TVec3f newPos;
+    _BC.transform(rDir, newPos);
+    newPos.add(mPosition);
+    TVec3f currPos;
+    currPos = mTail->getNode(1)->mPosition;
     DinoPackunTailNode* node = mTail->getNode(1);
-    TVec3f v16 = v19 * (1.0f - a2);
-    TVec3f v17 = v20 * a2;
-    TVec3f v18(v17);
-    v18.add(v16);
-    node->mPosition.set< f32 >(v18);
+    TVec3f pos = (newPos * ratio).addOperatorInLine(currPos * (1.0f - ratio));
+    node->mPosition.set(pos);
 }
 
 void DinoPackun::activateParts() {

@@ -319,7 +319,8 @@ bool SpinDriver::trySwitchOff() {
     return false;
 }
 
-void SpinDriver::exeTryDemo() {}
+void SpinDriver::exeTryDemo() {
+}
 
 void SpinDriver::exeNonActive() {
     if (MR::isFirstStep(this)) {
@@ -612,7 +613,7 @@ void SpinDriver::updateBindActorMatrix(f32 a1) {
     TPos3f rotation;
     MR::makeMtxUpFrontPos(&rotation, _E8, _D0, mPosition);
     TQuat4f quat;
-    rotation.makeQuat(quat);
+    rotation.getQuat(quat);
     _A8.x = _98.x;
     _A8.y = _98.y;
     _A8.z = _98.z;
@@ -718,4 +719,5 @@ bool SpinDriver::canBind(HitSensor *pSensor) const {
 }
 */
 
-SpinDriver::~SpinDriver() {}
+SpinDriver::~SpinDriver() {
+}

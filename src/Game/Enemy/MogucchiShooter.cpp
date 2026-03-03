@@ -34,7 +34,8 @@ namespace {
 }  // namespace
 
 MogucchiShooter::MogucchiShooter(LiveActor* pActor, const char* pName)
-    : PartsModel(pActor, pName, "MogucchiShooter", nullptr, MR::DrawBufferType_Enemy, false), mFront(0.0f, 0.0f, 0.0f) {}
+    : PartsModel(pActor, pName, "MogucchiShooter", nullptr, MR::DrawBufferType_Enemy, false), mFront(0.0f, 0.0f, 0.0f) {
+}
 
 void MogucchiShooter::init(const JMapInfoIter& rIter) {
     initEffectKeeper(1, nullptr, false);
@@ -269,12 +270,12 @@ void MogucchiShooter::calcAndSetBaseMtx() {
     TPos3f posMtx;
     TPos3f copyMtx;
     posMtx.identity();
-    JMath::gekko_ps_copy12(&copyMtx, mFixedPos->_1C);
+    JMath::gekko_ps_copy12(&copyMtx, mFixedPos->mMtx);
 
     TVec3f up;
     copyMtx.getYDirInline(up);
 
-    mFixedPos->_1C.getTransInline(mPosition);
+    mFixedPos->mMtx.getTransInline(mPosition);
     MR::makeMtxUpFrontPos(&posMtx, up, mFront, mPosition);
     MR::setBaseTRMtx(this, posMtx);
 }
@@ -288,7 +289,7 @@ void MogucchiShooter::resetDirection() {
 void MogucchiShooter::faceToMario() {
     if (!MR::isPlayerHidden() && !MR::isStageStateScenarioOpeningCamera() && !MR::isDemoActive()) {
         TPos3f mtx;
-        JMath::gekko_ps_copy12(&mtx, mFixedPos->_1C);
+        JMath::gekko_ps_copy12(&mtx, mFixedPos->mMtx);
         MR::turnDirectionToTargetDegree(this, &mFront, *MR::getPlayerPos(), 1.0f);
         TVec3f front;
         mtx.getZDir(front);

@@ -31,6 +31,8 @@
 #include "Game/Util/ActorMovementUtil.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/AreaObjUtil.hpp"
+#include "Game/Util/CollisionPartsFilter.hpp"
+#include "Game/Util/FurMulti.hpp"
 #include "Game/Util/GravityUtil.hpp"
 #include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/MapUtil.hpp"
@@ -45,18 +47,6 @@
 #include <cstdio>
 #include <cstring>
 #include <new>
-
-class CollisionPartsFilterActor : public CollisionPartsFilterBase {
-public:
-    CollisionPartsFilterActor(const LiveActor* pActor) : mActor(pActor) {
-    }
-
-    virtual bool isInvalidParts(const CollisionParts* pParts) const {
-        return pParts->mHitSensor->mHost == mActor;
-    }
-
-    const LiveActor* mActor;
-};
 
 namespace {
     f32 sAnimRateScale = 1.0f;
@@ -230,22 +220,6 @@ namespace {
 };  // namespace
 
 namespace MR {
-    bool isBckPlaying(XanimePlayer*, const char*);
-    bool isUseTex(J3DMaterial*, u16);
-    LiveActor* initMultiFur(LiveActor*, s32);
-    void initDLMakerChangeTex(LiveActor*, const char*);
-    void startBas(const LiveActor*, const char*, bool, f32, f32);
-    bool startBckIfExist(const LiveActor*, const char*);
-    bool startBtkIfExist(const LiveActor*, const char*);
-    bool startBrkIfExist(const LiveActor*, const char*);
-    bool startBpkIfExist(const LiveActor*, const char*);
-    bool startBtpIfExist(const LiveActor*, const char*);
-    bool startBvaIfExist(const LiveActor*, const char*);
-    void setBpkFrameAndStop(const LiveActor*, f32);
-    void calcGravity(LiveActor*, const TVec3f&);
-    void calcGravityOrZero(LiveActor*, const TVec3f&);
-    void showModelIfHidden(LiveActor*) NO_INLINE;
-
     bool isExistIndirectTexture(const LiveActor* pActor) {
         const char* name = "IndDummy";
         return MR::getJ3DModelData(pActor)->mMaterialTable.mTextureName->getIndex(name) != -1;
@@ -1650,7 +1624,7 @@ namespace MR {
         pBvaCtrl->mRate = rate * sAnimRateScale;
     }
 
-    void setBckFrame(const LiveActor* pActor, f32 frame) NO_INLINE {
+    void setBckFrame(const LiveActor* pActor, f32 frame) {
         pActor->mModelManager->getBckCtrl()->mFrame = frame;
     }
 
@@ -2205,7 +2179,7 @@ namespace MR {
         onCalcAnim(pActor);
     }
 
-    void showModelIfHidden(LiveActor* pActor) NO_INLINE {
+    void showModelIfHidden(LiveActor* pActor) {
         if (isHiddenModel(pActor)) {
             showModel(pActor);
         }

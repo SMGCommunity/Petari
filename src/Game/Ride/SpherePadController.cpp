@@ -7,10 +7,11 @@
 #include <JSystem/JGeometry/TUtil.hpp>
 #include <revolution/wpad.h>
 
-SpherePadController::SpherePadController() : SphereController() {}
+SpherePadController::SpherePadController() : SphereController() {
+}
 
-f32 SpherePadController::calcMoveVector(TVec3f* v1, const TVec3f& v2) {
-    return calcDirSphereMove(v1, v2, 0);
+f32 SpherePadController::calcMoveVector(TVec3f* pMoveDir, const TVec3f& rGravity) {
+    return calcDirSphereMove(pMoveDir, rGravity, 0);
 }
 
 f32 SpherePadController::calcJumpPower() const {
@@ -20,14 +21,15 @@ f32 SpherePadController::calcJumpPower() const {
     return 0.0f;
 }
 
-void SpherePadController::update(const TVec3f&) {}
+void SpherePadController::update(const TVec3f&) {
+}
 
 void SpherePadController::clacXY(f32* x, f32* y) {
     *x = MR::getSubPadStickX(WPAD_CHAN0);
     *y = MR::getSubPadStickY(WPAD_CHAN0);
 }
 
-f32 SpherePadController::calcDirSphereMove(TVec3f* v1, const TVec3f& v2, u32 u1) {
+f32 SpherePadController::calcDirSphereMove(TVec3f* pMoveDir, const TVec3f& rBaseVec, u32 isFrontVec) {
     f32 x = 0.0f;
     f32 y = 0.0f;
     clacXY(&x, &y);
@@ -50,29 +52,29 @@ f32 SpherePadController::calcDirSphereMove(TVec3f* v1, const TVec3f& v2, u32 u1)
         MR::normalizeOrZero(&dirY);
         MR::normalizeOrZero(&dirZ);
 
-        if ((u1 != 0 && dirZ.dot(v2) < 0.0f) || (u1 == 0 && dirY.dot(-v2) < 0.0f)) {
+        if ((isFrontVec != 0 && dirZ.dot(rBaseVec) < 0.0f) || (isFrontVec == 0 && dirY.dot(-rBaseVec) < 0.0f)) {
             dirX = -dirX;
             dirY = -dirY;
             dirZ = -dirZ;
         }
 
         TRot3f rotMtx;
-        if (u1 != 0) {
-            rotMtx.setRotate(dirZ, v2);
+        if (isFrontVec != 0) {
+            rotMtx.setRotate(dirZ, rBaseVec);
             rotMtx.mult33(dirX);
             rotMtx.mult33(dirY);
-            v1->set(-dirX * x - dirY * y);
+            pMoveDir->set(-dirX * x - dirY * y);
         } else {
-            rotMtx.setRotate(dirY, -v2);
+            rotMtx.setRotate(dirY, -rBaseVec);
             rotMtx.mult33(dirX);
             rotMtx.mult33(dirZ);
-            v1->set(dirX * x - dirZ * y);
+            pMoveDir->set(dirX * x - dirZ * y);
         }
-        MR::separateScalarAndDirection(&mag, v1, *v1);
+        MR::separateScalarAndDirection(&mag, pMoveDir, *pMoveDir);
     } else {
-        v1->z = 0.0f;
-        v1->y = 0.0f;
-        v1->x = 0.0f;
+        pMoveDir->z = 0.0f;
+        pMoveDir->y = 0.0f;
+        pMoveDir->x = 0.0f;
     }
 
     if (mag > 1.0f) {

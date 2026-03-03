@@ -1511,7 +1511,7 @@ Game/Boss/TripodBossKillerGenerater.cpp:
 
 Game/Boss/TripodBossKillerGeneraterCircle.cpp:
 	.text       start:0x8008D9E0 end:0x8008DE98
-	.rodata     start:0x80531540 end:0x80531620
+	.rodata     start:0x80531540 end:0x805315B8
 	.data       start:0x805738C8 end:0x80573998
 	.sdata2     start:0x806B9008 end:0x806B9018
 
@@ -1524,6 +1524,7 @@ Game/Boss/TripodBossKinokoOneUp.cpp:
 Game/Boss/TripodBossLeg.cpp:
 	.text       start:0x8008E2E8 end:0x80090694
 	.ctors      start:0x8052E9D8 end:0x8052E9DC
+	.rodata     start:0x805315B8 end:0x805315C0
 	.data       start:0x80573BD8 end:0x80573D00
 	.sbss       start:0x806B39B8 end:0x806B39E8
 	.sdata2     start:0x806B9018 end:0x806B9098
@@ -1531,6 +1532,7 @@ Game/Boss/TripodBossLeg.cpp:
 Game/Boss/TripodBossMovableArea.cpp:
 	.text       start:0x80090694 end:0x80090E60
 	.ctors      start:0x8052E9DC end:0x8052E9E0
+	.rodata     start:0x805315C0 end:0x805315C8
 	.data       start:0x80573D00 end:0x80573D18
 	.bss        start:0x8060A6D0 end:0x8060A6F8
 	.sdata2     start:0x806B9098 end:0x806B90B8
@@ -1564,12 +1566,14 @@ Game/Boss/TripodBossStepStartArea.cpp:
 Game/Camera/CamHeliEffector.cpp:
 	.text       start:0x80091D24 end:0x800921B8
 	.ctors      start:0x8052E9E4 end:0x8052E9E8
+	.rodata     start:0x805315C8 end:0x805315D0
 	.data       start:0x80574010 end:0x805740B0
 	.sbss       start:0x806B39F8 end:0x806B3A20
 	.sdata2     start:0x806B90D0 end:0x806B90F0
 
 Game/Camera/CamKarikariEffector.cpp:
 	.text       start:0x800921B8 end:0x8009265C
+	.rodata     start:0x805315D0 end:0x805315D8
 	.sdata2     start:0x806B90F0 end:0x806B9120
 
 Game/Camera/CamPoseSphereInterpolator.cpp:
@@ -1775,6 +1779,7 @@ Game/Camera/Camera.cpp:
 
 Game/Camera/CameraAnim.cpp:
 	.text       start:0x800941C8 end:0x80094F74
+	.rodata     start:0x805315D8 end:0x805315E0
 	.data       start:0x805743D8 end:0x80574470
 	.sdata2     start:0x806B9210 end:0x806B9228
 
@@ -1790,6 +1795,7 @@ Game/Camera/CameraBlackHole.cpp:
 
 Game/Camera/CameraCalc.cpp:
 	.text       start:0x800956DC end:0x80095D84
+	.rodata     start:0x805315E0 end:0x805315F0
 	.sdata2     start:0x806B9250 end:0x806B9280
 
 Game/Camera/CameraCharmedFix.cpp:
@@ -1814,6 +1820,7 @@ Game/Camera/CameraCharmedVecRegTower.cpp:
 
 Game/Camera/CameraContext.cpp:
 	.text       start:0x800972D8 end:0x800979EC
+	.rodata     start:0x805315F0 end:0x805315F8
 	.data       start:0x80574680 end:0x805746B8
 	.sdata2     start:0x806B92E8 end:0x806B9310
 
@@ -1836,12 +1843,14 @@ Game/Camera/CameraDPD.cpp:
 
 Game/Camera/CameraDead.cpp:
 	.text       start:0x80098C58 end:0x80099220
+	.rodata     start:0x805315F8 end:0x80531600
 	.data       start:0x805747A8 end:0x80574800
 	.sdata2     start:0x806B9390 end:0x806B93A0
 
 Game/Camera/CameraDirector.cpp:
 	.text       start:0x80099220 end:0x8009B5E4
 	.ctors      start:0x8052E9EC end:0x8052E9F0
+	.rodata     start:0x80531600 end:0x80531608
 	.data       start:0x80574800 end:0x80574A40
 	.sdata      start:0x806B17F8 end:0x806B1808
 	.sbss       start:0x806B3A28 end:0x806B3A30
@@ -1865,12 +1874,14 @@ Game/Camera/CameraFixedThere.cpp:
 Game/Camera/CameraFollow.cpp:
 	.text       start:0x8009C5A4 end:0x8009DA78
 	.ctors      start:0x8052E9F0 end:0x8052E9F4
+	.rodata     start:0x80531608 end:0x80531610
 	.data       start:0x80574B48 end:0x80574BB0
 	.sbss       start:0x806B3A30 end:0x806B3A38
 	.sdata2     start:0x806B9410 end:0x806B9480
 
 Game/Camera/CameraFooFighter.cpp:
 	.text       start:0x8009DA78 end:0x8009E2FC
+	.rodata     start:0x80531610 end:0x80531618
 	.data       start:0x80574BB0 end:0x80574C08
 	.sdata2     start:0x806B9480 end:0x806B94B0
 
@@ -1892,6 +1903,7 @@ Game/Camera/CameraGround.cpp:
 
 Game/Camera/CameraHeightArrange.cpp:
 	.text       start:0x8009F568 end:0x800A0844
+	.rodata     start:0x80531618 end:0x80531620
 	.data       start:0x80574D10 end:0x80574D48
 	.sdata2     start:0x806B9510 end:0x806B9550
 
@@ -2607,6 +2619,7 @@ Game/Enemy/FireBall.cpp:
 	.text       start:0x800EC140 end:0x800ECC34
 	.ctors      start:0x8052EA80 end:0x8052EA84
 	.data       start:0x8057C1E0 end:0x8057C2D0
+	.sdata      start:0x806B1920 end:0x806B1928
 	.sbss       start:0x806B3E98 end:0x806B3EA0
 	.sdata2     start:0x806BA450 end:0x806BA488
 
@@ -2615,6 +2628,7 @@ Game/Enemy/FireBubble.cpp:
 	.ctors      start:0x8052EA84 end:0x8052EA88
 	.rodata     start:0x80531F48 end:0x80531F78
 	.data       start:0x8057C2D0 end:0x8057C558
+	.sdata      start:0x806B1928 end:0x806B1930
 	.sbss       start:0x806B3EA0 end:0x806B3EC0
 	.sdata2     start:0x806BA488 end:0x806BA4C0
 
@@ -2629,6 +2643,7 @@ Game/Enemy/HammerHeadPackun.cpp:
 	.text       start:0x800EF9F4 end:0x800F17B4
 	.ctors      start:0x8052EA8C end:0x8052EA90
 	.data       start:0x8057C840 end:0x8057C978
+	.sdata      start:0x806B1930 end:0x806B1938
 	.sbss       start:0x806B3EF0 end:0x806B3F20
 	.sdata2     start:0x806BA548 end:0x806BA5A0
 
@@ -2636,6 +2651,7 @@ Game/Enemy/Hanachan.cpp:
 	.text       start:0x800F17B4 end:0x800F58F4
 	.ctors      start:0x8052EA90 end:0x8052EA94
 	.data       start:0x8057C978 end:0x8057D100
+	.sdata      start:0x806B1938 end:0x806B1940
 	.sbss       start:0x806B3F20 end:0x806B3FA0
 	.sdata2     start:0x806BA5A0 end:0x806BA648
 
@@ -2644,6 +2660,7 @@ Game/Enemy/HomingKiller.cpp:
 	.ctors      start:0x8052EA94 end:0x8052EA98
 	.rodata     start:0x80531F78 end:0x80531FE0
 	.data       start:0x8057D100 end:0x8057D290
+	.sdata      start:0x806B1940 end:0x806B1950
 	.sbss       start:0x806B3FA0 end:0x806B3FC8
 	.sdata2     start:0x806BA648 end:0x806BA6F0
 
@@ -2653,6 +2670,7 @@ Game/Enemy/IceMerameraKing.cpp:
 	.rodata     start:0x80531FE0 end:0x805320C8
 	.data       start:0x8057D290 end:0x8057D818
 	.bss        start:0x8060A800 end:0x8060A818
+	.sdata      start:0x806B1950 end:0x806B1958
 	.sbss       start:0x806B3FC8 end:0x806B4010
 	.sdata2     start:0x806BA6F0 end:0x806BA7A0
 
@@ -2686,6 +2704,7 @@ Game/Enemy/JumpBeamer.cpp:
 	.text       start:0x800FE130 end:0x800FF3A0
 	.ctors      start:0x8052EAA8 end:0x8052EAAC
 	.data       start:0x8057DD80 end:0x8057E030
+	.sdata      start:0x806B1958 end:0x806B1960
 	.sbss       start:0x806B4080 end:0x806B40B0
 	.sdata2     start:0x806BA860 end:0x806BA898
 
@@ -2693,6 +2712,7 @@ Game/Enemy/JumpGuarder.cpp:
 	.text       start:0x800FF3A0 end:0x80100ED8
 	.ctors      start:0x8052EAAC end:0x8052EAB0
 	.data       start:0x8057E030 end:0x8057E3F8
+	.sdata      start:0x806B1960 end:0x806B1968
 	.sbss       start:0x806B40B0 end:0x806B40E0
 	.sdata2     start:0x806BA898 end:0x806BA900
 
@@ -2700,6 +2720,7 @@ Game/Enemy/JumpSpider.cpp:
 	.text       start:0x80100ED8 end:0x8010243C
 	.ctors      start:0x8052EAB0 end:0x8052EAB4
 	.data       start:0x8057E3F8 end:0x8057E748
+	.sdata      start:0x806B1968 end:0x806B1970
 	.sbss       start:0x806B40E0 end:0x806B4120
 	.sdata2     start:0x806BA900 end:0x806BA948
 
@@ -2725,6 +2746,7 @@ Game/Enemy/Kameck.cpp:
 	.text       start:0x80103DE0 end:0x80105E20
 	.ctors      start:0x8052EABC end:0x8052EAC0
 	.data       start:0x8057E970 end:0x8057ECA0
+	.sdata      start:0x806B1970 end:0x806B1978
 	.sbss       start:0x806B4150 end:0x806B4190
 	.sdata2     start:0x806BA9A0 end:0x806BA9E8
 
@@ -2745,6 +2767,7 @@ Game/Enemy/KameckFireBall.cpp:
 	.text       start:0x801074F8 end:0x80107CC0
 	.ctors      start:0x8052EAC4 end:0x8052EAC8
 	.data       start:0x8057F010 end:0x8057F0B8
+	.sdata      start:0x806B1978 end:0x806B1980
 	.sbss       start:0x806B41A8 end:0x806B41B8
 	.sdata2     start:0x806BAA00 end:0x806BAA20
 
@@ -2763,6 +2786,7 @@ Game/Enemy/Kanina.cpp:
 	.text       start:0x801088CC end:0x8010B2B0
 	.ctors      start:0x8052EACC end:0x8052EAD0
 	.data       start:0x8057F210 end:0x8057F550
+	.sdata      start:0x806B1980 end:0x806B1998
 	.sbss       start:0x806B41C0 end:0x806B4218
 	.sdata2     start:0x806BAA58 end:0x806BAAF8
 
@@ -2770,27 +2794,29 @@ Game/Enemy/Karikari.cpp:
 	.text       start:0x8010B2B0 end:0x8010DFDC
 	.ctors      start:0x8052EAD0 end:0x8052EAD4
 	.data       start:0x8057F550 end:0x8057F8D8
+	.sdata      start:0x806B1998 end:0x806B19A0
 	.sbss       start:0x806B4218 end:0x806B4260
 	.sdata2     start:0x806BAAF8 end:0x806BAB78
 
 Game/Enemy/KarikariDirector.cpp:
 	.text       start:0x8010DFDC end:0x8010E608
 	.rodata     start:0x805320E8 end:0x80532178
-	.data       start:0x8057F8D8 end:0x8057FA40
+	.data       start:0x8057F8D8 end:0x8057F920
+	.sdata      start:0x806B19A0 end:0x806B19A8
 	.sdata2     start:0x806BAB78 end:0x806BAB88
 
 Game/Enemy/Karon.cpp:
 	.text       start:0x8010E608 end:0x80110298
 	.ctors      start:0x8052EAD4 end:0x8052EAD8
 	.rodata     start:0x80532178 end:0x805321F8
-	.data       start:0x8057FA40 end:0x8057FCB0
+	.data       start:0x8057F920 end:0x8057FBB8
 	.sbss       start:0x806B4260 end:0x806B42A0
 	.sdata2     start:0x806BAB88 end:0x806BABE0
 
 Game/Enemy/Kiraira.cpp:
 	.text       start:0x80110298 end:0x80111470
 	.ctors      start:0x8052EAD8 end:0x8052EADC
-	.data       start:0x8057FCB0 end:0x8057FDA8
+	.data       start:0x8057FBB8 end:0x8057FDA8
 	.sbss       start:0x806B42A0 end:0x806B42C0
 	.sdata2     start:0x806BABE0 end:0x806BAC38
 
@@ -9241,7 +9267,7 @@ Game/Util/BothDirList.cpp:
 
 Game/Util/CollisionPartsFilter.cpp:
 	.text       start:0x80401F44 end:0x80401F78
-	.data       start:0x805E6E30 end:0x805E6E68
+	.data       start:0x805E6E30 end:0x805E6E48
 
 Game/Util/DirectDraw.cpp:
 	.text       start:0x80401F78 end:0x804044C8
@@ -9254,6 +9280,7 @@ Game/Util/DirectDrawUtil.cpp:
 
 Game/Util/FixedPosition.cpp:
 	.text       start:0x804048EC end:0x80404D68
+	.data       start:0x805E6E48 end:0x805E6E68
 	.sdata2     start:0x806C1948 end:0x806C1950
 
 Game/Util/GeometryBindUtil.cpp:

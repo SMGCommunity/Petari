@@ -1,39 +1,17 @@
 #include "Game/Util/MtxUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
-#include "JSystem/JMath/JMath.hpp"
 #include "JSystem/JMath/JMATrigonometric.hpp"
+#include "JSystem/JMath/JMath.hpp"
 
-#define PI_180 0.017453292f
+static Mtx mtrans_org = {{1.0f, 0.0f, 0.0f, 0.0f}, {0.0f, 1.0f, 0.0f, 0.0f}, {0.0f, 0.0f, 1.0f, 0.0f}};
 
-static Mtx mtrans_org = {
-    { 1.0f, 0.0f, 0.0f, 0.0f },
-    { 0.0f, 1.0f, 0.0f, 0.0f },
-    { 0.0f, 0.0f, 1.0f, 0.0f }
-};
+static Mtx tmpmtx_sc = {{1.0f, 0.0f, 0.0f, 0.0f}, {0.0f, 1.0f, 0.0f, 0.0f}, {0.0f, 0.0f, 1.0f, 0.0f}};
 
-static Mtx tmpmtx_sc = {
-    { 1.0f, 0.0f, 0.0f, 0.0f },
-    { 0.0f, 1.0f, 0.0f, 0.0f },
-    { 0.0f, 0.0f, 1.0f, 0.0f }
-};
+static Mtx tmpmtx_rx = {{1.0f, 0.0f, 0.0f, 0.0f}, {0.0f, 1.0f, 0.0f, 0.0f}, {0.0f, 0.0f, 1.0f, 0.0f}};
 
-static Mtx tmpmtx_rx = {
-    { 1.0f, 0.0f, 0.0f, 0.0f },
-    { 0.0f, 1.0f, 0.0f, 0.0f },
-    { 0.0f, 0.0f, 1.0f, 0.0f }
-};
+static Mtx tmpmtx_ry = {{1.0f, 0.0f, 0.0f, 0.0f}, {0.0f, 1.0f, 0.0f, 0.0f}, {0.0f, 0.0f, 1.0f, 0.0f}};
 
-static Mtx tmpmtx_ry = {
-    { 1.0f, 0.0f, 0.0f, 0.0f },
-    { 0.0f, 1.0f, 0.0f, 0.0f },
-    { 0.0f, 0.0f, 1.0f, 0.0f }
-};
-
-static Mtx tmpmtx_rz = {
-    { 1.0f, 0.0f, 0.0f, 0.0f },
-    { 0.0f, 1.0f, 0.0f, 0.0f },
-    { 0.0f, 0.0f, 1.0f, 0.0f }
-};
+static Mtx tmpmtx_rz = {{1.0f, 0.0f, 0.0f, 0.0f}, {0.0f, 1.0f, 0.0f, 0.0f}, {0.0f, 0.0f, 1.0f, 0.0f}};
 
 namespace MR {
     void makeMtxRotate(MtxPtr mtx, s16 rx, s16 ry, s16 rz) {
@@ -117,21 +95,21 @@ namespace MR {
         f32 cosX = JMACosDegree(rx);
         f32 cosY = JMACosDegree(ry);
         f32 cosZ = JMACosDegree(rz);
-        f32 sinZsinY = sinZ * sinY;
-        f32 cosZsinY = cosZ * sinY;
+
         mtx[0][0] = cosZ * cosY;
-        mtx[0][1] = sinX * cosZsinY - cosX * sinZ;
-        mtx[0][2] = cosX * cosZsinY + sinX * sinZ;
-        mtx[0][3] = tx;
-
         mtx[1][0] = sinZ * cosY;
-        mtx[1][1] = sinX * sinZsinY + cosX * cosZ;
-        mtx[1][2] = cosX * sinZsinY - sinX * cosZ;
-        mtx[1][3] = ty;
-
         mtx[2][0] = -sinY;
-        mtx[2][1] = sinX * cosY;
-        mtx[2][2] = cosX * cosY;
+
+        mtx[0][1] = cosZ * sinY * sinX - sinZ * cosX;
+        mtx[1][1] = sinZ * sinY * sinX + cosZ * cosX;
+        mtx[2][1] = cosY * sinX;
+
+        mtx[0][2] = cosZ * sinY * cosX + sinZ * sinX;
+        mtx[1][2] = sinZ * sinY * cosX - cosZ * sinX;
+        mtx[2][2] = cosY * cosX;
+
+        mtx[0][3] = tx;
+        mtx[1][3] = ty;
         mtx[2][3] = tz;
     }
 
@@ -240,11 +218,11 @@ namespace MR {
         baseCopy.setInline(base);
         TVec3f srcTrans;
         baseCopy.setTrans(TVec3f(0.0f, 0.0f, 0.0f));
-        
+
         TPos3f invMtx;
         invMtx.invert(baseCopy);
         preScaleMtx(baseCopy.toMtxPtr(), rScale.x, rScale.y, rScale.z);
-        
+
         extractMtxTrans(src, &srcTrans);
         PSMTXConcat(invMtx.toMtxPtr(), src, dst);
         PSMTXConcat(baseCopy.toMtxPtr(), dst, dst);
@@ -561,9 +539,9 @@ namespace MR {
     void makeMtxUpNoSupportPos(TPos3f* pDst, const TVec3f& rUp, const TVec3f& rPos) {
         TVec3f support;
         if (MR::getMaxAbsElementIndex(rUp) == 2) {
-            support.set<f32>(0.0f, 1.0f, 0.0f);
+            support.set< f32 >(0.0f, 1.0f, 0.0f);
         } else {
-            support.set<f32>(0.0f, 0.0f, 1.0f);
+            support.set< f32 >(0.0f, 0.0f, 1.0f);
         }
 
         MR::makeMtxUpFrontPos(pDst, rUp, support, rPos);
@@ -595,9 +573,9 @@ namespace MR {
     void makeMtxFrontNoSupportPos(TPos3f* pDst, const TVec3f& rFront, const TVec3f& rPos) {
         TVec3f support;
         if (MR::getMaxAbsElementIndex(rFront) == 1) {
-            support.set<f32>(1.0f, 0.0f, 0.0f);
+            support.set< f32 >(1.0f, 0.0f, 0.0f);
         } else {
-            support.set<f32>(0.0f, 1.0f, 0.0f);
+            support.set< f32 >(0.0f, 1.0f, 0.0f);
         }
 
         MR::makeMtxFrontUpPos(pDst, rFront, support, rPos);
@@ -621,29 +599,29 @@ namespace MR {
         pMtx->setXYZDir(axisX, axisY, axisZ);
 
         TVec3f zDir;
-        zDir.set<f32>(pMtx->mMtx[0][2], pMtx->mMtx[1][2], pMtx->mMtx[2][2]);
+        zDir.set< f32 >(pMtx->mMtx[0][2], pMtx->mMtx[1][2], pMtx->mMtx[2][2]);
 
         f32 magAll = pMtx->mMtx[1][0] * pMtx->mMtx[1][0] + pMtx->mMtx[0][0] * pMtx->mMtx[0][0] + pMtx->mMtx[2][0] * pMtx->mMtx[2][0] +
                      pMtx->mMtx[0][1] * pMtx->mMtx[0][1] + pMtx->mMtx[1][1] * pMtx->mMtx[1][1] + pMtx->mMtx[2][1] * pMtx->mMtx[2][1] +
                      pMtx->mMtx[0][2] * pMtx->mMtx[0][2] + pMtx->mMtx[1][2] * pMtx->mMtx[1][2] + pMtx->mMtx[2][2] * pMtx->mMtx[2][2];
 
-        JGeometry::TUtil<f32>::sqrt(magAll);
+        JGeometry::TUtil< f32 >::sqrt(magAll);
 
         if (pMtx) {
             f32 magX = pMtx->mMtx[0][0] * pMtx->mMtx[0][0] + pMtx->mMtx[1][0] * pMtx->mMtx[1][0] + pMtx->mMtx[2][0] * pMtx->mMtx[2][0];
-            f32 invSqrtX = JGeometry::TUtil<f32>::inv_sqrt(magX);
+            f32 invSqrtX = JGeometry::TUtil< f32 >::inv_sqrt(magX);
             pMtx->mMtx[0][0] = invSqrtX * pMtx->mMtx[0][0];
             pMtx->mMtx[1][0] = invSqrtX * pMtx->mMtx[1][0];
             pMtx->mMtx[2][0] = invSqrtX * pMtx->mMtx[2][0];
 
             f32 magY = pMtx->mMtx[0][1] * pMtx->mMtx[0][1] + pMtx->mMtx[1][1] * pMtx->mMtx[1][1] + pMtx->mMtx[2][1] * pMtx->mMtx[2][1];
-            f32 invSqrtY = JGeometry::TUtil<f32>::inv_sqrt(magY);
+            f32 invSqrtY = JGeometry::TUtil< f32 >::inv_sqrt(magY);
             pMtx->mMtx[0][1] = invSqrtY * pMtx->mMtx[0][1];
             pMtx->mMtx[1][1] = invSqrtY * pMtx->mMtx[1][1];
             pMtx->mMtx[2][1] = invSqrtY * pMtx->mMtx[2][1];
 
             f32 magZ = pMtx->mMtx[0][2] * pMtx->mMtx[0][2] + pMtx->mMtx[1][2] * pMtx->mMtx[1][2] + pMtx->mMtx[2][2] * pMtx->mMtx[2][2];
-            f32 invSqrtZ = JGeometry::TUtil<f32>::inv_sqrt(magZ);
+            f32 invSqrtZ = JGeometry::TUtil< f32 >::inv_sqrt(magZ);
             pMtx->mMtx[0][2] = invSqrtZ * pMtx->mMtx[0][2];
             pMtx->mMtx[1][2] = invSqrtZ * pMtx->mMtx[1][2];
             pMtx->mMtx[2][2] = invSqrtZ * pMtx->mMtx[2][2];
@@ -692,7 +670,7 @@ namespace MR {
         f32 worldZ = axisX * pMtx->mMtx[2][0] + axisY * pMtx->mMtx[2][1] + axisZ * pMtx->mMtx[2][2];
 
         TVec3f worldAxis;
-        worldAxis.set<f32>(worldX, worldY, worldZ);
+        worldAxis.set< f32 >(worldX, worldY, worldZ);
 
         TQuat4f quat;
         pMtx->getQuat(quat);
@@ -835,9 +813,8 @@ namespace MR {
         ((TRot3f*)b)->getYDir(yDirB);
         bool result = false;
 
-        if (JGeometry::TUtil<f32>::epsilonEquals(yDirA.x, yDirB.x, 0.001f) &&
-            JGeometry::TUtil<f32>::epsilonEquals(yDirA.y, yDirB.y, 0.001f) &&
-            JGeometry::TUtil<f32>::epsilonEquals(yDirA.z, yDirB.z, 0.001f)) {
+        if (JGeometry::TUtil< f32 >::epsilonEquals(yDirA.x, yDirB.x, 0.001f) && JGeometry::TUtil< f32 >::epsilonEquals(yDirA.y, yDirB.y, 0.001f) &&
+            JGeometry::TUtil< f32 >::epsilonEquals(yDirA.z, yDirB.z, 0.001f)) {
             result = true;
         }
         return result;
@@ -944,37 +921,37 @@ namespace MR {
         MtxPtr first, second, third;
 
         switch (order) {
-            case 0:
-                first = mtxY;
-                second = mtxX;
-                third = mtxZ;
-                break;
-            case 1:
-                first = mtxZ;
-                second = mtxX;
-                third = mtxY;
-                break;
-            case 2:
-                first = mtxX;
-                second = mtxY;
-                third = mtxZ;
-                break;
-            case 3:
-                first = mtxZ;
-                second = mtxY;
-                third = mtxX;
-                break;
-            case 4:
-                first = mtxX;
-                second = mtxZ;
-                third = mtxZ;
-                break;
-            case 5:
-            default:
-                first = mtxY;
-                second = mtxZ;
-                third = mtxX;
-                break;
+        case 0:
+            first = mtxY;
+            second = mtxX;
+            third = mtxZ;
+            break;
+        case 1:
+            first = mtxZ;
+            second = mtxX;
+            third = mtxY;
+            break;
+        case 2:
+            first = mtxX;
+            second = mtxY;
+            third = mtxZ;
+            break;
+        case 3:
+            first = mtxZ;
+            second = mtxY;
+            third = mtxX;
+            break;
+        case 4:
+            first = mtxX;
+            second = mtxZ;
+            third = mtxZ;
+            break;
+        case 5:
+        default:
+            first = mtxY;
+            second = mtxZ;
+            third = mtxX;
+            break;
         }
 
         PSMTXConcat(first, second, dst);

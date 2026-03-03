@@ -26,7 +26,7 @@ public:
     void emit(bool, const TVec3f&, const TVec3f&, f32);
 
     TQuat4f _90;
-    TVec4f _A0;
+    TQuat4f _A0;
     TVec3f _B0;
     f32 _BC;
     bool _C0;

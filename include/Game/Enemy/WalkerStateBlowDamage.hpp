@@ -2,8 +2,6 @@
 
 #include "Game/LiveActor/ActorStateBase.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
-#include "revolution/types.h"
 
 class WalkerStateBlowDamageParam {
 public:
@@ -12,14 +10,13 @@ public:
 
 class WalkerStateBlowDamage : public ActorStateBase< LiveActor > {
 public:
-    WalkerStateBlowDamage(LiveActor*, TVec3f*, WalkerStateBlowDamageParam*);
+    WalkerStateBlowDamage(LiveActor* pHost, TVec3f* pDirection, WalkerStateBlowDamageParam* pBlowDamageParam);
 
-    virtual ~WalkerStateBlowDamage();
     virtual void appear();
 
     void exeBlow();
     void exeBlowLand();
 
-    TVec3f* _10;
-    TVec3f _14;
+    /* 0x10 */ TVec3f* mDirection;
+    /* 0x14 */ WalkerStateBlowDamageParam* mBlowDamageParam;
 };

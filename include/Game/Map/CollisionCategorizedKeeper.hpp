@@ -6,6 +6,7 @@
 #include <revolution.h>
 
 class CollisionZone;
+class CollisionPartsFilterBase;
 
 class CollisionCategorizedKeeper : public NameObj {
 public:

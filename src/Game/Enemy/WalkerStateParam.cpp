@@ -1,10 +1,6 @@
 #include "Game/Enemy/WalkerStateParam.hpp"
 
-WalkerStateParam::WalkerStateParam() {
-    _0 = 1.0f;
-    _4 = 0.99f;
-    _8 = 0.93f;
-    _C = 1000.0f;
-    _10 = 80.0f;
-    _14 = 40.0f;
+WalkerStateParam::WalkerStateParam()
+    : mGravityAccel(1.0f), mAirFriction(0.99f), mGroundFriction(0.93f), mPlayerNearDistance(1000.0f), mPlayerSightFanDegreeH(80.0f),
+      mPlayerSightFanDegreeV(40.0f) {
 }
