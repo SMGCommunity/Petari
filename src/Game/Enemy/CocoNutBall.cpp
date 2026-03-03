@@ -1,4 +1,5 @@
 #include "Game/Enemy/CocoNutBall.hpp"
+#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/MapObj/CocoNut.hpp"
 #include "Game/Util.hpp"
 #include "JSystem/JMath/JMATrigonometric.hpp"
