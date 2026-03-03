@@ -1,30 +1,7 @@
 #include "Game/Enemy/CocoNutBall.hpp"
-#include "Game/LiveActor/HitSensor.hpp"
-#include "Game/LiveActor/LiveActor.hpp"
-#include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/CocoNut.hpp"
-#include "Game/MapObj/CoconutTree.hpp"
-#include "Game/Util/ActorMovementUtil.hpp"
-#include "Game/Util/ActorSensorUtil.hpp"
-#include "Game/Util/ActorShadowUtil.hpp"
-#include "Game/Util/CameraUtil.hpp"
-#include "Game/Util/EffectUtil.hpp"
-#include "Game/Util/JMapInfo.hpp"
-#include "Game/Util/LiveActorUtil.hpp"
-#include "Game/Util/MapUtil.hpp"
-#include "Game/Util/MathUtil.hpp"
-#include "Game/Util/MtxUtil.hpp"
-#include "Game/Util/NerveUtil.hpp"
-#include "Game/Util/ObjUtil.hpp"
-#include "Game/Util/PlayerUtil.hpp"
-#include "Game/Util/SoundUtil.hpp"
-#include "Game/Util/StarPointerUtil.hpp"
-#include "JSystem/JGeometry/TMatrix.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
+#include "Game/Util.hpp"
 #include "JSystem/JMath/JMATrigonometric.hpp"
-#include "math_types.hpp"
-#include "revolution/mtx.h"
-#include "revolution/types.h"
 
 namespace {
     const f32 cReboundVelocity[] = {0.0f, 15.0f, 5.0f};
@@ -327,7 +304,7 @@ void CocoNutBall::setVelocityToPlayer(f32 f1, f32 f2) {
     }
 
     TRot3f rotate;
-    f32 angle = 0.017453292f * f2;
+    f32 angle = PI_180 * f2;
     rotate.makeRotateInline(_C8, angle);
     TVec3f vec2;
     vec2.subInline(vec1, mPosition);

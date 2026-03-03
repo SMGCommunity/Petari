@@ -1,6 +1,4 @@
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/Util/JMapInfo.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
 
 class CocoNutBall : public LiveActor {
 public:
