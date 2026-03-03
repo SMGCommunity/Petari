@@ -27,8 +27,10 @@ void CocoNutBall::init(const JMapInfoIter& rIter) {
     MR::connectToSceneNoSilhouettedMapObjStrongLight(this);
     MR::initLightCtrl(this);
     initHitSensor(2);
+
     MR::addHitSensor(this, "body", ATYPE_COCO_NUT, 8, 40.0f, TVec3f(0.0f, 0.0f, 0.0f));
     MR::addHitSensor(this, "bind", ATYPE_COCO_NUT, 8, 500.0f, TVec3f(0.0f, 0.0f, 0.0f));
+    
     initBinder(40.0f, 0.0f, 0);
     initEffectKeeper(0, "CocoNut", false);
     // some weirdness with this TVec here
@@ -51,9 +53,11 @@ void CocoNutBall::kill() {
     MR::forceDeleteEffect(this, "CocoNutBlur");
     MR::forceDeleteEffect(this, "CocoNutLight");
     MR::startSound(this, "SE_OJ_COCONUT_BALL_BREAK", -1, -1);
+
     if (_9C > 0) {
         MR::sendArbitraryMsg(ACTMES_RUSH_END, _8C->getSensor("body"), getSensor("body"));
     }
+
     LiveActor::kill();
     MR::emitEffect(this, CocoNut::getBreakEffectName());
 }
@@ -138,12 +142,12 @@ void CocoNutBall::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
 }
 
 bool CocoNutBall::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if(MR::isMsgPlayerSpinAttack(msg)) {
-        if(isValidReceivePunch()) {
+    if (MR::isMsgPlayerSpinAttack(msg)) {
+        if (isValidReceivePunch()) {
             setNerve(&NrvCocoNutBall::CocoNutBallNrvHitBackToHost::sInstance);
             return true;
         }
-    } else if(isSensorBody(pReceiver) && MR::isMsgStarPieceReflect(msg)){
+    } else if (isSensorBody(pReceiver) && MR::isMsgStarPieceReflect(msg)) {
         return true;
     }
 

@@ -17,7 +17,7 @@ public:
     void demoBreak(const TVec3f&);
     HitSensor* isBindedAny() const;
     bool isValidReceivePunch() const;
-    bool isNerveTrowToOrFreeze() const; // inline used several places
+    bool isNerveTrowToOrFreeze() const;  // inline used several places
     bool isSensorBody(HitSensor*) const;
     void calcHitBackVelocitAndGravity();
     bool isHitBackRight() const;
