@@ -31,6 +31,7 @@ class FixedPosition;
 class ModelObj;
 class MultiEmitter;
 class IceStep;
+struct CameraFrontTarget;
 class HashSortTable;
 class DrawAdaptor;
 struct SmokeEffectEntry;
@@ -103,7 +104,7 @@ public:
     void updateBaseScaleMtx();
     void getRealMtx(MtxPtr, const char*) const NO_INLINE;
     void getRealPos(const char*, TVec3f*) const;
-    void getGlobalJointMtx(const char*);
+    MtxPtr getGlobalJointMtx(const char*);
     void calcAnimInMovement();
     void forceSetBaseMtx(MtxPtr);
     void calcAnim();
@@ -181,6 +182,7 @@ public:
     void calcViewMainModel();
     void initFace();
     void updateFace();
+    void updateHand();
     void draw() const override;
     void drawIndirect() const;
     void drawIndirectModel() const;
@@ -213,6 +215,10 @@ public:
     void calcFogLighting();
     void calcViewReflectionModel();
     void calcViewSearchLight();
+    void calcScreenBoxRange();
+    void calcSpinEffect();
+    void changeHandMaterial();
+    void updateRasterScroll();
     void updateDarkMask(u16);
 
     void resetPadSwing();
@@ -222,6 +228,7 @@ public:
     TVec3f& getGravityVector() const;
     const TVec3f& getAirGravityVec() const;
     void updateGravityVec(bool, bool);
+    void updateBaseMtxTeresa(MtxPtr);
     void changeTeresaAnimation(const char*, s32);
 
     MultiEmitter* playEffect(const char*);
@@ -501,13 +508,13 @@ public:
         struct {
             u32 _468;
             HitSensor* _46C;
-            u32 _470;
+            HitSensor* _470;
         };
         TVec3f _468Vec;
     };
 
     // TVec3f _468;
-    u32 _474;
+    HitSensor* _474;
     f32 _478;
     u32 _47C;
     u8 _480;
@@ -520,7 +527,7 @@ public:
     FixedPosition* _498;
     FixedPosition* _49C;
     FixedPosition* _4A0;
-    u32 _4A4;
+    CameraFrontTarget* _4A4;
     u32 _4A8;
     f32 _4AC;
     f32 _4B0;
@@ -753,7 +760,7 @@ public:
     u16 _F42;
     bool _F44;
     // padding
-    u32 _F48;
+    HitSensor* _F48;
     BlackHole* mBlackHole;
     TVec3f mBlackHolePosition;
     TVec3f mBlackHoleRotateAxis;
