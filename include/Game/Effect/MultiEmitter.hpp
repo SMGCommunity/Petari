@@ -5,11 +5,14 @@
 
 class EffectSystem;
 class MultiEmitterCallBackBase;
+class JPABaseEmitter;
 class JPAParticleCallBack;
+class ParticleEmitter;
 
 class MultiEmitter {
 public:
     void forceDelete(EffectSystem*);
+    void deleteEmitter();
     void create(EffectSystem*);
 
     void setHostMtx(MtxPtr);
@@ -19,6 +22,10 @@ public:
     void setBaseScale(f32);
     void setLocalScale(const TVec3f&, s32);
     void setGlobalScale(const TVec3f&, s32);
+    void setGlobalScale(f32, s32);
+    void setGlobalRotationDegree(const TVec3f&, s32);
+    void setRate(f32, s32);
+    void setDrawOrder(s32);
 
     void setGlobalPrmColor(u8, u8, u8, s32);
     void setGlobalEnvColor(u8, u8, u8, s32);
@@ -28,6 +35,10 @@ public:
     void createEmitterWithCallBack(MultiEmitterCallBackBase*);
 
     void setParticleCallBackPtr(JPAParticleCallBack*, s32);
+    ParticleEmitter* getParticleEmitter(s32) const;
+    void forceFollowOn();
+    void forceFollowOff();
+    void forceScaleOn();
 
     bool isValid() const;
 

@@ -2,12 +2,13 @@
 #include "Game/Map/ActorAppearSwitchListener.hpp"
 #include "Game/Map/StageSwitch.hpp"
 #include "Game/Map/SwitchWatcher.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Util.hpp"
 
 SwitchWatcherHolder::SwitchWatcherHolder() : NameObj("SwitchWatcherHolder") {
     mWatcherCount = 0;
-    MR::connectToScene(this, 0x1B, -1, -1, -1);
+    MR::connectToScene(this, MR::MovementType_SwitchWatcherHolder, -1, -1, -1);
 }
 
 void SwitchWatcherHolder::movement() {
@@ -52,13 +53,9 @@ void SwitchWatcherHolder::addSwitchWatcher(SwitchWatcher* pWatcher) {
 }
 
 namespace MR {
-    SwitchWatcherHolder* getSwitchWatcherHolder() {
-        return MR::getSceneObj< SwitchWatcherHolder >(SceneObj_SwitchWatcherHolder);
-    }
+    SwitchWatcherHolder* getSwitchWatcherHolder() { return MR::getSceneObj< SwitchWatcherHolder >(SceneObj_SwitchWatcherHolder); }
 
-    void requestMovementOnSwitchWatcher() {
-        MR::requestMovementOn(getSwitchWatcherHolder());
-    }
+    void requestMovementOnSwitchWatcher() { MR::requestMovementOn(getSwitchWatcherHolder()); }
 };  // namespace MR
 
 SwitchWatcherHolder::~SwitchWatcherHolder() {}

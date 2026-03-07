@@ -10,10 +10,10 @@
 | `connectToScene__20SimpleEnvironmentObjFRC19MapObjActorInitInfo` | `0x80226FD8` | :white_check_mark: (100.0%) |
 | `init__18SimpleMapObjFarMaxFRC12JMapInfoIter` | `0x80227000` | :white_check_mark: (100.0%) |
 | `connectToScene__25SimpleMapObjNoSilhouettedFRC19MapObjActorInitInfo` | `0x80227034` | :white_check_mark: (100.0%) |
-| `initCaseUseSwitchA__28SimpleTextureSwitchChangeObjFRC19MapObjActorInitInfo` | `0x8022705C` | :x: (12.5%) |
+| `initCaseUseSwitchA__28SimpleTextureSwitchChangeObjFRC19MapObjActorInitInfo` | `0x8022705C` | :x: (53.6%) |
 | `connectToScene__12GlaringLightFRC19MapObjActorInitInfo` | `0x802270AC` | :white_check_mark: (100.0%) |
 | `__ct__15SimpleMirrorObjFPCcPCcPA4_f` | `0x802270D0` | :white_check_mark: (100.0%) |
-| `calcAndSetBaseMtx__15SimpleMirrorObjFv` | `0x80227120` | :x: (71.4%) |
+| `calcAndSetBaseMtx__15SimpleMirrorObjFv` | `0x80227120` | :x: (83.9%) |
 | `init__25SimpleMirrorReflectionObjFRC12JMapInfoIter` | `0x8022718C` | :white_check_mark: (100.0%) |
 | `connectToScene__25SimpleMirrorReflectionObjFRC19MapObjActorInitInfo` | `0x802271C0` | :white_check_mark: (100.0%) |
 | `getSeParam__26@unnamed@SimpleMapObj_cpp@FPCc` | `0x802271C4` | :white_check_mark: (100.0%) |
@@ -28,7 +28,7 @@
 | `init__15SimpleMirrorObjFRC12JMapInfoIter` | `0x80227574` | :white_check_mark: (100.0%) |
 | `getChangedTextureNo__28SimpleTextureSwitchChangeObjCFv` | `0x8022763C` | :white_check_mark: (100.0%) |
 | `__cl__Q22MR83FunctorV0M<P28SimpleTextureSwitchChangeObj,M28SimpleTextureSwitchChangeObjFPCvPv_v>CFv` | `0x80227644` | :white_check_mark: (100.0%) |
-| `clone__Q22MR83FunctorV0M<P28SimpleTextureSwitchChangeObj,M28SimpleTextureSwitchChangeObjFPCvPv_v>CFP7JKRHeap` | `0x80227674` | :x: (96.2%) |
+| `clone__Q22MR83FunctorV0M<P28SimpleTextureSwitchChangeObj,M28SimpleTextureSwitchChangeObjFPCvPv_v>CFP7JKRHeap` | `0x80227674` | :white_check_mark: (100.0%) |
 | `__dt__20SimpleEnvironmentObjFv` | `0x802276DC` | :white_check_mark: (100.0%) |
 | `__dt__25SimpleMapObjNoSilhouettedFv` | `0x80227734` | :white_check_mark: (100.0%) |
 | `__dt__28SimpleTextureSwitchChangeObjFv` | `0x80227790` | :white_check_mark: (100.0%) |

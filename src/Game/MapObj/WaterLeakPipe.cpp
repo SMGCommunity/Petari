@@ -1,10 +1,21 @@
 #include "Game/MapObj/WaterLeakPipe.hpp"
+#include "Game/Scene/SceneFunction.hpp"
+
+namespace NrvIceStepNoSlip {
+    NEW_NERVE(IceStepNoSlipNrvAppear, IceStepNoSlip, Appear);
+    NEW_NERVE(IceStepNoSlipNrvBreak, IceStepNoSlip, Break);
+};  // namespace NrvIceStepNoSlip
+
+namespace NrvWaterLeakPipe {
+    NEW_NERVE(WaterLeakPipeNrvWait, WaterLeakPipe, Wait);
+    NEW_NERVE(WaterLeakPipeNrvFreeze, WaterLeakPipe, Freeze);
+};  // namespace NrvWaterLeakPipe
 
 IceStepNoSlip::~IceStepNoSlip() {}
 
 WaterLeakPipe::~WaterLeakPipe() {}
 
-IceStepNoSlip::IceStepNoSlip(MtxPtr mtx) : ModelObj("アイス床", "IceStepNoSlip", mtx, 0x1A, -2, -2, false) {}
+IceStepNoSlip::IceStepNoSlip(MtxPtr mtx) : ModelObj("アイス床", "IceStepNoSlip", mtx, MR::DrawBufferType_IndirectMapObjStrongLight, -2, -2, false) {}
 
 void IceStepNoSlip::init(const JMapInfoIter& rIter) {
     ModelObj::init(rIter);
@@ -28,11 +39,6 @@ void IceStepNoSlip::exeBreak() {
         kill();
     }
 }
-
-namespace NrvIceStepNoSlip {
-    INIT_NERVE(IceStepNoSlipNrvAppear);
-    INIT_NERVE(IceStepNoSlipNrvBreak);
-};  // namespace NrvIceStepNoSlip
 
 WaterLeakPipe::WaterLeakPipe(const char* pName) : LiveActor(pName) {
     mIceStep = nullptr;
@@ -139,10 +145,5 @@ void WaterLeakPipe::initPipeHeight() {
     PSMTXCopy(mtx.toMtxPtr(), mTopMtx);
     calcAndSetBaseMtx();
 }
-
-namespace NrvWaterLeakPipe {
-    INIT_NERVE(WaterLeakPipeNrvWait);
-    INIT_NERVE(WaterLeakPipeNrvFreeze);
-};  // namespace NrvWaterLeakPipe
 
 void WaterLeakPipe::calcAnim() {}

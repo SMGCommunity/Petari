@@ -32,6 +32,8 @@ public:
     static JSUList< JKRFileLoader > sFileLoaderList;  // 0x8060CF9C
     static JKRFileLoader* gCurrentFileLoader;         // 0x806B7140;
 
+    static JSUList< JKRFileLoader > sVolumeList;
+
     JSULink< JKRFileLoader > mLoaderLink;  // 0x18
     char* mLoaderName;                     // 0x28
     u32 mLoaderType;                       // 0x2C

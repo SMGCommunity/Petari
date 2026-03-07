@@ -26,7 +26,6 @@ void StopSceneDelayRequest::movement() {
     }
 }
 
-#ifdef NON_MATCHING
 void StopSceneController::requestStopScene(s32 a1) {
     if (_10 > 0) {
         if (_10 < a1) {
@@ -38,7 +37,6 @@ void StopSceneController::requestStopScene(s32 a1) {
         _10 = a1;
     }
 }
-#endif
 
 // void StopSceneController::requestStopSceneDelay(s32 a1, s32 a2)
 

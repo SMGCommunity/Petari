@@ -69,9 +69,9 @@ void MapParts::initModelAndCollision(const JMapInfoIter& rIter) {
     if (MR::getJ3DModel(this)) {
         TBox3f box;
         MR::calcModelBoundingBox(&box, this);
-        JMathInlineVEC::PSVECSubtract(&box.mMax, &box.mMin, &dist);
+        JMathInlineVEC::PSVECSubtract(&box.f, &box.i, &dist);
         sensorRange = 0.5f * PSVECMag(&dist);
-        JMAVECLerp(&box.mMax, &box.mMin, &lerpVec, 0.5f);
+        JMAVECLerp(&box.f, &box.i, &lerpVec, 0.5f);
         TVec3f trueSensorOffset;
         trueSensorOffset.setPS(lerpVec);
         JMathInlineVEC::PSVECSubtract(&trueSensorOffset, &mPosition, &trueSensorOffset);

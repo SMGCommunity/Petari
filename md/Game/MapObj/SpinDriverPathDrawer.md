@@ -6,9 +6,9 @@
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__ct__22SpinDriverPathDrawInitFv` | `0x80237804` | :x: (72.9%) |
+| `__ct__22SpinDriverPathDrawInitFv` | `0x80237804` | :x: (87.7%) |
 | `__ct__20SpinDriverPathDrawerFP19SpinDriverShootPath` | `0x80237984` | :white_check_mark: (100.0%) |
-| `initDraw__22SpinDriverPathDrawInitFv` | `0x80237A28` | :x: (0.0%) |
+| `initDraw__22SpinDriverPathDrawInitFv` | `0x80237A28` | :x: (98.4%) |
 | `setSpinDriverPathColorNormal__2MRFv` | `0x80237C5C` | :white_check_mark: (100.0%) |
 | `setSpinDriverPathColorGreen__2MRFv` | `0x80237C90` | :white_check_mark: (100.0%) |
 | `setSpinDriverPathColorPink__2MRFv` | `0x80237CC4` | :white_check_mark: (100.0%) |
@@ -31,6 +31,6 @@
 | `draw__20SpinDriverPathDrawerCFv` | `0x80238484` | :x: (0.0%) |
 | `sendPoint__20SpinDriverPathDrawerCFRCQ29JGeometry8TVec3<f>ff` | `0x802388C0` | :x: (0.0%) |
 | `__cl__Q22MR71FunctorV0M<P22SpinDriverPathDrawInit,M22SpinDriverPathDrawInitFPCvPv_v>CFv` | `0x802388E8` | :white_check_mark: (100.0%) |
-| `clone__Q22MR71FunctorV0M<P22SpinDriverPathDrawInit,M22SpinDriverPathDrawInitFPCvPv_v>CFP7JKRHeap` | `0x80238918` | :x: (96.2%) |
-| `__dt__20SpinDriverPathDrawerFv` | `0x80238980` | :x: (95.7%) |
+| `clone__Q22MR71FunctorV0M<P22SpinDriverPathDrawInit,M22SpinDriverPathDrawInitFPCvPv_v>CFP7JKRHeap` | `0x80238918` | :white_check_mark: (100.0%) |
+| `__dt__20SpinDriverPathDrawerFv` | `0x80238980` | :white_check_mark: (100.0%) |
 | `__dt__22SpinDriverPathDrawInitFv` | `0x802389DC` | :white_check_mark: (100.0%) |

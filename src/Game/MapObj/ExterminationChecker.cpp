@@ -2,6 +2,13 @@
 #include "Game/LiveActor/LiveActorGroup.hpp"
 #include "Game/MapObj/KeySwitch.hpp"
 
+namespace NrvExterminationChecker {
+    NEW_NERVE(ExterminationCheckerNrvWatching, ExterminationChecker, Watching);
+    NEW_NERVE(ExterminationCheckerNrvTryStartDemoAppear, ExterminationChecker, TryStartDemoAppear);
+    NEW_NERVE(ExterminationCheckerNrvAppearStar, ExterminationChecker, AppearStar);
+    NEW_NERVE(ExterminationCheckerNrvAppearKeySwitch, ExterminationChecker, AppearKeySwitch);
+};  // namespace NrvExterminationChecker
+
 namespace {
     template < typename T >
     LiveActor* createLiveActor(const char* pName) {
@@ -136,10 +143,3 @@ namespace MR {
 };  // namespace MR
 
 ExterminationChecker::~ExterminationChecker() {}
-
-namespace NrvExterminationChecker {
-    INIT_NERVE(ExterminationCheckerNrvWatching);
-    INIT_NERVE(ExterminationCheckerNrvTryStartDemoAppear);
-    INIT_NERVE(ExterminationCheckerNrvAppearStar);
-    INIT_NERVE(ExterminationCheckerNrvAppearKeySwitch);
-};  // namespace NrvExterminationChecker

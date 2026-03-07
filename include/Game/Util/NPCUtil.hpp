@@ -9,6 +9,7 @@ class LiveActor;
 class ModelObj;
 class NPCActor;
 class NPCActorItem;
+class PartsModel;
 class TalkMessageCtrl;
 
 namespace MR {
@@ -19,6 +20,9 @@ namespace MR {
     void startNPCTalkCamera(const TalkMessageCtrl*, MtxPtr, f32, s32);
 
     void initDefaultPosAndQuat(NPCActor*, const JMapInfoIter&);
+
+    PartsModel* createNPCGoods(LiveActor*, const char*, const char*);
+    PartsModel* createIndirectNPCGoods(LiveActor*, const char*, const char*);
 
     void invalidateLodCtrl(const NPCActor*);
     void startMoveAction(NPCActor*);

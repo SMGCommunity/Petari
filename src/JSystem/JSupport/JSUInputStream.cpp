@@ -16,10 +16,8 @@ s32 JSURandomInputStream::skip(s32 amount) {
     return read;
 }
 
-#ifdef NON_MATCHING
 s32 JSURandomInputStream::seek(s32 offset, JSUStreamSeekFrom whence) {
     s32 read = seekPos(offset, whence);
     mState = (mState & 0x1) != 0;
     return read;
 }
-#endif

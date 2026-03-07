@@ -14,8 +14,8 @@
 | `control__21MercatorRailMovePartsFv` | `0x801FCAA4` | :white_check_mark: (100.0%) |
 | `calcAndSetBaseMtx__21MercatorRailMovePartsFv` | `0x801FCB2C` | :white_check_mark: (100.0%) |
 | `updatePose__21MercatorRailMovePartsFv` | `0x801FCBE8` | :white_check_mark: (100.0%) |
-| `init__21MercatorRailMovePartsFRC12JMapInfoIter` | `0x801FCC68` | :x: (97.0%) |
+| `init__21MercatorRailMovePartsFRC12JMapInfoIter` | `0x801FCC68` | :x: (99.8%) |
 | `Functor<21MercatorRailMoveParts>__2MRFP21MercatorRailMovePartsM21MercatorRailMovePartsFPCvPv_v_Q22MR69FunctorV0M<P21MercatorRailMoveParts,M21MercatorRailMovePartsFPCvPv_v>` | `0x801FCEFC` | :white_check_mark: (100.0%) |
 | `__cl__Q22MR69FunctorV0M<P21MercatorRailMoveParts,M21MercatorRailMovePartsFPCvPv_v>CFv` | `0x801FCF3C` | :white_check_mark: (100.0%) |
-| `clone__Q22MR69FunctorV0M<P21MercatorRailMoveParts,M21MercatorRailMovePartsFPCvPv_v>CFP7JKRHeap` | `0x801FCF6C` | :x: (96.2%) |
-| `__dt__21MercatorRailMovePartsFv` | `0x801FCFD4` | :x: (95.7%) |
+| `clone__Q22MR69FunctorV0M<P21MercatorRailMoveParts,M21MercatorRailMovePartsFPCvPv_v>CFP7JKRHeap` | `0x801FCF6C` | :white_check_mark: (100.0%) |
+| `__dt__21MercatorRailMovePartsFv` | `0x801FCFD4` | :white_check_mark: (100.0%) |

@@ -11,4 +11,4 @@
 | `initAnimCamera__22DemoPositionControllerFPCc` | `0x800BD614` | :white_check_mark: (100.0%) |
 | `startDemo__22DemoPositionControllerFPCc` | `0x800BD620` | :white_check_mark: (100.0%) |
 | `endDemo__22DemoPositionControllerFPCc` | `0x800BD68C` | :white_check_mark: (100.0%) |
-| `__dt__22DemoPositionControllerFv` | `0x800BD6DC` | :x: (95.7%) |
+| `__dt__22DemoPositionControllerFv` | `0x800BD6DC` | :white_check_mark: (100.0%) |

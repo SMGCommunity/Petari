@@ -3,6 +3,17 @@
 #include "Game/LiveActor/ModelObj.hpp"
 #include "JSystem/JMath.hpp"
 
+namespace NrvMarblePlanet {
+    NEW_NERVE(MarblePlanetNrvWait, MarblePlanet, Wait);
+    NEW_NERVE(MarblePlanetNrvScaleUpCore, MarblePlanet, ScaleUpCore);
+    NEW_NERVE(MarblePlanetNrvBreakCore, MarblePlanet, BreakCore);
+};  // namespace NrvMarblePlanet
+
+namespace NrvMarblePlanetElectron {
+    NEW_NERVE(MarblePlanetElectronNrvMove, MarblePlanetElectron, Move);
+    NEW_NERVE(MarblePlanetElectronNrvAttack, MarblePlanetElectron, Attack);
+};  // namespace NrvMarblePlanetElectron
+
 MarblePlanet::MarblePlanet(const char* pName) : LiveActor(pName) {
     mCorePlanetModel = 0;
     mPlanetElectrons = 0;
@@ -32,6 +43,8 @@ void MarblePlanet::init(const JMapInfoIter& rIter) {
     makeActorAppeared();
 }
 
+void MarblePlanet::exeWait() {}
+
 void MarblePlanet::exeScaleUpCore() {
     if (MR::isFirstStep(this)) {
         MR::tryRumblePadMiddle(this, 0);
@@ -44,13 +57,13 @@ void MarblePlanet::exeScaleUpCore() {
             MR::startSystemSE("SE_SY_MARBLE_HIT_CORE_3", -1, -1);
             break;
         case 1:
-            MR::emitEffect(this, "Smoke6f");
+            MR::emitEffect(mCorePlanetModel, "Smoke6f");
             MR::startSound(this, "SE_OJ_MARBLE_HIT_CORE_2", -1, -1);
             MR::startSystemSE("SE_SY_MARBLE_HIT_CORE_2", -1, -1);
             break;
         case 2:
         default:
-            MR::emitEffect(this, "Smoke3f");
+            MR::emitEffect(mCorePlanetModel, "Smoke3f");
             MR::startSound(this, "SE_OJ_MARBLE_HIT_CORE_1", -1, -1);
             MR::startSystemSE("SE_SY_MARBLE_HIT_CORE_1", -1, -1);
             break;
@@ -61,8 +74,7 @@ void MarblePlanet::exeScaleUpCore() {
             return;
         } else {
             s32 electronCount = mNumElectrons;
-            f32 frameMax = MR::getBckFrameMax(mCorePlanetModel);
-            f32 frame = ((electronCount - mRemainingElectrons) * frameMax) / electronCount;
+            f32 frame = ((electronCount - mRemainingElectrons) * MR::getBckFrameMax(mCorePlanetModel)) / electronCount;
             MR::setBckFrameAndStop(mCorePlanetModel, frame);
             MR::setBtkFrameAndStop(mCorePlanetModel, frame);
         }
@@ -212,7 +224,6 @@ void MarblePlanetElectron::exeMove() {
     MR::startLevelSound(this, "SE_OJ_LV_MARBLE_ROTATE", -1, -1, -1);
 }
 
-/*
 void MarblePlanetElectron::exeAttack() {
     if (MR::isFirstStep(this)) {
         MR::startSound(this, "SE_OJ_MARBLE_FLIP", -1, -1);
@@ -223,7 +234,6 @@ void MarblePlanetElectron::exeAttack() {
     MR::normalize(&velocity);
     mVelocity.scale(40.0f, velocity);
 }
-*/
 
 void MarblePlanetElectron::control() {
     MR::calcGravity(this);
@@ -280,8 +290,7 @@ bool MarblePlanetElectron::receiveMsgPush(HitSensor* pSender, HitSensor* pReceiv
     return true;
 }
 
-/*
-void MarblePlanetElectron::crashElectron(HitSensor *pSensor) {
+void MarblePlanetElectron::crashElectron(HitSensor* pSensor) {
     TVec3f stack_8;
     stack_8.sub(pSensor->mHost->mPosition, mPosition);
     MR::normalize(&stack_8);
@@ -292,7 +301,6 @@ void MarblePlanetElectron::crashElectron(HitSensor *pSensor) {
     mVelocity.z *= 1.2f;
     MR::startSound(this, "SE_OJ_MARBLE_HIT_EACH", -1, -1);
 }
-*/
 
 MarblePlanetElectronShadow::MarblePlanetElectronShadow(LiveActor* pElectronPtr, const TVec3f& rVec, const char* pName) : LiveActor(pName) {
     mParentElectron = static_cast< MarblePlanetElectron* >(pElectronPtr);
@@ -306,9 +314,8 @@ void MarblePlanetElectronShadow::init(const JMapInfoIter& rIter) {
     makeActorAppeared();
 }
 
-/*
 void MarblePlanetElectronShadow::calcAndSetBaseMtx() {
-    mPosition.set<f32>(*_90);
+    mPosition.set< f32 >(*_90);
     TVec3f stack_8;
     stack_8.sub(mParentElectron->mPosition, *_90);
     MR::normalize(&stack_8);
@@ -316,45 +323,9 @@ void MarblePlanetElectronShadow::calcAndSetBaseMtx() {
     MR::makeMtxUpNoSupportPos(&up_mtx, stack_8, *_90);
     MR::setBaseTRMtx(this, up_mtx);
 }
-*/
 
 MarblePlanet::~MarblePlanet() {}
 
 MarblePlanetElectron::~MarblePlanetElectron() {}
 
 MarblePlanetElectronShadow::~MarblePlanetElectronShadow() {}
-
-namespace NrvMarblePlanet {
-    INIT_NERVE(MarblePlanetNrvWait);
-    INIT_NERVE(MarblePlanetNrvScaleUpCore);
-    INIT_NERVE(MarblePlanetNrvBreakCore);
-};  // namespace NrvMarblePlanet
-
-namespace NrvMarblePlanetElectron {
-    INIT_NERVE(MarblePlanetElectronNrvMove);
-    INIT_NERVE(MarblePlanetElectronNrvAttack);
-
-    void MarblePlanetElectronNrvAttack::execute(Spine* pSpine) const {
-        MarblePlanetElectron* electron = reinterpret_cast< MarblePlanetElectron* >(pSpine->mExecutor);
-        electron->exeAttack();
-    }
-
-    void MarblePlanetElectronNrvMove::execute(Spine* pSpine) const {
-        MarblePlanetElectron* electron = reinterpret_cast< MarblePlanetElectron* >(pSpine->mExecutor);
-        electron->exeMove();
-    }
-};  // namespace NrvMarblePlanetElectron
-
-namespace NrvMarblePlanet {
-    void MarblePlanetNrvBreakCore::execute(Spine* pSpine) const {
-        MarblePlanet* marble = reinterpret_cast< MarblePlanet* >(pSpine->mExecutor);
-        marble->exeBreakCore();
-    }
-
-    void MarblePlanetNrvScaleUpCore::execute(Spine* pSpine) const {
-        MarblePlanet* marble = reinterpret_cast< MarblePlanet* >(pSpine->mExecutor);
-        marble->exeScaleUpCore();
-    }
-
-    void MarblePlanetNrvWait::execute(Spine* pSpine) const {}
-};  // namespace NrvMarblePlanet

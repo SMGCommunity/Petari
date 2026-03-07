@@ -1,4 +1,5 @@
 #include "Game/MapObj/SimpleMapObj.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 
 namespace {
     static SoundEffectDataEntry sSeDataTable[] = {
@@ -57,7 +58,7 @@ void SimpleTextureSwitchChangeObj::initCaseUseSwitchA(const MapObjActorInitInfo&
 
 void GlaringLight::connectToScene(const MapObjActorInitInfo& rInfo) {
     if (rInfo.mConnectToScene) {
-        MR::connectToScene(this, 0x22, 5, 0x22, -1);
+        MR::connectToScene(this, MR::MovementType_MapObj, MR::CalcAnimType_MapObj, MR::DrawBufferType_GlaringLight, -1);
     }
 }
 

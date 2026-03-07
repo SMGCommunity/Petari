@@ -1,9 +1,10 @@
 #include "JSystem/JKernel/JKRArchive.hpp"
 #include "JSystem/JKernel/JKRHeap.hpp"
 #include <cstring>
+#include <ctype.h>
 
-#ifdef NON_MATCHING
 // tolower() is inlined
+/*
 const char* JKRArchive::CArcName::store(const char* pName) {
     mHash = 0;
     u32 length = 0;
@@ -23,9 +24,8 @@ const char* JKRArchive::CArcName::store(const char* pName) {
 
     return &mLength[length];
 }
-#endif
+*/
 
-#ifdef NON_MATCHING
 // tolower() is inlined
 const char* JKRArchive::CArcName::store(const char* pName, char stopChar) {
     mHash = 0;
@@ -50,7 +50,6 @@ const char* JKRArchive::CArcName::store(const char* pName, char stopChar) {
 
     return pName + 1;
 }
-#endif
 
 JKRArchive::JKRArchive() {
     mIsMounted = false;
@@ -120,7 +119,6 @@ JKRArchive::SDIDirEntry* JKRArchive::findResType(unsigned long a1) const {
     return nullptr;
 }
 
-#ifdef NON_MATCHING
 // Register mismatch
 JKRArchive::SDIDirEntry* JKRArchive::findDirectory(const char* pName, unsigned long dirIndex) const {
     SDIDirEntry* dir;
@@ -151,7 +149,6 @@ JKRArchive::SDIDirEntry* JKRArchive::findDirectory(const char* pName, unsigned l
 
     return nullptr;
 }
-#endif
 
 JKRArchive::SDIFileEntry* JKRArchive::findTypeResource(unsigned long a1, const char* pName) const {
     if (a1 != 0) {
@@ -176,7 +173,6 @@ JKRArchive::SDIFileEntry* JKRArchive::findTypeResource(unsigned long a1, const c
     return nullptr;
 }
 
-#ifdef NON_MATCHING
 // Register mismatch
 JKRArchive::SDIFileEntry* JKRArchive::findFsResource(const char* pName, unsigned long dirIndex) const {
     if (pName != nullptr) {
@@ -207,7 +203,6 @@ JKRArchive::SDIFileEntry* JKRArchive::findFsResource(const char* pName, unsigned
 
     return nullptr;
 }
-#endif
 
 JKRArchive::SDIFileEntry* JKRArchive::findIdxResource(unsigned long index) const {
     if (index < mInfoBlock->mNrFiles) {

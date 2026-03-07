@@ -5,6 +5,17 @@
 #include "Game/Util.hpp"
 #include "JSystem/JMath/JMath.hpp"
 
+namespace NrvCoin {
+    NEW_NERVE(CoinNrvNonActive, Coin, NonActive);
+    NEW_NERVE(CoinNrvFix, Coin, Fix);
+    NEW_NERVE(CoinNrvFixHide, Coin, FixHide);
+    NEW_NERVE(CoinNrvFixTimer, Coin, FixTimer);
+    NEW_NERVE(CoinNrvControled, Coin, Controled);
+    NEW_NERVE(CoinNrvSpinDrained, Coin, SpinDrained);
+    NEW_NERVE(CoinNrvMove, Coin, Move);
+    NEW_NERVE(CoinNrvHop, Coin, Hop);
+};  // namespace NrvCoin
+
 Coin::Coin(const char* pName) : LiveActor(pName) {
     mHostInfo = nullptr;
     mFlashCtrl = nullptr;
@@ -225,6 +236,8 @@ void Coin::exeFix() {
         MR::setClippingRangeIncludeShadow(this, &mClippingRange, 150.0f);
     }
 }
+
+void Coin::exeFixHide() {}
 
 void Coin::exeFixTimer() {
     if (MR::isFirstStep(this)) {
@@ -661,53 +674,5 @@ namespace MR {
         return coin;
     }
 };  // namespace MR
-
-namespace NrvCoin {
-    INIT_NERVE(CoinNrvNonActive);
-    INIT_NERVE(CoinNrvFix);
-    INIT_NERVE(CoinNrvFixHide);
-    INIT_NERVE(CoinNrvFixTimer);
-    INIT_NERVE(CoinNrvControled);
-    INIT_NERVE(CoinNrvSpinDrained);
-    INIT_NERVE(CoinNrvMove);
-    INIT_NERVE(CoinNrvHop);
-
-    void CoinNrvHop::execute(Spine* pSpine) const {
-        Coin* coin = reinterpret_cast< Coin* >(pSpine->mExecutor);
-        coin->exeHop();
-    }
-
-    void CoinNrvMove::execute(Spine* pSpine) const {
-        Coin* coin = reinterpret_cast< Coin* >(pSpine->mExecutor);
-        coin->exeMove();
-    }
-
-    void CoinNrvSpinDrained::execute(Spine* pSpine) const {
-        Coin* coin = reinterpret_cast< Coin* >(pSpine->mExecutor);
-        coin->exeSpinDrained();
-    }
-
-    void CoinNrvControled::execute(Spine* pSpine) const {
-        Coin* coin = reinterpret_cast< Coin* >(pSpine->mExecutor);
-        coin->exeControled();
-    }
-
-    void CoinNrvFixTimer::execute(Spine* pSpine) const {
-        Coin* coin = reinterpret_cast< Coin* >(pSpine->mExecutor);
-        coin->exeFixTimer();
-    }
-
-    void CoinNrvFixHide::execute(Spine* pSpine) const {}
-
-    void CoinNrvFix::execute(Spine* pSpine) const {
-        Coin* coin = reinterpret_cast< Coin* >(pSpine->mExecutor);
-        coin->exeFix();
-    }
-
-    void CoinNrvNonActive::execute(Spine* pSpine) const {
-        Coin* coin = reinterpret_cast< Coin* >(pSpine->mExecutor);
-        coin->exeNonActive();
-    }
-};  // namespace NrvCoin
 
 Coin::~Coin() {}

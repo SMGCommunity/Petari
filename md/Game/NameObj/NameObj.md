@@ -16,7 +16,7 @@
 | `calcViewAndEntry__7NameObjFv` | `0x80261760` | :white_check_mark: (100.0%) |
 | `initWithoutIter__7NameObjFv` | `0x80261764` | :white_check_mark: (100.0%) |
 | `setName__7NameObjFPCc` | `0x802617A4` | :white_check_mark: (100.0%) |
-| `executeMovement__7NameObjFv` | `0x802617AC` | :x: (88.9%) |
+| `executeMovement__7NameObjFv` | `0x802617AC` | :white_check_mark: (100.0%) |
 | `requestSuspend__7NameObjFv` | `0x802617D0` | :white_check_mark: (100.0%) |
 | `requestResume__7NameObjFv` | `0x802617FC` | :white_check_mark: (100.0%) |
 | `syncWithFlags__7NameObjFv` | `0x80261828` | :white_check_mark: (100.0%) |

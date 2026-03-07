@@ -157,7 +157,7 @@ void TripodBossGuardWall::exeDemo() {
 
 void TripodBossGuardWall::exeRotate() {
     mRotation.y += -0.2f;
-    mRotation.y = MR::wrapAngleTowards(0.0f, mRotation.y);
+    MR::repeatDegree(&mRotation.y);
     MR::startLevelSound(this, "SE_BM_LV_TRIPOD_C_WALL_MOVE", -1, -1, -1);
     if (MR::isEndBreakDownDemoTripodBoss()) {
         kill();

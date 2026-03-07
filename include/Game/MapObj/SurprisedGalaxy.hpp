@@ -13,11 +13,7 @@ public:
     virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
 
     void exeExit();
+    void exeWait();
 
     const char* mGalaxyName;
 };
-
-namespace NrvSurprisedGalaxy {
-    NERVE(SurprisedGalaxyNrvExit);
-    NERVE(SurprisedGalaxyNrvWait);
-};  // namespace NrvSurprisedGalaxy

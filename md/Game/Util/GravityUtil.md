@@ -23,6 +23,6 @@
 | `calcAttractMarioLauncherOrZero__2MRFPC9LiveActorPQ29JGeometry8TVec3<f>P11GravityInfoUl` | `0x803D4C00` | :white_check_mark: (100.0%) |
 | `isZeroGravity__2MRFPC9LiveActor` | `0x803D4C1C` | :white_check_mark: (100.0%) |
 | `isLightGravity__2MRFRC11GravityInfo` | `0x803D4C58` | :white_check_mark: (100.0%) |
-| `settingGravityParamFromJMap__2MRFP13PlanetGravityRC12JMapInfoIter` | `0x803D4C7C` | :x: (66.7%) |
-| `getJMapInfoGravityType__2MRFRC12JMapInfoIterP13PlanetGravity` | `0x803D4D84` | :x: (91.1%) |
-| `getJMapInfoGravityPower__2MRFRC12JMapInfoIterP13PlanetGravity` | `0x803D4E38` | :x: (90.9%) |
+| `settingGravityParamFromJMap__2MRFP13PlanetGravityRC12JMapInfoIter` | `0x803D4C7C` | :x: (73.6%) |
+| `getJMapInfoGravityType__2MRFRC12JMapInfoIterP13PlanetGravity` | `0x803D4D84` | :x: (99.9%) |
+| `getJMapInfoGravityPower__2MRFRC12JMapInfoIterP13PlanetGravity` | `0x803D4E38` | :x: (99.9%) |

@@ -29,8 +29,12 @@ namespace nw4r {
         public:
             Material(const res::Material*, const ResBlockSet&);
 
-            const char* GetName() const { return mName; }
-            bool IsUserAllocated() const { return mbUserAllocated; }
+            const char* GetName() const {
+                return mName;
+            }
+            bool IsUserAllocated() const {
+                return mbUserAllocated;
+            }
 
             virtual ~Material();
             virtual bool SetupGX(bool, u8);
@@ -46,28 +50,54 @@ namespace nw4r {
             void ReserveGXMem(u8 texMapNum, u8 texSRTNum, u8 texCoordGenNum, u8 tevStageNum, bool allocTevSwap, u8 indStageNum, u8 indSRTNum,
                               bool allocChanCtrl, bool allocMatCol, bool allocAlpComp, bool allocBlendMode);
 
-            u8 GetTextureNum() const { return u8(mGXMemNum.texMap); }
+            u8 GetTextureNum() const {
+                return u8(mGXMemNum.texMap);
+            }
             void SetTextureNum(u8 num);
 
-            u8 GetTextureCap() const { return u8(mGXMemCap.texMap); }
-            u8 GetTexCoordGenCap() const { return u8(mGXMemCap.texCoordGen); }
+            u8 GetTextureCap() const {
+                return u8(mGXMemCap.texMap);
+            }
+            u8 GetTexCoordGenCap() const {
+                return u8(mGXMemCap.texCoordGen);
+            }
 
             void SetTexCoordGenNum(u8 num);
-            void SetTexture(u8 texMapIdx, const TexMap& texMap) { GetTexMapAry()[texMapIdx].Set(texMap); }
+            void SetTexture(u8 texMapIdx, const TexMap& texMap) {
+                GetTexMapAry()[texMapIdx].Set(texMap);
+            }
 
-            void SetTexCoordGen(u32 idx, TexCoordGen value) { GetTexCoordGenAry()[idx] = value; }
+            void SetTexCoordGen(u32 idx, TexCoordGen value) {
+                GetTexCoordGenAry()[idx] = value;
+            }
 
-            bool IsAlphaCompareCap() const { return mGXMemCap.alpComp; }
+            bool IsAlphaCompareCap() const {
+                return mGXMemCap.alpComp;
+            }
 
-            bool IsTevSwapCap() const { return mGXMemCap.tevSwap; }
+            bool IsTevSwapCap() const {
+                return mGXMemCap.tevSwap;
+            }
 
-            bool IsChanCtrlCap() const { return mGXMemCap.chanCtrl; }
+            bool IsChanCtrlCap() const {
+                return mGXMemCap.chanCtrl;
+            }
 
-            bool IsMatColorCap() const { return mGXMemCap.matCol; }
+            bool IsMatColorCap() const {
+                return mGXMemCap.matCol;
+            }
 
-            bool IsBlendModeCap() const { return mGXMemCap.blendMode; }
+            bool IsBlendModeCap() const {
+                return mGXMemCap.blendMode;
+            }
 
-            const TexMap& GetTexture(u8 texMapIdx) const { return GetTexMapAry()[texMapIdx]; }
+            const TexMap& GetTexture(u8 texMapIdx) const {
+                return GetTexMapAry()[texMapIdx];
+            }
+
+            const GXColorS10 GetTevColor(u32 idx) const {
+                return mTevCols[idx];
+            }
 
             const TexMap* GetTexMapAry() const;
             TexMap* GetTexMapAry();

@@ -13,6 +13,7 @@ public:
     virtual void update(const TVec3f&);
     virtual void notifyActivate();
     virtual void notifyDeactivate();
+    // void drawDebug(); // DEBUG
 
 protected:
     /* 0x04 */ u32 _4;

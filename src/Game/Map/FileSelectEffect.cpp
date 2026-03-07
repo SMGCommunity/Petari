@@ -42,7 +42,7 @@ void FileSelectEffect::exeDisappear() {
     if (MR::isFirstStep(this)) {
         MR::startBrk(this, "Disappear");
         J3DFrameCtrl* ctrl = MR::getBrkCtrl(this);
-        MR::setBrkFrame(this, ctrl->mEndFrame - mEffectFrame);
+        MR::setBrkFrame(this, ctrl->mEnd - mEffectFrame);
     }
 
     if (MR::isBrkOneTimeAndStopped(this)) {

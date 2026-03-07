@@ -1,8 +1,7 @@
 #pragma once
 
 #include "Game/System/GameEventFlag.hpp"
-
-#include <revolution.h>
+#include <revolution/types.h>
 
 class GameEventFlagIter {
 public:
@@ -11,22 +10,23 @@ public:
     const GameEventFlag* getFlag() const;
     bool isValid() const;
 
-    s32 mIter;  // 0x0
+    /* 0x00 */ s32 mIter;
 };
 
 class GameEventFlagTableInstance {
 public:
+    struct Key {
+        u16 mHashCode;
+        const GameEventFlag* mFlag;
+    };
+
     GameEventFlagTableInstance();
 
     void initSortTable();
     const GameEventFlag* findFlag(const char*);
 
-    struct Key {
-        u16 mHashCode;
-        const GameEventFlag* mFlag;
-    };
-    Key* mSortTable;
-    s32 mLength;
+    /* 0x00 */ Key* mSortTable;
+    /* 0x04 */ s32 mLength;
 };
 
 namespace GameEventFlagTable {

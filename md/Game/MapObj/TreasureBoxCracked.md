@@ -6,7 +6,7 @@
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__ct__18TreasureBoxCrackedFPCc` | `0x8024CD84` | :x: (30.6%) |
+| `__ct__18TreasureBoxCrackedFPCc` | `0x8024CD84` | :x: (39.4%) |
 | `init__18TreasureBoxCrackedFRC12JMapInfoIter` | `0x8024CE14` | :x: (0.0%) |
 | `exeWait__18TreasureBoxCrackedFv` | `0x8024D078` | :x: (0.0%) |
 | `exeOpen__18TreasureBoxCrackedFv` | `0x8024D134` | :x: (0.0%) |
@@ -30,7 +30,7 @@
 | `execute__Q221NrvTreasureBoxCracked30TreasureBoxCrackedNrvItemBoundCFP5Spine` | `0x8024DFEC` | :x: (0.0%) |
 | `execute__Q221NrvTreasureBoxCracked25TreasureBoxCrackedNrvOpenCFP5Spine` | `0x8024DFF4` | :x: (0.0%) |
 | `execute__Q221NrvTreasureBoxCracked25TreasureBoxCrackedNrvWaitCFP5Spine` | `0x8024DFFC` | :x: (0.0%) |
-| `__sinit_\TreasureBoxCracked_cpp` | `0x8024E004` | :x: (2.9%) |
+| `__sinit_\TreasureBoxCracked_cpp` | `0x8024E004` | :x: (15.9%) |
 | `__ct__Q221NrvTreasureBoxCracked25TreasureBoxCrackedNrvWaitFv` | `0x8024E090` | :x: (0.0%) |
 | `__ct__Q221NrvTreasureBoxCracked25TreasureBoxCrackedNrvOpenFv` | `0x8024E0A0` | :x: (0.0%) |
 | `__ct__Q221NrvTreasureBoxCracked30TreasureBoxCrackedNrvItemBoundFv` | `0x8024E0B0` | :x: (0.0%) |

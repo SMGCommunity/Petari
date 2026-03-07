@@ -1,6 +1,7 @@
 #include "Game/Screen/WaterCameraFilter.hpp"
 #include "Game/Camera/CameraContext.hpp"
 #include "Game/Map/WaterAreaHolder.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 #include "Game/Screen/MissLayout.hpp"
 #include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/DemoUtil.hpp"
@@ -37,11 +38,11 @@ WaterCameraFilter::WaterCameraFilter() : LiveActor("水中カメラフィルタ�
 }
 
 void WaterCameraFilter::init(const JMapInfoIter& rIter) {
-    MR::connectToScene(this, 0x22, -1, -1, 0x3A);
+    MR::connectToScene(this, MR::MovementType_MapObj, -1, -1, MR::DrawType_WaterCameraFilter);
     MR::invalidateClipping(this);
     initNerve(&NrvWaterCameraFilter::WaterCameraFilterNrvAir::sInstance);
     initScreenTex();
-    JUTTexture* filterTex = new JUTTexture(MR::loadTexFromArc("WaterCameraFilter.arc", "WaterCameraFilter.bti"));
+    JUTTexture* filterTex = new JUTTexture(MR::loadTexFromArc("WaterCameraFilter.arc", "WaterCameraFilter.bti"), 0);
     mFilterTex = filterTex;
     makeActorAppeared();
 }
@@ -109,7 +110,7 @@ void WaterCameraFilter::control() {
 
 void WaterCameraFilter::draw() const {
     if (!isNerve(&NrvWaterCameraFilter::WaterCameraFilterNrvAir::sInstance)) {
-        GXRenderModeObj* renderObj = JUTVideo::sManager->mRenderModeObj;
+        GXRenderModeObj* renderObj = JUTVideo::getManager()->getRenderMode();
         GXSetCopyFilter(GX_FALSE, renderObj->sample_pattern, GX_FALSE, renderObj->vfilter);
         mScreenTex->capture(0, 0, GX_TF_RGB565, false, 0);
         GXSetCopyFilter(GX_FALSE, renderObj->sample_pattern, GX_TRUE, renderObj->vfilter);

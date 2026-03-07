@@ -14,7 +14,9 @@ public:
     virtual void moveEnd();
     virtual bool isEndMove() const;
 
+    void exeWait();
     void exeMove();
+    void exeDone();
 
     const char* mObjectName;  // 0x8C
 };
@@ -29,9 +31,3 @@ public:
 
     TMtx34f mMtx;  // 0x90
 };
-
-namespace NrvHipDropMoveObj {
-    NERVE(HostTypeWait);
-    NERVE(HostTypeMove);
-    NERVE(HostTypeDone);
-};  // namespace NrvHipDropMoveObj

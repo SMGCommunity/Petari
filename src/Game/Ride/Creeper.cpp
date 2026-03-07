@@ -1,5 +1,6 @@
 #include "Game/Ride/Creeper.hpp"
 #include "Game/LiveActor/PartsModel.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 #include "Game/Util/ActorCameraUtil.hpp"
 #include "Game/Util/ActorMovementUtil.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
@@ -131,7 +132,7 @@ void Creeper::init(const JMapInfoIter& rIter) {
         mBendFactorBee = mBendFactorNormal;
     }
 
-    MR::connectToScene(this, 0x29, -1, -1, 2);
+    MR::connectToScene(this, MR::MovementType_Ride, -1, -1, MR::DrawType_Creeper);
 
     initHitSensor(3);
     MR::addHitSensorBinder(this, "bind", 8, 100.0f, TVec3f(0.0f, 0.0f, 0.0f));
@@ -148,7 +149,7 @@ void Creeper::init(const JMapInfoIter& rIter) {
 
     initSound(4, false);
 
-    mTexture = new JUTTexture(MR::loadTexFromArc("Creeper.arc", "Stalk.bti"));
+    mTexture = new JUTTexture(MR::loadTexFromArc("Creeper.arc", "Stalk.bti"), 0);
 
     mFlowerModel = MR::createPartsModelNoSilhouettedMapObj(this, "花（つる花）", "CreeperFlower", reinterpret_cast< MtxPtr >(&mTopMtx));
     mLeafModel = MR::createPartsModelNoSilhouettedMapObj(this, "葉（つる花）", "CreeperLeaf", nullptr);

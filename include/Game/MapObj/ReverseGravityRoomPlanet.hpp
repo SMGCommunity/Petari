@@ -11,14 +11,9 @@ public:
     virtual void initCaseUseSwitchA(const MapObjActorInitInfo&);
 
     void exeDownStart();
+    void exeDownWait();
     void exeUpStart();
+    void exeUpWait();
     void startSwitchOn();
     void startSwitchOff();
 };
-
-namespace NrvReverseGravityRoomPlanet {
-    NERVE(ReverseGravityRoomPlanetNrvDownStart);
-    NERVE(ReverseGravityRoomPlanetNrvDownWait);
-    NERVE(ReverseGravityRoomPlanetNrvUpStart);
-    NERVE(ReverseGravityRoomPlanetNrvUpWait);
-};  // namespace NrvReverseGravityRoomPlanet

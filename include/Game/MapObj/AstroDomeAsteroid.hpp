@@ -13,17 +13,7 @@ public:
     virtual void calcAndSetBaseMtx();
     virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
 
-    inline void exeWait() {
-        if (MR::isFirstStep(this)) {
-            MR::startBck(this, "AstroDomeAsteroid", nullptr);
-        }
-
-        MR::setBckRate(this, 1.0f);
-    }
+    void exeWait();
 
     TPos3f mRotationMtx;  // 0x8C
-};
-
-namespace NrvAstroDomeAsteroid {
-    NERVE_DECL(AstroDomeAsteroidNrvWait, AstroDomeAsteroid, AstroDomeAsteroid::exeWait);
 };

@@ -3,7 +3,21 @@
 #include "Game/MapObj/MapObjActorInitInfo.hpp"
 #include "Game/MapObj/StageEffectDataTable.hpp"
 
+namespace NrvUFOKinoko {
+    NEW_NERVE(HostTypeWait, UFOKinoko, Wait)
+    NEW_NERVE(HostTypeMove, UFOKinoko, Move)
+    NEW_NERVE(HostTypeStop, UFOKinoko, Stop)
+};  // namespace NrvUFOKinoko
+
 UFOKinoko::UFOKinoko(const char* pName) : MapObjActor(pName) {}
+
+void UFOKinoko::makeArchiveList(NameObjArchiveListCollector* pArchiveList, const JMapInfoIter& rIter) {
+    bool arg7 = false;
+    MR::getJMapInfoArg7NoInit(rIter, &arg7);
+    if (arg7) {
+        pArchiveList->addArchive("UFOKinokoLow");
+    }
+}
 
 UFOKinoko::~UFOKinoko() {}
 
@@ -60,13 +74,7 @@ void UFOKinoko::startMove() {
     setNerve(&NrvUFOKinoko::HostTypeMove::sInstance);
 }
 
-void UFOKinoko::makeArchiveList(NameObjArchiveListCollector* pArchiveList, const JMapInfoIter& rIter) {
-    bool arg7 = false;
-    MR::getJMapInfoArg7NoInit(rIter, &arg7);
-    if (arg7) {
-        pArchiveList->addArchive("UFOKinokoLow");
-    }
-}
+void UFOKinoko::exeWait() {}
 
 void UFOKinoko::exeMove() {
     if (MR::isFirstStep(this)) {
@@ -85,19 +93,3 @@ void UFOKinoko::exeStop() {
         MR::StageEffect::tryStageEffectStop(this, mObjectName);
     }
 }
-
-namespace NrvUFOKinoko {
-    INIT_NERVE(HostTypeWait)
-    INIT_NERVE(HostTypeMove)
-    INIT_NERVE(HostTypeStop)
-
-    void HostTypeWait::execute(Spine* pSpine) const {}
-    void HostTypeMove::execute(Spine* pSpine) const {
-        UFOKinoko* ufo = reinterpret_cast< UFOKinoko* >(pSpine->mExecutor);
-        ufo->exeMove();
-    }
-    void HostTypeStop::execute(Spine* pSpine) const {
-        UFOKinoko* ufo = reinterpret_cast< UFOKinoko* >(pSpine->mExecutor);
-        ufo->exeStop();
-    }
-};  // namespace NrvUFOKinoko

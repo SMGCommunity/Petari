@@ -12,4 +12,4 @@
 | `calcAnim__21MirrorReflectionModelFv` | `0x80169294` | :white_check_mark: (100.0%) |
 | `calcViewAndEntry__21MirrorReflectionModelFv` | `0x80169300` | :white_check_mark: (100.0%) |
 | `calcAndSetBaseMtx__21MirrorReflectionModelFv` | `0x80169314` | :white_check_mark: (100.0%) |
-| `__dt__21MirrorReflectionModelFv` | `0x80169370` | :x: (95.7%) |
+| `__dt__21MirrorReflectionModelFv` | `0x80169370` | :white_check_mark: (100.0%) |

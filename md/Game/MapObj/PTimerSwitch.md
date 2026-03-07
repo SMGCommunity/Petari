@@ -8,7 +8,7 @@
 |------|---------|---------|
 | `__ct__12PTimerSwitchFPCc` | `0x80213084` | :white_check_mark: (100.0%) |
 | `reset__12PTimerSwitchFv` | `0x802130D4` | :white_check_mark: (100.0%) |
-| `init__12PTimerSwitchFRC12JMapInfoIter` | `0x80213134` | :x: (99.0%) |
+| `init__12PTimerSwitchFRC12JMapInfoIter` | `0x80213134` | :x: (100.0%) |
 | `initAfterPlacement__12PTimerSwitchFv` | `0x802132B8` | :white_check_mark: (100.0%) |
 | `appear__12PTimerSwitchFv` | `0x802132C0` | :white_check_mark: (100.0%) |
 | `kill__12PTimerSwitchFv` | `0x802132C4` | :white_check_mark: (100.0%) |
@@ -22,7 +22,7 @@
 | `exeOff__12PTimerSwitchFv` | `0x80213508` | :white_check_mark: (100.0%) |
 | `exeSwitchDown__12PTimerSwitchFv` | `0x80213554` | :white_check_mark: (100.0%) |
 | `exeOn__12PTimerSwitchFv` | `0x802135A8` | :white_check_mark: (100.0%) |
-| `__dt__12PTimerSwitchFv` | `0x80213628` | :x: (95.7%) |
+| `__dt__12PTimerSwitchFv` | `0x80213628` | :white_check_mark: (100.0%) |
 | `__sinit_\PTimerSwitch_cpp` | `0x80213684` | :white_check_mark: (100.0%) |
 | `__ct__Q215NrvPTimerSwitch18PTimerSwitchNrvOffFv` | `0x802136B8` | :white_check_mark: (100.0%) |
 | `__ct__Q215NrvPTimerSwitch25PTimerSwitchNrvSwitchDownFv` | `0x802136C8` | :white_check_mark: (100.0%) |

@@ -112,8 +112,8 @@ namespace MR {
         DrawBufferType_GlaringLight = 0x22,
         DrawBufferType_AstroDomeSky = 0x23,
         DrawBufferType_Model3DFor2D = 0x24,
-        DrawBufferType_DrawBufferType_0x25 = 0x25,
-        DrawBufferType_DrawBufferType_0x26 = 0x26,
+        DrawBufferType_0x25 = 0x25,
+        DrawBufferType_0x26 = 0x26,
         DrawBufferType_MirrorMapObj = 0x27,
     };
 
@@ -142,8 +142,8 @@ namespace MR {
         DrawType_SpiderThread = 0x15,
         DrawType_SpaceCocoon = 0x16,
         DrawType_0x17 = 0x17,
-        DrawType_WarpPodPath = 0x18,
-        DrawType_FlexibleSphere = 0x19,
+        DrawType_WarpPodPath = 0x18,     // TODO: DrawType_NormalMap?
+        DrawType_FlexibleSphere = 0x19,  // TODO: DrawType_DynamicCollisionObj?
         DrawType_KirairaChain = 0x1A,
         DrawType_WaterPlant = 0x1B,
         DrawType_VolumeModel = 0x1C,

@@ -1,6 +1,17 @@
 #include "Game/MapObj/PunchingKinoko.hpp"
 #include <revolution.h>
 
+namespace NrvPunchingKinoko {
+    NEW_NERVE(PunchingKinokoNrvWait, PunchingKinoko, Wait);
+    NEW_NERVE(PunchingKinokoNrvSwing, PunchingKinoko, Swing);
+    NEW_NERVE(PunchingKinokoNrvPunched, PunchingKinoko, Punched);
+    NEW_NERVE(PunchingKinokoNrvPunchedBrake, PunchingKinoko, PunchedBrake);
+    NEW_NERVE(PunchingKinokoNrvHitted, PunchingKinoko, Hitted);
+    NEW_NERVE(PunchingKinokoNrvPointSnaped, PunchingKinoko, PointSnaped);
+    NEW_NERVE(PunchingKinokoNrvCrushed, PunchingKinoko, Crushed);
+    NEW_NERVE(PunchingKinokoNrvCrushedEnd, PunchingKinoko, CrushedEnd);
+};  // namespace NrvPunchingKinoko
+
 PunchingKinoko::PunchingKinoko(const char* pName)
     : LiveActor(pName), mGroundChecker(nullptr), mScaleController(nullptr), mDelegator(nullptr), _98(-1), _9C(0, 0, 0), _A8(0, 1, 0) {
     mStarPointerHitCoolDown = 0;
@@ -583,49 +594,5 @@ bool PunchingKinoko::isEnableBlowed() const {
 bool PunchingKinoko::isCrushed() const {
     return isNerve(&NrvPunchingKinoko::PunchingKinokoNrvCrushed::sInstance);
 }
-
-namespace NrvPunchingKinoko {
-    INIT_NERVE(PunchingKinokoNrvWait);
-    INIT_NERVE(PunchingKinokoNrvSwing);
-    INIT_NERVE(PunchingKinokoNrvPunched);
-    INIT_NERVE(PunchingKinokoNrvPunchedBrake);
-    INIT_NERVE(PunchingKinokoNrvHitted);
-    INIT_NERVE(PunchingKinokoNrvPointSnaped);
-    INIT_NERVE(PunchingKinokoNrvCrushed);
-    INIT_NERVE(PunchingKinokoNrvCrushedEnd);
-
-    void PunchingKinokoNrvWait::execute(Spine* pSpine) const {
-        PunchingKinoko* kinoko = reinterpret_cast< PunchingKinoko* >(pSpine->mExecutor);
-        kinoko->exeWait();
-    };
-    void PunchingKinokoNrvSwing::execute(Spine* pSpine) const {
-        PunchingKinoko* kinoko = reinterpret_cast< PunchingKinoko* >(pSpine->mExecutor);
-        kinoko->exeSwing();
-    };
-    void PunchingKinokoNrvPunched::execute(Spine* pSpine) const {
-        PunchingKinoko* kinoko = reinterpret_cast< PunchingKinoko* >(pSpine->mExecutor);
-        kinoko->exePunched();
-    };
-    void PunchingKinokoNrvPunchedBrake::execute(Spine* pSpine) const {
-        PunchingKinoko* kinoko = reinterpret_cast< PunchingKinoko* >(pSpine->mExecutor);
-        kinoko->exePunchedBrake();
-    };
-    void PunchingKinokoNrvHitted::execute(Spine* pSpine) const {
-        PunchingKinoko* kinoko = reinterpret_cast< PunchingKinoko* >(pSpine->mExecutor);
-        kinoko->exeHitted();
-    };
-    void PunchingKinokoNrvPointSnaped::execute(Spine* pSpine) const {
-        PunchingKinoko* kinoko = reinterpret_cast< PunchingKinoko* >(pSpine->mExecutor);
-        kinoko->exePointSnaped();
-    };
-    void PunchingKinokoNrvCrushed::execute(Spine* pSpine) const {
-        PunchingKinoko* kinoko = reinterpret_cast< PunchingKinoko* >(pSpine->mExecutor);
-        kinoko->exeCrushed();
-    };
-    void PunchingKinokoNrvCrushedEnd::execute(Spine* pSpine) const {
-        PunchingKinoko* kinoko = reinterpret_cast< PunchingKinoko* >(pSpine->mExecutor);
-        kinoko->exeCrushedEnd();
-    };
-};  // namespace NrvPunchingKinoko
 
 PunchingKinoko::~PunchingKinoko() {}

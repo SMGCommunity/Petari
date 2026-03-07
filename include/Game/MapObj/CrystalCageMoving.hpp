@@ -16,12 +16,15 @@ public:
     virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
     virtual void connectToScene(const MapObjActorInitInfo&);
 
+    void exeWaitBig();
     void exeBreakBig();
+    void exeWaitSmall();
     void exeBreakSmall();
     void exeBreakAll();
     void exeDemoTicoMove();
     void exeDemoTicoStop();
     void exeDemoTicoChange();
+    void endBreakBig();
     void crashMario(HitSensor*, HitSensor*);
     void initDummyModel(const JMapInfoIter&);
     void startBreakDemo();
@@ -33,14 +36,3 @@ public:
     TVec3f _FC;
     u8 _108;
 };
-
-namespace NrvCrystalCageMoving {
-    NERVE(CrystalCageMovingNrvWaitBig);
-    NERVE_EXECEND(CrystalCageMovingNrvBreakBig);
-    NERVE(CrystalCageMovingNrvWaitSmall);
-    NERVE(CrystalCageMovingNrvBreakSmall);
-    NERVE(CrystalCageMovingNrvBreakAll);
-    NERVE(CrystalCageMovingNrvDemoTicoMove);
-    NERVE(CrystalCageMovingNrvDemoTicoStop);
-    NERVE(CrystalCageMovingNrvDemoTicoChange);
-};  // namespace NrvCrystalCageMoving

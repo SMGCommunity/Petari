@@ -3,6 +3,7 @@
 #include "Game/Boss/TripodBossFixPartsBase.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 #include "Game/Util/ActorSwitchUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
@@ -24,7 +25,7 @@ TripodBossShell::TripodBossShell(const char* pName) : TripodBossFixPartsBase(pNa
 void TripodBossShell::init(const JMapInfoIter& rIter) {
     TripodBossFixPartsBase::init(rIter);
     initModelManagerWithAnm("TripodBossShell", nullptr, false);
-    MR::connectToScene(this, 0x23, 0xB, 0x1F, -1);
+    MR::connectToScene(this, MR::MovementType_MapObjDecoration, MR::CalcAnimType_MapObjDecoration, MR::DrawBufferType_TripodBoss, -1);
     initHitSensor(2);
     MR::addHitSensorMapObj(this, "body", 16, 900.0f, TVec3f(0.0f, 300.0f, 0.0f));
     MR::addHitSensor(this, "killer_terget", ATYPE_BREAKABLE_CAGE, 8, 900.0f * mScale.x, TVec3f(0.0f, 0.0f, 0.0f));

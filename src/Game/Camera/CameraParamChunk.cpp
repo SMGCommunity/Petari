@@ -5,7 +5,6 @@
 #include "Game/Util/MathUtil.hpp"
 #include <cstring>
 
-#ifdef NON_MATCHING
 // String constructor called first instead of last
 CameraGeneralParam::CameraGeneralParam() : mString() {
     mDist = 1200.0f;
@@ -23,7 +22,6 @@ CameraGeneralParam::CameraGeneralParam() : mString() {
     mNum1 = 0;
     mNum2 = 0;
 }
-#endif
 
 CameraGeneralParam& CameraGeneralParam::operator=(const CameraGeneralParam& rOther) {
     mDist = rOther.mDist;
@@ -99,7 +97,6 @@ void CameraParamChunk::initiate() {
     *mGeneralParam = generalParam;
 }
 
-#ifdef NON_MATCHING
 // Register mismatch
 void CameraParamChunk::load(DotCamReader* pReader, CameraHolder* pHolder) {
     const char* camType = "";
@@ -164,7 +161,6 @@ void CameraParamChunk::load(DotCamReader* pReader, CameraHolder* pHolder) {
         mGeneralParam->mString.setCharPtr(stringParam);
     }
 }
-#endif
 
 s32 CameraParamChunk::getZoneID() const {
     return mParamChunkID->mZoneID;

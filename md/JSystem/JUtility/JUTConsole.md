@@ -22,7 +22,7 @@
 | `appendConsole__17JUTConsoleManagerFP10JUTConsole` | `0x8041BD7C` | :x: (0.0%) |
 | `removeConsole__17JUTConsoleManagerFP10JUTConsole` | `0x8041BDD8` | :x: (0.0%) |
 | `draw__17JUTConsoleManagerCFv` | `0x8041BE94` | :x: (0.0%) |
-| `drawDirect__17JUTConsoleManagerCFb` | `0x8041BF14` | :x: (61.3%) |
+| `drawDirect__17JUTConsoleManagerCFb` | `0x8041BF14` | :white_check_mark: (100.0%) |
 | `setDirectConsole__17JUTConsoleManagerFP10JUTConsole` | `0x8041BF88` | :white_check_mark: (100.0%) |
 | `JUTReportConsole_f_va` | `0x8041BFE8` | :x: (0.0%) |
 | `JUTReportConsole_f` | `0x8041C054` | :x: (0.0%) |

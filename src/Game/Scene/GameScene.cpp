@@ -125,10 +125,7 @@ void GameScene::init() {
         MR::callMethodAllSceneNameObj(&NameObj::initAfterPlacement);
         SleepControlFunc::initSyncSleepController();
 
-        while (1) {
-            if (GameSceneFunction::isLoadDoneScenarioWaveData()) {
-                break;
-            }
+        while (!GameSceneFunction::isLoadDoneScenarioWaveData()) {
         }
     }
 }
@@ -253,7 +250,6 @@ void GameScene::exeScenarioOpeningCamera() {
 
 void GameScene::exeCometRetryAfterMiss() {
     CometRetryButton* pCometRetryButton = getCometRetryButton();
-    ;
 
     if (MR::isFirstStep(this)) {
         getCometRetryButton()->appear();
@@ -312,9 +308,7 @@ void GameScene::initSequences() {
     mPauseCtrl = new GameScenePauseControl(this);
     mPauseCtrl->registerNervePauseMenu(&NrvGameScene::GameScenePauseMenu::sInstance);
 
-    MR::FunctorV0M< GameScenePauseControl*, void (GameScenePauseControl::*)() > func =
-        MR::Functor_Inline< GameScenePauseControl >(mPauseCtrl, &GameScenePauseControl::requestPauseMenuOff);
-    mPauseSeq->initWindowMenu(func);
+    mPauseSeq->initWindowMenu(MR::Functor_Inline(mPauseCtrl, &GameScenePauseControl::requestPauseMenuOff));
 }
 
 void GameScene::initEffect() {
@@ -340,7 +334,7 @@ void GameScene::drawMirror() const {
         CategoryList::drawXlu(MR::DrawBufferType_MirrorMapObj);
         CategoryList::execute(MR::DrawType_CaptureScreenIndirect);
         MR::clearZBuffer();
-        GXColor c = {0, 0, -1, 0};
+        GXColor c = {0, 0, 255, 0};
         MR::fillScreen(c);
     }
 }
@@ -421,8 +415,8 @@ void GameScene::draw2D() const {
     CategoryList::execute(MR::DrawType_LayoutOnPause);
     mPauseSeq->draw();
     MR::drawInitFor2DModel();
-    CategoryList::drawOpa(MR::DrawBufferType_DrawBufferType_0x26);
-    CategoryList::drawXlu(MR::DrawBufferType_DrawBufferType_0x26);
+    CategoryList::drawOpa(MR::DrawBufferType_0x26);
+    CategoryList::drawXlu(MR::DrawBufferType_0x26);
     CategoryList::execute(MR::DrawType_WipeLayout);
 }
 
@@ -431,14 +425,18 @@ bool GameScene::isValidScenarioOpeningCamera() const {
 }
 
 void GameScene::drawOdhCapture() const {
-    if (_29) {
-        if (MR::isRequestedCaptureOdhImage()) {
-            MR::setPortCaptureOdhImage();
-            CategoryList::execute(MR::DrawType_MessageBoardCapture);
-            MR::captureOdhImage();
-            MR::reinitGX();
-        }
+    if (!_29) {
+        return;
     }
+
+    if (!MR::isRequestedCaptureOdhImage()) {
+        return;
+    }
+
+    MR::setPortCaptureOdhImage();
+    CategoryList::execute(MR::DrawType_MessageBoardCapture);
+    MR::captureOdhImage();
+    MR::reinitGX();
 }
 
 void GameScene::startStagePlayFirst() {

@@ -1,9 +1,9 @@
+#include <private/flipper.h>
+#include <private/iosresclt.h>
+#include <revolution/ipc/ipcclt.h>
 #include <revolution/os.h>
 #include <revolution/os/OSResetSW.h>
 #include <revolution/vi.h>
-#include <revolution/ipc/ipcclt.h>
-#include <private/iosresclt.h>
-#include <private/flipper.h>
 
 static u32 StmImInBuf[8] __attribute__((align(32)));
 static u32 StmImOutBuf[8] __attribute__((align(32)));
@@ -11,7 +11,7 @@ static u32 StmImOutBuf[8] __attribute__((align(32)));
 static u32 StmVdInBuf[8] __attribute__((align(32)));
 static u32 StmVdOutBuf[8] __attribute__((align(32)));
 
-static u32 StmEhInBuf[8]__attribute__((align(32)));
+static u32 StmEhInBuf[8] __attribute__((align(32)));
 static u32 StmEhOutBuf[8] __attribute__((align(32)));
 
 static int StmReady = 0;
@@ -27,13 +27,12 @@ static OSResetCallback ResetCallback;
 static OSPowerCallback PowerCallback;
 
 static BOOL __OSGetResetButtonStateRaw(void);
-static s32 __OSStateEventHandler(s32, void *);
-static s32 __OSVIDimReplyHandler(s32, void *);
+static s32 __OSStateEventHandler(s32, void*);
+static s32 __OSVIDimReplyHandler(s32, void*);
 static void __OSDefaultResetCallback(void);
 static void __OSDefaultPowerCallback(void);
 static void __OSRegisterStateEvent(void);
 
-#ifdef NON_MATCHING
 OSPowerCallback OSSetPowerCallback(OSPowerCallback callback) {
     BOOL enabled;
     OSPowerCallback prevCallback;
@@ -43,8 +42,7 @@ OSPowerCallback OSSetPowerCallback(OSPowerCallback callback) {
 
     if (callback) {
         PowerCallback = callback;
-    }
-    else {
+    } else {
         PowerCallback = __OSDefaultPowerCallback;
     }
 
@@ -56,23 +54,21 @@ OSPowerCallback OSSetPowerCallback(OSPowerCallback callback) {
 
     if (prevCallback == __OSDefaultResetCallback) {
         return NULL;
-    }
-    else {
+    } else {
         return prevCallback;
     }
 }
-#endif
 
 // from a debug build of the OS lib, this function is inlined in __OSSetVIForceDimming
 static int AccessVIDimRegs(void) {
     int res;
     res = IOS_IoctlAsync(StmImDesc, 0x5001, StmVdInBuf, 0x20, StmVdOutBuf, 0x20, __OSVIDimReplyHandler, 0);
-    switch(res) {
-        default:
-            return res;
-        case 0:
-            return 1;
-    }   
+    switch (res) {
+    default:
+        return res;
+    case 0:
+        return 1;
+    }
 }
 
 int __OSSetVIForceDimming(BOOL isEnabled, u32 yShift, u32 xShift) {
@@ -100,7 +96,7 @@ int __OSSetVIForceDimming(BOOL isEnabled, u32 yShift, u32 xShift) {
     StmVdInBuf[5] = 0xFFFFFFFF;
     StmVdInBuf[6] = 0xFFFF0000;
     StmVdInBuf[7] = 0;
-    
+
     return AccessVIDimRegs();
 }
 
@@ -141,7 +137,7 @@ s32 __OSUnRegisterStateEvent(void) {
     return ret;
 }
 
-s32 __OSVIDimReplyHandler(s32 ret, void *pUnused) {
+s32 __OSVIDimReplyHandler(s32 ret, void* pUnused) {
     StmVdInUse = 0;
     return 0;
 }
@@ -154,25 +150,19 @@ static void __OSRegisterStateEvent(void) {
 
     if (err == IOS_ERROR_OK) {
         StmEhRegistered = 1;
-    }
-    else {
+    } else {
         StmEhRegistered = 0;
     }
 
     OSRestoreInterrupts(enabled);
 }
 
-void __OSDefaultResetCallback(void) {
+void __OSDefaultResetCallback(void) {}
 
-}
-
-void __OSDefaultPowerCallback(void) {
-
-}
+void __OSDefaultPowerCallback(void) {}
 
 // arg seems to be unused and it's only there so we can register our states
-//#ifdef NON_MATCHING
-static s32 __OSStateEventHandler(s32 ret, void *pUnused) {
+static s32 __OSStateEventHandler(s32 ret, void* pUnused) {
     int en;
     OSResetCallback cb;
 
@@ -207,7 +197,6 @@ static s32 __OSStateEventHandler(s32 ret, void *pUnused) {
 
     return 0;
 }
-//#endif
 
 int __OSInitSTM(void) {
     PowerCallback = __OSDefaultPowerCallback;
@@ -258,6 +247,5 @@ static void LockUp(void) {
     ICFlashInvalidate();
 
     while (1) {
-
     }
 }

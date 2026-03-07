@@ -10,6 +10,8 @@ public:
     virtual void init(const JMapInfoIter&);
     virtual void control();
 
+    void exeWait();
+
     void setRadiusRate(f32);
     void reset();
     void update(const TVec3f&, const TVec3f&);
@@ -35,8 +37,4 @@ public:
     f32 _D8;
     f32 _DC;
     u32 _E0;
-};
-
-namespace NrvSpinDriverOperateRing {
-    NERVE(SpinDriverOperateRingNrvWait);
 };

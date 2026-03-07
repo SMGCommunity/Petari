@@ -11,7 +11,7 @@ class WarpPod : public LiveActor {
 public:
     /// @brief Creates a new `WarpPod`.
     /// @param pName A pointer to the null-terminated name of the object.
-    WarpPod(const char* pName);
+    WarpPod(const char* pName) : LiveActor(pName), _8C(nullptr) {}
 
     virtual void init(const JMapInfoIter& rIter);
     virtual void movement();

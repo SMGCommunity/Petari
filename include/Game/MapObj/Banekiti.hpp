@@ -24,9 +24,3 @@ public:
     WalkerStateBindStarPointer* mBindStarPointer;  //_90
     MapPartsRailMover* mRailMover;                 //_94
 };
-
-namespace NrvBanekiti {
-    NERVE(BanekitiNrvWait);
-    NERVE(BanekitiNrvRepel);
-    NERVE_EXECEND(BanekitiNrvDPDSwoon);
-};  // namespace NrvBanekiti

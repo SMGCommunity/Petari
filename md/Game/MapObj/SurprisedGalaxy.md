@@ -13,7 +13,7 @@
 | `attackSensor__15SurprisedGalaxyFP9HitSensorP9HitSensor` | `0x80248E54` | :white_check_mark: (100.0%) |
 | `exeExit__15SurprisedGalaxyFv` | `0x80248EAC` | :white_check_mark: (100.0%) |
 | `receiveOtherMsg__15SurprisedGalaxyFUlP9HitSensorP9HitSensor` | `0x80248F3C` | :white_check_mark: (100.0%) |
-| `__dt__15SurprisedGalaxyFv` | `0x80248F98` | :x: (95.7%) |
+| `__dt__15SurprisedGalaxyFv` | `0x80248F98` | :white_check_mark: (100.0%) |
 | `__sinit_\SurprisedGalaxy_cpp` | `0x80248FF4` | :white_check_mark: (100.0%) |
 | `__ct__Q218NrvSurprisedGalaxy22SurprisedGalaxyNrvExitFv` | `0x80249020` | :white_check_mark: (100.0%) |
 | `__ct__Q218NrvSurprisedGalaxy22SurprisedGalaxyNrvWaitFv` | `0x80249030` | :white_check_mark: (100.0%) |

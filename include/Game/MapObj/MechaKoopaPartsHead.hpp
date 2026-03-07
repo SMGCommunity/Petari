@@ -13,18 +13,10 @@ public:
     virtual void initCaseUseSwitchB(const MapObjActorInitInfo&);
     virtual void initCaseNoUseSwitchB(const MapObjActorInitInfo&);
 
+    void exeWait();
     void exeDemoBreak();
     void exeDemoWhiteFadeOut();
     void exeDemoWhiteWait();
     void exeDemoWhiteFadeIn();
     void exeDemoAppearStar();
 };
-
-namespace NrvMechaKoopaPartsHead {
-    NERVE(MechaKoopaPartsHeadNrvWait);
-    NERVE(MechaKoopaPartsHeadNrvDemoBreak);
-    NERVE(MechaKoopaPartsHeadNrvDemoWhiteFadeOut);
-    NERVE(MechaKoopaPartsHeadNrvDemoWhiteWait);
-    NERVE(MechaKoopaPartsHeadNrvDemoWhiteFadeIn);
-    NERVE(MechaKoopaPartsHeadNrvDemoAppearStar);
-};  // namespace NrvMechaKoopaPartsHead

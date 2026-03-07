@@ -8,4 +8,4 @@
 |------|---------|---------|
 | `__ct__16AstroOverlookObjFPCc` | `0x801B0A1C` | :white_check_mark: (100.0%) |
 | `control__16AstroOverlookObjFv` | `0x801B0A84` | :white_check_mark: (100.0%) |
-| `__dt__16AstroOverlookObjFv` | `0x801B0AE0` | :x: (95.7%) |
+| `__dt__16AstroOverlookObjFv` | `0x801B0AE0` | :white_check_mark: (100.0%) |

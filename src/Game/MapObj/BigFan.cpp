@@ -3,6 +3,12 @@
 #include "Game/MapObj/BigFanHolder.hpp"
 #include "JSystem/JMath/JMath.hpp"
 
+namespace NrvBigFan {
+    NEW_NERVE(BigFanNrvStop, BigFan, Stop);
+    NEW_NERVE(BigFanNrvStart, BigFan, Start);
+    NEW_NERVE(BigFanNrvWait, BigFan, Wait);
+};  // namespace NrvBigFan
+
 BigFan::BigFan(const char* pName) : LiveActor(pName) {
     mWindModel = 0;
     _90.x = 0.0f;
@@ -115,6 +121,13 @@ void BigFan::start() {
     }
 }
 
+void BigFan::exeStop() {
+    if (MR::isFirstStep(this)) {
+        MR::startAction(this, "Appear");
+        MR::stopBck(this);
+    }
+}
+
 void BigFan::exeStart() {
     if (MR::isFirstStep(this)) {
         mWindModel->appear();
@@ -146,29 +159,13 @@ void BigFan::exeWait() {
     }
 }
 
-namespace NrvBigFan {
-    INIT_NERVE(BigFanNrvStop);
-    INIT_NERVE(BigFanNrvStart);
-    INIT_NERVE(BigFanNrvWait);
-
-    void BigFanNrvWait::execute(Spine* pSpine) const {
-        BigFan* fan = reinterpret_cast< BigFan* >(pSpine->mExecutor);
-        fan->exeWait();
+inline bool BigFan::isStartOrWait() {
+    bool flag = false;
+    if (isNerve(&NrvBigFan::BigFanNrvStart::sInstance) || isNerve(&NrvBigFan::BigFanNrvWait::sInstance)) {
+        flag = true;
     }
 
-    void BigFanNrvStart::execute(Spine* pSpine) const {
-        BigFan* fan = reinterpret_cast< BigFan* >(pSpine->mExecutor);
-        fan->exeStart();
-    }
-
-    void BigFanNrvStop::execute(Spine* pSpine) const {
-        BigFan* fan = reinterpret_cast< BigFan* >(pSpine->mExecutor);
-
-        if (MR::isFirstStep(fan)) {
-            MR::startAction(fan, "Appear");
-            MR::stopBck(fan);
-        }
-    }
-};  // namespace NrvBigFan
+    return flag;
+}
 
 BigFan::~BigFan() {}

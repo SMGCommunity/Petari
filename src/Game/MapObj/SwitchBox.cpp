@@ -3,6 +3,11 @@
 #include "Game/Util.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
 
+namespace NrvSwitchBox {
+    NEW_NERVE(SwitchBoxNrvWait, SwitchBox, Wait);
+    NEW_NERVE(SwitchBoxNrvHit, SwitchBox, Hit);
+};  // namespace NrvSwitchBox
+
 SwitchBox::SwitchBox(const char* pName) : LiveActor(pName) {}
 
 void SwitchBox::init(const JMapInfoIter& rIter) {
@@ -170,18 +175,3 @@ bool SwitchBox::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceive
 
     return false;
 }
-
-namespace NrvSwitchBox {
-    INIT_NERVE(SwitchBoxNrvWait);
-    INIT_NERVE(SwitchBoxNrvHit);
-
-    void SwitchBoxNrvHit::execute(Spine* pSpine) const {
-        SwitchBox* pActor = reinterpret_cast< SwitchBox* >(pSpine->mExecutor);
-        pActor->exeHit();
-    }
-
-    void SwitchBoxNrvWait::execute(Spine* pSpine) const {
-        SwitchBox* pActor = reinterpret_cast< SwitchBox* >(pSpine->mExecutor);
-        pActor->exeWait();
-    }
-};  // namespace NrvSwitchBox

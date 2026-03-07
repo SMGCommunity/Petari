@@ -7,7 +7,7 @@
 | Name | Address | Match % |
 |------|---------|---------|
 | `__ct__9SwitchBoxFPCc` | `0x80249B3C` | :white_check_mark: (100.0%) |
-| `__dt__9SwitchBoxFv` | `0x80249B78` | :x: (95.7%) |
+| `__dt__9SwitchBoxFv` | `0x80249B78` | :white_check_mark: (100.0%) |
 | `init__9SwitchBoxFRC12JMapInfoIter` | `0x80249BD4` | :white_check_mark: (100.0%) |
 | `initAfterPlacement__9SwitchBoxFv` | `0x80249E34` | :white_check_mark: (100.0%) |
 | `exeWait__9SwitchBoxFv` | `0x80249E38` | :white_check_mark: (100.0%) |

@@ -1,7 +1,6 @@
 #include "Game/Camera/CamTranslatorMedianTower.hpp"
 #include "Game/Camera/CameraParamChunk.hpp"
 
-#ifdef NON_MATCHING
 // Instruction order, register mismatch
 void CamTranslatorMedianTower::setParam(const CameraParamChunk* pChunk) {
     CameraGeneralParam* general = pChunk->mGeneralParam;
@@ -28,7 +27,6 @@ void CamTranslatorMedianTower::setParam(const CameraParamChunk* pChunk) {
     camera->mUpY = upY;
     camera->mUpZ = upZ;
 }
-#endif
 
 Camera* CamTranslatorMedianTower::getCamera() const {
     return mCamera;

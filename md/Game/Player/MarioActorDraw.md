@@ -16,7 +16,7 @@
 | `initBoneMario__10MarioActorFv` | `0x802B6348` | :x: (0.0%) |
 | `changeDisplayMode__10MarioActorFUc` | `0x802B640C` | :x: (0.0%) |
 | `calcViewAndEntry__10MarioActorFv` | `0x802B64CC` | :x: (0.0%) |
-| `drawMarioModel__10MarioActorCFv` | `0x802B66F4` | :x: (95.0%) |
+| `drawMarioModel__10MarioActorCFv` | `0x802B66F4` | :x: (99.9%) |
 | `isAllHidden__10MarioActorCFv` | `0x802B6970` | :x: (0.0%) |
 | `swapTextureInit__10MarioActorFv` | `0x802B69A4` | :x: (0.0%) |
 | `initFace__10MarioActorFv` | `0x802B6CE8` | :x: (0.0%) |

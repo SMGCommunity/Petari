@@ -8,6 +8,10 @@ class RailGraphIter {
 public:
     RailGraphIter(const RailGraph*);
 
+    RailGraphIter(const RailGraphIter& rIter) NO_INLINE {
+        *this = rIter;
+    }
+
     void moveNodeNext();
     void setNode(s32);
     void watchStartEdge();

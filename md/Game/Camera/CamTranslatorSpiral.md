@@ -6,5 +6,5 @@
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `setParam__19CamTranslatorSpiralFPC16CameraParamChunk` | `0x80093924` | :x: (0.0%) |
+| `setParam__19CamTranslatorSpiralFPC16CameraParamChunk` | `0x80093924` | :x: (96.2%) |
 | `getCamera__19CamTranslatorSpiralCFv` | `0x80093978` | :white_check_mark: (100.0%) |

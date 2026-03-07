@@ -1,6 +1,13 @@
 #include "Game/MapObj/AirBubble.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 
+namespace NrvAirBubble {
+    NEW_NERVE(AirBubbleNrvWait, AirBubble, Wait);
+    NEW_NERVE(AirBubbleNrvMove, AirBubble, Move);
+    NEW_NERVE(AirBubbleNrvBreak, AirBubble, Break);
+    NEW_NERVE(AirBubbleNrvKillWait, AirBubble, KillWait);
+};  // namespace NrvAirBubble
+
 AirBubble::AirBubble(const char* pName) : LiveActor(pName) {
     _A4.x = 0.0f;
     _A4.y = 0.0f;
@@ -68,6 +75,12 @@ void AirBubble::exeBreak() {
     }
 }
 
+void AirBubble::exeKillWait() {
+    if (MR::isGreaterStep(this, 90)) {
+        kill();
+    }
+}
+
 bool AirBubble::receiveMsgPush(HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isSensorPlayer(pReceiver)) {
         if (isNerve(&NrvAirBubble::AirBubbleNrvKillWait::sInstance)) {
@@ -124,33 +137,3 @@ bool AirBubble::canSpinGet() const {
 }
 
 AirBubble::~AirBubble() {}
-
-namespace NrvAirBubble {
-    INIT_NERVE(AirBubbleNrvWait);
-    INIT_NERVE(AirBubbleNrvMove);
-    INIT_NERVE(AirBubbleNrvBreak);
-    INIT_NERVE(AirBubbleNrvKillWait);
-
-    void AirBubbleNrvKillWait::execute(Spine* pSpine) const {
-        AirBubble* bubble = reinterpret_cast< AirBubble* >(pSpine->mExecutor);
-
-        if (MR::isGreaterStep(bubble, 90)) {
-            bubble->kill();
-        }
-    }
-
-    void AirBubbleNrvBreak::execute(Spine* pSpine) const {
-        AirBubble* bubble = reinterpret_cast< AirBubble* >(pSpine->mExecutor);
-        bubble->exeBreak();
-    }
-
-    void AirBubbleNrvMove::execute(Spine* pSpine) const {
-        AirBubble* bubble = reinterpret_cast< AirBubble* >(pSpine->mExecutor);
-        bubble->exeMove();
-    }
-
-    void AirBubbleNrvWait::execute(Spine* pSpine) const {
-        AirBubble* bubble = reinterpret_cast< AirBubble* >(pSpine->mExecutor);
-        bubble->exeWait();
-    }
-};  // namespace NrvAirBubble

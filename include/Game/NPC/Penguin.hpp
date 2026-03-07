@@ -29,4 +29,6 @@ public:
     void exeDive();
     void exeFlow();
     bool tryReleaseTurtle();
+
+    u8 _15C[0xC];
 };

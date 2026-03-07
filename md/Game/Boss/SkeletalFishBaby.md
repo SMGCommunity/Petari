@@ -6,9 +6,9 @@
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `isValid__12JMapInfoIterCFv` | `0x8007624C` | :x: (60.9%) |
+| `isValid__12JMapInfoIterCFv` | `0x8007624C` | :white_check_mark: (100.0%) |
 | `__ct__16SkeletalFishBabyFPCc` | `0x800762A8` | :white_check_mark: (100.0%) |
-| `init__16SkeletalFishBabyFRC12JMapInfoIter` | `0x80076364` | :x: (96.3%) |
+| `init__16SkeletalFishBabyFRC12JMapInfoIter` | `0x80076364` | :x: (95.5%) |
 | `makeActorAppeared__16SkeletalFishBabyFv` | `0x80076580` | :white_check_mark: (100.0%) |
 | `appear__16SkeletalFishBabyFv` | `0x800765D4` | :white_check_mark: (100.0%) |
 | `kill__16SkeletalFishBabyFv` | `0x800765D8` | :white_check_mark: (100.0%) |
@@ -18,15 +18,15 @@
 | `receiveMsgPlayerAttack__16SkeletalFishBabyFUlP9HitSensorP9HitSensor` | `0x8007673C` | :white_check_mark: (100.0%) |
 | `receiveMsgEnemyAttack__16SkeletalFishBabyFUlP9HitSensorP9HitSensor` | `0x800767BC` | :white_check_mark: (100.0%) |
 | `receiveOtherMsg__16SkeletalFishBabyFUlP9HitSensorP9HitSensor` | `0x800767C4` | :white_check_mark: (100.0%) |
-| `exeSwim__16SkeletalFishBabyFv` | `0x80076814` | :x: (93.9%) |
+| `exeSwim__16SkeletalFishBabyFv` | `0x80076814` | :white_check_mark: (100.0%) |
 | `exeBind__16SkeletalFishBabyFv` | `0x80076898` | :white_check_mark: (100.0%) |
-| `exeBreak__16SkeletalFishBabyFv` | `0x80076914` | :x: (95.0%) |
+| `exeBreak__16SkeletalFishBabyFv` | `0x80076914` | :x: (100.0%) |
 | `exeDead__16SkeletalFishBabyFv` | `0x800769B4` | :white_check_mark: (100.0%) |
 | `calcJoint__16SkeletalFishBabyFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | `0x80076A44` | :white_check_mark: (100.0%) |
 | `damage__16SkeletalFishBabyFRCQ29JGeometry8TVec3<f>b` | `0x80076AA0` | :white_check_mark: (100.0%) |
-| `calcAndSetBaseMtx__16SkeletalFishBabyFv` | `0x80076B44` | :x: (0.0%) |
+| `calcAndSetBaseMtx__16SkeletalFishBabyFv` | `0x80076B44` | :white_check_mark: (100.0%) |
 | `initRail__16SkeletalFishBabyFRC12JMapInfoIter` | `0x80076C30` | :white_check_mark: (100.0%) |
-| `initJoint__16SkeletalFishBabyFv` | `0x80076CAC` | :white_check_mark: (100.0%) |
+| `initJoint__16SkeletalFishBabyFv` | `0x80076CAC` | :x: (99.3%) |
 | `initSensor__16SkeletalFishBabyFv` | `0x80076E18` | :white_check_mark: (100.0%) |
 | `isAttackable__16SkeletalFishBabyCFv` | `0x80076F18` | :white_check_mark: (100.0%) |
 | `isStarPointerPointing__16SkeletalFishBabyCFv` | `0x80076F8C` | :white_check_mark: (100.0%) |
@@ -43,4 +43,4 @@
 | `__dt__41JointControlDelegator<16SkeletalFishBaby>Fv` | `0x800770DC` | :white_check_mark: (100.0%) |
 | `calcJointMatrix__41JointControlDelegator<16SkeletalFishBaby>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | `0x8007711C` | :white_check_mark: (100.0%) |
 | `calcJointMatrixAfterChild__41JointControlDelegator<16SkeletalFishBaby>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | `0x80077184` | :white_check_mark: (100.0%) |
-| `__dt__16SkeletalFishBabyFv` | `0x800771EC` | :x: (95.7%) |
+| `__dt__16SkeletalFishBabyFv` | `0x800771EC` | :white_check_mark: (100.0%) |

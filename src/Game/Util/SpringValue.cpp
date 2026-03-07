@@ -1,32 +1,32 @@
 #include "Game/Util/SpringValue.hpp"
 
 SpringValue::SpringValue() {
-    _0 = 0.0f;
-    _4 = 0.0f;
-    _8 = 0.3f;
-    _C = 0.8f;
-    _10 = 0.0f;
+    mRestValue = 0.0f;
+    mSpringValue = 0.0f;
+    mAccelFactor = 0.3f;
+    mDamping = 0.8f;
+    mVelocity = 0.0f;
 }
 
 SpringValue::SpringValue(f32 param1, f32 param2, f32 param3, f32 param4, f32 param5) {
-    _0 = param1;
-    _4 = param2;
-    _8 = param3;
-    _C = param4;
-    _10 = param5;
+    mRestValue = param1;
+    mSpringValue = param2;
+    mAccelFactor = param3;
+    mDamping = param4;
+    mVelocity = param5;
 }
 
 void SpringValue::setParam(f32 param1, f32 param2, f32 param3, f32 param4, f32 param5) {
-    _0 = param1;
-    _4 = param2;
-    _8 = param3;
-    _C = param4;
-    _10 = param5;
+    mRestValue = param1;
+    mSpringValue = param2;
+    mAccelFactor = param3;
+    mDamping = param4;
+    mVelocity = param5;
 }
 
-void SpringValue::update() {
-    f32 rF1;
-    rF1 = _4 + _10;
-    _4 = _0 - rF1;
-    _10 = _4 * ((_8 * _C) + _10);
+f32 SpringValue::update() {
+    mSpringValue += mVelocity;
+    mVelocity += mAccelFactor * (mRestValue - mSpringValue);
+    mVelocity *= mDamping;
+    return mSpringValue;
 }

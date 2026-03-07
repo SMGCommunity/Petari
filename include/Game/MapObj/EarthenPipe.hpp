@@ -25,6 +25,8 @@ public:
     void exeTargetPipeShowUp();
     void exePlayerOut();
     void exeInvalid();
+    void exeHide();
+    void exeShow();
     inline void exeWaitToHideDown();
     inline void exeWaitToShowUp();
     void exeShowUp();
@@ -83,18 +85,3 @@ public:
     s32 mNumEntries;      // 0xC
     Entry* mPipeEntries;  // 0x10
 };
-
-namespace NrvEarthenPipe {
-    NERVE_DECL(EarthenPipeNrvHideDown, EarthenPipe, EarthenPipe::exeHideDown);
-    NERVE_DECL(EarthenPipeNrvWaitToHideDown, EarthenPipe, EarthenPipe::exeWaitToHideDown);
-    NERVE_DECL(EarthenPipeNrvShowUp, EarthenPipe, EarthenPipe::exeShowUp);
-    NERVE_DECL(EarthenPipeNrvWaitToShowUp, EarthenPipe, EarthenPipe::exeWaitToShowUp);
-    NERVE_DECL_NULL(EarthenPipeNrvShow);
-    NERVE_DECL_NULL(EarthenPipeNrvHide);
-    NERVE_DECL(EarthenPipeNrvInvalid, EarthenPipe, EarthenPipe::exeInvalid);
-    NERVE_DECL(EarthenPipeNrvPlayerOut, EarthenPipe, EarthenPipe::exePlayerOut);
-    NERVE_DECL(EarthenPipeNrvTargetPipeShowUp, EarthenPipe, EarthenPipe::exeTargetPipeShowUp);
-    NERVE_DECL(EarthenPipeNrvPlayerIn, EarthenPipe, EarthenPipe::exePlayerIn);
-    NERVE_DECL(EarthenPipeNrvReady, EarthenPipe, EarthenPipe::exeReady);
-    NERVE_DECL(EarthenPipeNrvWait, EarthenPipe, EarthenPipe::exeWait);
-};  // namespace NrvEarthenPipe

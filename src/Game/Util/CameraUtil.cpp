@@ -114,7 +114,7 @@ namespace MR {
         return pos;
     }
 
-    TVec3f getCamXDir() {
+    TVec3f getCamXdir() {
         TPos3f viewMtx = *MR::getSceneObj< CameraContext >(SceneObj_CameraContext)->getInvViewMtx();
         TVec3f dir;
         viewMtx.getXDir(dir);

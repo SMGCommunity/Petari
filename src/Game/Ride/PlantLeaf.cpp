@@ -1,4 +1,5 @@
 #include "Game/Ride/PlantLeaf.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/ModelUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
@@ -9,11 +10,11 @@
 #include <JSystem/JGeometry/TMatrix.hpp>
 
 PlantLeaf::PlantLeaf(f32 leafCoord, const TVec3f& pPosition, const TVec3f& pGrowDirection, f32 leafSize)
-    : LiveActor("葉（伸び植物）"), mSpringVel(0.0f), mSpringAccel(0.0f), mLeafCoord(leafCoord), mLeafSize(leafSize), mFront(1.0f, 0.0f, 0.0f),
-      mUp(0.0f, 1.0f, 0.0f), mSide(pGrowDirection) {
+    : LiveActor("葉（伸び植物）"), mSpringVel(0.0f), mSpringAccel(0.0f), mLeafCoord(leafCoord), mLeafSize(leafSize), mSide(1.0f, 0.0f, 0.0f),
+      mUp(0.0f, 1.0f, 0.0f), mFront(pGrowDirection) {
     mPosition.set(pPosition);
-    MR::makeAxisFrontUp(&mFront, &mUp, mSide, mUp);
-    mBaseMtx.setXYZDir(mFront, mUp, mSide);
+    MR::makeAxisFrontUp(&mSide, &mUp, mFront, mUp);
+    mBaseMtx.setXYZDir(mSide, mUp, mFront);
     mBaseMtx.scale(mLeafSize * 0.0001f);
     mBaseMtx.setTrans(mPosition);
     mPosMtx.identity();
@@ -21,9 +22,9 @@ PlantLeaf::PlantLeaf(f32 leafCoord, const TVec3f& pPosition, const TVec3f& pGrow
 
 PlantLeafDrawInit::PlantLeafDrawInit(const char* pName) : LiveActor(pName), mMaterial(nullptr), mShape(nullptr), mShapeDraw(nullptr) {
     MR::FunctorV0M< const PlantLeafDrawInit*, void (PlantLeafDrawInit::*)() const > preDrawFunctor(this, &PlantLeafDrawInit::initDraw);
-    MR::registerPreDrawFunction(preDrawFunctor, 5);
+    MR::registerPreDrawFunction(preDrawFunctor, MR::DrawType_Plant);
     // The above should probably be this instead, but MR::Functor_Inline does not like consts at the moment
-    // MR::registerPreDrawFunction(MR::Functor_Inline(const_cast<const PlantLeafDrawInit*>(this), &PlantLeafDrawInit::initDraw), 5);
+    // MR::registerPreDrawFunction(MR::Functor_Inline(const_cast<const PlantLeafDrawInit*>(this), &PlantLeafDrawInit::initDraw), MR::DrawType_Plant);
 
     initModelManagerWithAnm("PlantLeaf", 0, false);
     J3DModelData* modelData = MR::getJ3DModelData(this);
@@ -38,17 +39,17 @@ void PlantLeaf::init(const JMapInfoIter&) {
 }
 
 void PlantLeaf::updateGrowUp(const TVec3f& rStalkPos, const TVec3f& rAxisY, f32 growthPercent, f32 offset) {
-    mPosition.set(mSide);
+    mPosition.set(mFront);
     mPosition.mult(offset);
-    mPosition.addInLine(rStalkPos);
+    mPosition.addInline(rStalkPos);
 
     f32 t = growthPercent * growthPercent;
     mUp.x = rAxisY.x * (1.0f - t);
     mUp.y = rAxisY.y * (1.0f - t) + t;
     mUp.z = rAxisY.z * (1.0f - t);
 
-    MR::makeAxisFrontUp(&mFront, &mUp, mSide, mUp);
-    mBaseMtx.setXYZDir(mFront, mUp, mSide);
+    MR::makeAxisFrontUp(&mSide, &mUp, mFront, mUp);
+    mBaseMtx.setXYZDir(mSide, mUp, mFront);
     mBaseMtx.scale(mLeafSize * growthPercent);
     mBaseMtx.setTrans(mPosition);
 }
@@ -79,13 +80,13 @@ bool PlantLeaf::updateSpring(f32 growthPercent) {
     if (__fabsf(mSpringVel) < 0.01f && __fabsf(mSpringAccel) < 0.001f) {
         mSpringVel = 0.0f;
         mSpringAccel = 0.0f;
-        MR::makeAxisFrontUp(&mFront, &mUp, mSide, mUp);
-        mBaseMtx.setXYZDir(mFront, mUp, mSide);
+        MR::makeAxisFrontUp(&mSide, &mUp, mFront, mUp);
+        mBaseMtx.setXYZDir(mSide, mUp, mFront);
         mBaseMtx.scale(mLeafSize * growthPercent);
         mBaseMtx.setTrans(mPosition);
         return true;
     } else {
-        TVec3f side(mSide);
+        TVec3f side(mFront);
         TVec3f front;
         TVec3f up;
         side.y += mSpringVel;
@@ -105,9 +106,9 @@ void PlantLeafDrawInit::init(const JMapInfoIter&) {
 
 void PlantLeafDrawInit::initDraw() const {
     J3DModelData* modelData = MR::getJ3DModelData(this);
-    j3dSys._10C = modelData->mVertexData._18;
-    j3dSys._110 = modelData->mVertexData._1C;
-    j3dSys._114 = modelData->mVertexData._24;
+    j3dSys.mVtxPos = modelData->mVertexData.mVtxPosArray;
+    j3dSys.mVtxNrm = modelData->mVertexData.mVtxNrmArray;
+    j3dSys.mVtxCol = modelData->mVertexData.mVtxColorArray[0];
     mShape->sOldVcdVatCmd = 0;
     mMaterial->loadSharedDL();
     mShape->loadPreDrawSetting();

@@ -7,15 +7,15 @@
 | Name | Address | Match % |
 |------|---------|---------|
 | `__ct__14BeeFlowerHoverFPCc` | `0x801B2D5C` | :white_check_mark: (100.0%) |
-| `init__14BeeFlowerHoverFRC12JMapInfoIter` | `0x801B2DC8` | :x: (99.4%) |
+| `init__14BeeFlowerHoverFRC12JMapInfoIter` | `0x801B2DC8` | :x: (100.0%) |
 | `exeSoftTouch__14BeeFlowerHoverFv` | `0x801B3038` | :white_check_mark: (100.0%) |
-| `exeSoftTouchWait__14BeeFlowerHoverFv` | `0x801B30B4` | :x: (97.1%) |
+| `exeSoftTouchWait__14BeeFlowerHoverFv` | `0x801B30B4` | :x: (99.9%) |
 | `exeHardTouch__14BeeFlowerHoverFv` | `0x801B313C` | :white_check_mark: (100.0%) |
 | `exeRecover__14BeeFlowerHoverFv` | `0x801B31F0` | :white_check_mark: (100.0%) |
-| `control__14BeeFlowerHoverFv` | `0x801B32BC` | :x: (0.0%) |
+| `control__14BeeFlowerHoverFv` | `0x801B32BC` | :x: (89.3%) |
 | `calcAndSetBaseMtx__14BeeFlowerHoverFv` | `0x801B3470` | :white_check_mark: (100.0%) |
 | `receiveOtherMsg__14BeeFlowerHoverFUlP9HitSensorP9HitSensor` | `0x801B34F8` | :white_check_mark: (100.0%) |
-| `__dt__14BeeFlowerHoverFv` | `0x801B3588` | :x: (95.7%) |
+| `__dt__14BeeFlowerHoverFv` | `0x801B3588` | :white_check_mark: (100.0%) |
 | `__sinit_\BeeFlowerHover_cpp` | `0x801B35E4` | :white_check_mark: (100.0%) |
 | `__ct__Q217NrvBeeFlowerHover21BeeFlowerHoverNrvWaitFv` | `0x801B3628` | :white_check_mark: (100.0%) |
 | `__ct__Q217NrvBeeFlowerHover26BeeFlowerHoverNrvSoftTouchFv` | `0x801B3638` | :white_check_mark: (100.0%) |

@@ -1,21 +1,23 @@
 # main/Game/Util/ActorShadowLocalUtil
 
+**Source Path:** `src/Game/Util/ActorShadowLocalUtil.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
 |------|---------|---------|
 | `getValue<b>__12JMapInfoIterCFPCcPb_b` | `0x803C5054` | :x: (0.0%) |
-| `getShadowControllerCount__11ActorShadowFPC9LiveActor` | `0x803C50E4` | :x: (0.0%) |
-| `getShadowController__11ActorShadowFPC9LiveActorUl` | `0x803C50EC` | :x: (0.0%) |
-| `getShadowController__11ActorShadowFPC9LiveActorPCc` | `0x803C50F4` | :x: (0.0%) |
+| `getShadowControllerCount__11ActorShadowFPC9LiveActor` | `0x803C50E4` | :white_check_mark: (100.0%) |
+| `getShadowController__11ActorShadowFPC9LiveActorUl` | `0x803C50EC` | :white_check_mark: (100.0%) |
+| `getShadowController__11ActorShadowFPC9LiveActorPCc` | `0x803C50F4` | :white_check_mark: (100.0%) |
 | `isExistShadowController__11ActorShadowFPC9LiveActorPCc` | `0x803C50FC` | :x: (0.0%) |
-| `createShadowControllerVolumeParam__11ActorShadowFP9LiveActorPCc` | `0x803C5138` | :x: (0.0%) |
-| `createShadowControllerSuefaceParam__11ActorShadowFP9LiveActorPCc` | `0x803C51CC` | :x: (0.0%) |
-| `getShadowSurfaceOval__11ActorShadowFPC9LiveActorPCc` | `0x803C5260` | :x: (0.0%) |
-| `getShadowVolumeSphere__11ActorShadowFPC9LiveActorPCc` | `0x803C5288` | :x: (0.0%) |
-| `getShadowVolumeCylinder__11ActorShadowFPC9LiveActorPCc` | `0x803C52B0` | :x: (0.0%) |
-| `getShadowVolumeBox__11ActorShadowFPC9LiveActorPCc` | `0x803C52D8` | :x: (0.0%) |
-| `getShadowVolumeDrawer__11ActorShadowFPC9LiveActorPCc` | `0x803C5300` | :x: (0.0%) |
+| `createShadowControllerVolumeParam__11ActorShadowFP9LiveActorPCc` | `0x803C5138` | :white_check_mark: (100.0%) |
+| `createShadowControllerSuefaceParam__11ActorShadowFP9LiveActorPCc` | `0x803C51CC` | :white_check_mark: (100.0%) |
+| `getShadowSurfaceOval__11ActorShadowFPC9LiveActorPCc` | `0x803C5260` | :white_check_mark: (100.0%) |
+| `getShadowVolumeSphere__11ActorShadowFPC9LiveActorPCc` | `0x803C5288` | :white_check_mark: (100.0%) |
+| `getShadowVolumeCylinder__11ActorShadowFPC9LiveActorPCc` | `0x803C52B0` | :white_check_mark: (100.0%) |
+| `getShadowVolumeBox__11ActorShadowFPC9LiveActorPCc` | `0x803C52D8` | :white_check_mark: (100.0%) |
+| `getShadowVolumeDrawer__11ActorShadowFPC9LiveActorPCc` | `0x803C5300` | :white_check_mark: (100.0%) |
 | `getJointNameFromCSV__11ActorShadowFPPCcRC12JMapInfoIter` | `0x803C5328` | :x: (0.0%) |
 | `getShadowTypeFromCSV__11ActorShadowFRC12JMapInfoIter` | `0x803C5390` | :x: (0.0%) |
 | `setUpShadowControlBaseMtxFromCSV__11ActorShadowFP16ShadowControllerP9LiveActorRC12JMapInfoIter` | `0x803C5420` | :x: (0.0%) |
@@ -23,7 +25,7 @@
 | `setUpShadowControlIsSyncShowFromCSV__11ActorShadowFP16ShadowControllerRC12JMapInfoIter` | `0x803C5610` | :x: (0.0%) |
 | `setUpShadowControlCalcCollisionFromCSV__11ActorShadowFP16ShadowControllerRC12JMapInfoIter` | `0x803C5674` | :x: (0.0%) |
 | `setUpShadowControlCalcGravityFromCSV__11ActorShadowFP16ShadowControllerRC12JMapInfoIter` | `0x803C5700` | :x: (0.0%) |
-| `setUpShadowControlFromCSV__11ActorShadowFP16ShadowControllerP9LiveActorRC12JMapInfoIter` | `0x803C57C0` | :x: (0.0%) |
+| `setUpShadowControlFromCSV__11ActorShadowFP16ShadowControllerP9LiveActorRC12JMapInfoIter` | `0x803C57C0` | :white_check_mark: (100.0%) |
 | `createShadowControlFromCSV__11ActorShadowFP9LiveActorRC12JMapInfoIter` | `0x803C5888` | :x: (0.0%) |
 | `setUpShadowVolumeFromCSV__11ActorShadowFP18ShadowVolumeDrawerRC12JMapInfoIter` | `0x803C5950` | :x: (0.0%) |
 | `createShadowSurfaceCircleFromCSV__11ActorShadowFP9LiveActorRC12JMapInfoIter` | `0x803C5A08` | :x: (0.0%) |

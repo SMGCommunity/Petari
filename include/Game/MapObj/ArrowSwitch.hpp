@@ -33,9 +33,3 @@ public:
     u8 _9E;
     u8 _9F;
 };
-
-namespace NrvArrowSwitch {
-    NERVE(ArrowSwitchNrvRotate);
-    NERVE(ArrowSwitchNrvLock);
-    NERVE(ArrowSwitchNrvWait);
-};  // namespace NrvArrowSwitch

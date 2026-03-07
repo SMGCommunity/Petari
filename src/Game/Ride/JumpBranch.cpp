@@ -13,7 +13,7 @@
 #include <revolution/wpad.h>
 
 namespace {
-    static TVec3f sStartPointVelocity;  // this appears in sinit but shouldnt.
+    static Vec sStartPointVelocity = {0.0f, 0.0f, 0.0f};
 }
 
 namespace NrvJumpBranch {

@@ -8,7 +8,7 @@
 |------|---------|---------|
 | `__ct__15NANDRequestInfoFv` | `0x803A371C` | :white_check_mark: (100.0%) |
 | `init__15NANDRequestInfoFv` | `0x803A374C` | :white_check_mark: (100.0%) |
-| `isDone__15NANDRequestInfoCFv` | `0x803A3778` | :x: (75.0%) |
+| `isDone__15NANDRequestInfoCFv` | `0x803A3778` | :white_check_mark: (100.0%) |
 | `setMove__15NANDRequestInfoFPCcPCc` | `0x803A3788` | :white_check_mark: (100.0%) |
 | `setWriteSeq__15NANDRequestInfoFPCcPCvUlUcUc` | `0x803A37EC` | :white_check_mark: (100.0%) |
 | `setReadSeq__15NANDRequestInfoFPCcPvUlPUl` | `0x803A3868` | :white_check_mark: (100.0%) |

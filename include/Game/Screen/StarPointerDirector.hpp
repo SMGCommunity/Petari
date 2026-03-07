@@ -61,3 +61,10 @@ public:
     u32 _20;
     u32 _24;
 };
+
+namespace StarPointerFunction {
+
+    bool isOnScreenEdge(s32);
+    bool canShoot(s32);
+
+}

@@ -25,6 +25,7 @@ public:
     void changeEffectName(const char*, const char*);
 
     void enableSort();
+    void finalizeSort();
     void playEmitterOffClipped();
     void stopEmitterOnClipped();
 
@@ -40,6 +41,7 @@ public:
     bool isRegisteredEmitter(const char*) const;
 
     void update();
+    void changeBck();
 
     void onDraw();
     void offDraw();

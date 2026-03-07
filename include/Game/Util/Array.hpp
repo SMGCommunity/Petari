@@ -171,7 +171,7 @@ namespace MR {
         /// @brief Removes the value at the given position from the container.
         /// @param pIter The pointer to the position where the value should be removed.
         /// @return The pointer to the position of the removed value.
-        T::Item* erase(T::Item* pIter) NO_INLINE {
+        T::Item* erase(T::Item* pIter) {
             if (end() - pIter - 1 > 0) {
                 for (T::Item* p = pIter; p + 1 != end(); p++) {
                     *p = *(p + 1);
@@ -214,29 +214,26 @@ namespace MR {
     public:
         class iterator {
         public:
-            iterator(T* head, T* tail) {
-                mHead = head;
-                mTail = tail;
-                mEnd = head + S;
-            }
+            inline iterator() {}
 
-            void operator++() {
-                mHead++;
+            iterator(T* head, T* tail);
 
-                if (mHead >= mEnd) {
-                    mHead = mTail;
-                }
-            }
+            void operator++();
 
             T* mHead;  // 0x0
             T* mTail;  // 0x4
             T* mEnd;   // 0x8
         };
 
-        void push_back(const T&);
+        inline FixedRingBuffer() {}
 
-        T* mBuffer[S];
+        FixedRingBuffer(T* pBuffer, T* pBuffer2) : mHead(pBuffer, pBuffer2), mEnd(pBuffer, pBuffer2), mCount(0) {}
 
-        int _58;
+        void push_back(const T& val);
+
+        T mBuffer[S];    // 0x00
+        iterator mHead;  // 0x40 for S=16
+        iterator mEnd;   // 0x4C for S=16
+        s32 mCount;      // 0x58 for S=16
     };
 };  // namespace MR

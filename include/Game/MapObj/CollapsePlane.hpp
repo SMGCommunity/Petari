@@ -16,6 +16,7 @@ public:
     void exeWait();
     void exeCollapse();
     void exeDPDStop();
+    void exeEnd();
     bool calcJointPlane(TPos3f*, const JointControllerInfo&);
     bool tryDPDStop();
 
@@ -25,10 +26,3 @@ public:
     s32 _D0;
     s32 mTimer;  // 0xD4
 };
-
-namespace NrvCollapsePlane {
-    NERVE_DECL(CollapsePlaneNrvWait, CollapsePlane, CollapsePlane::exeWait);
-    NERVE_DECL(CollapsePlaneNrvCollapse, CollapsePlane, CollapsePlane::exeCollapse);
-    NERVE_DECL(CollapsePlaneNrvDPDStop, CollapsePlane, CollapsePlane::exeDPDStop);
-    NERVE_DECL_NULL(CollapsePlaneNrvEnd);
-};  // namespace NrvCollapsePlane

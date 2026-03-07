@@ -8,7 +8,7 @@
 |------|---------|---------|
 | `__ct__9UFOKinokoFPCc` | `0x8024FEE0` | :white_check_mark: (100.0%) |
 | `makeArchiveList__9UFOKinokoFP27NameObjArchiveListCollectorRC12JMapInfoIter` | `0x8024FF1C` | :white_check_mark: (100.0%) |
-| `init__9UFOKinokoFRC12JMapInfoIter` | `0x8024FF74` | :x: (95.9%) |
+| `init__9UFOKinokoFRC12JMapInfoIter` | `0x8024FF74` | :white_check_mark: (100.0%) |
 | `control__9UFOKinokoFv` | `0x802500FC` | :white_check_mark: (100.0%) |
 | `initCaseUseSwitchB__9UFOKinokoFRC19MapObjActorInitInfo` | `0x80250134` | :white_check_mark: (100.0%) |
 | `initCaseNoUseSwitchB__9UFOKinokoFRC19MapObjActorInitInfo` | `0x80250194` | :white_check_mark: (100.0%) |
@@ -24,5 +24,5 @@
 | `execute__Q212NrvUFOKinoko12HostTypeWaitCFP5Spine` | `0x80250344` | :white_check_mark: (100.0%) |
 | `Functor<9UFOKinoko>__2MRFP9UFOKinokoM9UFOKinokoFPCvPv_v_Q22MR43FunctorV0M<P9UFOKinoko,M9UFOKinokoFPCvPv_v>` | `0x80250348` | :white_check_mark: (100.0%) |
 | `__cl__Q22MR43FunctorV0M<P9UFOKinoko,M9UFOKinokoFPCvPv_v>CFv` | `0x80250388` | :white_check_mark: (100.0%) |
-| `clone__Q22MR43FunctorV0M<P9UFOKinoko,M9UFOKinokoFPCvPv_v>CFP7JKRHeap` | `0x802503B8` | :x: (96.2%) |
+| `clone__Q22MR43FunctorV0M<P9UFOKinoko,M9UFOKinokoFPCvPv_v>CFP7JKRHeap` | `0x802503B8` | :white_check_mark: (100.0%) |
 | `__dt__9UFOKinokoFv` | `0x80250420` | :white_check_mark: (100.0%) |

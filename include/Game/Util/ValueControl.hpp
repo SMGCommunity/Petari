@@ -55,6 +55,8 @@ public:
     /// @brief Resets the current frame based on the direction of progression.
     void resetFrame();
 
+    inline bool isFrameMaxFrame() { return mFrame == mMaxFrame; }
+
     /// @brief The current frame.
     /* 0x0 */ s32 mFrame;
 

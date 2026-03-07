@@ -6,5 +6,5 @@
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `setParam__30CamTranslatorCharmedTripodBossFPC16CameraParamChunk` | `0x80092A30` | :x: (88.1%) |
+| `setParam__30CamTranslatorCharmedTripodBossFPC16CameraParamChunk` | `0x80092A30` | :x: (92.3%) |
 | `getCamera__30CamTranslatorCharmedTripodBossCFv` | `0x80092AD8` | :white_check_mark: (100.0%) |

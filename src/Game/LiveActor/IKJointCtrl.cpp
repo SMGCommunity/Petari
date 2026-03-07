@@ -79,13 +79,14 @@ void IKJointCtrlHolder::setEndDirection(const char* pName, const TVec3f& rDirect
     findIKJointCtrl(pName)->setEndDirection(rDirection, a3);
 }
 
-#ifdef NON_MATCHING
 // for_each inlines
+
+/*
 void IKJointCtrlHolder::endUpdate() {
     for_each(mControls, &mControls[mNumControls], mem_fun(&IKJointCtrl::endCtrl));
     _10 = 1;
 }
-#endif
+*/
 
 IKJointCtrl* IKJointCtrlHolder::findIKJointCtrl(const char* pName) {
     for (u32 i = 0; i < mNumControls; i++) {

@@ -1,14 +1,16 @@
 # main/Game/MapObj/GCapture
 
+**Source Path:** `src/Game/MapObj/GCapture.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
 |------|---------|---------|
 | `__ct__8GCaptureFPCc` | `0x801DF110` | :x: (0.0%) |
 | `init__8GCaptureFRC12JMapInfoIter` | `0x801DF27C` | :x: (0.0%) |
-| `draw__8GCaptureCFv` | `0x801DF44C` | :x: (0.0%) |
+| `draw__8GCaptureCFv` | `0x801DF44C` | :white_check_mark: (100.0%) |
 | `control__8GCaptureFv` | `0x801DF460` | :x: (0.0%) |
-| `attackSensor__8GCaptureFP9HitSensorP9HitSensor` | `0x801DF5A4` | :x: (0.0%) |
+| `attackSensor__8GCaptureFP9HitSensorP9HitSensor` | `0x801DF5A4` | :white_check_mark: (100.0%) |
 | `receiveMsgEnemyAttack__8GCaptureFUlP9HitSensorP9HitSensor` | `0x801DF604` | :x: (0.0%) |
 | `receiveOtherMsg__8GCaptureFUlP9HitSensorP9HitSensor` | `0x801DF658` | :x: (0.0%) |
 | `requestBind__8GCaptureFP9HitSensor` | `0x801DF6D0` | :x: (0.0%) |
@@ -39,9 +41,9 @@
 | `upTractPower__8GCaptureFv` | `0x801E0AB8` | :x: (0.0%) |
 | `downTractPower__8GCaptureFv` | `0x801E0B00` | :x: (0.0%) |
 | `fillGapBindTrans__8GCaptureFv` | `0x801E0B48` | :x: (0.0%) |
-| `updateRibbon__8GCaptureFRCQ29JGeometry8TVec3<f>l` | `0x801E0B74` | :x: (0.0%) |
-| `updateRibbonPointEffectMatrix__8GCaptureFRCQ29JGeometry8TVec3<f>` | `0x801E0C7C` | :x: (0.0%) |
-| `addRotateAccelPointing__8GCaptureFv` | `0x801E0D10` | :x: (0.0%) |
+| `updateRibbon__8GCaptureFRCQ29JGeometry8TVec3<f>l` | `0x801E0B74` | :x: (99.8%) |
+| `updateRibbonPointEffectMatrix__8GCaptureFRCQ29JGeometry8TVec3<f>` | `0x801E0C7C` | :white_check_mark: (100.0%) |
+| `addRotateAccelPointing__8GCaptureFv` | `0x801E0D10` | :x: (100.0%) |
 | `tryAddVelocityReflectJumpCollision__8GCaptureFv` | `0x801E0D98` | :x: (0.0%) |
 | `requestTarget__8GCaptureFP18GCaptureTargetable` | `0x801E0E20` | :x: (0.0%) |
 | `isRequestedTarget__8GCaptureFP18GCaptureTargetable` | `0x801E0EEC` | :x: (0.0%) |
@@ -57,20 +59,20 @@
 | `isOnTractTrigger__2MRFv` | `0x801E1180` | :x: (0.0%) |
 | `isPlayerGCaptured__2MRFv` | `0x801E11AC` | :x: (0.0%) |
 | `__dt__8GCaptureFv` | `0x801E1208` | :x: (0.0%) |
-| `__sinit_\GCapture_cpp` | `0x801E1264` | :x: (0.0%) |
-| `__ct__Q211NrvGCapture15GCaptureNrvWaitFv` | `0x801E12B8` | :x: (0.0%) |
-| `__ct__Q211NrvGCapture18GCaptureNrvCaptureFv` | `0x801E12C8` | :x: (0.0%) |
-| `__ct__Q211NrvGCapture20GCaptureNrvRecaptureFv` | `0x801E12D8` | :x: (0.0%) |
-| `__ct__Q211NrvGCapture19GCaptureNrvTractionFv` | `0x801E12E8` | :x: (0.0%) |
-| `__ct__Q211NrvGCapture15GCaptureNrvHoldFv` | `0x801E12F8` | :x: (0.0%) |
-| `__ct__Q211NrvGCapture16GCaptureNrvBreakFv` | `0x801E1308` | :x: (0.0%) |
-| `__ct__Q211NrvGCapture19GCaptureNrvCoolDownFv` | `0x801E1318` | :x: (0.0%) |
-| `execute__Q211NrvGCapture19GCaptureNrvCoolDownCFP5Spine` | `0x801E1328` | :x: (0.0%) |
-| `execute__Q211NrvGCapture16GCaptureNrvBreakCFP5Spine` | `0x801E1330` | :x: (0.0%) |
-| `execute__Q211NrvGCapture15GCaptureNrvHoldCFP5Spine` | `0x801E1338` | :x: (0.0%) |
-| `execute__Q211NrvGCapture19GCaptureNrvTractionCFP5Spine` | `0x801E1340` | :x: (0.0%) |
-| `executeOnEnd__Q211NrvGCapture20GCaptureNrvRecaptureCFP5Spine` | `0x801E1348` | :x: (0.0%) |
-| `execute__Q211NrvGCapture20GCaptureNrvRecaptureCFP5Spine` | `0x801E13A8` | :x: (0.0%) |
-| `executeOnEnd__Q211NrvGCapture18GCaptureNrvCaptureCFP5Spine` | `0x801E13B0` | :x: (0.0%) |
-| `execute__Q211NrvGCapture18GCaptureNrvCaptureCFP5Spine` | `0x801E1410` | :x: (0.0%) |
-| `execute__Q211NrvGCapture15GCaptureNrvWaitCFP5Spine` | `0x801E1418` | :x: (0.0%) |
+| `__sinit_\GCapture_cpp` | `0x801E1264` | :white_check_mark: (100.0%) |
+| `__ct__Q211NrvGCapture15GCaptureNrvWaitFv` | `0x801E12B8` | :white_check_mark: (100.0%) |
+| `__ct__Q211NrvGCapture18GCaptureNrvCaptureFv` | `0x801E12C8` | :white_check_mark: (100.0%) |
+| `__ct__Q211NrvGCapture20GCaptureNrvRecaptureFv` | `0x801E12D8` | :white_check_mark: (100.0%) |
+| `__ct__Q211NrvGCapture19GCaptureNrvTractionFv` | `0x801E12E8` | :white_check_mark: (100.0%) |
+| `__ct__Q211NrvGCapture15GCaptureNrvHoldFv` | `0x801E12F8` | :white_check_mark: (100.0%) |
+| `__ct__Q211NrvGCapture16GCaptureNrvBreakFv` | `0x801E1308` | :white_check_mark: (100.0%) |
+| `__ct__Q211NrvGCapture19GCaptureNrvCoolDownFv` | `0x801E1318` | :white_check_mark: (100.0%) |
+| `execute__Q211NrvGCapture19GCaptureNrvCoolDownCFP5Spine` | `0x801E1328` | :white_check_mark: (100.0%) |
+| `execute__Q211NrvGCapture16GCaptureNrvBreakCFP5Spine` | `0x801E1330` | :white_check_mark: (100.0%) |
+| `execute__Q211NrvGCapture15GCaptureNrvHoldCFP5Spine` | `0x801E1338` | :white_check_mark: (100.0%) |
+| `execute__Q211NrvGCapture19GCaptureNrvTractionCFP5Spine` | `0x801E1340` | :white_check_mark: (100.0%) |
+| `executeOnEnd__Q211NrvGCapture20GCaptureNrvRecaptureCFP5Spine` | `0x801E1348` | :x: (7.9%) |
+| `execute__Q211NrvGCapture20GCaptureNrvRecaptureCFP5Spine` | `0x801E13A8` | :white_check_mark: (100.0%) |
+| `executeOnEnd__Q211NrvGCapture18GCaptureNrvCaptureCFP5Spine` | `0x801E13B0` | :x: (7.9%) |
+| `execute__Q211NrvGCapture18GCaptureNrvCaptureCFP5Spine` | `0x801E1410` | :white_check_mark: (100.0%) |
+| `execute__Q211NrvGCapture15GCaptureNrvWaitCFP5Spine` | `0x801E1418` | :white_check_mark: (100.0%) |

@@ -102,7 +102,7 @@ void C_QUATMtx(Quaternion* r, const Mtx m) {
 }
 
 void C_QUATSlerp(const Quaternion* p, const Quaternion* q, Quaternion* r, f32 t) {
-    f32 theta, sin_th, cos_th, tp, tq;
+    f32 theta, sin_th, cos_th, tp, tq, sin_1mtth, sin_tth;
 
     cos_th = p->x * q->x + p->y * q->y + p->z * q->z + p->w * q->w;
     tq = 1.0F;
@@ -115,8 +115,10 @@ void C_QUATSlerp(const Quaternion* p, const Quaternion* q, Quaternion* r, f32 t)
     if (cos_th <= 1.0F - 0.00001f) {
         theta = acos(cos_th);
         sin_th = sin(theta);
-        tp = sin((1.0F - t) * theta) / sin_th;
-        tq *= sin(t * theta) / sin_th;
+        sin_1mtth = sin((1.0F - t) * theta);
+        tp = sin_1mtth / sin_th;
+        sin_tth = sin(t * theta);
+        tq *= sin_tth/sin_th;
     } else {
         tp = 1.0F - t;
         tq = tq * t;

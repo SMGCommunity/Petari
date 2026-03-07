@@ -2,12 +2,6 @@
 
 #include "Game/LiveActor/LiveActor.hpp"
 
-namespace NrvBigFan {
-    NERVE(BigFanNrvStop);
-    NERVE(BigFanNrvStart);
-    NERVE(BigFanNrvWait);
-};  // namespace NrvBigFan
-
 class BigFan : public LiveActor {
 public:
     BigFan(const char*);
@@ -19,17 +13,12 @@ public:
     void initWindModel();
     void calcWindInfo(TVec3f*, const TVec3f&);
     void start();
+
+    void exeStop();
     void exeStart();
     void exeWait();
 
-    inline bool isStartOrWait() {
-        bool flag = false;
-        if (isNerve(&NrvBigFan::BigFanNrvStart::sInstance) || isNerve(&NrvBigFan::BigFanNrvWait::sInstance)) {
-            flag = true;
-        }
-
-        return flag;
-    }
+    bool isStartOrWait();
 
     ModelObj* mWindModel;  // 0x8C
     TVec3f _90;

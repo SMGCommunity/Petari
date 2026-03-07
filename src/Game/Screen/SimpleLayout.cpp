@@ -1,10 +1,11 @@
 #include "Game/Screen/SimpleLayout.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 #include "Game/Util/ObjUtil.hpp"
 
-SimpleLayout::SimpleLayout(const char* pName, const char* pLayoutName, u32 a3, int a4) : LayoutActor(pName, true) {
-    int v1 = a4 >= 0 ? a4 : 60;
+SimpleLayout::SimpleLayout(const char* pName, const char* pLayoutName, u32 a3, int drawType) : LayoutActor(pName, true) {
+    int type = drawType >= 0 ? drawType : MR::DrawType_Layout;
 
-    MR::connectToScene(this, 14, 13, -1, v1);
+    MR::connectToScene(this, MR::MovementType_Layout, MR::CalcAnimType_Layout, -1, type);
     initLayoutManager(pLayoutName, a3);
 }
 

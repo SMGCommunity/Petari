@@ -6,17 +6,17 @@
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__ct__14PunchingKinokoFPCc` | `0x80214278` | :x: (0.0%) |
-| `init__14PunchingKinokoFRC12JMapInfoIter` | `0x8021430C` | :x: (73.7%) |
+| `__ct__14PunchingKinokoFPCc` | `0x80214278` | :white_check_mark: (100.0%) |
+| `init__14PunchingKinokoFRC12JMapInfoIter` | `0x8021430C` | :x: (93.7%) |
 | `initSensor__14PunchingKinokoFv` | `0x802144D4` | :white_check_mark: (100.0%) |
 | `initShadow__14PunchingKinokoFv` | `0x80214570` | :white_check_mark: (100.0%) |
 | `initCamera__14PunchingKinokoFRC12JMapInfoIter` | `0x8021461C` | :white_check_mark: (100.0%) |
 | `initJointControl__14PunchingKinokoFv` | `0x80214668` | :white_check_mark: (100.0%) |
-| `ballMtxCallBack__14PunchingKinokoFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | `0x80214744` | :x: (93.6%) |
+| `ballMtxCallBack__14PunchingKinokoFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | `0x80214744` | :x: (99.9%) |
 | `makeActorAppeared__14PunchingKinokoFv` | `0x80214800` | :white_check_mark: (100.0%) |
 | `kill__14PunchingKinokoFv` | `0x80214840` | :white_check_mark: (100.0%) |
 | `makeActorDead__14PunchingKinokoFv` | `0x80214844` | :white_check_mark: (100.0%) |
-| `control__14PunchingKinokoFv` | `0x80214884` | :x: (93.8%) |
+| `control__14PunchingKinokoFv` | `0x80214884` | :x: (99.8%) |
 | `calcAndSetBaseMtx__14PunchingKinokoFv` | `0x80214904` | :x: (0.0%) |
 | `attackSensor__14PunchingKinokoFP9HitSensorP9HitSensor` | `0x80214968` | :x: (0.0%) |
 | `receiveMsgPlayerAttack__14PunchingKinokoFUlP9HitSensorP9HitSensor` | `0x80214C4C` | :white_check_mark: (100.0%) |
@@ -26,11 +26,11 @@
 | `requestEnemyBlow__14PunchingKinokoFP9HitSensorP9HitSensor` | `0x802150AC` | :white_check_mark: (100.0%) |
 | `requestTrample__14PunchingKinokoFP9HitSensorP9HitSensor` | `0x80215164` | :white_check_mark: (100.0%) |
 | `requestCrush__14PunchingKinokoFv` | `0x802151EC` | :white_check_mark: (100.0%) |
-| `exeWait__14PunchingKinokoFv` | `0x80215240` | :x: (91.0%) |
+| `exeWait__14PunchingKinokoFv` | `0x80215240` | :x: (91.8%) |
 | `exeSwing__14PunchingKinokoFv` | `0x802153FC` | :white_check_mark: (100.0%) |
 | `exePointSnaped__14PunchingKinokoFv` | `0x80215538` | :white_check_mark: (100.0%) |
 | `exePunched__14PunchingKinokoFv` | `0x802155AC` | :white_check_mark: (100.0%) |
-| `exePunchedBrake__14PunchingKinokoFv` | `0x80215654` | :x: (95.9%) |
+| `exePunchedBrake__14PunchingKinokoFv` | `0x80215654` | :x: (100.0%) |
 | `exeHitted__14PunchingKinokoFv` | `0x80215718` | :white_check_mark: (100.0%) |
 | `exeCrushed__14PunchingKinokoFv` | `0x80215798` | :white_check_mark: (100.0%) |
 | `exeCrushedEnd__14PunchingKinokoFv` | `0x8021589C` | :white_check_mark: (100.0%) |
@@ -63,5 +63,5 @@
 | `calcJointMatrix__39JointControlDelegator<14PunchingKinoko>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | `0x80215CFC` | :white_check_mark: (100.0%) |
 | `calcJointMatrixAfterChild__39JointControlDelegator<14PunchingKinoko>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | `0x80215D64` | :white_check_mark: (100.0%) |
 | `__cl__Q22MR55FunctorV0M<P14PunchingKinoko,M14PunchingKinokoFPCvPv_v>CFv` | `0x80215DCC` | :white_check_mark: (100.0%) |
-| `clone__Q22MR55FunctorV0M<P14PunchingKinoko,M14PunchingKinokoFPCvPv_v>CFP7JKRHeap` | `0x80215DFC` | :x: (96.2%) |
-| `__dt__14PunchingKinokoFv` | `0x80215E64` | :x: (95.7%) |
+| `clone__Q22MR55FunctorV0M<P14PunchingKinoko,M14PunchingKinokoFPCvPv_v>CFP7JKRHeap` | `0x80215DFC` | :white_check_mark: (100.0%) |
+| `__dt__14PunchingKinokoFv` | `0x80215E64` | :white_check_mark: (100.0%) |

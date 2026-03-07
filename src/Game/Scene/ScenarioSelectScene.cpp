@@ -32,8 +32,8 @@ namespace NrvScenarioSelectScene {
 
 namespace {
     J3DDrawBuffer* createDrawBuffer() {
-        J3DDrawBuffer* buffer = new J3DDrawBuffer();
-        buffer->_C = 5;
+        J3DDrawBuffer* buffer = new J3DDrawBuffer(1);
+        buffer->mSortMode = 5;
         return buffer;
     }
 
@@ -106,8 +106,8 @@ void ScenarioSelectScene::calcViewAndEntry() {
     if (res) {
         OSLockMutex(&MR::MutexHolder< 0 >::sMutex);
         setupCameraMtx();
-        j3dSys._48 = _20;
-        j3dSys._4C = _24;
+        j3dSys.mDrawBuffer[0] = _20;
+        j3dSys.mDrawBuffer[1] = _24;
         mScenarioLayout->calcViewAndEntryStarModel();
         OSUnlockMutex(&MR::MutexHolder< 0 >::sMutex);
     }
@@ -120,10 +120,10 @@ void ScenarioSelectScene::draw() const {
         OSLockMutex(&MR::MutexHolder< 0 >::sMutex);
         setupCameraMtx();
         j3dSys.drawInit();
-        j3dSys._50 = 3;
+        j3dSys.mDrawMode = 3;
         _20->draw();
         _20->frameInit();
-        j3dSys._50 = 4;
+        j3dSys.mDrawMode = 4;
         _24->draw();
         _24->frameInit();
         OSUnlockMutex(&MR::MutexHolder< 0 >::sMutex);

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Game/LiveActor/ModelObj.hpp"
+#include "JSystem/JGeometry/TVec.hpp"
 
 class ParabolicPath;
 
@@ -14,13 +15,18 @@ public:
     virtual void attackSensor(HitSensor*, HitSensor*);
     virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
 
+    virtual void doBehavior();
+    virtual void startBreakSound();
+    virtual void startThrowLevelSound();
+
     void exeTaken();
     void exeThrow();
     void exeFall();
-    // incomplete class
+    bool isTaken();
+    void emit(bool, const TVec3f&, const TVec3f&, f32);
 
-    TVec4f _90;
-    TVec4f _A0;
+    TQuat4f _90;
+    TQuat4f _A0;
     TVec3f _B0;
     f32 _BC;
     bool _C0;

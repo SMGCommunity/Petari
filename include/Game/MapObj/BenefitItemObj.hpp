@@ -99,11 +99,12 @@ public:
     LiveActor* _8C;
 };
 
+// These have not been updated to the new format due to linkage issues
 namespace NrvBenefitItemObj {
-    NERVE(HostTypeNrvWait);
-    NERVE(HostTypeNrvShoot);
-    NERVE(HostTypeNrvCatch);
-    NERVE(HostTypeNrvAppearGround);
-    NERVE(HostTypeNrvPreEscape);
-    NERVE(HostTypeNrvEscape);
+    NERVE_DECL_EXE(HostTypeNrvWait, BenefitItemObj, Wait);
+    NERVE_DECL_EXE(HostTypeNrvShoot, BenefitItemObj, Shoot);
+    NERVE_DECL_EXE(HostTypeNrvCatch, BenefitItemObj, Catch);
+    NERVE_DECL_EXE(HostTypeNrvAppearGround, BenefitItemObj, AppearGround);
+    NERVE_DECL_EXE(HostTypeNrvPreEscape, BenefitItemObj, PreEscape);
+    NERVE_DECL_EXE(HostTypeNrvEscape, BenefitItemObj, Escape);
 };  // namespace NrvBenefitItemObj

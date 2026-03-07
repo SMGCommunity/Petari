@@ -24,8 +24,3 @@ public:
     MtxPtr mSurface1Mtx;  // 0x98
     TVec3f mHitMarkPosition;
 };
-
-namespace NrvMagicBell {
-    NERVE_DECL(MagicBellNrvWait, MagicBell, MagicBell::exeWait);
-    NERVE_DECL(MagicBellNrvRing, MagicBell, MagicBell::exeRing);
-};  // namespace NrvMagicBell

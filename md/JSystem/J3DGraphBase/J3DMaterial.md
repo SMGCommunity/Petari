@@ -141,6 +141,6 @@
 | `__ct__19J3DIndTexCoordScaleFv` | `0x80428CCC` | :x: (0.0%) |
 | `__dt__19J3DIndTexCoordScaleFv` | `0x80428CD8` | :x: (0.0%) |
 | `__ct__12J3DAlphaCompFv` | `0x80428D18` | :white_check_mark: (100.0%) |
-| `setCurrentTexMtx__13J3DCurrentMtxFUcUcUcUcUcUcUcUc` | `0x80428D30` | :x: (0.0%) |
+| `setCurrentTexMtx__13J3DCurrentMtxFUcUcUcUcUcUcUcUc` | `0x80428D30` | :x: (8.4%) |
 | `J3DGDWriteXFCmd__FUsUl` | `0x80428D70` | :x: (0.0%) |
 | `J3DGDWrite_u16__FUs` | `0x80428E28` | :x: (0.0%) |

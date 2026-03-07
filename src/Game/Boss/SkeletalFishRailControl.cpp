@@ -41,7 +41,7 @@ void SkeletalFishRailControl::update() {
         if (v3 >= 0.0f) {
             f32 coord = MR::calcNearestRailCoord(_8, MR::getRailPointPosEnd(_4));
             _10 = coord;
-            _C = (coord - v3);
+            _C = (_10 - v3);
             MR::setRailCoord(_8, _C);
             _0 = 1;
         }

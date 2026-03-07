@@ -19,4 +19,4 @@
 | `execute__Q223NrvWatchTowerRotateStep27WatchTowerRotateStepNrvMoveCFP5Spine` | `0x80252AB0` | :white_check_mark: (100.0%) |
 | `execute__Q223NrvWatchTowerRotateStep32WatchTowerRotateStepNrvMoveStartCFP5Spine` | `0x80252B18` | :white_check_mark: (100.0%) |
 | `execute__Q223NrvWatchTowerRotateStep27WatchTowerRotateStepNrvWaitCFP5Spine` | `0x80252B20` | :white_check_mark: (100.0%) |
-| `__dt__20WatchTowerRotateStepFv` | `0x80252B24` | :x: (95.7%) |
+| `__dt__20WatchTowerRotateStepFv` | `0x80252B24` | :white_check_mark: (100.0%) |

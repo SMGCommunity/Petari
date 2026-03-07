@@ -15,7 +15,7 @@
 | `exeSpoutEnd__11FountainBigFv` | `0x801DEE38` | :white_check_mark: (100.0%) |
 | `attackSensor__11FountainBigFP9HitSensorP9HitSensor` | `0x801DEEAC` | :white_check_mark: (100.0%) |
 | `updateHitSensor__11FountainBigFP9HitSensor` | `0x801DEF60` | :white_check_mark: (100.0%) |
-| `__dt__11FountainBigFv` | `0x801DEFF8` | :x: (95.7%) |
+| `__dt__11FountainBigFv` | `0x801DEFF8` | :white_check_mark: (100.0%) |
 | `__sinit_\FountainBig_cpp` | `0x801DF054` | :white_check_mark: (100.0%) |
 | `__ct__Q214NrvFountainBig18FountainBigNrvWaitFv` | `0x801DF098` | :white_check_mark: (100.0%) |
 | `__ct__Q214NrvFountainBig18FountainBigNrvSignFv` | `0x801DF0A8` | :white_check_mark: (100.0%) |

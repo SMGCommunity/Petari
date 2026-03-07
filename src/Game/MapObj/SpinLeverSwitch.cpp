@@ -1,5 +1,11 @@
 #include "Game/MapObj/SpinLeverSwitch.hpp"
 
+namespace NrvSpinLeverSwitch {
+    NEW_NERVE(SpinLeverSwitchNrvWait, SpinLeverSwitch, Wait);
+    NEW_NERVE(SpinLeverSwitchNrvSwitchOn, SpinLeverSwitch, SwitchOn);
+    NEW_NERVE(SpinLeverSwitchNrvEnd, SpinLeverSwitch, End);
+};  // namespace NrvSpinLeverSwitch
+
 SpinLeverSwitch::SpinLeverSwitch(const char* pName) : LiveActor(pName) {
     mConnector = nullptr;
     mConnector = new MapObjConnector(this);
@@ -103,20 +109,4 @@ void SpinLeverSwitch::exeSwitchOn() {
     }
 }
 
-namespace NrvSpinLeverSwitch {
-    INIT_NERVE(SpinLeverSwitchNrvWait);
-    INIT_NERVE(SpinLeverSwitchNrvSwitchOn);
-    INIT_NERVE(SpinLeverSwitchNrvEnd);
-
-    void SpinLeverSwitchNrvWait::execute(Spine* pSpine) const {
-        SpinLeverSwitch* pActor = (SpinLeverSwitch*)pSpine->mExecutor;
-        pActor->exeWait();
-    }
-
-    void SpinLeverSwitchNrvSwitchOn::execute(Spine* pSpine) const {
-        SpinLeverSwitch* pActor = (SpinLeverSwitch*)pSpine->mExecutor;
-        pActor->exeSwitchOn();
-    }
-
-    void SpinLeverSwitchNrvEnd::execute(Spine* pSpine) const {}
-};  // namespace NrvSpinLeverSwitch
+void SpinLeverSwitch::exeEnd() {}

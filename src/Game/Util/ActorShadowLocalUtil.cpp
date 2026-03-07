@@ -54,8 +54,7 @@ namespace ActorShadow {
         return pActor->mShadowControllerList->getController(pName)->getShadowDrawer();
     }
 
-    // Fails as JMapInfo::getValueFast lacks an implementation that returns a bool pointer
-    /* void setUpShadowControlIsFollowScaleFromCSV(ShadowController *pController, const JMapInfoIter &rIter) {
+     void setUpShadowControlIsFollowScaleFromCSV(ShadowController *pController, const JMapInfoIter &rIter) {
         bool stack_8(true);
         rIter.getValue("FollowScale", &stack_8);
         if (stack_8) {
@@ -75,7 +74,7 @@ namespace ActorShadow {
         else {
             pController->offVisibleSyncHost();
         }
-    } */
+    } 
 
     void setUpShadowControlFromCSV(ShadowController* pController, LiveActor* pActor, const JMapInfoIter& rIter) {
         float dropLength(1000.0f);

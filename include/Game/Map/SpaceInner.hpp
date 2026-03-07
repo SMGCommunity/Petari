@@ -11,11 +11,9 @@ public:
     virtual void calcAnim();
     virtual void appear();
 
+    void exeAppear();
+    void exeDisappear();
+
     void disappear();
     bool isAppeared() const;
 };
-
-namespace NrvSpaceInner {
-    NERVE(HostTypeDisappear);
-    NERVE(HostTypeAppear);
-};  // namespace NrvSpaceInner

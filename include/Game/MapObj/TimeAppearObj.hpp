@@ -10,12 +10,8 @@ public:
     virtual void init(const JMapInfoIter&);
     virtual void appear();
 
+    void exeHide();
     void exeEnd();
 
     s32 mTimer;  // 0xC4
 };
-
-namespace NrvTimeAppearObj {
-    NERVE(TimeAppearObjNrvHide);
-    NERVE(TimeAppearObjNrvEnd);
-};  // namespace NrvTimeAppearObj

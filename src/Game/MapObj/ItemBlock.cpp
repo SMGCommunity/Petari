@@ -3,32 +3,10 @@
 #include "JSystem/JGeometry/TVec.hpp"
 
 namespace NrvItemBlock {
-    INIT_NERVE(ItemBlockNrvStandby);
-    INIT_NERVE(ItemBlockNrvWait);
-    INIT_NERVE(ItemBlockNrvAppearItem);
-    INIT_NERVE(ItemBlockNrvAppearItemSplash);
-
-    void ItemBlockNrvAppearItemSplash::execute(Spine* pSpine) const {
-        ItemBlock* block = reinterpret_cast< ItemBlock* >(pSpine->mExecutor);
-        block->exeAppearItemSplash();
-    }
-
-    void ItemBlockNrvAppearItem::execute(Spine* pSpine) const {
-        ItemBlock* block = reinterpret_cast< ItemBlock* >(pSpine->mExecutor);
-        block->exeAppearItem();
-    }
-
-    void ItemBlockNrvWait::execute(Spine* pSpine) const {
-        ItemBlock* block = reinterpret_cast< ItemBlock* >(pSpine->mExecutor);
-        block->exeWait();
-    }
-
-    void ItemBlockNrvStandby::execute(Spine* pSpine) const {
-        ItemBlock* block = reinterpret_cast< ItemBlock* >(pSpine->mExecutor);
-        if (MR::isFirstStep(block)) {
-            MR::startBck(block, "Wait", nullptr);
-        }
-    }
+    NEW_NERVE(ItemBlockNrvStandby, ItemBlock, Standby);
+    NEW_NERVE(ItemBlockNrvWait, ItemBlock, Wait);
+    NEW_NERVE(ItemBlockNrvAppearItem, ItemBlock, AppearItem);
+    NEW_NERVE(ItemBlockNrvAppearItemSplash, ItemBlock, AppearItemSplash);
 };  // namespace NrvItemBlock
 
 namespace {
@@ -144,7 +122,7 @@ void ItemBlock::checkKind(const JMapInfoIter& rIter) {
     mCalcShadowOneTime = !(arg - 1);
 }
 
-/*void ItemBlock::initBlock() {
+void ItemBlock::initBlock() {
     initHitSensor(1);
 
     if (mKind >= 6 || mKind < 1) {
@@ -152,10 +130,10 @@ void ItemBlock::checkKind(const JMapInfoIter& rIter) {
     }
 
     initModelManagerWithAnm("CoinBlock", nullptr, false);
-    TVec3f *mtx = new TVec3f(0.0f, 100.0f, 0.0f);
-    MR::addHitSensorMtxMapObj(this, "body", 8, 100.0f, MR::getJointMtx(this, "CoinBlock"), *mtx);
-    MR::initCollisionPartsAutoEqualScale(this, "CoinBlock", getSensor("body"), (MtxPtr)mtx);
-}*/
+    TPos3f mtx;
+    MR::addHitSensorMtxMapObj(this, "body", 8, 100.0f, MR::getJointMtx(this, "CoinBlock"), TVec3f(0.0f, 100.0f, 0.0f));
+    MR::initCollisionPartsAutoEqualScale(this, "CoinBlock", getSensor("body"), MR::getJointMtx(this, "CoinBlock"));
+}
 
 void ItemBlock::appear() {
     LiveActor::appear();
@@ -225,6 +203,12 @@ bool ItemBlock::tryStartJumpPunch() {
     }
 
     return false;
+}
+
+void ItemBlock::exeStandby() {
+    if (MR::isFirstStep(this)) {
+        MR::startBck(this, "Wait", nullptr);
+    }
 }
 
 void ItemBlock::exeWait() {

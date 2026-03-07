@@ -4,6 +4,12 @@
 #include "Game/MapObj/DummyDisplayModel.hpp"
 #include "Game/MapObj/PowerStar.hpp"
 
+namespace NrvBreakableCage {
+    NEW_NERVE(BreakableCageNrvWait, BreakableCage, Wait);
+    NEW_NERVE(BreakableCageNrvWaitStartDemoBreak, BreakableCage, WaitStartDemoBreak);
+    NEW_NERVE(BreakableCageNrvBreak, BreakableCage, Break);
+};  // namespace NrvBreakableCage
+
 namespace {
     Vec cHitSensorOffsetCage;
     Vec cHitSensorOffsetFixation;
@@ -140,7 +146,6 @@ void BreakableCage::kill() {
     }
 }
 
-#ifndef NON_MATCHING
 void BreakableCage::calcAndSetBaseMtx() {
     if (mCageType == CAGE_NORMAL) {
         f32 v2 = (0.017453292f * mRotation.y);
@@ -172,7 +177,6 @@ void BreakableCage::calcAndSetBaseMtx() {
         MR::setBaseTRMtx(this, mMtx);
     }
 }
-#endif
 
 bool BreakableCage::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     bool result;
@@ -307,16 +311,18 @@ bool BreakableCage::tryBreak() {
 
 void BreakableCage::exeWait() {
     if (mCageType == CAGE_NORMAL) {
-        mRotation.y = MR::wrapAngleTowards(0.0f, mRotationSpeed + mRotation.y);
+        mRotation.y = MR::repeat(mRotationSpeed + mRotation.y, 0.0f, 360.0f);
     }
 
     if (mItemModel != nullptr) {
         if (isAppearPowerStar()) {
             DummyDisplayModel* model = mItemModel;
-            mItemModel->mRotation.y = MR::wrapAngleTowards(0.0f, model->mRotation.y + PowerStar::getPowerStarWaitRotateSpeed());
+            mItemModel->mRotation.y = MR::repeat(model->mRotation.y + PowerStar::getPowerStarWaitRotateSpeed(), 0.0f, 360.0f);
         }
     }
 }
+
+void BreakableCage::exeWaitStartDemoBreak() {}
 
 void BreakableCage::exeBreak() {
     u32 v2 = 1;
@@ -419,21 +425,3 @@ void BreakableCage::exeBreak() {
 }
 
 BreakableCage::~BreakableCage() {}
-
-namespace NrvBreakableCage {
-    INIT_NERVE(BreakableCageNrvWait);
-    INIT_NERVE(BreakableCageNrvWaitStartDemoBreak);
-    INIT_NERVE(BreakableCageNrvBreak);
-
-    void BreakableCageNrvBreak::execute(Spine* pSpine) const {
-        BreakableCage* cage = reinterpret_cast< BreakableCage* >(pSpine->mExecutor);
-        cage->exeBreak();
-    }
-
-    void BreakableCageNrvWaitStartDemoBreak::execute(Spine* pSpine) const {}
-
-    void BreakableCageNrvWait::execute(Spine* pSpine) const {
-        BreakableCage* cage = reinterpret_cast< BreakableCage* >(pSpine->mExecutor);
-        cage->exeWait();
-    }
-};  // namespace NrvBreakableCage

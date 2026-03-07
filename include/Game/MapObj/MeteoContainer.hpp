@@ -15,10 +15,6 @@ public:
     virtual bool receiveMsgPush(HitSensor*, HitSensor*);
     virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
 
+    void exeWait();
     void exeDestroy();
 };
-
-namespace NrvMeteoContainer {
-    NERVE_DECL_NULL(MeteoContainerNrvWait);
-    NERVE_DECL(MeteoContainerNrvDestroy, MeteoContainer, MeteoContainer::exeDestroy);
-};  // namespace NrvMeteoContainer

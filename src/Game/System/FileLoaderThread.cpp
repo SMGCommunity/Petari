@@ -1,5 +1,6 @@
 #include "Game/System/FileLoaderThread.hpp"
 #include "Game/System/FileRipper.hpp"
+#include "Game/Util/FileUtil.hpp"
 
 namespace {
     void* loadFileUsingRipper(RequestFileInfo* pInfo) {

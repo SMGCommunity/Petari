@@ -13,12 +13,6 @@ class ModelObj;
 class MapPartsFunction;
 class ProjmapEffectMtxSetter;
 
-namespace NrvMapObjActor {
-    NERVE(HostTypeWait);
-    NERVE(HostTypeMove);
-    NERVE(HostTypeDone);
-};  // namespace NrvMapObjActor
-
 class MapObjActor : public LiveActor {
 public:
     MapObjActor(const char*);
@@ -53,6 +47,7 @@ public:
     void updateProjmapMtx();
     void exeWait();
     void exeMove();
+    void exeDone();
 
     const char* mObjectName;                    // 0x8C
     LodCtrl* mPlanetLodCtrl;                    // 0x90
@@ -67,9 +62,9 @@ public:
     u8 _B4;
     u8 _B5;
     u8 _B6;
-    NrvMapObjActor::HostTypeWait* mWaitNrv;  // 0xB8
-    NrvMapObjActor::HostTypeMove* mMoveNrv;  // 0xBC
-    NrvMapObjActor::HostTypeDone* mDoneNrv;  // 0xC0
+    Nerve* mWaitNrv;  // 0xB8
+    Nerve* mMoveNrv;  // 0xBC
+    Nerve* mDoneNrv;  // 0xC0
 };
 
 class MapObjActorUtil {

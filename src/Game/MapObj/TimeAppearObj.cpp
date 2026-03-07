@@ -1,6 +1,11 @@
 #include "Game/MapObj/TimeAppearObj.hpp"
 #include "Game/Util.hpp"
 
+namespace NrvTimeAppearObj {
+    NEW_NERVE(TimeAppearObjNrvHide, TimeAppearObj, Hide);
+    NEW_NERVE(TimeAppearObjNrvEnd, TimeAppearObj, End);
+};  // namespace NrvTimeAppearObj
+
 TimeAppearObj::TimeAppearObj(const char* pName) : MapObjActor(pName), mTimer(0x1E) {}
 
 void TimeAppearObj::init(const JMapInfoIter& rIter) {
@@ -12,6 +17,12 @@ void TimeAppearObj::init(const JMapInfoIter& rIter) {
     initialize(rIter, info);
     MR::getJMapInfoArg0NoInit(rIter, &mTimer);
     makeActorDead();
+}
+
+void TimeAppearObj::exeHide() {
+    if (MR::isStep(this, mTimer)) {
+        setNerve(&NrvTimeAppearObj::TimeAppearObjNrvEnd::sInstance);
+    }
 }
 
 void TimeAppearObj::exeEnd() {
@@ -37,20 +48,3 @@ void TimeAppearObj::appear() {
 }
 
 TimeAppearObj::~TimeAppearObj() {}
-
-namespace NrvTimeAppearObj {
-    INIT_NERVE(TimeAppearObjNrvHide);
-    INIT_NERVE(TimeAppearObjNrvEnd);
-
-    void TimeAppearObjNrvEnd::execute(Spine* pSpine) const {
-        TimeAppearObj* obj = reinterpret_cast< TimeAppearObj* >(pSpine->mExecutor);
-        obj->exeEnd();
-    }
-
-    void TimeAppearObjNrvHide::execute(Spine* pSpine) const {
-        TimeAppearObj* obj = reinterpret_cast< TimeAppearObj* >(pSpine->mExecutor);
-        if (MR::isStep(obj, obj->mTimer)) {
-            obj->setNerve(&NrvTimeAppearObj::TimeAppearObjNrvEnd::sInstance);
-        }
-    }
-};  // namespace NrvTimeAppearObj

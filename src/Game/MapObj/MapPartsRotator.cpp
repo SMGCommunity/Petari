@@ -2,9 +2,16 @@
 #include "Game/LiveActor/Spine.hpp"
 #include "Game/Util.hpp"
 
-#ifdef NON_MATCHING
+namespace NrvMapPartsRotator {
+    NEW_NERVE(HostTypeNeverMove, MapPartsRotator, NeverMove);
+    NEW_NERVE(HostTypeWait, MapPartsRotator, Wait);
+    NEW_NERVE(HostTypeRotateStart, MapPartsRotator, RotateStart);
+    NEW_NERVE(HostTypeRotate, MapPartsRotator, Rotate);
+    NEW_NERVE(HostTypeStopAtEnd, MapPartsRotator, StopAtEnd);
+};  // namespace NrvMapPartsRotator
+
 // floating reg order on the inlined matrix set, but oh well
-MapPartsRotator::MapPartsRotator(LiveActor* pActor) : MapPartsFunction(pActor, "自身回転") {
+MapPartsRotator::MapPartsRotator(LiveActor* pActor) : MapPartsRotatorBase(pActor, "自身回転") {
     _18 = 0.0f;
     mRotateAngle = 0.0f;
     mRotateStopTime = 0;
@@ -22,7 +29,6 @@ MapPartsRotator::MapPartsRotator(LiveActor* pActor) : MapPartsFunction(pActor, "
     updateBaseHostMtx();
     _70.setInline(_40);
 }
-#endif
 
 void MapPartsRotator::init(const JMapInfoIter& rIter) {
     MR::getMapPartsArgRotateAngle(&mRotateAngle, rIter);
@@ -140,36 +146,21 @@ void MapPartsRotator::calcRotateAxisDir(AxisType type, TVec3f* pDir) const {
     }
 }
 
+void MapPartsRotator::exeNeverMove() {}
+
+void MapPartsRotator::exeWait() {}
+
+// void MapPartsRotator::exeRotateStart() {}
+
+// void MapPartsRotator::exeRotate() {}
+
+void MapPartsRotator::exeStopAtEnd() {
+    if (isStep(mRotateStopTime)) {
+        restartAtEnd();
+    }
+}
+
 MapPartsRotator::~MapPartsRotator() {}
-
-namespace NrvMapPartsRotator {
-    HostTypeNeverMove HostTypeNeverMove::sInstance;
-    HostTypeWait HostTypeWait::sInstance;
-    HostTypeRotateStart HostTypeRotateStart::sInstance;
-    HostTypeRotate HostTypeRotate::sInstance;
-    HostTypeStopAtEnd HostTypeStopAtEnd::sInstance;
-
-    void HostTypeStopAtEnd::execute(Spine* pSpine) const {
-        MapPartsRotator* rotator = reinterpret_cast< MapPartsRotator* >(pSpine->mExecutor);
-        if (rotator->isStep(rotator->mRotateStopTime)) {
-            rotator->restartAtEnd();
-        }
-    }
-
-    void HostTypeRotate::execute(Spine* pSpine) const {
-        MapPartsRotator* rotator = reinterpret_cast< MapPartsRotator* >(pSpine->mExecutor);
-        rotator->exeRotate();
-    }
-
-    void HostTypeRotateStart::execute(Spine* pSpine) const {
-        MapPartsRotator* rotator = reinterpret_cast< MapPartsRotator* >(pSpine->mExecutor);
-        rotator->exeRotateStart();
-    }
-
-    void HostTypeWait::execute(Spine* pSpine) const {}
-
-    void HostTypeNeverMove::execute(Spine* pSpine) const {}
-};  // namespace NrvMapPartsRotator
 
 bool MapPartsRotator::isOnReverse() const {
     return mIsOnReverse;

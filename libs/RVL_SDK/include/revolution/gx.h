@@ -5,6 +5,8 @@
 extern "C" {
 #endif
 
+#define GX_FIFO_ADDR 0xCC008000
+
 #include "revolution/gx/GXBump.h"
 #include "revolution/gx/GXCpu2Efb.h"
 #include "revolution/gx/GXCull.h"
@@ -27,9 +29,8 @@ extern "C" {
 #include "revolution/gx/GXTypes.h"
 #include "revolution/types.h"
 
-
 #ifdef __cplusplus
 }
 #endif
 
-#endif // GX_H
+#endif  // GX_H

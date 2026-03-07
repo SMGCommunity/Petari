@@ -12,7 +12,7 @@
 | `getJMapInfoArgNoInit__22@unnamed@JMapUtil_cpp@FRC12JMapInfoIterPCcPf` | `0x803D5530` | :white_check_mark: (100.0%) |
 | `getJMapInfoArgNoInit__22@unnamed@JMapUtil_cpp@FRC12JMapInfoIterPCcPb` | `0x803D559C` | :white_check_mark: (100.0%) |
 | `getJMapInfoTrans__2MRFRC12JMapInfoIterPQ29JGeometry8TVec3<f>` | `0x803D5600` | :white_check_mark: (100.0%) |
-| `getJMapInfoRotate__2MRFRC12JMapInfoIterPQ29JGeometry8TVec3<f>` | `0x803D566C` | :x: (82.4%) |
+| `getJMapInfoRotate__2MRFRC12JMapInfoIterPQ29JGeometry8TVec3<f>` | `0x803D566C` | :x: (90.6%) |
 | `getJMapInfoMatrixFromRT__2MRFRC12JMapInfoIterPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>` | `0x803D57D4` | :white_check_mark: (100.0%) |
 | `getJMapInfoArg0WithInit__2MRFRC12JMapInfoIterPl` | `0x803D5850` | :white_check_mark: (100.0%) |
 | `getJMapInfoArg0WithInit__2MRFRC12JMapInfoIterPf` | `0x803D5868` | :white_check_mark: (100.0%) |
@@ -58,9 +58,9 @@
 | `getObjectName__2MRFPPCcRC12JMapInfoIter` | `0x803D5C0C` | :white_check_mark: (100.0%) |
 | `isExistJMapArg__2MRFRC12JMapInfoIter` | `0x803D5C90` | :white_check_mark: (100.0%) |
 | `getJMapInfoShapeIdWithInit__2MRFRC12JMapInfoIterPl` | `0x803D5CE0` | :white_check_mark: (100.0%) |
-| `getJMapInfoTransLocal__2MRFRC12JMapInfoIterPQ29JGeometry8TVec3<f>` | `0x803D5CF0` | :x: (91.2%) |
-| `getJMapInfoRotateLocal__2MRFRC12JMapInfoIterPQ29JGeometry8TVec3<f>` | `0x803D5D78` | :x: (91.2%) |
-| `getJMapInfoScale__2MRFRC12JMapInfoIterPQ29JGeometry8TVec3<f>` | `0x803D5E00` | :x: (91.2%) |
+| `getJMapInfoTransLocal__2MRFRC12JMapInfoIterPQ29JGeometry8TVec3<f>` | `0x803D5CF0` | :x: (99.9%) |
+| `getJMapInfoRotateLocal__2MRFRC12JMapInfoIterPQ29JGeometry8TVec3<f>` | `0x803D5D78` | :x: (99.9%) |
+| `getJMapInfoScale__2MRFRC12JMapInfoIterPQ29JGeometry8TVec3<f>` | `0x803D5E00` | :x: (99.9%) |
 | `getJMapInfoV3f__2MRFRC12JMapInfoIterPCcPQ29JGeometry8TVec3<f>` | `0x803D5E88` | :white_check_mark: (100.0%) |
 | `getJMapInfoArg1WithInit__2MRFRC12JMapInfoIterPl` | `0x803D5F4C` | :white_check_mark: (100.0%) |
 | `getJMapInfoArg2WithInit__2MRFRC12JMapInfoIterPl` | `0x803D5F64` | :white_check_mark: (100.0%) |
@@ -70,7 +70,7 @@
 | `getJMapInfoArg6WithInit__2MRFRC12JMapInfoIterPl` | `0x803D5FC4` | :white_check_mark: (100.0%) |
 | `getJMapInfoArg7WithInit__2MRFRC12JMapInfoIterPl` | `0x803D5FDC` | :white_check_mark: (100.0%) |
 | `getJMapInfoFollowID__2MRFRC12JMapInfoIterPl` | `0x803D5FF4` | :white_check_mark: (100.0%) |
-| `getJMapInfoGroupID__2MRFRC12JMapInfoIterPl` | `0x803D600C` | :x: (31.0%) |
+| `getJMapInfoGroupID__2MRFRC12JMapInfoIterPl` | `0x803D600C` | :x: (69.6%) |
 | `getJMapInfoClippingGroupID__2MRFRC12JMapInfoIterPl` | `0x803D6074` | :white_check_mark: (100.0%) |
 | `getJMapInfoDemoGroupID__2MRFRC12JMapInfoIterPl` | `0x803D608C` | :white_check_mark: (100.0%) |
 | `getJMapInfoLinkID__2MRFRC12JMapInfoIterPl` | `0x803D60A4` | :white_check_mark: (100.0%) |
@@ -88,7 +88,7 @@
 | `getDemoSheetName__2MRFRC12JMapInfoIter` | `0x803D64D0` | :white_check_mark: (100.0%) |
 | `getNextLinkRailID__2MRFRC12JMapInfoIterPl` | `0x803D6508` | :white_check_mark: (100.0%) |
 | `isEqualRailUsage__2MRFRC12JMapInfoIterPCc` | `0x803D6518` | :white_check_mark: (100.0%) |
-| `getRailPointPos0__2MRFRC12JMapInfoIterPQ29JGeometry8TVec3<f>` | `0x803D6564` | :x: (91.2%) |
-| `getRailPointPos1__2MRFRC12JMapInfoIterPQ29JGeometry8TVec3<f>` | `0x803D65EC` | :x: (91.2%) |
-| `getRailPointPos2__2MRFRC12JMapInfoIterPQ29JGeometry8TVec3<f>` | `0x803D6674` | :x: (91.2%) |
+| `getRailPointPos0__2MRFRC12JMapInfoIterPQ29JGeometry8TVec3<f>` | `0x803D6564` | :x: (99.9%) |
+| `getRailPointPos1__2MRFRC12JMapInfoIterPQ29JGeometry8TVec3<f>` | `0x803D65EC` | :x: (99.9%) |
+| `getRailPointPos2__2MRFRC12JMapInfoIterPQ29JGeometry8TVec3<f>` | `0x803D6674` | :x: (99.9%) |
 | `isLoopRailPathIter__2MRFRC12JMapInfoIter` | `0x803D66FC` | :white_check_mark: (100.0%) |

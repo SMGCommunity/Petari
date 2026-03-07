@@ -9,6 +9,16 @@
 #include "JSystem/JGeometry/TVec.hpp"
 #include "revolution/mtx.h"
 
+namespace NrvDesertMovingLand {
+    NEW_NERVE(HostTypeWaitTop, DesertMovingLand, Wait);
+    NEW_NERVE(HostTypeWaitBottom, DesertMovingLand, Wait);
+    NEW_NERVE(HostTypeMoveDown, DesertMovingLand, MoveDown);
+    NEW_NERVE(HostTypeMoveUp, DesertMovingLand, MoveUp);
+    NEW_NERVE(HostTypeMoveDownSign, DesertMovingLand, MoveSign);
+    NEW_NERVE(HostTypeMoveUpSign, DesertMovingLand, MoveSign);
+    NEW_NERVE(HostTypeStop, DesertMovingLand, Stop);
+};  // namespace NrvDesertMovingLand
+
 namespace {
     static const char* cDemoName = "砂漠ＵＦＯ上昇";
 };
@@ -82,10 +92,10 @@ void DesertMovingLand::startDemo() {
 
 void DesertMovingLand::updateDemoPlayerPos() {
     MtxPtr jointMtx = MR::getJointMtx(this, mObjectName);
-    TMtx34f stack_8;
+    TPos3f stack_8;
     stack_8.set(jointMtx);
     stack_8.concat(stack_8, _E4);
-    MR::getPlayerDemoActor()->mPosition.set< f32 >(stack_8[2][3], stack_8[1][3], stack_8[0][3]);
+    stack_8.getTransInline(MR::getPlayerDemoActor()->mPosition);
     MR::setPlayerBaseMtx(stack_8);
 }
 
@@ -196,14 +206,4 @@ void DesertMovingLand::initCaseUseSwitchB(const MapObjActorInitInfo& rInfo) {}
 
 void DesertMovingLand::initCaseUseSwitchA(const MapObjActorInitInfo& rInfo) {}
 
-DesertMovingLand::~DesertMovingLand() {};
-
-namespace NrvDesertMovingLand {
-    HostTypeWaitTop(HostTypeWaitTop::sInstance);
-    HostTypeWaitBottom(HostTypeWaitBottom::sInstance);
-    HostTypeMoveDown(HostTypeMoveDown::sInstance);
-    HostTypeMoveUp(HostTypeMoveUp::sInstance);
-    HostTypeMoveDownSign(HostTypeMoveDownSign::sInstance);
-    HostTypeMoveUpSign(HostTypeMoveUpSign::sInstance);
-    HostTypeStop(HostTypeStop::sInstance);
-};  // namespace NrvDesertMovingLand
+DesertMovingLand::~DesertMovingLand(){};

@@ -21,8 +21,8 @@
 | `exeComplete__11ChipCounterFv` | `0x801BF1BC` | :x: (0.0%) |
 | `exeCompleteOut__11ChipCounterFv` | `0x801BF260` | :x: (0.0%) |
 | `__dt__11ChipCounterFv` | `0x801BF2F0` | :x: (0.0%) |
-| `__sinit_\ChipCounter_cpp` | `0x801BF34C` | :x: (0.0%) |
-| `__ct__Q214NrvChipCounter18ChipCounterNrvHideFv` | `0x801BF3A0` | :x: (0.0%) |
+| `__sinit_\ChipCounter_cpp` | `0x801BF34C` | :x: (9.3%) |
+| `__ct__Q214NrvChipCounter18ChipCounterNrvHideFv` | `0x801BF3A0` | :white_check_mark: (100.0%) |
 | `__ct__Q214NrvChipCounter21ChipCounterNrvFrameInFv` | `0x801BF3B0` | :x: (0.0%) |
 | `__ct__Q214NrvChipCounter18ChipCounterNrvShowFv` | `0x801BF3C0` | :x: (0.0%) |
 | `__ct__Q214NrvChipCounter22ChipCounterNrvFrameOutFv` | `0x801BF3D0` | :x: (0.0%) |

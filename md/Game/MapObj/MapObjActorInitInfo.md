@@ -6,7 +6,7 @@
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__ct__19MapObjActorInitInfoFv` | `0x801F8364` | :x: (0.0%) |
+| `__ct__19MapObjActorInitInfoFv` | `0x801F8364` | :x: (68.3%) |
 | `setupHioNode__19MapObjActorInitInfoFPCc` | `0x801F844C` | :white_check_mark: (100.0%) |
 | `setupDefaultPos__19MapObjActorInitInfoFv` | `0x801F8454` | :white_check_mark: (100.0%) |
 | `setupModelName__19MapObjActorInitInfoFPCc` | `0x801F8460` | :white_check_mark: (100.0%) |

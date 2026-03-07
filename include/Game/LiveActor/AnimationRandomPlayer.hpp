@@ -20,18 +20,3 @@ public:
     s32 _18;
     f32 _1C;
 };
-
-namespace NrvAnimationRandomPlayer {
-    NERVE(HostTypeWait);
-    NERVE(HostTypePlay);
-
-    void HostTypePlay::execute(Spine* pSpine) const {
-        AnimationRandomPlayer* player = reinterpret_cast< AnimationRandomPlayer* >(pSpine->mExecutor);
-        player->exePlay();
-    }
-
-    void HostTypeWait::execute(Spine* pSpine) const {
-        AnimationRandomPlayer* player = reinterpret_cast< AnimationRandomPlayer* >(pSpine->mExecutor);
-        player->exeWait();
-    }
-};  // namespace NrvAnimationRandomPlayer

@@ -5,6 +5,21 @@
 #include "Game/Util.hpp"
 #include "JSystem/JMath/JMath.hpp"
 
+namespace NrvFlipPanel {
+    NEW_NERVE(FlipPanelNrvFrontLand, FlipPanel, FrontLand);
+    NEW_NERVE(FlipPanelNrvBackLand, FlipPanel, BackLand);
+    NEW_NERVE(FlipPanelNrvFront, FlipPanel, Wait);
+    NEW_NERVE(FlipPanelNrvBack, FlipPanel, Wait);
+    NEW_NERVE(FlipPanelNrvEndPrepare, FlipPanel, EndPrepare);
+    NEW_NERVE(FlipPanelNrvEnd, FlipPanel, End);
+};  // namespace NrvFlipPanel
+
+namespace NrvFlipPanelObserver {
+    NEW_NERVE(FlipPanelObserverNrvWait, FlipPanelObserver, Wait);
+    NEW_NERVE(FlipPanelObserverNrvComplete, FlipPanelObserver, Complete);
+    NEW_NERVE(FlipPanelObserverNrvDemoWait, FlipPanelObserver, DemoWait);
+};  // namespace NrvFlipPanelObserver
+
 namespace {
     static u32 sBloomSyncStep;
 };
@@ -121,6 +136,12 @@ void FlipPanel::exeWait() {
     }
 }
 
+void FlipPanel::exeEndPrepare() {
+    if (MR::isStep(this, 0x14)) {
+        setNerve(&NrvFlipPanel::FlipPanelNrvEnd::sInstance);
+    }
+}
+
 void FlipPanel::exeEnd() {
     if (MR::isFirstStep(this)) {
         MR::startSystemSE("SE_OJ_FLIP_PANEL_COMPLETE", -1, -1);
@@ -130,7 +151,7 @@ void FlipPanel::exeEnd() {
     }
 
     if (MR::isBckStopped(this)) {
-        if (MR::isEffectValid(this, "FlipPanelGold")) {
+        if (!MR::isEffectValid(this, "FlipPanelGold")) {
             MR::validateClipping(this);
         }
     }
@@ -371,69 +392,6 @@ bool FlipPanelObserver::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* 
     }
 
     return false;
-}
-
-namespace NrvFlipPanel {
-    FlipPanelNrvFrontLand FlipPanelNrvFrontLand::sInstance;
-    FlipPanelNrvBackLand FlipPanelNrvBackLand::sInstance;
-    FlipPanelNrvFront FlipPanelNrvFront::sInstance;
-    FlipPanelNrvBack FlipPanelNrvBack::sInstance;
-    FlipPanelNrvEndPrepare FlipPanelNrvEndPrepare::sInstance;
-    FlipPanelNrvEnd FlipPanelNrvEnd::sInstance;
-};  // namespace NrvFlipPanel
-
-namespace NrvFlipPanelObserver {
-    FlipPanelObserverNrvWait FlipPanelObserverNrvWait::sInstance;
-    FlipPanelObserverNrvComplete FlipPanelObserverNrvComplete::sInstance;
-    FlipPanelObserverNrvDemoWait FlipPanelObserverNrvDemoWait::sInstance;
-};  // namespace NrvFlipPanelObserver
-
-void NrvFlipPanelObserver::FlipPanelObserverNrvDemoWait::execute(Spine* pSpine) const {
-    FlipPanelObserver* obs = reinterpret_cast< FlipPanelObserver* >(pSpine->mExecutor);
-    obs->exeDemoWait();
-}
-
-void NrvFlipPanelObserver::FlipPanelObserverNrvComplete::execute(Spine* pSpine) const {
-    FlipPanelObserver* obs = reinterpret_cast< FlipPanelObserver* >(pSpine->mExecutor);
-    obs->exeComplete();
-}
-
-void NrvFlipPanelObserver::FlipPanelObserverNrvWait::execute(Spine* pSpine) const {
-    FlipPanelObserver* obs = reinterpret_cast< FlipPanelObserver* >(pSpine->mExecutor);
-    obs->exeWait();
-}
-
-void NrvFlipPanel::FlipPanelNrvEnd::execute(Spine* pSpine) const {
-    FlipPanel* panel = reinterpret_cast< FlipPanel* >(pSpine->mExecutor);
-    panel->exeEnd();
-}
-
-void NrvFlipPanel::FlipPanelNrvEndPrepare::execute(Spine* pSpine) const {
-    FlipPanel* panel = reinterpret_cast< FlipPanel* >(pSpine->mExecutor);
-
-    if (MR::isStep(panel, 0x14)) {
-        panel->setNerve(&NrvFlipPanel::FlipPanelNrvEnd::sInstance);
-    }
-}
-
-void NrvFlipPanel::FlipPanelNrvBack::execute(Spine* pSpine) const {
-    FlipPanel* panel = reinterpret_cast< FlipPanel* >(pSpine->mExecutor);
-    panel->exeWait();
-}
-
-void NrvFlipPanel::FlipPanelNrvFront::execute(Spine* pSpine) const {
-    FlipPanel* panel = reinterpret_cast< FlipPanel* >(pSpine->mExecutor);
-    panel->exeWait();
-}
-
-void NrvFlipPanel::FlipPanelNrvBackLand::execute(Spine* pSpine) const {
-    FlipPanel* panel = reinterpret_cast< FlipPanel* >(pSpine->mExecutor);
-    panel->exeBackLand();
-}
-
-void NrvFlipPanel::FlipPanelNrvFrontLand::execute(Spine* pSpine) const {
-    FlipPanel* panel = reinterpret_cast< FlipPanel* >(pSpine->mExecutor);
-    panel->exeFrontLand();
 }
 
 FlipPanel::~FlipPanel() {}

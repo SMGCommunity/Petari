@@ -3,6 +3,12 @@
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Screen/NoteCounter.hpp"
 
+namespace NrvNote {
+    NEW_NERVE(NoteNrvWait, Note, Wait);
+    NEW_NERVE(NoteNrvCountDown, Note, CountDown);
+    NEW_NERVE(NoteNrvFlyUp, Note, FlyUp);
+};  // namespace NrvNote
+
 Note::Note(const char* pName, const TVec3f& rRailDirection, NoteFairy* pParent) : LiveActor(pName) {
     mParentFairy = pParent;
     _90.set(0.0f);
@@ -136,9 +142,3 @@ void NoteGroup::movement() {
 Note::~Note() {}
 
 NoteGroup::~NoteGroup() {}
-
-namespace NrvNote {
-    INIT_NERVE(NoteNrvWait);
-    INIT_NERVE(NoteNrvCountDown);
-    INIT_NERVE(NoteNrvFlyUp);
-};  // namespace NrvNote

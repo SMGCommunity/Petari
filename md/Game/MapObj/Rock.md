@@ -6,12 +6,12 @@
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__ct__4RockFfPCc` | `0x8021ADD8` | :x: (79.7%) |
-| `init__4RockFRC12JMapInfoIter` | `0x8021AEEC` | :white_check_mark: (100.0%) |
+| `__ct__4RockFfPCc` | `0x8021ADD8` | :x: (91.9%) |
+| `init__4RockFRC12JMapInfoIter` | `0x8021AEEC` | :x: (89.1%) |
 | `appear__4RockFv` | `0x8021B0D4` | :white_check_mark: (100.0%) |
-| `kill__4RockFv` | `0x8021B218` | :x: (97.0%) |
+| `kill__4RockFv` | `0x8021B218` | :x: (100.0%) |
 | `getAppearFrame__4RockFv` | `0x8021B29C` | :white_check_mark: (100.0%) |
-| `getType__4RockFRC12JMapInfoIter` | `0x8021B2A4` | :x: (94.1%) |
+| `getType__4RockFRC12JMapInfoIter` | `0x8021B2A4` | :x: (99.9%) |
 | `getAppearStarPieceNum__4RockFQ24Rock4Type` | `0x8021B32C` | :white_check_mark: (100.0%) |
 | `control__4RockFv` | `0x8021B340` | :x: (0.0%) |
 | `calcAndSetBaseMtx__4RockFv` | `0x8021B5BC` | :x: (0.0%) |
@@ -19,13 +19,13 @@
 | `receiveMsgPlayerAttack__4RockFUlP9HitSensorP9HitSensor` | `0x8021B950` | :x: (0.0%) |
 | `receiveMsgEnemyAttack__4RockFUlP9HitSensorP9HitSensor` | `0x8021BA54` | :x: (0.0%) |
 | `initMapToolInfo__4RockFRC12JMapInfoIter` | `0x8021BB4C` | :x: (0.0%) |
-| `initModel__4RockFv` | `0x8021BC44` | :x: (90.3%) |
+| `initModel__4RockFv` | `0x8021BC44` | :x: (99.9%) |
 | `initSensor__4RockFv` | `0x8021BDB8` | :x: (0.0%) |
-| `initEffect__4RockFv` | `0x8021BF00` | :x: (94.1%) |
+| `initEffect__4RockFv` | `0x8021BF00` | :x: (99.9%) |
 | `isBreakByWall__4RockCFv` | `0x8021BF88` | :white_check_mark: (100.0%) |
 | `move__4RockFf` | `0x8021BFFC` | :white_check_mark: (100.0%) |
 | `calcBaseMtx__4RockCFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>` | `0x8021C0A0` | :x: (0.0%) |
-| `isInClippingRange__4RockCFv` | `0x8021C170` | :x: (95.1%) |
+| `isInClippingRange__4RockCFv` | `0x8021C170` | :white_check_mark: (100.0%) |
 | `startSoundWanwanVoice__4RockFv` | `0x8021C214` | :white_check_mark: (100.0%) |
 | `startRollLevelSound__4RockFb` | `0x8021C2BC` | :x: (0.0%) |
 | `tryFreeze__4RockFPC5Nerve` | `0x8021C3CC` | :white_check_mark: (100.0%) |
@@ -33,7 +33,7 @@
 | `rumblePadAndCamera__4RockFv` | `0x8021C53C` | :white_check_mark: (100.0%) |
 | `setNerveBreak__4RockFb` | `0x8021C5A4` | :white_check_mark: (100.0%) |
 | `updateRotateX__4RockFf` | `0x8021C5F0` | :x: (0.0%) |
-| `appearStarPiece__4RockFv` | `0x8021C644` | :white_check_mark: (100.0%) |
+| `appearStarPiece__4RockFv` | `0x8021C644` | :x: (61.9%) |
 | `moveOnRail__4RockFffb` | `0x8021C6CC` | :x: (0.0%) |
 | `isForceInvalidBindSection__4RockCFv` | `0x8021C7A0` | :x: (0.0%) |
 | `tryBreakReachedGoal__4RockFv` | `0x8021C814` | :x: (0.0%) |
@@ -43,7 +43,7 @@
 | `exeMoveInvalidBind__4RockFv` | `0x8021CED4` | :x: (0.0%) |
 | `exeBreak__4RockFv` | `0x8021CF68` | :x: (0.0%) |
 | `exeFreeze__4RockFv` | `0x8021D28C` | :x: (0.0%) |
-| `__dt__4RockFv` | `0x8021D4B8` | :x: (95.7%) |
+| `__dt__4RockFv` | `0x8021D4B8` | :white_check_mark: (100.0%) |
 | `__sinit_\Rock_cpp` | `0x8021D514` | :white_check_mark: (100.0%) |
 | `__ct__Q27NrvRock13RockNrvAppearFv` | `0x8021D560` | :white_check_mark: (100.0%) |
 | `__ct__Q27NrvRock28RockNrvAppearMoveInvalidBindFv` | `0x8021D570` | :white_check_mark: (100.0%) |

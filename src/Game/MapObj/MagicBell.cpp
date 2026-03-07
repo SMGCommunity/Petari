@@ -1,5 +1,10 @@
 #include "Game/MapObj/MagicBell.hpp"
 
+namespace NrvMagicBell {
+    NEW_NERVE(MagicBellNrvWait, MagicBell, Wait);
+    NEW_NERVE(MagicBellNrvRing, MagicBell, Ring);
+};  // namespace NrvMagicBell
+
 MagicBell::MagicBell(const char* pName) : LiveActor(pName) {
     mBellSwinger = nullptr;
     mSurface1Mtx = nullptr;
@@ -54,10 +59,7 @@ void MagicBell::exeWait() {
     }
 }
 
-// Minor mismatch: "squaredInline" near the bottom gets its registers swapped
-/*
-void MagicBell::exeRing()
-{
+void MagicBell::exeRing() {
     if (MR::isFirstStep(this)) {
         if (MR::isValidSwitchA(this) && !MR::isOnSwitchA(this)) {
             MR::onSwitchA(this);
@@ -89,7 +91,7 @@ void MagicBell::exeRing()
             v17.scale(v4 - v7);
             v17.sub(mBellRodSwinger->mAcceleration);
             mBellRodSwinger->accel(v17);
-            mHitMarkPosition.set<f32>(mBellRodSwinger->_8);
+            mHitMarkPosition.set< f32 >(mBellRodSwinger->_8);
         }
     }
     PSMTXCopy(mBellSwinger->_60.toMtxPtr(), mSurface2Mtx);
@@ -111,14 +113,13 @@ void MagicBell::exeRing()
         return;
     }
 
-    if (!(mBellSwinger->mAcceleration.squaredInline() < 0.01f)) {
+    if (!(mBellSwinger->mAcceleration.squared() < 0.1f * 0.1f)) {
         return;
     }
 
     MR::deleteEffect(this, "Ring");
     setNerve(&NrvMagicBell::MagicBellNrvWait::sInstance);
 }
-*/
 
 void MagicBell::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isSensorPlayer(pReceiver)) {
@@ -126,22 +127,25 @@ void MagicBell::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     }
 }
 
-/*
-bool MagicBell::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool MagicBell::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgLockOnStarPieceShoot(msg)) {
         return false;
     }
 
-    if (!isNerve(&NrvMagicBell::MagicBellNrvWait::sInstance) && (isNerve(&NrvMagicBell::MagicBellNrvRing::sInstance) && MR::isGreaterStep(this, 10)))
-{ TVec3f v15(mPosition); v15.sub(*MR::getPlayerPos()); v15.y += 100.0f; MR::normalizeOrZero(&v15); TVec3f v14(v15); v14.scale(-200.0f);
-        v14.addInline2(mPosition);
+    if (isNerve(&NrvMagicBell::MagicBellNrvWait::sInstance) || (isNerve(&NrvMagicBell::MagicBellNrvRing::sInstance) && MR::isGreaterStep(this, 10))) {
+        TVec3f v15(mPosition);
+        v15.sub(*MR::getPlayerPos());
+        v15.y += 100.0f;
+        MR::normalizeOrZero(&v15);
+        TVec3f v14(v15);
+        v14.scale(-200.0f);
+        v14.addInline(mPosition);
         startRing(v15, v14);
         return true;
     }
 
     return false;
 }
-*/
 
 bool MagicBell::tryRing() {
     if (!MR::isExecScenarioStarter() && MR::isStarPointerPointing(this, 0, 0, "弱")) {
@@ -181,11 +185,6 @@ void MagicBell::startRing(const TVec3f& a1, const TVec3f& a2) {
 }
 
 MagicBell::~MagicBell() {}
-
-namespace NrvMagicBell {
-    INIT_NERVE(MagicBellNrvWait);
-    INIT_NERVE(MagicBellNrvRing);
-};  // namespace NrvMagicBell
 
 MtxPtr MagicBell::getBaseMtx() const {
     return mSurface2Mtx;

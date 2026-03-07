@@ -31,8 +31,11 @@ public:
     void requestStartPatrol();
     bool tryGotoPatrol();
     bool tryPatrol();
+    void exeDemoStartWait();
+    void exeDemoWait();
     void exeDemoTurn();
     void exeDemoGotoPatrol();
+    void exeWait();
     void exeTurn();
     void exeGotoPatrol();
     void exePatrol();
@@ -59,13 +62,3 @@ public:
     f32 _160;
     bool mIsInMercatorCube;  // 0x164
 };
-namespace NrvEyeBeamer {
-    NERVE_DECL_NULL(EyeBeamerNrvDemoStartWait);
-    NERVE(EyeBeamerNrvDemoWait);
-    NERVE_DECL_EXE(EyeBeamerNrvDemoTurn, EyeBeamer, DemoTurn);
-    NERVE_DECL_EXE(EyeBeamerNrvDemoGotoPatrol, EyeBeamer, DemoGotoPatrol);
-    NERVE_DECL_NULL(EyeBeamerNrvWait);
-    NERVE_DECL_EXE(EyeBeamerNrvTurn, EyeBeamer, Turn);
-    NERVE_DECL_EXE(EyeBeamerNrvGotoPatrol, EyeBeamer, GotoPatrol);
-    NERVE_DECL_EXE(EyeBeamerNrvPatrol, EyeBeamer, Patrol);
-};  // namespace NrvEyeBeamer

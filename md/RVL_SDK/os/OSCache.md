@@ -22,5 +22,5 @@
 | `LCStoreBlocks` | `0x804A53C8` | :white_check_mark: (100.0%) |
 | `LCStoreData` | `0x804A53EC` | :white_check_mark: (100.0%) |
 | `LCQueueWait` | `0x804A548C` | :white_check_mark: (100.0%) |
-| `DMAErrorHandler` | `0x804A54A0` | :x: (89.0%) |
-| `__OSCacheInit` | `0x804A55E8` | :x: (93.6%) |
+| `DMAErrorHandler` | `0x804A54A0` | :white_check_mark: (100.0%) |
+| `__OSCacheInit` | `0x804A55E8` | :white_check_mark: (100.0%) |

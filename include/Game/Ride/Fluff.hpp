@@ -32,9 +32,9 @@ public:
     bool trySpinUp(s32 step);
     void endBind(f32 ejectForce);
 
-    /* 0x8C */ TVec3f mRightVec;
-    /* 0x98 */ TVec3f mUpVec;
-    /* 0xA4 */ TVec3f mForwardVec;
+    /* 0x8C */ TVec3f mSide;
+    /* 0x98 */ TVec3f mUp;
+    /* 0xA4 */ TVec3f mFront;
     /* 0xB0 */ TPos3f mInitialMtx;
     /* 0xE0 */ TVec3f mTargetUpVec;
     /* 0xEC */ TVec3f mWindDir;

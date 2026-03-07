@@ -6,7 +6,7 @@
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__ct__9SpaceMineFPCc` | `0x8022E260` | :x: (77.8%) |
+| `__ct__9SpaceMineFPCc` | `0x8022E260` | :x: (59.8%) |
 | `init__9SpaceMineFRC12JMapInfoIter` | `0x8022E2CC` | :white_check_mark: (100.0%) |
 | `isCalcShadowAlways__9SpaceMineCFv` | `0x8022E434` | :x: (0.0%) |
 | `kill__9SpaceMineFv` | `0x8022E4B4` | :white_check_mark: (100.0%) |

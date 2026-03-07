@@ -75,8 +75,8 @@ namespace MR {
     bool isSameMtxRot(MtxPtr, MtxPtr);
     bool isRotAxisY(MtxPtr, MtxPtr);
     void calcMtxRotAxis(TVec3f*, MtxPtr, MtxPtr);
-    void tmpMtxTrans(const TVec3f&);
-    void tmpMtxScale(f32, f32, f32);
+    MtxPtr tmpMtxTrans(const TVec3f&);
+    MtxPtr tmpMtxScale(f32, f32, f32);
     MtxPtr tmpMtxRotXRad(f32);
     MtxPtr tmpMtxRotYRad(f32);
     MtxPtr tmpMtxRotZRad(f32);

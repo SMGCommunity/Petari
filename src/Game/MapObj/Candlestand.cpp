@@ -1,6 +1,15 @@
 #include "Game/MapObj/Candlestand.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 
+namespace NrvCandlestand {
+    NEW_NERVE(HostTypeWaitFire, Candlestand, WaitFire);
+    NEW_NERVE(HostTypeFire, Candlestand, Fire);
+    NEW_NERVE(HostTypeBurn, Candlestand, Burn);
+    NEW_NERVE(HostTypeAttack, Candlestand, Attack);
+    NEW_NERVE(HostTypeExtinguish, Candlestand, Extinguish);
+    NEW_NERVE(HostTypeFlicker, Candlestand, Flicker);
+};  // namespace NrvCandlestand
+
 struct Param {
     const char* mObjName;  // 0x0
     f32 mClippingRadius;   // 0x4
@@ -39,9 +48,7 @@ namespace {
                                   true     // mCanUseSwitch
                               }};
 
-    Param* get(s32 idx) {
-        return &sParams[idx];
-    }
+    Param* get(s32 idx) { return &sParams[idx]; }
 
     Param* getParam(const char* pObjName) NO_INLINE {
         for (s32 i = 0; i < 3; i++) {
@@ -226,6 +233,8 @@ void Candlestand::emitEffectExtinguishFire() {
 
 // appearItem
 
+void Candlestand::exeWaitFire() {}
+
 void Candlestand::exeFire() {
     if (MR::isFirstStep(this)) {
         emitEffectFire();
@@ -296,12 +305,3 @@ void Candlestand::exeBurn() {
 }
 
 Candlestand::~Candlestand() {}
-
-namespace NrvCandlestand {
-    INIT_NERVE(HostTypeWaitFire);
-    INIT_NERVE(HostTypeFire);
-    INIT_NERVE(HostTypeBurn);
-    INIT_NERVE(HostTypeAttack);
-    INIT_NERVE(HostTypeExtinguish);
-    INIT_NERVE(HostTypeFlicker);
-};  // namespace NrvCandlestand

@@ -12,7 +12,7 @@
 class DesertLandMoveSwitch : public LiveActor {
 public:
     DesertLandMoveSwitch(const char* pName);
-    virtual ~DesertLandMoveSwitch();
+
     virtual void init(const JMapInfoIter& rIter);
     virtual void initAfterPlacement();
     virtual void calcAnim();
@@ -39,13 +39,6 @@ public:
     s32 _9C;
     const char* _A0;
 };
-
-namespace NrvDesertLandMoveSwitch {
-    NERVE_DECL_EXE(HostTypeWait, DesertLandMoveSwitch, Wait);
-    NERVE_DECL_EXE(HostTypeSwitchDown, DesertLandMoveSwitch, SwitchDown);
-    NERVE_DECL_EXE(HostTypeOn, DesertLandMoveSwitch, On);
-    NERVE_DECL_EXE(HostTypeReturn, DesertLandMoveSwitch, Return);
-};  // namespace NrvDesertLandMoveSwitch
 
 namespace MR {
     bool isMsgHipDropFloor(u32);

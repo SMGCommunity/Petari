@@ -28,9 +28,15 @@ static OSInterruptMask SetInterruptMask(OSInterruptMask, OSInterruptMask);
  
 asm BOOL OSDisableInterrupts(void) {
     nofralloc
+
+entry __RAS_OSDisableInterrupts_begin
+
     mfmsr r3
     rlwinm r4, r3, 0, 17, 15
     mtmsr r4
+
+entry __RAS_OSDisableInterrupts_end
+
     extrwi r3, r3, 1, 16
     blr
 }

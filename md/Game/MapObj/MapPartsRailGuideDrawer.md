@@ -13,7 +13,7 @@
 | `isWorking__23MapPartsRailGuideDrawerCFv` | `0x8025C044` | :x: (0.0%) |
 | `show__23MapPartsRailGuideDrawerFv` | `0x8025C0B4` | :x: (0.0%) |
 | `hide__23MapPartsRailGuideDrawerFv` | `0x8025C11C` | :x: (0.0%) |
-| `initGuidePoints__23MapPartsRailGuideDrawerFRC12JMapInfoIter` | `0x8025C184` | :x: (95.2%) |
+| `initGuidePoints__23MapPartsRailGuideDrawerFRC12JMapInfoIter` | `0x8025C184` | :x: (100.0%) |
 | `exeDrawForward__23MapPartsRailGuideDrawerFv` | `0x8025C2D0` | :x: (0.0%) |
 | `__sinit_\MapPartsRailGuideDrawer_cpp` | `0x8025C370` | :x: (0.0%) |
 | `__ct__Q226NrvMapPartsRailGuideDrawer15HostTypeHideAllFv` | `0x8025C3A4` | :x: (0.0%) |

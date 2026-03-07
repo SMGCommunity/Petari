@@ -9,13 +9,13 @@
 | `__ct__10SpringStepFfff` | `0x8025B194` | :white_check_mark: (100.0%) |
 | `addSpringVelocity__10SpringStepFf` | `0x8025B23C` | :white_check_mark: (100.0%) |
 | `setSpringBaseValue__10SpringStepFf` | `0x8025B250` | :white_check_mark: (100.0%) |
-| `__ct__21MapPartsFloatingForceFP9LiveActor` | `0x8025B274` | :x: (45.9%) |
-| `init__21MapPartsFloatingForceFRC12JMapInfoIter` | `0x8025B308` | :x: (96.8%) |
+| `__ct__21MapPartsFloatingForceFP9LiveActor` | `0x8025B274` | :x: (68.3%) |
+| `init__21MapPartsFloatingForceFRC12JMapInfoIter` | `0x8025B308` | :x: (99.8%) |
 | `setObjectName__21MapPartsFloatingForceFPCc` | `0x8025B384` | :white_check_mark: (100.0%) |
 | `initForNormalMotion__21MapPartsFloatingForceFRC12JMapInfoIter` | `0x8025B38C` | :white_check_mark: (100.0%) |
 | `initForSpringMotion__21MapPartsFloatingForceFRC12JMapInfoIter` | `0x8025B410` | :white_check_mark: (100.0%) |
 | `start__21MapPartsFloatingForceFv` | `0x8025B53C` | :x: (0.0%) |
-| `updateVelocity__21MapPartsFloatingForceFv` | `0x8025B5EC` | :x: (93.0%) |
+| `updateVelocity__21MapPartsFloatingForceFv` | `0x8025B5EC` | :white_check_mark: (100.0%) |
 | `updateVelocitySpring__21MapPartsFloatingForceFv` | `0x8025B6D0` | :x: (0.0%) |
 | `tryOn__21MapPartsFloatingForceFv` | `0x8025B7A0` | :white_check_mark: (100.0%) |
 | `tryReturn__21MapPartsFloatingForceFv` | `0x8025B858` | :white_check_mark: (100.0%) |

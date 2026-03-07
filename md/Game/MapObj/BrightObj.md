@@ -13,7 +13,7 @@
 | `reset__10BrightInfoFv` | `0x801BAE40` | :white_check_mark: (100.0%) |
 | `__ct__14BrightDrawInfoFv` | `0x801BAECC` | :white_check_mark: (100.0%) |
 | `write__14BrightDrawInfoFUsRCQ29JGeometry8TVec3<f>f` | `0x801BAF44` | :x: (0.0%) |
-| `__ct__13BrightCamInfoFv` | `0x801BAFA0` | :x: (86.9%) |
+| `__ct__13BrightCamInfoFv` | `0x801BAFA0` | :x: (92.0%) |
 | `write__13BrightCamInfoFUsRCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RCQ29JGeometry66TProjection3<Q29JGeometry38TMatrix44<Q29JGeometry13SMatrix44C<f>>>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | `0x801BB094` | :x: (0.0%) |
 | `__ct__13BrightObjBaseFv` | `0x801BB16C` | :x: (0.0%) |
 | `checkVisibilityOfSphere__13BrightObjBaseFUsRC13BrightCamInfo` | `0x801BB1DC` | :x: (0.0%) |

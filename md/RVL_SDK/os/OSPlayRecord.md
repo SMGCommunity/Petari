@@ -7,6 +7,6 @@
 | Name | Address | Match % |
 |------|---------|---------|
 | `PlayRecordAlarmCallback` | `0x804AE728` | :white_check_mark: (100.0%) |
-| `PlayRecordCallback` | `0x804AE734` | :x: (91.3%) |
+| `PlayRecordCallback` | `0x804AE734` | :x: (99.9%) |
 | `__OSStartPlayRecord` | `0x804AEBE4` | :white_check_mark: (100.0%) |
-| `__OSStopPlayRecord` | `0x804AEC38` | :x: (91.8%) |
+| `__OSStopPlayRecord` | `0x804AEC38` | :x: (99.9%) |

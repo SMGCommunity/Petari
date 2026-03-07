@@ -1,6 +1,13 @@
 #ifndef GDLIGHT_H
 #define GDLIGHT_H
 
+#include "revolution/gx/GXEnum.h"
+#include "revolution/types.h"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #define XF_AMBIENT0_ID 0x100a
 #define XF_MATERIAL0_ID 0x100c
 #define XF_COLOR0CNTRL_ID 0x100e
@@ -34,5 +41,23 @@
      (((unsigned long)(light3210)) << XF_COLOR0CNTRL_LIGHT0_SHIFT) | (((unsigned long)(ambient_src)) << XF_COLOR0CNTRL_AMBIENT_SRC_SHIFT) |          \
      (((unsigned long)(diffuseatten)) << XF_COLOR0CNTRL_DIFFUSEATTEN_SHIFT) | (((unsigned long)(attenenable)) << XF_COLOR0CNTRL_ATTENENABLE_SHIFT) | \
      (((unsigned long)(attenselect)) << XF_COLOR0CNTRL_ATTENSELECT_SHIFT) | (((unsigned long)(light7654)) << XF_COLOR0CNTRL_LIGHT4_SHIFT))
+
+inline static u16 __GDLightID2Index(GXLightID id) {
+    u16 idx;
+
+    idx = 0x1F - __cntlzw(id);
+    if (idx > 7) {
+        idx = 0;
+    }
+    return idx;
+}
+
+static u16 __GDLightID2Offset(GXLightID id) {
+    return __GDLightID2Index(id) * 16;
+}
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif  // GDLIGHT_H

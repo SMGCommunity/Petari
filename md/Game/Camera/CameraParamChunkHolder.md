@@ -15,5 +15,5 @@
 | `isNewAttribute__22CameraParamChunkHolderFRC18CameraParamChunkID` | `0x800AA864` | :white_check_mark: (100.0%) |
 | `findChunk__22CameraParamChunkHolderFRC18CameraParamChunkID` | `0x800AA8E0` | :white_check_mark: (100.0%) |
 | `findChunk__22CameraParamChunkHolderFlPCc` | `0x800AA9EC` | :white_check_mark: (100.0%) |
-| `loadFile__22CameraParamChunkHolderFl` | `0x800AAA74` | :x: (0.0%) |
+| `loadFile__22CameraParamChunkHolderFl` | `0x800AAA74` | :x: (99.9%) |
 | `arrangeChunk__22CameraParamChunkHolderFP16CameraParamChunk` | `0x800AAB7C` | :white_check_mark: (100.0%) |

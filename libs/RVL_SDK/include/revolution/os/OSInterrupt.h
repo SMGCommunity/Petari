@@ -102,6 +102,9 @@ void __OSInterruptInit(void);
 OSInterruptMask __OSMaskInterrupts(OSInterruptMask);
 OSInterruptMask __OSUnmaskInterrupts(OSInterruptMask);
 
+void __RAS_OSDisableInterrupts_begin(void);
+void __RAS_OSDisableInterrupts_end(void);
+
 #ifdef __cplusplus
 }
 #endif

@@ -7,7 +7,7 @@
 | Name | Address | Match % |
 |------|---------|---------|
 | `dvdCallBackFunc__36@unnamed@THPSimplePlayerWrapper_cpp@FlP11DVDFileInfo` | `0x8038DE10` | :white_check_mark: (100.0%) |
-| `__ct__22THPSimplePlayerWrapperFPCc` | `0x8038DE20` | :x: (98.0%) |
+| `__ct__22THPSimplePlayerWrapperFPCc` | `0x8038DE20` | :white_check_mark: (100.0%) |
 | `init__22THPSimplePlayerWrapperFl` | `0x8038DFA8` | :white_check_mark: (100.0%) |
 | `quit__22THPSimplePlayerWrapperFv` | `0x8038E064` | :white_check_mark: (100.0%) |
 | `open__22THPSimplePlayerWrapperFPCc` | `0x8038E0A8` | :white_check_mark: (100.0%) |
@@ -25,7 +25,7 @@
 | `videoDecode__22THPSimplePlayerWrapperFPUc` | `0x8038E840` | :white_check_mark: (100.0%) |
 | `readFrameAsync__22THPSimplePlayerWrapperFv` | `0x8038E8C0` | :white_check_mark: (100.0%) |
 | `checkPrefetch__22THPSimplePlayerWrapperFv` | `0x8038E994` | :white_check_mark: (100.0%) |
-| `dvdCallBack__22THPSimplePlayerWrapperFl` | `0x8038EA08` | :x: (81.5%) |
+| `dvdCallBack__22THPSimplePlayerWrapperFl` | `0x8038EA08` | :white_check_mark: (100.0%) |
 | `readAsyncCallBack__22THPSimplePlayerWrapperFl` | `0x8038EAE0` | :white_check_mark: (100.0%) |
 | `getNextBuffer__22THPSimplePlayerWrapperCFUl` | `0x8038EC70` | :white_check_mark: (100.0%) |
 | `tryDvdOpen__22THPSimplePlayerWrapperFPCc` | `0x8038EC8C` | :white_check_mark: (100.0%) |
@@ -46,9 +46,9 @@
 | `initAudio__22THPSimplePlayerWrapperFv` | `0x8038F298` | :white_check_mark: (100.0%) |
 | `isAudioProcessValid__22THPSimplePlayerWrapperFv` | `0x8038F2F4` | :white_check_mark: (100.0%) |
 | `audioCallback__22THPSimplePlayerWrapperFl` | `0x8038F31C` | :white_check_mark: (100.0%) |
-| `mixAudio__22THPSimplePlayerWrapperFPsUl` | `0x8038F3A8` | :x: (99.5%) |
+| `mixAudio__22THPSimplePlayerWrapperFPsUl` | `0x8038F3A8` | :white_check_mark: (100.0%) |
 | `resetAudioParams__22THPSimplePlayerWrapperFv` | `0x8038F6D8` | :white_check_mark: (100.0%) |
-| `setVolume__22THPSimplePlayerWrapperFll` | `0x8038F750` | :x: (98.4%) |
+| `setVolume__22THPSimplePlayerWrapperFll` | `0x8038F750` | :white_check_mark: (100.0%) |
 | `isPreLoading__22THPSimplePlayerWrapperCFv` | `0x8038F848` | :white_check_mark: (100.0%) |
 | `setUnpauseFrameFlag__22THPSimplePlayerWrapperFv` | `0x8038F850` | :white_check_mark: (100.0%) |
 | `audioCallback__26THPSimplePlayerStaticAudioFl` | `0x8038F888` | :white_check_mark: (100.0%) |

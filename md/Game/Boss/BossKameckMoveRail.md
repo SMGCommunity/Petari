@@ -11,4 +11,4 @@
 | `calcMovePosition__18BossKameckMoveRailCFPQ29JGeometry8TVec3<f>l` | `0x80039BDC` | :white_check_mark: (100.0%) |
 | `calcRandomIndex__18BossKameckMoveRailCFl` | `0x80039BEC` | :white_check_mark: (100.0%) |
 | `calcRandomStoppableIndex__18BossKameckMoveRailCFl` | `0x80039C54` | :white_check_mark: (100.0%) |
-| `__dt__18BossKameckMoveRailFv` | `0x80039D20` | :x: (95.7%) |
+| `__dt__18BossKameckMoveRailFv` | `0x80039D20` | :white_check_mark: (100.0%) |

@@ -1,4 +1,5 @@
 #include "Game/MapObj/SpinDriverPathDrawer.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 #include <revolution/gx/GXVert.h>
 
@@ -6,7 +7,7 @@ SpinDriverPathDrawInit::SpinDriverPathDrawInit()
     : NameObj("スピンドライバーレール描画初期化"), mOrangeTexture(nullptr), mGreenTexture(nullptr), mPinkTexture(nullptr), mMaskTexture(nullptr),
       mIsPathAtOpa(false) {
     void (SpinDriverPathDrawInit::*drawFunc)(void) = &SpinDriverPathDrawInit::initDraw;
-    MR::registerPreDrawFunction(MR::Functor(this, drawFunc), 18);
+    MR::registerPreDrawFunction(MR::Functor(this, drawFunc), MR::DrawType_SpinDriverPathDrawer);
     mOrangeTexture = new JUTTexture(MR::loadTexFromArc("SpinDriverPath.arc", "NormalColor.bti"), 0);
     mGreenTexture = new JUTTexture(MR::loadTexFromArc("SpinDriverPath.arc", "Green.bti"), 0);
     mPinkTexture = new JUTTexture(MR::loadTexFromArc("SpinDriverPath.arc", "Pink.bti"), 0);
@@ -31,7 +32,6 @@ SpinDriverPathDrawer::SpinDriverPathDrawer(SpinDriverShootPath* pShootPath) : Li
     MR::createSceneObj(SceneObj_SpinDriverPathDrawInit);
 }
 
-#ifdef NON_MATCHING
 void SpinDriverPathDrawInit::initDraw() {
     TDDraw::cameraInit3D();
     GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_F32, 0);
@@ -64,7 +64,6 @@ void SpinDriverPathDrawInit::initDraw() {
     GXSetFogRangeAdj(GX_FALSE, 0, nullptr);
     mMaskTexture->load(GX_TEXMAP1);
 }
-#endif
 
 namespace MR {
     void setSpinDriverPathColorNormal() {
@@ -97,7 +96,7 @@ namespace MR {
 };  // namespace MR
 
 void SpinDriverPathDrawer::init(const JMapInfoIter& rIter) {
-    MR::connectToScene(this, -1, -1, -1, 0x12);
+    MR::connectToScene(this, -1, -1, -1, MR::DrawType_SpinDriverPathDrawer);
     initPositionList(75.0f, 20.0f);
     initClipping();
     initPathEnd();

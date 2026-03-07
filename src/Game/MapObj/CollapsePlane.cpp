@@ -1,6 +1,13 @@
 #include "Game/MapObj/CollapsePlane.hpp"
 #include "Game/Enemy/AnimScaleController.hpp"
 
+namespace NrvCollapsePlane {
+    NEW_NERVE(CollapsePlaneNrvWait, CollapsePlane, Wait);
+    NEW_NERVE(CollapsePlaneNrvCollapse, CollapsePlane, Collapse);
+    NEW_NERVE(CollapsePlaneNrvDPDStop, CollapsePlane, DPDStop);
+    NEW_NERVE(CollapsePlaneNrvEnd, CollapsePlane, End);
+};  // namespace NrvCollapsePlane
+
 CollapsePlane::CollapsePlane(const char* pName) : MapObjActor(pName) {
     mScaleController = nullptr;
     mStarPointerBind = nullptr;
@@ -73,6 +80,8 @@ void CollapsePlane::exeDPDStop() {
     }
 }
 
+void CollapsePlane::exeEnd() {}
+
 void CollapsePlane::calcAndSetBaseMtx() {
     MapObjActor::calcAndSetBaseMtx();
 
@@ -120,12 +129,5 @@ bool CollapsePlane::tryDPDStop() {
     setNerve(&NrvCollapsePlane::CollapsePlaneNrvDPDStop::sInstance);
     return true;
 }
-
-namespace NrvCollapsePlane {
-    INIT_NERVE(CollapsePlaneNrvWait);
-    INIT_NERVE(CollapsePlaneNrvCollapse);
-    INIT_NERVE(CollapsePlaneNrvDPDStop);
-    INIT_NERVE(CollapsePlaneNrvEnd);
-};  // namespace NrvCollapsePlane
 
 CollapsePlane::~CollapsePlane() {}

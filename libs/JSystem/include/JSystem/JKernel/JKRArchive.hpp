@@ -89,7 +89,8 @@ public:
 
     class CArcName {
     public:
-        inline CArcName() {}
+        inline CArcName() {
+        }
 
         const char* store(const char*);
         const char* store(const char*, char);
@@ -153,5 +154,5 @@ public:
     char* mStringTable;         // 0x54
     u32 _58;
     s32 _5C;
-    u32 mMountDir;  // 0x60
+    EMountDirection mMountDir;  // 0x60
 };

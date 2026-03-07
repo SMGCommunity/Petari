@@ -21,9 +21,9 @@
 | `updateUpper__19CameraHeightArrangeFv` | `0x8009FF94` | :x: (0.0%) |
 | `updateLower__19CameraHeightArrangeFv` | `0x800A01B0` | :x: (0.0%) |
 | `calcOffset__19CameraHeightArrangeFf` | `0x800A035C` | :x: (0.0%) |
-| `chase__19CameraHeightArrangeFv` | `0x800A0524` | :x: (61.0%) |
-| `updateHeightAndOffset__19CameraHeightArrangeFv` | `0x800A05C8` | :x: (84.6%) |
-| `getGlobalAxis__19CameraHeightArrangeFv` | `0x800A0698` | :x: (0.0%) |
+| `chase__19CameraHeightArrangeFv` | `0x800A0524` | :x: (79.0%) |
+| `updateHeightAndOffset__19CameraHeightArrangeFv` | `0x800A05C8` | :white_check_mark: (100.0%) |
+| `getGlobalAxis__19CameraHeightArrangeFv` | `0x800A0698` | :x: (43.9%) |
 | `isFastRise__15CameraTargetObjCFv` | `0x800A075C` | :white_check_mark: (100.0%) |
 | `isFastDrop__15CameraTargetObjCFv` | `0x800A0764` | :white_check_mark: (100.0%) |
 | `JMASinRadian__Ff` | `0x800A076C` | :x: (0.0%) |

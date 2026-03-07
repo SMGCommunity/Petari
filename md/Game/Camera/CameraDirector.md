@@ -13,7 +13,7 @@
 | `getTarget__14CameraDirectorFv` | `0x80099624` | :white_check_mark: (100.0%) |
 | `push__14CameraDirectorFP9CameraMan` | `0x8009962C` | :white_check_mark: (100.0%) |
 | `pop__14CameraDirectorFv` | `0x800996B0` | :white_check_mark: (100.0%) |
-| `backLastMtx__14CameraDirectorFv` | `0x80099738` | :x: (23.1%) |
+| `backLastMtx__14CameraDirectorFv` | `0x80099738` | :x: (55.8%) |
 | `getCurrentCameraMan__14CameraDirectorCFv` | `0x800997A0` | :white_check_mark: (100.0%) |
 | `updateCameraMan__14CameraDirectorFv` | `0x800997BC` | :white_check_mark: (100.0%) |
 | `calcPose__14CameraDirectorFv` | `0x80099830` | :white_check_mark: (100.0%) |
@@ -53,7 +53,7 @@
 | `isStartAnimCameraEnd__14CameraDirectorCFv` | `0x8009A500` | :white_check_mark: (100.0%) |
 | `getStartAnimCameraFrame__14CameraDirectorCFv` | `0x8009A520` | :white_check_mark: (100.0%) |
 | `endStartAnimCamera__14CameraDirectorFv` | `0x8009A540` | :white_check_mark: (100.0%) |
-| `startTalkCamera__14CameraDirectorFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>ffl` | `0x8009A580` | :x: (80.6%) |
+| `startTalkCamera__14CameraDirectorFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>ffl` | `0x8009A580` | :x: (97.6%) |
 | `endTalkCamera__14CameraDirectorFbl` | `0x8009A68C` | :white_check_mark: (100.0%) |
 | `startSubjectiveCamera__14CameraDirectorFl` | `0x8009A6A0` | :white_check_mark: (100.0%) |
 | `endSubjectiveCamera__14CameraDirectorFl` | `0x8009A740` | :white_check_mark: (100.0%) |
@@ -68,7 +68,7 @@
 | `removeEndEventAtLanding__14CameraDirectorFlPCc` | `0x8009ACCC` | :x: (0.0%) |
 | `calcViewMtxFromPoseParam__14CameraDirectorFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>PC15CameraPoseParam` | `0x8009ADBC` | :x: (0.0%) |
 | `isPlayableCameraSE__14CameraDirectorFb` | `0x8009AFC0` | :white_check_mark: (100.0%) |
-| `resetCameraMan__14CameraDirectorFv` | `0x8009B0B0` | :x: (71.9%) |
+| `resetCameraMan__14CameraDirectorFv` | `0x8009B0B0` | :x: (72.9%) |
 | `createStartAnimCamera__14CameraDirectorFv` | `0x8009B230` | :white_check_mark: (100.0%) |
 | `createTalkCamera__14CameraDirectorFv` | `0x8009B2A4` | :white_check_mark: (100.0%) |
 | `createSubjectiveCamera__14CameraDirectorFv` | `0x8009B35C` | :white_check_mark: (100.0%) |

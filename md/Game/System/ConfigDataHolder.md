@@ -9,8 +9,8 @@
 | `__ct__21ConfigDataCreateChunkFv` | `0x803AE294` | :white_check_mark: (100.0%) |
 | `makeHeaderHashCode__21ConfigDataCreateChunkCFv` | `0x803AE2E0` | :white_check_mark: (100.0%) |
 | `getSignature__21ConfigDataCreateChunkCFv` | `0x803AE2EC` | :white_check_mark: (100.0%) |
-| `serialize__21ConfigDataCreateChunkCFPUcUl` | `0x803AE2F8` | :x: (41.7%) |
-| `deserialize__21ConfigDataCreateChunkFPCUcUl` | `0x803AE370` | :x: (87.2%) |
+| `serialize__21ConfigDataCreateChunkCFPUcUl` | `0x803AE2F8` | :white_check_mark: (100.0%) |
+| `deserialize__21ConfigDataCreateChunkFPCUcUl` | `0x803AE370` | :white_check_mark: (100.0%) |
 | `initializeData__21ConfigDataCreateChunkFv` | `0x803AE40C` | :white_check_mark: (100.0%) |
 | `setIsCreated__16ConfigDataHolderFb` | `0x803AE418` | :white_check_mark: (100.0%) |
 | `isCreated__16ConfigDataHolderCFv` | `0x803AE424` | :white_check_mark: (100.0%) |

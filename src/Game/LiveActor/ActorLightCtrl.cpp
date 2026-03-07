@@ -9,7 +9,6 @@ ActorLightCtrl::ActorLightCtrl(const LiveActor* pActor) : mActor(pActor), _4(-1)
     _54 = -1;
 }
 
-#ifdef NON_MATCHING
 // initActorLightInfo call is getting inlined
 void ActorLightCtrl::init(int interpolate, bool /* unused */) {
     if (interpolate >= 0) {
@@ -22,7 +21,6 @@ void ActorLightCtrl::init(int interpolate, bool /* unused */) {
     mAreaLightInf = LightFunction::getAreaLightInfo(mLightID);
     mLightInfo = *getTargetActorLight(mAreaLightInf);
 }
-#endif
 
 void ActorLightCtrl::update(bool direct) {
     if (!MR::isHiddenModel(mActor)) {

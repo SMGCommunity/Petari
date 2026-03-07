@@ -23,6 +23,13 @@
 #include <cstddef>
 #include <cstdio>
 
+namespace NrvUFOBase {
+    NEW_NERVE(UFOBaseNrvWait, UFOBase, Wait);
+    NEW_NERVE(UFOBaseNrvWaitForPlayerOn, UFOBase, WaitForPlayerOn);
+    NEW_NERVE(UFOBaseNrvMove, UFOBase, Move);
+    NEW_NERVE(UFOBaseNrvBreak, UFOBase, Break);
+};  // namespace NrvUFOBase
+
 UFOBase::UFOBase(const char* pName) : LiveActor(pName) {
     mCollisionParts = nullptr;
     mLODCtrl = nullptr;
@@ -80,6 +87,12 @@ void UFOBase::init(const JMapInfoIter& rIter) {
     makeActorAppeared();
 }
 
+void UFOBase::exeWait() {
+    if (!MR::isValidSwitchB(this) || MR::isOnSwitchB(this)) {
+        setNerve(&NrvUFOBase::UFOBaseNrvMove::sInstance);
+    }
+}
+
 void UFOBase::exeWaitForPlayerOn() {
     if (MR::isOnPlayer(getSensor(nullptr)) && (!MR::isValidSwitchB(this) || MR::isOnSwitchB(this))) {
         setNerve(&NrvUFOBase::UFOBaseNrvMove::sInstance);
@@ -97,6 +110,10 @@ void UFOBase::exeMove() {
     }
     MR::rotateVecDegree(&_9C, mGravity, _A8);
 }
+
+void UFOBase::exeBreak() {
+    kill();
+};
 
 void UFOBase::initSensorType() {
     MR::addBodyMessageSensorMapObj(this);
@@ -179,12 +196,6 @@ void UFOBase::initSubModel(const JMapInfoIter& rIter, const char* name) {
     }
 }
 
-void UFOBase::exeWait() {
-    if (!MR::isValidSwitchB(this) || MR::isOnSwitchB(this)) {
-        setNerve(&NrvUFOBase::UFOBaseNrvMove::sInstance);
-    }
-}
-
 UFOSolid::UFOSolid(const char* pName) : UFOBase(pName) {}
 
 UFOBreakable::UFOBreakable(const char* pName) : UFOBase(pName) {}
@@ -200,30 +211,3 @@ bool UFOBreakable::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor*
     }
     return false;
 }
-
-namespace NrvUFOBase {
-    INIT_NERVE(UFOBaseNrvWait);
-    INIT_NERVE(UFOBaseNrvWaitForPlayerOn);
-    INIT_NERVE(UFOBaseNrvMove);
-    INIT_NERVE(UFOBaseNrvBreak);
-
-    void UFOBaseNrvWait::execute(Spine* pSpine) const {
-        UFOBase* pActor = (UFOBase*)pSpine->mExecutor;
-        pActor->exeWait();
-    }
-
-    void UFOBaseNrvWaitForPlayerOn::execute(Spine* pSpine) const {
-        UFOBase* pActor = (UFOBase*)pSpine->mExecutor;
-        pActor->exeWaitForPlayerOn();
-    }
-
-    void UFOBaseNrvMove::execute(Spine* pSpine) const {
-        UFOBase* pActor = (UFOBase*)pSpine->mExecutor;
-        pActor->exeMove();
-    }
-
-    void UFOBaseNrvBreak::execute(Spine* pSpine) const {
-        UFOBase* pActor = (UFOBase*)pSpine->mExecutor;
-        pActor->kill();
-    }
-};  // namespace NrvUFOBase

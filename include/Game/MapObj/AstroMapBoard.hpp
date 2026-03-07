@@ -10,4 +10,6 @@ public:
     virtual void init(const JMapInfoIter&);
     virtual void initAfterPlacement();
     virtual void connectToScene(const MapObjActorInitInfo&);
+
+    void exeWait();
 };

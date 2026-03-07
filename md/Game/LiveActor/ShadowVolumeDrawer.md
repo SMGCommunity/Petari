@@ -15,7 +15,7 @@
 | `calcBaseDropPosition__18ShadowVolumeDrawerCFPQ29JGeometry8TVec3<f>` | `0x8016E754` | :white_check_mark: (100.0%) |
 | `calcBaseDropPosition__18ShadowVolumeDrawerCFPQ29JGeometry8TVec3<f>PC16ShadowController` | `0x8016E79C` | :x: (0.0%) |
 | `calcBaseDropLength__18ShadowVolumeDrawerCFv` | `0x8016E874` | :white_check_mark: (100.0%) |
-| `calcBaseDropLength__18ShadowVolumeDrawerCFPC16ShadowController` | `0x8016E8AC` | :x: (0.0%) |
+| `calcBaseDropLength__18ShadowVolumeDrawerCFPC16ShadowController` | `0x8016E8AC` | :x: (99.4%) |
 | `loadModelDrawMtx__18ShadowVolumeDrawerCFv` | `0x8016E93C` | :white_check_mark: (100.0%) |
 | `drawShape__18ShadowVolumeDrawerCFv` | `0x8016E940` | :white_check_mark: (100.0%) |
 | `isDraw__18ShadowVolumeDrawerCFv` | `0x8016E944` | :white_check_mark: (100.0%) |

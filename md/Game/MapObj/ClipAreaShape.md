@@ -15,7 +15,7 @@
 | `isInArea__16ClipAreaShapeBoxCFRCQ29JGeometry8TVec3<f>` | `0x801C2B6C` | :x: (0.0%) |
 | `calcVolumeMatrix__16ClipAreaShapeBoxCFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RCQ29JGeometry8TVec3<f>` | `0x801C2C78` | :x: (0.0%) |
 | `__ct__17ClipAreaShapeConeFl` | `0x801C2CE8` | :white_check_mark: (100.0%) |
-| `isInArea__17ClipAreaShapeConeCFRCQ29JGeometry8TVec3<f>` | `0x801C2D4C` | :x: (77.3%) |
+| `isInArea__17ClipAreaShapeConeCFRCQ29JGeometry8TVec3<f>` | `0x801C2D4C` | :x: (97.3%) |
 | `isInArea__13ClipAreaShapeCFRCQ29JGeometry8TVec3<f>` | `0x801C2DFC` | :white_check_mark: (100.0%) |
 | `__ct__19ClipAreaShapeSphereFv` | `0x801C2E04` | :x: (0.0%) |
 | `__ct__16ClipAreaShapeBoxFl` | `0x801C2E50` | :x: (0.0%) |

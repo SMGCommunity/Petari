@@ -10,7 +10,6 @@ LightDataHolder::LightDataHolder() {
     mLights = 0;
 }
 
-#ifdef NON_MATCHING
 // regalloc issues
 AreaLightInfo* LightDataHolder::findAreaLight(const char* pName) const {
     for (s32 i = 0; i < mLightCount; i++) {
@@ -23,7 +22,6 @@ AreaLightInfo* LightDataHolder::findAreaLight(const char* pName) const {
 
     return mLights;
 }
-#endif
 
 const char* LightDataHolder::getDefaultAreaLightName() const {
     return sDefaultAreaLightName;

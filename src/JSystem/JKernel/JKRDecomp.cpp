@@ -25,7 +25,7 @@ JKRDecomp::JKRDecomp(long a1) : JKRThread(0x4000, 0x10, a1) {
 
 JKRDecomp::~JKRDecomp() {}
 
-s32 JKRDecomp::run() {
+void* JKRDecomp::run() {
     OSInitMessageQueue(&gMessageQueue, &gMessage[0], NR_MESSAGES);
 
     JKRDecompCommand* commandPtr;
@@ -119,7 +119,7 @@ void JKRDecomp::decode(unsigned char* pSrc, unsigned char* pDst, unsigned long c
 
 }*/
 
-#ifdef NON_MATCHING  // Wrong registers
+// Wrong registers
 void JKRDecomp::decodeSZS(u8* pSrc, u8* pDst, u32 compressedSize, u32 a4) {
     u32 decompSize = ((s32)pDst + *(u32*)(pSrc + 4)) - a4;
     u8 byte1, byte2;
@@ -193,7 +193,6 @@ void JKRDecomp::decodeSZS(u8* pSrc, u8* pDst, u32 compressedSize, u32 a4) {
         validBitCount--;
     } while ((u32)pDst != decompSize);
 }
-#endif
 
 EJKRCompression JKRDecomp::checkCompressed(unsigned char* pSrc) {
     if (pSrc[0] == 'Y' && pSrc[1] == 'a' && pSrc[3] == '0') {

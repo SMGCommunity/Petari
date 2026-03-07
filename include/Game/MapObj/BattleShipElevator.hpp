@@ -11,11 +11,7 @@ public:
     virtual void control();
     virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
 
+    void exeWait();
     void exeMove();
+    void exeEnd();
 };
-
-namespace NrvBattleShipElevator {
-    NERVE(BattleShipElevatorNrvWait);
-    NERVE(BattleShipElevatorNrvMove);
-    NERVE(BattleShipElevatorNrvEnd);
-};  // namespace NrvBattleShipElevator

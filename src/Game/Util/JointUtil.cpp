@@ -11,7 +11,7 @@
 
 namespace MR {
     J3DJoint* getJoint(J3DModel* pModel, const char* pName) {
-        return pModel->mModelData->mJointTree.mJointNode[(u16)pModel->mModelData->mJointTree.mJointName->getIndex(pName)];
+        return pModel->mModelData->mJointTree.mJointNodePointer[(u16)pModel->mModelData->mJointTree.mJointName->getIndex(pName)];
     }
 
     J3DJoint* getJoint(const LiveActor* pActor, const char* pName) {
@@ -19,7 +19,7 @@ namespace MR {
     }
 
     J3DJoint* getJoint(const LiveActor* pActor, u16 idx) {
-        return MR::getJ3DModelData(pActor)->mJointTree.mJointNode[idx];
+        return MR::getJ3DModelData(pActor)->mJointTree.mJointNodePointer[idx];
     }
 
     MtxPtr getJointMtx(J3DModel* pModel, const char* pName) {
@@ -79,7 +79,7 @@ namespace MR {
     }
 
     void hideJoint(J3DJoint* pJoint) {
-        for (J3DMaterial* mat = pJoint->mMesh; mat != nullptr; mat = mat->_4) {
+        for (J3DMaterial* mat = pJoint->mMesh; mat != nullptr; mat = mat->mNext) {
             mat->mShape->mFlags |= 1;
         }
     }
@@ -96,7 +96,7 @@ namespace MR {
         MR::hideJoint(pJoint);
         J3DJoint *j, *i;
         for (i = pJoint->mChild; i; i = i->mChild) {
-            for (j = i; j; j = j->mYoung) {
+            for (j = i; j; j = j->mYounger) {
                 MR::hideJointAndChildren(j);
             }
         }
@@ -111,7 +111,7 @@ namespace MR {
     }
 
     void showJoint(J3DJoint* pJoint) {
-        for (J3DMaterial* mat = pJoint->mMesh; mat != nullptr; mat = mat->_4) {
+        for (J3DMaterial* mat = pJoint->mMesh; mat != nullptr; mat = mat->mNext) {
             mat->mShape->mFlags &= ~1;
         }
     }
@@ -128,7 +128,7 @@ namespace MR {
         MR::showJoint(pJoint);
         J3DJoint *j, *i;
         for (i = pJoint->mChild; i; i = i->mChild) {
-            for (j = i; j; j = j->mYoung) {
+            for (j = i; j; j = j->mYounger) {
                 MR::showJointAndChildren(j);
             }
         }

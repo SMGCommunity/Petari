@@ -26,7 +26,6 @@ void XanimeCore::shareJointTransform(const XanimeCore* pOther) {
     mTransformList = pOther->mTransformList;
 }
 
-#ifdef NON_MATCHING
 // missing new array call
 void XanimeCore::initMember(u32 trackCount) {
     _1C = 1.0f;
@@ -47,7 +46,6 @@ void XanimeCore::initMember(u32 trackCount) {
 
     setWeight(0, 1.0f);
 }
-#endif
 
 XanimeCore::XanimeCore(u32 trackCount, u32 jointCount, u8 a3) {
     _4 = a3;

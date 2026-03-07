@@ -10,10 +10,6 @@ public:
     virtual void init(const JMapInfoIter&);
     virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
 
+    void exeWait();
     void exeHit();
 };
-
-namespace NrvCoinBox {
-    NERVE(CoinBoxNrvWait);
-    NERVE(CoinBoxNrvHit);
-};  // namespace NrvCoinBox

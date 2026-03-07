@@ -19,6 +19,7 @@ public:
     void checkKind(const JMapInfoIter&);
     void initBlock();
     bool tryStartJumpPunch();
+    void exeStandby();
     void exeWait();
     void exeAppearItem();
     void exeAppearItemSplash();
@@ -31,10 +32,3 @@ public:
     bool mCalcShadowOneTime;  // 0x99
     bool mNoCalcAnim;         // 0x9A
 };
-
-namespace NrvItemBlock {
-    NERVE(ItemBlockNrvStandby);
-    NERVE(ItemBlockNrvWait);
-    NERVE(ItemBlockNrvAppearItem);
-    NERVE(ItemBlockNrvAppearItemSplash);
-};  // namespace NrvItemBlock

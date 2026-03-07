@@ -1,8 +1,15 @@
 #include "Game/MapObj/KillerGunnerSingle.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 
+namespace NrvKillerGunnerSingle {
+    NEW_NERVE(HostTypeWait, KillerGunnerSingle, Wait);
+    NEW_NERVE(HostTypeCharge, KillerGunnerSingle, Charge);
+    NEW_NERVE(HostTypeShoot, KillerGunnerSingle, Shoot);
+    NEW_NERVE(HostTypeAttack, KillerGunnerSingle, Attack);
+};  // namespace NrvKillerGunnerSingle
+
 namespace {
-    static Vec sShellPos;
+    const Vec sShellPos = {0.0f, 0.0f, 700.0f};
 };
 
 KillerGunnerSingle::KillerGunnerSingle(const char* pName) : LiveActor(pName) {}
@@ -12,14 +19,8 @@ void KillerGunnerSingle::init(const JMapInfoIter& rIter) {
     initModelManagerWithAnm("KillerGunnerSingle", nullptr, false);
     MR::connectToSceneEnvironment(this);
     initHitSensor(2);
-    TVec3f sensor_offs;
-    sensor_offs.x = 0.0f;
-    sensor_offs.y = 0.0f;
-    sensor_offs.z = 0.0f;
-    MR::addHitSensorMapObj(this, "body", 16, 0.0f, sensor_offs);
-
-    TVec3f shell_sensor_offs(sShellPos);
-    MR::addHitSensorEnemy(this, "shell", 16, 250.0f, shell_sensor_offs);
+    MR::addHitSensorMapObj(this, "body", 16, 0.0f, TVec3f(0.0f, 0.0f, 0.0f));
+    MR::addHitSensorEnemy(this, "shell", 16, 250.0f, TVec3f(sShellPos));
     MR::initCollisionParts(this, "KillerGunnerSingle", getSensor("body"), nullptr);
     initEffectKeeper(0, nullptr, false);
     initSound(4, false);
@@ -90,10 +91,3 @@ inline void KillerGunnerSingle::exeAttack() {
 }
 
 KillerGunnerSingle::~KillerGunnerSingle() {}
-
-namespace NrvKillerGunnerSingle {
-    INIT_NERVE(HostTypeAttack);
-    INIT_NERVE(HostTypeShoot);
-    INIT_NERVE(HostTypeCharge);
-    INIT_NERVE(HostTypeWait);
-};  // namespace NrvKillerGunnerSingle

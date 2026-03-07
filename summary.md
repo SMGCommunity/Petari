@@ -1857,6 +1857,8 @@
 
 ## Portable
 - [dispatch.md](md/MetroTRK/debugger/embedded/MetroTRK/Portable/dispatch.md)
+- [mainloop.md](md/MetroTRK/debugger/embedded/MetroTRK/Portable/mainloop.md)
+- [main_TRK.md](md/MetroTRK/debugger/embedded/MetroTRK/Portable/main_TRK.md)
 - [mdloop.md](md/MetroTRK/debugger/embedded/MetroTRK/Portable/mdloop.md)
 - [md_TRK.md](md/MetroTRK/debugger/embedded/MetroTRK/Portable/md_TRK.md)
 - [mem_TRK.md](md/MetroTRK/debugger/embedded/MetroTRK/Portable/mem_TRK.md)
@@ -1877,6 +1879,7 @@
 - [targimpl.md](md/MetroTRK/debugger/embedded/MetroTRK/Processor/ppc/Generic/targimpl.md)
 
 ## EXI2_GDEV_GCN
+- [main.md](md/MetroTRK/gamedev/cust_connection/cc/exi2/GCN/EXI2_GDEV_GCN/main.md)
 - [md.md](md/MetroTRK/gamedev/cust_connection/cc/exi2/GCN/EXI2_GDEV_GCN/md.md)
 
 ## common
@@ -2046,25 +2049,30 @@
 - [bta_dm_act.md](md/RVL_SDK/bte/bta_dm_act.md)
 - [bta_dm_api.md](md/RVL_SDK/bte/bta_dm_api.md)
 - [bta_dm_cfg.md](md/RVL_SDK/bte/bta_dm_cfg.md)
+- [bta_dm_main.md](md/RVL_SDK/bte/bta_dm_main.md)
 - [bta_dm_md.md](md/RVL_SDK/bte/bta_dm_md.md)
 - [bta_dm_pm.md](md/RVL_SDK/bte/bta_dm_pm.md)
 - [bta_hh_act.md](md/RVL_SDK/bte/bta_hh_act.md)
 - [bta_hh_api.md](md/RVL_SDK/bte/bta_hh_api.md)
 - [bta_hh_cfg.md](md/RVL_SDK/bte/bta_hh_cfg.md)
+- [bta_hh_main.md](md/RVL_SDK/bte/bta_hh_main.md)
 - [bta_hh_md.md](md/RVL_SDK/bte/bta_hh_md.md)
 - [bta_hh_utils.md](md/RVL_SDK/bte/bta_hh_utils.md)
 - [bta_sys_cfg.md](md/RVL_SDK/bte/bta_sys_cfg.md)
 - [bta_sys_conn.md](md/RVL_SDK/bte/bta_sys_conn.md)
+- [bta_sys_main.md](md/RVL_SDK/bte/bta_sys_main.md)
 - [bta_sys_md.md](md/RVL_SDK/bte/bta_sys_md.md)
 - [bte_hcisu.md](md/RVL_SDK/bte/bte_hcisu.md)
 - [bte_init.md](md/RVL_SDK/bte/bte_init.md)
 - [bte_logmsg.md](md/RVL_SDK/bte/bte_logmsg.md)
+- [bte_main.md](md/RVL_SDK/bte/bte_main.md)
 - [bte_md.md](md/RVL_SDK/bte/bte_md.md)
 - [btm_acl.md](md/RVL_SDK/bte/btm_acl.md)
 - [btm_dev.md](md/RVL_SDK/bte/btm_dev.md)
 - [btm_devctl.md](md/RVL_SDK/bte/btm_devctl.md)
 - [btm_discovery.md](md/RVL_SDK/bte/btm_discovery.md)
 - [btm_inq.md](md/RVL_SDK/bte/btm_inq.md)
+- [btm_main.md](md/RVL_SDK/bte/btm_main.md)
 - [btm_md.md](md/RVL_SDK/bte/btm_md.md)
 - [btm_pm.md](md/RVL_SDK/bte/btm_pm.md)
 - [btm_sco.md](md/RVL_SDK/bte/btm_sco.md)
@@ -2089,6 +2097,7 @@
 - [l2c_api.md](md/RVL_SDK/bte/l2c_api.md)
 - [l2c_csm.md](md/RVL_SDK/bte/l2c_csm.md)
 - [l2c_link.md](md/RVL_SDK/bte/l2c_link.md)
+- [l2c_main.md](md/RVL_SDK/bte/l2c_main.md)
 - [l2c_md.md](md/RVL_SDK/bte/l2c_md.md)
 - [l2c_utils.md](md/RVL_SDK/bte/l2c_utils.md)
 - [port_api.md](md/RVL_SDK/bte/port_api.md)
@@ -2104,6 +2113,7 @@
 - [sdp_api.md](md/RVL_SDK/bte/sdp_api.md)
 - [sdp_db.md](md/RVL_SDK/bte/sdp_db.md)
 - [sdp_discovery.md](md/RVL_SDK/bte/sdp_discovery.md)
+- [sdp_main.md](md/RVL_SDK/bte/sdp_main.md)
 - [sdp_md.md](md/RVL_SDK/bte/sdp_md.md)
 - [sdp_server.md](md/RVL_SDK/bte/sdp_server.md)
 - [sdp_utils.md](md/RVL_SDK/bte/sdp_utils.md)
@@ -2350,6 +2360,7 @@
 - [WPAD.md](md/RVL_SDK/wpad/WPAD.md)
 - [WPADEncrypt.md](md/RVL_SDK/wpad/WPADEncrypt.md)
 - [WPADHIDParser.md](md/RVL_SDK/wpad/WPADHIDParser.md)
+- [WPADMem.md](md/RVL_SDK/wpad/WPADMem.md)
 
 ## wud
 - [debug_msg.md](md/RVL_SDK/wud/debug_msg.md)

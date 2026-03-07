@@ -22,7 +22,7 @@ public:
 
     static s32 sCubeCategory;
 
-    u32 _3C;
+    s32 _3C;
     u32 mZoneID;  // 0x40
 };
 

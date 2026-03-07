@@ -34,6 +34,9 @@ public:
     virtual bool shotBullet(f32);
 
     void exeBound();
+    void exeRelax();
+    void exeSyncWait();
+    void exeFirstWait();
     void exeWait();
     void exePrepareToShot();
     void exeShot();
@@ -58,19 +61,3 @@ public:
     MsgSharedGroup* mGroup;         // 0xB8
     s8 _BC;
 };
-
-namespace NrvPressureMessenger {
-    NERVE(PressureMessengerNrvSync);
-
-};
-
-namespace NrvPressureBase {
-    NERVE(PressureBaseNrvRelaxStart);
-    NERVE(PressureBaseNrvWaitStart);
-    NERVE(PressureBaseNrvRelax);
-    NERVE(PressureBaseNrvSyncWait);
-    NERVE(PressureBaseNrvFirstWait);
-    NERVE(PressureBaseNrvWait);
-    NERVE(PressureBaseNrvPrepareToShot);
-    NERVE(PressureBaseNrvShot);
-};  // namespace NrvPressureBase

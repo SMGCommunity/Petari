@@ -80,7 +80,7 @@ void BenefitItemObj::init(const JMapInfoIter& rIter) {
         }
         _E8 = 5.0f;
         s32 railArg;
-        if (_E3 && MR::getJMapInfoRailArg0NoInit(this, &railArg)) {
+        if (_E3 && MR::getRailArg0NoInit(this, &railArg)) {
             _E8 = railArg / 10.0f;
         }
     }
@@ -402,7 +402,6 @@ void BenefitItemObj::control() {
     }
 }
 
-#ifdef NON_MATCHING
 // close but small diff
 void BenefitItemObj::exeWait() {
     if (_DF && !_E1) {
@@ -424,7 +423,6 @@ void BenefitItemObj::exeWait() {
         return;
     }
 }
-#endif
 
 void BenefitItemObj::doRotateY() {
     if (isNerve(&NrvBenefitItemObj::HostTypeNrvAppearGround::sInstance)) {
@@ -723,7 +721,8 @@ void BenefitItemObj::exeEscape() {
     }
 }
 
-void BenefitItemObj::calcAndSetBaseMtx() {}
+void BenefitItemObj::calcAndSetBaseMtx() {
+}
 
 void BenefitItemObj::calcAndSetBaseMtxInMovement() {
     if (isNerve(&NrvBenefitItemObj::HostTypeNrvWait::sInstance)) {

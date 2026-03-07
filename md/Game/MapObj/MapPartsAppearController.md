@@ -17,7 +17,7 @@
 | `startKill__24MapPartsAppearControllerFv` | `0x8025ABAC` | :white_check_mark: (100.0%) |
 | `appearHost__24MapPartsAppearControllerFv` | `0x8025AC38` | :white_check_mark: (100.0%) |
 | `killHost__24MapPartsAppearControllerFv` | `0x8025ACA8` | :white_check_mark: (100.0%) |
-| `exeDisappear__24MapPartsAppearControllerFv` | `0x8025AD00` | :x: (97.8%) |
+| `exeDisappear__24MapPartsAppearControllerFv` | `0x8025AD00` | :white_check_mark: (100.0%) |
 | `__sinit_\MapPartsAppearController_cpp` | `0x8025ADB4` | :white_check_mark: (100.0%) |
 | `__ct__Q227NrvMapPartsAppearController12HostTypeWaitFv` | `0x8025ADE0` | :white_check_mark: (100.0%) |
 | `__ct__Q227NrvMapPartsAppearController17HostTypeDisappearFv` | `0x8025ADF0` | :white_check_mark: (100.0%) |
@@ -25,5 +25,5 @@
 | `execute__Q227NrvMapPartsAppearController12HostTypeWaitCFP5Spine` | `0x8025AE08` | :white_check_mark: (100.0%) |
 | `Functor<24MapPartsAppearController>__2MRFP24MapPartsAppearControllerM24MapPartsAppearControllerFPCvPv_v_Q22MR75FunctorV0M<P24MapPartsAppearController,M24MapPartsAppearControllerFPCvPv_v>` | `0x8025AE0C` | :white_check_mark: (100.0%) |
 | `__cl__Q22MR75FunctorV0M<P24MapPartsAppearController,M24MapPartsAppearControllerFPCvPv_v>CFv` | `0x8025AE4C` | :white_check_mark: (100.0%) |
-| `clone__Q22MR75FunctorV0M<P24MapPartsAppearController,M24MapPartsAppearControllerFPCvPv_v>CFP7JKRHeap` | `0x8025AE7C` | :x: (96.2%) |
+| `clone__Q22MR75FunctorV0M<P24MapPartsAppearController,M24MapPartsAppearControllerFPCvPv_v>CFP7JKRHeap` | `0x8025AE7C` | :white_check_mark: (100.0%) |
 | `__dt__24MapPartsAppearControllerFv` | `0x8025AEE4` | :white_check_mark: (100.0%) |

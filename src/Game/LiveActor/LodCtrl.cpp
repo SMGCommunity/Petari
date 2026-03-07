@@ -247,9 +247,9 @@ void LodCtrl::setViewCtrlPtr(const bool* a1, const bool* a2, const bool* a3, con
     _28 = a4;
 }
 
-void LodCtrl::createLodModel(int a1, int a2, int a3) {
-    _10 = initLodModel(a1, a2, a3, false);
-    _14 = initLodModel(a1, a2, a3, true);
+void LodCtrl::createLodModel(int drawBufferType, int movementType, int calcAnimType) {
+    _10 = initLodModel(drawBufferType, movementType, calcAnimType, false);
+    _14 = initLodModel(drawBufferType, movementType, calcAnimType, true);
 
     if (_10 || _14) {
         appear();
@@ -290,7 +290,7 @@ void LodCtrl::initLightCtrl() {
     }
 }
 
-ModelObj* LodCtrl::initLodModel(int a1, int a2, int a3, bool isLowModel) const {
+ModelObj* LodCtrl::initLodModel(int drawBufferType, int movementType, int calcAnimType, bool isLowModel) const {
     const char* res = MR::getModelResName(mActor);
     const char* type = isLowModel ? "Low" : "Middle";
     char buf[0x100];
@@ -302,7 +302,7 @@ ModelObj* LodCtrl::initLodModel(int a1, int a2, int a3, bool isLowModel) const {
 
     const char* objName = isLowModel ? MR::createLowModelObjName(mActor) : MR::createMiddleModelObjName(mActor);
     snprintf(buf, sizeof(buf), "%s%s", res, type);
-    ModelObj* obj = new ModelObj(objName, buf, mActor->getBaseMtx(), a1, a2, a3, false);
+    ModelObj* obj = new ModelObj(objName, buf, mActor->getBaseMtx(), drawBufferType, movementType, calcAnimType, false);
     obj->initWithoutIter();
     obj->makeActorDead();
     MR::setClippingTypeSphereContainsModelBoundingBox(obj, 100.0f);

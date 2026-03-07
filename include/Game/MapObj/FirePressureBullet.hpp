@@ -22,7 +22,3 @@ public:
     bool _A0;
     bool _A1;
 };
-
-namespace NrvFirePressureBullet {
-    NERVE_DECL(FirePressureBulletNrvFly, FirePressureBullet, FirePressureBullet::exeFly);
-};

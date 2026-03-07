@@ -9,7 +9,7 @@
 | `__ct__21StopSceneDelayRequestFv` | `0x80348F5C` | :white_check_mark: (100.0%) |
 | `__ct__19StopSceneControllerFv` | `0x80348FC4` | :white_check_mark: (100.0%) |
 | `movement__21StopSceneDelayRequestFv` | `0x80349080` | :white_check_mark: (100.0%) |
-| `requestStopScene__19StopSceneControllerFl` | `0x803490A4` | :x: (0.0%) |
+| `requestStopScene__19StopSceneControllerFl` | `0x803490A4` | :x: (89.5%) |
 | `requestStopSceneDelay__19StopSceneControllerFll` | `0x803490CC` | :x: (0.0%) |
 | `movement__19StopSceneControllerFv` | `0x80349110` | :white_check_mark: (100.0%) |
 | `isSceneStopped__19StopSceneControllerCFv` | `0x80349128` | :white_check_mark: (100.0%) |

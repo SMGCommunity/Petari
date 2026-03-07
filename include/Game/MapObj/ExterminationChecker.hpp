@@ -31,13 +31,6 @@ public:
     u8 _A1;
 };
 
-namespace NrvExterminationChecker {
-    NERVE_DECL(ExterminationCheckerNrvWatching, ExterminationChecker, ExterminationChecker::exeWatching);
-    NERVE_DECL(ExterminationCheckerNrvTryStartDemoAppear, ExterminationChecker, ExterminationChecker::exeTryStartDemoAppear);
-    NERVE_DECL(ExterminationCheckerNrvAppearStar, ExterminationChecker, ExterminationChecker::exeAppearStar);
-    NERVE_DECL(ExterminationCheckerNrvAppearKeySwitch, ExterminationChecker, ExterminationChecker::exeAppearKeySwitch);
-};  // namespace NrvExterminationChecker
-
 namespace MR {
     NameObj* createExterminationPowerStar(const char*);
     NameObj* createExterminationKeySwitch(const char*);

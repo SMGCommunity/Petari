@@ -2,6 +2,13 @@
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/Util/BaseMatrixFollowTargetHolder.hpp"
 
+namespace NrvGeneralMapParts {
+    NEW_NERVE(HostTypeWait, GeneralMapParts, Wait);
+    NEW_NERVE(HostTypeWaitForPlayerOn, GeneralMapParts, WaitForPlayerOn);
+    NEW_NERVE(HostTypeMoveStart, GeneralMapParts, MoveStart);
+    NEW_NERVE(HostTypeMove, GeneralMapParts, Wait);
+};  // namespace NrvGeneralMapParts
+
 GeneralMapParts::GeneralMapParts(const char* pName) : MapParts(pName) {
     mCameraInfo = nullptr;
     mMoveConditionType = 0;
@@ -296,6 +303,13 @@ void GeneralMapParts::exeWait() {
     }
 }
 
+void GeneralMapParts::exeWaitForPlayerOn() {
+    if (MR::isOnPlayer(MR::getBodySensor(this))) {
+        broadcastMsgToAllFunctions(0xCA);
+        startMove();
+    }
+}
+
 void GeneralMapParts::exeMoveStart() {
     if (MR::isFirstStep(this)) {
         if (mRotator) {
@@ -331,33 +345,3 @@ void GeneralMapParts::exeMoveStart() {
         }
     }
 }
-
-namespace NrvGeneralMapParts {
-    INIT_NERVE(HostTypeWait);
-    INIT_NERVE(HostTypeWaitForPlayerOn);
-    INIT_NERVE(HostTypeMoveStart);
-    INIT_NERVE(HostTypeMove);
-
-    void HostTypeMove::execute(Spine* pSpine) const {
-        GeneralMapParts* part = reinterpret_cast< GeneralMapParts* >(pSpine->mExecutor);
-        part->exeWait();
-    }
-
-    void HostTypeMoveStart::execute(Spine* pSpine) const {
-        GeneralMapParts* part = reinterpret_cast< GeneralMapParts* >(pSpine->mExecutor);
-        part->exeMoveStart();
-    }
-
-    void HostTypeWaitForPlayerOn::execute(Spine* pSpine) const {
-        GeneralMapParts* part = reinterpret_cast< GeneralMapParts* >(pSpine->mExecutor);
-        if (MR::isOnPlayer(MR::getBodySensor(part))) {
-            part->broadcastMsgToAllFunctions(0xCA);
-            part->startMove();
-        }
-    }
-
-    void HostTypeWait::execute(Spine* pSpine) const {
-        GeneralMapParts* part = reinterpret_cast< GeneralMapParts* >(pSpine->mExecutor);
-        part->exeWait();
-    }
-};  // namespace NrvGeneralMapParts

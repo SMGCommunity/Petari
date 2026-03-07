@@ -17,8 +17,8 @@
 | `UnsetRun` | `0x804AC5F8` | :white_check_mark: (100.0%) |
 | `__OSGetEffectivePriority` | `0x804AC660` | :white_check_mark: (100.0%) |
 | `SetEffectivePriority` | `0x804AC69C` | :white_check_mark: (100.0%) |
-| `__OSPromoteThread` | `0x804AC850` | :x: (95.0%) |
-| `SelectThread` | `0x804AC8A0` | :x: (99.3%) |
+| `__OSPromoteThread` | `0x804AC850` | :x: (99.8%) |
+| `SelectThread` | `0x804AC8A0` | :x: (100.0%) |
 | `__OSReschedule` | `0x804ACAC8` | :white_check_mark: (100.0%) |
 | `OSYieldThread` | `0x804ACAE0` | :white_check_mark: (100.0%) |
 | `OSCreateThread` | `0x804ACB1C` | :white_check_mark: (100.0%) |

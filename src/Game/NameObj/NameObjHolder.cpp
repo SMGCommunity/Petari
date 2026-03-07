@@ -26,7 +26,6 @@ void NameObjHolder::syncWithFlags() {
     callMethodAllObj(&NameObj::syncWithFlags);
 }
 
-#ifdef NON_MATCHING
 // Missing stack variables?
 void NameObjHolder::callMethodAllObj(NameObjMethod pMethod) {
     NameObjMethod method = pMethod;
@@ -37,7 +36,6 @@ void NameObjHolder::callMethodAllObj(NameObjMethod pMethod) {
         (*p->*method)();
     }
 }
-#endif
 
 void NameObjHolder::clearArray() {
     mObjArray1.clear();

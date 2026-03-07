@@ -6,14 +6,14 @@
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__dt__10BallOpenerFv` | `0x801B0B3C` | :x: (95.7%) |
-| `__ct__10BallOpenerFPCc` | `0x801B0B98` | :x: (54.7%) |
+| `__dt__10BallOpenerFv` | `0x801B0B3C` | :white_check_mark: (100.0%) |
+| `__ct__10BallOpenerFPCc` | `0x801B0B98` | :white_check_mark: (100.0%) |
 | `init__10BallOpenerFRC12JMapInfoIter` | `0x801B0C6C` | :white_check_mark: (100.0%) |
 | `initAfterPlacement__10BallOpenerFv` | `0x801B0D80` | :white_check_mark: (100.0%) |
 | `control__10BallOpenerFv` | `0x801B0DC4` | :white_check_mark: (100.0%) |
 | `receiveOtherMsg__10BallOpenerFUlP9HitSensorP9HitSensor` | `0x801B0DC8` | :x: (0.0%) |
 | `exeWait__10BallOpenerFv` | `0x801B0EBC` | :white_check_mark: (100.0%) |
-| `exeSetCenter__10BallOpenerFv` | `0x801B0F18` | :white_check_mark: (100.0%) |
+| `exeSetCenter__10BallOpenerFv` | `0x801B0F18` | :x: (88.0%) |
 | `exeOpen__10BallOpenerFv` | `0x801B0FE8` | :white_check_mark: (100.0%) |
 | `bindHole__10BallOpenerFv` | `0x801B10D4` | :x: (0.0%) |
 | `__sinit_\BallOpener_cpp` | `0x801B13C8` | :white_check_mark: (100.0%) |

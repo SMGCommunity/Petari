@@ -6,10 +6,10 @@
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `createDrawBuffer__33@unnamed@ScenarioSelectScene_cpp@Fv` | `0x80342FC0` | :x: (0.0%) |
-| `tryResumeInitializeThread__33@unnamed@ScenarioSelectScene_cpp@Fv` | `0x80343014` | :x: (60.0%) |
+| `createDrawBuffer__33@unnamed@ScenarioSelectScene_cpp@Fv` | `0x80342FC0` | :white_check_mark: (100.0%) |
+| `tryResumeInitializeThread__33@unnamed@ScenarioSelectScene_cpp@Fv` | `0x80343014` | :white_check_mark: (100.0%) |
 | `__ct__19ScenarioSelectSceneFv` | `0x80343064` | :white_check_mark: (100.0%) |
-| `init__19ScenarioSelectSceneFv` | `0x803430CC` | :x: (0.0%) |
+| `init__19ScenarioSelectSceneFv` | `0x803430CC` | :x: (18.6%) |
 | `start__19ScenarioSelectSceneFv` | `0x803433B8` | :white_check_mark: (100.0%) |
 | `startBackground__19ScenarioSelectSceneFv` | `0x803433CC` | :white_check_mark: (100.0%) |
 | `update__19ScenarioSelectSceneFv` | `0x8034340C` | :white_check_mark: (100.0%) |
@@ -49,7 +49,7 @@
 | `execute__Q222NrvScenarioSelectScene64ScenarioSelectSceneNrvWaitResumeInitializeThreadIfRequestedResetCFP5Spine` | `0x80343F74` | :white_check_mark: (100.0%) |
 | `execute__Q222NrvScenarioSelectScene41ScenarioSelectSceneNrvWaitDisappearLayoutCFP5Spine` | `0x80343F7C` | :white_check_mark: (100.0%) |
 | `execute__Q222NrvScenarioSelectScene39ScenarioSelectSceneNrvWaitInitializeEndCFP5Spine` | `0x80343F84` | :white_check_mark: (100.0%) |
-| `execute__Q222NrvScenarioSelectScene48ScenarioSelectSceneNrvWaitResumeInitializeThreadCFP5Spine` | `0x80343F8C` | :x: (0.0%) |
+| `execute__Q222NrvScenarioSelectScene48ScenarioSelectSceneNrvWaitResumeInitializeThreadCFP5Spine` | `0x80343F8C` | :white_check_mark: (100.0%) |
 | `execute__Q222NrvScenarioSelectScene40ScenarioSelectSceneNrvWaitScenarioSelectCFP5Spine` | `0x80343F94` | :white_check_mark: (100.0%) |
 | `execute__Q222NrvScenarioSelectScene41ScenarioSelectSceneNrvStartScenarioSelectCFP5Spine` | `0x80343F9C` | :white_check_mark: (100.0%) |
 | `execute__Q222NrvScenarioSelectScene45ScenarioSelectSceneNrvWaitStartScenarioSelectCFP5Spine` | `0x80343FA4` | :white_check_mark: (100.0%) |

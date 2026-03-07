@@ -7,7 +7,7 @@
 | Name | Address | Match % |
 |------|---------|---------|
 | `__ct__9AirBubbleFPCc` | `0x801A53D8` | :white_check_mark: (100.0%) |
-| `init__9AirBubbleFRC12JMapInfoIter` | `0x801A5434` | :x: (79.4%) |
+| `init__9AirBubbleFRC12JMapInfoIter` | `0x801A5434` | :x: (82.7%) |
 | `initAfterPlacement__9AirBubbleFv` | `0x801A5544` | :white_check_mark: (100.0%) |
 | `appear__9AirBubbleFv` | `0x801A5588` | :white_check_mark: (100.0%) |
 | `kill__9AirBubbleFv` | `0x801A558C` | :white_check_mark: (100.0%) |
@@ -16,10 +16,10 @@
 | `exeWait__9AirBubbleFv` | `0x801A5664` | :x: (0.0%) |
 | `exeMove__9AirBubbleFv` | `0x801A57E0` | :x: (0.0%) |
 | `exeBreak__9AirBubbleFv` | `0x801A59A8` | :white_check_mark: (100.0%) |
-| `receiveMsgPush__9AirBubbleFP9HitSensorP9HitSensor` | `0x801A5A2C` | :white_check_mark: (100.0%) |
-| `receiveOtherMsg__9AirBubbleFUlP9HitSensorP9HitSensor` | `0x801A5AB4` | :white_check_mark: (100.0%) |
+| `receiveMsgPush__9AirBubbleFP9HitSensorP9HitSensor` | `0x801A5A2C` | :x: (99.9%) |
+| `receiveOtherMsg__9AirBubbleFUlP9HitSensorP9HitSensor` | `0x801A5AB4` | :x: (88.7%) |
 | `canSpinGet__9AirBubbleCFv` | `0x801A5BE8` | :white_check_mark: (100.0%) |
-| `__dt__9AirBubbleFv` | `0x801A5C40` | :x: (95.7%) |
+| `__dt__9AirBubbleFv` | `0x801A5C40` | :white_check_mark: (100.0%) |
 | `__sinit_\AirBubble_cpp` | `0x801A5C9C` | :white_check_mark: (100.0%) |
 | `__ct__Q212NrvAirBubble16AirBubbleNrvWaitFv` | `0x801A5CD8` | :white_check_mark: (100.0%) |
 | `__ct__Q212NrvAirBubble16AirBubbleNrvMoveFv` | `0x801A5CE8` | :white_check_mark: (100.0%) |

@@ -19,11 +19,6 @@ public:
     void exeBreak();
 };
 
-namespace NrvIceStepNoSlip {
-    NERVE_DECL(IceStepNoSlipNrvAppear, IceStepNoSlip, IceStepNoSlip::exeAppear);
-    NERVE_DECL(IceStepNoSlipNrvBreak, IceStepNoSlip, IceStepNoSlip::exeBreak);
-};  // namespace NrvIceStepNoSlip
-
 class WaterLeakPipe : public LiveActor {
 public:
     WaterLeakPipe(const char*);
@@ -43,8 +38,3 @@ public:
     MtxPtr mBottomMtx;        // 0x98
     TVec3f _9C;
 };
-
-namespace NrvWaterLeakPipe {
-    NERVE_DECL(WaterLeakPipeNrvWait, WaterLeakPipe, WaterLeakPipe::exeWait);
-    NERVE_DECL(WaterLeakPipeNrvFreeze, WaterLeakPipe, WaterLeakPipe::exeFreeze);
-};  // namespace NrvWaterLeakPipe

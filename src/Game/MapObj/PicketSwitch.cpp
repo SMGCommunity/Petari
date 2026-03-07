@@ -1,6 +1,12 @@
 #include "Game/MapObj/PicketSwitch.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 
+namespace NrvPicketSwitch {
+    NEW_NERVE(PicketSwitchNrvWait, PicketSwitch, Wait);
+    NEW_NERVE(PicketSwitchNrvFirstDrop, PicketSwitch, FirstDrop);
+    NEW_NERVE(PicketSwitchNrvLastDrop, PicketSwitch, LastDrop);
+};  // namespace NrvPicketSwitch
+
 PicketSwitch::PicketSwitch(const char* pName) : LiveActor(pName) {}
 
 PicketSwitch::~PicketSwitch() {}
@@ -19,6 +25,13 @@ void PicketSwitch::init(const JMapInfoIter& rIter) {
     initSound(4, false);
     initNerve(&NrvPicketSwitch::PicketSwitchNrvWait::sInstance);
     makeActorAppeared();
+}
+
+void PicketSwitch::exeWait() {
+    if (MR::isFirstStep(this)) {
+        MR::startBrk(this, "Second");
+        MR::setBrkFrameAndStop(this, 0.0f);
+    }
 }
 
 void PicketSwitch::exeFirstDrop() {
@@ -62,24 +75,3 @@ bool PicketSwitch::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor
     }
     return false;
 }
-
-namespace NrvPicketSwitch {
-    INIT_NERVE(PicketSwitchNrvWait);
-    INIT_NERVE(PicketSwitchNrvFirstDrop);
-    INIT_NERVE(PicketSwitchNrvLastDrop);
-
-    void PicketSwitchNrvWait::execute(Spine* pSpine) const {
-        PicketSwitch* pActor = (PicketSwitch*)pSpine->mExecutor;
-        pActor->exeWait();
-    }
-
-    void PicketSwitchNrvFirstDrop::execute(Spine* pSpine) const {
-        PicketSwitch* pActor = (PicketSwitch*)pSpine->mExecutor;
-        pActor->exeFirstDrop();
-    }
-
-    void PicketSwitchNrvLastDrop::execute(Spine* pSpine) const {
-        PicketSwitch* pActor = (PicketSwitch*)pSpine->mExecutor;
-        pActor->exeLastDrop();
-    }
-};  // namespace NrvPicketSwitch

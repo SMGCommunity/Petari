@@ -1,21 +1,23 @@
 #include "Game/LiveActor/ModelObj.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 #include "Game/Util.hpp"
 
-ModelObj::ModelObj(const char* pName, const char* pModelName, MtxPtr mtxPtr, int a4, int a5, int a6, bool a7) : LiveActor(pName), mMtx(mtxPtr) {
-    if (a4 < -1) {
-        a4 = 0x8;
+ModelObj::ModelObj(const char* pName, const char* pModelName, MtxPtr mtxPtr, int drawBufferType, int movementType, int calcAnimType, bool a7)
+    : LiveActor(pName), mMtx(mtxPtr) {
+    if (drawBufferType < -1) {
+        drawBufferType = MR::DrawBufferType_MapObj;
     }
 
-    if (a5 < -1) {
-        a5 = 0x23;
+    if (movementType < -1) {
+        movementType = MR::MovementType_MapObjDecoration;
     }
 
-    if (a6 < -1) {
-        a6 = 0xB;
+    if (calcAnimType < -1) {
+        calcAnimType = MR::CalcAnimType_MapObjDecoration;
     }
 
     initModelManagerWithAnm(pModelName, nullptr, a7);
-    MR::connectToScene(this, a5, a6, a4, -1);
+    MR::connectToScene(this, movementType, calcAnimType, drawBufferType, -1);
     initSound(8, false);
     initEffectKeeper(8, nullptr, false);
 

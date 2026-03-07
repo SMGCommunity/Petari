@@ -15,5 +15,5 @@
 | `skipBas__5MarioFf` | `0x802F2DF0` | :x: (0.0%) |
 | `playSoundTeresaFlying__5MarioFv` | `0x802F2DFC` | :x: (0.0%) |
 | `playSoundTrampleCombo__5MarioFUc` | `0x802F2E90` | :x: (0.0%) |
-| `setSeVersion__5MarioFUl` | `0x802F2EAC` | :x: (0.0%) |
+| `setSeVersion__5MarioFUl` | `0x802F2EAC` | :white_check_mark: (100.0%) |
 | `__sinit_\MarioSound_cpp` | `0x802F2EB4` | :x: (0.0%) |

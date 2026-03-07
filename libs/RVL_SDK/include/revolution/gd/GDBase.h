@@ -100,7 +100,29 @@ static void GDPosition3f32(f32 x, f32 y, f32 z) {
     GDWrite_f32(z);
 }
 
+inline static void GDSetCurrent(GDLObj* dl) {
+    __GDCurrentDL = dl;
+}
+
+static inline u32 GDGetCurrOffset(void) {
+    return (u32)(__GDCurrentDL->ptr - __GDCurrentDL->start);
+}
+
+static inline void GDSetCurrOffset(u32 offset) {
+    __GDCurrentDL->ptr = __GDCurrentDL->start + offset;
+}
+
+static inline void* GDGetCurrPointer(void) {
+    return (void*)__GDCurrentDL->ptr;
+}
+
+static inline u32 GDGetGDLObjOffset(const GDLObj* dl) {
+    return (u32)(dl->ptr - dl->start);
+}
+
 void GDColor4u8(u8, u8, u8, u8);
+
+void GDFlushCurrToMem();
 
 #ifdef __cplusplus
 }

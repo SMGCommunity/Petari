@@ -6,6 +6,7 @@
 
 class MapPartsBreaker : MapPartsFunction {
 public:
+    void exeWait();
     void exeReactToTornado();
     void exeBreak();
 
@@ -15,9 +16,3 @@ public:
     f32 _34;
     u8 _38;
 };
-
-namespace NrvMapPartsBreaker {
-    NERVE(HostTypeWait);
-    NERVE(HostTypeReactToTornado);
-    NERVE(HostTypeBreak);
-};  // namespace NrvMapPartsBreaker

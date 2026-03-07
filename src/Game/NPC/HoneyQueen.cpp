@@ -39,13 +39,13 @@ void HoneyQueen::init(const JMapInfoIter& rIter) {
     NPCActorCaps caps = "HoneyQueen";
     caps.setDefault();
     caps.mWaitNerve = &NrvHoneyQueen::HoneyQueenNrvWait::sInstance;
-    caps.mUseShadow = true;
+    caps._5D = true;
     caps.mMessageOffset.x = 0.0f;
     caps.mMessageOffset.y = 950.0f;
     caps.mMessageOffset.z = 0.0f;
-    caps._44 = "Center";
-    caps._C = 0;
-    caps._58 = 2;
+    caps.mSensorJoint = "Center";
+    caps.mMakeActor = 0;
+    caps.mSensorMax = 2;
     NPCActor::initialize(rIter, caps);
     mCenterPart =
         MR::createCollisionPartsFromLiveActor(this, "Center", getSensor("Body"), MR::getJointMtx(this, "Center"), (MR::CollisionScaleType)2);
@@ -196,7 +196,7 @@ void HoneyQueen::exeItch() {
         MR::tryStartBckAndBtp(this, "EventWait", nullptr);
     }
     TVec3f vec;
-    vec.set< f32 >(((2.0f * (_B0.x * _B0.z)) + (2.0f * (_B0.h * _B0.y))), (2.0f * (_B0.y * _B0.z)) - (2.0f * (_B0.h * _B0.x)),
+    vec.set< f32 >(((2.0f * (_B0.x * _B0.z)) + (2.0f * (_B0.w * _B0.y))), (2.0f * (_B0.y * _B0.z)) - (2.0f * (_B0.w * _B0.x)),
                    (1.0f - (2.0f * (_B0.x * _B0.x))) - (2.0f * (_B0.y * _B0.y)));
     MR::faceToVector(&_A0, vec, 0.2f);
     MR::tryTalkNearPlayer(mMsgCtrl);

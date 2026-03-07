@@ -241,7 +241,6 @@ void CameraManGame::setChunk(const CameraParamChunkID& rChunk) {
     }
 }
 
-#ifdef NON_MATCHING
 // Register mismatch, r0 used
 void CameraManGame::setNullCamera() {
     mChunk = nullptr;
@@ -261,7 +260,6 @@ void CameraManGame::setNullCamera() {
         mCamera->mVPan->resetParameter();
     }
 }
-#endif
 
 CameraParamChunk* CameraManGame::tryToReplaceChunkToDefault(CameraParamChunk* pChunk) {
     if (strcmp(pChunk->getClassName(), "Game") != 0) {
@@ -344,7 +342,6 @@ void CameraManGame::replaceCurrentChunkAndCamera(CameraParamChunk* pChunk) {
     mChunk = pChunk;
 }
 
-#ifdef NON_MATCHING
 // Register mismatch, r0 used
 void CameraManGame::applyParameter() {
     CamTranslatorBase* translator = mHolder->getTranslator(mChunk->mCameraTypeIndex);
@@ -365,14 +362,14 @@ void CameraManGame::applyParameter() {
     }
 
     if (mChunk->isLOfsErpOff()) {
-        camera->_18 = 1;
+        camera->mIsLOfsErpOff = true;
     } else {
-        camera->_18 = 0;
+        camera->mIsLOfsErpOff = false;
     }
 
     CameraLocalUtil::setRoll(mCamera, mChunk->mExParam.mRoll);
 
-    if (camera->mVPan != nullptr) {
+    if (camera->doesVPanExist()) {
         CameraHeightArrange* vPan = camera->mVPan;
         vPan->resetParameter();
 
@@ -394,7 +391,6 @@ void CameraManGame::applyParameter() {
         vPan->_60 = 1;
     }
 }
-#endif
 
 void CameraManGame::checkReset() {
     if (_58 == 0 || mChunk == nullptr || mCamera == nullptr) {
@@ -438,7 +434,6 @@ void CameraManGame::setSafePose() {
     CameraLocalUtil::setRoll(this, roll);
 }
 
-#ifdef NON_MATCHING
 // Stack issues
 void CameraManGame::keepAwayWatchPos(TVec3f* watchPos, const TVec3f& pos) {
     TVec3f dir = *watchPos - pos;
@@ -446,11 +441,11 @@ void CameraManGame::keepAwayWatchPos(TVec3f* watchPos, const TVec3f& pos) {
 
     if (length < 300.0f) {
         if (length < 1.0f) {
-            TVec3f* currentPos = CameraLocalUtil::getPos(this);
-            TVec3f* currentWatchPos = CameraLocalUtil::getWatchPos(this);
+            TVec3f currentPos = CameraLocalUtil::getPos(this);
+            TVec3f currentWatchPos = CameraLocalUtil::getWatchPos(this);
 
-            TVec3f newWatchPos1 = pos + *currentWatchPos;
-            TVec3f newWatchPos2 = newWatchPos1 - *currentPos;
+            TVec3f newWatchPos1 = pos + currentWatchPos;
+            TVec3f newWatchPos2 = newWatchPos1 - currentPos;
 
             watchPos->set(newWatchPos2);
         } else {
@@ -466,7 +461,6 @@ void CameraManGame::keepAwayWatchPos(TVec3f* watchPos, const TVec3f& pos) {
         }
     }
 }
-#endif
 
 void CameraManGame::createDefaultCamera() {
     CameraParamChunkID_Tmp chunkID = CameraParamChunkID_Tmp();

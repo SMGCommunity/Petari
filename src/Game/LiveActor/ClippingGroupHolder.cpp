@@ -97,7 +97,6 @@ ClippingInfoGroup* ClippingGroupHolder::createGroup(ClippingActorInfo* pInfo, co
     return group;
 }
 
-#ifdef NON_MATCHING
 // reg usage issue, and not reloading the array to return
 ClippingInfoGroup* ClippingGroupHolder::findGroup(const JMapInfoIter& rIter) {
     JMapIdInfo info = MR::createJMapIdInfoFromClippingGroupId(rIter);
@@ -113,7 +112,6 @@ ClippingInfoGroup* ClippingGroupHolder::findGroup(const JMapInfoIter& rIter) {
 
     return 0;
 }
-#endif
 
 ClippingInfoGroup::~ClippingInfoGroup() {}
 

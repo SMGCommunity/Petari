@@ -29,9 +29,9 @@ public:
     /* 0x94 */ f32 mLeafCoord;
     /* 0x98 */ f32 mLeafSize;
 
-    /* 0x9C */ TVec3f mFront;
+    /* 0x9C */ TVec3f mSide;
     /* 0xA8 */ TVec3f mUp;
-    /* 0xB4 */ TVec3f mSide;
+    /* 0xB4 */ TVec3f mFront;
     /* 0xC0 */ TPos3f mBaseMtx;
     /* 0xF0 */ TPos3f mPosMtx;
 };

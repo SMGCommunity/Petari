@@ -23,7 +23,8 @@ class DeriveActorGroup : public LiveActorGroup {
 public:
     inline DeriveActorGroup(const char* pName, int maxCount) : LiveActorGroup(pName, maxCount) {}
 
-    T* getDeadMember() const NO_INLINE {
+    //inlined in BossStinkBug
+    T* getDeadMember() const {
         if (getDeadActor()) {
             return reinterpret_cast< T* >(getDeadActor());
         }
@@ -31,5 +32,5 @@ public:
         return nullptr;
     }
 
-    ~DeriveActorGroup() {}
+    ~DeriveActorGroup() NO_INLINE {}
 };

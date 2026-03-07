@@ -84,7 +84,7 @@ void MoviePlayerSimple::draw() const {
         u32 v4 = (MR::getFrameBufferWidth() - frameBufferWidth) / 2;
         u32 v5 = (MR::getFrameBufferHeight() - ySize) / 2;
         THPGXSetTexObjFilter(GX_LINEAR);
-        mMovie->mCurrentFrame = mPlayerWrapper->drawCurrentFrame(JUTVideo::sManager->mRenderModeObj, v4, v5, frameBufferWidth, ySize);
+        mMovie->mCurrentFrame = mPlayerWrapper->drawCurrentFrame(JUTVideo::getManager()->getRenderMode(), v4, v5, frameBufferWidth, ySize);
     }
 }
 
@@ -260,9 +260,9 @@ void MoviePlayerSimple::drawCinemaFrame() const {
 
     s16 width = MR::getFrameBufferWidth();
     TBox2s top(0, 0, width, sCinemaFrameHeightTop);
-    MR::fillScreenArea(top._0, top._8);
+    MR::fillScreenArea(top.i, top.f);
 
     s16 height = MR::getFrameBufferHeight();
     TBox2s bottom(0, sCinemaFrameHeightBottom, width, height);
-    MR::fillScreenArea(bottom._0, bottom._8);
+    MR::fillScreenArea(bottom.i, bottom.f);
 }

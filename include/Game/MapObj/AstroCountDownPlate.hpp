@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
-#include <JSystem/J3DGraphBase/J3DStruct.hpp>
+#include <JSystem/J3DGraphBase/J3DTexture.hpp>
 
 class AstroCountDownPlate : public LiveActor {
 public:
@@ -24,10 +24,3 @@ public:
     J3DTexMtx _120;
     u8 _1B4;
 };
-
-namespace NrvAstroCountDownPlate {
-    NERVE_DECL(AstroCountDownPlateNrvDead, AstroCountDownPlate, AstroCountDownPlate::exeWait);
-    NERVE_DECL(AstroCountDownPlateNrvAlive, AstroCountDownPlate, AstroCountDownPlate::exeWait);
-    NERVE_DECL(AstroCountDownPlateNrvRevival, AstroCountDownPlate, AstroCountDownPlate::exeRevival);
-    NERVE_DECL(AstroCountDownPlateNrvCountToZero, AstroCountDownPlate, AstroCountDownPlate::exeCountToZero);
-};  // namespace NrvAstroCountDownPlate

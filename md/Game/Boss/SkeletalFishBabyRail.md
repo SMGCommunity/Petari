@@ -8,4 +8,4 @@
 |------|---------|---------|
 | `__ct__20SkeletalFishBabyRailFPCc` | `0x80077248` | :white_check_mark: (100.0%) |
 | `init__20SkeletalFishBabyRailFRC12JMapInfoIter` | `0x8007728C` | :white_check_mark: (100.0%) |
-| `__dt__20SkeletalFishBabyRailFv` | `0x800772FC` | :x: (95.7%) |
+| `__dt__20SkeletalFishBabyRailFv` | `0x800772FC` | :white_check_mark: (100.0%) |

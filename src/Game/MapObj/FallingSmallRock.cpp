@@ -1,5 +1,10 @@
 #include "Game/MapObj/FallingSmallRock.hpp"
 
+namespace NrvFallingSmallRock {
+    NEW_NERVE(HostTypeWait, FallingSmallRock, Wait);
+    NEW_NERVE(HostTypeMove, FallingSmallRock, Move);
+};  // namespace NrvFallingSmallRock
+
 FallingSmallRock::FallingSmallRock(const char* pName) : LiveActor(pName) {}
 
 void FallingSmallRock::init(const JMapInfoIter& rIter) {
@@ -47,8 +52,3 @@ void FallingSmallRock::exeWait() {
 }
 
 FallingSmallRock::~FallingSmallRock() {}
-
-namespace NrvFallingSmallRock {
-    INIT_NERVE(HostTypeWait);
-    INIT_NERVE(HostTypeMove);
-};  // namespace NrvFallingSmallRock

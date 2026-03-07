@@ -7,18 +7,18 @@
 | Name | Address | Match % |
 |------|---------|---------|
 | `__ct__4CoinFPCc` | `0x801C6A48` | :white_check_mark: (100.0%) |
-| `init__4CoinFRC12JMapInfoIter` | `0x801C6AD0` | :x: (89.3%) |
+| `init__4CoinFRC12JMapInfoIter` | `0x801C6AD0` | :x: (96.1%) |
 | `initAfterPlacement__4CoinFv` | `0x801C6DBC` | :white_check_mark: (100.0%) |
 | `initShadow__4CoinFRC12JMapInfoIter` | `0x801C6DC8` | :white_check_mark: (100.0%) |
 | `setShadowAndPoseModeFromJMapIter__4CoinFRC12JMapInfoIter` | `0x801C6EA8` | :white_check_mark: (100.0%) |
 | `makeActorAppeared__4CoinFv` | `0x801C6F1C` | :white_check_mark: (100.0%) |
 | `makeActorDead__4CoinFv` | `0x801C7018` | :white_check_mark: (100.0%) |
-| `calcAndSetBaseMtx__4CoinFv` | `0x801C7060` | :x: (73.6%) |
+| `calcAndSetBaseMtx__4CoinFv` | `0x801C7060` | :white_check_mark: (100.0%) |
 | `receiveOtherMsg__4CoinFUlP9HitSensorP9HitSensor` | `0x801C7180` | :white_check_mark: (100.0%) |
 | `exeNonActive__4CoinFv` | `0x801C72BC` | :white_check_mark: (100.0%) |
 | `exeFix__4CoinFv` | `0x801C730C` | :white_check_mark: (100.0%) |
 | `exeFixTimer__4CoinFv` | `0x801C735C` | :white_check_mark: (100.0%) |
-| `exeMove__4CoinFv` | `0x801C73EC` | :x: (89.9%) |
+| `exeMove__4CoinFv` | `0x801C73EC` | :white_check_mark: (100.0%) |
 | `exeControled__4CoinFv` | `0x801C75A0` | :white_check_mark: (100.0%) |
 | `exeSpinDrained__4CoinFv` | `0x801C75F4` | :white_check_mark: (100.0%) |
 | `exeHop__4CoinFv` | `0x801C7650` | :white_check_mark: (100.0%) |
@@ -28,10 +28,10 @@
 | `appearControlPose__4CoinFv` | `0x801C77A4` | :white_check_mark: (100.0%) |
 | `appearNonActive__4CoinFv` | `0x801C7810` | :white_check_mark: (100.0%) |
 | `appearFixTimer__4CoinFll` | `0x801C7874` | :white_check_mark: (100.0%) |
-| `appearMove__4CoinFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>ll` | `0x801C78F8` | :x: (93.5%) |
-| `appearHop__4CoinFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | `0x801C79F0` | :x: (78.3%) |
+| `appearMove__4CoinFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>ll` | `0x801C78F8` | :white_check_mark: (100.0%) |
+| `appearHop__4CoinFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | `0x801C79F0` | :white_check_mark: (100.0%) |
 | `requestActive__4CoinFv` | `0x801C7AE0` | :white_check_mark: (100.0%) |
-| `requestActiveWithGravity__4CoinFv` | `0x801C7B38` | :x: (68.4%) |
+| `requestActiveWithGravity__4CoinFv` | `0x801C7B38` | :white_check_mark: (100.0%) |
 | `requestDeactive__4CoinFv` | `0x801C7BD0` | :white_check_mark: (100.0%) |
 | `requestStartControl__4CoinFv` | `0x801C7C38` | :white_check_mark: (100.0%) |
 | `requestEndControl__4CoinFv` | `0x801C7CFC` | :white_check_mark: (100.0%) |
@@ -43,7 +43,7 @@
 | `setHostInfo__4CoinFP12CoinHostInfo` | `0x801C7FC0` | :white_check_mark: (100.0%) |
 | `setCalcShadowMode__4CoinFv` | `0x801C7FC8` | :white_check_mark: (100.0%) |
 | `setCannotTime__4CoinFl` | `0x801C8028` | :white_check_mark: (100.0%) |
-| `calcRebouond__4CoinFv` | `0x801C8044` | :x: (72.2%) |
+| `calcRebouond__4CoinFv` | `0x801C8044` | :white_check_mark: (100.0%) |
 | `attenuateVelocity__4CoinFv` | `0x801C8180` | :white_check_mark: (100.0%) |
 | `isNeedBubble__4CoinFRC12JMapInfoIter` | `0x801C81DC` | :white_check_mark: (100.0%) |
 | `makeArchiveList__4CoinFP27NameObjArchiveListCollectorRC12JMapInfoIter` | `0x801C8230` | :white_check_mark: (100.0%) |
@@ -69,5 +69,5 @@
 | `execute__Q27NrvCoin10CoinNrvFixCFP5Spine` | `0x801C8538` | :white_check_mark: (100.0%) |
 | `execute__Q27NrvCoin16CoinNrvNonActiveCFP5Spine` | `0x801C8540` | :white_check_mark: (100.0%) |
 | `__cl__Q22MR33FunctorV0M<P4Coin,M4CoinFPCvPv_v>CFv` | `0x801C8548` | :white_check_mark: (100.0%) |
-| `clone__Q22MR33FunctorV0M<P4Coin,M4CoinFPCvPv_v>CFP7JKRHeap` | `0x801C8578` | :x: (96.2%) |
-| `__dt__4CoinFv` | `0x801C85E0` | :x: (95.7%) |
+| `clone__Q22MR33FunctorV0M<P4Coin,M4CoinFPCvPv_v>CFP7JKRHeap` | `0x801C8578` | :white_check_mark: (100.0%) |
+| `__dt__4CoinFv` | `0x801C85E0` | :white_check_mark: (100.0%) |

@@ -7,11 +7,11 @@
 | Name | Address | Match % |
 |------|---------|---------|
 | `__ct__9FlipPanelFPCc` | `0x801DD218` | :white_check_mark: (100.0%) |
-| `init__9FlipPanelFRC12JMapInfoIter` | `0x801DD270` | :x: (98.1%) |
-| `exeFrontLand__9FlipPanelFv` | `0x801DD420` | :x: (96.1%) |
-| `exeBackLand__9FlipPanelFv` | `0x801DD554` | :x: (96.1%) |
+| `init__9FlipPanelFRC12JMapInfoIter` | `0x801DD270` | :white_check_mark: (100.0%) |
+| `exeFrontLand__9FlipPanelFv` | `0x801DD420` | :white_check_mark: (100.0%) |
+| `exeBackLand__9FlipPanelFv` | `0x801DD554` | :white_check_mark: (100.0%) |
 | `exeWait__9FlipPanelFv` | `0x801DD688` | :white_check_mark: (100.0%) |
-| `exeEnd__9FlipPanelFv` | `0x801DD740` | :x: (90.0%) |
+| `exeEnd__9FlipPanelFv` | `0x801DD740` | :white_check_mark: (100.0%) |
 | `appear__9FlipPanelFv` | `0x801DD7E0` | :white_check_mark: (100.0%) |
 | `endClipped__9FlipPanelFv` | `0x801DD82C` | :white_check_mark: (100.0%) |
 | `calcAndSetBaseMtx__9FlipPanelFv` | `0x801DD8AC` | :white_check_mark: (100.0%) |
@@ -24,7 +24,7 @@
 | `exeComplete__17FlipPanelObserverFv` | `0x801DDDB4` | :white_check_mark: (100.0%) |
 | `exeDemoWait__17FlipPanelObserverFv` | `0x801DDE7C` | :white_check_mark: (100.0%) |
 | `initAfterPlacement__17FlipPanelObserverFv` | `0x801DDEDC` | :white_check_mark: (100.0%) |
-| `receiveOtherMsg__17FlipPanelObserverFUlP9HitSensorP9HitSensor` | `0x801DDF18` | :x: (89.1%) |
+| `receiveOtherMsg__17FlipPanelObserverFUlP9HitSensorP9HitSensor` | `0x801DDF18` | :white_check_mark: (100.0%) |
 | `__sinit_\FlipPanel_cpp` | `0x801DDFF4` | :white_check_mark: (100.0%) |
 | `__ct__Q212NrvFlipPanel21FlipPanelNrvFrontLandFv` | `0x801DE058` | :white_check_mark: (100.0%) |
 | `__ct__Q212NrvFlipPanel20FlipPanelNrvBackLandFv` | `0x801DE068` | :white_check_mark: (100.0%) |
@@ -48,4 +48,4 @@
 | `calcJointMatrix__33JointControlDelegator<9FlipPanel>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | `0x801DE1B0` | :white_check_mark: (100.0%) |
 | `calcJointMatrixAfterChild__33JointControlDelegator<9FlipPanel>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | `0x801DE218` | :white_check_mark: (100.0%) |
 | `__dt__9FlipPanelFv` | `0x801DE280` | :white_check_mark: (100.0%) |
-| `__dt__17FlipPanelObserverFv` | `0x801DE2D8` | :x: (95.7%) |
+| `__dt__17FlipPanelObserverFv` | `0x801DE2D8` | :white_check_mark: (100.0%) |

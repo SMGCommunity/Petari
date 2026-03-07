@@ -3,6 +3,7 @@
 #include "Game/Boss/TripodBossFixPartsBase.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 #include "Game/Util/ActorSwitchUtil.hpp"
 #include "Game/Util/Color.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
@@ -24,7 +25,7 @@ TripodBossCore::TripodBossCore(const char* pName) : TripodBossFixPartsBase(pName
 void TripodBossCore::init(const JMapInfoIter& rIter) {
     TripodBossFixPartsBase::init(rIter);
     initModelManagerWithAnm("TripodBossCore", nullptr, false);
-    MR::connectToScene(this, 0x23, 0xB, 0x1F, -1);
+    MR::connectToScene(this, MR::MovementType_MapObjDecoration, MR::CalcAnimType_MapObjDecoration, MR::DrawBufferType_TripodBoss, -1);
     initClippingSphere();
     initHitSensor(1);
     TVec3f offs;

@@ -1,5 +1,6 @@
 #include "Game/Screen/OdhConverter.hpp"
 #include "Game/NameObj/NameObjAdaptor.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Util/MemoryUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
@@ -29,7 +30,7 @@ OdhConverter::OdhConverter()
       mIsRequestedCapture(false), mImage(nullptr), mCaptureImage(nullptr) {}
 
 void OdhConverter::init(const JMapInfoIter& rIter) {
-    MR::connectToScene(this, -1, -1, -1, 62);
+    MR::connectToScene(this, -1, -1, -1, MR::DrawType_LayoutOnPause);
     MR::CurrentHeapRestorer heapRestorer(MR::getSceneHeapGDDR3());
 
     mImage = new (32) u8[mLimitSize];
@@ -43,7 +44,7 @@ void OdhConverter::convert() {
     u8* pScreenTexImage;
 
     pScreenTexImage = MR::getScreenTexImage();
-    pRenderModeObj = JUTVideo::sManager->mRenderModeObj;
+    pRenderModeObj = JUTVideo::getManager()->getRenderMode();
 
     GXSetCopyFilter(GX_FALSE, pRenderModeObj->sample_pattern, GX_FALSE, pRenderModeObj->vfilter);
     GXSetTexCopySrc(cTexPosX, cTexPosY, mCaptureWidth, mCaptureHeight);

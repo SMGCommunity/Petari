@@ -162,7 +162,6 @@ bool JKRMemArchive::mountFixed(void* a1, JKRMemBreakFlag breakFlag) {
     return true;
 }
 
-#ifdef NON_MATCHING
 // add r3, r5, r3 instead of add r3, r3, r5
 bool JKRMemArchive::open(long entryNum, EMountDirection mountDir) {
     mHeader = nullptr;
@@ -212,9 +211,7 @@ bool JKRMemArchive::open(long entryNum, EMountDirection mountDir) {
 
     return mMountMode != MOUNT_MODE_0;
 }
-#endif
 
-#ifdef NON_MATCHING
 // add r5, r4, r5 instead of add r5, r5, r4
 bool JKRMemArchive::open(void* pData, unsigned long a2, JKRMemBreakFlag breakFlag) {
     mHeader = reinterpret_cast< RarcHeader* >(pData);
@@ -230,9 +227,7 @@ bool JKRMemArchive::open(void* pData, unsigned long a2, JKRMemBreakFlag breakFla
 
     return true;
 }
-#endif
 
-#ifdef NON_MATCHING
 // Register mismatch
 s32 JKRMemArchive::fetchResource_subroutine(unsigned char* pSrc, unsigned long srcSize, unsigned char* pDst, unsigned long dstSize, int compression) {
     switch (compression) {
@@ -262,4 +257,3 @@ s32 JKRMemArchive::fetchResource_subroutine(unsigned char* pSrc, unsigned long s
 
     return 0;
 }
-#endif

@@ -6,16 +6,16 @@
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__dt__18HipDropDemoMoveObjFv` | `0x801E4C78` | :x: (95.7%) |
+| `__dt__18HipDropDemoMoveObjFv` | `0x801E4C78` | :white_check_mark: (100.0%) |
 | `__ct__14HipDropMoveObjFPCc` | `0x801E4CD0` | :white_check_mark: (100.0%) |
 | `init__14HipDropMoveObjFRC12JMapInfoIter` | `0x801E4D14` | :white_check_mark: (100.0%) |
 | `receiveMsgPlayerAttack__14HipDropMoveObjFUlP9HitSensorP9HitSensor` | `0x801E4E4C` | :white_check_mark: (100.0%) |
 | `isEndMove__14HipDropMoveObjCFv` | `0x801E4EF0` | :white_check_mark: (100.0%) |
 | `exeMove__14HipDropMoveObjFv` | `0x801E4EF4` | :white_check_mark: (100.0%) |
 | `__ct__18HipDropDemoMoveObjFPCc` | `0x801E5118` | :white_check_mark: (100.0%) |
-| `__dt__14HipDropMoveObjFv` | `0x801E515C` | :x: (95.7%) |
+| `__dt__14HipDropMoveObjFv` | `0x801E515C` | :white_check_mark: (100.0%) |
 | `moveStart__18HipDropDemoMoveObjFv` | `0x801E51B8` | :white_check_mark: (100.0%) |
-| `moving__18HipDropDemoMoveObjFv` | `0x801E5244` | :x: (78.1%) |
+| `moving__18HipDropDemoMoveObjFv` | `0x801E5244` | :white_check_mark: (100.0%) |
 | `__sinit_\HipDropMoveObj_cpp` | `0x801E52C0` | :white_check_mark: (100.0%) |
 | `__ct__Q217NrvHipDropMoveObj12HostTypeWaitFv` | `0x801E52F4` | :white_check_mark: (100.0%) |
 | `__ct__Q217NrvHipDropMoveObj12HostTypeMoveFv` | `0x801E5304` | :white_check_mark: (100.0%) |

@@ -1,4 +1,5 @@
 #include "Game/NameObj/NameObjFactory.hpp"
+#include "Game/NameObj/NameObjFactoryStubs.hpp"
 #include "Game/AreaObj.hpp"
 #include "Game/Boss.hpp"
 #include "Game/Demo.hpp"
@@ -6,12 +7,95 @@
 #include "Game/Enemy.hpp"
 #include "Game/Gravity.hpp"
 #include "Game/Map.hpp"
+#include "Game/Map/OceanBowl.hpp"
 #include "Game/MapObj.hpp"
 #include "Game/NPC.hpp"
-#include "Game/Player.hpp"
 #include "Game/Ride.hpp"
+#include "Game/Player/MarioActor.hpp"
+
+namespace NrvMorphItemObjNeo {
+    NEW_NERVE(MorphItemObjNeoNrvWait, MorphItemObjNeo, Wait);
+    NEW_NERVE(MorphItemObjNeoNrvAppear, MorphItemObjNeo, Appear);
+    NEW_NERVE(MorphItemObjNeoNrvSwitchAppear, MorphItemObjNeo, SwitchAppear);
+    NEW_NERVE(MorphItemObjNeoNrvWait2, MorphItemObjNeo, Wait2);
+    NEW_NERVE(MorphItemObjNeoNrvFly, MorphItemObjNeo, Fly);
+    NEW_NERVE(MorphItemObjNeoNrvDemo, MorphItemObjNeo, Demo);
+}
+
+namespace NrvBenefitItemObj {
+    INIT_NERVE(HostTypeNrvWait);
+    INIT_NERVE(HostTypeNrvShoot);
+    INIT_NERVE(HostTypeNrvCatch);
+    INIT_NERVE(HostTypeNrvAppearGround);
+    INIT_NERVE(HostTypeNrvPreEscape);
+    INIT_NERVE(HostTypeNrvEscape);
+}
+
+namespace NrvMarioActor {
+    INIT_NERVE(MarioActorNrvWait);
+    INIT_NERVE(MarioActorNrvGameOver);
+    INIT_NERVE(MarioActorNrvGameOverAbyss);
+    INIT_NERVE(MarioActorNrvGameOverAbyss2);
+    INIT_NERVE(MarioActorNrvGameOverFire);
+    INIT_NERVE(MarioActorNrvGameOverBlackHole);
+    INIT_NERVE(MarioActorNrvGameOverNonStop);
+    INIT_NERVE(MarioActorNrvGameOverSink);
+    INIT_NERVE(MarioActorNrvTimeWait);
+    INIT_NERVE(MarioActorNrvNoRush);
+}
+
+volatile const Nerve* cNerveInitKeep[] = {
+    &NrvBenefitItemObj::HostTypeNrvWait::sInstance,
+    &NrvBenefitItemObj::HostTypeNrvShoot::sInstance,
+    &NrvBenefitItemObj::HostTypeNrvCatch::sInstance,
+    &NrvBenefitItemObj::HostTypeNrvAppearGround::sInstance,
+    &NrvBenefitItemObj::HostTypeNrvPreEscape::sInstance,
+    &NrvBenefitItemObj::HostTypeNrvEscape::sInstance,
+    &NrvMarioActor::MarioActorNrvWait::sInstance,
+    &NrvMarioActor::MarioActorNrvGameOver::sInstance,
+    &NrvMarioActor::MarioActorNrvGameOverAbyss::sInstance,
+    &NrvMarioActor::MarioActorNrvGameOverAbyss2::sInstance,
+    &NrvMarioActor::MarioActorNrvGameOverFire::sInstance,
+    &NrvMarioActor::MarioActorNrvGameOverBlackHole::sInstance,
+    &NrvMarioActor::MarioActorNrvGameOverNonStop::sInstance,
+    &NrvMarioActor::MarioActorNrvGameOverSink::sInstance,
+    &NrvMarioActor::MarioActorNrvTimeWait::sInstance,
+    &NrvMarioActor::MarioActorNrvNoRush::sInstance,
+    &NrvMorphItemObjNeo::MorphItemObjNeoNrvWait::sInstance,
+    &NrvMorphItemObjNeo::MorphItemObjNeoNrvAppear::sInstance,
+    &NrvMorphItemObjNeo::MorphItemObjNeoNrvSwitchAppear::sInstance,
+    &NrvMorphItemObjNeo::MorphItemObjNeoNrvWait2::sInstance,
+    &NrvMorphItemObjNeo::MorphItemObjNeoNrvFly::sInstance,
+    &NrvMorphItemObjNeo::MorphItemObjNeoNrvDemo::sInstance,
+};
+
+
+namespace MR {
+    NameObj* createBigBubbleMoveLimitterCylinder(const char*);
+    NameObj* createBigBubbleMoveLimitterPlane(const char*);
+    NameObj* createBigBubbleGenerator(const char*);
+    NameObj* createBigObstructBubbleGenerator(const char*);
+    NameObj* createDinoPackunVs1(const char*);
+    NameObj* createDinoPackunVs2(const char*);
+    NameObj* createFallOutFieldDraw(const char*);
+    NameObj* createClipFieldFillDraw(const char*);
+    NameObj* createVolumeDrawSpotLight(const char*);
+    NameObj* createFireBallBeamKameck(const char*);
+    NameObj* createTurtleBeamKameck(const char*);
+};
+
+namespace KoopaFunction {
+    NameObj* createKoopaVs1(const char*);
+    NameObj* createKoopaVs2(const char*);
+    NameObj* createKoopaVs3(const char*);
+};
 
 namespace {
+    // FIXME: Polta is being worked on in #1867
+    NameObj* createPoltaStub(const char* pName) {
+        return new NameObj(pName);
+    }
+
     template < typename T >
     NameObj* createCenterOriginCube(const char* pName) {
         return new T(0, pName);
@@ -41,6 +125,7 @@ namespace {
         "Hopper",          "BenefitItemInvincible", "MorphItemNeoBee", "MorphItemNeoFire",
         "MorphItemNeoFoo", "MorphItemNeoHopper",    "MorphItemNeoIce", "MorphItemNeoTeresa",
     };
+
     const NameObjFactory::Name2CreateFunc cCreateTable[] = {
         {
             "SwitchCube",
@@ -349,7 +434,7 @@ namespace {
         },
         {
             "BigBubbleCameraBox",
-            createBaseOriginCube< BigBubbleCameraArea >,
+            createCenterOriginCube< BigBubbleCameraArea >,
             nullptr,
         },
         {
@@ -559,17 +644,17 @@ namespace {
         },
         {
             "Caretaker",
-            nullptr,
+            createNameObj< Caretaker >,
             "Caretaker",
         },
         {
             "Rabbit",
-            nullptr,
+            createNameObj< Rabbit >,
             "MoonRabbit",
         },
         {
             "TalkSyati",
-            nullptr,
+            createNameObj< Syati >,
             "Syati",
         },
         {
@@ -589,12 +674,12 @@ namespace {
         },
         {
             "TrickRabbitFreeRunCollect",
-            nullptr,
+            createNameObj< TrickRabbitSnowCollect >,
             "TrickRabbit",
         },
         {
             "RunawayRabbitCollect",
-            nullptr,
+            createNameObj< RunawayRabbitCollect >,
             "TrickRabbit",
         },
         {
@@ -604,12 +689,12 @@ namespace {
         },
         {
             "Kinopio",
-            nullptr,
+            createNameObj< Kinopio >,
             "Kinopio",
         },
         {
             "KinopioAstro",
-            nullptr,
+            createNameObj< KinopioAstro >,
             "Kinopio",
         },
         {
@@ -634,7 +719,7 @@ namespace {
         },
         {
             "PenguinCoach",
-            nullptr,
+            createNameObj< PenguinCoach >,
             "PenguinCoach",
         },
         {
@@ -644,17 +729,17 @@ namespace {
         },
         {
             "PenguinRacer",
-            nullptr,
+            createNameObj< PenguinRacer >,
             "Penguin",
         },
         {
             "PenguinRacerLeader",
-            nullptr,
+            createNameObj< PenguinRacerLeader >,
             "Penguin",
         },
         {
             "PenguinSkater",
-            nullptr,
+            createNameObj< PenguinSkater >,
             "Penguin",
         },
         {
@@ -669,7 +754,7 @@ namespace {
         },
         {
             "Syati",
-            nullptr,
+            createNameObj< Syati >,
             "Syati",
         },
         {
@@ -704,7 +789,7 @@ namespace {
         },
         {
             "DemoRabbit",
-            nullptr,
+            createNameObj< DemoRabbit >,
             nullptr,
         },
         {
@@ -759,7 +844,7 @@ namespace {
         },
         {
             "TeresaRacer",
-            nullptr,
+            createNameObj< TeresaRacer >,
             "TeresaRacer",
         },
         {
@@ -769,7 +854,7 @@ namespace {
         },
         {
             "GhostPlayer",
-            nullptr,
+            createNameObj< GhostPlayer >,
             nullptr,
         },
         {
@@ -789,7 +874,7 @@ namespace {
         },
         {
             "DemoKoopaJrShip",
-            nullptr,
+            createNameObj< DemoKoopaJrShip >,
             "KoopaJrShip",
         },
         {
@@ -799,7 +884,7 @@ namespace {
         },
         {
             "JetTurtle",
-            nullptr,
+            createNameObj< JetTurtle >,
             "Koura",
         },
         {
@@ -824,7 +909,7 @@ namespace {
         },
         {
             "GoldenTurtle",
-            nullptr,
+            createNameObj< GoldenTurtle >,
             "KouraShine",
         },
         {
@@ -864,12 +949,12 @@ namespace {
         },
         {
             "SwingRope",
-            nullptr,
+            createNameObj< SwingRope >,
             "SwingRope",
         },
         {
             "SpaceCocoon",
-            nullptr,
+            createNameObj< SpaceCocoon >,
             "SpaceCocoon",
         },
         {
@@ -899,7 +984,7 @@ namespace {
         },
         {
             "PunchBox",
-            nullptr,
+            createNameObj< PunchBox >,
             "PunchBox",
         },
         {
@@ -914,32 +999,32 @@ namespace {
         },
         {
             "Takobo",
-            nullptr,
+            createNameObj< Takobo >,
             "Takobo",
         },
         {
             "Karikari",
-            nullptr,
+            createNameObj< Karikari >,
             "Karipon",
         },
         {
             "KoteBug",
-            nullptr,
+            createNameObj< KoteBug >,
             "KoteBug",
         },
         {
             "Balloonfish",
-            nullptr,
+            createNameObj< Balloonfish >,
             "Balloonfish",
         },
         {
             "BombHei",
-            nullptr,
+            createNameObj< BombHei >,
             "BombHei",
         },
         {
             "Bomb",
-            nullptr,
+            createNameObj< BombHei >,
             "BombHei",
         },
         {
@@ -949,12 +1034,12 @@ namespace {
         },
         {
             "BombHeiLauncher",
-            nullptr,
+            createNameObj< BombHeiLauncher >,
             "BombHeiLauncher",
         },
         {
             "BombLauncher",
-            nullptr,
+            createNameObj< BombHeiLauncher >,
             "BombHeiLauncher",
         },
         {
@@ -984,27 +1069,27 @@ namespace {
         },
         {
             "KuriboChief",
-            nullptr,
+            createNameObj< KuriboChief >,
             "KuriboChief",
         },
         {
             "KuriboMini",
-            nullptr,
+            createNameObj< KuriboMini >,
             "KuriboMini",
         },
         {
             "Kabokuri",
-            nullptr,
+            createNameObj< Kabokuri >,
             "Kabokuri",
         },
         {
             "TakoHei",
-            nullptr,
+            createNameObj< TakoHei >,
             "TakoHei",
         },
         {
             "OtaRock",
-            nullptr,
+            createNameObj< OtaRock >,
             "OtaRock",
         },
         {
@@ -1029,62 +1114,62 @@ namespace {
         },
         {
             "Birikyu",
-            createNameObj< Birikyu >,
+            createNameObj< BirikyuWithFace >,
             "Birikyu",
         },
         {
             "HomingKiller",
-            nullptr,
+            createNameObj< HomingKillerLauncher >,
             "HomingKiller",
         },
         {
             "CocoSambo",
-            nullptr,
+            createNameObj< CocoSambo >,
             "CocoSamboBody",
         },
         {
             "SamboHead",
-            nullptr,
+            createNameObj< SamboHead >,
             "SamboHead",
         },
         {
             "BegomanBaby",
-            nullptr,
+            createNameObj< BegomanBaby >,
             "BegomanBaby",
         },
         {
             "BegomanSpring",
-            nullptr,
+            createNameObj< BegomanSpring >,
             "BegomanSpring",
         },
         {
             "BegomanSpringHide",
-            nullptr,
+            createNameObj< BegomanSpring >,
             "BegomanSpring",
         },
         {
             "BegomanSpike",
-            nullptr,
+            createNameObj< BegomanSpike >,
             "BegomanSpike",
         },
         {
             "BegomanLauncher",
-            nullptr,
+            createNameObj< BegomanLauncher >,
             "BegomanLauncher",
         },
         {
             "TogeBegomanLauncher",
-            nullptr,
+            createNameObj< BegomanLauncher >,
             "BegomanLauncher",
         },
         {
             "BegomanBabyLauncher",
-            nullptr,
+            createNameObj< BegomanLauncher >,
             "BegomanLauncher",
         },
         {
             "FireBubble",
-            nullptr,
+            createNameObj< FireBubble >,
             "FireBubble",
         },
         {
@@ -1094,12 +1179,12 @@ namespace {
         },
         {
             "JumpBeamer",
-            nullptr,
+            createNameObj< JumpBeamer >,
             "JumpBeamerBody",
         },
         {
             "JumpGuarder",
-            nullptr,
+            createNameObj< JumpGuarder >,
             "JumpGuarder",
         },
         {
@@ -1109,7 +1194,7 @@ namespace {
         },
         {
             "Pukupuku",
-            nullptr,
+            createNameObj< Pukupuku >,
             "Pukupuku",
         },
         {
@@ -1119,22 +1204,22 @@ namespace {
         },
         {
             "Teresa",
-            nullptr,
+            createNameObj< Teresa >,
             "Teresa",
         },
         {
             "TeresaChief",
-            nullptr,
+            createNameObj< Teresa >,
             "Teresa",
         },
         {
             "TeresaWater",
-            nullptr,
+            createNameObj< TeresaWater >,
             "TeresaWater",
         },
         {
             "Torpedo",
-            nullptr,
+            createNameObj< HomingKillerLauncher >,
             "Torpedo",
         },
         {
@@ -1144,52 +1229,52 @@ namespace {
         },
         {
             "Onimasu",
-            nullptr,
+            createNameObj< OnimasuJump >,
             "Onimasu",
         },
         {
             "OnimasuPivot",
-            nullptr,
+            createNameObj< OnimasuPivot >,
             "Onimasu",
         },
         {
             "Unizo",
-            nullptr,
+            createNameObj< Unizo >,
             "Unizo",
         },
         {
             "UnizoLand",
-            nullptr,
+            createNameObj< Unizo >,
             "UnizoLand",
         },
         {
             "UnizoShoal",
-            nullptr,
+            createNameObj< Unizo >,
             "UnizoShoal",
         },
         {
             "UnizoLauncher",
-            nullptr,
+            createNameObj< UnizoLauncher >,
             "UnizoLand",
         },
         {
             "Kiraira",
-            nullptr,
+            createNameObj< Kiraira >,
             "Kiraira",
         },
         {
             "KirairaRail",
-            nullptr,
+            createNameObj< Kiraira >,
             "Kiraira",
         },
         {
             "NokonokoLand",
-            nullptr,
+            createNameObj< NokonokoLand >,
             "NokonokoLand",
         },
         {
             "Gesso",
-            nullptr,
+            createNameObj< Gesso >,
             "Gesso",
         },
         {
@@ -1199,67 +1284,67 @@ namespace {
         },
         {
             "Snakehead",
-            nullptr,
+            createNameObj< Snakehead >,
             "Snakehead",
         },
         {
             "SnakeheadSmall",
-            nullptr,
+            createNameObj< Snakehead >,
             "SnakeheadSmall",
         },
         {
             "Jellyfish",
-            nullptr,
+            createNameObj< Jellyfish >,
             "Jellyfish",
         },
         {
             "JellyfishElectric",
-            nullptr,
+            createNameObj< JellyfishElectric >,
             "JellyfishElectric",
         },
         {
             "Kanina",
-            nullptr,
+            createNameObj< Kanina >,
             "Kanina",
         },
         {
             "KaninaRed",
-            nullptr,
+            createNameObj< Kanina >,
             "KaninaRed",
         },
         {
             "Mogu",
-            nullptr,
+            createNameObj< Mogu >,
             "Mogu",
         },
         {
             "Mogucchi",
-            nullptr,
+            createNameObj< Mogucchi >,
             "Mogucchi",
         },
         {
             "MogucchiRefuseTerritory",
-            nullptr,
+            createNameObj< MogucchiRefuseTerritory >,
             nullptr,
         },
         {
             "KoopaJrShip",
-            nullptr,
+            createNameObj< KoopaJrShip >,
             "KoopaJrShip",
         },
         {
             "Hanachan",
-            nullptr,
+            createNameObj< Hanachan >,
             "HanachanHead",
         },
         {
             "JumpSpider",
-            nullptr,
+            createNameObj< JumpSpider >,
             "JumpSpider",
         },
         {
             "StringSpider",
-            nullptr,
+            createNameObj< StringSpider >,
             "StringSpider",
         },
         {
@@ -1269,12 +1354,12 @@ namespace {
         },
         {
             "StinkBugSmall",
-            nullptr,
+            createNameObj< StinkBugSmall >,
             "StinkBugSmall",
         },
         {
             "StinkBugParent",
-            nullptr,
+            createNameObj< StinkBugParent >,
             "StinkBugParent",
         },
         {
@@ -1289,7 +1374,7 @@ namespace {
         },
         {
             "Metbo",
-            nullptr,
+            createNameObj< Metbo >,
             "Metbo",
         },
         {
@@ -1299,7 +1384,7 @@ namespace {
         },
         {
             "MechanicKoopaMini",
-            nullptr,
+            createNameObj< MechanicKoopaMini >,
             "MechanicKoopaMini",
         },
         {
@@ -1309,12 +1394,12 @@ namespace {
         },
         {
             "HammerHeadPackun",
-            nullptr,
+            createNameObj< HammerHeadPackun >,
             "PackunFlower",
         },
         {
             "DharmaSambo",
-            nullptr,
+            createNameObj< DharmaSambo >,
             "DharmaSambo",
         },
         {
@@ -1329,57 +1414,58 @@ namespace {
         },
         {
             "MagnumKiller",
-            nullptr,
+            createNameObj< HomingKillerLauncher >,
             "MagnumKiller",
         },
         {
             "BossBegoman",
-            nullptr,
+            createNameObj< BossBegoman >,
             "BossBegoman",
         },
         {
             "BossStinkBug",
-            nullptr,
+            createNameObj< BossStinkBug >,
             "BossStinkBug",
         },
         {
             "DinoPackun",
-            nullptr,
+            MR::createDinoPackunVs1,
             "DinoPackun",
         },
         {
             "DinoPackunVs2",
-            nullptr,
+            MR::createDinoPackunVs2,
             "DinoPackun2",
         },
         {
             "Dodoryu",
-            nullptr,
+            createNameObj< Dodoryu >,
             "Dodoryu",
         },
         {
             "KoopaVs1",
-            nullptr,
+            KoopaFunction::createKoopaVs1,
             "Koopa",
         },
         {
             "KoopaVs2",
-            nullptr,
+            KoopaFunction::createKoopaVs2,
             "Koopa",
         },
         {
             "KoopaVs3",
-            nullptr,
+            KoopaFunction::createKoopaVs3,
             "Koopa",
         },
         {
             "OtaKing",
-            nullptr,
+            createNameObj< OtaKing >,
             nullptr,
         },
+        // FIXME: Polta is being worked on in #1867
         {
             "Polta",
-            nullptr,
+            createNameObj< Polta >,
             "Polta",
         },
         {
@@ -1404,7 +1490,7 @@ namespace {
         },
         {
             "TombSpider",
-            nullptr,
+            createNameObj< TombSpider >,
             "TombSpider",
         },
         {
@@ -1419,12 +1505,12 @@ namespace {
         },
         {
             "FireBallBeamKameck",
-            nullptr,
+            MR::createFireBallBeamKameck,
             "Kameck",
         },
         {
             "TurtleBeamKameck",
-            nullptr,
+            MR::createTurtleBeamKameck,
             "Kameck",
         },
         {
@@ -1604,12 +1690,12 @@ namespace {
         },
         {
             "SpiderAttachPoint",
-            nullptr,
+            createNameObj< SlingShooter >,
             "SpiderThreadAttachPoint",
         },
         {
             "SpiderCoin",
-            nullptr,
+            createNameObj< SpiderCoin >,
             "Coin",
         },
         {
@@ -1639,7 +1725,7 @@ namespace {
         },
         {
             "BlueStarCupsulePlanet",
-            nullptr,
+            createNameObj< BlueStarCupsulePlanet >,
             "BlueStarCupsulePlanet",
         },
         {
@@ -1669,7 +1755,7 @@ namespace {
         },
         {
             "JumpHole",
-            nullptr,
+            createNameObj< JumpHole >,
             "JumpHole",
         },
         {
@@ -1679,12 +1765,12 @@ namespace {
         },
         {
             "DragonHeadFlower",
-            nullptr,
+            createNameObj< DragonHeadFlower >,
             "DragonHeadFlower",
         },
         {
             "ConcreteBlock",
-            nullptr,
+            createNameObj< SimpleBreakableObj >,
             "ConcreteBlock",
         },
         {
@@ -1704,7 +1790,7 @@ namespace {
         },
         {
             "FallDownBridge",
-            nullptr,
+            createNameObj< FallDownBridge >,
             "FallDownBridge",
         },
         {
@@ -1724,32 +1810,32 @@ namespace {
         },
         {
             "FlowerGroup",
-            nullptr,
+            createNameObj< PlantGroup >,
             "Flower",
         },
         {
             "FlowerBlueGroup",
-            nullptr,
+            createNameObj< PlantGroup >,
             "FlowerBlue",
         },
         {
             "CutBushGroup",
-            nullptr,
+            createNameObj< PlantGroup >,
             "CutBush",
         },
         {
             "SmallStone",
-            nullptr,
+            createNameObj< SmallStone >,
             "SmallStone",
         },
         {
             "CircleShell",
-            nullptr,
+            createNameObj< SmallStone >,
             "CircleShell",
         },
         {
             "CircleStrawberry",
-            nullptr,
+            createNameObj< SmallStone >,
             "CircleStrawberry",
         },
         {
@@ -1759,7 +1845,7 @@ namespace {
         },
         {
             "TsukidashikunBig",
-            nullptr,
+            createNameObj< RailBlock >,
             "TsukidashikunBig",
         },
         {
@@ -1879,12 +1965,12 @@ namespace {
         },
         {
             "ElectricRail",
-            nullptr,
+            createNameObj< ElectricRail >,
             "ElectricRail",
         },
         {
             "ElectricRailMoving",
-            nullptr,
+            createNameObj< ElectricRailMoving >,
             "ElectricRailMoving",
         },
         {
@@ -1934,27 +2020,27 @@ namespace {
         },
         {
             "BigBubbleMoveLimitterCylinder",
-            nullptr,
+            MR::createBigBubbleMoveLimitterCylinder,
             nullptr,
         },
         {
             "BigBubbleMoveLimitterPlane",
-            nullptr,
+            MR::createBigBubbleMoveLimitterPlane,
             nullptr,
         },
         {
             "BigBubbleGenerator",
-            nullptr,
+            MR::createBigBubbleGenerator,
             "AirBubbleGenerator",
         },
         {
             "BigObstructBubbleGenerator",
-            nullptr,
+            MR::createBigObstructBubbleGenerator,
             "AirBubbleGenerator",
         },
         {
             "GCaptureTarget",
-            nullptr,
+            createNameObj< GCaptureTarget >,
             "GCaptureTarget",
         },
         {
@@ -2039,7 +2125,7 @@ namespace {
         },
         {
             "CoconutTreeLeaf",
-            nullptr,
+            createNameObj< CoconutTreeLeafGroup >,
             "CoconutTreeLeaf",
         },
         {
@@ -2054,17 +2140,17 @@ namespace {
         },
         {
             "ItemBubble",
-            nullptr,
+            createNameObj< ItemBubble >,
             "ItemBubble",
         },
         {
             "SpinningBox",
-            nullptr,
+            createNameObj< SpinningBox >,
             "SpinningBox",
         },
         {
             "ElectricBall",
-            nullptr,
+            createNameObj< ElectricBall >,
             "ElectricBall",
         },
         {
@@ -2074,32 +2160,32 @@ namespace {
         },
         {
             "MorphItemNeoHopper",
-            nullptr,
+            createNameObj< MorphItemNeoHopper >,
             "PowerupHopper",
         },
         {
             "MorphItemNeoBee",
-            nullptr,
+            createNameObj< MorphItemNeoBee >,
             "PowerUpBee",
         },
         {
             "MorphItemNeoTeresa",
-            nullptr,
+            createNameObj< MorphItemNeoTeresa >,
             "PowerupTeresa",
         },
         {
             "MorphItemNeoIce",
-            nullptr,
+            createNameObj< MorphItemNeoIce >,
             "PowerupIce",
         },
         {
             "MorphItemNeoFire",
-            nullptr,
+            createNameObj< MorphItemNeoFire >,
             "PowerupFire",
         },
         {
             "MorphItemNeoFoo",
-            nullptr,
+            createNameObj< MorphItemNeoFoo >,
             "PowerupFoo",
         },
         {
@@ -2114,42 +2200,42 @@ namespace {
         },
         {
             "Butterfly",
-            nullptr,
+            createNameObj< Butterfly >,
             "Butterfly",
         },
         {
             "Pompon2Plant",
-            nullptr,
+            createNameObj< PomponPlant >,
             "Pompon2Plant",
         },
         {
             "Pompon4Plant",
-            nullptr,
+            createNameObj< PomponPlant >,
             "Pompon4Plant",
         },
         {
             "LavaGeyser",
-            nullptr,
+            createNameObj< LavaGeyser >,
             "LavaGeyser",
         },
         {
             "LavaProminence",
-            nullptr,
+            createNameObj< LavaProminence >,
             "LavaProminence",
         },
         {
             "LavaProminenceTriple",
-            nullptr,
+            createNameObj< LavaProminenceTriple >,
             "LavaProminenceTriple",
         },
         {
             "LavaProminenceEnvironment",
-            nullptr,
+            createNameObj< LavaProminenceTriple >,
             "LavaProminenceEnvironment",
         },
         {
             "LavaProminenceWithoutShadow",
-            nullptr,
+            createNameObj< LavaProminence >,
             "LavaProminence",
         },
         {
@@ -2169,32 +2255,32 @@ namespace {
         },
         {
             "LavaHomeFloaterB",
-            nullptr,
+            createNameObj< LavaFloater >,
             "LavaHomeFloaterB",
         },
         {
             "LavaFloatingStepA",
-            nullptr,
+            createNameObj< LavaFloater >,
             "LavaFloatingStepA",
         },
         {
             "LavaFloatingStepB",
-            nullptr,
+            createNameObj< LavaFloater >,
             "LavaFloatingStepB",
         },
         {
             "LavaFloatingStepC",
-            nullptr,
+            createNameObj< LavaFloater >,
             "LavaFloatingStepC",
         },
         {
             "LavaFloatingStepD",
-            nullptr,
+            createNameObj< LavaFloater >,
             "LavaFloatingStepD",
         },
         {
             "LavaHomeSeesaw",
-            nullptr,
+            createNameObj< LavaHomeSeesaw >,
             "LavaHomeSeesaw",
         },
         {
@@ -2239,7 +2325,7 @@ namespace {
         },
         {
             "LavaBreakColumn",
-            nullptr,
+            createNameObj< LavaBreakColumn >,
             "LavaBreakColumn",
         },
         {
@@ -2284,17 +2370,17 @@ namespace {
         },
         {
             "LavaStrangeRock",
-            nullptr,
+            createNameObj< LavaStrangeRock >,
             "LavaStrangeRock",
         },
         {
             "LavaStrangeRockL",
-            nullptr,
+            createNameObj< LavaStrangeRock >,
             "LavaStrangeRockL",
         },
         {
             "LavaStrangeRockTable",
-            nullptr,
+            createNameObj< LavaStrangeRock >,
             "LavaStrangeRockTable",
         },
         {
@@ -2334,12 +2420,12 @@ namespace {
         },
         {
             "ShellfishCoin",
-            nullptr,
+            createNameObj< Shellfish >,
             "Shellfish",
         },
         {
             "ShellfishYellowChip",
-            nullptr,
+            createNameObj< Shellfish >,
             "Shellfish",
         },
         {
@@ -2364,7 +2450,7 @@ namespace {
         },
         {
             "OceanFloaterTypeU",
-            nullptr,
+            createNameObj< OceanFloaterLandParts >,
             "OceanFloaterTypeU",
         },
         {
@@ -2374,37 +2460,37 @@ namespace {
         },
         {
             "MeteorStrike",
-            nullptr,
+            createNameObj< MeteorStrikeLauncher >,
             "MeteorStrike",
         },
         {
             "MeteorStrikeEnvironment",
-            nullptr,
+            createNameObj< MeteorStrikeLauncher >,
             "MeteorStrike",
         },
         {
             "MeteorCannon",
-            nullptr,
+            createNameObj< MeteorStrikeLauncher >,
             "MeteorStrike",
         },
         {
             "BrightObj",
-            nullptr,
+            createNameObj< BrightObj >,
             "LensFlare",
         },
         {
             "BrightSun",
-            nullptr,
+            createNameObj< BrightSun >,
             "LensFlare",
         },
         {
             "PhantomTorch",
-            nullptr,
+            createNameObj< PhantomTorch >,
             nullptr,
         },
         {
             "PhantomBonfire",
-            nullptr,
+            createNameObj< PhantomTorch >,
             nullptr,
         },
         {
@@ -2419,7 +2505,7 @@ namespace {
         },
         {
             "MarioLauncher",
-            nullptr,
+            createNameObj< MarioLauncher >,
             "MarioLauncher",
         },
         {
@@ -2429,17 +2515,17 @@ namespace {
         },
         {
             "WaterBazooka",
-            nullptr,
+            createNameObj< WaterBazooka >,
             "WaterBazooka",
         },
         {
             "ElectricBazooka",
-            nullptr,
+            createNameObj< WaterBazooka >,
             "ElectricBazooka",
         },
         {
             "WaterPressure",
-            nullptr,
+            createNameObj< WaterPressure >,
             "WaterPressure",
         },
         {
@@ -2449,12 +2535,12 @@ namespace {
         },
         {
             "IronCannonLauncher",
-            nullptr,
+            createNameObj< IronCannonLauncher >,
             "IronCannonLauncher",
         },
         {
             "IronCannonLauncherPoint",
-            nullptr,
+            createNameObj< IronCannonLauncherPoint >,
             nullptr,
         },
         {
@@ -2469,7 +2555,7 @@ namespace {
         },
         {
             "SunkenShip",
-            nullptr,
+            createNameObj< SimpleBreakableObj >,
             "SunkenShip",
         },
         {
@@ -2479,7 +2565,7 @@ namespace {
         },
         {
             "WaterfallCaveCover",
-            nullptr,
+            createNameObj< WaterfallCaveCover >,
             "WaterfallCaveCover",
         },
         {
@@ -2499,7 +2585,7 @@ namespace {
         },
         {
             "OceanPierFloaterA",
-            nullptr,
+            createNameObj< OceanWaveFloater >,
             "OceanPierFloaterA",
         },
         {
@@ -2514,22 +2600,22 @@ namespace {
         },
         {
             "OceanSmallTurtle",
-            nullptr,
+            createNameObj< OceanSmallTurtle >,
             "OceanSmallTurtle",
         },
         {
             "OceanHexagonFloater",
-            nullptr,
+            createNameObj< OceanWaveFloater >,
             "OceanHexagonFloater",
         },
         {
             "SpringWaterFloaterA",
-            nullptr,
+            createNameObj< SpringWaterFloaterSpot >,
             "SpringWaterFloaterA",
         },
         {
             "SpringWaterFloaterB",
-            nullptr,
+            createNameObj< SpringWaterFloaterSpot >,
             "SpringWaterFloaterB",
         },
         {
@@ -2589,7 +2675,7 @@ namespace {
         },
         {
             "IcicleRock",
-            nullptr,
+            createNameObj< SimpleBreakableObj >,
             "IcicleRock",
         },
         {
@@ -2599,12 +2685,12 @@ namespace {
         },
         {
             "SnowFloor",
-            nullptr,
+            createNameObj< SnowFloor >,
             nullptr,
         },
         {
             "SnowFloorTile",
-            nullptr,
+            createNameObj< SnowFloorTile >,
             nullptr,
         },
         {
@@ -2634,7 +2720,7 @@ namespace {
         },
         {
             "SideSpikeMoveStepA",
-            nullptr,
+            createNameObj< SideSpikeMoveStep >,
             "SideSpikeMoveStepA",
         },
         {
@@ -2664,12 +2750,12 @@ namespace {
         },
         {
             "SandUpDownTriRock",
-            nullptr,
+            createNameObj< SandUpDownTriRock >,
             "SandUpDownTriRock",
         },
         {
             "JumpStand",
-            nullptr,
+            createNameObj< JumpStand >,
             "JumpStand",
         },
         {
@@ -2699,7 +2785,7 @@ namespace {
         },
         {
             "SandRiverLightA",
-            nullptr,
+            createNameObj< SwingLight >,
             "SandRiverLightA",
         },
         {
@@ -2709,12 +2795,12 @@ namespace {
         },
         {
             "SnowBlockA",
-            nullptr,
+            createNameObj< SimpleBreakableObj >,
             "SnowBlockA",
         },
         {
             "ShockWaveGenerator",
-            nullptr,
+            createNameObj< ShockWaveGenerator >,
             "ShockWaveGenerator",
         },
         {
@@ -2728,21 +2814,6 @@ namespace {
             "Banekiti",
         },
         {
-            "MirrorModelTest",
-            createNameObj< SimpleMirrorReflectionObj >,
-            "MirrorModelTest",
-        },
-        {
-            "MirrorModelPeachCastle",
-            createNameObj< SimpleMirrorReflectionObj >,
-            "MirrorModelPeachCastle",
-        },
-        {
-            "MirrorModelTwinFallLake",
-            createNameObj< SimpleMirrorReflectionObj >,
-            "MirrorModelTwinFallLake",
-        },
-        {
             "MirrorReflectionTest",
             createNameObj< SimpleMirrorObj >,
             "MirrorReflectionTest",
@@ -2756,6 +2827,21 @@ namespace {
             "MirrorReflectionTwinFallLake",
             createNameObj< SimpleMirrorObj >,
             "MirrorReflectionTwinFallLake",
+        },
+        {
+            "MirrorModelTest",
+            createNameObj< SimpleMirrorReflectionObj >,
+            "MirrorModelTest",
+        },
+        {
+            "MirrorModelPeachCastle",
+            createNameObj< SimpleMirrorReflectionObj >,
+            "MirrorModelPeachCastle",
+        },
+        {
+            "MirrorModelTwinFallLake",
+            createNameObj< SimpleMirrorReflectionObj >,
+            "MirrorModelTwinFallLake",
         },
         {
             "PhantomFirewood",
@@ -2789,7 +2875,7 @@ namespace {
         },
         {
             "TrampleStar",
-            nullptr,
+            createNameObj< TrampleStar >,
             "TrampleStar",
         },
         {
@@ -2844,7 +2930,7 @@ namespace {
         },
         {
             "SphereSelectorHandle",
-            nullptr,
+            createNameObj< SphereSelectorHandle >,
             nullptr,
         },
         {
@@ -2999,17 +3085,17 @@ namespace {
         },
         {
             "QuestionBoxMoveStepA",
-            nullptr,
+            createNameObj< QuestionBoxGalleryObj >,
             "QuestionBoxMoveStepA",
         },
         {
             "QuestionBoxMoveStepB",
-            nullptr,
+            createNameObj< QuestionBoxGalleryObj >,
             "QuestionBoxMoveStepB",
         },
         {
             "QuestionBoxMoveStepC",
-            nullptr,
+            createNameObj< QuestionBoxGalleryObj >,
             "QuestionBoxMoveStepC",
         },
         {
@@ -3054,12 +3140,12 @@ namespace {
         },
         {
             "TeresaMansionLightA",
-            nullptr,
+            createNameObj< SwingLight >,
             "TeresaMansionLightA",
         },
         {
             "TeresaMansionLightB",
-            nullptr,
+            createNameObj< SwingLight >,
             "TeresaMansionLightB",
         },
         {
@@ -3069,12 +3155,12 @@ namespace {
         },
         {
             "TeresaMansionHoleCover",
-            nullptr,
+            createNameObj< SimpleBreakableObj >,
             "TeresaMansionHoleCover",
         },
         {
             "KoopaStatue",
-            nullptr,
+            createNameObj< SimpleBreakableObj >,
             "KoopaStatue",
         },
         {
@@ -3214,32 +3300,32 @@ namespace {
         },
         {
             "SeesawMoveNutA",
-            nullptr,
+            createNameObj< SeesawMoveNut >,
             "SeesawMoveNutA",
         },
         {
             "SeesawMoveNutB",
-            nullptr,
+            createNameObj< SeesawMoveNut >,
             "SeesawMoveNutB",
         },
         {
             "SeesawMoveNutC",
-            nullptr,
+            createNameObj< SeesawMoveNut >,
             "SeesawMoveNutC",
         },
         {
             "TwisterSan",
-            nullptr,
+            createNameObj< Sandstorm >,
             "TwisterSan",
         },
         {
             "TwisterSanSlim",
-            nullptr,
+            createNameObj< Sandstorm >,
             "TwisterSanSlim",
         },
         {
             "SunakazeKun",
-            nullptr,
+            createNameObj< Sandstorm >,
             "SunakazeKun",
         },
         {
@@ -3279,7 +3365,7 @@ namespace {
         },
         {
             "SandCapsulePressGround",
-            nullptr,
+            createNameObj< SandCapsulePressGround >,
             "SandCapsulePressGround",
         },
         {
@@ -3304,7 +3390,7 @@ namespace {
         },
         {
             "DriftWood",
-            nullptr,
+            createNameObj< DriftWood >,
             "DriftWood",
         },
         {
@@ -3334,12 +3420,12 @@ namespace {
         },
         {
             "SandUpDownTowerBreakableWallA",
-            nullptr,
+            createNameObj< SimpleBreakableObj >,
             "SandUpDownTowerBreakableWallA",
         },
         {
             "SandUpDownTowerBreakableWallB",
-            nullptr,
+            createNameObj< SimpleBreakableObj >,
             "SandUpDownTowerBreakableWallB",
         },
         {
@@ -3434,12 +3520,12 @@ namespace {
         },
         {
             "ChoConveyorMoveChocoA",
-            createNameObj< SimpleMapObj >,
+            createNameObj< RailMoveObj >,
             "ChoConveyorMoveChocoA",
         },
         {
             "HoneyQueenLeafA",
-            createNameObj< RailMoveObj >,
+            createNameObj< SimpleSeesawObj >,
             "HoneyQueenLeafA",
         },
         {
@@ -3459,12 +3545,12 @@ namespace {
         },
         {
             "GravityLightA",
-            nullptr,
+            createNameObj< GravityLight >,
             "GravityLightA",
         },
         {
             "GravityLightRoad",
-            nullptr,
+            createNameObj< GravityLightRoad >,
             "GravityLightRoad",
         },
         {
@@ -3489,7 +3575,7 @@ namespace {
         },
         {
             "FloaterOtakingFloaterA",
-            nullptr,
+            createNameObj< LavaFloater >,
             "FloaterOtakingFloaterA",
         },
         {
@@ -3594,7 +3680,7 @@ namespace {
         },
         {
             "ClockworkHandle",
-            nullptr,
+            createNameObj< SimpleBreakableObj >,
             "ClockworkHandle",
         },
         {
@@ -3809,7 +3895,7 @@ namespace {
         },
         {
             "MechaKoopaPartsBreast",
-            createNameObj< MechaKoopaPartsHead >,
+            createNameObj< RailMoveObjBreakAtEnd >,
             "MechaKoopaPartsBreast",
         },
         {
@@ -3874,12 +3960,12 @@ namespace {
         },
         {
             "SpaceShipStep",
-            nullptr,
+            createNameObj< SpaceShipStep >,
             "SpaceShipStep",
         },
         {
             "QuarterRollGravityRoomArrow",
-            nullptr,
+            createNameObj< QuarterRollGravityRoomArrow >,
             "QuarterRollGravityRoomArrow",
         },
         {
@@ -3904,12 +3990,12 @@ namespace {
         },
         {
             "IceVolcanoFloaterA",
-            nullptr,
+            createNameObj< LavaFloater >,
             "IceVolcanoFloaterA",
         },
         {
             "IceVolcanoFloaterB",
-            nullptr,
+            createNameObj< LavaFloater >,
             "IceVolcanoFloaterB",
         },
         {
@@ -3964,12 +4050,12 @@ namespace {
         },
         {
             "IceWaterUpDownParts",
-            nullptr,
+            createNameObj< IceVolcanoUpDownPlane >,
             "IceWaterUpDownParts",
         },
         {
             "LavaUpDownParts",
-            nullptr,
+            createNameObj< IceVolcanoUpDownPlane >,
             "LavaUpDownParts",
         },
         {
@@ -4064,7 +4150,7 @@ namespace {
         },
         {
             "TrialBubbleTimerMoveWallA",
-            nullptr,
+            createNameObj< TimerMoveWall >,
             "TrialBubbleTimerMoveWallA",
         },
         {
@@ -4149,7 +4235,7 @@ namespace {
         },
         {
             "UFOBlueStarCupsule",
-            nullptr,
+            createNameObj< BlueStarCupsulePlanet >,
             "UFOBlueStarCupsule",
         },
         {
@@ -4269,7 +4355,7 @@ namespace {
         },
         {
             "PhantomShipHandle",
-            nullptr,
+            createNameObj< PhantomShipHandle >,
             "PhantomShipHandle",
         },
         {
@@ -4279,7 +4365,7 @@ namespace {
         },
         {
             "TakoBarrelA",
-            nullptr,
+            createNameObj< SimpleBreakableObj >,
             "TakoBarrelA",
         },
         {
@@ -4289,22 +4375,22 @@ namespace {
         },
         {
             "KoopaRestarterVs3",
-            nullptr,
+            createNameObj< KoopaRestarterVs3 >,
             nullptr,
         },
         {
             "KoopaPowerUpSwitch",
-            nullptr,
+            createNameObj< KoopaPowerUpSwitch >,
             nullptr,
         },
         {
             "KoopaSwitchKeeper",
-            nullptr,
+            createNameObj< KoopaSwitchKeeper >,
             nullptr,
         },
         {
             "KoopaViewSwitchKeeper",
-            nullptr,
+            createNameObj< KoopaViewSwitchKeeper >,
             nullptr,
         },
         {
@@ -4319,7 +4405,7 @@ namespace {
         },
         {
             "KoopaBattleMapCoinPlate",
-            nullptr,
+            createNameObj< KoopaBattleMapCoinPlate >,
             "KoopaPlateCoin",
         },
         {
@@ -4704,17 +4790,17 @@ namespace {
         },
         {
             "PhantomShipBoxFloaterA",
-            nullptr,
+            createNameObj< PhantomShipBoxFloater >,
             "PhantomShipBoxFloaterA",
         },
         {
             "PhantomShipBoxFloaterB",
-            nullptr,
+            createNameObj< PhantomShipBoxFloater >,
             "PhantomShipBoxFloaterB",
         },
         {
             "PhantomShipBoxFloaterC",
-            nullptr,
+            createNameObj< PhantomShipBoxFloater >,
             "PhantomShipBoxFloaterC",
         },
         {
@@ -4899,7 +4985,7 @@ namespace {
         },
         {
             "VRDarkSpace",
-            createNameObj< ProjectionMapSky >,
+            createNameObj< Sky >,
             "VRDarkSpace",
         },
         {
@@ -4939,7 +5025,7 @@ namespace {
         },
         {
             "KoopaVS1Sky",
-            createNameObj< Sky >,
+            createNameObj< ProjectionMapSky >,
             "KoopaVS1Sky",
         },
         {
@@ -5044,7 +5130,7 @@ namespace {
         },
         {
             "RailCoin",
-            nullptr,
+            MR::createRailCoin,
             nullptr,
         },
         {
@@ -5054,7 +5140,7 @@ namespace {
         },
         {
             "PurpleRailCoin",
-            nullptr,
+            MR::createRailPurpleCoin,
             "PurpleCoin",
         },
         {
@@ -5074,7 +5160,7 @@ namespace {
         },
         {
             "QuestionCoin",
-            nullptr,
+            createNameObj< QuestionCoin >,
             "QuestionCoin",
         },
         {
@@ -5099,7 +5185,7 @@ namespace {
         },
         {
             "StarPiece",
-            nullptr,
+            createNameObj< StarPiece >,
             "StarPiece",
         },
         {
@@ -5114,22 +5200,22 @@ namespace {
         },
         {
             "StarPieceFollowGroup",
-            nullptr,
+            createNameObj< StarPieceFollowGroup >,
             nullptr,
         },
         {
             "StarPieceMother",
-            nullptr,
+            createNameObj< StarPieceMother >,
             "StarPieceMother",
         },
         {
             "StarPieceSpot",
-            nullptr,
+            createNameObj< StarPieceSpot >,
             nullptr,
         },
         {
             "OceanBowl",
-            nullptr,
+            createNameObj< OceanBowl >,
             "WaterWave",
         },
         {
@@ -5144,97 +5230,97 @@ namespace {
         },
         {
             "OceanSphere",
-            nullptr,
+            createNameObj< OceanSphere >,
             "WaterWave",
         },
         {
             "WhirlPool",
-            nullptr,
+            createNameObj< WhirlPool >,
             nullptr,
         },
         {
             "WhirlPoolAccelerator",
-            nullptr,
+            createNameObj< WhirlPoolAccelerator >,
             "Whirlpool",
         },
         {
             "FishGroupA",
-            nullptr,
+            createNameObj< FishGroup >,
             "FishA",
         },
         {
             "FishGroupB",
-            nullptr,
+            createNameObj< FishGroup >,
             "FishB",
         },
         {
             "FishGroupC",
-            nullptr,
+            createNameObj< FishGroup >,
             "FishC",
         },
         {
             "FishGroupD",
-            nullptr,
+            createNameObj< FishGroup >,
             "FishD",
         },
         {
             "FishGroupE",
-            nullptr,
+            createNameObj< FishGroup >,
             "FishE",
         },
         {
             "FishGroupF",
-            nullptr,
+            createNameObj< FishGroup >,
             "FishF",
         },
         {
             "Flag",
-            nullptr,
+            createNameObj< Flag >,
             "Flag",
         },
         {
             "FlagKoopaA",
-            nullptr,
+            createNameObj< Flag >,
             "FlagKoopaA",
         },
         {
             "FlagKoopaB",
-            nullptr,
+            createNameObj< Flag >,
             "FlagKoopaB",
         },
         {
             "FlagRaceA",
-            nullptr,
+            createNameObj< Flag >,
             "FlagRaceA",
         },
         {
             "FlagKoopaCastle",
-            nullptr,
+            createNameObj< Flag >,
             "FlagKoopaCastle",
         },
         {
             "FlagPeachCastleA",
-            nullptr,
+            createNameObj< Flag >,
             "FlagPeachCastleA",
         },
         {
             "FlagPeachCastleB",
-            nullptr,
+            createNameObj< Flag >,
             "FlagPeachCastleB",
         },
         {
             "FlagPeachCastleC",
-            nullptr,
+            createNameObj< Flag >,
             "FlagPeachCastleC",
         },
         {
             "FlagSurfing",
-            nullptr,
+            createNameObj< Flag >,
             "FlagSurfing",
         },
         {
             "FlagTamakoro",
-            nullptr,
+            createNameObj< Flag >,
             "FlagTamakoro",
         },
         {
@@ -5244,12 +5330,12 @@ namespace {
         },
         {
             "WaterPlant",
-            nullptr,
+            createNameObj< WaterPlant >,
             "WaterPlant",
         },
         {
             "HitWallTimerSwitch",
-            nullptr,
+            createNameObj< HitWallTimerSwitch >,
             "HitWallTimerSwitch",
         },
         {
@@ -5269,17 +5355,17 @@ namespace {
         },
         {
             "HipDropTimerSwitch",
-            nullptr,
+            createNameObj< HipDropTimerSwitch >,
             "HipDropTimerSwitch",
         },
         {
             "DesertLandUpSwitch",
-            nullptr,
+            createNameObj< DesertLandMoveSwitch >,
             "DesertLandUpSwitch",
         },
         {
             "DesertLandDownSwitch",
-            nullptr,
+            createNameObj< DesertLandMoveSwitch >,
             "DesertLandDownSwitch",
         },
         {
@@ -5289,7 +5375,7 @@ namespace {
         },
         {
             "ScrewSwitchReverse",
-            nullptr,
+            createNameObj< ScrewSwitchReverse >,
             "ScrewSwitchReverse",
         },
         {
@@ -5319,57 +5405,57 @@ namespace {
         },
         {
             "EffectObjSample",
-            nullptr,
+            createNameObj< EffectObjR1000F50 >,
             nullptr,
         },
         {
             "ShootingStarArea",
-            nullptr,
+            createNameObj< RandomEffectObj >,
             nullptr,
         },
         {
             "IcePlanetLight",
-            nullptr,
+            createNameObj< EffectObjR100F50SyncClipping >,
             nullptr,
         },
         {
             "IceLayerBreak",
-            nullptr,
+            createNameObj< EffectObjR500F50 >,
             nullptr,
         },
         {
             "LavaSparksS",
-            nullptr,
+            createNameObj< EffectObj20x20x10SyncClipping >,
             nullptr,
         },
         {
             "LavaSparksL",
-            nullptr,
+            createNameObj< EffectObj50x50x10SyncClipping >,
             nullptr,
         },
         {
             "SpaceDustS",
-            nullptr,
+            createNameObj< EffectObj20x20x10SyncClipping >,
             nullptr,
         },
         {
             "SpaceDustL",
-            nullptr,
+            createNameObj< EffectObj50x50x10SyncClipping >,
             nullptr,
         },
         {
             "BirdLouseS",
-            nullptr,
+            createNameObj< EffectObj20x20x10SyncClipping >,
             nullptr,
         },
         {
             "BirdLouseL",
-            nullptr,
+            createNameObj< EffectObj50x50x10SyncClipping >,
             nullptr,
         },
         {
             "SnowS",
-            nullptr,
+            createNameObj< EffectObj10x10x10SyncClipping >,
             nullptr,
         },
         {
@@ -5379,7 +5465,7 @@ namespace {
         },
         {
             "LavaHomeVolcanoFallingRock",
-            nullptr,
+            createNameObj< EffectObjR1000F50 >,
             nullptr,
         },
         {
@@ -5394,127 +5480,127 @@ namespace {
         },
         {
             "WaterfallS",
-            nullptr,
+            createNameObj< EffectObjR1000F50 >,
             nullptr,
         },
         {
             "WaterfallL",
-            nullptr,
+            createNameObj< EffectObjR1000F50 >,
             nullptr,
         },
         {
             "DrainPipeBubbleA",
-            nullptr,
+            createNameObj< EffectObjR500F50 >,
             nullptr,
         },
         {
             "DrainPipeBubbleB",
-            nullptr,
+            createNameObj< EffectObjR500F50 >,
             nullptr,
         },
         {
             "WaterDropTop",
-            nullptr,
+            createNameObj< EffectObjR1000F50 >,
             nullptr,
         },
         {
             "WaterDropBottom",
-            nullptr,
+            createNameObj< EffectObjR1000F50 >,
             nullptr,
         },
         {
             "WaterDropMiddle",
-            nullptr,
+            createNameObj< EffectObjR1000F50 >,
             nullptr,
         },
         {
             "SubmarineSteam",
-            nullptr,
+            createNameObj< SubmarineSteam >,
             nullptr,
         },
         {
             "SubmarineVolcano",
-            nullptr,
+            createNameObj< SubmarineSteam >,
             nullptr,
         },
         {
             "WaterLayerBreak",
-            nullptr,
+            createNameObj< EffectObjR500F50 >,
             nullptr,
         },
         {
             "StarPieceClusterBreak",
-            nullptr,
+            createNameObj< EffectObjR500F50 >,
             nullptr,
         },
         {
             "FireworksA",
-            nullptr,
+            createNameObj< RandomEffectObj >,
             nullptr,
         },
         {
             "BattleShipExplosionRock",
-            nullptr,
+            createNameObj< EffectObjR500F50 >,
             nullptr,
         },
         {
             "BattleShipExplosionMetal",
-            nullptr,
+            createNameObj< EffectObjR500F50 >,
             nullptr,
         },
         {
             "ForestWaterfallS",
-            nullptr,
+            createNameObj< EffectObjR1000F50 >,
             nullptr,
         },
         {
             "ForestWaterfallL",
-            nullptr,
+            createNameObj< EffectObjR1000F50 >,
             nullptr,
         },
         {
             "SandBreezeS",
-            nullptr,
+            createNameObj< EffectObj20x20x10SyncClipping >,
             nullptr,
         },
         {
             "SandBreezeL",
-            nullptr,
+            createNameObj< EffectObj50x50x10SyncClipping >,
             nullptr,
         },
         {
             "SpringJetWater",
-            nullptr,
+            createNameObj< SpringJetWater >,
             nullptr,
         },
         {
             "SandUpDownKGBaseEffect",
-            nullptr,
+            createNameObj< SandUpDownEffectObj >,
             nullptr,
         },
         {
             "SandUpDownTowerTopEffect",
-            nullptr,
+            createNameObj< SandUpDownEffectObj >,
             nullptr,
         },
         {
             "UFOSandObstacleAEffect",
-            nullptr,
+            createNameObj< SandUpDownEffectObj >,
             nullptr,
         },
         {
             "UFOSandObstacleBEffect",
-            nullptr,
+            createNameObj< SandUpDownEffectObj >,
             nullptr,
         },
         {
             "UFOSandObstacleCEffect",
-            nullptr,
+            createNameObj< SandUpDownEffectObj >,
             nullptr,
         },
         {
             "GravityDust",
-            nullptr,
+            createNameObj< EffectObjGravityDust >,
             nullptr,
         },
         {
@@ -5524,32 +5610,32 @@ namespace {
         },
         {
             "FallRedLeaf",
-            nullptr,
+            createNameObj< EffectObj10x10x10SyncClipping >,
             nullptr,
         },
         {
             "FallGreenLeaf",
-            nullptr,
+            createNameObj< EffectObj10x10x10SyncClipping >,
             nullptr,
         },
         {
             "IcicleRockLight",
-            nullptr,
+            createNameObj< EffectObjR100F50SyncClipping >,
             nullptr,
         },
         {
             "TwinFallLakeWaterFall",
-            nullptr,
+            createNameObj< EffectObjR1000F50 >,
             nullptr,
         },
         {
             "EffectTeresa",
-            nullptr,
+            createNameObj< EffectObj50x50x10SyncClipping >,
             nullptr,
         },
         {
             "UFOKinokoLandingBlackSmoke",
-            nullptr,
+            createNameObj< EffectObjR500F50 >,
             nullptr,
         },
         {
@@ -5879,22 +5965,22 @@ namespace {
         },
         {
             "FallOutFieldDraw",
-            nullptr,
+            MR::createFallOutFieldDraw,
             nullptr,
         },
         {
             "ClipFieldFillDraw",
-            nullptr,
+            MR::createClipFieldFillDraw,
             nullptr,
         },
         {
             "SpotLightVolumeDraw",
-            nullptr,
+            MR::createVolumeDrawSpotLight,
             nullptr,
         },
         {
             "GroupSwitchWatcher",
-            nullptr,
+            createNameObj< GroupSwitchWatcher >,
             nullptr,
         },
         {
@@ -5914,12 +6000,12 @@ namespace {
         },
         {
             "MovieStarter",
-            nullptr,
+            createNameObj< MovieStarter >,
             "CinemaSuper",
         },
         {
             "DemoGroup",
-            nullptr,
+            createNameObj< DemoExecutor >,
             nullptr,
         },
         {
@@ -5929,7 +6015,7 @@ namespace {
         },
         {
             "AstroDomeDemoStarter",
-            nullptr,
+            createNameObj< AstroDomeDemoStarter >,
             "SuperSpinDriver",
         },
         {
@@ -5939,22 +6025,22 @@ namespace {
         },
         {
             "StarReturnDemoStarter",
-            nullptr,
+            createNameObj< StarReturnDemoStarter >,
             nullptr,
         },
         {
             "GrandStarReturnDemoStarter",
-            nullptr,
+            createNameObj< GrandStarReturnDemoStarter >,
             "GrandStar",
         },
         {
             "ScenarioStarter",
-            nullptr,
+            createNameObj< ScenarioStarter >,
             "Welcome",
         },
         {
             "FileSelector",
-            nullptr,
+            createNameObj< FileSelector >,
             nullptr,
         },
     };
@@ -7724,6 +7810,7 @@ namespace {
             "MoviePadRumbleEndingB",
         },
     };
+
     const NameObjFactory::Name2MakeArchiveListFunc cName2MakeArchiveListFuncTable[] = {
         {
             "BallBeamer",
@@ -7749,9 +7836,18 @@ namespace {
             "CrystalCageM",
             MR::makeArchiveListDummyDisplayModel,
         },
-        {"DemoRabbit", /* DemoRabbit::makeArchiveList, */},
-        {"GhostPlayer", /* GhostPlayer::makeArchiveList, */},
-        {"KuriboChief", /* KuriboChief::makeArchiveList, */},
+        {
+            "DemoRabbit",
+            DemoRabbit::makeArchiveList,
+        },
+        {
+            "GhostPlayer",
+            GhostPlayer::makeArchiveList,
+        },
+        {
+            "KuriboChief",
+            KuriboChief::makeArchiveList,
+        },
         {
             "YellowChip",
             ChipBase::makeArchiveList,
@@ -7788,8 +7884,14 @@ namespace {
             "CirclePurpleCoinGroup",
             Coin::makeArchiveList,
         },
-        {"OtaKing", /* OtaKing::makeArchiveList, */},
-        {"OtaRock", /* OtaRock::makeArchiveList, */},
+        {
+            "OtaKing",
+            OtaKing::makeArchiveList,
+        },
+        {
+            "OtaRock",
+            OtaRock::makeArchiveList,
+        },
         {
             "PowerStar",
             PowerStar::makeArchiveList,
@@ -7806,17 +7908,26 @@ namespace {
             "RosettaPictureBook",
             RosettaPictureBook::makeArchiveList,
         },
-        {"RunawayTico", /* RunawayTico::makeArchiveList, */},
+        {
+            "RunawayTico",
+            RunawayTico::makeArchiveList,
+        },
         {
             "Teresa",
             MR::makeArchiveListDummyDisplayModel,
         },
-        {"Caretaker", /* Caretaker::makeArchiveList, */},
+        {
+            "Caretaker",
+            Caretaker::makeArchiveList,
+        },
         {
             "Kinopio",
             NPCActor::makeArchiveList,
         },
-        {"KinopioAstro", /* KinopioAstro::makeArchiveList, */},
+        {
+            "KinopioAstro",
+            KinopioAstro::makeArchiveList,
+        },
         {
             "Tico",
             Tico::makeArchiveList,
@@ -7865,7 +7976,10 @@ namespace {
             "LuigiEvent",
             LuigiNPC::makeArchiveList,
         },
-        {"StarReturnDemoStarter", /* StarReturnDemoStarter::makeArchiveList, */},
+        {
+            "StarReturnDemoStarter",
+            StarReturnDemoStarter::makeArchiveList,
+        },
         {
             "UFOKinoko",
             UFOKinoko::makeArchiveList,
@@ -7874,7 +7988,10 @@ namespace {
             "UFOKinokoUnderConstruction",
             MR::makeArchiveListUFOKinokoUnderConstruction,
         },
-        {"SunakazeKun", /* Sandstorm::makeArchiveList, */},
+        {
+            "SunakazeKun",
+            Sandstorm::makeArchiveList,
+        },
         {
             "AstroDome",
             AstroMapObjFunction::makeArchiveListFromArg0,
@@ -7907,46 +8024,250 @@ namespace {
             "AstroParking",
             AstroMapObjFunction::makeArchiveListAstroNamePlate,
         },
-        {"MiniEggStarGalaxy", /* MiniatureGalaxy::makeArchiveList, */},
-        {"MiniHoneyBeeKingdomGalaxy", /* MiniatureGalaxy::makeArchiveList, */},
-        {"MiniFlipPanelExGalaxy", /* MiniatureGalaxy::makeArchiveList, */},
-        {"MiniSurfingLv1Galaxy", /* MiniatureGalaxy::makeArchiveList, */},
-        {"MiniTriLegLv1Galaxy", /* MiniatureGalaxy::makeArchiveList, */},
-        {"MiniStarDustGalaxy", /* MiniatureGalaxy::makeArchiveList, */},
-        {"MiniTamakoroExLv1Galaxy", /* MiniatureGalaxy::makeArchiveList, */},
-        {"MiniBattleShipGalaxy", /* MiniatureGalaxy::makeArchiveList, */},
-        {"MiniBreakDownPlanetGalaxy", /* MiniatureGalaxy::makeArchiveList, */},
-        {"MiniKoopaBattleVs1Galaxy", /* MiniatureGalaxy::makeArchiveList, */},
-        {"MiniHeavenlyBeachGalaxy", /* MiniatureGalaxy::makeArchiveList, */},
-        {"MiniCubeBubbleExLv1Galaxy", /* MiniatureGalaxy::makeArchiveList, */},
-        {"MiniPhantomGalaxy", /* MiniatureGalaxy::makeArchiveList, */},
-        {"MiniOceanFloaterLandGalaxy", /* MiniatureGalaxy::makeArchiveList, */},
-        {"MiniKoopaJrShipLv1Galaxy", /* MiniatureGalaxy::makeArchiveList, */},
-        {"MiniCosmosGardenGalaxy", /* MiniatureGalaxy::makeArchiveList, */},
-        {"MiniIceVolcanoGalaxy", /* MiniatureGalaxy::makeArchiveList, */},
-        {"MiniHoneyBeeExGalaxy", /* MiniatureGalaxy::makeArchiveList, */},
-        {"MiniSandClockGalaxy", /* MiniatureGalaxy::makeArchiveList, */},
-        {"MiniKoopaBattleVs2Galaxy", /* MiniatureGalaxy::makeArchiveList, */},
-        {"MiniReverseKingdomGalaxy", /* MiniatureGalaxy::makeArchiveList, */},
-        {"MiniOceanRingGalaxy", /* MiniatureGalaxy::makeArchiveList, */},
-        {"MiniFactoryGalaxy", /* MiniatureGalaxy::makeArchiveList, */},
-        {"MiniSkullSharkGalaxy", /* MiniatureGalaxy::makeArchiveList, */},
-        {"MiniFloaterOtaKingGalaxy", /* MiniatureGalaxy::makeArchiveList, */},
-        {"MiniOceanPhantomCaveGalaxy", /* MiniatureGalaxy::makeArchiveList, */},
-        {"MiniCannonFleetGalaxy", /* MiniatureGalaxy::makeArchiveList, */},
-        {"MiniDarkRoomGalaxy", /* MiniatureGalaxy::makeArchiveList, */},
-        {"MiniHellProminenceGalaxy", /* MiniatureGalaxy::makeArchiveList, */},
-        {"MiniKoopaBattleVs3Galaxy", /* MiniatureGalaxy::makeArchiveList, */},
-        {"Hopper", /* MorphItemObjNeo::makeArchiveList, */},
-        {"BenefitItemInvincible", /* MorphItemObjNeo::makeArchiveList, */},
-        {"MorphItemNeoBee", /* MorphItemObjNeo::makeArchiveList, */},
-        {"MorphItemNeoFire", /* MorphItemObjNeo::makeArchiveList, */},
-        {"MorphItemNeoFoo", /* MorphItemObjNeo::makeArchiveList, */},
-        {"MorphItemNeoHopper", /* MorphItemObjNeo::makeArchiveList, */},
-        {"MorphItemNeoIce", /* MorphItemObjNeo::makeArchiveList, */},
-        {"MorphItemNeoTeresa", /* MorphItemObjNeo::makeArchiveList, */},
+        {
+            "MiniEggStarGalaxy",
+            MiniatureGalaxy::makeArchiveList,
+        },
+        {
+            "MiniHoneyBeeKingdomGalaxy",
+            MiniatureGalaxy::makeArchiveList,
+        },
+        {
+            "MiniFlipPanelExGalaxy",
+            MiniatureGalaxy::makeArchiveList,
+        },
+        {
+            "MiniSurfingLv1Galaxy",
+            MiniatureGalaxy::makeArchiveList,
+        },
+        {
+            "MiniTriLegLv1Galaxy",
+            MiniatureGalaxy::makeArchiveList,
+        },
+        {
+            "MiniStarDustGalaxy",
+            MiniatureGalaxy::makeArchiveList,
+        },
+        {
+            "MiniTamakoroExLv1Galaxy",
+            MiniatureGalaxy::makeArchiveList,
+        },
+        {
+            "MiniBattleShipGalaxy",
+            MiniatureGalaxy::makeArchiveList,
+        },
+        {
+            "MiniBreakDownPlanetGalaxy",
+            MiniatureGalaxy::makeArchiveList,
+        },
+        {
+            "MiniKoopaBattleVs1Galaxy",
+            MiniatureGalaxy::makeArchiveList,
+        },
+        {
+            "MiniHeavenlyBeachGalaxy",
+            MiniatureGalaxy::makeArchiveList,
+        },
+        {
+            "MiniCubeBubbleExLv1Galaxy",
+            MiniatureGalaxy::makeArchiveList,
+        },
+        {
+            "MiniPhantomGalaxy",
+            MiniatureGalaxy::makeArchiveList,
+        },
+        {
+            "MiniOceanFloaterLandGalaxy",
+            MiniatureGalaxy::makeArchiveList,
+        },
+        {
+            "MiniKoopaJrShipLv1Galaxy",
+            MiniatureGalaxy::makeArchiveList,
+        },
+        {
+            "MiniCosmosGardenGalaxy",
+            MiniatureGalaxy::makeArchiveList,
+        },
+        {
+            "MiniIceVolcanoGalaxy",
+            MiniatureGalaxy::makeArchiveList,
+        },
+        {
+            "MiniHoneyBeeExGalaxy",
+            MiniatureGalaxy::makeArchiveList,
+        },
+        {
+            "MiniSandClockGalaxy",
+            MiniatureGalaxy::makeArchiveList,
+        },
+        {
+            "MiniKoopaBattleVs2Galaxy",
+            MiniatureGalaxy::makeArchiveList,
+        },
+        {
+            "MiniReverseKingdomGalaxy",
+            MiniatureGalaxy::makeArchiveList,
+        },
+        {
+            "MiniOceanRingGalaxy",
+            MiniatureGalaxy::makeArchiveList,
+        },
+        {
+            "MiniFactoryGalaxy",
+            MiniatureGalaxy::makeArchiveList,
+        },
+        {
+            "MiniSkullSharkGalaxy",
+            MiniatureGalaxy::makeArchiveList,
+        },
+        {
+            "MiniFloaterOtaKingGalaxy",
+            MiniatureGalaxy::makeArchiveList,
+        },
+        {
+            "MiniOceanPhantomCaveGalaxy",
+            MiniatureGalaxy::makeArchiveList,
+        },
+        {
+            "MiniCannonFleetGalaxy",
+            MiniatureGalaxy::makeArchiveList,
+        },
+        {
+            "MiniDarkRoomGalaxy",
+            MiniatureGalaxy::makeArchiveList,
+        },
+        {
+            "MiniHellProminenceGalaxy",
+            MiniatureGalaxy::makeArchiveList,
+        },
+        {
+            "MiniKoopaBattleVs3Galaxy",
+            MiniatureGalaxy::makeArchiveList,
+        },
+        {
+            "Hopper",
+            MorphItemObjNeo::makeArchiveList,
+        },
+        {
+            "BenefitItemInvincible",
+            MorphItemObjNeo::makeArchiveList,
+        },
+        {
+            "MorphItemNeoBee",
+            MorphItemObjNeo::makeArchiveList,
+        },
+        {
+            "MorphItemNeoFire",
+            MorphItemObjNeo::makeArchiveList,
+        },
+        {
+            "MorphItemNeoFoo",
+            MorphItemObjNeo::makeArchiveList,
+        },
+        {
+            "MorphItemNeoHopper",
+            MorphItemObjNeo::makeArchiveList,
+        },
+        {
+            "MorphItemNeoIce",
+            MorphItemObjNeo::makeArchiveList,
+        },
+        {
+            "MorphItemNeoTeresa",
+            MorphItemObjNeo::makeArchiveList,
+        },
     };
 };  // namespace
+
+MorphItemNeoHopper::~MorphItemNeoHopper() {}
+MorphItemNeoIce::~MorphItemNeoIce() {}
+MorphItemNeoFire::~MorphItemNeoFire() {}
+MorphItemNeoFoo::~MorphItemNeoFoo() {}
+MorphItemNeoBee::~MorphItemNeoBee() {}
+MorphItemNeoTeresa::~MorphItemNeoTeresa() {}
+
+EffectObjR100F50SyncClipping::~EffectObjR100F50SyncClipping() {}
+EffectObjR500F50::~EffectObjR500F50() {}
+EffectObjR1000F50::~EffectObjR1000F50() {}
+EffectObj20x20x10SyncClipping::~EffectObj20x20x10SyncClipping() {}
+EffectObj50x50x10SyncClipping::~EffectObj50x50x10SyncClipping() {}
+EffectObj10x10x10SyncClipping::~EffectObj10x10x10SyncClipping() {}
+
+bool EffectObj10x10x10SyncClipping::isSyncClipping() const {
+    return true;
+}
+
+TVec3f* EffectObj10x10x10SyncClipping::getClippingCenterOffset() const {
+    return &(TVec3f(0.0f, 580.0f, 0.0f));
+}
+
+f32 EffectObj10x10x10SyncClipping::getFarClipDistance() const {
+    return 50.0f;
+}
+
+f32 EffectObj10x10x10SyncClipping::getClippingRadius() const {
+    return 1000.0f;
+}
+
+bool EffectObj50x50x10SyncClipping::isSyncClipping() const {
+    return true;
+}
+
+TVec3f* EffectObj50x50x10SyncClipping::getClippingCenterOffset() const {
+    return &(TVec3f(0.0f, 200.0f, 0.0f));
+}
+
+f32 EffectObj50x50x10SyncClipping::getFarClipDistance() const {
+    return 50.0f;
+}
+
+f32 EffectObj50x50x10SyncClipping::getClippingRadius() const {
+    return 2500.0f;
+}
+
+bool EffectObj20x20x10SyncClipping::isSyncClipping() const {
+    return true;
+}
+
+TVec3f* EffectObj20x20x10SyncClipping::getClippingCenterOffset() const {
+    return &(TVec3f(0.0f, 200.0f, 0.0f));
+}
+
+f32 EffectObj20x20x10SyncClipping::getFarClipDistance() const {
+    return 50.0f;
+}
+
+f32 EffectObj20x20x10SyncClipping::getClippingRadius() const {
+    return 1000.0f;
+}
+
+f32 EffectObjR1000F50::getFarClipDistance() const {
+    return 50.0f;
+}
+
+f32 EffectObjR1000F50::getClippingRadius() const {
+    return 1000.0f;
+}
+
+f32 EffectObjR500F50::getFarClipDistance() const {
+    return 50.0f;
+}
+
+f32 EffectObjR500F50::getClippingRadius() const {
+    return 500.0f;
+}
+
+bool EffectObjR100F50SyncClipping::isSyncClipping() const {
+    return true;
+}
+
+f32 EffectObjR100F50SyncClipping::getFarClipDistance() const {
+    return 50.0f;
+}
+
+f32 EffectObjR100F50SyncClipping::getClippingRadius() const {
+    return 100.0f;
+}
 
 namespace NameObjFactory {
     CreatorFuncPtr getCreator(const char* pName) {

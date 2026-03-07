@@ -1,35 +1,39 @@
 #include "Game/MapObj/MapPartsBreaker.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
 
-/*
+namespace NrvMapPartsBreaker {
+    NEW_NERVE(HostTypeWait, MapPartsBreaker, Wait);
+    NEW_NERVE(HostTypeReactToTornado, MapPartsBreaker, ReactToTornado);
+    NEW_NERVE(HostTypeBreak, MapPartsBreaker, Break);
+};  // namespace NrvMapPartsBreaker
+
+void MapPartsBreaker::exeWait() {}
+
 void MapPartsBreaker::exeReactToTornado() {
     if (isFirstStep()) {
         TVec3f* vel = &mHost->mVelocity;
-        vel->set<f32>((_28 * 5.0f) * _34);
+        vel->set< f32 >((_28 * 5.0f) * _34);
     }
 
-    if (getStep() % 3) {
-        mHost->mVelocity.negateSelf();
+    if (getStep() % 3 == 0) {
+        mHost->mVelocity.invertInternal();
     }
 
     if (isStep(36)) {
         if (_38) {
             setNerve(&NrvMapPartsBreaker::HostTypeBreak::sInstance);
-        }
-        else {
+        } else {
             mHost->mVelocity.zero();
-            mHost->mPosition.set<f32>(_1C);
+            mHost->mPosition.set< f32 >(_1C);
             _28.x = 0.0f;
             _28.y = 1.0f;
             _28.z = 0.0f;
             setNerve(&NrvMapPartsBreaker::HostTypeWait::sInstance);
         }
-    }
-    else {
+    } else {
         _38 = 0;
     }
 }
-*/
 
 void MapPartsBreaker::exeBreak() {
     if (isFirstStep()) {
@@ -45,20 +49,8 @@ void MapPartsBreaker::exeBreak() {
     }
 }
 
-namespace NrvMapPartsBreaker {
-    INIT_NERVE(HostTypeWait);
-    INIT_NERVE(HostTypeReactToTornado);
-    INIT_NERVE(HostTypeBreak);
-
-    void HostTypeBreak::execute(Spine* pSpine) const {
-        MapPartsBreaker* breaker = reinterpret_cast< MapPartsBreaker* >(pSpine->mExecutor);
-        breaker->exeBreak();
-    }
-
-    void HostTypeReactToTornado::execute(Spine* pSpine) const {
-        MapPartsBreaker* breaker = reinterpret_cast< MapPartsBreaker* >(pSpine->mExecutor);
-        breaker->exeReactToTornado();
-    }
-
-    void HostTypeWait::execute(Spine* pSpine) const {}
-};  // namespace NrvMapPartsBreaker
+// TODO: this SHOULD NOT be here, however moving this to its proper place causes linkage issues since
+// TVec2f::squared is not used in this file... at all.
+f32 TVec2f::squared(const TVec2f& rOther) const {
+    return (x - rOther.x) * (x - rOther.x) + (y - rOther.y) * (y - rOther.y);
+}

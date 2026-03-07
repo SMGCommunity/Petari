@@ -1,6 +1,10 @@
 #include "Game/MapObj/AstroDomeAsteroid.hpp"
 #include "Game/Map/SphereSelector.hpp"
 
+namespace NrvAstroDomeAsteroid {
+    NEW_NERVE(AstroDomeAsteroidNrvWait, AstroDomeAsteroid, Wait);
+};
+
 AstroDomeAsteroid::AstroDomeAsteroid(const char* pName) : LiveActor(pName) {
     mRotationMtx.identity();
 }
@@ -19,6 +23,14 @@ void AstroDomeAsteroid::init(const JMapInfoIter& rIter) {
 void AstroDomeAsteroid::appear() {
     LiveActor::appear();
     mRotationMtx.identity();
+}
+
+void AstroDomeAsteroid::exeWait() {
+    if (MR::isFirstStep(this)) {
+        MR::startBck(this, "AstroDomeAsteroid", nullptr);
+    }
+
+    MR::setBckRate(this, 1.0f);
 }
 
 void AstroDomeAsteroid::control() {
@@ -40,7 +52,3 @@ bool AstroDomeAsteroid::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* 
 }
 
 AstroDomeAsteroid::~AstroDomeAsteroid() {}
-
-namespace NrvAstroDomeAsteroid {
-    INIT_NERVE(AstroDomeAsteroidNrvWait);
-};

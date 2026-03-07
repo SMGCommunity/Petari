@@ -13,7 +13,7 @@
 | `exeMove__18MechaKoopaPartsArmFv` | `0x801FBDA0` | :white_check_mark: (100.0%) |
 | `exeBreakStart__18MechaKoopaPartsArmFv` | `0x801FBE38` | :white_check_mark: (100.0%) |
 | `exeBreak__18MechaKoopaPartsArmFv` | `0x801FBEBC` | :white_check_mark: (100.0%) |
-| `initCaseUseSwitchB__18MechaKoopaPartsArmFRC19MapObjActorInitInfo` | `0x801FBF70` | :x: (11.1%) |
+| `initCaseUseSwitchB__18MechaKoopaPartsArmFRC19MapObjActorInitInfo` | `0x801FBF70` | :x: (50.8%) |
 | `initCaseNoUseSwitchB__18MechaKoopaPartsArmFRC19MapObjActorInitInfo` | `0x801FBFCC` | :white_check_mark: (100.0%) |
 | `startBreak__18MechaKoopaPartsArmFv` | `0x801FBFD0` | :white_check_mark: (100.0%) |
 | `__sinit_\MechaKoopaPartsArm_cpp` | `0x801FBFD8` | :white_check_mark: (100.0%) |
@@ -36,5 +36,5 @@
 | `execute__Q221NrvMechaKoopaPartsArm29MechaKoopaPartsArmNrvWaitRearCFP5Spine` | `0x801FC0F4` | :white_check_mark: (100.0%) |
 | `execute__Q221NrvMechaKoopaPartsArm30MechaKoopaPartsArmNrvWaitFrontCFP5Spine` | `0x801FC0FC` | :white_check_mark: (100.0%) |
 | `__cl__Q22MR63FunctorV0M<P18MechaKoopaPartsArm,M18MechaKoopaPartsArmFPCvPv_v>CFv` | `0x801FC104` | :white_check_mark: (100.0%) |
-| `clone__Q22MR63FunctorV0M<P18MechaKoopaPartsArm,M18MechaKoopaPartsArmFPCvPv_v>CFP7JKRHeap` | `0x801FC134` | :x: (96.2%) |
+| `clone__Q22MR63FunctorV0M<P18MechaKoopaPartsArm,M18MechaKoopaPartsArmFPCvPv_v>CFP7JKRHeap` | `0x801FC134` | :white_check_mark: (100.0%) |
 | `__dt__18MechaKoopaPartsArmFv` | `0x801FC19C` | :white_check_mark: (100.0%) |

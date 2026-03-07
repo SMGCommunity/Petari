@@ -2,7 +2,8 @@
 #include <revolution/os/OSCache.h>
 #include <revolution/os.h>
 
-static char* error = ">>> L2 INVALIDATE : SHOULD NEVER HAPPEN\n";
+//needs to be a char[] to prevent something from showing up in .sdata
+static char error[] = ">>> L2 INVALIDATE : SHOULD NEVER HAPPEN\n";
 
 asm void DCEnable(void) {
     nofralloc
@@ -324,7 +325,7 @@ void inline L2Disable(void) {
     __sync();
 }
 
-void inline L2GlobalInvalidate(void) {
+void L2GlobalInvalidate(void) {
     L2Disable();
 
     PPCMtl2cr(PPCMfl2cr() | 0x200000);

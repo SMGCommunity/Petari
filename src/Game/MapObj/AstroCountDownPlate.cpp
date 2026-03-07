@@ -1,6 +1,14 @@
 #include "Game/MapObj/AstroCountDownPlate.hpp"
 #include "Game/LiveActor/MaterialCtrl.hpp"
 #include "Game/MapObj/AstroMapObjFunction.hpp"
+#include <JSystem/J3DGraphBase/J3DTevs.hpp>
+
+namespace NrvAstroCountDownPlate {
+    NEW_NERVE(AstroCountDownPlateNrvDead, AstroCountDownPlate, Wait);
+    NEW_NERVE(AstroCountDownPlateNrvAlive, AstroCountDownPlate, Wait);
+    NEW_NERVE(AstroCountDownPlateNrvRevival, AstroCountDownPlate, Revival);
+    NEW_NERVE(AstroCountDownPlateNrvCountToZero, AstroCountDownPlate, CountToZero);
+};  // namespace NrvAstroCountDownPlate
 
 namespace {
     const char* cMaterialName01 = "StarNumber01_v_x";
@@ -9,11 +17,7 @@ namespace {
     const char* cStartCountDownDemoName = "ロゼッタカウントダウン開始デモ";
 };  // namespace
 
-AstroCountDownPlate::AstroCountDownPlate(const char* pName) : LiveActor(pName) {
-    _8C.mInfo = j3dDefaultTexMtxInfo;
-    _120.mInfo = j3dDefaultTexMtxInfo;
-    _1B4 = 0;
-}
+AstroCountDownPlate::AstroCountDownPlate(const char* pName) : LiveActor(pName), _1B4(0) {}
 
 void AstroCountDownPlate::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
@@ -81,7 +85,7 @@ void AstroCountDownPlate::exeCountToZero() {
 
     f32 v2 = MR::calcNerveRate(this, 50);
     f32 v3 = MR::getConvergeVibrationValue(v2, 0.1f, 0.0f, 0.3f, 4.0f);
-    _8C.mInfo.mSRTInfo.mTransY = v3;
+    _8C.getTexMtxInfo().mSRT.mTranslationY = v3;
 
     if (_1B4) {
         MR::startLevelSound(this, "SE_OJ_LV_CDN_PLATE_LIGHT", -1, -1, -1);
@@ -101,8 +105,8 @@ void AstroCountDownPlate::initTextureAtNumLeftStar() {
 void AstroCountDownPlate::setNumLeftStar() {
     s32 starLeft = MR::getPowerStarLeftToDisplayCountDownPlate();
     f32 mod = starLeft % 10;
-    _120.mInfo.mSRTInfo.mTransY = 0.1f * (starLeft / 10);
-    _8C.mInfo.mSRTInfo.mTransY = 0.1f * mod;
+    _120.getTexMtxInfo().mSRT.mTranslationY = 0.1f * (starLeft / 10);
+    _8C.getTexMtxInfo().mSRT.mTranslationY = 0.1f * mod;
 }
 
 void AstroCountDownPlate::selectNrvWait() {
@@ -137,12 +141,5 @@ void AstroCountDownPlate::startDemoStartCountDown() {
 void AstroCountDownPlate::startDemoLastBattle() {
     setNerve(&NrvAstroCountDownPlate::AstroCountDownPlateNrvCountToZero::sInstance);
 }
-
-namespace NrvAstroCountDownPlate {
-    INIT_NERVE(AstroCountDownPlateNrvDead);
-    INIT_NERVE(AstroCountDownPlateNrvAlive);
-    INIT_NERVE(AstroCountDownPlateNrvRevival);
-    INIT_NERVE(AstroCountDownPlateNrvCountToZero);
-};  // namespace NrvAstroCountDownPlate
 
 AstroCountDownPlate::~AstroCountDownPlate() {}

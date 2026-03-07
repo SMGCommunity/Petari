@@ -12,14 +12,12 @@ public:
     virtual void init(const JMapInfoIter&);
     virtual void control();
 
+    void exeHide();
+    void exeShow();
+
     void setCount(s32);
     bool tryEndShow();
     void setPosition();
 
     TVec2f mFollowPosition;  // 0x20
 };
-
-namespace NrvCollectCounter {
-    NERVE(CollectCounterNrvHide);
-    NERVE(CollectCounterNrvShow);
-};  // namespace NrvCollectCounter

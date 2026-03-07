@@ -91,9 +91,7 @@ void ClippingActorHolder::setTypeToSphere(LiveActor* pActor, f32 range, const TV
     find(pActor)->setTypeToSphere(range, a3);
 }
 
-#ifdef NON_MATCHING
 // cast issues
 void ClippingActorHolder::setFarClipLevel(LiveActor* pActor, s32 level) {
     find(pActor)->mFarClipLevel = level;
 }
-#endif

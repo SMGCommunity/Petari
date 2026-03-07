@@ -10,7 +10,7 @@
 | `AIInitDMA` | `0x804CA328` | :white_check_mark: (100.0%) |
 | `AIStartDMA` | `0x804CA3A4` | :white_check_mark: (100.0%) |
 | `AIStopDMA` | `0x804CA3B8` | :white_check_mark: (100.0%) |
-| `AIGetDMAStartAddr` | `0x804CA3CC` | :x: (83.3%) |
+| `AIGetDMAStartAddr` | `0x804CA3CC` | :x: (99.8%) |
 | `AIGetDMALength` | `0x804CA3E4` | :white_check_mark: (100.0%) |
 | `AISetDSPSampleRate` | `0x804CA3F4` | :white_check_mark: (100.0%) |
 | `AIInit` | `0x804CA46C` | :white_check_mark: (100.0%) |

@@ -7,7 +7,7 @@
 | Name | Address | Match % |
 |------|---------|---------|
 | `__ct__11PackunPetitFPCc` | `0x801301B4` | :white_check_mark: (100.0%) |
-| `init__11PackunPetitFRC12JMapInfoIter` | `0x80130218` | :x: (94.6%) |
+| `init__11PackunPetitFRC12JMapInfoIter` | `0x80130218` | :x: (99.9%) |
 | `initAfterPlacement__11PackunPetitFv` | `0x8013041C` | :white_check_mark: (100.0%) |
 | `exeNonActive__11PackunPetitFv` | `0x80130420` | :white_check_mark: (100.0%) |
 | `exeWait__11PackunPetitFv` | `0x80130494` | :white_check_mark: (100.0%) |
@@ -23,7 +23,7 @@
 | `exeSwoon__11PackunPetitFv` | `0x80130B28` | :white_check_mark: (100.0%) |
 | `exeSwoonToThreat__11PackunPetitFv` | `0x80130BA8` | :white_check_mark: (100.0%) |
 | `kill__11PackunPetitFv` | `0x80130C0C` | :white_check_mark: (100.0%) |
-| `calcAndSetBaseMtx__11PackunPetitFv` | `0x80130D1C` | :x: (0.0%) |
+| `calcAndSetBaseMtx__11PackunPetitFv` | `0x80130D1C` | :x: (91.4%) |
 | `control__11PackunPetitFv` | `0x80130DA8` | :white_check_mark: (100.0%) |
 | `attackSensor__11PackunPetitFP9HitSensorP9HitSensor` | `0x80130DE0` | :x: (0.0%) |
 | `receiveMsgPlayerAttack__11PackunPetitFUlP9HitSensorP9HitSensor` | `0x80130F2C` | :white_check_mark: (100.0%) |
@@ -35,7 +35,7 @@
 | `tryNonActive__11PackunPetitFv` | `0x8013144C` | :white_check_mark: (100.0%) |
 | `tryTurn__11PackunPetitFv` | `0x8013149C` | :x: (0.0%) |
 | `tryDPDSwoon__11PackunPetitFv` | `0x8013154C` | :white_check_mark: (100.0%) |
-| `__dt__11PackunPetitFv` | `0x8013163C` | :x: (95.7%) |
+| `__dt__11PackunPetitFv` | `0x8013163C` | :white_check_mark: (100.0%) |
 | `__sinit_\PackunPetit_cpp` | `0x80131698` | :white_check_mark: (100.0%) |
 | `__ct__Q214NrvPackunPetit23PackunPetitNrvNonActiveFv` | `0x8013173C` | :white_check_mark: (100.0%) |
 | `__ct__Q214NrvPackunPetit18PackunPetitNrvWaitFv` | `0x8013174C` | :white_check_mark: (100.0%) |

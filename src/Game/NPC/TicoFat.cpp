@@ -138,17 +138,17 @@ void TicoFat::init(const JMapInfoIter& rIter) {
     NPCActorItem item("TicoFat");
     caps.setDefault();
     caps.mWaitNerve = &NrvTicoFat::TicoFatNrvPrep::sInstance;
-    caps._E = 0;
+    caps.mMessage = 0;
     caps.mSensorSize = 100.0f;
     caps.mSensorOffset.y = 30.0f;
-    caps._44 = "Center";
-    caps.mUseShadow = true;
-    caps.mUseRail = false;
+    caps.mSensorJoint = "Center";
+    caps._5D = true;
+    caps.mRailRider = false;
     caps._6C = "Center";
-    caps._80 = 110.0f;
-    caps._38 = 0;
-    caps._30 = 6;
-    caps._58 = 2;
+    caps.mPointerSize = 110.0f;
+    caps.mBinder = 0;
+    caps.mSoundSize = 6;
+    caps.mSensorMax = 2;
     _178 = 0;
     _174 = 0;
     mStartEat = false;
@@ -265,11 +265,11 @@ void TicoFat::setCameraParam() {
     TVec3f trans, yDir, zDir, xDir, v18;
     MR::extractMtxXYZDir(getBaseMtx(), &xDir, &yDir, &zDir);
     MR::extractMtxTrans(getBaseMtx(), &trans);
-    xDir.set< f32 >(((1.0f - (2.0f * (_B0.y * _B0.y))) - (2.0f * (_B0.z * _B0.z))), ((2.0f * (_B0.x * _B0.y)) + (2.0f * (_B0.h * _B0.z))),
-                    ((2.0f * (_B0.x * _B0.z)) - (2.0f * (_B0.h * _B0.y))));
-    yDir.set< f32 >(((2.0f * (_B0.x * _B0.y)) - (2.0f * (_B0.h * _B0.z))), ((1.0f - (2.0f * (_B0.x * _B0.x))) - (2.0f * (_B0.z * _B0.z))),
-                    ((2.0f * (_B0.y * _B0.z)) + (2.0f * (_B0.h * _B0.x))));
-    zDir.set< f32 >(((2.0f * (_B0.x * _B0.z)) + (2.0f * (_B0.h * _B0.y))), ((2.0f * (_B0.y * _B0.z)) - (2.0f * (_B0.h * _B0.x))),
+    xDir.set< f32 >(((1.0f - (2.0f * (_B0.y * _B0.y))) - (2.0f * (_B0.z * _B0.z))), ((2.0f * (_B0.x * _B0.y)) + (2.0f * (_B0.w * _B0.z))),
+                    ((2.0f * (_B0.x * _B0.z)) - (2.0f * (_B0.w * _B0.y))));
+    yDir.set< f32 >(((2.0f * (_B0.x * _B0.y)) - (2.0f * (_B0.w * _B0.z))), ((1.0f - (2.0f * (_B0.x * _B0.x))) - (2.0f * (_B0.z * _B0.z))),
+                    ((2.0f * (_B0.y * _B0.z)) + (2.0f * (_B0.w * _B0.x))));
+    zDir.set< f32 >(((2.0f * (_B0.x * _B0.z)) + (2.0f * (_B0.w * _B0.y))), ((2.0f * (_B0.y * _B0.z)) - (2.0f * (_B0.w * _B0.x))),
                     ((1.0f - (2.0f * (_B0.x * _B0.x))) - (2.0f * (_B0.y * _B0.y))));
 
     v18.setPS2(_C0);

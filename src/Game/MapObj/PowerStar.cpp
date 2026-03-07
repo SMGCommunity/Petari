@@ -285,7 +285,6 @@ void PowerStar::control() {
     }
 }
 
-#ifdef NON_MATCHING
 void PowerStar::calcAndSetBaseMtx() {
     f32 derp = 0.017453292f * mRotation.y;
     TVec3f stack_14(0.0f, 1.0f, 0.0f);
@@ -293,8 +292,8 @@ void PowerStar::calcAndSetBaseMtx() {
     pos.zeroTrans();
     TVec3f stack_8;
     stack_8.set(stack_14);
-    PSVECMag(stack_8);
-    PSVECNormalize(stack_8, stack_8);
+    PSVECMag(&stack_8);
+    PSVECNormalize(&stack_8, &stack_8);
     f32 _sin = sin(derp);
     f32 _cos = cos(derp);
     pos.mMtx[0][0] = _cos + ((1.0f - _cos) * (stack_8.x * stack_8.x));
@@ -311,7 +310,6 @@ void PowerStar::calcAndSetBaseMtx() {
     mtx.setTrans(mPosition);
     MR::setBaseTRMtx(this, mtx);
 }
-#endif
 
 bool PowerStar::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgStarPieceReflect(msg)) {
@@ -562,7 +560,6 @@ void PowerStar::calcAppearDemoRiseTrans(TVec3f* pOutTrans, f32 a2) const {
     pOutTrans->add(_AC);
 }
 
-#ifdef NON_MATCHING
 void PowerStar::processWait(f32 val) {
     f32 derp = (mRotation.y + val) - 0.0;
     f32 rot_y = fmod((360.0f + derp), 360.0f);
@@ -594,11 +591,9 @@ void PowerStar::processWait(f32 val) {
         }
     }
 }
-#endif
 
 void PowerStar::exeWaitStartAppear() {}
 
-#ifdef NON_MATCHING
 void PowerStar::exeAppearDemoRise() {
     if (MR::isFirstStep(this)) {
         MR::showModelIfHidden(this);
@@ -626,7 +621,6 @@ void PowerStar::exeAppearDemoRise() {
         setNerve(&NrvPowerStar::PowerStarNrvAppearDemoMove::sInstance);
     }
 }
-#endif
 
 // PowerStar::exeAppearDemoMove()
 // PowerStar::exeAppearDemoKoopa()

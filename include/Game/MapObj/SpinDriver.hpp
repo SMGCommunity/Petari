@@ -28,6 +28,7 @@ public:
     bool tryForceCancel();
     bool tryEndCoolDown();
     bool trySwitchOff();
+    void exeTryDemo();
     void exeNonActive();
     void exeAppear();
     void exeWait();
@@ -80,14 +81,3 @@ public:
     u8 _141;
     bool _142;
 };
-
-namespace NrvSpinDriver {
-    NERVE(SpinDriverNrvTryDemo);
-    NERVE(SpinDriverNrvNonActive);
-    NERVE(SpinDriverNrvAppear);
-    NERVE(SpinDriverNrvWait);
-    NERVE(SpinDriverNrvCapture);
-    NERVE(SpinDriverNrvShootStart);
-    NERVE(SpinDriverNrvShoot);
-    NERVE(SpinDriverNrvCoolDown);
-};  // namespace NrvSpinDriver

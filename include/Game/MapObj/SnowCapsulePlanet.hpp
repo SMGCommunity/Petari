@@ -9,14 +9,10 @@ public:
     virtual ~SnowCapsulePlanet();
     virtual void init(const JMapInfoIter&);
 
+    void exeCloseWait();
+    void exeOpenWait();
     void exeOpen();
 
     CollisionParts* mDoor1;
     CollisionParts* mDoor2;
 };
-
-namespace NrvSnowCapsulePlanet {
-    NERVE(SnowCapsulePlanetNrvCloseWait);
-    NERVE(SnowCapsulePlanetNrvOpenWait);
-    NERVE(SnowCapsulePlanetNrvOpen);
-};  // namespace NrvSnowCapsulePlanet

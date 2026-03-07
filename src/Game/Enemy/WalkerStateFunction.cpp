@@ -1,24 +1,19 @@
 #include "Game/Enemy/WalkerStateFunction.hpp"
 #include "Game/Enemy/WalkerStateParam.hpp"
-#include "Game/Util.hpp"
 #include "Game/Util/ActorMovementUtil.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
 
-// Required For Float Order, should get stripped when linked.
-void unusedFunction() {
-    f32 x = 0.0f;
+bool WalkerStateFunction::isInSightPlayer(const LiveActor* pActor, const TVec3f& rDirection, const WalkerStateParam* pStateParam) {
+    return MR::isInSightFanPlayer(pActor, rDirection, pStateParam->mPlayerNearDistance, pStateParam->mPlayerSightFanDegreeH,
+                                  pStateParam->mPlayerSightFanDegreeV);
 }
 
-void WalkerStateFunction::calcPassiveMovement(LiveActor* pActor, const WalkerStateParam* pParam) {
+void WalkerStateFunction::calcPassiveMovement(LiveActor* pActor, const WalkerStateParam* pStateParam) {
     MR::reboundVelocityFromEachCollision(pActor, -1.0f, -1.0f, 0.0f, 0.0f);
     if (!MR::isOnGround(pActor)) {
-        MR::addVelocityToGravity(pActor, pParam->_0);
-        MR::attenuateVelocity(pActor, pParam->_4);
+        MR::addVelocityToGravity(pActor, pStateParam->mGravityAccel);
+        MR::attenuateVelocity(pActor, pStateParam->mAirFriction);
     } else {
-        MR::attenuateVelocity(pActor, pParam->_8);
+        MR::attenuateVelocity(pActor, pStateParam->mGroundFriction);
     }
-}
-
-bool WalkerStateFunction::isInSightPlayer(const LiveActor* pActor, const TVec3f& pTVec3f, const WalkerStateParam* pParam) {
-    return MR::isInSightFanPlayer(pActor, pTVec3f, pParam->_C, pParam->_10, pParam->_14);
 }

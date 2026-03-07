@@ -22,6 +22,7 @@ public:
     bool isInCubeBox(const TVec3f&) const;
     void updateModelScale(f32, f32);
     void exeWait();
+    void exeDemo();
     void exeDisappear();
 
     ModelObj* mBlackHoleModel;  // 0x8C
@@ -33,9 +34,3 @@ public:
     TMtx34f _D8;
     ActorCameraInfo* mCameraInfo;  // 0x108
 };
-
-namespace NrvBlackHole {
-    NERVE(BlackHoleNrvWait);
-    NERVE(BlackHoleNrvDemo);
-    NERVE(BlackHoleNrvDisappear);
-};  // namespace NrvBlackHole

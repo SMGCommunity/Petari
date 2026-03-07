@@ -14,6 +14,7 @@ public:
     virtual void calcAndSetBaseMtx();
     virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
 
+    void exeWait();
     void exeSoftTouch();
     void exeSoftTouchWait();
     void exeHardTouch();
@@ -26,11 +27,3 @@ public:
     MapPartsRailPosture* mRailPosture;  // 0xC8
     TVec3f _CC;
 };
-
-namespace NrvBeeFlowerHover {
-    NERVE(BeeFlowerHoverNrvWait);
-    NERVE(BeeFlowerHoverNrvSoftTouch);
-    NERVE(BeeFlowerHoverNrvSoftTouchWait);
-    NERVE(BeeFlowerHoverNrvHardTouch);
-    NERVE(BeeFlowerHoverNrvRecover);
-};  // namespace NrvBeeFlowerHover

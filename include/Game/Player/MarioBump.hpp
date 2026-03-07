@@ -8,5 +8,10 @@ class MarioBump : public MarioState {
 public:
     MarioBump(MarioActor*);
 
-    u8 _11[0x13];
+    virtual bool start();
+    virtual bool close();
+    virtual bool update();
+
+    f32 _14;
+    TVec3f _18;
 };

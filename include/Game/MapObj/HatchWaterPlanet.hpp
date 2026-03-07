@@ -10,15 +10,10 @@ public:
     virtual void init(const JMapInfoIter&);
     virtual void control();
 
+    void exeWait();
     void exeOpen();
     void exeWaitAfterOpen();
 
     LodCtrl* mPlanetLODCtrl;          // 0x8C
     CollisionParts* mCollisionParts;  // 0x90
 };
-
-namespace NrvHatchWaterPlanet {
-    NERVE(HatchWaterPlanetNrvWait);
-    NERVE(HatchWaterPlanetNrvOpen);
-    NERVE(HatchWaterPlanetNrvWaitAfterOpen);
-};  // namespace NrvHatchWaterPlanet

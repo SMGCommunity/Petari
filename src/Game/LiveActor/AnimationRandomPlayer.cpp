@@ -1,8 +1,10 @@
 #include "Game/LiveActor/AnimationRandomPlayer.hpp"
 #include "Game/Util.hpp"
 
-NrvAnimationRandomPlayer::HostTypeWait NrvAnimationRandomPlayer::HostTypeWait::sInstance;
-NrvAnimationRandomPlayer::HostTypePlay NrvAnimationRandomPlayer::HostTypePlay::sInstance;
+namespace NrvAnimationRandomPlayer {
+    NEW_NERVE(HostTypeWait, AnimationRandomPlayer, Wait);
+    NEW_NERVE(HostTypePlay, AnimationRandomPlayer, Play);
+};  // namespace NrvAnimationRandomPlayer
 
 AnimationRandomPlayer::AnimationRandomPlayer(const LiveActor* pActor, const char* a2, const char* a3, s32 a4, f32 a5) : NerveExecutor(a2) {
     mActor = pActor;

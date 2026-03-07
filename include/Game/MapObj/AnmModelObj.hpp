@@ -39,7 +39,7 @@ public:
 
 class AnmModelSwitchMoveEndKill : public AnmModelSwitchMove {
 public:
-    AnmModelSwitchMoveEndKill(const char* pName) : AnmModelSwitchMove(pName) {};
+    AnmModelSwitchMoveEndKill(const char* pName) : AnmModelSwitchMove(pName){};
 
     virtual ~AnmModelSwitchMoveEndKill();
     virtual bool isKilledAtMoveDone() const;
@@ -81,9 +81,3 @@ public:
 
     ActorCameraInfo* mCameraInfo;  // 0xD0
 };
-
-namespace NrvAnmModelObj {
-    NERVE_DECL(HostTypeWait, AnmModelObj, AnmModelObj::exeWait);
-    NERVE_DECL(HostTypeMove, AnmModelObj, AnmModelObj::exeMove);
-    NERVE_DECL(HostTypeDone, AnmModelObj, AnmModelObj::exeDone);
-};  // namespace NrvAnmModelObj

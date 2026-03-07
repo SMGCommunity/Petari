@@ -3,6 +3,11 @@
 #include "Game/Util/MapPartsUtil.hpp"
 #include "Game/Util/PostureHolder.hpp"
 
+namespace NrvMapPartsAppearController {
+    NEW_NERVE(HostTypeWait, MapPartsAppearController, Wait);
+    NEW_NERVE(HostTypeDisappear, MapPartsAppearController, Disappear);
+};  // namespace NrvMapPartsAppearController
+
 MapPartsAppearController::MapPartsAppearController(LiveActor* pActor) : MapPartsFunction(pActor, "出現制御") {
     mSignMotionType = 0;
     mPostureHolder = nullptr;
@@ -104,9 +109,11 @@ void MapPartsAppearController::killHost() {
     }
 }
 
+void MapPartsAppearController::exeWait() {}
+
 void MapPartsAppearController::exeDisappear() {
     s32 div = getStep() < 218 ? 13 : 6;
-    if (getStep() % div) {
+    if (getStep() % div == 0) {
         LiveActor* host = mHost;
         if (MR::isHiddenModel(host)) {
             MR::showModel(host);
@@ -121,17 +128,5 @@ void MapPartsAppearController::exeDisappear() {
         killHost();
     }
 }
-
-namespace NrvMapPartsAppearController {
-    INIT_NERVE(HostTypeWait);
-    INIT_NERVE(HostTypeDisappear);
-
-    void HostTypeDisappear::execute(Spine* pSpine) const {
-        MapPartsAppearController* ctrl = reinterpret_cast< MapPartsAppearController* >(pSpine->mExecutor);
-        ctrl->exeDisappear();
-    }
-
-    void HostTypeWait::execute(Spine* pSpine) const {}
-};  // namespace NrvMapPartsAppearController
 
 MapPartsAppearController::~MapPartsAppearController() {}

@@ -48,6 +48,7 @@ public:
     void requestHide();
     void requestShow();
 
+    void exeTryDemo();
     void exeEmptyNonActive();
     void exeEmptyAppear();
     void exeEmptyWait();
@@ -57,8 +58,8 @@ public:
     void exeCapture();
     void exeShootStart();
     void exeShoot();
-    inline void exeCoolDown();
-    inline void exeShootOnEnd();
+    void exeCoolDown();
+    void endShoot();
 
     void updateShootMotion();
     void cancelBind();
@@ -129,17 +130,3 @@ namespace MR {
     NameObj* createSuperSpinDriverGreen(const char*);
     NameObj* createSuperSpinDriverPink(const char*);
 };  // namespace MR
-
-namespace NrvSuperSpinDriver {
-    NERVE_DECL_NULL(SuperSpinDriverNrvTryDemo);
-    NERVE_DECL(SuperSpinDriverNrvEmptyNonActive, SuperSpinDriver, SuperSpinDriver::exeEmptyNonActive);
-    NERVE_DECL(SuperSpinDriverNrvEmptyAppear, SuperSpinDriver, SuperSpinDriver::exeEmptyAppear);
-    NERVE_DECL(SuperSpinDriverNrvEmptyWait, SuperSpinDriver, SuperSpinDriver::exeEmptyWait);
-    NERVE_DECL(SuperSpinDriverNrvNonActive, SuperSpinDriver, SuperSpinDriver::exeNonActive);
-    NERVE_DECL(SuperSpinDriverNrvAppear, SuperSpinDriver, SuperSpinDriver::exeAppear);
-    NERVE_DECL(SuperSpinDriverNrvWait, SuperSpinDriver, SuperSpinDriver::exeWait);
-    NERVE_DECL(SuperSpinDriverNrvCapture, SuperSpinDriver, SuperSpinDriver::exeCapture);
-    NERVE_DECL(SuperSpinDriverNrvShootStart, SuperSpinDriver, SuperSpinDriver::exeShootStart);
-    NERVE_DECL_ONEND(SuperSpinDriverNrvShoot, SuperSpinDriver, SuperSpinDriver::exeShoot, SuperSpinDriver::exeShootOnEnd);
-    NERVE_DECL(SuperSpinDriverNrvCoolDown, SuperSpinDriver, SuperSpinDriver::exeCoolDown);
-};  // namespace NrvSuperSpinDriver

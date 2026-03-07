@@ -7,5 +7,4 @@
 | Name | Address | Match % |
 |------|---------|---------|
 | `SystemCallVector` | `0x804AC21C` | :white_check_mark: (100.0%) |
-| `__OSSystemCallVectorEnd` | `0x804AC238` | :white_check_mark: (100.0%) |
 | `__OSInitSystemCall` | `0x804AC23C` | :white_check_mark: (100.0%) |

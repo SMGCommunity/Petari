@@ -17,9 +17,9 @@
 | `update__21FunctionAsyncExecutorFv` | `0x8039A5A4` | :white_check_mark: (100.0%) |
 | `start__21FunctionAsyncExecutorFRCQ22MR11FunctorBaseiPCc` | `0x8039A5AC` | :white_check_mark: (100.0%) |
 | `startOnMainThread__21FunctionAsyncExecutorFRCQ22MR11FunctorBasePCc` | `0x8039A5FC` | :white_check_mark: (100.0%) |
-| `waitForEnd__21FunctionAsyncExecutorFPCc` | `0x8039A698` | :x: (98.7%) |
-| `isEnd__21FunctionAsyncExecutorCFPCc` | `0x8039A7D4` | :x: (91.9%) |
+| `waitForEnd__21FunctionAsyncExecutorFPCc` | `0x8039A698` | :white_check_mark: (100.0%) |
+| `isEnd__21FunctionAsyncExecutorCFPCc` | `0x8039A7D4` | :x: (94.6%) |
 | `getOSThread__21FunctionAsyncExecutorFPCc` | `0x8039A868` | :white_check_mark: (100.0%) |
 | `createAndAddExecInfo__21FunctionAsyncExecutorFRCQ22MR11FunctorBaseiPCc` | `0x8039A8E4` | :white_check_mark: (100.0%) |
-| `getSuspendThread__21FunctionAsyncExecutorFv` | `0x8039A998` | :x: (92.3%) |
+| `getSuspendThread__21FunctionAsyncExecutorFv` | `0x8039A998` | :white_check_mark: (100.0%) |
 | `__dt__27FunctionAsyncExecutorThreadFv` | `0x8039A9CC` | :white_check_mark: (100.0%) |

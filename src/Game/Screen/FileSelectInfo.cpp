@@ -73,7 +73,7 @@ void FileSelectInfo::disappear() {
         } else {
             MR::startAnim(this, "Appear", 0);
 
-            animFrame = MR::getAnimCtrl(this, 0)->mEndFrame - 1.0f;
+            animFrame = MR::getAnimCtrl(this, 0)->mEnd - 1.0f;
         }
 
         MR::startAnim(this, "Appear", 0);

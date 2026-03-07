@@ -19,9 +19,9 @@
 | `getTotalLength__9RailRiderCFv` | `0x8016AD84` | :white_check_mark: (100.0%) |
 | `getPartLength__9RailRiderCFi` | `0x8016AD8C` | :white_check_mark: (100.0%) |
 | `isLoop__9RailRiderCFv` | `0x8016AD94` | :white_check_mark: (100.0%) |
-| `isReachedGoal__9RailRiderCFv` | `0x8016ADA0` | :x: (0.0%) |
+| `isReachedGoal__9RailRiderCFv` | `0x8016ADA0` | :x: (99.1%) |
 | `isReachedEdge__9RailRiderCFv` | `0x8016AE60` | :white_check_mark: (100.0%) |
-| `setCoord__9RailRiderFf` | `0x8016AEE8` | :x: (0.0%) |
+| `setCoord__9RailRiderFf` | `0x8016AEE8` | :white_check_mark: (100.0%) |
 | `setSpeed__9RailRiderFf` | `0x8016AF30` | :white_check_mark: (100.0%) |
 | `getRailArgWithInit__9RailRiderCFPCcPl` | `0x8016AF38` | :white_check_mark: (100.0%) |
 | `getRailArgNoInit__9RailRiderCFPCcPl` | `0x8016AF8C` | :white_check_mark: (100.0%) |
@@ -30,7 +30,7 @@
 | `getPointNum__9RailRiderCFv` | `0x8016B038` | :white_check_mark: (100.0%) |
 | `copyPointPos__9RailRiderCFPQ29JGeometry8TVec3<f>l` | `0x8016B044` | :white_check_mark: (100.0%) |
 | `getPointCoord__9RailRiderCFl` | `0x8016B094` | :white_check_mark: (100.0%) |
-| `initBezierRail__9RailRiderFRC12JMapInfoIterPC8JMapInfo` | `0x8016B09C` | :x: (0.0%) |
+| `initBezierRail__9RailRiderFRC12JMapInfoIterPC8JMapInfo` | `0x8016B09C` | :white_check_mark: (100.0%) |
 | `getPointArgS32NoInit__9RailRiderCFPCcPll` | `0x8016B130` | :white_check_mark: (100.0%) |
 | `getPointArgS32WithInit__9RailRiderCFPCcPll` | `0x8016B1B4` | :white_check_mark: (100.0%) |
 | `getCurrentPointArgS32NoInit__9RailRiderCFPCcPl` | `0x8016B21C` | :white_check_mark: (100.0%) |

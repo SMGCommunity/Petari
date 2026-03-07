@@ -4,6 +4,7 @@
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/VolumeModelDrawer.hpp"
 #include "Game/MapObj/MapPartsRailMover.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 #include "Game/Util/ActorMovementUtil.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/ActorSwitchUtil.hpp"
@@ -26,6 +27,17 @@
 #include "JSystem/JGeometry/TQuat.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
 #include "revolution/mtx.h"
+
+namespace NrvEyeBeamer {
+    NEW_NERVE(EyeBeamerNrvDemoStartWait, EyeBeamer, DemoStartWait);
+    NEW_NERVE(EyeBeamerNrvDemoWait, EyeBeamer, DemoWait);
+    NEW_NERVE(EyeBeamerNrvDemoTurn, EyeBeamer, DemoTurn);
+    NEW_NERVE(EyeBeamerNrvDemoGotoPatrol, EyeBeamer, DemoGotoPatrol);
+    NEW_NERVE(EyeBeamerNrvWait, EyeBeamer, Wait);
+    NEW_NERVE(EyeBeamerNrvTurn, EyeBeamer, Turn);
+    NEW_NERVE(EyeBeamerNrvGotoPatrol, EyeBeamer, GotoPatrol);
+    NEW_NERVE(EyeBeamerNrvPatrol, EyeBeamer, Patrol);
+};  // namespace NrvEyeBeamer
 
 EyeBeamer::EyeBeamer(const char* pName)
     : LiveActor(pName), mRailMover(nullptr), mBeamMdl(nullptr), mBeamBloom(nullptr), mBeamVolumeDrawer(nullptr), _CC(0, 0, 0, 1), _DC(0, 0, 0, 1),
@@ -91,16 +103,16 @@ void EyeBeamer::initStartNerve(const JMapInfoIter& rIter) {
 void EyeBeamer::initModel() {
     initModelManagerWithAnm("EyeBeamer", 0, false);
     mBeamVolumeDrawer = new VolumeModelDrawer("ビームボリューム", "EyeBeamerBeamVolume", _9C);
-    mBeamBloom = new ModelObj("ビームブルーム", "EyeBeamerBeamBloom", _9C, 0x1E, -2, -2, false);
+    mBeamBloom = new ModelObj("ビームブルーム", "EyeBeamerBeamBloom", _9C, MR::DrawBufferType_BloomModel, -2, -2, false);
     mBeamBloom->initWithoutIter();
     MR::invalidateClipping(mBeamBloom);
-    mBeamMdl = new ModelObj("ビーム", "EyeBeamerBeam", _9C, 0x19, -2, -2, false);
+    mBeamMdl = new ModelObj("ビーム", "EyeBeamerBeam", _9C, MR::DrawBufferType_IndirectMapObj, -2, -2, false);
     mBeamMdl->initWithoutIter();
     MR::invalidateClipping(mBeamMdl);
     MR::startBtk(mBeamMdl, "EyeBeamerBeam");
     MR::registerDemoSimpleCastAll(mBeamBloom);
     MR::registerDemoSimpleCastAll(mBeamMdl);
-    MR::connectToScene(this, 0x22, 5, 0xA, 0x1C);
+    MR::connectToScene(this, MR::MovementType_MapObj, MR::CalcAnimType_MapObj, MR::DrawBufferType_MapObjStrongLight, MR::DrawType_VolumeModel);
 }
 
 void EyeBeamer::initAfterPlacement() {
@@ -205,7 +217,7 @@ void EyeBeamer::calcAnim() {
     MR::preScaleMtx(_9C, TVec3f(one, temp, one));
 }
 
-void EyeBeamer::calcAndSetBaseMtx() {};
+void EyeBeamer::calcAndSetBaseMtx(){};
 
 void EyeBeamer::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (isOnBeam() && MR::isSensorPlayer(pReceiver) && isInBeamRange(*MR::getPlayerPos())) {
@@ -234,6 +246,14 @@ bool EyeBeamer::tryPatrol() {
         return true;
     }
     return false;
+}
+
+void EyeBeamer::exeDemoStartWait() {}
+
+void EyeBeamer::exeDemoWait() {
+    if (MR::isDemoLastStep()) {
+        setNerve(&NrvEyeBeamer::EyeBeamerNrvPatrol::sInstance);
+    }
 }
 
 void EyeBeamer::exeDemoTurn() {
@@ -265,6 +285,8 @@ void EyeBeamer::exeDemoGotoPatrol() {
     if (MR::isDemoPartLastStep("アイビーマー降下"))
         setNerve(&NrvEyeBeamer::EyeBeamerNrvDemoWait::sInstance);
 }
+
+void EyeBeamer::exeWait() {}
 
 void EyeBeamer::exeTurn() {
     if (MR::isFirstStep(this)) {
@@ -335,27 +357,11 @@ bool EyeBeamer::isInBeamRange(const TVec3f& rVec) const {
 }
 
 bool EyeBeamer::isOnBeam() const {
-    if (isNerve(&NrvEyeBeamer::EyeBeamerNrvDemoWait::sInstance) || isNerve(&NrvEyeBeamer::EyeBeamerNrvWait::sInstance) ||
+    if (isNerve(&NrvEyeBeamer::EyeBeamerNrvDemoStartWait::sInstance) || isNerve(&NrvEyeBeamer::EyeBeamerNrvWait::sInstance) ||
         isNerve(&NrvEyeBeamer::EyeBeamerNrvPatrol::sInstance))
         return true;
 
     return false;
 }
 
-EyeBeamer::~EyeBeamer() {};
-
-namespace NrvEyeBeamer {
-    void EyeBeamerNrvDemoWait::execute(Spine* pSpine) const {
-        EyeBeamer* pEyeBeamer = (EyeBeamer*)pSpine->mExecutor;
-        if (MR::isDemoLastStep())
-            pEyeBeamer->setNerve(&NrvEyeBeamer::EyeBeamerNrvPatrol::sInstance);
-    }
-    EyeBeamerNrvDemoStartWait(EyeBeamerNrvDemoStartWait::sInstance);
-    EyeBeamerNrvDemoWait(EyeBeamerNrvDemoWait::sInstance);
-    EyeBeamerNrvDemoTurn(EyeBeamerNrvDemoTurn::sInstance);
-    EyeBeamerNrvDemoGotoPatrol(EyeBeamerNrvDemoGotoPatrol::sInstance);
-    EyeBeamerNrvWait(EyeBeamerNrvWait::sInstance);
-    EyeBeamerNrvTurn(EyeBeamerNrvTurn::sInstance);
-    EyeBeamerNrvGotoPatrol(EyeBeamerNrvGotoPatrol::sInstance);
-    EyeBeamerNrvPatrol(EyeBeamerNrvPatrol::sInstance);
-};  // namespace NrvEyeBeamer
+EyeBeamer::~EyeBeamer(){};

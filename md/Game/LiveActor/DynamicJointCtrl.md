@@ -8,10 +8,10 @@
 |------|---------|---------|
 | `getValue<f>__8JMapInfoCFiPCcPf_Cb` | `0x801612D8` | :x: (0.0%) |
 | `calcJointChildNum__30@unnamed@DynamicJointCtrl_cpp@FP8J3DJoint` | `0x80161358` | :x: (0.0%) |
-| `__ct__13JointCtrlRateFv` | `0x80161390` | :x: (0.0%) |
+| `__ct__13JointCtrlRateFv` | `0x80161390` | :x: (96.9%) |
 | `update__13JointCtrlRateFv` | `0x801613B0` | :x: (0.0%) |
 | `startCtrl__13JointCtrlRateFl` | `0x80161490` | :white_check_mark: (100.0%) |
-| `endCtrl__13JointCtrlRateFl` | `0x801614B8` | :x: (80.0%) |
+| `endCtrl__13JointCtrlRateFl` | `0x801614B8` | :white_check_mark: (100.0%) |
 | `__ct__20DynamicJointCtrlNodeFPC16DynamicJointCtrlPA4_ff` | `0x801614E0` | :x: (0.0%) |
 | `update__20DynamicJointCtrlNodeFP9LiveActorPC20DynamicJointCtrlNode` | `0x8016158C` | :x: (0.0%) |
 | `reset__20DynamicJointCtrlNodeFv` | `0x80161744` | :x: (0.0%) |

@@ -1,5 +1,14 @@
 #include "Game/MapObj/PrizeRing.hpp"
 
+namespace NrvPrizeRing {
+    NEW_NERVE(PrizeRingStart, PrizeRing, Start);
+    NEW_NERVE(PrizeRingLoop, PrizeRing, Loop);
+    NEW_NERVE(PrizeRingTimeout, PrizeRing, Timeout);
+    NEW_NERVE(PrizeRingReadyToPass, PrizeRing, ReadyToPass);
+    NEW_NERVE(PrizeRingPass, PrizeRing, Pass);
+    NEW_NERVE(PrizeRingReadyToKill, PrizeRing, ReadyToKill);
+};  // namespace NrvPrizeRing
+
 PrizeRing::PrizeRing() : ModelObj("PrizeRing", "PrizeRing", nullptr, -2, -2, -2, false) {
     _90 = 800;
 }
@@ -97,6 +106,8 @@ void PrizeRing::exeTimeout() {
     }
 }
 
+void PrizeRing::exeReadyToPass() {}
+
 void PrizeRing::exePass() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "End", nullptr);
@@ -107,6 +118,12 @@ void PrizeRing::exePass() {
 
     if (MR::isBckStopped(this)) {
         setNerve(&NrvPrizeRing::PrizeRingReadyToKill::sInstance);
+    }
+}
+
+void PrizeRing::exeReadyToKill() {
+    if (MR::isFirstStep(this)) {
+        MR::hideModel(this);
     }
 }
 /*
@@ -126,38 +143,3 @@ void PrizeRing::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
         }
     }
 }
-
-namespace NrvPrizeRing {
-    INIT_NERVE(PrizeRingStart);
-    INIT_NERVE(PrizeRingLoop);
-    INIT_NERVE(PrizeRingTimeout);
-    INIT_NERVE(PrizeRingReadyToPass);
-    INIT_NERVE(PrizeRingPass);
-    INIT_NERVE(PrizeRingReadyToKill);
-
-    void PrizeRingStart::execute(Spine* pSpine) const {
-        PrizeRing* pActor = (PrizeRing*)pSpine->mExecutor;
-        pActor->exeStart();
-    }
-
-    void PrizeRingLoop::execute(Spine* pSpine) const {
-        PrizeRing* pActor = (PrizeRing*)pSpine->mExecutor;
-        pActor->exeLoop();
-    }
-
-    void PrizeRingTimeout::execute(Spine* pSpine) const {
-        PrizeRing* pActor = (PrizeRing*)pSpine->mExecutor;
-        pActor->exeTimeout();
-    }
-    void PrizeRingReadyToPass::execute(Spine* pSpine) const {}
-
-    void PrizeRingPass::execute(Spine* pSpine) const {
-        PrizeRing* pActor = (PrizeRing*)pSpine->mExecutor;
-        pActor->exePass();
-    }
-
-    void PrizeRingReadyToKill::execute(Spine* pSpine) const {
-        PrizeRing* pActor = (PrizeRing*)pSpine->mExecutor;
-        pActor->exeReadyToKill();
-    }
-};  // namespace NrvPrizeRing

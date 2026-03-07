@@ -16,21 +16,57 @@ namespace std {
 }  // namespace std
 
 namespace JMath {
-    template < s32 Bits, typename T >
+
+    template < typename T >
+    struct TAngleConstant_;
+
+    template <>
+    struct TAngleConstant_< f32 > {
+        static f32 RADIAN_DEG090() {
+            return 1.5707964f;
+        }
+        static f32 RADIAN_DEG180() {
+            return 3.1415927f;
+        }
+        static f32 RADIAN_DEG360() {
+            return 6.2831855f;
+        }
+        static f32 RADIAN_TO_DEGREE_FACTOR() {
+            return 180.0f / RADIAN_DEG180();
+        }
+    };
+
+    template < int Bits, typename T >
     class TSinCosTable {
     public:
         static const u32 LEN = 1 << Bits;
-        std::pair< f32, f32 > table[LEN];
+        std::pair< T, T > table[LEN];
 
-        f32 sinShort(s8 v) const { return table[static_cast< u8 >(v) >> 3].a1; }
-        f32 cosShort(s8 v) const { return table[static_cast< u8 >(v) >> 3].b1; }
+        T sinShort(s16 v) const {
+            return table[static_cast< u16 >(v) >> (16U - Bits)].a1;
+        }
+        T cosShort(s16 v) const {
+            return table[static_cast< u16 >(v) >> (16U - Bits)].b1;
+        }
 
         inline f32 sinLapRad(f32 v) {
             if (v < 0.0f) {
-                f32 tmp = v * (-LEN / TWO_PI);
+                f32 tmp = v;
+                tmp *= -(LEN / TWO_PI);
                 return -table[(u16)tmp & LEN - 1].a1;
             } else {
-                f32 tmp = v * (LEN / TWO_PI);
+                f32 tmp = v;
+                tmp *= (LEN / TWO_PI);
+                return table[(u16)tmp & LEN - 1].a1;
+            }
+        }
+
+        inline f32 sinLap(f32 v) {
+            if (v < 0.0f) {
+                f32 tmp = v * -45.511112f;
+                return -table[(u16)tmp & LEN - 1].a1;
+            } else {
+                f32 tmp = v * 45.511112f;
                 return table[(u16)tmp & LEN - 1].a1;
             }
         }
@@ -40,8 +76,9 @@ namespace JMath {
                 v = -v;
             }
 
-            v *= (LEN / TWO_PI);
-            return table[(u16)v & LEN - 1].b1;
+            f32 tmp = v;
+            tmp *= (LEN / TWO_PI);
+            return table[(u16)tmp & LEN - 1].b1;
         }
 
         inline f32 cosLap(f32 v) {
@@ -54,7 +91,9 @@ namespace JMath {
             return table[(u16)v & LEN - 1].b1;
         }
 
-        inline f32 get(f32 v) { return table[(u16)v & LEN - 1].b1; }
+        inline f32 get(f32 v) {
+            return table[(u16)v & LEN - 1].b1;
+        }
     };
 
     template < s32 Len, typename T >
@@ -76,19 +115,70 @@ namespace JMath {
 
         T get_(T, T) const;
 
+        T acos_(T x) const {
+            if (x >= 1.0f) {
+                return 0.0f;
+            } else if (x <= -1.0f) {
+                return TAngleConstant_< T >::RADIAN_DEG180();
+            } else if (x < 0.0f) {
+                return mTable[(u32)(-x * 1023.5f)] + TAngleConstant_< T >::RADIAN_DEG090();
+            } else {
+                return TAngleConstant_< T >::RADIAN_DEG090() - mTable[(u32)(x * 1023.5f)];
+            }
+        }
+
+        T acosDegree(T x) const {
+            return acos_(x) * TAngleConstant_< T >::RADIAN_TO_DEGREE_FACTOR();
+        }
+
         T mTable[Len];
         T _1000;
     };
 
-    static TSinCosTable< 14, f32 > sSinCosTable;
-    static TAtanTable< 1024, f32 > sAtanTable;
-    static TAsinAcosTable< 1024, f32 > sAsinAcosTable;
+    extern TSinCosTable< 14, f32 > sSinCosTable;
+    extern TAtanTable< 1024, f32 > sAtanTable;
+    extern TAsinAcosTable< 1024, f32 > sAsinAcosTable;
+
+    inline f32 acosDegree(f32 x) {
+        return sAsinAcosTable.acosDegree(x);
+    }
 };  // namespace JMath
 
-inline f32 JMASSin(u16 s) {
-    return JMath::sSinCosTable.sinShort(s);
+// inline f32 JMASSin(u16 s) {
+//    return JMath::sSinCosTable.sinShort(s);
+//}
+
+inline f32 JMACosShort(s16 v) {
+    return JMath::sSinCosTable.cosShort(v);
 }
 
-inline f32 JMASCos(u16 s) {
-    return JMath::sSinCosTable.cosShort(s);
+inline f32 JMASinShort(s16 v) {
+    return JMath::sSinCosTable.sinShort(v);
+}
+
+inline f32 JMASCos(s16 v) {
+    return JMACosShort(v);
+}
+
+inline f32 JMASSin(s16 v) {
+    return JMASinShort(v);
+}
+
+f32 JMAAcosRadian(f32 v);
+f32 JMAAsinRadian(f32 v);
+
+inline f32 JMACosDegree(f32 angle) {
+    return JMath::sSinCosTable.cosLap(angle);
+}
+
+inline f32 JMACosRadian(f32 angle) {
+    return JMath::sSinCosTable.cosLapRad(angle);
+}
+
+inline f32 JMASinDegree(f32 angle) {
+    return JMath::sSinCosTable.sinLap(angle);
+}
+
+inline f32 JMASinRadian(f32 angle) {
+    return JMath::sSinCosTable.sinLapRad(angle);
 }

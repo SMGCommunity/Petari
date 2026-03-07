@@ -24,12 +24,3 @@ public:
     TVec3f _8C;
     s32 mState;  // 0x98
 };
-
-namespace NrvFlameGun {
-    NERVE_DECL(HostTypeNrvSwitchWait, FlameGun, FlameGun::exeSwitchWait);
-    NERVE_DECL(HostTypeNrvWait, FlameGun, FlameGun::exeWait);
-    NERVE_DECL(HostTypeNrvPreRadiate, FlameGun, FlameGun::exePreRadiate);
-    NERVE_DECL(HostTypeNrvRadiate, FlameGun, FlameGun::exeRadiate);
-    NERVE_DECL(HostTypeNrvRotate, FlameGun, FlameGun::exeRotate);
-    NERVE_DECL(HostTypeNrvRadiateOnly, FlameGun, FlameGun::exeRadiateOnly);
-};  // namespace NrvFlameGun

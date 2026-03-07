@@ -9,7 +9,6 @@
 #include "Game/Camera/CameraParamChunkHolder.hpp"
 #include "Game/Util/CameraUtil.hpp"
 
-#ifdef NON_MATCHING
 // Constructor for mTargetArg is called. The constructor exists in the symbol so
 // it's not fully inlined. It also exists in the code (not inlined), but the code below
 // matches the constructor exactly.
@@ -19,7 +18,6 @@ CameraManEvent::ChunkFIFOItem::ChunkFIFOItem() {
     mTargetArg.mLiveActor = nullptr;
     mTargetArg.mMarioActor = nullptr;
 }
-#endif
 
 CameraManEvent::CameraManEvent(CameraHolder* pHolder, CameraParamChunkHolder* pChunkHolder, const char* pName)
     : CameraMan(pName), mHolder(pHolder), mChunkHolder(pChunkHolder), mCamera(nullptr) {
@@ -284,10 +282,8 @@ void CameraManEvent::setExtraParam() {
     CameraLocalUtil::setRoll(mCamera, mChunk->mExParam.mRoll);
 }
 
-#ifdef NON_MATCHING
-// r0 nonsense
 void CameraManEvent::setVPanParam() {
-    if (mCamera->mVPan != nullptr) {
+    if (mCamera->doesVPanExist()) {
         CameraHeightArrange* vPan = mCamera->mVPan;
         vPan->resetParameter();
 
@@ -309,7 +305,6 @@ void CameraManEvent::setVPanParam() {
         vPan->_60 = 1;
     }
 }
-#endif
 
 void CameraManEvent::resetCameraIfRequested() {
     if (_BC) {

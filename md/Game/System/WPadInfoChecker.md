@@ -11,4 +11,4 @@
 | `successGetInfo__15WPadInfoCheckerFv` | `0x803AD030` | :white_check_mark: (100.0%) |
 | `startCheck__15WPadInfoCheckerFv` | `0x803AD03C` | :white_check_mark: (100.0%) |
 | `reset__15WPadInfoCheckerFv` | `0x803AD084` | :white_check_mark: (100.0%) |
-| `update__15WPadInfoCheckerFv` | `0x803AD098` | :x: (93.8%) |
+| `update__15WPadInfoCheckerFv` | `0x803AD098` | :white_check_mark: (100.0%) |

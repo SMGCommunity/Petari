@@ -19,6 +19,8 @@ struct J2DGrafBlend {
 
 class J2DGrafContext {
 public:
+    J2DGrafContext(f32, f32, f32, f32);
+
     virtual ~J2DGrafContext() {}
 
     virtual void place(const TBox2f&);
@@ -29,6 +31,7 @@ public:
     virtual J2DGrafType getGrafType() const;
     virtual void setLookat();
 
+    void setColor(JUtility::TColor c) { this->setColor(c, c, c, c); }
     void setColor(JUtility::TColor, JUtility::TColor, JUtility::TColor, JUtility::TColor);
     void fillBox(const TBox2f&);
 
@@ -43,6 +46,6 @@ public:
     Mtx44 mMtx44;               // 0x40
     Mtx mPosMtx;                // 0x80
     J2DGrafBlend _B0;
-    J2DGrafBlend _B3;
-    J2DGrafBlend _B6;
+    J2DGrafBlend mLinePart;
+    J2DGrafBlend mBoxPart;
 };

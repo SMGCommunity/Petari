@@ -1,6 +1,11 @@
 #include "Game/MapObj/SurprisedGalaxy.hpp"
 #include <cstring>
 
+namespace NrvSurprisedGalaxy {
+    NEW_NERVE(SurprisedGalaxyNrvExit, SurprisedGalaxy, Exit);
+    NEW_NERVE(SurprisedGalaxyNrvWait, SurprisedGalaxy, Wait);
+};  // namespace NrvSurprisedGalaxy
+
 SurprisedGalaxy::SurprisedGalaxy(const char* pName) : LiveActor(pName) {}
 
 void SurprisedGalaxy::init(const JMapInfoIter& rIter) {
@@ -17,7 +22,7 @@ void SurprisedGalaxy::init(const JMapInfoIter& rIter) {
     f32 rad = 0.0f;
     MR::calcModelBoundingRadius(&rad, this);
     initHitSensor(1);
-    MR::addHitSensorMapObj(this, "body", 8, rad, TVec3f(0.0f, 0.0f, 0.0f));
+    MR::addHitSensorMapObj(this, "Body", 8, rad, TVec3f(0.0f, 0.0f, 0.0f));
     MR::setClippingFar200m(this);
     initNerve(&NrvSurprisedGalaxy::SurprisedGalaxyNrvWait::sInstance);
     MR::useStageSwitchSleep(this, rIter);
@@ -71,6 +76,8 @@ void SurprisedGalaxy::exeExit() {
     }
 }
 
+void SurprisedGalaxy::exeWait() {}
+
 bool SurprisedGalaxy::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     switch (msg) {
     case 152:
@@ -83,15 +90,3 @@ bool SurprisedGalaxy::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pR
     }
     return false;
 }
-
-namespace NrvSurprisedGalaxy {
-    INIT_NERVE(SurprisedGalaxyNrvExit);
-    INIT_NERVE(SurprisedGalaxyNrvWait);
-
-    void SurprisedGalaxyNrvExit::execute(Spine* pSpine) const {
-        SurprisedGalaxy* pActor = (SurprisedGalaxy*)pSpine->mExecutor;
-        pActor->exeExit();
-    }
-
-    void SurprisedGalaxyNrvWait::execute(Spine* pSpine) const {}
-};  // namespace NrvSurprisedGalaxy

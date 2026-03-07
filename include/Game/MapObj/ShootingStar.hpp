@@ -24,9 +24,3 @@ public:
     s32 _B4;
     f32 _B8;
 };
-
-namespace NrvShootingStar {
-    NERVE(HostTypeNrvPreShooting);
-    NERVE(HostTypeNrvShooting);
-    NERVE(HostTypeNrvWaitForNextShoot);
-};  // namespace NrvShootingStar

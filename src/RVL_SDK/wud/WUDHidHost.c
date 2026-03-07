@@ -4,213 +4,287 @@
 #include "revolution/wud.h"
 #include <cstring>
 
-void WUDHidHostCallback(tBTA_HH_EVT event, tBTA_HH *data) {
-    tBTA_HH_CONN* conn;
-    tBTA_HH_CBDATA* cb;
-    tBTA_HH_ACL_QUEUE_INFO* queue_info;
-    WUDDeviceInfo* info;
-    WUDControlBlock* block = &_wcb;
-    s32 i;
+#define DEBUGPrint WUD_DEBUGPrint
+
+// TODO(kiwi) Is this from BTA?
+#define WUD_HH_CUSTOM_EVT 15
+
+typedef struct WUD_HH_EVT15 {
+    u16 status0;    // at 0x0
+    u16 status1;    // at 0x2
+    u16 linkedNum;  // at 0x4
+
+    struct {
+        UINT8 handle;      // at 0x0
+        UINT16 queueSize;  // at 0x2
+        UINT16 notAckNum;  // at 0x4
+    } devices[];           // at 0x6
+} WUD_HH_EVT15;
+
+void WUDHidHostCallback(tBTA_HH_EVT event, tBTA_HH* pData) {
+    WUDCB* p = &_wcb;
+    WUDDevInfo* pInfo;
+    tBTA_HH_CONN* pConn;
+    tBTA_HH_CBDATA* pCbData;
+    WUD_HH_EVT15* pEvt15;
+    int i;
 
     switch (event) {
-        case 0:
-            WUD_DEBUGPrint("BTA_HH_ENABLE_EVT\n");
-            block->profileMask |= 1;
-            break;
-        case 1:
-            WUD_DEBUGPrint("BTA_HH_DISABLE_EVT\n");
-            break;
-        case 2:
-            WUD_DEBUGPrint("BTA_HH_OPEN_EVT\n");
-            conn = (tBTA_HH_CONN*)data;
-            WUD_DEBUGPrint("handle: %d, addr: %02x:%02x:%02x:%02x:%02x:%02x\n", 
-                conn->handle, conn->bda[0], conn->bda[1], conn->bda[2], conn->bda[3], conn->bda[4], conn->bda[5]);
+    case BTA_HH_ENABLE_EVT: {
+        DEBUGPrint("BTA_HH_ENABLE_EVT\n");
 
-            if (conn->status == 0) {
-                if (!memcmp(_work.bd_addr, conn->bda, 6)) {
-                    info = &_work;
-                }
-                else {
-                    info = WUDiGetDevInfo(conn->bda);
-                }
-
-                switch (info->status) {
-                    case 12:
-                        block->syncStatus = 18;
-                        break;
-                    case 2:
-                        block->syncStatus = 23;
-                        break;
-                }
-
-                info->status = 8;
-                info->handle = conn->handle;
-                block->connNums++;
-                info = WUDiGetDevInfo(conn->bda);
-
-                if (info == NULL) {
-                    info = &_work;
-                }
-
-                _dev_handle_to_bda[conn->handle] = info->bd_addr;
-                _dev_handle_queue_size[conn->handle] = 0;
-                _dev_handle_notack_num[conn->handle] = 0;
-
-                if (info->sync_type == 3 || info->sync_type == 1) {
-                    WUDiMoveTopSmpDevInfoPtr(info);
-                }
-                else {
-                    WUDiMoveTopStdDevInfoPtr(info);
-                }
-
-                WUDSetSniffMode(info->bd_addr, 8);
-
-                if (block->hidConnCallback) {
-                    block->hidConnCallback(info, 1);
-                }
-            }
-            else {
-                WUD_DEBUGPrint("error code: %d\n", conn->status);
-
-                if (block->syncStatus != 0) {
-                    if (!memcmp(conn->bda, _work.bd_addr, 6)) {
-                        if (_work.status == 2) {
-                            if (WUDiGetDevInfo(conn->bda) && conn->status == 12) {
-                                WUDiRemoveDevice(conn->bda);
-                                block->linkNums--;
-                            }
-
-                            block->syncStatus = 255;
-                        }
-                    }
-                }
-                else {
-                    if (WUDiGetDevInfo(conn->bda) && conn->status == 12) {
-                        info = WUDiGetDevInfo(conn->bda);
-                        if (info != NULL) {
-                            if (info->sync_type == 3 || info->sync_type == 1) {
-                                WUDiMoveBottomSmpDevInfoPtr(info);
-                            }
-                            else {
-                                WUDiMoveBottomStdDevInfoPtr(info);
-                            }
-                        }
-
-                        WUDiRemoveDevice(conn->bda);
-                        block->linkNums--;
-                    }
-                }
-            }
-            break;
-        case 3:
-            WUD_DEBUGPrint("BTA_HH_CLOSE_EVT\n");
-            cb = (tBTA_HH_CBDATA*)data;
-            block->connNums--;
-            WUD_DEBUGPrint("device handle : %d   status = %d\n", cb->handle, cb->status);
-            info = WUDiGetDevInfo(_dev_handle_to_bda[cb->handle]);
-            if (info != NULL) {
-                if (info->sync_type == 3 || info->sync_type == 1) {
-                    WUDiMoveTopOfDisconnectedSmpDevice(info);
-                }
-                else {
-                    WUDiMoveTopOfDisconnectedStdDevice(info);
-                }
-            }
-            
-            _dev_handle_to_bda[cb->handle] = NULL;
-            _dev_handle_queue_size[cb->handle] = 0;
-            _dev_handle_notack_num[cb->handle] = 0;
-
-            if (block->hidConnCallback) {
-                block->hidConnCallback(info, 0);
-            }
-            break;
-
-        case 5:
-            WUD_DEBUGPrint("BTA_HH_SET_RPT_EVT\n");
-            break;
-        case 4:
-            WUD_DEBUGPrint("BTA_HH_GET_RPT_EVT\n");
-            break;
-        case 7:
-            WUD_DEBUGPrint("BTA_HH_SET_PROTO_EVT\n");
-            break;
-        case 6:
-            WUD_DEBUGPrint("BTA_HH_GET_PROTO_EVT\n");
-            break;
-        case 9:
-            WUD_DEBUGPrint("BTA_HH_SET_IDLE_EVT\n");
-            break;
-        case 8:
-            WUD_DEBUGPrint("BTA_HH_GET_IDLE_EVT\n");
-            break;
-        case 10:
-            WUD_DEBUGPrint("BTA_HH_GET_DCSP_EVT\n");
-            break;
-        case 11:
-            WUD_DEBUGPrint("BTA_HH_ADD_DEV_EVT\n");
-            conn = (tBTA_HH_CONN*)data;
-            WUD_DEBUGPrint("result: %d, handle: %d, addr: %02x:%02x:%02x:%02x:%02x:%02x\n", 
-                conn->status, conn->handle, conn->bda[0], conn->bda[1], 
-                conn->bda[2], conn->bda[3], conn->bda[4], conn->bda[5]);
-
-            info = WUDiGetDevInfo(conn->bda);
-            info->handle = conn->handle;
-            _dev_handle_to_bda[conn->handle] = info->bd_addr;
-            _dev_handle_queue_size[conn->handle] = 0;
-            _dev_handle_notack_num[conn->handle] = 0;
-            break;
-        case 12:
-            WUD_DEBUGPrint("BTA_HH_RMV_DEV_EVT\n");
-            conn = (tBTA_HH_CONN*)data;
-            WUD_DEBUGPrint("result: %d, handle: %d, addr: %02x:%02x:%02x:%02x:%02x:%02x\n", 
-                conn->status, conn->handle, conn->bda[0], conn->bda[1], 
-                conn->bda[2], conn->bda[3], conn->bda[4], conn->bda[5]);
-            break;
-        case 13:
-            WUD_DEBUGPrint("BTA_HH_VS_UNPLUG_EVT\n");
-            break;
-        case 15:
-            queue_info = (tBTA_HH_ACL_QUEUE_INFO*)data;
-            block->aclAvailBufSize = queue_info->num_avail_buffs;
-            block->aclMaxBufSize = queue_info->num_buffs;
-
-            if (block->linkNums < queue_info->num_links) {
-                OSReport("WARNING: link num count is modified.\n");
-                block->linkNums = queue_info->num_links;
-            }
-
-            for (i = 0; i < queue_info->num_links; i++) {
-                if (queue_info->queue_info[i].handle >= 0 && queue_info->queue_info[i].handle < 16) {
-                    _dev_handle_queue_size[queue_info->queue_info[i].handle] = queue_info->queue_info[i].num_queued;
-                    _dev_handle_notack_num[queue_info->queue_info[i].handle] = queue_info->queue_info[i].num_not_acked;
-                }
-            }
-            break;
+        p->hhFlags |= 1;
+        break;
     }
-}
 
-void bta_hh_co_data(u8 handle, u8* rpt, u16 len, tBTA_HH_PROTO_MODE mode, u8 subclass, u8 id) {
-    WUDControlBlock* block = &_wcb;
+    case BTA_HH_DISABLE_EVT: {
+        DEBUGPrint("BTA_HH_DISABLE_EVT\n");
+        break;
+    }
 
-    if (id == 3) {
-        if (block->hidRecvCallback) {
-            block->hidRecvCallback(handle, rpt, len);
+    case BTA_HH_OPEN_EVT: {
+        pConn = &pData->conn;
+
+        DEBUGPrint("BTA_HH_OPEN_EVT\n");
+
+        DEBUGPrint("handle: %d, addr: %02x:%02x:%02x:%02x:%02x:%02x\n", pConn->handle, pConn->bda[0], pConn->bda[1], pConn->bda[2], pConn->bda[3],
+                   pConn->bda[4], pConn->bda[5]);
+
+        if (pConn->status == BTA_HH_OK) {
+            pInfo = &_work;
+
+            if (WUD_BDCMP(pInfo->devAddr, pConn->bda) != 0) {
+                pInfo = WUDiGetDevInfo(pConn->bda);
+            }
+
+            switch (pInfo->status) {
+            case 12: {
+                p->syncState = WUD_STATE_SYNC_REGISTER_DEVICE;
+                break;
+            }
+
+            case 2: {
+                p->syncState = WUD_STATE_SYNC_COMPLETE;
+                break;
+            }
+            }
+
+            pInfo->status = 8;
+            pInfo->devHandle = pConn->handle;
+            p->connectedNum++;
+
+            pInfo = WUDiGetDevInfo(pConn->bda);
+            if (pInfo == NULL) {
+                pInfo = &_work;
+            }
+
+            _dev_handle_to_bda[pConn->handle] = pInfo->devAddr;
+            _dev_handle_queue_size[pConn->handle] = 0;
+            _dev_handle_notack_num[pConn->handle] = 0;
+
+            if (pInfo->sync_type == 3 || pInfo->sync_type == 1) {
+                WUDiMoveTopSmpDevInfoPtr(pInfo);
+            } else {
+                WUDiMoveTopStdDevInfoPtr(pInfo);
+            }
+
+            WUDSetSniffMode(pInfo->devAddr, 8);
+
+            if (p->hidConnCB != NULL) {
+                p->hidConnCB(pInfo, TRUE);
+            }
+        } else {
+            DEBUGPrint("error code: %d\n", pConn->status);
+
+            if (p->syncState != 0) {
+                if (!memcmp(pConn->bda, _work.devAddr, 6)) {
+                    if (_work.status == 2) {
+                        if (WUDiGetDevInfo(pConn->bda) && pConn->status == 12) {
+                            WUDiRemoveDevice(pConn->bda);
+                            p->linkedNum--;
+                        }
+
+                        p->syncState = 255;
+                    }
+                }
+            } else {
+                if (WUDiGetDevInfo(pConn->bda) && pConn->status == 12) {
+                    pInfo = WUDiGetDevInfo(pConn->bda);
+                    if (pInfo != NULL) {
+                        if (pInfo->sync_type == 3 || pInfo->sync_type == 1) {
+                            WUDiMoveBottomSmpDevInfoPtr(pInfo);
+                        } else {
+                            WUDiMoveBottomStdDevInfoPtr(pInfo);
+                        }
+                    }
+
+                    WUDiRemoveDevice(pConn->bda);
+                    p->linkedNum--;
+                }
+            }
         }
     }
-    else {
-        WUD_DEBUGPrint("Invalid app_id [%d]\n", id);
+
+    break;
+    case BTA_HH_CLOSE_EVT: {
+        pCbData = &pData->dev_status;
+
+        DEBUGPrint("BTA_HH_CLOSE_EVT\n");
+
+        p->connectedNum--;
+
+        DEBUGPrint("device handle : %d   status = %d\n", pCbData->handle, pCbData->status);
+
+        pInfo = WUDiGetDevInfo(_dev_handle_to_bda[pCbData->handle]);
+        if (pInfo != NULL) {
+            if (pInfo->sync_type == 3 || pInfo->sync_type == 1) {
+                WUDiMoveTopOfDisconnectedSmpDevice(pInfo);
+            } else {
+                WUDiMoveTopOfDisconnectedStdDevice(pInfo);
+            }
+        }
+
+        _dev_handle_to_bda[pCbData->handle] = NULL;
+        _dev_handle_queue_size[pCbData->handle] = 0;
+        _dev_handle_notack_num[pCbData->handle] = 0;
+
+        if (p->hidConnCB != NULL) {
+            p->hidConnCB(pInfo, FALSE);
+        }
+        break;
+    }
+
+    case BTA_HH_SET_RPT_EVT: {
+        DEBUGPrint("BTA_HH_SET_RPT_EVT\n");
+        break;
+    }
+    case BTA_HH_GET_RPT_EVT: {
+        DEBUGPrint("BTA_HH_GET_RPT_EVT\n");
+        break;
+    }
+
+    case BTA_HH_SET_PROTO_EVT: {
+        DEBUGPrint("BTA_HH_SET_PROTO_EVT\n");
+        break;
+    }
+    case BTA_HH_GET_PROTO_EVT: {
+        DEBUGPrint("BTA_HH_GET_PROTO_EVT\n");
+        break;
+    }
+
+    case BTA_HH_SET_IDLE_EVT: {
+        DEBUGPrint("BTA_HH_SET_IDLE_EVT\n");
+        break;
+    }
+    case BTA_HH_GET_IDLE_EVT: {
+        DEBUGPrint("BTA_HH_GET_IDLE_EVT\n");
+        break;
+    }
+
+    case BTA_HH_GET_DSCP_EVT: {
+        DEBUGPrint("BTA_HH_GET_DCSP_EVT\n");
+        break;
+    }
+
+    case BTA_HH_ADD_DEV_EVT: {
+        pConn = &pData->dev_info;
+
+        DEBUGPrint("BTA_HH_ADD_DEV_EVT\n");
+
+        // clang-format off
+        DEBUGPrint("result: %d, handle: %d, addr: %02x:%02x:%02x:%02x:%02x:%02x\n",
+                   pConn->status, pConn->handle,
+                   pConn->bda[0], pConn->bda[1], pConn->bda[2],
+                   pConn->bda[3], pConn->bda[4], pConn->bda[5]);
+        // clang-format on
+
+        pInfo = WUDiGetDevInfo(pConn->bda);
+        pInfo->devHandle = pConn->handle;
+        _dev_handle_to_bda[pConn->handle] = pInfo->devAddr;
+        _dev_handle_queue_size[pConn->handle] = 0;
+        _dev_handle_notack_num[pConn->handle] = 0;
+        break;
+    }
+
+    case BTA_HH_RMV_DEV_EVT: {
+        pConn = &pData->dev_info;
+
+        DEBUGPrint("BTA_HH_RMV_DEV_EVT\n");
+
+        // clang-format off
+        DEBUGPrint("result: %d, handle: %d, addr: %02x:%02x:%02x:%02x:%02x:%02x\n",
+            pConn->status, pConn->handle,
+            pConn->bda[0], pConn->bda[1], pConn->bda[2],
+            pConn->bda[3], pConn->bda[4], pConn->bda[5]);
+        // clang-format on
+        break;
+    }
+
+    case BTA_HH_VC_UNPLUG_EVT: {
+        DEBUGPrint("BTA_HH_VS_UNPLUG_EVT\n");
+        break;
+    }
+
+    case WUD_HH_CUSTOM_EVT: {
+        pEvt15 = (WUD_HH_EVT15*)pData;
+
+        p->bufferStatus0 = pEvt15->status0;
+        p->bufferStatus1 = pEvt15->status1;
+
+        if (p->linkedNum < pEvt15->linkedNum) {
+            OSReport("WARNING: link num count is modified.\n");
+            p->linkedNum = pEvt15->linkedNum;
+        }
+
+        for (i = 0; i < pEvt15->linkedNum; i++) {
+            if (pEvt15->devices[i].handle < WUD_MAX_DEV_ENTRY) {
+                _dev_handle_queue_size[pEvt15->devices[i].handle] = pEvt15->devices[i].queueSize;
+
+                _dev_handle_notack_num[pEvt15->devices[i].handle] = pEvt15->devices[i].notAckNum;
+            }
+        }
+
+        break;
+    }
     }
 }
 
-void bta_hh_co_open(u8, u8, tBTA_HH_ATTR_MASK, u8) {
-    WUD_DEBUGPrint("bta_hh_co_open()\n");
+void bta_hh_co_data(UINT8 handle, UINT8* pReport, UINT16 len, tBTA_HH_PROTO_MODE mode, UINT8 subClass, UINT8 appId) {
+#pragma unused(mode)
+#pragma unused(subClass)
+
+    WUDCB* p = &_wcb;
+
+    if (appId == 3) {
+        if (p->hidRecvCB != NULL) {
+            p->hidRecvCB(handle, pReport, len);
+        }
+    } else {
+        DEBUGPrint("Invalid app_id [%d]\n", appId);
+    }
 }
 
-void bta_hh_co_close(u8, u8) {
-    WUD_DEBUGPrint("bta_hh_co_close()\n");
+void bta_hh_co_open(UINT8 handle, UINT8 subClass, UINT16 attrMask, UINT8 appId) {
+#pragma unused(handle)
+#pragma unused(subClass)
+#pragma unused(attrMask)
+#pragma unused(appId)
+
+    DEBUGPrint("bta_hh_co_open()\n");
 }
 
-BOOLEAN bta_dm_co_get_compress_memory(tBTA_SYS_ID, UINT8 **) {
-    return 0;
+void bta_hh_co_close(UINT8 handle, UINT8 appId) {
+#pragma unused(handle)
+#pragma unused(appId)
+
+    DEBUGPrint("bta_hh_co_close()\n");
+}
+
+BOOLEAN
+bta_dm_co_get_compress_memory(tBTA_SYS_ID id, UINT8** ppMemory, UINT32* memorySize) {
+#pragma unused(id)
+#pragma unused(ppMemory)
+#pragma unused(memorySize)
+
+    return FALSE;
 }

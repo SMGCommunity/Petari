@@ -6,9 +6,9 @@
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__dt__15LavaGalaxyPartsFv` | `0x801F0CD0` | :x: (95.7%) |
+| `__dt__15LavaGalaxyPartsFv` | `0x801F0CD0` | :white_check_mark: (100.0%) |
 | `__ct__15LavaGalaxyPartsFPCc` | `0x801F0D2C` | :white_check_mark: (100.0%) |
-| `initAfterPlacement__15LavaGalaxyPartsFv` | `0x801F0D74` | :x: (43.1%) |
+| `initAfterPlacement__15LavaGalaxyPartsFv` | `0x801F0D74` | :x: (62.4%) |
 | `makeActorAppeared__15LavaGalaxyPartsFv` | `0x801F0E34` | :white_check_mark: (100.0%) |
 | `makeActorDead__15LavaGalaxyPartsFv` | `0x801F0E70` | :white_check_mark: (100.0%) |
 | `control__15LavaGalaxyPartsFv` | `0x801F0EB4` | :white_check_mark: (100.0%) |

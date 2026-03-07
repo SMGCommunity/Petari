@@ -7,6 +7,13 @@
 #include "math_types.hpp"
 #include "revolution/types.h"
 
+namespace NrvLavaSteam {
+    NEW_NERVE(HostTypeWait, LavaSteam, Wait);
+    NEW_NERVE(HostTypeWaitForSwitchOn, LavaSteam, WaitForSwitchOn);
+    NEW_NERVE(HostTypeSteam, LavaSteam, Steam);
+    NEW_NERVE(HostTypeSteamEnd, LavaSteam, SteamEnd);
+};  // namespace NrvLavaSteam
+
 LavaSteam::LavaSteam(const char* pName) : LiveActor(pName) {
     f32 f = 1.0f;
     f32 g = 0.0f;
@@ -47,7 +54,6 @@ void LavaSteam::init(const JMapInfoIter& rIter) {
     makeActorAppeared();
 }
 
-#ifdef NON_MATCHING
 void LavaSteam::initAfterPlacement() {
     TRot3f mtx;
     mtx.identity();
@@ -77,9 +83,7 @@ void LavaSteam::initAfterPlacement() {
     _8C.set(mtx.mMtx[0][1], mtx.mMtx[1][1], mtx.mMtx[2][1]);
     MR::normalize(&_8C);
 }
-#endif
 
-#ifdef NON_MATCHING
 void LavaSteam::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     TVec3f stack_64;
     TVec3f stack_58;
@@ -133,7 +137,6 @@ void LavaSteam::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
         }
     }
 }
-#endif
 
 void LavaSteam::startClipped() {
     LiveActor::startClipped();
@@ -151,7 +154,6 @@ void LavaSteam::startSteam() {
     setNerve(&NrvLavaSteam::HostTypeSteam::sInstance);
 }
 
-#ifdef NON_MATCHING
 void LavaSteam::exeWait() {
     if (MR::isFirstStep(this)) {
         MR::invalidateHitSensors(this);
@@ -172,7 +174,8 @@ void LavaSteam::exeWait() {
     if (MR::isStep(this, 120))
         setNerve(&NrvLavaSteam::HostTypeSteam::sInstance);
 }
-#endif
+
+void LavaSteam::exeWaitForSwitchOn() {}
 
 void LavaSteam::exeSteam() {
     if (MR::isFirstStep(this)) {
@@ -188,17 +191,10 @@ void LavaSteam::exeSteam() {
     }
 }
 
-LavaSteam::~LavaSteam() {}
-namespace NrvLavaSteam {
-    void HostTypeSteamEnd::execute(Spine* pSpine) const {
-        LavaSteam* pActor = (LavaSteam*)pSpine->mExecutor;
-
-        if (MR::isStep(pActor, 90))
-            pActor->setNerve(&NrvLavaSteam::HostTypeWait::sInstance);
+void LavaSteam::exeSteamEnd() {
+    if (MR::isStep(this, 90)) {
+        setNerve(&NrvLavaSteam::HostTypeWait::sInstance);
     }
+}
 
-    HostTypeWait(HostTypeWait::sInstance);
-    HostTypeWaitForSwitchOn(HostTypeWaitForSwitchOn::sInstance);
-    HostTypeSteam(HostTypeSteam::sInstance);
-    HostTypeSteamEnd(HostTypeSteamEnd::sInstance);
-}  // namespace NrvLavaSteam
+LavaSteam::~LavaSteam() {}

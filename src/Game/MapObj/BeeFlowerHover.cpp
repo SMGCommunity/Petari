@@ -1,6 +1,14 @@
 #include "Game/MapObj/BeeFlowerHover.hpp"
 #include "Game/LiveActor/LodCtrl.hpp"
 
+namespace NrvBeeFlowerHover {
+    NEW_NERVE(BeeFlowerHoverNrvWait, BeeFlowerHover, Wait);
+    NEW_NERVE(BeeFlowerHoverNrvSoftTouch, BeeFlowerHover, SoftTouch);
+    NEW_NERVE(BeeFlowerHoverNrvSoftTouchWait, BeeFlowerHover, SoftTouchWait);
+    NEW_NERVE(BeeFlowerHoverNrvHardTouch, BeeFlowerHover, HardTouch);
+    NEW_NERVE(BeeFlowerHoverNrvRecover, BeeFlowerHover, Recover);
+};  // namespace NrvBeeFlowerHover
+
 BeeFlowerHover::BeeFlowerHover(const char* pName) : LiveActor(pName) {
     mLodCtrlPlanet = 0;
     _BC = 50.0f;
@@ -67,6 +75,12 @@ void BeeFlowerHover::init(const JMapInfoIter& rIter) {
     makeActorAppeared();
 }
 
+void BeeFlowerHover::exeWait() {
+    if (MR::isFirstStep(this)) {
+        MR::startBck(this, "Wait", 0);
+    }
+}
+
 void BeeFlowerHover::exeSoftTouch() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "OnBee", 0);
@@ -124,7 +138,6 @@ void BeeFlowerHover::exeRecover() {
     }
 }
 
-#ifdef NON_MATCHING
 void BeeFlowerHover::control() {
     if (!isNerve(&NrvBeeFlowerHover::BeeFlowerHoverNrvRecover::sInstance)) {
         mLodCtrlPlanet->update();
@@ -148,8 +161,8 @@ void BeeFlowerHover::control() {
 
     TVec3f v10;
     v10.set(v11);
-    f32 mag = PSVECMag(v10);
-    PSVECNormalize(v10, v10);
+    f32 mag = PSVECMag(&v10);
+    PSVECNormalize(&v10, &v10);
     f32 v6 = sin(v5);
     f32 v7 = cos(v5);
     v12.mMtx[0][0] = v7 + ((1.0f - v7) * (v10.x * v10.x));
@@ -173,7 +186,6 @@ void BeeFlowerHover::control() {
         mPosition.set(mRailMover->_28);
     }
 }
-#endif
 
 void BeeFlowerHover::calcAndSetBaseMtx() {
     TPos3f stack_8;
@@ -211,39 +223,3 @@ bool BeeFlowerHover::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pRe
 }
 
 BeeFlowerHover::~BeeFlowerHover() {}
-
-namespace NrvBeeFlowerHover {
-    INIT_NERVE(BeeFlowerHoverNrvWait);
-    INIT_NERVE(BeeFlowerHoverNrvSoftTouch);
-    INIT_NERVE(BeeFlowerHoverNrvSoftTouchWait);
-    INIT_NERVE(BeeFlowerHoverNrvHardTouch);
-    INIT_NERVE(BeeFlowerHoverNrvRecover);
-
-    void BeeFlowerHoverNrvRecover::execute(Spine* pSpine) const {
-        BeeFlowerHover* flower = reinterpret_cast< BeeFlowerHover* >(pSpine->mExecutor);
-        flower->exeRecover();
-    }
-
-    void BeeFlowerHoverNrvHardTouch::execute(Spine* pSpine) const {
-        BeeFlowerHover* flower = reinterpret_cast< BeeFlowerHover* >(pSpine->mExecutor);
-        flower->exeHardTouch();
-    }
-
-    void BeeFlowerHoverNrvSoftTouchWait::execute(Spine* pSpine) const {
-        BeeFlowerHover* flower = reinterpret_cast< BeeFlowerHover* >(pSpine->mExecutor);
-        flower->exeSoftTouchWait();
-    }
-
-    void BeeFlowerHoverNrvSoftTouch::execute(Spine* pSpine) const {
-        BeeFlowerHover* flower = reinterpret_cast< BeeFlowerHover* >(pSpine->mExecutor);
-        flower->exeSoftTouch();
-    }
-
-    void BeeFlowerHoverNrvWait::execute(Spine* pSpine) const {
-        BeeFlowerHover* flower = reinterpret_cast< BeeFlowerHover* >(pSpine->mExecutor);
-
-        if (MR::isFirstStep(flower)) {
-            MR::startBck(flower, "Wait", 0);
-        }
-    }
-};  // namespace NrvBeeFlowerHover

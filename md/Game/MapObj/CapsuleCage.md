@@ -27,5 +27,5 @@
 | `initCaseNoUseSwitchA__11CapsuleCageFRC19MapObjActorInitInfo` | `0x801BDB58` | :white_check_mark: (100.0%) |
 | `initCaseUseSwitchA__11CapsuleCageFRC19MapObjActorInitInfo` | `0x801BDB5C` | :white_check_mark: (100.0%) |
 | `__cl__Q22MR49FunctorV0M<P11CapsuleCage,M11CapsuleCageFPCvPv_v>CFv` | `0x801BDB60` | :white_check_mark: (100.0%) |
-| `clone__Q22MR49FunctorV0M<P11CapsuleCage,M11CapsuleCageFPCvPv_v>CFP7JKRHeap` | `0x801BDB90` | :x: (96.2%) |
+| `clone__Q22MR49FunctorV0M<P11CapsuleCage,M11CapsuleCageFPCvPv_v>CFP7JKRHeap` | `0x801BDB90` | :white_check_mark: (100.0%) |
 | `__dt__11CapsuleCageFv` | `0x801BDBF8` | :white_check_mark: (100.0%) |

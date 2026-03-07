@@ -15,7 +15,7 @@
 | `clrIntrMask__10JASSeqCtrlFUl` | `0x8048E2A0` | :white_check_mark: (100.0%) |
 | `retIntr__10JASSeqCtrlFv` | `0x8048E2B0` | :white_check_mark: (100.0%) |
 | `findIntr__10JASSeqCtrlFv` | `0x8048E2D8` | :white_check_mark: (100.0%) |
-| `checkIntr__10JASSeqCtrlFv` | `0x8048E328` | :x: (65.5%) |
-| `timerProcess__10JASSeqCtrlFv` | `0x8048E398` | :x: (6.7%) |
-| `__sinit_\JASSeqCtrl_cpp` | `0x8048E410` | :x: (0.0%) |
+| `checkIntr__10JASSeqCtrlFv` | `0x8048E328` | :white_check_mark: (100.0%) |
+| `timerProcess__10JASSeqCtrlFv` | `0x8048E398` | :white_check_mark: (100.0%) |
+| `__sinit_\JASSeqCtrl_cpp` | `0x8048E410` | :white_check_mark: (100.0%) |
 | `__ct__12JASSeqParserFv` | `0x8048E44C` | :white_check_mark: (100.0%) |

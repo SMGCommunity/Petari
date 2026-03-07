@@ -2,6 +2,7 @@
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/ClipArea.hpp"
 #include "Game/MapObj/ClipAreaShape.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 #include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
@@ -21,7 +22,7 @@ ClipAreaDrop::ClipAreaDrop(const char* pName) : ClipArea(pName) {
 
 void ClipAreaDrop::init(const JMapInfoIter& rIter) {
     initBaseMatrix(rIter);
-    MR::connectToScene(this, 28, -1, -1, 42);
+    MR::connectToScene(this, MR::MovementType_ClippedMapParts, -1, -1, MR::DrawType_ClipArea);
     MR::invalidateClipping(this);
     initNerve(&NrvClipAreaDrop::ClipAreaDropNrvWait::sInstance);
     makeActorDead();

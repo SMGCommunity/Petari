@@ -8,8 +8,8 @@
 |------|---------|---------|
 | `__ct__7LodCtrlFP9LiveActorRC12JMapInfoIter` | `0x80166C70` | :white_check_mark: (100.0%) |
 | `offSyncShadowHost__7LodCtrlFv` | `0x80166D1C` | :white_check_mark: (100.0%) |
-| `appear__7LodCtrlFv` | `0x80166D54` | :x: (88.1%) |
-| `kill__7LodCtrlFv` | `0x80166DFC` | :x: (87.8%) |
+| `appear__7LodCtrlFv` | `0x80166D54` | :white_check_mark: (100.0%) |
+| `kill__7LodCtrlFv` | `0x80166DFC` | :white_check_mark: (100.0%) |
 | `validate__7LodCtrlFv` | `0x80166EA0` | :white_check_mark: (100.0%) |
 | `invalidate__7LodCtrlFv` | `0x80166ED4` | :white_check_mark: (100.0%) |
 | `update__7LodCtrlFv` | `0x80166F08` | :x: (0.0%) |

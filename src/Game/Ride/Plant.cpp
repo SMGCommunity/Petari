@@ -4,6 +4,7 @@
 #include "Game/MapObj/PlantPoint.hpp"
 #include "Game/Ride/PlantLeaf.hpp"
 #include "Game/Ride/PlantStalk.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Util/ActorCameraUtil.hpp"
 #include "Game/Util/ActorMovementUtil.hpp"
@@ -27,10 +28,6 @@
 #include <revolution/types.h>
 #include <revolution/wpad.h>
 
-namespace {
-    static const f32 hSin1 = 0.017453292f;  // sin(1.0f);
-}
-
 namespace NrvPlant {
     NEW_NERVE(PlantNrvWaitFar, Plant, WaitFar);
     NEW_NERVE(PlantNrvSeedWait, Plant, SeedWait);
@@ -50,7 +47,7 @@ namespace NrvPlant {
 
 Plant::Plant(const char* pName)
     : LiveActor(pName), mSeedPartsModel(nullptr), mStalk(nullptr), mTopPartsModel(nullptr), mNumLeaves(0), mLeaves(nullptr), mShapeDraw(nullptr),
-      mRider(nullptr), mRailCoord(0.0f), mSide(0.0f, 1.0f, 0.0f), mFront(0.0f, 0.0f, 1.0f), mRideVelocity(0.0f), mAccelTimer(0), mLaunchSpeed(30.0f),
+      mRider(nullptr), mRailCoord(0.0f), mUp(0.0f, 1.0f, 0.0f), mFront(0.0f, 0.0f, 1.0f), mRideVelocity(0.0f), mAccelTimer(0), mLaunchSpeed(30.0f),
       mLaunchNormal(0.0f), mClippingCenter(0.0f, 0.0f, 0.0f), mCameraInfo(nullptr), mPlayAppearDemo(false), mGrabbedTop(false) {
     mSeedMtx.identity();
     mTopMtx.identity();
@@ -62,7 +59,7 @@ void Plant::init(const JMapInfoIter& pMapInfoIter) {
 
     mShapeDraw = ((PlantLeafDrawInit*)MR::getSceneObjHolder()->getObj(SceneObj_PlantLeafDrawInit))->mShapeDraw;
 
-    MR::connectToScene(this, 0x29, 7, -1, 5);
+    MR::connectToScene(this, MR::MovementType_Ride, MR::CalcAnimType_Ride, -1, MR::DrawType_Plant);
 
     MR::getJMapInfoArg0NoInit(pMapInfoIter, &mLaunchSpeed);
     MR::getJMapInfoArg1NoInit(pMapInfoIter, &mLaunchNormal);
@@ -181,7 +178,7 @@ void Plant::exeHangWaitGrowUp() {
     }
 
     f32 growthPercent = mStalk->mGrowthPercent;
-    mStalk->calcPosAndAxisY(&this->mPosition, &this->mSide, mRailCoord * growthPercent);
+    mStalk->calcPosAndAxisY(&mPosition, &mUp, mRailCoord * growthPercent);
 
     if (MR::isPadSwing(WPAD_CHAN0) && mRailCoord < MR::getRailTotalLength(this)) {
         setNerve(&NrvPlant::PlantNrvHangUpGrowUp::sInstance);
@@ -213,13 +210,13 @@ void Plant::exeHangUpGrowUp() {
     mRailCoord += mRideVelocity;
     MR::clampMax(&mRailCoord, MR::getRailTotalLength(this));
     f32 growthPercent = mStalk->mGrowthPercent;
-    mStalk->calcPosAndAxisY(&mPosition, &mSide, mRailCoord * growthPercent);
+    mStalk->calcPosAndAxisY(&mPosition, &mUp, mRailCoord * growthPercent);
 
     f32 f1 = 1.3f * mRideVelocity;
     f32 z = mFront.z;
 
     f1 = f1 >= 30.0f ? 30.0f : f1;
-    MR::rotateVecDegree(&mFront, mSide, f1);
+    MR::rotateVecDegree(&mFront, mUp, f1);
 
     if (z < 0.0f && mFront.z >= 0.0f) {
         MR::startSound(mRider, "SE_OJ_PLANT_MARIO_UP", -1, -1);
@@ -312,11 +309,11 @@ void Plant::exeHangDown() {
     }
 
     MR::moveCoordAndFollowTrans(this, mRideVelocity);
-    mSide.set(MR::getRailDirection(this));
+    mUp.set(MR::getRailDirection(this));
 
     f32 f1 = mRideVelocity * 1.3f;
     f32 z = mFront.z;
-    mSide.mult(-1);
+    mUp.mult(-1);
 
     f1 = f1 >= 20.0f ? 20.0f : f1;
     MR::rotateVecDegree(&mFront, MR::getRailDirection(this), f1);
@@ -365,8 +362,7 @@ void Plant::initLeaf() {
         mLeaves[leaf]->initWithoutIter();
         leafPos -= MR::getInterpolateValue(leafRatio, 100.0f, 300.0f);
 
-        // hey, "small angle approx" only works for SMALL ANGLES
-        f32 rand = hSin1 * MR::getRandom(90.0f, 270.0f);
+        f32 rand = PI_180 * MR::getRandom(90.0f, 270.0f);
         mtx.setRotateInline(TVec3f(0.0f, 1.0f, 0.0f), rand);
         mtx.mult(baseRotate, baseRotate);
     }
@@ -496,10 +492,10 @@ bool Plant::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     }
 
     if (MR::isMsgUpdateBaseMtx(msg)) {
-        TVec3f up;
-        MR::makeAxisUpFront(&up, &mFront, mSide, mFront);
+        TVec3f side;
+        MR::makeAxisUpFront(&side, &mFront, mUp, mFront);
         TPos3f mtx;
-        mtx.setXYZDir(up, mSide, mFront);
+        mtx.setXYZDir(side, mUp, mFront);
         mtx.setTrans(mPosition);
         MR::setBaseTRMtx(mRider, mtx);
         return true;
@@ -517,7 +513,7 @@ bool Plant::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
 
 void Plant::updateTopMtx() {
     PlantPoint* topPoint = mStalk->mPlantPoints[0];
-    mTopMtx.setXYZDir(topPoint->mFront, topPoint->mUp, topPoint->mSide);
+    mTopMtx.setXYZDir(topPoint->mSide, topPoint->mUp, topPoint->mFront);
     mTopMtx.setTrans(topPoint->mPosition);
 }
 
@@ -575,7 +571,7 @@ bool Plant::updateHangUp(f32 angleRate) {
     }
 
     MR::moveCoordAndFollowTrans(this, mRideVelocity);
-    mSide.set(MR::getRailDirection(this));
+    mUp.set(MR::getRailDirection(this));
     f32 frontZ = mFront.z;
     MR::rotateVecDegree(&mFront, MR::getRailDirection(this), angleRate);
     if (frontZ < 0.0f && mFront.z >= 0.0f) {

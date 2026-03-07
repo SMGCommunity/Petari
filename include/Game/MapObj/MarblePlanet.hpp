@@ -16,6 +16,7 @@ public:
     virtual void endClipped();
     virtual bool receiveMsgEnemyAttack(u32, HitSensor*, HitSensor*);
 
+    void exeWait();
     void exeScaleUpCore();
     void exeBreakCore();
     void initCoreAndElectron();
@@ -58,14 +59,3 @@ public:
     MarblePlanetElectron* mParentElectron;  // 0x8C
     const TVec3f* _90;
 };
-
-namespace NrvMarblePlanet {
-    NERVE(MarblePlanetNrvWait);
-    NERVE(MarblePlanetNrvScaleUpCore);
-    NERVE(MarblePlanetNrvBreakCore);
-};  // namespace NrvMarblePlanet
-
-namespace NrvMarblePlanetElectron {
-    NERVE(MarblePlanetElectronNrvMove);
-    NERVE(MarblePlanetElectronNrvAttack);
-};  // namespace NrvMarblePlanetElectron

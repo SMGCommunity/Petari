@@ -109,7 +109,6 @@ public:
 #define NEW_NERVE_ONEND(name, parent_class, executor_name, executorOnEnd_name)                                                                       \
     class name : public Nerve {                                                                                                                      \
     public:                                                                                                                                          \
-        name() NO_INLINE {};                                                                                                                         \
         virtual void execute(Spine* pSpine) const {                                                                                                  \
             parent_class* actor = reinterpret_cast< parent_class* >(pSpine->mExecutor);                                                              \
             actor->exe##executor_name();                                                                                                             \

@@ -8,6 +8,7 @@
 #include "Game/LiveActor/ModelObj.hpp"
 #include "Game/Map/CollisionParts.hpp"
 #include "Game/MapObj/DummyDisplayModel.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 #include "Game/Util/ActorCameraUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
@@ -96,7 +97,7 @@ void TripodBoss::init(const JMapInfoIter& rIter) {
     initModelManagerWithAnm(objName, nullptr, false);
     char lowName[0x20];
     sprintf(lowName, "%sLow", objName);
-    mLowModel = new ModelObj("三脚ボスLODモデル", lowName, getBaseMtx(), 31, -2, -2, false);
+    mLowModel = new ModelObj("三脚ボスLODモデル", lowName, getBaseMtx(), MR::DrawBufferType_TripodBoss, -2, -2, false);
     mLowModel->initWithoutIter();
     MR::invalidateClipping(mLowModel);
     mLowModel->makeActorAppeared();
@@ -291,7 +292,7 @@ void TripodBoss::kill() {
 void TripodBoss::control() {
     JMath::gekko_ps_copy12(_BC, mBodyMtx);
     MR::addTransMtxLocal(_BC, _5BC);
-    mDummyModel->mRotation.y = MR::wrapAngleTowards(0.0f, mDummyModel->mRotation.y - _620);
+    mDummyModel->mRotation.y = MR::repeat(mDummyModel->mRotation.y - _620, 0.0f, 360.0f);
 
     if (isNerve(&NrvTripodBoss::TripodBossNrvNonActive::sInstance)) {
         clippingModel();
@@ -899,10 +900,10 @@ void TripodBoss::addAccelToWeightPosition() {
     TBox3f v21;
     TVec3f v18, v19, v20;
     TBox3f v22;
-    v22.mMin.set< f32 >(_5C8);
-    v22.mMax.set< f32 >(_5C8);
-    v21.mMin.set< f32 >(_5C8);
-    v21.mMax.set< f32 >(_5C8);
+    v22.i.set< f32 >(_5C8);
+    v22.f.set< f32 >(_5C8);
+    v21.i.set< f32 >(_5C8);
+    v21.f.set< f32 >(_5C8);
 
     for (u32 i = 0; i < 3; i++) {
         if (mLegs[i]->canWeighting()) {
@@ -912,9 +913,9 @@ void TripodBoss::addAccelToWeightPosition() {
         v21.extend(mLegs[i]->mForceEndPoint);
     }
 
-    JMAVECLerp(&v22.mMax, &v22.mMin, &v20, 0.5f);
+    JMAVECLerp(&v22.f, &v22.i, &v20, 0.5f);
 
-    JMAVECLerp(&v21.mMax, &v21.mMin, &v19, 0.5f);
+    JMAVECLerp(&v21.f, &v21.i, &v19, 0.5f);
 
     MR::vecBlend(v19, v20, &v18, 0.3f);
     TVec3f* center = &mMovableArea->mCenter;
@@ -948,14 +949,14 @@ void TripodBoss::addAccelToWeightPosition() {
 
 void TripodBoss::calcClippingSphere() {
     TBox3f v4;
-    v4.mMin.set< f32 >(_5D4);
-    v4.mMax.set< f32 >(_5D4);
+    v4.i.set< f32 >(_5D4);
+    v4.f.set< f32 >(_5D4);
 
     for (u32 i = 0; i < 3; i++) {
         v4.extend(mLegs[i]->mForceEndPoint);
     }
 
-    JMAVECLerp(&v4.mMax, &v4.mMin, &_5EC, 0.5f);
+    JMAVECLerp(&v4.f, &v4.i, &_5EC, 0.5f);
 }
 
 void TripodBoss::clippingModel() {

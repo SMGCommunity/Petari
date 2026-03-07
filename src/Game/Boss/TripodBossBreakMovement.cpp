@@ -53,7 +53,7 @@ void TripodBossBreakMovement::start(const TPos3f& a1, s32 a2) {
     TVec3f v24(v25);
     v24 *= val;
     _E4 += v24;
-    mSpring->_10 += MR::getRandom(20.0f, 25.0f);
+    mSpring->mVelocity += MR::getRandom(20.0f, 25.0f);
     setNerve(&NrvTripodBossBreakMovement::TripodBossBreakMovementNrvStartBreak::sInstance);
     MR::invalidateClipping(this);
     appear();
@@ -88,7 +88,7 @@ void TripodBossBreakMovement::setBreakDownLevel(s32 level) {
 void TripodBossBreakMovement::exeStartBreak() {
     TVec3f dir;
     _8C.getYDir(dir);
-    f32 val = mSpring->_4;
+    f32 val = mSpring->mSpringValue;
     TVec3f v5(dir);
     v5 *= val;
     TVec3f v6(_C0);

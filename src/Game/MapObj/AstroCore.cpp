@@ -3,6 +3,11 @@
 #include "Game/MapObj/AstroDemoFunction.hpp"
 #include <cstdio>
 
+namespace NrvAstroCore {
+    NEW_NERVE(AstroCoreNrvWait, AstroCore, Wait);
+    NEW_NERVE(AstroCoreNrvGrow, AstroCore, Grow);
+};  // namespace NrvAstroCore
+
 namespace {
     static f32 sSensorSizeTable[] = {100.0f, 300.0f, 350.0f, 420.0f, 480.0f, 540.0f, 600.0f, 0.0f};
 };
@@ -75,10 +80,5 @@ void AstroCore::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
         MR::sendMsgPush(pReceiver, pSender);
     }
 }
-
-namespace NrvAstroCore {
-    INIT_NERVE(AstroCoreNrvWait);
-    INIT_NERVE(AstroCoreNrvGrow);
-};  // namespace NrvAstroCore
 
 AstroCore::~AstroCore() {}

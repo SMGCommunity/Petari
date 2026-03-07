@@ -23,8 +23,3 @@ public:
     f32 _B8;
     u32 _BC;
 };
-
-namespace NrvSphereRailDash {
-    NERVE(SphereRailDashNrvWait);
-    NERVE(SphereRailDashNrvRailMove);
-};  // namespace NrvSphereRailDash

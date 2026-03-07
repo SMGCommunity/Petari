@@ -6,4 +6,4 @@
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `getHashCode__7JGadgetFPCc` | `0x804179D8` | :x: (42.9%) |
+| `getHashCode__7JGadgetFPCc` | `0x804179D8` | :x: (7.6%) |

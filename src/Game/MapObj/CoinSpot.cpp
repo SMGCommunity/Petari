@@ -1,5 +1,10 @@
 #include "Game/MapObj/CoinSpot.hpp"
 
+namespace NrvCoinSpot {
+    NEW_NERVE(CoinSpotNrvWait, CoinSpot, Wait);
+    NEW_NERVE(CoinSpotNrvIsInTornado, CoinSpot, IsInTornado);
+};  // namespace NrvCoinSpot
+
 CoinSpot::CoinSpot(const char* pName) : LiveActor(pName) {
     _8C = 8;
     _90 = 0;
@@ -77,18 +82,3 @@ void CoinSpot::exeIsInTornado() {
 void CoinSpot::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {}
 
 CoinSpot::~CoinSpot() {}
-
-namespace NrvCoinSpot {
-    INIT_NERVE(CoinSpotNrvWait);
-    INIT_NERVE(CoinSpotNrvIsInTornado);
-
-    void CoinSpotNrvIsInTornado::execute(Spine* pSpine) const {
-        CoinSpot* spot = reinterpret_cast< CoinSpot* >(pSpine->mExecutor);
-        spot->exeIsInTornado();
-    }
-
-    void CoinSpotNrvWait::execute(Spine* pSpine) const {
-        CoinSpot* spot = reinterpret_cast< CoinSpot* >(pSpine->mExecutor);
-        spot->exeWait();
-    }
-};  // namespace NrvCoinSpot

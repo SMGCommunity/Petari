@@ -14,7 +14,7 @@
 | `add__10FileHolderFPCcP7JKRHeapPv` | `0x80399070` | :white_check_mark: (100.0%) |
 | `isExist__10FileHolderCFPCc` | `0x803990EC` | :white_check_mark: (100.0%) |
 | `getContext__10FileHolderCFPCc` | `0x80399114` | :white_check_mark: (100.0%) |
-| `removeIfIsEqualHeap__10FileHolderFP7JKRHeap` | `0x80399138` | :x: (0.0%) |
+| `removeIfIsEqualHeap__10FileHolderFP7JKRHeap` | `0x80399138` | :white_check_mark: (100.0%) |
 | `removeFile__10FileHolderFPCc` | `0x803991E4` | :white_check_mark: (100.0%) |
 | `findEntry__10FileHolderCFPCc` | `0x8039925C` | :white_check_mark: (100.0%) |
-| `erase__Q22MR54Vector<Q22MR39AssignableArray<P19FileHolderFileEntry>>FPP19FileHolderFileEntry` | `0x803992C8` | :x: (0.0%) |
+| `erase__Q22MR54Vector<Q22MR39AssignableArray<P19FileHolderFileEntry>>FPP19FileHolderFileEntry` | `0x803992C8` | :white_check_mark: (100.0%) |

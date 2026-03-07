@@ -7,7 +7,7 @@
 | Name | Address | Match % |
 |------|---------|---------|
 | `__ct__8RaceRailFPCc` | `0x80198634` | :white_check_mark: (100.0%) |
-| `__ct__11PlayerRacerFPCc` | `0x80198670` | :white_check_mark: (100.0%) |
+| `__ct__11PlayerRacerFPCc` | `0x80198670` | :x: (77.2%) |
 | `appear__11PlayerRacerFv` | `0x801986E4` | :white_check_mark: (100.0%) |
 | `init__11PlayerRacerFRC12JMapInfoIter` | `0x801986E8` | :white_check_mark: (100.0%) |
 | `startRacer__11PlayerRacerFv` | `0x80198798` | :white_check_mark: (100.0%) |
@@ -15,7 +15,7 @@
 | `goalRacer__11PlayerRacerFv` | `0x80198944` | :white_check_mark: (100.0%) |
 | `loseRacer__11PlayerRacerFv` | `0x8019894C` | :white_check_mark: (100.0%) |
 | `exitRacer__11PlayerRacerFv` | `0x80198950` | :white_check_mark: (100.0%) |
-| `__dt__11PlayerRacerFv` | `0x80198954` | :x: (95.7%) |
+| `__dt__11PlayerRacerFv` | `0x80198954` | :white_check_mark: (100.0%) |
 | `__dt__8RaceRailFv` | `0x801989B0` | :white_check_mark: (100.0%) |
 | `@140@exitRacer__11PlayerRacerFv` | `0x80198A08` | :white_check_mark: (100.0%) |
 | `@140@resetRacer__11PlayerRacerFPC11RaceManager` | `0x80198A10` | :white_check_mark: (100.0%) |

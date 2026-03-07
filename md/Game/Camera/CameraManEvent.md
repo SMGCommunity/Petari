@@ -27,7 +27,7 @@
 | `checkReset__14CameraManEventFPQ214CameraManEvent13ChunkFIFOItem` | `0x800A44F0` | :white_check_mark: (100.0%) |
 | `changeCamera__14CameraManEventFv` | `0x800A4574` | :white_check_mark: (100.0%) |
 | `setExtraParam__14CameraManEventFv` | `0x800A45E4` | :white_check_mark: (100.0%) |
-| `setVPanParam__14CameraManEventFv` | `0x800A46D4` | :x: (0.0%) |
+| `setVPanParam__14CameraManEventFv` | `0x800A46D4` | :x: (86.4%) |
 | `resetCameraIfRequested__14CameraManEventFv` | `0x800A47B4` | :white_check_mark: (100.0%) |
 | `setSafePose__14CameraManEventFv` | `0x800A480C` | :x: (0.0%) |
 | `findChunk__14CameraManEventCFlPCc` | `0x800A4BBC` | :white_check_mark: (100.0%) |
@@ -42,4 +42,4 @@
 | `notifyActivate__14CameraManEventFv` | `0x800A4E74` | :white_check_mark: (100.0%) |
 | `notifyDeactivate__14CameraManEventFv` | `0x800A4E80` | :white_check_mark: (100.0%) |
 | `__dt__14CameraManEventFv` | `0x800A4E8C` | :white_check_mark: (100.0%) |
-| `isAnimCameraEnd__14CameraManEventCFlPCc` | `0x800A4EE8` | :x: (97.4%) |
+| `isAnimCameraEnd__14CameraManEventCFlPCc` | `0x800A4EE8` | :x: (99.9%) |

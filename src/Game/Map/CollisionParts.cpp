@@ -181,7 +181,6 @@ void CollisionParts::updateMtx() {
     }
 }
 
-#ifdef NON_MATCHING
 // Issues with assignments of scaleDiff
 f32 CollisionParts::makeEqualScale(MtxPtr matrix) {
     TPos3f& mtx = *reinterpret_cast< TPos3f* >(matrix);
@@ -223,7 +222,6 @@ f32 CollisionParts::makeEqualScale(MtxPtr matrix) {
 
     return uniformScale;
 }
-#endif
 
 void CollisionParts::updateBoundingSphereRange() {
     TMtx34f matrix;
@@ -260,7 +258,6 @@ s32 CollisionParts::getPlacementZoneID() const {
     return mZone->mZoneID;
 }
 
-#ifdef NON_MATCHING
 // Instruction order
 void CollisionParts::projectToPlane(TVec3f* pProjected, const TVec3f& rPos, const TVec3f& rOrigin, const TVec3f& rNormal) {
     TVec3f projected = rPos;
@@ -275,7 +272,6 @@ void CollisionParts::projectToPlane(TVec3f* pProjected, const TVec3f& rPos, cons
     projected.add(negNormal);
     pProjected->set(projected);
 }
-#endif
 
 void CollisionParts::calcForceMovePower(TVec3f* a1, const TVec3f& a2) const {
     TVec3f tStack88 = a2;

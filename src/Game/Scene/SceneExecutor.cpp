@@ -330,8 +330,8 @@ void SceneFunction::executeDrawList2DNormal() {
     CategoryList::execute(MR::DrawType_TalkLayout);
     CategoryList::execute(MR::DrawType_0x44);
     MR::drawInitFor2DModel();
-    CategoryList::drawOpa(MR::DrawBufferType_DrawBufferType_0x25);
-    CategoryList::drawXlu(MR::DrawBufferType_DrawBufferType_0x25);
+    CategoryList::drawOpa(MR::DrawBufferType_0x25);
+    CategoryList::drawXlu(MR::DrawBufferType_0x25);
     CategoryList::execute(MR::DrawType_EffectDraw2D);
     CategoryList::execute(MR::DrawType_EffectDrawFor2DModel);
 }

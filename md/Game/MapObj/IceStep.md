@@ -7,7 +7,7 @@
 | Name | Address | Match % |
 |------|---------|---------|
 | `__ct__7IceStepFPCc` | `0x801E73E0` | :white_check_mark: (100.0%) |
-| `__dt__7IceStepFv` | `0x801E741C` | :x: (95.7%) |
+| `__dt__7IceStepFv` | `0x801E741C` | :white_check_mark: (100.0%) |
 | `init__7IceStepFRC12JMapInfoIter` | `0x801E7478` | :white_check_mark: (100.0%) |
 | `exeWait__7IceStepFv` | `0x801E759C` | :white_check_mark: (100.0%) |
 | `setOn__7IceStepFUlRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | `0x801E7664` | :x: (0.0%) |

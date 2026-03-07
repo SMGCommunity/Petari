@@ -19,8 +19,3 @@ public:
     s32 _94;
     s32 _98;
 };
-
-namespace NrvCoinSpot {
-    NERVE(CoinSpotNrvWait);
-    NERVE(CoinSpotNrvIsInTornado);
-};  // namespace NrvCoinSpot

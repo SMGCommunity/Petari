@@ -5,6 +5,7 @@
 #include <cctype>
 // #include <cstdarg>
 #include <cstdio>
+#include <va_list.h>
 
 #define CENTISEC_PER_SEC 100
 #define SEC_PER_MIN 60
@@ -155,7 +156,7 @@ namespace MR {
         return &pDst[1];
     }
 
-#ifdef NON_MATCHING
+    /*
     wchar_t* addNumberFontTag(wchar_t* pDst, const wchar_t* pFmt, ...) {
         va_list args;
         va_start(args, pFmt);
@@ -171,7 +172,7 @@ namespace MR {
 
         return pDst + num;
     }
-#endif
+    */
 
     // FIXME: Missing stack accesses.
     const char* getBasename(const char* pPath) {

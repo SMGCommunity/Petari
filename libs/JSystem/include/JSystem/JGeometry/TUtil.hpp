@@ -1,6 +1,8 @@
 #pragma once
 
+#include <cmath>
 #include <revolution/types.h>
+
 
 static f32 flt_80630CA0[0x408];
 
@@ -60,5 +62,7 @@ namespace JGeometry {
         }
 
         static T inv_sqrt(T val);
+
+        static inline double epsilon() { return 32.0f * FLT_EPSILON; }
     };
 };  // namespace JGeometry

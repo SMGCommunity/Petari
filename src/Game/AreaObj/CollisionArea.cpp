@@ -33,8 +33,8 @@ AreaPolygon::~AreaPolygon() {}
     mScale.x = 1.0f;
     mScale.y = 1.0f;
     mScale.z = 1.0f;
-    _8C = nullptr;
-    mNrTriangles = 4;
+    mKCLFile = nullptr;
+    mPositionNum = 4;
     _94 = 2;
 
     mPositions = new TVec3f[12];

@@ -1,17 +1,19 @@
 # main/nw4r/lyt/lyt_animation
 
+**Source Path:** `src/nw4r/lyt/lyt_animation.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
 |------|---------|---------|
 | `GetStepCurveValue__Q34nw4r3lyt27@unnamed@lyt_animation_cpp@FfPCQ44nw4r3lyt3res7StepKeyUl` | `0x800144A8` | :x: (0.0%) |
 | `GetHermiteCurveValue__Q34nw4r3lyt27@unnamed@lyt_animation_cpp@FfPCQ44nw4r3lyt3res10HermiteKeyUl` | `0x80014590` | :x: (0.0%) |
-| `GetFrameSize__Q34nw4r3lyt13AnimTransformCFv` | `0x8001474C` | :x: (0.0%) |
-| `IsLoopData__Q34nw4r3lyt13AnimTransformCFv` | `0x80014758` | :x: (0.0%) |
-| `__ct__Q34nw4r3lyt18AnimTransformBasicFv` | `0x80014770` | :x: (0.0%) |
-| `__dt__Q34nw4r3lyt18AnimTransformBasicFv` | `0x800147A4` | :x: (0.0%) |
-| `SetResource__Q34nw4r3lyt18AnimTransformBasicFPCQ44nw4r3lyt3res14AnimationBlockPQ34nw4r3lyt16ResourceAccessor` | `0x80014828` | :x: (0.0%) |
-| `SetResource__Q34nw4r3lyt18AnimTransformBasicFPCQ44nw4r3lyt3res14AnimationBlockPQ34nw4r3lyt16ResourceAccessorUs` | `0x8001483C` | :x: (0.0%) |
+| `GetFrameSize__Q34nw4r3lyt13AnimTransformCFv` | `0x8001474C` | :white_check_mark: (100.0%) |
+| `IsLoopData__Q34nw4r3lyt13AnimTransformCFv` | `0x80014758` | :white_check_mark: (100.0%) |
+| `__ct__Q34nw4r3lyt18AnimTransformBasicFv` | `0x80014770` | :white_check_mark: (100.0%) |
+| `__dt__Q34nw4r3lyt18AnimTransformBasicFv` | `0x800147A4` | :white_check_mark: (100.0%) |
+| `SetResource__Q34nw4r3lyt18AnimTransformBasicFPCQ44nw4r3lyt3res14AnimationBlockPQ34nw4r3lyt16ResourceAccessor` | `0x80014828` | :white_check_mark: (100.0%) |
+| `SetResource__Q34nw4r3lyt18AnimTransformBasicFPCQ44nw4r3lyt3res14AnimationBlockPQ34nw4r3lyt16ResourceAccessorUs` | `0x8001483C` | :x: (50.4%) |
 | `Bind__Q34nw4r3lyt18AnimTransformBasicFPQ34nw4r3lyt4Paneb` | `0x80014974` | :x: (0.0%) |
 | `Bind__Q34nw4r3lyt18AnimTransformBasicFPQ34nw4r3lyt8Material` | `0x80014B30` | :x: (0.0%) |
 | `Animate__Q34nw4r3lyt18AnimTransformBasicFUlPQ34nw4r3lyt4Pane` | `0x80014C3C` | :x: (0.0%) |

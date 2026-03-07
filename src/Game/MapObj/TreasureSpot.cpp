@@ -1,6 +1,12 @@
 #include "Game/MapObj/TreasureSpot.hpp"
 #include "Game/Util.hpp"
 
+namespace NrvTreasureSpot {
+    NEW_NERVE(TreasureSpotNrvWait, TreasureSpot, Wait);
+    NEW_NERVE(TreasureSpotNrvEnd, TreasureSpot, End);
+    NEW_NERVE(TreasureSpotNrvSpout, TreasureSpot, Spout);
+};  // namespace NrvTreasureSpot
+
 TreasureSpot::TreasureSpot(const char* pName) : MapObjActor(pName) {
     mIsCoinFlower = false;
 }
@@ -18,6 +24,10 @@ void TreasureSpot::init(const JMapInfoIter& rIter) {
     MR::initStarPointerTarget(this, 100.0f, TVec3f(0.0f, 50.0f, 0.0f));
     MR::declareCoin(this, 1);
 }
+
+void TreasureSpot::exeWait() {}
+
+void TreasureSpot::exeEnd() {}
 
 void TreasureSpot::exeSpout() {
     if (MR::isFirstStep(this)) {
@@ -87,18 +97,3 @@ void TreasureSpot::switchEmitGlow() {
 }
 
 TreasureSpot::~TreasureSpot() {}
-
-namespace NrvTreasureSpot {
-    INIT_NERVE(TreasureSpotNrvWait);
-    INIT_NERVE(TreasureSpotNrvEnd);
-    INIT_NERVE(TreasureSpotNrvSpout);
-
-    void TreasureSpotNrvSpout::execute(Spine* pSpine) const {
-        TreasureSpot* spot = reinterpret_cast< TreasureSpot* >(pSpine->mExecutor);
-        spot->exeSpout();
-    }
-
-    void TreasureSpotNrvEnd::execute(Spine* pSpine) const {}
-
-    void TreasureSpotNrvWait::execute(Spine* pSpine) const {}
-};  // namespace NrvTreasureSpot

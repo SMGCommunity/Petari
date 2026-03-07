@@ -29,17 +29,13 @@ void TicoShop::kill() {
 void TicoShop::init(const JMapInfoIter& rIter) {
     NPCActorCaps caps("TicoShop");
     NPCActorItem item("TicoShop");
-    item._4 = "";
-    item._8 = "";
-    item.mArchive = "";
-    item._10 = "";
     caps.setDefault();
     caps.mSensorSize = 100.0f;
     caps.mSensorOffset.y = 100.0f;
-    caps.mUseShadow = true;
-    caps._30 = 6;
-    caps._58 = 2;
-    caps._44 = "Center";
+    caps._5D = true;
+    caps.mSoundSize = 6;
+    caps.mSensorMax = 2;
+    caps.mSensorJoint = "Center";
     caps._6C = "Center";
     initialize(rIter, caps);
     MR::addHitSensorAtJointEye(this, "Mouth", "Mouth", 8, 30.0f, TVec3f(0.0f, 0.0f, 0.0f));
@@ -59,8 +55,11 @@ void TicoShop::init(const JMapInfoIter& rIter) {
     initStarPiece(starbits);
     initMessage("Common_TicoShop000");
     MR::setMessageArg(mMsgCtrl, _194);
-    MR::registerBranchFunc(mMsgCtrl, TalkMessageFunc(this, &TicoShop::branchFunc));
-    MR::registerEventFunc(mMsgCtrl, TalkMessageFunc(this, &TicoShop::eventFunc));
+    TalkMessageFuncM< TicoShop*, bool (TicoShop::*)(u32) > branchFunc = TalkMessageFunc(this, &TicoShop::branchFunc);
+    TalkMessageCtrl* pMsgCtrl = mMsgCtrl;
+    MR::registerBranchFunc(pMsgCtrl, branchFunc);
+    TalkMessageFuncM< TicoShop*, bool (TicoShop::*)(u32) > eventFunc = TalkMessageFunc(this, &TicoShop::eventFunc);
+    MR::registerEventFunc(mMsgCtrl, eventFunc);
     MR::setDistanceToTalk(mMsgCtrl, 350.0f);
     _180 = &NrvTicoShop::TicoShopNrvDemo::sInstance;
     mOneUp = MR::createKinokoOneUp();

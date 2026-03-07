@@ -1,9 +1,10 @@
 #include "Game/LiveActor/SensorHitChecker.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Util.hpp"
 
 void SensorHitChecker::init(const JMapInfoIter& rIter) {
-    MR::connectToScene(this, 5, -1, -1, -1);
+    MR::connectToScene(this, MR::MovementType_SensorHitChecker, -1, -1, -1);
 }
 
 void SensorHitChecker::initGroup(HitSensor* pSensor) {
@@ -48,7 +49,7 @@ void SensorHitChecker::movement() {
     doObjColInSameGroup(mCharacterGroup);
 }
 
-#ifdef NON_MATCHING  // Wrong registers
+// Wrong registers
 void SensorHitChecker::doObjColGroup(SensorGroup* pGroup1, SensorGroup* pGroup2) const {
     s32 group1SensorCount = pGroup1->mSensorCount;
     for (s32 i = 0; i < group1SensorCount; i++) {
@@ -76,9 +77,8 @@ void SensorHitChecker::doObjColGroup(SensorGroup* pGroup1, SensorGroup* pGroup2)
         }
     }
 }
-#endif
 
-#ifdef NON_MATCHING  // Same register issue
+// Same register issue
 void SensorHitChecker::doObjColInSameGroup(SensorGroup* pSensorGroup) const {
     s32 sensorGroupCount = pSensorGroup->mSensorCount;
     for (s32 i = 0; i < sensorGroupCount; i++) {
@@ -105,9 +105,8 @@ void SensorHitChecker::doObjColInSameGroup(SensorGroup* pSensorGroup) const {
         }
     }
 }
-#endif
 
-#ifdef NON_MATCHING  // Wrong registers
+// Wrong registers
 void SensorHitChecker::checkAttack(HitSensor* pSensor1, HitSensor* pSensor2) const {
     if (pSensor1->mHost != pSensor2->mHost) {
         f32 xPos = pSensor1->mPosition.x - pSensor2->mPosition.x;
@@ -126,7 +125,6 @@ void SensorHitChecker::checkAttack(HitSensor* pSensor1, HitSensor* pSensor2) con
         }
     }
 }
-#endif
 
 namespace MR {
     void initHitSensorGroup(HitSensor* pSensor) {

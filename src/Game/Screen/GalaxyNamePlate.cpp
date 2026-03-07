@@ -1,10 +1,14 @@
 #include "Game/Screen/GalaxyNamePlate.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/GalaxyNamePlateDrawer.hpp"
+#include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/MessageUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
+#include "JSystem/JGeometry/TVec.hpp"
+#include "revolution/types.h"
+#include "runtime.h"
 
 namespace {
     const s32 cAppearReadyFrame = 40;
@@ -56,12 +60,68 @@ void GalaxyNamePlate::show(const wchar_t* pName, bool a2) {
     show(pName, 2, a2, true);
 }
 
+void GalaxyNamePlate::setPos3D(const TVec3f& a1) {
+    TVec2f vec;
+    MR::calcScreenPosition(&vec, a1);
+    setTrans(vec);
+    mDrawerEntry->mZ = __cvt_fp2unsigned(-vec.y * MR::getFarZ());
+    //the vec is a TVec3f, but I currently can't use it on SetTrans()
+}
+
 void GalaxyNamePlate::setShowBalloonNozzle(bool showBalloonNozzle) {
     mShowBalloonNozzle = showBalloonNozzle;
 }
 
 void GalaxyNamePlate::control() {
     _24 = false;
+}
+
+void GalaxyNamePlate::show(const wchar_t* pName, s32 a2, bool a3, bool a4) {
+    if (MR::isDead(this)) {
+        appear();
+        if (a4) {
+            setNerve(&NrvGalaxyNamePlate::GalaxyNamePlateNrvAppear::sInstance);
+        }
+        else {
+            setNerve(&NrvGalaxyNamePlate::GalaxyNamePlateNrvAppearReady::sInstance);
+        }
+    }
+    else {
+        if (a4) {
+            if (isNerve(&NrvGalaxyNamePlate::GalaxyNamePlateNrvAppearReady::sInstance)) {
+                setNerve(&NrvGalaxyNamePlate::GalaxyNamePlateNrvAppear::sInstance);
+            }
+        }
+        else if (_25) {
+            setNerve(&NrvGalaxyNamePlate::GalaxyNamePlateNrvAppearReady::sInstance);
+        }
+
+        if (!isNerve(&NrvGalaxyNamePlate::GalaxyNamePlateNrvWait::sInstance) || a2 != 1) {
+            MR::forceDeleteEffect(this, "GalaxyNamePlateNew");
+        }
+    }
+
+    const char* ShowNamePlate, *HideNamePlate, *shaBeak, *picBeak, *galaxyName, *txtGaxyName;
+    ShowNamePlate = (a3) ? "GalaxyNamePlate" : "GalaxyNamePlateU";
+    MR::showPaneRecursive(this, ShowNamePlate);
+    HideNamePlate = (a3) ? "GalaxyNamePlateU" : "GalaxyNamePlate";
+    MR::hidePaneRecursive(this, HideNamePlate);    
+    if (!mShowBalloonNozzle) {
+        shaBeak = (a3) ? "ShaBeak" : "ShaBeakU";
+        picBeak = (a3) ? "PicBeak" : "PicBeakU";
+        MR::hidePaneRecursive(this, shaBeak);
+        MR::hidePaneRecursive(this, picBeak);
+    }
+
+    galaxyName = (a3) ? "GalaxyName" : "GalaxyNameU";
+    MR::setTextBoxMessageRecursive(this, galaxyName, pName);
+    txtGaxyName = (a3) ? "TxtGaxyName" : "TxtGaxyNameU";
+    MR::setAnimFrameAndStopAdjustTextWidth(this, txtGaxyName, 2);
+    MR::startAnim(this, "Unknown", 1);
+    MR::setAnimFrameAndStop(this, a2, 1);
+    _25 = a4;
+    _24 = true;
+    _2C = a2;
 }
 
 void GalaxyNamePlate::exeAppearReady() {

@@ -26,4 +26,4 @@
 | `execute__Q214NrvValveSwitch19ValveSwitchNrvValveCFP5Spine` | `0x80250BA8` | :white_check_mark: (100.0%) |
 | `execute__Q214NrvValveSwitch20ValveSwitchNrvAdjustCFP5Spine` | `0x80250BB0` | :white_check_mark: (100.0%) |
 | `execute__Q214NrvValveSwitch18ValveSwitchNrvWaitCFP5Spine` | `0x80250BB8` | :white_check_mark: (100.0%) |
-| `__dt__11ValveSwitchFv` | `0x80250BC0` | :x: (95.7%) |
+| `__dt__11ValveSwitchFv` | `0x80250BC0` | :white_check_mark: (100.0%) |

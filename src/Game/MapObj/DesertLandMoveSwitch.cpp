@@ -21,6 +21,13 @@
 #include "revolution/mtx.h"
 #include "revolution/types.h"
 
+namespace NrvDesertLandMoveSwitch {
+    NEW_NERVE(HostTypeWait, DesertLandMoveSwitch, Wait);
+    NEW_NERVE(HostTypeSwitchDown, DesertLandMoveSwitch, SwitchDown);
+    NEW_NERVE(HostTypeOn, DesertLandMoveSwitch, On);
+    NEW_NERVE(HostTypeReturn, DesertLandMoveSwitch, Return);
+};  // namespace NrvDesertLandMoveSwitch
+
 DesertLandMoveSwitch::DesertLandMoveSwitch(const char* pName) : LiveActor(pName) {
     mCollisionParts = 0;
     mSpringValue = new SpringValue();
@@ -44,7 +51,7 @@ void DesertLandMoveSwitch::init(const JMapInfoIter& rIter) {
         initNerve(&NrvDesertLandMoveSwitch::HostTypeWait::sInstance);
     } else {
         MR::startBck(this, "On", 0);
-        MR::setAllAnimFrameAtEnd(this, "End");
+        MR::setAllAnimFrameAtEnd(this, "On");
         initNerve(&NrvDesertLandMoveSwitch::HostTypeOn::sInstance);
     }
     f32 stack_8 = -1.0f;
@@ -66,7 +73,7 @@ void DesertLandMoveSwitch::calcAnim() {
     MtxPtr mtx = MR::getJointMtx(this, "Move");
     TPos3f mtx2;
     mtx2.setInline(mtx);
-    f32 val = mSpringValue->_4;
+    f32 val = mSpringValue->mSpringValue;
     if (!MR::isNearZero(val)) {
         TVec3f stack_20;
         f32 f3 = mtx2[2][3];
@@ -195,7 +202,7 @@ void DesertLandMoveSwitch::exeWait() {
 
     tryConnect();
     if (!_99 && _9A) {
-        mSpringValue->_10 += -10.0f;
+        mSpringValue->mVelocity += -10.0f;
     }
 
     mSpringValue->update();
@@ -236,7 +243,7 @@ void DesertLandMoveSwitch::exeReturn() {
     }
 
     if (!_99 && _9A)
-        mSpringValue->_10 += -10.0f;
+        mSpringValue->mVelocity += -10.0f;
 
     mSpringValue->update();
 
@@ -246,14 +253,8 @@ void DesertLandMoveSwitch::exeReturn() {
         setNerve(&NrvDesertLandMoveSwitch::HostTypeWait::sInstance);
     }
 }
-namespace NrvDesertLandMoveSwitch {
-    HostTypeWait(HostTypeWait::sInstance);
-    HostTypeSwitchDown(HostTypeSwitchDown::sInstance);
-    HostTypeOn(HostTypeOn::sInstance);
-    HostTypeReturn(HostTypeReturn::sInstance);
-};  // namespace NrvDesertLandMoveSwitch
 
 void SpringValue::reset() {
-    _4 = _0;
-    _10 = 0.0f;
+    mSpringValue = mRestValue;
+    mVelocity = 0.0f;
 }

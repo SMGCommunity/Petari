@@ -12,6 +12,6 @@
 | `calcShadowDir2D__5MarioFRCQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f>` | `0x802ECDB4` | :x: (0.0%) |
 | `stick2Dadjust__5MarioFRfRf` | `0x802ECDEC` | :x: (0.0%) |
 | `set2Dmode__5MarioFb` | `0x802ED5D8` | :x: (0.0%) |
-| `beforeJumping2D__5MarioFv` | `0x802ED61C` | :x: (0.0%) |
-| `afterLanding2D__5MarioFv` | `0x802ED62C` | :x: (0.0%) |
+| `beforeJumping2D__5MarioFv` | `0x802ED61C` | :white_check_mark: (100.0%) |
+| `afterLanding2D__5MarioFv` | `0x802ED62C` | :white_check_mark: (100.0%) |
 | `clear2DStick__5MarioFv` | `0x802ED630` | :white_check_mark: (100.0%) |

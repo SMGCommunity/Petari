@@ -26,9 +26,3 @@ public:
     ActorCameraInfo* mCameraInfo;  // 0x8C
     s32 mCurDemoFrame;             // 0x90
 };
-
-namespace NrvKeySwitch {
-    NERVE(KeySwitchNrvDemoStart);
-    NERVE(KeySwitchNrvAppear);
-    NERVE(KeySwitchNrvWait);
-};  // namespace NrvKeySwitch

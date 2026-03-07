@@ -7,12 +7,12 @@
 class MarioActor;
 class JPABaseEmitter;
 
-struct SomeData {
+struct MovingFollowMtx {
     u32 _0;
     TMtx34f _4;
     TMtx34f _34;
-    u32 _64;
-    u32 _68;
+    MtxPtr _64;
+    JPABaseEmitter* _68;
 };
 
 class MarioEffect : public MarioModule, public MultiEmitterCallBackBase {
@@ -21,9 +21,12 @@ public:
 
     virtual void execute(JPABaseEmitter*);
 
-    // We can infer from the multiple inheritance that this destructor was declared after execute
-    // and that the virtual destructor in JPAEmitterCallBack comes first
     virtual ~MarioEffect();
+
+    JPABaseEmitter* addRequest(const char*, MtxPtr);
+    void updateFollowMtx(MovingFollowMtx*);
+    void playSwingEffect();
+    void doCubeEffect();
 
     s32 _C;
     s32 _10;
@@ -32,5 +35,5 @@ public:
     Color8 _1C;
     Color8 _20;
     TMtx34f _24;
-    SomeData _54[0x100];
+    MovingFollowMtx _54[0x100];
 };

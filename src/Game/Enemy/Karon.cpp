@@ -98,9 +98,9 @@ void Karon::init(const JMapInfoIter& rIter) {
     MR::validateClipping(this);
     MR::setGroupClipping(this, rIter, 32);
     mTerritoryMover = new TerritoryMover(500.0f);
-    mTerritoryMover->_4.x = mPosition.x;
-    mTerritoryMover->_4.y = mPosition.y;
-    mTerritoryMover->_4.z = mPosition.z;
+    mTerritoryMover->mCenter.x = mPosition.x;
+    mTerritoryMover->mCenter.y = mPosition.y;
+    mTerritoryMover->mCenter.z = mPosition.z;
     TVec3f targetPos(0.0f, 50.0f, 0.0f);
     MR::initStarPointerTarget(this, 100.0f, targetPos);
     mScaleController = new AnimScaleController(0);

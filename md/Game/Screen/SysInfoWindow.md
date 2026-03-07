@@ -12,7 +12,7 @@
 | `calcAnim__13SysInfoWindowFv` | `0x8038D044` | :white_check_mark: (100.0%) |
 | `draw__13SysInfoWindowCFv` | `0x8038D090` | :white_check_mark: (100.0%) |
 | `appear__13SysInfoWindowFv` | `0x8038D0DC` | :white_check_mark: (100.0%) |
-| `appear__13SysInfoWindowFPCcQ213SysInfoWindow11SysInfoTypeQ213SysInfoWindow14SysInfoTextPosQ213SysInfoWindow18SysInfoMessageType` | `0x8038D14C` | :x: (0.0%) |
+| `appear__13SysInfoWindowFPCcQ213SysInfoWindow11SysInfoTypeQ213SysInfoWindow14SysInfoTextPosQ213SysInfoWindow18SysInfoMessageType` | `0x8038D14C` | :white_check_mark: (100.0%) |
 | `disappear__13SysInfoWindowFv` | `0x8038D2F8` | :white_check_mark: (100.0%) |
 | `kill__13SysInfoWindowFv` | `0x8038D300` | :white_check_mark: (100.0%) |
 | `forceKill__13SysInfoWindowFv` | `0x8038D340` | :white_check_mark: (100.0%) |
@@ -21,7 +21,7 @@
 | `isDisappear__13SysInfoWindowCFv` | `0x8038D398` | :white_check_mark: (100.0%) |
 | `control__13SysInfoWindowFv` | `0x8038D3A0` | :white_check_mark: (100.0%) |
 | `getLayoutName__13SysInfoWindowCFv` | `0x8038D3B4` | :white_check_mark: (100.0%) |
-| `exeWait__13SysInfoWindowFv` | `0x8038D3F0` | :x: (94.5%) |
+| `exeWait__13SysInfoWindowFv` | `0x8038D3F0` | :white_check_mark: (100.0%) |
 | `exeDisappear__13SysInfoWindowFv` | `0x8038D4CC` | :white_check_mark: (100.0%) |
 | `setYesNoSelectorSE__13SysInfoWindowFPCcPCcPCc` | `0x8038D5A4` | :white_check_mark: (100.0%) |
 | `resetYesNoSelectorSE__13SysInfoWindowFv` | `0x8038D5B8` | :white_check_mark: (100.0%) |

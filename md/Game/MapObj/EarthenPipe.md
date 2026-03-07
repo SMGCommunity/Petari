@@ -7,7 +7,7 @@
 | Name | Address | Match % |
 |------|---------|---------|
 | `__ct__11EarthenPipeFPCc` | `0x801D1864` | :white_check_mark: (100.0%) |
-| `init__11EarthenPipeFRC12JMapInfoIter` | `0x801D1934` | :x: (94.9%) |
+| `init__11EarthenPipeFRC12JMapInfoIter` | `0x801D1934` | :x: (98.8%) |
 | `makeActorAppeared__11EarthenPipeFv` | `0x801D1E48` | :white_check_mark: (100.0%) |
 | `tryShowUp__11EarthenPipeFv` | `0x801D1E90` | :white_check_mark: (100.0%) |
 | `tryHideDown__11EarthenPipeFv` | `0x801D1F00` | :white_check_mark: (100.0%) |
@@ -27,7 +27,7 @@
 | `processBgmPlayerOut__11EarthenPipeFv` | `0x801D2B24` | :white_check_mark: (100.0%) |
 | `__ct__19EarthenPipeMediatorFv` | `0x801D2BF4` | :white_check_mark: (100.0%) |
 | `entry__19EarthenPipeMediatorFP11EarthenPipeRC12JMapInfoIter` | `0x801D2C90` | :white_check_mark: (100.0%) |
-| `__dt__11EarthenPipeFv` | `0x801D2D48` | :x: (95.7%) |
+| `__dt__11EarthenPipeFv` | `0x801D2D48` | :white_check_mark: (100.0%) |
 | `__dt__19EarthenPipeMediatorFv` | `0x801D2DA4` | :white_check_mark: (100.0%) |
 | `__sinit_\EarthenPipe_cpp` | `0x801D2DFC` | :white_check_mark: (100.0%) |
 | `__ct__Q214NrvEarthenPipe18EarthenPipeNrvWaitFv` | `0x801D2E78` | :white_check_mark: (100.0%) |

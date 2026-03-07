@@ -3,12 +3,19 @@
 #include "Game/MapObj/MapPartsRailRotator.hpp"
 #include "Game/MapObj/StageEffectDataTable.hpp"
 
+namespace NrvRailMoveObj {
+    NEW_NERVE(HostTypeWait, RailMoveObj, Wait);
+    NEW_NERVE(HostTypeWaitForPlayerOn, RailMoveObj, Wait);
+    NEW_NERVE(HostTypeMove, RailMoveObj, Move);
+    NEW_NERVE(HostTypeDone, RailMoveObj, Wait);
+};  // namespace NrvRailMoveObj
+
 namespace {
     const char* cMoveBckName = "Move";
 };  // namespace
 
 RailMoveObj::RailMoveObj(const char* pName) : MapObjActor(pName) {
-    _C4.zero();
+    _C4.setPSZeroVec();
     _D0 = 0;
 }
 
@@ -320,33 +327,6 @@ bool RailRotateMoveObj::tryStartRotateBetweenPoints() {
     uhm->rotateBetweenPoints(new_point, next_time);
     return true;
 }
-
-namespace NrvRailMoveObj {
-    INIT_NERVE(HostTypeWait);
-    INIT_NERVE(HostTypeWaitForPlayerOn);
-    INIT_NERVE(HostTypeMove);
-    INIT_NERVE(HostTypeDone);
-
-    void HostTypeDone::execute(Spine* pSpine) const {
-        RailMoveObj* obj = reinterpret_cast< RailMoveObj* >(pSpine->mExecutor);
-        obj->exeWait();
-    }
-
-    void HostTypeMove::execute(Spine* pSpine) const {
-        RailMoveObj* obj = reinterpret_cast< RailMoveObj* >(pSpine->mExecutor);
-        obj->exeMove();
-    }
-
-    void HostTypeWaitForPlayerOn::execute(Spine* pSpine) const {
-        RailMoveObj* obj = reinterpret_cast< RailMoveObj* >(pSpine->mExecutor);
-        obj->exeWait();
-    }
-
-    void HostTypeWait::execute(Spine* pSpine) const {
-        RailMoveObj* obj = reinterpret_cast< RailMoveObj* >(pSpine->mExecutor);
-        obj->exeWait();
-    }
-};  // namespace NrvRailMoveObj
 
 RailMoveObjPress::~RailMoveObjPress() {}
 

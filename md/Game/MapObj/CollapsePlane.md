@@ -10,8 +10,8 @@
 | `init__13CollapsePlaneFRC12JMapInfoIter` | `0x801CA3F4` | :white_check_mark: (100.0%) |
 | `exeWait__13CollapsePlaneFv` | `0x801CA5FC` | :white_check_mark: (100.0%) |
 | `exeCollapse__13CollapsePlaneFv` | `0x801CA644` | :white_check_mark: (100.0%) |
-| `exeDPDStop__13CollapsePlaneFv` | `0x801CA6FC` | :x: (97.0%) |
-| `calcAndSetBaseMtx__13CollapsePlaneFv` | `0x801CA780` | :x: (0.0%) |
+| `exeDPDStop__13CollapsePlaneFv` | `0x801CA6FC` | :white_check_mark: (100.0%) |
+| `calcAndSetBaseMtx__13CollapsePlaneFv` | `0x801CA780` | :white_check_mark: (100.0%) |
 | `control__13CollapsePlaneFv` | `0x801CA7FC` | :white_check_mark: (100.0%) |
 | `calcJointPlane__13CollapsePlaneFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | `0x801CA834` | :white_check_mark: (100.0%) |
 | `tryDPDStop__13CollapsePlaneFv` | `0x801CA90C` | :white_check_mark: (100.0%) |

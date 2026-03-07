@@ -1,5 +1,14 @@
 #include "Game/Map/Halo.hpp"
 
+namespace NrvHalo {
+    NEW_NERVE(HostTypeAppear, Halo, Appear);
+    NEW_NERVE(HostTypeDisappear, Halo, Disappear);
+};  // namespace NrvHalo
+
+namespace NrvPowerStarHalo {
+    NEW_NERVE(HostTypeWaitScenarioOpeningEnd, PowerStarHalo, WaitScenarioOpeningEnd);
+};  // namespace NrvPowerStarHalo
+
 namespace {
     HaloParam sParams[] = {{"ZoneHalo", 70.0f, 20.0f, 4.0f}, {"PowerStarHalo", 80.0f, 20.0f, 30.0f}};
 
@@ -44,21 +53,21 @@ void Halo::appear() {
         MR::tryStartAllAnim(this, anim);
         if (MR::isExistBtk(this, anim)) {
             J3DFrameCtrl* ctrl = MR::getBtkCtrl(this);
-            MR::setBtkFrame(this, ctrl->mEndFrame);
+            MR::setBtkFrame(this, ctrl->mEnd);
         }
 
         if (MR::isExistBpk(this, anim)) {
             J3DFrameCtrl* ctrl = MR::getBpkCtrl(this);
-            MR::setBpkFrame(this, ctrl->mEndFrame);
+            MR::setBpkFrame(this, ctrl->mEnd);
         }
         if (MR::isExistBtp(this, anim)) {
             J3DFrameCtrl* ctrl = MR::getBtpCtrl(this);
-            MR::setBpkFrame(this, ctrl->mEndFrame);
+            MR::setBpkFrame(this, ctrl->mEnd);
         }
 
         if (MR::isExistBrk(this, anim)) {
             J3DFrameCtrl* ctrl = MR::getBrkCtrl(this);
-            MR::setBrkFrame(this, ctrl->mEndFrame);
+            MR::setBrkFrame(this, ctrl->mEnd);
         }
 
         MR::hideModel(this);
@@ -101,6 +110,13 @@ bool Halo::isDistanceDisappear() const {
     }
 }
 */
+
+void Halo::exeAppear() {
+    if (isDistanceDisappear()) {
+        MR::startAllAnim(this, "Disappear");
+        setNerve(&NrvHalo::HostTypeDisappear::sInstance);
+    }
+}
 
 void Halo::exeDisappear() {
     if (!MR::isHiddenModel(this)) {
@@ -170,22 +186,3 @@ void PowerStarHalo::exeWaitScenarioOpeningEnd() {
 }
 
 PowerStarHalo::~PowerStarHalo() {}
-
-/* todo -- ordering of these functions is wrong */
-void NrvPowerStarHalo::HostTypeWaitScenarioOpeningEnd::execute(Spine* pSpine) const {
-    PowerStarHalo* halo = reinterpret_cast< PowerStarHalo* >(pSpine->mExecutor);
-    halo->exeWaitScenarioOpeningEnd();
-}
-
-void NrvHalo::HostTypeDisappear::execute(Spine* pSpine) const {
-    Halo* halo = reinterpret_cast< Halo* >(pSpine->mExecutor);
-    halo->exeDisappear();
-}
-
-void NrvHalo::HostTypeAppear::execute(Spine* pSpine) const {
-    Halo* halo = reinterpret_cast< Halo* >(pSpine->mExecutor);
-    if (halo->isDistanceDisappear()) {
-        MR::startAllAnim(halo, "Disappear");
-        halo->setNerve(&NrvHalo::HostTypeDisappear::sInstance);
-    }
-}

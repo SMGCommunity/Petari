@@ -8,6 +8,14 @@ class HitSensor;
 class LiveActor;
 
 namespace MR {
+
+    struct ActorMoveParam {
+        f32 _0;
+        f32 _4;
+        f32 _8;
+        f32 _C;
+    };
+
     f32 calcDistance(const HitSensor*, const HitSensor*, TVec3f*);
     f32 calcDistance(const LiveActor*, const TVec3f&);
     f32 calcDistanceHorizontal(const LiveActor*, const TVec3f&, const TVec3f&);
@@ -88,7 +96,7 @@ namespace MR {
     bool addVelocityLimit(LiveActor*, const TVec3f&);
     void setVelocityJump(LiveActor*, f32);
     void addVelocityToGravity(LiveActor*, f32) NO_INLINE;
-    void addVelocityToGraviyOrGround(LiveActor*, f32);
+    void addVelocityToGravityOrGround(LiveActor*, f32);
     bool addVelocityToCollisionNormal(LiveActor*, f32);
     void addVelocityKeepHeight(LiveActor*, const TVec3f&, f32, f32);
     void addVelocityKeepHeight(LiveActor*, const TVec3f&, f32, f32, f32);

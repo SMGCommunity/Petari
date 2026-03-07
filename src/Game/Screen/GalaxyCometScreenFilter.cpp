@@ -1,10 +1,11 @@
 #include "Game/Screen/GalaxyCometScreenFilter.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 #include "Game/Util/EventUtil.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 
 GalaxyCometScreenFilter::GalaxyCometScreenFilter() : LayoutActor("コメット用画面塗り潰し", true), _20(true) {
-    MR::connectToScene(this, 14, 13, -1, 65);
+    MR::connectToScene(this, MR::MovementType_Layout, MR::CalcAnimType_Layout, -1, MR::DrawType_CometScreenFilter);
     initLayoutManager("CometScreenFilter", 1);
     appear();
 }

@@ -5,6 +5,7 @@
 #include "Game/Map/CollisionParts.hpp"
 #include "Game/Map/HitInfo.hpp"
 #include "Game/MapObj/SubmarineVolcanoBigColumn.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 #include <cstdio>
 
 SkeletalFishBossBattleDirector::SkeletalFishBossBattleDirector(SkeletalFishBoss* pBoss) : NameObj("スカルシャークボス戦指揮") {
@@ -18,7 +19,7 @@ SkeletalFishBossBattleDirector::SkeletalFishBossBattleDirector(SkeletalFishBoss*
     }
 
     for (s32 i = 0; i < 4; i++) {
-        ModelObj* guardMdl = new ModelObj("デモ用スカルシャークガード", "SkeletalFishGuard", nullptr, 18, -2, -2, false);
+        ModelObj* guardMdl = new ModelObj("デモ用スカルシャークガード", "SkeletalFishGuard", nullptr, MR::DrawBufferType_Enemy, -2, -2, false);
         mGuardModels[i] = guardMdl;
         mGuardModels[i]->initWithoutIter();
         MR::initLightCtrl(mGuardModels[i]);

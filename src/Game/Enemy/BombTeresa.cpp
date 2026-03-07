@@ -65,8 +65,7 @@ void BombTeresa::init(const JMapInfoIter& rIter) {
     MR::initLightCtrl(this);
     initSensor();
     f32 scale = mScale.x;
-    scale = scale * 70.0f;
-    initBinder(scale, 0.0f, 0);
+    initBinder(scale * 70.0f, 0.0f, 0);
     initEffectKeeper(1, nullptr, false);
     initSound(8, false);
     MR::initShadowVolumeSphere(this, 80.0f);
@@ -91,16 +90,15 @@ void BombTeresa::initAfterPlacement() {
     MR::trySetMoveLimitCollision(this);
 }
 
-// The 2.0 needs to be 1.0
 void BombTeresa::initFromJMapParam(const JMapInfoIter& rIter) {
     if (MR::isValidInfo(rIter)) {
         MR::initDefaultPos(this, rIter);
-        applyScale(1.0f);
+        mScale.mult(1.0f);
         MR::makeQuatAndFrontFromRotate(&_9C, &_AC, this);
         _D0 = mPosition;
-        bool Arg1Bool;
-        MR::getJMapInfoArg1WithInit(rIter, &Arg1Bool);
-        mDisableRespawning = Arg1Bool == false;
+        bool arg1Bool;
+        MR::getJMapInfoArg1WithInit(rIter, &arg1Bool);
+        mDisableRespawning = arg1Bool == false;
         MR::useStageSwitchWriteDead(this, rIter);
     }
 }
@@ -147,9 +145,9 @@ void BombTeresa::control() {
 
 void BombTeresa::calcAndSetBaseMtx() {
     MR::setBaseTRMtx(this, _9C);
-    TVec3f scale;
-    scale.z *= mScale.z;
-    MR::setBaseScale(this, scale);
+    TVec3f baseScale;
+    baseScale.multPS(mScale, mScaleController->_C);
+    MR::setBaseScale(this, baseScale);
     mJointDelegator->registerCallBack();
     mJointDelegator2->registerCallBack();
 }
@@ -464,8 +462,7 @@ void BombTeresa::exeBallAppear() {
         _AC.set< f32 >((2.0f * _9C.y * _9C.x) + (2.0f * _9C.y * _9C.z), (2.0f * _9C.z * _9C.x) - (2.0f * _9C.y * _9C.y),
                        (1.0f - (2.0f * _9C.y * _9C.y) - (2.0f * _9C.z * _9C.z)));
     } else {
-        f32 v3 = mGravity.dot(_AC);
-        JMAVECScaleAdd(&mGravity, &_AC, &_AC, -v3);
+        JMAVECScaleAdd(&mGravity, &_AC, &_AC, -mGravity.dot(_AC));
         if (MR::normalizeOrZero(&_AC)) {
             MR::makeAxisVerticalZX(&_AC, mGravity);
         }
@@ -507,13 +504,8 @@ void BombTeresa::exeWander() {
         _DC = 0.0f;
     }
     _C4 = mPosition;
-    f32 v2;
-    if (getNerveStep() % 600 < 400) {
-        v2 = -0.5f;
-    } else {
-        v2 = 0.5f;
-    }
-    MR::rotateDirectionGravityDegree(this, &_AC, v2);
+
+    MR::rotateDirectionGravityDegree(this, &_AC, getNerveStep() % 600 < 400 ? -0.5f : 0.5f);
     MR::addVelocityMoveToDirection(this, _AC, 0.5f);
     updateNormalVelocity();
     if (MR::isInDeath(this, TVec3f(0.0f, 0.0f, 0.0f))) {
@@ -614,7 +606,7 @@ void BombTeresa::exeDrift() {
     TVec3f v13;
     v16.getTrans(v13);
     TVec3f v12;
-    v12.set< f32 >(*v16[1], *v16[5], *v16[9]);  // Wrong.
+    v12.set< f32 >(v16[2][2], v16[1][2], v16[0][2]);
     if (!MR::normalizeOrZero(&v12)) {
         JMAVECScaleAdd(&v12, &v13, &v13, 20.0f);
     }
@@ -809,22 +801,22 @@ bool BombTeresa::isEnableShockWave() const {
     return true;
 }
 
-bool BombTeresa::appearNormal(const TVec3f& arg0, const TVec3f& arg1) {
+bool BombTeresa::appearNormal(const TVec3f& rPosition, const TVec3f& rVelocity) {
     if (!MR::isDead(this)) {
         return false;
     }
     setNerve(&NrvBombTeresa::BombTeresaNrvAppear::sInstance);
-    mPosition.set(arg0);
+    mPosition.set(rPosition);
     appear();
     MR::showModel(this);
-    mVelocity.set(arg1);
+    mVelocity.set(rVelocity);
     MR::invalidateClipping(this);
     MR::trySetMoveLimitCollision(this);
     return true;
 }
 
-bool BombTeresa::appearShadow(const TVec3f& arg0, const TVec3f& arg1) {
-    if (!appearNormal(arg0, arg1)) {
+bool BombTeresa::appearShadow(const TVec3f& rPosition, const TVec3f& rVelocity) {
+    if (!appearNormal(rPosition, rVelocity)) {
         return false;
     }
     MR::invalidateHitSensors(this);

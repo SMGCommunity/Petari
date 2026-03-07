@@ -21,7 +21,8 @@ public:
     void initSubModel(const JMapInfoIter&, const char*) NO_INLINE;
     void exeWaitForPlayerOn();
     void exeMove();
-    void inline exeWait();
+    void exeWait();
+    void exeBreak();
 
     CollisionParts* mCollisionParts;  // _84
     LodCtrl* mLODCtrl;                // _90
@@ -46,10 +47,3 @@ public:
     virtual void initSensorType();
     virtual bool receiveMsgEnemyAttack(u32, HitSensor*, HitSensor*);
 };
-
-namespace NrvUFOBase {
-    NERVE(UFOBaseNrvWait);
-    NERVE(UFOBaseNrvWaitForPlayerOn);
-    NERVE(UFOBaseNrvMove);
-    NERVE(UFOBaseNrvBreak);
-};  // namespace NrvUFOBase

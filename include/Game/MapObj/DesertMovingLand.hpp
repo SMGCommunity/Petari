@@ -27,13 +27,3 @@ public:
     s32 _E0;
     TMtx34f _E4;
 };
-
-namespace NrvDesertMovingLand {
-    NERVE_DECL_EXE(HostTypeWaitTop, DesertMovingLand, Wait);
-    NERVE_DECL_EXE(HostTypeWaitBottom, DesertMovingLand, Wait);
-    NERVE_DECL_EXE(HostTypeMoveDown, DesertMovingLand, MoveDown);
-    NERVE_DECL_EXE(HostTypeMoveUp, DesertMovingLand, MoveUp);
-    NERVE_DECL_EXE(HostTypeMoveDownSign, DesertMovingLand, MoveSign);
-    NERVE_DECL_EXE(HostTypeMoveUpSign, DesertMovingLand, MoveSign);
-    NERVE_DECL_EXE(HostTypeStop, DesertMovingLand, Stop);
-};  // namespace NrvDesertMovingLand

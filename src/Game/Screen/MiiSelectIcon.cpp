@@ -3,6 +3,7 @@
 #include "Game/Map/FileSelectIconID.hpp"
 #include "Game/NPC/MiiFaceIcon.hpp"
 #include "Game/NPC/MiiFaceRecipe.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 #include "Game/Screen/ButtonPaneController.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
@@ -21,7 +22,7 @@ namespace {
     NEW_NERVE(MiiSelectIconNrvInvalid, MiiSelectIcon, Invalid);
 };  // namespace
 
-MiiSelectIcon::MiiSelectIcon(int param1, int param2, int param3, const char* pName)
+MiiSelectIcon::MiiSelectIcon(int movementType, int calcAnimType, int drawType, const char* pName)
     : LayoutActor(pName, true), _20(nullptr), _24(nullptr), _28(nullptr), mIcon(nullptr), mMiiTexMap(nullptr), mFellowTexMap(nullptr),
       mIconID(new FileSelectIconID()), mIsMiiDummy(false), _3D(true) {
     initLayoutManager("MiiIcon", 1);
@@ -32,19 +33,19 @@ MiiSelectIcon::MiiSelectIcon(int param1, int param2, int param3, const char* pNa
     createFaceImageObj();
     initNerve(&MiiSelectIconNrvCreate::sInstance);
 
-    if (param1 < 0) {
-        param1 = 14;
+    if (movementType < 0) {
+        movementType = MR::MovementType_Layout;
     }
 
-    if (param2 < 0) {
-        param2 = 13;
+    if (calcAnimType < 0) {
+        calcAnimType = MR::CalcAnimType_Layout;
     }
 
-    if (param3 < 0) {
-        param3 = 61;
+    if (drawType < 0) {
+        drawType = MR::DrawType_LayoutDecoration;
     }
 
-    MR::connectToScene(this, param1, param2, -1, param3);
+    MR::connectToScene(this, movementType, calcAnimType, -1, drawType);
 }
 
 void MiiSelectIcon::appear(const FileSelectIconID& rIconID) {

@@ -1,4 +1,5 @@
 #include "Game/Boss/BossBegomanHead.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 #include "Game/Util/JointController.hpp"
 
 namespace NrvBossBegomanHead {
@@ -13,7 +14,7 @@ namespace NrvBossBegomanHead {
 };  // namespace NrvBossBegomanHead
 
 BossBegomanHead::BossBegomanHead(LiveActor* pParent, MtxPtr pMtx)
-    : PartsModel(pParent, "スイッチ頭", "BossBegomanHead", pMtx, 0x12, false), _9C(0.0f), mJointDelegator(nullptr) {}
+    : PartsModel(pParent, "スイッチ頭", "BossBegomanHead", pMtx, MR::DrawBufferType_Enemy, false), _9C(0.0f), mJointDelegator(nullptr) {}
 
 void BossBegomanHead::init(const JMapInfoIter& rIter) {
     initNerve(&NrvBossBegomanHead::HostTypeNrvDemoWait::sInstance);

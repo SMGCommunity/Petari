@@ -14,8 +14,3 @@ public:
     void exeMove();
     inline void exeWait();
 };
-
-namespace NrvFallingSmallRock {
-    NERVE_DECL(HostTypeWait, FallingSmallRock, FallingSmallRock::exeWait);
-    NERVE_DECL(HostTypeMove, FallingSmallRock, FallingSmallRock::exeMove);
-};  // namespace NrvFallingSmallRock

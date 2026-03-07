@@ -284,17 +284,17 @@ void MarioModule::addTrans(const TVec3f& rShift, const char* pName) {
 }
 
 // regswap
-void MarioModule::cutGravityElementFromJumpVec(bool a1) {
+f32 MarioModule::cutGravityElementFromJumpVec(bool a1) {
     if (a1) {
-        MR::vecKillElement(mActor->mMario->mJumpVec, mActor->_240, &mActor->mMario->mJumpVec);
+        return MR::vecKillElement(mActor->mMario->mJumpVec, mActor->_240, &mActor->mMario->mJumpVec);
     } else {
         TVec3f* pJumpVec = &mActor->mMario->mJumpVec;
-        MR::vecKillElement(*pJumpVec, mActor->getGravityVec(), pJumpVec);
+        return MR::vecKillElement(*pJumpVec, mActor->getGravityVec(), pJumpVec);
     }
 }
 
-void MarioModule::cutVecElementFromJumpVec(const TVec3f& rCut) {
-    MR::vecKillElement(mActor->mMario->mJumpVec, rCut, &mActor->mMario->mJumpVec);
+f32 MarioModule::cutVecElementFromJumpVec(const TVec3f& rCut) {
+    return MR::vecKillElement(mActor->mMario->mJumpVec, rCut, &mActor->mMario->mJumpVec);
 }
 
 TVec3f& MarioModule::getJumpVec() const {
@@ -309,7 +309,7 @@ void MarioModule::playEffect(const char* pEffectName) {
     mActor->playEffect(pEffectName);
 }
 
-void MarioModule::playEffectTarns(const char* pEffectName, const TVec3f& rTrans) {
+void MarioModule::playEffectTrans(const char* pEffectName, const TVec3f& rTrans) {
     mActor->playEffectTrans(pEffectName, rTrans);
 }
 
@@ -442,7 +442,7 @@ bool MarioModule::checkSquat(bool a1) {
     if (MR::getKarikariClingNum() < 1 == false) {
         return false;
     }
-    if (mActor->_468.x) {
+    if (mActor->_468) {
         return false;
     }
     if (mActor->_B94 != 0) {
@@ -457,7 +457,7 @@ bool MarioModule::checkSquat(bool a1) {
         }
         return false;
     }
-    if (!a1 && mActor->mMario->_488 > 100.0f) {
+    if (!a1 && mActor->mMario->mVerticalSpeed > 100.0f) {
         return false;
     }
     return mActor->checkButtonType(9, false);

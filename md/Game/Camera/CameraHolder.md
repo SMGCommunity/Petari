@@ -51,7 +51,7 @@
 | `createCamera<21CameraWaterPlanetBoss>__26@unnamed@CameraHolder_cpp@Fv_P6Camera` | `0x800A1174` | :white_check_mark: (100.0%) |
 | `createCamera<15CameraRailWatch>__26@unnamed@CameraHolder_cpp@Fv_P6Camera` | `0x800A11AC` | :white_check_mark: (100.0%) |
 | `createCamera<16CameraSubjective>__26@unnamed@CameraHolder_cpp@Fv_P6Camera` | `0x800A11E4` | :white_check_mark: (100.0%) |
-| `__ct__12CameraHolderFPCc` | `0x800A121C` | :x: (96.0%) |
+| `__ct__12CameraHolderFPCc` | `0x800A121C` | :white_check_mark: (100.0%) |
 | `getTranslator__12CameraHolderFl` | `0x800A1280` | :white_check_mark: (100.0%) |
 | `getIndexOf__12CameraHolderCFPCc` | `0x800A1290` | :white_check_mark: (100.0%) |
 | `getDefaultCamera__12CameraHolderFv` | `0x800A1300` | :white_check_mark: (100.0%) |

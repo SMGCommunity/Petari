@@ -34,12 +34,6 @@ public:
     s32 _E0;
 };
 
-namespace NrvSeaGull {
-    NERVE(SeaGullNrvHoverFront);
-    NERVE(SeaGullNrvHoverLeft);
-    NERVE(SeaGullNrvHoverRight);
-};  // namespace NrvSeaGull
-
 class SeaGullGroup : public LiveActor {
 public:
     SeaGullGroup(const char*);

@@ -45,9 +45,3 @@ public:
     u8 _10F;
     TVec3f _110;
 };
-
-namespace NrvCrystalCage {
-    NERVE(CrystalCageNrvWait);
-    NERVE(CrystalCageNrvBreak);
-    NERVE(CrystalCageNrvBreakAfter);
-};  // namespace NrvCrystalCage

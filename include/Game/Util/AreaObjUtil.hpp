@@ -16,7 +16,7 @@ namespace MR {
     bool isInAreaObj(const char*, const TVec3f&);
     s32 getAreaObjArg(const AreaObj*, s32);
 
-    void calcAreaMoveVelocity(TVec3f*, const TVec3f&);
+    bool calcAreaMoveVelocity(TVec3f*, const TVec3f&);
 
     void calcCylinderPos(TVec3f*, const AreaObj*);
 

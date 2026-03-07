@@ -61,12 +61,11 @@ void DrawBufferGroup::findLightInfo(LiveActor* pActor, s32 a2) {
     _0[a2]->offExecuteLight();
 }
 
-#ifdef NON_MATCHING
 // mem_fun doesn't get inlined...why?
-void DrawBufferGroup::entry() {
-    for_each(_C.begin(), _C.end(), mem_fun(&DrawBufferExecuter::calcViewAndEntry));
-}
-#endif
+
+// void DrawBufferGroup::entry() {
+//     for_each(_C.begin(), _C.end(), mem_fun(&DrawBufferExecuter::calcViewAndEntry));
+// }
 
 // DrawBufferGroup::drawOpa
 // DrawBufferGroup::drawXlu

@@ -29,9 +29,3 @@ public:
     s32 _94;
     bool _98;
 };
-
-namespace NrvPTimerSwitch {
-    NERVE(PTimerSwitchNrvOn);
-    NERVE(PTimerSwitchNrvSwitchDown);
-    NERVE(PTimerSwitchNrvOff);
-};  // namespace NrvPTimerSwitch

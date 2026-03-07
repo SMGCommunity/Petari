@@ -42,7 +42,7 @@ namespace MR {
     void setNearZ(f32);
     void setFovy(f32);
     void setShakeOffset(f32, f32);
-    TVec3f getCamXDir();
+    TVec3f getCamXdir();
     TVec3f getCamYdir();
     TVec3f getCamZdir();
     void createMirrorCamera();

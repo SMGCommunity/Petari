@@ -1,6 +1,11 @@
 #include "Game/MapObj/CollectCounter.hpp"
 #include "Game/Util.hpp"
 
+namespace NrvCollectCounter {
+    NEW_NERVE(CollectCounterNrvHide, CollectCounter, Hide);
+    NEW_NERVE(CollectCounterNrvShow, CollectCounter, Show);
+};  // namespace NrvCollectCounter
+
 CollectCounter::CollectCounter(const char* pName) : LayoutActor(pName, true) {
     mFollowPosition.x = 0.0f;
     mFollowPosition.y = 0.0f;
@@ -16,6 +21,16 @@ void CollectCounter::init(const JMapInfoIter& rIter) {
 
 void CollectCounter::control() {
     setPosition();
+}
+
+void CollectCounter::exeHide() {}
+
+void CollectCounter::exeShow() {
+    if (MR::isFirstStep(this)) {
+        MR::startAnim(this, "Appear", 0);
+    }
+
+    tryEndShow();
 }
 
 void CollectCounter::setCount(s32 num) {
@@ -44,20 +59,3 @@ void CollectCounter::setPosition() {
 }
 
 CollectCounter::~CollectCounter() {}
-
-namespace NrvCollectCounter {
-    CollectCounterNrvHide CollectCounterNrvHide::sInstance;
-    CollectCounterNrvShow CollectCounterNrvShow::sInstance;
-
-    void CollectCounterNrvShow::execute(Spine* pSpine) const {
-        CollectCounter* counter = reinterpret_cast< CollectCounter* >(pSpine->mExecutor);
-
-        if (MR::isFirstStep(counter)) {
-            MR::startAnim(counter, "Appear", 0);
-        }
-
-        counter->tryEndShow();
-    }
-
-    void CollectCounterNrvHide::execute(Spine* pSpine) const {}
-};  // namespace NrvCollectCounter

@@ -11,7 +11,7 @@
 | `control__16HatchWaterPlanetFv` | `0x801E4474` | :white_check_mark: (100.0%) |
 | `exeOpen__16HatchWaterPlanetFv` | `0x801E447C` | :white_check_mark: (100.0%) |
 | `exeWaitAfterOpen__16HatchWaterPlanetFv` | `0x801E456C` | :white_check_mark: (100.0%) |
-| `__dt__16HatchWaterPlanetFv` | `0x801E45B0` | :x: (95.7%) |
+| `__dt__16HatchWaterPlanetFv` | `0x801E45B0` | :white_check_mark: (100.0%) |
 | `__sinit_\HatchWaterPlanet_cpp` | `0x801E460C` | :white_check_mark: (100.0%) |
 | `__ct__Q219NrvHatchWaterPlanet23HatchWaterPlanetNrvWaitFv` | `0x801E4640` | :white_check_mark: (100.0%) |
 | `__ct__Q219NrvHatchWaterPlanet23HatchWaterPlanetNrvOpenFv` | `0x801E4650` | :white_check_mark: (100.0%) |

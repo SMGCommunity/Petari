@@ -1,6 +1,8 @@
 #ifndef GDTRANSFORM_H
 #define GDTRANSFORM_H
 
+#include "revolution/types.h"
+
 #define CP_MATINDEX_A 0x30
 #define CP_MATINDEX_B 0x40
 
@@ -23,5 +25,7 @@
 #define MATIDX_REG_B(tex4Idx, tex5Idx, tex6Idx, tex7Idx)                                                                                             \
     ((((unsigned long)(tex4Idx)) << MATIDX_REG_B_TEX4IDX_SHIFT) | (((unsigned long)(tex5Idx)) << MATIDX_REG_B_TEX5IDX_SHIFT) |                       \
      (((unsigned long)(tex6Idx)) << MATIDX_REG_B_TEX6IDX_SHIFT) | (((unsigned long)(tex7Idx)) << MATIDX_REG_B_TEX7IDX_SHIFT))
+
+void GDSetCurrentMtx(u32 pn, u32 t0, u32 t1, u32 t2, u32 t3, u32 t4, u32 t5, u32 t6, u32 t7);
 
 #endif  // GDTRANSFORM_H

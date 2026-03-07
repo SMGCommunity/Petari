@@ -518,7 +518,6 @@ public:
     /// @param tbl The new table index.
     void changeTable(u32 tbl) { mCurrentTable = tbl; }
 
-private:
     /// @brief The array of player character constant tables.
     /* 0x00 */ MarioConstTable* mTable[2];
 

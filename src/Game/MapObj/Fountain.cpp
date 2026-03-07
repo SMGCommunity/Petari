@@ -1,5 +1,10 @@
 #include "Game/MapObj/Fountain.hpp"
 
+namespace NrvFountain {
+    NEW_NERVE(HostTypeWait, Fountain, Wait);
+    NEW_NERVE(HostTypeMove, Fountain, Move);
+};  // namespace NrvFountain
+
 Fountain::Fountain(const char* pName) : LiveActor(pName) {
     mFountainName = nullptr;
     _90.x = 0.0f;
@@ -7,7 +12,6 @@ Fountain::Fountain(const char* pName) : LiveActor(pName) {
     _90.z = 0.0f;
 }
 
-#ifdef NON_MATCHING
 void Fountain::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     TMtx34f mtx;
@@ -59,7 +63,6 @@ void Fountain::init(const JMapInfoIter& rIter) {
         appear();
     }
 }
-#endif
 
 void Fountain::appear() {
     LiveActor::appear();
@@ -109,8 +112,3 @@ void Fountain::exeMove() {
 }
 
 Fountain::~Fountain() {}
-
-namespace NrvFountain {
-    INIT_NERVE(HostTypeWait);
-    INIT_NERVE(HostTypeMove);
-};  // namespace NrvFountain

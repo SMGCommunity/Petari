@@ -1,17 +1,16 @@
 #include "Game/NameObj/ModelChangableObjFactory.hpp"
-#include "Game/AreaObj.hpp"
-#include "Game/Boss.hpp"
+#include "Game/Boss/TripodBossFixParts.hpp"
 #include "Game/Boss/TripodBossRailMoveParts.hpp"
 #include "Game/Boss/TripodBossRotateParts.hpp"
-#include "Game/Enemy.hpp"
-#include "Game/Gravity.hpp"
-#include "Game/Map.hpp"
-#include "Game/MapObj.hpp"
+#include "Game/Map/SunshadeMapParts.hpp"
 #include "Game/MapObj/AssemblyBlock.hpp"
+#include "Game/MapObj/ClipFieldMapParts.hpp"
+#include "Game/MapObj/FlexibleSphere.hpp"
+#include "Game/MapObj/MercatorFixParts.hpp"
+#include "Game/MapObj/MercatorRailMoveParts.hpp"
+#include "Game/MapObj/MercatorRotateParts.hpp"
 #include "Game/MapObj/SimpleNormalMapObj.hpp"
-#include "Game/NPC.hpp"
 #include "Game/NameObj/NameObjFactory.hpp"
-#include "Game/Ride.hpp"
 #include "Game/Util/FileUtil.hpp"
 #include "Game/Util/MapPartsUtil.hpp"
 #include <cstring>
@@ -28,7 +27,11 @@ namespace {
             "ClipFieldMapParts",
             createNameObj< ClipFieldMapParts >,
         },
-        {nullptr, "FlexibleSphere", /* createNameObj<FlexibleSphere>, */},
+        {
+            nullptr,
+            "FlexibleSphere",
+            createNameObj< FlexibleSphere >,
+        },
         {
             nullptr,
             "MercatorFixParts",
@@ -69,7 +72,11 @@ namespace {
             "SimpleNormalMapObj",
             createNameObj< SimpleNormalMapObj >,
         },
-        {nullptr, "SunshadeMapParts", /* MR::createSunshadeMapParts, */},
+        {
+            nullptr,
+            "SunshadeMapParts",
+            MR::createSunshadeMapParts,
+        },
     };
 
     const Model2CreateFunc* getModel2CreateFunc(const char* pName) {

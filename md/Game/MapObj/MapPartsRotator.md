@@ -6,7 +6,7 @@
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__ct__15MapPartsRotatorFP9LiveActor` | `0x8025EC6C` | :x: (0.0%) |
+| `__ct__15MapPartsRotatorFP9LiveActor` | `0x8025EC6C` | :white_check_mark: (100.0%) |
 | `init__15MapPartsRotatorFRC12JMapInfoIter` | `0x8025ED34` | :white_check_mark: (100.0%) |
 | `start__15MapPartsRotatorFv` | `0x8025EE14` | :white_check_mark: (100.0%) |
 | `end__15MapPartsRotatorFv` | `0x8025EE5C` | :white_check_mark: (100.0%) |
@@ -19,10 +19,10 @@
 | `updateAngle__15MapPartsRotatorFv` | `0x8025F224` | :x: (0.0%) |
 | `updateTargetAngle__15MapPartsRotatorFv` | `0x8025F2A0` | :x: (0.0%) |
 | `restartAtEnd__15MapPartsRotatorFv` | `0x8025F318` | :white_check_mark: (100.0%) |
-| `initRotateSpeed__15MapPartsRotatorFRC12JMapInfoIter` | `0x8025F398` | :x: (97.6%) |
+| `initRotateSpeed__15MapPartsRotatorFRC12JMapInfoIter` | `0x8025F398` | :x: (100.0%) |
 | `isReachedTargetAngle__15MapPartsRotatorCFv` | `0x8025F43C` | :x: (0.0%) |
 | `updateRotateMtx__15MapPartsRotatorFQ215MapPartsRotator8AxisTypef` | `0x8025F4CC` | :x: (0.0%) |
-| `calcRotateAxisDir__15MapPartsRotatorCFQ215MapPartsRotator8AxisTypePQ29JGeometry8TVec3<f>` | `0x8025F628` | :x: (33.3%) |
+| `calcRotateAxisDir__15MapPartsRotatorCFQ215MapPartsRotator8AxisTypePQ29JGeometry8TVec3<f>` | `0x8025F628` | :x: (63.8%) |
 | `exeRotate__15MapPartsRotatorFv` | `0x8025F68C` | :x: (0.0%) |
 | `exeRotateStart__15MapPartsRotatorFv` | `0x8025F770` | :x: (0.0%) |
 | `__dt__15MapPartsRotatorFv` | `0x8025F834` | :white_check_mark: (100.0%) |

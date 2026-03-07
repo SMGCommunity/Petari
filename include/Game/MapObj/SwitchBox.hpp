@@ -22,9 +22,5 @@ public:
     u16 _8e;
     u16 _90;
     u8 _92;
+    u8 _93[5];
 };
-
-namespace NrvSwitchBox {
-    NERVE(SwitchBoxNrvWait);
-    NERVE(SwitchBoxNrvHit);
-};  // namespace NrvSwitchBox

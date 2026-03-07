@@ -19,7 +19,3 @@ public:
     s32 mTimer;                   // 0xC8
     s32 mTimeLeft;                // 0xCC
 };
-
-namespace NrvSimpleTimerObj {
-    NERVE(SimpleTimerObjNrvTimer);
-};

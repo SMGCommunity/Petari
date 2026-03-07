@@ -71,4 +71,30 @@
 #define TX_SETIMAGE3_RID_SHIFT 24
 #define TX_SETIMAGE3(image_base, rid) ((((u32)(image_base)) << TX_SETIMAGE3_IMAGE_BASE_SHIFT) | (((u32)(rid)) << TX_SETIMAGE3_RID_SHIFT))
 
+#define BP_TEXCOORD_S_SCALE(s_scale, s_bias, s_wrap, line_offset, point_offset, id)                                                                  \
+    ((u32)(s_scale) << 0 | (u32)(s_bias) << 16 | (u32)(s_wrap) << 17 | (u32)(line_offset) << 18 | (u32)(point_offset) << 19 | (u32)(id) << 24)
+
+#define BP_TEXCOORD_T_SCALE(t_scale, t_bias, t_wrap, id) ((u32)(t_scale) << 0 | (u32)(t_bias) << 16 | (u32)(t_wrap) << 17 | (u32)(id) << 24)
+
+#define BP_TEX_MODE0(wrap_s, wrap_t, mag_filt, min_filt, edge_lod, lod_bias, max_aniso, bias_clamp, id)                                              \
+    ((u32)(wrap_s) << 0 | (u32)(wrap_t) << 2 | (u32)(mag_filt) << 4 | (u32)(min_filt) << 5 | (u32)(edge_lod) << 8 | (u32)(lod_bias) << 9 |           \
+     (u32)(max_aniso) << 19 | (u32)(bias_clamp) << 21 | (u32)(id) << 24)
+
+#define BP_TEX_MODE1(min_lod, max_lod, id) ((u32)(min_lod) << 0 | (u32)(max_lod) << 8 | (u32)(id) << 24)
+
+#define BP_IMAGE_ATTR(width, height, format, id) ((u32)(width) << 0 | (u32)(height) << 10 | (u32)(format) << 20 | (u32)(id) << 24)
+
+#define BP_IMAGE_PTR(ptr, id) ((u32)(ptr) << 0 | (u32)(id) << 24)
+
+#define BP_TEX_TLUT(tmem, format, id) ((u32)(tmem) << 0 | (u32)(format) << 10 | (u32)(id) << 24)
+
+#define BP_LOAD_TLUT0(ptr, id) ((u32)(ptr) << 0 | (u32)(id) << 24)
+
+#define BP_LOAD_TLUT1(ptr, size, id) ((u32)(ptr) << 0 | (u32)(size) << 10 | (u32)(id) << 24)
+
+#define BP_TEX_CACHE_EVEN(tmem, size0, size1, type, id)                                                                                              \
+    ((u32)(tmem) << 0 | (u32)(size0) << 15 | (u32)(size1) << 18 | (u32)(type) << 21 | (u32)(id) << 24)
+
+#define BP_TEX_CACHE_ODD(tmem, size0, size1, id) ((u32)(tmem) << 0 | (u32)(size0) << 15 | (u32)(size1) << 18 | (u32)(id) << 24)
+
 #endif  // GDTEXTURE_H

@@ -7,7 +7,6 @@ class LotusLeaf : public LiveActor {
 public:
     LotusLeaf(const char*);
 
-    virtual ~LotusLeaf();
     virtual void init(const JMapInfoIter&);
 
     void convergeToInitPos();
@@ -15,7 +14,7 @@ public:
     void exeWaitPlayerOn();
     void exeShake();
 
-    TVec3f _8C;
-    f32 _98;
-    f32 _9C;
+    /* 0x8C */ TVec3f mInitPos;
+    /* 0x98 */ f32 mShakeSpeed;
+    /* 0x9C */ f32 mShakePeriod;
 };

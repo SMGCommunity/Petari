@@ -54,7 +54,7 @@ void JKRThread::setCommon_heapSpecified(JKRHeap *pHeap, u32 a2, int a3) {
 }
 */
 
-s32 JKRThread::start(void* pData) {
+void* JKRThread::start(void* pData) {
     return run();
 }
 
@@ -70,7 +70,6 @@ JKRThread* JKRThread::searchThread(OSThread* pThread) {
     return 0;
 }
 
-#ifdef NON_MATCHING
 JKRThread* JKRThreadSwitch::enter(JKRThread* pThread, int a2) {
     JKRThread* thread = pThread;
 
@@ -92,4 +91,3 @@ JKRThread* JKRThreadSwitch::enter(JKRThread* pThread, int a2) {
 
     return thread;
 }
-#endif

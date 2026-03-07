@@ -19,6 +19,8 @@ A work-in-progress decompilation of Super Mario Galaxy 1.
 
 This repository does **not** contain any game assets or assembly whatsoever. An existing copy of the game is required.
 
+This project is **not** meant to be an effort to create a PC Port. Please do not ask for any information on a PC port on this repository or in the Discord server.
+
 Supported versions:
 
 - `RMGK01`: Rev 0 (Korea)
@@ -110,4 +112,4 @@ Select an object from the left sidebar to begin diffing. Changes to the project 
 
 Credits
 =======
-Big thanks to the [doldecomp team](https://github.com/doldecomp/sdk_2009-12-11) for their efforts on bte, and [ogws](https://github.com/doldecomp/ogws/tree/master), where this repository has sourced code and headers from.
+Big thanks to the [doldecomp team](https://github.com/doldecomp/sdk_2009-12-11) for their efforts on bte, [tp](https://github.com/zeldaret/tp) for JSystem, and [ogws](https://github.com/doldecomp/ogws/tree/master), where this repository has sourced code and headers from.

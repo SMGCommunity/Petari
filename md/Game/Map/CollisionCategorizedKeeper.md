@@ -22,11 +22,11 @@
 | `searchSameHostParts__26CollisionCategorizedKeeperCFPP14CollisionPartsP14CollisionParts` | `0x80174ACC` | :x: (0.0%) |
 | `getStrikeInfo__26CollisionCategorizedKeeperFUl` | `0x80174B44` | :x: (0.0%) |
 | `getZone__26CollisionCategorizedKeeperFi` | `0x80174B54` | :x: (0.0%) |
-| `__ct__13CollisionZoneFl` | `0x80174BF4` | :x: (0.0%) |
+| `__ct__13CollisionZoneFl` | `0x80174BF4` | :white_check_mark: (100.0%) |
 | `addParts__13CollisionZoneFP14CollisionParts` | `0x80174C70` | :white_check_mark: (100.0%) |
 | `calcMinMaxAndRadius__13CollisionZoneFv` | `0x80174C9C` | :x: (0.0%) |
 | `calcMinMaxAndRadiusIfMoveOuter__13CollisionZoneFP14CollisionParts` | `0x80174E54` | :x: (0.0%) |
 | `addAndUpdateMinMax__13CollisionZoneFQ29JGeometry8TVec3<f>Q29JGeometry8TVec3<f>` | `0x80174F40` | :x: (0.0%) |
 | `eraseParts__13CollisionZoneFP14CollisionParts` | `0x8017501C` | :x: (0.0%) |
 | `__dt__26CollisionCategorizedKeeperFv` | `0x80175090` | :x: (0.0%) |
-| `getTrans__14CollisionPartsFv` | `0x801750E8` | :x: (0.0%) |
+| `getTrans__14CollisionPartsFv` | `0x801750E8` | :white_check_mark: (100.0%) |

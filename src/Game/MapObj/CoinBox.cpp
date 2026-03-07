@@ -1,6 +1,11 @@
 #include "Game/MapObj/CoinBox.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 
+namespace NrvCoinBox {
+    NEW_NERVE(CoinBoxNrvWait, CoinBox, Wait);
+    NEW_NERVE(CoinBoxNrvHit, CoinBox, Hit);
+};  // namespace NrvCoinBox
+
 CoinBox::CoinBox(const char* pName) : LiveActor(pName) {}
 
 CoinBox::~CoinBox() {}
@@ -22,6 +27,8 @@ void CoinBox::init(const JMapInfoIter& rIter) {
     MR::setClippingFar50m(this);
     initEffectKeeper(1, "Coin", false);
 }
+
+void CoinBox::exeWait() {}
 
 // https://decomp.me/scratch/2bcHZ
 void CoinBox::exeHit() {
@@ -54,15 +61,3 @@ bool CoinBox::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver)
 
     return false;
 }
-
-namespace NrvCoinBox {
-    INIT_NERVE(CoinBoxNrvWait);
-    INIT_NERVE(CoinBoxNrvHit);
-
-    void CoinBoxNrvHit::execute(Spine* pSpine) const {
-        CoinBox* box = reinterpret_cast< CoinBox* >(pSpine->mExecutor);
-        box->exeHit();
-    }
-
-    void CoinBoxNrvWait::execute(Spine* pSpine) const {}
-};  // namespace NrvCoinBox

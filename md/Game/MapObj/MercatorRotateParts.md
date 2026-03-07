@@ -12,4 +12,4 @@
 | `control__19MercatorRotatePartsFv` | `0x801FD0E8` | :white_check_mark: (100.0%) |
 | `calcAndSetBaseMtx__19MercatorRotatePartsFv` | `0x801FD0FC` | :white_check_mark: (100.0%) |
 | `init__19MercatorRotatePartsFRC12JMapInfoIter` | `0x801FD1AC` | :white_check_mark: (100.0%) |
-| `__dt__19MercatorRotatePartsFv` | `0x801FD368` | :x: (95.7%) |
+| `__dt__19MercatorRotatePartsFv` | `0x801FD368` | :white_check_mark: (100.0%) |

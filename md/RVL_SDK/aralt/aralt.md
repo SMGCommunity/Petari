@@ -6,7 +6,7 @@
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `ARStartDMA` | `0x804A2748` | :x: (70.9%) |
+| `ARStartDMA` | `0x804A2748` | :x: (78.4%) |
 | `ARAlloc` | `0x804A2814` | :x: (0.0%) |
 | `ARInit` | `0x804A2864` | :x: (0.0%) |
 | `ARGetBaseAddress` | `0x804A2900` | :x: (0.0%) |

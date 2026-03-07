@@ -23,8 +23,3 @@ public:
     void startAnimGrow();
     void setStateBeforeGrow();
 };
-
-namespace NrvAstroCore {
-    NERVE_DECL(AstroCoreNrvWait, AstroCore, AstroCore::exeWait);
-    NERVE_DECL(AstroCoreNrvGrow, AstroCore, AstroCore::exeGrow);
-};  // namespace NrvAstroCore

@@ -6,6 +6,15 @@
 #include "JSystem/JMath.hpp"
 #include "math_types.hpp"
 
+namespace NrvCocoNut {
+    NEW_NERVE(CocoNutNrvWait, CocoNut, Wait);
+    NEW_NERVE(CocoNutNrvWaitOnBind, CocoNut, WaitOnBind);
+    NEW_NERVE(CocoNutNrvMove, CocoNut, Move);
+    NEW_NERVE(CocoNutNrvInWater, CocoNut, InWater);
+    NEW_NERVE(CocoNutNrvBreak, CocoNut, Break);
+    NEW_NERVE(CocoNutNrvReplaceReady, CocoNut, ReplaceReady);
+};  // namespace NrvCocoNut
+
 inline void negateInternalInline(const TVec3f& src, TVec3f* dst) {
     JGeometry::negateInternal((f32*)&src, (f32*)dst);
 }
@@ -175,7 +184,6 @@ void CocoNut::initEffect() {
     MR::setEffectHostMtx(this, "SpinHitMark", _108.toMtxPtr());
 }
 
-#ifdef NON_MATCHING
 // hell function
 void CocoNut::updateRotate(f32 a1) {
     TMtx34f stack_38;
@@ -186,9 +194,9 @@ void CocoNut::updateRotate(f32 a1) {
 
     negateInternalInline(mGravity, &stack_20);
     if (!MR::normalizeOrZero(mVelocity, &stack_2C) && !MR::isSameDirection(stack_2C, stack_20, 0.01f)) {
-        PSVECCrossProduct(stack_2C, stack_20, stack_14);
+        PSVECCrossProduct(&stack_2C, &stack_20, &stack_14);
 
-        f32 temp1 = PSVECMag(mVelocity) * -180.0f;
+        f32 temp1 = PSVECMag(&mVelocity) * -180.0f;
         f32 temp2 = a1 * temp1;
         f32 f = PI_180 * (temp2 / (PI * getSize()));
 
@@ -197,8 +205,8 @@ void CocoNut::updateRotate(f32 a1) {
         stack_38.mMtx[2][3] = 0.0f;
 
         stack_8.set(stack_14);
-        PSVECMag(stack_8);
-        PSVECNormalize(stack_8, stack_8);
+        PSVECMag(&stack_8);
+        PSVECNormalize(&stack_8, &stack_8);
 
         f32 fsin = sin(f);
         f32 fcos = cos(f);
@@ -220,7 +228,6 @@ void CocoNut::updateRotate(f32 a1) {
         _A0.concat(stack_38, _A0);
     }
 }
-#endif
 
 void CocoNut::updateGravity() {
     TVec3f stack_8;
@@ -235,7 +242,6 @@ void CocoNut::updateGravity() {
     mVelocity.add(stack_8);
 }
 
-#ifdef NON_MATCHING
 // issues around MR::deleteEffect and PSVECNormalize calls
 void CocoNut::processMove() {
     TVec3f stack_2C;
@@ -301,18 +307,18 @@ void CocoNut::processMove() {
 
     if (getWallNormal(&stack_20) && _94.dot(stack_20) < 0.0f) {
         stack_14.set(_94);
-        PSVECMag(stack_14);
-        PSVECNormalize(stack_14, stack_14);
+        PSVECMag(&stack_14);
+        PSVECNormalize(&stack_14, &stack_14);
 
         stack_8.set(stack_20);
-        PSVECMag(stack_8);
-        PSVECNormalize(stack_8, stack_8);
+        PSVECMag(&stack_8);
+        PSVECNormalize(&stack_8, &stack_8);
 
         f32 ok2 = -2.0f * stack_14.dot(stack_8);
-        JMAVECScaleAdd(stack_8, _94, _94, ok2);
+        JMAVECScaleAdd(&stack_8, &_94, &_94, ok2);
 
-        PSVECMag(_94);
-        PSVECNormalize(_94, _94);
+        PSVECMag(&_94);
+        PSVECNormalize(&_94, &_94);
         _94.normalize(_94);
 
         _8C *= 0.8f;
@@ -330,7 +336,6 @@ void CocoNut::processMove() {
     mVelocity.add(_150);
     updateGravity();
 }
-#endif
 
 void CocoNut::setFrontVec(const TVec3f& a1) {
     TVec3f stack_14;
@@ -516,7 +521,6 @@ bool CocoNut::isValidPushedFromPlayer(const HitSensor* arg0, const HitSensor* ar
     return true;
 }
 
-#ifdef NON_MATCHING
 // the frsqrte is most likely an inlined function. possibly JGeometry::TUtil<f32>::sqrt
 void CocoNut::calcHitSpeedAndFrontVec(f32* arg0, f32* arg1, TVec3f* arg2, TVec3f* arg3, const TVec3f& arg4, const TVec3f& arg5) const {
     TVec3f stack_14;
@@ -525,7 +529,7 @@ void CocoNut::calcHitSpeedAndFrontVec(f32* arg0, f32* arg1, TVec3f* arg2, TVec3f
     arg3->sub(arg5, arg4);
     MR::normalize(arg3);
     stack_14.set(mGravity);
-    PSVECCrossProduct(arg3, stack_14, arg2);
+    PSVECCrossProduct(arg3, &stack_14, arg2);
     MR::normalize(arg2);
     if (MR::normalizeOrZero(mVelocity, &stack_8)) {
         stack_8.set(_94);
@@ -533,7 +537,7 @@ void CocoNut::calcHitSpeedAndFrontVec(f32* arg0, f32* arg1, TVec3f* arg2, TVec3f
     f32 var_f30 = stack_8.dot(*arg2);
     if (var_f30 < 0.0f) {
         negateInternalInline(stack_14, &stack_14);
-        PSVECCrossProduct(arg3, stack_14, arg2);
+        PSVECCrossProduct(arg3, &stack_14, arg2);
         MR::normalize(arg2);
         var_f30 = stack_8.dot(*arg2);
     }
@@ -553,7 +557,6 @@ void CocoNut::calcHitSpeedAndFrontVec(f32* arg0, f32* arg1, TVec3f* arg2, TVec3f
     *arg1 = temp_f1_2 * var_f31;
     *arg0 = temp_f1_2 * var_f30;
 }
-#endif
 
 bool CocoNut::isOnGround() const {
     if (0.0f < _90 && MR::isOnGround(this)) {
@@ -911,38 +914,8 @@ void CocoNut::exeBreak() {
     }
 }
 
-namespace NrvCocoNut {
-    INIT_NERVE(CocoNutNrvWait)
-    INIT_NERVE(CocoNutNrvWaitOnBind)
-    INIT_NERVE(CocoNutNrvMove)
-    INIT_NERVE(CocoNutNrvInWater)
-    INIT_NERVE(CocoNutNrvBreak)
-    INIT_NERVE(CocoNutNrvReplaceReady)
-
-    void CocoNutNrvReplaceReady::execute(Spine* pSpine) const {
-        CocoNut* nut = reinterpret_cast< CocoNut* >(pSpine->mExecutor);
-        if (MR::isFirstStep(nut)) {
-            MR::validateClipping(nut);
-        }
+void CocoNut::exeReplaceReady() {
+    if (MR::isFirstStep(this)) {
+        MR::validateClipping(this);
     }
-    void CocoNutNrvBreak::execute(Spine* pSpine) const {
-        CocoNut* nut = reinterpret_cast< CocoNut* >(pSpine->mExecutor);
-        nut->exeBreak();
-    }
-    void CocoNutNrvInWater::execute(Spine* pSpine) const {
-        CocoNut* nut = reinterpret_cast< CocoNut* >(pSpine->mExecutor);
-        nut->exeInWater();
-    }
-    void CocoNutNrvMove::execute(Spine* pSpine) const {
-        CocoNut* nut = reinterpret_cast< CocoNut* >(pSpine->mExecutor);
-        nut->exeMove();
-    }
-    void CocoNutNrvWaitOnBind::execute(Spine* pSpine) const {
-        CocoNut* nut = reinterpret_cast< CocoNut* >(pSpine->mExecutor);
-        nut->exeWaitOnBind();
-    }
-    void CocoNutNrvWait::execute(Spine* pSpine) const {
-        CocoNut* nut = reinterpret_cast< CocoNut* >(pSpine->mExecutor);
-        nut->exeWait();
-    }
-}  // namespace NrvCocoNut
+}

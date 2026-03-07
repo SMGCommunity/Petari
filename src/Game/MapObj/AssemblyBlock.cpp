@@ -2,6 +2,14 @@
 #include "Game/LiveActor/PartsModel.hpp"
 #include "JSystem/JMath/JMath.hpp"
 
+namespace NrvAssemblyBlock {
+    NEW_NERVE(AssemblyBlockNrvTimer, AssemblyBlock, Timer);
+    NEW_NERVE(AssemblyBlockNrvReturn, AssemblyBlock, Return);
+    NEW_NERVE(AssemblyBlockNrvAssembleWait, AssemblyBlock, AssembleWait);
+    NEW_NERVE(AssemblyBlockNrvAssemble, AssemblyBlock, Assemble);
+    NEW_NERVE(AssemblyBlockNrvWait, AssemblyBlock, Wait);
+};  // namespace NrvAssemblyBlock
+
 namespace {
     static const char* sReturnPosName = "合体ブロック故郷点";
 };
@@ -233,11 +241,3 @@ bool AssemblyBlock::tryStartReturn() {
 }
 
 AssemblyBlock::~AssemblyBlock() {}
-
-namespace NrvAssemblyBlock {
-    INIT_NERVE(AssemblyBlockNrvWait);
-    INIT_NERVE(AssemblyBlockNrvAssemble);
-    INIT_NERVE(AssemblyBlockNrvAssembleWait);
-    INIT_NERVE(AssemblyBlockNrvReturn);
-    INIT_NERVE(AssemblyBlockNrvTimer);
-};  // namespace NrvAssemblyBlock

@@ -71,7 +71,7 @@ void Trapeze::init(const JMapInfoIter& rIter) {
 
     MR::setClippingTypeSphere(this, mRopeLength);
 
-    mTrapezeModel = new PartsModel(this, "棒", "Trapeze", mPosMtx, 0x12, false);
+    mTrapezeModel = new PartsModel(this, "棒", "Trapeze", mPosMtx, MR::DrawBufferType_Enemy, false);
     mTrapezeModel->initWithoutIter();
 
     MR::initShadowFromCSV(mTrapezeModel, "Shadow");
@@ -738,7 +738,7 @@ void Trapeze::drawRope(const TVec3f& rPosA, const TVec3f& rPosB, const TVec3f& r
 
 TrapezeRopeDrawInit::TrapezeRopeDrawInit(const char* pName) : NameObj(pName) {
     mTexture = nullptr;
-    mTexture = new JUTTexture(MR::loadTexFromArc("Trapeze.arc", "TrapezeRope.bti"));
+    mTexture = new JUTTexture(MR::loadTexFromArc("Trapeze.arc", "TrapezeRope.bti"), 0);
 
     MR::FunctorV0M< const TrapezeRopeDrawInit*, void (TrapezeRopeDrawInit::*)() const > preDrawFunctor(this, &TrapezeRopeDrawInit::initDraw);
     MR::registerPreDrawFunction(preDrawFunctor, MR::DrawType_Trapeze);

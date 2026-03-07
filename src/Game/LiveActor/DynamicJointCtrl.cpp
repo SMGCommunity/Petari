@@ -1,7 +1,6 @@
 #include "Game/LiveActor/DynamicJointCtrl.hpp"
 #include "Game/Util.hpp"
 
-#ifdef NON_MATCHING
 // scheduling issues
 JointCtrlRate::JointCtrlRate() {
     _8 = -1;
@@ -9,9 +8,7 @@ JointCtrlRate::JointCtrlRate() {
     _4 = 0;
     _C = -1;
 }
-#endif
 
-#ifdef NON_MATCHING
 // way too many diffs to note here
 void JointCtrlRate::update() {
     u32 temp;
@@ -39,7 +36,6 @@ void JointCtrlRate::update() {
         }
     }
 }
-#endif
 
 void JointCtrlRate::startCtrl(s32 val) {
     if (val < 0) {

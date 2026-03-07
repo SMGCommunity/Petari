@@ -1,9 +1,10 @@
 #include "Game/LiveActor/MirrorCamera.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Util.hpp"
 
 void MirrorCamera::init(const JMapInfoIter& rIter) {
-    MR::connectToScene(this, 0x16, -1, -1, -1);
+    MR::connectToScene(this, MR::MovementType_MirrorCamera, -1, -1, -1);
 }
 
 void MirrorCamera::setMirrorMapInfo(const TVec3f& a1, const TVec3f& a2) {
@@ -22,13 +23,9 @@ f32 MirrorCamera::getDistance(const TVec3f& a1) const {
 }
 
 namespace MR {
-    MirrorCamera* getMirrorCamera() {
-        return MR::getSceneObj< MirrorCamera >(SceneObj_MirrorCamera);
-    }
+    MirrorCamera* getMirrorCamera() { return MR::getSceneObj< MirrorCamera >(SceneObj_MirrorCamera); }
 
-    f32 getDistanceToMirror(const TVec3f& rVec) {
-        return getMirrorCamera()->getDistance(rVec);
-    }
+    f32 getDistanceToMirror(const TVec3f& rVec) { return getMirrorCamera()->getDistance(rVec); }
 };  // namespace MR
 
 MirrorCamera::~MirrorCamera() {}

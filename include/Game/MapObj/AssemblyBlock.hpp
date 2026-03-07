@@ -29,11 +29,3 @@ public:
     PartsModel* mBloomModel;  // 0x138
     bool _13C;
 };
-
-namespace NrvAssemblyBlock {
-    NERVE_DECL(AssemblyBlockNrvWait, AssemblyBlock, AssemblyBlock::exeWait);
-    NERVE_DECL(AssemblyBlockNrvAssemble, AssemblyBlock, AssemblyBlock::exeAssemble);
-    NERVE_DECL(AssemblyBlockNrvAssembleWait, AssemblyBlock, AssemblyBlock::exeAssembleWait);
-    NERVE_DECL(AssemblyBlockNrvReturn, AssemblyBlock, AssemblyBlock::exeReturn);
-    NERVE_DECL(AssemblyBlockNrvTimer, AssemblyBlock, AssemblyBlock::exeTimer);
-};  // namespace NrvAssemblyBlock

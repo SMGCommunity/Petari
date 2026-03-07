@@ -1,5 +1,6 @@
 #include "Game/Camera/CameraTargetMtx.hpp"
 #include "Game/AreaObj/CubeCamera.hpp"
+#include "Game/Util/AreaObjUtil.hpp"
 #include "Game/Util/GravityUtil.hpp"
 
 void CameraTargetObj::init(const JMapInfoIter& rIter) {}
@@ -68,7 +69,6 @@ CameraTargetMtx::CameraTargetMtx(const char* pName) : CameraTargetObj(pName) {
 
 CameraTargetMtx::~CameraTargetMtx() {}
 
-#ifdef NON_MATCHING
 // Wrong instruction order for the first 4 TVec3f.set(), register mismatch
 void CameraTargetMtx::movement() {
     mUp.set(mMatrix.mMtx[0][1], mMatrix.mMtx[1][1], mMatrix.mMtx[2][1]);
@@ -114,7 +114,6 @@ void CameraTargetMtx::movement() {
 
     MR::calcGravityVectorOrZero(this, mPosition, &mGravityVector, nullptr, 0);
 }
-#endif
 
 const TVec3f* CameraTargetMtx::getPosition() const {
     return &mPosition;

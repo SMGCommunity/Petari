@@ -3,15 +3,6 @@
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
 
-namespace NrvPrizeRing {
-    NERVE(PrizeRingStart);
-    NERVE(PrizeRingLoop);
-    NERVE(PrizeRingTimeout);
-    NERVE(PrizeRingReadyToPass);
-    NERVE(PrizeRingPass);
-    NERVE(PrizeRingReadyToKill);
-};  // namespace NrvPrizeRing
-
 class PrizeRing : public ModelObj {
 public:
     PrizeRing();
@@ -30,11 +21,8 @@ public:
     void exeStart();
     void exeLoop();
     void exeTimeout();
-    inline void exeReadyToKill() {
-        if (MR::isFirstStep(this)) {
-            MR::hideModel(this);
-        }
-    }
+    void exeReadyToKill();
+    void exeReadyToPass();
     void exePass();
     bool isPassed() const;
     void playSound() const;

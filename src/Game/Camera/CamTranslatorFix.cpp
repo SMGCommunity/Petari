@@ -2,7 +2,6 @@
 #include "Game/Camera/CameraCalc.hpp"
 #include "Game/Camera/CameraParamChunk.hpp"
 
-#ifdef NON_MATCHING
 // Trouble with negateInline
 void CamTranslatorFix::setParam(const CameraParamChunk* pChunk) {
     CameraGeneralParam* general = pChunk->mGeneralParam;
@@ -13,12 +12,11 @@ void CamTranslatorFix::setParam(const CameraParamChunk* pChunk) {
     MR::polarToCross(origin, &aTStack32, general->mDist, general->mAxis.x, general->mAxis.y);
 
     TVec3f aTStack32Negative;
-    aTStack32.negateInline(aTStack32Negative);
+    JMathInlineVEC::PSVECNegate(&aTStack32, &aTStack32Negative);
 
     CameraFix* camera = mCamera;
     camera->setParam(general->mWPoint, aTStack32Negative, general->mUp);
 }
-#endif
 
 Camera* CamTranslatorFix::getCamera() const {
     return mCamera;

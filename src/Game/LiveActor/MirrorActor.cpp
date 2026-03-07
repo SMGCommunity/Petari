@@ -11,7 +11,6 @@ MirrorActor::MirrorActor(LiveActor* pActor, const char* a2, const char* a3) : Li
     initModelManagerWithAnm(a3, 0, 0);
 }
 
-#ifdef NON_MATCHING
 void MirrorActor::init(const JMapInfoIter& rIter) {
     MR::connectToSceneMirrorMapObj(this);
     MR::copyJointAnimation(this, _8C);
@@ -22,8 +21,8 @@ void MirrorActor::init(const JMapInfoIter& rIter) {
     MR::calcModelBoundingBox(&modelBB, _8C);
 
     register TVec3f stack_14;
-    JMAVECLerp((const Vec*)&modelBB.mMax, (const Vec*)&modelBB.mMin, (Vec*)&stack_14, 0.5f);
-    register TVec3f stack_8(modelBB.mMax);
+    JMAVECLerp((const Vec*)&modelBB.f, (const Vec*)&modelBB.i, (Vec*)&stack_14, 0.5f);
+    register TVec3f stack_8(modelBB.f);
 
     register TVec3f* ptrStack = &stack_8;
 
@@ -52,7 +51,6 @@ void MirrorActor::init(const JMapInfoIter& rIter) {
 
     makeActorAppeared();
 }
-#endif
 
 void MirrorActor::movement() {
     if (MR::isDead(this) || MR::isDead(_8C) || MR::isClipped(_8C) || MR::isHiddenModel(_8C) || isHostInTheOtherSideOfMirror()) {
@@ -85,7 +83,6 @@ void MirrorActor::calcViewAndEntry() {
     mModelManager->calcView();
 }
 
-#ifdef NON_MATCHING
 // weird function call to getHostCenterPos
 bool MirrorActor::isHostInTheOtherSideOfMirror() const {
     if (MR::isExistMirrorCamera()) {
@@ -97,4 +94,3 @@ bool MirrorActor::isHostInTheOtherSideOfMirror() const {
 
     return false;
 }
-#endif

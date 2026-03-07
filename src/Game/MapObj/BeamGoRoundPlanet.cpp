@@ -1,6 +1,7 @@
 #include "Game/MapObj/BeamGoRoundPlanet.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/MapObj/MapObjActorInitInfo.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 #include <cstdio>
@@ -14,7 +15,7 @@ BeamGoRoundBeam::BeamGoRoundBeam(MtxPtr mtx) : LiveActor("ビームゴーラウ�
 void BeamGoRoundBeam::init(const JMapInfoIter& rIter) {
     initModelManagerWithAnm("BeamGoRoundBeam", nullptr, false);
     mPosition.set< f32 >(mBeamJointMtx[0][3], mBeamJointMtx[1][3], mBeamJointMtx[2][3]);
-    MR::connectToScene(this, 0x22, 0x5, 0x19, 0x1C);
+    MR::connectToScene(this, MR::MovementType_MapObj, MR::CalcAnimType_MapObj, MR::DrawBufferType_IndirectMapObj, MR::DrawType_VolumeModel);
     initHitSensor(1);
     MR::addHitSensorCallbackEnemyAttack(this, "beam", 4, 100.0f);
     initEffectKeeper(0, nullptr, false);

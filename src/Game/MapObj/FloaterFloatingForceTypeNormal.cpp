@@ -3,6 +3,13 @@
 #include "Game/MapObj/FloaterFunction.hpp"
 #include "Game/Util/MapPartsUtil.hpp"
 
+namespace NrvFloaterFloatingForceTypeNormal {
+    NEW_NERVE(HostTypeWait, FloaterFloatingForceTypeNormal, Wait);
+    NEW_NERVE(HostTypeMoveFirst, FloaterFloatingForceTypeNormal, MoveFirst);
+    NEW_NERVE(HostTypeMoveOffPlayer, FloaterFloatingForceTypeNormal, Move);
+    NEW_NERVE(HostTypeMoveOnPlayer, FloaterFloatingForceTypeNormal, Move);
+};  // namespace NrvFloaterFloatingForceTypeNormal
+
 FloaterFloatingForceTypeNormal::FloaterFloatingForceTypeNormal(LiveActor* pActor, const char* pName) : FloaterFloatingForce(pActor, pName) {
     mRotateAngle = 0.0f;
     mRotateSpeed = 0.0f;
@@ -54,6 +61,12 @@ void FloaterFloatingForceTypeNormal::setStateMove() {
     }
 }
 
+void FloaterFloatingForceTypeNormal::exeWait() {
+    if (isFirstStep()) {
+        _40 = 0.0f;
+    }
+}
+
 void FloaterFloatingForceTypeNormal::exeMoveFirst() {
     if (isFirstStep()) {
         const char* soundOn = FloaterFunction::getSeGroundOn(_18);
@@ -90,36 +103,6 @@ void FloaterFloatingForceTypeNormal::exeMove() {
 }
 
 FloaterFloatingForceTypeNormal::~FloaterFloatingForceTypeNormal() {}
-
-namespace NrvFloaterFloatingForceTypeNormal {
-    INIT_NERVE(HostTypeWait);
-    INIT_NERVE(HostTypeMoveFirst);
-    INIT_NERVE(HostTypeMoveOffPlayer);
-    INIT_NERVE(HostTypeMoveOnPlayer);
-
-    void HostTypeMoveOnPlayer::execute(Spine* pSpine) const {
-        FloaterFloatingForceTypeNormal* floater = reinterpret_cast< FloaterFloatingForceTypeNormal* >(pSpine->mExecutor);
-        floater->exeMove();
-    }
-
-    void HostTypeMoveOffPlayer::execute(Spine* pSpine) const {
-        FloaterFloatingForceTypeNormal* floater = reinterpret_cast< FloaterFloatingForceTypeNormal* >(pSpine->mExecutor);
-        floater->exeMove();
-    }
-
-    void HostTypeMoveFirst::execute(Spine* pSpine) const {
-        FloaterFloatingForceTypeNormal* floater = reinterpret_cast< FloaterFloatingForceTypeNormal* >(pSpine->mExecutor);
-        floater->exeMoveFirst();
-    }
-
-    void HostTypeWait::execute(Spine* pSpine) const {
-        FloaterFloatingForceTypeNormal* floater = reinterpret_cast< FloaterFloatingForceTypeNormal* >(pSpine->mExecutor);
-
-        if (floater->isFirstStep()) {
-            floater->_40 = 0.0f;
-        }
-    }
-};  // namespace NrvFloaterFloatingForceTypeNormal
 
 const TVec3f& FloaterFloatingForceTypeNormal::getCurrentVelocity() const {
     return mVelocity;

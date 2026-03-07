@@ -1,5 +1,7 @@
 # main/nw4r/ut/ut_RomFont
 
+**Source Path:** `src/nw4r/ut/ut_RomFont.cpp`
+
 ## Functions
 
 | Name | Address | Match % |

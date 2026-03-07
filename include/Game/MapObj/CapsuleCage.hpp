@@ -15,17 +15,11 @@ public:
     virtual void initCaseUseSwitchB(const MapObjActorInitInfo&);
     virtual void initCaseNoUseSwitchB(const MapObjActorInitInfo&);
 
+    void exeWait();
     void exeStartCamera();
-    inline void exeEndCamera();
+    void exeEndCamera();
     void exeOpen();
     void startOpen();
 
     ActorCameraInfo* mInfo;  // 0xC4
 };
-
-namespace NrvCapsuleCage {
-    NERVE_DECL_NULL(CapsuleCageNrvWait);
-    NERVE_DECL(CapsuleCageNrvStartCamera, CapsuleCage, CapsuleCage::exeStartCamera);
-    NERVE_DECL(CapsuleCageNrvOpen, CapsuleCage, CapsuleCage::exeOpen);
-    NERVE_DECL(CapsuleCageNrvEndCamera, CapsuleCage, CapsuleCage::exeEndCamera);
-};  // namespace NrvCapsuleCage

@@ -6,8 +6,8 @@
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__ct__12ShootingStarFPCc` | `0x80224E88` | :x: (13.9%) |
-| `init__12ShootingStarFRC12JMapInfoIter` | `0x80224F18` | :x: (91.0%) |
+| `__ct__12ShootingStarFPCc` | `0x80224E88` | :white_check_mark: (100.0%) |
+| `init__12ShootingStarFRC12JMapInfoIter` | `0x80224F18` | :x: (97.6%) |
 | `appearPreShooting__12ShootingStarFv` | `0x802251B0` | :white_check_mark: (100.0%) |
 | `control__12ShootingStarFv` | `0x802251FC` | :x: (0.0%) |
 | `exePreShooting__12ShootingStarFv` | `0x8022525C` | :x: (0.0%) |
@@ -21,5 +21,5 @@
 | `execute__Q215NrvShootingStar19HostTypeNrvShootingCFP5Spine` | `0x80225618` | :white_check_mark: (100.0%) |
 | `execute__Q215NrvShootingStar22HostTypeNrvPreShootingCFP5Spine` | `0x80225620` | :white_check_mark: (100.0%) |
 | `__cl__Q22MR51FunctorV0M<P12ShootingStar,M12ShootingStarFPCvPv_v>CFv` | `0x80225628` | :white_check_mark: (100.0%) |
-| `clone__Q22MR51FunctorV0M<P12ShootingStar,M12ShootingStarFPCvPv_v>CFP7JKRHeap` | `0x80225658` | :x: (96.2%) |
-| `__dt__12ShootingStarFv` | `0x802256C0` | :x: (95.7%) |
+| `clone__Q22MR51FunctorV0M<P12ShootingStar,M12ShootingStarFPCvPv_v>CFP7JKRHeap` | `0x80225658` | :white_check_mark: (100.0%) |
+| `__dt__12ShootingStarFv` | `0x802256C0` | :white_check_mark: (100.0%) |

@@ -7,12 +7,12 @@
 | Name | Address | Match % |
 |------|---------|---------|
 | `__ct__18KillerGunnerSingleFPCc` | `0x801EF14C` | :white_check_mark: (100.0%) |
-| `init__18KillerGunnerSingleFRC12JMapInfoIter` | `0x801EF188` | :x: (94.6%) |
+| `init__18KillerGunnerSingleFRC12JMapInfoIter` | `0x801EF188` | :x: (92.9%) |
 | `attackSensor__18KillerGunnerSingleFP9HitSensorP9HitSensor` | `0x801EF2B0` | :white_check_mark: (100.0%) |
 | `exeWait__18KillerGunnerSingleFv` | `0x801EF340` | :white_check_mark: (100.0%) |
 | `exeCharge__18KillerGunnerSingleFv` | `0x801EF3A8` | :white_check_mark: (100.0%) |
 | `exeShoot__18KillerGunnerSingleFv` | `0x801EF45C` | :white_check_mark: (100.0%) |
-| `__dt__18KillerGunnerSingleFv` | `0x801EF514` | :x: (95.7%) |
+| `__dt__18KillerGunnerSingleFv` | `0x801EF514` | :white_check_mark: (100.0%) |
 | `__sinit_\KillerGunnerSingle_cpp` | `0x801EF570` | :white_check_mark: (100.0%) |
 | `__ct__Q221NrvKillerGunnerSingle12HostTypeWaitFv` | `0x801EF5AC` | :white_check_mark: (100.0%) |
 | `__ct__Q221NrvKillerGunnerSingle14HostTypeChargeFv` | `0x801EF5BC` | :white_check_mark: (100.0%) |

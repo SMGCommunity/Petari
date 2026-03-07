@@ -1,6 +1,11 @@
 #include "Game/MapObj/AirBubbleGenerator.hpp"
 #include "Game/MapObj/AirBubbleHolder.hpp"
 
+namespace NrvAirBubbleGenerator {
+    NEW_NERVE(AirBubbleGeneratorNrvWait, AirBubbleGenerator, Wait);
+    NEW_NERVE(AirBubbleGeneratorNrvGenerate, AirBubbleGenerator, Generate);
+};  // namespace NrvAirBubbleGenerator
+
 AirBubbleGenerator::~AirBubbleGenerator() {}
 
 AirBubbleGenerator::AirBubbleGenerator(const char* pName) : LiveActor(pName) {
@@ -15,7 +20,7 @@ void AirBubbleGenerator::init(const JMapInfoIter& rIter) {
     initModelManagerWithAnm("AirBubbleGenerator", nullptr, false);
     MR::connectToSceneNoSilhouettedMapObj(this);
     initEffectKeeper(0, nullptr, false);
-    initNerve(&NrvAirBubbleGenerator::AirBubbleGenerateNrvWait::sInstance);
+    initNerve(&NrvAirBubbleGenerator::AirBubbleGeneratorNrvWait::sInstance);
     initHitSensor(1);
     MR::addBodyMessageSensorReceiver(this);
     MR::initCollisionParts(this, "AirBubbleGenerator", getSensor(nullptr), nullptr);
@@ -40,8 +45,8 @@ void AirBubbleGenerator::exeWait() {
     }
 }
 
-#ifdef NON_MATCHING
 // inlined assembly math is not matching, deal with this later
+/*
 void AirBubbleGenerator::exeGenerate() {
     TVec3f axisY;
 
@@ -53,12 +58,7 @@ void AirBubbleGenerator::exeGenerate() {
     if (MR::isGreaterStep(this, 6)) {
         MR::calcActorAxisY(&axisY, this);
         MR::appearAirBubble(MR::createVecAndScaleByAndAdd_2(axisY, mPosition), mBubbleDuration);
-        setNerve(&NrvAirBubbleGenerator::AirBubbleGenerateNrvWait::sInstance);
+        setNerve(&NrvAirBubbleGenerator::AirBubbleGeneratorNrvWait::sInstance);
     }
 }
-#endif
-
-namespace NrvAirBubbleGenerator {
-    INIT_NERVE(AirBubbleGenerateNrvWait);
-    INIT_NERVE(AirBubbleGeneratorNrvGenerate);
-};  // namespace NrvAirBubbleGenerator
+*/

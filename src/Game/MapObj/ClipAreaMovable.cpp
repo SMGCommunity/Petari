@@ -2,6 +2,7 @@
 #include "Game/MapObj/ClipArea.hpp"
 #include "Game/MapObj/MapPartsRailMover.hpp"
 #include "Game/MapObj/MapPartsRotator.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/ActorSwitchUtil.hpp"
 #include "Game/Util/BaseMatrixFollowTargetHolder.hpp"
@@ -20,7 +21,7 @@ ClipAreaMovable::ClipAreaMovable(const char* pName) : ClipArea(pName) {
 
 void ClipAreaMovable::init(const JMapInfoIter& rIter) {
     initBaseMatrix(rIter);
-    MR::connectToScene(this, 0x1C, -1, -1, 0x2A);
+    MR::connectToScene(this, MR::MovementType_ClippedMapParts, -1, -1, MR::DrawType_ClipArea);
     MR::setGroupClipping(this, rIter, 0x40);
     f32 f = MR::getMaxAbsElement(mScale);
     MR::setClippingTypeSphere(this, f * 1400.0f);

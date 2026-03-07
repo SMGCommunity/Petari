@@ -15,7 +15,7 @@
 | `createManager<18ImageEffectAreaMgr>__30@unnamed@AreaObjContainer_cpp@FlPCc_P10AreaObjMgr` | `0x8001EBD0` | :white_check_mark: (100.0%) |
 | `__ct__16AreaObjContainerFPCc` | `0x8001EC20` | :white_check_mark: (100.0%) |
 | `init__16AreaObjContainerFRC12JMapInfoIter` | `0x8001EC64` | :white_check_mark: (100.0%) |
-| `getManager__16AreaObjContainerCFPCc` | `0x8001ED0C` | :x: (65.8%) |
+| `getManager__16AreaObjContainerCFPCc` | `0x8001ED0C` | :x: (88.9%) |
 | `getAreaObj__16AreaObjContainerCFPCcRCQ29JGeometry8TVec3<f>` | `0x8001EDA4` | :white_check_mark: (100.0%) |
 | `getAreaObjContainer__2MRFv` | `0x8001EDD8` | :white_check_mark: (100.0%) |
 | `__dt__16AreaObjContainerFv` | `0x8001EE00` | :white_check_mark: (100.0%) |

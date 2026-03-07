@@ -125,7 +125,6 @@ bool StageSwitchCtrl::isValidSwitchDead() const {
     return mSW_Dead != 0;
 }
 
-#ifdef NON_MATCHING
 // reg use
 bool StageSwitchCtrl::isOnAllSwitchAfterB(int idx) const {
     for (s32 i = 0; i < idx; i++) {
@@ -139,7 +138,6 @@ bool StageSwitchCtrl::isOnAllSwitchAfterB(int idx) const {
 
     return true;
 }
-#endif
 
 // isOnAnyOneSwitchAfterB
 

@@ -25,7 +25,7 @@ namespace {
 };  // namespace
 
 NANDErrorSequence::NANDErrorSequence(SaveDataHandleSequence* pHost, SysInfoWindow* pParam2, SysInfoWindow*)
-    : ActorStateBase("NANDError"), mHost(pHost), mSystemMessageId(nullptr), _14(false), _15(false), mResult(0), mSysInfoWindow(pParam2) {
+    : ActorStateBase("NANDError", pHost), mSystemMessageId(nullptr), _14(false), _15(false), mResult(0), mSysInfoWindow(pParam2) {
     initNerve(&NANDErrorSequenceIdle::sInstance);
     kill();
     resetParam();
@@ -208,7 +208,7 @@ void NANDErrorSequence::exeRemove() {
     if (resultCode.isSuccess() || resultCode.isNoExistFile()) {
         setNerve(&NANDErrorSequenceRemoveDoneKeyWait::sInstance);
     } else if (tryNoRecoverErroSequence(resultCode.getCode())) {
-        // FIXME: cmpwi instruction should not be optimized out.
+        return;
     }
 }
 

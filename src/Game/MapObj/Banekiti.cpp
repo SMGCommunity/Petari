@@ -1,5 +1,11 @@
 #include "Game/MapObj/Banekiti.hpp"
 
+namespace NrvBanekiti {
+    NEW_NERVE(BanekitiNrvWait, Banekiti, Wait);
+    NEW_NERVE(BanekitiNrvRepel, Banekiti, Repel);
+    NEW_NERVE_ONEND(BanekitiNrvDPDSwoon, Banekiti, DPDSwoon, DPDSwoon);
+}  // namespace NrvBanekiti
+
 Banekiti::Banekiti(const char* pName) : LiveActor(pName) {
     mAnimScaleCtrl = nullptr;
     mBindStarPointer = nullptr;
@@ -110,29 +116,3 @@ bool Banekiti::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver
 
     return false;
 }
-
-namespace NrvBanekiti {
-    INIT_NERVE(BanekitiNrvWait);
-    INIT_NERVE(BanekitiNrvRepel);
-    INIT_NERVE(BanekitiNrvDPDSwoon);
-
-    void BanekitiNrvWait::execute(Spine* pSpine) const {
-        Banekiti* pActor = (Banekiti*)pSpine->mExecutor;
-        pActor->exeWait();
-    }
-
-    void BanekitiNrvRepel::execute(Spine* pSpine) const {
-        Banekiti* pActor = (Banekiti*)pSpine->mExecutor;
-        pActor->exeRepel();
-    }
-
-    void BanekitiNrvDPDSwoon::execute(Spine* pSpine) const {
-        Banekiti* pActor = (Banekiti*)pSpine->mExecutor;
-        pActor->exeDPDSwoon();
-    }
-
-    void BanekitiNrvDPDSwoon::executeOnEnd(Spine* pSpine) const {
-        Banekiti* pActor = (Banekiti*)pSpine->mExecutor;
-        pActor->endDPDSwoon();
-    }
-};  // namespace NrvBanekiti

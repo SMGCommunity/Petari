@@ -6,7 +6,7 @@
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__ct__19GameSystemObjHolderFv` | `0x8039CC68` | :x: (95.1%) |
+| `__ct__19GameSystemObjHolderFv` | `0x8039CC68` | :white_check_mark: (100.0%) |
 | `initAfterStationedResourceLoaded__19GameSystemObjHolderFv` | `0x8039CD08` | :white_check_mark: (100.0%) |
 | `initMessageResource__19GameSystemObjHolderFv` | `0x8039CD68` | :x: (98.1%) |
 | `init__19GameSystemObjHolderFv` | `0x8039CE3C` | :white_check_mark: (100.0%) |
@@ -20,8 +20,8 @@
 | `getRenderModeObj__19GameSystemObjHolderCFv` | `0x8039CF44` | :white_check_mark: (100.0%) |
 | `initDvd__19GameSystemObjHolderFv` | `0x8039CF50` | :white_check_mark: (100.0%) |
 | `initNAND__19GameSystemObjHolderFv` | `0x8039CFA8` | :white_check_mark: (100.0%) |
-| `initAudio__19GameSystemObjHolderFv` | `0x8039CFE8` | :white_check_mark: (100.0%) |
-| `initRenderMode__19GameSystemObjHolderFv` | `0x8039D058` | :x: (20.0%) |
+| `initAudio__19GameSystemObjHolderFv` | `0x8039CFE8` | :x: (93.4%) |
+| `initRenderMode__19GameSystemObjHolderFv` | `0x8039D058` | :x: (56.7%) |
 | `initNameObj__19GameSystemObjHolderFv` | `0x8039D150` | :white_check_mark: (100.0%) |
 | `initResourceHolderManager__19GameSystemObjHolderFv` | `0x8039D1C4` | :white_check_mark: (100.0%) |
 | `initGameController__19GameSystemObjHolderFv` | `0x8039D204` | :white_check_mark: (100.0%) |

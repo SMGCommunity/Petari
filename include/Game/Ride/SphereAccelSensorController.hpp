@@ -14,9 +14,14 @@ public:
     virtual void notifyActivate();
     virtual void notifyDeactivate();
     virtual void clacXY(f32*, f32*);
+    // void drawDebug(); // DEBUG
+    // virtual void genMessage(JORMContext*); // DEBUG
 
     void getPadAcceleration(TVec3f*);
     bool testBrake() const;
+    // void listenPropertyEvent(const JORPropertyEvent*); // DEBUG
+
+    inline bool isDeadZone(const TVec2f& vec) { return vec.dot(vec) <= 0.0000038146973f; }
 
     // everything up to 0x58 seems like it may be inhereted memory
     // however none of the inhereted classes use anything near
@@ -57,7 +62,6 @@ public:
     /* 0xAC */ f32 _AC;
 
     /* 0xB0 */ u16 _B0;
-    /* 0xB2 */ u16 _B2;
     /* 0xB4 */ f32 _B4;
-    /* 0xB8 */ u32 _B8;
+    /* 0xB8 */ u32 _B8;  // determines whether wiimote or nunchuck is used for control
 };

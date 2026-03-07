@@ -9,7 +9,7 @@
 | `__ct__16DemoTalkAnimCtrlFP9LiveActorPCcPCc` | `0x800BF32C` | :white_check_mark: (100.0%) |
 | `initForScene__16DemoTalkAnimCtrlFPCcPCcRC12JMapInfoIter` | `0x800BF3F4` | :white_check_mark: (100.0%) |
 | `updateCamera__16DemoTalkAnimCtrlFv` | `0x800BF4C4` | :white_check_mark: (100.0%) |
-| `createBckCtrlData__16DemoTalkAnimCtrlCFP11BckCtrlDatal` | `0x800BF53C` | :x: (41.9%) |
+| `createBckCtrlData__16DemoTalkAnimCtrlCFP11BckCtrlDatal` | `0x800BF53C` | :x: (58.5%) |
 | `initForActor__16DemoTalkAnimCtrlFPCc` | `0x800BF638` | :white_check_mark: (100.0%) |
 | `startDemo__16DemoTalkAnimCtrlFv` | `0x800BF6FC` | :white_check_mark: (100.0%) |
 | `updateDemo__16DemoTalkAnimCtrlFv` | `0x800BF738` | :white_check_mark: (100.0%) |

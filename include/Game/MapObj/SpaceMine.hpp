@@ -24,8 +24,3 @@ public:
     s32 _D4;                // Obj_arg0
     u8 _D8;
 };
-
-namespace NrvSpaceMine {
-    NERVE(HostTypeWait);
-    NERVE(HostTypeAppear);
-};  // namespace NrvSpaceMine

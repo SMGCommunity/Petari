@@ -1,6 +1,8 @@
 #pragma once
 
+#include <JSystem/J3DGraphAnimator/J3DModel.hpp>
 #include <revolution/types.h>
+
 
 class BpkPlayer;
 class BrkPlayer;
@@ -9,7 +11,6 @@ class BtpPlayer;
 class BvaPlayer;
 class DisplayListMaker;
 class J3DFrameCtrl;
-class J3DMdlFlag;
 class J3DModel;
 class J3DModelData;
 class ResourceHolder;
