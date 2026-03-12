@@ -1,11 +1,11 @@
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Player/Mario.hpp"
 #include "Game/Player/MarioActor.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util/AreaObjUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/MtxUtil.hpp"
 #include "revolution/mtx.h"
-
 
 void Mario::check2DMode() {
     mMovementStates._37 = false;
@@ -326,8 +326,7 @@ void Mario::beforeJumping2D() {
     _628 = _660;
 }
 
-void Mario::afterLanding2D() {
-}
+void Mario::afterLanding2D() {}
 
 void Mario::clear2DStick() {
     _60E = 0;

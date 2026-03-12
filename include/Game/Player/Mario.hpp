@@ -100,10 +100,10 @@ public:
     void updateSoundCode();
     const TVec3f& getShadowNorm() const;
     const TVec3f& getAirGravityVec() const;
-    const TVec3f& getAirFrontVec() const;
+    TVec3f getAirFrontVec() const;
     const TVec3f* getGravityVec() const;
     void initAfterConst();
-    void writeBackPhysicalVector();
+    void writeBackPhyisicalVector();
     void update();
     void updateLookOfs();
     void actionMain();
@@ -149,7 +149,7 @@ public:
     bool checkBaseTransPoint();
     bool checkHeadPoint();
     const TVec3f* calcShadowPos();
-    void updateBinderInfo();
+    bool updateBinderInfo();
     bool isThroughWall(const Triangle*) const;
     void checkGround();
     void getCameraCubeCode() const;
@@ -160,8 +160,8 @@ public:
     void decDamageAfterTimer();
     bool checkDamage();
     u16 getDamageAfterTimer() const;
-    void damageFloorCheck();
-    void damageWallCheck();
+    bool damageFloorCheck();
+    bool damageWallCheck();
     void damagePolygonCheck(const Triangle*);
     void flipLarge(const TVec3f&);
     bool isEnableAddDamage() const;
