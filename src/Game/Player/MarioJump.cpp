@@ -470,7 +470,8 @@ void Mario::trySquatJump() {
     mMovementStates._21 = false;
 
     const f32 frontSpeed = mActor->getConst().getTable()->mSquatJumpFrontSpeed;
-    TVec3f jumpFront(getAirFrontVec());
+    TVec3f airFront(getAirFrontVec());
+    TVec3f jumpFront(airFront);
     jumpFront.scale(frontSpeed);
     mJumpVec = jumpFront;
 
@@ -494,8 +495,8 @@ void Mario::trySquatJump() {
     addScale.scale(jumpHeight);
     mJumpVec += addScale;
 
-    _10._8 = false;
-    if (mDrawStates._14) {
+    _10_LOW_WORD &= 0xFFFFFEFF;
+    if ((mDrawStates_WORD >> 20) & 1) {
         recordJumpEnforceMove();
 
         TVec3f moveKeep;
@@ -511,7 +512,7 @@ void Mario::trySquatJump() {
         enforceScale = MR::clamp(enforceScale + jumpScale, 0.0f, 1.0f);
 
         if (mJumpVec.dot(moveKeep) < 0.0f) {
-            mDrawStates._4 = true;
+            mDrawStates._1B = true;
             initActiveJumpVec();
         }
 
