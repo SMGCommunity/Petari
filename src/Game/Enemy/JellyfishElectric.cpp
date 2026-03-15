@@ -1,6 +1,8 @@
 #include "Game/Enemy/JellyfishElectric.hpp"
 #include "Game/Enemy/AnimScaleController.hpp"
 #include "Game/Enemy/WalkerStateBindStarPointer.hpp"
+#include "Game/LiveActor/Spine.hpp"
+#include "Game/Util/RailUtil.hpp"
 
 namespace NrvJellyfishElectric {
     NEW_NERVE(JellyfishElectricNrvWait, JellyfishElectric, Wait);
@@ -10,7 +12,7 @@ namespace NrvJellyfishElectric {
     NEW_NERVE(JellyfishElectricNrvDeath, JellyfishElectric, Death);
     NEW_NERVE(JellyfishElectricNrvAttack, JellyfishElectric, Attack);
     NEW_NERVE(JellyfishElectricNrvRailGoal, JellyfishElectric, RailGoal);
-    NEW_NERVE(JellyfishElectricNrvDPDSwoon, JellyfishElectric, DPDSwoon);
+    NEW_NERVE_ONEND(JellyfishElectricNrvDPDSwoon, JellyfishElectric, DPDSwoon, DPDSwoon);
 
 };  // namespace NrvJellyfishElectric
 
@@ -84,6 +86,195 @@ void JellyfishElectric::calcAndSetBaseMtx() {
     MR::setBaseTRMtx(this, pos);
     JMathInlineVEC::PSVECMultiply(&mController->_C, &mScale, &scale);
     MR::setBaseScale(this, scale);
+}
+
+void JellyfishElectric::exeWait() {
+    if (MR::isFirstStep(this)) {
+        if (!_A4 && !MR::isBckPlaying(this, "Wait")) {
+            MR::startAllAnim(this, "Wait");
+        } else {
+            if (_A4 && !MR::isBckPlaying(this, "DangerWait")) {
+                MR::startAllAnim(this, "DangerWait");
+                MR::startBas(this, "DangerBrk", false, 0.0f, 0.0f);
+            }
+        }
+    }
+
+    selectNerveAfterWait();
+}
+
+void JellyfishElectric::exeDamage() {
+    if (MR::isFirstStep(this)) {
+        MR::startSound(this, "SE_EM_JELLYELEC_DAMAGE", -1, -1);
+        MR::startAllAnim(this, "Damage");
+    }
+
+    if (MR::isBckStopped(this)) {
+        _A4 = 1;
+        MR::startAllAnim(this, "DangerWait");
+        MR::startBas(this, "DangerBrk", false, 0.0f, 0.0f);
+        setNerve(&NrvJellyfishElectric::JellyfishElectricNrvWait::sInstance);
+    }
+}
+
+void JellyfishElectric::exeDeath() {
+    if (MR::isFirstStep(this)) {
+        MR::onBind(this);
+        MR::invalidateHitSensors(this);
+        MR::stopScene(5);
+        MR::startAllAnim(this, "Death");
+    }
+
+    MR::startLevelSound(this, "SE_EM_LV_JELYELEC_PRE_DEAD", -1, -1, -1);
+    if (MR::isStep(this, 30) || MR::isBinded(this)) {
+        MR::startSound(this, "SE_EM_JELLYELEC_DEAD", -1, -1);
+        kill();
+    }
+}
+
+void JellyfishElectric::exeAttack() {
+    if (MR::isFirstStep(this)) {
+        MR::startAllAnim(this, "Attack");
+    }
+
+    MR::startLevelSound(this, "SE_EM_LV_JELYELEC_ATTACK", -1, -1, -1);
+
+    if (MR::isBckStopped(this)) {
+        setNerve(&NrvJellyfishElectric::JellyfishElectricNrvWait::sInstance);
+    }
+}
+
+void JellyfishElectric::exeRailGoal() {
+    if (MR::isStep(this, _AC)) {
+        if (_B0) {
+            MR::moveCoordAndTransToRailPoint(this, 0);
+            const TVec3f& dir = MR::getRailDirection(this);
+            _98.x = dir.x;
+            _98.y = dir.y;
+            _98.z = dir.z;
+            _A4 = 0;
+        } else {
+            MR::reverseRailDirection(this);
+        }
+
+        setNerve(&NrvJellyfishElectric::JellyfishElectricNrvWait::sInstance);
+    }
+}
+
+void JellyfishElectric::exeDPDSwoon() {
+    if (MR::isFirstStep(this)) {
+        MR::deleteEffectAll(this);
+    }
+
+    MR::updateActorStateAndNextNerve(this, mBindStarPtr, &NrvJellyfishElectric::JellyfishElectricNrvWait::sInstance);
+}
+
+void JellyfishElectric::exeWaitWithLeftTurn() {
+    waitTurn();
+    selectNerveAfterWait();
+}
+
+void JellyfishElectric::exeWaitWithRightTurn() {
+    waitTurn();
+    selectNerveAfterWait();
+}
+
+void JellyfishElectric::endDPDSwoon() {
+    mBindStarPtr->kill();
+}
+
+void JellyfishElectric::waitTurn() {
+    f32 turnDirection;
+    f32 turnDecay = (1.0f - (getNerveStep() / 280.0f));
+
+    if (isNerve(&NrvJellyfishElectric::JellyfishElectricNrvWaitWithLeftTurn::sInstance)) {
+        turnDirection = 1.0f;
+    } else {
+        turnDirection = -1.0f;
+    }
+
+    MR::rotateVecDegree(&_98, -mGravity, (turnDirection * (0.2f * turnDecay)));
+}
+
+void JellyfishElectric::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
+    if (MR::isSensorEnemy(pSender) && MR::isSensorPlayer(pReceiver)) {
+        tryToAttackElectric(pReceiver, pSender);
+    } else if (MR::isSensorEnemy(pReceiver) || MR::isSensorMapObj(pReceiver)) {
+        if (MR::isSensorEnemy(pSender)) {
+            MR::sendMsgPush(pReceiver, pSender);
+        }
+    }
+}
+
+void JellyfishElectric::knockOut() {
+    if (!_A4) {
+        setNerve(&NrvJellyfishElectric::JellyfishElectricNrvDamage::sInstance);
+    } else {
+        setNerve(&NrvJellyfishElectric::JellyfishElectricNrvDeath::sInstance);
+    }
+}
+
+bool JellyfishElectric::tryToAttackElectric(HitSensor* pSender, HitSensor* pReceiver) {
+    if (!isNerve(&NrvJellyfishElectric::JellyfishElectricNrvDPDSwoon::sInstance) && MR::sendMsgEnemyAttackElectric(pSender, pReceiver)) {
+        MR::emitEffectHitBetweenSensors(this, pReceiver, pSender, 0.0f, nullptr);
+        setNerve(&NrvJellyfishElectric::JellyfishElectricNrvAttack::sInstance);
+    }
+
+    MR::sendMsgPush(pSender, pReceiver);
+    return true;
+}
+
+bool JellyfishElectric::tryDPDSwoon() {
+    if (isNerve(&NrvJellyfishElectric::JellyfishElectricNrvDPDSwoon::sInstance)) {
+        return false;
+    }
+
+    if (isNerve(&NrvJellyfishElectric::JellyfishElectricNrvDamage::sInstance)) {
+        return false;
+    }
+
+    if (isNerve(&NrvJellyfishElectric::JellyfishElectricNrvDeath::sInstance)) {
+        return false;
+    }
+
+    if (isNerve(&NrvJellyfishElectric::JellyfishElectricNrvAttack::sInstance)) {
+        return false;
+    }
+
+    if (isNerve(&NrvJellyfishElectric::JellyfishElectricNrvRailGoal::sInstance)) {
+        return false;
+    }
+
+    if (!mBindStarPtr->tryStartPointBind()) {
+        return false;
+    }
+
+    setNerve(&NrvJellyfishElectric::JellyfishElectricNrvDPDSwoon::sInstance);
+    return true;
+}
+
+bool JellyfishElectric::selectNerveAfterWait() {
+    if (MR::isStep(this, 280)) {
+        s32 rand;
+
+        if (isNerve(&NrvJellyfishElectric::JellyfishElectricNrvWait::sInstance)) {
+            rand = MR::getRandom(0l, 3l);
+        } else {
+            rand = 0;
+        }
+
+        if (rand == 0) {
+            setNerve(&NrvJellyfishElectric::JellyfishElectricNrvWait::sInstance);
+        } else if (rand == 1) {
+            setNerve(&NrvJellyfishElectric::JellyfishElectricNrvWaitWithRightTurn::sInstance);
+        } else {
+            setNerve(&NrvJellyfishElectric::JellyfishElectricNrvWaitWithLeftTurn::sInstance);
+        }
+
+        return true;
+    }
+
+    return false;
 }
 
 JellyfishElectric::~JellyfishElectric() {

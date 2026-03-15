@@ -2682,14 +2682,14 @@ Game/Enemy/ItemGenerator.cpp:
 Game/Enemy/Jellyfish.cpp:
 	.text       start:0x800FB4AC end:0x800FC7B0
 	.ctors      start:0x8052EA9C end:0x8052EAA0
-	.data       start:0x8057D860 end:0x8057DAE8
+	.data       start:0x8057D860 end:0x8057DA40
 	.sbss       start:0x806B4010 end:0x806B4040
 	.sdata2     start:0x806BA7A8 end:0x806BA800
 
 Game/Enemy/JellyfishElectric.cpp:
 	.text       start:0x800FC7B0 end:0x800FD714
 	.ctors      start:0x8052EAA0 end:0x8052EAA4
-	.data       start:0x8057DAE8 end:0x8057DBE0
+	.data       start:0x8057DA40 end:0x8057DBE0
 	.sbss       start:0x806B4040 end:0x806B4068
 	.sdata2     start:0x806BA800 end:0x806BA840
 

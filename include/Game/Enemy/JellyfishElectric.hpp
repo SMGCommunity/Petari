@@ -26,6 +26,7 @@ public:
     void exeAttack();
     void exeRailGoal();
     void exeDPDSwoon();
+    void endDPDSwoon();
     void waitTurn();
     void knockOut();
     bool tryToAttackElectric(HitSensor*, HitSensor*);
