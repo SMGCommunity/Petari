@@ -69,8 +69,6 @@ void DepthOfFieldBlur::createBlurTexture() const {
     ImageEffectLocalUtil::capture(_24, 4, 0, GX_TF_RGB565, false, 0);
 }
 
-const f32 offs[2][3] = {{0.5f, 0.0f, 0.0f}, {0.0f, 0.5f, 0.0f}};
-
 // https://decomp.me/scratch/NIh1o
 void DepthOfFieldBlur::drawFinal() const {
     ImageEffectLocalUtil::drawTexture(_18, 4, 0, 255, ImageEffectLocalUtil::UNK_0);
@@ -92,6 +90,7 @@ void DepthOfFieldBlur::drawFinal() const {
     GXSetTevAlphaOp(GX_TEVSTAGE1, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1, GX_TEVPREV);
     GXSetTevIndirect(GX_TEVSTAGE1, GX_INDTEXSTAGE0, GX_ITF_8, GX_ITB_ST, GX_ITM_0, GX_ITW_0, GX_ITW_0, 0, 0, GX_ITBA_OFF);
     GXSetIndTexOrder(GX_INDTEXSTAGE0, GX_TEXCOORD2, GX_TEXMAP2);
+    f32 offs[2][3] = {{0.5f, 0.0f, 0.0f}, {0.0f, 0.5f, 0.0f}};
     GXSetIndTexMtx(GX_ITM_0, offs, 1);
     GXSetIndTexCoordScale(GX_INDTEXSTAGE0, GX_ITS_1, GX_ITS_1);
     _28->load(GX_TEXMAP1);
