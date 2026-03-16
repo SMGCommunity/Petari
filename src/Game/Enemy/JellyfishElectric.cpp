@@ -2,6 +2,7 @@
 #include "Game/Enemy/AnimScaleController.hpp"
 #include "Game/Enemy/WalkerStateBindStarPointer.hpp"
 #include "Game/LiveActor/Spine.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/RailUtil.hpp"
 
 namespace NrvJellyfishElectric {
@@ -76,6 +77,28 @@ void JellyfishElectric::init(const JMapInfoIter& rIter) {
 void JellyfishElectric::kill() {
     MR::appearCoinPop(this, mPosition, 1);
     LiveActor::kill();
+}
+
+void JellyfishElectric::control() {
+    Color8 clr = sPointLightColor;
+    MR::requestPointLight(this, TVec3f(mPosition), clr, 0.0998f, -1);
+    MR::changeShowModelFlagSyncNearClipping(this, 700.0f);
+    mController->updateNerve();
+
+    if (!tryDPDSwoon() && !isNerve(&NrvJellyfishElectric::JellyfishElectricNrvDeath::sInstance)) {
+        if (mIsConnectedRail) {
+            MR::moveCoordAndFollowTrans(this, _A8);
+            if (MR::isRailReachedGoal(this)) {
+                if (!isNerve(&NrvJellyfishElectric::JellyfishElectricNrvRailGoal::sInstance)) {
+                    setNerve(&NrvJellyfishElectric::JellyfishElectricNrvRailGoal::sInstance);
+                    return;
+                }
+            }
+        }
+
+        mVelocity.scale(JMath::sSinCosTable.sinLapRad(_94 + 0x2D), mGravity);
+        _94++;
+    }
 }
 
 void JellyfishElectric::calcAndSetBaseMtx() {
@@ -204,6 +227,39 @@ void JellyfishElectric::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
             MR::sendMsgPush(pReceiver, pSender);
         }
     }
+}
+
+bool JellyfishElectric::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
+    if (MR::isMsgLockOnStarPieceShoot(msg)) {
+        return true;
+    }
+
+    if (MR::isMsgStarPieceAttack(msg)) {
+        mController->startHitReaction();
+        return true;
+    } else if (MR::isMsgJetTurtleAttack(msg)) {
+        knockOut();
+        return true;
+    } else if (MR::isMsgInvincibleAttack(msg)) {
+        _A4 = 1;
+        knockOut();
+        return true;
+    } else {
+        if (MR::isMsgPlayerSpinAttack(msg)) {
+            return tryToAttackElectric(pSender, pReceiver);
+        }
+    }
+
+    return false;
+}
+
+bool JellyfishElectric::receiveMsgEnemyAttack(u32 msg, HitSensor*, HitSensor*) {
+    if (MR::isMsgExplosionAttack(msg) && !isNerve(&NrvJellyfishElectric::JellyfishElectricNrvDeath::sInstance)) {
+        knockOut();
+        return true;
+    }
+
+    return false;
 }
 
 void JellyfishElectric::knockOut() {
