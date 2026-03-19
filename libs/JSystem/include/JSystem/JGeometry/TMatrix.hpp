@@ -250,6 +250,25 @@ namespace JGeometry {
         }
         void setXDir(const TVec3f& rSrc);
         void setXDir(f32 x, f32 y, f32 z);
+
+        inline void setXDirInline(const TVec3f& rSrc) {
+            this->mMtx[0][0] = rSrc.x;
+            this->mMtx[1][0] = rSrc.y;
+            this->mMtx[2][0] = rSrc.z;
+        }
+
+        inline void setYDirInline(const TVec3f& rSrc) {
+            this->mMtx[0][1] = rSrc.x;
+            this->mMtx[1][1] = rSrc.y;
+            this->mMtx[2][1] = rSrc.z;
+        }
+
+        inline void setZDirInline(const TVec3f& rSrc) {
+            this->mMtx[0][2] = rSrc.x;
+            this->mMtx[1][2] = rSrc.y;
+            this->mMtx[2][2] = rSrc.z;
+        }
+
         void setYDir(const TVec3f& rSrc);
         void setYDir(f32 x, f32 y, f32 z);
         void setZDir(const TVec3f& rSrc);
