@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
+#include "JSystem/JGeometry/TMatrix.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
 
 class MogucchiHill;
@@ -34,10 +35,13 @@ public:
     void updateStrollSpeed();
     void reflectStarPointer2P();
     void makeEulerRotation();
+    bool calcAttackDir(TVec3f*, const TVec3f&, const TVec3f&) const;
+    bool receiveAttackBySpinSensor(u32, HitSensor* pSender, HitSensor* pReceiver);
+    bool receiveAttackByBodySensor(u32, HitSensor* pSender, HitSensor* pReceiver);
 
     MogucchiHill* mHill;
     LiveActor* _90;
-    Mtx _94;
+    TMtx34f _94;
     TVec3f _C4;
     bool _D0;
     f32 _D4;

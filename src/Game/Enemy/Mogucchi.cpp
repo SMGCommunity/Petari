@@ -1,5 +1,6 @@
 #include "Game/Enemy/Mogucchi.hpp"
 #include "Game/Enemy/MogucchiHill.hpp"
+#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
@@ -38,6 +39,7 @@ namespace {
 
 Mogucchi::Mogucchi(const char* pName)
     : LiveActor(pName), mHill(nullptr), _90(nullptr), _D0(false), _D4(0.0f), _D8(0.0f, 0.0f, 1.0f), _E4(0.0f), _E8(0.0f), _EC(5.0f), _F0(false) {
+    _94.identity();
 }
 
 Mogucchi::~Mogucchi() {
@@ -229,4 +231,33 @@ void Mogucchi::exeScatter() {
     if (MR::isGreaterEqualStep(this, 15)) {
         setNerve(&MogucchiNrvDie::sInstance);
     }
+}
+
+void Mogucchi::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
+    if (MR::isSensorPlayerOrRide(pReceiver) && (MR::isSensor(pSender, "body") || MR::isSensor(pSender, "head"))) {
+        if (!isNerve(&MogucchiNrvStroll::sInstance) || !MR::isOnGroundPlayer()) {
+            MR::sendMsgPush(pReceiver, pSender);
+            return;
+        }
+
+        TVec3f attackDir;
+        calcAttackDir(&attackDir, pSender->mPosition, pReceiver->mPosition);
+        if (MR::sendMsgEnemyAttackStrongToDir(pReceiver, pSender, attackDir)) {
+            MR::shakeCameraNormal();
+            return;
+        }
+        MR::sendMsgPush(pReceiver, pSender);
+    }
+}
+
+bool Mogucchi::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
+    if (MR::isSensor(pReceiver, "spin")) {
+        return receiveAttackBySpinSensor(msg, pSender, pReceiver);
+    }
+
+    return receiveAttackByBodySensor(msg, pSender, pReceiver);
+}
+
+void Mogucchi::initSensor() {
+    LiveActor::initHitSensor(3);
 }
