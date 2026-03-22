@@ -18,10 +18,11 @@ public:
     void end();
     void startNaturally();
     void endNaturally();
+    void setAppearNum(s32);
 
     u32 _8C;
     u32 _90;
-    u32 _94;
+    s32 _94;
     u32 _98;
 
     Mtx _9C;

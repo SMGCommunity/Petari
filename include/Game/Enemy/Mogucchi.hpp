@@ -1,10 +1,9 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
-#include "JSystem/JGeometry/TMatrix.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
 
 class MogucchiHill;
+class ModelObj;
 
 class Mogucchi : public LiveActor {
 public:
@@ -39,17 +38,17 @@ public:
     bool receiveAttackBySpinSensor(u32, HitSensor* pSender, HitSensor* pReceiver);
     bool receiveAttackByBodySensor(u32, HitSensor* pSender, HitSensor* pReceiver);
 
-    MogucchiHill* mHill;
-    LiveActor* _90;
+    /* 0x8C */ MogucchiHill* mHill;
+    /* 0x90 */ ModelObj* mHole;
     TMtx34f _94;
     TVec3f _C4;
     bool _D0;
     f32 _D4;
     TVec3f _D8;
     f32 _E4;
-    f32 _E8;
-    f32 _EC;
-    bool _F0;
+    /* 0xE8 */ f32 mStrollSpeed;
+    /* 0xEC */ f32 mMaxStrollSpeed;
+    /* 0xF0 */ bool mIsStoppedByP2;
 
 private:
     u8 mPad[(0xF4) - sizeof(LiveActor)];
