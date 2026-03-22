@@ -462,6 +462,14 @@ namespace MR {
         return repeat(value, 0.0f, 360.0f);
     }
 
+    inline f32 negateIfLessZero(f32 val) {
+        if (val < 0.0f) {
+            val = -val;
+        }
+
+        return val;
+    }
+
 #ifdef __MWERKS__
     inline f32 frsqrte(register f32 x) {
         register f32 recip;

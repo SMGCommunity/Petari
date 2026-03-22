@@ -715,7 +715,7 @@ namespace JGeometry {
             return lengthinv * oldlength;
         };
 
-        f32 setLength(const TVec3& rVec, f32 newlength)  {
+        f32 setLength(const TVec3& rVec, f32 newlength) {
             f32 oldlength = rVec.squared();
             if (oldlength <= 0.0000038146973f) {
                 zero();
@@ -965,6 +965,7 @@ namespace JGeometry {
 typedef JGeometry::TVec2< s16 > TVec2s;
 typedef JGeometry::TVec2< f32 > TVec2f;
 typedef JGeometry::TVec3< f32 > TVec3f;
+typedef JGeometry::TVec3< s8 > TVec3Sc;
 typedef JGeometry::TVec3< s16 > TVec3s;
 typedef JGeometry::TVec4< f32 > TVec4f;
 typedef JGeometry::TQuat4< f32 > TQuat4f;
