@@ -3,11 +3,10 @@
 #include "Game/Enemy/AnimScaleController.hpp"
 #include "Game/Enemy/FireBall.hpp"
 #include "Game/Enemy/CocoNutBall.hpp"
-#include "Game/NameObj/NameObj.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/System/NerveExecutor.hpp"
 #include "Game/Util/FixedPosition.hpp"
-#include "JSystem/JGeometry/TMatrix.hpp"
+
+#include <JSystem/JGeometry/TMatrix.hpp>
 
 class NameObjArchiveListCollector;
 class JMapInfoIter;
