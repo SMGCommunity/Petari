@@ -34,9 +34,10 @@ public:
     void updateStrollSpeed();
     void reflectStarPointer2P();
     void makeEulerRotation();
-    bool calcAttackDir(TVec3f*, const TVec3f&, const TVec3f&) const;
-    bool receiveAttackBySpinSensor(u32, HitSensor* pSender, HitSensor* pReceiver);
-    bool receiveAttackByBodySensor(u32, HitSensor* pSender, HitSensor* pReceiver);
+    void calcAttackDir(TVec3f*, const TVec3f&, const TVec3f&) const;
+    bool receiveAttackBySpinSensor(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
+    bool receiveAttackByBodySensor(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
+    void calcScatterVec(const TVec3f&, const TVec3f&);
 
     /* 0x8C */ MogucchiHill* mHill;
     /* 0x90 */ ModelObj* mHole;
@@ -44,7 +45,7 @@ public:
     TVec3f _C4;
     bool _D0;
     f32 _D4;
-    TVec3f _D8;
+    /* 0xD8 */ TVec3f mScatterVec;
     f32 _E4;
     /* 0xE8 */ f32 mStrollSpeed;
     /* 0xEC */ f32 mMaxStrollSpeed;

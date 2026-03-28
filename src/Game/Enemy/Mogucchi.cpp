@@ -14,6 +14,7 @@
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MapUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
+#include "Game/Util/MtxUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/RailUtil.hpp"
@@ -41,7 +42,7 @@ namespace {
 }  // namespace
 
 Mogucchi::Mogucchi(const char* pName)
-    : LiveActor(pName), mHill(nullptr), mHole(nullptr), _D0(false), _D4(0.0f), _D8(0.0f, 0.0f, 1.0f), _E4(0.0f), mStrollSpeed(0.0f),
+    : LiveActor(pName), mHill(nullptr), mHole(nullptr), _D0(false), _D4(0.0f), mScatterVec(0.0f, 0.0f, 1.0f), _E4(0.0f), mStrollSpeed(0.0f),
       mMaxStrollSpeed(5.0f), mIsStoppedByP2(false) {
     _94.identity();
 }
@@ -214,22 +215,22 @@ void Mogucchi::exeScatter() {
 
     TVec3f* c4 = &_C4;
 
-    JMAVECScaleAdd(c4, &_D8, &_D8, -_C4.dot(_D8));
-    MR::normalizeOrZero(&_D8);
+    JMAVECScaleAdd(c4, &mScatterVec, &mScatterVec, -_C4.dot(mScatterVec));
+    MR::normalizeOrZero(&mScatterVec);
 
-    if (!MR::isNearZero(_D8)) {
+    if (!MR::isNearZero(mScatterVec)) {
         TVec3f v2;
-        PSVECCrossProduct(c4, _D8, &v2);
+        PSVECCrossProduct(c4, mScatterVec, &v2);
 
         TRot3f mtx;
         mtx.setXDirInline(v2);
         mtx.setYDirInline(-_C4);
-        mtx.setZDirInline(-_D8);
+        mtx.setZDirInline(-mScatterVec);
         mtx.getEulerXYZ(mRotation);
         mRotation.mult(_180_PI);
     }
 
-    mPosition.add(_C4.scaleInline(-_D4).addOperatorInLine(_D8.multInLine(23.0f)));
+    mPosition.add(_C4.scaleInline(-_D4).addOperatorInLine(mScatterVec.multInLine(23.0f)));
     _D4 -= 1.2f;
 
     if (MR::isGreaterEqualStep(this, 15)) {
@@ -337,4 +338,64 @@ void Mogucchi::createHole() {
     // "Mogucchi hole"
     mHole = new ModelObj("モグッチ穴", "MogucchiHole", _94, 10, -2, -2, false);
     mHole->initWithoutIter();
+}
+
+void Mogucchi::calcAttackDir(TVec3f* pDir, const TVec3f& senderPos, const TVec3f& receiverPos) const {
+    pDir->sub(receiverPos, senderPos);
+    const TVec3f* c4 = &_C4;
+    JMAVECScaleAdd(c4, pDir, pDir, -c4->dot(*pDir));
+    MR::normalizeOrZero(pDir);
+
+    if (MR::isNearZero(*pDir, 0.001f)) {
+        pDir->set< f32 >(getBaseMtx()[0][1], getBaseMtx()[1][1], getBaseMtx()[2][1]);
+    }
+
+    pDir->add(-_C4);
+    MR::normalize(pDir);
+}
+
+void Mogucchi::makeEulerRotation() {
+    TPos3f mtx;
+    MR::makeMtxUpFront(&mtx, -_C4, MR::getRailDirection(this));
+    mtx.getEulerXYZ(mRotation);
+    mRotation.mult(_180_PI);
+}
+
+void Mogucchi::calcScatterVec(const TVec3f& p1, const TVec3f& p2) {
+    mScatterVec.sub(p2, p1);
+    const TVec3f* c4 = &_C4;
+    JMAVECScaleAdd(c4, mScatterVec, mScatterVec, -c4->dot(mScatterVec));
+    MR::normalizeOrZero(&mScatterVec);
+}
+
+bool Mogucchi::receiveAttackBySpinSensor(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
+    if (!MR::isMsgPlayerSpinAttack(msg)) {
+        return false;
+    }
+
+    if (isNerve(&MogucchiNrvStroll::sInstance)) {
+        MR::startSound(this, "SE_EM_MOGUCCHI_REFRECT", -1, -1);
+        MR::sendMsgEnemyAttackCounterSpin(pSender, pReceiver);
+        return true;
+    }
+
+    bool isDown = false;
+    if (isNerve(&MogucchiNrvDown::sInstance) || isNerve(&MogucchiNrvAppearDown::sInstance) || isNerve(&MogucchiNrvDive::sInstance)) {
+        isDown = true;
+    }
+
+    if (!isDown) {
+        return false;
+    }
+
+    if (isNerve(&MogucchiNrvAppearDown::sInstance) && MR::isLessStep(this, 10)) {
+        return false;
+    }
+
+    MR::stopScene(8);
+    MR::tryRumblePadMiddle(this, 0);
+    calcScatterVec(pSender->mPosition, pReceiver->mPosition);
+    setNerve(&MogucchiNrvScatter::sInstance);
+
+    return true;
 }
