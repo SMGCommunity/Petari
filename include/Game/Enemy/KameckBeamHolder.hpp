@@ -1,10 +1,26 @@
 #pragma once
 
+#include "Game/LiveActor/LiveActorGroup.hpp"
 #include <JSystem/JGeometry/TVec.hpp>
 #include <revolution.h>
 
 class KameckBeamEventListener;
 class KameckBeam;
+class KameckTurtle;
+
+class KameckBeamHolder : public DeriveActorGroup< KameckBeam > {
+public:
+    KameckBeamHolder();
+
+    virtual ~KameckBeamHolder();
+};
+
+class KameckBeamTurtleHolder : public DeriveActorGroup< KameckTurtle > {
+public:
+    KameckBeamTurtleHolder();
+
+    virtual ~KameckBeamTurtleHolder();
+};
 
 namespace MR {
     void createKameckBeamHolder();
@@ -12,4 +28,5 @@ namespace MR {
     void createKameckBeamTurtleHolder();
 
     KameckBeam* startFollowKameckBeam(s32, MtxPtr, f32, const TVec3f&, KameckBeamEventListener*);
+    KameckBeam* getKameckBeam();
 };  // namespace MR
