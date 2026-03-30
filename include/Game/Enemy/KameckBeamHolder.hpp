@@ -7,12 +7,20 @@
 class KameckBeamEventListener;
 class KameckBeam;
 class KameckTurtle;
+class KameckFireBall;
 
 class KameckBeamHolder : public DeriveActorGroup< KameckBeam > {
 public:
     KameckBeamHolder();
 
     virtual ~KameckBeamHolder();
+};
+
+class KameckFireBallHolder : public DeriveActorGroup< KameckFireBall > {
+public:
+    KameckFireBallHolder();
+
+    virtual ~KameckFireBallHolder();
 };
 
 class KameckBeamTurtleHolder : public DeriveActorGroup< KameckTurtle > {
