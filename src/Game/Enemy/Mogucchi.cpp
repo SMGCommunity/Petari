@@ -104,10 +104,11 @@ void Mogucchi::kill() {
 }
 
 void Mogucchi::control() {
-    // TODO: figure out inline
-    if (!isNerve(&MogucchiNrvScatter::sInstance) && isNerve(&MogucchiNrvDie::sInstance)) {
-        updateReferenceMtx();
+    if (isNerve(&MogucchiNrvScatter::sInstance) || isNerve(&MogucchiNrvDie::sInstance)) {
+        return;
     }
+
+    updateReferenceMtx();
 }
 
 bool Mogucchi::checkHipDrop() const {
@@ -447,6 +448,8 @@ void Mogucchi::updateReferenceMtx() {
     v1.scale(PI_180);
 
     // Some inlined TPos3f function involving _94?
+    _94.makeMatrixFromRotAxesInline(v1.x, v1.y, v1.z);
+    _94.setTransInline(mPosition);
 
     mHole->mPosition.set(mPosition);
 }
