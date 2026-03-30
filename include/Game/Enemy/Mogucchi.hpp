@@ -41,7 +41,7 @@ public:
 
     /* 0x8C */ MogucchiHill* mHill;
     /* 0x90 */ ModelObj* mHole;
-    TMtx34f _94;
+    TRot3f _94;
     TVec3f _C4;
     bool _D0;
     f32 _D4;

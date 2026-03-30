@@ -399,3 +399,54 @@ bool Mogucchi::receiveAttackBySpinSensor(u32 msg, HitSensor* pSender, HitSensor*
 
     return true;
 }
+
+bool Mogucchi::receiveAttackByBodySensor(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
+    if (MR::isMsgPlayerSpinAttack(msg)) {
+        return false;
+    }
+
+    if (!isNerve(&MogucchiNrvScatter::sInstance) && !isNerve(&MogucchiNrvDie::sInstance) && MR::isMsgStarPieceAttack(msg)) {
+        setNerve(&MogucchiNrvAppearDown::sInstance);
+        return true;
+    }
+
+    bool isDown = isNerve(&MogucchiNrvDown::sInstance) || isNerve(&MogucchiNrvAppearDown::sInstance) || isNerve(&MogucchiNrvDive::sInstance);
+
+    if (!isDown) {
+        if (MR::isMsgPlayerTrample(msg)) {
+            MR::startSound(this, "SE_EM_MOGUCCHI_REFRECT", -1, -1);
+            return true;
+        }
+
+        return false;
+    }
+
+    if (isNerve(&MogucchiNrvAppearDown::sInstance) && MR::isLessStep(this, 10)) {
+        return false;
+    }
+
+    if (MR::isMsgPlayerTrample(msg) || MR::isMsgPlayerHipDrop(msg)) {
+        MR::startBck(this, "Bounce", nullptr);
+        MR::startBtp(this, "EyeOpen");
+        return true;
+    }
+
+    if (MR::isMsgPlayerHitAll(msg)) {
+        MR::stopScene(8);
+        MR::tryRumblePadMiddle(this, 0);
+        calcScatterVec(pSender->mPosition, pReceiver->mPosition);
+        setNerve(&MogucchiNrvScatter::sInstance);
+        return true;
+    }
+
+    return false;
+}
+
+void Mogucchi::updateReferenceMtx() {
+    TVec3f v1(mRotation);
+    v1.scale(PI_180);
+
+    // Some inlined TPos3f function involving _94?
+
+    mHole->mPosition.set(mPosition);
+}
