@@ -77,7 +77,7 @@ void Mogucchi::init(const JMapInfoIter& rIter) {
 void Mogucchi::initAfterPlacement() {
     MR::moveCoordToNearestPos(this, mPosition);
     // TODO: figure out _C4
-    MR::calcGravityVector(this, MR::getRailPos(this), &mGravity, nullptr, nullptr);
+    MR::calcGravityVector(this, MR::getRailPos(this), &_C4, nullptr, nullptr);
     updatePosition();
     updateReferenceMtx();
 }
