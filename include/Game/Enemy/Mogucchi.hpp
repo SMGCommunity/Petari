@@ -42,7 +42,7 @@ public:
     /* 0x8C */ MogucchiHill* mHill;
     /* 0x90 */ ModelObj* mHole;
     TPos3f _94;
-    TVec3f _C4;
+    /* 0x9C */ TVec3f mRailGravity;
     bool _D0;
     f32 _D4;
     /* 0xD8 */ TVec3f mScatterVec;

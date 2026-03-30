@@ -76,8 +76,7 @@ void Mogucchi::init(const JMapInfoIter& rIter) {
 
 void Mogucchi::initAfterPlacement() {
     MR::moveCoordToNearestPos(this, mPosition);
-    // TODO: figure out _C4
-    MR::calcGravityVector(this, MR::getRailPos(this), &_C4, nullptr, nullptr);
+    MR::calcGravityVector(this, MR::getRailPos(this), &mRailGravity, nullptr, nullptr);
     updatePosition();
     updateReferenceMtx();
 }
@@ -135,7 +134,7 @@ void Mogucchi::exeStroll() {
     updateStrollSpeed();
     reflectStarPointer2P();
     MR::moveCoord(this, mStrollSpeed);
-    MR::calcGravityVector(this, MR::getRailPos(this), &_C4, nullptr, 0);
+    MR::calcGravityVector(this, MR::getRailPos(this), &mRailGravity, nullptr, 0);
     updatePosition();
     makeEulerRotation();
 
@@ -196,24 +195,24 @@ void Mogucchi::exeScatter() {
         MR::invalidateClipping(this);
     }
 
-    TVec3f* c4 = &_C4;
+    TVec3f* railGravity = &mRailGravity;
 
-    JMAVECScaleAdd(c4, &mScatterVec, &mScatterVec, -_C4.dot(mScatterVec));
+    JMAVECScaleAdd(railGravity, &mScatterVec, &mScatterVec, -mRailGravity.dot(mScatterVec));
     MR::normalizeOrZero(&mScatterVec);
 
     if (!MR::isNearZero(mScatterVec)) {
         TVec3f v2;
-        PSVECCrossProduct(c4, mScatterVec, &v2);
+        PSVECCrossProduct(railGravity, mScatterVec, &v2);
 
         TRot3f mtx;
         mtx.setXDirInline(v2);
-        mtx.setYDirInline(-_C4);
+        mtx.setYDirInline(-mRailGravity);
         mtx.setZDirInline(-mScatterVec);
         mtx.getEulerXYZ(mRotation);
         mRotation.mult(_180_PI);
     }
 
-    mPosition.add(_C4.scaleInline(-_D4).addOperatorInLine(mScatterVec.multInLine(23.0f)));
+    mPosition.add(mRailGravity.scaleInline(-_D4).addOperatorInLine(mScatterVec.multInLine(23.0f)));
     _D4 -= 1.2f;
 
     if (MR::isGreaterEqualStep(this, 15)) {
@@ -326,7 +325,7 @@ void Mogucchi::updatePosition() {
     Triangle triangle = Triangle();
 
     TVec3f v1;
-    _D0 = MR::getFirstPolyOnLineToMap(&v1, &triangle, MR::getRailPos(this), _C4.scaleInline(1000.0f));
+    _D0 = MR::getFirstPolyOnLineToMap(&v1, &triangle, MR::getRailPos(this), mRailGravity.scaleInline(1000.0f));
 
     if (_D0) {
         mPosition.set(v1);
@@ -343,29 +342,29 @@ void Mogucchi::createHole() {
 
 void Mogucchi::calcAttackDir(TVec3f* pDir, const TVec3f& senderPos, const TVec3f& receiverPos) const {
     pDir->sub(receiverPos, senderPos);
-    const TVec3f* c4 = &_C4;
-    JMAVECScaleAdd(c4, pDir, pDir, -c4->dot(*pDir));
+    const TVec3f* railGravity = &mRailGravity;
+    JMAVECScaleAdd(railGravity, pDir, pDir, -railGravity->dot(*pDir));
     MR::normalizeOrZero(pDir);
 
     if (MR::isNearZero(*pDir, 0.001f)) {
         pDir->set< f32 >(getBaseMtx()[0][1], getBaseMtx()[1][1], getBaseMtx()[2][1]);
     }
 
-    pDir->add(-_C4);
+    pDir->add(-mRailGravity);
     MR::normalize(pDir);
 }
 
 void Mogucchi::makeEulerRotation() {
     TPos3f mtx;
-    MR::makeMtxUpFront(&mtx, -_C4, MR::getRailDirection(this));
+    MR::makeMtxUpFront(&mtx, -mRailGravity, MR::getRailDirection(this));
     mtx.getEulerXYZ(mRotation);
     mRotation.mult(_180_PI);
 }
 
 void Mogucchi::calcScatterVec(const TVec3f& p1, const TVec3f& p2) {
     mScatterVec.sub(p2, p1);
-    const TVec3f* c4 = &_C4;
-    JMAVECScaleAdd(c4, mScatterVec, mScatterVec, -c4->dot(mScatterVec));
+    const TVec3f* railGravity = &mRailGravity;
+    JMAVECScaleAdd(railGravity, mScatterVec, mScatterVec, -railGravity->dot(mScatterVec));
     MR::normalizeOrZero(&mScatterVec);
 }
 
