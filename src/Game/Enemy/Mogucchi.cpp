@@ -143,33 +143,6 @@ void Mogucchi::exeStroll() {
     }
 }
 
-void Mogucchi::exeDie() {
-    if (MR::isFirstStep(this)) {
-        MR::appearCoinPop(this, mPosition, 1);
-        MR::startSound(this, "SE_EM_EXPLODE_S", -1, -1);
-        MR::emitEffect(this, "Death");
-        MR::hideModel(this);
-        MR::hideModel(mHole);
-    }
-
-    if (MR::isGreaterEqualStep(this, 60)) {
-        return kill();
-    }
-}
-
-void Mogucchi::exeDive() {
-    if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Walk", nullptr);
-        MR::startBtp(this, "EyeOpen");
-        MR::startBck(mHole, "Walk", nullptr);
-        MR::startSound(this, "SE_EM_MOGUCCHI_HIDE", -1, -1);
-    }
-
-    if (MR::isBckStopped(this)) {
-        setNerve(&MogucchiNrvStroll::sInstance);
-    }
-}
-
 void Mogucchi::exeAppearDown() {
     if (MR::isFirstStep(this)) {
         MR::showModel(this);
@@ -198,8 +171,17 @@ void Mogucchi::exeDown() {
     MR::setNerveAtStep(this, &MogucchiNrvDive::sInstance, 30);
 }
 
-void Mogucchi::endStroll() {
-    MR::deleteEffect(this, "PointerTouchManual");
+void Mogucchi::exeDive() {
+    if (MR::isFirstStep(this)) {
+        MR::startBck(this, "Hide", nullptr);
+        MR::startBtp(this, "EyeOpen");
+        MR::startBck(mHole, "Hide", nullptr);
+        MR::startSound(this, "SE_EM_MOGUCCHI_HIDE", -1, -1);
+    }
+
+    if (MR::isBckStopped(this)) {
+        setNerve(&MogucchiNrvStroll::sInstance);
+    }
 }
 
 void Mogucchi::exeScatter() {
@@ -236,6 +218,24 @@ void Mogucchi::exeScatter() {
     if (MR::isGreaterEqualStep(this, 15)) {
         setNerve(&MogucchiNrvDie::sInstance);
     }
+}
+
+void Mogucchi::exeDie() {
+    if (MR::isFirstStep(this)) {
+        MR::appearCoinPop(this, mPosition, 1);
+        MR::startSound(this, "SE_EM_EXPLODE_S", -1, -1);
+        MR::emitEffect(this, "Death");
+        MR::hideModel(this);
+        MR::hideModel(mHole);
+    }
+
+    if (MR::isGreaterEqualStep(this, 60)) {
+        return kill();
+    }
+}
+
+void Mogucchi::endStroll() {
+    MR::deleteEffect(this, "PointerTouchManual");
 }
 
 void Mogucchi::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
