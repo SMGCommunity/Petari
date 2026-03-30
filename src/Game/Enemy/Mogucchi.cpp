@@ -445,9 +445,9 @@ bool Mogucchi::receiveAttackByBodySensor(u32 msg, HitSensor* pSender, HitSensor*
 
 void Mogucchi::updateReferenceMtx() {
     TVec3f v1(mRotation);
-    v1.scale(PI_180);
+    // Using PI_180 will mismatch the float value by 1 least significant bit
+    v1.scale(57.295776);
 
-    // Some inlined TPos3f function involving _94?
     _94.makeMatrixFromRotAxesInline(v1.x, v1.y, v1.z);
     _94.setTransInline(mPosition);
 
