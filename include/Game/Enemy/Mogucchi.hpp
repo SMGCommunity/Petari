@@ -43,7 +43,7 @@ public:
     /* 0x90 */ ModelObj* mHole;
     TPos3f _94;
     /* 0x9C */ TVec3f mRailGravity;
-    bool _D0;
+    /* 0xD0 */ bool mGrounded;
     f32 _D4;
     /* 0xD8 */ TVec3f mScatterVec;
     f32 _E4;

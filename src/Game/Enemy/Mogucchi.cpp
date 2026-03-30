@@ -42,7 +42,7 @@ namespace {
 }  // namespace
 
 Mogucchi::Mogucchi(const char* pName)
-    : LiveActor(pName), mHill(nullptr), mHole(nullptr), _D0(false), _D4(0.0f), mScatterVec(0.0f, 0.0f, 1.0f), _E4(0.0f), mStrollSpeed(0.0f),
+    : LiveActor(pName), mHill(nullptr), mHole(nullptr), mGrounded(false), _D4(0.0f), mScatterVec(0.0f, 0.0f, 1.0f), _E4(0.0f), mStrollSpeed(0.0f),
       mMaxStrollSpeed(5.0f), mIsStoppedByP2(false) {
     _94.identity();
 }
@@ -325,9 +325,9 @@ void Mogucchi::updatePosition() {
     Triangle triangle = Triangle();
 
     TVec3f v1;
-    _D0 = MR::getFirstPolyOnLineToMap(&v1, &triangle, MR::getRailPos(this), mRailGravity.scaleInline(1000.0f));
+    mGrounded = MR::getFirstPolyOnLineToMap(&v1, &triangle, MR::getRailPos(this), mRailGravity.scaleInline(1000.0f));
 
-    if (_D0) {
+    if (mGrounded) {
         mPosition.set(v1);
     } else {
         mPosition.set(MR::getRailPos(this));
