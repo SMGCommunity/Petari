@@ -42,9 +42,9 @@ namespace {
 }  // namespace
 
 Mogucchi::Mogucchi(const char* pName)
-    : LiveActor(pName), mHill(nullptr), mHole(nullptr), mGrounded(false), _D4(0.0f), mScatterVec(0.0f, 0.0f, 1.0f), _E4(0.0f), mStrollSpeed(0.0f),
-      mMaxStrollSpeed(5.0f), mIsStoppedByP2(false) {
-    _94.identity();
+    : LiveActor(pName), mHill(nullptr), mHole(nullptr), mGrounded(false), mScatterPropulsionSpeed(0.0f), mScatterNormal(0.0f, 0.0f, 1.0f), _E4(0.0f),
+      mStrollSpeed(0.0f), mMaxStrollSpeed(5.0f), mIsStoppedByP2(false) {
+    mNewHolePos.identity();
 }
 
 Mogucchi::~Mogucchi() {
@@ -191,29 +191,29 @@ void Mogucchi::exeScatter() {
         MR::startBtp(this, "EyeClose");
         MR::startBck(mHole, "PunchDown", nullptr);
         MR::startBlowHitSound(this);
-        _D4 = 50.0f;
+        mScatterPropulsionSpeed = 50.0f;
         MR::invalidateClipping(this);
     }
 
     TVec3f* railGravity = &mRailGravity;
 
-    JMAVECScaleAdd(railGravity, &mScatterVec, &mScatterVec, -mRailGravity.dot(mScatterVec));
-    MR::normalizeOrZero(&mScatterVec);
+    JMAVECScaleAdd(railGravity, &mScatterNormal, &mScatterNormal, -mRailGravity.dot(mScatterNormal));
+    MR::normalizeOrZero(&mScatterNormal);
 
-    if (!MR::isNearZero(mScatterVec)) {
+    if (!MR::isNearZero(mScatterNormal)) {
         TVec3f v2;
-        PSVECCrossProduct(railGravity, mScatterVec, &v2);
+        PSVECCrossProduct(railGravity, mScatterNormal, &v2);
 
         TRot3f mtx;
         mtx.setXDirInline(v2);
         mtx.setYDirInline(-mRailGravity);
-        mtx.setZDirInline(-mScatterVec);
+        mtx.setZDirInline(-mScatterNormal);
         mtx.getEulerXYZ(mRotation);
         mRotation.mult(_180_PI);
     }
 
-    mPosition.add(mRailGravity.scaleInline(-_D4).addOperatorInLine(mScatterVec.multInLine(23.0f)));
-    _D4 -= 1.2f;
+    mPosition.add(mRailGravity.scaleInline(-mScatterPropulsionSpeed).addOperatorInLine(mScatterNormal.multInLine(23.0f)));
+    mScatterPropulsionSpeed -= 1.2f;
 
     if (MR::isGreaterEqualStep(this, 15)) {
         setNerve(&MogucchiNrvDie::sInstance);
@@ -336,7 +336,7 @@ void Mogucchi::updatePosition() {
 
 void Mogucchi::createHole() {
     // "Mogucchi hole"
-    mHole = new ModelObj("モグッチ穴", "MogucchiHole", _94, 10, -2, -2, false);
+    mHole = new ModelObj("モグッチ穴", "MogucchiHole", mNewHolePos, 10, -2, -2, false);
     mHole->initWithoutIter();
 }
 
@@ -362,10 +362,10 @@ void Mogucchi::makeEulerRotation() {
 }
 
 void Mogucchi::calcScatterVec(const TVec3f& p1, const TVec3f& p2) {
-    mScatterVec.sub(p2, p1);
+    mScatterNormal.sub(p2, p1);
     const TVec3f* railGravity = &mRailGravity;
-    JMAVECScaleAdd(railGravity, mScatterVec, mScatterVec, -railGravity->dot(mScatterVec));
-    MR::normalizeOrZero(&mScatterVec);
+    JMAVECScaleAdd(railGravity, mScatterNormal, mScatterNormal, -railGravity->dot(mScatterNormal));
+    MR::normalizeOrZero(&mScatterNormal);
 }
 
 bool Mogucchi::receiveAttackBySpinSensor(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
@@ -447,8 +447,8 @@ void Mogucchi::updateReferenceMtx() {
     // Using PI_180 will mismatch the float value by 1 least significant bit
     v1.scale(57.295776);
 
-    _94.makeMatrixFromRotAxesInline(v1.x, v1.y, v1.z);
-    _94.setTransInline(mPosition);
+    mNewHolePos.makeMatrixFromRotAxesInline(v1.x, v1.y, v1.z);
+    mNewHolePos.setTransInline(mPosition);
 
     mHole->mPosition.set(mPosition);
 }

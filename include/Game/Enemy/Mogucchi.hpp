@@ -41,11 +41,11 @@ public:
 
     /* 0x8C */ MogucchiHill* mHill;
     /* 0x90 */ ModelObj* mHole;
-    TPos3f _94;
-    /* 0x9C */ TVec3f mRailGravity;
+    /* 0x94 */ TPos3f mNewHolePos;
+    /* 0xC4 */ TVec3f mRailGravity;
     /* 0xD0 */ bool mGrounded;
-    f32 _D4;
-    /* 0xD8 */ TVec3f mScatterVec;
+    /* 0xD4 */ f32 mScatterPropulsionSpeed;
+    /* 0xD8 */ TVec3f mScatterNormal;
     f32 _E4;
     /* 0xE8 */ f32 mStrollSpeed;
     /* 0xEC */ f32 mMaxStrollSpeed;
