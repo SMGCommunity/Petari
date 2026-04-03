@@ -50,7 +50,4 @@ public:
     /* 0xE8 */ f32 mStrollSpeed;
     /* 0xEC */ f32 mMaxStrollSpeed;
     /* 0xF0 */ bool mIsStoppedByP2;
-
-private:
-    u8 mPad[(0xF4) - sizeof(LiveActor)];
 };
