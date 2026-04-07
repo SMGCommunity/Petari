@@ -379,10 +379,7 @@ bool Mogucchi::receiveAttackBySpinSensor(u32 msg, HitSensor* pSender, HitSensor*
         return true;
     }
 
-    bool isDown = false;
-    if (isNerve(&MogucchiNrvDown::sInstance) || isNerve(&MogucchiNrvAppearDown::sInstance) || isNerve(&MogucchiNrvDive::sInstance)) {
-        isDown = true;
-    }
+    bool isDown = isNerve(&MogucchiNrvDown::sInstance) || isNerve(&MogucchiNrvAppearDown::sInstance) || isNerve(&MogucchiNrvDive::sInstance);
 
     if (!isDown) {
         return false;
