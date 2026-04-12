@@ -152,10 +152,12 @@ bool StinkBugSmall::receiveOtherMsg(u32 msg, HitSensor* pSendder, HitSensor* pRe
 }
 
 bool StinkBugSmall::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (isNerve(&NrvStinkBugSmall::StinkBugSmallNrvHipDropDown::sInstance))
+    if (isNerve(&NrvStinkBugSmall::StinkBugSmallNrvHipDropDown::sInstance)) {
         return false;
-    if (getSensor("body"))
+    }
+    if (getSensor("body")) {
         return false;
+    }
     if (MR::isMsgInvincibleAttack(msg) || MR::isMsgPlayerHipDropFloor(msg) || MR::isMsgPlayerHipDrop(msg)) {
         setNerve(&NrvStinkBugSmall::StinkBugSmallNrvHipDropDown::sInstance);
         return true;
@@ -313,5 +315,5 @@ void StinkBugSmall::exeForceFall() {
         MR::calcGravity(this);
         MR::onBind(this);
     }
-    JMAVECScaleAdd(mGravity, mVelocity, mVelocity, 2.0f);
+    mVelocity.scaleAdd(2.0f, mGravity, mVelocity);
 }
