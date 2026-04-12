@@ -2,7 +2,6 @@
 #include "Game/Enemy/StinkBugBase.hpp"
 #include "Game/Enemy/WalkerStateBindStarPointer.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
-#include "Game/LiveActor/LiveActor.hpp"
 #include "Game/Util/ActorMovementUtil.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/ActorStateUtil.hpp"
@@ -17,52 +16,71 @@
 #include <JSystem/JMath/JMath.hpp>
 #include <revolution/types.h>
 
+
+namespace NrvStinkBugSmall {
+    NEW_NERVE(StinkBugSmallNrvWait, StinkBugSmall, Wait);
+    NEW_NERVE(StinkBugSmallNrvSearch, StinkBugSmall, Search);
+    NEW_NERVE(StinkBugSmallNrvDashSign, StinkBugSmall, DashSign);
+    NEW_NERVE(StinkBugSmallNrvDashSignEnd, StinkBugSmall, DashSignEnd);
+    NEW_NERVE(StinkBugSmallNrvDash, StinkBugSmall, Dash);
+    NEW_NERVE(StinkBugSmallNrvDashEnd, StinkBugSmall, DashEnd);
+    NEW_NERVE(StinkBugSmallNrvBack, StinkBugSmall, Back);
+    NEW_NERVE(StinkBugSmallNrvHipDropDown, StinkBugSmall, HipDropDown);
+    NEW_NERVE(StinkBugSmallNrvAttack, StinkBugSmall, Attack);
+    NEW_NERVE(StinkBugSmallNrvSpinReaction, StinkBugSmall, SpinReaction);
+    NEW_NERVE(StinkBugSmallNrvShakeStart, StinkBugSmall, ShakeStart);
+    NEW_NERVE(StinkBugSmallNrvShake, StinkBugSmall, Shake);
+    NEW_NERVE(StinkBugSmallNrvPanic, StinkBugSmall, Panic);
+    NEW_NERVE(StinkBugSmallNrvRecover, StinkBugSmall, Recover);
+    NEW_NERVE(StinkBugSmallNrvDPDSwoon, StinkBugSmall, DPDSwoon);
+    NEW_NERVE(StinkBugSmallNrvForceFall, StinkBugSmall, ForceFall);
+}  // namespace NrvStinkBugSmall
+
+
 StinkBugSmall::StinkBugSmall(const char* pName)
     : StinkBugBase(pName), mScaleController(nullptr), mBindStarPointer(nullptr), mStateBaseInterface(nullptr) {
 }
 StinkBugSmall::~StinkBugSmall() {
 }
 
-s32 StinkBugSmall::tryForceFall() {
-    const LiveActor* pActor = this;
-    if (!MR::isValidSwitchA(pActor) || !MR::isOnSwitchA(pActor)) {
-        return 0;
+bool StinkBugSmall::tryForceFall() {
+    if (!MR::isValidSwitchA(this) || !MR::isOnSwitchA(this)) {
+        return false;
     }
-    if (LiveActor::isNerve(&NrvStinkBugSmall::StinkBugSmallNrvDPDSwoon::sInstance)) {
-        return 0;
+    if (isNerve(&NrvStinkBugSmall::StinkBugSmallNrvDPDSwoon::sInstance)) {
+        return false;
     }
-    if (LiveActor::isNerve(&NrvStinkBugSmall::StinkBugSmallNrvForceFall::sInstance)) {
-        return 0;
+    if (isNerve(&NrvStinkBugSmall::StinkBugSmallNrvForceFall::sInstance)) {
+        return false;
     }
-    LiveActor::setNerve(&NrvStinkBugSmall::StinkBugSmallNrvForceFall::sInstance);
-    return 1;
+    setNerve(&NrvStinkBugSmall::StinkBugSmallNrvForceFall::sInstance);
+    return true;
 }
 
-s32 StinkBugSmall::tryDPDSwoon() {
-    const LiveActor* pActor = this;
-    if (LiveActor::isNerve(&NrvStinkBugSmall::StinkBugSmallNrvHipDropDown::sInstance)) {
-        return 0;
+bool StinkBugSmall::tryDPDSwoon() {
+    if (isNerve(&NrvStinkBugSmall::StinkBugSmallNrvHipDropDown::sInstance)) {
+        return false;
     }
-    if (LiveActor::isNerve(&NrvStinkBugSmall::StinkBugSmallNrvDPDSwoon::sInstance)) {
-        return 0;
+    if (isNerve(&NrvStinkBugSmall::StinkBugSmallNrvDPDSwoon::sInstance)) {
+        return false;
     }
 
     if (!mBindStarPointer->tryStartPointBind()) {
-        return 0;
+        return false;
     }
-    LiveActor::setNerve(&NrvStinkBugSmall::StinkBugSmallNrvDPDSwoon::sInstance);
-    return 1;
+    setNerve(&NrvStinkBugSmall::StinkBugSmallNrvDPDSwoon::sInstance);
+    return true;
 }
 
-s32 StinkBugSmall::isShakeChance() const {
-    if (LiveActor::isNerve(&NrvStinkBugSmall::StinkBugSmallNrvHipDropDown::sInstance)) {
-        return 0;
+bool StinkBugSmall::isShakeChance() const {
+    if (isNerve(&NrvStinkBugSmall::StinkBugSmallNrvHipDropDown::sInstance)) {
+        return false;
     }
-    if (!LiveActor::isNerve(&NrvStinkBugSmall::StinkBugSmallNrvShake::sInstance)) {
-        return 0;
+    if (!isNerve(&NrvStinkBugSmall::StinkBugSmallNrvShake::sInstance)) {
+        return false;
     }
     if (MR::isPlayerHipDropFalling()) {
-        return 0;
+        return false;
     }
     return MR::isPlayerHipDropLand() == 0;
 }
@@ -72,19 +90,19 @@ void StinkBugSmall::kill() {
         MR::onSwitchDead(this);
     }
     if (!MR::isValidSwitchDead(this)) {
-        MR::appearStarPiece(this, this->mPosition, 3, 10.0f, 40.0f, 0);
+        MR::appearStarPiece(this, mPosition, 3, 10.0f, 40.0f, 0);
         MR::startSound(this, "SE_OJ_STAR_PIECE_BURST", -1, -1);
     }
     MR::emitEffect(this, "Death");
     MR::startSound(this, "SE_EM_EXPLODE_S", -1, -1);
-    LiveActor::kill();
+    kill();
 }
 
-bool StinkBugSmall::exeHipDropDown() {
+void StinkBugSmall::exeHipDropDown() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "Death", 0);
         MR::startBrk(this, "Death");
-        if (!unk196) {
+        if (!unk_C8) {
             MR::invalidateCollisionParts(this);
         }
         MR::invalidateHitSensors(this);
@@ -92,81 +110,62 @@ bool StinkBugSmall::exeHipDropDown() {
         MR::startSound(this, "SE_EM_STOMPED_S", -1, -1);
         MR::startSound(this, "SE_EV_STINKBUG_S_STOMPED", -1, -1);
     }
-    this->mVelocity.zero();
-    bool result = MR::isBckStopped(this);
-    if (result) {
-        return this->exeHipDropDown();
-    } else {
-        return result;
+    mVelocity.zero();
+    if (MR::isBckStopped(this)) {
+        return exeHipDropDown();
     }
-    return result;
 }
 
-s32 StinkBugSmall::isNrvEnableStarPieceAttack() const {
-    bool Inerves = LiveActor::isNerve(&NrvStinkBugSmall::StinkBugSmallNrvWait::sInstance) ||
-                   LiveActor::isNerve(&NrvStinkBugSmall::StinkBugSmallNrvSearch::sInstance) ||
-                   LiveActor::isNerve(&NrvStinkBugSmall::StinkBugSmallNrvDashSign::sInstance) ||
-                   LiveActor::isNerve(&NrvStinkBugSmall::StinkBugSmallNrvDashSignEnd::sInstance) ||
-                   LiveActor::isNerve(&NrvStinkBugSmall::StinkBugSmallNrvBack::sInstance);
-    if (Inerves) {
-        return 1;
-    }
-    return 0;
+bool StinkBugSmall::isNrvEnableStarPieceAttack() const {
+    return isNerve(&NrvStinkBugSmall::StinkBugSmallNrvWait::sInstance) ||
+                   isNerve(&NrvStinkBugSmall::StinkBugSmallNrvSearch::sInstance) ||
+                   isNerve(&NrvStinkBugSmall::StinkBugSmallNrvDashSign::sInstance) ||
+                   isNerve(&NrvStinkBugSmall::StinkBugSmallNrvDashSignEnd::sInstance) ||
+                   isNerve(&NrvStinkBugSmall::StinkBugSmallNrvBack::sInstance);
 }
 
-bool StinkBugSmall::receiveOtherMsg(u32 msg, HitSensor* pReceiver, HitSensor* pSender) {
-    if (LiveActor::isNerve(&NrvStinkBugSmall::StinkBugSmallNrvHipDropDown::sInstance)) {
-        return false;
-    }
+bool StinkBugSmall::receiveOtherMsg(u32 msg, HitSensor* pSendder, HitSensor* pReceiver) {
+    if (isNerve(&NrvStinkBugSmall::StinkBugSmallNrvHipDropDown::sInstance)) return false;
     if (MR::isPlayerElementModeInvincible() && (MR::isMsgFloorTouch(msg) || MR::isMsgWallTouch(msg) || MR::isMsgCeilTouch(msg))) {
-        LiveActor::setNerve(&NrvStinkBugSmall::StinkBugSmallNrvHipDropDown::sInstance);
+        setNerve(&NrvStinkBugSmall::StinkBugSmallNrvHipDropDown::sInstance);
         return true;
     }
-    if (LiveActor::isNerve(&NrvStinkBugSmall::StinkBugSmallNrvDPDSwoon::sInstance)) {
-        return false;
-    }
-    if (LiveActor::isNerve(&NrvStinkBugSmall::StinkBugSmallNrvPanic::sInstance)) {
-        return false;
-    }
-    if (LiveActor::isNerve(&NrvStinkBugSmall::StinkBugSmallNrvShakeStart::sInstance)) {
-        return false;
-    }
-    {
-        if (MR::isMsgFloorTouch(msg)) {
-            if (MR::isOnPlayer(LiveActor::getSensor("body"))) {
-                if (StinkBugSmall::isShakeChance()) {
-                    MR::sendMsgEnemyAttackFlip(pReceiver, pSender);
-                } else {
-                    LiveActor::setNerve(&NrvStinkBugSmall::StinkBugSmallNrvPanic::sInstance);
-                    return true;
-                }
+    if (isNerve(&NrvStinkBugSmall::StinkBugSmallNrvDPDSwoon::sInstance)) return false;
+    if (isNerve(&NrvStinkBugSmall::StinkBugSmallNrvPanic::sInstance)) return false;
+    if (isNerve(&NrvStinkBugSmall::StinkBugSmallNrvShakeStart::sInstance)) return false;
+
+  
+    if (MR::isMsgFloorTouch(msg)) {
+        if (MR::isOnPlayer(getSensor("body"))) {
+            if (StinkBugSmall::isShakeChance()) {
+                MR::sendMsgEnemyAttackFlip(pReceiver, pSendder);
+            } else {
+                setNerve(&NrvStinkBugSmall::StinkBugSmallNrvPanic::sInstance);
+                return true;
             }
         }
     }
     return false;
 }
 
-bool StinkBugSmall::receiveMsgPlayerAttack(u32 msg, HitSensor* pReceiver, HitSensor* pSender) {
-    if (LiveActor::isNerve(&NrvStinkBugSmall::StinkBugSmallNrvHipDropDown::sInstance)) {
-        return false;
-    }
-    if (LiveActor::getSensor("body")) {
-        return false;
-    }
+bool StinkBugSmall::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
+    if (isNerve(&NrvStinkBugSmall::StinkBugSmallNrvHipDropDown::sInstance)) return false;
+    if (getSensor("body")) return false;
     if (MR::isMsgInvincibleAttack(msg) || MR::isMsgPlayerHipDropFloor(msg) || MR::isMsgPlayerHipDrop(msg)) {
-        LiveActor::setNerve(&NrvStinkBugSmall::StinkBugSmallNrvHipDropDown::sInstance);
+        setNerve(&NrvStinkBugSmall::StinkBugSmallNrvHipDropDown::sInstance);
         return true;
-    } else if (!LiveActor::isNerve(&NrvStinkBugSmall::StinkBugSmallNrvDPDSwoon::sInstance) && !MR::isMsgLockOnStarPieceShoot(msg)) {
-        if (MR::isMsgStarPieceReflect(msg) && LiveActor::getSensor("body")) {
+    }
+    if (!isNerve(&NrvStinkBugSmall::StinkBugSmallNrvDPDSwoon::sInstance) && !MR::isMsgLockOnStarPieceShoot(msg)) {
+        if (MR::isMsgStarPieceReflect(msg) && getSensor("body")) {
             if (StinkBugSmall::isNrvEnableStarPieceAttack()) {
-                LiveActor::setNerve(&NrvStinkBugSmall::StinkBugSmallNrvSpinReaction::sInstance);
+                setNerve(&NrvStinkBugSmall::StinkBugSmallNrvSpinReaction::sInstance);
                 return true;
             }
         }
-        if (!LiveActor::isNerve(&NrvStinkBugSmall::StinkBugSmallNrvSpinReaction::sInstance) &&
-            !LiveActor::isNerve(&NrvStinkBugSmall::StinkBugSmallNrvDash::sInstance) && MR::isMsgPlayerSpinAttack(msg) &&
-            LiveActor::getSensor("body")) {
-            LiveActor::setNerve(&NrvStinkBugSmall::StinkBugSmallNrvSpinReaction::sInstance);
+        if (!isNerve(&NrvStinkBugSmall::StinkBugSmallNrvSpinReaction::sInstance) &&
+            !isNerve(&NrvStinkBugSmall::StinkBugSmallNrvDash::sInstance) && MR::isMsgPlayerSpinAttack(msg) &&
+            getSensor("body")) {
+            setNerve(&NrvStinkBugSmall::StinkBugSmallNrvSpinReaction::sInstance);
             return true;
         }
     }
@@ -174,15 +173,15 @@ bool StinkBugSmall::receiveMsgPlayerAttack(u32 msg, HitSensor* pReceiver, HitSen
 }
 
 void StinkBugSmall::exeWait() {
-    if (MR::isFirstStep(this) && this->mScale.x != 0.0f) {
+    if (MR::isFirstStep(this) && mScale.x != 0.0f) {
         MR::tryStartBck(this, "Search", 0);
     }
     StinkBugBase::fixInitPos();
-    if (StinkBugBase::isPlayerInTerritory(400.0, 600.0, 200.0, 200.0)) {
-        LiveActor::setNerve(&NrvStinkBugSmall::StinkBugSmallNrvDashSign::sInstance);
-    } else if (this->mScale.x != 0.0f) {
+    if (StinkBugBase::isPlayerInTerritory(400.0f, 600.0f, 200.0f, 200.0f)) {
+        setNerve(&NrvStinkBugSmall::StinkBugSmallNrvDashSign::sInstance);
+    } else if (mScale.x != 0.0f) {
         if (MR::isGreaterStep(this, 1)) {
-            LiveActor::setNerve(&NrvStinkBugSmall::StinkBugSmallNrvSearch::sInstance);
+            setNerve(&NrvStinkBugSmall::StinkBugSmallNrvSearch::sInstance);
         }
     }
 }
@@ -192,9 +191,9 @@ void StinkBugSmall::exeSearch() {
     }
     StinkBugBase::fixInitPos();
     if (StinkBugBase::tryTurnSearch(1.0)) {
-        LiveActor::setNerve(&NrvStinkBugSmall::StinkBugSmallNrvWait::sInstance);
+        setNerve(&NrvStinkBugSmall::StinkBugSmallNrvWait::sInstance);
     } else if (StinkBugBase::isPlayerInTerritory(400.0, 600.0, 200.0, 200.0)) {
-        LiveActor::setNerve(&NrvStinkBugSmall::StinkBugSmallNrvDashSign::sInstance);
+        setNerve(&NrvStinkBugSmall::StinkBugSmallNrvDashSign::sInstance);
     }
 }
 void StinkBugSmall::exeDashSign() {
@@ -206,7 +205,7 @@ void StinkBugSmall::exeDashSign() {
     StinkBugBase::fixInitPos();
     StinkBugBase::tryTurnDashSign(3.0f);
     if (MR::isBckStopped(this)) {
-        LiveActor::setNerve(&NrvStinkBugSmall::StinkBugSmallNrvDashSignEnd::sInstance);
+        setNerve(&NrvStinkBugSmall::StinkBugSmallNrvDashSignEnd::sInstance);
     }
 }
 void StinkBugSmall::exeDash() {
@@ -215,20 +214,20 @@ void StinkBugSmall::exeDash() {
         MR::validateHitSensors(this);
     }
     MR::startLevelSound(this, "SE_EM_LV_STINKBUG_S_DASH", -1, -1, -1);
-    if (MR::isNear(this, this->mPosition, this->mScale.y) && !MR::isBindedWall(this)) {
+    if (MR::isNear(this, mPosition, mScale.y) && !MR::isBindedWall(this)) {
         return StinkBugBase::setDashVelocity(20.0f);
     }
-    this->mVelocity.zero();
-    LiveActor::setNerve(&NrvStinkBugSmall::StinkBugSmallNrvDashEnd::sInstance);
+    mVelocity.zero();
+    setNerve(&NrvStinkBugSmall::StinkBugSmallNrvDashEnd::sInstance);
     return MR::startSound(this, "SE_EM_STINKBUG_S_DASH_END", -1, -1);
 }
 void StinkBugSmall::exeDashEnd() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "RushStop", 0);
     }
-    this->mVelocity.zero();
+    mVelocity.zero();
     if (MR::isBckStopped(this)) {
-        LiveActor::setNerve(&NrvStinkBugSmall::StinkBugSmallNrvBack::sInstance);
+        setNerve(&NrvStinkBugSmall::StinkBugSmallNrvBack::sInstance);
     }
 }
 void StinkBugSmall::exeBack() {
@@ -237,21 +236,21 @@ void StinkBugSmall::exeBack() {
         MR::invalidateHitSensor(this, "head");
     }
     MR::startLevelSound(this, "SE_EM_LV_STINKBUG_S_BACK", -1, -1, -1);
-    if (MR::isNear(this, this->mPosition, 10.0f)) {
-        return LiveActor::setNerve(&NrvStinkBugSmall::StinkBugSmallNrvWait::sInstance);
+    if (MR::isNear(this, mPosition, 10.0f)) {
+        return setNerve(&NrvStinkBugSmall::StinkBugSmallNrvWait::sInstance);
     }
     TVec3f tvf;
     MR::normalize(&tvf);
-    MR::turnVecToPlane(&tvf, tvf, this->mGravity);
-    this->mVelocity.scale(5.0);
+    MR::turnVecToPlane(&tvf, tvf, mGravity);
+    mVelocity.scale(5.0);
 }
 void StinkBugSmall::exeAttack() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "Attack", 0);
     }
-    this->mVelocity.zero();
+    mVelocity.zero();
     if (MR::isBckStopped(this)) {
-        LiveActor::setNerve(&NrvStinkBugSmall::StinkBugSmallNrvBack::sInstance);
+        setNerve(&NrvStinkBugSmall::StinkBugSmallNrvBack::sInstance);
     }
 }
 void StinkBugSmall::exeSpinReaction() {
@@ -259,9 +258,9 @@ void StinkBugSmall::exeSpinReaction() {
         MR::startBck(this, "SpinAction", 0);
     }
     MR::startSound(this, "SE_EM_GUARD_S", -1, -1);
-    this->mVelocity.zero();
+    mVelocity.zero();
     if (MR::isBckStopped(this)) {
-        LiveActor::setNerve(&NrvStinkBugSmall::StinkBugSmallNrvBack::sInstance);
+        setNerve(&NrvStinkBugSmall::StinkBugSmallNrvBack::sInstance);
     }
 }
 void StinkBugSmall::exeShakeStart() {
@@ -269,7 +268,7 @@ void StinkBugSmall::exeShakeStart() {
         MR::startBck(this, "repel", 0);
     }
     if (MR::isStep(this, 40)) {
-        LiveActor::setNerve(&NrvStinkBugSmall::StinkBugSmallNrvShake::sInstance);
+        setNerve(&NrvStinkBugSmall::StinkBugSmallNrvShake::sInstance);
     }
 }
 void StinkBugSmall::exePanic() {
@@ -279,20 +278,20 @@ void StinkBugSmall::exePanic() {
     }
     MR::startLevelSound(this, "SE_EV_LV_STINKBUG_S_PANIC", -1, -1, 15);
     MR::startLevelSound(this, "SE_EV_LV_STINKBUG_S_PANIC", -1, -1, -1);
-    this->mVelocity.zero();
-    if (MR::isOnPlayer(LiveActor::getSensor("body"))) {
+    mVelocity.zero();
+    if (MR::isOnPlayer(getSensor("body"))) {
         if (MR::isStep(this, 90)) {
-            LiveActor::setNerve(&NrvStinkBugSmall::StinkBugSmallNrvShakeStart::sInstance);
+            setNerve(&NrvStinkBugSmall::StinkBugSmallNrvShakeStart::sInstance);
         }
     } else {
-        LiveActor::setNerve(&NrvStinkBugSmall::StinkBugSmallNrvRecover::sInstance);
+        setNerve(&NrvStinkBugSmall::StinkBugSmallNrvRecover::sInstance);
     }
 }
 void StinkBugSmall::exeRecover() {
-    this->mVelocity.zero();
+    mVelocity.zero();
     MR::startLevelSound(this, "SE_EM_LV_STINKBUG_S_PANID", -1, -1, -1);
     if (MR::isStep(this, 60)) {
-        LiveActor::setNerve(&NrvStinkBugSmall::StinkBugSmallNrvBack::sInstance);
+        setNerve(&NrvStinkBugSmall::StinkBugSmallNrvBack::sInstance);
     }
 }
 void StinkBugSmall::exeDPDSwoon() {
@@ -306,9 +305,9 @@ void StinkBugSmall::exeDPDSwoon() {
 }
 void StinkBugSmall::exeForceFall() {
     if (MR::isFirstStep(this)) {
-        this->mVelocity.zero();
+        mVelocity.zero();
         MR::calcGravity(this);
         MR::onBind(this);
     }
-    JMAVECScaleAdd(this->mGravity, this->mVelocity, this->mVelocity, 2.0f);
+    JMAVECScaleAdd(mGravity, mVelocity, mVelocity, 2.0f);
 }
