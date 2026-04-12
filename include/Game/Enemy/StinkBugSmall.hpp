@@ -14,17 +14,13 @@ public:
     StinkBugSmall(const char*);
     virtual ~StinkBugSmall();
     virtual void init(const JMapInfoIter& rIter);
+    virtual void kill();
+    virtual void control();
+    virtual void attackSensor(HitSensor* pSender, HitSensor* pReceiver);
+    virtual void calcAndSetBaseMtx();
     virtual bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
     virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
-    virtual void attackSensor(HitSensor* pSender, HitSensor* pReceiver);
-    virtual void kill();
     virtual void initAfterPlacement();
-    virtual void control();
-    virtual void calcAndSetBaseMtx();
-    bool tryDPDSwoon();
-    bool tryForceFall();
-    bool isShakeChance() const;
-    bool isNrvEnableStarPieceAttack() const;
     void exeWait();
     void exeSearch();
     void exeDashSign();
@@ -41,9 +37,13 @@ public:
     void exeForceFall();
     void exeShake();
     void exeDashSignEnd();
+    bool tryDPDSwoon();
+    bool tryForceFall();
+    bool isShakeChance() const;
+    bool isNrvEnableStarPieceAttack() const;
 
     /* 0xBC */ AnimScaleController* mScaleController;
     /* 0xC0 */ ActorStateBaseInterface* mStateBaseInterface;
-    /* 0xC4 */ WalkerStateBindStarPointer* mBindStarPointer;
-    /* 0xC8 */ bool unk_C8;
+    /* 0xC4 */ u8 _C4;
+    /* 0xC8 */ WalkerStateBindStarPointer* mBindStarPointer;
 };
