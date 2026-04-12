@@ -1,15 +1,14 @@
 #pragma once
 
 #include "Game/Enemy/AnimScaleController.hpp"
+#include "Game/Enemy/StinkBugBase.hpp"
 #include "Game/Enemy/WalkerStateBindStarPointer.hpp"
 #include "Game/LiveActor/ActorStateBase.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/Nerve.hpp"
-#include "Game/Enemy/StinkBugBase.hpp"
 #include "Game/Util/JMapInfo.hpp"
 #include "revolution/types.h"
 #include <cstddef>
-
 
 class StinkBugSmall : public StinkBugBase {
 public:
@@ -43,10 +42,10 @@ public:
     void exeForceFall();
     void exeShake();
     void exeDashSignEnd();
-  /* Offset 188 */  AnimScaleController *mScaleController;
-  /* Offset 192 */  ActorStateBaseInterface *mStateBaseInterface;
-  /* Offset 196 */   bool unk196;
-  /* Offset 200 */  WalkerStateBindStarPointer *mBindStarPointer;
+    /* Offset 188 */ AnimScaleController* mScaleController;
+    /* Offset 192 */ ActorStateBaseInterface* mStateBaseInterface;
+    /* Offset 196 */ bool unk196;
+    /* Offset 200 */ WalkerStateBindStarPointer* mBindStarPointer;
 };
 
 namespace NrvStinkBugSmall {
@@ -66,4 +65,4 @@ namespace NrvStinkBugSmall {
     NEW_NERVE(StinkBugSmallNrvRecover, StinkBugSmall, Recover);
     NEW_NERVE(StinkBugSmallNrvDPDSwoon, StinkBugSmall, DPDSwoon);
     NEW_NERVE(StinkBugSmallNrvForceFall, StinkBugSmall, ForceFall);
-}
+}  // namespace NrvStinkBugSmall
