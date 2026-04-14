@@ -43,8 +43,7 @@ namespace JGeometry {
             y = _y;
         }
 
-        // inline
-        inline TVec2(const TVec2< T >& rSrc) {
+        TVec2(const TVec2< T >& rSrc) {
             x = rSrc.x;
             y = rSrc.y;
         }
@@ -52,6 +51,12 @@ namespace JGeometry {
         void add(const TVec2< T >& other) {
             x += other.x;
             y += other.y;
+        }
+
+        inline TVec2& addInline(const TVec2< T >& other) {
+            TVec2 ret(*this);
+            ret.add(other);
+            return ret;
         }
 
         /* General operations */
@@ -110,6 +115,12 @@ namespace JGeometry {
         void scale(f32 scalar) {
             x *= scalar;
             y *= scalar;
+        }
+
+        inline TVec2& scaleInline(f32 scalar) {
+            TVec2 ret(*this);
+            ret.scale(scalar);
+            return ret;
         }
 
         /* Operators */
@@ -688,6 +699,12 @@ namespace JGeometry {
             x = rSrc.x;
             y = rSrc.y;
             z = rSrc.z;
+            float magnitude = PSVECMag(this);
+            PSVECNormalize(this, this);
+            return magnitude;
+        }
+
+        inline f32 normalizePS() {
             float magnitude = PSVECMag(this);
             PSVECNormalize(this, this);
             return magnitude;
