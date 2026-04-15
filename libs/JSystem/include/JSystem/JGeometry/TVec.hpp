@@ -369,6 +369,12 @@ namespace JGeometry {
             return ret;
         }
 
+        TVec3 scaleInline2(f32 scalar) const {
+            TVec3 ret(*this);
+            ret.scale(scalar);
+            return ret;
+        }
+
         // needed in StarPieceFollowGroup???
         inline TVec3 multInLine(f32 val) const {
             TVec3 ret(*this);
@@ -759,6 +765,11 @@ namespace JGeometry {
         inline TVec3 cross(const TVec3& b) const {
             TVec3 ret;
             PSVECCrossProduct(this, &b, &ret);
+            return ret;
+        }
+
+        inline TVec3 copy() const {
+            TVec3 ret(*this);
             return ret;
         }
     };

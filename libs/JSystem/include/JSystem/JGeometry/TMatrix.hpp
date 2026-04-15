@@ -561,6 +561,14 @@ namespace JGeometry {
             this->mMtx[2][2] = (negc * (z * z) + c);
         }
 
+        inline void setRotateInlineZeroTrans(const TVec3f& vec1, f32 r) {
+            this->mMtx[0][3] = 0.0f;
+            this->mMtx[1][3] = 0.0f;
+            this->mMtx[2][3] = 0.0f;
+
+            setRotateInline(vec1, r);
+        }
+
         inline void mult33Inline(const TVec3f& rSrc, TVec3f& rDst) const {
             f32 a32, a22, a12, a11, a21, vx, a31, vy, a23, a33, a13;
             a32 = this->mMtx[2][1];

@@ -2650,7 +2650,7 @@ Game/Enemy/HammerHeadPackun.cpp:
 Game/Enemy/Hanachan.cpp:
 	.text       start:0x800F17B4 end:0x800F58F4
 	.ctors      start:0x8052EA90 end:0x8052EA94
-	.data       start:0x8057C978 end:0x8057D100
+	.data       start:0x8057C978 end:0x8057CEE0
 	.sdata      start:0x806B1938 end:0x806B1940
 	.sbss       start:0x806B3F20 end:0x806B3FA0
 	.sdata2     start:0x806BA5A0 end:0x806BA648
@@ -2659,7 +2659,7 @@ Game/Enemy/HomingKiller.cpp:
 	.text       start:0x800F58F4 end:0x800F84E0
 	.ctors      start:0x8052EA94 end:0x8052EA98
 	.rodata     start:0x80531F78 end:0x80531FE0
-	.data       start:0x8057D100 end:0x8057D290
+	.data       start:0x8057CEE0 end:0x8057D290
 	.sdata      start:0x806B1940 end:0x806B1950
 	.sbss       start:0x806B3FA0 end:0x806B3FC8
 	.sdata2     start:0x806BA648 end:0x806BA6F0

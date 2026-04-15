@@ -43,7 +43,7 @@ void TripodBossKillerGenerater::init(const JMapInfoIter& rIter) {
     MR::getJMapInfoArg2WithInit(rIter, &arg);
 
     if (arg == 0) {
-        mKiller->_15C = 1;
+        mKiller->mDisableChase = 1;
     }
 
     if (mHasCollision) {
@@ -250,8 +250,8 @@ void TripodBossKillerGenerater::exeShootSetting() {
     TVec3f trans;
     _8C.getTrans(trans);
     HomingKiller* killer = mKiller;
-    killer->_B8.set< f32 >(trans);
-    killer->_C4.set< f32 >(front);
+    killer->mBasePos.set< f32 >(trans);
+    killer->mBaseFront.set< f32 >(front);
     if (!tryBreak() && !tryAbort() && !tryShoot()) {
         return;
     }
@@ -333,6 +333,8 @@ void TripodBossKillerGenerater::exeHide() {
     updateTripodMatrix();
 }
 
-void TripodBossKillerGenerater::exeNonActive() {}
+void TripodBossKillerGenerater::exeNonActive() {
+}
 
-TripodBossKillerGenerater::~TripodBossKillerGenerater() {}
+TripodBossKillerGenerater::~TripodBossKillerGenerater() {
+}
