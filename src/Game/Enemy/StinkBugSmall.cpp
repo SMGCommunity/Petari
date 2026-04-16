@@ -1,31 +1,4 @@
 #include "Game/Enemy/StinkBugSmall.hpp"
-#include "Game/Enemy/AnimScaleController.hpp"
-#include "Game/Enemy/StinkBugBase.hpp"
-#include "Game/Enemy/WalkerStateBindStarPointer.hpp"
-#include "Game/LiveActor/HitSensor.hpp"
-#include "Game/LiveActor/LiveActor.hpp"
-#include "Game/Util/ActorMovementUtil.hpp"
-#include "Game/Util/ActorSensorUtil.hpp"
-#include "Game/Util/ActorStateUtil.hpp"
-#include "Game/Util/ActorSwitchUtil.hpp"
-#include "Game/Util/EffectUtil.hpp"
-#include "Game/Util/JMapInfo.hpp"
-#include "Game/Util/JMapUtil.hpp"
-#include "Game/Util/LiveActorUtil.hpp"
-#include "Game/Util/MapUtil.hpp"
-#include "Game/Util/MathUtil.hpp"
-#include "Game/Util/MtxUtil.hpp"
-#include "Game/Util/ObjUtil.hpp"
-#include "Game/Util/PlayerUtil.hpp"
-#include "Game/Util/SoundUtil.hpp"
-#include "Game/Util/StarPointerUtil.hpp"
-#include "JSystem/JGeometry/TMatrix.hpp"
-#include "revolution/mtx.h"
-#include <JSystem/JGeometry/TVec.hpp>
-#include <JSystem/JMath/JMath.hpp>
-#include <revolution/types.h>
-
-// all the return on void functions are used to exit the function, I have not found a way to do it otherwise.
 
 namespace NrvStinkBugSmall {
     NEW_NERVE(StinkBugSmallNrvWait, StinkBugSmall, Wait);
@@ -284,59 +257,64 @@ void StinkBugSmall::initAfterPlacement() {
 }
 
 void StinkBugSmall::control() {
-    TVec3f v10(0.0f, 0.0f, 0.0f);
-    if (MR::isInDeath(this, v10)) {
+    if (MR::isInDeath(this, TVec3f(0.0f, 0.0f, 0.0f))) {
         kill();
-    } else {
-        if (!tryDPDSwoon() && !tryForceFall() && !isNerve(&NrvStinkBugSmall::StinkBugSmallNrvForceFall::sInstance))
-            if (isNerve(&NrvStinkBugSmall::StinkBugSmallNrvDash::sInstance) || isNerve(&NrvStinkBugSmall::StinkBugSmallNrvBack::sInstance)) {
-                MR::onBind(this);
-                if (MR::isBindedGround(this)) {
-                    TVec3f v9 = *MR::getGroundNormal(this);
-                    v9 = -v9;
-                    mGravity.set(v9);
-                } else {
-                    mGravity.set(mGravity);
-                }
-                f32 v6 = mGravity.dot(mVelocity);
-                JMAVECScaleAdd(&mGravity, &mVelocity, &mVelocity, -v6);
-                JMAVECScaleAdd(&mGravity, &mVelocity, &mVelocity, 2.0f);
-            } else {
-                MR::offBind(this);
-            }
+        return;
     }
+    if (tryDPDSwoon() || tryForceFall()) {
+        return;
+    }
+    if (isNerve(&NrvStinkBugSmall::StinkBugSmallNrvForceFall::sInstance)) {
+        return;
+    }
+    if (!isNerve(&NrvStinkBugSmall::StinkBugSmallNrvDash::sInstance) || !isNerve(&NrvStinkBugSmall::StinkBugSmallNrvBack::sInstance)) {
+        MR::offBind(this);
+        return;
+    }
+    MR::onBind(this);
+    if (MR::isBindedGround(this)) {
+        TVec3f v9;
+        MR::getGroundNormal(this);
+        v9.negate();
+        v9.z = -v9.y;
+        mGravity.set(v9);
+    } else {
+        mGravity.set(mGravity);
+    }
+    JMAVECScaleAdd(&mGravity, &mVelocity, &mVelocity, -mGravity.dot(mVelocity));
+    JMAVECScaleAdd(&mGravity, &mVelocity, &mVelocity, 2.0f);
+    return;
 }
 
 void StinkBugSmall::calcAndSetBaseMtx() {
     TPos3f v9;
     MR::calcMtxFromGravityAndZAxis(&v9, this, mGravity, _8C);
     MtxPtr v2 = getBaseMtx();
-    MR::blendMtx(v2, v9, 0.30000001f, v9);
+    MR::blendMtx(v2, v9, 0.3f, v9);
     MR::setBaseTRMtx(this, v9);
     TVec3f scale;
-    JMathInlineVEC::PSVECMultiply(scale, mScaleController->_C, &scale);
+    JMathInlineVEC::PSVECMultiply(scale, mScaleController->_C, scale);
 
     MR::setBaseScale(this, scale);
 }
 
 void StinkBugSmall::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
-    if (!isNerve(&NrvStinkBugSmall::StinkBugSmallNrvHipDropDown::sInstance)) {
-        if (_C4 && getSensor("body")) {
+    if (isNerve(&NrvStinkBugSmall::StinkBugSmallNrvHipDropDown::sInstance)) {
+        return;
+    }
+    if (_C4 && getSensor("body")) {
+        return;
+    }
+    if (!isNerve(&NrvStinkBugSmall::StinkBugSmallNrvAttack::sInstance) && isNerve(&NrvStinkBugSmall::StinkBugSmallNrvDPDSwoon::sInstance) &&
+        MR::isSensorPlayer(pSender) && MR::isSensorEnemyAttack(pReceiver)) {
+        if (MR::isPlayerDamaging()) {
+            MR::sendMsgPush(pReceiver, pSender);
             return;
         }
-        if (!isNerve(&NrvStinkBugSmall::StinkBugSmallNrvAttack::sInstance) && isNerve(&NrvStinkBugSmall::StinkBugSmallNrvDPDSwoon::sInstance) &&
-            MR::isSensorPlayer(pSender) && MR::isSensorEnemyAttack(pReceiver)) {
-            if (MR::isPlayerDamaging()) {
-                MR::sendMsgPush(pReceiver, pSender);
-                return;
-            }
-            if (isHitHorn(pSender, pReceiver, mScale.x * 20.0f)) {
-                if (MR::sendMsgEnemyAttackStrong(pReceiver, pSender)) {
-                    MR::emitEffectHitBetweenSensors(this, pSender, pReceiver, 0.0f, nullptr);
-                    if (isNerve(&NrvStinkBugSmall::StinkBugSmallNrvDash::sInstance)) {
-                        setNerve(&NrvStinkBugSmall::StinkBugSmallNrvAttack::sInstance);
-                    }
-                }
+        if (isHitHorn(pSender, pReceiver, mScale.x * 20.0f) && MR::sendMsgEnemyAttackStrong(pReceiver, pSender)) {
+            MR::emitEffectHitBetweenSensors(this, pSender, pReceiver, 0.0f, nullptr);
+            if (!isNerve(&NrvStinkBugSmall::StinkBugSmallNrvDash::sInstance)) {
+                setNerve(&NrvStinkBugSmall::StinkBugSmallNrvAttack::sInstance);
             }
         }
     }
