@@ -1338,7 +1338,7 @@ config.libs = [
             Object(Matching, "Game/Map/PlanetMapWithoutHighModel.cpp"),
             Object(NonMatching, "Game/Map/QuakeEffectGenerator.cpp"),
             Object(NonMatching, "Game/Map/RaceManager.cpp"),
-            Object(Matching, "Game/Map/RaceRail.cpp"),
+            Object(NonMatching, "Game/Map/RaceRail.cpp"),
             Object(Matching, "Game/Map/RailGraph.cpp"),
             Object(Matching, "Game/Map/RailGraphEdge.cpp"),
             Object(Matching, "Game/Map/RailGraphIter.cpp"),
