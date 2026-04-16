@@ -43,8 +43,7 @@ namespace JGeometry {
             y = _y;
         }
 
-        // inline
-        inline TVec2(const TVec2< T >& rSrc) {
+        TVec2(const TVec2< T >& rSrc) {
             x = rSrc.x;
             y = rSrc.y;
         }
@@ -52,6 +51,12 @@ namespace JGeometry {
         void add(const TVec2< T >& other) {
             x += other.x;
             y += other.y;
+        }
+
+        inline TVec2& addInline(const TVec2< T >& other) {
+            TVec2 ret(*this);
+            ret.add(other);
+            return ret;
         }
 
         /* General operations */
@@ -110,6 +115,12 @@ namespace JGeometry {
         void scale(f32 scalar) {
             x *= scalar;
             y *= scalar;
+        }
+
+        inline TVec2& scaleInline(f32 scalar) {
+            TVec2 ret(*this);
+            ret.scale(scalar);
+            return ret;
         }
 
         /* Operators */
@@ -353,6 +364,12 @@ namespace JGeometry {
 
         // appears to be needed in RingBeam to match stack in some places
         TVec3 scaleInline(f32 scalar) const {
+            TVec3 ret(*this);
+            ret.scale(scalar);
+            return ret;
+        }
+
+        TVec3 scaleInline2(f32 scalar) const {
             TVec3 ret(*this);
             ret.scale(scalar);
             return ret;
@@ -693,6 +710,12 @@ namespace JGeometry {
             return magnitude;
         }
 
+        inline f32 normalizePS() {
+            float magnitude = PSVECMag(this);
+            PSVECNormalize(this, this);
+            return magnitude;
+        }
+
         f32 setLength(f32 newlength) {
             f32 oldlength = squared();
             if (oldlength <= 0.0000038146973f) {
@@ -742,6 +765,11 @@ namespace JGeometry {
         inline TVec3 cross(const TVec3& b) const {
             TVec3 ret;
             PSVECCrossProduct(this, &b, &ret);
+            return ret;
+        }
+
+        inline TVec3 copy() const {
+            TVec3 ret(*this);
             return ret;
         }
     };

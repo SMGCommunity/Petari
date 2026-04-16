@@ -35,7 +35,9 @@ public:
 class AbstractRacer {
 public:
     /// @brief Creates a new `AbstractRacer`.
-    AbstractRacer();
+    AbstractRacer() {
+        initRacer();
+    }
 
     virtual void initRacer();
     virtual void prepRacer(const RaceManager* pRaceManager) = 0;

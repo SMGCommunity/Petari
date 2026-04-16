@@ -45,12 +45,16 @@ namespace MR {
     bool tryStartMoveTalkAction(NPCActor*);
 
     void turnPlayerToActor(const LiveActor*, f32);
+    void decidePose(NPCActor*, const TVec3f&, const TVec3f&, const TVec3f&, f32, f32, f32);
 
     void setNPCActorPos(NPCActor*, const TVec3f&);
+    void setNPCActorPos(NPCActor*, const char*);
     void setNPCActorPose(NPCActor*, const TVec3f&, const TVec3f&, const TVec3f&);
     void followRailPose(NPCActor*, f32, f32);
 
     void setDefaultPose(NPCActor*);
+
+    bool isActionContinuous(const LiveActor*);
 };  // namespace MR
 
 class DemoStarter : public NerveExecutor {

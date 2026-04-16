@@ -19,6 +19,11 @@ public:
     virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
     virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
 
+    void appearDirection(const TVec3f&);
+    void setEventListener(KameckBeamEventListener*);
+    void exeWait();
+    void exeSweep();
+
     TQuat4f _8C;
     KameckBeamEventListener* mEventListener;  // 0x9C
 };

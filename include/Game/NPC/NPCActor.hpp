@@ -2,6 +2,7 @@
 
 #include "Game/Enemy/AnimScaleController.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
+#include "Game/NPC/TalkMessageCtrl.hpp"
 #include "Game/NameObj/NameObjArchiveListCollector.hpp"
 #include "Game/Util/JointController.hpp"
 
@@ -139,6 +140,10 @@ public:
         _130 = "Spin";
         _134 = "Trampled";
         _138 = "Pointing";
+    }
+
+    TalkMessageCtrl* getMsgCtrl() const {
+        return mMsgCtrl;
     }
 
     LodCtrl* mLodCtrl;          // 0x8C

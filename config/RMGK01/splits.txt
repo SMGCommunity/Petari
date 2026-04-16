@@ -2650,7 +2650,7 @@ Game/Enemy/HammerHeadPackun.cpp:
 Game/Enemy/Hanachan.cpp:
 	.text       start:0x800F17B4 end:0x800F58F4
 	.ctors      start:0x8052EA90 end:0x8052EA94
-	.data       start:0x8057C978 end:0x8057D100
+	.data       start:0x8057C978 end:0x8057CEE0
 	.sdata      start:0x806B1938 end:0x806B1940
 	.sbss       start:0x806B3F20 end:0x806B3FA0
 	.sdata2     start:0x806BA5A0 end:0x806BA648
@@ -2659,7 +2659,7 @@ Game/Enemy/HomingKiller.cpp:
 	.text       start:0x800F58F4 end:0x800F84E0
 	.ctors      start:0x8052EA94 end:0x8052EA98
 	.rodata     start:0x80531F78 end:0x80531FE0
-	.data       start:0x8057D100 end:0x8057D290
+	.data       start:0x8057CEE0 end:0x8057D290
 	.sdata      start:0x806B1940 end:0x806B1950
 	.sbss       start:0x806B3FA0 end:0x806B3FC8
 	.sdata2     start:0x806BA648 end:0x806BA6F0
@@ -5837,14 +5837,14 @@ Game/MapObj/TimeAppearObj.cpp:
 Game/MapObj/TimerMoveWall.cpp:
 	.text       start:0x8024A53C end:0x8024A95C
 	.ctors      start:0x8052EF04 end:0x8052EF08
-	.data       start:0x805A4BD8 end:0x805A4DC0
+	.data       start:0x805A4BD8 end:0x805A4D18
 	.sbss       start:0x806B59D8 end:0x806B59E8
 	.sdata2     start:0x806BE5E0 end:0x806BE5E8
 
 Game/MapObj/TrampleStar.cpp:
 	.text       start:0x8024A95C end:0x8024CB14
 	.ctors      start:0x8052EF08 end:0x8052EF0C
-	.data       start:0x805A4DC0 end:0x805A4EE0
+	.data       start:0x805A4D18 end:0x805A4EE0
 	.sdata      start:0x806B2080 end:0x806B20A0
 	.sbss       start:0x806B59E8 end:0x806B59F8
 	.sdata2     start:0x806BE5E8 end:0x806BE638
