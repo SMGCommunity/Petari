@@ -66,13 +66,13 @@ void StinkBugSmall::init(const JMapInfoIter& rIter) {
 }
 
 void StinkBugSmall::exeWait() {
-    if (MR::isFirstStep(this) && mScale.x != 0.0f) {
+    if (MR::isFirstStep(this) && _B0 == 0.0f) {
         MR::tryStartBck(this, "Search", nullptr);
     }
     fixInitPos();
     if (isPlayerInTerritory(400.0f, 600.0f, 200.0f, 200.0f)) {
         setNerve(&NrvStinkBugSmall::StinkBugSmallNrvDashSign::sInstance);
-    } else if (mScale.x != 0.0f) {
+    } else if (_B0 != 0.0f) {
         if (MR::isGreaterStep(this, 1)) {
             setNerve(&NrvStinkBugSmall::StinkBugSmallNrvSearch::sInstance);
         }
@@ -108,7 +108,7 @@ void StinkBugSmall::exeDash() {
         MR::validateHitSensors(this);
     }
     MR::startLevelSound(this, "SE_EM_LV_STINKBUG_S_DASH", -1, -1, -1);
-    if (MR::isNear(this, mPosition, mScale.y)) {
+    if (MR::isNear(this, _98, mRadius)) {
         if (!MR::isBindedWall(this)) {
             return;
         }
@@ -135,12 +135,12 @@ void StinkBugSmall::exeBack() {
     MR::startLevelSound(this, "SE_EM_LV_STINKBUG_S_BACK", -1, -1, -1);
     if (MR::isNear(this, _98, 10.0f)) {
         setNerve(&NrvStinkBugSmall::StinkBugSmallNrvWait::sInstance);
-    } else {
-        TVec3f tvf = _98 - mPosition;
-        MR::normalize(&tvf);
-        MR::turnVecToPlane(&tvf, tvf, mGravity);
-        mVelocity.scale(5.0f, tvf);
+        return;
     }
+    TVec3f tvf(_98 - mPosition);
+    MR::normalize(&tvf);
+    MR::turnVecToPlane(&tvf, tvf, mGravity);
+    mVelocity.scale(5.0f, tvf);
 }
 
 void StinkBugSmall::exeHipDropDown() {
@@ -196,13 +196,14 @@ void StinkBugSmall::exePanic() {
     MR::startLevelSound(this, "SE_EV_LV_STINKBUG_S_PANIC", -1, -1, 15);
     MR::startLevelSound(this, "SE_EM_LV_STINKBUG_S_PANIC", -1, -1, -1);
     mVelocity.zero();
-    if (MR::isOnPlayer(getSensor("body"))) {
-        if (MR::isStep(this, 90)) {
-            setNerve(&NrvStinkBugSmall::StinkBugSmallNrvShakeStart::sInstance);
-        }
-    } else {
+    if (!MR::isOnPlayer(getSensor("body"))) {
         setNerve(&NrvStinkBugSmall::StinkBugSmallNrvRecover::sInstance);
+        return;
     }
+    if (!MR::isStep(this, 90)) {
+        return;
+    }
+    setNerve(&NrvStinkBugSmall::StinkBugSmallNrvShakeStart::sInstance);
 }
 void StinkBugSmall::exeRecover() {
     mVelocity.zero();
@@ -261,19 +262,20 @@ void StinkBugSmall::control() {
         kill();
         return;
     }
-    if (tryDPDSwoon() || tryForceFall()) {
+    mScaleController->updateNerve();
+    if (tryDPDSwoon() || !tryForceFall()) {
         return;
     }
     if (isNerve(&NrvStinkBugSmall::StinkBugSmallNrvForceFall::sInstance)) {
         return;
     }
-    if (!isNerve(&NrvStinkBugSmall::StinkBugSmallNrvDash::sInstance) || !isNerve(&NrvStinkBugSmall::StinkBugSmallNrvBack::sInstance)) {
+    if (isNerve(&NrvStinkBugSmall::StinkBugSmallNrvDash::sInstance) || isNerve(&NrvStinkBugSmall::StinkBugSmallNrvBack::sInstance)) {
         MR::offBind(this);
         return;
     }
+    TVec3f v9;
     MR::onBind(this);
     if (MR::isBindedGround(this)) {
-        TVec3f v9;
         MR::getGroundNormal(this);
         v9.negate();
         v9.z = -v9.y;
@@ -283,7 +285,6 @@ void StinkBugSmall::control() {
     }
     JMAVECScaleAdd(&mGravity, &mVelocity, &mVelocity, -mGravity.dot(mVelocity));
     JMAVECScaleAdd(&mGravity, &mVelocity, &mVelocity, 2.0f);
-    return;
 }
 
 void StinkBugSmall::calcAndSetBaseMtx() {
@@ -302,10 +303,11 @@ void StinkBugSmall::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (isNerve(&NrvStinkBugSmall::StinkBugSmallNrvHipDropDown::sInstance)) {
         return;
     }
-    if (_C4 && getSensor("body")) {
+    if (_C4 && !getSensor("body")) {
+        MR::sendMsgPush(pReceiver, pSender);
         return;
     }
-    if (!isNerve(&NrvStinkBugSmall::StinkBugSmallNrvAttack::sInstance) && isNerve(&NrvStinkBugSmall::StinkBugSmallNrvDPDSwoon::sInstance) &&
+    if (!isNerve(&NrvStinkBugSmall::StinkBugSmallNrvAttack::sInstance) && !isNerve(&NrvStinkBugSmall::StinkBugSmallNrvDPDSwoon::sInstance) &&
         MR::isSensorPlayer(pSender) && MR::isSensorEnemyAttack(pReceiver)) {
         if (MR::isPlayerDamaging()) {
             MR::sendMsgPush(pReceiver, pSender);
@@ -327,22 +329,30 @@ bool StinkBugSmall::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSenso
     if (getSensor("body")) {
         return false;
     }
-    if (MR::isMsgInvincibleAttack(msg) || MR::isMsgPlayerHipDropFloor(msg) || MR::isMsgPlayerHipDrop(msg)) {
+    if (MR::isMsgInvincibleAttack(msg)) {
         setNerve(&NrvStinkBugSmall::StinkBugSmallNrvHipDropDown::sInstance);
         return true;
     }
-    if (!isNerve(&NrvStinkBugSmall::StinkBugSmallNrvDPDSwoon::sInstance) && !MR::isMsgLockOnStarPieceShoot(msg)) {
-        if (MR::isMsgStarPieceReflect(msg) && getSensor("body")) {
-            if (StinkBugSmall::isNrvEnableStarPieceAttack()) {
-                setNerve(&NrvStinkBugSmall::StinkBugSmallNrvSpinReaction::sInstance);
-                return true;
-            }
-        }
-        if (!isNerve(&NrvStinkBugSmall::StinkBugSmallNrvSpinReaction::sInstance) && !isNerve(&NrvStinkBugSmall::StinkBugSmallNrvDash::sInstance) &&
-            MR::isMsgPlayerSpinAttack(msg) && getSensor("body")) {
+    if (MR::isMsgPlayerHipDropFloor(msg) || MR::isMsgPlayerHipDrop(msg)) {
+        setNerve(&NrvStinkBugSmall::StinkBugSmallNrvHipDropDown::sInstance);
+        return true;
+    }
+    if (isNerve(&NrvStinkBugSmall::StinkBugSmallNrvDPDSwoon::sInstance)) {
+        return false;
+    }
+    if (MR::isMsgLockOnStarPieceShoot(msg)) {
+        return true;
+    }
+    if (MR::isMsgStarPieceReflect(msg) && !getSensor("body")) {
+        if (isNrvEnableStarPieceAttack()) {
             setNerve(&NrvStinkBugSmall::StinkBugSmallNrvSpinReaction::sInstance);
             return true;
         }
+    }
+    if (!isNerve(&NrvStinkBugSmall::StinkBugSmallNrvSpinReaction::sInstance) && !isNerve(&NrvStinkBugSmall::StinkBugSmallNrvDash::sInstance) &&
+        MR::isMsgPlayerSpinAttack(msg) && !getSensor("body")) {
+        setNerve(&NrvStinkBugSmall::StinkBugSmallNrvSpinReaction::sInstance);
+        return true;
     }
     return false;
 }
