@@ -22,9 +22,9 @@ public:
     virtual void resetRacer(const RaceManager*);
     virtual void exitRacer();
 
-    u32 _B0;
-    u32 _B4;
-    ActorCameraInfo* mCameraInfo;  // 0xB8
+    /* 0xB0 */ u32 _B0;
+    /* 0xB4 */ u32 _B4;
+    /* 0xB8 */ ActorCameraInfo* mCameraInfo;
 };
 
 class RaceRail : public NameObj {
@@ -34,5 +34,5 @@ public:
     virtual ~RaceRail();
     virtual void init(const JMapInfoIter&);
 
-    PlayerRacer* mPlayerRacer;  // 0xC
+    /* 0x0C */ PlayerRacer* mPlayerRacer;
 };

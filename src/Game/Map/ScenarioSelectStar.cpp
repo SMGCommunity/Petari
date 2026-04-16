@@ -197,7 +197,7 @@ void ScenarioSelectStar::exeSelectedMove() {
     }
 
     if (MultiScene::isStep(this, 60)) {
-        MR::startSystemSE("SE_DM_SENARIO_SE_ACCEL", -1, -1);
+        MR::startSystemSE("SE_DM_SENARIO_SEL_ACCEL", -1, -1);
     }
 
     if (MultiScene::isLessStep(this, 60)) {
@@ -233,4 +233,5 @@ void ScenarioSelectStar::exeNotSelected() {
     }
 }
 
-ScenarioSelectStar::~ScenarioSelectStar() {}
+ScenarioSelectStar::~ScenarioSelectStar() {
+}

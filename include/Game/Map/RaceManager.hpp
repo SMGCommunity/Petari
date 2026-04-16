@@ -48,7 +48,7 @@ public:
     virtual void resetRacer(const RaceManager* pRaceManager) = 0;
     virtual void exitRacer() = 0;
 
-    /* 0x04 */ f32 _4;
+    /* 0x04 */ f32 mRailCoord;
     /* 0x08 */ f32 _8;
     /* 0x0C */ TVec3f mCurrPosition;
     /* 0x18 */ TVec3f mPrevPosition;
