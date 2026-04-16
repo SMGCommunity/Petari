@@ -3,10 +3,6 @@
 #include "Game/Enemy/AnimScaleController.hpp"
 #include "Game/Enemy/StinkBugBase.hpp"
 #include "Game/Enemy/WalkerStateBindStarPointer.hpp"
-#include "Game/LiveActor/HitSensor.hpp"
-#include "Game/Util/JMapInfo.hpp"
-#include "revolution/types.h"
-#include <cstddef>
 
 class StinkBugSmall : public StinkBugBase {
 public:
