@@ -3,11 +3,6 @@
 #include "Game/Enemy/AnimScaleController.hpp"
 #include "Game/Enemy/StinkBugBase.hpp"
 #include "Game/Enemy/WalkerStateBindStarPointer.hpp"
-#include "Game/LiveActor/ActorStateBase.hpp"
-#include "Game/LiveActor/HitSensor.hpp"
-#include "Game/Util/JMapInfo.hpp"
-#include "revolution/types.h"
-#include <cstddef>
 
 class StinkBugSmall : public StinkBugBase {
 public:
@@ -34,6 +29,7 @@ public:
     void exePanic();
     void exeRecover();
     void exeDPDSwoon();
+    void endDPDSwoon();
     void exeForceFall();
     void exeShake();
     void exeDashSignEnd();
@@ -43,7 +39,8 @@ public:
     bool isNrvEnableStarPieceAttack() const;
 
     /* 0xBC */ AnimScaleController* mScaleController;
-    /* 0xC0 */ ActorStateBaseInterface* mStateBaseInterface;
-    /* 0xC4 */ u8 _C4;
-    /* 0xC8 */ WalkerStateBindStarPointer* mBindStarPointer;
+    /* 0xC0 */ WalkerStateBindStarPointer* mBindStarPointer;
+
+private:
+    /* 0xC4 */ bool _C4;
 };
