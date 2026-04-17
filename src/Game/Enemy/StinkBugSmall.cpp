@@ -15,7 +15,7 @@ namespace NrvStinkBugSmall {
     NEW_NERVE(StinkBugSmallNrvShake, StinkBugSmall, Shake);
     NEW_NERVE(StinkBugSmallNrvPanic, StinkBugSmall, Panic);
     NEW_NERVE(StinkBugSmallNrvRecover, StinkBugSmall, Recover);
-    NEW_NERVE(StinkBugSmallNrvDPDSwoon, StinkBugSmall, DPDSwoon);
+    NEW_NERVE_ONEND(StinkBugSmallNrvDPDSwoon, StinkBugSmall, DPDSwoon, DPDSwoon);
     NEW_NERVE(StinkBugSmallNrvForceFall, StinkBugSmall, ForceFall);
 }  // namespace NrvStinkBugSmall
 
@@ -100,6 +100,11 @@ void StinkBugSmall::exeDashSign() {
     tryTurnDashSign(3.0f);
     if (MR::isBckStopped(this)) {
         setNerve(&NrvStinkBugSmall::StinkBugSmallNrvDashSignEnd::sInstance);
+    }
+}
+void StinkBugSmall::exeDashSignEnd() {
+    if (MR::isStep(this, 10)) {
+        setNerve(&NrvStinkBugSmall::StinkBugSmallNrvDash::sInstance);
     }
 }
 void StinkBugSmall::exeDash() {
@@ -188,6 +193,11 @@ void StinkBugSmall::exeShakeStart() {
         setNerve(&NrvStinkBugSmall::StinkBugSmallNrvShake::sInstance);
     }
 }
+void StinkBugSmall::exeShake() {
+    if (MR::isBckStopped(this)) {
+        setNerve(&NrvStinkBugSmall::StinkBugSmallNrvBack::sInstance);
+    }
+}
 void StinkBugSmall::exePanic() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "Loss", nullptr);
@@ -205,6 +215,7 @@ void StinkBugSmall::exePanic() {
     }
     setNerve(&NrvStinkBugSmall::StinkBugSmallNrvShakeStart::sInstance);
 }
+
 void StinkBugSmall::exeRecover() {
     mVelocity.zero();
     MR::startLevelSound(this, "SE_EM_LV_STINKBUG_S_PANID", -1, -1, -1);
@@ -220,6 +231,9 @@ void StinkBugSmall::exeDPDSwoon() {
         MR::deleteEffect(this, "RushSmoke");
     }
     MR::updateActorStateAndNextNerve(this, mBindStarPointer, &NrvStinkBugSmall::StinkBugSmallNrvBack::sInstance);
+}
+void StinkBugSmall::endDPDSwoon() {
+    mBindStarPointer->kill();
 }
 void StinkBugSmall::exeForceFall() {
     if (MR::isFirstStep(this)) {
@@ -294,7 +308,7 @@ void StinkBugSmall::calcAndSetBaseMtx() {
     MR::blendMtx(v2, v9, 0.3f, v9);
     MR::setBaseTRMtx(this, v9);
     TVec3f scale;
-    JMathInlineVEC::PSVECMultiply(scale, mScaleController->_C, scale);
+    JMathInlineVEC::PSVECMultiply(mScaleController->_C, mScale, scale);
 
     MR::setBaseScale(this, scale);
 }
