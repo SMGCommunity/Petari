@@ -29,6 +29,7 @@ public:
     void exePanic();
     void exeRecover();
     void exeDPDSwoon();
+    void endDPDSwoon();
     void exeForceFall();
     void exeShake();
     void exeDashSignEnd();
