@@ -3725,13 +3725,13 @@ Game/Map/GroundChecker.cpp:
 
 Game/Map/GroupSwitchWatcher.cpp:
 	.text       start:0x80181E54 end:0x80182094
-	.data       start:0x8058A2A0 end:0x8058A348
+	.data       start:0x8058A2A0 end:0x8058A318
 
 Game/Map/Halo.cpp:
 	.text       start:0x80182094 end:0x80182920
 	.ctors      start:0x8052EBC4 end:0x8052EBC8
 	.rodata     start:0x80532AF0 end:0x80532B28
-	.data       start:0x8058A348 end:0x8058A4D8
+	.data       start:0x8058A318 end:0x8058A4D8
 	.sbss       start:0x806B4B90 end:0x806B4BA0
 	.sdata2     start:0x806BC030 end:0x806BC040
 
