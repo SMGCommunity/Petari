@@ -1,8 +1,25 @@
 #include "Game/Map/ScenarioSelectStar.hpp"
 #include "Game/MapObj/PowerStar.hpp"
-#include "Game/Util.hpp"
-#include "math_types.hpp"
-// #include <JSystem/JMath/JMATrigonometric.hpp>
+
+namespace {
+    static const s32 cAppearWaitFrame = 60;
+    static const s32 cAppearDelayFrame = 15;
+    static const s32 cHideDelayFrame = 10;
+    static const f32 cNotPointingRotateSpeedZ = 1.5f;
+    static const f32 cPointingRotateSpeedZ = 3.0f;
+    static const f32 cPointingScale = 1.5f;
+    static const f32 cNotPointingScale = 0.9f;
+    static const s32 cMoveInterval = 180;
+    static const f32 cMoveDistance = 15.0f;
+    static const s32 cAppearFrame = 60;
+    static const s32 cStartPointingFrame = 20;
+    static const s32 cEndPointingFrame = 10;
+    static const s32 cSelectedWaitFrame = 40;
+    static const s32 cSelectedMoveFrame = 60;
+    static const f32 cSelectedRotateSpeedZ = 20.0f;
+    static const f32 cSelectedRotateMoveRate = 6.0f;
+    static const s32 cSelectedRotateAccelFrame = 180;
+}  // namespace
 
 namespace NrvScenarioSelectStar {
     NEW_NERVE(ScenarioSelectStarNrvAppear, ScenarioSelectStar, Appear);
@@ -15,8 +32,8 @@ namespace NrvScenarioSelectStar {
 };  // namespace NrvScenarioSelectStar
 
 ScenarioSelectStar::ScenarioSelectStar(EffectSystem* pSystem)
-    : MultiSceneActor("シナリオ選択のスター", "PowerStar", false), _44(0), mFrame(1), _4C(0), _50(false), _54(0.0f), _5C(gZeroVec), _68(gZeroVec),
-      _74(60), _78(1.0f) {
+    : MultiSceneActor("シナリオ選択のスター", "PowerStar", false), mStarCollectedStatus(0), mStageID(1), mStarIdx(0), mIsPointing(false),
+      mRotateSpeed(0.0f), mBasePos(gZeroVec), mTranslationOnSelect(gZeroVec), mAppearFrame(cAppearFrame), mScaleOnSelect(1.0f) {
     initEffect(pSystem, 0, "ScenarioStar");
 }
 
@@ -25,22 +42,20 @@ void ScenarioSelectStar::init(const JMapInfoIter& rIter) {
 }
 
 void ScenarioSelectStar::calcViewAndEntry() {
-    if (!isNerve(&NrvScenarioSelectStar::ScenarioSelectStarNrvAppear::sInstance) || !MultiScene::isLessEqualStep(this, _74 + 1)) {
+    if (!isNerve(&NrvScenarioSelectStar::ScenarioSelectStarNrvAppear::sInstance) || !MultiScene::isLessEqualStep(this, mAppearFrame + 1)) {
         MultiSceneActor::calcViewAndEntry();
     }
 }
 
 void ScenarioSelectStar::appear() {
-    mScale.x = 0.9f;
-    mScale.y = 0.9f;
-    mScale.z = 0.9f;
-    _50 = false;
-    _54 = 0.0f;
+    mScale.set(cNotPointingScale, cNotPointingScale, cNotPointingScale);
+    mIsPointing = false;
+    mRotateSpeed = 0.0f;
     updatePos();
     MultiScene::startBtp(this, "PowerStar");
     MultiScene::startBva(this, "PowerStar");
-    MultiScene::setBtpFrameAndStop(this, PowerStar::getBtpFrameCurrentStage(mFrame));
-    MultiScene::setBvaFrameAndStop(this, _44 == 0 ? 1.0f : 0.0f);
+    MultiScene::setBtpFrameAndStop(this, PowerStar::getBtpFrameCurrentStage(mStageID));
+    MultiScene::setBvaFrameAndStop(this, mStarCollectedStatus == 0 ? 1.0f : 0.0f);
     MultiSceneActor::appear();
     setNerve(&NrvScenarioSelectStar::ScenarioSelectStarNrvAppear::sInstance);
 }
@@ -51,7 +66,7 @@ void ScenarioSelectStar::kill() {
 }
 
 void ScenarioSelectStar::tryPointing() {
-    _50 = true;
+    mIsPointing = true;
 
     if (isNerve(&NrvScenarioSelectStar::ScenarioSelectStarNrvNotPointing::sInstance) ||
         isNerve(&NrvScenarioSelectStar::ScenarioSelectStarNrvEndPointing::sInstance)) {
@@ -68,39 +83,34 @@ void ScenarioSelectStar::notSelect() {
 }
 
 bool ScenarioSelectStar::isAppearEnd() const {
-    bool ret = !_30 && !isNerve(&NrvScenarioSelectStar::ScenarioSelectStarNrvAppear::sInstance);
-
-    return ret;
+    return !_30 && !isNerve(&NrvScenarioSelectStar::ScenarioSelectStarNrvAppear::sInstance);
 }
 
-void ScenarioSelectStar::setup(s32 a1, int a2, const TVec3f& a3, s32 a4) {
-    _44 = a2;
-    mFrame = a1;
-    _5C.set< f32 >(a3);
-    _4C = a4;
+void ScenarioSelectStar::setup(s32 stageID, int starCollectedStatus, const TVec3f& rPos, s32 starIdx) {
+    mStarCollectedStatus = starCollectedStatus;
+    mStageID = stageID;
+    mBasePos.set(rPos);
+    mStarIdx = starIdx;
 
-    mRotation.set(0.0f, 0.0f, (150.0f * a4));
-    int v7 = _4C;
-    _74 = 15 * v7 + 60;
-    _58 = 15 * v7 + ((v7 % 2) ? 0 : 0x5A);
+    mRotation.set< f32 >(0.0f, 0.0f, 150.0f * mStarIdx);
+    mAppearFrame = mStarIdx * cAppearDelayFrame + cAppearWaitFrame;
+    mRotateTime = mStarIdx * 15 + (mStarIdx % 2 ? 0 : 90);
 }
-/*
+
 void ScenarioSelectStar::control() {
-    _50 = false;
-    mRotation.z = MR::modAndSubtract(mRotation.z + _54, 360.0f, 0.0f);
+    mIsPointing = false;
+    mRotation.z = MR::repeatDegree(mRotation.z + mRotateSpeed);
 
-    if (isNerve(&NrvScenarioSelectStar::ScenarioSelectStarNrvNotPointing::sInstance)
-        || isNerve(&NrvScenarioSelectStar::ScenarioSelectStarNrvPointing::sInstance)
-        || isNerve(&NrvScenarioSelectStar::ScenarioSelectStarNrvEndPointing::sInstance))
-    {
-        _58++;
+    if (isNerve(&NrvScenarioSelectStar::ScenarioSelectStarNrvNotPointing::sInstance) ||
+        isNerve(&NrvScenarioSelectStar::ScenarioSelectStarNrvPointing::sInstance) ||
+        isNerve(&NrvScenarioSelectStar::ScenarioSelectStarNrvEndPointing::sInstance)) {
+        mRotateTime++;
         updatePos();
     }
 }
-*/
 
 bool ScenarioSelectStar::tryEndPointing() {
-    if (!_50) {
+    if (!mIsPointing) {
         setNerve(&NrvScenarioSelectStar::ScenarioSelectStarNrvEndPointing::sInstance);
         return true;
     }
@@ -108,59 +118,59 @@ bool ScenarioSelectStar::tryEndPointing() {
     return false;
 }
 
-/*
 void ScenarioSelectStar::updatePos() {
-    f32 mod = MR::modAndSubtract(360.0f * (_58 / 180.0f), 360.0f, 0.0f);
-    //f32 val = MR::sin_inline(mod);
+    // FIXME: add operation PS misalignment
+    // TODO: MR::repeat should probably be MR::repeatDegree?
+    // https://decomp.me/scratch/0gALW
 
-    _58 = mod;
+    TVec3f offset(JMASinDegree(MR::repeat((mRotateTime * 360.0f) / cMoveInterval, 0.0f, 360.0f)) * cMoveDistance, 0.0f, 0.0f);
+    mTranslation.add(mBasePos, offset);
 }
-*/
 
 void ScenarioSelectStar::exeAppear() {
-    if (MultiScene::isStep(this, _74)) {
+    if (MultiScene::isStep(this, mAppearFrame)) {
         MultiScene::startBck(this, "ScenarioAppear");
         MR::startSystemSE("SE_OJ_SCEN_SEL_STAR_APPEAR", -1, -1);
     }
 
-    if (MultiScene::isStep(this, _74 + 1)) {
-        if (_44 == 1) {
+    if (MultiScene::isStep(this, mAppearFrame + 1)) {
+        if (mStarCollectedStatus == 1) {
             MultiScene::emitEffect(this, "ClearStarLight");
         } else {
             MultiScene::emitEffect(this, "Light");
         }
     }
 
-    if (MultiScene::isGreaterStep(this, _74)) {
+    if (MultiScene::isGreaterStep(this, mAppearFrame)) {
         MultiScene::setNerveAtBckStopped(this, &NrvScenarioSelectStar::ScenarioSelectStarNrvNotPointing::sInstance);
     }
 }
 
 void ScenarioSelectStar::exeNotPointing() {
     if (MultiScene::isFirstStep(this)) {
-        mScale.x = 0.9f;
-        mScale.y = 0.9f;
-        mScale.z = 0.9f;
-        _54 = 1.5f;
+        mScale.x = cNotPointingScale;
+        mScale.y = cNotPointingScale;
+        mScale.z = cNotPointingScale;
+        mRotateSpeed = cNotPointingRotateSpeedZ;
     }
 }
 
 void ScenarioSelectStar::exePointing() {
     if (MultiScene::isFirstStep(this)) {
         MR::startSystemSE("SE_SY_CURSOR_1", -1, -1);
-        MR::tryRumblePadWeak(this, 0);
-        _54 = 3.0f;
+        MR::tryRumblePadWeak(this, WPAD_CHAN0);
+        mRotateSpeed = cPointingRotateSpeedZ;
     }
 
-    if (MultiScene::isLessStep(this, 20)) {
-        f32 rate = MultiScene::calcNerveRate(this, 20);
-        f32 scale = MR::getScaleWithReactionValueZeroToOne(rate, 1.5f, -0.25f);
-        f32 linerVal = MR::getLinerValue(scale, 0.9f, 1.5f, 1.0f);
+    if (MultiScene::isLessStep(this, cStartPointingFrame)) {
+        f32 t = MultiScene::calcNerveRate(this, cStartPointingFrame);
+        f32 reaction = MR::getScaleWithReactionValueZeroToOne(t, 1.5f, -0.25f);
+        f32 linerVal = MR::getLinerValue(reaction, cNotPointingScale, cPointingScale, 1.0f);
         mScale.setAll< f32 >(linerVal);
     } else {
-        mScale.x = 1.5f;
-        mScale.y = 1.5f;
-        mScale.z = 1.5f;
+        mScale.x = cPointingScale;
+        mScale.y = cPointingScale;
+        mScale.z = cPointingScale;
     }
 
     tryEndPointing();
@@ -168,65 +178,65 @@ void ScenarioSelectStar::exePointing() {
 
 void ScenarioSelectStar::exeEndPointing() {
     if (MultiScene::isFirstStep(this)) {
-        _54 = 1.5f;
+        mRotateSpeed = cNotPointingRotateSpeedZ;
     }
 
-    f32 easeOut = MR::getEaseOutValue(MultiScene::calcNerveRate(this, 10), 1.5f, 0.9f, 1.0f);
-    mScale.set(easeOut);
-    MultiScene::setNerveAtStep(this, &NrvScenarioSelectStar::ScenarioSelectStarNrvNotPointing::sInstance, 10);
+    mScale.setAll< f32 >(MR::getEaseOutValue(MultiScene::calcNerveRate(this, cEndPointingFrame), cPointingScale, cNotPointingScale, 1.0f));
+    MultiScene::setNerveAtStep(this, &NrvScenarioSelectStar::ScenarioSelectStarNrvNotPointing::sInstance, cEndPointingFrame);
 }
 
 void ScenarioSelectStar::exeSelected() {
     if (MultiScene::isFirstStep(this)) {
         MultiScene::emitEffect(this, "Select");
-        MR::tryRumblePadMiddle(this, 0);
-        _68.set< f32 >(mTranslation);
-        _54 = 3.0f;
-        _78 = mScale.x;
+        MR::tryRumblePadMiddle(this, WPAD_CHAN0);
+        mTranslationOnSelect.set< f32 >(mTranslation);
+        mRotateSpeed = cPointingRotateSpeedZ;
+        mScaleOnSelect = mScale.x;
     }
 
-    mScale.set(MultiScene::calcNerveValue(this, 40, _78, 1.5f));
-    MultiScene::setNerveAtStep(this, &NrvScenarioSelectStar::ScenarioSelectStarNrvSelectedMove::sInstance, 40);
+    mScale.setAll< f32 >(MultiScene::calcNerveValue(this, cSelectedWaitFrame, mScaleOnSelect, cPointingScale));
+    MultiScene::setNerveAtStep(this, &NrvScenarioSelectStar::ScenarioSelectStarNrvSelectedMove::sInstance, cSelectedWaitFrame);
 }
 
 void ScenarioSelectStar::exeSelectedMove() {
     if (MultiScene::isFirstStep(this)) {
-        mScale.x = 1.5f;
-        mScale.y = 1.5f;
-        mScale.z = 1.5f;
+        mScale.x = cPointingScale;
+        mScale.y = cPointingScale;
+        mScale.z = cPointingScale;
     }
 
-    if (MultiScene::isStep(this, 60)) {
+    if (MultiScene::isStep(this, cSelectedMoveFrame)) {
         MR::startSystemSE("SE_DM_SENARIO_SEL_ACCEL", -1, -1);
     }
 
-    if (MultiScene::isLessStep(this, 60)) {
-        f32 rate = 1.0f - MultiScene::calcNerveEaseOutRate(this, 60);
-        mTranslation.scale(rate, _68);
-        _54 = MR::getLinerValue(rate, 3.0f, 6.0f, 1.0f);
+    if (MultiScene::isLessStep(this, cSelectedMoveFrame)) {
+        f32 t = MultiScene::calcNerveEaseOutRate(this, cSelectedMoveFrame);
+        mTranslation.scale(1.0f - t, mTranslationOnSelect);
+        mRotateSpeed = MR::getLinerValue(t, cPointingRotateSpeedZ, cSelectedRotateMoveRate, 1.0f);
     } else {
-        mTranslation.x = 0.0f;
-        mTranslation.y = 0.0f;
         mTranslation.z = 0.0f;
-        _54 = MR::getLinerValue(MultiScene::calcNerveRate(this, 60, 180), 6.0f, 20.0f, 1.0f);
+        mTranslation.y = 0.0f;
+        mTranslation.x = 0.0f;
+        mRotateSpeed = MR::getLinerValue(MultiScene::calcNerveRate(this, cSelectedMoveFrame, cSelectedRotateAccelFrame), cSelectedRotateMoveRate,
+                                         cSelectedRotateSpeedZ, 1.0f);
     }
 }
 
 void ScenarioSelectStar::exeNotSelected() {
-    s32 v2 = 10 * _4C;
+    s32 hideDelay = cHideDelayFrame * mStarIdx;
 
     if (MultiScene::isFirstStep(this)) {
-        _54 = 1.5f;
+        mRotateSpeed = cNotPointingRotateSpeedZ;
     }
 
-    if (MultiScene::isStep(this, v2)) {
-        _54 = 0.0f;
-        mRotation.z = 150.0f * _4C;
+    if (MultiScene::isStep(this, hideDelay)) {
+        mRotateSpeed = 0.0f;
+        mRotation.z = 150.0f * mStarIdx;
         MultiScene::startBck(this, "ScenarioHide");
         MultiScene::deleteEffectAll(this);
     }
 
-    if (MultiScene::isGreaterStep(this, v2)) {
+    if (MultiScene::isGreaterStep(this, hideDelay)) {
         if (MultiScene::isBckStopped(this)) {
             kill();
         }

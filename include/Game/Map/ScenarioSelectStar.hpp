@@ -28,14 +28,14 @@ public:
     void exeSelectedMove();
     void exeNotSelected();
 
-    int _44;
-    s32 mFrame;  // 0x48
-    s32 _4C;
-    bool _50;
-    f32 _54;
-    s32 _58;
-    TVec3f _5C;
-    TVec3f _68;
-    int _74;
-    f32 _78;
+    /* 0x44 */ int mStarCollectedStatus;
+    /* 0x48 */ s32 mStageID;
+    /* 0x4C */ s32 mStarIdx;
+    /* 0x50 */ bool mIsPointing;
+    /* 0x54 */ f32 mRotateSpeed;
+    /* 0x58 */ s32 mRotateTime;
+    /* 0x5C */ TVec3f mBasePos;
+    /* 0x68 */ TVec3f mTranslationOnSelect;
+    /* 0x74 */ int mAppearFrame;
+    /* 0x78 */ f32 mScaleOnSelect;
 };
