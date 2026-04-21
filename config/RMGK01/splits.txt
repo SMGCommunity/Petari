@@ -3702,15 +3702,15 @@ Game/Map/FileSelectSky.cpp:
 Game/Map/FishGroup.cpp:
 	.text       start:0x8017F384 end:0x801800B8
 	.ctors      start:0x8052EBC0 end:0x8052EBC4
-	.rodata     start:0x80532AB0 end:0x80532AD0
-	.data       start:0x80589F58 end:0x8058A198
+	.rodata     start:0x80532AB0 end:0x80532AC8
+	.data       start:0x80589F58 end:0x8058A0E8
 	.sbss       start:0x806B4B80 end:0x806B4B90
 	.sdata2     start:0x806BBF58 end:0x806BBFA0
 
 Game/Map/Flag.cpp:
 	.text       start:0x801800B8 end:0x80181AEC
-	.rodata     start:0x80532AD0 end:0x80532AF0
-	.data       start:0x8058A198 end:0x8058A210
+	.rodata     start:0x80532AC8 end:0x80532AF0
+	.data       start:0x8058A0E8 end:0x8058A210
 	.sdata2     start:0x806BBFA0 end:0x806BC018
 
 Game/Map/GravityDust.cpp:

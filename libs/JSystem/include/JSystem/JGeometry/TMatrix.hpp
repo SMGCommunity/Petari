@@ -350,6 +350,12 @@ namespace JGeometry {
             f32 x = this->mMtx[0][1];
             rDest.set< f32 >(x, y, z);
         }
+        inline void getYDirInline2(TVec3f& rDest) const {
+            f32 x = this->mMtx[0][1];
+            f32 y = this->mMtx[1][1];
+            f32 z = this->mMtx[2][1];
+            rDest.set< f32 >(x, y, z);
+        }
 
         inline void getZDirInline(TVec3f& rDest) const {
             f32 z = this->mMtx[2][2];
@@ -634,6 +640,13 @@ namespace JGeometry {
             f32 z = this->mMtx[2][3];
             f32 y = this->mMtx[1][3];
             f32 x = this->mMtx[0][3];
+            rDest.set< f32 >(x, y, z);
+        }
+
+        inline void getTransInline2(TVec3f& rDest) const {
+            f32 x = this->mMtx[0][3];
+            f32 y = this->mMtx[1][3];
+            f32 z = this->mMtx[2][3];
             rDest.set< f32 >(x, y, z);
         }
 
