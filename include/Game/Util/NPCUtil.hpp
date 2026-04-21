@@ -53,6 +53,7 @@ namespace MR {
     void followRailPose(NPCActor*, f32, f32);
 
     void setDefaultPose(NPCActor*);
+    void convertPosOnGround(TVec3f*, const TVec3f&);
 
     bool isActionContinuous(const LiveActor*);
 };  // namespace MR

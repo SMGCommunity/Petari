@@ -39,7 +39,12 @@ public:
         initRacer();
     }
 
-    virtual void initRacer();
+    virtual void initRacer() {
+        mRailCoord = 0.0f;
+        _8 = 0.0f;
+        mCurrPosition.zero();
+        mPrevPosition.zero();
+    }
     virtual void prepRacer(const RaceManager* pRaceManager) = 0;
     virtual void startRacer() = 0;
     virtual bool updateRacer(const RaceManager* pRaceManager) = 0;
@@ -48,7 +53,11 @@ public:
     virtual void resetRacer(const RaceManager* pRaceManager) = 0;
     virtual void exitRacer() = 0;
 
-    /* 0x04 */ f32 _4;
+    static bool compRacer(const AbstractRacer* pRacerA, const AbstractRacer* pRacerB) {
+        return pRacerA->mRailCoord > pRacerB->mRailCoord;
+    }
+
+    /* 0x04 */ f32 mRailCoord;
     /* 0x08 */ f32 _8;
     /* 0x0C */ TVec3f mCurrPosition;
     /* 0x18 */ TVec3f mPrevPosition;

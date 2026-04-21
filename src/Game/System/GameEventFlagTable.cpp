@@ -199,8 +199,8 @@ namespace {
     };
 
     struct GameEventFlagSortLt {
-        bool operator()(GameEventFlagTableInstance::Key* key1, GameEventFlagTableInstance::Key* key2) {
-            return (key1->mHashCode < key2->mHashCode) ? true : false;
+        bool operator()(GameEventFlagTableInstance::Key& key1, GameEventFlagTableInstance::Key& key2) {
+            return (key1.mHashCode < key2.mHashCode) ? true : false;
         }
     };
 };  // namespace

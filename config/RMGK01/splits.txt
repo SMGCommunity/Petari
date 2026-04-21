@@ -3725,13 +3725,13 @@ Game/Map/GroundChecker.cpp:
 
 Game/Map/GroupSwitchWatcher.cpp:
 	.text       start:0x80181E54 end:0x80182094
-	.data       start:0x8058A2A0 end:0x8058A348
+	.data       start:0x8058A2A0 end:0x8058A318
 
 Game/Map/Halo.cpp:
 	.text       start:0x80182094 end:0x80182920
 	.ctors      start:0x8052EBC4 end:0x8052EBC8
 	.rodata     start:0x80532AF0 end:0x80532B28
-	.data       start:0x8058A348 end:0x8058A4D8
+	.data       start:0x8058A318 end:0x8058A4D8
 	.sbss       start:0x806B4B90 end:0x806B4BA0
 	.sdata2     start:0x806BC030 end:0x806BC040
 
@@ -3900,7 +3900,7 @@ Game/Map/PlanetMapWithoutHighModel.cpp:
 Game/Map/QuakeEffectGenerator.cpp:
 	.text       start:0x80196120 end:0x801963F8
 	.ctors      start:0x8052EBDC end:0x8052EBE0
-	.data       start:0x8058BB00 end:0x8058BDC0
+	.data       start:0x8058BB00 end:0x8058BBE0
 	.sbss       start:0x806B4BE8 end:0x806B4BF8
 	.sdata2     start:0x806BC340 end:0x806BC348
 
@@ -3908,14 +3908,15 @@ Game/Map/RaceManager.cpp:
 	.text       start:0x801963F8 end:0x80198634
 	.ctors      start:0x8052EBE0 end:0x8052EBE4
 	.rodata     start:0x80532E38 end:0x80532ED0
-	.data       start:0x8058BDC0 end:0x8058C000
-	.sdata      start:0x806B1C68 end:0x806B1C88
+	.data       start:0x8058BBE0 end:0x8058C000
+	.sdata      start:0x806B1C68 end:0x806B1C78
 	.sbss       start:0x806B4BF8 end:0x806B4C38
 	.sdata2     start:0x806BC348 end:0x806BC358
 
 Game/Map/RaceRail.cpp:
 	.text       start:0x80198634 end:0x80198D90
-	.data       start:0x8058C000 end:0x8058C250
+	.data       start:0x8058C000 end:0x8058C150
+	.sdata      start:0x806B1C78 end:0x806B1C80
 	.sdata2     start:0x806BC358 end:0x806BC370
 
 Game/Map/RailGraph.cpp:
@@ -3923,6 +3924,7 @@ Game/Map/RailGraph.cpp:
 
 Game/Map/RailGraphEdge.cpp:
 	.text       start:0x80199124 end:0x801992E8
+	.data       start:0x8058C150 end:0x8058C1A8
 	.sdata2     start:0x806BC370 end:0x806BC378
 
 Game/Map/RailGraphIter.cpp:
@@ -3939,7 +3941,7 @@ Game/Map/RailPart.cpp:
 Game/Map/ScenarioSelectStar.cpp:
 	.text       start:0x801998CC end:0x8019A4E0
 	.ctors      start:0x8052EBE4 end:0x8052EBE8
-	.data       start:0x8058C250 end:0x8058C2F0
+	.data       start:0x8058C1A8 end:0x8058C2F0
 	.sbss       start:0x806B4C38 end:0x806B4C58
 	.sdata2     start:0x806BC390 end:0x806BC3C8
 
@@ -3947,6 +3949,7 @@ Game/Map/SeaGull.cpp:
 	.text       start:0x8019A4E0 end:0x8019B0A0
 	.ctors      start:0x8052EBE8 end:0x8052EBEC
 	.data       start:0x8058C2F0 end:0x8058C438
+	.sdata      start:0x806B1C80 end:0x806B1C88
 	.sbss       start:0x806B4C58 end:0x806B4C68
 	.sdata2     start:0x806BC3C8 end:0x806BC410
 
