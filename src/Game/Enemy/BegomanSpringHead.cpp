@@ -26,12 +26,12 @@ void BegomanSpringHead::init(const JMapInfoIter& rIter) {
     initNerve(&NrvBegomanSpringHead::HostTypeNrvWait::sInstance);
     MR::initLightCtrl(this);
     initHitSensor(1);
-    MR::addHitSensorAtJoint(this, "head", "SpringJoint5", 71, 8, 100.0f, TVec3f(0.0f, 100.0f, 0.0f));
+    MR::addHitSensorAtJoint(this, "head", "SpringJoint5", ATYPE_MAP_OBJ_SIMPLE, 8, 100.0f, TVec3f(0.0f, 100.0f, 0.0f));
     PartsModel::init(rIter);
 }
 
 bool BegomanSpringHead::isSpringHop() {
-    return LiveActor::isNerve(&NrvBegomanSpringHead::HostTypeNrvWait::sInstance) == 0;
+    return !LiveActor::isNerve(&NrvBegomanSpringHead::HostTypeNrvWait::sInstance);
 }
 
 void BegomanSpringHead::getHopEndBckFrameMax() {
