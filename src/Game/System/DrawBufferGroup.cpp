@@ -1,87 +1,112 @@
 #include "Game/System/DrawBufferGroup.hpp"
+#include "Game/System/DrawBufferExecuter.hpp"
+#include "Game/Util/LightUtil.hpp"
 
 #include <algorithm>
 
-DrawBufferGroup::DrawBufferGroup() : _0(), _C() {
-    mCount = 0;
-    _1C = -1;
-    _20 = -1;
+DrawBufferGroup::DrawBufferGroup() : mExecutors(), mActiveExecutors(), mDrawCameraType(0), mLightType(-1), mLightLoadType(-1) {
 }
 
 void DrawBufferGroup::init(s32 count) {
-    _0.init(count);
-    _C.init(count);
+    mExecutors.init(count);
+    mActiveExecutors.init(count);
 }
 
 s32 DrawBufferGroup::registerDrawBuffer(LiveActor* pActor) {
     const char* pModelName = MR::getModelResName(pActor);
     s32 idx = findExecuterIndex(pModelName);
 
-    // executer does not exist
     if (idx < 0) {
         DrawBufferExecuter* exec = new DrawBufferExecuter(pModelName, MR::getJ3DModel(pActor), 0x10);
 
-        idx = _0.size();
-        _0.push_back(exec);
+        idx = mExecutors.size();
+        mExecutors.push_back(exec);
 
-        if (_20 == -1) {
-            exec->onExecuteLight(_1C);
+        if (mLightLoadType == -1) {
+            exec->onExecuteLight(mLightType);
         }
     }
 
-    _0[idx]->mDrawBufferCount++;
+    mExecutors[idx]->mDrawBufferCount++;
 
     return idx;
 }
 
-void DrawBufferGroup::active(LiveActor* pActor, s32 a2) {
-    DrawBufferExecuter* exec = _0[a2];
-    bool isEmpty = !(exec->mNumActors != 0);
-    exec->add(pActor);
+void DrawBufferGroup::allocateActorListBuffer() {
+    std::for_each(mExecutors.begin(), mExecutors.end(), std::mem_func(&DrawBufferExecuter::allocateActorListBuffer));
+}
+
+void DrawBufferGroup::active(LiveActor* pActor, s32 index) {
+    bool isEmpty = isExecutorEmpty(index);
+    mExecutors[index]->add(pActor);
 
     if (isEmpty) {
-        _C.push_back(_0[a2]);
+        mActiveExecutors.push_back(mExecutors[index]);
     }
 }
 
-// DrawBufferGroup::deactive
+void DrawBufferGroup::deactive(LiveActor* pActor, s32 index) {
+    mExecutors[index]->remove(pActor);
+    if (isExecutorEmpty(index)) {
+        mActiveExecutors[std::find(mActiveExecutors.begin(), mActiveExecutors.begin() + mActiveExecutors.size(), mExecutors[index]) -
+                         mActiveExecutors.begin()] = mActiveExecutors[mActiveExecutors.size() - 1];
+        mActiveExecutors.mCount--;
+    }
+}
 
-void DrawBufferGroup::findLightInfo(LiveActor* pActor, s32 a2) {
-    MR::initActorLightInfoLightType(pActor, _1C);
-    _0[a2]->findLightInfo(pActor);
+void DrawBufferGroup::findLightInfo(LiveActor* pActor, s32 index) {
+    MR::initActorLightInfoLightType(pActor, mLightType);
+    mExecutors[index]->findLightInfo(pActor);
 
-    if (_20 != -1) {
-        for (u32 i = 0; i < _0.size(); i++) {
-            _0[i]->onExecuteLight(_1C);
+    if (mLightLoadType != -1) {
+        for (u32 i = 0; i < mExecutors.size(); i++) {
+            mExecutors[i]->onExecuteLight(mLightType);
         }
 
-        _20 = -1;
+        mLightLoadType = -1;
     }
 
-    _0[a2]->offExecuteLight();
+    mExecutors[index]->offExecuteLight();
 }
 
-// mem_fun doesn't get inlined...why?
+void DrawBufferGroup::entry() {
+    if (mActiveExecutors.size() != 0) {
+        std::for_each(mActiveExecutors.begin(), mActiveExecutors.end(), std::mem_func(&DrawBufferExecuter::calcViewAndEntry));
+    }
+}
 
-// void DrawBufferGroup::entry() {
-//     for_each(_C.begin(), _C.end(), mem_fun(&DrawBufferExecuter::calcViewAndEntry));
-// }
+void DrawBufferGroup::drawOpa() const {
+    if (mActiveExecutors.size() != 0) {
+        j3dSys.mDrawMode = 3;
+        if (mLightLoadType != -1) {
+            MR::loadLight(mLightLoadType);
+        }
+        std::for_each(mActiveExecutors.begin(), mActiveExecutors.end(), std::const_mem_func(&DrawBufferExecuter::drawOpa));
+    }
+}
 
-// DrawBufferGroup::drawOpa
-// DrawBufferGroup::drawXlu
+void DrawBufferGroup::drawXlu() const {
+    if (mActiveExecutors.size() != 0) {
+        j3dSys.mDrawMode = 4;
+        if (mLightLoadType != -1) {
+            MR::loadLight(mLightLoadType);
+        }
+        std::for_each(mActiveExecutors.begin(), mActiveExecutors.end(), std::const_mem_func(&DrawBufferExecuter::drawXlu));
+    }
+}
 
 void DrawBufferGroup::setDrawCameraType(s32 type) {
-    mCount = type;
+    mDrawCameraType = type;
 }
 
 void DrawBufferGroup::setLightType(s32 type) {
-    _1C = type;
-    _20 = type;
+    mLightType = type;
+    mLightLoadType = type;
 }
 
 s32 DrawBufferGroup::findExecuterIndex(const char* pName) const {
-    for (u32 i = 0; i < _0.size(); i++) {
-        if (MR::isEqualString(_0[i]->mName, pName)) {
+    for (u32 i = 0; i < mExecutors.size(); i++) {
+        if (MR::isEqualString(mExecutors[i]->mName, pName)) {
             return i;
         }
     }

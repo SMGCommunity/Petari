@@ -39,6 +39,31 @@ namespace std {
     inline mem_fun_t< S, T > mem_func(S (T::*f)()) {
         return mem_fun_t< S, T >(f);
     }
+
+    template < class S, class T >
+    class const_mem_fun_t : public unary_function< T*, S > {
+    public:
+        explicit const_mem_fun_t(S (T::*mf)() const);
+
+        S operator()(T* p) const;
+
+    private:
+        S (T::*mf_)() const;
+    };
+
+    template < class S, class T >
+    inline const_mem_fun_t< S, T >::const_mem_fun_t(S (T::*mf)() const) : mf_(mf) {
+    }
+
+    template < class S, class T >
+    inline S const_mem_fun_t< S, T >::operator()(T* p) const {
+        return (p->*mf_)();
+    }
+
+    template < class S, class T >
+    inline const_mem_fun_t< S, T > const_mem_func(S (T::*f)() const) {
+        return const_mem_fun_t< S, T >(f);
+    }
 }  // namespace std
 
 #endif  // FUNCTIONAL_H
