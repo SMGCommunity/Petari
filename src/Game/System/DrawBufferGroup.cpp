@@ -36,7 +36,7 @@ s32 DrawBufferGroup::registerDrawBuffer(LiveActor* pActor) {
 
 void DrawBufferGroup::active(LiveActor* pActor, s32 a2) {
     DrawBufferExecuter* exec = _0[a2];
-    bool isEmpty = !(exec->_8 != 0);
+    bool isEmpty = !(exec->mNumActors != 0);
     exec->add(pActor);
 
     if (isEmpty) {

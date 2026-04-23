@@ -13,6 +13,16 @@ namespace std {
         return f;
     }
 
+    template < typename TIt, typename T >
+    inline TIt find(TIt first, TIt last, T& value) {
+        TIt it = first;
+
+        for (; first != last && !(*first == value); ++first) {
+        }
+
+        return first;
+    }
+
     // mostly yoinked from OGWS decomp
     template < typename TIt, typename TCompare >
     inline TIt min_element(TIt first, TIt last, TCompare compare) {

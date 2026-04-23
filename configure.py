@@ -2154,7 +2154,7 @@ config.libs = [
             Object(Matching, "Game/System/BinaryDataChunkHolder.cpp"),
             Object(NonMatching, "Game/System/BinaryDataContentAccessor.cpp"),
             Object(Matching, "Game/System/DrawBuffer.cpp"),
-            Object(NonMatching, "Game/System/DrawBufferExecuter.cpp"),
+            Object(Matching, "Game/System/DrawBufferExecuter.cpp"),
             Object(NonMatching, "Game/System/DrawBufferGroup.cpp"),
             Object(NonMatching, "Game/System/DrawBufferHolder.cpp"),
             Object(NonMatching, "Game/System/DrawSyncManager.cpp"),

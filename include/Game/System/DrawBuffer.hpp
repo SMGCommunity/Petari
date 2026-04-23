@@ -1,3 +1,4 @@
+#pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
 
