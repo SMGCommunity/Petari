@@ -4020,7 +4020,7 @@ Game/Map/TimerSwitch.cpp:
 
 Game/Map/WaterAreaHolder.cpp:
 	.text       start:0x8019F964 end:0x801A0140
-	.data       start:0x8058CCE8 end:0x8058CD80
+	.data       start:0x8058CCE8 end:0x8058CD40
 	.sdata2     start:0x806BC480 end:0x806BC488
 
 Game/Map/WaterInfo.cpp:
@@ -4030,7 +4030,7 @@ Game/Map/WaterInfo.cpp:
 Game/Map/WaterPlant.cpp:
 	.text       start:0x801A0230 end:0x801A14F4
 	.ctors      start:0x8052EBFC end:0x8052EC00
-	.data       start:0x8058CD80 end:0x8058CEC0
+	.data       start:0x8058CD40 end:0x8058CEC0
 	.bss        start:0x8060ADA0 end:0x8060ADB0
 	.sdata      start:0x806B1CC0 end:0x806B1CE8
 	.sdata2     start:0x806BC498 end:0x806BC500
