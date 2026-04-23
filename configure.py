@@ -2153,7 +2153,7 @@ config.libs = [
             Object(NonMatching, "Game/System/AudSystemWrapper.cpp"),
             Object(Matching, "Game/System/BinaryDataChunkHolder.cpp"),
             Object(NonMatching, "Game/System/BinaryDataContentAccessor.cpp"),
-            Object(NonMatching, "Game/System/DrawBuffer.cpp"),
+            Object(Matching, "Game/System/DrawBuffer.cpp"),
             Object(NonMatching, "Game/System/DrawBufferExecuter.cpp"),
             Object(NonMatching, "Game/System/DrawBufferGroup.cpp"),
             Object(NonMatching, "Game/System/DrawBufferHolder.cpp"),

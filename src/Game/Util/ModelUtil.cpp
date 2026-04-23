@@ -30,7 +30,7 @@ namespace MR {
 
     // getMaterial(const LiveActor *, int)
 
-    u16 getMaterialNum(J3DModel* pModel) {
+    s32 getMaterialNum(J3DModel* pModel) {
         return pModel->mModelData->mMaterialTable.getMaterialNum();
     }
 

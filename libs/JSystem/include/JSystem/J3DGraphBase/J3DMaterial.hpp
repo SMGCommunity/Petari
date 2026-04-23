@@ -59,6 +59,8 @@ public:
 
     u16 getIndex() { return mIndex; }
 
+    u32 getDiffFlag() {return mDiffFlag; }
+
     J3DTexMtx* getTexMtx(u32 idx) { return mTexGenBlock->getTexMtx(idx); }
     void setTexMtx(u32 idx, J3DTexMtx* mtx) { mTexGenBlock->setTexMtx(idx, mtx); }
 
