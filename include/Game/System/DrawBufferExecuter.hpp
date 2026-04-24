@@ -29,6 +29,6 @@ public:
     /* 0x08 */ s32 mNumActors;
     /* 0x0C */ const char* mName;
     /* 0x10 */ DrawBuffer* mDrawBuffer;
-    /* 0x14 */ s32 mLightLoadCmd;
+    /* 0x14 */ s32 mLightType;
     /* 0x18 */ s32 mDrawBufferCount;
 };

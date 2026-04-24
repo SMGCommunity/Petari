@@ -4,6 +4,7 @@
 #include <functional.hpp>
 
 namespace std {
+
     template < class InputIterator, class Function >
     inline Function for_each(InputIterator first, InputIterator last, Function f) {
         for (; first != last; ++first) {
@@ -13,8 +14,27 @@ namespace std {
         return f;
     }
 
+    template < class InputIterator, class Function >
+    inline Function for_each_array(InputIterator* first, InputIterator* last, Function f) {
+        for (; first != last; ++first) {
+            f(first);
+        }
+
+        return f;
+    }
+
     template < typename TIt, typename T >
     inline TIt find(TIt first, TIt last, T& value) {
+        TIt it = first;
+
+        for (; first != last && !(*first == value); ++first) {
+        }
+
+        return first;
+    }
+
+    template < typename TIt, typename T >
+    inline TIt find(TIt first, TIt last, const T& value) {
         TIt it = first;
 
         for (; first != last && !(*first == value); ++first) {

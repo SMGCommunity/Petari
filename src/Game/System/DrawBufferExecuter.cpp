@@ -4,7 +4,7 @@
 #include <algorithm>
 
 DrawBufferExecuter::DrawBufferExecuter(const char* pName, J3DModel* pModel, s32 a1)
-    : mActors(nullptr), mMaxNumActors(0), mNumActors(0), mName(pName), mDrawBuffer(nullptr), mLightLoadCmd(-1), mDrawBufferCount(0) {
+    : mActors(nullptr), mMaxNumActors(0), mNumActors(0), mName(pName), mDrawBuffer(nullptr), mLightType(-1), mDrawBufferCount(0) {
     mDrawBuffer = new DrawBuffer(pModel);
 }
 
@@ -35,11 +35,11 @@ void DrawBufferExecuter::findLightInfo(LiveActor* pActor) {
     MR::initActorLightInfoDrawBuffer(pActor, mDrawBuffer);
 }
 
-void DrawBufferExecuter::onExecuteLight(s32 lightLoadCmd) {
-    mLightLoadCmd = lightLoadCmd;
+void DrawBufferExecuter::onExecuteLight(s32 lightType) {
+    mLightType = lightType;
 }
 void DrawBufferExecuter::offExecuteLight() {
-    mLightLoadCmd = -1;
+    mLightType = -1;
 }
 
 void DrawBufferExecuter::calcViewAndEntry() {
@@ -47,15 +47,15 @@ void DrawBufferExecuter::calcViewAndEntry() {
 }
 
 void DrawBufferExecuter::drawOpa() const {
-    if (mLightLoadCmd != -1) {
-        MR::loadLight(mLightLoadCmd);
+    if (mLightType != -1) {
+        MR::loadLight(mLightType);
     }
     mDrawBuffer->drawOpa();
 }
 
 void DrawBufferExecuter::drawXlu() const {
-    if (mLightLoadCmd != -1) {
-        MR::loadLight(mLightLoadCmd);
+    if (mLightType != -1) {
+        MR::loadLight(mLightType);
     }
     mDrawBuffer->drawXlu();
 }

@@ -5,6 +5,7 @@
 namespace MR {
     /* thanks to https://github.com/magcius/noclip.website/blob/master/src/SuperMarioGalaxy/NameObj.ts */
     enum MovementType {
+        MovementType_UNK_0x00 = 0x00,
         MovementType_StopSceneDelayRequest = 0x01,
         MovementType_Camera = 0x02,
         MovementType_ScreenEffect = 0x03,
@@ -12,6 +13,7 @@ namespace MR {
         MovementType_SensorHitChecker = 0x05,
         MovementType_MsgSharedGroup = 0x06,
         MovementType_UNK_0x07 = 0x07,
+        MovementType_UNK_0x08 = 0x08,
         MovementType_AudCameraWatcher = 0x09,
         MovementType_TalkDirector = 0x0A,
         MovementType_DemoDirector = 0x0B,
@@ -69,9 +71,11 @@ namespace MR {
         CalcAnimType_LayoutDecoration = 0x0E,
         CalcAnimType_MovieSubtitles = 0x0F,
         CalcAnimType_Item = 0x10,
+        CalcAnimType_UNK_0x11 = 0x11,
         CalcAnimType_UNK_0x12 = 0x12,
         CalcAnimType_AnimParticle = 0x13,
-        CalcAnimType_AnimParticleIgnorePause = 0x14
+        CalcAnimType_AnimParticleIgnorePause = 0x14,
+        CalcAnimType_UNK_0x15 = 0x15,
     };
 
     enum DrawBufferType {
@@ -115,6 +119,7 @@ namespace MR {
         DrawBufferType_0x25 = 0x25,
         DrawBufferType_0x26 = 0x26,
         DrawBufferType_MirrorMapObj = 0x27,
+        DrawBufferType_0x28 = 0x28,
     };
 
     enum DrawType {
@@ -201,6 +206,21 @@ namespace MR {
         DrawType_MiiFaceNew = 0x50,
         DrawType_CameraCover = 0x51,
         DrawType_0x52 = 0x52,
+    };
+
+    enum LightType {
+        LightType_None = -1,  // TODO: better name?
+        LightType_Player = 0x00,
+        LightType_Strong = 0x01,
+        LightType_Weak = 0x02,
+        LightType_Planet = 0x03,
+        LightType_Coin = 0x04,
+    };
+
+    enum CameraType {
+        CameraType_3D = 0,
+        CameraType_2D = 1,
+        CameraType_Mirror = 2,
     };
 };  // namespace MR
 
