@@ -47,6 +47,7 @@ public:
     void incPlayerSyncIntensity();
     void decPlayerSyncIntensity();
     void setPlayerSync(bool);
+    void updateAuto();
 
     /* 0x0C */ bool mIsAuto;
     /* 0x0D */ bool mIsPlayerSync;
