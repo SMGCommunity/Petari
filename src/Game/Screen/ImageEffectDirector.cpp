@@ -138,10 +138,10 @@ void ImageEffectDirector::updateManual(){
 	}
 }
 
-void ImageEffectDirector::setState(ImageEffectState* state){
-	if (mState != state){
-		mState = state;
-		state->onChange();
+void ImageEffectDirector::setState(ImageEffectState* pState){
+	if (mState != pState){
+		mState = pState;
+		pState->onChange();
 	}
 }
 
@@ -164,7 +164,7 @@ void ImageEffectDirector::setBloomNormalParams(ImageEffectArea* pArea){
 
 void ImageEffectDirector::setBloomSimpleParams(ImageEffectArea* pArea){
 	SimpleBloomArea* pSimpleBloomArea = static_cast<SimpleBloomArea*>(pArea);
-	switch (pSimpleBloomArea->_40){
+	switch (pSimpleBloomArea->mMaskFilterColor){
 		case 0:
 			_20->setMaskFilterAll();
 			break;
@@ -229,30 +229,27 @@ void ImageEffectDirector::updateSyncCounter(){
 
 void ImageEffectDirector::incPlayerSyncIntensity(){
 	mPlayerSyncIntensity += 1;
-	if (mPlayerSyncIntensity <= 60){
-		return;
+	if (mPlayerSyncIntensity > 60){
+		mPlayerSyncIntensity = 60;
 	}
-	mPlayerSyncIntensity = 60;
-	return;
+	
 }
 
 void ImageEffectDirector::decPlayerSyncIntensity(){
 	mPlayerSyncIntensity -= 1;
-	if (mPlayerSyncIntensity >= 0){
-		return;
+	if (mPlayerSyncIntensity < 0){
+		mPlayerSyncIntensity = 0;
 	}
-	mPlayerSyncIntensity = 0;
-	return;
 }
 
 void ImageEffectDirector::setPlayerSync(bool p1){
 	mIsPlayerSync = p1;
 	if (p1)	{
 		mPlayerSyncIntensity = 0;
-		return;
+	} else {
+		mPlayerSyncIntensity = 60;
 	}
-	mPlayerSyncIntensity = 60;
-	return;
+	
 }
 
 void ImageEffectDirector::updateAuto(){
