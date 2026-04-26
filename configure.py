@@ -476,6 +476,16 @@ def SDKLib_WENC(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
     }
 
 
+def SDKLib_OS(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
+    return {
+        "lib": lib_name,
+        "mw_version": "GC/3.0a5.2",
+        "cflags": cflags_sdk,
+        "progress_category": "sdk",
+        "objects": objects,
+    }
+
+
 def RFLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
     return {
         "lib": lib_name,
@@ -2558,7 +2568,7 @@ config.libs = [
             Object(NonMatching, "RVL_SDK/nwc24/NWC24System.c"),
         ],
     ),
-    SDKLib(
+    SDKLib_OS(
         "os",
         [
             Object(Matching, "RVL_SDK/os/OS.c"),
