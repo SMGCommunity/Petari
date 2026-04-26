@@ -4,12 +4,16 @@
 
 class JSUMemoryOutputStream : public JSURandomOutputStream {
 public:
-    JSUMemoryOutputStream(void* pBuffer, s32 size) : JSURandomOutputStream() { setBuffer(pBuffer, size); }
+    JSUMemoryOutputStream(void* pBuffer, s32 size) : JSURandomOutputStream() {
+        setBuffer(pBuffer, size);
+    }
 
-    virtual ~JSUMemoryOutputStream();
+    virtual ~JSUMemoryOutputStream(){};
     virtual s32 writeData(const void*, s32);
     virtual s32 getLength() const;
-    virtual s32 getPosition() const;
+    virtual s32 getPosition() const {
+        return mPosition;
+    }
     virtual s32 seekPos(s32, JSUStreamSeekFrom);
 
     void setBuffer(void*, s32);

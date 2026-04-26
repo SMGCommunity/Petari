@@ -18,9 +18,12 @@ public:
 
 class BinaryDataContentAccessor {
 public:
-    BinaryDataContentAccessor(u8*);
+    BinaryDataContentAccessor(u8* pData);
 
-    u32 getHeaderSize() const;
-    u32 getDataSize() const;
-    void* getPointer(const char*, u8*) const;
+    s32 getHeaderSize() const;
+    s32 getDataSize() const;
+    s32 getAttributeNum() const;  // stripped
+    void* getPointer(const char* pAttributeName, u8* pData) const;
+
+    /* 0x00 */ u8* mData;
 };
