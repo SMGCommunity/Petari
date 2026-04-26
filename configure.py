@@ -2188,7 +2188,7 @@ config.libs = [
             Object(Matching, "Game/System/PauseButtonCheckerInGame.cpp"),
             Object(Matching, "Game/System/PlacedHiddenStarScenarioTable.cpp"),
             Object(Matching, "Game/System/RenderMode.cpp"),
-            Object(NonMatching, "Game/System/ResourceHolder.cpp"),
+            Object(Matching, "Game/System/ResourceHolder.cpp"),
             Object(Matching, "Game/System/ResourceHolderManager.cpp"),
             Object(Matching, "Game/System/ResourceInfo.cpp"),
             Object(NonMatching, "Game/System/ScenarioDataParser.cpp"),

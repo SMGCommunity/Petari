@@ -10,7 +10,7 @@ public:
 
     void* mResource;  // 0x0
     u32 _4;
-    u32 _8;
+    void* _8;  // 0x8
     u32 _C;
     char* mName;    // 0x10
     u32 mHashCode;  // 0x14
