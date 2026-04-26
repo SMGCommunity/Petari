@@ -55,13 +55,21 @@ public:
         return *this;
     }
 
-    inline bool operator==(const JMapInfo& rInfo) const { return mData == rInfo.mData; }
+    inline bool operator==(const JMapInfo& rInfo) const {
+        return mData == rInfo.mData;
+    }
 
-    inline bool dataExists() const { return !!mData; }
+    inline bool dataExists() const {
+        return !!mData;
+    }
 
-    inline int getNumEntries() const { return dataExists() ? mData->mNumEntries : 0; }
+    inline int getNumEntries() const {
+        return dataExists() ? mData->mNumEntries : 0;
+    }
 
-    inline int getNumFields() const { return dataExists() ? mData->mNumFields : 0; }
+    inline int getNumFields() const {
+        return dataExists() ? mData->mNumFields : 0;
+    }
 
     bool attach(const void*);
     void setName(const char*);
@@ -96,7 +104,7 @@ public:
     }
 
     template < typename T >
-    JMapInfoIter findElement(const char* pKey, T searchValue, int startIndex) const NO_INLINE {
+    JMapInfoIter findElement(const char* pKey, T searchValue, int startIndex) const {
         int entryIndex = startIndex;
         T value;
         while (entryIndex < getNumEntries()) {
@@ -120,7 +128,8 @@ public:
 
 class JMapInfoIter {
 public:
-    inline JMapInfoIter() {}
+    inline JMapInfoIter() {
+    }
 
     inline JMapInfoIter(const JMapInfo* pInfo, s32 index) {
         mInfo = pInfo;
@@ -133,11 +142,17 @@ public:
         return *this;
     }
 
-    bool operator==(const JMapInfoIter& rIter) const { return mIndex == rIter.mIndex && mInfo && rIter.mInfo && *mInfo == *rIter.mInfo; }
+    bool operator==(const JMapInfoIter& rIter) const {
+        return mIndex == rIter.mIndex && mInfo && rIter.mInfo && *mInfo == *rIter.mInfo;
+    }
 
-    bool operator!=(const JMapInfoIter& rIter) const { return !(*this == rIter); }
+    bool operator!=(const JMapInfoIter& rIter) const {
+        return !(*this == rIter);
+    }
 
-    bool isValid() const { return mInfo && mIndex >= 0 && mIndex < mInfo->getNumEntries(); }
+    bool isValid() const {
+        return mInfo && mIndex >= 0 && mIndex < mInfo->getNumEntries();
+    }
 
     template < typename T >
     bool getValue(const char* pKey, T* pValueOut) const {

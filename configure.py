@@ -2216,7 +2216,7 @@ config.libs = [
             Object(Matching, "Game/System/GalaxyCometScheduler.cpp"),
             Object(Matching, "Game/System/GalaxyCometState.cpp"),
             Object(Matching, "Game/System/GalaxyMoveArgument.cpp"),
-            Object(NonMatching, "Game/System/GalaxyNameSortTable.cpp"),
+            Object(Matching, "Game/System/GalaxyNameSortTable.cpp"),
             Object(NonMatching, "Game/System/GalaxyStatusAccessor.cpp"),
             Object(NonMatching, "Game/System/GameDataConst.cpp"),
             Object(NonMatching, "Game/System/GameDataFunction.cpp"),
