@@ -117,10 +117,7 @@ public:
         return end();
     }
 
-    // I believe this function should be implemented within this header,
-    // but due to a circular dependency on JMapInfoIter, I have left
-    // it in StageDataHolder.cpp (its current split) for now
-    JMapInfoIter end() const;
+    inline JMapInfoIter end() const;
 
     const JMapData* mData;  // 0x0
     const char* mName;      // 0x4
@@ -162,6 +159,10 @@ public:
     const JMapInfo* mInfo;  // 0x0
     s32 mIndex;             // 0x4
 };
+
+JMapInfoIter JMapInfo::end() const {
+    return JMapInfoIter(this, getNumEntries());
+}
 
 namespace MR {
     JMapInfoIter findJMapInfoElementNoCase(const JMapInfo*, const char*, const char*, int);
