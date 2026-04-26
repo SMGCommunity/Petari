@@ -29,6 +29,7 @@ public:
     s32 getNormalScenarioNum() const;
     const char* getAppearPowerStarObjName(s32) const;
     u32 getActivePowerStarId(s32) const;
+    u32 getLuigiModeTimer(s32) const;  // Note: this function's existence is implied by the leftover string in .data, see note in the cpp.
     bool isValidCoin100(s32) const;
     bool isHiddenStar(s32) const;
 
