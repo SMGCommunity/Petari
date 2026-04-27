@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Game/Util/MemoryUtil.hpp"
 #include <JSystem/JSupport/JSUMemoryOutputStream.hpp>
 
 class BinaryDataContentHeaderSerializer {
@@ -10,6 +11,10 @@ public:
     void flush();
     u32 getHeaderSize() const;
     u32 getDataSize() const;
+
+    void* getBuffer() const {
+        return mStream.mBuffer;
+    }
 
     /* 0x00 */ JSUMemoryOutputStream mStream;
     /* 0x14 */ u32 mAttributeNum;
