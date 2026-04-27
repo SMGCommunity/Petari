@@ -8,6 +8,7 @@ class NameObj;
 
 namespace MR {
     void connectToSceneImageEffect(NameObj*);
+    void connectToSceneImageEffectMovement(NameObj*);
 };
 
 namespace ImageEffectLocalUtil {

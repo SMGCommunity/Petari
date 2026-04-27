@@ -143,8 +143,6 @@ namespace ImageEffectStateImpl {
         mIntensity2 = static_cast< BloomEffect* >(StateBloomNormal::getEffect())->getIntensity2Default();
     }
 
-    StateBloomSimple::StateBloomSimple(ImageEffectDirector* pHost) : ImageEffectState(pHost) {}
-
     bool StateBloomSimple::doesEffectExist() const {
         return MR::isExistSceneObj(SceneObj_BloomEffectSimple);
     }
@@ -177,8 +175,6 @@ namespace ImageEffectStateImpl {
         static_cast< BloomEffectSimple* >(StateBloomSimple::getEffect())->mIntensity = intensity;
     }
 
-    StateScreenBlur::StateScreenBlur(ImageEffectDirector* pHost) : ImageEffectState(pHost) {}
-
     bool StateScreenBlur::doesEffectExist() const {
         return MR::isExistSceneObj(SceneObj_ScreenBlurEffect);
     }
@@ -190,8 +186,6 @@ namespace ImageEffectStateImpl {
     void StateScreenBlur::setIntensity(f32 intensity) {
         static_cast< ScreenBlurEffect* >(StateScreenBlur::getEffect())->mIntensity = intensity;
     }
-
-    StateDepthOfField::StateDepthOfField(ImageEffectDirector* pHost) : ImageEffectState(pHost) {}
 
     bool StateDepthOfField::doesEffectExist() const {
         return MR::isExistSceneObj(SceneObj_DepthOfFieldBlur);
