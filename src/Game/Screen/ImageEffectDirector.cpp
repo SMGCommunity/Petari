@@ -18,19 +18,11 @@ namespace {
     static const f32 sDOFIntensity = 1.0f;
 }  // namespace
 
-ImageEffectDirector::ImageEffectDirector(const char* pName) : NameObj(pName), mIsAuto(true) {
-    mIsPlayerSync = false;
-    _E = false;
-    _F = false;
-    mPlayerSyncIntensity = 0;
-    mDepthOfFieldIntensity = sDOFIntensity;
-    mStateNull = new ImageEffectStateImpl::StateNull(this);
-    mStateBloomNormal = new ImageEffectStateImpl::StateBloomNormal(this);
-    mStateBloomSimple = new ImageEffectStateImpl::StateBloomSimple(this);
-    mStateScreenBlur = new ImageEffectStateImpl::StateScreenBlur(this);
-    mStateDepthOfField = new ImageEffectStateImpl::StateDepthOfField(this);
-    mState = mStateNull;
-    mCurrentEffect = nullptr;
+ImageEffectDirector::ImageEffectDirector(const char* pName)
+    : NameObj(pName), mIsAuto(true), mIsPlayerSync(false), _E(false), _F(false), mPlayerSyncIntensity(0), mDepthOfFieldIntensity(sDOFIntensity),
+      mStateNull(new ImageEffectStateImpl::StateNull(this)), mStateBloomNormal(new ImageEffectStateImpl::StateBloomNormal(this)),
+      mStateBloomSimple(new ImageEffectStateImpl::StateBloomSimple(this)), mStateScreenBlur(new ImageEffectStateImpl::StateScreenBlur(this)),
+      mStateDepthOfField(new ImageEffectStateImpl::StateDepthOfField(this)), mState(mStateNull), mCurrentEffect(nullptr) {
     MR::connectToSceneImageEffectMovement(this);
 }
 
@@ -162,16 +154,16 @@ void ImageEffectDirector::setBloomNormalParams(ImageEffectArea* pArea) {
 void ImageEffectDirector::setBloomSimpleParams(ImageEffectArea* pArea) {
     SimpleBloomArea* pSimpleBloomArea = static_cast< SimpleBloomArea* >(pArea);
     switch (pSimpleBloomArea->mMaskFilterColor) {
-    case 0:
+    case SimpleBloomArea::MASK_FILTER_ALL:
         mStateBloomSimple->setMaskFilterAll();
         break;
-    case 1:
+    case SimpleBloomArea::MASK_FILTER_RED:
         mStateBloomSimple->setMaskFilterRed();
         break;
-    case 2:
+    case SimpleBloomArea::MASK_FILTER_GREEN:
         mStateBloomSimple->setMaskFilterGreen();
         break;
-    case 3:
+    case SimpleBloomArea::MASK_FILTER_BLUE:
         mStateBloomSimple->setMaskFilterBlue();
         break;
     }
