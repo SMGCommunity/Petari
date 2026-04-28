@@ -229,9 +229,9 @@ void ImageEffectDirector::decPlayerSyncIntensity() {
     }
 }
 
-void ImageEffectDirector::setPlayerSync(bool p1) {
-    mIsPlayerSync = p1;
-    if (p1) {
+void ImageEffectDirector::setPlayerSync(bool playerSync) {
+    mIsPlayerSync = playerSync;
+    if (playerSync) {
         mPlayerSyncIntensity = 0;
     } else {
         mPlayerSyncIntensity = sIntensityCountMax;
