@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Game/System/ResourceInfo.hpp"
+#include "Game/Util/HashUtil.hpp"
 #include <revolution/types.h>
 
 class ResourceHolder;
@@ -29,10 +31,28 @@ public:
     u32 _20[4];
     f32 _30[4];
     u32 _40;
-    u32 _44;
+    u32 mHash;
     const char* _48;
 
     void init();
+};
+
+class XanimeDirectory {
+public:
+    enum DIRECTORY_TYPE { Recursive = 0, Leaf = 1 };
+
+    /* 0x0 */ const char* mName;
+    /* 0x4 */ u8 mDirectoryType;
+    /* 0x8 */ union {
+        XanimeDirectory* mSubDirectories;
+        XanimeGroupInfo* mSubInformations;
+    };
+    /* 0xC */ u32 mHash;
+    /* 0x10 */ union {
+        XanimeGroupInfo* _10;
+        u32 mSize;
+    };
+    // Both unions are possibly linked
 };
 
 class XanimeSingleBckTable {
@@ -123,7 +143,35 @@ public:
 
     XanimeResourceTable(ResourceHolder*);
 
-    const XanimeGroupInfo* getGroupInfo(const char*) const;
+    u32 initGroupInfo(ResourceHolder*, XanimeGroupInfo*, XanimeAuxInfo*, XanimeOfsInfo*, XanimeBckTable*, XanimeBckTable*, XanimeBckTable*,
+                      XanimeBckTable*, XanimeSwapTable*);
 
-    u8 _0[0x78];
+    const XanimeGroupInfo* getGroupInfo(const char*) const;
+    const XanimeGroupInfo* getGroupInfo(const char*, XanimeDirectory*) const;
+    XanimeGroupInfo* getGroupInfoFromHash(u32) const;
+    u32 getIndex(XanimeDirectory*, const char*) const;
+    u32 getIndexFromHash(u32) const;
+    u32 getGroupIndex(const char*) const;
+    u32 getSingleIndex(const char*) const;
+    u32 getSimpleIndex(const char*) const;
+    const char* swapBckName(const char*, XanimeSwapTable*) const;
+    char* findResMotion(const char*) const;
+    char* findStringMotion(const char*) const;
+    void createSortTable();
+    bool search(XanimeBckTable**, const char*, u32) const;
+    void init();
+
+    u8 _0;
+    u8 _1;
+    /* 0x4 */ u32 m_10Size;
+    /* 0x8 */ u32 m_14Size;
+    /* 0xC */ u32 m_68Size;
+    XanimeGroupInfo* _10;
+    XanimeDirectory* _14;
+    XanimeSingleBckTable* _18;
+    XanimeGroupInfo _1C;
+    XanimeGroupInfo* _68;
+    /* 0x6C */ ResourceHolder* mResourceHolder;
+    /* 0x70 */ HashSortTable* mSortTable;
+    /* 0x74 */ XanimeSwapTable* mSwapTable;
 };
