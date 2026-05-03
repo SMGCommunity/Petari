@@ -2,7 +2,7 @@
 
 #include "Game/Animation/XanimeResource.hpp"
 
-XanimeQuadBckTable quadAnimeTable[] = {
+XanimeBckTable4 quadAnimeTable[] = {
     {
         {"基本"},        // mParent
         "WalkSoft",      // fileName1
@@ -82,7 +82,7 @@ XanimeQuadBckTable quadAnimeTable[] = {
     },
 };
 
-XanimeTripleBckTable tripleAnimeTable[] = {
+XanimeBckTable3 tripleAnimeTable[] = {
     {
         {"坂左右ウエイト"},  // mParent
         "Wait",              // fileName1
@@ -157,7 +157,7 @@ XanimeTripleBckTable tripleAnimeTable[] = {
     },
 };
 
-XanimeDoubleBckTable doubleAnimeTable[] = {
+XanimeBckTable2 doubleAnimeTable[] = {
     {
         {"しゃがみ基本"},  // mParent
         "SquatWait",       // fileName1
@@ -188,7 +188,7 @@ XanimeDoubleBckTable doubleAnimeTable[] = {
     },
 };
 
-XanimeSingleBckTable singleAnimeTable[] = {
+XanimeBckTable singleAnimeTable[] = {
     {
         {"ジャンプ"},  // mParent
         "Jump",        // fileName

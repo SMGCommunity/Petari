@@ -12,25 +12,34 @@ public:
     const char* swapped;
 };
 
-class XanimeBckTable {
+class XanimeBckBase {
 public:
     const char* animationName;
 };
 
+// Size is 0x14
+class XanimeOfsInfo : public XanimeBckBase {
+public:
+    f32 _4;
+    f32 _8;
+    f32 _C;
+    u32 _10;
+};
+
 class XanimeGroupInfo {
 public:
-    XanimeBckTable mParent;  // 0x0
+    XanimeBckBase mParent;  // 0x0
     f32 _4;
     u32 _8;
     f32 _C;
     f32 _10;
     f32 _14;
     u32 _18;
-    u8 _1C;
+    u8 mTableSize;
     u8 _1D;
-    u32 _20[4];
+    const char* _20[4];
     f32 _30[4];
-    u32 _40;
+    XanimeOfsInfo** _40;
     u32 mHash;
     const char* _48;
 
@@ -55,19 +64,15 @@ public:
     // Both unions are possibly linked
 };
 
-class XanimeSingleBckTable {
+class XanimeBckTable : public XanimeBckBase {
 public:
-    XanimeBckTable parent;  // 0x0
-
     const char* fileName;  // 0x4
     u32 animationHash;     // 0x8
     u32 fileHash;          // 0xC
 };
 
-class XanimeDoubleBckTable {
+class XanimeBckTable2 : public XanimeBckBase {
 public:
-    XanimeBckTable parent;  // 0x0
-
     const char* fileName1;  // 0x4
     f32 _8;
 
@@ -75,10 +80,8 @@ public:
     f32 _10;
 };
 
-class XanimeTripleBckTable {
+class XanimeBckTable3 : public XanimeBckBase {
 public:
-    XanimeBckTable parent;  // 0x0
-
     const char* fileName1;  // 0x4
     f32 _8;
 
@@ -89,10 +92,8 @@ public:
     f32 _18;
 };
 
-class XanimeQuadBckTable {
+class XanimeBckTable4 : public XanimeBckBase {
 public:
-    XanimeBckTable parent;  // 0x0
-
     const char* fileName1;  // 0x4
     f32 _8;
 
@@ -106,24 +107,11 @@ public:
     f32 _20;
 };
 
-// Size is 0x14
-class XanimeOfsInfo {
-public:
-    XanimeBckTable parent;  // 0x0
-
-    f32 _4;
-    f32 _8;
-    f32 _C;
-    u32 _10;
-};
-
 // size is 0x18
-class XanimeAuxInfo {
+class XanimeAuxInfo : public XanimeBckBase {
 public:
-    XanimeBckTable parent;  // 0x0
-
     u8 _4;
-    u32 _8;
+    XanimeOfsInfo* _8;
 
     // Unreferenced members
     u8 _C[12];
@@ -137,14 +125,14 @@ public:
 
         XanimeGroupInfo*, XanimeAuxInfo*, XanimeOfsInfo*,
 
-        XanimeBckTable*, XanimeBckTable*, XanimeBckTable*, XanimeBckTable*,
+        XanimeBckTable*, XanimeBckTable2*, XanimeBckTable3*, XanimeBckTable4*,
 
         XanimeSwapTable*);
 
     XanimeResourceTable(ResourceHolder*);
 
-    u32 initGroupInfo(ResourceHolder*, XanimeGroupInfo*, XanimeAuxInfo*, XanimeOfsInfo*, XanimeBckTable*, XanimeBckTable*, XanimeBckTable*,
-                      XanimeBckTable*, XanimeSwapTable*);
+    u32 initGroupInfo(ResourceHolder*, XanimeGroupInfo*, XanimeAuxInfo*, XanimeOfsInfo*, XanimeBckTable*, XanimeBckTable2*, XanimeBckTable3*,
+                      XanimeBckTable4*, XanimeSwapTable*);
 
     const XanimeGroupInfo* getGroupInfo(const char*) const;
     const XanimeGroupInfo* getGroupInfo(const char*, XanimeDirectory*) const;
@@ -158,17 +146,17 @@ public:
     char* findResMotion(const char*) const;
     char* findStringMotion(const char*) const;
     void createSortTable();
-    bool search(XanimeBckTable**, const char*, u32) const;
+    bool search(XanimeBckBase**, const char*, u32) const;
     void init();
 
     u8 _0;
-    u8 _1;
+    /* 0x1 */ u8 mMaxGroupInfoTableSize;
     /* 0x4 */ u32 m_10Size;
     /* 0x8 */ u32 m_14Size;
     /* 0xC */ u32 m_68Size;
     XanimeGroupInfo* _10;
     XanimeDirectory* _14;
-    XanimeSingleBckTable* _18;
+    XanimeBckTable* _18;
     XanimeGroupInfo _1C;
     XanimeGroupInfo* _68;
     /* 0x6C */ ResourceHolder* mResourceHolder;
