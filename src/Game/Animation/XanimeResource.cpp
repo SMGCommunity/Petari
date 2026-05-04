@@ -41,7 +41,7 @@ XanimeResourceTable::XanimeResourceTable(ResourceHolder* pArg1, XanimeGroupInfo*
     m_10Size = initGroupInfo(pArg1, pArg2, pArg3, pArg4, pArg5, pArg6, pArg7, pArg8, pArg9);
     createSortTable();
 
-    _18 = reinterpret_cast< XanimeBckTable* >(pArg5);
+    _18 = reinterpret_cast< XanimeBckTable1* >(pArg5);
 
     int i = 0;
     while (_18 != nullptr) {
@@ -80,6 +80,7 @@ void XanimeResourceTable::init() {
     mSwapTable = nullptr;
 }
 
+// While pBckTable1 is an XanimeBckTable*, all seems to indicate it is actually an XanimeBckTable1*
 u32 XanimeResourceTable::initGroupInfo(ResourceHolder* pResourceHolder, XanimeGroupInfo* pInfo, XanimeAuxInfo* pAuxInfo, XanimeOfsInfo* pOfsInfo,
                                        XanimeBckTable* pBckTable1, XanimeBckTable2* pBckTable2, XanimeBckTable3* pBckTable3,
                                        XanimeBckTable4* pBckTable4, XanimeSwapTable* pSwapTable) {
@@ -99,7 +100,7 @@ u32 XanimeResourceTable::initGroupInfo(ResourceHolder* pResourceHolder, XanimeGr
 
         entry->mHash = MR::getHashCode(entry->mParent.animationName);
 
-        XanimeBckBase* bckTables[4];
+        XanimeBckTable* bckTables[4];
         bckTables[3] = pBckTable1;
         bckTables[2] = pBckTable2;
         bckTables[1] = pBckTable3;
@@ -108,16 +109,16 @@ u32 XanimeResourceTable::initGroupInfo(ResourceHolder* pResourceHolder, XanimeGr
         entry->mTableSize = 0;
 
         const char* firstFilename = nullptr;
-        if (search(&bckTables[3], entry->mParent.animationName, sizeof(XanimeBckTable))) {
+        if (search(&bckTables[3], entry->mParent.animationName, sizeof(XanimeBckTable1))) {
             entry->mTableSize = 1;
 
             entry->_30[0] = 1.0f;
 
-            pResourceHolder->mMotionResTable->findFileInfo(static_cast< XanimeBckTable* >(bckTables[3])->fileName);
+            pResourceHolder->mMotionResTable->findFileInfo(static_cast< XanimeBckTable1* >(bckTables[3])->fileName);
 
-            entry->_20[0] = findResMotion(static_cast< XanimeBckTable* >(bckTables[3])->fileName);
+            entry->_20[0] = findResMotion(static_cast< XanimeBckTable1* >(bckTables[3])->fileName);
 
-            firstFilename = static_cast< XanimeBckTable* >(bckTables[3])->fileName;
+            firstFilename = static_cast< XanimeBckTable1* >(bckTables[3])->fileName;
         } else if (search(&bckTables[2], entry->mParent.animationName, sizeof(XanimeBckTable2))) {
             if (maxTableSize < 2) {
                 maxTableSize = 2;
@@ -169,7 +170,7 @@ u32 XanimeResourceTable::initGroupInfo(ResourceHolder* pResourceHolder, XanimeGr
         }
         entry->_48 = firstFilename;
 
-        XanimeBckBase* auxTables[1];
+        XanimeBckTable* auxTables[1];
         auxTables[0] = pAuxInfo;
         if (search(auxTables, entry->mParent.animationName, sizeof(XanimeAuxInfo))) {
             entry->_1D = static_cast< XanimeAuxInfo* >(auxTables[0])->_4;
@@ -191,7 +192,7 @@ u32 XanimeResourceTable::initGroupInfo(ResourceHolder* pResourceHolder, XanimeGr
             entry->_10 = static_cast< f32 >(reinterpret_cast< const s16* >(entry->_20[0])[3]);
         }
 
-        XanimeBckBase* ofsTables[1];
+        XanimeBckTable* ofsTables[1];
         ofsTables[0] = pOfsInfo;
 
         if (search(ofsTables, entry->mParent.animationName, sizeof(XanimeOfsInfo))) {
@@ -427,7 +428,7 @@ const char* XanimeResourceTable::swapBckName(const char* pOriginal, XanimeSwapTa
 }
 
 // First argument should be XanimeBckTable
-bool XanimeResourceTable::search(XanimeBckBase** pArray, const char* pTarget, u32 sizeOfArrayElements) const {
+bool XanimeResourceTable::search(XanimeBckTable** pArray, const char* pTarget, u32 sizeOfArrayElements) const {
     if (pArray == nullptr) {
         return false;
     }
@@ -447,7 +448,7 @@ bool XanimeResourceTable::search(XanimeBckBase** pArray, const char* pTarget, u3
         }
 
         // Possibly fake pointer arithmetic.
-        pArray[0] = (XanimeBckBase*)((const char*)pArray[0] + sizeOfArrayElements);
+        pArray[0] = (XanimeBckTable*)((const char*)pArray[0] + sizeOfArrayElements);
     }
 }
 

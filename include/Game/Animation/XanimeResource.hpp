@@ -12,13 +12,13 @@ public:
     const char* swapped;
 };
 
-class XanimeBckBase {
+class XanimeBckTable {
 public:
     const char* animationName;
 };
 
 // Size is 0x14
-class XanimeOfsInfo : public XanimeBckBase {
+class XanimeOfsInfo : public XanimeBckTable {
 public:
     f32 _4;
     f32 _8;
@@ -28,7 +28,7 @@ public:
 
 class XanimeGroupInfo {
 public:
-    XanimeBckBase mParent;  // 0x0
+    XanimeBckTable mParent;  // 0x0
     f32 _4;
     u32 _8;
     f32 _C;
@@ -64,14 +64,14 @@ public:
     // Both unions are possibly linked
 };
 
-class XanimeBckTable : public XanimeBckBase {
+class XanimeBckTable1 : public XanimeBckTable {
 public:
     const char* fileName;  // 0x4
     u32 animationHash;     // 0x8
     u32 fileHash;          // 0xC
 };
 
-class XanimeBckTable2 : public XanimeBckBase {
+class XanimeBckTable2 : public XanimeBckTable {
 public:
     const char* fileName1;  // 0x4
     f32 _8;
@@ -80,7 +80,7 @@ public:
     f32 _10;
 };
 
-class XanimeBckTable3 : public XanimeBckBase {
+class XanimeBckTable3 : public XanimeBckTable {
 public:
     const char* fileName1;  // 0x4
     f32 _8;
@@ -92,7 +92,7 @@ public:
     f32 _18;
 };
 
-class XanimeBckTable4 : public XanimeBckBase {
+class XanimeBckTable4 : public XanimeBckTable {
 public:
     const char* fileName1;  // 0x4
     f32 _8;
@@ -108,7 +108,7 @@ public:
 };
 
 // size is 0x18
-class XanimeAuxInfo : public XanimeBckBase {
+class XanimeAuxInfo : public XanimeBckTable {
 public:
     u8 _4;
     XanimeOfsInfo* _8;
@@ -146,7 +146,7 @@ public:
     char* findResMotion(const char*) const;
     char* findStringMotion(const char*) const;
     void createSortTable();
-    bool search(XanimeBckBase**, const char*, u32) const;
+    bool search(XanimeBckTable**, const char*, u32) const;
     void init();
 
     u8 _0;
@@ -156,7 +156,7 @@ public:
     /* 0xC */ u32 m_68Size;
     XanimeGroupInfo* _10;
     XanimeDirectory* _14;
-    XanimeBckTable* _18;
+    XanimeBckTable1* _18;
     XanimeGroupInfo _1C;
     XanimeGroupInfo* _68;
     /* 0x6C */ ResourceHolder* mResourceHolder;

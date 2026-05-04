@@ -188,7 +188,7 @@ XanimeBckTable2 doubleAnimeTable[] = {
     },
 };
 
-XanimeBckTable singleAnimeTable[] = {
+XanimeBckTable1 singleAnimeTable[] = {
     {
         {"ジャンプ"},  // mParent
         "Jump",        // fileName
