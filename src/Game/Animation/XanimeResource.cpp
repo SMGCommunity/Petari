@@ -234,32 +234,28 @@ const XanimeGroupInfo* XanimeResourceTable::getGroupInfo(const char* pArg) const
     return nullptr;
 }
 
-#pragma push
-#pragma ppc_iro_level 3
 const XanimeGroupInfo* XanimeResourceTable::getGroupInfo(const char* pPath, XanimeDirectory* pDir) const {
     int i = 0;
-    const char* originalPath = pPath;
-    // regswap, r25 doesn't seem to generate
     while (true) {
         i++;
-        if (originalPath[i] == '\0') {
+
+        if (pPath[i] == '\0') {
             break;
         }
 
         if (pPath[i] == '/') {
-            char pathOneDirectoryDown[48];
+            char pathOneDirectoryDown[32];
             MR::extractString(pathOneDirectoryDown, &pPath[i], i, 32);
 
             u32 index = getIndex(pDir, pathOneDirectoryDown);
-            XanimeDirectory* entry = &pDir[index];
 
-            switch (entry->mDirectoryType) {
+            switch (pDir[index].mDirectoryType) {
             case XanimeDirectory::Recursive:
-                return getGroupInfo(&pPath[i + 1], entry->mSubDirectories);
+                return getGroupInfo(&pPath[i + 1], pDir[index].mSubDirectories);
 
             case XanimeDirectory::Leaf:
                 u32 hashcode = MR::getHashCode(&pPath[i + 1]);
-                XanimeGroupInfo* infos = entry->mSubInformations;
+                XanimeGroupInfo* infos = pDir[index].mSubInformations;
 
                 for (int j = 0; j < pDir[index].mSize; j++) {
                     if (infos[j].mHash == hashcode) {
@@ -304,7 +300,6 @@ const XanimeGroupInfo* XanimeResourceTable::getGroupInfo(const char* pPath, Xani
 
     return nullptr;
 }
-#pragma pop
 
 u32 XanimeResourceTable::getIndex(XanimeDirectory* pArg1, const char* pArg2) const {
     int i = 0;
