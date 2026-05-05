@@ -10,10 +10,10 @@ XanimeResourceTable::XanimeResourceTable(ResourceHolder* pArg) {
     init();
 
     _0 = 0;
-    _10 = 0;
+    mGroupInfos = 0;
     mResourceHolder = pArg;
-    m_14Size = 0;
-    m_10Size = 0;
+    mAmountOfBckTables = 0;
+    mAmountOfGroupInfos = 0;
 
     mMaxGroupInfoTableSize = 1;
 
@@ -35,25 +35,25 @@ XanimeResourceTable::XanimeResourceTable(ResourceHolder* pArg1, XanimeGroupInfo*
                                          XanimeSwapTable* pArg9) {
     init();
     _0 = 1;
-    _10 = pArg2;
+    mGroupInfos = pArg2;
     mResourceHolder = pArg1;
     mMaxGroupInfoTableSize = 1;
-    m_10Size = initGroupInfo(pArg1, pArg2, pArg3, pArg4, pArg5, pArg6, pArg7, pArg8, pArg9);
+    mAmountOfGroupInfos = initGroupInfo(pArg1, pArg2, pArg3, pArg4, pArg5, pArg6, pArg7, pArg8, pArg9);
     createSortTable();
 
-    _18 = reinterpret_cast< XanimeBckTable1* >(pArg5);
+    mBckTables = reinterpret_cast< XanimeBckTable1* >(pArg5);
 
     int i = 0;
-    while (_18 != nullptr) {
-        if (_18[i].animationName[0] == '\0') {
+    while (mBckTables != nullptr) {
+        if (mBckTables[i].animationName[0] == '\0') {
             break;
         }
-        _18[i].animationHash = MR::getHashCode(_18[i].animationName);
-        _18[i].fileHash = MR::getHashCode(_18[i].fileName);
+        mBckTables[i].animationHash = MR::getHashCode(mBckTables[i].animationName);
+        mBckTables[i].fileHash = MR::getHashCode(mBckTables[i].fileName);
 
         i++;
     }
-    m_14Size = i;
+    mAmountOfBckTables = i;
 
     _1C.init();
     _1C._4 = 1.0f;
@@ -61,19 +61,19 @@ XanimeResourceTable::XanimeResourceTable(ResourceHolder* pArg1, XanimeGroupInfo*
     _1C._8 = 1;
     _1C.mTableSize = 1;
     _1C._1D = 0;
-    _68 = new XanimeGroupInfo[0];
-    m_68Size = 0;
+    mSimpleGroupInfos = new XanimeGroupInfo[0];
+    mAmountOfSimpleGroupInfos = 0;
 }
 
 void XanimeResourceTable::init() {
     _0 = 0;
     mMaxGroupInfoTableSize = 0;
-    m_10Size = 0;
-    m_14Size = 0;
-    m_68Size = 0;
-    _10 = nullptr;
-    _14 = nullptr;
-    _18 = nullptr;
+    mAmountOfGroupInfos = 0;
+    mAmountOfBckTables = 0;
+    mAmountOfSimpleGroupInfos = 0;
+    mGroupInfos = nullptr;
+    mDirectories = nullptr;
+    mBckTables = nullptr;
 
     mResourceHolder = nullptr;
     mSortTable = nullptr;
@@ -222,13 +222,13 @@ const XanimeGroupInfo* XanimeResourceTable::getGroupInfo(const char* pArg) const
                 return nullptr;
             }
 
-            return &_68[simpleIndex];
+            return &mSimpleGroupInfos[simpleIndex];
         }
 
-        return &_10[groupIndex];
+        return &mGroupInfos[groupIndex];
 
     case 2:
-        return getGroupInfo(pArg, _14);
+        return getGroupInfo(pArg, mDirectories);
     }
 
     return nullptr;
@@ -254,11 +254,11 @@ const XanimeGroupInfo* XanimeResourceTable::getGroupInfo(const char* pPath, Xani
                 return getGroupInfo(&pPath[i + 1], pDir[index].mSubDirectories);
 
             case XanimeDirectory::Leaf:
-                u32 hashcode = MR::getHashCode(&pPath[i + 1]);
+                u32 hash = MR::getHashCode(&pPath[i + 1]);
                 XanimeGroupInfo* infos = pDir[index].mSubInformations;
 
                 for (int j = 0; j < pDir[index].mSize; j++) {
-                    if (infos[j].mHash == hashcode) {
+                    if (infos[j].mHash == hash) {
                         return &infos[j];
                     }
                 }
@@ -269,7 +269,7 @@ const XanimeGroupInfo* XanimeResourceTable::getGroupInfo(const char* pPath, Xani
     }
 
     i = 0;
-    u32 hashcode = MR::getHashCode(pPath);
+    u32 hash = MR::getHashCode(pPath);
     const XanimeGroupInfo* result = nullptr;
 
     while (true) {
@@ -285,7 +285,7 @@ const XanimeGroupInfo* XanimeResourceTable::getGroupInfo(const char* pPath, Xani
         case XanimeDirectory::Leaf:
             XanimeGroupInfo* subInfo = entry->mSubInformations;
             for (int j = 0; j < entry->mSize; j++) {
-                if (subInfo[j].mHash == hashcode) {
+                if (subInfo[j].mHash == hash) {
                     return &entry->mSubInformations[j];
                 }
             }
@@ -301,16 +301,16 @@ const XanimeGroupInfo* XanimeResourceTable::getGroupInfo(const char* pPath, Xani
     return nullptr;
 }
 
-u32 XanimeResourceTable::getIndex(XanimeDirectory* pArg1, const char* pArg2) const {
+u32 XanimeResourceTable::getIndex(XanimeDirectory* pDir, const char* pTarget) const {
     int i = 0;
-    u32 hash = MR::getHashCode(pArg2);
+    u32 hash = MR::getHashCode(pTarget);
 
     while (true) {
-        if (pArg1[i].mName[0] == '\0') {
+        if (pDir[i].mName[0] == '\0') {
             return -1;
         }
 
-        if (hash == pArg1[i].mHash) {
+        if (hash == pDir[i].mHash) {
             return i;
         }
 
@@ -329,8 +329,8 @@ u32 XanimeResourceTable::getIndexFromHash(u32 hash) const {
     return -1;
 }
 
-u32 XanimeResourceTable::getGroupIndex(const char* pArg) const {
-    u32 hash = MR::getHashCode(pArg);
+u32 XanimeResourceTable::getGroupIndex(const char* pTarget) const {
+    u32 hash = MR::getHashCode(pTarget);
 
     switch (_0) {
     case 0:
@@ -353,17 +353,17 @@ XanimeGroupInfo* XanimeResourceTable::getGroupInfoFromHash(u32 hash) const {
         return 0;
     }
 
-    return &_10[index];
+    return &mGroupInfos[index];
 }
 
-u32 XanimeResourceTable::getSingleIndex(const char* pArg) const {
-    if (_18 == nullptr) {
+u32 XanimeResourceTable::getSingleIndex(const char* pTarget) const {
+    if (mBckTables == nullptr) {
         return -1;
     }
-    u32 hash = MR::getHashCode(pArg);
+    u32 hash = MR::getHashCode(pTarget);
 
-    for (int i = 0; i < m_14Size; i++) {
-        if (hash == _18[i].animationHash) {
+    for (int i = 0; i < mAmountOfBckTables; i++) {
+        if (hash == mBckTables[i].animationHash) {
             return i;
         }
     }
@@ -371,11 +371,11 @@ u32 XanimeResourceTable::getSingleIndex(const char* pArg) const {
     return -1;
 }
 
-u32 XanimeResourceTable::getSimpleIndex(const char* pArg) const {
-    u32 hash = MR::getHashCode(pArg);
+u32 XanimeResourceTable::getSimpleIndex(const char* pTarget) const {
+    u32 hash = MR::getHashCode(pTarget);
 
-    for (int i = 0; i < m_68Size; i++) {
-        if (hash == _68[i].mHash) {
+    for (int i = 0; i < mAmountOfSimpleGroupInfos; i++) {
+        if (hash == mSimpleGroupInfos[i].mHash) {
             return i;
         }
     }
@@ -384,15 +384,15 @@ u32 XanimeResourceTable::getSimpleIndex(const char* pArg) const {
 }
 
 void XanimeResourceTable::createSortTable() {
-    mSortTable = new HashSortTable(m_10Size);
-    for (int i = 0; i < m_10Size; i++) {
-        mSortTable->add(_10[i].mHash, i);
+    mSortTable = new HashSortTable(mAmountOfGroupInfos);
+    for (int i = 0; i < mAmountOfGroupInfos; i++) {
+        mSortTable->add(mGroupInfos[i].mHash, i);
     }
     mSortTable->sort();
 }
 
-char* XanimeResourceTable::findResMotion(const char* pArg) const {
-    const char* newName = swapBckName(pArg, mSwapTable);
+char* XanimeResourceTable::findResMotion(const char* pTarget) const {
+    const char* newName = swapBckName(pTarget, mSwapTable);
     if (!mResourceHolder->mMotionResTable->isExistRes(newName)) {
         return nullptr;
     }
@@ -422,7 +422,6 @@ const char* XanimeResourceTable::swapBckName(const char* pOriginal, XanimeSwapTa
     }
 }
 
-// First argument should be XanimeBckTable
 bool XanimeResourceTable::search(XanimeBckTable** pArray, const char* pTarget, u32 sizeOfArrayElements) const {
     if (pArray == nullptr) {
         return false;
@@ -442,8 +441,9 @@ bool XanimeResourceTable::search(XanimeBckTable** pArray, const char* pTarget, u
             return false;
         }
 
-        // Possibly fake pointer arithmetic.
-        pArray[0] = (XanimeBckTable*)((const char*)pArray[0] + sizeOfArrayElements);
+        // Possibly fake pointer arithmetic. It appears this line pops the first element of the array pointed at by pArray, which has a variable size
+        // equal to sizeOfArrayElements (polymorphism)
+        pArray[0] = reinterpret_cast< XanimeBckTable* >(reinterpret_cast< u8* >(pArray[0]) + sizeOfArrayElements);
     }
 }
 

@@ -35,12 +35,12 @@ public:
     f32 _10;
     f32 _14;
     u32 _18;
-    u8 mTableSize;
+    /* 0x1C */ u8 mTableSize;
     u8 _1D;
     const char* _20[4];
     f32 _30[4];
     XanimeOfsInfo** _40;
-    u32 mHash;
+    /* 0x44 */ u32 mHash;
     const char* _48;
 
     void init();
@@ -52,16 +52,12 @@ public:
 
     /* 0x0 */ const char* mName;
     /* 0x4 */ u8 mDirectoryType;
-    /* 0x8 */ union {
-        XanimeDirectory* mSubDirectories;
-        XanimeGroupInfo* mSubInformations;
+    union {
+        /* 0x8 */ XanimeDirectory* mSubDirectories;
+        /* 0x8 */ XanimeGroupInfo* mSubInformations;
     };
     /* 0xC */ u32 mHash;
-    /* 0x10 */ union {
-        XanimeGroupInfo* _10;
-        u32 mSize;
-    };
-    // Both unions are possibly linked
+    /* 0x10 */ u32 mSize;
 };
 
 class XanimeBckTable1 : public XanimeBckTable {
@@ -151,14 +147,14 @@ public:
 
     u8 _0;
     /* 0x1 */ u8 mMaxGroupInfoTableSize;
-    /* 0x4 */ u32 m_10Size;
-    /* 0x8 */ u32 m_14Size;
-    /* 0xC */ u32 m_68Size;
-    XanimeGroupInfo* _10;
-    XanimeDirectory* _14;
-    XanimeBckTable1* _18;
+    /* 0x4 */ u32 mAmountOfGroupInfos;
+    /* 0x8 */ u32 mAmountOfBckTables;
+    /* 0xC */ u32 mAmountOfSimpleGroupInfos;
+    /* 0x10 */ XanimeGroupInfo* mGroupInfos;
+    /* 0x14 */ XanimeDirectory* mDirectories;
+    /* 0x18 */ XanimeBckTable1* mBckTables;
     XanimeGroupInfo _1C;
-    XanimeGroupInfo* _68;
+    /* 0x68 */ XanimeGroupInfo* mSimpleGroupInfos;
     /* 0x6C */ ResourceHolder* mResourceHolder;
     /* 0x70 */ HashSortTable* mSortTable;
     /* 0x74 */ XanimeSwapTable* mSwapTable;
