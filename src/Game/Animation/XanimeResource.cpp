@@ -10,7 +10,7 @@ XanimeResourceTable::XanimeResourceTable(ResourceHolder* pArg) {
     init();
 
     _0 = 0;
-    mGroupInfos = 0;
+    mGroupInfos = nullptr;
     mResourceHolder = pArg;
     mAmountOfBckTables = 0;
     mAmountOfGroupInfos = 0;
@@ -26,7 +26,7 @@ XanimeResourceTable::XanimeResourceTable(ResourceHolder* pArg) {
     _1C._4 = 1.0f;
     _1C.mParent.animationName = "non-group";
     _1C._8 = 1;
-    _1C.mTableSize = 1;
+    _1C.mBckTableVariant = 1;
     _1C._1D = 0;
 }
 
@@ -59,7 +59,7 @@ XanimeResourceTable::XanimeResourceTable(ResourceHolder* pResourceHolder, Xanime
     _1C._4 = 1.0f;
     _1C.mParent.animationName = "non-group";
     _1C._8 = 1;
-    _1C.mTableSize = 1;
+    _1C.mBckTableVariant = 1;
     _1C._1D = 0;
     mSimpleGroupInfos = new XanimeGroupInfo[0];
     mAmountOfSimpleGroupInfos = 0;
@@ -106,11 +106,11 @@ u32 XanimeResourceTable::initGroupInfo(ResourceHolder* pResourceHolder, XanimeGr
         bckTables[1] = pBckTable3;
         bckTables[0] = pBckTable4;
 
-        entry->mTableSize = 0;
+        entry->mBckTableVariant = 0;
 
         const char* firstFilename = nullptr;
         if (search(&bckTables[3], entry->mParent.animationName, sizeof(XanimeBckTable1))) {
-            entry->mTableSize = 1;
+            entry->mBckTableVariant = 1;
 
             entry->_30[0] = 1.0f;
 
@@ -123,7 +123,7 @@ u32 XanimeResourceTable::initGroupInfo(ResourceHolder* pResourceHolder, XanimeGr
             if (maxTableSize < 2) {
                 maxTableSize = 2;
             }
-            entry->mTableSize = 2;
+            entry->mBckTableVariant = 2;
 
             entry->_20[0] = findResMotion(static_cast< XanimeBckTable2* >(bckTables[2])->fileName1);
             entry->_30[0] = static_cast< XanimeBckTable2* >(bckTables[2])->_8;
@@ -136,7 +136,7 @@ u32 XanimeResourceTable::initGroupInfo(ResourceHolder* pResourceHolder, XanimeGr
             if (maxTableSize < 3) {
                 maxTableSize = 3;
             }
-            entry->mTableSize = 3;
+            entry->mBckTableVariant = 3;
 
             entry->_20[0] = findResMotion(static_cast< XanimeBckTable3* >(bckTables[1])->fileName1);
             entry->_30[0] = static_cast< XanimeBckTable3* >(bckTables[1])->_8;
@@ -152,7 +152,7 @@ u32 XanimeResourceTable::initGroupInfo(ResourceHolder* pResourceHolder, XanimeGr
             if (maxTableSize < 4) {
                 maxTableSize = 4;
             }
-            entry->mTableSize = 4;
+            entry->mBckTableVariant = 4;
 
             entry->_20[0] = findResMotion(static_cast< XanimeBckTable4* >(bckTables[0])->fileName1);
             entry->_30[0] = static_cast< XanimeBckTable4* >(bckTables[0])->_8;
@@ -455,7 +455,7 @@ void XanimeGroupInfo::init() {
     _10 = 0.f;
     _14 = 0.f;
     _18 = 0;
-    mTableSize = 0;
+    mBckTableVariant = 0;
     _1D = 0;
     for (u32 i = 0; i < 4; i++) {
         _30[i] = 0.f;

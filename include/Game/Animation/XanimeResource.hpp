@@ -35,7 +35,7 @@ public:
     f32 _10;
     f32 _14;
     u32 _18;
-    /* 0x1C */ u8 mTableSize;
+    /* 0x1C */ u8 mBckTableVariant;
     u8 _1D;
     const char* _20[4];
     f32 _30[4];
