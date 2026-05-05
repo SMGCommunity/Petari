@@ -30,18 +30,18 @@ XanimeResourceTable::XanimeResourceTable(ResourceHolder* pArg) {
     _1C._1D = 0;
 }
 
-XanimeResourceTable::XanimeResourceTable(ResourceHolder* pArg1, XanimeGroupInfo* pArg2, XanimeAuxInfo* pArg3, XanimeOfsInfo* pArg4,
-                                         XanimeBckTable* pArg5, XanimeBckTable2* pArg6, XanimeBckTable3* pArg7, XanimeBckTable4* pArg8,
-                                         XanimeSwapTable* pArg9) {
+XanimeResourceTable::XanimeResourceTable(ResourceHolder* pResourceHolder, XanimeGroupInfo* pGroupInfo, XanimeAuxInfo* pAuxInfo,
+                                         XanimeOfsInfo* pOfsInfo, XanimeBckTable* pBckTable1, XanimeBckTable2* pBckTable2,
+                                         XanimeBckTable3* pBckTable3, XanimeBckTable4* pBckTable4, XanimeSwapTable* pSwapTable) {
     init();
     _0 = 1;
-    mGroupInfos = pArg2;
-    mResourceHolder = pArg1;
+    mGroupInfos = pGroupInfo;
+    mResourceHolder = pResourceHolder;
     mMaxGroupInfoTableSize = 1;
-    mAmountOfGroupInfos = initGroupInfo(pArg1, pArg2, pArg3, pArg4, pArg5, pArg6, pArg7, pArg8, pArg9);
+    mAmountOfGroupInfos = initGroupInfo(pResourceHolder, pGroupInfo, pAuxInfo, pOfsInfo, pBckTable1, pBckTable2, pBckTable3, pBckTable4, pSwapTable);
     createSortTable();
 
-    mBckTables = reinterpret_cast< XanimeBckTable1* >(pArg5);
+    mBckTables = reinterpret_cast< XanimeBckTable1* >(pBckTable1);
 
     int i = 0;
     while (mBckTables != nullptr) {
