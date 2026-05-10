@@ -109,6 +109,12 @@ namespace MR {
         executeTextBoxRecursive(pActor, pPaneName, TextBoxRecursiveSetArgString(pMessage, param4));
     }
 
+    void setPaneAlphaFloat(const LayoutActor * pActor, const char * pName, f32 f) {
+        f32 var = MR::clamp(f, 0.0f, 1.0f);
+        nw4r::lyt::Pane* pane = pActor->getLayoutManager()->getPane(pName);
+        pane->mAlpha = var * 255;
+    }
+
     void setTextBoxArgGameMessageRecursive(LayoutActor* pActor, const char* pPaneName, const char* pMessageId, s32 param4) {
         setTextBoxArgStringRecursive(pActor, pPaneName, getGameMessageDirect(pMessageId), param4);
     }
