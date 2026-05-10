@@ -10,4 +10,4 @@
 | `OSVReport` | `0x804A6160` | :white_check_mark: (100.0%) |
 | `OSPanic` | `0x804A6164` | :white_check_mark: (100.0%) |
 | `OSSetErrorHandler` | `0x804A6290` | :x: (99.9%) |
-| `__OSUnhandledException` | `0x804A6518` | :x: (36.5%) |
+| `__OSUnhandledException` | `0x804A6518` | :white_check_mark: (100.0%) |

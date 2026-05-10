@@ -1,10 +1,12 @@
 # main/Game/Enemy/HammerHeadPackun
 
+**Source Path:** `src/Game/Enemy/HammerHeadPackun.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__ct__16HammerHeadPackunFPCc` | `0x800EF9F4` | :x: (0.0%) |
+| `__ct__16HammerHeadPackunFPCc` | `0x800EF9F4` | :x: (46.3%) |
 | `init__16HammerHeadPackunFRC12JMapInfoIter` | `0x800EFA70` | :x: (0.0%) |
 | `makeActorAppeared__16HammerHeadPackunFv` | `0x800EFBD8` | :x: (0.0%) |
 | `kill__16HammerHeadPackunFv` | `0x800EFC10` | :x: (0.0%) |
@@ -38,7 +40,7 @@
 | `verticalizeFrontVec__16HammerHeadPackunFv` | `0x800F13DC` | :x: (0.0%) |
 | `tryShiftNumb__16HammerHeadPackunFv` | `0x800F142C` | :x: (0.0%) |
 | `receiveMsgPlayerAttackChance__16HammerHeadPackunFUlP9HitSensorP9HitSensor` | `0x800F1484` | :x: (0.0%) |
-| `__dt__16HammerHeadPackunFv` | `0x800F1570` | :x: (0.0%) |
+| `__dt__16HammerHeadPackunFv` | `0x800F1570` | :white_check_mark: (100.0%) |
 | `__sinit_\HammerHeadPackun_cpp` | `0x800F15CC` | :x: (0.0%) |
 | `__ct__Q230@unnamed@HammerHeadPackun_cpp@23HammerHeadPackunNrvWaitFv` | `0x800F1648` | :x: (0.0%) |
 | `__ct__Q230@unnamed@HammerHeadPackun_cpp@25HammerHeadPackunNrvSearchFv` | `0x800F1658` | :x: (0.0%) |

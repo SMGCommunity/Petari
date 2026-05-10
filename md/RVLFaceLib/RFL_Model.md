@@ -21,6 +21,6 @@
 | `RFLDrawOpaCore` | `0x8045BE04` | :white_check_mark: (100.0%) |
 | `RFLDrawXluCore` | `0x8045C310` | :white_check_mark: (100.0%) |
 | `RFLiInitCharModelRes` | `0x8045C594` | :x: (91.0%) |
-| `RFLiInitShapeRes` | `0x8045CCCC` | :x: (97.4%) |
+| `RFLiInitShapeRes` | `0x8045CCCC` | :white_check_mark: (100.0%) |
 | `RFLiInitTexRes` | `0x8045D2B4` | :white_check_mark: (100.0%) |
 | `RFLSetModelDrawDoneCallback` | `0x8045D3D0` | :white_check_mark: (100.0%) |

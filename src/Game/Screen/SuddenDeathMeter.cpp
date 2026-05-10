@@ -43,15 +43,11 @@ void SuddenDeathMeter::init(const JMapInfoIter& rIter) {
     appear();
 }
 
-inline float clamp(float x, float min, float max) {
-    return x < min ? min : (x > max ? max : x);
-}
-
 void SuddenDeathMeter::control() {
     if (isNerve(&NrvSuddenDeathMeter::SuddenDeathMeterNrvAppear::sInstance)) {
         _38 = 1.0f;
     }
-    _38 = clamp(_38, 0.3f, 1.2f);
+    _38 = MR::clamp(_38, 0.3f, 1.2f);
     MR::setAnimFrameAndStop(this, MR::normalize(_38, 0.0f, 1.0f) * _3C * 20.0f, 2);
     mCountUpPaneRumbler->update();
 }
@@ -80,7 +76,8 @@ void SuddenDeathMeter::requestForceAppear() {
     setNerve(&NrvSuddenDeathMeter::SuddenDeathMeterNrvAppear::sInstance);
 }
 
-void SuddenDeathMeter::requestPlayerMoving() {}
+void SuddenDeathMeter::requestPlayerMoving() {
+}
 
 void SuddenDeathMeter::exeAppear() {
     if (MR::isFirstStep(this)) {

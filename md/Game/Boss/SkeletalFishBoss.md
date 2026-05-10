@@ -70,7 +70,7 @@
 | `startDeadDemo__16SkeletalFishBossFv` | `0x8007A024` | :white_check_mark: (100.0%) |
 | `endBreakDemo__16SkeletalFishBossFv` | `0x8007A068` | :white_check_mark: (100.0%) |
 | `isEnableToBeDamaged__16SkeletalFishBossCFv` | `0x8007A130` | :white_check_mark: (100.0%) |
-| `__ct__20SkeletalFishBossHeadFP9LiveActor` | `0x8007A208` | :x: (90.7%) |
+| `__ct__20SkeletalFishBossHeadFP9LiveActor` | `0x8007A208` | :x: (97.1%) |
 | `movement__20SkeletalFishBossHeadFv` | `0x8007A388` | :white_check_mark: (100.0%) |
 | `calcAnim__20SkeletalFishBossHeadFv` | `0x8007A4A4` | :white_check_mark: (100.0%) |
 | `receiveMsgPlayerAttack__20SkeletalFishBossHeadFUlP9HitSensorP9HitSensor` | `0x8007A52C` | :white_check_mark: (100.0%) |
@@ -81,7 +81,7 @@
 | `init__25SkeletalFishBossScarFlashFRC12JMapInfoIter` | `0x8007A8EC` | :white_check_mark: (100.0%) |
 | `appear__25SkeletalFishBossScarFlashFv` | `0x8007A92C` | :white_check_mark: (100.0%) |
 | `control__25SkeletalFishBossScarFlashFv` | `0x8007A980` | :white_check_mark: (100.0%) |
-| `__sinit_\SkeletalFishBoss_cpp` | `0x8007A9C8` | :x: (74.1%) |
+| `__sinit_\SkeletalFishBoss_cpp` | `0x8007A9C8` | :white_check_mark: (100.0%) |
 | `__ct__Q230@unnamed@SkeletalFishBoss_cpp@23SkeletalFishBossNrvSwimFv` | `0x8007AA5C` | :white_check_mark: (100.0%) |
 | `__ct__Q230@unnamed@SkeletalFishBoss_cpp@23SkeletalFishBossNrvOpenFv` | `0x8007AA6C` | :white_check_mark: (100.0%) |
 | `__ct__Q230@unnamed@SkeletalFishBoss_cpp@27SkeletalFishBossNrvOpenWaitFv` | `0x8007AA7C` | :white_check_mark: (100.0%) |

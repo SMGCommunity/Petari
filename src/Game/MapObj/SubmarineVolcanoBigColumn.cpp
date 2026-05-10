@@ -59,7 +59,7 @@ void SubmarineVolcanoBigColumn::exeWait() {
             v11.scale(125.0f, upVec);
             TVec3f pos;
             pos.setPS(v11);
-            pos.addInLine(mPosition);
+            pos.addInline(mPosition);
             MR::appearAirBubble(pos, 360);
             setNerve(&NrvSubmarineVolcanoBigColumn::SubmarineVolcanoBigColumnNrvWait::sInstance);
         }
@@ -109,4 +109,5 @@ void SubmarineVolcanoBigColumn::initBreakModel(const char* pModelName) {
     mBreakModel->makeActorDead();
 }
 
-SubmarineVolcanoBigColumn::~SubmarineVolcanoBigColumn() {}
+SubmarineVolcanoBigColumn::~SubmarineVolcanoBigColumn() {
+}

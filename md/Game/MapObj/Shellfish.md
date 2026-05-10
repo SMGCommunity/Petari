@@ -1,10 +1,12 @@
 # main/Game/MapObj/Shellfish
 
+**Source Path:** `src/Game/MapObj/Shellfish.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__ct__9ShellfishFPCc` | `0x80223778` | :x: (0.0%) |
+| `__ct__9ShellfishFPCc` | `0x80223778` | :x: (62.3%) |
 | `init__9ShellfishFRC12JMapInfoIter` | `0x802237D4` | :x: (0.0%) |
 | `initAfterPlacement__9ShellfishFv` | `0x80223A2C` | :x: (0.0%) |
 | `calcAndSetBaseMtx__9ShellfishFv` | `0x80223A34` | :x: (0.0%) |
@@ -24,7 +26,7 @@
 | `startBindItem__9ShellfishFv` | `0x802243D8` | :x: (0.0%) |
 | `endBindItem__9ShellfishFv` | `0x80224438` | :x: (0.0%) |
 | `putItem__9ShellfishFv` | `0x802244C8` | :x: (0.0%) |
-| `__dt__9ShellfishFv` | `0x80224564` | :x: (0.0%) |
+| `__dt__9ShellfishFv` | `0x80224564` | :white_check_mark: (100.0%) |
 | `executeOnEnd__Q212NrvShellfish19ShellfishNrvDPDOpenCFP5Spine` | `0x802245C0` | :x: (0.0%) |
 | `execute__Q212NrvShellfish19ShellfishNrvDPDOpenCFP5Spine` | `0x802245D8` | :x: (0.0%) |
 | `execute__Q212NrvShellfish17ShellfishNrvShockCFP5Spine` | `0x802245E8` | :x: (0.0%) |

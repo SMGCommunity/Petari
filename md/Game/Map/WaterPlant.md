@@ -1,10 +1,12 @@
 # main/Game/Map/WaterPlant
 
+**Source Path:** `src/Game/Map/WaterPlant.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__ct__10WaterPlantFPCc` | `0x801A0230` | :x: (0.0%) |
+| `__ct__10WaterPlantFPCc` | `0x801A0230` | :x: (52.9%) |
 | `init__10WaterPlantFRC12JMapInfoIter` | `0x801A029C` | :x: (0.0%) |
 | `initAfterPlacement__10WaterPlantFv` | `0x801A0384` | :x: (0.0%) |
 | `movement__10WaterPlantFv` | `0x801A0388` | :x: (0.0%) |
@@ -22,5 +24,5 @@
 | `GXPosition3f32` | `0x801A1394` | :x: (0.0%) |
 | `__cl__Q22MR65FunctorV0M<PC18WaterPlantDrawInit,M18WaterPlantDrawInitFPCvPCv_v>CFv` | `0x801A13A8` | :x: (0.0%) |
 | `clone__Q22MR65FunctorV0M<PC18WaterPlantDrawInit,M18WaterPlantDrawInitFPCvPCv_v>CFP7JKRHeap` | `0x801A13D8` | :x: (0.0%) |
-| `__dt__10WaterPlantFv` | `0x801A1440` | :x: (0.0%) |
+| `__dt__10WaterPlantFv` | `0x801A1440` | :white_check_mark: (100.0%) |
 | `__dt__18WaterPlantDrawInitFv` | `0x801A149C` | :x: (0.0%) |

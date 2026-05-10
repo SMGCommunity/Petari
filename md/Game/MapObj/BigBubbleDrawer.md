@@ -6,7 +6,7 @@
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__ct__15BigBubbleDrawerFv` | `0x801B5D50` | :white_check_mark: (100.0%) |
+| `__ct__15BigBubbleDrawerFv` | `0x801B5D50` | :x: (80.8%) |
 | `setUpDraw__15BigBubbleDrawerCFv` | `0x801B5E10` | :white_check_mark: (100.0%) |
 | `setUpVertexFormat__15BigBubbleDrawerCFv` | `0x801B5E14` | :white_check_mark: (100.0%) |
 | `setUpTexture__15BigBubbleDrawerCFv` | `0x801B5EA0` | :white_check_mark: (100.0%) |

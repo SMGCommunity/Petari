@@ -1,14 +1,16 @@
 # main/Game/Demo/StarReturnDemoStarter
 
+**Source Path:** `src/Game/Demo/StarReturnDemoStarter.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__ct__21StarReturnDemoStarterFPCc` | `0x800C35F8` | :x: (0.0%) |
+| `__ct__21StarReturnDemoStarterFPCc` | `0x800C35F8` | :x: (47.3%) |
 | `init__21StarReturnDemoStarterFRC12JMapInfoIter` | `0x800C3670` | :x: (0.0%) |
 | `appear__21StarReturnDemoStarterFv` | `0x800C37CC` | :x: (0.0%) |
 | `kill__21StarReturnDemoStarterFv` | `0x800C3834` | :x: (0.0%) |
-| `makeArchiveList__21StarReturnDemoStarterFP27NameObjArchiveListCollectorRC12JMapInfoIter` | `0x800C38A0` | :x: (0.0%) |
+| `makeArchiveList__21StarReturnDemoStarterFP27NameObjArchiveListCollectorRC12JMapInfoIter` | `0x800C38A0` | :x: (99.9%) |
 | `control__21StarReturnDemoStarterFv` | `0x800C3914` | :x: (0.0%) |
 | `createSubModel__21StarReturnDemoStarterFPCcPCcb` | `0x800C3954` | :x: (0.0%) |
 | `tryRegisterDemo__21StarReturnDemoStarterFPCcRC12JMapInfoIter` | `0x800C39E8` | :x: (0.0%) |
@@ -24,7 +26,7 @@
 | `exeStageResult__21StarReturnDemoStarterFv` | `0x800C41A4` | :x: (0.0%) |
 | `exeFadeOut__21StarReturnDemoStarterFv` | `0x800C4220` | :x: (0.0%) |
 | `exeStageResultAfter__21StarReturnDemoStarterFv` | `0x800C4274` | :x: (0.0%) |
-| `__dt__21StarReturnDemoStarterFv` | `0x800C42FC` | :x: (0.0%) |
+| `__dt__21StarReturnDemoStarterFv` | `0x800C42FC` | :white_check_mark: (100.0%) |
 | `__sinit_\StarReturnDemoStarter_cpp` | `0x800C4358` | :x: (0.0%) |
 | `__ct__Q224NrvStarReturnDemoStarter34StarReturnDemoStarterNrvAppearWaitFv` | `0x800C43C4` | :x: (0.0%) |
 | `__ct__Q224NrvStarReturnDemoStarter28StarReturnDemoStarterNrvMoveFv` | `0x800C43D4` | :x: (0.0%) |

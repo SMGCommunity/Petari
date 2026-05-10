@@ -25,7 +25,8 @@ namespace {
 
 PlanetMap::PlanetMap(const char* pName, const char* pModelName)
     : LiveActor(pName), mModelName(pModelName), _90(0.0f, 0.0f, 0.0f), mLODCtrl(nullptr), mBloomModel(nullptr), mWaterModel(nullptr),
-      mIndirectModel(nullptr) {}
+      mIndirectModel(nullptr) {
+}
 
 void PlanetMap::init(const JMapInfoIter& rIter) {
     MR::getObjectName(&mModelName, rIter);
@@ -100,7 +101,7 @@ void PlanetMap::initClipping(const JMapInfoIter& rIter) {
     if (info != nullptr) {
         TVec3f _4 = TVec3f(info->_4, info->_8, info->_C);
         TVec3f _8;
-        _8.addInLine(_4);
+        _8.addInline(_4);
         _90.set(_8);
         MR::setClippingTypeSphere(this, v2, &_90);
     } else {
@@ -179,16 +180,19 @@ bool PlanetMap::tryDeleteMyEffect() {
     return true;
 }
 
-FurPlanetMap::FurPlanetMap(const char* pName) : PlanetMap(pName, nullptr) {}
+FurPlanetMap::FurPlanetMap(const char* pName) : PlanetMap(pName, nullptr) {
+}
 
-PlanetMap::~PlanetMap() {}
+PlanetMap::~PlanetMap() {
+}
 
 void FurPlanetMap::init(const JMapInfoIter& rIter) {
     PlanetMap::init(rIter);
     MR::initFurPlanet(this);
 }
 
-RailPlanetMap::RailPlanetMap(const char* pName) : PlanetMap(pName, nullptr) {}
+RailPlanetMap::RailPlanetMap(const char* pName) : PlanetMap(pName, nullptr) {
+}
 
 void RailPlanetMap::init(const JMapInfoIter& rIter) {
     PlanetMap::init(rIter);
@@ -199,9 +203,12 @@ s32 PlanetMapAnimLow::getLowMovementType() const {
     return 29;
 }
 
-FurPlanetMap::~FurPlanetMap() {}
-RailPlanetMap::~RailPlanetMap() {}
-PlanetMapAnimLow::~PlanetMapAnimLow() {}
+FurPlanetMap::~FurPlanetMap() {
+}
+RailPlanetMap::~RailPlanetMap() {
+}
+PlanetMapAnimLow::~PlanetMapAnimLow() {
+}
 
 f32 PlanetMap::getFarClipDistance() const {
     return -1.0f;

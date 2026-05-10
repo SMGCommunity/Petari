@@ -1,11 +1,13 @@
 # main/Game/Enemy/StinkBugParent
 
+**Source Path:** `src/Game/Enemy/StinkBugParent.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
 |------|---------|---------|
 | `getParam__28@unnamed@StinkBugParent_cpp@Fb` | `0x8013F72C` | :x: (0.0%) |
-| `__ct__14StinkBugParentFPCc` | `0x8013F748` | :x: (0.0%) |
+| `__ct__14StinkBugParentFPCc` | `0x8013F748` | :x: (72.1%) |
 | `init__14StinkBugParentFRC12JMapInfoIter` | `0x8013F794` | :x: (0.0%) |
 | `exeWait__14StinkBugParentFv` | `0x8013F944` | :x: (0.0%) |
 | `exeSearch__14StinkBugParentFv` | `0x8013F9F0` | :x: (0.0%) |
@@ -31,7 +33,7 @@
 | `isShakeChance__14StinkBugParentCFv` | `0x801409FC` | :x: (0.0%) |
 | `isHitChild__14StinkBugParentCFv` | `0x80140AE4` | :x: (0.0%) |
 | `isNrvEnableStarPieceAttack__14StinkBugParentCFv` | `0x80140B8C` | :x: (0.0%) |
-| `__dt__14StinkBugParentFv` | `0x80140C28` | :x: (0.0%) |
+| `__dt__14StinkBugParentFv` | `0x80140C28` | :white_check_mark: (100.0%) |
 | `__sinit_\StinkBugParent_cpp` | `0x80140C80` | :x: (0.0%) |
 | `__ct__Q217NrvStinkBugParent21StinkBugParentNrvWaitFv` | `0x80140D24` | :x: (0.0%) |
 | `__ct__Q217NrvStinkBugParent23StinkBugParentNrvSearchFv` | `0x80140D34` | :x: (0.0%) |

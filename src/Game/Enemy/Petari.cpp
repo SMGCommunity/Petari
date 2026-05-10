@@ -350,7 +350,8 @@ void Petari::endApproach() {
     MR::deleteEffect(this, "WalkSmoke");
 }
 
-void Petari::endWait() {}
+void Petari::endWait() {
+}
 
 void Petari::endFreeze() {
     mAnimScaleCtrl->startAnim();
@@ -768,9 +769,4 @@ void Petari::tryEmitFirstFootPrintEffect() {
         MR::emitEffect(this, "StartSmoke");
         mRequestSmoke = false;
     }
-}
-
-// FIXME: move to MathUtil if you can solve the multiply-defined linker error
-void MR::clamp01(f32* pX) {
-    *pX = *pX < 0.0f ? 0.0f : *pX > 1.0f ? 1.0f : *pX;
 }

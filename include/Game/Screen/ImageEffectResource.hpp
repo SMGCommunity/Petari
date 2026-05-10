@@ -14,7 +14,6 @@ public:
     void createDOFTexture();
     JUTTexture* createTexture(f32, GXTexFmt);
 
-private:
     /* 0x00 */ JUTTexture* _0;
     /* 0x04 */ JUTTexture* _4;
     /* 0x08 */ JUTTexture* _8;

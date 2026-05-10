@@ -1,10 +1,12 @@
 # main/Game/MapObj/ShockWaveGenerator
 
+**Source Path:** `src/Game/MapObj/ShockWaveGenerator.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__ct__18ShockWaveGeneratorFPCc` | `0x8022474C` | :x: (0.0%) |
+| `__ct__18ShockWaveGeneratorFPCc` | `0x8022474C` | :x: (84.7%) |
 | `init__18ShockWaveGeneratorFRC12JMapInfoIter` | `0x80224790` | :x: (0.0%) |
 | `exeWait__18ShockWaveGeneratorFv` | `0x802248F4` | :x: (0.0%) |
 | `exeDemoEcho__18ShockWaveGeneratorFv` | `0x8022496C` | :x: (0.0%) |
@@ -13,7 +15,7 @@
 | `startShockWave__18ShockWaveGeneratorFv` | `0x80224BA8` | :x: (0.0%) |
 | `sendMsgShockWaveToNearEnemy__18ShockWaveGeneratorFv` | `0x80224C78` | :x: (0.0%) |
 | `isHitCylinder__18ShockWaveGeneratorCFP9HitSensorP9HitSensor` | `0x80224CF8` | :x: (0.0%) |
-| `__dt__18ShockWaveGeneratorFv` | `0x80224DB0` | :x: (0.0%) |
+| `__dt__18ShockWaveGeneratorFv` | `0x80224DB0` | :white_check_mark: (100.0%) |
 | `__sinit_\ShockWaveGenerator_cpp` | `0x80224E0C` | :x: (0.0%) |
 | `__ct__Q221NrvShockWaveGenerator25ShockWaveGeneratorNrvWaitFv` | `0x80224E40` | :x: (0.0%) |
 | `__ct__Q221NrvShockWaveGenerator29ShockWaveGeneratorNrvDemoEchoFv` | `0x80224E50` | :x: (0.0%) |

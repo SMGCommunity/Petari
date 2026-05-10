@@ -7,7 +7,8 @@ MercatorTransformCube::MercatorTransformCube(int type, const char* pName) : Area
     _3C.identity();
 }
 
-MercatorTransformCube::~MercatorTransformCube() {}
+MercatorTransformCube::~MercatorTransformCube() {
+}
 
 void MercatorTransformCube::init(const JMapInfoIter& rIter) {
     AreaObj::init(rIter);

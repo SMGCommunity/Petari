@@ -26,7 +26,7 @@ s32 RailGraph::addNode(const TVec3f& rVec) {
     _8 = cnt + 1;
 
     RailGraphNode* nodes = &mNodes[cnt];
-    nodes->_0.setPS(node._0);
+    nodes->_0.setPS2(node._0);
     nodes->_C = node._C;
     nodes->_10 = node._10;
     return _8 - 1;

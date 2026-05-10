@@ -1,10 +1,12 @@
 # main/Game/MapObj/PlantGroup
 
+**Source Path:** `src/Game/MapObj/PlantGroup.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__ct__10PlantGroupFPCc` | `0x8020C7E0` | :x: (0.0%) |
+| `__ct__10PlantGroupFPCc` | `0x8020C7E0` | :x: (46.1%) |
 | `init__10PlantGroupFRC12JMapInfoIter` | `0x8020C85C` | :x: (0.0%) |
 | `makeActorAppeared__10PlantGroupFv` | `0x8020CA9C` | :x: (0.0%) |
 | `makeActorDead__10PlantGroupFv` | `0x8020CB08` | :x: (0.0%) |
@@ -29,7 +31,7 @@
 | `tryShake__11PlantMemberFP9HitSensor` | `0x8020DE74` | :x: (0.0%) |
 | `tryPush__11PlantMemberFRCQ29JGeometry8TVec3<f>fl` | `0x8020DF98` | :x: (0.0%) |
 | `animControl__11PlantMemberFP10PlantGroup` | `0x8020E13C` | :x: (0.0%) |
-| `__dt__10PlantGroupFv` | `0x8020E1E0` | :x: (0.0%) |
+| `__dt__10PlantGroupFv` | `0x8020E1E0` | :white_check_mark: (100.0%) |
 | `__dt__11PlantMemberFv` | `0x8020E23C` | :x: (0.0%) |
 | `__sinit_\PlantGroup_cpp` | `0x8020E294` | :x: (0.0%) |
 | `__ct__Q214NrvPlantMember15HostTypeNrvWaitFv` | `0x8020E2D8` | :x: (0.0%) |

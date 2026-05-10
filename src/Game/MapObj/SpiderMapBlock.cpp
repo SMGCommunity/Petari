@@ -1,17 +1,10 @@
 #include "Game/MapObj/SpiderMapBlock.hpp"
-#include "Game/LiveActor/LiveActor.hpp"
-#include "Game/Util/ActorSensorUtil.hpp"
-#include "Game/Util/EffectUtil.hpp"
-#include "Game/Util/JMapInfo.hpp"
-#include "Game/Util/LiveActorUtil.hpp"
-#include "Game/Util/MathUtil.hpp"
-#include "Game/Util/ObjUtil.hpp"
-#include "Game/Util/SoundUtil.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
-#include "revolution/mtx.h"
 
-SpiderMapBlock::SpiderMapBlock(const char* pName) : LiveActor(pName) {
-    _8C = 0.0f;
+namespace {
+    static const f32 sCoinSpeed = 35.0f;
+}
+
+SpiderMapBlock::SpiderMapBlock(const char* pName) : LiveActor(pName), mPosZ(0.0f) {
 }
 
 bool SpiderMapBlock::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
@@ -27,11 +20,12 @@ bool SpiderMapBlock::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSenso
     return true;
 }
 
-SpiderMapBlock::~SpiderMapBlock() {}
+SpiderMapBlock::~SpiderMapBlock() {
+}
 
 void SpiderMapBlock::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
-    _8C = mPosition.z;
+    mPosZ = mPosition.z;
     initModelManagerWithAnm("SpiderMapBlock", nullptr, false);
     MR::connectToSceneMapObj(this);
     initHitSensor(1);
@@ -47,12 +41,10 @@ void SpiderMapBlock::kill() {
     MR::startSound(this, "SE_OJ_ROCK_BREAK", -1, -1);
     MR::emitEffect(this, "Break");
     MtxPtr baseMtx = getBaseMtx();
-    TVec3f v4(baseMtx[0][1], baseMtx[1][1], 0.0f);
-    MR::normalizeOrZero(&v4);
-    v4.x *= 35.0f;
-    v4.y *= 35.0f;
-    v4.z *= 35.0f;
-    TVec3f v3(mPosition.x, mPosition.y, _8C);
-    MR::appearCoinToVelocity(this, v3, v4, 1);
+    TVec3f coinVel(baseMtx[0][1], baseMtx[1][1], 0.0f);
+    MR::normalizeOrZero(&coinVel);
+    coinVel.mult(sCoinSpeed);
+    TVec3f coinPos(mPosition.x, mPosition.y, mPosZ);
+    MR::appearCoinToVelocity(this, coinPos, coinVel, 1);
     LiveActor::kill();
 }

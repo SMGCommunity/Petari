@@ -33,11 +33,11 @@
 | `control2__10MarioActorFv` | `0x802B0E60` | :white_check_mark: (100.0%) |
 | `controlMain__10MarioActorFv` | `0x802B1004` | :white_check_mark: (100.0%) |
 | `updateBehavior__10MarioActorFv` | `0x802B10EC` | :x: (99.2%) |
-| `updateBindRatio__10MarioActorFv` | `0x802B12F0` | :x: (98.4%) |
+| `updateBindRatio__10MarioActorFv` | `0x802B12F0` | :x: (89.1%) |
 | `isInPunchTimerRange__10MarioActorCFv` | `0x802B13FC` | :white_check_mark: (100.0%) |
 | `updatePunching__10MarioActorFv` | `0x802B145C` | :x: (100.0%) |
 | `doRush__10MarioActorFv` | `0x802B15C8` | :x: (99.4%) |
-| `updateSwingTimer__10MarioActorFv` | `0x802B18BC` | :x: (100.0%) |
+| `updateSwingTimer__10MarioActorFv` | `0x802B18BC` | :x: (96.3%) |
 | `updateSwingAction__10MarioActorFv` | `0x802B1A1C` | :x: (100.0%) |
 | `checkClapCatchStart__10MarioActorFv` | `0x802B1F54` | :white_check_mark: (100.0%) |
 | `updateRealMtx__10MarioActorFv` | `0x802B1F94` | :x: (98.5%) |

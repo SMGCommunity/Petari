@@ -1,10 +1,12 @@
 # main/Game/MapObj/PunchBox
 
+**Source Path:** `src/Game/MapObj/PunchBox.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__ct__8PunchBoxFPCc` | `0x80213700` | :x: (0.0%) |
+| `__ct__8PunchBoxFPCc` | `0x80213700` | :white_check_mark: (100.0%) |
 | `init__8PunchBoxFRC12JMapInfoIter` | `0x8021373C` | :x: (0.0%) |
 | `initAfterPlacement__8PunchBoxFv` | `0x80213A18` | :x: (0.0%) |
 | `attackSensor__8PunchBoxFP9HitSensorP9HitSensor` | `0x80213A64` | :x: (0.0%) |
@@ -24,4 +26,4 @@
 | `execute__Q211NrvPunchBox15PunchBoxNrvWaitCFP5Spine` | `0x8021417C` | :x: (0.0%) |
 | `__cl__Q22MR41FunctorV0M<P8PunchBox,M8PunchBoxFPCvPv_v>CFv` | `0x80214184` | :x: (0.0%) |
 | `clone__Q22MR41FunctorV0M<P8PunchBox,M8PunchBoxFPCvPv_v>CFP7JKRHeap` | `0x802141B4` | :x: (0.0%) |
-| `__dt__8PunchBoxFv` | `0x8021421C` | :x: (0.0%) |
+| `__dt__8PunchBoxFv` | `0x8021421C` | :white_check_mark: (100.0%) |

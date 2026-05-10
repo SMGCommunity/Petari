@@ -194,7 +194,7 @@ public:
 
     void blown(const TVec3f&);
 
-    void taskOnEffectCheck(u32);
+    bool taskOnEffectCheck(u32);
 
     void doFlow();
 
@@ -411,10 +411,10 @@ public:
     void recordLastGround();
     void getLastGroundPos(TVec3f*) const;
     const TVec3f* getLastGroundEdgeNrm(u32) const;
-    void getLastGroundEdgeIndex(const TVec3f&, const TVec3f&) const;
+    u32 getLastGroundEdgeIndex(const TVec3f&, const TVec3f&) const;
     void pushedByReaction();
     void addReaction(const TVec3f&);
-    bool tryPushToVelocity();
+    void tryPushToVelocity();
     void push(const TVec3f&);
     void push2(const TVec3f&);
     void powerAreaMove();
@@ -910,8 +910,8 @@ public:
     /* 0x8BC */ TVec3f _8BC;
     /* 0x8C8 */ Triangle* _8C8;
     /* 0x8CC */ Triangle* _8CC[2];
-    /* 0x8D4 */ u32 _8D4;
-    /* 0x8D8 */ u32 _8D8;
+    /* 0x8D4 */ HitSensor* _8D4;
+    /* 0x8D8 */ HitSensor* _8D8;
     /* 0x8DC */ TVec3f _8DC;
     /* 0x8E8 */ Triangle* _8E8;
     /* 0x8EC */ u8 _8EC;

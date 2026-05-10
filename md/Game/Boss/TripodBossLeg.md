@@ -94,5 +94,5 @@
 | `execute__Q216NrvTripodBossLeg20TripodBossLegNrvDemoCFP5Spine` | `0x8009055C` | :white_check_mark: (100.0%) |
 | `execute__Q216NrvTripodBossLeg20TripodBossLegNrvHoldCFP5Spine` | `0x80090564` | :white_check_mark: (100.0%) |
 | `setTrans__Q29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>Ffff` | `0x800905AC` | :x: (0.0%) |
-| `makeQuat__Q29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>FRCQ29JGeometry9TQuat4<f>` | `0x800905BC` | :x: (0.0%) |
-| `clamp__2MRFfff` | `0x8009066C` | :x: (0.0%) |
+| `makeQuat__Q29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>FRCQ29JGeometry9TQuat4<f>` | `0x800905BC` | :x: (33.1%) |
+| `clamp__2MRFfff` | `0x8009066C` | :white_check_mark: (100.0%) |

@@ -1,11 +1,13 @@
 # main/Game/MapObj/SmallStone
 
+**Source Path:** `src/Game/MapObj/SmallStone.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__ct__10SmallStoneFPCc` | `0x80227DE8` | :x: (0.0%) |
-| `__dt__10SmallStoneFv` | `0x80227E44` | :x: (0.0%) |
+| `__ct__10SmallStoneFPCc` | `0x80227DE8` | :x: (62.3%) |
+| `__dt__10SmallStoneFv` | `0x80227E44` | :x: (76.7%) |
 | `initAfterPlacement__10SmallStoneFv` | `0x80227EBC` | :x: (0.0%) |
 | `control__10SmallStoneFv` | `0x802285CC` | :x: (0.0%) |
 | `isAllMemberBreak__10SmallStoneFv` | `0x8022862C` | :x: (0.0%) |

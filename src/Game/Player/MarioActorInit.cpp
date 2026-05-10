@@ -46,12 +46,12 @@ void MarioActor::initMember() {
     _210 = 0;
     _211 = 0;
     _214 = nullptr;
-    _218 = 0;
-    _21C = 0;
-    _220 = 0;
+    _218 = nullptr;
+    _21C = nullptr;
+    _220 = nullptr;
     _224 = 0;
-    _228 = 0;
-    _22C = 0;
+    _228 = nullptr;
+    _22C = nullptr;
     mMario = nullptr;
     mMarioAnim = nullptr;
     mMarioEffect = nullptr;
@@ -265,8 +265,8 @@ void MarioActor::initMember() {
     _A6C = 0;
     _A6E = 0;
     for (int i = 0; i < 8; i++) {
-        _A70[i] = 0;
-        _A90[i] = 0;
+        _A70[i] = nullptr;
+        _A90[i] = nullptr;
     }
     PSMTXIdentity(_AB0.toMtxPtr());
     PSMTXIdentity(_AE0.toMtxPtr());
@@ -310,8 +310,8 @@ void MarioActor::initMember() {
     _B96 = 0;
     _B9C = 0;
     _B9E = 0;
-    _BA0 = 0;
-    _BA4 = 0;
+    _BA0 = nullptr;
+    _BA4 = nullptr;
     _BA8 = 0;
     _BAC.zero();
     _BB8.zero();

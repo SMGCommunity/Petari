@@ -31,7 +31,7 @@ public:
 
     void pushBreakPoint();
 
-    void drawSyncCallback(u16);
+    static void drawSyncCallback(u16);
 
     static DrawSyncManager* sInstance;
 

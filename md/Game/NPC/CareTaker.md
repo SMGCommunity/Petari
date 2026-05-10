@@ -1,11 +1,13 @@
 # main/Game/NPC/CareTaker
 
+**Source Path:** `src/Game/NPC/CareTaker.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__ct__9CaretakerFPCc` | `0x8026ECDC` | :x: (0.0%) |
-| `makeArchiveList__9CaretakerFP27NameObjArchiveListCollectorRC12JMapInfoIter` | `0x8026ED30` | :x: (0.0%) |
+| `__ct__9CaretakerFPCc` | `0x8026ECDC` | :x: (65.2%) |
+| `makeArchiveList__9CaretakerFP27NameObjArchiveListCollectorRC12JMapInfoIter` | `0x8026ED30` | :x: (72.1%) |
 | `init__9CaretakerFRC12JMapInfoIter` | `0x8026EDDC` | :x: (0.0%) |
 | `initAfterPlacement__9CaretakerFv` | `0x8026F24C` | :x: (0.0%) |
 | `kill__9CaretakerFv` | `0x8026F28C` | :x: (0.0%) |
@@ -68,4 +70,4 @@
 | `clone__51TalkMessageFuncM<P9Caretaker,M9CaretakerFPCvPvUl_b>CFv` | `0x802702B8` | :x: (0.0%) |
 | `clone__51TalkMessageFuncM<P9Caretaker,M9CaretakerFPCvPvUl_b>CFP7JKRHeap` | `0x802702F8` | :x: (0.0%) |
 | `__ct__51TalkMessageFuncM<P9Caretaker,M9CaretakerFPCvPvUl_b>FRC51TalkMessageFuncM<P9Caretaker,M9CaretakerFPCvPvUl_b>` | `0x8027033C` | :x: (0.0%) |
-| `__dt__9CaretakerFv` | `0x8027036C` | :x: (0.0%) |
+| `__dt__9CaretakerFv` | `0x8027036C` | :white_check_mark: (100.0%) |

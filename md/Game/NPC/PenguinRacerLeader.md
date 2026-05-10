@@ -1,10 +1,12 @@
 # main/Game/NPC/PenguinRacerLeader
 
+**Source Path:** `src/Game/NPC/PenguinRacerLeader.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__ct__18PenguinRacerLeaderFPCc` | `0x8027CBF0` | :x: (0.0%) |
+| `__ct__18PenguinRacerLeaderFPCc` | `0x8027CBF0` | :x: (71.5%) |
 | `init__18PenguinRacerLeaderFRC12JMapInfoIter` | `0x8027CC40` | :x: (0.0%) |
 | `branchFunc__18PenguinRacerLeaderFUl` | `0x8027CE84` | :x: (0.0%) |
 | `eventFunc__18PenguinRacerLeaderFUl` | `0x8027CED0` | :x: (0.0%) |
@@ -33,4 +35,4 @@
 | `clone__71TalkMessageFuncM<P18PenguinRacerLeader,M18PenguinRacerLeaderFPCvPvUl_b>CFv` | `0x8027D2C8` | :x: (0.0%) |
 | `clone__71TalkMessageFuncM<P18PenguinRacerLeader,M18PenguinRacerLeaderFPCvPvUl_b>CFP7JKRHeap` | `0x8027D308` | :x: (0.0%) |
 | `__ct__71TalkMessageFuncM<P18PenguinRacerLeader,M18PenguinRacerLeaderFPCvPvUl_b>FRC71TalkMessageFuncM<P18PenguinRacerLeader,M18PenguinRacerLeaderFPCvPvUl_b>` | `0x8027D34C` | :x: (0.0%) |
-| `__dt__18PenguinRacerLeaderFv` | `0x8027D37C` | :x: (0.0%) |
+| `__dt__18PenguinRacerLeaderFv` | `0x8027D37C` | :white_check_mark: (100.0%) |

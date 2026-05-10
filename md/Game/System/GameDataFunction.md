@@ -12,7 +12,7 @@
 | `hasPowerStar__16GameDataFunctionFPCcl` | `0x803B0E18` | :white_check_mark: (100.0%) |
 | `hasGrandStar__16GameDataFunctionFi` | `0x803B0E64` | :white_check_mark: (100.0%) |
 | `setGameFlagPowerStarSuccess__16GameDataFunctionFPCclb` | `0x803B0EA0` | :white_check_mark: (100.0%) |
-| `makeGalaxyScenarioAccessor__16GameDataFunctionFPCcl` | `0x803B0EF4` | :x: (0.0%) |
+| `makeGalaxyScenarioAccessor__16GameDataFunctionFPCcl` | `0x803B0EF4` | :white_check_mark: (100.0%) |
 | `isOnGalaxyScenarioFlagAlreadyVisited__16GameDataFunctionFPCcl` | `0x803B0F40` | :white_check_mark: (100.0%) |
 | `onGalaxyScenarioFlagAlreadyVisited__16GameDataFunctionFPCcl` | `0x803B0F8C` | :white_check_mark: (100.0%) |
 | `isAppearGalaxy__16GameDataFunctionFPCc` | `0x803B0FD8` | :white_check_mark: (100.0%) |

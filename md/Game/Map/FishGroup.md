@@ -1,11 +1,13 @@
 # main/Game/Map/FishGroup
 
+**Source Path:** `src/Game/Map/FishGroup.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
 |------|---------|---------|
 | `__dt__4FishFv` | `0x8017F384` | :x: (0.0%) |
-| `__dt__9FishGroupFv` | `0x8017F3E0` | :x: (0.0%) |
+| `__dt__9FishGroupFv` | `0x8017F3E0` | :white_check_mark: (100.0%) |
 | `__ct__4FishFPCcP9FishGroupib` | `0x8017F43C` | :x: (0.0%) |
 | `init__4FishFRC12JMapInfoIter` | `0x8017F544` | :x: (0.0%) |
 | `exeWander__4FishFv` | `0x8017F620` | :x: (0.0%) |
@@ -15,7 +17,7 @@
 | `calcAndSetBaseMtx__4FishFv` | `0x8017FB4C` | :x: (0.0%) |
 | `tryEscapeFromPlayer__4FishFv` | `0x8017FBB4` | :x: (0.0%) |
 | `updateFollowPointPos__4FishFv` | `0x8017FC40` | :x: (0.0%) |
-| `__ct__9FishGroupFPCc` | `0x8017FC9C` | :x: (0.0%) |
+| `__ct__9FishGroupFPCc` | `0x8017FC9C` | :x: (49.4%) |
 | `init__9FishGroupFRC12JMapInfoIter` | `0x8017FD10` | :x: (0.0%) |
 | `startClipped__9FishGroupFv` | `0x8017FF0C` | :x: (0.0%) |
 | `endClipped__9FishGroupFv` | `0x8017FF78` | :x: (0.0%) |

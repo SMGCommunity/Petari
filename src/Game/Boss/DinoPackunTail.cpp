@@ -106,8 +106,44 @@ void DinoPackunTail::updateJoint() {
         }
     }
 }
+void DinoPackunTail::addAccelKeepBend() {
+    TVec3f v20;
+    v20.set< f32 >(mNodes[0]->mPosition);
+    TVec3f v19;
+    v19.set< f32 >(*mNodes[0]->getNodeDirection());
+    MR::normalize(&v19);
 
-// DinoPackunTail::addAccelKeepBend
+    for (u32 i = 1; i < mNumNodes; i++) {
+        TVec3f v18;
+        v18.set< f32 >(mNodes[i]->mPosition);
+        TVec3f v17;
+        v17.set< f32 >(*mNodes[i]->getNodeDirection());
+
+        if (!MR::isNearZero(v17)) {
+            MR::normalize(&v17);
+            f32 v11;
+            TVec3f v16;
+            if (MR::makeAxisAndCosignVecToVec(&v16, &v11, v19, v17) && v11 < 1.1f) {
+                f32 bendPower = mNodes[i]->getKeepBendPower();
+                f32 v8 = (_C * ((1.0f - MR::normalize(v11, -1.0f, 1.1f)) * bendPower));
+                TVec3f v15;
+                PSVECCrossProduct(&v17, &v16, &v15);
+                MR::normalize(&v15);
+                mNodes[i]->addNodeVelocityHost(v15 * v8);
+
+                if (i >= 2) {
+                    TVec3f v14;
+                    PSVECCrossProduct(&v19, &v16, &v14);
+                    MR::normalize(&v14);
+                    mNodes[i - 2]->addNodeVelocityHost(v14 * v8);
+                }
+            }
+
+            v20.set< f32 >(v18);
+            v19.set< f32 >(v17);
+        }
+    }
+}
 
 // https://decomp.me/scratch/aWhPK
 void DinoPackunTail::addAccelKeepDistance() {

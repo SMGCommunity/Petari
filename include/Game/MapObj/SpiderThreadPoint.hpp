@@ -21,15 +21,19 @@ public:
         mVelocity.zero();
     }
 
-    inline f32 getPosZDiff(const TVec3f& rPos) const { return rPos.z - mPosition.z; }
+    inline f32 getPosZDiff(const TVec3f& rPos) const {
+        return rPos.z - mPosition.z;
+    }
 
     // TODO: this should be removed when the appropriate inline in JAudio is made/found
-    inline s32 systemLevelParam(f32 a, f32 b) { return static_cast< s16 >(a) << 16 | static_cast< s16 >(b) & 0xFFFF; }
+    inline s32 systemLevelParam(f32 a, f32 b) {
+        return static_cast< s16 >(a) << 16 | static_cast< s16 >(b) & 0xFFFF;
+    }
 
     /* 0x00 */ TVec3f mBasePos;
     /* 0x0C */ TVec3f mPosition;
     /* 0x18 */ TVec3f mVelocity;
-    /* 0x24 */ f32 mSpringFactor;
+    /* 0x24 */ f32 mFriction;
     /* 0x28 */ TVec3f mUp;
     /* 0x34 */ TVec3f mFront;
     /* 0x40 */ s32 mWindStartTime;

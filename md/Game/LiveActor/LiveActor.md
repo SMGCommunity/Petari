@@ -42,4 +42,4 @@
 | `receiveMsgApart__9LiveActorFP9HitSensorP9HitSensor` | `0x8016643C` | :white_check_mark: (100.0%) |
 | `addToSoundObjHolder__9LiveActorFv` | `0x80166468` | :white_check_mark: (100.0%) |
 | `updateBinder__9LiveActorFv` | `0x80166470` | :x: (0.0%) |
-| `setBaseScale__8J3DModelFRC3Vec` | `0x801664F4` | :x: (0.0%) |
+| `setBaseScale__8J3DModelFRC3Vec` | `0x801664F4` | :white_check_mark: (100.0%) |

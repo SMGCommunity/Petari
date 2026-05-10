@@ -1,10 +1,12 @@
 # main/Game/MapObj/LavaFloater
 
+**Source Path:** `src/Game/MapObj/LavaFloater.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__ct__11LavaFloaterFPCc` | `0x801F0594` | :x: (0.0%) |
+| `__ct__11LavaFloaterFPCc` | `0x801F0594` | :x: (51.2%) |
 | `init__11LavaFloaterFRC12JMapInfoIter` | `0x801F0604` | :x: (0.0%) |
 | `initAfterPlacement__11LavaFloaterFv` | `0x801F07E8` | :x: (0.0%) |
 | `makeActorAppeared__11LavaFloaterFv` | `0x801F08F4` | :x: (0.0%) |
@@ -15,7 +17,7 @@
 | `getCurrentSinkDepth__11LavaFloaterCFv` | `0x801F0A70` | :x: (0.0%) |
 | `exeFloat__11LavaFloaterFv` | `0x801F0B44` | :x: (0.0%) |
 | `exeSink__11LavaFloaterFv` | `0x801F0BA4` | :x: (0.0%) |
-| `__dt__11LavaFloaterFv` | `0x801F0C10` | :x: (0.0%) |
+| `__dt__11LavaFloaterFv` | `0x801F0C10` | :white_check_mark: (100.0%) |
 | `__sinit_\LavaFloater_cpp` | `0x801F0C6C` | :x: (0.0%) |
 | `__ct__Q214NrvLavaFloater13HostTypeFloatFv` | `0x801F0C98` | :x: (0.0%) |
 | `__ct__Q214NrvLavaFloater12HostTypeSinkFv` | `0x801F0CA8` | :x: (0.0%) |

@@ -2135,7 +2135,7 @@ void Mario::doAirWalk() {
                 reduceBegin = mActor->getConst().getTable()->mSquatJumpFrontReductionBTime;
             }
 
-            if (_10._8 && reinterpret_cast< u32 >(_45C->mSensor) == _8D8) {
+            if (_10._8 && _45C->mSensor == _8D8) {
                 MtxPtr prevMtx = reinterpret_cast< MtxPtr >(_8E8->getPrevBaseMtx());
                 MtxPtr baseMtx = reinterpret_cast< MtxPtr >(_8E8->getBaseMtx());
                 if (MR::isSameMtx(baseMtx, prevMtx)) {
@@ -2687,7 +2687,7 @@ void Mario::doLanding() {
             break;
         }
 
-        if (_10._17 && _45C != nullptr && _8D8 == reinterpret_cast< u32 >(_45C->mSensor)) {
+        if (_10._17 && _45C != nullptr && _8D8 == _45C->mSensor) {
             TVec3f jumpDelta(mJumpVec);
             jumpDelta -= _8DC;
             if (jumpDelta.dot(mJumpVec) < 0.0f) {

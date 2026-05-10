@@ -6,7 +6,7 @@
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `transform__Q29JGeometry9TQuat4<f>CFRQ29JGeometry8TVec3<f>` | `0x8007BEE8` | :x: (0.0%) |
+| `transform__Q29JGeometry9TQuat4<f>CFRQ29JGeometry8TVec3<f>` | `0x8007BEE8` | :white_check_mark: (100.0%) |
 | `cubic<f>__Q29JGeometry8TVec3<f>FRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>f_v` | `0x8007C00C` | :x: (0.0%) |
 | `angle__Q29JGeometry8TVec3<f>CFRCQ29JGeometry8TVec3<f>` | `0x8007C118` | :x: (0.0%) |
 | `setXDir__Q29JGeometry64TRotation3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>FRCQ29JGeometry8TVec3<f>` | `0x8007C194` | :x: (0.0%) |
@@ -29,7 +29,7 @@
 | `appearForce__17SkeletalFishGuardFv` | `0x8007D210` | :white_check_mark: (100.0%) |
 | `killNaturally__17SkeletalFishGuardFv` | `0x8007D274` | :white_check_mark: (100.0%) |
 | `waitAttack__17SkeletalFishGuardFl` | `0x8007D2F4` | :white_check_mark: (100.0%) |
-| `calcAndSetBaseMtx__17SkeletalFishGuardFv` | `0x8007D2FC` | :x: (0.0%) |
+| `calcAndSetBaseMtx__17SkeletalFishGuardFv` | `0x8007D2FC` | :white_check_mark: (100.0%) |
 | `attackSensor__17SkeletalFishGuardFP9HitSensorP9HitSensor` | `0x8007D548` | :white_check_mark: (100.0%) |
 | `receiveMsgPlayerAttack__17SkeletalFishGuardFUlP9HitSensorP9HitSensor` | `0x8007D5F4` | :white_check_mark: (100.0%) |
 | `initSensor__17SkeletalFishGuardFv` | `0x8007D6E0` | :white_check_mark: (100.0%) |
@@ -39,7 +39,7 @@
 | `tryShiftApart__17SkeletalFishGuardFv` | `0x8007D9D0` | :x: (94.7%) |
 | `tryShiftStraight__17SkeletalFishGuardFv` | `0x8007DA6C` | :white_check_mark: (100.0%) |
 | `tryShiftKill__17SkeletalFishGuardFv` | `0x8007DAE4` | :white_check_mark: (100.0%) |
-| `turn__17SkeletalFishGuardFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>f` | `0x8007DB40` | :x: (0.0%) |
+| `turn__17SkeletalFishGuardFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>f` | `0x8007DB40` | :white_check_mark: (100.0%) |
 | `lookToPlayer__17SkeletalFishGuardFff` | `0x8007DC64` | :x: (97.7%) |
 | `calcTarget__17SkeletalFishGuardFPQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f>l` | `0x8007DD10` | :x: (99.8%) |
 | `isInScreen__17SkeletalFishGuardCFv` | `0x8007DE74` | :white_check_mark: (100.0%) |
@@ -47,7 +47,7 @@
 | `isLineOfSightClear__17SkeletalFishGuardCFv` | `0x8007DFA0` | :x: (96.7%) |
 | `tryShiftNumb__17SkeletalFishGuardFPC5Nerve` | `0x8007E130` | :white_check_mark: (100.0%) |
 | `__dt__17SkeletalFishGuardFv` | `0x8007E198` | :white_check_mark: (100.0%) |
-| `__sinit_\SkeletalFishGuard_cpp` | `0x8007E1F4` | :x: (61.6%) |
+| `__sinit_\SkeletalFishGuard_cpp` | `0x8007E1F4` | :white_check_mark: (100.0%) |
 | `__ct__Q231@unnamed@SkeletalFishGuard_cpp@24SkeletalFishGuardNrvWaitFv` | `0x8007E258` | :white_check_mark: (100.0%) |
 | `__ct__Q231@unnamed@SkeletalFishGuard_cpp@26SkeletalFishGuardNrvAppearFv` | `0x8007E268` | :white_check_mark: (100.0%) |
 | `__ct__Q231@unnamed@SkeletalFishGuard_cpp@26SkeletalFishGuardNrvNormalFv` | `0x8007E278` | :white_check_mark: (100.0%) |

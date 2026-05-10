@@ -11,13 +11,13 @@ public:
     NameObjListExecutor();
 
     virtual ~NameObjListExecutor();
-    virtual void initMovementList();
-    virtual void initCalcAnimList();
-    virtual void initCalcViewAndEntryList();
-    virtual void initDrawList();
+    virtual void initMovementList() {}
+    virtual void initCalcAnimList() {}
+    virtual void initCalcViewAndEntryList() {}
+    virtual void initDrawList() {}
 
     void init();
-    s16 registerDrawBuffer(LiveActor*, int);
+    s32 registerDrawBuffer(LiveActor*, int);
     void allocateDrawBufferActorList();
     void registerPreDrawFunction(const MR::FunctorBase&, int drawType);
     void findLightInfo(LiveActor*, int, int) const;

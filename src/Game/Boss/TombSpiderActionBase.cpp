@@ -9,19 +9,6 @@
 // NOTE: this function order is how it appears in the debug symbol map, because that order lets the .data section match.
 // Writing directly as the release symbol map produces incorrect .data order.
 
-// FIXME: this should be the definition for MR::clamp, however MR::clamp does not behave well with this file
-inline f32 clamp(f32 x, f32 min, f32 max) {
-    if (x < min) {
-        return min;
-    }
-
-    if (x > max) {
-        return max;
-    }
-
-    return x;
-}
-
 namespace {
     static const s32 sEnergyMax = 3;
     static const s32 sStepAttackLoopSensorValidate = 20;
@@ -194,9 +181,7 @@ bool TombSpiderActionBase::updateAttackLoop(s32 minAttackTime, s32 maxAttackTime
     }
 
     mRotateSpeed += mRotateAccel;
-    // MR::clamp needs to be properly defined
-    // mRotateSpeed = MR::clamp(mRotateSpeed, -maxRotateSpeed, maxRotateSpeed);
-    mRotateSpeed = clamp(mRotateSpeed, -maxRotateSpeed, maxRotateSpeed);
+    mRotateSpeed = MR::clamp(mRotateSpeed, -maxRotateSpeed, maxRotateSpeed);
     mParent->mRotation.z += mRotateSpeed;
     mParent->mRotation.z = MR::repeat(mParent->mRotation.z, 0.0f, 360.0f);
 

@@ -4,6 +4,8 @@
 
 class SimpleBloomArea : public ImageEffectArea {
 public:
+    enum EMaskFilterColor { MASK_FILTER_ALL, MASK_FILTER_RED, MASK_FILTER_GREEN, MASK_FILTER_BLUE };
+
     SimpleBloomArea(int, const char*);
     virtual ~SimpleBloomArea();
 
@@ -11,7 +13,7 @@ public:
 
     virtual const char* getManagerName() const;
 
-    u32 _40;
+    u32 mMaskFilterColor;
     u8 _44;
     u8 _45;
     u8 _46[2];

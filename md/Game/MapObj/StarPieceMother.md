@@ -1,10 +1,12 @@
 # main/Game/MapObj/StarPieceMother
 
+**Source Path:** `src/Game/MapObj/StarPieceMother.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__ct__15StarPieceMotherFPCc` | `0x80244088` | :x: (0.0%) |
+| `__ct__15StarPieceMotherFPCc` | `0x80244088` | :x: (53.8%) |
 | `init__15StarPieceMotherFRC12JMapInfoIter` | `0x802440E8` | :x: (0.0%) |
 | `kill__15StarPieceMotherFv` | `0x80244474` | :x: (0.0%) |
 | `control__15StarPieceMotherFv` | `0x802444E4` | :x: (0.0%) |
@@ -22,4 +24,4 @@
 | `Functor<15StarPieceMother>__2MRFP15StarPieceMotherM15StarPieceMotherFPCvPv_v_Q22MR57FunctorV0M<P15StarPieceMother,M15StarPieceMotherFPCvPv_v>` | `0x802449A8` | :x: (0.0%) |
 | `__cl__Q22MR57FunctorV0M<P15StarPieceMother,M15StarPieceMotherFPCvPv_v>CFv` | `0x802449E8` | :x: (0.0%) |
 | `clone__Q22MR57FunctorV0M<P15StarPieceMother,M15StarPieceMotherFPCvPv_v>CFP7JKRHeap` | `0x80244A18` | :x: (0.0%) |
-| `__dt__15StarPieceMotherFv` | `0x80244A80` | :x: (0.0%) |
+| `__dt__15StarPieceMotherFv` | `0x80244A80` | :white_check_mark: (100.0%) |

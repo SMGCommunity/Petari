@@ -1,10 +1,12 @@
 # main/Game/MapObj/LavaProminence
 
+**Source Path:** `src/Game/MapObj/LavaProminence.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__ct__14LavaProminenceFPCc` | `0x801F25E4` | :x: (0.0%) |
+| `__ct__14LavaProminenceFPCc` | `0x801F25E4` | :x: (21.2%) |
 | `init__14LavaProminenceFRC12JMapInfoIter` | `0x801F26F0` | :x: (0.0%) |
 | `appear__14LavaProminenceFv` | `0x801F2948` | :x: (0.0%) |
 | `kill__14LavaProminenceFv` | `0x801F294C` | :x: (0.0%) |
@@ -23,7 +25,7 @@
 | `exeMoveEndExtra__14LavaProminenceFv` | `0x801F3288` | :x: (0.0%) |
 | `calcAndSetBaseMtx__14LavaProminenceFv` | `0x801F3388` | :x: (0.0%) |
 | `attackSensor__14LavaProminenceFP9HitSensorP9HitSensor` | `0x801F3558` | :x: (0.0%) |
-| `__dt__14LavaProminenceFv` | `0x801F35A8` | :x: (0.0%) |
+| `__dt__14LavaProminenceFv` | `0x801F35A8` | :white_check_mark: (100.0%) |
 | `__sinit_\LavaProminence_cpp` | `0x801F3604` | :x: (0.0%) |
 | `__ct__Q217NrvLavaProminence21HostTypeNrvWaitSwitchFv` | `0x801F3660` | :x: (0.0%) |
 | `__ct__Q217NrvLavaProminence15HostTypeNrvWaitFv` | `0x801F3670` | :x: (0.0%) |

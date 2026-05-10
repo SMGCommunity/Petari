@@ -186,7 +186,7 @@ void MoguStone::calcAndSetBaseMtx() {
     mtx[1][3] = 0.0f;
     mtx[2][3] = 0.0f;
 
-    mtx.setRotateQuaternionInlineAndTrans(_90, mPosition);
+    mtx.setQT(_90, mPosition);
 
     MR::setBaseTRMtx(this, mtx);
 }
@@ -226,10 +226,7 @@ void ThrowingIce::doBehavior() {
     if (MR::isFirstStep(this)) {
         TVec3f v1;
         PSVECCrossProduct(_B0, mGravity, &v1);
-
-        f32 one_eighth = 0.125f;
-        _A0.toTVec3()->scale(sin(one_eighth), v1);
-        _A0.w = cos(one_eighth);
+        _A0.setRotate(v1, 0.25f);
     }
 
     f32 rate = MR::calcNerveRate(this, 101);

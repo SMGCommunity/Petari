@@ -552,7 +552,6 @@ void StarPiece::exeToTarget() {
 
     MR::normalizeOrZero(&touchTargetVec);
     TQuat4f rotateQuat;
-    // inlined TQuat4 functions, not matching because functions are not defined yet
     rotateQuat.setRotate(_8C, touchTargetVec, _98);
     rotateQuat.rotate(_8C);
 
@@ -573,7 +572,7 @@ void StarPiece::exeToTarget() {
     MR::normalizeOrZero(&velNormalized);
     if (!MR::isNearZero(velNormalized)) {
         f32 dot = _8C.dot(velNormalized);
-        if (dot < 0.0f) {
+        if (0.0f < dot) {
             if (mFlags.isGoToPlayer) {
                 mVelocity.add(MR::getPlayerVelocity()->scaleInline(_9C).scaleInline(dot));
             } else {

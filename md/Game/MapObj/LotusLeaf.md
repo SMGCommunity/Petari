@@ -6,14 +6,14 @@
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__ct__9LotusLeafFPCc` | `0x801F5254` | :x: (63.5%) |
+| `__ct__9LotusLeafFPCc` | `0x801F5254` | :white_check_mark: (100.0%) |
 | `init__9LotusLeafFRC12JMapInfoIter` | `0x801F52B4` | :white_check_mark: (100.0%) |
 | `exeWait__9LotusLeafFv` | `0x801F53EC` | :white_check_mark: (100.0%) |
 | `exeWaitPlayerOn__9LotusLeafFv` | `0x801F5454` | :white_check_mark: (100.0%) |
-| `exeShake__9LotusLeafFv` | `0x801F54AC` | :x: (86.3%) |
-| `convergeToInitPos__9LotusLeafFv` | `0x801F56B8` | :x: (29.3%) |
+| `exeShake__9LotusLeafFv` | `0x801F54AC` | :x: (95.7%) |
+| `convergeToInitPos__9LotusLeafFv` | `0x801F56B8` | :white_check_mark: (100.0%) |
 | `__dt__9LotusLeafFv` | `0x801F5774` | :white_check_mark: (100.0%) |
-| `__sinit_\LotusLeaf_cpp` | `0x801F57D0` | :x: (36.0%) |
+| `__sinit_\LotusLeaf_cpp` | `0x801F57D0` | :white_check_mark: (100.0%) |
 | `__ct__Q212NrvLotusLeaf12HostTypeWaitFv` | `0x801F580C` | :white_check_mark: (100.0%) |
 | `__ct__Q212NrvLotusLeaf21HostTypeShakeOnPlayerFv` | `0x801F581C` | :white_check_mark: (100.0%) |
 | `__ct__Q212NrvLotusLeaf13HostTypeShakeFv` | `0x801F582C` | :white_check_mark: (100.0%) |

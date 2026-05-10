@@ -17,7 +17,7 @@
 | `setupStateWait__19AstroCountDownPlateFv` | `0x801A9CC8` | :white_check_mark: (100.0%) |
 | `startDemoStartCountDown__19AstroCountDownPlateFv` | `0x801A9D60` | :white_check_mark: (100.0%) |
 | `startDemoLastBattle__19AstroCountDownPlateFv` | `0x801A9D68` | :white_check_mark: (100.0%) |
-| `__sinit_\AstroCountDownPlate_cpp` | `0x801A9D70` | :x: (76.0%) |
+| `__sinit_\AstroCountDownPlate_cpp` | `0x801A9D70` | :white_check_mark: (100.0%) |
 | `__ct__Q222NrvAstroCountDownPlate26AstroCountDownPlateNrvDeadFv` | `0x801A9DAC` | :white_check_mark: (100.0%) |
 | `__ct__Q222NrvAstroCountDownPlate27AstroCountDownPlateNrvAliveFv` | `0x801A9DBC` | :white_check_mark: (100.0%) |
 | `__ct__Q222NrvAstroCountDownPlate29AstroCountDownPlateNrvRevivalFv` | `0x801A9DCC` | :white_check_mark: (100.0%) |

@@ -7,7 +7,7 @@
 | Name | Address | Match % |
 |------|---------|---------|
 | `__ct__18KillerGunnerSingleFPCc` | `0x801EF14C` | :white_check_mark: (100.0%) |
-| `init__18KillerGunnerSingleFRC12JMapInfoIter` | `0x801EF188` | :x: (92.9%) |
+| `init__18KillerGunnerSingleFRC12JMapInfoIter` | `0x801EF188` | :white_check_mark: (100.0%) |
 | `attackSensor__18KillerGunnerSingleFP9HitSensorP9HitSensor` | `0x801EF2B0` | :white_check_mark: (100.0%) |
 | `exeWait__18KillerGunnerSingleFv` | `0x801EF340` | :white_check_mark: (100.0%) |
 | `exeCharge__18KillerGunnerSingleFv` | `0x801EF3A8` | :white_check_mark: (100.0%) |

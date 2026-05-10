@@ -1,12 +1,14 @@
 # main/Game/Boss/Dodoryu
 
+**Source Path:** `src/Game/Boss/Dodoryu.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
 |------|---------|---------|
 | `setAll<f>__Q29JGeometry8TVec3<f>Ff_v` | `0x8004ED54` | :x: (0.0%) |
 | `__ct__Q29JGeometry8TVec3<f>FRC3Vec` | `0x8004ED64` | :x: (0.0%) |
-| `__ct__7DodoryuFPCc` | `0x8004ED78` | :x: (0.0%) |
+| `__ct__7DodoryuFPCc` | `0x8004ED78` | :x: (21.1%) |
 | `init__7DodoryuFRC12JMapInfoIter` | `0x8004EE7C` | :x: (0.0%) |
 | `initAfterPlacement__7DodoryuFv` | `0x8004F08C` | :x: (0.0%) |
 | `control__7DodoryuFv` | `0x8004F090` | :x: (0.0%) |
@@ -122,7 +124,7 @@
 | `push_back__Q22MR49Vector<Q22MR34FixedArray<P16DodoryuStateBase,16>>FRCP16DodoryuStateBase` | `0x80051A38` | :x: (0.0%) |
 | `__cl__Q22MR39FunctorV0M<P7Dodoryu,M7DodoryuFPCvPv_v>CFv` | `0x80051A54` | :x: (0.0%) |
 | `clone__Q22MR39FunctorV0M<P7Dodoryu,M7DodoryuFPCvPv_v>CFP7JKRHeap` | `0x80051A84` | :x: (0.0%) |
-| `__dt__7DodoryuFv` | `0x80051AEC` | :x: (0.0%) |
+| `__dt__7DodoryuFv` | `0x80051AEC` | :white_check_mark: (100.0%) |
 | `__dt__11DodoryuBankFv` | `0x80051B48` | :x: (0.0%) |
 | `__dt__13DodoryuRabbitFv` | `0x80051BA0` | :x: (0.0%) |
 | `__dt__15DodoryuLeadHillFv` | `0x80051BF8` | :x: (0.0%) |

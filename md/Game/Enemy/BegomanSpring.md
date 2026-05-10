@@ -1,11 +1,13 @@
 # main/Game/Enemy/BegomanSpring
 
+**Source Path:** `src/Game/Enemy/BegomanSpring.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
 |------|---------|---------|
 | `squared__Q29JGeometry8TVec3<f>CFRCQ29JGeometry8TVec3<f>` | `0x800D7B20` | :x: (0.0%) |
-| `__ct__13BegomanSpringFPCc` | `0x800D7B48` | :x: (0.0%) |
+| `__ct__13BegomanSpringFPCc` | `0x800D7B48` | :x: (36.9%) |
 | `init__13BegomanSpringFRC12JMapInfoIter` | `0x800D7BE0` | :x: (0.0%) |
 | `initEventCameras__13BegomanSpringFRC12JMapInfoIter` | `0x800D7EAC` | :x: (0.0%) |
 | `appear__13BegomanSpringFv` | `0x800D7F38` | :x: (0.0%) |
@@ -13,8 +15,8 @@
 | `kill__13BegomanSpringFv` | `0x800D7FE8` | :x: (0.0%) |
 | `control__13BegomanSpringFv` | `0x800D803C` | :x: (0.0%) |
 | `onTouchElectric__13BegomanSpringFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | `0x800D836C` | :x: (0.0%) |
-| `setNerveReturn__13BegomanSpringFv` | `0x800D847C` | :x: (0.0%) |
-| `getNerveWait__13BegomanSpringFv` | `0x800D84A4` | :x: (0.0%) |
+| `setNerveReturn__13BegomanSpringFv` | `0x800D847C` | :x: (14.0%) |
+| `getNerveWait__13BegomanSpringFv` | `0x800D84A4` | :x: (97.5%) |
 | `exeSignAttack__13BegomanSpringFv` | `0x800D84AC` | :x: (0.0%) |
 | `exePursue__13BegomanSpringFv` | `0x800D8550` | :x: (0.0%) |
 | `exeTurn__13BegomanSpringFv` | `0x800D8604` | :x: (0.0%) |
@@ -83,7 +85,7 @@
 | `execute__Q216NrvBegomanSpring15HostTypeNrvWaitCFP5Spine` | `0x800D9C48` | :x: (0.0%) |
 | `executeOnEnd__Q216NrvBegomanSpring21HostTypeNrvNoCalcWaitCFP5Spine` | `0x800D9CB8` | :x: (0.0%) |
 | `execute__Q216NrvBegomanSpring21HostTypeNrvNoCalcWaitCFP5Spine` | `0x800D9CC0` | :x: (0.0%) |
-| `getKind__13BegomanSpringCFv` | `0x800D9CD0` | :x: (0.0%) |
+| `getKind__13BegomanSpringCFv` | `0x800D9CD0` | :x: (99.5%) |
 | `__cl__Q22MR53FunctorV0M<P13BegomanSpring,M13BegomanSpringFPCvPv_v>CFv` | `0x800D9CD8` | :x: (0.0%) |
 | `clone__Q22MR53FunctorV0M<P13BegomanSpring,M13BegomanSpringFPCvPv_v>CFP7JKRHeap` | `0x800D9D08` | :x: (0.0%) |
-| `__dt__13BegomanSpringFv` | `0x800D9D70` | :x: (0.0%) |
+| `__dt__13BegomanSpringFv` | `0x800D9D70` | :white_check_mark: (100.0%) |

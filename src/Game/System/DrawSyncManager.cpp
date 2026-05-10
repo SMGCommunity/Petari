@@ -1,4 +1,6 @@
 #include "Game/System/DrawSyncManager.hpp"
+#include "Game/SingletonHolder.hpp"
+#include "Game/System/GameSystem.hpp"
 
 DrawSyncManager* DrawSyncManager::start(u32 a1, s32 a2) {
     if (!DrawSyncManager::sInstance) {
@@ -68,16 +70,16 @@ DrawSyncManager::~DrawSyncManager() {
     OSJoinThread(&mThread, 0);
 }
 
-/*
 void DrawSyncManager::reset(bool arg) {
-    if (!arg && _372) {
+    if (arg) {
+        _372 = 1;
+    } else if (_372) {
         _372 = 0;
         _373 = 1;
-
-        GXSetDrawSyncCallback(DrawSyncManager::drawSyncCallback);
+        GXSetDrawSyncCallback(&DrawSyncManager::drawSyncCallback);
+        SingletonHolder< GameSystem >::get()->initGX();
     }
 }
-*/
 
 // DrawSyncManager::drawSyncCallbackSub
 

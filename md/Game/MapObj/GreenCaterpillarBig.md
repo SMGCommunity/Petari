@@ -17,7 +17,7 @@
 | `startWriggle__19GreenCaterpillarBigFv` | `0x801E3B88` | :white_check_mark: (100.0%) |
 | `exeWriggle__19GreenCaterpillarBigFv` | `0x801E3B90` | :white_check_mark: (100.0%) |
 | `initBodyParts__19GreenCaterpillarBigFRC12JMapInfoIter` | `0x801E3CF4` | :white_check_mark: (100.0%) |
-| `tryGenerateBodyParts__19GreenCaterpillarBigFv` | `0x801E3DD0` | :x: (97.7%) |
+| `tryGenerateBodyParts__19GreenCaterpillarBigFv` | `0x801E3DD0` | :white_check_mark: (100.0%) |
 | `control__19GreenCaterpillarBigFv` | `0x801E3E7C` | :white_check_mark: (100.0%) |
 | `calcAndSetBaseMtx__19GreenCaterpillarBigFv` | `0x801E3EE0` | :white_check_mark: (100.0%) |
 | `startClipped__19GreenCaterpillarBigFv` | `0x801E3F2C` | :white_check_mark: (100.0%) |

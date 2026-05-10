@@ -5,7 +5,7 @@
 MarioStun::MarioStun(MarioActor* pActor) : MarioState(pActor, 0xe), _12(0), _14(0) {}
 
 bool MarioStun::close() {
-    stopAnimation("しびれ", (char*)nullptr);  // "hesitation"
+    stopAnimation("しびれ", static_cast< const char* >(nullptr));  // "hesitation"
     return true;
 }
 
@@ -33,11 +33,11 @@ bool MarioStun::update() {
             _14 = 0x1e;
         }
         if (getPlayer()->mMovementStates._1) {
-            changeAnimation("しびれ回復", (char*)nullptr);
+            changeAnimation("しびれ回復", static_cast< const char* >(nullptr));
         }
     }
     if (_12 != 0 && (mActor->isRequestRush() || checkTrgA())) {
-        stopAnimation(nullptr, (char*)nullptr);
+        stopAnimation(static_cast< const char* >(nullptr), static_cast< const char* >(nullptr));
         if (checkTrgA()) {
             getPlayer()->tryJump();
         }
@@ -45,3 +45,16 @@ bool MarioStun::update() {
     }
     return true;
 }
+
+namespace NrvMarioActor {
+    INIT_NERVE(MarioActorNrvWait);
+    INIT_NERVE(MarioActorNrvGameOver);
+    INIT_NERVE(MarioActorNrvGameOverAbyss);
+    INIT_NERVE(MarioActorNrvGameOverAbyss2);
+    INIT_NERVE(MarioActorNrvGameOverFire);
+    INIT_NERVE(MarioActorNrvGameOverBlackHole);
+    INIT_NERVE(MarioActorNrvGameOverNonStop);
+    INIT_NERVE(MarioActorNrvGameOverSink);
+    INIT_NERVE(MarioActorNrvTimeWait);
+    INIT_NERVE(MarioActorNrvNoRush);
+};  // namespace NrvMarioActor

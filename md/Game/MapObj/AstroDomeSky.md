@@ -20,7 +20,7 @@
 | `exeDisappear__12AstroDomeSkyFv` | `0x801AEAF4` | :x: (0.0%) |
 | `exeReturnDemoWait__12AstroDomeSkyFv` | `0x801AEBE4` | :x: (0.0%) |
 | `__dt__12AstroDomeSkyFv` | `0x801AEC94` | :x: (0.0%) |
-| `__sinit_\AstroDomeSky_cpp` | `0x801AECF0` | :x: (84.3%) |
+| `__sinit_\AstroDomeSky_cpp` | `0x801AECF0` | :white_check_mark: (100.0%) |
 | `__ct__Q215NrvAstroDomeSky19AstroDomeSkyNrvHideFv` | `0x801AED4C` | :x: (0.0%) |
 | `__ct__Q215NrvAstroDomeSky21AstroDomeSkyNrvAppearFv` | `0x801AED5C` | :x: (0.0%) |
 | `__ct__Q215NrvAstroDomeSky19AstroDomeSkyNrvWaitFv` | `0x801AED6C` | :x: (0.0%) |

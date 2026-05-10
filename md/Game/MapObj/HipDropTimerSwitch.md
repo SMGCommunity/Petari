@@ -1,10 +1,12 @@
 # main/Game/MapObj/HipDropTimerSwitch
 
+**Source Path:** `src/Game/MapObj/HipDropTimerSwitch.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__ct__18HipDropTimerSwitchFPCc` | `0x801E6224` | :x: (0.0%) |
+| `__ct__18HipDropTimerSwitchFPCc` | `0x801E6224` | :x: (29.8%) |
 | `init__18HipDropTimerSwitchFRC12JMapInfoIter` | `0x801E62DC` | :x: (0.0%) |
 | `initAfterPlacement__18HipDropTimerSwitchFv` | `0x801E64C8` | :x: (0.0%) |
 | `control__18HipDropTimerSwitchFv` | `0x801E64D0` | :x: (0.0%) |
@@ -17,7 +19,7 @@
 | `exeSwitchDown__18HipDropTimerSwitchFv` | `0x801E69B8` | :x: (0.0%) |
 | `exeOn__18HipDropTimerSwitchFv` | `0x801E6A3C` | :x: (0.0%) |
 | `exeSwitchUp__18HipDropTimerSwitchFv` | `0x801E6ABC` | :x: (0.0%) |
-| `__dt__18HipDropTimerSwitchFv` | `0x801E6B28` | :x: (0.0%) |
+| `__dt__18HipDropTimerSwitchFv` | `0x801E6B28` | :white_check_mark: (100.0%) |
 | `__sinit_\HipDropTimerSwitch_cpp` | `0x801E6B84` | :x: (0.0%) |
 | `__ct__Q216NrvHipDropSwitch24HipDropTimerSwitchNrvOffFv` | `0x801E6BC0` | :x: (0.0%) |
 | `__ct__Q216NrvHipDropSwitch31HipDropTimerSwitchNrvSwitchDownFv` | `0x801E6BD0` | :x: (0.0%) |

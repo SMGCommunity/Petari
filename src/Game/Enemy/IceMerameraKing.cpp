@@ -63,9 +63,10 @@ namespace NrvIceMerameraKing {
 };  // namespace NrvIceMerameraKing
 
 IceMerameraKing::IceMerameraKing(const char* pName)
-    : LiveActor(pName), mFixedPos(nullptr), _90(nullptr), _94(nullptr), mActor(), _A8(nullptr), _AC(nullptr), _B0(0, 0, 1), _BC(0, 1, 0), _C8(0, 0, 0),
-      _D4(0, 0, 0), _E0(0), _E4(0), _EC(3), _F0(0), mModelArray(nullptr), _F8(nullptr), mJointController(nullptr), _100(0, 0, 0, 1), _110(0.0f, 0.0f, 0.0f),
-      _11C(0.0f), _120(false), _121(false) {}
+    : LiveActor(pName), mFixedPos(nullptr), _90(nullptr), _94(nullptr), mActor(), _A8(nullptr), _AC(nullptr), _B0(0, 0, 1), _BC(0, 1, 0),
+      _C8(0, 0, 0), _D4(0, 0, 0), _E0(0), _E4(0), _EC(3), _F0(0), mModelArray(nullptr), _F8(nullptr), mJointController(nullptr), _100(0, 0, 0, 1),
+      _110(0.0f, 0.0f, 0.0f), _11C(0.0f), _120(false), _121(false) {
+}
 
 void IceMerameraKing::init(const JMapInfoIter& rIter) {
     if (MR::isValidInfo(rIter)) {
@@ -259,7 +260,7 @@ void IceMerameraKing::exeThrow() {
 
     if (MR::isStep(this, 22)) {
         _90 = getDeadWeaponAndAppear();
-        mFixedPos->_1C.getTrans(_90->mPosition);
+        mFixedPos->mMtx.getTrans(_90->mPosition);
         if (!_90) {
             setNerve(&NrvIceMerameraKing::HostTypeNrvSearch::sInstance);
             return;

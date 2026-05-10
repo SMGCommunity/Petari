@@ -1,11 +1,13 @@
 # main/Game/NPC/DemoRabbit
 
+**Source Path:** `src/Game/NPC/DemoRabbit.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__ct__10DemoRabbitFPCc` | `0x80270B94` | :x: (0.0%) |
-| `makeArchiveList__10DemoRabbitFP27NameObjArchiveListCollectorRC12JMapInfoIter` | `0x80270BD0` | :x: (0.0%) |
+| `__ct__10DemoRabbitFPCc` | `0x80270B94` | :white_check_mark: (100.0%) |
+| `makeArchiveList__10DemoRabbitFP27NameObjArchiveListCollectorRC12JMapInfoIter` | `0x80270BD0` | :white_check_mark: (100.0%) |
 | `init__10DemoRabbitFRC12JMapInfoIter` | `0x80270C2C` | :x: (0.0%) |
 | `initAfterPlacement__10DemoRabbitFv` | `0x80270E8C` | :x: (0.0%) |
 | `control__10DemoRabbitFv` | `0x80270EF8` | :x: (0.0%) |
@@ -51,4 +53,4 @@
 | `Functor<10DemoRabbit>__2MRFP10DemoRabbitM10DemoRabbitFPCvPv_v_Q22MR47FunctorV0M<P10DemoRabbit,M10DemoRabbitFPCvPv_v>` | `0x80271CA0` | :x: (0.0%) |
 | `__cl__Q22MR47FunctorV0M<P10DemoRabbit,M10DemoRabbitFPCvPv_v>CFv` | `0x80271CE0` | :x: (0.0%) |
 | `clone__Q22MR47FunctorV0M<P10DemoRabbit,M10DemoRabbitFPCvPv_v>CFP7JKRHeap` | `0x80271D10` | :x: (0.0%) |
-| `__dt__10DemoRabbitFv` | `0x80271D78` | :x: (0.0%) |
+| `__dt__10DemoRabbitFv` | `0x80271D78` | :white_check_mark: (100.0%) |

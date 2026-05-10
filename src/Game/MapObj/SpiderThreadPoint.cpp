@@ -5,24 +5,31 @@
 #include "Game/Util/MathUtil.hpp"
 #include <revolution/mtx.h>
 
-inline SpiderThread* getThreadObj() {
-    return reinterpret_cast< SpiderThread* >(MR::getSceneObjHolder()->getObj(SceneObj_SpiderThread));
-}
+namespace {
+    SpiderThreadWindCtrl* getWindCtrl() {
+        return MR::getSceneObj< SpiderThread >(SceneObj_SpiderThread)->mWindCtrl;
+    }
 
-SpiderThreadPoint::SpiderThreadPoint(const TVec3f& rPos, f32 springFactor)
-    : mBasePos(rPos), mPosition(rPos), mVelocity(0.0f, 0.0f, 0.0f), mSpringFactor(springFactor), mUp(0.0f, 1.0f, 0.0f), mFront(0.0f, 0.0f, 1.0f) {
-    mWindStartTime = getThreadObj()->mWindCtrl->getTimeToStartWind();
-    mWindTime = getThreadObj()->mWindCtrl->getWindTime();
+    static const f32 sAccelRate = 0.02f;
+    static const f32 sSpeedMinToStop = 0.1f;
+    static const f32 sDistanceToStop = 1.0f;
+    // static const _32 sPushAccelRate =
+}  // namespace
+
+SpiderThreadPoint::SpiderThreadPoint(const TVec3f& rPos, f32 friction)
+    : mBasePos(rPos), mPosition(rPos), mVelocity(0.0f, 0.0f, 0.0f), mFriction(friction), mUp(0.0f, 1.0f, 0.0f), mFront(0.0f, 0.0f, 1.0f) {
+    mWindStartTime = getWindCtrl()->getTimeToStartWind();
+    mWindTime = getWindCtrl()->getWindTime();
     mPrevStretchDist = 0.0f;
 }
 
 bool SpiderThreadPoint::updateSpring() {
-    mVelocity.scale(mSpringFactor);
+    mVelocity.scale(mFriction);
     TVec3f v1(mBasePos);
     v1.sub(mPosition);
 
     TVec3f v2(v1);
-    v2.scale(0.02f);
+    v2.scale(sAccelRate);
     mVelocity.add(v2);
     mPosition.add(mVelocity);
 
@@ -33,7 +40,7 @@ bool SpiderThreadPoint::updateSpring() {
     f32 mag1 = v3.length();
     f32 mag2 = mVelocity.length();
 
-    if (mag2 < 0.1f && mag1 < 1.0f) {
+    if (mag2 < sSpeedMinToStop && mag1 < sDistanceToStop) {
         mVelocity.zero();
         return true;
     }
@@ -58,10 +65,10 @@ void SpiderThreadPoint::updateWind(f32 dampener) {
         mWindStartTime--;
     } else {
         if (--mWindTime > 0) {
-            mVelocity.add(getThreadObj()->mWindCtrl->mWind);
+            mVelocity.add(getWindCtrl()->mWind);
         } else {
-            mWindStartTime = getThreadObj()->mWindCtrl->getTimeToStartWind();
-            mWindTime = getThreadObj()->mWindCtrl->getWindTime();
+            mWindStartTime = getWindCtrl()->getTimeToStartWind();
+            mWindTime = getWindCtrl()->getWindTime();
         }
     }
     mVelocity.scale(dampener);
@@ -115,7 +122,7 @@ bool SpiderThreadPoint::tryPush(const TVec3f& rPos, f32 radius) {
 }
 
 void SpiderThreadPoint::startThreadLevelSound() {
-    f32 stretchDist = PSVECDistance(&mBasePos, &mPosition);
+    f32 stretchDist = mBasePos.distance(mPosition);
     if (mPrevStretchDist > 0.0f && stretchDist > 50.0f) {
         f32 diff = __fabsf(mPrevStretchDist - stretchDist);
         if (diff > 1.0f) {

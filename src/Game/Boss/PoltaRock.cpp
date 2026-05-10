@@ -174,7 +174,7 @@ void PoltaRock::exeMove() {
     }
 
     if (MR::isLessStep(this, 30)) {
-        mVelocity.addInLine(_A0.multInLine(3.0f * MR::calcNerveRate(this, 30)));
+        mVelocity.addInline(_A0.multInLine(3.0f * MR::calcNerveRate(this, 30)));
     }
     MR::addVelocityToGravity(this, -0.02f);
     MR::attenuateVelocity(this, 0.99f);

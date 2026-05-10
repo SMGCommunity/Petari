@@ -9,7 +9,7 @@
 | `__ct__10PlantStalkFv` | `0x803288CC` | :white_check_mark: (100.0%) |
 | `init__10PlantStalkFRC12JMapInfoIter` | `0x80328954` | :white_check_mark: (100.0%) |
 | `draw__10PlantStalkCFv` | `0x80328B28` | :white_check_mark: (100.0%) |
-| `updateGrowUp__10PlantStalkFv` | `0x80328B70` | :x: (95.3%) |
+| `updateGrowUp__10PlantStalkFv` | `0x80328B70` | :x: (92.2%) |
 | `calcPosAndAxisY__10PlantStalkCFPQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f>f` | `0x80328D80` | :white_check_mark: (100.0%) |
 | `calcNearestPos__10PlantStalkCFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | `0x80328D88` | :white_check_mark: (100.0%) |
 | `calcPlayerCoord__10PlantStalkCFv` | `0x80328D94` | :white_check_mark: (100.0%) |

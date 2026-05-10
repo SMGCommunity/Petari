@@ -14,7 +14,7 @@
 | `receiveOtherMsg__10JumpBranchFUlP9HitSensorP9HitSensor` | `0x8032588C` | :white_check_mark: (100.0%) |
 | `updateBind__10JumpBranchFv` | `0x80325CF8` | :white_check_mark: (100.0%) |
 | `__dt__10JumpBranchFv` | `0x80325F1C` | :white_check_mark: (100.0%) |
-| `__sinit_\JumpBranch_cpp` | `0x80325F78` | :x: (72.3%) |
+| `__sinit_\JumpBranch_cpp` | `0x80325F78` | :white_check_mark: (100.0%) |
 | `__ct__Q213NrvJumpBranch17JumpBranchNrvWaitFv` | `0x80325FAC` | :white_check_mark: (100.0%) |
 | `__ct__Q213NrvJumpBranch24JumpBranchNrvWaitInvalidFv` | `0x80325FBC` | :white_check_mark: (100.0%) |
 | `__ct__Q213NrvJumpBranch17JumpBranchNrvBindFv` | `0x80325FCC` | :white_check_mark: (100.0%) |

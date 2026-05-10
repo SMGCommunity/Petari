@@ -325,18 +325,13 @@ namespace MR {
     }
 
     void calcRailPosFrontCoord(TVec3f* pPos, const LiveActor* pActor, f32 frontDist) {
-        // FIXME: MR::clamp inline is finnicky
-        // https://decomp.me/scratch/UTDeK
-
         f32 coord = getRailCoord(pActor);
         coord = isRailGoingToEnd(pActor) ? coord + frontDist : coord - frontDist;
 
         if (isLoopRail(pActor)) {
-            coord = repeat(coord, 0.0f, getRailTotalLength(pActor));
+            coord = MR::repeat(coord, 0.0f, getRailTotalLength(pActor));
         } else {
-            // this is clamp(coord, 0.0f, getRailTotalLength(pActor));
-            f32 length = getRailTotalLength(pActor);
-            coord = coord < 0.0f ? 0.0f : coord > length ? length : coord;
+            coord = MR::clamp(coord, 0.0f, getRailTotalLength(pActor));
         }
 
         calcRailPosAtCoord(pPos, pActor, coord);

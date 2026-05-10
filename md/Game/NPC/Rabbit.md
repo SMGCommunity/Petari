@@ -1,10 +1,12 @@
 # main/Game/NPC/Rabbit
 
+**Source Path:** `src/Game/NPC/Rabbit.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__ct__6RabbitFPCc` | `0x8027F8CC` | :x: (0.0%) |
+| `__ct__6RabbitFPCc` | `0x8027F8CC` | :white_check_mark: (100.0%) |
 | `init__6RabbitFRC12JMapInfoIter` | `0x8027F908` | :x: (0.0%) |
 | `control__6RabbitFv` | `0x8027FD94` | :x: (0.0%) |
 | `exeAppear__6RabbitFv` | `0x8027FE40` | :x: (0.0%) |
@@ -26,7 +28,7 @@
 | `exeTalk__6RabbitFv` | `0x80280D44` | :x: (0.0%) |
 | `exeJumpV__6RabbitFv` | `0x80280E00` | :x: (0.0%) |
 | `exeJumpH__6RabbitFv` | `0x80280E5C` | :x: (0.0%) |
-| `__dt__6RabbitFv` | `0x80280EB8` | :x: (0.0%) |
+| `__dt__6RabbitFv` | `0x80280EB8` | :white_check_mark: (100.0%) |
 | `__sinit_\Rabbit_cpp` | `0x80280F10` | :x: (0.0%) |
 | `__ct__Q29NrvRabbit15RabbitNrvAppearFv` | `0x80280FA4` | :x: (0.0%) |
 | `__ct__Q29NrvRabbit19RabbitNrvAppearLandFv` | `0x80280FB4` | :x: (0.0%) |

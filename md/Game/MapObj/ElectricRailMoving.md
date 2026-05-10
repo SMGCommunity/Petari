@@ -1,5 +1,7 @@
 # main/Game/MapObj/ElectricRailMoving
 
+**Source Path:** `src/Game/MapObj/ElectricRailMoving.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
@@ -7,7 +9,7 @@
 | `__ct__23ElectricRailMovingPointFPCc` | `0x801D6464` | :x: (0.0%) |
 | `init__23ElectricRailMovingPointFRC12JMapInfoIter` | `0x801D64AC` | :x: (0.0%) |
 | `attackSensor__23ElectricRailMovingPointFP9HitSensorP9HitSensor` | `0x801D6560` | :x: (0.0%) |
-| `__ct__18ElectricRailMovingFPCc` | `0x801D657C` | :x: (0.0%) |
+| `__ct__18ElectricRailMovingFPCc` | `0x801D657C` | :x: (37.0%) |
 | `init__18ElectricRailMovingFRC12JMapInfoIter` | `0x801D6610` | :x: (0.0%) |
 | `draw__18ElectricRailMovingCFv` | `0x801D66F4` | :x: (0.0%) |
 | `disappear__18ElectricRailMovingFv` | `0x801D67B8` | :x: (0.0%) |
@@ -47,4 +49,4 @@
 | `GXTexCoord2f32` | `0x801D7FAC` | :x: (0.0%) |
 | `__cl__Q22MR63FunctorV0M<P18ElectricRailMoving,M18ElectricRailMovingFPCvPv_v>CFv` | `0x801D7FBC` | :x: (0.0%) |
 | `clone__Q22MR63FunctorV0M<P18ElectricRailMoving,M18ElectricRailMovingFPCvPv_v>CFP7JKRHeap` | `0x801D7FEC` | :x: (0.0%) |
-| `__dt__18ElectricRailMovingFv` | `0x801D8054` | :x: (0.0%) |
+| `__dt__18ElectricRailMovingFv` | `0x801D8054` | :white_check_mark: (100.0%) |

@@ -1,8 +1,7 @@
 #pragma once
 
-#include "Game/LiveActor/HitSensor.hpp"
+#include "Game/LiveActor/ActorStateBase.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/System/NerveExecutor.hpp"
 
 class WalkerStateParam;
 class WalkerStateStaggerParam;
@@ -11,40 +10,39 @@ class WalkerStateStaggerParam {
 public:
     WalkerStateStaggerParam();
 
-    f32 _0;
-    f32 _4;
-    f32 _8;
-    u32 _C;
-    u32 _10;
-    u32 _14;
-    u32 _18;
-    u32 _1C;
-    f32 _20;
-    f32 _24;
-    f32 _28;
-    f32 _2C;
+    /* 0x00 */ f32 mPunchPowerH;
+    /* 0x04 */ f32 mPunchPowerV;
+    /* 0x08 */ f32 mPunchPowerSideH;
+    /* 0x0C */ s32 mStopSceneFrames;
+    /* 0x10 */ s32 mKickEnableStep;
+    /* 0x14 */ s32 mStaggerTime;
+    /* 0x18 */ s32 mRotateStartTime;
+    /* 0x1C */ s32 mRotateEndTime;
+    /* 0x20 */ f32 mStaggerFrontPower;
+    /* 0x24 */ f32 mStaggerSidePower;
+    /* 0x28 */ f32 mStaggerSideCircleRateDegree;
+    /* 0x2C */ f32 mRotateRateDegree;
 };
 
 class WalkerStateStagger : public ActorStateBase< LiveActor > {
 public:
-    WalkerStateStagger(LiveActor*, TVec3f*, WalkerStateParam*, WalkerStateStaggerParam*);
+    WalkerStateStagger(LiveActor* pHost, TVec3f* pDirection, WalkerStateParam* pStateParam, WalkerStateStaggerParam* pStaggerParam);
 
-    virtual ~WalkerStateStagger();
     virtual void appear();
 
-    void setPunchDirection(HitSensor*, HitSensor*);
+    void setPunchDirection(HitSensor* pSender, HitSensor* pReceiver);
     void exeStagger();
     void exeStaggerEnd();
     void reboundWall();
     bool isEnableKick() const;
     bool isUpsideDown() const;
     bool isStaggerStart() const;
-    bool isSwooning(s32) const;
-    bool isSpinning(s32, s32) const;
+    bool isSwooning(s32 swoonStep) const;
+    bool isSpinning(s32 spinStartStep, s32 spinEndStep) const;
     bool isRecoverStart() const;
 
-    WalkerStateParam* mStateParam;           // 0x10
-    WalkerStateStaggerParam* mStaggerParam;  // 0x14
-    TVec3f _18;
-    TVec3f* _24;
+    /* 0x10 */ WalkerStateParam* mStateParam;
+    /* 0x14 */ WalkerStateStaggerParam* mStaggerParam;
+    /* 0x18 */ TVec3f mVelH;
+    /* 0x24 */ TVec3f* mDirection;
 };

@@ -1,10 +1,12 @@
 # main/Game/Enemy/KoteBug
 
+**Source Path:** `src/Game/Enemy/KoteBug.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__ct__7KoteBugFPCc` | `0x80115C7C` | :x: (0.0%) |
+| `__ct__7KoteBugFPCc` | `0x80115C7C` | :x: (39.8%) |
 | `init__7KoteBugFRC12JMapInfoIter` | `0x80115D04` | :x: (0.0%) |
 | `appear__7KoteBugFv` | `0x8011605C` | :x: (0.0%) |
 | `kill__7KoteBugFv` | `0x80116098` | :x: (0.0%) |
@@ -73,4 +75,4 @@
 | `__dt__31JointControlDelegator<7KoteBug>Fv` | `0x80117C34` | :x: (0.0%) |
 | `calcJointMatrix__31JointControlDelegator<7KoteBug>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | `0x80117C74` | :x: (0.0%) |
 | `calcJointMatrixAfterChild__31JointControlDelegator<7KoteBug>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | `0x80117CDC` | :x: (0.0%) |
-| `__dt__7KoteBugFv` | `0x80117D44` | :x: (0.0%) |
+| `__dt__7KoteBugFv` | `0x80117D44` | :white_check_mark: (100.0%) |

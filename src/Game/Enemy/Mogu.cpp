@@ -47,7 +47,8 @@ namespace NrvMogu {
 
 Mogu::Mogu(const char* pName)
     : LiveActor(pName), mAnimScaleController(nullptr), _90(nullptr), mStone(nullptr), mHole(nullptr), mSight(0, 0, 1), _A8(0, 1, 0), _B4(true),
-      mIsCannonFleet(false) {}
+      mIsCannonFleet(false) {
+}
 
 void Mogu::init(const JMapInfoIter& rIter) {
     if (MR::isValidInfo(rIter)) {
@@ -532,9 +533,9 @@ void Mogu::calcAndSetBaseMtx() {
 
     if (isNerve(&NrvMogu::HostTypeNrvThrow::sInstance) && MR::isLessStep(this, 47)) {
         _90->calc();
-        f32 z = _90->_1C[2][3];
-        f32 y = _90->_1C[1][3];
-        f32 x = _90->_1C[0][3];
+        f32 z = _90->mMtx[2][3];
+        f32 y = _90->mMtx[1][3];
+        f32 x = _90->mMtx[0][3];
         mStone->mPosition.set< f32 >(x, y, z);
     }
 }

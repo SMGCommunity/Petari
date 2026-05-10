@@ -1,10 +1,12 @@
 # main/Game/Enemy/SamboHead
 
+**Source Path:** `src/Game/Enemy/SamboHead.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__ct__9SamboHeadFPCc` | `0x8013A420` | :x: (0.0%) |
+| `__ct__9SamboHeadFPCc` | `0x8013A420` | :x: (42.3%) |
 | `init__9SamboHeadFRC12JMapInfoIter` | `0x8013A4A0` | :x: (0.0%) |
 | `appear__9SamboHeadFv` | `0x8013A770` | :x: (0.0%) |
 | `kill__9SamboHeadFv` | `0x8013A7A8` | :x: (0.0%) |
@@ -29,7 +31,7 @@
 | `receiveMsgPush__9SamboHeadFP9HitSensorP9HitSensor` | `0x8013B7B0` | :x: (0.0%) |
 | `receiveOtherMsg__9SamboHeadFUlP9HitSensorP9HitSensor` | `0x8013B894` | :x: (0.0%) |
 | `calcAndSetBaseMtx__9SamboHeadFv` | `0x8013B9E4` | :x: (0.0%) |
-| `__dt__9SamboHeadFv` | `0x8013BA5C` | :x: (0.0%) |
+| `__dt__9SamboHeadFv` | `0x8013BA5C` | :white_check_mark: (100.0%) |
 | `__sinit_\SamboHead_cpp` | `0x8013BAB8` | :x: (0.0%) |
 | `__ct__Q212NrvSamboHead26HostTypeNrvWaitUnderGroundFv` | `0x8013BB54` | :x: (0.0%) |
 | `__ct__Q212NrvSamboHead15HostTypeNrvHideFv` | `0x8013BB64` | :x: (0.0%) |

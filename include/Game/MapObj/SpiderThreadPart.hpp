@@ -41,6 +41,10 @@ public:
         mBoundBox.f.add(padding);
     }
 
+    SpiderThreadPoint* getPoint(int idx) const {
+        return mPoints[idx];
+    }
+
     /* 0x00 */ bool mIsStill;
     /* 0x01 */ bool mIsCut;
     /* 0x02 */ bool mIsFree;

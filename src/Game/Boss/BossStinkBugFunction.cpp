@@ -9,7 +9,7 @@
 #include "JSystem/JMath/JMath.hpp"
 
 void BossStinkBugFunction::addHeightOffset(TVec3f* pOut, const BossStinkBug* pStinkBug, f32 scale) {
-    pOut->addInLine(pStinkBug->mGravity.multInLine(-scale));
+    pOut->addInline(pStinkBug->mGravity.multInLine(-scale));
 }
 
 void BossStinkBugFunction::addLocalHeightOffset(TVec3f* pOut, BossStinkBug* pStinkBug, f32 scale) {

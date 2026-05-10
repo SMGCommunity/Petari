@@ -28,7 +28,7 @@
 | `getMarioShadowVec__2MRFv` | `0x803CCCD8` | :white_check_mark: (100.0%) |
 | `setMarioShadowTex__2MRFPC10JUTTexture` | `0x803CCCE4` | :white_check_mark: (100.0%) |
 | `setMarioShadowVec__2MRFRCQ29JGeometry8TVec3<f>` | `0x803CCCEC` | :x: (0.0%) |
-| `loadTexProjectionMtx__2MRFUl` | `0x803CCD08` | :x: (0.0%) |
+| `loadTexProjectionMtx__2MRFUl` | `0x803CCD08` | :x: (93.4%) |
 | `nonFilteredCapture__2MRFP10JUTTexturess` | `0x803CCE00` | :x: (0.0%) |
 | `simpleDraw__2MRFP8J3DModelP11J3DMaterial` | `0x803CCE88` | :x: (0.0%) |
 | `activateGameSceneDraw3D__2MRFv` | `0x803CCF2C` | :white_check_mark: (100.0%) |

@@ -105,7 +105,7 @@ void PartsModel::initFixedPosition(const TVec3f& rLocalTrans, const TVec3f& a2, 
     } else {
         mFixedPos = new FixedPosition(mHost, rLocalTrans, a2);
     }
-    mMtx = (MtxPtr)&mFixedPos->_1C;
+    mMtx = (MtxPtr)&mFixedPos->mMtx;
 }
 
 void PartsModel::initFixedPosition(const char* pJointName) {
@@ -114,12 +114,12 @@ void PartsModel::initFixedPosition(const char* pJointName) {
 
 void PartsModel::initFixedPosition(MtxPtr mtx, const TVec3f& rLocalTrans, const TVec3f& a3) {
     mFixedPos = new FixedPosition(mtx, rLocalTrans, a3);
-    mMtx = (MtxPtr)&mFixedPos->_1C;
+    mMtx = (MtxPtr)&mFixedPos->mMtx;
 }
 
 void PartsModel::loadFixedPosition(const char* pJointName) {
     mFixedPos = new FixedPosition(mHost, pJointName, nullptr);
-    mMtx = (MtxPtr)&mFixedPos->_1C;
+    mMtx = (MtxPtr)&mFixedPos->mMtx;
 }
 
 void PartsModel::offFixedPosNormalizeScale() {

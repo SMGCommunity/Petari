@@ -21,6 +21,8 @@ This repository does **not** contain any game assets or assembly whatsoever. An 
 
 This project is **not** meant to be an effort to create a PC Port. Please do not ask for any information on a PC port on this repository or in the Discord server.
 
+Please do **not** use any AI software to decompile game code. This project wishes to distance itself as far from AI as possible, as there are concerns of legality since AI has been known to source illegally obtained information from SDK leaks. We aim to be a clean project written only by real people.
+
 Supported versions:
 
 - `RMGK01`: Rev 0 (Korea)
@@ -93,11 +95,6 @@ Building
   ```sh
   ninja
   ```
-
-Visual Studio Code
-==================
-
-If desired, use the recommended Visual Studio Code settings by renaming the `.vscode.example` directory to `.vscode`.
 
 Diffing
 =======

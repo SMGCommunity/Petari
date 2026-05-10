@@ -1,10 +1,12 @@
 # main/Game/Enemy/Kabokuri
 
+**Source Path:** `src/Game/Enemy/Kabokuri.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__ct__8KabokuriFPCc` | `0x8010243C` | :x: (0.0%) |
+| `__ct__8KabokuriFPCc` | `0x8010243C` | :x: (41.6%) |
 | `init__8KabokuriFRC12JMapInfoIter` | `0x801024C0` | :x: (0.0%) |
 | `initSensor__8KabokuriFv` | `0x80102798` | :x: (0.0%) |
 | `control__8KabokuriFv` | `0x8010283C` | :x: (0.0%) |
@@ -32,7 +34,7 @@
 | `isEnablePointBind__8KabokuriCFv` | `0x801034F8` | :x: (0.0%) |
 | `isEnableTrampled__8KabokuriCFv` | `0x80103578` | :x: (0.0%) |
 | `isEnablePush__8KabokuriCFv` | `0x80103634` | :x: (0.0%) |
-| `__dt__8KabokuriFv` | `0x8010368C` | :x: (0.0%) |
+| `__dt__8KabokuriFv` | `0x8010368C` | :white_check_mark: (100.0%) |
 | `__sinit_\Kabokuri_cpp` | `0x801036E8` | :x: (0.0%) |
 | `__ct__Q211NrvKabokuri15KabokuriNrvWaitFv` | `0x80103754` | :x: (0.0%) |
 | `__ct__Q211NrvKabokuri15KabokuriNrvWalkFv` | `0x80103764` | :x: (0.0%) |

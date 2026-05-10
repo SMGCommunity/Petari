@@ -1,5 +1,7 @@
 # main/Game/Map/FileSelector
 
+**Source Path:** `src/Game/Map/FileSelector.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
@@ -22,16 +24,16 @@
 | `createSky__12FileSelectorFv` | `0x8017B270` | :x: (0.0%) |
 | `createFileItems__12FileSelectorFv` | `0x8017B2D0` | :x: (0.0%) |
 | `createOperationButton__12FileSelectorFv` | `0x8017B44C` | :x: (0.0%) |
-| `createBackButton__12FileSelectorFv` | `0x8017B59C` | :x: (0.0%) |
-| `createBrosButton__12FileSelectorFv` | `0x8017B604` | :x: (0.0%) |
-| `createInfoMessage__12FileSelectorFv` | `0x8017B650` | :x: (0.0%) |
-| `createSysInfoWindow__12FileSelectorFv` | `0x8017B694` | :x: (0.0%) |
-| `createFileInfo__12FileSelectorFv` | `0x8017B6D4` | :x: (0.0%) |
-| `createTitle__12FileSelectorFv` | `0x8017B724` | :x: (0.0%) |
-| `createMiiSelect__12FileSelectorFv` | `0x8017B768` | :x: (0.0%) |
-| `createMiiConfirmIcon__12FileSelectorFv` | `0x8017B7B4` | :x: (0.0%) |
-| `createMiiFont__12FileSelectorFv` | `0x8017B818` | :x: (0.0%) |
-| `createManual__12FileSelectorFv` | `0x8017B8E0` | :x: (0.0%) |
+| `createBackButton__12FileSelectorFv` | `0x8017B59C` | :white_check_mark: (100.0%) |
+| `createBrosButton__12FileSelectorFv` | `0x8017B604` | :white_check_mark: (100.0%) |
+| `createInfoMessage__12FileSelectorFv` | `0x8017B650` | :white_check_mark: (100.0%) |
+| `createSysInfoWindow__12FileSelectorFv` | `0x8017B694` | :white_check_mark: (100.0%) |
+| `createFileInfo__12FileSelectorFv` | `0x8017B6D4` | :white_check_mark: (100.0%) |
+| `createTitle__12FileSelectorFv` | `0x8017B724` | :white_check_mark: (100.0%) |
+| `createMiiSelect__12FileSelectorFv` | `0x8017B768` | :white_check_mark: (100.0%) |
+| `createMiiConfirmIcon__12FileSelectorFv` | `0x8017B7B4` | :white_check_mark: (100.0%) |
+| `createMiiFont__12FileSelectorFv` | `0x8017B818` | :x: (99.9%) |
+| `createManual__12FileSelectorFv` | `0x8017B8E0` | :white_check_mark: (100.0%) |
 | `createSelectEffect__12FileSelectorFv` | `0x8017B92C` | :x: (0.0%) |
 | `__defctor__16FileSelectEffectFv` | `0x8017B9F0` | :x: (0.0%) |
 | `appearAllItems__12FileSelectorFv` | `0x8017B9FC` | :x: (0.0%) |

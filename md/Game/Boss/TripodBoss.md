@@ -11,7 +11,7 @@
 | `initAfterPlacement__10TripodBossFv` | `0x80086610` | :white_check_mark: (100.0%) |
 | `initEventCamera__10TripodBossFRC12JMapInfoIter` | `0x8008661C` | :white_check_mark: (100.0%) |
 | `initLeg__10TripodBossFRC12JMapInfoIter` | `0x80086678` | :white_check_mark: (100.0%) |
-| `initLegIKPlacement__10TripodBossFv` | `0x80086788` | :x: (98.3%) |
+| `initLegIKPlacement__10TripodBossFv` | `0x80086788` | :x: (99.1%) |
 | `initMovableArea__10TripodBossFRCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>` | `0x80086B58` | :white_check_mark: (100.0%) |
 | `initBodyPosition__10TripodBossFv` | `0x80086BFC` | :x: (99.9%) |
 | `initBoneInfo__10TripodBossFv` | `0x80086CA0` | :white_check_mark: (100.0%) |
@@ -81,7 +81,7 @@
 | `setAttachBaseMatrix__14TripodBossBoneFRCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>` | `0x80088F24` | :x: (91.3%) |
 | `createTripodBoss__2MRFPCc` | `0x8008909C` | :white_check_mark: (100.0%) |
 | `createTripod2Boss__2MRFPCc` | `0x800890DC` | :white_check_mark: (100.0%) |
-| `__sinit_\TripodBoss_cpp` | `0x8008911C` | :x: (78.9%) |
+| `__sinit_\TripodBoss_cpp` | `0x8008911C` | :white_check_mark: (100.0%) |
 | `__ct__Q213NrvTripodBoss25TripodBossNrvTryStartDemoFv` | `0x800891EC` | :white_check_mark: (100.0%) |
 | `__ct__Q213NrvTripodBoss22TripodBossNrvNonActiveFv` | `0x800891FC` | :white_check_mark: (100.0%) |
 | `__ct__Q213NrvTripodBoss17TripodBossNrvWaitFv` | `0x8008920C` | :white_check_mark: (100.0%) |

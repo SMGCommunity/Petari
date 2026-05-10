@@ -1,17 +1,19 @@
 # main/Game/Enemy/BegomanSpike
 
+**Source Path:** `src/Game/Enemy/BegomanSpike.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__ct__12BegomanSpikeFPCc` | `0x800D5E24` | :x: (0.0%) |
+| `__ct__12BegomanSpikeFPCc` | `0x800D5E24` | :x: (61.9%) |
 | `init__12BegomanSpikeFRC12JMapInfoIter` | `0x800D5E80` | :x: (0.0%) |
 | `onSwitchB__12BegomanSpikeFv` | `0x800D60D8` | :x: (0.0%) |
 | `appear__12BegomanSpikeFv` | `0x800D60E0` | :x: (0.0%) |
 | `control__12BegomanSpikeFv` | `0x800D6140` | :x: (0.0%) |
 | `onTouchElectric__12BegomanSpikeFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | `0x800D63E4` | :x: (0.0%) |
-| `setNerveReturn__12BegomanSpikeFv` | `0x800D6500` | :x: (0.0%) |
-| `getNerveWait__12BegomanSpikeFv` | `0x800D6528` | :x: (0.0%) |
+| `setNerveReturn__12BegomanSpikeFv` | `0x800D6500` | :x: (14.0%) |
+| `getNerveWait__12BegomanSpikeFv` | `0x800D6528` | :x: (97.5%) |
 | `setNerveLaunch__12BegomanSpikeFv` | `0x800D6530` | :x: (0.0%) |
 | `exeSignAttack__12BegomanSpikeFv` | `0x800D6538` | :x: (0.0%) |
 | `exePursue__12BegomanSpikeFv` | `0x800D65DC` | :x: (0.0%) |
@@ -78,7 +80,7 @@
 | `execute__Q215NrvBegomanSpike15HostTypeNrvWaitCFP5Spine` | `0x800D79A0` | :x: (0.0%) |
 | `executeOnEnd__Q215NrvBegomanSpike21HostTypeNrvNoCalcWaitCFP5Spine` | `0x800D7A10` | :x: (0.0%) |
 | `execute__Q215NrvBegomanSpike21HostTypeNrvNoCalcWaitCFP5Spine` | `0x800D7A18` | :x: (0.0%) |
-| `getKind__12BegomanSpikeCFv` | `0x800D7A28` | :x: (0.0%) |
+| `getKind__12BegomanSpikeCFv` | `0x800D7A28` | :x: (99.5%) |
 | `__cl__Q22MR51FunctorV0M<P12BegomanSpike,M12BegomanSpikeFPCvPv_v>CFv` | `0x800D7A30` | :x: (0.0%) |
 | `clone__Q22MR51FunctorV0M<P12BegomanSpike,M12BegomanSpikeFPCvPv_v>CFP7JKRHeap` | `0x800D7A60` | :x: (0.0%) |
-| `__dt__12BegomanSpikeFv` | `0x800D7AC8` | :x: (0.0%) |
+| `__dt__12BegomanSpikeFv` | `0x800D7AC8` | :white_check_mark: (100.0%) |

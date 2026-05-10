@@ -1,11 +1,13 @@
 # main/JSystem/JKernel/JKRCompArchive
 
+**Source Path:** `src/JSystem/JKernel/JKRCompArchive.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__ct__14JKRCompArchiveFlQ210JKRArchive15EMountDirection` | `0x80413B98` | :x: (0.0%) |
-| `__dt__14JKRCompArchiveFv` | `0x80413C3C` | :x: (0.0%) |
+| `__ct__14JKRCompArchiveFlQ210JKRArchive15EMountDirection` | `0x80413B98` | :white_check_mark: (100.0%) |
+| `__dt__14JKRCompArchiveFv` | `0x80413C3C` | :x: (85.2%) |
 | `open__14JKRCompArchiveFl` | `0x80413D7C` | :x: (0.0%) |
 | `fetchResource__14JKRCompArchiveFPQ210JKRArchive12SDIFileEntryPUl` | `0x804142C0` | :x: (0.0%) |
 | `fetchResource__14JKRCompArchiveFPvUlPQ210JKRArchive12SDIFileEntryPUl` | `0x80414434` | :x: (0.0%) |

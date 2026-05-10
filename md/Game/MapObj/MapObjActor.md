@@ -52,7 +52,7 @@
 | `isBreakStopped__15MapObjActorUtilFPC11MapObjActor` | `0x801F8120` | :white_check_mark: (100.0%) |
 | `killBloomModel__15MapObjActorUtilFP11MapObjActor` | `0x801F8188` | :white_check_mark: (100.0%) |
 | `appearBloomModel__15MapObjActorUtilFP11MapObjActor` | `0x801F819C` | :white_check_mark: (100.0%) |
-| `__sinit_\MapObjActor_cpp` | `0x801F8200` | :x: (72.3%) |
+| `__sinit_\MapObjActor_cpp` | `0x801F8200` | :white_check_mark: (100.0%) |
 | `__ct__Q214NrvMapObjActor12HostTypeWaitFv` | `0x801F8234` | :white_check_mark: (100.0%) |
 | `__ct__Q214NrvMapObjActor12HostTypeMoveFv` | `0x801F8244` | :white_check_mark: (100.0%) |
 | `__ct__Q214NrvMapObjActor12HostTypeDoneFv` | `0x801F8254` | :white_check_mark: (100.0%) |

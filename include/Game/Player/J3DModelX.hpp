@@ -14,11 +14,16 @@ public:
     virtual ~J3DModelX();
 
     void viewCalc2();
+    void viewCalc3(u32, MtxPtr);
     void simpleDrawShape(J3DMaterial*);
     void storeDisplayList(_GDLObj*, u32);
     void shapePacketDrawFast(J3DShapePacketX*);
     void shapeDrawFast(J3DShapeX*) const;
+    void copyExtraMtxBuffer(const J3DModelX*);
+    void copyAnmMtxBuffer(const J3DModelX*);
+    void swapDrawBuffer(u32);
     void setDynamicDL(u8*, u32);
+    void setDrawViewBuffer(MtxPtr);
     void setDrawView(u32);
     void directDraw(J3DModel*);
 
@@ -58,34 +63,39 @@ public:
 
     u8 _DC;
     u8 _DD;
-    u32 _E0;
-    u32 _E4;
-    u32 _E8;
-    u32 _EC;
-    u32 _F0;
-    u32 _F4;
-    u32 _F8;
-    u32 _FC;
-    u32 _100;
-    u32 _104;
-    u32 _108;
-    u32 _10C;
-    u32 _110;
-    u32 _114;
-    u32 _118;
-    u32 _11C;
-    u32 _120;
+    union {
+        struct {
+            Mtx* _E0;
+            Mtx* _E4;
+            Mtx* _E8;
+            Mtx* _EC;
+            Mtx* _F0;
+            Mtx* _F4;
+            Mtx* _F8;
+            Mtx* _FC;
+            Mtx* _100;
+            Mtx* _104;
+            Mtx* _108;
+            Mtx* _10C;
+            Mtx* _110;
+            Mtx* _114;
+            Mtx* _118;
+            Mtx* _11C;
+            Mtx* _120;
+        };
+        Mtx* mExtraMtxBuffer[17];
+    };
     void (*mShapeCallback)(J3DShape*);
     u32 _128;
     u32 _12C;
     u8 _130[0x1B0 - 0x130];
     Flags mFlags;
     u32 _1B4;
-    u32 _1B8;
+    u8* _1B8;
     u32 _1BC;
     u32 _1C0;
     u32* _1C4;
-    u32* _1C8;
+    u8** _1C8;
     u16* _1CC;
     u8 _1D0;
     f32 _1D4;

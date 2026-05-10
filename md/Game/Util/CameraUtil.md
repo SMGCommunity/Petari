@@ -30,7 +30,7 @@
 | `setFovy__2MRFf` | `0x803C8BDC` | :white_check_mark: (100.0%) |
 | `setShakeOffset__2MRFff` | `0x803C8C18` | :white_check_mark: (100.0%) |
 | `getCamPos__2MRFv` | `0x803C8C64` | :white_check_mark: (100.0%) |
-| `getCamXdir__2MRFv` | `0x803C8CCC` | :x: (0.0%) |
+| `getCamXdir__2MRFv` | `0x803C8CCC` | :white_check_mark: (100.0%) |
 | `getCamYdir__2MRFv` | `0x803C8D3C` | :white_check_mark: (100.0%) |
 | `getCamZdir__2MRFv` | `0x803C8DAC` | :white_check_mark: (100.0%) |
 | `createMirrorCamera__2MRFv` | `0x803C8E28` | :white_check_mark: (100.0%) |

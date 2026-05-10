@@ -3,8 +3,8 @@
 
 #include <revolution/os/OSContext.h>
 #include <revolution/os/OSException.h>
+#include <revolution/os/OSTime.h>
 #include <revolution/types.h>
-
 
 #ifdef __cplusplus
 extern "C" {
@@ -104,6 +104,10 @@ OSInterruptMask __OSUnmaskInterrupts(OSInterruptMask);
 
 void __RAS_OSDisableInterrupts_begin(void);
 void __RAS_OSDisableInterrupts_end(void);
+
+extern volatile __OSInterrupt __OSLastInterrupt;
+extern volatile u32 __OSLastInterruptSrr0;
+extern volatile OSTime __OSLastInterruptTime;
 
 #ifdef __cplusplus
 }

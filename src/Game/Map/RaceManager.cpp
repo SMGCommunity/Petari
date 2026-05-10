@@ -1,8 +1,14 @@
 #include "Game/Map/RaceManager.hpp"
 #include "Game/Map/RaceRail.hpp"
-#include "Game/Util/LayoutUtil.hpp"
-#include "Game/Util/PlayerUtil.hpp"
-#include "Game/Util/SoundUtil.hpp"
+#include <algorithm>
+
+// FIXME: String "Record" is out of order in .data, yet function order matches in retail and debug
+// Bug with build system means .data and .rodata are not matching yet due to incorrect parsing of shift-jis strings
+
+namespace {
+    // static const _32 sTimeOutSecond =
+    static const s32 sBgmStartStep = 166;
+}  // namespace
 
 namespace {
     struct RaceStructData {
@@ -31,7 +37,8 @@ namespace {
     }
 };  // namespace
 
-RaceManagerLayout::RaceManagerLayout(const char* pName) : LayoutActor(pName, true) {}
+RaceManagerLayout::RaceManagerLayout(const char* pName) : LayoutActor(pName, true) {
+}
 
 void RaceManagerLayout::init(const JMapInfoIter& rIter) {
     MR::connectToSceneLayout(this);
@@ -161,10 +168,11 @@ void RaceManager::movement() {
     LiveActor::movement();
 }
 
-void RaceManager::exeWait() {}
+void RaceManager::exeWait() {
+}
 
 void RaceManager::exePrep() {
-    // std::for_each(&mRacer[0], &mRacer[mRacerNum], std::mem_fun(&AbstractRacer::initRacer));
+    std::for_each(&mRacer[0], &mRacer[mRacerNum], std::mem_func(&AbstractRacer::initRacer));
 
     if (isNerve(&NrvRaceManager::RaceManagerNrvPrepWipe::sInstance)) {
         setNerve(&NrvRaceManager::RaceManagerNrvPreWipeOut::sInstance);
@@ -228,7 +236,7 @@ void RaceManager::exeWipeIn() {
     } else {
         MR::onPlayerControl(true);
         MR::endDemo(this, "レース");
-        // std::for_each(&mRacer[0], &mRacer[mRacerNum], std::mem_fun(&AbstractRacer::exitRacer));
+        std::for_each(&mRacer[0], &mRacer[mRacerNum], std::mem_func(&AbstractRacer::exitRacer));
         setNerve(&NrvRaceManager::RaceManagerNrvWait::sInstance);
     }
 }
@@ -262,7 +270,7 @@ void RaceManager::exeCount() {
         MR::startSystemSE("SE_SY_RACE_COUNT_DOWN", -1, -1);
     }
 
-    if (MR::isStep(this, 166)) {
+    if (MR::isStep(this, sBgmStartStep)) {
         MR::startEventBGM(getRaceStruceData(mCurrentRace).mEventBgmId);
     }
 
@@ -275,7 +283,38 @@ void RaceManager::exeCount() {
     setNerve(&NrvRaceManager::RaceManagerNrvRace::sInstance);
 }
 
-// RaceManager::exeRace
+void RaceManager::exeRace() {
+    if (MR::isFirstStep(this)) {
+        MR::startSystemSE("SE_SY_RACE_START", -1, -1);
+    }
+
+    s32 maxTime = getRaceStruceData(mCurrentRace).mMaxTime;
+    MR::updateClearTimeTextBox(mLayout, "TimeCounter", getNerveStep());
+    if (maxTime > 0 && getNerveStep() >= maxTime * 60) {
+        mRank = 0;
+        renewTime();
+        setNerve(&NrvRaceManager::RaceManagerNrvDemo::sInstance);
+        return;
+    }
+
+    if (mRacerNum > 1) {
+        mLayout->playRank(getRank(mPlayerRacer));
+    }
+
+    for (s32 idx = mRank; idx < mRacerNum; idx++) {
+        AbstractRacer* racer = mRacer[idx];
+        if (racer->updateRacer(this)) {
+            std::swap(mRacer[idx], mRacer[mRank++]);
+            if (racer->goalRacer()) {
+                renewTime();
+                setNerve(&NrvRaceManager::RaceManagerNrvDemo::sInstance);
+                break;
+            }
+        }
+    }
+
+    std::sort(&mRacer[mRank], &mRacer[mRacerNum], AbstractRacer::compRacer);
+}
 
 void RaceManager::exeDemo() {
     if (!MR::canStartDemo()) {
@@ -353,7 +392,7 @@ void RaceManager::prepRace() {
         }
     }
 
-    // std::for_each(&mAudience[0], &mAudience[mAudienceNum], std::mem_fun(&AbstractAudience::prepAudience));
+    std::for_each(&mAudience[0], &mAudience[mAudienceNum], std::mem_func(&AbstractAudience::prepAudience));
 }
 
 void RaceManager::startRace() {
@@ -361,7 +400,7 @@ void RaceManager::startRace() {
         MR::sendSimpleMsgToActor(ACTMES_RACE_START, MR::getCurrentRushActor());
     }
 
-    // std::for_each(&mRacer[0], &mRacer[mRacerNum], std::mem_fun(&AbstractRacer::startRacer));
+    std::for_each(&mRacer[0], &mRacer[mRacerNum], std::mem_func(&AbstractRacer::startRacer));
     MR::endStarPointerMode(this);
     MR::endDemo(this, "レース");
     MR::onPlayerControl(true);
@@ -372,7 +411,7 @@ void RaceManager::goalRace() {
         MR::sendSimpleMsgToActor(ACTMES_RACE_GOAL, MR::getCurrentRushActor());
     }
 
-    // std::for_each(&mRacer[mRank], &mRacer[mRacerNum], std::mem_fun(&AbstractRacer::loseRacer));
+    std::for_each(&mRacer[mRank], &mRacer[mRacerNum], std::mem_func(&AbstractRacer::loseRacer));
 }
 
 void RaceManager::resetRace() {
@@ -390,7 +429,7 @@ void RaceManager::resetRace() {
         }
     }
 
-    // std::for_each(&mAudience[0], &mAudience[mAudienceNum], std::mem_fun(&AbstractAudience::resetAudience));
+    std::for_each(&mAudience[0], &mAudience[mAudienceNum], std::mem_func(&AbstractAudience::resetAudience));
     mLayout->kill();
 }
 
@@ -407,13 +446,28 @@ void RaceManager::entry(AbstractRacer* pRacer) {
     mRacer[mRacerNum++] = pRacer;
 }
 
-// RaceManager::entry
+void RaceManager::entry(PlayerRacer* pRacer) {
+    MR::getRailArg0WithInit(pRacer, &mCurrentRace);
+    mBestTime = MR::getRaceBestTime(mCurrentRace);
+    mPlayerRacer = pRacer;
+    TVec3f endDir, endPos;
+    MR::calcRailEndPointPosAndDirection(&endPos, &endDir, pRacer);
+    MR::makeMtxFrontUp(&_FC, endDir, TVec3f(0.0f, 1.0f, 0.0f));
+    MR::setMtxTrans(_FC, endPos.x, endPos.y, endPos.z);
+    _FC.invert(_FC);
+    entry(static_cast< AbstractRacer* >(pRacer));
+}
 
 void RaceManager::entry(AbstractAudience* pAudience) {
     mAudience[mAudienceNum++] = pAudience;
 }
 
-// RaceManager::isGoal
+bool RaceManager::isGoal(const AbstractRacer* pRacer) const {
+    TVec3f currInnProd, prevInnProd;
+    _FC.mult(pRacer->mCurrPosition, currInnProd);
+    _FC.mult(pRacer->mPrevPosition, prevInnProd);
+    return prevInnProd.z < 0.0f && currInnProd.z > 0.0f;
+}
 
 u32 RaceManager::getRank(const AbstractRacer* pRacer) const {
     u32 rank = mRacerNum;
@@ -476,18 +530,12 @@ namespace RaceManagerFunction {
     }
 
     s32 getRaceId(const char* pGalaxyName, s32 scenarioNo) {
-        for (s32 i = 0; i < sizeof(sRaceStruct) / sizeof(*sRaceStruct); i++) {
+        for (u32 i = 0; i < ARRAY_SIZEU(sRaceStruct); i++) {
             const RaceStructData& rRaceStructData = getRaceStruceData(i);
 
-            if (!MR::isEqualString(rRaceStructData.mGalaxyName, pGalaxyName)) {
-                continue;
+            if (MR::isEqualString(rRaceStructData.mGalaxyName, pGalaxyName) && rRaceStructData.mScenarioNo == scenarioNo) {
+                return i;
             }
-
-            if (rRaceStructData.mScenarioNo != scenarioNo) {
-                continue;
-            }
-
-            return i;
         }
 
         return -1;

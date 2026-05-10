@@ -7,8 +7,8 @@
 | Name | Address | Match % |
 |------|---------|---------|
 | `__ct__19NameObjListExecutorFv` | `0x8026C378` | :white_check_mark: (100.0%) |
-| `__dt__19NameObjListExecutorFv` | `0x8026C39C` | :x: (82.8%) |
-| `__dt__Q22MR50Vector<Q22MR35AssignableArray<P15DrawBufferGroup>>Fv` | `0x8026C468` | :x: (0.0%) |
+| `__dt__19NameObjListExecutorFv` | `0x8026C39C` | :x: (84.3%) |
+| `__dt__Q22MR50Vector<Q22MR35AssignableArray<P15DrawBufferGroup>>Fv` | `0x8026C468` | :white_check_mark: (100.0%) |
 | `init__19NameObjListExecutorFv` | `0x8026C4CC` | :white_check_mark: (100.0%) |
 | `registerDrawBuffer__19NameObjListExecutorFP9LiveActori` | `0x8026C540` | :white_check_mark: (100.0%) |
 | `allocateDrawBufferActorList__19NameObjListExecutorFv` | `0x8026C548` | :white_check_mark: (100.0%) |

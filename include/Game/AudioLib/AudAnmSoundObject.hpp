@@ -23,4 +23,6 @@ public:
     void updateAnimSound(f32, const TVec3f&, JAISoundStarter*);
     void startAnimSound(const TVec3f&, f32, JAISoundStarter*);
     void releaseHandleIfNecessary(JAISoundHandle*, u32);
+
+    s32 _70; // 0x70
 };

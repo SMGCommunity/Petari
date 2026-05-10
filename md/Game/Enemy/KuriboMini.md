@@ -1,11 +1,13 @@
 # main/Game/Enemy/KuriboMini
 
+**Source Path:** `src/Game/Enemy/KuriboMini.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
 |------|---------|---------|
 | `__ct__Q224@unnamed@KuriboMini_cpp@15KuriboMiniParamFv` | `0x8011B5CC` | :x: (0.0%) |
-| `__ct__10KuriboMiniFPCc` | `0x8011B680` | :x: (0.0%) |
+| `__ct__10KuriboMiniFPCc` | `0x8011B680` | :x: (44.8%) |
 | `init__10KuriboMiniFRC12JMapInfoIter` | `0x8011B700` | :x: (0.0%) |
 | `initAfterPlacement__10KuriboMiniFv` | `0x8011B974` | :x: (0.0%) |
 | `initState__10KuriboMiniFv` | `0x8011B978` | :x: (0.0%) |
@@ -64,4 +66,4 @@
 | `execute__Q213NrvKuriboMini19KuriboMiniNrvWanderCFP5Spine` | `0x8011CD8C` | :x: (0.0%) |
 | `__cl__Q22MR47FunctorV0M<P10KuriboMini,M10KuriboMiniFPCvPv_v>CFv` | `0x8011CD94` | :x: (0.0%) |
 | `clone__Q22MR47FunctorV0M<P10KuriboMini,M10KuriboMiniFPCvPv_v>CFP7JKRHeap` | `0x8011CDC4` | :x: (0.0%) |
-| `__dt__10KuriboMiniFv` | `0x8011CE2C` | :x: (0.0%) |
+| `__dt__10KuriboMiniFv` | `0x8011CE2C` | :white_check_mark: (100.0%) |

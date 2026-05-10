@@ -1,11 +1,13 @@
 # main/Game/Util/SoundUtil
 
+**Source Path:** `src/Game/Util/SoundUtil.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `startSystemSE__2MRF10JAISoundIDll` | `0x803F9CD4` | :x: (0.0%) |
-| `startSystemLevelSE__2MRFPCcll` | `0x803F9D24` | :x: (0.0%) |
+| `startSystemSE__2MRF10JAISoundIDll` | `0x803F9CD4` | :white_check_mark: (100.0%) |
+| `startSystemLevelSE__2MRFPCcll` | `0x803F9D24` | :white_check_mark: (100.0%) |
 | `startSystemLevelSE__2MRF10JAISoundIDll` | `0x803F9D70` | :x: (0.0%) |
 | `stopSystemSE__2MRFPCcUl` | `0x803F9DC0` | :x: (0.0%) |
 | `stopSystemSE__2MRF10JAISoundIDUl` | `0x803F9E10` | :x: (0.0%) |

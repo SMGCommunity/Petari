@@ -1,5 +1,7 @@
 # main/Game/MapObj/ElectricBall
 
+**Source Path:** `src/Game/MapObj/ElectricBall.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
@@ -8,7 +10,7 @@
 | `init__Q212ElectricBall4BallFP9LiveActor` | `0x801D306C` | :x: (0.0%) |
 | `updatePosition__Q212ElectricBall4BallFRCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>` | `0x801D3104` | :x: (0.0%) |
 | `activate__Q212ElectricBall4BallFv` | `0x801D311C` | :x: (0.0%) |
-| `__ct__12ElectricBallFPCc` | `0x801D3134` | :x: (0.0%) |
+| `__ct__12ElectricBallFPCc` | `0x801D3134` | :x: (45.3%) |
 | `init__12ElectricBallFRC12JMapInfoIter` | `0x801D31B0` | :x: (0.0%) |
 | `initAfterPlacement__12ElectricBallFv` | `0x801D3368` | :x: (0.0%) |
 | `control__12ElectricBallFv` | `0x801D33FC` | :x: (0.0%) |
@@ -30,4 +32,4 @@
 | `__dt__Q22MR38AssignableArray<Q212ElectricBall4Ball>Fv` | `0x801D3ADC` | :x: (0.0%) |
 | `__cl__Q22MR51FunctorV0M<P12ElectricBall,M12ElectricBallFPCvPv_v>CFv` | `0x801D3B44` | :x: (0.0%) |
 | `clone__Q22MR51FunctorV0M<P12ElectricBall,M12ElectricBallFPCvPv_v>CFP7JKRHeap` | `0x801D3B74` | :x: (0.0%) |
-| `__dt__12ElectricBallFv` | `0x801D3BDC` | :x: (0.0%) |
+| `__dt__12ElectricBallFv` | `0x801D3BDC` | :x: (82.1%) |

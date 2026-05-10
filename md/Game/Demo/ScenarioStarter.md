@@ -1,10 +1,12 @@
 # main/Game/Demo/ScenarioStarter
 
+**Source Path:** `src/Game/Demo/ScenarioStarter.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__ct__15ScenarioStarterFPCc` | `0x800C2310` | :x: (0.0%) |
+| `__ct__15ScenarioStarterFPCc` | `0x800C2310` | :x: (24.6%) |
 | `init__15ScenarioStarterFRC12JMapInfoIter` | `0x800C23F8` | :x: (0.0%) |
 | `exeWaitToStart__15ScenarioStarterFv` | `0x800C2588` | :x: (0.0%) |
 | `exeCinemaFrameBlank__15ScenarioStarterFv` | `0x800C25C8` | :x: (0.0%) |
@@ -20,7 +22,7 @@
 | `receiveOtherMsg__15ScenarioStarterFUlP9HitSensorP9HitSensor` | `0x800C3290` | :x: (0.0%) |
 | `trySkipTrigger__15ScenarioStarterCFv` | `0x800C3348` | :x: (0.0%) |
 | `isStartBgmOnWelcome__15ScenarioStarterFv` | `0x800C33CC` | :x: (0.0%) |
-| `__dt__15ScenarioStarterFv` | `0x800C3488` | :x: (0.0%) |
+| `__dt__15ScenarioStarterFv` | `0x800C3488` | :white_check_mark: (100.0%) |
 | `__sinit_\ScenarioStarter_cpp` | `0x800C34E4` | :x: (0.0%) |
 | `__ct__Q218NrvScenarioStarter36ScenarioStarterWaitScenarioCameraEndFv` | `0x800C3530` | :x: (0.0%) |
 | `__ct__Q218NrvScenarioStarter26ScenarioStarterWaitToStartFv` | `0x800C3540` | :x: (0.0%) |

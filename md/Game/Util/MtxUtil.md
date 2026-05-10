@@ -12,7 +12,7 @@
 | `makeMtxRotate__2MRFPA4_ffff` | `0x803EB380` | :white_check_mark: (100.0%) |
 | `makeMtxRotate__2MRFPA4_fRCQ29JGeometry8TVec3<f>` | `0x803EB3E0` | :white_check_mark: (100.0%) |
 | `makeMtxRotateY__2MRFPA4_ff` | `0x803EB3F0` | :white_check_mark: (100.0%) |
-| `makeMtxTR__2MRFPA4_fffffff` | `0x803EB464` | :x: (92.7%) |
+| `makeMtxTR__2MRFPA4_fffffff` | `0x803EB464` | :white_check_mark: (100.0%) |
 | `makeMtxTR__2MRFPA4_fRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | `0x803EB5F4` | :white_check_mark: (100.0%) |
 | `makeMtxTransRotateY__2MRFPA4_fffff` | `0x803EB610` | :white_check_mark: (100.0%) |
 | `rotateMtxLocalX__2MRFPA4_ff` | `0x803EB668` | :x: (97.4%) |

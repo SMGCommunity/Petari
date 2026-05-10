@@ -9,7 +9,7 @@
 | `__dt__Q22MR46Vector<Q22MR31AssignableArray<P11ThrowingIce>>Fv` | `0x800F84E0` | :white_check_mark: (100.0%) |
 | `__ct__15IceMerameraKingFPCc` | `0x800F8538` | :white_check_mark: (100.0%) |
 | `init__15IceMerameraKingFRC12JMapInfoIter` | `0x800F8644` | :x: (96.0%) |
-| `initAfterPlacement__15IceMerameraKingFv` | `0x800F8BA4` | :x: (55.9%) |
+| `initAfterPlacement__15IceMerameraKingFv` | `0x800F8BA4` | :white_check_mark: (100.0%) |
 | `kill__15IceMerameraKingFv` | `0x800F8C2C` | :white_check_mark: (100.0%) |
 | `control__15IceMerameraKingFv` | `0x800F8CC8` | :x: (100.0%) |
 | `exeSearch__15IceMerameraKingFv` | `0x800F8EC8` | :x: (100.0%) |
@@ -30,7 +30,7 @@
 | `receiveMsgPlayerAttack__15IceMerameraKingFUlP9HitSensorP9HitSensor` | `0x800FA478` | :white_check_mark: (100.0%) |
 | `receiveOtherMsg__15IceMerameraKingFUlP9HitSensorP9HitSensor` | `0x800FA5AC` | :white_check_mark: (100.0%) |
 | `addVelocityToInitPos__15IceMerameraKingFv` | `0x800FA72C` | :white_check_mark: (100.0%) |
-| `calcAndSetBaseMtx__15IceMerameraKingFv` | `0x800FA7F8` | :x: (100.0%) |
+| `calcAndSetBaseMtx__15IceMerameraKingFv` | `0x800FA7F8` | :white_check_mark: (100.0%) |
 | `isDeadAllIce__15IceMerameraKingFv` | `0x800FA850` | :white_check_mark: (100.0%) |
 | `isEnableThrow__15IceMerameraKingFv` | `0x800FA8C0` | :white_check_mark: (100.0%) |
 | `getDeadWeaponAndAppear__15IceMerameraKingFv` | `0x800FA978` | :x: (83.5%) |
@@ -82,5 +82,5 @@
 | `calcJointMatrix__40JointControlDelegator<15IceMerameraKing>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | `0x800FB178` | :white_check_mark: (100.0%) |
 | `calcJointMatrixAfterChild__40JointControlDelegator<15IceMerameraKing>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | `0x800FB1E0` | :white_check_mark: (100.0%) |
 | `__dt__Q22MR31AssignableArray<P11ThrowingIce>Fv` | `0x800FB248` | :white_check_mark: (100.0%) |
-| `__dt__15IceMerameraKingFv` | `0x800FB2A8` | :x: (100.0%) |
+| `__dt__15IceMerameraKingFv` | `0x800FB2A8` | :white_check_mark: (100.0%) |
 | `__dt__24IceMerameraKingShockWaveFv` | `0x800FB318` | :white_check_mark: (100.0%) |

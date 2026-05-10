@@ -19,9 +19,7 @@ void CamTranslatorTripodBossJoint::setParam(const CameraParamChunk* pChunk) {
     camera->mAngleA = angle.y;
     camera->mDist = dist;
     camera->_58 = uVar3;
-    camera->mAxisX = general->mAxis.x;
-    camera->mAxisY = general->mAxis.y;
-    camera->mAxisZ = general->mAxis.z;
+    camera->mAxis.set(general->mAxis);
 }
 
 Camera* CamTranslatorTripodBossJoint::getCamera() const {

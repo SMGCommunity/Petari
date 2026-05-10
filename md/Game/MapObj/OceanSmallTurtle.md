@@ -1,10 +1,12 @@
 # main/Game/MapObj/OceanSmallTurtle
 
+**Source Path:** `src/Game/MapObj/OceanSmallTurtle.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__ct__16OceanSmallTurtleFPCc` | `0x80208CFC` | :x: (0.0%) |
+| `__ct__16OceanSmallTurtleFPCc` | `0x80208CFC` | :x: (34.7%) |
 | `init__16OceanSmallTurtleFRC12JMapInfoIter` | `0x80208DA0` | :x: (0.0%) |
 | `control__16OceanSmallTurtleFv` | `0x80208FB8` | :x: (0.0%) |
 | `calcAndSetBaseMtx__16OceanSmallTurtleFv` | `0x80209050` | :x: (0.0%) |
@@ -32,4 +34,4 @@
 | `execute__Q219NrvOceanSmallTurtle23OceanSmallTurtleNrvWaitCFP5Spine` | `0x802099E8` | :x: (0.0%) |
 | `__cl__Q22MR59FunctorV0M<P16OceanSmallTurtle,M16OceanSmallTurtleFPCvPv_v>CFv` | `0x802099F0` | :x: (0.0%) |
 | `clone__Q22MR59FunctorV0M<P16OceanSmallTurtle,M16OceanSmallTurtleFPCvPv_v>CFP7JKRHeap` | `0x80209A20` | :x: (0.0%) |
-| `__dt__16OceanSmallTurtleFv` | `0x80209A88` | :x: (0.0%) |
+| `__dt__16OceanSmallTurtleFv` | `0x80209A88` | :white_check_mark: (100.0%) |

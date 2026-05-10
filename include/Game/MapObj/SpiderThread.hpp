@@ -39,6 +39,22 @@ public:
     SpiderThreadHangInfo* findHangInfo(LiveActor*) const;
     void initDraw() const;
 
+    SpiderThreadRadialLine* getMainRadialLine(int idx) const {
+        return mRadialLines[idx];
+    }
+
+    SpiderThreadPart* getRadialPart(int idx) const {
+        return mRadialParts[idx];
+    }
+
+    SpiderThreadPart* getCirclePart(int idx) const {
+        return mCircleParts[idx];
+    }
+
+    SpiderThreadHangInfo* getActorHangInfo(int idx) const {
+        return mHangInfos[idx];
+    }
+
     /* 0x8C */ SpiderThreadMainPoint* mMainPoint;
     /* 0x90 */ SpiderThreadHangInfo** mHangInfos;
     /* 0x94 */ s32 mNumHangInfos;
@@ -46,12 +62,12 @@ public:
     /* 0x9C */ s32 mNumRadialLines;
     /* 0xA0 */ SpiderThreadRadialLine** mRadialLines;
     /* 0xA4 */ SpiderThreadMainPoint** mAnchorPoints;
-    /* 0xA8 */ s32 mMainPartsBufferSize;
-    /* 0xAC */ s32 mNumMainParts;
-    /* 0xB0 */ SpiderThreadPart** mMainParts;
-    /* 0xB4 */ s32 mSubPartsBufferSize;
-    /* 0xB8 */ s32 mNumSubParts;
-    /* 0xBC */ SpiderThreadPart** mSubParts;
+    /* 0xA8 */ s32 mRadialPartsBufferSize;
+    /* 0xAC */ s32 mNumRadialParts;
+    /* 0xB0 */ SpiderThreadPart** mRadialParts;
+    /* 0xB4 */ s32 mCirclePartsBufferSize;
+    /* 0xB8 */ s32 mNumCircleParts;
+    /* 0xBC */ SpiderThreadPart** mCircleParts;
     /* 0xC0 */ s32 mCutPointsBufferSize;
     /* 0xC4 */ s32 mNumCutPoints;
     /* 0xC8 */ SpiderThreadMainPoint** mCutPoints;

@@ -7,6 +7,8 @@
 class J3DModel;
 class J3DMaterial;
 class LiveActor;
+struct ResTIMG;
+class XanimePlayer;
 
 namespace MR {
     bool isExistModel(const char*);
@@ -14,6 +16,12 @@ namespace MR {
     J3DModel* getJ3DModel(const LiveActor*);
     J3DModelData* getJ3DModelData(const LiveActor*);
     J3DModelData* getJ3DModelData(const char*);
+
+    void initEnvelopeAndEnvMapOrProjMapModelData(J3DModelData*);
+
+    ResTIMG* getResTIMG(const LiveActor*, int);
+
+    void downFracVtx(J3DModelData*);
 
     void calcJ3DModel(LiveActor*);
 
@@ -23,7 +31,7 @@ namespace MR {
     J3DMaterial* getMaterial(J3DModelData*, int);
     J3DMaterial* getMaterial(J3DModel*, int);
     J3DMaterial* getMaterial(const LiveActor*, int);
-    u16 getMaterialNum(J3DModel*);
+    s32 getMaterialNum(J3DModel*);
     const char* getMaterialName(const J3DModelData*, int);
     void updateModelDiffDL(LiveActor*);
     bool isEnvelope(J3DMaterial*);
@@ -31,6 +39,8 @@ namespace MR {
 
     void showMaterial(const LiveActor*, const char*);
     void hideMaterial(const LiveActor*, const char*);
+
+    bool isUseTex(J3DMaterial*, u16);
 
     void updateMaterial(LiveActor*);
 
@@ -50,7 +60,12 @@ namespace MR {
 
     bool isExistEffectTexMtx(LiveActor*);
 
+    bool isUseFur(const J3DModelData*);
+
     s16 getBckFrameMax(const LiveActor*, const char*);
+    s16 getBrkFrameMax(const LiveActor*, const char*);
+    s16 getBvaFrameMax(const LiveActor*, const char*);
+    bool isBckPlaying(XanimePlayer*, const char*);
 
     void updateModelManager(LiveActor*);
     void calcAnimModelManager(LiveActor*);
