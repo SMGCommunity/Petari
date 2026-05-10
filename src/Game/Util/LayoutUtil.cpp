@@ -27,7 +27,11 @@ void setTextBoxHorizontalPositionRecursive(LayoutActor* pActor, const char* pPan
 namespace {
     void showPaneRecursive(nw4r::lyt::Pane*);
     void hidePaneRecursive(nw4r::lyt::Pane*);
-    void initFrameCtrlReverse(J3DFrameCtrl*);
+    void initFrameCtrlReverse(J3DFrameCtrl* pFrameCtrl) {
+        pFrameCtrl->mAttribute = pFrameCtrl->EMode_RESET;
+        pFrameCtrl->setRate(-pFrameCtrl->mRate);
+        pFrameCtrl->setFrame(pFrameCtrl->mEnd);
+    }
     bool getTextDrawRectRecursive(nw4r::ut::Rect*, const nw4r::lyt::Pane*, bool);
     u32 getTextLineNumMaxRecursiveSub(const nw4r::lyt::Pane*);
 
