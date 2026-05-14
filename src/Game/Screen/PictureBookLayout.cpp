@@ -237,8 +237,7 @@ bool PictureBookLayout::updateText() {
         MR::setTextBoxGameMessageRecursive(this, "Title", messageId);
 
         return true;
-    }
-    else {
+    } else {
         snprintf(messageId, sizeof(messageId), "PictureBookChapter%d_Page%d_%03d", mChapterNo, mPageNo, mTextIndex);
 
         if (MR::isExistGameMessage(messageId)) {
@@ -257,8 +256,7 @@ void PictureBookLayout::updateTexture() {
 
     if (mNextItemDir > 0) {
         pageNo = mPageNo - 1;
-    }
-    else {
+    } else {
         pageNo = mPageNo;
     }
 
@@ -267,8 +265,7 @@ void PictureBookLayout::updateTexture() {
 
         MR::replacePaneTexture(this, "PicLeftPage", pTexMap, 0);
         MR::replacePaneTexture(this, "PicTurnRightPage", pTexMap, 0);
-    }
-    else {
+    } else {
         s32 texMapIndex = textureNum + pageNo - 1;
         s32 ind = texMapIndex % textureNum + 1;
         nw4r::lyt::TexMap* pTexMap = _48[ind-1];
@@ -279,8 +276,7 @@ void PictureBookLayout::updateTexture() {
 
     if (mNextItemDir > 0) {
         pageNo = mPageNo;
-    }
-    else {
+    } else {
         pageNo = mPageNo + 1;
     }
 
@@ -289,8 +285,7 @@ void PictureBookLayout::updateTexture() {
 
         MR::replacePaneTexture(this, "PicRightPage", pTexMap, 0);
         MR::replacePaneTexture(this, "PicTurnLeftPage", pTexMap, 0);
-    }
-    else {
+    } else {
         s32 texMapIndex = textureNum + pageNo - 1;
         s32 ind = texMapIndex % textureNum + 1;
         nw4r::lyt::TexMap* pTexMap = _48[ind-1];
