@@ -239,7 +239,7 @@ bool PictureBookLayout::updateText() {
         return true;
     }
     else {
-        snprintf(messageId, sizeof(messageId), "PictureBookChapter%d_Page%d_%03d", mChapterNo, mNotReadedChapterNo, mTextIndex);
+        snprintf(messageId, sizeof(messageId), "PictureBookChapter%d_Page%d_%03d", mChapterNo, mPageNo, mTextIndex);
 
         if (MR::isExistGameMessage(messageId)) {
             MR::setTextBoxGameMessageRecursive(this, "Text", messageId);
@@ -486,7 +486,7 @@ void PictureBookLayout::exeOpen() {
         pTexMap = mCoverFrontTexMap;
         MR::replacePaneTexture(this, "PicLeftPage", pTexMap, 0);
         MR::replacePaneTexture(this, "PicTurnRightPage", pTexMap, 0);
-        pTexMap = mCoverBackTexMap;
+        pTexMap = mTitleTexMap;
         MR::replacePaneTexture(this, "PicRightPage", pTexMap, 0);
         MR::replacePaneTexture(this, "PicTurnLeftPage", pTexMap, 0);
         MR::startAnim(this, "Appear", 0);

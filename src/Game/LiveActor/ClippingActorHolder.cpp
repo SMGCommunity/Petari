@@ -1,8 +1,12 @@
 #include "Game/LiveActor/ClippingActorHolder.hpp"
 #include "Game/LiveActor/ClippingActorInfo.hpp"
+#include "Game/LiveActor/ClippingGroupHolder.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/ViewGroupCtrl.hpp"
 #include "Game/Util.hpp"
+#include "Game/Util/JMapInfo.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "revolution/types.h"
 
 namespace {
     static int sActorNumMax = 2560;
@@ -87,6 +91,49 @@ void ClippingActorHolder::invalidateClipping(LiveActor* pActor) {
     }
 }
 
+void ClippingActorHolder::addToClippingTarget(LiveActor* pActor) {
+    if (MR::isInvalidClipping(pActor) || _10->isInList(pActor) || _1C->isInList(pActor)) {
+        return;
+    }
+    ClippingActorInfo* pActorInfo = _18->remove(pActor);
+    if (pActorInfo->isGroupClipping()) {
+        _1C->add(pActorInfo);
+        return;
+    }
+    _10->add(pActorInfo);
+}
+
+void ClippingActorHolder::removeFromClippingTarget(LiveActor* pActor) {
+    if (!MR::isInvalidClipping(pActor) && !_18->isInList(pActor)) {
+        ClippingActorInfo* pActorInfo;
+        if (_1C->isInList(pActor)) {
+            pActorInfo = _1C->remove(pActor);
+        }
+        else {
+            pActorInfo = _10->remove(pActor);
+        }
+        _18->add(pActorInfo);
+    }
+}
+
+ClippingActorInfo* ClippingActorHolder::startGroupClipping(LiveActor* pActor, const JMapInfoIter& rIter) {
+    ClippingActorInfo* pActorInfo = nullptr;
+    if (_10->isInList(pActor)) {
+        pActorInfo = _10->remove(pActor);
+        _1C->add(pActorInfo);
+    }
+    else if (_18->isInList(pActor)) {
+        pActorInfo = _18->find(pActor, 0);
+    }
+    else if (_14->isInList(pActor)) {
+        pActorInfo = _14->remove(pActor);
+        _1C->add(pActorInfo);
+        pActor->endClipped();
+    }
+    pActorInfo->setGroupClippingNo(rIter);
+    return pActorInfo;
+}
+
 void ClippingActorHolder::setTypeToSphere(LiveActor* pActor, f32 range, const TVec3f* a3) {
     find(pActor)->setTypeToSphere(range, a3);
 }
@@ -95,3 +142,13 @@ void ClippingActorHolder::setTypeToSphere(LiveActor* pActor, f32 range, const TV
 void ClippingActorHolder::setFarClipLevel(LiveActor* pActor, s32 level) {
     find(pActor)->mFarClipLevel = level;
 }
+
+/* ClippingActorInfo* ClippingActorHolder::find(const LiveActor* pActor) const {
+    ClippingActorInfo* pActorInfo;
+    if (_10->findOrNone(pActor) && _18->findOrNone(pActor) && _1C->findOrNone(pActor)) {
+        pActorInfo = _14->find(pActor, 0);
+    }
+    return pActorInfo; 
+} */
+
+ClippingActorHolder::~ClippingActorHolder() {}
