@@ -143,12 +143,29 @@ void ClippingActorHolder::setFarClipLevel(LiveActor* pActor, s32 level) {
     find(pActor)->mFarClipLevel = level;
 }
 
-/* ClippingActorInfo* ClippingActorHolder::find(const LiveActor* pActor) const {
+ClippingActorInfo* ClippingActorHolder::find(const LiveActor* pActor) const {
     ClippingActorInfo* pActorInfo;
-    if (_10->findOrNone(pActor) && _18->findOrNone(pActor) && _1C->findOrNone(pActor)) {
-        pActorInfo = _14->find(pActor, 0);
+
+    pActorInfo = _10->findOrNone(pActor);
+
+    if (pActorInfo != nullptr) {
+        return pActorInfo;
     }
-    return pActorInfo; 
-} */
+
+    pActorInfo = _18->findOrNone(pActor);
+
+    if (pActorInfo != nullptr) {
+        return pActorInfo;
+    }
+
+    pActorInfo = _1C->findOrNone(pActor);
+
+    if (pActorInfo != nullptr) {
+        return pActorInfo;
+    }
+
+    return _14->find(pActor, 0);
+     
+}
 
 ClippingActorHolder::~ClippingActorHolder() {}
