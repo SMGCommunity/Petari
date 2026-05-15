@@ -227,7 +227,7 @@ void AstroDomeGalaxySelector::exeDemoJumpOut() {
     }
 
     if (!MR::isDemoActive(cDemoNameJumpOut)) {
-        MiniatureGalaxy* pMiniGalaxy = reinterpret_cast< MiniatureGalaxy* >(SphereSelectorFunction::getSelectedTarget());
+        MiniatureGalaxy* pMiniGalaxy = static_cast< MiniatureGalaxy* >(SphereSelectorFunction::getSelectedTarget());
         const char* pGalaxyName = pMiniGalaxy->_118;
 
         MiniatureGalaxy* pCometGalaxy = MiniatureGalaxyFunction::getCometLandMiniatureGalaxy();
