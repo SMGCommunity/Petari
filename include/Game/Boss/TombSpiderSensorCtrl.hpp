@@ -7,7 +7,7 @@ class TombSpiderSensorCtrl {
 public:
     TombSpiderSensorCtrl(TombSpider*);
 
-    bool update(HitSensor*);
+    void update(HitSensor*);
     bool updateMainParts(HitSensor*);
     bool updateGland(HitSensor*);
     bool updateVitalSpot(HitSensor*);

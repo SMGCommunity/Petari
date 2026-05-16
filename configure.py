@@ -855,7 +855,7 @@ config.libs = [
             Object(Matching, "Game/Boss/TombSpiderFunction.cpp"),
             Object(Matching, "Game/Boss/TombSpiderGland.cpp"),
             Object(Matching, "Game/Boss/TombSpiderParts.cpp"),
-            Object(NonMatching, "Game/Boss/TombSpiderSensorCtrl.cpp"),
+            Object(Matching, "Game/Boss/TombSpiderSensorCtrl.cpp"),
             Object(Matching, "Game/Boss/TombSpiderStateSwoon.cpp"),
             Object(Matching, "Game/Boss/TombSpiderThreadAttacher.cpp"),
             Object(Matching, "Game/Boss/TombSpiderVitalSpot.cpp"),
