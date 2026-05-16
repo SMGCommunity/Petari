@@ -1,6 +1,7 @@
 #include "Game/System/GameDataFunction.hpp"
 #include "Game/SingletonHolder.hpp"
 #include "Game/System/GalaxyStatusAccessor.hpp"
+#include "Game/System/GameDataGalaxyStorage.hpp"
 #include "Game/System/GameDataHolder.hpp"
 #include "Game/System/GameDataTemporaryInGalaxy.hpp"
 #include "Game/System/GameEventFlagTable.hpp"
@@ -43,11 +44,11 @@ namespace GameDataFunction {
     void setGameFlagPowerStarSuccess(const char* pGalaxyName, s32 scenarioNo, bool isOwned) {
         getCurrentGameDataHolder()->setPowerStar(pGalaxyName, scenarioNo, isOwned);
     }
-    /*
+
     GameDataSomeScenarioAccessor makeGalaxyScenarioAccessor(const char* pGalaxyName, s32 scenarioNo) {
         return getCurrentGameDataHolder()->makeGalaxyScenarioAccessor(pGalaxyName, scenarioNo);
     }
-    */
+
     bool isOnGalaxyScenarioFlagAlreadyVisited(const char* pGalaxyName, s32 scenarioNo) {
         return getCurrentGameDataHolder()->isOnGalaxyScenarioFlagAlreadyVisited(pGalaxyName, scenarioNo);
     }
@@ -99,8 +100,7 @@ namespace GameDataFunction {
     }
 
     bool canOnAndIsOffGameEventFlag(const char* pName) {
-        return getCurrentGameDataHolder()->canOnGameEventFlag(pName)
-            && !getCurrentGameDataHolder()->isOnGameEventFlag(pName);
+        return getCurrentGameDataHolder()->canOnGameEventFlag(pName) && !getCurrentGameDataHolder()->isOnGameEventFlag(pName);
     }
 
     bool isOnGameEventFlag(const char* pName) {
@@ -252,23 +252,20 @@ namespace GameDataFunction {
     }
 
     bool isOnJustGameEventFlag(const char* pName) {
-        return getCurrentGameDataHolder()->isOnGameEventFlag(pName)
-            && !getSceneStartGameDataHolder()->isOnGameEventFlag(pName);
+        return getCurrentGameDataHolder()->isOnGameEventFlag(pName) && !getSceneStartGameDataHolder()->isOnGameEventFlag(pName);
     }
 
     bool canOnJustGameEventFlag(const char* pName) {
-        return getCurrentGameDataHolder()->canOnGameEventFlag(pName)
-            && !getSceneStartGameDataHolder()->canOnGameEventFlag(pName);
+        return getCurrentGameDataHolder()->canOnGameEventFlag(pName) && !getSceneStartGameDataHolder()->canOnGameEventFlag(pName);
     }
 
     bool isOnJustAppearGalaxy(const char* pGalaxyName) {
-        return getCurrentGameDataHolder()->isAppearGalaxy(pGalaxyName)
-            && !getSceneStartGameDataHolder()->isAppearGalaxy(pGalaxyName);
+        return getCurrentGameDataHolder()->isAppearGalaxy(pGalaxyName) && !getSceneStartGameDataHolder()->isAppearGalaxy(pGalaxyName);
     }
 
     bool isEqualJustPowerStarNum(int powerStarNum) {
-        return getCurrentGameDataHolder()->calcCurrentPowerStarNum() == powerStarNum
-            && getSceneStartGameDataHolder()->calcCurrentPowerStarNum() != powerStarNum;
+        return getCurrentGameDataHolder()->calcCurrentPowerStarNum() == powerStarNum &&
+               getSceneStartGameDataHolder()->calcCurrentPowerStarNum() != powerStarNum;
     }
 
     GameDataHolder* getCurrentGameDataHolder() {

@@ -1,17 +1,19 @@
 # main/Game/Enemy/KuriboChief
 
+**Source Path:** `src/Game/Enemy/KuriboChief.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
 |------|---------|---------|
 | `__ct__Q225@unnamed@KuriboChief_cpp@16KuriboChiefParamFv` | `0x8011A16C` | :x: (0.0%) |
-| `__ct__11KuriboChiefFPCc` | `0x8011A2A8` | :x: (0.0%) |
+| `__ct__11KuriboChiefFPCc` | `0x8011A2A8` | :x: (43.5%) |
 | `init__11KuriboChiefFRC12JMapInfoIter` | `0x8011A32C` | :x: (0.0%) |
 | `initAfterPlacement__11KuriboChiefFv` | `0x8011A51C` | :x: (0.0%) |
 | `initSensor__11KuriboChiefFv` | `0x8011A520` | :x: (0.0%) |
 | `initState__11KuriboChiefFv` | `0x8011A67C` | :x: (0.0%) |
 | `initKeySwitch__11KuriboChiefFRC12JMapInfoIter` | `0x8011A778` | :x: (0.0%) |
-| `makeArchiveList__11KuriboChiefFP27NameObjArchiveListCollectorRC12JMapInfoIter` | `0x8011A7E0` | :x: (0.0%) |
+| `makeArchiveList__11KuriboChiefFP27NameObjArchiveListCollectorRC12JMapInfoIter` | `0x8011A7E0` | :white_check_mark: (100.0%) |
 | `kill__11KuriboChiefFv` | `0x8011A828` | :x: (0.0%) |
 | `control__11KuriboChiefFv` | `0x8011A890` | :x: (0.0%) |
 | `calcAndSetBaseMtx__11KuriboChiefFv` | `0x8011A8E4` | :x: (0.0%) |
@@ -34,7 +36,7 @@
 | `isEnableAttack__11KuriboChiefCFv` | `0x8011B2FC` | :x: (0.0%) |
 | `isEnableKick__11KuriboChiefCFv` | `0x8011B368` | :x: (0.0%) |
 | `isDown__11KuriboChiefCFv` | `0x8011B3B0` | :x: (0.0%) |
-| `__dt__11KuriboChiefFv` | `0x8011B408` | :x: (0.0%) |
+| `__dt__11KuriboChiefFv` | `0x8011B408` | :white_check_mark: (100.0%) |
 | `__sinit_\KuriboChief_cpp` | `0x8011B464` | :x: (0.0%) |
 | `__ct__Q214NrvKuriboChief20KuriboChiefNrvWanderFv` | `0x8011B4D4` | :x: (0.0%) |
 | `__ct__Q214NrvKuriboChief24KuriboChiefNrvFindPlayerFv` | `0x8011B4E4` | :x: (0.0%) |

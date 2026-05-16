@@ -20,9 +20,11 @@ namespace MR {
     void startNPCTalkCamera(const TalkMessageCtrl*, MtxPtr, f32, s32);
 
     void initDefaultPosAndQuat(NPCActor*, const JMapInfoIter&);
-
+    void initDefaultPose(NPCActor*, const JMapInfoIter&);
     PartsModel* createNPCGoods(LiveActor*, const char*, const char*);
     PartsModel* createIndirectNPCGoods(LiveActor*, const char*, const char*);
+
+    void calcPlayerFaceStarePos(TVec3f*, MtxPtr, MtxPtr);
 
     void invalidateLodCtrl(const NPCActor*);
     void startMoveAction(NPCActor*);

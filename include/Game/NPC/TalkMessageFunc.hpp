@@ -20,7 +20,7 @@ public:
     }
 
     virtual bool operator()(u32 arg) const {
-        (mCaller->*mCallee)(arg);
+        return (mCaller->*mCallee)(arg);
     }
 
     virtual TalkMessageFuncM* clone() const {

@@ -12,4 +12,4 @@
 | `close__10MarioMagicFv` | `0x80310364` | :white_check_mark: (100.0%) |
 | `start__10MarioMagicFv` | `0x803103B8` | :x: (99.8%) |
 | `update__10MarioMagicFv` | `0x80310458` | :x: (99.9%) |
-| `__sinit_\MarioMagic_cpp` | `0x80310544` | :x: (0.0%) |
+| `__sinit_\MarioMagic_cpp` | `0x80310544` | :white_check_mark: (100.0%) |

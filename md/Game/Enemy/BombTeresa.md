@@ -14,7 +14,7 @@
 | `initSensor__10BombTeresaFv` | `0x800E0A5C` | :white_check_mark: (100.0%) |
 | `makeActorAppeared__10BombTeresaFv` | `0x800E0B34` | :white_check_mark: (100.0%) |
 | `control__10BombTeresaFv` | `0x800E0BB8` | :white_check_mark: (100.0%) |
-| `calcAndSetBaseMtx__10BombTeresaFv` | `0x800E0C68` | :x: (67.6%) |
+| `calcAndSetBaseMtx__10BombTeresaFv` | `0x800E0C68` | :white_check_mark: (100.0%) |
 | `updateNormalVelocity__10BombTeresaFv` | `0x800E0CD8` | :white_check_mark: (100.0%) |
 | `updateDriftReleaseVelocity__10BombTeresaFv` | `0x800E0D58` | :white_check_mark: (100.0%) |
 | `rootTongueMtxCallBack__10BombTeresaFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | `0x800E0DD8` | :x: (98.4%) |

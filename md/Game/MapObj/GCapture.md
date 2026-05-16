@@ -42,7 +42,7 @@
 | `downTractPower__8GCaptureFv` | `0x801E0B00` | :x: (0.0%) |
 | `fillGapBindTrans__8GCaptureFv` | `0x801E0B48` | :x: (0.0%) |
 | `updateRibbon__8GCaptureFRCQ29JGeometry8TVec3<f>l` | `0x801E0B74` | :x: (99.8%) |
-| `updateRibbonPointEffectMatrix__8GCaptureFRCQ29JGeometry8TVec3<f>` | `0x801E0C7C` | :white_check_mark: (100.0%) |
+| `updateRibbonPointEffectMatrix__8GCaptureFRCQ29JGeometry8TVec3<f>` | `0x801E0C7C` | :x: (87.0%) |
 | `addRotateAccelPointing__8GCaptureFv` | `0x801E0D10` | :x: (100.0%) |
 | `tryAddVelocityReflectJumpCollision__8GCaptureFv` | `0x801E0D98` | :x: (0.0%) |
 | `requestTarget__8GCaptureFP18GCaptureTargetable` | `0x801E0E20` | :x: (0.0%) |

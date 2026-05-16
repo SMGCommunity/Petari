@@ -113,6 +113,9 @@ extern s64 __OSStartTime;
 
 const char* OSGetAppGamename(void);
 
+void* OSAllocFromArenaLo(u32 size, u32 align);
+void* OSAllocFromArenaHi(u32 size, u32 align);
+
 #define OSAssert_Line(line_, exp_)
 
 #ifndef ASSERT

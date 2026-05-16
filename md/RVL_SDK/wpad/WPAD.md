@@ -8,13 +8,13 @@
 |------|---------|---------|
 | `noAlloc` | `0x804D6B84` | :white_check_mark: (100.0%) |
 | `noFree` | `0x804D6BB4` | :white_check_mark: (100.0%) |
-| `OnShutdown` | `0x804D6BE4` | :white_check_mark: (100.0%) |
+| `OnShutdown` | `0x804D6BE4` | :x: (95.3%) |
 | `WPADiSendData` | `0x804D6F30` | :white_check_mark: (100.0%) |
 | `WPADiRadioSensitivity` | `0x804D710C` | :white_check_mark: (100.0%) |
 | `IsControllerDataChanged` | `0x804D7210` | :white_check_mark: (100.0%) |
 | `CheckButtonCombination` | `0x804D7DBC` | :white_check_mark: (100.0%) |
 | `WPADiCheckContInputs` | `0x804D7EC8` | :white_check_mark: (100.0%) |
-| `WPADiManageHandler` | `0x804D804C` | :x: (100.0%) |
+| `WPADiManageHandler` | `0x804D804C` | :x: (98.9%) |
 | `WPADiManageHandler0` | `0x804D87C8` | :white_check_mark: (100.0%) |
 | `__ClearControlBlock` | `0x804D87E8` | :white_check_mark: (100.0%) |
 | `WPADiInitSub` | `0x804D8A5C` | :x: (100.0%) |
@@ -29,12 +29,12 @@
 | `setupCallback` | `0x804D8D28` | :white_check_mark: (100.0%) |
 | `abortConnCallback` | `0x804D8DFC` | :white_check_mark: (100.0%) |
 | `firmwareCheckCallback` | `0x804D8EE0` | :white_check_mark: (100.0%) |
-| `WPADiRetrieveChannel` | `0x804D97C8` | :white_check_mark: (100.0%) |
-| `WPADiConnCallback` | `0x804D98C8` | :x: (100.0%) |
+| `WPADiRetrieveChannel` | `0x804D97C8` | :x: (100.0%) |
+| `WPADiConnCallback` | `0x804D98C8` | :x: (99.0%) |
 | `WPADiRecvCallback` | `0x804D9D3C` | :white_check_mark: (100.0%) |
 | `WPADGetAccGravityUnit` | `0x804D9DA8` | :white_check_mark: (100.0%) |
 | `CloseCallback` | `0x804D9E80` | :white_check_mark: (100.0%) |
-| `WPADDisconnect` | `0x804D9EA4` | :white_check_mark: (100.0%) |
+| `WPADDisconnect` | `0x804D9EA4` | :x: (100.0%) |
 | `WPADSetAutoSleepTime` | `0x804D9F68` | :white_check_mark: (100.0%) |
 | `WPADProbe` | `0x804D9F9C` | :white_check_mark: (100.0%) |
 | `WPADSetSamplingCallback` | `0x804DA028` | :white_check_mark: (100.0%) |

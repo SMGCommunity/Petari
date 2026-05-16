@@ -98,20 +98,22 @@ bool AstroDomeGalaxySelector::receiveOtherMsg(u32 v1, HitSensor* pSender, HitSen
     return false;
 }
 
-/* void AstroDomeGalaxySelector::showGalaxyInfo(const MiniatureGalaxy* pMiniGalaxy) {
-    switch ( pMiniGalaxy->get )
-    {
-        case 2:
-
-        break;
-        case 1:
-
-        break;
-        case 0:
-
-        break;
+void AstroDomeGalaxySelector::showGalaxyInfo(const MiniatureGalaxy* pMiniGalaxy) {
+    s32 state = 3;
+    s32 cometID = -1;
+    if (pMiniGalaxy->_90 == 2) {
+        state = 2;
+    } else if (pMiniGalaxy->_90 == 1) {
+        state = 1;
+    } else if (pMiniGalaxy->_90 == 0) {
+        state = 0;
     }
-} */
+
+    if (state == 3 && pMiniGalaxy == MiniatureGalaxyFunction::getCometLandMiniatureGalaxy()) {
+        cometID = MiniatureGalaxyFunction::getCometNameId();
+    }
+    pGSInfo->show(pMiniGalaxy->_118, state, cometID);
+}
 
 bool AstroDomeGalaxySelector::tryStartLectureDemo(const Nerve* pNerve) {
     if (isNerve(&NrvAstroDomeGalaxySelector::AstroDomeGalaxySelectorNrvGalaxySelectStart::sInstance)) {
@@ -217,23 +219,27 @@ void AstroDomeGalaxySelector::exeGalaxyConfirmCancel() {
     }
 }
 
-/* void AstroDomeGalaxySelector::exeDemoJumpOut() {
+void AstroDomeGalaxySelector::exeDemoJumpOut() {
     if (MR::isFirstStep(this)) {
-            MR::disappearStarCounter();
-            pGConfirmLayout->requestMovementOn();
-            MR::requestMovementOn(pGSInfo);
+        MR::disappearStarCounter();
+        pGConfirmLayout->requestMovementOn();
+        MR::requestMovementOn(pGSInfo);
     }
-    if (MR::isDemoActive(cDemoNameJumpOut)) {
-        MiniatureGalaxy* pMiniGalaxy = (MiniatureGalaxy*)SphereSelectorFunction::getSelectedTarget();
-        if (MiniatureGalaxyFunction::getCometLandMiniatureGalaxy() && SphereSelectorFunction::getSelectedTarget()) {
-            MR::requestStartScenarioSelectForComet(pMiniGalaxy->_118, MR::getEncounterGalaxyCometPowerStarId(pMiniGalaxy->_118));
+
+    if (!MR::isDemoActive(cDemoNameJumpOut)) {
+        MiniatureGalaxy* pMiniGalaxy = static_cast< MiniatureGalaxy* >(SphereSelectorFunction::getSelectedTarget());
+        const char* pGalaxyName = pMiniGalaxy->_118;
+
+        MiniatureGalaxy* pCometGalaxy = MiniatureGalaxyFunction::getCometLandMiniatureGalaxy();
+        if (pCometGalaxy != nullptr && pCometGalaxy == SphereSelectorFunction::getSelectedTarget()) {
+            MR::requestStartScenarioSelectForComet(pGalaxyName, MR::getEncounterGalaxyCometPowerStarId(pGalaxyName));
+        } else {
+            MR::requestStartScenarioSelect(pGalaxyName);
         }
-        else {
-            MR::requestStartScenarioSelect(pMiniGalaxy->_118);
-            kill();
-        }
+
+        kill();
     }
-} */
+}
 
 void AstroDomeGalaxySelector::exeDemoDomeLecture() {
     if (MR::isFirstStep(this)) {

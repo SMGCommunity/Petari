@@ -476,6 +476,16 @@ def SDKLib_WENC(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
     }
 
 
+def SDKLib_OS(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
+    return {
+        "lib": lib_name,
+        "mw_version": "GC/3.0a5.2",
+        "cflags": cflags_sdk,
+        "progress_category": "sdk",
+        "objects": objects,
+    }
+
+
 def RFLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
     return {
         "lib": lib_name,
@@ -1337,7 +1347,7 @@ config.libs = [
             Object(NonMatching, "Game/Map/PlanetMapCreator.cpp"),
             Object(Matching, "Game/Map/PlanetMapWithoutHighModel.cpp"),
             Object(Matching, "Game/Map/QuakeEffectGenerator.cpp"),
-            Object(NonMatching, "Game/Map/RaceManager.cpp"),
+            Object(Matching, "Game/Map/RaceManager.cpp"),
             Object(Matching, "Game/Map/RaceRail.cpp"),
             Object(Matching, "Game/Map/RailGraph.cpp"),
             Object(Matching, "Game/Map/RailGraphEdge.cpp"),
@@ -1712,11 +1722,11 @@ config.libs = [
             Object(NonMatching, "Game/NPC/MiiFacePartsHolder.cpp"),
             Object(Matching, "Game/NPC/MiiFaceRecipe.cpp"),
             Object(Matching, "Game/NPC/Peach.cpp"),
-            Object(NonMatching, "Game/NPC/Penguin.cpp"),
-            Object(NonMatching, "Game/NPC/PenguinCoach.cpp"),
+            Object(Matching, "Game/NPC/Penguin.cpp"),
+            Object(Matching, "Game/NPC/PenguinCoach.cpp"),
             Object(Matching, "Game/NPC/PenguinMaster.cpp"),
-            Object(NonMatching, "Game/NPC/PenguinRacer.cpp"),
-            Object(NonMatching, "Game/NPC/PenguinRacerLeader.cpp"),
+            Object(Matching, "Game/NPC/PenguinRacer.cpp"),
+            Object(Matching, "Game/NPC/PenguinRacerLeader.cpp"),
             Object(NonMatching, "Game/NPC/PenguinSkater.cpp"),
             Object(Matching, "Game/NPC/PenguinStudent.cpp"),
             Object(NonMatching, "Game/NPC/PowerStarEventKeeper.cpp"),
@@ -1734,7 +1744,7 @@ config.libs = [
             Object(Matching, "Game/NPC/SignBoard.cpp"),
             Object(NonMatching, "Game/NPC/StrayTico.cpp"),
             Object(NonMatching, "Game/NPC/Syati.cpp"),
-            Object(NonMatching, "Game/NPC/TeresaRacer.cpp"),
+            Object(Matching, "Game/NPC/TeresaRacer.cpp"),
             Object(NonMatching, "Game/NPC/Tico.cpp"),
             Object(Matching, "Game/NPC/TicoAstro.cpp"),
             Object(Matching, "Game/NPC/TicoComet.cpp"),
@@ -2152,7 +2162,7 @@ config.libs = [
             Object(Matching, "Game/System/ArchiveHolder.cpp"),
             Object(NonMatching, "Game/System/AudSystemWrapper.cpp"),
             Object(Matching, "Game/System/BinaryDataChunkHolder.cpp"),
-            Object(NonMatching, "Game/System/BinaryDataContentAccessor.cpp"),
+            Object(Matching, "Game/System/BinaryDataContentAccessor.cpp"),
             Object(Matching, "Game/System/DrawBuffer.cpp"),
             Object(Matching, "Game/System/DrawBufferExecuter.cpp"),
             Object(Matching, "Game/System/DrawBufferGroup.cpp"),
@@ -2188,7 +2198,7 @@ config.libs = [
             Object(Matching, "Game/System/PauseButtonCheckerInGame.cpp"),
             Object(Matching, "Game/System/PlacedHiddenStarScenarioTable.cpp"),
             Object(Matching, "Game/System/RenderMode.cpp"),
-            Object(NonMatching, "Game/System/ResourceHolder.cpp"),
+            Object(Matching, "Game/System/ResourceHolder.cpp"),
             Object(Matching, "Game/System/ResourceHolderManager.cpp"),
             Object(Matching, "Game/System/ResourceInfo.cpp"),
             Object(NonMatching, "Game/System/ScenarioDataParser.cpp"),
@@ -2216,16 +2226,16 @@ config.libs = [
             Object(Matching, "Game/System/GalaxyCometScheduler.cpp"),
             Object(Matching, "Game/System/GalaxyCometState.cpp"),
             Object(Matching, "Game/System/GalaxyMoveArgument.cpp"),
-            Object(NonMatching, "Game/System/GalaxyNameSortTable.cpp"),
-            Object(NonMatching, "Game/System/GalaxyStatusAccessor.cpp"),
-            Object(NonMatching, "Game/System/GameDataConst.cpp"),
+            Object(Matching, "Game/System/GalaxyNameSortTable.cpp"),
+            Object(Matching, "Game/System/GalaxyStatusAccessor.cpp"),
+            Object(Matching, "Game/System/GameDataConst.cpp"),
             Object(NonMatching, "Game/System/GameDataFunction.cpp"),
             Object(NonMatching, "Game/System/GameDataGalaxyStorage.cpp"),
             Object(NonMatching, "Game/System/GameDataHolder.cpp"),
             Object(Matching, "Game/System/GameDataPlayerStatus.cpp"),
             Object(Matching, "Game/System/GameDataTemporaryInGalaxy.cpp"),
             Object(Matching, "Game/System/GameEventFlag.cpp"),
-            Object(NonMatching, "Game/System/GameEventFlagTable.cpp"),
+            Object(Matching, "Game/System/GameEventFlagTable.cpp"),
             Object(Matching, "Game/System/GameEventFlagChecker.cpp"),
             Object(NonMatching, "Game/System/GameEventFlagStorage.cpp"),
             Object(NonMatching, "Game/System/GameEventValueChecker.cpp"),
@@ -2238,7 +2248,7 @@ config.libs = [
             Object(NonMatching, "Game/System/SaveDataHandler.cpp"),
             Object(Matching, "Game/System/SaveDataHandleSequence.cpp"),
             Object(Matching, "Game/System/ScenarioProgressTestRun.cpp"),
-            Object(NonMatching, "Game/System/SpinDriverPathStorage.cpp"),
+            Object(Matching, "Game/System/SpinDriverPathStorage.cpp"),
             Object(Matching, "Game/System/StageResultSequenceChecker.cpp"),
             Object(NonMatching, "Game/System/StarPieceAlmsStorage.cpp"),
             Object(NonMatching, "Game/System/StorySequenceExecutor.cpp"),
@@ -2558,7 +2568,7 @@ config.libs = [
             Object(NonMatching, "RVL_SDK/nwc24/NWC24System.c"),
         ],
     ),
-    SDKLib(
+    SDKLib_OS(
         "os",
         [
             Object(Matching, "RVL_SDK/os/OS.c"),
@@ -3136,9 +3146,9 @@ config.libs = [
         "JSupport",
         [
             Object(NonMatching, "JSystem/JSupport/JSUList.cpp"),
-            Object(NonMatching, "JSystem/JSupport/JSUInputStream.cpp"),
+            Object(Matching, "JSystem/JSupport/JSUInputStream.cpp"),
             Object(NonMatching, "JSystem/JSupport/JSUOutputStream.cpp"),
-            Object(NonMatching, "JSystem/JSupport/JSUMemoryStream.cpp"),
+            Object(Matching, "JSystem/JSupport/JSUMemoryStream.cpp"),
             Object(NonMatching, "JSystem/JSupport/JSUFileStream.cpp"),
         ],
     ),

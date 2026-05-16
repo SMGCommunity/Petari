@@ -13,5 +13,5 @@
 | `createSceneObj__2MRFi` | `0x803453A8` | :white_check_mark: (100.0%) |
 | `getSceneObjHolder__2MRFv` | `0x803453DC` | :white_check_mark: (100.0%) |
 | `isExistSceneObj__2MRFi` | `0x803453E8` | :white_check_mark: (100.0%) |
-| `newEachObj__14SceneObjHolderFi` | `0x80345448` | :x: (85.0%) |
+| `newEachObj__14SceneObjHolderFi` | `0x80345448` | :x: (87.9%) |
 | `__sinit_\SceneObjHolder_cpp` | `0x803460CC` | :white_check_mark: (100.0%) |

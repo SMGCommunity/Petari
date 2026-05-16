@@ -1,10 +1,12 @@
 # main/Game/Enemy/OnimasuJump
 
+**Source Path:** `src/Game/Enemy/OnimasuJump.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__ct__11OnimasuJumpFPCc` | `0x8012E5A4` | :x: (0.0%) |
+| `__ct__11OnimasuJumpFPCc` | `0x8012E5A4` | :x: (75.5%) |
 | `calcJumpVelocity__11OnimasuJumpFv` | `0x8012E5F0` | :x: (0.0%) |
 | `getLastPointNo__11OnimasuJumpCFv` | `0x8012E790` | :x: (0.0%) |
 | `getLastPointNormal__11OnimasuJumpCFv` | `0x8012E7C4` | :x: (0.0%) |
@@ -16,4 +18,4 @@
 | `updatePoseInner__11OnimasuJumpFv` | `0x8012E960` | :x: (0.0%) |
 | `getNextPointNo__11OnimasuJumpCFv` | `0x8012E9B0` | :x: (0.0%) |
 | `__dt__Q22MR38AssignableArray<Q29JGeometry8TVec3<f>>Fv` | `0x8012E9B8` | :x: (0.0%) |
-| `__dt__11OnimasuJumpFv` | `0x8012EA20` | :x: (0.0%) |
+| `__dt__11OnimasuJumpFv` | `0x8012EA20` | :x: (84.6%) |

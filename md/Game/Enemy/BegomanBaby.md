@@ -34,7 +34,7 @@
 | `getNerveWait__11BegomanBabyFv` | `0x800D16F8` | :white_check_mark: (100.0%) |
 | `calcHeadJoint__11BegomanBabyFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | `0x800D1700` | :white_check_mark: (100.0%) |
 | `calcAndSetBaseMtx__11BegomanBabyFv` | `0x800D178C` | :white_check_mark: (100.0%) |
-| `__sinit_\BegomanBaby_cpp` | `0x800D17C0` | :x: (79.6%) |
+| `__sinit_\BegomanBaby_cpp` | `0x800D17C0` | :white_check_mark: (100.0%) |
 | `__ct__Q214NrvBegomanBaby21HostTypeNrvNoCalcWaitFv` | `0x800D187C` | :white_check_mark: (100.0%) |
 | `__ct__Q214NrvBegomanBaby15HostTypeNrvWaitFv` | `0x800D188C` | :white_check_mark: (100.0%) |
 | `__ct__Q214NrvBegomanBaby21HostTypeNrvSignAttackFv` | `0x800D189C` | :white_check_mark: (100.0%) |

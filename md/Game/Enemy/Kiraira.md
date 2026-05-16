@@ -1,10 +1,12 @@
 # main/Game/Enemy/Kiraira
 
+**Source Path:** `src/Game/Enemy/Kiraira.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__ct__7KirairaFPCc` | `0x80110298` | :x: (0.0%) |
+| `__ct__7KirairaFPCc` | `0x80110298` | :x: (43.5%) |
 | `init__7KirairaFRC12JMapInfoIter` | `0x8011031C` | :x: (0.0%) |
 | `calcAndSetBaseMtx__7KirairaFv` | `0x8011054C` | :x: (0.0%) |
 | `exeWait__7KirairaFv` | `0x80110594` | :x: (0.0%) |
@@ -23,7 +25,7 @@
 | `drift__7KirairaFv` | `0x80111030` | :x: (0.0%) |
 | `driftOnRail__7KirairaFv` | `0x801111AC` | :x: (0.0%) |
 | `explode__7KirairaFv` | `0x80111214` | :x: (0.0%) |
-| `__dt__7KirairaFv` | `0x801112C0` | :x: (0.0%) |
+| `__dt__7KirairaFv` | `0x801112C0` | :white_check_mark: (100.0%) |
 | `__sinit_\Kiraira_cpp` | `0x8011131C` | :x: (0.0%) |
 | `__ct__Q210NrvKiraira14KirairaNrvWaitFv` | `0x80111378` | :x: (0.0%) |
 | `__ct__Q210NrvKiraira21KirairaNrvFaceToMarioFv` | `0x80111388` | :x: (0.0%) |

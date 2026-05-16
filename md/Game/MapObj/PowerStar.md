@@ -28,7 +28,7 @@
 | `initShadowPowerStar__9PowerStarFP9LiveActorb` | `0x8020F7E0` | :white_check_mark: (100.0%) |
 | `makeArchiveList__9PowerStarFP27NameObjArchiveListCollectorRC12JMapInfoIter` | `0x8020F844` | :white_check_mark: (100.0%) |
 | `control__9PowerStarFv` | `0x8020F888` | :white_check_mark: (100.0%) |
-| `calcAndSetBaseMtx__9PowerStarFv` | `0x8020F9A8` | :x: (81.9%) |
+| `calcAndSetBaseMtx__9PowerStarFv` | `0x8020F9A8` | :x: (73.4%) |
 | `receiveMsgPlayerAttack__9PowerStarFUlP9HitSensorP9HitSensor` | `0x8020FB0C` | :white_check_mark: (100.0%) |
 | `receiveOtherMsg__9PowerStarFUlP9HitSensorP9HitSensor` | `0x8020FB54` | :white_check_mark: (100.0%) |
 | `initMapToolInfo__9PowerStarFRC12JMapInfoIter` | `0x8020FC34` | :x: (100.0%) |

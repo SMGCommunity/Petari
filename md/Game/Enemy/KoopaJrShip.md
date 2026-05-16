@@ -1,11 +1,13 @@
 # main/Game/Enemy/KoopaJrShip
 
+**Source Path:** `src/Game/Enemy/KoopaJrShip.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
 |------|---------|---------|
 | `setEulerZ__Q29JGeometry64TRotation3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>Ff` | `0x801123BC` | :x: (0.0%) |
-| `__ct__11KoopaJrShipFPCc` | `0x8011244C` | :x: (0.0%) |
+| `__ct__11KoopaJrShipFPCc` | `0x8011244C` | :x: (19.7%) |
 | `init__11KoopaJrShipFRC12JMapInfoIter` | `0x80112534` | :x: (0.0%) |
 | `initAfterPlacement__11KoopaJrShipFv` | `0x80112780` | :x: (0.0%) |
 | `kill__11KoopaJrShipFv` | `0x801127B8` | :x: (0.0%) |
@@ -75,4 +77,4 @@
 | `push_back__Q22MR37Vector<Q22MR22FixedArray<P6Kameck,2>>FRCP6Kameck` | `0x8011468C` | :x: (0.0%) |
 | `__cl__Q22MR49FunctorV0M<P11KoopaJrShip,M11KoopaJrShipFPCvPv_v>CFv` | `0x801146A8` | :x: (0.0%) |
 | `clone__Q22MR49FunctorV0M<P11KoopaJrShip,M11KoopaJrShipFPCvPv_v>CFP7JKRHeap` | `0x801146D8` | :x: (0.0%) |
-| `__dt__11KoopaJrShipFv` | `0x80114740` | :x: (0.0%) |
+| `__dt__11KoopaJrShipFv` | `0x80114740` | :white_check_mark: (100.0%) |

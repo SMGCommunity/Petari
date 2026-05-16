@@ -1,17 +1,19 @@
 # main/Game/MapObj/ScrewSwitchReverse
 
+**Source Path:** `src/Game/MapObj/ScrewSwitchReverse.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__ct__18ScrewSwitchReverseFPCc` | `0x8022263C` | :x: (0.0%) |
+| `__ct__18ScrewSwitchReverseFPCc` | `0x8022263C` | :x: (72.2%) |
 | `init__18ScrewSwitchReverseFRC12JMapInfoIter` | `0x80222684` | :x: (0.0%) |
 | `exeAdjust__18ScrewSwitchReverseFv` | `0x80222878` | :x: (0.0%) |
 | `exeScrew__18ScrewSwitchReverseFv` | `0x80222924` | :x: (0.0%) |
 | `receiveOtherMsg__18ScrewSwitchReverseFUlP9HitSensorP9HitSensor` | `0x80222A4C` | :x: (0.0%) |
 | `updateBindActorMtx__18ScrewSwitchReverseFv` | `0x80222B48` | :x: (0.0%) |
 | `endBind__18ScrewSwitchReverseFv` | `0x80222BF4` | :x: (0.0%) |
-| `__dt__18ScrewSwitchReverseFv` | `0x80222C70` | :x: (0.0%) |
+| `__dt__18ScrewSwitchReverseFv` | `0x80222C70` | :white_check_mark: (100.0%) |
 | `__sinit_\ScrewSwitchReverse_cpp` | `0x80222CCC` | :x: (0.0%) |
 | `__ct__Q221NrvScrewSwitchReverse25ScrewSwitchReverseNrvWaitFv` | `0x80222D00` | :x: (0.0%) |
 | `__ct__Q221NrvScrewSwitchReverse27ScrewSwitchReverseNrvAdjustFv` | `0x80222D10` | :x: (0.0%) |

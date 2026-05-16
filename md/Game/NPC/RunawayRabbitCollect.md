@@ -1,10 +1,12 @@
 # main/Game/NPC/RunawayRabbitCollect
 
+**Source Path:** `src/Game/NPC/RunawayRabbitCollect.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__ct__20RunawayRabbitCollectFPCc` | `0x80286634` | :x: (0.0%) |
+| `__ct__20RunawayRabbitCollectFPCc` | `0x80286634` | :x: (65.2%) |
 | `init__20RunawayRabbitCollectFRC12JMapInfoIter` | `0x8028668C` | :x: (0.0%) |
 | `initAfterPlacement__20RunawayRabbitCollectFv` | `0x80286900` | :x: (0.0%) |
 | `calcCompleteRabbitCount__20RunawayRabbitCollectCFv` | `0x8028690C` | :x: (0.0%) |
@@ -15,7 +17,7 @@
 | `exeWait__20RunawayRabbitCollectFv` | `0x80286BAC` | :x: (0.0%) |
 | `appearTico__20RunawayRabbitCollectFP11RunawayTicoRCQ29JGeometry8TVec3<f>` | `0x80286C58` | :x: (0.0%) |
 | `exeActive__20RunawayRabbitCollectFv` | `0x80286CE8` | :x: (0.0%) |
-| `__dt__20RunawayRabbitCollectFv` | `0x80286F20` | :x: (0.0%) |
+| `__dt__20RunawayRabbitCollectFv` | `0x80286F20` | :white_check_mark: (100.0%) |
 | `__sinit_\RunawayRabbitCollect_cpp` | `0x80286F7C` | :x: (0.0%) |
 | `__ct__Q223NrvRunawayRabbitCollect27RunawayRabbitCollectNrvWaitFv` | `0x80286FA8` | :x: (0.0%) |
 | `__ct__Q223NrvRunawayRabbitCollect29RunawayRabbitCollectNrvActiveFv` | `0x80286FB8` | :x: (0.0%) |

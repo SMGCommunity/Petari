@@ -11,7 +11,7 @@
 | `initAfterPlacement__15MiniatureGalaxyFv` | `0x801FF09C` | :x: (0.0%) |
 | `appear__15MiniatureGalaxyFv` | `0x801FF0D4` | :x: (0.0%) |
 | `kill__15MiniatureGalaxyFv` | `0x801FF2C0` | :x: (0.0%) |
-| `makeArchiveList__15MiniatureGalaxyFP27NameObjArchiveListCollectorRC12JMapInfoIter` | `0x801FF3D4` | :x: (0.0%) |
+| `makeArchiveList__15MiniatureGalaxyFP27NameObjArchiveListCollectorRC12JMapInfoIter` | `0x801FF3D4` | :x: (99.9%) |
 | `control__15MiniatureGalaxyFv` | `0x801FF518` | :x: (0.0%) |
 | `calcAndSetBaseMtx__15MiniatureGalaxyFv` | `0x801FF594` | :x: (0.0%) |
 | `receiveOtherMsg__15MiniatureGalaxyFUlP9HitSensorP9HitSensor` | `0x801FF71C` | :x: (0.0%) |

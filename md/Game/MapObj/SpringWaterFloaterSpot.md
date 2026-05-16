@@ -1,10 +1,12 @@
 # main/Game/MapObj/SpringWaterFloaterSpot
 
+**Source Path:** `src/Game/MapObj/SpringWaterFloaterSpot.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__ct__22SpringWaterFloaterSpotFPCc` | `0x8023B98C` | :x: (0.0%) |
+| `__ct__22SpringWaterFloaterSpotFPCc` | `0x8023B98C` | :x: (46.3%) |
 | `init__22SpringWaterFloaterSpotFRC12JMapInfoIter` | `0x8023BA08` | :x: (0.0%) |
 | `control__22SpringWaterFloaterSpotFv` | `0x8023BBD8` | :x: (0.0%) |
 | `calcAndSetBaseMtx__22SpringWaterFloaterSpotFv` | `0x8023BCB4` | :x: (0.0%) |
@@ -28,4 +30,4 @@
 | `execute__Q225NrvSpringWaterFloaterSpot29SpringWaterFloaterSpotNrvWaitCFP5Spine` | `0x8023C4A0` | :x: (0.0%) |
 | `__cl__Q22MR71FunctorV0M<P22SpringWaterFloaterSpot,M22SpringWaterFloaterSpotFPCvPv_v>CFv` | `0x8023C4A8` | :x: (0.0%) |
 | `clone__Q22MR71FunctorV0M<P22SpringWaterFloaterSpot,M22SpringWaterFloaterSpotFPCvPv_v>CFP7JKRHeap` | `0x8023C4D8` | :x: (0.0%) |
-| `__dt__22SpringWaterFloaterSpotFv` | `0x8023C540` | :x: (0.0%) |
+| `__dt__22SpringWaterFloaterSpotFv` | `0x8023C540` | :white_check_mark: (100.0%) |

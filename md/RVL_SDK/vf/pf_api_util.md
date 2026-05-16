@@ -6,7 +6,7 @@
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `VFiPFAPI_ParseOpenModeString` | `0x80483EC0` | :x: (0.0%) |
+| `VFiPFAPI_ParseOpenModeString` | `0x80483EC0` | :white_check_mark: (100.0%) |
 | `VFiPFAPI_convertError` | `0x80483F90` | :white_check_mark: (100.0%) |
 | `VFiPFAPI_convertReturnValue` | `0x80483FD0` | :white_check_mark: (100.0%) |
 | `VFiPFAPI_convertReturnValue2NULL` | `0x80483FE0` | :white_check_mark: (100.0%) |

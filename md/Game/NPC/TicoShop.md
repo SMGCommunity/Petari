@@ -8,7 +8,7 @@
 |------|---------|---------|
 | `__ct__8TicoShopFPCc` | `0x802933EC` | :white_check_mark: (100.0%) |
 | `kill__8TicoShopFv` | `0x8029343C` | :white_check_mark: (100.0%) |
-| `init__8TicoShopFRC12JMapInfoIter` | `0x802934E0` | :x: (94.4%) |
+| `init__8TicoShopFRC12JMapInfoIter` | `0x802934E0` | :x: (97.9%) |
 | `branchFunc__8TicoShopFUl` | `0x80293750` | :white_check_mark: (100.0%) |
 | `eventFunc__8TicoShopFUl` | `0x80293754` | :white_check_mark: (100.0%) |
 | `startReactionSound__8TicoShopFv` | `0x80293784` | :white_check_mark: (100.0%) |

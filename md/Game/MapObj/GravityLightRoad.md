@@ -1,10 +1,12 @@
 # main/Game/MapObj/GravityLightRoad
 
+**Source Path:** `src/Game/MapObj/GravityLightRoad.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__ct__16GravityLightRoadFPCc` | `0x801E2E60` | :x: (0.0%) |
+| `__ct__16GravityLightRoadFPCc` | `0x801E2E60` | :x: (53.7%) |
 | `init__16GravityLightRoadFRC12JMapInfoIter` | `0x801E2EC0` | :x: (0.0%) |
 | `exeDraw__16GravityLightRoadFv` | `0x801E3030` | :x: (0.0%) |
 | `exeDisappear__16GravityLightRoadFv` | `0x801E3160` | :x: (0.0%) |
@@ -24,4 +26,4 @@
 | `execute__Q219NrvGravityLightRoad23GravityLightRoadNrvWaitCFP5Spine` | `0x801E3614` | :x: (0.0%) |
 | `__cl__Q22MR59FunctorV0M<P16GravityLightRoad,M16GravityLightRoadFPCvPv_v>CFv` | `0x801E365C` | :x: (0.0%) |
 | `clone__Q22MR59FunctorV0M<P16GravityLightRoad,M16GravityLightRoadFPCvPv_v>CFP7JKRHeap` | `0x801E368C` | :x: (0.0%) |
-| `__dt__16GravityLightRoadFv` | `0x801E36F4` | :x: (0.0%) |
+| `__dt__16GravityLightRoadFv` | `0x801E36F4` | :white_check_mark: (100.0%) |

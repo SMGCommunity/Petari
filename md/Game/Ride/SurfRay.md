@@ -43,7 +43,7 @@
 | `isTwistStart__7SurfRayCFv` | `0x80333878` | :white_check_mark: (100.0%) |
 | `isRotateStart__7SurfRayCFv` | `0x803338D0` | :white_check_mark: (100.0%) |
 | `__dt__7SurfRayFv` | `0x80333950` | :white_check_mark: (100.0%) |
-| `__sinit_\SurfRay_cpp` | `0x803339AC` | :x: (90.3%) |
+| `__sinit_\SurfRay_cpp` | `0x803339AC` | :white_check_mark: (100.0%) |
 | `__ct__Q210NrvSurfRay20SurfRayNrvWaitPlayerFv` | `0x80333A40` | :white_check_mark: (100.0%) |
 | `__ct__Q210NrvSurfRay20SurfRayNrvTurnToWaitFv` | `0x80333A50` | :white_check_mark: (100.0%) |
 | `__ct__Q210NrvSurfRay14SurfRayNrvWaitFv` | `0x80333A60` | :white_check_mark: (100.0%) |

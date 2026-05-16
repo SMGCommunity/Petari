@@ -1,10 +1,12 @@
 # main/Game/MapObj/JumpStand
 
+**Source Path:** `src/Game/MapObj/JumpStand.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__ct__9JumpStandFPCc` | `0x801EDC64` | :x: (0.0%) |
+| `__ct__9JumpStandFPCc` | `0x801EDC64` | :x: (71.5%) |
 | `init__9JumpStandFRC12JMapInfoIter` | `0x801EDCB4` | :x: (0.0%) |
 | `exeTrampleBound__9JumpStandFv` | `0x801EDE28` | :x: (0.0%) |
 | `exeHipDropBound__9JumpStandFv` | `0x801EDFD8` | :x: (0.0%) |
@@ -15,7 +17,7 @@
 | `tryToStartBind__9JumpStandFP9HitSensor` | `0x801EE3E8` | :x: (0.0%) |
 | `updateBindActorMtx__9JumpStandFv` | `0x801EE458` | :x: (0.0%) |
 | `endBindAndShootUp__9JumpStandFfQ29JumpStand8JumpType` | `0x801EE50C` | :x: (0.0%) |
-| `__dt__9JumpStandFv` | `0x801EE738` | :x: (0.0%) |
+| `__dt__9JumpStandFv` | `0x801EE738` | :white_check_mark: (100.0%) |
 | `__sinit_\JumpStand_cpp` | `0x801EE794` | :x: (0.0%) |
 | `__ct__Q212NrvJumpStand16JumpStandNrvWaitFv` | `0x801EE7D0` | :x: (0.0%) |
 | `__ct__Q212NrvJumpStand24JumpStandNrvTrampleBoundFv` | `0x801EE7E0` | :x: (0.0%) |

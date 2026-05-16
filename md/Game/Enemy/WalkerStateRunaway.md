@@ -7,13 +7,13 @@
 | Name | Address | Match % |
 |------|---------|---------|
 | `__ct__23WalkerStateRunawayParamFv` | `0x80150A08` | :white_check_mark: (100.0%) |
-| `__ct__18WalkerStateRunawayFP9LiveActorPQ29JGeometry8TVec3<f>P23WalkerStateRunawayParam` | `0x80150AB8` | :x: (99.7%) |
+| `__ct__18WalkerStateRunawayFP9LiveActorPQ29JGeometry8TVec3<f>P23WalkerStateRunawayParam` | `0x80150AB8` | :white_check_mark: (100.0%) |
 | `appear__18WalkerStateRunawayFv` | `0x80150B4C` | :white_check_mark: (100.0%) |
 | `tryRunaway__18WalkerStateRunawayFv` | `0x80150B90` | :white_check_mark: (100.0%) |
-| `tryWait__18WalkerStateRunawayFv` | `0x80150BE8` | :x: (99.8%) |
-| `tryWallJump__18WalkerStateRunawayFv` | `0x80150C44` | :x: (96.1%) |
-| `exeWait__18WalkerStateRunawayFv` | `0x80150D50` | :x: (95.2%) |
-| `exeRunaway__18WalkerStateRunawayFv` | `0x80150E0C` | :x: (94.4%) |
+| `tryWait__18WalkerStateRunawayFv` | `0x80150BE8` | :white_check_mark: (100.0%) |
+| `tryWallJump__18WalkerStateRunawayFv` | `0x80150C44` | :white_check_mark: (100.0%) |
+| `exeWait__18WalkerStateRunawayFv` | `0x80150D50` | :white_check_mark: (100.0%) |
+| `exeRunaway__18WalkerStateRunawayFv` | `0x80150E0C` | :white_check_mark: (100.0%) |
 | `exeWallJump__18WalkerStateRunawayFv` | `0x80150FA4` | :white_check_mark: (100.0%) |
 | `isRunning__18WalkerStateRunawayCFv` | `0x8015106C` | :white_check_mark: (100.0%) |
 | `__dt__18WalkerStateRunawayFv` | `0x80151074` | :white_check_mark: (100.0%) |

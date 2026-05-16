@@ -74,7 +74,7 @@
 | `requestAttack__22BegomanAttackPermitterFP11BegomanBase` | `0x800D4DE8` | :white_check_mark: (100.0%) |
 | `exeWait__22BegomanAttackPermitterFv` | `0x800D4F40` | :white_check_mark: (100.0%) |
 | `exeReceive__22BegomanAttackPermitterFv` | `0x800D4F88` | :white_check_mark: (100.0%) |
-| `__sinit_\BegomanBase_cpp` | `0x800D4FE4` | :x: (26.2%) |
+| `__sinit_\BegomanBase_cpp` | `0x800D4FE4` | :white_check_mark: (100.0%) |
 | `__ct__Q225NrvBegomanAttackPermitter15HostTypeNrvWaitFv` | `0x800D5018` | :white_check_mark: (100.0%) |
 | `__ct__Q225NrvBegomanAttackPermitter18HostTypeNrvReceiveFv` | `0x800D5028` | :white_check_mark: (100.0%) |
 | `__ct__Q225NrvBegomanAttackPermitter17HostTypeNrvPermitFv` | `0x800D5038` | :white_check_mark: (100.0%) |

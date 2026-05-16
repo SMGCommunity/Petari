@@ -57,7 +57,7 @@
 | `getJumpVec__11MarioModuleCFv` | `0x802E9824` | :white_check_mark: (100.0%) |
 | `setJumpVec__11MarioModuleFRCQ29JGeometry8TVec3<f>` | `0x802E9834` | :white_check_mark: (100.0%) |
 | `playEffect__11MarioModuleFPCc` | `0x802E9850` | :white_check_mark: (100.0%) |
-| `playEffectTrans__11MarioModuleFPCcRCQ29JGeometry8TVec3<f>` | `0x802E9858` | :x: (0.0%) |
+| `playEffectTrans__11MarioModuleFPCcRCQ29JGeometry8TVec3<f>` | `0x802E9858` | :white_check_mark: (100.0%) |
 | `playEffectRT__11MarioModuleFPCcRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | `0x802E9860` | :white_check_mark: (100.0%) |
 | `playEffectRTZ__11MarioModuleFPCcRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | `0x802E9868` | :white_check_mark: (100.0%) |
 | `playEffectRTW__11MarioModuleFPCcRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | `0x802E9870` | :white_check_mark: (100.0%) |

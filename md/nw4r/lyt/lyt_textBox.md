@@ -7,16 +7,16 @@
 | Name | Address | Match % |
 |------|---------|---------|
 | `GetColor__25@unnamed@lyt_textBox_cpp@FRC11_GXColorS10` | `0x8000DF94` | :x: (0.0%) |
-| `__ct__Q34nw4r3lyt7TextBoxFPCQ44nw4r3lyt3res7TextBoxRCQ34nw4r3lyt11ResBlockSet` | `0x8000E048` | :x: (0.0%) |
+| `__ct__Q34nw4r3lyt7TextBoxFPCQ44nw4r3lyt3res7TextBoxRCQ34nw4r3lyt11ResBlockSet` | `0x8000E048` | :x: (84.8%) |
 | `__dt__Q34nw4r3lyt7TextBoxFv` | `0x8000E2EC` | :white_check_mark: (100.0%) |
-| `GetVtxColor__Q34nw4r3lyt7TextBoxCFUl` | `0x8000E470` | :x: (0.0%) |
-| `GetTextColor__Q34nw4r3lyt7TextBoxCFUl` | `0x8000E478` | :x: (0.0%) |
-| `SetVtxColor__Q34nw4r3lyt7TextBoxFUlQ34nw4r2ut5Color` | `0x8000E4A4` | :x: (77.5%) |
-| `SetTextColor__Q34nw4r3lyt7TextBoxFUlQ34nw4r2ut5Color` | `0x8000E4EC` | :x: (0.0%) |
+| `GetVtxColor__Q34nw4r3lyt7TextBoxCFUl` | `0x8000E470` | :white_check_mark: (100.0%) |
+| `GetTextColor__Q34nw4r3lyt7TextBoxCFUl` | `0x8000E478` | :white_check_mark: (100.0%) |
+| `SetVtxColor__Q34nw4r3lyt7TextBoxFUlQ34nw4r2ut5Color` | `0x8000E4A4` | :white_check_mark: (100.0%) |
+| `SetTextColor__Q34nw4r3lyt7TextBoxFUlQ34nw4r2ut5Color` | `0x8000E4EC` | :white_check_mark: (100.0%) |
 | `GetVtxColorElement__Q34nw4r3lyt7TextBoxCFUl` | `0x8000E518` | :white_check_mark: (100.0%) |
 | `SetVtxColorElement__Q34nw4r3lyt7TextBoxFUlUc` | `0x8000E530` | :white_check_mark: (100.0%) |
 | `GetTextDrawRect__Q34nw4r3lyt7TextBoxCFRCQ34nw4r3lyt8DrawInfo` | `0x8000E548` | :x: (0.0%) |
-| `DrawSelf__Q34nw4r3lyt7TextBoxFRCQ34nw4r3lyt8DrawInfo` | `0x8000E5E4` | :x: (0.0%) |
+| `DrawSelf__Q34nw4r3lyt7TextBoxFRCQ34nw4r3lyt8DrawInfo` | `0x8000E5E4` | :x: (1.5%) |
 | `SetTextColor__Q34nw4r2ut10CharWriterFQ34nw4r2ut5ColorQ34nw4r2ut5Color` | `0x8000E7CC` | :x: (0.0%) |
 | `AllocStringBuffer__Q34nw4r3lyt7TextBoxFUs` | `0x8000E810` | :white_check_mark: (100.0%) |
 | `FreeStringBuffer__Q34nw4r3lyt7TextBoxFv` | `0x8000E888` | :white_check_mark: (100.0%) |

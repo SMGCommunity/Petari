@@ -6,7 +6,7 @@
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__ct__8WipeFadeFPCcRC6Color8` | `0x80391838` | :white_check_mark: (100.0%) |
+| `__ct__8WipeFadeFPCcRC6Color8` | `0x80391838` | :x: (81.0%) |
 | `__dt__14WipeLayoutBaseFv` | `0x803918B8` | :white_check_mark: (100.0%) |
 | `init__8WipeFadeFRC12JMapInfoIter` | `0x80391914` | :white_check_mark: (100.0%) |
 | `control__8WipeFadeFv` | `0x80391924` | :white_check_mark: (100.0%) |

@@ -6,7 +6,7 @@
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__ct__22SpinDriverPathDrawInitFv` | `0x80237804` | :x: (87.7%) |
+| `__ct__22SpinDriverPathDrawInitFv` | `0x80237804` | :x: (67.4%) |
 | `__ct__20SpinDriverPathDrawerFP19SpinDriverShootPath` | `0x80237984` | :white_check_mark: (100.0%) |
 | `initDraw__22SpinDriverPathDrawInitFv` | `0x80237A28` | :x: (98.4%) |
 | `setSpinDriverPathColorNormal__2MRFv` | `0x80237C5C` | :white_check_mark: (100.0%) |

@@ -6,10 +6,10 @@ class JKRArchive;
 
 class JKRFileFinder {
 public:
-    char* mName;    // 0x0
-    s32 mDirIndex;  // 0x4
-    u16 mFileID;    // 0x8
-    u16 mFileFlag;  // 0xA
+    const char* mName;  // 0x0
+    s32 mDirIndex;      // 0x4
+    u16 mFileID;        // 0x8
+    u16 mFileFlag;      // 0xA
 
     JKRFileFinder();
     virtual ~JKRFileFinder();

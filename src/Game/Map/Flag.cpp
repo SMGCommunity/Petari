@@ -54,17 +54,6 @@ namespace {
     GXColor sStickColors[] = {{0x00, 0xC8, 0x00, 0x00}, {0x00, 0xDC, 0x00, 0x00}, {0x00, 0xB4, 0x00, 0x00}, {0x00, 0xC8, 0x00, 0x00}};
 }  // namespace
 
-// TODO: replace this call with MR::clamp
-inline f32 clamp(f32 x, f32 min, f32 max) {
-    if (x < min) {
-        return min;
-    } else if (x > max) {
-        return max;
-    } else {
-        return x;
-    }
-}
-
 Flag::~Flag() {
 }
 
@@ -381,7 +370,7 @@ void Flag::updateFlag() {
 
             if (!mDisableLighting) {
                 f32 lightColor = 255.0f * ((point->mUp.dot(mFront) - sLightBorderMin) / (sLightBorderMax - sLightBorderMin));
-                u8 color = clamp(lightColor, mLightColorMin, 255.0f);
+                u8 color = MR::clamp(lightColor, mLightColorMin, 255.0f);
                 mColors[idxV * (mNumPointsU + 1) + idxU + 1].set(color, color, color, 0xFF);
             }
         }

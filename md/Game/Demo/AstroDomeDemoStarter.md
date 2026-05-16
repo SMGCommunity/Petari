@@ -1,10 +1,12 @@
 # main/Game/Demo/AstroDomeDemoStarter
 
+**Source Path:** `src/Game/Demo/AstroDomeDemoStarter.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__ct__20AstroDomeDemoStarterFPCc` | `0x800B78A4` | :x: (0.0%) |
+| `__ct__20AstroDomeDemoStarterFPCc` | `0x800B78A4` | :x: (61.9%) |
 | `init__20AstroDomeDemoStarterFRC12JMapInfoIter` | `0x800B7900` | :x: (0.0%) |
 | `startJumpOut__20AstroDomeDemoStarterFv` | `0x800B7AA4` | :x: (0.0%) |
 | `calcAndSetBaseMtx__20AstroDomeDemoStarterFv` | `0x800B7B48` | :x: (0.0%) |
@@ -28,4 +30,4 @@
 | `getBaseMtx__20AstroDomeDemoStarterCFv` | `0x800B82A8` | :x: (0.0%) |
 | `__cl__Q22MR67FunctorV0M<P20AstroDomeDemoStarter,M20AstroDomeDemoStarterFPCvPv_v>CFv` | `0x800B82B0` | :x: (0.0%) |
 | `clone__Q22MR67FunctorV0M<P20AstroDomeDemoStarter,M20AstroDomeDemoStarterFPCvPv_v>CFP7JKRHeap` | `0x800B82E0` | :x: (0.0%) |
-| `__dt__20AstroDomeDemoStarterFv` | `0x800B8348` | :x: (0.0%) |
+| `__dt__20AstroDomeDemoStarterFv` | `0x800B8348` | :white_check_mark: (100.0%) |

@@ -1,10 +1,12 @@
 # main/Game/Enemy/Balloonfish
 
+**Source Path:** `src/Game/Enemy/Balloonfish.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__ct__11BalloonfishFPCc` | `0x800CD00C` | :x: (0.0%) |
+| `__ct__11BalloonfishFPCc` | `0x800CD00C` | :x: (57.4%) |
 | `init__11BalloonfishFRC12JMapInfoIter` | `0x800CD070` | :x: (0.0%) |
 | `appear__11BalloonfishFv` | `0x800CD264` | :x: (0.0%) |
 | `kill__11BalloonfishFv` | `0x800CD2B8` | :x: (0.0%) |
@@ -27,4 +29,4 @@
 | `execute__Q214NrvBalloonfish15HostTypeNrvWaitCFP5Spine` | `0x800CDC7C` | :x: (0.0%) |
 | `__cl__Q22MR49FunctorV0M<P11Balloonfish,M11BalloonfishFPCvPv_v>CFv` | `0x800CDC84` | :x: (0.0%) |
 | `clone__Q22MR49FunctorV0M<P11Balloonfish,M11BalloonfishFPCvPv_v>CFP7JKRHeap` | `0x800CDCB4` | :x: (0.0%) |
-| `__dt__11BalloonfishFv` | `0x800CDD1C` | :x: (0.0%) |
+| `__dt__11BalloonfishFv` | `0x800CDD1C` | :white_check_mark: (100.0%) |

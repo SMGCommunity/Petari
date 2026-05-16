@@ -1,5 +1,7 @@
 # main/Game/Boss/OtaKing
 
+**Source Path:** `src/Game/Boss/OtaKing.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
@@ -11,12 +13,12 @@
 | `__dt__8FireBallFv` | `0x80069E4C` | :x: (0.0%) |
 | `__dt__10FireBubbleFv` | `0x80069EA8` | :x: (0.0%) |
 | `set__Q29JGeometry8TVec3<f>FRC3Vec` | `0x80069F04` | :x: (0.0%) |
-| `__ct__7OtaKingFPCc` | `0x80069F20` | :x: (0.0%) |
+| `__ct__7OtaKingFPCc` | `0x80069F20` | :x: (28.2%) |
 | `init__7OtaKingFRC12JMapInfoIter` | `0x80069FE0` | :x: (0.0%) |
 | `movement__7OtaKingFv` | `0x8006A17C` | :x: (0.0%) |
 | `makeActorAppeared__7OtaKingFv` | `0x8006A1D0` | :x: (0.0%) |
 | `startAppearDemo__7OtaKingFv` | `0x8006A254` | :x: (0.0%) |
-| `makeArchiveList__7OtaKingFP27NameObjArchiveListCollectorRC12JMapInfoIter` | `0x8006A2B8` | :x: (0.0%) |
+| `makeArchiveList__7OtaKingFP27NameObjArchiveListCollectorRC12JMapInfoIter` | `0x8006A2B8` | :x: (98.5%) |
 | `control__7OtaKingFv` | `0x8006A390` | :x: (0.0%) |
 | `calcAndSetBaseMtx__7OtaKingFv` | `0x8006A434` | :x: (0.0%) |
 | `attackSensor__7OtaKingFP9HitSensorP9HitSensor` | `0x8006A490` | :x: (0.0%) |
@@ -102,4 +104,4 @@
 | `copyTrans__13FixedPositionCFPQ29JGeometry8TVec3<f>` | `0x8006D634` | :x: (0.0%) |
 | `__cl__Q22MR39FunctorV0M<P7OtaKing,M7OtaKingFPCvPv_v>CFv` | `0x8006D64C` | :x: (0.0%) |
 | `clone__Q22MR39FunctorV0M<P7OtaKing,M7OtaKingFPCvPv_v>CFP7JKRHeap` | `0x8006D67C` | :x: (0.0%) |
-| `__dt__7OtaKingFv` | `0x8006D6E4` | :x: (0.0%) |
+| `__dt__7OtaKingFv` | `0x8006D6E4` | :x: (95.7%) |

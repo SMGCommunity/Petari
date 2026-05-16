@@ -40,7 +40,7 @@
 | `reset__12GoldenTurtleFUl` | `0x801ECD18` | :white_check_mark: (100.0%) |
 | `__dt__9JetTurtleFv` | `0x801ECD5C` | :white_check_mark: (100.0%) |
 | `__dt__12GoldenTurtleFv` | `0x801ECDB8` | :white_check_mark: (100.0%) |
-| `__sinit_\JetTurtle_cpp` | `0x801ECE10` | :x: (61.6%) |
+| `__sinit_\JetTurtle_cpp` | `0x801ECE10` | :white_check_mark: (100.0%) |
 | `__ct__Q212NrvJetTurtle16JetTurtleNrvWaitFv` | `0x801ECE74` | :white_check_mark: (100.0%) |
 | `__ct__Q212NrvJetTurtle17JetTurtleNrvWait2Fv` | `0x801ECE84` | :white_check_mark: (100.0%) |
 | `__ct__Q212NrvJetTurtle21JetTurtleNrvThrowWaitFv` | `0x801ECE94` | :white_check_mark: (100.0%) |

@@ -1,11 +1,13 @@
 # main/Game/Enemy/Kanina
 
+**Source Path:** `src/Game/Enemy/Kanina.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
 |------|---------|---------|
 | `getRunAwayBreakTimeRandom__20@unnamed@Kanina_cpp@Fv` | `0x801088CC` | :x: (0.0%) |
-| `__ct__6KaninaFPCc` | `0x8010895C` | :x: (0.0%) |
+| `__ct__6KaninaFPCc` | `0x8010895C` | :x: (32.4%) |
 | `init__6KaninaFRC12JMapInfoIter` | `0x80108A0C` | :x: (0.0%) |
 | `initAfterPlacement__6KaninaFv` | `0x80108C78` | :x: (0.0%) |
 | `kill__6KaninaFv` | `0x80108C7C` | :x: (0.0%) |
@@ -56,7 +58,7 @@
 | `exeTurn__6KaninaFv` | `0x8010ADE4` | :x: (0.0%) |
 | `exeTurnEnd__6KaninaFv` | `0x8010AE58` | :x: (0.0%) |
 | `exePointing__6KaninaFv` | `0x8010AEC0` | :x: (0.0%) |
-| `__dt__6KaninaFv` | `0x8010AF68` | :x: (0.0%) |
+| `__dt__6KaninaFv` | `0x8010AF68` | :white_check_mark: (100.0%) |
 | `__sinit_\Kanina_cpp` | `0x8010AFC4` | :x: (0.0%) |
 | `__ct__Q29NrvKanina14HostTypeAppearFv` | `0x8010B090` | :x: (0.0%) |
 | `__ct__Q29NrvKanina12HostTypeWaitFv` | `0x8010B0A0` | :x: (0.0%) |

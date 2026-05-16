@@ -1,10 +1,12 @@
 # main/Game/MapObj/MarioLauncher
 
+**Source Path:** `src/Game/MapObj/MarioLauncher.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__ct__13MarioLauncherFPCc` | `0x801F9C7C` | :x: (0.0%) |
+| `__ct__13MarioLauncherFPCc` | `0x801F9C7C` | :x: (42.0%) |
 | `init__13MarioLauncherFRC12JMapInfoIter` | `0x801F9D04` | :x: (0.0%) |
 | `init__18MarioLauncherShellFRC12JMapInfoIter` | `0x801FA018` | :x: (0.0%) |
 | `init__19MarioLauncherLayoutFRC12JMapInfoIter` | `0x801FA074` | :x: (0.0%) |
@@ -58,7 +60,7 @@
 | `Functor<13MarioLauncher>__2MRFP13MarioLauncherM13MarioLauncherFPCvPv_v_Q22MR53FunctorV0M<P13MarioLauncher,M13MarioLauncherFPCvPv_v>` | `0x801FB71C` | :x: (0.0%) |
 | `__cl__Q22MR53FunctorV0M<P13MarioLauncher,M13MarioLauncherFPCvPv_v>CFv` | `0x801FB75C` | :x: (0.0%) |
 | `clone__Q22MR53FunctorV0M<P13MarioLauncher,M13MarioLauncherFPCvPv_v>CFP7JKRHeap` | `0x801FB78C` | :x: (0.0%) |
-| `__dt__13MarioLauncherFv` | `0x801FB7F4` | :x: (0.0%) |
+| `__dt__13MarioLauncherFv` | `0x801FB7F4` | :x: (82.1%) |
 | `__dt__19MarioLauncherLayoutFv` | `0x801FB864` | :x: (0.0%) |
 | `__dt__18MarioLauncherShellFv` | `0x801FB8C0` | :x: (0.0%) |
 | `isInvalidTriangle__40TriangleFilterDelegator<13MarioLauncher>CFPC8Triangle` | `0x801FB91C` | :x: (0.0%) |

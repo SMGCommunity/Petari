@@ -1,10 +1,12 @@
 # main/Game/NPC/PenguinSkater
 
+**Source Path:** `src/Game/NPC/PenguinSkater.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__ct__13PenguinSkaterFPCc` | `0x8027D3D4` | :x: (0.0%) |
+| `__ct__13PenguinSkaterFPCc` | `0x8027D3D4` | :x: (45.8%) |
 | `init__13PenguinSkaterFRC12JMapInfoIter` | `0x8027D450` | :x: (0.0%) |
 | `initAfterPlacement__13PenguinSkaterFv` | `0x8027D59C` | :x: (0.0%) |
 | `receiveMsgPlayerAttack__13PenguinSkaterFUlP9HitSensorP9HitSensor` | `0x8027D65C` | :x: (0.0%) |
@@ -30,7 +32,7 @@
 | `exeFadeOut__13PenguinSkaterFv` | `0x8027E49C` | :x: (0.0%) |
 | `exeFadeIn__13PenguinSkaterFv` | `0x8027E528` | :x: (0.0%) |
 | `exeGiveUp__13PenguinSkaterFv` | `0x8027E648` | :x: (0.0%) |
-| `__dt__13PenguinSkaterFv` | `0x8027E6C4` | :x: (0.0%) |
+| `__dt__13PenguinSkaterFv` | `0x8027E6C4` | :white_check_mark: (100.0%) |
 | `__sinit_\PenguinSkater_cpp` | `0x8027E71C` | :x: (0.0%) |
 | `__ct__Q216NrvPenguinSkater24PenguinSkaterNrvReactionFv` | `0x8027E7A0` | :x: (0.0%) |
 | `__ct__Q216NrvPenguinSkater20PenguinSkaterNrvTalkFv` | `0x8027E7B0` | :x: (0.0%) |

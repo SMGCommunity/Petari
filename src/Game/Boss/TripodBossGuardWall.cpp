@@ -138,8 +138,9 @@ void TripodBossGuardWall::exeDemo() {
     if (MR::isGreaterStep(this, 180)) {
         bool isDemoEndAny = true;
         for (s32 i = 0; i < 8; i++) {
-            if (mWallParts[i].isEndDemo()) {
+            if (!mWallParts[i].isEndDemo()) {
                 isDemoEndAny = false;
+                break;
             }
         }
 

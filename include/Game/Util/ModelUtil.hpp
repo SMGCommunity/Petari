@@ -17,7 +17,11 @@ namespace MR {
     J3DModelData* getJ3DModelData(const LiveActor*);
     J3DModelData* getJ3DModelData(const char*);
 
+    void initEnvelopeAndEnvMapOrProjMapModelData(J3DModelData*);
+
     ResTIMG* getResTIMG(const LiveActor*, int);
+
+    void downFracVtx(J3DModelData*);
 
     void calcJ3DModel(LiveActor*);
 
@@ -55,6 +59,8 @@ namespace MR {
     bool isExistSubModel(const char*, const char*);
 
     bool isExistEffectTexMtx(LiveActor*);
+
+    bool isUseFur(const J3DModelData*);
 
     s16 getBckFrameMax(const LiveActor*, const char*);
     s16 getBrkFrameMax(const LiveActor*, const char*);

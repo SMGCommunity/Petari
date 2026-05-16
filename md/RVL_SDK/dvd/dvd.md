@@ -38,7 +38,7 @@
 | `cbForPrepareCoverRegister` | `0x804C4C2C` | :white_check_mark: (100.0%) |
 | `CoverAlarmHandler` | `0x804C4DB4` | :white_check_mark: (100.0%) |
 | `stateReady` | `0x804C4DD8` | :white_check_mark: (100.0%) |
-| `stateBusy` | `0x804C5100` | :white_check_mark: (100.0%) |
+| `stateBusy` | `0x804C5100` | :x: (99.4%) |
 | `cbForStateBusy` | `0x804C56B0` | :x: (100.0%) |
 | `DVDReadAbsAsyncPrio` | `0x804C6090` | :white_check_mark: (100.0%) |
 | `DVDInquiryAsync` | `0x804C6174` | :white_check_mark: (100.0%) |

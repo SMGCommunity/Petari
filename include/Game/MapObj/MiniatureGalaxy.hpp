@@ -40,7 +40,8 @@ public:
     void exeOpen();
 
     s32 _8C;
-    u8 unc[0x88];
+    s32 _90;
+    u8 unc[0x84];
     const char* _118;
     u8 _11C[0x138];
 };

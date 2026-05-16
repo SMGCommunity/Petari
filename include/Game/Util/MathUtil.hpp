@@ -417,14 +417,20 @@ namespace MR {
     /// @param b The second number to evaluate.
     /// @retval `a` if less than `b`.
     /// @retval `b` if less than or equal to `a`.
-    f32 min(f32 a, f32 b);
+    inline f32 min(f32 a, f32 b) {
+        a = a >= b ? b : a;
+        return a;
+    }
 
     /// @brief Compares two numbers for the largest value.
     /// @param a The first number to evaluate.
     /// @param b The second number to evaluate.
     /// @retval `a` if greater than or equal to `b`.
     /// @retval `b` if greater than `a`.
-    f32 max(f32 a, f32 b);
+    inline f32 max(f32 a, f32 b) {
+        a = a >= b ? a : b;
+        return a;
+    }
 
     /// @brief Restricts a number to an interval.
     /// @param x The number to evaluate.
@@ -433,7 +439,18 @@ namespace MR {
     /// @retval `min` if the number is less than or equal to `min`.
     /// @retval `max` if the number is greater than or equal to `max`.
     /// @retval `x` if the number is greater than `min` and less than `max`.
-    f32 clamp(f32 x, f32 min, f32 max);
+    inline f32 clamp(f32 x, f32 min, f32 max) {
+        f32 ret;
+        if (x < min) {
+            ret = min;
+        } else if (x > max) {
+            ret = max;
+        } else {
+            ret = x;
+        }
+
+        return ret;
+    }
 
     /// @brief Restricts an integer to an interval.
     /// @param x The integer to evaluate.
@@ -442,13 +459,25 @@ namespace MR {
     /// @retval `min` if the integer is less than or equal to `min`.
     /// @retval `max` if the integer is greater than or equal to `max`.
     /// @retval `x` if the integer is greater than `min` and less than `max`.
-    s32 clamp(s32 x, s32 min, s32 max);
+    inline s32 clamp(s32 x, s32 min, s32 max) {
+        if (x < min) {
+            return min;
+        }
+
+        if (x > max) {
+            return max;
+        }
+
+        return x;
+    }
 
     /// @brief Restricts a number to the unit interval.
     /// @param[in,out] pX A pointer to the number to evaluate and initialize.
-    void clamp01(f32* pX);  // { *pX = *pX < 0.0f ? 0.0f : *pX > 1.0f ? 1.0f : *pX; }
+    inline void clamp01(f32* pX) {
+        *pX = *pX < 0.0f ? 0.0f : *pX > 1.0f ? 1.0f : *pX;
+    }
 
-    void clampBoth(f32* value, f32 min, f32 max);
+    inline void clampBoth(f32* value, f32 min, f32 max);
 
     inline f32 repeat(f32 value, f32 min, f32 max) {
         return min + (f32)fmod(max + (value - min), max);

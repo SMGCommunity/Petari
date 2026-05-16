@@ -6,6 +6,8 @@
 #include <algorithm>
 #include <cstdio>
 
+extern const JMapData GalaxyIDBCSV;
+
 namespace {
     static const GameEventFlag sGameEventFlagStatic[] = {
         {"AppearFlipPanelExGalaxy", GameEventFlag::Type_GalaxyOpenStar, 1, 0, 0, 0, "FlipPanelExGalaxy", 0},
@@ -451,5 +453,28 @@ namespace GameEventFlagTable {
 
     s32 calcGreenPowerStarNum() {
         return calcSpecialPowerStarNum("SpecialStarGreen");
+    }
+
+    s32 getGalaxyDependedFlags(const char** pFlags, int a1, const char* pName) {
+        JMapInfo info;
+        info.attach(&GalaxyIDBCSV);
+
+        JMapInfoIter iter = info.findElement("name", pName, 0);
+
+        s32 numFlags = 0;
+        for (s32 idx = 0; idx < 3; idx++) {
+            char key[32];
+            snprintf(key, 32, "OpenCondition%1d", idx);
+            if (info.searchItemInfo(key) < 0) {
+                break;
+            }
+
+            const char* openCondition = "";
+            iter.getValue(key, &openCondition);
+            if (!MR::isEqualString(openCondition, "")) {
+                pFlags[numFlags++] = openCondition;
+            }
+        }
+        return numFlags;
     }
 };  // namespace GameEventFlagTable

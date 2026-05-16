@@ -14,8 +14,8 @@
 | `exeWait__8Manual2PFv` | `0x8036C818` | :white_check_mark: (100.0%) |
 | `exeScrollRight__8Manual2PFv` | `0x8036C9AC` | :white_check_mark: (100.0%) |
 | `exeScrollRightAfter__8Manual2PFv` | `0x8036CA14` | :white_check_mark: (100.0%) |
-| `exeScrollLeft__8Manual2PFv` | `0x8036CAA4` | :x: (96.2%) |
-| `exeScrollLeftAfter__8Manual2PFv` | `0x8036CB94` | :x: (96.8%) |
+| `exeScrollLeft__8Manual2PFv` | `0x8036CAA4` | :x: (82.0%) |
+| `exeScrollLeftAfter__8Manual2PFv` | `0x8036CB94` | :x: (84.6%) |
 | `exeDisappear__8Manual2PFv` | `0x8036CCAC` | :white_check_mark: (100.0%) |
 | `control__8Manual2PFv` | `0x8036CD30` | :white_check_mark: (100.0%) |
 | `reflectPageIndex__8Manual2PFv` | `0x8036CDB0` | :x: (0.0%) |

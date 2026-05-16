@@ -1,10 +1,12 @@
 # main/Game/MapObj/GCaptureTarget
 
+**Source Path:** `src/Game/MapObj/GCaptureTarget.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__ct__14GCaptureTargetFPCc` | `0x801E1B9C` | :x: (0.0%) |
+| `__ct__14GCaptureTargetFPCc` | `0x801E1B9C` | :x: (47.4%) |
 | `init__14GCaptureTargetFRC12JMapInfoIter` | `0x801E1C10` | :x: (0.0%) |
 | `initAfterPlacement__14GCaptureTargetFv` | `0x801E1EC0` | :x: (0.0%) |
 | `appear__14GCaptureTargetFv` | `0x801E1EC4` | :x: (0.0%) |
@@ -44,4 +46,4 @@
 | `getTargetPosition__14GCaptureTargetFPQ29JGeometry8TVec3<f>` | `0x801E28F8` | :x: (0.0%) |
 | `releaseDistance__14GCaptureTargetCFv` | `0x801E2908` | :x: (0.0%) |
 | `getPointableRange__14GCaptureTargetCFv` | `0x801E2910` | :x: (0.0%) |
-| `__dt__14GCaptureTargetFv` | `0x801E2918` | :x: (0.0%) |
+| `__dt__14GCaptureTargetFv` | `0x801E2918` | :white_check_mark: (100.0%) |

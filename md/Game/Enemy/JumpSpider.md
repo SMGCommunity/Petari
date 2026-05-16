@@ -1,10 +1,12 @@
 # main/Game/Enemy/JumpSpider
 
+**Source Path:** `src/Game/Enemy/JumpSpider.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__ct__10JumpSpiderFPCc` | `0x80100ED8` | :x: (0.0%) |
+| `__ct__10JumpSpiderFPCc` | `0x80100ED8` | :x: (48.9%) |
 | `init__10JumpSpiderFRC12JMapInfoIter` | `0x80100F48` | :x: (0.0%) |
 | `initAfterPlacement__10JumpSpiderFv` | `0x80101170` | :x: (0.0%) |
 | `kill__10JumpSpiderFv` | `0x80101274` | :x: (0.0%) |
@@ -28,7 +30,7 @@
 | `receiveMsgPlayerAttack__10JumpSpiderFUlP9HitSensorP9HitSensor` | `0x80101ED8` | :x: (0.0%) |
 | `receiveOtherMsg__10JumpSpiderFUlP9HitSensorP9HitSensor` | `0x80102064` | :x: (0.0%) |
 | `calcAndSetBaseMtx__10JumpSpiderFv` | `0x80102114` | :x: (0.0%) |
-| `__dt__10JumpSpiderFv` | `0x8010218C` | :x: (0.0%) |
+| `__dt__10JumpSpiderFv` | `0x8010218C` | :white_check_mark: (100.0%) |
 | `__sinit_\JumpSpider_cpp` | `0x801021E8` | :x: (0.0%) |
 | `__ct__Q213NrvJumpSpider15HostTypeNrvWaitFv` | `0x8010227C` | :x: (0.0%) |
 | `__ct__Q213NrvJumpSpider18HostTypeNrvPreJumpFv` | `0x8010228C` | :x: (0.0%) |

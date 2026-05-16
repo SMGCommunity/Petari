@@ -1,10 +1,12 @@
 # main/Game/MapObj/SpringJetWater
 
+**Source Path:** `src/Game/MapObj/SpringJetWater.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__ct__14SpringJetWaterFPCc` | `0x8023B194` | :x: (0.0%) |
+| `__ct__14SpringJetWaterFPCc` | `0x8023B194` | :x: (64.5%) |
 | `init__14SpringJetWaterFRC12JMapInfoIter` | `0x8023B1EC` | :x: (0.0%) |
 | `appear__14SpringJetWaterFv` | `0x8023B414` | :x: (0.0%) |
 | `startClipped__14SpringJetWaterFv` | `0x8023B44C` | :x: (0.0%) |
@@ -13,7 +15,7 @@
 | `exeWait__14SpringJetWaterFv` | `0x8023B6F0` | :x: (0.0%) |
 | `exeJet__14SpringJetWaterFv` | `0x8023B78C` | :x: (0.0%) |
 | `exeEnd__14SpringJetWaterFv` | `0x8023B83C` | :x: (0.0%) |
-| `__dt__14SpringJetWaterFv` | `0x8023B8B4` | :x: (0.0%) |
+| `__dt__14SpringJetWaterFv` | `0x8023B8B4` | :white_check_mark: (100.0%) |
 | `__sinit_\SpringJetWater_cpp` | `0x8023B910` | :x: (0.0%) |
 | `__ct__Q217NrvSpringJetWater12HostTypeWaitFv` | `0x8023B944` | :x: (0.0%) |
 | `__ct__Q217NrvSpringJetWater11HostTypeJetFv` | `0x8023B954` | :x: (0.0%) |

@@ -32,9 +32,6 @@ TeresaRacer::TeresaRacer(const char* pName) : NPCActor(pName), mTakeOutStar(null
 }
 
 void TeresaRacer::init(const JMapInfoIter& rIter) {
-    // FIXME: reg alloc near end
-    // https://decomp.me/scratch/QDr8i
-
     NPCActorCaps caps("TeresaRacer");
     caps.setDefault();
     caps.setIndirect();
@@ -64,12 +61,9 @@ void TeresaRacer::init(const JMapInfoIter& rIter) {
         RaceManagerFunction::entryRacerOthers(this);
         MR::initMultiActorCamera(this, rIter, &mCameraInfo, "会話");  // conversation
 
-        mParam._14 = "WaitOpen";
-        mParam._18 = "WaitOpen";
-        mParam._1C = "WaitOpenTalk";
-        mParam._20 = "WaitOpenTalk";
-        _11C = "Chase";
-        _120 = "Chase";
+        mParam.setMoveAction("WaitOpen", "WaitOpen");
+        mParam.setTalkAction("WaitOpenTalk", "WaitOpenTalk");
+        setTalkAction("Chase");
         mParam._8 = 1.5f;
         _10C = sSpeed;
         _110 = sAccele;
@@ -88,14 +82,11 @@ void TeresaRacer::control() {
     NPCActor::control();
 }
 
-bool TeresaRacer::branchFunc(u32 /*unused*/) {
+bool TeresaRacer::branchFunc(u32 state) {
     return RaceManagerFunction::getRaceRank() == 1;
 }
 
 bool TeresaRacer::animeFunc(u32 anime) {
-    // FIXME: regswap
-    // https://decomp.me/scratch/DOkGq
-
     if (!isNerve(&NrvTeresaRacer::TeresaRacerNrvReady::sInstance)) {
         pushNerve(&NrvTeresaRacer::TeresaRacerNrvReady::sInstance);
     }
@@ -108,31 +99,24 @@ bool TeresaRacer::animeFunc(u32 anime) {
     switch (anime) {
     case 0:
         MR::tryStartAction(this, "Close");
-        mParam._1C = "CloseTalk";
-        mParam._20 = "CloseTalk";
-        mParam._14 = "CloseTalk";
-        mParam._18 = "CloseTalk";
+
+        mParam.setTalkAction("CloseTalk", "CloseTalk");
+        mParam.setMoveAction("CloseTalk", "CloseTalk");
         break;
     case 1:
-        mParam._14 = "Defeat";
-        mParam._18 = "Defeat";
-        mParam._1C = "Defeat";
-        mParam._20 = "Defeat";
+        mParam.setMoveAction("Defeat", "Defeat");
+        mParam.setTalkAction("Defeat", "Defeat");
         popNerve();
         return true;
     case 2:
         MR::tryStartAction(this, "Open");
-        mParam._1C = "WaitOpenTalk";
-        mParam._20 = "WaitOpenTalk";
-        mParam._14 = "WaitOpen";
-        mParam._18 = "WaitOpen";
+        mParam.setTalkAction("WaitOpenTalk", "WaitOpenTalk");
+        mParam.setMoveAction("WaitOpen", "WaitOpen");
         break;
     case 3:
         MR::tryStartAction(this, "Open");
-        mParam._1C = "WaitOpenTalk";
-        mParam._20 = "WaitOpenTalk";
-        mParam._14 = "WaitOpen";
-        mParam._18 = "WaitOpen";
+        mParam.setTalkAction("WaitOpenTalk", "WaitOpenTalk");
+        mParam.setMoveAction("WaitOpen", "WaitOpen");
         break;
     default:
         break;
@@ -141,7 +125,7 @@ bool TeresaRacer::animeFunc(u32 anime) {
     return false;
 }
 
-bool TeresaRacer::eventFunc(u32 /*unused*/) {
+bool TeresaRacer::eventFunc(u32 state) {
     return mTakeOutStar->takeOut();
 }
 
@@ -188,9 +172,6 @@ void TeresaRacer::exePost() {
 }
 
 void TeresaRacer::exeMove() {
-    // FIXME: TVec3 stack order
-    // https://decomp.me/scratch/Hx2Yg
-
     if (MR::isRailReachedNearGoal(this, sNearGoalDist) || !MR::isRailGoingToEnd(this)) {
         setNerve(&NrvTeresaRacer::TeresaRacerNrvGoal::sInstance);
     } else {
@@ -202,13 +183,7 @@ void TeresaRacer::exeMove() {
         if (mRacerId == -1) {
             MR::decidePose(this, up, MR::getRailDirection(this), MR::getRailPos(this), 1.0f, 0.05f, 0.1f);
         } else {
-            // TODO: these probably have cleaner inlines
-            TVec3f camZ1(MR::getCamZdir().invertOperatorInternal());
-            TVec3f camZ(camZ1);
-            camZ.mult(sCameraDirScale);
-
-            TVec3f dir(MR::getRailDirection(this));
-            dir.addInline(camZ);
+            TVec3f dir = MR::getRailDirection(this) + MR::getCamZdir().invertOperatorInternal().multInLine(sCameraDirScale);
 
             if (!MR::normalizeOrZero(&dir)) {
                 MR::decidePose(this, up, dir, MR::getRailPos(this), 1.0f, 0.05f, 0.1f);

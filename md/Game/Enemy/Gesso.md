@@ -1,10 +1,12 @@
 # main/Game/Enemy/Gesso
 
+**Source Path:** `src/Game/Enemy/Gesso.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__ct__5GessoFPCc` | `0x800EDDCC` | :x: (0.0%) |
+| `__ct__5GessoFPCc` | `0x800EDDCC` | :x: (37.7%) |
 | `init__5GessoFRC12JMapInfoIter` | `0x800EDE64` | :x: (0.0%) |
 | `kill__5GessoFv` | `0x800EE088` | :x: (0.0%) |
 | `control__5GessoFv` | `0x800EE0D4` | :x: (0.0%) |
@@ -35,7 +37,7 @@
 | `isMarioLeft__5GessoCFv` | `0x800EF680` | :x: (0.0%) |
 | `tryChangeHighSpeedMode__5GessoFv` | `0x800EF6E0` | :x: (0.0%) |
 | `tryDPDSwoon__5GessoFv` | `0x800EF73C` | :x: (0.0%) |
-| `__dt__5GessoFv` | `0x800EF7DC` | :x: (0.0%) |
+| `__dt__5GessoFv` | `0x800EF7DC` | :white_check_mark: (100.0%) |
 | `__sinit_\Gesso_cpp` | `0x800EF838` | :x: (0.0%) |
 | `__ct__Q28NrvGesso19GessoNrvComeFromBoxFv` | `0x800EF8B4` | :x: (0.0%) |
 | `__ct__Q28NrvGesso12GessoNrvWaitFv` | `0x800EF8C4` | :x: (0.0%) |

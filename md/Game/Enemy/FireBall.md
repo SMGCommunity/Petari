@@ -11,7 +11,7 @@
 | `appear__8FireBallFv` | `0x800EC2B0` | :white_check_mark: (100.0%) |
 | `kill__8FireBallFv` | `0x800EC2E8` | :white_check_mark: (100.0%) |
 | `appearAndThrow__8FireBallFRCQ29JGeometry8TVec3<f>ff` | `0x800EC350` | :x: (0.0%) |
-| `control__8FireBallFv` | `0x800EC52C` | :x: (42.2%) |
+| `control__8FireBallFv` | `0x800EC52C` | :x: (35.1%) |
 | `calcAndSetBaseMtx__8FireBallFv` | `0x800EC59C` | :white_check_mark: (100.0%) |
 | `attackSensor__8FireBallFP9HitSensorP9HitSensor` | `0x800EC604` | :white_check_mark: (100.0%) |
 | `receiveMsgPlayerAttack__8FireBallFUlP9HitSensorP9HitSensor` | `0x800EC6C0` | :white_check_mark: (100.0%) |

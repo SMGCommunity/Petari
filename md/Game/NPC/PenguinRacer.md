@@ -1,10 +1,12 @@
 # main/Game/NPC/PenguinRacer
 
+**Source Path:** `src/Game/NPC/PenguinRacer.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__ct__12PenguinRacerFPCc` | `0x8027B4D8` | :x: (0.0%) |
+| `__ct__12PenguinRacerFPCc` | `0x8027B4D8` | :x: (44.8%) |
 | `init__12PenguinRacerFRC12JMapInfoIter` | `0x8027B558` | :x: (0.0%) |
 | `initModel__12PenguinRacerFv` | `0x8027B794` | :x: (0.0%) |
 | `initSensor__12PenguinRacerFv` | `0x8027B7A8` | :x: (0.0%) |
@@ -38,7 +40,7 @@
 | `loseRacer__12PenguinRacerFv` | `0x8027C8F4` | :x: (0.0%) |
 | `resetRacer__12PenguinRacerFPC11RaceManager` | `0x8027C8FC` | :x: (0.0%) |
 | `exitRacer__12PenguinRacerFv` | `0x8027C9A0` | :x: (0.0%) |
-| `__dt__12PenguinRacerFv` | `0x8027C9A4` | :x: (0.0%) |
+| `__dt__12PenguinRacerFv` | `0x8027C9A4` | :white_check_mark: (100.0%) |
 | `__sinit_\PenguinRacer_cpp` | `0x8027C9FC` | :x: (0.0%) |
 | `__ct__Q215NrvPenguinRacer19PenguinRacerNrvWaitFv` | `0x8027CA68` | :x: (0.0%) |
 | `__ct__Q215NrvPenguinRacer23PenguinRacerNrvReactionFv` | `0x8027CA78` | :x: (0.0%) |

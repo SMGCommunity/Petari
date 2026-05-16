@@ -26,6 +26,6 @@
 | `__sinit_\RingBeam_cpp` | `0x80139A58` | :white_check_mark: (100.0%) |
 | `__ct__Q211NrvRingBeam17RingBeamNrvSpreadFv` | `0x80139A60` | :white_check_mark: (100.0%) |
 | `execute__Q211NrvRingBeam17RingBeamNrvSpreadCFP5Spine` | `0x80139A70` | :white_check_mark: (100.0%) |
-| `GXPosition3f32` | `0x80139A78` | :x: (0.0%) |
+| `GXPosition3f32` | `0x80139A78` | :white_check_mark: (100.0%) |
 | `__dt__8RingBeamFv` | `0x80139A8C` | :white_check_mark: (100.0%) |
 | `__dt__20RingBeamShadowDrawerFv` | `0x80139AE8` | :white_check_mark: (100.0%) |

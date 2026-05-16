@@ -9,7 +9,6 @@ class PenguinStudent : public NPCActor {
 public:
     PenguinStudent(const char*);
 
-    virtual ~PenguinStudent();
     virtual void init(const JMapInfoIter&);
     virtual void initAfterPlacement();
     virtual void attackSensor(HitSensor*, HitSensor*);

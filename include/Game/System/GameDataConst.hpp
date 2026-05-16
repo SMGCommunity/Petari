@@ -3,7 +3,7 @@
 #include "Game/Util/JMapInfo.hpp"
 #include <revolution.h>
 
-const JMapData GalaxyIDBCSV = {0x0, 0x0, 0x0, 0x0};
+extern const JMapData GalaxyIDBCSV;
 
 namespace GameDataConst {
     s32 getPowerStarNumToOpenGalaxy(const char*);

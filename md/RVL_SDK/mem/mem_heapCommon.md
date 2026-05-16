@@ -6,6 +6,6 @@
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `FindContainHeap_` | `0x804CB944` | :x: (0.0%) |
-| `MEMiInitHeapHead` | `0x804CBA84` | :x: (0.0%) |
-| `MEMiFinalizeHeap` | `0x804CBC44` | :x: (0.0%) |
+| `FindContainHeap_` | `0x804CB944` | :white_check_mark: (100.0%) |
+| `MEMiInitHeapHead` | `0x804CBA84` | :white_check_mark: (100.0%) |
+| `MEMiFinalizeHeap` | `0x804CBC44` | :white_check_mark: (100.0%) |

@@ -58,7 +58,7 @@
 | `determinChaseMoreBrakeCounter__15DodoryuStateLv2Fv` | `0x8005736C` | :white_check_mark: (100.0%) |
 | `turnToward__15DodoryuStateLv2FRCQ29JGeometry8TVec3<f>f` | `0x800573A8` | :white_check_mark: (100.0%) |
 | `addVelocity__15DodoryuStateLv2Fb` | `0x80057458` | :white_check_mark: (100.0%) |
-| `calcLimitedRotateMtx__15DodoryuStateLv2FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>f` | `0x800574F8` | :x: (86.9%) |
+| `calcLimitedRotateMtx__15DodoryuStateLv2FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>f` | `0x800574F8` | :x: (99.9%) |
 | `isReflectSpinAttack__15DodoryuStateLv2CFv` | `0x800576F4` | :white_check_mark: (100.0%) |
 | `shiftChaseUnderground__15DodoryuStateLv2Fv` | `0x800577A4` | :white_check_mark: (100.0%) |
 | `shiftChaseExposingHead__15DodoryuStateLv2Fv` | `0x800577C0` | :white_check_mark: (100.0%) |
@@ -71,7 +71,7 @@
 | `startBva__15DodoryuStateLv2FRC14DodoryuAnimSet` | `0x800578E0` | :white_check_mark: (100.0%) |
 | `startLeadHillBck__15DodoryuStateLv2FRC14DodoryuAnimSet` | `0x800578F8` | :x: (99.3%) |
 | `__dt__15DodoryuStateLv2Fv` | `0x80057914` | :white_check_mark: (100.0%) |
-| `__sinit_\DodoryuStateLv2_cpp` | `0x8005796C` | :x: (80.4%) |
+| `__sinit_\DodoryuStateLv2_cpp` | `0x8005796C` | :white_check_mark: (100.0%) |
 | `__ct__Q229@unnamed@DodoryuStateLv2_cpp@23DodoryuStateLv2NrvStartFv` | `0x80057A30` | :white_check_mark: (100.0%) |
 | `__ct__Q229@unnamed@DodoryuStateLv2_cpp@28DodoryuStateLv2NrvReadyChaseFv` | `0x80057A40` | :white_check_mark: (100.0%) |
 | `__ct__Q229@unnamed@DodoryuStateLv2_cpp@27DodoryuStateLv2NrvChaseHideFv` | `0x80057A50` | :white_check_mark: (100.0%) |

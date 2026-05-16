@@ -15,7 +15,7 @@
 | `initForNormalMotion__21MapPartsFloatingForceFRC12JMapInfoIter` | `0x8025B38C` | :white_check_mark: (100.0%) |
 | `initForSpringMotion__21MapPartsFloatingForceFRC12JMapInfoIter` | `0x8025B410` | :white_check_mark: (100.0%) |
 | `start__21MapPartsFloatingForceFv` | `0x8025B53C` | :x: (0.0%) |
-| `updateVelocity__21MapPartsFloatingForceFv` | `0x8025B5EC` | :white_check_mark: (100.0%) |
+| `updateVelocity__21MapPartsFloatingForceFv` | `0x8025B5EC` | :x: (88.0%) |
 | `updateVelocitySpring__21MapPartsFloatingForceFv` | `0x8025B6D0` | :x: (0.0%) |
 | `tryOn__21MapPartsFloatingForceFv` | `0x8025B7A0` | :white_check_mark: (100.0%) |
 | `tryReturn__21MapPartsFloatingForceFv` | `0x8025B858` | :white_check_mark: (100.0%) |

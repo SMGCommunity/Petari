@@ -1,5 +1,7 @@
 # main/Game/Enemy/CocoSambo
 
+**Source Path:** `src/Game/Enemy/CocoSambo.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
@@ -17,7 +19,7 @@
 | `exeSwoon__13CocoSamboHeadFv` | `0x800E5724` | :x: (0.0%) |
 | `exeSwoonEnd__13CocoSamboHeadFv` | `0x800E578C` | :x: (0.0%) |
 | `exeBlow__13CocoSamboHeadFv` | `0x800E5818` | :x: (0.0%) |
-| `__ct__9CocoSamboFPCc` | `0x800E593C` | :x: (0.0%) |
+| `__ct__9CocoSamboFPCc` | `0x800E593C` | :x: (37.9%) |
 | `init__9CocoSamboFRC12JMapInfoIter` | `0x800E59D0` | :x: (0.0%) |
 | `appear__9CocoSamboFv` | `0x800E5BE4` | :x: (0.0%) |
 | `kill__9CocoSamboFv` | `0x800E5C1C` | :x: (0.0%) |
@@ -50,7 +52,7 @@
 | `exeDpdPointing__9CocoSamboFv` | `0x800E6E04` | :x: (0.0%) |
 | `endDpdPointing__9CocoSamboFv` | `0x800E6EC0` | :x: (0.0%) |
 | `__dt__13CocoSamboHeadFv` | `0x800E6F44` | :x: (0.0%) |
-| `__dt__9CocoSamboFv` | `0x800E6F9C` | :x: (0.0%) |
+| `__dt__9CocoSamboFv` | `0x800E6F9C` | :white_check_mark: (100.0%) |
 | `__sinit_\CocoSambo_cpp` | `0x800E6FF8` | :x: (0.0%) |
 | `__ct__Q216NrvCocoSamboHead33CocoSamboHeadNrvHeadConnectedBodyFv` | `0x800E70AC` | :x: (0.0%) |
 | `__ct__Q216NrvCocoSamboHead24CocoSamboHeadNrvHeadFallFv` | `0x800E70BC` | :x: (0.0%) |

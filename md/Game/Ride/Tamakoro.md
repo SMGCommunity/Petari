@@ -13,7 +13,7 @@
 | `ringMtxCallBack__8TamakoroFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | `0x80338250` | :white_check_mark: (100.0%) |
 | `control__8TamakoroFv` | `0x803382F4` | :white_check_mark: (100.0%) |
 | `calcAndSetBaseMtx__8TamakoroFv` | `0x803383A0` | :white_check_mark: (100.0%) |
-| `updateBindActorMatrix__8TamakoroFv` | `0x803383D8` | :x: (86.0%) |
+| `updateBindActorMatrix__8TamakoroFv` | `0x803383D8` | :white_check_mark: (100.0%) |
 | `updateRingUpVec__8TamakoroFv` | `0x803384F4` | :white_check_mark: (100.0%) |
 | `attackSensor__8TamakoroFP9HitSensorP9HitSensor` | `0x803385BC` | :white_check_mark: (100.0%) |
 | `receiveMsgPlayerAttack__8TamakoroFUlP9HitSensorP9HitSensor` | `0x803387FC` | :white_check_mark: (100.0%) |

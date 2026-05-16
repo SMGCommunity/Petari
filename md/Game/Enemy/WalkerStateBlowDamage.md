@@ -6,7 +6,7 @@
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__ct__21WalkerStateBlowDamageFP9LiveActorPQ29JGeometry8TVec3<f>P26WalkerStateBlowDamageParam` | `0x8014FEE8` | :x: (40.7%) |
+| `__ct__21WalkerStateBlowDamageFP9LiveActorPQ29JGeometry8TVec3<f>P26WalkerStateBlowDamageParam` | `0x8014FEE8` | :white_check_mark: (100.0%) |
 | `appear__21WalkerStateBlowDamageFv` | `0x8014FF58` | :white_check_mark: (100.0%) |
 | `exeBlow__21WalkerStateBlowDamageFv` | `0x8014FF68` | :white_check_mark: (100.0%) |
 | `__dt__21WalkerStateBlowDamageFv` | `0x8015003C` | :white_check_mark: (100.0%) |

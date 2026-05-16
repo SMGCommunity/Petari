@@ -1,10 +1,12 @@
 # main/Game/NPC/PenguinCoach
 
+**Source Path:** `src/Game/NPC/PenguinCoach.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__ct__12PenguinCoachFPCc` | `0x8027A1C0` | :x: (0.0%) |
+| `__ct__12PenguinCoachFPCc` | `0x8027A1C0` | :x: (61.9%) |
 | `init__12PenguinCoachFRC12JMapInfoIter` | `0x8027A21C` | :x: (0.0%) |
 | `initAfterPlacement__12PenguinCoachFv` | `0x8027A5F8` | :x: (0.0%) |
 | `calcAndSetBaseMtx__12PenguinCoachFv` | `0x8027A66C` | :x: (0.0%) |
@@ -43,4 +45,4 @@
 | `clone__59TalkMessageFuncM<P12PenguinCoach,M12PenguinCoachFPCvPvUl_b>CFv` | `0x8027AFDC` | :x: (0.0%) |
 | `clone__59TalkMessageFuncM<P12PenguinCoach,M12PenguinCoachFPCvPvUl_b>CFP7JKRHeap` | `0x8027B01C` | :x: (0.0%) |
 | `__ct__59TalkMessageFuncM<P12PenguinCoach,M12PenguinCoachFPCvPvUl_b>FRC59TalkMessageFuncM<P12PenguinCoach,M12PenguinCoachFPCvPvUl_b>` | `0x8027B060` | :x: (0.0%) |
-| `__dt__12PenguinCoachFv` | `0x8027B090` | :x: (0.0%) |
+| `__dt__12PenguinCoachFv` | `0x8027B090` | :white_check_mark: (100.0%) |

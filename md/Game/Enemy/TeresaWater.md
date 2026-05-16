@@ -1,10 +1,12 @@
 # main/Game/Enemy/TeresaWater
 
+**Source Path:** `src/Game/Enemy/TeresaWater.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__ct__11TeresaWaterFPCc` | `0x8014C790` | :x: (0.0%) |
+| `__ct__11TeresaWaterFPCc` | `0x8014C790` | :x: (47.8%) |
 | `init__11TeresaWaterFRC12JMapInfoIter` | `0x8014C808` | :x: (0.0%) |
 | `exeMove__11TeresaWaterFv` | `0x8014C9E0` | :x: (0.0%) |
 | `exeHit__11TeresaWaterFv` | `0x8014CA98` | :x: (0.0%) |
@@ -15,7 +17,7 @@
 | `attackSensor__11TeresaWaterFP9HitSensorP9HitSensor` | `0x8014CD08` | :x: (0.0%) |
 | `receiveMsgPlayerAttack__11TeresaWaterFUlP9HitSensorP9HitSensor` | `0x8014CDA4` | :x: (0.0%) |
 | `tryDPDSwoon__11TeresaWaterFv` | `0x8014CE44` | :x: (0.0%) |
-| `__dt__11TeresaWaterFv` | `0x8014CEC8` | :x: (0.0%) |
+| `__dt__11TeresaWaterFv` | `0x8014CEC8` | :white_check_mark: (100.0%) |
 | `__sinit_\TeresaWater_cpp` | `0x8014CF24` | :x: (0.0%) |
 | `__ct__Q214NrvTeresaWater18TeresaWaterNrvMoveFv` | `0x8014CF60` | :x: (0.0%) |
 | `__ct__Q214NrvTeresaWater17TeresaWaterNrvHitFv` | `0x8014CF70` | :x: (0.0%) |

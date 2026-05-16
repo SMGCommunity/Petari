@@ -1,10 +1,12 @@
 # main/Game/Map/Butterfly
 
+**Source Path:** `src/Game/Map/Butterfly.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__ct__9ButterflyFPCc` | `0x80172820` | :x: (0.0%) |
+| `__ct__9ButterflyFPCc` | `0x80172820` | :x: (47.2%) |
 | `init__9ButterflyFRC12JMapInfoIter` | `0x80172894` | :x: (0.0%) |
 | `initAfterPlacement__9ButterflyFv` | `0x80172A88` | :x: (0.0%) |
 | `control__9ButterflyFv` | `0x80172B20` | :x: (0.0%) |
@@ -23,7 +25,7 @@
 | `exeGotoSleepingMario__9ButterflyFv` | `0x80173770` | :x: (0.0%) |
 | `exeReadyToPerchOnSleepingMario__9ButterflyFv` | `0x80173860` | :x: (0.0%) |
 | `exePerchOnSleepingMario__9ButterflyFv` | `0x80173908` | :x: (0.0%) |
-| `__dt__9ButterflyFv` | `0x801739B0` | :x: (0.0%) |
+| `__dt__9ButterflyFv` | `0x801739B0` | :white_check_mark: (100.0%) |
 | `__sinit_\Butterfly_cpp` | `0x80173A0C` | :x: (0.0%) |
 | `__ct__Q212NrvButterfly12HostTypeWaitFv` | `0x80173A60` | :x: (0.0%) |
 | `__ct__Q212NrvButterfly15HostTypeRunAwayFv` | `0x80173A70` | :x: (0.0%) |

@@ -35,6 +35,6 @@
 | `__ct__21MaterialAnmPlayerBaseFPC8ResTableP12J3DModelData` | `0x800177BC` | :white_check_mark: (100.0%) |
 | `beginDiff__21MaterialAnmPlayerBaseFv` | `0x80017808` | :white_check_mark: (100.0%) |
 | `endDiff__21MaterialAnmPlayerBaseFv` | `0x8001785C` | :white_check_mark: (100.0%) |
-| `__dt__12J3DFrameCtrlFv` | `0x80017880` | :x: (0.0%) |
+| `__dt__12J3DFrameCtrlFv` | `0x80017880` | :white_check_mark: (100.0%) |
 | `changeAnimation__13AnmPlayerBaseFP10J3DAnmBase` | `0x800178C0` | :white_check_mark: (100.0%) |
 | `stopAnimation__13AnmPlayerBaseFv` | `0x800178C4` | :white_check_mark: (100.0%) |

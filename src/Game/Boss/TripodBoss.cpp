@@ -897,20 +897,25 @@ void TripodBoss::calcLegMovement() {
 }
 
 void TripodBoss::addAccelToWeightPosition() {
-    TBox3f v21;
-    TVec3f v18, v19, v20;
     TBox3f v22;
+    TBox3f v21;
+    TVec3f v20;
+    TVec3f v19;
+    TVec3f v18;
+    TVec3f* center;
+    TVec3f* axis;
+
     v22.i.set< f32 >(_5C8);
     v22.f.set< f32 >(_5C8);
     v21.i.set< f32 >(_5C8);
     v21.f.set< f32 >(_5C8);
 
     for (u32 i = 0; i < 3; i++) {
-        if (mLegs[i]->canWeighting()) {
-            v22.extend(mLegs[i]->mForceEndPoint);
+        if (getLeg(i)->canWeighting()) {
+            v22.extend(getLeg(i)->mForceEndPoint);
         }
 
-        v21.extend(mLegs[i]->mForceEndPoint);
+        v21.extend(getLeg(i)->mForceEndPoint);
     }
 
     JMAVECLerp(&v22.f, &v22.i, &v20, 0.5f);
@@ -918,13 +923,15 @@ void TripodBoss::addAccelToWeightPosition() {
     JMAVECLerp(&v21.f, &v21.i, &v19, 0.5f);
 
     MR::vecBlend(v19, v20, &v18, 0.3f);
-    TVec3f* center = &mMovableArea->mCenter;
+    center = &mMovableArea->mCenter;
     TVec3f v14(v18);
     v14 -= *center;
-    TVec3f* axis = &mMovableArea->mBaseAxis;
+    axis = &mMovableArea->mBaseAxis;
     f32 v7 = axis->dot(v14);
     JMAVECScaleAdd(axis, &v14, &v18, -v7);
-    f32 v9 = (_5FC + (_604 + mMovableArea->mRadius));
+    f32 v9 = mMovableArea->mRadius;
+    v9 = _604 + v9;
+    v9 = _5FC + v9;
     TVec3f v13(mMovableArea->mBaseAxis);
     v13 *= v9;
     TVec3f v17(v13);
@@ -942,10 +949,9 @@ void TripodBoss::addAccelToWeightPosition() {
     }
 
     v15 *= (1.0f / v10);
-    TVec3f v11(v15);
-    v11 *= 0.8f;
-    _5E0 += v11;
+    _5E0 += v15.multiplyOperatorInline(0.8f);
 }
+
 
 void TripodBoss::calcClippingSphere() {
     TBox3f v4;

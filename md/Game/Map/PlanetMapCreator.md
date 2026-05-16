@@ -33,7 +33,7 @@
 | `getCreateFunc__16PlanetMapCreatorFPCc` | `0x80195880` | :x: (83.5%) |
 | `createNameObj<9PlanetMap>__30@unnamed@PlanetMapCreator_cpp@FPCc_P7NameObj` | `0x80195930` | :x: (0.0%) |
 | `createNameObj<25PlanetMapWithoutHighModel>__30@unnamed@PlanetMapCreator_cpp@FPCc_P7NameObj` | `0x80195974` | :x: (0.0%) |
-| `makeArchiveListPlanet__16PlanetMapCreatorFP27NameObjArchiveListCollectorRC12JMapInfoIterPCc` | `0x801959B4` | :x: (98.9%) |
+| `makeArchiveListPlanet__16PlanetMapCreatorFP27NameObjArchiveListCollectorRC12JMapInfoIterPCc` | `0x801959B4` | :x: (98.7%) |
 | `createPlanetMapDataTable__16PlanetMapCreatorFP8JMapInfo` | `0x80195AD0` | :white_check_mark: (100.0%) |
 | `addTableData__16PlanetMapCreatorFPC8JMapInfol` | `0x80195B44` | :x: (58.5%) |
 | `getTableData__16PlanetMapCreatorCFPCc` | `0x80195C98` | :white_check_mark: (100.0%) |
