@@ -108,8 +108,7 @@ void ClippingActorHolder::removeFromClippingTarget(LiveActor* pActor) {
         ClippingActorInfo* pActorInfo;
         if (_1C->isInList(pActor)) {
             pActorInfo = _1C->remove(pActor);
-        }
-        else {
+        } else {
             pActorInfo = _10->remove(pActor);
         }
         _18->add(pActorInfo);
@@ -121,11 +120,9 @@ ClippingActorInfo* ClippingActorHolder::startGroupClipping(LiveActor* pActor, co
     if (_10->isInList(pActor)) {
         pActorInfo = _10->remove(pActor);
         _1C->add(pActorInfo);
-    }
-    else if (_18->isInList(pActor)) {
+    } else if (_18->isInList(pActor)) {
         pActorInfo = _18->find(pActor, 0);
-    }
-    else if (_14->isInList(pActor)) {
+    } else if (_14->isInList(pActor)) {
         pActorInfo = _14->remove(pActor);
         _1C->add(pActorInfo);
         pActor->endClipped();
@@ -165,7 +162,7 @@ ClippingActorInfo* ClippingActorHolder::find(const LiveActor* pActor) const {
     }
 
     return _14->find(pActor, 0);
-     
 }
 
-ClippingActorHolder::~ClippingActorHolder() {}
+ClippingActorHolder::~ClippingActorHolder() {
+}

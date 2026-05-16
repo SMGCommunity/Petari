@@ -3,7 +3,8 @@
 #include "Game/Util/ActorSwitchUtil.hpp"
 #include "Game/Util/JMapInfo.hpp"
 
-KoopaSwitchKeeper::KoopaSwitchKeeper(const char* pName) : LiveActor(pName) {}
+KoopaSwitchKeeper::KoopaSwitchKeeper(const char* pName) : LiveActor(pName) {
+}
 
 void KoopaSwitchKeeper::init(const JMapInfoIter& rIter) {
     MR::useStageSwitchReadAppear(this, rIter);
@@ -17,4 +18,5 @@ void KoopaSwitchKeeper::initAfterPlacement() {
     KoopaFunction::registerKoopaSwitchKeeper(this);
 }
 
-KoopaSwitchKeeper::~KoopaSwitchKeeper() {}
+KoopaSwitchKeeper::~KoopaSwitchKeeper() {
+}

@@ -230,9 +230,8 @@ void PictureBookLayout::initContentsButton() {
 
 bool PictureBookLayout::updateText() {
     char messageId[64];
-    
-    if (mPageNo == 0) {
 
+    if (mPageNo == 0) {
         snprintf(messageId, sizeof(messageId), "PictureBookChapter%d_Title", mChapterNo);
         MR::setTextBoxGameMessageRecursive(this, "Title", messageId);
 
@@ -268,7 +267,7 @@ void PictureBookLayout::updateTexture() {
     } else {
         s32 texMapIndex = textureNum + pageNo - 1;
         s32 ind = texMapIndex % textureNum + 1;
-        nw4r::lyt::TexMap* pTexMap = _48[ind-1];
+        nw4r::lyt::TexMap* pTexMap = _48[ind - 1];
 
         MR::replacePaneTexture(this, "PicLeftPage", pTexMap, 0);
         MR::replacePaneTexture(this, "PicTurnRightPage", pTexMap, 0);
@@ -288,8 +287,8 @@ void PictureBookLayout::updateTexture() {
     } else {
         s32 texMapIndex = textureNum + pageNo - 1;
         s32 ind = texMapIndex % textureNum + 1;
-        nw4r::lyt::TexMap* pTexMap = _48[ind-1];
-        
+        nw4r::lyt::TexMap* pTexMap = _48[ind - 1];
+
         MR::replacePaneTexture(this, "PicRightPage", pTexMap, 0);
         MR::replacePaneTexture(this, "PicTurnLeftPage", pTexMap, 0);
     }
@@ -408,7 +407,7 @@ bool PictureBookLayout::isBookEndCurrentText() const {
     bool r30 = false;
 
     if (mChapterNo == 9) {
-        if (mPageNo ==  getPageNum(mChapterNo)) {
+        if (mPageNo == getPageNum(mChapterNo)) {
             r30 = true;
         }
     }
@@ -903,8 +902,7 @@ f32 PictureBookLayout::getFadeInAlphaTextBG(f32 alpha) const {
         if (!mTextIndex) {
             var = true;
         }
-    }
-    else if (getCurrentMaxTextIndex() == mTextIndex) {
+    } else if (getCurrentMaxTextIndex() == mTextIndex) {
         if (mPageNo < getTextureNum(mChapterNo)) {
             var = true;
         }
@@ -922,13 +920,12 @@ f32 PictureBookLayout::getFadeOutAlphaTextBG(f32 alpha) const {
     }
     var = false;
     if (mNextItemDir > 0) {
-         if (getCurrentMaxTextIndex() == mTextIndex) {
+        if (getCurrentMaxTextIndex() == mTextIndex) {
             if (mPageNo < getTextureNum(mChapterNo)) {
                 var = true;
             }
         }
-    }
-    else if(mTextIndex == 0 && mPageNo > 0){
+    } else if (mTextIndex == 0 && mPageNo > 0) {
         var = true;
     }
     if (var) {
