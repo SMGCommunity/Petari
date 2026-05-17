@@ -1,6 +1,5 @@
 #pragma once
 
-#include "Game/LiveActor/Spine.hpp"
 #include "Game/Screen/LayoutActor.hpp"
 
 class StarPointerGuidance : public LayoutActor {
@@ -46,9 +45,9 @@ public:
     /* 0x40 */ bool mIsActiveRequest1P;
     /* 0x41 */ bool mIsActiveRequest2P;
     /* 0x42 */ bool mIsActive;
-    /* 0x43 */ bool mIsGuidanceDisabled;  // force guidance??
+    /* 0x43 */ bool mIsGuidanceDisabled;
     /* 0x44 */ u32 mTextLineNumGuidance;
     /* 0x48 */ u32 mTextLineNum1P;
     /* 0x4C */ u32 mTextLineNum2P;
-    /* 0x50 */ bool mIsTimeOutEnabled;  // disable timeout?
+    /* 0x50 */ bool mIsTimeOutEnabled;
 };
