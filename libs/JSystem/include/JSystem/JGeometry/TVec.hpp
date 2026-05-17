@@ -124,10 +124,6 @@ namespace JGeometry {
         }
 
         /* Operators */
-        void operator=(const TVec2< T >& rSrc) {
-            x = rSrc.x;
-            y = rSrc.y;
-        }
         TVec2< T >& operator+(const TVec2< T >& rOther) const;
         TVec2< T >& operator-(const TVec2< T >& rOther) const;
         TVec2< T >& operator*(f32 scale) const;

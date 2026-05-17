@@ -65,7 +65,7 @@ public:
 namespace StarPointerFunction {
     bool isOnScreenEdge(const TVec2f&, f32, f32);
     bool isOnScreenEdge(s32);
-    void forceInsideScreenEdge(TVec2f*);
+    bool forceInsideScreenEdge(TVec2f*);
     const StarPointerDirector* getStarPointerDirector();
     s32 getNumStarPointer();
     s32 getPastPointNum(s32);

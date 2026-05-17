@@ -422,12 +422,22 @@ namespace MR {
         return a;
     }
 
+    inline s32 min(s32 a, s32 b) {
+        a = a >= b ? b : a;
+        return a;
+    }
+
     /// @brief Compares two numbers for the largest value.
     /// @param a The first number to evaluate.
     /// @param b The second number to evaluate.
     /// @retval `a` if greater than or equal to `b`.
     /// @retval `b` if greater than `a`.
     inline f32 max(f32 a, f32 b) {
+        a = a >= b ? a : b;
+        return a;
+    }
+
+    inline s32 max(s32 a, s32 b) {
         a = a >= b ? a : b;
         return a;
     }
