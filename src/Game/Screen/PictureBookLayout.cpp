@@ -356,14 +356,40 @@ void PictureBookLayout::updateTexMapChapterBase() {
     }
 }
 
+/* inline bool PictureBookLayout::isAlreadyReadPage() const {
+    bool result = true;
+    if (mChapterNo >= mNotReadedChapterNo) {
+        result = false;
+        if (mChapterNo == mNotReadedChapterNo) {
+            if (mPageNo < mNotReadedPageNo) {
+                return true;
+            }
+        }
+    }
+    return result;
+}
+
+inline bool PictureBookLayout::isNotReadPage() const {
+    bool result = true;
+    if (mChapterNo == mNotReadedChapterNo) {
+        if (mPageNo == mNotReadedPageNo) {
+            if (mTextIndex <= mNotReadedTextIndex) {
+                return true;
+            }
+        }
+    }
+    return result;
+} */
+
 bool PictureBookLayout::isReadedCurrentText() const {
     bool r7;
     bool r5;
+    bool result;
 
     if (mContentsButtonPaneController) {
         return true;
     }
-    bool result = true;
+    result = true;
     r7 = true;
     if (mChapterNo >= mNotReadedChapterNo) {
         r5 = false;

@@ -402,7 +402,7 @@ void EarthenPipe::control() {
     }
 }
 
-bool EarthenPipe::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
+/* bool EarthenPipe::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgAutoRushBegin(msg)) {
         if (!isNerve(&NrvEarthenPipe::EarthenPipeNrvInvalid::sInstance) && !isNerve(&NrvEarthenPipe::EarthenPipeNrvHide::sInstance) &&
             !isNerve(&NrvEarthenPipe::EarthenPipeNrvWaitToShowUp::sInstance) && !isNerve(&NrvEarthenPipe::EarthenPipeNrvShowUp::sInstance) &&
@@ -413,7 +413,7 @@ bool EarthenPipe::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pRecei
         } else
             return false;
     }
-}
+} */
 
 void EarthenPipe::calcTrans(f32 a1) {
     mPosition.set< f32 >(_98);
