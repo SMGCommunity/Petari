@@ -11,9 +11,9 @@
 #include "Game/Util/PlayerUtil.hpp"
 
 namespace {
-    const f32 sAttackSensorDistanceOffset = 100.0f;
-    const f32 sEyeSensorPosOffset = -100.0f;
-    const f32 sHipSensorPosOffset = -400.0f;
+    static const f32 sAttackSensorDistanceOffset = 100.0f;
+    static const f32 sEyeSensorPosOffset = -100.0f;
+    static const f32 sHipSensorPosOffset = -400.0f;
 }
 
 TombSpiderSensorCtrl::TombSpiderSensorCtrl(TombSpider* pOwner) : mParent(pOwner) { }
