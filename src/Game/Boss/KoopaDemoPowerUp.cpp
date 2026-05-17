@@ -1,6 +1,5 @@
 #include "Game/Boss/KoopaDemoPowerUp.hpp"
 #include "Game/Boss/KoopaFunction.hpp"
-#include "Game/Util/ScreenUtil.hpp"
 
 namespace NrvKoopaDemoPowerUp {
     NEW_NERVE(KoopaDemoPowerUpNrvWaitDemo, KoopaDemoPowerUp, WaitDemo);
@@ -36,7 +35,7 @@ void KoopaDemoPowerUp::exeWaitDemo() {
     if (MR::tryStartDemoMarioPuppetable(getHost(), "パワーアップデモ")) {
         if (KoopaFunction::isKoopaVs1(getHost()) || KoopaFunction::isKoopaVs2(getHost())) {
             KoopaFunction::setKoopaPos(getHost(), "パワーアップデモ（クッパ）");
-            MR::setPlayerPosAndWait("パワーアップデモ（マリオ");
+            MR::setPlayerPosAndWait("パワーアップデモ（マリオ）");
 
             if (KoopaFunction::isKoopaLv3(getHost())) {
                 MR::startAction(getHost(), "DemoKoopaPowerUpFinal");
@@ -63,4 +62,31 @@ void KoopaDemoPowerUp::exeWaitDemo() {
     }
 }
 
-// KoopaDemoPowerUp::exeDemo()
+void KoopaDemoPowerUp::exeDemo() {
+    if (KoopaFunction::isKoopaLv3(mHost)) {
+        if (MR::isStep(this, 50)) {
+            MR::startCenterScreenBlur(140, 15.0f, 80, 5, 30);
+        }
+    } else {
+        if (MR::isStep(this, 65)) {
+            MR::startCenterScreenBlur(135, 15.0f, 80, 5, 30);
+        }
+    }
+
+    if (MR::isActionEnd(mHost)) {
+        if (KoopaFunction::isKoopaVs3(mHost) || KoopaFunction::isKoopaLv3(mHost)) {
+            KoopaFunction::endKoopaCamera(mHost, "最終パワーアップデモ", false, -1);
+        } else {
+            KoopaFunction::endKoopaCamera(mHost, "パワーアップデモ", false, -1);
+        }
+
+        MR::endDemo(mHost, "パワーアップデモ");
+
+        TVec3f gravity;
+        gravity.negate(mHost->mGravity);
+        MR::appearStarPieceToDirection(mHost, mHost->mPosition, gravity, 10, 50.0f, 60.0f, false);
+        MR::startSound(mHost, "SE_OJ_STAR_PIECE_BURST", -1, -1);
+
+        kill();
+    }
+}

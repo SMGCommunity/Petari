@@ -8,6 +8,9 @@ class KoopaBattleMapStair;
 
 namespace KoopaFunction {
     s32 registerBattleMapStair(KoopaBattleMapStair*);
+    s32 registerKoopaPowerUpSwitch(LiveActor*);
+    s32 registerKoopaSwitchKeeper(LiveActor*);
+    s32 registerKoopaViewSwitchKeeper(LiveActor*);
 
     void initKoopaCamera(Koopa*, const char*);
     void startKoopaTargetCamera(Koopa*, const char*);
@@ -24,5 +27,6 @@ namespace KoopaFunction {
 
     bool isKoopaVs1(const Koopa*);
     bool isKoopaVs2(const Koopa*);
+    bool isKoopaVs3(const Koopa*);
     bool isKoopaLv3(const Koopa*);
 };  // namespace KoopaFunction
