@@ -328,12 +328,15 @@ namespace MR {
     }
     */
 
-    // calcRotateZ
+    // Compiler refuses to cooperate, but mathematically this is correct
+    f32 calcRotateZ(const TVec3f& a1, const TVec3f& a2) {
+        TVec2f vec(a2.y - a1.y, a2.x - a1.x);
+        return 57.29578f * JMath::sAtanTable.atan2_(vec.x, vec.y);
+    }
 
     f32 calcDistanceXY(const TVec3f& rPos1, const TVec3f& rPos2) {
         f32 xDelta = rPos1.x - rPos2.x;
         f32 yDelta = rPos1.y - rPos2.y;
-
         return JGeometry::TUtil< f32 >::sqrt(xDelta * xDelta + yDelta * yDelta);
     }
 
