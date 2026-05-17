@@ -6,6 +6,14 @@ class LuigiMailDirector;
 
 class FindingLuigiEventScheduler {
 public:
+    enum EventState {
+        STATE_NULL = 0xFF00,
+        STATE_RESCUED = 0xFF01,
+        STATE_DISAPPEAR = 0xFF02,
+        STATE_HIDING = 0xFF03,
+        STATE_END = 0xFF04,
+    };
+
     FindingLuigiEventScheduler();
 
     void initAfterResourceLoaded();

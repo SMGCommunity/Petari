@@ -31,15 +31,18 @@
 #include "revolution/types.h"
 
 namespace {
-    const char* cMessageId[] = {
-        "AstroDome_Butler002", "AstroDome_Butler003", "AstroDome_Butler006", "AstroDome_Butler007", "AstroGalaxy_Butler005", "AstroGalaxy_Butler006",
-    };
-    const char* cDemoNameGreenDriver = "バトラーグリーンドライバ説明";
-    const char* cDemoNameButlerReport = "バトラー報告";
     const char* cDemoNameDomeLecture1 = "ドームレクチャー１";
-    const char* cDemoNameDomeLecture2 = "ドームレクチャー2";
+    const char* cDemoNameDomeLecture2 = "ドームレクチャー２";
+    const char* cDemoNameButlerReport = "バトラー報告";
     const char* cDemoNameStarPiece1 = "スターピース解説前半";
     const char* cDemoNameStarPiece2 = "スターピース解説後半";
+    const char* cDemoNameGreenDriver = "バトラーグリーンドライバ説明";
+
+    const char* cMessageId[] = {
+        "AstroDome_Butler001", "AstroDome_Butler002",   "AstroDome_Butler003",   "AstroDome_Butler006",
+        "AstroDome_Butler007", "AstroGalaxy_Butler005", "AstroGalaxy_Butler006",
+    };
+
 };  // namespace
 
 namespace NrvButler {
@@ -61,8 +64,6 @@ Butler::Butler(const char* pName) : NPCActor(pName) {
     _171 = false;
 }
 
-Butler::~Butler() {}
-
 void Butler::init(const JMapInfoIter& rIter) {
     const char* dome;
     MR::getJMapInfoArg0NoInit(rIter, &_170);
@@ -76,14 +77,10 @@ void Butler::init(const JMapInfoIter& rIter) {
     caps._5D = true;
     caps.mBinder = 0;
     NPCActor::initialize(rIter, caps);
-    setDefaults2();
+    setDefaults();
     _13C = "Spin";
-    const char* wait = "Wait";
-    const char* talk = "Talk";
-    mParam._14 = wait;
-    mParam._18 = wait;
-    mParam._1C = talk;
-    mParam._20 = talk;
+    mParam.setMoveAction("Wait", "Wait");
+    mParam.setTalkAction("Talk", "Talk");
     MR::useStageSwitchWriteA(this, rIter);
     MR::useStageSwitchWriteB(this, rIter);
 
@@ -503,4 +500,5 @@ void Butler::exeDemoShowGalaxyMap() {
     }
 }
 
-void Butler::exeDemoWait() {}
+void Butler::exeDemoWait() {
+}

@@ -307,7 +307,7 @@ namespace MR {
     }
 
     f32 calcDifferenceRailCoord(const LiveActor* pActor, f32 coord) {
-        calcDifferenceRailCoord(pActor, getRailCoord(pActor), coord);
+        return calcDifferenceRailCoord(pActor, getRailCoord(pActor), coord);
     }
 
     f32 calcDistanceHorizonToCurrentPos(const LiveActor* pActor) {

@@ -13,8 +13,45 @@ class TalkMessageFuncBase;
 namespace MR {
     class ActorTalkParam {
     public:
-        void setNoTurnAction(const char*);
-        void setSingleAction(const char*);
+        void setNoTurnAction(const char* pActionName) {
+            _14 = pActionName;
+            _1C = pActionName;
+            _18 = 0;
+            _20 = 0;
+            _0 = 0;
+            _1 = 0;
+        }
+
+        void setSingleAction(const char* pActionName) {
+            _14 = pActionName;
+            _18 = pActionName;
+            _1C = pActionName;
+            _20 = pActionName;
+        }
+
+        inline void setDefaultAction() {
+            setMoveAction("Wait", "Turn");
+            setTalkAction("Talk", "TalkTurn");
+        }
+
+        inline void setMoveAction(const char* pMoveName, const char* pMoveTurnName) {
+            _14 = pMoveName;
+            _18 = pMoveTurnName;
+        }
+
+        inline void setTalkAction(const char* pTalkName, const char* pTalkTurnName) {
+            _1C = pTalkName;
+            _20 = pTalkTurnName;
+        }
+
+        inline void setMoveTalkNoTurnAction(const char* pMoveName, const char* pTalkName) {
+            _14 = pMoveName;
+            _1C = pTalkName;
+            _18 = nullptr;
+            _20 = nullptr;
+            _0 = false;
+            _1 = false;
+        }
 
         u8 _0;
         u8 _1;

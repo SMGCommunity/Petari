@@ -66,6 +66,15 @@ void RaceManagerLayout::playGo() {
     MR::emitEffect(this, "RaceStart");
 }
 
+// NOTE: This function is an approximation of behavior based on
+// string placement in .data section. Function does not exist in build.
+void RaceManagerLayout::playRecord() {
+    MR::showPane(this, "Record");
+    MR::startPaneAnim(this, "Record", "Record", 0);
+    MR::startPaneAnim(this, "ScoreTime", "Record", 0);
+    MR::emitEffect(this, "RaceGoal");
+}
+
 void RaceManagerLayout::playGoal() {
     MR::showPane(this, "Goal");
     MR::startPaneAnim(this, "Goal", "Goal", 0);

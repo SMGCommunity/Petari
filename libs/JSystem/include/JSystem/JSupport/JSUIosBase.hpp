@@ -6,15 +6,30 @@ enum JSUStreamSeekFrom { SEEK_FROM_START, SEEK_FROM_POSITION, SEEK_FROM_END };
 
 class JSUIosBase {
 public:
-    JSUIosBase() { mState = 0; }
+    enum EIoState { IO_OK = 0b00000000, IO_ERROR = 0b00000001, IO_MEMORY_ERROR = 0b00000010 };
 
-    enum EIoState { IO_OK, IO_ERROR };
+    JSUIosBase() {
+        mState = IO_OK;
+    }
 
-    virtual ~JSUIosBase() {}
+    virtual ~JSUIosBase() {
+    }
 
-    void setState(EIoState);
+    bool isGood() const {
+        return mState == IO_OK;
+    }
 
-    void clearState(EIoState state) { mState &= ~state; }
+    void setState(EIoState state) {
+        mState |= state;
+    }
 
-    s8 mState;  // 0x4
+    void clearState(EIoState state) {
+        mState &= state;
+    }
+
+    u8 getState(EIoState state) {
+        return mState & state;
+    }
+
+    bool mState;  // 0x4
 };

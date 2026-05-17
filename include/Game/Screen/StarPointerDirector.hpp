@@ -1,6 +1,6 @@
 #pragma once
 
-#include <revolution.h>
+#include <JSystem/JGeometry/TVec.hpp>
 
 class StarPointerController;
 class StarPointerLayout;
@@ -63,8 +63,14 @@ public:
 };
 
 namespace StarPointerFunction {
-
+    bool isOnScreenEdge(const TVec2f&, f32, f32);
     bool isOnScreenEdge(s32);
+    bool forceInsideScreenEdge(TVec2f*);
+    const StarPointerDirector* getStarPointerDirector();
+    s32 getNumStarPointer();
+    s32 getPastPointNum(s32);
+    // const TVec3f getPastPosition(s32, s32);
+    s32 getNextPastPointNum(s32);
     bool canShoot(s32);
 
-}
+}  // namespace StarPointerFunction

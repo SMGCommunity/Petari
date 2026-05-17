@@ -6203,6 +6203,7 @@ Game/NPC/ButlerStateStarPieceReaction.cpp:
 Game/NPC/CareTaker.cpp:
 	.text       start:0x8026ECDC end:0x802703C4
 	.ctors      start:0x8052EF8C end:0x8052EF90
+	.rodata     start:0x80539738 end:0x80539740
 	.data       start:0x805AF058 end:0x805AF550
 	.sdata      start:0x806B20F0 end:0x806B20F8
 	.sbss       start:0x806B5C68 end:0x806B5CA8
@@ -6211,6 +6212,7 @@ Game/NPC/CareTaker.cpp:
 Game/NPC/CollectTico.cpp:
 	.text       start:0x802703C4 end:0x80270B94
 	.ctors      start:0x8052EF90 end:0x8052EF94
+	.rodata     start:0x80539740 end:0x80539748
 	.data       start:0x805AF550 end:0x805AF6C8
 	.sbss       start:0x806B5CA8 end:0x806B5CC0
 	.sdata2     start:0x806BEA68 end:0x806BEA70
@@ -6241,6 +6243,7 @@ Game/NPC/HoneyQueen.cpp:
 Game/NPC/Kinopio.cpp:
 	.text       start:0x80273494 end:0x802751F4
 	.ctors      start:0x8052EFA0 end:0x8052EFA4
+	.rodata     start:0x80539748 end:0x80539750
 	.data       start:0x805AFE00 end:0x805B02E0
 	.bss        start:0x8060ADE8 end:0x8060AE20
 	.sdata      start:0x806B2108 end:0x806B2110
@@ -6284,6 +6287,7 @@ Game/NPC/MiiFaceParts.cpp:
 
 Game/NPC/MiiFacePartsHolder.cpp:
 	.text       start:0x802783AC end:0x80279118
+	.rodata     start:0x80539750 end:0x80539760
 	.data       start:0x805B0AD0 end:0x805B0BE0
 
 Game/NPC/MiiFaceRecipe.cpp:
@@ -6298,6 +6302,7 @@ Game/NPC/Peach.cpp:
 Game/NPC/Penguin.cpp:
 	.text       start:0x802793D0 end:0x8027A1C0
 	.ctors      start:0x8052EFB0 end:0x8052EFB4
+	.rodata     start:0x80539760 end:0x80539768
 	.data       start:0x805B0C78 end:0x805B0FE0
 	.sdata      start:0x806B2118 end:0x806B2120
 	.sbss       start:0x806B5DC8 end:0x806B5DD8
@@ -6320,6 +6325,7 @@ Game/NPC/PenguinMaster.cpp:
 Game/NPC/PenguinRacer.cpp:
 	.text       start:0x8027B4D8 end:0x8027CBF0
 	.ctors      start:0x8052EFBC end:0x8052EFC0
+	.rodata     start:0x80539768 end:0x80539778
 	.data       start:0x805B1448 end:0x805B1838
 	.sbss       start:0x806B5E00 end:0x806B5E28
 	.sdata2     start:0x806BECB0 end:0x806BECF8
@@ -6341,6 +6347,7 @@ Game/NPC/PenguinSkater.cpp:
 Game/NPC/PenguinStudent.cpp:
 	.text       start:0x8027E914 end:0x8027F284
 	.ctors      start:0x8052EFC8 end:0x8052EFCC
+	.rodata     start:0x80539778 end:0x80539780
 	.data       start:0x805B1D10 end:0x805B1E40
 	.sdata      start:0x806B2120 end:0x806B2128
 	.sbss       start:0x806B5E78 end:0x806B5E88
@@ -6353,6 +6360,7 @@ Game/NPC/PowerStarEventKeeper.cpp:
 Game/NPC/Rabbit.cpp:
 	.text       start:0x8027F8CC end:0x8028110C
 	.ctors      start:0x8052EFCC end:0x8052EFD0
+	.rodata     start:0x80539780 end:0x80539788
 	.data       start:0x805B1E50 end:0x805B2180
 	.sdata      start:0x806B2128 end:0x806B2150
 	.sbss       start:0x806B5E88 end:0x806B5EC8
@@ -6408,6 +6416,7 @@ Game/NPC/RosettaReading.cpp:
 Game/NPC/RunawayRabbit.cpp:
 	.text       start:0x80284FDC end:0x80286634
 	.ctors      start:0x8052EFEC end:0x8052EFF0
+	.rodata     start:0x80539788 end:0x80539790
 	.data       start:0x805B3080 end:0x805B3370
 	.bss        start:0x8060AE20 end:0x8060AE78
 	.sdata      start:0x806B2158 end:0x806B2160
@@ -6438,6 +6447,7 @@ Game/NPC/SignBoard.cpp:
 Game/NPC/StrayTico.cpp:
 	.text       start:0x80288130 end:0x802892D0
 	.ctors      start:0x8052EFFC end:0x8052F000
+	.rodata     start:0x80539790 end:0x80539798
 	.data       start:0x805B3830 end:0x805B3A10
 	.sbss       start:0x806B5F98 end:0x806B5FB0
 	.sdata2     start:0x806BEF20 end:0x806BEF88
@@ -8906,12 +8916,12 @@ Game/System/GameEventFlagChecker.cpp:
 
 Game/System/GameEventFlagStorage.cpp:
 	.text       start:0x803B52B0 end:0x803B55E0
-	.data       start:0x805DF928 end:0x805DFB60
+	.data       start:0x805DF928 end:0x805DF950
 
 Game/System/GameEventValueChecker.cpp:
 	.text       start:0x803B55E0 end:0x803B59D4
-	.rodata     start:0x8053D7C8 end:0x8053D8A8
-	.data       start:0x805DFB60 end:0x805DFB80
+	.rodata     start:0x8053D7C8 end:0x8053D890
+	.data       start:0x805DF950 end:0x805DFB80
 
 Game/System/GameSequenceDirector.cpp:
 	.text       start:0x803B59D4 end:0x803B5CE4
@@ -8943,7 +8953,7 @@ Game/System/SaveDataFileAccessor.cpp:
 Game/System/SaveDataHandler.cpp:
 	.text       start:0x803B7C68 end:0x803B8B38
 	.ctors      start:0x8052F398 end:0x8052F39C
-	.rodata     start:0x8053D8A8 end:0x8053D8C8
+	.rodata     start:0x8053D890 end:0x8053D8C8
 	.data       start:0x805DFDE8 end:0x805DFE88
 	.sdata      start:0x806B25F0 end:0x806B25F8
 	.sbss       start:0x806B6F88 end:0x806B6FA0

@@ -31,8 +31,6 @@ PenguinStudent::PenguinStudent(const char* pName) : NPCActor(pName) {
     _15C = -1;
 }
 
-PenguinStudent::~PenguinStudent() {}
-
 void PenguinStudent::init(const JMapInfoIter& rIter) {
     MR::initDefaultPosAndQuat(this, rIter);
     MR::getJMapInfoArg0NoInit(rIter, &_15C);
@@ -120,11 +118,7 @@ void PenguinStudent::exeSwim() {
     MR::calcUpVec(&v20, this);
     MR::calcFrontVec(&v19, this);
     MR::rotAxisVecRad(v20, v19, &v21, 0.017453292f * (getNerveStep() % 360));
-    TVec3f v14(v21);
-    v14.x *= speed;
-    v14.y *= speed;
-    v14.z *= speed;
-    mPosition.set< f32 >(mPosition + v14);
+    mPosition.set< f32 >(mPosition + v21.multInLine(speed));
     if (mMsgCtrl) {
         MR::tryTalkNearPlayer(mMsgCtrl);
     }

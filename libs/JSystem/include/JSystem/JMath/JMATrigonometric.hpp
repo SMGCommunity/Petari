@@ -182,3 +182,7 @@ inline f32 JMASinDegree(f32 angle) {
 inline f32 JMASinRadian(f32 angle) {
     return JMath::sSinCosTable.sinLapRad(angle);
 }
+
+inline f32 JMAATan2(f32 x, f32 y) {
+    return JMath::sAtanTable.atan2_(x, y);
+}

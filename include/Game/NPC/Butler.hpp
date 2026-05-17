@@ -11,7 +11,6 @@ class Butler : public NPCActor {
 public:
     Butler(const char*);
 
-    virtual ~Butler();
     virtual void init(const JMapInfoIter&);
     virtual void appear();
     virtual void kill();

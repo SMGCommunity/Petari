@@ -36,7 +36,8 @@ HoneyBee::HoneyBee(const char* pName) : NPCActor(pName) {
     _190.zero();
 }
 
-HoneyBee::~HoneyBee() {}
+HoneyBee::~HoneyBee() {
+}
 
 void HoneyBee::makeArchiveList(NameObjArchiveListCollector* pArchive, const JMapInfoIter& rIter) {
     const char* name;
@@ -271,21 +272,3 @@ void HoneyBee::exeFlyLectureB() {
     MR::startLevelSound(this, "SE_SM_LV_HONEYBEE_FLY_SOFT", -1, -1, -1);
     MR::tryTalkNearPlayer(mMsgCtrl);
 }
-
-namespace MR {
-    void ActorTalkParam::setNoTurnAction(const char* a) {
-        _14 = a;
-        _1C = a;
-        _18 = 0;
-        _20 = 0;
-        _0 = 0;
-        _1 = 0;
-    }
-
-    void ActorTalkParam::setSingleAction(const char* a) {
-        _14 = a;
-        _18 = a;
-        _1C = a;
-        _20 = a;
-    }
-};  // namespace MR
