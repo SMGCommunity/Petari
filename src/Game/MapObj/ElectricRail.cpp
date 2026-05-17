@@ -409,3 +409,5 @@ void ElectricRail::exeDisappeared() {
             MR::hideModel(this);
         }
 }
+
+ElectricRail::~ElectricRail() {}
