@@ -152,7 +152,7 @@ public:
     }
 
     template < typename T >
-    bool getValue(const char* pKey, T* pValueOut) const NO_INLINE {
+    bool getValue(const char* pKey, T* pValueOut) const {
         return mInfo->getValue(mIndex, pKey, pValueOut);
     }
 
