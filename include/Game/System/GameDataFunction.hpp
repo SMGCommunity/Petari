@@ -40,8 +40,8 @@ namespace GameDataFunction {
     void incPlayerMissNum();
     s32 registerStorageSpinDriverPathDrawRange(const char*, int, int, int, f32*);
     void updateStorageSpinDriverPathDrawRange(const char*, int, int, f32);
-    s32 getStarPieceNumGivingToTicoSeed(int);
-    s32 getStarPieceNumMaxGivingToTicoSeed(int);
+    u16 getStarPieceNumGivingToTicoSeed(int);
+    u16 getStarPieceNumMaxGivingToTicoSeed(int);
     void addStarPieceGivingToTicoSeed(int, int);
     bool isPassedStoryEvent(const char*);
     void followStoryEventByName(const char*);

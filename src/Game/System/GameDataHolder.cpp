@@ -109,7 +109,7 @@ s32 GameDataHolder::getPictureBookChapterCanRead() const {
     return canRead;
 }
 
-u32 GameDataHolder::getPictureBookChapterAlreadyRead() const {
+u16 GameDataHolder::getPictureBookChapterAlreadyRead() const {
     return mEventValueChecker->getValue("絵本既読章");
 }
 
@@ -249,7 +249,7 @@ u16 GameDataHolder::getStarPieceNumGivingToTicoSeed(int index) const {
     return mStarPieceAlmsStorage->getValue(index);
 }
 
-u32 GameDataHolder::getStarPieceNumMaxGivingToTicoSeed(int index) const {
+u16 GameDataHolder::getStarPieceNumMaxGivingToTicoSeed(int index) const {
     return mStarPieceAlmsStorage->getMaxValue(index);
 }
 
