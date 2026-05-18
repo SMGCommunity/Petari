@@ -61,53 +61,35 @@ public:
     /* 0x10 */ u32 mSize;
 };
 
+struct XanimeBckTableEntry {
+    /* 0x0 */ const char* mFileName;
+    f32 _4;
+};
+
 class XanimeBckTable1 {
 public:
     /* 0x0 */ XanimeBckTable mParent;
-    const char* mFileName;  // 0x4
-    u32 mAnimationHash;     // 0x8
-    u32 mFileHash;          // 0xC
+    /* 0x4 */ const char* mFileName;
+    /* 0x8 */ u32 mAnimationHash;
+    /* 0xC */ u32 mFileHash;
 };
 
 class XanimeBckTable2 {
 public:
     /* 0x0 */ XanimeBckTable mParent;
-    const char* mFileName1;  // 0x4
-    f32 _8;
-
-    const char* mFileName2;  // 0xC
-    f32 _10;
+    /* 0x4 */ XanimeBckTableEntry mEntries[2];
 };
 
 class XanimeBckTable3 {
 public:
     /* 0x0 */ XanimeBckTable mParent;
-
-    const char* mFileName1;  // 0x4
-    f32 _8;
-
-    const char* mFileName2;  // 0xC
-    f32 _10;
-
-    const char* mFileName3;  // 0x14;
-    f32 _18;
+    /* 0x4 */ XanimeBckTableEntry mEntries[3];
 };
 
 class XanimeBckTable4 {
 public:
     /* 0x0 */ XanimeBckTable mParent;
-
-    const char* mFileName1;  // 0x4
-    f32 _8;
-
-    const char* mFileName2;  // 0xC
-    f32 _10;
-
-    const char* mFileName3;  // 0x14;
-    f32 _18;
-
-    const char* mFileName4;  // 0x1C;
-    f32 _20;
+    /* 0x4 */ XanimeBckTableEntry mEntries[4];
 };
 
 // size is 0x18
