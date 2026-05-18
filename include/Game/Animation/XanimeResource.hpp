@@ -8,8 +8,8 @@ class ResourceHolder;
 
 class XanimeSwapTable {
 public:
-    const char* original;
-    const char* swapped;
+    /* 0x0 */ const char* mOriginal;
+    /* 0x4 */ const char* mSwapped;
 };
 
 class XanimeBckTable {
@@ -62,44 +62,44 @@ public:
 
 class XanimeBckTable1 : public XanimeBckTable {
 public:
-    const char* fileName;  // 0x4
-    u32 animationHash;     // 0x8
-    u32 fileHash;          // 0xC
+    const char* mFileName;  // 0x4
+    u32 mAnimationHash;     // 0x8
+    u32 mFileHash;          // 0xC
 };
 
 class XanimeBckTable2 : public XanimeBckTable {
 public:
-    const char* fileName1;  // 0x4
+    const char* mFileName1;  // 0x4
     f32 _8;
 
-    const char* fileName2;  // 0xC
+    const char* mFileName2;  // 0xC
     f32 _10;
 };
 
 class XanimeBckTable3 : public XanimeBckTable {
 public:
-    const char* fileName1;  // 0x4
+    const char* mFileName1;  // 0x4
     f32 _8;
 
-    const char* fileName2;  // 0xC
+    const char* mFileName2;  // 0xC
     f32 _10;
 
-    const char* fileName3;  // 0x14;
+    const char* mFileName3;  // 0x14;
     f32 _18;
 };
 
 class XanimeBckTable4 : public XanimeBckTable {
 public:
-    const char* fileName1;  // 0x4
+    const char* mFileName1;  // 0x4
     f32 _8;
 
-    const char* fileName2;  // 0xC
+    const char* mFileName2;  // 0xC
     f32 _10;
 
-    const char* fileName3;  // 0x14;
+    const char* mFileName3;  // 0x14;
     f32 _18;
 
-    const char* fileName4;  // 0x1C;
+    const char* mFileName4;  // 0x1C;
     f32 _20;
 };
 
