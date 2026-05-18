@@ -54,9 +54,11 @@ void RabbitStateCaught::appear() {
                                         &NrvRabbitStateCaught::RabbitStateCaughtNrvTryStartDemo::sInstance);
 }
 
-void RabbitStateCaught::control() {}
+void RabbitStateCaught::control() {
+}
 
-void RabbitStateCaught::exeTryStartDemo() {}
+void RabbitStateCaught::exeTryStartDemo() {
+}
 
 void RabbitStateCaught::exeCaught() {
     if (MR::isFirstStep(this)) {
@@ -88,9 +90,9 @@ void RabbitStateCaught::exeCaughtLand() {
     TMtx34f baseMtx;
 
     if (MR::isFirstStep(this)) {
-        JMath::gekko_ps_copy12(&baseMtx, mHost->getBaseMtx());
+        baseMtx.setInline(mHost->getBaseMtx());
         MR::setPlayerBaseMtx(baseMtx);
-        JMath::gekko_ps_copy12(&mCaughtLandMarioBaseMtx, &baseMtx);
+        mCaughtLandMarioBaseMtx.setInline(baseMtx);
 
         if (mPowerStarModel != nullptr) {
             mPowerStarModel->appear();
@@ -136,9 +138,7 @@ void RabbitStateCaught::exeCaughtEvent() {
 }
 
 void RabbitStateCaught::setCaughtStartMarioPose() {
-    TPos3f baseMtx;
-
-    JMath::gekko_ps_copy12(&baseMtx, MR::getPlayerDemoActor()->getBaseMtx());
+    TPos3f baseMtx(MR::getPlayerDemoActor()->getBaseMtx());
     baseMtx.getQuat(mCaughtStartMarioRot);
     baseMtx.getTransInline(mCaughtStartMarioPos);
 }
@@ -148,7 +148,7 @@ void RabbitStateCaught::blendBaseMatrixToMario(f32 blendRate) const {
     TMtx34f finalBaseMtx;
 
     if (blendRate >= 1.0f) {
-        JMath::gekko_ps_copy12(&finalBaseMtx, mHost->getBaseMtx());
+        finalBaseMtx.setInline(mHost->getBaseMtx());
         MR::setPlayerBaseMtx(finalBaseMtx);
     } else {
         baseMtx.identity();

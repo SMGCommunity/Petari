@@ -207,11 +207,10 @@ void FirePressureRadiate::startRelax() {
 
 void FirePressureRadiate::calcRadiateEffectMtx() {
     MtxPtr jointMtx = MR::getJointMtx(this, "Cannon3");
-    TPos3f effectMtx;
-    JMath::gekko_ps_copy12(&effectMtx, jointMtx);
+    TPos3f effectMtx(jointMtx);
     TVec3f trans;
     effectMtx.getTrans(trans);
-    JMath::gekko_ps_copy12(&mRadiateMtx, &effectMtx);
+    mRadiateMtx.setInline(effectMtx);
     mRadiateMtx.mMtx[0][3] = trans.x;
     mRadiateMtx.mMtx[1][3] = trans.y;
     mRadiateMtx.mMtx[2][3] = trans.z;
@@ -243,4 +242,5 @@ bool FirePressureRadiate::calcJointCannon(TPos3f* pOutPos, const JointController
     return true;
 }
 
-FirePressureRadiate::~FirePressureRadiate() {}
+FirePressureRadiate::~FirePressureRadiate() {
+}

@@ -100,7 +100,7 @@ void EarthenPipe::init(const JMapInfoIter& rIter) {
     v24.identity();
     MR::makeMtxUpFrontPos(&v24, _98, v23, _8C);
     PSMTXCopy(v24.toMtxPtr(), mTopJointMtx);
-    JMath::gekko_ps_copy12(&_BC, &v24);
+    _BC.setInline(v24);
     TVec3f v22(_8C);
     TVec3f v21(_98);
     v21.scale(50.0f);
@@ -266,7 +266,7 @@ void EarthenPipe::exePlayerIn() {
     }
 
     if (MR::isBckStopped(mHostActor) && !MR::isPlayerDead()) {
-        JMath::gekko_ps_copy12(&_F0, _B0->getBaseMtx());
+        _F0.setInline(_B0->getBaseMtx());
         if (_B0->tryShowUp()) {
             setNerve(&NrvEarthenPipe::EarthenPipeNrvTargetPipeShowUp::sInstance);
         } else {
@@ -281,7 +281,7 @@ void EarthenPipe::exeTargetPipeShowUp() {
     }
 
     if (!_B0->isNerveShowUp()) {
-        JMath::gekko_ps_copy12(&_F0, _B0->getBaseMtx());
+        _F0.setInline(_B0->getBaseMtx());
         MR::showPlayer();
         setNerve(&NrvEarthenPipe::EarthenPipeNrvPlayerOut::sInstance);
     }

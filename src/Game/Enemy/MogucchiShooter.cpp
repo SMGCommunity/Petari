@@ -270,7 +270,7 @@ void MogucchiShooter::calcAndSetBaseMtx() {
     TPos3f posMtx;
     TPos3f copyMtx;
     posMtx.identity();
-    JMath::gekko_ps_copy12(&copyMtx, mFixedPos->mMtx);
+    copyMtx.setInline(mFixedPos->mMtx);
 
     TVec3f up;
     copyMtx.getYDirInline(up);
@@ -281,15 +281,14 @@ void MogucchiShooter::calcAndSetBaseMtx() {
 }
 
 void MogucchiShooter::resetDirection() {
-    TPos3f mtx;
-    JMath::gekko_ps_copy12(&mtx, MR::getJointMtx(mHost, "Cockpit"));
+    TPos3f mtx(MR::getJointMtx(mHost, "Cockpit"));
     mtx.getZDir(mFront);
 }
 
 void MogucchiShooter::faceToMario() {
     if (!MR::isPlayerHidden() && !MR::isStageStateScenarioOpeningCamera() && !MR::isDemoActive()) {
         TPos3f mtx;
-        JMath::gekko_ps_copy12(&mtx, mFixedPos->mMtx);
+        mtx.setInline(mFixedPos->mMtx);
         MR::turnDirectionToTargetDegree(this, &mFront, *MR::getPlayerPos(), 1.0f);
         TVec3f front;
         mtx.getZDir(front);

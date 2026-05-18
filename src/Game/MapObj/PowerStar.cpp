@@ -125,7 +125,8 @@ void PowerStar::init(const JMapInfoIter& rIter) {
     }
 }
 
-void PowerStar::initAfterPlacement() {}
+void PowerStar::initAfterPlacement() {
+}
 
 void PowerStar::appear() {
     LiveActor::appear();
@@ -467,7 +468,7 @@ void PowerStar::initPosture() {
         }
     }
     else {
-        JMath::gekko_ps_copy12(&_B8, &rotate);
+        _B8.setInline(rotate);
     }
 
     _B8.zeroTrans();
@@ -592,7 +593,8 @@ void PowerStar::processWait(f32 val) {
     }
 }
 
-void PowerStar::exeWaitStartAppear() {}
+void PowerStar::exeWaitStartAppear() {
+}
 
 void PowerStar::exeAppearDemoRise() {
     if (MR::isFirstStep(this)) {
@@ -678,4 +680,5 @@ void PowerStar::exeWeakToWait() {
 
 // PowerStar::exeStageClearDemo
 
-PowerStar::~PowerStar() {}
+PowerStar::~PowerStar() {
+}

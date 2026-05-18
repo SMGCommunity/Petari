@@ -75,8 +75,8 @@ namespace MR {
     s32 getPowerStarNum();
     bool isPlacementLocalStage();
     s32 getPlacedZoneId(const JMapInfoIter&);
-    TMtx34f* getZonePlacementMtx(const JMapInfoIter&);
-    TMtx34f* getZonePlacementMtx(s32);
+    TPos3f* getZonePlacementMtx(const JMapInfoIter&);
+    TPos3f* getZonePlacementMtx(s32);
     const char* getJapaneseObjectName(const char*);
     void setCurrentPlacementZoneId(s32);
     void clearCurrentPlacementZoneId();

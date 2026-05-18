@@ -22,6 +22,10 @@ namespace JGeometry {
             JMath::gekko_ps_copy12(this, rSrc);
         }
 
+        inline void setInline(const SMatrix34C< T >* rSrc) {
+            JMath::gekko_ps_copy12(this, rSrc);
+        }
+
         inline void setInline(const MtxPtr rSrc) {
             JMath::gekko_ps_copy12(this, rSrc);
         }
@@ -522,7 +526,11 @@ namespace JGeometry {
     public:
         TPosition3(){};
 
-        TPosition3(const MtxPtr rSrc) {
+        TPosition3(MtxPtr rSrc) {
+            JMath::gekko_ps_copy12(this, rSrc);
+        }
+
+        TPosition3(const TPosition3< T >* rSrc) {
             JMath::gekko_ps_copy12(this, rSrc);
         }
 

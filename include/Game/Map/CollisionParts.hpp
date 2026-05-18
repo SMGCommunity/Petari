@@ -46,8 +46,8 @@ public:
     void createAreaPolygonListArray(Triangle*, u32, TVec3f*, u32);
     void calcForceMovePower(TVec3f*, const TVec3f&) const;
 
-    TMtx34f* _0;
-    TMtx34f mMatrix;            // 0x4
+    TPos3f* _0;
+    TPos3f mMatrix;             // 0x4
     TPos3f mBaseMatrix;         // 0x34
     TPos3f mInvBaseMatrix;      // 0x64
     TPos3f mPrevBaseMatrix;     // 0x94

@@ -37,7 +37,7 @@ void RingBeamShadowDrawer::drawShape() const {
     TVec3f listYDir;
     float f1 = 0.2026834f;
 
-    JMath::gekko_ps_copy12(&baseMtxCopy, _1c->getBaseMtx());
+    baseMtxCopy.setInline(_1c->getBaseMtx());
     baseMtxCopy.getXDir(XDir);
     baseMtxCopy.getYDir(YDir);
     baseMtxCopy.getTrans(Trans);
@@ -48,7 +48,7 @@ void RingBeamShadowDrawer::drawShape() const {
         JMathInlineVEC::PSVECAdd(&Trans, &XDirScaled, &temp);
         MR::calcGravityVector(_1c, temp, &temp2, nullptr, 0);
         if (MR::normalizeOrZero(XDirScaled, &temp3)) {
-            JMath::gekko_ps_copy12(&MtxList[i], &baseMtxCopy);
+            MtxList[i].setInline(baseMtxCopy);
         } else if (MR::isSameDirection(-temp2, temp3, 0.01f)) {
             MR::makeMtxUpSide(&MtxList[i], -temp2, -YDir);
         } else if (temp2.dot(YDir) < f2) {
@@ -164,7 +164,7 @@ void RingBeam::init(const JMapInfoIter& rIter) {
     initNerve(&NrvRingBeam::RingBeamNrvSpread::sInstance);
 
     initPos(this);
-    JMath::gekko_ps_copy12(&mtx, this->getBaseMtx());
+    mtx.setInline(this->getBaseMtx());
     mtx.getZDir(_a8);
     mtx.getTrans(_c0);
     mtx.getTrans(_cc);
@@ -250,7 +250,7 @@ void RingBeam::setRadius(f32 radius) {
 void RingBeam::initPos(const LiveActor* actor) {
     TRot3f actorBaseMtxCopy;
     TVec3f baseMtxYdir;
-    JMath::gekko_ps_copy12(&actorBaseMtxCopy, actor->getBaseMtx());
+    actorBaseMtxCopy.setInline(actor->getBaseMtx());
     actorBaseMtxCopy.getYDir(baseMtxYdir);
     mPosition.set(actor->mPosition + baseMtxYdir.scaleInline(75.0f));
 }
@@ -366,6 +366,8 @@ void RingBeam::exeSpread() {
     }
 }
 
-RingBeam::~RingBeam() {}
+RingBeam::~RingBeam() {
+}
 
-RingBeamShadowDrawer::~RingBeamShadowDrawer() {}
+RingBeamShadowDrawer::~RingBeamShadowDrawer() {
+}
