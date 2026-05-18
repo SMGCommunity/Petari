@@ -56,6 +56,9 @@ public:
     f32 getFadeInAlphaTextBG(f32 alpha) const;
     f32 getFadeOutAlphaTextBG(f32 alpha) const;
 
+    // inline bool isAlreadyReadPage() const;
+    // inline bool isNotReadPage() const;
+
 private:
     /* 0x20 */ s32 mChapterMin;
     /* 0x24 */ s32 mChapterMax;

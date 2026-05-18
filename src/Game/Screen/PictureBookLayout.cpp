@@ -205,7 +205,7 @@ void PictureBookLayout::initTexture() {
             char pageTexName[64];
             snprintf(pageTexName, sizeof(pageTexName), "Chapter%dPage%d.bti", c, p + 1);
 
-            _44[textureIndex + p] = MR::createLytTexMap(chapterArcName, pageTexName);
+            _44[textureIndex] = MR::createLytTexMap(chapterArcName, pageTexName);
             textureIndex++;
         }
     }
@@ -229,16 +229,14 @@ void PictureBookLayout::initContentsButton() {
 }
 
 bool PictureBookLayout::updateText() {
-    if (mPageNo == 0) {
-        char messageId[64];
+    char messageId[64];
 
+    if (mPageNo == 0) {
         snprintf(messageId, sizeof(messageId), "PictureBookChapter%d_Title", mChapterNo);
         MR::setTextBoxGameMessageRecursive(this, "Title", messageId);
 
         return true;
     } else {
-        char messageId[64];
-
         snprintf(messageId, sizeof(messageId), "PictureBookChapter%d_Page%d_%03d", mChapterNo, mPageNo, mTextIndex);
 
         if (MR::isExistGameMessage(messageId)) {
@@ -268,16 +266,17 @@ void PictureBookLayout::updateTexture() {
         MR::replacePaneTexture(this, "PicTurnRightPage", pTexMap, 0);
     } else {
         s32 texMapIndex = textureNum + pageNo - 1;
-        nw4r::lyt::TexMap* pTexMap = _48[texMapIndex % textureNum - 1];
+        s32 ind = texMapIndex % textureNum + 1;
+        nw4r::lyt::TexMap* pTexMap = _48[ind - 1];
 
         MR::replacePaneTexture(this, "PicLeftPage", pTexMap, 0);
         MR::replacePaneTexture(this, "PicTurnRightPage", pTexMap, 0);
     }
 
     if (mNextItemDir > 0) {
-        pageNo = mPageNo + 1;
-    } else {
         pageNo = mPageNo;
+    } else {
+        pageNo = mPageNo + 1;
     }
 
     if (pageNo == 0) {
@@ -287,7 +286,8 @@ void PictureBookLayout::updateTexture() {
         MR::replacePaneTexture(this, "PicTurnLeftPage", pTexMap, 0);
     } else {
         s32 texMapIndex = textureNum + pageNo - 1;
-        nw4r::lyt::TexMap* pTexMap = _48[texMapIndex % textureNum - 1];
+        s32 ind = texMapIndex % textureNum + 1;
+        nw4r::lyt::TexMap* pTexMap = _48[ind - 1];
 
         MR::replacePaneTexture(this, "PicRightPage", pTexMap, 0);
         MR::replacePaneTexture(this, "PicTurnLeftPage", pTexMap, 0);
@@ -356,7 +356,67 @@ void PictureBookLayout::updateTexMapChapterBase() {
     }
 }
 
-bool PictureBookLayout::isReadedCurrentText() const;
+/* inline bool PictureBookLayout::isAlreadyReadPage() const {
+    bool result = true;
+    if (mChapterNo >= mNotReadedChapterNo) {
+        result = false;
+        if (mChapterNo == mNotReadedChapterNo) {
+            if (mPageNo < mNotReadedPageNo) {
+                return true;
+            }
+        }
+    }
+    return result;
+}
+
+inline bool PictureBookLayout::isNotReadPage() const {
+    bool result = true;
+    if (mChapterNo == mNotReadedChapterNo) {
+        if (mPageNo == mNotReadedPageNo) {
+            if (mTextIndex <= mNotReadedTextIndex) {
+                return true;
+            }
+        }
+    }
+    return result;
+} */
+
+bool PictureBookLayout::isReadedCurrentText() const {
+    bool r7;
+    bool r5;
+    bool result;
+
+    if (mContentsButtonPaneController) {
+        return true;
+    }
+    result = true;
+    r7 = true;
+    if (mChapterNo >= mNotReadedChapterNo) {
+        r5 = false;
+        if (mChapterNo == mNotReadedChapterNo) {
+            if (mPageNo < mNotReadedPageNo) {
+                r5 = true;
+            }
+        }
+        if (!r5) {
+            r7 = false;
+        }
+    }
+    if (!r7) {
+        r5 = false;
+        if (mChapterNo == mNotReadedChapterNo) {
+            if (mPageNo == mNotReadedPageNo) {
+                if (mTextIndex <= mNotReadedTextIndex) {
+                    r5 = true;
+                }
+            }
+        }
+        if (!r5) {
+            result = false;
+        }
+    }
+    return result;
+}
 
 s32 PictureBookLayout::getReadSpeed() const {
     bool b = mContentsButtonPaneController != nullptr || mIsNextItemFast;
@@ -369,7 +429,20 @@ s32 PictureBookLayout::getReadSpeed() const {
 }
 
 bool PictureBookLayout::isBookEndCurrentText() const {
-    return mChapterNo == 9 && mPageNo == getPageNum(9) && mTextIndex == getCurrentMaxTextIndex();
+    bool r31 = false;
+    bool r30 = false;
+
+    if (mChapterNo == 9) {
+        if (mPageNo == getPageNum(mChapterNo)) {
+            r30 = true;
+        }
+    }
+    if (r30) {
+        if (getCurrentMaxTextIndex() == mTextIndex) {
+            r31 = true;
+        }
+    }
+    return r31;
 }
 
 void PictureBookLayout::setTextAlpha(f32 alpha) {
@@ -433,7 +506,7 @@ void PictureBookLayout::exeOpen() {
         pTexMap = mCoverFrontTexMap;
         MR::replacePaneTexture(this, "PicLeftPage", pTexMap, 0);
         MR::replacePaneTexture(this, "PicTurnRightPage", pTexMap, 0);
-        pTexMap = mCoverBackTexMap;
+        pTexMap = mTitleTexMap;
         MR::replacePaneTexture(this, "PicRightPage", pTexMap, 0);
         MR::replacePaneTexture(this, "PicTurnLeftPage", pTexMap, 0);
         MR::startAnim(this, "Appear", 0);
@@ -845,5 +918,44 @@ void PictureBookLayout::hideContents() {
     }
 }
 
-// PictureBookLayout::getFadeInAlphaTextBG
-// PictureBookLayout::getFadeOutAlphaTextBG
+f32 PictureBookLayout::getFadeInAlphaTextBG(f32 alpha) const {
+    bool var;
+    if (!mPageNo || isBookEndCurrentText()) {
+        return 0.0f;
+    }
+    var = false;
+    if (mNextItemDir > 0) {
+        if (!mTextIndex) {
+            var = true;
+        }
+    } else if (getCurrentMaxTextIndex() == mTextIndex) {
+        if (mPageNo < getTextureNum(mChapterNo)) {
+            var = true;
+        }
+    }
+    if (var) {
+        return alpha;
+    }
+    return 1.0f;
+}
+
+f32 PictureBookLayout::getFadeOutAlphaTextBG(f32 alpha) const {
+    bool var;
+    if (!mPageNo || isBookEndCurrentText()) {
+        return 0.0f;
+    }
+    var = false;
+    if (mNextItemDir > 0) {
+        if (getCurrentMaxTextIndex() == mTextIndex) {
+            if (mPageNo < getTextureNum(mChapterNo)) {
+                var = true;
+            }
+        }
+    } else if (mTextIndex == 0 && mPageNo > 0) {
+        var = true;
+    }
+    if (var) {
+        return alpha;
+    }
+    return 1.0f;
+}
