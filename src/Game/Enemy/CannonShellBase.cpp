@@ -3,34 +3,25 @@
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 
+#include <algorithm>
+
 CannonShellHolder::CannonShellHolder(int num) {
-    mShells.mArr = nullptr;
-    mShells.mMaxSize = 0;
-    mShellCount = 0;
     mShells.init(num);
 }
 
 void CannonShellHolder::registerCannonShell(CannonShellBase* pShell) {
-    mShells[mShellCount++] = pShell;
+    mShells.push_back(pShell);
 }
 
 // What the hell is even going on here...
-//CannonShellBase* CannonShellHolder::getValidShell() const {
-    //bool (*isdead)(const LiveActor*) = MR::isDead;
-    //LiveActor** begin = (LiveActor**)mShells.begin();
-    //LiveActor** end = (LiveActor**)mShells.end();
-    //s32 i;
+CannonShellBase* CannonShellHolder::getValidShell() const {
 
-    //while () {
-    //
-    //}
-    //return mShells[i];
-//}
+}
 
-// 100% a loop of some kind that calls kill on all undead actors
-//void CannonShellHolder::killActiveShells() const {
-//    for (s32 i = 0; i < mShellCount; i++) {
-//        if (MR::isDead((const LiveActor*)mShells[i]))
-//            ((LiveActor*)mShells[i])->kill();
-//    }
-//}
+// Thanks shibbo
+void CannonShellHolder::killActiveShells() const {
+    for (CannonShellBase* const* it = mShells.begin(); it != mShells.end(); ++it) {
+        if (!MR::isDead(*it))
+            (*it)->kill();
+    }
+}
