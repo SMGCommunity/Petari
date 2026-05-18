@@ -17,7 +17,7 @@ XanimeResourceTable::XanimeResourceTable(ResourceHolder* pArg) {
 
     mMaxGroupInfoTableSize = 1;
 
-    if (unknownByte) {
+    if (unknownByte != 0) {
         mMaxGroupInfoTableSize = unknownByte;
     }
 
@@ -448,17 +448,17 @@ bool XanimeResourceTable::search(XanimeBckTable** pArray, const char* pTarget, u
 }
 
 void XanimeGroupInfo::init() {
-    _4 = 0.f;
+    _4 = 0.0f;
     mParent.animationName = "not-initialized";
     _8 = 0;
-    _C = 0.f;
-    _10 = 0.f;
-    _14 = 0.f;
+    _C = 0.0f;
+    _10 = 0.0f;
+    _14 = 0.0f;
     _18 = 0;
     mBckTableVariant = 0;
     _1D = 0;
     for (u32 i = 0; i < 4; i++) {
-        _30[i] = 0.f;
+        _30[i] = 0.0f;
         _20[i] = nullptr;
     }
     _40 = nullptr;
