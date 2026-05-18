@@ -59,6 +59,13 @@ namespace JGeometry {
             return ret;
         }
 
+        inline const TVec2& addOperatorInline(const TVec2& rOther) const {
+            TVec2 ret(*this);
+            ret.x += rOther.x;
+            ret.y += rOther.y;
+            return ret;
+        }
+
         /* General operations */
         template < typename A >
         void set(const JGeometry::TVec2< A >& rSrc);

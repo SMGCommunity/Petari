@@ -734,9 +734,109 @@ namespace JGeometry {
             this->mMtx[2][2] = invLenZ * this->mMtx[2][2];
         }
     };
+
+    template < typename T >
+    struct SMatrix44C {
+    public:
+        typedef f32 ArrType[4];
+        void set(const ArrType*);
+        void set(const SMatrix44C< T >& rSrc);
+        void set(T rxx, T ryx, T rzx, T tx, T rxy, T ryy, T rzy, T ty, T rxz, T ryz, T rzz, T tz, T wx, T wy, T wz, T ww);
+
+        inline Mtx44* toMtx44() {
+            return (Mtx44*)mMtx;
+        }
+
+        inline const Mtx44* toCMtx44() const {
+            return (const Mtx44*)mMtx;
+        }
+
+        inline Mtx44Ptr toMtx44Ptr() {
+            return (Mtx44Ptr)mMtx;
+        }
+
+        operator ArrType*() {
+            return mMtx;
+        }
+
+        operator const ArrType*() const {
+            return mMtx;
+        }
+
+        f32 get(int x, int y) const {
+            return mMtx[x][y];
+        }
+
+        f32 operator()(int x, int y) const {
+            return get(x, y);
+        }
+
+        inline void setInline(const Mtx44Ptr rSrc) {
+#ifdef __MWERKS__
+            register const Mtx44Ptr pSrc = rSrc;
+            register SMatrix44C< T >* pDest = this;
+            register f32 wxwww;
+            register f32 wxwyw;
+            register f32 rzztz;
+            register f32 rxzyz;
+            register f32 rzyty;
+            register f32 rxyyy;
+            register f32 rzxtx;
+            register f32 rxxyx;
+
+            __asm {
+                psq_l     rxxyx, 0(pSrc), 0, 0
+                psq_l     rzxtx, 8(pSrc), 0, 0
+                psq_l     rxyyy, 0x10(pSrc), 0, 0
+                psq_l     rzyty, 0x18(pSrc), 0, 0
+                psq_l     rxzyz, 0x20(pSrc), 0, 0
+                psq_l     rzztz, 0x28(pSrc), 0, 0
+                psq_l     wxwyw, 0x30(pSrc), 0, 0
+                psq_l     wxwww, 0x38(pSrc), 0, 0
+                psq_st    rxxyx, 0(pDest), 0, 0
+                psq_st    rzxtx, 8(pDest), 0, 0
+                psq_st    rxyyy, 0x10(pDest), 0, 0
+                psq_st    rzyty, 0x18(pDest), 0, 0
+                psq_st    rxzyz, 0x20(pDest), 0, 0
+                psq_st    rzztz, 0x28(pDest), 0, 0
+                psq_st    wxwyw, 0x30(pDest), 0, 0
+                psq_st    wxwww, 0x38(pDest), 0, 0
+            }
+            ;
+#endif
+        }
+
+        T mMtx[4][4];
+    };
+
+    template < typename T >
+    struct TMatrix44 : public T {
+    public:
+        void identity();
+        void concat(const T& rSrcA, const T& rSrcB);
+        void concat(const T& rSrc);
+        void invert(const TMatrix44< T >& rDest);
+
+        inline void mult(const TVec3f& rSrc, TVec3f& rDest) const {
+            TVec4f pos(rSrc.x * this->mMtx[0][0] + rSrc.z * this->mMtx[0][2], rSrc.y * this->mMtx[1][1] + rSrc.z * this->mMtx[1][2],
+                       rSrc.z * this->mMtx[2][2] + this->mMtx[2][3], -rSrc.z);
+
+            rDest.scale(1.0f / pos.w, *pos.toTVec3());
+        }
+    };
+
+    template < class T >
+    struct TProjection3 : public T {
+    public:
+        void identity44();
+    };
+
 };  // namespace JGeometry
 
 typedef JGeometry::SMatrix34C< f32 > TSMtxf;
 typedef JGeometry::TMatrix34< TSMtxf > TMtx34f;
 typedef JGeometry::TRotation3< TMtx34f > TRot3f;
 typedef JGeometry::TPosition3< TMtx34f > TPos3f;
+typedef JGeometry::SMatrix44C< f32 > TSMtx44f;
+typedef JGeometry::TMatrix44< TSMtx44f > TMtx44f;
+typedef JGeometry::TProjection3< TMtx44f > TProj3f;

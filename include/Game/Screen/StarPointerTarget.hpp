@@ -10,15 +10,15 @@ public:
 
     void calcScreenPosition(TVec2f*) const;
     bool isPointing(const TVec2f&, f32, f32) const;
-    void calcPosition(TVec3f*);
+    void calcPosition(TVec3f*) const;
     f32 calcRadius2d(f32, f32, f32) const;
-    void calcScreenPositionFromView(TVec2f*, const TVec3f&) const;
+    bool calcScreenPositionFromView(TVec2f*, const TVec3f&) const;
 
-    /* 0x00 */ f32 _0;
-    /* 0x04 */ TVec3f mPosition;
-    /* 0x10 */ f32 _10;
-    /* 0x14 */ const TVec3f* _14;
-    /* 0x18 */ MtxPtr _18;
+    /* 0x00 */ f32 mRadius3d;
+    /* 0x04 */ TVec3f mOffset;
+    /* 0x10 */ u32 _10;
+    /* 0x14 */ const TVec3f* mPosition;
+    /* 0x18 */ MtxPtr mMtx;
 };
 
 class StarPointerLayoutTarget {
@@ -32,10 +32,10 @@ public:
     void calcBasePos(TVec2f*) const;
 
     /* 0x00 */ LayoutActor* mLayout;
-    /* 0x04 */ const char* _4;
-    /* 0x08 */ const char* _8;
+    /* 0x04 */ const char* mLayoutName;
+    /* 0x08 */ const char* mPaneName;
     /* 0x0C */ s32 mType;
-    /* 0x10 */ TVec2f _10;
+    /* 0x10 */ TVec2f mPosition;
     /* 0x18 */ f32 mRadius;
     /* 0x1C */ f32 mWidth;
     /* 0x20 */ f32 mHeight;
