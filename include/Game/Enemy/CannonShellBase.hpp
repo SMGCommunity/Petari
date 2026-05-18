@@ -8,7 +8,7 @@ class CannonShellBase : public LiveActor {
 public:
     CannonShellBase(const char* pName) : LiveActor(pName) { }
 
-    virtual void launch(const TVec3f&, const TVec3f&) = 0;
+    virtual void launch(const TVec3f& rStartPos, const TVec3f& rVelocity) = 0;
     // These two virtuals get moved around based on the TU so they can't be in the CPP
     virtual f32 getBaseScale() const {
         return 1.0f;

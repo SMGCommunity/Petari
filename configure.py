@@ -1504,7 +1504,7 @@ config.libs = [
             Object(NonMatching, "Game/MapObj/IceVolcanoUpDownPlane.cpp"),
             Object(Matching, "Game/MapObj/InvisiblePolygonObj.cpp"),
             Object(Matching, "Game/MapObj/InvisiblePolygonObjGCapture.cpp"),
-            Object(NonMatching, "Game/MapObj/IronCannonShell.cpp"),
+            Object(Matching, "Game/MapObj/IronCannonShell.cpp"),
             Object(Matching, "Game/MapObj/ItemAppearStone.cpp"),
             Object(NonMatching, "Game/MapObj/ItemBlock.cpp"),
             Object(NonMatching, "Game/MapObj/ItemBubble.cpp"),
