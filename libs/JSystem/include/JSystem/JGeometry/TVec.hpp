@@ -208,7 +208,7 @@ namespace JGeometry {
         }
     };
 
-    __attribute__((always_inline)) inline void setTVec3f(const f32* a, f32* b) {
+    ALWAYS_INLINE inline void setTVec3f(const f32* a, f32* b) {
 #ifdef __MWERKS__
         const register f32* v_a = a;
         register f32* v_b = b;
