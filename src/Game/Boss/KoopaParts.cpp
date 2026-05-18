@@ -17,6 +17,14 @@
 #include "Game/Util/DemoUtil.hpp"
 #include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
+#include "revolution/types.h"
+
+KoopaParts::KoopaParts(Koopa* pKoopa, const JMapInfoIter& rIter)
+    : mKoopa(pKoopa), mPlanetRadius(1300.0f), _8(), _C(), _10(), _14(), mBattleMapPlanet(), mPlanetShadow(), _20(), _24(), _28(), _2C(), _30(), _34(),
+      _38(), _3C(), _40(), _44(), _48(), _4C(), _50(), _54(), _58(), _5C(), _60(), _64(), _68(), _6C(), _70(), mActorCameraInfo() {
+    mActorCameraInfo = new ActorCameraInfo(rIter);
+    MR::declareCameraRegisterVec(mKoopa, 0, &mKoopa->mPosition);
+}
 
 namespace {
     LiveActor* createKoopaBodyParts(LiveActor* pActor, const char* pName, const char* pModelName, const char* pJointName) {
@@ -30,31 +38,7 @@ namespace {
 
         return pPartsModel;
     };
-
-    ModelObjNpc* createDemoNpc(const char* pName, const char* a2) {
-        ModelObjNpc* pModelObjNpc = new ModelObjNpc(pName, a2, nullptr);
-        pModelObjNpc->initWithoutIter();
-        MR::resetPosition(pModelObjNpc, "デモ中心");
-
-        pModelObjNpc->mLodCtrl->invalidateClipping();
-        pModelObjNpc->mLodCtrl->invalidate();
-
-        pModelObjNpc->mJointCtrl->endFaceCtrl(-1);
-
-        MR::initLightCtrl(pModelObjNpc);
-
-        pModelObjNpc->kill();
-
-        return pModelObjNpc;
-    };
 }  // namespace
-
-KoopaParts::KoopaParts(Koopa* pKoopa, const JMapInfoIter& rIter)
-    : mKoopa(pKoopa), mPlanetRadius(1300.0f), _8(), _C(), _10(), _14(), mBattleMapPlanet(), mPlanetShadow(), _20(), _24(), _28(), _2C(), _30(), _34(),
-      _38(), _3C(), _40(), _44(), _48(), _4C(), _50(), _54(), _58(), _5C(), _60(), _64(), _68(), _6C(), _70(), mActorCameraInfo() {
-    mActorCameraInfo = new ActorCameraInfo(rIter);
-    MR::declareCameraRegisterVec(mKoopa, 0, &mKoopa->mPosition);
-}
 
 KoopaFireStairs* KoopaParts::emitFireStairsToPos(const KoopaBattleMapStair* pStair, const TVec3f& rPosition, bool useFront) {
     KoopaFireStairs* pStairs = static_cast< KoopaFireStairs* >(_28->getDeadActor());
@@ -82,10 +66,26 @@ void KoopaParts::killFireStairsAll() {
     }
 }
 
-void KoopaParts::emitFireShort(bool, bool) {
+void KoopaParts::emitFireShort(bool fast, bool curve) {
+    KoopaFireShort* pFireShort = static_cast<KoopaFireShort *>(_24->getDeadActor());
+
+    if (pFireShort != nullptr) {
+        if (curve) {
+            pFireShort->emitCurve();
+        } else if (fast) {
+            pFireShort->emitFast();
+        } else {
+            pFireShort->emitNormal();
+        }
+    }
 }
 
 void KoopaParts::emitFireLongTime() {
+    KoopaFireShort* pFireShort = static_cast<KoopaFireShort *>(_24->getDeadActor());
+
+    if (pFireShort != nullptr) {
+        pFireShort->emitLongTime();
+    }
 }
 
 void KoopaParts::emitShockWave() {
@@ -136,38 +136,74 @@ void KoopaParts::createPlanetShadow() {
 
 void KoopaParts::initVs1() {
     createFireStairs(false);
-    mBattleMapPlanet = new KoopaBattleMapPlanet("クッパ惑星", "KoopaBattleMapPlanet", false, false, false);
-    MR::resetPosition(mBattleMapPlanet, "惑星中心");
-    mBattleMapPlanet->initWithoutIter();
+
+    const char* pResetPositionName = "惑星中心";
+    const char* pName2 = "KoopaBattleMapPlanet";
+    const char* pName1 = "クッパ惑星";
+    KoopaBattleMapPlanet* pBattleMapPlanet = new KoopaBattleMapPlanet(pName1, pName2, false, false, false);
+    MR::resetPosition(pBattleMapPlanet, pResetPositionName);
+    pBattleMapPlanet->initWithoutIter();
+    mBattleMapPlanet = pBattleMapPlanet;
 
     createPlanetShadow();
     createCommonParts();
 }
 
 void KoopaParts::initVs2() {
-    KoopaBattleMapPlanet* pBattleMapPlanet = new KoopaBattleMapPlanet("クッパ惑星", "KoopaBattleMapPlanetVs2", true, false, false);
-    MR::resetPosition(pBattleMapPlanet, "惑星中心");
+    const char* pResetPositionName = "惑星中心";
+    const char* pName2 = "KoopaBattleMapPlanetVs2";
+    const char* pName1 = "クッパ惑星";
+    KoopaBattleMapPlanet* pBattleMapPlanet = new KoopaBattleMapPlanet(pName1, pName2, true, false, false);
+    MR::resetPosition(pBattleMapPlanet, pResetPositionName);
     pBattleMapPlanet->initWithoutIter();
     mBattleMapPlanet = pBattleMapPlanet;
 
     createCommonParts();
 }
 
+namespace {
+    ModelObjNpc* createDemoNpc(const char* pName, const char* a2) {
+        ModelObjNpc* pModelObjNpc = new ModelObjNpc(pName, a2, nullptr);
+        pModelObjNpc->initWithoutIter();
+        MR::resetPosition(pModelObjNpc, "デモ中心");
+
+        pModelObjNpc->mLodCtrl->invalidateClipping();
+        pModelObjNpc->mLodCtrl->invalidate();
+
+        pModelObjNpc->mJointCtrl->endFaceCtrl(-1);
+
+        MR::initLightCtrl(pModelObjNpc);
+
+        pModelObjNpc->kill();
+
+        return pModelObjNpc;
+    };
+}  // namespace
+
 void KoopaParts::initVs3() {
     createFireStairs(true);
-    
-    KoopaBattleMapPlanet* pBattleMapPlanet = new KoopaBattleMapPlanet("クッパ惑星Ｌｖ１", "KoopaBattleMapPlanetVs3Lv1", false, false, true);
-    MR::resetPosition(pBattleMapPlanet, "惑星中心");
+
+    const char* pResetPositionName = "惑星中心";
+    const char* pName2 = "KoopaBattleMapPlanetVs3Lv1";
+    const char* pName1 = "クッパ惑星Ｌｖ１";
+    KoopaBattleMapPlanet* pBattleMapPlanet = new KoopaBattleMapPlanet(pName1, pName2, false, false, true);
+    MR::resetPosition(pBattleMapPlanet, pResetPositionName);
     pBattleMapPlanet->initWithoutIter();
     mBattleMapPlanet = pBattleMapPlanet;
 
-    pBattleMapPlanet = new KoopaBattleMapPlanet("クッパ惑星Ｌｖ２", "KoopaBattleMapPlanetVs3Lv2", false, false, true);
-    MR::resetPosition(pBattleMapPlanet, "惑星Ｌｖ２");
+    pResetPositionName = "惑星Ｌｖ２";
+    pName2 = "KoopaBattleMapPlanetVs3Lv2";
+    pName1 = "クッパ惑星Ｌｖ２";
+    pBattleMapPlanet = new KoopaBattleMapPlanet(pName1, pName2, false, false, true);
+    MR::resetPosition(pBattleMapPlanet, pResetPositionName);
     pBattleMapPlanet->initWithoutIter();
     _44 = pBattleMapPlanet;
 
-    pBattleMapPlanet = new KoopaBattleMapPlanet("クッパ惑星Ｌｖ３", "KoopaBattleMapPlanetVs3Lv3", false, true, false);
-    MR::resetPosition(pBattleMapPlanet, "惑星Ｌｖ３");
+    pResetPositionName = "惑星Ｌｖ３";
+    pName2 = "KoopaBattleMapPlanetVs3Lv3";
+    pName1 = "クッパ惑星Ｌｖ３";
+    pBattleMapPlanet = new KoopaBattleMapPlanet(pName1, pName2, false, true, false);
+    MR::resetPosition(pBattleMapPlanet, pResetPositionName);
     pBattleMapPlanet->initWithoutIter();
     _48 = pBattleMapPlanet;
 
@@ -201,19 +237,25 @@ void KoopaParts::initVs3() {
     _60 = createDemoNpc("クッパＪｒ", "KoopaJr");
     _64 = createDemoNpc("クッパＪｒ戦艦", "KoopaJrShip");
 
-    ModelObj* pModelObj = MR::createModelObjEnemy("デモ砲弾１", "MeteorStrike", nullptr);
+    pName2 = "MeteorStrike";
+    pName1 = "デモ砲弾１";
+    ModelObj* pModelObj = MR::createModelObjEnemy(pName1, pName2, nullptr);
     pModelObj->initWithoutIter();
     MR::resetPosition(pModelObj, "デモ中心");
     pModelObj->kill();
     _68 = pModelObj;
 
-    pModelObj = MR::createModelObjEnemy("デモ砲弾２", "MeteorStrike", nullptr);
+    pName2 = "MeteorStrike";
+    pName1 = "デモ砲弾２";
+    pModelObj = MR::createModelObjEnemy(pName1, pName2, nullptr);
     pModelObj->initWithoutIter();
     MR::resetPosition(pModelObj, "デモ中心");
     pModelObj->kill();
     _6C = pModelObj;
 
-    pModelObj = MR::createModelObjEnemy("デモ砲弾３", "MeteorStrike", nullptr);
+    pName2 = "MeteorStrike";
+    pName1 = "デモ砲弾３";
+    pModelObj = MR::createModelObjEnemy(pName1, pName2, nullptr);
     pModelObj->initWithoutIter();
     MR::resetPosition(pModelObj, "デモ中心");
     pModelObj->kill();

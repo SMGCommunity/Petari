@@ -987,7 +987,7 @@ Game/Boss/KoopaFireShort.cpp:
 Game/Boss/KoopaFireStairs.cpp:
 	.text       start:0x8005E874 end:0x8005F0F8
 	.ctors      start:0x8052E90C end:0x8052E910
-	.data       start:0x8056CE28 end:0x8056D2B8
+	.data       start:0x8056CE28 end:0x8056CFE0
 	.sbss       start:0x806B3468 end:0x806B3470
 	.sdata2     start:0x806B8898 end:0x806B88D0
 
@@ -997,6 +997,7 @@ Game/Boss/KoopaFunction.cpp:
 
 Game/Boss/KoopaParts.cpp:
 	.text       start:0x8006008C end:0x80060D44
+	.data       start:0x8056CFE0 end:0x8056D2B8
 	.sdata2     start:0x806B88D8 end:0x806B88E0
 
 Game/Boss/KoopaPowerUpSwitch.cpp:

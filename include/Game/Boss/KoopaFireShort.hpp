@@ -8,6 +8,11 @@ class KoopaFireShort : public LiveActor {
 public:
     KoopaFireShort(const Koopa*);
 
+    void emitCurve();
+    void emitNormal();
+    void emitFast();
+    void emitLongTime();
+
 private:
     /* 0x8C */ Koopa* mKoopa;
     /* 0x90 */ f32 _90;
