@@ -9,8 +9,13 @@ public:
     CannonShellBase(const char* pName) : LiveActor(pName) { }
 
     virtual void launch(const TVec3f&, const TVec3f&) = 0;
-    virtual f32 getBaseScale() const = 0;
-    virtual s32 getLifetime() const = 0;
+    // These two virtuals get moved around based on the TU so they can't be in the CPP
+    virtual f32 getBaseScale() const {
+        return 1.0f;
+    }
+    virtual s32 getLifeTime() const {
+        return 360;
+    }
 };
 
 class CannonShellHolder {

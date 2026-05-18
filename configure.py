@@ -1135,7 +1135,7 @@ config.libs = [
             Object(NonMatching, "Game/Enemy/Kiraira.cpp"),
             Object(NonMatching, "Game/Enemy/KirairaChain.cpp"),
             Object(NonMatching, "Game/Enemy/KoopaJrShip.cpp"),
-            Object(NonMatching, "Game/Enemy/KoopaJrShipCannonMainShell.cpp"),
+            Object(Matching, "Game/Enemy/KoopaJrShipCannonMainShell.cpp"),
             Object(NonMatching, "Game/Enemy/KoopaJrShipCannonShell.cpp"),
             Object(NonMatching, "Game/Enemy/KoteBug.cpp"),
             Object(Matching, "Game/Enemy/Kuribo.cpp"),
