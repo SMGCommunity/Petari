@@ -286,6 +286,13 @@ namespace JGeometry {
             z = y = x = val;
         }
 
+        template < typename T >
+        inline TVec3(const TVec2< T >& rVec) {
+            x = rVec.x;
+            y = rVec.y;
+            z = 0;
+        }
+
         inline TVec3() {
         }
 
@@ -294,6 +301,10 @@ namespace JGeometry {
         }
         operator const Vec*() const {
             return (Vec*)&x;
+        }
+
+        operator const TVec2< f32 >&() const {
+            return *reinterpret_cast< const TVec2< f32 >* >(this);
         }
 
         TVec3& operator=(const TVec3& b) NO_INLINE {

@@ -5,9 +5,10 @@
 #include <nw4r/lyt/textBox.h>
 
 namespace LayoutCoreUtil {
-    void getPaneUserData(const nw4r::lyt::Pane*, char*);
-    void setTextBoxMessage(nw4r::lyt::TextBox* pTextBox, const wchar_t* pMsg);
-    void initTextBoxPane(nw4r::lyt::TextBox* pTextBox, const char* pStr, u32);
+    const char* getPaneUserData(const nw4r::lyt::Pane*, char*);
+    u16 setTextBoxMessage(nw4r::lyt::TextBox* pTextBox, const wchar_t* pMsg);
+    void initTextBoxPane(nw4r::lyt::TextBox* pTextBox, const char* pStr, u32 allocSize);
+    void reallocateTextBoxMessage(nw4r::lyt::TextBox* pTextBox, u32 allocSize);
 }  // namespace LayoutCoreUtil
 
 namespace MR {

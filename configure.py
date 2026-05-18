@@ -2068,7 +2068,7 @@ config.libs = [
             Object(NonMatching, "Game/Screen/IsbnManager.cpp"),
             Object(NonMatching, "Game/Screen/LayoutActor.cpp"),
             Object(Matching, "Game/Screen/LayoutActorFlag.cpp"),
-            Object(NonMatching, "Game/Screen/LayoutCoreUtil.cpp"),
+            Object(Matching, "Game/Screen/LayoutCoreUtil.cpp"),
             Object(NonMatching, "Game/Screen/LayoutGroupCtrl.cpp"),
             Object(NonMatching, "Game/Screen/LayoutManager.cpp"),
             Object(NonMatching, "Game/Screen/LayoutPaneCtrl.cpp"),
