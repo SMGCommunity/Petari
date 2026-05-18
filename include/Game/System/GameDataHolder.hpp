@@ -54,14 +54,14 @@ public:
     void addStockedStarPiece(int);
     s32 setupSpinDriverPathStorage(const char*, int, int, int, f32*);
     void updateSpinDriverPathStorage(const char*, int, int, f32);
-    s32 getStarPieceNumGivingToTicoSeed(int) const;
-    u32 getStarPieceNumMaxGivingToTicoSeed(int) const;
+    u16 getStarPieceNumGivingToTicoSeed(int) const;
+    u16 getStarPieceNumMaxGivingToTicoSeed(int) const;
     void addStarPieceGivingToTicoSeed(int, int);
     bool isCompleteMarioAndLuigi() const;
     bool isPassedStoryEvent(const char*) const;
     void followStoryEventByName(const char*);
     void resetAllData();
-    s32 makeFileBinary(u8*, u32);
+    u32 makeFileBinary(u8*, u32);
     bool loadFromFileBinary(const char*, const u8*, u32);
 
     /* 0x00 */ GameEventFlagChecker* mEventFlagChecker;

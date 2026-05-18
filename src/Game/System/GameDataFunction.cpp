@@ -171,11 +171,11 @@ namespace GameDataFunction {
         getCurrentGameDataHolder()->updateSpinDriverPathStorage(pGalaxyName, scenarioNo, param3, param4);
     }
 
-    s32 getStarPieceNumGivingToTicoSeed(int index) {
+    u16 getStarPieceNumGivingToTicoSeed(int index) {
         return getCurrentGameDataHolder()->getStarPieceNumGivingToTicoSeed(index);
     }
 
-    s32 getStarPieceNumMaxGivingToTicoSeed(int index) {
+    u16 getStarPieceNumMaxGivingToTicoSeed(int index) {
         return getCurrentGameDataHolder()->getStarPieceNumMaxGivingToTicoSeed(index);
     }
 
