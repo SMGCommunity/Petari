@@ -1195,7 +1195,7 @@ config.libs = [
     GameLib(
         "GameAudio",
         [
-            Object(NonMatching, "Game/GameAudio/AudCameraWatcher.cpp"),
+            Object(Matching, "Game/GameAudio/AudCameraWatcher.cpp"),
             Object(NonMatching, "Game/GameAudio/AudStageBgmWrap.cpp"),
             Object(NonMatching, "Game/GameAudio/AudSeKeeper.cpp"),
             Object(NonMatching, "Game/GameAudio/AudTalkSoundData.cpp"),

@@ -3223,7 +3223,7 @@ Game/Enemy/WaterBazookaCapsule.cpp:
 
 Game/GameAudio/AudCameraWatcher.cpp:
 	.text       start:0x80154F30 end:0x801550B8
-	.data       start:0x80586920 end:0x80586CF8
+	.data       start:0x80586920 end:0x80586970
 	.sdata2     start:0x806BBAD8 end:0x806BBAE0
 
 Game/GameAudio/AudStageBgmWrap.cpp:
