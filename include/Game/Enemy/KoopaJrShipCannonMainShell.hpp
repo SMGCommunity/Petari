@@ -23,3 +23,7 @@ public:
 
     TQuat4f _8C;
 };
+
+namespace CannonShellUtil {
+    void registerKoopaJrShipCannonMainShell(CannonShellHolder* pHolder, int shellNum);
+}  // namespace CannonShellUtil
