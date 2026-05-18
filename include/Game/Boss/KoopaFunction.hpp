@@ -1,5 +1,6 @@
 #pragma once
 
+#include "JSystem/JGeometry/TVec.hpp"
 #include <revolution/types.h>
 
 class LiveActor;
@@ -22,11 +23,16 @@ namespace KoopaFunction {
     void startRecoverKoopaArmor(Koopa*);
     void startRecoverKoopaTailThorn(Koopa*);
     void endFaceCtrl(Koopa*, s32);
+    void endFaceCtrlDirect(Koopa*);
+
+    TVec3f* getKoopaFrontPtr(Koopa*);
 
     bool tryRestartKoopa();
 
     bool isKoopaVs1(const Koopa*);
     bool isKoopaVs2(const Koopa*);
     bool isKoopaVs3(const Koopa*);
+    bool isKoopaLv1(const Koopa*);
+    bool isKoopaLv2(const Koopa*);
     bool isKoopaLv3(const Koopa*);
 };  // namespace KoopaFunction
