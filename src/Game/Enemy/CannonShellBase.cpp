@@ -13,9 +13,16 @@ void CannonShellHolder::registerCannonShell(CannonShellBase* pShell) {
     mShells.push_back(pShell);
 }
 
-// What the hell is even going on here...
+// Annoying instruction ordering and register swaps
 CannonShellBase* CannonShellHolder::getValidShell() const {
+    bool (*func)(const LiveActor*) = MR::isDead;
+    CannonShellBase* const* end = mShells.end();
+    CannonShellBase* const* begin = mShells.begin();
 
+    CannonShellBase* const* found = std::find_if(begin, end, func);
+    if (found != mShells.end())
+        return *found;
+    return nullptr;
 }
 
 // Thanks shibbo
