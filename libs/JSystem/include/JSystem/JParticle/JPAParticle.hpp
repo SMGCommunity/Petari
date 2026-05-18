@@ -61,7 +61,7 @@ public:
     /* 0x6C */ f32 mAlphaWaveRandom;
     /* 0x70 */ f32 mMoment;
     /* 0x74 */ f32 mDrag;
-    /* 0x78 */ u32 field_0x78;
+    /* 0x78 */ f32* field_0x78;
     /* 0x7C */ u32 mStatus;
     /* 0x80 */ s16 mAge;
     /* 0x82 */ s16 mLifeTime;
@@ -75,12 +75,13 @@ public:
     /* 0x96 */ u8 mPrmColorAlphaAnm;
 };
 
+/*
 class JPAParticleCallBack {
 public:
     virtual ~JPAParticleCallBack() = 0;
     virtual void execute(JPABaseEmitter*, JPABaseParticle*) {}
     virtual void draw(JPABaseEmitter*, JPABaseParticle*) {}
-};
+};*/
 
 static inline u32 COLOR_MULTI(u32 a, u32 b) {
     return ((a * (b + 1)) * 0x10000) >> 24;

@@ -23,7 +23,6 @@
 #include "Game/MapObj/DragonHeadFlower.hpp"
 #include "Game/MapObj/DriftWood.hpp"
 #include "Game/MapObj/MorphItemObjNeo.hpp"
-#include "Game/Effect/EffectObjGravityDust.hpp"
 #include "Game/MapObj/ElectricBall.hpp"
 #include "Game/MapObj/ElectricRail.hpp"
 #include "Game/MapObj/ElectricRailMoving.hpp"
