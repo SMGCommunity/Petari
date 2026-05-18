@@ -3,6 +3,7 @@
 #include "Game/System/ResourceInfo.hpp"
 #include "Game/Util/HashUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
+#include "revolution/types.h"
 #include <cstring>
 
 static bool unknownByte;
@@ -93,7 +94,7 @@ u32 XanimeResourceTable::initGroupInfo(ResourceHolder* pResourceHolder, XanimeGr
             break;
         }
 
-        for (int j = 0; j < 4; j++) {
+        for (int j = 0; j < ARRAY_SIZE(entry->_20); j++) {
             entry->_20[j] = nullptr;
             entry->_30[j] = 0.0f;
         }
@@ -457,7 +458,7 @@ void XanimeGroupInfo::init() {
     _18 = 0;
     mBckTableVariant = 0;
     _1D = 0;
-    for (u32 i = 0; i < 4; i++) {
+    for (u32 i = 0; i < ARRAY_SIZE(_20); i++) {
         _30[i] = 0.0f;
         _20[i] = nullptr;
     }
