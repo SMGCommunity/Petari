@@ -5,6 +5,16 @@ namespace NrvKoopaJrShipCannonMainShell {
     NEW_NERVE(HostTypeFly, KoopaJrShipCannonMainShell, Fly);
 }
 
+namespace {
+    static const f32 sTmpScale = 1.2f;
+    static const f32 sAttackSensorRadius = 75.0f;
+    static const f32 sShadowRadius = 60.0f;
+    static const f32 sBinderRadius = 75.0f;
+    static const s32 sLifeTime = 300;
+    static const f32 sCameraShakeDistance = 1000.0f;
+    static const s32 sWallHitInvalidTime = 60;
+}
+
 KoopaJrShipCannonMainShell::KoopaJrShipCannonMainShell(const char* pName) : CannonShellBase(pName) {
     f32 one = 1.0f; // This makes Data match
     _8C.set< f32 >(0.0f, 0.0f, 0.0f, one);
@@ -21,14 +31,14 @@ void KoopaJrShipCannonMainShell::init(const JMapInfoIter& rIter) {
     initEffectKeeper(0, "KoopaJrShipCannonShell", false);
     initHitSensor(1);
 
-    MR::addHitSensorEnemyAttack(this, "attack", 8, 75.0f * getBaseScale(), TVec3f(0.0f, 0.0f, 0.0f));
+    MR::addHitSensorEnemyAttack(this, "attack", 8, sAttackSensorRadius * getBaseScale(), TVec3f(0.0f, 0.0f, 0.0f));
 
-    initBinder(75.0f * getBaseScale(), 0.0f, 0);
+    initBinder(sBinderRadius * getBaseScale(), 0.0f, 0);
     initNerve(&NrvKoopaJrShipCannonMainShell::HostTypeFly::sInstance);
 
     MR::connectToSceneEnemy(this);
     MR::invalidateClipping(this);
-    MR::initShadowVolumeSphere(this, 60.0f * getBaseScale());
+    MR::initShadowVolumeSphere(this, sShadowRadius * getBaseScale());
     MR::offCalcGravity(this);
     makeActorDead();
 }
@@ -80,7 +90,8 @@ void KoopaJrShipCannonMainShell::launch(const TVec3f& rStartPos, const TVec3f& r
     appear();
 
     mPosition.set< f32 >(rStartPos);
-    TVec3f* vec = &TVec3f();
+    TVec3f tmp;
+    TVec3f* vec = &tmp;
 
     vec->setPS2(rVelocity);
     MR::normalize(vec);
@@ -92,13 +103,12 @@ void KoopaJrShipCannonMainShell::launch(const TVec3f& rStartPos, const TVec3f& r
     setNerve(&NrvKoopaJrShipCannonMainShell::HostTypeFly::sInstance);
 }
 
-
 f32 KoopaJrShipCannonMainShell::getBaseScale() const {
-    return 1.2f;
+    return sTmpScale;
 }
 
 void KoopaJrShipCannonMainShell::explosion() {
-    MR::startRumbleWithShakeCameraWeak(this, "強", "中", 1000.0f, 2000.0f);
+    MR::startRumbleWithShakeCameraWeak(this, "強", "中", sCameraShakeDistance, sCameraShakeDistance*2);
     MR::emitEffect(this, "Explosion");
     MR::startSound(this, "SE_BM_KOOPAJR_SHIP_BREAK_FIRE", -1, -1);
     kill();
@@ -114,9 +124,9 @@ void KoopaJrShipCannonMainShell::exeFly() {
 
     MR::startLevelSound(this, "SE_BM_LV_KOOPAJR_SHIP_FLY_FIRE", -1, -1, -1);
 
-    if (MR::isGreaterStep(this, 60) && MR::isBindedWall(this))
+    if (MR::isGreaterStep(this, sWallHitInvalidTime) && MR::isBindedWall(this))
         explosion();
-    else if (MR::isStep(this, 300))
+    else if (MR::isStep(this, sLifeTime))
         kill();
 }
 
