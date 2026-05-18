@@ -1,15 +1,26 @@
 #pragma once
 
 #include "Game/Screen/LayoutActor.hpp"
+#include "Game/Screen/StarPointerDirector.hpp"
 #include <JSystem/JGeometry/TMatrix.hpp>
 
 class LiveActor;
+class StarPointerCommandStream;
+class StarPointerDirector;
+
+enum StarPointerKind {
+    StarPointerKind_StarPointer = 0,
+    StarPointerKind_HandPointer = 1,
+    StarPointerKind_2 = 2,
+    StarPointerKind_HandPointerReactionWithCrossCursor = 3,
+    StarPointerKind_FingerPointer = 4,
+    StarPointerKind_5 = 5,
+    StarPointerKind_StarPointerNozzle = 6,
+};
 
 class StarPointerLayout : public LayoutActor {
 public:
-    enum StarPointerKind {};
-
-    StarPointerLayout(const char*);
+    StarPointerLayout(const char* pName = "スターポインタレイアウト");
 
     virtual void draw() const;
     virtual void calcAnim();
@@ -59,14 +70,16 @@ public:
     void show();  // in OnOffController
 
     /* 0x20 */ TVec2f _20;
-    /* 0x28 */ s32 _28;
-    /* 0x2C */ u32 _2C;
+    /* 0x28 */ StarPointerKind mPointerKind;
+    /* 0x2C */ s32 _2C;
     /* 0x30 */ u32 _30;
     /* 0x34 */ s32 _34;
-    /* 0x38 */ TVec3f _38;
-    /* 0x44 */ u32 _44;
+    /* 0x38 */ f32 _38;
+    /* 0x3C */ f32 _3C;
+    /* 0x40 */ f32 _40;
+    /* 0x44 */ StarPointerDirector* mDirector;
     /* 0x48 */ u32 _48;
-    /* 0x4C */ u32 _4C;
+    /* 0x4C */ StarPointerCommandStream* mCommandStream;
     /* 0x50 */ u32 _50;
     /* 0x54 */ u32 _54;
     /* 0x58 */ u32 _58;
@@ -78,7 +91,7 @@ public:
     /* 0x6A */ bool _6A;
     /* 0x6B */ bool _6B;
     /* 0x6C */ bool _6C;
-    /* 0x6D */ bool _6D;
+    /* 0x6D */ bool mShootDisabled;
     /* 0x6E */ bool _6E;
     /* 0x6F */ bool _6F;
     /* 0x70 */ u32 _70;

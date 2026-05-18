@@ -16,15 +16,15 @@ namespace {
     // static const _32 hDrawDebugRadius =
 }  // namespace
 
-DpdInfo::DpdInfo() : mPos(0.0f, 0.0f), mInScreen(false), _9(false), _C(0), mViewDistZ(0.0f) {
+DpdInfo::DpdInfo() : mPos(0.0f, 0.0f), mInScreen(false), mDrawReady(false), mZDepth(0), mViewDistZ(0.0f) {
 }
 
 StarPointerController::StarPointerController()
-    : mPadChannel(-1), mScreenPos(0.0f, 0.0f), mOutScreenTime(0), mPrevPastPointingPos(nullptr), mPrevPastCount(0), mPastPointingPos(nullptr),
-      mPastCount(0), mScreenDist(0.0f), mScreenSpeed(0.0f), mScreenVel(0.0f, 0.0f), mWorldVel(0.0f, 0.0f, 0.0f), mWorldPos(0.0f, 0.0f, 0.0f) {
+    : mPadChannel(-1), mScreenPos(0.0f, 0.0f), mOutScreenTime(0), mPastPosition(nullptr), mPastPointNum(0), mNextPastPosition(nullptr),
+      mNextPastPointNum(0), mScreenDist(0.0f), mScreenSpeed(0.0f), mScreenVel(0.0f, 0.0f), mWorldVel(0.0f, 0.0f, 0.0f), mWorldPos(0.0f, 0.0f, 0.0f) {
     // FIXME: TVec2 emitting default ctor in new[], needs to be a null ctor.
-    mPrevPastPointingPos = new TVec2f[16];
-    mPastPointingPos = new TVec2f[16];
+    mPastPosition = new TVec2f[16];
+    mNextPastPosition = new TVec2f[16];
 }
 
 bool StarPointerController::isOutScreenLong() const {
@@ -35,17 +35,17 @@ void StarPointerController::initAndSetPort(s32 padChannel) {
     mPadChannel = padChannel;
 }
 
-void StarPointerController::movement(const f32* f1, const f32* f2) {
-    storeDataFromCallback(f1, f2);
+void StarPointerController::movement(const f32* pProjectionParams, const f32* pViewportParams) {
+    storeDataFromCallback(pProjectionParams, pViewportParams);
     storePastPointingData();
     updateDpdInfo();
 }
 
-void StarPointerController::storeDataFromCallback(const f32* f1, const f32* f2) {
-    TVec3f v1(mInfo.mPos.x, mInfo.mPos.y, static_cast< f32 >(mInfo._C));
+void StarPointerController::storeDataFromCallback(const f32* pProjectionParams, const f32* pViewportParams) {
+    TVec3f v1(mInfo.mPos.x, mInfo.mPos.y, static_cast< f32 >(mInfo.mZDepth));
 
-    if (mInfo._9 == true) {
-        TDDraw::invProject(&mWorldPos, v1, MR::getStarPointerViewMtx(), f1, f2, false);
+    if (mInfo.mDrawReady == true) {
+        TDDraw::invProject(&mWorldPos, v1, MR::getStarPointerViewMtx(), pProjectionParams, pViewportParams, false);
         mInfo.mViewDistZ = calcViewDistanceZ(mWorldPos, MR::getStarPointerViewMtx());
     }
 
@@ -56,20 +56,20 @@ void StarPointerController::storeDataFromCallback(const f32* f1, const f32* f2) 
         mOutScreenTime++;
     }
 
-    mInfo._9 = false;
+    mInfo.mDrawReady = false;
 }
 
 void StarPointerController::storePastPointingData() {
-    mPrevPastCount = mPastCount;
-    for (s32 idx = 0; idx < mPastCount; idx++) {
-        mPrevPastPointingPos[idx] = mPastPointingPos[idx];
+    mPastPointNum = mNextPastPointNum;
+    for (s32 idx = 0; idx < mNextPastPointNum; idx++) {
+        mPastPosition[idx] = mNextPastPosition[idx];
     }
 
     s32 pastCount = MR::min(MR::getCorePadEnablePastCount(mPadChannel), 16);
-    mPastCount = pastCount;
+    mNextPastPointNum = pastCount;
 
     for (s32 idx = 0; idx < pastCount; idx++) {
-        calcPastPointingPosOnScreen(&mPastPointingPos[idx], idx);
+        calcPastPointingPosOnScreen(&mNextPastPosition[idx], idx);
     }
 }
 
@@ -92,7 +92,7 @@ void StarPointerController::updateDpdInfo() {
     } else {
         mScreenPos.set(mInfo.mPos);
         mInfo.mInScreen = true;
-        mInfo.mPos.set(mPastPointingPos[0]);
+        mInfo.mPos.set(mNextPastPosition[0]);
         mNotInScreen = StarPointerFunction::forceInsideScreenEdge(&mInfo.mPos);
         mScreenDist = MR::getCorePadDistanceToDisplay(mPadChannel);
         updateAdditionalInfo();

@@ -1,11 +1,16 @@
 #pragma once
 
+#include "Game/Screen/StarPointerGuidance.hpp"
+#include "Game/Screen/StarPointerLayout.hpp"
+#include "Game/System/DrawSyncManager.hpp"
 #include <JSystem/JGeometry/TMatrix.hpp>
 
 class StarPointerController;
-class StarPointerLayout;
+class DpdInfo;
 
-class StarPointerPeekZ {
+#define NUM_STAR_POINTER 2
+
+class StarPointerPeekZ : public DrawSyncCallback {
 public:
     StarPointerPeekZ();
 
@@ -14,32 +19,25 @@ public:
     void setDrawSyncToken();
 
     /* 0x04 */ u16 mToken;
-    /* 0x08 */ u32 _8;
-    /* 0x0C */ f32 mProjection;
-    /* 0x10 */ u32 _10;
-    /* 0x14 */ u32 _14;
-    /* 0x18 */ u32 _18;
-    /* 0x1C */ u32 _1C;
-    /* 0x20 */ u32 _20;
-    /* 0x24 */ u32 _24;
-    /* 0x28 */ f32* mViewport;
-    /* 0x2C */ u32 _2C;
-    /* 0x30 */ u32 _30;
-    /* 0x34 */ u32 _34;
-    /* 0x38 */ u32 _38;
-    /* 0x3C */ u32 _3C;
+    /* 0x08 */ DpdInfo** mInfos;
+    /* 0x0C */ f32 mProjectionParameters[7];
+    /* 0x28 */ f32 mViewportParameters[6];
 };
 
 class StarPointerTransformHolder {
 public:
-    StarPointerTransformHolder();
+    StarPointerTransformHolder() NO_INLINE;
 
     void movement();
 
-    /* 0x00 */ TPos3f _0;
-    /* 0x30 */ Mtx44 _30;
+    inline f32 getFovy() const {
+        return mFovy;
+    }
+
+    /* 0x00 */ TPos3f mViewMtx;
+    /* 0x30 */ TProj3f mProjMtx;
     /* 0x70 */ f32 mFovy;
-    /* 0x74 */ f32 _74;
+    /* 0x74 */ f32 mFocalLength;
 };
 
 class StarPointerDirector {
@@ -55,28 +53,43 @@ public:
     void startStarPointer();
     void startStarPointerNozzle();
     void setGameSceneCameraMtx();
-    StarPointerController* getStarPointerController(s32) const;
+    StarPointerController* getStarPointerController(s32 channel) const;
+    StarPointerLayout* getStarPointerLayout(s32 channel) const;
+
+    void createLayout();
+
+    /*
+    void createLayout() {
+        mStarPointerLayouts = new StarPointerLayout[NUM_STAR_POINTER];
+
+        for (u32 channel = 0; channel < NUM_STAR_POINTER; channel++) {
+            mStarPointerLayouts[channel].initWithPort(channel);
+            mStarPointerLayouts[channel].mDirector = this;
+        }
+
+        mGuidance = new StarPointerGuidance("スターポインタガイダンス");
+        mGuidance->initWithoutIter();
+    }
+        */
 
     /* 0x00 */ bool _0;
     /* 0x01 */ bool _1;
     /* 0x02 */ bool _2;
-    /* 0x03 */ bool _3;
+    /* 0x03 */ bool mIsOSPointerMode;
     /* 0x04 */ StarPointerController* mControllers;
     /* 0x08 */ StarPointerLayout* mStarPointerLayouts;
     /* 0x0C */ StarPointerTransformHolder* mTransHolder;
     /* 0x10 */ StarPointerPeekZ* mPeekZ;
-    /* 0x14 */ u32* _14;
-    /* 0x18 */ u32 _18;
-    /* 0x1C */ u32 _1C;
-    /* 0x20 */ u32 _20;
-    /* 0x24 */ u32 _24;
+    /* 0x14 */ StarPointerGuidance* mGuidance;
+    /* 0x18 */ s32 _18;
+    /* 0x1C */ TVec3f _1C;
 };
 
 namespace StarPointerFunction {
     bool isOnScreenEdge(const TVec2f&, f32, f32);
     bool isOnScreenEdge(s32);
     bool forceInsideScreenEdge(TVec2f*);
-    const StarPointerDirector* getStarPointerDirector();
+    StarPointerDirector* getStarPointerDirector() NO_INLINE;
     s32 getNumStarPointer();
     s32 getPastPointNum(s32);
     const TVec2f& getPastPosition(s32, s32);

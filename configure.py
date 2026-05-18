@@ -2121,7 +2121,7 @@ config.libs = [
             Object(NonMatching, "Game/Screen/StarPointerBlur.cpp"),
             Object(Matching, "Game/Screen/StarPointerCommandStream.cpp"),
             Object(NonMatching, "Game/Screen/StarPointerController.cpp"),
-            Object(NonMatching, "Game/Screen/StarPointerDirector.cpp"),
+            Object(Matching, "Game/Screen/StarPointerDirector.cpp"),
             Object(Matching, "Game/Screen/StarPointerGuidance.cpp"),
             Object(NonMatching, "Game/Screen/StarPointerLayout.cpp"),
             Object(NonMatching, "Game/Screen/StarPointerTarget.cpp"),

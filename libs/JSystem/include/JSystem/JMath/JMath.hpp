@@ -61,8 +61,53 @@ namespace JMath {
         return JMAFastSqrt(value);
     }
 
-    void gekko_ps_copy12(void*, const void*);
-    void gekko_ps_copy16(void*, const void*);
+    inline void gekko_ps_copy12(__REGISTER void* pDest, __REGISTER const void* pSrc) {
+#ifdef __MWERKS__
+        register f32 f_0, f_1, f_2, f_3, f_4, f_5;
+
+        __asm {
+                psq_l     f_0, 0(pSrc), 0, 0
+                psq_l     f_1, 8(pSrc), 0, 0
+                psq_l     f_2, 0x10(pSrc), 0, 0
+                psq_l     f_3, 0x18(pSrc), 0, 0
+                psq_l     f_4, 0x20(pSrc), 0, 0
+                psq_l     f_5, 0x28(pSrc), 0, 0
+                psq_st    f_0, 0(pDest), 0, 0
+                psq_st    f_1, 8(pDest), 0, 0
+                psq_st    f_2, 0x10(pDest), 0, 0
+                psq_st    f_3, 0x18(pDest), 0, 0
+                psq_st    f_4, 0x20(pDest), 0, 0
+                psq_st    f_5, 0x28(pDest), 0, 0
+        }
+        ;
+#endif
+    }
+
+    inline void gekko_ps_copy16(__REGISTER void* pDest, __REGISTER const void* pSrc) {
+#ifdef __MWERKS__
+        register f32 f_0, f_1, f_2, f_3, f_4, f_5, f_6, f_7;
+
+        __asm {
+                psq_l     f_0, 0(pSrc), 0, 0
+                psq_l     f_1, 8(pSrc), 0, 0
+                psq_l     f_2, 0x10(pSrc), 0, 0
+                psq_l     f_3, 0x18(pSrc), 0, 0
+                psq_l     f_4, 0x20(pSrc), 0, 0
+                psq_l     f_5, 0x28(pSrc), 0, 0
+                psq_l     f_6, 0x30(pSrc), 0, 0
+                psq_l     f_7, 0x38(pSrc), 0, 0
+                psq_st    f_0, 0(pDest), 0, 0
+                psq_st    f_1, 8(pDest), 0, 0
+                psq_st    f_2, 0x10(pDest), 0, 0
+                psq_st    f_3, 0x18(pDest), 0, 0
+                psq_st    f_4, 0x20(pDest), 0, 0
+                psq_st    f_5, 0x28(pDest), 0, 0
+                psq_st    f_6, 0x30(pDest), 0, 0
+                psq_st    f_7, 0x38(pDest), 0, 0
+        }
+        ;
+#endif
+    }
 };  // namespace JMath
 
 namespace JMathInlineVEC {

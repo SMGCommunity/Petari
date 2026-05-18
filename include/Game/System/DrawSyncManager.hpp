@@ -2,6 +2,14 @@
 
 #include <revolution.h>
 
+class DrawSyncCallback {
+public:
+    DrawSyncCallback() {
+    }
+
+    virtual void drawSyncCallback(u16) = 0;
+};
+
 class Fifo {
 public:
     Fifo* pop();
@@ -32,6 +40,8 @@ public:
     void pushBreakPoint();
 
     static void drawSyncCallback(u16);
+
+    u16 setCallback(u32, u16, DrawSyncCallback*);
 
     static DrawSyncManager* sInstance;
 
