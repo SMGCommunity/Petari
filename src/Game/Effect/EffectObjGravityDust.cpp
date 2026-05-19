@@ -9,7 +9,7 @@ void EffectObjGravityDust::init(const JMapInfoIter& rIter) {
     _9C = new GravityDustParticleCallBack(this);
     MR::emitEffectWithParticleCallBack(this, _8C, _9C);
     MR::setEffectLocalScale(this, _8C, mScale);
-    _A0 = (mScale.z + (mScale.x + mScale.y)) / 3.0f;
+    _A0 = (mScale.x + mScale.y  + mScale.z) / 3.0f;
 }
 
 void EffectObjGravityDust::endClipped() {
