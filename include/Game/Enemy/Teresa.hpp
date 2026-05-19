@@ -79,7 +79,7 @@ public:
     void updateDriftAnimScale();
     void updateDriftTransparency();
     void updateNormalTransparency();
-    void setTransaprency(f32);
+    void setTransparency(f32);
     bool canAttack() const;
     bool canDrift() const;
     bool canSearchLightDead() const;
