@@ -1129,7 +1129,7 @@ config.libs = [
             Object(NonMatching, "Game/Enemy/KameckHolder.cpp"),
             Object(NonMatching, "Game/Enemy/KameckTurtle.cpp"),
             Object(NonMatching, "Game/Enemy/Kanina.cpp"),
-            Object(NonMatching, "Game/Enemy/Karikari.cpp"),
+            Object(Matching, "Game/Enemy/Karikari.cpp"),
             Object(Matching, "Game/Enemy/KarikariDirector.cpp"),
             Object(NonMatching, "Game/Enemy/Karon.cpp"),
             Object(NonMatching, "Game/Enemy/Kiraira.cpp"),
