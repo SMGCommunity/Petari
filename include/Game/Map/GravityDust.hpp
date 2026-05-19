@@ -10,5 +10,5 @@ public:
 
     virtual void execute(JPABaseEmitter*, JPABaseParticle*);
 
-    LiveActor* mActor;
+    const LiveActor* mActor;
 };

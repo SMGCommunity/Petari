@@ -5,8 +5,7 @@
 #include "Game/Util/MathUtil.hpp"
 #include "JSystem/JParticle/JPAParticle.hpp"
 
-
-GravityDustParticleCallBack::GravityDustParticleCallBack(const LiveActor* pActor) : MultiEmitterParticleCallBack(), mActor((LiveActor*)pActor) {
+GravityDustParticleCallBack::GravityDustParticleCallBack(const LiveActor* pActor) : MultiEmitterParticleCallBack(), mActor(pActor) {
 }
 
 // https://decomp.me/scratch/hyC0Q
