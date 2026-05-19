@@ -40,7 +40,7 @@ inline f32 toRadian(f32 angle) {
 
 StarPointerCommandStream::StarPointerCommandStream(const TVec2f* pScreenPos)
     : LayoutActor("スターポインタ指示線", true), _20(false), mOffScreenTime(0), _28(0.0f), mScreenPos(pScreenPos), mWorldPos(nullptr),
-      mPadChannel(-1), _40(0) {
+      mPadChannel(-1), mColor(nullptr) {
 }
 
 void StarPointerCommandStream::start(const TVec3f* pPos, bool b) {

@@ -1,14 +1,12 @@
 #pragma once
 
 #include "Game/Screen/StarPointerGuidance.hpp"
-#include "Game/Screen/StarPointerLayout.hpp"
 #include "Game/System/DrawSyncManager.hpp"
 #include <JSystem/JGeometry/TMatrix.hpp>
 
 class StarPointerController;
+class StarPointerLayout;
 class DpdInfo;
-
-#define NUM_STAR_POINTER 2
 
 class StarPointerPeekZ : public DrawSyncCallback {
 public:
@@ -58,20 +56,6 @@ public:
 
     void createLayout();
 
-    /*
-    void createLayout() {
-        mStarPointerLayouts = new StarPointerLayout[NUM_STAR_POINTER];
-
-        for (u32 channel = 0; channel < NUM_STAR_POINTER; channel++) {
-            mStarPointerLayouts[channel].initWithPort(channel);
-            mStarPointerLayouts[channel].mDirector = this;
-        }
-
-        mGuidance = new StarPointerGuidance("スターポインタガイダンス");
-        mGuidance->initWithoutIter();
-    }
-        */
-
     /* 0x00 */ bool _0;
     /* 0x01 */ bool _1;
     /* 0x02 */ bool _2;
@@ -82,7 +66,7 @@ public:
     /* 0x10 */ StarPointerPeekZ* mPeekZ;
     /* 0x14 */ StarPointerGuidance* mGuidance;
     /* 0x18 */ s32 _18;
-    /* 0x1C */ TVec3f _1C;
+    /* 0x1C */ TVec3f mNozzleAimPos;
 };
 
 namespace StarPointerFunction {

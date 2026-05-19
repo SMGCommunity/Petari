@@ -34,9 +34,10 @@ public:
     void draw2() const;
     void initDraw() const;
 
-    void setPortAndColor(s32 padChannel, const GXColor* pMainColor, const GXColor* pSubColor) {
+    void setPortAndColor(s32 padChannel, const GXColor* pMainColor, const GXColor* pSubColor) NO_INLINE {
         mPadChannel = padChannel;
         mMainColor = pMainColor;
+        mSubColor = pSubColor;
     }
 
     /* 0x0C */ JUTTexture* mTexture;

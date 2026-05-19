@@ -43,11 +43,6 @@ namespace JGeometry {
             y = _y;
         }
 
-        TVec2(const TVec2< T >& rSrc) {
-            x = rSrc.x;
-            y = rSrc.y;
-        }
-
         void add(const TVec2< T >& other) {
             x += other.x;
             y += other.y;

@@ -19,6 +19,11 @@ public:
     void exeSignal();
     f32 calcLineWidth(f32) const;
 
+    inline void setPortAndColor(s32 padChannel, const GXColor* color) {
+        mPadChannel = padChannel;
+        mColor = color;
+    }
+
     /* 0x20 */ bool _20;
     /* 0x24 */ s32 mOffScreenTime;
     /* 0x28 */ f32 _28;
@@ -26,5 +31,5 @@ public:
     /* 0x30 */ const TVec3f* mWorldPos;
     /* 0x34 */ TVec2f mFollowPos;
     /* 0x3C */ s32 mPadChannel;
-    /* 0x40 */ u32 _40;
+    /* 0x40 */ const GXColor* mColor;
 };

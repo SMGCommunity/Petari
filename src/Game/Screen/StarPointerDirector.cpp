@@ -21,7 +21,7 @@
 
 StarPointerDirector::StarPointerDirector()
     : _0(false), _1(false), _2(false), mControllers(nullptr), mStarPointerLayouts(nullptr), mTransHolder(nullptr), mPeekZ(nullptr),
-      mGuidance(nullptr), _1C(0.0f, 0.0f, 0.0f) {
+      mGuidance(nullptr), mNozzleAimPos(0.0f, 0.0f, 0.0f) {
     mPeekZ = new StarPointerPeekZ();
     mTransHolder = new StarPointerTransformHolder();
     mControllers = new StarPointerController[StarPointerFunction::getNumStarPointer()];

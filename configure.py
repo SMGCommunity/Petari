@@ -2123,7 +2123,7 @@ config.libs = [
             Object(NonMatching, "Game/Screen/StarPointerController.cpp"),
             Object(Matching, "Game/Screen/StarPointerDirector.cpp"),
             Object(Matching, "Game/Screen/StarPointerGuidance.cpp"),
-            Object(NonMatching, "Game/Screen/StarPointerLayout.cpp"),
+            Object(Matching, "Game/Screen/StarPointerLayout.cpp"),
             Object(NonMatching, "Game/Screen/StarPointerTarget.cpp"),
             Object(Matching, "Game/Screen/SubMeterLayout.cpp"),
             Object(NonMatching, "Game/Screen/SuddenDeathMeter.cpp"),

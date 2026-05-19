@@ -181,6 +181,16 @@ namespace MR {
     f32 calcRotateY(f32, f32);
     f32 calcRotateZ(const TVec3f&, const TVec3f&);
 
+    inline f32 toDegree(f32 angle) {
+        f32 cnv = 180.0f / PI;
+        return angle * cnv;
+    }
+
+    inline f32 toRadian(f32 angle) {
+        f32 cnv = PI_180;
+        return angle * cnv;
+    }
+
     /// @brief Computes the distance between two points.
     /// @param[in] rPos1 A reference to the position of the first point.
     /// @param[in] rPos2 A reference to the position of the second point.
