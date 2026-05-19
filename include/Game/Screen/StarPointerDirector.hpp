@@ -56,9 +56,9 @@ public:
 
     void createLayout();
 
-    /* 0x00 */ bool _0;
-    /* 0x01 */ bool _1;
-    /* 0x02 */ bool _2;
+    /* 0x00 */ bool mIsUpdateTransHolder;
+    /* 0x01 */ bool mIsAllowP1StarPieceShot;
+    /* 0x02 */ bool mIsAllowP2StarPieceShot;
     /* 0x03 */ bool mIsOSPointerMode;
     /* 0x04 */ StarPointerController* mControllers;
     /* 0x08 */ StarPointerLayout* mStarPointerLayouts;

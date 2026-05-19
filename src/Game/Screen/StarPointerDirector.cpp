@@ -20,7 +20,9 @@
 #include <revolution/gx/GXGet.h>
 
 StarPointerDirector::StarPointerDirector()
-    : _0(false), _1(false), _2(false), mControllers(nullptr), mStarPointerLayouts(nullptr), mTransHolder(nullptr), mPeekZ(nullptr),
+    : mIsUpdateTransHolder(false), mIsAllowP1StarPieceShot(false), mIsAllowP2StarPieceShot(false), mControllers(nullptr),
+      mStarPointerLayouts(nullptr),
+      mTransHolder(nullptr), mPeekZ(nullptr),
       mGuidance(nullptr), mNozzleAimPos(0.0f, 0.0f, 0.0f) {
     mPeekZ = new StarPointerPeekZ();
     mTransHolder = new StarPointerTransformHolder();
@@ -111,7 +113,7 @@ void StarPointerDirector::startStarPointerNozzle() {
 }
 
 void StarPointerDirector::setGameSceneCameraMtx() {
-    if (_0) {
+    if (mIsUpdateTransHolder) {
         mTransHolder->mViewMtx.setInline(MR::getCameraViewMtx());
         mTransHolder->mProjMtx.setInline(MR::getCameraProjectionMtx());
         mTransHolder->mFovy = MR::getFovy();
