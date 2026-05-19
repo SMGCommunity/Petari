@@ -2203,7 +2203,7 @@ config.libs = [
             Object(Matching, "Game/System/ResourceInfo.cpp"),
             Object(NonMatching, "Game/System/ScenarioDataParser.cpp"),
             Object(NonMatching, "Game/System/ShapePacketUserData.cpp"),
-            Object(NonMatching, "Game/System/StarPointerOnOffController.cpp"),
+            Object(Matching, "Game/System/StarPointerOnOffController.cpp"),
             Object(Matching, "Game/System/StationedArchiveLoader.cpp"),
             Object(Matching, "Game/System/StationedFileInfo.cpp"),
             Object(NonMatching, "Game/System/WPad.cpp"),

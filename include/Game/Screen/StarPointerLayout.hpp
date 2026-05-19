@@ -86,6 +86,18 @@ public:
         mIsAppear = true;
     }
 
+    void hide() {
+        mIsAppear = false;
+    }
+
+    void validate() {
+        mIsPointerValid = true;
+    }
+
+    void invalidate() {
+        mIsPointerValid = false;
+    }
+
     bool isAppear() const {
         return mIsAppear && mAppearTime >= 0;
     }
@@ -115,7 +127,7 @@ public:
     /* 0x6B */ bool _6B;
     /* 0x6C */ bool _6C;
     /* 0x6D */ bool mShootDisabled;
-    /* 0x6E */ bool isPointerValid;
+    /* 0x6E */ bool mIsPointerValid;
     /* 0x6F */ bool mIsAppear;
     /* 0x70 */ s32 mAppearTime;
     /* 0x74 */ u32 _74;

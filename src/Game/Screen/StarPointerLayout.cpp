@@ -78,7 +78,7 @@ namespace NrvStarPointerLayout {
 StarPointerLayout::StarPointerLayout(const char* pName)
     : LayoutActor(pName, true), mPosition(0.0f, 0.0f), mPointerKind(StarPointerKind_NULL), mAnimType(AnimType_HandPaa), mTouchTimer(0),
       mPadChannel(-1), mRadius(sNormalRadius), _3C(0.0f), mRotateAngle(0.0f), mDirector(nullptr), mBlur(nullptr), mCommandStream(nullptr),
-      mNumber(nullptr), mActor(nullptr), _58(0), _60(0), mStartTouch(false), _6A(false), _6B(false), mShootDisabled(false), isPointerValid(true),
+      mNumber(nullptr), mActor(nullptr), _58(0), _60(0), mStartTouch(false), _6A(false), _6B(false), mShootDisabled(false), mIsPointerValid(true),
       mIsAppear(true), mAppearTime(0) {
 }
 
