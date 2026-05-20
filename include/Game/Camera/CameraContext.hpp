@@ -18,13 +18,9 @@ public:
     void setShakeOffset(f32, f32);
     void updateProjectionMtx();
 
-    TPos3f mView;        // 0xC
-    TPos3f mViewInv;     // 0x3C
-    TPos3f mProjection;  // 0x6C : TODO: Actually a Mtx44 through _A8
-    f32 _9C;
-    f32 _A0;
-    f32 _A4;
-    f32 _A8;
+    TPos3f mView;         // 0xC
+    TPos3f mViewInv;      // 0x3C
+    TProj3f mProjection;  // 0x6C
     f32 _AC;
     f32 mNearZ;         // 0xB0
     f32 mFarZ;          // 0xB4

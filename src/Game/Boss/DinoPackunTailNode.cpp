@@ -19,8 +19,7 @@ void DinoPackunTailNode::createJointController(LiveActor* pHost, const char* pJo
 }
 
 void DinoPackunTailNode::resetJoint() {
-    TPos3f pos;
-    JMath::gekko_ps_copy12(pos, _BC);
+    TPos3f pos(_BC);
     pos.getXDir(mNodeDirection);
     pos.getTrans(mPosition);
     MR::zeroVelocity(this);
@@ -39,14 +38,12 @@ bool DinoPackunTailNode::preCalcJoint(TPos3f* pMtx, const JointControllerInfo& r
     return false;
 }
 
-// https://decomp.me/scratch/LGK18
 bool DinoPackunTailNode::turnJointLocalXDir(TPos3f* pMtx, const JointControllerInfo& rInfo) {
     if (!_B4 && !_B8) {
         return false;
     }
 
-    TPos3f v25;
-    JMath::gekko_ps_copy12(&v25, pMtx);
+    TPos3f v25(pMtx);
     MR::orthogonalize(&v25);
     v25.getXDir(mNodeDirection);
     _A8.set< f32 >(v25(0, 2), v25(1, 2), v25(2, 2));

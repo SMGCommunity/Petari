@@ -1,36 +1,47 @@
 #pragma once
 
-#include <JSystem/JGeometry.hpp>
-#include <revolution.h>
+#include <JSystem/JGeometry/TVec.hpp>
 
 class DpdInfo {
 public:
     DpdInfo();
 
-    TVec2f _0;
-    u8 _8;
-    u8 _9;
-    u32 _C;
-    f32 mViewDistZ;  // 0x10
+    /* 0x00 */ TVec2f mPos;
+    /* 0x08 */ bool mInScreen;
+    /* 0x09 */ bool mDrawReady;
+    /* 0x0C */ u32 mZDepth;
+    /* 0x10 */ f32 mViewDistZ;
 };
 
 class StarPointerController {
 public:
     StarPointerController();
 
-    s32 mPort;  // 0x0
-    DpdInfo _4;
-    DpdInfo _18;
-    TVec2f _2C;
-    u32 _34;
-    u32 _38;
-    u32 _3C;
-    u32 _40;
-    u32 _44;
-    u32 _48;
-    u32 _4C;
-    TVec2f _50;
-    TVec3f _58;
-    TVec3f _64;
-    u8 _70;
+    bool isOutScreenLong() const;
+    void initAndSetPort(s32);
+    void movement(const f32*, const f32*);
+    void storeDataFromCallback(const f32*, const f32*);
+    void storePastPointingData();
+    void calcPastPointingPosOnScreen(TVec2f*, s32) const;
+    void updateDpdInfo();
+    void updateAdditionalInfo();
+    f32 calcViewDistanceZ(const TVec3f&, MtxPtr);
+
+    void drawDebug3D() const;
+
+    /* 0x00 */ s32 mPadChannel;
+    /* 0x04 */ DpdInfo mPastInfo;
+    /* 0x18 */ DpdInfo mInfo;
+    /* 0x2C */ TVec2f mScreenPos;
+    /* 0x34 */ s32 mOutScreenTime;
+    /* 0x38 */ TVec2f* mPastPosition;
+    /* 0x3C */ s32 mPastPointNum;
+    /* 0x40 */ TVec2f* mNextPastPosition;
+    /* 0x44 */ s32 mNextPastPointNum;
+    /* 0x48 */ f32 mScreenDist;
+    /* 0x4C */ f32 mScreenSpeed;
+    /* 0x50 */ TVec2f mScreenVel;
+    /* 0x58 */ TVec3f mWorldVel;
+    /* 0x64 */ TVec3f mWorldPos;
+    /* 0x70 */ bool mNotInScreen;
 };

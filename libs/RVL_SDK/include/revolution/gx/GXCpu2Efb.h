@@ -5,8 +5,8 @@
 extern "C" {
 #endif
 
-#include <revolution/types.h>
 #include <revolution/gx/GXEnum.h>
+#include <revolution/types.h>
 
 void GXPokeAlphaMode(GXCompare, u8);
 void GXPokeAlphaRead(GXAlphaReadMode);
@@ -15,10 +15,12 @@ void GXPokeBlendMode(GXBlendMode, GXBlendFactor, GXBlendFactor, GXLogicOp);
 void GXPokeColorUpdate(GXBool);
 void GXPokeDstAlpha(GXBool, u8);
 void GXPokeDither(GXBool);
-void GXPokeZMode(GXBool, GXCompare , GXBool);
+void GXPokeZMode(GXBool, GXCompare, GXBool);
+void GXPeekARGB(u16 x, u16 y, u32* color);
+void GXPeekZ(u16 x, u16 y, u32* z);
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif // GXCPU2EFB_H
+#endif  // GXCPU2EFB_H

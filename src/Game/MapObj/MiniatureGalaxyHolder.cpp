@@ -11,17 +11,13 @@
 #include "Game/Util/StringUtil.hpp"
 #include "revolution/types.h"
 
-MiniatureGalaxyHolder::MiniatureGalaxyHolder() : LiveActor("ミニチュアギャラクシー保持") {
-    _8C = nullptr;
-    _90 = 0;
-    _94 = 0;
-    _98 = -1;
-    _9C = 0;
+MiniatureGalaxyHolder::MiniatureGalaxyHolder() : LiveActor("ミニチュアギャラクシー保持"), _8C(), _90(), mCometGalaxy(), mCometID(-1), _9C() {
     _8C = new LiveActorGroup("ミニチュアギャラクシーグループ", 16);
 }
 
-void MiniatureGalaxyHolder::registerActor(LiveActor* mActor, const JMapInfoIter& rIter) {
-    _8C->registerActor(mActor);
+void MiniatureGalaxyHolder::registerActor(LiveActor* pActor, const JMapInfoIter& rIter) {
+    _8C->registerActor(pActor);
+    
     if (!_90) {
         MR::tryRegisterDemoCast(this, rIter);
         MR::registerDemoActionFunctor(this, MR::Functor_Inline(this, &MiniatureGalaxyHolder::killAllMiniatureGalaxy), "飛び出す");
@@ -51,7 +47,7 @@ MiniatureGalaxy* MiniatureGalaxyHolder::findMiniatureGalaxy(const char* v1) cons
     MiniatureGalaxy* mMiniGalaxy;
     for (int i = 0; i < _8C->mObjectCount; i++) {
         mMiniGalaxy = (MiniatureGalaxy*)_8C->getActor(i);
-        if (MR::isEqualString(mMiniGalaxy->_118, v1)) {
+        if (MR::isEqualString(mMiniGalaxy->mName, v1)) {
             return mMiniGalaxy;
         }
     }
@@ -65,17 +61,17 @@ void MiniatureGalaxyHolder::killAllMiniatureGalaxy() {
 }
 
 s32 MiniatureGalaxyHolder::calcIndex(const LiveActor* mActor) const {
-    const char* mString = ((MiniatureGalaxy*)mActor)->_118;
+    const char* mString = ((MiniatureGalaxy*)mActor)->mName;
     s32 mStarNum = MR::getPowerStarNumToOpenGalaxy(mString);
     s32 x = 0;
     MiniatureGalaxy* mMiniGalaxy2 = findMiniatureGalaxy(mString);
     MiniatureGalaxy* mMiniGalaxy3;
     for (int i = 0; i < _8C->mObjectCount; i++) {
         mMiniGalaxy3 = (MiniatureGalaxy*)_8C->getActor(i);
-        if (mMiniGalaxy3->_8C != 2 && mMiniGalaxy3 != mMiniGalaxy2) {
-            if (mMiniGalaxy2->_8C == 2) {
+        if (mMiniGalaxy3->mGalaxyType != 2 && mMiniGalaxy3 != mMiniGalaxy2) {
+            if (mMiniGalaxy2->mGalaxyType == 2) {
                 x++;
-            } else if (MR::getPowerStarNumToOpenGalaxy(mMiniGalaxy3->_118) < mStarNum) {
+            } else if (MR::getPowerStarNumToOpenGalaxy(mMiniGalaxy3->mName) < mStarNum) {
                 x++;
             }
         }
@@ -86,19 +82,19 @@ s32 MiniatureGalaxyHolder::calcIndex(const LiveActor* mActor) const {
 #pragma ppc_iro_level 1
 
 void MiniatureGalaxyHolder::updateCometStatus() {
-    _94 = nullptr;
-    _98 = -1;
+    mCometGalaxy = nullptr;
+    mCometID = -1;
     _9C = 0;
     MiniatureGalaxy* mMiniGalaxy;
     for (int i = 0; i < _8C->mObjectCount; i++) {
         mMiniGalaxy = (MiniatureGalaxy*)_8C->getActor(i);
-        if (MR::isGalaxyCometLandInStage(mMiniGalaxy->_118)) {
-            _94 = mMiniGalaxy;
+        if (MR::isGalaxyCometLandInStage(mMiniGalaxy->mName)) {
+            mCometGalaxy = mMiniGalaxy;
             break;
         }
     }
-    if (_94) {
-        _98 = MR::getEncounterGalaxyCometNameId(_94->_118);
+    if (mCometGalaxy != nullptr) {
+        mCometID = MR::getEncounterGalaxyCometNameId(mCometGalaxy->mName);
     }
 }
 
@@ -111,8 +107,8 @@ s32 MiniatureGalaxyFunction::getMiniatureGalaxyNum() {
     return getMiniGalaxyHolder()->_8C->mObjectCount;
 }
 
-void MiniatureGalaxyFunction::calcMiniatureGalaxyIndex(const LiveActor* mActor) {
-    getMiniGalaxyHolder()->calcIndex(mActor);
+s32 MiniatureGalaxyFunction::calcMiniatureGalaxyIndex(const LiveActor* mActor) {
+    return getMiniGalaxyHolder()->calcIndex(mActor);
 }
 
 void MiniatureGalaxyFunction::updateCometStatus() {
@@ -120,11 +116,11 @@ void MiniatureGalaxyFunction::updateCometStatus() {
 }
 
 MiniatureGalaxy* MiniatureGalaxyFunction::getCometLandMiniatureGalaxy() {
-    return getMiniGalaxyHolder()->_94;
+    return getMiniGalaxyHolder()->mCometGalaxy;
 }
 
 s32 MiniatureGalaxyFunction::getCometNameId() {
-    return getMiniGalaxyHolder()->_98;
+    return getMiniGalaxyHolder()->mCometID;
 }
 
 MiniatureGalaxy* MiniatureGalaxyFunction::getPointingMiniatureGalaxy() {
@@ -137,4 +133,5 @@ MiniatureGalaxy* MiniatureGalaxyFunction::getPointingMiniatureGalaxy() {
     return nullptr;
 }
 
-MiniatureGalaxyHolder::~MiniatureGalaxyHolder() {}
+MiniatureGalaxyHolder::~MiniatureGalaxyHolder() {
+}

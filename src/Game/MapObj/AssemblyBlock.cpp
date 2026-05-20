@@ -56,8 +56,8 @@ void AssemblyBlock::init(const JMapInfoIter& rIter) {
         _13C = false;
     }
 
-    JMath::gekko_ps_copy12(&_BC, getBaseMtx());
-    JMath::gekko_ps_copy12(&_8C, &_EC);
+    _BC.setInline(getBaseMtx());
+    _8C.setInline(_EC);
     MR::setBaseTRMtx(this, _8C);
 
     if (MR::isEqualSubString(name, "PartsIce")) {
@@ -240,4 +240,5 @@ bool AssemblyBlock::tryStartReturn() {
     return true;
 }
 
-AssemblyBlock::~AssemblyBlock() {}
+AssemblyBlock::~AssemblyBlock() {
+}

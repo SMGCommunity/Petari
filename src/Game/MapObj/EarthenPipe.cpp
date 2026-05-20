@@ -100,7 +100,7 @@ void EarthenPipe::init(const JMapInfoIter& rIter) {
     v24.identity();
     MR::makeMtxUpFrontPos(&v24, _98, v23, _8C);
     PSMTXCopy(v24.toMtxPtr(), mTopJointMtx);
-    JMath::gekko_ps_copy12(&_BC, &v24);
+    _BC.setInline(v24);
     TVec3f v22(_8C);
     TVec3f v21(_98);
     v21.scale(50.0f);
@@ -266,7 +266,7 @@ void EarthenPipe::exePlayerIn() {
     }
 
     if (MR::isBckStopped(mHostActor) && !MR::isPlayerDead()) {
-        JMath::gekko_ps_copy12(&_F0, _B0->getBaseMtx());
+        _F0.setInline(_B0->getBaseMtx());
         if (_B0->tryShowUp()) {
             setNerve(&NrvEarthenPipe::EarthenPipeNrvTargetPipeShowUp::sInstance);
         } else {
@@ -281,7 +281,7 @@ void EarthenPipe::exeTargetPipeShowUp() {
     }
 
     if (!_B0->isNerveShowUp()) {
-        JMath::gekko_ps_copy12(&_F0, _B0->getBaseMtx());
+        _F0.setInline(_B0->getBaseMtx());
         MR::showPlayer();
         setNerve(&NrvEarthenPipe::EarthenPipeNrvPlayerOut::sInstance);
     }
@@ -319,7 +319,7 @@ void EarthenPipe::exePlayerOut() {
             }
         }
 
-        setNerve(&NrvEarthenPipe::EarthenPipeNrvPlayerOut::sInstance);
+        setNerve(&NrvEarthenPipe::EarthenPipeNrvInvalid::sInstance);
     }
 }
 
@@ -336,9 +336,11 @@ void EarthenPipe::exeInvalid() {
     }
 }
 
-void EarthenPipe::exeHide() {}
+void EarthenPipe::exeHide() {
+}
 
-void EarthenPipe::exeShow() {}
+void EarthenPipe::exeShow() {
+}
 
 void EarthenPipe::exeWaitToHideDown() {
     if (MR::isStep(this, 40)) {
@@ -400,7 +402,18 @@ void EarthenPipe::control() {
     }
 }
 
-// bool EarthenPipe::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver)
+/* bool EarthenPipe::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
+    if (MR::isMsgAutoRushBegin(msg)) {
+        if (!isNerve(&NrvEarthenPipe::EarthenPipeNrvInvalid::sInstance) && !isNerve(&NrvEarthenPipe::EarthenPipeNrvHide::sInstance) &&
+            !isNerve(&NrvEarthenPipe::EarthenPipeNrvWaitToShowUp::sInstance) && !isNerve(&NrvEarthenPipe::EarthenPipeNrvShowUp::sInstance) &&
+            !isNerve(&NrvEarthenPipe::EarthenPipeNrvWaitToHideDown::sInstance) && !isNerve(&NrvEarthenPipe::EarthenPipeNrvHideDown::sInstance) &&
+            !MR::isPlayerDead()) {
+            TVec3f vec = TVec3f(mTopJointMtx[0][3], mTopJointMtx[1][3], mTopJointMtx[2][3]);
+
+        } else
+            return false;
+    }
+} */
 
 void EarthenPipe::calcTrans(f32 a1) {
     mPosition.set< f32 >(_98);
@@ -499,12 +512,15 @@ void EarthenPipeMediator::entry(EarthenPipe* pPipe, const JMapInfoIter& rIter) {
     mNumEntries++;
 }
 
-EarthenPipe::~EarthenPipe() {}
+EarthenPipe::~EarthenPipe() {
+}
 
-EarthenPipeMediator::~EarthenPipeMediator() {}
+EarthenPipeMediator::~EarthenPipeMediator() {
+}
 
 MtxPtr EarthenPipe::getBaseMtx() const {
     return mTopJointMtx;
 }
 
-void EarthenPipe::calcAnim() {}
+void EarthenPipe::calcAnim() {
+}
