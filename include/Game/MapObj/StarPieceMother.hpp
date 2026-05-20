@@ -7,10 +7,12 @@ class StarPiece;
 class StarPieceMother : public LiveActor {
 public:
     StarPieceMother(const char*);
+
     virtual ~StarPieceMother();
     virtual void init(const JMapInfoIter&);
     virtual void kill();
     virtual void control();
+    
     void exeMoveOnRail();
     void placementPieceOnRail(f32);
     void onSwitchA();
