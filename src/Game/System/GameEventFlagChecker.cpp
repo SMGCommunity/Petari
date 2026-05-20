@@ -50,7 +50,7 @@ bool GameEventFlagChecker::canOn(const char* pFlagName) const {
             return false;
         }
 
-        return mDataHolder->getGameEventValue(accessor2.getEventValueName()) == 0;
+        return static_cast< u16 >(mDataHolder->getGameEventValue(accessor2.getEventValueName())) == 0;
     case GameEventFlag::Type_10:
         return mDataHolder->isCompleteMarioAndLuigi();
     default:
