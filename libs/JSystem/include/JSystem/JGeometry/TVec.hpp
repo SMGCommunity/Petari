@@ -48,7 +48,7 @@ namespace JGeometry {
             y += other.y;
         }
 
-        inline TVec2& addInline(const TVec2< T >& other) {
+        inline TVec2& addInline(const TVec2< T >& other) const {
             TVec2 ret(*this);
             ret.add(other);
             return ret;
@@ -98,6 +98,11 @@ namespace JGeometry {
             y = y - rOther.y;
         }
 
+        void sub(const TVec2< T >& rA, const TVec2< T >& rB) {
+            x = rA.x - rB.x;
+            y = rA.y - rB.y;
+        }
+
         inline TVec2& subInline(const TVec2< T >& other) const {
             TVec2 ret = *this;
             ret.sub(other);
@@ -139,14 +144,26 @@ namespace JGeometry {
         }
 
         /* Operators */
-        TVec2< T >& operator+(const TVec2< T >& rOther) const;
+        TVec2< T > operator+(const TVec2< T >& rOther) const {
+            TVec2 ret(*this);
+            ret.x += rOther.x;
+            ret.y += rOther.y;
+            return ret;
+        }
+
         TVec2< T > operator-(const TVec2< T >& rOther) const {
             TVec2 ret(*this);
             ret.x -= rOther.x;
             ret.y -= rOther.y;
             return ret;
         }
-        TVec2< T >& operator*(f32 scale) const;
+
+        TVec2< T > operator*(f32 scale) const {
+            TVec2 ret(*this);
+            ret.x *= scale;
+            ret.y *= scale;
+            return ret;
+        }
 
         inline void operator-=(const TVec2< T >& rOther) {
             x = x - rOther.x;
