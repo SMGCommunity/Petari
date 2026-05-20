@@ -283,7 +283,7 @@ void StarPointerOnOffController::setupBigBubble() {
     getStarPointerLayout(WPAD_CHAN1)->validate();
     MR::activeStarPointerGuidance();
     MR::disableStarPointerShootStarPiece();
-    getStarPointerDirector()->_2 = true;  // TODO
+    getStarPointerDirector()->mIsAllowP2StarPieceShot = true;
 }
 
 void StarPointerOnOffController::setupCommandStream() {
@@ -294,7 +294,7 @@ void StarPointerOnOffController::setupCommandStream() {
     getStarPointerLayout(WPAD_CHAN1)->validate();
     MR::activeStarPointerGuidance();
     MR::disableStarPointerShootStarPiece();
-    getStarPointerDirector()->_2 = true;  // TODO
+    getStarPointerDirector()->mIsAllowP2StarPieceShot = true;
 }
 
 void StarPointerOnOffController::setupGame() {
