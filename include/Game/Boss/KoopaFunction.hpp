@@ -7,9 +7,8 @@ class NameObj;
 class Koopa;
 class LiveActor;
 class KoopaBattleMapStair;
-class KoopaRock;
+class PartsModel;
 class KoopaRockBreak;
-class KoopaRollBall;
 class KoopaBattleMapPlanet;
 class HitSensor;
 class KoopaPlanetShadow;
@@ -73,9 +72,9 @@ namespace KoopaFunction {
     void startBreakKoopaTailThorn(Koopa*);
     void startRecoverKoopaTailThorn(Koopa*);
 
-    KoopaRock* getKoopaRock(Koopa*);
+    PartsModel* getKoopaRock(Koopa*);
     KoopaRockBreak* getKoopaRockBreak(Koopa*);
-    KoopaRollBall* getKoopaRollBall(Koopa*);
+    PartsModel* getKoopaRollBall(Koopa*);
 
     void emitKoopaFireShortSlow(Koopa*);
     void emitKoopaFireShortFast(Koopa*);

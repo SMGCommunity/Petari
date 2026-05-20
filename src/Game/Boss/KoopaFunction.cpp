@@ -10,6 +10,7 @@
 #include "Game/Boss/KoopaViewSwitchKeeper.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
+#include "Game/LiveActor/PartsModel.hpp"
 #include "Game/Map/KoopaBattleMapPlanet.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 
@@ -182,30 +183,30 @@ void KoopaFunction::endFaceCtrlDirect(Koopa* pKoopa) {
 }
 
 void KoopaFunction::startRecoverKoopaArmor(Koopa* pKoopa) {
-    pKoopa->mParts->_10->kill();
-    pKoopa->mParts->_14->kill();
+    pKoopa->mParts->mArmorBreak->kill();
+    pKoopa->mParts->mThornBreak->kill();
 }
 
 void KoopaFunction::startBreakKoopaTailThorn(Koopa* pKoopa) {
-    pKoopa->mParts->_8->kill();
-    pKoopa->mParts->_C->kill();
+    pKoopa->mParts->mThornBig->kill();
+    pKoopa->mParts->mThornSmall->kill();
 }
 
 void KoopaFunction::startRecoverKoopaTailThorn(Koopa* pKoopa) {
-    pKoopa->mParts->_8->appear();
-    pKoopa->mParts->_C->appear();
+    pKoopa->mParts->mThornBig->appear();
+    pKoopa->mParts->mThornSmall->appear();
 }
 
-KoopaRock* KoopaFunction::getKoopaRock(Koopa* pKoopa) {
-    return pKoopa->mParts->mKoopaRock;
+PartsModel* KoopaFunction::getKoopaRock(Koopa* pKoopa) {
+    return pKoopa->mParts->mRock;
 }
 
 KoopaRockBreak* KoopaFunction::getKoopaRockBreak(Koopa* pKoopa) {
-    return pKoopa->mParts->mKoopaRockBreak;
+    return pKoopa->mParts->mRockBreak;
 }
 
-KoopaRollBall* KoopaFunction::getKoopaRollBall(Koopa* pKoopa) {
-    return pKoopa->mParts->mKoopaRollBall;
+PartsModel* KoopaFunction::getKoopaRollBall(Koopa* pKoopa) {
+    return pKoopa->mParts->mRollBall;
 }
 
 void KoopaFunction::emitKoopaFireShortSlow(Koopa* pKoopa) {
@@ -489,10 +490,10 @@ void KoopaFunction::moveAndTurnKoopaToPlayer(Koopa* pKoopa, const MR::ActorMoveP
 }
 
 void KoopaFunction::startBreakKoopaArmor(Koopa* pKoopa) {
-    pKoopa->mParts->_10->appear();
-    pKoopa->mParts->_14->appear();
+    pKoopa->mParts->mArmorBreak->appear();
+    pKoopa->mParts->mThornBreak->appear();
 
-    MR::startAction(pKoopa->mParts->_14, "Break");
+    MR::startAction(pKoopa->mParts->mThornBreak, "Break");
 }
 
 bool KoopaFunction::tryKoopaShellAttackPlayer(HitSensor* pSender, HitSensor* pReceiver) {
