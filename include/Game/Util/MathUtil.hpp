@@ -1,5 +1,6 @@
 #pragma once
 
+#include "JSystem/JMath/JMATrigonometric.hpp"
 #include <JSystem/JGeometry/TMatrix.hpp>
 #include <JSystem/JGeometry/TQuat.hpp>
 #include <JSystem/JGeometry/TVec.hpp>
@@ -405,22 +406,44 @@ namespace MR {
     /// @brief Computes the cosine of a number, in radians.
     /// @param x The number of radians to evaluate.
     /// @return The ratio of the length of the adjacent to that of the hypotenuse.
-    f32 cos(f32 x);
+    inline f32 cos(f32 x) {
+        return JMACosRadian(x);
+    }
 
     /// @brief Computes the sine of a number, in radians.
     /// @param x The number of radians to evaluate.
     /// @return The ratio of the length of the opposite to that of the hypotenuse.
-    f32 sin(f32 x);
+    inline f32 sin(f32 x) {
+        return JMASinRadian(x);
+    }
+
+    /// @brief Computes the tangent of a number, in radians.
+    /// @param x The number of radians to evaluate.
+    /// @return The ratio of the length of the opposite to that of the adjacent.
+    inline f32 tan(f32 x) {
+        return sin(x) / cos(x);
+    }
 
     /// @brief Computes the cosine of a number, in degrees.
     /// @param x The number of degrees to evaluate.
     /// @return The ratio of the length of the adjacent to that of the hypotenuse.
-    f32 cosDegree(f32 x);
+    inline f32 cosDegree(f32 x) {
+        return JMACosDegree(x);
+    }
 
     /// @brief Computes the sine of a number, in degrees.
     /// @param x The number of degrees to evaluate.
     /// @return The ratio of the length of the opposite to that of the hypotenuse.
-    f32 sinDegree(f32 x);
+    inline f32 sinDegree(f32 x) {
+        return JMASinDegree(x);
+    }
+
+    /// @brief Computes the tangent of a number, in degrees.
+    /// @param x The number of degrees to evaluate.
+    /// @return The ratio of the length of the opposite to that of the adjacent.
+    inline f32 tanDegree(f32 x) {
+        return sinDegree(x) / cosDegree(x);
+    }
 
     /// @brief Compares two numbers for the smallest value.
     /// @param a The first number to evaluate.

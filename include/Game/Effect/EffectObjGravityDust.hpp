@@ -1,14 +1,21 @@
 #pragma once
 
-#include "Game/NameObj/NameObj.hpp"
 #include "Game/Effect/SimpleEffectObj.hpp"
 
+class GravityDustParticleCallBack;
 
 class EffectObjGravityDust : public SimpleEffectObj {
 public:
     EffectObjGravityDust(const char*);
     virtual ~EffectObjGravityDust();
+    virtual void init(const JMapInfoIter& rIter);
+    virtual void endClipped();
+    virtual f32 getClippingRadius() const;
+    virtual f32 getFarClipDistance() const;
+    virtual TVec3f* getClippingCenterOffset() const;
+    virtual bool isSyncClipping() const;
 
 private:
-    u8 mPad[(0xA4) - sizeof(SimpleEffectObj)];
+    GravityDustParticleCallBack* _9C;
+    f32 _A0;
 };

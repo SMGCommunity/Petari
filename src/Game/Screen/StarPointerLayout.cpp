@@ -78,8 +78,8 @@ namespace NrvStarPointerLayout {
 StarPointerLayout::StarPointerLayout(const char* pName)
     : LayoutActor(pName, true), mPosition(0.0f, 0.0f), mPointerKind(StarPointerKind_NULL), mAnimType(AnimType_HandPaa), mTouchTimer(0),
       mPadChannel(-1), mRadius(sNormalRadius), _3C(0.0f), mRotateAngle(0.0f), mDirector(nullptr), mBlur(nullptr), mCommandStream(nullptr),
-      mNumber(nullptr), mActor(nullptr), _58(0), _60(0), mStartTouch(false), _6A(false), _6B(false), mShootDisabled(false), mIsPointerValid(true),
-      mIsAppear(true), mAppearTime(0) {
+      mNumber(nullptr), mActor(nullptr), mNewTouchedID(0), mTouchedID(0), mStartTouch(false), mStartDisableShoot(false), mSingleTouch(false),
+      mShootDisabled(false), mIsPointerValid(true), mIsAppear(true), mAppearTime(0) {
 }
 
 void StarPointerLayout::initWithPort(s32 channel) {
@@ -408,13 +408,14 @@ void StarPointerLayout::endOnReaction() {
 
 void StarPointerLayout::updateTouch() {
     mIsNewTouch = false;
-    _6B = _6C;
-    _6C = false;
+
+    mSingleTouch = mStartSingleTouch;
+    mStartSingleTouch = false;
 
     if (mStartTouch) {
-        if (mTouchTimer == 0 || _58 != _60) {
+        if (mTouchTimer == 0 || mNewTouchedID != mTouchedID) {
             mIsNewTouch = true;
-            _60 = _58;
+            mTouchedID = mNewTouchedID;
         }
         mTouchTimer = sTouchCount;
         mStartTouch = false;
@@ -587,8 +588,8 @@ void StarPointerLayout::control() {
     updateDecoration();
     updateTouch();
 
-    mShootDisabled = _6A;
-    _6A = false;
+    mShootDisabled = mStartDisableShoot;
+    mStartDisableShoot = false;
 
     if (!isAppear()) {
         if (!isNerve(&NrvStarPointerLayout::HostTypeNrvInvalidate::sInstance)) {

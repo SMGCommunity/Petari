@@ -2355,7 +2355,7 @@ Game/Effect/AutoEffectInfo.cpp:
 
 Game/Effect/EffectObjGravityDust.cpp:
 	.text       start:0x800C5328 end:0x800C54FC
-	.data       start:0x80578290 end:0x80578460
+	.data       start:0x805783D0 end:0x80578460
 	.sdata2     start:0x806B9CF8 end:0x806B9D10
 
 Game/Effect/EffectSystem.cpp:
