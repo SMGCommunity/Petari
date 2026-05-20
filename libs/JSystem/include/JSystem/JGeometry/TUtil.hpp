@@ -3,7 +3,6 @@
 #include <cmath>
 #include <revolution/types.h>
 
-
 static f32 flt_80630CA0[0x408];
 
 namespace JGeometry {
@@ -24,7 +23,16 @@ namespace JGeometry {
 
         static T sqrt(T val) NO_INLINE {
             if (val <= 0.0f) {
-                return 0.0f;
+                return val;
+            }
+
+            float outVal = __frsqrte(val);
+            return (val * (0.5f * outVal * (3.0f - (val * (outVal * outVal)))));
+        }
+
+        static f32 sqrtInline(f32 val) {
+            if (val <= 0.0f) {
+                return val;
             }
 
             float outVal = __frsqrte(val);
@@ -47,7 +55,9 @@ namespace JGeometry {
             return flt_80630CA0[(u32)(1023.5f * val)];
         }
 
-        static f32 PI() NO_INLINE { return 3.1415927f; }
+        static f32 PI() NO_INLINE {
+            return 3.1415927f;
+        }
 
         static T clamp(T val, T min, T max) NO_INLINE {
             if (val < min) {
@@ -61,8 +71,16 @@ namespace JGeometry {
             return val;
         }
 
-        static T inv_sqrt(T val);
+        static f32 inv_sqrt(f32 val) NO_INLINE {
+            if (val <= 0.0f) {
+                return val;
+            }
+            f32 outVal = (f32)__frsqrte(val);
+            return outVal * 0.5f * (3.0f - outVal * outVal * val);
+        }
 
-        static inline double epsilon() { return 32.0f * FLT_EPSILON; }
+        static inline double epsilon() {
+            return 32.0f * FLT_EPSILON;
+        }
     };
 };  // namespace JGeometry

@@ -81,8 +81,12 @@ public:
     void incModeCounter(void*, s32);
     void decModeCounter(void*);
 
-    bool isMode(StarPointerModeEnum mode) const {
-        return mModeCounter[mode] > 0 && mRequested[mode];
+    bool isMode(StarPointerModeEnum mode) NO_INLINE {
+        return mModeCounter[mode] != 0 || mRequested[mode];
+    }
+
+    bool compareMode(StarPointerModeEnum mode) const {
+        return mMode == mode;
     }
 
     /* 0x08 */ bool _8;

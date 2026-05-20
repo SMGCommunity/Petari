@@ -106,6 +106,14 @@ public:
         return mAnimType;
     }
 
+    bool isSingleTouch() {
+        return mSingleTouch || mStartSingleTouch;
+    }
+
+    f32 getRadius() const {
+        return mRadius;
+    }
+
     /* 0x20 */ TVec2f mPosition;
     /* 0x28 */ StarPointerKind mPointerKind;
     /* 0x2C */ AnimType mAnimType;
@@ -119,13 +127,16 @@ public:
     /* 0x4C */ StarPointerCommandStream* mCommandStream;
     /* 0x50 */ StarPointerNumber* mNumber;
     /* 0x54 */ const LiveActor* mActor;
-    /* 0x58 */ u64 _58;  // some way of tracking last touched
-    /* 0x60 */ u64 _60;  // past of _58
+    /* 0x58 */ u64
+        mNewTouchedID;  // NOTE: The use of this variable is a bit strange. It holds a unique identifier to check if the last touched object has
+                        // changed (usually via pointer), but this identifier can be pretty much anything: actor pointer, layout pointer + pane string
+                        // pointer, pointer to raw position data, etc. Basically: a pointer comparison with extra steps.
+    /* 0x60 */ u64 mTouchedID;
     /* 0x68 */ bool mIsNewTouch;
     /* 0x69 */ bool mStartTouch;
-    /* 0x6A */ bool _6A;
-    /* 0x6B */ bool _6B;
-    /* 0x6C */ bool _6C;
+    /* 0x6A */ bool mStartDisableShoot;
+    /* 0x6B */ bool mSingleTouch;
+    /* 0x6C */ bool mStartSingleTouch;
     /* 0x6D */ bool mShootDisabled;
     /* 0x6E */ bool mIsPointerValid;
     /* 0x6F */ bool mIsAppear;

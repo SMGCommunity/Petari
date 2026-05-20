@@ -1,6 +1,6 @@
 #pragma once
 
-#include <JSystem/JParticle/JPAParticleCallBack.hpp>
+#include <JSystem/JParticle/JPAParticle.hpp>
 
 class MultiEmitterParticleCallBack : public JPAParticleCallBack {
 public:
