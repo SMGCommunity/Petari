@@ -38,7 +38,7 @@ public:
     u32 _18;
     /* 0x1C */ u8 mBckTableVariant;
     u8 _1D;
-    const char* _20[4];
+    void* _20[4];
     f32 _30[4];
     XanimeOfsInfo** _40;
     /* 0x44 */ u32 mHash;
@@ -129,8 +129,8 @@ public:
     u32 getSingleIndex(const char*) const;
     u32 getSimpleIndex(const char*) const;
     const char* swapBckName(const char*, XanimeSwapTable*) const;
-    char* findResMotion(const char*) const;
-    char* findStringMotion(const char*) const;
+    void* findResMotion(const char*) const;
+    const char* findStringMotion(const char*) const;
     void createSortTable();
     bool search(XanimeBckTable**, const char*, u32) const;
     void init();

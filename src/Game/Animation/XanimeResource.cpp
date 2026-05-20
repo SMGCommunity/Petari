@@ -188,7 +188,7 @@ u32 XanimeResourceTable::initGroupInfo(ResourceHolder* pResourceHolder, XanimeGr
             entry->_18 = 0;
         } else {
             // Unsure of what is happening there.
-            entry->_18 = static_cast< u8 >(entry->_20[0][4]);
+            entry->_18 = static_cast< u8* >(entry->_20[0])[4];
             entry->_14 = 0.0f;
             entry->_10 = static_cast< f32 >(reinterpret_cast< const s16* >(entry->_20[0])[3]);
         }
@@ -392,15 +392,15 @@ void XanimeResourceTable::createSortTable() {
     mSortTable->sort();
 }
 
-char* XanimeResourceTable::findResMotion(const char* pTarget) const {
+void* XanimeResourceTable::findResMotion(const char* pTarget) const {
     const char* newName = swapBckName(pTarget, mSwapTable);
     if (!mResourceHolder->mMotionResTable->isExistRes(newName)) {
         return nullptr;
     }
-    mResourceHolder->mMotionResTable->getRes(newName);
+    return mResourceHolder->mMotionResTable->getRes(newName);
 }
 
-char* XanimeResourceTable::findStringMotion(const char* pArg) const {
+const char* XanimeResourceTable::findStringMotion(const char* pArg) const {
     return mResourceHolder->mMotionResTable->findFileInfo(pArg)->mName;
 }
 
