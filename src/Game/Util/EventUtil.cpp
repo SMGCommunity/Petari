@@ -453,7 +453,7 @@ namespace MR {
         GameDataFunction::updateStorageSpinDriverPathDrawRange(pStageName, scenarioNo, param1, param2);
     }
 
-    s32 getStarPieceNumGivingToTicoSeed(int index) {
+    u16 getStarPieceNumGivingToTicoSeed(int index) {
         return GameDataFunction::getStarPieceNumGivingToTicoSeed(index);
     }
 
@@ -461,11 +461,11 @@ namespace MR {
         GameDataFunction::addStarPieceGivingToTicoSeed(index, num);
     }
 
-    s32 getStarPieceNumGivingToTicoGalaxy(int index) {
+    u16 getStarPieceNumGivingToTicoGalaxy(int index) {
         return GameDataFunction::getStarPieceNumGivingToTicoSeed(index + 8);
     }
 
-    s32 getStarPieceNumMaxGivingToTicoGalaxy(int index) {
+    u16 getStarPieceNumMaxGivingToTicoGalaxy(int index) {
         return GameDataFunction::getStarPieceNumMaxGivingToTicoSeed(index + 8);
     }
 
