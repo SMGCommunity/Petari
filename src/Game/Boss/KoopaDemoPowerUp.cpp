@@ -1,5 +1,6 @@
 #include "Game/Boss/KoopaDemoPowerUp.hpp"
 #include "Game/Boss/KoopaFunction.hpp"
+#include "Game/Boss/KoopaPowerUpSwitch.hpp"
 
 namespace NrvKoopaDemoPowerUp {
     NEW_NERVE(KoopaDemoPowerUpNrvWaitDemo, KoopaDemoPowerUp, WaitDemo);
