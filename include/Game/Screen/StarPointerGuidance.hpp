@@ -34,6 +34,10 @@ public:
     bool isExistFrame2P() NO_INLINE;
     void deactive();
 
+    void active() {
+        mIsActive = true;
+    }
+
     /* 0x20 */ Spine* mSpineFrame1P;
     /* 0x24 */ Spine* mSpineGuidance;
     /* 0x28 */ Spine* mSpineFrame2P;

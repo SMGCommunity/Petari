@@ -29,6 +29,18 @@ public:
 
     void drawDebug3D() const;
 
+    bool isInScreen() const {
+        return !isOutScreenLong();
+    }
+
+    f32 getViewDistZ() const {
+        return mPastInfo.mViewDistZ;
+    }
+
+    const TVec2f& getPastPos() const {
+        return mPastInfo.mPos;
+    }
+
     /* 0x00 */ s32 mPadChannel;
     /* 0x04 */ DpdInfo mPastInfo;
     /* 0x18 */ DpdInfo mInfo;

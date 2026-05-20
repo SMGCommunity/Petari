@@ -56,6 +56,18 @@ public:
 
     void createLayout();
 
+    void init() {
+        mIsUpdateTransHolder = true;
+    }
+
+    void invalidate() {
+        mIsUpdateTransHolder = false;
+    }
+
+    bool isEnableStarPointerShootStarPiece() const {
+        return mIsAllowP1StarPieceShot || mIsAllowP2StarPieceShot;
+    }
+
     /* 0x00 */ bool mIsUpdateTransHolder;
     /* 0x01 */ bool mIsAllowP1StarPieceShot;
     /* 0x02 */ bool mIsAllowP2StarPieceShot;
