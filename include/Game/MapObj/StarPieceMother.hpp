@@ -12,7 +12,7 @@ public:
     virtual void init(const JMapInfoIter&);
     virtual void kill();
     virtual void control();
-    
+
     void exeMoveOnRail();
     void placementPieceOnRail(f32);
     void onSwitchA();
@@ -23,7 +23,7 @@ public:
 
 private:
     /* 0x8C */ StarPiece** mStarPieceArray;
-    /* 0x90 */ f32* mFloatArray;
+    /* 0x90 */ f32* _90;
     /* 0x94 */ s32 _94;
     /* 0x98 */ u32 _98;
     /* 0x9C */ u32 _9C;

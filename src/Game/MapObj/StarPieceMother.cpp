@@ -6,7 +6,7 @@ namespace NrvStarPieceMother {
     NEW_NERVE(HostTypeNrvWait, StarPieceMother, Wait);
 }  // namespace NrvStarPieceMother
 
-StarPieceMother::StarPieceMother(const char* pName) : LiveActor(pName), mStarPieceArray(), mFloatArray(), _94(6), _98(), _9C(), _A0() {
+StarPieceMother::StarPieceMother(const char* pName) : LiveActor(pName), mStarPieceArray(), _90(), _94(6), _98(), _9C(), _A0() {
 }
 
 StarPieceMother::~StarPieceMother() {
@@ -50,7 +50,7 @@ void StarPieceMother::init(const JMapInfoIter& rIter) {
     }
 
     mStarPieceArray = new StarPiece*[_94];
-    mFloatArray = new f32[_94];
+    _90 = new f32[_94];
 
     for (u32 idx = 0; idx < _94; idx++) {
         mStarPieceArray[idx] = new StarPiece("スターピースマザーピース");
@@ -110,7 +110,7 @@ void StarPieceMother::exeMoveOnRail() {
     MR::moveCoordAndFollowTrans(this, _A0); 
 
     f32 railCoord = MR::getRailCoord(this); // Necessary to match
-    if (mFloatArray[_98] <= railCoord) {
+    if (_90[_98] <= railCoord) {
         mStarPieceArray[_98]->appear();
         MR::startSound(this, "SE_OJ_STAR_PIECE_BURST", -1, -1);
         _98++;
@@ -125,7 +125,7 @@ void StarPieceMother::placementPieceOnRail(f32 distance) {
     TVec3f railPos;
     MR::calcRailPosAtCoord(&railPos, this, distance);
     mStarPieceArray[0]->mPosition.set(railPos);
-    mFloatArray[0] = distance;
+    _90[0] = distance;
 
     f32 step;
     f32 difference = MR::getRailTotalLength(this) - distance;
@@ -138,7 +138,7 @@ void StarPieceMother::placementPieceOnRail(f32 distance) {
         f32 value = distance >= difference ? difference : distance;
         MR::calcRailPosAtCoord(&railPos, this, value);
         mStarPieceArray[idx]->mPosition.set(railPos);
-        mFloatArray[idx] = value;
+        _90[idx] = value;
     }
 }
 
