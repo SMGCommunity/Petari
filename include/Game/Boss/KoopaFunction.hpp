@@ -102,17 +102,17 @@ namespace KoopaFunction {
 
     void registerKoopaSwitchKeeper(LiveActor*);
     LiveActor* getKoopaSwitchKeeper(Koopa*);
-    
+
     void registerKoopaViewSwitchKeeper(LiveActor*);
     LiveActor* getKoopaViewSwitchKeeper(Koopa*);
-    
+
     void registerKoopaPowerUpSwitch(LiveActor*);
     LiveActor* getKoopaPowerUpSwitch(Koopa*);
-    
+
     bool tryStartKoopaAndMarioCameraDemo(Koopa*, const char*, const char*, const char*);
     bool tryStartKoopaCameraDemo(Koopa*, const char*, const char*, const char*);
     bool tryEndKoopaCameraDemo(Koopa*, const char*, const char*);
-    
+
     ModelObjNpc* getKoopaDemoPeach(Koopa*);
     ModelObjNpc* getKoopaDemoKoopaJr(Koopa*);
     ModelObjNpc* getKoopaDemoKoopaJrShip(Koopa*);
@@ -120,9 +120,9 @@ namespace KoopaFunction {
     ModelObj* getKoopaDemoMeteor2(Koopa*);
     ModelObj* getKoopaDemoMeteor3(Koopa*);
     void endKoopaDemoMeetPeach(Koopa*);
-    
+
     void invalidateKoopaNpcLod(Koopa*);
-    
+
     bool initKoopaCamera(Koopa*, const char*);
     void initKoopaAnimCamera(Koopa*, const char*);
     bool startKoopaCamera(Koopa*, const char*);
@@ -130,16 +130,16 @@ namespace KoopaFunction {
     void startKoopaAnimCamera(Koopa*, const char*, s32);
     bool endKoopaCamera(Koopa*, const char*, bool, s32);
     void endKoopaAnimCamera(Koopa*, const char*, s32);
-    
+
     void startKoopaPlateDamageAnimPowerStarAppear(Koopa*);
-    
+
     void changeBgmStateNormal(u32);
     void changeBgmStateEscape();
     void changeBgmStateDamageTail();
     void changeBgmStateFlyAway();
-    
+
     void tryRestartKoopa();
-    
+
     void moveAndTurnKoopaToPlayer(Koopa*, const MR::ActorMoveParam&);
     void startBreakKoopaArmor(Koopa*);
     bool tryKoopaShellAttackPlayer(HitSensor*, HitSensor*);

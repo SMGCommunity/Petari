@@ -6,28 +6,19 @@
 #include "Game/Boss/KoopaPlanetShadow.hpp"
 #include "Game/Boss/KoopaRockBreak.hpp"
 #include "Game/Boss/KoopaShockWave.hpp"
-#include "Game/LiveActor/ActorCameraInfo.hpp"
 #include "Game/LiveActor/LiveActorGroup.hpp"
-#include "Game/LiveActor/ModelObj.hpp"
-#include "Game/LiveActor/PartsModel.hpp"
 #include "Game/Map/KoopaBattleMapPlanet.hpp"
-#include "Game/Map/KoopaBattleMapStair.hpp"
-#include "Game/Util/ActorMovementUtil.hpp"
-#include "Game/Util/CameraUtil.hpp"
-#include "Game/Util/DemoUtil.hpp"
-#include "Game/Util/JMapInfo.hpp"
-#include "Game/Util/LiveActorUtil.hpp"
-#include "revolution/types.h"
 
 KoopaParts::KoopaParts(Koopa* pKoopa, const JMapInfoIter& rIter)
     : mKoopa(pKoopa), mPlanetRadius(1300.0f), _8(), _C(), _10(), _14(), mPlanetLv1(), mPlanetShadow(), _20(), _24(), _28(), _2C(), _30(), _34(),
-      _38(), _3C(), _40(), mPlanetLv2(), mPlanetLv3(), _4C(), _50(), _54(), _58(), mPeach(), mKoopaJr(), mKoopaJrShip(), mMeteor1(), mMeteor2(), mMeteor3(), mActorCameraInfo() {
+      _38(), _3C(), _40(), mPlanetLv2(), mPlanetLv3(), _4C(), _50(), _54(), _58(), mPeach(), mKoopaJr(), mKoopaJrShip(), mMeteor1(), mMeteor2(),
+      mMeteor3(), mActorCameraInfo() {
     mActorCameraInfo = new ActorCameraInfo(rIter);
     MR::declareCameraRegisterVec(mKoopa, 0, &mKoopa->mPosition);
 }
 
 namespace {
-    LiveActor* createKoopaBodyParts(LiveActor* pActor, const char* pName, const char* pModelName, const char* pJointName) {
+    PartsModel* createKoopaBodyParts(LiveActor* pActor, const char* pName, const char* pModelName, const char* pJointName) {
         PartsModel* pPartsModel = new PartsModel(pActor, pName, pModelName, nullptr, 18, false);
 
         pPartsModel->loadFixedPosition(pJointName);
@@ -67,7 +58,7 @@ void KoopaParts::killFireStairsAll() {
 }
 
 void KoopaParts::emitFireShort(bool fast, bool curve) {
-    KoopaFireShort* pFireShort = static_cast<KoopaFireShort *>(_24->getDeadActor());
+    KoopaFireShort* pFireShort = static_cast< KoopaFireShort* >(_24->getDeadActor());
 
     if (pFireShort != nullptr) {
         if (curve) {
@@ -81,7 +72,7 @@ void KoopaParts::emitFireShort(bool fast, bool curve) {
 }
 
 void KoopaParts::emitFireLongTime() {
-    KoopaFireShort* pFireShort = static_cast<KoopaFireShort *>(_24->getDeadActor());
+    KoopaFireShort* pFireShort = static_cast< KoopaFireShort* >(_24->getDeadActor());
 
     if (pFireShort != nullptr) {
         pFireShort->emitLongTime();

@@ -2,8 +2,8 @@
 #include "Game/Boss/KoopaDemoJumpToPlanet.hpp"
 #include "Game/Boss/KoopaDemoPowerUp.hpp"
 
-KoopaSequencer::KoopaSequencer(const char* pName, s32 VS)
-    : NerveExecutor(pName), mKoopa(), mPowerUp(), _10(), mJumpToPlanet(), mLv(1), mVs(VS), mIsAngry() {
+KoopaSequencer::KoopaSequencer(const char* pName, s32 vs)
+    : NerveExecutor(pName), mKoopa(), mPowerUp(), _10(), mJumpToPlanet(), mLv(1), mVs(vs), mIsAngry() {
 }
 
 KoopaSequencer::~KoopaSequencer() {

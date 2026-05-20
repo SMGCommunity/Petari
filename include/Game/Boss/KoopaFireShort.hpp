@@ -16,7 +16,7 @@ public:
     void emitFast();
     void emitCurve();
     void emitLongTime();
-    
+
     void exeFly();
     void exeDisappear();
     void exeErase2P();

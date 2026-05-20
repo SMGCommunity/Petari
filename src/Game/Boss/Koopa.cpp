@@ -6,6 +6,7 @@
 #include "Game/Boss/KoopaSequencer.hpp"
 #include "Game/LiveActor/ActorJointCtrl.hpp"
 
+
 Koopa::Koopa(const char* pName, KoopaSequencer* pSequencer)
     : LiveActor(pName), mFront(0.0f, 0.0f, 1.0f), mSequencer(pSequencer), mSensorCtrl(), mParts(), mJointCtrl() {
 }

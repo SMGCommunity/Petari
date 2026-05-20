@@ -13,7 +13,7 @@ public:
     virtual void appear();
     virtual void makeActorDead();
     virtual void updateHitSensor(HitSensor*);
-    
+
     void exeWaveAttack();
 
     void calcAndSetMtx();

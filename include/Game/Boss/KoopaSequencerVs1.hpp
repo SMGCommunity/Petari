@@ -7,7 +7,7 @@ class HitSensor;
 class KoopaSequencerVs1 : public KoopaSequencer {
 public:
     KoopaSequencerVs1();
-    
+
     virtual ~KoopaSequencerVs1();
     virtual void init(Koopa*, const JMapInfoIter&);
 

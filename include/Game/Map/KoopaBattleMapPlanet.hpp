@@ -7,6 +7,7 @@ public:
     KoopaBattleMapPlanet(const char*, const char*, bool, bool, bool);
 
     void startAnimPowerStarAppear();
+
 private:
     /* 0x8C */ char* _8C;
     /* 0x90 */ TMtx34f _90;

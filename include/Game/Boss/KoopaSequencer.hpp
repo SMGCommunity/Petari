@@ -15,7 +15,7 @@ public:
     virtual void init(Koopa*, const JMapInfoIter&);
     virtual void update();
     virtual void calcAndSetBaseMtx();
-    
+
     void startBattleLevel2();
     void startBattleLevel3();
 

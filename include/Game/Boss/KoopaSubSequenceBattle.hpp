@@ -9,6 +9,7 @@ class KoopaBattleBase;
 class KoopaSubSequenceBattle : public ActorStateBase< Koopa > {
 public:
     KoopaSubSequenceBattle(Koopa*, KoopaSequencer*, KoopaBattleBase*);
+    
     virtual ~KoopaSubSequenceBattle();
     virtual void kill();
 
