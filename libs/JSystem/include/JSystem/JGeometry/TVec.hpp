@@ -43,11 +43,6 @@ namespace JGeometry {
             y = _y;
         }
 
-        TVec2(const TVec2< T >& rSrc) {
-            x = rSrc.x;
-            y = rSrc.y;
-        }
-
         void add(const TVec2< T >& other) {
             x += other.x;
             y += other.y;
@@ -56,6 +51,13 @@ namespace JGeometry {
         inline TVec2& addInline(const TVec2< T >& other) {
             TVec2 ret(*this);
             ret.add(other);
+            return ret;
+        }
+
+        inline const TVec2& addOperatorInline(const TVec2& rOther) const {
+            TVec2 ret(*this);
+            ret.x += rOther.x;
+            ret.y += rOther.y;
             return ret;
         }
 
@@ -124,10 +126,6 @@ namespace JGeometry {
         }
 
         /* Operators */
-        void operator=(const TVec2< T >& rSrc) {
-            x = rSrc.x;
-            y = rSrc.y;
-        }
         TVec2< T >& operator+(const TVec2< T >& rOther) const;
         TVec2< T >& operator-(const TVec2< T >& rOther) const;
         TVec2< T >& operator*(f32 scale) const;
@@ -205,7 +203,7 @@ namespace JGeometry {
         }
     };
 
-    __attribute__((always_inline)) inline void setTVec3f(const f32* a, f32* b) {
+    ALWAYS_INLINE inline void setTVec3f(const f32* a, f32* b) {
 #ifdef __MWERKS__
         const register f32* v_a = a;
         register f32* v_b = b;
@@ -283,6 +281,13 @@ namespace JGeometry {
             z = y = x = val;
         }
 
+        template < typename T >
+        inline TVec3(const TVec2< T >& rVec) {
+            x = rVec.x;
+            y = rVec.y;
+            z = 0;
+        }
+
         inline TVec3() {
         }
 
@@ -291,6 +296,10 @@ namespace JGeometry {
         }
         operator const Vec*() const {
             return (Vec*)&x;
+        }
+
+        operator const TVec2< f32 >&() const {
+            return *reinterpret_cast< const TVec2< f32 >* >(this);
         }
 
         TVec3& operator=(const TVec3& b) NO_INLINE {

@@ -352,7 +352,7 @@ void SkeletalFishGuard::calcAndSetBaseMtx() {
             MtxPtr mtx = getBaseMtx();
             TPos3f stack_A0;
             f32 x, y, z;
-            stack_A0.setInline_2(mtx);
+            stack_A0.setInline(mtx);
             stack_A0.getXDirInline(stack_24);
             stack_A0.getYDirInline(stack_30);
             TVec3f stack_18;

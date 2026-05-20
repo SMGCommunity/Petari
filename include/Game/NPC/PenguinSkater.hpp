@@ -1,12 +1,12 @@
 #pragma once
 
 #include "Game/NPC/NPCActor.hpp"
-#include "Game/NameObj/NameObj.hpp"
+
+class NPCSupportRail;
 
 class PenguinSkater : public NPCActor {
 public:
     PenguinSkater(const char*);
-    virtual ~PenguinSkater();
 
     virtual void init(const JMapInfoIter& rIter);
     virtual void initAfterPlacement();
@@ -38,14 +38,15 @@ public:
     void exeSitDown();
     void exeSwitch();
 
-private:
+    bool isAttackable() const;
+
     /* 0x15C */ ActorCameraInfo* mCameraInfo;
-    /* 0x160 */ LiveActor* _160;
-    /* 0x164 */ LiveActor* _164;
-    /* 0x168 */ u8 _168[0x40];
-    /* 0x1A8 */ LiveActor* mRail;
-    /* 0x1AC */ s32 _1AC;
-    /* 0x1B0*/ s32 _1B0;
-    /* 0x1B4 */ TQuat4f _1B4;
-    /* 0x1C4 */ TVec3f _1C4;
+    /* 0x160 */ NPCSupportRail* mCurrentRail;
+    /* 0x164 */ NPCSupportRail* mSwitchRail;
+    /* 0x168 */ NPCSupportRail* mSwitchRails[16];
+    /* 0x1A8 */ NPCSupportRail* mRail;
+    /* 0x1AC */ s32 mNumRails;
+    /* 0x1B0 */ s32 mCrossPoint;
+    /* 0x1B4 */ TQuat4f mMarioQuat;
+    /* 0x1C4 */ TVec3f mMarioPos;
 };

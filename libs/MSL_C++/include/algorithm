@@ -43,6 +43,14 @@ namespace std {
         return first;
     }
 
+    template < class InputIt, class UnaryPredicate >
+    InputIt find_if(InputIt first, InputIt last, UnaryPredicate p) {
+        while (first != last && !p(*first)) {
+            ++first;
+        }
+        return first;
+    }
+
     // mostly yoinked from OGWS decomp
     template < typename TIt, typename TCompare >
     inline TIt min_element(TIt first, TIt last, TCompare compare) {

@@ -19,7 +19,6 @@
 #include <JSystem/JMath/JMath.hpp>
 #include <cstdio>
 
-
 namespace {
     static SkeletalFishBoss::SensorToCollider sColInfo[0xE] = {
         {"Joint01", "BackBone01"},        {"Joint02", "BackBone02"},         {"Joint03", "BackBone03"}, {"Joint04", "BackBone04"},
@@ -34,13 +33,21 @@ namespace {
     char* test[] = {"Shadow00", "Joint02", "SkeletalFishBossShadow"};
     static SkeletalFishBoss::JointToShadow sShadowInfo = {"Shadow00", "Joint02", "SkeletalFishBossShadow"};
 
-    inline SkeletalFishBoss::JointToShadow& testInline() { return sShadowInfo; }
+    inline SkeletalFishBoss::JointToShadow& testInline() {
+        return sShadowInfo;
+    }
 
-    inline const char* getName(SkeletalFishBoss::JointToShadow& jointToShadow) { return jointToShadow.mName; }
+    inline const char* getName(SkeletalFishBoss::JointToShadow& jointToShadow) {
+        return jointToShadow.mName;
+    }
 
-    inline const char* getShadowName(SkeletalFishBoss::JointToShadow& jointToShadow) { return jointToShadow.mShadowName; }
+    inline const char* getShadowName(SkeletalFishBoss::JointToShadow& jointToShadow) {
+        return jointToShadow.mShadowName;
+    }
 
-    inline const char* getJointName(SkeletalFishBoss::JointToShadow& jointToShadow) { return jointToShadow.mJointName; }
+    inline const char* getJointName(SkeletalFishBoss::JointToShadow& jointToShadow) {
+        return jointToShadow.mJointName;
+    }
 };  // namespace
 
 namespace {
@@ -103,7 +110,7 @@ void SkeletalFishBoss::init(const JMapInfoIter& rIter) {
     MR::getJMapInfoArg1NoInit(rIter, &_1A4);
     initLevelStatus();
     mBossInfo->initWithoutIter();
-    JMath::gekko_ps_copy12(&_150, MR::getZonePlacementMtx(rIter));
+    _150.setInline(MR::getZonePlacementMtx(rIter));
     initSwitch(rIter);
     initJoint();
     initHead();
@@ -206,8 +213,7 @@ void SkeletalFishBoss::calcAnim() {
         idx_mult = 2607.5945f;
         JMath::TSinCosTable<14, f32>* tbl = &JMath::sSinCosTable;
 
-        TPos3f jointMtx;
-        JMath::gekko_ps_copy12(&jointMtx, MR::getJointMtx(this, shadow->mJointName));
+        TPos3f jointMtx(MR::getJointMtx(this, shadow->mJointName));
         TVec3f trans;
         jointMtx.getTrans(trans);
         TVec3f gravity;
@@ -616,12 +622,12 @@ void SkeletalFishBoss::calcAndSetBaseMtx() {
 
         TPos3f railMtx;
         mRailControl->getMtx(&railMtx, 0.0f);
-        MR::setBaseTRMtx(this, railMtx.toMtxPtr());
-        JMath::gekko_ps_copy12(&_120, &railMtx);
+        MR::setBaseTRMtx(this, railMtx);
+        _120.setInline(railMtx);
         _120.invert(_120);
 
         if (_D4) {
-            JMath::gekko_ps_copy12(&_D8, &railMtx);
+            _D8.setInline(railMtx);
             _D8.mMtx[0][3] = _D4->mPosition.x;
             _D8.mMtx[1][3] = _D4->mPosition.y;
             _D8.mMtx[2][3] = _D4->mPosition.z;
@@ -713,7 +719,7 @@ void SkeletalFishBoss::initCamera() {
     MR::declareEventCameraAnim(&cameraInfo, "スカルシャーク死亡", MR::getResourceHolder(this)->mFileInfoTable->getRes(fileName));
     MR::declareEventCameraProgrammable("デモ終了後カメラ");
     mCameraTargetMtx = new CameraTargetMtx("カメラターゲットダミー");
-    JMath::gekko_ps_copy12(&mCameraTargetMtx->mMatrix, &_150);
+    mCameraTargetMtx->mMatrix.setInline(_150);
 }
 
 void SkeletalFishBoss::validateCollision() {
@@ -737,8 +743,7 @@ void SkeletalFishBoss::invalidateCollision() {
 }
 
 void SkeletalFishBoss::getMouthSensorCenterPos(TVec3f& rPos, f32 a2) const {
-    TMtx34f mtx;
-    JMath::gekko_ps_copy12(&mtx, MR::getJointMtx(this, "Head"));
+    TPos3f mtx(MR::getJointMtx(this, "Head"));
     rPos.z = a2;
     rPos.x = 0.0f;
     rPos.y = 0.0f;
@@ -855,8 +860,7 @@ void SkeletalFishBoss::startCamera(const char* pCameraName) {
 /*
 void SkeletalFishBoss::resetCamera() {
     MR::startGlobalEventCameraTargetPlayer("デモ終了後カメラ", 0);
-    TPos3f mtxPos;
-    JMath::gekko_ps_copy12(&mtxPos, MR::getPlayerBaseMtx());
+    TPos3f mtxPos(MR::getPlayerBaseMtx());
     TVec3f pos;
     mtxPos.getTrans(pos);
     TVec3f stack_2C;
@@ -1112,8 +1116,8 @@ bool SkeletalFishBossHead::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, H
 }
 
 void SkeletalFishBossHead::updateCollisionMtx() {
-    JMath::gekko_ps_copy12(&_9C, MR::getJointMtx(this, "Head"));
-    JMath::gekko_ps_copy12(&_D0, MR::getJointMtx(this, "Jow"));
+    _9C.setInline(MR::getJointMtx(this, "Head"));
+    _D0.setInline(MR::getJointMtx(this, "Jow"));
 }
 
 void SkeletalFishBossHead::createSubModel() {
@@ -1153,8 +1157,11 @@ void SkeletalFishBossScarFlash::control() {
     }
 }
 
-SkeletalFishBoss::~SkeletalFishBoss() {}
+SkeletalFishBoss::~SkeletalFishBoss() {
+}
 
-SkeletalFishBossHead::~SkeletalFishBossHead() {}
+SkeletalFishBossHead::~SkeletalFishBossHead() {
+}
 
-SkeletalFishBossScarFlash::~SkeletalFishBossScarFlash() {}
+SkeletalFishBossScarFlash::~SkeletalFishBossScarFlash() {
+}

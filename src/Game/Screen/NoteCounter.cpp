@@ -22,7 +22,8 @@ namespace NrvNoteCounter {
 };  // namespace NrvNoteCounter
 
 NoteCounter::NoteCounter(const char* pName)
-    : LayoutActor(pName, true), mNoteNum(0), mNoteAddNum(0), mNoteMissNum(0), mMelodyNo(-1), mRailLength(0.0f), mHost(nullptr) {}
+    : LayoutActor(pName, true), mNoteNum(0), mNoteAddNum(0), mNoteMissNum(0), mMelodyNo(-1), mRailLength(0.0f), mHost(nullptr) {
+}
 
 void NoteCounter::init(const JMapInfoIter& rIter) {
     initNerve(&NrvNoteCounter::NoteCounterNrvHide::sInstance);
@@ -44,9 +45,8 @@ void NoteCounter::declareNoteNumMaxAndMelody(LiveActor* pHost, s32 noteNum, s32 
     }
 }
 
-// NoteCounter::add
-
-void NoteCounter::exeShow() {}
+void NoteCounter::exeShow() {
+}
 
 void NoteCounter::exeShowWait() {
     if (MR::isStep(this, sStepShowWait)) {
@@ -55,10 +55,8 @@ void NoteCounter::exeShowWait() {
 }
 
 void NoteCounter::exeShowToHide() {
-    // FIXME: Construction of `trans` is not correct.
-    TVec2f trans(getTrans().x, MR::getEaseOutValue(getNerveStep() / 10.0f, sTransMaxY, sTransMinY, 1.0f));
-
-    setTrans(trans);
+    f32 y = MR::getEaseOutValue(getNerveStep() / 10.0f, sTransMaxY, sTransMinY, 1.0f);
+    setTrans(TVec2f(getTrans().x, y));
 
     if (MR::isStep(this, sStepMove)) {
         setNerve(&NrvNoteCounter::NoteCounterNrvHide::sInstance);
@@ -70,10 +68,8 @@ void NoteCounter::exeHideToShow() {
         MR::showLayout(this);
     }
 
-    // FIXME: Construction of `trans` is not correct.
-    TVec2f trans(getTrans().x, MR::getEaseOutValue(getNerveStep() / 10.0f, sTransMinY, sTransMaxY, 1.0f));
-
-    setTrans(trans);
+    f32 y = MR::getEaseOutValue(getNerveStep() / 10.0f, sTransMaxY, sTransMinY, 1.0f);
+    setTrans(TVec2f(getTrans().x, y));
 
     if (MR::isStep(this, sStepMove)) {
         setNerve(&NrvNoteCounter::NoteCounterNrvShow::sInstance);

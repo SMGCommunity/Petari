@@ -5,12 +5,14 @@
 extern "C" {
 #endif
 
-#include <revolution/types.h>
 #include <revolution/gx/GXEnum.h>
 #include <revolution/gx/GXStruct.h>
+#include <revolution/types.h>
+
 
 void GXSetProjection(const f32 mtx[4][4], GXProjectionType type);
-void GXSetProjectionv(const f32 *ptr);
+void GXSetProjectionv(const f32* ptr);
+void GXGetProjectionv(f32* ptr);
 void GXLoadPosMtxImm(const f32 mtx[3][4], u32 id);
 void GXLoadPosMtxIndx(u16 mtx_indx, u32 id);
 void GXLoadNrmMtxImm(const f32 mtx[3][4], u32 id);
@@ -25,7 +27,7 @@ void GXSetViewport(f32, f32, f32, f32, f32, f32);
 void GXSetZScaleOffset(f32, f32);
 
 void GXSetScissor(u32, u32, u32, u32);
-void GXGetScissor(u32 *, u32 *, u32 *, u32 *);
+void GXGetScissor(u32*, u32*, u32*, u32*);
 void GXSetScissorBoxOffset(s32, s32);
 
 void GXSetClipMode(GXClipMode);
@@ -38,4 +40,4 @@ static void GXSetViewportv(const f32* vp);
 }
 #endif
 
-#endif // GXTRANSFORM_H
+#endif  // GXTRANSFORM_H

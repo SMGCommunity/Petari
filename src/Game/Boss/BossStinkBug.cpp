@@ -190,7 +190,7 @@ void BossStinkBug::calcAndSetBaseMtx() {
     pos.setQuat(_DC);
     pos.setPos(mPosition);
 
-    JMath::gekko_ps_copy12(_9C, pos);
+    _9C.setInline(pos);
 
     MR::rotateMtxLocalXDegree(pos.toMtxPtr(), mRotation.x);
     MR::rotateMtxLocalYDegree(pos.toMtxPtr(), mRotation.y);
@@ -239,8 +239,7 @@ void BossStinkBug::updatePose() {
 }
 
 void BossStinkBug::setPose(MtxPtr pMtx) {
-    TPos3f pos;
-    JMath::gekko_ps_copy12(&pos, pMtx);
+    TPos3f pos(pMtx);
     pos.getQuat(_DC);
     pos.getTrans(mPosition);
     _DC.getZDir(_EC);
@@ -398,8 +397,7 @@ bool BossStinkBug::throwBomb(f32 f1, f32 f2) {
         return false;
     }
 
-    TPos3f jointMtx;
-    JMath::gekko_ps_copy12(jointMtx, MR::getJointMtx(mBombLauncher, "DischargePosition"));
+    TPos3f jointMtx(MR::getJointMtx(mBombLauncher, "DischargePosition"));
 
     TVec3f trans;
     TVec3f yDir;

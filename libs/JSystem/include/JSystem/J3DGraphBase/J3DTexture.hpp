@@ -75,7 +75,8 @@ public:
     Mtx& getMtx() { return mMtx; }
     void setEffectMtx(Mtx effectMtx) { mTexMtxInfo.setEffectMtx(effectMtx); }
 
-private:
     /* 0x00 */ J3DTexMtxInfo mTexMtxInfo;
+    
+private:
     /* 0x64 */ Mtx mMtx;
 };  // Size: 0x94

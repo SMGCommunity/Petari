@@ -60,7 +60,7 @@ namespace MR {
     void offCalcShadowAll(LiveActor*);
 
     void onCalcShadowDropGravity(LiveActor*, const char*);
-    void onCalcShadowDropGravityOnetime(LiveActor*, const char*);
+    void onCalcShadowDropGravityOneTime(LiveActor*, const char*);
     void onCalcShadowDropPrivateGravity(LiveActor*, const char*);
     void onCalcShadowDropPrivateGravityOneTime(LiveActor*, const char*);
     void offCalcShadowDropPrivateGravity(LiveActor*, const char*);

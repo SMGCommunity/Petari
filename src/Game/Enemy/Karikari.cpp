@@ -207,7 +207,7 @@ void Karikari::exeLand() {
     if (MR::isGreaterStep(this, sPreWaitTime)) {
         TVec3f diff(*MR::getPlayerPos());
         diff.sub(mPosition);
-        if (diff.squared() < sDistToPursue) {
+        if (diff.squared() < sDistToPursue * sDistToPursue) {
             setNerve(&NrvKarikari::HostTypeNrvPursue::sInstance);
             return;
         } else {
@@ -241,7 +241,7 @@ void Karikari::exeNoCalcWait() {
     }
 
     mVelocity.zero();
-    if (MR::calcDistanceToPlayer(mPosition) < 1000.0f) {
+    if (MR::calcDistanceToPlayer(mPosition) < sDistToPursue) {
         setNerve(&NrvKarikari::HostTypeNrvWait::sInstance);
     }
 }
@@ -364,7 +364,7 @@ void Karikari::exePursue() {
             return;
         }
 
-        if (sDistToPursue < dist) {
+        if (sDistToPursue * sDistToPursue < dist) {
             setNerve(&NrvKarikari::HostTypeNrvWait::sInstance);
             return;
         }

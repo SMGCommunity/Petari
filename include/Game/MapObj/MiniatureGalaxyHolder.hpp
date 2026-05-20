@@ -14,18 +14,18 @@ public:
     s32 calcIndex(const LiveActor*) const;
     void updateCometStatus();
 
-    LiveActorGroup* _8C;
-    bool _90;
-    MiniatureGalaxy* _94;
-    s32 _98;
-    s32 _9C;
+    /* 0x8C */ LiveActorGroup* _8C;
+    /* 0x90 */ bool _90;
+    /* 0x94 */ MiniatureGalaxy* mCometGalaxy;
+    /* 0x98 */ s32 mCometID;
+    /* 0x9C */ s32 _9C;
 };
 
 class MiniatureGalaxyFunction {
 public:
     static void registerMiniatureGalaxyToHolder(LiveActor*, const JMapInfoIter&);
     static s32 getMiniatureGalaxyNum();
-    static void calcMiniatureGalaxyIndex(const LiveActor*);
+    static s32 calcMiniatureGalaxyIndex(const LiveActor*);
     static void updateCometStatus();
     static MiniatureGalaxy* getCometLandMiniatureGalaxy();
     static s32 getCometNameId();

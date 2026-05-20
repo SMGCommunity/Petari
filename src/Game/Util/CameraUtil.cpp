@@ -71,7 +71,7 @@ namespace MR {
         return const_cast< TPos3f* >(getSceneObj< CameraContext >(SceneObj_CameraContext)->getInvViewMtx());
     }
 
-    const TPos3f* getCameraProjectionMtx() {
+    TProj3f* getCameraProjectionMtx() {
         return &getSceneObj< CameraContext >(SceneObj_CameraContext)->mProjection;
     }
 
