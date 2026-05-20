@@ -744,7 +744,7 @@ namespace MR {
     }
 
     bool isMsgLedPattern() {
-        return GameDataFunction::getGameEventValue("MsgLedPattern") != 0;
+        return static_cast< u16 >(GameDataFunction::getGameEventValue("MsgLedPattern")) != 0;
     }
 
     void explainBeeMarioIfAtFirst() {
@@ -966,7 +966,7 @@ namespace MR {
     }
 
     bool isOnMessageAlreadyRead(s8 bit) {
-        s32 value = GameDataFunction::getGameEventValue("MessageAlreadyRead");
+        u16 value = GameDataFunction::getGameEventValue("MessageAlreadyRead");
         s32 mask = 1 << bit;
 
         return (mask & value) != 0;
