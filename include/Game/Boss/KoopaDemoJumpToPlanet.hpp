@@ -1,17 +1,20 @@
 #pragma once
 
-#include "Game/System/NerveExecutor.hpp"
+#include "Game/Boss/Koopa.hpp"
+#include "Game/LiveActor/ActorStateBase.hpp"
 
-class Koopa;
-
-class KoopaDemoJumpToPlanet : public NerveExecutor {
+class KoopaDemoJumpToPlanet : public ActorStateBase< Koopa > {
 public:
     KoopaDemoJumpToPlanet(Koopa*);
 
     virtual ~KoopaDemoJumpToPlanet();
     virtual void init();
+    virtual void kill();
 
-    private:
-    /* 0x8 */ u32 _8;
-    /* 0xC */ Koopa* mKoopa;
+    void startReady();
+
+    void exeStart();
+    void exeFall();
+    void exeLand();
+    void exeWaitPlayer();
 };

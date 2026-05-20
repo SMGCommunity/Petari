@@ -8,18 +8,25 @@ class KoopaShockWave : public LiveActor {
 public:
     KoopaShockWave(Koopa*);
 
+    virtual ~KoopaShockWave();
+    virtual void init(const JMapInfoIter&);
+    virtual void appear();
+    virtual void makeActorDead();
+    virtual void updateHitSensor(HitSensor*);
+    
+    void exeWaveAttack();
+
+    void calcAndSetMtx();
+    void attackSensor(HitSensor*, HitSensor*);
+
 private:
     /* 0x8C */ Koopa* mKoopa;
     /* 0x90 */ f32 _90;
-    /* 0x94 */ TMtx34f _94;
-    /* 0xC4 */ f32 _C4;
-    /* 0xC8 */ f32 _C8;
-    /* 0xCC */ f32 _CC;
-    /* 0xD0 */ f32 _D0;
-    /* 0xD4 */ f32 _D4;
-    /* 0xD8 */ f32 _D8;
-    /* 0xDC */ TMtx34f _DC;
-    /* 0x10C */ TMtx34f _10C;
-    /* 0x13C */ f32 _13C;
-    /* 0x140 */ f32 _140;
+    /* 0x94 */ TPos3f _94;
+    /* 0xC4 */ TVec3f _C4;
+    /* 0xD0 */ TVec3f _D0;
+    /* 0xDC */ TPos3f mBaseMtx;
+    /* 0x10C */ TPos3f _10C;
+    /* 0x13C */ PartsModel* mPartsModel;
+    /* 0x140 */ ModelObj* mShadow;
 };

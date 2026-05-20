@@ -29,9 +29,9 @@ namespace MR {
 }  // namespace MR
 
 namespace KoopaFunction {
-    Koopa* createKoopaVs1(const char*);
-    Koopa* createKoopaVs2(const char*);
-    Koopa* createKoopaVs3(const char*);
+    NameObj* createKoopaVs1(const char*);
+    NameObj* createKoopaVs2(const char*);
+    NameObj* createKoopaVs3(const char*);
     void initKoopaPartsVs1(Koopa*);
     void initKoopaPartsVs2(Koopa*);
     void initKoopaVs3(Koopa*);

@@ -47,17 +47,17 @@ void KoopaFunction::endKoopaDemoMeetPeach(Koopa* pKoopa) {
     pParts->mKoopaJr->mJointCtrl->startFaceCtrl(-1);
 }
 
-Koopa* KoopaFunction::createKoopaVs1(const char* pName) {
+NameObj* KoopaFunction::createKoopaVs1(const char* pName) {
     KoopaSequencerVs1* pSequencer = new KoopaSequencerVs1();
     return new Koopa(pName, pSequencer);
 }
 
-Koopa* KoopaFunction::createKoopaVs2(const char* pName) {
+NameObj* KoopaFunction::createKoopaVs2(const char* pName) {
     KoopaSequencerVs2* pSequencer = new KoopaSequencerVs2();
     return new Koopa(pName, pSequencer);
 }
 
-Koopa* KoopaFunction::createKoopaVs3(const char* pName) {
+NameObj* KoopaFunction::createKoopaVs3(const char* pName) {
     KoopaSequencerVs3* pSequencer = new KoopaSequencerVs3();
     return new Koopa(pName, pSequencer);
 }

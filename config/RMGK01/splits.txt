@@ -974,13 +974,13 @@ Game/Boss/KoopaDemoJumpToPlanet.cpp:
 
 Game/Boss/KoopaFigureBall.cpp:
 	.text       start:0x8005D994 end:0x8005DE18
-	.data       start:0x8056CC60 end:0x8056CD80
+	.data       start:0x8056CC60 end:0x8056CCD8
 	.sdata2     start:0x806B8848 end:0x806B8860
 
 Game/Boss/KoopaFireShort.cpp:
 	.text       start:0x8005DE18 end:0x8005E874
 	.ctors      start:0x8052E908 end:0x8052E90C
-	.data       start:0x8056CD80 end:0x8056CE28
+	.data       start:0x8056CCD8 end:0x8056CE28
 	.sbss       start:0x806B3458 end:0x806B3468
 	.sdata2     start:0x806B8860 end:0x806B8898
 
@@ -1024,12 +1024,12 @@ Game/Boss/KoopaSensorCtrl.cpp:
 
 Game/Boss/KoopaSequencer.cpp:
 	.text       start:0x80061898 end:0x80061A18
-	.data       start:0x8056D650 end:0x8056D688
+	.data       start:0x8056D650 end:0x8056D678
 
 Game/Boss/KoopaSubSequenceBattle.cpp:
 	.text       start:0x80061A18 end:0x80061CFC
 	.ctors      start:0x8052E910 end:0x8052E914
-	.data       start:0x8056D688 end:0x8056D6F8
+	.data       start:0x8056D678 end:0x8056D6F8
 	.sbss       start:0x806B3470 end:0x806B3488
 
 Game/Boss/KoopaSequencerVs1.cpp:
@@ -1047,13 +1047,13 @@ Game/Boss/KoopaSequencerVs2.cpp:
 Game/Boss/KoopaSequencerVs3.cpp:
 	.text       start:0x80062A88 end:0x80063A98
 	.ctors      start:0x8052E91C end:0x8052E920
-	.data       start:0x8056D9F8 end:0x8056DD68
+	.data       start:0x8056D9F8 end:0x8056DCE8
 	.sbss       start:0x806B34C8 end:0x806B3508
 
 Game/Boss/KoopaShockWave.cpp:
 	.text       start:0x80063A98 end:0x800643B4
 	.ctors      start:0x8052E920 end:0x8052E924
-	.data       start:0x8056DD68 end:0x8056DDF0
+	.data       start:0x8056DCE8 end:0x8056DDF0
 	.sbss       start:0x806B3508 end:0x806B3510
 	.sdata2     start:0x806B8938 end:0x806B8968
 

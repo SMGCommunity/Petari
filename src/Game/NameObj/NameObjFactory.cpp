@@ -1,4 +1,5 @@
 #include "Game/NameObj/NameObjFactory.hpp"
+#include "Game/Boss/KoopaFunction.hpp"
 #include "Game/NameObj/NameObjFactoryStubs.hpp"
 #include "Game/AreaObj.hpp"
 #include "Game/Boss.hpp"
@@ -82,12 +83,6 @@ namespace MR {
     NameObj* createVolumeDrawSpotLight(const char*);
     NameObj* createFireBallBeamKameck(const char*);
     NameObj* createTurtleBeamKameck(const char*);
-};
-
-namespace KoopaFunction {
-    NameObj* createKoopaVs1(const char*);
-    NameObj* createKoopaVs2(const char*);
-    NameObj* createKoopaVs3(const char*);
 };
 
 namespace {

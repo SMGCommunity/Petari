@@ -8,17 +8,28 @@ class KoopaFireShort : public LiveActor {
 public:
     KoopaFireShort(const Koopa*);
 
-    void emitCurve();
+    virtual ~KoopaFireShort();
+    virtual void init(const JMapInfoIter&);
+    virtual void appear();
+
     void emitNormal();
     void emitFast();
+    void emitCurve();
     void emitLongTime();
+    
+    void exeFly();
+    void exeDisappear();
+    void exeErase2P();
+
+    void calcAndSetBaseMtx();
+    void attackSensor(HitSensor*, HitSensor*);
+    void updateFly();
+    void updateFrontAndVelocity();
 
 private:
-    /* 0x8C */ Koopa* mKoopa;
-    /* 0x90 */ f32 _90;
-    /* 0x94 */ f32 _94;
-    /* 0x98 */ f32 _98;
-    /* 0x9C */ f32 _9C;
-    /* 0xA0 */ f32 _A0;
-    /* 0xA4 */ f32 _A4;
+    /* 0x8C */ const Koopa* mKoopa;
+    /* 0x90 */ TVec3f mFront;
+    /* 0x9C */ f32 mSpeed;
+    /* 0xA0 */ u32 mDuration;
+    /* 0xA4 */ f32 mOffset;
 };

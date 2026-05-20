@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Game/System/NerveExecutor.hpp"
-#include "stdbool.h"
 
 class Koopa;
 class JMapInfoIter;
@@ -16,8 +15,9 @@ public:
     virtual void init(Koopa*, const JMapInfoIter&);
     virtual void update();
     virtual void calcAndSetBaseMtx();
-    virtual void startBattleLevel2();
-    virtual void startBattleLevel3();
+    
+    void startBattleLevel2();
+    void startBattleLevel3();
 
     /* 0x8 */ Koopa* mKoopa;
     /* 0xC */ KoopaDemoPowerUp* mPowerUp;
