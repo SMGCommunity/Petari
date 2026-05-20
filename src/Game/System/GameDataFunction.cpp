@@ -235,7 +235,7 @@ namespace GameDataFunction {
         return getSaveDataHandleSequence()->getCurrentUserFile()->mUserName;
     }
 
-    u32 getUserFileIndex() {
+    u16 getUserFileIndex() {
         const char* pGameDataName = getSaveDataHandleSequence()->getCurrentUserFile()->getGameDataName();
         s32 index = strlen(pGameDataName) - 1;
         char ch = pGameDataName[index];
