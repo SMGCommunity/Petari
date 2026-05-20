@@ -9,6 +9,4 @@ public:
     virtual void init(const JMapInfoIter &rIter);
     virtual void initAfterPlacement();
     virtual ~KoopaSwitchKeeper();
-    virtual void init(const JMapInfoIter&);
-    virtual void initAfterPlacement();
 };
