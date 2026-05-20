@@ -93,7 +93,7 @@ void WaterBazooka::init(const JMapInfoIter& rIter) {
 
     mJointCtrl = MR::createJointDelegatorWithNullChildFunc(this, &WaterBazooka::calcJointCannon, "Cannon1");
     MR::initJointTransform(this);
-    JMath::gekko_ps_copy12(&mBaseMtx, MR::getJointMtx(this, "Cannon1"));
+    mBaseMtx.setInline(MR::getJointMtx(this, "Cannon1"));
 
     initShooter();
     initBazookaCapsule();
@@ -256,7 +256,7 @@ void WaterBazooka::exeWaitForBattle() {
         MR::tryStartBck(this, "Wait", nullptr);
     }
 
-    JMath::gekko_ps_copy12(&mBaseMtx, MR::getJointMtx(this, "Cannon1"));
+    mBaseMtx.setInline(MR::getJointMtx(this, "Cannon1"));
 
     bool start = false;
     if (!MR::isValidSwitchA(this) || MR::isOnSwitchA(this) || MR::isStageStateScenarioOpeningCamera()) {
@@ -796,7 +796,7 @@ void WaterBazooka::damageBazooka(HitSensor* pSender, HitSensor* pReceiver) {
 }
 
 bool WaterBazooka::calcJointCannon(TPos3f* pMtx, const JointControllerInfo& rJointInfo) {
-    JMath::gekko_ps_copy12(pMtx, &mBaseMtx);
+    pMtx->setInline(mBaseMtx);
     return true;
 }
 
@@ -1022,14 +1022,13 @@ void WaterBazooka::calcNearDropPoint(TVec3f* pPos) const {
 }
 
 void WaterBazooka::calcGunPointFromCannon(TPos3f* pMtx) {
-    TPos3f mtx;
-    JMath::gekko_ps_copy12(&mtx, MR::getJointMtx(this, "Cannon1"));
+    TPos3f mtx(MR::getJointMtx(this, "Cannon1"));
     TVec3f side;
     mtx.getXDir(side);
     TVec3f pos;
     mtx.getTrans(pos);
     JMAVECScaleAdd(&side, &pos, &pos, 550.0f);
-    JMath::gekko_ps_copy12(pMtx, &mtx);
+    pMtx->setInline(mtx);
     TVec3f up;
     mtx.getYDirInline(up);
     TVec3f front;
@@ -1038,8 +1037,7 @@ void WaterBazooka::calcGunPointFromCannon(TPos3f* pMtx) {
 }
 
 void WaterBazooka::setCameraTargetMtx() {
-    TPos3f mtx;
-    JMath::gekko_ps_copy12(&mtx, mShooter->getBaseMtx());
+    TPos3f mtx(mShooter->getBaseMtx());
 
     mtx.setPos(mPosition);
     TVec3f up;

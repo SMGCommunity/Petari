@@ -57,7 +57,7 @@ namespace MR {
     void setStarPointerTargetRadius3d(LiveActor*, f32);
     bool isStarPointerPointing(const TVec3f&, f32, s32, bool);
     MtxPtr getStarPointerViewMtx();
-    MtxPtr getStarPointerProjMtx();
+    Mtx44Ptr getStarPointerProjMtx();
     f32 getStarPointerRadius(s32);
     TVec2f* getStarPointerScreenPosition(s32);
     TVec2f getStarPointerScreenPositionOrEdge(s32);

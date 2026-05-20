@@ -60,6 +60,11 @@ namespace MR {
 
     bool isExistEffectTexMtx(LiveActor*);
 
+    void getLightNum(J3DMaterial*, s32*, s32*, s32*, s32*);
+    s32 getLightNum(J3DMaterial*);
+    s32 getLightNumMax(const LiveActor*);
+    s32 getLightNumMax(J3DModelData*);
+
     bool isUseFur(const J3DModelData*);
 
     s16 getBckFrameMax(const LiveActor*, const char*);

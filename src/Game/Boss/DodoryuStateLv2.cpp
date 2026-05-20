@@ -745,7 +745,7 @@ void DodoryuStateLv2::updateDiveShake() {
 void DodoryuStateLv2::calcRandomVelocity(s32 time) {
     TVec3f frontVec;
     MR::getPlayerFrontVec(&frontVec);
-    f32 randomAngle = MR::getRandom() * 2.0f * 180.0f;
+    f32 randomAngle = MR::getRandom() * 2.0f * PI;
     const TVec3f* gravityVec = MR::getPlayerGravity();
     TPos3f rotateMtx;
     rotateMtx.makeRotate(*gravityVec, randomAngle);
@@ -754,10 +754,7 @@ void DodoryuStateLv2::calcRandomVelocity(s32 time) {
     f32 maxDist = mChaseParam->_88;
     f32 dist = MR::getRandom(minDist, maxDist);
     f32 speed = dist / time;
-    MtxPtr playerMtx = MR::getPlayerBaseMtx();
-    TPos3f mtx;
-    JMath::gekko_ps_copy12(&mtx, playerMtx);
-    mDodoryu->setMtx(mtx);
+    mDodoryu->setMtx(MR::getPlayerBaseMtx());
     TVec3f vel(frontVec);
     vel.scale(speed);
     mDodoryu->mVelocity.set(vel);

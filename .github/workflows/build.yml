@@ -20,7 +20,7 @@ jobs:
     steps:
     # Checkout the repository
     - name: Checkout
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6
       with:
         fetch-depth: 0
         submodules: recursive
@@ -41,7 +41,7 @@ jobs:
 
     # Restore cached files
     - name: Cache build
-      uses: actions/cache@v4
+      uses: actions/cache@v5
       with:
         path: |
           build
@@ -59,14 +59,14 @@ jobs:
 
     # Upload map files
     - name: Upload map
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
         name: ${{ matrix.version }}_maps
         path: build/${{ matrix.version }}/**/*.MAP
 
     # Upload progress report
     - name: Upload report
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
         name: ${{ matrix.version }}_report
         path: build/${{ matrix.version }}/report.json

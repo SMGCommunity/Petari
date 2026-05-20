@@ -1,8 +1,8 @@
 #include "Game/Util/DrawUtil.hpp"
 #include "Game/Camera/CameraContext.hpp"
 #include "Game/Scene/GameSceneFunction.hpp"
-#include "Game/Util/ScreenUtil.hpp"
 #include "Game/Util/CameraUtil.hpp"
+#include "Game/Util/ScreenUtil.hpp"
 #include <revolution/gx/GXRegs.h>
 
 const JUTTexture* mShadowTex;
@@ -53,8 +53,8 @@ namespace MR {
     // TODO
     // The TPos3f here is actually a Mtx44
     void loadTexProjectionMtx(u32 id) {
-        TPos3f cameraProjection;
-        cameraProjection.setInline(*MR::getCameraProjectionMtx());
+        TProj3f cameraProjection;
+        cameraProjection.setInline(MR::getCameraProjectionMtx());
         cameraProjection.mMtx[2][0] = 0.0f;
         cameraProjection.mMtx[2][1] = 0.0f;
         cameraProjection.mMtx[2][2] = -1.0f;
@@ -64,7 +64,7 @@ namespace MR {
         cameraProjection.mMtx[3][2] = 0.0f;
         cameraProjection.mMtx[3][3] = 1.0f;
         Mtx matrix;
-        PSMTXConcat(cameraProjection.toMtxPtr(), MR::getCameraViewMtx(), matrix);
+        PSMTXConcat(cameraProjection.toMtx44Ptr(), MR::getCameraViewMtx(), matrix);
         TMtx34f mat;
         mat.identity();
         mat[0][0] = 0.5f;

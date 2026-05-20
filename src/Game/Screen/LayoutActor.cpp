@@ -2,10 +2,13 @@
 #include "Game/LiveActor/Spine.hpp"
 #include "Game/Screen/LayoutManager.hpp"
 #include "Game/Screen/PaneEffectKeeper.hpp"
+#include "Game/Screen/StarPointerTarget.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 
+
 LayoutActor::LayoutActor(const char* pName, bool)
-    : NameObj(pName), mManager(nullptr), mSpine(nullptr), mPaneEffectKeeper(nullptr), mStarPointerTargetKeeper(nullptr) {}
+    : NameObj(pName), mManager(nullptr), mSpine(nullptr), mPaneEffectKeeper(nullptr), mStarPointerTargetKeeper(nullptr) {
+}
 
 void LayoutActor::movement() {
     if (MR::isDead(this)) {
@@ -100,7 +103,10 @@ void LayoutActor::initNerve(const Nerve* pNerve) {
 }
 
 // LayoutActor::initEffectKeeper
-// LayoutActor::initPointingTarget
+
+void LayoutActor::initPointingTarget(int maxNumTargets) {
+    mStarPointerTargetKeeper = new StarPointerLayoutTargetKeeper(maxNumTargets);
+}
 
 void LayoutActor::updateSpine() {
     if (mSpine != nullptr) {

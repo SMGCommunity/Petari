@@ -2246,7 +2246,7 @@ namespace MR {
         TVec3f gravity;
         calcGravityVector(pActor, pActor->mPosition, &gravity, nullptr, 0);
 
-        if (!isNearZero(gravity, 0.001f)) {
+        if (!isNearZero(gravity)) {
             pActor->mGravity = gravity;
         }
     }
@@ -2255,7 +2255,7 @@ namespace MR {
         TVec3f gravity;
         calcGravityVector(pActor, rPos, &gravity, nullptr, 0);
 
-        if (!isNearZero(gravity, 0.001f)) {
+        if (!isNearZero(gravity)) {
             pActor->mGravity = gravity;
         }
     }
@@ -2319,7 +2319,7 @@ namespace MR {
         TPos3f mtx;
         mtx.set(pMtx);
         CollisionParts* pParts = createCollisionParts(getResourceHolder(pActor), pName, pSensor, mtx, scaleType, 0);
-        pParts->_0 = (TMtx34f*)pMtx;
+        pParts->_0 = reinterpret_cast< TPos3f* >(pMtx);
         return pParts;
     }
 
@@ -2342,7 +2342,7 @@ namespace MR {
         const char* pCollisionName = "MoveLimit";
         mtx.set(pMtx);
         CollisionParts* pParts = createCollisionParts(getResourceHolder(pActor), pCollisionName, pSensor, mtx, UNKNOWN_2, 3);
-        pParts->_0 = (TMtx34f*)pMtx;
+        pParts->_0 = reinterpret_cast< TPos3f* >(pMtx);
 
         if (pParts != nullptr) {
             validateCollisionParts(pParts);
@@ -2365,7 +2365,7 @@ namespace MR {
         const char* pCollisionName = "WaterSurface";
         mtx.set(pMtx);
         CollisionParts* pParts = createCollisionParts(getResourceHolder(pActor), pCollisionName, pSensor, mtx, UNKNOWN_2, 2);
-        pParts->_0 = (TMtx34f*)pMtx;
+        pParts->_0 = reinterpret_cast< TPos3f* >(pMtx);
 
         if (pParts != nullptr) {
             validateCollisionParts(pParts);
@@ -2388,7 +2388,7 @@ namespace MR {
         const char* pCollisionName = "Sunshade";
         mtx.set(pMtx);
         CollisionParts* pParts = createCollisionParts(getResourceHolder(pActor), pCollisionName, pSensor, mtx, UNKNOWN_2, 1);
-        pParts->_0 = (TMtx34f*)pMtx;
+        pParts->_0 = reinterpret_cast< TPos3f* >(pMtx);
 
         if (pParts != nullptr) {
             validateCollisionParts(pParts);

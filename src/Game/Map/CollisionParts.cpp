@@ -107,8 +107,7 @@ void CollisionParts::resetAllMtx() {
     }
 
     if (reset) {
-        TPos3f matrix;
-        JMath::gekko_ps_copy12(&matrix, _0);
+        TPos3f matrix(_0);
         makeEqualScale(reinterpret_cast< MtxPtr >(&matrix));
 
         resetAllMtxPrivate(matrix);
@@ -116,8 +115,7 @@ void CollisionParts::resetAllMtx() {
 }
 
 void CollisionParts::forceResetAllMtxAndSetUpdateMtxOneTime() {
-    TPos3f matrix;
-    JMath::gekko_ps_copy12(&matrix, _0);
+    TPos3f matrix(_0);
     makeEqualScale(reinterpret_cast< MtxPtr >(&matrix));
     resetAllMtxPrivate(matrix);
 
@@ -125,18 +123,18 @@ void CollisionParts::forceResetAllMtxAndSetUpdateMtxOneTime() {
 }
 
 void CollisionParts::resetAllMtxPrivate(const TPos3f& a1) {
-    JMath::gekko_ps_copy12(&mPrevBaseMatrix, &a1);
-    JMath::gekko_ps_copy12(&mBaseMatrix, &a1);
-    JMath::gekko_ps_copy12(&mMatrix, &a1);
+    mPrevBaseMatrix.setInline(a1);
+    mBaseMatrix.setInline(a1);
+    mMatrix.setInline(a1);
     PSMTXInverse(reinterpret_cast< MtxPtr >(&mBaseMatrix), reinterpret_cast< MtxPtr >(&mInvBaseMatrix));
 }
 
 void CollisionParts::setMtx(const TPos3f& matrix) {
-    JMath::gekko_ps_copy12(&mMatrix, &matrix);
+    mMatrix.setInline(matrix);
 }
 
 void CollisionParts::setMtx() {
-    JMath::gekko_ps_copy12(&mMatrix, _0);
+    mMatrix.setInline(_0);
 }
 
 void CollisionParts::updateMtx() {
@@ -174,8 +172,8 @@ void CollisionParts::updateMtx() {
         _CE = false;
 
         if (_D4 < 2) {
-            JMath::gekko_ps_copy12(&mPrevBaseMatrix, &mBaseMatrix);
-            JMath::gekko_ps_copy12(&mBaseMatrix, &mMatrix);
+            mPrevBaseMatrix.setInline(mBaseMatrix);
+            mBaseMatrix.setInline(mMatrix);
             PSMTXInverse(reinterpret_cast< MtxPtr >(&mBaseMatrix), reinterpret_cast< MtxPtr >(&mInvBaseMatrix));
         }
     }
@@ -224,8 +222,7 @@ f32 CollisionParts::makeEqualScale(MtxPtr matrix) {
 }
 
 void CollisionParts::updateBoundingSphereRange() {
-    TMtx34f matrix;
-    JMath::gekko_ps_copy12(&matrix, _0);
+    TPos3f matrix(_0);
     f32 scale = makeEqualScale(reinterpret_cast< MtxPtr >(&matrix));
     updateBoundingSphereRangePrivate(scale);
 }

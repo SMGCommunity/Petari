@@ -2829,22 +2829,24 @@ Game/Enemy/KoopaJrShip.cpp:
 	.text       start:0x801123BC end:0x8011479C
 	.ctors      start:0x8052EADC end:0x8052EAE0
 	.rodata     start:0x805321F8 end:0x805322B0
-	.data       start:0x8057FEA8 end:0x80580498
-	.sdata      start:0x806B19B8 end:0x806B1A48
+	.data       start:0x8057FEA8 end:0x805803F8
+	.sdata      start:0x806B19B8 end:0x806B19D0
 	.sbss       start:0x806B42C0 end:0x806B42F8
 	.sdata2     start:0x806BAC70 end:0x806BACB8
 
 Game/Enemy/KoopaJrShipCannonMainShell.cpp:
 	.text       start:0x8011479C end:0x80114EA8
 	.ctors      start:0x8052EAE0 end:0x8052EAE4
-	.data       start:0x80580498 end:0x80580678
+	.data       start:0x805803F8 end:0x805805C0
+	.sdata      start:0x806B19D0 end:0x806B19D8
 	.sbss       start:0x806B42F8 end:0x806B4300
 	.sdata2     start:0x806BACB8 end:0x806BACD8
 
 Game/Enemy/KoopaJrShipCannonShell.cpp:
 	.text       start:0x80114EA8 end:0x80115C7C
 	.ctors      start:0x8052EAE4 end:0x8052EAE8
-	.data       start:0x80580678 end:0x805807D0
+	.data       start:0x805805C0 end:0x805807D0
+	.sdata      start:0x806B19D8 end:0x806B19E8
 	.sbss       start:0x806B4300 end:0x806B4318
 	.sdata2     start:0x806BACD8 end:0x806BAD18
 
@@ -3223,7 +3225,7 @@ Game/Enemy/WaterBazookaCapsule.cpp:
 
 Game/GameAudio/AudCameraWatcher.cpp:
 	.text       start:0x80154F30 end:0x801550B8
-	.data       start:0x80586920 end:0x80586CF8
+	.data       start:0x80586920 end:0x80586970
 	.sdata2     start:0x806BBAD8 end:0x806BBAE0
 
 Game/GameAudio/AudStageBgmWrap.cpp:

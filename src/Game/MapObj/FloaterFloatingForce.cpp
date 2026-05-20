@@ -2,7 +2,8 @@
 #include "Game/LiveActor/LiveActor.hpp"
 #include "math_types.hpp"
 
-FloaterFloatingForce::~FloaterFloatingForce() {}
+FloaterFloatingForce::~FloaterFloatingForce() {
+}
 
 FloaterFloatingForce::FloaterFloatingForce(LiveActor* pActor, const char* pName) : MapPartsFunction(pActor, "浮力"), _18(pName), _1C(gZeroVec) {
     _28.setPS(TVec3f(0.0f, 1.0f, 0.0f));
@@ -21,7 +22,7 @@ void FloaterFloatingForce::start() {
     _1C.z = mHost->mPosition.z;
     TSMtxf matrix;
     f32 x, y, z;
-    matrix.setInline_2(mHost->getBaseMtx());
+    matrix.setInline(mHost->getBaseMtx());
     x = matrix.mMtx[0][1];
     y = matrix.mMtx[1][1];
     z = matrix.mMtx[2][1];

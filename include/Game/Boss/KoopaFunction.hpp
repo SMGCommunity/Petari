@@ -25,4 +25,6 @@ namespace KoopaFunction {
     bool isKoopaVs1(const Koopa*);
     bool isKoopaVs2(const Koopa*);
     bool isKoopaLv3(const Koopa*);
+
+    void registerKoopaSwitchKeeper(LiveActor*);
 };  // namespace KoopaFunction

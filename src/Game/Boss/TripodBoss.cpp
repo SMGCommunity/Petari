@@ -90,7 +90,7 @@ void TripodBoss::init(const JMapInfoIter& rIter) {
     MR::getJMapInfoMatrixFromRT(rIter, &v14);
     _5D4 = mPosition;
     initMovableArea(v14);
-    JMath::gekko_ps_copy12(mBodyMtx, v14);
+    mBodyMtx.setInline(v14);
     initBodyPosition();
     const char* objName;
     MR::getObjectName(&objName, rIter);
@@ -117,7 +117,7 @@ void TripodBoss::init(const JMapInfoIter& rIter) {
     MR::useStageSwitchWriteDead(this, rIter);
     MR::declareStarPiece(this, 24);
     MR::declarePowerStar(this);
-    JMath::gekko_ps_copy12(_BC, mBodyMtx);
+    _BC.setInline(mBodyMtx);
     MR::addTransMtxLocal(_BC, _5BC);
     mDummyModel = MR::createDummyDisplayModel(this, rIter, _BC, 13, TVec3f(0.0f, 0.0f, 0.0f), TVec3f(0.0f, 0.0f, 0.0f));
     MR::startBrk(mDummyModel, "Recover");
@@ -290,7 +290,7 @@ void TripodBoss::kill() {
 }
 
 void TripodBoss::control() {
-    JMath::gekko_ps_copy12(_BC, mBodyMtx);
+    _BC.setInline(mBodyMtx);
     MR::addTransMtxLocal(_BC, _5BC);
     mDummyModel->mRotation.y = MR::repeat(mDummyModel->mRotation.y - _620, 0.0f, 360.0f);
 
@@ -642,8 +642,7 @@ void TripodBoss::exePainDemo() {
     }
 
     if (MR::isStep(this, 90)) {
-        TPos3f mtx;
-        JMath::gekko_ps_copy12(&mtx, getBaseMtx());
+        TPos3f mtx(getBaseMtx());
         TVec3f v5;
         mtx.mult(sEndMarioPosition, v5);
         mtx.mMtx[0][3] = v5.x;
@@ -705,9 +704,11 @@ void TripodBoss::exeExplosionDemo() {
     }
 }
 
-void TripodBoss::exeNonActive() {}
+void TripodBoss::exeNonActive() {
+}
 
-void TripodBoss::exeTryStartDemo() {}
+void TripodBoss::exeTryStartDemo() {
+}
 
 bool TripodBoss::isStopLeg(s32 idx) const {
     bool ret = false;
@@ -804,11 +805,11 @@ void TripodBoss::addStepPoint(TripodBossStepPoint* pPoint) {
 }
 
 void TripodBoss::getBodyMatrix(TPos3f* pMtx) const {
-    JMath::gekko_ps_copy12(pMtx, mBodyMtx);
+    pMtx->setInline(mBodyMtx);
 }
 
 void TripodBoss::getJointMatrix(TPos3f* pMtx, s32 a2) const {
-    JMath::gekko_ps_copy12(pMtx, mBossBones[a2]._30);
+    pMtx->setInline(mBossBones[a2]._30);
 }
 
 void TripodBoss::getJointAttachMatrix(TPos3f* pMtx, s32 a2) const {
@@ -859,15 +860,13 @@ void TripodBoss::calcLegUpVector(TVec3f* pUp, const TVec3f& a2) {
 }
 
 void TripodBoss::calcDemoMovement() {
-    TPos3f mtx;
-    JMath::gekko_ps_copy12(&mtx, MR::getJointMtx(this, "Body"));
+    TPos3f mtx(MR::getJointMtx(this, "Body"));
     MR::blendMtx(_EC, mtx, _600, mBodyMtx);
     mBodyMtx.getTrans(_5D4);
 
     for (u32 i = 0; i < 3; i++) {
         MtxPtr jointMtx = MR::getJointMtx(this, sLegBoneNameTable[i]);
-        TPos3f v8;
-        JMath::gekko_ps_copy12(&v8, jointMtx);
+        TPos3f v8(jointMtx);
         TVec3f v7;
         v8.getTrans(v7);
         TVec3f v6;
@@ -952,7 +951,6 @@ void TripodBoss::addAccelToWeightPosition() {
     _5E0 += v15.multiplyOperatorInline(0.8f);
 }
 
-
 void TripodBoss::calcClippingSphere() {
     TBox3f v4;
     v4.i.set< f32 >(_5D4);
@@ -998,7 +996,7 @@ void TripodBoss::clippingModel() {
 
 void TripodBoss::startDemo() {
     MR::onCalcAnim(this);
-    JMath::gekko_ps_copy12(&_EC, mBodyMtx);
+    _EC.setInline(mBodyMtx);
     MR::requestMovementOn(mDummyModel);
     MR::requestMovementTripodBossParts();
 

@@ -13,13 +13,13 @@ public:
     PenguinCoach(const char*);
 
     virtual void init(const JMapInfoIter& rIter);
+    virtual void initAfterPlacement();
     virtual void control();
     virtual void calcAndSetBaseMtx();
     virtual bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
     virtual void prepAudience();
     virtual void resetAudience();
 
-    void initAfterPlacement();
     bool branchFunc(u32);
     bool eventFunc(u32);
 

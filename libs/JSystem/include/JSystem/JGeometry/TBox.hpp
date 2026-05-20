@@ -87,12 +87,12 @@ namespace JGeometry {
         TBox2() {
         }
 
-        TBox2(const TVec2< f32 >& _i, const TVec2< f32 >& _f) {
+        TBox2(const TVec2< T >& _i, const TVec2< T >& _f) {
             TBox< TVec2< T > >::i.set(_i);
             TBox< TVec2< T > >::f.set(_f);
         }
 
-        TBox2(f32 x0, f32 y0, f32 x1, f32 y1) {
+        TBox2(T x0, T y0, T x1, T y1) {
             set(x0, y0, x1, y1);
         }
         // void set<T>(const TBox2<T> &a1, const TBox2<T> &a2);
@@ -112,12 +112,21 @@ namespace JGeometry {
         void set(const TBox< TVec2< T > >& other) {
             set(other.i, other.f);
         }
-        void set(const TVec2< f32 >& i, const TVec2< f32 >& f) {
+        void set(const TVec2< T >& i, const TVec2< T >& f) {
             this->i.set(i), this->f.set(f);
         }
-        void set(f32 x0, f32 y0, f32 x1, f32 y1) NO_INLINE {
+        void set(T x0, T y0, T x1, T y1) NO_INLINE {
             this->i.set(x0, y0);
             this->f.set(x1, y1);
+        }
+
+        void setInline(T x0, T y0, T x1, T y1) {
+            this->i.set(x0, y0);
+            this->f.set(x1, y1);
+        }
+
+        inline bool intersectsPoint(const TVec2< T >& rPos) const {
+            return (rPos.x >= this->i.x && rPos.y >= this->i.y && rPos.x < this->f.x && rPos.y < this->f.y);
         }
     };
 

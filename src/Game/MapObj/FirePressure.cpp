@@ -3,7 +3,8 @@
 #include "Game/Scene/SceneObjHolder.hpp"
 #include <JSystem/JMath/JMath.hpp>
 
-FirePressure::~FirePressure() {}
+FirePressure::~FirePressure() {
+}
 
 FirePressure::FirePressure(const char* pName) : PressureBase(pName) {
     mDisableCollsion = false;
@@ -34,8 +35,7 @@ bool FirePressure::shotBullet(f32 a1) {
 }
 
 void FirePressure::calcGunPointFromCannon(TPos3f* pOutPoint) {
-    Mtx jointMtx;
-    JMath::gekko_ps_copy12(jointMtx, MR::getJointMtx(this, "Cannon1"));
+    TPos3f jointMtx(MR::getJointMtx(this, "Cannon1"));
     TVec3f stack_2C;
     f32 z = jointMtx[2][0];
     f32 y = jointMtx[1][0];
@@ -47,7 +47,7 @@ void FirePressure::calcGunPointFromCannon(TPos3f* pOutPoint) {
     x = jointMtx[0][3];
     stack_20.set(x, y, z);
     JMAVECScaleAdd(&stack_2C, &stack_20, &stack_20, 200.0f);
-    JMath::gekko_ps_copy12(pOutPoint, jointMtx);
+    pOutPoint->setInline(jointMtx);
     TVec3f stack_14;
     z = jointMtx[2][1];
     y = jointMtx[1][1];

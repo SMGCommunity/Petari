@@ -367,7 +367,7 @@ void TombSpiderFunction::resetPlayerPosTombSpider(const TombSpider* pParent, boo
 }
 
 bool TombSpiderFunction::isRotateLeftToPlayer(const TombSpider* pParent) {
-    TVec2f frontXY(0.0f, 1.0f);
+    TVec2f frontXY(1.0f, 0.0f);
     MR::rotateVecDegree(&frontXY, pParent->mRotation.z - 90.0f);
     TVec3f front(frontXY.x, frontXY.y, 0.0f);
     TVec3f dir(*MR::getPlayerPos());
