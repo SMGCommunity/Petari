@@ -14,14 +14,14 @@ namespace {
 }
 
 StarPointerTarget::StarPointerTarget(f32 radius, const TVec3f* pPosition, MtxPtr pMtx, TVec3f offset)
-    : mRadius3d(radius), mOffset(offset), _10(0), mPosition(pPosition), mMtx(pMtx) {
+    : mRadius3d(radius), mOffset(offset), mLastPointedChannel(WPAD_CHAN0), mPosition(pPosition), mMtx(pMtx) {
 }
 
-void StarPointerTarget::calcScreenPosition(TVec2f* pScreenPos) const {
+bool StarPointerTarget::calcScreenPosition(TVec2f* pScreenPos) const {
     TVec3f worldPos, viewPos;
     calcPosition(&worldPos);
     PSMTXMultVec(MR::getStarPointerViewMtx(), &worldPos, &viewPos);
-    calcScreenPositionFromView(pScreenPos, viewPos);
+    return calcScreenPositionFromView(pScreenPos, viewPos);
 }
 
 bool StarPointerTarget::isPointing(const TVec2f& rPointerPos, f32 zMargin, f32 radiusMargin) const {
