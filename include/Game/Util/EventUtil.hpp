@@ -101,10 +101,10 @@ namespace MR {
     void setWarpPodPathFlag(int, bool);
     s32 registerStorageSpinDriverPathDrawRange(const NameObj*, const JMapInfoIter&, int, f32*);
     void updateStorageSpinDriverPathDrawRange(int, f32);
-    u16 getStarPieceNumGivingToTicoSeed(int);
+    s32 getStarPieceNumGivingToTicoSeed(int);
     void addStarPieceGivingToTicoSeed(int, int);
-    u16 getStarPieceNumGivingToTicoGalaxy(int);
-    u16 getStarPieceNumMaxGivingToTicoGalaxy(int);
+    s32 getStarPieceNumGivingToTicoGalaxy(int);
+    s32 getStarPieceNumMaxGivingToTicoGalaxy(int);
     void addStarPieceGivingToTicoGalaxy(int, int);
     void setTicoGalaxyAlreadyTalk(int, bool);
     bool isGalaxyAnyCometAppearInCurrentStage();

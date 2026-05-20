@@ -23,12 +23,12 @@ public:
     bool canOnGameEventFlag(const char*) const;
     bool isOnGameEventFlag(const char*) const;
     void tryOnGameEventFlag(const char*);
-    u16 getGameEventValue(const char*) const;
+    s32 getGameEventValue(const char*) const;
     void setGameEventValue(const char*, u16);
     bool isOnGameEventValueForBit(const char*, int) const;
     void setGameEventValueForBit(const char*, int, bool);
     s32 getPictureBookChapterCanRead() const;
-    u16 getPictureBookChapterAlreadyRead() const;
+    s32 getPictureBookChapterAlreadyRead() const;
     void setPictureBookChapterAlreadyRead(int);
     void setRaceBestTime(const char*, u32);
     u32 getRaceBestTime(const char*) const;
@@ -54,8 +54,8 @@ public:
     void addStockedStarPiece(int);
     s32 setupSpinDriverPathStorage(const char*, int, int, int, f32*);
     void updateSpinDriverPathStorage(const char*, int, int, f32);
-    u16 getStarPieceNumGivingToTicoSeed(int) const;
-    u16 getStarPieceNumMaxGivingToTicoSeed(int) const;
+    s32 getStarPieceNumGivingToTicoSeed(int) const;
+    s32 getStarPieceNumMaxGivingToTicoSeed(int) const;
     void addStarPieceGivingToTicoSeed(int, int);
     bool isCompleteMarioAndLuigi() const;
     bool isPassedStoryEvent(const char*) const;

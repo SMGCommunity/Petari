@@ -68,7 +68,7 @@ void GameDataHolder::tryOnGameEventFlag(const char* pFlagName) {
     mEventFlagChecker->tryOn(pFlagName);
 }
 
-u16 GameDataHolder::getGameEventValue(const char* pName) const {
+s32 GameDataHolder::getGameEventValue(const char* pName) const {
     return mEventValueChecker->getValue(pName);
 }
 
@@ -77,14 +77,14 @@ void GameDataHolder::setGameEventValue(const char* pName, u16 value) {
 }
 
 bool GameDataHolder::isOnGameEventValueForBit(const char* pName, int bit) const {
-    u16 value = mEventValueChecker->getValue(pName);  // Necessary to match
+    s32 value = mEventValueChecker->getValue(pName);  // Necessary to match
     return value & 1 << bit;
 }
 
 void GameDataHolder::setGameEventValueForBit(const char* pName, int bit, bool reset) {
     u16 value = mEventValueChecker->getValue(pName);
     u16 set = 1 << bit;
-    value = value & ~set;
+    value = set & ~value;
     if (reset) {
         value = value | set;
     }
@@ -109,7 +109,7 @@ s32 GameDataHolder::getPictureBookChapterCanRead() const {
     return canRead;
 }
 
-u16 GameDataHolder::getPictureBookChapterAlreadyRead() const {
+s32 GameDataHolder::getPictureBookChapterAlreadyRead() const {
     return mEventValueChecker->getValue("絵本既読章");
 }
 
@@ -152,13 +152,13 @@ bool GameDataHolder::isPointCollectForLetter() const {
 }
 
 void GameDataHolder::incPlayerMissNum() {
-    u16 value = mEventValueChecker->getValue("MissNum");
+    s32 value = mEventValueChecker->getValue("MissNum");
     s32 newValue = MR::clamp(value + 1, 0l, 9999l);
     mEventValueChecker->setValue("MissNum", newValue);
 }
 
 s32 GameDataHolder::getPlayerMissNum() const {
-    u16 value = mEventValueChecker->getValue("MissNum");
+    s32 value = mEventValueChecker->getValue("MissNum");
     return MR::clamp(value, 0l, 9999l);
 }
 
@@ -245,11 +245,11 @@ void GameDataHolder::updateSpinDriverPathStorage(const char* pGalaxyName, int sc
     mSpinDriverPathStorage->updateValue(pGalaxyName, scenarioNo, spinDriverIndex, drawRange);
 }
 
-u16 GameDataHolder::getStarPieceNumGivingToTicoSeed(int index) const {
+s32 GameDataHolder::getStarPieceNumGivingToTicoSeed(int index) const {
     return mStarPieceAlmsStorage->getValue(index);
 }
 
-u16 GameDataHolder::getStarPieceNumMaxGivingToTicoSeed(int index) const {
+s32 GameDataHolder::getStarPieceNumMaxGivingToTicoSeed(int index) const {
     return mStarPieceAlmsStorage->getMaxValue(index);
 }
 

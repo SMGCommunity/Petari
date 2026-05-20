@@ -41,7 +41,7 @@ GameEventValueChecker::GameEventValueChecker() : mValues(nullptr), mNumValues(0)
     initializeData();
 }
 
-u16 GameEventValueChecker::getValue(const char* pName) const {
+u32 GameEventValueChecker::getValue(const char* pName) const {
     return mValues[findIndex(pName)];
 }
 

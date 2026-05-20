@@ -453,7 +453,7 @@ namespace MR {
         GameDataFunction::updateStorageSpinDriverPathDrawRange(pStageName, scenarioNo, param1, param2);
     }
 
-    u16 getStarPieceNumGivingToTicoSeed(int index) {
+    s32 getStarPieceNumGivingToTicoSeed(int index) {
         return GameDataFunction::getStarPieceNumGivingToTicoSeed(index);
     }
 
@@ -461,11 +461,11 @@ namespace MR {
         GameDataFunction::addStarPieceGivingToTicoSeed(index, num);
     }
 
-    u16 getStarPieceNumGivingToTicoGalaxy(int index) {
+    s32 getStarPieceNumGivingToTicoGalaxy(int index) {
         return GameDataFunction::getStarPieceNumGivingToTicoSeed(index + 8);
     }
 
-    u16 getStarPieceNumMaxGivingToTicoGalaxy(int index) {
+    s32 getStarPieceNumMaxGivingToTicoGalaxy(int index) {
         return GameDataFunction::getStarPieceNumMaxGivingToTicoSeed(index + 8);
     }
 
@@ -733,7 +733,7 @@ namespace MR {
     }
 
     void onMessageAlreadyRead(s8 bit) {
-        u16 value = GameDataFunction::getGameEventValue("MessageAlreadyRead");
+        s32 value = GameDataFunction::getGameEventValue("MessageAlreadyRead");
         s32 mask = 1 << bit;
 
         GameDataFunction::setGameEventValue("MessageAlreadyRead", value | mask);
