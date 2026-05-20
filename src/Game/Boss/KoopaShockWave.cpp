@@ -150,12 +150,12 @@ void KoopaShockWave::updateHitSensor(HitSensor* pSensor) {
     MR::setSensorPos(pSensor, rotateVec);
 }
 
-void KoopaShockWave::calcAndSetMtx() {
+void KoopaShockWave::calcAndSetBaseMtx() {
     MR::setBaseTRMtx(this, mBaseMtx);
 }
 
 void KoopaShockWave::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isSensorPlayer(pReceiver) && MR::isOnGroundPlayer() && MR::sendMsgEnemyAttack(pReceiver, pSender)) {
-        mKoopa->receiveMessage(193, pSender, MR::getMessageSensor());
+        mKoopa->receiveMessage(ACTMES_KOOPA_PLAYER_DAMAGE, pSender, MR::getMessageSensor());
     }
 }

@@ -11,6 +11,8 @@ public:
     virtual ~KoopaFireShort();
     virtual void init(const JMapInfoIter&);
     virtual void appear();
+    virtual void calcAndSetBaseMtx();
+    virtual void attackSensor(HitSensor*, HitSensor*);
 
     void emitNormal();
     void emitFast();
@@ -21,8 +23,6 @@ public:
     void exeDisappear();
     void exeErase2P();
 
-    void calcAndSetBaseMtx();
-    void attackSensor(HitSensor*, HitSensor*);
     void updateFly();
     void updateFrontAndVelocity();
 

@@ -7,10 +7,15 @@ class NameObj;
 class Koopa;
 class LiveActor;
 class KoopaBattleMapStair;
+class KoopaRock;
 class KoopaRockBreak;
+class KoopaRollBall;
 class KoopaBattleMapPlanet;
 class HitSensor;
 class KoopaPlanetShadow;
+class KoopaSwitchKeeper;
+class KoopaViewSwitchKeeper;
+class KoopaPowerUpSwitch;
 class ModelObjNpc;
 class ModelObj;
 
@@ -48,7 +53,7 @@ namespace KoopaFunction {
     TVec3f& getKoopaFront(Koopa*);
     TVec3f* getKoopaFrontPtr(Koopa*);
 
-    void isKoopaSightPlayer(const Koopa*, const MR::ActorSightParam&);
+    bool isKoopaSightPlayer(const Koopa*, const MR::ActorSightParam&);
     void escapeKoopaFromPlayer(Koopa*, const MR::ActorMoveParam&);
 
     bool isKoopaVs1(const Koopa*);
@@ -68,9 +73,9 @@ namespace KoopaFunction {
     void startBreakKoopaTailThorn(Koopa*);
     void startRecoverKoopaTailThorn(Koopa*);
 
-    LiveActor* getKoopaRock(Koopa*);
+    KoopaRock* getKoopaRock(Koopa*);
     KoopaRockBreak* getKoopaRockBreak(Koopa*);
-    LiveActor* getKoopaRollBall(Koopa*);
+    KoopaRollBall* getKoopaRollBall(Koopa*);
 
     void emitKoopaFireShortSlow(Koopa*);
     void emitKoopaFireShortFast(Koopa*);
@@ -101,16 +106,16 @@ namespace KoopaFunction {
     HitSensor* getKoopaMessageSensor(Koopa*);
 
     void registerKoopaSwitchKeeper(LiveActor*);
-    LiveActor* getKoopaSwitchKeeper(Koopa*);
+    KoopaSwitchKeeper* getKoopaSwitchKeeper(Koopa*);
 
     void registerKoopaViewSwitchKeeper(LiveActor*);
-    LiveActor* getKoopaViewSwitchKeeper(Koopa*);
+    KoopaViewSwitchKeeper* getKoopaViewSwitchKeeper(Koopa*);
 
     void registerKoopaPowerUpSwitch(LiveActor*);
-    LiveActor* getKoopaPowerUpSwitch(Koopa*);
+    KoopaPowerUpSwitch* getKoopaPowerUpSwitch(Koopa*);
 
     bool tryStartKoopaAndMarioCameraDemo(Koopa*, const char*, const char*, const char*);
-    bool tryStartKoopaCameraDemo(Koopa*, const char*, const char*, const char*);
+    void tryStartKoopaCameraDemo(Koopa*, const char*, const char*, const char*);
     bool tryEndKoopaCameraDemo(Koopa*, const char*, const char*);
 
     ModelObjNpc* getKoopaDemoPeach(Koopa*);
@@ -123,12 +128,12 @@ namespace KoopaFunction {
 
     void invalidateKoopaNpcLod(Koopa*);
 
-    bool initKoopaCamera(Koopa*, const char*);
+    void initKoopaCamera(Koopa*, const char*);
     void initKoopaAnimCamera(Koopa*, const char*);
     bool startKoopaCamera(Koopa*, const char*);
-    bool startKoopaTargetCamera(Koopa*, const char*);
+    void startKoopaTargetCamera(Koopa*, const char*);
     void startKoopaAnimCamera(Koopa*, const char*, s32);
-    bool endKoopaCamera(Koopa*, const char*, bool, s32);
+    void endKoopaCamera(Koopa*, const char*, bool, s32);
     void endKoopaAnimCamera(Koopa*, const char*, s32);
 
     void startKoopaPlateDamageAnimPowerStarAppear(Koopa*);

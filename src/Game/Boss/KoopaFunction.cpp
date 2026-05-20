@@ -2,12 +2,16 @@
 #include "Game/Boss/BossAccessor.hpp"
 #include "Game/Boss/Koopa.hpp"
 #include "Game/Boss/KoopaParts.hpp"
+#include "Game/Boss/KoopaPowerUpSwitch.hpp"
 #include "Game/Boss/KoopaSequencerVs1.hpp"
 #include "Game/Boss/KoopaSequencerVs2.hpp"
 #include "Game/Boss/KoopaSequencerVs3.hpp"
+#include "Game/Boss/KoopaSwitchKeeper.hpp"
+#include "Game/Boss/KoopaViewSwitchKeeper.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
 #include "Game/Map/KoopaBattleMapPlanet.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
 
 ModelObjNpc* KoopaFunction::getKoopaDemoPeach(Koopa* pKoopa) {
     return pKoopa->mParts->mPeach;
@@ -83,7 +87,8 @@ void KoopaFunction::createKoopaRollBall(Koopa* pKoopa) {
 }
 
 s32 KoopaFunction::registerBattleMapStair(KoopaBattleMapStair* pMapStair) {
-    u32 temp = BossAccess::getBossAccessorKoopa()->mSequencer->_10;
+    u32 temp = BossAccess::getBossAccessorKoopa()->mSequencer->_10;  // TODO
+    // TODO
     return temp;
 }
 
@@ -123,8 +128,8 @@ TVec3f* KoopaFunction::getKoopaFrontPtr(Koopa* pKoopa) {
     return &pKoopa->mFront;
 }
 
-void KoopaFunction::isKoopaSightPlayer(const Koopa* pKoopa, const MR::ActorSightParam& rSightParam) {
-    MR::isInSightFanPlayer(pKoopa, pKoopa->mFront, rSightParam._0, rSightParam._4, rSightParam._8);
+bool KoopaFunction::isKoopaSightPlayer(const Koopa* pKoopa, const MR::ActorSightParam& rSightParam) {
+    return MR::isInSightFanPlayer(pKoopa, pKoopa->mFront, rSightParam._0, rSightParam._4, rSightParam._8);
 }
 
 void KoopaFunction::escapeKoopaFromPlayer(Koopa* pKoopa, const MR::ActorMoveParam& rMoveParam) {
@@ -191,16 +196,16 @@ void KoopaFunction::startRecoverKoopaTailThorn(Koopa* pKoopa) {
     pKoopa->mParts->_C->appear();
 }
 
-LiveActor* KoopaFunction::getKoopaRock(Koopa* pKoopa) {
-    return pKoopa->mParts->_38;
+KoopaRock* KoopaFunction::getKoopaRock(Koopa* pKoopa) {
+    return pKoopa->mParts->mKoopaRock;
 }
 
 KoopaRockBreak* KoopaFunction::getKoopaRockBreak(Koopa* pKoopa) {
-    return pKoopa->mParts->_3C;
+    return pKoopa->mParts->mKoopaRockBreak;
 }
 
-LiveActor* KoopaFunction::getKoopaRollBall(Koopa* pKoopa) {
-    return pKoopa->mParts->_40;
+KoopaRollBall* KoopaFunction::getKoopaRollBall(Koopa* pKoopa) {
+    return pKoopa->mParts->mKoopaRollBall;
 }
 
 void KoopaFunction::emitKoopaFireShortSlow(Koopa* pKoopa) {
@@ -260,7 +265,7 @@ KoopaPlanetShadow* KoopaFunction::getKoopaPlanetShadow(Koopa* pKoopa) {
 }
 
 bool KoopaFunction::tryKoopaPushPlayer(HitSensor* pSender, HitSensor* pReceiver) {
-    if (MR::isSensorType(pSender, 90) && MR::isSensorPlayer(pReceiver) && MR::sendMsgPush(pReceiver, pSender)) {
+    if (MR::isSensorType(pSender, ATYPE_KOOPA_PUSH) && MR::isSensorPlayer(pReceiver) && MR::sendMsgPush(pReceiver, pSender)) {
         return true;
     }
 
@@ -284,7 +289,7 @@ bool KoopaFunction::tryKoopaBodyAttackPlayerMaximum(HitSensor* pSender, HitSenso
 }
 
 bool KoopaFunction::tryKoopaAttackPlayerMaximum(HitSensor* pSender, HitSensor* pReceiver) {
-    if (MR::isSensorType(pSender, 65) && MR::isSensorPlayer(pReceiver) && MR::sendMsgEnemyAttackMaximum(pReceiver, pSender)) {
+    if (MR::isSensorType(pSender, ATYPE_KOOPA_ATTACK) && MR::isSensorPlayer(pReceiver) && MR::sendMsgEnemyAttackMaximum(pReceiver, pSender)) {
         return true;
     }
 
@@ -316,7 +321,7 @@ bool KoopaFunction::tryKoopaReflectStarPiece(u32 msg, HitSensor* pSender, HitSen
         return false;
     }
 
-    return pReceiver->isType(90);
+    return pReceiver->isType(ATYPE_KOOPA_PUSH);
 }
 
 HitSensor* KoopaFunction::getKoopaMessageSensor(Koopa* pKoopa) {
@@ -324,27 +329,27 @@ HitSensor* KoopaFunction::getKoopaMessageSensor(Koopa* pKoopa) {
 }
 
 void KoopaFunction::registerKoopaSwitchKeeper(LiveActor* pActor) {
-    BossAccess::getBossAccessorKoopa()->mParts->_2C = pActor;
+    BossAccess::getBossAccessorKoopa()->mParts->mKoopaSwitchKeeper = static_cast< KoopaSwitchKeeper* >(pActor);
 }
 
-LiveActor* KoopaFunction::getKoopaSwitchKeeper(Koopa* pKoopa) {
-    return pKoopa->mParts->_2C;
+KoopaSwitchKeeper* KoopaFunction::getKoopaSwitchKeeper(Koopa* pKoopa) {
+    return pKoopa->mParts->mKoopaSwitchKeeper;
 }
 
 void KoopaFunction::registerKoopaViewSwitchKeeper(LiveActor* pActor) {
-    BossAccess::getBossAccessorKoopa()->mParts->_30 = pActor;
+    BossAccess::getBossAccessorKoopa()->mParts->mKoopaViewSwitchKeeper = static_cast< KoopaViewSwitchKeeper* >(pActor);
 }
 
-LiveActor* KoopaFunction::getKoopaViewSwitchKeeper(Koopa* pKoopa) {
-    return pKoopa->mParts->_30;
+KoopaViewSwitchKeeper* KoopaFunction::getKoopaViewSwitchKeeper(Koopa* pKoopa) {
+    return pKoopa->mParts->mKoopaViewSwitchKeeper;
 }
 
 void KoopaFunction::registerKoopaPowerUpSwitch(LiveActor* pActor) {
-    BossAccess::getBossAccessorKoopa()->mParts->_34 = pActor;
+    BossAccess::getBossAccessorKoopa()->mParts->mKoopaPowerUpSwitch = static_cast< KoopaPowerUpSwitch *>(pActor);
 }
 
-LiveActor* KoopaFunction::getKoopaPowerUpSwitch(Koopa* pKoopa) {
-    return pKoopa->mParts->_34;
+KoopaPowerUpSwitch* KoopaFunction::getKoopaPowerUpSwitch(Koopa* pKoopa) {
+    return pKoopa->mParts->mKoopaPowerUpSwitch;
 }
 
 namespace {
@@ -372,7 +377,7 @@ namespace {
         MR::startAction(pKoopa, pName);
 
         if (isMario) {
-            MR::startBckPlayer(pName, reinterpret_cast< char* >(nullptr));
+            MR::startBckPlayer(pName, static_cast< char* >(nullptr));
         }
 
         MR::startAnimCameraTargetSelf(pKoopa, pKoopa->mParts->mActorCameraInfo, pName, 0, 1.0f);
@@ -385,8 +390,8 @@ bool KoopaFunction::tryStartKoopaAndMarioCameraDemo(Koopa* pKoopa, const char* p
     return tryStartCameraDemo(pKoopa, pSmth, pName, pDemoName, true);
 }
 
-bool KoopaFunction::tryStartKoopaCameraDemo(Koopa* pKoopa, const char* pSmth, const char* pName, const char* pDemoName) {
-    return tryStartCameraDemo(pKoopa, pSmth, pName, pDemoName, false);
+void KoopaFunction::tryStartKoopaCameraDemo(Koopa* pKoopa, const char* pSmth, const char* pName, const char* pDemoName) {
+    tryStartCameraDemo(pKoopa, pSmth, pName, pDemoName, false);
 }
 
 bool KoopaFunction::tryEndKoopaCameraDemo(Koopa* pKoopa, const char* pName, const char* pSmth) {
@@ -408,8 +413,8 @@ void KoopaFunction::invalidateKoopaNpcLod(Koopa* pKoopa) {
     pParts->mKoopaJrShip->mLodCtrl->invalidate();
 }
 
-bool KoopaFunction::initKoopaCamera(Koopa* pKoopa, const char* pName) {
-    return MR::initMultiActorCameraNoInit(pKoopa, pKoopa->mParts->mActorCameraInfo, pName);
+void KoopaFunction::initKoopaCamera(Koopa* pKoopa, const char* pName) {
+    MR::initMultiActorCameraNoInit(pKoopa, pKoopa->mParts->mActorCameraInfo, pName);
 }
 
 void KoopaFunction::initKoopaAnimCamera(Koopa* pKoopa, const char* pName) {
@@ -420,16 +425,16 @@ bool KoopaFunction::startKoopaCamera(Koopa* pKoopa, const char* pName) {
     return MR::startMultiActorCameraNoTarget(pKoopa, pKoopa->mParts->mActorCameraInfo, pName, -1);
 }
 
-bool KoopaFunction::startKoopaTargetCamera(Koopa* pKoopa, const char* pName) {
-    return MR::startMultiActorCameraTargetSelf(pKoopa, pKoopa->mParts->mActorCameraInfo, pName, -1);
+void KoopaFunction::startKoopaTargetCamera(Koopa* pKoopa, const char* pName) {
+    MR::startMultiActorCameraTargetSelf(pKoopa, pKoopa->mParts->mActorCameraInfo, pName, -1);
 }
 
 void KoopaFunction::startKoopaAnimCamera(Koopa* pKoopa, const char* pName, s32 a1) {
     MR::startAnimCameraTargetSelf(pKoopa, pKoopa->mParts->mActorCameraInfo, pName, a1, 1.0f);
 }
 
-bool KoopaFunction::endKoopaCamera(Koopa* pKoopa, const char* pName, bool a1, s32 a2) {
-    return MR::endMultiActorCamera(pKoopa, pKoopa->mParts->mActorCameraInfo, pName, a1, a2);
+void KoopaFunction::endKoopaCamera(Koopa* pKoopa, const char* pName, bool a1, s32 a2) {
+    MR::endMultiActorCamera(pKoopa, pKoopa->mParts->mActorCameraInfo, pName, a1, a2);
 }
 
 void KoopaFunction::endKoopaAnimCamera(Koopa* pKoopa, const char* pName, s32 a1) {

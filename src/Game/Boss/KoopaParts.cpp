@@ -10,9 +10,9 @@
 #include "Game/Map/KoopaBattleMapPlanet.hpp"
 
 KoopaParts::KoopaParts(Koopa* pKoopa, const JMapInfoIter& rIter)
-    : mKoopa(pKoopa), mPlanetRadius(1300.0f), _8(), _C(), _10(), _14(), mPlanetLv1(), mPlanetShadow(), _20(), _24(), _28(), _2C(), _30(), _34(),
-      _38(), _3C(), _40(), mPlanetLv2(), mPlanetLv3(), _4C(), _50(), _54(), _58(), mPeach(), mKoopaJr(), mKoopaJrShip(), mMeteor1(), mMeteor2(),
-      mMeteor3(), mActorCameraInfo() {
+    : mKoopa(pKoopa), mPlanetRadius(1300.0f), mThornBig(), mThornSmall(), mArmorBreak(), mThornBreak(), mPlanetLv1(), mPlanetShadow(), mShockWave(), mFireShort(), mFireStairs(), mKoopaSwitchKeeper(),
+      mKoopaViewSwitchKeeper(), mKoopaPowerUpSwitch(), mRock(), mRockBreak(), mRollBall(), mPlanetLv2(), mPlanetLv3(), mHoleSunPlanetOutside(), mHoleSunPlanetOutsideBloom(),
+      mHoleSunPlanetInside(), mHoleSunPlanetInsideBloom(), mPeach(), mKoopaJr(), mKoopaJrShip(), mMeteor1(), mMeteor2(), mMeteor3(), mActorCameraInfo() {
     mActorCameraInfo = new ActorCameraInfo(rIter);
     MR::declareCameraRegisterVec(mKoopa, 0, &mKoopa->mPosition);
 }
@@ -32,7 +32,7 @@ namespace {
 }  // namespace
 
 KoopaFireStairs* KoopaParts::emitFireStairsToPos(const KoopaBattleMapStair* pMapStair, const TVec3f& rPosition, bool useFront) {
-    KoopaFireStairs* pMapStairs = static_cast< KoopaFireStairs* >(_28->getDeadActor());
+    KoopaFireStairs* pMapStairs = static_cast< KoopaFireStairs* >(mFireStairs->getDeadActor());
 
     if (pMapStairs == nullptr) {
         return nullptr;
@@ -49,7 +49,7 @@ KoopaFireStairs* KoopaParts::emitFireStairsToPos(const KoopaBattleMapStair* pMap
 
 void KoopaParts::killFireStairsAll() {
     for (int idx = 0; idx < 16; idx++) {
-        LiveActor* pActor = _28->getActor(idx);
+        LiveActor* pActor = mFireStairs->getActor(idx);
 
         if (!MR::isDead(pActor)) {
             pActor->makeActorDead();
@@ -58,7 +58,7 @@ void KoopaParts::killFireStairsAll() {
 }
 
 void KoopaParts::emitFireShort(bool fast, bool curve) {
-    KoopaFireShort* pFireShort = static_cast< KoopaFireShort* >(_24->getDeadActor());
+    KoopaFireShort* pFireShort = static_cast< KoopaFireShort* >(mFireShort->getDeadActor());
 
     if (pFireShort != nullptr) {
         if (curve) {
@@ -72,7 +72,7 @@ void KoopaParts::emitFireShort(bool fast, bool curve) {
 }
 
 void KoopaParts::emitFireLongTime() {
-    KoopaFireShort* pFireShort = static_cast< KoopaFireShort* >(_24->getDeadActor());
+    KoopaFireShort* pFireShort = static_cast< KoopaFireShort* >(mFireShort->getDeadActor());
 
     if (pFireShort != nullptr) {
         pFireShort->emitLongTime();
@@ -80,7 +80,7 @@ void KoopaParts::emitFireLongTime() {
 }
 
 void KoopaParts::emitShockWave() {
-    LiveActor* pActor = _20->getDeadActor();
+    LiveActor* pActor = mShockWave->getDeadActor();
 
     if (pActor != nullptr) {
         pActor->appear();
@@ -108,15 +108,15 @@ f32 KoopaParts::getPlanetRadius() const {
 }
 
 void KoopaParts::appearHoleSunPlanetInside() {
-    _54->appear();
+    mHoleSunPlanetInside->appear();
 }
 
 void KoopaParts::appearHoleSunPlanetOutside() {
-    _4C->appear();
+    mHoleSunPlanetOutside->appear();
 }
 
 void KoopaParts::killHoleSunPlanetOutside() {
-    _4C->kill();
+    mHoleSunPlanetOutside->kill();
 }
 
 void KoopaParts::createPlanetShadow() {
@@ -203,26 +203,26 @@ void KoopaParts::initVs3() {
 
     createPlanetShadow();
 
-    _4C = MR::createModelObjMapObj("穴あき太陽（外側）", "KoopaVS3HoleSunPlanet", nullptr);
-    MR::setClippingTypeSphere(_4C, 40000.0f);
-    MR::setClippingFarMax(_4C);
-    MR::resetPosition(_4C, "惑星Ｌｖ３");
-    MR::tryStartAllAnim(_4C, "KoopaVS3HoleSunPlanet");
+    mHoleSunPlanetOutside = MR::createModelObjMapObj("穴あき太陽（外側）", "KoopaVS3HoleSunPlanet", nullptr);
+    MR::setClippingTypeSphere(mHoleSunPlanetOutside, 40000.0f);
+    MR::setClippingFarMax(mHoleSunPlanetOutside);
+    MR::resetPosition(mHoleSunPlanetOutside, "惑星Ｌｖ３");
+    MR::tryStartAllAnim(mHoleSunPlanetOutside, "KoopaVS3HoleSunPlanet");
 
-    _50 = MR::createBloomModel(_4C, nullptr);
+    mHoleSunPlanetOutsideBloom = MR::createBloomModel(mHoleSunPlanetOutside, nullptr);
 
-    _54 = MR::createModelObjMapObj("穴あき太陽（内側）", "KoopaVS3HoleSunInsidePlanet", nullptr);
-    MR::invalidateClipping(_54);
-    MR::resetPosition(_54, "惑星Ｌｖ３");
-    MR::tryStartAllAnim(_54, "KoopaVS3HoleSunInsidePlanet");
+    mHoleSunPlanetInside = MR::createModelObjMapObj("穴あき太陽（内側）", "KoopaVS3HoleSunInsidePlanet", nullptr);
+    MR::invalidateClipping(mHoleSunPlanetInside);
+    MR::resetPosition(mHoleSunPlanetInside, "惑星Ｌｖ３");
+    MR::tryStartAllAnim(mHoleSunPlanetInside, "KoopaVS3HoleSunInsidePlanet");
 
-    _58 = MR::createBloomModel(_54, nullptr);
-    _54->kill();
+    mHoleSunPlanetInsideBloom = MR::createBloomModel(mHoleSunPlanetInside, nullptr);
+    mHoleSunPlanetInside->kill();
 
-    MR::registerDemoSimpleCastAll(_4C);
-    MR::registerDemoSimpleCastAll(_50);
-    MR::registerDemoSimpleCastAll(_54);
-    MR::registerDemoSimpleCastAll(_58);
+    MR::registerDemoSimpleCastAll(mHoleSunPlanetOutside);
+    MR::registerDemoSimpleCastAll(mHoleSunPlanetOutsideBloom);
+    MR::registerDemoSimpleCastAll(mHoleSunPlanetInside);
+    MR::registerDemoSimpleCastAll(mHoleSunPlanetInsideBloom);
 
     mPeach = createDemoNpc("ピーチ", "Peach");
     mKoopaJr = createDemoNpc("クッパＪｒ", "KoopaJr");
@@ -256,57 +256,57 @@ void KoopaParts::initVs3() {
 }
 
 void KoopaParts::createRock() {
-    if (_38 == nullptr) {
-        _38 = createKoopaBodyParts(mKoopa, "クッパ岩", "KoopaRock", "RockFixPos");
-        _38->kill();
+    if (mRock == nullptr) {
+        mRock = createKoopaBodyParts(mKoopa, "クッパ岩", "KoopaRock", "RockFixPos");
+        mRock->kill();
 
-        _3C = new KoopaRockBreak(mKoopa);
-        _3C->initWithoutIter();
+        mRockBreak = new KoopaRockBreak(mKoopa);
+        mRockBreak->initWithoutIter();
     }
 }
 
 void KoopaParts::createRollBall() {
-    if (_40 == nullptr) {
-        _40 = createKoopaBodyParts(mKoopa, "回転攻撃ボール", "KoopaRollBall", "RollBallFixPos");
-        _40->kill();
+    if (mRollBall == nullptr) {
+        mRollBall = createKoopaBodyParts(mKoopa, "回転攻撃ボール", "KoopaRollBall", "RollBallFixPos");
+        mRollBall->kill();
     }
 }
 
 void KoopaParts::createCommonParts() {
-    _8 = createKoopaBodyParts(mKoopa, "尻尾のトゲ（大）", "KoopaThorn", "TailThornBigFixPos");
-    _C = createKoopaBodyParts(mKoopa, "尻尾のトゲ（小）", "KoopaThorn", "TailThornSmallFixPos");
-    _10 = createKoopaBodyParts(mKoopa, "壊れ甲羅", "KoopaArmorBreak", "ArmorBreakFixPos");
-    _10->kill();
+    mThornBig = createKoopaBodyParts(mKoopa, "尻尾のトゲ（大）", "KoopaThorn", "TailThornBigFixPos");
+    mThornSmall = createKoopaBodyParts(mKoopa, "尻尾のトゲ（小）", "KoopaThorn", "TailThornSmallFixPos");
+    mArmorBreak = createKoopaBodyParts(mKoopa, "壊れ甲羅", "KoopaArmorBreak", "ArmorBreakFixPos");
+    mArmorBreak->kill();
 
-    _14 = createKoopaBodyParts(mKoopa, "トゲ破片", "KoopaThornBreak", "ThornBreakFixPos");
-    _14->kill();
+    mThornBreak = createKoopaBodyParts(mKoopa, "トゲ破片", "KoopaThornBreak", "ThornBreakFixPos");
+    mThornBreak->kill();
 
-    _24 = new LiveActorGroup("ショート炎", 32);
-    _24->initWithoutIter();
+    mFireShort = new LiveActorGroup("ショート炎", 32);
+    mFireShort->initWithoutIter();
 
     for (int idx = 0; idx < 32; idx++) {
         KoopaFireShort* pFireShort = new KoopaFireShort(mKoopa);
         pFireShort->initWithoutIter();
-        _24->registerActor(pFireShort);
+        mFireShort->registerActor(pFireShort);
     }
 
-    _20 = new LiveActorGroup("衝撃波（球状）", 8);
-    _20->initWithoutIter();
+    mShockWave = new LiveActorGroup("衝撃波（球状）", 8);
+    mShockWave->initWithoutIter();
 
     for (int idx = 0; idx < 8; idx++) {
         KoopaShockWave* pShockWave = new KoopaShockWave(mKoopa);
         pShockWave->initWithoutIter();
-        _20->registerActor(pShockWave);
+        mShockWave->registerActor(pShockWave);
     }
 }
 
 void KoopaParts::createFireStairs(bool a1) {
-    _28 = new LiveActorGroup("炎（階段用）保持", 16);
-    _28->initWithoutIter();
+    mFireStairs = new LiveActorGroup("炎（階段用）保持", 16);
+    mFireStairs->initWithoutIter();
 
     for (int idx = 0; idx < 16; idx++) {
         KoopaFireStairs* pFireStairs = new KoopaFireStairs("炎（階段用）", a1);
         pFireStairs->initWithoutIter();
-        _28->registerActor(pFireStairs);
+        mFireStairs->registerActor(pFireStairs);
     }
 }

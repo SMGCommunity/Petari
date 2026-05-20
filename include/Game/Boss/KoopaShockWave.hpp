@@ -13,11 +13,10 @@ public:
     virtual void appear();
     virtual void makeActorDead();
     virtual void updateHitSensor(HitSensor*);
+    virtual void calcAndSetBaseMtx();
+    virtual void attackSensor(HitSensor*, HitSensor*);
 
     void exeWaveAttack();
-
-    void calcAndSetMtx();
-    void attackSensor(HitSensor*, HitSensor*);
 
 private:
     /* 0x8C */ Koopa* mKoopa;
