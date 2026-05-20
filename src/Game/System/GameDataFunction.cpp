@@ -83,7 +83,7 @@ namespace GameDataFunction {
         return getCurrentGameDataHolder()->getPictureBookChapterCanRead();
     }
 
-    u16 getPictureBookChapterAlreadyRead() {
+    u32 getPictureBookChapterAlreadyRead() {
         return getCurrentGameDataHolder()->getPictureBookChapterAlreadyRead();
     }
 
@@ -107,7 +107,7 @@ namespace GameDataFunction {
         return getCurrentGameDataHolder()->isOnGameEventFlag(pName);
     }
 
-    u16 getGameEventValue(const char* pName) {
+    u32 getGameEventValue(const char* pName) {
         return getCurrentGameDataHolder()->getGameEventValue(pName);
     }
 
@@ -171,11 +171,11 @@ namespace GameDataFunction {
         getCurrentGameDataHolder()->updateSpinDriverPathStorage(pGalaxyName, scenarioNo, param3, param4);
     }
 
-    u16 getStarPieceNumGivingToTicoSeed(int index) {
+    u32 getStarPieceNumGivingToTicoSeed(int index) {
         return getCurrentGameDataHolder()->getStarPieceNumGivingToTicoSeed(index);
     }
 
-    u16 getStarPieceNumMaxGivingToTicoSeed(int index) {
+    u32 getStarPieceNumMaxGivingToTicoSeed(int index) {
         return getCurrentGameDataHolder()->getStarPieceNumMaxGivingToTicoSeed(index);
     }
 
@@ -235,7 +235,7 @@ namespace GameDataFunction {
         return getSaveDataHandleSequence()->getCurrentUserFile()->mUserName;
     }
 
-    u16 getUserFileIndex() {
+    u32 getUserFileIndex() {
         const char* pGameDataName = getSaveDataHandleSequence()->getCurrentUserFile()->getGameDataName();
         s32 index = strlen(pGameDataName) - 1;
         char ch = pGameDataName[index];
