@@ -15,7 +15,6 @@ public:
     virtual MtxPtr getBaseMtx() const;
     virtual void control();
 
-private:
     /* 0x8C */ Koopa* mKoopa;
     /* 0x90 */ TVec3f _90;
     /* 0x9C */ f32 _9C;
