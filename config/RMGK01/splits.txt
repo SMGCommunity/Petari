@@ -198,12 +198,13 @@ Game/Animation/XanimeCore.cpp:
 
 Game/Animation/XanimePlayer.cpp:
 	.text       start:0x8001B148 end:0x8001C4D4
-	.data       start:0x80564B48 end:0x80564B88
+	.data       start:0x80564B48 end:0x80564B68
 	.sdata      start:0x806B1650 end:0x806B1698
 	.sdata2     start:0x806B7D78 end:0x806B7D88
 
 Game/Animation/XanimeResource.cpp:
 	.text       start:0x8001C4D4 end:0x8001D2A8
+	.data       start:0x80564B68 end:0x80564B88
 	.sbss       start:0x806B2EB8 end:0x806B2EC0
 	.sdata2     start:0x806B7D88 end:0x806B7D90
 

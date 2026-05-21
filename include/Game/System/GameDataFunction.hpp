@@ -19,13 +19,13 @@ namespace GameDataFunction {
     s32 getPowerStarNumOwned(const char*);
     s32 getPowerStarNumMax();
     s32 getPictureBookChapterCanRead();
-    u16 getPictureBookChapterAlreadyRead();
+    u32 getPictureBookChapterAlreadyRead();
     void setPictureBookChapterAlreadyRead(int);
     void onGameEventFlag(const char*);
     bool canOnGameEventFlag(const char*);
     bool canOnAndIsOffGameEventFlag(const char*);
     bool isOnGameEventFlag(const char*);
-    u16 getGameEventValue(const char*);
+    u32 getGameEventValue(const char*);
     void setGameEventValue(const char*, u16);
     bool isOnGameEventValueForBit(const char*, int);
     void setGameEventValueForBit(const char*, int, bool);
@@ -40,8 +40,8 @@ namespace GameDataFunction {
     void incPlayerMissNum();
     s32 registerStorageSpinDriverPathDrawRange(const char*, int, int, int, f32*);
     void updateStorageSpinDriverPathDrawRange(const char*, int, int, f32);
-    s32 getStarPieceNumGivingToTicoSeed(int);
-    s32 getStarPieceNumMaxGivingToTicoSeed(int);
+    u32 getStarPieceNumGivingToTicoSeed(int);
+    u32 getStarPieceNumMaxGivingToTicoSeed(int);
     void addStarPieceGivingToTicoSeed(int, int);
     bool isPassedStoryEvent(const char*);
     void followStoryEventByName(const char*);
