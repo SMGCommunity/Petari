@@ -1,5 +1,4 @@
 #include "Game/NameObj/NameObjFactory.hpp"
-#include "Game/NameObj/NameObjFactoryStubs.hpp"
 #include "Game/AreaObj.hpp"
 #include "Game/Boss.hpp"
 #include "Game/Demo.hpp"
@@ -10,8 +9,10 @@
 #include "Game/Map/OceanBowl.hpp"
 #include "Game/MapObj.hpp"
 #include "Game/NPC.hpp"
-#include "Game/Ride.hpp"
+#include "Game/NameObj/NameObjFactoryStubs.hpp"
 #include "Game/Player/MarioActor.hpp"
+#include "Game/Ride.hpp"
+
 
 namespace NrvMorphItemObjNeo {
     NEW_NERVE(MorphItemObjNeoNrvWait, MorphItemObjNeo, Wait);
@@ -20,7 +21,7 @@ namespace NrvMorphItemObjNeo {
     NEW_NERVE(MorphItemObjNeoNrvWait2, MorphItemObjNeo, Wait2);
     NEW_NERVE(MorphItemObjNeoNrvFly, MorphItemObjNeo, Fly);
     NEW_NERVE(MorphItemObjNeoNrvDemo, MorphItemObjNeo, Demo);
-}
+}  // namespace NrvMorphItemObjNeo
 
 namespace NrvBenefitItemObj {
     INIT_NERVE(HostTypeNrvWait);
@@ -29,7 +30,7 @@ namespace NrvBenefitItemObj {
     INIT_NERVE(HostTypeNrvAppearGround);
     INIT_NERVE(HostTypeNrvPreEscape);
     INIT_NERVE(HostTypeNrvEscape);
-}
+}  // namespace NrvBenefitItemObj
 
 namespace NrvMarioActor {
     INIT_NERVE(MarioActorNrvWait);
@@ -42,7 +43,7 @@ namespace NrvMarioActor {
     INIT_NERVE(MarioActorNrvGameOverSink);
     INIT_NERVE(MarioActorNrvTimeWait);
     INIT_NERVE(MarioActorNrvNoRush);
-}
+}  // namespace NrvMarioActor
 
 volatile const Nerve* cNerveInitKeep[] = {
     &NrvBenefitItemObj::HostTypeNrvWait::sInstance,
@@ -69,12 +70,7 @@ volatile const Nerve* cNerveInitKeep[] = {
     &NrvMorphItemObjNeo::MorphItemObjNeoNrvDemo::sInstance,
 };
 
-
 namespace MR {
-    NameObj* createBigBubbleMoveLimitterCylinder(const char*);
-    NameObj* createBigBubbleMoveLimitterPlane(const char*);
-    NameObj* createBigBubbleGenerator(const char*);
-    NameObj* createBigObstructBubbleGenerator(const char*);
     NameObj* createDinoPackunVs1(const char*);
     NameObj* createDinoPackunVs2(const char*);
     NameObj* createFallOutFieldDraw(const char*);
@@ -82,13 +78,13 @@ namespace MR {
     NameObj* createVolumeDrawSpotLight(const char*);
     NameObj* createFireBallBeamKameck(const char*);
     NameObj* createTurtleBeamKameck(const char*);
-};
+};  // namespace MR
 
 namespace KoopaFunction {
     NameObj* createKoopaVs1(const char*);
     NameObj* createKoopaVs2(const char*);
     NameObj* createKoopaVs3(const char*);
-};
+};  // namespace KoopaFunction
 
 namespace {
     // FIXME: Polta is being worked on in #1867
@@ -8179,19 +8175,31 @@ namespace {
     };
 };  // namespace
 
-MorphItemNeoHopper::~MorphItemNeoHopper() {}
-MorphItemNeoIce::~MorphItemNeoIce() {}
-MorphItemNeoFire::~MorphItemNeoFire() {}
-MorphItemNeoFoo::~MorphItemNeoFoo() {}
-MorphItemNeoBee::~MorphItemNeoBee() {}
-MorphItemNeoTeresa::~MorphItemNeoTeresa() {}
+MorphItemNeoHopper::~MorphItemNeoHopper() {
+}
+MorphItemNeoIce::~MorphItemNeoIce() {
+}
+MorphItemNeoFire::~MorphItemNeoFire() {
+}
+MorphItemNeoFoo::~MorphItemNeoFoo() {
+}
+MorphItemNeoBee::~MorphItemNeoBee() {
+}
+MorphItemNeoTeresa::~MorphItemNeoTeresa() {
+}
 
-EffectObjR100F50SyncClipping::~EffectObjR100F50SyncClipping() {}
-EffectObjR500F50::~EffectObjR500F50() {}
-EffectObjR1000F50::~EffectObjR1000F50() {}
-EffectObj20x20x10SyncClipping::~EffectObj20x20x10SyncClipping() {}
-EffectObj50x50x10SyncClipping::~EffectObj50x50x10SyncClipping() {}
-EffectObj10x10x10SyncClipping::~EffectObj10x10x10SyncClipping() {}
+EffectObjR100F50SyncClipping::~EffectObjR100F50SyncClipping() {
+}
+EffectObjR500F50::~EffectObjR500F50() {
+}
+EffectObjR1000F50::~EffectObjR1000F50() {
+}
+EffectObj20x20x10SyncClipping::~EffectObj20x20x10SyncClipping() {
+}
+EffectObj50x50x10SyncClipping::~EffectObj50x50x10SyncClipping() {
+}
+EffectObj10x10x10SyncClipping::~EffectObj10x10x10SyncClipping() {
+}
 
 bool EffectObj10x10x10SyncClipping::isSyncClipping() const {
     return true;

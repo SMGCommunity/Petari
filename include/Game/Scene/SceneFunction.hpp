@@ -138,7 +138,7 @@ namespace MR {
         DrawType_WaterRoad = 0x0C,
         DrawType_WhirlPoolAccelerator = 0x0D,
         DrawType_ElectricRailHolder = 0x0E,
-        DrawType_DrawType_BigBubble = 0x0F,
+        DrawType_BigBubble = 0x0F,
         DrawType_BigBubbleGoal = 0x10,
         DrawType_0x11 = 0x11,
         DrawType_SpinDriverPathDrawer = 0x12,

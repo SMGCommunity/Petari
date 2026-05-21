@@ -746,7 +746,7 @@ namespace {
             1,
         },
         {
-            MR::DrawType_DrawType_BigBubble,
+            MR::DrawType_BigBubble,
             1,
         },
         {

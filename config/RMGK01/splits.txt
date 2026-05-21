@@ -4285,13 +4285,13 @@ Game/MapObj/BigBubbleDrawer.cpp:
 Game/MapObj/BigBubbleGenerator.cpp:
 	.text       start:0x801B6308 end:0x801B6A90
 	.ctors      start:0x8052EC74 end:0x8052EC78
-	.data       start:0x805900B8 end:0x805901A8
+	.data       start:0x805900B8 end:0x80590198
 	.sbss       start:0x806B4EA8 end:0x806B4EB0
 	.sdata2     start:0x806BC8B0 end:0x806BC8C8
 
 Game/MapObj/BigBubbleHolder.cpp:
 	.text       start:0x801B6A90 end:0x801B713C
-	.data       start:0x805901A8 end:0x805901D0
+	.data       start:0x80590198 end:0x805901D0
 
 Game/MapObj/BigBubbleMoveLimitter.cpp:
 	.text       start:0x801B713C end:0x801B7714
