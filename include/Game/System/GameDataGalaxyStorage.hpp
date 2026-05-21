@@ -62,12 +62,12 @@ public:
 // NOTE/TODO: This dummy is here to ensure vtable alignment in GameDataAllGalaxyStorage.
 // This double-inheritance with BinaryDataChunkBase behavior is repeated for a few
 // different classes. What actually is the class that takes this role?
-class Dummy {
+class Dummy1 {
 public:
-    Dummy(){};
+    Dummy1(){};
 };
 
-class GameDataAllGalaxyStorage : public Dummy, public BinaryDataChunkBase {
+class GameDataAllGalaxyStorage : public Dummy1, public BinaryDataChunkBase {
 public:
     GameDataAllGalaxyStorage();
 

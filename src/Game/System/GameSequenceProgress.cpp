@@ -326,7 +326,7 @@ void GameSequenceProgress::countDownGameEventValueFromNewPowerStar() {
                 continue;
             }
 
-            u16 eventValue = GameDataFunction::getGameEventValue(accessor.getEventValueName());
+            u32 eventValue = GameDataFunction::getGameEventValue(accessor.getEventValueName());
 
             GameDataFunction::setGameEventValue(accessor.getEventValueName(), eventValue - 1);
         }
