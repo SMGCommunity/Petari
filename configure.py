@@ -506,6 +506,16 @@ def MSLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
     }
 
 
+def MSLib_WPRINTF(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
+    return {
+        "lib": lib_name,
+        "mw_version": "GC/3.0a5.2",
+        "cflags": cflags_msl,
+        "progress_category": "msl",
+        "objects": objects,
+    }
+
+
 def TRKLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
     return {
         "lib": lib_name,
@@ -2736,6 +2746,12 @@ config.libs = [
             Object(NonMatching, "RVLFaceLib/RFL_Format.c"),
         ],
     ),
+    MSLib_WPRINTF(
+        "MSL_C",
+        [
+            Object(NonMatching, "MSL_C/wprintf.c"),
+        ],
+    ),
     MSLib(
         "MSL_C",
         [
@@ -2763,7 +2779,6 @@ config.libs = [
             Object(Matching, "MSL_C/strtold.c"),
             Object(Matching, "MSL_C/strtoul.c"),
             Object(Matching, "MSL_C/wmem.c"),
-            Object(NonMatching, "MSL_C/wprintf.c"),
             Object(Matching, "MSL_C/wstring.c"),
             Object(Matching, "MSL_C/wchar_io.c"),
             Object(Matching, "MSL_C/uart_console_io_gcn.c"),
