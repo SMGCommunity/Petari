@@ -2750,6 +2750,7 @@ config.libs = [
         "MSL_C",
         [
             Object(NonMatching, "MSL_C/wprintf.c"),
+            Object(NonMatching, "MSL_C/printf.c"),
         ],
     ),
     MSLib(
@@ -2772,7 +2773,6 @@ config.libs = [
             Object(Matching, "MSL_C/mem_funcs.c"),
             Object(Matching, "MSL_C/math_api.c"),
             Object(Matching, "MSL_C/misc_io.c"),
-            Object(NonMatching, "MSL_C/printf.c"),
             Object(NonMatching, "MSL_C/scanf.c"),
             Object(Matching, "MSL_C/signal.c"),
             Object(Matching, "MSL_C/string.c"),
