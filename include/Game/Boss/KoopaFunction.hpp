@@ -129,7 +129,7 @@ namespace KoopaFunction {
 
     void initKoopaCamera(Koopa*, const char*);
     void initKoopaAnimCamera(Koopa*, const char*);
-    bool startKoopaCamera(Koopa*, const char*);
+    void startKoopaCamera(Koopa*, const char*);
     void startKoopaTargetCamera(Koopa*, const char*);
     void startKoopaAnimCamera(Koopa*, const char*, s32);
     void endKoopaCamera(Koopa*, const char*, bool, s32);
