@@ -23,7 +23,7 @@ void KoopaFireShort::init(const JMapInfoIter& rIter) {
     MR::connectToSceneEnemy(this);
     initHitSensor(1);
 
-    MR::addHitSensor(this, "Attack", 66, 8, 130.0f, TVec3f(0.0f, 0.0f, 0.0f));
+    MR::addHitSensor(this, "Attack", ATYPE_KOOPA_FIRE, 8, 130.0f, TVec3f(0.0f, 0.0f, 0.0f));
     initBinder(50.0f, 0.0f, 0);
 
     MR::offBind(this);
@@ -188,8 +188,8 @@ void KoopaFireShort::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
             MR::zeroVelocity(this);
             setNerve(&NrvKoopaFireShort::KoopaFireShortNrvDisappear::sInstance);
         } else {
-            if (!MR::isSensorPlayer(pReceiver) && !MR::sendMsgPush(pReceiver, pSender) && !MR::isSensorType(pReceiver, 66) &&
-                !MR::isSensorType(pReceiver, 92) && !MR::isSensorType(pReceiver, 93) && !MR::isSensorType(pReceiver, 94)) {
+            if (!MR::isSensorPlayer(pReceiver) && !MR::sendMsgPush(pReceiver, pSender) && !MR::isSensorType(pReceiver, ATYPE_KOOPA_FIRE) &&
+                !MR::isSensorType(pReceiver, ATYPE_KOOPA_DAMAGE_PLATE) && !MR::isSensorType(pReceiver, ATYPE_KOOPA_COIN_PLATE) && !MR::isSensorType(pReceiver, ATYPE_KOOPA_PLATE)) {
                 mSpeed = 0.0f;
                 MR::zeroVelocity(this);
                 setNerve(&NrvKoopaFireShort::KoopaFireShortNrvDisappear::sInstance);
