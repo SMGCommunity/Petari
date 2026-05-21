@@ -18,7 +18,7 @@ namespace {
 
 namespace NrvKoopaShockWave {
     NEW_NERVE(KoopaShockWaveNrvWaveAttack, KoopaShockWave, WaveAttack);
-}
+}  // namespace NrvKoopaShockWave
 
 KoopaShockWave::KoopaShockWave(Koopa* pKoopa)
     : LiveActor("球状衝撃波"), mKoopa(pKoopa), _90(), _C4(0.0f, 1.0f, 0.0f), _D0(0.0f, 0.0f, 1.0f), mPartsModel(), mShadow() {

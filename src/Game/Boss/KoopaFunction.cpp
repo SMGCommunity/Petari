@@ -12,7 +12,6 @@
 #include "Game/LiveActor/ModelObj.hpp"
 #include "Game/LiveActor/PartsModel.hpp"
 #include "Game/Map/KoopaBattleMapPlanet.hpp"
-#include "Game/Util/ActorSensorUtil.hpp"
 
 ModelObjNpc* KoopaFunction::getKoopaDemoPeach(Koopa* pKoopa) {
     return pKoopa->mParts->mPeach;
