@@ -1,10 +1,9 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/LiveActor/LiveActorGroupArray.hpp"
-#include "Game/NameObj/NameObj.hpp"
 
 class KirairaChain;
+class MsgSharedGroup;
 
 class Kiraira : public LiveActor {
 public:
