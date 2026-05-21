@@ -23,7 +23,6 @@ public:
     void exeDemoBattleEnd();
     void exeWaitDemo();
 
-
 private:
     /* 0x24 */ u32 _24;
     /* 0x28 */ u32 _28;

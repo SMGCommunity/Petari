@@ -12,8 +12,8 @@ public:
     virtual void init(const JMapInfoIter&);
     virtual void makeActorAppeared();
     virtual void makeActorDead();
-    virtual void control();
     virtual MtxPtr getBaseMtx() const;
+    virtual void control();
 
 private:
     /* 0x8C */ Koopa* mKoopa;
