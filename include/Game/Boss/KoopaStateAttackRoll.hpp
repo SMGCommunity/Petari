@@ -5,7 +5,7 @@
 
 class KoopaFigureBall;
 
-class KoopaStateAttackRoll : public ActorStateBase<Koopa> {
+class KoopaStateAttackRoll : public ActorStateBase< Koopa > {
 public:
     KoopaStateAttackRoll(Koopa*);
 
@@ -26,7 +26,7 @@ public:
     void exeEndAir();
     void exeEndLand();
 
-    private:
+private:
     /* 0x10 */ KoopaFigureBall* mFigureBall;
     /* 0x14 */ s32 _14;
     /* 0x18 */ u32 _18;
