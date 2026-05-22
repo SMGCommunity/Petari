@@ -10,10 +10,10 @@ public:
 
     virtual ~KoopaSequencerVs1();
     virtual void init(Koopa*, const JMapInfoIter&);
-    virtual void attackSensor(HitSensor*, HitSensor*);
-    virtual void receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
-    virtual void receiveMsgEnemyAttack(u32, HitSensor*, HitSensor*);
-    virtual void receiveOtherMsg(u32, HitSensor*, HitSensor*);
+    virtual bool attackSensor(HitSensor*, HitSensor*);
+    virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
+    virtual bool receiveMsgEnemyAttack(u32, HitSensor*, HitSensor*);
+    virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
 
     void exeBattleStairs();
     void exeDemoBattleStart();

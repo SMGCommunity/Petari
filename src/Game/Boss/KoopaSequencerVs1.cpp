@@ -20,16 +20,17 @@ KoopaSequencerVs1::~KoopaSequencerVs1() {
 void KoopaSequencerVs1::init(Koopa* pKoopa, const JMapInfoIter& rIter) {
 }
 
-void KoopaSequencerVs1::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
+bool KoopaSequencerVs1::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
 }
 
-void KoopaSequencerVs1::receiveMsgPlayerAttack(u32, HitSensor* pSender, HitSensor* pReceiver) {
+bool KoopaSequencerVs1::receiveMsgPlayerAttack(u32, HitSensor* pSender, HitSensor* pReceiver) {
 }
 
-void KoopaSequencerVs1::receiveMsgEnemyAttack(u32, HitSensor* pSender, HitSensor* pReceiver) {
+bool KoopaSequencerVs1::receiveMsgEnemyAttack(u32, HitSensor* pSender, HitSensor* pReceiver) {
+    return false;
 }
 
-void KoopaSequencerVs1::receiveOtherMsg(u32, HitSensor* pSender, HitSensor* pReceiver) {
+bool KoopaSequencerVs1::receiveOtherMsg(u32, HitSensor* pSender, HitSensor* pReceiver) {
     if (isNerve(&NrvKoopaSequencerVs1::KoopaSequencerVs1NrvBattle::sInstance)) {
     }
 }
