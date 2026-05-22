@@ -49,14 +49,12 @@ void KoopaStateAttackFireShort::appear() {
             _14 = 3;
             _18 = 30;
         }
+    } else if (KoopaFunction::isKoopaLv3(mHost)) {
+        KoopaFunction::isKoopaAngry(mHost) ? _14 = 10 : _14 = 5;
+        _18 = 15;
     } else {
-        if (KoopaFunction::isKoopaLv3(mHost)) {
-            KoopaFunction::isKoopaAngry(mHost) ? _14 = 10 : _14 = 5;
-            _18 = 15;
-        } else {
-            _14 = 3;
-            _18 = 30;
-        }
+        _14 = 3;
+        _18 = 30;
     }
 
     setNerve(&NrvKoopaStateAttackFireShort::KoopaStateAttackFireShortNrvStart::sInstance);
