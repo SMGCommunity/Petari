@@ -122,16 +122,16 @@ void KoopaStateAttackHipDrop::exeRun() {
     MR::moveAndTurnToPlayer(mHost, &mHost->mFront, sParamRunStart);
 
     Koopa* pKoopa = mHost;
-    if (!MR::sendMsgEnemyAttackToBindedSensor(pKoopa, pKoopa->getSensor("Body"))) {
-        if (MR::isBindedWall(mHost)) {
-            MR::addVelocityJump(mHost, 10.0f);
-        }
+    if (MR::sendMsgEnemyAttackToBindedSensor(pKoopa, pKoopa->getSensor("Body"))) {
+        return;
+    }
 
-        if (MR::isNearPlayer(mHost, 1000.0f) || MR::isGreaterStep(this, 180)) {
-            if (MR::calcGravitySpeed(mHost) >= 0.0f) {
-                setNerve(&NrvKoopaStateAttackHipDrop::KoopaStateAttackHipDropNrvJumpStart::sInstance);
-            }
-        }
+    if (MR::isBindedWall(mHost)) {
+        MR::addVelocityJump(mHost, 10.0f);
+    }
+
+    if ((MR::isNearPlayer(mHost, 1000.0f) || MR::isGreaterStep(this, 180)) && MR::calcGravitySpeed(mHost) >= 0.0f) {
+        setNerve(&NrvKoopaStateAttackHipDrop::KoopaStateAttackHipDropNrvJumpStart::sInstance);
     }
 }
 
