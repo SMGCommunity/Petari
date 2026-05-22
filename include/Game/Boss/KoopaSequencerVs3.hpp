@@ -5,6 +5,14 @@
 class KoopaSequencerVs3 : public KoopaSequencer {
 public:
     KoopaSequencerVs3();
+    
+    virtual ~KoopaSequencerVs3();
+    virtual void init(Koopa*, const JMapInfoIter&);
+    virtual void calcAndSetBaseMtx();
+    virtual bool attackSensor(HitSensor*, HitSensor*);
+    virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
+    virtual bool receiveMsgEnemyAttack(u32, HitSensor*, HitSensor*);
+    virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
 
 private:
     /* 0x24 */ u32 _24;
