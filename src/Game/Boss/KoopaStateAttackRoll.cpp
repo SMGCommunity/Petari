@@ -122,13 +122,13 @@ bool KoopaStateAttackRoll::attackSensor(HitSensor* pSender, HitSensor* pReceiver
     if (MR::isSensorPlayer(pReceiver) && MR::isSensor(pSender, "AttackRoll") && MR::sendMsgEnemyAttackMaximum(pReceiver, pSender)) {
         _1C = 1;
         return true;
-    } else {
-        if (MR::isSensor(pSender, "AttackRoll") && KoopaFunction::tryKoopaAttackMapObj(pSender, pReceiver)) {
-            return true;
-        } else {
-            return false;
-        }
     }
+
+    if (MR::isSensor(pSender, "AttackRoll") && KoopaFunction::tryKoopaAttackMapObj(pSender, pReceiver)) {
+        return true;
+    }
+
+    return false;
 }
 
 bool KoopaStateAttackRoll::isDamage(u32 msg, HitSensor* pSender, HitSensor* pReceiver) const {
