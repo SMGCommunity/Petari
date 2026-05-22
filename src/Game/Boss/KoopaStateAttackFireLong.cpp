@@ -14,7 +14,6 @@ namespace {
 namespace NrvKoopaStateAttackFireLong {
     NEW_NERVE(KoopaStateAttackFireLongNrvStart, KoopaStateAttackFireLong, Start);
     NEW_NERVE(KoopaStateAttackFireLongNrvEmit, KoopaStateAttackFireLong, Emit);
-
 }  // namespace NrvKoopaStateAttackFireLong
 
 KoopaStateAttackFireLong::KoopaStateAttackFireLong(Koopa* pKoopa) : ActorStateBase< Koopa >("State[炎連弾攻撃]", pKoopa), _10(16), _14(-1) {
