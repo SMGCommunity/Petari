@@ -14,7 +14,6 @@ namespace {
 namespace NrvKoopaStateAttackFireShort {
     NEW_NERVE(KoopaStateAttackFireShortNrvStart, KoopaStateAttackFireShort, Start);
     NEW_NERVE(KoopaStateAttackFireShortNrvEmit, KoopaStateAttackFireShort, Emit);
-    
 }  // namespace NrvKoopaStateAttackFireShort
 
 KoopaStateAttackFireShort::KoopaStateAttackFireShort(Koopa* pKoopa)
