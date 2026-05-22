@@ -12,8 +12,8 @@ public:
     virtual void init(const JMapInfoIter&);
     virtual void appear();
     virtual void makeActorDead();
-    virtual void updateHitSensor(HitSensor*);
     virtual void calcAndSetBaseMtx();
+    virtual void updateHitSensor(HitSensor*);
     virtual void attackSensor(HitSensor*, HitSensor*);
 
     void exeWaveAttack();
