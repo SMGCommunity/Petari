@@ -63,6 +63,10 @@ void KoopaStateAttackFireLong::exeEmit() {
     }
 
     if (MR::isStep(this, 15)) {
-        _14 >= _10 ? kill() : setNerve(&NrvKoopaStateAttackFireLong::KoopaStateAttackFireLongNrvEmit::sInstance);
+        if (_14 >= _10) {
+            kill();
+        } else {
+            setNerve(&NrvKoopaStateAttackFireLong::KoopaStateAttackFireLongNrvEmit::sInstance);
+        }
     }
 }
