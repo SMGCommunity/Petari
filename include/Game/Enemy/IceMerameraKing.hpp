@@ -64,7 +64,7 @@ public:
     u32 _E8;
     s32 _EC;
     s32 _F0;
-    ThrowingIce** mModelArray;                                  //_F4
+    Meramera** mModelArray;                                  //_F4
     CameraTargetDemoActor* _F8;                                 //_F8
     JointControlDelegator< IceMerameraKing >* mJointController; //_FC
     TQuat4f _100;
