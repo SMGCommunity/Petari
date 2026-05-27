@@ -9,15 +9,6 @@
 #include "Game/LiveActor/LiveActorGroup.hpp"
 #include "Game/Map/KoopaBattleMapPlanet.hpp"
 
-KoopaParts::KoopaParts(Koopa* pKoopa, const JMapInfoIter& rIter)
-    : mKoopa(pKoopa), mPlanetRadius(1300.0f), mThornBig(), mThornSmall(), mArmorBreak(), mThornBreak(), mPlanetLv1(), mPlanetShadow(), mShockWave(),
-      mFireShort(), mFireStairs(), mKoopaSwitchKeeper(), mKoopaViewSwitchKeeper(), mKoopaPowerUpSwitch(), mRock(), mRockBreak(), mRollBall(),
-      mPlanetLv2(), mPlanetLv3(), mHoleSunPlanetOutside(), mHoleSunPlanetOutsideBloom(), mHoleSunPlanetInside(), mHoleSunPlanetInsideBloom(),
-      mPeach(), mKoopaJr(), mKoopaJrShip(), mMeteor1(), mMeteor2(), mMeteor3(), mActorCameraInfo() {
-    mActorCameraInfo = new ActorCameraInfo(rIter);
-    MR::declareCameraRegisterVec(mKoopa, 0, &mKoopa->mPosition);
-}
-
 namespace {
     PartsModel* createKoopaBodyParts(LiveActor* pActor, const char* pName, const char* pModelName, const char* pJointName) {
         PartsModel* pPartsModel = new PartsModel(pActor, pName, pModelName, nullptr, 18, false);
@@ -30,7 +21,24 @@ namespace {
 
         return pPartsModel;
     };
+
+    KoopaBattleMapPlanet* createKoopaBattleMapPlanet(const char* pName1, const char* pName2, const char* pResetPositionName, bool a1, bool a2,
+                                                     bool a3) {
+        KoopaBattleMapPlanet* pBattleMapPlanet = new KoopaBattleMapPlanet(pName1, pName2, a1, a2, a3);
+        MR::resetPosition(pBattleMapPlanet, pResetPositionName);
+        pBattleMapPlanet->initWithoutIter();
+        return pBattleMapPlanet;
+    };
 }  // namespace
+
+KoopaParts::KoopaParts(Koopa* pKoopa, const JMapInfoIter& rIter)
+    : mKoopa(pKoopa), mPlanetRadius(1300.0f), mThornBig(), mThornSmall(), mArmorBreak(), mThornBreak(), mPlanetLv1(), mPlanetShadow(), mShockWave(),
+      mFireShort(), mFireStairs(), mKoopaSwitchKeeper(), mKoopaViewSwitchKeeper(), mKoopaPowerUpSwitch(), mRock(), mRockBreak(), mRollBall(),
+      mPlanetLv2(), mPlanetLv3(), mHoleSunPlanetOutside(), mHoleSunPlanetOutsideBloom(), mHoleSunPlanetInside(), mHoleSunPlanetInsideBloom(),
+      mPeach(), mKoopaJr(), mKoopaJrShip(), mMeteor1(), mMeteor2(), mMeteor3(), mActorCameraInfo() {
+    mActorCameraInfo = new ActorCameraInfo(rIter);
+    MR::declareCameraRegisterVec(mKoopa, 0, &mKoopa->mPosition);
+}
 
 KoopaFireStairs* KoopaParts::emitFireStairsToPos(const KoopaBattleMapStair* pMapStair, const TVec3f& rPosition, bool useFront) {
     KoopaFireStairs* pMapStairs = static_cast< KoopaFireStairs* >(mFireStairs->getDeadActor());
@@ -126,13 +134,6 @@ void KoopaParts::createPlanetShadow() {
     mPlanetShadow->kill();
 }
 
-KoopaBattleMapPlanet* createKoopaBattleMapPlanet(const char* pName1, const char* pName2, const char* pResetPositionName, bool a1, bool a2, bool a3) {
-    KoopaBattleMapPlanet* pBattleMapPlanet = new KoopaBattleMapPlanet(pName1, pName2, a1, a2, a3);
-    MR::resetPosition(pBattleMapPlanet, pResetPositionName);
-    pBattleMapPlanet->initWithoutIter();
-    return pBattleMapPlanet;
-}
-
 void KoopaParts::initVs1() {
     createFireStairs(false);
 
@@ -165,15 +166,15 @@ namespace {
 
         return pModelObjNpc;
     };
-}  // namespace
 
-ModelObj* createMeteorStrike(const char* pName1, const char* pName2) {
-    ModelObj* pModelObj = MR::createModelObjEnemy(pName1, pName2, nullptr);
-    pModelObj->initWithoutIter();
-    MR::resetPosition(pModelObj, "デモ中心");
-    pModelObj->kill();
-    return pModelObj;
-}
+    ModelObj* createMeteorStrike(const char* pName1, const char* pName2) {
+        ModelObj* pModelObj = MR::createModelObjEnemy(pName1, pName2, nullptr);
+        pModelObj->initWithoutIter();
+        MR::resetPosition(pModelObj, "デモ中心");
+        pModelObj->kill();
+        return pModelObj;
+    };
+}  // namespace
 
 void KoopaParts::initVs3() {
     createFireStairs(true);
