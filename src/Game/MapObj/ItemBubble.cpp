@@ -4,6 +4,12 @@
 #include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
 
+namespace {
+    const f32 cHitSensorRadius = 120.f;
+    const f32 cSwingRange = 120.0f;
+    const f32 cShootStarSpeed = 24.0f;
+}
+
 namespace NrvItemBubble {
     NEW_NERVE(ItemBubbleNrvWait, ItemBubble, Wait);
     NEW_NERVE(ItemBubbleNrvBreak, ItemBubble, Break);
@@ -26,7 +32,7 @@ void ItemBubble::init(const JMapInfoIter& rIter) {
     PSMTXCopy(_9C, _CC);
     _108 = mPosition;
     initHitSensor(1);
-    MR::addHitSensorMapObj(this, "body", 8, mScale.x * 120.f, TVec3f(0.0f, 0.0f, 0.0f));
+    MR::addHitSensorMapObj(this, "body", 8, mScale.x * cHitSensorRadius, TVec3f(0.0f, 0.0f, 0.0f));
     initEffectKeeper(0, nullptr, false);
     initSound(4, false);
     initNerve(&NrvItemBubble::ItemBubbleNrvWait::sInstance);
@@ -108,17 +114,18 @@ void ItemBubble::init(const JMapInfoIter& rIter) {
         MR::declareCoin(this, mItemCount);
 
     if ((itemType == 0 && itemCount > 3) || (itemType == 1 && itemCount > 1)) {
+        TVec3f vec3;
         TVec3f vec(0.0f, 60.0f, 0.0f);
         TVec3f vec2;
         vec2.zero();
 
         TRot3f mtx;
         PSMTXRotRad(mtx, (char)90, TWO_PI / static_cast< f32 >(itemCount));
-        TVec3f vec3;
         if (itemType == 0)
             vec3.set< f32 >(0.0f, -60.0f, 0.0f);
         else
             vec3.zero();
+
         for (u32 i = 0; i < itemCount; i++) {
             if (_90[i] == nullptr)
                 continue;
@@ -140,6 +147,147 @@ void ItemBubble::init(const JMapInfoIter& rIter) {
     mRailSpeed = 1.0f;
     makeActorAppeared();
     MR::setClippingFar100m(this);
+}
+
+void ItemBubble::initAfterPlacement() {
+    TVec3f grav;
+    MR::calcGravityVector(this, &grav, nullptr, 0);
+    TPos3f mtx;
+    MR::makeMtxRotate(mtx, mRotation);
+    TVec3f vec;
+    mtx.getZDirInline(vec);
+
+    if (mUseRail)
+        MR::moveCoordAndTransToNearestRailPos(this);
+}
+
+void ItemBubble::appear() {
+    LiveActor::appear();
+    MR::offSwitchDead(this);
+}
+
+void ItemBubble::kill() {
+    if (MR::isValidSwitchDead(this))
+        MR::onSwitchDead(this);
+
+    if (mItemCount != 0) {
+        TVec3f grav;
+        MR::calcGravityVector(this, &grav, nullptr, 0);
+        for (u32 i = 0; i < mItemCount; i++) {
+            if (_90[i] == nullptr)
+                continue;
+
+            switch (mItemType) {
+            case 0:
+                MR::appearCoinFix(this, getRotPartsPosition(i), 1);
+                break;
+            case 1:
+                StarPiece* piece = getStarPiece(i);
+                piece->launch(getRotPartsPosition(i), grav.negateInline().multInLine(cShootStarSpeed), false, false);
+                MR::startSound(this, "SE_OJ_STAR_PIECE_BURST", -1, -1);
+                break;
+            }
+        }
+    }
+
+    LiveActor::kill();
+}
+
+
+void ItemBubble::calcAndSetBaseMtx() {
+    TVec3f camPos = MR::getCamPos();
+    TVec3f* pCamPos = &camPos;
+
+    JMathInlineVEC::PSVECSubtract2(pCamPos, mPosition, pCamPos);
+
+    if (MR::isNearZero(*pCamPos))
+        return;
+
+    MR::normalize(pCamPos);
+    TVec3f YDir(MR::getCamYdir());
+    TVec3f camcross(YDir.cross(*pCamPos));
+
+    if (MR::isNearZero(camcross))
+        return;
+
+    MR::normalize(&camcross);
+    MtxPtr baseMtx = getBaseMtx();
+    baseMtx[0][0] = camcross.x;
+    baseMtx[1][0] = camcross.y;
+    baseMtx[2][0] = camcross.z;
+    baseMtx[0][1] = YDir.x;
+    baseMtx[1][1] = YDir.y;
+    baseMtx[2][1] = YDir.z;
+    baseMtx[0][2] = pCamPos->x;
+    baseMtx[1][2] = pCamPos->y;
+    baseMtx[2][2] = pCamPos->z;
+    MtxPtr baseMtx2 = getBaseMtx();
+    baseMtx2[0][3] = mPosition.x;
+    baseMtx2[1][3] = mPosition.y;
+    baseMtx2[2][3] = mPosition.z;
+}
+
+void ItemBubble::exeWait() {
+    if (MR::isFirstStep(this)) {
+        // Useless...
+    }
+
+    _8C = MR::sin(2.0f * ((static_cast< f32 >(getNerveStep()) / cSwingRange) * PI));
+
+    if (mUseRail) {
+        if (MR::isRailReachedGoal(this))
+            MR::reverseRailDirection(this);
+
+        f32 speed;
+        if (MR::getCurrentRailPointArg0WithInit(this, &speed))
+            mRailSpeed = speed;
+
+        MR::moveCoordAndFollowTrans(this, mRailSpeed);
+    }
+
+    PSMTXScale(_9C, mScale.x, mScale.y, mScale.z);
+    PSMTXConcat(_9C, MR::tmpMtxRotZDeg(mRotation.z), _9C);
+
+    mPosition = _108 + TVec3f(0.0f, 1.0f, 0.0f).multInLine2(_8C).multInLine2(30.0f);
+
+    MR::setMtxTrans(_9C, mPosition.x, mPosition.y, mPosition.z);
+    if (mUseRail) {
+        PSMTXCopy(_9C, _CC);
+    } else {
+        MR::blendMtx(_CC, _9C, 0.1f, _CC);
+    }
+    for (u32 i = 0; i < mItemCount; i++) {
+        if (_90[i] == nullptr)
+            continue;
+
+        _90[i]->mRotation.x = 0.0f;
+        _90[i]->mRotation.z = 0.0f;
+        _90[i]->mRotation.y += 8.0f;
+    }
+}
+
+void ItemBubble::exeBreak() {
+    if (MR::isFirstStep(this)) {
+        MR::startSound(this, "SE_OJ_ITEM_BUBBLE_BREAK", -1, -1);
+        MR::emitEffect(this, "BubbleBreak");
+        kill();
+    }
+}
+
+bool ItemBubble::receiveMsgPush(HitSensor* pSender, HitSensor* pReceiver) {
+    if (MR::isSensorPlayer(pSender)) {
+        setNerve(&NrvItemBubble::ItemBubbleNrvBreak::sInstance);
+        return true;
+    }
+    return false;
+}
+
+bool ItemBubble::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
+    if (MR::isMsgStarPieceAttack(msg)) {
+        setNerve(&NrvItemBubble::ItemBubbleNrvBreak::sInstance);
+        return true;
+    }
+    return false;
 }
 
 ItemBubble::~ItemBubble() {}

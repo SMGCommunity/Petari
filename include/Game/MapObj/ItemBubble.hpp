@@ -56,6 +56,15 @@ public:
     void exeWait();
     void exeBreak();
 
+    const TVec3f& getRotPartsPosition(int index) const {
+        return _90[index]->mPosition;
+    }
+
+    StarPiece* getStarPiece(int index) const {
+        return _94[index];
+    }
+
+
     f32 _8C; // 0x8C
     RotPartsModel** _90;  // 0x90
     StarPiece** _94; // 0x94
