@@ -24,8 +24,8 @@ public:
     void startBattleLevel2();
     void startBattleLevel3();
 
-    /* 0x8 */ Koopa* mKoopa;
-    /* 0xC */ KoopaDemoPowerUp* mPowerUp;
+    /* 0x08 */ Koopa* mKoopa;
+    /* 0x0C */ KoopaDemoPowerUp* mPowerUp;
     /* 0x10 */ u32 _10;
     /* 0x14 */ KoopaDemoJumpToPlanet* mJumpToPlanet;
     /* 0x18 */ u32 mLv;

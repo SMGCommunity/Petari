@@ -19,12 +19,12 @@ public:
     void exeWaveAttack();
 
 private:
-    /* 0x8C */ Koopa* mKoopa;
-    /* 0x90 */ f32 _90;
-    /* 0x94 */ TPos3f _94;
-    /* 0xC4 */ TVec3f _C4;
-    /* 0xD0 */ TVec3f _D0;
-    /* 0xDC */ TPos3f mBaseMtx;
+    /* 0x08C */ Koopa* mKoopa;
+    /* 0x090 */ f32 _90;
+    /* 0x094 */ TPos3f _94;
+    /* 0x0C4 */ TVec3f _C4;
+    /* 0x0D0 */ TVec3f _D0;
+    /* 0x0DC */ TPos3f mBaseMtx;
     /* 0x10C */ TPos3f _10C;
     /* 0x13C */ PartsModel* mPartsModel;
     /* 0x140 */ ModelObj* mShadow;
