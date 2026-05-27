@@ -57,13 +57,13 @@ void KoopaParts::killFireStairsAll() {
     }
 }
 
-void KoopaParts::emitFireShort(bool fast, bool curve) {
+void KoopaParts::emitFireShort(bool isFast, bool isCurve) {
     KoopaFireShort* pFireShort = static_cast< KoopaFireShort* >(mFireShort->getDeadActor());
 
     if (pFireShort != nullptr) {
-        if (curve) {
+        if (isCurve) {
             pFireShort->emitCurve();
-        } else if (fast) {
+        } else if (isFast) {
             pFireShort->emitFast();
         } else {
             pFireShort->emitNormal();
