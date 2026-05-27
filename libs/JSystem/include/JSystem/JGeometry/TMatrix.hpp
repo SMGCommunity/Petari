@@ -558,7 +558,12 @@ namespace JGeometry {
         }
 
         void setTrans(f32 x, f32 y, f32 z);
-        void zeroTrans();
+        
+        void zeroTrans() {
+            this->mMtx[0][3] = 0.0f;
+            this->mMtx[1][3] = 0.0f;
+            this->mMtx[2][3] = 0.0f;
+        }
 
         void makeRotate(const TVec3f&, f32);
 
@@ -566,6 +571,11 @@ namespace JGeometry {
             zeroTrans();
             TRotation3< T >::setQuat(rSrcQuat);
         }
+
+        inline void makeQuatInline(const TQuat4f& rSrcQuat) {
+            zeroTransInline();
+            TRotation3< T >::setQuat(rSrcQuat);
+        }        
 
         void setPositionFromLookAt(const TPosition3< T >& rLookAt);
 
